@@ -1,91 +1,180 @@
-Return-Path: <devicetree+bounces-46473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2265869BE1
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:18:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 17C7E869C09
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 17:26:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1ECAF1C22ED0
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:18:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 829231F231D6
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 16:26:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B750214830D;
-	Tue, 27 Feb 2024 16:18:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AEC891487E0;
+	Tue, 27 Feb 2024 16:26:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="GnAkpX+r"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Rpr67OC1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4EE01482F5;
-	Tue, 27 Feb 2024 16:18:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A9A11487D8;
+	Tue, 27 Feb 2024 16:25:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709050715; cv=none; b=QIKQFwjv8XuyGzVHFXzJr+/E10tNIh0gatgbwKJxP6ASiP0nGXiu9tD7toUlil5w7A4phgGTpU4DYpyf07P1lOJWV0KOuyAy71AogAhuEGYM5t5vcPISuJF/MoW3wh4HPvhMHV4mfA40JjJjWewcPIMSrK6ge7rnW8C3U6Xb++I=
+	t=1709051164; cv=none; b=RAaFqNeKTHcoga0NmqTc/Fc1HMUY5kcPxJnA8ODVwzqL/c6ZMxLI4CklrZLfB4Gd0GVPzhyBdFl5UwHmFfLxds4GHdqZTVroCqKWEftPiA7YLMe0gTRE9QM610Yr2bkbm6602ZUcTFbzP9khKlxSovrucbiCvf4QLx4qRxwJhR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709050715; c=relaxed/simple;
-	bh=8jzB12U7eaeJ7iZKhIrGbomEj2GPEGQMeudR/3OpjlE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LJxozJqaL7OSdHDmWJQAJNnKKWIgJf4ECosuodurGDUapvWz3l3DXSz0CUR/lYRA9DXFiAjTHXYEEfYhWzQc+Q5BMhze8/Oy3/68GcOknDmYvROW/VNhULx5kM3+cIQHTeMC64asMTk+wZjViGG4EHwXH4Dbh2RN4CvuMMVZwkY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=GnAkpX+r; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=xy+YBUBt7Fbhm/C9bGcKgBSMqkXQX+ab81pGfZyrjfo=; b=GnAkpX+rSx4xKNsjYNU/5dh8+L
-	ZtcOCzuiRICGQL9fbS0mW5+I5PMioYJUj3Y73l1cEiIM/Qn9/aphayHRnA3v5wQuchh2GvHxdzv7c
-	PHHEkNd+LBOfM1jrPr4sF8yKryKD8iAHKQB6K4Tx2OTtGaoOmviC88Mu3EDFMoTSNq24=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rf0AC-008rvK-Ni; Tue, 27 Feb 2024 17:18:40 +0100
-Date: Tue, 27 Feb 2024 17:18:40 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Bastien Curutchet <bastien.curutchet@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	herve.codina@bootlin.com, maxime.chevallier@bootlin.com,
-	christophercordahi@nanometrics.ca
-Subject: Re: [PATCH v2 6/6] net: phy: DP83640: Add fiber mode
- enabling/disabling from device tree
-Message-ID: <a9c2144a-f26b-4a71-b808-ce3a94f1264d@lunn.ch>
-References: <20240227093945.21525-1-bastien.curutchet@bootlin.com>
- <20240227093945.21525-7-bastien.curutchet@bootlin.com>
+	s=arc-20240116; t=1709051164; c=relaxed/simple;
+	bh=0IOZC4PA4LjZ43fvl+0/P7+zntPaeuYpVR/JDgMNoXY=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=Os7ROm/3k64+xkuliLYqEbcY8X4ignfxoenm9GHN+YrDngkmGG58gQA2fnmV7c6XCZwsgN5qNI+OOu0S1HfjzHwBwxoi3D/ggKrtmYUE85QvXafiPQ0yADOL7djOanBXfM7YjIeGkT0Qp5BOf59kRXzxFpYS0UQByj26Nwp9rFU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Rpr67OC1; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BBC97240010;
+	Tue, 27 Feb 2024 16:25:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709051158;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=5EL5MTBosVVpIu4g1wb/cAbzOuqrbIGwThm3GnF6MkU=;
+	b=Rpr67OC1kRV904+6zCmMNThxo+4lX0RuA05YUSCsxPgZpJqnPom867O6bpfxMhFT6Yltsn
+	B//pM+2XaXNfouWq45mJrypBW1Bh8wkCjA7vIB2AVyh8ojgmrAE8x18GvaP920C5gLr/i5
+	aYEyo3Ksc2s0ukh/U4tqI8yGiMqxrYEGL56cphIXiqP6QfM/VJGmX76C1PN3Z6cj+cJNeq
+	BigspfVeLFEbaDd1oacroFL+YC9e8p+mGcp66xxH3KtjTtcs8XpskZAVRK7EqMMdv0m5t0
+	Bl21c9JFSiGphOuRXfJaTmGUf0REI1iXi3x9WQPx45I/OZCoD39Wt7R4WtDXRQ==
+From: Gregory CLEMENT <gregory.clement@bootlin.com>
+To: Josua Mayer <josua@solid-run.com>, Andrew Lunn <andrew@lunn.ch>,
+ Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Russell King <linux@armlinux.org.uk>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>
+Subject: Re: [PATCH v5 00/10] dt-bindings: marvell: a38x: add solidrun
+ armada 388 clearfog boards
+In-Reply-To: <20240104-support-clearfog-gtr-l8-sfp-v5-0-52be60fc54e3@solid-run.com>
+References: <20240104-support-clearfog-gtr-l8-sfp-v5-0-52be60fc54e3@solid-run.com>
+Date: Tue, 27 Feb 2024 17:25:56 +0100
+Message-ID: <874jdtkh63.fsf@BL-laptop>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240227093945.21525-7-bastien.curutchet@bootlin.com>
+Content-Type: text/plain
+X-GND-Sasl: gregory.clement@bootlin.com
 
-On Tue, Feb 27, 2024 at 10:39:45AM +0100, Bastien Curutchet wrote:
-> The PHY is able to use copper or fiber. The fiber mode can be enabled or
-> disabled by hardware strap. If hardware strap is incorrect, PHY can't
-> establish link.
-> 
-> Add a DT attribute 'ti,fiber-mode' that can be use to override the
-> hardware strap configuration. If the property is not present, hardware
-> strap configuration is left as is.
+Hello Josua Mayer,
 
-How have you tested this? Do you have a RDK with it connected to an
-SFP cage?
+> Dear Maintainers,
+>
+> The initially merged device-tree for Clearfog GTR devices contained
+> various subtle mistakes and omissions:
+>
+> - missing board-specific compatible strings
+> - missing pinctrl entries
+> - missing second sfp connector
+> - invalid sfp loss-of-signal gpio
+> - mismatch of labels between dsa ports and enclosure
+>
+> Most notably this had caused functional issues with the sfp connectors.
+>
+> This patch-set first converts the existing armada-38x dt-bindings to
+> yaml, replacing invalid soc-only compatibles with specific boards that
+> already exist in tree and represent the three SoCs (380,385,388).
+>
+> Secondly for clearfog gtr pinctrl nodes are added for all referenced
+> gpios for independence from bootloader defaults. U-Boot is shared
+> between armada-388 clearfog and armada-385 clearfog gtr.
+>
+> Further remove an invalid io from the first sfp connector description,
+> and add descriptions for the secondary sfp connector which is driven
+> by dsa switch port number 9.
+>
+> Finally labels of dsa switch ports were updated to match the enclosure.
+> That patch is not suitable for stable.
+>
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 
-    Andrew
+
+Rebased on v6.8-rc1, fixed merge conflict and applied on mvebu/dt
+
+Thanks,
+
+Gregory
+
+> ---
+> Changes in v5:
+> - remove empty lines between description and items yaml entries
+>   (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+> - bindings text to yaml conversion is now single commit
+>   (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+> - added bindings for some existing a380, a385 and a388 boards
+> - removed code from commit description
+>   (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+> - Link to v4: https://lore.kernel.org/r/20231230-support-clearfog-gtr-l8-sfp-v4-0-1d7f0e2c7128@solid-run.com
+>
+> Changes in v4:
+> - dropped invalid soc-only armada-38x (txt) bindings
+>   (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+> - add bindings for armada 388 helios-4
+> - updated yaml whitespace indentation count
+>   (reported by Rob Hering's bot)
+> - Link to v3: https://lore.kernel.org/r/20231226-support-clearfog-gtr-l8-sfp-v3-0-fd1ac2d6bf2e@solid-run.com
+>
+> Changes in v3:
+> - armada-38x.yaml: removed '|', no need to prerserve formatting
+>   (reported by Conor Dooley conor+dt@kernel.org)
+> - update commit descriptions to clarify confusing board names and
+>   compatible strings
+>   (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+> - send to all relevant lists
+>   (reported by Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>)
+> - remove duplicate binding for clearfog / clearfog
+> - Link to v2 (patches 0-2):
+>   https://lore.kernel.org/r/20231224143750.5604-1-josua@solid-run.com
+> - Link to v2 (patches 3-8):
+>   https://lore.kernel.org/r/20231224143850.5671-3-josua@solid-run.com
+>
+> Changes in v2:
+> - removed changes changes to gpio numbers because they were wrong
+> - added bindings documentation
+> - Link to v1: https://lore.kernel.org/r/20231223212930.14624-1-josua@solid-run.com
+>
+> ---
+> Josua Mayer (10):
+>       dt-bindings: marvell: a38x: convert soc compatibles to yaml
+>       dt-bindings: marvell: a38x: add solidrun armada 388 clearfog boards
+>       dt-bindings: marvell: a38x: add kobol helios-4 board
+>       dt-bindings: marvell: a38x: add solidrun armada 385 clearfog gtr boards
+>       arm: dts: marvell: clearfog: add pro variant compatible in legacy dts
+>       arm: dts: marvell: clearfog-gtr: add board-specific compatible strings
+>       arm: dts: marvell: clearfog-gtr: sort pinctrl nodes alphabetically
+>       arm: dts: marvell: clearfog-gtr: add missing pinctrl for all used gpios
+>       arm: dts: marvell: clearfog-gtr-l8: add support for second sfp connector
+>       arm: dts: marvell: clearfog-gtr-l8: align port numbers with enclosure
+>
+>  .../devicetree/bindings/arm/marvell/armada-38x.txt | 27 -------
+>  .../bindings/arm/marvell/armada-38x.yaml           | 70 ++++++++++++++++++
+>  .../dts/marvell/armada-385-clearfog-gtr-l8.dts     | 38 +++++++---
+>  .../dts/marvell/armada-385-clearfog-gtr-s4.dts     |  2 +
+>  .../boot/dts/marvell/armada-385-clearfog-gtr.dtsi  | 84 ++++++++++++++++------
+>  arch/arm/boot/dts/marvell/armada-388-clearfog.dts  |  5 +-
+>  6 files changed, 167 insertions(+), 59 deletions(-)
+> ---
+> base-commit: 861deac3b092f37b2c5e6871732f3e11486f7082
+> change-id: 20231226-support-clearfog-gtr-l8-sfp-d87ae715a787
+>
+> Sincerely,
+> -- 
+> Josua Mayer <josua@solid-run.com>
+>
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
 
