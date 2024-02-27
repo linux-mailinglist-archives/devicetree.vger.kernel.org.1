@@ -1,157 +1,185 @@
-Return-Path: <devicetree+bounces-46419-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46420-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A10B86983B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:30:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E6DF8698A2
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 15:43:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 951C71C2177F
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:30:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93F3FB24896
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 14:43:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C797146000;
-	Tue, 27 Feb 2024 14:29:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7765413B797;
+	Tue, 27 Feb 2024 14:43:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e7zrkFUJ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Fqqf3QS2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71992145FF9;
-	Tue, 27 Feb 2024 14:29:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F5095FBB3;
+	Tue, 27 Feb 2024 14:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709044153; cv=none; b=rVviKp4YL8MBuVPdoTxRlRBkJO+K2DIQEBtZINDI93wCPe47XpNUJy72B5gtBLHFKvvQPUMy5+AZ271yjireVQ+k6NgLxV4mim+gG3ugpupXMGv2dBitPQnejkVZlCpeU0ditARn5QqfEdswc9fiyA16r3a+0HhraEt03taiybg=
+	t=1709044996; cv=none; b=nsQuvw3izZOEXHIKcFS8XnwzsBNyjc8PLzdfPX7ZSkbp7fzWu8HuckPMw2U3kqzsZDz9CiQ0jhYDddOcp1lWddNcsUCECJ7lNzCojra/NHiscJ7SArH1fSV0zaOs/Ki7N/80RJqVksDusBxFHJZ4t5hb3niqox+gc9eVYYSuaJY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709044153; c=relaxed/simple;
-	bh=BeuKeRmCI8fl+4Mky6qTDE0ESLxkqayEq8heDHUciIc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R1vlyfTIEhhDx+NrrCDLla3+KcSIeW5VgJ+zSrqzPy59to4T1+OihuRQOtessErjmQSq/yu9e4rcEz+jejfJRH3px4n2eOm35RDHK+qEhB4h4KBSSaNMtOoICN3Rq73ChOsyyAxwoFZx2/ielFfkbAf8VY8tEZbW6Sxmr5cj3bc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e7zrkFUJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEB05C43390;
-	Tue, 27 Feb 2024 14:29:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709044153;
-	bh=BeuKeRmCI8fl+4Mky6qTDE0ESLxkqayEq8heDHUciIc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=e7zrkFUJjNkuT6ejQss+PGilg6MNPyI006Dx1xx8Zoe39qoMrNhJei7Ymxa34PjBb
-	 XXEnchbRee8ptxfWLoZirWVOzrypkJuJN831n7y8aYviicaZZkbm+K+6LgaO8GRodf
-	 axaBwr1hpp/O4zsmtbMqRFCMz0fc/Bskw7Pa1KxBm8uKJbKWG3qPPaTTAVv2M1bfVm
-	 ZEc1BIqE6o2uzkwBPWVH3HjI46Kt9VBq12B5U+pPIDmsPZW7eVb2W4vmdytNSbU8P6
-	 hTbFCfJ7AxhuU5WdnavbGLC8XrL90TYMhcDVVgjnjns8L6ETTmUknj8su/EcURMCGE
-	 ia+RFHnjoLtnA==
-Date: Tue, 27 Feb 2024 08:29:11 -0600
-From: Rob Herring <robh@kernel.org>
-To: =?utf-8?B?UGF3ZcWC?= Anikiel <panikiel@google.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, airlied@gmail.com,
-	akpm@linux-foundation.org, conor+dt@kernel.org, daniel@ffwll.ch,
-	dinguyen@kernel.org, hverkuil-cisco@xs4all.nl,
-	krzysztof.kozlowski+dt@linaro.org,
-	maarten.lankhorst@linux.intel.com, mchehab@kernel.org,
-	mripard@kernel.org, tzimmermann@suse.de, devicetree@vger.kernel.org,
-	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-	linux-media@vger.kernel.org, chromeos-krk-upstreaming@google.com,
-	ribalda@chromium.org
-Subject: Re: [PATCH v2 8/9] media: dt-bindings: Add Intel Displayport RX IP
-Message-ID: <20240227142911.GB3863852-robh@kernel.org>
-References: <20240221160215.484151-1-panikiel@google.com>
- <20240221160215.484151-9-panikiel@google.com>
- <13aeb2ff-72f4-49d9-b65e-ddc31569a936@linaro.org>
- <CAM5zL5q0oKoTMR0jSwYVAChCOJ9iKYPRFiU1vH4qDqhHALKz4w@mail.gmail.com>
+	s=arc-20240116; t=1709044996; c=relaxed/simple;
+	bh=nzzoAcZy6ByPTUCBU71haWrsk4N2CEDANka3g6chrSw=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=R/eu+CEshy9wDUYiyYz9+18RtN1nAlhoyPOsC3Z1S1SvAi2wWZKaSJa1WcVTCTlcRdLF3H1YddBOvkfMx5KXVlO8XbMjlBDqTYl2aA4jgY8Ztx1rTXqRbAJtapLOLHMeG6O6/F3GeL19kyEtsVcxB06COCsgWRg9IjnIIFMXlUc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Fqqf3QS2; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 65F0B20012;
+	Tue, 27 Feb 2024 14:43:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709044985;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=tGYCWJ+J0ySIHXc9tDrPkVxK+syZumvqa6uXZTBnOww=;
+	b=Fqqf3QS2lVSuEBfUnnJgYSAYX+beRLkFurO+6Z6F9oq4Mp/OlXDU9QLWc140WDrCj6Ujzf
+	lwWLkRuAsVovsjXHgWhWocyydupmWWZvi8e4E9KnqGCPI9+uGQ2tAoeZqgpqssy9mDczLJ
+	ggB9AAMP0MhuUZbCG8K2LwoKWz7OU5TCqOU8y7GSvJ7NliCIB2yUAILZAcf5PfQ2Ryh3j8
+	SiPnP74XssyKKCDvUGs40S+r5EFoTFlm9XF6PHFNrddH/wBw3SGgVIIQk6y5ge1v7uNHh0
+	c3dfDQC45j/Bc6T5p/rwpJ0dcdUVskLBuMMc2+n5vvZCUzo3JPY7lTC3rx7kLQ==
+From: Kory Maincent <kory.maincent@bootlin.com>
+Subject: [PATCH net-next v5 00/17] net: Add support for Power over Ethernet
+ (PoE)
+Date: Tue, 27 Feb 2024 15:42:42 +0100
+Message-Id: <20240227-feature_poe-v5-0-28f0aa48246d@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAM5zL5q0oKoTMR0jSwYVAChCOJ9iKYPRFiU1vH4qDqhHALKz4w@mail.gmail.com>
+X-B4-Tracking: v=1; b=H4sIAOP03WUC/2XNQWrDMBCF4asErasyGo1lO6veo4RiyeNG0EpBV
+ kxK8N2rCkorsnwM3z93sXLyvIrj4S4Sb371MZTRPR2EO0/hnaWfyxYIqBUgyYWnfE38dokslR5
+ pBO41gRZFXBIv/lZrryJwloFvWZzK5ezXHNNXfbOpeq9FpUxT3JQEaZkGILIL0vhiY8wfPjy7+
+ FlLG/5pBNVqLLoz8+AmZ6BfpketfzUBwtBq/aO1mtH0RGbkR03/tOpaTUXrzlpyqNEY1+p9378
+ BasiJymwBAAA=
+To: "David S. Miller" <davem@davemloft.net>, 
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, 
+ Luis Chamberlain <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>, Mark Brown <broonie@kernel.org>, 
+ Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org, 
+ devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>, 
+ Kory Maincent <kory.maincent@bootlin.com>
+X-Mailer: b4 0.12.4
+X-GND-Sasl: kory.maincent@bootlin.com
 
-On Mon, Feb 26, 2024 at 11:59:42AM +0100, Paweł Anikiel wrote:
-> On Mon, Feb 26, 2024 at 10:13 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> >
-> > On 21/02/2024 17:02, Paweł Anikiel wrote:
-> > > The Intel Displayport RX IP is a part of the DisplayPort Intel FPGA IP
-> > > Core. It implements a DisplayPort 1.4 receiver capable of HBR3 video
-> > > capture and Multi-Stream Transport. The user guide can be found here:
-> > >
-> > > https://www.intel.com/programmable/technical-pdfs/683273.pdf
-> > >
-> > > Signed-off-by: Paweł Anikiel <panikiel@google.com>
-> > > ---
-> > >  .../devicetree/bindings/media/intel,dprx.yaml | 160 ++++++++++++++++++
-> > >  1 file changed, 160 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/intel,dprx.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/intel,dprx.yaml b/Documentation/devicetree/bindings/media/intel,dprx.yaml
-> > > new file mode 100644
-> > > index 000000000000..31025f2d5dcd
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/intel,dprx.yaml
-> > > @@ -0,0 +1,160 @@
-> > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/intel,dprx.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Intel DisplayPort RX IP
-> > > +
-> > > +maintainers:
-> > > +  - Paweł Anikiel <panikiel@google.com>
-> > > +
-> > > +description: |
-> > > +  The Intel Displayport RX IP is a part of the DisplayPort Intel FPGA IP
-> > > +  Core. It implements a DisplayPort 1.4 receiver capable of HBR3 video
-> > > +  capture and Multi-Stream Transport.
-> > > +
-> > > +  The IP features a large number of configuration parameters, found at:
-> > > +  https://www.intel.com/content/www/us/en/docs/programmable/683273/23-3-20-0-1/sink-parameters.html
-> > > +
-> > > +  The following parameters have to be enabled:
-> > > +    - Support DisplayPort sink
-> > > +    - Enable GPU control
-> > > +  The following parameters' values have to be set in the devicetree:
-> > > +    - RX maximum link rate
-> > > +    - Maximum lane count
-> > > +    - Support MST
-> > > +    - Max stream count (only if Support MST is enabled)
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: intel,dprx-20.0.1
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  intel,max-link-rate:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: Max link rate configuration parameter
-> >
-> > Please do not duplicate property name in description. It's useless.
-> > Instead explain what is this responsible for.
-> >
-> > Why max-link-rate would differ for the same dprx-20.0.1? And why
-> > standard properties cannot be used?
-> >
-> > Same for all questions below.
-> 
-> These four properties are the IP configuration parameters mentioned in
-> the device description. When generating the IP core you can set these
-> parameters, which could make them differ for the same dprx-20.0.1.
-> They are documented in the user guide, for which I also put a link in
-> the description. Is that enough? Or should I also document these
-> parameters here?
+This patch series aims at adding support for PoE (Power over Ethernet),
+based on the already existing support for PoDL (Power over Data Line)
+implementation. In addition, it adds support for two specific PoE
+controller, the Microchip PD692x0 and the TI TPS23881.
 
-Use the standard properties: link-frequencies and data-lanes. Those go 
-under the port(s) because they are inheritly per logical link.
+This patch series is sponsored by Dent Project
+<dentproject@linuxfoundation.org>.
 
-Rob
+In detail:
+- Patch 1 to 13 prepare net to support PoE devices.
+- Patch 14 and 15 add PD692x0 PoE PSE controller driver and its binding.
+- Patch 16 and 17 add TI TPS23881 PSE controller driver and its binding.
+
+Changes in v5:
+- Fix bindings nit.
+- Add supported-polarity parameter to bindings.
+- Fix yamllint binding errors.
+- Remove the nested lock brought by the use of regulator framework.
+- Link to v4: https://lore.kernel.org/r/20240215-feature_poe-v4-0-35bb4c23266c@bootlin.com
+
+Changes in v4:
+- Replaced sponsored-by tag by a simple sentence.
+- Fix pse_pi node bindings.
+- Add pse pi documentation written by Oleksij.
+- Link to v3: https://lore.kernel.org/r/20240208-feature_poe-v3-0-531d2674469e@bootlin.com
+
+Changes in v3:
+- Add patches to add Oleksij and myself to PSE MAINTAINERS.
+- Add patches to add pse devlink.
+- Add TI TPS23881 PSE controller driver with its binding.
+- Replace pse_get_types helper by pse_has_podl and pse_has_c33
+- Changed the PSE core bindings.
+- Add a setup_pi_matrix callback.
+- Register regulator for each PSE PI (Power Interface).
+- Changed the PD692x0 bindings.
+- Updated PD692x0 drivers to new bindings and PSE PI description.
+- Updated PD692x0 drivers according to the reviews and made fixes.
+- Link to v2: https://lore.kernel.org/r/20231201-feature_poe-v2-0-56d8cac607fa@bootlin.com
+
+Changes in v2:
+- Extract "firmware_loader: Expand Firmware upload error codes patches" to
+  send it alone and get it merge in an immutable branch.
+- Add "c33" prefix for PoE variables and enums.
+- Enhance few comments.
+- Add PSE Documentation.
+- Make several changes in pd692x0 driver, mainly for readibility.
+- Link to v1: https://lore.kernel.org/r/20231116-feature_poe-v1-0-be48044bf249@bootlin.com
+
+Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+---
+Kory Maincent (17):
+      MAINTAINERS: net: Add Oleksij to pse-pd maintainers
+      of: property: Add fw_devlink support for pse parent
+      net: pse-pd: Rectify and adapt the naming of admin_cotrol member of struct pse_control_config
+      ethtool: Expand Ethernet Power Equipment with c33 (PoE) alongside PoDL
+      net: pse-pd: Introduce PSE types enumeration
+      net: ethtool: pse-pd: Expand pse commands with the PSE PoE interface
+      netlink: specs: Modify pse attribute prefix
+      netlink: specs: Expand the pse netlink command with PoE interface
+      MAINTAINERS: Add myself to pse networking maintainer
+      net: pse-pd: Add support for PSE PIs
+      dt-bindings: net: pse-pd: Add another way of describing several PSE PIs
+      net: pse-pd: Add support for setup_pi_matrix callback
+      net: pse-pd: Use regulator framework within PSE framework
+      dt-bindings: net: pse-pd: Add bindings for PD692x0 PSE controller
+      net: pse-pd: Add PD692x0 PSE controller driver
+      dt-bindings: net: pse-pd: Add bindings for TPS23881 PSE controller
+      net: pse-pd: Add TI TPS23881 PSE controller driver
+
+ .../bindings/net/pse-pd/microchip,pd692x0.yaml     |  158 +++
+ .../bindings/net/pse-pd/pse-controller.yaml        |  100 +-
+ .../bindings/net/pse-pd/ti,tps23881.yaml           |   93 ++
+ Documentation/netlink/specs/ethtool.yaml           |   33 +-
+ Documentation/networking/ethtool-netlink.rst       |   20 +
+ Documentation/networking/index.rst                 |    1 +
+ Documentation/networking/pse-pd/index.rst          |   10 +
+ Documentation/networking/pse-pd/introduction.rst   |   73 ++
+ Documentation/networking/pse-pd/pse-pi.rst         |  302 +++++
+ MAINTAINERS                                        |    8 +
+ drivers/net/mdio/fwnode_mdio.c                     |   29 +-
+ drivers/net/pse-pd/Kconfig                         |   20 +
+ drivers/net/pse-pd/Makefile                        |    2 +
+ drivers/net/pse-pd/pd692x0.c                       | 1223 ++++++++++++++++++++
+ drivers/net/pse-pd/pse_core.c                      |  429 ++++++-
+ drivers/net/pse-pd/pse_regulator.c                 |   49 +-
+ drivers/net/pse-pd/tps23881.c                      |  818 +++++++++++++
+ drivers/of/property.c                              |    2 +
+ include/linux/pse-pd/pse.h                         |   86 +-
+ include/uapi/linux/ethtool.h                       |   55 +
+ include/uapi/linux/ethtool_netlink.h               |    3 +
+ net/ethtool/pse-pd.c                               |   60 +-
+ 22 files changed, 3451 insertions(+), 123 deletions(-)
+---
+base-commit: f308eae1e1cdacca3cef65c7f4f691dfcb0c8976
+change-id: 20231024-feature_poe-139490e73403
+
+Best regards,
+-- 
+Köry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
+
 
