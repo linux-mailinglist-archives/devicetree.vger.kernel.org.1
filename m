@@ -1,417 +1,184 @@
-Return-Path: <devicetree+bounces-46226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46227-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29913868867
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 05:52:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 58ADA868879
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 06:04:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDCD228827A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 04:52:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 84F4B1C21EC8
+	for <lists+devicetree@lfdr.de>; Tue, 27 Feb 2024 05:04:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA95E52F62;
-	Tue, 27 Feb 2024 04:52:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4664524DE;
+	Tue, 27 Feb 2024 05:04:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WvHQPQS+"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="r1oJn0+a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2053.outbound.protection.outlook.com [40.107.94.53])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D31F44CDE5;
-	Tue, 27 Feb 2024 04:51:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.48
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709009521; cv=none; b=HVOzlqaOs6MIbxE7yMHbSchWPWCchRu7af+7KeD5b4y8n0gJ8La50BwE2YdZrrTrXoWeDbtsCOtBVHPA0gCpLOomqVAsXkdAXvmufAUQHD4NF4mIjgz0oGtNEfrQaHngxKqpU8prsPiWlF1l1sgB18ED7kEY/zq8bmsQLjcT65g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709009521; c=relaxed/simple;
-	bh=bb7IDBvYnYTLXVdfoQsTNaHEQp6t8xhwLjC4EJP9Tjw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aot7A79q6+8az5zf9U3fhUsBdo0JvUpzOLNsJnN64VT1Opj8RRYMd01R6RWbpHF2E0H9EXQhzrESHLtXSbb0uew1j+TOh/EQyFsGupGE9rki4zKzCkJ3WxlJsxBv7ElOd4eQQ+b7Hp7wANBYfTGgW11nFzrQAxYr/XJ9MOBlI6Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WvHQPQS+; arc=none smtp.client-ip=209.85.161.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f48.google.com with SMTP id 006d021491bc7-595aa5b1fe0so2634764eaf.2;
-        Mon, 26 Feb 2024 20:51:59 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709009519; x=1709614319; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zE5mwUY2kxnMy1ce6X1e9LPutT5zaNbvOrLFJUpCu+w=;
-        b=WvHQPQS+mrfoIKy3K0BEI21tQEHYLIwKxyrbPbRwNrwiQgJQaePNHH1m77gW3X4VQX
-         WBcg3Wn+nt5h2qbAYvMli5LbORZya0EdpmymJazjJKF2INW1aHrL1ZTWUdAHL/s+vOCs
-         PTMBj+iKAtx810SZKwuTWS4Xi/Zxl5Xs12xll6u2jYeNH+AmCt8qzD/lBRhTLy3AuDoo
-         nmJIqMpahoH7TYn3FoDfj3f3JHBoPg2MHU6De2euxKb7mrhSWQDrxGiZD4CDZt/hWZrm
-         IpJ7mf+AIUTgHHTTEtiUHxVUMIGb51bnNsWNVbfgim91x4w/j7lTRHKI8n87+Zr9XphN
-         Q4cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709009519; x=1709614319;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=zE5mwUY2kxnMy1ce6X1e9LPutT5zaNbvOrLFJUpCu+w=;
-        b=BSiRrVX5irEXv0UVJlkEwbekMpTymGabQHSTv9SgK4e0RwlkwONSWGAHAKdTMLeS60
-         AhqEqnuG1gqo+n/aMpwzfRzisvCnTlwHCIj+jXLymG8kUzPAaYvCi+nO07nn4f7Mb+mH
-         klVSlMcUGEot/PBPQzhn9gs/i4MgidE5U3ycyL54Obmu4qyHp+hHwxtPJ3+1jaQjFM5M
-         v6jUx4r5KujjOFj+Hxy3el1jHqN6J9kJYRQfc4ch10G8xebQV1JC5ZnvaGWmcSyR8qvy
-         fOD/1VGQQCuODblC7dvA4ZgfQhDkAoZr/Fx1eVJfdUR0qPljzqNz21fKtHVwH7gt/Lka
-         f1qw==
-X-Forwarded-Encrypted: i=1; AJvYcCVIraOrbJ+5x0uUH3RoThxBDeYZ1yLbhufMmbfqxd6zrBiV1kPQOk1s/P3cMDx4pXdBq3MYHSG/afCfJt1z6l12uEl+QhrkViRd/O5Bapy7PfinnF+/rLVfB1nZ8FMUsvVFZ9idG3Cy8nMbgsMsjmNmmMATRbxkBYlC+UKkIDXGIzEvkw==
-X-Gm-Message-State: AOJu0Yxqz2lCu+dVtQL/YMQt8ZGH5SjUIk7XuySb1VDUbixAdq5M+caY
-	kGrkXSOgkKGef+r6w3zrKAPGBrHBYo3Z7Bz2fSkKRF+2582XpQUKLj5ttjHDsrvyLLNVZhYTfU3
-	3LUpLtQbK1nbJEQMJ/Kn5PgtMzWg=
-X-Google-Smtp-Source: AGHT+IGDbMqkEgW6bRiZYuQLHcudPV4PGzgFn2nuJmexyQMX13jBuWZlteFtSEXn5R3zyobW2zUWfFFgX5OgvfgEkBI=
-X-Received: by 2002:a4a:3c5a:0:b0:5a0:b06a:ce10 with SMTP id
- p26-20020a4a3c5a000000b005a0b06ace10mr561599oof.0.1709009518818; Mon, 26 Feb
- 2024 20:51:58 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 105DEF4EB;
+	Tue, 27 Feb 2024 05:04:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.53
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709010285; cv=fail; b=VQNHSaaZNXAFzATF/36uD7Ww71Z4486N1FMAJJgUtabbpqVYCPWRZ0Qd0a5kYXbZmXtBb/hdN+hPX/wecEjyQggaicPSEj79IB5gvlj14j7GuuEXDT85OjfixMUk/MKUWtXlVb2Q+RqfkVxIgPOiFHe1SweDaACQSfVkGnCdZMw=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709010285; c=relaxed/simple;
+	bh=Za0JswK3JYFqoPRfSCFq2UNs1IyAP3CYnh6uyrE8bT4=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=KnNwPqF8zSGRjj7Fzu7ZgpKWcWek5lpj64dBrtrry7he9JPIgcl0FIbRcDH1Vlv1Dp4+CYNvo49haM8m1Hs2/g1QrBoxexPCR3qxVMwmK4lHN1lYDfc2i2g6DjwvJwM6mzlIutzKlHqSwTouyQNDZm+3fublQ0jHzbAfiyQW3Ak=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=r1oJn0+a; arc=fail smtp.client-ip=40.107.94.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=dVtCLAwUMsN2NeABAWNVabuf831BR98oFyfa3ZDUnjAa/vnWPQfh+qnL5MwQAhOE+s17oOpLjcnbL+tg7iPkfYKpLU+tDsE1cFJA1E8OgAEI09WA8C0rKHEBT52Tpo36kFUMfmPU4wnn6QZScBJt5NgVbLzo9r4FXSStclHmj+bRsePtLmlHkEXzWFUfedofxrrQCH4Ai1iqQYChI15Xdd6+qsK7zhVGJsWpaQWc9eiMAayVVmIL50aib6SmaMD32T1UJspu2nUl5ZYcEm9SSz7LQ1Hk/4MdDmDPJuQFgeTRQ4Jhs1GouWvUUsETL3nzzxHy0vMvEYq0/0AhnErfBg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zoQVxdiWsN0ybx8DgFFiSQ3YIW2uZ783XFUp5RHz5pg=;
+ b=hVjwULY1SISgtgjbw0W66JmJ8DiIbixBw9g4xaKLd2o/XAHsNmzzvA8uDZoyzNXm0GznsHyyZbOPyhVNxjzUlo6QRFmdNwbcFf/Sf0qd520gdoP9pA4Rb/+Qz654xDqipiCsA8YhZ0PmdV8LtW9Ocqtcaa8rnE9m1wr/S4xXvkXEUtER8knozTzGPLO8cUHaj6zZinSJhypWFMYHdC5cjUrYfWNqRqxNiLtMRrDs9y3O8on/OMlJPNJFwdauXBlENK1v009DgoShFvScHNbHB5wSY3LoPgqHacJlRQAOuh5MBelA6jIq5vK6AWgnI1JCbMTfN67riROAdoZqEKGA5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zoQVxdiWsN0ybx8DgFFiSQ3YIW2uZ783XFUp5RHz5pg=;
+ b=r1oJn0+a119NgRnly85JWrCdEpRX8ETVz5ddFtEgIc9MXs2M+QXhcz3JudJM+7BNCjqKw9WpNkBD39A2KMpiTALDWzOiHeMGDqnQqDUksTHGY6sU1qcSaaP11GMu1miIEfgGLoSxITaPKsE4ouBQatNSnNxcDO1flChq/Qe7fGY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BL1PR12MB5946.namprd12.prod.outlook.com (2603:10b6:208:399::8)
+ by PH0PR12MB7837.namprd12.prod.outlook.com (2603:10b6:510:282::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.34; Tue, 27 Feb
+ 2024 05:04:41 +0000
+Received: from BL1PR12MB5946.namprd12.prod.outlook.com
+ ([fe80::b440:9a95:dbfa:ae67]) by BL1PR12MB5946.namprd12.prod.outlook.com
+ ([fe80::b440:9a95:dbfa:ae67%5]) with mapi id 15.20.7316.034; Tue, 27 Feb 2024
+ 05:04:40 +0000
+Message-ID: <9a314461-3097-41a6-a264-1b109f30d3ec@amd.com>
+Date: Tue, 27 Feb 2024 10:34:28 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v2 3/4] net: macb: Enable queue disable and WOL
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: nicolas.ferre@microchip.com, claudiu.beznea@tuxon.dev,
+ davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, linux@armlinux.org.uk, vadim.fedorenko@linux.dev,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, git@amd.com
+References: <20240222153848.2374782-1-vineeth.karumanchi@amd.com>
+ <20240222153848.2374782-4-vineeth.karumanchi@amd.com>
+ <024fd8e1-8d1c-4073-99ff-ae8c5d123baa@lunn.ch>
+ <78730bb7-4588-4038-9336-eec6e2635a75@amd.com>
+ <8c0efb9a-d92c-4b9b-be75-498d460f67bd@lunn.ch>
+From: "Karumanchi, Vineeth" <vineeth.karumanchi@amd.com>
+In-Reply-To: <8c0efb9a-d92c-4b9b-be75-498d460f67bd@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: PN3PR01CA0105.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:c01:9b::9) To BL1PR12MB5946.namprd12.prod.outlook.com
+ (2603:10b6:208:399::8)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240223082014.109385-1-qiujingbao.dlmu@gmail.com>
- <20240223082632.109767-1-qiujingbao.dlmu@gmail.com> <ZdyZ8SvqbpllDDeY@xhacker>
-In-Reply-To: <ZdyZ8SvqbpllDDeY@xhacker>
-From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-Date: Tue, 27 Feb 2024 12:51:47 +0800
-Message-ID: <CAJRtX8TmGWWh1yPzOB5im=r3GYxrfzwiEo1jr2=t4LosrckV0g@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
-To: Jisheng Zhang <jszhang@kernel.org>
-Cc: u.kleine-koenig@pengutronix.de, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
-	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	dlan@gentoo.org, inochiama@outlook.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5946:EE_|PH0PR12MB7837:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5ff61490-057e-4597-998e-08dc37519a98
+X-LD-Processed: 3dd8961f-e488-4e60-8e11-a82d994e183d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	DRFoWBmJCsTcwjRGgrTPAnxlx/TwML0Ei8NcNM0MIoh+XLoW3y5EOSSxQLbCNrmePz+ndv0sDwy7FvorDjarq3v09XibB/NvxvzTBfXqsdZ+kHSB0FFJwxxuVZGci8oVZknjm8druJsMD7vPacshl5tN1Q2RS8jRnoYUHWv1M5o1ttCYqNcJwrDfrXBPo03M2yVmX6xxEErtD4tLl2utZIoU5u8FfV+dDbCdKXucRuU0W+uWHoTKZ3eobJPlGNBbT6pvQrHBfuaGVYJX+ft/9m/Fn5ngCvaXdTpad6n3mNb/7vzpJBaV8ttFenjIVsJnrUWe9+EsetSO6Xk3iYHhqmU5gJFTB02EHvYacqYs7PfCDky8RzxXcC4wlkLll357Ya2HQ7Y2M02pj8jIAAPP9q4l5ZB42kRzBD/+x6+k4M1Jyaod1Ry4JUUzsxxyQFM+z+xeiOYpmMYYxZR1B1dVRFRxH48SnVqp1wK2I2zTg9c7jnbaX3yb9TPbSYtO8HbGgMdAds6wbMNZg2/T/ae85HPPW2McFKiT0/iCYZ8SffoYN6c9Dd5givP3h31WGEF5LgMum7M9IQt/nk0OoYrtlT5zWFk0BEbCSe+oiZxo01jN5yzmQRs/5ha0VLhEQR9X
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5946.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?OW1oRTF1bVhLQnN4UUYveStuMkgyMlg3MCt6OHdBY1Rua1V5ekFBSmVNby9j?=
+ =?utf-8?B?RVNqbFlGaExlL3I1ZEZGbkVMeVB4OFhvRVduWWs3ZFlSTGRSNW8wNnhhMHpE?=
+ =?utf-8?B?c0FkOFdwVG1Tb0xkaFNjMlRFNmVOblNrakRQeGpDa085YWM4UXZwdng1Tm1W?=
+ =?utf-8?B?MnpubHBBMkV2a25vN252OGY0S05lK2JneGVmNGZLNGhrNStJd1RsRzdRZmVi?=
+ =?utf-8?B?eTBKanB1ZUJCTEcyampJZElWa2tRYjRETC84NmxOZnVqNDUrTE5LZkkxYmVN?=
+ =?utf-8?B?WWNVSFdneHVuQStucHhqd3Jsc3RWalpyaVppWE9LUmJUd202cmU2VW5YNUpt?=
+ =?utf-8?B?aDhCeW9uMS9NTU9WYVl0MUsyeTNIM3FQa3g1L3RpeWNvZk1NaDNQd29ELzc2?=
+ =?utf-8?B?ZnZPQ0NDb3BPTVZuU2o3bk5nRk11azMxWnYvNXhzWDYwVjRjY2xzL0tjd2dt?=
+ =?utf-8?B?bEhjOVNmZXRONE01SzdVRkJOQk5KZC8rZEVSRDlhdi95VnBkU3hlUC9JemZt?=
+ =?utf-8?B?SDh4V0hXOGJtbHVXUWdlZENRa2gvMHk1Tmd0SzZUWS9rUU9pZE94MmtXWGto?=
+ =?utf-8?B?TU9mWjZyWU4zYUxJMXJ5cFViTzBnb01SVitXTUw4WHJjdmNxc2YyNWpRd1NJ?=
+ =?utf-8?B?SDcrOG1hTWlCY0hyOWJyTU5qNmNaeXdTT0VqOWdiQk9pN3U4STR3ZXY1Z0Js?=
+ =?utf-8?B?N0RRclhJZStBU2VUaGMrd21zSEhFekFUemlxSUp1WU11TE10SS9CaVpycHdo?=
+ =?utf-8?B?NWJ5TG82M3NURWUxYWlXVSt2T0Q1M04yN3g3ZjkyQmg0WWk4Z3puWFFxQ25a?=
+ =?utf-8?B?UFF0TW5Lb09YQmRHVW9oNGRPT2RBeWgwVlcvYnZSNlA4UkRUSnNjcE5ETnFT?=
+ =?utf-8?B?Q0k0b3JkT2hXamU1OGRDYmQxbEJtaGRUTzVaUGt3WFBjY0RNTU9FT0lYS0Jx?=
+ =?utf-8?B?RVB5WS9xT3BEQjBQbEpjeWRBRjdrczlDYWRNeVhZRkVHeXlNWEN0dDdGbGxq?=
+ =?utf-8?B?dmdTb0p5Rzg0aWEwWmdEbUNtM2JtQnlPWmtIWmlTbTd6cDRaY0o3T0xwQkJH?=
+ =?utf-8?B?VHAyQ01KYlpQaDJUUUpBUmVkWlF2QzhTS3RGSjhrM01xQytFTHc3OHN2elZh?=
+ =?utf-8?B?aXd2YklwdFQ4NUVaTFhLRm5MakxOMXk5ZTFQNSt1cWpVRXNoVnEwUmxGamlV?=
+ =?utf-8?B?ZlJGcHM2WWxCbGx3REpTUVRiNklaU0t0bFdTMWpNenVvbWMvZkU4Z3N6R0ZC?=
+ =?utf-8?B?cmkyeDF4VjBkUFpVcU5WK0toSVB5UDdRUDA4dll6WG5GeFJwOWQ4WXAzbUhZ?=
+ =?utf-8?B?bmdXR3crZ1ovakN0N0hGcHZjb1NoZGxTVWZvUnhocHgxMmR6UWJ0TWdZemFW?=
+ =?utf-8?B?MzVaK1R6bUplOVgyWDR6dnQyV0Vyd0Y4cDJPTUVHeFBlYXZXUFBJOUVQVVFk?=
+ =?utf-8?B?dzQ5NXB1TmxuZ01jZ29mWmVqSUYyNnQyRExIZ0RudlhCQ2hQeTU3MExWRlFY?=
+ =?utf-8?B?Sm9jREY2bmtZMGE2TGZIOXROZWRqckNLSEhOZ09oNURLNGlJRjhITDIyQXpG?=
+ =?utf-8?B?MytOTTA2R1RWVWNtdTBsZTJLWE81NkRENUpld1lYK0Ztc0hmbkllUFpRWFdv?=
+ =?utf-8?B?UE5tRUxsVG9YWU9DdDYyQmhSMHl2QnQyRUdVd3hNNG4yM0JoQnhQVWw4ZG1t?=
+ =?utf-8?B?STdaSXVDbXRsbzEvektQWDNYRkpNeXFRWDNOSkJBVldrTFlOR29veW56MTl3?=
+ =?utf-8?B?M1RXU3BjVmJtYm1NY3hxNmZDa3hoM3BmNDVybzU4RTNrSjRJS1l2VDZEOTkr?=
+ =?utf-8?B?WmNNbm9VWnVhVVBmYUR3NWZiM1lrMlJlWVBGeU1SR2NGeGp0NkpoQXRoM0pu?=
+ =?utf-8?B?enZGdzQwU2tOY253ZDN6U0lVUjFpbk9tWGVrTW1hZ2hYQjI4cmtyRlJGNnhG?=
+ =?utf-8?B?S3Njd1R6cG0ydWFjL0YvUzg0TEJTOC9iRkNrRGo2V0hWb0Q0Um16eENJNXk0?=
+ =?utf-8?B?K0FrSnk4Z1FkVHVodHZNUnR2Z0NxdEE2cUFQTlJMMis5VEhyalNUa20wZHgw?=
+ =?utf-8?B?QUthNHpUTVpiRlhvYzVjV0tBZHZ5OFZMVkM4N1ordnlwRkVJb1VJVlJsbzdX?=
+ =?utf-8?Q?IWJZ0VvblF90n9AtNjOL6npG7?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ff61490-057e-4597-998e-08dc37519a98
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5946.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2024 05:04:40.8646
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 6WIlAhSmOehbrZ33f1bIPgXPk3+z9Z5csNHDSoKLwm2yjgtrkDmLe1sGNQuNUTie
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB7837
 
-On Mon, Feb 26, 2024 at 10:15=E2=80=AFPM Jisheng Zhang <jszhang@kernel.org>=
- wrote:
->
-> On Fri, Feb 23, 2024 at 04:26:32PM +0800, Jingbao Qiu wrote:
-> > Implement the PWM driver for CV1800.
-> >
-> > Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> > ---
-> >  drivers/pwm/Kconfig      |  10 ++
-> >  drivers/pwm/Makefile     |   1 +
-> >  drivers/pwm/pwm-cv1800.c | 259 +++++++++++++++++++++++++++++++++++++++
-> >  3 files changed, 270 insertions(+)
-> >  create mode 100644 drivers/pwm/pwm-cv1800.c
-> >
-> > diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> > index 4b956d661755..455f07af94f7 100644
-> > --- a/drivers/pwm/Kconfig
-> > +++ b/drivers/pwm/Kconfig
-> > @@ -186,6 +186,16 @@ config PWM_CROS_EC
-> >         PWM driver for exposing a PWM attached to the ChromeOS Embedded
-> >         Controller.
-> >
-> > +config PWM_CV1800
-> > +     tristate "Sophgo CV1800 PWM driver"
-> > +     depends on ARCH_SOPHGO || COMPILE_TEST
-> > +     help
-> > +       Generic PWM framework driver for the Sophgo CV1800 series
-> > +       SoCs.
-> > +
-> > +       To compile this driver as a module, build the dependecies
-> > +       as modules, this will be called pwm-cv1800.
-> > +
-> >  config PWM_DWC_CORE
-> >       tristate
-> >       depends on HAS_IOMEM
-> > diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> > index c5ec9e168ee7..6c3c4a07a316 100644
-> > --- a/drivers/pwm/Makefile
-> > +++ b/drivers/pwm/Makefile
-> > @@ -15,6 +15,7 @@ obj-$(CONFIG_PWM_CLK)               +=3D pwm-clk.o
-> >  obj-$(CONFIG_PWM_CLPS711X)   +=3D pwm-clps711x.o
-> >  obj-$(CONFIG_PWM_CRC)                +=3D pwm-crc.o
-> >  obj-$(CONFIG_PWM_CROS_EC)    +=3D pwm-cros-ec.o
-> > +obj-$(CONFIG_PWM_CV1800)     +=3D pwm-cv1800.o
-> >  obj-$(CONFIG_PWM_DWC_CORE)   +=3D pwm-dwc-core.o
-> >  obj-$(CONFIG_PWM_DWC)                +=3D pwm-dwc.o
-> >  obj-$(CONFIG_PWM_EP93XX)     +=3D pwm-ep93xx.o
-> > diff --git a/drivers/pwm/pwm-cv1800.c b/drivers/pwm/pwm-cv1800.c
-> > new file mode 100644
-> > index 000000000000..da1309dc0091
-> > --- /dev/null
-> > +++ b/drivers/pwm/pwm-cv1800.c
-> > @@ -0,0 +1,259 @@
-> > +// SPDX-License-Identifier: GPL-2.0-only
-> > +/*
-> > + * pwm-cv1800.c: PWM driver for Sophgo cv1800
-> > + *
-> > + * Author: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
-> > + *
-> > + * Limitations:
-> > + * - It output low when PWM channel disabled.
-> > + * - This pwm device supports dynamic loading of PWM parameters. When =
-PWMSTART
-> > + *   is written from 0 to 1, the register value (HLPERIODn, PERIODn) w=
-ill be
-> > + *   temporarily stored inside the PWM. If you want to dynamically cha=
-nge the
-> > + *   waveform during PWM output, after writing the new value to HLPERI=
-ODn and
-> > + *   PERIODn, write 1 and then 0 to PWMUPDATE[n] to make the new value=
- effective.
-> > + * - Supports up to Rate/2 output, and the lowest is about Rate/(2^30-=
-1).
-> > + * - By setting HLPERIODn to 0, can produce 100% duty cycle.
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/pwm.h>
-> > +#include <linux/regmap.h>
-> > +
-> > +#define PWM_CV1800_HLPERIOD_BASE 0x00
-> > +#define PWM_CV1800_PERIOD_BASE 0x04
-> > +#define PWM_CV1800_PWM_CV1800_POLARITY 0x40
-> > +#define PWM_CV1800_START 0x44
-> > +#define PWM_CV1800_DONE 0x48
-> > +#define PWM_CV1800_UPDATE 0x4c
-> > +#define PWM_CV1800_OE 0xd0
-> > +
-> > +#define PWM_CV1800_HLPERIOD(n) (PWM_CV1800_HLPERIOD_BASE + ((n) * 0x08=
-))
-> > +#define PWM_CV1800_PERIOD(n) (PWM_CV1800_PERIOD_BASE + ((n) * 0x08))
-> > +
-> > +#define PWM_CV1800_UPDATE_MASK(n) (BIT(0) << (n))
-> > +#define PWM_CV1800_OE_MASK(n) (BIT(0) << (n))
-> > +#define PWM_CV1800_START_MASK(n) (BIT(0) << (n))
-> > +
-> > +#define PWM_CV1800_MAXPERIOD (BIT(30) - 1)
-> > +#define PWM_CV1800_MINPERIOD BIT(1)
-> > +#define PWM_CV1800_MINHLPERIOD BIT(0)
-> > +#define PWM_CV1800_PERIOD_RESET BIT(1)
-> > +#define PWM_CV1800_HLPERIOD_RESET BIT(0)
-> > +#define PWM_CV1800_REG_DISABLE 0x0U
-> > +#define PWM_CV1800_REG_ENABLE(n) (BIT(0) << (n))
-> > +
-> > +struct cv1800_pwm {
-> > +     struct regmap *map;
-> > +     struct clk *clk;
-> > +     unsigned long clk_rate;
-> > +};
-> > +
-> > +static inline struct cv1800_pwm *to_cv1800_pwm_dev(struct pwm_chip *ch=
-ip)
-> > +{
-> > +     return pwmchip_get_drvdata(chip);
-> > +}
-> > +
-> > +static const struct regmap_config cv1800_pwm_regmap_config =3D {
-> > +     .reg_bits =3D 32,
-> > +     .val_bits =3D 32,
-> > +     .reg_stride =3D 4,
-> > +};
-> > +
-> > +static int cv1800_pwm_enable(struct pwm_chip *chip, struct pwm_device =
-*pwm,
-> > +                          bool enable)
-> > +{
-> > +     struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
-> > +     u32 pwm_enable;
-> > +
-> > +     regmap_read(priv->map, PWM_CV1800_START, &pwm_enable);
->
-> what's the reason of using regmap?
+Hi Andrew,
 
-This hardware has 4 channels, which means there may be
-multiple PWM channels working simultaneously. These PWM
-channels  share some registers, such as PWMSTART, POLARITY.
-So I use regmap.
+On 2/23/2024 6:56 PM, Andrew Lunn wrote:
+>> It is not specific to AMD versions. All Cadence GEM IP versions have the
+>> capability, but specific vendors might enable or disable it as per their
+>> requirements.
+> 
+> Do you mean it is an option to synthesizer it or not? So although the
+> basic IP licensed from Cadence has it, a silicon vendor could remove
+> it?
+> 
 
->
-> > +     pwm_enable &=3D PWM_CV1800_START_MASK(pwm->hwpwm);
-> > +
-> > +     /*
-> > +      * If the parameters are changed during runtime, Register needs
-> > +      * to be updated to take effect.
-> > +      */
-> > +     if (pwm_enable && enable) {
-> > +             regmap_update_bits(priv->map, PWM_CV1800_UPDATE,
-> > +                                PWM_CV1800_UPDATE_MASK(pwm->hwpwm),
-> > +                                PWM_CV1800_REG_ENABLE(pwm->hwpwm));
-> > +             regmap_update_bits(priv->map, PWM_CV1800_UPDATE,
-> > +                                PWM_CV1800_UPDATE_MASK(pwm->hwpwm),
-> > +                                PWM_CV1800_REG_DISABLE);
-> > +     } else if (!pwm_enable && enable) {
-> > +             regmap_update_bits(priv->map, PWM_CV1800_OE,
->
-> I believe this isn't correct.
-> TRM says setting OE as 1 means output enable, while 0 means input.
-> So I guess the controller may support pwm capture, but I didn't
-> get too much information about pwm capture of the controller from
-> the TRM, so can you please check and implement the .capture hook
-> if it's supported?
+Regarding that, we are unsure. However, based on observation from all 
+previous cadence IP's in AMD Soc's, this feature was available.
 
-you're right, the value of the OE register in the. apply function is always=
- 1.
-I need to modify the value of the PWMSTART register and check the OE
-register value. In addition, I will contact the hardware designers regardin=
-g
-the input mode of PWM hardware and will add support for the .capture
-feature after submitting this version
+>> WOL was previously enabled via the device-tree attribute. Some users might
+>> not leverage it.
+> 
+> This is not typical. If the hardware supports it, we let the end user
+> decided if they want to use it or not.
+> 
+> So if all silicon should have it, enable it everywhere. If there is an
+> option to save some gates and leave it out of the silicon, then we do
+> need some per device knowledge, or a register which tells us what the
+> synthesis options where.
+> 
 
->
-> > +                                PWM_CV1800_OE_MASK(pwm->hwpwm),
-> > +                                PWM_CV1800_REG_ENABLE(pwm->hwpwm));
-> > +             regmap_update_bits(priv->map, PWM_CV1800_START,
-> > +                                PWM_CV1800_START_MASK(pwm->hwpwm),
-> > +                                PWM_CV1800_REG_ENABLE(pwm->hwpwm));
-> > +     } else if (pwm_enable && !enable) {
-> > +             regmap_update_bits(priv->map, PWM_CV1800_OE,
->
-> ditto
->
-> > +                                PWM_CV1800_OE_MASK(pwm->hwpwm),
-> > +                                PWM_CV1800_REG_DISABLE);
-> > +             regmap_update_bits(priv->map, PWM_CV1800_START,
-> > +                                PWM_CV1800_START_MASK(pwm->hwpwm),
-> > +                                PWM_CV1800_REG_DISABLE);
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int cv1800_pwm_apply(struct pwm_chip *chip, struct pwm_device *=
-pwm,
-> > +                         const struct pwm_state *state)
-> > +{
-> > +     struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
-> > +     u32 period_val, hlperiod_val;
-> > +     u64 tem;
-> > +
-> > +     if (state->polarity !=3D PWM_POLARITY_NORMAL)
-> > +             return -EINVAL;
->
-> This is wrong. Per the TRM, The POLARITY(offset 0x040) reg can set the
-> polarity, so both PWM_POLARITY_NORMAL and PWM_POLARITY_INVERSED are suppo=
-rted.
->
+I have looked into all config_debug* registers of multiple versions 
+available with us and there is no mention of WOL. I think we can add 
+MACB_WOL_CAPS to default_config and advertise in ethtool by default.
 
-you're right, because POLARITY defaults to low-level output, HLPERIOD
-represents the
-number of low-level beats, which has been taken into account in the.
-apply calculation
-process. For the sake of simplicity, I simply believe that he is
-PWM-POLARITY-NORMAL.
- I will add support for polarity in the next version.
-
-> > +
-> > +     /*
-> > +      * This hardware use PERIOD and HLPERIOD registers to represent P=
-WM waves.
-> > +      *
-> > +      * The meaning of PERIOD is how many clock cycles (from the clock=
- source)
-> > +      * are used to represent PWM waves.
-> > +      * PERIOD =3D rate(MHz) / target(MHz)
-> > +      * PERIOD =3D period(ns) * rate(Hz) / NSEC_PER_SEC
-> > +      * The meaning of HLPERIOD is the number of low-level cycles in P=
-ERIOD.
-> > +      * HLPERIOD =3D PERIOD - rate(MHz) / duty(MHz)
-> > +      * HLPERIOD =3D PERIOD - (duty(ns) * rate(Hz) / NSEC_PER_SEC)
-> > +      */
-> > +     tem =3D mul_u64_u64_div_u64(state->period, priv->clk_rate, NSEC_P=
-ER_SEC);
-> > +     if (tem < PWM_CV1800_MINPERIOD)
-> > +             return -EINVAL;
-> > +
-> > +     if (tem > PWM_CV1800_MAXPERIOD)
-> > +             tem =3D PWM_CV1800_MAXPERIOD;
-> > +
-> > +     period_val =3D (u32)tem;
-> > +
-> > +     tem =3D mul_u64_u64_div_u64(state->duty_cycle, priv->clk_rate,
-> > +                               NSEC_PER_SEC);
-> > +     if (tem > period_val)
-> > +             return -EINVAL;
-> > +     hlperiod_val =3D period_val - (u32)tem;
-> > +
-> > +     regmap_write(priv->map, PWM_CV1800_PERIOD(pwm->hwpwm), period_val=
-);
-> > +     regmap_write(priv->map, PWM_CV1800_HLPERIOD(pwm->hwpwm), hlperiod=
-_val);
-> > +
-> > +     cv1800_pwm_enable(chip, pwm, state->enabled);
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static int cv1800_pwm_get_state(struct pwm_chip *chip, struct pwm_devi=
-ce *pwm,
-> > +                             struct pwm_state *state)
-> > +{
-> > +     struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
-> > +     u32 period_val, hlperiod_val;
-> > +     u64 period_ns =3D 0;
-> > +     u64 duty_ns =3D 0;
-> > +     u32 enable =3D 0;
-> > +
-> > +     regmap_read(priv->map, PWM_CV1800_PERIOD(pwm->hwpwm), &period_val=
-);
-> > +     regmap_read(priv->map, PWM_CV1800_HLPERIOD(pwm->hwpwm), &hlperiod=
-_val);
-> > +
-> > +     if (period_val !=3D PWM_CV1800_PERIOD_RESET ||
-> > +         hlperiod_val !=3D PWM_CV1800_HLPERIOD_RESET) {
-> > +             period_ns =3D DIV_ROUND_UP_ULL(period_val * NSEC_PER_SEC,=
- priv->clk_rate);
-> > +             duty_ns =3D DIV_ROUND_UP_ULL(hlperiod_val * period_ns, pe=
-riod_val);
-> > +
-> > +             regmap_read(priv->map, PWM_CV1800_START, &enable);
-> > +
-> > +             enable &=3D PWM_CV1800_START_MASK(pwm->hwpwm);
-> > +     }
-> > +
-> > +     state->period =3D period_ns;
-> > +     state->duty_cycle =3D duty_ns;
-> > +     state->enabled =3D enable;
-> > +     state->polarity =3D PWM_POLARITY_NORMAL;
->
-> This is not correct, see above.
->
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +static const struct pwm_ops cv1800_pwm_ops =3D {
-> > +     .apply =3D cv1800_pwm_apply,
-> > +     .get_state =3D cv1800_pwm_get_state,
-> > +};
-> > +
-> > +static void devm_clk_rate_exclusive_put(void *data)
-> > +{
-> > +     struct clk *clk =3D data;
-> > +
-> > +     clk_rate_exclusive_put(clk);
-> > +}
-> > +
-> > +static int cv1800_pwm_probe(struct platform_device *pdev)
-> > +{
-> > +     struct device *dev =3D &pdev->dev;
-> > +     struct cv1800_pwm *priv;
-> > +     struct pwm_chip *chip;
-> > +     void __iomem *base;
-> > +     int ret;
-> > +
-> > +     chip =3D devm_pwmchip_alloc(dev, 4, sizeof(*priv));
->
-> it's better to replace magic "4" with proper macro.
-
-Yes, that's a good idea.
-
-Best regards
-Jingbao Qiu
+Please let me know your suggestions/thoughts.
+-- 
+🙏 vineeth
 
