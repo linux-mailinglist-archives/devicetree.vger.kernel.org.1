@@ -1,267 +1,153 @@
-Return-Path: <devicetree+bounces-46721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46724-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB8E586AAA0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 10:00:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2B3586AAB0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 10:02:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D75D5B21112
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 09:00:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2D4231F27F38
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 09:02:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4322B2D60A;
-	Wed, 28 Feb 2024 09:00:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AFAA2E84B;
+	Wed, 28 Feb 2024 09:02:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="AU9xdpZF"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="lv2dK1kf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out203-205-221-153.mail.qq.com (out203-205-221-153.mail.qq.com [203.205.221.153])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2A142D05B;
-	Wed, 28 Feb 2024 09:00:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.153
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DD702D60F;
+	Wed, 28 Feb 2024 09:02:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709110814; cv=none; b=VI9toq4Dq1az3uLlUAi38emx7Y4UMsEwJecmjexRWSO4wGKL8Z1eTBsXZBKMdBxATXOFe+V1LBhUdj2YFTEBiqORxBlYhmn5ypeSKSrfhKixoCAZ+3stANGFP9VPhxZg9ijaLD+uM6Su58v09UrdlHAW8ZzixOLq/E8qWy1dyko=
+	t=1709110947; cv=none; b=O7vLeHBuNHaLS4qsNpnHZ3ZizG4uk7TEMLKsGVVFLe9EqaJs6E556QbWVZdZOfJsvbghjPcy0k9vkZQHbJ/80ghHuvnj6YgIYAKdY5D/t/gUWQMtMeEO462axPTub3WzxZqQwq5vw6qd4bR1z4U0LoZg15X6c/hxakVkSBpZ3wI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709110814; c=relaxed/simple;
-	bh=NC4eJqy+tWfGOlFYPyPnq1rTK8KHis1P8cHnzIvCX2g=;
-	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=I1BuVHZC0FtIUllRaY70FiqmEH20vLznm5QTpSsOOHLkA2ykkiRPi071V4VwT7hoj9O/4nC5zAzJXdkb/4u1zvZ+I4Bs1LMSwQ7TvusT32ZKpP1uOCvBSUTOXVATTHUYrJkOg8a345Jt5vfym2Adbjw1czE2Kk2JzgNdN2PK+S4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=AU9xdpZF; arc=none smtp.client-ip=203.205.221.153
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1709110500; bh=OJERieRX8TNnv9pPvsXYVZQyy3A2qdrTGojUlwVAUuY=;
-	h=From:To:Cc:Subject:Date;
-	b=AU9xdpZFuk/EWLDKSuBQTXt6Y3LUwI1ZT2JhB/ou9vDuLBBx+FP40mePzsbsVvKSo
-	 Iw7hf/T8OR8FYac8bnQwSj9fOfOJBPsyBXxqtZ1NGqXdRG1SUqRDQCO8B57tSa9leo
-	 knSIyjYtuZEoA9yHgl9zJ9uRyxyu/3N30fnGEynA=
-Received: from cyy-pc.lan ([240e:379:2240:e500:994d:62ab:74a6:932b])
-	by newxmesmtplogicsvrsza7-0.qq.com (NewEsmtp) with SMTP
-	id D8722820; Wed, 28 Feb 2024 16:54:07 +0800
-X-QQ-mid: xmsmtpt1709110447t2alhx9za
-Message-ID: <tencent_88FEE0A2C5E0852436A2F1A1087E6803380A@qq.com>
-X-QQ-XMAILINFO: MllZffuBkEb5+DdQxOt7EblMGQYPjfWa7qBxdA9axrezMMfQnz09MBeCkgeptN
-	 juxzBBrmwXkR+fTdxjyixdPFQ7e2+HvZENJn2O5o48CSwHT9PpAJMgzJLa2XcJFQWrSXvgMBrDLr
-	 qPkyzwbGhowYlM5MYTw0V0wIYBgvL/KtFlIrdJ2UNfoKEujhrv37N8TXxvRgPfF8UUqz69WAsnjR
-	 ykQY9yAQ02kbyPDeYfYNupxd1G4X0U2Ov3ZTovTaGqDzhJuUsjyt+wWLTfA+P0e37PZc4Xl4hK7m
-	 z2YtSpJ/YJHyArBYr2/25l5o9dfZW6TS3L7SrrlOCY75R/8PkkiVy25JYUqw7Hk18zzqGPYlcQDk
-	 ARf5mjWKer5ALTTQbQWYALlHMLEji6psiVYzDY72Ra/dX4RHq3ZAyfuOmPoqeWumW3mWGmDIamsf
-	 +lsltrC5vw/5kqgFCtvtfBfnbd0YWxLkqf0ppnEDx60TZ0igo9qpKatwv0UB+npfOnAO0tHXVZOx
-	 N+6E7OwGimKXM/mjPjqUsg3bp+Kjkr7ppqoMWPWOvHtnpl8i8C5S7Ckp+BIfmCDNIvvi4p2Fgutd
-	 hGql7p0D4BQXU13YsHCZa3fu2sl/dAJ6WIgK+dfYuYKRijIOC5Yba+UNpsx/kbFR0nLbAC08g+Ps
-	 6b2DjOYuZboFLBlhh4FXGOfqgYZIr2/vKUgo/M8SSlgISLa6kW7sxgK7naMUTrhVTdcEEd0Dg5Be
-	 NrgAQZdCDvf2bdufRB3e0c41nLKTdZbZCzbbkBK8OuwC0fqbCbOxdHtRqyX7DGRz8uu9wMdackNp
-	 QjeGVcFLF8TWP5zT6ZCknr15oSNJPzEPUKvP0VgZHHq4KI6nXXrVCQJgjC3ebx85Vhc41uvwnGYe
-	 nvlu0FOB2y39G1f/PREijNSVlLD7eV9h56JoG0+J6Q8k6IaawX/5vcVd4+38+GTcRnXjmTPQ/sYk
-	 1hzed3cA3DcRPZAv8C3E8jD6MLJ9xF9CbwBHCsEupVice/uOadSay41srGnvETYnUaq6M6QF//U4
-	 9hXQ0C6Q==
-X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
-From: Yangyu Chen <cyy@cyyself.name>
-To: linux-riscv@lists.infradead.org
-Cc: Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Conor Dooley <conor@kernel.org>,
-	linux-kernel@vger.kernel.org,
-	Masahiro Yamada <masahiroy@kernel.org>,
-	Alexandre Ghiti <alex@ghiti.fr>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Yangyu Chen <cyy@cyyself.name>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3] riscv: dts: Move BUILTIN_DTB_SOURCE to common Kconfig
-Date: Wed, 28 Feb 2024 16:52:54 +0800
-X-OQ-MSGID: <20240228085255.201092-1-cyy@cyyself.name>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1709110947; c=relaxed/simple;
+	bh=HZVyfHOTe+v57yTden9brq8Q3xcBbqcgWJYLrxaXoYU=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=lUtYiRh/FroGvzcSj+6EH7ZGJHySyXe2o/lsCgKJvqkWgji2/T9DDNWm2lDb4dWvLBsTMxFpseI/paBqgqULB1pvWEkzH8Zyz577qp1Pr8/ZFC6df+uaJ+sws1bBd696ZDt2Ns9bM5hENboCnon69JOMHun/QWeAfD74ZsWLRU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=lv2dK1kf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 8DE31C43390;
+	Wed, 28 Feb 2024 09:02:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709110946;
+	bh=HZVyfHOTe+v57yTden9brq8Q3xcBbqcgWJYLrxaXoYU=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=lv2dK1kfRrkTgyl/U/LWjN+ngjYOvbErxUPNFYH7VPPYwjpyCTf34wQBC/sZF3I1l
+	 AdFlC9szG1NL1oCD/jdcO1drHIw5wpb+K6vJJFfpHBOPd9JsDM4RqFdhjkjlRMxGVU
+	 sIWcwWdUq5+DpjLzYR36CvANdlbqOU/JIwBiDHTvuDAFj8+e8qbOTcV6rC7+CZwApb
+	 kAZu8ErV06w/lBY9FehLYcetzqbgGq26NZgnzsgjdzjuq4vnammAtRCxU/TftzLZSP
+	 70PIcwwnODPMs4EIpn023Swhp/pO8JpIO0El7OI0ypJIx9f4CkekB4qm1o0m6Y+4eu
+	 QA7SVvNY+rYIw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 7A8F9C47DD9;
+	Wed, 28 Feb 2024 09:02:26 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH net-next v6 00/11] net: hisi-femac: add support for
+ Hi3798MV200, remove unmaintained compatibles
+Date: Wed, 28 Feb 2024 17:02:24 +0800
+Message-Id: <20240228-net-v6-0-6d78d3d598c1@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKD23mUC/23Oy26DMBAF0F+JvK6r8fiFs+p/VF34MSRWUlwBR
+ aki/r0ObIjI8urOuZo7G6jPNLDj4c56mvKQS1eDeTuwePbdiXhONTMEVIDC8I5G7jxCQ8JGBS2
+ rlz89tfm2rHyyx0FHt5F91each7H0f8v8JJb+aWkSHDiBT85iTN65j/I7Xku5vMfyvSxM+EJhV
+ Y0LSQULRkfcK7lRCKuSVQXTkA5WkzV6r9RW4arU40PypmmdbMHBXumtkqvSVSkZEJN0EYR8VvM
+ 8/wPVJtGZegEAAA==
+To: Yisen Zhuang <yisen.zhuang@huawei.com>, 
+ Salil Mehta <salil.mehta@huawei.com>, 
+ "David S. Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, 
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+ Heiner Kallweit <hkallweit1@gmail.com>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Yang Xiwen <forbidden405@outlook.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.13.0
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1709110945; l=2932;
+ i=forbidden405@outlook.com; s=20240228; h=from:subject:message-id;
+ bh=HZVyfHOTe+v57yTden9brq8Q3xcBbqcgWJYLrxaXoYU=;
+ b=hzmdokhJv/A5BfSeWoxhpBE9FymGgCKXGBpVTg1FjKcc3SA+a74WLyw70OGVfb+h6XRCwQSfF
+ lOh37SX5sV7Bv2M7dRw1JZKfi5A7sLQn6LpVJIA7GltFllw5Ewph+/+
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=KAWv6ZzFsT54MGllOczJgFiWB+DuayEmyn24iiVVThU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20240228 with auth_id=136
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
-The BUILTIN_DTB_SOURCE was only configured for K210 before. Since
-SOC_BUILTIN_DTB_DECLARE was removed at commit d5805af9fe9f ("riscv: Fix
-builtin DTB handling") from patch [1], the kernel cannot choose one of the
-dtbs from then on and always take the first one dtb to use. Then, another
-commit 0ddd7eaffa64 ("riscv: Fix BUILTIN_DTB for sifive and microchip soc")
-from patch [2] supports BUILTIN_DTB_SOURCE for other SoCs. However, this
-feature will only work if the Kconfig we use links the dtb we expected in
-the first place as mentioned in the thread [3]. Thus, a config
-BUILTIN_DTB_SOURCE is needed for all SoCs to choose one dtb to use.
-
-For some considerations, this patch also removes default y if XIP_KERNEL
-for BUILTIN_DTB, as this requires setting a proper dtb to use on the
-BUILTIN_DTB_SOURCE, else the kernel with XIP but does not set
-BUILTIN_DTB_SOURCE or unselect BUILTIN_DTB will not boot.
-
-Also, this patch removes the default dtb string for k210 from Kconfig to
-nommu_k210_defconfig and nommu_k210_sdcard_defconfig to avoid complex
-Kconfig settings for other SoCs in the future.
-
-[1] https://lore.kernel.org/linux-riscv/20201208073355.40828-5-damien.lemoal@wdc.com/
-[2] https://lore.kernel.org/linux-riscv/20210604120639.1447869-1-alex@ghiti.fr/
-[3] https://lore.kernel.org/linux-riscv/CAK7LNATt_56mO2Le4v4EnPnAfd3gC8S_Sm5-GCsfa=qXy=8Lrg@mail.gmail.com/
-
-Signed-off-by: Yangyu Chen <cyy@cyyself.name>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 ---
-Changes since v2:
-- some fixes on format and grammar
-- v2: https://lore.kernel.org/linux-riscv/tencent_61DFA8E0B13696A3256E538C4BC856633406@qq.com/
+Changes in v6:
+- add missing "not" in commit logs (Andrew)
+- rework binding changes, split it into several commits (Krzysztof Kozlowski)
+- Link to v5: https://lore.kernel.org/r/20240223-net-v5-0-43b22d39c013@outlook.com
 
-Changes since v1:
-- remove default y for BULTIN_DTB in any cases
-- remove default DTB_SOURCE for k210 and moved to its defconfig file
-- remove building dtb object file for other SoCs
-- reword help message to say N if unsure for BUILTIN_DTB_SOURCE
-- reword commit message
-- v1: https://lore.kernel.org/linux-riscv/tencent_AB625442CC1BCFF86E04D7B5891C43719109@qq.com/
+Changes in v5:
+- hisi-femac-mdio: remove clock completely (Krzysztof Kozlowski)
+- dt-bindings: mdio: apply comments from Krzysztof Kozlowski
+
+Changes in v4:
+- edit commit log to show why mdio bus clk is optional (Krzysztof Kozlowski)
+- add clk_bulk_disable_unprepare() during error path (Maxime Chevallier)
+- remove of_node_put() (Simon Horman)
+- remove histb-clock.h header in binding example as it's goign to be deprecated.
+- rearrange patches so binding comes before driver
+- Link to v3: https://lore.kernel.org/r/20240220-net-v3-0-b68e5b75e765@outlook.com
+
+Changes in v3:
+- rearrange patches to fix bot error. (Rob Herring)
+- rewrite commit logs (Andrew Lunn)
+- use clk_bulk_ APIs (Andrew Lunn)
+- fix uninitialization use of ret (assign to -ENODEV before goto) (Simon Horman)
+- Link to v2: https://lore.kernel.org/r/20240216-net-v2-0-89bd4b7065c2@outlook.com
+
+Changes in v2:
+- replace email.
+- hisi-femac: s/BUS/MACIF (Andrew Lunn)
+- hisi-femac: add "hisilicon,hisi-femac" compatible since the driver
+  seems generic enough for various SoCs
+- hisi-femac-mdio: convert binding to YAML (Krzysztof Kozlowski)
+- rewrite commit logs (Krzysztof Kozlowski)
+- Link to v1: https://lore.kernel.org/r/20240216-net-v1-0-e0ad972cda99@outlook.com
 
 ---
- arch/riscv/Kconfig                            | 14 +++++++-
- arch/riscv/Kconfig.socs                       | 32 -------------------
- arch/riscv/boot/dts/Makefile                  |  2 +-
- arch/riscv/boot/dts/canaan/Makefile           |  2 --
- arch/riscv/boot/dts/microchip/Makefile        |  1 -
- arch/riscv/boot/dts/sifive/Makefile           |  1 -
- arch/riscv/configs/nommu_k210_defconfig       |  2 ++
- .../riscv/configs/nommu_k210_sdcard_defconfig |  2 ++
- 8 files changed, 18 insertions(+), 38 deletions(-)
+Yang Xiwen (11):
+      dt-bindings: net: hisilicon-femac-mdio: convert to YAML
+      dt-bindings: net: hisilicon,hisi-femac-mdio: remove clocks
+      net: mdio: hisi-femac: remove clock
+      dt-bindings: net: convert hisi-femac.txt to YAML
+      dt-bindings: net: hisi-femac: remove core specific versioning
+      dt-bindings: net: hisi-femac: add missing clocks
+      dt-bindings: net: hisi-femac: replace deprecated phy-mode with recommended phy-connection-type
+      dt-bindings: net: hisi-femac: add mandatory MDIO bus subnode
+      dt-bindings: net: hisi-femac: add binding for Hi3798MV200 FEMAC core
+      net: hisi_femac: remove unused compatible strings
+      net: hisi_femac: add support for hisi_femac core on Hi3798MV200
 
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 85c899d0133a..3d6d93d71257 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -1000,7 +1000,19 @@ config RISCV_ISA_FALLBACK
- config BUILTIN_DTB
- 	bool "Built-in device tree"
- 	depends on OF && NONPORTABLE
--	default y if XIP_KERNEL
-+	help
-+	  Build a device tree into the Linux image.
-+	  This option should be selected if no bootloader is being used.
-+	  If unsure, say N.
-+
-+
-+config BUILTIN_DTB_SOURCE
-+	string "Built-in device tree source"
-+	depends on BUILTIN_DTB
-+	help
-+	  DTS file path (without suffix, relative to arch/riscv/boot/dts)
-+	  for the DTS file that will be used to produce the DTB linked into the
-+	  kernel.
- 
- endmenu # "Boot options"
- 
-diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-index e08e91c49abe..623de5f8a208 100644
---- a/arch/riscv/Kconfig.socs
-+++ b/arch/riscv/Kconfig.socs
-@@ -84,36 +84,4 @@ config SOC_CANAAN
- 	help
- 	  This enables support for Canaan Kendryte K210 SoC platform hardware.
- 
--if ARCH_CANAAN
--
--config ARCH_CANAAN_K210_DTB_BUILTIN
--	def_bool SOC_CANAAN_K210_DTB_BUILTIN
--
--config SOC_CANAAN_K210_DTB_BUILTIN
--	bool "Builtin device tree for the Canaan Kendryte K210"
--	depends on ARCH_CANAAN
--	default y
--	select OF
--	select BUILTIN_DTB
--	help
--	  Build a device tree for the Kendryte K210 into the Linux image.
--	  This option should be selected if no bootloader is being used.
--	  If unsure, say Y.
--
--config ARCH_CANAAN_K210_DTB_SOURCE
--	string
--	default SOC_CANAAN_K210_DTB_SOURCE
--
--config SOC_CANAAN_K210_DTB_SOURCE
--	string "Source file for the Canaan Kendryte K210 builtin DTB"
--	depends on ARCH_CANAAN
--	depends on ARCH_CANAAN_K210_DTB_BUILTIN
--	default "k210_generic"
--	help
--	  Base name (without suffix, relative to arch/riscv/boot/dts/canaan)
--	  for the DTS file that will be used to produce the DTB linked into the
--	  kernel.
--
--endif # ARCH_CANAAN
--
- endmenu # "SoC selection"
-diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-index 72030fd727af..fdae05bbf556 100644
---- a/arch/riscv/boot/dts/Makefile
-+++ b/arch/riscv/boot/dts/Makefile
-@@ -8,4 +8,4 @@ subdir-y += sophgo
- subdir-y += starfive
- subdir-y += thead
- 
--obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix /, $(subdir-y))
-+obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_SOURCE))
-diff --git a/arch/riscv/boot/dts/canaan/Makefile b/arch/riscv/boot/dts/canaan/Makefile
-index 520623264c87..987d1f0c41f0 100644
---- a/arch/riscv/boot/dts/canaan/Makefile
-+++ b/arch/riscv/boot/dts/canaan/Makefile
-@@ -5,5 +5,3 @@ dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_bit.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_dock.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_go.dtb
- dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maixduino.dtb
--
--obj-$(CONFIG_ARCH_CANAAN_K210_DTB_BUILTIN) += $(addsuffix .dtb.o, $(CONFIG_ARCH_CANAAN_K210_DTB_SOURCE))
-diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts/microchip/Makefile
-index 45adc4926e79..e177815bf1a2 100644
---- a/arch/riscv/boot/dts/microchip/Makefile
-+++ b/arch/riscv/boot/dts/microchip/Makefile
-@@ -4,4 +4,3 @@ dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-m100pfsevp.dtb
- dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-polarberry.dtb
- dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-sev-kit.dtb
- dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-tysom-m.dtb
--obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
-diff --git a/arch/riscv/boot/dts/sifive/Makefile b/arch/riscv/boot/dts/sifive/Makefile
-index 6a5fbd4ed96a..495bf760a909 100644
---- a/arch/riscv/boot/dts/sifive/Makefile
-+++ b/arch/riscv/boot/dts/sifive/Makefile
-@@ -1,4 +1,3 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_SIFIVE) += hifive-unleashed-a00.dtb \
- 			     hifive-unmatched-a00.dtb
--obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
-diff --git a/arch/riscv/configs/nommu_k210_defconfig b/arch/riscv/configs/nommu_k210_defconfig
-index 146c46d0525b..7e75200543f4 100644
---- a/arch/riscv/configs/nommu_k210_defconfig
-+++ b/arch/riscv/configs/nommu_k210_defconfig
-@@ -33,6 +33,8 @@ CONFIG_SMP=y
- CONFIG_NR_CPUS=2
- CONFIG_CMDLINE="earlycon console=ttySIF0"
- CONFIG_CMDLINE_FORCE=y
-+CONFIG_BUILTIN_DTB=y
-+CONFIG_BUILTIN_DTB_SOURCE="canaan/k210_generic"
- # CONFIG_SECCOMP is not set
- # CONFIG_STACKPROTECTOR is not set
- # CONFIG_GCC_PLUGINS is not set
-diff --git a/arch/riscv/configs/nommu_k210_sdcard_defconfig b/arch/riscv/configs/nommu_k210_sdcard_defconfig
-index 95d8d1808f19..0ba353e9ca71 100644
---- a/arch/riscv/configs/nommu_k210_sdcard_defconfig
-+++ b/arch/riscv/configs/nommu_k210_sdcard_defconfig
-@@ -25,6 +25,8 @@ CONFIG_SMP=y
- CONFIG_NR_CPUS=2
- CONFIG_CMDLINE="earlycon console=ttySIF0 root=/dev/mmcblk0p1 rootwait ro"
- CONFIG_CMDLINE_FORCE=y
-+CONFIG_BUILTIN_DTB=y
-+CONFIG_BUILTIN_DTB_SOURCE="canaan/k210_generic"
- # CONFIG_SECCOMP is not set
- # CONFIG_STACKPROTECTOR is not set
- # CONFIG_GCC_PLUGINS is not set
+ .../bindings/net/hisilicon,hisi-femac-mdio.yaml    |  39 +++++++
+ .../bindings/net/hisilicon,hisi-femac.yaml         | 120 +++++++++++++++++++++
+ .../bindings/net/hisilicon-femac-mdio.txt          |  22 ----
+ .../devicetree/bindings/net/hisilicon-femac.txt    |  41 -------
+ drivers/net/ethernet/hisilicon/hisi_femac.c        |  77 ++++++++++---
+ drivers/net/mdio/mdio-hisi-femac.c                 |  18 +---
+ 6 files changed, 221 insertions(+), 96 deletions(-)
+---
+base-commit: d206a76d7d2726f3b096037f2079ce0bd3ba329b
+change-id: 20240216-net-9a208e17c40f
+
+Best regards,
 -- 
-2.43.0
+Yang Xiwen <forbidden405@outlook.com>
 
 
