@@ -1,146 +1,188 @@
-Return-Path: <devicetree+bounces-46947-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46948-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 994B786B5B3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:17:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6992486B5BE
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:19:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 511822887F0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:17:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 207BF288312
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:19:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 709C93FBB5;
-	Wed, 28 Feb 2024 17:17:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5CDBE3FBBE;
+	Wed, 28 Feb 2024 17:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="lPHRCKu0"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="DXrmfXjQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B838F6EF17;
-	Wed, 28 Feb 2024 17:17:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBCC93FBB8
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 17:19:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709140672; cv=none; b=B4gkyX6i7BAVIxYbK/ugrareJaHeRQklc+qBLfo97HkTFpetzEWyGXNZiMLYJeXGtVS2rIUXZYcOxf5qdPOIBycHw3HtapVLEKOxE1mbvEMy85OJ4CZ3oEX2+3dUTYy4tKZ+feF/g0BEjnAV20BQmpyQ3esh5ZyrGLspTVYUfD0=
+	t=1709140750; cv=none; b=N1ncmXveYgeEwta4y5wPXA0hOarTDK2MG2sJcMqjQS9OmqFmIC2tOdMVppPZoMF+P5+fprE2QRIilODpKD486pnTOGoRc+lFf9CucTMf7ciDCOIDE+5nbpiq4I//5Z2IXgoqUa9yzE9evypDE5xaJvYOOMNLd15dzK5UqQwmH10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709140672; c=relaxed/simple;
-	bh=xocoGi8jKEcXqPEtTlyaHDUAiTj4nvNkNUKJpHO28io=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=P3mJax1JmMv88+XdxhRsKcKRUgYggR3FRKq6pYxb8BUQLHF1l/eLVGfNxRNfCuYNANrBu1y6uDQer10k8DC3rxcsxcnb4PrDC9vonnUA92LMkcC9yxdcofRMtt6A9N4VHAGO0HnYsd9RbM7OQJu68BTwNonwMVyLGp1voy+Daoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=lPHRCKu0; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a28a6cef709so2672666b.1;
-        Wed, 28 Feb 2024 09:17:50 -0800 (PST)
+	s=arc-20240116; t=1709140750; c=relaxed/simple;
+	bh=aFsYKNxuMdtcs33QU/5Jsqcp+ASWrz7gi1ostsw1AUI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HlEwTsA387Spb/cfFp0tHNj02TjyE/P0jiIxe6fy64RLbznCufOGEaEBCZh3i8KDCZjFboVR5iZEwm6/C4JCjUfY/29uNF9pN/mhc42g3pIudvdJp2r8iK6ReXMLi3L/KVyoe/kgipIxzJKQB2FYNyv4Fau6XpNAWxk6drfh5Tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=DXrmfXjQ; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51321e71673so60499e87.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 09:19:07 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709140669; x=1709745469; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xocoGi8jKEcXqPEtTlyaHDUAiTj4nvNkNUKJpHO28io=;
-        b=lPHRCKu0dQiur2urFt/phjmcxUJ1wizPoJ/ifvAs4ylJD1oh/AK7plFtjonha06gZV
-         TzsMlfPiXb56TLxNpOv2D3l6PKApPqNAtobaicTYZooPRUk9OccuuJCu+aSnAlJBcBHZ
-         9AKpF6V2SZFTFPb1MRNf7aA8jkyG7OC5TJsvPJ8GTUOwateT9GHbs5q0R9e9jlBdClOB
-         MnUfUHoediAY0r44rMe7pnr9Ddbe6IpFTHqnyiFQ/jo53nqqIXRLbGWGPKE0k7EbJFCT
-         LiMyLSWPMA84PPvlQsLR+AJgODOBlRd3VY0iLbP3GWYABgpecnbo3CGU0nr7yK8GxxGq
-         AE2Q==
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1709140746; x=1709745546; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=likxxYoOfEMuAKtEYTDM9v8GLGgkDJojgZCQVbAvfQM=;
+        b=DXrmfXjQSajsclQwZGhOS9uebMhrSySXVGzI/eiLLTMg2I1OoZ2Lsbokbx00WldgDo
+         lrOzLK32H7nT/8ce9V8Pnj+kURYG3XsqcbkOzrj40YXx09tFIhMECf8xlm1qyB9vz1aP
+         SxvdZ4Dv6ZBW044erGyiQPo3bBqvT9l1zvp2WM4GURvvL1v6zW/UaqMrhXfx0f0FWHkK
+         7dzv+stdKWwfOhqXpn2tXiol8utcKFs+JZlrPUyHN47ZV3Zg2aj87liO9Wd8obwHtE/B
+         ZdEz9Dv4hwzlk2w2jDU1j+PTQuGIWokbufBtU8dtG3YL7yNGbOVaQPgvIbbBYhzf4QAT
+         1joQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709140669; x=1709745469;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xocoGi8jKEcXqPEtTlyaHDUAiTj4nvNkNUKJpHO28io=;
-        b=UoUIpZFZBhvmLxBy1kyz9AufZ0NNA7LN67UWCV0Jw7IwWcMIbjmLvTngClC2l7IZPd
-         xGc13hJLGtj6VSxxR0xK0JrCXElxnXGWhve+aLeFZkGotxjmYDjLEWbvjhNkDJ3TAfQq
-         XieSYyzwzrSLGDZ3OfIZWwSauQZAwqbAsnUIPuhZSmLi3BHc5Fb6y+LX6vIigZhzjkgX
-         +bgYK3QX8AeBEtb8sKCX4rtbFrf3TULYUE6I3wZ6kDiNP8k0iPV0w8N3SU7HAffKmNmh
-         MEzVu/VBcAZaFDlUFJ4dkvBPFk/fBZVwZHQt+/lIRtykuddPuNSyt/URrtzmGteAc8oy
-         UFbQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUnFbn9LLiZXuKRJ76DNHGzPpGh91ir7yf3Urc0Sgdsm3voLjbFePYh/6++hkUrLfDDGGCbfNHJN+IvXRomOuLD7v6q6UfV22GCdMrbGwGcGNFNP2kQ3sX7RUMG+p1PZDZtCjI+XY54gf5l92HH7dkxi8Ki2p/Q100v3L7r+m7i3OJ++9nU
-X-Gm-Message-State: AOJu0YyquCUlTk/5jyNK1OHBldY/WyxGjb/KLeKxZROmBeP9joQL2evM
-	WliaQW1VGJjg3Rx/2RqG3mjwexEcPhezhOpwRFevUl9O8eoGq+/PqfhtuR0o6yCer4mn2fQhW1W
-	SHb4iXyx9BZVKZXDasBR53lChF9c=
-X-Google-Smtp-Source: AGHT+IFjbMeUiMmh+ASt59pWEkhNEGqIxUc5Cn9H7DqKZvTv9qyojAX2JuTlbI9fMFKSxGAxUhpxUu34ayPjbjE+CM8=
-X-Received: by 2002:a17:906:c353:b0:a3f:52dc:7872 with SMTP id
- ci19-20020a170906c35300b00a3f52dc7872mr214495ejb.62.1709140668947; Wed, 28
- Feb 2024 09:17:48 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709140746; x=1709745546;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=likxxYoOfEMuAKtEYTDM9v8GLGgkDJojgZCQVbAvfQM=;
+        b=ceto0AimMTjzJpZmQ8nMWPpaTC7OApDJalQCdMKso58JMkSGiz57YOoGJB02m/Om4v
+         i7CaOOj2PHYHRDfR4HTZcv8K6HucKif9hIzAzUAcVX7lqngJh0ZAyGwWbkVYe1MFrIOp
+         JfMEM7ur1c8UjB/wx+l8TvHIIav170MdTra8A8jZ844uyxF6yjWuYtb+gZ/8izKVr6Vl
+         nDgQ9mbww2TnRW1l7H6CMhl2V8QLounXZ0b1EBjzFlRkdA900Dv/c1Q68fWVE31C46a1
+         f1bif/9lZp4WHKdcrP5qYe4VYvsJSZASIZp0SOcioil8nr9mtk1y57fhT83ZKfFhyiN8
+         fk7g==
+X-Forwarded-Encrypted: i=1; AJvYcCWo41yTzxZwVXe7P/nhRbYbT5YuGUbhARHi0VlXFvB8VBnvu8c9MEO+zSchAVCUGEcniqTVkFNfudHXW0f3vul5CKdhq021znWWMQ==
+X-Gm-Message-State: AOJu0Yxd42qj9tLFZf7I63thDLmqbBIy37Xxt0pipFFGIXIJL5CXlbdF
+	GN+kyoLAzPLTls8X758ef0UEmhpHzxcEDcTXKUg/bWrZkiKjv6uit1FyMqKA8vtk6s06PsHx2UP
+	6
+X-Google-Smtp-Source: AGHT+IEE4slZWG1595pj5QbfSYHDutE8sbK9mwf+NBrBMJOjYn3TB2ETiL96EkfflJv/cEyXxsBr/g==
+X-Received: by 2002:a05:6512:398f:b0:512:b372:4eed with SMTP id j15-20020a056512398f00b00512b3724eedmr296674lfu.8.1709140745602;
+        Wed, 28 Feb 2024 09:19:05 -0800 (PST)
+Received: from ?IPV6:2a02:8428:2a4:1a01:6dfa:263f:dd7e:9456? ([2a02:8428:2a4:1a01:6dfa:263f:dd7e:9456])
+        by smtp.gmail.com with ESMTPSA id a21-20020a05600c349500b00412b10ce488sm2803097wmq.23.2024.02.28.09.19.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Feb 2024 09:19:05 -0800 (PST)
+Message-ID: <c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr>
+Date: Wed, 28 Feb 2024 18:19:03 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240227013221.21512-1-zhi.mao@mediatek.com> <20240227013221.21512-3-zhi.mao@mediatek.com>
- <CAHp75VciCJuoOwC8ozanWYqSCM=vWpiaqymJ2-gQfrSt5Ts6fQ@mail.gmail.com>
- <b4889fad324ec88eb3a22f51b0aa512cc93bd2cb.camel@mediatek.com>
- <CAHp75Vd=X9e4rOJabF4AbzGRZAF4BiNJa-C4ivOoQb7kAMy3vQ@mail.gmail.com> <Zd8g81wBXyfMvPhB@kekkonen.localdomain>
-In-Reply-To: <Zd8g81wBXyfMvPhB@kekkonen.localdomain>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 28 Feb 2024 19:17:12 +0200
-Message-ID: <CAHp75VfXY=Hv_o_CYe8sNYoBa1vtYWuk4Sz1M91XUp0cf4HjnA@mail.gmail.com>
-Subject: Re: [PATCH v6 2/2] media: i2c: Add GC08A3 image sensor driver
-To: "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
-Cc: =?UTF-8?B?WmhpIE1hbyAo5q+b5pm6KQ==?= <zhi.mao@mediatek.com>, 
-	"heiko@sntech.de" <heiko@sntech.de>, 
-	"tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
-	"yunkec@chromium.org" <yunkec@chromium.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"dan.scally@ideasonboard.com" <dan.scally@ideasonboard.com>, 
-	"gerald.loacker@wolfvision.net" <gerald.loacker@wolfvision.net>, 
-	=?UTF-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?= <shengnan.wang@mediatek.com>, 
-	"hdegoede@redhat.com" <hdegoede@redhat.com>, 
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
-	"linus.walleij@linaro.org" <linus.walleij@linaro.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	=?UTF-8?B?WWF5YSBDaGFuZyAo5by16ZuF5riFKQ==?= <Yaya.Chang@mediatek.com>, 
-	"mchehab@kernel.org" <mchehab@kernel.org>, 
-	"jacopo.mondi@ideasonboard.com" <jacopo.mondi@ideasonboard.com>, 
-	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, 
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
-	"bingbu.cao@intel.com" <bingbu.cao@intel.com>, 
-	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
-	"10572168@qq.com" <10572168@qq.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
-	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
-	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
-	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>, 
-	"macromorgan@hotmail.com" <macromorgan@hotmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
+ ath10k <ath10k@lists.infradead.org>,
+ wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+ <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
+ <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <87wmqoilzf.fsf@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Feb 28, 2024 at 2:03=E2=80=AFPM sakari.ailus@linux.intel.com
-<sakari.ailus@linux.intel.com> wrote:
-> On Wed, Feb 28, 2024 at 11:22:13AM +0200, Andy Shevchenko wrote:
-> > > Another, I also reviewed some other sensor driver code(such as
-> > > gc0a08/gc2145 and imx/ov), they are all the same.
-> >
-> > They are also problematic. So what?
->
-> The situation is the same in a large number of drivers, also outside the
-> media tree. It's also not trivial to figure out which header should be
-> included and it tends to be that if it compiles without warnings,
-> developers won't bother trying to figure out what should still be changed=
-.
+On 28/02/2024 17:37, Kalle Valo wrote:
 
-I spent about 20 minutes reading the code. Yes, for inexperienced
-developers it can take 3x longer, but still, much longer time was
-spent on writing that code to begin with. So, the headers are a part
-of the evolution of the code. And now it's pure technical debt with no
-excuses to not fulfill.
+> Marc Gonzalez writes:
+> 
+>> On 28/02/2024 15:03, Kalle Valo wrote:
+>>
+>>> Marc Gonzalez writes:
+>>>
+>>>> +  qcom,no-msa-ready-indicator:
+>>>> +    type: boolean
+>>>> +    description:
+>>>> +      The driver waits for this indicator before proceeding,
+>>>> +      yet some WCNSS firmwares apparently do not send it.
+>>>> +      On those devices, it seems safe to ignore the indicator,
+>>>> +      and continue loading the firmware.
+>>>
+>>> This sounds more like a firmware feature, not a hardware feature. What
+>>> about having a flag in enum ath10k_fw_features in firmware-2.bin?
+>>
+>> Are you using the word "feature" as in "it was done purposefully" ?
+> 
+> No, there's no bigger meaning like that. It's more like ath10k has to do
+> something differently when a certain bit is enabled in the firmware. I
+> just had to pick a word for the enum and from my limited vocabulary I
+> chose "feature" :)
 
-TL;DR: It's (rightfully) assumed that the developer *knows* their code.
+Understood!
 
-> I wonder if this could be automated by using the C preprocessor and a
-> small Perl script. :-)
+>> Is enum ath10k_fw_features also supposed to include work-arounds?
+> 
+> Yes, and we already use.
+> 
+>> Sorry, I've grepped over the entire Linux source code,
+>> and I cannot find where ath10k_fw_features is used,
+>> other than in ath10k_core_get_fw_feature_str().
+> 
+> Here's one example where in ath10k we use a feature bit as a workaround:
+> 
+> 	/* Don't trust error code from otp.bin */
+> 	ATH10K_FW_FEATURE_IGNORE_OTP_RESULT = 7,
+> 
+>         ....
+> 
+> 	if (!(skip_otp || test_bit(ATH10K_FW_FEATURE_IGNORE_OTP_RESULT,
+> 				   ar->running_fw->fw_file.fw_features)) &&
+> 	    result != 0) {
+> 		ath10k_err(ar, "otp calibration failed: %d", result);
+> 		return -EINVAL;
+> 	}
+> 
+> BTW for modifying firmware-N.bin files we have a script here:
+> 
+> https://github.com/qca/qca-swiss-army-knife/blob/master/tools/scripts/ath10k/ath10k-fwencoder
 
-There is a Google project coming from Clang people or so, but I have
-no idea of the state of affairs.
+If I understand correctly, you are saying that there is
+(maybe... probably) a bug in the FW, so it makes sense to
+tag that specific FW file with a special bit which the kernel
+will interpret as "this FW is broken in a specific way;
+and here's how to work around the issue."
 
+So this bit would serve the same purpose as my proposed
+"qcom,no-msa-ready-indicator" bit (that bit existed instead
+in my board's device tree).
 
---=20
-With Best Regards,
-Andy Shevchenko
+The problem I see is that the firmware files are signed.
+Thus, changing a single bit breaks the verification...
+UNLESS the FW format allows for a signed section ALONG-SIDE
+an unsigned section?
+
+>> As mentioned in my other reply, there are several msm8998-based
+>> devices affected by this issue. Is it not appropriate to consider
+>> a kernel-based work-around?
+> 
+> Sorry, not following you here. But I'll try to answer anyway:
+> 
+> I have understood that Device Tree is supposed to describe hardware, not
+> software. This is why having this property in DT does not look right
+> place for this. For example, if the ath10k firmware is fixed then DT
+> would have to be changed even though nothing changed in hardware. But of
+> course DT maintainers have the final say.
+
+At some point, we start wandering into meta-physical considerations
+such as "if FW cannot ever be changed, when does FIRM become HARD?"
+(and other GPLv3 niceties). But this is a discussion for another list.
+
+Regards
+
 
