@@ -1,114 +1,109 @@
-Return-Path: <devicetree+bounces-46846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1442286AFBB
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:02:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C04686AFC7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:04:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2B322894CD
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:02:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 349D0289547
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC9E314900E;
-	Wed, 28 Feb 2024 13:02:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDE7114D426;
+	Wed, 28 Feb 2024 13:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hCg28rL8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ybwxBiXI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1F53BBEE
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:02:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37BF814CAC4
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:04:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709125371; cv=none; b=YMYAkltVPbEelbEpfYTc5kriNtZlSzXBxyK+IRCTFSL7r989sHnyRDLrMHTs8UbeC+DewvzMOdVbV/U1nBK5hHjYXShlvPIJnn1nqF4/nRlglF/rbI502cfgcmlTO/qaFg/5l45HW86xSmddqvwWKko5qNJ/gzoxA40VAYX9ShM=
+	t=1709125443; cv=none; b=fSIYrkj4c7zMTf4YUCTpw4zn42yQ2PjJ11QIjszGw63FiworGRT//3Z3RRbp+NXcvy46y3VwTzOOSX6UjuCUdXJWv6vBF4qN4JIT+VZ4voA6fojIYg+0g8fEN56OJFg3h+bL8pgyKtwcT5tnLUwOXwENsepFh9b1wxybFMwxoq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709125371; c=relaxed/simple;
-	bh=3cYG7GaJLaJHPFKTz6+fE0NqWzsbSwHco8JoDUKQEQY=;
+	s=arc-20240116; t=1709125443; c=relaxed/simple;
+	bh=vFTpKydtyiDddUobygfeyVWyr4s0AkGFJ6e0BY5C7PA=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hsFA9eCN8PMGTKqHtZG5PoncsHzaXVwcxPIYuwHwO8M9XduQFRv9rRaGEy4hpmcUxBh/MdxCJD2n//JxNn3K9aZ9Vv1htfOuz7r5PZ6+xWECIqGv9WRt8Dswx69uZzZ4V1h7PSmRiWgayhHp5lfvlsNgUwQqH7D4l90pSqJqYA4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hCg28rL8; arc=none smtp.client-ip=209.85.128.173
+	 To:Cc:Content-Type; b=WdjnIn0Hqio8Xmv4EA0QjG8wk4Us7srOovhe5/DU6L/d+R8BkPrsk2LzmQeEwCtYnE1WC4dBimk3k6YhjUliWCEqNnA59GcUrAjl2w9jno6Kzx1j6IS3mX7t80+RG3SjL97DOrGHO2nbYyL0jK9DEU/Ppv7sUV87l8Lbszhv6Go=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ybwxBiXI; arc=none smtp.client-ip=209.85.219.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-609241c2696so20453587b3.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 05:02:49 -0800 (PST)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc6dcd9124bso5713419276.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 05:04:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709125369; x=1709730169; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709125441; x=1709730241; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=x6lSKguAFNJlnGwYnPcXJDGp7aYh6GWsOXe6nAyiYVg=;
-        b=hCg28rL8oQhsqzK4oYJZsSxvYvmljTITpK5k0wS+vfNH+vKG9z8H8l5pp4r41mYF+9
-         p510o9l1WIA8Wm7T2r7h9/mLz4CKHFsNRJMgKj+qmuxzkae8EV6/HWFyRNPzuPZ9SmEV
-         ZIRGSRmM2X1v7AVwcX0W432l6Y7VrBQ+JpLoXLVyFEhXIECUyUfUSsGZweEpmqQBbJnS
-         npv0fQnT12bn58e6iJOQuzd/Lyyz8WvczN9nn8lQMSlDEZi7u/6/Z/FFB72Dh9XxQ2Jh
-         ArmuL0uyavKLdZorcCRUuOASszDvpDEzvOjBs6U/pgfHnSXTdEo5tqmNGwpzdrmOBbie
-         C27Q==
+        bh=X4xrPKeqtgEGV9Q4IBEmk+WaDilZyeoAcRRC9Axa6hc=;
+        b=ybwxBiXIRXB5RiLEhGRthnkei3MMShfAuSq4rpub29+ACNPlYcJNGepRlhAeOx+0x2
+         9lXVSoj3DuPlJ/wvjH9Smzdi4YW/ILbbKmow/F+shWX7dOFkPfoau1kWYlRFnfC0CP3x
+         dBJve3sRmnSw6tCnqp/iAJdzluc5hVAkGoLrgRLzUzKdOZ20Tg/u7mn8mjmhnTZsMZzH
+         asC46cXmOjus/h2kwSiDjRZ2UowcBmAA/WEjH5Tn/+rx/g1PwiFr9R5nQbu+OjAfKDEH
+         V9koODHEsb/JKOj6M5+7yLjtDStqR1TZIDPd2H3KFYV8Oxi9q76QhEDz0aJck9V0dsGk
+         XRAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709125369; x=1709730169;
+        d=1e100.net; s=20230601; t=1709125441; x=1709730241;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=x6lSKguAFNJlnGwYnPcXJDGp7aYh6GWsOXe6nAyiYVg=;
-        b=VuPGXx3etPponPYXIxOM5zI2htnNzu/LS1MoNY3xq+19hfgS7yn84p+EMiZNfPMzom
-         rLiED6z/8PgZQVUeaBQ+kwNE9coT1kIncqoJ90Rgrkmy9IbtR4kkXdOUw5UdoT2IIBt3
-         gpkUgy1WCCjYQQGPqrtmvKDfpI8Of4VUaXCweQ6iud7Gq1BKfS002wgr6HFDp5pCJkSJ
-         cjwh72os6SVfcJMmMueuNl39iUPXtHKQY+0nFAAjH2qo6wrfl5uf1u0uFvax1XEY7hmd
-         LAFTN/S3v2YPz6DvtFo/PcMbNINIs0ZU2YpSmJ7uGC8/ZlBET7SFoVHJFcc+rIZ1yBX8
-         89Qg==
-X-Forwarded-Encrypted: i=1; AJvYcCXHxBfPfAJGiyN/lhSG34tvMdN16qhP3EQwuzgo1y3PJB/b7Q+utQRWloP1V9OtLxU9FPqMGFTJ+g3ZH/tIzQ5NneipGsjWPAWs8Q==
-X-Gm-Message-State: AOJu0YwPA4UcdNEMnORSyAjK0ad4EBSR0hxn0mo5NSuH93L6mXMuUXM/
-	Jwzg/guV0wb78/nQMZKPVAvvQAvdZAoO16DR6B4u1fBltgAl10Pimpud4uqOZyIhml0af5WJ5ZX
-	iBsM99Eb67JSFiQIWeuDWZYQRRHpKHS2WyFGXKg==
-X-Google-Smtp-Source: AGHT+IHt515XwjEFX2Talx1MabYfeTXhLsH0vACvt9NK8SBc6/4ePgqNHrqmsK6WApAXc6SEFfgq73kQu0EE4nMTs0E=
-X-Received: by 2002:a05:6902:1b09:b0:dcc:53c6:113a with SMTP id
- eh9-20020a0569021b0900b00dcc53c6113amr2580289ybb.59.1709125368961; Wed, 28
- Feb 2024 05:02:48 -0800 (PST)
+        bh=X4xrPKeqtgEGV9Q4IBEmk+WaDilZyeoAcRRC9Axa6hc=;
+        b=O3MXEBR23PHdNHmScNppJ9g0U9LgnjnbmdmQLMv4VUjE/lvgNkckIUE0GcQQPDmsUb
+         eAUj7Jh+PsjmeRYBta03HVepyWsjq9rP5huKJ6bkn0xCbcm3VlGX7QlTFHTgoUjuwCz5
+         fZt6+CHCLrEIkH6nQTKk/8D5WH+mocvkUrUMjSWQk7yJ+z+RzCKq13Pm0eJp96+/RpLO
+         F3qm7jpS5JWR7grp1Hv3jKFDMI4no6vxjExvYSaIfw4hCfxwASweq36siUM/vGK/i8q6
+         I1D85g7YNkCN+mdAnwXkRyIxf0oQaOC8ZQzLXpI+HSaMErBW7qPuImOQaEM7xpE1eegR
+         Xwcg==
+X-Forwarded-Encrypted: i=1; AJvYcCVE+Pp7UcpWv5kFQavY35MdAn8IKY1cUs9/7ypkWrblQsnpXrEayMhXNRDGFbY8STPofguLN+OlZIKLqiuH6urzhtSCIszltOBxgg==
+X-Gm-Message-State: AOJu0YwL3oJzKRXvZbeKs0zy8kMv2y7N5HCQbIxbSx/3E7nJjgAb0BzZ
+	cz3zbBtUMfzmz+vrbO4h/rmYhLS1nuStXX/343zO43p9a3NkamJ1D0zYHZloopMpuhNpvV4zDyT
+	tjbxQeDlW0DI48UCPCqjhnEN5WxXGaZ+7mHrT6w==
+X-Google-Smtp-Source: AGHT+IGfbfWQ26vfcOGPm96x3PWRIKRsRzOqFj+BnyrgrRljfJCRT/1aUOwJAvx2MvOjZjDrvH/UChy9Nm4zE+AZOHU=
+X-Received: by 2002:a25:9c02:0:b0:dcc:2f94:591a with SMTP id
+ c2-20020a259c02000000b00dcc2f94591amr1934963ybo.12.1709125441193; Wed, 28 Feb
+ 2024 05:04:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240218-msm8996-fix-ufs-v3-0-40aab49899a3@linaro.org> <yq1o7c24oyt.fsf@ca-mkp.ca.oracle.com>
-In-Reply-To: <yq1o7c24oyt.fsf@ca-mkp.ca.oracle.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 28 Feb 2024 15:02:37 +0200
-Message-ID: <CAA8EJpqUrvzU_=EGcXdpLjVetSkCv0vfnc1hNhPQdyUQvY7UzQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/5] scsi: ufs: qcom: fix UFSDHCD support on MSM8996 platform
-To: "Martin K. Petersen" <martin.petersen@oracle.com>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	"James E.J. Bottomley" <jejb@linux.ibm.com>, Nitin Rawat <quic_nitirawa@quicinc.com>, 
-	Can Guo <quic_cang@quicinc.com>, 
-	Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>, Rob Herring <robh@kernel.org>, 
+References: <20240217144202.3808-1-jszhang@kernel.org>
+In-Reply-To: <20240217144202.3808-1-jszhang@kernel.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 28 Feb 2024 14:03:25 +0100
+Message-ID: <CAPDyKFptc2K3PfrzQxzWctnCNbqRZVOmDDLDe9uWLUPp1Q7_Vw@mail.gmail.com>
+Subject: Re: [PATCH 0/2] mmc: sdhci-of-dwcmshc: support Sophgo CV1800B and SG2002
+To: Jisheng Zhang <jszhang@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
-	Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, 
-	stable@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+	Adrian Hunter <adrian.hunter@intel.com>, linux-mmc@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-riscv@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 27 Feb 2024 at 04:33, Martin K. Petersen
-<martin.petersen@oracle.com> wrote:
+On Sat, 17 Feb 2024 at 15:55, Jisheng Zhang <jszhang@kernel.org> wrote:
+>
+> Add support for the mmc controller in the Sophgo CV1800B and SG2002
+> with corresponding new compatible strings. Implement custom sdhci_ops.
+> Currently, only sd card and no-1-8-v is implemented and tested, I will
+> try to find a board with emmc and sd/sdio sdr104 support.
 >
 >
-> Dmitry,
+> Jisheng Zhang (2):
+>   dt-bindings: mmc: sdhci-of-dwcmhsc: Add Sophgo CV1800B and SG2002
+>     support
+>   mmc: sdhci-of-dwcmshc: Add support for Sophgo CV1800B and SG2002
 >
-> > First several patches target fixing the UFS support on the Qualcomm
-> > MSM8996 / APQ8096 platforms, broken by the commit b4e13e1ae95e ("scsi:
-> > ufs: qcom: Add multiple frequency support for
-> > MAX_CORE_CLK_1US_CYCLES"). Last two patches clean up the UFS DT device
-> > on that platform to follow the bindings on other MSM8969 platforms. If
-> > such breaking change is unacceptable, they can be simply ignored,
-> > merging fixes only.
+>  .../bindings/mmc/snps,dwcmshc-sdhci.yaml      |  2 +
+>  drivers/mmc/host/sdhci-of-dwcmshc.c           | 66 +++++++++++++++++++
+>  2 files changed, 68 insertions(+)
 >
-> Does not apply to 6.9/scsi-staging. Please rebase if you want this
-> series to go through the SCSI tree.
 
-Please pick up just the UFS patch. DT patches should go through arm-soc tree.
+Applied for next, thanks!
 
--- 
-With best wishes
-Dmitry
+Kind regards
+Uffe
 
