@@ -1,141 +1,89 @@
-Return-Path: <devicetree+bounces-46845-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46847-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D72E86AF85
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:54:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91FF486AFBF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:03:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2EA701F26CAA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 12:54:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 47C101F21E3B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:03:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A642148FFC;
-	Wed, 28 Feb 2024 12:53:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DqiWmt8a"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CDCB14A085;
+	Wed, 28 Feb 2024 13:02:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 233C9145B27;
-	Wed, 28 Feb 2024 12:53:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2877E3BBCB;
+	Wed, 28 Feb 2024 13:02:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709124832; cv=none; b=ZX3G2ORGXoDD/jJtuqWCLWrRLEi5R3OkjVCOAqr+byHskql9rIfwCCJbF+18WHt3my9WyYxlDpow68H1D36lkwxgaVSLnkFnHc7BW8WM+cb8GsKdGa1eI4Fowbj++FioiE2978rIr/V+VjamFqS6aOCRCjPx8kN9ggdUXCi5Phc=
+	t=1709125373; cv=none; b=k6309/FSyWLMBKXxMvPy1e+GvlTBxwVFq1Uv0JrTdznTG7YVMYNxFCKuq2uPlTAn5nda0ZhelA8QtEWz0XDhb4bO495RmRT7TIJgMvIQtY553NKRzxdJoPqgwVObgLCGJ82tgrAgkPb3b24Sl+zBPrOVz+PPQo/exJMg4V3xs6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709124832; c=relaxed/simple;
-	bh=hnckyr9CzJCyvSre06+L3PLt3fvc2S88cMfyIGRjMdU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ie3P8IFq/RJvOJ57pPSon9M0+Ou4WRMJfTlU7lsMqfD+Je6Eu16tNMfbUaCWfLTjv0bhStWjdm1yeAS8sSL4RfkyiK/+9N5TyaTD87+Y5Lhp92zVd3GvA2IIQ7/ZS2a9vdCgfP3ZLVTuFDZ4HnIK4zVtMq/KATYhb+/ZVfjunDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DqiWmt8a; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 21E50C433F1;
-	Wed, 28 Feb 2024 12:53:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709124831;
-	bh=hnckyr9CzJCyvSre06+L3PLt3fvc2S88cMfyIGRjMdU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DqiWmt8afGNGKTglMVNXTBYEU7fUZPKVfOCmzRyjEB9rnkGIawsMCpGR7XBaoKNWS
-	 nMdiNr4SpNF+zJCiJhC8aPZTkLgvuaaq9ILWgWP8Nm70Dge+L5auiBcsWE5L2kVTA0
-	 gsFDVaCiYqhD34Wpmgxoaw6SsgRnEr2LnMNa3n8xa0wufr8tcRhH2V7oKzmnRM5nwB
-	 /SkeH92K8kgx9zWFc+pDSSZzaQSy8ZJ2gX3UXQaj8tCr3/lIq02M5V2FRQdlAfhgdm
-	 re7dNUuCXvg9ilq3OVX2kQM26FhoWykZomTSV0BMSo0JpkuHeqFGg29FFuasgBrjRy
-	 303cbhKn19B+Q==
-Date: Wed, 28 Feb 2024 12:53:44 +0000
-From: Simon Horman <horms@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	Mark Brown <broonie@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v5 17/17] net: pse-pd: Add TI TPS23881 PSE
- controller driver
-Message-ID: <20240228125344.GD292522@kernel.org>
-References: <20240227-feature_poe-v5-0-28f0aa48246d@bootlin.com>
- <20240227-feature_poe-v5-17-28f0aa48246d@bootlin.com>
+	s=arc-20240116; t=1709125373; c=relaxed/simple;
+	bh=A6sCBIj/Hz8ttw8hg7c2y5i5XtQi4gvu0IqGQ4aHpvk=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HLonPwctJ8QSnTWGfFD5qu1ObMUqeIhSEwSXVD4omIpFlABloL7vLSl9woLvHZdstH+040XftkzEF8ywM2VaqQ4eRyPdtRBbaNoGJUcpo4sOm7qNhvkfgEB3s9Ltw9o0FwNoMLDuo7/9XfDRBy7LhTZIMgv42KOr+J2IZJtrU9M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875b6c.versanet.de ([83.135.91.108] helo=phil.lan)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rfJZz-00020N-IA; Wed, 28 Feb 2024 14:02:35 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Heiko Stuebner <heiko@sntech.de>,
+	linux-rockchip@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	quentin.schulz@theobroma-systems.com,
+	linux-kernel@vger.kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org
+Subject: Re: [PATCH 0/4] Add support for Theobroma-Systems Tiger SoM
+Date: Wed, 28 Feb 2024 14:02:32 +0100
+Message-Id: <170912529797.972844.5992915941484107870.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240227164659.705271-1-heiko@sntech.de>
+References: <20240227164659.705271-1-heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240227-feature_poe-v5-17-28f0aa48246d@bootlin.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Tue, Feb 27, 2024 at 03:42:59PM +0100, Kory Maincent wrote:
-> Add a new driver for the TI TPS23881 I2C Power Sourcing Equipment
-> controller.
+On Tue, 27 Feb 2024 17:46:55 +0100, Heiko Stuebner wrote:
+> This adds support for the rk3588-based Tiger system-on-module from
+> Theobroma Systems and includes support for the combination with
+> the Haikou-baseboard.
 > 
-> This patch is sponsored by Dent Project <dentproject@linuxfoundation.org>.
+> Included is also a fix for the rk3588's i2s nodes to remove a
+> yet-unsupported devicetree property that slipped in.
 > 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> [...]
 
-...
+Applied, thanks!
 
-> +static int tps23881_flash_fw_part(struct i2c_client *client,
-> +				  const char *fw_name,
-> +				  const struct tps23881_fw_conf *fw_conf)
-> +{
-> +	const struct firmware *fw = NULL;
-> +	int i, ret;
-> +
-> +	ret = request_firmware(&fw, fw_name, &client->dev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	dev_info(&client->dev, "Flashing %s\n", fw_name);
-> +
-> +	/* Prepare device for RAM download */
-> +	while (fw_conf->reg) {
-> +		ret = i2c_smbus_write_byte_data(client, fw_conf->reg,
-> +						fw_conf->val);
-> +		if (ret < 0)
+[1/4] arm64: dts: rockchip: drop rockchip,trcm-sync-tx-only from rk3588 i2s
+      commit: a8037ceb89649659831e86a87a9329d1bb43c735
+[2/4] dt-bindings: arm: rockchip: Add Theobroma-Systems RK3588 Q7 with baseboard
+      commit: c0263538c5ad8abd2053da6931e21878fa4ae58e
+[3/4] arm64: dts: rockchip: add RK3588-Q7 (Tiger) SoM
+      commit: 6173ef24b35b703078da8b714ba913bd78ee4d3d
+[4/4] arm64: dts: rockchip: add Haikou baseboard with RK3588-Q7 SoM
+      commit: f95d0903d0a5778822861411d441265b02ff3b31
 
-Hi Kory,
+Moved two status instances to the bottom of the list, where they belong.
 
-Should fw be released here.
 
-> +			return ret;
-> +
-> +		fw_conf++;
-> +	}
-> +
-> +	/* Flash the firmware file */
-> +	for (i = 0; i < fw->size; i++) {
-> +		ret = i2c_smbus_write_byte_data(client,
-> +						TPS23881_REG_SRAM_DATA,
-> +						fw->data[i]);
-> +		if (ret < 0)
-
-And here?
-
-Flagged by Smatch.
-
-> +			return ret;
-> +	}
-> +
-> +	release_firmware(fw);
-> +
-> +	return 0;
-> +}
-
-...
-
+Best regards,
+-- 
+Heiko Stuebner <heiko@sntech.de>
 
