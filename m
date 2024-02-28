@@ -1,137 +1,152 @@
-Return-Path: <devicetree+bounces-46937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F8C586B51D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:37:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54F3186B533
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:42:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3B59A28BFF9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:37:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10DF7286C5D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:42:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B2BA1E4BF;
-	Wed, 28 Feb 2024 16:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 702031E480;
+	Wed, 28 Feb 2024 16:42:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JvQtUCy5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DnmEeXzq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50DE51DFE8;
-	Wed, 28 Feb 2024 16:37:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E3806EF13;
+	Wed, 28 Feb 2024 16:42:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709138233; cv=none; b=VHineQQzAMtmvZb0SCuXzuhin7bvVJ4rcsGXhqWVi77xS5HgW2s9OlTyFYXkVjbzoOWZIRWxX+zVgRR0gyqfNlezd0INjCt+j443cPw+w6+2chRIc+xd3UrVkAU9aVYvgzsX1Q3OJPvo1L+0vLkjEiqOvgUuFEhivV7JbPzGAwI=
+	t=1709138572; cv=none; b=XSwFjPAalmM2zy+H/SgGqjvBPymiwGuez5rD9eMPMTAMsx4bcqVoivo4kaDm65lVGnbzi6b+siR/oqmz1oPSh2pLfvgQPVseaV3dccZNNMI+pZHtmVQnHm88M8irqQQwcbPF/JYSp/Sr0v5T7DMt8Nf8sY/rcqAwmf/hasoyQJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709138233; c=relaxed/simple;
-	bh=yTUJ/M+wPQ4gGvQ4fFiBLW29NKAcpRhcIEmVc20oTGU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=rSZPSZxhforvjL4Wauwj8WMnYEG25j70P6skW+p/5WGmGWgT5Hfs6Hax5OKVf8Qzi1fzq9AtOVentSlTI5M3ckGLjX35XX2QEwsrMrLkFvLhFZjMbpSK9HFPUZtzgRcbgQByRhXNLA5HQTM+C+0VRJ061UXyYYDhlYyZqr3Dtu4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JvQtUCy5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 84AA9C433F1;
-	Wed, 28 Feb 2024 16:37:10 +0000 (UTC)
+	s=arc-20240116; t=1709138572; c=relaxed/simple;
+	bh=w34PS7US7MJmkyMNpW5sS+Wml2/zjKiX667GmM7Bcmg=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=e2ThVXdVMLO/wzCKL3f+vxOLX2I767AqbH3lzO4+1+5ML0Kzg/PawQesQiDE/IbloZ2O62s7hsVc0w6ZmGztGGnsy2KqCY8tdrMOlnCD3kDQ81UhE8ShpxjEOzN1Kd6F86qR7bPq/2AjFJyaLBC9qO1mjcd4ITUiocx38PKJuTE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DnmEeXzq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7927CC433F1;
+	Wed, 28 Feb 2024 16:42:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709138232;
-	bh=yTUJ/M+wPQ4gGvQ4fFiBLW29NKAcpRhcIEmVc20oTGU=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=JvQtUCy5wIC4CYR7yEIggs//wBz5ppRanFCwof2wNmEuFGGgkcRQk4SPfFiBUr9kH
-	 giYdCseTJJbm0gk+v9nBWkRFiSzf32fCJ0lXlWrN4Wxkjtk3MLMgHxvMYmmkdsALIR
-	 qAaeYy2RjNw6ONwnV5+yoP8uWQ5MIjY9Zb9ytVW1YSUx+ZmjD2JhxSKIaWj64bJqf8
-	 STcpseRiS+7hpOs1o2K5n5U2Mq/+bG1MwZtKtZT9S6vdEIUog/+Opxp1tOezaQJYQg
-	 BSXKClCnEEYtlNYAROrVsHX4s3IyAi78EwMLMIL4Y1yv9VGZ3Fnn4GugqciLgD4EEM
-	 iIJQ0Xd+mTzgA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  ath10k
- <ath10k@lists.infradead.org>,  wireless <linux-wireless@vger.kernel.org>,
-  DT <devicetree@vger.kernel.org>,  Rob Herring <robh+dt@kernel.org>,
-  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
- <conor+dt@kernel.org>,  Pierre-Hugues Husson <phhusson@freebox.fr>,  Jami
- Kettunen <jamipkettunen@gmail.com>,  Jeffrey Hugo <quic_jhugo@quicinc.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
-	<b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
-	<871q8wk7o3.fsf@kernel.org>
-	<3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr>
-Date: Wed, 28 Feb 2024 18:37:08 +0200
-In-Reply-To: <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> (Marc
-	Gonzalez's message of "Wed, 28 Feb 2024 17:12:11 +0100")
-Message-ID: <87wmqoilzf.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1709138571;
+	bh=w34PS7US7MJmkyMNpW5sS+Wml2/zjKiX667GmM7Bcmg=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=DnmEeXzqBJtCFoixO9DkqqjWAPGtxg9babn+o5HoiUfnrqph4SsxsoslsgunXiyvF
+	 xWKGL9W/NIcNeKlhfBePUOpqVOpJ7dK+Od5dVOZCnphgN9OZigR7/vM8WGP44geT9b
+	 bsIQ0QCAc0DZeVicX0b7G6IZaHLmZfEmw2PQ8Y0CIWktdsOAu18OhzIq5lhMaxK0Hc
+	 vMze6FuWTqdn/9TBe5GGeAxMnWv9Xc1DHibhHpWOjDTTu7zrlYmwzZvGKgHNyOUYUL
+	 ws/+8oFvijUgNzEGSJ1lY98egoQOlM4u3ObHH85Ht0Nl/3UKR/TdqQmvI2Mh6czEgH
+	 /SpiyIXES7A9A==
+Date: Wed, 28 Feb 2024 10:42:50 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+From: Rob Herring <robh@kernel.org>
+To: Kory Maincent <kory.maincent@bootlin.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+ Oleksij Rempel <o.rempel@pengutronix.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
+ "David S. Miller" <davem@davemloft.net>, 
+ Russ Weight <russ.weight@linux.dev>, Heiner Kallweit <hkallweit1@gmail.com>, 
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>, 
+ Luis Chamberlain <mcgrof@kernel.org>, linux-doc@vger.kernel.org, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Dent Project <dentproject@linuxfoundation.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>, 
+ Paolo Abeni <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Eric Dumazet <edumazet@google.com>, Mark Brown <broonie@kernel.org>, 
+ Jakub Kicinski <kuba@kernel.org>
+In-Reply-To: <20240227-feature_poe-v5-11-28f0aa48246d@bootlin.com>
+References: <20240227-feature_poe-v5-0-28f0aa48246d@bootlin.com>
+ <20240227-feature_poe-v5-11-28f0aa48246d@bootlin.com>
+Message-Id: <170913856921.224923.13844056647540488488.robh@kernel.org>
+Subject: Re: [PATCH net-next v5 11/17] dt-bindings: net: pse-pd: Add
+ another way of describing several PSE PIs
 
-Marc Gonzalez <mgonzalez@freebox.fr> writes:
 
-> On 28/02/2024 15:03, Kalle Valo wrote:
->
->> Marc Gonzalez writes:
->> 
->>> +  qcom,no-msa-ready-indicator:
->>> +    type: boolean
->>> +    description:
->>> +      The driver waits for this indicator before proceeding,
->>> +      yet some WCNSS firmwares apparently do not send it.
->>> +      On those devices, it seems safe to ignore the indicator,
->>> +      and continue loading the firmware.
->> 
->> This sounds more like a firmware feature, not a hardware feature. What
->> about having a flag in enum ath10k_fw_features in firmware-2.bin?
->
-> Are you using the word "feature" as in "it was done purposefully" ?
+On Tue, 27 Feb 2024 15:42:53 +0100, Kory Maincent wrote:
+> PSE PI setup may encompass multiple PSE controllers or auxiliary circuits
+> that collectively manage power delivery to one Ethernet port.
+> Such configurations might support a range of PoE standards and require
+> the capability to dynamically configure power delivery based on the
+> operational mode (e.g., PoE2 versus PoE4) or specific requirements of
+> connected devices. In these instances, a dedicated PSE PI node becomes
+> essential for accurately documenting the system architecture. This node
+> would serve to detail the interactions between different PSE controllers,
+> the support for various PoE modes, and any additional logic required to
+> coordinate power delivery across the network infrastructure.
+> 
+> The old usage of "#pse-cells" is unsuficient as it carries only the PSE PI
+> index information.
+> 
+> This patch is sponsored by Dent Project <dentproject@linuxfoundation.org>.
+> 
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
+> 
+> Changes in v3:
+> - New patch
+> 
+> Changes in v4:
+> - Remove $def
+> - Fix pairset-names item list
+> - Upgrade few properties description
+> - Update the commit message
+> 
+> Changes in v5:
+> - Fix yamllint error.
+> - Replace underscore by dash in properties names.
+> - Add polarity-supported property.
+> ---
+>  .../bindings/net/pse-pd/pse-controller.yaml        | 100 ++++++++++++++++++++-
+>  1 file changed, 97 insertions(+), 3 deletions(-)
+> 
 
-No, there's no bigger meaning like that. It's more like ath10k has to do
-something differently when a certain bit is enabled in the firmware. I
-just had to pick a word for the enum and from my limited vocabulary I
-chose "feature" :)
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> Is enum ath10k_fw_features also supposed to include work-arounds?
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:86:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:88:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:89:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:90:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:91:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:92:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:93:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:94:111: [warning] line too long (111 > 110 characters) (line-length)
+./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:95:111: [warning] line too long (111 > 110 characters) (line-length)
 
-Yes, and we already use.
+dtschema/dtc warnings/errors:
 
-> Sorry, I've grepped over the entire Linux source code,
-> and I cannot find where ath10k_fw_features is used,
-> other than in ath10k_core_get_fw_feature_str().
+doc reference errors (make refcheckdocs):
+Warning: Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml references a file that doesn't exist: Documentation/networking/pse-pd/pse-pi.rst
+Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml: Documentation/networking/pse-pd/pse-pi.rst
 
-Here's one example where in ath10k we use a feature bit as a workaround:
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240227-feature_poe-v5-11-28f0aa48246d@bootlin.com
 
-	/* Don't trust error code from otp.bin */
-	ATH10K_FW_FEATURE_IGNORE_OTP_RESULT = 7,
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-        ....
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-	if (!(skip_otp || test_bit(ATH10K_FW_FEATURE_IGNORE_OTP_RESULT,
-				   ar->running_fw->fw_file.fw_features)) &&
-	    result != 0) {
-		ath10k_err(ar, "otp calibration failed: %d", result);
-		return -EINVAL;
-	}
+pip3 install dtschema --upgrade
 
-BTW for modifying firmware-N.bin files we have a script here:
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
-https://github.com/qca/qca-swiss-army-knife/blob/master/tools/scripts/ath10k/ath10k-fwencoder
-
-> As mentioned in my other reply, there are several msm8998-based
-> devices affected by this issue. Is it not appropriate to consider
-> a kernel-based work-around?
-
-Sorry, not following you here. But I'll try to answer anyway:
-
-I have understood that Device Tree is supposed to describe hardware, not
-software. This is why having this property in DT does not look right
-place for this. For example, if the ath10k firmware is fixed then DT
-would have to be changed even though nothing changed in hardware. But of
-course DT maintainers have the final say.
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
