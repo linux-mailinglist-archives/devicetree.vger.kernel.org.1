@@ -1,152 +1,116 @@
-Return-Path: <devicetree+bounces-46938-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46939-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54F3186B533
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:42:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7089286B57B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:03:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10DF7286C5D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:42:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9A92B1C24090
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:03:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 702031E480;
-	Wed, 28 Feb 2024 16:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 702AA3FB85;
+	Wed, 28 Feb 2024 17:03:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DnmEeXzq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pj1JrxiE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E3806EF13;
-	Wed, 28 Feb 2024 16:42:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4124F208D7;
+	Wed, 28 Feb 2024 17:03:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709138572; cv=none; b=XSwFjPAalmM2zy+H/SgGqjvBPymiwGuez5rD9eMPMTAMsx4bcqVoivo4kaDm65lVGnbzi6b+siR/oqmz1oPSh2pLfvgQPVseaV3dccZNNMI+pZHtmVQnHm88M8irqQQwcbPF/JYSp/Sr0v5T7DMt8Nf8sY/rcqAwmf/hasoyQJg=
+	t=1709139821; cv=none; b=MhtxJG/SMx1IXEkvb3KMWoWD9aM5rkKbdBgGgQBpFj0weWjuMpi0o0s4J1OqFUQ/ZXkS+6rD2BIZ67MD323BhQAT8Vnv34ExajFy0/0wSxQ2SKW3DRPs2G57Jahqq1l8hgAOt2LzX7lbKxryCdAqQIHopB09Zsg+Ed6aA55Bldg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709138572; c=relaxed/simple;
-	bh=w34PS7US7MJmkyMNpW5sS+Wml2/zjKiX667GmM7Bcmg=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=e2ThVXdVMLO/wzCKL3f+vxOLX2I767AqbH3lzO4+1+5ML0Kzg/PawQesQiDE/IbloZ2O62s7hsVc0w6ZmGztGGnsy2KqCY8tdrMOlnCD3kDQ81UhE8ShpxjEOzN1Kd6F86qR7bPq/2AjFJyaLBC9qO1mjcd4ITUiocx38PKJuTE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DnmEeXzq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7927CC433F1;
-	Wed, 28 Feb 2024 16:42:51 +0000 (UTC)
+	s=arc-20240116; t=1709139821; c=relaxed/simple;
+	bh=S/6RXer/Iy4usF2UTMTh4mOioXIr0Eu6d5gI1EUscEU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ROxklc81Mdc7ItP6TDl7igTLR7iR5Bxp8ES5vaMt67I374SaVhRdnz9ZEVLUoCl5hRDv54akxrKf5CPpS6+uHp8N93yQheUUegRwcc200wVBN7GbEHpHFWGNzPM3WwT0zHIKwufHxp46zaGU332PhfIJf4CeKd5H/xSZMv9FJIg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pj1JrxiE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87A94C433F1;
+	Wed, 28 Feb 2024 17:03:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709138571;
-	bh=w34PS7US7MJmkyMNpW5sS+Wml2/zjKiX667GmM7Bcmg=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=DnmEeXzqBJtCFoixO9DkqqjWAPGtxg9babn+o5HoiUfnrqph4SsxsoslsgunXiyvF
-	 xWKGL9W/NIcNeKlhfBePUOpqVOpJ7dK+Od5dVOZCnphgN9OZigR7/vM8WGP44geT9b
-	 bsIQ0QCAc0DZeVicX0b7G6IZaHLmZfEmw2PQ8Y0CIWktdsOAu18OhzIq5lhMaxK0Hc
-	 vMze6FuWTqdn/9TBe5GGeAxMnWv9Xc1DHibhHpWOjDTTu7zrlYmwzZvGKgHNyOUYUL
-	 ws/+8oFvijUgNzEGSJ1lY98egoQOlM4u3ObHH85Ht0Nl/3UKR/TdqQmvI2Mh6czEgH
-	 /SpiyIXES7A9A==
-Date: Wed, 28 Feb 2024 10:42:50 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1709139820;
+	bh=S/6RXer/Iy4usF2UTMTh4mOioXIr0Eu6d5gI1EUscEU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pj1JrxiE2ap21L8oriZilmCozDhK4djbGRyvjaMBqOvXS9dJJhvyfA6hl7D5pTiND
+	 rwuNFKpEEZOoFATtUe57ZqQVGjuwUFFE3f0nrglB9YaTbzAxfzzaQ6/JofE5Wqj8fr
+	 Gh+R4T/etyKm2OFRBT2ESUIpxbDniN4ahGAV1jx1ltdMsFv+Grd1z16iA9hFkaI/IA
+	 l2ssZNbzb2F4rnYZLTO3Yon7/qbaS7pPIHruFS9pAVXMMoXNR61P52pTd7x6MccmLh
+	 3eVMOte9WwNbZ9uVbDQWIrbX4cbT5p1AHZscaoCFTjOmayxOEDZE7Yg76TDAOPllAI
+	 9+cF2nP+dalwg==
+Date: Wed, 28 Feb 2024 11:03:38 -0600
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Alex Soo <yuklin.soo@starfivetech.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+	Hal Feng <hal.feng@starfivetech.com>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	Jianlong Huang <jianlong.huang@starfivetech.com>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Drew Fustini <drew@beagleboard.org>, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>
+Subject: Re: [RFC PATCH v2 1/6] dt-bindings: pinctrl: starfive: Add JH8100
+ pinctrl
+Message-ID: <20240228170338.GA239206-robh@kernel.org>
+References: <20240220064246.467216-1-yuklin.soo@starfivetech.com>
+ <20240220064246.467216-2-yuklin.soo@starfivetech.com>
+ <1a11cee2-2ef1-4ce0-8cc1-63c6cc97863f@linaro.org>
+ <20240220-bottling-reverence-e0ee08f48ccc@spud>
+ <cafccf8d-b8f7-44cb-bc41-3c7a908fd1e4@linaro.org>
+ <20240223002443.GA3877354-robh@kernel.org>
+ <caea26e2-6598-4796-b199-4ee5b1b9cd30@linaro.org>
+ <20240224-smudgy-eldercare-d5d8640d9961@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, 
- Oleksij Rempel <o.rempel@pengutronix.de>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Andrew Lunn <andrew@lunn.ch>, 
- "David S. Miller" <davem@davemloft.net>, 
- Russ Weight <russ.weight@linux.dev>, Heiner Kallweit <hkallweit1@gmail.com>, 
- netdev@vger.kernel.org, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>, 
- Luis Chamberlain <mcgrof@kernel.org>, linux-doc@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Dent Project <dentproject@linuxfoundation.org>, 
- Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>, 
- Paolo Abeni <pabeni@redhat.com>, Russell King <linux@armlinux.org.uk>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Eric Dumazet <edumazet@google.com>, Mark Brown <broonie@kernel.org>, 
- Jakub Kicinski <kuba@kernel.org>
-In-Reply-To: <20240227-feature_poe-v5-11-28f0aa48246d@bootlin.com>
-References: <20240227-feature_poe-v5-0-28f0aa48246d@bootlin.com>
- <20240227-feature_poe-v5-11-28f0aa48246d@bootlin.com>
-Message-Id: <170913856921.224923.13844056647540488488.robh@kernel.org>
-Subject: Re: [PATCH net-next v5 11/17] dt-bindings: net: pse-pd: Add
- another way of describing several PSE PIs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240224-smudgy-eldercare-d5d8640d9961@spud>
 
-
-On Tue, 27 Feb 2024 15:42:53 +0100, Kory Maincent wrote:
-> PSE PI setup may encompass multiple PSE controllers or auxiliary circuits
-> that collectively manage power delivery to one Ethernet port.
-> Such configurations might support a range of PoE standards and require
-> the capability to dynamically configure power delivery based on the
-> operational mode (e.g., PoE2 versus PoE4) or specific requirements of
-> connected devices. In these instances, a dedicated PSE PI node becomes
-> essential for accurately documenting the system architecture. This node
-> would serve to detail the interactions between different PSE controllers,
-> the support for various PoE modes, and any additional logic required to
-> coordinate power delivery across the network infrastructure.
+On Sat, Feb 24, 2024 at 07:20:30PM +0000, Conor Dooley wrote:
+> On Sat, Feb 24, 2024 at 09:46:53AM +0100, Krzysztof Kozlowski wrote:
+> > > I would like a solution though. The only idea I have is passing 
+> > > SystemReady cert, but that's an Arm thing.
 > 
-> The old usage of "#pse-cells" is unsuficient as it carries only the PSE PI
-> index information.
-> 
-> This patch is sponsored by Dent Project <dentproject@linuxfoundation.org>.
-> 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
-> ---
-> 
-> Changes in v3:
-> - New patch
-> 
-> Changes in v4:
-> - Remove $def
-> - Fix pairset-names item list
-> - Upgrade few properties description
-> - Update the commit message
-> 
-> Changes in v5:
-> - Fix yamllint error.
-> - Replace underscore by dash in properties names.
-> - Add polarity-supported property.
-> ---
->  .../bindings/net/pse-pd/pse-controller.yaml        | 100 ++++++++++++++++++++-
->  1 file changed, 97 insertions(+), 3 deletions(-)
-> 
+> I don't know jack about SystemReady
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+AIUI, Risc-V is working on something similar... 
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:86:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:88:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:89:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:90:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:91:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:92:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:93:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:94:111: [warning] line too long (111 > 110 characters) (line-length)
-./Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml:95:111: [warning] line too long (111 > 110 characters) (line-length)
+The primary intent of it is to enable installing off-the-shelf OSs.
 
-dtschema/dtc warnings/errors:
+> - I had it in my head that it was a
+> system level certification. I am wondering how you think that
+> SystemReady certification would apply to a whole binding (I can see it
+> being a per-compatible thing, but that would be a mess I am sure).
 
-doc reference errors (make refcheckdocs):
-Warning: Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml references a file that doesn't exist: Documentation/networking/pse-pd/pse-pi.rst
-Documentation/devicetree/bindings/net/pse-pd/pse-controller.yaml: Documentation/networking/pse-pd/pse-pi.rst
+There's a lot of pieces, but I'll stick to the DT aspects (which is 
+SystemReady IR band). Certification applies to a specific firmware build 
+(which includes the DTB) on a specific board. The testing requirements 
+at the moment (for 2.x) are every binding (compatible) must have a 
+schema, but warnings are allowed. 
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240227-feature_poe-v5-11-28f0aa48246d@bootlin.com
+So a "stable" tag would apply to a DTS as a whole. That of course 
+implies that everything within the DTS is stable too. 
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+One wrinkle is that SR has no direct requirement that the DTB come from 
+anything upstream. Indirectly, the schemas must exist and be upstream 
+(or acked on the lists) and various distro kernels have to actually 
+boot. For that reason, if we had some tag, it would have to be 
+distinct from SR.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Rob
 
