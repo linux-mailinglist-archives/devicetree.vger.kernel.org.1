@@ -1,158 +1,110 @@
-Return-Path: <devicetree+bounces-46865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5737C86B073
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:37:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D4886B081
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:38:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08A2B1F27116
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:37:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B36FAB276E5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:38:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF5214D44A;
-	Wed, 28 Feb 2024 13:37:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AB314F987;
+	Wed, 28 Feb 2024 13:38:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="vVU5JbFI"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="h3VTok+z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B816CDBC;
-	Wed, 28 Feb 2024 13:37:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F26914EFC5;
+	Wed, 28 Feb 2024 13:38:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709127432; cv=none; b=Gn84rqy6ZNDLYnS44YkBUUK56FoLc/foVCvZIVDVLk4jHxSc3fzOtTKZVSMEP/296JQn5SiJHeMZaJnChbw8fhpFvFCbs0KrRF+dJLu2bBhVgi8Fhqke1gli/Dc2jPHt9DUDvc3LRvM93cWIY58d6+xQVB2VFxbgdj04S2A/ko8=
+	t=1709127529; cv=none; b=UFYDoL1RNICqw9/huGr0FuJiChlNsf4rXKH1F68Rjs99ufw0D4oUbI6dAI6ExK18vHUIZDkcK6R0tiHg6jh8WnUudCNIGgOV2b5Kl+fBym+7uj1bKNDBO7plYDYSu/T13WbB4/0AjIpyjxfThsEyEV7kdGI8pod5y+KFQL14gRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709127432; c=relaxed/simple;
-	bh=ddrGq1PYFEZRFjXjELgtDdkhdZ0Hcl1sDKmCR90e5sU=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=OhtRn9l4w9NrGzM/LvmOiDTItynLCa2/qZV6CA6iL/cuI4GKwzT1v7Gdod0Ny0cQnj9aG67AXBSEuzSI1hnMzV0NVBdGAto0P8TG0n5wS6pJDwsqUaljbpCmtIZiX8CoDYKunoarT8JGKBADzgBewVLYHnrTN8VDVba5GBMPE9I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=vVU5JbFI; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 3D22D1200C3;
-	Wed, 28 Feb 2024 16:37:03 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3D22D1200C3
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1709127423;
-	bh=lJqOIM7OsyE8lty1WXQViweyrfNmBhB/Fjd3i8JuK+Q=;
-	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
-	b=vVU5JbFIqdv/2Ml9TpFG8JCqWbaAoZ5OH2ikRwkgAVzDwyGFulSNjo+LUwOxt66PL
-	 SFsYgdVb/xYyDX826cAXBPEKCHxmXHkAz9fEJx0ok5dwMJbry+Pyi/GmR4s7Zexi1t
-	 khVPSL1jcxFTwA3pQDfASaFVm2UoyfAjVT3mGnOylPsC+6EaJzoWPEvU1SxlAKVW8s
-	 Vhzsq+j58GTFM6HsC/H4NzeqxjWj1ZOsFgnPs2TaoNIYFdcLVQ9SblsSW6N/brX8T0
-	 zPGxG8pFAfdjoOYRfqkaWRhAFNb7oOJ3ocmApA64mXxhSleTdQQVz0F7amSc9Ev/9z
-	 X5GmhrVWe7ocQ==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 28 Feb 2024 16:37:03 +0300 (MSK)
-Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 28 Feb 2024 16:37:02 +0300
-Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1]) by
- p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1%7]) with mapi id
- 15.02.1118.040; Wed, 28 Feb 2024 16:37:02 +0300
-From: Alexey Romanov <avromanov@salutedevices.com>
-To: Corentin Labbe <clabbe.montjoie@gmail.com>
-CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
-	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
-	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
-	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
-	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
-	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
-Subject: Re: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
- driver
-Thread-Topic: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
- driver
-Thread-Index: AQHaXbqRFptCyAwKyUyy1Cn5x5FmZLEHrLEAgANeQYCABgkagIAOlJgA
-Date: Wed, 28 Feb 2024 13:37:02 +0000
-Message-ID: <20240228133656.24bic6djmjvkill7@cab-wsm-0029881>
-References: <20240212135108.549755-1-avromanov@salutedevices.com>
- <ZcsYaPIUrBSg8iXu@Red>
- <20240215104719.njq6ie2niisntcnv@cab-wsm-0029881.sigma.sbrf.ru>
- <ZdL713ae1swwTU_B@Red>
-In-Reply-To: <ZdL713ae1swwTU_B@Red>
-Accept-Language: ru-RU, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <E91E88FC744FBA45BBD1A9B1BC1C41E0@sberdevices.ru>
-Content-Transfer-Encoding: quoted-printable
+	s=arc-20240116; t=1709127529; c=relaxed/simple;
+	bh=9L/WArr+jbZ+dLvbzeoxB0IrvGQgJwXUQ6aC4idN5D0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tg0ewCKFC/aIMejhwsMccfdLBhkQlKFwg+RlbALv+mO4CVmTXVa5EvuiiAuSVAjZumFY2MBz5hqvU0RD61Hx+rbW8vtQJGqZS1nV0UJ5WdY8Sw+Q/8YE+DDlZ/Zz6yDZJZhxLMS3RyK8APkQJ7nWGKdhSMC8oWGudtWqBgz6jFo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=h3VTok+z; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1E8272B3;
+	Wed, 28 Feb 2024 14:38:33 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1709127513;
+	bh=9L/WArr+jbZ+dLvbzeoxB0IrvGQgJwXUQ6aC4idN5D0=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=h3VTok+zTYvQKTpNbUHZt/7WIMkca+g2lCK7Q+UDYp0kz5kVvETQjmJd9LcoW5zs1
+	 v8Kmu9rQjvkoLhsFmhL/bw/536mtD+JZ4ec+fD0iWclm1W7z1++izZkI8ixbjVnxk8
+	 JVslvs6J+GqccIIRnwF2NoMdGSOeUA1EZfcJLago=
+Date: Wed, 28 Feb 2024 15:38:47 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Sakari Ailus <sakari.ailus@iki.fi>,
+	Daniel Scally <dan.scally@ideasonboard.com>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, nayden.kanchev@arm.com,
+	robh+dt@kernel.org, mchehab@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	jerome.forissier@linaro.org
+Subject: Re: [PATCH v2 3/5] media: mali-c55: Add Mali-C55 ISP driver
+Message-ID: <20240228133847.GA9863@pendragon.ideasonboard.com>
+References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
+ <20240214141906.245685-4-dan.scally@ideasonboard.com>
+ <ZdxwE3omXmUjfLMn@valkosipuli.retiisi.eu>
+ <mylttlhcnxe5e37m2ar6xgtus6dbr56teyyp74qm7l2d3wejwv@ewpbhpjr3v4m>
+ <Zd8xC0HkZfSo29id@valkosipuli.retiisi.eu>
+ <170912697659.1011926.1657561990919797055@ping.linuxembedded.co.uk>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 183823 [Feb 28 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, gist.github.com:7.1.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/02/28 10:18:00
-X-KSMG-LinksScanning: Clean, bases: 2024/02/28 12:36:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/28 11:31:00 #23869932
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <170912697659.1011926.1657561990919797055@ping.linuxembedded.co.uk>
 
-Hello,
+On Wed, Feb 28, 2024 at 01:29:36PM +0000, Kieran Bingham wrote:
+> Quoting Sakari Ailus (2024-02-28 13:11:39)
+> > On Wed, Feb 28, 2024 at 01:50:14PM +0100, Jacopo Mondi wrote:
+> > > > > +const struct mali_c55_fmt *mali_c55_cap_fmt_next(const struct mali_c55_fmt *fmt,
+> > > > > +                                          bool allow_raw, bool unique)
+> > > > > +{
+> > > > > + if (!fmt)
+> > > > > +         fmt = &mali_c55_fmts[0];
+> > > > > + else
+> > > > > +         ++fmt;
+> > > >
+> > > > fmt++, please.
+> > > 
+> > > Can I ask why ? (here and in the next occurrences you have reported)
+> > 
+> > It's much, much more common and using that form makes the code easier to
+> > read. The rest of the driver primarily uses variable++, too, AFAIR.
+> > 
+> > So you should use ++variable only when you need it.
+> 
+> I don't think this is a hot path, but I'll never forget my C tutor
+> telling us how ++i is more efficient than i++ somewhere to do with the
+> opcode ordering, and not having to make a copy [*1]
+> 
+> Though I bet any clever optimising compiler could spot this anyway.
+> 
+> [*1]. Whatever plausibility there is based on a 20 year old memory and
+> should be verified elsewhere.
 
-On Mon, Feb 19, 2024 at 07:57:27AM +0100, Corentin Labbe wrote:
-> Le Thu, Feb 15, 2024 at 10:47:24AM +0000, Alexey Romanov a 'ecrit :
-> > On Tue, Feb 13, 2024 at 08:21:12AM +0100, Corentin Labbe wrote:
-> > > Le Mon, Feb 12, 2024 at 04:50:48PM +0300, Alexey Romanov a 'ecrit :
-> > > > Hello!
-> > > >=20
-> > > > This patchset expand the funcionality of the Amlogic
-> > > > crypto driver by adding support for more SoC families:
-> > > > AXG, G12A, G12B, SM1, A1, S4.
-> > > >=20
-> > > > Also specify and enable crypto node in device tree
-> > > > for reference Amlogic devices.
-> > > >=20
-> > > > Tested on AXG, G12A/B, SM1, A1 and S4 devices via
-> > > > custom tests [1] and tcrypt module.
-> > > >=20
-> > > > ---
-> > > >=20
-> > >=20
-> > > added patchs up to  "drivers: crypto: meson: process more than MAXDES=
-CS descriptors"
-> >=20
-> > Including this patch or not?
->=20
-> The crash start with "drivers: crypto: meson: move algs definition and ci=
-pher API to cipher.c"
+In C I wouldn't expect any practical difference. C++ is a different
+matter, as the prefix and postfix operators can have different
+implementations.
 
-Unfortunately I was unable to reproduce this. I use Khadas Vim1 board
-and my custom tests (https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140=
-706995e7).
-Tried both build as module and built-in.
+-- 
+Regards,
 
-Can you, please, give more information? Maybe your test cases?
-
---=20
-Thank you,
-Alexey=
+Laurent Pinchart
 
