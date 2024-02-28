@@ -1,165 +1,93 @@
-Return-Path: <devicetree+bounces-46760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E47EB86ACD0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 12:19:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D743586ACDD
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 12:21:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1EEC11C226CD
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 11:19:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 158991C24749
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 11:21:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9374E12CD91;
-	Wed, 28 Feb 2024 11:19:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE2A11332BC;
+	Wed, 28 Feb 2024 11:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IhLoNFaK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fFHc1EqZ"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 681727A728;
-	Wed, 28 Feb 2024 11:19:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82168135A69;
+	Wed, 28 Feb 2024 11:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709119160; cv=none; b=Zxn8fMkRMiz1ztB81gcZBLJu7D5PO0vup9UtxP+gYDja5jxY6uroKVR1UpEW6o28ymPvWIvtgZIxUsD5tR9XDVrD2UljXGGuKW582vlnVem4RFFf841ZCyRc8TWXylA4a2dhOkP3QvAObaFkfUogt877cadtTctjg0QTg4uLUIA=
+	t=1709119234; cv=none; b=LDmKyV1vMGb4UxMs8j8SQLp/q6mlOjP03WA9lqDpoKthjsZBxY5yAOYEmArPn77aLA0dHrW5McOmiNLJKImsAG/OPkTZYErbiZO4oCAsCqCBbPmbdbTG9uOuOgcbK9Bu7uzmB31zJBOs4/Q81Go1Ooxu+GedMyUbYQXTt4HS0MM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709119160; c=relaxed/simple;
-	bh=k9YHtI7jHipmokPKQWwD0PwKV0bONau5eJ2uz027Y+8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I8rmmgjiInA/xCjMvm25XbUDt8M5zXtQ55raSqfVpjMvHJ9mzIv/aCgVLOze81noU3p/FCnpwy60/n23CKav+afa7tseqmg+d/S9+BnVeGN0iOJA9uFh9jBEtfqVb/IPatB6XdWrGeIg6yYTU6pRMBs8PyNzTrFR0gGEDp84w2s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IhLoNFaK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC640C433C7;
-	Wed, 28 Feb 2024 11:19:17 +0000 (UTC)
+	s=arc-20240116; t=1709119234; c=relaxed/simple;
+	bh=OooMnjHi7YMrUZwdus2OFW8aszLN3QHbSEGzT6TdV9M=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=juvhj90IHbtXzOPnrMFgeLtYpfC06mScD12C2W4jYUYfeuKKI755Q4v99Dqv2kDKOOySxLS7WKZEDt36kCsDvUDhLs2K85jtwKedXAWqtZUGcGjjNXlvs3TFBPsTlPaLSuaGeKVEDoM+K1/eFi0jJ/eESFz3aqJXRhV5gZTDFww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fFHc1EqZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 20F79C43142;
+	Wed, 28 Feb 2024 11:20:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709119160;
-	bh=k9YHtI7jHipmokPKQWwD0PwKV0bONau5eJ2uz027Y+8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IhLoNFaKAQdVot2WS3QbJN46t2xwvd5iAZeyv1fJxI0L0G0bNHvBAiBibtz4Tebbt
-	 NZ4+7MJdH4KmZ3Eu134/XgIKniJfaivXns3Tl+/tOtwggGPIya21SKzB2zRqyjGcHi
-	 kHi+UK/Nu+1lhk/cGCWh9+7kHoB2tPmOsKYvV2gf/J+MkItLm5I6dCvdNZuuGA9Nzg
-	 kxhDinCnPoc1AkKOQqICR9jq05wRfN1wKN6gcwjmpmuhhX6Yy6z9i45IQ9OfFA1cyd
-	 v1bqleQhztYAFc86kbu5VsASnA2cxDmhkZwVHyF++Oc2RXrMw2efRTVfuVQvFTabFo
-	 JfuKnV9PZE+KA==
-Date: Wed, 28 Feb 2024 11:19:15 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Jia Jie Ho <jiajie.ho@starfivetech.com>
-Cc: Herbert Xu <herbert@gondor.apana.org.au>,
-	"David S . Miller" <davem@davemloft.net>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
-	Vinod Koul <vkoul@kernel.org>, linux-crypto@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	dmaengine@vger.kernel.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: crypto: starfive: Add jh8100 support
-Message-ID: <20240228-margarita-glory-73db09c5fc91@spud>
-References: <20240227163758.198133-1-jiajie.ho@starfivetech.com>
- <20240227163758.198133-2-jiajie.ho@starfivetech.com>
+	s=k20201202; t=1709119234;
+	bh=OooMnjHi7YMrUZwdus2OFW8aszLN3QHbSEGzT6TdV9M=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=fFHc1EqZqtMJGPGMFMLNeKAJT3wFESdlFg/oZBdLwAi8295jTLGN9i+ikG18yxGY4
+	 faeS0Zz7g2/w730C/z2IVo4Uw9lC17mNsouPrBI2/L4qx+rLmIp7KeA00IaoWVIi0Y
+	 iG28JoqYwMgx+rY1CAFRefY8evCy8GpqmC+B2gSrFbyVV9abAtQon7fcd+ZUhTq29O
+	 8TsaiShCiMkY4BmKcgF2NuFDpLik/5vPxYf4v6dUXrYWxQbz9vm0nOejuJU0FG+2Q4
+	 a1z4SMDawHIRhq631bNZRDFiG6psYEien4KjtPrj0xq4xwDvHoaQRTAf0rn69pwxQv
+	 oCMf5MGnoEPeA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 0CC41C595D2;
+	Wed, 28 Feb 2024 11:20:34 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="6rTo2fkA4bSImk4p"
-Content-Disposition: inline
-In-Reply-To: <20240227163758.198133-2-jiajie.ho@starfivetech.com>
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] dt-bindings: net: ethernet-controller: drop
+ redundant type from label
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <170911923404.32073.12295008338288366328.git-patchwork-notify@kernel.org>
+Date: Wed, 28 Feb 2024 11:20:34 +0000
+References: <20240226122913.87669-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240226122913.87669-1-krzysztof.kozlowski@linaro.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+ pabeni@redhat.com, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
 
+Hello:
 
---6rTo2fkA4bSImk4p
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patch was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-On Wed, Feb 28, 2024 at 12:37:53AM +0800, Jia Jie Ho wrote:
-> Add compatible string and additional interrupt for StarFive JH8100
-> crypto engine.
->=20
-> Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
+On Mon, 26 Feb 2024 13:29:13 +0100 you wrote:
+> dtschema defines label as string, so $ref in other bindings is
+> redundant.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../crypto/starfive,jh7110-crypto.yaml        | 30 +++++++++++++++++--
->  1 file changed, 28 insertions(+), 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/crypto/starfive,jh7110-cry=
-pto.yaml b/Documentation/devicetree/bindings/crypto/starfive,jh7110-crypto.=
-yaml
-> index 71a2876bd6e4..d44d77908966 100644
-> --- a/Documentation/devicetree/bindings/crypto/starfive,jh7110-crypto.yaml
-> +++ b/Documentation/devicetree/bindings/crypto/starfive,jh7110-crypto.yaml
-> @@ -12,7 +12,9 @@ maintainers:
-> =20
->  properties:
->    compatible:
-> -    const: starfive,jh7110-crypto
-> +    enum:
-> +      - starfive,jh8100-crypto
-> +      - starfive,jh7110-crypto
-> =20
->    reg:
->      maxItems: 1
-> @@ -28,7 +30,10 @@ properties:
->        - const: ahb
-> =20
->    interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    items:
-> +      - description: SHA2 module irq
-> +      - description: SM3 module irq
-> =20
->    resets:
->      maxItems: 1
-> @@ -54,6 +59,27 @@ required:
-> =20
->  additionalProperties: false
-> =20
-> +allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: starfive,jh7110-crypto
-> +
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          const: starfive,jh8100-crypto
-> +
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 2
-> +
->  examples:
->    - |
->      crypto: crypto@16000000 {
-> --=20
-> 2.34.1
->=20
+>  Documentation/devicetree/bindings/net/ethernet-controller.yaml | 1 -
+>  1 file changed, 1 deletion(-)
 
---6rTo2fkA4bSImk4p
-Content-Type: application/pgp-signature; name="signature.asc"
+Here is the summary with links:
+  - [net-next] dt-bindings: net: ethernet-controller: drop redundant type from label
+    https://git.kernel.org/netdev/net-next/c/3e46ec180ed9
 
------BEGIN PGP SIGNATURE-----
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZd8WswAKCRB4tDGHoIJi
-0scyAQCyzlNaU4MW+ttTttfD9zVood2a3GWnh9luZay5NWSbwAD/YoGkkKgWc9jh
-Gk/AToNTyc/NecNiJZkRXrDV7ig7FwU=
-=byAE
------END PGP SIGNATURE-----
 
---6rTo2fkA4bSImk4p--
 
