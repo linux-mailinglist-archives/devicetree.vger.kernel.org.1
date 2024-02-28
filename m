@@ -1,109 +1,119 @@
-Return-Path: <devicetree+bounces-46914-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46915-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D459386B331
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:33:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F1DB86B336
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:35:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8A35E1F243BB
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:33:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 911021C22902
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:35:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B68315AAAC;
-	Wed, 28 Feb 2024 15:33:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B3E515CD4A;
+	Wed, 28 Feb 2024 15:35:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KFqlYmdo"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="HPm6C3Xx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B9E2CCDF;
-	Wed, 28 Feb 2024 15:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1225715B990
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 15:35:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709134429; cv=none; b=ATAZrK3P+e5i5jfDB51J0BEbj7Fq5qIkxGx1jGipKu5N8S8RxWyXtNh2GDgqXDLcKnMeuGMMvK7zs363ww3FtXvVmv5Gs2TnJctuGx6NWLjb4RNj1Hmy0Y33kMbOq0Df6U7axydhLNWMMit0U+ibWS/JRY/abh4syTSBYV37FCk=
+	t=1709134502; cv=none; b=b6wSqiPt9QzLQOFZINVwYA7dMOhF0nhqxUJXV2qwyJG4Bm4g49Mo9R4j0xS/rzdyD19WjdOrX4O0RGF2cr/vp4DUC099PcWkRnWVt1OGvZzKyMg/NHm1OCTWc6byN1lD8ysVvIUy9V7m6dH/BZUWWFMf+u9qaXdr1ruPf6HWlks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709134429; c=relaxed/simple;
-	bh=91tc0+rrM3XNpUGlyGO1JKN285Ypnk6lyZkq1vCFxeg=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=eqHYBAo8ZuOvnCPxisWEdA9iQB34lgbyNt+K6yIcKxcupm94blqRmvq+1cw6ZqYNwzZ3cNi86YqlzEFEO9hKMSw0TI2x0tQz7FNjabzb1fTf38I9tRuUqFdgRgpgG0+Ucjnbkn8EUqUhWXfwGtUVTbZW8YEnIaH6Ts1/oYj0rU0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KFqlYmdo; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6CF75C433C7;
-	Wed, 28 Feb 2024 15:33:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709134428;
-	bh=91tc0+rrM3XNpUGlyGO1JKN285Ypnk6lyZkq1vCFxeg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=KFqlYmdoCW0uyVrvTMfSO5BvBxJbLdsyQyQZFjvv87X3lynZvmh9qesy2d44Vqn6E
-	 QIViUu1L81NkfN3+lG6mhCsnyNUFC00eYAPY2/tbu1mxL86csldceGPwumLLWT9mhS
-	 fPtyyrEcv072S5idwFmOnqSpfoMnkcBdcXY1RjrINb/+gKbdAOKrgkHm4NSlWzSfWr
-	 /hHTOapeGEtrAQb7AGZIk6QOmQNPUfrOqOPcHmVgH4tnIZw0ylt0yhCqys52jmAgRH
-	 bwo1W2OcNe6Lw9KWsD10dDXQ/OtFczRBMvGnvE3u3iireSB3qpK/gDB6bY915rQFRQ
-	 IwmuT6X39bckA==
-Date: Wed, 28 Feb 2024 09:33:46 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Krishna Chaitanya Chundru <quic_krichai@quicinc.com>
-Cc: Johan Hovold <johan@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Brian Masney <bmasney@redhat.com>,
-	Georgi Djakov <djakov@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, vireshk@kernel.org,
-	quic_vbadigan@quicinc.com, quic_skananth@quicinc.com,
-	quic_nitegupt@quicinc.com, quic_parass@quicinc.com,
-	Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Subject: Re: [PATCH v7 3/7] PCI: qcom: Add ICC bandwidth vote for CPU to PCIe
- path
-Message-ID: <20240228153346.GA272807@bhelgaas>
+	s=arc-20240116; t=1709134502; c=relaxed/simple;
+	bh=iNAvgyIqsVv/a99B/1dg7WEzlEY9khThv7cRxR59TPU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=QSrTmV1KVTYiJA1JwXeFok4l0oxYREzjM48ujAq0VCrCsyeYDl6SOmS/pnZrVJYPKRIWmt0Kh1pXUzrd2oTsBtv2HW0ACxNwcs/I2dvH189oIC6pjSFwl0hM5Yr9Hj1oQVRx07rfS/GFY0+NDbAM/cz4EIuX3zLZt1LmxhWtyG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=HPm6C3Xx; arc=none smtp.client-ip=209.85.166.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-7c796072dafso246208039f.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 07:35:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1709134500; x=1709739300; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iNAvgyIqsVv/a99B/1dg7WEzlEY9khThv7cRxR59TPU=;
+        b=HPm6C3XxwNfjszlsA1n/CowCufncjMuoBY7FmJY224uRb9Rog1S5Jy/CPK4ppcqYhc
+         HHXiK9IP0gVRI558n7IbN+psZN/84HrMyuUuryIiPq+kYHFLfV/VwzGE9YGo1PfPQsDj
+         fcAW+lB5IXyf9EyLS62MefSBNE680lGLroMHxqUWUTyO4hJba+HqSNAZ12j1X0J21VGs
+         ZVsGinuuZdaOD+j3BXlepOMihbDI6+faOGE5AH9Cn/yDDW2OP+qCjAr+7nggzEd+2Y6C
+         t/fSCyC0ulDIbOYVVs9ka6nyRMunYWVK8KENxZzoADJEjyXWa+pVxyhk6m7QzXfY1K/P
+         dCeQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709134500; x=1709739300;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=iNAvgyIqsVv/a99B/1dg7WEzlEY9khThv7cRxR59TPU=;
+        b=J6eEcmVsrYRQ9/Xy3wH8b/zPckfUiKoawcmT1128/2R3CS152zM0YoTOPSFem9rD2v
+         vMdMX+URoQoe+4uzlEtLbU3v50TVMbUMZT5NQcCfHkwgpIyI+3Lt+dqddsDtpHvVdlxu
+         a3rS3XL/45q5Tci64b0rOS81h9DWTmZ9LiHRZkX7wTXVe/3CEgZ9EHSpWqYWSw16472F
+         TrhInbgspfm7bPuF69+4v8XWrV8IBemcuNI6qMrEc6veCaOI99dYTs4aUK1sMUVYBply
+         7pBOH+UfPRqQ7dxtWqKvRfTesjZwTIVncfoWfNgl53OQOAMvcbVUdvSEWAMrSXV3p5xm
+         wGTQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV1egRLWzmxxrYUVDI5FABSF4egEpPTgrp4eRwtAfEnQrogJg0YCTbRiflu9y6/o/r1N1i1IB4s7JfzLPM8f9Yu4kc9jy8Sll0LXw==
+X-Gm-Message-State: AOJu0YyZTlaPAnBTyYgt2mnpA/Vd9NZhAFFHnGR8YCqD5WQd34qXJMVK
+	Y5tkHX9BBjeiLW+ONWy/NQ1eBUhtroAta92fygfGe38zfEu8helZQN+vJ/fGT63KQpRWVEQuGEs
+	Zusm4MhdeeCSeJ5rGsDVmdvTLgJxo4/IZ6Tn9
+X-Google-Smtp-Source: AGHT+IEeVN3q9xNzpReeRZxijH7C6wt2a9IrbXxLntCsmJH6YSq6dIRXQNoD0I6sxRdNJtvS6Sw8zAyHk4q5Fcirhqk=
+X-Received: by 2002:a6b:5a02:0:b0:7c7:b9bc:26ed with SMTP id
+ o2-20020a6b5a02000000b007c7b9bc26edmr12066971iob.11.1709134500112; Wed, 28
+ Feb 2024 07:35:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <22c7a6a3-70d1-9964-3f34-c7ec550c379c@quicinc.com>
+References: <20240221160215.484151-1-panikiel@google.com> <20240221160215.484151-2-panikiel@google.com>
+ <ce262cda-84ba-4d8f-a916-76488c94066d@xs4all.nl>
+In-Reply-To: <ce262cda-84ba-4d8f-a916-76488c94066d@xs4all.nl>
+From: =?UTF-8?Q?Pawe=C5=82_Anikiel?= <panikiel@google.com>
+Date: Wed, 28 Feb 2024 16:34:49 +0100
+Message-ID: <CAM5zL5qrMNfyiXMOJHUzLySm_U2U8kbD=D_Cyn0WjkvpikiYpQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/9] media: v4l2-subdev: Add a pad variant of .query_dv_timings()
+To: Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc: airlied@gmail.com, akpm@linux-foundation.org, conor+dt@kernel.org, 
+	daniel@ffwll.ch, dinguyen@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	maarten.lankhorst@linux.intel.com, mchehab@kernel.org, mripard@kernel.org, 
+	robh+dt@kernel.org, tzimmermann@suse.de, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, chromeos-krk-upstreaming@google.com, 
+	ribalda@chromium.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 28, 2024 at 08:43:53PM +0530, Krishna Chaitanya Chundru wrote:
-> On 2/28/2024 7:09 PM, Johan Hovold wrote:
-> > On Wed, Feb 28, 2024 at 12:08:37PM +0530, Krishna Chaitanya Chundru wrote:
-> > 
-> > > We have limit up to 100 columns in the driver right, I am ok to change
-> > > to 80 but just checking if I misunderstood something.
-> > 
-> > Please take a look at Documentation/process/coding-style.rst, which
-> > clearly states:
-> > 
-> > 	The preferred limit on the length of a single line is 80
-> > 	columns.
-> > 
-> > 	Statements longer than 80 columns should be broken into sensible
-> > 	chunks, unless exceeding 80 columns significantly increases
-> > 	readability and does not hide information.
-> > 
-> > So generally you should stay within 80 columns, unless not doing so
-> > *significantly* increases readability. (And note that making such
-> > decisions requires human judgement, which is why checkpatch now only
-> > warns about lines longer than 100 chars.)
+On Wed, Feb 28, 2024 at 12:25=E2=80=AFPM Hans Verkuil <hverkuil-cisco@xs4al=
+l.nl> wrote:
 >
-> ok got it Johan, As checkpatch is not reporting any warnings or errors
-> for I misunderstood this. I will correct the comments to fit in 80 columns
-> in my next series.
+> Hi Pawe=C5=82,
+>
+> On 21/02/2024 17:02, Pawe=C5=82 Anikiel wrote:
+> > Currently, .query_dv_timings() is defined as a video callback without
+> > a pad argument. This is a problem if the subdevice can have different
+> > dv timings for each pad (e.g. a DisplayPort receiver with multiple
+> > virtual channels).
+> >
+> > To solve this, add a pad variant of this callback which includes
+> > the pad number as an argument.
+>
+> So now we have two query_dv_timings ops: one for video ops, and one
+> for pad ops. That's not very maintainable. I would suggest switching
+> all current users of the video op over to the pad op.
 
-Yeah, checkpatch is great and useful, but the bottom line is that it's
-a tool that helps keep things relatively consistent, and a lot of that
-consistency just comes down to paying attention to all the surrounding
-code so the result looks coherent instead of a hodgepodge.
-
-Bjorn
+I agree it would be better if there was only one. However, I have some conc=
+erns:
+1. Isn't there a problem with backwards compatibility? For example, an
+out-of-tree driver is likely to use this callback, which would break.
+I'm asking because I'm not familiar with how such API changes are
+handled.
+2. If I do switch all current users to the pad op, I can't test those
+changes. Isn't that a problem?
+3. Would I need to get ACK from all the driver maintainers?
 
