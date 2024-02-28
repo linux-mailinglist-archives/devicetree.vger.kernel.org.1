@@ -1,64 +1,69 @@
-Return-Path: <devicetree+bounces-46934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADEAA86B4D7
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:27:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A639186B502
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:32:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6345F28D164
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:27:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C7BC1F2168F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:32:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E12153FBB1;
-	Wed, 28 Feb 2024 16:26:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B41D1EA80;
+	Wed, 28 Feb 2024 16:31:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oVqn6QUE"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sJzbh4ef"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B28943FBA9;
-	Wed, 28 Feb 2024 16:26:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 433801CAAB;
+	Wed, 28 Feb 2024 16:31:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709137610; cv=none; b=ccJq6f9D+yLH0pwMh/AIGPYaRu/QJW06klzC5mij8DWEH4u+CmLhgiRTeMA2seQfTDDXse8E5ZctzM8BGepGafhGEEKEXJiVtQjNjRAJsfe8StNT9k87ev6i83LGIuLiiYBNOyitOVO4Nfpc/BjmxyR7loE2SvbX5DZY8Ek+rsQ=
+	t=1709137917; cv=none; b=XYogkTU77MNzWjgPwKc3DkAQXnqqAw6xUQ1gZJq1WePEJkIS15KKo23N4gcnICNegAKWJH55BvDd5pOPzDVvdNNAez1/MGVAJ3VVwcqhQUCGOV3G6T92oNqcBsVRFdbKL6B5tTDrWhXPwJqPAz99AqfRiyGu/rDBF3XdOIv3rgU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709137610; c=relaxed/simple;
-	bh=1mSJiKFveQIcxWUIOdkvzQ2W+3D7jbH1bL69Ehdc/yY=;
+	s=arc-20240116; t=1709137917; c=relaxed/simple;
+	bh=Ld3prT7ShGpEOrPCyeYTPU4C15FK30+hWNzqk5w4tzA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pcdeET4XmV8RAeEUhztc34VBXp25TMImMmbW85NCZXXo1qV8e3QJhy9RB2wL22pek38LT5USdapTRg7cnZpro3F9BycSBqXTzwGzRGVZ45XR3zPZgjNWBGBGbIuoxasDj1WqYPfEwe5rh3w/aI14AMiA+2vRVqBZzy8e/RUBWcA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oVqn6QUE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 155E1C433C7;
-	Wed, 28 Feb 2024 16:26:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709137610;
-	bh=1mSJiKFveQIcxWUIOdkvzQ2W+3D7jbH1bL69Ehdc/yY=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=M36kXw5VIAu1+PQ7T0PKY/cJXTmDVpev/r03RGj2Sx7wLDZGsUd6257DTqNaCdpnEfV5jeotgD3/Watfj3KrNCWlgTMAu4rK26GlQF5g23fgWihZSDtuPatvGoqZmGjSBAjoQlJD0dYfG9P0UzUSdqJpFZefExwpthxUbKczmEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=sJzbh4ef; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id F2FAF6B3;
+	Wed, 28 Feb 2024 17:31:38 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1709137899;
+	bh=Ld3prT7ShGpEOrPCyeYTPU4C15FK30+hWNzqk5w4tzA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=oVqn6QUEeQbM2a4tYvbqKYOaLr8t7uOwvVSd3bqV+lsvDt9tkYSR8xnsdKr+lOCiU
-	 CZOf9vQt2KEnN4bveiKcvGMJTXjxm2PhqkAsnz5WypOWq7OwnrpyTX58fEfNwX7J8l
-	 eG9bQXiTQ1jwb0FPIjcsrBj+coy8kR3/3ZL5mtHjIuspJ8SlbH949BMqZudWeekl23
-	 1jKX3aYwVPEcGT4aXxac6TXOf2h+HJSnkv4I388UUZPlt+TAiDSx4mPJorTFR+6tKd
-	 3B8oABI8qB8/gfrybDKR/LttigggdNps8lLOUx5kQwegY6B5PBenGShBGh26yMAG/4
-	 dax5em0LZHBrA==
-Date: Wed, 28 Feb 2024 10:26:47 -0600
-From: Rob Herring <robh@kernel.org>
-To: Mark Rutland <mark.rutland@arm.com>
-Cc: Will Deacon <will@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-	linux-kernel@vger.kernel.org, patches@lists.linux.dev,
-	linux-um@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org,
-	devicetree@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-	Catalin Marinas <catalin.marinas@arm.com>
-Subject: Re: [PATCH v4 5/7] arm64: Unconditionally call
- unflatten_device_tree()
-Message-ID: <20240228162647.GA4086865-robh@kernel.org>
-References: <20240217010557.2381548-1-sboyd@kernel.org>
- <20240217010557.2381548-6-sboyd@kernel.org>
- <20240223000317.GA3835346-robh@kernel.org>
- <20240223102345.GA10274@willie-the-truck>
- <CAL_JsqJSeSHeWV3YJE9n2NuY+s_iE6f7N5C_oguEJn7jTZ20xA@mail.gmail.com>
- <Zd4dQpHO7em1ji67@FVFF77S0Q05N.cambridge.arm.com>
+	b=sJzbh4efxJVI5Wp8EXN+EO7gy5mPR5BrZn2eFX95SDBjruAiHd+hNBrBNd6FlTW8d
+	 Aa745wLSXZA4mERHHtlje70Kh40pKUOMRD/6mLBHz1KVwScw20bp1anIiOr/3OA+Cw
+	 Yk/f+VdjveJdz5UwfrEZopWkk0g7yojG8O3V0d30=
+Date: Wed, 28 Feb 2024 18:31:53 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Adam Ford <aford173@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+	aford@beaconembedded.com, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] drm/bridge: adv7511:  Allow IRQ to share GPIO pins
+Message-ID: <20240228163153.GH9863@pendragon.ideasonboard.com>
+References: <20240228113737.43434-1-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,89 +72,86 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <Zd4dQpHO7em1ji67@FVFF77S0Q05N.cambridge.arm.com>
+In-Reply-To: <20240228113737.43434-1-aford173@gmail.com>
 
-On Tue, Feb 27, 2024 at 05:34:58PM +0000, Mark Rutland wrote:
-> On Fri, Feb 23, 2024 at 11:17:02AM -0700, Rob Herring wrote:
-> > On Fri, Feb 23, 2024 at 3:23 AM Will Deacon <will@kernel.org> wrote:
-> > >
-> > > On Thu, Feb 22, 2024 at 05:03:17PM -0700, Rob Herring wrote:
-> > > > On Fri, Feb 16, 2024 at 05:05:54PM -0800, Stephen Boyd wrote:
-> > > > > Call this function unconditionally so that we can populate an empty DTB
-> > > > > on platforms that don't boot with a firmware provided or builtin DTB.
-> > > > > When ACPI is in use, unflatten_device_tree() ignores the
-> > > > > 'initial_boot_params' pointer so the live DT on those systems won't be
-> > > > > whatever that's pointing to. Similarly, when kexec copies the DT data
-> > > > > the previous kernel to the new one on ACPI systems,
-> > > > > of_kexec_alloc_and_setup_fdt() will ignore the live DT (the empty root
-> > > > > one) and copy the 'initial_boot_params' data.
-> > > > >
-> > > > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > > > Cc: Frank Rowand <frowand.list@gmail.com>
-> > > > > Cc: Catalin Marinas <catalin.marinas@arm.com>
-> > > > > Cc: Will Deacon <will@kernel.org>
-> > > > > Cc: Mark Rutland <mark.rutland@arm.com>
-> > > > > Cc: <linux-arm-kernel@lists.infradead.org>
-> > > > > Signed-off-by: Stephen Boyd <sboyd@kernel.org>
-> > > > > ---
-> > > > >  arch/arm64/kernel/setup.c | 3 +--
-> > > > >  1 file changed, 1 insertion(+), 2 deletions(-)
-> > > >
-> > > > Catalin, Will, Can I get an ack on this so I can take the series via the
-> > > > DT tree.
-> > >
-> > > Mark had strong pretty strong objections to this in version one:
-> > 
-> > Yes, I had concerns with it as well.
-> > 
-> > > https://lore.kernel.org/all/ZaZtbU9hre3YhZam@FVFF77S0Q05N/
-> > >
-> > > and this patch looks the same now as it did then. Did something else
-> > > change?
-> > 
-> > Yes, that version unflattened the bootloader passed DT. Now within
-> > unflatten_devicetree(), the bootloader DT is ignored if ACPI is
-> > enabled and we unflatten an empty tree. That will prevent the kernel
-> > getting 2 h/w descriptions if/when a platform does such a thing. Also,
-> > kexec still uses the bootloader provided DT as before.
+Hi Adam,
+
+Thank you for the patch.
+
+On Wed, Feb 28, 2024 at 05:37:35AM -0600, Adam Ford wrote:
+> The IRQ registration currently assumes that the GPIO is
+> dedicated to it, but that may not necessarily be the case.
+> If the board has another device sharing the IRQ, it won't be
+> registered and the hot-plug detect fails.  This is easily
+> fixed by add the IRQF_SHARED flag.
 > 
-> That avoids the main instance of my concern, and means that this'll boot
-> without issue, but IIUC this opens the door to dynamically instantiating DT
-> devices atop an ACPI base system, which I think in general is something that's
-> liable to cause more problems than it solves.
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 > 
-> I understand that's desireable for the selftests, though I still don't believe
-> it's strictly necessary -- there are plenty of other things that only work if
-> the kernel is booted in a specific configuration.
+> diff --git a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+> index b5518ff97165..21f08b2ae265 100644
+> --- a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+> +++ b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+> @@ -1318,7 +1318,8 @@ static int adv7511_probe(struct i2c_client *i2c)
+>  
+>  		ret = devm_request_threaded_irq(dev, i2c->irq, NULL,
+>  						adv7511_irq_handler,
+> -						IRQF_ONESHOT, dev_name(dev),
+> +						IRQF_ONESHOT | IRQF_SHARED,
+> +						dev_name(dev),
 
-Why add to the test matrix if we don't have to?
+This looks fine, but the IRQ handler doesn't.
 
-> Putting the selftests aside, why do we need to do this? Is there any other
-> reason to enable this?
+static int adv7511_irq_process(struct adv7511 *adv7511, bool process_hpd)
+{
+	unsigned int irq0, irq1;
+	int ret;
 
-See my Plumbers talk...
+	ret = regmap_read(adv7511->regmap, ADV7511_REG_INT(0), &irq0);
+	if (ret < 0)
+		return ret;
 
-Or in short, there's 3 main usecases:
+	ret = regmap_read(adv7511->regmap, ADV7511_REG_INT(1), &irq1);
+	if (ret < 0)
+		return ret;
 
-- PCI FPGA card with devices instantiated in it 
-- SoCs which expose their peripherals via a PCI endpoint.
-- Injecting test devices with QEMU (testing, but not what this series 
-  does. Jonathan Cameron's usecase)
+	regmap_write(adv7511->regmap, ADV7511_REG_INT(0), irq0);
+	regmap_write(adv7511->regmap, ADV7511_REG_INT(1), irq1);
 
-In all cases, drivers already exist for the devices, and they often only 
-support DT. DT overlays is the natural solution for this, and there's 
-now kernel support for it (dynamically generating PCI DT nodes when they 
-don't exist). The intent is to do the same thing on ACPI systems.
+	if (process_hpd && irq0 & ADV7511_INT0_HPD && adv7511->bridge.encoder)
+		schedule_work(&adv7511->hpd_work);
 
-I don't see another solution other than 'go away, you're crazy'. There's 
-ACPI overlays, but that's only a debug feature. Also, that would 
-encourage more of the DT bindings in ACPI which I find worse than this 
-mixture. There's swnodes, but that's just board files and platform_data 
-2.0.
+	if (irq0 & ADV7511_INT0_EDID_READY || irq1 & ADV7511_INT1_DDC_ERROR) {
+		adv7511->edid_read = true;
 
-I share the concerns with mixing, but I don't see a better solution. The 
-scope of what's possible is contained enough to avoid issues.
+		if (adv7511->i2c_main->irq)
+			wake_up_all(&adv7511->wq);
+	}
 
-Rob
+#ifdef CONFIG_DRM_I2C_ADV7511_CEC
+	adv7511_cec_irq_process(adv7511, irq1);
+#endif
+
+	return 0;
+}
+
+static irqreturn_t adv7511_irq_handler(int irq, void *devid)
+{
+	struct adv7511 *adv7511 = devid;
+	int ret;
+
+	ret = adv7511_irq_process(adv7511, true);
+	return ret < 0 ? IRQ_NONE : IRQ_HANDLED;
+}
+
+The function will return IRQ_HANDLED as long as the registers can be
+read, even if they don't report any interrupt.
+
+>  						adv7511);
+>  		if (ret)
+>  			goto err_unregister_audio;
+
+-- 
+Regards,
+
+Laurent Pinchart
 
