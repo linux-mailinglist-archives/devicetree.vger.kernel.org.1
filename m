@@ -1,190 +1,234 @@
-Return-Path: <devicetree+bounces-47011-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47012-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12C3186BA00
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 22:34:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D7D686BA0A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 22:36:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 20D02B240B0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 21:34:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4C2B61C21B24
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 21:36:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CD1AB70041;
-	Wed, 28 Feb 2024 21:34:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C727870052;
+	Wed, 28 Feb 2024 21:35:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="VGNa5PE6"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="IBQejFQR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2057.outbound.protection.outlook.com [40.107.20.57])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28A047002F
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 21:34:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.169
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709156077; cv=none; b=UXRMeCmCToap1yiV4/RvQ3zB7A6Nt6lODG9L9unRA4Qy0F6RxWxVu6owL9ny2iOQEY3Lu6RAao9jgMsxTCcruRM5rUJ9Oa9dDgalVdYwzram6SLirHrMa3JQW3ULrcZV3QuCfXFgkzo73Kco59ILOrHMqkuYPpbYH8oAkPFsWOo=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709156077; c=relaxed/simple;
-	bh=fGgId9fOgxTjTCBv6QAWpcdQDhKv3hvIs0a258L+ioI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pEsZ7wevhPew38LdMUjMrHy9gCuqVVxijSNPPVSx6BFVMSR3XlptdPDOnwrZ1OcnH74CKfYDRS+WD4k2Xob+cENs5r+0/TO4MV4mDjVqtFzH+hAiMY4spbsfvUpvvODnTA8ESUPhAXrjDaDtrAnxf8Snzfi0AW0ZjAeKgg4RbaM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=VGNa5PE6; arc=none smtp.client-ip=209.85.166.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-36517cfd690so1227405ab.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:34:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1709156074; x=1709760874; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Ud3jsbNEeuU2tmgvB1e9X78Ey55SQRcSwnTZ1T/aebs=;
-        b=VGNa5PE6ihdOMJd6fP5tUnRYa5yfi5bheRhoj8N9lkV/fwcp83EZ/FywcIM68iNZzi
-         TJ0XpADDblc3MtWeRDmqOvMwPbJgzLq1UmbtwlFWilD+lsCM3p7Wd0CzGnpHgBcVAHe2
-         o9FcaZp0h1seZ1Irmg8XXl2sT0vQ3Mi4YaRIU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709156074; x=1709760874;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Ud3jsbNEeuU2tmgvB1e9X78Ey55SQRcSwnTZ1T/aebs=;
-        b=ebPNiWDytj3hV0vgm3ySfWskcaHUfsJ9L86sdwXhtqVVhUw4JmzaBBzvCagtgEgFHf
-         G6JMOvPfFbhPgYUyU59o7jRI9tCS+MaRb6s+rro9Hzmtxd9S155oNLYxPnxo0m14UH9P
-         RLEeZiJJNrwQMhAWwizbJe+gr3tM+Wq3+EgTImVieWkIiWKevTmF7ReVwS08dETPGXgZ
-         KTWJwoKAl40RtazMUZ5lSBBXiUIWSY8eLb1T3k7ZSa47G7rMHITDtrWSyX35tG83mPvw
-         78Gg8FV7Bd9MG372afnTlxpjCl+SJQcNtZK0mHusYgxrP6eX81EO+mIA62ebfX5k/WWK
-         LekQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX8pQDzjQwnQ8FaTfs6S9uA0OEkzq/QjSX+CQ0b+nnrSRNziQ/UpJAsdVz9qsphRjQr0L1Ag3UwwmtRmdQ+sWjaq1BlBHw+rldVTQ==
-X-Gm-Message-State: AOJu0Yxmvh7+vr8XE2TvQiVKfk0p28OhO89WZcyGVlvLs2KTYWHOP8Kf
-	LMsoeAwlmkw9zxpim3dM+V1hPzDf0jdFlAXsulgh3NMCqYufYKmI4+upd1VXlQ==
-X-Google-Smtp-Source: AGHT+IFRn4MDh7nvzu0eSOUCvjYdM8/HpCDcsTdPwQHR4UeGWg9wLpczoWIYWROWR4Qj4A2q46iIUg==
-X-Received: by 2002:a05:6e02:524:b0:365:1749:cadf with SMTP id h4-20020a056e02052400b003651749cadfmr613056ils.16.1709156074288;
-        Wed, 28 Feb 2024 13:34:34 -0800 (PST)
-Received: from localhost (144.57.222.35.bc.googleusercontent.com. [35.222.57.144])
-        by smtp.gmail.com with UTF8SMTPSA id e4-20020a92de44000000b00365760eb777sm68026ilr.81.2024.02.28.13.34.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Feb 2024 13:34:33 -0800 (PST)
-Date: Wed, 28 Feb 2024 21:34:33 +0000
-From: Matthias Kaehlcke <mka@chromium.org>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D432371EC5;
+	Wed, 28 Feb 2024 21:35:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.57
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709156148; cv=fail; b=cQ2zg0jXYy/A2lPHqs+tnmhwm1rE8G0z1LSn9+i7u3F+b7XNbdGeOmARza1Dw5SS3sQEoe+W2QXOD4ve+x/wbKiqF51iPjo0yXbKa46FaFbmazNVbi4lyhmKEDZw7n5eqaDEo/YH6BD3Xco9sC2LekNxQouwNDEvmDagKLTfxRM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709156148; c=relaxed/simple;
+	bh=x8aaGrEk+S+amaZp7YQemfrO78eh7FYlaMuVTBelVUM=;
+	h=Date:From:To:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=dob+Lc9osCPZ0bgMf0S8w1J+/gOcVmHbNzX/ghfIGIDf4cVnQ0PL2pAxb6SxC5QlAdqcihYK/rZNQBPvR4Z3J1c3C1jLur5Ln6Ijhd3FCfg1u8R3j9Xo8CLn5Y0dGR/CugvQ5kr/JlJWxelISvjm4tliaBiZBKX4GrDApJA0Sbw=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=IBQejFQR; arc=fail smtp.client-ip=40.107.20.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k8XbWW0nYVzZlZaA+RJM6mwOUck/P9SwCdpmFlsL90nmBbxwLsrjE0W50WWR8s/DLIg6h4perOBLNtMQTmC+9zm+WK2k2UE1oVAHtbFui/hnLkAsACfIYQJivGevD2F+r/muY9c/GyiOXvE1+0wVtZEBHqoFEFnuXzrcB0Xa/L3QEeTIx40sIjb1eDFqhI91Ekq45ky77KeUa8mqrsP6JGK4sgKw9rRY1uRlNpM3TwnjKFQBr+MQVhvCh6AdCmNNnHMywcTt5uY5UV2dT4FuZyKPvNfjGgyPFjvbXYUJgtlTfIgqfuMI+0IJq/SuokP10Q+DlDxiIYZ2Ioii7H4VUA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4D27axtXB3CGX895pJdxPyqzWZbodT5qG+7KvPJAMwQ=;
+ b=f20JxetRE+H3jNzzxQEcamVxWp8sGqSUp3jT3kRFEd8hbZnao6amZjoLsQ0V8byPW6OyHiJdffFm6sh6YPkkefxRntpdbpQQ3aCIzTYe0va4c6mt0DoOQLc7KjEvfDQzvPUhPGpIH4JtUzcBXQwKrj7L8ZrsDqN6HAAevVRYSMc9+Knm9fM1ct+NqWj+Q7FTZzaUJBkav+YarUURNmAiaYV13i7nWjZY9IyIEELmxh38Uk0HwiY9ZZs82285eXgh2vNsfeYIVilHi1rxWaT6kIAx6yzoU7CrftOohf3iAN+CjAaNc12jx+M712VNHMP+Vkln93nVmNUU1+LK5FTFhg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4D27axtXB3CGX895pJdxPyqzWZbodT5qG+7KvPJAMwQ=;
+ b=IBQejFQRk1e4NqclC3HFg+f/SlxJ4ngw8SW7S8G0gRG6+pcxdLccmrrmkrrhPTyoT935SNKFDRfmyILruJd+hfwpcdu1Zp22GIOr4f0kX/fG+8oiBtYMaopjOqgfQ4vAeVzLm3zXrMP+3jqZESxm6m3mTe4otzcIn9bTDIdQ/0k=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DB9PR04MB8153.eurprd04.prod.outlook.com (2603:10a6:10:245::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.41; Wed, 28 Feb
+ 2024 21:35:44 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9af4:87e:d74:94aa]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::9af4:87e:d74:94aa%7]) with mapi id 15.20.7316.035; Wed, 28 Feb 2024
+ 21:35:44 +0000
+Date: Wed, 28 Feb 2024 16:35:37 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Helen Koike <helen.koike@collabora.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 6/8] usb: misc: onboard_dev: add support for non-hub
- devices
-Message-ID: <Zd-m6WNd5ukXyJGx@google.com>
-References: <20240228-onboard_xvf3500-v5-0-76b805fd3fe6@wolfvision.net>
- <20240228-onboard_xvf3500-v5-6-76b805fd3fe6@wolfvision.net>
- <Zd93JZTlN4BCxWm7@google.com>
- <ecf303c3-d7a1-49d5-a997-32596215e43d@wolfvision.net>
- <Zd-ahtPpI8zbAYQ9@google.com>
- <63d9be60-40dd-49f6-9a75-72d4be746024@wolfvision.net>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	"open list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <imx@lists.linux.dev>,
+	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] dts: arm64: imx8dxl-evk: add lpuart1 and cm40 uart
+Message-ID: <Zd+nKePqQI/y+uHz@lizhi-Precision-Tower-5810>
+References: <20240228213343.631846-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240228213343.631846-1-Frank.Li@nxp.com>
+X-ClientProxiedBy: SJ0PR05CA0109.namprd05.prod.outlook.com
+ (2603:10b6:a03:334::24) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <63d9be60-40dd-49f6-9a75-72d4be746024@wolfvision.net>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB8153:EE_
+X-MS-Office365-Filtering-Correlation-Id: e1c9a5b9-49e9-45bf-5c55-08dc38a53827
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	H9nuSegdJJHrPwBxc4lwSAWEdc67AMK9ieiGbPCqfoyk+xsMcA1q8yFVYorxLitd17wqqgLoQiernRGCkUJdOrtjhKx9b4RhMpn1AaeWGbUQhMMqKkcKv87THmpRN2nggRKYrVjj4rXEN8Nqt2onpufpbPTkWgwdxzhoZJpy2vkJsVxiP8IQdvv2ZEHpqmpOOWLa601ngZLkf8FujV7RpeumVbuX1BBA+6DJx11U/bj3fd//uI/2a8xvm4UOIwclfpEGeGXdj8diT+WCtvtuV1VfDavN1Bsk4OM/+ECfBS8C6MBGlDlG95Kvb93cdiQoM3iltYAhZQm/HC+GliY0eCoCs0HETsXT48eoZeoh3+L2Mvi+WqQdWezaq+OnxhPxk8G3aO0rFXh3BvAGP2rB68eccgrMhBI0UWxwmhe63wOUzb1yIFYMAbpAlBeIJlRw8gJR+bedfcdINPTfeLPlyVZvEqo+2h7+KNstGOAXD7v4ulyrXeNINKdYRXWcu+fYE0DdBIm9Ova8xvpfMxUhXzepgQVY/LZgdj+LkG7YNTon6CWdY8TouRDpyJnoeRQQzyBYydKwlEK3ZFUfX2GDZjT8qX5YDXId7BI6LBNEh7+uBmeM8+g8Xksb5h81teHpSnUi4RXrQ8/1XD9SiMa9G4iKeJlNehCtOYgq7bWXjZ1EzGMPSikuaKfsidoZtf4rvPJ/5ZDG5oHsxdeHAHakb4xexQAdUUDiLYek39NeIXg=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(921011)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?g3SgS26kIfo/JBcUyLtWiK0ruS/s1plpMinzf8vCoQDl1mQ3nEKenJgFCDhr?=
+ =?us-ascii?Q?v6msmNQWz8iKP6wYpGyxd3SNiL3aj8n+kxE8ROu+K+OYhkZ+mScdzuykrZI8?=
+ =?us-ascii?Q?fpw//xxKMQ3TFtKKvRMO1xuhaWB8IBM1g4b10+EGAjZ08ceg0FDd4OVNg0zK?=
+ =?us-ascii?Q?XmzBM+edZo/5aBbrziefoalWJRsMkqhWw5hfc0H2GYi9jJ6uIRVLPT1dmwHc?=
+ =?us-ascii?Q?LK+tlCU5awOlFHl0m67SbgrpZMTtoRTD/nU6Wtk3VHaB7gR3woEpXxMdvBzL?=
+ =?us-ascii?Q?dpBiWKq7ebHQOmrrcpDmymeBx9baRK4/i9om0esjSj7v/3F5bJv3As6mlG7N?=
+ =?us-ascii?Q?60is0W3ClPO4xJ7a5VqyaNijAb5qQ05oKmyzxOR7uw3Z2uOu1tXhntcVKyDz?=
+ =?us-ascii?Q?H9v4y4y8nOYrJ03SZ+0CIbmuwkZ1w9nq8KLRJeSj9gD1ojy8GtQ/TVyE7NQe?=
+ =?us-ascii?Q?r+vMWDp8Kf4MH18KColBmzNjgBsvFhK1nEOeKFiBTDQw7SVN8FY8Scqpb2KH?=
+ =?us-ascii?Q?PauScNrw1p6KnIAqv7OQfBaRgPLPa6dWc/hBAedq8c3EIZqgF1A2Gala0ecO?=
+ =?us-ascii?Q?1zOWUFSdzafNFiHG9m3errHv5AsLm+hjkWDdaawMjpYev4p57eB5QqLNfRJY?=
+ =?us-ascii?Q?gjOZQ3bPWgvKICHx7RxUW1g7xhCs8VAKXgNbaLG8YQBc1F0YPKYBB8LJc7rF?=
+ =?us-ascii?Q?Jd+zuqQTclFl2+zQpFS0n+IdgLnRYkK7nqSao9PmMA8+O2DiahgOgI2goj+5?=
+ =?us-ascii?Q?LJnasWixSu0iSNbyzzM0hcWMf5m7HZiH92Jmh0Cdtklok+M1wYR2/DinL0PN?=
+ =?us-ascii?Q?V71PWA6ph0EgGIa8HhyveM5r7/u7h2IuJmaXEIhnf5EfirIa7NAhl4SDq02N?=
+ =?us-ascii?Q?9YfCBOKqgikFyZMC1SRGsr6rFeC3zBRhCSgLNQd1jAzkd9DiYxSomhAo4PD0?=
+ =?us-ascii?Q?Bhrkd/QZ3E1seI1py1JGMVEAgDIbHCz6Vz3z52t1qXeA07+phYArXQuvh3Z/?=
+ =?us-ascii?Q?W8KoP3gUO6elakg9eqT8gzxZSIy9g3Db4RpSAReTUt1O/0koD0wp2agvBMHI?=
+ =?us-ascii?Q?6zkQs+HvXB3qK//mjOHIGQa6M9NK9kIxcugHRBDrs6nRDPqDyy8G6WPGX6OO?=
+ =?us-ascii?Q?XYl86cAhkyrgJ1GWU0L8oEOu2xJZeevz0xh26Wf0v1umlCOv6mWDZ24GTNYe?=
+ =?us-ascii?Q?yT50DApTXVA0/olia0b8FXlDBNAJ6jpVp7fuf4itpfoMyxUiybQZKiEK5Ucg?=
+ =?us-ascii?Q?7GjmJqReyRBi3p+M4bxj4SpYGvBFkYcrqwN/3GExOAG0pgl+J5+C7JH4cNIh?=
+ =?us-ascii?Q?BQbHwgRVR2qeDjz3+wEQQ0JWyU9/UWBu7qg41edWifGmrfKw6zwWyeVD7CcW?=
+ =?us-ascii?Q?HplfceNCpL+KZdo7m5PTYavF6YornAx0mdrFlm2aBkyvu0qHiCJ1PGnThMVn?=
+ =?us-ascii?Q?A27WJJ8qlTWj0CKvcpMO7jdJGa3NyCy7K2gocFmJXbqjjldVRPkQyFrTIpX+?=
+ =?us-ascii?Q?ujvw3mJc+ylT+TZBhweG2bKxbw8DFLybou77r9s2KrfUhQOgZ9JZ7E3XfiAf?=
+ =?us-ascii?Q?A+o15a1eS+RtZikbCeWKUWLIKLJnZOKsIi5XLOFy?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1c9a5b9-49e9-45bf-5c55-08dc38a53827
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2024 21:35:44.3639
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: G2eINHZXNrNJBeTDfbRUmheewUft2GfpMTnpKXgf2FlVfmbKj8YOKfum6cOexZ2sPZk3w1ZJAK4ghjiAk1XsZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8153
 
-On Wed, Feb 28, 2024 at 09:50:22PM +0100, Javier Carrasco wrote:
-> On 28.02.24 21:41, Matthias Kaehlcke wrote:
-> > On Wed, Feb 28, 2024 at 09:21:00PM +0100, Javier Carrasco wrote:
-> >> On 28.02.24 19:10, Matthias Kaehlcke wrote:
-> >>> On Wed, Feb 28, 2024 at 02:51:33PM +0100, Javier Carrasco wrote:
-> >>>> Most of the functionality this driver provides can be used by non-hub
-> >>>> devices as well.
-> >>>>
-> >>>> To account for the hub-specific code, add a flag to the device data
-> >>>> structure and check its value for hub-specific code.
-> >>>>
-> >>>> The 'always_powered_in_supend' attribute is only available for hub
-> >>>> devices, keeping the driver's default behavior for non-hub devices (keep
-> >>>> on in suspend).
-> >>>>
-> >>>> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
-> >>>> ---
-> >>>>  drivers/usb/misc/onboard_usb_dev.c | 25 +++++++++++++++++++++++--
-> >>>>  drivers/usb/misc/onboard_usb_dev.h | 10 ++++++++++
-> >>>>  2 files changed, 33 insertions(+), 2 deletions(-)
-> >>>>
-> >>>> diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboard_usb_dev.c
-> >>>> index e1779bd2d126..df0ed172c7ec 100644
-> >>>> --- a/drivers/usb/misc/onboard_usb_dev.c
-> >>>> +++ b/drivers/usb/misc/onboard_usb_dev.c
-> >>>> @@ -132,7 +132,8 @@ static int __maybe_unused onboard_dev_suspend(struct device *dev)
-> >>>>  	struct usbdev_node *node;
-> >>>>  	bool power_off = true;
-> >>>>  
-> >>>> -	if (onboard_dev->always_powered_in_suspend)
-> >>>> +	if (onboard_dev->always_powered_in_suspend &&
-> >>>> +	    !onboard_dev->pdata->is_hub)
-> >>>>  		return 0;
-> >>>
-> >>> With this non-hub devices would always be powered down, since
-> >>> 'always_powerd_in_suspend' is not set for them. This should be:
-> >>>
-> >>
-> >> May I ask you what you meant in v4 with this comment?
-> >>
-> >>> Even without the sysfs attribute the field 'always_powered_in_suspend'
-> >>> could
-> >>> be set to true by probe() for non-hub devices.
-> > 
-> > struct onboard_dev always has the field 'always_powered_in_suspend',
-> > even for non-hubs, that don't have the corresponding sysfs attribute.
-> > Currently it is left uninitialized (i.e. false) for non-hubs. Instead
-> > it could be initialized to true by probe() for non-hubs, which would
-> > be semantically correct. With that it wouldn't be necessary to check
-> > here whether a device is hub, because the field would provide the
-> > necessary information.
-> > 
+On Wed, Feb 28, 2024 at 04:33:43PM -0500, Frank Li wrote:
+> Add lpuart1 and cm40 uart.
 > 
-> That is maybe what is confusing me a bit. Should it not be false for
-> non-hub devices? That property is only meant for hubs, so why should
-> non-hub devices be always powered in suspend? I thought it should always
-> be false for non-hub devices, and configurable for hubs.
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
 
-I suspect the confusion stems from the sysfs attribute 'always_powered_...'
-vs. the struct field with the same name.
+Forget this one. It mess up in my folder
 
-The sysfs attribute defaults to 'false', which results in USB devices
-being powered down in suspend. That was the desired behavior for a device
-I was working on when I implemented this driver, but in hindsight I think
-the default should have been 'true'.
-
-We agreed that non-hub devices shouldn't be powered down in suspend. It
-would be unexpected for users and could have side effects like delays
-or losing status. Since (I think) we can't change the default of the
-attribute we said we'd limit it to hubs, and not create it for other
-types of USB devices. Other USB devices would remain powered during
-system suspend.
-
-Are we in agreement up to this point, in particular that non-hub
-devices should remain powered?
-
-struct onboard_dev has the field 'always_powered_...', which in the
-existing code is *always* associated with the sysfs attribute of
-the same name. But there is no reason to not to use the field when
-the sysfs attribute does not exist. For any device at any given time
-the field could indicate whether the device should be remain powered
-during suspend. For hubs the value can be changed at runtime
-through the sysfs attribute, for non-hubs it would be static and
-always indicate that the device should remain powered.
-
-Does that clarify your doubts?
+Frank 
+>  arch/arm64/boot/dts/freescale/imx8dxl-evk.dts | 50 +++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> index 2123d431e0613..3c3dc44e2957b 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8dxl-evk.dts
+> @@ -16,6 +16,8 @@ aliases {
+>  		mmc0 = &usdhc1;
+>  		mmc1 = &usdhc2;
+>  		serial0 = &lpuart0;
+> +		serial1 = &lpuart1;
+> +		serial6 = &cm40_lpuart;
+>  	};
+>  
+>  	chosen {
+> @@ -51,6 +53,24 @@ linux,cma {
+>  		};
+>  	};
+>  
+> +	modem_reset: modem-reset {
+> +		compatible = "gpio-reset";
+> +		reset-gpios = <&pca6416_2 0 GPIO_ACTIVE_LOW>;
+> +		reset-delay-us = <2000>;
+> +		reset-post-delay-ms = <40>;
+> +		#reset-cells = <0>;
+> +	};
+> +
+> +	m2_uart1_sel: fixedregulator-101 {
+> +		compatible = "regulator-fixed";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		regulator-name = "m2_uart1_sel";
+> +		gpio = <&pca6416_1 6 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		regulator-always-on;
+> +	};
+> +
+>  	mux3_en: regulator-0 {
+>  		compatible = "regulator-fixed";
+>  		regulator-min-microvolt = <3300000>;
+> @@ -354,6 +374,27 @@ &flexcan3 {
+>  	status = "okay";
+>  };
+>  
+> +&lpuart1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_lpuart1>;
+> +	resets = <&modem_reset>;
+> +	status = "okay";
+> +
+> +	bluetooth {
+> +		compatible = "nxp,88w8987-bt";
+> +	};
+> +};
+> +
+> +&cm40_intmux {
+> +	status = "disabled";
+> +};
+> +
+> +&cm40_lpuart {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_cm40_lpuart>;
+> +	status = "disabled";
+> +};
+> +
+>  &lsio_gpio4 {
+>  	status = "okay";
+>  };
+> @@ -595,6 +636,15 @@ IMX8DXL_UART0_TX_ADMA_UART0_TX		0x06000020
+>  		>;
+>  	};
+>  
+> +	pinctrl_lpuart1: lpuart1grp {
+> +		fsl,pins = <
+> +			IMX8DXL_UART1_TX_ADMA_UART1_TX          0x06000020
+> +			IMX8DXL_UART1_RX_ADMA_UART1_RX          0x06000020
+> +			IMX8DXL_UART1_RTS_B_ADMA_UART1_RTS_B    0x06000020
+> +			IMX8DXL_UART1_CTS_B_ADMA_UART1_CTS_B    0x06000020
+> +		>;
+> +	};
+> +
+>  	pinctrl_usdhc1: usdhc1grp {
+>  		fsl,pins = <
+>  			IMX8DXL_EMMC0_CLK_CONN_EMMC0_CLK	0x06000041
+> -- 
+> 2.34.1
+> 
 
