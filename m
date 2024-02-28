@@ -1,275 +1,127 @@
-Return-Path: <devicetree+bounces-46652-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46653-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0670586A64A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 03:04:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEFAD86A674
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 03:20:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBB5B1C23EFE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 02:04:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E0861F244CE
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 02:20:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0D0633DF;
-	Wed, 28 Feb 2024 02:04:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C477538A;
+	Wed, 28 Feb 2024 02:20:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="otjZt2d5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HP8xkFrH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1701D6125;
-	Wed, 28 Feb 2024 02:04:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E3903200AC;
+	Wed, 28 Feb 2024 02:20:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709085843; cv=none; b=i1b1ZBk10YfdJEEnKzFLDM1BUxLtaPVjqFp9+eTzIzYFWnUe1S9MaRwS6XVN10kQzAg15rh1IcuPqySLTFOJgYEAfd7RHCKwa/8dYNkQmMJ02bE43q3Np3115jcGZOuiSPElaqRUhUjyXxaCsyOxa46zAK/Oz22zRC6723mWm3Y=
+	t=1709086806; cv=none; b=MH0j2OuNDjNIO4XDGd/+C6yVQBYxQ8Or5iZe/sOH0gcaBasiY/SEiEtL9mbRG7BmxVcdzgfdNRTwL+54n3UmKVuSlGT73YPuZG4GcYaoPVIJigK3KkyHzfNxrhoaVoifcu7H2Rzxj4EJ2d74vGclAHm5jK5JTMa2JwqwaY9xc2I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709085843; c=relaxed/simple;
-	bh=g5A9yMVDZzVX3M2BL3GzDMAqmNmxjz0+OuSVno93rmg=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
-	 In-Reply-To:Content-Type; b=Q4maregRJKfFJxcN2a/LNXRvlxeQBzOTJ3MyVMsTRS9ezb0kSSH9Cqnq5AGLWeG5i49srKatchWSedWfxXdCKjd8373kJJ4WEbGxbjzdGCrhw/SBNaMchoYd5UTOwhgb4a0uJs4wyYUyKhC4FjNxv+JTLjCRCGFZZoMc9H+6ABU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=otjZt2d5; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41S1tCdm012049;
-	Wed, 28 Feb 2024 02:03:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:from:subject:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=h3Qpl7kTMENDyFAqOAx1LMkh6JOUtgWr5lhtd7jR1Xc=; b=ot
-	jZt2d5QbB5tt5iM0EbCZ+DzcX/Htt0a6B/GDtQ8GcuRWgNPEIGvpIi7/7w8CSfRY
-	uqwwD6HUS+AyP9iGh2bGuwRRevqpbuu7+pq1+2szB9stT6d2KeMk1OkzmjV59IUP
-	pqUfX38dKGyS/9iGVSasXbv474xJnZlIOeHEyN062dYCClToE/DxDuHboKJyK2o7
-	oyRYD33BZnXC8LcrTVDBpAJlwf/jbdiPapHeMja48lY859Gx/HDvbQouEs8aj4X0
-	QzBxsXvi7oz9FarmAy6OMpVm3NW81sT0mUNFbOcoUz30b4zGREJvorRQj+GFBWQc
-	+xqFF2w7u6h19ZtpNnMw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wh8aujssj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Feb 2024 02:03:58 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41S23vbo007225
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Feb 2024 02:03:57 GMT
-Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 27 Feb
- 2024 18:03:52 -0800
-Message-ID: <e5d3d76f-32a3-4378-8d94-06f762ffb11f@quicinc.com>
-Date: Wed, 28 Feb 2024 10:03:50 +0800
+	s=arc-20240116; t=1709086806; c=relaxed/simple;
+	bh=lJG3aTHGtCVWptDrBThnLbI1+ODgtKQWqoZmvVMLOSg=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=dlDoiT8bO7Gjo31JKZh/u78EQTFOJPOhwpkJ/N43e0UQacd6iZwnRxG9XeuKFpsLBsRWmm2BuqKkMEfNAILqt3q6pI1gYNvz9K9/hQKD/IXjXV2B0E6anRHJ0kikOVhtEkjZBmAMIg8NpVSmT/2OoRDuTBe9vHMppBQaBqEfrbs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HP8xkFrH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 28014C433C7;
+	Wed, 28 Feb 2024 02:20:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709086805;
+	bh=lJG3aTHGtCVWptDrBThnLbI1+ODgtKQWqoZmvVMLOSg=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=HP8xkFrHXhoj/I0aymmEanUuG+6MLtTII1VdaJGfEjM+t4qA2NafQETdZ0dswwzUp
+	 kWW1qYuGyREuxWPXFOx5yBFacTitNjfVJig7FHvnXML15yQ1poK997igLyZqxewp6j
+	 a7PQ3IQIuR2tUOo3tMTOUR+dM5bI0Muj3bkWRDBb9KJn7/dtVkpLsfgyAW1fFK0MX1
+	 wg7byitAfNGDPvL1DBP2P8W6R30jiqkJCFBL2+PL5hDb3XvsdPW3dbKySSFVKxZxzz
+	 r9pN2jvX1ajhZc+HCO33tKmvN2TZRA5cj5hpPljsreg0GXv3g78kerHCaIQUDVfQhy
+	 KxbiDynpQjSBg==
+Date: Tue, 27 Feb 2024 20:20:04 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
-Subject: Re: [PATCH v4 1/6] dt-bindings: arm: qcom: Document QCM8550, QCS8550
- SoC and board
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC: Tengfei Fan <quic_tengfan@quicinc.com>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <20240119100621.11788-1-quic_tengfan@quicinc.com>
- <20240119100621.11788-2-quic_tengfan@quicinc.com>
- <CAA8EJprpMjK03rKPK6wgfVuDvBikYsKZjMc0Wusa1BxFOBnXhQ@mail.gmail.com>
- <86672501-206a-49ed-8af7-2b6c332c1697@quicinc.com>
- <CAA8EJppkDDACV_sLxFW4EqKQLHfo4ivSLwa_jCde8JpeH4YfzA@mail.gmail.com>
- <88845d8d-0b58-46fa-8c52-c1bb4f2d39f8@quicinc.com>
- <CAA8EJpr_vqwpf89GvyAUYJwcrT2mZxwWUkkqmDEOGH0Lci_YYw@mail.gmail.com>
-Content-Language: en-US
-In-Reply-To: <CAA8EJpr_vqwpf89GvyAUYJwcrT2mZxwWUkkqmDEOGH0Lci_YYw@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: dikCYJR2YLm---cyOjOpBR9dxvmhdpS7
-X-Proofpoint-GUID: dikCYJR2YLm---cyOjOpBR9dxvmhdpS7
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-28_01,2024-02-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 bulkscore=0 suspectscore=0 phishscore=0 malwarescore=0
- mlxscore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=999 clxscore=1015
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402280015
+From: Rob Herring <robh@kernel.org>
+To: "bin.yao" <bin.yao@ingenic.com>
+Cc: linux-kernel@vger.kernel.org, broonie@kernel.org, 
+ quic_bjorande@quicinc.com, dmaengine@vger.kernel.org, 
+ devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+ vkoul@kernel.org, conor+dt@kernel.org, rick <rick.tyliu@ingenic.com>, 
+ robh+dt@kernel.org
+In-Reply-To: <20240228012420.4223-1-bin.yao@ingenic.com>
+References: <20240228012420.4223-1-bin.yao@ingenic.com>
+Message-Id: <170908680304.1284859.7968137931176555362.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: dma: Ingenic: DT bindings for Ingenic
+ PDMA
 
 
-
-On 2/20/2024 5:15 PM, Dmitry Baryshkov wrote:
-> On Tue, 20 Feb 2024 at 11:09, Aiqun Yu (Maria) <quic_aiquny@quicinc.com> wrote:
->>
->>
->>
->> On 2/5/2024 9:48 PM, Dmitry Baryshkov wrote:
->>> On Mon, 5 Feb 2024 at 12:21, Tengfei Fan <quic_tengfan@quicinc.com> wrote:
->>>>
->>>>
->>>>
->>>> On 2/5/2024 12:29 AM, Dmitry Baryshkov wrote:
->>>>> On Fri, 19 Jan 2024 at 11:07, Tengfei Fan <quic_tengfan@quicinc.com> wrote:
->>>>>>
->>>>>> Document QCM8550, QCS8550 SoC and the AIM300 AIoT board bindings.
->>>>>> QCS8550 and QCM8550 processor combines powerful computing, extreme edge
->>>>>> AI processing, Wi-Fi 7, and robust video and graphics for a wide range
->>>>>> of use cases for the Internet of Things (IoT). QCS8550 is a QCS version
->>>>>> for QCM8550. Modem RF only in QCM8550 but not in QCS8550.
->>>>>> AIM300 Series is a highly optimized family of modules designed to
->>>>>> support AIoT applications. The module is mounted onto Qualcomm AIoT
->>>>>> carrier board to support verification, evaluation and development. It
->>>>>> integrates QCS8550 SoC, UFS and PMIC chip etc.
->>>>>> AIM stands for Artificial Intelligence Module. AIoT stands for AI IoT.
->>>>>>
->>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->>>>>> ---
->>>>>>     Documentation/devicetree/bindings/arm/qcom.yaml | 11 +++++++++++
->>>>>>     1 file changed, 11 insertions(+)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
->>>>>> index 1a5fb889a444..9cee874a8eae 100644
->>>>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
->>>>>> @@ -49,8 +49,10 @@ description: |
->>>>>>             msm8996
->>>>>>             msm8998
->>>>>>             qcs404
->>>>>> +        qcs8550
->>>>>>             qcm2290
->>>>>>             qcm6490
->>>>>> +        qcm8550
->>>>>
->>>>> Drop
->>>>
->>>> we want to introduce qcm8550 here.
->>>
->>> What for. It either had to be introduced beforehand, or it should be
->>> introduced when one adds support for an actual qcm8550 device.
->>>
->>>> qcm8550.dtsi has been introduced and qcs8550-aim300.dtsi include
->>>> qcm8550.dtsi directly.
->>>>
->>>> qcs8550 is a QCS version for qcm8550. qcs8550 is a sub-series of
->>>> qcm8550. qcm8550 will be a firmware release series from qualcomm.
->>>
->>> All three names refer to the different kinds of the same platform. The
->>> base chip name is sm8550, so it is the last one. Other than that,
->>> there is no need to include any SoC compatibles other than the actual
->>> SoC name. See existing qrb devices for an inspiration.
->>>
->>>>
->>>> here is the qcm8550/qcs8550 detailed spec:
->>>> https://docs.qualcomm.com/bundle/publicresource/87-61717-1_REV_A_Qualcomm_QCS8550_QCM8550_Processors_Product_Brief.pdf
->>>>
->>>> here is the sm8550 detailed spec:
->>>> https://docs.qualcomm.com/bundle/publicresource/87-71408-1_REV_C_Snapdragon_8_gen_3_Mobile_Platform_Product_Brief.pdf
->>>
->>> Can you please summarise the _actual_ difference between qcm8550,
->>> qcs8550 and sm8550? Are they fully soft compatible? Soft compatible
->>> except the modem? Pin compatible?
->>
->> we can remove the qcm8550 compatible for now, and rename current dtsi
->> back for qcs8550.dtsi, and only introduce qcm8550 later when there is
->> qcm8550 board public-ed.
+On Wed, 28 Feb 2024 06:24:19 +0500, bin.yao wrote:
+> From: byao <bin.yao@ingenic.com>
 > 
-> Yes, please.
+> Convert the textual documentation for the Ingenic SoCs PDMA
+> Controller devicetree binding to YAML.
 > 
->>
->>   From software point of view, currently it is single firmware image
->> release for both qcm8550 and qcs8550, and the firmware is not grantee
->> for sm8550 software compatible.
+> Add a dt-bindings header, and convert the device trees to it.
 > 
-> I assume that modem.mbn is different for qcm and qcs devices. Or does
-> qcs completely miss the modem DSP?
-You are right, modem.mbn part is different. QCS have a gps only modem image.
-> 
->>
->>   From hardware point of view, qcm8550, qcs8550, sm8550 are different
->> hardware socs, qcm8550, qcs8550 is derived from sm8550. We can only
->> share the public document about those soc descriptions [1]. For soc
->> itself, it is all similar difference for QCS and QCM version.
->> Currently(in current development stage) there is not notable software
->> difference needed other than memory map in kernel side needed to be
->> differentiate from qcm8550 qcs8550 to sm8550.
->>
->> [1]
->> https://docs.qualcomm.com/bundle/publicresource/87-61717-1_REV_A_Qualcomm_QCS8550_QCM8550_Processors_Product_Brief.pdf
->>
->>>
->>>>
->>>>>
->>>>>>             qdu1000
->>>>>>             qrb2210
->>>>>>             qrb4210
->>>>>> @@ -93,6 +95,7 @@ description: |
->>>>>>       The 'board' element must be one of the following strings:
->>>>>>
->>>>>>             adp
->>>>>> +        aim300-aiot
->>>>>
->>>>> We probably need to drop this list, it doesn't surve its purposes.
->>>>
->>>> I am a little confused, do you expect to just remove this "aim300-aiot"
->>>> or do you want to introduce a new patch and remove the whole list?
->>>
->>> If you were following the list, you would have seen the patch
->>> reworking the bindings.
->>>
->>>>
->>>>>
->>>>>>             cdp
->>>>>>             dragonboard
->>>>>>             idp
->>>>>> @@ -904,6 +907,14 @@ properties:
->>>>>>               - const: qcom,qcs404-evb
->>>>>>               - const: qcom,qcs404
->>>>>>
->>>>>> +      - items:
->>>>>> +          - enum:
->>>>>> +              - qcom,qcs8550-aim300-aiot
->>>>>> +          - const: qcom,qcs8550-aim300
->>>>>> +          - const: qcom,qcs8550
->>>>>> +          - const: qcom,qcm8550
->>>>>
->>>>> In the review comments for v3 you have been asked to add qcom,sm8550.
->>>>> But not the qcom,qcm8550. I don't think that there is any need to
->>>>> mention qcm8550 here.
->>>>
->>>> qcm8550 and sm8550 are different, they have different firmware release.
->>>>
->>>> AIM300 AIoT board depend on qcs8550, qcs8550 is a QCS version for
->>>> qcm8550. Modem RF only in qcm8550 but not in qcs8550.
->>>
->>> There are no 'dependecies' here. The thing is about declaring compatibility.
->>> In my opinion, the qcm8550 is an unnecesary part of the equation. You
->>> declare compatibility with the board itself,  with the SoM, with the
->>> actual SoC and with the base of the series. Anybody caring for the
->>> difference between QCM, QCS and SM will have to check for both
->>> qcom,qcs8550 and qcom,qcm8550 anyway, as there are differences on the
->>> modem side.
->>>
->>>>>> +          - const: qcom,sm8550
->>>>>> +
->>>>>>           - items:
->>>>>>               - enum:
->>>>>>                   - qcom,sa8155p-adp
->>>>>> --
->>>
->>
->> --
->> Thx and BRs,
->> Aiqun(Maria) Yu
-> 
-> 
+> Signed-off-by: byao <bin.yao@ingenic.com>
+> Signed-off-by: rick <rick.tyliu@ingenic.com>
+> ---
+>  .../devicetree/bindings/dma/ingenic,pdma.yaml | 77 +++++++++++++++++++
+>  include/dt-bindings/dma/ingenic-pdma.h        | 51 ++++++++++++
+>  2 files changed, 128 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/ingenic,pdma.yaml
+>  create mode 100644 include/dt-bindings/dma/ingenic-pdma.h
 > 
 
--- 
-Thx and BRs,
-Aiqun(Maria) Yu
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/dma/ingenic,pdma.yaml:13:11: [error] string value is redundantly quoted with any quotes (quoted-strings)
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/ingenic,pdma.yaml: title: 'Ingenic SoCs DMA Controller DT bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
+	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
+	from schema $id: http://devicetree.org/meta-schemas/base.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/ingenic,pdma.yaml: $id: Cannot determine base path from $id, relative path/filename doesn't match actual path or filename
+ 	 $id: http://devicetree.org/schemas/dma/ingenic,dma.yaml
+ 	file: /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/ingenic,pdma.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/ingenic,dma.yaml: warning: ignoring duplicate '$id' value 'http://devicetree.org/schemas/dma/ingenic,dma.yaml#'
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/dma/ingenic,pdma.yaml: interrupts-parent: missing type definition
+Documentation/devicetree/bindings/dma/ingenic,dma.example.dtb: /example-0/dma-controller@13420000: failed to match any schema with compatible: ['ingenic,jz4780-dma']
+Documentation/devicetree/bindings/dma/ingenic,pdma.example.dts:24:18: fatal error: dt-bindings/clock/ingenic,t33-cgu.h: No such file or directory
+   24 |         #include <dt-bindings/clock/ingenic,t33-cgu.h>
+      |                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/dma/ingenic,pdma.example.dtb] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1428: dt_binding_check] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240228012420.4223-1-bin.yao@ingenic.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
