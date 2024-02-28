@@ -1,115 +1,149 @@
-Return-Path: <devicetree+bounces-46679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC51E86A8CE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:21:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CCA5086A8E4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:23:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 48523B243EC
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 07:21:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86F372859D2
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 07:23:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7CC3C241E6;
-	Wed, 28 Feb 2024 07:20:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16C1F23776;
+	Wed, 28 Feb 2024 07:23:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ertHSvP1"
+	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b="cA5AbS7F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from master.debian.org (master.debian.org [82.195.75.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CE5925108;
-	Wed, 28 Feb 2024 07:20:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C29C249E3
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 07:23:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=82.195.75.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709104851; cv=none; b=u1sH80umHpv15FWiN6/q2VNZo+5b9fdWZLyPvkEm6uJMH5Z0rPrc2U1d+iyFHjhVyK6V6phwRMVuNKAJ+D+lNXS7J7Ol4SoEZPEPJHF5IMdLDccjejutD9zyr7nE6r3dgXFUMICThXBEpINXTG7pDMG7ilY6iziqSwFv1XktKT8=
+	t=1709105027; cv=none; b=LbmUDyqoZoyXroFvVP/JDbk4MXnaZ8iWxDuThXfq0gG/BbuqRKVZnfKgf0ET9Sc7ffcD0ZrdmDqUdoqj+S5UhfpTVABWgdD94VNMNZtufxLJzlJXyTaUduCqVN01Lft/Xjk9MoNB9DWuCupa6/lQTfaUovKkFiFkl0coQnJ2+zo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709104851; c=relaxed/simple;
-	bh=GJEAgcGajQHOekPPW3hskfy84Wf8MxRKNiEJITZZ/SE=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=QX5osNZoz+EP05uV4jZAutXY4yLmDZfPfQF7bTaKbbPV1pTG5MAGpjcCjMYuNf8A6nmVOnpSVgigsP4aj4vqHr9paL40ZtLUhAPUu2fx5o5iUtWpXveBQ/r9K0V1tdRftAOcpKRIOeTayBTMZqkhRxhbD6QSs/MgeIcPBFO7YLs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ertHSvP1; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 723CEC433C7;
-	Wed, 28 Feb 2024 07:20:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709104850;
-	bh=GJEAgcGajQHOekPPW3hskfy84Wf8MxRKNiEJITZZ/SE=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=ertHSvP1EvWCBUKaP9J13CcvXiXh6JelVegD9JFQpU9Juh3qNLgZYynRcDfRhJaJ9
-	 JT1ZUUFVPj7tbV+tYVtCoritu9PBTGkQy7Z/aB5dWn/hIEwHBBTX99eUaPj3OEYrv9
-	 xjCgpbY8GyECA1Z+iPeoWDwv7nVwuGCQYmMuQoTW6g2VfIt1sYU6/0t5FLTvE7muSn
-	 Qf91BIFVEL8b3w05D7S/23MKylnALBpzudkOihu9AdhbIV1C/Zb6NSXn8/kewvU7HQ
-	 W+XU2pMkOpvdYkTbNA+x1n1yeF4VPa37nOpQbewk54CFUbM7US30DrcofUtu7hH7KY
-	 YIaRFhXf70s3Q==
-Date: Wed, 28 Feb 2024 01:20:49 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=arc-20240116; t=1709105027; c=relaxed/simple;
+	bh=zumgVgY4MWpxMr9WOFTw6dQ/oLKaouf0K3XWWkY76Wk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FmFKLvNmE8COuzQEBF2rYGfTLoepVxGMmAgh8t6ghcaSH86fWyStuEhTtmn1kta1Jie1x9brqyKKGUN9WAmbMEc4/12+4BLjYC2vbEm/MEmK4r0TzFT84k2P/JvSNwORcObt7drwbBWVSQBRYjsxtHjo1hWoc2zYlQrwd7UIIys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=none smtp.mailfrom=master.debian.org; dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b=cA5AbS7F; arc=none smtp.client-ip=82.195.75.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=master.debian.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
+	s=smtpauto.master; h=In-Reply-To:Content-Type:MIME-Version:References:
+	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+	Content-ID:Content-Description;
+	bh=q9H//BiI/ym0fKCLWzaI/cltEf13UeT/Rxb1Q8FD9Ro=; b=cA5AbS7FT2W+TtczbuXrokzsLh
+	gh9c0U16ZT+TQJAOJx7Wb2S7BYBfTVz8swofccvQG7Jdek3itaWF1lStLcxB5+zAkCrM+9qYabPqq
+	Qibul3Q09z1zXkuPojXp+41G/nYkMuOKmo24rWrW3Id7KOiC7wE6nUlfKta6N+FZILMU7ItnH3sFw
+	oUs/Yel6+2IpRU3Q5efTlGS2r3dNDqD32opLVj3z1t4K9QGFWMdWMMNDY0Cgra3FUQSSOvMy9T3NX
+	2mqm4rZS4QLKNXIwA+eg7YfyelCy1qFHBIA+FjNMei8+QgfBRJIQRbkAJ/8rzobBgZGdguCpfDE2Q
+	NgXRnMcw==;
+Received: from ukleinek by master.debian.org with local (Exim 4.94.2)
+	(envelope-from <ukleinek@master.debian.org>)
+	id 1rfEHv-006pgV-3P; Wed, 28 Feb 2024 07:23:35 +0000
+Date: Wed, 28 Feb 2024 08:23:33 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@debian.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add basic support for QNAP
+ TS-433
+Message-ID: <lcvokzcmifxl7skfz2h2shewuou7xpazuhtpnpkgtcyejcfgcy@vvdn5ypyklsx>
+References: <cover.1709034476.git.ukleinek@debian.org>
+ <0d9fa5d730ac1cb91261b25b6809fcef3a12f03a.1709034476.git.ukleinek@debian.org>
+ <b48cde05-c583-4414-9424-fbb2db3a53ce@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Fabio Estevam <festevam@gmail.com>, imx@lists.linux.dev, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Stephen Boyd <sboyd@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, Peng Fan <peng.fan@nxp.com>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Abel Vesa <abelvesa@kernel.org>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- linux-clk@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
- Shawn Guo <shawnguo@kernel.org>
-In-Reply-To: <20240228-imx95-blk-ctl-v2-1-ffb7eefb6dcd@nxp.com>
-References: <20240228-imx95-blk-ctl-v2-0-ffb7eefb6dcd@nxp.com>
- <20240228-imx95-blk-ctl-v2-1-ffb7eefb6dcd@nxp.com>
-Message-Id: <170910484819.1798591.16113826147285530887.robh@kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindindgs: clock: support NXP i.MX95 BLK CTL
- module
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="2ujsyxbuinxttmqy"
+Content-Disposition: inline
+In-Reply-To: <b48cde05-c583-4414-9424-fbb2db3a53ce@lunn.ch>
 
 
-On Wed, 28 Feb 2024 13:43:05 +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
-> 
-> i.MX95 includes BLK CTL module in several MIXes, such as VPU_CSR in
-> VPUMIX, BLK_CTRL_NETCMIX in NETCMIX, CAMERA_CSR in CAMERAMIX and etc.
-> 
-> The BLK CTL module is used for various settings of a specific MIX, such
-> as clock, QoS and etc.
-> 
-> This patch is to add some BLK CTL modules that has clock features.
-> 
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/clock/imx95-blk-ctl.yaml   | 61 ++++++++++++++++++++++
->  include/dt-bindings/clock/nxp,imx95-clock.h        | 32 ++++++++++++
->  2 files changed, 93 insertions(+)
-> 
+--2ujsyxbuinxttmqy
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On Tue, Feb 27, 2024 at 10:00:48PM +0100, Andrew Lunn wrote:
+> > +&gmac0 {
+> > +	assigned-clocks =3D <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
+> > +	assigned-clock-parents =3D <&cru SCLK_GMAC0_RGMII_SPEED>, <&cru CLK_M=
+AC0_2TOP>;
+> > +	assigned-clock-rates =3D <0>, <125000000>;
+> > +	clock_in_out =3D "output";
+> > +	phy-handle =3D <&rgmii_phy0>;
+> > +	phy-mode =3D "rgmii";
+> > +	pinctrl-names =3D "default";
+> > +	pinctrl-0 =3D <&gmac0_miim
+> > +		     &gmac0_tx_bus2
+> > +		     &gmac0_rx_bus2
+> > +		     &gmac0_rgmii_clk
+> > +		     &gmac0_rgmii_bus>;
+> > +	rx_delay =3D <0x2f>;
+> > +	tx_delay =3D <0x3c>;
+>=20
+> Have you tried phy-mode =3D "rgmii-id"; and not have these two _delay
+> settings?
 
-yamllint warnings/errors:
+I didnt' up to now. I applied the following on top of my dts:
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/clock/imx95-blk-ctl.example.dtb: /example-0/syscon@4c410000: failed to match any schema with compatible: ['fsl,imx95-vpumix-csr', 'syscon']
+diff --git a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts b/arch/arm6=
+4/boot/dts/rockchip/rk3568-qnap-ts433.dts
+index ba7137f80075..a8747d9f36da 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
++++ b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
+@@ -39,15 +39,13 @@ &gmac0 {
+ 	assigned-clock-rates =3D <0>, <125000000>;
+ 	clock_in_out =3D "output";
+ 	phy-handle =3D <&rgmii_phy0>;
+-	phy-mode =3D "rgmii";
++	phy-mode =3D "rgmii-id";
+ 	pinctrl-names =3D "default";
+ 	pinctrl-0 =3D <&gmac0_miim
+ 		     &gmac0_tx_bus2
+ 		     &gmac0_rx_bus2
+ 		     &gmac0_rgmii_clk
+ 		     &gmac0_rgmii_bus>;
+-	rx_delay =3D <0x2f>;
+-	tx_delay =3D <0x3c>;
+ 	status =3D "okay";
+ };
+=20
+and this makes the machine unable to complete dhcp. I see the requests
+and replies on the dhcp server side, but the machine tells me not to
+receive a dhcp reply. So the above patch breaks the receive path.
 
-doc reference errors (make refcheckdocs):
+Best regards
+Uwe
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240228-imx95-blk-ctl-v2-1-ffb7eefb6dcd@nxp.com
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+--2ujsyxbuinxttmqy
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+-----BEGIN PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXe33QACgkQj4D7WH0S
+/k7RGQf/VOOi8RQ6O6wC8HHbsx0rt4Zy1y7PhIMp+mIQTFYEZFeufAySXLSIKevd
+L54Bh9wF8pJrzoFEaq0bVcO7SWEL1Xmo0cni4FcKEHDemEUL+vvprP8OuzPUTY7v
+zVupTSIh9IW12dHekSxSqNHMkEwFyglKyyYFzDqTRTvJmh6QbjmZWdKqlAteMkxa
+Zq6j2Z8QKwqh5MGleAKlqeIiBXTrBL0zg7CgKxznv21cz9Pjqm0g7XiS2drixj2L
+JZ2XGkUmy0+X5MIEbaOEak3fjDMxYs9x6nOfSOmwizCuC9HwCrxtmM0ZE1Q7gwLg
+ngERLNaJtWI5y4lENFSrJUFLND68SQ==
+=jwME
+-----END PGP SIGNATURE-----
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--2ujsyxbuinxttmqy--
 
