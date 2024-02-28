@@ -1,108 +1,124 @@
-Return-Path: <devicetree+bounces-47016-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47017-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A75F286BA68
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 23:03:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 09D0486BA6F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 23:03:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 61C662862E3
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 22:03:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B98A2284F85
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 22:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 065DD1361C9;
-	Wed, 28 Feb 2024 22:01:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ADE3176EE3;
+	Wed, 28 Feb 2024 22:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kJSdgWg9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mSjD+Abf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEE301361C6;
-	Wed, 28 Feb 2024 22:01:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B5C97443C;
+	Wed, 28 Feb 2024 22:02:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709157682; cv=none; b=I0bum64thWU+H2vCXVeJMdcwva33LD2SIyryrikxhTfbKhzFeeBfY6gIiDEvMlkSO8RZhr8Zbny6YnKqTniaSL6DXlVcckSqVafv3oGCcQGg12d6rkc8X/HQOuWGGOEH86xtM2dPemsT7vUVg+ljqe9BlC2p9PPHkpdR1SYYqFE=
+	t=1709157737; cv=none; b=iMQTqX0ledwy51TUvWow4iHwitZSt1cj8Nj5zPJWDhRTLZxYe7/9m2jEy534/GiA3tbrBbgHEmVGsZtGWOSzg67etAx/7PTjCuI47HR2ctrHytWCrqEdF+LzEZykamV+PG5hwIwwqkGHcktzMcom3Q+28336QPieYHufmO2ueCI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709157682; c=relaxed/simple;
-	bh=o6MFrSIb/9TR5ZXqLPiJmvDqR+Z7VlCuMRswirAkRSE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GFtmluiFPJBersOpCXPHF/nDeR+9hQzj9Dq89uIg4aYAXDu53n9cLnd0OFswRw0QmkjuHiVGdeuEcad3HyhU8ys+NbCHH7woezcWVuoxQO6VDFAUa3wCHI3K+AJDlk//f6kq+nh53kvJ1ju/zTFrrN77yolctKIRX28QIPW9PNg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kJSdgWg9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5E7AEC433C7;
-	Wed, 28 Feb 2024 22:01:22 +0000 (UTC)
+	s=arc-20240116; t=1709157737; c=relaxed/simple;
+	bh=gPOdghli+9QBbrWalwVFo9yVmHQwrDvufi1/D3sjuJU=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=dwHUWGupJSIrr9j6MdQD7UpnUMBSSoc1xn1fGwQtN3cWIjxY7Yxi6wgO0/1H4NY3TvZAlILDCGkpg//KgWe2NvklJqdRSJ9mO2yFov+L9wLZgxSS8zcYes+1yYHJxL5Fd4o+Co+moqk5FMN6N7VvgYcziCUYdphxYhDziwtn/8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mSjD+Abf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B7408C433F1;
+	Wed, 28 Feb 2024 22:02:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709157682;
-	bh=o6MFrSIb/9TR5ZXqLPiJmvDqR+Z7VlCuMRswirAkRSE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=kJSdgWg9TSFk3QMfm6aeJntIdfrB4TNZoBxHCd/RvnVAqZauGl5Ut3K/HmROrXRCV
-	 lazBNdizUR5+ZGRE4FuVBoXPHwDvY4iGQ0wTfi9qFefekjOT4cD4VFnk9b6I4fKTFS
-	 qvtlgDm6WOShzV+8P+b2oEDye+rZdgqGxy5Z6+FuP4mH/VlcAbX6J6Roh9aCXMFV6j
-	 LsO1Oz2cvKjEbGiHITvTikwsy6Rk6pne7z1qXqhrhPpNYqMJU2XhAWVEGOZRXn7Acm
-	 HpkDpA5EUj2HLuZVKYLVm02/c9hFfJGiS8pUcSj82e0YvtjlfXabyt51MNpwCYwBeY
-	 PtBhO3laVUdJw==
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d240d8baf6so2760541fa.3;
-        Wed, 28 Feb 2024 14:01:22 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWqBdRQjvXG8nHqgB5OMqjDPlSCFAFpUCsKQ8IUIt6e6rvFVqtn8Mi4qOmA9mbQszW2op080Ns0kSKmbjEkVykhNMfA5wRq68MVPpGEOTjdsY536Xch3VhNHs+4HLZngPv86m6drSD1Dw==
-X-Gm-Message-State: AOJu0Yyk3xl6GjYeyHOIaKpOjZU3eDzxmLahMNyAJcCNo9eEQXemme/o
-	Rc/yBQ1hx9Rk9kTswyCSFzpmspCdcUC+Q/KyNE3HPCDS8oyUFOuQvhZqq80BUxW2QLuNCAlkET+
-	utHU5MZVyZnFO5y6c5E37zbbdAw==
-X-Google-Smtp-Source: AGHT+IEXnVPLeLSvokP3FFCuUJiG6sgd8fOihS1kxS9XWLz2cM8MT5lYCT7vzDiaLpoDFRMQ4PV0ai3LXdPMw8lPeP4=
-X-Received: by 2002:a2e:8416:0:b0:2d2:9906:6db2 with SMTP id
- z22-20020a2e8416000000b002d299066db2mr83302ljg.39.1709157680618; Wed, 28 Feb
- 2024 14:01:20 -0800 (PST)
+	s=k20201202; t=1709157737;
+	bh=gPOdghli+9QBbrWalwVFo9yVmHQwrDvufi1/D3sjuJU=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=mSjD+AbfYXIBYbQ4bhnujqShmhMYIuSgeohNkRNuEha5uRrMMtmh9NSmoiBkanSSH
+	 pzx8U1uk4eCfRXmGj1u0D82Vr61lA7o1701VRvmrp5NAH7K15iRBqu2rPYVQnqKTKt
+	 OF0S37fJftNMBe0q+Rbv6zdrP1F7B9TMwICmtuwKp0c3uhNactpNOtSwB0QRI17zTR
+	 4083jOeCzOzVgFyWsK9i124ivPvp5QbClQ6grbp3rAyQXGLg9Z+oveKbkEnZNaiIzp
+	 dS47NLmnygDe4Ue9p+AyQGTBEJtDVbdHv9G9TJ18ghN679o6bUt0+L6ugQWdZEvT0w
+	 QTTfj64E6EjbA==
+Date: Wed, 28 Feb 2024 16:02:15 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v2 04/12] PCI: qcom: Add support for disabling ASPM L0s
+ in devicetree
+Message-ID: <20240228220215.GA308296@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240207011803.2637531-1-saravanak@google.com>
- <20240207011803.2637531-3-saravanak@google.com> <20240223171849.10f9901d@booty>
-In-Reply-To: <20240223171849.10f9901d@booty>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Wed, 28 Feb 2024 16:01:07 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK5iuK0mMsvKkxPp9iSJuTfXrXuL55MgE09=oRnvS5k1Q@mail.gmail.com>
-Message-ID: <CAL_JsqK5iuK0mMsvKkxPp9iSJuTfXrXuL55MgE09=oRnvS5k1Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] of: property: Improve finding the supplier of a
- remote-endpoint property
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Saravana Kannan <saravanak@google.com>, Frank Rowand <frowand.list@gmail.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Xu Yang <xu.yang_2@nxp.com>, kernel-team@android.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	=?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <Zd3_y_jbY8Ic2F0Y@hovoldconsulting.com>
 
-On Fri, Feb 23, 2024 at 10:18=E2=80=AFAM Luca Ceresoli
-<luca.ceresoli@bootlin.com> wrote:
->
-> Hello Saravana,
->
-> [+cc Herv=C3=A9 Codina]
->
-> On Tue,  6 Feb 2024 17:18:01 -0800
-> Saravana Kannan <saravanak@google.com> wrote:
->
-> > After commit 4a032827daa8 ("of: property: Simplify of_link_to_phandle()=
-"),
-> > remote-endpoint properties created a fwnode link from the consumer devi=
-ce
-> > to the supplier endpoint. This is a tiny bit inefficient (not buggy) wh=
-en
-> > trying to create device links or detecting cycles. So, improve this the
-> > same way we improved finding the consumer of a remote-endpoint property=
-.
-> >
-> > Fixes: 4a032827daa8 ("of: property: Simplify of_link_to_phandle()")
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
->
-> After rebasing my own branch on v6.8-rc5 from v6.8-rc1 I started
-> getting unexpected warnings during device tree overlay removal. After a
-> somewhat painful bisection I identified this patch as the one that
-> triggers it all.
+On Tue, Feb 27, 2024 at 04:29:15PM +0100, Johan Hovold wrote:
+> On Fri, Feb 23, 2024 at 04:10:00PM -0600, Bjorn Helgaas wrote:
+> > On Fri, Feb 23, 2024 at 04:21:16PM +0100, Johan Hovold wrote:
+> > > Commit 9f4f3dfad8cf ("PCI: qcom: Enable ASPM for platforms supporting
+> > > 1.9.0 ops") started enabling ASPM unconditionally when the hardware
+> > > claims to support it. This triggers Correctable Errors for some PCIe
+> > > devices on machines like the Lenovo ThinkPad X13s, which could indicate
+> > > an incomplete driver ASPM implementation or that the hardware does in
+> > > fact not support L0s.
+> > 
+> > Are there any more details about this?  Do the errors occur around
+> > suspend/resume, a power state transition, or some other event?  Might
+> > other DWC-based devices be susceptible?  Is there a specific driver
+> > you suspect might be incomplete?
+> 
+> I see these errors when the devices in question are active as well as
+> idle (not during suspend/resume). For example, when running iperf3 or
+> fio to test the wifi and nvme, but I also see this occasionally for a
+> wifi device which is (supposedly) not active (e.g. a handful errors over
+> night).
+> 
+> I skimmed Qualcomm's driver and noted that there are some registers
+> related to ASPM which that driver updates, while the mainline driver
+> leaves them at their default settings, but I essentially only mentioned
+> that the ASPM implementation may be incomplete as a theoretical
+> possibility. The somewhat erratic ASPM behaviour for one of the modems
+> also suggests that some further tweak/quirk may be needed, and I was
+> hoping to catch Mani's interest by reporting it.
+> 
+> But based on what I've since heard from Qualcomm, it seems like these
+> correctable error may be a known issue with the hardware (e.g. seen
+> also with Windows), which is also why we decided to disable it for all
+> controllers on these two platforms where I've seen this in v2.
+>  
+> > Do you want the DT approach because the problem is believed to be
+> > platform-specific?  Otherwise, maybe we should consider reverting
+> > 9f4f3dfad8cf until the problem is understood?
+> 
+> Enabling ASPM gave a very significant improvement in battery life on the
+> Lenovo ThinkPad X13s, from 10.5 h to 15 h, so reverting is not really an
+> option there.
 
-How are you applying the overlay?
+Ah, I missed that you're only disabling L0s, but leaving L1 enabled,
+thanks!
 
-Rob
+And given that the v1.9.0 ops that enable ASPM are used on a bunch of
+platforms, and L0s seems to work fine on most of them, we wouldn't
+want to disable L0s for everybody, so this seems like the right
+solution.
+
+Bjorn
 
