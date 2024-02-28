@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-46684-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D5686A910
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:38:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5CCB86A91D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:41:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 042E4B245DB
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 07:38:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11F731C221F4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 07:41:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2351A24A1C;
-	Wed, 28 Feb 2024 07:38:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B8D325574;
+	Wed, 28 Feb 2024 07:40:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hVMGQqm+"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eSy/1zlo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19BA521353
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 07:38:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 839692561C
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 07:40:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709105932; cv=none; b=iczSMkNEHBfOhorH8U0d3DBNt1bba1z69t4twAxYmpXBym2U27nnkk+mzab989JacwfCQOLcIGsj2sOnWZXXfUy27qHgF37X3XqYKePapimrdr1sPYGSlRgdNSGKsNqg5xZvWr/edFElb0wBF57dZt909EdX0YYcFGD4qDrhKYo=
+	t=1709106045; cv=none; b=cRjIMRocrBI/5wom/virv+w8cdu0FseCfunmSSlx9QwY1ZnHTFl5nm7t1LAkjnMObxBy6D1CIAcKmNutl1Qt/zWjZcwhtVnMUSU6sThPViiRmdWtlIc3FZZlFJSpUBULty1Dqba15kycOfz/pUM474mC7FRpQbTLWGV5Ik94OhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709105932; c=relaxed/simple;
-	bh=MN3H4hcpIMAhfIiof9A5/DPHibtp2BQcEwHg0xeiexU=;
+	s=arc-20240116; t=1709106045; c=relaxed/simple;
+	bh=Ow0R+FxYoFMnm3YxzVonOfsUL2Ysf3DvLdurSDOiEtI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zj1NGy4oo8k/yi1iLfbZUdPD7QnY7o7PkBZnDXepnt84ZblVdiZX6meNIEfzFx0OIFFxDWEZI4CQg1by5ta9L/ACbtJ9NJ3sbQC+/YM9eBBj+ztQ2DLHz4URM3Pq0ONDQ/K3H/Xv8ezbBDB5POBggEQOMDMwDIuL2Ud/s0WIVJA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hVMGQqm+; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:Content-Type; b=kx/uT6KhaKHPNfig5PI2zUDl4uaArXGZh59nz3YT5Gl5F8SbBfX+haI4LNy++vxE4endqrLepOQ+POpYghrGmDutmytQNNjWz9zsrKe/0muWBdrOalOpbkTxtnf5Yald3IUmlwik3Hp+sqYOYQZ+j4qksoWvTnHRQgOPpkIprVk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eSy/1zlo; arc=none smtp.client-ip=209.85.218.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a3e7f7b3d95so590282166b.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 23:38:49 -0800 (PST)
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a3e5d82ad86so715090766b.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 23:40:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709105928; x=1709710728; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709106042; x=1709710842; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EFDFmfRdGSmLKClcFnQLjTuBL81odH/d8qA/QW3EdPg=;
-        b=hVMGQqm+MLzjD+GuLJqJ1pfnAf8KWdjyPjj5d5eLhCHhvQcDQydR7QgWf/SnALl/cG
-         qKVDv2MzTjJA6zJ3C8Dx5/ITGv1mxroJDvY/rHkuLXJtKEEKmQRw3paA5U4IwwPeXiNG
-         CBHQC+30O68d2qszEdAaIb5y5ra+awEdcRnR7jzaSmJ9IO4WOmJ6msrzaS4e4ULIPadm
-         haCQIPkt7MId/3FIYzSqKd0swzbIzVkg2K4dnQHq94TmAO/oIS5UWAEgOq7B52kg2NfW
-         z7K/W87fBtrCXKfzb5axFemd39bDQEn1CuCgX9x5xBqcpy0Bjl/yZp4y8CGSjmSmWT6d
-         nM/A==
+        bh=BY3KNQvzdAETd1/Rth7U0NCFxv48x2qleoh4Hm/NO98=;
+        b=eSy/1zloS4RLHYIVT2dXv/2NSnQmqs7V5cnqQhL446SXmznq45nJ8nvbI4UFB2o6B8
+         jG17rKfI2DQ+8dmW/B9eVn2YqcUFX4Xrt82JmWhNchXJ0UWPdcpw5adP1awHcnlPV5vm
+         QPPMi4inE07M1jtG1xOE+QXXs84656xBVHUiL1tAIeiSUE+5Inv2MqTAHnegaO/5ObOb
+         O70r+tSdPXXVlp7FQNdS9+Wiz2ktO6jF63xQvrxcGAa8p87aLfjzmscusMaqwEVtRjln
+         PEZqgwK9vPRkz+/PNPU+WKwG93EkRmG/V/U3M6FnUPZ55mQrDIYlCQlk8hnz0dZtycxs
+         RuQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709105928; x=1709710728;
+        d=1e100.net; s=20230601; t=1709106042; x=1709710842;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EFDFmfRdGSmLKClcFnQLjTuBL81odH/d8qA/QW3EdPg=;
-        b=Kye22CIcq9LH3mk8xBK6MebywPiWkbKYrpce7cVTvx1U/CeSPWh0EkuIzW/Zj1Uwo+
-         EmCeUHWatpCpgqAfyXh//yHudvoLW8h0qgrOEBD2Czzss7cBuTmgjCLMJHKz3spurb9L
-         zggjAV7qLzpIbArV44yAnLVqfpgJfGKzD5lBJk8Vd1Rpu6NiMznphs6wQrWj5OyS7MX8
-         eZvPQagiXmFjMTp7DDdP7WBA9BFY9BtLqa4OxjFGF2fK9lKA1GYiv/zTiGCMmKBaLqt4
-         /o5t/vE+SIpaNjNKUIZE+8kmalNy/jubVWv9PFz7MoLbAkM65n656ylWGbTFBcsttu0e
-         ivlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCW/9BZJAP0YJG0lKi/m21yPiMjPyrpGYICZAiHgUo8kVauWTwJ9yvfAKvI4QmUWSfuZzw8OEicUPO11muxILBk3tZkMhP/hw3V6bg==
-X-Gm-Message-State: AOJu0YybeoYNGuQnXEN8QR4x98dQTA0/qAY7EySOJhwAEwbmwlNtATkB
-	5C6DLHMR5xaB8Hr6WLIzTJcY37FMKJUnzZ9h7jEIuW+M4BNG5UkCjtOa08Ol/Aw=
-X-Google-Smtp-Source: AGHT+IGH9qH/FzadbI3MHDZ8b7TlWQx/BAXJ7f8u4dx3pEPI8ZdC59n+ZKgj8r26lDLsvjiE+B5s8A==
-X-Received: by 2002:a17:906:c196:b0:a40:a615:a9c4 with SMTP id g22-20020a170906c19600b00a40a615a9c4mr8442965ejz.65.1709105928534;
-        Tue, 27 Feb 2024 23:38:48 -0800 (PST)
+        bh=BY3KNQvzdAETd1/Rth7U0NCFxv48x2qleoh4Hm/NO98=;
+        b=IEnxesror8Tl+aOOKRZzmFe5EbZaImFSxwKlrN169ABw4mrZJOHF4r7SLCOhYA7BrO
+         OodyEZ3J+f+riBtKtvjuXuSqoJ78yS/DzIbzh/ICjAicQpQo5nU8D9OvftIc2kFaOnPI
+         ++ZLXjdhw0BLsZJqEpTrkmZDKsHjXrFTEZHsbS0arr3zskUReGrjWM+Bw8cRw3BXukRB
+         AEy3luEoEwjZ8UAw6bx1l6lddXZjgXwM8uRrD6CS4+NURn02r0xyNW5JhNHAS9x5nlGT
+         349hAhSIf6bbSJE8zobEh+JgIKl9BJW0QAfwZCOH+JheFbHFUM2dVn/NRsqB9AuECbDC
+         MXSg==
+X-Forwarded-Encrypted: i=1; AJvYcCUhogexNQ58tMaMKPjoLIcNS1pOrPW12Z0KYt6MyhnjO6R2p5yO+AdrzHWdeZXc9+X0/zOftr92FaO/GtCiV/6ApUmxwzb0UI3yww==
+X-Gm-Message-State: AOJu0YyEwzAv9Fa04GPRy9h186RwhUOqdlTsgULydIJxZBVzOINK9d2+
+	kUzelQvfyvtJICeNhlrmtj4qKCTJLRHXUyM3d079QwHlwjXB7IHH9eJhGd95IRk=
+X-Google-Smtp-Source: AGHT+IHzpshRmwdSa4JhXNqcWsVlGERtlIhNejiFCqCU3gdDcUKYSaij0hlZij6CD7s02EUdyKuuSw==
+X-Received: by 2002:a17:906:260d:b0:a3e:d2ea:ff5e with SMTP id h13-20020a170906260d00b00a3ed2eaff5emr9034970ejc.58.1709106041898;
+        Tue, 27 Feb 2024 23:40:41 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id vx6-20020a170907a78600b00a3edde33e7esm1549493ejc.99.2024.02.27.23.38.46
+        by smtp.gmail.com with ESMTPSA id bx11-20020a170906a1cb00b00a3cfe376116sm1546860ejb.57.2024.02.27.23.40.40
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Feb 2024 23:38:47 -0800 (PST)
-Message-ID: <b0ece5ac-14fe-4831-a413-71225debb1e4@linaro.org>
-Date: Wed, 28 Feb 2024 08:38:44 +0100
+        Tue, 27 Feb 2024 23:40:41 -0800 (PST)
+Message-ID: <7107d732-6bee-4c28-b317-c7a3adb909bd@linaro.org>
+Date: Wed, 28 Feb 2024 08:40:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,16 +76,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3] ASoC: dt-bindings: img,spdif-in: Convert to dtschema
+Subject: Re: [PATCH v2] ASoC: dt-bindings: img,spdif-in: Convert to dtschema
 Content-Language: en-US
-To: =?UTF-8?Q?Javier_Garc=C3=ADa?= <javier.garcia.ta@udima.es>
-Cc: daniel.baluta@nxp.com, daniel.baluta@gmail.com, broonie@kernel.org,
+To: Daniel Baluta <daniel.baluta@gmail.com>,
+ =?UTF-8?Q?Javier_Garc=C3=ADa?= <javier.garcia.ta@udima.es>
+Cc: daniel.baluta@nxp.com, broonie@kernel.org,
  Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, alsa-devel@alsa-project.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ "Damien.Horsley" <Damien.Horsley@imgtec.com>
 References: <20240227123602.258190-1-javier.garcia.ta@udima.es>
- <20240227170400.705862-1-javier.garcia.ta@udima.es>
+ <20240227160952.615291-1-javier.garcia.ta@udima.es>
+ <CAEnQRZDY5Jfj6d008goccsWwwUuUuryw1s8xJH6EyGXEiqnovw@mail.gmail.com>
+ <CAEnQRZAvqHfNYu+dYObJA=T7S_KfQMxB8TJGmdjK9Ea_FPrLOA@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -131,52 +135,54 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240227170400.705862-1-javier.garcia.ta@udima.es>
+In-Reply-To: <CAEnQRZAvqHfNYu+dYObJA=T7S_KfQMxB8TJGmdjK9Ea_FPrLOA@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 27/02/2024 18:03, Javier García wrote:
-> Convert the Imagination Technologies SPDIF Input Controllerto DT schema.
+On 27/02/2024 17:29, Daniel Baluta wrote:
+> On Tue, Feb 27, 2024 at 6:27 PM Daniel Baluta <daniel.baluta@gmail.com> wrote:
+>>
+>> This looks much better than v1. Make sure you have addressed all
+>> comments from the previous version
+>> and add a short log under the scissor line explaining what you have changed.
+>>
+>> Few comments inline:
+>>
+>>
+>> On Tue, Feb 27, 2024 at 6:13 PM Javier García <javier.garcia.ta@udima.es> wrote:
+>>>
+>>> Convert the Imagination Technologies SPDIF Input Controllerto DT schema.
+>>>
+>>> Signed-off-by: Javier García <javier.garcia.ta@udima.es>
+>>> ---
+>> ^ this is the scissor line. Here you add the change log.
+>>
+>> Changes since v1:
+>> - re-written the subject inline to include relevant prefix
+>> - removed header file as it is not used
+>> - ....etc
+>>
+>>
+>>> +$id: http://devicetree.org/schemas/sound/img,spdif-in.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Imagination Technologies SPDIF Input Controller
+>>> +
+>>> +maintainers:
+>>> +  - Liam Girdwood <lgirdwood@gmail.com>
+>>> +  - Mark Brown <broonie@kernel.org>
+>>
+>> Please do not blindly add people here. The most proper candidate for this
+>> is the people who wrote the original file.
+>>
+>> Using git log we can find Damien.Horsley <Damien.Horsley@imgtec.com>
 > 
-> Signed-off-by: Javier García <javier.garcia.ta@udima.es>
-
-Do not attach (thread) your patchsets to some other threads (unrelated
-or older versions). This buries them deep in the mailbox and might
-interfere with applying entire sets.
-
-> ---
-> Changes since v1 and v2:
->   - re-written the subject inline to include relevant prefix
+> Looks like this address bounced back.
 > 
->   - Node name changed to spdif@18100e00 to be more generic
+> @Krzysztof Kozlowski @Mark Brown is it OK to add a mailing list as
+> maintainer for a yml file?
 
-...
-
-> diff --git a/Documentation/devicetree/bindings/sound/img,spdif-in.yaml b/Documentation/devicetree/bindings/sound/img,spdif-in.yaml
-> new file mode 100644
-> index 000000000000..ab8f96cc37cd
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/img,spdif-in.yaml
-> @@ -0,0 +1,81 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/img,spdif-in.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Imagination Technologies SPDIF Input Controller
-> +
-> +maintainers:
-> +  - Liam Girdwood <lgirdwood@gmail.com>
-> +  - Mark Brown <broonie@kernel.org>
-
-That's still not good choice... that's the problem with converting
-bindings for very old, unmaintained hardware. No one cares. If you care
-about MIPS and Pistachio platform, then put your name there. If you do
-not care and we cannot find anyone responsible, then your effort has
-little impact. Better focus on bindings for actively used hardware.
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yeah, works as a last resort, when we cannot find any responsible person.
 
 Best regards,
 Krzysztof
