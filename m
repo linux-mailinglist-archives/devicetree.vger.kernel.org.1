@@ -1,63 +1,69 @@
-Return-Path: <devicetree+bounces-46907-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46908-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E019E86B28F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:02:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93E1A86B294
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:04:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 802B3B2627F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:02:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C0C121C23603
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:04:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85ABF15B10F;
-	Wed, 28 Feb 2024 15:02:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B96915B10B;
+	Wed, 28 Feb 2024 15:04:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rRcwuPkZ"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="bTUZz3v4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B7B215B10B;
-	Wed, 28 Feb 2024 15:02:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A9E224B39;
+	Wed, 28 Feb 2024 15:04:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709132534; cv=none; b=eq8rUs7GFX6pn4c4mBc/OqfXHafHzqvIhRrYAZjxo1dmUv6e/3uGnoze6mc4Pz3Tj9YFAdl9u5Cjj9R4YWZbQYIFsrUhq1bhkOvG2yWh46VPn/3P38iaPNukdrD4pF46+x/t/vR54T6HHevly16GtePwVeqdmwWZyqhudWQNjUY=
+	t=1709132658; cv=none; b=Rl3otR9/UF6Of4xCJQgPwkR6u4nMqz4TvBd3kINcxbtICgeQCX5RNOgc84czynPmxg9Jx1mAVWmQIfStL1uoaUeeD0lqB9fxLQdTJATsYLhgoTU5lV2np0zsyPfSTEGq0AJ4W0Q5WYLVfpZPdhHAWjYJ3QQjGtm/BGmnux0csc8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709132534; c=relaxed/simple;
-	bh=1h0tpGxcynD1O0R4NRR/i+De45HCdF5xEsAzG7MDeMU=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=FOcci6OTF8KgZN8Q32fQBQmXvXv0eEco2Sm/rSRzt3vq1x/4xuCVaw8gXpV5bDKoaAF2ZmjlfxQuoBwMu82yOeD/JreDC9WHyAr9RDuqWkStOXfuvlRmvjE5b9fs75fHD9jrlYwXlqkkFkxrzoQA0leoN/3c/FxK9o4DPYM9rMQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rRcwuPkZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6E083C433F1;
-	Wed, 28 Feb 2024 15:02:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709132533;
-	bh=1h0tpGxcynD1O0R4NRR/i+De45HCdF5xEsAzG7MDeMU=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=rRcwuPkZWbNDhlstKgewJW1iuTveAeETmAIIn/Cyjn53mKuBU+wIpzejaQhxX4gCI
-	 qjIpsUmLKEceub+UmV79SnSPh0OPLihS5bKkrHixbjeiy7JO3z7jPydN96yFD2NtDH
-	 WEWle1LV1qZaTpwKxz4LFHBwmuiuH2bEX5M7vA90zfZNJjO3w3kkd576aWaZxRBx+p
-	 S66f14HEbwznBf0fHgi3qF2bBq9Ox7YY1MrsZmBe39ZnhCc594iW3y9NUL9OcpXI3C
-	 xkbCJbGrGP5/ZZxkC5BcppKi0peDrareJDI/PU1fSBMGjochi09rFPEBGaGSfcZ3UL
-	 5n7pv7Lu7Y4cw==
-Date: Wed, 28 Feb 2024 09:02:11 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, konrad.dybcio@linaro.org,
-	manivannan.sadhasivam@linaro.org, robh@kernel.org,
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-	dmitry.baryshkov@linaro.org, quic_krichai@quicinc.com,
-	quic_vbadigan@quicinc.com, quic_schintav@quicinc.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] PCI: qcom: Enable cache coherency for SA8775P RC
-Message-ID: <20240228150211.GA271700@bhelgaas>
+	s=arc-20240116; t=1709132658; c=relaxed/simple;
+	bh=t9muqhfNN7i4XP7gG3jCRjrTS9ve2WB+DxxVMTVNZA8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZLkIYbq8+C8Ls3AiwU/URcwv0t20XN4ewV/guflYmq+Ot0mVkFtFJ8PKf4l1lEHz23xSVGbJGDP5w4S6J1AEav/UznGYLf6rgvC09ljSQRuP2LA1P7ISbYaujtGLcqu4EvSnQTI0ysmsBVl2FKOMZkMu2d3BlhlMtNS9p1kPCF4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=bTUZz3v4; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=dOocNfIFOpPF6lqMWSXAW9AMnznAJXSj9KJvDupMxYg=; b=bTUZz3v4hxXRRqqLkvtLScD7qZ
+	/WpJG7GUplG1kh3IxUbHuJznV7aCXbWselztd5/1OrNEIjX4DPWCAT3nwjZus2EnfKmMELkcf/8IJ
+	J4b7cgWKvuKSxI+sC5x58oWQ0WEsz0TGSxx/d5ZvgMMy8WpyRjH7+YsKq1ZugZII140Q=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rfLTn-008xT3-DF; Wed, 28 Feb 2024 16:04:19 +0100
+Date: Wed, 28 Feb 2024 16:04:19 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	herve.codina@bootlin.com, maxime.chevallier@bootlin.com,
+	christophercordahi@nanometrics.ca
+Subject: Re: [PATCH v2 3/6] net: phy: DP83640: Add LED handling
+Message-ID: <9b06003c-afc9-419a-af36-7b81aab8517e@lunn.ch>
+References: <20240227093945.21525-1-bastien.curutchet@bootlin.com>
+ <20240227093945.21525-4-bastien.curutchet@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,66 +72,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <02e44f17-39cd-46ec-b236-bc4f502d705e@quicinc.com>
+In-Reply-To: <20240227093945.21525-4-bastien.curutchet@bootlin.com>
 
-On Wed, Feb 28, 2024 at 06:34:11PM +0530, Mrinmay Sarkar wrote:
-> On 2/24/2024 4:24 AM, Bjorn Helgaas wrote:
-> > On Fri, Feb 23, 2024 at 07:33:38PM +0530, Mrinmay Sarkar wrote:
-> > > Due to some hardware changes, SA8775P has set the NO_SNOOP attribute
-> > > in its TLP for all the PCIe controllers. NO_SNOOP attribute when set,
-> > > the requester is indicating that there no cache coherency issues exit
-> > > for the addressed memory on the host i.e., memory is not cached. But
-> > > in reality, requester cannot assume this unless there is a complete
-> > > control/visibility over the addressed memory on the host.
-> > 
-> > Forgive my ignorance here.  It sounds like the cache coherency issue
-> > would refer to system memory, so the relevant No Snoop attribute would
-> > be in DMA transactions, i.e., Memory Reads or Writes initiated by PCIe
-> > Endpoints.  But it looks like this patch would affect TLPs initiated
-> > by the Root Complex, not those from Endpoints, so I'm confused about
-> > how this works.
-> > 
-> > If this were in the qcom-ep driver, it would make sense that setting
-> > No Snoop in the TLPs initiated by the Endpoint could be a problem, but
-> > that doesn't seem to be what this patch is concerned with.
->
-> I think in multiprocessor system cache coherency issue might occur.
-> and RC as well needs to snoop cache to avoid coherency as it is not
-> enable by default.
+> +static int dp83640_led_brightness_set(struct phy_device *phydev, u8 index,
+> +				      enum led_brightness brightness)
+> +{
+> +	int val;
+> +
+> +	if (index > DP83640_SPDLED_IDX)
+> +		return -EINVAL;
+> +
+> +	phy_write(phydev, PAGESEL, 0);
+> +
+> +	val = phy_read(phydev, LEDCR) & ~DP83640_LED_DIS(index);
+> +	val |= DP83640_LED_DRV(index);
+> +	if (brightness)
+> +		val |= DP83640_LED_VAL(index);
+> +	else
+> +		val &= ~DP83640_LED_VAL(index);
+> +	phy_write(phydev, LEDCR, val);
 
-My mental picture isn't detailed enough, so I'm still confused.  We're
-talking about TLPs initiated by the RC.  Normally these would be
-because a driver did a CPU load or store to a PCIe device MMIO space,
-not to system memory.
+I don't understand this driver too well, but should this be using
+ext_read() and ext_write().
 
-But I guess you're suggesting the RC can initiate a TLP with a system
-memory address?  And this TLP would be routed not to a Root Port or to
-downstream devices, but it would instead be kind of a loopback and be
-routed back up through the RC and maybe IOMMU, to system memory?
+I'm also woundering if it would be good to implement the .read_page
+and .write_page members in phy_driver and then use phy_write_paged()
+and phy_write_paged() and phy_modify_paged(), which should do better
+locking.
 
-I would have expected accesses like this to be routed directly to
-system memory without ever reaching the PCIe RC.
-
-> and we are enabling this feature for qcom-ep driver as well.
-> it is in patch2.
-> 
-> Thanks
-> Mrinmay
-> 
-> > > And worst case, if the memory is cached on the host, it may lead to
-> > > memory corruption issues. It should be noted that the caching of memory
-> > > on the host is not solely dependent on the NO_SNOOP attribute in TLP.
-> > > 
-> > > So to avoid the corruption, this patch overrides the NO_SNOOP attribute
-> > > by setting the PCIE_PARF_NO_SNOOP_OVERIDE register. This patch is not
-> > > needed for other upstream supported platforms since they do not set
-> > > NO_SNOOP attribute by default.
-> > > 
-> > > 8775 has IP version 1.34.0 so intruduce a new cfg(cfg_1_34_0) for this
-> > > platform. Assign enable_cache_snoop flag into struct qcom_pcie_cfg and
-> > > set it true in cfg_1_34_0 and enable cache snooping if this particular
-> > > flag is true.
-> > s/intruduce/introduce/
-> > 
-> > Bjorn
+	Andrew
 
