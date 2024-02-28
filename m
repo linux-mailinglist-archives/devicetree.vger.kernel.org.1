@@ -1,160 +1,124 @@
-Return-Path: <devicetree+bounces-46879-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46880-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AA6986B0E8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:54:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 715A286B0FC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:56:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0AE091F268AF
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:54:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90342B21AF8
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:56:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20946151CEA;
-	Wed, 28 Feb 2024 13:53:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C05114F998;
+	Wed, 28 Feb 2024 13:55:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="3IIaKwd+"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="arZ3c6p+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D815F14DFEC
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:53:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58C4A73519;
+	Wed, 28 Feb 2024 13:55:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709128398; cv=none; b=KmwjH2OTiykQUI3XSPGOrUhuyIjIIbjelq6k55pohQLj81G2XmjASS2EO1R45+1fMuCBlRp+3EYNNoeNtLdIuNcNFlLDmbJB8vz90hRljJUtnqXTfgPaB+MsWngFV7YdRYTyoIf0vlm6LhFP3bSV2WCq6L0N7BppF7ti+ZN24M4=
+	t=1709128546; cv=none; b=o/wRPiISAZeiieqQdoUs3ABr97z7oVP0fJFYxkEWfPBn0poG3NodOUyKxVg2ndKdzD381xc4CCdt/QuNc3HFcHTZH/QnQQZgO/FNXC2AZWDTnmyMzqk3XXCG8ujCTPep514tGxiT/P8BbrNJkgZPC+7nwuR8HjlBPYe0ui0fck0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709128398; c=relaxed/simple;
-	bh=aDp5s5G7OrtB0uIoBVwSnPcVRJu178PpcgCgi3Nls8c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=L+fmwZ9iAhWWvEXMemKJ9fNpfV9s7F5T7awa0SKh1ei7VJfJ0cVWBLvDdtLth9B2bfU//S1WP+rcs5e6d+PT8WMIO33kMOvnb6ymW333/nqB5JS6SrQwaUWmnYGKnntFDl6hd29ag29GBe91IH+cXmlbZaJbACHL0VxwqePnujk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=3IIaKwd+; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=2pe7tjaVjjd4HlWp42iye8YNjlaJGT+ZD7kXjbbPCBA=; b=3I
-	IaKwd+/8pH0QQCAYWFTKGcwx9r+ZyuJyjZYOdX2LemBIkJkhI1dMkEli5/jC6tjLI16lECOp/pY11
-	OgFz7saNHjzuZ5/9GpTXmpV2B3JdBAVYy9igp8DWHJIkPK+rFS28jLoo5emVvHeJ1EEWSEfdhU2J+
-	8xArQFWiTSTIKqM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rfKNC-008x6n-KQ; Wed, 28 Feb 2024 14:53:26 +0100
-Date: Wed, 28 Feb 2024 14:53:26 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1709128546; c=relaxed/simple;
+	bh=8t8hoaLRxmVNneYYb8zvqLM+/CaW5tOOqLAxKYoD+aU=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=mlzbMzU3ywShQiiTd72NGUUpaqY3ILWr6O+6zS33Gk4MLlaT3K39C4bozFyQBGB7D50sxosc+mRr7gv2SdmyGYFGHrDgDU6NnwdEaoO+tYRPqVFKzZMnRsvcFrJznrFqsfV/qBlGU0RKsdiTbVUMm7FvYuYyi/izjQLXAS5tq0A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=arZ3c6p+; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a293f2280c7so847301966b.1;
+        Wed, 28 Feb 2024 05:55:45 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709128544; x=1709733344; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mUq32dELYvaZbPwdj51rNG+84kHbibnt9c28Nvcq26E=;
+        b=arZ3c6p+N+uvtYwPHjdfRAweAZ051NJAk7GI+G5OAJYuKmfD62i9/k915CMcbVhRvL
+         NTWGStqY+YQDMEEQjbI33l6x4F3khZiZqHryPLNkMQhValTYA8/uDVMu+5KYzqLbPsy/
+         HHEagcLKUi3XF7hffBpNXawhVWBR13IaYJ2R6swJ0OQeMVSIhISVzJZOngwpE5h6C8S3
+         vN7C2lXBpAL3SPpTs1SLkEauI2+XHoW+/ZCcc4SpL3if294FiWcvUllrsvny1SVmzh5w
+         U1WlObkMrfl3riKGQ4qYS7RKoV4LorKchNdGkVOE2f5JE8aV4iAJsC6vJTuUsILcKWRy
+         vtFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709128544; x=1709733344;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mUq32dELYvaZbPwdj51rNG+84kHbibnt9c28Nvcq26E=;
+        b=vV16TJ1PWamJkB5Wq7+V2IVyFT8zUDr9YT3YQsCQ7TUaJHssRy+Ns7gzPvy+XwbyGn
+         a9TPAg7iffpSNJQTnoMcExZV4KcaSwbU6muOrYabVGrPY+5FQ4Da2Jvv2GrHdv/9WKtM
+         SijIVdn/e0o6Hqki9+JBWBA3OsT52PxwLiISD9dDsFF3jW6e6ss9SJVVAbOUKSrrfHeW
+         ahhrSVMsdhtsTwrAdMjN7nEmyZO4b5dyHf5mt4zBo6jJ3wEfMT+kEQm1yajF7mgMj4Ik
+         aACO3htv1RR3Jk5YBa8GJQ5ngvGvwO6LFEYr79px+a4OjK5zeh2WP8w4i1NJwAAlG458
+         g7Tw==
+X-Forwarded-Encrypted: i=1; AJvYcCULRrDDSlz+sjMA6qbT/yFOvPtSjAtaVGFPnZKhy3blu/gEQKZXcWLkYMbE40ihi8kL+PaOgCExdoBwqrWJm8DKHoGwK2ZzpyE4OTvWfspyt3DSxZ4dhOSsqHoy8Ek4/uhE/jZfVLk7qJ4EUPsJNLl2d2ZA5crbufOHJAHT1CObQ9Sjzg==
+X-Gm-Message-State: AOJu0YxupUB5tOlNkOY7RHgsokcqkp/aHktiGFdZ73eABgz+6yARgLlD
+	EKEXVuaqOHRNyWD4ZIPflqCK5SxlZnaFeCJqkWqSe54gaPH4yYMM
+X-Google-Smtp-Source: AGHT+IETRwWmPqicqrFjkEgYRoZjTMJcgxDsa5ASY7v05ij/tmHE1uSO4NdqEOA8D0xL960bz3084w==
+X-Received: by 2002:a17:906:81d4:b0:a43:6cd2:7bb7 with SMTP id e20-20020a17090681d400b00a436cd27bb7mr5428327ejx.47.1709128543386;
+        Wed, 28 Feb 2024 05:55:43 -0800 (PST)
+Received: from HYB-hhAwRlzzMZb.ad.analog.com ([5.2.194.157])
+        by smtp.gmail.com with ESMTPSA id dc6-20020a170906c7c600b00a441674cae4sm312487ejb.222.2024.02.28.05.55.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Feb 2024 05:55:42 -0800 (PST)
+From: Dumitru Ceclan <mitrutzceclan@gmail.com>
+To: 
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add basic support for QNAP
- TS-433
-Message-ID: <3295af58-4015-4962-91a0-87b70f18754e@lunn.ch>
-References: <cover.1709034476.git.ukleinek@debian.org>
- <0d9fa5d730ac1cb91261b25b6809fcef3a12f03a.1709034476.git.ukleinek@debian.org>
- <b48cde05-c583-4414-9424-fbb2db3a53ce@lunn.ch>
- <lcvokzcmifxl7skfz2h2shewuou7xpazuhtpnpkgtcyejcfgcy@vvdn5ypyklsx>
+	David Lechner <dlechner@baylibre.com>,
+	Ceclan Dumitru <dumitru.ceclan@analog.com>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Dumitru Ceclan <mitrutzceclan@gmail.com>
+Subject: [PATCH v2 0/2] Add support for additional AD717x models
+Date: Wed, 28 Feb 2024 15:54:55 +0200
+Message-ID: <20240228135532.30761-1-mitrutzceclan@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <lcvokzcmifxl7skfz2h2shewuou7xpazuhtpnpkgtcyejcfgcy@vvdn5ypyklsx>
 
-On Wed, Feb 28, 2024 at 08:23:33AM +0100, Uwe Kleine-König wrote:
-> On Tue, Feb 27, 2024 at 10:00:48PM +0100, Andrew Lunn wrote:
-> > > +&gmac0 {
-> > > +	assigned-clocks = <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
-> > > +	assigned-clock-parents = <&cru SCLK_GMAC0_RGMII_SPEED>, <&cru CLK_MAC0_2TOP>;
-> > > +	assigned-clock-rates = <0>, <125000000>;
-> > > +	clock_in_out = "output";
-> > > +	phy-handle = <&rgmii_phy0>;
-> > > +	phy-mode = "rgmii";
-> > > +	pinctrl-names = "default";
-> > > +	pinctrl-0 = <&gmac0_miim
-> > > +		     &gmac0_tx_bus2
-> > > +		     &gmac0_rx_bus2
-> > > +		     &gmac0_rgmii_clk
-> > > +		     &gmac0_rgmii_bus>;
-> > > +	rx_delay = <0x2f>;
-> > > +	tx_delay = <0x3c>;
-> > 
-> > Have you tried phy-mode = "rgmii-id"; and not have these two _delay
-> > settings?
-> 
-> I didnt' up to now. I applied the following on top of my dts:
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-> index ba7137f80075..a8747d9f36da 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-> @@ -39,15 +39,13 @@ &gmac0 {
->  	assigned-clock-rates = <0>, <125000000>;
->  	clock_in_out = "output";
->  	phy-handle = <&rgmii_phy0>;
-> -	phy-mode = "rgmii";
-> +	phy-mode = "rgmii-id";
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&gmac0_miim
->  		     &gmac0_tx_bus2
->  		     &gmac0_rx_bus2
->  		     &gmac0_rgmii_clk
->  		     &gmac0_rgmii_bus>;
-> -	rx_delay = <0x2f>;
-> -	tx_delay = <0x3c>;
->  	status = "okay";
->  };
->  
-> and this makes the machine unable to complete dhcp. I see the requests
-> and replies on the dhcp server side, but the machine tells me not to
-> receive a dhcp reply. So the above patch breaks the receive path.
+This patch series adds support for the Analog Devices AD7172-2, AD7175-8,
+ AD7177-2 ADCs within the AD7173 driver.
 
-O.K.
+ Datasheets:
+ https://www.analog.com/media/en/technical-documentation/data-sheets/AD7172-4.pdf
+ https://www.analog.com/media/en/technical-documentation/data-sheets/AD7175-8.pdf
+ https://www.analog.com/media/en/technical-documentation/data-sheets/AD7177-2.pdf
 
-This binding is particularly bad. What does 0x3c mean? Generally, we
-use rx-internal-delay-ps making it clear what the value means.
+V1->V2
+ dt-bindings: adc: ad7173: add support for additional models:
+ - Remove bindings descriptions update as already included in latest AD7173 bindings
+ - Remove default: false for adi,reference-select
+ iio: adc: ad7173: add support for additional models:
+ - Add period to commit message
+ - AD717X -> AD717x
+ - Fix typo
+ - Reformat supported devices list
+ - Reorder device ID's by value
+ - Use correct comment style
+ - Add missing space
 
-RGMII requires a 2ns delay between the clock and the data. Generally,
-we have the MAC insert 0 delay, and request the PHY add the 2ns delay
-by specifying "rgmii-id". Sometimes you need to fine tune this,
-because of the length of the tracks etc. You can then do that fine
-tuning either in the PHY, or the MAC.
+Dumitru Ceclan (2):
+  dt-bindings: adc: ad7173: add support for additional models
+  iio: adc: ad7173: add support for additional models
 
-Looking at the binding:
+ .../bindings/iio/adc/adi,ad7173.yaml          | 39 ++++++++-
+ drivers/iio/adc/ad7173.c                      | 82 +++++++++++++++++--
+ 2 files changed, 110 insertions(+), 11 deletions(-)
 
-  tx_delay:
-    description: Delay value for TXD timing.
-    $ref: /schemas/types.yaml#/definitions/uint32
-    minimum: 0
-    maximum: 0x7F
-    default: 0x30
+-- 
+2.43.0
 
-  rx_delay:
-    description: Delay value for RXD timing.
-    $ref: /schemas/types.yaml#/definitions/uint32
-    minimum: 0
-    maximum: 0x7F
-    default: 0x10
-
-For your board, you have increased both values from there default
-values. My guess is 0x30 tx_delay is 2ns, and 0x10 rx_delay is also
-2ns. 
-
-So maybe try:
-
-rx_delay = <0x1f>;
-tx_delay = <0x0c>;
-
-combined with rmgii-id.
-
-	 Andrew
 
