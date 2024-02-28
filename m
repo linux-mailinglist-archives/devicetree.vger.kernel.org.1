@@ -1,149 +1,136 @@
-Return-Path: <devicetree+bounces-46955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78A2086B62D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:39:15 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E66986B664
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:50:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1956E1F27BE4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:39:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 05093B22DB0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:50:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF80915957C;
-	Wed, 28 Feb 2024 17:39:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F1615DBA1;
+	Wed, 28 Feb 2024 17:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dm422GDV"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="rVADp1L7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7FE8E3FBA3;
-	Wed, 28 Feb 2024 17:39:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2F4A3FBB5;
+	Wed, 28 Feb 2024 17:50:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709141949; cv=none; b=uQsYuJDPl4urvJ9xEw+FdhanKRZqnZG1hSykuUEF9mgtAVyZKl9u7//YtOeN9sTpohJe6/zebVlg6HkAeNaQkkKzTneed2vUg354Vp0pIvvzWcippLCnW4TI+RB1mzG4ZNuQlbLck5hqbSNfacP/KL8eeUMRvj9xPaOcVZRdmJI=
+	t=1709142628; cv=none; b=oIat34BuJQZbtbNya27jk2NJDtiPoK5flO2woS0HIpDA3UzgIhQZOShON5FoO0wGjEXSmriib5wCb9+46osxN1OttHcUTHMv5WzP29d+bdo9ceyOmujmFhC+bocd8t/brvS1HLSVnrxjtwMRNRv+AW/WPtSVlLvet3eLdeFV+Zs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709141949; c=relaxed/simple;
-	bh=7fU5GKZkXLjsMF7iCwTfyoGD1e80FpJuY7UfLCMmwHQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=EM587JCAjxlXSUCM0eAtkdy5XaN0V5OycnXddeKq3VMnpOSBY+eTGzD3Iacrseo7vnhNmhvQiaRDgIsCbdazt53i6vPM4KiwCUfTq2mzbnUOrHwxjMBxf/dBS3TuihGKiyb3pQZpUXD1pY39N8LVujKX4NCeCkxfirr/lH2fsro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dm422GDV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C4FEC433F1;
-	Wed, 28 Feb 2024 17:39:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709141949;
-	bh=7fU5GKZkXLjsMF7iCwTfyoGD1e80FpJuY7UfLCMmwHQ=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=dm422GDVIduboqpaczCtFOvGNI6zBSqkjQh6NqA45iSnYKrrZr+9wKaBM+2bOhR/G
-	 hdvJwRKkXvN5CKkTGyPiYZLHx+bRt8PMow2Oh5bAyUIMR9RnqdHLNchMh9/P/lRSC8
-	 27C7L6ucLeJM3FJonQH3fCCfLp4jkBGd5h48whSKr3zschtSItx9svDyxfogeeUmOf
-	 z5zPw4NFmEPrBlGFWV1TS6oPWE3AZn+9ODl1Chspc8p8StifZRsXLb7xo4FHyz32rV
-	 e3b+OLjWN4FUBsJtksgVqmitA905G5UBHNwPoCgg2ruOpUIIS3/BvEfKxjdUP5az5s
-	 pF/LbAzWN9BhQ==
-Date: Wed, 28 Feb 2024 11:39:07 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Mrinmay Sarkar <quic_msarkar@quicinc.com>, andersson@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	konrad.dybcio@linaro.org, robh@kernel.org,
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-	dmitry.baryshkov@linaro.org, quic_krichai@quicinc.com,
-	quic_vbadigan@quicinc.com, quic_schintav@quicinc.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v5 1/3] PCI: qcom: Enable cache coherency for SA8775P RC
-Message-ID: <20240228173907.GA278736@bhelgaas>
+	s=arc-20240116; t=1709142628; c=relaxed/simple;
+	bh=/tN8g7Nu4OtB7zLo0ASbqq/rvyISFqsM+VDaNvSML9w=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=bMA1iCf+9fAwyQLP6nTIrrRd4HgOl4ThE8lbyTj5clHLrBitlHkGaowfGUyXl+MaEAyOy+VaFUWxT/I+xLJiQ+6dhOq2GMqCzNKmp14aE3sZ/EM8gSCelEVUyZZowyxBQIkyOnKfUqtg+vaFiNDKGHPN1A2vsPc+nOBIHBkVbEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=rVADp1L7; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240228171412.GA21858@thinkpad>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709142616;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=I817ZQ9O/ukouSHsI6i+6wIBDPrjcC9I+zq5Mu1bHc0=;
+	b=rVADp1L7RTezswwLbMm8Im4Ri6RgLlbFwyQKfDg+enIljDQ2RUJ5L4wX/xjSgKlxU4t1/W
+	DvlWz+isN5Zlx0pFJhSMWNi/7GQmhn6u9tlSe4FrKfvjoXcGYq6BWwF4hiSciwhpYJlYMe
+	Bg0zx30FZ7V2COf3Eq3puYGuuS9CD7JgQ6OGfFcCn42D9XBm+jrXdecF/sPxrcXrTS9LZQ
+	uGl7TTXYdzvAFjqIma+yGwM01uimvv35GIwfebgvCYKIJlWK9D9nAj9fCAOC8gxoXcORo0
+	j5fXfHkO1x25lkD2D7YQGx9540nQVPtZyGD2yiPW7RHSMw8Gt6GroHUHGdEDlQ==
+Date: Wed, 28 Feb 2024 18:50:15 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] arm64: dts: rockchip: Add cache information to the
+ Rockchip RK3566 and RK3568 SoC
+In-Reply-To: <8eb17d05ff857d154169e62b1f04413f@manjaro.org>
+References: <20240226182310.4032-1-linux.amoon@gmail.com>
+ <8ceea100f2ef7cce296943ce1397161a@manjaro.org>
+ <CANAwSgQnoBx+th6s254sML+Zw+RZQC6WU9TjfMoWgHxmCqbDcw@mail.gmail.com>
+ <4676da62ec0fc0fe89318baea0678e0c@manjaro.org>
+ <8eb17d05ff857d154169e62b1f04413f@manjaro.org>
+Message-ID: <31ad86c4e2e3f8f46016227b0d204c8b@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Wed, Feb 28, 2024 at 10:44:12PM +0530, Manivannan Sadhasivam wrote:
-> On Wed, Feb 28, 2024 at 09:02:11AM -0600, Bjorn Helgaas wrote:
-> > On Wed, Feb 28, 2024 at 06:34:11PM +0530, Mrinmay Sarkar wrote:
-> > > On 2/24/2024 4:24 AM, Bjorn Helgaas wrote:
-> > > > On Fri, Feb 23, 2024 at 07:33:38PM +0530, Mrinmay Sarkar wrote:
-> > > > > Due to some hardware changes, SA8775P has set the NO_SNOOP attribute
-> > > > > in its TLP for all the PCIe controllers. NO_SNOOP attribute when set,
-> > > > > the requester is indicating that there no cache coherency issues exit
-> > > > > for the addressed memory on the host i.e., memory is not cached. But
-> > > > > in reality, requester cannot assume this unless there is a complete
-> > > > > control/visibility over the addressed memory on the host.
-> > > > 
-> > > > Forgive my ignorance here.  It sounds like the cache coherency issue
-> > > > would refer to system memory, so the relevant No Snoop attribute would
-> > > > be in DMA transactions, i.e., Memory Reads or Writes initiated by PCIe
-> > > > Endpoints.  But it looks like this patch would affect TLPs initiated
-> > > > by the Root Complex, not those from Endpoints, so I'm confused about
-> > > > how this works.
-> > > > 
-> > > > If this were in the qcom-ep driver, it would make sense that setting
-> > > > No Snoop in the TLPs initiated by the Endpoint could be a problem, but
-> > > > that doesn't seem to be what this patch is concerned with.
-> > >
-> > > I think in multiprocessor system cache coherency issue might occur.
-> > > and RC as well needs to snoop cache to avoid coherency as it is not
-> > > enable by default.
-> > 
-> > My mental picture isn't detailed enough, so I'm still confused.  We're
-> > talking about TLPs initiated by the RC.  Normally these would be
-> > because a driver did a CPU load or store to a PCIe device MMIO space,
-> > not to system memory.
+On 2024-02-28 11:42, Dragan Simic wrote:
+> On 2024-02-27 15:58, Dragan Simic wrote:
+>> On 2024-02-27 13:49, Anand Moon wrote:
+>>> On Tue, 27 Feb 2024 at 00:39, Dragan Simic <dsimic@manjaro.org> 
+>>> wrote:
+>>>> On 2024-02-26 19:23, Anand Moon wrote:
+>>>> > As per RK3568 Datasheet and TRM add missing cache information to
+>>>> > the Rockchip RK3566 and RK3568 SoC.
+>>>> >
+>>>> > - Each Cortex-A55 core has 32KB of L1 instruction cache available and
+>>>> >       32KB of L1 data cache available with ECC.
+>>>> > - Along with 512KB Unified L3 cache with ECC.
+>>>> >
+>>>> > With adding instruction cache and data cache and a write buffer to
+>>>> > reduce the effect of main memory bandwidth and latency on data
+>>>> > access performance.
+>>>> >
+>>>> > Signed-off-by: Anand Moon <linux.amoon@gmail.com>
+>>>> 
+>>>> I was about to send my own patch that adds the same missing cache
+>>>> information, so please allow me to describe the proposed way to move
+>>>> forward.
+>>>> 
+>>>> The way I see it, your commit summary and description need a rather
+>>>> complete rewrite, to be more readable, more accurate, and to avoid
+>>>> including an irrelevant (and slightly misleading) description of the
+>>>> general role of caches.
+>>>> 
+>>>> Also, the changes to the dtsi file would benefit from small 
+>>>> touch-ups
+>>>> here and there, for improved consistency, etc.
+>>>> 
+>>>> With all that in mind, I propose that you withdraw your patch and 
+>>>> let
+>>>> me send my patch that will addresses all these issues, of course 
+>>>> with
+>>>> a proper tag that lists you as a co-developer.  I think that would
+>>>> save us a fair amount of time going back and forth.
+>>>> 
+>>>> I hope you agree.
+>>> 
+>>> I have no issue with this,.If you have a better version plz share 
+>>> this.
+>> 
+>> Thank you, I'll send my patch within the next couple of days.
 > 
-> Endpoint can expose its system memory as a BAR to the host. In that case, the
-> cache coherency issue would apply for TLPs originating from RC as well.
-
-What PCIe transactions are involved here?  So far I know about:
-
-  RC initiates Memory Read Request (or Write) with NO_SNOOP==0
-  ...
-  EP responds with Completion with Data (for Read) 
-
-But I guess you're saying the EP would initiate other transactions in
-the middle related to snooping?  I don't know what those are.
-
-> > But I guess you're suggesting the RC can initiate a TLP with a system
-> > memory address?  And this TLP would be routed not to a Root Port or to
-> > downstream devices, but it would instead be kind of a loopback and be
-> > routed back up through the RC and maybe IOMMU, to system memory?
-> > 
-> > I would have expected accesses like this to be routed directly to
-> > system memory without ever reaching the PCIe RC.
-> > 
-> > > and we are enabling this feature for qcom-ep driver as well.
-> > > it is in patch2.
-> > > 
-> > > Thanks
-> > > Mrinmay
-> > > 
-> > > > > And worst case, if the memory is cached on the host, it may lead to
-> > > > > memory corruption issues. It should be noted that the caching of memory
-> > > > > on the host is not solely dependent on the NO_SNOOP attribute in TLP.
-> > > > > 
-> > > > > So to avoid the corruption, this patch overrides the NO_SNOOP attribute
-> > > > > by setting the PCIE_PARF_NO_SNOOP_OVERIDE register. This patch is not
-> > > > > needed for other upstream supported platforms since they do not set
-> > > > > NO_SNOOP attribute by default.
-> > > > > 
-> > > > > 8775 has IP version 1.34.0 so intruduce a new cfg(cfg_1_34_0) for this
-> > > > > platform. Assign enable_cache_snoop flag into struct qcom_pcie_cfg and
-> > > > > set it true in cfg_1_34_0 and enable cache snooping if this particular
-> > > > > flag is true.
-> > > > s/intruduce/introduce/
-> > > > 
-> > > > Bjorn
+> Here's a brief update...  Basically, not all of the cache-size values
+> found in your patch were correct, but I've got all of them calculated
+> again, double-checked, and cross-compared with the way values in my
+> earlier patch for the RK3399 SoC dtsi were calculated. [2]
 > 
-> -- 
-> மணிவண்ணன் சதாசிவம்
+> It all checked out just fine.  It's all based on the RK3566 and RK3568
+> SoC datasheets and a couple of ARM specifications, which I'll describe
+> in detail in my patch description.  I'll send the patch after I test
+> it a bit, to make sure it all works as expected.
+> 
+> [1] 
+> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=b72633ba5cfa932405832de25d0f0a11716903b4
+
+Pretty much the same patch for the RK3328 is also ready for testing.
 
