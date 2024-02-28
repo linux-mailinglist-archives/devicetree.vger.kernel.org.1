@@ -1,108 +1,232 @@
-Return-Path: <devicetree+bounces-46889-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46890-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8ADCE86B138
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:04:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9952D86B141
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:06:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E6F81F23553
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:04:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4E52028399A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C061C1534ED;
-	Wed, 28 Feb 2024 14:04:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCE121534EF;
+	Wed, 28 Feb 2024 14:06:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WF89elJb"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aKxron1X"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9304D145341;
-	Wed, 28 Feb 2024 14:04:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1569E148FFC
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 14:06:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709129088; cv=none; b=OVGZJwI+xTolmXKZ6SfZsZkqVcVg/N716rmceqSqiNZzsiwFHQF1YZcUp9q704P1AhG6z2rdC7zWV91157dmOBuho7LdDS9+/ExkigTHXAiEWlzTPJkdb2p7dEMroSDMRHLH2hGgH2F6w3olhB8J3nSsEuy9DyuFKa7YY/Z7FlE=
+	t=1709129181; cv=none; b=BZ9h0YeWWomX91BHiHJLZzLwid84ROA/Le7kSxuGDhDxpzOOLvCZycw+QPIh549W/awSxHGirUzJ1j4oM2mZbqJ0PMApvuIpbN+OSg7OAPM0VRuoYNNwqXtA4YwNpyfEGQPBa7ia/BIrKIPsM9IS8vyvbDUHFbvl1LAizQk6RdU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709129088; c=relaxed/simple;
-	bh=mkN9EphVfkwSKkkJ22QmMJJrH82VGPuV04x7Zbl5Fd4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ktx08lH4wSLCVcAxSYyeWZ7piari9szdxipGy6N9R9idD8M30D9g7/krYQKhJVRwiNczXo/8URw4fu8qr7ErKFIvoxtMe1cx5zBDMnAmbnvIIdQW6UWRj7nw+TtR8egiKI/lteQ1p8yFNdpAqIL0+yKXJGS4diXwjFNSAsgtPiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WF89elJb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B333BC433F1;
-	Wed, 28 Feb 2024 14:04:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709129088;
-	bh=mkN9EphVfkwSKkkJ22QmMJJrH82VGPuV04x7Zbl5Fd4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WF89elJbgCiQLnC0iZKBEY5bLTGZ1f+WSm4/bJphB7FEsCETSRuKoKhq9ag47RJim
-	 4HMwkPZL6kO+dUg9ztn1zeD4QJowGKwmunHPXjB3Utw5hGHiPLowCF73cwxfQSoyCJ
-	 9FKjvkThFGa3WZ83d6l8vIe+3wl7aEPv4pD5pq/k1WWdu3iEtEQSGNbVmACrqAy3vN
-	 HTMCaRzHQqe7EEWKwaSMWBokdr8e1h1k0NvEEx7mjzesR+Rol4P42EOV+b5FpNuPRv
-	 GmHZKMq3s2T/KUxlRsya6jMRoNQNe431+Q2BQpXwJdt9JqkTS839KxOabku4NejTSP
-	 fqdCD8TsM9e6g==
-Date: Wed, 28 Feb 2024 14:04:40 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Matthias Kaehlcke <mka@chromium.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Helen Koike <helen.koike@collabora.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v5 7/8] ASoC: dt-bindings: xmos,xvf3500: add XMOS XVF3500
- voice processor
-Message-ID: <8ca79afd-64e4-456c-936d-01faf68c2ad9@sirena.org.uk>
-References: <20240228-onboard_xvf3500-v5-0-76b805fd3fe6@wolfvision.net>
- <20240228-onboard_xvf3500-v5-7-76b805fd3fe6@wolfvision.net>
+	s=arc-20240116; t=1709129181; c=relaxed/simple;
+	bh=fUSaXoqtXRB0qGdabGFsyk62OVa7gFl3kWDiGvq9L48=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=DC3LZTgootuTRUd2Rtzy2ANXy0TVxRTcamZF+sW9g6SFq9MLOQ2zk4uytQia6B+mujjTmPPX229Nm7UsI2rki7LIbmMdgaSE8EaDe0JpwmacvVfJ6LKx994udfESolbzv6OQb/gv1Z9AQc1HyejC30ZprCMACfEOuBPTsjdqxis=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aKxron1X; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a43fc42e697so78712266b.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 06:06:19 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709129178; x=1709733978; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=0/rpJyq/RgcopvSHJgS4VKLl6wgR1t9y0dcYjB0pkkA=;
+        b=aKxron1Xi3Dmu2YFzEWO1RysdsHNLdF+gQu6CNRfJpFv37BdmxlqdpNevoi5Mzabxf
+         EjKIv6SztXXqOuewrqlNhr/NTWngJnx4/+8YhQe25n++umgn0ZPKEC9m9dnl81Y5AHvR
+         2M69odf/YHGbmCzp+6372QkLtyvVqWtJ3aSi7Xu96wkFiAWD8DFSM4zPpLSz1Z7GkHYX
+         cAiD6bwBonkrcC0RyO/VDZpvpBXRYkQHUiesXEJJD84CIZemNwgIRNQjE981FIP/+Svz
+         FfIp5K8QtRUxpITkMXPSnZR2Ac45gxlhmRBVrtvfAmS0vWswvGWiWIZfNHw7QeCW3oP1
+         1k9A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709129178; x=1709733978;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0/rpJyq/RgcopvSHJgS4VKLl6wgR1t9y0dcYjB0pkkA=;
+        b=uMF8aNgXXwJZ0A4FY55PuIyJaG27CxdysjgqLZRs1v+X1SjIBi4GXCFH8h8yFlwiVJ
+         OP/CfsPcQdO3OUtxZvLSKUwXKOzOEdjaZhEGaDksUIYv1cPR9dpil3P6cU4tb1/sWZXx
+         1XiAmmA8y5kbBg+SDs2WGBrJS/47DWUvQi04RElJfoAUIQDEKGr/yKG38z0VP1Rkt3Db
+         P4RBKdMUvWZ0J7CuLliAwuffGR4iEq6lh4qRF0PBsaVjBHs+zWWcpT32NEF6n1ajX3qI
+         wCkjSnCpI+2jnNybIWTca+DNIZGKOocBTLy7bZ1ULay78xY7375Hl1dKPOK1PccFUTYe
+         Uqtw==
+X-Forwarded-Encrypted: i=1; AJvYcCUty0bY2xBCWK13aCOApGLFYvm+Zy+kkaVudvqNb4WEhBjsaxC30Hi9eBnVAXV4iIxqxXoEPYnDNM05PMApSVCBfQp6yXUTfox+Mg==
+X-Gm-Message-State: AOJu0Yzpc5kSCGpscryQqeOkExwALmhsRzX0LsieyUq2dm7c74x+Lrq0
+	ZUAlHMCnPwW/8P7pvWW0hjzICpAbBqW/dLNnqX0CzoCw/z+X+g+93/N3bNOqLb0=
+X-Google-Smtp-Source: AGHT+IFE4wiM4wtkf5DpMvBbMBdAJSPpOXes7UwK5f3dYxNRKxgNFtELeQKw7Zr46zFZZ2hHeYEafA==
+X-Received: by 2002:a17:906:bce7:b0:a44:2178:d280 with SMTP id op7-20020a170906bce700b00a442178d280mr240776ejb.66.1709129178506;
+        Wed, 28 Feb 2024 06:06:18 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id cd14-20020a170906b34e00b00a4412406741sm398217ejb.131.2024.02.28.06.06.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Feb 2024 06:06:18 -0800 (PST)
+Message-ID: <01f6fd8b-2d2e-4324-b354-1ea1b0868976@linaro.org>
+Date: Wed, 28 Feb 2024 15:06:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="GZv8oq1Dyph+Z9ez"
-Content-Disposition: inline
-In-Reply-To: <20240228-onboard_xvf3500-v5-7-76b805fd3fe6@wolfvision.net>
-X-Cookie: Function reject.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/4] dt-bindings: iio: adc: ad7192: Add AD7194 support
+Content-Language: en-US
+To: Alisa-Dariana Roman <alisadariana@gmail.com>,
+ michael.hennerich@analog.com, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc: lars@metafoo.de, jic23@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ andriy.shevchenko@linux.intel.com, nuno.sa@analog.com,
+ alisa.roman@analog.com, dlechner@baylibre.com
+References: <20240228122617.185814-1-alisa.roman@analog.com>
+ <20240228122617.185814-4-alisa.roman@analog.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240228122617.185814-4-alisa.roman@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 28/02/2024 13:26, Alisa-Dariana Roman wrote:
+> Unlike the other AD719Xs, AD7194 has configurable differential
+> channels. The default configuration for these channels can be changed
+> from the devicetree.
+> 
+> Also add an example for AD7194 devicetree.
+> 
+> Signed-off-by: Alisa-Dariana Roman <alisa.roman@analog.com>
+> Signed-off-by: romandariana <alisa.roman@analog.com>
+
+Something is not right here...
+
+> ---
+>  .../bindings/iio/adc/adi,ad7192.yaml          | 75 +++++++++++++++++++
+>  1 file changed, 75 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> index 16def2985ab4..c62862760311 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7192.yaml
+> @@ -21,8 +21,15 @@ properties:
+>        - adi,ad7190
+>        - adi,ad7192
+>        - adi,ad7193
+> +      - adi,ad7194
+>        - adi,ad7195
+>  
+> +  "#address-cells":
+> +    const: 1
+> +
+> +  "#size-cells":
+> +    const: 0
+> +
+>    reg:
+>      maxItems: 1
+>  
+> @@ -96,8 +103,44 @@ required:
+>    - spi-cpol
+>    - spi-cpha
+>  
+> +patternProperties:
+> +  "^channel@([0-9]+)$":
+
+No need for ()
+
+> +    type: object
+> +    $ref: adc.yaml
+> +    unevaluatedProperties: false
+> +
+> +    properties:
+> +      reg:
+> +        description: The channel index.
+> +        minimum: 1
+> +        maximum: 16
+> +
+> +      diff-channels:
+> +        description: |
+> +          Both inputs can be connected to pins AIN1 to AIN16 by choosing the
+> +          appropriate value from 1 to 16. The negative input can also be
+> +          connected to AINCOM by choosing 0.
+> +        items:
+> +          minimum: 0
+> +          maximum: 16
+> +
+> +    required:
+> +      - reg
+> +      - diff-channels
+> +
+>  allOf:
+>    - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          enum:
+> +            - adi,ad7190
+> +            - adi,ad7192
+> +            - adi,ad7193
+> +            - adi,ad7195
+> +    then:
+> +      patternProperties:
+> +        "^channel@([0-9]+)$": false
+
+No need for ()
+
+>  
+>  unevaluatedProperties: false
+>  
+> @@ -127,3 +170,35 @@ examples:
 
 
---GZv8oq1Dyph+Z9ez
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Best regards,
+Krzysztof
 
-On Wed, Feb 28, 2024 at 02:51:34PM +0100, Javier Carrasco wrote:
-> The XMOS XVF3500 VocalFusion Voice Processor[1] is a low-latency, 32-bit
-> multicore controller for voice processing.
-
-Acked-by: Mark Brown <broonie@kernel.org>
-
---GZv8oq1Dyph+Z9ez
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXfPXcACgkQJNaLcl1U
-h9ClBgf/WEqjCGdSA3iAFJbr122JZWQxEgNaNaZsKWB2+geVKJDo10ZkXVNxg5mN
-XNszF9BGXc9nLrLmNu0IBuL038hA8DpAl7r/XIEoF/FhjWMVL3D/O9K2rRRAH8s5
-cstxj5XHgf7Vh41TqJrTJG10nlfZwK9S1ZdcfxhKTw/w2nwg0egNvnMxiFo9ny5B
-qEUA27fg6yczyVf3Pwj8Nmo9hmJm8QGIztYP4k85X4i6oNS/vH7rjCjk02U+9s31
-ZugTtoOeeY/uHB7xZBY+Em8Vgj113/TTxofp2MQunjj3x7uWBiVmgpCk4UnTjO4p
-gkJE8XHSeUyrwbbxJqZNjMj74sAowA==
-=0dME
------END PGP SIGNATURE-----
-
---GZv8oq1Dyph+Z9ez--
 
