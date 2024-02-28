@@ -1,256 +1,115 @@
-Return-Path: <devicetree+bounces-46666-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46665-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C406786A7F5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 06:22:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2332186A7ED
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 06:20:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50A461F236B8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 05:22:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D35622871F0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 05:20:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54652210F4;
-	Wed, 28 Feb 2024 05:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54ED420DEA;
+	Wed, 28 Feb 2024 05:20:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="mU3fbw12";
-	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="HbBP3Ld8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HbxOV6/g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gw2.atmark-techno.com (gw2.atmark-techno.com [35.74.137.57])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4AEA20DEA
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 05:21:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.74.137.57
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 241BB20B35;
+	Wed, 28 Feb 2024 05:20:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709097719; cv=none; b=NnBBhLQYqAzo4HpxnWzf84/9ZmWXfko9vuNUMIAi0ICp/f2XjpX1O9/NaAiBi9XWTFc6PaLizLGrO90UQKUTIfYwc7paEjc1mzhjvdKMf73i3crrxrk+3jXrmqg/0JypXdz7JjA/TwR7gMmsAs6HnuY0lL7cWQLuGNm+bZnz2Dg=
+	t=1709097631; cv=none; b=RCo3rtVxMrxBcWmah5a7Vo1YxgLw8aYlOGQFMxC4aflH/03E8pR12A9tV6tW5yVuaUXYmp48tfI4nOMVw3/r+s0b++B2pUIYl1NHg9BbbnEo8QtKA4NbaqQOL/8BnO0AuWg5lBW9UO+MVIKHXzJFr8+J4O+/fOS0zlqhfGFfhdQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709097719; c=relaxed/simple;
-	bh=hag+kUREN7099AQsZeDg4yMNi/Oqegb9LMqtaO2yh/A=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=s0i6wDIMqXW++u/xTaETrGpxmLZzhZYpZnu+JUmWXpxG8PBeTlgYidRXFGaaRr32505VTofbyVRMsSnHtPt/KGtTIMuVyn0FDkahxvZjFVoyIgyRQVWrB19QLRMmtC9PLqcarfXbqD27vCdE2YCwDbbk/zHZ+1VVLTHYPmE23Og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com; spf=pass smtp.mailfrom=atmark-techno.com; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=mU3fbw12; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=HbBP3Ld8; arc=none smtp.client-ip=35.74.137.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=atmark-techno.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=atmark-techno.com;
-	s=gw2_bookworm; t=1709097198;
-	bh=hag+kUREN7099AQsZeDg4yMNi/Oqegb9LMqtaO2yh/A=;
-	h=From:To:Cc:Subject:Date:From;
-	b=mU3fbw12GXb/xsYE687cZCGU/q9KOfEZXCrK+IRRUYS64LSeLMoiHOIIXBgSaIAXl
-	 aIBSgBQGEAAGx3jwY674Ri7J2T2qlmn5MkgdlzVnLfmiMct2gdyy5eI9Z2N+Tpyb1H
-	 jlbzVH69qDG2Ncg8QF+GTnI/iCo6Js6dk5u0LyeOaoa/rxQlwzwCqMEL220h50djkB
-	 nTYAOJVGRTQtEH8VrsTiFoN7N++P/8pwPTfCdn0duM/nImGpoGRqLvjlJmXxepn7M7
-	 ZsH5/xIbv6LxMGGRkFZXd4eilssap0u8eQDDDdX3h0x1LPwbhdVh6DjHOhrKJFoNj3
-	 asPKfGFicT5iA==
-Received: from gw2.atmark-techno.com (localhost [127.0.0.1])
-	by gw2.atmark-techno.com (Postfix) with ESMTP id 31194A1A
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 14:13:18 +0900 (JST)
-Authentication-Results: gw2.atmark-techno.com;
-	dkim=pass (2048-bit key; unprotected) header.d=atmark-techno.com header.i=@atmark-techno.com header.a=rsa-sha256 header.s=google header.b=HbBP3Ld8;
-	dkim-atps=neutral
-Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com [209.85.167.198])
-	by gw2.atmark-techno.com (Postfix) with ESMTPS id 032ABA5E
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 14:13:17 +0900 (JST)
-Received: by mail-oi1-f198.google.com with SMTP id 5614622812f47-3c1a40c48aeso3309722b6e.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 21:13:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atmark-techno.com; s=google; t=1709097195; x=1709701995; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=T5JD7ecTzwpeJkCMc8dbndbZzwY4gmo8GDlf+AKuHv8=;
-        b=HbBP3Ld82AEEQkV3hgL3OqZvmusQL2OmS+YxdCXtr2DO/cs5Y9sCLj3GKcLj+jK2Bc
-         oVVmgOe66yupvDqtImsMk+PUMRcP9k5NZYCTZFmqw+5GvMHKzC0s/cA00D20XtIIBtml
-         +wS1QIrZj8Kg88mO3hUNYYZQOl3YxtqdK+j4UtfyFAGCHNuM3Y3+7f38pkEXcoHxXj59
-         UYvsRvSaZnAz8Cw8EGCOtmPaIean/UoiH5NHkT93FHDu1WqZgA7h9zvb+IbMPVx9FaCf
-         KToaA4gED1RgbN3UoNihTAD+VINrVi1TUJM+mN8VVyOJFKvyTF/9wZuMf8ocpplOrcZt
-         3FTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709097195; x=1709701995;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=T5JD7ecTzwpeJkCMc8dbndbZzwY4gmo8GDlf+AKuHv8=;
-        b=V0tFn3vh/w6bK7mIHhdUdClSwlEwMRHJCfidWVB8o8+js9TtkRvAzCEfXG7hFgK/op
-         EOy5ArqNplfoCp9S3uOT7sPAkTFaXIpq6vzO2eTMisSMrXuQlc8hPMiq5ATaErQD6WHr
-         J4bZsG1DYrAbVW6FJfsmMWP5e/T5czss4iIHx382L6zW6+IRYAXouxyjK5+oEdu1Sqc8
-         m2LN+4hsmzQkEvlOMKXuUYvIcNZmTaEKOVSiL+d/C8xhP1QcQSB9Y5UKaxTSM2WwnHs3
-         kifNeFtixk7KWRga7DY4R4eDowdHsw0sh275E/zsscjlVKfjrumxXqkhExk71enYas5q
-         hSdg==
-X-Forwarded-Encrypted: i=1; AJvYcCUu/fa05l0TWjhaWzByGxijb/8eFnjZn9Z2d4TMzJtGTy5EQk0Rt1/YVLZQZNMXvDXwXeTsUsiFF/6LJImFchLRcwvVm5egIQgWkA==
-X-Gm-Message-State: AOJu0YzrysvjjpbLiOc72fM8dB/tpNKtDSY0xnYyCZXirG2IYZqxe3F+
-	cUJD49pkHk5jGVisP3yKubvWZOyuO2QGyAIJ0F/FkiRhuftoB5TVp2ZruGO7RT5eUs9+nJDuJ57
-	Zz4mBeRcPEnYOg/S42Q1Cfwb79X5CUGkHxfzlsds3w9fyKjw02c8qOmpflWhY
-X-Received: by 2002:a05:6808:23ce:b0:3c1:ae1d:6f2 with SMTP id bq14-20020a05680823ce00b003c1ae1d06f2mr4509896oib.7.1709097195706;
-        Tue, 27 Feb 2024 21:13:15 -0800 (PST)
-X-Google-Smtp-Source: AGHT+IFT9V8+kOD8C+u3gkW+7qF1bb24v14baBPE9HkQL13QPLLJze87Xvo/ppu75bTP7cbuo+fsBw==
-X-Received: by 2002:a05:6808:23ce:b0:3c1:ae1d:6f2 with SMTP id bq14-20020a05680823ce00b003c1ae1d06f2mr4509879oib.7.1709097195373;
-        Tue, 27 Feb 2024 21:13:15 -0800 (PST)
-Received: from pc-0182.atmarktech (162.198.187.35.bc.googleusercontent.com. [35.187.198.162])
-        by smtp.gmail.com with ESMTPSA id h22-20020aa786d6000000b006e089bb3619sm6849540pfo.112.2024.02.27.21.13.14
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 27 Feb 2024 21:13:14 -0800 (PST)
-Received: from [::1] (helo=pc-0182.atmark.tech)
-	by pc-0182.atmarktech with esmtp (Exim 4.96)
-	(envelope-from <dominique.martinet@atmark-techno.com>)
-	id 1rfCFl-00GjY5-1o;
-	Wed, 28 Feb 2024 14:13:13 +0900
-From: Dominique Martinet <dominique.martinet@atmark-techno.com>
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Syunya Ohshio <syunya.ohshio@atmark-techno.com>,
-	=?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Dominique Martinet <dominique.martinet@atmark-techno.com>
-Subject: [PATCH] iio: industrialio-core: look for aliases to request device index
-Date: Wed, 28 Feb 2024 14:12:54 +0900
-Message-Id: <20240228051254.3988329-1-dominique.martinet@atmark-techno.com>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1709097631; c=relaxed/simple;
+	bh=bQQCh+4x5G6GPwcir7PDSPu3I8AoEcyhe4AaapPYS+s=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=kvN919OQvWrGS2xerF2vu877SRoJ4sioEH4iKHF7IP+OMaG+RKxzowI3WXnUaDLotgFx29vWUJNARzD8BPOQ+xvgoEA1G2Q1cH/zCkqAu92Yk8nviCHqVoF34rxTQ1/Czj1Np87idXNc1Ol6Vis5rJ+BFU0otmM0LZMHrspftAE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HbxOV6/g; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78B02C433F1;
+	Wed, 28 Feb 2024 05:20:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709097630;
+	bh=bQQCh+4x5G6GPwcir7PDSPu3I8AoEcyhe4AaapPYS+s=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=HbxOV6/gbJDgoEG7nofHmPYlMdX0nXrvWI+sY3S3SB/2MfBGIztYSim5nueJy1Pdy
+	 cZh/exZvSTupu8gWCqEHOc7t8lIkYAR54AxdtUDk6ZBpLOB7APJU/fbMRlRXD7be3f
+	 WepNCD4bEzPFgp/O5dTKPMcYhSFT32cSaScdjC8f3REdG6W7Px1NgnuCvqH4Pc9OzY
+	 aXPKAFDRp5bqdCJfPQn3X7rhzUWqWYAd2jmHM4rUqThlv4kH4GEusLlap0Z0y+T/1O
+	 f4XIsg5MFN8v1RejSnUiHsFbhr+GdhkLOQx8q6W2DInTmvzV5p1yv0ThvbudFPJGB0
+	 /HkLpK243UKQQ==
+Date: Tue, 27 Feb 2024 23:20:29 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-From: Syunya Ohshio <syunya.ohshio@atmark-techno.com>
-
-When using dtb overlays it can be difficult to predict which iio device
-will get assigned what index, and there is no easy way to create
-symlinks for /sys nodes through udev so to simplify userspace code make
-it possible to request fixed indices for iio devices in device tree.
-
-For platforms without device trees of_alias_get_id will just fail and
-ida_alloc_range will behave as ida_alloc currently does.
-
-For platforms with device trees, they can not set an alias, for example
-this would try to get 10 from the ida for the device corresponding to
-adc2:
-aliases {
-  iio10 = &adc2
-};
-
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Guido Günther <agx@sigxcpu.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: linux-iio@vger.kernel.org
-Cc: devicetree@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org
-Signed-off-by: Syunya Ohshio <syunya.ohshio@atmark-techno.com>
-Signed-off-by: Dominique Martinet <dominique.martinet@atmark-techno.com>
----
-
-Hello! We are facing an issue on one of our device where iio devices
-aren't numbered as we'd like in some situations, and I feel like we
-could do better than the only alternative I found of making symlinks
-directly to /sys in /dev as e.g.
-https://git.toradex.com/cgit/meta-toradex-bsp-common.git/tree/recipes-core/udev/files/verdin-imx8mm/toradex-adc.sh?h=kirkstone-6.x.y
-
-Ultimately we'd just like to able to designate a stable path for our
-users to use in their application and tell them it won't change even if
-we fiddle with the overlays a bit, which is a problem we had as current
-init is done in whatever order device tree nodes are processed, and that
-in turn depends on how the overlays are applied.
-If you can think of a better way of doing it then we'll be happy to
-consider something else.
-Otherwise aliases seem like it could do a good job, and isn't too
-surprising for users - the main downside I can see would be that it
-doesn't help platforms without device trees but I honestly don't see
-what would work well in a more generic way -- looking at
-/sys/bus/iio/devices/iio:deviceX/name to decide what we're looking at
-is a bit of a hassle.
-
-Thanks!
+From: Rob Herring <robh@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ linux-clk@vger.kernel.org, imx@lists.linux.dev, 
+ Conor Dooley <conor+dt@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Fabio Estevam <festevam@gmail.com>, Stephen Boyd <sboyd@kernel.org>, 
+ Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Peng Fan <peng.fan@nxp.com>, Michael Turquette <mturquette@baylibre.com>, 
+ Abel Vesa <abelvesa@kernel.org>, linux-kernel@vger.kernel.org
+In-Reply-To: <20240228-imx95-blk-ctl-v1-1-9b5ae3c14d83@nxp.com>
+References: <20240228-imx95-blk-ctl-v1-0-9b5ae3c14d83@nxp.com>
+ <20240228-imx95-blk-ctl-v1-1-9b5ae3c14d83@nxp.com>
+Message-Id: <170909762820.1565936.4437868637843535603.robh@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindindgs: clock: support NXP i.MX95 BLK CTL
+ module
 
 
- .../devicetree/bindings/iio/common.yaml         |  9 +++++++--
- drivers/iio/industrialio-core.c                 | 17 ++++++++++++++++-
- 2 files changed, 23 insertions(+), 3 deletions(-)
+On Wed, 28 Feb 2024 12:31:04 +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> i.MX95 includes BLK CTL module in several MIXes, such as VPU_CSR in
+> VPUMIX, BLK_CTRL_NETCMIX in NETCMIX, CAMERA_CSR in CAMERAMIX and etc.
+> 
+> The BLK CTL module is used for various settings of a specific MIX, such
+> as clock, QoS and etc.
+> 
+> This patch is to add some BLK CTL modules that has clock features.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/clock/imx95-blk-ctl.yaml   | 61 ++++++++++++++++++++++
+>  include/dt-bindings/clock/nxp,imx95-clock.h        | 32 ++++++++++++
+>  2 files changed, 93 insertions(+)
+> 
 
-diff --git a/Documentation/devicetree/bindings/iio/common.yaml b/Documentation/devicetree/bindings/iio/common.yaml
-index b3a10af86d76..23d4c3012aeb 100644
---- a/Documentation/devicetree/bindings/iio/common.yaml
-+++ b/Documentation/devicetree/bindings/iio/common.yaml
-@@ -12,13 +12,18 @@ maintainers:
- 
- description: |
-   This document defines device tree properties common to several iio
--  sensors. It doesn't constitute a device tree binding specification by itself but
--  is meant to be referenced by device tree bindings.
-+  sensors. It doesn't constitute a device tree binding specification by itself
-+  but is meant to be referenced by device tree bindings.
- 
-   When referenced from sensor tree bindings the properties defined in this
-   document are defined as follows. The sensor tree bindings are responsible for
-   defining whether each property is required or optional.
- 
-+  Note: it is also possible to request an index for the iio device through the
-+  "aliases" device tree node. It is however only used as a hint so care should
-+  be taken to either set all devices, or set indices in a range that will not
-+  be used by devices without aliases.
-+
- properties:
-   proximity-near-level:
-     $ref: /schemas/types.yaml#/definitions/uint32
-diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
-index 173dc00762a1..0f088be3a48c 100644
---- a/drivers/iio/industrialio-core.c
-+++ b/drivers/iio/industrialio-core.c
-@@ -20,6 +20,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/mutex.h>
-+#include <linux/of.h>
- #include <linux/poll.h>
- #include <linux/property.h>
- #include <linux/sched.h>
-@@ -1644,6 +1645,7 @@ struct iio_dev *iio_device_alloc(struct device *parent, int sizeof_priv)
- 	struct iio_dev_opaque *iio_dev_opaque;
- 	struct iio_dev *indio_dev;
- 	size_t alloc_size;
-+	int iio_dev_id;
- 
- 	alloc_size = sizeof(struct iio_dev_opaque);
- 	if (sizeof_priv) {
-@@ -1667,7 +1669,10 @@ struct iio_dev *iio_device_alloc(struct device *parent, int sizeof_priv)
- 	mutex_init(&iio_dev_opaque->info_exist_lock);
- 	INIT_LIST_HEAD(&iio_dev_opaque->channel_attr_list);
- 
--	iio_dev_opaque->id = ida_alloc(&iio_ida, GFP_KERNEL);
-+	iio_dev_id = of_alias_get_id(parent->of_node, "iio");
-+	iio_dev_opaque->id = ida_alloc_range(&iio_ida,
-+					     iio_dev_id < 0 ? 0 : iio_dev_id,
-+					     ~0, GFP_KERNEL);
- 	if (iio_dev_opaque->id < 0) {
- 		/* cannot use a dev_err as the name isn't available */
- 		pr_err("failed to get device id\n");
-@@ -1681,6 +1686,16 @@ struct iio_dev *iio_device_alloc(struct device *parent, int sizeof_priv)
- 		return NULL;
- 	}
- 
-+	/* log about iio_dev_id after dev_set_name() for dev_* helpers */
-+	if (iio_dev_id < 0) {
-+		dev_dbg(&indio_dev->dev,
-+			"No aliases in fw node for device: %d\n", iio_dev_id);
-+	} else if (iio_dev_opaque->id != iio_dev_id) {
-+		dev_warn(&indio_dev->dev,
-+			 "Device requested %d in fw node but could not get it\n",
-+			 iio_dev_id);
-+	}
-+
- 	INIT_LIST_HEAD(&iio_dev_opaque->buffer_list);
- 	INIT_LIST_HEAD(&iio_dev_opaque->ioctl_handlers);
- 
--- 
-2.39.2
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/clock/imx95-blk-ctl.example.dtb: /example-0/syscon@4c410000: failed to match any schema with compatible: ['fsl,imx95-vpumix-blk-ctrl', 'syscon']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240228-imx95-blk-ctl-v1-1-9b5ae3c14d83@nxp.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
