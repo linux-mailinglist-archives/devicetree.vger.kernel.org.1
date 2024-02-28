@@ -1,203 +1,242 @@
-Return-Path: <devicetree+bounces-46916-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46917-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B3F286B347
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:37:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAB3986B377
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:42:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 016A6283C55
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:37:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD9AE1C231C6
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:42:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 25DA415D5D5;
-	Wed, 28 Feb 2024 15:37:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C514B15B990;
+	Wed, 28 Feb 2024 15:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="OxBB1/41"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z6kTsMcX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D5AD15CD55
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 15:37:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2334152E14;
+	Wed, 28 Feb 2024 15:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709134641; cv=none; b=Swuevanj5sy5mC5EHnxVpRrdb19PbQ9WSedTMX+RfwM4VtacjXGCw8nv3E2IyoV5LMEGJoBWDj4EgOk0GJ0/cVfPi1TiLqbRmxi4KLzj2YS68kYJNepHQdN9uh0GaPgVZtSJTNZJcD6flgjfSPNcA3ALU4H3KWn1WUCUBZoJk9Y=
+	t=1709134895; cv=none; b=Su68aWoIjPbsDF8tF81nuZ5LEoZAturgMnZHoSNpxqjHuAROTrDx6jssH7lkGaskAbFc370/CBapxD5ftuiSp2LzTmHsnkbqPH/sWYuwvJMaK2LpElyqeznM5bmdLvw5bMdf7z0Ov3CdEFhzhWSGCGoViEfYJzp3sop7PrfHICE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709134641; c=relaxed/simple;
-	bh=YrTM7NclhRirvO5ov26nYLcb/cIPqgB149/aYYtK3+4=;
+	s=arc-20240116; t=1709134895; c=relaxed/simple;
+	bh=9i1q127oWjdJ+t9z1pQacKuTLS2LK+k8327gtEih0HE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=fm0InVVejZ4D9avzGjWcvbQSTsjqhj1ZYTH0kxKgF0OaROv967Zj5GfXrrtWL+hMxWUXQCR7zMoHHv/hmLLm4cxZf5JmhwXLj7FjE2Eih7eNjXPvlDpXGIG6rvOO9fr26C4cW0GqcHNYzrXcaJNHUvra3Y35M1fitcBaXIkuQDk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=OxBB1/41; arc=none smtp.client-ip=209.85.166.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3657d1d4516so19961565ab.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 07:37:17 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qCtNGdx9l7ZzIdaFdDxYGlYcVVzmx57S7Hws3ujTcso00iNbx3p/7lPaUROZmGP+aAYQJpolxG+9BoUdk512rGGfufrKwZvwMEC5IcUIMYrJeaTvoPf+gzl2O5Y8qAOtUnAuUUcNGxrsWXE4au+v+znz26iyEFkcMndhF60KpQI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z6kTsMcX; arc=none smtp.client-ip=209.85.218.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a3fb8b0b7acso707448466b.2;
+        Wed, 28 Feb 2024 07:41:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1709134637; x=1709739437; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1709134892; x=1709739692; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=svD1W1a7QFf9Gza+G3SPXvK0VpFKMCR1+Xi0Z1FWhGs=;
-        b=OxBB1/41F8A5SVmH7WKmwol1l9JkBUCE2aZRvp0MoMgt14h5YhBEKDK08u/e6MCRz8
-         T3+mQ3gcFNwIx+dA5Jcvhew9h9HqHpI7b/oxrD1SYn5MHEea71e2NRaCgi8lzXD2Gzru
-         fjPLs/8qPvLxHxrf1LNf3uxIUgFwv91YrC15U=
+        bh=O6ajv5WB4Bbxg+l7rcG1Skw2klg4SLTom1IzidWxyp0=;
+        b=Z6kTsMcXBtXnYuKk5Id3G7PrfRKhyGG0W0dKNeKN0lilI9ikslsZNXC8c++ekppZIg
+         J6hq5rft2AjJIkdLnQAPzIgL38xf5Gwy94RIU/OqBU+eQXajdOlzmiWll3oiDwaxdXEp
+         3YppJ8YrG5yber4UFd5YDOQPGz5WWv210IhzxfTXb+0bpQMAhcteOkWAefgG5iAfhNlV
+         8Rt2FyXK3WeRjn+NhAojfcyk3+pGeUP0Rh3qIF1CBCH4iGi4We1NAYx8KMGXq5Sgvmvb
+         +TcSEi4KklQ+5Fr/jJ4aHzKJhU4cUeMiK8TPUyvoRvUc1iGd1G99BI5tczKYK9rIAXBF
+         BBZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709134637; x=1709739437;
+        d=1e100.net; s=20230601; t=1709134892; x=1709739692;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=svD1W1a7QFf9Gza+G3SPXvK0VpFKMCR1+Xi0Z1FWhGs=;
-        b=RL08bHpjIRBeF9CKZwc8ZI6LZXrgkxoVifaVJQz7hqZ+bOOq1Bx2mSBFmvrV2e5VQD
-         AR0WFrE6ySMxqxSySItEREncgD5deWloxyjAgPsmY/tuiHggNsd1HEUDz7EsQpWbpzFZ
-         b+k4aTuF3So94WbQ7sPlautr6z101Jv/4i/Mwppw1u2ZJyctalIeNM36EqzNtF2mMVs9
-         LjQ2UFV9zu2hkaiYIAJxWKhFKS0/+x9vb6kPr705OnCv/N62a6+T1fBkjMgVnxkuQVDI
-         GUh9lrdDR9v+5SYUUUDokC4NeRIyi7o/Cg+b2Q4XQJ55SuLNR8m450FpbFUqIVuYx1yk
-         OqcA==
-X-Forwarded-Encrypted: i=1; AJvYcCWZNcxLBucjgkx4jImmjZTKaPraH6vye0dVrq5chPcmEP3Vje/CGJYfHyAF7sQGdorVhYSMXhLl9K+PWtc6Wdp5S5GCJyOs7lurSQ==
-X-Gm-Message-State: AOJu0Yw/EzD+/Y5oAtSbhXeYsVbDmO4g50c+x8YnYZ89O72tE6GJAE8N
-	0lWdupnMNT12TUm9i6FoyGYOME+P2xXWE9AYcJCz+FkLv2UAa+cBW9G2Gzj4zw==
-X-Google-Smtp-Source: AGHT+IFwnHar0bSnDcMYJo9D3FZDjlUk0s+GVf8S+gT0uUdrPI6XVBO5n/eqspfTGLxTLggHdT93YQ==
-X-Received: by 2002:a92:de43:0:b0:365:1e8f:1519 with SMTP id e3-20020a92de43000000b003651e8f1519mr13223206ilr.27.1709134637291;
-        Wed, 28 Feb 2024 07:37:17 -0800 (PST)
-Received: from localhost (144.57.222.35.bc.googleusercontent.com. [35.222.57.144])
-        by smtp.gmail.com with UTF8SMTPSA id i6-20020a056e021b0600b00363ce0ac359sm2766041ilv.47.2024.02.28.07.37.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Feb 2024 07:37:16 -0800 (PST)
-Date: Wed, 28 Feb 2024 15:37:16 +0000
-From: Matthias Kaehlcke <mka@chromium.org>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+        bh=O6ajv5WB4Bbxg+l7rcG1Skw2klg4SLTom1IzidWxyp0=;
+        b=SCp/MJTQ0RhO1zPwDgcST/wGrR0avnAb6mtgb3L+lDspVKzS7C0pvKsRtHK9cYvwQE
+         UtcWJ76M2T3kvTEzAdoMQXsa9pVMb4V+DuaDq1F+OI24apkjL2LrGOz15FdLvG+q8P36
+         oME9thfNAjN5vk4RIY23H/IeO9dAPeLR0F+W6kKC5MmmwzXUbRS9GxieQWzyCYj9yhcl
+         gQUjuVKX8L5SHsBFcB9YqDST3OPaa6f5dTkYDUldWHL564MN5n8Sy4A3N/lUfOQndUfB
+         VinjN3ooxSqGzw1LJpss5MCTpz1Qcme26a9T/mfOIrHga3x6CYyn+yrCLhBNx791IJXE
+         EHtw==
+X-Forwarded-Encrypted: i=1; AJvYcCVzkE3Z4Lu8Xkc02mmIFrkZ8SV2qQL3SWNlJ/BnvWr4h+8Xa9Eu6A5liMneVG3rgT8KbsWyH/uyZCrcik+wtpYV0QaYPWHQQCiUS/i7P775ac/jf6l5gktOLzoE18zLBLI8ZzH37c8ny9B8UQsUYZcHZ9oImgVr2NfCpLTcYILNi6+LMw==
+X-Gm-Message-State: AOJu0YyePrW+MgiFWxHK+ab9Fcmz4WVSvp1AxwYSVBCJzmaU79OCxlEF
+	N99A0Rs40cJBZeD7df15Qw1IfbD/EfeJuVHlp1ZVbd6J20CSpInuX0i643dW
+X-Google-Smtp-Source: AGHT+IHSpViTIZ64bBjjRxqqZXU7O0E93QpwOrVzZct6s/wb3v0mbHX9WV7MhgL/Mp0j+kpqsEs5fg==
+X-Received: by 2002:a17:906:b58:b0:a43:ff8c:6d9c with SMTP id v24-20020a1709060b5800b00a43ff8c6d9cmr48027ejg.56.1709134892125;
+        Wed, 28 Feb 2024 07:41:32 -0800 (PST)
+Received: from debian ([93.184.186.109])
+        by smtp.gmail.com with ESMTPSA id cu13-20020a170906ba8d00b00a43215bff13sm1975290ejd.117.2024.02.28.07.41.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Feb 2024 07:41:31 -0800 (PST)
+Date: Wed, 28 Feb 2024 16:41:29 +0100
+From: Dimitri Fedrau <dima.fedrau@gmail.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Helen Koike <helen.koike@collabora.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 1/8] usb: misc: onboard_hub: use device supply names
-Message-ID: <Zd9TLL0IM08Wh63i@google.com>
-References: <20240228-onboard_xvf3500-v5-0-76b805fd3fe6@wolfvision.net>
- <20240228-onboard_xvf3500-v5-1-76b805fd3fe6@wolfvision.net>
+	Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: pwm: add support for MC33XS2410
+Message-ID: <20240228154129.GA749753@debian>
+References: <20240228133236.748225-1-dima.fedrau@gmail.com>
+ <20240228133236.748225-2-dima.fedrau@gmail.com>
+ <6dd18b29-6e45-4c35-8f7e-5248b057449d@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240228-onboard_xvf3500-v5-1-76b805fd3fe6@wolfvision.net>
+In-Reply-To: <6dd18b29-6e45-4c35-8f7e-5248b057449d@linaro.org>
 
-Hi Javier,
-
-Thanks for moving this patch to the front of the series!
-
-A few more comments inline.
-
-On Wed, Feb 28, 2024 at 02:51:28PM +0100, Javier Carrasco wrote:
-> The current implementation uses generic names for the power supplies,
-> which conflicts with proper name definitions in the device bindings.
+Am Wed, Feb 28, 2024 at 02:59:48PM +0100 schrieb Krzysztof Kozlowski:
+> On 28/02/2024 14:32, Dimitri Fedrau wrote:
+> > Adding documentation for MC33XS2410 pwm driver.
 > 
-> Add a per-device property to include real supply names and keep generic
-> names for existing devices to keep backward compatibility.
+> Driver as Linux driver? If so, please rephrase to describe hardware.
 > 
-> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
-> ---
->  drivers/usb/misc/onboard_usb_hub.c | 49 ++++++++++++++++++++------------------
->  drivers/usb/misc/onboard_usb_hub.h | 12 ++++++++++
->  2 files changed, 38 insertions(+), 23 deletions(-)
+Will fix it.
+> > 
+> > Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
+> > ---
+> >  .../bindings/pwm/nxp,mc33xs2410.yaml          | 105 ++++++++++++++++++
+> >  1 file changed, 105 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml b/Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml
+> > new file mode 100644
+> > index 000000000000..bd387dbe69be
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml
+> > @@ -0,0 +1,105 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pwm/nxp,mc33xs2410.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: MC33XS2410 PWM driver
 > 
-> diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
-> index 0dd2b032c90b..3755f6cc1eda 100644
-> --- a/drivers/usb/misc/onboard_usb_hub.c
-> +++ b/drivers/usb/misc/onboard_usb_hub.c
-> @@ -29,17 +29,6 @@
->  
->  #include "onboard_usb_hub.h"
->  
-> -/*
-> - * Use generic names, as the actual names might differ between hubs. If a new
-> - * hub requires more than the currently supported supplies, add a new one here.
-> - */
-> -static const char * const supply_names[] = {
-> -	"vdd",
-> -	"vdd2",
-> -};
-> -
-> -#define MAX_SUPPLIES ARRAY_SIZE(supply_names)
-> -
->  static void onboard_hub_attach_usb_driver(struct work_struct *work);
->  
->  static struct usb_device_driver onboard_hub_usbdev_driver;
-> @@ -65,6 +54,30 @@ struct onboard_hub {
->  	struct clk *clk;
->  };
->  
-> +static int onboard_hub_get_regulator_bulk(struct device *dev,
-> +					  struct onboard_hub *onboard_hub)
-
-Let's call this onboard_hub_get_regulators(), it's an implementation detail
-that regulator_bulk_get() is used for getting them.
-
-no need to pass 'dev', there is onboard_hub->dev
-
->  static int onboard_hub_power_on(struct onboard_hub *hub)
->  {
->  	int err;
-> @@ -253,7 +266,6 @@ static int onboard_hub_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	struct onboard_hub *hub;
-> -	unsigned int i;
->  	int err;
->  
->  	hub = devm_kzalloc(dev, sizeof(*hub), GFP_KERNEL);
-> @@ -264,18 +276,9 @@ static int onboard_hub_probe(struct platform_device *pdev)
->  	if (!hub->pdata)
->  		return -EINVAL;
->  
-> -	if (hub->pdata->num_supplies > MAX_SUPPLIES)
-> -		return dev_err_probe(dev, -EINVAL, "max %zu supplies supported!\n",
-> -				     MAX_SUPPLIES);
-> -
-> -	for (i = 0; i < hub->pdata->num_supplies; i++)
-> -		hub->supplies[i].supply = supply_names[i];
-> -
-> -	err = devm_regulator_bulk_get(dev, hub->pdata->num_supplies, hub->supplies);
-> -	if (err) {
-> -		dev_err(dev, "Failed to get regulator supplies: %pe\n", ERR_PTR(err));
-> +	err = onboard_hub_get_regulator_bulk(dev, onboard_hub);
-
-The local variable is called 'hub', not 'onboard_hub'.
-
-> diff --git a/drivers/usb/misc/onboard_usb_hub.h b/drivers/usb/misc/onboard_usb_hub.h
-> index f360d5cf8d8a..ea24bd6790f0 100644
-> --- a/drivers/usb/misc/onboard_usb_hub.h
-> +++ b/drivers/usb/misc/onboard_usb_hub.h
-> @@ -6,54 +6,66 @@
->  #ifndef _USB_MISC_ONBOARD_USB_HUB_H
->  #define _USB_MISC_ONBOARD_USB_HUB_H
->  
-> +#define MAX_SUPPLIES 2
-> +
->  struct onboard_hub_pdata {
->  	unsigned long reset_us;		/* reset pulse width in us */
->  	unsigned int num_supplies;	/* number of supplies */
-> +	const char * const supply_names[MAX_SUPPLIES]; /* use the real names */
-
-The comment isn't particularly useful or accurate. Not in all cases
-real names are used and outside of the context of this change the
-comment is hard to understand.
-
-I'd say just omit it, the name of the field is self-documenting enough,
-there is no need to repeat the same in a comment (as for 'num_supplies'
-...)
+> Driver as Linux driver? If so, please rephrase to describe hardware.
+>
+Will fix it.
+> > +
+> > +maintainers:
+> > +  - Dimitri Fedrau <dima.fedrau@gmail.com>
+> > +
+> > +allOf:
+> > +  - $ref: pwm.yaml#
+> > +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: nxp,mc33xs2410
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  spi-max-frequency:
+> > +    maximum: 10000000
+> > +
+> > +  spi-cpha: true
+> > +
+> > +  spi-cs-setup-delay-ns:
+> > +    minimum: 100
+> > +    default: 100
+> > +
+> > +  spi-cs-hold-delay-ns:
+> > +    minimum: 10
+> > +    default: 10
+> > +
+> > +  spi-cs-inactive-delay-ns:
+> > +    minimum: 300
+> > +    default: 300
+> > +
+> > +  reset-gpios:
+> > +    description:
+> > +      GPIO connected to the active low reset pin.
+> > +    maxItems: 1
+> > +
+> > +  "#pwm-cells":
+> > +    const: 3
+> > +
+> > +  pwms:
+> > +    description:
+> > +      Direct inputs(di0-3) are used to directly turn-on or turn-off the
+> > +      outputs. The external PWM clock can be used if the internal clock
+> > +      doesn't meet timing requirements.
+> 
+> pwm is input for pwm?
+> 
+Yes.
+> > +    maxItems: 5
+> > +
+> > +  pwm-names:
+> > +    items:
+> > +      - const: di0
+> > +      - const: di1
+> > +      - const: di2
+> > +      - const: di3
+> > +      - const: ext_clk
+> 
+> Aren't these clocks?
+> 
+di0-3 are PWM input signals which are translated to output voltage "vpwr".
+ext_clk is described as PWM clock in the datasheet. Didn't used it, just
+mentioned it here for completeness.
+> > +
+> > +  vdd-supply:
+> > +    description:
+> > +      Logic supply voltage
+> > +
+> > +  vspi-supply:
+> > +    description:
+> > +      Supply voltage for SPI
+> > +
+> > +  vpwr-supply:
+> > +    description:
+> > +      Power switch supply
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> 
+> Instead:
+> unevaluatedProperties: false
+> 
+Will fix it.
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/gpio/gpio.h>
+> > +    spi {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +
+> > +       pwm@0 {
+> > +           compatible = "nxp,mc33xs2410";
+> > +           reg = <0x0>;
+> > +           spi-max-frequency = <4000000>;
+> > +           spi-cpha;
+> > +           spi-cs-setup-delay-ns = <100>;
+> > +           spi-cs-hold-delay-ns = <10>;
+> > +           spi-cs-inactive-delay-ns = <300>;
+> > +           reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>;
+> > +           #pwm-cells = <3>;
+> 
+> Make example complete, so provide all properties, like interrupts, pwms
+> and whatever you have in the binding.
+> 
+I could make the binding complete, but I haven't used all properties nor
+does the driver supports them.
+> Best regards,
+> Krzysztof
+> 
+Best regards,
+Dimitri
 
