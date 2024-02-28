@@ -1,104 +1,118 @@
-Return-Path: <devicetree+bounces-46887-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46888-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 254DE86B130
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:03:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C71E786B135
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:04:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4555286596
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:03:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 809DF2861D8
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:04:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB0E14F992;
-	Wed, 28 Feb 2024 14:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1146D151CC5;
+	Wed, 28 Feb 2024 14:04:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DVtQg5dq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jKDX7KBg"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15332145341;
-	Wed, 28 Feb 2024 14:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DB86B73519;
+	Wed, 28 Feb 2024 14:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709129008; cv=none; b=B7iJMPSRGrHTjP7kgbNFviccYpESUu0qxLaTG86Cedh7QHjzwZzkz9VXMcMC4DU4xYWWowjtRY7cjykBqgeh8Y0l5QqO46L26twG+CkB/GJT4jI5wtl5WkgRkNhnATn4f7VDCYapboKbn835cJ9M2Koqn7WZPoSb0Ls2hXdFZNk=
+	t=1709129066; cv=none; b=PPwvPhBZAqjSzNbFkDj44aLnN26adWZQtWkreE7Oss4tdM2Vtc5GTKsDtMFLB62713zDLSRBgvQg9YSUaDF0VgKZcMgjJbCDKU7i2OKGgAtI95pStKA+En8aqBSQEPluD6gMTG9tSaJ/Rg6ci8+/nE25R2GiKF0DrnXllcRJEWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709129008; c=relaxed/simple;
-	bh=+29q9XzaWHOI+KXDSu5A9D/Iw9UMYbaTgyR8nbq20I4=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=U/v/JL1dcvRantwLTQnF+IFlEP96YEjIl+VOaZodl61C2PLDp7O+R7ffNvARjsGtElm7lnCt1N4UmVT69oB5L8lxKlIOyjzU49j9wu82efHNEsmf28Pl17xk/ZQ7BKqPlEHtKfB3+rQnxsYKzbIPoiNE9VFo04kqui3BPSAKiKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DVtQg5dq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1CDBC433C7;
-	Wed, 28 Feb 2024 14:03:25 +0000 (UTC)
+	s=arc-20240116; t=1709129066; c=relaxed/simple;
+	bh=1TNs0fPzFGmAK5ia7YQLux8YLRF98MfBzG5OMhCcGM8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=NWe3nDRwUXXIpr2eVRzkCFIxKFWhPZheA5x/dHyCrYk0BO2YSiqAebaojwPIE6wId+OMIuIQ35F7rS9/wk5XCGoI3HlvtzoPtxW2qdgUh3dGTnpjYAS9QjH0mMoEYINre4tfa8JhiWeK9sDbPkDV2e5+bGH5N4X1CdS0B8FIyNY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jKDX7KBg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7D6D3C433C7;
+	Wed, 28 Feb 2024 14:04:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709129008;
-	bh=+29q9XzaWHOI+KXDSu5A9D/Iw9UMYbaTgyR8nbq20I4=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=DVtQg5dqjYxmDNhXd1PlqiQowWozLs8nLHUUZ9Kcg/3L+meJar1UQ2Yneuhe6h25N
-	 OygDcReVGMLOzpc/p5LMSubHHZHNxdyLsLggaEoQgPdemlYoXgjV84xUmI8PDgifeI
-	 EhlBr89wLuQQSP3/zZ9Zmj3QN+ZAsCoVHX7+nUl5MIvCtpzSmpLmAMG/frDFWkCOdk
-	 CmkQNZf6D6NLQElejh1YTYZE12uvavAnVfX+ci+UEKVm2aBD13sT79oDK26D/H+qJK
-	 vxtj3vR6L81P3xwRku6/NNOtONDVbsuJeRSggwNMkwv7ppei0RrKf8E3f7XF/hdgrw
-	 3D5ayFU5ru/2w==
-From: Kalle Valo <kvalo@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  ath10k
- <ath10k@lists.infradead.org>,  wireless <linux-wireless@vger.kernel.org>,
-  DT <devicetree@vger.kernel.org>,  Rob Herring <robh+dt@kernel.org>,
-  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
- <conor+dt@kernel.org>,  Pierre-Hugues Husson <phhusson@freebox.fr>
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
-	<b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
-Date: Wed, 28 Feb 2024 16:03:24 +0200
-In-Reply-To: <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> (Marc
-	Gonzalez's message of "Wed, 28 Feb 2024 14:24:12 +0100")
-Message-ID: <871q8wk7o3.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1709129065;
+	bh=1TNs0fPzFGmAK5ia7YQLux8YLRF98MfBzG5OMhCcGM8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jKDX7KBgYqbzMtDmkJ6Mvp1hBbuEdwg5HQ4yXy4A59ZtmNsk1IyZqaT77v3Sd1PQO
+	 wtFSDD+0qIO+MdDBI9W9qimMuqCm93Sxp+YigNBweI84DCVvRX2fdlF+fW9zYktFlA
+	 keEFpEJQ36q5Pzs392eSo7v+LjOpu3+M03OUGs81e4yLzJjmM9MziE+bHAdmoyR6OX
+	 vY/YFqgG3cXST7XeRzYISct/t5U16EwJdu/tSyS1WGuSKhr9rUI1GAIO+k424hPpmG
+	 NE45X2jfxekJgafPybZZ0oHvbf7yxtEvNqPwOb5dhYFN1Vgqd4yDFudUy6uVR9pDxD
+	 3U+EWOd6jZczQ==
+Date: Wed, 28 Feb 2024 08:04:23 -0600
+From: Rob Herring <robh@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: andy@kernel.org, geert@linux-m68k.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	andrew@lunn.ch, gregory.clement@bootlin.com,
+	sebastian.hesselbarth@gmail.com, ojeda@kernel.org,
+	tzimmermann@suse.de, javierm@redhat.com, robin@protonic.nl,
+	lee@kernel.org, pavel@ucw.cz, devicetree@vger.kernel.org,
+	linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: auxdisplay: Add bindings for generic
+ 7 segment LED
+Message-ID: <20240228140423.GA3307293-robh@kernel.org>
+References: <20240227212244.262710-1-chris.packham@alliedtelesis.co.nz>
+ <20240227212244.262710-3-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240227212244.262710-3-chris.packham@alliedtelesis.co.nz>
 
-Marc Gonzalez <mgonzalez@freebox.fr> writes:
-
-> The driver waits for this indicator before proceeding,
-> yet some WCNSS firmwares apparently do not send it.
-> On those devices, it seems safe to ignore the indicator,
-> and continue loading the firmware.
->
-> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
-> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+On Wed, Feb 28, 2024 at 10:22:42AM +1300, Chris Packham wrote:
+> Add bindings for a generic 7 segment LED display using GPIOs.
+> 
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > ---
->  Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
-> index 7758a55dd3286..145fa1a3c1c6a 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
-> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
-> @@ -121,6 +121,14 @@ properties:
->        Whether to skip executing an SCM call that reassigns the memory
->        region ownership.
->  
-> +  qcom,no-msa-ready-indicator:
-> +    type: boolean
+> 
+> Notes:
+>     Changes in v2:
+>     - Use compatible = "generic-gpio-7seg" to keep checkpatch.pl happy
+> 
+>  .../auxdisplay/generic-gpio-7seg.yaml         | 40 +++++++++++++++++++
+>  1 file changed, 40 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/auxdisplay/generic-gpio-7seg.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/auxdisplay/generic-gpio-7seg.yaml b/Documentation/devicetree/bindings/auxdisplay/generic-gpio-7seg.yaml
+> new file mode 100644
+> index 000000000000..46d53ebdf413
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/auxdisplay/generic-gpio-7seg.yaml
+> @@ -0,0 +1,40 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/auxdisplay/generic,gpio-7seg.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GPIO based LED segment display
+> +
+> +maintainers:
+> +  - Chris Packham <chris.packham@alliedtelesis.co.nz>
+> +
+> +properties:
+> +  compatible:
+> +    const: generic-gpio-7seg
+
+'generic' doesn't add anything of value. 7seg is kind of vague. So, 
+gpio-7-segment?
+
+
+> +
+> +  segment-gpios:
 > +    description:
-> +      The driver waits for this indicator before proceeding,
-> +      yet some WCNSS firmwares apparently do not send it.
-> +      On those devices, it seems safe to ignore the indicator,
-> +      and continue loading the firmware.
+> +      An array of GPIOs one per segment.
+> +    minItems: 7
 
-This sounds more like a firmware feature, not a hardware feature. What
-about having a flag in enum ath10k_fw_features in firmware-2.bin?
+How does one know which GPIO is which segment?
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Rob
 
