@@ -1,649 +1,256 @@
-Return-Path: <devicetree+bounces-46663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46666-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A83686A798
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 05:23:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C406786A7F5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 06:22:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9E86228E35F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 04:23:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50A461F236B8
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 05:22:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9602208D1;
-	Wed, 28 Feb 2024 04:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54652210F4;
+	Wed, 28 Feb 2024 05:21:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b="Vab4Cauh"
+	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="mU3fbw12";
+	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="HbBP3Ld8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2084.outbound.protection.outlook.com [40.107.21.84])
+Received: from gw2.atmark-techno.com (gw2.atmark-techno.com [35.74.137.57])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A83220DF5;
-	Wed, 28 Feb 2024 04:23:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.84
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709094188; cv=fail; b=RuqTMqIclQZGRB7NGq4jeiY9GF4ciMs6a6lZBYmYFEy0DzvzPkLIvE4CWoKppfVL0k6sfPwDikIogCoey11s0xmuUKaZ3Y2jiXB52ua2m2pM2bbRC+7jPfq0GLZ5T9g7S7xwP+pD552skSPP3FlO0ByYn3yniaTtvmIdbAfyqGA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709094188; c=relaxed/simple;
-	bh=fDE9BWjTxN0JFNMOAlkEvZ2Xp4/m3vom/AAIEN+mkLY=;
-	h=From:Date:Subject:Content-Type:Message-Id:References:In-Reply-To:
-	 To:Cc:MIME-Version; b=Q0/cbi0ljvPxc/fODhO+rV2Yxl9hJJf4MmWhi+XgcDcETWJJcRctFzEcXmAXtHYVv4LGOkSXulquhmwKfx3ivZjGgJs6Uy/v3xwIa/FPhNw2I30KtR7tiS+M7ZK0wruV8ngTSw+yMICCo/BvAQ2P6Ot6r2epj7B0Mi6oPQe9OaI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com; spf=pass smtp.mailfrom=oss.nxp.com; dkim=pass (1024-bit key) header.d=NXP1.onmicrosoft.com header.i=@NXP1.onmicrosoft.com header.b=Vab4Cauh; arc=fail smtp.client-ip=40.107.21.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oss.nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oss.nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PSaLLXLfuCx+wZJY8YfbgKYf48+3wBwYFfiz5ddya1+cwUQLUZIhYssVQo75zH9fR96I4gizJ5Y5GJSw3KS5Q4DnC6yD9bwL88Qdzu5baF+quHHLNRGIylaPHzxjODL8oj875rrTk9DZ0UAh27k4uB4K9PSZLckjfi6XnnjHWmaUbMHVW0FENDA4E6U+KlkcU+KXn+O7VkJ4dxldEftu7DrRCpU5ZR5H5w5Y+ZNOOl0BTMe08+iCSPuhxYoxoWsI3hlZDwtoFzBeWt6VjiEb1psPLNsJcPEmJwXGuajw3cRj3BeVkxE3PLtKfilxatpRDN+s7xXehgAcSmjLul5+Kg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=VWFZDVTupKRHqGzPzOcozEj38Hip9TgR0m5LQhPIOCE=;
- b=iJtsVrsu/RRLv3A7uvo/vMnOxW+tKnO1OO4tL6uhXVvClNes1UMJ4ZyBaR2kbEyt0Bh1af56fAo8kTGwef9Y+Oz6HoXTV/7ljVs/GrNppenL3wuGWS2j9nscCLCXRHDGOPd8I6DK6inBT2n/ADhnNdqzZ7wITj/xVOVsY2+xW3qqGUc6t1ItrI6ZObo2x8NWFjClQpjT1F0feFWG7e7AUweBlPLW6s/2BfvHyhT4uyC8CNDqrYonis9wf4XNrl+xOqOJdWHrkoyQA9xtB9rNfMzVOB7bf5b/Y+c7P7UfpWLzscE9aD0OLj2F+uonz44HnGhzU0G9kTWfCYPX177d8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VWFZDVTupKRHqGzPzOcozEj38Hip9TgR0m5LQhPIOCE=;
- b=Vab4CauhqeS5Xc6DwHmhy3aq8IgllZfXpNI9OAm/qj+Fop6ock/N0yZSOoWJumnNF05dDQqfgZRfmXpl2Oe7UhPYWkU6LLvff8TPIGfkqklvOlSdkJYQPwolEL6gkn27umnp6Z6OEUlr+50gV4xDl0xbk2I5nKcLkKhgmpXOcoQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
- by GVXPR04MB10071.eurprd04.prod.outlook.com (2603:10a6:150:11a::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.34; Wed, 28 Feb
- 2024 04:23:02 +0000
-Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::1232:ed97:118f:72fd]) by DU0PR04MB9417.eurprd04.prod.outlook.com
- ([fe80::1232:ed97:118f:72fd%4]) with mapi id 15.20.7316.034; Wed, 28 Feb 2024
- 04:23:02 +0000
-From: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Date: Wed, 28 Feb 2024 12:31:05 +0800
-Subject: [PATCH 2/2] clk: imx: add i.MX95 BLK CTL clk driver
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240228-imx95-blk-ctl-v1-2-9b5ae3c14d83@nxp.com>
-References: <20240228-imx95-blk-ctl-v1-0-9b5ae3c14d83@nxp.com>
-In-Reply-To: <20240228-imx95-blk-ctl-v1-0-9b5ae3c14d83@nxp.com>
-To: Abel Vesa <abelvesa@kernel.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Fabio Estevam <festevam@gmail.com>
-Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1709094675; l=13492;
- i=peng.fan@nxp.com; s=20230812; h=from:subject:message-id;
- bh=xdgyrgvjxybTyzDq8X/GTHuUjGIxReFNUQBlt7Wg4qY=;
- b=WgblZVVeGQHSl14sz7C0ASKpaE7ZPRrECKgAvYIQimT5VlcHq4Nuwx4THNPsng0PajrtKRokz
- MEwzK7rH9xwC8Mvr23++B5Mq0kOfKDBb1nbLb/lacEWgVpKBj+u4Wug
-X-Developer-Key: i=peng.fan@nxp.com; a=ed25519;
- pk=I4sJg7atIT1g63H7bb5lDRGR2gJW14RKDD0wFL8TT1g=
-X-ClientProxiedBy: SI2PR01CA0017.apcprd01.prod.exchangelabs.com
- (2603:1096:4:191::19) To DU0PR04MB9417.eurprd04.prod.outlook.com
- (2603:10a6:10:358::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4AEA20DEA
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 05:21:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.74.137.57
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709097719; cv=none; b=NnBBhLQYqAzo4HpxnWzf84/9ZmWXfko9vuNUMIAi0ICp/f2XjpX1O9/NaAiBi9XWTFc6PaLizLGrO90UQKUTIfYwc7paEjc1mzhjvdKMf73i3crrxrk+3jXrmqg/0JypXdz7JjA/TwR7gMmsAs6HnuY0lL7cWQLuGNm+bZnz2Dg=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709097719; c=relaxed/simple;
+	bh=hag+kUREN7099AQsZeDg4yMNi/Oqegb9LMqtaO2yh/A=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=s0i6wDIMqXW++u/xTaETrGpxmLZzhZYpZnu+JUmWXpxG8PBeTlgYidRXFGaaRr32505VTofbyVRMsSnHtPt/KGtTIMuVyn0FDkahxvZjFVoyIgyRQVWrB19QLRMmtC9PLqcarfXbqD27vCdE2YCwDbbk/zHZ+1VVLTHYPmE23Og=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com; spf=pass smtp.mailfrom=atmark-techno.com; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=mU3fbw12; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=HbBP3Ld8; arc=none smtp.client-ip=35.74.137.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=atmark-techno.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=atmark-techno.com;
+	s=gw2_bookworm; t=1709097198;
+	bh=hag+kUREN7099AQsZeDg4yMNi/Oqegb9LMqtaO2yh/A=;
+	h=From:To:Cc:Subject:Date:From;
+	b=mU3fbw12GXb/xsYE687cZCGU/q9KOfEZXCrK+IRRUYS64LSeLMoiHOIIXBgSaIAXl
+	 aIBSgBQGEAAGx3jwY674Ri7J2T2qlmn5MkgdlzVnLfmiMct2gdyy5eI9Z2N+Tpyb1H
+	 jlbzVH69qDG2Ncg8QF+GTnI/iCo6Js6dk5u0LyeOaoa/rxQlwzwCqMEL220h50djkB
+	 nTYAOJVGRTQtEH8VrsTiFoN7N++P/8pwPTfCdn0duM/nImGpoGRqLvjlJmXxepn7M7
+	 ZsH5/xIbv6LxMGGRkFZXd4eilssap0u8eQDDDdX3h0x1LPwbhdVh6DjHOhrKJFoNj3
+	 asPKfGFicT5iA==
+Received: from gw2.atmark-techno.com (localhost [127.0.0.1])
+	by gw2.atmark-techno.com (Postfix) with ESMTP id 31194A1A
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 14:13:18 +0900 (JST)
+Authentication-Results: gw2.atmark-techno.com;
+	dkim=pass (2048-bit key; unprotected) header.d=atmark-techno.com header.i=@atmark-techno.com header.a=rsa-sha256 header.s=google header.b=HbBP3Ld8;
+	dkim-atps=neutral
+Received: from mail-oi1-f198.google.com (mail-oi1-f198.google.com [209.85.167.198])
+	by gw2.atmark-techno.com (Postfix) with ESMTPS id 032ABA5E
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 14:13:17 +0900 (JST)
+Received: by mail-oi1-f198.google.com with SMTP id 5614622812f47-3c1a40c48aeso3309722b6e.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 21:13:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atmark-techno.com; s=google; t=1709097195; x=1709701995; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=T5JD7ecTzwpeJkCMc8dbndbZzwY4gmo8GDlf+AKuHv8=;
+        b=HbBP3Ld82AEEQkV3hgL3OqZvmusQL2OmS+YxdCXtr2DO/cs5Y9sCLj3GKcLj+jK2Bc
+         oVVmgOe66yupvDqtImsMk+PUMRcP9k5NZYCTZFmqw+5GvMHKzC0s/cA00D20XtIIBtml
+         +wS1QIrZj8Kg88mO3hUNYYZQOl3YxtqdK+j4UtfyFAGCHNuM3Y3+7f38pkEXcoHxXj59
+         UYvsRvSaZnAz8Cw8EGCOtmPaIean/UoiH5NHkT93FHDu1WqZgA7h9zvb+IbMPVx9FaCf
+         KToaA4gED1RgbN3UoNihTAD+VINrVi1TUJM+mN8VVyOJFKvyTF/9wZuMf8ocpplOrcZt
+         3FTA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709097195; x=1709701995;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=T5JD7ecTzwpeJkCMc8dbndbZzwY4gmo8GDlf+AKuHv8=;
+        b=V0tFn3vh/w6bK7mIHhdUdClSwlEwMRHJCfidWVB8o8+js9TtkRvAzCEfXG7hFgK/op
+         EOy5ArqNplfoCp9S3uOT7sPAkTFaXIpq6vzO2eTMisSMrXuQlc8hPMiq5ATaErQD6WHr
+         J4bZsG1DYrAbVW6FJfsmMWP5e/T5czss4iIHx382L6zW6+IRYAXouxyjK5+oEdu1Sqc8
+         m2LN+4hsmzQkEvlOMKXuUYvIcNZmTaEKOVSiL+d/C8xhP1QcQSB9Y5UKaxTSM2WwnHs3
+         kifNeFtixk7KWRga7DY4R4eDowdHsw0sh275E/zsscjlVKfjrumxXqkhExk71enYas5q
+         hSdg==
+X-Forwarded-Encrypted: i=1; AJvYcCUu/fa05l0TWjhaWzByGxijb/8eFnjZn9Z2d4TMzJtGTy5EQk0Rt1/YVLZQZNMXvDXwXeTsUsiFF/6LJImFchLRcwvVm5egIQgWkA==
+X-Gm-Message-State: AOJu0YzrysvjjpbLiOc72fM8dB/tpNKtDSY0xnYyCZXirG2IYZqxe3F+
+	cUJD49pkHk5jGVisP3yKubvWZOyuO2QGyAIJ0F/FkiRhuftoB5TVp2ZruGO7RT5eUs9+nJDuJ57
+	Zz4mBeRcPEnYOg/S42Q1Cfwb79X5CUGkHxfzlsds3w9fyKjw02c8qOmpflWhY
+X-Received: by 2002:a05:6808:23ce:b0:3c1:ae1d:6f2 with SMTP id bq14-20020a05680823ce00b003c1ae1d06f2mr4509896oib.7.1709097195706;
+        Tue, 27 Feb 2024 21:13:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFT9V8+kOD8C+u3gkW+7qF1bb24v14baBPE9HkQL13QPLLJze87Xvo/ppu75bTP7cbuo+fsBw==
+X-Received: by 2002:a05:6808:23ce:b0:3c1:ae1d:6f2 with SMTP id bq14-20020a05680823ce00b003c1ae1d06f2mr4509879oib.7.1709097195373;
+        Tue, 27 Feb 2024 21:13:15 -0800 (PST)
+Received: from pc-0182.atmarktech (162.198.187.35.bc.googleusercontent.com. [35.187.198.162])
+        by smtp.gmail.com with ESMTPSA id h22-20020aa786d6000000b006e089bb3619sm6849540pfo.112.2024.02.27.21.13.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 27 Feb 2024 21:13:14 -0800 (PST)
+Received: from [::1] (helo=pc-0182.atmark.tech)
+	by pc-0182.atmarktech with esmtp (Exim 4.96)
+	(envelope-from <dominique.martinet@atmark-techno.com>)
+	id 1rfCFl-00GjY5-1o;
+	Wed, 28 Feb 2024 14:13:13 +0900
+From: Dominique Martinet <dominique.martinet@atmark-techno.com>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Syunya Ohshio <syunya.ohshio@atmark-techno.com>,
+	=?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Dominique Martinet <dominique.martinet@atmark-techno.com>
+Subject: [PATCH] iio: industrialio-core: look for aliases to request device index
+Date: Wed, 28 Feb 2024 14:12:54 +0900
+Message-Id: <20240228051254.3988329-1-dominique.martinet@atmark-techno.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|GVXPR04MB10071:EE_
-X-MS-Office365-Filtering-Correlation-Id: 30a2b881-aa73-4a34-4a3d-08dc3814f416
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	FJaONLvQUzkUBX2Uwvw1CZT0cDZJ7wNCMKFxT5qrEHlUPYkAUVnljcsyMyFOawc+/zYSNW0LLqa/m6iGpBEueyl6SR0Vw2japjbSOzZdmHkAZbbk6wj5dbMmho/Iq889b9tUh1HhDf7Ps/OpNDQKUtH6L0PBIeaNC3CBAzH1qV/R7eG2QrXsntnNfanpwrUsiufmN+HPpl4XrZ54tb/Jep3ZgKktnhx7nW3uNPuHgsxIoaplKVo3Lye68xCWcVPhyJHiB9lDjgapujeWi/6cKvoqzxgfsaGjuhejQojpkZ5vruCcarQ7ZXQ3Sjl7l5pASwPfbUwm8x4Z+F0nnJ/1SNVSjkJWhNI9foAXDcFdjW2fnvOyhjKPfmnBers4BZYQn94r+XT7coVYQLLM73KOF3fovcEydPlXJl4ensWWxG9BrpShBzHQU8r4PMaeI6VX7OgK2AiqGvU8McQC1WgZhmt75nkWTkIlhUObgJ6McdvpYtGb0i5W14cHZo/pyUwRY83+I6QcrUlw0Z3usuO1EONg8t5+CzpUV4DrqTh4tdbw5aiK8agBzuBsHlFi6wTtYjgRIGnQm43zepH1uX8Ha4k61BC6EK+DkUX/HwmiAnMzA53TjKDWcdLW3v4dAQNlQZJDJ0UNLzr2dvlYwH4DABE1LbTPLwTE1teHv7gSdgirvyRlQFb+YD3BEf2flHTM+TT5R+X1XuqWiTJIFaRIa8lHC49LA55WqEn1b/uoYPU=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(921011)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?NlJKYnNPU3BjN3RVbmxCQ21CbUV5Ym5YVlNSemx4Q2xBK3d3TThmZFJNK2Y1?=
- =?utf-8?B?aDdxOG9oWnVUaXg0Mzc3QjYxZ2JacnJjaVVlZkpCU2hMOXFpRXNqaytvbnFL?=
- =?utf-8?B?WDM0SmM3UzJUamV0NTJJVldTKytITE1LdXpQeFYzWXVUNzZLRHJaOVdtTGlW?=
- =?utf-8?B?WmpTNXh4MDd0UnJzRGZSaDZPRi9KbmY5VXc0U1l2alBDeCs1RHIveGVYS3Ey?=
- =?utf-8?B?TVdZSFo0clY0YmNPMVp2eHphbldkMnJFdGxUSmh4NThSeXJoRGREeW96aDBj?=
- =?utf-8?B?dk5xSmVmQWhjUDVPWmUyVTE4cW9YWWtyRm5tS0JGdFQ3Q0Z0cEZKbU56K3pM?=
- =?utf-8?B?NmlydUtVYmk4OVM2N3hyZERicW5LOGZZVHNGQlBabHpRZTdUMy8yZHdmNUMx?=
- =?utf-8?B?Yk1Ham1jYzhhUi9PcTJHanY1VDNjRjl6L3FsbERVT05JajBRM3RVUTA5b09X?=
- =?utf-8?B?SitrSC9UNkV2Rkw5NmZZbUgvRERMSVpkSlZsZVRQWUtGU3FwdXpvMlB6bSsx?=
- =?utf-8?B?WWVTMk1sM2xGd2RUSXlMazZRa2NiR2pINGFCR2RRVDVEYlN5Q09kTU5XYkZr?=
- =?utf-8?B?T1hPaWtWZXovVTVVZnNlc2Fhc2lQK3VtcjBMa2JJY1Bab1hneDJMUG8xQk1W?=
- =?utf-8?B?TVcyNEhHWjA3OVRTOWt5OVA2dGxJcWY4WFR4YWZ3VmltUDlBRmh2M25sQVQw?=
- =?utf-8?B?OE45cTVBaGJoRjI5bmNWakVUOWZ3czlZdndJTTc5WnBVS3NTMElUL21UemFZ?=
- =?utf-8?B?eDBFL3ZZYkFjVm10NFVuVk12MVlLTWdHU2JoKy9UVHNraDJaSHFzcVZrUGRW?=
- =?utf-8?B?NEFJMEJ5RkwwczRoVWJ6TmQxbVZQSmxyS0ZxVUxseEZzOWxOZDBHdGVjamtK?=
- =?utf-8?B?TzQ4RmZMTUZFd3o2UzNrV0ovdWtFSThidS80VVAyeG5UUGd1Z1R6QU9kRm90?=
- =?utf-8?B?UUZiRHJmTFR1SDlzUVladjNXTFAwTkV6eW5HL2NmUGh2dUZFMlVXNXMvdXhB?=
- =?utf-8?B?OXVQN2RuQ0hmUTE1enpkTS80RS9UWE04djVEbnlmOUk5Q0dBWU53Vm5DckZF?=
- =?utf-8?B?S2pmUXZPTUpYam5mY0Y5Zlk0cVl5S01MYTBsdUNRdjhRT1lPS0crVitScTBJ?=
- =?utf-8?B?YzJ4Rkh6RFNnelV1andYWDdjVVBvMGM5SjMrek8xcWNLWTVpQ21ScEtWekxh?=
- =?utf-8?B?Y0NQKzY0c0hSd0YxVTI5djEzaVNlNFl6cndEQVE4akRJM0xWZ2lpWUtiemRC?=
- =?utf-8?B?WXJTSWQ5a08zNDlVU0NYUlRyOGJkaDhPdElYak1RS3B2ZG9GM3I4R0NaYW5s?=
- =?utf-8?B?TDBWaGdETGFDM1VQNDZibjA4bVUra1RXZHNYVi9IeWVmNkpDeEZTbjJEYXVh?=
- =?utf-8?B?QnhNNlJKUVYxWW5XdDRTKzEwVjY4ZHNmRkdZNTdKUFZ6VmJmbGF6WGhsUWhY?=
- =?utf-8?B?cnBiZE5JMUpEeHhnM3lEZG9rdDNONFVmTnR6bWVZRndic20vamJkMWhLbm1C?=
- =?utf-8?B?OXZISk4xS256SVdJdllrZ3VpOXNDNG4zck1uYWtvMmJqZjQzTG5wZ2haMTF2?=
- =?utf-8?B?bkZOT2tGWktsbzZ4eE9xc1RtRml2dS9UTzBlazJLTTRHZ1lOOUlQdEhHQ1Uv?=
- =?utf-8?B?Z2tNckxEeHhpZ2RuYjBSYlhCUGVjY3NjQWdGZmRhV1pMK0YrYkxybEFBRk8v?=
- =?utf-8?B?bFhoM1hRZ2ltajgzTnkweTdxV2JuOEZ5M05jSExxa0dvaUhPc1N5aVJlRlho?=
- =?utf-8?B?WHNWTWRFLzhFL2pIRGtOMDJ6aGV5YVQ5VTB3ZnlDc3E5UUNudk1PWTZVSlVL?=
- =?utf-8?B?cDhBYlhVYUx4S3M2N1RtT3BQTjl4ckxxd3R5OUIxemF0dHpoN3dJbkF1MTZi?=
- =?utf-8?B?a0tvcUN5VGpyY3NveTlGemk5aDhTOExoOGU5WDRGbWdVZmZQVlAzWWtpV2tL?=
- =?utf-8?B?UVl3eFgraTZ4bUl5dDNxbnhqbVdHcjVTcWZlN09JQkhLUkJXb2JOK2pVN25Z?=
- =?utf-8?B?K0FseWpaZzE3WFAvRkFDUjI3aFVOVFhaeCtKZ1hLMGxacGRQbHpTa0RiemFC?=
- =?utf-8?B?YnZlWStKa2VTT1dRWjlhMjVtYzZJb0M4a1dzdXV2MjBNRHkvZ2NST21hM3ht?=
- =?utf-8?Q?M4XYIqt3rUvbIyhZHac0zoal2?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 30a2b881-aa73-4a34-4a3d-08dc3814f416
-X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2024 04:23:02.6791
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cwULBlt5HXbNnBtWIF4QrTN/nFG464teOP5et7Ev9AYeG+AyI02v0k8XOnivyMqWsB8IkYf6/VpVsk32hDYl2Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10071
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-From: Peng Fan <peng.fan@nxp.com>
+From: Syunya Ohshio <syunya.ohshio@atmark-techno.com>
 
-i.MX95 has BLK CTL modules in various MIXes, the BLK CTL modules
-support clock features such as mux/gate/div. This patch
-is to add the clock feature of BLK CTL modules
+When using dtb overlays it can be difficult to predict which iio device
+will get assigned what index, and there is no easy way to create
+symlinks for /sys nodes through udev so to simplify userspace code make
+it possible to request fixed indices for iio devices in device tree.
 
-Signed-off-by: Peng Fan <peng.fan@nxp.com>
+For platforms without device trees of_alias_get_id will just fail and
+ida_alloc_range will behave as ida_alloc currently does.
+
+For platforms with device trees, they can not set an alias, for example
+this would try to get 10 from the ida for the device corresponding to
+adc2:
+aliases {
+  iio10 = &adc2
+};
+
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Guido Günther <agx@sigxcpu.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: linux-iio@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Signed-off-by: Syunya Ohshio <syunya.ohshio@atmark-techno.com>
+Signed-off-by: Dominique Martinet <dominique.martinet@atmark-techno.com>
 ---
- drivers/clk/imx/Kconfig             |   7 +
- drivers/clk/imx/Makefile            |   1 +
- drivers/clk/imx/clk-imx95-blk-ctl.c | 438 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 446 insertions(+)
 
-diff --git a/drivers/clk/imx/Kconfig b/drivers/clk/imx/Kconfig
-index db3bca5f4ec9..6da0fba68225 100644
---- a/drivers/clk/imx/Kconfig
-+++ b/drivers/clk/imx/Kconfig
-@@ -114,6 +114,13 @@ config CLK_IMX93
- 	help
- 	    Build the driver for i.MX93 CCM Clock Driver
- 
-+config CLK_IMX95_BLK_CTL
-+	tristate "IMX95 Clock Driver for BLK CTL"
-+	depends on ARCH_MXC || COMPILE_TEST
-+	select MXC_CLK
-+	help
-+	    Build the clock driver for i.MX95 BLK CTL
-+
- config CLK_IMXRT1050
- 	tristate "IMXRT1050 CCM Clock Driver"
- 	depends on SOC_IMXRT || COMPILE_TEST
-diff --git a/drivers/clk/imx/Makefile b/drivers/clk/imx/Makefile
-index d4b8e10b1970..03f2b2a1ab63 100644
---- a/drivers/clk/imx/Makefile
-+++ b/drivers/clk/imx/Makefile
-@@ -31,6 +31,7 @@ obj-$(CONFIG_CLK_IMX8MP) += clk-imx8mp.o clk-imx8mp-audiomix.o
- obj-$(CONFIG_CLK_IMX8MQ) += clk-imx8mq.o
- 
- obj-$(CONFIG_CLK_IMX93) += clk-imx93.o
-+obj-$(CONFIG_CLK_IMX95_BLK_CTL) += clk-imx95-blk-ctl.o
- 
- obj-$(CONFIG_MXC_CLK_SCU) += clk-imx-scu.o clk-imx-lpcg-scu.o clk-imx-acm.o
- clk-imx-scu-$(CONFIG_CLK_IMX8QXP) += clk-scu.o clk-imx8qxp.o \
-diff --git a/drivers/clk/imx/clk-imx95-blk-ctl.c b/drivers/clk/imx/clk-imx95-blk-ctl.c
-new file mode 100644
-index 000000000000..4448b7a3a2a3
---- /dev/null
-+++ b/drivers/clk/imx/clk-imx95-blk-ctl.c
-@@ -0,0 +1,438 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2024 NXP
-+ */
-+
-+#include <dt-bindings/clock/nxp,imx95-clock.h>
-+#include <linux/clk.h>
-+#include <linux/clk-provider.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/debugfs.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/of_address.h>
-+#include <linux/of_device.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/regmap.h>
-+#include <linux/slab.h>
-+#include <linux/spinlock.h>
-+#include <linux/types.h>
-+
-+enum {
-+	CLK_GATE,
-+	CLK_DIVIDER,
-+	CLK_MUX,
-+};
-+
-+struct imx95_blk_ctl {
-+	struct device *dev;
-+	spinlock_t lock;
-+	struct clk *clk_apb;
-+
-+	void __iomem *base;
-+	/* clock gate register */
-+	u32 clk_reg_restore;
-+};
-+
-+struct imx95_blk_ctl_clk_dev_data {
-+	const char *name;
-+	const char * const *parent_names;
-+	u32 num_parents;
-+	u32 reg;
-+	u32 bit_idx;
-+	u32 bit_width;
-+	u32 clk_type;
-+	u32 flags;
-+	u32 flags2;
-+	u32 type;
-+};
-+
-+struct imx95_blk_ctl_dev_data {
-+	const struct imx95_blk_ctl_clk_dev_data *clk_dev_data;
-+	u32 num_clks;
-+	bool rpm_enabled;
-+	u32 clk_reg_offset;
-+};
-+
-+static const struct imx95_blk_ctl_clk_dev_data vpublk_clk_dev_data[] = {
-+	[IMX95_CLK_VPUBLK_WAVE] = {
-+		.name = "vpublk_wave_vpu",
-+		.parent_names = (const char *[]){ "vpu", },
-+		.num_parents = 1,
-+		.reg = 8,
-+		.bit_idx = 0,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	},
-+	[IMX95_CLK_VPUBLK_JPEG_ENC] = {
-+		.name = "vpublk_jpeg_enc",
-+		.parent_names = (const char *[]){ "vpujpeg", },
-+		.num_parents = 1,
-+		.reg = 8,
-+		.bit_idx = 1,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	},
-+	[IMX95_CLK_VPUBLK_JPEG_DEC] = {
-+		.name = "vpublk_jpeg_dec",
-+		.parent_names = (const char *[]){ "vpujpeg", },
-+		.num_parents = 1,
-+		.reg = 8,
-+		.bit_idx = 2,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	}
-+};
-+
-+static const struct imx95_blk_ctl_dev_data vpublk_dev_data = {
-+	.num_clks = IMX95_CLK_VPUBLK_END,
-+	.clk_dev_data = vpublk_clk_dev_data,
-+	.rpm_enabled = true,
-+	.clk_reg_offset = 8,
-+};
-+
-+static const struct imx95_blk_ctl_clk_dev_data camblk_clk_dev_data[] = {
-+	[IMX95_CLK_CAMBLK_CSI2_FOR0] = {
-+		.name = "camblk_csi2_for0",
-+		.parent_names = (const char *[]){ "camisi", },
-+		.num_parents = 1,
-+		.reg = 0,
-+		.bit_idx = 0,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	},
-+	[IMX95_CLK_CAMBLK_CSI2_FOR1] = {
-+		.name = "camblk_csi2_for1",
-+		.parent_names = (const char *[]){ "camisi", },
-+		.num_parents = 1,
-+		.reg = 0,
-+		.bit_idx = 1,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	},
-+	[IMX95_CLK_CAMBLK_ISP_AXI] = {
-+		.name = "camblk_isp_axi",
-+		.parent_names = (const char *[]){ "camaxi", },
-+		.num_parents = 1,
-+		.reg = 0,
-+		.bit_idx = 4,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	},
-+	[IMX95_CLK_CAMBLK_ISP_PIXEL] = {
-+		.name = "camblk_isp_pixel",
-+		.parent_names = (const char *[]){ "camisi", },
-+		.num_parents = 1,
-+		.reg = 0,
-+		.bit_idx = 5,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	},
-+	[IMX95_CLK_CAMBLK_ISP] = {
-+		.name = "camblk_isp",
-+		.parent_names = (const char *[]){ "camisi", },
-+		.num_parents = 1,
-+		.reg = 0,
-+		.bit_idx = 6,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	}
-+};
-+
-+static const struct imx95_blk_ctl_dev_data camblk_dev_data = {
-+	.num_clks = IMX95_CLK_CAMBLK_END,
-+	.clk_dev_data = camblk_clk_dev_data,
-+	.clk_reg_offset = 0,
-+};
-+
-+static const struct imx95_blk_ctl_clk_dev_data lvds_clk_dev_data[] = {
-+	[IMX95_CLK_DISPMIX_LVDS_PHY_DIV] = {
-+		.name = "ldb_phy_div",
-+		.parent_names = (const char *[]){ "ldbpll", },
-+		.num_parents = 1,
-+		.reg = 0,
-+		.bit_idx = 0,
-+		.bit_width = 1,
-+		.type = CLK_DIVIDER,
-+		.flags2 = CLK_DIVIDER_POWER_OF_TWO,
-+	},
-+	[IMX95_CLK_DISPMIX_LVDS_CH0_GATE] = {
-+		.name = "lvds_ch0_gate",
-+		.parent_names = (const char *[]){ "ldb_phy_div", },
-+		.num_parents = 1,
-+		.reg = 0,
-+		.bit_idx = 1,
-+		.bit_width = 1,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	},
-+	[IMX95_CLK_DISPMIX_LVDS_CH1_GATE] = {
-+		.name = "lvds_ch1_gate",
-+		.parent_names = (const char *[]){ "ldb_phy_div", },
-+		.num_parents = 1,
-+		.reg = 0,
-+		.bit_idx = 2,
-+		.bit_width = 1,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	},
-+	[IMX95_CLK_DISPMIX_PIX_DI0_GATE] = {
-+		.name = "lvds_di0_gate",
-+		.parent_names = (const char *[]){ "ldb_pll_div7", },
-+		.num_parents = 1,
-+		.reg = 0,
-+		.bit_idx = 3,
-+		.bit_width = 1,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	},
-+	[IMX95_CLK_DISPMIX_PIX_DI1_GATE] = {
-+		.name = "lvds_di1_gate",
-+		.parent_names = (const char *[]){ "ldb_pll_div7", },
-+		.num_parents = 1,
-+		.reg = 0,
-+		.bit_idx = 4,
-+		.bit_width = 1,
-+		.type = CLK_GATE,
-+		.flags = CLK_SET_RATE_PARENT,
-+		.flags2 = CLK_GATE_SET_TO_DISABLE,
-+	},
-+};
-+
-+static const struct imx95_blk_ctl_dev_data lvds_csr_dev_data = {
-+	.num_clks = IMX95_CLK_DISPMIX_LVDS_CSR_END,
-+	.clk_dev_data = lvds_clk_dev_data,
-+	.clk_reg_offset = 0,
-+};
-+
-+static const struct imx95_blk_ctl_clk_dev_data dispmix_csr_clk_dev_data[] = {
-+	[IMX95_CLK_DISPMIX_ENG0_SEL] = {
-+		.name = "disp_engine0_sel",
-+		.parent_names = (const char *[]){"videopll1", "dsi_pll", "ldb_pll_div7", },
-+		.num_parents = 4,
-+		.reg = 0,
-+		.bit_idx = 0,
-+		.bit_width = 2,
-+		.type = CLK_MUX,
-+		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
-+	},
-+	[IMX95_CLK_DISPMIX_ENG1_SEL] = {
-+		.name = "disp_engine1_sel",
-+		.parent_names = (const char *[]){"videopll1", "dsi_pll", "ldb_pll_div7", },
-+		.num_parents = 4,
-+		.reg = 0,
-+		.bit_idx = 2,
-+		.bit_width = 2,
-+		.type = CLK_MUX,
-+		.flags = CLK_SET_RATE_NO_REPARENT | CLK_SET_RATE_PARENT,
-+	}
-+};
-+
-+static const struct imx95_blk_ctl_dev_data dispmix_csr_dev_data = {
-+	.num_clks = IMX95_CLK_DISPMIX_END,
-+	.clk_dev_data = dispmix_csr_clk_dev_data,
-+	.clk_reg_offset = 0,
-+};
-+
-+static int imx95_bc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	const struct imx95_blk_ctl_dev_data *bc_data;
-+	struct imx95_blk_ctl *bc;
-+	struct clk_hw_onecell_data *clk_hw_data;
-+	struct clk_hw **hws;
-+	void __iomem *base;
-+	int i, ret;
-+
-+	bc = devm_kzalloc(dev, sizeof(*bc), GFP_KERNEL);
-+	if (!bc)
-+		return -ENOMEM;
-+	bc->dev = dev;
-+	dev_set_drvdata(&pdev->dev, bc);
-+
-+	spin_lock_init(&bc->lock);
-+
-+	base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(base))
-+		return PTR_ERR(base);
-+
-+	bc->base = base;
-+	bc->clk_apb = devm_clk_get(dev, NULL);
-+	if (IS_ERR(bc->clk_apb))
-+		return dev_err_probe(dev, PTR_ERR(bc->clk_apb), "failed to get APB clock\n");
-+
-+	ret = clk_prepare_enable(bc->clk_apb);
-+	if (ret) {
-+		dev_err(dev, "failed to enable apb clock: %d\n", ret);
-+		return ret;
-+	}
-+
-+	bc_data = of_device_get_match_data(dev);
-+	if (!bc_data)
-+		return devm_of_platform_populate(dev);
-+
-+	clk_hw_data = devm_kzalloc(dev, struct_size(clk_hw_data, hws, bc_data->num_clks),
-+				   GFP_KERNEL);
-+	if (!clk_hw_data)
-+		return -ENOMEM;
-+
-+	if (bc_data->rpm_enabled)
-+		pm_runtime_enable(&pdev->dev);
-+
-+	clk_hw_data->num = bc_data->num_clks;
-+	hws = clk_hw_data->hws;
-+
-+	for (i = 0; i < bc_data->num_clks; i++) {
-+		const struct imx95_blk_ctl_clk_dev_data *data = &bc_data->clk_dev_data[i];
-+		void __iomem *reg = base + data->reg;
-+
-+		if (data->type == CLK_MUX) {
-+			hws[i] = clk_hw_register_mux(dev, data->name, data->parent_names,
-+						     data->num_parents, data->flags, reg,
-+						     data->bit_idx, data->bit_width,
-+						     data->flags2, &bc->lock);
-+		} else if (data->type == CLK_DIVIDER) {
-+			hws[i] = clk_hw_register_divider(dev, data->name, data->parent_names[0],
-+							 data->flags, reg, data->bit_idx,
-+							 data->bit_width, data->flags2, &bc->lock);
-+		} else {
-+			hws[i] = clk_hw_register_gate(dev, data->name, data->parent_names[0],
-+						      data->flags, reg, data->bit_idx,
-+						      data->flags2, &bc->lock);
-+		}
-+		if (IS_ERR(hws[i])) {
-+			ret = PTR_ERR(hws[i]);
-+			dev_err(dev, "failed to register: %s:%d\n", data->name, ret);
-+			goto cleanup;
-+		}
-+	}
-+
-+	ret = of_clk_add_hw_provider(dev->of_node, of_clk_hw_onecell_get, clk_hw_data);
-+	if (ret)
-+		goto cleanup;
-+
-+	ret = devm_of_platform_populate(dev);
-+	if (ret) {
-+		of_clk_del_provider(dev->of_node);
-+		goto cleanup;
-+	}
-+
-+	if (pm_runtime_enabled(bc->dev))
-+		clk_disable_unprepare(bc->clk_apb);
-+
-+	return 0;
-+
-+cleanup:
-+	for (i = 0; i < bc_data->num_clks; i++) {
-+		if (IS_ERR_OR_NULL(hws[i]))
-+			continue;
-+		clk_hw_unregister(hws[i]);
-+	}
-+
-+	if (bc_data->rpm_enabled)
-+		pm_runtime_disable(&pdev->dev);
-+
-+	return ret;
-+}
-+
-+#ifdef CONFIG_PM
-+static int imx95_bc_runtime_suspend(struct device *dev)
-+{
-+	struct imx95_blk_ctl *bc = dev_get_drvdata(dev);
-+
-+	clk_disable_unprepare(bc->clk_apb);
-+	return 0;
-+}
-+
-+static int imx95_bc_runtime_resume(struct device *dev)
-+{
-+	struct imx95_blk_ctl *bc = dev_get_drvdata(dev);
-+
-+	return clk_prepare_enable(bc->clk_apb);
-+}
-+#endif
-+
-+#ifdef CONFIG_PM_SLEEP
-+static int imx95_bc_suspend(struct device *dev)
-+{
-+	struct imx95_blk_ctl *bc = dev_get_drvdata(dev);
-+	const struct imx95_blk_ctl_dev_data *bc_data;
-+	int ret;
-+
-+	bc_data = of_device_get_match_data(dev);
-+	if (!bc_data)
-+		return 0;
-+
-+	if (bc_data->rpm_enabled) {
-+		ret = pm_runtime_get_sync(bc->dev);
-+		if (ret < 0) {
-+			pm_runtime_put_noidle(bc->dev);
-+			return ret;
-+		}
-+	}
-+
-+	bc->clk_reg_restore = readl(bc->base + bc_data->clk_reg_offset);
-+
-+	return 0;
-+}
-+
-+static int imx95_bc_resume(struct device *dev)
-+{
-+	struct imx95_blk_ctl *bc = dev_get_drvdata(dev);
-+	const struct imx95_blk_ctl_dev_data *bc_data;
-+
-+	bc_data = of_device_get_match_data(dev);
-+	if (!bc_data)
-+		return 0;
-+
-+	writel(bc->clk_reg_restore, bc->base + bc_data->clk_reg_offset);
-+
-+	if (bc_data->rpm_enabled)
-+		pm_runtime_put(bc->dev);
-+
-+	return 0;
-+}
-+#endif
-+
-+static const struct dev_pm_ops imx95_bc_pm_ops = {
-+	SET_RUNTIME_PM_OPS(imx95_bc_runtime_suspend, imx95_bc_runtime_resume, NULL)
-+	SET_SYSTEM_SLEEP_PM_OPS(imx95_bc_suspend, imx95_bc_resume)
-+};
-+
-+static const struct of_device_id imx95_bc_of_match[] = {
-+	{ .compatible = "nxp,imx95-cameramix-csr", .data = &camblk_dev_data },
-+	{ .compatible = "nxp,imx95-display-master-csr", },
-+	{ .compatible = "nxp,imx95-dispmix-lvds-csr", .data = &lvds_csr_dev_data },
-+	{ .compatible = "nxp,imx95-dispmix-csr", .data = &dispmix_csr_dev_data },
-+	{ .compatible = "nxp,imx95-netcmix-blk-ctrl", },
-+	{ .compatible = "nxp,imx95-vpumix-csr", .data = &vpublk_dev_data },
-+	{ /* Sentinel */ },
-+};
-+MODULE_DEVICE_TABLE(of, imx95_blk_ctl_match);
-+
-+static struct platform_driver imx95_bc_driver = {
-+	.probe = imx95_bc_probe,
-+	.driver = {
-+		.name = "imx95-blk-ctl",
-+		.of_match_table = of_match_ptr(imx95_bc_of_match),
-+		.pm = &imx95_bc_pm_ops,
-+	},
-+};
-+module_platform_driver(imx95_bc_driver);
-+
-+MODULE_DESCRIPTION("NXP i.MX95 blk ctl driver");
-+MODULE_LICENSE("GPL");
+Hello! We are facing an issue on one of our device where iio devices
+aren't numbered as we'd like in some situations, and I feel like we
+could do better than the only alternative I found of making symlinks
+directly to /sys in /dev as e.g.
+https://git.toradex.com/cgit/meta-toradex-bsp-common.git/tree/recipes-core/udev/files/verdin-imx8mm/toradex-adc.sh?h=kirkstone-6.x.y
 
+Ultimately we'd just like to able to designate a stable path for our
+users to use in their application and tell them it won't change even if
+we fiddle with the overlays a bit, which is a problem we had as current
+init is done in whatever order device tree nodes are processed, and that
+in turn depends on how the overlays are applied.
+If you can think of a better way of doing it then we'll be happy to
+consider something else.
+Otherwise aliases seem like it could do a good job, and isn't too
+surprising for users - the main downside I can see would be that it
+doesn't help platforms without device trees but I honestly don't see
+what would work well in a more generic way -- looking at
+/sys/bus/iio/devices/iio:deviceX/name to decide what we're looking at
+is a bit of a hassle.
+
+Thanks!
+
+
+ .../devicetree/bindings/iio/common.yaml         |  9 +++++++--
+ drivers/iio/industrialio-core.c                 | 17 ++++++++++++++++-
+ 2 files changed, 23 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/iio/common.yaml b/Documentation/devicetree/bindings/iio/common.yaml
+index b3a10af86d76..23d4c3012aeb 100644
+--- a/Documentation/devicetree/bindings/iio/common.yaml
++++ b/Documentation/devicetree/bindings/iio/common.yaml
+@@ -12,13 +12,18 @@ maintainers:
+ 
+ description: |
+   This document defines device tree properties common to several iio
+-  sensors. It doesn't constitute a device tree binding specification by itself but
+-  is meant to be referenced by device tree bindings.
++  sensors. It doesn't constitute a device tree binding specification by itself
++  but is meant to be referenced by device tree bindings.
+ 
+   When referenced from sensor tree bindings the properties defined in this
+   document are defined as follows. The sensor tree bindings are responsible for
+   defining whether each property is required or optional.
+ 
++  Note: it is also possible to request an index for the iio device through the
++  "aliases" device tree node. It is however only used as a hint so care should
++  be taken to either set all devices, or set indices in a range that will not
++  be used by devices without aliases.
++
+ properties:
+   proximity-near-level:
+     $ref: /schemas/types.yaml#/definitions/uint32
+diff --git a/drivers/iio/industrialio-core.c b/drivers/iio/industrialio-core.c
+index 173dc00762a1..0f088be3a48c 100644
+--- a/drivers/iio/industrialio-core.c
++++ b/drivers/iio/industrialio-core.c
+@@ -20,6 +20,7 @@
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+ #include <linux/mutex.h>
++#include <linux/of.h>
+ #include <linux/poll.h>
+ #include <linux/property.h>
+ #include <linux/sched.h>
+@@ -1644,6 +1645,7 @@ struct iio_dev *iio_device_alloc(struct device *parent, int sizeof_priv)
+ 	struct iio_dev_opaque *iio_dev_opaque;
+ 	struct iio_dev *indio_dev;
+ 	size_t alloc_size;
++	int iio_dev_id;
+ 
+ 	alloc_size = sizeof(struct iio_dev_opaque);
+ 	if (sizeof_priv) {
+@@ -1667,7 +1669,10 @@ struct iio_dev *iio_device_alloc(struct device *parent, int sizeof_priv)
+ 	mutex_init(&iio_dev_opaque->info_exist_lock);
+ 	INIT_LIST_HEAD(&iio_dev_opaque->channel_attr_list);
+ 
+-	iio_dev_opaque->id = ida_alloc(&iio_ida, GFP_KERNEL);
++	iio_dev_id = of_alias_get_id(parent->of_node, "iio");
++	iio_dev_opaque->id = ida_alloc_range(&iio_ida,
++					     iio_dev_id < 0 ? 0 : iio_dev_id,
++					     ~0, GFP_KERNEL);
+ 	if (iio_dev_opaque->id < 0) {
+ 		/* cannot use a dev_err as the name isn't available */
+ 		pr_err("failed to get device id\n");
+@@ -1681,6 +1686,16 @@ struct iio_dev *iio_device_alloc(struct device *parent, int sizeof_priv)
+ 		return NULL;
+ 	}
+ 
++	/* log about iio_dev_id after dev_set_name() for dev_* helpers */
++	if (iio_dev_id < 0) {
++		dev_dbg(&indio_dev->dev,
++			"No aliases in fw node for device: %d\n", iio_dev_id);
++	} else if (iio_dev_opaque->id != iio_dev_id) {
++		dev_warn(&indio_dev->dev,
++			 "Device requested %d in fw node but could not get it\n",
++			 iio_dev_id);
++	}
++
+ 	INIT_LIST_HEAD(&iio_dev_opaque->buffer_list);
+ 	INIT_LIST_HEAD(&iio_dev_opaque->ioctl_handlers);
+ 
 -- 
-2.37.1
+2.39.2
+
 
 
