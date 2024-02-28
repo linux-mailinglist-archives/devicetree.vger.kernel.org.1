@@ -1,1439 +1,535 @@
-Return-Path: <devicetree+bounces-46608-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46644-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45C7386A50F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 02:33:33 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89F9986A647
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 03:01:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C41A1C23169
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 01:33:32 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54682B304A1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 01:44:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F8CA3FD4;
-	Wed, 28 Feb 2024 01:33:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F154B40BEB;
+	Wed, 28 Feb 2024 01:37:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fXzMUu47"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.ingenic.com (mail.ingenic.com [106.37.171.196])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A6F515AF;
-	Wed, 28 Feb 2024 01:33:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=106.37.171.196
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 559922E65B;
+	Wed, 28 Feb 2024 01:37:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709083999; cv=none; b=n3wIu+ZXV9NErWgh6Tn+zZKxpw8X/0rohhbJLkuyIZufqxivSDOCMOHU7wRvfVSoGghX+CoqhCpxybzL6pyHnI9lRSFp1FC6nYnHdOxNRUZXR/CkfncJwr8mpAGwPhTIQtoyXIsotEswWpEHq5/Sw1CiRA+5VC+/ug4VF8PzesI=
+	t=1709084223; cv=none; b=QXwlfedOL0gRyoxN3SEi0yUiONG/4ydymlX7OyKQvbmu7jcq7G1KCliqWYkJAZpaIE7JYxmkc4b05OMRzFmCEIyCQsIyFeS4QIwETEp+E+ZA4+Rq3drq4RP8Mipjk3SP+xVohwfrG6RRnAM5RWYEAnkJncAtr/2snmYnoGMTmjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709083999; c=relaxed/simple;
-	bh=JfHBr9SUdfJNhW9nARJzQOPFexGbYWTctt27K/EF9RU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=Ty0R5teafrS0cy3sfPh42DU7lPACq1MIsOWp/kTzkX9PcXIyHFIlQFjkOy93P8arBrkZ2HiqWT/OZPrhe9rKThUN9S3YEP4BIczwvA6c1WyngQdKP3onHlAJWGWv52aG5AFOscxTm2+F6k+akcPmoHAxk8r+vAF6zKluokOeGeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ingenic.com; spf=pass smtp.mailfrom=ingenic.com; arc=none smtp.client-ip=106.37.171.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ingenic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ingenic.com
-Received: from localhost (unknown [60.173.195.77])
-	by mail.ingenic.com (Postfix) with ESMTPA id E87BB2700173;
-	Wed, 28 Feb 2024 09:24:26 +0800 (CST)
-From: "bin.yao" <bin.yao@ingenic.com>
-To: vkoul@kernel.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	broonie@kernel.org,
-	quic_bjorande@quicinc.com,
-	byao <bin.yao@ingenic.com>,
-	rick <rick.tyliu@ingenic.com>
-Subject: [PATCH 2/2] dma: Add Ingenic PDMA driver support
-Date: Wed, 28 Feb 2024 06:24:20 +0500
-Message-Id: <20240228012420.4223-2-bin.yao@ingenic.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240228012420.4223-1-bin.yao@ingenic.com>
-References: <20240228012420.4223-1-bin.yao@ingenic.com>
+	s=arc-20240116; t=1709084223; c=relaxed/simple;
+	bh=33i59shBgCuoBDKUo+h+V2p510+nyUIInh78rs1uqsE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Q0I9m9dR7rYV0jmBYDr9gOK1AYpE01Ru4Hw+rEZ+nVuyNrwFeTgZGrt3KjYj6IzGrMghx52yvajKnjSn8H0ucMKnCZ71PSCkeNBDR99V0y1+8rszcX6+Ly28cml7aAa+7f2f3FjygbyVcchhIj/XbwdnCtZIjOqkdPOfr3OBhO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fXzMUu47; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41S0MJlC018384;
+	Wed, 28 Feb 2024 01:36:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version:content-type; s=
+	qcppdkim1; bh=vNKEjjpreDHlASGm4wnIeRGZfhzB9p854w0wir3j8dY=; b=fX
+	zMUu47qtMDYLArkh9Z52I1JrxatwMzkiOzuYs3rynhgIjCj7t1s/XaJ5yH+MDG7x
+	CKS1rkvFNOcP6SAt1ODCD9l7jfcvTy6KfwoH+JiM76+pBeEnnMQtlsyVchj4+AG9
+	WS+SIFTt13QUxg8zsthcVYvnhfJLX63kaXK8fdKFbW4Vqy/NA/ZbmbwriIekOLez
+	BtvSWxgNVSzd50tI+fYpOxsyd2K4PoY6taAW8XAvt9htarXcz9804QOGuVpzxfCa
+	j0fBA6XjWJ4ytfHtQdt3+jknlxw6goOIqpGUfz9YUaCOml5AzJOj/hPuY+IR4oYQ
+	0Mwscrxo5bisrUF1HwdQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3whp65rmg9-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Feb 2024 01:36:30 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41S1aTdP004855
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Feb 2024 01:36:29 GMT
+Received: from hu-wcheng-lv.qualcomm.com (10.49.16.6) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 27 Feb 2024 17:36:29 -0800
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+To: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <lgirdwood@gmail.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
+        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-sound@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, Wesley Cheng <quic_wcheng@quicinc.com>
+Subject: [PATCH v18 00/41] Introduce QC USB SND audio offloading support
+Date: Tue, 27 Feb 2024 17:35:38 -0800
+Message-ID: <20240228013619.29758-1-quic_wcheng@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nalasex01b.na.qualcomm.com (10.47.209.197) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: gFa-RFPk0fUP5N4idpuDoGSaBNMqEjRx
+X-Proofpoint-ORIG-GUID: gFa-RFPk0fUP5N4idpuDoGSaBNMqEjRx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-27_11,2024-02-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 spamscore=0
+ impostorscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 mlxscore=0
+ adultscore=0 lowpriorityscore=0 mlxlogscore=999 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402280011
 
-From: byao <bin.yao@ingenic.com>
+Several Qualcomm based chipsets can support USB audio offloading to a
+dedicated audio DSP, which can take over issuing transfers to the USB
+host controller.  The intention is to reduce the load on the main
+processors in the SoC, and allow them to be placed into lower power modes.
+There are several parts to this design:
+  1. Adding ASoC binding layer
+  2. Create a USB backend for Q6DSP
+  3. Introduce XHCI interrupter support
+  4. Create vendor ops for the USB SND driver
 
-Add Ingenic PDMA controller support.
-This module can be found on ingenic victory soc.
+      USB                          |            ASoC
+--------------------------------------------------------------------
+                                   |  _________________________
+                                   | |sm8250 platform card     |
+                                   | |_________________________|
+                                   |         |           |
+                                   |      ___V____   ____V____
+                                   |     |Q6USB   | |Q6AFE    |  
+                                   |     |"codec" | |"cpu"    |
+                                   |     |________| |_________|
+                                   |         ^  ^        ^
+                                   |         |  |________|
+                                   |      ___V____    |
+                                   |     |SOC-USB |   |
+   ________       ________               |        |   |
+  |USB SND |<--->|QC offld|<------------>|________|   |
+  |(card.c)|     |        |<----------                |
+  |________|     |________|___     | |                |
+      ^               ^       |    | |    ____________V_________
+      |               |       |    | |   |APR/GLINK             |
+   __ V_______________V_____  |    | |   |______________________|
+  |USB SND (endpoint.c)     | |    | |              ^
+  |_________________________| |    | |              |
+              ^               |    | |   ___________V___________
+              |               |    | |->|audio DSP              |
+   ___________V_____________  |    |    |_______________________|
+  |XHCI HCD                 |<-    |
+  |_________________________|      |
 
-Signed-off-by: byao <bin.yao@ingenic.com>
-Signed-off-by: rick <rick.tyliu@ingenic.com>
----
- drivers/dma/Kconfig               |   14 +
- drivers/dma/Makefile              |    1 +
- drivers/dma/ingenic/Makefile      |    1 +
- drivers/dma/ingenic/ingenic_dma.c | 1053 +++++++++++++++++++++++++++++
- drivers/dma/ingenic/ingenic_dma.h |  250 +++++++
- 5 files changed, 1319 insertions(+)
- create mode 100644 drivers/dma/ingenic/Makefile
- create mode 100644 drivers/dma/ingenic/ingenic_dma.c
- create mode 100644 drivers/dma/ingenic/ingenic_dma.h
 
-diff --git a/drivers/dma/Kconfig b/drivers/dma/Kconfig
-index e928f2ca0f1e..3214c72aef31 100644
---- a/drivers/dma/Kconfig
-+++ b/drivers/dma/Kconfig
-@@ -179,6 +179,20 @@ config DMA_SUN6I
- 	help
- 	  Support for the DMA engine first found in Allwinner A31 SoCs.
- 
-+config DMA_JZ4780
-+	tristate "Ingenic JZ SoC DMA support"
-+	select DMA_ENGINE
-+	select DMA_VIRTUAL_CHANNELS
-+	help
-+	  Support the DMA engine found on Ingenic Jz SoCs.
-+
-+config DMA_INGENIC_SOC
-+	tristate "Ingenic SoC DMA support"
-+	select DMA_ENGINE
-+	select DMA_VIRTUAL_CHANNELS
-+	help
-+	  Support the DMA engine found on Ingenic T41 SoCs.
-+
- config DW_AXI_DMAC
- 	tristate "Synopsys DesignWare AXI DMA support"
- 	depends on OF
-diff --git a/drivers/dma/Makefile b/drivers/dma/Makefile
-index dfd40d14e408..8a56175bbfbb 100644
---- a/drivers/dma/Makefile
-+++ b/drivers/dma/Makefile
-@@ -83,6 +83,7 @@ obj-$(CONFIG_XGENE_DMA) += xgene-dma.o
- obj-$(CONFIG_ST_FDMA) += st_fdma.o
- obj-$(CONFIG_FSL_DPAA2_QDMA) += fsl-dpaa2-qdma/
- obj-$(CONFIG_INTEL_LDMA) += lgm/
-+obj-$(CONFIG_DMA_INGENIC_SOC) += ingenic/
- 
- obj-y += mediatek/
- obj-y += qcom/
-diff --git a/drivers/dma/ingenic/Makefile b/drivers/dma/ingenic/Makefile
-new file mode 100644
-index 000000000000..2028a6f0b0c8
---- /dev/null
-+++ b/drivers/dma/ingenic/Makefile
-@@ -0,0 +1 @@
-+obj-y += ingenic_dma.o
-diff --git a/drivers/dma/ingenic/ingenic_dma.c b/drivers/dma/ingenic/ingenic_dma.c
-new file mode 100644
-index 000000000000..066325e35a92
---- /dev/null
-+++ b/drivers/dma/ingenic/ingenic_dma.c
-@@ -0,0 +1,1053 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/*
-+ * Copyright (C) 2016 Ingenic Semiconductor Co., Ltd.
-+ * Author: cli <chen.li@ingenic.com>
-+ *
-+ * Programmable DMA Controller Driver For Ingenic's SOC,
-+ * such as X1000, and so on. (kernel.4.4)
-+ *
-+ *  Author:	cli <chen.li@ingenic.com>
-+ *
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation;  either version 2 of the  License, or (at your
-+ * option) any later version.
-+ */
-+
-+#include <linux/init.h>
-+#include <linux/slab.h>
-+#include <linux/module.h>
-+#include <linux/interrupt.h>
-+#include <linux/dmaengine.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/platform_device.h>
-+#include <linux/clk.h>
-+#include <linux/irq.h>
-+#include <linux/device.h>
-+#include <linux/of.h>
-+#include <linux/of_dma.h>
-+#include <linux/dmapool.h>
-+#include "ingenic_dma.h"
-+
-+static void dump_dma(struct ingenic_dma_chan *master)
-+{
-+	pr_debug("CH_DSA = 0x%08x\n", readl(master->iomem + CH_DSA));
-+	pr_debug("CH_DTA = 0x%08x\n", readl(master->iomem + CH_DTA));
-+	pr_debug("CH_DTC = 0x%08x\n", readl(master->iomem + CH_DTC));
-+	pr_debug("CH_DRT = 0x%08x\n", readl(master->iomem + CH_DRT));
-+	pr_debug("CH_DCS = 0x%08x\n", readl(master->iomem + CH_DCS));
-+	pr_debug("CH_DCM = 0x%08x\n", readl(master->iomem + CH_DCM));
-+	pr_debug("CH_DDA = 0x%08x\n", readl(master->iomem + CH_DDA));
-+	pr_debug("CH_DSD = 0x%08x\n", readl(master->iomem + CH_DSD));
-+}
-+
-+static int dump_dma_hdesc(struct hdma_desc *desc, const char *d)
-+{
-+	int i;
-+	unsigned long *p = (unsigned long *)desc;
-+
-+	pr_debug("%s(): %s\n", __func__, d);
-+	for (i = 0; i < 8; i++)
-+		pr_debug("\t%08lx\n", (unsigned long)*p++);
-+
-+	return 0;
-+}
-+
-+void jzdma_dump(struct dma_chan *chan)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+
-+	dump_dma(dmac);
-+}
-+EXPORT_SYMBOL_GPL(jzdma_dump);
-+
-+/*tsz for 1,2,4,8,16,32,64 128bytes */
-+static const char dcm_tsz[8] = { 1, 2, 0, 0, 3, 4, 5, 6};
-+static inline unsigned int get_current_tsz(unsigned long dcmp)
-+{
-+	int i;
-+	int val = (dcmp & DCM_TSZ_MSK) >> DCM_TSZ_SFT;
-+
-+	if (val == DCM_TSZ_AUTO)
-+		return 0;
-+
-+	for (i = 0; i < ARRAY_SIZE(dcm_tsz); i++) {
-+		if (val == dcm_tsz[i])
-+			break;
-+	}
-+
-+	return i;
-+}
-+
-+static inline unsigned char get_max_tsz(unsigned long val, unsigned int *shift)
-+{
-+	int ord = ffs(val) - 1;
-+
-+	/*
-+	 * 8 byte transfer sizes unsupported so fall back on 4. If it's larger
-+	 * than the maximum, just limit it. It is perfectly safe to fall back
-+	 * in this way since we won't exceed the maximum burst size supported
-+	 * by the device, the only effect is reduced efficiency. This is better
-+	 * than refusing to perform the request at all.
-+	 */
-+	if (ord == 3)
-+		ord = 2;
-+	else if (ord > 7)
-+		ord = 7;
-+
-+	if (shift)
-+		*shift = ord;
-+
-+	return dcm_tsz[ord];
-+}
-+
-+static const struct of_device_id ingenic_dma_dt_match[];
-+
-+static struct ingenic_dma_engine *ingenic_dma_parse_dt(struct platform_device *pdev)
-+{
-+	const struct of_device_id *match;
-+	struct ingenic_dma_engine *ingenic_dma;
-+	u32 nr_chs;
-+
-+	if (!pdev->dev.of_node)
-+		return ERR_PTR(-ENODEV);
-+
-+	match = of_match_node(ingenic_dma_dt_match, pdev->dev.of_node);
-+	if (!match)
-+		return ERR_PTR(-ENODEV);
-+
-+	if (of_property_read_u32(pdev->dev.of_node, "#dma-channels", &nr_chs))
-+		nr_chs = 32;
-+
-+	ingenic_dma = devm_kzalloc(&pdev->dev, sizeof(*ingenic_dma) +
-+			sizeof(struct ingenic_dma_chan *) * nr_chs, GFP_KERNEL);
-+	if (!ingenic_dma)
-+		return ERR_PTR(-ENOMEM);
-+
-+	ingenic_dma->dev = &pdev->dev;
-+	ingenic_dma->nr_chs = nr_chs;
-+	ingenic_dma->hwattr = (unsigned long)match->data;
-+
-+	/* Property is optional, if it doesn't exist the value will remain 0. */
-+	of_property_read_u32(pdev->dev.of_node, "ingenic,reserved-chs",
-+			&ingenic_dma->chan_reserved);
-+
-+	if (!of_property_read_u32(pdev->dev.of_node, "ingenic,programed-chs",
-+				&ingenic_dma->chan_programed))
-+		ingenic_dma->chan_reserved |= ingenic_dma->chan_programed;
-+
-+	if (HWATTR_SPECIAL_CH01_SUP(ingenic_dma->hwattr) &&
-+			of_property_read_bool(pdev->dev.of_node,
-+				"ingenic,special-chs")) {
-+		ingenic_dma->chan_reserved  |= DMA_SPECAIL_CHS;
-+		ingenic_dma->chan_programed |= DMA_SPECAIL_CHS;
-+		ingenic_dma->special_ch = true;
-+	}
-+
-+	ingenic_dma->intc_ch = -1;
-+	if (HWATTR_INTC_IRQ_SUP(ingenic_dma->hwattr) &&
-+			!of_property_read_u32(pdev->dev.of_node,
-+				"ingenic,intc-ch", (u32 *)&ingenic_dma->intc_ch)) {
-+
-+		if (ingenic_dma->intc_ch >= ingenic_dma->nr_chs)
-+			ingenic_dma->intc_ch = (ingenic_dma->nr_chs - 1);
-+
-+		if (BIT(ingenic_dma->intc_ch) & ingenic_dma->chan_reserved)
-+			dev_warn(ingenic_dma->dev,
-+					"WARN: intc irq channel %d is already reserved\n",
-+						ingenic_dma->intc_ch);
-+
-+		ingenic_dma->chan_reserved |= BIT(ingenic_dma->intc_ch);
-+	}
-+
-+	return ingenic_dma;
-+}
-+
-+static unsigned int build_one_desc(dma_addr_t saddr, dma_addr_t daddr,
-+		unsigned int length, struct hdma_desc *desc)
-+{
-+	unsigned int len = length;
-+	unsigned int tsz, transfer_shift;
-+
-+	if (length < DTC_TC_MSK) {
-+		desc->dcm = DCM_DAI | DCM_SAI |
-+				(DCM_TSZ_AUTO << DCM_TSZ_SFT) |
-+					(DCM_RDIL_MAX << DCM_RDIL_SFT);
-+		desc->dtc = len; /* DCM_TSZ_AUTO in bytes */
-+	} else {
-+		len = ALIGN_DOWN(len, sizeof(uint32_t));
-+		tsz = get_max_tsz(len, &transfer_shift);
-+		desc->dcm = DCM_DAI | DCM_SAI | tsz << DCM_TSZ_SFT;
-+		desc->dtc = len >> transfer_shift; /* in burst unit */
-+		barrier();
-+		len = desc->dtc << transfer_shift;
-+	}
-+
-+	desc->dsa = saddr;
-+	desc->dta = daddr;
-+	desc->sd = 0;
-+	desc->drt = INGENIC_DMA_REQ_AUTO_TX;
-+
-+	return len;
-+}
-+
-+static unsigned int build_one_slave_desc(struct ingenic_dma_chan *dmac, dma_addr_t addr,
-+		unsigned int length,
-+		enum dma_transfer_direction direction,
-+		struct hdma_desc *desc)
-+{
-+	enum dma_transfer_direction dir;
-+	unsigned int rdil;
-+//	unsigned int tsz, transfer_shift;
-+
-+	desc->dcm = dmac->dcm;
-+	desc->drt = dmac->slave_id;
-+	desc->sd = 0;
-+
-+	if ((direction != DMA_DEV_TO_MEM) && (direction != DMA_MEM_TO_DEV))
-+		dir = dmac->direction;
-+	else
-+		dir = direction;
-+
-+	if (dir == DMA_DEV_TO_MEM) {
-+		desc->dta = addr;
-+		desc->dsa = dmac->slave_addr;
-+		desc->dcm |= DCM_DAI;
-+	} else {
-+		desc->dsa = addr;
-+		desc->dta = dmac->slave_addr;
-+		desc->dcm |= DCM_SAI;
-+	}
-+
-+	rdil = dmac->maxburst * dmac->transfer_width;
-+	if (rdil > 4)
-+		rdil = min((int)fls(rdil) + 1, (int)DCM_RDIL_MAX);
-+
-+	WARN_ON(length & (~DTC_TC_MSK));
-+	if (WARN_ON(!IS_ALIGNED(length, dmac->transfer_width)))
-+		desc->dtc = ALIGN_DOWN((length & DTC_TC_MSK), dmac->transfer_width);
-+	else
-+		desc->dtc = (length & DTC_TC_MSK);
-+	desc->dcm |= DCM_TSZ_MSK | (rdil << DCM_RDIL_SFT);
-+
-+	return desc->dtc;
-+}
-+
-+static void ingenic_dma_free_swdesc(struct virt_dma_desc *vd)
-+{
-+	struct ingenic_dma_sdesc *sdesc = to_ingenic_dma_sdesc(vd);
-+	struct ingenic_dma_chan *dmac = sdesc->dmac;
-+	unsigned long flags;
-+	int i;
-+
-+	WARN_ON(!sdesc->dmac);
-+
-+	spin_lock_irqsave(&dmac->hdesc_lock, flags);
-+
-+	if (dmac->hdesc_pool) {
-+		for (i = 0; i < sdesc->nb_desc; i++)
-+			dma_pool_free(dmac->hdesc_pool, sdesc->hw_desc[i],
-+					sdesc->hw_desc_dma[i]);
-+		dmac->hdesc_num -= sdesc->nb_desc;
-+	}
-+
-+	spin_unlock_irqrestore(&dmac->hdesc_lock, flags);
-+
-+	kfree(sdesc);
-+}
-+
-+static struct ingenic_dma_sdesc *ingenic_dma_alloc_swdesc(struct ingenic_dma_chan *dmac,
-+		int num_hdesc)
-+{
-+	struct ingenic_dma_sdesc *sdesc;
-+	int i;
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&dmac->hdesc_lock, flags);
-+
-+	if (num_hdesc > (dmac->hdesc_max - dmac->hdesc_num) || !dmac->hdesc_pool) {
-+		spin_unlock_irqrestore(&dmac->hdesc_lock, flags);
-+
-+		return NULL;
-+	}
-+
-+	sdesc = kzalloc(sizeof(struct ingenic_dma_sdesc) +
-+			num_hdesc * (sizeof(void **) + sizeof(dma_addr_t)),
-+			GFP_NOWAIT);
-+	if (!sdesc) {
-+		spin_unlock_irqrestore(&dmac->hdesc_lock, flags);
-+
-+		return NULL;
-+	}
-+
-+	sdesc->hw_desc = (struct hdma_desc **)(sdesc + 1);
-+	sdesc->hw_desc_dma = (dma_addr_t *)(sdesc->hw_desc + num_hdesc);
-+	sdesc->dmac = dmac;
-+
-+	for (i = 0; i < num_hdesc; i++) {
-+		sdesc->hw_desc[i] = dma_pool_alloc(dmac->hdesc_pool, GFP_NOWAIT,
-+				&sdesc->hw_desc_dma[i]);
-+		//pr_debug("sdesc->hw_desc[%d] = %p, sdesc->hw_desc_dma[%d] = 0x%08x\n",
-+				//i, sdesc->hw_desc[i],
-+				//i, sdesc->hw_desc_dma[i]);
-+		if (!sdesc->hw_desc[i]) {
-+			dev_err(&dmac->vc.chan.dev->device,
-+					"%s(): Couldn't allocate the hw_desc from dma_pool %p\n",
-+					__func__, dmac->hdesc_pool);
-+			spin_unlock_irqrestore(&dmac->hdesc_lock, flags);
-+
-+			goto err;
-+		}
-+		sdesc->nb_desc++;
-+	}
-+	dmac->hdesc_num += sdesc->nb_desc;
-+	spin_unlock_irqrestore(&dmac->hdesc_lock, flags);
-+
-+	return sdesc;
-+
-+err:
-+	ingenic_dma_free_swdesc(&sdesc->vd);
-+
-+	return NULL;
-+}
-+
-+static struct dma_async_tx_descriptor *ingenic_dma_prep_slave_sg(
-+		struct dma_chan *chan, struct scatterlist *sgl,
-+		unsigned int sg_len, enum dma_transfer_direction direction,
-+		unsigned long flags, void *context)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+	struct ingenic_dma_sdesc *sdesc;
-+	int i;
-+
-+	sdesc = ingenic_dma_alloc_swdesc(dmac, sg_len);
-+	if (!sdesc)
-+		return NULL;
-+
-+	for (i = 0; i < sg_len; i++) {
-+		sdesc->len += build_one_slave_desc(dmac, sg_dma_address(&sgl[i]),
-+				sg_dma_len(&sgl[i]), direction, sdesc->hw_desc[i]);
-+		if (i) {
-+			sdesc->hw_desc[i - 1]->dcm |= DCM_LINK;
-+			sdesc->hw_desc[i - 1]->dtc |= PHY_TO_DESC_DOA(sdesc->hw_desc_dma[i]);
-+		}
-+	}
-+	sdesc->hw_desc[i - 1]->dcm |= DCM_TIE;
-+	sdesc->cyclic = false;
-+	sdesc->dcs = DCS_DES8;
-+
-+	return vchan_tx_prep(&dmac->vc, &sdesc->vd, flags);
-+}
-+
-+static struct dma_async_tx_descriptor *ingenic_dma_prep_dma_cyclic(
-+		struct dma_chan *chan, dma_addr_t buf_addr, size_t buf_len,
-+		size_t period_len, enum dma_transfer_direction direction,
-+		unsigned long flags)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+	unsigned int periods = buf_len / period_len;
-+	struct ingenic_dma_sdesc *sdesc;
-+	int i;
-+
-+	sdesc = ingenic_dma_alloc_swdesc(dmac, periods);
-+	if (!sdesc)
-+		return NULL;
-+
-+	for (i = 0; i < periods; i++) {
-+		sdesc->len += build_one_slave_desc(dmac, buf_addr + (i * period_len),
-+				period_len, direction, sdesc->hw_desc[i]);
-+
-+		if (i) {
-+			sdesc->hw_desc[i - 1]->dcm |= DCM_LINK | DCM_TIE;
-+			sdesc->hw_desc[i - 1]->dtc |= PHY_TO_DESC_DOA(sdesc->hw_desc_dma[i]);
-+		}
-+
-+	}
-+
-+	sdesc->hw_desc[i - 1]->dcm |= DCM_LINK | DCM_TIE;
-+	sdesc->hw_desc[i - 1]->dtc |= PHY_TO_DESC_DOA(sdesc->hw_desc_dma[0]);
-+	sdesc->cyclic = true;
-+	sdesc->dcs = DCS_DES8;
-+
-+	return vchan_tx_prep(&dmac->vc, &sdesc->vd, flags);
-+}
-+
-+static struct dma_async_tx_descriptor *ingenic_dma_prep_dma_memcpy(
-+		struct dma_chan *chan, dma_addr_t dma_dest, dma_addr_t dma_src,
-+			size_t len, unsigned long flags)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+	struct ingenic_dma_sdesc *sdesc;
-+
-+	sdesc = ingenic_dma_alloc_swdesc(dmac, 1);
-+	if (!sdesc)
-+		return NULL;
-+
-+	sdesc->len = build_one_desc(dma_src, dma_dest, len, sdesc->hw_desc[0]);
-+	sdesc->hw_desc[0]->dcm |= DCM_TIE;
-+	sdesc->cyclic = false;
-+	sdesc->dcs = DCS_DES8;
-+
-+	return vchan_tx_prep(&dmac->vc, &sdesc->vd, flags);
-+}
-+
-+static size_t ingenic_dma_desc_residue(struct ingenic_dma_chan *dmac,
-+		struct ingenic_dma_sdesc *sdesc)
-+{
-+	unsigned int residue = 0, shift, pass = 0;
-+	unsigned int i;
-+	bool dsa = false;
-+	dma_addr_t start, end, compare;
-+
-+	if (sdesc->hw_desc[0]->dcm & DCM_SAI) {
-+		compare = readl(dmac->iomem + CH_DSA);
-+		dsa = true;
-+	} else {
-+		compare = readl(dmac->iomem + CH_DTA);
-+	}
-+
-+	for (i = 0; i < sdesc->nb_desc; i++) {
-+		start = dsa ? sdesc->hw_desc[i]->dsa : sdesc->hw_desc[i]->dta;
-+		shift = get_current_tsz(sdesc->hw_desc[i]->dcm);
-+		end = start + (sdesc->hw_desc[i]->dtc << shift);
-+
-+		if (!(start <= compare && end > compare)) {
-+			pass += sdesc->hw_desc[i]->dtc << shift;
-+		} else {
-+			pass += (compare - start);
-+			break;
-+
-+		}
-+
-+	}
-+
-+	residue = sdesc->len - pass;
-+
-+	return residue;
-+}
-+
-+static enum dma_status ingenic_dma_tx_status(struct dma_chan *chan,
-+		dma_cookie_t cookie,
-+		struct dma_tx_state *txstate)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+	struct virt_dma_desc *vd;
-+	enum dma_status status;
-+	unsigned long flags;
-+
-+	status = dma_cookie_status(chan, cookie, txstate);
-+	if ((status == DMA_COMPLETE) || (txstate == NULL))
-+		return status;
-+
-+	spin_lock_irqsave(&dmac->vc.lock, flags);
-+
-+	vd = vchan_find_desc(&dmac->vc, cookie);
-+	if (vd)
-+		dma_set_residue(txstate, to_ingenic_dma_sdesc(vd)->len);
-+	else if (dmac->sdesc && cookie == dmac->sdesc->vd.tx.cookie)
-+		dma_set_residue(txstate, ingenic_dma_desc_residue(dmac, dmac->sdesc));
-+	else
-+		dma_set_residue(txstate, 0);
-+
-+	spin_unlock_irqrestore(&dmac->vc.lock, flags);
-+
-+	return status;
-+}
-+
-+static void ingenic_dma_start_trans(struct ingenic_dma_chan *dmac)
-+{
-+	struct virt_dma_desc *vd = NULL;
-+	struct ingenic_dma_sdesc *sdesc;
-+	int i, j;
-+
-+	if (!dmac->sdesc) {
-+		vd = vchan_next_desc(&dmac->vc);
-+		if (!vd)
-+			return;
-+
-+		list_del(&vd->node);
-+
-+		sdesc = dmac->sdesc = to_ingenic_dma_sdesc(vd);
-+
-+		if (dmac->fake_cyclic && sdesc->cyclic && vd->tx.callback) {
-+			/*
-+			 * The DMA controller doesn't support triggering an interrupt
-+			 * after processing each descriptor, only after processing an
-+			 * entire terminated list of descriptors.For a cyclic DMA
-+			 * setup the list of descriptors is not terminated so we can
-+			 * never get an interrupt.
-+			 *
-+			 * If the user requested a callback for a cyclic DMA setup then
-+			 * we workaround this hardware limitation here by degrading to
-+			 * a set of unlinked descriptors which we will submit in
-+			 * sequence in response to the completion of processing the
-+			 * previous descriptor
-+			 */
-+			for (i = 0; i < sdesc->nb_desc; i++)
-+				sdesc->hw_desc[i]->dcm &= ~DCM_LINK;
-+		}
-+
-+		for (i = 0; i < sdesc->nb_desc; i++) {
-+			uint32_t *vaddr = (void *)sdesc->hw_desc[i];
-+
-+			for (j = 0; j < 8; j++)
-+				pr_debug("<%d>: &vaddr[0] %p vaddr[0] %x\n", i, &vaddr[j],
-+					vaddr[j]);
-+
-+			//pr_debug("sdesc->hw_desc_dma[0] 0x%08x dmac->iomem %p\n",
-+				//sdesc->hw_desc_dma[i], dmac->iomem);
-+		}
-+
-+		sdesc->curr_desc = 0;
-+		sdesc->status = STAT_RUNNING;
-+	} else {
-+		sdesc = dmac->sdesc;
-+		WARN_ON_ONCE((!sdesc->cyclic));
-+		WARN_ON_ONCE((!vd->tx.callback));
-+		WARN_ON_ONCE((!dmac->fake_cyclic));
-+		sdesc->status = STAT_RUNNING;
-+		sdesc->curr_desc++;
-+		sdesc->curr_desc = sdesc->curr_desc % sdesc->nb_desc;
-+	}
-+
-+	dump_dma_hdesc(sdesc->hw_desc[sdesc->curr_desc], __func__);
-+	/* dma descriptor address */
-+	writel(sdesc->hw_desc_dma[sdesc->curr_desc], dmac->iomem + CH_DDA);
-+	/* initiate descriptor fetch */
-+	writel(BIT(dmac->id), dmac->engine->iomem + DDRS);
-+	/* transfer start */
-+	dev_dbg(chan2dev(&dmac->vc.chan), "dcs:%x start transfer\n",
-+			readl(dmac->iomem + CH_DCS));
-+
-+	writel(sdesc->dcs | DCS_CTE, dmac->iomem + CH_DCS);
-+}
-+
-+static void ingenic_dma_issue_pending(struct dma_chan *chan)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+	unsigned long flags;
-+
-+	spin_lock_irqsave(&dmac->vc.lock, flags);
-+
-+	if (vchan_issue_pending(&dmac->vc) && !dmac->sdesc)
-+		ingenic_dma_start_trans(dmac);
-+
-+	spin_unlock_irqrestore(&dmac->vc.lock, flags);
-+}
-+
-+static int ingenic_dma_terminate_all(struct dma_chan *chan)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+	unsigned long flags;
-+	int ret = 0, i;
-+
-+	LIST_HEAD(head);
-+
-+	spin_lock_irqsave(&dmac->vc.lock, flags);
-+
-+	/* the part handler audio driver */
-+	if (dmac->slave_id == INGENIC_DMA_REQ_AIC_LOOP_RX ||
-+			dmac->slave_id == INGENIC_DMA_REQ_AIC_TX ||
-+				dmac->slave_id == INGENIC_DMA_REQ_AIC_F_RX) {
-+
-+		if (dmac->sdesc) {	/*DMA transfer is running*/
-+			if (dmac->sdesc->status != STAT_STOPPED) {
-+				dmac->sdesc->status = STAT_STOPPED;
-+				writel(0, dmac->iomem + CH_DCS);
-+			}
-+
-+			ingenic_dma_free_swdesc(&dmac->sdesc->vd);
-+			dmac->sdesc = NULL;
-+		}
-+
-+		goto done;
-+	}
-+
-+	if (dmac->sdesc) {	/*DMA transfer is running*/
-+		ret = -EBUSY;
-+
-+		if (dmac->sdesc->status != STAT_STOPPED) {
-+			dmac->sdesc->status = STAT_STOPPED;
-+			reinit_completion(&dmac->completion);
-+
-+			for (i = 0; i < dmac->sdesc->nb_desc; i++) {
-+				dmac->sdesc->hw_desc[i]->dcm |= DCM_TIE;
-+				dmac->sdesc->hw_desc[i]->dcm &= ~DCM_LINK;
-+			}
-+
-+			if (HWATTR_DESC_INTER_SUP(dmac->engine->hwattr)) {
-+				/*
-+				 * The version of controller support descriptor interrupt
-+				 * can clear LINK on runtime
-+				 */
-+				unsigned int dcm = readl(dmac->iomem + CH_DCM);
-+
-+				if (dcm & DCM_LINK) {
-+					dcm &= ~DCM_LINK;
-+					writel(dcm, dmac->iomem + CH_DCM);
-+				}
-+
-+			}
-+
-+		} else if (readl(dmac->iomem + CH_DRT) != INGENIC_DMA_REQ_AUTO_TX) {
-+			writel(0, dmac->iomem + CH_DCS);
-+			ingenic_dma_free_swdesc(&dmac->sdesc->vd);
-+			dmac->sdesc = NULL;
-+			complete(&dmac->completion);
-+			ret = 0;
-+		}
-+	} else {
-+		writel(0, dmac->iomem + CH_DCS);
-+	}
-+
-+done:
-+	vchan_get_all_descriptors(&dmac->vc, &head);
-+	spin_unlock_irqrestore(&dmac->vc.lock, flags);
-+	vchan_dma_desc_free_list(&dmac->vc, &head);
-+
-+	return ret;
-+}
-+
-+static int ingenic_dma_wait_terminate_complete(struct dma_chan *chan)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+
-+	if (dmac->sdesc)
-+		wait_for_completion(&dmac->completion);
-+
-+	return 0;
-+}
-+
-+static int ingenic_dma_config(struct dma_chan *chan,
-+		struct dma_slave_config *config)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+	enum dma_slave_buswidth transfer_width;
-+
-+	if (!config)
-+		return -EINVAL;
-+
-+	switch (config->direction) {
-+	case DMA_MEM_TO_DEV:
-+		if (!config->dst_addr_width || !config->dst_addr)
-+			return -EINVAL;
-+		if (!config->dst_maxburst)
-+			config->dst_maxburst = 1;
-+		transfer_width = config->dst_addr_width;
-+		dmac->slave_addr = config->dst_addr;
-+		dmac->maxburst = config->dst_maxburst;
-+		break;
-+	case DMA_DEV_TO_MEM:
-+		if (!config->src_addr_width || !config->src_addr)
-+			return -EINVAL;
-+		if (!config->src_maxburst)
-+			config->src_maxburst = 1;
-+		transfer_width = config->src_addr_width;
-+		dmac->slave_addr = config->src_addr;
-+		dmac->maxburst = config->src_maxburst;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	switch (transfer_width) {
-+	case DMA_SLAVE_BUSWIDTH_1_BYTE:
-+		dmac->dcm = DCM_PORT_8;
-+		dmac->transfer_width = 1;
-+		break;
-+	case DMA_SLAVE_BUSWIDTH_2_BYTES:
-+		dmac->dcm = DCM_PORT_16;
-+		dmac->transfer_width = 2;
-+		break;
-+	case DMA_SLAVE_BUSWIDTH_4_BYTES:
-+		dmac->dcm = DCM_PORT_32;
-+		dmac->transfer_width = 4;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	/* must be delete it */
-+	//if (config->slave_id & INGENIC_DMA_TYPE_REQ_MSK)
-+	//	dmac->slave_id = config->slave_id & INGENIC_DMA_TYPE_REQ_MSK;
-+
-+	return 0;
-+}
-+
-+static void pdma_handle_chan_irq(struct ingenic_dma_engine *ingenic_dma, int ch_id)
-+{
-+	struct ingenic_dma_chan *dmac = ingenic_dma->chan[ch_id];
-+	struct ingenic_dma_sdesc *sdesc;
-+	unsigned int dcs;
-+
-+	spin_lock(&dmac->vc.lock);
-+
-+	dcs = readl(dmac->iomem + CH_DCS);
-+	writel(0, dmac->iomem + CH_DCS);
-+
-+	if (dcs & DCS_AR)
-+		dev_warn(&dmac->vc.chan.dev->device,
-+				"address error (DCS=0x%x)\n", dcs);
-+
-+	if (dcs & DCS_HLT)
-+		dev_warn(&dmac->vc.chan.dev->device,
-+				"channel halt (DCS=0x%x)\n", dcs);
-+	sdesc = dmac->sdesc;
-+	if (sdesc) {
-+		if (sdesc->status == STAT_STOPPED) {
-+			dma_cookie_complete(&sdesc->vd.tx);
-+			ingenic_dma_free_swdesc(&sdesc->vd);
-+			complete(&dmac->completion);
-+		} else if (dmac->fake_cyclic && sdesc->cyclic) {
-+			vchan_cyclic_callback(&sdesc->vd);
-+		} else {
-+			vchan_cookie_complete(&sdesc->vd);
-+		}
-+		dmac->sdesc = NULL;
-+		ingenic_dma_start_trans(dmac);
-+	} else {
-+		dev_warn(&dmac->vc.chan.dev->device,
-+			"channel irq with no active transfer, channel stop\n");
-+	}
-+
-+	spin_unlock(&dmac->vc.lock);
-+}
-+
-+static irqreturn_t pdma_int_handler(int irq, void *dev)
-+{
-+	struct ingenic_dma_engine *ingenic_dma = (struct ingenic_dma_engine *)dev;
-+	unsigned long pending, dmac;
-+	int i;
-+
-+	pending = readl(ingenic_dma->iomem + DIRQP);
-+	writel(~pending, ingenic_dma->iomem + DIRQP);
-+
-+	for (i = 0; i < ingenic_dma->nr_chs ; i++) {
-+		if (!(pending & (1 << i)))
-+			continue;
-+		pdma_handle_chan_irq(ingenic_dma, i);
-+	}
-+
-+	dmac = readl(ingenic_dma->iomem + DMAC);
-+	dmac &= ~(DMAC_HLT | DMAC_AR);
-+	writel(dmac, ingenic_dma->iomem + DMAC);
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t pdmam_int_handler(int irq, void *dev)
-+{
-+	/*TODO*/
-+	return IRQ_HANDLED;
-+}
-+
-+static irqreturn_t pdmad_int_handler(int irq, void *dev)
-+{
-+	struct ingenic_dma_engine *ingenic_dma = (struct ingenic_dma_engine *)dev;
-+	unsigned long pending;
-+	int i;
-+
-+	pending = readl(ingenic_dma->iomem + DIP);
-+	writel(readl(ingenic_dma->iomem + DIP) & (~pending), ingenic_dma->iomem + DIC);
-+
-+	for (i = 0; i < ingenic_dma->nr_chs; i++) {
-+		struct ingenic_dma_chan *dmac = ingenic_dma->chan[i];
-+		struct ingenic_dma_sdesc *sdesc;
-+
-+		if (!(pending & (1 << i)))
-+			continue;
-+		sdesc = dmac->sdesc;
-+		if (sdesc && sdesc->cyclic) {
-+			spin_lock(&dmac->vc.lock);
-+			vchan_cyclic_callback(&sdesc->vd);
-+			spin_unlock(&dmac->vc.lock);
-+		}
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int ingenic_dma_alloc_chan_resources(struct dma_chan *chan)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+
-+	dmac->hdesc_pool = dma_pool_create(dev_name(&chan->dev->device),
-+			chan->device->dev, sizeof(struct hdma_desc), 0, PAGE_SIZE);
-+	if (!dmac->hdesc_pool) {
-+		dev_err(&chan->dev->device,
-+				"failed to allocate descriptor pool\n");
-+		return -ENOMEM;
-+	}
-+
-+	dmac->hdesc_max = PAGE_SIZE / sizeof(struct hdma_desc);
-+	dmac->hdesc_num = 0;
-+
-+	return 0;
-+}
-+
-+static void ingenic_dma_synchronize(struct dma_chan *chan)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+
-+	vchan_synchronize(&dmac->vc);
-+}
-+
-+static void ingenic_dma_free_chan_resources(struct dma_chan *chan)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+	unsigned long flags;
-+
-+	ingenic_dma_terminate_all(chan);
-+
-+	ingenic_dma_wait_terminate_complete(chan);
-+
-+	dma_pool_destroy(dmac->hdesc_pool);
-+	spin_lock_irqsave(&dmac->hdesc_lock, flags);
-+	dmac->hdesc_pool = NULL;
-+	dmac->hdesc_max = 0;
-+	dmac->hdesc_num = 0;
-+	spin_unlock_irqrestore(&dmac->hdesc_lock, flags);
-+}
-+
-+static bool ingenic_dma_filter_fn(struct dma_chan *chan, void *param)
-+{
-+	struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+	unsigned int private          = *(unsigned int *)param;
-+	unsigned long type             = (unsigned long)chan->private;
-+	int channel = -1;
-+
-+	if (private & INGENIC_DMA_TYPE_CH_EN) {
-+		channel = (private & INGENIC_DMA_TYPE_CH_MSK) >> INGENIC_DMA_TYPE_CH_SFT;
-+		if (dmac->id == channel) {
-+			dev_info(&chan->dev->device,
-+				"assignment channel is %d\n", channel);
-+			return true;
-+		}
-+		return false;
-+	}
-+
-+	if (dmac->engine->chan_reserved & BIT(dmac->id))
-+		return false;
-+
-+	if ((private & INGENIC_DMA_TYPE_REQ_MSK) != type)
-+		return false;
-+
-+	dmac->slave_id = private & INGENIC_DMA_TYPE_REQ_MSK;
-+
-+	return true;
-+}
-+
-+static struct of_dma_filter_info of_ingenic_dma_info = {
-+	.filter_fn = ingenic_dma_filter_fn,
-+};
-+
-+static int ingenic_dma_chan_init(struct ingenic_dma_engine *dma, int id)
-+{
-+	struct ingenic_dma_chan *dmac = NULL;
-+
-+	if ((id < 0) || (id >= INGENIC_DMA_CHAN_CNT))
-+		return -EINVAL;
-+
-+	dmac = devm_kzalloc(dma->dev, sizeof(*dmac), GFP_KERNEL);
-+	if (!dmac)
-+		return -ENOMEM;
-+
-+	dmac->id          = id;
-+	dmac->iomem       = dma->iomem + dmac->id * DMACH_OFF;
-+	dmac->engine      = dma;
-+	dmac->fake_cyclic = HWATTR_DESC_INTER_SUP(dma->hwattr) ? false : true;
-+
-+	spin_lock_init(&dmac->hdesc_lock);
-+	init_completion(&dmac->completion);
-+
-+	vchan_init(&dmac->vc, &dma->dma_device);
-+
-+	dmac->vc.desc_free    = ingenic_dma_free_swdesc;
-+	dmac->vc.chan.private = (void *)pdma_maps[id];
-+	dmac->slave_id        = pdma_maps[id] & INGENIC_DMA_TYPE_REQ_MSK;
-+	dma->chan[id]         = dmac;
-+
-+	return 0;
-+}
-+
-+static int __init ingenic_dma_probe(struct platform_device *pdev)
-+{
-+	struct ingenic_dma_engine *dma = NULL;
-+	struct resource *iores;
-+	u32 reg_dmac = DMAC_DMAE;
-+	int i, ret = 0;
-+
-+	/* check of first. if of failed, use platform */
-+
-+	dma = ingenic_dma_parse_dt(pdev);
-+	if (IS_ERR(dma))
-+		return PTR_ERR(dma);
-+
-+	iores = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	dma->iomem = devm_ioremap_resource(&pdev->dev, iores);
-+	if (IS_ERR(dma->iomem))
-+		return PTR_ERR(dma->iomem);
-+
-+	/* PDMA interrupt*/
-+	dma->irq_pdma = platform_get_irq_byname(pdev, "pdma");
-+	if (dma->irq_pdma < 0)
-+		return dma->irq_pdma;
-+
-+	ret = devm_request_irq(&pdev->dev, dma->irq_pdma, pdma_int_handler,
-+			0, "pdma", dma);
-+	if (ret)
-+		return ret;
-+
-+	/* PDMA mcu interrupt*/
-+	dma->irq_pdmam = platform_get_irq_byname(pdev, "pdmam");
-+	if (dma->irq_pdmam >= 0) {
-+		ret = devm_request_irq(&pdev->dev, dma->irq_pdmam, pdmam_int_handler,
-+				0, "pdmam", dma);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* PDMA descriptor interrupt */
-+	if (HWATTR_DESC_INTER_SUP(dma->hwattr)) {
-+		dma->irq_pdmad = platform_get_irq_byname(pdev, "pdmad");
-+		if (dma->irq_pdmad < 0) {
-+			dev_err(&pdev->dev, "unable to get pdmad irq\n");
-+			return dma->irq_pdmad;
-+		}
-+		ret = devm_request_irq(&pdev->dev, dma->irq_pdmad, pdmad_int_handler,
-+				0, "pdmad", dma);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	/* Initialize dma engine */
-+	INIT_LIST_HEAD(&dma->dma_device.channels);
-+	for (i = 0; i < dma->nr_chs; i++) {
-+		/*reserved one channel for intc interrupt*/
-+		if (dma->intc_ch == i)
-+			continue;
-+		ingenic_dma_chan_init(dma, i);
-+	}
-+
-+	dma_cap_set(DMA_MEMCPY, dma->dma_device.cap_mask);
-+	dma_cap_set(DMA_SLAVE, dma->dma_device.cap_mask);
-+	dma_cap_set(DMA_CYCLIC, dma->dma_device.cap_mask);
-+
-+	dma->dma_device.dev                         = &pdev->dev;
-+	dma->dma_device.device_alloc_chan_resources = ingenic_dma_alloc_chan_resources;
-+	dma->dma_device.device_free_chan_resources  = ingenic_dma_free_chan_resources;
-+	dma->dma_device.device_tx_status            = ingenic_dma_tx_status;
-+	dma->dma_device.device_prep_slave_sg        = ingenic_dma_prep_slave_sg;
-+	dma->dma_device.device_prep_dma_cyclic      = ingenic_dma_prep_dma_cyclic;
-+	dma->dma_device.device_prep_dma_memcpy      = ingenic_dma_prep_dma_memcpy;
-+	dma->dma_device.device_config               = ingenic_dma_config;
-+	dma->dma_device.device_terminate_all        = ingenic_dma_terminate_all;
-+	dma->dma_device.device_issue_pending        = ingenic_dma_issue_pending;
-+	dma->dma_device.device_synchronize          = ingenic_dma_synchronize;
-+	dma->dma_device.copy_align                  = DMAENGINE_ALIGN_4_BYTES;
-+	dma->dma_device.src_addr_widths             = BIT(DMA_SLAVE_BUSWIDTH_1_BYTE) |
-+							BIT(DMA_SLAVE_BUSWIDTH_2_BYTES) |
-+								BIT(DMA_SLAVE_BUSWIDTH_4_BYTES);
-+	dma->dma_device.dst_addr_widths             = dma->dma_device.src_addr_widths;
-+	dma->dma_device.directions                  = BIT(DMA_DEV_TO_MEM) |
-+							BIT(DMA_MEM_TO_DEV) |
-+								BIT(DMA_MEM_TO_MEM);
-+	dma->dma_device.residue_granularity         = DMA_RESIDUE_GRANULARITY_BURST;
-+	dma->dma_device.dev->dma_parms              = &dma->dma_parms;
-+
-+	dma_set_max_seg_size(dma->dma_device.dev, DTC_TC_MSK);	/*At least*/
-+
-+	dma->gate_clk = devm_clk_get(&pdev->dev, "gate_pdma");
-+	if (IS_ERR(dma->gate_clk))
-+		return PTR_ERR(dma->gate_clk);
-+
-+	ret = dma_async_device_register(&dma->dma_device);
-+	if (ret) {
-+		dev_err(&pdev->dev, "unable to register\n");
-+		clk_disable(dma->gate_clk);
-+		return ret;
-+	}
-+
-+	of_ingenic_dma_info.dma_cap = dma->dma_device.cap_mask;
-+	ret = of_dma_controller_register(pdev->dev.of_node,
-+			of_dma_simple_xlate, &of_ingenic_dma_info);
-+	if (ret) {
-+		dev_err(&pdev->dev, "unable to register dma to device tree\n");
-+		dma_async_device_unregister(&dma->dma_device);
-+		clk_disable(dma->gate_clk);
-+		return ret;
-+	}
-+
-+
-+	platform_set_drvdata(pdev, dma);
-+
-+	/*enable pdma controller*/
-+	clk_prepare_enable(dma->gate_clk);
-+
-+	if (dma->chan_programed)
-+		writel(dma->chan_programed, dma->iomem + DMACP);
-+	if (dma->intc_ch >= 0)
-+		reg_dmac |= DMAC_INTCE | ((dma->intc_ch << DMAC_INTCC_SFT) & DMAC_INTCC_MSK);
-+	if (dma->special_ch)
-+		reg_dmac |= DMAC_CH01;
-+	writel(reg_dmac, dma->iomem + DMAC);
-+
-+	dev_info(dma->dev, "INGENIC SoC DMA initialized\n");
-+
-+	return 0;
-+}
-+
-+static int ingenic_dma_suspend(struct platform_device *pdev, pm_message_t state)
-+{
-+	struct ingenic_dma_engine *ingenic_dma = platform_get_drvdata(pdev);
-+	struct dma_chan *chan;
-+
-+	list_for_each_entry(chan, &ingenic_dma->dma_device.channels, device_node) {
-+		struct ingenic_dma_chan *dmac = to_ingenic_dma_chan(chan);
-+
-+		if (dmac->sdesc)
-+			return -EBUSY;
-+	}
-+	clk_disable_unprepare(ingenic_dma->gate_clk);
-+
-+	return 0;
-+}
-+
-+static int ingenic_dma_resume(struct platform_device *pdev)
-+{
-+	struct ingenic_dma_engine *ingenic_dma = platform_get_drvdata(pdev);
-+
-+	clk_prepare_enable(ingenic_dma->gate_clk);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id ingenic_dma_dt_match[] = {
-+	{ .compatible = "ingenic,m200-pdma",  .data = (void *)(HWATTR_SPECIAL_CH01 |
-+							HWATTR_INTC_IRQ)},
-+	{ .compatible = "ingenic,x1000-pdma", .data = (void *)HWATTR_DESC_INTER },
-+	{ .compatible = "ingenic,t40-pdma",   .data = (void *)HWATTR_INTC_IRQ },
-+	/*{ .compatible = "ingenic,t41-pdma",   .data = (void *)HWATTR_INTC_IRQ },*/
-+	{ .compatible = "ingenic,t33-pdma",   .data = (void *)NULL },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, ingenic_dma_dt_match);
-+
-+static struct platform_driver ingenic_dma_driver = {
-+	.driver = {
-+		.name           = "ingenic-dma",
-+		.owner          = THIS_MODULE,
-+		.of_match_table = of_match_ptr(ingenic_dma_dt_match),
-+	},
-+	.suspend = ingenic_dma_suspend,
-+	.resume  = ingenic_dma_resume,
-+};
-+
-+static int __init ingenic_dma_module_init(void)
-+{
-+	return platform_driver_probe(&ingenic_dma_driver, ingenic_dma_probe);
-+}
-+
-+subsys_initcall(ingenic_dma_module_init);
-+MODULE_AUTHOR("Chen.li <chen.li@ingenic.cn>");
-+MODULE_DESCRIPTION("Ingenic dma driver");
-diff --git a/drivers/dma/ingenic/ingenic_dma.h b/drivers/dma/ingenic/ingenic_dma.h
-new file mode 100644
-index 000000000000..c78e3ab7b317
---- /dev/null
-+++ b/drivers/dma/ingenic/ingenic_dma.h
-@@ -0,0 +1,250 @@
-+/* SPDX-License-Identifier: GPL-2.0-or-later */
-+/*
-+ * Copyright (C) 2016 Ingenic Semiconductor Co., Ltd.
-+ *
-+ * This program is free software; you can redistribute it and/or modify it
-+ * under the terms of the GNU General Public License as published by the
-+ * Free Software Foundation;  either version 2 of the  License, or (at your
-+ * option) any later version.
-+ */
-+
-+#ifndef __INGENIC_DMA_H__
-+#define __INGENIC_DMA_H__
-+#include <dt-bindings/dma/ingenic-pdma.h>
-+#include "../virt-dma.h"
-+#include "../dmaengine.h"
-+#define CH_DSA	0x00
-+#define CH_DTA	0x04
-+#define CH_DTC	0x08
-+#define CH_DRT	0x0C
-+#define CH_DCS	0x10
-+#define CH_DCM	0x14
-+#define CH_DDA	0x18
-+#define CH_DSD	0x1C
-+
-+#define TCSM	0x2000
-+
-+#define DMAC	0x1000
-+#define DIRQP	0x1004
-+#define DDR	0x1008
-+#define DDRS	0x100C
-+#define DIP	0x1010
-+#define DIC	0x1014
-+#define DMACP	0x101C
-+#define DSIRQP	0x1020
-+#define DSIRQM	0x1024
-+#define DCIRQP	0x1028
-+#define DCIRQM	0x102C
-+
-+#define DMACH_OFF	0x20
-+/* DCS */
-+#define DCS_NDES	BIT(31)
-+#define DCS_DES8	BIT(30)
-+#define DCS_CDOA_SFT	8
-+#define DCS_CDOA_MSK	(0xff << DCS_CDOA_SFT)
-+#define DCS_AR		BIT(4)
-+#define DCS_TT		BIT(3)
-+#define DCS_HLT		BIT(2)
-+#define DCS_CTE		BIT(0)
-+
-+/* DTC */
-+#define DTC_TC_SFT	0
-+#define DTC_TC_MSK	0xffffff
-+
-+/* DCM */
-+#define DCM_SAI		BIT(23)
-+#define DCM_DAI		BIT(22)
-+#define DCM_PORT_MSK	(0xf << 12)
-+#define DCM_PORT_8	(0x1 << 14 | 0x1 << 12)
-+#define DCM_PORT_16	(0x2 << 14 | 0x2 << 12)
-+#define DCM_PORT_32	(0x0 << 14 | 0x0 << 12)
-+#define DCM_RDIL_SFT	16
-+#define DCM_RDIL_MAX	0x9
-+#define DCM_RDIL_MSK	(0xf << DCM_RDIL_SFT)
-+#define DCM_TSZ_SFT	8
-+#define DCM_TSZ_AUTO	0x7
-+#define DCM_TSZ_MSK	(0x7 << DCM_TSZ_SFT)
-+#define DCM_STDE	BIT(2)
-+#define DCM_TIE		BIT(1)
-+#define DCM_LINK	BIT(0)
-+
-+/* DDA */
-+#define DDA_DBA_SFT	12
-+#define DDA_DBA_MSK	(0xfffff << DDA_DBA_SFT)
-+#define DDA_DOA_SFT	4
-+#define DDA_DOA_MSK	(0xff << DDA_DOA_SFT)
-+#define PHY_TO_DESC_DOA(dma)	 ((((dma) & DDA_DOA_MSK) >> DDA_DOA_SFT) << 24)
-+
-+/* DSD */
-+#define DSD_TSD_SFT	16
-+#define DSD_TSD_MSK	(0xffff << DSD_TSD_SFT)
-+#define DSD_SSD_SFT	0
-+#define DSD_SSD_MSK	(0xffff << DSD_SSD_SFT)
-+
-+/* DMAC */
-+#define DMAC_FMSC	BIT(31)
-+#define DMAC_FSSI	BIT(30)
-+#define DMAC_FTSSI	BIT(29)
-+#define DMAC_FUART	BIT(28)
-+#define DMAC_FAIC	BIT(27)
-+#define DMAC_INTCC_SFT	17
-+#define DMAC_INTCC_MSK	(0x1f << 17)
-+#define DMAC_INTCE	BIT(16)
-+#define DMAC_HLT	BIT(3)
-+#define DMAC_AR		BIT(2)
-+#define DMAC_CH01	BIT(1)
-+#define DMAC_DMAE	BIT(0)
-+
-+/* MCU of PDMA */
-+#define DMCS	0x1030
-+#define DMNMB	0x1034
-+#define DMSMB	0x1038
-+#define DMINT	0x103C
-+
-+/* MCU of PDMA */
-+#define DMINT_S_IP      BIT(17)
-+#define DMINT_N_IP      BIT(16)
-+
-+#define DMA_SPECAIL_CHS	0x3		/*Channel 0 & 1*/
-+
-+/*8-word hardware dma descriptor*/
-+struct hdma_desc {
-+	unsigned long dcm;
-+	dma_addr_t dsa;
-+	dma_addr_t dta;
-+	unsigned long dtc;
-+	unsigned long sd;
-+	unsigned long drt;
-+	unsigned long reserved[2];
-+};
-+
-+enum sdesc_status {
-+	STAT_STOPPED = 0, STAT_RUNNING, STAT_ERROR
-+};
-+
-+struct ingenic_dma_chan;
-+struct ingenic_dma_sdesc {
-+	struct virt_dma_desc	vd;		/* Virtual descriptor */
-+	int			nb_desc;	/* Number of hw. descriptors */
-+	size_t			len;		/* Number of bytes xfered */
-+	bool			cyclic;
-+	struct hdma_desc	**hw_desc;	/* DMA coherent descriptors */
-+	dma_addr_t		*hw_desc_dma;	/* DMA address of the Descriptors*/
-+	struct ingenic_dma_chan	*dmac;		/* for free*/
-+	int			dcs;		/* The DCS initial value */
-+	int			curr_desc;
-+	enum sdesc_status	status;
-+};
-+
-+struct ingenic_dma_chan {
-+	struct virt_dma_chan	vc;		/* Virtual channel */
-+	int			id;		/* Channel id*/
-+	void __iomem		*iomem;
-+	struct ingenic_dma_engine	*engine;
-+	bool			fake_cyclic;
-+
-+	/*dma slave channel config*/
-+	unsigned int		slave_id;	/* Request type of the channel */
-+	enum dma_transfer_direction direction;
-+	dma_addr_t		slave_addr;
-+	unsigned int		maxburst;
-+	unsigned int		transfer_width;
-+	unsigned int		fast_mode;	/* The fast mode bit of dmac*/
-+	unsigned int		dcm;		/* The DCM of HW Descriptor initial value*/
-+
-+
-+	/*Descriptors*/
-+	struct dma_pool		*hdesc_pool;	/*HW Descriptors pool */
-+	spinlock_t		hdesc_lock;	/*HW Descriptor assign lock*/
-+	int			hdesc_num;	/*HW Descriptors assigned num*/
-+	int			hdesc_max;	/*HW Descriptors maxnum capacity*/
-+
-+	struct ingenic_dma_sdesc	*sdesc;		/*Current Running Async Tx Desc*/
-+
-+	/*channel terminated completion*/
-+	struct completion completion;
-+};
-+
-+struct ingenic_dma_engine {
-+	struct device		*dev;
-+	void __iomem		*iomem;
-+	struct clk		*gate_clk;
-+	struct dma_device		dma_device;
-+	struct device_dma_parameters	dma_parms;
-+
-+	uint32_t		chan_reserved;
-+	uint32_t		chan_programed;
-+	int			intc_ch;
-+	bool			special_ch;
-+
-+	/*hardware interrupt*/
-+	int			irq_pdma;	/* pdma interrupt*/
-+	int                     irq_pdmam;	/* pdma mcu interrupt */
-+	int			irq_pdmad;	/* pdma per-descriptor interrupt*/
-+
-+	/*hardware params*/
-+#define HWATTR_INTC_IRQ		(1 << 0)
-+#define HWATTR_SPECIAL_CH01	(1 << 1)
-+#define HWATTR_DESC_INTER	(1 << 2)
-+#define HWATTR_INTC_IRQ_SUP(x)		(HWATTR_INTC_IRQ & (x))
-+#define	HWATTR_SPECIAL_CH01_SUP(x)	(HWATTR_SPECIAL_CH01 & (x))
-+#define HWATTR_DESC_INTER_SUP(x)	(HWATTR_DESC_INTER & (x))
-+	unsigned int		hwattr;
-+	/*channels*/
-+	int			nr_chs;
-+	struct ingenic_dma_chan *chan[];
-+};
-+
-+static inline struct device *chan2dev(struct dma_chan *chan)
-+{
-+	return &chan->dev->device;
-+}
-+
-+static inline struct ingenic_dma_chan *to_ingenic_dma_chan(struct dma_chan *chan)
-+{
-+	return container_of(chan, struct ingenic_dma_chan, vc.chan);
-+}
-+
-+static inline struct ingenic_dma_sdesc *to_ingenic_dma_sdesc(struct virt_dma_desc *vd)
-+{
-+	return container_of(vd, struct ingenic_dma_sdesc, vd);
-+}
-+
-+#define INGENIC_DMA_REQ_AUTO 0xff
-+#define INGENIC_DMA_CHAN_CNT 32
-+unsigned long pdma_maps[INGENIC_DMA_CHAN_CNT] = {
-+	INGENIC_DMA_REQ_AUTO,
-+	INGENIC_DMA_REQ_AUTO,
-+	INGENIC_DMA_REQ_AIC_LOOP_RX,
-+	INGENIC_DMA_REQ_AIC_TX,
-+	INGENIC_DMA_REQ_AIC_F_RX,
-+	INGENIC_DMA_REQ_AUTO_TX,
-+	INGENIC_DMA_REQ_SADC_RX,
-+	INGENIC_DMA_REQ_UART5_TX,
-+	INGENIC_DMA_REQ_UART5_RX,
-+	INGENIC_DMA_REQ_UART4_TX,
-+	INGENIC_DMA_REQ_UART4_RX,
-+	INGENIC_DMA_REQ_UART3_TX,
-+	INGENIC_DMA_REQ_UART3_RX,
-+	INGENIC_DMA_REQ_UART2_TX,
-+	INGENIC_DMA_REQ_UART2_RX,
-+	INGENIC_DMA_REQ_UART1_TX,
-+	INGENIC_DMA_REQ_UART1_RX,
-+	INGENIC_DMA_REQ_UART0_TX,
-+	INGENIC_DMA_REQ_UART0_RX,
-+	INGENIC_DMA_REQ_SSI0_TX,
-+	INGENIC_DMA_REQ_SSI0_RX,
-+	INGENIC_DMA_REQ_SSI1_TX,
-+	INGENIC_DMA_REQ_SSI1_RX,
-+	INGENIC_DMA_REQ_SLV_TX,
-+	INGENIC_DMA_REQ_SLV_RX,
-+	INGENIC_DMA_REQ_I2C0_TX,
-+	INGENIC_DMA_REQ_I2C0_RX,
-+	INGENIC_DMA_REQ_I2C1_TX,
-+	INGENIC_DMA_REQ_I2C1_RX,
-+	INGENIC_DMA_REQ_DES_TX,
-+	INGENIC_DMA_REQ_DES_RX,
-+};
-+
-+void jzdma_dump(struct dma_chan *chan);
-+#endif /*__INGENIC_DMA_H__*/
--- 
-2.17.1
+Adding ASoC binding layer:
+soc-usb: Intention is to treat a USB port similar to a headphone jack.
+The port is always present on the device, but cable/pin status can be
+enabled/disabled.  Expose mechanisms for USB backend ASoC drivers to
+communicate with USB SND.
+
+Create a USB backend for Q6DSP:
+q6usb: Basic backend driver that will be responsible for maintaining the
+resources needed to initiate a playback stream using the Q6DSP.  Will
+be the entity that checks to make sure the connected USB audio device
+supports the requested PCM format.  If it does not, the PCM open call will
+fail, and userpsace ALSA can take action accordingly.
+
+Introduce XHCI interrupter support:
+XHCI HCD supports multiple interrupters, which allows for events to be routed
+to different event rings.  This is determined by "Interrupter Target" field
+specified in Section "6.4.1.1 Normal TRB" of the XHCI specification.
+
+Events in the offloading case will be routed to an event ring that is assigned
+to the audio DSP.
+
+Create vendor ops for the USB SND driver:
+qc_audio_offload: This particular driver has several components associated
+with it:
+- QMI stream request handler
+- XHCI interrupter and resource management
+- audio DSP memory management
+
+When the audio DSP wants to enable a playback stream, the request is first
+received by the ASoC platform sound card.  Depending on the selected route,
+ASoC will bring up the individual DAIs in the path.  The Q6USB backend DAI
+will send an AFE port start command (with enabling the USB playback path), and
+the audio DSP will handle the request accordingly.
+
+Part of the AFE USB port start handling will have an exchange of control
+messages using the QMI protocol.  The qc_audio_offload driver will populate the
+buffer information:
+- Event ring base address
+- EP transfer ring base address
+
+and pass it along to the audio DSP.  All endpoint management will now be handed
+over to the DSP, and the main processor is not involved in transfers.
+
+Overall, implementing this feature will still expose separate sound card and PCM
+devices for both the platorm card and USB audio device:
+ 0 [SM8250MTPWCD938]: sm8250 - SM8250-MTP-WCD9380-WSA8810-VA-D
+                      SM8250-MTP-WCD9380-WSA8810-VA-DMIC
+ 1 [Audio          ]: USB-Audio - USB Audio
+                      Generic USB Audio at usb-xhci-hcd.1.auto-1.4, high speed
+
+This is to ensure that userspace ALSA entities can decide which route to take
+when executing the audio playback.  In the above, if card#1 is selected, then
+USB audio data will take the legacy path over the USB PCM drivers, etc...
+
+This feature was validated using:
+- tinymix: set/enable the multimedia path to route to USB backend
+- tinyplay: issue playback on platform card
+
+Changelog
+--------------------------------------------
+Changes in v18:
+- Rebased to usb-next, which merged in part of the series.  Removed these patches.
+- Reworked Kconfigs for the ASoC USB related components from QCOM Q6DSP drivers
+  to keep dependencies in place for SoC USB and USB SND.
+- Removed the repurposing of the stop ep sync API into existing XHCI operations.
+  This will be solely used by the XHCI sideband for now.
+
+Changes in v17:
+- Fixed an issue where one patch was squashed into another.
+- Re-added some kconfig checks for helpers exposed in USB SND for the soc usb
+  driver, after running different kconfigs.
+
+Changes in v16:
+- Modified some code layer dependencies so that soc usb can be split as a separate
+  module.
+  - Split the kcontrols from ASoC QCOM common layer into a separate driver
+- Reworked SOC USB kcontrols for controlling card + pcm offload routing and status
+  so that there are individual controls for card and pcm devices.
+- Added a kcontrol remove API in SOC USB to remove the controls on the fly.  This
+  required to add some kcontrol management to SOC USB.
+- Removed the disconnect work and workqueue for the QC USB offload as it is not
+  required, since QMI interface driver ensures events are handled in its own WQ.
+
+Changes in v15:
+- Removed some already merged XHCI changes
+- Separated SOC USB driver from being always compiled into SOC core.  Now
+  configurable from kconfig.
+- Fixed up ASoC kcontrol naming to fit guidelines.
+- Removed some unnecessary dummy ifdefs.
+- Moved usb snd offload capable kcontrol to be initialized by the platform offloading
+  driver.
+
+Changes in v14:
+- Cleaned up some USB SND related feedback:
+  - Renamed SNDUSB OFFLD playback available --> USB offload capable card
+  - Fixed locking while checking if stream is in use
+  - Replaced some mutex pairs with guard(mutex)
+
+Changes in v13:
+- Pulled in secondary/primary interrupter rework from Mathias from:
+  https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/drivers/usb/host?h=fix_eventhandling
+  - Did some cleanup and commit message updates, and tested on current code base.
+- Added mutex locking to xhci sideband to help prevent any race conditions, esp. for when accessing shared
+  references.
+- Addresed concerns from Hillf about gfp_flags and locking used in qc_usb_audio_offload.
+- Rebased onto usb-next
+
+Changes in v12:
+- Updated copyright year to 2024.  Happy new years!
+- Fixed newline format on mixer offload driver.
+
+Changes in v11:
+- Modified QMI format structures to be const
+
+Changes in v10:
+- Added new mixer for exposing kcontrol for sound card created by USB SND.  This
+allows for applications to know which platform sound card has offload support.
+Will return the card number.
+- Broke down and cleaned up some functions/APIs within qc_audio_offload driver.
+- Exported xhci_initialize_ring_info(), and modified XHCI makefile to allow for
+the XHCI sideband to exist as a module.
+- Reworked the jack registration and moved it to the QCOM platform card driver,
+ie sm8250.
+- Added an SOC USB API to fetch a standard component tag that can be appended to
+the platform sound card.  Added this tag to sm8250 if any USB path exists within
+the DT node.
+- Moved kcontrols that existed in the Q6USB driver, and made it a bit more generic,
+so that naming can be standardized across solutions.  SOC USB is now responsible
+for creation of these kcontrols.
+- Added a SOC USB RST document explaining some code flows and implementation details
+so that other vendors can utilize the framework.
+- Addressed a case where USB device connection events are lost if usb offload driver
+(qc_audio_offload) is not probed when everything else has been initialized, ie 
+USB SND, SOC USB and ASoC sound card.  Add a rediscover device call during module
+init, to ensure that connection events will be propagated.
+- Rebased to usb-next.
+
+Changes in v9:
+- Fixed the dt binding check issue with regards to num-hc-interrupters.
+
+Changes in v8:
+- Cleaned up snd_soc_usb_find_priv_data() based on Mark's feedback.  Removed some of
+the duplicate looping code that was present on previous patches.  Also renamed the API.
+- Integrated Mathias' suggestions on his new sideband changes:
+https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=feature_interrupters
+- Addressed some of Mathias' fixme tags, such as:
+ - Resetting transfer ring dequeue/enqueue pointers
+ - Issuing stop endpoint command during ep removal
+ - Reset ERDP properly to first segment ring during interrupter removal. (this is currently
+   just being cleared to 0, but should be pointing to a valid segment if controller is still
+   running.
+
+Changes in v7:
+- Fixed dt check error for q6usb bindings
+- Updated q6usb property from qcom,usb-audio-intr-num --> qcom,usb-audio-intr-idx
+- Removed separate DWC3 HC interrupters num property, and place limits to XHCI one.
+- Modified xhci_ring_to_sgtable() to use assigned IOVA/DMA address to fetch pages, as
+it is not ensured event ring allocated is always done in the vmalloc range.
+
+Changes in v6:
+- Fixed limits and description on several DT bindings (XHCI and Q6USB)
+- Fixed patch subjects to follow other ALSA/ASoC notations.
+
+USB SND
+- Addressed devices which expose multiple audio (UAC) interfaces.  These devices will
+create a single USB sound card with multiple audio streams, and receive multiple
+interface probe routines.  QC offload was not properly considering cases with multiple
+probe calls.
+- Renamed offload module name and kconfig to fit within the SND domain.
+- Renamed attach/detach endpoint API to keep the hw_params notation.
+
+Changes in v5:
+- Removed some unnescessary files that were included
+- Fixed some typos mentioned
+- Addressed dt-binding issues and added hc-interrupters definition to usb-xhci.yaml
+
+XHCI:
+- Moved secondary skip events API to xhci-ring and updated implementation
+   - Utilized existing XHCI APIs, such as inc_deq and xhci_update_erst_dequeue()
+
+USB SND
+- Renamed and reworked the APIs in "sound: usb: Export USB SND APIs for modules" patch to
+include suggestions to utilize snd_usb_hw_params/free and to avoid generic naming.
+- Added a resume_cb() op for completion sake.
+- Addressed some locking concerns with regards to when registering for platform hooks.
+- Added routine to disconnect all offloaded devices during module unbind.
+
+ASoC
+- Replaced individual PCM parameter arguments in snd_soc_usb_connect() with new
+snd_soc_usb_device structure to pass along PCM info.
+- Modified snd_jack set report to notify HEADPHONE event, as we do not support record path.
+
+Changes in v4:
+- Rebased to xhci/for-usb-next
+- Addressed some dt-bindings comments
+
+XHCI:
+- Pulled in latest changes from Mathias' feature_interrupters branch:
+https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=feature_interrupters
+
+- Fixed commit text and signage for the XHCI sideband/interrupter related changes
+- Added some logic to address the FIXME tags mentioned throughout the commits, such
+as handling multi segment rings and building the SGT, locking concerns, and ep
+cleanup operations.
+- Removed some fixme tags for conditions that may not be needed/addressed.
+- Repurposed the new endpoint stop sync API to be utilized in other places.
+- Fixed potential compile issue if XHCI sideband config is not defined.
+
+ASoC:
+- Added sound jack control into the Q6USB driver.  Allows for userpsace to know when
+an offload capable device is connected.
+
+USB SND:
+- Avoided exporting _snd_pcm_hw_param_set based on Takashi's recommendation.
+- Split USB QMI packet header definitions into a separate commit.  This is used to
+properly allow the QMI interface driver to parse and route QMI packets accordingly
+- Added a "depends on" entry when enabling QC audio offload to avoid compile time
+issues.
+
+Changes in v3:
+- Changed prefix from RFC to PATCH
+- Rebased entire series to usb-next
+- Updated copyright years
+
+XHCI:
+- Rebased changes on top of XHCI changes merged into usb-next, and only added
+changes that were still under discussion.
+- Added change to read in the "num-hc-interrupters" device property.
+
+ASoC:
+- qusb6 USB backend
+  - Incorporated suggestions to fetch iommu information with existing APIs
+  - Added two new sound kcontrols to fetch offload status and offload device
+    selection.
+    - offload status - will return the card and pcm device in use
+        tinymix -D 0 get 1 --> 1, 0 (offload in progress on card#1 pcm#0)
+
+    - device selection - set the card and pcm device to enable offload on. Ex.:
+        tinymix -D 0 set 1 2 0  --> sets offload on card#2 pcm#0
+                                    (this should be the USB card)
+
+USB SND:
+- Fixed up some locking related concerns for registering platform ops.
+   - Moved callbacks under the register_mutex, so that 
+- Modified APIs to properly pass more information about the USB SND device, so
+that the Q6USB backend can build a device list/map, in order to monitor offload
+status and device selection.
+
+Changes in v2:
+
+XHCI:
+- Replaced XHCI and HCD changes with Mathias' XHCI interrupter changes
+in his tree:
+https://git.kernel.org/pub/scm/linux/kernel/git/mnyman/xhci.git/log/?h=feature_interrupters
+
+Adjustments made to Mathias' changes:
+  - Created xhci-intr.h to export/expose interrupter APIs versus exposing xhci.h.
+    Moved dependent structures to this file as well. (so clients can parse out
+    information from "struct xhci_interrupter")
+  - Added some basic locking when requesting interrupters.
+  - Fixed up some sanity checks.
+  - Removed clearing of the ERSTBA during freeing of the interrupter. (pending
+    issue where SMMU fault occurs if DMA addr returned is 64b - TODO)
+
+- Clean up pending events in the XHCI secondary interrupter.  While testing USB
+bus suspend, it was seen that on bus resume, the xHCI HC would run into a command
+timeout.
+- Added offloading APIs to xHCI to fetch transfer and event ring information.
+
+ASoC:
+- Modified soc-usb to allow for multiple USB port additions.  For this to work,
+the USB offload driver has to have a reference to the USB backend by adding
+a "usb-soc-be" DT entry to the device saved into XHCI sysdev.
+- Created separate dt-bindings for defining USB_RX port.
+- Increased APR timeout to accommodate the situation where the AFE port start
+command could be delayed due to having to issue a USB bus resume while
+handling the QMI stream start command.
+
+USB SND:
+- Added a platform ops during usb_audio_suspend().  This allows for the USB
+offload driver to halt the audio stream when system enters PM suspend.  This
+ensures the audio DSP is not issuing transfers on the USB bus.
+- Do not override platform ops if they are already populated.
+- Introduce a shared status variable between the USB offload and USB SND layers,
+to ensure that only one path is active at a time.  If the USB bus is occupied,
+then userspace is notified that the path is busy.
+
+Mathias Nyman (2):
+  xhci: add helper to stop endpoint and wait for completion
+  xhci: sideband: add initial api to register a sideband entity
+
+Wesley Cheng (39):
+  usb: host: xhci: Export enable and disable interrupter APIs
+  usb: host: xhci: Repurpose event handler for skipping interrupter
+    events
+  xhci: export XHCI IMOD setting helper for interrupters
+  usb: host: xhci-sideband: Expose a sideband interrupter enable API
+  usb: host: xhci-mem: Cleanup pending secondary event ring events
+  usb: host: xhci-mem: Allow for interrupter clients to choose specific
+    index
+  ASoC: Add SOC USB APIs for adding an USB backend
+  ASoC: dt-bindings: qcom,q6dsp-lpass-ports: Add USB_RX port
+  ASoC: qcom: qdsp6: Introduce USB AFE port to q6dsp
+  ASoC: qdsp6: q6afe: Increase APR timeout
+  ASoC: qcom: qdsp6: Add USB backend ASoC driver for Q6
+  ALSA: usb-audio: Introduce USB SND platform op callbacks
+  ALSA: usb-audio: Export USB SND APIs for modules
+  ALSA: usb-audio: Save UAC sample size information
+  usb: dwc3: Specify maximum number of XHCI interrupters
+  usb: host: xhci-plat: Set XHCI max interrupters if property is present
+  ALSA: usb-audio: qcom: Add USB QMI definitions
+  ALSA: usb-audio: qcom: Introduce QC USB SND offloading support
+  ALSA: usb-audio: Check for support for requested audio format
+  ASoC: usb: Add PCM format check API for USB backend
+  ASoC: qcom: qdsp6: Ensure PCM format is supported by USB audio device
+  ALSA: usb-audio: Prevent starting of audio stream if in use
+  ALSA: usb-audio: Do not allow USB offload path if PCM device is in use
+  ASoC: dt-bindings: Update example for enabling USB offload on SM8250
+  ALSA: usb-audio: qcom: Populate PCM and USB chip information
+  ASoC: qcom: qdsp6: Add support to track available USB PCM devices
+  ASoC: Introduce SND kcontrols to select sound card and PCM device
+  ASoC: qcom: qdsp6: Add SOC USB offload select get/put callbacks
+  ASoC: Introduce SND kcontrols to track USB offloading state
+  ASoC: qcom: qdsp6: Add PCM ops to track current state
+  ASoC: usb: Create SOC USB SND jack kcontrol
+  ASoC: qcom: qdsp6: Add headphone jack for offload connection status
+  ASoC: usb: Fetch ASoC sound card information
+  ALSA: usb-audio: Add USB offloading capable kcontrol
+  ALSA: usb-audio: Allow for rediscovery of connected USB SND devices
+  ALSA: usb-audio: qcom: Use card and PCM index from QMI request
+  ASoC: usb: Rediscover USB SND devices on USB port add
+  ASoC: qcom: Populate SoC components string
+  ASoC: doc: Add documentation for SOC USB
+
+ .../bindings/sound/qcom,sm8250.yaml           |   15 +
+ Documentation/sound/soc/index.rst             |    1 +
+ Documentation/sound/soc/usb.rst               |  611 ++++++
+ drivers/usb/dwc3/core.c                       |   12 +
+ drivers/usb/dwc3/core.h                       |    2 +
+ drivers/usb/dwc3/host.c                       |    3 +
+ drivers/usb/host/Kconfig                      |    9 +
+ drivers/usb/host/Makefile                     |    2 +
+ drivers/usb/host/xhci-mem.c                   |   37 +-
+ drivers/usb/host/xhci-plat.c                  |    2 +
+ drivers/usb/host/xhci-ring.c                  |   50 +-
+ drivers/usb/host/xhci-sideband.c              |  439 ++++
+ drivers/usb/host/xhci.c                       |   48 +-
+ drivers/usb/host/xhci.h                       |   18 +-
+ .../sound/qcom,q6dsp-lpass-ports.h            |    1 +
+ include/linux/usb/xhci-sideband.h             |   70 +
+ include/sound/q6usboffload.h                  |   20 +
+ include/sound/soc-usb.h                       |  182 ++
+ sound/soc/Kconfig                             |   10 +
+ sound/soc/Makefile                            |    2 +
+ sound/soc/qcom/Kconfig                        |   15 +
+ sound/soc/qcom/Makefile                       |    2 +
+ sound/soc/qcom/qdsp6/Makefile                 |    1 +
+ sound/soc/qcom/qdsp6/q6afe-dai.c              |   60 +
+ sound/soc/qcom/qdsp6/q6afe.c                  |  193 +-
+ sound/soc/qcom/qdsp6/q6afe.h                  |   36 +-
+ sound/soc/qcom/qdsp6/q6dsp-lpass-ports.c      |   23 +
+ sound/soc/qcom/qdsp6/q6dsp-lpass-ports.h      |    1 +
+ sound/soc/qcom/qdsp6/q6routing.c              |    9 +
+ sound/soc/qcom/qdsp6/q6usb.c                  |  408 ++++
+ sound/soc/qcom/sm8250.c                       |   15 +-
+ sound/soc/qcom/usb_offload_utils.c            |   51 +
+ sound/soc/qcom/usb_offload_utils.h            |   26 +
+ sound/soc/soc-usb.c                           |  660 ++++++
+ sound/usb/Kconfig                             |   25 +
+ sound/usb/Makefile                            |    2 +-
+ sound/usb/card.c                              |  109 +
+ sound/usb/card.h                              |   15 +
+ sound/usb/endpoint.c                          |    1 +
+ sound/usb/format.c                            |    1 +
+ sound/usb/helper.c                            |    1 +
+ sound/usb/pcm.c                               |  104 +-
+ sound/usb/pcm.h                               |   11 +
+ sound/usb/qcom/Makefile                       |    6 +
+ sound/usb/qcom/mixer_usb_offload.c            |   65 +
+ sound/usb/qcom/mixer_usb_offload.h            |   17 +
+ sound/usb/qcom/qc_audio_offload.c             | 1914 +++++++++++++++++
+ sound/usb/qcom/usb_audio_qmi_v01.c            |  892 ++++++++
+ sound/usb/qcom/usb_audio_qmi_v01.h            |  162 ++
+ 49 files changed, 6306 insertions(+), 53 deletions(-)
+ create mode 100644 Documentation/sound/soc/usb.rst
+ create mode 100644 drivers/usb/host/xhci-sideband.c
+ create mode 100644 include/linux/usb/xhci-sideband.h
+ create mode 100644 include/sound/q6usboffload.h
+ create mode 100644 include/sound/soc-usb.h
+ create mode 100644 sound/soc/qcom/qdsp6/q6usb.c
+ create mode 100644 sound/soc/qcom/usb_offload_utils.c
+ create mode 100644 sound/soc/qcom/usb_offload_utils.h
+ create mode 100644 sound/soc/soc-usb.c
+ create mode 100644 sound/usb/qcom/Makefile
+ create mode 100644 sound/usb/qcom/mixer_usb_offload.c
+ create mode 100644 sound/usb/qcom/mixer_usb_offload.h
+ create mode 100644 sound/usb/qcom/qc_audio_offload.c
+ create mode 100644 sound/usb/qcom/usb_audio_qmi_v01.c
+ create mode 100644 sound/usb/qcom/usb_audio_qmi_v01.h
 
 
