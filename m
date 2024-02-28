@@ -1,86 +1,114 @@
-Return-Path: <devicetree+bounces-46848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D515A86AFC0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:03:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1442286AFBB
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:02:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9018328956D
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:03:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C2B322894CD
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:02:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CF8F14A09D;
-	Wed, 28 Feb 2024 13:02:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC9E314900E;
+	Wed, 28 Feb 2024 13:02:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hCg28rL8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com [209.85.128.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2874473508
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:02:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F1F53BBEE
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:02:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709125373; cv=none; b=fl6KnmWewFM/7SsZ0S5O+91RrWaVpWHvXxASrQI5UaBRLoyaLZnkMz2/mN6AD1hTu4CdNcho3slgN/MG5HDO7MgCeyEBH2J8e1g/+0b0pNOWHc624e5CLd+shLC1RSDdSpa+G4D5aZd7EsEASoXwriOyoDq3kG4DEy7PWfnS+og=
+	t=1709125371; cv=none; b=YMYAkltVPbEelbEpfYTc5kriNtZlSzXBxyK+IRCTFSL7r989sHnyRDLrMHTs8UbeC+DewvzMOdVbV/U1nBK5hHjYXShlvPIJnn1nqF4/nRlglF/rbI502cfgcmlTO/qaFg/5l45HW86xSmddqvwWKko5qNJ/gzoxA40VAYX9ShM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709125373; c=relaxed/simple;
-	bh=QsjkyqxolCaU00ZJBzcoMG8l5n3m7QZF8NFZzPIUWbg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=SUyMVNcMpdBVvbZ4dtFh2Pdv2OKc9sb4MXmcSm/6vIpRJjRg+l/PY+PIoUr9bznrnOK0j2ChloI5bqBMzHS2D7LUI1QJYV0d06up5cGD5j8HYpaYk26jPSES8lQpWrhYn3gYkihVxjMIMuCzxmSxHhW//rADm8HcBZQ1rkvus9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
-Received: from i53875b6c.versanet.de ([83.135.91.108] helo=phil.lan)
-	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <heiko@sntech.de>)
-	id 1rfJZz-00020N-VK; Wed, 28 Feb 2024 14:02:36 +0100
-From: Heiko Stuebner <heiko@sntech.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@debian.org>
-Cc: Heiko Stuebner <heiko@sntech.de>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 0/2] arm64: Add basic support for QNAP TS-433
-Date: Wed, 28 Feb 2024 14:02:33 +0100
-Message-Id: <170912529798.972844.13858021934962822938.b4-ty@sntech.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <cover.1709034476.git.ukleinek@debian.org>
-References: <cover.1709034476.git.ukleinek@debian.org>
+	s=arc-20240116; t=1709125371; c=relaxed/simple;
+	bh=3cYG7GaJLaJHPFKTz6+fE0NqWzsbSwHco8JoDUKQEQY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=hsFA9eCN8PMGTKqHtZG5PoncsHzaXVwcxPIYuwHwO8M9XduQFRv9rRaGEy4hpmcUxBh/MdxCJD2n//JxNn3K9aZ9Vv1htfOuz7r5PZ6+xWECIqGv9WRt8Dswx69uZzZ4V1h7PSmRiWgayhHp5lfvlsNgUwQqH7D4l90pSqJqYA4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hCg28rL8; arc=none smtp.client-ip=209.85.128.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-609241c2696so20453587b3.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 05:02:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709125369; x=1709730169; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=x6lSKguAFNJlnGwYnPcXJDGp7aYh6GWsOXe6nAyiYVg=;
+        b=hCg28rL8oQhsqzK4oYJZsSxvYvmljTITpK5k0wS+vfNH+vKG9z8H8l5pp4r41mYF+9
+         p510o9l1WIA8Wm7T2r7h9/mLz4CKHFsNRJMgKj+qmuxzkae8EV6/HWFyRNPzuPZ9SmEV
+         ZIRGSRmM2X1v7AVwcX0W432l6Y7VrBQ+JpLoXLVyFEhXIECUyUfUSsGZweEpmqQBbJnS
+         npv0fQnT12bn58e6iJOQuzd/Lyyz8WvczN9nn8lQMSlDEZi7u/6/Z/FFB72Dh9XxQ2Jh
+         ArmuL0uyavKLdZorcCRUuOASszDvpDEzvOjBs6U/pgfHnSXTdEo5tqmNGwpzdrmOBbie
+         C27Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709125369; x=1709730169;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=x6lSKguAFNJlnGwYnPcXJDGp7aYh6GWsOXe6nAyiYVg=;
+        b=VuPGXx3etPponPYXIxOM5zI2htnNzu/LS1MoNY3xq+19hfgS7yn84p+EMiZNfPMzom
+         rLiED6z/8PgZQVUeaBQ+kwNE9coT1kIncqoJ90Rgrkmy9IbtR4kkXdOUw5UdoT2IIBt3
+         gpkUgy1WCCjYQQGPqrtmvKDfpI8Of4VUaXCweQ6iud7Gq1BKfS002wgr6HFDp5pCJkSJ
+         cjwh72os6SVfcJMmMueuNl39iUPXtHKQY+0nFAAjH2qo6wrfl5uf1u0uFvax1XEY7hmd
+         LAFTN/S3v2YPz6DvtFo/PcMbNINIs0ZU2YpSmJ7uGC8/ZlBET7SFoVHJFcc+rIZ1yBX8
+         89Qg==
+X-Forwarded-Encrypted: i=1; AJvYcCXHxBfPfAJGiyN/lhSG34tvMdN16qhP3EQwuzgo1y3PJB/b7Q+utQRWloP1V9OtLxU9FPqMGFTJ+g3ZH/tIzQ5NneipGsjWPAWs8Q==
+X-Gm-Message-State: AOJu0YwPA4UcdNEMnORSyAjK0ad4EBSR0hxn0mo5NSuH93L6mXMuUXM/
+	Jwzg/guV0wb78/nQMZKPVAvvQAvdZAoO16DR6B4u1fBltgAl10Pimpud4uqOZyIhml0af5WJ5ZX
+	iBsM99Eb67JSFiQIWeuDWZYQRRHpKHS2WyFGXKg==
+X-Google-Smtp-Source: AGHT+IHt515XwjEFX2Talx1MabYfeTXhLsH0vACvt9NK8SBc6/4ePgqNHrqmsK6WApAXc6SEFfgq73kQu0EE4nMTs0E=
+X-Received: by 2002:a05:6902:1b09:b0:dcc:53c6:113a with SMTP id
+ eh9-20020a0569021b0900b00dcc53c6113amr2580289ybb.59.1709125368961; Wed, 28
+ Feb 2024 05:02:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+References: <20240218-msm8996-fix-ufs-v3-0-40aab49899a3@linaro.org> <yq1o7c24oyt.fsf@ca-mkp.ca.oracle.com>
+In-Reply-To: <yq1o7c24oyt.fsf@ca-mkp.ca.oracle.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 28 Feb 2024 15:02:37 +0200
+Message-ID: <CAA8EJpqUrvzU_=EGcXdpLjVetSkCv0vfnc1hNhPQdyUQvY7UzQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/5] scsi: ufs: qcom: fix UFSDHCD support on MSM8996 platform
+To: "Martin K. Petersen" <martin.petersen@oracle.com>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	"James E.J. Bottomley" <jejb@linux.ibm.com>, Nitin Rawat <quic_nitirawa@quicinc.com>, 
+	Can Guo <quic_cang@quicinc.com>, 
+	Naveen Kumar Goud Arepalli <quic_narepall@quicinc.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Alim Akhtar <alim.akhtar@samsung.com>, Avri Altman <avri.altman@wdc.com>, 
+	Bart Van Assche <bvanassche@acm.org>, Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-scsi@vger.kernel.org, devicetree@vger.kernel.org, 
+	stable@vger.kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On Tue, 27 Feb 2024 12:52:35 +0100, Uwe Kleine-König wrote:
-> this is an initial dts to support QNAP's TS-433 NAS. It's enough to
-> start the debian installer with a custom built kernel (original Debian
-> kernel fails to open a console, didn't debug that yet) and access HD,
-> eMMC, RTC and network.
-> 
-> There are still some missing bits and pieces, but to make people aware
-> there are efforts to support this machine and so prevent duplicate work,
-> I think it makes sense to add the dts in its current form already.
-> 
-> [...]
+On Tue, 27 Feb 2024 at 04:33, Martin K. Petersen
+<martin.petersen@oracle.com> wrote:
+>
+>
+> Dmitry,
+>
+> > First several patches target fixing the UFS support on the Qualcomm
+> > MSM8996 / APQ8096 platforms, broken by the commit b4e13e1ae95e ("scsi:
+> > ufs: qcom: Add multiple frequency support for
+> > MAX_CORE_CLK_1US_CYCLES"). Last two patches clean up the UFS DT device
+> > on that platform to follow the bindings on other MSM8969 platforms. If
+> > such breaking change is unacceptable, they can be simply ignored,
+> > merging fixes only.
+>
+> Does not apply to 6.9/scsi-staging. Please rebase if you want this
+> series to go through the SCSI tree.
 
-Applied, thanks!
+Please pick up just the UFS patch. DT patches should go through arm-soc tree.
 
-[1/2] dt-bindings: arm: rockchip: Add QNAP TS-433
-      commit: 0660dd951e1a09e155e31732fbdf735112b5d6c4
-[2/2] arm64: dts: rockchip: Add basic support for QNAP TS-433
-      commit: 9da1c0327d58e0cfc2d86799192585ddeb1ae4a0
-
-Moved &gmac above &i2c* - alphabetical sorting and all
-
-
-Best regards,
 -- 
-Heiko Stuebner <heiko@sntech.de>
+With best wishes
+Dmitry
 
