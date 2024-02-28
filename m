@@ -1,112 +1,231 @@
-Return-Path: <devicetree+bounces-47019-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47020-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA12B86BA89
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 23:08:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B60CC86BAEC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 23:48:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 656CF288730
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 22:08:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3B0F01F21A2E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 22:48:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 712C11361B4;
-	Wed, 28 Feb 2024 22:08:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A202C6EF1C;
+	Wed, 28 Feb 2024 22:48:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JX3RE+mK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rQCD9vb1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40E001361A4;
-	Wed, 28 Feb 2024 22:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 757E61361B0;
+	Wed, 28 Feb 2024 22:48:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709158127; cv=none; b=cDZfvCUumjVJnNCsv+jRWGpH4JGdZPIbIO8MbQ2Zjtr6FwSXhUU/mE2bPu0i9P6kd0zRhGTbZs1tv0JTos8s5K8/X74O7JcK0EaUeS1SnmX3VqkgpDcDQyzj6WuYzwBuhhZnDPhGbG9Z89UFmu4CZFxuWEx8Sm+PaDvNyYFjHg0=
+	t=1709160481; cv=none; b=RoyqUpJ4luGNhIhMri+iWP+WkRXP4xFAvOOAILFLcVC1anS9MO40hDqfvy+EFDu9lhpDKaBOpkss6Ke53qxN1kQkOtE1quISIZqOdK3jF4kHHj1rmWbSXm49XnmO4Cy8EwNc/3IM6ykjWpQcQb8ZD2Xnp+KpgfiWBYHMZkXY66k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709158127; c=relaxed/simple;
-	bh=cDIB7eI+qfgraTst6qw8uLCsKY/61Gvo/qIhEP5EUZc=;
-	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
-	 Content-Disposition:In-Reply-To; b=qv8Xq/kzhA1JflSfCBreCfTN+niV6vzgOrP2pGk2SyiYumbMbxaIHRLamofa4j6eWnus7fAMtS6x+YQI5TgKKHQJ2perLZlkv3SAk2sLNLOZaoxkZUzcGqEV1lMNic/NTViogk8uWmZoVQmXFGvtum9uPjXskXgcW8HoPgaMX8s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JX3RE+mK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BD49C433C7;
-	Wed, 28 Feb 2024 22:08:45 +0000 (UTC)
+	s=arc-20240116; t=1709160481; c=relaxed/simple;
+	bh=imNeDCybnQTqCSixbtIV0f49WNytkR9qirQh/BflgTg=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=MPjZlbjzsShYHr2tCFAnkQ6SZzQ0nE+2hqV2ahw5nK8trYhtWOQBZi46oex4z/JJPkJn35V5vTlIgfS2euGbD2D2uijeHaRLk+q6lC3Q7O0LPXpEU9Z6ig40656FIHLaj7Hf+l8IsQgjw8Q1VduAxViicG79V74YPR/bOrrS5pI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rQCD9vb1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA43CC433F1;
+	Wed, 28 Feb 2024 22:48:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709158125;
-	bh=cDIB7eI+qfgraTst6qw8uLCsKY/61Gvo/qIhEP5EUZc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:From;
-	b=JX3RE+mKdKR3cvs2/r6iCFu+RJTvicZ9D4D1E2qwq5kEnO0q5ozRlFgi6RPZbSD+n
-	 Kz4JTeGOFFE+8Ox6q084bxDjKJW4oPxfZ8wulEKEe8AV70+XjzAGUUasrk7PMcGkMz
-	 /aa9ExC4RfKqEYouEuTIsCvdNLApe6NIUDhWwzfMHYy0o6RLioqLF2/n3FYxluK5dy
-	 1oEStdLGgcp4lNjFeAeiP7RL8w0FHuHX30YRNgOMCN7VenEGcbN5yDv3/A1oBIlv8T
-	 bpgfItgqgi/zRR0UTHiu3c5RVlCErz9/KijTaVaAkX8bLkRMs9iBLd431PSMnA/GZO
-	 /gWj+V8w2a8hQ==
-Date: Wed, 28 Feb 2024 16:08:43 -0600
-From: Bjorn Helgaas <helgaas@kernel.org>
-To: Johan Hovold <johan+linaro@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and
- GICv3 ITS enable
-Message-ID: <20240228220843.GA309344@bhelgaas>
+	s=k20201202; t=1709160481;
+	bh=imNeDCybnQTqCSixbtIV0f49WNytkR9qirQh/BflgTg=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=rQCD9vb1vr8YHCT/cgkG3W7cl4iANHxlC78YiqJYGmoVBGqQiEb+hTHozvMqU6wZU
+	 ASxO/ZoEKOmJqEd9cagY1syCwVISUecVoZBAimrvdm76l2hPsYHp89/lFlmiyBp/Sc
+	 eHAEd7hznx95l2X+bOVA8UybOZfH3P057IOz1nPtsHctrCp3QUC6ITFbPcq4o0v7Gb
+	 /IOGef/PdArRlTZRdlCRt/GfXzIXqwGTDL5RZ0slMm1aNqJzJtwk4VifL4MjgprKDd
+	 pbRTcOEl4IbYDzkkDAjCZpAhZmuMCdDnOCFgZ/PN3+xVbPZ8j+dEvVxTjInyMGPST9
+	 i7+aa6QfDAI+w==
+Message-ID: <8acf846e767884978f3bb98646433551.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240223152124.20042-1-johan+linaro@kernel.org>
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAP6Zq1g5gwXvYzO5fnHxG-6__gSCpNBY7VeEPyr4Qtijya6EfQ@mail.gmail.com>
+References: <20240131182653.2673554-1-tmaimon77@gmail.com> <20240131182653.2673554-4-tmaimon77@gmail.com> <74e003c6d80611ddd826ac21f48b4b3a.sboyd@kernel.org> <CAP6Zq1g5gwXvYzO5fnHxG-6__gSCpNBY7VeEPyr4Qtijya6EfQ@mail.gmail.com>
+Subject: Re: [PATCH v23 3/3] clk: npcm8xx: add clock controller
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: benjaminfair@google.com, joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org, mturquette@baylibre.com, robh+dt@kernel.org, tali.perry1@gmail.com, venture@google.com, yuenn@google.com, openbmc@lists.ozlabs.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+To: Tomer Maimon <tmaimon77@gmail.com>
+Date: Wed, 28 Feb 2024 14:47:58 -0800
+User-Agent: alot/0.10
 
-[+to Mani]
+Quoting Tomer Maimon (2024-02-25 10:00:35)
+> Hi Stephen,
+>=20
+> On Thu, 22 Feb 2024 at 07:58, Stephen Boyd <sboyd@kernel.org> wrote:
+> >
+> > Quoting Tomer Maimon (2024-01-31 10:26:53)
+> > > diff --git a/drivers/clk/clk-npcm8xx.c b/drivers/clk/clk-npcm8xx.c
+> > > new file mode 100644
+> > > index 000000000000..eacb579d30af
+> > > --- /dev/null
+> > > +++ b/drivers/clk/clk-npcm8xx.c
+> > > @@ -0,0 +1,509 @@
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +/*
+> > > + * Nuvoton NPCM8xx Clock Generator
+> > > + * All the clocks are initialized by the bootloader, so this driver =
+allows only
+> > [...]
+> > > +
+> > > +/* external clock definition */
+> > > +#define NPCM8XX_CLK_S_REFCLK   "refclk"
+> > > +
+> > > +/* pll definition */
+> > > +#define NPCM8XX_CLK_S_PLL0     "pll0"
+> > > +#define NPCM8XX_CLK_S_PLL1     "pll1"
+> > > +#define NPCM8XX_CLK_S_PLL2     "pll2"
+> > > +#define NPCM8XX_CLK_S_PLL_GFX  "pll_gfx"
+> > > +
+> > > +/* early divider definition */
+> > > +#define NPCM8XX_CLK_S_PLL2_DIV2                "pll2_div2"
+> > > +#define NPCM8XX_CLK_S_PLL_GFX_DIV2     "pll_gfx_div2"
+> > > +#define NPCM8XX_CLK_S_PLL1_DIV2                "pll1_div2"
+> > > +
+> > > +/* mux definition */
+> > > +#define NPCM8XX_CLK_S_CPU_MUX     "cpu_mux"
+> > > +
+> > > +/* div definition */
+> > > +#define NPCM8XX_CLK_S_TH          "th"
+> > > +#define NPCM8XX_CLK_S_AXI         "axi"
+> >
+> > Please inline all these string #defines to the place they're used.
+> The version V21 you mention using define only when the definition is
+> used more than once
+> https://www.spinics.net/lists/kernel/msg5045826.html
+> Should I remove all the string definitions and add the string to the arra=
+y?
 
-On Fri, Feb 23, 2024 at 04:21:12PM +0100, Johan Hovold wrote:
-> This series addresses a few problems with the sc8280xp PCIe
-> implementation.
-> ...
+If it's a clk name for a clk registered in this file it should be
+inlined. Is that the case for everything besides refclk? And even refclk
+could be inlined so that we don't have to jump to the definition of a
+string.
 
-> A recent commit enabling ASPM on certain Qualcomm platforms introduced
-> further errors when using the Wi-Fi on the X13s as well as when
-> accessing the NVMe on the CRD. The exact reason for this has not yet
-> been identified, but disabling ASPM L0s makes the errors go away. This
-> could suggest that either the current ASPM implementation is incomplete
-> or that L0s is not supported with these devices.
-> ...
+> > > +
+> > > +static unsigned long npcm8xx_clk_div_get_parent(struct clk_hw *hw,
+> > > +                                               unsigned long parent_=
+rate)
+> > > +{
+> > > +       struct npcm8xx_clk *div =3D to_npcm8xx_clk(hw);
+> > > +       unsigned int val;
+> > > +
+> > > +       regmap_read(div->clk_regmap, div->offset, &val);
+> > > +       val =3D val >> div->shift;
+> > > +       val &=3D clk_div_mask(div->width);
+> > > +
+> > > +       return divider_recalc_rate(hw, parent_rate, val, NULL, div->f=
+lags,
+> > > +                                  div->width);
+> > > +}
+> > > +
+> > > +static const struct clk_ops npcm8xx_clk_div_ops =3D {
+> > > +       .recalc_rate =3D npcm8xx_clk_div_get_parent,
+> > > +};
+> > > +
+> > > +static int npcm8xx_clk_probe(struct platform_device *pdev)
+> > > +{
+> > > +       struct device_node *parent_np =3D of_get_parent(pdev->dev.of_=
+node);
+> >
+> > The parent of this device is not a syscon.
+> Once I have registered the map that handles both reset and the clock
+> in general is syscon, this is why we will modify the DTS so the clock
+> and the reset will be under syscon father node
+>                 sysctrl: system-controller@f0801000 {
+>                         compatible =3D "syscon", "simple-mfd";
+>                         reg =3D <0x0 0xf0801000 0x0 0x1000>;
+>=20
+>                         rstc: reset-controller {
+>                                 compatible =3D "nuvoton,npcm845-reset";
+>                                 reg =3D <0x0 0xf0801000 0x0 0xC4>;
+>                                 #reset-cells =3D <2>;
+>                                 nuvoton,sysgcr =3D <&gcr>;
+>                         };
+>=20
+>                         clk: clock-controller {
+>                                 compatible =3D "nuvoton,npcm845-clk";
+>                                 #clock-cells =3D <1>;
+>                                 clocks =3D <&refclk>;
+>                                 clock-names =3D "refclk";
+>                         };
+>                 };
+> You can see other drivers that using the same method like
+> https://elixir.bootlin.com/linux/v6.8-rc5/source/Documentation/devicetree=
+/bindings/clock/socionext,uniphier-clock.yaml
 
-> As this series fixes a regression in 6.7 (which enabled ASPM) and fixes
-> a user-reported problem with the Wi-Fi often not starting at boot, I
-> think we should merge this series for the 6.8 cycle. The final patch
-> enabling the GIC ITS should wait for 6.9.
-> 
-> The DT bindings and PCI patch are expected to go through the PCI tree,
-> while Bjorn A takes the devicetree updates through the Qualcomm tree.
-> ...
+You will need a similar file like
+Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-perictrl=
+.yaml
+then to describe the child nodes.
 
-> Johan Hovold (12):
->   dt-bindings: PCI: qcom: Allow 'required-opps'
->   dt-bindings: PCI: qcom: Do not require 'msi-map-mask'
->   dt-bindings: PCI: qcom: Allow 'aspm-no-l0s'
->   PCI: qcom: Add support for disabling ASPM L0s in devicetree
+Socionext may not be the best example to follow. I generally try to
+avoid syscon and simply put #reset-cells and #clock-cells in the node
+for the device. You can use the auxiliary bus to register drivers for
+clk and reset and put them into the resepective driver directories.
+Avoid syscon means random drivers can't reach into the device with a
+regmap handle and read/write registers that they're not supposed to.
 
-The ASPM patches fix a v6.7 regression, so it would be good to fix
-that in v6.8.
+> >
+> > > +       struct clk_hw_onecell_data *npcm8xx_clk_data;
+> > > +       struct device *dev =3D &pdev->dev;
+> > > +       struct regmap *clk_regmap;
+> > > +       struct clk_hw *hw;
+> > > +       unsigned int i;
+> > > +
+> > > +       npcm8xx_clk_data =3D devm_kzalloc(dev, struct_size(npcm8xx_cl=
+k_data, hws,
+> > > +                                                        NPCM8XX_NUM_=
+CLOCKS),
+> > > +                                       GFP_KERNEL);
+> > > +       if (!npcm8xx_clk_data)
+> > > +               return -ENOMEM;
+> > > +
+> > > +       clk_regmap =3D syscon_node_to_regmap(parent_np);
+> > > +       of_node_put(parent_np);
+> >
+> > Is there another binding update that is going to move this node to be a
+> > child of the syscon?
+> >
+> >                 gcr: system-controller@f0800000 {
+> >                         compatible =3D "nuvoton,npcm845-gcr", "syscon";
+> >                         reg =3D <0x0 0xf0800000 0x0 0x1000>;
+> >                 };
+> No, sorry but I'm not going to use the GCR node the handle the clock
+> and reset modules, the GCR has different memory space.
+> the clock driver will have the following device tree
 
-Mani, if you are OK with them, I can add them to for-linus for v6.8.  
+What does the reset driver use the CGR node for? The driver looks like
+it's using it to control USB phy resets.
 
-What about the 'required-opps' and 'msi-map-mask' patches?  If they're
-important, I can merge them for v6.8, too, but it's late in the cycle
-and it's not clear from the commit logs why they shouldn't wait for
-v6.9.
+>                sysctrl: system-controller@f0801000 {
+>                         compatible =3D "syscon", "simple-mfd";
+>                         reg =3D <0x0 0xf0801000 0x0 0x1000>;
+>=20
+>                         rstc: reset-controller {
+>                                 compatible =3D "nuvoton,npcm845-reset";
+>                                 reg =3D <0x0 0xf0801000 0x0 0xC4>;
 
-Bjorn
+This isn't a valid reg property for a child node like this.
+
+>                                 #reset-cells =3D <2>;
+>                                 nuvoton,sysgcr =3D <&gcr>;
+>                         };
+>=20
+>                         clk: clock-controller {
+>                                 compatible =3D "nuvoton,npcm845-clk";
+>                                 #clock-cells =3D <1>;
+>                                 clocks =3D <&refclk>;
+>                                 clock-names =3D "refclk";
+>                         };
+>                 };
 
