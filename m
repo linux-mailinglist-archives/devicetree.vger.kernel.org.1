@@ -1,149 +1,281 @@
-Return-Path: <devicetree+bounces-46680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CCA5086A8E4
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:23:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5015F86A8F0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:28:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86F372859D2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 07:23:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 066792877C9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 07:28:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16C1F23776;
-	Wed, 28 Feb 2024 07:23:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F6F624A1C;
+	Wed, 28 Feb 2024 07:28:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b="cA5AbS7F"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="km/Hm0N5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from master.debian.org (master.debian.org [82.195.75.110])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C29C249E3
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 07:23:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=82.195.75.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2999D23741
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 07:28:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709105027; cv=none; b=LbmUDyqoZoyXroFvVP/JDbk4MXnaZ8iWxDuThXfq0gG/BbuqRKVZnfKgf0ET9Sc7ffcD0ZrdmDqUdoqj+S5UhfpTVABWgdD94VNMNZtufxLJzlJXyTaUduCqVN01Lft/Xjk9MoNB9DWuCupa6/lQTfaUovKkFiFkl0coQnJ2+zo=
+	t=1709105291; cv=none; b=ONT4y+F+G2kMNqOIBWN+rr8EMNyjD/Bbh3Z4UId7AAsB2aXxJ+aXEBsuU3QEtMOVAg7Ft6BkE7wsDtHtF4P/ZP2dd7DNOVML98oSLMSat9Kk0kaLDo/95AqxAPQ1CA0AW+Hbuk1S3DnD51ULYdH/tFD7vo8xFj/dUsDtkeEpcWU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709105027; c=relaxed/simple;
-	bh=zumgVgY4MWpxMr9WOFTw6dQ/oLKaouf0K3XWWkY76Wk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FmFKLvNmE8COuzQEBF2rYGfTLoepVxGMmAgh8t6ghcaSH86fWyStuEhTtmn1kta1Jie1x9brqyKKGUN9WAmbMEc4/12+4BLjYC2vbEm/MEmK4r0TzFT84k2P/JvSNwORcObt7drwbBWVSQBRYjsxtHjo1hWoc2zYlQrwd7UIIys=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=none smtp.mailfrom=master.debian.org; dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b=cA5AbS7F; arc=none smtp.client-ip=82.195.75.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=master.debian.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-	s=smtpauto.master; h=In-Reply-To:Content-Type:MIME-Version:References:
-	Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
-	Content-ID:Content-Description;
-	bh=q9H//BiI/ym0fKCLWzaI/cltEf13UeT/Rxb1Q8FD9Ro=; b=cA5AbS7FT2W+TtczbuXrokzsLh
-	gh9c0U16ZT+TQJAOJx7Wb2S7BYBfTVz8swofccvQG7Jdek3itaWF1lStLcxB5+zAkCrM+9qYabPqq
-	Qibul3Q09z1zXkuPojXp+41G/nYkMuOKmo24rWrW3Id7KOiC7wE6nUlfKta6N+FZILMU7ItnH3sFw
-	oUs/Yel6+2IpRU3Q5efTlGS2r3dNDqD32opLVj3z1t4K9QGFWMdWMMNDY0Cgra3FUQSSOvMy9T3NX
-	2mqm4rZS4QLKNXIwA+eg7YfyelCy1qFHBIA+FjNMei8+QgfBRJIQRbkAJ/8rzobBgZGdguCpfDE2Q
-	NgXRnMcw==;
-Received: from ukleinek by master.debian.org with local (Exim 4.94.2)
-	(envelope-from <ukleinek@master.debian.org>)
-	id 1rfEHv-006pgV-3P; Wed, 28 Feb 2024 07:23:35 +0000
-Date: Wed, 28 Feb 2024 08:23:33 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <ukleinek@debian.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add basic support for QNAP
- TS-433
-Message-ID: <lcvokzcmifxl7skfz2h2shewuou7xpazuhtpnpkgtcyejcfgcy@vvdn5ypyklsx>
-References: <cover.1709034476.git.ukleinek@debian.org>
- <0d9fa5d730ac1cb91261b25b6809fcef3a12f03a.1709034476.git.ukleinek@debian.org>
- <b48cde05-c583-4414-9424-fbb2db3a53ce@lunn.ch>
+	s=arc-20240116; t=1709105291; c=relaxed/simple;
+	bh=7ey5g7zO7vsPThLxFqRRla5M4J4jK/rW388FMFA42pw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=SPlKcz9UyvWgj35/lZFXppPjCHxhKsPOn0lkrSISU9XjTdKmMkeLUxWlWhRdlfQfuRj9/D5x06e/NFxHt1GM6ESqVaNcPZ7quYF+9Ebh+LgsuhKkZjITC2fMpowI+x7op8Vx50ZINnb2OzHCr/yy2IxIBYGytmxSiKfLrH9E/PA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=km/Hm0N5; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-564fd9eea75so6517650a12.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 23:28:09 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709105288; x=1709710088; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WFLcJJee259JIrk4DVS+FE6qZgBM9LZf/wuGod93q6E=;
+        b=km/Hm0N5ptvZotk8WCVsYp7DnkDJDYQaf04l+pRGmCfR//Q+3NLxiLdP/Z+28oquGo
+         xn6DVBgKaH2FDnFjVDEjT50VEWaNCnvOTX/ab3cKjqY30nYBRHI1uLrkUYveIrEZ/mBb
+         S1uL1EjR2kvAadxqzLRAIc+T4QYQXwW59SR04KflXj1ssKwJVzvWC3T1sehZ0qMdzkZP
+         om46hO8nBj+9R3A3/fq1+7usrs48ekRfCmT0Flz8Im1WK7h5D3ODGhzLDgOEwaNxk5g4
+         9oGCtHTp4+H4j4Al3MFIfynLNBm2TeflKOhUNkbZ5dex3lEfcQ6H6phRo1ra2KVsk9yp
+         iPRg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709105288; x=1709710088;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WFLcJJee259JIrk4DVS+FE6qZgBM9LZf/wuGod93q6E=;
+        b=Z5I9Cu8gUUVV23PutA/zJMEpnjaxnPfbyYQEr0tNprxLqFqMDhHkSiisWKDZM5yyY7
+         iSqpSJA2sbMemSNdokOMHOrdMYCWdESrGOTyhO0U3kxRLd+mVStoPlGq3Rx8tzZ84b/O
+         xbNSLwOw9u3Umi1NbrmKmjguKCjQhsUzfBcCyp1D2WEQ5/i5lSc6kCgRL0wmiMogKN2e
+         4cjYkOm2FgHIruhXGxVHNC+v+KeVSVdzCqH+vNBGVzk+SYrWjJw3aTuf5MTYtyDW5OdB
+         qShFMOfcoWHyDn45k9ix3gtRpBlxyIkjfmdW7fkeLeamkJC775zLdreNdUks6i4GrbfF
+         XFTA==
+X-Forwarded-Encrypted: i=1; AJvYcCXF/thxEy2v0UlU2nruFnR++ux5pmLD+CnkucMNmFDBp2eDtiklY2dx0L6zIy3fxCc5CgzwHzyTkeEv/riPSe/KtX+5pu7yKEX1rg==
+X-Gm-Message-State: AOJu0YzxupCymZAsF4V+uye5oUIS+ncqY+7bOYMhPtISDyQBhDA5MRUF
+	NfeC/zd3J2eCFFY7Ccq9Gpa8EsHlnyuWVWBoso8FRWcR9mvdrQIVWXi+RCl9MrI=
+X-Google-Smtp-Source: AGHT+IH2GW07nyyPZlJBIhQlHwDOvgu3sHI8ZoZanWd7zoQ1boLFcvCer/d4+r5wraTosaLmy2C5rQ==
+X-Received: by 2002:a05:6402:1606:b0:565:ffa5:becd with SMTP id f6-20020a056402160600b00565ffa5becdmr5196923edv.37.1709105288573;
+        Tue, 27 Feb 2024 23:28:08 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id p15-20020aa7cc8f000000b005667629f6e1sm133626edt.39.2024.02.27.23.28.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Feb 2024 23:28:08 -0800 (PST)
+Message-ID: <bd4bf6ae-350e-4ee6-a924-7dd31b2c6034@linaro.org>
+Date: Wed, 28 Feb 2024 08:28:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="2ujsyxbuinxttmqy"
-Content-Disposition: inline
-In-Reply-To: <b48cde05-c583-4414-9424-fbb2db3a53ce@lunn.ch>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 01/18] ASoC: dt-bindings: mediatek,mt8365-afe: Add audio
+ afe document
+Content-Language: en-US
+To: Alexandre Mergnat <amergnat@baylibre.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <20240226-audio-i350-v1-1-4fa1cea1667f@baylibre.com>
+ <ce5f71a9-1b5f-4724-89db-dae2f64e8008@linaro.org>
+ <eeb3329b-0558-4237-8343-4e11f65a6a35@baylibre.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <eeb3329b-0558-4237-8343-4e11f65a6a35@baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+On 27/02/2024 16:18, Alexandre Mergnat wrote:
+>>
+>>> +    type: boolean
+>>> +
+>>> +  mediatek,dmic-iir-on:
+>>> +    description:
+>>> +      Boolean which specifies whether the DMIC IIR is enabled.
+>>> +      If this property is not present the IIR is disabled.
+>>
+>> "is enabled" or "enable it"?
+>>
+>> You described the desired Linux feature or behavior, not the actual
+>> hardware. The bindings are about the latter, so instead you need to
+>> rephrase the property and its description to match actual hardware
+>> capabilities/features/configuration etc.
+> 
+> I will rephrase:
+> 
+> True to enable the Infinite Impulse Response (IIR) filter
+> on the digital microphone inputs.
+
+I still don't know why this is DT-specific. You still tell driver what
+to do...
+
+> 
+>>
+>>> +    type: boolean
+>>> +
+>>> +  mediatek,dmic-irr-mode:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description:
+>>> +      Selects stop band of IIR DC-removal filter.
+>>> +      0 = Software programmable custom coeff loaded by the driver.
+>>
+>> Bindings are for hardware, not drivers. Why is this a property of board DTS?
+> 
+> Actually this is a hardware feature. Mode 1 t 5 are predefined filters. 
+> Mode 0, the HW will read some "coef filter registers" to setup the 
+> custom filter. the "coef filter regs" are written by the driver. 
+> Currently the coef values are hardcoded in the driver.
+
+You don't get the point. Just because you choose some mode it does not
+mean is hardware feature for DT. Sampling frequency done by hardware is
+also "hardware feature", but do you put it to DT? No.
+
+Explain why this is board-specific, not runtime configuration.
+
+> 
+>>
+>>> +      1 = 5Hz if 48KHz mode.
+>>> +      2 = 10Hz if 48KHz mode.
+>>> +      3 = 25Hz if 48KHz mode.
+>>> +      4 = 50Hz if 48KHz mode.
+>>> +      5 = 65Hz if 48KHz mode.
+>>
+>> Use proper unit suffixes - hz.
+>>
+>>
+>>> +    enum:
+>>> +      - 0
+>>> +      - 1
+>>> +      - 2
+>>> +      - 3
+>>> +      - 4
+>>> +      - 5
+>>> +
+>>> +  mediatek,dmic-two-wire-mode:
+>>> +    description:
+>>> +      Boolean which turns on digital microphone for two wire mode.
+>>> +      If this property is not present the two wire mode is disabled.
+>>
+>> This looks like hardware property, but the naming looks like SW. Again
+>> you instruct what driver should do. Standard disclaimer:
+>>
+>> You described the desired Linux feature or behavior, not the actual
+>> hardware. The bindings are about the latter, so instead you need to
+>> rephrase the property and its description to match actual hardware
+>> capabilities/features/configuration etc.
+> 
+> Actually this is a hardware feature. This is ALL I have to describe the 
+> HW behavior from the datasheet:
+> "
+> bit name: ul_dmic_two_wire_ctl
+> Turns on digital microphone for two wire mode.
+> 0: Turn off
+> 1: Turn on
+
+That's rather suggestion it is not a description of hardware but you
+want driver to do something...
+
+> "
+> 
+> On the board schematic, SoC and DMIC and linked by 3 pins:
+> - clk
+> - data0
+> - data1
+> 
+> IMHO, "two-wire-mode" means the HW use 2 pins for data, and the SoC must 
+> be aware of that by reading the register value written by the driver, 
+> using the value found in the DTS.
+
+So this depends on type of connection of DMIC? Then rephrase description
+property like this.
+
+> 
+> I don't get why you think it wouldn't be hardware behavior.
+
+Because telling what to write to the registers which is typical sign of
+people stuffing to DT whatever they need to configure the hardware.
+
+> 
+> Rephrase description:
+> "True to enable the two wire mode of the digital microphone"
+> Is it better ?
+
+No, because again you describe some sort of mode. If you insist on such
+description, then my answer is: it's runtime, so not suitable for DT.
+Instead describe what is the hardware problem/configuration, e.g. "DMIC
+is connected with only CLK and DATA0, without third pin" etc.
+
+> 
+> About the property name, "mediatek,dmic-two-wire-ctl" sound better for you ?
+
+To sound more like a register less like physical characteristic of the
+board? No. The name can stay, I don't have better ideas.
 
 
---2ujsyxbuinxttmqy
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Best regards,
+Krzysztof
 
-On Tue, Feb 27, 2024 at 10:00:48PM +0100, Andrew Lunn wrote:
-> > +&gmac0 {
-> > +	assigned-clocks =3D <&cru SCLK_GMAC0_RX_TX>, <&cru SCLK_GMAC0>;
-> > +	assigned-clock-parents =3D <&cru SCLK_GMAC0_RGMII_SPEED>, <&cru CLK_M=
-AC0_2TOP>;
-> > +	assigned-clock-rates =3D <0>, <125000000>;
-> > +	clock_in_out =3D "output";
-> > +	phy-handle =3D <&rgmii_phy0>;
-> > +	phy-mode =3D "rgmii";
-> > +	pinctrl-names =3D "default";
-> > +	pinctrl-0 =3D <&gmac0_miim
-> > +		     &gmac0_tx_bus2
-> > +		     &gmac0_rx_bus2
-> > +		     &gmac0_rgmii_clk
-> > +		     &gmac0_rgmii_bus>;
-> > +	rx_delay =3D <0x2f>;
-> > +	tx_delay =3D <0x3c>;
->=20
-> Have you tried phy-mode =3D "rgmii-id"; and not have these two _delay
-> settings?
-
-I didnt' up to now. I applied the following on top of my dts:
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts b/arch/arm6=
-4/boot/dts/rockchip/rk3568-qnap-ts433.dts
-index ba7137f80075..a8747d9f36da 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-@@ -39,15 +39,13 @@ &gmac0 {
- 	assigned-clock-rates =3D <0>, <125000000>;
- 	clock_in_out =3D "output";
- 	phy-handle =3D <&rgmii_phy0>;
--	phy-mode =3D "rgmii";
-+	phy-mode =3D "rgmii-id";
- 	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&gmac0_miim
- 		     &gmac0_tx_bus2
- 		     &gmac0_rx_bus2
- 		     &gmac0_rgmii_clk
- 		     &gmac0_rgmii_bus>;
--	rx_delay =3D <0x2f>;
--	tx_delay =3D <0x3c>;
- 	status =3D "okay";
- };
-=20
-and this makes the machine unable to complete dhcp. I see the requests
-and replies on the dhcp server side, but the machine tells me not to
-receive a dhcp reply. So the above patch breaks the receive path.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---2ujsyxbuinxttmqy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXe33QACgkQj4D7WH0S
-/k7RGQf/VOOi8RQ6O6wC8HHbsx0rt4Zy1y7PhIMp+mIQTFYEZFeufAySXLSIKevd
-L54Bh9wF8pJrzoFEaq0bVcO7SWEL1Xmo0cni4FcKEHDemEUL+vvprP8OuzPUTY7v
-zVupTSIh9IW12dHekSxSqNHMkEwFyglKyyYFzDqTRTvJmh6QbjmZWdKqlAteMkxa
-Zq6j2Z8QKwqh5MGleAKlqeIiBXTrBL0zg7CgKxznv21cz9Pjqm0g7XiS2drixj2L
-JZ2XGkUmy0+X5MIEbaOEak3fjDMxYs9x6nOfSOmwizCuC9HwCrxtmM0ZE1Q7gwLg
-ngERLNaJtWI5y4lENFSrJUFLND68SQ==
-=jwME
------END PGP SIGNATURE-----
-
---2ujsyxbuinxttmqy--
 
