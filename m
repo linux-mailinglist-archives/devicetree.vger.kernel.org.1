@@ -1,127 +1,104 @@
-Return-Path: <devicetree+bounces-46886-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 341D386B12F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:03:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 254DE86B130
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:03:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E369E28808B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:03:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4555286596
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:03:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FE414F995;
-	Wed, 28 Feb 2024 14:02:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DB0E14F992;
+	Wed, 28 Feb 2024 14:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DVtQg5dq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26D587352B
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 14:02:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15332145341;
+	Wed, 28 Feb 2024 14:03:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709128967; cv=none; b=gu97IfjFlWQfj6g+dMUQZ+rV02kzAaxFXFJXVaciz2Cg6WacIv6Jlv0wcg7unav1aEsR3rMpxoYNhqTcvdPOdv4kztZ3Zhv0gCjvvsH0uVGcLm2r4fS+a1PPvXHyO4PrAB0le3Zq7GKQl+hHcZ06R0/QyxwbY+M9VTlGILQqEhA=
+	t=1709129008; cv=none; b=B7iJMPSRGrHTjP7kgbNFviccYpESUu0qxLaTG86Cedh7QHjzwZzkz9VXMcMC4DU4xYWWowjtRY7cjykBqgeh8Y0l5QqO46L26twG+CkB/GJT4jI5wtl5WkgRkNhnATn4f7VDCYapboKbn835cJ9M2Koqn7WZPoSb0Ls2hXdFZNk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709128967; c=relaxed/simple;
-	bh=3z5hhkxmL3+gwPj/3mgtGC6g537iZSf9fwYqXDCJHy0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CLf7UbaaI9Q2NT3L8xtov/4hSY4DAUxnQeaIHutYDzOPOBP7vdAQFaCcgtHIs3ZgXuI1v19LbSwGP3IBiO3LXNa0owRDx2cU8JKlMmNB+K/uHYQg1zhvmkYMscrYRjC17uqiNXOUbhRVe0yIh90hiBnZgSGwjtuBCW0+kuZS1Zg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 528C2C15;
-	Wed, 28 Feb 2024 06:03:23 -0800 (PST)
-Received: from bogus (unknown [10.57.94.75])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3D3843F73F;
-	Wed, 28 Feb 2024 06:02:42 -0800 (PST)
-Date: Wed, 28 Feb 2024 14:02:39 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Ulf Hansson <ulf.hansson@linaro.org>
-Cc: Nikunj Kela <quic_nkela@quicinc.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	krzysztof.kozlowski+dt@linaro.org,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Vincent Guittot <vincent.guittot@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
-	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>,
-	srinivas.kandagatla@linaro.org
-Subject: Re: DT Query on "New Compatible vs New Property"
-Message-ID: <20240228140239.gkzcytw6cmb4opja@bogus>
-References: <a053261e-6e05-4673-b5dd-2ce8f3c73ac9@quicinc.com>
- <ZbEHNyLE8bQlZHSZ@bogus>
- <7910de2d-6184-4f78-a286-d2e6e50c7a36@quicinc.com>
- <CAKfTPtCjR_MBO9Lh7=CU+dcFaigkbeKc27rVgCa-aEJyHyfK9A@mail.gmail.com>
- <ZbEY2X8CfOc-vPbe@bogus>
- <16db3da8-dfdd-4e06-b348-33e9197fe18d@quicinc.com>
- <ZbFH0UE9zZQFWm8Z@bogus>
- <32092ee9-018f-4cfb-950e-26c69764f35a@quicinc.com>
- <94a62a78-961a-4286-804c-fc0b9098b8a1@quicinc.com>
- <CAPDyKFrL2QcB-YbE25smGgJjf3iBEsSSB4ui3V98zJKghNNhKA@mail.gmail.com>
+	s=arc-20240116; t=1709129008; c=relaxed/simple;
+	bh=+29q9XzaWHOI+KXDSu5A9D/Iw9UMYbaTgyR8nbq20I4=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=U/v/JL1dcvRantwLTQnF+IFlEP96YEjIl+VOaZodl61C2PLDp7O+R7ffNvARjsGtElm7lnCt1N4UmVT69oB5L8lxKlIOyjzU49j9wu82efHNEsmf28Pl17xk/ZQ7BKqPlEHtKfB3+rQnxsYKzbIPoiNE9VFo04kqui3BPSAKiKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DVtQg5dq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F1CDBC433C7;
+	Wed, 28 Feb 2024 14:03:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709129008;
+	bh=+29q9XzaWHOI+KXDSu5A9D/Iw9UMYbaTgyR8nbq20I4=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=DVtQg5dqjYxmDNhXd1PlqiQowWozLs8nLHUUZ9Kcg/3L+meJar1UQ2Yneuhe6h25N
+	 OygDcReVGMLOzpc/p5LMSubHHZHNxdyLsLggaEoQgPdemlYoXgjV84xUmI8PDgifeI
+	 EhlBr89wLuQQSP3/zZ9Zmj3QN+ZAsCoVHX7+nUl5MIvCtpzSmpLmAMG/frDFWkCOdk
+	 CmkQNZf6D6NLQElejh1YTYZE12uvavAnVfX+ci+UEKVm2aBD13sT79oDK26D/H+qJK
+	 vxtj3vR6L81P3xwRku6/NNOtONDVbsuJeRSggwNMkwv7ppei0RrKf8E3f7XF/hdgrw
+	 3D5ayFU5ru/2w==
+From: Kalle Valo <kvalo@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  ath10k
+ <ath10k@lists.infradead.org>,  wireless <linux-wireless@vger.kernel.org>,
+  DT <devicetree@vger.kernel.org>,  Rob Herring <robh+dt@kernel.org>,
+  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  Pierre-Hugues Husson <phhusson@freebox.fr>
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+	<b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
+Date: Wed, 28 Feb 2024 16:03:24 +0200
+In-Reply-To: <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> (Marc
+	Gonzalez's message of "Wed, 28 Feb 2024 14:24:12 +0100")
+Message-ID: <871q8wk7o3.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPDyKFrL2QcB-YbE25smGgJjf3iBEsSSB4ui3V98zJKghNNhKA@mail.gmail.com>
+Content-Type: text/plain
 
-On Wed, Feb 28, 2024 at 02:27:30PM +0100, Ulf Hansson wrote:
-> On Mon, 26 Feb 2024 at 15:24, Nikunj Kela <quic_nkela@quicinc.com> wrote:
-> >
-> > Hi Sudeep,
-> >
-> > I would like to conclude on this thread. I was discussing this with Ulf.
-> > He thinks that using the domain names to identify if platform is
-> > abstracting clocks etc. are not scalable and sufficient. Instead he
-> > thinks that the change in the interface to OS(and FW) is a good
-> > candidate for a new compatible(even though HW is same).  Even for SCMI,
-> > we do change phandle in DT to SCMI protocol phandle so that is like a
-> > different platform altogether. Could you please let me know if you still
-> > think that using a different compatible in this case is not warranted.
+Marc Gonzalez <mgonzalez@freebox.fr> writes:
+
+> The driver waits for this indicator before proceeding,
+> yet some WCNSS firmwares apparently do not send it.
+> On those devices, it seems safe to ignore the indicator,
+> and continue loading the firmware.
 >
-> My apologies for joining this discussion at this late state. Yet, I
-> just wanted to confirm what Nikunj said above.
+> Signed-off-by: Pierre-Hugues Husson <phhusson@freebox.fr>
+> Signed-off-by: Marc Gonzalez <mgonzalez@freebox.fr>
+> ---
+>  Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 >
-> In the end we are indeed talking about adding a new platform, as
-> changing the FW interface from a QCOM proprietary one into SCMI,
-> simply requires updates to a DTS file(s) that is platform specific.
->
+> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
+> index 7758a55dd3286..145fa1a3c1c6a 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
+> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml
+> @@ -121,6 +121,14 @@ properties:
+>        Whether to skip executing an SCM call that reassigns the memory
+>        region ownership.
+>  
+> +  qcom,no-msa-ready-indicator:
+> +    type: boolean
+> +    description:
+> +      The driver waits for this indicator before proceeding,
+> +      yet some WCNSS firmwares apparently do not send it.
+> +      On those devices, it seems safe to ignore the indicator,
+> +      and continue loading the firmware.
 
-The way I read this sounds like all this are platform specific and need
-new compatible.
+This sounds more like a firmware feature, not a hardware feature. What
+about having a flag in enum ath10k_fw_features in firmware-2.bin?
 
-> That said, it also seems reasonable to me to use a compatible string,
-> to allow us to describe the update of HW for various affected devices.
->
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-While I agree with the above statement, it depends on what you refer as
-update of HW above. It is all Qcom specific and there is so much turn
-between SoCs that this shouldn't matter but I would like to take example
-and describe what I initially mentioned/argued against.
-
-Lets us assume 2 SoCs: A and B. A is old and didn't use SCMI while B is
-new and migrated to use SCMI. Now let us assume both A and B SoCs have
-exact same version/revision of an IP: X. Now just because B uses SCMI,
-should X have one compatible to be used in A and another in B. That
-doesn't sound right IMO.
-
-If X on A has to manage clocks and voltage separately while the same X
-on B uses SCMI to manage them together as performance domain, then the
-presence(or absence) of those properties must indicate the difference and
-not a change in compaible for the IP X. But it is upto Qcom platform
-maintainer, IP driver maintainer and DT maintainers to decide, I will
-leave that them. I just wanted to express my opinion on the matter.
-
-> Probably the best next step is to post a patch series showing how this
-> would really look like, as it would help us to understand more, I
-> think.
->
-
-Agreed.
-
---
-Regards,
-Sudeep
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
