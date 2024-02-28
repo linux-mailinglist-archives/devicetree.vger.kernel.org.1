@@ -1,119 +1,103 @@
-Return-Path: <devicetree+bounces-46707-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46708-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D94C486A9DE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 09:28:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2C9A86A9F1
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 09:30:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BDBF01C22280
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:28:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 19F261C2150D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:30:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D03602C860;
-	Wed, 28 Feb 2024 08:28:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F26A622065;
+	Wed, 28 Feb 2024 08:30:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b="EalO3ZTM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JjU7/iKE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from forward501a.mail.yandex.net (forward501a.mail.yandex.net [178.154.239.81])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29EAE2C842;
-	Wed, 28 Feb 2024 08:28:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=178.154.239.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDA391F164;
+	Wed, 28 Feb 2024 08:30:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709108928; cv=none; b=p7n6Q4/bj5Epbu/Gpo2xybAjoIH8/m4FBG0lDVDP8R3ci8QPDnQV8kYVYlq+hvSE9F31RcYFKWuypxMykdiK6NEC8eftIT+eAwKEW473AsT7czqZAPARjswycb04RPQOOtAMyNIYqmRpk7NSe81EmQ5bkGmMhTedQBTqRP2fHj0=
+	t=1709109033; cv=none; b=TERIn9rbDp5KjVwJR0SIMUg25JrHpPBpwbBpeaHHQMC3Yj2MplMLD9OLhqHB08jihyxIbRzuctfqe+/j008gq23fHYAIZ/ftB5Q5xLC2VkVOQG8FOhV0dU4uCFbee9t96prR80anWoOkuBoSFZtW7JbSxtLl92sDJ7FhXLZ9OTg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709108928; c=relaxed/simple;
-	bh=5C6vD/fRuXGe615n6PpX9VIOEIZkOgWqNNFadbqmy4M=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=KR25EONeFJRXlMbm6own874XiOPOzSDXw3ZTFIfzn5HUca4cEO9ydIRC/v495/2AfayPp25dI/9h+qaQiZYrLbUlVcikg09RErBJZQy0GNwXPy2o3vk0OJWSZQ4DCPc7uUUaA/Wue8jdItUxE1PVIVKDPGDhHWi1u6fJkbUEvlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me; spf=pass smtp.mailfrom=maquefel.me; dkim=pass (1024-bit key) header.d=maquefel.me header.i=@maquefel.me header.b=EalO3ZTM; arc=none smtp.client-ip=178.154.239.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=maquefel.me
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=maquefel.me
-Received: from mail-nwsmtp-smtp-production-main-18.iva.yp-c.yandex.net (mail-nwsmtp-smtp-production-main-18.iva.yp-c.yandex.net [IPv6:2a02:6b8:c0c:8c9b:0:640:8c33:0])
-	by forward501a.mail.yandex.net (Yandex) with ESMTPS id 7184B61680;
-	Wed, 28 Feb 2024 11:23:10 +0300 (MSK)
-Received: by mail-nwsmtp-smtp-production-main-18.iva.yp-c.yandex.net (smtp/Yandex) with ESMTPSA id 2NUOVYANd8c0-nNSnKwOK;
-	Wed, 28 Feb 2024 11:23:08 +0300
-X-Yandex-Fwd: 1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=maquefel.me; s=mail;
-	t=1709108588; bh=5C6vD/fRuXGe615n6PpX9VIOEIZkOgWqNNFadbqmy4M=;
-	h=References:Date:In-Reply-To:Cc:To:From:Subject:Message-ID;
-	b=EalO3ZTMGKQby2mNKqzwTBWhRSR2vOdtx+YGi+0dATxHc9Ne404mREzk3ONsmowJQ
-	 Sbt6ELQEiXojAyllpQkuQc6yuKN4UbpwNHkcrWbSfpHM6co896dWu7EcWBkPxvOZZi
-	 FlkHZDOUFmF5J3w7ul6ZRoH0jf1AGJ+fqIZrkwaY=
-Authentication-Results: mail-nwsmtp-smtp-production-main-18.iva.yp-c.yandex.net; dkim=pass header.i=@maquefel.me
-Message-ID: <154df7fd17dd05fdb6ba21d5f4d84ecfdb476091.camel@maquefel.me>
-Subject: Re: [PATCH v8 00/38] ep93xx device tree conversion
-From: Nikita Shubin <nikita.shubin@maquefel.me>
-To: Mark Brown <broonie@kernel.org>
-Cc: Hartley Sweeten <hsweeten@visionengravers.com>, Alexander Sverdlin
- <alexander.sverdlin@gmail.com>, Russell King <linux@armlinux.org.uk>,
- Lukasz Majewski <lukma@denx.de>, Linus Walleij <linus.walleij@linaro.org>,
- Bartosz Golaszewski <brgl@bgdev.pl>, Andy Shevchenko <andy@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Sebastian Reichel <sre@kernel.org>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
- Vinod Koul <vkoul@kernel.org>, Wim Van Sebroeck <wim@linux-watchdog.org>,
- Guenter Roeck <linux@roeck-us.net>, Thierry Reding
- <thierry.reding@gmail.com>, Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?=
- <u.kleine-koenig@pengutronix.de>, "David S. Miller" <davem@davemloft.net>, 
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo
- Abeni <pabeni@redhat.com>,  Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Damien Le Moal <dlemoal@kernel.org>, Sergey Shtylyov <s.shtylyov@omp.ru>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
- <tiwai@suse.com>, Ralf Baechle <ralf@linux-mips.org>, "Wu, Aaron"
- <Aaron.Wu@analog.com>, Lee Jones <lee@kernel.org>, Olof Johansson
- <olof@lixom.net>,  Niklas Cassel <cassel@kernel.org>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-gpio@vger.kernel.org, linux-clk@vger.kernel.org,
- linux-pm@vger.kernel.org,  devicetree@vger.kernel.org,
- dmaengine@vger.kernel.org,  linux-watchdog@vger.kernel.org,
- linux-pwm@vger.kernel.org,  linux-spi@vger.kernel.org,
- netdev@vger.kernel.org, linux-mtd@lists.infradead.org, 
- linux-ide@vger.kernel.org, linux-input@vger.kernel.org, 
- linux-sound@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, Bartosz
- Golaszewski <bartosz.golaszewski@linaro.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, Andrew Lunn <andrew@lunn.ch>, Andy
- Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 28 Feb 2024 11:23:02 +0300
-In-Reply-To: <168fd3d7-d1e9-467e-bdd0-36c12aa81b68@sirena.org.uk>
-References: <20240226-ep93xx-v8-0-3136dca7238f@maquefel.me>
-	 <168fd3d7-d1e9-467e-bdd0-36c12aa81b68@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.4 
+	s=arc-20240116; t=1709109033; c=relaxed/simple;
+	bh=8Vydkbv+kfRAUshdZNxTGlKy4jifm0a/luMTbD/eFhY=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=VKih3OMBlxCzwHbCTXfk6ZeO04nYEyF9w2cJ+Vl7fSqEhM2qv0Hg6cLvL+yxR0cmTtbrJivCH+4tj+kyvoZTOIMuneJ+hqcB5W55npyfxBnpBEa51iwBmWxdzHnqa7MB1W01TQiDpqQks7Q3LRpVlOxg0PMhaABlkwCJE8LnnKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JjU7/iKE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 20FA6C43390;
+	Wed, 28 Feb 2024 08:30:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709109033;
+	bh=8Vydkbv+kfRAUshdZNxTGlKy4jifm0a/luMTbD/eFhY=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=JjU7/iKEmgBrDwSJlFxSSCDFPALFnIFXHWyNkdbmhe+jRGo65bO0+ebvAm2SrUGNc
+	 Sz4twvg3gAV1u5Zqx5RsPTShGHgHslEoIm7f+rirmxCAzkufGyVNLjY/+066jgZCGd
+	 AowFz0odrbYPGlq+17BCjC4mJ/OtfCCWa/IIPxWvIrefAm4hUds0WzXqNbjXXxjzSj
+	 8n6L9MrS/GbOY4D5S6TDzo7RDTJ+r/QL4g3Ey5vDAZbD6QICyXAezwQ3m5Op9GGf+E
+	 O9ByRToMohVV119moDeDWUvw7pkIijJ23o+flDzrvqENMb1iI8hmKa7feUtRcFW07w
+	 Y5mV4Fd8ErUhw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 046C6D990A5;
+	Wed, 28 Feb 2024 08:30:33 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next v5 0/3] net: dsa: realtek: support reset
+ controller and update docs
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <170910903301.16278.18422198402730438279.git-patchwork-notify@kernel.org>
+Date: Wed, 28 Feb 2024 08:30:33 +0000
+References: <20240225-realtek-reset-v5-0-5a4dc0879dfb@gmail.com>
+In-Reply-To: <20240225-realtek-reset-v5-0-5a4dc0879dfb@gmail.com>
+To: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc: linus.walleij@linaro.org, alsi@bang-olufsen.dk, andrew@lunn.ch,
+ f.fainelli@gmail.com, olteanv@gmail.com, davem@davemloft.net,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ p.zabel@pengutronix.de, netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, arinc.unal@arinc9.com, robh@kernel.org
 
-Hello Mark!
+Hello:
 
-On Mon, 2024-02-26 at 13:34 +0000, Mark Brown wrote:
-> On Mon, Feb 26, 2024 at 10:29:56AM +0300, Nikita Shubin via B4 Relay
-> wrote:
->=20
-> > The goal is to receive ACKs for all patches in series to merge it
-> > via Arnd branch.
->=20
-> What are the actual dependencies here?
+This series was applied to netdev/net-next.git (main)
+by David S. Miller <davem@davemloft.net>:
 
-More than a half of patches makes device drivers incompatible with
-"platform" approach, this is intentionally cause we don't want any
-leftovers - ep93xx should be fully converted to dt or left as is.
+On Sun, 25 Feb 2024 13:29:52 -0300 you wrote:
+> The driver previously supported reset pins using GPIO, but it lacked
+> support for reset controllers. Although a reset method is generally not
+> required, the driver fails to detect the switch if the reset was kept
+> asserted by a previous driver.
+> 
+> This series adds support to reset a Realtek switch using a reset
+> controller. It also updates the binding documentation to remove the
+> requirement of a reset method and to add the new reset controller
+> property.
+> 
+> [...]
 
-Currently only 4 patches that require review/ack left:
+Here is the summary with links:
+  - [net-next,v5,1/3] dt-bindings: net: dsa: realtek: reset-gpios is not required
+    https://git.kernel.org/netdev/net-next/c/28001bb1955f
+  - [net-next,v5,2/3] dt-bindings: net: dsa: realtek: add reset controller
+    https://git.kernel.org/netdev/net-next/c/5fc2d68fc818
+  - [net-next,v5,3/3] net: dsa: realtek: support reset controller
+    https://git.kernel.org/netdev/net-next/c/56998aa6b7f0
 
-- ARM: ep93xx: add regmap aux_dev
-- clk: ep93xx: add DT support for Cirrus EP93xx
-- dma: cirrus: Convert to DT for Cirrus EP93xx
-- dma: cirrus: remove platform code
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
+
 
