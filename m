@@ -1,121 +1,106 @@
-Return-Path: <devicetree+bounces-46857-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46859-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 248A786B008
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:11:59 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B689C86B043
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:27:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CDE4E2825CE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:11:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54EC2B21DFC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:27:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EC56149DE2;
-	Wed, 28 Feb 2024 13:11:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7104914E2CD;
+	Wed, 28 Feb 2024 13:27:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b="C3C2aOoe"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="c6vivi/K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from meesny.iki.fi (meesny.iki.fi [195.140.195.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03C1C73508;
-	Wed, 28 Feb 2024 13:11:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=195.140.195.201
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709125914; cv=pass; b=NmU/ifutosj03sqQ9T5c+vGFU2H6tWNVCx8yj/iW0AuTk0VBpz84dxqMYRo3Lriwm55Llfv01xVbPBMFzG3pdXMoxdTSJS10Q6J+JUCGACo3BIKqP298gZWyjc0W6aBB143CCBCBWBlDYcRzkcB1xzocGSI16Y9S2oMNm0UJJAI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709125914; c=relaxed/simple;
-	bh=YERzhlNK/eni5qTtQELjZDM3OIo62GmiInYyteIJONI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=R3Qjp3MBiMITmiE5hYqGFaUw5Ch0e9OS443N7Uqkq2VSPOog3ATotSl1wbCTvzH/R7lQSSdpuGIo6O809o+CYMRX8LLsLIjzlfK4RVpUPZMyaZQsscIxduBHHxUtIZbK683JG4FTvsO2L/2XX86Wncki7tbnH99jC7eRRlZwXUY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi; spf=pass smtp.mailfrom=iki.fi; dkim=pass (1024-bit key) header.d=iki.fi header.i=@iki.fi header.b=C3C2aOoe; arc=pass smtp.client-ip=195.140.195.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=iki.fi
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=iki.fi
-Received: from hillosipuli.retiisi.eu (80-248-247-191.cust.suomicom.net [80.248.247.191])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sailus)
-	by meesny.iki.fi (Postfix) with ESMTPSA id 4TlF9m1l01zySM;
-	Wed, 28 Feb 2024 15:11:40 +0200 (EET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
-	t=1709125903;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FBBExQ0pM2cV2w8yzVd81EMn1Sqv6sxuVMC+oFXlnuM=;
-	b=C3C2aOoeSeBIoKNOr4R/rK5XRYTPuvQjFPzMvBzWAlZQEtA5h1x5h6G7lAmKFTW93DzM8O
-	qIOVU/8drxQkkUS4Xktcdb5WEwod2sgb3XvnfYbxAtu77c0oNxuw2zEc+pYGisvBwX4uo1
-	+PyNQ7W6/l1THjMfNxwHk6qzYlStxRU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
-	s=meesny; t=1709125903;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FBBExQ0pM2cV2w8yzVd81EMn1Sqv6sxuVMC+oFXlnuM=;
-	b=AhqLOy8wCOZe9wogRs35An0vLyCc6QwbT75mvDCWyze2uLqSsmTqrYYV+axTTd+Qm2AToq
-	qiNg5yovn0lwq5J/Adu/bRR2iJjcDCxJ1qjH805XUvvTM3FoFyS/ruu3nBCTNDjtl/ESL5
-	a1eJOor2SCWu4pq50GlG9LPOJ4DeokE=
-ARC-Authentication-Results: i=1;
-	ORIGINATING;
-	auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
-ARC-Seal: i=1; s=meesny; d=iki.fi; t=1709125903; a=rsa-sha256; cv=none;
-	b=f4AzzPidev9c9vAo9Xt5cXV3PACUw2Qe/pjpzLHjGeRcGxF8RtjNwkfuwaeKLJ/uWqNN3d
-	NIRLfaeJu2/vhBCfGv7i3kzQqzXaI9v9LCt79ODDn2ut7v9UdZWoppn/s9CggDLo+/K66G
-	B1Vt+7l9bJs/zMGSEyIALZAXssSEC4Q=
-Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 51031634C93;
-	Wed, 28 Feb 2024 15:11:39 +0200 (EET)
-Date: Wed, 28 Feb 2024 13:11:39 +0000
-From: Sakari Ailus <sakari.ailus@iki.fi>
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: Daniel Scally <dan.scally@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, nayden.kanchev@arm.com,
-	robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
-	laurent.pinchart@ideasonboard.com
-Subject: Re: [PATCH v2 3/5] media: mali-c55: Add Mali-C55 ISP driver
-Message-ID: <Zd8xC0HkZfSo29id@valkosipuli.retiisi.eu>
-References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
- <20240214141906.245685-4-dan.scally@ideasonboard.com>
- <ZdxwE3omXmUjfLMn@valkosipuli.retiisi.eu>
- <mylttlhcnxe5e37m2ar6xgtus6dbr56teyyp74qm7l2d3wejwv@ewpbhpjr3v4m>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D4C93BBEE
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:27:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709126839; cv=none; b=fXPkrlDQnC8czn3Gbd2tOM2r3jFM48HNkl4OEomwb6SYNTyC302lLlBjaYqAnnrhS55ytgYuQ/NrPRA8yMEZPovg63Lyc6yjzKbtmF8srBX4MtXjXl9KshixcugYMP+HMQns2Kspcq2T5toHTGtD0BO6N+yTKzbKQ+8YkBc2tsM=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709126839; c=relaxed/simple;
+	bh=k9bVZ3kA4rB+0h80Tss2U3ZJwcaltyNaL7Y9uPcN1rU=;
+	h=Message-ID:Date:MIME-Version:To:Cc:From:Subject:Content-Type; b=pdSV5CUbZcGdwGGqf8Ki9zLveWkbIsrh/hsDn7ULkPSoYzlUbmYvKfuVYrONbPtjXTHLcuuX07mIbCGmNvN7wmMF/LGbmz3t3CuqwaPAoovKiCbG8TLyF54wiATJSlxEh+4xu8mZqeM2Z1WT+2TBAAcV5GFzWskpuIQGEl2wWc0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=c6vivi/K; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a441d7c6125so31109666b.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 05:27:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1709126834; x=1709731634; darn=vger.kernel.org;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=VfMmWTgZMkFzOQ84rBI1O8Mjtlt3aSPIt7WclmK5EyM=;
+        b=c6vivi/KuY4M3RKLKwqOvqirl3ya74m/SPZlSsX5p3mB7YKAtzePZfo4Ssk3071CJQ
+         oPE0WP3C9n3OSmgp0SLhiC5n30RgJhj+ZSbEbI6QfgZu6lSkVwFj+oHGDjf/hcZwGL+8
+         Ey8jShvoU6jzyU7fypVLvaDjRJC9KOKtCojBX+pegVhxBOco54xMCdXYz2km1/MX7iO3
+         0l9Ql6Mo9X9RAeeVzrpRh2CuYtv42tbwUtFrUIWAnqNXNP3uive1clOfDnxoOjVqKulT
+         RxutPo0KUnoj9EnHzHOU21vyqA7o/hem4IOTywWEhAHQQGO7hdM7prZUWdj6e3FKTvOB
+         p/dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709126834; x=1709731634;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=VfMmWTgZMkFzOQ84rBI1O8Mjtlt3aSPIt7WclmK5EyM=;
+        b=Ilt/iFG5a4ep3wibCpcwtM5NDA5BvR8pW/xILOs4moU3V3uAyz5aW8CT3bXSPc3Rj+
+         tiqoCLaSGc22yjqmZw4p2C8xIEz6R5rfdRhBjaOgsEwausVg/a6ShFkWO2Xcgty8BrHn
+         o+mXmiKDoxAnk2NGLOijj7ngkuWdqBFP8JjUWjbvDNF+3uW0udwF02lZjLKvFU50Q49p
+         TIM8lEaNNjt+Qz1BtvOcd8aU5hDgMArlUQGyqcNlxzgrAQMWXh76NMq0np2bb0keMGa9
+         dtJ5EoTRONARTz7IF5hrErbilfJ1QX0Q1y2f92U5ED8I3DxaZpuI5wwWHeoMyZ/HIbxS
+         ebOA==
+X-Forwarded-Encrypted: i=1; AJvYcCVhJ3ebnArVEx+j2CXMVPIylbZ5sQ7rjin3nyNJDeiijr6zaCQ5pkbDfmBga6tEk+d+3Yjkj+bwNsndd5Q8S/mO3PM5T8olO9Mkfg==
+X-Gm-Message-State: AOJu0YycHFpWBi9p1Kdj+eQqDpzyZHekzvbsEilfnKncC1H/QXLP+TDz
+	1dLv740YfdbJlqFNBuDXVJyDKGfNGjiJ/gbEnZGrGzZYbBGg1twYWMNbPLdCc/c=
+X-Google-Smtp-Source: AGHT+IFDAu3EqnpC63S4kTkkbsELa25krrM0BKosxQQt0xC7xm7jBDJI38i+X1Tmt5nQTnzNOCutdA==
+X-Received: by 2002:a17:906:4f0a:b0:a44:1be1:66f0 with SMTP id t10-20020a1709064f0a00b00a441be166f0mr348811eju.57.1709126834471;
+        Wed, 28 Feb 2024 05:27:14 -0800 (PST)
+Received: from ?IPV6:2a02:8428:2a4:1a01:6dfa:263f:dd7e:9456? ([2a02:8428:2a4:1a01:6dfa:263f:dd7e:9456])
+        by smtp.gmail.com with ESMTPSA id s6-20020a1709060c0600b00a42e4b5ab00sm1839417ejf.41.2024.02.28.05.27.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Feb 2024 05:27:14 -0800 (PST)
+Message-ID: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+Date: Wed, 28 Feb 2024 14:22:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <mylttlhcnxe5e37m2ar6xgtus6dbr56teyyp74qm7l2d3wejwv@ewpbhpjr3v4m>
+User-Agent: Mozilla Thunderbird
+Content-Language: en-US
+To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
+ ath10k <ath10k@lists.infradead.org>
+Cc: wireless <linux-wireless@vger.kernel.org>, DT
+ <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+Subject: [PATCH 0/2] Work around missing MSA_READY indicator from ath10k FW
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Jacopo,
+Work around missing MSA_READY indicator from ath10k FW
 
-On Wed, Feb 28, 2024 at 01:50:14PM +0100, Jacopo Mondi wrote:
-> > > +const struct mali_c55_fmt *mali_c55_cap_fmt_next(const struct mali_c55_fmt *fmt,
-> > > +						 bool allow_raw, bool unique)
-> > > +{
-> > > +	if (!fmt)
-> > > +		fmt = &mali_c55_fmts[0];
-> > > +	else
-> > > +		++fmt;
-> >
-> > fmt++, please.
-> >
-> 
-> Can I ask why ? (here and in the next occurrences you have reported)
+Marc Gonzalez (1):
+  dt-bindings: net: wireless: ath10k: add qcom,no-msa-ready-indicator prop
 
-It's much, much more common and using that form makes the code easier to
-read. The rest of the driver primarily uses variable++, too, AFAIR.
+Pierre-Hugues Husson (1):
+  wifi: ath10k: work around missing MSA ready indicator
 
-So you should use ++variable only when you need it.
+ Documentation/devicetree/bindings/net/wireless/qcom,ath10k.yaml | 8 ++++++++
+ drivers/net/wireless/ath/ath10k/qmi.c                           | 5 +++++
+ drivers/net/wireless/ath/ath10k/qmi.h                           | 1 +
+ 3 files changed, 14 insertions(+)
 
 -- 
-Sakari Ailus
+2.34.1
 
