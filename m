@@ -1,148 +1,259 @@
-Return-Path: <devicetree+bounces-46898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BBE486B1AE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:25:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F27486B1E0
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:33:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ADBF1C236D1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:25:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4759B22D2F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:33:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3F515A482;
-	Wed, 28 Feb 2024 14:24:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70789612FC;
+	Wed, 28 Feb 2024 14:33:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="YW6uOGSU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62038159589;
-	Wed, 28 Feb 2024 14:24:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1036541C73;
+	Wed, 28 Feb 2024 14:33:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709130288; cv=none; b=KClLve5lkKO5aogoXkXgg646Eur4/e3ocj2/arbNpXxhuYhmFVzPPjAFMEsCmfK4Zine4KyYDLALSCao1jyv96ptEQIUELQIY7frU/5kgSIQM6zilXw3fFjaqcgdNZ61CubPVcscIjrdvSkX06wI3Lu7Q6wVF5zAn8Z+JCI7I04=
+	t=1709130816; cv=none; b=j9v+zo4oHId3M1KdrF6A387NvFxQ1+xMTD7Zin8SnqkfkJswAQnH9H05+P8CjXx4Z11wHwOrNFGE5dqpaTzQBXaVPFEOxVh8TdkCztiTEvJqakwDCKHdBSvn2KTtHOyzs2F0D7INihyvPdi57fbCeRl6lhGJzQwZ9uPyYWwLxsw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709130288; c=relaxed/simple;
-	bh=pRzq8HG/Yov3i+0nNUEbFITL218UFSc1UWUM1H32W08=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=J3+yu9edJvzGNjmu+1lHF0brGMU9X9osyIJ4h6Vb6Ck0onXZUPfUbRvFANaGRjpirzVIA+iiMN4Z9dSvbA0k3fnmBrcyNLvYQlzc4NRRrQSQKPrlTpE38SfqSYwSb1QmU5FTpxaWsFiR5bdRgmziYQxnxJQ4jAuFa8MUYI257YM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TlGhg5GT7z6J9yk;
-	Wed, 28 Feb 2024 22:20:03 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 50B9F1412F1;
-	Wed, 28 Feb 2024 22:24:43 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.35; Wed, 28 Feb
- 2024 14:24:42 +0000
-Date: Wed, 28 Feb 2024 14:24:41 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Dominique Martinet <dominique.martinet@atmark-techno.com>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Jonathan Cameron
-	<jic23@kernel.org>, Syunya Ohshio <syunya.ohshio@atmark-techno.com>, Guido
- =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>, Lars-Peter Clausen
-	<lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	<linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] iio: industrialio-core: look for aliases to request
- device index
-Message-ID: <20240228142441.00002a79@Huawei.com>
-In-Reply-To: <Zd7qz1Qte8HWieF_@atmark-techno.com>
-References: <20240228051254.3988329-1-dominique.martinet@atmark-techno.com>
-	<7f03bb12-0976-4cb7-9ca9-4e4e28170bdd@linaro.org>
-	<Zd7hSOw3_zosyrn3@atmark-techno.com>
-	<daed8ada-9e01-41ad-82af-5da5cbbc865c@linaro.org>
-	<Zd7qz1Qte8HWieF_@atmark-techno.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1709130816; c=relaxed/simple;
+	bh=3n4fi759qVcMVZIBXanIzcd3LPAMSrE+rjz7bDx5usk=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=I3qWieCpm6IjB8C9G/GQGA19GrT2vUYkwQJXS8/pvZ3JlP9jlhltbcym27gxrNE3Y3D97WxE5Zh8YtLY+1/u/yeQBGCTRxDxmlNbwLN5bIuILVEg5yzUkbk66phAUlmpxe3vF34nn4zUMM5EzNGJeXgwlwCsukuSvYMwXL3cwKg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=YW6uOGSU; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2EEAE20008;
+	Wed, 28 Feb 2024 14:33:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709130811;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CAx8vqRjJzrfEqvGHv264mRlGamSXmd2OpD0S+iTVkA=;
+	b=YW6uOGSUJ/WMHYroEPBz/BnDwja0vw0CKSiiObivJWrrLOO4qTL6STPcmui1zL1Muk3AaR
+	mghUhvhyD08WZd1SL/Sz/MrRvqEU4F5He2a/TfcOJKon72lflOkC0P8XJujzGlgDqS4yaC
+	AtrSRUXeoXjhc5JjH740Xc5DjkBrLMFinWAeOhMFWismJnLX1bkiW8TAFWaOXYh5s4eOS5
+	JmFSlEso/7tsP3V6NI9BeBeIBEc61ACkTffdf1Zthz87sp+G9JBn3YM+svNDdSAdJv0Lnm
+	gzDjhAfXEoeKFyGf2CBt4aHvaz67/4lDNth+ea5M5rxTZPRFqa12+LsfvTS9Tw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: lhrpeml500001.china.huawei.com (7.191.163.213) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 28 Feb 2024 15:33:29 +0100
+Message-Id: <CZGSB2O8P572.28HK6WFT43N6S@bootlin.com>
+Subject: Re: [PATCH v8 03/10] clk: eyeq5: add platform driver, and init
+ routine at of_clk_init()
+Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
+ <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
+ <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Vladimir
+ Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.15.2
+References: <20240227-mbly-clk-v8-0-c57fbda7664a@bootlin.com>
+ <20240227-mbly-clk-v8-3-c57fbda7664a@bootlin.com>
+ <Zd4X3NnBoEl0wu2H@smile.fi.intel.com>
+In-Reply-To: <Zd4X3NnBoEl0wu2H@smile.fi.intel.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Wed, 28 Feb 2024 17:11:59 +0900
-Dominique Martinet <dominique.martinet@atmark-techno.com> wrote:
+Hello Andy,
 
-> Krzysztof Kozlowski wrote on Wed, Feb 28, 2024 at 08:42:46AM +0100:
-> > >> Sorry, that's why you have labels and compatibles.  
-> >  
-> > > Setting up a fixed alias seems to be precisely what aliases are about
-> > > (e.g. setting rtc0 will make a specific node become /dev/rtc0, same with
-> > > ethernet0, gpio, i2c, mmc, serial...), I'm not sure I agree a new label
-> > > would be more appropriate here, but perhaps I'm missing some context?  
-> > 
-> > Maybe I don't get your point, but your email said "sysfs", so why do you
-> > refer to /dev?  
-> 
-> I wrote /dev/rtc0, but it also sets the name in /sys, right?
-> For example /sys/class/rtc/rtc0
-> 
-> As far as I'm aware iio also creates character devices in /dev with the
-> same name (/dev/iio/iio:deviceX), but our application doesn't use these
-> at all and has to? look in /sys directly, so normal udev SYMLINK+=
-> unfortunately isn't applicable or I wouldn't be bothering with all
-> this..
+Thanks for the review! I'll be skipping straight forward comments.
 
-A given IIO device driver may create multiple sysfs directories (registers
-device + one or more triggers), so I'm not sure how this would work.
+On Tue Feb 27, 2024 at 6:11 PM CET, Andy Shevchenko wrote:
+> On Tue, Feb 27, 2024 at 03:55:24PM +0100, Th=C3=A9o Lebrun wrote:
+> > Add the Mobileye EyeQ5 clock controller driver. It might grow to add
+> > support for other platforms from Mobileye.
 
-> 
-> > > I'm not sure I understand this comment -- would you rather this doesn't
-> > > use aliases but instead add a new label (e.g. `iio,index = <10>` or
-> > > whatever) to the iio node itself?  
-> > 
-> > No, the devices already have label property.  
-> 
-> Thank you for pointing me at the 'label' property, looking at other
-> subsystems e.g. leds I see paths in sysfs that use labels as I'd like it
-> to work for iio (/sys/class/leds/<label> and
-> /sys/devices/platform/<parent>/leds/<label>)
-> 
-> Unfortunately for iio it looks like labels isn't ignored, but instead
-> create a file in the sysfs directory of the device, e.g. I now have
-> /sys/bus/iio/devices/iio:device1/label which contains the label string,
-> so I'm not sure that can be changed easily as that'd be a change of API
-> for existing users for labels in iio devices?
+[...]
 
-Yes, don't touch that ABI.  IIO software assumes naming of
-iio\:deviceX etc.
+> > +config COMMON_CLK_EYEQ5
+> > +	bool "Clock driver for the Mobileye EyeQ5 platform"
+>
+> > +	depends on OF
+>
+> Since it's a functional dependency, why not allow compile test without OF=
+ being
+> enabled?
 
-> 
-> (I checked briefly and didn't find any, but there seems to be an awful
-> lot of code in the iio drivers tree about labels so I'm not really
-> comfortable changing that without some more background on iio first...
-> Jonathan perhaps has an opinion on this?)
+I'd do this then:
 
-There are labels for channels as well as devices, but the short description
-you have above is it.
+	depends on OF || COMPILE_TEST
 
-I don't see why that isn't sufficient for your use case though?
-What does a directory name matter when you can write a few lines of
-code to retrieve the IIO device that you want.
+Which is better than removing the depend line. I wouldn't want the
+kernel to build fine with OF=3Dn even though we need it. OK for you?
 
-If this was day 0 maybe we could support renaming devices like this
-but we have a long history of those names not being stable and label
-+ parentage of the IIO devices being used to establish stable identification.
+>
+> > +	depends on MACH_EYEQ5 || COMPILE_TEST
+> > +	default MACH_EYEQ5
+> > +	help
+> > +	  This driver provides the clocks found on the Mobileye EyeQ5 SoC. It=
+s
+> > +	  registers live in a shared register region called OLB. It provides =
+10
+> > +	  read-only PLLs derived from the main crystal clock which must be co=
+nstant
+> > +	  and one divider clock based on one PLL.
 
-Anything beyond a trivial single use script is going to need to deal with
-not having stable names (old kernel, dt without alias etc) so this doesn't
-help in general.
+[...]
 
-Jonathan
+> > +struct eq5c_pll {
+> > +	int		index;
+>
+> Index can be negative? Any comment about this case?
 
-> 
-> 
-> Thanks,
+No it cannot. I did not care much because structs of this type are only
+defined in the following static const table, using constants from
+dt-bindings header.
 
+I'll change to unsigned int.
+
+>
+> > +	const char	*name;
+> > +	u32		reg;	/* next 8 bytes are r0 and r1 */
+>
+> Not sure this comments gives any clarification to a mere reader of the co=
+de.
+> Perhaps you want to name this as reg64 (at least it will show that you ha=
+ve
+> 8 bytes, but I have no clue what is the semantic relationship between r0 =
+and
+> r1, it's quite cryptic to me). Or maybe it should be reg_0_1?
+
+Clocks are defined by two 32-bit registers. We only store the first
+register offset because they always follow each other.
+
+I like the reg64 name and will remove the comment. This straight forward
+code is found in the rest of the code, I don't think it is anything
+hard to understand (ie does not need a comment):
+
+	u32 r0 =3D readl(base_plls + pll->reg);
+	u32 r1 =3D readl(base_plls + pll->reg + sizeof(r0));
+
+[...]
+
+> > +		return -EINVAL;
+>
+> I didn't get. If eq5c_init() was finished successfully, why do you need t=
+o
+> seems repeat what it already done? What did I miss?
+
+The key here is that eq5c_init() iterates on eq5c_early_plls[] while
+eq5c_probe() iterates on eq5c_plls[]. I've tried to hint at this in the
+commit message:
+
+> Two PLLs are required early on and are therefore registered at
+> of_clk_init(). Those are pll-cpu for the GIC timer and pll-per for the
+> UARTs.
+
+Doing everything in eq5c_init() is not clean because we expect all new
+clock provider drivers to be standard platform drivers. Doing
+everything from a platform driver probe doesn't work because some
+clocks are required earlier than platform bus init. We therefore do a
+mix.
+
+This has been approved by Stephen Boyd in this email:
+https://lore.kernel.org/lkml/fa32e6fae168e10d42051b89197855e9.sboyd@kernel.=
+org/
+
+[...]
+
+> > +	base_plls =3D devm_platform_ioremap_resource_byname(pdev, "plls");
+> > +	if (IS_ERR(base_plls))
+> > +		return PTR_ERR(base_plls);
+> > +
+> > +	base_ospi =3D devm_platform_ioremap_resource_byname(pdev, "ospi");
+> > +	if (IS_ERR(base_ospi))
+> > +		return PTR_ERR(base_ospi);
+> > +
+> > +	for (i =3D 0; i < ARRAY_SIZE(eq5c_plls); i++) {
+> > +		const struct eq5c_pll *pll =3D &eq5c_plls[i];
+> > +		unsigned long mult, div, acc;
+> > +		u32 r0, r1;
+> > +		int ret;
+> > +
+> > +		r0 =3D readl(base_plls + pll->reg);
+> > +		r1 =3D readl(base_plls + pll->reg + sizeof(r0));
+> > +
+> > +		ret =3D eq5c_pll_parse_registers(r0, r1, &mult, &div, &acc);
+> > +		if (ret) {
+> > +			dev_warn(dev, "failed parsing state of %s\n", pll->name);
+> > +			eq5c_clk_data->hws[pll->index] =3D ERR_PTR(ret);
+> > +			continue;
+> > +		}
+> > +
+> > +		hw =3D clk_hw_register_fixed_factor_with_accuracy_fwname(dev, np,
+> > +				pll->name, "ref", 0, mult, div, acc);
+> > +		eq5c_clk_data->hws[pll->index] =3D hw;
+> > +		if (IS_ERR(hw))
+>
+> > +			dev_err_probe(dev, PTR_ERR(hw), "failed registering %s\n",
+> > +				      pll->name);
+>
+> Missed return statement?
+
+No, we still try to register all clocks even if one failed. I guess we
+can call this being optimistic.
+
+[...]
+
+> > +static void __init eq5c_init(struct device_node *np)
+> > +{
+> > +	void __iomem *base_plls, *base_ospi;
+> > +	int index_plls, index_ospi;
+> > +	int i, ret;
+>
+> Why is i signed?
+
+No reason, will be changed to unsigned int.
+
+[...]
+
+> > +		hw =3D clk_hw_register_fixed_factor_with_accuracy_fwname(NULL,
+> > +				np, pll->name, "ref", 0, mult, div, acc);
+> > +		eq5c_clk_data->hws[pll->index] =3D hw;
+> > +		if (IS_ERR(hw))
+> > +			pr_err("failed registering %s: %ld\n",
+>
+> %pe ?
+>
+> > +			       pll->name, PTR_ERR(hw));
+>
+> Is the error not critical? Is it fine? How is it supposed to work at such
+> circumstances?
+
+It is a critical error, the system will stop working in a few
+milliseconds. :-) This is different from probe and it should indeed
+return the error.
+
+Thanks for the review Andy.
+
+Have a nice day,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
