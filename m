@@ -1,110 +1,111 @@
-Return-Path: <devicetree+bounces-46866-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35D4886B081
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:38:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0691286B099
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:42:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B36FAB276E5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:38:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 384EC1C22B4D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:42:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05AB314F987;
-	Wed, 28 Feb 2024 13:38:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07F581509AB;
+	Wed, 28 Feb 2024 13:40:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="h3VTok+z"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Z7Rh/B6k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F26914EFC5;
-	Wed, 28 Feb 2024 13:38:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7158F14F988;
+	Wed, 28 Feb 2024 13:39:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709127529; cv=none; b=UFYDoL1RNICqw9/huGr0FuJiChlNsf4rXKH1F68Rjs99ufw0D4oUbI6dAI6ExK18vHUIZDkcK6R0tiHg6jh8WnUudCNIGgOV2b5Kl+fBym+7uj1bKNDBO7plYDYSu/T13WbB4/0AjIpyjxfThsEyEV7kdGI8pod5y+KFQL14gRc=
+	t=1709127601; cv=none; b=rJcn/0er7vSc2Cp1pA1o7lD08TjwJaW9vnPV81mn1Fjxt8GuGfSyKER8fayM0mxXiDUtRnbfJvduAdHhWPqEudr00dRotsWP4v6DAjk7fmaacdN1fVToKmPGj9YK+h8nkVdPoJcj8nBx58BTeOhODkeVj0xuciySHry8THE3f4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709127529; c=relaxed/simple;
-	bh=9L/WArr+jbZ+dLvbzeoxB0IrvGQgJwXUQ6aC4idN5D0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Tg0ewCKFC/aIMejhwsMccfdLBhkQlKFwg+RlbALv+mO4CVmTXVa5EvuiiAuSVAjZumFY2MBz5hqvU0RD61Hx+rbW8vtQJGqZS1nV0UJ5WdY8Sw+Q/8YE+DDlZ/Zz6yDZJZhxLMS3RyK8APkQJ7nWGKdhSMC8oWGudtWqBgz6jFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=h3VTok+z; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1E8272B3;
-	Wed, 28 Feb 2024 14:38:33 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1709127513;
-	bh=9L/WArr+jbZ+dLvbzeoxB0IrvGQgJwXUQ6aC4idN5D0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=h3VTok+zTYvQKTpNbUHZt/7WIMkca+g2lCK7Q+UDYp0kz5kVvETQjmJd9LcoW5zs1
-	 v8Kmu9rQjvkoLhsFmhL/bw/536mtD+JZ4ec+fD0iWclm1W7z1++izZkI8ixbjVnxk8
-	 JVslvs6J+GqccIIRnwF2NoMdGSOeUA1EZfcJLago=
-Date: Wed, 28 Feb 2024 15:38:47 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Kieran Bingham <kieran.bingham@ideasonboard.com>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	Daniel Scally <dan.scally@ideasonboard.com>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, nayden.kanchev@arm.com,
-	robh+dt@kernel.org, mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	jerome.forissier@linaro.org
-Subject: Re: [PATCH v2 3/5] media: mali-c55: Add Mali-C55 ISP driver
-Message-ID: <20240228133847.GA9863@pendragon.ideasonboard.com>
-References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
- <20240214141906.245685-4-dan.scally@ideasonboard.com>
- <ZdxwE3omXmUjfLMn@valkosipuli.retiisi.eu>
- <mylttlhcnxe5e37m2ar6xgtus6dbr56teyyp74qm7l2d3wejwv@ewpbhpjr3v4m>
- <Zd8xC0HkZfSo29id@valkosipuli.retiisi.eu>
- <170912697659.1011926.1657561990919797055@ping.linuxembedded.co.uk>
+	s=arc-20240116; t=1709127601; c=relaxed/simple;
+	bh=wxuZ499Vy0EkhZWYdYc3hCPlt7+ctQ7VWJ6Eq8qoX9U=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=inN3jjBB/5Hd7C1U27v8XgYIzU51zSHKHecyyQBJpEo561d7La3UNHTJ+OkSWYbSEBmxi3NS/L9jmUrz5XaS2hDwibHIyfuDhkJCv7fkID0WR6AhMEDN07MgqjtrozYQ94YOWWwFHS60OspPx1OiwJ2VMDwtdG8n6QJElfGTBJ4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Z7Rh/B6k; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A84E7240007;
+	Wed, 28 Feb 2024 13:39:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709127596;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=wxuZ499Vy0EkhZWYdYc3hCPlt7+ctQ7VWJ6Eq8qoX9U=;
+	b=Z7Rh/B6kuM6WldhJ4QS9k5R2IQ6aNTzvNHxjNZW22Odvr3/2Hz4hjy5SYRAwnBaFGqKZ4X
+	MCQJnzDwiEvjhtOSnxzZiXYSYscs3yDr6/pPAvQTlUDIaSlaVHyDDJNHNqvq4+aERWPTsv
+	/vnjp8WSCrCdRbztk5W7qbfLeE5yWOk+kVrTKUCjnWCBwJ+0HhjpnmecX0xZTkj1549cVO
+	2TrZYYa9Jc999Gqr5dRP2tFaGmfIc5Xzt/kzg0+yz1eOqIi6uVpZR1zByKHbGXgqSkQohu
+	zDutucZVLmsX5aThLnG5n0kBBQ9N81QOvotmiElbRfrE+/D6vzG452FzyiJ3qw==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <170912697659.1011926.1657561990919797055@ping.linuxembedded.co.uk>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 28 Feb 2024 14:39:55 +0100
+Message-Id: <CZGR61YHK1DJ.SVRE78BJ9WB4@bootlin.com>
+Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Andi Shyti"
+ <andi.shyti@kernel.org>, "Rob Herring" <robh+dt@kernel.org>, "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mips@vger.kernel.org>, "Gregory Clement"
+ <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Wolfram Sang" <wsa@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH 09/13] i2c: nomadik: fetch timeout-usecs property from
+ devicetree
+X-Mailer: aerc 0.15.2
+References: <20240215-mbly-i2c-v1-0-19a336e91dca@bootlin.com>
+ <20240215-mbly-i2c-v1-9-19a336e91dca@bootlin.com>
+ <Zd3SJMBp23ybgdsJ@shikoro> <CZFWIJE9978P.G3TZC2YIUST9@bootlin.com>
+ <Zd8PtLsUc0G8KR97@shikoro>
+In-Reply-To: <Zd8PtLsUc0G8KR97@shikoro>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Wed, Feb 28, 2024 at 01:29:36PM +0000, Kieran Bingham wrote:
-> Quoting Sakari Ailus (2024-02-28 13:11:39)
-> > On Wed, Feb 28, 2024 at 01:50:14PM +0100, Jacopo Mondi wrote:
-> > > > > +const struct mali_c55_fmt *mali_c55_cap_fmt_next(const struct mali_c55_fmt *fmt,
-> > > > > +                                          bool allow_raw, bool unique)
-> > > > > +{
-> > > > > + if (!fmt)
-> > > > > +         fmt = &mali_c55_fmts[0];
-> > > > > + else
-> > > > > +         ++fmt;
-> > > >
-> > > > fmt++, please.
-> > > 
-> > > Can I ask why ? (here and in the next occurrences you have reported)
-> > 
-> > It's much, much more common and using that form makes the code easier to
-> > read. The rest of the driver primarily uses variable++, too, AFAIR.
-> > 
-> > So you should use ++variable only when you need it.
-> 
-> I don't think this is a hot path, but I'll never forget my C tutor
-> telling us how ++i is more efficient than i++ somewhere to do with the
-> opcode ordering, and not having to make a copy [*1]
-> 
-> Though I bet any clever optimising compiler could spot this anyway.
-> 
-> [*1]. Whatever plausibility there is based on a 20 year old memory and
-> should be verified elsewhere.
+Hello Wolfram,
 
-In C I wouldn't expect any practical difference. C++ is a different
-matter, as the prefix and postfix operators can have different
-implementations.
+On Wed Feb 28, 2024 at 11:49 AM CET, Wolfram Sang wrote:
+> > That sounds good. I have not used this prop in the DTS as it does not
+> > make much sense for an eval board. The target is production boards.
+>
+> ...
+>
+> > My upcoming question is how to move forward on this series. I can do th=
+e
+> > patch to i2c_parse_fw_timings() in the next revision. That way it gets
+> > added alongside the first user of this feature. Would it work for you?
+>
+> Hmmm, to be honest I have a bit of an issue with the 'no user' problem.
+> There is a driver which uses this feature, okay. But there is no
+> upstream hardware which uses this driver with this new feature. This
+> makes maintaining harder ("Who uses this feature?" - "Someone" - "How do
+> they use it? Can we modify it?" - "Dunno").
 
--- 
-Regards,
+The alternative is that I keep going with a new revision of i2c-nomadik
+that manually parses the prop. It'll be refactored if/when the I2C core
+provides a better way to access the value. Is that OK?
 
-Laurent Pinchart
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
