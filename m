@@ -1,126 +1,140 @@
-Return-Path: <devicetree+bounces-46921-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46922-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F127F86B3CA
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:53:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B2B3D86B3F4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:01:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2EA4B1C2377C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:53:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 54168B213C2
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:01:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 386AF15D5A6;
-	Wed, 28 Feb 2024 15:53:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CE4315D5AA;
+	Wed, 28 Feb 2024 16:01:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fH/VpNsC"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="idppjIXM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDCE615CD6E;
-	Wed, 28 Feb 2024 15:53:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9416215D5A4
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 16:00:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709135630; cv=none; b=Rc0iRWJ8YCDxdaHLxX9hgYK8K709KlFkfOAISTfaQjH7oN0+j8Ij4fEv1EilEi6MSwi4eAwJTo7vzhjbjwYAn5/h2Z9unKzPvj8adcZHinh4IYDYY5ItE9k3IfBE6lPv5WCfIYGIvsaoZWw0fzwfPXH1SqQepR4YS1/KJpNy6T0=
+	t=1709136061; cv=none; b=SNf8qcHtxDJ7Kboxtm0JT61JiGwaCmXN5wa6cdtuNFUcB861i2nJAu3zQDz9G52pmBw4upvY0OLDKFX0h1VIWdjpnOTwjIQPEpBB6DCl2JN4HBM9kEYIvRlBL9E8mfpkNWfR8Og5V0kopZwTnrM4yG4z+M8q/VRd6J1hkcA6gcc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709135630; c=relaxed/simple;
-	bh=vxRLRVprDDB/c/3M41BNMbhxG1UwYXmCdbjUbmB3KKE=;
-	h=From:To:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=N9Wr/wmzXUbn8xDF9Uds8NtC7iTGnjmBuOuTOtXQX0ugoeRjV7PBjhdjyNXpsuLa91uqToBkLDkAqehOi2OFTWKgSPvRZ2mtn/PRVqb4oU54k7tLY/DgghAzgw0VwOZFXs+MSs489mwhE8zxum4BwtJzHm4oo/Q3KyVWaaGHA7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fH/VpNsC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1C4CC433F1;
-	Wed, 28 Feb 2024 15:53:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709135629;
-	bh=vxRLRVprDDB/c/3M41BNMbhxG1UwYXmCdbjUbmB3KKE=;
-	h=From:To:In-Reply-To:References:Subject:Date:From;
-	b=fH/VpNsCC6yrehn5cwmf2mjsgU1Ga7kLFvddPlrtSi5Jr4CqpQYnnimGO6HSWNh3O
-	 P1sksEi+taf0EXpKgvTWOTnRbkQja9l+bSOOMPcaOGxOgSq88KAUk6A8OE94ZgekUk
-	 PKdQLGs/2dsH+cPT3ecRVpohSJXMsiWDkMudBu1wj0oL9BuvtO87S4FKrMnmaXAGxp
-	 SG4Uzyv1B5O67FmVmHVGx4IRrSCy5EQ9LvQB1aqs1ZQfSHMSBrY3mVj+nFOJNScIHn
-	 h/H6FZUVqL4iXcGgFr9D757QehRG1OTvDYME//d5Zi8AqSrdF6Nofkun3/EW0W2f+w
-	 hJcYB3olR0OOg==
-From: Mark Brown <broonie@kernel.org>
-To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
- conor+dt@kernel.org, nicolas.ferre@microchip.com, 
- alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev, 
- mturquette@baylibre.com, sboyd@kernel.org, herbert@gondor.apana.org.au, 
- davem@davemloft.net, andi.shyti@kernel.org, tglx@linutronix.de, 
- tudor.ambarus@linaro.org, miquel.raynal@bootlin.com, richard@nod.at, 
- vigneshr@ti.com, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, 
- linus.walleij@linaro.org, sre@kernel.org, u.kleine-koenig@pengutronix.de, 
- p.zabel@pengutronix.de, olivia@selenic.com, radu_nicolae.pirea@upb.ro, 
- richard.genoud@gmail.com, gregkh@linuxfoundation.org, jirislaby@kernel.org, 
- lgirdwood@gmail.com, wim@linux-watchdog.org, linux@roeck-us.net, 
- linux@armlinux.org.uk, andrei.simion@microchip.com, 
- mihai.sain@microchip.com, andre.przywara@arm.com, neil.armstrong@linaro.org, 
- tony@atomide.com, durai.manickamkr@microchip.com, geert+renesas@glider.be, 
- arnd@arndb.de, Jason@zx2c4.com, rdunlap@infradead.org, rientjes@google.com, 
- vbabka@suse.cz, mripard@kernel.org, codrin.ciubotariu@microchip.com, 
- eugen.hristev@collabora.com, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
- linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org, 
- linux-i2c@vger.kernel.org, linux-mtd@lists.infradead.org, 
- netdev@vger.kernel.org, linux-gpio@vger.kernel.org, 
- linux-pm@vger.kernel.org, linux-pwm@vger.kernel.org, 
- linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org, 
- linux-serial@vger.kernel.org, alsa-devel@alsa-project.org, 
- linux-sound@vger.kernel.org, linux-watchdog@vger.kernel.org, 
- Varshini Rajendran <varshini.rajendran@microchip.com>
-In-Reply-To: <20240223171342.669133-1-varshini.rajendran@microchip.com>
-References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
-Subject: Re: (subset) [PATCH v4 00/39] Add support for sam9x7 SoC family
-Message-Id: <170913561744.333382.15677696645878162142.b4-ty@kernel.org>
-Date: Wed, 28 Feb 2024 15:53:37 +0000
+	s=arc-20240116; t=1709136061; c=relaxed/simple;
+	bh=mjroxPW2eHBhaXXEBNaLZsRTmzRxKrpIIQVrF8G1Zpg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rlVx6hVS3eo4Wy4omqwKi9942fKhUwZsC53Rs6w3Jx4lrs020Q774zif2jL7fenYOxMMxxWm6MdFpUEE9OmnySXWvbXZ1IqUSKhNC1MphAh/1Le9li8ZzWr2ktCPHoQqI/wgN7toO7excq53ZTQ3eGk9VTzb31yXIbiftfgQ/xI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=idppjIXM; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-412b493ed27so5307685e9.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 08:00:59 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1709136058; x=1709740858; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1qOgqKolcgCMqkLQDBYRiEWccklZZF6TtDAuL0z45LU=;
+        b=idppjIXM0ER1DMayERYLmhj0Bnh9kj7T7eLvD3E+KtnVN7YZXOMY3qPk1J4j1+FI5q
+         F4wIZj2c4XjNzVHlFg6GBtdkeAlP7//LGVB713g1T9vb6iQlU42Dv/vYDa3p3Q7VsN70
+         y+yD3gwMmw57wmUxnNdUW/gvGw11l+oARSqGGB1DbSWrPnyjrSl/jyzs6nHkehbaDfHG
+         5OpfYBcSTMVxchnax20a6loyoziLUZ/0XmfeOu3kMn5XW/08gQpsVnh05G/fApcmA3np
+         o+vvnp0DCrIWdWbIZRrbUP+7V2s5zsrQHbJPd9ajJElQmSznkgBIaL4TnVjGLiJ+QAN6
+         AWvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709136058; x=1709740858;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1qOgqKolcgCMqkLQDBYRiEWccklZZF6TtDAuL0z45LU=;
+        b=rH3ynxNaH3wGfakUMf8hD6IayY+lTa/DdXYSW6CAompTQJT1y8nSAcOfXjPIpPELGC
+         Zts70GlONZDhUKDcuPcgx7zt8J0UqkCJnsd4p0ax9QlYyYthGOC8E3rnSjWV5Fv0O39F
+         GHqwLqoZHUSCnlYrgJd+IC94WCIvbqqfxgYAkTM+33HokWQ8PrJU5L9LVDxj5EIqrPVe
+         XoUwsM6mxMEEsiEqOA+hKBO4yeon4UT6Li2Y8sof4UczdR9UYCg2Ellbu1xvc2w4ecbi
+         VQFWsYK95FLBAmV3p/ZYlQzH/PkNQppFuSq7aNgFuC8npVtFNAQ0tlFyKaWfEGXXYrzp
+         nbgw==
+X-Forwarded-Encrypted: i=1; AJvYcCWMLwEWTyKCR4LnJqB8Bp8poKd+hiVXZ6/2eV6TfLFbvrj0y6hYdSH8Tpns7CkenA0Pp/fiP0q5O/gaED4yg+1VIvmt91cE62eVdw==
+X-Gm-Message-State: AOJu0Yx9LsWnkyKPDC4pm8idFw7FPGE+cLyEScNEm0x5Gvw7FSbs+rEZ
+	G69dBt8mbmn24cdq9xQkaO+8E23K9Tbo92044GIun+OMDl05J5wneT2USmZWLYc=
+X-Google-Smtp-Source: AGHT+IFN2sCE6PE1xyjuz871GiSbf8TCRVzfrTClfeivGcowaSF9sD8L32UjuIrf1ROZJrtBJdB69Q==
+X-Received: by 2002:a05:600c:4ece:b0:412:a344:ea95 with SMTP id g14-20020a05600c4ece00b00412a344ea95mr6394878wmq.14.1709136057810;
+        Wed, 28 Feb 2024 08:00:57 -0800 (PST)
+Received: from ?IPV6:2a02:8428:2a4:1a01:6dfa:263f:dd7e:9456? ([2a02:8428:2a4:1a01:6dfa:263f:dd7e:9456])
+        by smtp.gmail.com with ESMTPSA id m21-20020a05600c161500b004128f41a13fsm2450042wmn.38.2024.02.28.08.00.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Feb 2024 08:00:57 -0800 (PST)
+Message-ID: <73d85158-6286-45c3-986e-22850fa20c38@freebox.fr>
+Date: Wed, 28 Feb 2024 17:00:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+Content-Language: en-US
+To: Jeff Johnson <quic_jjohnson@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
+ ath10k <ath10k@lists.infradead.org>, Jami Kettunen
+ <jamipkettunen@gmail.com>, Jeffrey Hugo <quic_jhugo@quicinc.com>
+Cc: wireless <linux-wireless@vger.kernel.org>, DT
+ <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+ <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
+ <d8c90f33-d0ab-4d73-9580-2547446671a0@quicinc.com>
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <d8c90f33-d0ab-4d73-9580-2547446671a0@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-a684c
 
-On Fri, 23 Feb 2024 22:43:42 +0530, Varshini Rajendran wrote:
-> This patch series adds support for the new SoC family - sam9x7.
->  - The device tree, configs and drivers are added
->  - Clock driver for sam9x7 is added
->  - Support for basic peripherals is added
->  - Target board SAM9X75 Curiosity is added
+[ Adding Jami Kettunen who documented the same issue 3 years ago ]
+[ Adding Jeffrey Hugo for his past work on msm8998 ]
+
+On 28/02/2024 15:59, Jeff Johnson wrote:
+
+> On 2/28/2024 5:24 AM, Marc Gonzalez wrote:
 > 
->  Changes in v4:
->  --------------
+>> The driver waits for this indicator before proceeding,
+>> yet some WCNSS firmwares apparently do not send it.
+>> On those devices, it seems safe to ignore the indicator,
+>> and continue loading the firmware.
 > 
-> [...]
+> Can you list the product/hardware/firmware where this is observed?
+> Would prefer to fix the firmware if the issue is there
 
-Applied to
+This issue is observed on an apq8098 (msm8998) SoC using
+QC_IMAGE_VERSION_STRING = WLAN.HL.1.0-01202-QCAHLSWMTPLZ-1.221523.2
+according to /sys/kernel/debug/qcom_soc_info/cnss/name
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+We are not the first to run into the issue:
 
-Thanks!
+https://wiki.postmarketos.org/wiki/Qualcomm_Snapdragon_835_(MSM8998)#WLAN
 
-[16/39] spi: dt-bindings: atmel,at91rm9200-spi: remove 9x60 compatible from list
-        commit: 666db8fd4265f938795004838d2a9335ce7b9da1
+"Currently if you get FW details printed in dmesg from ath10k
+with nothing else seemingly happening, you'll most likely have
+to fake an MSA ready indication"
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+https://github.com/JamiKettunen/linux-mainline-oneplus5/commit/088eaa9153803e2b028e092f88539036442da4a3
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+The issue is also observed on an F(x)tec Pro1 phone (msm8998-based)
+with unknown firmware.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+The issue was apparently also observed on the OnePlus 5,
+also msm8998/sdm835-based, also unknown firmware.
 
-Thanks,
-Mark
+
+If the firmwares are signed, and the signature is verified by some remote proc,
+then working around the issue in the kernel seems a more pragmatic solution?
+
+Regards
 
 
