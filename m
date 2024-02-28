@@ -1,181 +1,127 @@
-Return-Path: <devicetree+bounces-46885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF44886B126
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:02:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 341D386B12F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:03:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0F00B1C260D5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:02:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E369E28808B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:03:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 167FC151CD7;
-	Wed, 28 Feb 2024 14:02:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="u0uS9TbR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 50FE414F995;
+	Wed, 28 Feb 2024 14:02:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1CA751534E2
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 14:02:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26D587352B
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 14:02:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709128937; cv=none; b=Cc4NIs8H/NHy4ObpcS6AzdUjjd7XhO/Euq9cJXu8r5VRyMXJEHxziYQDX5W4C2J6gs/VKyMBYiDCJCcrbGuKDG/cGM5FpIkYesrQBh/tBf1RY0YvWGqTaQNkp4AxSRVU5XlzQ3q5yKwGRiW+5JM29lE7k4QkXpkWfs/QKv7JGlw=
+	t=1709128967; cv=none; b=gu97IfjFlWQfj6g+dMUQZ+rV02kzAaxFXFJXVaciz2Cg6WacIv6Jlv0wcg7unav1aEsR3rMpxoYNhqTcvdPOdv4kztZ3Zhv0gCjvvsH0uVGcLm2r4fS+a1PPvXHyO4PrAB0le3Zq7GKQl+hHcZ06R0/QyxwbY+M9VTlGILQqEhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709128937; c=relaxed/simple;
-	bh=wttVcvvyazg/mrRyaOZJCd7pvncVIAniFlA3qhdMgGo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ksYci3hK+/rxGoniqWL5tdbCRDz00W8pFnVr3UAFTNYrL+sGWokQFTztpbMrQ6YKsRYqwvnBxAjR/p817ddwah3mvHACiB2ke+5Ygw/NN/PPveHVKLlY/l6JrOepcEe6XordOfwZvd35kx+MWmJCmRBogqM4CDi9qe3CrOBDFxE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=u0uS9TbR; arc=none smtp.client-ip=209.85.218.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a440b1c445eso90756666b.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 06:02:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709128933; x=1709733733; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Gqsun0Jf0TCpfJuW3oP8yfzJJU2GyOX68ENXwQM6Yxk=;
-        b=u0uS9TbRBnfObH8J+wRAaEptmVgWgEsjCZ7ZFzwEXYttVQL/YkkX+xXy2xaDgmupPu
-         bmUbImcHFkv/oLUWklwKJhKia6jJsUPQZs+f1z4BrqJvddgCL+BKR39cqrUD625He/Ey
-         HpAoTv2VgBajTYOBEAVnWmIdKxjmN51cAzV0ePmOug25hmBvEQ1xuQvEZnYD4+XcIz//
-         pkOR86Cl0Ju3z+5LSXjc8nNDG/axUvdCkR/5DmmJ9pCuQUYubDlb9PPmgbI9o57jgJe9
-         xRTiYTtxTpbm36EtPU4y1MDEU3RezhtO6ifnvSQNGB45oj7gzaQ3UfJJJ+6gIcz0URTB
-         DeBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709128933; x=1709733733;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Gqsun0Jf0TCpfJuW3oP8yfzJJU2GyOX68ENXwQM6Yxk=;
-        b=i8Yu9/fSCotwHSydaTaUrfmKr5FsSfX3u3EweCxODzoVMJmbdPzxTtbf4PtQsJOnKY
-         Rqo7+XmvaQ2B6kGaS7PHErK8/XiSzzBkpI0JRaykkveiQo2CjzYpbgo4kX2PlCoJYS3K
-         BDsLcfOKkNeM5QgtUHr0ABEPQGYa7yyPf+8+eSb6s/zz44bflOTUM7epzqPh6ABHR326
-         Y23NA7+i4HEkatlt2+JHDqYYKjdTz+CM/pXagWdLdZwO4ps/qcGYAHI6CYA9+/FbT3BR
-         zS0ZRra5x1ISSSLftxCY2eNiqOjPZZ1T99cEnNzjZzI1a4C3U+lBD9rF9g+HM3PRk4qQ
-         2eOw==
-X-Forwarded-Encrypted: i=1; AJvYcCWAo37I6npJLsjfPYohiNDiRXB92JF2t/KpcU/Jl8D6zxclLmLEbEdkn1Z9vFNqjy3IT2x+AV5BzgzJpwkyIUWapxJsr1kDFueNQA==
-X-Gm-Message-State: AOJu0YztYWYgVNbGAtWUup2unAbEnTj/+Mu56/NpxUrvK0nOLPFQ7q9L
-	MMPB/in+uSUbicVA3ygGwQXHIsqE29mJiU5JNxRNev7aPmWv2FAtGtK0eiWetcA=
-X-Google-Smtp-Source: AGHT+IG1hZN76cDl47gQqABc9WcgFOoCeTOSbBQcmL4NTFKwZe167xf9RQB9554+xQvwGICRvKIPQA==
-X-Received: by 2002:a17:906:aac2:b0:a44:1008:a014 with SMTP id kt2-20020a170906aac200b00a441008a014mr1183556ejb.6.1709128933518;
-        Wed, 28 Feb 2024 06:02:13 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id vh3-20020a170907d38300b00a433634ba03sm1888598ejc.43.2024.02.28.06.02.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Feb 2024 06:02:13 -0800 (PST)
-Message-ID: <5d3f4c6f-b7cd-4da0-83a0-ef7429a4a902@linaro.org>
-Date: Wed, 28 Feb 2024 15:02:11 +0100
+	s=arc-20240116; t=1709128967; c=relaxed/simple;
+	bh=3z5hhkxmL3+gwPj/3mgtGC6g537iZSf9fwYqXDCJHy0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CLf7UbaaI9Q2NT3L8xtov/4hSY4DAUxnQeaIHutYDzOPOBP7vdAQFaCcgtHIs3ZgXuI1v19LbSwGP3IBiO3LXNa0owRDx2cU8JKlMmNB+K/uHYQg1zhvmkYMscrYRjC17uqiNXOUbhRVe0yIh90hiBnZgSGwjtuBCW0+kuZS1Zg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 528C2C15;
+	Wed, 28 Feb 2024 06:03:23 -0800 (PST)
+Received: from bogus (unknown [10.57.94.75])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3D3843F73F;
+	Wed, 28 Feb 2024 06:02:42 -0800 (PST)
+Date: Wed, 28 Feb 2024 14:02:39 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Ulf Hansson <ulf.hansson@linaro.org>
+Cc: Nikunj Kela <quic_nkela@quicinc.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	krzysztof.kozlowski+dt@linaro.org,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Vincent Guittot <vincent.guittot@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	robh+dt@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org,
+	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>,
+	srinivas.kandagatla@linaro.org
+Subject: Re: DT Query on "New Compatible vs New Property"
+Message-ID: <20240228140239.gkzcytw6cmb4opja@bogus>
+References: <a053261e-6e05-4673-b5dd-2ce8f3c73ac9@quicinc.com>
+ <ZbEHNyLE8bQlZHSZ@bogus>
+ <7910de2d-6184-4f78-a286-d2e6e50c7a36@quicinc.com>
+ <CAKfTPtCjR_MBO9Lh7=CU+dcFaigkbeKc27rVgCa-aEJyHyfK9A@mail.gmail.com>
+ <ZbEY2X8CfOc-vPbe@bogus>
+ <16db3da8-dfdd-4e06-b348-33e9197fe18d@quicinc.com>
+ <ZbFH0UE9zZQFWm8Z@bogus>
+ <32092ee9-018f-4cfb-950e-26c69764f35a@quicinc.com>
+ <94a62a78-961a-4286-804c-fc0b9098b8a1@quicinc.com>
+ <CAPDyKFrL2QcB-YbE25smGgJjf3iBEsSSB4ui3V98zJKghNNhKA@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 0/3] arm64: qcom: sa8775p: add cache coherency support
- for SA8775P
-Content-Language: en-US
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>, andersson@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- konrad.dybcio@linaro.org, manivannan.sadhasivam@linaro.org, robh@kernel.org
-Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
- quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
- dmitry.baryshkov@linaro.org, quic_krichai@quicinc.com,
- quic_vbadigan@quicinc.com, quic_schintav@quicinc.com,
- Lorenzo Pieralisi <lpieralisi@kernel.org>,
- =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
- Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pci@vger.kernel.org
-References: <1708697021-16877-1-git-send-email-quic_msarkar@quicinc.com>
- <866ea7ee-54c3-4a89-981e-64d6d3b46497@linaro.org>
- <7cd328e2-6847-973f-c38b-93d1e64d3771@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <7cd328e2-6847-973f-c38b-93d1e64d3771@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPDyKFrL2QcB-YbE25smGgJjf3iBEsSSB4ui3V98zJKghNNhKA@mail.gmail.com>
 
-On 28/02/2024 14:07, Mrinmay Sarkar wrote:
-> 
-> On 2/24/2024 3:49 PM, Krzysztof Kozlowski wrote:
->> On 23/02/2024 15:03, Mrinmay Sarkar wrote:
->>> Due to some hardware changes, SA8775P has set the NO_SNOOP attribute
->>> in its TLP for all the PCIe controllers. NO_SNOOP attribute when set,
->>> the requester is indicating that there no cache coherency issues exit
->>> for the addressed memory on the host i.e., memory is not cached. But
->>> in reality, requester cannot assume this unless there is a complete
->>> control/visibility over the addressed memory on the host.
->>>
->>> And worst case, if the memory is cached on the host, it may lead to
->>> memory corruption issues. It should be noted that the caching of memory
->>> on the host is not solely dependent on the NO_SNOOP attribute in TLP.
->>>
->>> So to avoid the corruption, this patch overrides the NO_SNOOP attribute
->>> by setting the PCIE_PARF_NO_SNOOP_OVERIDE register. This patch is not
->>> needed for other upstream supported platforms since they do not set
->>> NO_SNOOP attribute by default.
->>>
->>> This series is to enable cache snooping logic in both RC and EP driver
->>> and add the "dma-coherent" property in dtsi to support cache coherency
->>> in SA8775P platform.
->> Please confirm that your patchset passes 100% dtbs_check.
->>
->> Best regards,
->> Krzysztof
-> 
-> I have run dtbs_check and it is passing.
+On Wed, Feb 28, 2024 at 02:27:30PM +0100, Ulf Hansson wrote:
+> On Mon, 26 Feb 2024 at 15:24, Nikunj Kela <quic_nkela@quicinc.com> wrote:
+> >
+> > Hi Sudeep,
+> >
+> > I would like to conclude on this thread. I was discussing this with Ulf.
+> > He thinks that using the domain names to identify if platform is
+> > abstracting clocks etc. are not scalable and sufficient. Instead he
+> > thinks that the change in the interface to OS(and FW) is a good
+> > candidate for a new compatible(even though HW is same).  Even for SCMI,
+> > we do change phandle in DT to SCMI protocol phandle so that is like a
+> > different platform altogether. Could you please let me know if you still
+> > think that using a different compatible in this case is not warranted.
+>
+> My apologies for joining this discussion at this late state. Yet, I
+> just wanted to confirm what Nikunj said above.
+>
+> In the end we are indeed talking about adding a new platform, as
+> changing the FW interface from a QCOM proprietary one into SCMI,
+> simply requires updates to a DTS file(s) that is platform specific.
+>
 
-Hm, last time I checked dma-coherent was not allowed.
+The way I read this sounds like all this are platform specific and need
+new compatible.
 
-Best regards,
-Krzysztof
+> That said, it also seems reasonable to me to use a compatible string,
+> to allow us to describe the update of HW for various affected devices.
+>
 
+While I agree with the above statement, it depends on what you refer as
+update of HW above. It is all Qcom specific and there is so much turn
+between SoCs that this shouldn't matter but I would like to take example
+and describe what I initially mentioned/argued against.
+
+Lets us assume 2 SoCs: A and B. A is old and didn't use SCMI while B is
+new and migrated to use SCMI. Now let us assume both A and B SoCs have
+exact same version/revision of an IP: X. Now just because B uses SCMI,
+should X have one compatible to be used in A and another in B. That
+doesn't sound right IMO.
+
+If X on A has to manage clocks and voltage separately while the same X
+on B uses SCMI to manage them together as performance domain, then the
+presence(or absence) of those properties must indicate the difference and
+not a change in compaible for the IP X. But it is upto Qcom platform
+maintainer, IP driver maintainer and DT maintainers to decide, I will
+leave that them. I just wanted to express my opinion on the matter.
+
+> Probably the best next step is to post a patch series showing how this
+> would really look like, as it would help us to understand more, I
+> think.
+>
+
+Agreed.
+
+--
+Regards,
+Sudeep
 
