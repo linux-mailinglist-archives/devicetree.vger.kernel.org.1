@@ -1,294 +1,277 @@
-Return-Path: <devicetree+bounces-46882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46883-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7AA686B102
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:57:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20B5D86B10E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:59:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 438BF281414
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:57:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 898B41F22082
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:59:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C32571586CB;
-	Wed, 28 Feb 2024 13:55:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5711A14F9F8;
+	Wed, 28 Feb 2024 13:59:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bBgOTP+8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W8MBNb36"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF1811534ED;
-	Wed, 28 Feb 2024 13:55:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C9A814D44E
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:59:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709128549; cv=none; b=am9ppY9Olv+LC5yiF213zjJfBjJ2JXOZjmsVsGfFZ0e63eEv9C9hpcviakB5huRjDT48qiPN0BEKJ3J6llJxISIPjfyutxIQLdIxHtVCG4jaCihdDNhl9yttCKWIUQYYH1ORaibLBFHSzvx3t2k6M6spAMgIWLOo0K887SY6aDI=
+	t=1709128794; cv=none; b=EXfdgOKRnHRxevuldmNbWDItr/30b06Kr1VnKzTUc3dWgYC+PheEE5sPyrDlE/5GE1Y3NG2jLtYRFm3auegw+II28QH/mCNejLI3CWT0vIePtt0FE2H4KHXvS382+HbwO6eQWYTLxmp0q63XSmNFum0I+USXGDrN4+jR9edwBKM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709128549; c=relaxed/simple;
-	bh=4ookyNkXsRC1w+SX2YFfQ/sHilHozwzGjehD4iaCqbg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=kWE82wbgEu7i2hTHAwxo+j5jvkPDTAAdRsVf1ZhQkz3cfFGamE3nzXM7NJcrdvocJ1CxdwTTB5E66/yWJPlbNt56m6MGUR5dsl9BiQPCOOUBACll7sK84y/NZDb7ZRi/aVtyNc25YrMs9ZLCvQ/WUq2cJ8YtL2opQOBC7eKjTA0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bBgOTP+8; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a43488745bcso500820366b.3;
-        Wed, 28 Feb 2024 05:55:47 -0800 (PST)
+	s=arc-20240116; t=1709128794; c=relaxed/simple;
+	bh=Ia2M0qxwtcNcfSaVEpSG+cjzWqtLFrxF+mIkAJQUGhI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Mignk7NPMaJKcs70xUapS0m8TjhUjwCvgfam5rq8XXdQrZ5dKYWkbD64bqLPO0SCIqAGIbhL5Q5jTCIPdu5jz1xBWQNbeOgCJySImD4uCUP4ZIrYMW+cnTaZuh6y4WuCZAibaHmcmSRcvFIUbqKWtb0uAOFUZLtLXYC5Ck7Espo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W8MBNb36; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a3e72ec566aso717302466b.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 05:59:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709128546; x=1709733346; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PYCemFNc1uUqcXulrZM7TUJ6mft8DchA0cSSH48XvI8=;
-        b=bBgOTP+8WBwGsy8lEffEiIkJphw7CcvqMKis+oHJzmiSFeBlEhDfgPU5tkse3APjsx
-         4XrjEGl8t7ox9rca5ZtY+pyWkdq2qXJnlMCgSZQ3bxrr48fsLL3iEiQRxEETNyS76+jg
-         fe0QUn5+yxxoSy8dPAgtTx5xYDhkJbkGHwF4Td6rVvMrKhI2PputaK2EJh5DdBl8jOB5
-         J1imRlTgL0X4UgYmMT6+YI5/5iS/oDx8wa3jQTZZdFtVjeEWP+D7DhqfBwKDi0H1N7iA
-         OKudl6SXDO11mDUi1Y0s9juhKBa4mD3z86t20U2hLaAgXPoZW+Is3zdVAuevVBcs7O3w
-         Vyjg==
+        d=linaro.org; s=google; t=1709128791; x=1709733591; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=9NqnkdPX6paOI+O7RwBWR73KUtzFSBhK812pkEn7md8=;
+        b=W8MBNb36pfGoOeWVaYCQ+hAXHjj1N6auzMMjlx/5Qxw1KmqVq3WT7Hc8+7QGWjED8A
+         uTfXpEwyAkk0sz7FOLQGlMiNOplMAE/HbXq1QFr057Fa0pqcpwZgfORqI/qnStZmTlYq
+         VvEqBiOe77/2eOk/d/HQlpQ9dCxGeI2MbcnBWyDqMijWMmNV/+krvT6lwVG0k2i8dE7O
+         K2vkNPryrO4/8tVtm12B7IxJJzG4wWP3ik5rE1FK7KnKhfVs5yebWXl7tDwXaie4H9Cn
+         pqeB6hlkgNJs0zIwyphsohGsrAdkHQzZ5xTtoL9tpoyk/cqRy3OYK1iJHOy7npdFNjmc
+         gE8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709128546; x=1709733346;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PYCemFNc1uUqcXulrZM7TUJ6mft8DchA0cSSH48XvI8=;
-        b=s10j2gSIDxp3xrN3GYst0EJ5sJFHaoJA4rvV9D0xzv5gR/CxYxeig6aARlaB7Cvh8J
-         ME8G6H8dYB9rOn9sh5S5HcSJSgGzdKh1TA154ETB/eZVXkvvHox4UseNjBt2dq0AlKle
-         BSvN/DDDSbNRwoZ2NGyReJCGcV012Pj+AFv4pQ87mZYlNvq+lw6ZChmT2HF0ckXtFQpT
-         kn1FsS4eqkjakVQ4yXtmNgtStRrAJCGVvqrvxDgBXP26ODYdf/ek4Swvujs9IhZ9zDFS
-         KekuIXuyGZwN07cdK4BlhD7ZQhbDtdwfRN7xZKUiOjQaY0IfkyASVad61b/87CH44nxj
-         1iiQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWfzh1oMHyqwxXqHgBXIwEM32mOMBwLSMqck1PJGdN6WoM7++IxDiOS6LfP6qx7MxVz8NhUp4e5/WgaQ2srgLoNPXWZ4lrwTfPoesuVqu6fSqt9h/60li+8tZdHG9HT3627iXtiHE+fl0/cem2Xuj9k3eSE2FIBkSeJ1yaWo+5cbhOB2A==
-X-Gm-Message-State: AOJu0YybFTxVXlJmcyndQ4ORIpSNrJirnawLxmhi+adKtPEyO1wJ5htX
-	u8pdzTApHuUqJqjN1hfyrn2VkCrN0s6sZ3YsSLrOUJh3k3kVsQ2h
-X-Google-Smtp-Source: AGHT+IHS5En0/YeBTEFnIculf04J0CPaqO9tbUphkDG0su+gcdQ7D4LyQRl/voZgJbPxiNG3LimBkg==
-X-Received: by 2002:a17:906:3793:b0:a40:3aa3:9b8a with SMTP id n19-20020a170906379300b00a403aa39b8amr8365405ejc.15.1709128545867;
-        Wed, 28 Feb 2024 05:55:45 -0800 (PST)
-Received: from HYB-hhAwRlzzMZb.ad.analog.com ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id dc6-20020a170906c7c600b00a441674cae4sm312487ejb.222.2024.02.28.05.55.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Feb 2024 05:55:45 -0800 (PST)
-From: Dumitru Ceclan <mitrutzceclan@gmail.com>
-To: 
-Cc: Jonathan Cameron <jic23@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Lechner <dlechner@baylibre.com>,
-	Ceclan Dumitru <dumitru.ceclan@analog.com>,
-	linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Dumitru Ceclan <mitrutzceclan@gmail.com>
-Subject: [PATCH v2 2/2] iio: adc: ad7173: add support for additional models
-Date: Wed, 28 Feb 2024 15:54:57 +0200
-Message-ID: <20240228135532.30761-3-mitrutzceclan@gmail.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240228135532.30761-1-mitrutzceclan@gmail.com>
-References: <20240228135532.30761-1-mitrutzceclan@gmail.com>
+        d=1e100.net; s=20230601; t=1709128791; x=1709733591;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9NqnkdPX6paOI+O7RwBWR73KUtzFSBhK812pkEn7md8=;
+        b=NnctK5BvLu0MU9TRswhffJnAFTAJokM1tNZLnCeS01hsyy+OKhgc29UXTuQoJvwZjj
+         bXN/d51rrqDv1Vr4HCk482ngu93BzkGDuzLEZBXG9InksuRBZKQiYsLdPjnXWZGbwt+w
+         t0ff/oylD5a1nOvR/9ULv6lh9B/MhpMLslgDYMuOXMmufwZUafu3NR3hH/amsVRmrlGk
+         xhBVfvlhNSy7xbVMwaD1Uaih0KpRjdi/3BUzsIGQ07Sg9LUArEfwghvRkCtpCWsy90K6
+         QLbGlZ27bId7sTWCYPdqPeUK5/wbMamjUb3i2g0sSWEdKr5XhI8deyI1KzsxCPJOpUX8
+         6Pzg==
+X-Forwarded-Encrypted: i=1; AJvYcCVxpTqOAxBWCkJCBx9fTjY8xz7AOEyGcHOfG+OT3+N/utA6jdJ2YP2H8PZGEOGsFnrC9+y2zm++DN8Wksll5BZX1r2WCb0vec0pVA==
+X-Gm-Message-State: AOJu0Yx3TMlWH/GV0CDVOzLv0y/tptJJEiv61NSJcHIGJuPoS7RxbxpP
+	tAah8nCkGp/wlhxq4MWK1yblaNbrLErWDevT+2ekQDdP05njtKRBeot4ErbkTkY=
+X-Google-Smtp-Source: AGHT+IEPfj9suyKmqUMmFTefs1BwjpmX4BCCIkOQNyZStovYfhxfKEjSJ4N+hLi+WRu+2hs8+y+DkA==
+X-Received: by 2002:a17:906:565a:b0:a3e:6a25:2603 with SMTP id v26-20020a170906565a00b00a3e6a252603mr9232878ejr.33.1709128790687;
+        Wed, 28 Feb 2024 05:59:50 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.116])
+        by smtp.gmail.com with ESMTPSA id cm27-20020a170906f59b00b00a3f3d0d30c8sm1859841ejd.213.2024.02.28.05.59.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Feb 2024 05:59:50 -0800 (PST)
+Message-ID: <6dd18b29-6e45-4c35-8f7e-5248b057449d@linaro.org>
+Date: Wed, 28 Feb 2024 14:59:48 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: pwm: add support for MC33XS2410
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240228133236.748225-1-dima.fedrau@gmail.com>
+ <20240228133236.748225-2-dima.fedrau@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240228133236.748225-2-dima.fedrau@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add support for Analog Devices AD7172-2, AD7175-8, AD7177-2.
+On 28/02/2024 14:32, Dimitri Fedrau wrote:
+> Adding documentation for MC33XS2410 pwm driver.
 
-Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
----
- drivers/iio/adc/ad7173.c | 82 ++++++++++++++++++++++++++++++++++++----
- 1 file changed, 74 insertions(+), 8 deletions(-)
+Driver as Linux driver? If so, please rephrase to describe hardware.
 
-diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
-index b42fbe28a325..e60ecce20e08 100644
---- a/drivers/iio/adc/ad7173.c
-+++ b/drivers/iio/adc/ad7173.c
-@@ -1,6 +1,11 @@
- // SPDX-License-Identifier: GPL-2.0+
- /*
-- * AD7172-2/AD7173-8/AD7175-2/AD7176-2 SPI ADC driver
-+ * AD717x family SPI ADC driver
-+ *
-+ * Supported devices:
-+ *  AD7172-2/AD7172-4/AD7173-8/AD7175-2
-+ *  AD7175-8/AD7176-2/AD7177-2
-+ *
-  * Copyright (C) 2015, 2024 Analog Devices, Inc.
-  */
- 
-@@ -61,10 +66,13 @@
- #define AD7173_AIN_TEMP_POS	17
- #define AD7173_AIN_TEMP_NEG	18
- 
--#define AD7172_ID			0x00d0
--#define AD7173_ID			0x30d0
--#define AD7175_ID			0x0cd0
-+#define AD7172_2_ID			0x00d0
- #define AD7176_ID			0x0c90
-+#define AD7175_2_ID			0x0cd0
-+#define AD7172_4_ID			0x2050
-+#define AD7173_ID			0x30d0
-+#define AD7175_8_ID			0x3cd0
-+#define AD7177_ID			0x4fd0
- #define AD7173_ID_MASK			GENMASK(15, 4)
- 
- #define AD7173_ADC_MODE_REF_EN		BIT(15)
-@@ -110,15 +118,19 @@
- #define AD7173_SETUP_REF_SEL_EXT_REF	0x0
- #define AD7173_VOLTAGE_INT_REF_uV	2500000
- #define AD7173_TEMP_SENSIIVITY_uV_per_C	477
-+#define AD7177_ODR_START_VALUE		0x07
- 
- #define AD7173_FILTER_ODR0_MASK		GENMASK(5, 0)
- #define AD7173_MAX_CONFIGS		8
- 
- enum ad7173_ids {
- 	ID_AD7172_2,
-+	ID_AD7172_4,
- 	ID_AD7173_8,
- 	ID_AD7175_2,
-+	ID_AD7175_8,
- 	ID_AD7176_2,
-+	ID_AD7177_2,
- };
- 
- struct ad7173_device_info {
-@@ -190,7 +202,7 @@ static const unsigned int ad7175_sinc5_data_rates[] = {
- static const struct ad7173_device_info ad7173_device_info[] = {
- 	[ID_AD7172_2] = {
- 		.name = "ad7172-2",
--		.id = AD7172_ID,
-+		.id = AD7172_2_ID,
- 		.num_inputs = 5,
- 		.num_channels = 4,
- 		.num_configs = 4,
-@@ -200,6 +212,17 @@ static const struct ad7173_device_info ad7173_device_info[] = {
- 		.sinc5_data_rates = ad7173_sinc5_data_rates,
- 		.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
- 	},
-+	[ID_AD7172_4] = {
-+		.id = AD7172_4_ID,
-+		.num_inputs = 9,
-+		.num_channels = 8,
-+		.num_configs = 8,
-+		.num_gpios = 4,
-+		.has_temp = false,
-+		.clock = 2 * HZ_PER_MHZ,
-+		.sinc5_data_rates = ad7173_sinc5_data_rates,
-+		.num_sinc5_data_rates = ARRAY_SIZE(ad7173_sinc5_data_rates),
-+	},
- 	[ID_AD7173_8] = {
- 		.name = "ad7173-8",
- 		.id = AD7173_ID,
-@@ -214,7 +237,7 @@ static const struct ad7173_device_info ad7173_device_info[] = {
- 	},
- 	[ID_AD7175_2] = {
- 		.name = "ad7175-2",
--		.id = AD7175_ID,
-+		.id = AD7175_2_ID,
- 		.num_inputs = 5,
- 		.num_channels = 4,
- 		.num_configs = 4,
-@@ -224,6 +247,17 @@ static const struct ad7173_device_info ad7173_device_info[] = {
- 		.sinc5_data_rates = ad7175_sinc5_data_rates,
- 		.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
- 	},
-+	[ID_AD7175_8] = {
-+		.id = AD7175_8_ID,
-+		.num_inputs = 17,
-+		.num_channels = 16,
-+		.num_configs = 8,
-+		.num_gpios = 4,
-+		.has_temp = true,
-+		.clock = 16 * HZ_PER_MHZ,
-+		.sinc5_data_rates = ad7175_sinc5_data_rates,
-+		.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
-+	},
- 	[ID_AD7176_2] = {
- 		.name = "ad7176-2",
- 		.id = AD7176_ID,
-@@ -236,6 +270,17 @@ static const struct ad7173_device_info ad7173_device_info[] = {
- 		.sinc5_data_rates = ad7175_sinc5_data_rates,
- 		.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
- 	},
-+	[ID_AD7177_2] = {
-+		.id = AD7177_ID,
-+		.num_inputs = 5,
-+		.num_channels = 4,
-+		.num_configs = 4,
-+		.num_gpios = 2,
-+		.has_temp = true,
-+		.clock = 16 * HZ_PER_MHZ,
-+		.sinc5_data_rates = ad7175_sinc5_data_rates,
-+		.num_sinc5_data_rates = ARRAY_SIZE(ad7175_sinc5_data_rates),
-+	},
- };
- 
- static const char *const ad7173_ref_sel_str[] = {
-@@ -656,7 +701,12 @@ static int ad7173_write_raw(struct iio_dev *indio_dev,
- 	switch (info) {
- 	case IIO_CHAN_INFO_SAMP_FREQ:
- 		freq = val * MILLI + val2 / MILLI;
--		for (i = 0; i < st->info->num_sinc5_data_rates - 1; i++)
-+		/*
-+		 * AD7177-2 has the filter values [0-6] marked as reserved
-+		 * datasheet page 58
-+		 */
-+		i = (st->info->id == AD7177_ID) ? AD7177_ODR_START_VALUE : 0;
-+		for (; i < st->info->num_sinc5_data_rates - 1; i++)
- 			if (freq >= st->info->sinc5_data_rates[i])
- 				break;
- 
-@@ -908,8 +958,15 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
- 		else
- 			ref_sel = ret;
- 
-+		if (ref_sel == AD7173_SETUP_REF_SEL_INT_REF &&
-+		    st->info->id == AD7172_2_ID) {
-+			fwnode_handle_put(child);
-+			return dev_err_probe(dev, -EINVAL,
-+				"Internal reference is not available on ad7172-2\n");
-+		}
-+
- 		if (ref_sel == AD7173_SETUP_REF_SEL_EXT_REF2 &&
--		    st->info->id != AD7173_ID) {
-+		    st->info->id != AD7173_ID && st->info->id != AD7172_2_ID) {
- 			fwnode_handle_put(child);
- 			return dev_err_probe(dev, -EINVAL,
- 				"External reference 2 is only available on ad7173-8\n");
-@@ -1080,21 +1137,30 @@ static int ad7173_probe(struct spi_device *spi)
- static const struct of_device_id ad7173_of_match[] = {
- 	{ .compatible = "adi,ad7172-2",
- 	  .data = &ad7173_device_info[ID_AD7172_2]},
-+	{ .compatible = "adi,ad7172-4",
-+	  .data = &ad7173_device_info[ID_AD7172_4]},
- 	{ .compatible = "adi,ad7173-8",
- 	  .data = &ad7173_device_info[ID_AD7173_8]},
- 	{ .compatible = "adi,ad7175-2",
- 	  .data = &ad7173_device_info[ID_AD7175_2]},
-+	{ .compatible = "adi,ad7175-8",
-+	  .data = &ad7173_device_info[ID_AD7175_8]},
- 	{ .compatible = "adi,ad7176-2",
- 	  .data = &ad7173_device_info[ID_AD7176_2]},
-+	{ .compatible = "adi,ad7177-2",
-+	  .data = &ad7173_device_info[ID_AD7177_2]},
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, ad7173_of_match);
- 
- static const struct spi_device_id ad7173_id_table[] = {
- 	{ "ad7172-2", (kernel_ulong_t)&ad7173_device_info[ID_AD7172_2]},
-+	{ "ad7172-4", (kernel_ulong_t)&ad7173_device_info[ID_AD7172_4] },
- 	{ "ad7173-8", (kernel_ulong_t)&ad7173_device_info[ID_AD7173_8]},
- 	{ "ad7175-2", (kernel_ulong_t)&ad7173_device_info[ID_AD7175_2]},
-+	{ "ad7175-8", (kernel_ulong_t)&ad7173_device_info[ID_AD7175_8]},
- 	{ "ad7176-2", (kernel_ulong_t)&ad7173_device_info[ID_AD7176_2]},
-+	{ "ad7177-2", (kernel_ulong_t)&ad7173_device_info[ID_AD7177_2]},
- 	{ }
- };
- MODULE_DEVICE_TABLE(spi, ad7173_id_table);
--- 
-2.43.0
+> 
+> Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
+> ---
+>  .../bindings/pwm/nxp,mc33xs2410.yaml          | 105 ++++++++++++++++++
+>  1 file changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml b/Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml
+> new file mode 100644
+> index 000000000000..bd387dbe69be
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml
+> @@ -0,0 +1,105 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/nxp,mc33xs2410.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MC33XS2410 PWM driver
+
+Driver as Linux driver? If so, please rephrase to describe hardware.
+
+> +
+> +maintainers:
+> +  - Dimitri Fedrau <dima.fedrau@gmail.com>
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: nxp,mc33xs2410
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    maximum: 10000000
+> +
+> +  spi-cpha: true
+> +
+> +  spi-cs-setup-delay-ns:
+> +    minimum: 100
+> +    default: 100
+> +
+> +  spi-cs-hold-delay-ns:
+> +    minimum: 10
+> +    default: 10
+> +
+> +  spi-cs-inactive-delay-ns:
+> +    minimum: 300
+> +    default: 300
+> +
+> +  reset-gpios:
+> +    description:
+> +      GPIO connected to the active low reset pin.
+> +    maxItems: 1
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +  pwms:
+> +    description:
+> +      Direct inputs(di0-3) are used to directly turn-on or turn-off the
+> +      outputs. The external PWM clock can be used if the internal clock
+> +      doesn't meet timing requirements.
+
+pwm is input for pwm?
+
+> +    maxItems: 5
+> +
+> +  pwm-names:
+> +    items:
+> +      - const: di0
+> +      - const: di1
+> +      - const: di2
+> +      - const: di3
+> +      - const: ext_clk
+
+Aren't these clocks?
+
+> +
+> +  vdd-supply:
+> +    description:
+> +      Logic supply voltage
+> +
+> +  vspi-supply:
+> +    description:
+> +      Supply voltage for SPI
+> +
+> +  vpwr-supply:
+> +    description:
+> +      Power switch supply
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +additionalProperties: false
+
+Instead:
+unevaluatedProperties: false
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    spi {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +       pwm@0 {
+> +           compatible = "nxp,mc33xs2410";
+> +           reg = <0x0>;
+> +           spi-max-frequency = <4000000>;
+> +           spi-cpha;
+> +           spi-cs-setup-delay-ns = <100>;
+> +           spi-cs-hold-delay-ns = <10>;
+> +           spi-cs-inactive-delay-ns = <300>;
+> +           reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>;
+> +           #pwm-cells = <3>;
+
+Make example complete, so provide all properties, like interrupts, pwms
+and whatever you have in the binding.
+
+Best regards,
+Krzysztof
 
 
