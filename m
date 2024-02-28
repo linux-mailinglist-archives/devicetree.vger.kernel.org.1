@@ -1,94 +1,101 @@
-Return-Path: <devicetree+bounces-46850-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46852-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3610186AFCE
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:04:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4CB6086AFD7
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:05:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CAD8E1F21FEC
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:04:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D90971F21C51
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:05:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B0DC14A081;
-	Wed, 28 Feb 2024 13:04:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025391534E2;
+	Wed, 28 Feb 2024 13:04:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zKeF63px"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lItC6RnK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9631214EFF5
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:04:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69804151CD4
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:04:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709125455; cv=none; b=OT6OVJAIXM+1lPdKxFKG6D/3Zwj02/PpB6gZZe+ELbsSMh4N2dl71rwLjcP7bhMeYWXkePQNm7Aij5ugWh1F51TAz8hwWBBGtyjkuN8/mT527113TA2+nYmrCOYgnNlRX10Yszv1LrznRGTqIDH6W7d4OP2n+MrIlVM4aWRFvGc=
+	t=1709125475; cv=none; b=dEqvxLaQ96jVJoJbDQV7l4qAwOiDYn1L116d1sz0P4lfoRgRbCrcmCq5zX6x4FbQNtYxhwlLOp34j7sjI34bHP9Z1kBAyvyXB6t9RojNlSrL4QPeGV0Qi3N559Z4cpotTajNWPvJ1Y5YcWhOuFbz8Cpvoo87hdOnk1QdBFlWxnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709125455; c=relaxed/simple;
-	bh=Cdy6St+TAumTxcMKiWP3rQKGFwXjSr1a5rEWEah7bhA=;
+	s=arc-20240116; t=1709125475; c=relaxed/simple;
+	bh=FZB5bau4XS+CfL8L2++Na5Xn+x8eJG95NbayiKGChrY=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Sd/eAf1hiRTdZ9DDZVUuPYDi919RCKe8ZA7VSS3DF+F5f5lYv4OHhVdS7o5fIFvvSJk5hVukAFxsTeW+8Ep9hTU5eIs8TV0RQpCDBhKYoeQdAvx5pmb9LOfmpZYgQ831UWaYvunRT/2QXD+Z1+GCc7XPTxhVuMmGFYe+9hcrTSA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zKeF63px; arc=none smtp.client-ip=209.85.219.177
+	 To:Cc:Content-Type; b=YGynE6cTxWSJa84nKo4Xvl0U/JbV8oMNMhnrwWZdmBjb0J2s7z64J4/7BDCIgS2eQyv2s387oQ04DRumctrEv0avLLoVSloOykKloL+FN8y5coYIv6TfdpRRVT/UoviTdanSGciBCTNt9wGLTLWEN1O6QcWKwzUbi5oKzwYet1k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lItC6RnK; arc=none smtp.client-ip=209.85.219.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dcc73148611so5729754276.3
-        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 05:04:13 -0800 (PST)
+Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dccb1421bdeso5459723276.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 05:04:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709125452; x=1709730252; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709125473; x=1709730273; darn=vger.kernel.org;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=IPWk4N9bdPXdKR4Ei2myz2DuKAxPeauHNUmWL9ZIWn8=;
-        b=zKeF63pxHKPF2yRiXrYHQOw3dq5jXpfIE1AM1R9b7tMky3wyexxz/Yfy0IKKdSBdqH
-         TOtTwF9iDEhIISf5W+0niaZ1zvqEElZATxPmk/Lz2ME3ybgm9cNp2aTxMJ89fXBeMcwt
-         Nt5FcMKumvpdbO7DycngoIFI+7TXVwtLDilYK1ed6z7zpIlcSlJpEWR7G0lZd4KzOvdL
-         tnk4SM9dlZmy+BxG0QpZ9l/HY/ezp/Yq9uHRvxz/PbVo4DUnHQrb2OHDeYyKuzIGsfi7
-         eJrw8hfGcjXOhL3juEXANY5Ray0gvVb9oGO/48M3CQ8yIRbikTdJIjN8/+AxMaX9klye
-         BZrw==
+        bh=P0H9CjwYlrXXMXgZMM3y9R8B4NNOlSm7B7Wu2SJEefo=;
+        b=lItC6RnKEVIC9+iqU7C7yBuLcvQCQh4R/xFe62spLD1BiCvgmPdlpxX0AIUEMrO5w3
+         1Wby7KWTl/2TuShPNgc3knDicqHATsGn0jZ5dLv/BQc998sxSpgrjiDN8S5jQAA+cUpT
+         TBD7RE9HFcBo5O3y54+ylDzWQh5uQhIJD5HE+MFqc4XDOoRl0jtROSjf0ZyNC4mPTPvq
+         5auwcOMCU284Xm5fIvEAvrA0rTnW+JM5U4vwdis5iXKfHoLHx26YM+oRbt/BG/DIOm2+
+         BXraVm1cAUSrY61TEX1eFmuG6ufdKvusweyBJRL0qCmqt+TPpZIisRWMYDQASfXfzwwO
+         X8pA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709125452; x=1709730252;
+        d=1e100.net; s=20230601; t=1709125473; x=1709730273;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=IPWk4N9bdPXdKR4Ei2myz2DuKAxPeauHNUmWL9ZIWn8=;
-        b=YGSsm2GUdL6AyMx/dMJnbKj6u8fX3pJYfcRIqvJOrmJiA9ApONWlxjVOgC+28zJSjw
-         NS1qKsCtWQoI08dcUDq3Hee/Wm/ZPUmqMLVXSanDmMifds+KZzZ5JXywozk9chtDMNjY
-         ssUn0hhImgBiAWqDZvjozOkE39Jb9ouv08yD8rFSagFU3Plc4roRsnJ2kgKDsPw8b7wr
-         yamywGg5EHuxllLzdzs7p9earFpOz/WVi2N+GcsFpQgdZ3G/CUDhwcUnctEW2+aWMPBH
-         2QYfn3KT6C8+lFRVVm6w/yEqisxbXbJMDtntpmCUkufe5uRDQxjN+U9gBaMtwt7cs8rg
-         dyeg==
-X-Forwarded-Encrypted: i=1; AJvYcCV6NvhNXbfkUIC6mpcO3NsTQ96z4cTH0LmzB+pgpo7nKxFA04AijUdRymg38VN8M4NqFqLlOCzCpvfX79uSpDDKYILcrEico0rKsQ==
-X-Gm-Message-State: AOJu0Yz88V+szFPYVpIBDuprw6E3ZEgiMks2nMN7kkQ/7z2Ei/yLqjHy
-	OlSKxS5UqNB7WoK87uak/vXrGbVR7SE1GsdCiQ4b/EY2VFdFrd1J1/UiS50mOx9Q161VqR0Uq89
-	w2oZB964FriIuvjbWRqDCyErwvc+cVdi0FVAiUOxc//dMdOUb
-X-Google-Smtp-Source: AGHT+IGf021TO6N0A+Jn2pGdfdFuuxCfKPfqVCGX0Uaf82k6lo+cEMKalwjn9R3wNeAVL/LJosMsp6k5luz1m2Bj3lo=
-X-Received: by 2002:a25:bc86:0:b0:dcc:e388:6db6 with SMTP id
- e6-20020a25bc86000000b00dcce3886db6mr2493381ybk.55.1709125452103; Wed, 28 Feb
- 2024 05:04:12 -0800 (PST)
+        bh=P0H9CjwYlrXXMXgZMM3y9R8B4NNOlSm7B7Wu2SJEefo=;
+        b=MIcy3dGtKC2vbyrCRHnSvjhGUtM7TZcL+CIwaV++cI0TpyRNlHbkLD7B5EuIqfjgK6
+         U5YfxWmUaNXBHbhN3uFjC6DUcPBMetCIHNnerBZyEr9BO99dmlgb3vgjRv3yQtbTNbXk
+         SCs9uj3d8yT5EbxeCqIR0zjMIch9tNKNY5AJv67vqOA3w7gdGTI7PVWGgxO9WpJp6wWK
+         b9k899v67jkxke/U16/pGnbqWCi7ozBPIgcDRGf9zI11IH9J6t8cNPU87+URi1JV86WU
+         OooU+QsneqpUzWTXlHJGATeYahw0dTxepYxHx6X11jxgg73EHyYMFT7dPlfus8BmaRE8
+         GOuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVGo++bOuHwpces8+tnE0joLln0iY/nd2NASLwPAZq4+fmkETB5yWaPmhJEpuC3MM99FXAcZ1o1sVzCu5LqfLxYXLKTq+umncdVFg==
+X-Gm-Message-State: AOJu0YzvIiEXbOkM5JS7zZKQ5eBgakh58q1DE3+VgC2eKkYv6l6g+vXe
+	poFmfAT7HUFD5/8vjmqzLqDw2nN8q5Uh/6Af+k0NUTQQWAW04pH4a+iBCH5Qo7inNRiUARb/HwO
+	J53HHIPDt6v0MumL3BomGAKleHh9NuLgL7c64gQ==
+X-Google-Smtp-Source: AGHT+IFMY1lIqqJ8UyC7C9qZOEupjve8bfAWSVebXLSJSsfev7YwuqlxCnewklXnZfsQy4eqjDlfkEIXJTMwgj5NBbQ=
+X-Received: by 2002:a25:ae8d:0:b0:dcc:d455:2ab9 with SMTP id
+ b13-20020a25ae8d000000b00dccd4552ab9mr2499464ybj.27.1709125473477; Wed, 28
+ Feb 2024 05:04:33 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240221184602.3639619-1-m.felsch@pengutronix.de>
-In-Reply-To: <20240221184602.3639619-1-m.felsch@pengutronix.de>
+References: <20240222143911.979058-1-festevam@gmail.com>
+In-Reply-To: <20240222143911.979058-1-festevam@gmail.com>
 From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 28 Feb 2024 14:03:36 +0100
-Message-ID: <CAPDyKFryo0vLS-t9XmA5=xAE27JQGh787f+-DGzMQWTdmBufLA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: mmc: fsl-imx-esdhc: add default and 100mhz state
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, kernel@pengutronix.de, festevam@gmail.com, 
-	linux-imx@nxp.com, linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
+Date: Wed, 28 Feb 2024 14:03:57 +0100
+Message-ID: <CAPDyKFowNCc5TgG1DcfduzaK-XQYboAxpE9D4Nr=JHgFebgDcw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: mmc: fsl-imx-mmc: Document the required clocks
+To: Fabio Estevam <festevam@gmail.com>
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
+	Fabio Estevam <festevam@denx.de>
 Content-Type: text/plain; charset="UTF-8"
 
-On Wed, 21 Feb 2024 at 19:46, Marco Felsch <m.felsch@pengutronix.de> wrote:
+On Thu, 22 Feb 2024 at 15:39, Fabio Estevam <festevam@gmail.com> wrote:
 >
-> Some devices support only the default and the 100MHz case, add the
-> support for this to the binding to avoid warnings.
+> From: Fabio Estevam <festevam@denx.de>
 >
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> The fsl-imx-mmc hardware needs two clocks to operate: ipg and per.
+>
+> Document these required clocks.
+>
+> This fixes the following schema warning:
+>
+> imx27-apf27dev.dtb: mmc@10014000: Unevaluated properties are not allowed ('clock-names', 'clocks' were unexpected)
+>         from schema $id: http://devicetree.org/schemas/mmc/fsl-imx-mmc.yaml#
+>
+> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
 Applied for next, thanks!
 
@@ -97,26 +104,50 @@ Uffe
 
 
 > ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+> Changes since v2:
+> - None. Just fixed a typo in the dt list.
 >
-> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> index 82eb7a24c857..e47253e4eac4 100644
-> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> @@ -173,6 +173,11 @@ properties:
->            - const: state_100mhz
->            - const: state_200mhz
->            - const: sleep
-> +      - minItems: 2
-> +        items:
-> +          - const: default
-> +          - const: state_100mhz
-> +          - const: sleep
->        - minItems: 1
->          items:
->            - const: default
+>  .../devicetree/bindings/mmc/fsl-imx-mmc.yaml         | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml
+> index 221f5bc047bd..7911316fbd6a 100644
+> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml
+> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml
+> @@ -24,6 +24,14 @@ properties:
+>    reg:
+>      maxItems: 1
+>
+> +  clocks:
+> +    maxItems: 2
+> +
+> +  clock-names:
+> +    items:
+> +      - const: ipg
+> +      - const: per
+> +
+>    interrupts:
+>      maxItems: 1
+>
+> @@ -34,6 +42,8 @@ properties:
+>      const: rx-tx
+>
+>  required:
+> +  - clocks
+> +  - clock-names
+>    - compatible
+>    - reg
+>    - interrupts
+> @@ -46,6 +56,8 @@ examples:
+>          compatible = "fsl,imx27-mmc", "fsl,imx21-mmc";
+>          reg = <0x10014000 0x1000>;
+>          interrupts = <11>;
+> +        clocks = <&clks 29>, <&clks 60>;
+> +        clock-names = "ipg", "per";
+>          dmas = <&dma 7>;
+>          dma-names = "rx-tx";
+>          bus-width = <4>;
 > --
-> 2.39.2
+> 2.34.1
 >
 
