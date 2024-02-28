@@ -1,136 +1,117 @@
-Return-Path: <devicetree+bounces-46949-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D732D86B5D6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:22:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75A3986B5F4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:27:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67DD9B28164
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:22:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 29FE11F21EAC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:27:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9464B3FBB4;
-	Wed, 28 Feb 2024 17:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1603FBB4;
+	Wed, 28 Feb 2024 17:27:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="Ix/XMzvG"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F347A6EF01;
-	Wed, 28 Feb 2024 17:22:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 37EFB34CDE;
+	Wed, 28 Feb 2024 17:27:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.17
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709140957; cv=none; b=myVhRlZIsc6NkRltcfNg86aoIydomgWd5Vplg+4bKlpUGZ6r/Lj2yXqw2Y6c2hM+S+WHoOvh63hE7QmRtP6i0BshkHkDtsmzvQIP06LZvPp9FRU7axmH1RVeEKuz8A4et6pVrBmor6Jx/DwsofvskK5PBkLbhf11ugaXi9cafNk=
+	t=1709141259; cv=none; b=jAJz4lhMuZHIlQnOyP1g4eZVVDObxqE3pRrlLk8N3OouApyS6xqGcdmAFoNnMp2nvzfF0TCDZ94RFGHiY5qzcoEdLWInOUz5Igef/Erdl3aVWNMUmza186MlQYA1hS4it+D0FSZtgPN/OwTaIF+VfZIBiLpThEVdhFMBLx/Zo9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709140957; c=relaxed/simple;
-	bh=SFvOWcPRYo2Lp/S4Uk1XoDCn8ACB3qkyl4DrAo0XEaE=;
+	s=arc-20240116; t=1709141259; c=relaxed/simple;
+	bh=a6yPinrfFCyv1D0aYBQjzitLgkEQTPi0B91kfaZLW0U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SD1uOH7yxNcngFkdYagbhQGRiJcfoPXXsrcXIESUkmmYan1T72CCTccF+E4G2HBnopoEVXaeC6qEZmSfgrEPawismiX/E7W4rWBjRyiHEsKAe5q6ctxVQlSyFZ2QPb+ITjngI5FcVaf7l8yDO3McJjAQjHvkOe1errN6ViZSxaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=198.175.65.17
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="3719070"
+	 Content-Type:Content-Disposition:In-Reply-To; b=iqr40XIWgaXW8Vtsqm91OmZRiplyvMetFrM20mGmxb3Lv9RiTg8hClNrL2IkAE2LxyDbtKASXjVHHCxpGl8OLbClnzpzsTIB2InKPS4Q3aG1BeHhw07jYbI7etwCyI9TR+ZFEkGaRD9BB8oR+//wl/aCrIKtebPYr+1jznEthh4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=Ix/XMzvG; arc=none smtp.client-ip=198.175.65.17
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1709141259; x=1740677259;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=a6yPinrfFCyv1D0aYBQjzitLgkEQTPi0B91kfaZLW0U=;
+  b=Ix/XMzvGBqid+ta5dulE/RJq/IBijC7mt94AEL1asjECxCFSzfXstxqM
+   e0JSRmyXof+T9utEClK5Jm5fFpZs/BxiNr5UlJW+TT+bm4T83HbXQ8JJE
+   DHL8NssyWTJRwYBjavOjHn7TZQXP0cskQlMUExEzCc480BHieFPl/FsIl
+   kbiCP/+XuIK510nO3kZ39itOM09kP755hZsnkGEaCFthKGkkOJa6FeU11
+   7Agw8+VZfp/T/Xz1Mau/O9OmQfjuDX90fMWekM1/6fnbWCD1ofuJkwMh9
+   gtDEWRm9CKhfIWnEiGoWvG4R1KLKD7mt73JUvhgUzUJfQ50frLDOlug/i
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="3720069"
 X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; 
-   d="scan'208";a="3719070"
+   d="scan'208";a="3720069"
 Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2024 09:22:36 -0800
+  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2024 09:27:38 -0800
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="913956076"
+X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="913956212"
 X-IronPort-AV: E=Sophos;i="6.06,190,1705392000"; 
-   d="scan'208";a="913956076"
+   d="scan'208";a="913956212"
 Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2024 09:22:30 -0800
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2024 09:27:33 -0800
 Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy.shevchenko@gmail.com>)
-	id 1rfNdS-00000008HWT-3mFq;
-	Wed, 28 Feb 2024 19:22:26 +0200
-Date: Wed, 28 Feb 2024 19:22:26 +0200
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: "geert@linux-m68k.org" <geert@linux-m68k.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"andrew@lunn.ch" <andrew@lunn.ch>,
-	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-	"sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-	"ojeda@kernel.org" <ojeda@kernel.org>,
-	"tzimmermann@suse.de" <tzimmermann@suse.de>,
-	"javierm@redhat.com" <javierm@redhat.com>,
-	"robin@protonic.nl" <robin@protonic.nl>,
-	"lee@kernel.org" <lee@kernel.org>, "pavel@ucw.cz" <pavel@ucw.cz>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: auxdisplay: Add bindings for generic
- 7 segment LED
-Message-ID: <Zd9r0lcnSuKFEsZF@smile.fi.intel.com>
-References: <20240227212244.262710-1-chris.packham@alliedtelesis.co.nz>
- <20240227212244.262710-3-chris.packham@alliedtelesis.co.nz>
- <CAHp75Vdi2c=s_z9wwxWzVcL+4tx5ZnXymbiN4O1FS+D3kz5vqw@mail.gmail.com>
- <34b89a56-ab43-4d44-86f3-604e5be29db3@alliedtelesis.co.nz>
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rfNiM-00000008Has-1Z2p;
+	Wed, 28 Feb 2024 19:27:30 +0200
+Date: Wed, 28 Feb 2024 19:27:30 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Marek Vasut <marex@denx.de>,
+	Anshul Dalal <anshulusr@gmail.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Matt Ranostay <matt@ranostay.sg>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 5/5] iio: light: Add support for APDS9306 Light Sensor
+Message-ID: <Zd9tApJClX7Frq20@smile.fi.intel.com>
+References: <20240228122408.18619-1-subhajit.ghosh@tweaklogic.com>
+ <20240228122408.18619-6-subhajit.ghosh@tweaklogic.com>
+ <a828e77c-b3d4-49bb-b0bb-b9fd6cb7d114@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <34b89a56-ab43-4d44-86f3-604e5be29db3@alliedtelesis.co.nz>
+In-Reply-To: <a828e77c-b3d4-49bb-b0bb-b9fd6cb7d114@gmail.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On Wed, Feb 28, 2024 at 01:53:08AM +0000, Chris Packham wrote:
-> On 28/02/24 13:03, Andy Shevchenko wrote:
-> > On Tue, Feb 27, 2024 at 11:22 PM Chris Packham
-> > <chris.packham@alliedtelesis.co.nz> wrote:
+On Wed, Feb 28, 2024 at 03:08:56PM +0200, Matti Vaittinen wrote:
+> On 2/28/24 14:24, Subhajit Ghosh wrote:
 
 ...
 
-> >> +  segment-gpios:
-> >> +    description:
-> >> +      An array of GPIOs one per segment.
-> > This is a vague description. Please explain the order (e.g., LSB =
-> > 'a', MSB = 'g'), use of DP (optional?), etc.
-> >
-> >> +    minItems: 7
-> > maxItems?
-
-> I plan on saying maxItems: 7 (more discussion below)
-
-...
-
-> >> +    led-7seg {
-> > Probably it should be more human readable. DT people might suggest
-> > something better.
-> >
-> >> +        compatible = "generic-gpio-7seg";
-> >> +        segment-gpios = <&gpio 0 GPIO_ACTIVE_LOW
-> >> +                         &gpio 1 GPIO_ACTIVE_LOW
-> >> +                         &gpio 2 GPIO_ACTIVE_LOW
-> >> +                         &gpio 3 GPIO_ACTIVE_LOW
-> >> +                         &gpio 4 GPIO_ACTIVE_LOW
-> >> +                         &gpio 5 GPIO_ACTIVE_LOW
-> >> +                         &gpio 6 GPIO_ACTIVE_LOW>;
-> > Dunno how to handle DP. Either we always expect it to be here (as
-> > placeholder) or with additional property.
+> > +	ret = iio_gts_find_new_gain_by_old_gain_time(&data->gts, gain_old,
+> > +						     intg_old, val2, &gain_new);
 > 
-> My current plan was to ignore it. As you see it my later patch I'm 
-> (ab)using DP as a discrete gpio-led with a different function.
+> You don't use the 'ret' here, so maybe for the clarity, not assign it.
+> Or, maybe you wan't to try to squeeze out few cycles for succesful case and
+> check the ret for '0' - in which case you should be able to omit the check
+> right below as well as the call to iio_find_closest_gain_low(). OTOH, this
+> is likely not a "hot path" so I don't care too much about the extra call if
+> you think code is clearer this way.
+> 
+> > +	if (gain_new < 0) {
+> > +		dev_err_ratelimited(dev, "Unsupported gain with time\n");
+> > +		return gain_new;
+> > +	}
 
-FWIW, I have _no_ indicator _without_ DP. So, my statistics is towards enabling
-DP as a part of 7-segment displays.
-
-> We could either a separate dp-gpios property or set maxItems to 8. Right 
-> now the driver won't do anything with either option.To actually do 
-> something in the linedisp driver we'd need to have a new character map 
-> that includes the extra LED.
-
-Yeah, we can leave it open for now.
-
-> >> +    };
+What is the difference between negative response from the function itself and
+similar in gain_new?
 
 -- 
 With Best Regards,
