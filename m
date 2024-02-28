@@ -1,67 +1,67 @@
-Return-Path: <devicetree+bounces-47023-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47024-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7D40D86BB09
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 23:54:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C83686BB0B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 23:54:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E8F311F2384F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 22:54:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7EC1C1C22750
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 22:54:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51E897292A;
-	Wed, 28 Feb 2024 22:54:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE47F71ED9;
+	Wed, 28 Feb 2024 22:54:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="BVn97HDc"
+	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="IIXYZL/V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DB172907
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 22:54:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F0CF57291D
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 22:54:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709160866; cv=none; b=qtWFCXxtvbHdxtX+GKs9RgK0hDKqgtb1/gP/wQSEW7tsw2MD4lcjzl349cpOB2igHfVVAI2pWeXZrm17wdw5qxCJQebd50TfHlJwdBwnEjnMg/8WqQxv5uWI6vY9sl9deUhhhP465icoTWFFNGBS5NByt3jLKuhn/sJlCZp5QQ8=
+	t=1709160867; cv=none; b=lSQJtJpYhTRNM/kpI7eWoQ6dFeIqGDrBcSPj79odPKtQRcqBmj58KddS8GUBOV1/7a+0Fjw07L0G7QQ7rFeaXWFHdVzjMqJ8RCezLJ/Y4KzBCwkkedIpTcoDrxbBFBOobg1p8GZ+9JRMketEnkUCyLNdKS/hVb4bxg1Q+P5PL8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709160866; c=relaxed/simple;
-	bh=lIb1ubSj8Be0yytf/jJ6IFUADGRxfCLCci6tRcuYJeg=;
+	s=arc-20240116; t=1709160867; c=relaxed/simple;
+	bh=3IiQDbBqMuKmfL8RIP9pCNeclhgPwoB3qknEqp2LE94=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=IGr3Aggf056ENCQOt8s5CUXHCHPsziVCo1ecn/jtRfBbaMvttS4opLiJz1yxk5Jo1O61bN/p1yGY8+sBAf8b+JMEVcLL52BFddeGSExgVG/MibAlNN26w76nAAsIIOVcGYgCEzGnc/QCZmvs6/UU9zwMbDVV/UBtkE5PsPAFImg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=BVn97HDc; arc=none smtp.client-ip=209.85.217.52
+	 MIME-Version:Content-Type; b=a5P7ULuy/avTB5LiZ5H2syZyzVEEdFp1Dg+kskcyhoahpoyr4iawtv9OS75L+w4/zDwchqtHjwhKZRaP4v4sQvEWBSZVschZTd39QwN2fawYxOXuLTQ9EG8n4mGrKHg5+GAJCGXUfWw18aLJ7fMiMC7fGCnOsMV7Tu9sskIz8ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=IIXYZL/V; arc=none smtp.client-ip=209.85.160.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
 Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-47048ea1b17so96033137.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 14:54:23 -0800 (PST)
+Received: by mail-qt1-f178.google.com with SMTP id d75a77b69052e-42e29149883so1282881cf.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 14:54:25 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1709160862; x=1709765662; darn=vger.kernel.org;
+        d=broadcom.com; s=google; t=1709160865; x=1709765665; darn=vger.kernel.org;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=qno5fsJgY1iguvI8pHxAebpRbS0MelWfzJFbDfaUqik=;
-        b=BVn97HDco/HcLR1tnyBhcITzKTjMmHWqhaSHC3dxwwHs81E3A0xoJTRKAxKSlvEflo
-         20NHuIQkAcSDGnPc5FeU+80CFlJVhX3Gv3jFRCMi8C9S+guUdemXs/g6gZO2nMoZdvdJ
-         DffTZzA729eZD2A7giacE1c/tNYgFeNaR+oJE=
+        bh=ytj3kI06oTmjEdld4VuPcYhygVP0ekswO1LzpZWTzIQ=;
+        b=IIXYZL/VkTBuTcZdEbcwQwrvy8jAfu9k832MJMdgTpegBX4XjIXS6P712fGweCH0d3
+         yP+pGUheyfltQSVPnElFOtdJ8Nb4/UR/Q/LYPUtqiwMaOdiejWriLkDhUhDg26LEFdxh
+         ZzKWApEir8t9uoGMeCkL20HGmRCtBnt49yvuY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709160862; x=1709765662;
+        d=1e100.net; s=20230601; t=1709160865; x=1709765665;
         h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
          :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qno5fsJgY1iguvI8pHxAebpRbS0MelWfzJFbDfaUqik=;
-        b=wKiqI7PD+qVpmrwP3cagWs1wqmzI23i3eCk/M8QiJqfjVWWVJ0rUpmF5vQj9KOMYAJ
-         x7ibO6qRMvE1JZj/kRy/NH+JNRsiz5aY+8ENujxiEVUh2Z9eeHH0GMgtbmL7CmOet/9D
-         ljSR6IqfW0/Z0tPyi3l/K5FsmQMX6u7TfD3xOVPJCDnd2uvPNk0SOmmADHU5nUn0GyUo
-         y9BOVbFSxn/W161cQ5TFlAB3ZoEeT1d6Zy7oxnJJqsJP4Hv2rdklH/SViwnydtVPnKyp
-         Dn3F7nSXFA0VLYsBLYcCRANQfXwvzex/56c2nzaFEVblu4gtmFyqH3QBYl4p2XPSKCdA
-         4BmQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXGZSyJhUNK6JZdwJn5EdO4XU8KBYPUCoME8IBdC00Ak/sqeOn3ER63qw2D5UHBE1KKnNLGUOORr4hqgGGAwzLRo8wP4lhMwwVNyA==
-X-Gm-Message-State: AOJu0YydqgBjrRi5GYIkfm4LWDj9iF2QAUE7F558rZ8DUS+8J/twp0gG
-	p0r7osJKIz4LLdCimIKxdB3nG3y07kVwLySCwadYNtgZQxnJi2mAnxlE5fL8Xw==
-X-Google-Smtp-Source: AGHT+IGl0pVFaJgInnTNpIz/u/5qcyqhAe/6ssIjbnz5q2gw58uW4xIwpE2mWFsz7pZe2JVwRlLFxA==
-X-Received: by 2002:a05:6102:3190:b0:472:7490:778d with SMTP id c16-20020a056102319000b004727490778dmr232059vsh.4.1709160862635;
-        Wed, 28 Feb 2024 14:54:22 -0800 (PST)
+        bh=ytj3kI06oTmjEdld4VuPcYhygVP0ekswO1LzpZWTzIQ=;
+        b=AXT7SHnpVWQltljRkb4w8STmxZHIUVZaQjCcvQPcGcvjexR6VVqQ6LYXy3rGPLjkfy
+         5CVZDul77E1y5dcK7mC1Majk0Cn2HlLG2UZGBUg0bo8FaR693KzwIxEHGVcn7CWH/e1+
+         TPMN2opnZInb5JPirQUPpVcRUkAjQFpwzMsyLErO8KZ1/itRde1e6h7zV1A7cACkI5PV
+         X4lmvrww5xKR+Twi1uV0pmUdDoDHJp8FguR/rm+ggctaobdwQT26puQz85JSKm/Add3H
+         5Sorszk/F6uJeyVCQvpTlQUWJHEuqxe/OfN1DWLc8miD/jyZ0am344SSG1adl7tJPFkl
+         QIrA==
+X-Forwarded-Encrypted: i=1; AJvYcCVnB2poysjRrousRambts9As1OFyMTfLJAgNGiMZfiJZolYfn3Oj4AVoYRLLxbsKmUqNrkjIPtjdYJKNubczbbMDmdUxotoQqUc7g==
+X-Gm-Message-State: AOJu0YyWKOs6y8yKOXgMFlINGgZrCstDVSXAl5mh9ujfA3H7KMQu2E9B
+	izTWDnU+fPLbDbXd/TF26T//0o+9xg/m4bQiK1dPqRICWaAG3kZYN1esZ3apaw==
+X-Google-Smtp-Source: AGHT+IHEohhI9trQCiFtr6xrzgIxkpRcty9tBBZctGxBIKZMbol7k2w7tp+lWVKh+2QF+Iprkszv4w==
+X-Received: by 2002:ac8:7f4a:0:b0:42e:b777:f28b with SMTP id g10-20020ac87f4a000000b0042eb777f28bmr553922qtk.12.1709160864848;
+        Wed, 28 Feb 2024 14:54:24 -0800 (PST)
 Received: from stbirv-lnx-1.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id b1-20020ac812c1000000b0042e3468a98csm95036qtj.4.2024.02.28.14.54.20
+        by smtp.gmail.com with ESMTPSA id b1-20020ac812c1000000b0042e3468a98csm95036qtj.4.2024.02.28.14.54.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Feb 2024 14:54:22 -0800 (PST)
+        Wed, 28 Feb 2024 14:54:24 -0800 (PST)
 From: Justin Chen <justin.chen@broadcom.com>
 To: netdev@vger.kernel.org
 Cc: horms@kernel.org,
@@ -80,11 +80,10 @@ Cc: horms@kernel.org,
 	linux@armlinux.org.uk,
 	rafal@milecki.pl,
 	devicetree@vger.kernel.org,
-	Justin Chen <justin.chen@broadcom.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH net-next v3 2/6] dt-bindings: net: brcm,asp-v2.0: Add asp-v2.2
-Date: Wed, 28 Feb 2024 14:53:56 -0800
-Message-Id: <20240228225400.3509156-3-justin.chen@broadcom.com>
+	Justin Chen <justin.chen@broadcom.com>
+Subject: [PATCH net-next v3 3/6] net: bcmasp: Add support for ASP 2.2
+Date: Wed, 28 Feb 2024 14:53:57 -0800
+Message-Id: <20240228225400.3509156-4-justin.chen@broadcom.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20240228225400.3509156-1-justin.chen@broadcom.com>
 References: <20240228225400.3509156-1-justin.chen@broadcom.com>
@@ -95,43 +94,256 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000191aea0612790691"
+	boundary="0000000000003c9b510612790613"
 
---000000000000191aea0612790691
+--0000000000003c9b510612790613
 Content-Transfer-Encoding: 8bit
 
-Add support for ASP 2.2.
+ASP 2.2 improves power savings during low power modes.
+
+A new register was added to toggle to a slower clock during low
+power modes.
+
+EEE was broken for ASP 2.0/2.1. A HW workaround was added for
+ASP 2.2 that requires toggling a chicken bit.
 
 Signed-off-by: Justin Chen <justin.chen@broadcom.com>
 Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
-v2
-	-  Change brcm,bcm74165-asp to brcm,bcm74165b0-asp
+ drivers/net/ethernet/broadcom/asp2/bcmasp.c   | 73 +++++++++++++++++--
+ drivers/net/ethernet/broadcom/asp2/bcmasp.h   | 18 ++++-
+ .../net/ethernet/broadcom/asp2/bcmasp_intf.c  |  6 ++
+ 3 files changed, 87 insertions(+), 10 deletions(-)
 
- Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-index 75d8138298fb..660e2ca42daf 100644
---- a/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-+++ b/Documentation/devicetree/bindings/net/brcm,asp-v2.0.yaml
-@@ -15,6 +15,10 @@ description: Broadcom Ethernet controller first introduced with 72165
- properties:
-   compatible:
-     oneOf:
-+      - items:
-+          - enum:
-+              - brcm,bcm74165b0-asp
-+          - const: brcm,asp-v2.2
-       - items:
-           - enum:
-               - brcm,bcm74165-asp
+diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp.c b/drivers/net/ethernet/broadcom/asp2/bcmasp.c
+index 80245c65cc90..100c69f3307a 100644
+--- a/drivers/net/ethernet/broadcom/asp2/bcmasp.c
++++ b/drivers/net/ethernet/broadcom/asp2/bcmasp.c
+@@ -972,7 +972,26 @@ static void bcmasp_core_init(struct bcmasp_priv *priv)
+ 		      ASP_INTR2_CLEAR);
+ }
+ 
+-static void bcmasp_core_clock_select(struct bcmasp_priv *priv, bool slow)
++static void bcmasp_core_clock_select_many(struct bcmasp_priv *priv, bool slow)
++{
++	u32 reg;
++
++	reg = ctrl2_core_rl(priv, ASP_CTRL2_CORE_CLOCK_SELECT);
++	if (slow)
++		reg &= ~ASP_CTRL2_CORE_CLOCK_SELECT_MAIN;
++	else
++		reg |= ASP_CTRL2_CORE_CLOCK_SELECT_MAIN;
++	ctrl2_core_wl(priv, reg, ASP_CTRL2_CORE_CLOCK_SELECT);
++
++	reg = ctrl2_core_rl(priv, ASP_CTRL2_CPU_CLOCK_SELECT);
++	if (slow)
++		reg &= ~ASP_CTRL2_CPU_CLOCK_SELECT_MAIN;
++	else
++		reg |= ASP_CTRL2_CPU_CLOCK_SELECT_MAIN;
++	ctrl2_core_wl(priv, reg, ASP_CTRL2_CPU_CLOCK_SELECT);
++}
++
++static void bcmasp_core_clock_select_one(struct bcmasp_priv *priv, bool slow)
+ {
+ 	u32 reg;
+ 
+@@ -1166,6 +1185,24 @@ static void bcmasp_wol_irq_destroy_per_intf(struct bcmasp_priv *priv)
+ 	}
+ }
+ 
++static void bcmasp_eee_fixup(struct bcmasp_intf *intf, bool en)
++{
++	u32 reg, phy_lpi_overwrite;
++
++	reg = rx_edpkt_core_rl(intf->parent, ASP_EDPKT_SPARE_REG);
++	phy_lpi_overwrite = intf->internal_phy ? ASP_EDPKT_SPARE_REG_EPHY_LPI :
++			    ASP_EDPKT_SPARE_REG_GPHY_LPI;
++
++	if (en)
++		reg |= phy_lpi_overwrite;
++	else
++		reg &= ~phy_lpi_overwrite;
++
++	rx_edpkt_core_wl(intf->parent, reg, ASP_EDPKT_SPARE_REG);
++
++	usleep_range(50, 100);
++}
++
+ static struct bcmasp_hw_info v20_hw_info = {
+ 	.rx_ctrl_flush = ASP_RX_CTRL_FLUSH,
+ 	.umac2fb = UMAC2FB_OFFSET,
+@@ -1178,6 +1215,7 @@ static const struct bcmasp_plat_data v20_plat_data = {
+ 	.init_wol = bcmasp_init_wol_per_intf,
+ 	.enable_wol = bcmasp_enable_wol_per_intf,
+ 	.destroy_wol = bcmasp_wol_irq_destroy_per_intf,
++	.core_clock_select = bcmasp_core_clock_select_one,
+ 	.hw_info = &v20_hw_info,
+ };
+ 
+@@ -1194,17 +1232,39 @@ static const struct bcmasp_plat_data v21_plat_data = {
+ 	.init_wol = bcmasp_init_wol_shared,
+ 	.enable_wol = bcmasp_enable_wol_shared,
+ 	.destroy_wol = bcmasp_wol_irq_destroy_shared,
++	.core_clock_select = bcmasp_core_clock_select_one,
+ 	.hw_info = &v21_hw_info,
+ };
+ 
++static const struct bcmasp_plat_data v22_plat_data = {
++	.init_wol = bcmasp_init_wol_shared,
++	.enable_wol = bcmasp_enable_wol_shared,
++	.destroy_wol = bcmasp_wol_irq_destroy_shared,
++	.core_clock_select = bcmasp_core_clock_select_many,
++	.hw_info = &v21_hw_info,
++	.eee_fixup = bcmasp_eee_fixup,
++};
++
++static void bcmasp_set_pdata(struct bcmasp_priv *priv, const struct bcmasp_plat_data *pdata)
++{
++	priv->init_wol = pdata->init_wol;
++	priv->enable_wol = pdata->enable_wol;
++	priv->destroy_wol = pdata->destroy_wol;
++	priv->core_clock_select = pdata->core_clock_select;
++	priv->eee_fixup = pdata->eee_fixup;
++	priv->hw_info = pdata->hw_info;
++}
++
+ static const struct of_device_id bcmasp_of_match[] = {
+ 	{ .compatible = "brcm,asp-v2.0", .data = &v20_plat_data },
+ 	{ .compatible = "brcm,asp-v2.1", .data = &v21_plat_data },
++	{ .compatible = "brcm,asp-v2.2", .data = &v22_plat_data },
+ 	{ /* sentinel */ },
+ };
+ MODULE_DEVICE_TABLE(of, bcmasp_of_match);
+ 
+ static const struct of_device_id bcmasp_mdio_of_match[] = {
++	{ .compatible = "brcm,asp-v2.2-mdio", },
+ 	{ .compatible = "brcm,asp-v2.1-mdio", },
+ 	{ .compatible = "brcm,asp-v2.0-mdio", },
+ 	{ /* sentinel */ },
+@@ -1265,16 +1325,13 @@ static int bcmasp_probe(struct platform_device *pdev)
+ 	if (!pdata)
+ 		return dev_err_probe(dev, -EINVAL, "unable to find platform data\n");
+ 
+-	priv->init_wol = pdata->init_wol;
+-	priv->enable_wol = pdata->enable_wol;
+-	priv->destroy_wol = pdata->destroy_wol;
+-	priv->hw_info = pdata->hw_info;
++	bcmasp_set_pdata(priv, pdata);
+ 
+ 	/* Enable all clocks to ensure successful probing */
+ 	bcmasp_core_clock_set(priv, ASP_CTRL_CLOCK_CTRL_ASP_ALL_DISABLE, 0);
+ 
+ 	/* Switch to the main clock */
+-	bcmasp_core_clock_select(priv, false);
++	priv->core_clock_select(priv, false);
+ 
+ 	bcmasp_intr2_mask_set_all(priv);
+ 	bcmasp_intr2_clear_all(priv);
+@@ -1381,7 +1438,7 @@ static int __maybe_unused bcmasp_suspend(struct device *d)
+ 	 */
+ 	bcmasp_core_clock_set(priv, 0, ASP_CTRL_CLOCK_CTRL_ASP_TX_DISABLE);
+ 
+-	bcmasp_core_clock_select(priv, true);
++	priv->core_clock_select(priv, true);
+ 
+ 	clk_disable_unprepare(priv->clk);
+ 
+@@ -1399,7 +1456,7 @@ static int __maybe_unused bcmasp_resume(struct device *d)
+ 		return ret;
+ 
+ 	/* Switch to the main clock domain */
+-	bcmasp_core_clock_select(priv, false);
++	priv->core_clock_select(priv, false);
+ 
+ 	/* Re-enable all clocks for re-initialization */
+ 	bcmasp_core_clock_set(priv, ASP_CTRL_CLOCK_CTRL_ASP_ALL_DISABLE, 0);
+diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp.h b/drivers/net/ethernet/broadcom/asp2/bcmasp.h
+index 312bf9b6576e..61598dc070b1 100644
+--- a/drivers/net/ethernet/broadcom/asp2/bcmasp.h
++++ b/drivers/net/ethernet/broadcom/asp2/bcmasp.h
+@@ -33,6 +33,12 @@
+ #define ASP_WAKEUP_INTR2_FILT_1			BIT(3)
+ #define ASP_WAKEUP_INTR2_FW			BIT(4)
+ 
++#define ASP_CTRL2_OFFSET			0x2000
++#define  ASP_CTRL2_CORE_CLOCK_SELECT		0x0
++#define   ASP_CTRL2_CORE_CLOCK_SELECT_MAIN	BIT(0)
++#define  ASP_CTRL2_CPU_CLOCK_SELECT		0x4
++#define   ASP_CTRL2_CPU_CLOCK_SELECT_MAIN	BIT(0)
++
+ #define ASP_TX_ANALYTICS_OFFSET			0x4c000
+ #define  ASP_TX_ANALYTICS_CTRL			0x0
+ 
+@@ -134,8 +140,11 @@ enum asp_rx_net_filter_block {
+ #define ASP_EDPKT_RX_PKT_CNT			0x138
+ #define ASP_EDPKT_HDR_EXTR_CNT			0x13c
+ #define ASP_EDPKT_HDR_OUT_CNT			0x140
++#define ASP_EDPKT_SPARE_REG			0x174
++#define  ASP_EDPKT_SPARE_REG_EPHY_LPI		BIT(4)
++#define  ASP_EDPKT_SPARE_REG_GPHY_LPI		BIT(3)
+ 
+-#define ASP_CTRL				0x101000
++#define ASP_CTRL_OFFSET				0x101000
+ #define  ASP_CTRL_ASP_SW_INIT			0x04
+ #define   ASP_CTRL_ASP_SW_INIT_ACPUSS_CORE	BIT(0)
+ #define   ASP_CTRL_ASP_SW_INIT_ASP_TX		BIT(1)
+@@ -372,6 +381,8 @@ struct bcmasp_plat_data {
+ 	void (*init_wol)(struct bcmasp_priv *priv);
+ 	void (*enable_wol)(struct bcmasp_intf *intf, bool en);
+ 	void (*destroy_wol)(struct bcmasp_priv *priv);
++	void (*core_clock_select)(struct bcmasp_priv *priv, bool slow);
++	void (*eee_fixup)(struct bcmasp_intf *priv, bool en);
+ 	struct bcmasp_hw_info		*hw_info;
+ };
+ 
+@@ -390,6 +401,8 @@ struct bcmasp_priv {
+ 	void (*init_wol)(struct bcmasp_priv *priv);
+ 	void (*enable_wol)(struct bcmasp_intf *intf, bool en);
+ 	void (*destroy_wol)(struct bcmasp_priv *priv);
++	void (*core_clock_select)(struct bcmasp_priv *priv, bool slow);
++	void (*eee_fixup)(struct bcmasp_intf *intf, bool en);
+ 
+ 	void __iomem			*base;
+ 	struct	bcmasp_hw_info		*hw_info;
+@@ -530,7 +543,8 @@ BCMASP_CORE_IO_MACRO(rx_analytics, ASP_RX_ANALYTICS_OFFSET);
+ BCMASP_CORE_IO_MACRO(rx_ctrl, ASP_RX_CTRL_OFFSET);
+ BCMASP_CORE_IO_MACRO(rx_filter, ASP_RX_FILTER_OFFSET);
+ BCMASP_CORE_IO_MACRO(rx_edpkt, ASP_EDPKT_OFFSET);
+-BCMASP_CORE_IO_MACRO(ctrl, ASP_CTRL);
++BCMASP_CORE_IO_MACRO(ctrl, ASP_CTRL_OFFSET);
++BCMASP_CORE_IO_MACRO(ctrl2, ASP_CTRL2_OFFSET);
+ 
+ struct bcmasp_intf *bcmasp_interface_create(struct bcmasp_priv *priv,
+ 					    struct device_node *ndev_dn, int i);
+diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c b/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
+index e429876c7291..36e6fae937ea 100644
+--- a/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
++++ b/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
+@@ -1333,6 +1333,9 @@ static void bcmasp_suspend_to_wol(struct bcmasp_intf *intf)
+ 				     ASP_WAKEUP_INTR2_MASK_CLEAR);
+ 	}
+ 
++	if (intf->eee.eee_enabled && intf->parent->eee_fixup)
++		intf->parent->eee_fixup(intf, true);
++
+ 	netif_dbg(intf, wol, ndev, "entered WOL mode\n");
+ }
+ 
+@@ -1381,6 +1384,9 @@ static void bcmasp_resume_from_wol(struct bcmasp_intf *intf)
+ {
+ 	u32 reg;
+ 
++	if (intf->eee.eee_enabled && intf->parent->eee_fixup)
++		intf->parent->eee_fixup(intf, false);
++
+ 	reg = umac_rl(intf, UMC_MPD_CTRL);
+ 	reg &= ~UMC_MPD_CTRL_MPD_EN;
+ 	umac_wl(intf, reg, UMC_MPD_CTRL);
 -- 
 2.34.1
 
 
---000000000000191aea0612790691
+--0000000000003c9b510612790613
 Content-Type: application/pkcs7-signature; name="smime.p7s"
 Content-Transfer-Encoding: base64
 Content-Disposition: attachment; filename="smime.p7s"
@@ -202,14 +414,14 @@ sDL+OV16G+F9CkNMN3txsym8Nnx5WAYZb6+rBUIhMGz70V05xsHQfzvo2s7f0J1tJ5BoRlPPhL0h
 VOnWA3h71u9TfSsv+PXVm3P21TfOS2uc1hbzEqyENCP4i5XQ0rv0TmPW42GZ0o4xggJtMIICaQIB
 ATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhH
 bG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwj8BKLXNpALfemdRAwDQYJ
-YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIIXd982N01gtDPB8aiHVzKDjjO5+N5Ty1UfM
-TuXBXC/PMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDIyODIy
-NTQyMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
+YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIEk6+546XFh4xlVMCD1bKK2jQka5emk5HPwy
+LK1ByoR9MBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDIyODIy
+NTQyNVowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
 AwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATAN
-BgkqhkiG9w0BAQEFAASCAQCqXJaSsTmPI8gjHd8y//tYiW/k4iQXXgEB73ISiUyeG+j9GCUrQLBO
-0prF0gPya1+4IJOi4ZYE5zsIRs3gHvUFoVWirqCb1ApOnXhQxr9L5pbpm+aK/piZgH75B1wd8yt/
-8OZ/RuzJ/4zLMEss1XeVvgxJVYXNGOuXgm28gRsbvyH2gAyPU4rpjl9MGMVKdu+mCJZAgIRcZpza
-c7p3Ih9gv9VQjkQbxI5uhMUh+HPiCeuFUh34jz/0NHEyMrKzDPZgiL0V8wfMAJSGfRyuMvSKWcpt
-tNLt34CVy1Hkh+3qwa7bobOfWm+ACt0PQZGt00yYWszcxCzVnBPa658OJ788
---000000000000191aea0612790691--
+BgkqhkiG9w0BAQEFAASCAQA3uYx3n536B/m2IlX82uHx1GxGHGuuXaiRaWbDKtEyViArC7vUgmKa
+SKxIiFu9mEhiw3choCdHK9oN7FjbsILc75my415DAPOHHSrn5HJgmDsgfGtpldXh1IH4fes614zV
+FlELjXKr2kTJTJ3L2Y57aechx0UwD1buy2fQWkbrFQbm5dFMnCj8ywEGodGFTMzeGl4QClnyWos2
+0CpHoH1dHb6HZYkZy52NuAAmivZ9b8fsu4ZGuvSqX4Z1LSUq4HHyRDfWj+uT/hiTaFkvkwB1uPoG
+R52VJ++7buRSqLUFtV2phU7MG1Tp8MrawtZqiSpuvJj3KqkCW8zDPKkWdxMP
+--0000000000003c9b510612790613--
 
