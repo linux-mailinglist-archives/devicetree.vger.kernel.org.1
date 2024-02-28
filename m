@@ -1,153 +1,154 @@
-Return-Path: <devicetree+bounces-46852-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CB6086AFD7
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:05:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B82986AFD5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:05:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D90971F21C51
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:05:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C503A289627
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:05:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 025391534E2;
-	Wed, 28 Feb 2024 13:04:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A0B3C14CACC;
+	Wed, 28 Feb 2024 13:04:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lItC6RnK"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="cJ6K9TXw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69804151CD4
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:04:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ABD7F14F995;
+	Wed, 28 Feb 2024 13:04:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709125475; cv=none; b=dEqvxLaQ96jVJoJbDQV7l4qAwOiDYn1L116d1sz0P4lfoRgRbCrcmCq5zX6x4FbQNtYxhwlLOp34j7sjI34bHP9Z1kBAyvyXB6t9RojNlSrL4QPeGV0Qi3N559Z4cpotTajNWPvJ1Y5YcWhOuFbz8Cpvoo87hdOnk1QdBFlWxnE=
+	t=1709125472; cv=none; b=S3KjFWmNazvmiHBGPJIjgCAncORVZK16bvuZJWUX1Jhf3DLSWbn2eDfAQLx2XVFxory77anOFLRYkH0+YnTX4UUPWB3+G9Dhpw8lFLGeYRuSceh/BQ4j1G9/xG2OcxCri/iTruLTLov3MO66zMGjb2y8xjE/9MAYGWiX31Xk9u0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709125475; c=relaxed/simple;
-	bh=FZB5bau4XS+CfL8L2++Na5Xn+x8eJG95NbayiKGChrY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YGynE6cTxWSJa84nKo4Xvl0U/JbV8oMNMhnrwWZdmBjb0J2s7z64J4/7BDCIgS2eQyv2s387oQ04DRumctrEv0avLLoVSloOykKloL+FN8y5coYIv6TfdpRRVT/UoviTdanSGciBCTNt9wGLTLWEN1O6QcWKwzUbi5oKzwYet1k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lItC6RnK; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dccb1421bdeso5459723276.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 05:04:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709125473; x=1709730273; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=P0H9CjwYlrXXMXgZMM3y9R8B4NNOlSm7B7Wu2SJEefo=;
-        b=lItC6RnKEVIC9+iqU7C7yBuLcvQCQh4R/xFe62spLD1BiCvgmPdlpxX0AIUEMrO5w3
-         1Wby7KWTl/2TuShPNgc3knDicqHATsGn0jZ5dLv/BQc998sxSpgrjiDN8S5jQAA+cUpT
-         TBD7RE9HFcBo5O3y54+ylDzWQh5uQhIJD5HE+MFqc4XDOoRl0jtROSjf0ZyNC4mPTPvq
-         5auwcOMCU284Xm5fIvEAvrA0rTnW+JM5U4vwdis5iXKfHoLHx26YM+oRbt/BG/DIOm2+
-         BXraVm1cAUSrY61TEX1eFmuG6ufdKvusweyBJRL0qCmqt+TPpZIisRWMYDQASfXfzwwO
-         X8pA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709125473; x=1709730273;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=P0H9CjwYlrXXMXgZMM3y9R8B4NNOlSm7B7Wu2SJEefo=;
-        b=MIcy3dGtKC2vbyrCRHnSvjhGUtM7TZcL+CIwaV++cI0TpyRNlHbkLD7B5EuIqfjgK6
-         U5YfxWmUaNXBHbhN3uFjC6DUcPBMetCIHNnerBZyEr9BO99dmlgb3vgjRv3yQtbTNbXk
-         SCs9uj3d8yT5EbxeCqIR0zjMIch9tNKNY5AJv67vqOA3w7gdGTI7PVWGgxO9WpJp6wWK
-         b9k899v67jkxke/U16/pGnbqWCi7ozBPIgcDRGf9zI11IH9J6t8cNPU87+URi1JV86WU
-         OooU+QsneqpUzWTXlHJGATeYahw0dTxepYxHx6X11jxgg73EHyYMFT7dPlfus8BmaRE8
-         GOuQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVGo++bOuHwpces8+tnE0joLln0iY/nd2NASLwPAZq4+fmkETB5yWaPmhJEpuC3MM99FXAcZ1o1sVzCu5LqfLxYXLKTq+umncdVFg==
-X-Gm-Message-State: AOJu0YzvIiEXbOkM5JS7zZKQ5eBgakh58q1DE3+VgC2eKkYv6l6g+vXe
-	poFmfAT7HUFD5/8vjmqzLqDw2nN8q5Uh/6Af+k0NUTQQWAW04pH4a+iBCH5Qo7inNRiUARb/HwO
-	J53HHIPDt6v0MumL3BomGAKleHh9NuLgL7c64gQ==
-X-Google-Smtp-Source: AGHT+IFMY1lIqqJ8UyC7C9qZOEupjve8bfAWSVebXLSJSsfev7YwuqlxCnewklXnZfsQy4eqjDlfkEIXJTMwgj5NBbQ=
-X-Received: by 2002:a25:ae8d:0:b0:dcc:d455:2ab9 with SMTP id
- b13-20020a25ae8d000000b00dccd4552ab9mr2499464ybj.27.1709125473477; Wed, 28
- Feb 2024 05:04:33 -0800 (PST)
+	s=arc-20240116; t=1709125472; c=relaxed/simple;
+	bh=Zo7mkUyO1e4cRV15WZDLmxJqSFduroQP9BwBqR01+xQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=q9Jogqtgrtslwc4d3yQOdqB91kAgu0twWOxEsb7VuHT2ytyo/4v6yN1uHCzKNItyzu0dp21RDAoiV+XW8I9Fm0fCQkrRDVEGOe3777+hPA/G6qBo0itsWa9ukKisyo6dBUv8LCMuTAME+h4wObk1U8YaVhm7uuxoG05K21MMDl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=cJ6K9TXw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41S5ffZ0000321;
+	Wed, 28 Feb 2024 13:04:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=P7hLoMtk/Gsil4liN6dyNFOkcj9EO+K0QVhEgrDthSk=; b=cJ
+	6K9TXwSqqeW8/IGr0Jp3AVqRqJXN6BLGzXpXpcte5AT7GQWYe2uyxYdFk+skllGk
+	D3AWNEPTsBr8r+KsIieVCTgyNuknQXsCJR0XIGF+bIXH7MFZsrKTHuuEYOZiQ3zQ
+	sXqpg2VzzfLgyjkctbYTKSNHn5XEWFNJ95QHTl+2kOijDIZJlIoDqewvRoBuskJY
+	jHPbDcF8rlUOeiTFdlt3bPZrYg8emyjhS5SGABgmXiNhd1YBjMtA+/roggw59zIh
+	1ZDLxSA0mnSRHKlhGgDIyy8GBxjFlxlzkhVO09tKeKVCXHb8s9aZoFYROqHgA5Fj
+	GbxaeelCqOkDCNtTeZhg==
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3whv1fs7qf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Feb 2024 13:04:22 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41SD4Lli010461
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Feb 2024 13:04:21 GMT
+Received: from [10.218.10.86] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 28 Feb
+ 2024 05:04:15 -0800
+Message-ID: <02e44f17-39cd-46ec-b236-bc4f502d705e@quicinc.com>
+Date: Wed, 28 Feb 2024 18:34:11 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240222143911.979058-1-festevam@gmail.com>
-In-Reply-To: <20240222143911.979058-1-festevam@gmail.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 28 Feb 2024 14:03:57 +0100
-Message-ID: <CAPDyKFowNCc5TgG1DcfduzaK-XQYboAxpE9D4Nr=JHgFebgDcw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mmc: fsl-imx-mmc: Document the required clocks
-To: Fabio Estevam <festevam@gmail.com>
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	linux-mmc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Fabio Estevam <festevam@denx.de>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v5 1/3] PCI: qcom: Enable cache coherency for SA8775P RC
+Content-Language: en-US
+To: Bjorn Helgaas <helgaas@kernel.org>
+CC: <andersson@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <konrad.dybcio@linaro.org>,
+        <manivannan.sadhasivam@linaro.org>, <robh@kernel.org>,
+        <quic_shazhuss@quicinc.com>, <quic_nitegupt@quicinc.com>,
+        <quic_ramkri@quicinc.com>, <quic_nayiluri@quicinc.com>,
+        <dmitry.baryshkov@linaro.org>, <quic_krichai@quicinc.com>,
+        <quic_vbadigan@quicinc.com>, <quic_schintav@quicinc.com>,
+        Lorenzo Pieralisi
+	<lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?=
+	<kw@linux.com>,
+        Bjorn Helgaas <bhelgaas@google.com>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pci@vger.kernel.org>
+References: <20240223225425.GA103870@bhelgaas>
+From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+In-Reply-To: <20240223225425.GA103870@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3bA6z9D2GJzgOFx3Fy3RLpMuP9flMF6Y
+X-Proofpoint-ORIG-GUID: 3bA6z9D2GJzgOFx3Fy3RLpMuP9flMF6Y
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-28_05,2024-02-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 bulkscore=0
+ mlxlogscore=999 impostorscore=0 malwarescore=0 mlxscore=0 suspectscore=0
+ adultscore=0 lowpriorityscore=0 priorityscore=1501 spamscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402280103
 
-On Thu, 22 Feb 2024 at 15:39, Fabio Estevam <festevam@gmail.com> wrote:
->
-> From: Fabio Estevam <festevam@denx.de>
->
-> The fsl-imx-mmc hardware needs two clocks to operate: ipg and per.
->
-> Document these required clocks.
->
-> This fixes the following schema warning:
->
-> imx27-apf27dev.dtb: mmc@10014000: Unevaluated properties are not allowed ('clock-names', 'clocks' were unexpected)
->         from schema $id: http://devicetree.org/schemas/mmc/fsl-imx-mmc.yaml#
->
-> Signed-off-by: Fabio Estevam <festevam@denx.de>
 
-Applied for next, thanks!
+On 2/24/2024 4:24 AM, Bjorn Helgaas wrote:
+> On Fri, Feb 23, 2024 at 07:33:38PM +0530, Mrinmay Sarkar wrote:
+>> Due to some hardware changes, SA8775P has set the NO_SNOOP attribute
+>> in its TLP for all the PCIe controllers. NO_SNOOP attribute when set,
+>> the requester is indicating that there no cache coherency issues exit
+>> for the addressed memory on the host i.e., memory is not cached. But
+>> in reality, requester cannot assume this unless there is a complete
+>> control/visibility over the addressed memory on the host.
+> s/that there no/that no/
+> s/exit/exist/
+>
+> Forgive my ignorance here.  It sounds like the cache coherency issue
+> would refer to system memory, so the relevant No Snoop attribute would
+> be in DMA transactions, i.e., Memory Reads or Writes initiated by PCIe
+> Endpoints.  But it looks like this patch would affect TLPs initiated
+> by the Root Complex, not those from Endpoints, so I'm confused about
+> how this works.
+>
+> If this were in the qcom-ep driver, it would make sense that setting
+> No Snoop in the TLPs initiated by the Endpoint could be a problem, but
+> that doesn't seem to be what this patch is concerned with.
+I think in multiprocessor system cache coherency issue might occur.
+and RC as well needs to snoop cache to avoid coherency as it is not
+enable by default.
 
-Kind regards
-Uffe
+and we are enabling this feature for qcom-ep driver as well.
+it is in patch2.
 
+Thanks
+Mrinmay
 
-> ---
-> Changes since v2:
-> - None. Just fixed a typo in the dt list.
+>> And worst case, if the memory is cached on the host, it may lead to
+>> memory corruption issues. It should be noted that the caching of memory
+>> on the host is not solely dependent on the NO_SNOOP attribute in TLP.
+>>
+>> So to avoid the corruption, this patch overrides the NO_SNOOP attribute
+>> by setting the PCIE_PARF_NO_SNOOP_OVERIDE register. This patch is not
+>> needed for other upstream supported platforms since they do not set
+>> NO_SNOOP attribute by default.
+>>
+>> 8775 has IP version 1.34.0 so intruduce a new cfg(cfg_1_34_0) for this
+>> platform. Assign enable_cache_snoop flag into struct qcom_pcie_cfg and
+>> set it true in cfg_1_34_0 and enable cache snooping if this particular
+>> flag is true.
+> s/intruduce/introduce/
 >
->  .../devicetree/bindings/mmc/fsl-imx-mmc.yaml         | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml
-> index 221f5bc047bd..7911316fbd6a 100644
-> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-mmc.yaml
-> @@ -24,6 +24,14 @@ properties:
->    reg:
->      maxItems: 1
->
-> +  clocks:
-> +    maxItems: 2
-> +
-> +  clock-names:
-> +    items:
-> +      - const: ipg
-> +      - const: per
-> +
->    interrupts:
->      maxItems: 1
->
-> @@ -34,6 +42,8 @@ properties:
->      const: rx-tx
->
->  required:
-> +  - clocks
-> +  - clock-names
->    - compatible
->    - reg
->    - interrupts
-> @@ -46,6 +56,8 @@ examples:
->          compatible = "fsl,imx27-mmc", "fsl,imx21-mmc";
->          reg = <0x10014000 0x1000>;
->          interrupts = <11>;
-> +        clocks = <&clks 29>, <&clks 60>;
-> +        clock-names = "ipg", "per";
->          dmas = <&dma 7>;
->          dma-names = "rx-tx";
->          bus-width = <4>;
-> --
-> 2.34.1
->
+> Bjorn
 
