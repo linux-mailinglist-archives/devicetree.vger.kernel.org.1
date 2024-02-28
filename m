@@ -1,123 +1,131 @@
-Return-Path: <devicetree+bounces-46838-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46839-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C6D386AF39
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:35:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D721586AF53
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:44:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7424A1C218C5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 12:35:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6FC161F253E9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 12:44:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6DD29145341;
-	Wed, 28 Feb 2024 12:35:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74603145FE8;
+	Wed, 28 Feb 2024 12:44:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tRsfQdix"
+	dkim=pass (2048-bit key) header.d=gadgetoid.com header.i=@gadgetoid.com header.b="iSUijGvh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com [209.85.160.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48A1973515;
-	Wed, 28 Feb 2024 12:35:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBE3773501
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 12:44:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709123733; cv=none; b=u8pq6XuSo18Ubc8oHyc3WlW+Hj2TWp1Ef34eBBLS2lmyNJUMN6IyDbRVlp1+f29I6wh4Tt5pjWyv3DQooBbIAu2MGkTjvFo9gihruH/RiT5K6nTQbJaIjiS/SS8jHzgzvhmtjxx83VbI3IalqZUMfPQR8VGu2FPyFM7YF36G2Uw=
+	t=1709124252; cv=none; b=e0fgWZXF3kDl7czRVzUvNM46zXYHGyW5PyA9RhrtQdm8rZ0gylfVmqTmhnZRmopYMh9TS8smde+QcT0GDOOo0MWtwalP+OBa9pINTI20Uf9AOsBG2saWYaBGATxNLt2nYRXLVCKxHCTRo70yGC4aW0C4Be/c5M2b5BLsfPMByIc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709123733; c=relaxed/simple;
-	bh=1pgQK9aLsh1QMqOUlKhfXXSUFpsP/N2g45/FWso6So8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M8FmC9VRtQz2O9M3sgUSPTyVsE4y5GIf7NpKvJx+HplDSN23JMC4wbVqrEtgqGp6Sk4l7PQ9gukwlU/ay0oqsSTh0yzTNs/EbPj4DB3RRMkz263rFnDDf+RXl51Juch8w8YTz0aD+/OtN4XVwUVJAchoATnQzErEs9SdE2SUfbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tRsfQdix; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BB383C433C7;
-	Wed, 28 Feb 2024 12:35:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709123732;
-	bh=1pgQK9aLsh1QMqOUlKhfXXSUFpsP/N2g45/FWso6So8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tRsfQdix7XWJKfb1kO6HlWBrvkbStw5DRWlEnOars3/UDUOGEQyfY3vwBr/th6Ezf
-	 CimDkwlK2M79QAFu+U74bHA1i9LnEFtE2Bc3vYKTYSvJci+/4ktWoHeOB/jSrsGa5P
-	 2obnt2ZE419sifS5mkf21DbO9l7s/taAoEkYuIhXQotnPSssERAuSGINUQvHbtHjWv
-	 zwNdz06lmqWAB6BNiAOsMnwDL2tXbvA5j/UMOxjQfl2ClPnUh2PyjBxmoKPsHbUJqa
-	 feuRWz4HwXOkrs392FZXRj2PFFkXolZL+Wa84wYDpZMvf0Ga5wv8si43HrgtuTQSCw
-	 twKT7mXZfnoRw==
-Date: Wed, 28 Feb 2024 12:35:28 +0000
-From: Conor Dooley <conor@kernel.org>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: tglx@linutronix.de, maz@kernel.org, robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	l.stach@pengutronix.de, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH] dt-bindings: interrupt-controller: fsl,irqsteer: Add
- power-domains entry
-Message-ID: <20240228-sphere-stylus-71b9189fd93b@spud>
-References: <20240226130516.3821803-1-peng.fan@oss.nxp.com>
+	s=arc-20240116; t=1709124252; c=relaxed/simple;
+	bh=IGwU5zM0zY4cVvtezM1xrhTkBU9zL7HJUSFh8AoWk8A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XEH9v3g14nCaRGQZM/y2wgruxxwXsGE7BF8+6mMzg3CFYw7sKiLO3y4ON1PoCJO0XbR5nbAHbHAms9OMx1Y/mip19DXtD5GJWl4boA7mgygKH+FyMn1Zf7kI/7OSkEbscaEQHZSiazlK5UajRkPVWcCejDPFTFKi1f5wLc6xxZs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gadgetoid.com; spf=pass smtp.mailfrom=gadgetoid.com; dkim=pass (2048-bit key) header.d=gadgetoid.com header.i=@gadgetoid.com header.b=iSUijGvh; arc=none smtp.client-ip=209.85.160.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gadgetoid.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gadgetoid.com
+Received: by mail-oa1-f47.google.com with SMTP id 586e51a60fabf-21fa0ec227eso2642267fac.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 04:44:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gadgetoid.com; s=google; t=1709124250; x=1709729050; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=oJ4g0FOhWvkWDmx+f4f+fdLyHXMFYJ10SOlrNRsoWXA=;
+        b=iSUijGvhMiMuchF7kaA1ws72lLDgWQhe5h7ygUKC/h4+dvRPI9zA5dweMNhcr+Vpt7
+         OjVrXpPOEGq86PZSBzkfCC6v6BohMOVNYWzzpeXOhItJpV9030gecALbWJmJVorsRxus
+         O2xQzgj3rmOT3H/nAMIKYgNQNGIkksnf83DlTnDnrwacfOBThkPaGz75nvJRkdzrLJLO
+         eaVPSs1iFCPINg3dxMEJYIspC5YrtY7mxslqYO4/cGhD9JocK8Y4MBXaFo/4zKShKs4Q
+         N/tUDRCfls8xDhdA4oYqcGSzPTIxg7zeemxU3Sc+vk/VdjUWYxfAbG7WoNsUwGftq6C6
+         H/cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709124250; x=1709729050;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oJ4g0FOhWvkWDmx+f4f+fdLyHXMFYJ10SOlrNRsoWXA=;
+        b=MFLnXln5gtO0l2rbKmiJ3YAGCApKqbAwfitUSkIozNZ80ckT0/218bnRF0YaqqvTVH
+         Hw+Z41+iXkWrfhbQL8yvMT11HgZjD2Hvidd1lYovuI6WTgAdKlB6mV/YKlHKZI4/mC2e
+         u2fyrTQw3MQYZ+QWf+AYAQ9WVY71qw1RZ6rGMjZ68mWq20l06/vWLO+mg1hP3i43oAw+
+         ICbBMkaiuEo8oJ6OSx6CCagqOwX1fR9JCCLk6OWduSr37E494GhHkfGuEUHf+gmehtgg
+         Tc7zjPETt1kopc/MsHfdkifnMrRKxRanbkmuSctgt8x206MLOhAMiw+K+9XE62dIZnHc
+         cyAg==
+X-Forwarded-Encrypted: i=1; AJvYcCUZw7NFL5h7Wb25r3agy5JfuIK6OeIqzFvHBEGQYIc3mcQtxJkhHAeDTn6rUfRM6pRV79n1Xz5qsBCebC9ktdOJZ4c9rQrEZn+uDg==
+X-Gm-Message-State: AOJu0Yy2HL/FtYycrnlmS+ZQbAYaZQ4DBRh4cenQ4ee+j0X2yKeznnlT
+	VRgfs4C4xRI4bgYfYx3ZG3TPqXiw6bZUP9MZaRfpI1cmbsz+wzTwmlrlSneKAHcNE39g51mHDz+
+	mgnzOU012OqCpdZmN7fPwot94wt0pSBej0GbQuA==
+X-Google-Smtp-Source: AGHT+IFdqIozhMI0zw1aSNEMhrAwMA19VgeMD0K7kFekKR2uBaqpAJFV1qY8Jx+RVlVg5+/ehAkJ/+PWfN2rHtKQOaI=
+X-Received: by 2002:a05:6870:d88b:b0:21e:9df9:2596 with SMTP id
+ oe11-20020a056870d88b00b0021e9df92596mr13800774oac.42.1709124250028; Wed, 28
+ Feb 2024 04:44:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="MqZO6m3bS8tHuDyQ"
-Content-Disposition: inline
-In-Reply-To: <20240226130516.3821803-1-peng.fan@oss.nxp.com>
+References: <20240204220851.4783-1-wahrenst@gmx.net> <20240204220851.4783-3-wahrenst@gmx.net>
+ <65de00aa.540a0220.f1081.6933@mx.google.com> <3e65fd65-ccfc-4a77-8934-52791662bdce@gmx.net>
+In-Reply-To: <3e65fd65-ccfc-4a77-8934-52791662bdce@gmx.net>
+From: Phil Howard <phil@gadgetoid.com>
+Date: Wed, 28 Feb 2024 12:43:59 +0000
+Message-ID: <CA+kSVo9HmDvyCCezddJdZFUeJDGP9Lb5oKSMeXmzB78VvcM1NA@mail.gmail.com>
+Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Chris Morgan <macroalpha82@gmail.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	andy.shevchenko@gmail.com, Angelo Compagnucci <angelo.compagnucci@gmail.com>, 
+	Sean Young <sean@mess.org>, Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	Vincent Whitchurch <vincent.whitchurch@axis.com>
+Content-Type: text/plain; charset="UTF-8"
 
+On Tue, 27 Feb 2024 at 16:59, Stefan Wahren <wahrenst@gmx.net> wrote:
+>
+> Hi Chris,
+>
+> Am 27.02.24 um 16:32 schrieb Chris Morgan:
+> > I have a series of devices with GPIO controlled force feedback that
+> > this driver helps us control better. So I'm looking forward to this,
+> > thank you.
+> Thanks for testing. I didn't had much time recently and i was fighting
+> with hr timer resolution stuff. But will try to send the next version in
+> March.
+> > Note that when I set the resolution too low (I got confused and set
+> > the period to 255) my device locked up hard and only a forced
+> > power cycle could bring it back.
+> Unfortunately this is a general design issue by driving the GPIO by a
+> kernel driver and "expected" behavior. I didn't have a good solution for
+> it yet.
+>
+> What period is too low without limiting other users?
+>
+> The only idea which comes to my mind is to introduce a kernel parameter
+> for this driver to set a lower period limit. This can be provided by
+> some administrator or system designer with enough experience. So a
+> general user doesn't need to care about it.
 
---MqZO6m3bS8tHuDyQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This works for me. I also mucked up the period to see what appears to be
+a signal in the MHz range, but got a dropped SSH connection for my troubles.
 
-On Mon, Feb 26, 2024 at 09:05:16PM +0800, Peng Fan (OSS) wrote:
-> From: Peng Fan <peng.fan@nxp.com>
->=20
-> Add optional power-domains entry for i.MX95 usage
+255ns would be ~3.9MHz which is quite spectacularly far outside of the
+range I've come to expect from software PWM, but any conservative hard
+limit would be trivialised by a faster CPU.
 
-If it is only for the imx95, please limit it to that device only.
+>
+> Best regards
+>
+> > Tested-by: Chris Morgan <macromorgan@hotmail.com>
+>
 
-Thanks,
-Conor.
-
->=20
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  .../devicetree/bindings/interrupt-controller/fsl,irqsteer.yaml | 3 +++
->  1 file changed, 3 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,i=
-rqsteer.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,i=
-rqsteer.yaml
-> index 20ad4ad82ad6..7ccbb96434a4 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer=
-=2Eyaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,irqsteer=
-=2Eyaml
-> @@ -59,6 +59,9 @@ properties:
->        u32 value representing the number of input interrupts of this chan=
-nel,
->        should be multiple of 32 input interrupts and up to 512 interrupts.
-> =20
-> +  power-domains:
-> +    maxItems: 1
-> +
->  required:
->    - compatible
->    - reg
-> --=20
-> 2.37.1
->=20
-
---MqZO6m3bS8tHuDyQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZd8okAAKCRB4tDGHoIJi
-0oJgAQDZp4EzUmU6mEyQ8YKgbJyEAgDn64J20y010rhh+fiVagD/SCjsJxtvr+sP
-ogt3rgFXqhd6pocLmSNLno3bcSy2sAA=
-=232Z
------END PGP SIGNATURE-----
-
---MqZO6m3bS8tHuDyQ--
+-- 
+Philip Howard
 
