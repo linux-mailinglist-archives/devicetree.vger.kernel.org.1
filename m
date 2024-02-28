@@ -1,129 +1,275 @@
-Return-Path: <devicetree+bounces-46651-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46652-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A20286A62A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 02:54:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0670586A64A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 03:04:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A59711C24446
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 01:54:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EBB5B1C23EFE
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 02:04:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B51172114;
-	Wed, 28 Feb 2024 01:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0D0633DF;
+	Wed, 28 Feb 2024 02:04:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="SiknfvdY"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="otjZt2d5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 695D5134AA
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 01:53:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1701D6125;
+	Wed, 28 Feb 2024 02:04:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709085193; cv=none; b=ptyBBAuR+VpuKJpgKZC+6zEuiIDQkrFw5/YNA8CJB4LRv0TEFfzDfbTih2hqR+KMS7PhtPqRcO5uBgYt4G8/kfdEOuVg5ChDbjrB/dSauFB5mum/GxW1RI3S7nfRL6syTzcbSDdoO1dzRERsTCfcgAaakEFGh1z2bzx4IfVBYn0=
+	t=1709085843; cv=none; b=i1b1ZBk10YfdJEEnKzFLDM1BUxLtaPVjqFp9+eTzIzYFWnUe1S9MaRwS6XVN10kQzAg15rh1IcuPqySLTFOJgYEAfd7RHCKwa/8dYNkQmMJ02bE43q3Np3115jcGZOuiSPElaqRUhUjyXxaCsyOxa46zAK/Oz22zRC6723mWm3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709085193; c=relaxed/simple;
-	bh=TcywyovHDqARhOOSIHaoQ+K8F6mR03bJrOqRVihdDSQ=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=tF4VRlzM80bgwZJS8peKwtQQ4zCNmLjt8SJrdx3eRHVP2FnFgcKCOEj8g2LTiz9YyajXRjSTzTmFAA+LpegQwLcqnoWiHA484MmMzkcz/mfsDiDwPTu2bI0tzdnHl8O1CzzAvoy8TQIhnbdzQ0Vwcdjr1bBkUlDiOK5XM3J+Low=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=SiknfvdY; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 1A3552C0E9D;
-	Wed, 28 Feb 2024 14:53:09 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1709085189;
-	bh=TcywyovHDqARhOOSIHaoQ+K8F6mR03bJrOqRVihdDSQ=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=SiknfvdYu5kYONKlJ+jLUpMnTBqPewUTD+6A+vx7cTFrakz+9/VM1NIopOUQm8C/Z
-	 0ihqxb6X8BoUQCCzPkyQk+NXuuhq7Zi62EPCahptinZbyR8WBM+IvoYyqUZkCFEUIG
-	 tZbtLB+210ImOaemVo+KHwSlAstZYSvZRclU6TUore3Ul3W8DSozf3qDRi6iYzBfb/
-	 dXX1EcY3rJQew9uB0hkCHEe99rPxy+F05aYyjwqCrwckhynwVVlYWXN0fkh9xSj5kP
-	 cushJTpN1/lvo2NZimQJEmUH0ut7e3gMekqVqj0OGcEiTd/zc3KZ+zjJklr2IRXn8c
-	 wj3ndcWnjtFAA==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65de92040001>; Wed, 28 Feb 2024 14:53:08 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Wed, 28 Feb 2024 14:53:08 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.040; Wed, 28 Feb 2024 14:53:08 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-CC: "andy@kernel.org" <andy@kernel.org>, "geert@linux-m68k.org"
-	<geert@linux-m68k.org>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "andrew@lunn.ch"
-	<andrew@lunn.ch>, "gregory.clement@bootlin.com"
-	<gregory.clement@bootlin.com>, "sebastian.hesselbarth@gmail.com"
-	<sebastian.hesselbarth@gmail.com>, "ojeda@kernel.org" <ojeda@kernel.org>,
-	"tzimmermann@suse.de" <tzimmermann@suse.de>, "javierm@redhat.com"
-	<javierm@redhat.com>, "robin@protonic.nl" <robin@protonic.nl>,
-	"lee@kernel.org" <lee@kernel.org>, "pavel@ucw.cz" <pavel@ucw.cz>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/4] dt-bindings: auxdisplay: Add bindings for generic
- 7 segment LED
-Thread-Topic: [PATCH v2 2/4] dt-bindings: auxdisplay: Add bindings for generic
- 7 segment LED
-Thread-Index: AQHaacMcPIjrgF/Em0WhkdYBGa6MPrEeBc2AgAAefwA=
-Date: Wed, 28 Feb 2024 01:53:08 +0000
-Message-ID: <34b89a56-ab43-4d44-86f3-604e5be29db3@alliedtelesis.co.nz>
-References: <20240227212244.262710-1-chris.packham@alliedtelesis.co.nz>
- <20240227212244.262710-3-chris.packham@alliedtelesis.co.nz>
- <CAHp75Vdi2c=s_z9wwxWzVcL+4tx5ZnXymbiN4O1FS+D3kz5vqw@mail.gmail.com>
-In-Reply-To: <CAHp75Vdi2c=s_z9wwxWzVcL+4tx5ZnXymbiN4O1FS+D3kz5vqw@mail.gmail.com>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <3FCCFAB5F88E584FBA9C38B45B42185B@atlnz.lc>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1709085843; c=relaxed/simple;
+	bh=g5A9yMVDZzVX3M2BL3GzDMAqmNmxjz0+OuSVno93rmg=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:CC:References:
+	 In-Reply-To:Content-Type; b=Q4maregRJKfFJxcN2a/LNXRvlxeQBzOTJ3MyVMsTRS9ezb0kSSH9Cqnq5AGLWeG5i49srKatchWSedWfxXdCKjd8373kJJ4WEbGxbjzdGCrhw/SBNaMchoYd5UTOwhgb4a0uJs4wyYUyKhC4FjNxv+JTLjCRCGFZZoMc9H+6ABU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=otjZt2d5; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41S1tCdm012049;
+	Wed, 28 Feb 2024 02:03:58 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:from:subject:to:cc:references
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=h3Qpl7kTMENDyFAqOAx1LMkh6JOUtgWr5lhtd7jR1Xc=; b=ot
+	jZt2d5QbB5tt5iM0EbCZ+DzcX/Htt0a6B/GDtQ8GcuRWgNPEIGvpIi7/7w8CSfRY
+	uqwwD6HUS+AyP9iGh2bGuwRRevqpbuu7+pq1+2szB9stT6d2KeMk1OkzmjV59IUP
+	pqUfX38dKGyS/9iGVSasXbv474xJnZlIOeHEyN062dYCClToE/DxDuHboKJyK2o7
+	oyRYD33BZnXC8LcrTVDBpAJlwf/jbdiPapHeMja48lY859Gx/HDvbQouEs8aj4X0
+	QzBxsXvi7oz9FarmAy6OMpVm3NW81sT0mUNFbOcoUz30b4zGREJvorRQj+GFBWQc
+	+xqFF2w7u6h19ZtpNnMw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wh8aujssj-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Feb 2024 02:03:58 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41S23vbo007225
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 28 Feb 2024 02:03:57 GMT
+Received: from [10.239.132.150] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 27 Feb
+ 2024 18:03:52 -0800
+Message-ID: <e5d3d76f-32a3-4378-8d94-06f762ffb11f@quicinc.com>
+Date: Wed, 28 Feb 2024 10:03:50 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65de9204 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=k7vzHIieQBIA:10 a=PfnGLi71HrvahYDWBasA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
+User-Agent: Mozilla Thunderbird
+From: "Aiqun Yu (Maria)" <quic_aiquny@quicinc.com>
+Subject: Re: [PATCH v4 1/6] dt-bindings: arm: qcom: Document QCM8550, QCS8550
+ SoC and board
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Tengfei Fan <quic_tengfan@quicinc.com>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
+References: <20240119100621.11788-1-quic_tengfan@quicinc.com>
+ <20240119100621.11788-2-quic_tengfan@quicinc.com>
+ <CAA8EJprpMjK03rKPK6wgfVuDvBikYsKZjMc0Wusa1BxFOBnXhQ@mail.gmail.com>
+ <86672501-206a-49ed-8af7-2b6c332c1697@quicinc.com>
+ <CAA8EJppkDDACV_sLxFW4EqKQLHfo4ivSLwa_jCde8JpeH4YfzA@mail.gmail.com>
+ <88845d8d-0b58-46fa-8c52-c1bb4f2d39f8@quicinc.com>
+ <CAA8EJpr_vqwpf89GvyAUYJwcrT2mZxwWUkkqmDEOGH0Lci_YYw@mail.gmail.com>
+Content-Language: en-US
+In-Reply-To: <CAA8EJpr_vqwpf89GvyAUYJwcrT2mZxwWUkkqmDEOGH0Lci_YYw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: dikCYJR2YLm---cyOjOpBR9dxvmhdpS7
+X-Proofpoint-GUID: dikCYJR2YLm---cyOjOpBR9dxvmhdpS7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-28_01,2024-02-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 bulkscore=0 suspectscore=0 phishscore=0 malwarescore=0
+ mlxscore=0 lowpriorityscore=0 adultscore=0 mlxlogscore=999 clxscore=1015
+ spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402280015
 
-T24gMjgvMDIvMjQgMTM6MDMsIEFuZHkgU2hldmNoZW5rbyB3cm90ZToNCj4gT24gVHVlLCBGZWIg
-MjcsIDIwMjQgYXQgMTE6MjLigK9QTSBDaHJpcyBQYWNraGFtDQo+IDxjaHJpcy5wYWNraGFtQGFs
-bGllZHRlbGVzaXMuY28ubno+IHdyb3RlOg0KPg0KPiAuLi4NCj4NCj4+ICsgIHNlZ21lbnQtZ3Bp
-b3M6DQo+PiArICAgIGRlc2NyaXB0aW9uOg0KPj4gKyAgICAgIEFuIGFycmF5IG9mIEdQSU9zIG9u
-ZSBwZXIgc2VnbWVudC4NCj4gVGhpcyBpcyBhIHZhZ3VlIGRlc2NyaXB0aW9uLiBQbGVhc2UgZXhw
-bGFpbiB0aGUgb3JkZXIgKGUuZy4sIExTQiA9DQo+ICdhJywgTVNCID0gJ2cnKSwgdXNlIG9mIERQ
-IChvcHRpb25hbD8pLCBldGMuDQo+DQo+PiArICAgIG1pbkl0ZW1zOiA3DQo+IG1heEl0ZW1zPw0K
-Pg0KPiAuLi4NCg0KSSBwbGFuIG9uIHNheWluZyBtYXhJdGVtczogNyAobW9yZSBkaXNjdXNzaW9u
-IGJlbG93KQ0KDQo+DQo+PiArICAgIGxlZC03c2VnIHsNCj4gUHJvYmFibHkgaXQgc2hvdWxkIGJl
-IG1vcmUgaHVtYW4gcmVhZGFibGUuIERUIHBlb3BsZSBtaWdodCBzdWdnZXN0DQo+IHNvbWV0aGlu
-ZyBiZXR0ZXIuDQo+DQo+PiArICAgICAgICBjb21wYXRpYmxlID0gImdlbmVyaWMtZ3Bpby03c2Vn
-IjsNCj4+ICsgICAgICAgIHNlZ21lbnQtZ3Bpb3MgPSA8JmdwaW8gMCBHUElPX0FDVElWRV9MT1cN
-Cj4+ICsgICAgICAgICAgICAgICAgICAgICAgICAgJmdwaW8gMSBHUElPX0FDVElWRV9MT1cNCj4+
-ICsgICAgICAgICAgICAgICAgICAgICAgICAgJmdwaW8gMiBHUElPX0FDVElWRV9MT1cNCj4+ICsg
-ICAgICAgICAgICAgICAgICAgICAgICAgJmdwaW8gMyBHUElPX0FDVElWRV9MT1cNCj4+ICsgICAg
-ICAgICAgICAgICAgICAgICAgICAgJmdwaW8gNCBHUElPX0FDVElWRV9MT1cNCj4+ICsgICAgICAg
-ICAgICAgICAgICAgICAgICAgJmdwaW8gNSBHUElPX0FDVElWRV9MT1cNCj4+ICsgICAgICAgICAg
-ICAgICAgICAgICAgICAgJmdwaW8gNiBHUElPX0FDVElWRV9MT1c+Ow0KPiBEdW5ubyBob3cgdG8g
-aGFuZGxlIERQLiBFaXRoZXIgd2UgYWx3YXlzIGV4cGVjdCBpdCB0byBiZSBoZXJlIChhcw0KPiBw
-bGFjZWhvbGRlcikgb3Igd2l0aCBhZGRpdGlvbmFsIHByb3BlcnR5Lg0KDQpNeSBjdXJyZW50IHBs
-YW4gd2FzIHRvIGlnbm9yZSBpdC4gQXMgeW91IHNlZSBpdCBteSBsYXRlciBwYXRjaCBJJ20gDQoo
-YWIpdXNpbmcgRFAgYXMgYSBkaXNjcmV0ZSBncGlvLWxlZCB3aXRoIGEgZGlmZmVyZW50IGZ1bmN0
-aW9uLg0KDQpXZSBjb3VsZCBlaXRoZXIgYSBzZXBhcmF0ZSBkcC1ncGlvcyBwcm9wZXJ0eSBvciBz
-ZXQgbWF4SXRlbXMgdG8gOC4gUmlnaHQgDQpub3cgdGhlIGRyaXZlciB3b24ndCBkbyBhbnl0aGlu
-ZyB3aXRoIGVpdGhlciBvcHRpb24uVG8gYWN0dWFsbHkgZG8gDQpzb21ldGhpbmcgaW4gdGhlIGxp
-bmVkaXNwIGRyaXZlciB3ZSdkIG5lZWQgdG8gaGF2ZSBhIG5ldyBjaGFyYWN0ZXIgbWFwIA0KdGhh
-dCBpbmNsdWRlcyB0aGUgZXh0cmEgTEVELg0KDQo+PiArICAgIH07
+
+
+On 2/20/2024 5:15 PM, Dmitry Baryshkov wrote:
+> On Tue, 20 Feb 2024 at 11:09, Aiqun Yu (Maria) <quic_aiquny@quicinc.com> wrote:
+>>
+>>
+>>
+>> On 2/5/2024 9:48 PM, Dmitry Baryshkov wrote:
+>>> On Mon, 5 Feb 2024 at 12:21, Tengfei Fan <quic_tengfan@quicinc.com> wrote:
+>>>>
+>>>>
+>>>>
+>>>> On 2/5/2024 12:29 AM, Dmitry Baryshkov wrote:
+>>>>> On Fri, 19 Jan 2024 at 11:07, Tengfei Fan <quic_tengfan@quicinc.com> wrote:
+>>>>>>
+>>>>>> Document QCM8550, QCS8550 SoC and the AIM300 AIoT board bindings.
+>>>>>> QCS8550 and QCM8550 processor combines powerful computing, extreme edge
+>>>>>> AI processing, Wi-Fi 7, and robust video and graphics for a wide range
+>>>>>> of use cases for the Internet of Things (IoT). QCS8550 is a QCS version
+>>>>>> for QCM8550. Modem RF only in QCM8550 but not in QCS8550.
+>>>>>> AIM300 Series is a highly optimized family of modules designed to
+>>>>>> support AIoT applications. The module is mounted onto Qualcomm AIoT
+>>>>>> carrier board to support verification, evaluation and development. It
+>>>>>> integrates QCS8550 SoC, UFS and PMIC chip etc.
+>>>>>> AIM stands for Artificial Intelligence Module. AIoT stands for AI IoT.
+>>>>>>
+>>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>>>>> ---
+>>>>>>     Documentation/devicetree/bindings/arm/qcom.yaml | 11 +++++++++++
+>>>>>>     1 file changed, 11 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>>>>> index 1a5fb889a444..9cee874a8eae 100644
+>>>>>> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+>>>>>> @@ -49,8 +49,10 @@ description: |
+>>>>>>             msm8996
+>>>>>>             msm8998
+>>>>>>             qcs404
+>>>>>> +        qcs8550
+>>>>>>             qcm2290
+>>>>>>             qcm6490
+>>>>>> +        qcm8550
+>>>>>
+>>>>> Drop
+>>>>
+>>>> we want to introduce qcm8550 here.
+>>>
+>>> What for. It either had to be introduced beforehand, or it should be
+>>> introduced when one adds support for an actual qcm8550 device.
+>>>
+>>>> qcm8550.dtsi has been introduced and qcs8550-aim300.dtsi include
+>>>> qcm8550.dtsi directly.
+>>>>
+>>>> qcs8550 is a QCS version for qcm8550. qcs8550 is a sub-series of
+>>>> qcm8550. qcm8550 will be a firmware release series from qualcomm.
+>>>
+>>> All three names refer to the different kinds of the same platform. The
+>>> base chip name is sm8550, so it is the last one. Other than that,
+>>> there is no need to include any SoC compatibles other than the actual
+>>> SoC name. See existing qrb devices for an inspiration.
+>>>
+>>>>
+>>>> here is the qcm8550/qcs8550 detailed spec:
+>>>> https://docs.qualcomm.com/bundle/publicresource/87-61717-1_REV_A_Qualcomm_QCS8550_QCM8550_Processors_Product_Brief.pdf
+>>>>
+>>>> here is the sm8550 detailed spec:
+>>>> https://docs.qualcomm.com/bundle/publicresource/87-71408-1_REV_C_Snapdragon_8_gen_3_Mobile_Platform_Product_Brief.pdf
+>>>
+>>> Can you please summarise the _actual_ difference between qcm8550,
+>>> qcs8550 and sm8550? Are they fully soft compatible? Soft compatible
+>>> except the modem? Pin compatible?
+>>
+>> we can remove the qcm8550 compatible for now, and rename current dtsi
+>> back for qcs8550.dtsi, and only introduce qcm8550 later when there is
+>> qcm8550 board public-ed.
+> 
+> Yes, please.
+> 
+>>
+>>   From software point of view, currently it is single firmware image
+>> release for both qcm8550 and qcs8550, and the firmware is not grantee
+>> for sm8550 software compatible.
+> 
+> I assume that modem.mbn is different for qcm and qcs devices. Or does
+> qcs completely miss the modem DSP?
+You are right, modem.mbn part is different. QCS have a gps only modem image.
+> 
+>>
+>>   From hardware point of view, qcm8550, qcs8550, sm8550 are different
+>> hardware socs, qcm8550, qcs8550 is derived from sm8550. We can only
+>> share the public document about those soc descriptions [1]. For soc
+>> itself, it is all similar difference for QCS and QCM version.
+>> Currently(in current development stage) there is not notable software
+>> difference needed other than memory map in kernel side needed to be
+>> differentiate from qcm8550 qcs8550 to sm8550.
+>>
+>> [1]
+>> https://docs.qualcomm.com/bundle/publicresource/87-61717-1_REV_A_Qualcomm_QCS8550_QCM8550_Processors_Product_Brief.pdf
+>>
+>>>
+>>>>
+>>>>>
+>>>>>>             qdu1000
+>>>>>>             qrb2210
+>>>>>>             qrb4210
+>>>>>> @@ -93,6 +95,7 @@ description: |
+>>>>>>       The 'board' element must be one of the following strings:
+>>>>>>
+>>>>>>             adp
+>>>>>> +        aim300-aiot
+>>>>>
+>>>>> We probably need to drop this list, it doesn't surve its purposes.
+>>>>
+>>>> I am a little confused, do you expect to just remove this "aim300-aiot"
+>>>> or do you want to introduce a new patch and remove the whole list?
+>>>
+>>> If you were following the list, you would have seen the patch
+>>> reworking the bindings.
+>>>
+>>>>
+>>>>>
+>>>>>>             cdp
+>>>>>>             dragonboard
+>>>>>>             idp
+>>>>>> @@ -904,6 +907,14 @@ properties:
+>>>>>>               - const: qcom,qcs404-evb
+>>>>>>               - const: qcom,qcs404
+>>>>>>
+>>>>>> +      - items:
+>>>>>> +          - enum:
+>>>>>> +              - qcom,qcs8550-aim300-aiot
+>>>>>> +          - const: qcom,qcs8550-aim300
+>>>>>> +          - const: qcom,qcs8550
+>>>>>> +          - const: qcom,qcm8550
+>>>>>
+>>>>> In the review comments for v3 you have been asked to add qcom,sm8550.
+>>>>> But not the qcom,qcm8550. I don't think that there is any need to
+>>>>> mention qcm8550 here.
+>>>>
+>>>> qcm8550 and sm8550 are different, they have different firmware release.
+>>>>
+>>>> AIM300 AIoT board depend on qcs8550, qcs8550 is a QCS version for
+>>>> qcm8550. Modem RF only in qcm8550 but not in qcs8550.
+>>>
+>>> There are no 'dependecies' here. The thing is about declaring compatibility.
+>>> In my opinion, the qcm8550 is an unnecesary part of the equation. You
+>>> declare compatibility with the board itself,  with the SoM, with the
+>>> actual SoC and with the base of the series. Anybody caring for the
+>>> difference between QCM, QCS and SM will have to check for both
+>>> qcom,qcs8550 and qcom,qcm8550 anyway, as there are differences on the
+>>> modem side.
+>>>
+>>>>>> +          - const: qcom,sm8550
+>>>>>> +
+>>>>>>           - items:
+>>>>>>               - enum:
+>>>>>>                   - qcom,sa8155p-adp
+>>>>>> --
+>>>
+>>
+>> --
+>> Thx and BRs,
+>> Aiqun(Maria) Yu
+> 
+> 
+> 
+
+-- 
+Thx and BRs,
+Aiqun(Maria) Yu
 
