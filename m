@@ -1,118 +1,172 @@
-Return-Path: <devicetree+bounces-46959-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B169586B6BF
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 19:06:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C4F286B6CF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 19:09:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3AA15287E2E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:06:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 28FDC2895D3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:09:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B638C79B80;
-	Wed, 28 Feb 2024 18:06:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450D979B83;
+	Wed, 28 Feb 2024 18:09:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b="ONYp/pfE"
+	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b="koJ39sBv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.18])
+Received: from master.debian.org (master.debian.org [82.195.75.110])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60C3740841;
-	Wed, 28 Feb 2024 18:06:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=212.227.15.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9208579B82
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 18:09:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=82.195.75.110
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709143603; cv=none; b=HOstnSCR3C5a1Dd67z8Vl3mvUuFg0mJyfW8Cjkq2S7daj6ro0GeQas9LUEPiaRDawib+oI2i4Pa5+KtgoMc9jzTNVK02XlBk3dM5kz+SGlJXOMIV5Rss1NtWCIcv8IK4BcG/Rp2+J9bprESTt/pWrdxrLZpKRwpOC+nXHcebEIw=
+	t=1709143771; cv=none; b=PHuRLmVSil+1LIzjg5gAlzFgyWZ8Eym/EEUyj0ChRl9F11WA4nrjgbPk3RrQzGY4D56wxp08Qozjgwr63rtjlnjdxZer/MSMAbB7rJ39sn1i29++0TtuAH/unIXR85RJsf9MsPKTZz5oyUj2tPAGzml93hS+g6ft8Mg0EkAYRlo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709143603; c=relaxed/simple;
-	bh=n+EylA3KdC9PfeKTAfdWZ6rV3n1+43owzlt99U79yCs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=oKlsVxYk0rVKBzowwiQcE45nMs5I6R7OLQ81/7hOBT/UW7ep4TKGpyRtOZ8ZB6eh8LpwH1mu9WfVqdCnqQSbbmsEjObNFJwKeGvVOKFi+ZswO8G/nQqG4XhQYOrA0fUhujJhNCaSmFXu18H6roh0DpvZiM1+mDqVyCw8D1DDm+g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net; spf=pass smtp.mailfrom=gmx.net; dkim=pass (2048-bit key) header.d=gmx.net header.i=wahrenst@gmx.net header.b=ONYp/pfE; arc=none smtp.client-ip=212.227.15.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gmx.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmx.net
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-	s=s31663417; t=1709143592; x=1709748392; i=wahrenst@gmx.net;
-	bh=n+EylA3KdC9PfeKTAfdWZ6rV3n1+43owzlt99U79yCs=;
-	h=X-UI-Sender-Class:Date:Subject:To:Cc:References:From:
-	 In-Reply-To;
-	b=ONYp/pfEqq5ewd7WjExgOSmmf6DLl0TbRrvYDqs3SN0GeUqZAog1jbaXSBXrqN8X
-	 Nqt7TyPwijwAItxVWHycr1STl5RLkIXac8EGcJpYXjTAViqeh5DG3oEPTlaWE/3AV
-	 2GSoQ1oufDrOnnYAOnG3iEWEcbg1YFCszHnWMCoDbfCy73FTdWqU3Po8sDrXhDKiK
-	 LsH2z02GSguzocopJ4S2ihbB2rYmllTCeI/ROXnsZ6OkUIi/JrcFQl29Dde6FwbXq
-	 DT5y4SszvoeCVAegjcB4QqqmP7zSV/UtLqhU7EN/x8dbe98q3F8+/8/ZAFHGojkLB
-	 0QH5uW1hvxWgCn4YWg==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [192.168.1.167] ([37.4.248.43]) by mail.gmx.net (mrgmx005
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1MmUHj-1rEp4521dx-00iTA0; Wed, 28
- Feb 2024 19:06:32 +0100
-Message-ID: <1f8e87ab-273e-44bd-9ca5-aa916433023f@gmx.net>
-Date: Wed, 28 Feb 2024 19:06:31 +0100
+	s=arc-20240116; t=1709143771; c=relaxed/simple;
+	bh=9g1lbxoK2MeIuSvFhM2dGLrmsh1SuTiy8tOss2u4J2Q=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=lNOhD8Z4/ii8Bm/iCObtj7XHUzxETSMOyKQ+ZfdwcmGUd08xHeHvxGwrBpBglKnQpPVJDxlD3PJx+EnPgXe4Qwylz6Le1folfitOu6FDU8w1JtH5gGOV8Ogu4UZa4YhhYO4sFnVruyRDIwq9Rx1XtjtfRMqUinVGZ1H9HYa+8Rc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=none smtp.mailfrom=master.debian.org; dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b=koJ39sBv; arc=none smtp.client-ip=82.195.75.110
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=master.debian.org
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
+	s=smtpauto.master; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
+	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
+	In-Reply-To:References; bh=lfvjm4kY6awWEK7vsDum+ZBVumKdfhg87y18zIjjgrQ=; b=ko
+	J39sBvys+P/77juiKfjijovj2zo7NoR5lU2H8tYwg4tTx3zfzzo3oCCAg8LqyPJfH77tyuauP6lQ2
+	K8sgaklq/BOAL4nsdBYkgyyApa9kRFuhcpjPB0jxlXKCUW/AJW6kzhcplRW2PywcDzpWXyXS7TSDx
+	utJca4QZGa1iPfbq0raFL7f+GMI0s833DDadJ6OHfZUduFmcZAtk3HaW4uu9VzHCGDQQKjFzxQVlT
+	y4dQ7M1aMw5yk+R4WDDyY5UpPVqELu8KBxIqPlxYqjUTQJ5lq1TBZ1DTKUexmyCSk0lIPXAjanBAa
+	93W+M+4oA46+SR1D6Go7w4S5hw7U7K1Q==;
+Received: from ukleinek by master.debian.org with local (Exim 4.94.2)
+	(envelope-from <ukleinek@master.debian.org>)
+	id 1rfOMc-007bXb-6y; Wed, 28 Feb 2024 18:09:06 +0000
+From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@debian.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>,
+	Liang Chen <cl@rock-chips.com>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-rockchip@lists.infradead.org
+Subject: [PATCH] arm64: dts: rockchip: Add DMA channel names for rk356x
+Date: Wed, 28 Feb 2024 19:09:03 +0100
+Message-ID: <20240228180905.485976-2-ukleinek@debian.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
-Content-Language: en-US
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Angelo Compagnucci <angelo.compagnucci@gmail.com>,
- Philip Howard <phil@gadgetoid.com>, Sean Young <sean@mess.org>,
- Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <20240204220851.4783-1-wahrenst@gmx.net>
- <20240204220851.4783-3-wahrenst@gmx.net>
- <Zd4QpBsyTnuM8hwt@smile.fi.intel.com>
- <4a6d8417-402e-4d40-96c5-15c2f1dba887@gmx.net>
- <CAHp75VdLJi2eiFmwjskMmp2adG8k7zO5aDRb-5=4eQKHhB=PXg@mail.gmail.com>
-From: Stefan Wahren <wahrenst@gmx.net>
-In-Reply-To: <CAHp75VdLJi2eiFmwjskMmp2adG8k7zO5aDRb-5=4eQKHhB=PXg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:AAG9V3Skrr5RGVxPXCVk+ys4hfthS7p3z7ViUbe3cSrHydxee2H
- i2JnDubcSH/snSbi8O6wJvWQ78S+n0EAZkwmL6GKiUfMOo5ym8fjy+tDI40NvtlzpBpGm7w
- iN8qDfHnbHUBQ1fzruY1xAoMYMDw8npP0G8p/8ez0DSmiGWSeP/SoGuqES/dQwnvNEgEiqI
- eGmMahjYT8T0ewJYGBjZA==
-X-Spam-Flag: NO
-UI-OutboundReport: notjunk:1;M01:P0:STOObC92ELI=;Uiv/ys5n+G/pu6CQPonI+AUsmSt
- assDuFprHSXFerGyjGx43ciyTaN/mrJVh0hURKDgPXjBP2wYabikwZzHMiSwtUUi+lfSEKA1+
- aCmFRSEqd1WIsiOpso1pwElFb6VoPfQlhWiSkT2t9WsD45SylVxv392ifA5rFzKKuz+dv6zPF
- m8afnbLPMqbcmd2gKThffB7KXlTZuYx7pvX+Rj60ldjo3WglC2OuimchgwSwkaZ0MmMrz/liC
- 7d9GdA5SfuCL5SQ67gSPENne9U2ZgMwEEObIc66MoaEL7FBXtW4/LqY5YemB54qU7yZhruWKX
- o6vPzYczasMXPDFUR5txHSsCGrLrdXjK2bwpMyod3GVeU8g7eFYp65WcroLFujZw651hBQdp1
- ixv/5/mluL7Nij71OCu7ApyKPe2VjS26dUJRw64t3xL3dONDbC+mMtiCqfMq5XUvjtX2xNT50
- +5zOD1Uk4jSLNC8WtmS4fqRtH6hm4KPLSbcE2ThXAW2jrOvtfyF9S6cSPKMIm0LXWtoTIyb7R
- c/IRYenom65ztJ4/ji7mvyY49MAWgTD4Rfg6FtngDdiOp/DoEw169mVqFs7Uu5pjq4ZduAntv
- UznYFegfqumJq8Z/USPxptrMnrJ3NPJVBE8Q3+kiLa0ncEVXWKHq9ZpLCkVMgKtzIIFCYnoUs
- 2c4njR7rytYM/29BaPW+Ig8GhNHKgziGqLXlESqlX7ottM4F+jOLpQWaSOceNpnNZBhSQDH6M
- YpxsuUA3i+854GMQ5wSUp5HntcAoQqdGsmUxoGUr8LmF7YyyPX1nQVTKDdwWpHkXJqQdUoLwe
- nTBPBDm1/xN986KSwVSRG6DcpAqp8IKQP8AtuscLo25+k=
+Content-Type: text/plain; charset=UTF-8
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3723; i=ukleinek@debian.org; h=from:subject; bh=9g1lbxoK2MeIuSvFhM2dGLrmsh1SuTiy8tOss2u4J2Q=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBl33bBqI36iba6jc90cZSoi2dbacZyrRxpxTjaG c00vABBXoeJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZd92wQAKCRCPgPtYfRL+ Tq3LB/9YXQGByZTHA7GV72XMdSbv4/ru7etXxy6BJ7bzDWgCxuafPYGSiPGjMEygfzd09hlCj2A enQ/NAVO7SmycsOBFhiAIMvTzQmQXM8WQ0kZU/I0hVI3dhYJLQ3orx9/W9LUSVFCQwMj8c9U0B0 0cIe0w+o8ub8ErQDs8n0+rc0WObbn4QV+tEOQBQ8o314RqFqdrFJOSZgxnnEB4f6BZpJmdVBSxu FHL2UvM85ek0lwRoVSHdD4tHMK7cH5xHrB5QmOETI17B+gndWeqwrnf3lZlSii5rYBSw/ok4JA0 yMZiY/Y+/qJmw0vGkfLe/Pkdhk4Ir5Y8T1Ck6sVmRC++Kng9
+X-Developer-Key: i=ukleinek@debian.org; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
+Content-Transfer-Encoding: 8bit
 
-Am 27.02.24 um 21:47 schrieb Andy Shevchenko:
-> On Tue, Feb 27, 2024 at 10:25=E2=80=AFPM Stefan Wahren <wahrenst@gmx.net=
-> wrote:
->> Hi,
->>
->> Am 27.02.24 um 17:41 schrieb Andy Shevchenko:
->>> On Sun, Feb 04, 2024 at 11:08:51PM +0100, Stefan Wahren wrote:
->>> ...
->>>
->>>> +    if (gpiod_cansleep(gpwm->gpio)) {
->>>> +            return dev_err_probe(dev, -EINVAL,
->>>> +                                 "sleeping GPIO %d not supported\n",
->>>> +                                 desc_to_gpio(gpwm->gpio));
->>> Do not use plain GPIO numbers.
->> Uwe already complained this, but i didn't receive a reply on the
->> question how do we provide a useful log message (reference to the
->> affected GPIO) here? AFAIK the GPIO names are optional.
-> You have a firmware node path, also you may add a label to GPIO, but
-> it's unrelated to the message (as it's constant).
-> %pfw
-Thanks
+This fixes:
+
+	of_dma_request_slave_channel: dma-names property of node '/serial@fe660000' missing or empty
+	dw-apb-uart fe660000.serial: failed to request DMA
+
+when I use ttyS2. Note this is only a warning, the UART still works. It
+just doesn't use DMA.
+
+Fixes: a3adc0b9071d ("arm64: dts: rockchip: add core dtsi for RK3568 SoC")
+Signed-off-by: Uwe Kleine-König <ukleinek@debian.org>
+---
+ arch/arm64/boot/dts/rockchip/rk356x.dtsi | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+index c19c0f1b3778..13ad66f40ec2 100644
+--- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+@@ -448,6 +448,7 @@ uart0: serial@fdd50000 {
+ 		clocks = <&pmucru SCLK_UART0>, <&pmucru PCLK_UART0>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 0>, <&dmac0 1>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1347,6 +1348,7 @@ uart1: serial@fe650000 {
+ 		clocks = <&cru SCLK_UART1>, <&cru PCLK_UART1>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 2>, <&dmac0 3>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart1m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1361,6 +1363,7 @@ uart2: serial@fe660000 {
+ 		clocks = <&cru SCLK_UART2>, <&cru PCLK_UART2>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 4>, <&dmac0 5>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart2m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1375,6 +1378,7 @@ uart3: serial@fe670000 {
+ 		clocks = <&cru SCLK_UART3>, <&cru PCLK_UART3>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 6>, <&dmac0 7>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart3m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1389,6 +1393,7 @@ uart4: serial@fe680000 {
+ 		clocks = <&cru SCLK_UART4>, <&cru PCLK_UART4>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 8>, <&dmac0 9>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart4m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1403,6 +1408,7 @@ uart5: serial@fe690000 {
+ 		clocks = <&cru SCLK_UART5>, <&cru PCLK_UART5>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 10>, <&dmac0 11>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart5m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1417,6 +1423,7 @@ uart6: serial@fe6a0000 {
+ 		clocks = <&cru SCLK_UART6>, <&cru PCLK_UART6>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 12>, <&dmac0 13>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart6m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1431,6 +1438,7 @@ uart7: serial@fe6b0000 {
+ 		clocks = <&cru SCLK_UART7>, <&cru PCLK_UART7>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 14>, <&dmac0 15>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart7m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1445,6 +1453,7 @@ uart8: serial@fe6c0000 {
+ 		clocks = <&cru SCLK_UART8>, <&cru PCLK_UART8>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 16>, <&dmac0 17>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart8m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+@@ -1459,6 +1468,7 @@ uart9: serial@fe6d0000 {
+ 		clocks = <&cru SCLK_UART9>, <&cru PCLK_UART9>;
+ 		clock-names = "baudclk", "apb_pclk";
+ 		dmas = <&dmac0 18>, <&dmac0 19>;
++		dma-names = "tx", "rx";
+ 		pinctrl-0 = <&uart9m0_xfer>;
+ 		pinctrl-names = "default";
+ 		reg-io-width = <4>;
+
+base-commit: 20af1ca418d2c0b11bc2a1fe8c0c88f67bcc2a7e
+-- 
+2.43.0
+
 
