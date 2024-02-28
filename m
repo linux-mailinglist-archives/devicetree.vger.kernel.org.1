@@ -1,187 +1,182 @@
-Return-Path: <devicetree+bounces-46683-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46682-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 179E986A902
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:32:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 14CA686A8FF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:31:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4D4D1F2896B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 07:32:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BE5B0289FA3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 07:31:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91A0724A19;
-	Wed, 28 Feb 2024 07:31:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8462124A19;
+	Wed, 28 Feb 2024 07:31:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="Leqv9Ii2";
+	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="OtpPEVFw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
+Received: from gw2.atmark-techno.com (gw2.atmark-techno.com [35.74.137.57])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75CC92560C;
-	Wed, 28 Feb 2024 07:31:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0101828DAE
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 07:31:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.74.137.57
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709105511; cv=none; b=CRiVdtA3CWKwnWaL+SBPRbueIYTnpx4A1BlYJrHdrCVknYYs/gaD3cw1+dsuUtafyjhKy9PxqarkGJeeJ/QZPqteMmjXma6nlnUK8BHJmDLeV8i+ZTBrOqbD6DLpThiOSycMHZyJP4WL98w631/4g5WFCU5X5B/D/qX9Cx1bE10=
+	t=1709105498; cv=none; b=e1gsdGtpNGRJ+1gNl9LAWZQGQde8pAn4mhN4vBvkKH8sVaMn0YWzhVUDlD4c7rsJTKbCVUxAc4Jyq2WAh2VIKra4ax6Kd5lMs/3RLtQuGwycQJjM5frhKI37ln7OBQqcSEdrf1ssDmaOS7vFUnWPtf6ZcnTIpEmwt3oDmHel7QA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709105511; c=relaxed/simple;
-	bh=7b/Mm0rd6kV5M5+yNjB1eglhtbDPT0suSYpIqAyjs98=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=eu185EIeErU5qMIZ+OqukEJw7j4izDk4jx8K09eIBeHiYP9KInfn5Y3VwcHJZ5/2abziZHyDw9Ho4FMAp4LLZ2edgn8uiz3u6PF+H6TCHU5wH1gu114QTdhmq5x7eFyjyUl8cXPX1AqaZPnd8XMr1n542fdqd2C1lTkX3scl8oE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
-Received: from [192.168.0.224] (ip5f5aedb1.dynamic.kabel-deutschland.de [95.90.237.177])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: pmenzel)
-	by mx.molgen.mpg.de (Postfix) with ESMTPSA id A509361E5FE04;
-	Wed, 28 Feb 2024 08:30:42 +0100 (CET)
-Message-ID: <93d67381-34fc-423c-868a-565378c63e09@molgen.mpg.de>
-Date: Wed, 28 Feb 2024 08:30:41 +0100
+	s=arc-20240116; t=1709105498; c=relaxed/simple;
+	bh=xCuy4MVwp0NypZyLpDhoJjj6fCLV/bg+BECCVso3xOk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cdia4d240yPRzbjbh685CEwSFeCfapuFx3WbD7YXkgGGixp+lWggIsBP+7QD183TyvRQr+jvd7/yeJwohCHnuYyEQ3HJpSrYh0uhOaZBq6AOz/aLTQBBjD12fKx3i1p8M8kvHFX14u7e2fSJ/7R+yaY1wa9hidXOxu6ThDohObk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com; spf=pass smtp.mailfrom=atmark-techno.com; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=Leqv9Ii2; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=OtpPEVFw; arc=none smtp.client-ip=35.74.137.57
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=atmark-techno.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=atmark-techno.com;
+	s=gw2_bookworm; t=1709105495;
+	bh=xCuy4MVwp0NypZyLpDhoJjj6fCLV/bg+BECCVso3xOk=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Leqv9Ii2cuI/9j4Pj6CCYhRoP4Z3fyHRmmLWTbxRgj5KLJD9bAYqFKBtQmqlDXYry
+	 KYdYI/gbvH/yB5aTqb+GXe2Intqi3bdDxIgwnUPoCeIYLt4nzGtEOK596k/FsPaSpn
+	 Sdx+hADNLjAGAt6vlUIU0VK+UVS/e+EalK51P8nmBcNyxoM8t96DYH8Q/3KzjpWCTO
+	 bl/bFtw8o+9ZoYMLV/dP5MT+57O5Iem8JMYsYTHd7S0hnUWzI7Pof0ZQ8GpcTebS+t
+	 FUnJGbw2sWzw1+I+KHh+AzmHlraT1YPOemOvDKx6HvseCnvEz/coHL7gsxbghvnZ+O
+	 r5xIpfcMEfTdg==
+Received: from gw2.atmark-techno.com (localhost [127.0.0.1])
+	by gw2.atmark-techno.com (Postfix) with ESMTP id 133F7777
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 16:31:35 +0900 (JST)
+Authentication-Results: gw2.atmark-techno.com;
+	dkim=pass (2048-bit key; unprotected) header.d=atmark-techno.com header.i=@atmark-techno.com header.a=rsa-sha256 header.s=google header.b=OtpPEVFw;
+	dkim-atps=neutral
+Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com [209.85.167.197])
+	by gw2.atmark-techno.com (Postfix) with ESMTPS id CDEBB947
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 16:31:33 +0900 (JST)
+Received: by mail-oi1-f197.google.com with SMTP id 5614622812f47-3c1a1cc1014so4714747b6e.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 23:31:33 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=atmark-techno.com; s=google; t=1709105492; x=1709710292; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=y1r5BtcdAAMK6pyjdadbxQXK81G6GJtZJh++YFz4aZc=;
+        b=OtpPEVFwYh5rvvIZRYX0Vfal18hEOYIWRv1ndrwWCL5plSpW0wh7PSZm095w5NNKWu
+         E+A71RLPD9b7AsUEvxeFNSvCapqTa5vj0emjX5pMNUmMPBpF7paQ8WLIdCdFN9Gohh5k
+         Dyef2lWgczhrR6JXMUrNjuus2htfVq62HQ6iuZPv+Otu9tdpvxDOiX6TFEQAwQXPPHQ/
+         WdRs1xcDqFISxwLTFPtPD/SraLdlFmPlnDALVNe5loVNX8yTGHZoaTUzjefcHI4fc9HM
+         9V6ChmL4p6hzhrWlsG/bI6P8aoCxswg5S8sW+i7nQklsdRZf/SoSh3d8R0tO5/m/WURt
+         1X1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709105492; x=1709710292;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=y1r5BtcdAAMK6pyjdadbxQXK81G6GJtZJh++YFz4aZc=;
+        b=MulLlaOcTDRZT13iiCQL10D7xZGl41hBO6attWaH8zVI/LOL5wPtIWn3VVgwM8h64c
+         aG2y3j9TWUP4jbqfvnEXkj4kq0Y2Jj0hbTkxQxgXxnJOq9wL4iB+n8s9+UqK5OTgcWeC
+         mplmyVrqjWzoP3U3cduWLVhmCCyzVayYz8U1IRZjCy3lLEKpCh/Lug3nqXOaoPjXGtzF
+         BQYtIRWFmBBFK+eBf+CH9UUBQ2mX9/RbrN3Lia2vQ/kX4HIhcicf0cXNgVCoAuyML47y
+         52gMaf3CN0HnCzUFeqPRwZSGA+Ex3AkZteSwFVkpVjBqQxT+3r3YUeG2wDiMiETx3APx
+         IXIA==
+X-Forwarded-Encrypted: i=1; AJvYcCUu9fUTGR3Y5WLuq2ok1hJwyV8YTUV8mOTxvz/6lIcA91eOW2SIKrTirmyfQOus/fdBnP/ZZJGY8nEjXAQuWZrXU6AxJo2vNwYSmg==
+X-Gm-Message-State: AOJu0YwI+83Bc1WH/SJGKxTQS5iXgfQtJdYsdO8KlW2tsr+QmmPiP/JG
+	Nsasq+iwdEltCy9v4Dw2zxYesvz+zj3j8SLPrtWw5gI6FuXWISxLA/t7kDSFHZydUOWC7KojHey
+	g+DHhx/mfRG6bclCG9IjeiS1YjHqt7EwK/jwUf6TObr0DambIxutQrm/S37cD
+X-Received: by 2002:a05:6808:20a7:b0:3c1:9a76:99ea with SMTP id s39-20020a05680820a700b003c19a7699eamr5102152oiw.44.1709105492521;
+        Tue, 27 Feb 2024 23:31:32 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEG5oF6FrhRl5wkv5l81utRatIGtk//bIRrP8Se7SeC21eJl2NX5IYXpppfYh8KxZ4fhGrDLQ==
+X-Received: by 2002:a05:6808:20a7:b0:3c1:9a76:99ea with SMTP id s39-20020a05680820a700b003c19a7699eamr5102140oiw.44.1709105492240;
+        Tue, 27 Feb 2024 23:31:32 -0800 (PST)
+Received: from pc-0182.atmarktech (76.125.194.35.bc.googleusercontent.com. [35.194.125.76])
+        by smtp.gmail.com with ESMTPSA id y37-20020a056a00182500b006e558a67374sm1125452pfa.0.2024.02.27.23.31.31
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 27 Feb 2024 23:31:31 -0800 (PST)
+Received: from martinet by pc-0182.atmarktech with local (Exim 4.96)
+	(envelope-from <martinet@pc-zest>)
+	id 1rfEPa-00Gr73-22;
+	Wed, 28 Feb 2024 16:31:30 +0900
+Date: Wed, 28 Feb 2024 16:31:20 +0900
+From: Dominique Martinet <dominique.martinet@atmark-techno.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Syunya Ohshio <syunya.ohshio@atmark-techno.com>,
+	Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] iio: industrialio-core: look for aliases to request
+ device index
+Message-ID: <Zd7hSOw3_zosyrn3@atmark-techno.com>
+References: <20240228051254.3988329-1-dominique.martinet@atmark-techno.com>
+ <7f03bb12-0976-4cb7-9ca9-4e4e28170bdd@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] dt-bindings: hwmon: Add NCT7363Y documentation
-Content-Language: en-US
-To: Ban Feng <baneric926@gmail.com>
-Cc: jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, corbet@lwn.net,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- kcfeng0@nuvoton.com, kwliu@nuvoton.com, openbmc@lists.ozlabs.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- DELPHINE_CHIU@wiwynn.com, naresh.solanki@9elements.com,
- billy_tsai@aspeedtech.com, Rob Herring <robh@kernel.org>
-References: <20240227005606.1107203-1-kcfeng0@nuvoton.com>
- <20240227005606.1107203-3-kcfeng0@nuvoton.com>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <20240227005606.1107203-3-kcfeng0@nuvoton.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <7f03bb12-0976-4cb7-9ca9-4e4e28170bdd@linaro.org>
 
-Dear Ban,
-
-
-Thank you for your patch.
-
-
-Am 27.02.24 um 01:56 schrieb baneric926@gmail.com:
-> From: Ban Feng <kcfeng0@nuvoton.com>
+Krzysztof Kozlowski wrote on Wed, Feb 28, 2024 at 08:16:03AM +0100:
+> On 28/02/2024 06:12, Dominique Martinet wrote:
+> > From: Syunya Ohshio <syunya.ohshio@atmark-techno.com>
+> > 
+> > When using dtb overlays it can be difficult to predict which iio device
+> > will get assigned what index, and there is no easy way to create
+> > symlinks for /sys nodes through udev so to simplify userspace code make
+> > it possible to request fixed indices for iio devices in device tree.
 > 
-> Adding bindings for the Nuvoton NCT7363Y Fan Controller
+> Please use subject prefixes matching the subsystem. You can get them for
+> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+> your patch is touching.
 
-s/Adding/Add/ or even Document bindings …
+Sorry, I assumed that was already the case and didn't think of checking
+that from what I was given, I'll fix the prefix to "iio: core: .." in v2
 
-Do you have an URL to the datasheet?
+> Please run scripts/checkpatch.pl and fix reported warnings. Some
+> warnings can be ignored, but the code here looks like it needs a fix.
+> Feel free to get in touch if the warning is not clear.
 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Ban Feng <kcfeng0@nuvoton.com>
-> ---
->   .../bindings/hwmon/nuvoton,nct7363.yaml       | 63 +++++++++++++++++++
->   MAINTAINERS                                   |  6 ++
->   2 files changed, 69 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/hwmon/nuvoton,nct7363.yaml
+Hm, I did check that and do not get any warning about the code itself:
+
+$ git show --format=email | ./scripts/checkpatch.pl -q
+WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
+
+total: 0 errors, 1 warnings, 61 lines checked
+
+What are you thinking of?
+
+Regarding the dt binding, I'm not actually changing a binding so I
+didn't think of rechecking after adding the note, but I guess it still
+ought to be separate; I'll split it in v2.
+
+> > For platforms without device trees of_alias_get_id will just fail and
+> > ida_alloc_range will behave as ida_alloc currently does.
+> > 
+> > For platforms with device trees, they can not set an alias, for example
+> > this would try to get 10 from the ida for the device corresponding to
+> > adc2:
+> > aliases {
+> >   iio10 = &adc2
+> > };
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/nuvoton,nct7363.yaml b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7363.yaml
-> new file mode 100644
-> index 000000000000..1a9d9a5d614e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/nuvoton,nct7363.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/hwmon/nuvoton,nct7363.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton NCT7363Y Hardware Monitoring IC
-> +
-> +maintainers:
-> +  - Ban Feng <kcfeng0@nuvoton.com>
-> +
-> +description: |
-> +  The NCT7363Y is a Fan controller which provides up to 16 independent
+> Sorry, that's why you have labels and compatibles.
 
-lowecase: fan controller?
+I'm not sure I understand this comment -- would you rather this doesn't
+use aliases but instead add a new label (e.g. `iio,index = <10>` or
+whatever) to the iio node itself?
 
-> +  FAN input monitors, and up to 16 independent PWM output with SMBus interface.
-
-output*s*?
-
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nuvoton,nct7363
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  "#pwm-cells":
-> +    const: 2
-> +
-> +patternProperties:
-> +  "^fan-[0-9]+$":
-> +    $ref: fan-common.yaml#
-> +    unevaluatedProperties: false
-> +    required:
-> +      - pwms
-> +      - tach-ch
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#pwm-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        hwmon: hwmon@22 {
-> +            compatible = "nuvoton,nct7363";
-> +            reg = <0x22>;
-> +            #pwm-cells = <2>;
-> +
-> +            fan-0 {
-> +                pwms = <&hwmon 0 50000>;
-> +                tach-ch = /bits/ 8 <0x00>;
-> +            };
-> +            fan-1 {
-> +                pwms = <&hwmon 1 50000>;
-> +                tach-ch = /bits/ 8 <0x01>;
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2ecaaec6a6bf..7b1efefed7c4 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15084,6 +15084,12 @@ S:	Maintained
->   F:	Documentation/devicetree/bindings/hwmon/nuvoton,nct6775.yaml
->   F:	drivers/hwmon/nct6775-i2c.c
->   
-> +NCT7363 HARDWARE MONITOR DRIVER
-> +M:	Ban Feng <kcfeng0@nuvoton.com>
-> +L:	linux-hwmon@vger.kernel.org
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/hwmon/nuvoton,nct7363.yaml
-> +
->   NETDEVSIM
->   M:	Jakub Kicinski <kuba@kernel.org>
->   S:	Maintained
-
-Reviewed-by: Paul Menzel <pmenzel@molgen.mpg.de>
+Setting up a fixed alias seems to be precisely what aliases are about
+(e.g. setting rtc0 will make a specific node become /dev/rtc0, same with
+ethernet0, gpio, i2c, mmc, serial...), I'm not sure I agree a new label
+would be more appropriate here, but perhaps I'm missing some context?
 
 
-Kind regards,
+Thanks,
+-- 
+Dominique
 
-Paul
+
 
