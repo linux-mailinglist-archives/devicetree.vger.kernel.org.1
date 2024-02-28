@@ -1,108 +1,206 @@
-Return-Path: <devicetree+bounces-46753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46754-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93A5586AC81
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 12:05:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB56786AC8B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 12:06:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48BD51F241C1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 11:05:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BB45AB24F53
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 11:06:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B25212BE86;
-	Wed, 28 Feb 2024 11:05:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 16FD112EBC1;
+	Wed, 28 Feb 2024 11:05:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="kzKr0qQF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx3.molgen.mpg.de (mx3.molgen.mpg.de [141.14.17.11])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51A5B7E577;
-	Wed, 28 Feb 2024 11:05:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=141.14.17.11
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5415E1292F5
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 11:05:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709118311; cv=none; b=AmP/rm1NsdH9a7FDc22FHgq/JJ2A7IO1TL/BnQ/3DaTuElseFQKA0rCN+iX/DP9AY/e0pLF7tn61Fr8d/3q1QV9v/gOTwBNtPzNiHaGmyNlSxRSxvx+iXzeuD5IARP8UQ2r/3qhAucztV0dS0rPQ3kqL5lNMLOY9wY5OHukwxQg=
+	t=1709118331; cv=none; b=DP8RPRBa2y8UWOYWHo31Vj+BWcE8jU63Zx3td2s+FV4hr3/p1RKS4dVpEI2zXtfJld3ruTlueVrs4WhP1iEB3rUYiOgvpDjNbnO4xxVNS8v8pwb/lOO/jOfGhgrDZ+RBktA9ycJoaOBkJnmyawPI5szWX3VSZX6cuBg1b14CT7c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709118311; c=relaxed/simple;
-	bh=8NK4irqoUtZNeA9ilQS8XOvOEpho8tVdwBHh1QuXj1o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=WkGc9mNBfRdhZtaJqOfVf/vRn5He2YXHW8VE9smjtwMM+QNqAWj+/yjuxAsORLGP1DAnhFW3nprsQDaqgGWMCB32yLEXIBDN6i77d0vdHLLi+nJJ4jV8aWnBh3TDKQOMdEqO2dOxKPWNtT79a48MRS66p/J8crBS6izhEyBWP5E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de; spf=pass smtp.mailfrom=molgen.mpg.de; arc=none smtp.client-ip=141.14.17.11
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=molgen.mpg.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=molgen.mpg.de
-Received: from [192.168.0.53] (ip5f5aedb1.dynamic.kabel-deutschland.de [95.90.237.177])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: pmenzel)
-	by mx.molgen.mpg.de (Postfix) with ESMTPSA id 8347861E5FE05;
-	Wed, 28 Feb 2024 12:03:57 +0100 (CET)
-Message-ID: <e2b0b8e3-9b39-4621-9e43-d7de02286a27@molgen.mpg.de>
-Date: Wed, 28 Feb 2024 12:03:56 +0100
+	s=arc-20240116; t=1709118331; c=relaxed/simple;
+	bh=YSlyusQKQVJsJ6QiGNoJfitiHng4C0WHuFHr310kln8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VewUh/RmIemA9yGfsiOoy7y7hRps+08HvO02V7o2xGrKDrdm2WNJT5V45EV59wr94/Gkr/XCZ4lKojC7PDE5KqSKElaewxkazEqK2IPRbcq4I68aov9lrpuf81MmL5Rbvz40Kyg+kczMy7K7XFSZOTUxH7sfw9LHGj95OxsfVb4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=kzKr0qQF; arc=none smtp.client-ip=209.85.166.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-7c3e4290f5fso243685439f.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 03:05:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1709118328; x=1709723128; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SIN5TJ61NQTJqN5mR5pFOd0k+x3pH5IedFrp+UzE1z4=;
+        b=kzKr0qQFLigCnAUcBik5hGbS39mRCXe9o67XsmHWQqHws/e/9fLkHNBrV4WXwIQ0yY
+         zGYvdO1ErrjepfxbVI7Pi5Y/V4EBCRWKekW4b/v2H8vtlZxwVFZ+AIsHamrIlD5XrNmV
+         dXzOF+Z+BbI0hJGveVq3+I9jw2zKeWwWog5LMBFkFT/ucZc238A1ClRuc/6TmCsktccr
+         sfDKMy4rDpSbh4qTrI6doRlUtnkhot22EMeHDSIzQsBPVNpbWX0zJ6EpxGRwWHyC9VW+
+         29BFjEJQbf0xHGo16kCPhg2pMWqJNXRRwlfqXryKVBxASl/H5tn9xh//YM/5kisNheiu
+         AwGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709118328; x=1709723128;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=SIN5TJ61NQTJqN5mR5pFOd0k+x3pH5IedFrp+UzE1z4=;
+        b=hFYqKX+URChI4YbAruXDHuOUVmZwPuc582vxiuQT+KOrOFI1z9nZR5ThjRXjDqCrkU
+         a07csIVNiVqlJFg3A5qCQd6OAyfxaiJLnI7qrTcMseG6NixWi00kDGXmBX2KLGTk0838
+         2kW3Q/JGg/vuVTvq3Az4pTD0ylxmcnsixETNbYzJPPlftSsB62C+JDoMel7f6C6nX0gt
+         r0SgDVny+dR1G5LSupl8oAmUGx3P0SLGo+S5l55EE7p7YdUAkM2k63mRLI/MTP+7UwGX
+         71YuAOVd7qlAT/OBJxvK6zRUO+cDpQFeIYQHIv3Z7NrKe/N0dRlSaakqKXbASxQi5Z05
+         /T7g==
+X-Forwarded-Encrypted: i=1; AJvYcCUyjxZIzNcilkb1s0PpUXY9PYPm/tKTTm3hNzqpvWJr2oP4iTFu8VO6/kEWB3/6vptOcB6GTEGMzadg5yBOGRtEVa/RiHfzdJbppg==
+X-Gm-Message-State: AOJu0YxbikD90s5EGbmEYNe61zcepAH1l3xqNHPvD8fwuoCi0aaKoz+s
+	DYH8/ffxT2LmmQRVKLNiBw4qJ1y3RCgPHoNjRv+SNmVcEbM4p1YEsaFD1vJd8R0+kPaWGc7y9Tp
+	w3SGR2C3ckkQyGthK5Up/A4v5bpI6EtH64inO
+X-Google-Smtp-Source: AGHT+IEtOPOXXjbhjWRTvlgw2RoCh449T+tuUODnpg0QVWyKCQfa5m8qgfwgP0ycVI+iuXGb9VZY8QV966FEbQYeMtw=
+X-Received: by 2002:a05:6602:5a:b0:7c4:9ce4:aa3e with SMTP id
+ z26-20020a056602005a00b007c49ce4aa3emr13999951ioz.7.1709118328434; Wed, 28
+ Feb 2024 03:05:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/3] hwmon: Driver for Nuvoton NCT7363Y
-Content-Language: en-US
-To: Guenter Roeck <linux@roeck-us.net>
-Cc: Ban Feng <baneric926@gmail.com>, jdelvare@suse.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, corbet@lwn.net,
- linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
- kcfeng0@nuvoton.com, kwliu@nuvoton.com, openbmc@lists.ozlabs.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- DELPHINE_CHIU@wiwynn.com, naresh.solanki@9elements.com,
- billy_tsai@aspeedtech.com
-References: <20240227005606.1107203-1-kcfeng0@nuvoton.com>
- <20240227005606.1107203-4-kcfeng0@nuvoton.com>
- <62f38808-7d5f-4466-a65e-b6a64b2e7c01@molgen.mpg.de>
- <4b06d535-6739-47b5-ad1e-0ff94322620e@roeck-us.net>
-From: Paul Menzel <pmenzel@molgen.mpg.de>
-In-Reply-To: <4b06d535-6739-47b5-ad1e-0ff94322620e@roeck-us.net>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240221160215.484151-1-panikiel@google.com> <20240221160215.484151-9-panikiel@google.com>
+ <13aeb2ff-72f4-49d9-b65e-ddc31569a936@linaro.org> <CAM5zL5q0oKoTMR0jSwYVAChCOJ9iKYPRFiU1vH4qDqhHALKz4w@mail.gmail.com>
+ <20240227142911.GB3863852-robh@kernel.org>
+In-Reply-To: <20240227142911.GB3863852-robh@kernel.org>
+From: =?UTF-8?Q?Pawe=C5=82_Anikiel?= <panikiel@google.com>
+Date: Wed, 28 Feb 2024 12:05:17 +0100
+Message-ID: <CAM5zL5pXu5sbzCHY_BrCJ7eZj-p9n0tCo6CmuTqUpvniTrqWJg@mail.gmail.com>
+Subject: Re: [PATCH v2 8/9] media: dt-bindings: Add Intel Displayport RX IP
+To: Rob Herring <robh@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, airlied@gmail.com, 
+	akpm@linux-foundation.org, conor+dt@kernel.org, daniel@ffwll.ch, 
+	dinguyen@kernel.org, hverkuil-cisco@xs4all.nl, 
+	krzysztof.kozlowski+dt@linaro.org, maarten.lankhorst@linux.intel.com, 
+	mchehab@kernel.org, mripard@kernel.org, tzimmermann@suse.de, 
+	devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org, 
+	linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, 
+	chromeos-krk-upstreaming@google.com, ribalda@chromium.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dear Guenter,
+On Tue, Feb 27, 2024 at 3:29=E2=80=AFPM Rob Herring <robh@kernel.org> wrote=
+:
+>
+> On Mon, Feb 26, 2024 at 11:59:42AM +0100, Pawe=C5=82 Anikiel wrote:
+> > On Mon, Feb 26, 2024 at 10:13=E2=80=AFAM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> > >
+> > > On 21/02/2024 17:02, Pawe=C5=82 Anikiel wrote:
+> > > > The Intel Displayport RX IP is a part of the DisplayPort Intel FPGA=
+ IP
+> > > > Core. It implements a DisplayPort 1.4 receiver capable of HBR3 vide=
+o
+> > > > capture and Multi-Stream Transport. The user guide can be found her=
+e:
+> > > >
+> > > > https://www.intel.com/programmable/technical-pdfs/683273.pdf
+> > > >
+> > > > Signed-off-by: Pawe=C5=82 Anikiel <panikiel@google.com>
+> > > > ---
+> > > >  .../devicetree/bindings/media/intel,dprx.yaml | 160 ++++++++++++++=
+++++
+> > > >  1 file changed, 160 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/media/intel,d=
+prx.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/media/intel,dprx.yam=
+l b/Documentation/devicetree/bindings/media/intel,dprx.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..31025f2d5dcd
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/media/intel,dprx.yaml
+> > > > @@ -0,0 +1,160 @@
+> > > > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/media/intel,dprx.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Intel DisplayPort RX IP
+> > > > +
+> > > > +maintainers:
+> > > > +  - Pawe=C5=82 Anikiel <panikiel@google.com>
+> > > > +
+> > > > +description: |
+> > > > +  The Intel Displayport RX IP is a part of the DisplayPort Intel F=
+PGA IP
+> > > > +  Core. It implements a DisplayPort 1.4 receiver capable of HBR3 v=
+ideo
+> > > > +  capture and Multi-Stream Transport.
+> > > > +
+> > > > +  The IP features a large number of configuration parameters, foun=
+d at:
+> > > > +  https://www.intel.com/content/www/us/en/docs/programmable/683273=
+/23-3-20-0-1/sink-parameters.html
+> > > > +
+> > > > +  The following parameters have to be enabled:
+> > > > +    - Support DisplayPort sink
+> > > > +    - Enable GPU control
+> > > > +  The following parameters' values have to be set in the devicetre=
+e:
+> > > > +    - RX maximum link rate
+> > > > +    - Maximum lane count
+> > > > +    - Support MST
+> > > > +    - Max stream count (only if Support MST is enabled)
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    const: intel,dprx-20.0.1
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  interrupts:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  intel,max-link-rate:
+> > > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > > +    description: Max link rate configuration parameter
+> > >
+> > > Please do not duplicate property name in description. It's useless.
+> > > Instead explain what is this responsible for.
+> > >
+> > > Why max-link-rate would differ for the same dprx-20.0.1? And why
+> > > standard properties cannot be used?
+> > >
+> > > Same for all questions below.
+> >
+> > These four properties are the IP configuration parameters mentioned in
+> > the device description. When generating the IP core you can set these
+> > parameters, which could make them differ for the same dprx-20.0.1.
+> > They are documented in the user guide, for which I also put a link in
+> > the description. Is that enough? Or should I also document these
+> > parameters here?
+>
+> Use the standard properties: link-frequencies and data-lanes. Those go
+> under the port(s) because they are inheritly per logical link.
 
+The DP receiver has one input interface (a deserialized DP stream),
+and up to four output interfaces (the decoded video streams). The "max
+link rate" and "max lane count" parameters only describe the input
+interface to the receiver. However, the port(s) I am using here are
+for the output streams. They are not affected by those parameters, so
+I don't think these properties should go under the output port(s).
 
-Am 28.02.24 um 10:03 schrieb Guenter Roeck:
-> On 2/27/24 23:57, Paul Menzel wrote:
+The receiver doesn't have an input port in the DT, because there isn't
+any controllable entity on the other side - the deserializer doesn't
+have any software interface. Since these standard properties
+(link-frequencies and data-lanes) are only defined in
+video-interfaces.yaml (which IIUC describes a graph endpoint), I can't
+use them directly in the device node.
 
->> Am 27.02.24 um 01:56 schrieb baneric926@gmail.com:
->>> From: Ban Feng <kcfeng0@nuvoton.com>
->>>
->>> NCT7363Y is an I2C based hardware monitoring chip from Nuvoton.
->>
->> Please reference the datasheet.
-> 
-> Note that something like
-> 
-> Datasheet: Available from Nuvoton upon request
-> 
-> is quite common for hardware monitoring chips and acceptable.
-
-Yes, it would be nice to document it though. (And finally for vendors to 
-just make them available for download.)
-
->> Could you please give a high level description of the driver design?
-> 
-> Can you be more specific ? I didn't have time yet to look into details,
-> but at first glance this looks like a standard hardware monitoring driver.
-> One could argue that the high level design of such drivers is described
-> in Documentation/hwmon/hwmon-kernel-api.rst.
-> 
-> I don't usually ask for a additional design information for hwmon drivers
-> unless some chip interaction is unusual and needs to be explained,
-> and then I prefer to have it explained in the code. Given that, I am
-> quite curious and would like to understand what you are looking for.
-For a 10+ lines commit, in my opinion the commit message should say 
-something about the implementation. Even it is just, as you wrote, a 
-note, that it follows the standard design.
-
-
-Kind regards,
-
-Paul
+Do you see a way to use these standard properties here?
 
