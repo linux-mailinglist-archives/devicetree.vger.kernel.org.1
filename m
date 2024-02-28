@@ -1,137 +1,166 @@
-Return-Path: <devicetree+bounces-46958-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46960-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39A6B86B67E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:55:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BC0BF86B6C3
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 19:07:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E9434289ED6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:55:11 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D761C1C2141A
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:07:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9ED9415DBB9;
-	Wed, 28 Feb 2024 17:55:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7C7C79B8A;
+	Wed, 28 Feb 2024 18:06:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="d8Mo8pbh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="e3dRhrQ5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5817422F1E;
-	Wed, 28 Feb 2024 17:55:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5C9F79B86;
+	Wed, 28 Feb 2024 18:06:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709142908; cv=none; b=lESpJkEMnM+GOM3cpnqarumg5RpAcYervG1KrRzLH6hXLbgYFJV+GCgZkntEvwtPdNsiaepBRXPwZ+e07wv4J4hij1lyEayhwrXRODMJXzlM4Rtzd6KrYPSgDXtzvAo8o9LvTjkTl7Wug/O96z5ts9ZuckqO74vnIGr+eh5ZQMA=
+	t=1709143614; cv=none; b=W8+kSYafaUihM2spSDcynO1a00gmUw7f3jxSeJeB7YNUOvts3DF0K6LAfUEkGWuV8fwz3+o8X47jNb+pm4rxQmFmjbZes/qGQyPeBOWIeDTFESY5/ftfF4/igWUoleYLpiD8d++OVxdxBiHwLlWezFSWK47QNEzCbEuJpcI8lnE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709142908; c=relaxed/simple;
-	bh=D2mdh06x71kvdd/IuVGC06Jqb09qp6TGuvYg0KhqyCs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=rJ+U/1Pu0UnAdWq9B9U+0Fc/F45LbcKgaRnwvqSIVCgCHdZYIifZoIiDeqT9tBGPmyxQpSHovOCEFDsqMWAw9QYpTZ8ZZE8CGsKkAPbRcPDzBGOJW0ZedXm5SKCJrDzyK/DGP5+y1GCktuMMNaorhiDUu1GhskvdUEFUJ54sGDQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=d8Mo8pbh; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41SBeNZi028064;
-	Wed, 28 Feb 2024 17:55:01 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=KZKU8VPZmtWhrDwvgSSiI+7GXe3XJ3zqdVi0P+KcTb4=; b=d8
-	Mo8pbh4MKHJom36oprs1uW9tc0IfOk59Y7JnxaiOp6bQ6s0SGlzTYXwdZ87WNVqn
-	BiJ82Jng06wPdFQjRK5Gw6oNDdBRozwMr//xq0bX6HGG7dKIwQYtEwh05fqQ+1Mu
-	q1PsVIupmudsSj4D6xdSHa1xnpPZehNKWxcclW4nl9hzWxD3D9WtOqeliKbucqGt
-	7hv8iz+ISvhr/UruoRr7IxM4fobPNc298nBDtKya+n7L6LQqbUH2EzY/xht045Pm
-	4omq3E8W9EU8m/EhK5GR3um6e4mYm1yRJw1KSHouLcU+VZRfcmZwgIifhGLBumJr
-	NoeEW+ImAy4KIMW0Ks0w==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wj458h3r0-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Feb 2024 17:55:01 +0000 (GMT)
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41SHt0O0008005
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 28 Feb 2024 17:55:00 GMT
-Received: from [10.71.111.211] (10.80.80.8) by nalasex01c.na.qualcomm.com
- (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 28 Feb
- 2024 09:54:57 -0800
-Message-ID: <0a49c117-90d7-472d-987a-f26f099b6198@quicinc.com>
-Date: Wed, 28 Feb 2024 09:54:57 -0800
+	s=arc-20240116; t=1709143614; c=relaxed/simple;
+	bh=Geinf3iXIsRtEPoobTh+JUtNobeS9O6vzLYAbzH6HdU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tIp3A2dwYI9JTOqI7XK3/BnrScVr3ip+7E2es8Ttb+zjUPJDbG8FV9jrAJM5IHT2GTrMkbwFuDn6D1tQZjFW9IZ6yFDfUkPcvdj5THsnxW4w+WqP1lpDh9MOGkV5A4HqEFaK9AQy++YlkTmgUdL/3Ct//HrVaH74Fv1h1YTmB28=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=e3dRhrQ5; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3e8c1e4aa7so10462566b.2;
+        Wed, 28 Feb 2024 10:06:52 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709143611; x=1709748411; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Geinf3iXIsRtEPoobTh+JUtNobeS9O6vzLYAbzH6HdU=;
+        b=e3dRhrQ5nEFQTfJ5BOZgNbWOaevnwftwYnimwno6c+9bT8k/gf4G3jGUInw8AUVyqn
+         uJtp79YdUPOfZzHn9LJi7uLXiZ/kf1BhbCvTsjkyYCMufi7KST4MhlVA74Xup0+Kcd0v
+         O+X/DqrXUYORPdLz5spA7Mfoyhbhe8fi4gzAEqv1bJFNbz0DBWMJKtbRgVZi8kUO90vW
+         zBSKZBsIXeSgpUmtKtk7Da4HZPHW0kcj3t2TS+Lrrm2nPuZWI8/XBzIWANXol+iNCRQ9
+         tvaJ9Pk6X0MTp3UivlZkHetB6Ul8Y+b+ckE0FP7frEa0Nr7QW+o6B0XjdYtzN+7jZm41
+         vRVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709143611; x=1709748411;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Geinf3iXIsRtEPoobTh+JUtNobeS9O6vzLYAbzH6HdU=;
+        b=nu3ryhoGWQtBl0KF0OXxsZUxFWfOsf8soAhpyY1eLdlLlPLyHgtRk30rfPLNp/ZoPz
+         V+5/+neElEMdNKmTtuQZH0P7x3UCBzcqnfEhoxQwTM0Zr7PLFYd16Ne1ozI2s+0whTCZ
+         NVQm27/FHXUC8RS1VoHWH1tsv/2lnK2NrCXv66N9cu9zOxNYcPSkNBf/O+aTNrD7RnAU
+         4bcmTVaubrhHDhdNtSnol2HOjGahQvVDgTSNqmuIi0YfH5KF1LU0gEGHqYgJV/KqtBQ0
+         FDK8BTxtqUBBsrZuusO7bXRviV7AvR019jvVNwPANy8OvXWnRvMEQMywTdKO+vUK9tX8
+         r2/g==
+X-Forwarded-Encrypted: i=1; AJvYcCXyhL9/dvHSfsq2VZKl58xfrZKmIuGRrBK6uS3cCjgY9WFU6rvXR3cpwmdnYKRBBFNq/3ufGVOYnZScNLtQEXZX1cJnaovopor0GO4DAcrjQi7m94ojvqtMiFlkrOUEvWBnWUaqdfSUzOKRBAuL8+HrrhVPxERmRVNj8okkzvXdNWCEdZMi
+X-Gm-Message-State: AOJu0Ywlj5mytFXXF7y8xzmty0iabFX5RQ5AB+5kxH9hFvcxjliJOvRq
+	/0Om4UoUWvprFPyBuFJWpVgK/gI0RuitK0t4QvbqLqYgcLhb68VkiGxbDAIaXzfMeQ5JXG/SFyw
+	7zpYJT4mk9pA5dzzp+f142tWTSC8=
+X-Google-Smtp-Source: AGHT+IEjnw0tJc9UdPr6IJqBYIx7kpdEGy3PmCOgMXNokVl6z9lw/zArTEKFrql0wiqYP6S2cV4Pdu06JjQh1v2y2DE=
+X-Received: by 2002:a17:906:ad99:b0:a43:ebbb:9e78 with SMTP id
+ la25-20020a170906ad9900b00a43ebbb9e78mr339746ejb.55.1709143611218; Wed, 28
+ Feb 2024 10:06:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] dt-bindings: arm: msm: Add llcc Broadcast_AND
- register
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@quicinc.com>
-References: <cover.1708551850.git.quic_uchalich@quicinc.com>
- <93143410af20807c8451539db7fca7cddf31e7b4.1708551850.git.quic_uchalich@quicinc.com>
- <26feb928-55e8-4f6e-8727-44ef8e045b4c@linaro.org>
- <68a81c2e-8398-441f-b33d-374c37f39e06@quicinc.com>
- <b9ed4403-bf3a-4ff4-a92b-22badb845527@linaro.org>
-From: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
-In-Reply-To: <b9ed4403-bf3a-4ff4-a92b-22badb845527@linaro.org>
+References: <20240227013221.21512-1-zhi.mao@mediatek.com> <20240227013221.21512-3-zhi.mao@mediatek.com>
+ <CAHp75VciCJuoOwC8ozanWYqSCM=vWpiaqymJ2-gQfrSt5Ts6fQ@mail.gmail.com>
+ <b4889fad324ec88eb3a22f51b0aa512cc93bd2cb.camel@mediatek.com>
+ <CAHp75Vd=X9e4rOJabF4AbzGRZAF4BiNJa-C4ivOoQb7kAMy3vQ@mail.gmail.com>
+ <Zd8g81wBXyfMvPhB@kekkonen.localdomain> <CAHp75VfXY=Hv_o_CYe8sNYoBa1vtYWuk4Sz1M91XUp0cf4HjnA@mail.gmail.com>
+ <170914163823.252503.15921889437591940623@ping.linuxembedded.co.uk>
+In-Reply-To: <170914163823.252503.15921889437591940623@ping.linuxembedded.co.uk>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 28 Feb 2024 20:06:14 +0200
+Message-ID: <CAHp75Ve=gRhRMN-3JyEZ3EX3oU72buGhGTx6jukgwOzO=KRjNA@mail.gmail.com>
+Subject: Re: [PATCH v6 2/2] media: i2c: Add GC08A3 image sensor driver
+To: Kieran Bingham <kieran.bingham@ideasonboard.com>, Jonathan Cameron <jic23@kernel.org>
+Cc: sakari.ailus@linux.intel.com, =?UTF-8?B?WmhpIE1hbyDmr5vmmbo=?= <zhi.mao@mediatek.com>, 
+	"heiko@sntech.de" <heiko@sntech.de>, 
+	"tomi.valkeinen@ideasonboard.com" <tomi.valkeinen@ideasonboard.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>, 
+	"yunkec@chromium.org" <yunkec@chromium.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"dan.scally@ideasonboard.com" <dan.scally@ideasonboard.com>, 
+	"gerald.loacker@wolfvision.net" <gerald.loacker@wolfvision.net>, 
+	=?UTF-8?B?U2hlbmduYW4gV2FuZyDnjovlnKPnlLc=?= <shengnan.wang@mediatek.com>, 
+	"hdegoede@redhat.com" <hdegoede@redhat.com>, 
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>, 
+	"linus.walleij@linaro.org" <linus.walleij@linaro.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	=?UTF-8?B?WWF5YSBDaGFuZyDlvLXpm4XmuIU=?= <Yaya.Chang@mediatek.com>, 
+	"mchehab@kernel.org" <mchehab@kernel.org>, 
+	"jacopo.mondi@ideasonboard.com" <jacopo.mondi@ideasonboard.com>, 
+	"jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>, 
+	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>, 
+	"bingbu.cao@intel.com" <bingbu.cao@intel.com>, 
+	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>, 
+	"10572168@qq.com" <10572168@qq.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>, 
+	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>, 
+	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"angelogioacchino.delregno@collabora.com" <angelogioacchino.delregno@collabora.com>, 
+	"macromorgan@hotmail.com" <macromorgan@hotmail.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: kHZ-QDpbR6s8qCT0Bt9ku5yMdV8xsPlj
-X-Proofpoint-ORIG-GUID: kHZ-QDpbR6s8qCT0Bt9ku5yMdV8xsPlj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-28_08,2024-02-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1015
- phishscore=0 mlxlogscore=374 mlxscore=0 spamscore=0 adultscore=0
- priorityscore=1501 malwarescore=0 suspectscore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402280141
+Content-Transfer-Encoding: quoted-printable
 
-On 2/27/2024 11:14 PM, Krzysztof Kozlowski wrote:
-> On 28/02/2024 02:04, Unnathi Chalicheemala wrote:
->> On 2/27/2024 7:47 AM, Krzysztof Kozlowski wrote:
->>> On 23/02/2024 00:07, Unnathi Chalicheemala wrote:
->>>> The LLCC block in SM8450, SM8550 and SM8650 have a new register
->>>> space for Broadcast_AND region. This is used to check that all
->>>> channels have bit set to "1", mainly in SCID activation/deactivation.
->>>>
->>>> Previously we were mapping only the Broadcast_OR region assuming
->>>> there was only one broadcast register region. Now we also map
->>>> Broadcast_AND region.
->>>>
->>>> Signed-off-by: Unnathi Chalicheemala <quic_uchalich@quicinc.com>
->>>
->>> Why did you ignore the tags? Qualcomm upstreaming guide covers this
->>> case, so please read it before sending patches.
->>>
->>
->> I was asked to remove the Reviewed-by tag as the previous version of the
->> patch gave errors on running 'make DT_CHECKER_FLAGS=-m dt_binding_check',
->> that's why I dropped it.
->> It was sometime ago, https://lore.kernel.org/all/d78b4bce-7bcd-4ab0-a76b-135cee3ec9b0@linaro.org/
-> 
-> And where is it explained/mentioned? Every tag drop should be documented.
-> 
+On Wed, Feb 28, 2024 at 7:34=E2=80=AFPM Kieran Bingham
+<kieran.bingham@ideasonboard.com> wrote:
+> Quoting Andy Shevchenko (2024-02-28 17:17:12)
+> > On Wed, Feb 28, 2024 at 2:03=E2=80=AFPM sakari.ailus@linux.intel.com
+> > <sakari.ailus@linux.intel.com> wrote:
+> > > On Wed, Feb 28, 2024 at 11:22:13AM +0200, Andy Shevchenko wrote:
+> > > > > Another, I also reviewed some other sensor driver code(such as
+> > > > > gc0a08/gc2145 and imx/ov), they are all the same.
+> > > >
+> > > > They are also problematic. So what?
+> > >
+> > > The situation is the same in a large number of drivers, also outside =
+the
+> > > media tree. It's also not trivial to figure out which header should b=
+e
+> > > included and it tends to be that if it compiles without warnings,
+> > > developers won't bother trying to figure out what should still be cha=
+nged.
+> >
+> > I spent about 20 minutes reading the code. Yes, for inexperienced
+> > developers it can take 3x longer, but still, much longer time was
+> > spent on writing that code to begin with. So, the headers are a part
+> > of the evolution of the code. And now it's pure technical debt with no
+> > excuses to not fulfill.
+> >
+> > TL;DR: It's (rightfully) assumed that the developer *knows* their code.
+> >
+> > > I wonder if this could be automated by using the C preprocessor and a
+> > > small Perl script. :-)
+> >
+> > There is a Google project coming from Clang people or so, but I have
+> > no idea of the state of affairs.
+>
+> I've used iwyu (include-what-you-use) successfully on libcamera. But I
+> don't know how this would translate to working on the kernel, with a
+> more complex build system.
 
-I understand, thanks for pointing out. I will record such tag drops in the change log.
+Jonathan tried that once. It needs to be heavily tweaked to be used in
+the kernel project.
 
-> Best regards,
-> Krzysztof
-> 
+> But indeed, tooling already exists [0] to do these checks, and is package=
+d
+> in distros [1]
+>
+> [0] https://include-what-you-use.org/
+> [1] https://manpages.ubuntu.com/manpages/focal/man1/iwyu_tool.1.html
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
