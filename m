@@ -1,163 +1,115 @@
-Return-Path: <devicetree+bounces-46842-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46843-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 595A886AF63
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:48:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2296786AF6B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:49:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71E431C2436E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 12:48:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3E6FD1C2483C
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 12:49:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 883FB14691C;
-	Wed, 28 Feb 2024 12:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23D271474B8;
+	Wed, 28 Feb 2024 12:49:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hCED7HzD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rh8u43GT"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58BCE36129;
-	Wed, 28 Feb 2024 12:48:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA38E73501;
+	Wed, 28 Feb 2024 12:49:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709124488; cv=none; b=pfY/jBa/48sQU4sjR5nK1baKueccR5WwtVjFNXUDOjXGk4fBhknnO89kFKNziCLRksYN2NONZQPSqWzXI+0k3nypsnWiESfyuIar9aAiAKRI/XU9pMbuUnsQhKB3d3hxWpjzipRcszUmZKu4Q3M6PKorYUI4lETC82HyQfo3W+4=
+	t=1709124576; cv=none; b=Dlf1PJVmw+U6WvPXe21sAXfk2sq6pLjo39sD1LMtJ1akz4NwcfnqO1mJ8c/uiQ22Qv7z+rofR+Q73fxgPrVKXqkOyr7yiEixSjRHXFyOub/AhMsPH+35FZsckswRyuFp79N/KVp0u0lue6ZTvif+mbnBCLdbzNvNq5MjbovQ6aQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709124488; c=relaxed/simple;
-	bh=K6KGP6T+SeD5Hx1HsZoWXozDmI8OLiyMag16ZeWLf2E=;
+	s=arc-20240116; t=1709124576; c=relaxed/simple;
+	bh=kKrhwyZWXORapt6OCBD9X9Cbq63y3UaV5srvhlpNfhI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=NUu/h89Ah6QJAyyiM/XGIaHsv0Kb9mVkSltxacHXuOKYKv6acW1dBcqRuSMqiNktsDhDIBxj352nxJVZQYkiMc4M5FWAe2JMhftRRmb25/kFBY0gRZjZbPDmR2C0HH+PF0kObmAykRz3wYuLJRNVewIP67t/wxboP/T0MpHM4nQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hCED7HzD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 25D38C433F1;
-	Wed, 28 Feb 2024 12:48:02 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Mms/6hzojp2XDus2gOcWkRrwz+y8S6KxNGdmYPW9Zrb+klyFaigH9HePk+5j4tnyAqPm4OolnAgmpBWUy3/iMv3jIYSRHdTxAysblfRF2A10FG8TVkAZ/F0w19nffsHBK3ErrCLZolqthZHUHxkPUBtZ1oMPNrp0biLbslRl4o0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rh8u43GT; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 36569C433F1;
+	Wed, 28 Feb 2024 12:49:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709124487;
-	bh=K6KGP6T+SeD5Hx1HsZoWXozDmI8OLiyMag16ZeWLf2E=;
+	s=k20201202; t=1709124575;
+	bh=kKrhwyZWXORapt6OCBD9X9Cbq63y3UaV5srvhlpNfhI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hCED7HzDG5k8ELHuyoPVxRyOYEQTXmRFY04WKTQzFUxz3sw3Xil8/pRwRReUClr8C
-	 Fy7I1c398Aa9uLvKB6m8sirKyWFn0IS2QyN7IzssOrmtI6Jf55FcAffiyV/EndLsn2
-	 aSqbUrG2vgSX0U4Iwg23IpvxLMrAHAAf9SyMNx8rgcZcIUaN2icArxDLoUL75wKQs/
-	 QEOQdj8WJjWmCOzFioRZ++C1YuXkZ0u+CJfmDnzbowesx8FwrWSf/w7eeX8CiFY6qH
-	 3KmP+YUHyB72wjm+K0o4YIeAwZuNAUr+AjphgTCPnu37XBvft7rLiiDR4QDHllkZEX
-	 ssKmzRSGXALjA==
-Date: Wed, 28 Feb 2024 12:48:01 +0000
-From: Simon Horman <horms@kernel.org>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Jonathan Corbet <corbet@lwn.net>,
-	Luis Chamberlain <mcgrof@kernel.org>,
-	Russ Weight <russ.weight@linux.dev>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
+	b=Rh8u43GTkarJTZG22uMj1OWFlUH6fx586sT5DKG/kug5pyZNtd4iZGMSZhjoBI+JA
+	 yaaTX6DNowHRbjw+8rSPFktHWJU8QzbW2+CWnzShPfWbSECHErYZVTV/eDZfALhQoF
+	 8UjhA6u4UkMwLGExkEPt3ChCRkqK6uAcNyUQO9RdA7qUSsxJ5pl3efDmtq9i3cgeR6
+	 vhu7oSBKc1rp4JfvFV3vRi9yZQkJtSoaWAQbpAo1TdnY7mlc7AlKcwKo81SFng1qS5
+	 IJjE/OKSteMKOTfzBBZGDPOPTcN0jB35+OvHuYvrVseUahg9rQxdI0MiXNkjXaKYy/
+	 EKmzjRUICA3kQ==
+Date: Wed, 28 Feb 2024 12:49:29 +0000
+From: Conor Dooley <conor@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Bartosz Golaszewski <brgl@bgdev.pl>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Oleksij Rempel <o.rempel@pengutronix.de>,
-	Mark Brown <broonie@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mips@vger.kernel.org,
+	Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
 	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
-	Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v5 13/17] net: pse-pd: Use regulator framework
- within PSE framework
-Message-ID: <20240228124801.GC292522@kernel.org>
-References: <20240227-feature_poe-v5-0-28f0aa48246d@bootlin.com>
- <20240227-feature_poe-v5-13-28f0aa48246d@bootlin.com>
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH v2 01/30] dt-bindings: gpio: nomadik: convert into yaml
+ format
+Message-ID: <20240228-sandbar-hastiness-ec5c1337bd3b@spud>
+References: <20240228-mbly-gpio-v2-0-3ba757474006@bootlin.com>
+ <20240228-mbly-gpio-v2-1-3ba757474006@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="XQPnKJoE2X/I/ya7"
+Content-Disposition: inline
+In-Reply-To: <20240228-mbly-gpio-v2-1-3ba757474006@bootlin.com>
+
+
+--XQPnKJoE2X/I/ya7
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240227-feature_poe-v5-13-28f0aa48246d@bootlin.com>
 
-On Tue, Feb 27, 2024 at 03:42:55PM +0100, Kory Maincent wrote:
+> +    gpio1: gpio@8012e080 {
 
-...
+The gpio1 label is not used and can be removed.
 
-> diff --git a/include/linux/pse-pd/pse.h b/include/linux/pse-pd/pse.h
-> index 522115cc6cef..a3e297cc2150 100644
-> --- a/include/linux/pse-pd/pse.h
-> +++ b/include/linux/pse-pd/pse.h
-> @@ -55,10 +55,10 @@ struct pse_controller_ops {
->  	int (*ethtool_get_status)(struct pse_controller_dev *pcdev,
->  		unsigned long id, struct netlink_ext_ack *extack,
->  		struct pse_control_status *status);
-> -	int (*ethtool_set_config)(struct pse_controller_dev *pcdev,
-> -		unsigned long id, struct netlink_ext_ack *extack,
-> -		const struct pse_control_config *config);
->  	int (*setup_pi_matrix)(struct pse_controller_dev *pcdev);
-> +	int (*pi_is_enabled)(struct pse_controller_dev *pcdev, int id);
-> +	int (*pi_enable)(struct pse_controller_dev *pcdev, int id);
-> +	int (*pi_disable)(struct pse_controller_dev *pcdev, int id);
+Otherwise,
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Hi Kory,
+Cheers,
+Conor.
 
-Please update the Kernel doc for struct pse_controller_ops to reflect the
-added and removed fields.
+> +        compatible = "st,nomadik-gpio";
+> +        reg =  <0x8012e080 0x80>;
+> +        interrupts = <0 120 0x4>;
+> +        #gpio-cells = <2>;
+> +        gpio-controller;
+> +        interrupt-controller;
+> +        st,supports-sleepmode;
+> +        gpio-bank = <1>;
+> +    };
 
->  };
->  
->  struct module;
-> @@ -90,10 +90,14 @@ struct pse_pi_pairset {
->   *
->   * @pairset: table of the PSE PI pinout alternative for the two pairset
->   * @np: device node pointer of the PSE PI node
-> + * @rdev: regulator represented by the PSE PI
-> + * @enabled: PI enabled state
->   */
->  struct pse_pi {
->  	struct pse_pi_pairset pairset[2];
->  	struct device_node *np;
-> +	struct regulator_dev *rdev;
-> +	bool enabled;
->  };
->  
->  /**
-> @@ -107,6 +111,8 @@ struct pse_pi {
->   * @of_pse_n_cells: number of cells in PSE line specifiers
->   * @nr_lines: number of PSE controls in this controller device
->   * @lock: Mutex for serialization access to the PSE controller
-> + * @lock_owner: current owner of the mutex
-> + * @ref_cnt: mutex's reference count
 
-These newly documented fields don't seem to exist in struct
-pse_controller_dev. Perhaps this is an left over from earlier development?
+--XQPnKJoE2X/I/ya7
+Content-Type: application/pgp-signature; name="signature.asc"
 
->   * @types: types of the PSE controller
->   * @pi: table of PSE PIs described in this controller device
->   * @of_legacy: flag set if the pse_pis devicetree node is not used
-> @@ -132,7 +138,8 @@ struct device;
->  int devm_pse_controller_register(struct device *dev,
->  				 struct pse_controller_dev *pcdev);
->  
-> -struct pse_control *of_pse_control_get(struct device_node *node);
-> +struct pse_control *of_pse_control_get(struct device *dev,
-> +				       struct device_node *node);
->  void pse_control_put(struct pse_control *psec);
->  
->  int pse_ethtool_get_status(struct pse_control *psec,
-> @@ -147,7 +154,8 @@ bool pse_has_c33(struct pse_control *psec);
->  
->  #else
->  
-> -static inline struct pse_control *of_pse_control_get(struct device_node *node)
-> +static inline struct pse_control *of_pse_control_get(struct device *dev,
-> +						     struct device_node *node)
->  {
->  	return ERR_PTR(-ENOENT);
->  }
-> 
-> -- 
-> 2.25.1
-> 
-> 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZd8r2QAKCRB4tDGHoIJi
+0n38AQCC1ntsIjUcAEohmeSuO00TkoNmkJJqMRTh0sWa1jMmWAD/dgZeTh5cG9Bh
+z+Gc36w3M/CeHOsRflN+45NVkh9w3wc=
+=816A
+-----END PGP SIGNATURE-----
+
+--XQPnKJoE2X/I/ya7--
 
