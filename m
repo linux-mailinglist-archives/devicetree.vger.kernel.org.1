@@ -1,320 +1,170 @@
-Return-Path: <devicetree+bounces-46945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D4AA86B5A1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:12:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6197286B5AD
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:14:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 69B971C23CE5
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:12:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5C3828B079
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:14:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1F6F3FBA8;
-	Wed, 28 Feb 2024 17:12:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 415BE5B1FB;
+	Wed, 28 Feb 2024 17:14:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="2UrDI/8X"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RAc9vLMF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2052.outbound.protection.outlook.com [40.107.92.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F3CBD208B2;
-	Wed, 28 Feb 2024 17:12:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.52
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709140333; cv=fail; b=KWNG7UanWsHjduZnDJDcATrmbqYIb0AUUMcpLXchLXXsNXDhHAm+r4VM9gBqNXXYrQ7VxC/MmtwmQ3NrYowXJcotVyQul0k2KiIzJicFs91jL+r3WQl6vcAUgTTBYF6EGsidJk9k1Zs8Vid3FoAwXlKGLlvtve0RmKzBrC5gGTk=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709140333; c=relaxed/simple;
-	bh=LainTj522Ws8ZDCMHv5qPLvBbqer0OHcJrfcVGbNnaE=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=q9WTa9/dYEbR8UuMNiUWI4YDsxfAluOw7QaoOy2j//G203jxVPyNebjvWAau8T8naXgQ0o7aRKsGeCdoqHNgh+55DUhB5SA/DTrYaiQZki4uqQf+/RfZLLRTxcjrIqyst57/EGCiRxMyK2Sz8AtOeE5Fe4w1ezV5svy62i7ny5U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=2UrDI/8X; arc=fail smtp.client-ip=40.107.92.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Tb7EWBbGnereSi4YKC/5E8kWhMtgElnm2kIac2qbY6eUn6HCtb6WlriLTHtXwHy7WjE9UJSpOMuicPjyuUQKn+BQLMHrV7/u64azTWuLLGy11+1MOxG39yxR9L7u4ug+rbQRhXPob3/YHzJX/XV+w0MFWuSSX20bfF1Htfok5ZWDFPvkl/mLGELnXEBrcKbUShSGmW4kVbQpMAzz1qN82jLnJ4TUneWSu9jyV5k9o/dSSJh7oAUspjoOBy/XAeg2l4wmuOxBiNgZJYSZNtjrVKDKbN8p0CQFWr3AttAd8XhfhzfqhfVPOMDobDNtkiEddwQskaj3uGfrbxA4g4TzaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IWmwHc3GYwiwRYy64mb/b4ST6+fgvOdLhejAUL9q89c=;
- b=gTdQtZ1qMFpHYB8UXQ+mb4u9m+KI63tQeTUN/17Kq2A12vpkh9s5fNJhxtt8sazWV/8RP/P2BnVj7Uy4J0uLG+wjhLrqV5j0QWWMhOV/lTjHDIxoda92KTW8mSfIlGVormiryEw/XsQujGSlUk42GTCQVc37qMlfZ+WciF03++h0PRtdPPzPO3HmzIbTPXStXN1oPST6pcPkBO/7Z91E9owa+r7HocyK3bvqA0eb1KsymlzlTb0jfBcud7dA4sfEKLX8E94XwV5MwcSOkdCpGoMvGtgI/xOTrOPjZKxX18CbiSVjh5NgvlM5sXpPsG24RINd2KWiZNY7jiVVSumbYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IWmwHc3GYwiwRYy64mb/b4ST6+fgvOdLhejAUL9q89c=;
- b=2UrDI/8XFrBajnW7W2HZ7qtkMtHiwj7Z0ydUYXWFqoHF1P+T+LPBNikyd9EkEMAeBv+3iMPZ7wqwzIrHlmSpCiZK9JDzBrHw6JZlpjAtJaIFQhKdFiN4tv/+vCxq//KTn9LT+Bor+z0xvn4u24MEF56ldDq8HxMO5TBdnLXIfQY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
- by DM4PR12MB5390.namprd12.prod.outlook.com (2603:10b6:5:389::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.41; Wed, 28 Feb
- 2024 17:12:09 +0000
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::14ab:832a:11af:bfec]) by BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::14ab:832a:11af:bfec%4]) with mapi id 15.20.7316.035; Wed, 28 Feb 2024
- 17:12:09 +0000
-Message-ID: <693569eb-55d2-4e6b-b03b-f48ad2a51be1@amd.com>
-Date: Wed, 28 Feb 2024 11:12:05 -0600
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v11 4/4] remoteproc: zynqmp: parse TCM from device tree
-Content-Language: en-US
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: andersson@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, ben.levinsky@amd.com,
- linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240219174437.3722620-1-tanmay.shah@amd.com>
- <20240219174437.3722620-10-tanmay.shah@amd.com> <Zd9oKWz073OJxKwp@p14s>
-From: Tanmay Shah <tanmay.shah@amd.com>
-In-Reply-To: <Zd9oKWz073OJxKwp@p14s>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: DM6PR01CA0027.prod.exchangelabs.com (2603:10b6:5:296::32)
- To BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4B173FBA2
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 17:14:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709140465; cv=none; b=QIhVjR9XcgTpGj5MWkpmbwwgPf+4iHJRVvq51+lEo/yVCWL+v1pDfxYln47R+rT3TH1KGYNZsUAVkwobPnNJsSVJhpG5rZuIkwhnt5YoCJxrfABTbc6NQk8+UGgigSX+3NJfjXQscJEqqyXkPNXwa2L3T/kC/eX8lpOPgkMaIM8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709140465; c=relaxed/simple;
+	bh=eZ0zOwV5ThDlaqv50w9t/26T9vcMPeeI+l7moS/XjHA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bJsB+n9gg5LJWPbYunGJu7YasnWRV/X6W912kZ1GTrSs+NAEQ8mk2pyjAr59NbGEYKfmGQcPf14pIuHzU0llQCUfPBJlwHAsSN3vOvi033bL7F4xblXuxxonjsV1nv+I+8uupw0FF/9faaxD8TtZTdYW2TN1Ku6NhJjbv7zCfSs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RAc9vLMF; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1dc5d0162bcso277055ad.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 09:14:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709140462; x=1709745262; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=31xgTXcLuoSbKo78E7FQ6j1GlEkqFgbLCwh3PeT3OxA=;
+        b=RAc9vLMFTYKT4nic8v8XI/n1RCSURJcupK/2R0AEJe7V+U7AR0Jy7PFKji5Nk+EQE/
+         Buh4UUuFm0PTr+lEXQM6bbTZXuhJTP9B029O2tAmO4QAMG9hwG8OUziIXuo2q5buY9oM
+         3ZB9HZXWjLyqmwxhDAdMPjzEBNYxhvZhzWnQIEKdqvMiTMDb9nAmqjmoK+P/MyLwGQuh
+         nJPVwi9qZojgd8gNZN9CchkXhV0Av1P6CaGAfccZP1M0m7aaq1eokNmQQArThttxbbgG
+         8QVXSJNY7oe2aBGxFe4TkQav/VKumuVjWceOFUu3E/n5mtEp+2W9DJiH7D4s6J/KpDEj
+         vQnw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709140462; x=1709745262;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=31xgTXcLuoSbKo78E7FQ6j1GlEkqFgbLCwh3PeT3OxA=;
+        b=IrNKcs6nL2sL0hI+cOTdYK597lNHw2z8cHnDtnqvRweLHYrvI2ShS3ZsBL3EFT1L+Q
+         2fAS9P+KkcC5lBXuoTjmYJc18jwt6gh1DlUwJC9VY30LRnkSt6dZxXHwsO13cZZE0P6G
+         A5jOsLPxMqoycdWTWm77kQU3d6w/UB+pM4v26tiiQasqotiD7T0h6Ci3PVEH2gSILdto
+         mx+IOQiCUoXIXHo19TmO1SsDjraj65TCYANCG9ovoOt5+2WFkJcxMJmMdQ1wg5Xg6qqw
+         E5I9CIZXFdLRsnBRXSbTEILMtqygpWT2mRUGCjhQeyXIKLuD5t5Uu3hjaOX8MqFPBexb
+         VSQQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVWS6G0MyCWrlCso3x3salKoMZduKJBW2A1J5bTteUluD1WczMEy2pHRchvBdcSwus1cxnvLBIUlZhW593kIaX0uEQwNtIMond9jQ==
+X-Gm-Message-State: AOJu0Yyucz2AyrCGLqYmCS1OiA8A6dJkWwgFhZwSqr43z3PpGhdS2Sn7
+	KXan5oFQwhZ4Ug1zXHVClgQ8UbB4555gKnS6nbh6XsoRj7NA6EUEK+e5/vPpng==
+X-Google-Smtp-Source: AGHT+IGqKPdyAGvJm45YQRpehf1LanX5DC/a5EDHng0iQkSVPLkCHsCY29NkfN2eP24n6P063DSpRA==
+X-Received: by 2002:a17:903:1ca:b0:1dc:afe0:5190 with SMTP id e10-20020a17090301ca00b001dcafe05190mr58893plh.56.1709140461874;
+        Wed, 28 Feb 2024 09:14:21 -0800 (PST)
+Received: from thinkpad ([117.217.185.109])
+        by smtp.gmail.com with ESMTPSA id kj15-20020a17090306cf00b001d90a67e10bsm3549707plb.109.2024.02.28.09.14.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Feb 2024 09:14:21 -0800 (PST)
+Date: Wed, 28 Feb 2024 22:44:12 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Mrinmay Sarkar <quic_msarkar@quicinc.com>, andersson@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	konrad.dybcio@linaro.org, robh@kernel.org,
+	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+	dmitry.baryshkov@linaro.org, quic_krichai@quicinc.com,
+	quic_vbadigan@quicinc.com, quic_schintav@quicinc.com,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH v5 1/3] PCI: qcom: Enable cache coherency for SA8775P RC
+Message-ID: <20240228171412.GA21858@thinkpad>
+References: <02e44f17-39cd-46ec-b236-bc4f502d705e@quicinc.com>
+ <20240228150211.GA271700@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5874:EE_|DM4PR12MB5390:EE_
-X-MS-Office365-Filtering-Correlation-Id: 1166cb27-12fc-446b-cb55-08dc38806583
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	hxHmdetwi9BIkswf2V7OFEJ61jtlni/CDJXZauDVSRH44i1L61TYx3pXCK8ReEYaeeS9IXjlzvGZ9fwJcr/m3kk6LK+4ycEL4Ijq21xrJt/dXFLXGcu3L18yJzvk1SmkPZhH5FQk/dyQebxFSJK4pS5SHnVF9eAtYpNTEuqkkVCpd6Bd9f+gh4G2rBVP9zmtPPTPJ560wUxhsvOnODgd9HfCl+EhACbtc6nrNxxLrbtqNeLEE0agx1J0/mQFnB5ZN0uLbLhZVtEe8II7Hh4s8LQUgW+WSAHCQKiuqk+NyCa8Gz60cYGjAgl1I+J+BzSGZGfzhuA6kVWoqdRWJTCMzTaunW5ehTV+oYDc2Q94K+AmJGDlw9eM9yqBFLKh2LB4ODpxn2eyGaTanfNYxcysZe2FFUMzX2W/zIunZf4D4N9DA1POto11SNVNGgzxU2GffufHe+FLwb29j5ygnQFZuNPErn5dx27YxAX8H5f77B1UsyevglcS+zl5iJIwphg+RShJgt1zz9WM646rNe/WeU9AgIxR3mKQC33pryZUaEuXCCDxScAKaeAzhSlW09v1aKW5e8KkJaUVZuCb+PMeTYO6J+5Vpb2o8hldXOfzroL7/vRpc8ZnrPGJ8+QN7g7NSap+xactl8RB5kAtpi7RHQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5874.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WDRHVXpRc2FndzYrS3JRRjFNdHI2ekszS1JhWjZxSG45TnRIdXFqWWNOcmt4?=
- =?utf-8?B?ZTlPWTRvcVFLYVl5WWdYUk92TGNqRXZUV0xuZkZ6b045TzRwQVdUTnNhUjJ3?=
- =?utf-8?B?ZlhKZTFOc2FEVUNVV3J2NEZIOTVHaWtBb3VTZEk3WXB3bGM1ZzVoTHRLT1pn?=
- =?utf-8?B?cnpTbEE0bzRUeWZodllhWXRpWXR0Qk44V016R2tQTE1OUm5WcjNaTUJrakFP?=
- =?utf-8?B?MUJZTFplWHZkdkpNRkEvd3phQlB6M094Ym12ZGJYK3FnelVGRDRHQzJBS0Vt?=
- =?utf-8?B?RzNrMEpIUmh0TFRZMkNjbWY5dWVuQnhXejNJalZ4THM2Z3NRN0duNnZ6eHR5?=
- =?utf-8?B?RzErSVlabEdTbGllUkRLM1h4UG5rVFpsRi9PWVRrdFZncS9CeTh4RE1QcnJV?=
- =?utf-8?B?VzBTQm53c1haZUI1NHRzOXdJelBlU2dGbFRDbWdCUUJNcXp6aTkxWXczb09U?=
- =?utf-8?B?aFJobmlwdUNGOXBBU2M3cHJOZlpGSlJRV1dWQnpNUUgzSElkK2lxOVBkeFRQ?=
- =?utf-8?B?Q1c0a0V4dTB3dHc4RnZyVkxBS1VsNkJiaE0yNFlGdjl5ZlhsOHJ4UmszMXRw?=
- =?utf-8?B?ZkNyUDIrL2dBTFRKM2F1T0ltZkJKUXVJMmRjQlZ1SHdiTGhpaXFwWlh2bXhJ?=
- =?utf-8?B?Vm45MFVrWEFPdU92WlIrTTRpTjllUzlqUlBMTzV1Mm9WcWdmWnA0YnRGdWFv?=
- =?utf-8?B?NnVUSitkMEc5dUpaV2owQ3p2UWU1YzlVdy93QjlMbEFQb2p4UFJ5YnhPMmxO?=
- =?utf-8?B?TXNxaWRpNThYdXZCM2d4N3BLK1k2OWp0Rkc0WVNYWHc1YWQvek1tTTNJU3VL?=
- =?utf-8?B?d3p6bmd2bVcvdllTZUhqVFVEcUJYZmp4QjVpUEc5V204TzBwYzU5NStZR0hw?=
- =?utf-8?B?bk81K2syMW1JZW5ncURTWTNIVHRqblJ1aHk5WGlkV0o5VC9kOXBBcklJdFZy?=
- =?utf-8?B?cW92Q1hEeUdiemkvMFU1NlNOWllQNklJc01pNlJqQXJxbXdBZDdzcWVpODNJ?=
- =?utf-8?B?WnV6YTRpdGlmMXhPdzV6ckEyNlRUMUNDdlBHTnlDSm5FYjNsTEk3eGNPN3N5?=
- =?utf-8?B?UUtqTTB4VHRzcytYL0RRRy9sb21DZmlFaHpNQm41dVEvb2xteXdjbFZ3eUpV?=
- =?utf-8?B?U1c1YjlRUjMycklueTh4STRscGZGNEpSVUZOT3FnMGdPOHZVdlVQd2VINUJI?=
- =?utf-8?B?b2JlTkg2Q1M1Ym5WbTYyMXlxRmRWQXRIZ3lTMTJGZG5ITjVvNmNqUXNrVlRq?=
- =?utf-8?B?SWFMK0ttSml0b2x6N25qR05Gb3NkYmdZTVBZSkRjdVhmSEZXd3pTNlg2VURy?=
- =?utf-8?B?aEJSZEl0YzVvVXNPZlhFZDRIVnRwM1hkd1VhMlpacTlOZkxRVE5JTVRsSnVq?=
- =?utf-8?B?RTFzRDRqMUhlclVUT2xBUVp6K2lFOVphZnE2RjR0S216aU40NkZXRVdWQkFQ?=
- =?utf-8?B?L1Z5UE9GNmd1bFhndmN1ME92RytsS1dOUXdhZjNEOXV0alU5QTJNM1JQYUxs?=
- =?utf-8?B?UzFHZDZRZHdVckx4Ty9KcFZqcDJtcTIwZk9CNVFiL25PYU16Kzg0cmdWY004?=
- =?utf-8?B?d1hDL3JPOG80LzJSYXE3R3JuZC9EOWZnSHpVOG84RWJ4QVZHR3YzalA4T08z?=
- =?utf-8?B?OFR0ekhWWWxvL0FaRnpZL3ZEU1hrOTNXdmw2QVZnTXVPSlV3TTZVYUpWRDkr?=
- =?utf-8?B?OWNzMFBRdmxzNFJXWWYwek5qK2xYcGxhaWlHUnBBdkJKRVlrOUdwb1ZIVEt3?=
- =?utf-8?B?S1lLQW5BOVpxdURUOFBjN01pMCtOVUxkdXowenkwSjM3T3BwZkdkMDlXTFJs?=
- =?utf-8?B?NUJtT0NXOU5PS0Y3ZU1GRkFFbmVGd2JCZE5nU3RjRkhWSFFnMzh5OU1zVVlC?=
- =?utf-8?B?WVFDWThWdWUxQk0vSjhraFdmbEpPV0Q2bDQxWHFLUVFPTk82RWtvSzFrZFph?=
- =?utf-8?B?VE9NZXEwQnBxKzBldDRTd2VCaXl4V08vWjA0Ymd6N2dLOHc3MHBvL3ZRVnp3?=
- =?utf-8?B?U2txR1o3VjcwR2Qyanl6NXJZellFejhueXlDRDkyT0htencrWEtlQktaMWFC?=
- =?utf-8?B?aXM5V3NReUkrV1B1VGRpenVXd2tOTjVNOUc0d0lDUTRMSFRxWmpJbENCZUpO?=
- =?utf-8?Q?F4KczyxVCWuH2x3xVi6RUzwgC?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1166cb27-12fc-446b-cb55-08dc38806583
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5874.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Feb 2024 17:12:09.1267
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: B2Bw2QPmH/V/DYPw4Tnw5WJCOAh4b3V0+crkLtrJGCdd/gm+q4B/bD9M9bfufdwP
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5390
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240228150211.GA271700@bhelgaas>
 
+On Wed, Feb 28, 2024 at 09:02:11AM -0600, Bjorn Helgaas wrote:
+> On Wed, Feb 28, 2024 at 06:34:11PM +0530, Mrinmay Sarkar wrote:
+> > On 2/24/2024 4:24 AM, Bjorn Helgaas wrote:
+> > > On Fri, Feb 23, 2024 at 07:33:38PM +0530, Mrinmay Sarkar wrote:
+> > > > Due to some hardware changes, SA8775P has set the NO_SNOOP attribute
+> > > > in its TLP for all the PCIe controllers. NO_SNOOP attribute when set,
+> > > > the requester is indicating that there no cache coherency issues exit
+> > > > for the addressed memory on the host i.e., memory is not cached. But
+> > > > in reality, requester cannot assume this unless there is a complete
+> > > > control/visibility over the addressed memory on the host.
+> > > 
+> > > Forgive my ignorance here.  It sounds like the cache coherency issue
+> > > would refer to system memory, so the relevant No Snoop attribute would
+> > > be in DMA transactions, i.e., Memory Reads or Writes initiated by PCIe
+> > > Endpoints.  But it looks like this patch would affect TLPs initiated
+> > > by the Root Complex, not those from Endpoints, so I'm confused about
+> > > how this works.
+> > > 
+> > > If this were in the qcom-ep driver, it would make sense that setting
+> > > No Snoop in the TLPs initiated by the Endpoint could be a problem, but
+> > > that doesn't seem to be what this patch is concerned with.
+> >
+> > I think in multiprocessor system cache coherency issue might occur.
+> > and RC as well needs to snoop cache to avoid coherency as it is not
+> > enable by default.
+> 
+> My mental picture isn't detailed enough, so I'm still confused.  We're
+> talking about TLPs initiated by the RC.  Normally these would be
+> because a driver did a CPU load or store to a PCIe device MMIO space,
+> not to system memory.
+> 
 
-On 2/28/24 11:06 AM, Mathieu Poirier wrote:
-> On Mon, Feb 19, 2024 at 09:44:37AM -0800, Tanmay Shah wrote:
-> > ZynqMP TCM information was fixed in driver. Now ZynqMP TCM information
-> > is available in device-tree. Parse TCM information in driver
-> > as per new bindings.
+Endpoint can expose its system memory as a BAR to the host. In that case, the
+cache coherency issue would apply for TLPs originating from RC as well.
+
+- Mani
+
+> But I guess you're suggesting the RC can initiate a TLP with a system
+> memory address?  And this TLP would be routed not to a Root Port or to
+> downstream devices, but it would instead be kind of a loopback and be
+> routed back up through the RC and maybe IOMMU, to system memory?
+> 
+> I would have expected accesses like this to be routed directly to
+> system memory without ever reaching the PCIe RC.
+> 
+> > and we are enabling this feature for qcom-ep driver as well.
+> > it is in patch2.
 > > 
-> > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> > ---
+> > Thanks
+> > Mrinmay
 > > 
-> > Changes in v11:
-> >   - Remove redundant initialization of the variable
-> >   - return correct error code if memory allocation failed
->
-> Where is that?  I looked really hard but couldn't find it.
+> > > > And worst case, if the memory is cached on the host, it may lead to
+> > > > memory corruption issues. It should be noted that the caching of memory
+> > > > on the host is not solely dependent on the NO_SNOOP attribute in TLP.
+> > > > 
+> > > > So to avoid the corruption, this patch overrides the NO_SNOOP attribute
+> > > > by setting the PCIE_PARF_NO_SNOOP_OVERIDE register. This patch is not
+> > > > needed for other upstream supported platforms since they do not set
+> > > > NO_SNOOP attribute by default.
+> > > > 
+> > > > 8775 has IP version 1.34.0 so intruduce a new cfg(cfg_1_34_0) for this
+> > > > platform. Assign enable_cache_snoop flag into struct qcom_pcie_cfg and
+> > > > set it true in cfg_1_34_0 and enable cache snooping if this particular
+> > > > flag is true.
+> > > s/intruduce/introduce/
+> > > 
+> > > Bjorn
 
-Hi Mathieu,
-
-Thanks for reviews. Please find my comment below.
-
->
-> > 
-> >  drivers/remoteproc/xlnx_r5_remoteproc.c | 112 ++++++++++++++++++++++--
-> >  1 file changed, 107 insertions(+), 5 deletions(-)
-> > 
-> > diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> > index 42b0384d34f2..d4a22caebaad 100644
-> > --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
-> > +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> > @@ -74,8 +74,8 @@ struct mbox_info {
-> >  };
-> >  
-> >  /*
-> > - * Hardcoded TCM bank values. This will be removed once TCM bindings are
-> > - * accepted for system-dt specifications and upstreamed in linux kernel
-> > + * Hardcoded TCM bank values. This will stay in driver to maintain backward
-> > + * compatibility with device-tree that does not have TCM information.
-> >   */
-> >  static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
-> >  	{0xffe00000UL, 0x0, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
-> > @@ -757,6 +757,103 @@ static struct zynqmp_r5_core *zynqmp_r5_add_rproc_core(struct device *cdev)
-> >  	return ERR_PTR(ret);
-> >  }
-> >  
-> > +static int zynqmp_r5_get_tcm_node_from_dt(struct zynqmp_r5_cluster *cluster)
-> > +{
-> > +	int i, j, tcm_bank_count, ret, tcm_pd_idx, pd_count;
-> > +	struct of_phandle_args out_args;
-> > +	struct zynqmp_r5_core *r5_core;
-> > +	struct platform_device *cpdev;
-> > +	struct mem_bank_data *tcm;
-> > +	struct device_node *np;
-> > +	struct resource *res;
-> > +	u64 abs_addr, size;
-> > +	struct device *dev;
-> > +
-> > +	for (i = 0; i < cluster->core_count; i++) {
-> > +		r5_core = cluster->r5_cores[i];
-> > +		dev = r5_core->dev;
-> > +		np = r5_core->np;
-> > +
-> > +		pd_count = of_count_phandle_with_args(np, "power-domains",
-> > +						      "#power-domain-cells");
-> > +
-> > +		if (pd_count <= 0) {
-> > +			dev_err(dev, "invalid power-domains property, %d\n", pd_count);
-> > +			return -EINVAL;
-> > +		}
-> > +
-> > +		/* First entry in power-domains list is for r5 core, rest for TCM. */
-> > +		tcm_bank_count = pd_count - 1;
-> > +
-> > +		if (tcm_bank_count <= 0) {
-> > +			dev_err(dev, "invalid TCM count %d\n", tcm_bank_count);
-> > +			return -EINVAL;
-> > +		}
-> > +
-> > +		r5_core->tcm_banks = devm_kcalloc(dev, tcm_bank_count,
-> > +						  sizeof(struct mem_bank_data *),
-> > +						  GFP_KERNEL);
-> > +		if (!r5_core->tcm_banks)
-> > +			return -ENOMEM;
-
-Hi Mathiue,
-
-Here: in v10 it was following:
-
-+		if (!r5_core->tcm_banks)
-+			ret = -ENOMEM;
-
-Which is not correct. Somehow I missed to return the error code instead it was just storing the error in variable.
-
-
-> > +
-> > +		r5_core->tcm_bank_count = tcm_bank_count;
-> > +		for (j = 0, tcm_pd_idx = 1; j < tcm_bank_count; j++, tcm_pd_idx++) {
-> > +			tcm = devm_kzalloc(dev, sizeof(struct mem_bank_data),
-> > +					   GFP_KERNEL);
-> > +			if (!tcm)
-> > +				return -ENOMEM;
-> > +
-> > +			r5_core->tcm_banks[j] = tcm;
-> > +
-> > +			/* Get power-domains id of TCM. */
-> > +			ret = of_parse_phandle_with_args(np, "power-domains",
-> > +							 "#power-domain-cells",
-> > +							 tcm_pd_idx, &out_args);
-> > +			if (ret) {
-> > +				dev_err(r5_core->dev,
-> > +					"failed to get tcm %d pm domain, ret %d\n",
-> > +					tcm_pd_idx, ret);
-> > +				return ret;
-> > +			}
-> > +			tcm->pm_domain_id = out_args.args[0];
-> > +			of_node_put(out_args.np);
-> > +
-> > +			/* Get TCM address without translation. */
-> > +			ret = of_property_read_reg(np, j, &abs_addr, &size);
-> > +			if (ret) {
-> > +				dev_err(dev, "failed to get reg property\n");
-> > +				return ret;
-> > +			}
-> > +
-> > +			/*
-> > +			 * Remote processor can address only 32 bits
-> > +			 * so convert 64-bits into 32-bits. This will discard
-> > +			 * any unwanted upper 32-bits.
-> > +			 */
-> > +			tcm->da = (u32)abs_addr;
-> > +			tcm->size = (u32)size;
-> > +
-> > +			cpdev = to_platform_device(dev);
-> > +			res = platform_get_resource(cpdev, IORESOURCE_MEM, j);
-> > +			if (!res) {
-> > +				dev_err(dev, "failed to get tcm resource\n");
-> > +				return -EINVAL;
-> > +			}
-> > +
-> > +			tcm->addr = (u32)res->start;
-> > +			tcm->bank_name = (char *)res->name;
-> > +			res = devm_request_mem_region(dev, tcm->addr, tcm->size,
-> > +						      tcm->bank_name);
-> > +			if (!res) {
-> > +				dev_err(dev, "failed to request tcm resource\n");
-> > +				return -EINVAL;
-> > +			}
-> > +		}
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  /**
-> >   * zynqmp_r5_get_tcm_node()
-> >   * Ideally this function should parse tcm node and store information
-> > @@ -835,9 +932,14 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
-> >  	struct zynqmp_r5_core *r5_core;
-> >  	int ret, i;
-> >  
-> > -	ret = zynqmp_r5_get_tcm_node(cluster);
-> > -	if (ret < 0) {
-> > -		dev_err(dev, "can't get tcm node, err %d\n", ret);
-> > +	r5_core = cluster->r5_cores[0];
-> > +	if (of_find_property(r5_core->np, "reg", NULL))
-> > +		ret = zynqmp_r5_get_tcm_node_from_dt(cluster);
-> > +	else
-> > +		ret = zynqmp_r5_get_tcm_node(cluster);
-> > +
-> > +	if (ret) {
-> > +		dev_err(dev, "can't get tcm, err %d\n", ret);
-> >  		return ret;
-> >  	}
-> >  
-> > -- 
-> > 2.25.1
-> > 
+-- 
+மணிவண்ணன் சதாசிவம்
 
