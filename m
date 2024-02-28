@@ -1,330 +1,197 @@
-Return-Path: <devicetree+bounces-46943-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46944-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id F167686B596
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:08:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 299F586B59F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:11:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 590671F2147A
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:08:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A23FF1F21790
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 17:11:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E82953FB85;
-	Wed, 28 Feb 2024 17:08:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373FF3FBA5;
+	Wed, 28 Feb 2024 17:11:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NuRMSbwR"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="abhOIH31"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f172.google.com (mail-pf1-f172.google.com [209.85.210.172])
+Received: from mail-lj1-f170.google.com (mail-lj1-f170.google.com [209.85.208.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254561F604
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 17:08:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44683208D2
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 17:11:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709140125; cv=none; b=TU4vIH7tK2tMlQ2ZX3XJ+igiGf9/C1nOKAhgjZ1338swGRxEPuMUUAV9HbYuToGRAEhum5tkak8RGWVeur2AdUBMUFmIxlpCQtGI9j4/A0BhXehiZMLG4h1a2opp7c4CzDFA1pOV+RtGMdSIEWqStS3hphC1pKxJsdNF+Kpmtt4=
+	t=1709140290; cv=none; b=ADVnK0GwDjwzfFvsHePhY4tmLeityhpePWGMozND+YMerU6oHS0fcypR3sfMjGx+0rPAp2wPk0hlOR1oPFLwmsOKM951qlLMcKZHwQBlLwXmOfRFukDUdFb7o+brGo/DBLZVb8PrHcF2eZSJyXDUuF+EPENXPvD281ZGGGVVlcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709140125; c=relaxed/simple;
-	bh=WDG9Q9QTlwo8o9t2dFs0iLjixFml3snAHpPaD3gakW8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a8fTNnSnrn08XdCmwVA98qzE2qx8JENcLA2wGxfZG6cAN1ZwelSoGACYopKhbSbff9AOjDUIfCTIXxkjIAoUAYYrDAahxIYCrMdvGq4sjrtyGtEe4G0aVxiq8UJNPsGF638koLZZCQv6pqG3bSWwbxOiITjvBNAJeSUVABG1OXU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NuRMSbwR; arc=none smtp.client-ip=209.85.210.172
+	s=arc-20240116; t=1709140290; c=relaxed/simple;
+	bh=uGPHNFes84I6rilfHmCdcTUvaBD3wetQ+Od5jPruLPU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=gJSvooXxDfw/09DrYvBbHDCfe8NyUhW4fj9UyaIEN8DMZXumpJMdVqLXvH2NMacecGm/N2ooir/ADZ+kvyiKoeYFV3jj3H0H/Nct8FSb7ItJxdGQ/KZ+p8hnLZyRpQfNJG/9WcbXBJrf6Rtv17ycEbNRjwoE8FTwhA/N+Kve1iM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=abhOIH31; arc=none smtp.client-ip=209.85.208.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f172.google.com with SMTP id d2e1a72fcca58-6da4a923b1bso4636533b3a.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 09:08:43 -0800 (PST)
+Received: by mail-lj1-f170.google.com with SMTP id 38308e7fff4ca-2d28464c554so56497561fa.3
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 09:11:27 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709140123; x=1709744923; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vZ7yX46ZRthWSl8mAmdFHCANI4NXz4hftEaGGdUSpkA=;
-        b=NuRMSbwRTdLYHY29N4tZRwl/St69DrSRkRyUlYBet0qYAKwhbIs0EK9Nbh1984vcHY
-         voo/WuNwXjDUvKpTfhRiTGYT4+8yZpiK8eOrXptbN/0L2jlBbgFHtqeHTBQK7Y78bGNW
-         OsoQXsLcBJ3GERh1y8dRvgh7X/3HKtIB64vVjr+jhkt3aUHDF/AP2iVKWdKvt222Eg6D
-         nvQyUt4FR+TmpvqOiNS2gKX6ZwRrqqJde7UztfjFA/jlAiAGNxtJUvEmNKgT5V60LmQG
-         XUG4ZO2OETP3Ef2MlCvHDU++AMx6apB4oBMnqlXbCQOL2gXoisWPQBl+mnc7n03/Ph2F
-         XF9Q==
+        d=linaro.org; s=google; t=1709140286; x=1709745086; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FEJQZi9yBUjQVznYOI29pT82/AlYsIhjyFus1XbOpxE=;
+        b=abhOIH31+dpFc2TfneHBA7g94e6o++sO6v4n28Ds07mdIiraaOim+dMgz2yaZGvEC5
+         LLi5qg9Pa51yGQe/NSw8XqUzix/c0V/NGmVJyzOdZ2yrQEADwz/I3fMrenStmaU0ZeGv
+         cylm90hFimiC6RUSy7aNoYNHFFausdC3wHhv2+2ZvU63I/RbABfjccah/6ZMilsXJqCA
+         iR4fYCBkdVNNDYdveqi0RW9aS4cSEZFCZXc2Wquu+THZOFwQIsXoknZJo10y25S4mM/p
+         4tW7RiaeM3SrG09Wt9Wk4hDAITmZnfuQ8LLwHUIM1Xos6DJpNbsTW10sbT+H1wuh4UNO
+         i7xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709140123; x=1709744923;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vZ7yX46ZRthWSl8mAmdFHCANI4NXz4hftEaGGdUSpkA=;
-        b=D7+aqwMxweq6HaV4zJP1VfVb7FWwpxLGkeTkDMWCavBXwfT/w3N2Wz/cpQN8r0NQrz
-         PuiDriPpqtaOvkHHhoKt1lxRbz+zWpr4PQhRg3GDMAAvYvZ7Ui1RQJCOHqY4gzBS9dx0
-         yy9xJE9aKMaIECHVJGty9gQnKmGU7Ja5888NR+2V9RmGJsfn50W/v/K86iz3YvzI/nCd
-         ZwHjRl50nZ+EDHivHsbYFRFJSkrMfq3rBXY6jN+6/4pYQdus6uEy37rMCo/cwas+9PV7
-         eJQysT/wLoyZdS0+WMLFN/sfvt42Qh9SSu1trjCafH44PZVytcCHiXSVNWkw/WWX8iNY
-         ml4g==
-X-Forwarded-Encrypted: i=1; AJvYcCWz/lMvsQ3k+lZthl6eZSdhy298RZwD56YTH3Hl0PTXXh0wlAYVNHL6ro/5+UCVWkJIuyDAGK+QDu7y0l8oku3JBLzu45tM3k9h/w==
-X-Gm-Message-State: AOJu0YwJUSHsrLnM3Oucdeu5pIWsIbLmXy1WLkFu+wYtR1KOZFipu+Jc
-	XXRFBsoeTCXy6levYIdz+H5g5r3Xlqut0Bg3zoHraKfmb4fxd9jIB6L0niNtz1w=
-X-Google-Smtp-Source: AGHT+IH+K0cPBkC1fHRGR/g4p5u9bQgkIr3UPw3K8hhP2snwADjcStTQwKq4T9ECeiZWCeuaYPvZQQ==
-X-Received: by 2002:a05:6a00:80d9:b0:6e5:31f5:94cd with SMTP id ei25-20020a056a0080d900b006e531f594cdmr234150pfb.0.1709140123424;
-        Wed, 28 Feb 2024 09:08:43 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800:96d9:3aed:533c:8c94])
-        by smtp.gmail.com with ESMTPSA id p54-20020a056a0026f600b006e5360f1cffsm5303122pfw.180.2024.02.28.09.08.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Feb 2024 09:08:43 -0800 (PST)
-Date: Wed, 28 Feb 2024 10:08:40 -0700
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: Tanmay Shah <tanmay.shah@amd.com>
-Cc: andersson@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	michal.simek@amd.com, ben.levinsky@amd.com,
-	linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v11 1/4] remoteproc: zynqmp: fix lockstep mode memory
- region
-Message-ID: <Zd9omCbc3UqjT7Lr@p14s>
-References: <20240219174437.3722620-1-tanmay.shah@amd.com>
- <20240219174437.3722620-7-tanmay.shah@amd.com>
+        d=1e100.net; s=20230601; t=1709140286; x=1709745086;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FEJQZi9yBUjQVznYOI29pT82/AlYsIhjyFus1XbOpxE=;
+        b=JGVIhjsl0EKhanf0q//0imSOwxH096oHJ5SCstowK8pcW5nuYi2Zc1XZQn6Z7pyxDR
+         W0ydzVoyIX0n5x8GiDoADB6ZXp6h2EYd9YuyK42u5Gm8vhHF1DWUWdDCFL8ScxOEvArG
+         BtC14ozy8a5VU0Nqh1pxLSNkTVtfwWAo2DIc7hdhg2CA4K/aFO23CEvyT7ghE9GU4I2y
+         BlwLLLumKTxJJwIAy4b0DDVYiCwKBoAjunJ5natLpSSXmXSDygT0V9Tm4l/Xzt1VPSZl
+         NhvhdYQ2LVqPQUJhehnEnd9IKZgSIEFsPq0hS6B26HeQ1tBFdcvlbus+0XHNWD0xjGwH
+         eFpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWFrDS/fQoz9+j7oSP2NzI7feP/Cxk3HLAMjngB3gsvDSElzDl9E4E3b6JY8HE451H990I6EKaWwf35NdnFb5M0bPbR62cPgTTM1g==
+X-Gm-Message-State: AOJu0Yy6a68rPJAlaLZKb8E0mNns6lnb2fX01QmdSxJ6A8loEsa0SXXY
+	u9mVw6KbxkLQM0dba6VV24B0yUvv2ZEo6T1byaVFjZFS1Ac+7X7s3PS6PyOV5w0=
+X-Google-Smtp-Source: AGHT+IGADA7GlFs+zJhlpsCun8ErQpihiqtWqZ17Z/HfRztJXkG+WFOOdudugLhEefV8z6lqXLcVyQ==
+X-Received: by 2002:a05:651c:210a:b0:2d2:b146:d42b with SMTP id a10-20020a05651c210a00b002d2b146d42bmr2955288ljq.52.1709140286258;
+        Wed, 28 Feb 2024 09:11:26 -0800 (PST)
+Received: from [192.168.1.195] ([5.133.47.210])
+        by smtp.googlemail.com with ESMTPSA id n16-20020a05600c3b9000b00411e3cc0e0asm2699807wms.44.2024.02.28.09.11.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Feb 2024 09:11:25 -0800 (PST)
+Message-ID: <2b0a11f4-f54e-461c-91e7-8f313d91abe8@linaro.org>
+Date: Wed, 28 Feb 2024 17:11:24 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240219174437.3722620-7-tanmay.shah@amd.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: DT Query on "New Compatible vs New Property"
+Content-Language: en-US
+To: Ulf Hansson <ulf.hansson@linaro.org>, Sudeep Holla <sudeep.holla@arm.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Nikunj Kela <quic_nkela@quicinc.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ krzysztof.kozlowski+dt@linaro.org,
+ Vincent Guittot <vincent.guittot@linaro.org>, robh+dt@kernel.org,
+ conor+dt@kernel.org, devicetree@vger.kernel.org,
+ "Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>
+References: <7910de2d-6184-4f78-a286-d2e6e50c7a36@quicinc.com>
+ <CAKfTPtCjR_MBO9Lh7=CU+dcFaigkbeKc27rVgCa-aEJyHyfK9A@mail.gmail.com>
+ <ZbEY2X8CfOc-vPbe@bogus> <16db3da8-dfdd-4e06-b348-33e9197fe18d@quicinc.com>
+ <ZbFH0UE9zZQFWm8Z@bogus> <32092ee9-018f-4cfb-950e-26c69764f35a@quicinc.com>
+ <94a62a78-961a-4286-804c-fc0b9098b8a1@quicinc.com>
+ <CAPDyKFrL2QcB-YbE25smGgJjf3iBEsSSB4ui3V98zJKghNNhKA@mail.gmail.com>
+ <20240228140239.gkzcytw6cmb4opja@bogus>
+ <799268ac-7ffb-4b99-b037-d5bb93d37f13@linaro.org>
+ <20240228160925.fcitj2yz7hisidsl@bogus>
+ <CAPDyKFqEDu1KRsT2YWv7MhoosCSj_bgV4xE=-2hDaS1ZP7AkvQ@mail.gmail.com>
+From: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+In-Reply-To: <CAPDyKFqEDu1KRsT2YWv7MhoosCSj_bgV4xE=-2hDaS1ZP7AkvQ@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Mon, Feb 19, 2024 at 09:44:34AM -0800, Tanmay Shah wrote:
-> In lockstep mode, r5 core0 uses TCM of R5 core1. Following is lockstep
-> mode memory region as per hardware reference manual.
-> 
->     |      *TCM*         |   *R5 View* | *Linux view* |
->     | R5_0 ATCM (128 KB) | 0x0000_0000 | 0xFFE0_0000  |
->     | R5_0 BTCM (128 KB) | 0x0002_0000 | 0xFFE2_0000  |
-> 
-> However, driver shouldn't model it as above because R5 core0 TCM and core1
-> TCM has different power-domains mapped to it.
-> Hence, TCM address space in lockstep mode should be modeled as 64KB
-> regions only where each region has its own power-domain as following:
-> 
->     |      *TCM*         |   *R5 View* | *Linux view* |
->     | R5_0 ATCM0 (64 KB) | 0x0000_0000 | 0xFFE0_0000  |
->     | R5_0 BTCM0 (64 KB) | 0x0002_0000 | 0xFFE2_0000  |
->     | R5_0 ATCM1 (64 KB) | 0x0001_0000 | 0xFFE1_0000  |
->     | R5_0 BTCM1 (64 KB) | 0x0003_0000 | 0xFFE3_0000  |
-> 
-> This makes driver maintanance easy and makes design robust for future
-> platorms as well.
-> 
-> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
 
-Now that I have a clearer picture of where things are going, I am adding this
-patch to rproc-next.
 
-I'll wait for the DT crew for the rest of this set.
-
-Thanks,
-Mathieu
-
-> ---
->  drivers/remoteproc/xlnx_r5_remoteproc.c | 145 ++----------------------
->  1 file changed, 12 insertions(+), 133 deletions(-)
+On 28/02/2024 16:22, Ulf Hansson wrote:
+> On Wed, 28 Feb 2024 at 17:09, Sudeep Holla <sudeep.holla@arm.com> wrote:
+>>
+>> On Wed, Feb 28, 2024 at 03:20:44PM +0100, Krzysztof Kozlowski wrote:
+>>> On 28/02/2024 15:02, Sudeep Holla wrote:
+>>>> On Wed, Feb 28, 2024 at 02:27:30PM +0100, Ulf Hansson wrote:
+>>>>> On Mon, 26 Feb 2024 at 15:24, Nikunj Kela <quic_nkela@quicinc.com> wrote:
+>>>>>>
+>>>>>> Hi Sudeep,
+>>>>>>
+>>>>>> I would like to conclude on this thread. I was discussing this with Ulf.
+>>>>>> He thinks that using the domain names to identify if platform is
+>>>>>> abstracting clocks etc. are not scalable and sufficient. Instead he
+>>>>>> thinks that the change in the interface to OS(and FW) is a good
+>>>>>> candidate for a new compatible(even though HW is same).  Even for SCMI,
+>>>>>> we do change phandle in DT to SCMI protocol phandle so that is like a
+>>>>>> different platform altogether. Could you please let me know if you still
+>>>>>> think that using a different compatible in this case is not warranted.
+>>>>>
+>>>>> My apologies for joining this discussion at this late state. Yet, I
+>>>>> just wanted to confirm what Nikunj said above.
+>>>>>
+>>>>> In the end we are indeed talking about adding a new platform, as
+>>>>> changing the FW interface from a QCOM proprietary one into SCMI,
+>>>>> simply requires updates to a DTS file(s) that is platform specific.
+>>>>>
+>>>>
+>>>> The way I read this sounds like all this are platform specific and need
+>>>> new compatible.
+>>>>
+>>>>> That said, it also seems reasonable to me to use a compatible string,
+>>>>> to allow us to describe the update of HW for various affected devices.
+>>>>>
+>>>>
+>>>> While I agree with the above statement, it depends on what you refer as
+>>>> update of HW above. It is all Qcom specific and there is so much turn
+>>>> between SoCs that this shouldn't matter but I would like to take example
+>>>> and describe what I initially mentioned/argued against.
+>>>>
+>>>> Lets us assume 2 SoCs: A and B. A is old and didn't use SCMI while B is
+>>>> new and migrated to use SCMI. Now let us assume both A and B SoCs have
+>>>> exact same version/revision of an IP: X. Now just because B uses SCMI,
+>>>> should X have one compatible to be used in A and another in B. That
+>>>> doesn't sound right IMO.
+>>>
+>>> That's trivial to answer, because these are different SoCs. Compatibles
+>>> are SoC specific and every SoC-IP-block needs its compatible. Rob was
+>>> repeating this many times that versioned compatibles are discouraged.
+>>
+>> OK I may have confused or derailed the discussion with the mention of
+>> "exact same version/revision" of X. This is not related versioned compatibles.
+>> Let me try to explain it with some real example. If you look at all the
+>> users of "arm,coresight-tpiu", they all have same compatible on all the
+>> platforms irrespective of the clock/reset/voltage/power domain providers
+>> on these platforms.
+>>
+>> E.g. on juno it is based on SCMI while on qcom-msm8974/apq8064 or
+>> hi3660/hi6220 it is platform specific clock/power domain providers.
+>> However all these platform have the same compatible "arm,coresight-tpiu".
+>> That was the point I was trying to make and not related to versioned
+>> compatible for different versions on an IP.
 > 
-> diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> index 4395edea9a64..42b0384d34f2 100644
-> --- a/drivers/remoteproc/xlnx_r5_remoteproc.c
-> +++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
-> @@ -84,12 +84,12 @@ static const struct mem_bank_data zynqmp_tcm_banks_split[] = {
->  	{0xffeb0000UL, 0x20000, 0x10000UL, PD_R5_1_BTCM, "btcm1"},
->  };
->  
-> -/* In lockstep mode cluster combines each 64KB TCM and makes 128KB TCM */
-> +/* In lockstep mode cluster uses each 64KB TCM from second core as well */
->  static const struct mem_bank_data zynqmp_tcm_banks_lockstep[] = {
-> -	{0xffe00000UL, 0x0, 0x20000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 128KB each */
-> -	{0xffe20000UL, 0x20000, 0x20000UL, PD_R5_0_BTCM, "btcm0"},
-> -	{0, 0, 0, PD_R5_1_ATCM, ""},
-> -	{0, 0, 0, PD_R5_1_BTCM, ""},
-> +	{0xffe00000UL, 0x0, 0x10000UL, PD_R5_0_ATCM, "atcm0"}, /* TCM 64KB each */
-> +	{0xffe20000UL, 0x20000, 0x10000UL, PD_R5_0_BTCM, "btcm0"},
-> +	{0xffe10000UL, 0x10000, 0x10000UL, PD_R5_1_ATCM, "atcm1"},
-> +	{0xffe30000UL, 0x30000, 0x10000UL, PD_R5_1_BTCM, "btcm1"},
->  };
->  
->  /**
-> @@ -540,14 +540,14 @@ static int tcm_mem_map(struct rproc *rproc,
->  }
->  
->  /*
-> - * add_tcm_carveout_split_mode()
-> + * add_tcm_banks()
->   * @rproc: single R5 core's corresponding rproc instance
->   *
-> - * allocate and add remoteproc carveout for TCM memory in split mode
-> + * allocate and add remoteproc carveout for TCM memory
->   *
->   * return 0 on success, otherwise non-zero value on failure
->   */
-> -static int add_tcm_carveout_split_mode(struct rproc *rproc)
-> +static int add_tcm_banks(struct rproc *rproc)
->  {
->  	struct rproc_mem_entry *rproc_mem;
->  	struct zynqmp_r5_core *r5_core;
-> @@ -580,10 +580,10 @@ static int add_tcm_carveout_split_mode(struct rproc *rproc)
->  					     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
->  		if (ret < 0) {
->  			dev_err(dev, "failed to turn on TCM 0x%x", pm_domain_id);
-> -			goto release_tcm_split;
-> +			goto release_tcm;
->  		}
->  
-> -		dev_dbg(dev, "TCM carveout split mode %s addr=%llx, da=0x%x, size=0x%lx",
-> +		dev_dbg(dev, "TCM carveout %s addr=%llx, da=0x%x, size=0x%lx",
->  			bank_name, bank_addr, da, bank_size);
->  
->  		rproc_mem = rproc_mem_entry_init(dev, NULL, bank_addr,
-> @@ -593,7 +593,7 @@ static int add_tcm_carveout_split_mode(struct rproc *rproc)
->  		if (!rproc_mem) {
->  			ret = -ENOMEM;
->  			zynqmp_pm_release_node(pm_domain_id);
-> -			goto release_tcm_split;
-> +			goto release_tcm;
->  		}
->  
->  		rproc_add_carveout(rproc, rproc_mem);
-> @@ -601,7 +601,7 @@ static int add_tcm_carveout_split_mode(struct rproc *rproc)
->  
->  	return 0;
->  
-> -release_tcm_split:
-> +release_tcm:
->  	/* If failed, Turn off all TCM banks turned on before */
->  	for (i--; i >= 0; i--) {
->  		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> @@ -610,127 +610,6 @@ static int add_tcm_carveout_split_mode(struct rproc *rproc)
->  	return ret;
->  }
->  
-> -/*
-> - * add_tcm_carveout_lockstep_mode()
-> - * @rproc: single R5 core's corresponding rproc instance
-> - *
-> - * allocate and add remoteproc carveout for TCM memory in lockstep mode
-> - *
-> - * return 0 on success, otherwise non-zero value on failure
-> - */
-> -static int add_tcm_carveout_lockstep_mode(struct rproc *rproc)
-> -{
-> -	struct rproc_mem_entry *rproc_mem;
-> -	struct zynqmp_r5_core *r5_core;
-> -	int i, num_banks, ret;
-> -	phys_addr_t bank_addr;
-> -	size_t bank_size = 0;
-> -	struct device *dev;
-> -	u32 pm_domain_id;
-> -	char *bank_name;
-> -	u32 da;
-> -
-> -	r5_core = rproc->priv;
-> -	dev = r5_core->dev;
-> -
-> -	/* Go through zynqmp banks for r5 node */
-> -	num_banks = r5_core->tcm_bank_count;
-> -
-> -	/*
-> -	 * In lockstep mode, TCM is contiguous memory block
-> -	 * However, each TCM block still needs to be enabled individually.
-> -	 * So, Enable each TCM block individually.
-> -	 * Although ATCM and BTCM is contiguous memory block, add two separate
-> -	 * carveouts for both.
-> -	 */
-> -	for (i = 0; i < num_banks; i++) {
-> -		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> -
-> -		/* Turn on each TCM bank individually */
-> -		ret = zynqmp_pm_request_node(pm_domain_id,
-> -					     ZYNQMP_PM_CAPABILITY_ACCESS, 0,
-> -					     ZYNQMP_PM_REQUEST_ACK_BLOCKING);
-> -		if (ret < 0) {
-> -			dev_err(dev, "failed to turn on TCM 0x%x", pm_domain_id);
-> -			goto release_tcm_lockstep;
-> -		}
-> -
-> -		bank_size = r5_core->tcm_banks[i]->size;
-> -		if (bank_size == 0)
-> -			continue;
-> -
-> -		bank_addr = r5_core->tcm_banks[i]->addr;
-> -		da = r5_core->tcm_banks[i]->da;
-> -		bank_name = r5_core->tcm_banks[i]->bank_name;
-> -
-> -		/* Register TCM address range, TCM map and unmap functions */
-> -		rproc_mem = rproc_mem_entry_init(dev, NULL, bank_addr,
-> -						 bank_size, da,
-> -						 tcm_mem_map, tcm_mem_unmap,
-> -						 bank_name);
-> -		if (!rproc_mem) {
-> -			ret = -ENOMEM;
-> -			zynqmp_pm_release_node(pm_domain_id);
-> -			goto release_tcm_lockstep;
-> -		}
-> -
-> -		/* If registration is success, add carveouts */
-> -		rproc_add_carveout(rproc, rproc_mem);
-> -
-> -		dev_dbg(dev, "TCM carveout lockstep mode %s addr=0x%llx, da=0x%x, size=0x%lx",
-> -			bank_name, bank_addr, da, bank_size);
-> -	}
-> -
-> -	return 0;
-> -
-> -release_tcm_lockstep:
-> -	/* If failed, Turn off all TCM banks turned on before */
-> -	for (i--; i >= 0; i--) {
-> -		pm_domain_id = r5_core->tcm_banks[i]->pm_domain_id;
-> -		zynqmp_pm_release_node(pm_domain_id);
-> -	}
-> -	return ret;
-> -}
-> -
-> -/*
-> - * add_tcm_banks()
-> - * @rproc: single R5 core's corresponding rproc instance
-> - *
-> - * allocate and add remoteproc carveouts for TCM memory based on cluster mode
-> - *
-> - * return 0 on success, otherwise non-zero value on failure
-> - */
-> -static int add_tcm_banks(struct rproc *rproc)
-> -{
-> -	struct zynqmp_r5_cluster *cluster;
-> -	struct zynqmp_r5_core *r5_core;
-> -	struct device *dev;
-> -
-> -	r5_core = rproc->priv;
-> -	if (!r5_core)
-> -		return -EINVAL;
-> -
-> -	dev = r5_core->dev;
-> -
-> -	cluster = dev_get_drvdata(dev->parent);
-> -	if (!cluster) {
-> -		dev_err(dev->parent, "Invalid driver data\n");
-> -		return -EINVAL;
-> -	}
-> -
-> -	/*
-> -	 * In lockstep mode TCM banks are one contiguous memory region of 256Kb
-> -	 * In split mode, each TCM bank is 64Kb and not contiguous.
-> -	 * We add memory carveouts accordingly.
-> -	 */
-> -	if (cluster->mode == SPLIT_MODE)
-> -		return add_tcm_carveout_split_mode(rproc);
-> -	else if (cluster->mode == LOCKSTEP_MODE)
-> -		return add_tcm_carveout_lockstep_mode(rproc);
-> -
-> -	return -EINVAL;
-> -}
-> -
->  /*
->   * zynqmp_r5_parse_fw()
->   * @rproc: single R5 core's corresponding rproc instance
-> -- 
-> 2.25.1
+> That's perfectly fine, if that is sufficient. It would also be
+> perfectly fine to extend it with a platform/soc specific compatible,
+> when needed.
 > 
+> An example could be:
+> compatible = "qcom,sm8450-coresight-tpiu", "arm,coresight-tpiu";
+
+The issue is not the same as the above example.
+
+We already have a soc specific compatible in this case
+ex: "qcom,sc8280xp-ufshc"
+
+making another compatible like "qcom,sc8280xp-ufshc-scmi" or 
+"qcom,sc8280xp-ufshc-xyz" based on how some of the resources (clks, 
+regulators) are provided in bindings does not really make sense.
+
+Fact is that we are representing the same IP block.
+
+AFAIU, we should go with same compatible irrespective of how the 
+resourcing needs are satisfied.
+
+thanks,
+Srini
+
+> 
+> Krzysztof, please correct me if I am wrong.
+> 
+> Kind regards
+> Uffe
 
