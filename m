@@ -1,78 +1,165 @@
-Return-Path: <devicetree+bounces-46918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1D0486B39C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:47:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E49186B3AC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 16:49:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 515DCB214D0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:47:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 908311C23402
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 15:49:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23AB15CD60;
-	Wed, 28 Feb 2024 15:47:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 469A015D5A0;
+	Wed, 28 Feb 2024 15:49:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HacrkOlz"
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="VhUxaeXu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8316915B98C;
-	Wed, 28 Feb 2024 15:47:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA7C915B990;
+	Wed, 28 Feb 2024 15:49:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709135242; cv=none; b=gnA4l7Iowg+E3TJpU8jRghT7XXzB9vcylAe/70HcmIiYRrqXeWWDXLe+AqSEInvezYqmIDJFfIuHSdiwom7DT0loQB3Lk6Im4Nb3+fujLW2eZtQmKfQ3CPn+xSbwyuEqKnkJEHsmjr109S7X8SCYsSUtdG/3okllw0kX7KBX9GQ=
+	t=1709135374; cv=none; b=UIJWFoa0bEJzRhaaLjlY4sQKykAutPQ6DEKUIvWBdjJD+n3y46lBsFgAVXweH+bLE4BdksY8beRq8lHjHZZz1Jc7IBQ6L0QpeRAycrF8dE6nr1X1/ZJ/yp9xpRT9BIwffbKPTGRb9I8klO+7oqD14esci7s6b8TUhUI/tR8vHjs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709135242; c=relaxed/simple;
-	bh=bWI9Jt/Qt6QN8PnWaeP0R2Vq19OQke6FCBwozsWe5Xo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=N3o2uXWVzh5wNrBimcgwWh+yWoIvHdtw/uimSzFcSVOmNHw23qUls7tH/nVIDsFh6QfQlA9lw0SIpOaYoJJqzwD35qhMgJw3W9CskEysVxfHIzAwEp40ynfpn7zM3NoYzf6z2DvRAWiwiEwsYdK5H7THoh156BiYWpmF6KCYUXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HacrkOlz; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2462C433C7;
-	Wed, 28 Feb 2024 15:47:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709135242;
-	bh=bWI9Jt/Qt6QN8PnWaeP0R2Vq19OQke6FCBwozsWe5Xo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HacrkOlzUV4lDVR2fL/sUm+le+hDTERV12t40fZOrseR9zEHFe4wXD7qX1YfZtA2I
-	 h3nPF+/g9owNTAx8gY9qQr/rzS1iogvORh9eY5G4Vja5rolAVcJ7O2GH3uWz4mB3Tb
-	 LaUIUgGKrLGrS66xKmbEOJE8Yd6n7GgYn55H+pbgnnB2ddsAQgelZluCqdB/N8Ixjj
-	 lhTDt7yq4+sAw66Do03+tV9aROH31Qx7xN+niuxEv9BOS0PZCiFcuwbt8qwo4haBzs
-	 +0yXyN0vGzOMRP+OWFmrFPb0nYydPtjiGCjrkL0EM9K9xcp6YkG1D6zmP3TpfMqu55
-	 3XYdXC/lhpBEg==
-Date: Wed, 28 Feb 2024 09:47:19 -0600
-From: Rob Herring <robh@kernel.org>
-To: Eddie James <eajames@linux.ibm.com>
-Cc: linux-fsi@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-	andi.shyti@kernel.org, alistair@popple.id.au, joel@jms.id.au,
-	jk@ozlabs.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, lakshmiy@us.ibmcom
-Subject: Re: [PATCH v2 08/31] dt-bindings: fsi: Add AST2700 compatible
-Message-ID: <20240228154719.GA3933171-robh@kernel.org>
-References: <20240226165321.91976-1-eajames@linux.ibm.com>
- <20240226165321.91976-9-eajames@linux.ibm.com>
+	s=arc-20240116; t=1709135374; c=relaxed/simple;
+	bh=TXDkaVmG4OI79+ODTlB7W6xh7e9pcZZeRG8zXY6AXzw=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=ie+cRsjsouoBCaTcsL9NE4tWHjPWAqNTB/kz1dATcQqxXQt4IBUhNXsl4UdDVuM45MVdyixKpPSgdrFAsBc1uo3QZz7S9nhBiaFeIfxDR3Im5MEyOc7Uwiz3SlnQ76rUFA2bwvplPM52zJpvEPEYwgI/34tyf9JwB3wUimfFFX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=VhUxaeXu; arc=none smtp.client-ip=194.87.146.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id 17F9C401B2;
+	Wed, 28 Feb 2024 20:49:20 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1709135361; bh=TXDkaVmG4OI79+ODTlB7W6xh7e9pcZZeRG8zXY6AXzw=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=VhUxaeXulzylqIHcBOnJNwY4jOYMTJXvIftsBCqCYyH6bJYpqGMkNdixEF8ywO1gd
+	 YBXJs4cXAbTUzHbceGHR7lQaNudEBrUJT0i4ObkYrLbtcDxHWusSt3gzfB5Ao2m2w6
+	 SS32hXdQrrBzOIrfcMZV9JvV+7FTIlQIf7RwMg7TAko/xdQzOtcPG0qKy7vJSYSIhB
+	 a7eWrk3WbM+XGAZgA4diXytBhRufxWHFsLFioElwvPQlNH8FOYEXObh3vXfjFNQNJk
+	 b4Qb3rzba0t924LGfS6qCqPm7tceRPbeCial2GrvwJEfqh27O5Qdxw9kzRgzOnUUh3
+	 ipJ4nfXO16Y7w==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240226165321.91976-9-eajames@linux.ibm.com>
+Date: Wed, 28 Feb 2024 20:49:18 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Hans de Goede <hdegoede@redhat.com>
+Cc: Sebastian Reichel <sebastian.reichel@collabora.com>, =?UTF-8?Q?Ilpo_J?=
+ =?UTF-8?Q?=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, Bjorn
+ Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Rob Herring <robh@kernel.org>, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH v3 2/3] power: supply: Add Acer Aspire 1 embedded
+ controller driver
+In-Reply-To: <edec3bee-8604-49a9-8e2f-6c21e852ef6c@redhat.com>
+References: <20240220-aspire1-ec-v3-0-02cb139a4931@trvn.ru>
+ <20240220-aspire1-ec-v3-2-02cb139a4931@trvn.ru>
+ <qoidm5wujjbeoc2hlraky26wuwmuaxi2atyl6ehovhvffdbfeh@g5gunqdei45m>
+ <7c429d2110dbac68d0c82c8fb8bfb742@trvn.ru>
+ <edec3bee-8604-49a9-8e2f-6c21e852ef6c@redhat.com>
+Message-ID: <c6d3d9841fe5a754e78adaf95522b434@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Mon, Feb 26, 2024 at 10:52:58AM -0600, Eddie James wrote:
-> Document the 2700 FSI master compatible string.
+Hans de Goede писал(а) 26.02.2024 15:59:
+> Hi,
 > 
-> Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> ---
->  Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> +Ilpo (fellow pdx86 maintainer)
+> 
+> On 2/23/24 15:32, Nikita Travkin wrote:
+>> Sebastian Reichel писал(а) 22.02.2024 04:41:
+>>> Hi,
+>>>
+>>> On Tue, Feb 20, 2024 at 04:57:13PM +0500, Nikita Travkin wrote:
+>>>> Acer Aspire 1 is a Snapdragon 7c based laptop. It uses an embedded
+>>>> controller to control the charging and battery management, as well as to
+>>>> perform a set of misc functions.
+>>>>
+>>>> Unfortunately, while all this functionality is implemented in ACPI, it's
+>>>> currently not possible to use ACPI to boot Linux on such Qualcomm
+>>>> devices. To allow Linux to still support the features provided by EC,
+>>>> this driver reimplments the relevant ACPI parts. This allows us to boot
+>>>> the laptop with Device Tree and retain all the features.
+>>>>
+>>>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>>>> ---
+>>>>  drivers/power/supply/Kconfig           |  14 +
+>>>>  drivers/power/supply/Makefile          |   1 +
+>>>>  drivers/power/supply/acer-aspire1-ec.c | 453 +++++++++++++++++++++++++++++++++
+>>>
+>>> I think this belongs into drivers/platform, as it handles all bits of
+>>> the EC.
+>>>
+>>
+>> Hm, I initially submitted it to power/supply following the c630 driver,
+>> but I think you're right... Though I'm not sure where in platform/ I'd
+>> put this driver... (+CC Hans)
+>>
+>> Seems like most of the things live in platform/x86 but there is no i.e.
+>> platform/arm64...
+>>
+>> Hans, (as a maintainer for most things in platform/) what do you think
+>> would be the best place to put this (and at least two more I'd expect)
+>> driver in inside platform/? And can we handle it through the
+>> platform-driver-x86 list?
+> 
+> I guess that adding a drivers/platform/aarch64 map for this makes
+> sense, with some comments in the Makefile and in the Kconfig
+> help explaining that this is for PC/laptop style EC drivers,
+> which combine multiple logical functions in one, only!
+> 
+> Assuming that we are only going to use this for such EC drivers,
+> using the platform-driver-x86 mailinglist for this makes sense
+> since that is where are the people are with knowledge of e.g.
+> userspace APIs for various typical EC functionalities.
+> 
+> It might even make sense to also use:
+> 
+> git://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git
+> 
+> As git tree for this and send pull-reqs to Linus for this
+> together with the other pdx86 for the same reasons.
+> 
+> I would be open to that as long as this is strictly limited to
+> EC (like) drivers.
 
-Would be nice to see some ASpeed stuff converted to schemas...
+Yes, I believe the EC are the only "boad-specific" drivers we need for
+the Windows-on-Arm devices as of today. I expect at least two more EC
+drivers to be added later.
 
-Rob
+Then I will re-target this series to platform-driver-x86:
 
+- Will add a new drivers/platform/aarch64/ dir with a Makefile and Kconfig
+  that would explicitly note it's only for EC-like drivers. Will update
+  the "X86 PLATFORM DRIVERS" entry in MAINTAINERS. (Or should I add a new
+  entry?)
+- Will add this driver there, also updating per the last Sebastian's
+  comments.
+- Will also move the dt binding to a new bindings/platform/ dir.
+
+Thanks!
+Nikita
+
+> 
+> Ilpo, what do you think about this ?
+> 
+> Regards,
+> 
+> Hans
+> 
 
