@@ -1,116 +1,138 @@
-Return-Path: <devicetree+bounces-46970-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46971-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C16E186B786
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 19:45:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1045D86B790
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 19:46:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B87F289934
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:45:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3CBA81C26172
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 18:46:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E12E71EC0;
-	Wed, 28 Feb 2024 18:45:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A4ED71ED3;
+	Wed, 28 Feb 2024 18:46:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U00IGy2k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f171.google.com (mail-vk1-f171.google.com [209.85.221.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E98371EAE;
-	Wed, 28 Feb 2024 18:45:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4DA871EB0;
+	Wed, 28 Feb 2024 18:46:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709145937; cv=none; b=N0QBRyArXmfss/UChefwQuw5YwBtzG84+ONr5RJVDP7xDyuPoG/zCfFjM0keo2syppgt/TvQ7jDFwuHRc3VdRSl8GvGxejZHt44GuwrE/+v0sBvAXbmLb5SWoJwpLUdG8jQWnB0tVylWgB5pnKS9XHJD/1o7BtY1I3Q4UF5ANdo=
+	t=1709145973; cv=none; b=oah8IAbiWOT9TwLW1oNkDR9wgN+RmAhdhUPv/xZEWI7zeI0sVc1A+vC12E2jCJ5CoQ2zPmVxmJmPEehLLC9q1ZoXj2SU2dfOdNuSyNlJeyhuPNyVz61C8FIrGoucvuSwcbit5Ph+JTYV2TZDwX5bhuD87FWxSjnmOgtMCLUdRtw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709145937; c=relaxed/simple;
-	bh=PuptU9qCfYeOwL5IH0ZHMjo0cCz+Qt/qZLM54d12CD8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cN0LmdxngE9MxTCqIFzW2WacGZDmhpoHjO8O+M7Cjgd5KQY8FSIRf82c/6I6NRb2/aaxfrqvaHKjwW1x591m+B5f48YuZbX4Mh1LEk7SK2pGL/BIK0hc6vfekYmZmJ1hojq1+pUL67kbR3Z9ec7Vz3TKcj6Qi3sQ96Eb++t/lQg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=198.175.65.10
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="21023886"
-X-IronPort-AV: E=Sophos;i="6.06,191,1705392000"; 
-   d="scan'208";a="21023886"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2024 10:45:30 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="913958033"
-X-IronPort-AV: E=Sophos;i="6.06,191,1705392000"; 
-   d="scan'208";a="913958033"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Feb 2024 10:45:25 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy.shevchenko@gmail.com>)
-	id 1rfOvh-00000008Ir4-2XPh;
-	Wed, 28 Feb 2024 20:45:21 +0200
-Date: Wed, 28 Feb 2024 20:45:21 +0200
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: "geert@linux-m68k.org" <geert@linux-m68k.org>,
-	"robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>,
-	"andrew@lunn.ch" <andrew@lunn.ch>,
-	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-	"sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-	"ojeda@kernel.org" <ojeda@kernel.org>,
-	"tzimmermann@suse.de" <tzimmermann@suse.de>,
-	"javierm@redhat.com" <javierm@redhat.com>,
-	"robin@protonic.nl" <robin@protonic.nl>,
-	"lee@kernel.org" <lee@kernel.org>, "pavel@ucw.cz" <pavel@ucw.cz>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 0/4] auxdisplay: 7 segment LED display
-Message-ID: <Zd9_Qc0fVD6OjbKi@smile.fi.intel.com>
-References: <20240227212244.262710-1-chris.packham@alliedtelesis.co.nz>
- <CAHp75Vc7yFX6TLhc0ADx+76_+2Li=WgQiSqpcwkFSpP3pPdC5Q@mail.gmail.com>
- <2ad735ed-963c-4e75-b83e-687ea2c0aef5@alliedtelesis.co.nz>
+	s=arc-20240116; t=1709145973; c=relaxed/simple;
+	bh=x7tt3/s727KoBQU/agWO8hfYEwErmqiSgx2xqcr8VPs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=IhJVIg2iD3l8NXwtv0dta6DPjxYoMUlUfj+vnXrVCka4tjufyqOaaXoYDfvFWDmcH4qKeGcRG41eRjW/pR81U3r35rKSK0NBHtsx0zV/QoXLulxCMMhrBgOureXyy8FGSbkIln4u7nQZyiqbJ6J+5A+V46J6SZ5lsXsU0NgNxww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U00IGy2k; arc=none smtp.client-ip=209.85.221.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f171.google.com with SMTP id 71dfb90a1353d-4caabc3f941so643711e0c.1;
+        Wed, 28 Feb 2024 10:46:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709145971; x=1709750771; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eYaV6Mjv8zlhpOY+TPlEdZUUI8cZoxYWuTXPnkanius=;
+        b=U00IGy2kRJf1f9wQECXGd1iHlW7QPk0TdsQ541AHKuvKpk4ZJ5sOgrfVCNrLrvndQT
+         N7qPyqxmtbvtKxDFvB669sfADJFndpFqEuUUWsQLfYWhbclA2PJZ4dkqAQrrM+ULVBSt
+         uZ6DvHeBN0U8BvoX3Fp2FTXYf3ZH7PNohxVCGqbxmyweyHa4h2dbppKdZeFOE+l4NOtp
+         CvktgfnRszG5lddOcIg7dR5m9ncJ5PcUGjbEtUrrNTUzdLoz/Y8LuUw9zQB8W2P0eRYu
+         vs8spCA1JSpP2j/1gqT/wquTZWVUFQPWe/sMBhBFYEwPjvH8l8zjvJG7quyFNQltN7fa
+         IbvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709145971; x=1709750771;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eYaV6Mjv8zlhpOY+TPlEdZUUI8cZoxYWuTXPnkanius=;
+        b=LThTKHyDz8axMNN0S9RdbzTniuOJqVOfNSboYQDCM45PdkHe4HvlNZedNOBFfZss+M
+         GWnUXvcxIiuEu+5KtkN2nzsvlBUKZ11QYNUGJu0Earp7/U686sVzuFofkTuk/GToR8Iz
+         5bi1e1ge7RHwwL+R2qBOG2F7XXVsBMrkhJ6bL4tw0qXZwQLCCFo5PqUYlM2LIHizJQ6s
+         nTELMfhG0h52Q0HSFeu4ZZ4wBDRIcUQOTW3JGb2OrmlwocfJHumBEOPgzjdlNYgV3rQ5
+         TwneSQzEORRUaNWjHTlr7oUBwHLbLTg4EZKdD3YU2FYYQXEsGPMshwHS0yawve0RRywU
+         rPyw==
+X-Forwarded-Encrypted: i=1; AJvYcCUwf9YVolWKk4UmAkjNvFwe53qWm4tmnbRY/wIuDoQC+5ly2RmpAiUXfFJo4d8FKOGcuLHQWSlouMkgCMJfbTlKJjcFA4GA1QTo58AoXDUylpk7/O+PZe5ZRr+d2+0TFyHuqHXhQCpJoCII/jLr/BR5IbhhDfhn6EFGHhvsIaJfZ3d+ivovQkw9
+X-Gm-Message-State: AOJu0Yz0BowiWSigZahU/t1xQfQZJ9n8NvnKhObeL551Ep0pQY95cMXG
+	mFte3vGzNSHLBiFAEc0NNCcer3ajQDNNGlhm+DNty1k1DxczdchzjzLGRAzp3zRvi4592vUZ1BY
+	cGIxxrhyVi44yQg30vvgbvLDl1UQI+XSh8IM=
+X-Google-Smtp-Source: AGHT+IESCqYfUAhHoyWAQ64/nWMDsinn5AOZapdDh6ChpSpgLKF9xtnimonYKk1Vr6xYewb4cFNciwwHtzKB7VH8HJg=
+X-Received: by 2002:a05:6122:3901:b0:4d3:3334:f2fe with SMTP id
+ ep1-20020a056122390100b004d33334f2femr330692vkb.1.1709145970814; Wed, 28 Feb
+ 2024 10:46:10 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2ad735ed-963c-4e75-b83e-687ea2c0aef5@alliedtelesis.co.nz>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+References: <ffcdcd479c76b92f67481836a33ec86e97f85634.1708944903.git.geert+renesas@glider.be>
+In-Reply-To: <ffcdcd479c76b92f67481836a33ec86e97f85634.1708944903.git.geert+renesas@glider.be>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 28 Feb 2024 18:45:44 +0000
+Message-ID: <CA+V-a8sKCz-ax7WPGGpjGQPhCjGYRgBMoZuYgN33H1YVJZ7sOg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clock: r9a07g043-cpg: Annotate RZ/G2UL-only
+ core clocks
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Biju Das <biju.das.jz@bp.renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, linux-clk@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 28, 2024 at 12:25:30AM +0000, Chris Packham wrote:
-> 
-> On 28/02/24 13:05, Andy Shevchenko wrote:
-> > On Tue, Feb 27, 2024 at 11:22 PM Chris Packham
-> > <chris.packham@alliedtelesis.co.nz> wrote:
-> >> This series adds a driver for a 7 segment LED display.
-> >>
-> >> At this point I've decided not to pursue supporting >1 character. I had
-> >> a look at what would be required to add a devm_fwnode_gpiod_get_array()
-> >> and got bogged down in OF and ACPI code for counting GPIOs.
-> > Out of curiosity, why did it happen? gpiod_count() works in an agnostic way.
-> >
-> At first I though I could create a fwnode_gpiod_count() out of the body 
-> of gpiod_count(). But both of_gpio_get_count() and acpi_gpio_count() 
-> take the dev not the fwnode. It looks like gpiod_count() (and 
-> of_gpio_spi_cs_get_count()) could probably be re-written (or abstracted) 
-> to take the device_node instead of the device. I started looking at 
-> acpi_gpio_count() but I couldn't quite see how I could adapt this.
-> 
-> I'm definitely not saying it can't be done. Just that you probably don't 
-> want an occasional contributor like me messing with some of these core 
-> device abstractions.
+On Mon, Feb 26, 2024 at 11:08=E2=80=AFAM Geert Uytterhoeven
+<geert+renesas@glider.be> wrote:
+>
+> The M2 (CRU main clock), M3 (LCDC Video Clock), and AT (Cortex-A55 Debug
+> clock) core clocks are only present on RZ/G2UL, not on RZ/Five.
+>
+> Annotate this in the comments, like is already done for module clocks
+> and resets.
+>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> To be queued in renesas-clk for v6.10.
+>
+>  include/dt-bindings/clock/r9a07g043-cpg.h | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-I just sent a series. With it you may split gpiod_count() to
-fwnode_gpio_count() and gpiod_count() that uses the former.
-I believe you may do that easily as it won't require any special
-knowledge.
+Cheers,
+Prabhakar
 
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+> diff --git a/include/dt-bindings/clock/r9a07g043-cpg.h b/include/dt-bindi=
+ngs/clock/r9a07g043-cpg.h
+> index 77cde8effdc73c6f..a64139fec81520bf 100644
+> --- a/include/dt-bindings/clock/r9a07g043-cpg.h
+> +++ b/include/dt-bindings/clock/r9a07g043-cpg.h
+> @@ -16,15 +16,15 @@
+>  #define R9A07G043_CLK_SD0              5
+>  #define R9A07G043_CLK_SD1              6
+>  #define R9A07G043_CLK_M0               7
+> -#define R9A07G043_CLK_M2               8
+> -#define R9A07G043_CLK_M3               9
+> +#define R9A07G043_CLK_M2               8       /* RZ/G2UL Only */
+> +#define R9A07G043_CLK_M3               9       /* RZ/G2UL Only */
+>  #define R9A07G043_CLK_HP               10
+>  #define R9A07G043_CLK_TSU              11
+>  #define R9A07G043_CLK_ZT               12
+>  #define R9A07G043_CLK_P0               13
+>  #define R9A07G043_CLK_P1               14
+>  #define R9A07G043_CLK_P2               15
+> -#define R9A07G043_CLK_AT               16
+> +#define R9A07G043_CLK_AT               16      /* RZ/G2UL Only */
+>  #define R9A07G043_OSCCLK               17
+>  #define R9A07G043_CLK_P0_DIV2          18
+>
+> --
+> 2.34.1
+>
+>
 
