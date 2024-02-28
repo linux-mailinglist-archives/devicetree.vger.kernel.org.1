@@ -1,74 +1,73 @@
-Return-Path: <devicetree+bounces-46689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F28B86A925
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:42:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FEE986A928
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 08:43:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D724D1F22F25
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 07:42:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4AA62282CA4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 07:43:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D33DC24B2C;
-	Wed, 28 Feb 2024 07:42:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70F4424B41;
+	Wed, 28 Feb 2024 07:43:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dPHhXf3L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ugJGsLhJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25378250EC
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 07:42:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B738625542
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 07:43:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709106172; cv=none; b=c1P9oy8saP4fcRBC9nriDGiYQ4jkCB1zRbDuiOXfp38KEsJfsiI23xEbfxjdfsYph2SOTl2XgknwXFF1nbbOc0Mav2Sk5skPN3DSUTaV/rOWecFyeOBv+ep59RqW5QI2LYSew8/jnhGf0BxRV0t2pDK3z0WZMkhoRf7q3nphAS0=
+	t=1709106216; cv=none; b=QewesfEuEBvth/T26iE0AX1sJn51k3KqRjDz8w+Vdq0paON1GCKEOSMLrlC/kwZu4XnT3Ha0bfgyUIE54KPNYPKNGUc/dUnVrwbR+M8vA4TLGypr0L+fXb20ibi2kdyJkMVO2Q5THaGLhc/k9rblMKXnF9+0dWfRg6/dJQVNpco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709106172; c=relaxed/simple;
-	bh=2z/mrd9QvlkiZfZzv2pdK+B8HyWJmS5sRKml1NG7xcQ=;
+	s=arc-20240116; t=1709106216; c=relaxed/simple;
+	bh=KZB9afGWk49wsUguAC8Wcy7p2IfStsEoLr164/KUqGE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cmzSVw9hcrZvncqv16NY9Xpa+xu4sBhq8wIKEsIh16Tl1+LemyU+bEj/0U/Xtkbo1zcCUUg68V4fFZ2y7YLiIofhL5yQfKKF6IdeMcb021ppjQuCFlmNjCVlFJHjdNevXJgiUhTq5PFeiApNnosdH7rF35xtUF1ALdBYsPbCei8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dPHhXf3L; arc=none smtp.client-ip=209.85.208.50
+	 In-Reply-To:Content-Type; b=RF5wYUY/Re4s0eEmSyATp/kY7xYX3iZVSzDcN4eP9CTGzgeRlloguf4Z6C5YwvTKACYNs5BWQtamlfu1Mo9KFd7CS4ZJDrfhweCpOMA2htBLgiem99UVREAj54LBeueNIakiyJRsSk6vCiROKSVmBpuPWKltCAdGjevFn3xlVHc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ugJGsLhJ; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55a5e7fa471so6978505a12.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 23:42:50 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-564fd9eea75so6532205a12.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Feb 2024 23:43:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709106169; x=1709710969; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709106213; x=1709711013; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=mQYBMAfRlY158XeZRXnO/C3REbH4KTGNj1xejarJZro=;
-        b=dPHhXf3Luy03K2s9DTLiZX5xDz+/y/Rb6jFhLFjbnYmtL8jcsPvJTgpqYjRGqGM7GQ
-         dZNDRHR3zVgWJJ5v4YaUQWHSMIExyCwd2ZdKFY1MA2mQR2z+qFaC7YAvlJviFa37Sus1
-         V7lL9yAK+LC6xmlimNGjyaHrq76JLB6kMPL4T+U5f9SHV//TNF18ppKneaTFXiddSBVJ
-         Kt7F1yLlw5JCNSM5RcWvxGdVY56mjzK43M6nit1mYNkrLCQMjb//rCX6hIULwWo0ImU/
-         qsBkN4KP/rXzn+pVFPLsO/43uxMpwJlBportHf/EaXfw/ciQoBQwg8R6uFVa1GBsGXP1
-         7v3w==
+        bh=BTv7H141dtU6IvG4BWi0kIEy/lf3C1/oQ8J1VahORAo=;
+        b=ugJGsLhJWH/2FhnwEEyViHitPmsTY6Au5jhFyrsjt3++m7T9akbKDd55JQuSsddqn5
+         /rfFKwntDMIyycnQqy4lGtT8nZjVIFYKQMmieTgBTSCdzeOBeMRsbF6VIE1sPFyirUN2
+         HnszWESrfyNiyCGdBmeL/FxJ+AmtHWC/I3A3LIuw0o9Jel8oISCiicucSqTlYVTmzOuj
+         h4vR37wixDOoHVBPtgbgUJKrClj4WbgOMT1amP6Hq/9qg87d+DPSyjjYjNwxLxDucJ1n
+         y+vWM0kgOKdgIBOzrBaOSykcixglJQI67VRFhRYlg/q+CgX7LO6f4uffSIPQXIikzL9Q
+         UWvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709106169; x=1709710969;
+        d=1e100.net; s=20230601; t=1709106213; x=1709711013;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mQYBMAfRlY158XeZRXnO/C3REbH4KTGNj1xejarJZro=;
-        b=AFHn8iISUcmdINVK5x8d19tCVSVSCiCrxwNY3GpYTid+X2XJ3C705NXpXt5J37aAYL
-         xOWyhAhh5eok2W+KWVZLqR1dumDrpV7mYLNbGBnOJxtSwRR6zPrUQ7kp7yatOuG4Rglw
-         vmgEmTNHpWpXZCeo310iQ9I8J5rqTVlU6dyH8HJ8A6iQVAcUtt7ddJFg+QyVpXb8gM+z
-         rDycjgue4zdgAi9sy0OBSjb/Ts3zJrFTm3Toj6vwcC23LK8eFLXR1ocbPaLZ1+OVDC8F
-         ZGNRGxhidMaYf+o0Xtv/gyNgKkQxGbVrE3TjJcb3QhjTQ00KiRK5aoJPkxT3I1HWj/mZ
-         vIYw==
-X-Forwarded-Encrypted: i=1; AJvYcCWcmvNzmIJJLk+xjlRvGbxeKe2ITRTSJ4liEEnq+0LkiAMePnIsTbB/UW8VA4JEc7RRM8wWRTxYwfIyTMGa5mzNyt257caYwEEwvQ==
-X-Gm-Message-State: AOJu0YzBQcFDDgw5qsgKHK2hhvPLIEPdhsCWfNPXL+9e8/CVqkagCWOq
-	rR6eTSFYa1upRVMGHriFodxiro92JtkmbCm4ICXsYekTFd1StM1su3Ly7GBskkU=
-X-Google-Smtp-Source: AGHT+IGdbNmKnHWCw2QxMl92RhUTV1mzewd327y1Q5FQL0SGRsS9f4y71IC4Zph03lvtjOgkiaouYg==
-X-Received: by 2002:a17:906:6d7:b0:a44:f85:a10a with SMTP id v23-20020a17090606d700b00a440f85a10amr271835ejb.14.1709106169409;
-        Tue, 27 Feb 2024 23:42:49 -0800 (PST)
+        bh=BTv7H141dtU6IvG4BWi0kIEy/lf3C1/oQ8J1VahORAo=;
+        b=n7VjiI0UUc909zexSSEdFdBMtVEyq7cI9Om7ri5u2tsZRp0oEb952mo1IgJnODMzSP
+         XgfOPvMqn1yrGScahD5HniUHJBoqgnxpCTEmH7uQ8+GK/HJMiptHkHud/QkeHEaM3Wuz
+         zErpXAmzL8QByyuwahhIQd9WZJWHw0YLTNl9bwMLgRROb61EEyAB3AnOWTAuFw/rlyY5
+         o2MqJr9zeb+RuVY4YpRlDGRfYqdoLcDLB98mQ/cLB0c08jY7jTsRCCvcYJle1GhdwQ+t
+         shIyFyIsy2zPzZf3sXXz6B5+n3Z313/+X2JOddN9Mh0dk5MnG8FLRZBmsEenGbUIFlat
+         t0Eg==
+X-Gm-Message-State: AOJu0YwzwYLrKGvmnJdl/Tww7k9X+XvXGTapjQg6xa0ZzoW7dTQsGeLK
+	2z3HuXc2q6ErATrZ0ZrF+KABYqvXNHKsjLFSC1r7H2I0dUZKMD6Xd7DZv/qLnms=
+X-Google-Smtp-Source: AGHT+IGyVwmjbLV7aYmYoylhfm3Fnrut+gsFc13qjUahTapCVKEQGPLA4fEBhlFBswuIpnmUG7F5cg==
+X-Received: by 2002:a17:906:b78b:b0:a44:46a:e904 with SMTP id dt11-20020a170906b78b00b00a44046ae904mr405301ejb.50.1709106213234;
+        Tue, 27 Feb 2024 23:43:33 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id cd14-20020a170906b34e00b00a4412406741sm67118ejb.131.2024.02.27.23.42.48
+        by smtp.gmail.com with ESMTPSA id cd14-20020a170906b34e00b00a4412406741sm67118ejb.131.2024.02.27.23.43.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Feb 2024 23:42:48 -0800 (PST)
-Message-ID: <daed8ada-9e01-41ad-82af-5da5cbbc865c@linaro.org>
-Date: Wed, 28 Feb 2024 08:42:46 +0100
+        Tue, 27 Feb 2024 23:43:32 -0800 (PST)
+Message-ID: <8ada088e-bc43-45ba-b86c-141d25f6cedc@linaro.org>
+Date: Wed, 28 Feb 2024 08:43:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +75,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] iio: industrialio-core: look for aliases to request
- device index
+Subject: Re: [PATCH 1/2] dt-bindings: arm: rockchip: Add QNAP TS-433
 Content-Language: en-US
-To: Dominique Martinet <dominique.martinet@atmark-techno.com>
-Cc: Jonathan Cameron <jic23@kernel.org>,
- Syunya Ohshio <syunya.ohshio@atmark-techno.com>,
- =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
- Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
+To: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <ukleinek@debian.org>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240228051254.3988329-1-dominique.martinet@atmark-techno.com>
- <7f03bb12-0976-4cb7-9ca9-4e4e28170bdd@linaro.org>
- <Zd7hSOw3_zosyrn3@atmark-techno.com>
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org
+References: <cover.1709034476.git.ukleinek@debian.org>
+ <a583992a896c80962b820803526eb593122c1692.1709034476.git.ukleinek@debian.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,75 +130,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <Zd7hSOw3_zosyrn3@atmark-techno.com>
+In-Reply-To: <a583992a896c80962b820803526eb593122c1692.1709034476.git.ukleinek@debian.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 28/02/2024 08:31, Dominique Martinet wrote:
-> Krzysztof Kozlowski wrote on Wed, Feb 28, 2024 at 08:16:03AM +0100:
->> On 28/02/2024 06:12, Dominique Martinet wrote:
->>> From: Syunya Ohshio <syunya.ohshio@atmark-techno.com>
->>>
->>> When using dtb overlays it can be difficult to predict which iio device
->>> will get assigned what index, and there is no easy way to create
->>> symlinks for /sys nodes through udev so to simplify userspace code make
->>> it possible to request fixed indices for iio devices in device tree.
->>
->> Please use subject prefixes matching the subsystem. You can get them for
->> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
->> your patch is touching.
+On 27/02/2024 12:52, Uwe Kleine-König wrote:
+> This is a SOHO NAS with 4 hd bays and 4 GB of RAM.
 > 
-> Sorry, I assumed that was already the case and didn't think of checking
-> that from what I was given, I'll fix the prefix to "iio: core: .." in v2
-> 
->> Please run scripts/checkpatch.pl and fix reported warnings. Some
->> warnings can be ignored, but the code here looks like it needs a fix.
->> Feel free to get in touch if the warning is not clear.
-> 
-> Hm, I did check that and do not get any warning about the code itself:
-> 
-> $ git show --format=email | ./scripts/checkpatch.pl -q
-> WARNING: DT binding docs and includes should be a separate patch. See: Documentation/devicetree/bindings/submitting-patches.rst
+> Signed-off-by: Uwe Kleine-König <ukleinek@debian.org>
+> ---
+>  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-
-> 
-> total: 0 errors, 1 warnings, 61 lines checked
-> 
-> What are you thinking of?
-
-You have warning right there.
-
-> 
-> Regarding the dt binding, I'm not actually changing a binding so I
-> didn't think of rechecking after adding the note, but I guess it still
-> ought to be separate; I'll split it in v2.
-> 
->>> For platforms without device trees of_alias_get_id will just fail and
->>> ida_alloc_range will behave as ida_alloc currently does.
->>>
->>> For platforms with device trees, they can not set an alias, for example
->>> this would try to get 10 from the ida for the device corresponding to
->>> adc2:
->>> aliases {
->>>   iio10 = &adc2
->>> };
->>
->> Sorry, that's why you have labels and compatibles.
-> 
-> I'm not sure I understand this comment -- would you rather this doesn't
-> use aliases but instead add a new label (e.g. `iio,index = <10>` or
-> whatever) to the iio node itself?
-
-No, the devices already have label property.
-
-> 
-> Setting up a fixed alias seems to be precisely what aliases are about
-> (e.g. setting rtc0 will make a specific node become /dev/rtc0, same with
-> ethernet0, gpio, i2c, mmc, serial...), I'm not sure I agree a new label
-> would be more appropriate here, but perhaps I'm missing some context?
-
-Maybe I don't get your point, but your email said "sysfs", so why do you
-refer to /dev?
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
