@@ -1,367 +1,224 @@
-Return-Path: <devicetree+bounces-46855-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46856-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ADAB86AFEF
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:09:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8A0F186AFF6
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:10:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2085828975E
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:09:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A0271F273A5
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74A70149001;
-	Wed, 28 Feb 2024 13:09:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFDFE14A081;
+	Wed, 28 Feb 2024 13:09:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fWO9lZWT"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="o2TwxEsP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CB047351C;
-	Wed, 28 Feb 2024 13:09:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E96149DE2
+	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 13:09:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709125742; cv=none; b=emGVGo0iyhtCjLo4aVzo2AhT+GrPVEXX8a8Hvjediv7nKhSvmaikN2bdO0oiQgNvNEuYb5Zg5WE7vieWfD9slEhP1bsQQ2gyQhDqOEHk95x5h58C/60y0FBXyxKj0ZgdEmA1cwmVc3YI4ompidIVhB8VWfDBf/l0WPC9kwoZhd4=
+	t=1709125786; cv=none; b=UXmZCJ4qXGLb+ZNAwmoWAGx3uLmxjUuNvWQB6upcRqgu4YwxLLX9Ew5B+1jmDpQTzlPY+Kh5M1u2ZMk48C7uzgIc7N9X1zkMN2Vzosj6sWvvLRCdswHB4GW+1NFrsaOVP4g8c9pQVPYYa9xdSqYTMeoy0J0AO2Zu4WbPk+l3b5Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709125742; c=relaxed/simple;
-	bh=29efipgaYFVLHtU1fYqAE2Oq/obv/17ZcWxe8+cAFgk=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BseiTzWjbbrFjzMGgAMOK2V9IsjFa6cvkeYBdmcc6FHQE5np7oWItU0JZxQQmNqY/39dKs1++MskxvT7fbnM1l7OYW+xAdEQRqMghq8Naq1nuFQrkvQVTkRZ+n/41GaP1wFJLWC8P/p7Mf/4DvGMWQcMyVweD61URrRxt3V5dC4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fWO9lZWT; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-5129e5b8cecso6525515e87.3;
-        Wed, 28 Feb 2024 05:08:59 -0800 (PST)
+	s=arc-20240116; t=1709125786; c=relaxed/simple;
+	bh=22zXZ9PodnLDXQmS1om0gHCZZMIyrw8AhQ46vkhZT5A=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WHk9Dq9zYLPin8GjPxudFolAG8pWq6AL66Pct87JaRwOjCMLqm/WHWEoKFT5EKY0bAQvmnifNYHUkSDLYjJFxAJRTReL27joca54TAZdcIiPeuDtSccqbQB3Da/LxiVC8XNrQpEvsuk967ros/ZCHhRA4Z/wOVuTgkgYySwZd4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=o2TwxEsP; arc=none smtp.client-ip=209.85.166.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-363bdac74c6so14992685ab.2
+        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 05:09:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709125738; x=1709730538; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=A2nRuHvR03SqSiQ0hwNmb97ByNuecytbXgv6lYhQpis=;
-        b=fWO9lZWTwWvI616EHzF0hP841a2CAI+h+K3rPOUawzL8apksgorEL4g9gH1/ipPJxC
-         OfTwEuGMTMeZWEZ2dqCVmPItOtsU7Nr6v7WGwrcq3syIra3G8s1r7+gxdRDX5mGtAU3b
-         o6b8WTAmGtqfxwwyk82labDL1ev/R7uqTjRHu910ZFC1w1hdBdGj1wjvfY1Xo3X+FtPp
-         7RB2JpZahDBFO0Vzg3+rrJcw7PmiMcvpMR596sJQl+YxHSMLfZQioXQ+WNySF6cYveiJ
-         2Z1aygkNOrkr0aMhn3lpP+/3jb/KfCKDxfTAmawyrbv1RihgAghjIO75gqv3jE7SdcKM
-         Ka6w==
+        d=google.com; s=20230601; t=1709125784; x=1709730584; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JGd0yKh3396kCNNhs33PFvPTU/Yg35V86efPvYcoBpQ=;
+        b=o2TwxEsP+gJMp3ow03MGNdnOkUCkXkZNZFxkG0bFRwyp6Hhjy8AS2TD4hf4Bv+okW2
+         24/VnbmudIBL25D/AVoY6Foj7WagMoDIQxiY0pVjv6/9nqCVUu3BXW3MQXuWm6LTbrGT
+         NWKAra5/5GkECn5ovSOpbgZDOwkOkUzGOJGFXx4pkIeWIDH+lcHFcMI/Ozms+8aNfIyT
+         IVDhHbvhq2ebmsGsRRundQ42jYDwGFoQDvubxsG3nIDPRP9XCaqmAQ9aqJpUJaPXUvpR
+         G1mIa5tu9M3HIhj3nTd0Y43zU0mReo3XgHNm9UooQA5xJEh15TWKtyaTpsFa7ccI4YXw
+         Fd3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709125738; x=1709730538;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=A2nRuHvR03SqSiQ0hwNmb97ByNuecytbXgv6lYhQpis=;
-        b=KIwcsoBw9zVY1F27ZBW5bpL8CO1OG/QAhLlHflB6MrfoZuXG6DAhkIrP6OZdSpiZ4m
-         eRQpwoacmXAZij+unqtzfZRb0jBYfyCfkvDv/ab01KLyUYchIM5HPsRXXjbwEtwhlUYk
-         luRVwxiZWuSUPhu7MznwWEVuEJeIdNJ1oNGAQqoKD9pELlYBvL+zcTEdMo6dCJwD4LpI
-         UZjM2+6Pfl+adZoti6zGvyl/UOqDIbyhEPDdYdLKBrgc/VGmZZLqNEZ3vUnqFqJHH8xr
-         LO1MY5l/st+HJmZlPxxmoLC1jKcybhnGpUY+9XK6TVmoK+My2ZIhbPo0bOViZHAlCFlt
-         T0NQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWBVlsefUbW01YPP7ZF3+yUFwuFTnXxM7QR6Uf4GWdSj7WCGE3SAqNkw6sTKS1qtK1Cew3ePrAN/bhRRjlWLskVN/TwvORHDCIfEHTIC5kGkG7WhmohyWH2tmSLd/+Pcpng+HRVQTvcTwRSaVEc6MAAZnAOnL1J4USj63tS0G7NCPeYUQ==
-X-Gm-Message-State: AOJu0Ywpvwh3xjv/uMm8+zKCVI5Pb9fGuRa6w6Jyy1+qO8nO9ayr9rVM
-	nB6B6o1TvQgNgpka5N7BWpP2BcEA5kDSRPfp+Vk3oHJvAMmh/IlD
-X-Google-Smtp-Source: AGHT+IHMh/nncsowG6h0Kt/XVHBN81W3SVMH6NStKtf5vA+jYMOFePMzQCEhO2MfQWJ9FSwQGkOErw==
-X-Received: by 2002:a05:6512:23a9:b0:512:fe34:9384 with SMTP id c41-20020a05651223a900b00512fe349384mr7247827lfv.58.1709125737984;
-        Wed, 28 Feb 2024 05:08:57 -0800 (PST)
-Received: from ?IPV6:2001:14ba:7426:df00::2? (drtxq0yyyyyyyyyyyyyby-3.rev.dnainternet.fi. [2001:14ba:7426:df00::2])
-        by smtp.gmail.com with ESMTPSA id w19-20020ac254b3000000b005131e2bf3dasm95480lfk.215.2024.02.28.05.08.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Feb 2024 05:08:57 -0800 (PST)
-Message-ID: <a828e77c-b3d4-49bb-b0bb-b9fd6cb7d114@gmail.com>
-Date: Wed, 28 Feb 2024 15:08:56 +0200
+        d=1e100.net; s=20230601; t=1709125784; x=1709730584;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JGd0yKh3396kCNNhs33PFvPTU/Yg35V86efPvYcoBpQ=;
+        b=aoULfN99RJx7tkvo61/BZpkkQQPsZF7nH1aILO8UDS57t48vHt/vacnSiLOJwQ21yo
+         Yy2j45ljVkjGIGdfAg/6MH+PdmC2aNqpayNYqE/TPzM7eQ6x321VUGnHYBjE2vmDg3H/
+         2Q5FGsh4JLKf2lg9XLzlHsiy5dbqoaNGUhMbHnM8n1fnPbJpIDRQSk0J2f7AS1HNSD+V
+         2uk9MIvRdHIOwfJt18eBL8D8MVup+qv9Lw2zstJ6ZlYl+cNiK0C0zWvPN/tS/QfTPXzj
+         LvovUuPz1XzTh4SWdu8bUJKWxgXmhNvMjIxsxLBycSQzTyjDqW53tZIUdmDlMEjzPjsX
+         ZWXw==
+X-Forwarded-Encrypted: i=1; AJvYcCVpeXUiZ4FFIzf9cSY0xN9Vj28ipckVceFxo22LcPXtXkjPsXN8E/+np4AHwMX8FyKtGFQWqNLdwSqCFhp1c7YP7oBnPNWi6dB64A==
+X-Gm-Message-State: AOJu0Yxt4nKNT3TKCn+Ha7cDFEEk+ionxr7BVd3cY5KgBGsuT39mCB6z
+	JZKmKAwT0yEXxcknKlizE30JihAZFG+e92d0N/lBoYq1TAP7eaK8iMsoFTj15rxiZLMrDL9Tc17
+	K617zU0m0eC5fEKtB0npm72usbcZTx2Zl7ZZy
+X-Google-Smtp-Source: AGHT+IGJeisdEj/eLYFhHeYjt+DGbEpr7KtQvVdRL5zUoH9Jx4NyFYMg/jqhD2nJmIFuj/tYaRq+v96fJA2neOwJEpk=
+X-Received: by 2002:a05:6e02:2147:b0:365:d8a:21e0 with SMTP id
+ d7-20020a056e02214700b003650d8a21e0mr17157230ilv.21.1709125784147; Wed, 28
+ Feb 2024 05:09:44 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 5/5] iio: light: Add support for APDS9306 Light Sensor
-Content-Language: en-US, en-GB
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Matt Ranostay <matt@ranostay.sg>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240228122408.18619-1-subhajit.ghosh@tweaklogic.com>
- <20240228122408.18619-6-subhajit.ghosh@tweaklogic.com>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <20240228122408.18619-6-subhajit.ghosh@tweaklogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240221160215.484151-1-panikiel@google.com> <20240221160215.484151-9-panikiel@google.com>
+ <13aeb2ff-72f4-49d9-b65e-ddc31569a936@linaro.org> <CAM5zL5q0oKoTMR0jSwYVAChCOJ9iKYPRFiU1vH4qDqhHALKz4w@mail.gmail.com>
+ <20240227142911.GB3863852-robh@kernel.org> <CAM5zL5pXu5sbzCHY_BrCJ7eZj-p9n0tCo6CmuTqUpvniTrqWJg@mail.gmail.com>
+ <324f7b6e-c72c-40aa-afe6-779345c2eade@linaro.org>
+In-Reply-To: <324f7b6e-c72c-40aa-afe6-779345c2eade@linaro.org>
+From: =?UTF-8?Q?Pawe=C5=82_Anikiel?= <panikiel@google.com>
+Date: Wed, 28 Feb 2024 14:09:33 +0100
+Message-ID: <CAM5zL5oJSHxJK4QWsr2X23g-cN6G54VhGfuwHhMJ9rNu6+gZ=w@mail.gmail.com>
+Subject: Re: [PATCH v2 8/9] media: dt-bindings: Add Intel Displayport RX IP
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Rob Herring <robh@kernel.org>, airlied@gmail.com, akpm@linux-foundation.org, 
+	conor+dt@kernel.org, daniel@ffwll.ch, dinguyen@kernel.org, 
+	hverkuil-cisco@xs4all.nl, krzysztof.kozlowski+dt@linaro.org, 
+	maarten.lankhorst@linux.intel.com, mchehab@kernel.org, mripard@kernel.org, 
+	tzimmermann@suse.de, devicetree@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+	linux-media@vger.kernel.org, chromeos-krk-upstreaming@google.com, 
+	ribalda@chromium.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2/28/24 14:24, Subhajit Ghosh wrote:
-> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
-> It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
-> channel approximates the response of the human-eye providing direct
-> read out where the output count is proportional to ambient light levels.
-> It is internally temperature compensated and rejects 50Hz and 60Hz flicker
-> caused by artificial light sources. Hardware interrupt configuration is
-> optional. It is a low power device with 20 bit resolution and has
-> configurable adaptive interrupt mode and interrupt persistence mode.
-> The device also features inbuilt hardware gain, multiple integration time
-> selection options and sampling frequency selection options.
-> 
-> This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for
-> Scales, Gains and Integration time implementation.
-> 
-> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-> ---
-> v7 -> v8:
->   - Renamed APDS9306_INT_CH_CLEAR to APDS9306_INT_SRC_CLEAR macro for higher
->     readability
->   - Removed APDS9306_CHANNEL macro for higher readability
->   - Updated iio_push_event() functions with correct type of events (Light or Intensity)
->   - Updated variable name "event_ch_is_light" to "int_src" and change as per
->     review to fix compiler warning
->   - Used scope for guard() functions
->   - Other fixes as per reviews
->     https://lore.kernel.org/all/20240224151340.3f2f51e8@jic23-huawei/
->     https://lore.kernel.org/all/ZdycR6nr3rtrnuth@smile.fi.intel.com/
-> 
-> v6 -> v7:
->   - Made comments to struct part_id_gts_multiplier as kernel doc
->   - Removed static_asserts for array sizes
->   - Moved regmap_field types from driver private data structure to a new
->     structure and removed regfield_ prefix to reduce names
->   - Used "struct apds9306_regfields *rf = &data->rf" in the respective
->     functions to reduce names
->   - Removed apds9306_runtime_power_on() and apds9306_runtime_power_off()
->     functions in favour of using the runtime_pm calls directly from
->     calling functions.
->   - Fixed indentations
->     https://lore.kernel.org/all/ZcOZX8mWTozC2EAc@smile.fi.intel.com/#r
-> 
-> v5 -> v6:
->   - Changes as per review
->   - Update kernel doc for private data
->   - Change IIO Event Spec definitions
->   - Update guard mutex lock implementation
->   - Add pm_runtime_get()
->   - Update styling
->     Link: https://lore.kernel.org/all/20240204134056.5dc64e8b@jic23-huawei/
-> 
-> v2 -> v5:
->   - Removed scale attribute for Intensity channel:
->     Link: https://lore.kernel.org/all/20231204095108.22f89718@jic23-huawei/
-> 
->   - Dropped caching of hardware gain, repeat rate and integration time and
->     updated code as per earlier reviews.
->     Link: https://lore.kernel.org/lkml/20231028142944.7e210eb6@jic23-huawei/
-> ---
+On Wed, Feb 28, 2024 at 1:18=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 28/02/2024 12:05, Pawe=C5=82 Anikiel wrote:
+> > On Tue, Feb 27, 2024 at 3:29=E2=80=AFPM Rob Herring <robh@kernel.org> w=
+rote:
+> >>
+> >> On Mon, Feb 26, 2024 at 11:59:42AM +0100, Pawe=C5=82 Anikiel wrote:
+> >>> On Mon, Feb 26, 2024 at 10:13=E2=80=AFAM Krzysztof Kozlowski
+> >>> <krzysztof.kozlowski@linaro.org> wrote:
+> >>>>
+> >>>> On 21/02/2024 17:02, Pawe=C5=82 Anikiel wrote:
+> >>>>> The Intel Displayport RX IP is a part of the DisplayPort Intel FPGA=
+ IP
+> >>>>> Core. It implements a DisplayPort 1.4 receiver capable of HBR3 vide=
+o
+> >>>>> capture and Multi-Stream Transport. The user guide can be found her=
+e:
+> >>>>>
+> >>>>> https://www.intel.com/programmable/technical-pdfs/683273.pdf
+> >>>>>
+> >>>>> Signed-off-by: Pawe=C5=82 Anikiel <panikiel@google.com>
+> >>>>> ---
+> >>>>>  .../devicetree/bindings/media/intel,dprx.yaml | 160 ++++++++++++++=
+++++
+> >>>>>  1 file changed, 160 insertions(+)
+> >>>>>  create mode 100644 Documentation/devicetree/bindings/media/intel,d=
+prx.yaml
+> >>>>>
+> >>>>> diff --git a/Documentation/devicetree/bindings/media/intel,dprx.yam=
+l b/Documentation/devicetree/bindings/media/intel,dprx.yaml
+> >>>>> new file mode 100644
+> >>>>> index 000000000000..31025f2d5dcd
+> >>>>> --- /dev/null
+> >>>>> +++ b/Documentation/devicetree/bindings/media/intel,dprx.yaml
+> >>>>> @@ -0,0 +1,160 @@
+> >>>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> >>>>> +%YAML 1.2
+> >>>>> +---
+> >>>>> +$id: http://devicetree.org/schemas/media/intel,dprx.yaml#
+> >>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>>>> +
+> >>>>> +title: Intel DisplayPort RX IP
+> >>>>> +
+> >>>>> +maintainers:
+> >>>>> +  - Pawe=C5=82 Anikiel <panikiel@google.com>
+> >>>>> +
+> >>>>> +description: |
+> >>>>> +  The Intel Displayport RX IP is a part of the DisplayPort Intel F=
+PGA IP
+> >>>>> +  Core. It implements a DisplayPort 1.4 receiver capable of HBR3 v=
+ideo
+> >>>>> +  capture and Multi-Stream Transport.
+> >>>>> +
+> >>>>> +  The IP features a large number of configuration parameters, foun=
+d at:
+> >>>>> +  https://www.intel.com/content/www/us/en/docs/programmable/683273=
+/23-3-20-0-1/sink-parameters.html
+> >>>>> +
+> >>>>> +  The following parameters have to be enabled:
+> >>>>> +    - Support DisplayPort sink
+> >>>>> +    - Enable GPU control
+> >>>>> +  The following parameters' values have to be set in the devicetre=
+e:
+> >>>>> +    - RX maximum link rate
+> >>>>> +    - Maximum lane count
+> >>>>> +    - Support MST
+> >>>>> +    - Max stream count (only if Support MST is enabled)
+> >>>>> +
+> >>>>> +properties:
+> >>>>> +  compatible:
+> >>>>> +    const: intel,dprx-20.0.1
+> >>>>> +
+> >>>>> +  reg:
+> >>>>> +    maxItems: 1
+> >>>>> +
+> >>>>> +  interrupts:
+> >>>>> +    maxItems: 1
+> >>>>> +
+> >>>>> +  intel,max-link-rate:
+> >>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+> >>>>> +    description: Max link rate configuration parameter
+> >>>>
+> >>>> Please do not duplicate property name in description. It's useless.
+> >>>> Instead explain what is this responsible for.
+> >>>>
+> >>>> Why max-link-rate would differ for the same dprx-20.0.1? And why
+> >>>> standard properties cannot be used?
+> >>>>
+> >>>> Same for all questions below.
+> >>>
+> >>> These four properties are the IP configuration parameters mentioned i=
+n
+> >>> the device description. When generating the IP core you can set these
+> >>> parameters, which could make them differ for the same dprx-20.0.1.
+> >>> They are documented in the user guide, for which I also put a link in
+> >>> the description. Is that enough? Or should I also document these
+> >>> parameters here?
+> >>
+> >> Use the standard properties: link-frequencies and data-lanes. Those go
+> >> under the port(s) because they are inheritly per logical link.
+> >
+> > The DP receiver has one input interface (a deserialized DP stream),
+> > and up to four output interfaces (the decoded video streams). The "max
+> > link rate" and "max lane count" parameters only describe the input
+> > interface to the receiver. However, the port(s) I am using here are
+> > for the output streams. They are not affected by those parameters, so
+> > I don't think these properties should go under the output port(s).
+> >
+> > The receiver doesn't have an input port in the DT, because there isn't
+> > any controllable entity on the other side - the deserializer doesn't
+> > have any software interface. Since these standard properties
+> > (link-frequencies and data-lanes) are only defined in
+> > video-interfaces.yaml (which IIUC describes a graph endpoint), I can't
+> > use them directly in the device node.
+>
+> DT describes the hardware, so where does the input come? From something,
+> right? Regardless if you have a driver or not. There is dp-connector
+> binding, if this is physical port.
 
-Hi Subhajit,
+Yes, it is a physical port. I agree adding a DT node for the physical
+DP input connector would let us add link-frequencies to the input port
+of the receiver.
 
-I just happened to notice couple of minor things. I see the series is 
-already in a v8 and don't want to cause extra re-spins. So, perhaps 
-consider these points if you need to do v9 but I am sending these only 
-as 'nits'. I don't think any of my findings are very serious.
-
-...
-
-> +/*
-> + * As per the datasheet, at HW Gain = 3x, Integration time 100mS (32x),
-> + * typical 2000 ADC counts are observed for 49.8 uW per sq cm (340.134 lux)
-> + * for apds9306 and 43 uW per sq cm (293.69 lux) for apds9306-065.
-> + * Assuming lux per count is linear across all integration time ranges.
-> + *
-> + * Lux = (raw + offset) * scale; offset can be any value by userspace.
-> + * HG = Hardware Gain; ITG = Gain by changing integration time.
-> + * Scale table by IIO GTS Helpers = (1 / HG) * (1 / ITG) * Multiplier.
-> + *
-> + * The Lux values provided in the datasheet are at ITG=32x and HG=3x,
-> + * at typical 2000 count for both variants of the device.
-> + *
-> + * Lux per ADC count at 3x and 32x for apds9306 = 340.134 / 2000
-> + * Lux per ADC count at 3x and 32x for apds9306-065 = 293.69 / 2000
-> + *
-> + * The Multiplier for the scale table provided to userspace:
-> + * IIO GTS scale Multiplier for apds9306 = (340.134 / 2000) * 32 * 3 = 16.326432
-> + * and for apds9306-065 = (293.69 / 2000) * 32 * 3 = 14.09712
-> + */
-> +static struct part_id_gts_multiplier apds9306_gts_mul[] = {
-
-const ?
-
-> +	{
-> +		.part_id = 0xB1,
-> +		.max_scale_int = 16,
-> +		.max_scale_nano = 3264320,
-> +	}, {
-> +		.part_id = 0xB3,
-> +		.max_scale_int = 14,
-> +		.max_scale_nano = 9712000,
-> +	},
-> +};
-...> +static struct iio_event_spec apds9306_event_spec_als[] = {
-
-const ?
-
-> +	{
-> +		.type = IIO_EV_TYPE_THRESH,
-> +		.dir = IIO_EV_DIR_RISING,
-> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
-> +	}, {
-> +		.type = IIO_EV_TYPE_THRESH,
-> +		.dir = IIO_EV_DIR_FALLING,
-> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
-> +	}, {
-> +		.type = IIO_EV_TYPE_THRESH,
-> +		.dir = IIO_EV_DIR_EITHER,
-> +		.mask_shared_by_all = BIT(IIO_EV_INFO_PERIOD),
-> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
-> +	}, {
-> +		.type = IIO_EV_TYPE_THRESH_ADAPTIVE,
-> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
-> +			BIT(IIO_EV_INFO_ENABLE),
-> +	},
-> +};
-> +
-> +static struct iio_event_spec apds9306_event_spec_clear[] = {
-const ?
-> +	{
-> +		.type = IIO_EV_TYPE_THRESH,
-> +		.dir = IIO_EV_DIR_EITHER,
-> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
-> +	},
-> +};
-> +
-> +static struct iio_chan_spec apds9306_channels_with_events[] = {
-const?
-> +	{
-> +		.type = IIO_LIGHT,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> +				      BIT(IIO_CHAN_INFO_SCALE),
-> +		.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),
-> +		.event_spec = apds9306_event_spec_als,
-> +		.num_event_specs = ARRAY_SIZE(apds9306_event_spec_als),
-> +	}, {
-> +		.type = IIO_INTENSITY,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.channel2 = IIO_MOD_LIGHT_CLEAR,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-> +		.modified = 1,
-> +		.event_spec = apds9306_event_spec_clear,
-> +		.num_event_specs = ARRAY_SIZE(apds9306_event_spec_clear),
-> +	},
-> +};
-> +
-> +static struct iio_chan_spec apds9306_channels_without_events[] = {
-const?
-> +	{
-> +		.type = IIO_LIGHT,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> +				      BIT(IIO_CHAN_INFO_SCALE),
-> +		.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),
-> +	}, {
-> +		.type = IIO_INTENSITY,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.channel2 = IIO_MOD_LIGHT_CLEAR,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-> +		.modified = 1,
-> +	},
-> +};
-
-...
-
-> +static int apds9306_intg_time_set(struct apds9306_data *data, int val2)
-> +{
-> +	struct device *dev = data->dev;
-> +	struct apds9306_regfields *rf = &data->rf;
-> +	int ret, intg_old, gain_old, gain_new, gain_new_closest, intg_time_idx;
-> +	int gain_idx;
-> +	bool ok;
-> +
-> +	if (!iio_gts_valid_time(&data->gts, val2)) {
-> +		dev_err_ratelimited(dev, "Unsupported integration time %u\n", val2);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = regmap_field_read(rf->intg_time, &intg_time_idx);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_field_read(rf->gain, &gain_idx);
-> +	if (ret)
-> +		return ret;
-> +
-> +	intg_old = iio_gts_find_int_time_by_sel(&data->gts, intg_time_idx);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (intg_old == val2)
-> +		return 0;
-> +
-> +	gain_old = iio_gts_find_gain_by_sel(&data->gts, gain_idx);
-> +	if (gain_old < 0)
-> +		return gain_old;
-> +
-> +	ret = iio_gts_find_new_gain_by_old_gain_time(&data->gts, gain_old,
-> +						     intg_old, val2, &gain_new);
-
-You don't use the 'ret' here, so maybe for the clarity, not assign it.
-Or, maybe you wan't to try to squeeze out few cycles for succesful case 
-and check the ret for '0' - in which case you should be able to omit the 
-check right below as well as the call to iio_find_closest_gain_low(). 
-OTOH, this is likely not a "hot path" so I don't care too much about the 
-extra call if you think code is clearer this way.
-
-> +	if (gain_new < 0) {
-> +		dev_err_ratelimited(dev, "Unsupported gain with time\n");
-> +		return gain_new;
-> +	}
-> +
-> +	gain_new_closest = iio_find_closest_gain_low(&data->gts, gain_new, &ok);
-> +	if (gain_new_closest < 0) {
-> +		gain_new_closest = iio_gts_get_min_gain(&data->gts);
-> +		if (gain_new_closest < 0)
-> +			return gain_new_closest;
-> +	}
-> +	if (!ok)
-> +		dev_dbg(dev, "Unable to find optimum gain, setting minimum");
-> +
-> +	ret = iio_gts_find_sel_by_int_time(&data->gts, val2);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = regmap_field_write(rf->intg_time, ret);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = iio_gts_find_sel_by_gain(&data->gts, gain_new_closest);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return regmap_field_write(rf->gain, ret);
-> +}
-
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductors
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
-
+However, dp-connector seems to be a binding for an output port - it's
+under schemas/display/connector, and DP_PWR can be a power supply only
+for an output port (looking at the dp-pwr-supply property). Also, the
+driver for this binding is a DRM bridge driver (display-connector.c)
+which would not be compatible with a v4l2 (sub)device.
 
