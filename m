@@ -1,285 +1,250 @@
-Return-Path: <devicetree+bounces-47027-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47028-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 525C686BB12
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 23:55:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 085D086BBD1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 00:02:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CF4191F26FE2
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 22:55:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A5EA1C216BC
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 23:02:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A73576EEE;
-	Wed, 28 Feb 2024 22:54:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6129A76EF2;
+	Wed, 28 Feb 2024 22:59:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b="b4wWNGhU"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VOAj82Ry"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF83572910
-	for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 22:54:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F6EB7291C;
+	Wed, 28 Feb 2024 22:59:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709160874; cv=none; b=pD1reLaTSsrvTQm/Xv79y2x2rjkRM9ES++/eswZKMEQopYMeNIf4zKBDEqGz1r6aIhTqezCyuT0u8CgMtzS/EZuoN/6fv9IDtOm607bzAT9wz4R6cy5G8Ve2Zn1WMgAqNxoRrPP9vG4Zbu/x33buJpP00RwgepRicLp9G0M0ERI=
+	t=1709161183; cv=none; b=m+qh8pmmCMMIdhWNnxKNvX1ewmApQFn1B8sTONernuAgv/a3DiTbAbGxl/OLAHel//qSE98Yw1mo7p8u+1JLxxJbIaF/+67DFCgE6KzenYmQkobimbRVPOTC2E+aRR+WPTXL+GoSYJUZEpGf8o6+Y1Xu4LKakZ4YongKNDWjABo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709160874; c=relaxed/simple;
-	bh=/jDLwFIEQLNTzWOvHvMah/k+wxvXYOF3LYDjFnzXoKg=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=dBSUVGVUgPfXonCAfyWPWteY9wBug2W8jU5J/VrvK/jdKq+xKf/5oMSqH2u4MzUbn5A4kXg6Jn91z8InSqfMHSdR/eEBbrHAaHwjT3ze2u/enxJJJlwI8/i3SJWYeootCtSGsLTJvJ+Vk+dvAJQRAbeaRq02IB7ckDnkysre9I4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com; spf=fail smtp.mailfrom=broadcom.com; dkim=pass (1024-bit key) header.d=broadcom.com header.i=@broadcom.com header.b=b4wWNGhU; arc=none smtp.client-ip=209.85.167.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=broadcom.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=broadcom.com
-Received: by mail-oi1-f179.google.com with SMTP id 5614622812f47-3bb9b28acb4so158884b6e.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Feb 2024 14:54:32 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1709160872; x=1709765672; darn=vger.kernel.org;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=bmvyy59UCUGPM6MgPlEpxUVCo4h6kTMN9nbyvbFdfPk=;
-        b=b4wWNGhUOPyS0DdbdGqCY6jOmbmjAZNMpYhuIdC3pcDbVgl5z4Ti8QmLuE54iqaKgT
-         UAjDFymDSnBeCI5YrAbKVKeekHTx81nnO+W6lMJTd34oq2aatQQ/i0KUOj2mkIqVV2s1
-         DODiiFkk7w01L4PV/FtxLaheGhYD/lDEK40DQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709160872; x=1709765672;
-        h=mime-version:references:in-reply-to:message-id:date:subject:cc:to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bmvyy59UCUGPM6MgPlEpxUVCo4h6kTMN9nbyvbFdfPk=;
-        b=Vn0ORMqkYk8e/9ZvWqaf9RCS9StBd5C0ZD/PDvTDw/1wujsU/d1+Gj9+vRAqzyVQmV
-         WyDSQveHboNtUZXWpRPRGGQniHudRpfMg0R/rcJej23vlzF+BTq0V5VNUZ05azDp3Evn
-         eQLNTwwk2aaOdYPhLm432+C48CptLsvTSnqfErPQd5kARyT9wrmFMqK7R8CvFNyTXOez
-         5WPMsIoQ49Lsb/kO/nzifmNr0AGgmEfWZc8g4HwaTwQ3n0pJt0gBL/UwEApDfA9091hh
-         18NW/1kjqIpgoKh8k5s+M3/MeW5CD+S3wZGLgM7DPSLG+yHE5Ra3MzKOr944GYcmGSsZ
-         vYeA==
-X-Forwarded-Encrypted: i=1; AJvYcCV9qfibfVWsoLwJ5mt1N4nNu3hO6AbUrYNse7e0sdsH5N4SWkVs2XlXyK+LZbQDIbijlUN2bs2wNobBIM/M1ranAOdQCgS0P3HVhA==
-X-Gm-Message-State: AOJu0YxGPRUbGNAhPllQRzlSQkA17Qx7PKezC9V/Bg4v5rC4N3vshZKI
-	oyFF/x5BbXXDuu2iPoKMmLsIr7P6F/fcKWNCFU+pFAo6TQImwnv1iMvm5yQTXg==
-X-Google-Smtp-Source: AGHT+IGZW1uqGMT0XDvduJRVSy4t4jAgcgn8W+fI4wcrEmlYbvGkJWelbm2tWhSBORJ6ntWjT76sjw==
-X-Received: by 2002:a05:6808:ab8:b0:3c0:443c:84bb with SMTP id r24-20020a0568080ab800b003c0443c84bbmr339469oij.59.1709160871908;
-        Wed, 28 Feb 2024 14:54:31 -0800 (PST)
-Received: from stbirv-lnx-1.igp.broadcom.net ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id b1-20020ac812c1000000b0042e3468a98csm95036qtj.4.2024.02.28.14.54.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Feb 2024 14:54:31 -0800 (PST)
-From: Justin Chen <justin.chen@broadcom.com>
-To: netdev@vger.kernel.org
-Cc: horms@kernel.org,
-	bcm-kernel-feedback-list@broadcom.com,
-	florian.fainelli@broadcom.com,
-	davem@davemloft.net,
-	edumazet@google.com,
-	kuba@kernel.org,
-	pabeni@redhat.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	opendmb@gmail.com,
-	andrew@lunn.ch,
-	hkallweit1@gmail.com,
-	linux@armlinux.org.uk,
-	rafal@milecki.pl,
-	devicetree@vger.kernel.org,
-	Justin Chen <justin.chen@broadcom.com>
-Subject: [PATCH net-next v3 6/6] net: bcmasp: Add support for PHY interrupts
-Date: Wed, 28 Feb 2024 14:54:00 -0800
-Message-Id: <20240228225400.3509156-7-justin.chen@broadcom.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240228225400.3509156-1-justin.chen@broadcom.com>
-References: <20240228225400.3509156-1-justin.chen@broadcom.com>
+	s=arc-20240116; t=1709161183; c=relaxed/simple;
+	bh=qyALoYJ4e/xDXFwou2aAo1rZPwgMePJQ8UyFijx0rcE=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=RdG5QxMn7Wc8IcywNk4vau683+lZsogGUavXz9JH57eoiEBCglvCZ3Hh49NwDmp1hsPSQqZs6CLLYvHIX2MAGkcYB8GgP96Bl2ek68uDhatdKcoIINMYg1Rt5eRjrFztEcyqXemj96oC4+dV9h4Froy+NQzug+WlLPjHKDncmgY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VOAj82Ry; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9C742C433F1;
+	Wed, 28 Feb 2024 22:59:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709161182;
+	bh=qyALoYJ4e/xDXFwou2aAo1rZPwgMePJQ8UyFijx0rcE=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=VOAj82RysJU1YtvCqndNJphH/ubZQADuXdO96RADGytgnXjlA+ueUjB3eQQM7rNvY
+	 7D8Gv/t/60sQQb1T+CYzm8cYJQNlWLCHyEg06whSTkbNUPfTBJPBNXOGNWQnoSoIc1
+	 n/2LULwb9QJLOuMROfxqNW6hnbB2yXZFOeiNrzDHavMqYue9Cq1OUF0oYcSfT3iAsl
+	 I4QckxPVdUOxC9zYtqbXDHp5/R9nmtgxry3TvdrZ9Qcz6obcYBJh3QFjRPKkxMfCjH
+	 aZ/TBvhMxj1ejolQHOMvHcRFkE+PZ19UrBOAFykL+2yeuDZP8zxeoQ/penk3oRJO08
+	 Bvn7VXDKAEjAQ==
+Message-ID: <2df72cc0d2be877c1f6eda8ebcf79508.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-	boundary="000000000000a82e6706127906e3"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240224091236.10146-2-krzysztof.kozlowski@linaro.org>
+References: <20240224091236.10146-1-krzysztof.kozlowski@linaro.org> <20240224091236.10146-2-krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH 2/3] dt-bindings: clock: ti: remove unstable remark
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Mathieu Poirier <mathieu.poirier@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org, Tony Lindgren <tony@atomide.com>
+Date: Wed, 28 Feb 2024 14:59:40 -0800
+User-Agent: alot/0.10
 
---000000000000a82e6706127906e3
-Content-Transfer-Encoding: 8bit
++Tony
 
-Hook up the phy interrupts for internal phys to reduce mdio traffic
-and improve responsiveness of link changes.
+Quoting Krzysztof Kozlowski (2024-02-24 01:12:35)
+> Several TI SoC clock bindings were marked as work-in-progress / unstable
+> between 2013-2016, for example in commit f60b1ea5ea7a ("CLK: TI: add
+> support for gate clock").  It was enough of time to consider them stable
+> and expect usual ABI rules.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
 
-Signed-off-by: Justin Chen <justin.chen@broadcom.com>
-Acked-by: Florian Fainelli <florian.fainelli@broadcom.com>
----
- drivers/net/ethernet/broadcom/asp2/bcmasp.c     | 17 +++++++++++++++++
- drivers/net/ethernet/broadcom/asp2/bcmasp.h     |  4 ++++
- .../net/ethernet/broadcom/asp2/bcmasp_intf.c    |  5 +++++
- 3 files changed, 26 insertions(+)
+Acked-by: Stephen Boyd <sboyd@kernel.org>
 
-diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp.c b/drivers/net/ethernet/broadcom/asp2/bcmasp.c
-index 100c69f3307a..a806dadc4196 100644
---- a/drivers/net/ethernet/broadcom/asp2/bcmasp.c
-+++ b/drivers/net/ethernet/broadcom/asp2/bcmasp.c
-@@ -31,6 +31,20 @@ static void _intr2_mask_set(struct bcmasp_priv *priv, u32 mask)
- 	priv->irq_mask |= mask;
- }
- 
-+void bcmasp_enable_phy_irq(struct bcmasp_intf *intf, int en)
-+{
-+	struct bcmasp_priv *priv = intf->parent;
-+
-+	/* Only supported with internal phys */
-+	if (!intf->internal_phy)
-+		return;
-+
-+	if (en)
-+		_intr2_mask_clear(priv, ASP_INTR2_PHY_EVENT(intf->channel));
-+	else
-+		_intr2_mask_set(priv, ASP_INTR2_PHY_EVENT(intf->channel));
-+}
-+
- void bcmasp_enable_tx_irq(struct bcmasp_intf *intf, int en)
- {
- 	struct bcmasp_priv *priv = intf->parent;
-@@ -79,6 +93,9 @@ static void bcmasp_intr2_handling(struct bcmasp_intf *intf, u32 status)
- 			__napi_schedule_irqoff(&intf->tx_napi);
- 		}
- 	}
-+
-+	if (status & ASP_INTR2_PHY_EVENT(intf->channel))
-+		phy_mac_interrupt(intf->ndev->phydev);
- }
- 
- static irqreturn_t bcmasp_isr(int irq, void *data)
-diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp.h b/drivers/net/ethernet/broadcom/asp2/bcmasp.h
-index 127a5340625e..f93cb3da44b0 100644
---- a/drivers/net/ethernet/broadcom/asp2/bcmasp.h
-+++ b/drivers/net/ethernet/broadcom/asp2/bcmasp.h
-@@ -19,6 +19,8 @@
- #define ASP_INTR2_TX_DESC(intr)			BIT((intr) + 14)
- #define ASP_INTR2_UMC0_WAKE			BIT(22)
- #define ASP_INTR2_UMC1_WAKE			BIT(28)
-+#define ASP_INTR2_PHY_EVENT(intr)		((intr) ? BIT(30) | BIT(31) : \
-+						BIT(24) | BIT(25))
- 
- #define ASP_WAKEUP_INTR2_OFFSET			0x1200
- #define  ASP_WAKEUP_INTR2_STATUS		0x0
-@@ -556,6 +558,8 @@ void bcmasp_enable_tx_irq(struct bcmasp_intf *intf, int en);
- 
- void bcmasp_enable_rx_irq(struct bcmasp_intf *intf, int en);
- 
-+void bcmasp_enable_phy_irq(struct bcmasp_intf *intf, int en);
-+
- void bcmasp_flush_rx_port(struct bcmasp_intf *intf);
- 
- extern const struct ethtool_ops bcmasp_ethtool_ops;
-diff --git a/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c b/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
-index 25b03d32d791..dd06b68b33ed 100644
---- a/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
-+++ b/drivers/net/ethernet/broadcom/asp2/bcmasp_intf.c
-@@ -382,6 +382,7 @@ static void bcmasp_netif_start(struct net_device *dev)
- 
- 	bcmasp_enable_rx_irq(intf, 1);
- 	bcmasp_enable_tx_irq(intf, 1);
-+	bcmasp_enable_phy_irq(intf, 1);
- 
- 	phy_start(dev->phydev);
- }
-@@ -890,6 +891,7 @@ static void bcmasp_netif_deinit(struct net_device *dev)
- 	/* Disable interrupts */
- 	bcmasp_enable_tx_irq(intf, 0);
- 	bcmasp_enable_rx_irq(intf, 0);
-+	bcmasp_enable_phy_irq(intf, 0);
- 
- 	netif_napi_del(&intf->tx_napi);
- 	netif_napi_del(&intf->rx_napi);
-@@ -1028,6 +1030,9 @@ static int bcmasp_netif_init(struct net_device *dev, bool phy_connect)
- 			goto err_phy_disable;
- 		}
- 
-+		if (intf->internal_phy)
-+			dev->phydev->irq = PHY_MAC_INTERRUPT;
-+
- 		/* Indicate that the MAC is responsible for PHY PM */
- 		phydev->mac_managed_pm = true;
- 	} else if (!intf->wolopts) {
--- 
-2.34.1
-
-
---000000000000a82e6706127906e3
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-NhTY3E+cXCB11wty89QStajwXdhGJTYEvUgvsq1h8CwJj9w/38ldAQf5WjhPmApYeJR2ewFrBMCM
-4lHkdRJ6TDc9nXoEkypUfjJkJHe7Eal06tosh6JpAgMBAAGjggHZMIIB1TAOBgNVHQ8BAf8EBAMC
-BaAwgaMGCCsGAQUFBwEBBIGWMIGTME4GCCsGAQUFBzAChkJodHRwOi8vc2VjdXJlLmdsb2JhbHNp
-Z24uY29tL2NhY2VydC9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcnQwQQYIKwYBBQUHMAGG
-NWh0dHA6Ly9vY3NwLmdsb2JhbHNpZ24uY29tL2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwME0G
-A1UdIARGMEQwQgYKKwYBBAGgMgEoCjA0MDIGCCsGAQUFBwIBFiZodHRwczovL3d3dy5nbG9iYWxz
-aWduLmNvbS9yZXBvc2l0b3J5LzAJBgNVHRMEAjAAMEkGA1UdHwRCMEAwPqA8oDqGOGh0dHA6Ly9j
-cmwuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAuY3JsMCMGA1UdEQQc
-MBqBGGp1c3Rpbi5jaGVuQGJyb2FkY29tLmNvbTATBgNVHSUEDDAKBggrBgEFBQcDBDAfBgNVHSME
-GDAWgBSWM9HmWBdbNHWKgVZk1b5I3qGPzzAdBgNVHQ4EFgQUIWGeYuaTsnIada5Xx8TR3cheUbgw
-DQYJKoZIhvcNAQELBQADggEBAHNQlMqQOFYPYFO71A+8t+qWMmtOdd2iGswSOvpSZ/pmGlfw8ZvY
-dRTkl27m37la84AxRkiVMes14JyOZJoMh/g7fbgPlU14eBc6WQWkIA6AmNkduFWTr1pRezkjpeo6
-xVmdBLM4VY1TFDYj7S8H2adPuypd62uHMY/MZi+BIUys4uAFA+N3NuUBNjcVZXYPplYxxKEuIFq6
-sDL+OV16G+F9CkNMN3txsym8Nnx5WAYZb6+rBUIhMGz70V05xsHQfzvo2s7f0J1tJ5BoRlPPhL0h
-VOnWA3h71u9TfSsv+PXVm3P21TfOS2uc1hbzEqyENCP4i5XQ0rv0TmPW42GZ0o4xggJtMIICaQIB
-ATBrMFsxCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTEwLwYDVQQDEyhH
-bG9iYWxTaWduIEdDQyBSMyBQZXJzb25hbFNpZ24gMiBDQSAyMDIwAgwj8BKLXNpALfemdRAwDQYJ
-YIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEIAxPQ/vtMvnNdzwtRQ9Gbd13fg6oRGIptofq
-paTCQ3RyMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZIhvcNAQkFMQ8XDTI0MDIyODIy
-NTQzMlowaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJYIZIAWUDBAEWMAsGCWCGSAFl
-AwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcNAQEHMAsGCWCGSAFlAwQCATAN
-BgkqhkiG9w0BAQEFAASCAQC8c3mJWTxfPVesryu/RmjePqzHK5BBXw9jrMYGU8P2uCcLmQmgwlY4
-Kuz5un+IHYe36aUQITqAJPOwPQQSORwiWd3xhfL5yYrxahx3gR2UlqSXIjsC9HoAq1Qt40SNcuXY
-EzkXasPffi7aMi0NpPUgFMonL1oaMT6iukq0jOVDmbht8v1MaJkm/qv1IdcPht1owJ+lts7J8jso
-OH4bIjVgmDnaJ6DKXSwf7b2Balrdi25KsRwtAlLb299iUDFjcNQXWxJTAsEb8UxRJ9RzNREfQFBe
-tYJUyfd2ltcJJByzAa7Wus/cO7a1gwWMkxMIdIbupX+YXlJLrH3XxRnnj3R0
---000000000000a82e6706127906e3--
+>  Documentation/devicetree/bindings/clock/ti/adpll.txt            | 2 --
+>  Documentation/devicetree/bindings/clock/ti/apll.txt             | 2 --
+>  Documentation/devicetree/bindings/clock/ti/autoidle.txt         | 2 --
+>  Documentation/devicetree/bindings/clock/ti/clockdomain.txt      | 2 --
+>  Documentation/devicetree/bindings/clock/ti/composite.txt        | 2 --
+>  Documentation/devicetree/bindings/clock/ti/divider.txt          | 2 --
+>  Documentation/devicetree/bindings/clock/ti/dpll.txt             | 2 --
+>  Documentation/devicetree/bindings/clock/ti/fapll.txt            | 2 --
+>  .../devicetree/bindings/clock/ti/fixed-factor-clock.txt         | 2 --
+>  Documentation/devicetree/bindings/clock/ti/gate.txt             | 2 --
+>  Documentation/devicetree/bindings/clock/ti/interface.txt        | 2 --
+>  Documentation/devicetree/bindings/clock/ti/mux.txt              | 2 --
+>  12 files changed, 24 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/ti/adpll.txt b/Docum=
+entation/devicetree/bindings/clock/ti/adpll.txt
+> index 4c8a2ce2cd70..3122360adcf3 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/adpll.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/adpll.txt
+> @@ -1,7 +1,5 @@
+>  Binding for Texas Instruments ADPLL clock.
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1]. It assumes a
+>  register-mapped ADPLL with two to three selectable input clocks
+>  and three to four children.
+> diff --git a/Documentation/devicetree/bindings/clock/ti/apll.txt b/Docume=
+ntation/devicetree/bindings/clock/ti/apll.txt
+> index ade4dd4c30f0..bbd505c1199d 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/apll.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/apll.txt
+> @@ -1,7 +1,5 @@
+>  Binding for Texas Instruments APLL clock.
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1].  It assumes a
+>  register-mapped APLL with usually two selectable input clocks
+>  (reference clock and bypass clock), with analog phase locked
+> diff --git a/Documentation/devicetree/bindings/clock/ti/autoidle.txt b/Do=
+cumentation/devicetree/bindings/clock/ti/autoidle.txt
+> index 7c735dde9fe9..05645a10a9e3 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/autoidle.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/autoidle.txt
+> @@ -1,7 +1,5 @@
+>  Binding for Texas Instruments autoidle clock.
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1]. It assumes a register map=
+ped
+>  clock which can be put to idle automatically by hardware based on the us=
+age
+>  and a configuration bit setting. Autoidle clock is never an individual
+> diff --git a/Documentation/devicetree/bindings/clock/ti/clockdomain.txt b=
+/Documentation/devicetree/bindings/clock/ti/clockdomain.txt
+> index 9c6199249ce5..edf0b5d42768 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/clockdomain.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/clockdomain.txt
+> @@ -1,7 +1,5 @@
+>  Binding for Texas Instruments clockdomain.
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1] in consumer role.
+>  Every clock on TI SoC belongs to one clockdomain, but software
+>  only needs this information for specific clocks which require
+> diff --git a/Documentation/devicetree/bindings/clock/ti/composite.txt b/D=
+ocumentation/devicetree/bindings/clock/ti/composite.txt
+> index 33ac7c9ad053..6f7e1331b546 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/composite.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/composite.txt
+> @@ -1,7 +1,5 @@
+>  Binding for TI composite clock.
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1]. It assumes a
+>  register-mapped composite clock with multiple different sub-types;
+> =20
+> diff --git a/Documentation/devicetree/bindings/clock/ti/divider.txt b/Doc=
+umentation/devicetree/bindings/clock/ti/divider.txt
+> index 9b13b32974f9..4d7c76f0b356 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/divider.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/divider.txt
+> @@ -1,7 +1,5 @@
+>  Binding for TI divider clock
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1].  It assumes a
+>  register-mapped adjustable clock rate divider that does not gate and has
+>  only one input clock or parent.  By default the value programmed into
+> diff --git a/Documentation/devicetree/bindings/clock/ti/dpll.txt b/Docume=
+ntation/devicetree/bindings/clock/ti/dpll.txt
+> index 37a7cb6ad07d..14a1b72c2e71 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/dpll.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/dpll.txt
+> @@ -1,7 +1,5 @@
+>  Binding for Texas Instruments DPLL clock.
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1].  It assumes a
+>  register-mapped DPLL with usually two selectable input clocks
+>  (reference clock and bypass clock), with digital phase locked
+> diff --git a/Documentation/devicetree/bindings/clock/ti/fapll.txt b/Docum=
+entation/devicetree/bindings/clock/ti/fapll.txt
+> index c19b3f253b8c..88986ef39ddd 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/fapll.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/fapll.txt
+> @@ -1,7 +1,5 @@
+>  Binding for Texas Instruments FAPLL clock.
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1]. It assumes a
+>  register-mapped FAPLL with usually two selectable input clocks
+>  (reference clock and bypass clock), and one or more child
+> diff --git a/Documentation/devicetree/bindings/clock/ti/fixed-factor-cloc=
+k.txt b/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
+> index 518e3c142276..dc69477b6e98 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/fixed-factor-clock.txt
+> @@ -1,7 +1,5 @@
+>  Binding for TI fixed factor rate clock sources.
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1], and also uses the autoidle
+>  support from TI autoidle clock [2].
+> =20
+> diff --git a/Documentation/devicetree/bindings/clock/ti/gate.txt b/Docume=
+ntation/devicetree/bindings/clock/ti/gate.txt
+> index 4982615c01b9..a8e0335b006a 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/gate.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/gate.txt
+> @@ -1,7 +1,5 @@
+>  Binding for Texas Instruments gate clock.
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1]. This clock is
+>  quite much similar to the basic gate-clock [2], however,
+>  it supports a number of additional features. If no register
+> diff --git a/Documentation/devicetree/bindings/clock/ti/interface.txt b/D=
+ocumentation/devicetree/bindings/clock/ti/interface.txt
+> index d3eb5ca92a7f..85fb1f2d2d28 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/interface.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/interface.txt
+> @@ -1,7 +1,5 @@
+>  Binding for Texas Instruments interface clock.
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1]. This clock is
+>  quite much similar to the basic gate-clock [2], however,
+>  it supports a number of additional features, including
+> diff --git a/Documentation/devicetree/bindings/clock/ti/mux.txt b/Documen=
+tation/devicetree/bindings/clock/ti/mux.txt
+> index b33f641f1043..cd56d3c1c09f 100644
+> --- a/Documentation/devicetree/bindings/clock/ti/mux.txt
+> +++ b/Documentation/devicetree/bindings/clock/ti/mux.txt
+> @@ -1,7 +1,5 @@
+>  Binding for TI mux clock.
+> =20
+> -Binding status: Unstable - ABI compatibility may be broken in the future
+> -
+>  This binding uses the common clock binding[1].  It assumes a
+>  register-mapped multiplexer with multiple input clock signals or
+>  parents, one of which can be selected as output.  This clock does not
+> --=20
+> 2.34.1
+>
 
