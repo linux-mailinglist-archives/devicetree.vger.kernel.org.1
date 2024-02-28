@@ -1,100 +1,102 @@
-Return-Path: <devicetree+bounces-46862-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46863-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEB3A86B04F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:28:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C08086B05B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:30:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6B03528ACD1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:28:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4155D1F2877B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:30:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3290214AD2D;
-	Wed, 28 Feb 2024 13:28:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C608114F96D;
+	Wed, 28 Feb 2024 13:29:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="geLb9gs7"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JqZU0ryw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F327B14AD28;
-	Wed, 28 Feb 2024 13:28:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC9D714AD3B;
+	Wed, 28 Feb 2024 13:29:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709126904; cv=none; b=PV+iILMP/8tr82PQewUsNtNLq1XC5EG1QpLAXpzII9cpMfzuwwbbQkv0VqJ3Pd2LCmf9b/i8Wz19wagbjjt03E2YFz1hoROCWod8Qr0WKGtzIVuPSiurYrgU/wESm3MnJ2i5Rhl9IHhHsxnEzfiUMv1LX3kbbZAEqmfIXnXUkbQ=
+	t=1709126983; cv=none; b=VIWZMWyPlFet6VdeUCeAuIA3Blt31VgqNJbWfUBKZG+4kH32wxa71NLYZScEJEBBVOE3IJC4TNfIhFUPCxZ/smZfv8SMAkKokdVPqu5IwxUQltFiYtXRtOSH++x6wiJEaB5UooIYPEn/aeuUBHHQ3eKUpnUD1lfY8XFl50p9lHI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709126904; c=relaxed/simple;
-	bh=QPePrt7BYydJyB+XCg3yIqQouYJQOcNHwBd3yY8KpGE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ApgVYOr+xT6zji4bESklD6PEXZmgynwRYCY3eLJP5Y61bX1TsSwbGpI+bHOZpqRW/ZhZ+sJZCVzLe1hdl6sZJ1bdRAAdM228dARkvP8PZAmLpd5yKPBCP5o+p+GVw4VLZXtLCLGCQEDArWSiGRyFjXpcZab5QoJyd8QIJml3vuo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=geLb9gs7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A79BC43394;
-	Wed, 28 Feb 2024 13:28:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709126903;
-	bh=QPePrt7BYydJyB+XCg3yIqQouYJQOcNHwBd3yY8KpGE=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=geLb9gs7/DSTWMpnNsbZE/FHf2iICrMqgAfpX/Y7iyaRdFkobOj4DeV4TaTiBpj7R
-	 kk1VX3akE7RXikvxrrJOLRJsp4DH04mxlOr1wTY9IFDQ+JQ7weTbNoX7by29WOsjUd
-	 zsdTVmpx37n2B+uS8XRo7uF0ZDzLFkI06xsTlNzuiVGBWiv/V3YXDioSuRvxeZj3mg
-	 nLxxTWf8PcRJd7sKHqOvWj9xR/5hYX8pbVDilnK+JKHEvDycf0GLbFL3/oMOR5kWMy
-	 McdqDIys4D5I5w+p5UPELsvBKuKA9hyscthrKkNnCLeSHJM8hzQZ4bG8IFNSSPJNnc
-	 cy3GOsh0hd7AA==
-Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d220e39907so85167281fa.1;
-        Wed, 28 Feb 2024 05:28:23 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWgqW5bs0NJM7vq80pOi5U93lm4hvXBswydqDl7s29dbaEols+pMBDdkuoTl4dmYzVBFDjDqK7s9m1mCy9GEJoHd3Rz3M+5yGnKJmwf8wVVpAtMy5Am32msbO3cxgacdeexhi4boH2i6w==
-X-Gm-Message-State: AOJu0YxeGhX9hoy9KSYm9PBpTMFExTdFkDilII0fTt0LXnNqZV+wMTD0
-	RLV6Hxlse+W+6awvP1UxIlG5rQHuR1ub2PyF1qYcNvhqjt1hM8l5pdEBvIpjvm2ZQjSYBLcEMuF
-	egzfgThUbRN99SfVnKPbIlC3sTw==
-X-Google-Smtp-Source: AGHT+IFNE3ggmoo0YN0c76XjpmTQyQsVFYj3QOWJW+s5Rqj3IPjETuRB14UQmDqYXEGr0VB5YJgdYGMVjZFmxWKReQw=
-X-Received: by 2002:a2e:a7c3:0:b0:2d2:284d:3ae5 with SMTP id
- x3-20020a2ea7c3000000b002d2284d3ae5mr10292057ljp.45.1709126901796; Wed, 28
- Feb 2024 05:28:21 -0800 (PST)
+	s=arc-20240116; t=1709126983; c=relaxed/simple;
+	bh=KMc3LwgppypqgRYYPFF8XXt1Ts7hpQ8Ayf2w/ZDZqrk=;
+	h=Content-Type:MIME-Version:In-Reply-To:References:Subject:From:Cc:
+	 To:Date:Message-ID; b=gCPL4xntwJcwpO9ocR60fkeu4XpelWHIO6S5m0WBiGJJMM1mcuB4pqyDzX2v8YBGa2SWuwApMmRCM9eo38HAQZQR2e2a0glf9/yxZ9pX0qiDKK4KWb88cGVXM37g5tg7D9K0HIGbW4NkhnM8Uyg6xYKlS8cU3vtYaD51IjjVDkk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JqZU0ryw; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (aztw-30-b2-v4wan-166917-cust845.vm26.cable.virginm.net [82.37.23.78])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 365A52B3;
+	Wed, 28 Feb 2024 14:29:27 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1709126967;
+	bh=KMc3LwgppypqgRYYPFF8XXt1Ts7hpQ8Ayf2w/ZDZqrk=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=JqZU0rywtBxXcgHgD8BwnrshNWtQ0+jURxnTPd8b2UhZuePlHki6GYR5D06UjVfTi
+	 I3XPrSIV2LV15L3odePqPVEu7NPauhuNaos3oT6x69y/RWfKnIz42T8VFshAoVGJB7
+	 zFvY26X4L0Ehf4g9TLJ+0/BZ7u0zKsCJOtsObr2I=
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240228062138.1275542-1-peng.fan@oss.nxp.com>
-In-Reply-To: <20240228062138.1275542-1-peng.fan@oss.nxp.com>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 28 Feb 2024 07:28:08 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJktYv+sSfwtT6ExsES5+HqB2BStnEMMRKVqTO3dFJm2Q@mail.gmail.com>
-Message-ID: <CAL_JsqJktYv+sSfwtT6ExsES5+HqB2BStnEMMRKVqTO3dFJm2Q@mail.gmail.com>
-Subject: Re: [PATCH] of: dynamic: notify before revert
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: saravanak@google.com, bhelgaas@google.com, pali@kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Peng Fan <peng.fan@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <Zd8xC0HkZfSo29id@valkosipuli.retiisi.eu>
+References: <20240214141906.245685-1-dan.scally@ideasonboard.com> <20240214141906.245685-4-dan.scally@ideasonboard.com> <ZdxwE3omXmUjfLMn@valkosipuli.retiisi.eu> <mylttlhcnxe5e37m2ar6xgtus6dbr56teyyp74qm7l2d3wejwv@ewpbhpjr3v4m> <Zd8xC0HkZfSo29id@valkosipuli.retiisi.eu>
+Subject: Re: [PATCH v2 3/5] media: mali-c55: Add Mali-C55 ISP driver
+From: Kieran Bingham <kieran.bingham@ideasonboard.com>
+Cc: Daniel Scally <dan.scally@ideasonboard.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jerome.forissier@linaro.org, laurent.pinchart@ideasonboard.com
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>, Sakari Ailus <sakari.ailus@iki.fi>
+Date: Wed, 28 Feb 2024 13:29:36 +0000
+Message-ID: <170912697659.1011926.1657561990919797055@ping.linuxembedded.co.uk>
+User-Agent: alot/0.10
 
-On Wed, Feb 28, 2024 at 12:13=E2=80=AFAM Peng Fan (OSS) <peng.fan@oss.nxp.c=
-om> wrote:
->
-> From: Peng Fan <peng.fan@nxp.com>
->
-> When PCI node was created using an overlay and the overlay is
-> reverted/destroyed, the "linux,pci-domain" property no longer
-> exists, so of_get_pci_domain_nr will return failure. Then
-> of_pci_bus_release_domain_nr will actually use the dynamic IDA,
-> even if the IDA was allocated in static IDA.
+Quoting Sakari Ailus (2024-02-28 13:11:39)
+> Hi Jacopo,
+>=20
+> On Wed, Feb 28, 2024 at 01:50:14PM +0100, Jacopo Mondi wrote:
+> > > > +const struct mali_c55_fmt *mali_c55_cap_fmt_next(const struct mali=
+_c55_fmt *fmt,
+> > > > +                                          bool allow_raw, bool uni=
+que)
+> > > > +{
+> > > > + if (!fmt)
+> > > > +         fmt =3D &mali_c55_fmts[0];
+> > > > + else
+> > > > +         ++fmt;
+> > >
+> > > fmt++, please.
+> > >
+> >=20
+> > Can I ask why ? (here and in the next occurrences you have reported)
+>=20
+> It's much, much more common and using that form makes the code easier to
+> read. The rest of the driver primarily uses variable++, too, AFAIR.
+>=20
+> So you should use ++variable only when you need it.
 
-That usage is broken to begin with unless there is a guarantee that
-static and dynamic domain numbers don't overlap. For example, a
-dynamic number is assigned and then you load an overlay with the same
-number defined in it.
+I don't think this is a hot path, but I'll never forget my C tutor
+telling us how ++i is more efficient than i++ somewhere to do with the
+opcode ordering, and not having to make a copy [*1]
 
-> So move the notify before revert to fix the issue.
+Though I bet any clever optimising compiler could spot this anyway.
 
-You can't just change the timing. Something might require notify to be
-after the revert.
+[*1]. Whatever plausibility there is based on a 20 year old memory and
+should be verified elsewhere.
 
-> Fixes: c14f7ccc9f5d ("PCI: Assign PCI domain IDs by ida_alloc()")
+--
+Kieran
 
-I don't see where the notifier is even used.
 
-Rob
+>=20
+> --=20
+> Sakari Ailus
 
