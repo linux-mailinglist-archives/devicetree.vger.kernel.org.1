@@ -1,216 +1,158 @@
-Return-Path: <devicetree+bounces-46864-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-46865-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A708786B065
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:33:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5737C86B073
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 14:37:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 620B7288A23
-	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:33:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 08A2B1F27116
+	for <lists+devicetree@lfdr.de>; Wed, 28 Feb 2024 13:37:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF8114EFE4;
-	Wed, 28 Feb 2024 13:32:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CF5214D44A;
+	Wed, 28 Feb 2024 13:37:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IzhQqs4V"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="vVU5JbFI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFE4D14D426;
-	Wed, 28 Feb 2024 13:32:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83B816CDBC;
+	Wed, 28 Feb 2024 13:37:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709127174; cv=none; b=hbnGUWvlIn5XUueXtZKuOnr1KiJaBT18F6Bd2ZS2QfJfSudGZ1ePSo+9X7Xfzw9ArWq8wa6KQO3A96tAnsDcYWRjDPBQQBp6bw0mBfOmBtPEndzyzx/2YIswcymj7zkWZFR2b70VilCIvKHqvfvzBRMCYL1z9bmdMYgnEzIP9Io=
+	t=1709127432; cv=none; b=Gn84rqy6ZNDLYnS44YkBUUK56FoLc/foVCvZIVDVLk4jHxSc3fzOtTKZVSMEP/296JQn5SiJHeMZaJnChbw8fhpFvFCbs0KrRF+dJLu2bBhVgi8Fhqke1gli/Dc2jPHt9DUDvc3LRvM93cWIY58d6+xQVB2VFxbgdj04S2A/ko8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709127174; c=relaxed/simple;
-	bh=rCU5g5F2BCVusNboLGIvYMJTZ2rlSycLIcxkBmi0yCc=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=icXnGiZxhabYJWJ6UlHuO3YYLMbeYkeIuBhS75jIvOJPKf7zeBj73qx7cJ0sg66w6FgvR5RHyu8/KSSyCzVcNYB6SKRFO3oTPbv19OLig8xNYidOnoR2yMlJUjz6sV6L1aQaOAQCHiAfb8qYL5cXCYql+V36EYfumEK1WPrtI8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IzhQqs4V; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a3fb8b0b7acso684017966b.2;
-        Wed, 28 Feb 2024 05:32:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709127171; x=1709731971; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=s4lxyPaoqRvNSg6SFq02AUDkEnHT9gwaoI5W6JGTtvQ=;
-        b=IzhQqs4VEfgh1YCfQrHPCtaspTbNrVkGb+HQ5+amT7k3vGdF/GUkBXCgKSn1uQazTT
-         SL+BHn52VnJLYMWB2TNMXeHup2hvJnXcw97SrQ1SwDvNiTWUV75KdCGe2jqtPEWm5z5i
-         UFjBAij/4lkbMAsVbO1zKBLbzMjPD5XlKOsOQm3/Ec0InvPyLKqaam7EA4G5y1tvwwiL
-         PMLzd7I74TjIoTdMGyCnLsPw96m3XbnvhYa+yXSqmAK5rOV0ACrhedh6LxCgMjVkMJ9V
-         rPH0nln24uNBrmlnyIYjNv0fDQtRNpUz1/BBv8msvuZVr+xuLPlUPxMs1WZGG9ExXIXk
-         pTDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709127171; x=1709731971;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=s4lxyPaoqRvNSg6SFq02AUDkEnHT9gwaoI5W6JGTtvQ=;
-        b=qZiELcjiC7paDVMg70BZLz63fUVDt5Cnr5bZimF8tKptcyVTyQuj/DjilWGnLo7VbV
-         yOSvhli7Kjh4WiHXcoCZv8P6th8b1xrbqwnivvat1LqBlI4E+r3McgIBwICq86yVuWew
-         H0SV/r3JGd/vjvIG6Yc/d9LCLLaufKOn7gtb/0X/Cuz7HzrzbeDnxPFRm5+atwdvigt8
-         w/4N06YuuP5GToBlBkpfUrv8y1ql/WFCGSBYNaP/qk1z1YR01hkKrLdLbKVopE2byeJ6
-         HMAfWlFsblomcJqzbSDZ44nynG0yMQnJoCMa+76Em1P6hQeEnTn2S8L65zQ9n8zNjJT2
-         VOkQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXN2rV5FkRh/EXSmAF5dv7HLQLJ0QQn9Td3SLPuJYx2dIcBiloZrK/zK9vQpeYq8uzJfFB57QB/4RACIrYJvnyFaNUvjNXyXUK1nQcsuPFdTN0SiZ6MJqiVzwS3Lp4EDDhXeDAgF/HouI6xlP993V8V6Fd+HyYiPS8XjA+QIXr+yrV41A==
-X-Gm-Message-State: AOJu0Ywk6kiFRi+pV8C3pomzXReRrkMVbawGOVAjNVwEvMOHfgoQltIX
-	JDJNjmqEZuAkObxkHXkpOHj/SnVfIOxZIp7jhUgNzd4ah1emNw3WF/Gumb5C
-X-Google-Smtp-Source: AGHT+IGnLungNAv0ZYzj8hkENB2u973aFJUB+oB/lJ2qSc8+PILh1uRY9vGn1xmHKwKif4szbTnaAw==
-X-Received: by 2002:a17:906:4a55:b0:a43:6156:6e75 with SMTP id a21-20020a1709064a5500b00a4361566e75mr5651188ejv.43.1709127170959;
-        Wed, 28 Feb 2024 05:32:50 -0800 (PST)
-Received: from debian.fritz.box ([93.184.186.109])
-        by smtp.gmail.com with ESMTPSA id vx5-20020a170907a78500b00a3f20a8d2f6sm1856952ejc.112.2024.02.28.05.32.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Feb 2024 05:32:50 -0800 (PST)
-From: Dimitri Fedrau <dima.fedrau@gmail.com>
-To: 
-Cc: Dimitri Fedrau <dima.fedrau@gmail.com>,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: pwm: add support for MC33XS2410
-Date: Wed, 28 Feb 2024 14:32:33 +0100
-Message-Id: <20240228133236.748225-2-dima.fedrau@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240228133236.748225-1-dima.fedrau@gmail.com>
-References: <20240228133236.748225-1-dima.fedrau@gmail.com>
+	s=arc-20240116; t=1709127432; c=relaxed/simple;
+	bh=ddrGq1PYFEZRFjXjELgtDdkhdZ0Hcl1sDKmCR90e5sU=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=OhtRn9l4w9NrGzM/LvmOiDTItynLCa2/qZV6CA6iL/cuI4GKwzT1v7Gdod0Ny0cQnj9aG67AXBSEuzSI1hnMzV0NVBdGAto0P8TG0n5wS6pJDwsqUaljbpCmtIZiX8CoDYKunoarT8JGKBADzgBewVLYHnrTN8VDVba5GBMPE9I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=vVU5JbFI; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 3D22D1200C3;
+	Wed, 28 Feb 2024 16:37:03 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 3D22D1200C3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1709127423;
+	bh=lJqOIM7OsyE8lty1WXQViweyrfNmBhB/Fjd3i8JuK+Q=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=vVU5JbFIqdv/2Ml9TpFG8JCqWbaAoZ5OH2ikRwkgAVzDwyGFulSNjo+LUwOxt66PL
+	 SFsYgdVb/xYyDX826cAXBPEKCHxmXHkAz9fEJx0ok5dwMJbry+Pyi/GmR4s7Zexi1t
+	 khVPSL1jcxFTwA3pQDfASaFVm2UoyfAjVT3mGnOylPsC+6EaJzoWPEvU1SxlAKVW8s
+	 Vhzsq+j58GTFM6HsC/H4NzeqxjWj1ZOsFgnPs2TaoNIYFdcLVQ9SblsSW6N/brX8T0
+	 zPGxG8pFAfdjoOYRfqkaWRhAFNb7oOJ3ocmApA64mXxhSleTdQQVz0F7amSc9Ev/9z
+	 X5GmhrVWe7ocQ==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Wed, 28 Feb 2024 16:37:03 +0300 (MSK)
+Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 28 Feb 2024 16:37:02 +0300
+Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1]) by
+ p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1%7]) with mapi id
+ 15.02.1118.040; Wed, 28 Feb 2024 16:37:02 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Corentin Labbe <clabbe.montjoie@gmail.com>
+CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
+	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
+ driver
+Thread-Topic: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
+ driver
+Thread-Index: AQHaXbqRFptCyAwKyUyy1Cn5x5FmZLEHrLEAgANeQYCABgkagIAOlJgA
+Date: Wed, 28 Feb 2024 13:37:02 +0000
+Message-ID: <20240228133656.24bic6djmjvkill7@cab-wsm-0029881>
+References: <20240212135108.549755-1-avromanov@salutedevices.com>
+ <ZcsYaPIUrBSg8iXu@Red>
+ <20240215104719.njq6ie2niisntcnv@cab-wsm-0029881.sigma.sbrf.ru>
+ <ZdL713ae1swwTU_B@Red>
+In-Reply-To: <ZdL713ae1swwTU_B@Red>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <E91E88FC744FBA45BBD1A9B1BC1C41E0@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183823 [Feb 28 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, gist.github.com:7.1.1;salutedevices.com:7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/02/28 10:18:00
+X-KSMG-LinksScanning: Clean, bases: 2024/02/28 12:36:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/28 11:31:00 #23869932
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Adding documentation for MC33XS2410 pwm driver.
+Hello,
 
-Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
----
- .../bindings/pwm/nxp,mc33xs2410.yaml          | 105 ++++++++++++++++++
- 1 file changed, 105 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml
+On Mon, Feb 19, 2024 at 07:57:27AM +0100, Corentin Labbe wrote:
+> Le Thu, Feb 15, 2024 at 10:47:24AM +0000, Alexey Romanov a 'ecrit :
+> > On Tue, Feb 13, 2024 at 08:21:12AM +0100, Corentin Labbe wrote:
+> > > Le Mon, Feb 12, 2024 at 04:50:48PM +0300, Alexey Romanov a 'ecrit :
+> > > > Hello!
+> > > >=20
+> > > > This patchset expand the funcionality of the Amlogic
+> > > > crypto driver by adding support for more SoC families:
+> > > > AXG, G12A, G12B, SM1, A1, S4.
+> > > >=20
+> > > > Also specify and enable crypto node in device tree
+> > > > for reference Amlogic devices.
+> > > >=20
+> > > > Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+> > > > custom tests [1] and tcrypt module.
+> > > >=20
+> > > > ---
+> > > >=20
+> > >=20
+> > > added patchs up to  "drivers: crypto: meson: process more than MAXDES=
+CS descriptors"
+> >=20
+> > Including this patch or not?
+>=20
+> The crash start with "drivers: crypto: meson: move algs definition and ci=
+pher API to cipher.c"
 
-diff --git a/Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml b/Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml
-new file mode 100644
-index 000000000000..bd387dbe69be
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/nxp,mc33xs2410.yaml
-@@ -0,0 +1,105 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/nxp,mc33xs2410.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: MC33XS2410 PWM driver
-+
-+maintainers:
-+  - Dimitri Fedrau <dima.fedrau@gmail.com>
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
-+
-+properties:
-+  compatible:
-+    const: nxp,mc33xs2410
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-max-frequency:
-+    maximum: 10000000
-+
-+  spi-cpha: true
-+
-+  spi-cs-setup-delay-ns:
-+    minimum: 100
-+    default: 100
-+
-+  spi-cs-hold-delay-ns:
-+    minimum: 10
-+    default: 10
-+
-+  spi-cs-inactive-delay-ns:
-+    minimum: 300
-+    default: 300
-+
-+  reset-gpios:
-+    description:
-+      GPIO connected to the active low reset pin.
-+    maxItems: 1
-+
-+  "#pwm-cells":
-+    const: 3
-+
-+  pwms:
-+    description:
-+      Direct inputs(di0-3) are used to directly turn-on or turn-off the
-+      outputs. The external PWM clock can be used if the internal clock
-+      doesn't meet timing requirements.
-+    maxItems: 5
-+
-+  pwm-names:
-+    items:
-+      - const: di0
-+      - const: di1
-+      - const: di2
-+      - const: di3
-+      - const: ext_clk
-+
-+  vdd-supply:
-+    description:
-+      Logic supply voltage
-+
-+  vspi-supply:
-+    description:
-+      Supply voltage for SPI
-+
-+  vpwr-supply:
-+    description:
-+      Power switch supply
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    spi {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+       pwm@0 {
-+           compatible = "nxp,mc33xs2410";
-+           reg = <0x0>;
-+           spi-max-frequency = <4000000>;
-+           spi-cpha;
-+           spi-cs-setup-delay-ns = <100>;
-+           spi-cs-hold-delay-ns = <10>;
-+           spi-cs-inactive-delay-ns = <300>;
-+           reset-gpios = <&gpio3 22 GPIO_ACTIVE_LOW>;
-+           #pwm-cells = <3>;
-+           vdd-supply = <&reg_3v3>;
-+           vspi-supply = <&reg_3v3>;
-+           vpwr-supply = <&reg_24v0>;
-+       };
-+    };
--- 
-2.39.2
+Unfortunately I was unable to reproduce this. I use Khadas Vim1 board
+and my custom tests (https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140=
+706995e7).
+Tried both build as module and built-in.
 
+Can you, please, give more information? Maybe your test cases?
+
+--=20
+Thank you,
+Alexey=
 
