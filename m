@@ -1,229 +1,270 @@
-Return-Path: <devicetree+bounces-47196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8044B86C66C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:09:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA1D586C67B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:11:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E864F1F21CE2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:09:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 355721F22FB2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:11:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D581F64A8E;
-	Thu, 29 Feb 2024 10:09:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="GYPJkjo7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A694463501;
+	Thu, 29 Feb 2024 10:11:56 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B42B634FC;
-	Thu, 29 Feb 2024 10:09:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69ADE6280C;
+	Thu, 29 Feb 2024 10:11:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709201347; cv=none; b=qfkdeZIkRsADxlEMvAlnYJrgAFa2+xbMt2xnp/SP+2qpY/zRKEVCEo3e/mbZrg07GQ4n6JIpx1Rd7oFH+SYl00AtR8qNIEzKvVAJKHlL98I49A/wCfEcsrMxd0tAm7Wc9seqcryRqb7Iisdn/hglDugUJcYylwTvU15si2zc3RE=
+	t=1709201516; cv=none; b=PS0qtYbHaHYk9U9+7aW18QEhxki+HXbACRg8gaRvOE56eiGOe+PAbLGfxtmUDYFtE6bv79Eo6bmKb4uhbsGNX1nJwfQJbJlfHeDfl8ouWaGpAwXeKurlaGA5mNL5sUAYC0af5b5IkdinCPVSrfMZnoxO823H9yRDSoBPKIJVomU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709201347; c=relaxed/simple;
-	bh=to0pqzDR7LrhVm0qSi41jiJVSNT18v1OXQ6F3rRfJmw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=c07PRwhCxzLtHtGrjAgxemkSaDh53WkbsZUuqLxCduoGP7b06xDvhw3o7HK3ro6kANV/VLWmVwep2nXKtuJbtxQ7AgKfVagSkak72WevZpxwMLFTIL+TMwxj5F/rhtrlQkAcaxpVaoNPbom106Y2er78UHL2ET2p/G2mSh+AMHc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=GYPJkjo7; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1709201344; x=1740737344;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=mXMDKKpauy1Jui0sKkU8gCrmH7275RH1plO5L2PIEX0=;
-  b=GYPJkjo7+SSJyUOvi1pmMSK8/SWKsqx6Xa34wkz5MxbRVGKJsAY2wEiT
-   MiTudKz5zwvaVZD2f2TYeI4aKsnNdLKQ+cPxJFSyPiuTjGtsLH8CM8Z2G
-   zjlP6uptj6328XC+de7SERFZVZbuEyWipTbNY8WPGJ66Mv03OwDnDLbQx
-   B/uGUky8gbE1e+YME4XJ9z6i1ZgBQ5Q6l1wh0RmnyROh78dxVEhLGHAkQ
-   6n4hudSfUizl2wHdmDIGLM801QeqLyxO/j2k0cegSf3YnuZ6MEnxO/u+a
-   H93yhupF7DkU+3XfHOaAJDN3/wz7sAcRwjuiLHnsqw5Yp4GOKYbib50LQ
-   g==;
-X-IronPort-AV: E=Sophos;i="6.06,194,1705359600"; 
-   d="scan'208";a="35660989"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 29 Feb 2024 11:08:56 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C6BDA280071;
-	Thu, 29 Feb 2024 11:08:55 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, Dong Aisheng <aisheng.dong@nxp.com>, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH 1/4] arm64: dts: imx8: add cm40 subsystem dtsi
-Date: Thu, 29 Feb 2024 11:08:55 +0100
-Message-ID: <8387443.NyiUUSuA9g@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240228-m4_lpuart-v1-1-9e6947be15e7@nxp.com>
-References: <20240228-m4_lpuart-v1-0-9e6947be15e7@nxp.com> <20240228-m4_lpuart-v1-1-9e6947be15e7@nxp.com>
+	s=arc-20240116; t=1709201516; c=relaxed/simple;
+	bh=GyGUdXIg/byhkhi4PY7TzcTxrUGkdHFdA4AEWVhCBTI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=M7RvnJwNXm2KO9aL9fLJCGw5gJl2QMMEMC0eudJ5I6T7VM7TXYLYfiAXYmeE36ivJiCE1YawIhObtIgj4qH/QRuoyjYY4THirJI4XL9zJCMMGeHOT96805pM9EqNF3detYRsvVNKNOdTn86D7NxiPp2tS9ls1iX3EBEc8wOEV+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-6093247d1acso7298827b3.0;
+        Thu, 29 Feb 2024 02:11:54 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709201513; x=1709806313;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=vlayGp3B7LHt3ezElVfSVkqAS1u/HUJTCJbUomcuaEU=;
+        b=A0Z0uJysc+8qfqDI9G8hx2OpibdAs6tjTXSIRYLPksWJ3AUXJ/DHuI8lwnjowDkOcM
+         ap13mGi7vk6prGbjWOHUSBJQoAWLkaiv/Wi7GAWlTiPo+be6w8biQWl94NdVFpyVtUJO
+         AZF6SMopCUwldlixyeScfWsw03NtArV5nqUfTb5Ip0klQr1kxBRWqyArsrQvq8YInDw0
+         nruTzOXnYjGba6D9tR/Ym7yRM9KfwqJQw2t1a1D8ydcayGiQIBBiDb03xiMjqgT6TXq9
+         oz0yuQy+hcuP6gQkIhNGnOgRj4DktbL5k49CEmwD2Hc+jhRIYU8SCoAvI1subS8QYTSb
+         0ciw==
+X-Forwarded-Encrypted: i=1; AJvYcCVi2e06KQsiOksWSRplcAGb0YDURKRc6xVRuX7hfPFakHhD0Rer9UxnGT7LBhlH/iy2Ocl9d5jg77emqfO7A0EwJhml9oEmo+isJebV5L79nf6Ooer/1HcmqAR4223Phj1BlFhKYSNn+A==
+X-Gm-Message-State: AOJu0YwMLHoQfIcu2XTM/Jth09eJ1lgvYrb+jQ1sVmWY/H7tNTDfWXhz
+	RX3kbbPu1VmKA85qOBw+YgGp8a3RHiNyzKUITrDcRq8zx4Y5oIT+Ln5r+cKhfd8=
+X-Google-Smtp-Source: AGHT+IHK8Y43Alkij7eS6ZrAWKOBWGQsyNI+1A9kN2pnBs9xLS9XAgK4r8SAOtfojcf1hABaCpXdPw==
+X-Received: by 2002:a81:df0f:0:b0:604:a75:4274 with SMTP id c15-20020a81df0f000000b006040a754274mr1866293ywn.51.1709201512718;
+        Thu, 29 Feb 2024 02:11:52 -0800 (PST)
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com. [209.85.219.182])
+        by smtp.gmail.com with ESMTPSA id u125-20020a816083000000b006078f8caa68sm285238ywb.71.2024.02.29.02.11.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Feb 2024 02:11:52 -0800 (PST)
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dcc7cdb3a98so749191276.2;
+        Thu, 29 Feb 2024 02:11:52 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXjhsHqla4tJ3TDQa0H6s69GliUxIMNtvIu8USNyYAQxAnXzg/NCEn2Lj3WYN/0TdzU8Q6sYDIFXxxrosDVAM3izDo30RaZGxcflrtEtYnhTZvU/eHyAD5/YXmc+KHmc825Ie9cyanP1A==
+X-Received: by 2002:a05:6902:50b:b0:dcf:c6ce:b4ca with SMTP id
+ x11-20020a056902050b00b00dcfc6ceb4camr1745346ybs.56.1709201511893; Thu, 29
+ Feb 2024 02:11:51 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <20240224052436.3552333-1-saravanak@google.com>
+In-Reply-To: <20240224052436.3552333-1-saravanak@google.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 29 Feb 2024 11:11:39 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdWhm1WaX3X3P7tyB+e-rX=iwkwm8LxE3=gfHzJ1umhsFg@mail.gmail.com>
+Message-ID: <CAMuHMdWhm1WaX3X3P7tyB+e-rX=iwkwm8LxE3=gfHzJ1umhsFg@mail.gmail.com>
+Subject: Re: [PATCH] of: property: fw_devlink: Fix stupid bug in
+ remote-endpoint parsing
+To: Saravana Kannan <saravanak@google.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	=?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, kernel-team@android.com, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
 
-Hi Frank,
+Hi Saravana,
 
-thanks for the patch.
+On Sat, Feb 24, 2024 at 6:25=E2=80=AFAM Saravana Kannan <saravanak@google.c=
+om> wrote:
+> Introduced a stupid bug in commit 782bfd03c3ae ("of: property: Improve
+> finding the supplier of a remote-endpoint property") due to a last minute
+> incorrect edit of "index !=3D0" into "!index". This patch fixes it to be
+> "index > 0" to match the comment right next to it.
+>
+> Reported-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Link: https://lore.kernel.org/lkml/20240223171849.10f9901d@booty/
+> Fixes: 782bfd03c3ae ("of: property: Improve finding the supplier of a rem=
+ote-endpoint property")
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 
-Am Mittwoch, 28. Februar 2024, 20:54:57 CET schrieb Frank Li:
-> From: Dong Aisheng <aisheng.dong@nxp.com>
->=20
-> Add cm40 subsystem dtsi.
->=20
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8-ss-cm40.dtsi | 67 +++++++++++++++++++=
-++++++
->  arch/arm64/boot/dts/freescale/imx8dxl.dtsi      |  2 +
->  arch/arm64/boot/dts/freescale/imx8qxp.dtsi      |  1 +
->  3 files changed, 70 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-cm40.dtsi b/arch/arm64=
-/boot/dts/freescale/imx8-ss-cm40.dtsi
-> new file mode 100644
-> index 0000000000000..b1d626862ddf8
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-cm40.dtsi
-> @@ -0,0 +1,67 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2019 NXP
-> + *	Dong Aisheng <aisheng.dong@nxp.com>
-> + */
-> +
-> +#include <dt-bindings/firmware/imx/rsrc.h>
-> +
-> +cm40_subsys: bus@34000000 {
-> +	compatible =3D "simple-bus";
-> +	#address-cells =3D <1>;
-> +	#size-cells =3D <1>;
-> +	ranges =3D <0x34000000 0x0 0x34000000 0x4000000>;
+Thanks for your patch!
 
-You should set interrupt-parent =3D <&cm40_intmux> here already.
-So you can skip it for all subsequent nodes, but the cm40_intmux itself.
+> --- a/drivers/of/property.c
+> +++ b/drivers/of/property.c
+> @@ -1304,7 +1304,7 @@ static struct device_node *parse_remote_endpoint(st=
+ruct device_node *np,
+>                                                  int index)
+>  {
+>         /* Return NULL for index > 0 to signify end of remote-endpoints. =
+*/
+> -       if (!index || strcmp(prop_name, "remote-endpoint"))
+> +       if (index > 0 || strcmp(prop_name, "remote-endpoint"))
+>                 return NULL;
+>
+>         return of_graph_get_remote_port_parent(np);
+> --
+> 2.44.0.rc0.258.g7320e95886-goog
 
-> +
-> +	cm40_ipg_clk: clock-cm40-ipg {
-> +		compatible =3D "fixed-clock";
-> +		#clock-cells =3D <0>;
-> +		clock-frequency =3D <132000000>;
-> +		clock-output-names =3D "cm40_ipg_clk";
-> +	};
-> +
-> +	cm40_i2c: i2c@37230000 {
-> +		compatible =3D "fsl,imx8qxp-lpi2c", "fsl,imx7ulp-lpi2c";
-> +		reg =3D <0x37230000 0x1000>;
-> +		interrupts =3D <9 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-parent =3D <&cm40_intmux>;
+After this, the "Fixed dependency cycle" messages I reported to be
+gone in [1] are back.
 
-I personally prefer the parent to be stated first.
+In fact, they are slightly different, and there are now even more of them:
 
-> +		clocks =3D <&cm40_i2c_lpcg 0>,
-> +			 <&cm40_i2c_lpcg 1>;
-> +		clock-names =3D "per", "ipg";
-> +		assigned-clocks =3D <&clk IMX_SC_R_M4_0_I2C IMX_SC_PM_CLK_PER>;
-> +		assigned-clock-rates =3D <24000000>;
-> +		power-domains =3D <&pd IMX_SC_R_M4_0_I2C>;
-> +		status =3D "disabled";
-> +	};
-> +
-> +	cm40_i2c_lpcg: clock-controller@37630000 {
+-platform fea80000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef7000/ports/port@1/endpoint@0
+-platform fea80000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef6000/ports/port@1/endpoint@0
+-platform fea80000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef5000/ports/port@1/endpoint@0
+-platform fea80000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef4000/ports/port@1/endpoint@0
+-platform fea80000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef3000/ports/port@1/endpoint@0
+-platform fea80000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef2000/ports/port@1/endpoint@0
+-platform fea80000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef1000/ports/port@1/endpoint@0
+-platform fea80000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef0000/ports/port@1/endpoint@0
+-platform feaa0000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef3000/ports/port@1/endpoint@2
+-platform feaa0000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef2000/ports/port@1/endpoint@2
+-platform feaa0000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef1000/ports/port@1/endpoint@2
+-platform feaa0000.csi2: Fixed dependency cycle(s) with
+/soc/video@e6ef0000/ports/port@1/endpoint@2
+-platform fead0000.hdmi: Fixed dependency cycle(s) with
+/soc/sound@ec500000/ports/port@1/endpoint
+-platform feae0000.hdmi: Fixed dependency cycle(s) with
+/soc/sound@ec500000/ports/port@2/endpoint
+-platform feb00000.display: Fixed dependency cycle(s) with
+/soc/hdmi@feae0000/ports/port@0/endpoint
+-platform feb00000.display: Fixed dependency cycle(s) with
+/soc/hdmi@fead0000/ports/port@0/endpoint
+-platform hdmi0-out: Fixed dependency cycle(s) with
+/soc/hdmi@fead0000/ports/port@1/endpoint
+-platform hdmi1-out: Fixed dependency cycle(s) with
+/soc/hdmi@feae0000/ports/port@1/endpoint
+-platform vga-encoder: Fixed dependency cycle(s) with /vga/port/endpoint
+-platform vga-encoder: Fixed dependency cycle(s) with
+/soc/display@feb00000/ports/port@0/endpoint
++platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@feaa0000
++platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@feaa0000
++platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@feaa0000
++platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@feaa0000
++platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef4000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef5000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef6000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef7000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@feae0000
++platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@fead0000
++platform ec500000.sound: Fixed dependency cycle(s) with
+/soc/i2c@e6510000/codec@10
++platform e6ef7000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef6000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef5000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef4000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@fea80000
++platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef7000
++platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef6000
++platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef5000
++platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef4000
++platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef3000
++platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef2000
++platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef1000
++platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef0000
++platform fea80000.csi2: Fixed dependency cycle(s) with
+/soc/i2c@e66d8000/video-receiver@70
++platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@feaa0000
++platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@feaa0000
++platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@feaa0000
++platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@feaa0000
++platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef3000
++platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef2000
++platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef1000
++platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef0000
++platform feaa0000.csi2: Fixed dependency cycle(s) with
+/soc/i2c@e66d8000/video-receiver@70
++platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@fead0000
++platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/sound@ec500000
++platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/display@feb000=
+00
++platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@feae0000
++platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/sound@ec500000
++platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/display@feb000=
+00
++platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/display@feb000=
+00
++platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/display@feb000=
+00
++platform feb00000.display: Fixed dependency cycle(s) with /soc/hdmi@feae00=
+00
++platform feb00000.display: Fixed dependency cycle(s) with /soc/hdmi@fead00=
+00
++platform cvbs-in: Fixed dependency cycle(s) with
+/soc/i2c@e66d8000/video-receiver@70
++platform hdmi-in: Fixed dependency cycle(s) with
+/soc/i2c@e66d8000/video-receiver@70
++platform fead0000.hdmi: Fixed dependency cycle(s) with /hdmi0-out
++platform hdmi0-out: Fixed dependency cycle(s) with /soc/hdmi@fead0000
++platform feae0000.hdmi: Fixed dependency cycle(s) with /hdmi1-out
++platform hdmi1-out: Fixed dependency cycle(s) with /soc/hdmi@feae0000
++platform vga: Fixed dependency cycle(s) with /vga-encoder
++platform feb00000.display: Fixed dependency cycle(s) with /vga-encoder
++platform vga-encoder: Fixed dependency cycle(s) with /vga
++platform vga-encoder: Fixed dependency cycle(s) with /soc/display@feb00000
 
-Please sort the nodes by bus address.
+-i2c 2-0010: Fixed dependency cycle(s) with
+/soc/sound@ec500000/ports/port@0/endpoint
++platform ec500000.sound: Fixed dependency cycle(s) with
+/soc/i2c@e6510000/codec@10
 
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x37630000 0x1000>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_M4_0_I2C IMX_SC_PM_CLK_PER>,
-> +			 <&cm40_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
-> +		clock-output-names =3D "cm40_lpcg_i2c_clk",
-> +				     "cm40_lpcg_i2c_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_M4_0_I2C>;
-> +	};
-> +
-> +	cm40_intmux: intmux@37400000 {
-> +		compatible =3D "fsl,imx-intmux";
-> +		reg =3D <0x37400000 0x1000>;
-> +		interrupts =3D <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 17 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 20 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 22 IRQ_TYPE_LEVEL_HIGH>,
-> +			     <GIC_SPI 23 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-controller;
-> +		interrupt-parent =3D <&gic>;
-> +		#interrupt-cells =3D <2>;
-> +		clocks =3D <&cm40_ipg_clk>;
-> +		clock-names =3D "ipg";
-> +		power-domains =3D <&pd IMX_SC_R_M4_0_INTMUX>;
-> +		status =3D "disabled";
-> +	};
-> +};
-> diff --git a/arch/arm64/boot/dts/freescale/imx8dxl.dtsi b/arch/arm64/boot=
-/dts/freescale/imx8dxl.dtsi
-> index a0674c5c55766..9d49c75a26222 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8dxl.dtsi
-> @@ -5,6 +5,7 @@
-> =20
->  #include <dt-bindings/clock/imx8-clock.h>
->  #include <dt-bindings/dma/fsl-edma.h>
-> +#include <dt-bindings/clock/imx8-lpcg.h>
->  #include <dt-bindings/firmware/imx/rsrc.h>
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
-> @@ -231,6 +232,7 @@ xtal24m: clock-xtal24m {
->  	};
-> =20
->  	/* sorted in register address */
-> +	#include "imx8-ss-cm40.dtsi"
->  	#include "imx8-ss-adma.dtsi"
->  	#include "imx8-ss-conn.dtsi"
->  	#include "imx8-ss-ddr.dtsi"
-> diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot=
-/dts/freescale/imx8qxp.dtsi
-> index 10e16d84c0c3b..c49fb1282ae65 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-> @@ -316,6 +316,7 @@ map0 {
-> =20
->  	/* sorted in register address */
->  	#include "imx8-ss-img.dtsi"
-> +	#include "imx8-ss-cm40.dtsi"
+-i2c 4-0070: Fixed dependency cycle(s) with
+/soc/csi2@fea80000/ports/port@0/endpoint
+-i2c 4-0070: Fixed dependency cycle(s) with
+/soc/csi2@feaa0000/ports/port@0/endpoint
+-i2c 4-0070: Fixed dependency cycle(s) with /hdmi-in/port/endpoint
+-i2c 4-0070: Fixed dependency cycle(s) with /cvbs-in/port/endpoint
++platform feaa0000.csi2: Fixed dependency cycle(s) with
+/soc/i2c@e66d8000/video-receiver@70
++platform fea80000.csi2: Fixed dependency cycle(s) with
+/soc/i2c@e66d8000/video-receiver@70
++i2c 4-0070: Fixed dependency cycle(s) with /soc/csi2@fea80000
++i2c 4-0070: Fixed dependency cycle(s) with /soc/csi2@feaa0000
 
-cm40 subsystem is bus@34000000, so IMHO it should go below vpu subsystem,
-which is vpu@2c000000.
+I guess all of that is expected?
 
-Best regards,
-Alexander
+[1] https://lore.kernel.org/all/CAMuHMdVon3mdivZQ0O6D4+va0nGBrUQbDp23bEq661=
+QD=3D4t7+g@mail.gmail.com/
 
->  	#include "imx8-ss-vpu.dtsi"
->  	#include "imx8-ss-gpu0.dtsi"
->  	#include "imx8-ss-adma.dtsi"
->=20
->=20
+Gr{oetje,eeting}s,
 
+                        Geert
 
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
