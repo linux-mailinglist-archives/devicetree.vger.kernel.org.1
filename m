@@ -1,217 +1,184 @@
-Return-Path: <devicetree+bounces-47258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47260-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FDE386C9A5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 14:03:11 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8874086C9AD
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 14:05:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D26111F2204A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:03:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D48E1C20C6B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 744F27D097;
-	Thu, 29 Feb 2024 13:03:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 952D87D419;
+	Thu, 29 Feb 2024 13:05:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="nIfnjJpq"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="Z0ZSWkfl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CD441EB46;
-	Thu, 29 Feb 2024 13:03:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7377D1EB46;
+	Thu, 29 Feb 2024 13:05:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709211786; cv=none; b=SOtA0IH7iU7somXNnHQd57+MyXrn7LuoXwTf0WpkGdCKVkJPG7zgMU3Lv/7SgUF8v6IxjBh01gxF0XXs/zVjhhxWECkaHE33IN2PigHknaGQBsDNes5KJTpZtS4Puk91ncsQGn3TcOV37yKBf5vayS4dg2Py6Cus+2MfswTiLxg=
+	t=1709211929; cv=none; b=mUPuqffHXyiIR4sgVAaH0x8TerJSRrcAcPAqSpf3sljHJvk40md3+doV81o4EPrE18tkrmElZTDIz5oGa3mLBOjgI41ecIS5f4ug5f/hLbTylKJ6p9NAAT1J/DZg4dVgUExal8NM//e6horgABvKh3UR9eYyv3zeGjTg5bv9D3Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709211786; c=relaxed/simple;
-	bh=NF+J53s9ack+LK9clVcP6iNIeJuebRRdCkgajbisWOE=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=PjrkGP1lguVTPWHdxgefsykzlPAA3dPimv1lxzjOBo2Z5s4uJXUsWqn/bZojaDUo1ZmQZlopt5P1QoIrnQt2lsIp/oUqGpnkoGIK6+KK8Z2InHcx1H4zdxQiXBvUt6UYtw3pOERobasHA1fVif/lyunIK4YNenp94vDpU8IZ+xg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=nIfnjJpq; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3d5e77cfbeso160066866b.0;
-        Thu, 29 Feb 2024 05:03:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709211783; x=1709816583; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=NF+J53s9ack+LK9clVcP6iNIeJuebRRdCkgajbisWOE=;
-        b=nIfnjJpq9DAufhbCaqrOrTRNq6dVRaekf1gZpfe6Ljmrr/gmlMmWLNY+Oc25EpawJ4
-         L0pytzVVdBYfQHXpb76gyJI+1/kwXoTo8d4Hc0V8771+ZIRLaPctxhSgTMm58rJ7Js/B
-         RSTzomwgBPmGgfCx2AfR5z6jeUe2b0uPGRZ/eQNwLcfORPTC8DuI3n50IVs8HPbuVnrN
-         C+AtibK23YYNFAJQOJpzW+yGqwiqnZEZXdrY1Z4TZ01lkdf3bzNO1IxYMi+k92mviJeb
-         PFuONEIPCAQTAyQ5ftxrgLWBkthbhzJtdkogZFLdE9n/H646pQhA1VvTmZ1DZ94A3g/H
-         Ohtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709211783; x=1709816583;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NF+J53s9ack+LK9clVcP6iNIeJuebRRdCkgajbisWOE=;
-        b=qdepcjGXPSE8bTZnIqheHyNSX3CDv7V+cZdAeH0ni90srINTrYDGVlJnl5/mCkKLdv
-         mDN9PbZVEI6kQRccFgvBjfMxHdLP098NyHIfrKHs0U0bImHwIrEFtTB8xTH+GrTD4EqX
-         78zPa71dSuuvdnvwBrbc9zvXUOYG45pUeuuCNNw+oiNJkFZBmnra9UKmvO04Ak9xXTqL
-         Nj82TzggYbHIp+DjPXYl0LjJboT/tj/5Mi8GzrDDdHsJsXBeRkiyBIw8M2ZMMp6XpvYA
-         gstmOroO6ITHNTbfF5CkWkC52N/tXf6pPVLwNTMqeYYZGxknrjKSN6MY+U4vAwvRWsn8
-         JTAg==
-X-Forwarded-Encrypted: i=1; AJvYcCVTjch/0NUhT/MRecCOmYIZHP3mF3MY63UbF5oY3g1RY+lZ+z+o3YwE/nGXatRNfhlXD7P+aXuyFavIwQch0gHCPWyJP+ra1ZCIwJfw7gtzw2GrnsF04IuAGZTu0sKj87IL4/MuEQJKoTZm8SRiWcQIA6OTjsLsSKqlQWUrWtE8ww==
-X-Gm-Message-State: AOJu0YyuLz/CNNfb4wxPNBBk1fwjzgSHUofDyvH7532+V6vsLZ/VLzv5
-	naR6XTOrgo//aXKpPDTANREW84rMwfuf5wPLPEIUAAAjb4ttxYFQ
-X-Google-Smtp-Source: AGHT+IEDPxQCBGh3Ia0jt9ZWaBBa9PCJvA+qO+WlevHSeyZi1rwDKWtBI0Jfr1TaLVksgHmxMS/DWg==
-X-Received: by 2002:a17:906:3689:b0:a43:e812:fbc8 with SMTP id a9-20020a170906368900b00a43e812fbc8mr1505196ejc.18.1709211782649;
-        Thu, 29 Feb 2024 05:03:02 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
-        by smtp.gmail.com with ESMTPSA id cw10-20020a170907160a00b00a3e9ea356easm666794ejd.125.2024.02.29.05.03.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Feb 2024 05:03:02 -0800 (PST)
-Message-ID: <af8a97f3a187cc403b6184948d3e335ee83f44ec.camel@gmail.com>
-Subject: Re: [PATCH v3 1/2] driver core: Introduce device_link_wait_removal()
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Herve Codina <herve.codina@bootlin.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, Frank
- Rowand <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen
- <max.zhen@amd.com>, Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini
- <stefano.stabellini@xilinx.com>, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>,  linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
- Horatiu Vultur <horatiu.vultur@microchip.com>,  Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>,  stable@vger.kernel.org
-Date: Thu, 29 Feb 2024 14:06:25 +0100
-In-Reply-To: <CAJZ5v0hGfqrczS1Si8Bu67vTSkTKO_gO7ftO2R7CQxGKGWsbAA@mail.gmail.com>
-References: <20240229105204.720717-1-herve.codina@bootlin.com>
-	 <20240229105204.720717-2-herve.codina@bootlin.com>
-	 <9cc3d11bc3e1bb89a1c725f865d0c8d1494111c5.camel@gmail.com>
-	 <CAJZ5v0hGfqrczS1Si8Bu67vTSkTKO_gO7ftO2R7CQxGKGWsbAA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+	s=arc-20240116; t=1709211929; c=relaxed/simple;
+	bh=XoeSuzG8jqCz1UT3PLYTSpgiX+WG8nr3dkKjB0srM1w=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=KER6XS+I6JWIyC8BmSnb1MfaQtbvNk2pf7B0cv5dmyGgBuQeAB1dl38wdsxk3yKAADQOd5xfspXv2joWY3V6YMeXF92foVdWdXnsl4SwvcTsBBLPEwbxGbaxjg7Gd5xTDIt8KA9uFCl0WMMZ9S91mBAbEiEMYFr+KkWNNDxny08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=Z0ZSWkfl; arc=none smtp.client-ip=45.89.224.132
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 43A361200E1;
+	Thu, 29 Feb 2024 16:05:15 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 43A361200E1
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1709211915;
+	bh=umX0LQkKpv8OA4NwzbRwcDsOZahJ/+JAK3alNhNh6mY=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=Z0ZSWkflb/3WTeTWGLCVaFAvggT1+HLi6gWtWUbklDrHudg9ZgRq6Bj9yneR5TOIx
+	 YQvXnqsNchedAAQnKPIwYYs2lhTqrqNWDlgGZ9ZWSdO8B/Tc0J0bj2/YN1/H8uk6H/
+	 4wbjRYAq2nHaQOuCj05/yhgq+BsiXoTxg5cz4CbDrPw7sLLvt/RK3eb3PF29E1Tcqa
+	 ilTjzHjWDJXQTehH22Rwh0afOnufZOvNOfos6RXOfmG+8N6t0Aq6oyUV+X+slLLqUz
+	 y3v3nDhYbT68rLt4sG91YEeJNuymzq630EmLd92UV0vpaZgLWpvpDYmumivivRg8vU
+	 HpW02/xEMY6SA==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Thu, 29 Feb 2024 16:05:14 +0300 (MSK)
+Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 29 Feb 2024 16:05:14 +0300
+Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1]) by
+ p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1%7]) with mapi id
+ 15.02.1118.040; Thu, 29 Feb 2024 16:05:14 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Corentin Labbe <clabbe.montjoie@gmail.com>
+CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
+	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+	"martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+	"vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+	"linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+	"linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
+ driver
+Thread-Topic: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
+ driver
+Thread-Index: AQHaXbqRFptCyAwKyUyy1Cn5x5FmZLEHrLEAgANeQYCABgkagIAOlJgAgABwfQCAAG4bgA==
+Date: Thu, 29 Feb 2024 13:05:14 +0000
+Message-ID: <20240229025337.ftbvoaafmu5zvyha@cab-wsm-0029881>
+References: <20240212135108.549755-1-avromanov@salutedevices.com>
+ <ZcsYaPIUrBSg8iXu@Red>
+ <20240215104719.njq6ie2niisntcnv@cab-wsm-0029881.sigma.sbrf.ru>
+ <ZdL713ae1swwTU_B@Red> <20240228133656.24bic6djmjvkill7@cab-wsm-0029881>
+ <Zd-VVGXHoH2ikbmV@Red>
+In-Reply-To: <Zd-VVGXHoH2ikbmV@Red>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <5ABEBF99DA6D414FA14316970D4C439A@sberdevices.ru>
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183854 [Feb 29 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, salutedevices.com:7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;gist.github.com:7.1.1;smtp.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2024/02/29 11:23:00
+X-KSMG-LinksScanning: Clean, bases: 2024/02/29 11:23:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 08:31:00 #23888373
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-On Thu, 2024-02-29 at 14:01 +0100, Rafael J. Wysocki wrote:
-> On Thu, Feb 29, 2024 at 12:13=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.=
-com> wrote:
+Hello!
+
+On Wed, Feb 28, 2024 at 09:19:32PM +0100, Corentin Labbe wrote:
+> Le Wed, Feb 28, 2024 at 01:37:02PM +0000, Alexey Romanov a 'ecrit :
+> > Hello,
 > >=20
-> > Hi,
+> > On Mon, Feb 19, 2024 at 07:57:27AM +0100, Corentin Labbe wrote:
+> > > Le Thu, Feb 15, 2024 at 10:47:24AM +0000, Alexey Romanov a 'ecrit :
+> > > > On Tue, Feb 13, 2024 at 08:21:12AM +0100, Corentin Labbe wrote:
+> > > > > Le Mon, Feb 12, 2024 at 04:50:48PM +0300, Alexey Romanov a 'ecrit=
+ :
+> > > > > > Hello!
+> > > > > >=20
+> > > > > > This patchset expand the funcionality of the Amlogic
+> > > > > > crypto driver by adding support for more SoC families:
+> > > > > > AXG, G12A, G12B, SM1, A1, S4.
+> > > > > >=20
+> > > > > > Also specify and enable crypto node in device tree
+> > > > > > for reference Amlogic devices.
+> > > > > >=20
+> > > > > > Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+> > > > > > custom tests [1] and tcrypt module.
+> > > > > >=20
+> > > > > > ---
+> > > > > >=20
+> > > > >=20
+> > > > > added patchs up to  "drivers: crypto: meson: process more than MA=
+XDESCS descriptors"
+> > > >=20
+> > > > Including this patch or not?
+> > >=20
+> > > The crash start with "drivers: crypto: meson: move algs definition an=
+d cipher API to cipher.c"
 > >=20
-> > Just copy pasting my previous comments :)
+> > Unfortunately I was unable to reproduce this. I use Khadas Vim1 board
+> > and my custom tests (https://gist.github.com/mRrvz/3fb8943a7487ab7b943e=
+c140706995e7).
+> > Tried both build as module and built-in.
 > >=20
-> > On Thu, 2024-02-29 at 11:52 +0100, Herve Codina wrote:
-> > > The commit 80dd33cf72d1 ("drivers: base: Fix device link removal")
-> > > introduces a workqueue to release the consumer and supplier devices u=
-sed
-> > > in the devlink.
-> > > In the job queued, devices are release and in turn, when all the
-> > > references to these devices are dropped, the release function of the
-> > > device itself is called.
-> > >=20
-> > > Nothing is present to provide some synchronisation with this workqueu=
-e
-> > > in order to ensure that all ongoing releasing operations are done and
-> > > so, some other operations can be started safely.
-> > >=20
-> > > For instance, in the following sequence:
-> > > =C2=A0 1) of_platform_depopulate()
-> > > =C2=A0 2) of_overlay_remove()
-> > >=20
-> > > During the step 1, devices are released and related devlinks are remo=
-ved
-> > > (jobs pushed in the workqueue).
-> > > During the step 2, OF nodes are destroyed but, without any
-> > > synchronisation with devlink removal jobs, of_overlay_remove() can ra=
-ise
-> > > warnings related to missing of_node_put():
-> > > =C2=A0 ERROR: memory leak, expected refcount 1 instead of 2
-> > >=20
-> > > Indeed, the missing of_node_put() call is going to be done, too late,
-> > > from the workqueue job execution.
-> > >=20
-> > > Introduce device_link_wait_removal() to offer a way to synchronize
-> > > operations waiting for the end of devlink removals (i.e. end of
-> > > workqueue jobs).
-> > > Also, as a flushing operation is done on the workqueue, the workqueue
-> > > used is moved from a system-wide workqueue to a local one.
-> > >=20
-> > > Fixes: 80dd33cf72d1 ("drivers: base: Fix device link removal")
-> > > Cc: stable@vger.kernel.org
-> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > > ---
-> > > =C2=A0drivers/base/core.c=C2=A0=C2=A0=C2=A0 | 26 ++++++++++++++++++++=
-+++---
-> > > =C2=A0include/linux/device.h |=C2=A0 1 +
-> > > =C2=A02 files changed, 24 insertions(+), 3 deletions(-)
-> > >=20
-> > > diff --git a/drivers/base/core.c b/drivers/base/core.c
-> > > index d5f4e4aac09b..80d9430856a8 100644
-> > > --- a/drivers/base/core.c
-> > > +++ b/drivers/base/core.c
-> > > @@ -44,6 +44,7 @@ static bool fw_devlink_is_permissive(void);
-> > > =C2=A0static void __fw_devlink_link_to_consumers(struct device *dev);
-> > > =C2=A0static bool fw_devlink_drv_reg_done;
-> > > =C2=A0static bool fw_devlink_best_effort;
-> > > +static struct workqueue_struct *device_link_wq;
-> > >=20
-> > > =C2=A0/**
-> > > =C2=A0 * __fwnode_link_add - Create a link between two fwnode_handles=
-.
-> > > @@ -532,12 +533,26 @@ static void devlink_dev_release(struct device *=
-dev)
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * It may take a while to complet=
-e this work because of the SRCU
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * synchronization in device_link=
-_release_fn() and if the consumer
-> > > or
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * supplier devices get deleted when i=
-t runs, so put it into the
-> > > "long"
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * workqueue.
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * supplier devices get deleted when i=
-t runs, so put it into the
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * dedicated workqueue.
-> > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
-> > > -=C2=A0=C2=A0=C2=A0=C2=A0 queue_work(system_long_wq, &link->rm_work);
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 queue_work(device_link_wq, &link->rm_work);
-> > > =C2=A0}
-> > >=20
-> > > +/**
-> > > + * device_link_wait_removal - Wait for ongoing devlink removal jobs =
-to
-> > > terminate
-> > > + */
-> > > +void device_link_wait_removal(void)
-> > > +{
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 /*
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * devlink removal jobs are queued in =
-the dedicated work queue.
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * To be sure that all removal jobs ar=
-e terminated, ensure that any
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * scheduled work has run to completio=
-n.
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
-> > > +=C2=A0=C2=A0=C2=A0=C2=A0 drain_workqueue(device_link_wq);
-> > > +}
-> >=20
-> > I'm still not convinced we can have a recursive call into devlinks remo=
-val
-> > so I
-> > do think flush_workqueue() is enough. I will defer to Saravana though..=
-.
+> > Can you, please, give more information? Maybe your test cases?
 >=20
-> AFAICS, the difference betwee flush_workqueue() and drain_workqueue()
-> is the handling of the case when a given work item can queue up itself
-> again.=C2=A0 This does not happen here.
+> My test case is simple, simply load the driver.
+>=20
+> The problem is that you moved the algs[i].mc =3D mc after the register of=
+ algs (in drivers: crypto: meson: move algs definition and cipher API to ci=
+pher.c)
+> Test could happen as soon the register is done and so mc is deferenced.
 
+Yeah, you are right. Will fix it. Thank you.
 
-Yeah, that's also my understanding...
+>=20
+> Since you didnt hit the case, I suspect you didnt test the driver as modu=
+le.
+
+No, I test the driver as module.
+I think the problem is that on my system no one uses this crypto backend
+outside of my tests module, unlike your system.
+
+>=20
+> Regards
+
+--=20
+Thank you,
+Alexey=
 
