@@ -1,124 +1,182 @@
-Return-Path: <devicetree+bounces-47286-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47287-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94E4C86CAB3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 14:53:21 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A462086CABC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 14:54:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 18CBBB20DBD
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:53:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C56F11C21E17
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:54:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C0AD286275;
-	Thu, 29 Feb 2024 13:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E0412BF22;
+	Thu, 29 Feb 2024 13:54:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="n2VhQ/al"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Owc2hXTe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A689D7D3E9;
-	Thu, 29 Feb 2024 13:53:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.13
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9287B12A179
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 13:54:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709214793; cv=none; b=TbkDKkblNA+vHb3wnE847Upk6AE2adwr2mFErjmoZjnGoa4Wb8OgBziIw0Qj5uv4SUUXMzZZHXxlSnwjwhVGqItkk7LFs8zklxgyTHQDAi2KXb6pcZKzxGvbVAED27CuADtZWbBS3cvKHkGK0pxhSjiG9EFdDVE30pJCJvqT+Do=
+	t=1709214857; cv=none; b=MWXCZGKB7BkjA2g3KlSNLHC5OCDCMI+5nUAiosSg832F5jE5Uhmv1J7eUtqX7urQOe80Ty9mF06RYNnYCjCn0AGur/ZyHifztkfrz215XRde4M5WhQfInsQrG9P5J5sWzsoSFj1p4bPgNxIXLMRkBiZJa1QHcjlkfWjWV5ZCerU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709214793; c=relaxed/simple;
-	bh=soFEyKKUiQuYWMqoVH6cYWp/GwAL18MTf6JPCEiXDwI=;
+	s=arc-20240116; t=1709214857; c=relaxed/simple;
+	bh=v7AgUbrbTmOdYPgovbts9D0RiAJ9tLCiiQRNel8KPYs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hWeXvgWv1SerI7HqwEzqHjJh/8QjstEoWPnhdpxqQ63yEvynQqOgzVYskatMEbV8/XEXSxJPqFSfaTD5X3PN9EVU62baocIq2RSO8udF94pFOk9lkT4RNPr1VQx7xt0wqy1YMAcceUm+IB4NlZS+tnwwr33pNZ8Cz6bS5czKZZw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=n2VhQ/al; arc=none smtp.client-ip=198.175.65.13
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1709214792; x=1740750792;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=soFEyKKUiQuYWMqoVH6cYWp/GwAL18MTf6JPCEiXDwI=;
-  b=n2VhQ/alU/f0f1i19lHLauU46xFDGthOUsyjJEi8nRNws8VP0GYbANzC
-   bhwYIATTyrvu0/djievbOn3DXWenqQeodnwHjCeGYr72sTP6nx5I+9gDF
-   otuhcjN5JW9IauxB6hpDKmmHBy1ahiRFWT6zJA5IHiR0xxHWl/GM2yyk6
-   dN/Evvm8DbtdO2gZZdjwI/WXpz2pe2yBAnx0Edc36gDkzO6TYT2mGtAPk
-   oBUb4Po50V5ff6BjQg4M8UMkbs0Uh6BkCO6OYlmcPY29H33NXXqBswzMF
-   U3vCEtQcbU4EsQ/IjpAxzfeVw6ZsPZ47TG+4BAdRcpjD9YrgSFePKAki/
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="14835702"
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
-   d="scan'208";a="14835702"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Feb 2024 05:53:11 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="913982643"
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
-   d="scan'208";a="913982643"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Feb 2024 05:53:06 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1rfgqN-00000008gQI-1TA4;
-	Thu, 29 Feb 2024 15:53:03 +0200
-Date: Thu, 29 Feb 2024 15:53:03 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=XS+dEfSnrN8pN9jobGbLJOJF1YNQpOTkIb0DcHwMF2Mw/ZNWH8o2fzPpMSVJjXeURHs+M+fQVu05EPHJsFJwRG7tzJONdmJ+XFhQQ2BCg5Uw7i7sFiXlV0PkjtvH4gmhTuPiyJA5kCojkBVYpXi3OEcFsV4oQJRf/PFo6kEMjBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Owc2hXTe; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1dbae7b8ff2so7640625ad.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 05:54:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709214855; x=1709819655; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=KFi6owlquWpJybLOnBr0GE/gVglg7A135XAv9MGMZ48=;
+        b=Owc2hXTe60+izH55CjRTO9K5aSUe3JuxD9OZJ8NjdfVgwMV45B1Oz0/+qXqqDxZ2Z+
+         lEZklQlNx0rmhyUZ9RV/rWIdZu650LThYHt8hlvLIq5Lm+TlMinxoQHnI9NnoH0uoTbf
+         UKkPPsFSerWzwWmuw34xCccLCeh5GS4Fvezjsk5SciTYI2i7ikmGWce5Np6xVRp8ROKb
+         TpGZuTyyo0xOGvDWkt9ac+OEHIV90irQFUbG1jlEXvuH/UM5rPV3XefJeLo8x0MxIKU1
+         g7k5a+4Qx2ZcKYgc3q9HSpzN2Hed1qbebTUfkz8Tl+r5FMmoaZX9oSb5VD50tKL7xAYh
+         tzwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709214855; x=1709819655;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KFi6owlquWpJybLOnBr0GE/gVglg7A135XAv9MGMZ48=;
+        b=nblLpcZ1YifInvd4sRPbBOLMF+jfyQ+7cq48mAzJ2Sit/jAeZw5S/KIQYkgwXQFidA
+         shikzg2PU4cY9aHgcsH72f0HTJJeyqkEq5JIswlkgG7omh/GVzSRjd9MybNiCn5EowaY
+         3RU5hU5d6SyxHJFOBExnK6LWmC44qvoXjuwHpxCfQjKbXAv77AqYJ2whcdTns1OIC9DX
+         C0vOzN0iM2Y4m5QhffS8myNQ7vnBdAxAEH5I+PF61sca+65AsGPYRHgLAs/ylsV9ehXX
+         ImtuwF/31qF5xkSP2sg7P6KqpR5gfE+CSC6voxjZYlKtQe3zGjzxE2wNCGJRvGZ14l7V
+         T9Mw==
+X-Forwarded-Encrypted: i=1; AJvYcCXVOlAPzyIkW1Jm8OD2J88ywhBSh9lj7ybGgH7UerA83h9vwD9+iwvnDmPUgo4aYtEXUYsNEKVof5hUcLQB/p7EKOVOJkGB8U+VAA==
+X-Gm-Message-State: AOJu0Yy+EbVwJCLg9uE+1TliFgfCn+dXKnIzFD9/DfbGsvBjH2Vw8dwN
+	JIs99wT6kSxFkWBW/Uc8LJOhFHCPqd2yKxYVpkfNNyzuWDVhQedxtvrcDZOKrA==
+X-Google-Smtp-Source: AGHT+IHXl1bXWdS83nD1wqmxu04C1/sqKau8el88o5dRrtYuWLXqrfk+s6o/thw3Tq79HKdbJHBzhg==
+X-Received: by 2002:a17:902:c406:b0:1d8:ab27:d76c with SMTP id k6-20020a170902c40600b001d8ab27d76cmr2414876plk.51.1709214854696;
+        Thu, 29 Feb 2024 05:54:14 -0800 (PST)
+Received: from thinkpad ([120.138.12.68])
+        by smtp.gmail.com with ESMTPSA id j12-20020a170902c3cc00b001dca9a6fdf1sm1484066plj.183.2024.02.29.05.54.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Feb 2024 05:54:14 -0800 (PST)
+Date: Thu, 29 Feb 2024 19:24:07 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Bjorn Helgaas <helgaas@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v8 04/10] reset: eyeq5: add platform driver
-Message-ID: <ZeCMP4pKdoAj3s3C@smile.fi.intel.com>
-References: <20240227-mbly-clk-v8-0-c57fbda7664a@bootlin.com>
- <20240227-mbly-clk-v8-4-c57fbda7664a@bootlin.com>
- <Zd4bbCsY54XEnvJM@smile.fi.intel.com>
- <CZGVIWR4H4DE.3M5H3H99X0QPT@bootlin.com>
- <ZeBo4N204gLO0eUd@smile.fi.intel.com>
- <CZHK1ZCSROM5.X4WYN7SAZJTH@bootlin.com>
- <ZeCLS17PhKPuGvkm@smile.fi.intel.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and
+ GICv3 ITS enable
+Message-ID: <20240229135407.GE2999@thinkpad>
+References: <20240223152124.20042-1-johan+linaro@kernel.org>
+ <20240228220843.GA309344@bhelgaas>
+ <20240229100853.GA2999@thinkpad>
+ <ZeBbrJhks46XByMD@hovoldconsulting.com>
+ <20240229122416.GD2999@thinkpad>
+ <ZeCCPRVvYCNfMYnd@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZeCLS17PhKPuGvkm@smile.fi.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <ZeCCPRVvYCNfMYnd@hovoldconsulting.com>
 
-On Thu, Feb 29, 2024 at 03:48:59PM +0200, Andy Shevchenko wrote:
-> On Thu, Feb 29, 2024 at 01:18:08PM +0100, Th�o Lebrun wrote:
+On Thu, Feb 29, 2024 at 02:10:21PM +0100, Johan Hovold wrote:
+> On Thu, Feb 29, 2024 at 05:54:16PM +0530, Manivannan Sadhasivam wrote:
+> > On Thu, Feb 29, 2024 at 11:25:48AM +0100, Johan Hovold wrote:
+> 
+> > > As I mentioned, the 'required-opps' binding update is needed to fix the
+> > > missing OPP vote so blocking the binding patch would block merging the
+> > > DT fix which could otherwise go into 6.8.
+> 
+> > I agree that the fix gets the priority. But some maintainers perfer to merge fix
+> > patches _only_ if they are fixing the issue introduced in the ongoing release.
+> > But if Bjorn has no issues in merging these for 6.8, then it is fine.
+> 
+> It also depends on the severity of the issue and to some extent the
+> complexity of the fix. These binding fixes are certainly low risk. :)
+> 
 
-...
+Right.
 
-> The downside is that you will need to include property.h for this only thing.
-> And I don't see other code that can be converted to fwnode right away here.
+> > > The 'msi-map-mask' is arguably a fix of the binding which should never
+> > > have had that property, but sure, it's strictly only needed for 6.9.
+> > > 
+> > > And Bjorn A has already checked with the Qualcomm PCI team regarding
+> > > ASPM. It's also been two weeks since you said you were going to check
+> > > with your contacts. Is it really worth waiting more for an answer from
+> > > that part of the team? We can always amend the ASPM fixes later when/if
+> > > we learn more.
+> > > 
+> > > Note that this is also a blocker for merging ITS support for 6.9.
+> 
+> > I got it, but we cannot just merge the patches without finding the rootcause. I
+> > heard from Qcom that this AER error could also be due to PHY init sequence as
+> > spotted on some other platforms, so if that is the case then the DT property is
+> > not correct.
+> 
+> I've verified the PHY sequences both against what the UEFI firmware (and
+> hence Windows) uses as well as against the internal Qualcomm
+> documentation (with the help of Bjorn A). And Qualcomm did say that such
+> errors are also seen under Windows on these platforms.
+> 
 
-I meant here
+Well, sometimes the init sequence published by qualcomm could turn out to be
+faulty. That's why they publish v2 sequence and such. And I want to rule out
+that possibility in this case.
 
-	device_set_node(..., dev_fwnode(parent));
+> But the fact that the symptoms differ between the CRD and X13s, which
+> use the same Atheros Wi-Fi controller (and the same PHY initialisation)
+> also suggests that this may to some extent be due to some property of
+> the machine.
+> 
+> Notably, on the X13s there are lot of errors when pushing data
+> (e.g. using iperf3), whereas on the CRD the are no errors when running
+> such tests.
+> 
+> When leaving the CRD on for long periods of time with the Wi-Fi
+> disconnected, I do however see occasional correctable errors.
+> 
 
-On the second thought it can survive probably without it in a form
+This may be due to hardware design that I agree (possibly influenced by driver
+defect).
 
-	device_set_node(..., of_fwnode_handle(parent->of_node));
+> > Since this is not the hot target now (for Qcom), it takes time to
+> > check things.
+> 
+> I think that based on the available data it's reasonable to go ahead and
+> merge these patches. In the event that this turns out to be a
+> configuration issue, we can just drop the 'aspm-no-l0s' properties
+> again.
+> 
 
-but this does not fully solve the fundamental problem with accessing of_node.
+Well the problem is, if you are not sure, then adding the DT properties is
+certainly not correct. As that implies a hardware defect, but it may not be.
+So let's wait for some time to find out the actual issue.
+
+- Mani
 
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+மணிவண்ணன் சதாசிவம்
 
