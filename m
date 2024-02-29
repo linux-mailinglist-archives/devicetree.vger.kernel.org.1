@@ -1,88 +1,128 @@
-Return-Path: <devicetree+bounces-47362-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 215DF86D057
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:18:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C7086D077
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:23:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7E9A1282BAB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:18:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A6E71C21899
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 686006CBE6;
-	Thu, 29 Feb 2024 17:18:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 106F270ACB;
+	Thu, 29 Feb 2024 17:23:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C30cjscs"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y2BOQg0O"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3FFBE4AED8;
-	Thu, 29 Feb 2024 17:18:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 637764AECF;
+	Thu, 29 Feb 2024 17:23:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709227108; cv=none; b=WQudx63kkEPlP8HIPKeA8dUk7xk5/+WpUR+Lm8e0Uobde7esXJ/zqvh1Eh3mj+mB9cdqI0eyo4JxBm4Ghe08XPymTNkvDW4XBb1aIxd4gkceM1mwUbY2OD4D76GjlrLtjFq06sH9o2nR5hEtFbP8UHiAEGbR8gH0IH1a+hv9JoA=
+	t=1709227386; cv=none; b=IQwDqU11FIMj/nsIn/b8Q/DDMpm/3Tp7S9jD1ywJyS656Dc+Jw9wSo7+Gt3bMoOI2wIYa3/xVgx3h4c8tgkklSBYIXeaITYkKPHzelRF+WcezmuMWtTvS/2b7IJC72+YpYlKN0lrDe4w0sCTrwiTouBSTAIfD/usCQhIA3omzFA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709227108; c=relaxed/simple;
-	bh=+ZMo9iEMsSfz6V8Ou27C1FUbJqgrktdBSS/LmjvzYAo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=lK7/kiCF1WRURLM6ux4IfVEzhmBK/YcvyxmJXxZZDg7RR977uVgBKOC6lUHwO5vVM/cKqqudSGhYUQi0n1RjmHqXWYd7GGyKMBD13EyOw90xw5DUFRh8vuSB2p2kTFmq6m/BwNl7K8qqQdLpmgFtiwys98O7K3/2E7aPrNQWd8k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C30cjscs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7DA16C433F1;
-	Thu, 29 Feb 2024 17:18:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709227107;
-	bh=+ZMo9iEMsSfz6V8Ou27C1FUbJqgrktdBSS/LmjvzYAo=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=C30cjscst84mSSST8nBsirG+OfbAQON5hFMVORfzIaT1fNwG5X2+Eo6SpO4rI7iJs
-	 xpe9SXUxPA2WiVTbFKr2YOw6Ocub3AxcAqNwQHOa+qt7b7nUrT3YhZjbiQWmY18Y6X
-	 b4/yNIMexku+SIWin/2r1UxmIxA0+JQx+h0NgWyYexKVW4RaSLmbHm58ngpsnbfnR3
-	 Erb/sTy3XbNfAbA5gQzsjrBkZgTIDiOtKUSK7+qkGdSyxF71kv+Z3xwia2VpVlLCvG
-	 sHVznouwYKssgYFofqxmogJ4JYHg5WPCPWPrxuRFj2aF/UcO5oI3G7tRwps0B5YiwP
-	 rGqIFLAUDa7KA==
-From: Lee Jones <lee@kernel.org>
-To: Pavel Machek <pavel@ucw.cz>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <zajec5@gmail.com>
-Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>, linux-leds@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-kernel@vger.kernel.org, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>
-In-Reply-To: <20240223112223.1368-1-zajec5@gmail.com>
-References: <20240223112223.1368-1-zajec5@gmail.com>
-Subject: Re: (subset) [PATCH] dt-bindings: leds: Add
- LED_FUNCTION_WAN_ONLINE for Internet access
-Message-Id: <170922710524.1611805.15418765168874516395.b4-ty@kernel.org>
-Date: Thu, 29 Feb 2024 17:18:25 +0000
+	s=arc-20240116; t=1709227386; c=relaxed/simple;
+	bh=5nZwqA9tbOOr+DLByNR/d5dfwhDeaGca6ij6RK47SAE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=LfD9M1QEZJBxcIAHeGn3+ZbOQ13l0lvOMTVrM5ord4EvlZSine/2Falca9hmDT6SLkaON+CIne9X7mUSWlLNTgdWt0LuinGbbBdwBpkm4IntnwbL0lj9NCy83cBvheXOHU8LqSBe3xoHq4NX8dfIcPTKnqWgsh8cZFa9cm1a6M0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y2BOQg0O; arc=none smtp.client-ip=209.85.128.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-40fd72f7125so8232185e9.1;
+        Thu, 29 Feb 2024 09:23:04 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709227383; x=1709832183; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=bErguItfMvVUEbWhwhzZCYcvRJMN18OERsBymbfbLaM=;
+        b=Y2BOQg0OhsAdjEXVOwq0hCPQk7IuaLvXDlnW5DwxA1n88Pku7C3ckedmNWtF4hnIkV
+         5ilRUnwbBiZf8J3nH/oVJlyuT37v40cmDEewJSXZ2dFH1PYL960QVOgcXzKRvZCaWBCr
+         +LZN/7Acw+LMqT5bRAQFlXQCS6JnwaFaKMn6OV9RrPOs6Ai8zVC9cxd+IUjXBEUf30lp
+         /ej4tP4UigZQf7J2j4rI2XBF+lAnWmuiV0cedPs7yfTPgWba8u4mHi0DSJk+t9D1zS0X
+         Nm1lREaB3QHPbwlfOwxSsJ8CIwgbIZKhtuMnlBWJ/gMftSPEown6iQTiIRBu9BWSzMgQ
+         x7Cg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709227383; x=1709832183;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bErguItfMvVUEbWhwhzZCYcvRJMN18OERsBymbfbLaM=;
+        b=Of9Gvk0TDYvhfbY6COnTUleXE2R6PQMUdKn4HmHCkEWUscMa+001vymh2MtU25dT6h
+         rCfuElv8Jq/8eAaPxjzR+SCzvj99gxrBlvKoOr9TlWnAVq1gQRJTuGJTX6PqsKVBacdF
+         XSIcrKbwhgysz467+IWHNjytemuA7dOJRadnhihNcdFNjiwtksbRKC1teeL8LYkXupEm
+         p1cSC+hgpTo1JBMI7yM2wAJ+vl8vkyGfCxGCPfnAW77wjQg+Dcj8P1k1/GOAUJs6zI2Q
+         Qi9ILQ1wOtHYZApGNWJmb3MP2YnU3ssHxPXES0xUEqnJMC3fRx3BuGFVsMaft18QeqsV
+         GSbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW5Tc54mXSDH5KhcztdRhj7kmm7aKoIjJQLgISzQs5dgVaVU4Xv924eDpjRR4MxTSXRqChgmEpn+ThsRa1tI19k5Q+wQh+Wy5ORSKiot/W2HA8uFPRy1cprgeqQc4j1EnCUbU5dsHy1Fg==
+X-Gm-Message-State: AOJu0Yy6MQISASS0vGJNBwT62c8nm8D3yOLtPgrQN8ssdL9cnddl9ss6
+	SIJoLIF0z0q1/NBJqu48+Oi9nKuxTL85g1PckS6ZXlqRQv6PO+5m
+X-Google-Smtp-Source: AGHT+IGZRN4ap2o8wd40N+709S+xjf8UwMB/NxUn/8e2Adb62JephEiUJItk9npwpPGB/2e/RcRl2g==
+X-Received: by 2002:a05:600c:3111:b0:412:b60b:96b2 with SMTP id g17-20020a05600c311100b00412b60b96b2mr2326997wmo.31.1709227382257;
+        Thu, 29 Feb 2024 09:23:02 -0800 (PST)
+Received: from [192.168.50.110] ([90.255.110.157])
+        by smtp.gmail.com with ESMTPSA id je1-20020a05600c1f8100b004127ead18aasm2733244wmb.22.2024.02.29.09.23.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Feb 2024 09:23:01 -0800 (PST)
+Message-ID: <8bbb2957-9452-424a-8e9f-4ddbd4f24722@gmail.com>
+Date: Thu, 29 Feb 2024 17:23:01 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Mailer: b4 0.12.4
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] drm: panel: st7701: Add Hardkernel ODROID-GO Ultra
+ panel support
+To: Jessica Zhang <quic_jesszhan@quicinc.com>,
+ Jagan Teki <jagan@amarulasolutions.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240221194528.1855714-1-greena88@gmail.com>
+ <20240222164332.3864716-1-greena88@gmail.com>
+ <20240222164332.3864716-2-greena88@gmail.com>
+ <f9446923-acd3-41cf-92d4-676b946280c4@quicinc.com>
+ <79a4b60e-24f3-47fd-b3b3-7d207cec1470@gmail.com>
+ <a13eeb01-7df9-4577-975f-34b3aed8400f@quicinc.com>
+Content-Language: en-GB
+From: Adam Green <greena88@gmail.com>
+In-Reply-To: <a13eeb01-7df9-4577-975f-34b3aed8400f@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Fri, 23 Feb 2024 12:22:23 +0100, Rafał Miłecki wrote:
-> It's common for routers to have LED indicating link on the WAN port.
-> 
-> Some devices however have an extra LED that's meant to be used if WAN
-> connection is actually "online" (there is Internet access available).
-> 
-> It was suggested to add #define for such use case.
-> 
-> [...]
+On 26/02/2024 21:29, Jessica Zhang wrote:
+ > Got it. Was the shorter sleep time breaking the display and is it
+ > required for the new panel to work?
+ >
+ > Thanks,
+ >
+ > Jessica Zhang
 
-Applied, thanks!
+Hi Jessica,
 
-[1/1] dt-bindings: leds: Add LED_FUNCTION_WAN_ONLINE for Internet access
-      commit: c0ef9799df8756968c236720658e492fbe636064
+I will be submitting a v3 shortly, the change to the sleep time was not 
+necessary for the new panel
+to work.
 
---
-Lee Jones [李琼斯]
+I have been able to re-use the gip sequence from the kd50t048a panel 
+used in the Hardkernel Odroid
+Go Super as I have been led to believe it is the same elida panel, 
+unfortunately the same modes
+used by that device do not work for the Odroid Go Ultra and so its still 
+necessary to have the
+patchset,
 
+Best regards,
+
+Adam
 
