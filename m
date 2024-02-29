@@ -1,76 +1,75 @@
-Return-Path: <devicetree+bounces-47262-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47261-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DEA0F86C9B7
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 14:07:33 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 604CF86C9B5
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 14:07:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4294E1C20E06
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:07:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F16A1C20E6B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:07:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8EB87E578;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 628DD7E563;
 	Thu, 29 Feb 2024 13:07:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BzdI+pvJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XG+godrd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B72CB7E0E5
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 13:07:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 946137E0F9
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 13:07:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709212036; cv=none; b=t1wDaa0oHJaZKpZlItIrHcjPDqxH1Je8ApJJcXvH/A8h4jlQubBC34n9xPLv35pKZEl9BCHKi2KUveGmBcTLybKYUww6KPyMUNVtK9zEaBT+h4zo7bL7Yj4MAExrdRxxY18F4qZafExQSixG7WxSDtxmaEB7HR0+4yx7MjBcuQ4=
+	t=1709212036; cv=none; b=JYV/KYcxd0Y7nA9FO7dJNMwsoxxUmg6xUmzgp/kVyPFhAJvTiiNJ5hobewjh5w2m8Cq/5va2EahKLmhsCZCh1jeqRsHM9JlNk1HLOeMhG6TY02bi8sxP1Fm08uoa0OJs85BysEeD31wUN4UsZEAJQeSs6LoJrH0nGaJInaRaOwk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1709212036; c=relaxed/simple;
-	bh=gUhmXpw+40NNDKZNzyOCoORFZuCEOLT0lZh0KAJVHT0=;
+	bh=cCW1iS1Wauzti7oU5CFmde3Uy5U4EhSg8/m1/ht6x1w=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=WSPF5jV7jQVImxB0AxEbx/5CYaKGv/1ikUIHEuVdrmyHwv1dHbqpFV7XUjMs8co9fMe13M1EPTWanEGJaFw0sfikcUalfIAwLpvOHYSjsm3xJJeORjqTOJrfbA4k3sMBIXvwWRumI+aLD3gK4qzsieo9anTkgD2OeX9q6cKeQcM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BzdI+pvJ; arc=none smtp.client-ip=209.85.167.47
+	 In-Reply-To:To:Cc; b=iHHr7b8yz61k+HjqCN09zs273SvlKxk+RsLM9JQ0jZvwheeaU3ZVfodi8JcEYc0x27V0wmtRp0HJgEm9qslcW/qfScErHCtx4v4fGwGiwLRTzvoh1p42xyOXrRBR9dO4yJxjlXh74veMczt7w4Ho7HPbfGYgWOrO9c+TYu0HkGI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XG+godrd; arc=none smtp.client-ip=209.85.208.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51326436876so628044e87.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 05:07:13 -0800 (PST)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d275e63590so10824801fa.2
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 05:07:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709212032; x=1709816832; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709212033; x=1709816833; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YT8Y/OHXUcXm+kdXDY4DIbb1yI62HJpje5eqK4s6t4U=;
-        b=BzdI+pvJHJqtqNkMytd3tkzUePhdhZhPQV6fx37Iva18TGKJ2zVUmItvJ1KWYj6Ydi
-         bLZqllFPcJzH8zgDfUSgqn0ivbQl/FUeZ9ynRRmEBnNd9tcHryRVEIOfICjbS1tewIoD
-         YPpIjgHgqKh8JWlrWXl9mVx59djfjwKqSkMGvaRXJ0uUb0hZz/JWRHKatZ2jy+K32ZY9
-         7p6YYD+U0L2NeO49pMQTsSaCekyxEt/uihLfYPSJrDB+lcbzv0RIEBLARJWsK62CQt0X
-         46xZaaU+g9G2LXQWeMDJt99SyzqtsRK9yfvUT4t2EK32IKRBaQ5CsdzD3jpp1Tl0P/EY
-         aRtg==
+        bh=SE9xKWVsxs5pjWEcUUBayX/iRsKUyAQ4+9MJ8LDkXdA=;
+        b=XG+godrdVhnwj75cwzMspkgqauyXhTZVuliIZe0QGCOApOtP7NyLV4DYhu98PXReee
+         +JqsLFtQoxd70ItehI8NTAl2wWR+EJJK0QceIz1EwFhgnk78yBJ/itoolGt7mdJrGL0O
+         w0IbDDmuYKnBthNnFmSGvA1Q6vL6FbegHswx2VbTQqwTDxqfWm5AgdYrAK1aWr+X9jx8
+         vLWTMjGX0b89SaDc7mUdri3DmJYh4yjoMeNXp4957Dlt+OW0T9MnCqWitmasqZRHXEmi
+         IWonMDZmWUlNR/C8zGij/v3Di0eSxnF0q2vsXYEyxkBNQZ1nfeilvmh+kHXJxSo0gjW9
+         47YQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709212032; x=1709816832;
+        d=1e100.net; s=20230601; t=1709212033; x=1709816833;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=YT8Y/OHXUcXm+kdXDY4DIbb1yI62HJpje5eqK4s6t4U=;
-        b=A4A5GDFzyXllWRwd7r7j458dwBDjJy7XZDlYfU5wcj4h+MXndczQ92jiVKHTL41yDx
-         4Q55+3yl+owix9H64aHzJPQhosWOG/mlprFuit+DNzxjjA0dOmowEYG5QCMgtkK8my48
-         45cxmluc7DZtZXZfao3Se4pu4xywv+m8vG2Lafkt4Bk5f2Xo8aPuuZtoQotRNgL8rJOD
-         HrXFdDTn1FyAcQPpVz0jju2MWEy1V1m1e8loI2e1u8TiOh15/qe4wYNrjGR313fHkSqf
-         rusL9+YVxOeR6GrNcyAeFjjKT0ZChmyeH+lucalDM+gMa+8KGecJFllysdSBNnA23jUo
-         y+pw==
-X-Forwarded-Encrypted: i=1; AJvYcCWhB9FHmlaFExvUz7mhnMDTRLognhzddidTsjk86IlqstAYYTJDbjFS+NV+IgztrhG88dglbY19+tjjhGb484Zf2lR7v1hch/vWbg==
-X-Gm-Message-State: AOJu0YyKu77vAcYlmz4mIUBqqIUJb7CnBPeAVTCMwCCniakayWxVPda3
-	8YdidXQExz3j9T57VpEPoBKnFv6R+OsmADxsyNei7A0asykiWz1fe+XEp/CSa0g=
-X-Google-Smtp-Source: AGHT+IGI0oRvCFt0+el7beJ3sqJpYurlpJRXVhgZ8B7Fm1nl0mXZqOm336eD0Jk9r0hr/gWwN+UFVg==
-X-Received: by 2002:ac2:5f7a:0:b0:513:1a44:9a47 with SMTP id c26-20020ac25f7a000000b005131a449a47mr1225576lfc.21.1709212031850;
-        Thu, 29 Feb 2024 05:07:11 -0800 (PST)
+        bh=SE9xKWVsxs5pjWEcUUBayX/iRsKUyAQ4+9MJ8LDkXdA=;
+        b=nvqO0RYJ30qN+zrbYV2gFD79ecg1w5DA2wfoG8T3c2vFD/FJBY8/w3QyBKZSkoMAft
+         /5GLXo/BzuTUgUbrQgTZ66CRW3eJWF4v3I/p0DwwP/jWwuvJFLBz4EqajOzOLOADA3cy
+         GW8ez8nwpBMg7ec9TXAoN/tWTHzNbGb6vwZM4N5/+6Tnh503b1pZCfdBdmnSBLTwzL/j
+         XqFR7wkdEjkPTbaNgXgIE1LuMVubqhTz8X/BXPdr/0q2rSCyXdHwI07QkBThIBDEEHJ7
+         PNNzVUi+5Emt4z+4MXvSz3Usjs6kyHdUd6eRUudIHMspjEg3bMeguqa97jvUnYAIhXkU
+         dR5A==
+X-Forwarded-Encrypted: i=1; AJvYcCXmlWd1YbaCIOxoTO7QTb9yecLBMqQHwCaYpZ7B1vrlFvsi3iCQYeTcswC5oWn6ojeti+EQ9p2Vl4FCpWOiDM11uImtTn3aJgTghg==
+X-Gm-Message-State: AOJu0YxTCTwwN+OgZNOC3oMp51+zu6jUHSgW3Z1S+r4/G5D6Z549AoRB
+	wsNozK+bESGHoNT7Bh2MUYK1eY3ofBNQ6oZ4uqyLr2zbiHv6+dlUs4qlw8SBle4=
+X-Google-Smtp-Source: AGHT+IGn3VGQDNynXtqcROY+w95yeAvZysb2r3gp3IsB+wTNLRr3RGjZHc70TRsmgv+AcGSj2xhEsg==
+X-Received: by 2002:a2e:9a8c:0:b0:2d2:3758:8c2a with SMTP id p12-20020a2e9a8c000000b002d237588c2amr1296864lji.9.1709212032736;
+        Thu, 29 Feb 2024 05:07:12 -0800 (PST)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
         by smtp.gmail.com with ESMTPSA id t7-20020a05600c198700b00412a38e732csm2071473wmq.35.2024.02.29.05.07.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Feb 2024 05:07:11 -0800 (PST)
+        Thu, 29 Feb 2024 05:07:12 -0800 (PST)
 From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 29 Feb 2024 14:07:01 +0100
-Subject: [PATCH RFT 1/7] dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Add
- mode-switch
+Date: Thu, 29 Feb 2024 14:07:02 +0100
+Subject: [PATCH RFT 2/7] phy: qcom: qmp-combo: store DP phy power state
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,7 +78,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-1-07e24a231840@linaro.org>
+Message-Id: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-2-07e24a231840@linaro.org>
 References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
 In-Reply-To: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
@@ -91,53 +90,61 @@ Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
  Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1216;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1271;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=gUhmXpw+40NNDKZNzyOCoORFZuCEOLT0lZh0KAJVHT0=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBl4IF7kYVKYuwXLg3gaQZ28Ht2PLc+SXmc7J18PML8
- 11ZSL6iJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZeCBewAKCRB33NvayMhJ0YGcD/
- kBQWdidfAXzh48Vrdai5QHAlUStkyw45ln9BSqmR0P6Wb00UqLymCONEjPKSgM8Hg2jxxUUpdUfNv6
- 75ZPLweTyFFPjVzqmY5SnhbFryhkkYAyyHjRfO8XvILuHpBxW/cdom8FiU/dNrticUc7LhkjBIPqmr
- x/nCDnb4kOgXl1lZBiSQgNrySA3FZ15Fw57yTS3QOer7+cpnJv1yR+ZNUBZzVTDPIBCmOzWdWIxE35
- D2VkUz3BddkAWIq/pgmAhRdvzSrExJxFaX+fOEWzn+licnmR0k2F7+JCCQgjRFUX096rWbrPfkS9dn
- H0OC/uNZGMsEdngZYO7E9gf60oYqIOy+JtdyURs7x8WviFuf4tmjbzfEKRPo49+JYs9juh6WcuMA5v
- EB4OZaD96YUJ7QkGHzuT2H7GogusWJUp87dVFhKJkcmqQ28pUttZ75fOGZ1DJ5P9zHWQbDXNs/Sg4Y
- eKesY4z3/n7bIcbJ/80u5hJ3VYQUa0k8fOyfhXJUuWage4DB+blWUjKhom2FFftWLGBl44WI+gbFP0
- HwO5ut9YFkIPvZpBAtkCv8IuF16O5JNxih7+jVJgwYj4v2TBDS8bXrvFLnHAQ/9Q/4MYuZGo9xVxvo
- dwucpiW4w5+FRfn9UZUmhgkPXf8Dc7IB0ekRVrTX/aE7YP0XTcQ22PluEFog==
+ bh=cCW1iS1Wauzti7oU5CFmde3Uy5U4EhSg8/m1/ht6x1w=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBl4IF7bfuu4oiH0n1J3IHdK+9gk2M/GXn3L4FSAJzD
+ REKJ/kWJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZeCBewAKCRB33NvayMhJ0f7PD/
+ 9B/AG0x9Ko77sX1GbvkvxzHtijD4Bw3hLJo76GiC/1U/uQL7+VmW/MeEUZaHPrMUswPByMjJ7HEZOA
+ ri/6gD4+/LfMFbN6ehU8dOCbNSbmvTStcToPkSoLSYhrxpyRBdGWgBntHQKayPqJUPrKkv3SQ8xtdq
+ kLuev342eIkjoALEKYA2xx1cs302o/4n4HNIrv/kEThLoUUc+5lMefqx+fhUoCt5MakeV0NJZ1UK/r
+ tGuDqbtJRxfz+mdD7zjgkHZOpf9CGfAToix82dixhUHYeFlqKPd2QNPy83blIZcpUwcSYwdVOBq1u1
+ aZ5XyfSEfuJxKASqrkQGGRGtUCj2XjG2W5qpFtx+3HHsFmQ5dz8WN+xG9lcg7O9ijLf0BrO2EA3Ft1
+ jNnGLyuiWUNjCc2SCUO0SD9Gjz3v6Kx+i084vOjAsZUXlYwgr5PRlDmdvgGOsNMtcTMvCeUq5tn/4L
+ ao2z/ZVCfVTc7bkAVVwW4Ve4LLw0Dprt+jCWuwtrG6fP5xGYTbJLrqpw+uTKQ0z5+moTFyMnhtGWhA
+ dWYbv4XhBb4DD0rHDCyTurMl46oY2HtmVSUrc5mAg+VtVw8sTfN8ks82Wy1sF3XNdTLFj+sgtAwOyn
+ waJt1tdhtHBaQppNM9XhU5RnMbh8GvrSAqIZsgewoG9JhfCiR0SVZoM4lfqg==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-The QMP USB3/DP Combo PHY can work in 3 modes:
-- DisplayPort Only
-- USB3 Only
-- USB3 + DisplayPort Combo mode
-
-In order to switch between those modes, the PHY needs to receive
-Type-C events, allow marking to the phy with the mode-switch
-property in order to allow the PHY to Type-C events.
+Switching the PHY Mode requires the DisplayPort PHY to be powered off,
+keep track of the DisplayPort phy power state.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml       | 5 +++++
+ drivers/phy/qualcomm/phy-qcom-qmp-combo.c | 5 +++++
  1 file changed, 5 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-index 2d0d7e9e6431..49c6539b9df0 100644
---- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
-@@ -71,6 +71,11 @@ properties:
-     description:
-       See include/dt-bindings/phy/phy-qcom-qmp.h
+diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+index 2f341613fd31..3721bbea9eae 100644
+--- a/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
++++ b/drivers/phy/qualcomm/phy-qcom-qmp-combo.c
+@@ -1500,6 +1500,7 @@ struct qmp_combo {
+ 	unsigned int dp_aux_cfg;
+ 	struct phy_configure_opts_dp dp_opts;
+ 	unsigned int dp_init_count;
++	bool dp_powered_on;
  
-+  mode-switch:
-+    description:
-+      Flag the PHY as possible handler of USB Type-C altmode switching
-+    type: boolean
+ 	struct clk_fixed_rate pipe_clk_fixed;
+ 	struct clk_hw dp_link_hw;
+@@ -2627,6 +2628,8 @@ static int qmp_combo_dp_power_on(struct phy *phy)
+ 	/* Configure link rate, swing, etc. */
+ 	cfg->configure_dp_phy(qmp);
+ 
++	qmp->dp_powered_on = true;
 +
-   orientation-switch:
-     description:
-       Flag the PHY as possible handler of USB Type-C orientation switching
+ 	mutex_unlock(&qmp->phy_mutex);
+ 
+ 	return 0;
+@@ -2641,6 +2644,8 @@ static int qmp_combo_dp_power_off(struct phy *phy)
+ 	/* Assert DP PHY power down */
+ 	writel(DP_PHY_PD_CTL_PSR_PWRDN, qmp->dp_dp_phy + QSERDES_DP_PHY_PD_CTL);
+ 
++	qmp->dp_powered_on = false;
++
+ 	mutex_unlock(&qmp->phy_mutex);
+ 
+ 	return 0;
 
 -- 
 2.34.1
