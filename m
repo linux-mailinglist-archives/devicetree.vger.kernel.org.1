@@ -1,130 +1,194 @@
-Return-Path: <devicetree+bounces-47339-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47340-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB5AA86CE7B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:14:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0197686CE92
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:17:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4AA1E1F21985
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:14:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 716091F264B7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:17:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 86682159589;
-	Thu, 29 Feb 2024 15:54:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9806478267;
+	Thu, 29 Feb 2024 15:57:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LkLhu3GD"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="V+FmJchc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D944014F9CA
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 15:54:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 307D675804;
+	Thu, 29 Feb 2024 15:57:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709222084; cv=none; b=VksqoM01H7I3qI2X+YnOk5q4cvNtY19ETU2ZNOegF2eDbKbbho3SEEuq1PctyIZLsBsbwcOdS6F7NuAD/bmm9zCi5tIumKFkHoRdqRmJj1I6Ot4AoovpEfOkyu3EPwSV37sGKiCZrUT3LRglWJo/lBFtjrMcbG5KgikCIDCcMF4=
+	t=1709222255; cv=none; b=PIlZLxL7YvwHcGE7XKJ8Ht6sXefjuozFFg+qM9BcjER0wCUuANufYVxXjH4SUTiSp4Ph6tnx18VGKcCbTPauSvKMivZdL0shH/hwgOWa65JC1X8TMyyfE8EmWY6OFTcwqbKM6rKwXQCi9FXo4J/2/4D5NwTLM+ezifnv9RUqeSg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709222084; c=relaxed/simple;
-	bh=Fmj50ebsiQKgGvbsywVhM6Fhx/1ciNoD0BmuFWzRd6E=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Ia+2UpTtYE99qNJsd63ePP7cG2lpvbBVma1A4RH8oNPyETvZunajoWNF+2uxMcLnZFsfgl7V5+u7vIiAsVgobMHcxlaln9v+vqhu9RCsR7pSX5ks78MvYO8IaYrSVlYMoVVmm320KK6UQE+InjAqBTggPq8UD9EWGeL4F4n/tFo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LkLhu3GD; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dc6d24737d7so1130532276.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 07:54:42 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709222082; x=1709826882; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Srh+6tdz7RM48Lhk9oPRVhCIVS8iBO4HPXxfynqBJNE=;
-        b=LkLhu3GDxO2Dj6qxqEGHBUNlFajjGSFSXBICxbIxx5wMCUK9MyTLFF3pT+6rh3qPeT
-         z/xFryjAMJtN3TX95x2hp91kcT0Ba4tYs+WM56eWQ98IBs+YfZdw78CHn0bU7nEYGlYx
-         GyTQdi6oCYPXYM/viNtia9rFXuvw9fjgcjQ85r0iGduD1uN4pPGsTVSEzLBCqYpWErt5
-         jxfEtZQq02+d1dntOTlmykRLNqxxUkBjyHr87zvPvejjsbgVXwG5HUghH/B9+fZX0Qws
-         94SZYV+z1AgIwgI8g+3LvvhIGky4P8WxA4HG5oi8phBeXBf0MzEacP+S343Wk/ADWqTE
-         SmtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709222082; x=1709826882;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Srh+6tdz7RM48Lhk9oPRVhCIVS8iBO4HPXxfynqBJNE=;
-        b=sSHTa63+0Ac5exYPWttW+XozGC9Pr8/naAEcedSE5W+QWbp8aDF72JQ8+PXPft8YnP
-         v2wuJkvIFY5UHRc0G4pUM2MN6wTFF8HvTX1rP/k3J1JVa0PUSa2YlK/HtwY5sVg1vFgI
-         XFzu+8QvuQVd9JRkMrbaarLu0hPUdHrVZ3GgwA22/ltSsU6DzX4qjm5Nso/qfLvT1lUI
-         t8uKXWocr2/PE4DQamJTsvepJ5V63fY/ixDqQj1+dZndGn4QMqDorza5ssCrMvKWVtI4
-         Nt0XK26d9PQf++Gyufzy8DSTc2kfCASjT5Qel8QRzu7UdUy7qn4KOlU1V+Z2EHd1F9QS
-         ltLA==
-X-Forwarded-Encrypted: i=1; AJvYcCV/6GlKugc5pthHsAL7p3IC+iCjV6j/+y3eGRQUyf3CRGDgCzmt3bIb1HQR4uwx+hb0zj+2E8iVTkTLIF9OjafVQNYUTzgzElqCEw==
-X-Gm-Message-State: AOJu0YxWveqa5zidIYUefC3tR+sBeJg6jc/Q9chVGgzJ+9JKd1tZzpsR
-	H1BU4iMxBLdwfB4zROOG9gAfkBlo06uKegXyEBXdKB4qz067QeeKrN1tLLLSjZccg2cBRgzaVy9
-	8hn4TRSDKa4/OnSKmgVJgYfrBhxPC7auFeQdHJw==
-X-Google-Smtp-Source: AGHT+IGrY7X4RTDo8QjDtQgZG99mLAi+VyuWqElpCArGZNMLwpnq8A2MweEnHlDSd6Qps3WvhnJlp7ZvAlcScgpu2bM=
-X-Received: by 2002:a25:2e46:0:b0:dc6:e622:f4e with SMTP id
- b6-20020a252e46000000b00dc6e6220f4emr2493033ybn.14.1709222081918; Thu, 29 Feb
- 2024 07:54:41 -0800 (PST)
+	s=arc-20240116; t=1709222255; c=relaxed/simple;
+	bh=sFsNQxS7brdxwEsklayRsbufGneKwtsUTYwjiHMc954=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=ufD/p4fxF4uf1FU5E8MbxXtqXWHhWnO2sII0bhL51+JUrfOs0xdRjU1u3ayHhE4s+cHXyWIkdWuOn/m09c76C0iiGIvRDDNNg32xF6PoygjQZBnFd95kYPkMmg0yTveLJUJHU1hdPWUgicapD1vdJADyLz0ao+jPs6G8umRAmiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=V+FmJchc; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A4972E000B;
+	Thu, 29 Feb 2024 15:57:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709222249;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=WY80iH9fh79QQiobQmVPwLIwtM3+k6Frks10vv068uo=;
+	b=V+FmJchcpAF5sSRylTCJK8wTE8z/XZBs15KZpFk7BIav4fWPIVumCP4FjKFWsv0OPi0TXc
+	wfGdEvMXbUZjPMXXy9sQwMfLykQU/AkzyKyF76+n6lsI7lC3DubaHVTKZ2fhekMCGgI+Fj
+	IGuZIXOfpXKDEKN/8hZ9uwDSPMtaotTlXj1hzQz2ygNp5/TkgKkd/NOjBb3TBQEZ8iWgBj
+	EWfqKfc7ZsLruaaPMryNf9ON1wmZjijDm5vXv03TqAmPLGO/b4x57smhxx+lIeZjnlmTHz
+	wnIIUl4uxWcwg8JjXLt+b+9f1NQiSf+quBMRKQc3wkDo12g2L7MC5mt31eWU+g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
- <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-4-07e24a231840@linaro.org>
- <CAA8EJpoZn5V8N3=4x4AfYM91XBuCZx47vSS8tB-nCP=LvVsD6g@mail.gmail.com> <d50ca4c0-8954-4e4c-9ce9-2c40ebacf8b0@linaro.org>
-In-Reply-To: <d50ca4c0-8954-4e4c-9ce9-2c40ebacf8b0@linaro.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 29 Feb 2024 17:54:30 +0200
-Message-ID: <CAA8EJpq0E_t6bi4TymtpxdX0ZHHNJgBU2gFEEZDWSUZg27pEvw@mail.gmail.com>
-Subject: Re: [PATCH RFT 4/7] phy: qcom: qmp-combo: register a typec mux to
- change the QPHY_MODE
-To: neil.armstrong@linaro.org
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 29 Feb 2024 16:57:28 +0100
+Message-Id: <CZHOPWYS6IBQ.RFB7JANYC769@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v8 03/10] clk: eyeq5: add platform driver, and init
+ routine at of_clk_init()
+Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
+ <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
+ <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Vladimir
+ Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
+X-Mailer: aerc 0.15.2
+References: <20240227-mbly-clk-v8-0-c57fbda7664a@bootlin.com>
+ <20240227-mbly-clk-v8-3-c57fbda7664a@bootlin.com>
+ <Zd4X3NnBoEl0wu2H@smile.fi.intel.com>
+ <CZGSB2O8P572.28HK6WFT43N6S@bootlin.com>
+ <ZeBnX2upNRN0xXH4@smile.fi.intel.com>
+ <CZHMSNWMH4KJ.2J6ZMWKMSZYH2@bootlin.com>
+ <ZeCbvgWY6x1o17Kq@smile.fi.intel.com>
+ <CZHOCV35A23S.14HL07U73EH6X@bootlin.com>
+ <ZeCnZ0Py62EyKI9Z@smile.fi.intel.com>
+In-Reply-To: <ZeCnZ0Py62EyKI9Z@smile.fi.intel.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Thu, 29 Feb 2024 at 17:47, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+Hello,
+
+On Thu Feb 29, 2024 at 4:48 PM CET, Andy Shevchenko wrote:
+> On Thu, Feb 29, 2024 at 04:40:25PM +0100, Th=C3=A9o Lebrun wrote:
+> > On Thu Feb 29, 2024 at 3:59 PM CET, Andy Shevchenko wrote:
+> > > On Thu, Feb 29, 2024 at 03:27:01PM +0100, Th=C3=A9o Lebrun wrote:
+> > > > On Wed, Feb 28, 2024 at 03:33:29PM +0100, Th=C3=A9o Lebrun wrote:
+> > > > > On Tue Feb 27, 2024 at 6:11 PM CET, Andy Shevchenko wrote:
+> > > > > > On Tue, Feb 27, 2024 at 03:55:24PM +0100, Th=C3=A9o Lebrun wrot=
+e:
 >
-> On 29/02/2024 16:25, Dmitry Baryshkov wrote:
-> > On Thu, 29 Feb 2024 at 15:08, Neil Armstrong <neil.armstrong@linaro.org> wrote:
-> >>
-> >> Register a typec mux in order to change the PHY mode on the Type-C
-> >> mux events depending on the mode and the svid when in Altmode setup.
-> >>
-> >> The DisplayPort phy should be left enabled if is still powered on
-> >> by the DRM DisplayPort controller, so bail out until the DisplayPort
-> >> PHY is not powered off.
-> >>
-> >> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE states
-> >> will be set in between of USB-Only, Combo and DisplayPort Only so
-> >> this will leave enough time to the DRM DisplayPort controller to
-> >> turn of the DisplayPort PHY.
-> >
-> > I think this is not fully correct. Please correct me if I'm wrong, but
-> > it is possible to switch between USB / USB+DP / DP-only at runtime.
-> > See the Status Update and Configure commands.
+> [...]
 >
-> Yes, but the current implementation is still valid because we need to
-> have the DP powered-off before changing the PHY mode.
-
-Even for switching between 2 lane and 4 lane modes?
-
-I'll check how my USB-A+DP dongles work with respect to the altmode
-configuration.
-
+> > > > > > > > +	u32		reg;	/* next 8 bytes are r0 and r1 */
+> > > > > > >
+> > > > > > > Not sure this comments gives any clarification to a mere read=
+er of the code.
+> > > > > > > Perhaps you want to name this as reg64 (at least it will show=
+ that you have
+> > > > > > > 8 bytes, but I have no clue what is the semantic relationship=
+ between r0 and
+> > > > > > > r1, it's quite cryptic to me). Or maybe it should be reg_0_1?
+> > > > > >=20
+> > > > > > Clocks are defined by two 32-bit registers. We only store the f=
+irst
+> > > > > > register offset because they always follow each other.
+> > > > >
+> > > > > > I like the reg64 name and will remove the comment. This straigh=
+t forward
+> > > > > > code is found in the rest of the code, I don't think it is anyt=
+hing
+> > > > > > hard to understand (ie does not need a comment):
+> > > > > >=20
+> > > > > > 	u32 r0 =3D readl(base_plls + pll->reg);
+> > > > > > 	u32 r1 =3D readl(base_plls + pll->reg + sizeof(r0));
+> > > > >
+> > > > > Btw, why readq()/writeq() (with probably the inclusion of io-64-n=
+onatomic-lo-hi.h)
+> > > > > can be used in this case? It will be much better overall and be a=
+ligned with
+> > > > > reg64 name.
+> > > >=20
+> > > > The doc talks in terms of 32-bit registers. I do not see a reason t=
+o
+> > > > work in 64-bit. If we get a 64-bit value that we need to split we n=
+eed
+> > > > to think about the endianness of our platform, which makes things m=
+ore
+> > > > complex than just reading both values independently.
+> > >
+> > > 1) Would be nice to test on the real HW to confirm it doesn't accept =
+64-bit IO.
+> >=20
+> > Just tested, it works. No error on the memory bus. And checked assembly
+> > generated was a single 64-bit instructions.
+> >=20
+> > It might not work on other hardware revisions though. I can't remember
+> > if memory bus is changing across them.
+> >=20
+> > > 2) Still I see a benefit from using lo_hi_readq() and friends directl=
+y.
+> >=20
+> > So it is:
+> >=20
+> > 	u32 r0 =3D readl(base_plls + pll->reg64);
+> > 	u32 r1 =3D readl(base_plls + pll->reg64 + sizeof(r0));
+> >=20
+> > vs:
+> >=20
+> > 	u64 r =3D lo_hi_readq(base_plls + pll->regs64);
 >
-> I never encountered such setup and I have no idea how to test this.
+> > 	u32 r0 =3D r;
+> > 	u32 r1 =3D r >> 32;
 >
-> >
-> >>
-> >> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> It depends to the semantics of these two. How hard do they coupled to eac=
+h
+> other semantically? I.o.w. can they always be considered as 64-bit regist=
+er
+> with the respective bitfields? (And note FIELD_GET() here is your friend.=
+)
 
+OLB (the memory region) has always been described as a list of 32-bit
+registers. The semantics lean in the camp of two readl().
 
--- 
-With best wishes
-Dmitry
+> > One is straight forward, the other uses an obscure helper that code
+> > readers must understand and follows that with bit manipulation.
+>
+> [...]
+>
+> > There are two errors to handle, that makes a mess out of the code.
+> > Having a little bit of repetition but straight forward code is nicer in
+> > my opinion. At least we tried!
+>
+> Yes! Perhaps you can add a couple of words into commit message to explain
+> this detail of implementation (that code in two parts is not so identical
+> to be easily deduplicated).
+
+Yes, will do. I get why from a reader's point-of-view it looks like
+duplicate code.
+
+Thanks,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
