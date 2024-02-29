@@ -1,277 +1,158 @@
-Return-Path: <devicetree+bounces-47499-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47500-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4523086D62B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:30:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 198F186D633
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:30:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F039928646E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:30:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 86DC7289713
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:30:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06E8516FF55;
-	Thu, 29 Feb 2024 21:30:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D58316FF5E;
+	Thu, 29 Feb 2024 21:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ie2ajNe6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PZR67QWI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4881710EF;
-	Thu, 29 Feb 2024 21:29:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A645516FF50;
+	Thu, 29 Feb 2024 21:30:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709242199; cv=none; b=cpG6Sw5TXgYPP7cBjAcI+PXqYK+BNvTFG+0TRfBHIgVeYZfSTWN/T0VmuML8q1etpdKC9IheNkjSym85k9DMHjUuV9DhYbaYo5m6w5/gagC5n7loMSl+FauKQWRNOVH8LSloCrOWVWMo8m/SO39eN4/q7yut9m8ZuBSvARuvE/8=
+	t=1709242241; cv=none; b=jo4ek6Jhr2AaDfLJZyZxpLj5eJfINUfm1aGa6ce99BeRUQiWjQUlLjkFCqwpE8O+aN1gp5rv6yPDDvT3fX2A2i2YYaeFNdmwd+wu7OMqEqn+RYvQftdjcZyAi4GaPDQTEANPibWn5vhACEPmOaiFDoKeHjxGD6XoHn84Jay7rUM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709242199; c=relaxed/simple;
-	bh=JSQSuvS3BqiY4vOYlLKAwjqAcvmXdSlmgBMi42ABiiQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=d7y4tUDcqHkXPcmTwsHL+C/Dqi3h0KqGAsrEzS5IN7kRBrRbUYO1qH4XylYgCkwkOlsLoSf0iB2CKgZJDQoYiTnnICBIGM6zeyefH1jSuitc7QEivaHq8tsqgCSdn3b9o/vXO2NFqTfWrfL9d5E6ZbNrPRvCOG9mrV2/JD2ypwM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ie2ajNe6; arc=none smtp.client-ip=209.85.219.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dcc80d6006aso1564549276.0;
-        Thu, 29 Feb 2024 13:29:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709242197; x=1709846997; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=k5wMxH4vAYTGAMz+PGH6whMCr3IUt1BUKWwQdJ4jqjo=;
-        b=ie2ajNe60SOO/5XVW2TBw9Q2cpuuWDvVk/ain6zf4vu/ZLqhhY/XF8XK+NNLfECi84
-         lNLZlkGmX+a+630n53PPjE0f12xTcYT8u14Nd0noQIroenh3a9LgzFvv/ZKf7EDueKuO
-         OjX7JoBh5cuHVnOKkt/nwSPKWLYHakgPSAeTYBi+Ga/Goq+we0p80mwIDG4HV1LglSAJ
-         Uq50ev8hdxLYHybcfVuS8XLD2W0ZJyoEBP/WbyzNVH2DtvJaUu5NKKrdw9ej3d1F4VoS
-         +TcbxCq22d1/Qtnbx+2J+6U9+8ZkCX9os+rvsykw+c5Ju1uxIWIUj3hJb4Lzx7u2RYP/
-         D4rQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709242197; x=1709846997;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=k5wMxH4vAYTGAMz+PGH6whMCr3IUt1BUKWwQdJ4jqjo=;
-        b=LWC+bMMet7ZWyzniF/Y5l4F3QrNaDwv/nJZBzjs8qwthFXLDDw+XXjNHpL+/tV9axO
-         UYZIwPv0wTP83nc8YVOpRTZi4lIWh07R+ek8pJGOn6n2HnNlmz3LPMXMBIm0tXSYcmHU
-         zmxPF2N4tY5QUq70rObZHSEBZT/LRI1kkZzKtKr/pqitF3erhHLNmQY5NzHNAObyAg1E
-         CihzH1OdCGaQoH3jpAYzF+yvkiUIC3RgX2uLqa9yi4fPPx0RheEu4Tleie9DfsoP6PBX
-         IECm+qOfSK8ggQy3Lfnr3JmvlTT8D+l0ECOi5Z1E1ktxi6jMkQGAEXJOga+BzKPswNM7
-         KYsQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXEk/zGj2rAKo/tkdGJuYT5l5aL7DgaUW3rkTaVPXHmC0sxzCKSwUlFGVySm4WbY174ELbg4xVsd24zA6nV/BOoEgP8gyMFj2C4LN77TV9MQRrC+E2LcQ0bk8g3rb/H4zrxwr4smy9BQ2zkLkbWNPULtOtMhg5MSAd7POhB4z1gg8+O8Q==
-X-Gm-Message-State: AOJu0YwCRNZUT6OujxYQr531jov9PlMhUZTH2dMLg3ahjHhpTLYswYlM
-	M0lBlAx6q5ZciRPb5X+LiibWqoBUkulAnQhRfgy1nWzsyOOp9KWr6VJrTMEot7+S0cBb1SxDTCz
-	YtddgPduTlr2L7cJSZ1le8tInaHE=
-X-Google-Smtp-Source: AGHT+IGJEqoh4kjQJcuPZHN/0agzOnRCd/TPqM9BiXAsCE07qzvqycF30395DpFhfdkJ1SxZn3C4ld3yFmxmRXDP60I=
-X-Received: by 2002:a25:16c5:0:b0:dcc:f0a:e495 with SMTP id
- 188-20020a2516c5000000b00dcc0f0ae495mr3238209ybw.3.1709242197196; Thu, 29 Feb
- 2024 13:29:57 -0800 (PST)
+	s=arc-20240116; t=1709242241; c=relaxed/simple;
+	bh=5a3jWBJA2+rxYnjqEPcx2eUyCjZ+0C+TmvvBVMeapK0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=uiMPgutwrPcM7ZuafDHawpHDhibahXtaTIcA04aVaDMGKyUgXZlhs7mjXyU9arsI0zm0m4R3zU/5buSfp9samQynNic3QS6B5Q+EN+O58TprIXYXHDnEUXGEhocPx35L5RiDj4VIrWujhS0BiVIpSLZrX72ioxWKMU5+fMP+lIo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PZR67QWI; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41T60xOw011993;
+	Thu, 29 Feb 2024 21:30:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=2XAL70ahopTl3Ft92hpHa/oa4WdjMZaAss/IdzUZWzA=; b=PZ
+	R67QWIUSP2bcOFnJ0JhXAWP6tpzjGwyWi33htZHjEWIReK6NcbiQ3t7j7kSm/EUA
+	+s5csKXAgar4t3UJeT8O135LLTOzRXf8aQWqx5P4WmwyekYmz2LMyPu/z67tplDZ
+	nnMLN5jb/9oixLY2KzIOlocOde+u54vcizaq1p+rSere50ha9SFZm2Ao5nhMSBCr
+	n7AX0yArZdAAq6orjd5mhE1zFp6wRePYKRNunV9vzXgGNwAtaWVgTnSmnKF3ulR8
+	rtDuCc3t02fmJ1wHgrlhM08uYwsICLYWS+VY2Ekw6QF2hc6xBcoAIZlCDb4boTyx
+	3l9BI8TMpbfDPnQqtExw==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wjm9mjk7u-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Feb 2024 21:30:25 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41TLUOJC025968
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Feb 2024 21:30:24 GMT
+Received: from [10.71.111.207] (10.80.80.8) by nasanex01b.na.qualcomm.com
+ (10.46.141.250) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 29 Feb
+ 2024 13:30:23 -0800
+Message-ID: <aea154d3-e272-48e1-9e91-890c9ae3fa0f@quicinc.com>
+Date: Thu, 29 Feb 2024 13:30:22 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240131182653.2673554-1-tmaimon77@gmail.com> <20240131182653.2673554-4-tmaimon77@gmail.com>
- <74e003c6d80611ddd826ac21f48b4b3a.sboyd@kernel.org> <CAP6Zq1g5gwXvYzO5fnHxG-6__gSCpNBY7VeEPyr4Qtijya6EfQ@mail.gmail.com>
- <8acf846e767884978f3bb98646433551.sboyd@kernel.org>
-In-Reply-To: <8acf846e767884978f3bb98646433551.sboyd@kernel.org>
-From: Tomer Maimon <tmaimon77@gmail.com>
-Date: Thu, 29 Feb 2024 23:29:46 +0200
-Message-ID: <CAP6Zq1htKQ5v0tH9HGRejnKwJ5ZauUWG_CzYUKegkVL4Ek8UxA@mail.gmail.com>
-Subject: Re: [PATCH v23 3/3] clk: npcm8xx: add clock controller
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: benjaminfair@google.com, joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org, 
-	mturquette@baylibre.com, robh+dt@kernel.org, tali.perry1@gmail.com, 
-	venture@google.com, yuenn@google.com, openbmc@lists.ozlabs.org, 
-	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] drm: panel: st7701: Add Hardkernel ODROID-GO Ultra
+ panel support
+Content-Language: en-US
+To: Adam Green <greena88@gmail.com>, Jagan Teki <jagan@amarulasolutions.com>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard
+	<mripard@kernel.org>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240221194528.1855714-1-greena88@gmail.com>
+ <20240222164332.3864716-1-greena88@gmail.com>
+ <20240222164332.3864716-2-greena88@gmail.com>
+ <f9446923-acd3-41cf-92d4-676b946280c4@quicinc.com>
+ <79a4b60e-24f3-47fd-b3b3-7d207cec1470@gmail.com>
+ <a13eeb01-7df9-4577-975f-34b3aed8400f@quicinc.com>
+ <8bbb2957-9452-424a-8e9f-4ddbd4f24722@gmail.com>
+From: Jessica Zhang <quic_jesszhan@quicinc.com>
+In-Reply-To: <8bbb2957-9452-424a-8e9f-4ddbd4f24722@gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3uUMOATMM-pFSjbRxSaYOWXO5EAknyy8
+X-Proofpoint-ORIG-GUID: 3uUMOATMM-pFSjbRxSaYOWXO5EAknyy8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-29_06,2024-02-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 spamscore=0
+ lowpriorityscore=0 impostorscore=0 malwarescore=0 clxscore=1015
+ adultscore=0 bulkscore=0 priorityscore=1501 mlxlogscore=999 suspectscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402290167
 
-Hi Stephen,
 
-Thanks for your reply.
 
-On Thu, 29 Feb 2024 at 00:48, Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Tomer Maimon (2024-02-25 10:00:35)
-> > Hi Stephen,
-> >
-> > On Thu, 22 Feb 2024 at 07:58, Stephen Boyd <sboyd@kernel.org> wrote:
-> > >
-> > > Quoting Tomer Maimon (2024-01-31 10:26:53)
-> > > > diff --git a/drivers/clk/clk-npcm8xx.c b/drivers/clk/clk-npcm8xx.c
-> > > > new file mode 100644
-> > > > index 000000000000..eacb579d30af
-> > > > --- /dev/null
-> > > > +++ b/drivers/clk/clk-npcm8xx.c
-> > > > @@ -0,0 +1,509 @@
-> > > > +// SPDX-License-Identifier: GPL-2.0
-> > > > +/*
-> > > > + * Nuvoton NPCM8xx Clock Generator
-> > > > + * All the clocks are initialized by the bootloader, so this driver allows only
-> > > [...]
-> > > > +
-> > > > +/* external clock definition */
-> > > > +#define NPCM8XX_CLK_S_REFCLK   "refclk"
-> > > > +
-> > > > +/* pll definition */
-> > > > +#define NPCM8XX_CLK_S_PLL0     "pll0"
-> > > > +#define NPCM8XX_CLK_S_PLL1     "pll1"
-> > > > +#define NPCM8XX_CLK_S_PLL2     "pll2"
-> > > > +#define NPCM8XX_CLK_S_PLL_GFX  "pll_gfx"
-> > > > +
-> > > > +/* early divider definition */
-> > > > +#define NPCM8XX_CLK_S_PLL2_DIV2                "pll2_div2"
-> > > > +#define NPCM8XX_CLK_S_PLL_GFX_DIV2     "pll_gfx_div2"
-> > > > +#define NPCM8XX_CLK_S_PLL1_DIV2                "pll1_div2"
-> > > > +
-> > > > +/* mux definition */
-> > > > +#define NPCM8XX_CLK_S_CPU_MUX     "cpu_mux"
-> > > > +
-> > > > +/* div definition */
-> > > > +#define NPCM8XX_CLK_S_TH          "th"
-> > > > +#define NPCM8XX_CLK_S_AXI         "axi"
-> > >
-> > > Please inline all these string #defines to the place they're used.
-> > The version V21 you mention using define only when the definition is
-> > used more than once
-> > https://www.spinics.net/lists/kernel/msg5045826.html
-> > Should I remove all the string definitions and add the string to the array?
->
-> If it's a clk name for a clk registered in this file it should be
-> inlined. Is that the case for everything besides refclk? And even refclk
-> could be inlined so that we don't have to jump to the definition of a
-> string.
-I will add the string in the clock arrays and remove all the string definitions.
->
-> > > > +
-> > > > +static unsigned long npcm8xx_clk_div_get_parent(struct clk_hw *hw,
-> > > > +                                               unsigned long parent_rate)
-> > > > +{
-> > > > +       struct npcm8xx_clk *div = to_npcm8xx_clk(hw);
-> > > > +       unsigned int val;
-> > > > +
-> > > > +       regmap_read(div->clk_regmap, div->offset, &val);
-> > > > +       val = val >> div->shift;
-> > > > +       val &= clk_div_mask(div->width);
-> > > > +
-> > > > +       return divider_recalc_rate(hw, parent_rate, val, NULL, div->flags,
-> > > > +                                  div->width);
-> > > > +}
-> > > > +
-> > > > +static const struct clk_ops npcm8xx_clk_div_ops = {
-> > > > +       .recalc_rate = npcm8xx_clk_div_get_parent,
-> > > > +};
-> > > > +
-> > > > +static int npcm8xx_clk_probe(struct platform_device *pdev)
-> > > > +{
-> > > > +       struct device_node *parent_np = of_get_parent(pdev->dev.of_node);
-> > >
-> > > The parent of this device is not a syscon.
-> > Once I have registered the map that handles both reset and the clock
-> > in general is syscon, this is why we will modify the DTS so the clock
-> > and the reset will be under syscon father node
-> >                 sysctrl: system-controller@f0801000 {
-> >                         compatible = "syscon", "simple-mfd";
-> >                         reg = <0x0 0xf0801000 0x0 0x1000>;
-> >
-> >                         rstc: reset-controller {
-> >                                 compatible = "nuvoton,npcm845-reset";
-> >                                 reg = <0x0 0xf0801000 0x0 0xC4>;
-> >                                 #reset-cells = <2>;
-> >                                 nuvoton,sysgcr = <&gcr>;
-> >                         };
-> >
-> >                         clk: clock-controller {
-> >                                 compatible = "nuvoton,npcm845-clk";
-> >                                 #clock-cells = <1>;
-> >                                 clocks = <&refclk>;
-> >                                 clock-names = "refclk";
-> >                         };
-> >                 };
-> > You can see other drivers that using the same method like
-> > https://elixir.bootlin.com/linux/v6.8-rc5/source/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
->
-> You will need a similar file like
-> Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-perictrl.yaml
-> then to describe the child nodes.
-I can do it.
->
-> Socionext may not be the best example to follow. I generally try to
-> avoid syscon and simply put #reset-cells and #clock-cells in the node
-If I remove syscon I can't use syscon_node_to_regmap function, What
-should I use If I remove syscon? auxiliary bus? something else?
-> for the device. You can use the auxiliary bus to register drivers for
-> clk and reset and put them into the resepective driver directories.
-I little bit confused, what is an auxiliary bus to register drivers,
-can you provide me an example?
-> Avoid syscon means random drivers can't reach into the device with a
-> regmap handle and read/write registers that they're not supposed to.
-Indeed, but the drivers could use the reset and clock memory map only
-if the module is also a child node.
+On 2/29/2024 9:23 AM, Adam Green wrote:
+> On 26/02/2024 21:29, Jessica Zhang wrote:
+>  > Got it. Was the shorter sleep time breaking the display and is it
+>  > required for the new panel to work?
+>  >
+>  > Thanks,
+>  >
+>  > Jessica Zhang
+> 
+> Hi Jessica,
+> 
+> I will be submitting a v3 shortly, the change to the sleep time was not 
+> necessary for the new panel
+> to work.
 
-Please let me know what is your preferred way to handle it:
-1. stick with syscon and upstream-defined documentation for the rst clk syscon.
-2. avoid syscon and use an auxiliary bus, appreciate if you could give
-me an example of how it should be done.
-3. Avoid sycon and handle it differently.
->
-> > >
-> > > > +       struct clk_hw_onecell_data *npcm8xx_clk_data;
-> > > > +       struct device *dev = &pdev->dev;
-> > > > +       struct regmap *clk_regmap;
-> > > > +       struct clk_hw *hw;
-> > > > +       unsigned int i;
-> > > > +
-> > > > +       npcm8xx_clk_data = devm_kzalloc(dev, struct_size(npcm8xx_clk_data, hws,
-> > > > +                                                        NPCM8XX_NUM_CLOCKS),
-> > > > +                                       GFP_KERNEL);
-> > > > +       if (!npcm8xx_clk_data)
-> > > > +               return -ENOMEM;
-> > > > +
-> > > > +       clk_regmap = syscon_node_to_regmap(parent_np);
-> > > > +       of_node_put(parent_np);
-> > >
-> > > Is there another binding update that is going to move this node to be a
-> > > child of the syscon?
-> > >
-> > >                 gcr: system-controller@f0800000 {
-> > >                         compatible = "nuvoton,npcm845-gcr", "syscon";
-> > >                         reg = <0x0 0xf0800000 0x0 0x1000>;
-> > >                 };
-> > No, sorry but I'm not going to use the GCR node the handle the clock
-> > and reset modules, the GCR has different memory space.
-> > the clock driver will have the following device tree
->
-> What does the reset driver use the CGR node for? The driver looks like
-> it's using it to control USB phy resets.
-Yes, the USB PHY reset is handled through the GCR registers.
->
-> >                sysctrl: system-controller@f0801000 {
-> >                         compatible = "syscon", "simple-mfd";
-> >                         reg = <0x0 0xf0801000 0x0 0x1000>;
-> >
-> >                         rstc: reset-controller {
-> >                                 compatible = "nuvoton,npcm845-reset";
-> >                                 reg = <0x0 0xf0801000 0x0 0xC4>;
->
-> This isn't a valid reg property for a child node like this.
-O.K.
->
-> >                                 #reset-cells = <2>;
-> >                                 nuvoton,sysgcr = <&gcr>;
-> >                         };
-> >
-> >                         clk: clock-controller {
-> >                                 compatible = "nuvoton,npcm845-clk";
-> >                                 #clock-cells = <1>;
-> >                                 clocks = <&refclk>;
-> >                                 clock-names = "refclk";
-> >                         };
-> >                 };
+Hi Adam,
 
-Appreciate your guidance!
+Got it. If the panel isn't affected by the 20ms sleep time, I'd prefer 
+to keep it since 100ms is a pretty big increase.
+
+> 
+> I have been able to re-use the gip sequence from the kd50t048a panel 
+> used in the Hardkernel Odroid
+> Go Super as I have been led to believe it is the same elida panel, 
+> unfortunately the same modes
+> used by that device do not work for the Odroid Go Ultra and so its still 
+> necessary to have the
+> patchset,
+Got it. FWIW, I do see the Odroid Go Ultra being described as having the 
+kd50t048a panel [1] [2]. Looking forward to seeing the v3 changes.
 
 Thanks,
 
-Tomer
+Jessica Zhang
+
+[1] https://gitlab.com/amlogic-foss/mainline-linux-issues-tracker/-/issues/7
+
+[2] 441e129cbf81 ("dt-bindings: display: panel: sitronix,st7701: Add 
+Elida KD50T048A Panel")
+
+> 
+> Best regards,
+> 
+> Adam
 
