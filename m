@@ -1,155 +1,152 @@
-Return-Path: <devicetree+bounces-47496-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47497-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76BA886D60E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:23:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6604186D61D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:25:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0BCC0286835
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:23:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F79028B99B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF8B316FF47;
-	Thu, 29 Feb 2024 21:23:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B46A16FF4C;
+	Thu, 29 Feb 2024 21:25:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="Dj8QYvH1"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="d89LOaNK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BAA016FF29;
-	Thu, 29 Feb 2024 21:23:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3486E16FF2B;
+	Thu, 29 Feb 2024 21:25:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709241804; cv=none; b=F97uurudg30h4ZVWfEh4yTp6bHI8XgGO8atKbH/p8oLqGf1FPZnuLJLDOkGYMKZt8WqONZj60MO2oNdvOxX1NuTPTdXTYvP6KYNMIfeIBurv3fEHIvrCdfPPazY+VPmTviStSyjr8pk7LoTQSnzz0ftWmlyGjUZvLSkAmAvpffY=
+	t=1709241915; cv=none; b=Ja4q1vrHpfcFbFLCnkdh/DR8G00DvYKKkmDo1LPikDplABU3pbMLI98xjuJ1e1s2nt0hJWRMwMX4cQsC9vNS293pohZYyyu2fzpoekQd/8jjZjucWNo/FgX0FAlbCZYKPZIFrxCHnMFKVwrNTRJywrqUf1neKBd3EC5gk0xStzQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709241804; c=relaxed/simple;
-	bh=dr2CETLPDzvOjfQ+4hzjizFIOCRZWKH7BMDF5xNDmVU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=t4jEtRJFgpMh3AK1mPN9FWazMoiUuODpTmrd7KhsSyBwlmkR2AcWI7GuNeHjKom9RG5qYh7O0dt/Fq19/kIGeECfZVllomqCiXkGleX+qbArTYOi4BMT2PXbgCFNSVYLDX4uN4yfLe+CbS3c+pEaK3U+hk/xmBXOtI/bGMhI9uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=Dj8QYvH1; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=WV/j6Y5N6otWN1tEplJm/8ekXe3vxnN6/ZPGGpf+w6U=; b=Dj
-	8QYvH1CsV06IW27X93TYnqspsw8At9LX7YmY9g02ojJYhZ/sAkNZIeV+PLXzWsijdZLjujg45/JAa
-	l46mK7WWfEvLzGG+J3rBMyelnG3levKWyzWgilnVHaSo2jI18G3Dru47kP9brEN94JpD4VNrfEqnc
-	Ce0PcYvCybZ6IrA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rfnsH-0095Hf-8S; Thu, 29 Feb 2024 22:23:29 +0100
-Date: Thu, 29 Feb 2024 22:23:29 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: =?iso-8859-1?Q?J=E9r=E9mie?= Dautheribes <jeremie.dautheribes@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, Andrew Davis <afd@ti.com>,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	=?iso-8859-1?Q?Miqu=E8l?= Raynal <miquel.raynal@bootlin.com>,
-	Yen-Mei Goh <yen-mei.goh@keysight.com>,
-	Maxime Chevallier <maxime.chevallier@bootlin.com>
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dp83822: support
- configuring RMII master/slave mode
-Message-ID: <68112ecb-532f-4799-912d-16d6ceb9a6f3@lunn.ch>
-References: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
- <20240222103117.526955-2-jeremie.dautheribes@bootlin.com>
- <d14ba685-dc7e-4f99-a21e-bae9f3e6bc79@lunn.ch>
- <860648fa-11f5-4e0d-ac4e-e81ea111ef31@bootlin.com>
+	s=arc-20240116; t=1709241915; c=relaxed/simple;
+	bh=C0iUknyALwb8yx7/aULdmmyNhZJP7DOze6qzJbWn+m4=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=dgcGrZdyhdaempyqCoJnSMHJgpT9VizeUEQxpW5YMh1puIGTVIaj4yLLmwiUFaswxghQokr0n34cvaj+O1iJWajVeOQCs8sT2rCIgoJ/ycvSw4zgtsILasPbvKz654xXGlOc0MdDVTXdHlzX+FNXIAfeGIA41QGVhNCZ/e7Sgp4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=d89LOaNK; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <860648fa-11f5-4e0d-ac4e-e81ea111ef31@bootlin.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709241911;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=j/jsIYQWtNjGo8V67lba+C9XsvoM+JnwriF6mpcDVn8=;
+	b=d89LOaNKrX6cixjeJ68nSXNhPFchDZiqiqCu6ykaBlnJJBLl1Th/424XtWLWAYz6rkib1F
+	QoVJsAfsErJ8lUaTUXUQm0/8qT21TJJ/Dsdd2bhxOYSaESaExHAg3NWj1DhdvylS0BQNVr
+	M4DM9bLV3qvr6IKJ9SRsdC3Xa8rOJuosByahQbhVVLdfuVXeIdNP9pQ2J3HE0VRsWqkddO
+	xeHSjmUshU1OTIkrArv7E2Hvs3G3n7GOQyx4IlKmKdoZXJSh0lyHHJ145ccFJqR+8MmqxK
+	YHha/ZO91aJJ7QDn8RV+VIxajr2HymxMxxsHpMZQUzfG2cTJPmaY5GFoBN3urA==
+Date: Thu, 29 Feb 2024 22:25:10 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
+ Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] arm64: dts: rockchip: enable automatic active
+ cooling on Rock 5B
+In-Reply-To: <20240229-rk-dts-additions-v3-2-6afe8473a631@gmail.com>
+References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
+ <20240229-rk-dts-additions-v3-2-6afe8473a631@gmail.com>
+Message-ID: <823379825559bb76088c31f44f998dd3@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-> > > --- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
-> > > +++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
-> > > @@ -80,6 +80,22 @@ properties:
-> > >              10625, 11250, 11875, 12500, 13125, 13750, 14375, 15000]
-> > >       default: 10000
-> > > +  ti,rmii-mode:
-> > > +    description: |
-> > > +       If present, select the RMII operation mode. Two modes are
-> > > +       available:
-> > > +         - RMII master, where the PHY operates from a 25MHz clock reference,
-> > > +         provided by a crystal or a CMOS-level oscillator
-> > > +         - RMII slave, where the PHY operates from a 50MHz clock reference,
-> > > +         provided by a CMOS-level oscillator
-> > 
-> > What has master and slave got to do with this?
-> > 
-> > Sometimes, the MAC provides a clock to the PHY, and all data transfer
-> > over the RMII bus is timed by that.
-> > 
-> > Sometimes, the PHY provides a clock to the MAC, and all data transfer
-> > over the RMII bus is timed by that.
-> > 
-> > Here there is a clear master/slave relationship, who is providing the
-> > clock, who is consuming the clock. However, what you describe does not
-> > fit that. Maybe look at other PHY bindings, and copy what they do for
-> > clocks.
+Hello Alexey,
+
+On 2024-02-29 20:26, Alexey Charkov wrote:
+> This links the PWM fan on Radxa Rock 5B as an active cooling device
+> managed automatically by the thermal subsystem, with a target SoC
+> temperature of 65C and a minimum-spin interval from 55C to 65C to
+> ensure airflow when the system gets warm
+
+I'd suggest that you replace "automatic active cooling" with "active
+cooling" in the patch subject.  I know, it may seem like more of the
+unnecessary nitpicking, :) but I hope you'll agree that "automatic"
+is actually redundant there.  It would also make the patch subject
+a bit shorter.
+
+Another option would be to replace "automatic active cooling" with
+"automatic fan control", which may actually be a better choice.
+I'd be happy with whichever one you prefer. :)
+
+Otherwise, please feel free to add:
+
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 30 
+> ++++++++++++++++++++++++-
+>  1 file changed, 29 insertions(+), 1 deletion(-)
 > 
-> In fact, I hesitated a lot before choosing this master/slave designation
-> because of the same reasoning as you. But the TI DP83826 datasheet [1] uses
-> this name for two orthogonal yet connected meanings, here's a copy of the
-> corresponding § (in section 9.3.10):
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> index a0e303c3a1dc..3f7fb055c4dc 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
+> @@ -52,7 +52,7 @@ led_rgb_b {
 > 
-> "The DP83826 offers two types of RMII operations: RMII Slave and RMII
-> Master. In RMII Master operation, the DP83826 operates from either a 25-MHz
-> CMOS-level oscillator connected to XI pin, a 25-MHz crystal connected across
-> XI and XO pins. A 50-MHz output clock referenced from DP83826 can be
-> connected to the MAC. In RMII Slave operation, the DP83826 operates from a
-> 50-MHz CMOS-level oscillator connected to the XI pin and shares the same
-> clock as the MAC. Alternatively, in RMII slave mode, the PHY can operate
-> from a 50-MHz clock provided by the Host MAC."
+>  	fan: pwm-fan {
+>  		compatible = "pwm-fan";
+> -		cooling-levels = <0 95 145 195 255>;
+> +		cooling-levels = <0 120 150 180 210 240 255>;
+>  		fan-supply = <&vcc5v0_sys>;
+>  		pwms = <&pwm1 0 50000 0>;
+>  		#cooling-cells = <2>;
+> @@ -173,6 +173,34 @@ &cpu_l3 {
+>  	cpu-supply = <&vdd_cpu_lit_s0>;
+>  };
 > 
-> So it seems that in some cases this also fits the master/slave relationship
-> you describe.
-
-We are normally interested in this 50Mhz reference clock. So i would
-drop all references to 25Mhz. It is not relevant to the binding, since
-it is nothing to do with connecting the PHY to the MAC, and it has a
-fixed value.
-
-So you can simplify this down to:
-
-RMII Master: Outputs a 50Mhz Reference clock which can be connected to the MAC.
-
-RMII Slave: Expects a 50MHz Reference clock input, shared with the
-MAC.
-
-> That said, would you like me to include this description (or some parts) in
-> the binding in addition to what I've already written? Or would you prefer me
-> to use a more meaningful property name?
-
-We don't really have any vendor agnostic consistent naming. dp83867
-and dp83869 seems to call this ti,clk-output-sel. Since this is
-another dp83xxx device, it would be nice if there was consistency
-between all these TI devices. So could you check if the concept is the
-same, and if so, change dp83826 to follow what other TI devices do.
-
-> BTW, this series has already been merged into the net-next tree, I'm not
-> sure what procedure to follow in such cases.
-
-KAPI don't become fixed until published as a release kernel. We can
-rework bindings until then. So just submit patches on top of what is
-already in net-next.
-
-	Andrew
+> +&package_thermal {
+> +	polling-delay = <1000>;
+> +
+> +	trips {
+> +		package_fan0: package-fan0 {
+> +			temperature = <55000>;
+> +			hysteresis = <2000>;
+> +			type = "active";
+> +		};
+> +		package_fan1: package-fan1 {
+> +			temperature = <65000>;
+> +			hysteresis = <2000>;
+> +			type = "active";
+> +		};
+> +	};
+> +
+> +	cooling-maps {
+> +		map1 {
+> +			trip = <&package_fan0>;
+> +			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
+> +		};
+> +		map2 {
+> +			trip = <&package_fan1>;
+> +			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
+> +		};
+> +	};
+> +};
+> +
+>  &i2c0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&i2c0m2_xfer>;
 
