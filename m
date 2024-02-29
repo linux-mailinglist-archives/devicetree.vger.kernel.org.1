@@ -1,123 +1,174 @@
-Return-Path: <devicetree+bounces-47381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA53286D11F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:52:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 48FC586D129
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:53:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 328BDB26D2B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:51:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C4C21C21B25
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:53:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2BCF70AF7;
-	Thu, 29 Feb 2024 17:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 565B3757F8;
+	Thu, 29 Feb 2024 17:53:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sKJ/7lZ8"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="DYGYvzwN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99DB770ADA;
-	Thu, 29 Feb 2024 17:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14B18757E7;
+	Thu, 29 Feb 2024 17:53:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709229112; cv=none; b=fv9ttztiC9kxrOJ9j9iN2PwDDc2+X7ZdEDyatbQHI0ggcd1O94MUm+SUFVZgSZh5hfMbzDIno0T2uVSLD/IV7v/oCowDw/ZXysNzcZ6q963UHYFAViGfhJj02JYXdFDKbkRnojHRpGArHqMLnS5Pz2rV3xMXQmbV3K6ufMA2fwo=
+	t=1709229211; cv=none; b=WEnaFtMGsgz01xaq9cIfW9P8Ava7C2LBuMblkaWe+ANjmlohasSYGxik8hL9w+UZyjGRICS6D5ACJ66JXuCOaZ+78fVAV2TALNxf1F4gtKZodPW/7+zZkZJdtmEPjHcgwbIU7fkD2qZQjjsW55UZjQzAvVb+uYHyVoQF5V7Frw0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709229112; c=relaxed/simple;
-	bh=pztRkRIxZDjEK/P+/LrFIUNQxaKPYxqTS7e0Q1kH47s=;
+	s=arc-20240116; t=1709229211; c=relaxed/simple;
+	bh=IZ8tXHi4D6VeM3kc0kx68z1bYQSTMxGuNMx6zsNFNB0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cq33k7rv9gzdvmzFchC52JE8jR8QzAD0Dc66yznM8TxOWGj0CxbIQolVUz/e2SvLi7Z6N0O+871JGsKRXM35nkxEGlBDvHYJVSbzvoq3Czyx1oYLzp+Xc9PQ3sJ8t5uZH6Z7gBgB33t89N3U417VBvUyMguBJEUDDAcEe6JByRU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sKJ/7lZ8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 893DAC433F1;
-	Thu, 29 Feb 2024 17:51:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709229112;
-	bh=pztRkRIxZDjEK/P+/LrFIUNQxaKPYxqTS7e0Q1kH47s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=sKJ/7lZ8bU4TFocSdCeda8O0nO6TBeOqN6MIiu/oiBNPTBjR+0Ndya1EyyreRLmX9
-	 onNTc3eQatK2kN5b4Unmui/88ihW7yh0qEmYw66E7LkX4c0iYgjvPy80EkK098Tb95
-	 2d9+vDtYeneE14tMrMdZMKgJmMs/LRfyk4IZkrRQwJDuW+0s128o1lhWD+5gimsJEU
-	 bvj1YBa37WM5oxwPe01AmmGJnCfojE1EEjpjTwSouhufePlGr32fz7Cz6EM+XFTeo/
-	 BPIkHcR/lQVV6T0AQb5BtXgH4jVI3x7ZAkGsORvpDaIJvkyv1eEx8hhLVBomPHO/+q
-	 mLAjzolrJhIWg==
-Date: Thu, 29 Feb 2024 17:51:47 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Kelly Hung <ppighouse@gmail.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, joel@jms.id.au, andrew@codeconstruct.com.au,
+	 Content-Type:Content-Disposition:In-Reply-To; b=RYXJ5JzfsrXOKyPKPaOZfC+frCzhJTMmVpwoZmD6WQWn46MtsESRzlFzVRPXNJr6v6XgXzfuxNma5IYyOUrDWDMymO1Ah2cQtF/WbxjsSQyzuiIR+X6EKRswxiFq3Uy2R+GXjvlL6Air+wTg+IT9AT5Co81bq/4+GSOMYQdIlvM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=DYGYvzwN; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1709229209; x=1740765209;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=IZ8tXHi4D6VeM3kc0kx68z1bYQSTMxGuNMx6zsNFNB0=;
+  b=DYGYvzwNfmxpq7ObKabx3RVT+vH5D36T5LzWrArpkzqj2/KUc4irIBPj
+   cGq202ta97rlS3PMXi9aoHB84NMrRe18my66Ff+UQYf4pDbS+uwPyk6f/
+   8m2kIQAYccR22eHSD4YSxm4H6tO8N1clT/4Zptzt7BcpZe8vX9nIJHCBt
+   5xeTpcFQr8F/IyEL+e0LTVNFlrUK3R4GQBYgtcnc5hrtLtO2jCgPAxdmY
+   OPbSU2j/m2om5QW0owi2It8+w2PeozaJp1BPQacj2FSGTcLg8MlQW37nX
+   bfg6NN15QGUKCTMHFNkFDKGtu4FJeaudn6n2UMGI3pRZB/YH/4VM4D6wR
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="21177108"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="21177108"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Feb 2024 09:53:28 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="12511155"
+Received: from lkp-server02.sh.intel.com (HELO 3c78fa4d504c) ([10.239.97.151])
+  by fmviesa004.fm.intel.com with ESMTP; 29 Feb 2024 09:53:23 -0800
+Received: from kbuild by 3c78fa4d504c with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rfkav-000DAD-0q;
+	Thu, 29 Feb 2024 17:53:21 +0000
+Date: Fri, 1 Mar 2024 01:52:41 +0800
+From: kernel test robot <lkp@intel.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	Abel Vesa <abelvesa@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>
+Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
+	linux-clk@vger.kernel.org, imx@lists.linux.dev,
 	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org, kelly_hung@asus.com, Allenyy_Hsu@asus.com
-Subject: Re: [PATCH v5 1/2] dt-bindings: arm: aspeed: add ASUS X4TF board
-Message-ID: <20240229-rocket-fraction-76e85d9f4bfb@spud>
-References: <20240229111123.1932504-1-Kelly_Hung@asus.com>
+	linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH 2/2] clk: imx: add i.MX95 BLK CTL clk driver
+Message-ID: <202403010142.5gu9hKpX-lkp@intel.com>
+References: <20240228-imx95-blk-ctl-v1-2-9b5ae3c14d83@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="DSM6j8ISbsPmqzxr"
-Content-Disposition: inline
-In-Reply-To: <20240229111123.1932504-1-Kelly_Hung@asus.com>
-
-
---DSM6j8ISbsPmqzxr
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20240228-imx95-blk-ctl-v1-2-9b5ae3c14d83@nxp.com>
 
-On Thu, Feb 29, 2024 at 07:11:22PM +0800, Kelly Hung wrote:
-> Document the new compatibles used on ASUS X4TF.
->=20
-> Signed-off-by: Kelly Hung <Kelly_Hung@asus.com>
+Hi Peng,
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+kernel test robot noticed the following build errors:
 
-Cheers,
-Conor.
+[auto build test ERROR on 22ba90670a51a18c6b36d285fddf92b9887c0bc3]
 
->=20
-> ---
-> V4 -> V5: Update all changelog from v1 to v5.
-> V3 -> V4: The new compatible is a BMC for a ASUS X4TF server which use a =
-ast2600-a3 chip,
-> so correct string to asus,x4tf-bmc.
-> V2 -> V3: Add a label to indicate it is new compatible for bmc.
-> V1 -> V2: Remove blank in front of the string x4tf.
-> ---
->  Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml b/D=
-ocumentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> index 749ee54a3..0047eb4ab 100644
-> --- a/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> +++ b/Documentation/devicetree/bindings/arm/aspeed/aspeed.yaml
-> @@ -74,6 +74,7 @@ properties:
->                - ampere,mtmitchell-bmc
->                - aspeed,ast2600-evb
->                - aspeed,ast2600-evb-a1
-> +              - asus,x4tf-bmc
->                - facebook,bletchley-bmc
->                - facebook,cloudripper-bmc
->                - facebook,elbert-bmc
-> --=20
-> 2.25.1
->=20
+url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/dt-bindindgs-clock-support-NXP-i-MX95-BLK-CTL-module/20240228-122408
+base:   22ba90670a51a18c6b36d285fddf92b9887c0bc3
+patch link:    https://lore.kernel.org/r/20240228-imx95-blk-ctl-v1-2-9b5ae3c14d83%40nxp.com
+patch subject: [PATCH 2/2] clk: imx: add i.MX95 BLK CTL clk driver
+config: hexagon-allmodconfig (https://download.01.org/0day-ci/archive/20240301/202403010142.5gu9hKpX-lkp@intel.com/config)
+compiler: clang version 19.0.0git (https://github.com/llvm/llvm-project 325f51237252e6dab8e4e1ea1fa7acbb4faee1cd)
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240301/202403010142.5gu9hKpX-lkp@intel.com/reproduce)
 
---DSM6j8ISbsPmqzxr
-Content-Type: application/pgp-signature; name="signature.asc"
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403010142.5gu9hKpX-lkp@intel.com/
 
------BEGIN PGP SIGNATURE-----
+All errors (new ones prefixed by >>):
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeDEMwAKCRB4tDGHoIJi
-0uSjAQDCxfOMOXE+N731h+7UuR11yoaeareD7d4LNBi19TtxKwEAwClcXRFU8kKV
-1lxH4YC6Df+mCB0HWCV9QJLXzygNIQM=
-=pTcc
------END PGP SIGNATURE-----
+   In file included from drivers/clk/imx/clk-imx95-blk-ctl.c:13:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     547 |         val = __raw_readb(PCI_IOBASE + addr);
+         |                           ~~~~~~~~~~ ^
+   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:37:51: note: expanded from macro '__le16_to_cpu'
+      37 | #define __le16_to_cpu(x) ((__force __u16)(__le16)(x))
+         |                                                   ^
+   In file included from drivers/clk/imx/clk-imx95-blk-ctl.c:13:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
+         |                                                         ~~~~~~~~~~ ^
+   include/uapi/linux/byteorder/little_endian.h:35:51: note: expanded from macro '__le32_to_cpu'
+      35 | #define __le32_to_cpu(x) ((__force __u32)(__le32)(x))
+         |                                                   ^
+   In file included from drivers/clk/imx/clk-imx95-blk-ctl.c:13:
+   In file included from include/linux/io.h:13:
+   In file included from arch/hexagon/include/asm/io.h:328:
+   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     584 |         __raw_writeb(value, PCI_IOBASE + addr);
+         |                             ~~~~~~~~~~ ^
+   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
+     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
+         |                                                       ~~~~~~~~~~ ^
+>> drivers/clk/imx/clk-imx95-blk-ctl.c:425:25: error: use of undeclared identifier 'imx95_blk_ctl_match'; did you mean 'imx95_bc_of_match'?
+     425 | MODULE_DEVICE_TABLE(of, imx95_blk_ctl_match);
+         |                         ^~~~~~~~~~~~~~~~~~~
+         |                         imx95_bc_of_match
+   include/linux/module.h:244:15: note: expanded from macro 'MODULE_DEVICE_TABLE'
+     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
+         |               ^
+   drivers/clk/imx/clk-imx95-blk-ctl.c:416:34: note: 'imx95_bc_of_match' declared here
+     416 | static const struct of_device_id imx95_bc_of_match[] = {
+         |                                  ^
+   6 warnings and 1 error generated.
 
---DSM6j8ISbsPmqzxr--
+
+vim +425 drivers/clk/imx/clk-imx95-blk-ctl.c
+
+   415	
+   416	static const struct of_device_id imx95_bc_of_match[] = {
+   417		{ .compatible = "nxp,imx95-cameramix-csr", .data = &camblk_dev_data },
+   418		{ .compatible = "nxp,imx95-display-master-csr", },
+   419		{ .compatible = "nxp,imx95-dispmix-lvds-csr", .data = &lvds_csr_dev_data },
+   420		{ .compatible = "nxp,imx95-dispmix-csr", .data = &dispmix_csr_dev_data },
+   421		{ .compatible = "nxp,imx95-netcmix-blk-ctrl", },
+   422		{ .compatible = "nxp,imx95-vpumix-csr", .data = &vpublk_dev_data },
+   423		{ /* Sentinel */ },
+   424	};
+ > 425	MODULE_DEVICE_TABLE(of, imx95_blk_ctl_match);
+   426	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
