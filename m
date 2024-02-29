@@ -1,446 +1,150 @@
-Return-Path: <devicetree+bounces-47194-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47195-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0E0E86C63E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:01:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A379986C669
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:09:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 541061F224EB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:01:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B47528ABE8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:09:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6EE1A63131;
-	Thu, 29 Feb 2024 10:01:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6775163501;
+	Thu, 29 Feb 2024 10:09:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tq0nbs3u"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Kr0FBfpg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4283063129;
-	Thu, 29 Feb 2024 10:01:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E819F6341B
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 10:09:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709200909; cv=none; b=Tq/ujJSAYcz+Ao/AEM2NWRaCkgcDxt84IePXgTsOM2f0hI+Im0NTSRP0pT/wU8VWPAbSLrAsEK8DBAanABHx09ovFvNgzc+mex4Gc5edgFsv/iL2KA4SEyzpDjsYYAt2Z4SJxlaNb7C+EWJ1gnw0YaP1rhQQBd56h7Pgr9BCeDo=
+	t=1709201344; cv=none; b=pnLBoJgClXoPyYIqGpuL/7JQ4Mcuc3sqf0tUwlxHuQACP8hR3Hb2pTPzPrmjrAkcX+d2/7+QcDLI3WQ2W4YDuCnW9+5eJNzZDPC8f7b4X+iK2FKnEq77IMWRLXt/mpmH9DyG/GH8cn/+Cnm2WrMQ5AFGMDIMQ7RF4LPxUGy+Q0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709200909; c=relaxed/simple;
-	bh=0EvAP/k3RYWfB4nfZLvIefXSHFryrqEoAdsNstyND9A=;
+	s=arc-20240116; t=1709201344; c=relaxed/simple;
+	bh=TaJ1vIO6c48ourx3qLmNDyG/UNK2kz8FQnWudKrG3+U=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ibDHByl8C5o8NsFKciYAduKCL6wIoyK+9mIZ3RedI3lXAKY9w08MdeDSO6yJxBauD4gpwJPkMekIhvkc70cylGP8GynJJAkPqaBxm3exYJkQ+MHrMX0Hj2Q/FZHjQKSo802S3YeuFwDGYiiRSM2V9APGFb2dBImQfQ+z/tfms7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tq0nbs3u; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 301D5C433C7;
-	Thu, 29 Feb 2024 10:01:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709200908;
-	bh=0EvAP/k3RYWfB4nfZLvIefXSHFryrqEoAdsNstyND9A=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tq0nbs3uLnKCLIVkPa0855Ew6lEJ8NSJ53kKT41FCB6zoxM9uJyJcPc6EEeYk/Ii3
-	 N9O3nBW48txXwUZeUqA9bWvmUMQrfaaZ+BAhl8KDvj/FSTPBXS8tcro3ta2ilCfRAC
-	 7zoTTaJOjWhsH9Ul+77Jag+or2uPZWgXgyBaGCqQhIif4R2luSePgjzbLyJpDeEsEm
-	 LRnc3CM/IroJNzXfriPkqCt3VJk/WcTuBphH9rlCmwsooJ3SHSIb540u2AB8b3t1Gf
-	 IghH6xFkLzA69TnyKjFIiTmHoPQ2dOTjy/33h7zjW1KF98muLHDxQmQJT7/DPj9URP
-	 YUU9fS8+EPC6w==
-Date: Thu, 29 Feb 2024 11:01:41 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=YTq3f4rPiLgBIVQY7NxzE0TnAKbRV7rVLuOHw4jwb0dHbZs9KZTtH8IjQad9p+T21Gp29AerI7hCu74Q4svxfAiZg8bMPOt2uhiNQxfYygPrPvQsL4ModYdoteLnNqQHArYOkBAnKRYXuV21HMMGWLlUtByMu5GIt6kgVfhDNys=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Kr0FBfpg; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-6da4a923b1bso571790b3a.2
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 02:09:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709201342; x=1709806142; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=D/kwhfPvnRW9V0TZ9Zxmbl7MMjclgSBvckKEZL8M5Jw=;
+        b=Kr0FBfpgQFwAksr4glLYr1po7XztJ4d3WiN/XQKeiKy7ZI7vrH7PRXpNvwV1sUm78F
+         5QRdKcc83wqfs2PEa9T/T/B5aVr0bJnjgTt3KNEgWjibzVuoLd9K4VQUFSbVKQflUOo8
+         7U77G18fDLs7SiNfL/5QR5WRPNF2mlSC4UF9ZmfQPex93E+MAxGQOCg/kB811VGkbki9
+         HyGjnixmJ4u5spe42djvFy1Qi11txaZjyoY61dln3fVlpsAnZuSq6BhIbJSLU6rOGoix
+         eQjRMXAXJdQrCq5FlruVE+KvkUAt0lGtyL9PsGv1LG3pDb71kpT88DCHa0FNLILKNZ8K
+         5bTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709201342; x=1709806142;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=D/kwhfPvnRW9V0TZ9Zxmbl7MMjclgSBvckKEZL8M5Jw=;
+        b=jAqoZRDrj3NLB2C0i8ce/eAZ/mdEgHhnT4Zh6zMboL/aeFS1f3o48gZxsZL3yhC1/D
+         fQOpFWAzQZ4GW42CH9aD/1sdQHfv+NtbUQ0sIoGkTvR+KdtnYZfTi/FWd2rn1KUCZ+tE
+         SP2eV+Ychd5ej6MEyj3889qR5UXagCfX2GiBoB23T/okFRr/4Sl2CGjgsoKmW9qMTwsp
+         sFuRETCbWyQD8CyKWC7EWr6s2Y81aDLumvgE3bXLpUZ89o9VL7g9CZJgUq7AUoLJhHCk
+         sXXTiDU6nWeLLeKo3aO97K0h8qjO3vFp1K3dJKpqXfVI4Z4UCt+JO4y3SFhVDii/gxmU
+         WnCw==
+X-Forwarded-Encrypted: i=1; AJvYcCXoiQt/9qR1HeLn5h9BFPYj7Q0vYtof94M4UXZftLE8mjB3wpoakFYHQ0GJ2otyX2+r8w/8CIRKYMrXe8rs713ctB6QcADdx/Cgxw==
+X-Gm-Message-State: AOJu0Yy9Epmck8UN4xeKq6hB6kn8OrkQdX1IEKWseXTV89VYn+qDsr9X
+	wYMaOc4EMOoN7dJIvQoHHC/sWzxGNkkErmZUMKAm3M8pYnqeUYb0GxVQpkdlAw==
+X-Google-Smtp-Source: AGHT+IEoKjra9mFZzOPhAe+Au9fB+EVWfIlT9YQfWmQ8+50P2HzB/vOroWKiVTnfxOxLKr9CWwQkPw==
+X-Received: by 2002:a05:6a20:d907:b0:1a0:e944:15b7 with SMTP id jd7-20020a056a20d90700b001a0e94415b7mr2728509pzb.5.1709201342188;
+        Thu, 29 Feb 2024 02:09:02 -0800 (PST)
+Received: from thinkpad ([120.138.12.68])
+        by smtp.gmail.com with ESMTPSA id lc11-20020a170902fa8b00b001dc668e145asm1052267plb.200.2024.02.29.02.08.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Feb 2024 02:09:01 -0800 (PST)
+Date: Thu, 29 Feb 2024 15:38:53 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Johan Hovold <johan+linaro@kernel.org>,
 	Bjorn Helgaas <bhelgaas@google.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v15,RESEND 05/23] PCI: microchip: Rename two PCIe data
- structures
-Message-ID: <ZeBWBfMlS4nxMZJ2@lpieralisi>
-References: <20240227103522.80915-1-minda.chen@starfivetech.com>
- <20240227103522.80915-6-minda.chen@starfivetech.com>
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and
+ GICv3 ITS enable
+Message-ID: <20240229100853.GA2999@thinkpad>
+References: <20240223152124.20042-1-johan+linaro@kernel.org>
+ <20240228220843.GA309344@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240227103522.80915-6-minda.chen@starfivetech.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240228220843.GA309344@bhelgaas>
 
-On Tue, Feb 27, 2024 at 06:35:04PM +0800, Minda Chen wrote:
-> Add PLDA PCIe related data structures by rename data structure name from
-> mc_* to plda_*.
+On Wed, Feb 28, 2024 at 04:08:43PM -0600, Bjorn Helgaas wrote:
+> [+to Mani]
 > 
-> axi_base_addr is stayed in struct mc_pcie for it's microchip its own data.
-
-Here in "for it's microchip" you mean "since it's microchip" own data.
-
-Please fix this "for" usage in all commit logs, I noticed it is
-a recurrent mistake you make I can do it but it is tedious.
-
-Don't resend another version yet, I am trying to see what I can
-take from this one.
-
-> The event interrupt codes is still using struct mc_pcie because the event
-
-"code", please not "codes". Please fix it everywhere in your patch
-series, same as above.
-
-Lorenzo
-
-> interrupt codes can not be re-used.
+> On Fri, Feb 23, 2024 at 04:21:12PM +0100, Johan Hovold wrote:
+> > This series addresses a few problems with the sc8280xp PCIe
+> > implementation.
+> > ...
 > 
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  .../pci/controller/plda/pcie-microchip-host.c | 96 ++++++++++---------
->  1 file changed, 53 insertions(+), 43 deletions(-)
+> > A recent commit enabling ASPM on certain Qualcomm platforms introduced
+> > further errors when using the Wi-Fi on the X13s as well as when
+> > accessing the NVMe on the CRD. The exact reason for this has not yet
+> > been identified, but disabling ASPM L0s makes the errors go away. This
+> > could suggest that either the current ASPM implementation is incomplete
+> > or that L0s is not supported with these devices.
+> > ...
 > 
-> diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c b/drivers/pci/controller/plda/pcie-microchip-host.c
-> index c55ede80a6d0..df0736f688ce 100644
-> --- a/drivers/pci/controller/plda/pcie-microchip-host.c
-> +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
-> @@ -22,7 +22,7 @@
->  #include "pcie-plda.h"
->  
->  /* Number of MSI IRQs */
-> -#define MC_MAX_NUM_MSI_IRQS			32
-> +#define PLDA_MAX_NUM_MSI_IRQS			32
->  
->  /* PCIe Bridge Phy and Controller Phy offsets */
->  #define MC_PCIE1_BRIDGE_ADDR			0x00008000u
-> @@ -179,25 +179,29 @@ struct event_map {
->  	u32 event_bit;
->  };
->  
-> -struct mc_msi {
-> +struct plda_msi {
->  	struct mutex lock;		/* Protect used bitmap */
->  	struct irq_domain *msi_domain;
->  	struct irq_domain *dev_domain;
->  	u32 num_vectors;
->  	u64 vector_phy;
-> -	DECLARE_BITMAP(used, MC_MAX_NUM_MSI_IRQS);
-> +	DECLARE_BITMAP(used, PLDA_MAX_NUM_MSI_IRQS);
->  };
->  
-> -struct mc_pcie {
-> -	void __iomem *axi_base_addr;
-> +struct plda_pcie_rp {
->  	struct device *dev;
->  	struct irq_domain *intx_domain;
->  	struct irq_domain *event_domain;
->  	raw_spinlock_t lock;
-> -	struct mc_msi msi;
-> +	struct plda_msi msi;
->  	void __iomem *bridge_addr;
->  };
->  
-> +struct mc_pcie {
-> +	struct plda_pcie_rp plda;
-> +	void __iomem *axi_base_addr;
-> +};
-> +
->  struct cause {
->  	const char *sym;
->  	const char *str;
-> @@ -313,7 +317,7 @@ static struct mc_pcie *port;
->  
->  static void mc_pcie_enable_msi(struct mc_pcie *port, void __iomem *ecam)
->  {
-> -	struct mc_msi *msi = &port->msi;
-> +	struct plda_msi *msi = &port->plda.msi;
->  	u16 reg;
->  	u8 queue_size;
->  
-> @@ -336,10 +340,10 @@ static void mc_pcie_enable_msi(struct mc_pcie *port, void __iomem *ecam)
->  
->  static void mc_handle_msi(struct irq_desc *desc)
->  {
-> -	struct mc_pcie *port = irq_desc_get_handler_data(desc);
-> +	struct plda_pcie_rp *port = irq_desc_get_handler_data(desc);
->  	struct irq_chip *chip = irq_desc_get_chip(desc);
->  	struct device *dev = port->dev;
-> -	struct mc_msi *msi = &port->msi;
-> +	struct plda_msi *msi = &port->msi;
->  	void __iomem *bridge_base_addr = port->bridge_addr;
->  	unsigned long status;
->  	u32 bit;
-> @@ -364,7 +368,7 @@ static void mc_handle_msi(struct irq_desc *desc)
->  
->  static void mc_msi_bottom_irq_ack(struct irq_data *data)
->  {
-> -	struct mc_pcie *port = irq_data_get_irq_chip_data(data);
-> +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(data);
->  	void __iomem *bridge_base_addr = port->bridge_addr;
->  	u32 bitpos = data->hwirq;
->  
-> @@ -373,7 +377,7 @@ static void mc_msi_bottom_irq_ack(struct irq_data *data)
->  
->  static void mc_compose_msi_msg(struct irq_data *data, struct msi_msg *msg)
->  {
-> -	struct mc_pcie *port = irq_data_get_irq_chip_data(data);
-> +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(data);
->  	phys_addr_t addr = port->msi.vector_phy;
->  
->  	msg->address_lo = lower_32_bits(addr);
-> @@ -400,8 +404,8 @@ static struct irq_chip mc_msi_bottom_irq_chip = {
->  static int mc_irq_msi_domain_alloc(struct irq_domain *domain, unsigned int virq,
->  				   unsigned int nr_irqs, void *args)
->  {
-> -	struct mc_pcie *port = domain->host_data;
-> -	struct mc_msi *msi = &port->msi;
-> +	struct plda_pcie_rp *port = domain->host_data;
-> +	struct plda_msi *msi = &port->msi;
->  	unsigned long bit;
->  
->  	mutex_lock(&msi->lock);
-> @@ -425,8 +429,8 @@ static void mc_irq_msi_domain_free(struct irq_domain *domain, unsigned int virq,
->  				   unsigned int nr_irqs)
->  {
->  	struct irq_data *d = irq_domain_get_irq_data(domain, virq);
-> -	struct mc_pcie *port = irq_data_get_irq_chip_data(d);
-> -	struct mc_msi *msi = &port->msi;
-> +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(d);
-> +	struct plda_msi *msi = &port->msi;
->  
->  	mutex_lock(&msi->lock);
->  
-> @@ -456,11 +460,11 @@ static struct msi_domain_info mc_msi_domain_info = {
->  	.chip = &mc_msi_irq_chip,
->  };
->  
-> -static int mc_allocate_msi_domains(struct mc_pcie *port)
-> +static int mc_allocate_msi_domains(struct plda_pcie_rp *port)
->  {
->  	struct device *dev = port->dev;
->  	struct fwnode_handle *fwnode = of_node_to_fwnode(dev->of_node);
-> -	struct mc_msi *msi = &port->msi;
-> +	struct plda_msi *msi = &port->msi;
->  
->  	mutex_init(&port->msi.lock);
->  
-> @@ -484,7 +488,7 @@ static int mc_allocate_msi_domains(struct mc_pcie *port)
->  
->  static void mc_handle_intx(struct irq_desc *desc)
->  {
-> -	struct mc_pcie *port = irq_desc_get_handler_data(desc);
-> +	struct plda_pcie_rp *port = irq_desc_get_handler_data(desc);
->  	struct irq_chip *chip = irq_desc_get_chip(desc);
->  	struct device *dev = port->dev;
->  	void __iomem *bridge_base_addr = port->bridge_addr;
-> @@ -511,7 +515,7 @@ static void mc_handle_intx(struct irq_desc *desc)
->  
->  static void mc_ack_intx_irq(struct irq_data *data)
->  {
-> -	struct mc_pcie *port = irq_data_get_irq_chip_data(data);
-> +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(data);
->  	void __iomem *bridge_base_addr = port->bridge_addr;
->  	u32 mask = BIT(data->hwirq + PM_MSI_INT_INTX_SHIFT);
->  
-> @@ -520,7 +524,7 @@ static void mc_ack_intx_irq(struct irq_data *data)
->  
->  static void mc_mask_intx_irq(struct irq_data *data)
->  {
-> -	struct mc_pcie *port = irq_data_get_irq_chip_data(data);
-> +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(data);
->  	void __iomem *bridge_base_addr = port->bridge_addr;
->  	unsigned long flags;
->  	u32 mask = BIT(data->hwirq + PM_MSI_INT_INTX_SHIFT);
-> @@ -535,7 +539,7 @@ static void mc_mask_intx_irq(struct irq_data *data)
->  
->  static void mc_unmask_intx_irq(struct irq_data *data)
->  {
-> -	struct mc_pcie *port = irq_data_get_irq_chip_data(data);
-> +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(data);
->  	void __iomem *bridge_base_addr = port->bridge_addr;
->  	unsigned long flags;
->  	u32 mask = BIT(data->hwirq + PM_MSI_INT_INTX_SHIFT);
-> @@ -625,21 +629,22 @@ static u32 local_events(struct mc_pcie *port)
->  	return val;
->  }
->  
-> -static u32 get_events(struct mc_pcie *port)
-> +static u32 get_events(struct plda_pcie_rp *port)
->  {
-> +	struct mc_pcie *mc_port = container_of(port, struct mc_pcie, plda);
->  	u32 events = 0;
->  
-> -	events |= pcie_events(port);
-> -	events |= sec_errors(port);
-> -	events |= ded_errors(port);
-> -	events |= local_events(port);
-> +	events |= pcie_events(mc_port);
-> +	events |= sec_errors(mc_port);
-> +	events |= ded_errors(mc_port);
-> +	events |= local_events(mc_port);
->  
->  	return events;
->  }
->  
->  static irqreturn_t mc_event_handler(int irq, void *dev_id)
->  {
-> -	struct mc_pcie *port = dev_id;
-> +	struct plda_pcie_rp *port = dev_id;
->  	struct device *dev = port->dev;
->  	struct irq_data *data;
->  
-> @@ -655,7 +660,7 @@ static irqreturn_t mc_event_handler(int irq, void *dev_id)
->  
->  static void mc_handle_event(struct irq_desc *desc)
->  {
-> -	struct mc_pcie *port = irq_desc_get_handler_data(desc);
-> +	struct plda_pcie_rp *port = irq_desc_get_handler_data(desc);
->  	unsigned long events;
->  	u32 bit;
->  	struct irq_chip *chip = irq_desc_get_chip(desc);
-> @@ -672,12 +677,13 @@ static void mc_handle_event(struct irq_desc *desc)
->  
->  static void mc_ack_event_irq(struct irq_data *data)
->  {
-> -	struct mc_pcie *port = irq_data_get_irq_chip_data(data);
-> +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(data);
-> +	struct mc_pcie *mc_port = container_of(port, struct mc_pcie, plda);
->  	u32 event = data->hwirq;
->  	void __iomem *addr;
->  	u32 mask;
->  
-> -	addr = port->axi_base_addr + event_descs[event].base +
-> +	addr = mc_port->axi_base_addr + event_descs[event].base +
->  		event_descs[event].offset;
->  	mask = event_descs[event].mask;
->  	mask |= event_descs[event].enb_mask;
-> @@ -687,13 +693,14 @@ static void mc_ack_event_irq(struct irq_data *data)
->  
->  static void mc_mask_event_irq(struct irq_data *data)
->  {
-> -	struct mc_pcie *port = irq_data_get_irq_chip_data(data);
-> +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(data);
-> +	struct mc_pcie *mc_port = container_of(port, struct mc_pcie, plda);
->  	u32 event = data->hwirq;
->  	void __iomem *addr;
->  	u32 mask;
->  	u32 val;
->  
-> -	addr = port->axi_base_addr + event_descs[event].base +
-> +	addr = mc_port->axi_base_addr + event_descs[event].base +
->  		event_descs[event].mask_offset;
->  	mask = event_descs[event].mask;
->  	if (event_descs[event].enb_mask) {
-> @@ -717,13 +724,14 @@ static void mc_mask_event_irq(struct irq_data *data)
->  
->  static void mc_unmask_event_irq(struct irq_data *data)
->  {
-> -	struct mc_pcie *port = irq_data_get_irq_chip_data(data);
-> +	struct plda_pcie_rp *port = irq_data_get_irq_chip_data(data);
-> +	struct mc_pcie *mc_port = container_of(port, struct mc_pcie, plda);
->  	u32 event = data->hwirq;
->  	void __iomem *addr;
->  	u32 mask;
->  	u32 val;
->  
-> -	addr = port->axi_base_addr + event_descs[event].base +
-> +	addr = mc_port->axi_base_addr + event_descs[event].base +
->  		event_descs[event].mask_offset;
->  	mask = event_descs[event].mask;
->  
-> @@ -811,7 +819,7 @@ static int mc_pcie_init_clks(struct device *dev)
->  	return 0;
->  }
->  
-> -static int mc_pcie_init_irq_domains(struct mc_pcie *port)
-> +static int mc_pcie_init_irq_domains(struct plda_pcie_rp *port)
->  {
->  	struct device *dev = port->dev;
->  	struct device_node *node = dev->of_node;
-> @@ -889,7 +897,7 @@ static void mc_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
->  }
->  
->  static int mc_pcie_setup_windows(struct platform_device *pdev,
-> -				 struct mc_pcie *port)
-> +				 struct plda_pcie_rp *port)
->  {
->  	void __iomem *bridge_base_addr = port->bridge_addr;
->  	struct pci_host_bridge *bridge = platform_get_drvdata(pdev);
-> @@ -970,7 +978,7 @@ static void mc_disable_interrupts(struct mc_pcie *port)
->  	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_HOST);
->  }
->  
-> -static int mc_init_interrupts(struct platform_device *pdev, struct mc_pcie *port)
-> +static int mc_init_interrupts(struct platform_device *pdev, struct plda_pcie_rp *port)
->  {
->  	struct device *dev = &pdev->dev;
->  	int irq;
-> @@ -1043,12 +1051,12 @@ static int mc_platform_init(struct pci_config_window *cfg)
->  	mc_pcie_enable_msi(port, cfg->win);
->  
->  	/* Configure non-config space outbound ranges */
-> -	ret = mc_pcie_setup_windows(pdev, port);
-> +	ret = mc_pcie_setup_windows(pdev, &port->plda);
->  	if (ret)
->  		return ret;
->  
->  	/* Address translation is up; safe to enable interrupts */
-> -	ret = mc_init_interrupts(pdev, port);
-> +	ret = mc_init_interrupts(pdev, &port->plda);
->  	if (ret)
->  		return ret;
->  
-> @@ -1059,6 +1067,7 @@ static int mc_host_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
->  	void __iomem *bridge_base_addr;
-> +	struct plda_pcie_rp *plda;
->  	int ret;
->  	u32 val;
->  
-> @@ -1066,7 +1075,8 @@ static int mc_host_probe(struct platform_device *pdev)
->  	if (!port)
->  		return -ENOMEM;
->  
-> -	port->dev = dev;
-> +	plda = &port->plda;
-> +	plda->dev = dev;
->  
->  	port->axi_base_addr = devm_platform_ioremap_resource(pdev, 1);
->  	if (IS_ERR(port->axi_base_addr))
-> @@ -1075,7 +1085,7 @@ static int mc_host_probe(struct platform_device *pdev)
->  	mc_disable_interrupts(port);
->  
->  	bridge_base_addr = port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
-> -	port->bridge_addr = bridge_base_addr;
-> +	plda->bridge_addr = bridge_base_addr;
->  
->  	/* Allow enabling MSI by disabling MSI-X */
->  	val = readl(bridge_base_addr + PCIE_PCI_IRQ_DW0);
-> @@ -1087,10 +1097,10 @@ static int mc_host_probe(struct platform_device *pdev)
->  	val &= NUM_MSI_MSGS_MASK;
->  	val >>= NUM_MSI_MSGS_SHIFT;
->  
-> -	port->msi.num_vectors = 1 << val;
-> +	plda->msi.num_vectors = 1 << val;
->  
->  	/* Pick vector address from design */
-> -	port->msi.vector_phy = readl_relaxed(bridge_base_addr + IMSI_ADDR);
-> +	plda->msi.vector_phy = readl_relaxed(bridge_base_addr + IMSI_ADDR);
->  
->  	ret = mc_pcie_init_clks(dev);
->  	if (ret) {
-> -- 
-> 2.17.1
+> > As this series fixes a regression in 6.7 (which enabled ASPM) and fixes
+> > a user-reported problem with the Wi-Fi often not starting at boot, I
+> > think we should merge this series for the 6.8 cycle. The final patch
+> > enabling the GIC ITS should wait for 6.9.
+> > 
+> > The DT bindings and PCI patch are expected to go through the PCI tree,
+> > while Bjorn A takes the devicetree updates through the Qualcomm tree.
+> > ...
 > 
+> > Johan Hovold (12):
+> >   dt-bindings: PCI: qcom: Allow 'required-opps'
+> >   dt-bindings: PCI: qcom: Do not require 'msi-map-mask'
+> >   dt-bindings: PCI: qcom: Allow 'aspm-no-l0s'
+> >   PCI: qcom: Add support for disabling ASPM L0s in devicetree
 > 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> The ASPM patches fix a v6.7 regression, so it would be good to fix
+> that in v6.8.
+> 
+> Mani, if you are OK with them, I can add them to for-linus for v6.8.  
+> 
+> What about the 'required-opps' and 'msi-map-mask' patches?  If they're
+> important, I can merge them for v6.8, too, but it's late in the cycle
+> and it's not clear from the commit logs why they shouldn't wait for
+> v6.9.
+> 
+
+I'm checking with Qcom HW team on the ASPM behavior. So please hold off the ASPM
+related patches until I get an answer. But 'required-opps' and 'msi-map-mask'
+patches can be applied for 6.9 (not strictly fixing anything in 6.8).
+
+- Mani
+
+-- 
+மணிவண்ணன் சதாசிவம்
 
