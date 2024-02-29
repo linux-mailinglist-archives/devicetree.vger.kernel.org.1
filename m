@@ -1,265 +1,124 @@
-Return-Path: <devicetree+bounces-47433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFF5986D327
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:28:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7498586D314
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:27:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 208661C21DE2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:28:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8EA4D1C21930
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:27:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 007C514402B;
-	Thu, 29 Feb 2024 19:27:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 38EE013C9E6;
+	Thu, 29 Feb 2024 19:26:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kxOoM3rj"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FZUAg3Nd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 144D4134439;
-	Thu, 29 Feb 2024 19:27:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF9707A140;
+	Thu, 29 Feb 2024 19:26:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709234839; cv=none; b=nbdnCaesx2oz8TJ8I36qYAQiv/Tj5x1RCTThatYAffLnKmJ9ujrLHQICBAPfdOl9v+YMeMvdQ46v4kEt/vqWqyDym9JeggwtksVG6MZ9aoCmpZapTQFjH4vmJzh6ymY2W2KQYzUu223hvCohUebxrhsORdV5EFMFglT0F/GPpH0=
+	t=1709234810; cv=none; b=VQQBMtPeqh5dI8ZqPRpjIhSq6Cp+tnPCDfbwHFpNa3GZwFhnwfFBco5MmtZAmVsbEhOxoyVENngEzj1TEA2W3gmS6OY1ZdVrRfsE/kbzQjQ0xSMiziqtf8tx7Vpqkffalc2cDwCH/6qEiWHfGvJDsElyTRBlae8zWDImN6z9ai4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709234839; c=relaxed/simple;
-	bh=j/++tKpf6nxbbeFDehv27/TaZ3F22dBnSGotJt3JR3A=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=p4Nbu9a6/sE8yJtpXz4g9e7mA+p1GeIpgglh/d7ZP8CHwNxSsBMXiJPM8quyh0dpxKpqNMoVGstNndoZL+KqqavQOBvHi5yEPgr9xiPH/NQ1bd4MY8XC9umZRmBA3Wp52Eq58Y9xKpQP1OEihq1bDTR9xqwMBsPjhA2dJopHx20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kxOoM3rj; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5131f3fc695so1422080e87.1;
-        Thu, 29 Feb 2024 11:27:17 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709234835; x=1709839635; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=a8pIF69B3+vCEfVyDdwwj/eV/I9z+Zc+q5b1+o/fwOY=;
-        b=kxOoM3rj/xS/fbDya+rqT0znIP7DFgHONclcmXDRnESRzRjUS5tJxWYFKJHyctGj2z
-         56Xkjz2rw6JD45h/Ztutw3amTpLnp6iMH2pycKbkvCTY+weEwb4aniGixOD4gN7JIw1F
-         sag1AlhHMBQ088klrI+1V9l8mE/URseKYxeHTbuZ6kLQUm9psCntIvOIw2V58/to/TmI
-         mCMCxzNm8ocH4awtkuD5hsgjAqOLVJaYHxWgwnuaZc1E4iL8nviMsP7rzKEpVhnJj992
-         Ik/VJeoAIcF05ERoWo5FTuF7je/YzrJ++Sk/N/4V/IhSrymWfuAsvuuh1zRawcXnBJWI
-         l+yQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709234835; x=1709839635;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=a8pIF69B3+vCEfVyDdwwj/eV/I9z+Zc+q5b1+o/fwOY=;
-        b=baFJYat2c3GhDz6IZQq2gCuuNZ7ulrrUUS5yNOfm+NkU/ltrKMrUk4OQpfntEyuBAK
-         vuSJQ59AMMR+Gupo0SUqYWhb+RJzfevka/R7JK9U9gjIOSbxc85qjhCw9LQDfvvvwSu6
-         +ZWgIKOwpO4oLrxENplhsHjAlXs1H3DoQYeHc6QouVmQNkmo9G+DWK5tXSlPhR8K0q44
-         4pioS+z25QqbSTGrWzdItgLwiwJLGVs2wS+HR7wlsA45lOzJJoINU+6t790IdCGXHitS
-         e3dBo2pVp4LX8kZKwG8ZQkGDIxYUcpQSLAZACXmyz6fJynMOLbAohQLfZVNJrdwKwo0L
-         F5HA==
-X-Forwarded-Encrypted: i=1; AJvYcCULX71Xni1JKUOFd8vFeu8oJeZ8px5RYaQQL2DtlbWMw9fMqK0Jt8Ov7bZy//FuE0s8miIygZIwzsK/5XLBJ6nYCjrZY4ilTD3mTu7AWm9D4ZPb4C9IOl4ZghNiXDQfsMHSrvKLFcD0RQ==
-X-Gm-Message-State: AOJu0YzXwCAkH3pjk0fEmRMpjSKV16X6k3qUCj5U1Hq14ncy/pnVZbd1
-	M9TgN7IGolHrCYDYAg1pDDEFFT6VX2O73Yhj68k37AgM01hB4I26w9SSBHidKJIPOQ==
-X-Google-Smtp-Source: AGHT+IFdEd2RYXTkQHnppetkRnPxVnjNwWo7EOTHuMMvCLx724tUqzZ30NaYb3Avu9qRLku1FgXVlg==
-X-Received: by 2002:a19:f80c:0:b0:513:fad:3a79 with SMTP id a12-20020a19f80c000000b005130fad3a79mr2169278lff.41.1709234835537;
-        Thu, 29 Feb 2024 11:27:15 -0800 (PST)
-Received: from [172.30.32.188] ([2001:8f8:183b:6ebc::d35])
-        by smtp.gmail.com with ESMTPSA id j20-20020a05600c1c1400b00412bca49a5bsm2853944wms.42.2024.02.29.11.27.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Feb 2024 11:27:15 -0800 (PST)
-From: Alexey Charkov <alchark@gmail.com>
-Date: Thu, 29 Feb 2024 23:26:36 +0400
-Subject: [PATCH v3 5/5] arm64: dts: rockchip: Add further granularity in
- RK3588 CPU OPPs
+	s=arc-20240116; t=1709234810; c=relaxed/simple;
+	bh=XYqtERqbFDcU7FGGJJDLJV8D9FQnft7OxECpPKXNTqY=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=FRt5eIhLLAaqfFHixL7fUaPnzedecf/V39Qy/iF40vplkHILbay3WHxhhjExZsRqa5cQ1hbNTVTaZ+qkOAtKELKgb/loXjNEgvfvAv5TTbsm2/g/NHuuvB8xcQa3BW5K+cLqiEf2lhzuDUb9VyDJxmdAdipYdZ+dfSWFgs6CZtA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FZUAg3Nd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4393EC433F1;
+	Thu, 29 Feb 2024 19:26:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709234809;
+	bh=XYqtERqbFDcU7FGGJJDLJV8D9FQnft7OxECpPKXNTqY=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=FZUAg3Ndz2efO7rT4ZPGZgEtEwVC4QKAcKHS7BEanU8xoiNfosbNYTB4Idw2wuAo2
+	 pn436RQYyTDNUWJgpRHTbL07EQTgwPSSxUDMZUSOESyJXeN3UQMGWyVrOV99/j9f1x
+	 UQm6MgaFf9JJmQkvXb4a/33aJ9tZm9orSzpgokbi1Zfe96HnbtNkZU++e4TI7BkNQ/
+	 nQ/qR1wUiN5JLNM7tbHyp9gYCCXbOORopkk9Txv5rVaqVyJlPLV+udrCzBym5JrCM8
+	 zlE2wa9WY53Y1slv2qcn8a191P6blBp+RacQQcvot9LR/nYiBnHaGnTPArboPeoSJ1
+	 kmQUgXiVxeBfA==
+Date: Thu, 29 Feb 2024 13:26:48 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240229-rk-dts-additions-v3-5-6afe8473a631@gmail.com>
-References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
-In-Reply-To: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
-To: Rob Herring <robh+dt@kernel.org>, 
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Andi Shyti <andi.shyti@kernel.org>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Gregory Clement <gregory.clement@bootlin.com>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, linux-i2c@vger.kernel.org, 
+ devicetree@vger.kernel.org, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: Daniel Lezcano <daniel.lezcano@linaro.org>, 
- Dragan Simic <dsimic@manjaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
- Chen-Yu Tsai <wens@kernel.org>, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- linux-kernel@vger.kernel.org, Alexey Charkov <alchark@gmail.com>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1709234816; l=5519;
- i=alchark@gmail.com; s=20240125; h=from:subject:message-id;
- bh=j/++tKpf6nxbbeFDehv27/TaZ3F22dBnSGotJt3JR3A=;
- b=tzN5fmgoHAnEdXpez23vQkmx1XeBtubWfNRVPi+kjuzKwBQ26lA/DVX4u4pp+xiQzv6TShJfT
- nXrscsS74dmC2+s4BeMzPAbU4r8/Gbj+Zb4sS4yUglJHYPXwx79momW
-X-Developer-Key: i=alchark@gmail.com; a=ed25519;
- pk=xRO8VeD3J5jhwe0za0aHt2LDumQr8cm0Ls7Jz3YGimk=
+ linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org
+In-Reply-To: <20240229-mbly-i2c-v2-1-b32ed18c098c@bootlin.com>
+References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
+ <20240229-mbly-i2c-v2-1-b32ed18c098c@bootlin.com>
+Message-Id: <170923480641.105770.14152939058198727973.robh@kernel.org>
+Subject: Re: [PATCH v2 01/11] dt-bindings: i2c: nomadik: add
+ mobileye,eyeq5-i2c bindings and example
 
-This introduces additional OPPs that share the same voltage as
-another OPP already present in the .dtsi but with lower frequency.
 
-The idea is to try and limit system throughput more gradually upon
-reaching the throttling condition for workloads that are close to
-sustainable power already, thus avoiding needless performance loss.
+On Thu, 29 Feb 2024 19:10:49 +0100, Théo Lebrun wrote:
+> Add EyeQ5 bindings to the existing Nomadik I2C dt-bindings. Add the
+> EyeQ5-specific property behind a conditional. Add an example for this
+> compatible.
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  .../devicetree/bindings/i2c/st,nomadik-i2c.yaml    | 48 ++++++++++++++++++++--
+>  1 file changed, 44 insertions(+), 4 deletions(-)
+> 
 
-My limited synthetic benchmarking [1] showed around 3.8% performance
-benefit when these are in place, other things equal (not meant to
-be comprehensive). Though dmesg complains about these OPPs being
-'inefficient':
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-[    9.009561] cpu cpu0: EM: OPP:816000 is inefficient
-[    9.009580] cpu cpu0: EM: OPP:600000 is inefficient
-[    9.009591] cpu cpu0: EM: OPP:408000 is inefficient
-[    9.011370] cpu cpu4: EM: OPP:2352000 is inefficient
-[    9.011379] cpu cpu4: EM: OPP:2304000 is inefficient
-[    9.011384] cpu cpu4: EM: OPP:2256000 is inefficient
-[    9.011389] cpu cpu4: EM: OPP:600000 is inefficient
-[    9.011393] cpu cpu4: EM: OPP:408000 is inefficient
-[    9.012978] cpu cpu6: EM: OPP:2352000 is inefficient
-[    9.012987] cpu cpu6: EM: OPP:2304000 is inefficient
-[    9.012992] cpu cpu6: EM: OPP:2256000 is inefficient
-[    9.012996] cpu cpu6: EM: OPP:600000 is inefficient
-[    9.013000] cpu cpu6: EM: OPP:408000 is inefficient
+yamllint warnings/errors:
 
-[1] https://lore.kernel.org/linux-rockchip/CABjd4YxqarUCbZ-a2XLe3TWJ-qjphGkyq=wDnctnEhdoSdPPpw@mail.gmail.com/T/#me92aa0ee25e6eeb1d1501ce85f5af4e58b3b13c5
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.example.dtb: i2c@300000: 'mobileye,olb' does not match any of the regexes: '^#.*', '^(at25|bm|devbus|dmacap|dsa|exynos|fsi[ab]|gpio-fan|gpio-key|gpio|gpmc|hdmi|i2c-gpio),.*', '^(keypad|m25p|max8952|max8997|max8998|mpmc),.*', '^(pinctrl-single|#pinctrl-single|PowerPC),.*', '^(pl022|pxa-mmc|rcar_sound|rotary-encoder|s5m8767|sdhci),.*', '^(simple-audio-card|st-plgpio|st-spics|ts),.*', '^100ask,.*', '^70mai,.*', '^8dev,.*', '^GEFanuc,.*', '^ORCL,.*', '^SUNW,.*', '^[a-zA-Z0-9#_][a-zA-Z0-9+\\-._@]{0,63}$', '^[a-zA-Z0-9+\\-._]*@[0-9a-zA-Z,]*$', '^abb,.*', '^abilis,.*', '^abracon,.*', '^abt,.*', '^acbel,.*', '^acer,.*', '^acme,.*', '^actions,.*', '^active-semi,.*', '^ad,.*', '^adafruit,.*', '^adapteva,.*', '^adaptrum,.*', '^adh,.*', '^adi,.*', '^adieng,.*', '^advantech,.*', '^aeroflexgaisler,.*', '^aesop,.*', '^airoha,.*', '^al,.*', '^alcatel,.*', '^aldec,.*', '^alfa-network,.*', '^allegro,.*', '^allie
+ dvision,.*', '^allo,.*', '^allwinner,.*', '^alphascale,.*', '^alps,.*', '^alt,.*', '^altr,.*', '^amarula,.*', '^amazon,.*', '^amcc,.*', '^amd,.*', '^amediatech,.*', '^amlogic,.*', '^ampere,.*', '^ampire,.*', '^ams,.*', '^amstaos,.*', '^analogix,.*', '^anbernic,.*', '^andestech,.*', '^anvo,.*', '^aosong,.*', '^apm,.*', '^apple,.*', '^aptina,.*', '^arasan,.*', '^archermind,.*', '^arcom,.*', '^arctic,.*', '^arcx,.*', '^aries,.*', '^arm,.*', '^armadeus,.*', '^arrow,.*', '^artesyn,.*', '^asahi-kasei,.*', '^asc,.*', '^asix,.*', '^aspeed,.*', '^asrock,.*', '^asus,.*', '^atheros,.*', '^atlas,.*', '^atmel,.*', '^auo,.*', '^auvidea,.*', '^avago,.*', '^avia,.*', '^avic,.*', '^avnet,.*', '^awinic,.*', '^axentia,.*', '^axis,.*', '^azoteq,.*', '^azw,.*', '^baikal,.*', '^bananapi,.*', '^beacon,.*', '^beagle,.*', '^belling,.*', '^bhf,.*', '^bigtreetech,.*', '^bitmain,.*', '^blutek,.*', '^boe,.*', '^bosch,.*', '^boundary,.*', '^brcm,.*', '^broadmobi,.*', '^bsh,.*', '^bticino,.*', '^buffalo,.*', '^bu
+ r,.*', '^bytedance,.*', '^calamp,.*', '^calaosystems,.*', '^calxeda,.*', '^canaan,.*', '^caninos,.*', '^capella,.*', '^cascoda,.*', '^catalyst,.*', '^cavium,.*', '^cdns,.*', '^cdtech,.*', '^cellwise,.*', '^ceva,.*', '^chargebyte,.*', '^checkpoint,.*', '^chefree,.*', '^chipidea,.*', '^chipone,.*', '^chipspark,.*', '^chongzhou,.*', '^chrontel,.*', '^chrp,.*', '^chunghwa,.*', '^chuwi,.*', '^ciaa,.*', '^cirrus,.*', '^cisco,.*', '^clockwork,.*', '^cloos,.*', '^cloudengines,.*', '^cnm,.*', '^cnxt,.*', '^colorfly,.*', '^compulab,.*', '^congatec,.*', '^coolpi,.*', '^coreriver,.*', '^corpro,.*', '^cortina,.*', '^cosmic,.*', '^crane,.*', '^creative,.*', '^crystalfontz,.*', '^csky,.*', '^csq,.*', '^ctera,.*', '^ctu,.*', '^cubietech,.*', '^cui,.*', '^cypress,.*', '^cyx,.*', '^cznic,.*', '^dallas,.*', '^dataimage,.*', '^davicom,.*', '^dell,.*', '^delta,.*', '^densitron,.*', '^denx,.*', '^devantech,.*', '^dfi,.*', '^dh,.*', '^difrnce,.*', '^digi,.*', '^digilent,.*', '^dimonoff,.*', '^diodes,.*', 
+ '^dioo,.*', '^dlc,.*', '^dlg,.*', '^dlink,.*', '^dmo,.*', '^domintech,.*', '^dongwoon,.*', '^dptechnics,.*', '^dragino,.*', '^ds,.*', '^dserve,.*', '^dynaimage,.*', '^ea,.*', '^ebang,.*', '^ebbg,.*', '^ebs-systart,.*', '^ebv,.*', '^eckelmann,.*', '^edgeble,.*', '^edimax,.*', '^edt,.*', '^ees,.*', '^eeti,.*', '^einfochips,.*', '^eink,.*', '^elan,.*', '^element14,.*', '^elgin,.*', '^elida,.*', '^elimo,.*', '^elpida,.*', '^embedfire,.*', '^embest,.*', '^emlid,.*', '^emmicro,.*', '^empire-electronix,.*', '^emtrion,.*', '^enclustra,.*', '^endless,.*', '^ene,.*', '^energymicro,.*', '^engicam,.*', '^engleder,.*', '^epcos,.*', '^epfl,.*', '^epson,.*', '^esp,.*', '^est,.*', '^ettus,.*', '^eukrea,.*', '^everest,.*', '^everspin,.*', '^evervision,.*', '^exar,.*', '^excito,.*', '^exegin,.*', '^ezchip,.*', '^facebook,.*', '^fairphone,.*', '^faraday,.*', '^fascontek,.*', '^fastrax,.*', '^fcs,.*', '^feixin,.*', '^feiyang,.*', '^fii,.*', '^firefly,.*', '^focaltech,.*', '^forlinx,.*', '^freecom,.*', 
+ '^frida,.*', '^friendlyarm,.*', '^fsl,.*', '^fujitsu,.*', '^fxtec,.*', '^galaxycore,.*', '^gardena,.*', '^gateway,.*', '^gateworks,.*', '^gcw,.*', '^ge,.*', '^geekbuying,.*', '^gef,.*', '^gemei,.*', '^gemtek,.*', '^genesys,.*', '^geniatech,.*', '^giantec,.*', '^giantplus,.*', '^globalscale,.*', '^globaltop,.*', '^gmt,.*', '^goldelico,.*', '^goodix,.*', '^google,.*', '^goramo,.*', '^gplus,.*', '^grinn,.*', '^grmn,.*', '^gumstix,.*', '^gw,.*', '^hannstar,.*', '^haochuangyi,.*', '^haoyu,.*', '^hardkernel,.*', '^hechuang,.*', '^hideep,.*', '^himax,.*', '^hirschmann,.*', '^hisi,.*', '^hisilicon,.*', '^hit,.*', '^hitex,.*', '^holt,.*', '^holtek,.*', '^honestar,.*', '^honeywell,.*', '^hoperun,.*', '^hp,.*', '^hpe,.*', '^hsg,.*', '^htc,.*', '^huawei,.*', '^hugsun,.*', '^hwacom,.*', '^hxt,.*', '^hycon,.*', '^hydis,.*', '^hynitron,.*', '^hynix,.*', '^hyundai,.*', '^i2se,.*', '^ibm,.*', '^icplus,.*', '^idt,.*', '^ifi,.*', '^ilitek,.*', '^imagis,.*', '^img,.*', '^imi,.*', '^inanbo,.*', '^incirc
+ uit,.*', '^indiedroid,.*', '^inet-tek,.*', '^infineon,.*', '^inforce,.*', '^ingenic,.*', '^ingrasys,.*', '^injoinic,.*', '^innocomm,.*', '^innolux,.*', '^inside-secure,.*', '^insignal,.*', '^inspur,.*', '^intel,.*', '^intercontrol,.*', '^invensense,.*', '^inventec,.*', '^inversepath,.*', '^iom,.*', '^irondevice,.*', '^isee,.*', '^isil,.*', '^issi,.*', '^ite,.*', '^itead,.*', '^itian,.*', '^ivo,.*', '^iwave,.*', '^jadard,.*', '^jasonic,.*', '^jdi,.*', '^jedec,.*', '^jesurun,.*', '^jethome,.*', '^jianda,.*', '^joz,.*', '^kam,.*', '^karo,.*', '^keithkoep,.*', '^keymile,.*', '^khadas,.*', '^kiebackpeter,.*', '^kinetic,.*', '^kingdisplay,.*', '^kingnovel,.*', '^kionix,.*', '^kobo,.*', '^kobol,.*', '^koe,.*', '^kontron,.*', '^kosagi,.*', '^kvg,.*', '^kyo,.*', '^lacie,.*', '^laird,.*', '^lamobo,.*', '^lantiq,.*', '^lattice,.*', '^lctech,.*', '^leadtek,.*', '^leez,.*', '^lego,.*', '^lemaker,.*', '^lenovo,.*', '^lg,.*', '^lgphilips,.*', '^libretech,.*', '^licheepi,.*', '^linaro,.*', '^linear
+ technology,.*', '^linksprite,.*', '^linksys,.*', '^linutronix,.*', '^linux,.*', '^linx,.*', '^liteon,.*', '^litex,.*', '^lltc,.*', '^logicpd,.*', '^logictechno,.*', '^longcheer,.*', '^lontium,.*', '^loongmasses,.*', '^loongson,.*', '^lsi,.*', '^lunzn,.*', '^lwn,.*', '^lxa,.*', '^m5stack,.*', '^macnica,.*', '^mantix,.*', '^mapleboard,.*', '^marantec,.*', '^marvell,.*', '^maxbotix,.*', '^maxim,.*', '^maxlinear,.*', '^mbvl,.*', '^mcube,.*', '^meas,.*', '^mecer,.*', '^mediatek,.*', '^megachips,.*', '^mele,.*', '^melexis,.*', '^melfas,.*', '^mellanox,.*', '^memsensing,.*', '^memsic,.*', '^menlo,.*', '^mentor,.*', '^meraki,.*', '^merrii,.*', '^methode,.*', '^micrel,.*', '^microchip,.*', '^microcrystal,.*', '^micron,.*', '^microsoft,.*', '^microsys,.*', '^mikroe,.*', '^mikrotik,.*', '^milkv,.*', '^miniand,.*', '^minix,.*', '^miramems,.*', '^mitsubishi,.*', '^mitsumi,.*', '^mixel,.*', '^miyoo,.*', '^mntre,.*', '^modtronix,.*', '^moortec,.*', '^mosaixtech,.*', '^motorcomm,.*', '^motorola,.*'
+ , '^moxa,.*', '^mpl,.*', '^mps,.*', '^mqmaker,.*', '^mrvl,.*', '^mscc,.*', '^msi,.*', '^mstar,.*', '^mti,.*', '^multi-inno,.*', '^mundoreader,.*', '^murata,.*', '^mxic,.*', '^mxicy,.*', '^myir,.*', '^national,.*', '^nec,.*', '^neonode,.*', '^netgear,.*', '^netlogic,.*', '^netron-dy,.*', '^netronix,.*', '^netxeon,.*', '^neweast,.*', '^newhaven,.*', '^newvision,.*', '^nexbox,.*', '^nextthing,.*', '^ni,.*', '^nintendo,.*', '^nlt,.*', '^nokia,.*', '^nordic,.*', '^novatek,.*', '^novtech,.*', '^nutsboard,.*', '^nuvoton,.*', '^nvd,.*', '^nvidia,.*', '^nxp,.*', '^oceanic,.*', '^ocs,.*', '^oct,.*', '^okaya,.*', '^oki,.*', '^olimex,.*', '^olpc,.*', '^oneplus,.*', '^onie,.*', '^onion,.*', '^onnn,.*', '^ontat,.*', '^opalkelly,.*', '^openailab,.*', '^opencores,.*', '^openembed,.*', '^openpandora,.*', '^openrisc,.*', '^option,.*', '^oranth,.*', '^orisetech,.*', '^ortustech,.*', '^osddisplays,.*', '^osmc,.*', '^ouya,.*', '^overkiz,.*', '^ovti,.*', '^oxsemi,.*', '^ozzmaker,.*', '^panasonic,.*', '^p
+ arade,.*', '^parallax,.*', '^pda,.*', '^pericom,.*', '^pervasive,.*', '^phicomm,.*', '^phytec,.*', '^picochip,.*', '^pine64,.*', '^pineriver,.*', '^pixcir,.*', '^plantower,.*', '^plathome,.*', '^plda,.*', '^plx,.*', '^ply,.*', '^pni,.*', '^pocketbook,.*', '^polaroid,.*', '^polyhex,.*', '^portwell,.*', '^poslab,.*', '^pov,.*', '^powertip,.*', '^powervr,.*', '^powkiddy,.*', '^primux,.*', '^probox2,.*', '^prt,.*', '^pulsedlight,.*', '^purism,.*', '^qca,.*', '^qcom,.*', '^qemu,.*', '^qi,.*', '^qiaodian,.*', '^qihua,.*', '^qishenglong,.*', '^qnap,.*', '^quanta,.*', '^radxa,.*', '^raidsonic,.*', '^ralink,.*', '^ramtron,.*', '^raspberrypi,.*', '^raydium,.*', '^rda,.*', '^realtek,.*', '^remarkable,.*', '^renesas,.*', '^rervision,.*', '^revotics,.*', '^rex,.*', '^richtek,.*', '^ricoh,.*', '^rikomagic,.*', '^riot,.*', '^riscv,.*', '^rockchip,.*', '^rocktech,.*', '^rohm,.*', '^ronbo,.*', '^roofull,.*', '^roseapplepi,.*', '^rve,.*', '^saef,.*', '^samsung,.*', '^samtec,.*', '^sancloud,.*', '^san
+ disk,.*', '^satoz,.*', '^sbs,.*', '^schindler,.*', '^seagate,.*', '^seeed,.*', '^seirobotics,.*', '^semtech,.*', '^senseair,.*', '^sensirion,.*', '^sensortek,.*', '^sercomm,.*', '^sff,.*', '^sgd,.*', '^sgmicro,.*', '^sgx,.*', '^sharp,.*', '^shift,.*', '^shimafuji,.*', '^shineworld,.*', '^shiratech,.*', '^si-en,.*', '^si-linux,.*', '^siemens,.*', '^sifive,.*', '^sigma,.*', '^sii,.*', '^sil,.*', '^silabs,.*', '^silan,.*', '^silead,.*', '^silergy,.*', '^silex-insight,.*', '^siliconfile,.*', '^siliconmitus,.*', '^silvaco,.*', '^simtek,.*', '^sinlinx,.*', '^sinovoip,.*', '^sinowealth,.*', '^sipeed,.*', '^sirf,.*', '^sis,.*', '^sitronix,.*', '^skov,.*', '^skyworks,.*', '^smartlabs,.*', '^smi,.*', '^smsc,.*', '^snps,.*', '^sochip,.*', '^socionext,.*', '^solidrun,.*', '^solomon,.*', '^sony,.*', '^sophgo,.*', '^sourceparts,.*', '^spansion,.*', '^sparkfun,.*', '^spinalhdl,.*', '^sprd,.*', '^square,.*', '^ssi,.*', '^sst,.*', '^sstar,.*', '^st,.*', '^st-ericsson,.*', '^starfive,.*', '^starry,.*
+ ', '^startek,.*', '^starterkit,.*', '^ste,.*', '^stericsson,.*', '^storlink,.*', '^storm,.*', '^storopack,.*', '^summit,.*', '^sunchip,.*', '^sundance,.*', '^sunplus,.*', '^supermicro,.*', '^swir,.*', '^syna,.*', '^synology,.*', '^synopsys,.*', '^tbs,.*', '^tbs-biometrics,.*', '^tcg,.*', '^tcl,.*', '^tcs,.*', '^tdo,.*', '^team-source-display,.*', '^technexion,.*', '^technologic,.*', '^techstar,.*', '^techwell,.*', '^teejet,.*', '^teltonika,.*', '^tempo,.*', '^terasic,.*', '^tesla,.*', '^tfc,.*', '^thead,.*', '^thine,.*', '^thingyjp,.*', '^thundercomm,.*', '^thwc,.*', '^ti,.*', '^tianma,.*', '^tlm,.*', '^tmt,.*', '^topeet,.*', '^topic,.*', '^toppoly,.*', '^topwise,.*', '^toradex,.*', '^toshiba,.*', '^toumaz,.*', '^tpk,.*', '^tplink,.*', '^tpo,.*', '^tq,.*', '^transpeed,.*', '^traverse,.*', '^tronfy,.*', '^tronsmart,.*', '^truly,.*', '^tsd,.*', '^turing,.*', '^tyan,.*', '^u-blox,.*', '^u-boot,.*', '^ubnt,.*', '^ucrobotics,.*', '^udoo,.*', '^ufispace,.*', '^ugoos,.*', '^uniwest,.*', '^
+ upisemi,.*', '^urt,.*', '^usi,.*', '^usr,.*', '^utoo,.*', '^v3,.*', '^vaisala,.*', '^vamrs,.*', '^variscite,.*', '^vdl,.*', '^vertexcom,.*', '^via,.*', '^vialab,.*', '^vicor,.*', '^videostrong,.*', '^virtio,.*', '^virtual,.*', '^vishay,.*', '^visionox,.*', '^vitesse,.*', '^vivante,.*', '^vivax,.*', '^vocore,.*', '^voipac,.*', '^vot,.*', '^vxt,.*', '^wanchanglong,.*', '^wand,.*', '^waveshare,.*', '^wd,.*', '^we,.*', '^welltech,.*', '^wetek,.*', '^wexler,.*', '^whwave,.*', '^wi2wi,.*', '^widora,.*', '^wiligear,.*', '^willsemi,.*', '^winbond,.*', '^wingtech,.*', '^winlink,.*', '^winstar,.*', '^wirelesstag,.*', '^wits,.*', '^wlf,.*', '^wm,.*', '^wobo,.*', '^x-powers,.*', '^xen,.*', '^xes,.*', '^xiaomi,.*', '^xillybus,.*', '^xingbangda,.*', '^xinpeng,.*', '^xiphera,.*', '^xlnx,.*', '^xnano,.*', '^xunlong,.*', '^xylon,.*', '^yadro,.*', '^yamaha,.*', '^yes-optoelectronics,.*', '^yic,.*', '^yiming,.*', '^ylm,.*', '^yna,.*', '^yones-toptech,.*', '^ys,.*', '^ysoft,.*', '^zarlink,.*', '^zealz,
+ .*', '^zeitec,.*', '^zidoo,.*', '^zii,.*', '^zinitix,.*', '^zkmagic,.*', '^zte,.*', '^zyxel,.*', 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/vendor-prefixes.yaml#
 
-Signed-off-by: Alexey Charkov <alchark@gmail.com>
----
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 87 +++++++++++++++++++++++++++++++
- 1 file changed, 87 insertions(+)
+doc reference errors (make refcheckdocs):
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index bd39c5c47bfb..6b4ecc7ab37d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -360,6 +360,21 @@ cluster0_opp_table: opp-table-cluster0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-+		opp-408000000 {
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-microvolt = <675000 675000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt = <675000 675000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-816000000 {
-+			opp-hz = /bits/ 64 <816000000>;
-+			opp-microvolt = <675000 675000 950000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-1008000000 {
- 			opp-hz = /bits/ 64 <1008000000>;
- 			opp-microvolt = <675000 675000 950000>;
-@@ -392,6 +407,27 @@ cluster1_opp_table: opp-table-cluster1 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-+		opp-408000000 {
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+			opp-suspend;
-+		};
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-816000000 {
-+			opp-hz = /bits/ 64 <816000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-1008000000 {
-+			opp-hz = /bits/ 64 <1008000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-1200000000 {
- 			opp-hz = /bits/ 64 <1200000000>;
- 			opp-microvolt = <675000 675000 1000000>;
-@@ -422,6 +458,21 @@ opp-2208000000 {
- 			opp-microvolt = <987500 987500 1000000>;
- 			clock-latency-ns = <40000>;
- 		};
-+		opp-2256000000 {
-+			opp-hz = /bits/ 64 <2256000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-2304000000 {
-+			opp-hz = /bits/ 64 <2304000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-2352000000 {
-+			opp-hz = /bits/ 64 <2352000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-2400000000 {
- 			opp-hz = /bits/ 64 <2400000000>;
- 			opp-microvolt = <1000000 1000000 1000000>;
-@@ -433,6 +484,27 @@ cluster2_opp_table: opp-table-cluster2 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
-+		opp-408000000 {
-+			opp-hz = /bits/ 64 <408000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+			opp-suspend;
-+		};
-+		opp-600000000 {
-+			opp-hz = /bits/ 64 <600000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-816000000 {
-+			opp-hz = /bits/ 64 <816000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-1008000000 {
-+			opp-hz = /bits/ 64 <1008000000>;
-+			opp-microvolt = <675000 675000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-1200000000 {
- 			opp-hz = /bits/ 64 <1200000000>;
- 			opp-microvolt = <675000 675000 1000000>;
-@@ -463,6 +535,21 @@ opp-2208000000 {
- 			opp-microvolt = <987500 987500 1000000>;
- 			clock-latency-ns = <40000>;
- 		};
-+		opp-2256000000 {
-+			opp-hz = /bits/ 64 <2256000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-2304000000 {
-+			opp-hz = /bits/ 64 <2304000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
-+		opp-2352000000 {
-+			opp-hz = /bits/ 64 <2352000000>;
-+			opp-microvolt = <1000000 1000000 1000000>;
-+			clock-latency-ns = <40000>;
-+		};
- 		opp-2400000000 {
- 			opp-hz = /bits/ 64 <2400000000>;
- 			opp-microvolt = <1000000 1000000 1000000>;
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240229-mbly-i2c-v2-1-b32ed18c098c@bootlin.com
 
--- 
-2.44.0
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
