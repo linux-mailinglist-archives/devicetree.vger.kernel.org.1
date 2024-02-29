@@ -1,97 +1,150 @@
-Return-Path: <devicetree+bounces-47458-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47459-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D8B186D41F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:23:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6688D86D439
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:29:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2F9E1C2130C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:23:41 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B5FE1C20DDA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:29:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 768561428EC;
-	Thu, 29 Feb 2024 20:23:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21009142914;
+	Thu, 29 Feb 2024 20:29:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Caz0h/CL"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="OhCzDT6d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D30DF13F444;
-	Thu, 29 Feb 2024 20:23:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B82CF1428E0;
+	Thu, 29 Feb 2024 20:29:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709238198; cv=none; b=u+gkDZ+11q0iTdQyuaSfe0aM+Nu0fm1i+HYfebUk0iO/x2k0tdVkXVr+dE7PBkWut3LV4/FeDDF6pVl3KPBVUHQjH3a51qwDVMgYY9+MXHRb2JeefQwve8YGsxYXLp2+M5+hcdNpGg0xQOzcQLF6RqTvPbVxvN+imUgdMxXJGfU=
+	t=1709238576; cv=none; b=uB3Smj8D9aD5oaxwg77wbTEzugZ0ZJPA3yBt2plEFohG0BMi7qlyxIDhFYLM0ZSuxBb7irb5bzWAwTKc/dSg9ieuF+VodbM4Q4d1K1ozF3wNOtYvigesMzvQQJZAWuB1n0cZ0wNGRYkGn+w2UJv+Y3txlstCks+izfABdBMaNb4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709238198; c=relaxed/simple;
-	bh=eypfRWduOTtxVcXy1CeP9vCXIlJPyx+8mSFU5oBXO/M=;
+	s=arc-20240116; t=1709238576; c=relaxed/simple;
+	bh=L/s/b9tSVs9z239pdMRuvKxK6VQN+DzuuFGrb2AJ0Ws=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aRjjfL/TcWUYpeMJbzzs2gP+GUKqPVuQFOk9EtCcWE1OQYkWkaqLz1aCpnoUdAHzaPq4fn0HO/3msi/vMD8d3bgV+nC7JZnAbJmwSDM1eyqupjATmyIS9snFmuyCurIh/4ucPe61Y0VRh+Aogdzv4OETIYRu6c/oZuThXVjHSfQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Caz0h/CL; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1709238195;
-	bh=eypfRWduOTtxVcXy1CeP9vCXIlJPyx+8mSFU5oBXO/M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Caz0h/CLWd1f0XuHIlATCpzDZQEDROu3iAqJPbZ/Bm3Zal5kqJIikrrCn/kgFWaLX
-	 R5o7GDzqLG7Ec5TZkZgMdkVxoFNyUPSNq/TRjXjB7d8IcZw6V85PCu8uhtW1EALC0j
-	 rP2BYIZFgPihSOd2AbuLKoc34DnoUN2Ppd6QdjS+Iun67N9R9/gx3UBBGkGN4pkFp4
-	 hce4IgmCsFQ9K0HhYqygEfZF4NKUVjejOPmjTkQJjN8bXEkMTlBZi9ZyIFKbkacjGd
-	 B3wa78mo2zvkbDownlHap21AYbvmNR7RKO0y9R2FZEW5sGNrEESL+HQBFBfV/uGiQS
-	 rpuMK96Cj+TDg==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 4153137820E4;
-	Thu, 29 Feb 2024 20:23:12 +0000 (UTC)
-Date: Thu, 29 Feb 2024 15:23:09 -0500
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Viresh Kumar <viresh.kumar@linaro.org>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Matthias Brugger <matthias.bgg@gmail.com>, kernel@collabora.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 1/2] arm64: dts: mediatek: cherry: Describe CPU
- supplies
-Message-ID: <8a45151a-1d51-4001-b0f9-9cfb0027232a@notapiano>
-References: <20240110142305.755367-1-nfraprado@collabora.com>
- <20240110142305.755367-2-nfraprado@collabora.com>
- <e325a4d4-0df7-499c-9d55-7da093b744ea@collabora.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=DmyT7Ll6Te7b6YU0msQpfHkEuZUfxbFgr5L0UwH1UI0IrMpDY52Je7vEjfGQ5W5CNVBxP430k/1e0U1NPX6YcMIqtU5mKldWK0sap+DXWCLQVL03AGwm7Ianhvsyp9DZhzn6ISYEC/1KWRvAeOATDttfsQs1EcgsTwQs/IDNsj4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=OhCzDT6d; arc=none smtp.client-ip=217.70.183.199
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id EF869FF802;
+	Thu, 29 Feb 2024 20:29:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709238570;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Xsz9d2+yFSQZeecH2hOJtT+4TSF8kgLSBhGXKWhoDpQ=;
+	b=OhCzDT6diyX9INg49zfgB6KwEWfdYjAzQMAaaMbxmHZ7yT1l6ewOG/X0HJ120MHMVo/Hw2
+	ZfOIUYhTiqAVHadjdJMmkzkbxIP3hV0y5nyrK40vRfXJfV2lRtS/dIoK5oRs3TEFYQ+FrC
+	pvDhHrPBDj6wx2nmTtjANKDIV1ovkCo5EWg+LU9ATvPEDVr6yDi19MIpYDmyBFTRIHJ2EF
+	Wgg1Cd4id6LQdh51SlsqUDlRZIgIhUDb+nEtNMFj2XOI5FAw4iVyl4vBI8ZTpYVmr8F5ZO
+	jFlEnUWaHt/p5RrZR8Mf47xH6KNbvdyJ3hb7TU0OFLOftZlrOlAXYAGlTMAKKg==
+Date: Thu, 29 Feb 2024 21:29:28 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc: Conor Dooley <conor@kernel.org>,
+	"antoniu.miclaus@analog.com" <antoniu.miclaus@analog.com>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"jdelvare@suse.com" <jdelvare@suse.com>,
+	"linux@roeck-us.net" <linux@roeck-us.net>,
+	"linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+	Zeynep Arslanbenzer <Zeynep.Arslanbenzer@analog.com>
+Subject: Re: [PATCH v8 2/2] dt-bindings: rtc: add max313xx RTCs
+Message-ID: <2024022920292837621a4f@mail.local>
+References: <20240227010312.3305966-1-chris.packham@alliedtelesis.co.nz>
+ <20240227010312.3305966-3-chris.packham@alliedtelesis.co.nz>
+ <20240228-embark-rimmed-d81bab3d42b8@spud>
+ <bd43a198-6287-40b2-be15-2734c5d2742d@alliedtelesis.co.nz>
+ <20240229-skeletal-ultimatum-27cd91e8d8a8@spud>
+ <b2ebc2a7-0347-40a0-8302-c84ba898fd16@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e325a4d4-0df7-499c-9d55-7da093b744ea@collabora.com>
+In-Reply-To: <b2ebc2a7-0347-40a0-8302-c84ba898fd16@alliedtelesis.co.nz>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-On Wed, Jan 10, 2024 at 03:32:02PM +0100, AngeloGioacchino Del Regno wrote:
-> Il 10/01/24 15:23, Nícolas F. R. A. Prado ha scritto:
-> > Describe in each CPU node the regulator supplying it.
-> > 
-> > Fixes: 260c04d425eb ("arm64: dts: mediatek: cherry: Enable MT6315 regulators on SPMI bus")
-> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-> > 
+On 29/02/2024 20:11:16+0000, Chris Packham wrote:
 > 
-> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> On 1/03/24 07:07, Conor Dooley wrote:
+> > On Wed, Feb 28, 2024 at 08:21:35PM +0000, Chris Packham wrote:
+> >> On 29/02/24 00:58, Conor Dooley wrote:
+> >>> On Tue, Feb 27, 2024 at 02:03:10PM +1300, Chris Packham wrote:
+> >>>
+> >>>>      interrupts:
+> >>>> +    description:
+> >>>> +      Alarm1 interrupt line of the RTC. Some of the RTCs have two interrupt
+> >>>> +      lines and alarm1 interrupt muxing depends on the clockin/clockout
+> >>>> +      configuration.
+> >>>>        maxItems: 1
+> >>> The maxItems: 1 looks odd here when you state "some of the RTCs have two
+> >>> interrupt lines", which makes it sound as if there are actually two
+> >>> interrupts that should be exposed here. If those two interrupts get
+> >>> muxed to the same pin for output I'd suggest that you clarify that here.
+> >> This may end up changing if I can come up with something that Alexandre
+> >> is happy with. Basically (some of) the chips have a configurable pin
+> >> that can either be dedicated to the ALARM1 output (annoyingly labelled
+> >> as INTB) or to a clock output. There is an INTA line that has other
+> >> interrupts and if the clock output option is used then it also has
+> >> ALARM1. The driver doesn't currently do anything with the other
+> >> interrupt sources so as written this needs to correspond to whichever
+> >> interrupt output is asserted for ALARM1.
+> > So you're saying that depending on whether or not the clock output is
+> > used, there could be two interrupts?
+> Correct.
+> > Without looking further, it sounds like you should be setting maxItems
+> > to 1 if #clock-cells is present and to 2 if it is not.
+> My idea was an explicit property about the function of the INTB/CLKOUT 
+> pin. The current code does use #clock-cells as a proxy for this (and 
+> Alexandre has some concerns with how this is handled).
 
-Hello,
+#clock-cells must not be used for pinmuxing, I can't see how anyone
+would allow this.
 
-looks like this patch was never picked up, while the cpufreq part has been
-merged for a while, so I'm still getting the mentioned hangs on linux-next.
-Could this be queued? :)
+> >   Then if there are
+> > two interrupts provided, the driver is free to configure whatever way it
+> > wants. If there aren't, send everything to INTA.
+> >
+> > Am I missing something?
+> 
+> Right now the only interrupt that the RTC cares about is for ALARM1 
+> (which moves between INTA and INTB depending on the clock config). There 
+> are other hardware events and an ALARM2 that can generate an interrupt 
+> but these are ignored. I don't think the rtc framework supports more 
+> than one alarm.
+> 
+> Binding wise I think this should take 1 or 2 interrupts. For simplicity 
+> the first interrupt should always correspond to ALARM1 (which could be 
+> INTB or INTA depending on the hardware design). The 2nd interrupt (if 
+> supplied) would be for the other events (which we don't currently do 
+> anything with).
 
-Thanks,
-Nícolas
+Not using an interrupt simply means the CPU doesn't care about it but
+there are other components that may care for example a PMIC. If you
+reason about what linux and the CPU it is running on can do, you will
+cripple functionality and we will have to break the devicetree binding
+later on to restore it.
+We need to be able to express all the possible pin configurations with
+the binding. I'm not sure why everyone is so resistant to use pinmuxing
+to mux pins....
+
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
