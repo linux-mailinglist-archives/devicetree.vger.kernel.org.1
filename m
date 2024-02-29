@@ -1,159 +1,106 @@
-Return-Path: <devicetree+bounces-47479-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47480-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FE8886D584
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:04:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 638E286D58D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:05:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 720731C228EB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:04:12 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1E78E28B57D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:05:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DF1144037;
-	Thu, 29 Feb 2024 20:46:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C77F6D522;
+	Thu, 29 Feb 2024 20:52:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iXg3gcke"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TANW0ozA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393831428FC;
-	Thu, 29 Feb 2024 20:46:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 481C36D51A;
+	Thu, 29 Feb 2024 20:52:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709239586; cv=none; b=Fh9fb713hHEJ5gOnxdiCvFDw9k+cdwcdiHlAC0zGsSprjLoyEV18Y1y0LMqxLbjkjNb3TYu+Sgl0d8xjgYrC/E1hODcGwBb/Gfn454/kTh6wp1+LcdUbYsw6s+8CLypeaRojCKKBoM4eG+EDiMPwlIwxCpksV/0HYiTX22XYIpU=
+	t=1709239962; cv=none; b=N7eduPI8NTeoARbt9KeqzDIZ6lU2e+Uvc1t91DzkOZ+cG4iYm/TzFtCnnws/w9Sb+rOxaENwPS4rItGOtFmnJ5gl/KiIk2CXaBGlI4DtU7xMfVU6d9GJl46/eQeBKWp1jYXS6fJypWXC7X9/e8LemwYqCSgJC1J/Ln993A06q6E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709239586; c=relaxed/simple;
-	bh=CQx3KA2MK3LEfTY+Hogj/IbqUR7C0EreWLbSRWcjetE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ljFYra1fD5OLjWy3ssrc5gE6NSjom5U4jvlrOMag1MJXm6ABsk4/Ys/5xDvRmkiGSRexWeg4k9LV6FHO1NKtaD03iTZkkoYVuL48JrPQW+JyfeCwnzU73K2SZ2z391KmDXFrHlsCLDP/n4D/AwxHi+ZqZUM9BHAU9aZhl6di89w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iXg3gcke; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 3CEC6C0003;
-	Thu, 29 Feb 2024 20:46:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709239575;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=2yC2KEk65Ak+51VQmZ/7ETdOjptWIvVuBFVWdWXcNv0=;
-	b=iXg3gckeA+D8GH8kI4v8U3j0+bfu1iHOWuJtk5jarRNr/NgM0PDJ4S2oQ3F6WaS7CrSvV2
-	8dBJhguouJNfQB/IzuGqHhXyBkk9820M7UZkdY/abhHDqncX1F6EzrknR9OKDE1nnR3G+B
-	3w5z7vVKLv5Y2NcGCexFa3HZolQAfYnNPHKB6kTsPEikSZFuIn7pBp7W8Cv/0O1ylSZlyi
-	Vex4u1xlJP5CMcZxE89tOUcz/exHS2v9pwyNxp8CTC2TPDfT3ohwLmBqhCvNkx+ahJ9mng
-	CDoP7BYzrC3Bwsk76Gf2+YdV6apZLRie7MpqDDEllVSxTz1dh1YMcuE8TQsuIA==
-Message-ID: <860648fa-11f5-4e0d-ac4e-e81ea111ef31@bootlin.com>
-Date: Thu, 29 Feb 2024 21:46:12 +0100
+	s=arc-20240116; t=1709239962; c=relaxed/simple;
+	bh=CsLQ4dZCelScfRnYjaZt1AjDEqq01xy8aL6Jr73WL4o=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition:In-Reply-To; b=h/8NB5beQpeDNKccJVJ6JWMAoiha+sAPI4yTr7mj4cr5m4gUlD6zfQbhZM5VivDPsqmN0O3ghjSKNLOzubZXXelz0McWECQmuje4YNuUEz1qj7cIjzBww7/w4eb6Xy7nn/JbIQ62Xb+pVYwfLwVpNVS0UCS8Z1JAFqplny1hinY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TANW0ozA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C486CC43399;
+	Thu, 29 Feb 2024 20:52:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709239962;
+	bh=CsLQ4dZCelScfRnYjaZt1AjDEqq01xy8aL6Jr73WL4o=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:From;
+	b=TANW0ozA+czmFr2lgmCX3j/bexTlqKQ7kPo2STpBGcIJXvUdw/Z4tWGYRYJA4cW9/
+	 aven+jrS355EfGVlG7vuEr6Rt0rCAfHx8eGxFip3hs2QloM2bbuUSyIgwJ/j5JHt5P
+	 NByiAqo5BPIEXxi+AuXc58/VcnddQp6hahfKDNGjv08Wz7+gBivoNjscHXhAL1ZcCg
+	 g/MrHhTfXHDBShRiGub2Vn6Nrz6uN2qyJuREBlLf8iDqGEXOyyKIYZ1LZZjN52hUwu
+	 fXxBSI4StIzH9WGZ0Up+DPdjB4U5P7tu3mHkoVG60YJuhpja7DlCUIaN9pu9JP9aS0
+	 t+ET8NnuH+EpA==
+Date: Thu, 29 Feb 2024 14:52:40 -0600
+From: Bjorn Helgaas <helgaas@kernel.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and
+ GICv3 ITS enable
+Message-ID: <20240229205240.GA361626@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dp83822: support
- configuring RMII master/slave mode
-Content-Language: en-US
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Andrew Davis <afd@ti.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, =?UTF-8?Q?Miqu=C3=A8l_Raynal?=
- <miquel.raynal@bootlin.com>, Yen-Mei Goh <yen-mei.goh@keysight.com>,
- Maxime Chevallier <maxime.chevallier@bootlin.com>
-References: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
- <20240222103117.526955-2-jeremie.dautheribes@bootlin.com>
- <d14ba685-dc7e-4f99-a21e-bae9f3e6bc79@lunn.ch>
-From: =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?=
- <jeremie.dautheribes@bootlin.com>
-In-Reply-To: <d14ba685-dc7e-4f99-a21e-bae9f3e6bc79@lunn.ch>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: jeremie.dautheribes@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZeCCPRVvYCNfMYnd@hovoldconsulting.com>
 
-Hi Andrew,
-
-On 26/02/2024 16:28, Andrew Lunn wrote:
-> On Thu, Feb 22, 2024 at 11:31:15AM +0100, Jérémie Dautheribes wrote:
->> Add property ti,rmii-mode to support selecting the RMII operation mode
->> between:
->> 	- master mode (PHY operates from a 25MHz clock reference)
->> 	- slave mode (PHY operates from a 50MHz clock reference)
->>
->> If not set, the operation mode is configured by hardware straps.
->>
->> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
->> ---
->>   .../devicetree/bindings/net/ti,dp83822.yaml      | 16 ++++++++++++++++
->>   1 file changed, 16 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/net/ti,dp83822.yaml b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
->> index 8f4350be689c..8f23254c0458 100644
->> --- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
->> +++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
->> @@ -80,6 +80,22 @@ properties:
->>              10625, 11250, 11875, 12500, 13125, 13750, 14375, 15000]
->>       default: 10000
->>   
->> +  ti,rmii-mode:
->> +    description: |
->> +       If present, select the RMII operation mode. Two modes are
->> +       available:
->> +         - RMII master, where the PHY operates from a 25MHz clock reference,
->> +         provided by a crystal or a CMOS-level oscillator
->> +         - RMII slave, where the PHY operates from a 50MHz clock reference,
->> +         provided by a CMOS-level oscillator
+On Thu, Feb 29, 2024 at 02:10:21PM +0100, Johan Hovold wrote:
+> On Thu, Feb 29, 2024 at 05:54:16PM +0530, Manivannan Sadhasivam wrote:
+> > On Thu, Feb 29, 2024 at 11:25:48AM +0100, Johan Hovold wrote:
 > 
-> What has master and slave got to do with this?
+> > > As I mentioned, the 'required-opps' binding update is needed to
+> > > fix the missing OPP vote so blocking the binding patch would
+> > > block merging the DT fix which could otherwise go into 6.8.
 > 
-> Sometimes, the MAC provides a clock to the PHY, and all data transfer
-> over the RMII bus is timed by that.
-> 
-> Sometimes, the PHY provides a clock to the MAC, and all data transfer
-> over the RMII bus is timed by that.
-> 
-> Here there is a clear master/slave relationship, who is providing the
-> clock, who is consuming the clock. However, what you describe does not
-> fit that. Maybe look at other PHY bindings, and copy what they do for
-> clocks.
+> > I agree that the fix gets the priority. But some maintainers
+> > perfer to merge fix patches _only_ if they are fixing the issue
+> > introduced in the ongoing release.  But if Bjorn has no issues in
+> > merging these for 6.8, then it is fine.
 
-In fact, I hesitated a lot before choosing this master/slave designation 
-because of the same reasoning as you. But the TI DP83826 datasheet [1] 
-uses this name for two orthogonal yet connected meanings, here's a copy 
-of the corresponding § (in section 9.3.10):
+I do prefer to merge only regression and important fixes after the
+merge window, so I want to be able to provide justification.
 
-"The DP83826 offers two types of RMII operations: RMII Slave and RMII 
-Master. In RMII Master operation, the DP83826 operates from either a 
-25-MHz CMOS-level oscillator connected to XI pin, a 25-MHz crystal 
-connected across XI and XO pins. A 50-MHz output clock referenced from 
-DP83826 can be connected to the MAC. In RMII Slave operation, the 
-DP83826 operates from a 50-MHz CMOS-level oscillator connected to the XI 
-pin and shares the same clock as the MAC. Alternatively, in RMII slave 
-mode, the PHY can operate from a 50-MHz clock provided by the Host MAC."
+> It also depends on the severity of the issue and to some extent the
+> complexity of the fix. These binding fixes are certainly low risk.
+> :)
 
-So it seems that in some cases this also fits the master/slave 
-relationship you describe.
+IIUC we're talking about:
 
-That said, would you like me to include this description (or some parts) 
-in the binding in addition to what I've already written? Or would you 
-prefer me to use a more meaningful property name?
+  arm64: dts: qcom: sc8280xp: add missing PCIe minimum OPP
+  dt-bindings: PCI: qcom: Allow 'required-opps'
 
-BTW, this series has already been merged into the net-next tree, I'm not 
-sure what procedure to follow in such cases.
+These don't look like a regression fix (correct me if I'm wrong), and
+I can't tell whether they fix a user-visible problem, since
+sc8280xp.dtsi does already contain 'required-opps' for ufs_mem_hc,
+usb_0, and usb_1, which are mentioned in the commit log as covering up
+the issue.
 
+If these patches wait until v6.9, what badness ensues?
 
-Best regards,
-
-Jérémie
-
-[1] 
-https://www.ti.com/lit/ds/symlink/dp83826i.pdf?ts=1708075771406&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FDP83826I
+Bjorn
 
