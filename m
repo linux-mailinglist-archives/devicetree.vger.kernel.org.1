@@ -1,106 +1,159 @@
-Return-Path: <devicetree+bounces-47478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95CB586D528
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:56:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FE8886D584
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:04:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45B841F27B0C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:56:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 720731C228EB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:04:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4B6E15F144;
-	Thu, 29 Feb 2024 20:41:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1DF1144037;
+	Thu, 29 Feb 2024 20:46:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="D+zI7Bpj"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="iXg3gcke"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBD601504FF;
-	Thu, 29 Feb 2024 20:41:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 393831428FC;
+	Thu, 29 Feb 2024 20:46:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709239272; cv=none; b=EUNKO0/JBWwPgfRgONWZSa0tXDYIKNMrvy4tWOQ3fw9Ep4i+gh4e87O7Pq0jigrfXmS4OufMsd/HgC+Q5vwv1aw2CkahqmRgHlC1/GDcwgepFHNHNWZOmNmuJVwgZ8X8Z9HDvIgDInuLb7Ki5Nk4+BVHxuINUc+PsmC3IrkAVxw=
+	t=1709239586; cv=none; b=Fh9fb713hHEJ5gOnxdiCvFDw9k+cdwcdiHlAC0zGsSprjLoyEV18Y1y0LMqxLbjkjNb3TYu+Sgl0d8xjgYrC/E1hODcGwBb/Gfn454/kTh6wp1+LcdUbYsw6s+8CLypeaRojCKKBoM4eG+EDiMPwlIwxCpksV/0HYiTX22XYIpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709239272; c=relaxed/simple;
-	bh=lDJ/WcAUElCfR9BHJ0p9gKCvoLwlAhMexx0r5bWWcn4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=eBmK6wQKm51b98dGEzOOrVS8lPngFoDCA5Oppxs8wxjiFj6T0/swplelfPyJmB4NjsInKjZXrJHzwjYPjcGj0GB5JJmpAFp25p56Z5ljYVmfJOFDKV0dOH6yaUYw6ORbaPa90g/fzM6NmRXSt6p1+8T9UL8NVw6KlFObWV1zoKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=D+zI7Bpj; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBCEDC433F1;
-	Thu, 29 Feb 2024 20:41:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709239272;
-	bh=lDJ/WcAUElCfR9BHJ0p9gKCvoLwlAhMexx0r5bWWcn4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=D+zI7BpjWt3bAu2rSQ7RpMZvdJy7NEVKnrX+TSI4Y33jGY1jcDc780CPRWXe9Pu1F
-	 9Wr5IUX1EnyrbfW/m7ILptwomULiLpAx82alljWVxHW6Q7BsQ1MFg7FRugaP8tOAW8
-	 GEh9I7DVwLYo8oA2tR1q+VBbGUMm/jo8ExJUO9L7AItXtGcOR6BrIc0Nu7LucLenqj
-	 +kPA/pLF2Na58sEGOKUzoQuLQ1VpuGSpSzZIQZKjHI3lAqx3Y5N/6o18EqKMefjUq1
-	 nlfDnYRJbMEp8d14Wcs/oVGavmcxXey5aSdHxfMzBXI9i9E730nPmVUF9JnMibzdqJ
-	 FANIzg1suIcDg==
-From: Sasha Levin <sashal@kernel.org>
-To: linux-kernel@vger.kernel.org,
-	stable@vger.kernel.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
-	Sasha Levin <sashal@kernel.org>,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	paul.walmsley@sifive.com,
-	palmer@dabbelt.com,
-	aou@eecs.berkeley.edu,
-	devicetree@vger.kernel.org,
-	linux-riscv@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.15 3/9] riscv: dts: sifive: add missing #interrupt-cells to pmic
-Date: Thu, 29 Feb 2024 15:40:59 -0500
-Message-ID: <20240229204107.2861780-3-sashal@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240229204107.2861780-1-sashal@kernel.org>
-References: <20240229204107.2861780-1-sashal@kernel.org>
+	s=arc-20240116; t=1709239586; c=relaxed/simple;
+	bh=CQx3KA2MK3LEfTY+Hogj/IbqUR7C0EreWLbSRWcjetE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ljFYra1fD5OLjWy3ssrc5gE6NSjom5U4jvlrOMag1MJXm6ABsk4/Ys/5xDvRmkiGSRexWeg4k9LV6FHO1NKtaD03iTZkkoYVuL48JrPQW+JyfeCwnzU73K2SZ2z391KmDXFrHlsCLDP/n4D/AwxHi+ZqZUM9BHAU9aZhl6di89w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=iXg3gcke; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3CEC6C0003;
+	Thu, 29 Feb 2024 20:46:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709239575;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2yC2KEk65Ak+51VQmZ/7ETdOjptWIvVuBFVWdWXcNv0=;
+	b=iXg3gckeA+D8GH8kI4v8U3j0+bfu1iHOWuJtk5jarRNr/NgM0PDJ4S2oQ3F6WaS7CrSvV2
+	8dBJhguouJNfQB/IzuGqHhXyBkk9820M7UZkdY/abhHDqncX1F6EzrknR9OKDE1nnR3G+B
+	3w5z7vVKLv5Y2NcGCexFa3HZolQAfYnNPHKB6kTsPEikSZFuIn7pBp7W8Cv/0O1ylSZlyi
+	Vex4u1xlJP5CMcZxE89tOUcz/exHS2v9pwyNxp8CTC2TPDfT3ohwLmBqhCvNkx+ahJ9mng
+	CDoP7BYzrC3Bwsk76Gf2+YdV6apZLRie7MpqDDEllVSxTz1dh1YMcuE8TQsuIA==
+Message-ID: <860648fa-11f5-4e0d-ac4e-e81ea111ef31@bootlin.com>
+Date: Thu, 29 Feb 2024 21:46:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-X-stable-base: Linux 5.15.149
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dp83822: support
+ configuring RMII master/slave mode
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Andrew Davis <afd@ti.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, =?UTF-8?Q?Miqu=C3=A8l_Raynal?=
+ <miquel.raynal@bootlin.com>, Yen-Mei Goh <yen-mei.goh@keysight.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>
+References: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
+ <20240222103117.526955-2-jeremie.dautheribes@bootlin.com>
+ <d14ba685-dc7e-4f99-a21e-bae9f3e6bc79@lunn.ch>
+From: =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?=
+ <jeremie.dautheribes@bootlin.com>
+In-Reply-To: <d14ba685-dc7e-4f99-a21e-bae9f3e6bc79@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: jeremie.dautheribes@bootlin.com
 
-From: Conor Dooley <conor.dooley@microchip.com>
+Hi Andrew,
 
-[ Upstream commit ce6b6d1513965f500a05f3facf223fa01fd74920 ]
+On 26/02/2024 16:28, Andrew Lunn wrote:
+> On Thu, Feb 22, 2024 at 11:31:15AM +0100, Jérémie Dautheribes wrote:
+>> Add property ti,rmii-mode to support selecting the RMII operation mode
+>> between:
+>> 	- master mode (PHY operates from a 25MHz clock reference)
+>> 	- slave mode (PHY operates from a 50MHz clock reference)
+>>
+>> If not set, the operation mode is configured by hardware straps.
+>>
+>> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
+>> ---
+>>   .../devicetree/bindings/net/ti,dp83822.yaml      | 16 ++++++++++++++++
+>>   1 file changed, 16 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/ti,dp83822.yaml b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+>> index 8f4350be689c..8f23254c0458 100644
+>> --- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+>> +++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+>> @@ -80,6 +80,22 @@ properties:
+>>              10625, 11250, 11875, 12500, 13125, 13750, 14375, 15000]
+>>       default: 10000
+>>   
+>> +  ti,rmii-mode:
+>> +    description: |
+>> +       If present, select the RMII operation mode. Two modes are
+>> +       available:
+>> +         - RMII master, where the PHY operates from a 25MHz clock reference,
+>> +         provided by a crystal or a CMOS-level oscillator
+>> +         - RMII slave, where the PHY operates from a 50MHz clock reference,
+>> +         provided by a CMOS-level oscillator
+> 
+> What has master and slave got to do with this?
+> 
+> Sometimes, the MAC provides a clock to the PHY, and all data transfer
+> over the RMII bus is timed by that.
+> 
+> Sometimes, the PHY provides a clock to the MAC, and all data transfer
+> over the RMII bus is timed by that.
+> 
+> Here there is a clear master/slave relationship, who is providing the
+> clock, who is consuming the clock. However, what you describe does not
+> fit that. Maybe look at other PHY bindings, and copy what they do for
+> clocks.
 
-At W=2 dtc complains:
-hifive-unmatched-a00.dts:120.10-238.4: Warning (interrupt_provider): /soc/i2c@10030000/pmic@58: Missing '#interrupt-cells' in interrupt provider
+In fact, I hesitated a lot before choosing this master/slave designation 
+because of the same reasoning as you. But the TI DP83826 datasheet [1] 
+uses this name for two orthogonal yet connected meanings, here's a copy 
+of the corresponding § (in section 9.3.10):
 
-Add the missing property.
+"The DP83826 offers two types of RMII operations: RMII Slave and RMII 
+Master. In RMII Master operation, the DP83826 operates from either a 
+25-MHz CMOS-level oscillator connected to XI pin, a 25-MHz crystal 
+connected across XI and XO pins. A 50-MHz output clock referenced from 
+DP83826 can be connected to the MAC. In RMII Slave operation, the 
+DP83826 operates from a 50-MHz CMOS-level oscillator connected to the XI 
+pin and shares the same clock as the MAC. Alternatively, in RMII slave 
+mode, the PHY can operate from a 50-MHz clock provided by the Host MAC."
 
-Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 1 +
- 1 file changed, 1 insertion(+)
+So it seems that in some cases this also fits the master/slave 
+relationship you describe.
 
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-index b40990210fb50..3c621f31b5fd2 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-@@ -70,6 +70,7 @@ pmic@58 {
- 		interrupt-parent = <&gpio>;
- 		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
- 		interrupt-controller;
-+		#interrupt-cells = <2>;
- 
- 		regulators {
- 			vdd_bcore1: bcore1 {
--- 
-2.43.0
+That said, would you like me to include this description (or some parts) 
+in the binding in addition to what I've already written? Or would you 
+prefer me to use a more meaningful property name?
 
+BTW, this series has already been merged into the net-next tree, I'm not 
+sure what procedure to follow in such cases.
+
+
+Best regards,
+
+Jérémie
+
+[1] 
+https://www.ti.com/lit/ds/symlink/dp83826i.pdf?ts=1708075771406&ref_url=https%253A%252F%252Fwww.ti.com%252Fproduct%252FDP83826I
 
