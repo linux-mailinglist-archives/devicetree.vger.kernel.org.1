@@ -1,109 +1,161 @@
-Return-Path: <devicetree+bounces-47269-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09A5E86C9CD
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 14:09:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B4F086C9C8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 14:08:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 087E71C2108B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:09:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F2EE1C20DF0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:08:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E13457E111;
-	Thu, 29 Feb 2024 13:07:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B57071350D1;
+	Thu, 29 Feb 2024 13:07:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CvWp2SDG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 913D47D41F;
-	Thu, 29 Feb 2024 13:07:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8FCA12BE85
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 13:07:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709212053; cv=none; b=pktSmZ6/srTZY7YZIdQSVT4Obop9QFK8MeYUB8fptNZLnhsekmSYJDNWw72gUB8Ij5HnEJISECvQoDdSepxY/z3fNalVuRomUGKInTn9Oy4v/VfNAofpHqeipfBYLU+3G2SQ1SJu3QSrwIFul3eNT/02X4BOjEmV4aCHydTWBD0=
+	t=1709212040; cv=none; b=T2ilWyYKVCcMmIDC2WoTt5ZROh0TCrPfp/324quzh/+mfnKZrIBOUDCD4jzCd+OoXJi7RaqB/QFMGCB7i02sDgBIRjka3p7Hch+6NrSRxU2ovJNEHEl+4hOeVSVU/SsI2Opg3KZua2BmioLNEbO73x8ZLEoU62omQXKYku7diDU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709212053; c=relaxed/simple;
-	bh=3yIJdudQ7IUGfEDQL3PsE8v3vQpnOpasVOfYzFhw8kM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=oKeFwIp2EwTpAWSzVqh4O7uZDkbMpVqGY9QD4NfiWFNHoNhCzY8FOm4A7wpVh5UTi0oyzw2zxZyh9gFGV5Ieu57VSoolu3vpm8pj1aUrnL7y9sIn+5hKvkxMYF24qALHE5MWuNsvWrxCGrworIDow+MFFHT/9wvrt/nyFL07Ddg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-60822b444c9so5920107b3.2;
-        Thu, 29 Feb 2024 05:07:31 -0800 (PST)
+	s=arc-20240116; t=1709212040; c=relaxed/simple;
+	bh=MsxEEfnne02nqOkZki/+nigAQ0nhYoGqJj7vVZuWZn0=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=VOBkN6AnIEQPAHrXMAoJU+wfAXa1Gmdi2EXeRkKbK1LBvepY6or8Ndk1AjfVJMuArqt2rJZGET7JBo8E/Tx5nBQ28zXjwqHfHJ5j+tpyI8dERyoSxo4I1mdf7ya4gl4XeJQ2699S12Qgt2oG2Hw+5vi5828xadeeUK4RcZgy7v8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CvWp2SDG; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-412c24280ffso1376835e9.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 05:07:18 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709212037; x=1709816837; darn=vger.kernel.org;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fywjC4h+f6+K3smJr1nJvUkccespMrFvMNirPgXOt7Q=;
+        b=CvWp2SDG/zVNOZL8/UpiUGPJ3hKRQdG4lI8hKskWZj2JeGJQ9M/RgsdZyGJhvSfh/v
+         kpeD5rZ2gPqQgSSZmdPeSVkHnYosQ6lTKwUsxi81PueCm6c0QsN8OHZnTpzAcM2K2jwq
+         eWTH5DTvF72AGU7H9n7PgVXVZ3izbYF7zbGlLF3cpd6PQpo9dX7zagm6BBhqW4AQ1r6r
+         oj8om+tUVrSI8OujgJ6NLyd9uqMi4ByePckuZYBew5LOrXTCgG9r4YWLKQghGb2M+dQw
+         0IeEY1Dl3QAMB2DI0isVz9Ku9zVKVFAf4OOsNY99GNp+xeTalApgg68O7nylk0SEaNPO
+         qPEw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709212050; x=1709816850;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20230601; t=1709212037; x=1709816837;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=lAP4KXWJnbrcaWP8G3GCQqukrFvvbAXkzLvoVeIpDp0=;
-        b=HkqRWoENhMOilmMi4JpDJHLaTtLmyGfORkYvM8SIziJwu9Oe82HpO/NF2Pr71fWjLk
-         tQRZ6T2exOXCt6IswydTvu/wz65cOynO8GdViY15afiHbKR4gwGqomUgBxOURQ4h5gka
-         ERjG8KPoFpFgIzTlUaPcUEE5nUxqJFScneyAvqAK+UvN7wQLiMapK241xnphh78WTl0Y
-         OFdirwqbK5Yut/VUh3t59QfJcvHgGrWbX9OTazgsrm7PrLq8vWJQ9JXZck/KCHwseJDg
-         su6XS3u5GxDV7Qteo6JTcLMDUAgJcbnxgKK/Nq3v8PEUae6ymRYmwAa5c0iA4YUGYa7K
-         25MQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXz6Im+pLVBvQCiRYXMKtl4dk2SLT360Wl6/qoPG0Zk3JsN9igTTCuDjJFPtwuxiVQEBOLxZtFXnr8Q/kOUE+6LM3xcBzn8DPHoWwuyfVkleQOIgSl9DbKQT9KtvfI5dzUBj7kyZKJsivySAuCZuIVOvTBtJncJEvoHHMJlrJOFgzDabPnYrikV
-X-Gm-Message-State: AOJu0YxQoyKzu7LJa7niWK7V/k8Kwy6HzdDnjx0wMGJWwHjfZQg1Auft
-	CWei37zj9uugNopFt/X9HOnoIqK9MFpP7gcrVNUveG57Ur3pT8Sz7w7hJcy8ePY=
-X-Google-Smtp-Source: AGHT+IF7Z0dM8gNIKCf/e5mSsj+e5I8mP+/lHbFsLt6yZ8pkipW8joRAJ6jfiSe3nIDYUAw3m6G36A==
-X-Received: by 2002:a0d:fcc6:0:b0:608:78b7:efb3 with SMTP id m189-20020a0dfcc6000000b0060878b7efb3mr2031169ywf.38.1709212049780;
-        Thu, 29 Feb 2024 05:07:29 -0800 (PST)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id u128-20020a0dd286000000b006079e8f3572sm364127ywd.85.2024.02.29.05.07.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 05:07:20 -0800 (PST)
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dc6d8bd618eso989552276.3;
-        Thu, 29 Feb 2024 05:07:19 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXEqgNiFmKTk4w5gw0PWpzzJ0A53cjKGaFGK82N48W8338kkce7UbFIfAsft20dL3o4p7Od4eefITIjwdvxtc76jcOJCWYq++QqPmEgNN1neZb2POYf6C8mkGW5ebBpggvhMfNH1lTMTRwtRnjrNQcgiR/2eGCmsqjT+FFoexJjkk6yLllf3zhX
-X-Received: by 2002:a25:c754:0:b0:dcc:d196:a573 with SMTP id
- w81-20020a25c754000000b00dccd196a573mr2371388ybe.36.1709212039523; Thu, 29
- Feb 2024 05:07:19 -0800 (PST)
+        bh=fywjC4h+f6+K3smJr1nJvUkccespMrFvMNirPgXOt7Q=;
+        b=Ua+Sd+LXHDPKF6lyAFjg18HY+gFIJKTk+2Xzn43I/XJ+qJpJGiuA36l2hdWGtTTB2o
+         +51avxvEGdjfpntzfpMkVTwixAtC3D9NK4yIYJpZYncU6uhzlLD3sFCweKSSeOs45e7C
+         1BWCCYFdoTmw8UCLLloIkBTM27VZqgmDIlwMyElGCk7cf30L/R6jUP7+O68BT8SPe2bO
+         IBDbKtZhVtFNlZv2WhDZW/IjuxHo2LeuAg9Z/GGQfHndgeg0GfUtAC+WGdeqEh9N40T9
+         Z1Kdf+XJIaW3GN6mQfufJmpaPj4pqKW5ifghsZTH+sXKq5V5sm6hU+YeCMWA1tibImzJ
+         YhhQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXXaydaGvWMi9vL+D67vYkE4VQ4NCz4xC3G0LyCBM9rVrizNbA2bDb++a80Sst+Ckf/6p1H/4M1ux/S/Df52HbrjeBl3TlS1APYWA==
+X-Gm-Message-State: AOJu0YzEufys89pVYPbbeIW8/ALJLclZSsqGVFPAUvfYUERVHFqnCOot
+	h9nyv3zPF2dD1uuMNWuKVbQ+Z+Yu++6z4e3ZA2dpStF+fbheQWUrHy7yqCzMbwA=
+X-Google-Smtp-Source: AGHT+IF5SHeIBv4y7JFQoUnfwEl/nga/kneK6KmwsmHQJMRK9styGPFjelcmVyl29oT75A+1YByctw==
+X-Received: by 2002:a05:600c:4fc6:b0:412:c1e0:e95c with SMTP id o6-20020a05600c4fc600b00412c1e0e95cmr550358wmq.12.1709212037288;
+        Thu, 29 Feb 2024 05:07:17 -0800 (PST)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id t7-20020a05600c198700b00412a38e732csm2071473wmq.35.2024.02.29.05.07.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Feb 2024 05:07:16 -0800 (PST)
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Date: Thu, 29 Feb 2024 14:07:07 +0100
+Subject: [PATCH RFT 7/7] arm64: dts: qcom-mode-switch: allow 4 lanes for
+ DisplayPort and enable QMP PHY mode-switch
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240229120719.2553638-1-yoshihiro.shimoda.uh@renesas.com> <20240229120719.2553638-7-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20240229120719.2553638-7-yoshihiro.shimoda.uh@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 29 Feb 2024 14:07:07 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXGEG-8xFKmpXpNFV_jyDJb0vYoUV=AOtHrPfjPiLzfOg@mail.gmail.com>
-Message-ID: <CAMuHMdXGEG-8xFKmpXpNFV_jyDJb0vYoUV=AOtHrPfjPiLzfOg@mail.gmail.com>
-Subject: Re: [PATCH 6/6] misc: pci_endpoint_test: Add Device ID for R-Car V4H
- PCIe controller
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jingoohan1@gmail.com, 
-	gustavo.pimentel@synopsys.com, mani@kernel.org, marek.vasut+renesas@gmail.com, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-7-07e24a231840@linaro.org>
+References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
+In-Reply-To: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1314;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=MsxEEfnne02nqOkZki/+nigAQ0nhYoGqJj7vVZuWZn0=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBl4IF9MdD4p3qfj/k9iDx4mHLqSVCaj4RDbCJRWBM7
+ p5FfNVGJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZeCBfQAKCRB33NvayMhJ0QkJD/
+ sElXkF1lTcwKxlvSHshNzoZANrB1IsApIQKCsylEXa3rV848swZ0XipoTQ+DlYBLwtQZlFbQuMLW+V
+ lQBLxxZ1hRmjE8c8vBzqVPtWwsBDdkzli/VeDPA4/iV4qsZ8L0ZGXyv7QE/Rj4sCAORdCo0m63M+io
+ rJ8MXfFUVeWcHhYizPLjjJ/4x6M4Hl3oe2hbCRjUS4h1rbz+rIA/4/sQ0fzzw4R0Fut3rIczCKetkL
+ nWSwyzsAw9PLfa2Gr58/Y84zGs4/MoLq7hGxndGx6VK9VO56tHz68/O7QANPe91Bmm3dZ+9fN8T8P3
+ YSFhK/ZaxXpvzPP8tNcvCzuhu6JiN/bal6NlNWqen6edtPsRFKgQP2Y56dsoExRw3vTi8OQWFjO81b
+ jb6aSVR1rI/PTIDKVRPvG6oy12Ili+6haJwq/ZhKUQYd2JL4d5GFGxE5NcLXs7NEnpZq1coyblzbM1
+ NbD8qCEzRPIyK/2mAa0UEiDmhURs56Yx9vNe9DWRL/Jxeyt6Hx5c5trKuzHNBmFJZxy5hZsiTCB6+m
+ 7kCy2PPviHgmk+mhTgTZrZPuvTrtonz96w0o3ZKL4vaMgIi8mfz2YSK4Oj6tsbZ5eO7URXeiPj0hte
+ XDz+8cgf6uMz9YxJ2A9fxXwG41jlapzlRtdeabuWBo4mIWY2P0yk2b5GIXbA==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 
-Hi Shimoda-san,
+Allow up to 4 lanes for the DisplayPort link from the PHYs to the Controllers
+and allow mode-switch events to the QMP Combo PHYs.
 
-On Thu, Feb 29, 2024 at 1:07=E2=80=AFPM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Add Renesas R8A779G0 in pci_device_id table so that pci-epf-test
-> can be used for testing PCIe EP on R-Car V4H.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+index a0fdef55a40a..6c73e0fc001f 100644
+--- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
++++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+@@ -556,7 +556,7 @@ &mdss0_dp0 {
+ };
+ 
+ &mdss0_dp0_out {
+-	data-lanes = <0 1>;
++	data-lanes = <0 1 2 3>;
+ 	remote-endpoint = <&usb_0_qmpphy_dp_in>;
+ };
+ 
+@@ -565,7 +565,7 @@ &mdss0_dp1 {
+ };
+ 
+ &mdss0_dp1_out {
+-	data-lanes = <0 1>;
++	data-lanes = <0 1 2 3>;
+ 	remote-endpoint = <&usb_1_qmpphy_dp_in>;
+ };
+ 
+@@ -1112,6 +1112,7 @@ &usb_0_qmpphy {
+ 	vdda-phy-supply = <&vreg_l9d>;
+ 	vdda-pll-supply = <&vreg_l4d>;
+ 
++	mode-switch;
+ 	orientation-switch;
+ 
+ 	status = "okay";
+@@ -1149,6 +1150,7 @@ &usb_1_qmpphy {
+ 	vdda-phy-supply = <&vreg_l4b>;
+ 	vdda-pll-supply = <&vreg_l3b>;
+ 
++	mode-switch;
+ 	orientation-switch;
+ 
+ 	status = "okay";
 
-Gr{oetje,eeting}s,
+-- 
+2.34.1
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
