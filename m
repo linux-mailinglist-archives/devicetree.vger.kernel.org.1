@@ -1,175 +1,132 @@
-Return-Path: <devicetree+bounces-47321-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47322-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B72386CCA6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:15:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65FD686CCB2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:17:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1814A285DED
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:15:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97E1D1C2104A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:17:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F4BF13A269;
-	Thu, 29 Feb 2024 15:15:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B443145328;
+	Thu, 29 Feb 2024 15:17:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PHX8oLiv"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XSu+wV/o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56C51137753
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 15:15:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FFE137753;
+	Thu, 29 Feb 2024 15:17:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709219740; cv=none; b=Ws5+xlFZLZOSkRoVUCyg1am3V2hzF5bj+fJmQd64Lh1MWPn38dNGNMNnPEIclstruVQ251AdmTNiXzyYjrHi0kaCr3Zao99iLZi2wWo1v54pbAjfj4xQOkQ032slDCfbKREv271PBz1048bp+MQ/jyvwK6pKRGN2wiyVDZ7JB/E=
+	t=1709219861; cv=none; b=EUt/Kdzcj+tx8zkchWMbtCy8SmWX2ak74DBfwq2ZaS9BvQnJ5kOST8lNjowgYE4n7xQIxKF4sWJ7ukr43jr7vGM69zIR0TSm4TS1JNFL1uVfGg/yCx8NAxGJa3nQeGjSspCfYDRZwUsyc+shENx2M1JWoPHVYRTA1D8UsGVr+qM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709219740; c=relaxed/simple;
-	bh=V6OJiCShtzdvjWz97Ir+wJWCWv50bRJVMvZxVO1QW+M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=S65IKWzbGF0kVe51Q0RpFBb/bMSGt14GOCHxrsa7UXgIdkPPF5TkUySbQSKOBqKROQfPGev+ePyXPAb42U0lDVPpGi3p3iaMYEP5Ar40sj/HpNoii0VPM9aCirG+jKQkysRgzdEHXGI2yAQuHBJjW5pMDyv8ynTrltn7I9Z4SYk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PHX8oLiv; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a3ee69976c9so185808066b.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 07:15:38 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709219737; x=1709824537; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YomR+DDsouVpMTkCKlMj3X1XHRJd3sZOjehM9h85Xsg=;
-        b=PHX8oLiviMQwrGvWaTS7MxeD+jQGW8em6l1aMu8k/BC2aFJ0qicL9jKoZrid3hLS0z
-         63VRag6Yo0hcdGpxi154BgRAIZ28DePG5UdGZ+UZWmWeAaSYAbKGWA3P3rsCVbcy83V3
-         7r+TuScZFPzNQ5QO8/9Zf8XWBCmY8SIF8OVd9Pf6pZG15PDtJnI1G8yr4WA8qVI+JU2t
-         g68HMYvzAH5NYMreTXgPXnY4qu9GgFNiGA1mpDiyFZjFNWj6J3rw2CVYJ0N8RCMOga6Q
-         jeC+3atI4H/Du+0rdmj01Ufxw7bo8PMyMuEGVYBeipxjNoQf3AGulFWL2vsmg+lnEhm1
-         BO0A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709219737; x=1709824537;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YomR+DDsouVpMTkCKlMj3X1XHRJd3sZOjehM9h85Xsg=;
-        b=my3GoZY4Jfp7KCbCYMFQfalZ6arQ+IeT4foWxvmgGonpMJot2q4umpcgrgNSqPuzcx
-         +GkAokDnMvtvB52iyiVe7Uol5YKWO1memRx4orzgARQltwCJ8Q5MtD7hrmg+C7tenY7t
-         QbwQQyl0XI2cSTIHI6E2+3jIHGGQlD/WxQvw3DtJyKfB6YVDsqzvKgkxSFGmYNph7CJc
-         2StqljmAPP/l6QmjSGSMIUPIx365m3n6MRjylWRUkum/HbxP8YSnftbFvsF2aOp6Dzgf
-         4+6ek96Wmr5qoVK9vjNSfvtAsz/lNBAXAA/5kYcvd9im18xIeLTvc9G3eejzjbnWSwdq
-         1kVw==
-X-Forwarded-Encrypted: i=1; AJvYcCU7nOzPfwiU3MhfrUATTkvwD0RE+tg+ONQB/bIvNaLbl5tTLspgwMjnaDCptKYS1li02IgeOuYZwlA46htGlqjRHIPx1Pgqvz7DHA==
-X-Gm-Message-State: AOJu0YxoVceKc41GvC4JX0+0ptM9gExrVP3soO9u9WPPw1R1UtQfHYPH
-	Y0iTvEdUdZ0U6q4M88mzSVbxnOgydNXUnaWof0ndz0l0flshodk4g8vDU7Se9cE=
-X-Google-Smtp-Source: AGHT+IEW57d6j7XDDz5Mx9iRBc88vALPtWhOXl7VICSIP2O7qZD+VkfxC7dUywt5yeIC67zGZt3+Pw==
-X-Received: by 2002:a17:906:d146:b0:a44:1e32:a503 with SMTP id br6-20020a170906d14600b00a441e32a503mr1731569ejb.22.1709219736904;
-        Thu, 29 Feb 2024 07:15:36 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id wb4-20020a170907d50400b00a3ee5c19ee5sm769010ejc.109.2024.02.29.07.15.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 07:15:36 -0800 (PST)
-Message-ID: <32a5605a-c810-4b3d-bb72-4d413d9f9bb9@linaro.org>
-Date: Thu, 29 Feb 2024 16:15:35 +0100
+	s=arc-20240116; t=1709219861; c=relaxed/simple;
+	bh=br/HWN6lmANGcA8lXtzi6rpYYGeQsWi3eahucRslWvM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=SMyULDPc+mxwlmB1X8yIulhrDpB9ChyALM4kPFiJFu/ugXAWxq3OZ8JJ0H7Cexg6bI6bJaGE+BMLQKdWPbbnNPQsc/AEMsh8EKkhDY/rr28JasSChqu6lGxmhCBpND5V+919SSbSP6coy/W08zY9ETbQiRqtZHki+4tvWzw5V4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XSu+wV/o; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=+c7Vmm6KMU5zSvglgfqufPHeSuGV1yw9KPRb+vUHbSs=; b=XSu+wV/oCNilQemLKrLXtUYJun
+	ZFsAIYQS4CPzcvXULpppRYMnMQAOaPDTBOQp4Fi0W33U9liiMEbP4aNMLs9Uom5a3ibtYmpr3Rxaf
+	Is3E4P5BVtL/4LPvUhWtCVpzV4TPKJ+aj8EJCpuSkF/AKfVbnwVkDlRKpXa4h+PFJb9Q=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rfiAN-0093D1-J5; Thu, 29 Feb 2024 16:17:47 +0100
+Date: Thu, 29 Feb 2024 16:17:47 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	herve.codina@bootlin.com, maxime.chevallier@bootlin.com,
+	christophercordahi@nanometrics.ca
+Subject: Re: [PATCH v2 2/6] leds: trigger: Create a new LED netdev trigger
+ for collision
+Message-ID: <9dd1b2d0-4ba5-4d34-a892-a6cc8c01df28@lunn.ch>
+References: <20240227093945.21525-1-bastien.curutchet@bootlin.com>
+ <20240227093945.21525-3-bastien.curutchet@bootlin.com>
+ <e6351d0c-15e2-47a9-be6c-6f21aee9ae90@lunn.ch>
+ <e1936774-14bf-4ae5-9754-e21f5a0c59b3@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 07/11] dt-bindings: usb: ci-hdrc-usb2-imx: remove
- fsl,anatop property
-Content-Language: en-US
-To: Xu Yang <xu.yang_2@nxp.com>, gregkh@linuxfoundation.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
- conor+dt@kernel.org
-Cc: s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-imx@nxp.com, peter.chen@kernel.org, jun.li@nxp.com,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240228113004.918205-1-xu.yang_2@nxp.com>
- <20240228113004.918205-7-xu.yang_2@nxp.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240228113004.918205-7-xu.yang_2@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <e1936774-14bf-4ae5-9754-e21f5a0c59b3@bootlin.com>
 
-On 28/02/2024 12:30, Xu Yang wrote:
-> Property "fsl,anatop" is needed by usb phy rather usb controller.
-> This will remove it from ci-hdrc-usb2-imx schema.
+> > How useful is collision? How did you test this? How did you cause
+> > collisions to see if the LED actually worked?
+> Indeed I am not able to generate collision on my setup so I did not test
+> this
+> collision part.
+> My use case is that the hardware strap configuration that selects the LED
+> output mode
+> can not be trusted so I have to force configuration with software. I added
+> this collision
+> part because I wanted to cover all the LED configuration modes offered by
+> the PHY.
+
+There are a few things i want to avoid here:
+
+1) Vendor SDK mentality. The hardware can do this, lets add a knob to
+make use of it. We end up with 100 of configuration knobs which nobody
+ever uses. Do you actually have a board where the strapping is wrong?
+Are you going to submit a .dts file making use of this option?
+
+2) LEDs are the wild west, because it is not part of 802.3. Every
+vendor does it differently, and has their own special blinking
+patterns. My preference is to keep it simple to what people actually
+use. You cannot actually generate a collision, the developer who wants
+to add support for collision. I have to ask, is collision actually
+useful?
+
+> > As far as i can see, this is just a normal 100Base-T PHY. Everybody
+> > uses that point-to-point nowadays. If it was an 100Base-T1, with a
+> > shared medium, good old CSMA/CD then collision might actually be
+> > useful.
+> > 
+> > I also disagree with not having software fallback:
+> > 
+> > ip -s link show eth0
+> > 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
+> >      link/ether 80:ee:73:83:60:27 brd ff:ff:ff:ff:ff:ff
+> >      RX:     bytes    packets errors dropped  missed   mcast
+> >      4382213540983 2947876747      0       0       0  154890
+> >      TX:     bytes    packets errors dropped carrier collsns
+> >        18742773651  197507119      0       0       0       0
+> > 
+> > collsns = 0. The information is there in a standard format. However,
+> > when did you last see it not 0?
 > 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> 
-> ---
-> Changes in v7:
->  - new patch
-> ---
->  Documentation/devicetree/bindings/usb/ci-hdrc-usb2-imx.yaml | 4 ----
->  1 file changed, 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-imx.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-imx.yaml
-> index a2932af2c09b..0a6ebb427130 100644
-> --- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-imx.yaml
-> +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-imx.yaml
-> @@ -74,10 +74,6 @@ properties:
->            - description: phandle to usbmisc node
->            - description: index of usb controller
->  
-> -  fsl,anatop:
-> -    description: phandle for the anatop node.
-> -    $ref: /schemas/types.yaml#/definitions/phandle
+> Ok, I could add the software callback but I will not be able to test it ...
 
-Then why did you copy it from original schema? Just remove it before all
-this work.
+My personal experience is, anything not tested is broken...
 
-Again: Do not add lines in one patch which immediately later are being
-removed. Such patchset has no effect and is only confusing. This
-suggests your order is incorrect.
+Think about what Russell actually said. That should give you a clue
+how to cause collisions. If not, go study history books about CSMA/CD.
 
-Best regards,
-Krzysztof
-
+   Andrew
 
