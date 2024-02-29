@@ -1,266 +1,244 @@
-Return-Path: <devicetree+bounces-47317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C490B86CC8F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:13:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 62F9C86CC97
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:14:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 573DE1F23A29
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:13:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D20581F233EF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:14:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BCEE145354;
-	Thu, 29 Feb 2024 15:13:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 429EC13AA4D;
+	Thu, 29 Feb 2024 15:14:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="cT3W4J8M"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RMR7OVga"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C56AA137777;
-	Thu, 29 Feb 2024 15:13:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 604E01386B1
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 15:14:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709219602; cv=none; b=WiSk8R9yprj2GPffL1TfdKiiK29ByNobR4lJPaVcSmuWZyrXyvjwR4Ayd81vg+GZOdNyffsgAqj9VhgzKlHGd4ZgfSu8RBuOH5QyrzZAKLwXXVqumomG8AO2NKDr0HALQGfb2IcyMybZztNu54tYuiam9+e90IQPdYZlIUeq974=
+	t=1709219656; cv=none; b=LkwH5AW3uo0WOWApCsow3QCu+bQbEl+VpYmEDB+4hZdX3rMQmJgyvHA740EfmI1tJeN0KuMeYAzLL8mDSnpSv87TTifja01a33GsB/kb0L5OVLt0CZCg5RxZF3xjaHstoaeQehECs13zwUvIRXdE3tYtpBE5vleqTA/vFcgX+e0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709219602; c=relaxed/simple;
-	bh=yP3KNDy1IIwwOw9qTXZ4+tF0LwRs4bi1+9Aw/uR91UI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=mWECYDNIXoVkX+zPL9Cs2SztG9Dbwo8+LbzQa15FCCg+B8FlXfBRzrFlfdaNSGOiYsV3s6kjU3YN9sRuMuFuXma7IkfzxHFzIDh5G648UZNX3iMHsIl+bIH0vx6KpJoNC6bd89t8xHBUd59ccDhMSsqddV9o3nJekdfmvJLHzLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=cT3W4J8M; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CE619C000A;
-	Thu, 29 Feb 2024 15:13:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709219597;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=FoBURWTIPimd8MPiI97xIR1vDaJAFlKxrIgOrhBjJ5o=;
-	b=cT3W4J8MH2FTCDpQk8Jknvmkycp7Lz47lhBdQRqIR1pHI1x1vScGnxyeAmRrPCdW/R2tO1
-	sCW1d4CLbEY9RYqwR5jUDUYk7vv0uCDdPeUy3o7T217qTpv+ED12P8wj+jQCxJ+1Ta/k07
-	fnRoTfSqN2OtbqC55fOb8DigGkPRUFPzIOXtI8vAVxGVnM4rJX7IavPB8uhgFCJBmf25Qj
-	dEQx7l/mKiTwFMK56D7imKS7OxfvIXf4S0OIWsE2z6I5klm4BlzJTuq3PO/pyrKaX1VBBh
-	Kd5SjX2Hpcm3t0L9EsUCy5vUYrI69C3ruFO+SdlM6mJbDbEwIeHzIduE+wYMmA==
+	s=arc-20240116; t=1709219656; c=relaxed/simple;
+	bh=qCUSI7hzEBIgieQ+TKOpTD8trXzeXh6ezG4o/l5h41U=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=ay3LszPo3Giu4WeQf0JhJXqy8zq/9XjuqgE+9hdFeeCdhdsGrUOhF1r9raI5AWEFj1JeItEF+OITJ6sKkF3Qu6fA0pqu6lRws9PDcRS6HpCC3Ac+INVL8oMYZJH2QKQe7+Jn59ZBL6Ly/o0eeKmljMdzYgB1wY/haz/K824uj+4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RMR7OVga; arc=none smtp.client-ip=209.85.128.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-412c1d50776so3256215e9.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 07:14:14 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709219653; x=1709824453; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BXEUZD7HIc5+BDhLp1eCYIkSCHTY2l0iyo8ZM3GFsdA=;
+        b=RMR7OVgahViloB+vMkQvVHYjiTfFAJt9iEfF0NJFuCYdrhmhE48CzzGBjZC93mCBKS
+         lAxD4bfGrRcK2HCh3tY9eVBJVqmvH7rAVuPvlhLsGbFhYtYyY0wXLGHIiZKrAX5NBBCg
+         coiY/LEEZvOLmIcE9CViawHiYr9hogoPD85i3QLgOza/I7eJRhbgFkts28edK1UWCCEB
+         vpiaaRVh2AKBZijpot467jZVrKVv5rwUwwFWf5/rv8zNlb3P/caKdChv1OAZgJ3sM4x/
+         1UKhwemSa8Tu8Z1gvOlM8QiBmmaqgGbK8eZh+eQvEZ8dZAHyh8zXDkXagDEBKAxkBRxy
+         eseA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709219653; x=1709824453;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=BXEUZD7HIc5+BDhLp1eCYIkSCHTY2l0iyo8ZM3GFsdA=;
+        b=RpQYdaN0+tCmwOuaK4g8787uKakLfOzNtk0FpVc1tJkqgN/kwdERUcM2OVKwYFk8z/
+         lx1+6QuIQ24T4Cb40U4CQLe3ncz0Dh2fKCE8VkkxEQ8D5cowS1mDLhkyw2sCJyagdKIb
+         CIU90Rl2OnstS+7WQ0b3K7MhTpCeWcXyAjlrWjkgB/qUDGG6FNWC/6ydpFZaAFVFJWsF
+         nQx2nreA/iQkZO/cwfb14zHWRHtcXP2WAQeCWkoq6M20WOU8SajpOFbrjRS3JYz1PjRB
+         qPE+jCgMiaAKxXpiMECJUuZkI4fj4KoUTHx8Pf5ireqHPrbPsyS03LpRP92WyFlwN2FM
+         Z1bg==
+X-Forwarded-Encrypted: i=1; AJvYcCVqHQZONrPiMSBIP1/aDIhj3fSZvyNkLqTnBrqp133W3rVDxTlTlXwEd3W04VFoe7aHYA6PsmgflMqEnVtCJ630WR5eU5qYl2x/oQ==
+X-Gm-Message-State: AOJu0YyuYXJAKkLWYDQHnsV9LFJ4q9e5Rsi+C9ZgZOn9WhiGCPa/FE4b
+	xmnFNn7u0zNsWa0PY/1z/wmdwexgLxt33Q4O9DYoCqi3o4YQVoQs8xpCvEy9Z24=
+X-Google-Smtp-Source: AGHT+IEiNaycCnI+8/fdk5xkL9CXSWuu/KBH0Xt6zhKFcDq5ZtgRezOd+aaT2eCbXnVsaGyxIl30yA==
+X-Received: by 2002:a05:600c:4ec7:b0:412:a206:ad3c with SMTP id g7-20020a05600c4ec700b00412a206ad3cmr2261718wmq.3.1709219652688;
+        Thu, 29 Feb 2024 07:14:12 -0800 (PST)
+Received: from ?IPV6:2a01:e0a:982:cbb0:651:5318:b12c:be82? ([2a01:e0a:982:cbb0:651:5318:b12c:be82])
+        by smtp.gmail.com with ESMTPSA id h3-20020adfa4c3000000b0033dd2a7167fsm2010514wrb.29.2024.02.29.07.14.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Feb 2024 07:14:12 -0800 (PST)
+Message-ID: <456a6aa7-60e0-4a56-9efa-731f717012ac@linaro.org>
+Date: Thu, 29 Feb 2024 16:14:10 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 29 Feb 2024 16:13:15 +0100
-Message-Id: <CZHNS29NK9RR.13G019Y9ZY6IO@bootlin.com>
-Subject: Re: [PATCH v8 05/10] pinctrl: eyeq5: add platform driver
-Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
- <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Vladimir
- Kondratiev" <vladimir.kondratiev@mobileye.com>,
- <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
-To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.15.2
-References: <20240227-mbly-clk-v8-0-c57fbda7664a@bootlin.com>
- <20240227-mbly-clk-v8-5-c57fbda7664a@bootlin.com>
- <Zd4moVd_-bY6Z_kL@smile.fi.intel.com>
- <CZGX0TSYLOH4.DZHG351R9KFZ@bootlin.com>
- <ZeBsAbPRr5IPkVZj@smile.fi.intel.com>
-In-Reply-To: <ZeBsAbPRr5IPkVZj@smile.fi.intel.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+From: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v4 00/20] Support more Amlogic SoC families in crypto
+ driver
+To: Alexey Romanov <avromanov@salutedevices.com>,
+ Corentin Labbe <clabbe.montjoie@gmail.com>
+Cc: "clabbe@baylibre.com" <clabbe@baylibre.com>,
+ "herbert@gondor.apana.org.au" <herbert@gondor.apana.org.au>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "robh+dt@kernel.org" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "khilman@baylibre.com" <khilman@baylibre.com>,
+ "jbrunet@baylibre.com" <jbrunet@baylibre.com>,
+ "martin.blumenstingl@googlemail.com" <martin.blumenstingl@googlemail.com>,
+ "vadim.fedorenko@linux.dev" <vadim.fedorenko@linux.dev>,
+ "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+ "linux-amlogic@lists.infradead.org" <linux-amlogic@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+References: <20240212135108.549755-1-avromanov@salutedevices.com>
+ <ZcsYaPIUrBSg8iXu@Red>
+ <20240215104719.njq6ie2niisntcnv@cab-wsm-0029881.sigma.sbrf.ru>
+ <ZdL713ae1swwTU_B@Red> <20240228133656.24bic6djmjvkill7@cab-wsm-0029881>
+ <Zd-VVGXHoH2ikbmV@Red> <20240229025337.ftbvoaafmu5zvyha@cab-wsm-0029881>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20240229025337.ftbvoaafmu5zvyha@cab-wsm-0029881>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hello,
+On 29/02/2024 14:05, Alexey Romanov wrote:
+> Hello!
+> 
+> On Wed, Feb 28, 2024 at 09:19:32PM +0100, Corentin Labbe wrote:
+>> Le Wed, Feb 28, 2024 at 01:37:02PM +0000, Alexey Romanov a 'ecrit :
+>>> Hello,
+>>>
+>>> On Mon, Feb 19, 2024 at 07:57:27AM +0100, Corentin Labbe wrote:
+>>>> Le Thu, Feb 15, 2024 at 10:47:24AM +0000, Alexey Romanov a 'ecrit :
+>>>>> On Tue, Feb 13, 2024 at 08:21:12AM +0100, Corentin Labbe wrote:
+>>>>>> Le Mon, Feb 12, 2024 at 04:50:48PM +0300, Alexey Romanov a 'ecrit :
+>>>>>>> Hello!
+>>>>>>>
+>>>>>>> This patchset expand the funcionality of the Amlogic
+>>>>>>> crypto driver by adding support for more SoC families:
+>>>>>>> AXG, G12A, G12B, SM1, A1, S4.
+>>>>>>>
+>>>>>>> Also specify and enable crypto node in device tree
+>>>>>>> for reference Amlogic devices.
+>>>>>>>
+>>>>>>> Tested on AXG, G12A/B, SM1, A1 and S4 devices via
+>>>>>>> custom tests [1] and tcrypt module.
+>>>>>>>
+>>>>>>> ---
+>>>>>>>
+>>>>>>
+>>>>>> added patchs up to  "drivers: crypto: meson: process more than MAXDESCS descriptors"
+>>>>>
+>>>>> Including this patch or not?
+>>>>
+>>>> The crash start with "drivers: crypto: meson: move algs definition and cipher API to cipher.c"
+>>>
+>>> Unfortunately I was unable to reproduce this. I use Khadas Vim1 board
+>>> and my custom tests (https://gist.github.com/mRrvz/3fb8943a7487ab7b943ec140706995e7).
+>>> Tried both build as module and built-in.
+>>>
+>>> Can you, please, give more information? Maybe your test cases?
+>>
+>> My test case is simple, simply load the driver.
+>>
+>> The problem is that you moved the algs[i].mc = mc after the register of algs (in drivers: crypto: meson: move algs definition and cipher API to cipher.c)
+>> Test could happen as soon the register is done and so mc is deferenced.
+> 
+> Yeah, you are right. Will fix it. Thank you.
+> 
+>>
+>> Since you didnt hit the case, I suspect you didnt test the driver as module.
+> 
+> No, I test the driver as module.
+> I think the problem is that on my system no one uses this crypto backend
+> outside of my tests module, unlike your system.
 
-On Thu Feb 29, 2024 at 12:35 PM CET, Andy Shevchenko wrote:
-> On Wed, Feb 28, 2024 at 07:15:12PM +0100, Th=C3=A9o Lebrun wrote:
-> > On Tue Feb 27, 2024 at 7:14 PM CET, Andy Shevchenko wrote:
-> > > On Tue, Feb 27, 2024 at 03:55:26PM +0100, Th=C3=A9o Lebrun wrote:
->
-> ...
->
-> > > > +	bool "Mobileye EyeQ5 pinctrl driver"
-> > >
-> > > Can't be a module?
-> >=20
-> > It theory it could, I however do not see why that would be done. Pinctr=
-l
-> > is essential to the platform capabilities. The platform is an embedded
-> > one and performance-oriented; boot-time is important and no user will
-> > ever want to load pinctrl as a module.
->
-> I can argue. The modularization can give a better granularity in the exac=
-tly
-> embedded world when the memory resource (flash/RAM) is limited or fragmen=
-ted
-> (for one or another reason). Having less weighty kernel at boot makes it =
-smaller
-> to fit, for example, faster read only memory block which is not so uncomm=
-on.
+I reproduced the issue, testing each commit with enabled runtime cryto tests:
 
-I can argue back. :-) Granularity brought from modules is useful either
-in (1) resource constrained boot context or (2) for peripherals which
-some people might want to do without. We are not in case 1 nor case 2.
+I get the following when applying "drivers: crypto: meson: introduce hasher":
+[    4.514031] Unable to handle kernel NULL pointer dereference at virtual address 0000000000000000
+[    4.517193] Mem abort info:
+[    4.519934]   ESR = 0x0000000086000004
+[    4.523641]   EC = 0x21: IABT (current EL), IL = 32 bits
+[    4.528903]   SET = 0, FnV = 0
+[    4.531920]   EA = 0, S1PTW = 0
+[    4.535025]   FSC = 0x04: level 0 translation fault
+[    4.539856] [0000000000000000] user address but active_mm is swapper
+[    4.546155] Internal error: Oops: 0000000086000004 [#1] PREEMPT SMP
+[    4.552359] Modules linked in:
+[    4.555376] CPU: 2 PID: 77 Comm: cryptomgr_test Not tainted 6.8.0-rc6-next-20240229-g2296d426c21a #105
+[    4.564608] Hardware name: Libre Computer AML-S905X-CC (DT)
+[    4.570125] pstate: 60000005 (nZCv daif -PAN -UAO -TCO -DIT -SSBS BTYPE=--)
+[    4.577025] pc : 0x0
+[    4.579178] lr : ahash_def_finup+0x12c/0x14c
+[    4.583406] sp : ffff8000825037a0
+[    4.586683] x29: ffff8000825037a0 x28: 0000000000000001 x27: ffff000007ab8060
+[    4.593758] x26: ffff800082503958 x25: 0000000000000400 x24: ffff800082503918
+[    4.600830] x23: 0000000000000820 x22: ffff0000048ec390 x21: ffff000003d9e200
+[    4.607903] x20: ffff0000048ee300 x19: ffff000003d9e400 x18: 0000000000000020
+[    4.614976] x17: 00000000b5f74d5b x16: ffff800081bbbc60 x15: ffffffffffffffff
+[    4.622048] x14: ffff0000049fb380 x13: 0000000000000000 x12: 0000000000000000
+[    4.629120] x11: ffff800082503778 x10: ffff800082503780 x9 : 0000000000001388
+[    4.636193] x8 : ffff800082503988 x7 : fefefefefefefefe x6 : 0101010101010101
+[    4.643265] x5 : ffff0000049fb300 x4 : ffff00007f2d5830 x3 : 0000000000000000
+[    4.650338] x2 : 0000000000000000 x1 : ffff0000048ee300 x0 : ffff000003d9e200
+[    4.657411] Call trace:
+[    4.659823]  0x0
+[    4.661633]  crypto_ahash_finup+0x38/0x44
+[    4.665602]  test_ahash_vec_cfg+0x680/0x7dc
+[    4.669742]  test_hash_vec+0xac/0x1ec
+[    4.673364]  __alg_test_hash+0x158/0x308
+[    4.677246]  alg_test_hash+0xfc/0x1a0
+[    4.680868]  alg_test.part.0+0x51c/0x524
+[    4.684750]  alg_test+0x20/0x64
+[    4.687854]  cryptomgr_test+0x24/0x44
+[    4.691477]  kthread+0x118/0x11c
+[    4.694668]  ret_from_fork+0x10/0x20
+[    4.698214] Code: ???????? ???????? ???????? ???????? (????????)
+[    4.704247] ---[ end trace 0000000000000000 ]---
 
-> The rule of thumb is to make modules if, otherwise, it's not so critical =
-for
-> the boot process (and even for some cases we still may have it done as a =
-module
-> with help of deferred probe mechanism).
+Please make sure every single commit builds without error and doesn't regress at runtime on existing platforms.
 
-I'd call SoC pin control a critical resource for the boot process.
+Thanks,
+Neil
 
-I also like the simplicity of builtin better for such a resource.
- - If we tristate pinctrl-eyeq5 and there is a bug, there is a bug (in a
-   context that we have no reason to support).
- - If we do not allow it and there is a bug, there is no bug.
-   Plus, it makes one less choice for people configuring the kernel.
-
-[...]
-
-> > > > +	if (WARN_ON(offset > 31))
-> > > > +		return false;
-> > >
-> > > When this condition can be true?
-> >=20
-> > If there is a bug in the code. Defensive programming.
-> >=20
-> > There is this subtle conversion of pin numbers =3D> offset inside of a
-> > bank. If one function forgets doing this then eq5p_test_bit() gets
-> > called with a pin number.
-> >=20
-> > In this GPIO series I fixed such a bug in a 10 year old driver:
-> > https://lore.kernel.org/lkml/20240228-mbly-gpio-v2-5-3ba757474006@bootl=
-in.com/
-> >=20
-> > The whole "if it can happen it will happen" mantra. We'll get a warning
-> > in the logs using pinctrl-eyeq5.
->
-> My point here that we have mechanisms to avoid such issues, for example i=
-n GPIO
-> we have valid_mask field and GPIO library takes care to avoid such condit=
-ions
-> from happening. Please, double check that you really need these in your d=
-river.
-> I prefer to avoid them until it's proven that they are real cases.
-
-Whatever the subsystem does to protect us (like only calling callbacks
-with valid IDs), it will not protect us from bugs inside the driver's
-callbacks.
-
-I do no see a reason to avoid such code. I do not trust myself to write
-perfect code. Its aim is to protect ourselves from our own mistakes. If
-such an issue occurs, understanding that this is what happened would be
-really hard (especially if it occurs on someone else's boards).
-
-> ...
->
-> > > > +static const struct pinctrl_ops eq5p_pinctrl_ops =3D {
-> > > > +	.get_groups_count	=3D eq5p_pinctrl_get_groups_count,
-> > > > +	.get_group_name		=3D eq5p_pinctrl_get_group_name,
-> > > > +	.get_group_pins		=3D eq5p_pinctrl_get_group_pins,
-> > > > +	.pin_dbg_show		=3D eq5p_pinctrl_pin_dbg_show,
-> > >
-> > > > +	.dt_node_to_map		=3D pinconf_generic_dt_node_to_map_pin,
-> > > > +	.dt_free_map		=3D pinctrl_utils_free_map,
-> > >
-> > > ifdef is missing for these... But the question is, isn't these a defa=
-ult when
-> > > OF is in use?
-> >=20
-> > Doesn't look like it is. In drivers/pinctrl/devicetree.c:
-> >=20
-> > 	static int dt_to_map_one_config(struct pinctrl *p,
-> > 					struct pinctrl_dev *hog_pctldev,
-> > 					const char *statename,
-> > 					struct device_node *np_config)
-> > 	{
-> > 		// ...
-> >=20
-> > 		/*
-> > 		 * Call pinctrl driver to parse device tree node, and
-> > 		 * generate mapping table entries
-> > 		 */
-> > 		ops =3D pctldev->desc->pctlops;
-> > 		if (!ops->dt_node_to_map) {
-> > 			dev_err(p->dev, "pctldev %s doesn't support DT\n",
-> > 				dev_name(pctldev->dev));
-> > 			return -ENODEV;
-> > 		}
-> >=20
-> > 		// ...
-> > 	}
-> >=20
-> > And I see nowhere that puts a value if ->dt_node_to_map is empty.
-> >=20
-> > For dt_free_map, it is an optional value. If the field is NULL nothing
-> > is done. See dt_free_map() in the same file.
->
-> If we drop OF dependency, these fields might not be present in the struct=
-ure
-> (by definition). Compilation won't succeed. Am I mistaken?
-
-struct pinctrl_ops has both ->dt_node_to_map and ->dt_free_map fields in
-any case. See include/linux/pinctrl/pinctrl.h which declares the
-struct. The function pointers we put are also under no conditional
-compilation.
-
-[...]
-
-> > > > +	case PIN_CONFIG_DRIVE_STRENGTH:
-> > > > +		offset *=3D 2; /* two bits per pin */
-> > > > +		if (offset >=3D 32) {
-> > > > +			val_ds =3D readl(pctrl->base + eq5p_regs[bank][EQ5P_DS_HIGH]);
-> > > > +			offset -=3D 32;
-> > > > +		} else {
-> > > > +			val_ds =3D readl(pctrl->base + eq5p_regs[bank][EQ5P_DS_LOW]);
-> > > > +		}
-> > >
-> > > I'm wondering why you can't use your helpers before multiplication?
-> >=20
-> > I'm unsure what helpers you are talking about?
->
-> Which give you the MMIO addresses.
-
-Again sorry, but I don't get the question. I see no helper function that
-returns an MMIO address in eq5p_pinconf_get(). Two helpers exist to
-deal with memory accesses: eq5p_test_bit() and eq5p_update_bits().
-Neither are called in this function nor could they be used.
-
-> > If the question is about why multiply before if-condition: I feel like
-> > multiplying first allows having the if condition be "offset >=3D 32".
-> > That explicits why we readl HIGH vs LOW regs.
->
-> [...]
->
-> > > > +	if (arg > 3) {
-> > >
-> > > Magic number.
-> >=20
-> > Would 0b11 explicit why? The value is two bits wide, so 0 thru 3.
->
-> No, the
->
-> #define FOO_SELF_EXPLAING	GENMASK(1, 0) // or 3 or 0b11
->
-> will.
-
-Will do!
-
-Thanks Andy,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> 
+>>
+>> Regards
+> 
 
 
