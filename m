@@ -1,188 +1,170 @@
-Return-Path: <devicetree+bounces-47510-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47511-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAA5986D7BB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 00:27:07 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E67386D7EB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 00:36:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 75ECF1F23FAE
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 23:27:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 300C11C21801
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 23:36:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A698B134427;
-	Thu, 29 Feb 2024 23:26:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 139DD74BF0;
+	Thu, 29 Feb 2024 23:36:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="A24Mc9Wi"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="AdLGrhwI"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5CEE75815
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 23:26:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2E6C74BE0;
+	Thu, 29 Feb 2024 23:36:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709249213; cv=none; b=k9sJCVXRPl+/CUlAmIFf3Ib0/G7oaJi7A8ZwReyrRJ9dKiqpNY4w0zzxiQNSLcCbZJ1EBMq+fsgqKei78oIigpAMRLuA3/u5N0n8R0HaP8EAP4d+wnpyCCKFBOtQr7lLuMZ0vutWHZqFNfmqIxwLs0srLf08qp88uBUo8jg20xk=
+	t=1709249768; cv=none; b=VNfwWPATCcmofgBJGfZqtx4LyzhWOuESvdIG/wlXcz7QN3KPHXq+aeioWMeq1IoPI9ykmkltbkydz1Z54b27w5j7459r6+SDxaD2F0eEuZFUoirxSLPzm81bVCwhO+2vbO6Xc4zM3Pik52JM9jXn+0owP1m0kBBL9TltifEDB2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709249213; c=relaxed/simple;
-	bh=XY+tF/oyv5RZqs+TYf1m3Rn6En+Ql1F7UgQnTwazuWQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RdrEC+bUJFQQ2/yDhvJNpIzhYYwuHS9EF/a+avuQ2AFewP8BnKKrcJaJ3WFGe+ynL02X7GAVycIbL0q6upUC6AKmbIq5ulUFOP0V1tJnooVdM0KIi/FKcNHaIHSqrSDA2v6zuB2brPD18KXAx50ysbGxv296ud1DRwcc8f9L7/8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=A24Mc9Wi; arc=none smtp.client-ip=209.85.160.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-42ec412cafdso17141cf.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 15:26:51 -0800 (PST)
+	s=arc-20240116; t=1709249768; c=relaxed/simple;
+	bh=q4q7erHPk4dn/Nf8pXKLzbX4utEAaL/mtldvKHHBoS8=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=QRiKVya6IOgX8jgYU52dMZB/4pUGChfAUAkIbGavALFNrPBvhpNKiu8mRtPsNJZWh99hScICPAhBP3e97eGjQux9g64nOLNUN308B4f6gtgVP3EoB1zOs6IDBcFrmDlmxshjIVeDBtLv3f40MdX5PKdKF25l0TkquXHJ+l4xtDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=AdLGrhwI; arc=none smtp.client-ip=209.85.166.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-3651b948db6so6013195ab.0;
+        Thu, 29 Feb 2024 15:36:05 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1709249211; x=1709854011; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2qC3fdiR3wpO9HRmx8vGtLqu6epk2+GZTHN12FsFnSk=;
-        b=A24Mc9WiSVEs5PorukWsU2KUenqSFBj+odxFx72XrNl8qJ7NHq/egTBXeDCf5tgmoE
-         ZcREkBetYcmOehfzJr0CAxychPYapTfDhm6KO96lETs1L3GTnkCLEAZvqo9CBcLUVy6n
-         qC3OUbov/Ldn15Td33tR3Ti1nQydbh+ntddvI0ubZxVfQume/3pK6uacneS3OCTohta4
-         k2yKLeTEdD9WKJxxJu55fQN2PRBZ9sDXsC7YJ6HdffiUmftnyyQAR4Bnx50xQ0vGv/fb
-         BGPrKcZfBp2gXheNQTg7t4yPJwW42IIcjtMfew/0tZtHAj5hmgRSCG5thzYxHdZBLYd+
-         K9Nw==
+        d=gmail.com; s=20230601; t=1709249765; x=1709854565; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+28orNpMGgXroEpuUoZhdTb8QFxzIWPQpfl/txukD6k=;
+        b=AdLGrhwIxHQ54otLwzG+YS877fft+He9Gds3o4Epfnug5a9sB++yDtbB+hlwBHnnFs
+         PcjimqGxPI+gJYghY/XW9aln+wmRIqdj91tuG7ZzIx0rFIbeiYoO7bB2at4LUtkWkLlP
+         GuAIeKCHUgqdqsmyW72TjP0OrWwLhaSfLoK1JYLlcdMz/4ianGBJ/0bAOALPI7fvmoNR
+         3DoGW8+483oCNRUPwqWMDM1NTXPgx7ljODtIJ5on91zUMQVyiahPrwW7hwH04j1UXsDj
+         Z9n3D1+bg/M0yW14efL3qt7dOZxPZ8quwFj+WBuMFpCY0U4aGWhXhafC6HHimo7Ln+Mt
+         RVOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709249211; x=1709854011;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2qC3fdiR3wpO9HRmx8vGtLqu6epk2+GZTHN12FsFnSk=;
-        b=NQwxrMetRIP4h1UoO6yfyfvlo3AUPgaTEwKSfzqFwJICP5xnPEAGfujBV/qKCPmAKv
-         8srPBJcIliCANAMQy24cCqehGG4LU9iL1lKXmAGEPPaW3WBXtEJ7b1qf+/DIm3lbkLm7
-         c+ALeNDfX3UjWglsUsokXRwiIsDZFt685HzYME0wyEw/3AFDZZoH3KLDrmutSl4fAQ19
-         Qh2ec5AwEv/SKa3XKz6BjSLhY8IKK4ND6Yty8uz7P4SvBAe6BLef9tkujRkhrRpVWv8m
-         ZK47QKc5swGqbb1vpsrr7kA6UxqMbeKvL4HExaqlfn5Z2kypJgKG0PDoRCGTYCj8snif
-         ybwQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXHaZE+ne++oqZkVu4qLtBVSz4MrPlrMEuZb+t3761flCpaFvNxZQxhTDwcpuLJwSnhnddhqh25rMX2gWLRnS/8lO1ijaPK0ki2ow==
-X-Gm-Message-State: AOJu0Ywyzi3SO1ZoYlXIPSV5lrdvwqQoOZRR+b9A5cKHA/rXyBdUfD93
-	s6YpHdf7aXaERzK/yGC5HhvrYvj/OZ8DKwiWigR9vYmcxFIytlcc7p6fXvnWiqZ+nQN+HApiLNc
-	Al3GbcuVzBzDHzMof99KXm5Q83qceA29VC7DI
-X-Google-Smtp-Source: AGHT+IFTp3iCHULEe6WvtnD0a3CSDWgwwezmvxtlg72qf7OTNzFNIfW9Lodil24Jm8e+rucPSssirLGptHIFDo/AUd8=
-X-Received: by 2002:a05:622a:6:b0:42e:8e9e:3a1f with SMTP id
- x6-20020a05622a000600b0042e8e9e3a1fmr91697qtw.10.1709249210646; Thu, 29 Feb
- 2024 15:26:50 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709249765; x=1709854565;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+28orNpMGgXroEpuUoZhdTb8QFxzIWPQpfl/txukD6k=;
+        b=hO/qB99dAfYftscN2lrpu94v6x8+EK2sJh52/4L96telXGHIT/CT79WilTHjkubH0c
+         fQxiENuyMtWB5kUb7UMDihrwkBHRX+XMf84pHy40DlNvnaAvJ9KNoHK3h+xPmm9RIFmm
+         yXmwMuhzhgLrA+iJxJO+xMcCQzHUBbESe1210FBJcxvt2QIli8K1550HBx6c6K9Fdwkx
+         C3mrHbSqKIgyJpAxmRhZjjSM5cc0Qcp04isD1vKrubNhX/CCYgoW0IMo92Sdb3DDV7XL
+         XLexBe8vyQJFajZbgmtvsgbVlysPJXTbblYasXroU63r4JanQPI47XXixdBfMYz+2QTg
+         2KKA==
+X-Forwarded-Encrypted: i=1; AJvYcCVnOEx+JjWi7Y/Etm+UdISj9ZVtcpGbCqJhVniFiTxg6Zr5UDoNc92tzttd7rUDexWQTZ93ecS11LVNFbXKAn9+ahizK+e5Mul/IjKuVbwoRPtSemTm+IJasERyia9zFXcwIB9yhiGXpA==
+X-Gm-Message-State: AOJu0YwJlxeOmF4UB1wg/SBOnezfHV/1uTC37OJ1PTc9KLx3ic1yozR6
+	2HisNZWNIplHBEabS+KGy2LRlfV9X1rOpaHhTqOP3tdiybohmb0ks4b8qUNC5yaGpg==
+X-Google-Smtp-Source: AGHT+IFpQBqR2EjhTZVRTHRSZLs3fZz5buNTzVetrB34OkV6yZBLhzpHgpCMW625+nJLMte6I1dBBg==
+X-Received: by 2002:a05:6e02:1d83:b0:365:b9c8:4436 with SMTP id h3-20020a056e021d8300b00365b9c84436mr183974ila.10.1709249764757;
+        Thu, 29 Feb 2024 15:36:04 -0800 (PST)
+Received: from aford-System-Version.lan ([2601:447:d002:5be:c0ab:242c:2712:ad44])
+        by smtp.gmail.com with ESMTPSA id j5-20020a056e020ee500b0036576880ffcsm584260ilk.85.2024.02.29.15.36.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Feb 2024 15:36:04 -0800 (PST)
+From: Adam Ford <aford173@gmail.com>
+To: linux-arm-kernel@lists.infradead.org
+Cc: aford@beaconembedded.com,
+	Adam Ford <aford173@gmail.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	devicetree@vger.kernel.org,
+	imx@lists.linux.dev,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: imx8mp-beacon-kit: Move sai3 to Audio_PLL1
+Date: Thu, 29 Feb 2024 17:35:54 -0600
+Message-ID: <20240229233556.116944-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231130174126.688486-1-herve.codina@bootlin.com>
- <20231130174126.688486-2-herve.codina@bootlin.com> <CAGETcx9uP86EHyKJNifBMd23oCsA+KpMa+e36wJEEnHDve+Avg@mail.gmail.com>
- <20240223101115.6bf7d570@bootlin.com> <cdf0a9facd95a2b7ee618e6130dedb9aabf4ed09.camel@gmail.com>
-In-Reply-To: <cdf0a9facd95a2b7ee618e6130dedb9aabf4ed09.camel@gmail.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Thu, 29 Feb 2024 15:26:14 -0800
-Message-ID: <CAGETcx9x55moTrvcDCup_K0DU305TtjK4Nvjf_drfipyowKb=w@mail.gmail.com>
-Subject: Re: [PATCH 1/2] driver core: Introduce device_link_wait_removal()
-To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
-Cc: Herve Codina <herve.codina@bootlin.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, 
-	Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Fri, Feb 23, 2024 at 2:41=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.com=
-> wrote:
->
-> On Fri, 2024-02-23 at 10:11 +0100, Herve Codina wrote:
-> > Hi Saravana,
-> >
-> > On Tue, 20 Feb 2024 16:31:13 -0800
-> > Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > ...
-> >
-> > > > +void device_link_wait_removal(void)
-> > > > +{
-> > > > +       /*
-> > > > +        * devlink removal jobs are queued in the dedicated work qu=
-eue.
-> > > > +        * To be sure that all removal jobs are terminated, ensure =
-that
-> > > > any
-> > > > +        * scheduled work has run to completion.
-> > > > +        */
-> > > > +       drain_workqueue(fw_devlink_wq);
-> > >
-> > > Is there a reason this needs to be drain_workqueu() instead of
-> > > flush_workqueue(). Drain is a stronger guarantee than we need in this
-> > > case. All we are trying to make sure is that all the device link
-> > > remove work queued so far have completed.
-> >
-> > I used drain_workqueue() because drain_workqueue() allows for jobs alre=
-ady
-> > present in a workqueue to re-queue a job and drain_workqueue() will wai=
-t
-> > also for this new job completion.
-> >
-> > I think flush_workqueue() doesn't wait for this chain queueing.
-> >
-> > In our case, my understanding was that device_link_release_fn() calls
-> > put_device() for the consumer and the supplier.
-> > If refcounts reaches zero, devlink_dev_release() can be called again
-> > and re-queue a job.
-> >
->
-> Looks sensible. The only doubt (that Saravana mays know better) is that I=
-'m not
-> sure put_device() on a supplier or consumer can actually lead to
-> devlink_dev_release(). AFAIU, a consumer or a supplier should not be a de=
-vice
-> from the devlink class. Hence, looking at device_release(), I'm not sure =
-it can
-> happen unless for some odd reason someone is messing with devlinks in .re=
-move()
-> or .type->remove().
+The Beacon board has an LVDS display that cannot get a proper clock rate
+from Video_PLL if the DSI is operational due to the way the clock divides
+the pixel clocks from video_pll.  To make the LVDS work, the LVDS needs
+to use an alternative clock.
 
-The case we are trying to fix here involves a supplier or a consumer
-device (say Device-A) being device_del(). When that happens, all the
-device links to/from the device are deleted by a call to
-device_links_purge() since a device link can't exist without both the
-supplier and consumer existing.
+Because the clock rated needed for the LDB driving the LVDS display
+isn't divisible by the clock rate needed by SAI3, move SAI3 to use
+Audio_PLL1, and reconfigure the CODEC to use a 12MHz fixed clock.
 
-The problem you were hitting is that the device link deletion code
-does the put_device(Device-A) in a workqueue. You change is to make
-sure to wait until that has completed. To do that, you only need to
-wait for the device link deletion work (already queued before
-returning from device_del()) to finish. You don't need to wait for
-anything more.
+Because these clocks are no longer in sync with each other, the sound
+generated as the wrong pitch, so reconfigure the SAI3 to be the master
+since the CODEC can internally compensate when fed a fixed clock
+reference, even if it is not an even multiple of the desired rate.
 
-I read up on drain_workqueue() before I made my comments. The point I
-was trying to make is that there could be some unrelated device link
-deletions that you don't need to wait on.
+This now leaves AUDIO_PLL2 completely free for the LDB without
+compromising the audio sound from the codec.
 
-But taking a closer look[1], it looks like drain_workqueue() might
-actually cause bugs because while a workqueue is being drained, if
-another unrelated device link deletion is trying to queue work, that
-will get ignored.
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Reply to rest of the emails in this thread here:
+diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+index a08057410bde..1f827ef38e36 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+@@ -211,20 +211,20 @@ sound-wm8962 {
+ 
+ 		simple-audio-card,cpu {
+ 			sound-dai = <&sai3>;
++			frame-master;
++			bitclock-master;
+ 		};
+ 
+ 		simple-audio-card,codec {
+ 			sound-dai = <&wm8962>;
+ 			clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO1>;
+-			frame-master;
+-			bitclock-master;
+ 		};
+ 	};
+ };
+ 
+ &audio_blk_ctrl {
+-	assigned-clocks = <&clk IMX8MP_AUDIO_PLL1>, <&clk IMX8MP_AUDIO_PLL2>;
+-	assigned-clock-rates = <393216000>, <135475200>;
++	assigned-clocks = <&clk IMX8MP_AUDIO_PLL1>;
++	assigned-clock-rates = <393216000>;
+ };
+ 
+ &ecspi2 {
+@@ -370,8 +370,8 @@ wm8962: audio-codec@1a {
+ 		pinctrl-0 = <&pinctrl_wm8962>;
+ 		clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO1>;
+ 		assigned-clocks = <&clk IMX8MP_CLK_IPP_DO_CLKO1>;
+-		assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL2_OUT>;
+-		assigned-clock-rates = <22576000>;
++		assigned-clock-parents = <&clk IMX8MP_CLK_24M>;
++		assigned-clock-rates = <12000000>;
+ 		DCVDD-supply = <&reg_audio>;
+ 		DBVDD-supply = <&reg_audio>;
+ 		AVDD-supply = <&reg_audio>;
+@@ -499,10 +499,9 @@ &pcie_phy {
+ &sai3 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_sai3>;
+-	assigned-clocks = <&clk IMX8MP_CLK_SAI3>,
+-			  <&clk IMX8MP_AUDIO_PLL2> ;
+-	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL2_OUT>;
+-	assigned-clock-rates = <12288000>, <361267200>;
++	assigned-clocks = <&clk IMX8MP_CLK_SAI3>;
++	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL1_OUT>;
++	assigned-clock-rates = <12288000>;
+ 	fsl,sai-mclk-direction-output;
+ 	status = "okay";
+ };
+-- 
+2.43.0
 
-Nuno,
-
-Sorry if I messed up who sent the first patch, but I did dig back to
-your v1. But I could be wrong.
-
-If devlink_dev_release() could have done the work synchronously, we'd
-have done it in the first place. It's actually a bug because
-devlink_dev_release() gets called in atomic context but the
-put_device() on the supplier/consumer can do some sleeping work.
-
--Saravana
-
-[1] - https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tr=
-ee/kernel/workqueue.c#n1727
 
