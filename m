@@ -1,182 +1,226 @@
-Return-Path: <devicetree+bounces-47287-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47288-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A462086CABC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 14:54:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DF6186CAC6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 14:56:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C56F11C21E17
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:54:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B259E1C217EA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:56:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E0412BF22;
-	Thu, 29 Feb 2024 13:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28308627D;
+	Thu, 29 Feb 2024 13:56:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Owc2hXTe"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="PLPdM5vk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9287B12A179
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 13:54:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EE8077E0E7
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 13:56:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709214857; cv=none; b=MWXCZGKB7BkjA2g3KlSNLHC5OCDCMI+5nUAiosSg832F5jE5Uhmv1J7eUtqX7urQOe80Ty9mF06RYNnYCjCn0AGur/ZyHifztkfrz215XRde4M5WhQfInsQrG9P5J5sWzsoSFj1p4bPgNxIXLMRkBiZJa1QHcjlkfWjWV5ZCerU=
+	t=1709215009; cv=none; b=lY/b3nQ/NYQtmFUqfPzhihQoiyNTA2sW2m+W0BTyNuaqc5wQgJrhsqMYMQglZsJZxtko4HJeR5Iy75TBSSnRkXKu05hZFU46z+ZwxV6RZjSsPmZj4YsHEPXTMc69tFA+nb0Z1bZWHi62iGzMPqK3OshoMWfii//NvIeHr0WJ0O8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709214857; c=relaxed/simple;
-	bh=v7AgUbrbTmOdYPgovbts9D0RiAJ9tLCiiQRNel8KPYs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XS+dEfSnrN8pN9jobGbLJOJF1YNQpOTkIb0DcHwMF2Mw/ZNWH8o2fzPpMSVJjXeURHs+M+fQVu05EPHJsFJwRG7tzJONdmJ+XFhQQ2BCg5Uw7i7sFiXlV0PkjtvH4gmhTuPiyJA5kCojkBVYpXi3OEcFsV4oQJRf/PFo6kEMjBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Owc2hXTe; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1dbae7b8ff2so7640625ad.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 05:54:15 -0800 (PST)
+	s=arc-20240116; t=1709215009; c=relaxed/simple;
+	bh=G/VaUVncQgGlRa2pys1Vi1dIIn09HOy27QTrgTzIkyA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:From:To:Cc:
+	 References:In-Reply-To; b=rg6vV5uCAzIDsb8q1aL8DwCtEghEYq1zrKlJz2kPv/UvCa+ET2LUaiqTdHPTVobVROumVOwUpA3kgS28PpfrnSqJkX1vTHZ9A/HkNJkTO/Q2mK6fhPKJwg0a7HAWLPaqk+ZtTKR5PKD/xdNcG5weKP12/z+LV6CRzcZavdxkX/4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=PLPdM5vk; arc=none smtp.client-ip=209.85.160.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-qt1-f180.google.com with SMTP id d75a77b69052e-42e63a658e1so2719681cf.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 05:56:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709214855; x=1709819655; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=KFi6owlquWpJybLOnBr0GE/gVglg7A135XAv9MGMZ48=;
-        b=Owc2hXTe60+izH55CjRTO9K5aSUe3JuxD9OZJ8NjdfVgwMV45B1Oz0/+qXqqDxZ2Z+
-         lEZklQlNx0rmhyUZ9RV/rWIdZu650LThYHt8hlvLIq5Lm+TlMinxoQHnI9NnoH0uoTbf
-         UKkPPsFSerWzwWmuw34xCccLCeh5GS4Fvezjsk5SciTYI2i7ikmGWce5Np6xVRp8ROKb
-         TpGZuTyyo0xOGvDWkt9ac+OEHIV90irQFUbG1jlEXvuH/UM5rPV3XefJeLo8x0MxIKU1
-         g7k5a+4Qx2ZcKYgc3q9HSpzN2Hed1qbebTUfkz8Tl+r5FMmoaZX9oSb5VD50tKL7xAYh
-         tzwA==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1709215006; x=1709819806; darn=vger.kernel.org;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=UNhdXSdXkLjYVE0deMxEiGlQYDwDvXw88ZjC208fOao=;
+        b=PLPdM5vkMcjaYJEM/JBZ54lJoq+tLh4Zh/mhL3O6riIhSBMrpvccm0RnYQIClGmi0S
+         qEWM4syXXwXNOHz8L3iSVMcUfA4Gpn6c6gKlaIwN35GaDMeFYGhwf4+PUGkVumoYeyNq
+         GDNA3gnVCQse5zZqIFjqDlRsSjra7EFkpCIkDioMwzfdxib0SwVyMfSTkbVj6WobHwce
+         DfLsvBpmroJ26vOTAAEnWfgsQEc+/ZU+oPNdyp8jYEnkH9ncCiFbAJGl6vPj/HsBungq
+         x/ziYfKW0fjrhvnHzCRKsgxCHtyFYUVZoLrfQHaEFJqJvYbDQ3SiWhPIitmRpYvwLEoX
+         FsxQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709214855; x=1709819655;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KFi6owlquWpJybLOnBr0GE/gVglg7A135XAv9MGMZ48=;
-        b=nblLpcZ1YifInvd4sRPbBOLMF+jfyQ+7cq48mAzJ2Sit/jAeZw5S/KIQYkgwXQFidA
-         shikzg2PU4cY9aHgcsH72f0HTJJeyqkEq5JIswlkgG7omh/GVzSRjd9MybNiCn5EowaY
-         3RU5hU5d6SyxHJFOBExnK6LWmC44qvoXjuwHpxCfQjKbXAv77AqYJ2whcdTns1OIC9DX
-         C0vOzN0iM2Y4m5QhffS8myNQ7vnBdAxAEH5I+PF61sca+65AsGPYRHgLAs/ylsV9ehXX
-         ImtuwF/31qF5xkSP2sg7P6KqpR5gfE+CSC6voxjZYlKtQe3zGjzxE2wNCGJRvGZ14l7V
-         T9Mw==
-X-Forwarded-Encrypted: i=1; AJvYcCXVOlAPzyIkW1Jm8OD2J88ywhBSh9lj7ybGgH7UerA83h9vwD9+iwvnDmPUgo4aYtEXUYsNEKVof5hUcLQB/p7EKOVOJkGB8U+VAA==
-X-Gm-Message-State: AOJu0Yy+EbVwJCLg9uE+1TliFgfCn+dXKnIzFD9/DfbGsvBjH2Vw8dwN
-	JIs99wT6kSxFkWBW/Uc8LJOhFHCPqd2yKxYVpkfNNyzuWDVhQedxtvrcDZOKrA==
-X-Google-Smtp-Source: AGHT+IHXl1bXWdS83nD1wqmxu04C1/sqKau8el88o5dRrtYuWLXqrfk+s6o/thw3Tq79HKdbJHBzhg==
-X-Received: by 2002:a17:902:c406:b0:1d8:ab27:d76c with SMTP id k6-20020a170902c40600b001d8ab27d76cmr2414876plk.51.1709214854696;
-        Thu, 29 Feb 2024 05:54:14 -0800 (PST)
-Received: from thinkpad ([120.138.12.68])
-        by smtp.gmail.com with ESMTPSA id j12-20020a170902c3cc00b001dca9a6fdf1sm1484066plj.183.2024.02.29.05.54.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Feb 2024 05:54:14 -0800 (PST)
-Date: Thu, 29 Feb 2024 19:24:07 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Bjorn Helgaas <helgaas@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and
- GICv3 ITS enable
-Message-ID: <20240229135407.GE2999@thinkpad>
-References: <20240223152124.20042-1-johan+linaro@kernel.org>
- <20240228220843.GA309344@bhelgaas>
- <20240229100853.GA2999@thinkpad>
- <ZeBbrJhks46XByMD@hovoldconsulting.com>
- <20240229122416.GD2999@thinkpad>
- <ZeCCPRVvYCNfMYnd@hovoldconsulting.com>
+        d=1e100.net; s=20230601; t=1709215006; x=1709819806;
+        h=in-reply-to:references:cc:to:from:subject:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=UNhdXSdXkLjYVE0deMxEiGlQYDwDvXw88ZjC208fOao=;
+        b=cYqtAtNY58USM0V6Cx3dXZx45Ns8ou4go01VYJEhj7aDFZ0pIdwGW5Px7s282zX8kg
+         joMaFt5m5rtt4+RL6HPTqvbXqj5eJ7g6jy5rsouD6S39Pah9sGq5gbRBbPqcHuInkvDq
+         z+dLvWqhfXG6fsQC1k6+erRQT37CWYn5MKMA0IvLPXNYax5pF8QFsT3Uvb6eIyctnNwI
+         Kcv0LTn0UcR23SKWfZWweAUHtQIljI8cj0i9Ydd3DyGNdI1KTLkZd7MX+DHQtOuwwxe0
+         Mm+DBaBbee2ePDAVk1O3sAQlGVXXbv3zKS9iH9MVrF24q/b84FF728+zLjZhzfnQiXs5
+         XQhA==
+X-Forwarded-Encrypted: i=1; AJvYcCV9CQwt+Z7DgynDXRHpVPr2F3R9ReSkFqK6ziTdC9Kew3tovIbtC92ztBBKCaXlkpGXhLRydXoFmyuMFYtzl8Q0VWtsqyc4QyCzGA==
+X-Gm-Message-State: AOJu0YzUQ2V8H45R0JupTDowLxXM0hRGvWTkdC9BCbn9Mtu+NzX32/Yr
+	gFwu1FmjSn6SzvHJ8n+H74/OU1Vgaa1Tv1XHW6GBw4PMlM7HLskMpqCDG06TwIY=
+X-Google-Smtp-Source: AGHT+IEBTojVUp8KOWJFuGjpZRNuTCVqmMqtQlVhuYYbIVXRAFqeFqc1mPKHL93Sf9q9YMhtXSG3EQ==
+X-Received: by 2002:ac8:7ca:0:b0:42e:b8d1:2b2a with SMTP id m10-20020ac807ca000000b0042eb8d12b2amr1769677qth.48.1709215005911;
+        Thu, 29 Feb 2024 05:56:45 -0800 (PST)
+Received: from localhost (alyon-651-1-22-137.w82-122.abo.wanadoo.fr. [82.122.123.137])
+        by smtp.gmail.com with ESMTPSA id wm18-20020a05620a581200b00787e1e94d00sm683328qkn.109.2024.02.29.05.56.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Feb 2024 05:56:45 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZeCCPRVvYCNfMYnd@hovoldconsulting.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 29 Feb 2024 14:56:41 +0100
+Message-Id: <CZHM5FYHS6G0.295L6AYUNZCT@baylibre.com>
+Subject: Re: [PATCH v2 13/14] pinctrl: pinctrl-tps6594: Add TPS65224 PMIC
+ pinctrl and GPIO
+From: "Esteban Blanc" <eblanc@baylibre.com>
+To: "Bhargav Raviprakash" <bhargav.r@ltts.com>,
+ <linux-kernel@vger.kernel.org>
+Cc: <m.nirmaladevi@ltts.com>, <lee@kernel.org>, <robh+dt@kernel.org>,
+ <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+ <jpanis@baylibre.com>, <devicetree@vger.kernel.org>, <arnd@arndb.de>,
+ <gregkh@linuxfoundation.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
+ <linus.walleij@linaro.org>, <linux-gpio@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>, <nm@ti.com>, <vigneshr@ti.com>,
+ <kristo@kernel.org>
+X-Mailer: aerc 0.17.0
+References: <20240223093701.66034-1-bhargav.r@ltts.com>
+ <20240223093701.66034-14-bhargav.r@ltts.com>
+In-Reply-To: <20240223093701.66034-14-bhargav.r@ltts.com>
 
-On Thu, Feb 29, 2024 at 02:10:21PM +0100, Johan Hovold wrote:
-> On Thu, Feb 29, 2024 at 05:54:16PM +0530, Manivannan Sadhasivam wrote:
-> > On Thu, Feb 29, 2024 at 11:25:48AM +0100, Johan Hovold wrote:
-> 
-> > > As I mentioned, the 'required-opps' binding update is needed to fix the
-> > > missing OPP vote so blocking the binding patch would block merging the
-> > > DT fix which could otherwise go into 6.8.
-> 
-> > I agree that the fix gets the priority. But some maintainers perfer to merge fix
-> > patches _only_ if they are fixing the issue introduced in the ongoing release.
-> > But if Bjorn has no issues in merging these for 6.8, then it is fine.
-> 
-> It also depends on the severity of the issue and to some extent the
-> complexity of the fix. These binding fixes are certainly low risk. :)
-> 
+On Fri Feb 23, 2024 at 10:37 AM CET, Bhargav Raviprakash wrote:
+> From: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
+>
+> Add support for TPS65224 pinctrl and GPIOs to TPS6594 driver as they
+> have significant functional overlap.
+> TPS65224 PMIC has 6 GPIOS which can be configured as GPIO or other
+> dedicated device functions.
+>
+> Signed-off-by: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
+> Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
+> ---
+>  drivers/pinctrl/pinctrl-tps6594.c | 287 +++++++++++++++++++++++++-----
+>  1 file changed, 246 insertions(+), 41 deletions(-)
+>
+> diff --git a/drivers/pinctrl/pinctrl-tps6594.c b/drivers/pinctrl/pinctrl-=
+tps6594.c
+> index 66985e54b..5da21aa14 100644
+> --- a/drivers/pinctrl/pinctrl-tps6594.c
+> +++ b/drivers/pinctrl/pinctrl-tps6594.c
 
-Right.
+> @@ -201,7 +319,21 @@ static int tps6594_gpio_regmap_xlate(struct gpio_reg=
+map *gpio,
+> =20
+>  static int tps6594_pmx_func_cnt(struct pinctrl_dev *pctldev)
+>  {
+> -	return ARRAY_SIZE(pinctrl_functions);
+> +	struct tps6594_pinctrl *pinctrl =3D pinctrl_dev_get_drvdata(pctldev);
+> +	int func_cnt =3D 0;
+> +
+> +	switch (pinctrl->tps->chip_id) {
 
-> > > The 'msi-map-mask' is arguably a fix of the binding which should never
-> > > have had that property, but sure, it's strictly only needed for 6.9.
-> > > 
-> > > And Bjorn A has already checked with the Qualcomm PCI team regarding
-> > > ASPM. It's also been two weeks since you said you were going to check
-> > > with your contacts. Is it really worth waiting more for an answer from
-> > > that part of the team? We can always amend the ASPM fixes later when/if
-> > > we learn more.
-> > > 
-> > > Note that this is also a blocker for merging ITS support for 6.9.
-> 
-> > I got it, but we cannot just merge the patches without finding the rootcause. I
-> > heard from Qcom that this AER error could also be due to PHY init sequence as
-> > spotted on some other platforms, so if that is the case then the DT property is
-> > not correct.
-> 
-> I've verified the PHY sequences both against what the UEFI firmware (and
-> hence Windows) uses as well as against the internal Qualcomm
-> documentation (with the help of Bjorn A). And Qualcomm did say that such
-> errors are also seen under Windows on these platforms.
-> 
+See below.
 
-Well, sometimes the init sequence published by qualcomm could turn out to be
-faulty. That's why they publish v2 sequence and such. And I want to rule out
-that possibility in this case.
+> @@ -229,10 +361,26 @@ static int tps6594_pmx_set(struct tps6594_pinctrl *=
+pinctrl, unsigned int pin,
+>  			   u8 muxval)
+>  {
+>  	u8 mux_sel_val =3D muxval << TPS6594_OFFSET_GPIO_SEL;
+> +	u8 mux_sel_mask =3D 0;
+> +
+> +	switch (pinctrl->tps->chip_id) {
 
-> But the fact that the symptoms differ between the CRD and X13s, which
-> use the same Atheros Wi-Fi controller (and the same PHY initialisation)
-> also suggests that this may to some extent be due to some property of
-> the machine.
-> 
-> Notably, on the X13s there are lot of errors when pushing data
-> (e.g. using iperf3), whereas on the CRD the are no errors when running
-> such tests.
-> 
-> When leaving the CRD on for long periods of time with the Wi-Fi
-> disconnected, I do however see occasional correctable errors.
-> 
+See below.
 
-This may be due to hardware design that I agree (possibly influenced by driver
-defect).
+> @@ -240,16 +388,28 @@ static int tps6594_pmx_set_mux(struct pinctrl_dev *=
+pctldev,
+>  {
+>  	struct tps6594_pinctrl *pinctrl =3D pinctrl_dev_get_drvdata(pctldev);
+>  	u8 muxval =3D pinctrl->funcs[function].muxval;
+> +	unsigned int remap_cnt =3D 0;
+> +	struct muxval_remap *remap;
+> =20
+>  	/* Some pins don't have the same muxval for the same function... */
+> -	if (group =3D=3D 8) {
+> -		if (muxval =3D=3D TPS6594_PINCTRL_DISABLE_WDOG_FUNCTION)
+> -			muxval =3D TPS6594_PINCTRL_DISABLE_WDOG_FUNCTION_GPIO8;
+> -		else if (muxval =3D=3D TPS6594_PINCTRL_SYNCCLKOUT_FUNCTION)
+> -			muxval =3D TPS6594_PINCTRL_SYNCCLKOUT_FUNCTION_GPIO8;
+> -	} else if (group =3D=3D 9) {
+> -		if (muxval =3D=3D TPS6594_PINCTRL_CLK32KOUT_FUNCTION)
+> -			muxval =3D TPS6594_PINCTRL_CLK32KOUT_FUNCTION_GPIO9;
+> +	switch (pinctrl->tps->chip_id) {
 
-> > Since this is not the hot target now (for Qcom), it takes time to
-> > check things.
-> 
-> I think that based on the available data it's reasonable to go ahead and
-> merge these patches. In the event that this turns out to be a
-> configuration issue, we can just drop the 'aspm-no-l0s' properties
-> again.
-> 
+See below.
 
-Well the problem is, if you are not sure, then adding the DT properties is
-certainly not correct. As that implies a hardware defect, but it may not be.
-So let's wait for some time to find out the actual issue.
+> @@ -276,7 +436,21 @@ static const struct pinmux_ops tps6594_pmx_ops =3D {
+> =20
+>  static int tps6594_groups_cnt(struct pinctrl_dev *pctldev)
+>  {
+> -	return ARRAY_SIZE(tps6594_pins);
+> +	struct tps6594_pinctrl *pinctrl =3D pinctrl_dev_get_drvdata(pctldev);
+> +	int num_pins =3D 0;
+> +
+> +	switch (pinctrl->tps->chip_id) {
 
-- Mani
+See below.
 
--- 
-மணிவண்ணன் சதாசிவம்
+> @@ -320,8 +494,18 @@ static int tps6594_pinctrl_probe(struct platform_dev=
+ice *pdev)
+>  		return -ENOMEM;
+>  	pctrl_desc->name =3D dev_name(dev);
+>  	pctrl_desc->owner =3D THIS_MODULE;
+> -	pctrl_desc->pins =3D tps6594_pins;
+> -	pctrl_desc->npins =3D ARRAY_SIZE(tps6594_pins);
+> +	switch (tps->chip_id) {
+
+See below.
+
+> @@ -329,8 +513,18 @@ static int tps6594_pinctrl_probe(struct platform_dev=
+ice *pdev)
+>  	if (!pinctrl)
+>  		return -ENOMEM;
+>  	pinctrl->tps =3D dev_get_drvdata(dev->parent);
+> -	pinctrl->funcs =3D pinctrl_functions;
+> -	pinctrl->pins =3D tps6594_pins;
+> +	switch (pinctrl->tps->chip_id) {
+
+See below.
+
+> @@ -338,8 +532,18 @@ static int tps6594_pinctrl_probe(struct platform_dev=
+ice *pdev)
+> =20
+>  	config.parent =3D tps->dev;
+>  	config.regmap =3D tps->regmap;
+> -	config.ngpio =3D TPS6594_PINCTRL_PINS_NB;
+> -	config.ngpio_per_reg =3D 8;
+> +	switch (pinctrl->tps->chip_id) {
+
+Regarding all the switch case, I think you should try and put all the
+differences inside the `struct tps6594_pinctrl`. This way most of the
+functions (if not all of them) could be writen without the switch case,
+making them more readable and straight forward to understand.
+You already have some switch case in the probe, why not fill the `struct
+tps6594_pintcl` there and use these new fileds in the different
+function.
+
+It's not pretty today, imagine if in the future there is more supported
+chip, it would be quite unreadable IMAO.
+
+Other than that the changes looks fine to me. I will have to boot a
+board with TPS6594 to check that whole series did not break anything.
+
+Please add me to your Cc for the next round.
+
+Best regards,
+
+--=20
+Esteban "Skallwar" Blanc
+BayLibre
 
