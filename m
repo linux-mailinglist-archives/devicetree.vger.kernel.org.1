@@ -1,152 +1,87 @@
-Return-Path: <devicetree+bounces-47497-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47498-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6604186D61D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:25:29 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF0486D624
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:27:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F79028B99B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:25:28 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 639181F220C4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:27:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B46A16FF4C;
-	Thu, 29 Feb 2024 21:25:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BA4616FF45;
+	Thu, 29 Feb 2024 21:27:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="d89LOaNK"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mQ1XDIc0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3486E16FF2B;
-	Thu, 29 Feb 2024 21:25:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 060F316FF21;
+	Thu, 29 Feb 2024 21:27:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709241915; cv=none; b=Ja4q1vrHpfcFbFLCnkdh/DR8G00DvYKKkmDo1LPikDplABU3pbMLI98xjuJ1e1s2nt0hJWRMwMX4cQsC9vNS293pohZYyyu2fzpoekQd/8jjZjucWNo/FgX0FAlbCZYKPZIFrxCHnMFKVwrNTRJywrqUf1neKBd3EC5gk0xStzQ=
+	t=1709242026; cv=none; b=a3jyIJ8Yzp2IRIAd0P0Cp5PA3bAGNz5GyipZJdFyDdC7wMrzGl82YPJBbdw++ZqjxDA8Bxt4R7s4RT2RRNU/ULiLHW0frAos18YQtc6twblAn8d16R1xNzdHiMNvfTiRehdGIofXS9oiap+PdXl+T21o2RPgVtg6mry0CHTZ7eU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709241915; c=relaxed/simple;
-	bh=C0iUknyALwb8yx7/aULdmmyNhZJP7DOze6qzJbWn+m4=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=dgcGrZdyhdaempyqCoJnSMHJgpT9VizeUEQxpW5YMh1puIGTVIaj4yLLmwiUFaswxghQokr0n34cvaj+O1iJWajVeOQCs8sT2rCIgoJ/ycvSw4zgtsILasPbvKz654xXGlOc0MdDVTXdHlzX+FNXIAfeGIA41QGVhNCZ/e7Sgp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=d89LOaNK; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1709242026; c=relaxed/simple;
+	bh=mblvUOQ7TqSTXupgS1wYol+Cwc1GOHntbxz2wgg057o=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=puvd8fu++7vjl29gvIOxLPPvgDpCr/4HRsnsBBxlOFeC6ZqhJeBr2SZpPy6CWzzj9JiA7BJVloKxdMOLEUQDd4ZHIt7xJhhJmIBHX5YXmSDchrPqLVehcVAITrmu8WOMBuM7r9jzPAEhycPthhFGVXcIlYPfQknKZffW+10TZzk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mQ1XDIc0; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A3F0560005;
+	Thu, 29 Feb 2024 21:27:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709242022;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=91a9iOCe0C2brpFvtJay073OL0BwTlq7iXQAv8uj7GU=;
+	b=mQ1XDIc0BXJfwzuAOAFJvi0pZ6HSdDJW6hzqvTVvhM0wEOUXe5CdYbRo5NZel09ZnoI2kT
+	lBVQNziVg1Tj6NIbLFPwX1rUvjpAjbJ3X7QFTwodRX2A2zUfHLsgNVgi4jpRLLcjmShhWr
+	gnJeboq38lMwyrnQXsqe+wah+cKpIvkI2UdCv2AiyEthRcf3w0SLiMZ6UtB7A+PeYtjYs2
+	QMOfBTZ8zBFDI7v+nUe82L72f9FjfhfUpx9hjOA95TRdNSdKPAcjx9RXiH4S5jqlCf38HT
+	1mOuz1Rq3IzvxPexD+Py8LwCmDHk+7pmHLE7Wa5aznVASevEwdD+QNJooIHN+Q==
+Date: Thu, 29 Feb 2024 22:27:00 +0100
+From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+To: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, nicolas.ferre@microchip.com,
+	claudiu.beznea@tuxon.dev, linux-rtc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	Varshini Rajendran <varshini.rajendran@microchip.com>
+Subject: Re: (subset) [PATCH v4 11/39] dt-bindings: rtt: at91rm9260: add
+ sam9x7 compatible
+Message-ID: <170924199301.1874122.10917718116731060869.b4-ty@bootlin.com>
+References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+ <20240223172552.672094-1-varshini.rajendran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1709241911;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=j/jsIYQWtNjGo8V67lba+C9XsvoM+JnwriF6mpcDVn8=;
-	b=d89LOaNKrX6cixjeJ68nSXNhPFchDZiqiqCu6ykaBlnJJBLl1Th/424XtWLWAYz6rkib1F
-	QoVJsAfsErJ8lUaTUXUQm0/8qT21TJJ/Dsdd2bhxOYSaESaExHAg3NWj1DhdvylS0BQNVr
-	M4DM9bLV3qvr6IKJ9SRsdC3Xa8rOJuosByahQbhVVLdfuVXeIdNP9pQ2J3HE0VRsWqkddO
-	xeHSjmUshU1OTIkrArv7E2Hvs3G3n7GOQyx4IlKmKdoZXJSh0lyHHJ145ccFJqR+8MmqxK
-	YHha/ZO91aJJ7QDn8RV+VIxajr2HymxMxxsHpMZQUzfG2cTJPmaY5GFoBN3urA==
-Date: Thu, 29 Feb 2024 22:25:10 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
- Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 2/5] arm64: dts: rockchip: enable automatic active
- cooling on Rock 5B
-In-Reply-To: <20240229-rk-dts-additions-v3-2-6afe8473a631@gmail.com>
-References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
- <20240229-rk-dts-additions-v3-2-6afe8473a631@gmail.com>
-Message-ID: <823379825559bb76088c31f44f998dd3@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240223172552.672094-1-varshini.rajendran@microchip.com>
+X-GND-Sasl: alexandre.belloni@bootlin.com
 
-Hello Alexey,
-
-On 2024-02-29 20:26, Alexey Charkov wrote:
-> This links the PWM fan on Radxa Rock 5B as an active cooling device
-> managed automatically by the thermal subsystem, with a target SoC
-> temperature of 65C and a minimum-spin interval from 55C to 65C to
-> ensure airflow when the system gets warm
-
-I'd suggest that you replace "automatic active cooling" with "active
-cooling" in the patch subject.  I know, it may seem like more of the
-unnecessary nitpicking, :) but I hope you'll agree that "automatic"
-is actually redundant there.  It would also make the patch subject
-a bit shorter.
-
-Another option would be to replace "automatic active cooling" with
-"automatic fan control", which may actually be a better choice.
-I'd be happy with whichever one you prefer. :)
-
-Otherwise, please feel free to add:
-
-Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-
-> Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> ---
->  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts | 30 
-> ++++++++++++++++++++++++-
->  1 file changed, 29 insertions(+), 1 deletion(-)
+On Fri, 23 Feb 2024 22:55:52 +0530, Varshini Rajendran wrote:
+> Add compatible for SAM9X7 RTT.
 > 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> index a0e303c3a1dc..3f7fb055c4dc 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-> @@ -52,7 +52,7 @@ led_rgb_b {
 > 
->  	fan: pwm-fan {
->  		compatible = "pwm-fan";
-> -		cooling-levels = <0 95 145 195 255>;
-> +		cooling-levels = <0 120 150 180 210 240 255>;
->  		fan-supply = <&vcc5v0_sys>;
->  		pwms = <&pwm1 0 50000 0>;
->  		#cooling-cells = <2>;
-> @@ -173,6 +173,34 @@ &cpu_l3 {
->  	cpu-supply = <&vdd_cpu_lit_s0>;
->  };
-> 
-> +&package_thermal {
-> +	polling-delay = <1000>;
-> +
-> +	trips {
-> +		package_fan0: package-fan0 {
-> +			temperature = <55000>;
-> +			hysteresis = <2000>;
-> +			type = "active";
-> +		};
-> +		package_fan1: package-fan1 {
-> +			temperature = <65000>;
-> +			hysteresis = <2000>;
-> +			type = "active";
-> +		};
-> +	};
-> +
-> +	cooling-maps {
-> +		map1 {
-> +			trip = <&package_fan0>;
-> +			cooling-device = <&fan THERMAL_NO_LIMIT 1>;
-> +		};
-> +		map2 {
-> +			trip = <&package_fan1>;
-> +			cooling-device = <&fan 2 THERMAL_NO_LIMIT>;
-> +		};
-> +	};
-> +};
-> +
->  &i2c0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&i2c0m2_xfer>;
+
+Applied, thanks!
+
+[11/39] dt-bindings: rtt: at91rm9260: add sam9x7 compatible
+        https://git.kernel.org/abelloni/c/16816e6a3693
+
+Best regards,
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
