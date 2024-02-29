@@ -1,74 +1,63 @@
-Return-Path: <devicetree+bounces-47239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 728F986C87C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 12:52:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F0186C897
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 12:53:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2631E288936
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:52:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12DACB273F3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:53:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F3647CF13;
-	Thu, 29 Feb 2024 11:52:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68EFA7CF04;
+	Thu, 29 Feb 2024 11:53:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="N3WgZVhb"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="plda7Xki"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f173.google.com (mail-pf1-f173.google.com [209.85.210.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 79A9963501
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 11:52:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B0917C0B4;
+	Thu, 29 Feb 2024 11:53:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709207524; cv=none; b=uIm0pQj6V4d3ZZ2EdILCjJX7TZ8wyw76q+T98YJWggjFzLB5j0k/vj0ld6FI/EbA8xKx1pgNUs7Lm/P3zoaWVYFjurq2C62Zym8alQgeGEpAimDpUs4Kk31hl/E3Ppr3Rca3k1dTXLgjNY/F63OGWW6bTAsv1wZ2domekngKs4Y=
+	t=1709207611; cv=none; b=KZnHaI2qkCaUC8/BtMiI7t7nMVJvLdyBqPp5jwmsRu95XpsKGsFAc8cN/7PYq7hd3ISmFy6iLlkWoefr67A1tPrcQZoFJYnOeXVg+KGC3Q2Q4junG4vSZ6XZ9cR3Au9oclD9tNQkJwMsje/CWAxRv5NOgk5yI4gRC/jB2qfW+xk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709207524; c=relaxed/simple;
-	bh=D85HgNvJu1Gzvl020npgZHkDOdsFs37kMKJLoOsvX54=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CtVmrBjVXl6BfUPVqdvGk09Xkb0t9N0imChQ/0ceHXZQlI8YOpbDC82mQbA53CtO78zkCfQ1pbdnhqbdJvyaMVZ1FsnRxL3D7piLjQtNA+Jxwty8zvDb9MU46WwwH3shuVZu36ux+nPAgnX2fDOE+7aN4RG565RbDbcxJvH1hu0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com; spf=pass smtp.mailfrom=tweaklogic.com; dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b=N3WgZVhb; arc=none smtp.client-ip=209.85.210.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tweaklogic.com
-Received: by mail-pf1-f173.google.com with SMTP id d2e1a72fcca58-6e57ab846a1so518787b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 03:52:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tweaklogic.com; s=google; t=1709207521; x=1709812321; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qhmR6t/CulZWvzzb/0EOr6cxXMFcQffpsaxkHKFIuTA=;
-        b=N3WgZVhb2jgpApYbEypLHOaKHd6HWdpGixE8U6c1NRD6hAYNrxe7d9IuvrGSHFgByW
-         uR4/ptrrBpL8RUuw6pLsiXWe7nBYx80NpjcrjMwO7/U7MmpITGEQ3LS7pOkkjj+EhaXZ
-         YcARQr1VqJhM51ve/pZv7dUTtw49/rCLF97gToe86k8UxDUuN+h2uKj2nCd8Xt4Q1/tb
-         yOPEb8ppTTmBQps34kZLjYd7sDGDEzqSKNBINO4+crurvU3wlnA7VO6I0JMRBJt7AOkY
-         /zCnNPF0yFGACPNsSZTC+wkp/wRx8c1gRCpWiIh1ATuoD38/zH+pkkdCW+mHrfT+kaF3
-         nSwQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709207521; x=1709812321;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qhmR6t/CulZWvzzb/0EOr6cxXMFcQffpsaxkHKFIuTA=;
-        b=tmngbLEUL3vH4UwUvcvQyyFFCUfkHHcXo2/+EahZAAkQGjKHP4W7zZOXogtF0ogWnW
-         WgaZpmpCna8nbYmX0ytF1aTwTcuL7NOD1gOjyZPQJ8qo2QHGa1KVy3MEHb/D6QudJqKb
-         tUs272SBT1rVXaGq3kvw2bjBu8fOPlho2EzeAILU1Nxv07RYY23u0WzUDlyjh3ZmZ6P6
-         hfYnx6thg3lChB/F7Rpxu+fjh95lPxBHL7Js320u9Kd7Wx5mx3CnhGVViaChKF/JxwWl
-         itu6ihc18FD+X33yTix+0ZFli5razuiLe0W4t+U9A6juxx/jJvViE2iR1XZlF+ZTsHh3
-         v99A==
-X-Forwarded-Encrypted: i=1; AJvYcCW4u0Knlk2WAvYrNQwRlRLqhSGbF0RkQTIu/vUW/Pl/tKIHkv/n48cyj6Qmv0kRdSmLLrdzgP+6aUwrmufY2WJJpqk1BFBakKXoEg==
-X-Gm-Message-State: AOJu0YwhYPxHMujyvIgg3BGKSuiTNc8tsYZSH8SeTXZEqj5Z7uIIB191
-	vck0aBOxkVKvJH3DJVuGIMnBNH/SQj0LbXDZB/gP19aVGdvTiInkYoYU0diK66I=
-X-Google-Smtp-Source: AGHT+IGp29uOUWn17twBCuCVxLB5YWzr3khAzZeff3T4HNJqrtRTDGQv6AebAdB2GeE+LDlQxvcd5Q==
-X-Received: by 2002:aa7:8602:0:b0:6e5:980:361f with SMTP id p2-20020aa78602000000b006e50980361fmr1811761pfn.25.1709207520660;
-        Thu, 29 Feb 2024 03:52:00 -0800 (PST)
-Received: from [192.168.20.11] ([180.150.112.31])
-        by smtp.gmail.com with ESMTPSA id r5-20020aa79885000000b006e530aca55asm1086214pfl.123.2024.02.29.03.51.55
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 03:52:00 -0800 (PST)
-Message-ID: <47739cca-db41-4182-9f80-ff138f5b8ec8@tweaklogic.com>
-Date: Thu, 29 Feb 2024 22:21:52 +1030
+	s=arc-20240116; t=1709207611; c=relaxed/simple;
+	bh=GvWVWLTquV50VeGS8lcdohSK4d8IPez41WUK4HwClnA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=aht4R8VCfxq6cm1+KorNXwpUtzp8iEevA7bKo9WC0+xiFyinjA4SFdKuiVrMRoj7DsSdxFWb0oXiVkeL2GdRIgZPjl4+n9hslW+Lt0/r1xDdOJfqBAy1Ssj8X+n/Yqu8zef/y0Ew771EyNS4sbhTJYufNxDAGup4mRAEzXJPRHU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=plda7Xki; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41T69mov007217;
+	Thu, 29 Feb 2024 11:53:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=5RofTZ6zZ5MPKdedsQVpM61DlKgL5LvLKNbxwtcXWmQ=; b=pl
+	da7XkiSTb2aJ15oLzSoQemL33PMc2Uph7Ka9cbjcp07CLJGqwonICm/PQk7xqh3n
+	IvypvqPd7fwHWSx6YkVJiqAZoBNEmYkmwvADNB9vCp0AjGZ+MMxmA5KEBNP6P7FL
+	W9mHSiXjJw19ffhBaxXWPJ+kr0J1iDtB/0KM/BG2qPwkrAXsMi1x/76LG0vBagJf
+	+q0i4whXIb2wwIB+lm9bNeT1gMnFfdG+5Rj3yT+6DPGsZQZaJYgKDzUNuBLpLgnF
+	1+wG3CSlvcCIj/cdbp0HyYNZn1/xaBSWkTpYlTtAROdnKDc0Kbo6h3YQPIwGI7fO
+	KqZ5yU+Ews2MzsTnCIAA==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wjmcx0x38-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Feb 2024 11:53:20 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41TBrIoA031022
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Feb 2024 11:53:19 GMT
+Received: from [10.216.13.176] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 29 Feb
+ 2024 03:53:13 -0800
+Message-ID: <c4607aa4-7af7-443f-8ccc-aa4fe3ede3cc@quicinc.com>
+Date: Thu, 29 Feb 2024 17:23:08 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,142 +65,163 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v8 5/5] iio: light: Add support for APDS9306 Light Sensor
-To: Matti Vaittinen <mazziesaccount@gmail.com>,
- Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen <lars@metafoo.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
- Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Matt Ranostay <matt@ranostay.sg>,
- Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240228122408.18619-1-subhajit.ghosh@tweaklogic.com>
- <20240228122408.18619-6-subhajit.ghosh@tweaklogic.com>
- <a828e77c-b3d4-49bb-b0bb-b9fd6cb7d114@gmail.com>
+Subject: Re: [PATCH v15 2/9] usb: dwc3: core: Access XHCI address space
+ temporarily to read port info
+To: Johan Hovold <johan@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring
+	<robh+dt@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Wesley Cheng
+	<quic_wcheng@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Greg
+ Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Felipe Balbi
+	<balbi@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <quic_ppratap@quicinc.com>,
+        <quic_jackp@quicinc.com>
+References: <20240216005756.762712-1-quic_kriskura@quicinc.com>
+ <20240216005756.762712-3-quic_kriskura@quicinc.com>
+ <ZeBSp0EWnHo8Wbsv@hovoldconsulting.com>
 Content-Language: en-US
-From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-In-Reply-To: <a828e77c-b3d4-49bb-b0bb-b9fd6cb7d114@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <ZeBSp0EWnHo8Wbsv@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 8QmluQy7FslCBKekTlrJnCYfQ13XBYC1
+X-Proofpoint-GUID: 8QmluQy7FslCBKekTlrJnCYfQ13XBYC1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-29_02,2024-02-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 mlxlogscore=999 bulkscore=0 phishscore=0
+ clxscore=1015 suspectscore=0 impostorscore=0 spamscore=0 adultscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402290091
 
-On 28/2/24 23:38, Matti Vaittinen wrote:
-> On 2/28/24 14:24, Subhajit Ghosh wrote:
->> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
->> It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
->> channel approximates the response of the human-eye providing direct
->> read out where the output count is proportional to ambient light levels.
->> It is internally temperature compensated and rejects 50Hz and 60Hz flicker
->> caused by artificial light sources. Hardware interrupt configuration is
->> optional. It is a low power device with 20 bit resolution and has
->> configurable adaptive interrupt mode and interrupt persistence mode.
->> The device also features inbuilt hardware gain, multiple integration time
->> selection options and sampling frequency selection options.
->>
->> This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for
->> Scales, Gains and Integration time implementation.
->>
->> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
->> ---
->> v7 -> v8:
->>   - Renamed APDS9306_INT_CH_CLEAR to APDS9306_INT_SRC_CLEAR macro for higher
->>     readability
->>   - Removed APDS9306_CHANNEL macro for higher readability
->>   - Updated iio_push_event() functions with correct type of events (Light or Intensity)
->>   - Updated variable name "event_ch_is_light" to "int_src" and change as per
->>     review to fix compiler warning
->>   - Used scope for guard() functions
->>   - Other fixes as per reviews
->>     https://lore.kernel.org/all/20240224151340.3f2f51e8@jic23-huawei/
->>     https://lore.kernel.org/all/ZdycR6nr3rtrnuth@smile.fi.intel.com/
->>
-...
 
-Hi Matti,
->> ---
+
+On 2/29/2024 3:17 PM, Johan Hovold wrote:
+> On Fri, Feb 16, 2024 at 06:27:49AM +0530, Krishna Kurapati wrote:
+>> Currently Multiport DWC3 controllers are host-only capable.
 > 
-> Hi Subhajit,
+> I already asked you to rephrase this so that it becomes clear that you
+> are describing a property of the current hardware (and similar
+> throughout the series):
 > 
-> I just happened to notice couple of minor things. I see the series is already in a v8 and don't want to cause extra re-spins. So, perhaps consider these points if you need to do v9 but I am sending these only as 'nits'. I don't think any of my findings are very serious.
->Thank for reviewing. I will do as many re-spins as it takes to get things correct if required.
-It is best possible source of learning for me.
-> ...
+> 	https://lore.kernel.org/all/ZTI7AtCJWgAnACSh@hovoldconsulting.com/
+
+Hi Johan. Thanks for the review.
+
+IMO, the statement is describing a property unique to current hardware, 
+that "If it is a multiport controller, it is then host-only capable"
+
+I used the word "Currently" to indicate that "Today, the multiport 
+devices present...". Let me know if there is any ambiguity in the sentence.
+
+In v13, I wrote:
+"Currently host-only capable DWC3 controllers support Multiport."
+You were right. It was ambiguous as it might refer to even single port 
+controllers.
+
+So I changed it saying all the DWC3 multiport controllers are host only 
+capable.
+
+How about:
+
+"All the DWC3 Multi Port controllers that exist today only support host 
+mode"
+
 > 
->> +static int apds9306_intg_time_set(struct apds9306_data *data, int val2)
+>> +static int dwc3_read_port_info(struct dwc3 *dwc)
 >> +{
->> +    struct device *dev = data->dev;
->> +    struct apds9306_regfields *rf = &data->rf;
->> +    int ret, intg_old, gain_old, gain_new, gain_new_closest, intg_time_idx;
->> +    int gain_idx;
->> +    bool ok;
+>> +	void __iomem *base;
+>> +	u8 major_revision;
+>> +	u32 offset;
+>> +	u32 val;
 >> +
->> +    if (!iio_gts_valid_time(&data->gts, val2)) {
->> +        dev_err_ratelimited(dev, "Unsupported integration time %u\n", val2);
->> +        return -EINVAL;
->> +    }
+>> +	/*
+>> +	 * Remap xHCI address space to access XHCI ext cap regs since it is
+>> +	 * needed to get information on number of ports present.
+>> +	 */
+>> +	base = ioremap(dwc->xhci_resources[0].start,
+>> +		       resource_size(&dwc->xhci_resources[0]));
+>> +	if (IS_ERR(base))
+>> +		return PTR_ERR(base);
 >> +
->> +    ret = regmap_field_read(rf->intg_time, &intg_time_idx);
->> +    if (ret)
->> +        return ret;
+>> +	offset = 0;
+>> +	do {
+>> +		offset = xhci_find_next_ext_cap(base, offset,
+>> +						XHCI_EXT_CAPS_PROTOCOL);
+>> +		if (!offset)
+>> +			break;
 >> +
->> +    ret = regmap_field_read(rf->gain, &gain_idx);
->> +    if (ret)
->> +        return ret;
+>> +		val = readl(base + offset);
+>> +		major_revision = XHCI_EXT_PORT_MAJOR(val);
 >> +
->> +    intg_old = iio_gts_find_int_time_by_sel(&data->gts, intg_time_idx);
->> +    if (ret < 0)
->> +        return ret;
->> +
->> +    if (intg_old == val2)
->> +        return 0;
->> +
->> +    gain_old = iio_gts_find_gain_by_sel(&data->gts, gain_idx);
->> +    if (gain_old < 0)
->> +        return gain_old;
->> +
->> +    ret = iio_gts_find_new_gain_by_old_gain_time(&data->gts, gain_old,
->> +                             intg_old, val2, &gain_new);
+>> +		val = readl(base + offset + 0x08);
+>> +		if (major_revision == 0x03) {
+>> +			dwc->num_usb3_ports += XHCI_EXT_PORT_COUNT(val);
+>> +		} else if (major_revision <= 0x02) {
+>> +			dwc->num_usb2_ports += XHCI_EXT_PORT_COUNT(val);
+>> +		} else {
+>> +			dev_warn(dwc->dev,
+>> +				 "unrecognized port major revision %d\n",
 > 
-> You don't use the 'ret' here, so maybe for the clarity, not assign it.
-> Or, maybe you wan't to try to squeeze out few cycles for succesful case and check the ret for '0' - in which case you should be able to omit the check right below as well as the call to iio_find_closest_gain_low(). OTOH, this is likely not a "hot path" so I don't care too much about the extra call if you think code is clearer this way.
-I will stick to the first option and remove the unused ret. The code looks linear and clearer
-that way. Although it depends upon further reviews.
+> I still think you should merge this with the previous line even if you
+> end up with 83 chars.
+> 
+>> +							major_revision);
+>> +		}
+>> +	} while (1);
+>   
+>> +	/*
+>> +	 * Currently only DWC3 controllers that are host-only capable
+>> +	 * support Multiport.
+>> +	 */
+> 
+> So again, also here, rephrase the comment so that it is clear that you
+> are referring to a property of the current hardware.
+
+I put the comment this way to indicate that we don't want to check for 
+existence of multiple ports if the controller is not "host-only" 
+capable. We should only check for multport support only if we are 
+host-only capable. I think the statement clearly tells that "check for 
+host-only" configuration before proceeding to check for xhci register reads.
+
+I replied the same on:
+https://lore.kernel.org/all/279a54f2-7260-4270-83c7-d6f5c5ba0873@quicinc.com/
+
+And since you didn't mention anything else at this part of code in your 
+return reply in:
+https://lore.kernel.org/all/ZTYyXhyZN3jBXEfm@hovoldconsulting.com/
+
+I thought this statement was fine to go.
+
+> 
+>> +	hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
+>> +	if (hw_mode == DWC3_GHWPARAMS0_MODE_HOST) {
+>> +		ret = dwc3_read_port_info(dwc);
+>> +		if (ret)
+>> +			goto err_disable_clks;
+>> +	} else {
+>> +		dwc->num_usb2_ports = 1;
+>> +		dwc->num_usb3_ports = 1;
+>> +	}
+> 
+
+Thanks for the review. Can you help let me know your review on the other 
+patches as well.
 
 Regards,
-Subhajit Ghosh
-> 
->> +    if (gain_new < 0) {
->> +        dev_err_ratelimited(dev, "Unsupported gain with time\n");
->> +        return gain_new;
->> +    }
->> +
->> +    gain_new_closest = iio_find_closest_gain_low(&data->gts, gain_new, &ok);
->> +    if (gain_new_closest < 0) {
->> +        gain_new_closest = iio_gts_get_min_gain(&data->gts);
->> +        if (gain_new_closest < 0)
->> +            return gain_new_closest;
->> +    }
->> +    if (!ok)
->> +        dev_dbg(dev, "Unable to find optimum gain, setting minimum");
->> +
->> +    ret = iio_gts_find_sel_by_int_time(&data->gts, val2);
->> +    if (ret < 0)
->> +        return ret;
->> +
->> +    ret = regmap_field_write(rf->intg_time, ret);
->> +    if (ret)
->> +        return ret;
->> +
->> +    ret = iio_gts_find_sel_by_gain(&data->gts, gain_new_closest);
->> +    if (ret < 0)
->> +        return ret;
->> +
->> +    return regmap_field_write(rf->gain, ret);
->> +}
-> 
-> 
-
+Krishna,
 
