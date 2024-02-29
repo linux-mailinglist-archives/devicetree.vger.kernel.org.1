@@ -1,164 +1,302 @@
-Return-Path: <devicetree+bounces-47100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47104-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 851D886C38B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:33:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C674E86C3A6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:35:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E26F51F25041
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 08:33:55 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 21C4EB23DC3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 08:35:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4805742A86;
-	Thu, 29 Feb 2024 08:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 343CC5337B;
+	Thu, 29 Feb 2024 08:35:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="bcOIu+kv"
+	dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b="qOq0r3/+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2139.outbound.protection.outlook.com [40.107.22.139])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98E5F1E86C
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 08:33:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709195631; cv=none; b=LITnCf+HKrJBykdG2WdiK5CfZ4GAEF3RMLliweV6RIEP8YiEx6sO/jZux7uEBZkDHny40fNwF8mIhIX99wuAXCt0pp2dE0NnrnM7d3xWb3aBdOmXAlkwhOpvLZnAsKMyzIGDX0x8J4st28Wrs27liL68F8CjKiVjnv61uaiAhzI=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709195631; c=relaxed/simple;
-	bh=90z2sa1ZfZfW9YSdK3CkEFLtQvGFbYf3YRjvNp+8JZc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=uLs+y5m34lazldFkV8IJgrNcz/AvI8Ca9RsYkcyXbaBY1Wd67fQprbL5OwJoZk5QjenWLAEGLJOhG2dk+QeWWr5LuprYsV6VNrv0mH+OnSjm6E1smzp7wKyaRvXZJOjEYZ78e0b3xKIrDsIXT9P8CDmedzZZgkkjMQGwUKjpnl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=bcOIu+kv; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6093247d1acso6463647b3.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 00:33:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709195628; x=1709800428; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=837J79ZQSddskmgCAAO5FmkY0ihPzUclUe3cZWzHeBc=;
-        b=bcOIu+kvbmw6lm6tluGN7lImzU0+AmKfldz7SbwsBrpvjIiUuMvLZOadaTgDwFRSL/
-         d/mYSiGD0E8oIQUTnveKdYmZ8ABQ9sRV3nyJGon2pDtGhkGkTsoKJMewRD/KjAnNfA/t
-         F7sm0qJb68IwU/8u50bSB5dsYgHNkDRF3QhVmsqCas8VddlTNTFl+XbBujzCOsQ0U3d7
-         nE+NQrQprK5OPIrwtVU3sO3RT63lmn2gI7/XJw2X1cIIDtZJBPB4inzBC19X7U4orzvb
-         YSBpFTG2LtPjAYVnWAxqJTSZX0rHOVWKOXU23cmwHX6zJ8XlI7Ksi64qgWq8V8RkB0G7
-         SUrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709195628; x=1709800428;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=837J79ZQSddskmgCAAO5FmkY0ihPzUclUe3cZWzHeBc=;
-        b=ixs5R8OighR3CAqx1z03s8LJepP5tKkB4JRdYSgp6p6kWx7jp5ZKgSFCWww1Lk3iL2
-         +NxVRpHLjhHuwuAAAFxyDK2KK9s8cTJBtQK1D0DmrStJMfhqL2Mm3LXzkhTeZK8lOfyG
-         qTd/kTbY6liP5Ji0ce7EIXwnToMW1Inmgt9ZsIVTQ47A8z41EtSbL7XimyNvhrhNwfF4
-         7x9RRAs1w8U9KI+D8Xh6RJK9M/47MscaTJmLyivB2a89ZTasVzw/0sBwLjTIcEU0YTqZ
-         4Rh0qaiOp0VHwJ1QEFfBTHTeFkqF6lcsyPSu+WMozCcB90iiuBtXq+36lNCemrQEvVMK
-         FZRw==
-X-Forwarded-Encrypted: i=1; AJvYcCWV+JlIpfF9gyTb13qBPQF5zLWKv6KdsjGR2+3hvPxnp9G9yOqX87n0ofntQnj+UNHBmhXVctST5jN6BVLFgYTPg06/kHDs5jmcJA==
-X-Gm-Message-State: AOJu0YxPHi8+70LeyJ26IDTddbYsEH8XpxKN25ZkLY4+zYXglmKV+SCE
-	tZ8fqBgGwbtY1kh1zuJHRGtt6wfeMvYJivq0D9Tl0/I9mfKHqGKSoVzc0TwCXZ8=
-X-Google-Smtp-Source: AGHT+IEFsXXKqZ4x1g6UUSotDzPs4EaRNV7EfXLIepVz9PCWrUB5SUJUiSHxrIv36Zw9aW7Eyk+0Kw==
-X-Received: by 2002:a81:490f:0:b0:609:3958:7121 with SMTP id w15-20020a81490f000000b0060939587121mr1757947ywa.0.1709195628583;
-        Thu, 29 Feb 2024 00:33:48 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id i68-20020a0ddf47000000b0060969b6e74asm248178ywe.123.2024.02.29.00.33.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 00:33:48 -0800 (PST)
-Message-ID: <7c167fac-46c0-4d7f-b56f-ff1922736aa5@linaro.org>
-Date: Thu, 29 Feb 2024 09:33:44 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 170B9524C6;
+	Thu, 29 Feb 2024 08:34:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.139
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709195701; cv=fail; b=N5onHIGOQpfrMizV4QozuOpka7L6AeAtf+Fbf9EbQzUY8STJ1F0v7V0fvr37uoErI7TiuD5UH4TU8o5asAxPCBlcP/FofzaMKQsgeCVKwvT8BJyD5kvMxdswudOHbJ1ZnYHj5eUJKzVX+GC+elpJsWz7mv+wWYjoMkeQVCWh+z8=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709195701; c=relaxed/simple;
+	bh=Pp28OTxcmYOQO4q65XW6Z69VSkriW1xDu3yJGmG0pN0=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=sg3ogJLUiJnLpXBFByNWn2PhXK8vPcfR6xVEWHfbDIDGKSCPRCfrRVH0uIqb1HaIRLgWY2QGBu845D7aQ1gXICVOhYXFdGm00P+ajpKtkTP2IQBR/AJ8wPzEZ37dyAlrHihWQWeGe5GFBoebTGYo/wuCVdg+b4vGWJFiy5SNqcU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net; spf=pass smtp.mailfrom=wolfvision.net; dkim=pass (1024-bit key) header.d=wolfvision.net header.i=@wolfvision.net header.b=qOq0r3/+; arc=fail smtp.client-ip=40.107.22.139
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wolfvision.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wolfvision.net
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mU51AVVeSEUD1IjxvVwDZIiHVKUFWMo4JheXKF38aYp0LEWaIESKPY27EZUO4wykv/cLSiz1ZlATa5V8Nc3qs3IpOuBwA2fTSgPgbUR7CQ5Yt3KpqDjl9dxGQp5T6W+i6+uS6A4ikocNaCptoqmrwQ9OUaRVNrLZKrxc7JQeXuyVVKCV9OSWUkrcYdRIwSzO9e3T7tLoCbI+spfr7CqPRPAFhK0GG4g9j5ekIp4yTJV0rfpMJkrUU6Q+W8NIiiMAHCPy8iLM06A4WfGcqRTaXhSv9FdEt/u7prT/gVviQzAA2y8GTG/XRQKCTHhy+BPgA60g6N6auWmJxkx82TulsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aZfA5n0Ada87GjUe9hHZJhuSDnEQvVQEnbg2Q8h+LYA=;
+ b=TsfzjYs/BdTLcKINuGMJx31HbeDm0yB3CGyjV1uyQtqDfuMaDUHJKEfiVsahoXbRRmK88bC8wVbNEeKQ98W/nF1c6rotnVvPXFcjriSKfBck47Vcwrlm8B4UqmkE/KwQWzjBhuuJWycpcqzzPOoztRWPK/P9EldnOtQSpT8RDma5DgSaSpNy39nq4HQLmYRed67uJsozSTJ1pjnVwAVvCa4v4FtRQo3a5XWrv1ImJR2CyoikYf57Q2jAMF7tuElnbnArfG5RG8qostFgeCsmJ7G8dNqHxYaOPoENlrlXpMOX7MhpvQ0Rfay50Ahts50yOvE0dCXMmEUZGiHS6oBYLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=wolfvision.net; dmarc=pass action=none
+ header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aZfA5n0Ada87GjUe9hHZJhuSDnEQvVQEnbg2Q8h+LYA=;
+ b=qOq0r3/+NwwSqeMCCUp83jk+0RwMyblk4jJaS0BtKufu95B+2k6OHA252M+9HRl1ggucNWSo+v1gnbN6t5sTxweMh0x2CEOtKR45mtFm2hGPJ9O/1ZAP5y3IV3H+KBz0Xx0p3eEx4SsbBdO3AUc6iJ4Rf5pLg3WbK50UIVjDBUw=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=wolfvision.net;
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
+ by DU0PR08MB9727.eurprd08.prod.outlook.com (2603:10a6:10:445::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.41; Thu, 29 Feb
+ 2024 08:34:53 +0000
+Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::9e35:6de9:e4fc:843f]) by VE1PR08MB4974.eurprd08.prod.outlook.com
+ ([fe80::9e35:6de9:e4fc:843f%6]) with mapi id 15.20.7316.035; Thu, 29 Feb 2024
+ 08:34:52 +0000
+From: Javier Carrasco <javier.carrasco@wolfvision.net>
+Subject: [PATCH v6 0/9] usb: misc: onboard_hub: add support for XMOS
+ XVF3500
+Date: Thu, 29 Feb 2024 09:34:43 +0100
+Message-Id: <20240229-onboard_xvf3500-v6-0-a0aff2947040@wolfvision.net>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKNB4GUC/3XOzarCMBAF4FeRrG9kpkmmua58DxFp/jQgjaQSF
+ em7G3Wh0Lo8A/Odc2eDz9EPbLW4s+xLHGLqa6C/BbOHrt97Hl3NrIFGAgrgqTepy253LUEoAE4
+ WfKsdYoeG1a9T9iFeX+JmW/MhDueUb6+Cgs/rb6sgB67QKPGvJZA160s6hveoZe/P7AkW8UEao
+ CkiKhK0MiARibSeReQX0swskRVxFglba5VzchZR34ieIqoiLRkNKjgRPE2QcRwfpr0vFIIBAAA
+ =
+To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Matthias Kaehlcke <mka@chromium.org>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Helen Koike <helen.koike@collabora.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, 
+ Russell King <linux@armlinux.org.uk>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+ Javier Carrasco <javier.carrasco@wolfvision.net>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+X-Mailer: b4 0.14-dev
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1709195691; l=6390;
+ i=javier.carrasco@wolfvision.net; s=20230509; h=from:subject:message-id;
+ bh=Pp28OTxcmYOQO4q65XW6Z69VSkriW1xDu3yJGmG0pN0=;
+ b=F7QujYNZLm+DVGrkUoq8Zcem5+XrX5iKNhaimbTGYa9ZFhXhkdX8NEBmRIl4KZR4xUnC2vday
+ h63N0sG+44JBCa1oEcJfH9ftzjxqsOxuPx/vm7XvkDAhXQKwUJk/rqD
+X-Developer-Key: i=javier.carrasco@wolfvision.net; a=ed25519;
+ pk=tIGJV7M+tCizagNijF0eGMBGcOsPD+0cWGfKjl4h6K8=
+X-ClientProxiedBy: FR3P281CA0020.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:1c::21) To VE1PR08MB4974.eurprd08.prod.outlook.com
+ (2603:10a6:803:111::15)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: interrupt-controller: fsl,intmux: add
- power-domains
-Content-Language: en-US
-To: Frank Li <Frank.Li@nxp.com>, Thomas Gleixner <tglx@linutronix.de>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Linux Team <linux-imx@nxp.com>,
- "open list:IRQCHIP DRIVERS" <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20240228213808.632603-1-Frank.Li@nxp.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240228213808.632603-1-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|DU0PR08MB9727:EE_
+X-MS-Office365-Filtering-Correlation-Id: c7e34c75-c1ba-406d-05e3-08dc39014cb2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	n259osFWy98o9uAmfg91CnPWoVZVVQK77HEBKUe2v7dRRnATmZd2CM2YKBon2WTog6zF8efl3ojl9PCCJRtq98borBBWIu++2CWImZMja4k+Dow4n2R6C1BE4F0joPF4qVcXIvbSHAhAt08U+0o7+oyAUarZW5zTjhLFevnMfmq2QnZN9rSTbm6OnElaOo/8aY3pinR20eCsWdSRrcl3mf1TFaqRruS8BlhPPVYel+gXzosMbnfgUK95wnkX+QhMMhpZdhTlUcuEc2j8sgTr6bkYqtJOJsER54fxuF5tqH4XuytACMuqtMIAOFiDRQTZDEZFsbUJU+laIpcyJY58RBflfqncpByjIk4H25ZsmVJgCL46yu3oYwXyizjqxDzTyX7bo/4bpCEl1nACSXkjWhyf5cfRazUH8VH7PWqoxDU18635VRQM5aa184O6WR0p6XnyyEVAzAMTXaVET7XvkIphsSMn5/mHGvazvOdX5YZBHpn8vfXr8ohCh8sJB1aPeWfRrlZcf1gk8t35jKxvTboHLav3PBQvuvYiKkcCw2O09GhpkyJkzza6LwxL+M3RwJVOqToPySR7MTck6dUBCSMYY9kZY6cGa7zmK5pwxO1NGn3if1pNQqq63XfmjAmu1FwGODO8jjnjS+veYl9TOMHqo5dT+bFeDhZN/yehI/+/rDj6LsMUEd0tL103NkulTQI9Vaj4CLqqblivUnpLRYbgHuOVdncI8NnHDJz5ZHg=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(921011)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?M2J1Qnd2cTVEcDRGNERhZmJyZVVaeDhqRXExbHdRZUp2OXVDLzFsSW5oeEhY?=
+ =?utf-8?B?ZG1LbFBpQzlyaFJSc2xTd2RxWXludGE3YlFpMHQ0cWY1cU9QdUlvTlRLMTNp?=
+ =?utf-8?B?Nk1rakpCQ2JGTFBnaElPRUhObU1ZNWI3UXN2ZzRhcnpJNGNBRkUxdnRUbjBN?=
+ =?utf-8?B?RnJ0dVp0bGdOSmhWeDlaVS9KdENrVlRBb1hyRGlWYlVHRXVwSEt0ODN2NnI0?=
+ =?utf-8?B?ZG4yU3hOUStmeHRVZXdEUWRKaHpRckMzL25uTFRRSVd4c2hPaCtFMXNkWHJE?=
+ =?utf-8?B?UFU5RDF5RFdTZ05RbWVZVXhIbW44Wjd2dTFzQ09TSkNuSloyU0Z4RlZaZzRY?=
+ =?utf-8?B?YWxhL1I1SGhPbGdDem5odVJsaTBMYlpnWGFoWFIzN01IcDV5c2l1blJHdThU?=
+ =?utf-8?B?MXh0dFhNM0txS0JCYjNHRVlHUThjMThrN0c4SGdFREdieHo4bWJ3STBMNkYx?=
+ =?utf-8?B?azhnS3lDS0k2MmdxZ0ZwUkFRbDI5Q0twV0JqUmpCRlpxS3lWU0JIY2t5SE0v?=
+ =?utf-8?B?UlRUcVhRMFMzM095enRZeUxneUQ1MHJPSHpGcExzc2FLTS94bTBudXg4eXcw?=
+ =?utf-8?B?ZWkvOUw0bzJTSUlGZVlydFo3RGJnVnVpVHE3RmpiZXBYN0V6N0JWeGxGeWhE?=
+ =?utf-8?B?L3JXQXFYNGtXNDBCTWV0NEhQU212ZFNVSUFJbVgyZzc4bWJyQk5BYlhtWkR3?=
+ =?utf-8?B?UGdDZnpoMTFiSk81cUR3TjU0cUNwbncwc0RFMUdLQ1QrK0lSUGdURWozSnVk?=
+ =?utf-8?B?c2xac0Vvc3ZWZHkvSkFwRmhyYitCdHNFa0FycWVSaXN4cVNGSTBiUGNZOU4x?=
+ =?utf-8?B?OVhrcFJGZ1JHVit0VzllWkxsd2p6cU9rajhXQWNRSUtCYmJFSTV1cHkySURU?=
+ =?utf-8?B?OEJXYjdudVBwQzNUK3daOGxma0k4RUVoYXFKY2IrZzJaVEg3ZFN2Znlzek1M?=
+ =?utf-8?B?UTRCWTVSSjhLcmFHbGRDdlBxNzdSNTJ0WWNyYVFIam9PUmJRcEFjVHNCbk5a?=
+ =?utf-8?B?QWJsczg0T2drN1o4V2svSEw2VnZsSFdRT21FaC81NUNsWDVZOGo5TE16bkZM?=
+ =?utf-8?B?dVBvM043UCtmc0g2SnR3OGc2QVNIU29yNm1CSE9kakl2ZlRXV0oyR0FnbW96?=
+ =?utf-8?B?ZnR2aGVuU2xaRXdnSno5K2sxOUFJdFBaQS8rL0FDMHNLb0diRENXb216b3da?=
+ =?utf-8?B?R09IUWRaZ3RTSFljZDRwN01ZRmJLRHRRWGI0Z0t1ditDRThiSnl5aEE4NzI2?=
+ =?utf-8?B?S05GK2ZtQUw2cUQvbzRRQW01UFZBT3dGQUZaQ1pDM2x5TU02SkIxcG9Cakc3?=
+ =?utf-8?B?clV6UVhjN3U1dFFRYVJsVzZCamJ4YjcweFhiOS8zek5WaTM4dEtMaHA5NU9Q?=
+ =?utf-8?B?ZnMvY08vNEVkRW51bFJ3U1hQNkhmNkJOY25PSzhJNTNYNTBTeG5aWVpIaWpF?=
+ =?utf-8?B?VUxiRzc0dTBuWlh3MXgxeDJ0Z0hsdEFGWWs4TDQwc3lmQnA5KzM1YWhCa2Fo?=
+ =?utf-8?B?UGFhVFl2d0VVdm5WWUljVnFvS2h5YjNaTmNyRWtvb2tsMmFBZVJQYklOMC82?=
+ =?utf-8?B?QkxLMUR0VHI0RjhzWWMxdVlWVFBtZXE1cXBudnE4Q3ZmN2tMQXFHQzBEMUlS?=
+ =?utf-8?B?Q2ZEUk9IbWplbHFaNVhqSHl0dm81Tm9DRzJUcmFEcXZETkJCY2J4d2hwR3lR?=
+ =?utf-8?B?d3ZEN2RtOXRIdmRYSWUrVEVnSUJCQTVPbmN6cnR2UGl3MFpxYW44WWh3QVox?=
+ =?utf-8?B?bGFTQTVqSGF5NjN6d0ZldHRVeDNocU5Ed3hvQzM2OHpyWmdLMjhLcDk1SHlO?=
+ =?utf-8?B?TFlBMVFYbjdjWWJXM0tpT1RIdG1acm5SS2pIS3VoUUt0Vm9VbXpiSTZOMC9K?=
+ =?utf-8?B?ekdIRUlEazlvb1llaDV5b3dWK051eU91RFVVWXluZXdiRE5jMml0dW5hK2ti?=
+ =?utf-8?B?aUlDSXl6MldUK1hIUmJNeVM1UDU0WVY5em1Gbi9BUm93SWxOUmhDdFFDbmVk?=
+ =?utf-8?B?Z29VenpPQnlTamNheERKODRlemJuWmtoR3Nqd1ZCWit0eUlUUm9sUXNRVXNn?=
+ =?utf-8?B?QzBSSnJGaHBjbXBwU0JRb0VJamVYTkgvYWg0czBlQjRPWkJ5UU1YY01ad2hx?=
+ =?utf-8?B?NHVzV1VFbzNva2pCaUFzOXQ2ekFxS1lCUlNQNFI3THdudmowL1RiQSt3Z2d3?=
+ =?utf-8?Q?U1Z6wLt4IOnivhIFC1Zu6jI=3D?=
+X-OriginatorOrg: wolfvision.net
+X-MS-Exchange-CrossTenant-Network-Message-Id: c7e34c75-c1ba-406d-05e3-08dc39014cb2
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Feb 2024 08:34:52.5422
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 9xovr3czNLk+v5uB639wyCsoNAUXfJhJUUqS3nhqagzJRmT1xTh+LAt/eOV278RIl/uGkC3F4ifGzczfEvIEPOw0wYcaY3rTpIIq5YgXGQg=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU0PR08MB9727
 
-On 28/02/2024 22:38, Frank Li wrote:
-> Allow power-domains property for fsl,intmux node.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/interrupt-controller/fsl,intmux.yaml    | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/fsl,intmux.yaml b/Documentation/devicetree/bindings/interrupt-controller/fsl,intmux.yaml
-> index 985bfa4f6fda1..d73d9a6c50a69 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/fsl,intmux.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/fsl,intmux.yaml
-> @@ -37,6 +37,8 @@ properties:
->    clock-names:
->      const: ipg
->  
-> +  power-domains: true
+This series adds support for the XMOS XVF3500 VocalFusion Voice
+Processor[1], a low-latency, 32-bit multicore controller for voice
+processing.
 
-You need maxItems
+The XVF3500 requires a specific power sequence, which consists of
+enabling the regulators that control the 3V3 and 1V0 device supplies,
+and a reset de-assertion after a delay of at least 100ns. Once in normal
+operation, the XVF3500 registers itself as a regular USB device and no
+device-specific management is required.
+
+The power management provided by onboard_usb_hub is not specific for hubs
+and any other USB device with the same power sequence could profit from
+that driver, provided that the device does not have any specific
+requirements beyond the power management. To account for non-hub devices,
+the driver has been renamed and an extra flag has been added to identify
+hubs and provide their specific functionality.
+
+Support for device-specific power suply names has also been added, keeping
+generic names for already supported devices to keep backwards
+compatibility.
+
+The references to onboard_usb_hub in the core and config files have been
+updated as well.
+
+The diff is way much bulkier than the actual code addition because of the
+file renaming, so in order to ease reviews and catch hub-specific code
+that might still affect non-hub devices, the complete renaming was moved
+to a single commit.
+
+This series has been tested with a Rockchip-based SoC and an XMOS
+XVF3500-FB167-C.
+
+[1] https://www.xmos.com/xvf3500/
+
+To: Liam Girdwood <lgirdwood@gmail.com>
+To: Mark Brown <broonie@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+To: Conor Dooley <conor+dt@kernel.org>
+To: Matthias Kaehlcke <mka@chromium.org>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: Helen Koike <helen.koike@collabora.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+To: David Airlie <airlied@gmail.com>
+To: Daniel Vetter <daniel@ffwll.ch>
+To: Catalin Marinas <catalin.marinas@arm.com>
+To: Will Deacon <will@kernel.org>
+To: Russell King <linux@armlinux.org.uk>
+Cc: linux-sound@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+Cc: linux-usb@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Cc: linux-arm-kernel@lists.infradead.org
+Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
+
+Changes in v6:
+- onboard_usb_hub.c: use dev pointer in probe consistently (new patch).
+- onboard_usb_hub.c: rename get_regulator_bulk function to
+  get_regulators and only pass onboard_hub (hub in probe) as argument.
+- onboard_usb_hub.c: drop file after renaming.
+- onboard_usb_dev.c: improve device descriptions in usb_device_id table.
+- onboard_usb_dev.c: keep non-hub devices powered on in suspend.
+- General: update commit messages (use usb_hub_dev after renaming).
+- Link to v5: https://lore.kernel.org/r/20240228-onboard_xvf3500-v5-0-76b805fd3fe6@wolfvision.net
+
+Changes in v5:
+- onboard_usb_dev: move device suppy names handling to [1/8].
+- onboard_usb_dev.c: make always_powered_in_suspend not visible for
+  non-hub devices.
+- onboard_usb_dev.c: move is_hub check in suspend() to functio entry.
+- onboard_usb_dev_pdevs.c: comment rephrasing to account for
+  hub-specific attribute.
+- Link to v4: https://lore.kernel.org/r/20240220-onboard_xvf3500-v4-0-dc1617cc5dd4@wolfvision.net
+
+Changes in v4:
+- General: use device supply names and generics as fallback.
+- onbord_usb_dev.c: fix suspend callback for non-hub devices.
+- onboard_usb_dev.c: fix typos.
+
+- Link to v3: https://lore.kernel.org/r/20240206-onboard_xvf3500-v3-0-f85b04116688@wolfvision.net
+
+Changes in v3:
+- onboard_usb_hub: rename to onboard_usb_dev to include non-hub devices.
+- onboard_hub_dev: add flag to identify hubs and provide their extra
+  functionality.
+- dt-bindings: add reference to usb-device.yaml and usb node in the
+  example.
+- dt-bindings: generic node name.
+- Link to v2: https://lore.kernel.org/r/20240130-onboard_xvf3500-v1-0-51b5398406cb@wolfvision.net
+
+Changes in v2:
+- general: add support in onboard_usb_hub instead of using a dedicated
+  driver.
+- dt-bindings: use generic usb-device compatible ("usbVID,PID").
+- Link to v1: https://lore.kernel.org/all/20240115-feature-xvf3500_driver-v1-0-ed9cfb48bb85@wolfvision.net/
+
+---
+Javier Carrasco (9):
+      usb: misc: onboard_hub: use pointer consistently in the probe function
+      usb: misc: onboard_hub: use device supply names
+      usb: misc: onboard_hub: rename to onboard_dev
+      drm: ci: arm64.config: update ONBOARD_USB_HUB to ONBOARD_USB_DEV
+      arm64: defconfig: update ONBOARD_USB_HUB to ONBOARD_USB_DEV
+      ARM: multi_v7_defconfig: update ONBOARD_USB_HUB to ONBOAD_USB_DEV
+      usb: misc: onboard_dev: add support for non-hub devices
+      ASoC: dt-bindings: xmos,xvf3500: add XMOS XVF3500 voice processor
+      usb: misc: onboard_dev: add support for XMOS XVF3500
+
+ ...-usb-hub => sysfs-bus-platform-onboard-usb-dev} |   3 +-
+ .../devicetree/bindings/sound/xmos,xvf3500.yaml    |  63 +++
+ MAINTAINERS                                        |   4 +-
+ arch/arm/configs/multi_v7_defconfig                |   2 +-
+ arch/arm64/configs/defconfig                       |   2 +-
+ drivers/gpu/drm/ci/arm64.config                    |   4 +-
+ drivers/usb/core/Makefile                          |   4 +-
+ drivers/usb/core/hub.c                             |   8 +-
+ drivers/usb/core/hub.h                             |   2 +-
+ drivers/usb/misc/Kconfig                           |  16 +-
+ drivers/usb/misc/Makefile                          |   2 +-
+ drivers/usb/misc/onboard_usb_dev.c                 | 544 +++++++++++++++++++++
+ .../misc/{onboard_usb_hub.h => onboard_usb_dev.h}  |  58 ++-
+ ...ard_usb_hub_pdevs.c => onboard_usb_dev_pdevs.c} |  47 +-
+ drivers/usb/misc/onboard_usb_hub.c                 | 501 -------------------
+ include/linux/usb/onboard_dev.h                    |  18 +
+ include/linux/usb/onboard_hub.h                    |  18 -
+ 17 files changed, 717 insertions(+), 579 deletions(-)
+---
+base-commit: 41bccc98fb7931d63d03f326a746ac4d429c1dd3
+change-id: 20240130-onboard_xvf3500-6c0e78d11a1b
 
 Best regards,
-Krzysztof
+-- 
+Javier Carrasco <javier.carrasco@wolfvision.net>
 
 
