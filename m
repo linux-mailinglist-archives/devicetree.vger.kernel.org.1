@@ -1,171 +1,108 @@
-Return-Path: <devicetree+bounces-47212-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47213-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67FA986C6EF
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:30:32 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C1E986C722
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:43:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1D14A285E6A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:30:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BABF71C21B6E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:43:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEBFB67C5D;
-	Thu, 29 Feb 2024 10:30:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="pMVAd7yB"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6D2379DB0;
+	Thu, 29 Feb 2024 10:42:59 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2063.outbound.protection.outlook.com [40.107.20.63])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02CE267A1F;
-	Thu, 29 Feb 2024 10:30:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.63
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709202630; cv=fail; b=dwTk/kHoO84WISQjA35xMcyZumRLS8gNi/Yui5iEKmg9Eo/zU4b+cRb53hmwrg/VXec5W0HlWwVJ5i59Xj4KDBujfIThM2H7VdAcWkbacBSKKRbZtflbj7snU9aRcd37keA9OrpJ+jIrBBbBEd+5f3SrWSSAYB2q5ZFHqE/bygA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709202630; c=relaxed/simple;
-	bh=k88Ue6TeyheEKxlu53GHnX4Bz5XEViz0Va/+xqoo57U=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=eY5kib+BufsihPoD9tT9ZbUyTBAAGrZ+kGJcc/xLcj+NGGgHmGpD78UOAmFZ0huSP1a8qxC8nW3mDbVJOzKY4yIwdNjAEL5oBuhpr7eDqekDg4yn/g5gqXAduCFEN6LFDL1K+gmCCUOKMBgCtl3CWd4TM8UP6qybgGus2sS8HXY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=pMVAd7yB; arc=fail smtp.client-ip=40.107.20.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Aj/RdzpZgnXLH79sQDpkMG4AczfhAV5XqHRX0zdr9fAHo7C2jyqvmaepxPSpu5A05NjkxLpQft1ySBB+jEM4qBuWIqISnJQciE3nFPRFNUhtVKap26+q5TooW8hvMeslCWoBUmw5ld6t23asxeEd751a2Sd8SdUhlU2Bif082J7DCrd+4svgpC1ac6lEtcc19dkPJGVfRg3hg47EDFZIAFgeVbGKuAjJfaRQpGgCyPSnAQOzqDs4nJAsfeEGPSA4mMd2rEegAWxvpA+dtzH7O9LcBVEwVIuvxaoMtSV24Po77DkMKL7q/89gSnpbih+zhKnQOvzis15CNFXUbbS+tg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=k88Ue6TeyheEKxlu53GHnX4Bz5XEViz0Va/+xqoo57U=;
- b=SQ8RndkAZNLdrs+4vI/SYAInoBDwRTjMO1ynR8AGInKHz51rm+nYNUE+dM3X8u/Jey8HWFF7aMDx5xrQcDahKBk5tOznHcNbtrhiKOJnA71SPdAUllPc9cra5YQhKYJYQZXYSX0ogRecErLmF51SJRw9oaPnjeCzbhPnBatEGd6Y3Kl4Hl0Eo19yP3DOqN93SkWr1b6Gw4wM0nTmfYrMQFeSnGgpLQ8pvxrlgBfcSVbJ7iOKuc3keFj/SrMq+pc5P0uxKJ0/bWEkuhkViI6DiO3/ynfuvshJouPkK/CArqRWbKOOZBsB1CMmbTa2+D1C/pcIR/5u9cge94rJMcg9Zw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k88Ue6TeyheEKxlu53GHnX4Bz5XEViz0Va/+xqoo57U=;
- b=pMVAd7yBTUdqqHaxgnAaKy9HiJJymZCX5pewMbTR8qp7tGgh45YE3YF5CPNGbdXf9naWzw730jZ6q8YfB1fLzrl0jR8xt17PWYrUhqcPag6B5nFdlD205+33PAvBmPRo1cSaU78LPksYxsxDXaHQQzNNB3lkg6PYYr3iakIkNXM=
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by AS4PR04MB9361.eurprd04.prod.outlook.com (2603:10a6:20b:4e6::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.39; Thu, 29 Feb
- 2024 10:30:25 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::d45f:4483:c11:68b0]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::d45f:4483:c11:68b0%7]) with mapi id 15.20.7316.039; Thu, 29 Feb 2024
- 10:30:25 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Will Deacon <will@kernel.org>
-CC: Frank Li <frank.li@nxp.com>, "mark.rutland@arm.com"
-	<mark.rutland@arm.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shawnguo@kernel.org"
-	<shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
-	<festevam@gmail.com>, "john.g.garry@oracle.com" <john.g.garry@oracle.com>,
-	"jolsa@kernel.org" <jolsa@kernel.org>, "namhyung@kernel.org"
-	<namhyung@kernel.org>, "irogers@google.com" <irogers@google.com>,
-	dl-linux-imx <linux-imx@nxp.com>, "mike.leach@linaro.org"
-	<mike.leach@linaro.org>, "leo.yan@linaro.org" <leo.yan@linaro.org>,
-	"peterz@infradead.org" <peterz@infradead.org>, "mingo@redhat.com"
-	<mingo@redhat.com>, "acme@kernel.org" <acme@kernel.org>,
-	"alexander.shishkin@linux.intel.com" <alexander.shishkin@linux.intel.com>,
-	"adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-	"linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "linux-perf-users@vger.kernel.org"
-	<linux-perf-users@vger.kernel.org>, "imx@lists.linux.dev"
-	<imx@lists.linux.dev>
-Subject: RE: [EXT] Re: [PATCH v4 6/6] perf vendor events arm64:: Add i.MX95
- DDR Performane Monitor metrics
-Thread-Topic: [EXT] Re: [PATCH v4 6/6] perf vendor events arm64:: Add i.MX95
- DDR Performane Monitor metrics
-Thread-Index: AQHaVAmpfH+wU+TeN02q4eZ9P4uLMrEWbGKAgArf/wA=
-Date: Thu, 29 Feb 2024 10:30:25 +0000
-Message-ID:
- <DU2PR04MB882237E2A26F535348F5090F8C5F2@DU2PR04MB8822.eurprd04.prod.outlook.com>
-References: <20240131055811.3035741-1-xu.yang_2@nxp.com>
- <20240131055811.3035741-6-xu.yang_2@nxp.com>
- <20240222122533.GE8308@willie-the-truck>
-In-Reply-To: <20240222122533.GE8308@willie-the-truck>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DU2PR04MB8822:EE_|AS4PR04MB9361:EE_
-x-ms-office365-filtering-correlation-id: fcf7c31a-5477-414e-1802-08dc39117151
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- JsH8uvxLLwQODPwcdlXvsnV+/rR5u4u31Ai0mnO6Oomv4QKQTdLUCXa/ahc8RKJQ3iJC1HJmdHxBrwLhYKq9Fp82n4/FAZTw7OSor5g5irqLvyugOpq2P1uhGHyOXds0CLQBCEeJTixzVrwHkX19k16kkasfygWB5Gjr2DE5I3Bm2G9ilxxYhI0nnqOZLUUpdAOa9jGDMGELZT+Wl3EEJwp8r5LnWEiW7B178VG+daceCyCR3N1hTifyzpO2wBbCEd/01PlAlp4G09uIWbOtzExQeBtUSmm5zmLez0dqWZumV8Pl3zRY11AxkY18G6fypQthPk3QXJfP07Dld7v/kjtVVO0w4BJCG8Qx/9s7YRJi4p0tWEYoQ7xFRzIVOV2mPZ/UmZxerLgpNi4EzbPZY+BCwamU9NeguS/QYgBTTHfn7i8RfsT4589jEOVQlzHDo7BsKfAsynqhIdvoxVB8YE3aI43e3B/Xz1m8ZL4+GBxQE27VlON7oCLfT/pGBkhmABa0ksZYMznuPGU+8/Zt4bzGdOSVzVvvGXYM5YeIYh2HP0Bw4uyfC1flaOeg4d6Q1oHwjEJ2dzfROde2/erFAiboEj3r207fRW5HE+YuZXulTpE68nzxf8xzLdm+0JD4bdTEkHMrdT4z1h3mFMfzTTRUqYIsfiMDXfD5uzY2lRj89P3sjYwJlV2d5EyEwAbo0f9jWSqgu0SFnMLu7go32lluuQIA1Fc0TD/WteWEoa4=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?SIASYxbS4jSeV526RYgbeDNq+pSDpxzhE3K3TAOatYeqPiPJMPQDLRUFPeSh?=
- =?us-ascii?Q?6NqXveW7W2caIXqXD53zUriJ0Rlsjw6Ug4gLmNJOlPWlUhWLqeBLyT8Ym9Gs?=
- =?us-ascii?Q?nY8sZ/iuQXUjd0CfxaMbNPFIUAOpKgwqFTR2gI7ay67HzBkx7m5sCHPBz9Qx?=
- =?us-ascii?Q?7Ifi/mMTUGGhWwAtcgKfcDB+oDJ4KE6oyPzH0LewX0gxgZxb98j0u8yyWV5I?=
- =?us-ascii?Q?T/sAWZ3xtj+mfQy6YOv4ehFPr2cQKR9UjGMPorwh+SgdrhOCsxmYeClxBeIg?=
- =?us-ascii?Q?R4Mn/TPSEX3eu1uMB7gxIxebXHnsVr7JCRYYdW37wcJdsjfFCbqzOny9yGY4?=
- =?us-ascii?Q?CWvN2dfrb6mbx5MOTGWJLeri4qOxxgJBVeGpwmUT8azb+2zcQXICDqTRHamS?=
- =?us-ascii?Q?D/SkWtoXMXwpC3o2H3IAKRM6M6soj4EsZiYFq2zYzrrYf4igomaqQkRkdywk?=
- =?us-ascii?Q?iHt8LqTa5rUvdrzDlBacnF0cpHKc3cgydd+ILO4emiq5IQONIoEvTedEpLWO?=
- =?us-ascii?Q?uy98whPQmegAAMXa/Szxp9b8USZqBY0FGC/HnTzv4mWAMzxOdjE51o1HU/79?=
- =?us-ascii?Q?8RPSo0aLOFuKZTJy6BnmzAFqkOHNoEfhZMcms7gm2+M2wgEWs/NAJU+94xSm?=
- =?us-ascii?Q?dIfVki7NqsfMwPocaspJ3bRk8H+C+SXb5bTLq4rJJZV530JqaNXBn4YGZpwU?=
- =?us-ascii?Q?oRRZbC6kthgRTjIBty9A/jTHZ6sJGH/GwKeDyYwB777UR1sHZUYx/YcnBoaz?=
- =?us-ascii?Q?RSM3UsQWyV+3IyZjzOTtdTOiFNO2uwR9nmF4OtvBSbVUXfy25YsSw/SfblJE?=
- =?us-ascii?Q?tzj4EKL6yLwz5HJmd5GoK4rDrKL0Bq7VyYG0pyk3W6Ty/hG/kp3lk6fm4dYk?=
- =?us-ascii?Q?WfVGFDOUhRsalT5xvia7r7ByASDRrdKrJEg/CwWrz5h0WZmC/VeVqr5Jqlkq?=
- =?us-ascii?Q?OIUVNaQhwzZDy90lt7aPCd5mNSfD3yYHXgh5b1/wiZxYkZyvMZdMzIDWUlGO?=
- =?us-ascii?Q?NCvcfbtnt73C1+hyGmpKt1QChWEgtqw93SoLobjgj0P1/MvXs54EDbhZDVQo?=
- =?us-ascii?Q?kD5eRYbdr0X0J2G2ILpPv72CstJUr7z+ZazAsqI8b4BWpDzdZGgjBvGCNHJT?=
- =?us-ascii?Q?mZSuDGcp9YQK3x7vhEDM26ulamFrl+W3xoOuw1uLIBurIAUX02Tbqhv5nXe2?=
- =?us-ascii?Q?wfHc3QzHodCu+/Nb2QechmDq+suFm802X5CJv0a8volLWY5DHqo+WJd5lYCT?=
- =?us-ascii?Q?dSF5fsY73xWchzzbJhSzGAKBpz76SZ4uRrm4DDDXdH0FORch7UNabpxXPWuy?=
- =?us-ascii?Q?p7y+D54YeLTfZarybhZi7Fp2TxBVe+Xx3M/Nv/JdogguiLC8ApItsF1avkXh?=
- =?us-ascii?Q?EPF5I2bzPtNuVvmuecqjlFkgN2A/ab3EkuPCme3ydlZzsa0EmxDyuPhWAvaf?=
- =?us-ascii?Q?I5U08GNekRN01oykbfby85hpD6V+j6sRqTdZPDkyPKJ9fGJRc3qtsfWtWbHA?=
- =?us-ascii?Q?C2+dYpVYkq+f2mQ44UbnTrLolLQ6itHO6H1nR2vZNzV6sv8AJ429kpN90U1t?=
- =?us-ascii?Q?DmfPO9f4w71YmtmQvCY=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D65B65194;
+	Thu, 29 Feb 2024 10:42:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.10
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709203379; cv=none; b=LXUJkXc7qNpf27hOvsMcRgaIYaSNSjTlBo/FM9RLw3HoOTmx1ck7nIDMHC75Dyq2iVt8CLj5d0LsHRdTzohfZlmHuNVUuv+LutH140bdc8sFboqbiraq3UswW2xf9NHI6Pa4DGRz+J+w+adZ3hYd67pSAqj9SvKW6gvocSqVUds=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709203379; c=relaxed/simple;
+	bh=JNouPdoVTEuTE81LBouWmA9FUxL2uN52fZs47yUEGEk=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EGn2UY/gtaHCkpwbIp4oPcEupt4CVqipqsA4guwLa0I/rZdM3SqDNZLXxP7LSvAhEdZiUTFhTNckBmpRZlXSH6WmdZmxfGAdJchxhQ1HFNC+5sJomd4+VlPWZVsblJdBiOGX/61vEvLEa2TTQJ6AylP1CdIq5l2cWXImUeeJxmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com; spf=fail smtp.mailfrom=gmail.com; arc=none smtp.client-ip=198.175.65.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=gmail.com
+X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="21121092"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="21121092"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Feb 2024 02:42:57 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="913978666"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="913978666"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Feb 2024 02:42:53 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy.shevchenko@gmail.com>)
+	id 1rfdsH-00000008dzn-2oMr;
+	Thu, 29 Feb 2024 12:42:49 +0200
+Date: Thu, 29 Feb 2024 12:42:49 +0200
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	andrew@lunn.ch, gregory.clement@bootlin.com,
+	sebastian.hesselbarth@gmail.com, ojeda@kernel.org,
+	tzimmermann@suse.de, javierm@redhat.com, robin@protonic.nl,
+	lee@kernel.org, pavel@ucw.cz, devicetree@vger.kernel.org,
+	linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/4] dt-bindings: auxdisplay: Add bindings for generic
+ 7 segment LED
+Message-ID: <ZeBfqTKVLp1YsJJG@smile.fi.intel.com>
+References: <20240227212244.262710-1-chris.packham@alliedtelesis.co.nz>
+ <20240227212244.262710-3-chris.packham@alliedtelesis.co.nz>
+ <20240228140423.GA3307293-robh@kernel.org>
+ <CAHp75VfW0Q7At+JnyWGXP3d=2dfWADRiQ-Z97B2JcZio3A_tyw@mail.gmail.com>
+ <CAMuHMdWgytkANQ19=pSfG7Jpddo7Htgp2P=p7EAVmpWYuGPmCg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fcf7c31a-5477-414e-1802-08dc39117151
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Feb 2024 10:30:25.7529
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WahJIwrTHT/tAdsOH0QzDjCid0Me/j8xma+neQKmknH31ICtXMQ8b7bGpmE8ymPHdmMqb4BOtSkbm2kRGOA6uA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9361
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdWgytkANQ19=pSfG7Jpddo7Htgp2P=p7EAVmpWYuGPmCg@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+
+On Thu, Feb 29, 2024 at 10:23:15AM +0100, Geert Uytterhoeven wrote:
+> On Wed, Feb 28, 2024 at 3:58 PM Andy Shevchenko
+> <andy.shevchenko@gmail.com> wrote:
+> > On Wed, Feb 28, 2024 at 4:04 PM Rob Herring <robh@kernel.org> wrote:
+> > > On Wed, Feb 28, 2024 at 10:22:42AM +1300, Chris Packham wrote:
+
+...
+
+> > > > +  segment-gpios:
+> > > > +    description:
+> > > > +      An array of GPIOs one per segment.
+> > > > +    minItems: 7
+> > >
+> > > How does one know which GPIO is which segment?
+> >
+> > I believe we need just to agree on this. Since anybody can shuffle
+> > GPIOs in the DT, there is no need to support arbitrary orders. And
+> > naturally 'a' is bit 0, 'g' is bit 6, 'dp' bit 7 if present.
+> 
+> Note that there are no bits involved at this level, only GPIO specifiers.
+
+Right, I meant the sequence in the array of GPIOs in the DT.
+I implied that it maps 1:1 to the real bits in HW (in some cases).
+
+-- 
+With Best Regards,
+Andy Shevchenko
 
 
->=20
-> On Wed, Jan 31, 2024 at 01:58:11PM +0800, Xu Yang wrote:
-> > Add JSON metrics for i.MX95 DDR Performane Monitor.
->=20
-> (nit: "Performane" =3D> "Performance" here and in the subject)
-
-Okay.
-
-Thanks,
-Xu Yang
-
->=20
-> Will
 
