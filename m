@@ -1,67 +1,64 @@
-Return-Path: <devicetree+bounces-47416-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47417-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBC2C86D27C
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:41:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2093186D294
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:53:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 07A031C2084D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:41:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF45F1F24864
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:53:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03B80134419;
-	Thu, 29 Feb 2024 18:41:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 012FF13440E;
+	Thu, 29 Feb 2024 18:52:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Vg2Fz+I5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tNvuM8+I"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0C957828D;
-	Thu, 29 Feb 2024 18:41:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C37C9160629;
+	Thu, 29 Feb 2024 18:52:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709232062; cv=none; b=fzupSgJsIwjUTcc7M0mpfzMrYNl4/fOVUPUYXUc4UBDu40ibUku1MufSMz3bB3oTycGDAvvUwg+s+p1DCSgzr1sIbVqCJvui8iJ1dH2pU1Inboyh/r0bHo79cDMAsvKLT/h+vfABqv1otN0cClMn5LyKsdQDx71zwQynO3gGbYw=
+	t=1709232775; cv=none; b=qVygKN7CsMc3LffdHMbCajNS+VF+3Yk6bP7cEALFUvFPwi+LDrzo2Ljty2BoZ655eqfH4CrFa3wIGt47GlryIGuYwRlXUuseDhzXFdNN0TNkXD3BHZSn9HKR8vqVk9I1ZU1+ZUWuRf81bFSDEqOZt41SAQWlh9AcdwgKIvJs0Jo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709232062; c=relaxed/simple;
-	bh=LARb1VnKollaflu2liRF7rfiohyzuPezMY1NfHktn9o=;
+	s=arc-20240116; t=1709232775; c=relaxed/simple;
+	bh=iOuQ3NLogT9DUhHCagui9Zsqnob82CO/bZ+hAddHmV0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BNjcP7KcW+YWO7toHKP7BEL2YBxA/PD3cmViRrQnX5Bd9TPAdlulLxa+x/pbOIvBZysOcqmQrpy/VPaC1D/sn3kAAYwTAYjB+Nd8Z6z9bEQ12zjci2ZmN5Clx6LelFZmT1AHLrfdSw80mO0afidXER0tVns5uFH8erKNyydlI80=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Vg2Fz+I5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E3AACC43399;
-	Thu, 29 Feb 2024 18:40:59 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=tRRLZd/dLseTsHnQ7wigPL2SMqru42lhZXVrrE3V2A75GHzHMVrZBfpxLhmD6UW3KICDdK/cFDxd+BtD9RhBfB6p6q6JLZoJNAZyr010w/rRgMdT5AK9nPHEt9L9lb5NSbwqDqrYBCg6jLHM8Mwavycohn2W3yumlw7/V1PmN5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tNvuM8+I; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59734C433F1;
+	Thu, 29 Feb 2024 18:52:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709232062;
-	bh=LARb1VnKollaflu2liRF7rfiohyzuPezMY1NfHktn9o=;
+	s=k20201202; t=1709232775;
+	bh=iOuQ3NLogT9DUhHCagui9Zsqnob82CO/bZ+hAddHmV0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Vg2Fz+I5TerXTTbwh614asxfjIwLDnuMiI//Pf81lDHGE6i0k+kBn81rPpBVMhZWe
-	 8KvlrkmG7pARys1jzfNZOL7TT/tRbIrtgoCns+X8gB+C3bdDuejTqop08XdG+w9crs
-	 1BrHXWnwxc2404cM2ly43GVEksMY+T2BG8PPeIa21Wl4X6KrOnHWHH/lC3xc3+TMQF
-	 YAnuNG/fU6ow+e83kikS4F4c6OyQr72bM10jOucmLUZ1+TUhmikHAmQTqdu+b1HvW6
-	 CmYww/qlo9sm6ZQtWtbWIChNXSWaa5p9PKQU46/ad9pMLL806rlINmxVu0PWN59+/T
-	 6esQmqFi2sGPA==
-Date: Thu, 29 Feb 2024 18:40:57 +0000
+	b=tNvuM8+IbumeEEu2/usJApVNDKku+NSX689Gbx5KT0ldIbrE7CdXg/5HCMy5SuED1
+	 gZQA+8iFyuieDIj9HkM5Eqn/5LxosMa6yq2udvAWMmZHx7yWofHDHav8SFCEpVg10i
+	 UPCzzxrBweoU5EPTG02X9+2x06wXfDr+AEYjLgGRCnHIpeqqKhQ8YqBYORtKQ0zzz6
+	 WPke1aaNXmL9m2V5Q6Ado9e7F2dy3Ekarze0bKm6dmJ+YIJ63Je46maRWJPHLBv6ym
+	 fyBV3GLBn0q8HN1Y1SdHHMQsNVtzLEWeJSA6NZPTBkScrswa/doyBRJdGX3nxAD3Cn
+	 LkrU62uN9FgZw==
+Date: Thu, 29 Feb 2024 18:52:50 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Marc Gonzalez <mgonzalez@freebox.fr>,
-	Jeff Johnson <quic_jjohnson@quicinc.com>,
-	ath10k <ath10k@lists.infradead.org>,
-	wireless <linux-wireless@vger.kernel.org>,
-	DT <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pierre-Hugues Husson <phhusson@freebox.fr>,
-	Jami Kettunen <jamipkettunen@gmail.com>,
-	Jeffrey Hugo <quic_jhugo@quicinc.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-Message-ID: <20240229-ageless-primal-7a0544420949@spud>
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
- <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
- <871q8wk7o3.fsf@kernel.org>
- <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr>
- <87wmqoilzf.fsf@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] ASoC: dt-bindings: fsl,imx-asrc/spdif: Add
+ power-domains requirement
+Message-ID: <20240229-gladly-morse-28a3a06e8845@spud>
+References: <20240227-asrc_8qxp-v2-0-521bcc7eb1c0@nxp.com>
+ <20240227-asrc_8qxp-v2-1-521bcc7eb1c0@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,49 +66,79 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="cEg17b20MxyCi/dL"
+	protocol="application/pgp-signature"; boundary="xrZyC8VUYzqklLdV"
 Content-Disposition: inline
-In-Reply-To: <87wmqoilzf.fsf@kernel.org>
+In-Reply-To: <20240227-asrc_8qxp-v2-1-521bcc7eb1c0@nxp.com>
 
 
---cEg17b20MxyCi/dL
+--xrZyC8VUYzqklLdV
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Feb 28, 2024 at 06:37:08PM +0200, Kalle Valo wrote:
-> Marc Gonzalez <mgonzalez@freebox.fr> writes:
+On Tue, Feb 27, 2024 at 03:54:09PM -0500, Frank Li wrote:
+> Add power-domains property for asrc and spdif.
 
-> > As mentioned in my other reply, there are several msm8998-based
-> > devices affected by this issue. Is it not appropriate to consider
-> > a kernel-based work-around?
+Is this valid for all compatibles documented in these bindings?
+Also, your $subject says "requirement", but you do not mark these as
+required. Why not?
+
+Cheers,
+Conor.
+
 >=20
-> Sorry, not following you here. But I'll try to answer anyway:
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/sound/fsl,imx-asrc.yaml | 3 +++
+>  Documentation/devicetree/bindings/sound/fsl,spdif.yaml    | 3 +++
+>  2 files changed, 6 insertions(+)
 >=20
-> I have understood that Device Tree is supposed to describe hardware, not
-> software. This is why having this property in DT does not look right
-> place for this. For example, if the ath10k firmware is fixed then DT
-> would have to be changed even though nothing changed in hardware. But of
-> course DT maintainers have the final say.
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,imx-asrc.yaml b/=
+Documentation/devicetree/bindings/sound/fsl,imx-asrc.yaml
+> index bfef2fcb75b14..98616507e3c10 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,imx-asrc.yaml
+> +++ b/Documentation/devicetree/bindings/sound/fsl,imx-asrc.yaml
+> @@ -74,6 +74,9 @@ properties:
+>        - const: asrck_f
+>        - const: spba
+> =20
+> +  power-domains:
+> +    maxItems: 1
+> +
+>    fsl,asrc-rate:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+>      description: The mutual sample rate used by DPCM Back Ends
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b/Doc=
+umentation/devicetree/bindings/sound/fsl,spdif.yaml
+> index 1d64e8337aa4b..82430f1d5e5a2 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+> +++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+> @@ -86,6 +86,9 @@ properties:
+>        registers. Set this flag for HCDs with big endian descriptors and =
+big
+>        endian registers.
+> =20
+> +  power-domains:
+> +    maxItems: 1
+> +
+>  required:
+>    - compatible
+>    - reg
+>=20
+> --=20
+> 2.34.1
+>=20
 
-I dunno, if the firmware affects the functionality of the hardware in a
-way that cannot be detected from the operating system at runtime how
-else is it supposed to deal with that?
-The devicetree is supposed to describe hardware, yes, but at a certain
-point the line between firmware and hardware is invisible :)
-Not describing software is mostly about not using it to determine
-software policy in the operating system.
-
---cEg17b20MxyCi/dL
+--xrZyC8VUYzqklLdV
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeDPuQAKCRB4tDGHoIJi
-0oklAQCb9liXgCtU0yqoCxGYrPtfMDdWh7iUxPWsScbIPS343AD/c6Wr2hVOtmtB
-qj/WEDA/Sdh/5pt/pXxfhjnLYJ4shA4=
-=+qJ3
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeDSgQAKCRB4tDGHoIJi
+0nEKAQC75ySPnVkmXzXAPanKzHsx8/8kj8yWlRUKAoJEv1oycwEAmDYO/yWZJvnA
+5yDq517lBIAwBlPF//RY2lokX/YdJQQ=
+=xvu+
 -----END PGP SIGNATURE-----
 
---cEg17b20MxyCi/dL--
+--xrZyC8VUYzqklLdV--
 
