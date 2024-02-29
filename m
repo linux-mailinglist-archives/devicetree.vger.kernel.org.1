@@ -1,165 +1,173 @@
-Return-Path: <devicetree+bounces-47205-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47204-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 147E586C6C2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:23:08 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 834EC86C6BA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:22:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 61411B2ABD7
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:23:05 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A74C91C20D97
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:22:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D443763518;
-	Thu, 29 Feb 2024 10:22:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5517164CC3;
+	Thu, 29 Feb 2024 10:21:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="a2zshRPY"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Gy02jnUV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2065963116
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 10:22:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 821F364AB6;
+	Thu, 29 Feb 2024 10:21:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709202166; cv=none; b=ZseyMX4x2VR0iZuN5ln4/daJ6ra9psOgBfYBKg9R0zUsZ0MIkfW01zAQJHmFPd2ptdLQPMUHscKlzacf0A2rwqgleMaC8EQ++2AD5Q+Pnfhg5Zd35vfiNT5mvNKzS04HqXGOwH99XG/Mu+pLEurHolHIe/XMp/YhKNi/56dWZVE=
+	t=1709202110; cv=none; b=S1zBuQb6a4Ag5IL89sKwHFsYWkOYcxc2OnHstrsxLtxH7S7YHIiHKB+0CobxrzbMxjzDdW7O9YwyyG9FpDAffJD9kNi/K9J7ab7GoenECO4Lz0jijNbvCVVMfQkrirftv6oegIlvnR/ria1xiZIXRLU2ra3A6Zh4O23KYw4ePIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709202166; c=relaxed/simple;
-	bh=MaQ9Mv8QYIME18GNf0be4zM4+C/H4CeS0OZXsdtIyOo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=IeZt9ovs9R2AOYNTG4jWMWdZqzziP3I3eS/fCy8NwnHcN4PzCQ1dkQa8oVhKjaT48NGSWNhkaRHMu4QavyiMsTh8EUaOabMU+UGHAE0EZL5g/0BRPlAkt6Fm60Ggn+stiEgnZzrNxC9/SN/FjX7HbDrMXWFjbZw5Y4KWjyrYjy4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=a2zshRPY; arc=none smtp.client-ip=209.85.218.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a43fc42e697so99162966b.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 02:22:44 -0800 (PST)
+	s=arc-20240116; t=1709202110; c=relaxed/simple;
+	bh=w3kEVFOrvKCGNI2O50JnYc2GqcNbmvQBLSVNxFfrY9A=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=p7rDbTMkwCY+C9xLdBnZ0oQNA5r+db/I77bJ0JImoHXu0iS3SzchhPNM8h/KqlhOkHrlfvuxrh94t7YwAO+g0VzJ2IlfqSAcfjLhNm315oFu6l8BbIZyQS1ofI6SmbXBT19QZT5ukBuRYd765oX1zRmy9Y1j4G5gLK9o3n706So=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Gy02jnUV; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a28a6cef709so113550866b.1;
+        Thu, 29 Feb 2024 02:21:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709202163; x=1709806963; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=KYLa109PYfpc2X1KXm0iT3BRGz6LhqEOrA1uUvXBoQQ=;
-        b=a2zshRPYd4vMX0H6K8I/M56x+8Q9QW2+bR46lr0pJU2rlXoGtSWytaHUcBIcFz2KHQ
-         rFK04XkD1JsKfHYrhArq7LhydFait1raaDT0kpokkW/Ze2kTLjeras8yJax+/99ZIxkj
-         Y5qi8WQRvfxlm8zowU9Yqd/10P7wK7C6/MrUxoyKCRr7fD9nSX6mNqiPZ1Tr7ty5yHkg
-         8pwQONFGHnWDga44K3lheWWVxdy/Nk0JWxP2LF054l5IU9KDqo58Sx2KIWIGiBV09ww7
-         +EDz4dkJKWVRevlMrp5xUlhm4ZUnvuVBTq8wYAQbzjzWAX9Gj1t4v4eSC1aHcdgRsIul
-         PrHw==
+        d=gmail.com; s=20230601; t=1709202107; x=1709806907; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=w3kEVFOrvKCGNI2O50JnYc2GqcNbmvQBLSVNxFfrY9A=;
+        b=Gy02jnUVGtgp4N1pW3VrDdxMQFyb9rg2ej5AjZotG7ohA6M6Z8D7jxvJ6xdNTQ8MXI
+         rfQ663lm+J1uC9WhcLeM6bpTgTbbbeN9cAkWD2ppLJrYuuaUmd48ssN+0UvL8pJbi7I6
+         STuJKxKcGQlEYMzPqtEhOWOMI1prDB3aggBoTkcnLlflLajMnMPf7MswSXthlDCAc/LO
+         YcwmIzHcgXoE5oR0+sRACDHljZjycnX5Y+3QEMs1HnY1uYVoRm88/VaSNunVa46ARyPR
+         9ZKDLBjPNTaJ750vZFl3efhIldxJ55XErR9WAexne7EApZU4SF0zU6RbNpRdUg0RD97c
+         h54Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709202163; x=1709806963;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KYLa109PYfpc2X1KXm0iT3BRGz6LhqEOrA1uUvXBoQQ=;
-        b=pc1w/fjJAtMGkwEZljRQG9A+Z0XQRjanFsOmygd4PLVAUpQRQVJVUDJrPxvdBHIFMG
-         U5I3rpY+JgKywfHq5e0ka20d52Y37R91dckNQX460+0rJ0FD7vh9PwJF3wYmNirbnrAH
-         6H53Kvka0tBz3DaNEpGXsPhDQoSpJKgqLX3X6/Eaf2IVdmL7syy4g9A/yGvYWd8A2TsZ
-         Z2pTfJrKp5PS2MqW3f2GxsP196p05KmmWNWRCV14tnqsPVuQpU4z5kPM31Hc/fylLNvS
-         iUY1A7+hPW5U1lH2cCQ5neGAsPo1vpiv8kZIR7arp3nznVGIEVUPmZTcFGTWw9FEpe9i
-         97Ng==
-X-Gm-Message-State: AOJu0YxCL0KYoLxWyKBfhnlxj81EULLmJTJehL2kzVFtOqdBTPfj4UhK
-	JapCjULqBmriIWGlP4D3i/AQ0a+L2hmyzMVfpl5ExJCHxQVltgOS+qbSdx+JiEw=
-X-Google-Smtp-Source: AGHT+IFuXYuW+4c64m4/EPkAA09nsb5pyHSscDI6bEIjCs5uDBKvw1XN9RqoO0xiJLXbZ1Nh3adDOg==
-X-Received: by 2002:a17:906:3502:b0:a3d:bb68:be30 with SMTP id r2-20020a170906350200b00a3dbb68be30mr1186181eja.6.1709202163550;
-        Thu, 29 Feb 2024 02:22:43 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id v29-20020a50a45d000000b005649f17558bsm499321edb.42.2024.02.29.02.22.31
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 02:22:42 -0800 (PST)
-Message-ID: <fea97475-e112-476b-9bdb-726b890f9ef2@linaro.org>
-Date: Thu, 29 Feb 2024 11:22:31 +0100
+        d=1e100.net; s=20230601; t=1709202107; x=1709806907;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w3kEVFOrvKCGNI2O50JnYc2GqcNbmvQBLSVNxFfrY9A=;
+        b=Dc5SVTddsfp6AgoLAgiSaj4V6/Sji567QBZ/RMUVLqBAUHMjJyy8NTuP2WEoO2+tle
+         eOI4a5whDfcsDjlTqphIkdrikPPDY5dHtZ2vIdZbHSLWF69AzD1LG08Eq9AgEX8mZhj/
+         f7YIwiouZxeUwTGNqeIogZyeHeu50DKJcjAtIMox+FJWDpDNMFVzWWzfJN5NaZ12Im4l
+         IJFv6ML9n3qg5r8iz6YHrw07wcUWjePEDUkrT6pBiEp758/ACYIRgM6oij2rviXinMZy
+         jIUAOqevdxIA0HVovqHBE/rXeBCIXOTYbRlTezLnJ3UOnFt5FdlIUs4heoYLHokafALl
+         GN+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWgT+6yDFtqqOmoVWfGT2jHfGyLnT/hrM4ak2DQXadgZWZRPGCR3A18I3kfsiqytXbgnS7ArTVPUBVlc0Zn9nVIjwYsOKunRjLfKdsVtNsPllqBrlB4Gcx1Yh65Z2SlijsNIOwTef6Tw1mbWpPybt0/0pbeej8rgl5kObdNucgSgQ==
+X-Gm-Message-State: AOJu0YyliJZ18ngfubmbA0CmosKR+INDGPBqleISak3+jSAie9M9Znb5
+	v8Gg2ZoYwlrjcMjIBPOYr/PDHFhznEMTghiY3CjkeZ+VHv6vPAxj
+X-Google-Smtp-Source: AGHT+IHP6SnZ+t4Rm6KnZQyLCPnDHrCVu8cAcZaXXcHYjJTCsFL5UqAxZ1do7itkDcPWR4ldQU/9Mw==
+X-Received: by 2002:a17:906:b247:b0:a3f:5e8c:8a34 with SMTP id ce7-20020a170906b24700b00a3f5e8c8a34mr1300997ejb.9.1709202106581;
+        Thu, 29 Feb 2024 02:21:46 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
+        by smtp.gmail.com with ESMTPSA id lf12-20020a170906ae4c00b00a3f27031d7bsm530358ejb.104.2024.02.29.02.21.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Feb 2024 02:21:46 -0800 (PST)
+Message-ID: <581fb060128519d29c06f797ee8ec7c8d0e60ca0.camel@gmail.com>
+Subject: Re: [PATCH v2 2/2] of: overlay: Synchronize of_overlay_remove()
+ with the devlink removals
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen
+ <max.zhen@amd.com>, Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini
+ <stefano.stabellini@xilinx.com>, Jonathan Cameron
+ <Jonathan.Cameron@Huawei.com>,  linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>,  Steen Hegelund
+ <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>,  stable@vger.kernel.org
+Date: Thu, 29 Feb 2024 11:25:09 +0100
+In-Reply-To: <20240229111430.54bdb6b1@bootlin.com>
+References: <20240229083953.607569-1-herve.codina@bootlin.com>
+	 <20240229083953.607569-3-herve.codina@bootlin.com>
+	 <c2b830bb4a4cf76dec8783f38b2477120edb1a15.camel@gmail.com>
+	 <20240229111430.54bdb6b1@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add Seeed studio NPi based
- boards
-Content-Language: en-US
-To: Parthiban Nallathambi <parthiban@linumiz.com>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-imx@nxp.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240229082337.3090778-1-parthiban@linumiz.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240229082337.3090778-1-parthiban@linumiz.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 29/02/2024 09:23, Parthiban Nallathambi wrote:
-> NPi i.MX6ULL eMMC/NAND is Seed Studios SoM using i.MX6ULL.
-> Development baords can be either based on NAND or eMMC
-> SoM.
-> 
-> Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
+On Thu, 2024-02-29 at 11:14 +0100, Herve Codina wrote:
+> On Thu, 29 Feb 2024 10:50:21 +0100
+> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+>=20
+> > On Thu, 2024-02-29 at 09:39 +0100, Herve Codina wrote:
+> > > In the following sequence:
+> > > =C2=A0 1) of_platform_depopulate()
+> > > =C2=A0 2) of_overlay_remove()
+> > >=20
+> > > During the step 1, devices are destroyed and devlinks are removed.
+> > > During the step 2, OF nodes are destroyed but
+> > > __of_changeset_entry_destroy() can raise warnings related to missing
+> > > of_node_put():
+> > > =C2=A0 ERROR: memory leak, expected refcount 1 instead of 2 ...
+> > >=20
+> > > Indeed, during the devlink removals performed at step 1, the removal
+> > > itself releasing the device (and the attached of_node) is done by a j=
+ob
+> > > queued in a workqueue and so, it is done asynchronously with respect =
+to
+> > > function calls.
+> > > When the warning is present, of_node_put() will be called but wrongly
+> > > too late from the workqueue job.
+> > >=20
+> > > In order to be sure that any ongoing devlink removals are done before
+> > > the of_node destruction, synchronize the of_overlay_remove() with the
+> > > devlink removals.
+> > >=20
+> > > Fixes: 80dd33cf72d1 ("drivers: base: Fix device link removal")
+> > > Cc: stable@vger.kernel.org
+> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > ---
+> > > =C2=A0drivers/of/overlay.c | 9 ++++++++-
+> > > =C2=A01 file changed, 8 insertions(+), 1 deletion(-)
+> > >=20
+> > > diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> > > index 2ae7e9d24a64..99659ae9fb28 100644
+> > > --- a/drivers/of/overlay.c
+> > > +++ b/drivers/of/overlay.c=C2=A0=20
+> >=20
+> > In the cover, you mention device.h inclusion but I'm not seeing it? Thi=
+s is
+> > clearly up to the DT maintainers to decide but, IMHO, I would very much
+> > prefer
+> > to see fwnode.h included in here rather than directly device.h (so yeah=
+,
+> > renaming the function to fwnode_*). But yeah, I might be biased by own
+> > series :)
+> >=20
+>=20
+> Damned. I missed device.h in this patch.
+> Without this one, the patch do not compile :(
+>=20
+> A fixup commit I missed to squash before sending.
+>=20
+> A v3 is planned to add this device.h.
+>=20
+> Nuno, do you prefer I wait few days before sending this v3 waiting for mo=
+re
+> replies
+> or I send it right now and you re-do your comment on the v3 ?
+>=20
+> I would really prefer to send it now :)
+>=20
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Typically maintainers don't like much of re-spinning versions too fast. Tha=
+t
+said, up to you :). I can copy paste my comments in v3.
 
----
-
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
-
-Best regards,
-Krzysztof
+- Nuno S=C3=A1
 
 
