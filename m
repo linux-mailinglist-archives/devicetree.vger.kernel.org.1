@@ -1,64 +1,66 @@
-Return-Path: <devicetree+bounces-47475-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47476-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D90986D4F3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:51:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E4D186D505
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:53:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1F35E2840EC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:51:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 896B02853F0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:53:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4786274C18;
-	Thu, 29 Feb 2024 20:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44051527BE;
+	Thu, 29 Feb 2024 20:40:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sm3+t92G"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EFQol4sV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A7A374C11;
-	Thu, 29 Feb 2024 20:40:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54E41527B8;
+	Thu, 29 Feb 2024 20:40:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709239232; cv=none; b=eRe3/MFK6IY95k2sW3Gjbm0a91N2ZQJdMxfSQWbbJfwPBqd1BDy2iVvofTtHD99UzD59ew9S2f1nPwWzCRxXXjmHtSHwNWWasjUBXrspP7jv0M6ahE58Q0rMZ6Aw7JGbnW40CG2Luyub5ih/M0iVsSE6pQguN+hmMD7I+4rnDYY=
+	t=1709239245; cv=none; b=WguoM6ysEZpZ9ewgO4j7CbCgNih11Tu8Cv9Ok2ja4Dcj4xwAt0GEhAx9xJWQ6psiQt7nF+2hn43JyXrdALRX7C7JZjQlPkow+VUKR6f7hxkys0TrarfTK5ltGD6vBf3gpcLbuoQQL+XEx/KGqGCdXoxmpWkMFbpIRnXBy4xqRhI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709239232; c=relaxed/simple;
-	bh=n6A4tUBhWX7HwegfEx4yiXj5Dlp8rAGYSamdvQLeZP0=;
+	s=arc-20240116; t=1709239245; c=relaxed/simple;
+	bh=T/akRPi5ao0d12BmCz3WEgH+FPHY9KHNebOOEFBHkBM=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=VAZB/edwHeZasHJG0nldCQBfegzG0o7+GycsRauN5Cc6gNiUrdYxmf7t9zR0So/iyPMsnQGToPui9Q0VsZt0SRT+xpWg6uyAQNBYctjKFDtkIytJNc8m69sDA4Y1USsKMl5ma8gN/byK8wdacjVJMVbHU4fWMsfFn1aCZzPkjhA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sm3+t92G; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98E2EC433C7;
-	Thu, 29 Feb 2024 20:40:30 +0000 (UTC)
+	 MIME-Version; b=R/xOGmfB+TEl71fEVOpK/1Z5KoyZhIZMIMRS/HsmeRwzOG72L7NCki0y8XP/LKkj8VPdSH6+KEuZD0t/fJU3iHGbCj8ZIvf0iYGX9WlIOCdNis8tBrlo1ohOwRJrZKxF4mI2zWBu7WdZCUPlFUE5kexsp7El9w2+VHTS8KX0OTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EFQol4sV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 022D6C433F1;
+	Thu, 29 Feb 2024 20:40:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709239232;
-	bh=n6A4tUBhWX7HwegfEx4yiXj5Dlp8rAGYSamdvQLeZP0=;
+	s=k20201202; t=1709239245;
+	bh=T/akRPi5ao0d12BmCz3WEgH+FPHY9KHNebOOEFBHkBM=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=sm3+t92GnfLErmDqUsdTGMm3eIbFaK9857pqycGgIe68pYPTK/xH2rs2e2bDWXdai
-	 KdWNw1VgTZO/Tlo5k2xxTM2NOlfUwD9wFdnUFKQGXhwoWNKrEToE8SCJc0AfhIup5v
-	 YnY5gWyd+goJhuZ3n8shed4rBFiFX3HBDWPu2R6pfkwrVwM3uL501Y/LIGVbEzdoBF
-	 2ySrYKI6HMSEo2XttKZdIDhlv/lSzFmP9wow4Bh8BB+73k73S0MZvFUO8LYfqZaZuq
-	 JbhWDOfd4sIszjVo7nZpNKapZkUD0fdKokuhzsAazpXfQbDY9LvFMI0zO+IX7woHPZ
-	 KIPxLfPcFhoYA==
+	b=EFQol4sVU2+K8g+pqLmbEc0eSBftT1N/OQVdjBoQHD8OUWSy3KNVThXj4t/Iar+dY
+	 lm9MvfkkypkxUdm7mJhSPsI6a3MF7ptGoteFFCSoVnJ57YudlGN72MVVItxStLqyen
+	 JBzdEeKE8B29IiMX+tYc5RE8KzhCLf9i1Ctnr8s/1ItScvVHX2YPb+cgnjfWUpWKHg
+	 +v+0kJaLIshKRyNcIEkuo56DoXTegBIJOm0kxd18v/Q3+II7V5V/4eF9rzlTqX/D/5
+	 1C9f8lq8+bGSAeIyvt1lnvQgk2GmiEJ18wpwG7f6WAY9V80tirZJrP5pB0avoNTI5M
+	 +F/nWzJ5crBBg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Rob Herring <robh@kernel.org>,
+Cc: Conor Dooley <conor.dooley@microchip.com>,
+	Samuel Holland <samuel.holland@sifive.com>,
 	Sasha Levin <sashal@kernel.org>,
-	magnus.damm@gmail.com,
+	conor@kernel.org,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	linux-renesas-soc@vger.kernel.org,
+	palmer@dabbelt.com,
+	paul.walmsley@sifive.com,
+	aou@eecs.berkeley.edu,
+	linux-riscv@lists.infradead.org,
 	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 22/22] ARM: dts: renesas: rcar-gen2: Add missing #interrupt-cells to DA9063 nodes
-Date: Thu, 29 Feb 2024 15:39:15 -0500
-Message-ID: <20240229203933.2861006-22-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 6.1 04/12] riscv: dts: sifive: add missing #interrupt-cells to pmic
+Date: Thu, 29 Feb 2024 15:40:26 -0500
+Message-ID: <20240229204039.2861519-4-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240229203933.2861006-1-sashal@kernel.org>
-References: <20240229203933.2861006-1-sashal@kernel.org>
+In-Reply-To: <20240229204039.2861519-1-sashal@kernel.org>
+References: <20240229204039.2861519-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,127 +69,32 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.18
+X-stable-base: Linux 6.1.79
 Content-Transfer-Encoding: 8bit
 
-From: Geert Uytterhoeven <geert+renesas@glider.be>
+From: Conor Dooley <conor.dooley@microchip.com>
 
-[ Upstream commit 8c987693dc2d292d777f1be63cb35233049ae25e ]
+[ Upstream commit ce6b6d1513965f500a05f3facf223fa01fd74920 ]
 
-make dtbs_check W=2:
+At W=2 dtc complains:
+hifive-unmatched-a00.dts:120.10-238.4: Warning (interrupt_provider): /soc/i2c@10030000/pmic@58: Missing '#interrupt-cells' in interrupt provider
 
-    arch/arm/boot/dts/renesas/r8a7790-lager.dts:444.11-458.5: Warning (interrupt_provider): /i2c-mux4/pmic@58: Missing '#interrupt-cells' in interrupt provider
-    ...
+Add the missing property.
 
-Fix this by adding the missing #interrupt-cells properties.
-
-Reported-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Link: https://lore.kernel.org/r/a351e503ea97fb1af68395843f513925ff1bdf26.1707922460.git.geert+renesas@glider.be
+Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
+Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/renesas/r8a7790-lager.dts   | 1 +
- arch/arm/boot/dts/renesas/r8a7790-stout.dts   | 1 +
- arch/arm/boot/dts/renesas/r8a7791-koelsch.dts | 1 +
- arch/arm/boot/dts/renesas/r8a7791-porter.dts  | 1 +
- arch/arm/boot/dts/renesas/r8a7792-blanche.dts | 1 +
- arch/arm/boot/dts/renesas/r8a7793-gose.dts    | 1 +
- arch/arm/boot/dts/renesas/r8a7794-alt.dts     | 1 +
- arch/arm/boot/dts/renesas/r8a7794-silk.dts    | 1 +
- 8 files changed, 8 insertions(+)
+ arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/renesas/r8a7790-lager.dts b/arch/arm/boot/dts/renesas/r8a7790-lager.dts
-index 5ad5349a50dc9..ab7e9fa90b9fe 100644
---- a/arch/arm/boot/dts/renesas/r8a7790-lager.dts
-+++ b/arch/arm/boot/dts/renesas/r8a7790-lager.dts
-@@ -437,6 +437,7 @@ pmic@58 {
- 			interrupt-parent = <&irqc0>;
- 			interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
- 			interrupt-controller;
-+			#interrupt-cells = <2>;
- 
- 			rtc {
- 				compatible = "dlg,da9063-rtc";
-diff --git a/arch/arm/boot/dts/renesas/r8a7790-stout.dts b/arch/arm/boot/dts/renesas/r8a7790-stout.dts
-index fe14727eefe1e..25956661a8754 100644
---- a/arch/arm/boot/dts/renesas/r8a7790-stout.dts
-+++ b/arch/arm/boot/dts/renesas/r8a7790-stout.dts
-@@ -332,6 +332,7 @@ pmic@58 {
- 		interrupt-parent = <&irqc0>;
- 		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
- 		interrupt-controller;
-+		#interrupt-cells = <2>;
- 
- 		onkey {
- 			compatible = "dlg,da9063-onkey";
-diff --git a/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts b/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
-index 26a40782cc899..4a76be68887b4 100644
---- a/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
-+++ b/arch/arm/boot/dts/renesas/r8a7791-koelsch.dts
-@@ -800,6 +800,7 @@ pmic@58 {
- 		interrupt-parent = <&irqc0>;
- 		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
- 		interrupt-controller;
-+		#interrupt-cells = <2>;
- 
- 		rtc {
- 			compatible = "dlg,da9063-rtc";
-diff --git a/arch/arm/boot/dts/renesas/r8a7791-porter.dts b/arch/arm/boot/dts/renesas/r8a7791-porter.dts
-index ec0a20d5130d6..fcc9a2313e1df 100644
---- a/arch/arm/boot/dts/renesas/r8a7791-porter.dts
-+++ b/arch/arm/boot/dts/renesas/r8a7791-porter.dts
-@@ -389,6 +389,7 @@ pmic@5a {
- 		interrupt-parent = <&irqc0>;
- 		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
- 		interrupt-controller;
-+		#interrupt-cells = <2>;
- 
- 		watchdog {
- 			compatible = "dlg,da9063-watchdog";
-diff --git a/arch/arm/boot/dts/renesas/r8a7792-blanche.dts b/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
-index 6a83923aa4612..20963c9bbf0ad 100644
---- a/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
-+++ b/arch/arm/boot/dts/renesas/r8a7792-blanche.dts
-@@ -330,6 +330,7 @@ pmic@58 {
- 		interrupt-parent = <&irqc>;
- 		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
- 		interrupt-controller;
-+		#interrupt-cells = <2>;
- 
- 		rtc {
- 			compatible = "dlg,da9063-rtc";
-diff --git a/arch/arm/boot/dts/renesas/r8a7793-gose.dts b/arch/arm/boot/dts/renesas/r8a7793-gose.dts
-index 79b537b246426..9358fc7d0e9f6 100644
---- a/arch/arm/boot/dts/renesas/r8a7793-gose.dts
-+++ b/arch/arm/boot/dts/renesas/r8a7793-gose.dts
-@@ -735,6 +735,7 @@ pmic@58 {
- 		interrupt-parent = <&irqc0>;
- 		interrupts = <2 IRQ_TYPE_LEVEL_LOW>;
- 		interrupt-controller;
-+		#interrupt-cells = <2>;
- 
- 		rtc {
- 			compatible = "dlg,da9063-rtc";
-diff --git a/arch/arm/boot/dts/renesas/r8a7794-alt.dts b/arch/arm/boot/dts/renesas/r8a7794-alt.dts
-index 4d93319674c6e..3a9db455ddec9 100644
---- a/arch/arm/boot/dts/renesas/r8a7794-alt.dts
-+++ b/arch/arm/boot/dts/renesas/r8a7794-alt.dts
-@@ -458,6 +458,7 @@ pmic@58 {
- 		interrupt-parent = <&gpio3>;
- 		interrupts = <31 IRQ_TYPE_LEVEL_LOW>;
- 		interrupt-controller;
-+		#interrupt-cells = <2>;
- 
- 		rtc {
- 			compatible = "dlg,da9063-rtc";
-diff --git a/arch/arm/boot/dts/renesas/r8a7794-silk.dts b/arch/arm/boot/dts/renesas/r8a7794-silk.dts
-index b7af1befa126b..b825f2e25dd06 100644
---- a/arch/arm/boot/dts/renesas/r8a7794-silk.dts
-+++ b/arch/arm/boot/dts/renesas/r8a7794-silk.dts
-@@ -424,6 +424,7 @@ pmic@58 {
- 		interrupt-parent = <&gpio3>;
- 		interrupts = <31 IRQ_TYPE_LEVEL_LOW>;
+diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+index 07387f9c135ca..72b87b08ab444 100644
+--- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
++++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
+@@ -123,6 +123,7 @@ pmic@58 {
+ 		interrupt-parent = <&gpio>;
+ 		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
  		interrupt-controller;
 +		#interrupt-cells = <2>;
  
