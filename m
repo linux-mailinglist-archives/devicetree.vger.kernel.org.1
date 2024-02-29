@@ -1,161 +1,161 @@
-Return-Path: <devicetree+bounces-47251-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47252-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFE3B86C8FA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:18:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD0C386C925
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:24:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3188C1F23D03
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 12:18:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F0663B2150E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 12:24:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60A857CF05;
-	Thu, 29 Feb 2024 12:18:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C92337D077;
+	Thu, 29 Feb 2024 12:24:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="IH3OE8JS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vUeuY6m5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 40D197CF36;
-	Thu, 29 Feb 2024 12:18:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25EFE7AE4A
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 12:24:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709209102; cv=none; b=tBkGdz+23UYNkmnG1XCugqBW0GwbJd7/zjAjzZql39izeMApN2iyA0WmXuYhBAavGIRT+jHii94Nt5f4YgDEhdlx6FmRk+fATjwSECMSBKpmqYr7Y4Gy0lFRwQsv7TcX9zRpQl2s1KxbnjcCUHVlGRQDo+UQR5NdeHe+LkzMX74=
+	t=1709209465; cv=none; b=oBbZUK0MG0SG/ZnzSF4ObloX97a7BGDvTwBJ1vEDLonhrsIjt3qHKV3NtAJh4cfQPlNUNKtQ2wQEDRKPC3rsCKqjmOTkuCYqsW+E2WvS+Ba2i/FMPcYznlvTkyy5oHerHMnIyb7l68GNxB8OFFev1eAd5SURTl74vZLoPjjs1Uc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709209102; c=relaxed/simple;
-	bh=8Eelp2TJHh8fMmaYaoIG0d+mIvZQwLFJthLx9DhOBLg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
-	 References:In-Reply-To; b=Ip0fJ9t44tOw2MzgmEqROg+gRRP2vS436OH4V3AtPLe7zuJFLywMEyTK9k9YWk6ZeiAONJxMZYx6gRYMOqOTSNYFDB0yZC+U3UwzPw2s9ga4UhDEf+rOjn4mk3b4NYn58QTQ0o+PDhIWRP3Zm0afdq4LI70zoSur3fe5nf2x1bk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=IH3OE8JS; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id C64F31BF20A;
-	Thu, 29 Feb 2024 12:18:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709209089;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=rivbcy22OyT/FZEzxvNP0xJkQRC61DIMcbwv6BnP3xA=;
-	b=IH3OE8JSAMKn+Ls6dirQEB0XuO2Y6HcF9GIJPUJoHwnocUzLz7Ez1whX6c3fgNaTzwz6W4
-	NSefEg/uekQgeRhfCZOQuVsTXCrbS7xgiAJOy+RYmvY7f6a9uIQEqInD1RHHK2nt9Xyt2p
-	SsJSO4zrN3IwB38ObMZ5Ynu417CznPxN2vQKd12LMYDmAI8bA2laQiALFUAWDRJaS/BPHE
-	Z/4VCACO8BMVmQZy0aJND/4zDvsgv43KhtR0EwjOo0tDwGEM0zmptCMTQsd8pCuT07bfxq
-	MBzMHCxh6oJLiIaPh2Q4jxl9Hxlnd12EtMfGqhaT5GVGLJShK8gIFkdxHpgoEw==
+	s=arc-20240116; t=1709209465; c=relaxed/simple;
+	bh=UVFj3luf/OuM91FWElqtuQGNABlen1dm7mEO60GN/Ck=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dv40LJKbU8ttyoYYfieJDYei0orngDra6nM/JI1QNSgBHnh9ohkdQdaYeqKxLW7PHCfGbenNdInDbYmsiGC+FMNSXot66UlkGjW+JdSG2EVw5iFp2Swtvf4eVliIGqwIUJh6WNTu8R8GRl+Riq/atdhX4Cbkv0zlOMOrM8BOnxc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vUeuY6m5; arc=none smtp.client-ip=209.85.214.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1db6e0996ceso7434535ad.2
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 04:24:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709209463; x=1709814263; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=z/nBppKZ3Dwmy8fY3Oq9whnruT6TOvjmy9666RwwKe0=;
+        b=vUeuY6m54i2RXwqNUpa3DRH9yf2SGJ1QsgZGKwt901bYIxqhDFvWajcxzzl9BaiCOp
+         N5r1lq4dZPQkO8e5QbgYfEePBy07meISMpPwkTz56WXaMCrvJ2Ndl5C17ttQmRJwB0HT
+         wt4gXP7zyIEW7u5gprwBJmAz+/Y1Y1nqxDKQVx9opqGrg9xK1cxTE/LGcxPIpuQBOwfW
+         iNzyhxYZo5+rb91/ridfsXOdGZeQ2XJ0MmGZUSZprcq/xJnO9l0TvaZ1QWtQhZ5tDa1R
+         iyzah07ay0IR0MeKSWNYoecN8yYvjBvVVKg9McvZT1StV016D5/B2dCnFx+gxDqq5eob
+         FLRw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709209463; x=1709814263;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=z/nBppKZ3Dwmy8fY3Oq9whnruT6TOvjmy9666RwwKe0=;
+        b=OGCYjFGNxsjkwFpfaIGq+VzuTmHCKTa3+RJWNmGUtFJG0+kiIB6stehwZ6/1HLrJl4
+         /DTlev04mPWDephGgdxQr88cwi/JdF10NFuWoA4BDj9avXHMvCARq3UiIE4e76cofo3R
+         O4Na4/gQmG/ms4U+vSmaDOzFECle8yw2lxHPADfWUUXfC6pE40zZObKVSa584nunwtl5
+         vqHPEMQ/N/g0xLEr65vJAiRgthbMWhWPsZiaFsmW5zE8Ew+awcWY2dQsCq4mKD4F5AxA
+         AgmGuVtH9cP3BzNb1w4MEwaZPxtW5jch1c0UorgqHitsIMIAkfKwcQjFxgMeU54RdFzI
+         b41A==
+X-Forwarded-Encrypted: i=1; AJvYcCVHDXtxWVChTb/LhAsy7epXk5mMG6QWOcTyyyj+ILKaA4Pt/TnyajNiyxDXrsn0j/75tmOQYSdR960BynQXpXTDNmLVbH7Uk67Bqg==
+X-Gm-Message-State: AOJu0YxeVQmXdj+k9RU2Pbsk/DjZtKbrlwN23Jgb0VkUzElh/OOt0ocI
+	mHh7BBhocl/Hc7W52EOhNufEj9EerJQf6jgkEG9hEU4I3V3jv893k/zT5RamuA==
+X-Google-Smtp-Source: AGHT+IFEVW7Kzc/Sh0a1jwwbAk+Ml43zuYzKP023Jb88MYhJZ9kS3njjyEQ94jUlpEOmUZuJeABesQ==
+X-Received: by 2002:a17:902:db0e:b0:1dc:c9a8:f164 with SMTP id m14-20020a170902db0e00b001dcc9a8f164mr2074075plx.2.1709209463511;
+        Thu, 29 Feb 2024 04:24:23 -0800 (PST)
+Received: from thinkpad ([120.138.12.68])
+        by smtp.gmail.com with ESMTPSA id u16-20020a170902e81000b001dcc1a4631bsm1331627plg.2.2024.02.29.04.24.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Feb 2024 04:24:23 -0800 (PST)
+Date: Thu, 29 Feb 2024 17:54:16 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Bjorn Helgaas <helgaas@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and
+ GICv3 ITS enable
+Message-ID: <20240229122416.GD2999@thinkpad>
+References: <20240223152124.20042-1-johan+linaro@kernel.org>
+ <20240228220843.GA309344@bhelgaas>
+ <20240229100853.GA2999@thinkpad>
+ <ZeBbrJhks46XByMD@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 29 Feb 2024 13:18:08 +0100
-Message-Id: <CZHK1ZCSROM5.X4WYN7SAZJTH@bootlin.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v8 04/10] reset: eyeq5: add platform driver
-Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
- <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Vladimir
- Kondratiev" <vladimir.kondratiev@mobileye.com>,
- <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
-To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
-X-Mailer: aerc 0.15.2
-References: <20240227-mbly-clk-v8-0-c57fbda7664a@bootlin.com>
- <20240227-mbly-clk-v8-4-c57fbda7664a@bootlin.com>
- <Zd4bbCsY54XEnvJM@smile.fi.intel.com>
- <CZGVIWR4H4DE.3M5H3H99X0QPT@bootlin.com>
- <ZeBo4N204gLO0eUd@smile.fi.intel.com>
-In-Reply-To: <ZeBo4N204gLO0eUd@smile.fi.intel.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZeBbrJhks46XByMD@hovoldconsulting.com>
 
-Hello,
+On Thu, Feb 29, 2024 at 11:25:48AM +0100, Johan Hovold wrote:
+> On Thu, Feb 29, 2024 at 03:38:53PM +0530, Manivannan Sadhasivam wrote:
+> > On Wed, Feb 28, 2024 at 04:08:43PM -0600, Bjorn Helgaas wrote:
+> > > On Fri, Feb 23, 2024 at 04:21:12PM +0100, Johan Hovold wrote:
+> 
+> > > > Johan Hovold (12):
+> > > >   dt-bindings: PCI: qcom: Allow 'required-opps'
+> > > >   dt-bindings: PCI: qcom: Do not require 'msi-map-mask'
+> > > >   dt-bindings: PCI: qcom: Allow 'aspm-no-l0s'
+> > > >   PCI: qcom: Add support for disabling ASPM L0s in devicetree
+> > > 
+> > > The ASPM patches fix a v6.7 regression, so it would be good to fix
+> > > that in v6.8.
+> > > 
+> > > Mani, if you are OK with them, I can add them to for-linus for v6.8.  
+> > > 
+> > > What about the 'required-opps' and 'msi-map-mask' patches?  If they're
+> > > important, I can merge them for v6.8, too, but it's late in the cycle
+> > > and it's not clear from the commit logs why they shouldn't wait for
+> > > v6.9.
+> > > 
+> > 
+> > I'm checking with Qcom HW team on the ASPM behavior. So please hold off the ASPM
+> > related patches until I get an answer. But 'required-opps' and 'msi-map-mask'
+> > patches can be applied for 6.9 (not strictly fixing anything in 6.8).
+> 
+> As I mentioned, the 'required-opps' binding update is needed to fix the
+> missing OPP vote so blocking the binding patch would block merging the
+> DT fix which could otherwise go into 6.8.
+> 
 
-On Thu Feb 29, 2024 at 12:22 PM CET, Andy Shevchenko wrote:
-> On Wed, Feb 28, 2024 at 06:04:47PM +0100, Th=C3=A9o Lebrun wrote:
-> > On Tue Feb 27, 2024 at 6:27 PM CET, Andy Shevchenko wrote:
-> > > On Tue, Feb 27, 2024 at 03:55:25PM +0100, Th=C3=A9o Lebrun wrote:
->
-> ...
->
-> > > > +	u32 offset =3D id & GENMASK(7, 0);
-> > > > +	u32 domain =3D id >> 8;
-> > >
-> > > Perhaps
-> > >
-> > > 	u32 offset =3D (id & GENMASK(7, 0)) >> 0;
-> > > 	u32 domain =3D (id & GENMASK(31, 8)) >> 8;
-> > >
-> > > for better understanding the split?
-> >=20
-> > Do the additional zero-bit-shift and GENMASK() help understanding? My
-> > brain needs time to parse them to then notice they do nothing and
-> > simplify the code in my head, back to the original version.
->
-> In my opinion yes, as you exactly showing the split.
-> But. The better is to use FIELD_GET().
+I agree that the fix gets the priority. But some maintainers perfer to merge fix
+patches _only_ if they are fixing the issue introduced in the ongoing release.
+But if Bjorn has no issues in merging these for 6.8, then it is fine.
 
-I'll go with the FIELD_GET() option!
+> The 'msi-map-mask' is arguably a fix of the binding which should never
+> have had that property, but sure, it's strictly only needed for 6.9.
+> 
+> And Bjorn A has already checked with the Qualcomm PCI team regarding
+> ASPM. It's also been two weeks since you said you were going to check
+> with your contacts. Is it really worth waiting more for an answer from
+> that part of the team? We can always amend the ASPM fixes later when/if
+> we learn more.
+> 
+> Note that this is also a blocker for merging ITS support for 6.9.
+> 
 
-[...]
+I got it, but we cannot just merge the patches without finding the rootcause. I
+heard from Qcom that this AER error could also be due to PHY init sequence as
+spotted on some other platforms, so if that is the case then the DT property is
+not correct.
 
->
-> > > > +	priv->rcdev.of_node =3D np;
-> > >
-> > > It's better to use device_set_node().
-> >=20
-> > I don't see how device_set_node() can help? It works on struct device
-> > pointers. Here priv->rcdev is a reset_controller_dev struct. There are
-> > no users of device_set_node() in drivers/reset/.
->
-> No users doesn't mean it's good. The API is relatively "new" and takes
-> care of two things:
-> 1) it uses agnostic interface;
-> 2) it doesn't require any firmware node direct dereference.
->
-> The 2) is most important here as allows us to refactor (firmware node) co=
-de
-> in the future.
+Since this is not the hot target now (for Qcom), it takes time to check things.
 
-I think I get the point of device_set_node(). I still do not understand
-how it could help me fill the ->of_node field in a reset_controller_dev
-structure?
+- Mani
 
-Should I be using device_set_node() to fill the struct device pointer
-and the reset subsystem, by some magic, will pick this up and use it
-for its own of_node field? I've not seen any magic/code doing that.
-
-[...]
-
-> > > > +		priv->rcdev.nr_resets +=3D __builtin_popcount(eq5r_valid_masks[i=
-]);
-> > >
-> > > Please, use corresponding hweightXX() API.
-> >
-> > Noted. I did not find this keyword even though I searched quite a bit
-> > for it. "popcount" sounds more logical to me. :-)
->
-> Hmm... But it's fundamental, it's called Hamming weight.
-> https://en.wikipedia.org/wiki/Hamming_weight
-
-Makes sense now. I've always called it population count following the
-name of the matching instruction on x86 (and I believe other ISAs). TIL.
-
-Regards,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
