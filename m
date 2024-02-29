@@ -1,74 +1,69 @@
-Return-Path: <devicetree+bounces-47408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 064FC86D1D4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:16:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C16986D1E0
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:17:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 944161F26732
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:16:18 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FA671C22927
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:17:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 516C27D06F;
-	Thu, 29 Feb 2024 18:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2080757E6;
+	Thu, 29 Feb 2024 18:17:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ruhl0gIg"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="EBL6aSs6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7541F7A15A
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 18:15:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2B944AEEC;
+	Thu, 29 Feb 2024 18:17:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709230539; cv=none; b=SLS1DpLLbrqumBSdPAumuYlhizHQgTOHdUx6/YgnsB/nIVH4WWu4PKha8WDYN8YbaE54QV8p4HfLoKE7OkMSlmjLC7spvk3L+DbZoW4jxD0mBpxuqWdSSRVjhFQGENP+TPdiSyOLSNFWkfwjc7lJjkkBzWUDkqKFN7xO4Z2ep70=
+	t=1709230644; cv=none; b=XRrrPnz5T/01cWSsaOeAoWgR+FRKHkklDcRwqXmGx8g7FOPkonNoglFTzI/r8WpFTaRerYgvp2BjiZj52qc1QT6WqxeXAVs/Pf7pfHdfHm+pYV9zpYriT7aj4zMuEI/ePCQqnmvXp8VWQNxHye/5zaSFtzFwaBAtCypiseWoiLA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709230539; c=relaxed/simple;
-	bh=Q3jL8Rb35+E9HbPrXye9ZFLN9pp0nAFTSj5e5nQFR5Q=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tQ9Uw94DLb2OobIWRplmK87ZvHNA1Zw0KRMiXgLG1TnrPXGbys3vFodPQnlt6+1CsvdX4/LKogOK3kYufAR7X8AQ8sYymAJjI4qT7tiRCaIM9L4hfApXIn3IQtsNXP8Yr2CXoU+Zkqxs0gcSWngW2JPN+kFvJe2kMFd8bOgJTEY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ruhl0gIg; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a44628725e3so82697766b.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 10:15:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709230536; x=1709835336; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lJj8CibPtiDGTyDdaOYw2qAPSJgtV7hnAYPGEUYzkb4=;
-        b=ruhl0gIgHEtfw6Ey+baCLo6AmwqEd/hUjqS5OQ3YPOz6VamHj0rsNZciV6B2M/Wj7g
-         GIC8QQFLTWtI8t+14dCHxhQJhAO6VZUVNxWcQT+Lgn9AReArqW+EFEej4Y8t3fuAXNWx
-         E9JipGOchhYvxAwN29UtfkOG2ZHxADFZGCUzZuxEVUJQUUSFuiFsxvN7H8T0jglyKJUK
-         q/qgQym1B/Rud3YqGlWR2O29u0goxE6DhiNacEIJo2fjb1e2heoxU77h9+8nF+tk0Fi7
-         F5WxKexiO7Z1YqZStD5kDRnM3A4flMI1/Sh8RfCJHVzISOWz7BI0uoaL9KWqK03y1cKA
-         2reQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709230536; x=1709835336;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lJj8CibPtiDGTyDdaOYw2qAPSJgtV7hnAYPGEUYzkb4=;
-        b=WFdLdxZ/y0WxISO/hWwWVniTpluhJFixCG+1ApRoBdrGg+B/SbUCRF1BVPs7iH9zJD
-         2LngVOaFkghms/YtIo+u42ZPZytTNkL3tGE/1bYBVAy7e2tj6eoYJqNKRKAq2vH+0P2V
-         TkcK14BGquf0l3as4ee74/2EK7+kK4zXZWZpyXDfYk7/CkvMf6bpE/gPfqBjk31bzpIZ
-         WNXY8LdvEqEyANvrOGpmSSjUVBPx728eS00cJ/i6Cix48Rg/ZSVvbw3PHK3xp2tM8Pw8
-         GOgmu3oAuJLZ0YjyP+dqEY8tziDZJ0ky6zd2alVceOgHNh6z82wUt8SaWBov7rlUz+Jz
-         LddQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVpu18m8YBQtWgG+w9s5iIY5h0X73nrIzmSUYOCx0eJ8EnG9c3t7tX8b6ezNdI9lkeBsPhZjvalqSCb6G8oiMlcLx254ySL5xPQzQ==
-X-Gm-Message-State: AOJu0YysCOKK8K/XhXezI68o0v+Lmboz+1kc3QeTAekeZOfddWL8lxFe
-	n7CzDmJSEF3S+g//qkHeNDSR/vKcRL21HiX2Ktj+K4WAh5FeQVSAo5mxHttUgFo=
-X-Google-Smtp-Source: AGHT+IFwraYz08DtS7ouTn6NlMiu1ZRPB+bcAgMZrz+0gMXTVRDI94gjd9ajv9FZHvR0E4ZkA16HzA==
-X-Received: by 2002:a17:906:b891:b0:a43:f170:bbdb with SMTP id hb17-20020a170906b89100b00a43f170bbdbmr2175503ejb.71.1709230535936;
-        Thu, 29 Feb 2024 10:15:35 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id a9-20020a170906244900b00a43ab37c3besm906314ejb.195.2024.02.29.10.15.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 10:15:35 -0800 (PST)
-Message-ID: <df7f2b66-fd16-433a-b55b-ea8dc807fd96@linaro.org>
-Date: Thu, 29 Feb 2024 19:15:34 +0100
+	s=arc-20240116; t=1709230644; c=relaxed/simple;
+	bh=gVWnyeLttRqbwl+MfKUbNp/yMoCxMOTOOn8ebOi0wgE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=b14cTQHpX7waSKsUE00l6sxzBTpUO0CqOZhQkECCtNJ5CygXWLTWMtzCahA0tnXuZ//yWfKQGhZS6zu5LawfgCfI/bSbv6drLVW2zUPWX8rZd9i9K7c//4iqfulBvcaMGzZfiVhtUGVru0xFJqo1928jvUq7giqi3t+sRBh+tVg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=EBL6aSs6; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41THNXqn021497;
+	Thu, 29 Feb 2024 19:17:04 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=zxYgXpzGYYTOQBqsUdFoxdHmkz5QZQFIXUF2RO1KJJo=; b=EB
+	L6aSs6FuqIoR1n4E/xxLQJr9nBaWPdMbEbhWuPHy85GB3ANQvHkjiRyXGTNFFIyD
+	+h30kJMSGOD0yLUwia9gBXhc7P18pM2jVhrYdmYEtJk4NkU1xjyk1QzKBtQQiw0S
+	kxA8atR9HKlFkhyMc7v46shcJlYMNy22D6H9/ipaPVNKcg+C2Tjabbd82kfp4zwS
+	ps/HmiHLnBYeDsb24I/ZvosGkADmjSIcpDe8ZOjPa/j3DCDkmMaL4Bv4d3K/Pt3s
+	neuG85VRtN4xrwm6moK3UDjSkldsVHL17bFiAjU7D6qD+MV/0BZ6WuBeKO8dyCv6
+	hQ3t41J5Ip1bCmWjmpxg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3whf4bkxs3-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Feb 2024 19:17:04 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id C160E40046;
+	Thu, 29 Feb 2024 19:17:00 +0100 (CET)
+Received: from Webmail-eu.st.com (eqndag1node4.st.com [10.75.129.133])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0AEEE2A470D;
+	Thu, 29 Feb 2024 19:16:11 +0100 (CET)
+Received: from SAFDAG1NODE1.st.com (10.75.90.17) by EQNDAG1NODE4.st.com
+ (10.75.129.133) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 29 Feb
+ 2024 19:16:10 +0100
+Received: from [10.201.21.20] (10.201.21.20) by SAFDAG1NODE1.st.com
+ (10.75.90.17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 29 Feb
+ 2024 19:16:10 +0100
+Message-ID: <429d5df5-ab41-408b-a50a-2388f2efc92b@foss.st.com>
+Date: Thu, 29 Feb 2024 19:16:09 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,89 +71,311 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] arm64: dts: imx8mn: Use single port for ISI
+Subject: Re: [PATCH v3 7/7] remoteproc: stm32: Add support of an OP-TEE TA to
+ load the firmware
 Content-Language: en-US
-To: Adam Ford <aford173@gmail.com>,
- Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org
-References: <20240223140445.1885083-1-alexander.stein@ew.tq-group.com>
- <20240223140445.1885083-4-alexander.stein@ew.tq-group.com>
- <CAHCN7xJ7uGXL6BF7CCvtqVQHy8X+x5nxJc+HS2_Mkd=EBT2g5Q@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAHCN7xJ7uGXL6BF7CCvtqVQHy8X+x5nxJc+HS2_Mkd=EBT2g5Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+To: Mathieu Poirier <mathieu.poirier@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Jens Wiklander
+	<jens.wiklander@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-remoteproc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <op-tee@lists.trustedfirmware.org>, <devicetree@vger.kernel.org>
+References: <20240214172127.1022199-1-arnaud.pouliquen@foss.st.com>
+ <20240214172127.1022199-8-arnaud.pouliquen@foss.st.com>
+ <ZdeaUGpWlqGOG31u@p14s> <609373ba-c81d-4aee-81cb-8628e2c6897b@foss.st.com>
+ <Zdjl6Z2ktTwi+oWp@p14s>
+From: Arnaud POULIQUEN <arnaud.pouliquen@foss.st.com>
+Organization: STMicroelectronics
+In-Reply-To: <Zdjl6Z2ktTwi+oWp@p14s>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE4.st.com (10.75.129.82) To SAFDAG1NODE1.st.com
+ (10.75.90.17)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-29_04,2024-02-29_01,2023-05-22_02
 
-On 23/02/2024 16:29, Adam Ford wrote:
-> On Fri, Feb 23, 2024 at 8:09 AM Alexander Stein <
-> alexander.stein@ew.tq-group.com> wrote:
-> 
->> The ISI on i.MX8M Nano only has one port/channel, so use the single port
->> node. Fixes the DTBS_CHECK warning:
->> /soc@0/bus@32c00000/isi@32e20000/ports: graph node has single child node
->> 'port@0', #address-cells/#size-cells are not necessary
+
+
+On 2/23/24 19:37, Mathieu Poirier wrote:
+> On Fri, Feb 23, 2024 at 02:54:13PM +0100, Arnaud POULIQUEN wrote:
+>> Hello Mathieu,
+>>
+>> On 2/22/24 20:02, Mathieu Poirier wrote:
+>>> Hi,
+>>>
+>>> On Wed, Feb 14, 2024 at 06:21:27PM +0100, Arnaud Pouliquen wrote:
+>>>> The new TEE remoteproc device is used to manage remote firmware in a
+>>>> secure, trusted context. The 'st,stm32mp1-m4-tee' compatibility is
+>>>> introduced to delegate the loading of the firmware to the trusted
+>>>> execution context. In such cases, the firmware should be signed and
+>>>> adhere to the image format defined by the TEE.
+>>>>
+>>>> A new "to_attach" field is introduced to differentiate the use cases
+>>>> "firmware loaded by the boot stage" and "firmware loaded by the TEE".
+>>>>
+>>>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@foss.st.com>
+>>>> ---
+>>>> V2 to V3 update:
+>>>> - remove stm32_rproc_tee_elf_sanity_check(), stm32_rproc_tee_elf_load()
+>>>>   stm32_rproc_tee_elf_find_loaded_rsc_table() and  stm32_rproc_tee_start() that are bnow unused
+>>>> - use new rproc::alt_boot field to sepcify that the alternate fboot method is used
+>>>> - use stm32_rproc::to_attach field to differenciate attch mode from remoteproc tee boot mode.
+>>>> - remove the used of stm32_rproc::fw_loaded
+>>>> ---
+>>>>  drivers/remoteproc/stm32_rproc.c | 85 +++++++++++++++++++++++++++++---
+>>>>  1 file changed, 79 insertions(+), 6 deletions(-)
+>>>>
+>>>> diff --git a/drivers/remoteproc/stm32_rproc.c b/drivers/remoteproc/stm32_rproc.c
+>>>> index fcc0001e2657..9cfcf66462e0 100644
+>>>> --- a/drivers/remoteproc/stm32_rproc.c
+>>>> +++ b/drivers/remoteproc/stm32_rproc.c
+>>>> @@ -20,6 +20,7 @@
+>>>>  #include <linux/remoteproc.h>
+>>>>  #include <linux/reset.h>
+>>>>  #include <linux/slab.h>
+>>>> +#include <linux/tee_remoteproc.h>
+>>>>  #include <linux/workqueue.h>
+>>>>  
+>>>>  #include "remoteproc_internal.h"
+>>>> @@ -49,6 +50,9 @@
+>>>>  #define M4_STATE_STANDBY	4
+>>>>  #define M4_STATE_CRASH		5
+>>>>  
+>>>> +/* Remote processor unique identifier aligned with the Trusted Execution Environment definitions */
+>>>> +#define STM32_MP1_M4_PROC_ID    0
+>>>> +
+>>>>  struct stm32_syscon {
+>>>>  	struct regmap *map;
+>>>>  	u32 reg;
+>>>> @@ -90,6 +94,8 @@ struct stm32_rproc {
+>>>>  	struct stm32_mbox mb[MBOX_NB_MBX];
+>>>>  	struct workqueue_struct *workqueue;
+>>>>  	bool hold_boot_smc;
+>>>> +	bool to_attach;
+>>>> +	struct tee_rproc *trproc;
+>>>>  	void __iomem *rsc_va;
+>>>>  };
+>>>>  
+>>>> @@ -253,10 +259,30 @@ static int stm32_rproc_release(struct rproc *rproc)
+>>>>  			return err;
+>>>>  		}
+>>>>  	}
+>>>> +	ddata->to_attach = false;
+>>>>  
+>>>>  	return err;
+>>>>  }
+>>>>  
+>>>> +static int stm32_rproc_tee_attach(struct rproc *rproc)
+>>>> +{
+>>>> +	/* Nothing to do, remote proc already started by the secured context. */
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>> +static int stm32_rproc_tee_stop(struct rproc *rproc)
+>>>> +{
+>>>> +	int err;
+>>>> +
+>>>> +	stm32_rproc_request_shutdown(rproc);
+>>>> +
+>>>> +	err = tee_rproc_stop(rproc);
+>>>> +	if (err)
+>>>> +		return err;
+>>>> +
+>>>> +	return stm32_rproc_release(rproc);
+>>>> +}
+>>>> +
+>>>>  static int stm32_rproc_prepare(struct rproc *rproc)
+>>>>  {
+>>>>  	struct device *dev = rproc->dev.parent;
+>>>> @@ -637,10 +663,14 @@ stm32_rproc_get_loaded_rsc_table(struct rproc *rproc, size_t *table_sz)
+>>>>  {
+>>>>  	struct stm32_rproc *ddata = rproc->priv;
+>>>>  	struct device *dev = rproc->dev.parent;
+>>>> +	struct tee_rproc *trproc = ddata->trproc;
+>>>>  	phys_addr_t rsc_pa;
+>>>>  	u32 rsc_da;
+>>>>  	int err;
+>>>>  
+>>>> +	if (trproc && !ddata->to_attach)
+>>>> +		return tee_rproc_get_loaded_rsc_table(rproc, table_sz);
+>>>> +
+>>>
+>>> Why do we need a flag at all?  Why can't st_rproc_tee_ops::get_loaded_rsc_table
+>>> be set to tee_rproc_get_loaded_rsc_table()?
 >>
 >>
-> Should we add  fixes tags to both the bindings and the dts?
+>> This function is used to retrieve the address of the resource table in 3 cases
+>> - attach to a firmware started by the boot loader (U-boot).
+>> - load of the firmware by OP-TEE.
+>> - crash recovery on a signed firmware started by the boot loader.
+>>
+>> The flag is used to differentiate the attch from the other uses cases
+>> For instance we support this use case.
+>> 1) attach to the firmware on boot
+>> 2) crash during runtime
+>>   2a) stop the firmware by OP-TEE( ddata->to_attach set to 0)
+>>   2b) load the firmware by OP-TEE
+>>   2c) get the loaded resource table from OP-TEE (we can not guaranty
+>>       that the firmware loaded on recovery is the same)
+>>   2d) restart the firmware by OP-TEE
 > 
-> adam
+> This is not maintainable and needs to be broken down into smaller
+> building blocks.  The introduction of tee_rproc_parse_fw() should help dealing
+> with some of the complexity.
 
-No, because original code is correct and we are just choosing here one
-style over another. "style" fixes should not be backported.
+The use cases I mentioned are supported by the legacy, if firmware is not
+authenticated by a Trusted Application.
+No problem to addressed this in a second step.
+I will remove this constrain from this series in next version.
 
-Best regards,
-Krzysztof
+Regards,
+Arnaud
 
+> 
+>>
+>>>
+>>>>  	/* The resource table has already been mapped, nothing to do */
+>>>>  	if (ddata->rsc_va)
+>>>>  		goto done;
+>>>> @@ -693,8 +723,20 @@ static const struct rproc_ops st_rproc_ops = {
+>>>>  	.get_boot_addr	= rproc_elf_get_boot_addr,
+>>>>  };
+>>>>  
+>>>> +static const struct rproc_ops st_rproc_tee_ops = {
+>>>> +	.prepare	= stm32_rproc_prepare,
+>>>> +	.start		= tee_rproc_start,
+>>>> +	.stop		= stm32_rproc_tee_stop,
+>>>> +	.attach		= stm32_rproc_tee_attach,
+>>>> +	.kick		= stm32_rproc_kick,
+>>>> +	.get_loaded_rsc_table = stm32_rproc_get_loaded_rsc_table,
+>>>> +	.find_loaded_rsc_table = tee_rproc_find_loaded_rsc_table,
+>>>> +	.load		= tee_rproc_load_fw,
+>>>> +};
+>>>> +
+>>>>  static const struct of_device_id stm32_rproc_match[] = {
+>>>> -	{ .compatible = "st,stm32mp1-m4" },
+>>>> +	{.compatible = "st,stm32mp1-m4",},
+>>>> +	{.compatible = "st,stm32mp1-m4-tee",},
+>>>>  	{},
+>>>>  };
+>>>>  MODULE_DEVICE_TABLE(of, stm32_rproc_match);
+>>>> @@ -853,6 +895,7 @@ static int stm32_rproc_probe(struct platform_device *pdev)
+>>>>  	struct device *dev = &pdev->dev;
+>>>>  	struct stm32_rproc *ddata;
+>>>>  	struct device_node *np = dev->of_node;
+>>>> +	struct tee_rproc *trproc = NULL;
+>>>>  	struct rproc *rproc;
+>>>>  	unsigned int state;
+>>>>  	int ret;
+>>>> @@ -861,12 +904,33 @@ static int stm32_rproc_probe(struct platform_device *pdev)
+>>>>  	if (ret)
+>>>>  		return ret;
+>>>>  
+>>>> -	rproc = rproc_alloc(dev, np->name, &st_rproc_ops, NULL, sizeof(*ddata));
+>>>> -	if (!rproc)
+>>>> -		return -ENOMEM;
+>>>
+>>> This patch doesn't apply to rproc-next - please rebase.
+>>
+>> Yes, sure. I forgot to mention in my cover letter that my series has been
+>> applied and tested on 841c35169323 (Linux 6.8-rc4).
+>>
+>>>
+>>>
+>>>> +	if (of_device_is_compatible(np, "st,stm32mp1-m4-tee")) {
+>>>> +		/*
+>>>> +		 * Delegate the firmware management to the secure context.
+>>>> +		 * The firmware loaded has to be signed.
+>>>> +		 */
+>>>> +		trproc = tee_rproc_register(dev, STM32_MP1_M4_PROC_ID);
+>>>> +		if (IS_ERR(trproc)) {
+>>>> +			dev_err_probe(dev, PTR_ERR(trproc),
+>>>> +				      "signed firmware not supported by TEE\n");
+>>>> +			return PTR_ERR(trproc);
+>>>> +		}
+>>>> +	}
+>>>>  
+>>>> -	ddata = rproc->priv;
+>>>> +	rproc = rproc_alloc(dev, np->name,
+>>>> +			    trproc ? &st_rproc_tee_ops : &st_rproc_ops,
+>>>> +			    NULL, sizeof(*ddata));
+>>>> +	if (!rproc) {
+>>>> +		ret = -ENOMEM;
+>>>> +		goto free_tee;
+>>>> +	}
+>>>>  
+>>>> +	ddata = rproc->priv;
+>>>> +	ddata->trproc = trproc;
+>>>
+>>> My opinion hasn't changed from the previous patchet, i.e tee_rproc should be
+>>> folded in struct rproc as rproc::tee_interface.
+>>
+>> Sure, I will do it in next version
+>>
+>>>
+>>> More comments to come shortly...
+>>>
+>>
+>> Thanks!
+>> Arnaud
+>>
+>>>> +	if (trproc) {
+>>>> +		rproc->alt_boot = true;
+>>>> +		trproc->rproc = rproc;
+>>>> +	}
+>>>>  	rproc_coredump_set_elf_info(rproc, ELFCLASS32, EM_NONE);
+>>>>  
+>>>>  	ret = stm32_rproc_parse_dt(pdev, ddata, &rproc->auto_boot);
+>>>> @@ -881,8 +945,10 @@ static int stm32_rproc_probe(struct platform_device *pdev)
+>>>>  	if (ret)
+>>>>  		goto free_rproc;
+>>>>  
+>>>> -	if (state == M4_STATE_CRUN)
+>>>> +	if (state == M4_STATE_CRUN) {
+>>>>  		rproc->state = RPROC_DETACHED;
+>>>> +		ddata->to_attach = true;
+>>>> +	}
+>>>>  
+>>>>  	rproc->has_iommu = false;
+>>>>  	ddata->workqueue = create_workqueue(dev_name(dev));
+>>>> @@ -916,6 +982,10 @@ static int stm32_rproc_probe(struct platform_device *pdev)
+>>>>  		device_init_wakeup(dev, false);
+>>>>  	}
+>>>>  	rproc_free(rproc);
+>>>> +free_tee:
+>>>> +	if (trproc)
+>>>> +		tee_rproc_unregister(trproc);
+>>>> +
+>>>>  	return ret;
+>>>>  }
+>>>>  
+>>>> @@ -923,6 +993,7 @@ static void stm32_rproc_remove(struct platform_device *pdev)
+>>>>  {
+>>>>  	struct rproc *rproc = platform_get_drvdata(pdev);
+>>>>  	struct stm32_rproc *ddata = rproc->priv;
+>>>> +	struct tee_rproc *trproc = ddata->trproc;
+>>>>  	struct device *dev = &pdev->dev;
+>>>>  
+>>>>  	if (atomic_read(&rproc->power) > 0)
+>>>> @@ -937,6 +1008,8 @@ static void stm32_rproc_remove(struct platform_device *pdev)
+>>>>  		device_init_wakeup(dev, false);
+>>>>  	}
+>>>>  	rproc_free(rproc);
+>>>> +	if (trproc)
+>>>> +		tee_rproc_unregister(trproc);
+>>>>  }
+>>>>  
+>>>>  static int stm32_rproc_suspend(struct device *dev)
+>>>> -- 
+>>>> 2.25.1
+>>>>
+>>>
 
