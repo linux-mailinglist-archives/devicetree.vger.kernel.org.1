@@ -1,387 +1,151 @@
-Return-Path: <devicetree+bounces-47504-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47505-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C98DA86D69E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 23:11:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C81F86D6CB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 23:24:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 501571F242B8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:11:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE3CB1C2295A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:24:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 31B0D6D53E;
-	Thu, 29 Feb 2024 22:10:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39ACE74BFA;
+	Thu, 29 Feb 2024 22:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eA/8hugE"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SyoVmo1h"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0AC686D53B;
-	Thu, 29 Feb 2024 22:10:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7465974BED;
+	Thu, 29 Feb 2024 22:24:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709244654; cv=none; b=LYSyBxB+F7Qjq9T8uX99jaqeDTO4GaIGrp7iolhKbfoXLrmoijR2c4AsPt02VUc8vVi8QURkq0rrnXeWOGlPlMWdFjuPcC1xUEk88UadKVbrKZy15EMGWuhgdsH5TUbynRQMNH50fdlnZXTxIze3MsiONPs73RTN0rSfpubaMPQ=
+	t=1709245469; cv=none; b=eyrrrEUNndindHVlX9/DLgXvDmZcf9hoqUJLnztVuzNW6lXQCeKWpK3B1Z7VdBWJCCdPiV+fx/WoQn8IfcOoHBohxpjCPNEgWKM2z+4hWS+sJ4WNEDtVeaiN3Bo1TPdC1sym4EQ8sBeGXw5KZTcMG8lPi0j8+VM9UWhepwRhibU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709244654; c=relaxed/simple;
-	bh=46vq4PfRdp/Bc+EgaGt6gpSe4x73R8hDgW+FEMQ4OFU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=IhyeHAxcQNsX0ZmSycwpyTxEaep2vL2b5Bo21kF3+WQzK5uMgkXFtUSF/fGH4KGk5flj/Sqgjl44031dNT7QmRs9dhWqx7u0I9NWk2qUQvRKcSS1mTI5uuRQXQXLHIuML0TF7XIpDqwSmF3uRjAqFfT5pbyJMW8ld5GTkupYEzw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eA/8hugE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 678CFC43399;
-	Thu, 29 Feb 2024 22:10:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709244653;
-	bh=46vq4PfRdp/Bc+EgaGt6gpSe4x73R8hDgW+FEMQ4OFU=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=eA/8hugEapqWNQc65cvSh02csIkBEqemHkqUz6TSH7rP1+1koagmHsXE5p84tFKpP
-	 slzvcIaBg34+2fa22gnbAaF7/yQ1HxkncHIzydASDodkQwZy8x0Qnfxl0oYRQU/WOk
-	 YMCj7P8cqWGbiibAnEvYHLzvbR0w7lc5IgfAXcOjAbKgE4gPEcAe9bupNY+JG70vii
-	 mo/UiMtD14wU+y+4QOofAlfHQMIK3jEKLIlq2nepKwP2QaqHTTSnshkfaqWccXvGhx
-	 jwwqKXln3gEXSpb28BFOc5baVqdIgZGqrpJEBLR93GhXO6xkJ5916N4f3vEe+65yGm
-	 S4yQ4h1cFRW1A==
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d1094b5568so15415631fa.1;
-        Thu, 29 Feb 2024 14:10:53 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX9scECUKE1iaZHrI+49YcNmIb1z2iGqdPo3xfFzTDmAbTNii8Z9zV0poUlnizQ3h+/EP46X/ZmYrryZQFjPLWh4REJHHiSFVWiHMZn0dhtM44bPng+vVGU/TOLLn/guu9Eilo1dOAdRw==
-X-Gm-Message-State: AOJu0YwhmLXBH4cZoU5Eu6cDJsE0kSvvu1FhDwpDWnDWMGTOHoS+L9Ur
-	rYZ1MAu3isJ3SbT7C8nLnkrIfHadtdUaa596oGgO3UOHaOlg4IixDhRTtCfehxx4dao9fJgoBdc
-	pZTeWe1rflfobsraKCucwINfQgg==
-X-Google-Smtp-Source: AGHT+IFlig/8HMMK8+8MAlG9oVSV1G9e9ARknWO63MMLHRAapkcwDQT7jsUS/iOZgXLILEwE/gbLzb/tU8kfZqC0Uqk=
-X-Received: by 2002:a05:651c:1545:b0:2d2:7702:cb74 with SMTP id
- y5-20020a05651c154500b002d27702cb74mr2473667ljp.20.1709244651514; Thu, 29 Feb
- 2024 14:10:51 -0800 (PST)
+	s=arc-20240116; t=1709245469; c=relaxed/simple;
+	bh=0jwd/jJz9F7HyDfXNZKIQyTdhdaG+2S7SxpZB0qD6OI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P7kvH2sKoXDADw6d/UE9Tbg8g9bRkcwtAezYMYplpqW+qcs76VsEBx9YT5mZrNVLe8TsX/A+sJkY6Hk9TQGQPhPF2q8/k7Y9nOVwtMiFmNkgAbJL7dMFBpZynDFxdh9yFOis10JUjdsVHzzUEnt/VCi3U1eOlVY80Y4Imp+o1e4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SyoVmo1h; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41TLls8D009650;
+	Thu, 29 Feb 2024 22:24:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=OtqW1XZXFcuupLJ9seJDX
+	buTAWyH7zHudvWRXGce+gE=; b=SyoVmo1harXCR7en4JVVG10pO4Pv6cwwRNf2o
+	Pguv0A/JONB/mOudHWLOt0ggxQFISbRwgX0SPs35Zf7JAelJvRR0gLGDkHVrn4VQ
+	FEvhe+dKiFzg6TzxwXpYl1bUhEnrNdvhK1LPGZyrxo7KhIjt87O+nHQvVv3thMPC
+	4gHKU+Qt7kMiTdy+FWCCZBXjMOW85PeWEioSz4mVZz9XT+uaonCSTLpGr0ZS7p10
+	IKolXiAt4WWxjDNUONnbHNitISGi6DICUCTUQI249OUiQnAWn3ip0y8xHdxmZ2Ya
+	JNcmksT9OI+01iYxCIV0QgUUwIo1Fcu/01dZ06LV9XNmfcDlg==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wjycdgktv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Feb 2024 22:24:06 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41TMO5Hl000407
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Feb 2024 22:24:05 GMT
+Received: from hu-cgoldswo-sd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 29 Feb 2024 14:24:04 -0800
+Date: Thu, 29 Feb 2024 14:24:03 -0800
+From: Chris Goldsworthy <quic_cgoldswo@quicinc.com>
+To: Georgi Djakov <djakov@kernel.org>
+CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Georgi Djakov
+	<quic_c_gdjako@quicinc.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>,
+        <iommu@lists.linux.dev>, <devicetree@vger.kernel.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robdclark@gmail.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <quic_cgoldswo@quicinc.com>, <quic_sukadev@quicinc.com>,
+        <quic_pdaly@quicinc.com>, <quic_sudaraja@quicinc.com>
+Subject: Re: [PATCH v5 1/7] dt-bindings: iommu: Add Qualcomm TBU bindings
+Message-ID: <20240229222347.GA918@hu-cgoldswo-sd.qualcomm.com>
+References: <20240226172218.69486-1-quic_c_gdjako@quicinc.com>
+ <20240226172218.69486-2-quic_c_gdjako@quicinc.com>
+ <b6215fcd-29fc-4495-999f-b7b03b36c087@linaro.org>
+ <70095e04-eaec-4323-b2ac-2d4d366763d5@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240207011803.2637531-1-saravanak@google.com>
- <20240207011803.2637531-3-saravanak@google.com> <20240223171849.10f9901d@booty>
- <CAGETcx99hhfOaEn1CH1OLDGp_pnrVeJ2nWb3X5=0j8tij4NR9w@mail.gmail.com>
- <20240226125226.705efef3@booty> <CAL_JsqLMY94KmiEUcOYT4p1HdHENffOFgRJ+Tv6RDH7ewVbyig@mail.gmail.com>
- <CAGETcx_6UEpOJteQ0Gmfb=NgU+9MZumtmyLbn++C=uj7nOon=g@mail.gmail.com>
- <CAL_Jsq+edTZ3yC0Xxojo5bR3aCwAMFERjuqVFaU8sFmj=nAB8w@mail.gmail.com> <20240229103423.1244de38@booty>
-In-Reply-To: <20240229103423.1244de38@booty>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Thu, 29 Feb 2024 16:10:38 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLxDozqONeN818qYg9QxQVte-9Cv_GuAz7SQ1FsscwuVw@mail.gmail.com>
-Message-ID: <CAL_JsqLxDozqONeN818qYg9QxQVte-9Cv_GuAz7SQ1FsscwuVw@mail.gmail.com>
-Subject: Re: [REGRESSION] Re: [PATCH v2 2/3] of: property: Improve finding the
- supplier of a remote-endpoint property
-To: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Cc: Saravana Kannan <saravanak@google.com>, Frank Rowand <frowand.list@gmail.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Xu Yang <xu.yang_2@nxp.com>, kernel-team@android.com, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	=?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
-	Geert Uytterhoeven <geert@linux-m68k.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <70095e04-eaec-4323-b2ac-2d4d366763d5@kernel.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: OXH1O4Jm_oC6uUujkc43pumk01oZDJUg
+X-Proofpoint-ORIG-GUID: OXH1O4Jm_oC6uUujkc43pumk01oZDJUg
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-29_06,2024-02-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
+ mlxlogscore=999 impostorscore=0 bulkscore=0 priorityscore=1501
+ lowpriorityscore=0 malwarescore=0 adultscore=0 suspectscore=0 spamscore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402290175
 
-On Thu, Feb 29, 2024 at 3:34=E2=80=AFAM Luca Ceresoli <luca.ceresoli@bootli=
-n.com> wrote:
->
-> Hi Rob, Saravana,
->
-> On Wed, 28 Feb 2024 18:26:36 -0600
-> Rob Herring <robh+dt@kernel.org> wrote:
->
-> > On Wed, Feb 28, 2024 at 5:58=E2=80=AFPM Saravana Kannan <saravanak@goog=
-le.com> wrote:
-> > >
-> > > On Wed, Feb 28, 2024 at 1:56=E2=80=AFPM Rob Herring <robh+dt@kernel.o=
-rg> wrote:
-> > > >
-> > > > On Mon, Feb 26, 2024 at 5:52=E2=80=AFAM Luca Ceresoli <luca.ceresol=
-i@bootlin.com> wrote:
-> > > > >
-> > > > > Hello Saravana,
-> > > > >
-> > > > > On Fri, 23 Feb 2024 17:35:24 -0800
-> > > > > Saravana Kannan <saravanak@google.com> wrote:
-> > > > >
-> > > > > > On Fri, Feb 23, 2024 at 8:18=E2=80=AFAM Luca Ceresoli <luca.cer=
-esoli@bootlin.com> wrote:
-> > > > > > >
-> > > > > > > Hello Saravana,
-> > > > > > >
-> > > > > > > [+cc Herv=C3=A9 Codina]
-> > > > > > >
-> > > > > > > On Tue,  6 Feb 2024 17:18:01 -0800
-> > > > > > > Saravana Kannan <saravanak@google.com> wrote:
-> > > > > > >
-> > > > > > > > After commit 4a032827daa8 ("of: property: Simplify of_link_=
-to_phandle()"),
-> > > > > > > > remote-endpoint properties created a fwnode link from the c=
-onsumer device
-> > > > > > > > to the supplier endpoint. This is a tiny bit inefficient (n=
-ot buggy) when
-> > > > > > > > trying to create device links or detecting cycles. So, impr=
-ove this the
-> > > > > > > > same way we improved finding the consumer of a remote-endpo=
-int property.
-> > > > > > > >
-> > > > > > > > Fixes: 4a032827daa8 ("of: property: Simplify of_link_to_pha=
-ndle()")
-> > > > > > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > > > > > >
-> > > > > > > After rebasing my own branch on v6.8-rc5 from v6.8-rc1 I star=
-ted
-> > > > > > > getting unexpected warnings during device tree overlay remova=
-l. After a
-> > > > > > > somewhat painful bisection I identified this patch as the one=
- that
-> > > > > > > triggers it all.
-> > > > > >
-> > > > > > Thanks for the report.
-> > > > > >
-> > > > > > >
-> > > > > > > > ---
-> > > > > > > > --- a/drivers/of/property.c
-> > > > > > > > +++ b/drivers/of/property.c
-> > > > > > > > @@ -1232,7 +1232,6 @@ DEFINE_SIMPLE_PROP(pinctrl5, "pinctrl=
--5", NULL)
-> > > > > > > >  DEFINE_SIMPLE_PROP(pinctrl6, "pinctrl-6", NULL)
-> > > > > > > >  DEFINE_SIMPLE_PROP(pinctrl7, "pinctrl-7", NULL)
-> > > > > > > >  DEFINE_SIMPLE_PROP(pinctrl8, "pinctrl-8", NULL)
-> > > > > > > > -DEFINE_SIMPLE_PROP(remote_endpoint, "remote-endpoint", NUL=
-L)
-> > > > > > > >  DEFINE_SIMPLE_PROP(pwms, "pwms", "#pwm-cells")
-> > > > > > > >  DEFINE_SIMPLE_PROP(resets, "resets", "#reset-cells")
-> > > > > > > >  DEFINE_SIMPLE_PROP(leds, "leds", NULL)
-> > > > > > > > @@ -1298,6 +1297,17 @@ static struct device_node *parse_int=
-errupts(struct device_node *np,
-> > > > > > > >       return of_irq_parse_one(np, index, &sup_args) ? NULL =
-: sup_args.np;
-> > > > > > > >  }
-> > > > > > > >
-> > > > > > > > +static struct device_node *parse_remote_endpoint(struct de=
-vice_node *np,
-> > > > > > > > +                                              const char *=
-prop_name,
-> > > > > > > > +                                              int index)
-> > > > > > > > +{
-> > > > > > > > +     /* Return NULL for index > 0 to signify end of remote=
--endpoints. */
-> > > > > > > > +     if (!index || strcmp(prop_name, "remote-endpoint"))
-> > > > > > >
-> > > > > > > There seem to be a bug here: "!index" should be "index > 0", =
-as the
-> > > > > > > comment suggests. Otherwise NULL is always returned.
-> > > > > >
-> > > > > > Ah crap, I think you are right. It should have been "index". No=
-t
-> > > > > > "!index". But I tested this! Sigh. I probably screwed up my tes=
-ting.
-> > > > > >
-> > > > > > Please send out a Fix for this.
-> > > > > >
-> > > > > > Geert, we got excited too soon. :(
-> > > > > >
-> > > > > > > I am going to send a quick patch for that, but haven't done s=
-o yet
-> > > > > > > because it still won't solve the problem, so I wanted to open=
- the topic
-> > > > > > > here without further delay.
-> > > > > > >
-> > > > > > > Even with the 'index > 0' fix I'm still getting pretty much t=
-he same:
-> > > > > >
-> > > > > > This part is confusing though. If I read your DT correctly, the=
-re's a
-> > > > > > cycle between platform:panel-dsi-lvds and i2c:13-002c. And fw_d=
-evlink
-> > > > > > should not be enforcing any ordering between those devices ever=
-.
-> > > > > >
-> > > > > > I'm surprised that in your "working" case, fw_devlink didn't de=
-tect
-> > > > > > any cycle. It should have. If there's any debugging to do, that=
-'s the
-> > > > > > one we need to debug.
-> > > > > >
-> > > > > > >
-> > > > > > > [   34.836781] ------------[ cut here ]------------
-> > > > > > > [   34.841401] WARNING: CPU: 2 PID: 204 at drivers/base/devre=
-s.c:1064 devm_kfree+0x8c/0xfc
-> > > > > > > ...
-> > > > > > > [   35.024751] Call trace:
-> > > > > > > [   35.027199]  devm_kfree+0x8c/0xfc
-> > > > > > > [   35.030520]  devm_drm_panel_bridge_release+0x54/0x64 [drm_=
-kms_helper]
-> > > > > > > [   35.036990]  devres_release_group+0xe0/0x164
-> > > > > > > [   35.041264]  i2c_device_remove+0x38/0x9c
-> > > > > > > [   35.045196]  device_remove+0x4c/0x80
-> > > > > > > [   35.048774]  device_release_driver_internal+0x1d4/0x230
-> > > > > > > [   35.054003]  device_release_driver+0x18/0x24
-> > > > > > > [   35.058279]  bus_remove_device+0xcc/0x10c
-> > > > > > > [   35.062292]  device_del+0x15c/0x41c
-> > > > > > > [   35.065786]  device_unregister+0x18/0x34
-> > > > > > > [   35.069714]  i2c_unregister_device+0x54/0x88
-> > > > > > > [   35.073988]  of_i2c_notify+0x98/0x224
-> > > > > > > [   35.077656]  blocking_notifier_call_chain+0x6c/0xa0
-> > > > > > > [   35.082543]  __of_changeset_entry_notify+0x100/0x16c
-> > > > > > > [   35.087515]  __of_changeset_revert_notify+0x44/0x78
-> > > > > > > [   35.092398]  of_overlay_remove+0x114/0x1c4
-> > > > > > > ...
-> > > > > > >
-> > > > > > > By comparing the two versions I found that before removing th=
-e overlay:
-> > > > > > >
-> > > > > > >  * in the "working" case (with this patch reverted) I have:
-> > > > > > >
-> > > > > > >    # ls /sys/class/devlink/ | grep 002c
-> > > > > > >    platform:hpbr--i2c:13-002c
-> > > > > > >    platform:panel-dsi-lvds--i2c:13-002c
-> > > > > >
-> > > > > > Can you check the "status" and "sync_state_only" file in this f=
-older
-> > > > > > and tell me what it says?
-> > > > > >
-> > > > > > Since these devices have a cyclic dependency between them, it s=
-hould
-> > > > > > have been something other than "not tracked" and "sync_state_on=
-ly"
-> > > > > > should be "1". But my guess is you'll see "active" and "0".
-> > > > > >
-> > > > > > >    platform:regulator-sys-1v8--i2c:13-002c
-> > > > > > >    regulator:regulator.31--i2c:13-002c
-> > > > > > >    #
-> > > > > > >
-> > > > > > >  * in the "broken" case (v6.8-rc5 + s/!index/index > 0/ as me=
-ntioned):
-> > > > > > >
-> > > > > > >    # ls /sys/class/devlink/ | grep 002c
-> > > > > > >    platform:hpbr--i2c:13-002c
-> > > > > > >    platform:regulator-sys-1v8--i2c:13-002c
-> > > > > > >    regulator:regulator.30--i2c:13-002c
-> > > > > > >    #
-> > > > > > >
-> > > > > > > So in the latter case the panel-dsi-lvds--i2c:13-002c link is=
- missing.
-> > > > > > > I think it gets created but later on removed. Here's a snippe=
-t of the
-> > > > > > > kernel log when that happens:
-> > > > > > >
-> > > > > > > [    9.578279] ----- cycle: start -----
-> > > > > > > [    9.578283] /soc@0/bus@30800000/i2c@30ad0000/i2cmux@70/i2c=
-@3/dsi-lvds-bridge@2c: cycle: depends on /panel-dsi-lvds
-> > > > > > > [    9.578308] /panel-dsi-lvds: cycle: depends on /soc@0/bus@=
-30800000/i2c@30ad0000/i2cmux@70/i2c@3/dsi-lvds-bridge@2c
-> > > > > > > [    9.578329] ----- cycle: end -----
-> > > > > > > [    9.578334] platform panel-dsi-lvds: Fixed dependency cycl=
-e(s) with /soc@0/bus@30800000/i2c@30ad0000/i2cmux@70/i2c@3/dsi-lvds-bridge@=
-2c
-> > > > > > > ...
-> > > > > >
-> > > > > > Somewhere in this area, I'm thinking you'll also see "device:
-> > > > > > 'i2c:13-002c--platform:panel-dsi-lvds': device_add" do you not?=
- And if
-> > > > > > you enabled device link logs, you'll see that it was "sync stat=
-e only"
-> > > > > > link.
-> > > > > >
-> > > > > > > [    9.590620] /panel-dsi-lvds Dropping the fwnode link to /s=
-oc@0/bus@30800000/i2c@30ad0000/i2cmux@70/i2c@3/dsi-lvds-bridge@2c
-> > > > > > > ...
-> > > > > > > [    9.597280] ----- cycle: start -----
-> > > > > > > [    9.597283] /panel-dsi-lvds: cycle: depends on /soc@0/bus@=
-30800000/i2c@30ad0000/i2cmux@70/i2c@3/dsi-lvds-bridge@2c
-> > > > > > > [    9.602781] /soc@0/bus@30800000/i2c@30ad0000/i2cmux@70/i2c=
-@3/dsi-lvds-bridge@2c: cycle: depends on /panel-dsi-lvds
-> > > > > > > [    9.607581] ----- cycle: end -----
-> > > > > > > [    9.607585] i2c 13-002c: Fixed dependency cycle(s) with /p=
-anel-dsi-lvds
-> > > > > > > [    9.614217] device: 'platform:panel-dsi-lvds--i2c:13-002c'=
-: device_add
-> > > > > > > ...
-> > > > > > > [    9.614277] /soc@0/bus@30800000/i2c@30ad0000/i2cmux@70/i2c=
-@3/dsi-lvds-bridge@2c Dropping the fwnode link to /panel-dsi-lvds
-> > > > > > > [    9.614369] /soc@0/bus@30800000/i2c@30ad0000/i2cmux@70/i2c=
-@3/dsi-lvds-bridge@2c Dropping the fwnode link to /regulator-dock-sys-1v8
-> > > > > > > ...
-> > > > > > > [    9.739840] panel-simple panel-dsi-lvds: Dropping the link=
- to 13-002c
-> > > > > > > [    9.739846] device: 'i2c:13-002c--platform:panel-dsi-lvds'=
-: device_unregister
-> > > > > >
-> > > > > > Oh yeah, see. The "device_add" I expected earlier is getting re=
-moved here.
-> > > > > >
-> > > > > > > [   10.247037] sn65dsi83 13-002c: Dropping the link to panel-=
-dsi-lvds
-> > > > > > > [   10.247049] device: 'platform:panel-dsi-lvds--i2c:13-002c'=
-: device_unregister
-> > > > > > >
-> > > > > > > And here's the relevant portion of my device tree overlay:
-> > > > > > >
-> > > > > > > --------------------8<--------------------
-> > > > > > >
-> > > > > >
-> > > > > > I think the eventual fix would be this series + adding a
-> > > > > > "post-init-providers" property to the device that's supposed to=
- probe
-> > > > > > first and point it to the device that's supposed to probe next.=
- Do
-> > > > > > this at the device node level, not the endpoint level.
-> > > > > > https://lore.kernel.org/lkml/20240221233026.2915061-1-saravanak=
-@google.com/
-> > > > >
-> > > > > I'm certainly going to look at this series in more detail and at =
-the
-> > > > > debugging you asked for, however I'm afraid I won't have access t=
-o the
-> > > > > hardware this week and it's not going to be a quick task anyway.
-> > > > >
-> > > > > So in this moment I think it's quite clear that this specific pat=
-ch
-> > > > > creates a regression and there is no clear fix that is reasonably
-> > > > > likely to get merged before 6.8.
-> > > > >
-> > > > > I propose reverting this patch immediately, unless you have a bet=
-ter
-> > > > > short-term solution.
-> > > >
-> > > > It's just this one of the 3 patches that needs reverting?
->
-> Just this patch. I reverted only this and the issue disappeared.
->
-> > > I sent a fix. With the fix, it's just exposing a bug elsewhere.
->
-> Exactly, this patch has two issues and only the easy one has a fix [0]
-> currently as far as I know.
->
-> > You say apply the fix. Luca says revert. I say I wish I made this 6.9
-> > material. Which is it?
+On Thu, Feb 29, 2024 at 10:09:34PM +0200, Georgi Djakov wrote:
+> Hi Krzysztof,
+> 
+> On 29.02.24 19:53, Krzysztof Kozlowski wrote:
+> >On 26/02/2024 18:22, Georgi Djakov wrote:
+> >>+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> >>+%YAML 1.2
+> >>+---
+> >>+$id: http://devicetree.org/schemas/iommu/qcom,tbu.yaml#
+> >>+$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>+
+> >>+title: Qualcomm TBU (Translation Buffer Unit)
+> >>+
+> >>+maintainers:
+> >>+  - Georgi Djakov <quic_c_gdjako@quicinc.com>
+> >>+
+> >>+description:
+> >>+  The Qualcomm SMMU500 implementation consists of TCU and TBU. The TBU contains
+> >>+  a Translation Lookaside Buffer (TLB) that caches page tables. TBUs provides
+> >>+  debug features to trace and trigger debug transactions. There are multiple TBU
+> >>+  instances with each client core.
+> >>+
+> >>+properties:
+> >>+  compatible:
+> >>+    const: qcom,qsmmuv500-tbu
 > >
-> > If the overlay applying depends on out of tree code (likely as there
-> > are limited ways to apply an overlay in mainline), then I don't really
-> > care if there is still a regression.
->
-> Obviously, to load and unload the overlays I'm using code not yet
-> in mainline. It is using of_overlay_fdt_apply() and of_overlay_remove()
-> via a driver underdevelopment that is similar to the one Herv=C3=A9 and
-> Lizhi Hou are working on [1][2].
->
-> I see the point that "we are not breaking existing use cases as no code
-> is (un)loading overlays except unittest", sure.
->
-> As I see it, we have a feature in the kernel that is not used, but it
-> will be, eventually: there are use cases, development is progressing and
-> patches are being sent actively. My opinion is that we should not
-> put additional known obstacles that will make it even harder than it
-> already is.
+> >Why we don't have SoC specific compatibles? If that's for SDM845, then
+> >it should be qcom,sdm845-tbu or qcom,sdm845-qsmmuv500-tbu
+> >
+> 
+> Because they should be all compatible (as registers). Adding a SoC compatible
+> might get overly-specific, but i can also see the benefits in that, so ok will
+> do it!
+> 
 
-Well, I don't care to do extra work of applying things and then have
-to turn right around fix or revert them. It happens enough as-is with
-just mainline. And no one wants to step up and fix the problems with
-overlays, but are fine just carrying their out of tree patches. What's
-one more. This is the 2nd case of overlay problems with out of tree
-users *today*! Some days I'm tempted to just remove overlay support
-altogether given the only way to apply them is unittest.
+Hi Krzysztof,
 
-Given Geert is having issues too, I guess I'm going to revert.
+JFYI that the TBUs are used on our mobile SoCs going up until the SoC
+we commercialized in early 2022, Snapdragon 8 Gen 1. Including SDM845
+there are three more premium tier SoCs using TBUs plus all of their
+value-tier derivatives.  There will also be prior generation premium
+tier SoCs along with their derivatives that use the TBU as well. Does
+it make sense to have a target-specific compatible string given this? 
 
-Rob
+Thanks,
+
+Chris.
+
 
