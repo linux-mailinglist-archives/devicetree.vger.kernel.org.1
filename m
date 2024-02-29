@@ -1,177 +1,268 @@
-Return-Path: <devicetree+bounces-47227-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5D5B86C7D2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 12:15:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 051E486C7E8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 12:21:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 500521F2224D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:15:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AB46B28300A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:21:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 563B27AE6F;
-	Thu, 29 Feb 2024 11:15:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3802D7AE74;
+	Thu, 29 Feb 2024 11:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Y5RwuDUp"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="M4bEXrYR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F3BD7A704;
-	Thu, 29 Feb 2024 11:15:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0DC9864A9B;
+	Thu, 29 Feb 2024 11:21:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709205329; cv=none; b=Wk6CzTMaImZqCmow9tStANU5e8sMAMbc9w4AiSWgxgDcyofR+iL2/IoNR4wc/6wGXUlqqnx3aCOfJIOhKUiui0B1slVpcyP75RTrtvWTRKuriXyA3zMy0rm25ftgmJeJDTsApjmOz7/tHd7ENiOju9cfFy6mlbNMmL4yOxPOnWI=
+	t=1709205663; cv=none; b=IwCO5emBoflFXdn0MkPmdchxJVLeiSTwovXDkqXd41s6r+Rt4UxomvHLlSuOn6CvCtwxCNdIGzUsgismmaZ3bclexQwyOkgumke8pWY7xUIQ0jLl1WvApT81c+/qRJNyEWL31hOyqfwiCnrUBeUh/MZVh6yZVEJtc9xb3jhygIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709205329; c=relaxed/simple;
-	bh=oVy3i+UrUumrf3a4PnAuzzf3DQEDoVYk6MSRN5VLtyM=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bddvQmbkjvvp07QjPEJKFuQZ3KHenBdV7N/XZ/U/xSaiW0NWgLgF8jomfrU/WahBf1PA0pGKQgKwxpYegg9i1mmcL6VN0KX52QPFGr/OzuO+5CxHSU1levOOFBQrWWUmqUL8/9Jd1Hp1Al/nMqVzJdjxILxsKSsEM3daUzHnxjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Y5RwuDUp; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-566adfeced4so376965a12.1;
-        Thu, 29 Feb 2024 03:15:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709205326; x=1709810126; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=Ly35jGeNvOrKRwndvR1mRFcyvn9CVQRuowe5Y/I2C+s=;
-        b=Y5RwuDUp3+cfhMp7AYQbQsxwnVWu2cvkhfRGBWJC/fB2M/da/AaR++zFnjdgRgEhed
-         pcRSBF4VgbyFon/4UBNvNSSODVJ8kQISt4FLxf9aX2tp5w8Pgr3FJvRL11x7LrfXglPR
-         f/tVNCVHYbFixASXSuO+7GEkNiPtEskyc4hn7sFCMyBAb1/Z762LCCMCn1hf/OEo5Rxq
-         PMhUMbSq4osMEUTwc2+S4vMuMu5/JJee9iOG5KDqtrU/Ckj1oX6SnMrmXnfWGzfAhehZ
-         jnJFx5vZrPXukRk5FgED9nxftqyu+1mj+oMS6pV/uvLMIzU0GHBEHtDvHnmINPgdTRBI
-         Oz7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709205326; x=1709810126;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Ly35jGeNvOrKRwndvR1mRFcyvn9CVQRuowe5Y/I2C+s=;
-        b=l0rIm2iAlyk6+6eD+C0OvFQ9Tpp+C43tXQmL+MA2C/1ZcHc727V0UQfogsr4vC4b0n
-         S+VjoW+RIBSiolTbtnrRhziKCcwnHZwZthFc7Jm15wlxmYUmWXZ9mNqJkZDS7bKXYNnK
-         D/R+/Gur5ZX+K9uXuGpRntF2Op6oYpiMx5DGPbyfsiVmlRxX+QhtajVHi8P6cWh84MXR
-         AzTwZaorNZr4oAvHPWjDSZDBaOGx9CfdPT5JtMV0CNqg5nElY4j50eiOCB5Czh7H1d+H
-         9xpNIMyRRYpxyxKUPJpTTlDw+m4ZienFWzdtgbwvqNYbrhioVBjOHWhyfsDt+tST64L1
-         9O2A==
-X-Forwarded-Encrypted: i=1; AJvYcCV0WPf86qJxh1G0M/D9TVsRaMey1bmmKd/rz5hC2U5O86WJbhy6M5q6GN/iEWZ6JqQlhGlWLZkaPuF3ivbjgTEzR3ZQv3v8OOhT6AjHFhTMhpx9ZzfK7Kvl+56Sw5xvbbv//0c8aH5rsarVk6EPiQAhGIadjog+bns8EFjiHaWucQ==
-X-Gm-Message-State: AOJu0YxeTyAaLQtGAFvC6PAv20B/fxBmi3n8qm6DSNCCdH6Oqy74ZNGs
-	ldLAU/9r4c/rgvp2TJMN0G5f+f+yDx9ygJWfn/17ROXMAFRiom8P
-X-Google-Smtp-Source: AGHT+IG0KTZhknphV433fC9NXoAD7v5l7VPJ90+eS0jpKwG+RqAn1KUkRQtvn1rMAAnH8A+2TU1i6A==
-X-Received: by 2002:a50:d697:0:b0:566:414d:d70e with SMTP id r23-20020a50d697000000b00566414dd70emr1257676edi.39.1709205325740;
-        Thu, 29 Feb 2024 03:15:25 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
-        by smtp.gmail.com with ESMTPSA id q12-20020a056402518c00b00563ec73bbafsm516360edd.46.2024.02.29.03.15.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Feb 2024 03:15:25 -0800 (PST)
-Message-ID: <acb69aa8c1a4c4e9849123ef538b9646a71507a0.camel@gmail.com>
-Subject: Re: [PATCH v3 2/2] of: overlay: Synchronize of_overlay_remove()
- with the devlink removals
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Herve Codina <herve.codina@bootlin.com>, Greg Kroah-Hartman
-	 <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, Rob
-	Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>
-Cc: Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, Sonal Santan
- <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>,
-  Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>,  stable@vger.kernel.org
-Date: Thu, 29 Feb 2024 12:18:49 +0100
-In-Reply-To: <20240229105204.720717-3-herve.codina@bootlin.com>
-References: <20240229105204.720717-1-herve.codina@bootlin.com>
-	 <20240229105204.720717-3-herve.codina@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 
+	s=arc-20240116; t=1709205663; c=relaxed/simple;
+	bh=HdspKmySgyiroiAYzlGt40P665iw545abFyHhuJz8ic=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=TErbFDRQz5axjEZ6Njr+lX1uvcCbx3o8gB0jT5rBlpcfAbAejjlUHd+b0NfP2LNXimqGwG7hVtjie5IoI47dFmu6owxxmqZdE65t6CmKEvwxkxmgVHvUlC2+lk0+O+B2TLxJ/qvlnhx2WkmE5t2HI3aeKjlDVSqN0aIWRbFX22A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=M4bEXrYR; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41TBKkkF004012;
+	Thu, 29 Feb 2024 05:20:46 -0600
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1709205646;
+	bh=JkBFq8xJSuzGW0iZAfO9iPQEBKS1+WYKIh8tLyGsD/U=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=M4bEXrYRbmrT8Yz7WDTSLjU3A7XnJrLeijIQ6bSBP+9x6t15iQcBEjL8u0xd8gQAb
+	 R8Pywsp9MykZQKw7A2nbUc+8/UhrG+bl4gZam6EWbNpngiqC0NG6Tzk8s4tlLXh+Ku
+	 DblSv+a1Mv+U21dKgpkcPw2acOyPUcPYlMcK3Udc=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41TBKkh6043592
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 29 Feb 2024 05:20:46 -0600
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
+ Feb 2024 05:20:46 -0600
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 29 Feb 2024 05:20:46 -0600
+Received: from [172.24.227.193] (devarsht.dhcp.ti.com [172.24.227.193])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41TBKd19112484;
+	Thu, 29 Feb 2024 05:20:40 -0600
+Message-ID: <7a83fe91-5afa-6aee-a8a4-44f6e3d713c2@ti.com>
+Date: Thu, 29 Feb 2024 16:50:38 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v6 1/3] media: dt-bindings: Add Imagination E5010 JPEG
+ Encoder
+Content-Language: en-US
+To: Sebastian Fricke <sebastian.fricke@collabora.com>
+CC: <mchehab@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <hverkuil-cisco@xs4all.nl>, <linux-media@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <benjamin.gaignard@collabora.com>, <laurent.pinchart@ideasonboard.com>,
+        <praneeth@ti.com>, <nm@ti.com>, <vigneshr@ti.com>, <a-bhatia1@ti.com>,
+        <j-luthra@ti.com>, <b-brnich@ti.com>, <detheridge@ti.com>,
+        <p-mantena@ti.com>, <vijayp@ti.com>, <andrzej.p@collabora.com>,
+        <nicolas@ndufresne.ca>, <afd@ti.com>, <milkfafa@gmail.com>
+References: <20240228141140.3530612-1-devarsht@ti.com>
+ <20240228141140.3530612-2-devarsht@ti.com>
+ <20240229102623.ihwhbba4qwzvxzzq@basti-XPS-13-9310>
+From: Devarsh Thakkar <devarsht@ti.com>
+In-Reply-To: <20240229102623.ihwhbba4qwzvxzzq@basti-XPS-13-9310>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-On Thu, 2024-02-29 at 11:52 +0100, Herve Codina wrote:
-> In the following sequence:
-> =C2=A0 1) of_platform_depopulate()
-> =C2=A0 2) of_overlay_remove()
->=20
-> During the step 1, devices are destroyed and devlinks are removed.
-> During the step 2, OF nodes are destroyed but
-> __of_changeset_entry_destroy() can raise warnings related to missing
-> of_node_put():
-> =C2=A0 ERROR: memory leak, expected refcount 1 instead of 2 ...
->=20
-> Indeed, during the devlink removals performed at step 1, the removal
-> itself releasing the device (and the attached of_node) is done by a job
-> queued in a workqueue and so, it is done asynchronously with respect to
-> function calls.
-> When the warning is present, of_node_put() will be called but wrongly
-> too late from the workqueue job.
->=20
-> In order to be sure that any ongoing devlink removals are done before
-> the of_node destruction, synchronize the of_overlay_remove() with the
-> devlink removals.
->=20
-> Fixes: 80dd33cf72d1 ("drivers: base: Fix device link removal")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> ---
-> =C2=A0drivers/of/overlay.c | 10 +++++++++-
-> =C2=A01 file changed, 9 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-> index 2ae7e9d24a64..7a010a62b9d8 100644
-> --- a/drivers/of/overlay.c
-> +++ b/drivers/of/overlay.c
-> @@ -8,6 +8,7 @@
-> =C2=A0
-> =C2=A0#define pr_fmt(fmt)	"OF: overlay: " fmt
-> =C2=A0
-> +#include <linux/device.h>
+Hi Sebastian,
 
-This is clearly up to the DT maintainers to decide but, IMHO, I would very =
-much
-prefer to see fwnode.h included in here rather than directly device.h (so y=
-eah,
-renaming the function to fwnode_*).
+Thanks for the review.
 
-But yeah, I might be biased by own series :)
+On 29/02/24 15:56, Sebastian Fricke wrote:
+> Hey Devarsh,
+> 
+> On 28.02.2024 19:41, Devarsh Thakkar wrote:
+>> Add dt-bindings for Imagination E5010 JPEG Encoder [1] which is implemented
+>> as stateful V4L2 M2M driver.
+>>
+>> The device supports baseline encoding with two different quantization
+>> tables and compression ratio as demanded.
+>>
+>> Minimum resolution supported is 64x64 and Maximum resolution supported is
+>> 8192x8192.
+>>
+>> [1]:  AM62A TRM (Section 7.6 is for JPEG Encoder)
+>> Link: https://www.ti.com/lit/pdf/spruj16
+>>
+>> Co-developed-by: David Huang <d-huang@ti.com>
+>> Signed-off-by: David Huang <d-huang@ti.com>
+>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> hmmm when did Rob give his reviewed by on this patch? (As this is not a
+> DT binding I find that odd)
 
-> =C2=A0#include <linux/kernel.h>
-> =C2=A0#include <linux/module.h>
-> =C2=A0#include <linux/of.h>
-> @@ -853,6 +854,14 @@ static void free_overlay_changeset(struct
-> overlay_changeset *ovcs)
-> =C2=A0{
-> =C2=A0	int i;
-> =C2=A0
-> +	/*
-> +	 * Wait for any ongoing device link removals before removing some of
-> +	 * nodes. Drop the global lock while waiting
-> +	 */
-> +	mutex_unlock(&of_mutex);
-> +	device_link_wait_removal();
-> +	mutex_lock(&of_mutex);
+[PATCH v6 1/3] media: dt-bindings: Add Imagination E5010 JPEG Encoder : This
+is indeed the dt-binding patch. Also As shared in version history it is at V4
+where Rob Herring added a Reviewed-By as seen here [0]
 
-I'm still not convinced we need to drop the lock. What happens if someone e=
-lse
-grabs the lock while we are in device_link_wait_removal()? Can we guarantee=
- that
-we can't screw things badly?
+> And where is the Reviewed by tag from Benjamin that he provided on V5?
+> 
 
-The question is, do you have a system/use case where you can really see the
-deadlock happening? Until I see one, I'm very skeptical about this. And if =
-we
-have one, I'm not really sure this is also the right solution for it.
+As captured in patch version history here [1] I thought to remove the
+Reviewed-By since the Reviewed-By tag was on V5 and with V6 the driver got
+updated with some changes to handle reported sparse warnings and so I have
+asked Benjamin to check the range-diff and help with a quick review again if
+possible.
 
-- Nuno S=C3=A1
+Kindly let me know if I missed something or anything needs to be done from my end.
+
+[0] :
+https://lore.kernel.org/all/170716378412.295212.11603162949482063011.robh@kernel.org/
+[1] : https://lore.kernel.org/all/20240228141140.3530612-4-devarsht@ti.com/
 
 
+Regards
+Devarsh
+
+> Greetings,
+> Sebastian
+> 
+>> ---
+>> V2: No change
+>> V3:
+>> - Add vendor specific compatible
+>> - Update reg names
+>> - Update clocks to 1
+>> - Fix dts example with proper naming
+>> V4:
+>> - Use ti-specific compatible ti,am62a-jpeg-enc as secondary one
+>> - Update commit message and title
+>> - Remove clock-names as only single clock
+>> V5:
+>> - Add Reviewed-By tag
+>> V6:
+>> - No change
+>>
+>> .../bindings/media/img,e5010-jpeg-enc.yaml    | 75 +++++++++++++++++++
+>> MAINTAINERS                                   |  5 ++
+>> 2 files changed, 80 insertions(+)
+>> create mode 100644
+>> Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>> b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>> new file mode 100644
+>> index 000000000000..085020cb9e61
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>> @@ -0,0 +1,75 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Imagination E5010 JPEG Encoder
+>> +
+>> +maintainers:
+>> +  - Devarsh Thakkar <devarsht@ti.com>
+>> +
+>> +description: |
+>> +  The E5010 is a JPEG encoder from Imagination Technologies implemented on
+>> +  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YUV422
+>> +  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
+>> +  8Kx8K resolution.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - items:
+>> +          - const: ti,am62a-jpeg-enc
+>> +          - const: img,e5010-jpeg-enc
+>> +      - const: img,e5010-jpeg-enc
+>> +
+>> +  reg:
+>> +    items:
+>> +      - description: The E5010 core register region
+>> +      - description: The E5010 mmu register region
+>> +
+>> +  reg-names:
+>> +    items:
+>> +      - const: core
+>> +      - const: mmu
+>> +
+>> +  power-domains:
+>> +    maxItems: 1
+>> +
+>> +  resets:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - reg-names
+>> +  - interrupts
+>> +  - clocks
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>> +
+>> +    soc {
+>> +      #address-cells = <2>;
+>> +      #size-cells = <2>;
+>> +      jpeg-encoder@fd20000 {
+>> +          compatible = "img,e5010-jpeg-enc";
+>> +          reg = <0x00 0xfd20000 0x00 0x100>,
+>> +                <0x00 0xfd20200 0x00 0x200>;
+>> +          reg-names = "core", "mmu";
+>> +          clocks = <&k3_clks 201 0>;
+>> +          power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
+>> +          interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+>> +      };
+>> +    };
+>> diff --git a/MAINTAINERS b/MAINTAINERS
+>> index e1475ca38ff2..6b34ee8d92b5 100644
+>> --- a/MAINTAINERS
+>> +++ b/MAINTAINERS
+>> @@ -10572,6 +10572,11 @@ S:    Maintained
+>> F:    Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
+>> F:    drivers/auxdisplay/img-ascii-lcd.c
+>>
+>> +IMGTEC JPEG ENCODER DRIVER
+>> +M:    Devarsh Thakkar <devarsht@ti.com>
+>> +S:    Supported
+>> +F:    Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>> +
+>> IMGTEC IR DECODER DRIVER
+>> S:    Orphan
+>> F:    drivers/media/rc/img-ir/
+>> -- 
+>> 2.39.1
+>>
 
