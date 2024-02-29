@@ -1,182 +1,124 @@
-Return-Path: <devicetree+bounces-47336-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47337-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB80786CD80
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:50:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6A6F86CDC2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:56:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CD1F41C23217
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:50:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 56B42B26413
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:56:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E02341534FA;
-	Thu, 29 Feb 2024 15:49:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB72870AFF;
+	Thu, 29 Feb 2024 15:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="M0YaKCf7"
+	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="euMtdEpU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C46EB152E09;
-	Thu, 29 Feb 2024 15:49:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.19
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31DEA70ADE
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 15:49:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709221746; cv=none; b=BtsbustdgHLkTg/AA1qldEGEa6LkNjD+D0WsQ/nPRHAQcK5kqw61jckZyjIoty4wEP+PEvm1Vm+xPGyuMJ1iV2iEjQCSCQ8cHYkq/HwH+aXntBbVGGgXy310sRrLl+VmQufijQE7M4vQZWPOTJs+QT6gMzE1cXjyVABld1c6KPU=
+	t=1709221782; cv=none; b=QiCzf0i5e1ba8fq4fxncNYy0tlNcKEHwNJbHY6bc2OYk6FeZ0358wohRUL8tC1niaWGqeqNE2qgUB3bPqw08NDOv5zXSa79UsaH1Bdq+jnyHdHVgq7dqbMlqla2sbxwvO0Ea62PatTiDOtZnq85rZYtqEJaNlfsGDhHwDkd0JXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709221746; c=relaxed/simple;
-	bh=B6z1QKOE3x2nI2mPVwteO/iiaGfW/JzMEnxrnKdy4d8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=E+4OuZFFPU7x/Esye2ldUFy0f0zTquviW86CHh8rXsqnOGZmgF4RSpieRM1VcXyZCg56TV3LfDQXc2/iVLXVF/UYre7CDIiqztS4/gLKEAwVHPioaOxU1qJFzdDxVvKsdSHQo305U1HQ+w7e+xFUI0QZq+iLaAPJjSipOiZgskk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=M0YaKCf7; arc=none smtp.client-ip=192.198.163.19
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1709221745; x=1740757745;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=B6z1QKOE3x2nI2mPVwteO/iiaGfW/JzMEnxrnKdy4d8=;
-  b=M0YaKCf7wrEqGNkQvVmKkRt3w9EowrK9ik4NW3nMRmt+3RVUikYrGZwh
-   kS2RBzqeq4yp3OcQdep1dgOXpBARDFhHMxFFFJ2r+n+OHR0Ss6XX79yDU
-   g5Mb2VJVO8wIQGIu1tUBkDTMoYMk6FgpEZZv7iwoYOp/f6rcc/MjIVBw4
-   JdOaEvRoTYv2wARdFyr4YccclwSTXx755AO6Ww7jls0P5jCpsIx6AWiwi
-   KRPkn1GP4Rf+rARbyUdmZVawOJcqOxh3byFCcPkuNnBDB+aaznGgXj5cv
-   HEWjNnYCnGfDDZXHCDfUSiQjKYeYSd79n9nYYzki22Tl/HgIWJF4lmZDe
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="3554474"
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
-   d="scan'208";a="3554474"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Feb 2024 07:49:03 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10999"; a="913985020"
-X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
-   d="scan'208";a="913985020"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Feb 2024 07:48:58 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@intel.com>)
-	id 1rfieV-00000008i4q-1m6A;
-	Thu, 29 Feb 2024 17:48:55 +0200
-Date: Thu, 29 Feb 2024 17:48:55 +0200
-From: Andy Shevchenko <andriy.shevchenko@intel.com>
-To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
-	linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
-	linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v8 03/10] clk: eyeq5: add platform driver, and init
- routine at of_clk_init()
-Message-ID: <ZeCnZ0Py62EyKI9Z@smile.fi.intel.com>
-References: <20240227-mbly-clk-v8-0-c57fbda7664a@bootlin.com>
- <20240227-mbly-clk-v8-3-c57fbda7664a@bootlin.com>
- <Zd4X3NnBoEl0wu2H@smile.fi.intel.com>
- <CZGSB2O8P572.28HK6WFT43N6S@bootlin.com>
- <ZeBnX2upNRN0xXH4@smile.fi.intel.com>
- <CZHMSNWMH4KJ.2J6ZMWKMSZYH2@bootlin.com>
- <ZeCbvgWY6x1o17Kq@smile.fi.intel.com>
- <CZHOCV35A23S.14HL07U73EH6X@bootlin.com>
+	s=arc-20240116; t=1709221782; c=relaxed/simple;
+	bh=CHcI2S0JEPj8mELbXV5Hi3VYv5okgHeAmgENHLm1Efk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=O9JJrmrsULswaUXPhwVFGNbovRA1AqWeqN3kDyLTpm41L+8EdykncPVyQhwvaMcpP4CKtLQ2jodd9zh0WRGLL2yyw4xEOvU7OiF62rUT5JhvyMLA15RcunmaH0CKA9JQ9/Bdio2x5GuKhByakEqkCRIn596RFSnz4scja1h19aI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=euMtdEpU; arc=none smtp.client-ip=209.85.128.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
+Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-412bf4030daso4472285e9.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 07:49:39 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1709221778; x=1709826578; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CJWLEHwKCTq5M6yaIuOIWFF3XC8JrWtOfeFaJKHLycI=;
+        b=euMtdEpUASCWHkgHI9o62h903+/f5eQ+yMeCJ7dB0LaTHtIXYiteBT1Jxc+tWiRw8a
+         0PI0j+yS8g6fcfmUJ+0JOQOxUYjt7Zd6BZtlfQ4vDF1fjKzNDqg2mIeKOE4Iu+riR2NX
+         zh85Bcp0h8ufFpaVFnuSpXT6UCw8E1MMpiwBFpgdoMHIVgDZm5m3BsaQHzUfm6xdHVJK
+         ZhknKW46++XwHkbHdwXzyJWb07NRon2Rl8e1Xi668nI7qOkMkv84RenW1vwHZ2bDth4w
+         xxAbH9CFVRsPbXZyKYs9JjmLNvn2wmZ80XkPU3jqj1n8SgjiAWdiDVWmd51lZRw9YQ2O
+         kzXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709221778; x=1709826578;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CJWLEHwKCTq5M6yaIuOIWFF3XC8JrWtOfeFaJKHLycI=;
+        b=myPihXYKKala1NeHAfkCdLNP4aWNg5Zc2bcT2L3L6iM4KXdMBI631oVXvelGnBpMN9
+         7lIMX7cB/SezIQamLmrJIlxrYtXhY7R+oSrl1cUYNxLRWpMF5g8ohWpbwtjEzUSLnnt5
+         uDTpEE9Uwpv21VgGZrE23dAjLk1/WtSlGx8zHureC8z7Hxc2DArAcKgQqYpCvaIBn+a/
+         tTeeHGPz4FwLNKsIMJbkN+T2bIVpL4flDdvd7HbqXi+9TS9wR21v3psvw83zAY2nLKRb
+         8JTtJ6WFSic/FwVRpL1KFTZVdZLeozGMY0EnoBcf7gpAvP2uqaXiqA95c8vOVtwJkZLu
+         NdPQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU2XUkgZMN2uRWCv+BD9thIIXQZzDTTullVlWqSb1RU/Hx2R92WkTqjMrx0OBG2wRRr65H766szn/LOyBlx76ctUc26Z+/ZrUm3OA==
+X-Gm-Message-State: AOJu0Yz2e0o0/8IZhTd1hMoCg+E8FZ3KmBjTJ6QH1sTnzlAKKoF8yR3Q
+	+o8LA7NE3y3Jof7ZHtzijf/ESg0yCWAtKz1SJs/GSulHA90XDIFcJwDR+xkjaLc=
+X-Google-Smtp-Source: AGHT+IE9abPTuZJImsBPPVwExiBHv3+UHoPZOEA+bzFtWuIKypEfuzgNNp3VESK6x/US7chA1lqTew==
+X-Received: by 2002:a5d:58f2:0:b0:33d:29c1:c28c with SMTP id f18-20020a5d58f2000000b0033d29c1c28cmr1851510wrd.66.1709221778325;
+        Thu, 29 Feb 2024 07:49:38 -0800 (PST)
+Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
+        by smtp.gmail.com with ESMTPSA id n13-20020a5d4c4d000000b0033cfa00e497sm2074044wrt.64.2024.02.29.07.49.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Feb 2024 07:49:38 -0800 (PST)
+Message-ID: <49bcc88d-2562-40c9-81f6-64a48deb2066@freebox.fr>
+Date: Thu, 29 Feb 2024 16:49:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CZHOCV35A23S.14HL07U73EH6X@bootlin.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+Content-Language: en-US
+To: Jeff Johnson <quic_jjohnson@quicinc.com>, Kalle Valo <kvalo@kernel.org>,
+ ath10k <ath10k@lists.infradead.org>
+Cc: MSM <linux-arm-msm@vger.kernel.org>,
+ wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+ <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
+ <d8c90f33-d0ab-4d73-9580-2547446671a0@quicinc.com>
+From: Marc Gonzalez <mgonzalez@freebox.fr>
+In-Reply-To: <d8c90f33-d0ab-4d73-9580-2547446671a0@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 29, 2024 at 04:40:25PM +0100, Théo Lebrun wrote:
-> On Thu Feb 29, 2024 at 3:59 PM CET, Andy Shevchenko wrote:
-> > On Thu, Feb 29, 2024 at 03:27:01PM +0100, Théo Lebrun wrote:
-> > > On Wed, Feb 28, 2024 at 03:33:29PM +0100, Théo Lebrun wrote:
-> > > > On Tue Feb 27, 2024 at 6:11 PM CET, Andy Shevchenko wrote:
-> > > > > On Tue, Feb 27, 2024 at 03:55:24PM +0100, Théo Lebrun wrote:
+On 28/02/2024 15:59, Jeff Johnson wrote:
 
-[...]
-
-> > > > > > > +	u32		reg;	/* next 8 bytes are r0 and r1 */
-> > > > > >
-> > > > > > Not sure this comments gives any clarification to a mere reader of the code.
-> > > > > > Perhaps you want to name this as reg64 (at least it will show that you have
-> > > > > > 8 bytes, but I have no clue what is the semantic relationship between r0 and
-> > > > > > r1, it's quite cryptic to me). Or maybe it should be reg_0_1?
-> > > > > 
-> > > > > Clocks are defined by two 32-bit registers. We only store the first
-> > > > > register offset because they always follow each other.
-> > > >
-> > > > > I like the reg64 name and will remove the comment. This straight forward
-> > > > > code is found in the rest of the code, I don't think it is anything
-> > > > > hard to understand (ie does not need a comment):
-> > > > > 
-> > > > > 	u32 r0 = readl(base_plls + pll->reg);
-> > > > > 	u32 r1 = readl(base_plls + pll->reg + sizeof(r0));
-> > > >
-> > > > Btw, why readq()/writeq() (with probably the inclusion of io-64-nonatomic-lo-hi.h)
-> > > > can be used in this case? It will be much better overall and be aligned with
-> > > > reg64 name.
-> > > 
-> > > The doc talks in terms of 32-bit registers. I do not see a reason to
-> > > work in 64-bit. If we get a 64-bit value that we need to split we need
-> > > to think about the endianness of our platform, which makes things more
-> > > complex than just reading both values independently.
-> >
-> > 1) Would be nice to test on the real HW to confirm it doesn't accept 64-bit IO.
+> On 2/28/2024 5:24 AM, Marc Gonzalez wrote:
+>
+>> The driver waits for this indicator before proceeding,
+>> yet some WCNSS firmwares apparently do not send it.
+>> On those devices, it seems safe to ignore the indicator,
+>> and continue loading the firmware.
 > 
-> Just tested, it works. No error on the memory bus. And checked assembly
-> generated was a single 64-bit instructions.
-> 
-> It might not work on other hardware revisions though. I can't remember
-> if memory bus is changing across them.
-> 
-> > 2) Still I see a benefit from using lo_hi_readq() and friends directly.
-> 
-> So it is:
-> 
-> 	u32 r0 = readl(base_plls + pll->reg64);
-> 	u32 r1 = readl(base_plls + pll->reg64 + sizeof(r0));
-> 
-> vs:
-> 
-> 	u64 r = lo_hi_readq(base_plls + pll->regs64);
+> Can you list the product/hardware/firmware where this is observed?
+> Would prefer to fix the firmware if the issue is there
 
-> 	u32 r0 = r;
-> 	u32 r1 = r >> 32;
+Hello Jeff,
 
-It depends to the semantics of these two. How hard do they coupled to each
-other semantically? I.o.w. can they always be considered as 64-bit register
-with the respective bitfields? (And note FIELD_GET() here is your friend.)
+Do you think it is possible that the ath10k IP block in the msm8998/sdm835
+has never actually sent the MSA_READY indication?
 
-> One is straight forward, the other uses an obscure helper that code
-> readers must understand and follows that with bit manipulation.
+Perhaps the vendor driver does not wait for MSA_READY, and therefore this
+issue has never caused a problem downstream?
 
-[...]
+In that case, we could enable the work-around for all msm8998 boards?
 
-> There are two errors to handle, that makes a mess out of the code.
-> Having a little bit of repetition but straight forward code is nicer in
-> my opinion. At least we tried!
-
-Yes! Perhaps you can add a couple of words into commit message to explain
-this detail of implementation (that code in two parts is not so identical
-to be easily deduplicated).
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Regards
 
 
