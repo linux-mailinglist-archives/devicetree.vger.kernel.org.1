@@ -1,123 +1,183 @@
-Return-Path: <devicetree+bounces-47409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47411-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 095D086D1DB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:17:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5859B86D1E4
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:18:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 372A91C2110D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:17:00 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1270B2136C
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:18:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8B5F7B3E9;
-	Thu, 29 Feb 2024 18:16:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E97778284;
+	Thu, 29 Feb 2024 18:18:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="m+5mCg7w"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nq/NZF2I"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77E9B160648;
-	Thu, 29 Feb 2024 18:16:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DCD32757E6
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 18:18:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709230604; cv=none; b=PF2R9DcFxiXe289hewIjPrgT7SETZr8wJNxAfMgN+EVa2FB/iEPL3RfKaYVu9sk07A79JgOKI52gcXZ+Wg+lEl1bh8HBNRoY5rljLECZCtppxahMbSEFxx5JAvhCheanvGmbXep1vNt+as6Kxztghgc2K5l5RUUxQIF8VOzEBT8=
+	t=1709230699; cv=none; b=k8B98+DzUVuLn5iIqS+SaS2OJQWHuliRqiioRewlFzyuQt+RfdH/tXJ/IFdPQAjFlwjtlsngCn/JQCcKRrYhIbEfy6v/aUa/3p7pOuE9SLfmIzqJfbsVdZiiWrVsSFU4w9HW/waotrD+v4b/4HenKEsRSC8LYUYqZluyojV1vys=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709230604; c=relaxed/simple;
-	bh=3CbSXxuONRZ0lG9ZqV/7qAp0SdzOirXNAMLNdA3lpGY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T5dJ1/VolaZflqca+TiVUeEk4OdHulaYxdpNvhd1AuQqDnnWYM/ogX7jtAEWjuymvc0MZ22LurEOeHRJMghjfocS9j8qzv5uSDVhIihUssatEBuJUdMZFjlyyyor90GdI++YSe48+omUVUtnlksLKBqrRcJEb/aYx/1jK1nD3Uo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=m+5mCg7w; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B116C433F1;
-	Thu, 29 Feb 2024 18:16:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709230604;
-	bh=3CbSXxuONRZ0lG9ZqV/7qAp0SdzOirXNAMLNdA3lpGY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=m+5mCg7w63r7Z5MFOKERYRB7WPa7MXWJ72o5e+WXXyPAuANuGl/DHcU4BjOeJqEFT
-	 8iX7/DIfW8qsldkc4ZC4VMrTbv/troUkZO3qae4Z/yu7zhwgRzSlrmPuYswtxFGDGv
-	 Ixcdjub4uFUPtvgkjFrjCU6HsP5u9kA8eaVJPpr3h0M4GDTq1ffijdek5YG5JgBkNo
-	 fQs7N1NjawmnnJvv7YThPna82xkHQ789SX7AGhwzMJ9qwXufFkxG9pR99/WlWZJWzM
-	 K7qKC9aS0d7oCO6mzW+XA3U2qjTqaL+mwk/c7SQllHjJNKGVPmjVkXwSAllFi1jhUF
-	 UlNG+JOc46xtA==
-Date: Thu, 29 Feb 2024 18:16:39 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: helgaas@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
-	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-	lpieralisi@kernel.org, robh@kernel.org
-Subject: Re: [PATCH v5 5/5] dt-bindings: pci: layerscape-pci-ep: Remove
- 'fsl,pcie-scfg' and 'dma-coherence' from required
-Message-ID: <20240229-putdown-gyration-6aaa6d156547@spud>
-References: <20240228190321.580846-1-Frank.Li@nxp.com>
- <20240228190321.580846-6-Frank.Li@nxp.com>
+	s=arc-20240116; t=1709230699; c=relaxed/simple;
+	bh=7IKIom3eNl8+Mrtp3UZQGJQ86BV0ePVRpfCp0fglhhw=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=k//aXHJqxEziESMSApy/hv9wzNGL+pMhfnqBz5DVndbmER2QNRvg70Zgi+aBDPyV4gEiuXnZ1Age8+rCVYO5Bv5ZONaFjqTk0cuPvapR3WK+6mTf3kEy6i/fLlAv8aOx4xe059ANt0fMHR5nPE0WW5QpPZVadbwvIS4pmtdVs14=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nq/NZF2I; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-564fc495d83so1704671a12.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 10:18:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709230696; x=1709835496; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=WRyaqiqMC4KS7tJ6X/sLfx6ZMSNbMGGwAsa5r/EztqA=;
+        b=Nq/NZF2IMMWQZ5UaCTmu9k/y3UVAldwhscxWNH/tB2HRy4x8o3C5PVTmjDKlJKOME2
+         w60deROAwWa7aI2hbMeawIAZ4WDOdZ862tTU8F+cmkZatOqF3aXnZ53pG+z3ByN3pZSG
+         5UYSSgitx01O/JQaUUa1DBfVtgmwzJumKO604a/SaJR0HF31rzV/pVxdUyVFne3WjAUl
+         Jf4rnAd/QjPDloKPuaTEQQBrF9vGPhLekdHO+TfaGO/f4kzi1T5eQ+TOIL7wTwKRVu25
+         dPa4Ys4jWTDXLa4bbHwU6ZTg6y3wzBvxhtByFT1NLoSC5V54BylyzSvyFX6u11ShliIH
+         8jpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709230696; x=1709835496;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WRyaqiqMC4KS7tJ6X/sLfx6ZMSNbMGGwAsa5r/EztqA=;
+        b=j0G+21FzZB4M0lkT0A5fsU7QGyX+YY7uo+R4gNYaxHTs1OyHMGswRy2tMFonTRwpce
+         y0EuZTisfGX7dosMU0mJHSXwsbpEGaDMMKHKvabQyiMzVe1EqOTpR9RAxXPfZN9plSPI
+         VK1RBVobWDwar15nhpM2wmVBCwExD8/ZIhRtKUGVu9rl8NMo48/HOpNBJtFTQ9KXPJ3i
+         ydNEwzSBxchvP3o1QVZ/pJ3OYpS5piXaUkqZq+EwBKYHmq/gSinj/P1uaIhmV31051FW
+         2VRcmyV9TWOp2U2AlLnWZIHUEc5oxBOH4QWL22WoTjWLUnkC0y2iiDDcvs3GXiGPrDRQ
+         l2nw==
+X-Forwarded-Encrypted: i=1; AJvYcCXq2SmeWqAndFFYNaMzlstUJTopUUqQZnbPeXNL1XLTnPLq1WJaj3r5sqD3skwDCDXbIZiM+HEY864wH9zHMS4zmAw5+FRb+9WlBw==
+X-Gm-Message-State: AOJu0YwFp5yTCyLbQemeimkQGYup7x/y4b036Yo7fwvjoGfMGkWgXS9e
+	pHgMz2XBBfMhTvaNuTD71Fc3GZyan/YASgHSHB7RENkmP0ny3891u0SsUD7/t9ByRYXK5CukYd1
+	p
+X-Google-Smtp-Source: AGHT+IH6JpeYBX20HrbbrvTPfRBCWGlvPxVY5/VhNgW/LbVbf/uNLkYrdRkDr6Hf6RjxPprkaPqjIQ==
+X-Received: by 2002:aa7:c2c5:0:b0:566:6640:10e1 with SMTP id m5-20020aa7c2c5000000b00566664010e1mr2056492edp.38.1709230696305;
+        Thu, 29 Feb 2024 10:18:16 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id f12-20020a056402194c00b0056661ec3f24sm832564edz.81.2024.02.29.10.18.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Feb 2024 10:18:15 -0800 (PST)
+Message-ID: <3f82eadb-a475-4ea0-8de3-0bfe0a46a27b@linaro.org>
+Date: Thu, 29 Feb 2024 19:18:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="i/bXdY1OaIYJCArs"
-Content-Disposition: inline
-In-Reply-To: <20240228190321.580846-6-Frank.Li@nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] media: dt-bindings: nxp,imx8-isi: Allow single port
+ for single pipeline models
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
+ <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org
+References: <20240223140445.1885083-1-alexander.stein@ew.tq-group.com>
+ <20240223140445.1885083-3-alexander.stein@ew.tq-group.com>
+ <20240223141630.GA1313@pendragon.ideasonboard.com>
+ <20240223141731.GB1313@pendragon.ideasonboard.com>
+ <bf892e5b-be7a-4197-9e68-5199e3aada23@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <bf892e5b-be7a-4197-9e68-5199e3aada23@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
+On 29/02/2024 19:14, Krzysztof Kozlowski wrote:
+> On 23/02/2024 15:17, Laurent Pinchart wrote:
+>> On Fri, Feb 23, 2024 at 04:16:31PM +0200, Laurent Pinchart wrote:
+>>> Hi Alexander,
+>>>
+>>> Thank you for the patch.
+>>>
+>>> On Fri, Feb 23, 2024 at 03:04:44PM +0100, Alexander Stein wrote:
+>>>> In case the hardware only supports just one pipeline, allow using a
+>>>> single port node as well.
+>>>
+>>> This is frowned upon in DT bindings, as it makes them more complicated
+>>> for little gain. The recommendation is to always use a ports node if a
+>>> device can have multiple ports for at least one of its compatibles.
+>>
+>> And reading the cover letter, I see this causes warnings. I think we
+>> need guidance from Rob on this.
+> 
+> Here was similar case:
+> https://lore.kernel.org/all/20240227142440.GA3863852-robh@kernel.org/
+> and @Rob recommendation was to just use ports.
+> 
+> It's true it causes warnings... or I should say - it was causing
+> warnings (one of my last warnings in Samsung DTS for W=1).
+> 
+> I wonder what's the base of this patchset?
+> 
+> https://lore.kernel.org/linux-samsung-soc/20231122-dtc-warnings-v2-1-bd4087325392@kernel.org/
 
---i/bXdY1OaIYJCArs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Uh, wait, this was not merged, so the warning still appears. Anyway the
+preference is simpler schema, so just "ports".
 
-On Wed, Feb 28, 2024 at 02:03:21PM -0500, Frank Li wrote:
-> Remove 'fsl,pcie-scfg' and 'dma-coherence' properties from required becau=
-se
-> not all chips is dma coherenced and have supplement configuration unit
-> (scfg).
->=20
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+Best regards,
+Krzysztof
 
-I'd squash this with 3/5 and move both of them before the addition of
-the reference to the main snps stuff. That way you'll not get
-dt_binding_check complaints on multiple patches.
-
-Cheers,
-Conor.
-
-> ---
->  .../devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml         | 2 --
->  1 file changed, 2 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep=
-=2Eyaml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
-> index e75b8853dca8c..07965683beece 100644
-> --- a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
-> +++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
-> @@ -67,8 +67,6 @@ required:
->    - compatible
->    - reg
->    - interrupt-names
-> -  - fsl,pcie-scfg
-> -  - dma-coherence
-> =20
->  allOf:
->    - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
-> --=20
-> 2.34.1
->=20
-
---i/bXdY1OaIYJCArs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeDKBwAKCRB4tDGHoIJi
-0gE3AP4uvIutdJbc+UtQUdw8Ctv+/W7dwfFJ2yR2E9RtaHN1SgEAx9+lhU1T/ZFP
-HrV6OMDlJTF/of4ImXSZsFXNN873cA0=
-=RyZI
------END PGP SIGNATURE-----
-
---i/bXdY1OaIYJCArs--
 
