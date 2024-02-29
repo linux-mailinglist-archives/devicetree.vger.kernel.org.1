@@ -1,151 +1,334 @@
-Return-Path: <devicetree+bounces-47505-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47506-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C81F86D6CB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 23:24:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE0B786D6F7
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 23:45:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE3CB1C2295A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:24:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F3CEB22093
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 22:45:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 39ACE74BFA;
-	Thu, 29 Feb 2024 22:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC73F381AA;
+	Thu, 29 Feb 2024 22:45:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SyoVmo1h"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ctmgOwin"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7465974BED;
-	Thu, 29 Feb 2024 22:24:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04AC2200C4
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 22:45:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709245469; cv=none; b=eyrrrEUNndindHVlX9/DLgXvDmZcf9hoqUJLnztVuzNW6lXQCeKWpK3B1Z7VdBWJCCdPiV+fx/WoQn8IfcOoHBohxpjCPNEgWKM2z+4hWS+sJ4WNEDtVeaiN3Bo1TPdC1sym4EQ8sBeGXw5KZTcMG8lPi0j8+VM9UWhepwRhibU=
+	t=1709246751; cv=none; b=HF1dh2yb36/585M18b80Jb8tTA2E25C4PVefbIzkFQX6ukmqY8vK+VzRSF2LeRsInprxKhroaleoJfEvEdHu06R8zzYOGSRCXSCW999xHqdHWqgbaZx7SnUm7J+UDa3+7GU2vp5aFPJUo+Sw0kdVeMcpw5n4+a2T9nKwXCXBYy4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709245469; c=relaxed/simple;
-	bh=0jwd/jJz9F7HyDfXNZKIQyTdhdaG+2S7SxpZB0qD6OI=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=P7kvH2sKoXDADw6d/UE9Tbg8g9bRkcwtAezYMYplpqW+qcs76VsEBx9YT5mZrNVLe8TsX/A+sJkY6Hk9TQGQPhPF2q8/k7Y9nOVwtMiFmNkgAbJL7dMFBpZynDFxdh9yFOis10JUjdsVHzzUEnt/VCi3U1eOlVY80Y4Imp+o1e4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SyoVmo1h; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41TLls8D009650;
-	Thu, 29 Feb 2024 22:24:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=OtqW1XZXFcuupLJ9seJDX
-	buTAWyH7zHudvWRXGce+gE=; b=SyoVmo1harXCR7en4JVVG10pO4Pv6cwwRNf2o
-	Pguv0A/JONB/mOudHWLOt0ggxQFISbRwgX0SPs35Zf7JAelJvRR0gLGDkHVrn4VQ
-	FEvhe+dKiFzg6TzxwXpYl1bUhEnrNdvhK1LPGZyrxo7KhIjt87O+nHQvVv3thMPC
-	4gHKU+Qt7kMiTdy+FWCCZBXjMOW85PeWEioSz4mVZz9XT+uaonCSTLpGr0ZS7p10
-	IKolXiAt4WWxjDNUONnbHNitISGi6DICUCTUQI249OUiQnAWn3ip0y8xHdxmZ2Ya
-	JNcmksT9OI+01iYxCIV0QgUUwIo1Fcu/01dZ06LV9XNmfcDlg==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wjycdgktv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Feb 2024 22:24:06 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41TMO5Hl000407
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Feb 2024 22:24:05 GMT
-Received: from hu-cgoldswo-sd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 29 Feb 2024 14:24:04 -0800
-Date: Thu, 29 Feb 2024 14:24:03 -0800
-From: Chris Goldsworthy <quic_cgoldswo@quicinc.com>
-To: Georgi Djakov <djakov@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Georgi Djakov
-	<quic_c_gdjako@quicinc.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <will@kernel.org>, <robin.murphy@arm.com>, <joro@8bytes.org>,
-        <iommu@lists.linux.dev>, <devicetree@vger.kernel.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <robdclark@gmail.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <quic_cgoldswo@quicinc.com>, <quic_sukadev@quicinc.com>,
-        <quic_pdaly@quicinc.com>, <quic_sudaraja@quicinc.com>
-Subject: Re: [PATCH v5 1/7] dt-bindings: iommu: Add Qualcomm TBU bindings
-Message-ID: <20240229222347.GA918@hu-cgoldswo-sd.qualcomm.com>
-References: <20240226172218.69486-1-quic_c_gdjako@quicinc.com>
- <20240226172218.69486-2-quic_c_gdjako@quicinc.com>
- <b6215fcd-29fc-4495-999f-b7b03b36c087@linaro.org>
- <70095e04-eaec-4323-b2ac-2d4d366763d5@kernel.org>
+	s=arc-20240116; t=1709246751; c=relaxed/simple;
+	bh=KBmLNxg+vTsphdgCGsyZVLdR0GdbPxP8Op44bt5I+K8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=K4gx8OkEEr8zNMfd9ZLGVVlPqMfeu9a3ERkeq1W2IRuhMOdxHaw5JFH5u/MZy5ZGYEWHqQr6veKsVONhVXdCmVKEtDVSGQKLEgdndV2Oqi4FAQOQgk9J0qYCvZhHAX+AcpBFTrHNlbeOC03bMsr5PxiwoxTvNpEO4nTu1K3ukiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ctmgOwin; arc=none smtp.client-ip=209.85.160.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f170.google.com with SMTP id d75a77b69052e-42e6939d34fso143161cf.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 14:45:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1709246749; x=1709851549; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YUPSf0nK67iLiZTGgeeD62efhwdo8oz6h15V6Q4x0lw=;
+        b=ctmgOwina/dJQ/FJncBGTVMqCpGPSxVvASS+w3p+57J03LZaywcEbXYMCYoHtgFRoj
+         LU2jkWW4qsNVOYTggnoIGA5FRBXbU7kAhjZMHxF9yRakflCZXqsWtL1CdmWCwIpvn8Fs
+         Vd84d7l/1uT6wmzaKFh5mwqIgymo7O7hQcgMX9BKklyjqk0QZY9ri8/1xInVB7cgr33i
+         E952jg2zReIso/wNNdjEkY5igvZ540QIgDPPTqFN0EqnCkJa0//I4HqY8iUscoKxvyEd
+         PnnSn9aupFhW2BL+l7rtJT18aYrq/+oUmQZjt2jGWuvYBrjJKEYjQLHGlJGIZ+oDK8MX
+         b7XQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709246749; x=1709851549;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YUPSf0nK67iLiZTGgeeD62efhwdo8oz6h15V6Q4x0lw=;
+        b=JAVKIFxNLToROPVJmNe7L5s8qYVWlafUCmHniQ4Vl86WALkxRnzouK8k1Es53kxszR
+         KRbI4WRtNiGxs1E11gGdGict+mezKTlO1YqVomwAdLgfo5gyOSzxjVfwk6yRVpofK+M4
+         ZrhioukWOzd6E7Y1DmCVd7EpP4g8xkyabY4uLqZ71j5X+2gW/TcDOo1jFaR61/MKI8g0
+         dFTXW1msJMeHCsn9Nf0/SPv90jB1nYUkN/0U4CfOPA/eswUUsAlN7hascmZ9Pi18PE8Y
+         Baylb7jxATi0g5PGPtI0IN6hEyN7VWh+PwPkGagZIJbASXJQqZe69ai/3cuYFjINcnD4
+         +9BA==
+X-Forwarded-Encrypted: i=1; AJvYcCUBMkEvR5cXqi2wl+zIBRSdbHQOzySBT13wjh0XDPTMuDyykCFzI3rZjxL9/RzysGMaPpSnhN6x/nJv6hp233TcNpHNSjcaZ8HEGQ==
+X-Gm-Message-State: AOJu0YxnhHweb2t/TPOXkOxZX1F2vKuN1/N2LjtuVCy3qQvVSLMCoNdu
+	qo1N+csRMcjz4iZZGUp6m8Qyea5LOFSI9eygoCB1AAsgqJUjB8k55z9bLGM7GAl8gksB7ncq57Y
+	q9zQBdmCFqSKQoKGjAlGUyYMEQb5StvY62UIW
+X-Google-Smtp-Source: AGHT+IHt0KuDRvp6qL+OBBAeaMe/OchgiMztSjbX1YYLWcBgHKP54Bv/HKsBhKh2n4I3mvWB4dGR4nk4xqso96y0Jb0=
+X-Received: by 2002:ac8:5894:0:b0:42e:bbd5:d11b with SMTP id
+ t20-20020ac85894000000b0042ebbd5d11bmr87736qta.2.1709246748752; Thu, 29 Feb
+ 2024 14:45:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <70095e04-eaec-4323-b2ac-2d4d366763d5@kernel.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: OXH1O4Jm_oC6uUujkc43pumk01oZDJUg
-X-Proofpoint-ORIG-GUID: OXH1O4Jm_oC6uUujkc43pumk01oZDJUg
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-29_06,2024-02-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- mlxlogscore=999 impostorscore=0 bulkscore=0 priorityscore=1501
- lowpriorityscore=0 malwarescore=0 adultscore=0 suspectscore=0 spamscore=0
- clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402290175
+References: <20240224052436.3552333-1-saravanak@google.com> <CAMuHMdWhm1WaX3X3P7tyB+e-rX=iwkwm8LxE3=gfHzJ1umhsFg@mail.gmail.com>
+In-Reply-To: <CAMuHMdWhm1WaX3X3P7tyB+e-rX=iwkwm8LxE3=gfHzJ1umhsFg@mail.gmail.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Thu, 29 Feb 2024 14:45:10 -0800
+Message-ID: <CAGETcx-sZXeSxgtYMvgbR4GEpSo2g7hDH1KshEoqZBHf9C42fw@mail.gmail.com>
+Subject: Re: [PATCH] of: property: fw_devlink: Fix stupid bug in
+ remote-endpoint parsing
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	=?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, kernel-team@android.com, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Feb 29, 2024 at 10:09:34PM +0200, Georgi Djakov wrote:
-> Hi Krzysztof,
-> 
-> On 29.02.24 19:53, Krzysztof Kozlowski wrote:
-> >On 26/02/2024 18:22, Georgi Djakov wrote:
-> >>+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>+%YAML 1.2
-> >>+---
-> >>+$id: http://devicetree.org/schemas/iommu/qcom,tbu.yaml#
-> >>+$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>+
-> >>+title: Qualcomm TBU (Translation Buffer Unit)
-> >>+
-> >>+maintainers:
-> >>+  - Georgi Djakov <quic_c_gdjako@quicinc.com>
-> >>+
-> >>+description:
-> >>+  The Qualcomm SMMU500 implementation consists of TCU and TBU. The TBU contains
-> >>+  a Translation Lookaside Buffer (TLB) that caches page tables. TBUs provides
-> >>+  debug features to trace and trigger debug transactions. There are multiple TBU
-> >>+  instances with each client core.
-> >>+
-> >>+properties:
-> >>+  compatible:
-> >>+    const: qcom,qsmmuv500-tbu
+On Thu, Feb 29, 2024 at 2:11=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Saravana,
+>
+> On Sat, Feb 24, 2024 at 6:25=E2=80=AFAM Saravana Kannan <saravanak@google=
+.com> wrote:
+> > Introduced a stupid bug in commit 782bfd03c3ae ("of: property: Improve
+> > finding the supplier of a remote-endpoint property") due to a last minu=
+te
+> > incorrect edit of "index !=3D0" into "!index". This patch fixes it to b=
+e
+> > "index > 0" to match the comment right next to it.
 > >
-> >Why we don't have SoC specific compatibles? If that's for SDM845, then
-> >it should be qcom,sdm845-tbu or qcom,sdm845-qsmmuv500-tbu
+> > Reported-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > Link: https://lore.kernel.org/lkml/20240223171849.10f9901d@booty/
+> > Fixes: 782bfd03c3ae ("of: property: Improve finding the supplier of a r=
+emote-endpoint property")
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+>
+> Thanks for your patch!
+>
+> > --- a/drivers/of/property.c
+> > +++ b/drivers/of/property.c
+> > @@ -1304,7 +1304,7 @@ static struct device_node *parse_remote_endpoint(=
+struct device_node *np,
+> >                                                  int index)
+> >  {
+> >         /* Return NULL for index > 0 to signify end of remote-endpoints=
+. */
+> > -       if (!index || strcmp(prop_name, "remote-endpoint"))
+> > +       if (index > 0 || strcmp(prop_name, "remote-endpoint"))
+> >                 return NULL;
 > >
-> 
-> Because they should be all compatible (as registers). Adding a SoC compatible
-> might get overly-specific, but i can also see the benefits in that, so ok will
-> do it!
-> 
+> >         return of_graph_get_remote_port_parent(np);
+> > --
+> > 2.44.0.rc0.258.g7320e95886-goog
+>
+> After this, the "Fixed dependency cycle" messages I reported to be
+> gone in [1] are back.
+>
+> In fact, they are slightly different, and there are now even more of them=
+:
+>
+> -platform fea80000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef7000/ports/port@1/endpoint@0
+> -platform fea80000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef6000/ports/port@1/endpoint@0
+> -platform fea80000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef5000/ports/port@1/endpoint@0
+> -platform fea80000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef4000/ports/port@1/endpoint@0
+> -platform fea80000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef3000/ports/port@1/endpoint@0
+> -platform fea80000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef2000/ports/port@1/endpoint@0
+> -platform fea80000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef1000/ports/port@1/endpoint@0
+> -platform fea80000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef0000/ports/port@1/endpoint@0
+> -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef3000/ports/port@1/endpoint@2
+> -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef2000/ports/port@1/endpoint@2
+> -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef1000/ports/port@1/endpoint@2
+> -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> /soc/video@e6ef0000/ports/port@1/endpoint@2
+> -platform fead0000.hdmi: Fixed dependency cycle(s) with
+> /soc/sound@ec500000/ports/port@1/endpoint
+> -platform feae0000.hdmi: Fixed dependency cycle(s) with
+> /soc/sound@ec500000/ports/port@2/endpoint
+> -platform feb00000.display: Fixed dependency cycle(s) with
+> /soc/hdmi@feae0000/ports/port@0/endpoint
+> -platform feb00000.display: Fixed dependency cycle(s) with
+> /soc/hdmi@fead0000/ports/port@0/endpoint
+> -platform hdmi0-out: Fixed dependency cycle(s) with
+> /soc/hdmi@fead0000/ports/port@1/endpoint
+> -platform hdmi1-out: Fixed dependency cycle(s) with
+> /soc/hdmi@feae0000/ports/port@1/endpoint
+> -platform vga-encoder: Fixed dependency cycle(s) with /vga/port/endpoint
+> -platform vga-encoder: Fixed dependency cycle(s) with
+> /soc/display@feb00000/ports/port@0/endpoint
+> +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@feaa00=
+00
+> +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@feaa00=
+00
+> +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@feaa00=
+00
+> +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@feaa00=
+00
+> +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef4000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef5000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef6000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef7000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@feae00=
+00
+> +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@fead00=
+00
+> +platform ec500000.sound: Fixed dependency cycle(s) with
+> /soc/i2c@e6510000/codec@10
+> +platform e6ef7000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef6000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef5000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef4000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@fea800=
+00
+> +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef70=
+00
+> +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef60=
+00
+> +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef50=
+00
+> +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef40=
+00
+> +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef30=
+00
+> +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef20=
+00
+> +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef10=
+00
+> +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef00=
+00
+> +platform fea80000.csi2: Fixed dependency cycle(s) with
+> /soc/i2c@e66d8000/video-receiver@70
+> +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@feaa00=
+00
+> +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@feaa00=
+00
+> +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@feaa00=
+00
+> +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@feaa00=
+00
+> +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef30=
+00
+> +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef20=
+00
+> +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef10=
+00
+> +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef00=
+00
+> +platform feaa0000.csi2: Fixed dependency cycle(s) with
+> /soc/i2c@e66d8000/video-receiver@70
+> +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@fead00=
+00
+> +platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/sound@ec5000=
+00
+> +platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/display@feb0=
+0000
+> +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@feae00=
+00
+> +platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/sound@ec5000=
+00
+> +platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/display@feb0=
+0000
+> +platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/display@feb0=
+0000
+> +platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/display@feb0=
+0000
+> +platform feb00000.display: Fixed dependency cycle(s) with /soc/hdmi@feae=
+0000
+> +platform feb00000.display: Fixed dependency cycle(s) with /soc/hdmi@fead=
+0000
+> +platform cvbs-in: Fixed dependency cycle(s) with
+> /soc/i2c@e66d8000/video-receiver@70
+> +platform hdmi-in: Fixed dependency cycle(s) with
+> /soc/i2c@e66d8000/video-receiver@70
+> +platform fead0000.hdmi: Fixed dependency cycle(s) with /hdmi0-out
+> +platform hdmi0-out: Fixed dependency cycle(s) with /soc/hdmi@fead0000
+> +platform feae0000.hdmi: Fixed dependency cycle(s) with /hdmi1-out
+> +platform hdmi1-out: Fixed dependency cycle(s) with /soc/hdmi@feae0000
+> +platform vga: Fixed dependency cycle(s) with /vga-encoder
+> +platform feb00000.display: Fixed dependency cycle(s) with /vga-encoder
+> +platform vga-encoder: Fixed dependency cycle(s) with /vga
+> +platform vga-encoder: Fixed dependency cycle(s) with /soc/display@feb000=
+00
+>
+> -i2c 2-0010: Fixed dependency cycle(s) with
+> /soc/sound@ec500000/ports/port@0/endpoint
+> +platform ec500000.sound: Fixed dependency cycle(s) with
+> /soc/i2c@e6510000/codec@10
+>
+> -i2c 4-0070: Fixed dependency cycle(s) with
+> /soc/csi2@fea80000/ports/port@0/endpoint
+> -i2c 4-0070: Fixed dependency cycle(s) with
+> /soc/csi2@feaa0000/ports/port@0/endpoint
+> -i2c 4-0070: Fixed dependency cycle(s) with /hdmi-in/port/endpoint
+> -i2c 4-0070: Fixed dependency cycle(s) with /cvbs-in/port/endpoint
+> +platform feaa0000.csi2: Fixed dependency cycle(s) with
+> /soc/i2c@e66d8000/video-receiver@70
+> +platform fea80000.csi2: Fixed dependency cycle(s) with
+> /soc/i2c@e66d8000/video-receiver@70
+> +i2c 4-0070: Fixed dependency cycle(s) with /soc/csi2@fea80000
+> +i2c 4-0070: Fixed dependency cycle(s) with /soc/csi2@feaa0000
+>
+> I guess all of that is expected?
 
-Hi Krzysztof,
+I'm assuming all of these cycles are between devices that use
+remote-endpoint/port(s)? If so, yes, these are all expected. It's just
+logging things more accurately now.
 
-JFYI that the TBUs are used on our mobile SoCs going up until the SoC
-we commercialized in early 2022, Snapdragon 8 Gen 1. Including SDM845
-there are three more premium tier SoCs using TBUs plus all of their
-value-tier derivatives.  There will also be prior generation premium
-tier SoCs along with their derivatives that use the TBU as well. Does
-it make sense to have a target-specific compatible string given this? 
+Once post-init-providers lands, you can use that property to break the
+cycles and also allow a better probe/suspend/resume ordering between
+these devices.
 
-Thanks,
+-Saravana
 
-Chris.
-
+> [1] https://lore.kernel.org/all/CAMuHMdVon3mdivZQ0O6D4+va0nGBrUQbDp23bEq6=
+61QD=3D4t7+g@mail.gmail.com/
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
