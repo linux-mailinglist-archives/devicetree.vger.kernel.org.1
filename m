@@ -1,159 +1,177 @@
-Return-Path: <devicetree+bounces-47449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FA2B86D39F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:47:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CDA9286D3B1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:52:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2F61E1F21203
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:47:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0BC651C21DBA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:52:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7B93813F428;
-	Thu, 29 Feb 2024 19:46:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB79D13C9FE;
+	Thu, 29 Feb 2024 19:52:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="m8oF1PTZ"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="HypF3EI9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A281713C9F0
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 19:46:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41DBB13C9D6
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 19:52:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709235998; cv=none; b=NWXmPwXLhN6sqVj3pa4AKBtIgBF9ED9U0ZvfEHTmIbyX5HUGWovO5aAAxeXJW0ZwzeVYccElbuDzkp2QPEycVGbXZKFPFMOk2PtN8PximeOB2Sxs1hvEQLw6/ilvksF35IoeB6QRxosVTxJmnVaFoWClIexPD71iu4Z4EKh5Jd0=
+	t=1709236351; cv=none; b=Ue2hR+wVugefsdzZim56uzAl0+eYB/HSjvPvQcqNCs5Z8iJahFTllYOWhVYWPUvIUBcCq/CbtR1aHcqAp+fy5OqeR8+D82J8RCmZHE3eMQv5SdbjgT5+wbMFsJSQK7KgfdAv8435W18ufTERoboxGNFSUTJ73CQhRmzgnzmkyXQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709235998; c=relaxed/simple;
-	bh=FUZ+ARrgYrVGPeED8OxlWjpxmc6inLR7OGe6R/B/uy0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LZ6q8o7pt9yV/FwO0NkaHhaHFYQIIuF9+jp86gdxCEzTGmL+Flkz7cXdprYXayi4JewXSqk5tHwgtPoUmGliCZwwDVTdl7FUVcIwFlPxgAecY6x6Q1LpYoe8as6sACp7SNPOR84o4fo0gYX5wSIb/KFO1haGsMex/AYIcT2pIjQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=m8oF1PTZ; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-5131c0691feso1640185e87.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 11:46:36 -0800 (PST)
+	s=arc-20240116; t=1709236351; c=relaxed/simple;
+	bh=BP7MIA4aqWsMyk/DGZfI6PyI07QVMNIRBi3JywY0eHw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nu/Lh/OyqMojqmeBfeOo+J33uuT0o7ku0CDzvwdsXiUQWVkvi4NnT8/i0h2ma24rtTZOAD1VmVGtQpgwah/3gRpt8XD1gP1XU/ZPJUT3b2wYsIOXMDrbDHTz/91pjggPnr/b+dDWgPnnQMu5sQ5k4MqsHwXPYYxcqSrIYb2gVgs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=HypF3EI9; arc=none smtp.client-ip=209.85.166.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-7c81e087882so1422939f.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 11:52:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709235995; x=1709840795; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HtY98UbmWSc2KFzbhrN3ykPcWoC2kuCq45CVG1yvjsw=;
-        b=m8oF1PTZkbQamFldGsAlxUa+zKAop4v9xH9PKZY5WNmj4bAJHHSyF1GZYcHxGXUHcy
-         ifT7GDU/yml994pKLL1qZFp4C+3mQFjnWwl4wZcbnTZ9laERL2rN7gKztJXgfDL57eu6
-         kkZWnXPPb7e95I8RsM2cjxepsRANc6a+ltt3Mb7y0kNYbG7be6Edx7XCECqB3S9hJN6m
-         1sfO2L7tLhQfTCbx7Y7KByfKBHnzZri2wcXw8Kj4uOGi5rP4axJ9/ywriYhRobR3Gu3K
-         q8S8rSCvSrVwcgBszvqfrnH8o87MMYFLbYekxn9nX0pLcFtM6gOtx9Mr3M5DK7Mt/w2k
-         1knw==
+        d=chromium.org; s=google; t=1709236349; x=1709841149; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=2t6iwGhsnNUxY4xM8qxSPssm7+cm45B8gw+DhHQKME4=;
+        b=HypF3EI9hLgQur8I6NBhRnURfqFI7olBYhAmwesAxfVtKJ6jcKGaOFMnuEL4pd+Cnb
+         rCzJyadxlNFrmvS9HJrV6QSm/B2irlD8WqJrVpiM411kdNarXQJgZz0HGwz53/H13oLK
+         35vOknB0OWFPxxFCT9XdgoPn7FvQI8XYZRbLA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709235995; x=1709840795;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HtY98UbmWSc2KFzbhrN3ykPcWoC2kuCq45CVG1yvjsw=;
-        b=XcwLr/B5Ekld9ea7ZQCKZh3ukw+bE8IkVwM1MTMmR0WUCUglviUU0atGL/THPPxuQ2
-         9mcMiWZnlXFK6lQffN+KWnodt+3yNWunRqU+NsSOkdMX4a9u2ZysqRo5rJ8xcajLGSdu
-         XJt2qEWdDcCmwnGGqukSS9enrEEGvJtzlQnNq7/ztWk1oMQyXFR7eNvxrdJRNz7SZ10v
-         JxnU1de3cq8kv43dr3YWizkHToN/Iw4KYE9XZImxvIC8UjbwaNSENYyefNjKHnf7S80k
-         1HoKeXhM+XFJc5sw740OuIX+EYfL+t0fI6PZXqqW8hnN+JFlCuqojNnlDdLGy0BiiIxV
-         2VlQ==
-X-Forwarded-Encrypted: i=1; AJvYcCV/hUQ8OY96iJI0vdrfQaMgYDm1ZquOggPQIQtsxBfA60yMOE5wd7jz0ckRqu2fgDVGBsAmCyE6+hjgkVNIp5a7y58KrNXPdI2jLA==
-X-Gm-Message-State: AOJu0YwPtkQE2++hVy7GzDKaqQsNF4SgxUeS/YgH6lpSY/iHZhDGyNFV
-	3WIAZ4uoYjZ9yi/6Bguz4ApozcYEyJB+pzXCBoML9QE2YbDd7FsKEcI9T5RBw0g=
-X-Google-Smtp-Source: AGHT+IGclvMH3wk9xgphVyf1WPahL7Vc/hqoMZXfotLC705vP3OAfI4s8MPur4dBPFjQ7yppJZkklQ==
-X-Received: by 2002:a05:6512:2e2:b0:512:e04f:ae4b with SMTP id m2-20020a05651202e200b00512e04fae4bmr2169810lfq.10.1709235994833;
-        Thu, 29 Feb 2024 11:46:34 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id q33-20020a05640224a100b00565ba75a739sm886654eda.95.2024.02.29.11.46.32
+        d=1e100.net; s=20230601; t=1709236349; x=1709841149;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2t6iwGhsnNUxY4xM8qxSPssm7+cm45B8gw+DhHQKME4=;
+        b=omBPfhjpRadN7vg6WOrr56pMvWVhC670Gpl7n+63Ny673BgeIuQDoEifv36EAkiGQE
+         3YZhH5UoOmLkEcZDOskPJe7DMpEG0ZTHNI+E058Icy1FHx1Ynw9lZAo4QiuztPLE8zL1
+         jwjQ6GNXh2ivtrPemUqEMpkwm4P4n6OVLesrMyyTEsdgKitjETLc2dUtPpoYBKT8yjCc
+         oYJaQS4D6aWPd0JwTngwOEc5lns58d1GTRH8zTT8kW+2+Be0QMHN/xhXKINiL0rGH0h3
+         WpV4CLCfe2z81XHj3H+gLP61ujZVLt81oNOwjecoaQGsXbEIaeWaE9yKRA6341rr4UPg
+         Y2Wg==
+X-Forwarded-Encrypted: i=1; AJvYcCWjEAJA/gYrL1zvDrQ/blJCTjdod9MlMYVhzB+zrGPkP+DCtAMssujH1eczp58vptp0Q/RWvSDzB3HGgHFL1/asdbvbBY/Q/O7Ibg==
+X-Gm-Message-State: AOJu0Yzv6rZoZ8ttJoNYOb7TYZfh7Pld+kacuo144wWKgQeS4bIRn3hW
+	GHzBZZUVjJCkZBy0LbOJaNA4ptgATm+RdtWOsc9tCYWfqTmY62skk/zAtLN/Bg==
+X-Google-Smtp-Source: AGHT+IEZumlIxb4G0d4K62o0AbkepaXShc33hqlL9UEbLbxcWjF6LoBXCm4td2IpRYXolb4bY9ObCA==
+X-Received: by 2002:a05:6e02:1a8e:b0:365:185a:83ed with SMTP id k14-20020a056e021a8e00b00365185a83edmr1768942ilv.10.1709236349457;
+        Thu, 29 Feb 2024 11:52:29 -0800 (PST)
+Received: from localhost (144.57.222.35.bc.googleusercontent.com. [35.222.57.144])
+        by smtp.gmail.com with UTF8SMTPSA id 6-20020a056e020ca600b003653eb24e14sm492989ilg.78.2024.02.29.11.52.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 11:46:34 -0800 (PST)
-Message-ID: <63c83101-2c58-4eb7-a598-63552b81e744@linaro.org>
-Date: Thu, 29 Feb 2024 20:46:32 +0100
+        Thu, 29 Feb 2024 11:52:29 -0800 (PST)
+Date: Thu, 29 Feb 2024 19:52:28 +0000
+From: Matthias Kaehlcke <mka@chromium.org>
+To: Javier Carrasco <javier.carrasco@wolfvision.net>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Helen Koike <helen.koike@collabora.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Russell King <linux@armlinux.org.uk>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 7/9] usb: misc: onboard_dev: add support for non-hub
+ devices
+Message-ID: <ZeDgfIojODIbhs6N@google.com>
+References: <20240229-onboard_xvf3500-v6-0-a0aff2947040@wolfvision.net>
+ <20240229-onboard_xvf3500-v6-7-a0aff2947040@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 2/5] dt-bindings: spmi: Deprecate qcom,bus-id
-Content-Language: en-US
-To: Abel Vesa <abel.vesa@linaro.org>, Stephen Boyd <sboyd@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Srini Kandagatla <srinivas.kandagatla@linaro.org>,
- Johan Hovold <johan@kernel.org>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
-References: <20240222-spmi-multi-master-support-v6-0-bc34ea9561da@linaro.org>
- <20240222-spmi-multi-master-support-v6-2-bc34ea9561da@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240222-spmi-multi-master-support-v6-2-bc34ea9561da@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240229-onboard_xvf3500-v6-7-a0aff2947040@wolfvision.net>
 
-On 22/02/2024 14:52, Abel Vesa wrote:
-> As it is optional and no platform is actually using the secondary bus,
-> deprecate the qcom,bus-id property. For newer platforms that implement
-> SPMI PMIC ARB v7 in HW, the X1E80100 approach should be used.
+On Thu, Feb 29, 2024 at 09:34:50AM +0100, Javier Carrasco wrote:
+> Most of the functionality this driver provides can be used by non-hub
+> devices as well.
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> To account for the hub-specific code, add a flag to the device data
+> structure and check its value for hub-specific code.
+> 
+> The 'always_powered_in_supend' attribute is only available for hub
+> devices, keeping the driver's default behavior for non-hub devices (keep
+> on in suspend).
+> 
+> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
 > ---
+>  drivers/usb/misc/onboard_usb_dev.c | 25 ++++++++++++++++++++++++-
+>  drivers/usb/misc/onboard_usb_dev.h | 10 ++++++++++
+>  2 files changed, 34 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/usb/misc/onboard_usb_dev.c b/drivers/usb/misc/onboard_usb_dev.c
+> index 4ae580445408..f1b174503c44 100644
+> --- a/drivers/usb/misc/onboard_usb_dev.c
+> +++ b/drivers/usb/misc/onboard_usb_dev.c
+> @@ -261,7 +261,27 @@ static struct attribute *onboard_dev_attrs[] = {
+>  	&dev_attr_always_powered_in_suspend.attr,
+>  	NULL,
+>  };
+> -ATTRIBUTE_GROUPS(onboard_dev);
+> +
+> +static umode_t onboard_dev_attrs_are_visible(struct kobject *kobj,
+> +					     struct attribute *attr,
+> +					     int n)
+> +{
+> +	struct device *dev = kobj_to_dev(kobj);
+> +	struct onboard_dev *onboard_dev = dev_get_drvdata(dev);
+> +
+> +	if (attr == &dev_attr_always_powered_in_suspend.attr &&
+> +	    !onboard_dev->pdata->is_hub)
+> +		return 0;
+> +
+> +	return attr->mode;
+> +}
+> +
+> +static const struct attribute_group onboard_dev_group = {
+> +	.is_visible = onboard_dev_attrs_are_visible,
+> +	.attrs = onboard_dev_attrs,
+> +};
+> +__ATTRIBUTE_GROUPS(onboard_dev);
+> +
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+nit: remove one empty line
 
-Best regards,
-Krzysztof
+>  
+>  static void onboard_dev_attach_usb_driver(struct work_struct *work)
+>  {
+> @@ -286,6 +306,9 @@ static int onboard_dev_probe(struct platform_device *pdev)
+>  	if (!onboard_dev->pdata)
+>  		return -EINVAL;
+>  
+> +	if (!onboard_dev->pdata->is_hub)
+> +		onboard_dev->always_powered_in_suspend = true;
+> +
+>  	onboard_dev->dev = dev;
+>  
+>  	err = onboard_dev_get_regulators(onboard_dev);
+> diff --git a/drivers/usb/misc/onboard_usb_dev.h b/drivers/usb/misc/onboard_usb_dev.h
+> index 4da9f3b7f9e9..58cf8c81b2cf 100644
+> --- a/drivers/usb/misc/onboard_usb_dev.h
+> +++ b/drivers/usb/misc/onboard_usb_dev.h
+> @@ -12,60 +12,70 @@ struct onboard_dev_pdata {
+>  	unsigned long reset_us;		/* reset pulse width in us */
+>  	unsigned int num_supplies;	/* number of supplies */
+>  	const char * const supply_names[MAX_SUPPLIES];
+> +	bool is_hub;			/* true if the device is a HUB */
 
+nit: either drop the comment (the variable name is pretty self explaining),
+or s/HUB/hub/ ('hub' isn't an acronym).
+
+Acked-by: Matthias Kaehlcke <mka@chromium.org>
 
