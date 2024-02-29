@@ -1,177 +1,614 @@
-Return-Path: <devicetree+bounces-47314-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47315-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C69BF86CC67
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:09:08 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13E4986CC76
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:11:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7A4C81F230BC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:09:08 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CBF78B21487
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:11:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0CAE81419A9;
-	Thu, 29 Feb 2024 15:08:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DECD13A265;
+	Thu, 29 Feb 2024 15:11:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qbE142na"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NmSRlCLC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D42D7141995;
-	Thu, 29 Feb 2024 15:08:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 33719137758
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 15:11:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709219331; cv=none; b=ob++XbgfYLMCWtYvz0q3r2v8ZLBhRbAuhgf/cbPzSGKmRYJG99tc+/9IFO8HtvXX3rGG0wmxJpJRMNjXKB+M2twec0+8+/P01Wl+DT6+fiY3ZmXj/zEggwpc59g9+EXGtBPu5wauslAsKjyq6tQeL5RnO0j4OdYZCvxu3BH52pI=
+	t=1709219498; cv=none; b=V/APnZhP+Tg+CLmLwolFWRi5JNC0VQmXxtWwnTiq1eWNt794uvoXsOPWEF9wUHDhcKYvNW+ldkPQWpndBYlhzor0hkE1W1KAvXoSJ8AIKQZjGL8uvCcAQvZye1F4pQcpvmpw6Ef+Wf124wyU+ayW2c8Tx3iQGOZ3LgIdXUmznjo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709219331; c=relaxed/simple;
-	bh=1Zyw6/15dc8py4UHaheILppIr29j2DVuoJ+GnLmxmI0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X9XJiR3pC9M4eo+I2oYI5kOqL8g/TeCyy3VLvHFl3GyvsQopbtVY6d8G9W20DJ7ufg/uBiRgo2mV4xJwdftuYY9AzyA4/hEFWG9XA9x76yd6BYciaOQjGaGsUN7FuCe7Y3ekJkUIBzHlyaYsp2w5fkZg5PkSvb0vvmqLnHE2ILk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qbE142na; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8C5DC43394;
-	Thu, 29 Feb 2024 15:08:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709219331;
-	bh=1Zyw6/15dc8py4UHaheILppIr29j2DVuoJ+GnLmxmI0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qbE142naa92rUgW7jL/DgquUxvIA8orHcRMgUTDyddce65pfDrm5hqA2gW1XhNEW1
-	 M9mhn4t1LH5FmGr+9vxIZj3lWezTgwutUTT9MFvgOEbxD3MUXBEe2+gj4i08VwWHnU
-	 AZRLl0FrHrOBNbBj3B9joRiitw1QbIUaM58sENEelec+3rzJe+v9gtvOJ1DxJBcLVC
-	 Q992XY0FVty+LT18+GMGFLjH+GGFEJ1RwHcuUU8sIFGQGNxQ6B3B/4vFkw5Aq7alGS
-	 57Xq1IPbNKu1IcM0c12i1Q/3MttMRGg6tdlxmEibgCn3P5lMdEJsiugpx10dhXtF+l
-	 hPvdF3nQRkfWg==
-Date: Thu, 29 Feb 2024 16:08:43 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Minda Chen <minda.chen@starfivetech.com>
-Cc: Conor Dooley <conor@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Daire McNamara <daire.mcnamara@microchip.com>,
-	Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Mason Huo <mason.huo@starfivetech.com>,
-	Leyfoon Tan <leyfoon.tan@starfivetech.com>,
-	Kevin Xie <kevin.xie@starfivetech.com>
-Subject: Re: [PATCH v15,RESEND 22/23] PCI: starfive: Offload the NVMe timeout
- workaround to host drivers.
-Message-ID: <ZeCd+xqE6x2ZFtJN@lpieralisi>
-References: <20240227103522.80915-1-minda.chen@starfivetech.com>
- <20240227103522.80915-23-minda.chen@starfivetech.com>
+	s=arc-20240116; t=1709219498; c=relaxed/simple;
+	bh=w8RgmSUsKfxgjlFRR4JwCsw2zCiDB0oUV0wyBvExuyY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uzUqOFbk2YLOVuUlON0ccCGU1FSJ+Q5Uk6VEspR0N6zkG4UYQppwK+2KPbXFrOiFxJfrwd2zQdM2CAxsuuFSTex2cgB5GCr7l8PPLPlaJyu0x1byOWiGsDjckXxAwhjsvwyOz3Hc8oWnPG4epWXaxkl8HiuvMbBELgEYPQyYfGY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NmSRlCLC; arc=none smtp.client-ip=209.85.218.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f46.google.com with SMTP id a640c23a62f3a-a446478b04bso44433666b.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 07:11:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709219494; x=1709824294; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SK4DmlZ3UR4ujEwkyL5L+rK5LKG8WLdzwFtgogC9zZs=;
+        b=NmSRlCLCZUq7qRfgs8PZbdzFeereTs95bkA0mbG54jDp9iaJJwUjPVlMY2ZO0XQFI/
+         Q1b5WtLaj3GQMHDnNfWQtPoW4eOTZpKJSyjEtTo9dcJpAaXs+ZK+emprJUjUNAmxScTz
+         jdWGx6TulXo/JYfDhuOWouLPMbwEWPBUPzPODsGcwXC81em3djz8RpH8IZ+iPXNnp0cm
+         zpRq8rWfEJ/zReo8BR+O1dJe2HTbEZAp7wsFRo7uqv5PHNvV2bS1CslI2ri1Zl3pHVmc
+         fL4oYDRCobVogqIZMD/r46w5KL29xhUa6IhxFqgHfoBpFbYg7IVfuLD1iV/YvVECTji0
+         IvzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709219494; x=1709824294;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SK4DmlZ3UR4ujEwkyL5L+rK5LKG8WLdzwFtgogC9zZs=;
+        b=oJ6IVMxehOjYM2r6vaaPov8hBWLHeMPHVjVlBsV3VXqdQfcnLGiPdvt8+P4iIaor00
+         ydeNAb/o8NGZdeuXH5S3BvAWbhmRvrIvo8nFA6nChztHdkuikdSchAQcIRhbNso9bYHo
+         RAorYyeIXU+H6TE8cAuziTFpTuDMV5yB3mEHpOUwUKW1RNcQhl29W8WXyi14zWeu8t2M
+         EWX0ZnzHlY2B+yyaC7yU1ZkkmrRA53n3WuZC/kkFoRQ/GbuKHrqJcchv66SGCXu6TdTi
+         nBYndmMDIgcAFY0da7ON1cKK2/rBS5P8tuesPpFJ45PnnaCu+f2RpfBrdLx7S/Ec01Fs
+         GddA==
+X-Forwarded-Encrypted: i=1; AJvYcCWefUNM8txqtLuLtC5ABex2gPlekAfYP4GVLLEDNJz3ZwEcrDLnMSn5cpY7R/NDIbzuzSU5XVl+eahgbU6CYXzSuyQ5GIpd1DTASA==
+X-Gm-Message-State: AOJu0YyXoxIyoqe0nfmZbZr4pme+OYocaytwpa4ii8Uzgpe0cfg/j6/7
+	z99vuvTC1YK4uAX3EuZMZkQFKsBuXKInMXFObdao2hI2gyyyQwcxmElw/K7Vgio=
+X-Google-Smtp-Source: AGHT+IHO8MpWatF0eM1SVYEmepa9c2vRxDwXdOky56bw/phOygpP3Z2PPOzUWJkXPmUxWsJISbMH4Q==
+X-Received: by 2002:a17:906:48da:b0:a44:5538:efd3 with SMTP id d26-20020a17090648da00b00a445538efd3mr1128996ejt.37.1709219494496;
+        Thu, 29 Feb 2024 07:11:34 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id vg9-20020a170907d30900b00a4439b7756bsm771333ejc.6.2024.02.29.07.11.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Feb 2024 07:11:33 -0800 (PST)
+Message-ID: <1a626f74-4559-4403-9d88-6a9a462b54c1@linaro.org>
+Date: Thu, 29 Feb 2024 16:11:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240227103522.80915-23-minda.chen@starfivetech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 04/11] dt-bindings: usb: ci-hdrc-usb2-imx: move imx
+ parts to dedicated schema
+Content-Language: en-US
+To: Xu Yang <xu.yang_2@nxp.com>, gregkh@linuxfoundation.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+ conor+dt@kernel.org
+Cc: s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ linux-imx@nxp.com, peter.chen@kernel.org, jun.li@nxp.com,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240228113004.918205-1-xu.yang_2@nxp.com>
+ <20240228113004.918205-4-xu.yang_2@nxp.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240228113004.918205-4-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Tue, Feb 27, 2024 at 06:35:21PM +0800, Minda Chen wrote:
-> From: Kevin Xie <kevin.xie@starfivetech.com>
+On 28/02/2024 12:29, Xu Yang wrote:
+> As more and more NXP i.MX chips come out, it becomes harder to maintain
+> ci-hdrc-usb2.yaml if more stuffs like property restrictions are added to
+> this file. This will separate i.MX parts out of ci-hdrc-usb2.yaml and add
+> a new schema for NXP ChipIdea USB2 Controller, also add a common schema.
 > 
-> As the Starfive JH7110 hardware can't keep two inbound post write in
-> order all the time, such as MSI messages and NVMe completions. If the
-> NVMe completion update later than the MSI, an NVMe IRQ handle will miss.
-
-Please explain what the problem is and what "NVMe completions" means
-given that you are talking about posted writes.
-
-If you have a link to an erratum write-up it would certainly help.
-
-This looks completely broken to me, if the controller can't guarantee
-PCIe transactions ordering it is toast, there is not even a point
-considering mainline merging.
-
-> As a workaround, we will wait a while before going to the generic
-> handle here.
+> 1. Copy common ci-hdrc-usb2.yaml properties to a new shared
+>    ci-hdrc-usb2-common.yaml schema.
+> 2. Move fsl,* compatible devices and imx spefific properties
+>    to dedicated binding file ci-hdrc-usb2-imx.yaml.
 > 
-> Verified with NVMe SSD, USB SSD, R8169 NIC.
-> The performance are stable and even higher after this patch.
-
-I assume this is a joke even though it does not make me laugh.
-
-Thanks,
-Lorenzo
-
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > 
-> Signed-off-by: Kevin Xie <kevin.xie@starfivetech.com>
-> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
 > ---
->  drivers/pci/controller/plda/pcie-plda-host.c | 12 ++++++++++++
->  drivers/pci/controller/plda/pcie-plda.h      |  1 +
->  drivers/pci/controller/plda/pcie-starfive.c  |  1 +
->  3 files changed, 14 insertions(+)
+> Changes in v6:
+>  - new patch
+> Changes in v7:
+>  - not remove ci-hdrc-usb2.yaml and move imx parts to ci-hdrc-usb2-imx.yaml
+> ---
+>  .../bindings/usb/ci-hdrc-usb2-common.yaml     | 197 ++++++++++++++++++
+>  .../bindings/usb/ci-hdrc-usb2-imx.yaml        | 197 ++++++++++++++++++
+>  .../devicetree/bindings/usb/ci-hdrc-usb2.yaml | 186 -----------------
+>  3 files changed, 394 insertions(+), 186 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/usb/ci-hdrc-usb2-common.yaml
+>  create mode 100644 Documentation/devicetree/bindings/usb/ci-hdrc-usb2-imx.yaml
 > 
-> diff --git a/drivers/pci/controller/plda/pcie-plda-host.c b/drivers/pci/controller/plda/pcie-plda-host.c
-> index a18923d7cea6..9e077ddf45c0 100644
-> --- a/drivers/pci/controller/plda/pcie-plda-host.c
-> +++ b/drivers/pci/controller/plda/pcie-plda-host.c
-> @@ -13,6 +13,7 @@
->  #include <linux/msi.h>
->  #include <linux/pci_regs.h>
->  #include <linux/pci-ecam.h>
-> +#include <linux/delay.h>
->  
->  #include "pcie-plda.h"
->  
-> @@ -44,6 +45,17 @@ static void plda_handle_msi(struct irq_desc *desc)
->  			       bridge_base_addr + ISTATUS_LOCAL);
->  		status = readl_relaxed(bridge_base_addr + ISTATUS_MSI);
->  		for_each_set_bit(bit, &status, msi->num_vectors) {
-> +			/*
-> +			 * As the Starfive JH7110 hardware can't keep two
-> +			 * inbound post write in order all the time, such as
-> +			 * MSI messages and NVMe completions.
-> +			 * If the NVMe completion update later than the MSI,
-> +			 * an NVMe IRQ handle will miss.
-> +			 * As a workaround, we will wait a while before
-> +			 * going to the generic handle here.
-> +			 */
-> +			if (port->msi_quirk_delay_us)
-> +				udelay(port->msi_quirk_delay_us);
->  			ret = generic_handle_domain_irq(msi->dev_domain, bit);
->  			if (ret)
->  				dev_err_ratelimited(dev, "bad MSI IRQ %d\n",
-> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
-> index 04e385758a2f..feccf285dfe8 100644
-> --- a/drivers/pci/controller/plda/pcie-plda.h
-> +++ b/drivers/pci/controller/plda/pcie-plda.h
-> @@ -186,6 +186,7 @@ struct plda_pcie_rp {
->  	int msi_irq;
->  	int intx_irq;
->  	int num_events;
-> +	u16 msi_quirk_delay_us;
->  };
->  
->  struct plda_event {
-> diff --git a/drivers/pci/controller/plda/pcie-starfive.c b/drivers/pci/controller/plda/pcie-starfive.c
-> index 9bb9f0e29565..5cfc30572b7f 100644
-> --- a/drivers/pci/controller/plda/pcie-starfive.c
-> +++ b/drivers/pci/controller/plda/pcie-starfive.c
-> @@ -391,6 +391,7 @@ static int starfive_pcie_probe(struct platform_device *pdev)
->  
->  	plda->host_ops = &sf_host_ops;
->  	plda->num_events = PLDA_MAX_EVENT_NUM;
-> +	plda->msi_quirk_delay_us = 1;
->  	/* mask doorbell event */
->  	plda->events_bitmap = GENMASK(PLDA_INT_EVENT_NUM - 1, 0)
->  			     & ~BIT(PLDA_AXI_DOORBELL)
-> -- 
-> 2.17.1
-> 
-> 
-> _______________________________________________
-> linux-riscv mailing list
-> linux-riscv@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-riscv
+> diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-common.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-common.yaml
+> new file mode 100644
+> index 000000000000..9f8f2f343dd3
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-common.yaml
+
+Use compatible style for filenames. chipidea,hdrc-usb2-common.yaml
+(assuming that "ci" was a shortcut of chipidea)
+
+
+> @@ -0,0 +1,197 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/ci-hdrc-usb2-common.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: USB2 ChipIdea USB controller Common Properties
+> +
+> +maintainers:
+> +  - Xu Yang <xu.yang_2@nxp.com>
+> +
+> +properties:
+> +  reg:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 3
+> +
+> +  dr_mode: true
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    maxItems: 1
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +  phy_type: true
+> +
+> +  itc-setting:
+> +    description:
+> +      interrupt threshold control register control, the setting should be
+> +      aligned with ITC bits at register USBCMD.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +  ahb-burst-config:
+> +    description:
+> +      it is vendor dependent, the required value should be aligned with
+> +      AHBBRST at SBUSCFG, the range is from 0x0 to 0x7. This property is
+> +      used to change AHB burst configuration, check the chipidea spec for
+> +      meaning of each value. If this property is not existed, it will use
+> +      the reset value.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0x0
+> +    maximum: 0x7
+> +
+> +  tx-burst-size-dword:
+> +    description:
+> +      it is vendor dependent, the tx burst size in dword (4 bytes), This
+> +      register represents the maximum length of a the burst in 32-bit
+> +      words while moving data from system memory to the USB bus, the value
+> +      of this property will only take effect if property "ahb-burst-config"
+> +      is set to 0, if this property is missing the reset default of the
+> +      hardware implementation will be used.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0x0
+> +    maximum: 0x20
+> +
+> +  rx-burst-size-dword:
+> +    description:
+> +      it is vendor dependent, the rx burst size in dword (4 bytes), This
+> +      register represents the maximum length of a the burst in 32-bit words
+> +      while moving data from the USB bus to system memory, the value of
+> +      this property will only take effect if property "ahb-burst-config"
+> +      is set to 0, if this property is missing the reset default of the
+> +      hardware implementation will be used.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0x0
+> +    maximum: 0x20
+> +
+> +  extcon:
+> +    description:
+> +      Phandles to external connector devices. First phandle should point
+> +      to external connector, which provide "USB" cable events, the second
+> +      should point to external connector device, which provide "USB-HOST"
+> +      cable events. If one of the external connector devices is not
+> +      required, empty <0> phandle should be specified.
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    minItems: 1
+> +    items:
+> +      - description: vbus extcon
+> +      - description: id extcon
+> +
+> +  phy-clkgate-delay-us:
+> +    description:
+> +      The delay time (us) between putting the PHY into low power mode and
+> +      gating the PHY clock.
+> +
+> +  non-zero-ttctrl-ttha:
+> +    description:
+> +      After setting this property, the value of register ttctrl.ttha
+> +      will be 0x7f; if not, the value will be 0x0, this is the default
+> +      value. It needs to be very carefully for setting this property, it
+> +      is recommended that consult with your IC engineer before setting
+> +      this value.  On the most of chipidea platforms, the "usage_tt" flag
+> +      at RTL is 0, so this property only affects siTD.
+> +
+> +      If this property is not set, the max packet size is 1023 bytes, and
+> +      if the total of packet size for previous transactions are more than
+> +      256 bytes, it can't accept any transactions within this frame. The
+> +      use case is single transaction, but higher frame rate.
+> +
+> +      If this property is set, the max packet size is 188 bytes, it can
+> +      handle more transactions than above case, it can accept transactions
+> +      until it considers the left room size within frame is less than 188
+> +      bytes, software needs to make sure it does not send more than 90%
+> +      maximum_periodic_data_per_frame. The use case is multiple
+> +      transactions, but less frame rate.
+> +    type: boolean
+> +
+> +  mux-controls:
+> +    description:
+> +      The mux control for toggling host/device output of this controller.
+> +      It's expected that a mux state of 0 indicates device mode and a mux
+> +      state of 1 indicates host mode.
+> +    maxItems: 1
+> +
+> +  mux-control-names:
+> +    const: usb_switch
+> +
+> +  pinctrl-names:
+> +    description:
+> +      Names for optional pin modes in "default", "host", "device".
+> +      In case of HSIC-mode, "idle" and "active" pin modes are mandatory.
+> +      In this case, the "idle" state needs to pull down the data and
+> +      strobe pin and the "active" state needs to pull up the strobe pin.
+> +    oneOf:
+> +      - items:
+> +          - const: idle
+> +          - const: active
+> +      - items:
+> +          - const: default
+> +          - enum:
+> +              - host
+> +              - device
+> +      - items:
+> +          - const: default
+> +
+> +  pinctrl-0:
+> +    maxItems: 1
+> +
+> +  pinctrl-1:
+> +    maxItems: 1
+> +
+> +  phys:
+> +    maxItems: 1
+> +
+> +  phy-names:
+> +    const: usb-phy
+> +
+> +  vbus-supply:
+> +    description: reference to the VBUS regulator.
+> +
+> +  usb-phy:
+> +    description: phandle for the PHY device. Use "phys" instead.
+> +    maxItems: 1
+> +    deprecated: true
+> +
+> +  port:
+> +    description:
+> +      Any connector to the data bus of this controller should be modelled
+> +      using the OF graph bindings specified, if the "usb-role-switch"
+> +      property is used.
+> +    $ref: /schemas/graph.yaml#/properties/port
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +dependencies:
+> +  port: [ usb-role-switch ]
+> +  mux-controls: [ mux-control-names ]
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+
+I don't see where you remove the properties from the existing schema, so
+you now just duplicated a lot.
+
+So again let me describe the task:
+1. Create common schema by MOVING the common pieces from the existing
+schema. The common schema MUST be referenced by other existing schemas.
+
+2. Create IMX specific schema by moving IMX specific bits. New schema
+references common schema.
+
+3. The remaining old ci-hdrc-usb2.yaml does not have as a result common
+properties and IMX bits.
+
+
+> +
+> +allOf:
+> +  - $ref: usb-hcd.yaml#
+> +  - $ref: usb-drd.yaml#
+> +
+> +additionalProperties: true
+> \ No newline at end of file
+
+You have patch errors, fix them.
+
+> diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-imx.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-imx.yaml
+> new file mode 100644
+> index 000000000000..50494ce06d07
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2-imx.yaml
+> @@ -0,0 +1,197 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/ci-hdrc-usb2-imx.yaml#
+
+Filename like compatible.
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP USB2 ChipIdea USB controller
+> +
+> +maintainers:
+> +  - Xu Yang <xu.yang_2@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - fsl,imx27-usb
+> +      - items:
+> +          - enum:
+> +              - fsl,imx23-usb
+> +              - fsl,imx25-usb
+> +              - fsl,imx28-usb
+> +              - fsl,imx35-usb
+> +              - fsl,imx50-usb
+> +              - fsl,imx51-usb
+> +              - fsl,imx53-usb
+> +              - fsl,imx6q-usb
+> +              - fsl,imx6sl-usb
+> +              - fsl,imx6sx-usb
+> +              - fsl,imx6ul-usb
+> +              - fsl,imx7d-usb
+> +              - fsl,vf610-usb
+> +          - const: fsl,imx27-usb
+> +      - items:
+> +          - enum:
+> +              - fsl,imx8dxl-usb
+> +              - fsl,imx8ulp-usb
+> +          - const: fsl,imx7ulp-usb
+> +          - const: fsl,imx6ul-usb
+> +      - items:
+> +          - enum:
+> +              - fsl,imx8mm-usb
+> +              - fsl,imx8mn-usb
+> +          - const: fsl,imx7d-usb
+> +          - const: fsl,imx27-usb
+> +      - items:
+> +          - enum:
+> +              - fsl,imx6sll-usb
+> +              - fsl,imx7ulp-usb
+> +          - const: fsl,imx6ul-usb
+> +          - const: fsl,imx27-usb
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 3
+
+
+No need to, it's already in common. Drop clocks.
+
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 3
+
+Drop property.
+
+> +
+> +  fsl,usbmisc:
+> +    description:
+> +      Phandler of non-core register device, with one argument that
+> +      indicate usb controller index
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - items:
+> +          - description: phandle to usbmisc node
+> +          - description: index of usb controller
+> +
+> +  fsl,anatop:
+> +    description: phandle for the anatop node.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +  disable-over-current:
+> +    type: boolean
+> +    description: disable over current detect
+> +
+> +  over-current-active-low:
+> +    type: boolean
+> +    description: over current signal polarity is active low
+> +
+> +  over-current-active-high:
+> +    type: boolean
+> +    description:
+> +      Over current signal polarity is active high. It's recommended to
+> +      specify the over current polarity.
+> +
+> +  power-active-high:
+> +    type: boolean
+> +    description: power signal polarity is active high
+> +
+> +  external-vbus-divider:
+> +    type: boolean
+> +    description: enables off-chip resistor divider for Vbus
+> +
+> +  samsung,picophy-pre-emp-curr-control:
+> +    description:
+> +      HS Transmitter Pre-Emphasis Current Control. This signal controls
+> +      the amount of current sourced to the USB_OTG*_DP and USB_OTG*_DN
+> +      pins after a J-to-K or K-to-J transition. The range is from 0x0 to
+> +      0x3, the default value is 0x1. Details can refer to TXPREEMPAMPTUNE0
+> +      bits of USBNC_n_PHY_CFG1.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0x0
+> +    maximum: 0x3
+> +
+> +  samsung,picophy-dc-vol-level-adjust:
+> +    description:
+> +      HS DC Voltage Level Adjustment. Adjust the high-speed transmitter DC
+> +      level voltage. The range is from 0x0 to 0xf, the default value is
+> +      0x3. Details can refer to TXVREFTUNE0 bits of USBNC_n_PHY_CFG1.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0x0
+> +    maximum: 0xf
+> +
+> +  fsl,picophy-rise-fall-time-adjust:
+> +    description:
+> +      HS Transmitter Rise/Fall Time Adjustment. Adjust the rise/fall times
+> +      of the high-speed transmitter waveform. It has no unit. The rise/fall
+> +      time will be increased or decreased by a certain percentage relative
+> +      to design default time. (0:-10%; 1:design default; 2:+15%; 3:+20%)
+> +      Details can refer to TXRISETUNE0 bit of USBNC_n_PHY_CFG1.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 0
+> +    maximum: 3
+> +    default: 1
+> +
+> +  fsl,usbphy:
+> +    description: phandle of usb phy that connects to the port. Use "phys" instead.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +    deprecated: true
+
+Missing required: block here.
+
+> +
+> +allOf:
+> +  - $ref: ci-hdrc-usb2-common.yaml#
+> +  - if:
+> +      properties:
+> +        phy_type:
+> +          const: hsic
+> +      required:
+> +        - phy_type
+> +    then:
+> +      properties:
+> +        pinctrl-names:
+> +          items:
+> +            - const: idle
+> +            - const: active
+> +
+> +required:
+> +  - compatible
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/imx7d-clock.h>
+> +
+> +    usb@30b10000 {
+> +        compatible = "fsl,imx7d-usb", "fsl,imx27-usb";
+> +        reg = <0x30b10000 0x200>;
+> +        interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clks IMX7D_USB_CTRL_CLK>;
+> +        fsl,usbphy = <&usbphynop1>;
+> +        fsl,usbmisc = <&usbmisc1 0>;
+> +        phy-clkgate-delay-us = <400>;
+> +    };
+> +
+> +  # Example for HSIC:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/imx6qdl-clock.h>
+> +
+> +    usb@2184400 {
+> +        compatible = "fsl,imx6q-usb", "fsl,imx27-usb";
+> +        reg = <0x02184400 0x200>;
+> +        interrupts = <0 41 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&clks IMX6QDL_CLK_USBOH3>;
+> +        fsl,usbphy = <&usbphynop1>;
+> +        fsl,usbmisc = <&usbmisc 2>;
+> +        phy_type = "hsic";
+> +        dr_mode = "host";
+> +        ahb-burst-config = <0x0>;
+> +        tx-burst-size-dword = <0x10>;
+> +        rx-burst-size-dword = <0x10>;
+> +        pinctrl-names = "idle", "active";
+> +        pinctrl-0 = <&pinctrl_usbh2_idle>;
+> +        pinctrl-1 = <&pinctrl_usbh2_active>;
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        ethernet@1 {
+> +            compatible = "usb424,9730";
+> +            reg = <1>;
+> +        };
+> +    };
+> +
+> +...
+
+
+Best regards,
+Krzysztof
+
 
