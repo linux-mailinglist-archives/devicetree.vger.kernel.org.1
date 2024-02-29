@@ -1,102 +1,133 @@
-Return-Path: <devicetree+bounces-47124-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0A4A86C443
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:54:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42AEB86C411
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:47:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E8371C23767
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 08:54:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C72BCB2369E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 08:47:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E14654FAF;
-	Thu, 29 Feb 2024 08:54:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 350385380C;
+	Thu, 29 Feb 2024 08:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b="k5YjcgSb"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="gacFkhRm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDC8354FA0;
-	Thu, 29 Feb 2024 08:54:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=88.97.38.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76515535B4;
+	Thu, 29 Feb 2024 08:47:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709196883; cv=none; b=mmEmshx5g8WteEwK5yBLUt+WOaFpuuzx89B4oinoNhCf+axz28y+4bGRhGJL6/tFU6YKZUUVFLRAw2aMqoWUSHSPMs8PuZ7y1OIDPgwYxAY+WQrLBmwX0YlPsrPyFM948W1xn5rbcq0aTPVmqDsLgI8tKjFEl8kJ/CNFWCPT5Xs=
+	t=1709196470; cv=none; b=ZJBxzt2wLVmcmskJ1w/iuhY7sjBkmrQSkaVY0OiWQkt4ny43ozV6vWnXjoLAkHTVSx8jIIQ4L19TY4XaOUUGIY+np2HOSyQNVai8Dpwv5SujEFSY0O3aW2uV2dVhl+1PPapi9hm5EPeeX5v9XjsUa6Ds6tf+dgcBlOadOcAAm/U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709196883; c=relaxed/simple;
-	bh=Ak8rXUZULtrRHmfF0ffCmGBhBA/0vaiKCFsiyM3s6pY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KiKNqml1OReSdMJTtKdZjItxC89whSYy0tgaubedP9yGQow7l0WJ6F0m3Ns7YeXUtYLBaYdgAsh4jB+viEkZMBxRftqz22BknXEEovDPEBcpcwKcQKrgU5nvYnmpSNLpZW4Y8ORJDKIo2TsEOPoSmuaP/dvApGwlTeIlpa0ujns=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org; spf=pass smtp.mailfrom=mess.org; dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b=k5YjcgSb; arc=none smtp.client-ip=88.97.38.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mess.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
-	t=1709196354; bh=Ak8rXUZULtrRHmfF0ffCmGBhBA/0vaiKCFsiyM3s6pY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k5YjcgSb0qA6yXD5ZB3RjkN7LDaCQM4rOQpU5s1ENBAt6oxqTZKmca33H4djL2DG0
-	 40Lylc0SUiNPe6pqTyid911P1VT1aUEIPWk8XzxGRfKpictrLBBzoUkcjDgjUvlMY3
-	 qRc3tnld4uZMPaCzmyrMSWL1RICzq6BnTTu8mkbcUVp0Ap+M7TmyHOdVgZadyDwtaj
-	 izk1Qo4u591pTvsCVyk9ZUt6/LJWXxDUFpGECbdpsWLgtqXZpIETobjUn8Bl+Pi2ds
-	 ke3VMRb43eG1147ZHBFg8C7kESRUzXB7WTfR1Oia4nzhP22N7S2+0DTTnxYThHcTY7
-	 Iv2mVRVonbdQg==
-Received: by gofer.mess.org (Postfix, from userid 1000)
-	id 3F8DA100778; Thu, 29 Feb 2024 08:45:54 +0000 (GMT)
-Date: Thu, 29 Feb 2024 08:45:54 +0000
-From: Sean Young <sean@mess.org>
-To: Stefan Wahren <wahrenst@gmx.net>
-Cc: Chris Morgan <macroalpha82@gmail.com>,
-	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
-	Angelo Compagnucci <angelo.compagnucci@gmail.com>,
-	Philip Howard <phil@gadgetoid.com>,
-	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	Vincent Whitchurch <vincent.whitchurch@axis.com>
-Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
-Message-ID: <ZeBEQtI7rplfdpMT@gofer.mess.org>
-References: <20240204220851.4783-1-wahrenst@gmx.net>
- <20240204220851.4783-3-wahrenst@gmx.net>
- <65de00aa.540a0220.f1081.6933@mx.google.com>
- <3e65fd65-ccfc-4a77-8934-52791662bdce@gmx.net>
+	s=arc-20240116; t=1709196470; c=relaxed/simple;
+	bh=5A1bXwY5sWGlMJX7d22/wAa19nNdvkcM+C+b89+RYZo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=InQ0o9ki0aHeoUIBxRy+3Dh8qjqS5vuVkkt1g8tNkyHoyuYdKuiLAIkYEakNgl+GxhVzn1AVvZUwL1r5NNp7LXPqYHXJCWZ4QjY5b35UmjJTnz2+znK7gTFpfLJF2vCW8PsjA4jyG++vHX5k5G+XCsmD9wcQ6zE9Fyib23qqisM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=gacFkhRm; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1709196461;
+	bh=5A1bXwY5sWGlMJX7d22/wAa19nNdvkcM+C+b89+RYZo=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=gacFkhRm+t8GFM5Unr3otzDdtzlpIOZ1t00Cot/CZXsDAWh1L+cghJgTdPv7Gty9y
+	 GQnKfr8Ebcor7ZeMCz2CWw1oSLF0VFvf+UQ1PBI99HMdupej3erNB4ZFu811sfW7xN
+	 cFvzr8OlrlRxgjqDC/Og1qvmtL7DFW9m8fB8HVPQndLTD/oktFTnPy568Y80pE/gH9
+	 tyiuDmipXR/oAEBq8XvVFgHhcehH0gJBo08kNzksCYO7bZv0HTKQemKdrE0uMJinPD
+	 n+B4UqY8eymDs9QKksCK3G8qFH6YIzxRPl46/OajmkKGT8PCEZ4SyN1uAbnzMYFrlt
+	 CwUujzEqRPJ7Q==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 8B54237810EF;
+	Thu, 29 Feb 2024 08:47:39 +0000 (UTC)
+Message-ID: <a717b209-ec31-4a43-a93c-47d65a464c80@collabora.com>
+Date: Thu, 29 Feb 2024 09:47:38 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3e65fd65-ccfc-4a77-8934-52791662bdce@gmx.net>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] dt-bindings: display: mediatek: gamma: Change MT8195
+ to single enum group
+Content-Language: en-US
+To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>, Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, Jason-ch Chen <jason-ch.chen@mediatek.com>,
+ Johnson Wang <johnson.wang@mediatek.com>,
+ Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
+ Shawn Sung <shawn.sung@mediatek.com>,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ Fei Shao <fshao@chromium.org>
+References: <20240229023522.15870-1-jason-jh.lin@mediatek.com>
+ <20240229023522.15870-2-jason-jh.lin@mediatek.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240229023522.15870-2-jason-jh.lin@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Tue, Feb 27, 2024 at 05:59:40PM +0100, Stefan Wahren wrote:
-> Hi Chris,
+Il 29/02/24 03:35, Jason-JH.Lin ha scritto:
+> Since MT8195 gamma has multiple bank for 12 bits LUT and it is
+> different from any other SoC LUT setting.
 > 
-> Am 27.02.24 um 16:32 schrieb Chris Morgan:
-> > I have a series of devices with GPIO controlled force feedback that
-> > this driver helps us control better. So I'm looking forward to this,
-> > thank you.
-> Thanks for testing. I didn't had much time recently and i was fighting
-> with hr timer resolution stuff. But will try to send the next version in
-> March.
-> > Note that when I set the resolution too low (I got confused and set
-> > the period to 255) my device locked up hard and only a forced
-> > power cycle could bring it back.
-> Unfortunately this is a general design issue by driving the GPIO by a
-> kernel driver and "expected" behavior. I didn't have a good solution for
-> it yet.
+> So we move MT8195 compatible from the one of items to the
+> single enum group.
+> 
+> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
+> ---
+>   .../devicetree/bindings/display/mediatek/mediatek,gamma.yaml    | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
+> index c6641acd75d6..3e6cb8f48bcc 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
+> @@ -24,6 +24,7 @@ properties:
+>         - enum:
+>             - mediatek,mt8173-disp-gamma
+>             - mediatek,mt8183-disp-gamma
+> +          - mediatek,mt8195-disp-gamma
+>         - items:
+>             - enum:
+>                 - mediatek,mt6795-disp-gamma
+> @@ -33,7 +34,6 @@ properties:
+>                 - mediatek,mt8186-disp-gamma
+>                 - mediatek,mt8188-disp-gamma
+>                 - mediatek,mt8192-disp-gamma
+> -              - mediatek,mt8195-disp-gamma
 
-When we reprogram the timer with hrtimer_forward(), we could check whether
-we have overrun - i.e. we are already beyond the expires time. This could
-be a hint that a) we cannot generate the pwm signal and b) this might
-be what causes the hang, because we are returning HRTIMER_RESTART yet
-no new expires has been programmed.
+While I agree on allowing mt8195-disp-gamma to have its own separated compatible
+as the IP is actually different from the one in MT8183, you can't do it like that,
+or dtbs_check will fail validation for the mt8195 devicetree.
 
-Crashing the machine if the period is too short is not really good enough
-for mainline, I think. There is talk of pwm chardevs in the future.
+That one declares...
+
+gamma0: gamma@1c006000 {
+	compatible = "mediatek,mt8195-disp-gamma", "mediatek,mt8183-disp-gamma";
+
+...Please always run dtbs_check when performing bindings modifications.
+
+Cheers,
+Angelo
+
+>             - const: mediatek,mt8183-disp-gamma
+>   
+>     reg:
 
 
-Sean
 
