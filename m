@@ -1,63 +1,74 @@
-Return-Path: <devicetree+bounces-47240-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47241-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6F0186C897
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 12:53:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A60186C8B6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 13:01:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 12DACB273F3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:53:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ADAF8B23CFF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 12:01:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68EFA7CF04;
-	Thu, 29 Feb 2024 11:53:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D1DB7CF2F;
+	Thu, 29 Feb 2024 12:01:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="plda7Xki"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YDHL52ou"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B0917C0B4;
-	Thu, 29 Feb 2024 11:53:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDA8F7CF16
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 12:01:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709207611; cv=none; b=KZnHaI2qkCaUC8/BtMiI7t7nMVJvLdyBqPp5jwmsRu95XpsKGsFAc8cN/7PYq7hd3ISmFy6iLlkWoefr67A1tPrcQZoFJYnOeXVg+KGC3Q2Q4junG4vSZ6XZ9cR3Au9oclD9tNQkJwMsje/CWAxRv5NOgk5yI4gRC/jB2qfW+xk=
+	t=1709208084; cv=none; b=RCMru48gbAwEdXPMRJDla/a0GZg1RXqDKl0CkTB4ZIhB+YjuNbrhot4DjRSCrTCChVUTy1nu7qfHT7EX27J8SkDjzQeDUTfWF+vQlHRwrvlX4uRlYbkGLn0fNgMnpREqESkF7CK1Sf+h4mrLCHIZxu5BjGJrfXn7+u6DPvvwljI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709207611; c=relaxed/simple;
-	bh=GvWVWLTquV50VeGS8lcdohSK4d8IPez41WUK4HwClnA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=aht4R8VCfxq6cm1+KorNXwpUtzp8iEevA7bKo9WC0+xiFyinjA4SFdKuiVrMRoj7DsSdxFWb0oXiVkeL2GdRIgZPjl4+n9hslW+Lt0/r1xDdOJfqBAy1Ssj8X+n/Yqu8zef/y0Ew771EyNS4sbhTJYufNxDAGup4mRAEzXJPRHU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=plda7Xki; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41T69mov007217;
-	Thu, 29 Feb 2024 11:53:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=5RofTZ6zZ5MPKdedsQVpM61DlKgL5LvLKNbxwtcXWmQ=; b=pl
-	da7XkiSTb2aJ15oLzSoQemL33PMc2Uph7Ka9cbjcp07CLJGqwonICm/PQk7xqh3n
-	IvypvqPd7fwHWSx6YkVJiqAZoBNEmYkmwvADNB9vCp0AjGZ+MMxmA5KEBNP6P7FL
-	W9mHSiXjJw19ffhBaxXWPJ+kr0J1iDtB/0KM/BG2qPwkrAXsMi1x/76LG0vBagJf
-	+q0i4whXIb2wwIB+lm9bNeT1gMnFfdG+5Rj3yT+6DPGsZQZaJYgKDzUNuBLpLgnF
-	1+wG3CSlvcCIj/cdbp0HyYNZn1/xaBSWkTpYlTtAROdnKDc0Kbo6h3YQPIwGI7fO
-	KqZ5yU+Ews2MzsTnCIAA==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wjmcx0x38-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Feb 2024 11:53:20 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41TBrIoA031022
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 29 Feb 2024 11:53:19 GMT
-Received: from [10.216.13.176] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 29 Feb
- 2024 03:53:13 -0800
-Message-ID: <c4607aa4-7af7-443f-8ccc-aa4fe3ede3cc@quicinc.com>
-Date: Thu, 29 Feb 2024 17:23:08 +0530
+	s=arc-20240116; t=1709208084; c=relaxed/simple;
+	bh=jANLgh1CopM+d8vJLf/GZfXiAiEzTblpnax/gttn6X0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=HbfLKVdKhz2Sozu40ESKfR56R7Y1qHvoiMKj8NocZqhr9DEXZfM4qYH83uwZQOKYDvY9baOeAKf4AWGcyJDAbkbEUk4L+v3FE+xg29e2TnL4aocYPKPA2airZxj/p0rOKMVppNCV9kOUM9+VDjhuxEcKSSg0TuPXUoeUKhccjbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YDHL52ou; arc=none smtp.client-ip=209.85.218.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a34c5ca2537so137666266b.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 04:01:22 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709208081; x=1709812881; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iBlf8HoFNmQlPXKUBDlOcxdRxoNNGRE/tP5p7n7r1Mw=;
+        b=YDHL52ouY8bDz48X0JRyDv7rKhIES8lu6/DhoussymD05HbDg8Uyojqoke3l/AE3tR
+         OZwtdKjDeYIoJpjgiyq7k8yfAOqn/KRqDml1waTcy1W4ywf/EU+O4PISZVSoV3uKJeIs
+         +vVnqJHgv3Dkc72d3g+wmIlMs5iCtwJE7bKtxA/F1Mfg0B0xu5MqDBP9kkmc0HSsEGjj
+         c+FWwHYl/47Z1YaH8KIB1IXwA6qpCL69B5RXKExRYvAVar+waLm0yD2w1UTR6sAJTkzV
+         6HTTCCiznfdZR9L1tefK3Rq1KPZ9NDPqeei4QA+eXImPsUpFyX6SffZ3uO6AR9yGsYjK
+         nNFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709208081; x=1709812881;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iBlf8HoFNmQlPXKUBDlOcxdRxoNNGRE/tP5p7n7r1Mw=;
+        b=P/kfd3pb8QjvxToMk42ccRRespAYEwl9h8759yyXMplRQzHxNXOHWr2nWKgC7ZrfqF
+         Fj9+Xv7cYxbdgG61SXOOMsmuDvJ8k/K+asTYJb23/yrog2TJ+BHkdZXXvi1Q1NRMuq5P
+         xFENu6sv+1P1EycjGkSEf+dmnUHxjlkG1wYz7q4YYbSa4ZIn6QDHZdWbvW0rnyKBg4l0
+         juggrhxfrdVorZyRjdyeIAusEb7+TJthDW9ag+tbAsEDzKXouQ532oKmWYitXX5Ny+s8
+         S8i5ghp86S5GfmI+/r9ZhLMwSOKssiDMOSJjGM3isQcX8D5odM8bNvpnXddTDTbzc/4U
+         4P8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVEb+P7yCs2mt8OSjmat6S7k3pjz1XGYEl8M22ID+n2enZbYK44ce6vRsMGFnG1PhsGp/HPZCHXqpBnvotYzjuQfYI3QqBBi8fu9A==
+X-Gm-Message-State: AOJu0Yyrn4u6mHSeuDz21LHz6jr3UxQtPGSW0rGJ5JhBaaSet+EZHnAx
+	3rxXBPNwhp21fJS4HoJzmQESYlVaFVSqSVSwORB9jIxXN+UOPeFrv/fmkJqF31M=
+X-Google-Smtp-Source: AGHT+IEm4sxibAecNOSABVhUlzbFIYcM3cnU6Y3UzHCXyIXvvwJ2yT31xsOH4L43KVOJSoC80Facsg==
+X-Received: by 2002:a17:906:4152:b0:a3d:2243:29da with SMTP id l18-20020a170906415200b00a3d224329damr1278820ejk.36.1709208081181;
+        Thu, 29 Feb 2024 04:01:21 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id d25-20020a17090648d900b00a4339b8b1bbsm610795ejt.212.2024.02.29.04.01.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Feb 2024 04:01:20 -0800 (PST)
+Message-ID: <1286ec46-b721-4c44-92f1-a79229e1c08b@linaro.org>
+Date: Thu, 29 Feb 2024 13:01:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,163 +76,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v15 2/9] usb: dwc3: core: Access XHCI address space
- temporarily to read port info
-To: Johan Hovold <johan@kernel.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Wesley Cheng
-	<quic_wcheng@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Greg
- Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Felipe Balbi
-	<balbi@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <quic_ppratap@quicinc.com>,
-        <quic_jackp@quicinc.com>
-References: <20240216005756.762712-1-quic_kriskura@quicinc.com>
- <20240216005756.762712-3-quic_kriskura@quicinc.com>
- <ZeBSp0EWnHo8Wbsv@hovoldconsulting.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: arm: aspeed: add ASUS X4TF board
 Content-Language: en-US
-From: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-In-Reply-To: <ZeBSp0EWnHo8Wbsv@hovoldconsulting.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 8QmluQy7FslCBKekTlrJnCYfQ13XBYC1
-X-Proofpoint-GUID: 8QmluQy7FslCBKekTlrJnCYfQ13XBYC1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-29_02,2024-02-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- lowpriorityscore=0 malwarescore=0 mlxlogscore=999 bulkscore=0 phishscore=0
- clxscore=1015 suspectscore=0 impostorscore=0 spamscore=0 adultscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2402290091
+To: =?UTF-8?B?S2VsbHkgSHVuZyjmtKrlmInojokp?= <Kelly_Hung@asus.com>,
+ Kelly Hung <ppighouse@gmail.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>
+Cc: "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>, "joel@jms.id.au"
+ <joel@jms.id.au>, "andrew@codeconstruct.com.au"
+ <andrew@codeconstruct.com.au>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+ =?UTF-8?B?QWxsZW5ZWSBIc3Uo6Kix5bm85bKzKQ==?= <AllenYY_Hsu@asus.com>
+References: <20240229090913.1892215-1-Kelly_Hung@asus.com>
+ <7f60e293-8076-4a06-9b6b-35f9c19578c4@linaro.org>
+ <TYZPR04MB65960D379D89A5C3C4A0B13B9D5F2@TYZPR04MB6596.apcprd04.prod.outlook.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <TYZPR04MB65960D379D89A5C3C4A0B13B9D5F2@TYZPR04MB6596.apcprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-
-
-On 2/29/2024 3:17 PM, Johan Hovold wrote:
-> On Fri, Feb 16, 2024 at 06:27:49AM +0530, Krishna Kurapati wrote:
->> Currently Multiport DWC3 controllers are host-only capable.
+On 29/02/2024 12:18, Kelly Hung(洪嘉莉) wrote:
+> Hi, Krzysztof,
 > 
-> I already asked you to rephrase this so that it becomes clear that you
-> are describing a property of the current hardware (and similar
-> throughout the series):
-> 
-> 	https://lore.kernel.org/all/ZTI7AtCJWgAnACSh@hovoldconsulting.com/
+> I also confused, if I lost all from v1 to v4 change log? If the answer is yes, I had added them in v5.
 
-Hi Johan. Thanks for the review.
+I asked to add proper tags and gave you link to exact paragraph
+explaining this.
 
-IMO, the statement is describing a property unique to current hardware, 
-that "If it is a multiport controller, it is then host-only capable"
+Open the email and inline, not top-posting, answer to each sentence you
+find there. You were ignoring all them and not responding...
 
-I used the word "Currently" to indicate that "Today, the multiport 
-devices present...". Let me know if there is any ambiguity in the sentence.
+Best regards,
+Krzysztof
 
-In v13, I wrote:
-"Currently host-only capable DWC3 controllers support Multiport."
-You were right. It was ambiguous as it might refer to even single port 
-controllers.
-
-So I changed it saying all the DWC3 multiport controllers are host only 
-capable.
-
-How about:
-
-"All the DWC3 Multi Port controllers that exist today only support host 
-mode"
-
-> 
->> +static int dwc3_read_port_info(struct dwc3 *dwc)
->> +{
->> +	void __iomem *base;
->> +	u8 major_revision;
->> +	u32 offset;
->> +	u32 val;
->> +
->> +	/*
->> +	 * Remap xHCI address space to access XHCI ext cap regs since it is
->> +	 * needed to get information on number of ports present.
->> +	 */
->> +	base = ioremap(dwc->xhci_resources[0].start,
->> +		       resource_size(&dwc->xhci_resources[0]));
->> +	if (IS_ERR(base))
->> +		return PTR_ERR(base);
->> +
->> +	offset = 0;
->> +	do {
->> +		offset = xhci_find_next_ext_cap(base, offset,
->> +						XHCI_EXT_CAPS_PROTOCOL);
->> +		if (!offset)
->> +			break;
->> +
->> +		val = readl(base + offset);
->> +		major_revision = XHCI_EXT_PORT_MAJOR(val);
->> +
->> +		val = readl(base + offset + 0x08);
->> +		if (major_revision == 0x03) {
->> +			dwc->num_usb3_ports += XHCI_EXT_PORT_COUNT(val);
->> +		} else if (major_revision <= 0x02) {
->> +			dwc->num_usb2_ports += XHCI_EXT_PORT_COUNT(val);
->> +		} else {
->> +			dev_warn(dwc->dev,
->> +				 "unrecognized port major revision %d\n",
-> 
-> I still think you should merge this with the previous line even if you
-> end up with 83 chars.
-> 
->> +							major_revision);
->> +		}
->> +	} while (1);
->   
->> +	/*
->> +	 * Currently only DWC3 controllers that are host-only capable
->> +	 * support Multiport.
->> +	 */
-> 
-> So again, also here, rephrase the comment so that it is clear that you
-> are referring to a property of the current hardware.
-
-I put the comment this way to indicate that we don't want to check for 
-existence of multiple ports if the controller is not "host-only" 
-capable. We should only check for multport support only if we are 
-host-only capable. I think the statement clearly tells that "check for 
-host-only" configuration before proceeding to check for xhci register reads.
-
-I replied the same on:
-https://lore.kernel.org/all/279a54f2-7260-4270-83c7-d6f5c5ba0873@quicinc.com/
-
-And since you didn't mention anything else at this part of code in your 
-return reply in:
-https://lore.kernel.org/all/ZTYyXhyZN3jBXEfm@hovoldconsulting.com/
-
-I thought this statement was fine to go.
-
-> 
->> +	hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
->> +	if (hw_mode == DWC3_GHWPARAMS0_MODE_HOST) {
->> +		ret = dwc3_read_port_info(dwc);
->> +		if (ret)
->> +			goto err_disable_clks;
->> +	} else {
->> +		dwc->num_usb2_ports = 1;
->> +		dwc->num_usb3_ports = 1;
->> +	}
-> 
-
-Thanks for the review. Can you help let me know your review on the other 
-patches as well.
-
-Regards,
-Krishna,
 
