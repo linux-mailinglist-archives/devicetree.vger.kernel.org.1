@@ -1,132 +1,137 @@
-Return-Path: <devicetree+bounces-47322-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47323-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65FD686CCB2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:17:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CD8186CCC3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:23:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97E1D1C2104A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:17:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 985571C21695
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:23:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B443145328;
-	Thu, 29 Feb 2024 15:17:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061DE13B7A1;
+	Thu, 29 Feb 2024 15:23:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="XSu+wV/o"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="p3HPaMpT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 68FFE137753;
-	Thu, 29 Feb 2024 15:17:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F93137747;
+	Thu, 29 Feb 2024 15:23:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709219861; cv=none; b=EUt/Kdzcj+tx8zkchWMbtCy8SmWX2ak74DBfwq2ZaS9BvQnJ5kOST8lNjowgYE4n7xQIxKF4sWJ7ukr43jr7vGM69zIR0TSm4TS1JNFL1uVfGg/yCx8NAxGJa3nQeGjSspCfYDRZwUsyc+shENx2M1JWoPHVYRTA1D8UsGVr+qM=
+	t=1709220187; cv=none; b=ZoiUNUGgKhUj5PyTdQ9+cka1bHXawlPly8lYHdBwH5444wBreE1M0xs31c9Ql4zJPfmnyP/QFNlg1kmBHU0yc78Pw0Q6uvsBqIE1sDpRVPfCZJwfyG4uvDYxCLvnfJ3OQFViY0w25X+YiULtBqS8ylKw1ONbN6CrIK5AgBkOtjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709219861; c=relaxed/simple;
-	bh=br/HWN6lmANGcA8lXtzi6rpYYGeQsWi3eahucRslWvM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SMyULDPc+mxwlmB1X8yIulhrDpB9ChyALM4kPFiJFu/ugXAWxq3OZ8JJ0H7Cexg6bI6bJaGE+BMLQKdWPbbnNPQsc/AEMsh8EKkhDY/rr28JasSChqu6lGxmhCBpND5V+919SSbSP6coy/W08zY9ETbQiRqtZHki+4tvWzw5V4Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=XSu+wV/o; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=+c7Vmm6KMU5zSvglgfqufPHeSuGV1yw9KPRb+vUHbSs=; b=XSu+wV/oCNilQemLKrLXtUYJun
-	ZFsAIYQS4CPzcvXULpppRYMnMQAOaPDTBOQp4Fi0W33U9liiMEbP4aNMLs9Uom5a3ibtYmpr3Rxaf
-	Is3E4P5BVtL/4LPvUhWtCVpzV4TPKJ+aj8EJCpuSkF/AKfVbnwVkDlRKpXa4h+PFJb9Q=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rfiAN-0093D1-J5; Thu, 29 Feb 2024 16:17:47 +0100
-Date: Thu, 29 Feb 2024 16:17:47 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Bastien Curutchet <bastien.curutchet@bootlin.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	herve.codina@bootlin.com, maxime.chevallier@bootlin.com,
-	christophercordahi@nanometrics.ca
-Subject: Re: [PATCH v2 2/6] leds: trigger: Create a new LED netdev trigger
- for collision
-Message-ID: <9dd1b2d0-4ba5-4d34-a892-a6cc8c01df28@lunn.ch>
-References: <20240227093945.21525-1-bastien.curutchet@bootlin.com>
- <20240227093945.21525-3-bastien.curutchet@bootlin.com>
- <e6351d0c-15e2-47a9-be6c-6f21aee9ae90@lunn.ch>
- <e1936774-14bf-4ae5-9754-e21f5a0c59b3@bootlin.com>
+	s=arc-20240116; t=1709220187; c=relaxed/simple;
+	bh=FnJ5PRLHMbbCxiWolI/D484iJjQ+6LJl7Lv2B83l2e0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=uXs3c3w2zhV40ET0q+e3t5zpzWpJu/jeVHNap5J2UHZUaKxgsYdktD/LNEl1W8y10LFwD88p/qDsFdsnzoS1lzzmm5AG8gklEgy0Q/SUktX6092voopZcvTfRVx/UhoCSzWO7o3GlRFSpFxKyQ0fQSaaLsgeOR1Jp6jPQAC+Nnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=p3HPaMpT; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0933FE0005;
+	Thu, 29 Feb 2024 15:23:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709220183;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=g5kXwCtNU0te2FYTDQ4q2dN9S7SUT7EeSjehv7fCtCk=;
+	b=p3HPaMpTCeMnY+v+RhRzOMfYf1hJRqMHo3mDiIUesLh6hAPkP84BiA1/4vN1Np1RzhMxL8
+	BJ1uJHxtM7AqiEI1cce7u4UVp8r8LqfZvNHOW/0j4W5wzAXLW6F+JhykK4QY9t9Zz3xTdl
+	j5t56sDZpKxwbF01428OmZHp4O/tmvJKJ0i5CR2HNxmkDocrMQIwAQejdScrk0m5byvTF9
+	3VIS/Y/t49hoiyd4lu007tVtJ6g4y9Fn8feOCpQ8S4JKVl9bXptA2rWgpgV5SSxF9IA8s4
+	Cj1JmrOzfVw2vUNqgwV36ZYdpNXQ6AEMGdBx59t7Xj2S2jPkCVyDCR7zkbppIA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e1936774-14bf-4ae5-9754-e21f5a0c59b3@bootlin.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 29 Feb 2024 16:23:01 +0100
+Message-Id: <CZHNZJJ600CC.1WV7Q2520ZSKU@bootlin.com>
+Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
+ <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
+ <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
+ <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Vladimir
+ Kondratiev" <vladimir.kondratiev@mobileye.com>,
+ <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
+ Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
+To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v8 04/10] reset: eyeq5: add platform driver
+X-Mailer: aerc 0.15.2
+References: <20240227-mbly-clk-v8-0-c57fbda7664a@bootlin.com>
+ <20240227-mbly-clk-v8-4-c57fbda7664a@bootlin.com>
+ <Zd4bbCsY54XEnvJM@smile.fi.intel.com>
+ <CZGVIWR4H4DE.3M5H3H99X0QPT@bootlin.com>
+ <ZeBo4N204gLO0eUd@smile.fi.intel.com>
+ <CZHK1ZCSROM5.X4WYN7SAZJTH@bootlin.com>
+ <ZeCLS17PhKPuGvkm@smile.fi.intel.com>
+In-Reply-To: <ZeCLS17PhKPuGvkm@smile.fi.intel.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-> > How useful is collision? How did you test this? How did you cause
-> > collisions to see if the LED actually worked?
-> Indeed I am not able to generate collision on my setup so I did not test
-> this
-> collision part.
-> My use case is that the hardware strap configuration that selects the LED
-> output mode
-> can not be trusted so I have to force configuration with software. I added
-> this collision
-> part because I wanted to cover all the LED configuration modes offered by
-> the PHY.
+Hello,
 
-There are a few things i want to avoid here:
+On Thu Feb 29, 2024 at 2:48 PM CET, Andy Shevchenko wrote:
+> On Thu, Feb 29, 2024 at 01:18:08PM +0100, Th=C3=A9o Lebrun wrote:
+> > On Thu Feb 29, 2024 at 12:22 PM CET, Andy Shevchenko wrote:
+> > > On Wed, Feb 28, 2024 at 06:04:47PM +0100, Th=C3=A9o Lebrun wrote:
+> > > > On Tue Feb 27, 2024 at 6:27 PM CET, Andy Shevchenko wrote:
+> > > > > On Tue, Feb 27, 2024 at 03:55:25PM +0100, Th=C3=A9o Lebrun wrote:
+>
+> ...
+>
+> > > > > > +	priv->rcdev.of_node =3D np;
+> > > > >
+> > > > > It's better to use device_set_node().
+> > > >=20
+> > > > I don't see how device_set_node() can help? It works on struct devi=
+ce
+> > > > pointers. Here priv->rcdev is a reset_controller_dev struct. There =
+are
+> > > > no users of device_set_node() in drivers/reset/.
+> > >
+> > > No users doesn't mean it's good. The API is relatively "new" and take=
+s
+> > > care of two things:
+> > > 1) it uses agnostic interface;
+> > > 2) it doesn't require any firmware node direct dereference.
+> > >
+> > > The 2) is most important here as allows us to refactor (firmware node=
+) code
+> > > in the future.
+> >=20
+> > I think I get the point of device_set_node(). I still do not understand
+> > how it could help me fill the ->of_node field in a reset_controller_dev
+> > structure?
+>
+> Exactly why I put the above comment as recommendation. And then I elabora=
+ted
+> that entire reset framework should rather move towards fwnode.
 
-1) Vendor SDK mentality. The hardware can do this, lets add a knob to
-make use of it. We end up with 100 of configuration knobs which nobody
-ever uses. Do you actually have a board where the strapping is wrong?
-Are you going to submit a .dts file making use of this option?
+OK now I get it. One question: would using fwnode abstractions make
+sense for a driver that is devicetree-only, and will stay that way?
 
-2) LEDs are the wild west, because it is not part of 802.3. Every
-vendor does it differently, and has their own special blinking
-patterns. My preference is to keep it simple to what people actually
-use. You cannot actually generate a collision, the developer who wants
-to add support for collision. I have to ask, is collision actually
-useful?
+However this sounds out-of-scope of such a driver addition. I also am
+not familiar enough (yet?) with the reset subsystem and/or fwnode to be
+able to bring this kind of changes upstream.
 
-> > As far as i can see, this is just a normal 100Base-T PHY. Everybody
-> > uses that point-to-point nowadays. If it was an 100Base-T1, with a
-> > shared medium, good old CSMA/CD then collision might actually be
-> > useful.
-> > 
-> > I also disagree with not having software fallback:
-> > 
-> > ip -s link show eth0
-> > 2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
-> >      link/ether 80:ee:73:83:60:27 brd ff:ff:ff:ff:ff:ff
-> >      RX:     bytes    packets errors dropped  missed   mcast
-> >      4382213540983 2947876747      0       0       0  154890
-> >      TX:     bytes    packets errors dropped carrier collsns
-> >        18742773651  197507119      0       0       0       0
-> > 
-> > collsns = 0. The information is there in a standard format. However,
-> > when did you last see it not 0?
-> 
-> Ok, I could add the software callback but I will not be able to test it ...
+Thanks,
 
-My personal experience is, anything not tested is broken...
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-Think about what Russell actually said. That should give you a clue
-how to cause collisions. If not, go study history books about CSMA/CD.
-
-   Andrew
 
