@@ -1,165 +1,102 @@
-Return-Path: <devicetree+bounces-47118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47124-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7DD486C408
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:46:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D0A4A86C443
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:54:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 72689282F39
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 08:46:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0E8371C23767
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 08:54:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B18F2535D5;
-	Thu, 29 Feb 2024 08:46:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E14654FAF;
+	Thu, 29 Feb 2024 08:54:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="IfH4fgTH"
+	dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b="k5YjcgSb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+Received: from gofer.mess.org (gofer.mess.org [88.97.38.141])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B865E535AF;
-	Thu, 29 Feb 2024 08:46:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CDC8354FA0;
+	Thu, 29 Feb 2024 08:54:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=88.97.38.141
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709196407; cv=none; b=rydlZVmZvFhRRhAS/lHPZXcSd0CGIa3CCj/1qNmLfQhe/fvJfZyc1Q0uJ8Nz1xpwDn6SJ24s6SM6ZPD6w2Z8NB5nSNQvwXeLcBuGyUwLT8H+G8fTgDMJpOyygZqwbv0DSf0vVXkqitQ3GXdgtMfofwk8FHJa/U6YfWfvw+atfKA=
+	t=1709196883; cv=none; b=mmEmshx5g8WteEwK5yBLUt+WOaFpuuzx89B4oinoNhCf+axz28y+4bGRhGJL6/tFU6YKZUUVFLRAw2aMqoWUSHSPMs8PuZ7y1OIDPgwYxAY+WQrLBmwX0YlPsrPyFM948W1xn5rbcq0aTPVmqDsLgI8tKjFEl8kJ/CNFWCPT5Xs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709196407; c=relaxed/simple;
-	bh=qwCh4HkETlXqvXQiDnkTAVSKoofLJRfU5jEJr6Y2t1E=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=CAsbI5SuAl6SG2S/MKKRPP7TKpz8J8tuL31mvJf4EkN1ruXylYtSArdPuy6oLyQx2sKggudMabFz3Sl3KevgyHyuVpdz+zp9NZlX6nUJvMsuHoOY9rjrMzW3o/zp3JuRascHrKgedVLxev4GzVK7tCnYUmLnH3L02j57HDT4Bm8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=IfH4fgTH; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 41T8jSoB094393;
-	Thu, 29 Feb 2024 02:45:28 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1709196328;
-	bh=Ulcrfge3dIu9txF9ZPWk1YqG9TlLAnjzw2E2aDqON2c=;
-	h=From:To:CC:Subject:In-Reply-To:References:Date;
-	b=IfH4fgTHaE4W04yHnZz6V9XlunSfeUzgZ3pdOsDqyvv+MW7GaKzyXSez2HnXFO7Hx
-	 mamka70Odc/h0m6xvZVc1tHjC15u3MZEmGY45aqsmA85HoZEAe1JyrDoJrsFO/Pvys
-	 AIH3JMDB54TXFWFbuGzjNu+Jdic7xRkc7mMqi/7w=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-	by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 41T8jRZb035729
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 29 Feb 2024 02:45:27 -0600
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
- Feb 2024 02:45:27 -0600
-Received: from lelvsmtp5.itg.ti.com (10.180.75.250) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 29 Feb 2024 02:45:27 -0600
-Received: from localhost (kamlesh.dhcp.ti.com [172.24.227.123])
-	by lelvsmtp5.itg.ti.com (8.15.2/8.15.2) with ESMTP id 41T8jQQj078498;
-	Thu, 29 Feb 2024 02:45:27 -0600
-From: Kamlesh Gurudasani <kamlesh@ti.com>
-To: "Elliott, Robert (Servers)" <elliott@hpe.com>,
-        Eric Biggers
-	<ebiggers@kernel.org>
-CC: Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller"
-	<davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof
- Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra
-	<vigneshr@ti.com>,
-        "Tero Kristo" <kristo@kernel.org>,
-        Catalin Marinas
-	<catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>,
-        Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org"
-	<linux-arm-kernel@lists.infradead.org>,
-        "linux-stm32@st-md-mailman.stormreply.com"
-	<linux-stm32@st-md-mailman.stormreply.com>
-Subject: RE:  Re: [PATCH v2 2/6] crypto: crc64 - add crc64-iso framework
-In-Reply-To: <MW5PR84MB18424EC8DDB4863777D302E2AB562@MW5PR84MB1842.NAMPRD84.PROD.OUTLOOK.COM>
-References: <20230719-mcrc-upstream-v2-0-4152b987e4c2@ti.com>
- <20230719-mcrc-upstream-v2-2-4152b987e4c2@ti.com>
- <20230812025520.GE971@sol.localdomain>
- <87jztserrf.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
- <MW5PR84MB18424EC8DDB4863777D302E2AB562@MW5PR84MB1842.NAMPRD84.PROD.OUTLOOK.COM>
-Date: Thu, 29 Feb 2024 14:15:25 +0530
-Message-ID: <87plwfk6ai.fsf@kamlesh.i-did-not-set--mail-host-address--so-tickle-me>
+	s=arc-20240116; t=1709196883; c=relaxed/simple;
+	bh=Ak8rXUZULtrRHmfF0ffCmGBhBA/0vaiKCFsiyM3s6pY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=KiKNqml1OReSdMJTtKdZjItxC89whSYy0tgaubedP9yGQow7l0WJ6F0m3Ns7YeXUtYLBaYdgAsh4jB+viEkZMBxRftqz22BknXEEovDPEBcpcwKcQKrgU5nvYnmpSNLpZW4Y8ORJDKIo2TsEOPoSmuaP/dvApGwlTeIlpa0ujns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org; spf=pass smtp.mailfrom=mess.org; dkim=pass (2048-bit key) header.d=mess.org header.i=@mess.org header.b=k5YjcgSb; arc=none smtp.client-ip=88.97.38.141
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=mess.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mess.org
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mess.org; s=2020;
+	t=1709196354; bh=Ak8rXUZULtrRHmfF0ffCmGBhBA/0vaiKCFsiyM3s6pY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=k5YjcgSb0qA6yXD5ZB3RjkN7LDaCQM4rOQpU5s1ENBAt6oxqTZKmca33H4djL2DG0
+	 40Lylc0SUiNPe6pqTyid911P1VT1aUEIPWk8XzxGRfKpictrLBBzoUkcjDgjUvlMY3
+	 qRc3tnld4uZMPaCzmyrMSWL1RICzq6BnTTu8mkbcUVp0Ap+M7TmyHOdVgZadyDwtaj
+	 izk1Qo4u591pTvsCVyk9ZUt6/LJWXxDUFpGECbdpsWLgtqXZpIETobjUn8Bl+Pi2ds
+	 ke3VMRb43eG1147ZHBFg8C7kESRUzXB7WTfR1Oia4nzhP22N7S2+0DTTnxYThHcTY7
+	 Iv2mVRVonbdQg==
+Received: by gofer.mess.org (Postfix, from userid 1000)
+	id 3F8DA100778; Thu, 29 Feb 2024 08:45:54 +0000 (GMT)
+Date: Thu, 29 Feb 2024 08:45:54 +0000
+From: Sean Young <sean@mess.org>
+To: Stefan Wahren <wahrenst@gmx.net>
+Cc: Chris Morgan <macroalpha82@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, andy.shevchenko@gmail.com,
+	Angelo Compagnucci <angelo.compagnucci@gmail.com>,
+	Philip Howard <phil@gadgetoid.com>,
+	Linus Walleij <linus.walleij@linaro.org>, linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	Vincent Whitchurch <vincent.whitchurch@axis.com>
+Subject: Re: [PATCH V4 2/2] pwm: Add GPIO PWM driver
+Message-ID: <ZeBEQtI7rplfdpMT@gofer.mess.org>
+References: <20240204220851.4783-1-wahrenst@gmx.net>
+ <20240204220851.4783-3-wahrenst@gmx.net>
+ <65de00aa.540a0220.f1081.6933@mx.google.com>
+ <3e65fd65-ccfc-4a77-8934-52791662bdce@gmx.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <3e65fd65-ccfc-4a77-8934-52791662bdce@gmx.net>
 
-"Elliott, Robert (Servers)" <elliott@hpe.com> writes:
+On Tue, Feb 27, 2024 at 05:59:40PM +0100, Stefan Wahren wrote:
+> Hi Chris,
+> 
+> Am 27.02.24 um 16:32 schrieb Chris Morgan:
+> > I have a series of devices with GPIO controlled force feedback that
+> > this driver helps us control better. So I'm looking forward to this,
+> > thank you.
+> Thanks for testing. I didn't had much time recently and i was fighting
+> with hr timer resolution stuff. But will try to send the next version in
+> March.
+> > Note that when I set the resolution too low (I got confused and set
+> > the period to 255) my device locked up hard and only a forced
+> > power cycle could bring it back.
+> Unfortunately this is a general design issue by driving the GPIO by a
+> kernel driver and "expected" behavior. I didn't have a good solution for
+> it yet.
 
->> -----Original Message-----
->> From: Kamlesh Gurudasani <kamlesh@ti.com>
->> Sent: Friday, August 18, 2023 2:26 AM
->> Subject: Re: [EXTERNAL] Re: [PATCH v2 2/6] crypto: crc64 - add crc64-iso
->> framework
->> 
->> Eric Biggers <ebiggers@kernel.org> writes:
->> 
->> > Is "crc64-iso" clear enough, or should it be "crc64-iso3309"?  There are
->> > thousands of ISO standards.  Different CRC variants are specified by
->> different
->> > ISO standards.  Is this particular variant indeed commonly referred to
->> as simply
->> > the "ISO" CRC-64?  Even if it's currently the case that all other CRCs
->> in ISO
->> > standards are different widths than 64 bits (which may be unlikely?),
->> I'm not
->> > sure we should count on no CRC-64 variant ever being standardized by
->> ISO.
->> >
->> > - Eric
->> https://en.wikipedia.org/wiki/Cyclic_redundancy_check
->> 
->> Last entry CRC-64-ISO in the table.
->> It is mentioned as crc64-iso and that's the
->> only 64-bit CRC standardized by ISO. 
->
-> ECMA-182 (DLT-1 tapes) was contributed to become ISO/IEC 13421 in 1993, so
-> that was another "64-bit CRC standardized by ISO." Plus, ISO could publish new
-> standards with new CRCs at any time.
->
->> But I do agree that crc64-iso3309 would be more specific, will change it
->> to crc64-iso3309 in next revision. Thanks.
->> 
->> Regards,
->> Kamlesh
->
-> ISO-3309:1991 was withdrawn and revised by
-> ISO/IEC 3309:1993, which was withdrawn and revised by
-> ISO/IEC 13239:2002, which was confirmed in 2007 and is still current.
->
-> Apparently only the 1991 version defined a CRC-64; later versions dropped
-> that.
->
-> Is there really a demand for adding a 23 year old deprecated algorithm to
-> the kernel?
-I understand your concern but a lot of TI's K3 based J7* and AM6* SOCs
-have MCRC and MCRC64(Mostly on AM6* SOCs)
-Where MCRC64 only supports above mentioned CRC64 algorithm and few
-customers wants to use the hardware based CRC to ensure FFI, so we
-actually need it.
-If it is available in upstream and can be used easily, a lot of
-customers would want to use it.
+When we reprogram the timer with hrtimer_forward(), we could check whether
+we have overrun - i.e. we are already beyond the expires time. This could
+be a hint that a) we cannot generate the pwm signal and b) this might
+be what causes the hang, because we are returning HRTIMER_RESTART yet
+no new expires has been programmed.
 
-I'll look into the naming and will provide something specific to that
-particular algo.
+Crashing the machine if the period is too short is not really good enough
+for mainline, I think. There is talk of pwm chardevs in the future.
 
-Kamlesh
+
+Sean
 
