@@ -1,130 +1,109 @@
-Return-Path: <devicetree+bounces-47351-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47352-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A24D86CEEB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:25:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8574486CEF1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:26:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 70FCB1C214B8
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:25:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B71311C20C6D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:26:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15E957580D;
-	Thu, 29 Feb 2024 16:19:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A273078294;
+	Thu, 29 Feb 2024 16:20:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g1RbyrHc"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Fh1o4r5V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 671097580C;
-	Thu, 29 Feb 2024 16:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C7278290
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 16:20:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709223599; cv=none; b=RsZTVygOzW9HCDf5acah1JnFFIvVEyFpDXdbHeWomWhyTExuAIQ9X9Ru5Jy9CksXGo9qNPCJ2EZQxf6sKDbKtqF+mcoUcS8npeFEZBZvTm1ADO2aUeu7LjLQg0LBzgcNqKKHriCrJ6dUo+6c0aCi7p4vLE4n41G3XOez+26aDVY=
+	t=1709223629; cv=none; b=lY+CGr950W7DX8u++fye2odfiv3IAqZkOzRUxk36oS6xRwrwCUet7hLCzoUnjEiY9MQAY/kprWM+noLvjFdij+985SXPIDl4kJ1Yr/9UUigl8qlz5jt/je9RQn9oGUSSpmvD9YSOx827VX8+FwmRziwDTo+kS/xAMTbMpPI7pNc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709223599; c=relaxed/simple;
-	bh=OYnaEB7igBlvrmSlezUCoGljUmbeasl6fjQmS0Cxzto=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=dooZKyYkcb7LqnndtvZoC+2tZTruVUUmmUrhuHd1KRj6v4lQASTUIsYi0pCPsIctRNdowRcOS97HvdHkw0mOfdygEvTaLNEnRD4IOFGqa8AS+uUbHZYcjqpPT2Gh2B5E7djwBCVMPCZiXbpZSgmmvCAF/S4rmvZhiKR2ZHgymbY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g1RbyrHc; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-564fd9eea75so1769385a12.3;
-        Thu, 29 Feb 2024 08:19:57 -0800 (PST)
+	s=arc-20240116; t=1709223629; c=relaxed/simple;
+	bh=5akJAYIzzDJf3+0III/J1h+mlaUltOxaG9R8wmii+rY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cfMHNZhNXtsRWye3lUhQx2DvGH8MQ8+7JWUWO3nW6i36vcrPdY5E21IyCHjUtJ/JEeXh7U57egYnYYnX9IrU/F8gtLXethNejHIA6Wz1xp/eiewRLZajVEfo5N5CsiTkSb1A9gamSq9Q12LyCD23LII8Qh/LwQHKZsl/PNFLs7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Fh1o4r5V; arc=none smtp.client-ip=209.85.166.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-36524116e30so4574075ab.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 08:20:26 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709223596; x=1709828396; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zZDaiCfMZbNphQohAhx94MVQqcgltEp5N10EltKHmZ8=;
-        b=g1RbyrHci+U6YrDfY72b9W9iCn4CKAb9WkyoiHEWlwVjfDlKaS1TxK0NEMAennh4Ax
-         nfEfq/m7Yhx3EcD1pjPd0kuZhc5leQTtZAOwifSbZikNoTgd8SkiyOld7JlBvchDQPFd
-         9vJVcujrnU+IgzEi5CFWmcdy1AZ6tWns+Siy4IDrEXVZaXwyUdn/e5i3vEl/DgIQkyM4
-         VW8wFc5ZWoLZClJFvqIeeIOpRi2wBxcU8oOGt03F8e85YTTcBrTNRtk1vihp8bDw7nK/
-         CNg7lsIZvLyOzpsXExMDjJeeG4cz5syDe6v2957xBcPOopml0WISYxIaKSFn/7ycbxv5
-         SCZg==
+        d=chromium.org; s=google; t=1709223625; x=1709828425; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=g8Qq8yPD2u9VlGqCnCi7K91emb+vPhb1JZTph4xZca0=;
+        b=Fh1o4r5V3NV6hYmmXDVU/Y9GxmzQ83D5o6s0cyDo2DHoJk1KKmJDqFr2UDN2ZYIuw5
+         +fFl6JK1gnZPmrRnL2r7QcPTwpF4NqL2lVd3JndkE95TcMi4NzER0qnmk3LnjG29orAM
+         wvdW6KZUuiiIjVKXMiJ+sG91PCzkhW8etUvXU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709223596; x=1709828396;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zZDaiCfMZbNphQohAhx94MVQqcgltEp5N10EltKHmZ8=;
-        b=dH7ukR2lFxVjf7N699Hkm6+zT4Jhiq96JVCe71TfdqhPaSb67S6YTSmsgdNKGWVuEm
-         urujgXAEq/b5tS1pqTT72TY6bdOf3ESdYtO4L3iIgjx7aeFhCwFVY9uW+oInvCeD/+zb
-         8vJmDbhYnpAVcTm3kjyQDJzu7IpNtCMUB4fWwu+QrVSgnXZx2kEWzO/8LSTjLKbeTdjp
-         +1tGXOzxZsO+p8o/tL5YfGhXBXf0LhcjLkOwl4jI0M2ZBybOpEuNpUOfTD3DS9e3A6q8
-         9OhwswxgUyrViMdgjMQxVJIxaSGiI9GGXVuF04h6uv/6Q/0dNoZtt+N9S9gfLfSz+PVN
-         PARA==
-X-Forwarded-Encrypted: i=1; AJvYcCVpji8Gg7TYlpKDi/+dWBC0KWWgFtgPeZvysMvGq1k9zC7WIqkIy7ExdrzYCyhVcnMMUO+jHl6/aCXuK6uUMcWE+8BPjGrXGyF5dDaEvsNMJtCFT263sLbB4TrcAS8qXzcaamhIENX3J2yNCDxgT5uKkzJ60LvhcsBeESyGiYE5acQeJA==
-X-Gm-Message-State: AOJu0YyEl/bgBhD4qumzoLl8oSiFwPwzfxGZpDguy5gGfNlRcjN25Z6M
-	QfXBC+KPUN9GTiJlVzMBPYPQKUbJS+5pQXG+qsa5e2HsSGmT66DL
-X-Google-Smtp-Source: AGHT+IEomlkfZUbYwkcNE2XMqbAJ09R6DSu9zehMV6C8LqRFxsQPnda13UABVByHBev/l1yJ5Pt3GA==
-X-Received: by 2002:aa7:d6da:0:b0:564:7921:37c3 with SMTP id x26-20020aa7d6da000000b00564792137c3mr1711565edr.19.1709223595484;
-        Thu, 29 Feb 2024 08:19:55 -0800 (PST)
-Received: from [10.76.84.172] ([5.2.194.157])
-        by smtp.gmail.com with ESMTPSA id w20-20020a50fa94000000b005668c6837ecsm730561edr.32.2024.02.29.08.19.54
+        d=1e100.net; s=20230601; t=1709223625; x=1709828425;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=g8Qq8yPD2u9VlGqCnCi7K91emb+vPhb1JZTph4xZca0=;
+        b=n/LymIq0VxWj77p6p4ETarVlTbyYhsPrhaoZlHLbRpQj7NSU0wYjQEWmmfZ6DlDdV+
+         1Qr5MDhO4Yl5Tpe2AbB+hV06VWxjuODsAaeOcBUGnO+RIR5qGJMMtiY1v5mfmhXGxAv4
+         KOizutkZyHhiIZcJyGPpTxMZdYs6GdGr43uu8EuYCr3gPT+9tGjbE8NR/b4OBdPWDyhb
+         PpX+8QhRlFiBD5gxr3wya/eIl51P5gIrmSRhRpBxROo7o+UBwtcGNnPhko+OkeEcj4QQ
+         bw8wzsd3FznIsb8XJClYHUzXR5GQd4gO2py6A0J9kpJMH6JsrGeQXsfACL5MO9QGrUqh
+         eGJA==
+X-Forwarded-Encrypted: i=1; AJvYcCWb600Ejqr/T8AYRQHkt3c0AtL2Xa9iDQtcQIGLbBLqdeELXJ/lbPNMmvl6pRTdmhZDVQwawiht0AprwDrx1SlThViui9V+P38P/Q==
+X-Gm-Message-State: AOJu0YydEBm5XLuLNZDEvrz46t8+r8buaHGmbj5CDAIYmgPGkuNmiJEd
+	AC98+nPmyZW7v/IBXEri/LwmyOgXVb3CwcNM9W25yf/d5xj+f/3lJAwCqDK/RA==
+X-Google-Smtp-Source: AGHT+IFreo0hr/9MzkZCTngz7lMqfGeDlbi8HZb7O7X2LxBPXUVABjMPoOBmX8meMjGxInCXYjaVSw==
+X-Received: by 2002:a92:c7d1:0:b0:365:1749:cae0 with SMTP id g17-20020a92c7d1000000b003651749cae0mr2946229ilk.7.1709223625514;
+        Thu, 29 Feb 2024 08:20:25 -0800 (PST)
+Received: from localhost (144.57.222.35.bc.googleusercontent.com. [35.222.57.144])
+        by smtp.gmail.com with UTF8SMTPSA id s17-20020a92cb11000000b00363d8ee8cf7sm393454ilo.48.2024.02.29.08.20.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 08:19:55 -0800 (PST)
-Message-ID: <0f1486de-785a-4c27-a0f9-98dfc94362d5@gmail.com>
-Date: Thu, 29 Feb 2024 18:19:53 +0200
+        Thu, 29 Feb 2024 08:20:25 -0800 (PST)
+Date: Thu, 29 Feb 2024 16:20:24 +0000
+From: Matthias Kaehlcke <mka@chromium.org>
+To: Javier Carrasco <javier.carrasco@wolfvision.net>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Helen Koike <helen.koike@collabora.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Russell King <linux@armlinux.org.uk>,
+	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+	dri-devel@lists.freedesktop.org,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 2/9] usb: misc: onboard_hub: use device supply names
+Message-ID: <ZeCuyLeC9SBNBkk_@google.com>
+References: <20240229-onboard_xvf3500-v6-0-a0aff2947040@wolfvision.net>
+ <20240229-onboard_xvf3500-v6-2-a0aff2947040@wolfvision.net>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: adc: ad7173: add support for
- additional models
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, David Lechner <dlechner@baylibre.com>,
- Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240228135532.30761-1-mitrutzceclan@gmail.com>
- <20240228135532.30761-2-mitrutzceclan@gmail.com>
- <9f3e461a-0b79-470f-b599-bba45cda006a@linaro.org>
- <43840914-cb4a-4758-9691-0ebd8fb97681@gmail.com>
- <8ad18b06-7ff1-4463-8ba0-d7a7d54e5b65@linaro.org>
-From: "Ceclan, Dumitru" <mitrutzceclan@gmail.com>
-In-Reply-To: <8ad18b06-7ff1-4463-8ba0-d7a7d54e5b65@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240229-onboard_xvf3500-v6-2-a0aff2947040@wolfvision.net>
 
-On 29/02/2024 18:00, Krzysztof Kozlowski wrote:
-> On 29/02/2024 16:08, Ceclan, Dumitru wrote:
->> On 29/02/2024 16:49, Krzysztof Kozlowski wrote:
->>> On 28/02/2024 14:54, Dumitru Ceclan wrote:
->>>> Add support for: AD7172-2, AD7175-8, AD7177-2.
->>>> AD7172-4 does not feature an internal reference, check for external
->>>>  reference presence.
->>
->> ...
->>
->>>> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
->>>> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
->>>
->>> There is no such file in next-20240229.
->>>
->>
->> It's not yet accepted
->> https://lore.kernel.org/all/20240228110622.25114-1-mitrutzceclan@gmail.com/
+On Thu, Feb 29, 2024 at 09:34:45AM +0100, Javier Carrasco wrote:
+> The current implementation uses generic names for the power supplies,
+> which conflicts with proper name definitions in the device bindings.
 > 
-> And how can we know this? You must clearly document dependencies.
+> Add a per-device property to include real supply names and keep generic
+> names for existing devices to keep backward compatibility.
 > 
-> This also means the patch cannot be directly applied and cannot be
-> tested by toolset.
+> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
 
-Understood, sorry.
-
-> 
-> Did you test this particular patch?
-> 
-
-Yes
-
+Acked-by: Matthias Kaehlcke <mka@chromium.org>
 
