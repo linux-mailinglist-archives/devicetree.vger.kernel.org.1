@@ -1,722 +1,191 @@
-Return-Path: <devicetree+bounces-47225-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47228-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6006186C7C6
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 12:12:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 98CD386C7D6
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 12:16:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CB61DB2614E
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:12:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B965B1C219E9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:16:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8380E7B3FC;
-	Thu, 29 Feb 2024 11:11:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 520C27B3C0;
+	Thu, 29 Feb 2024 11:15:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UERIIl8h"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="JYRn2x1v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f179.google.com (mail-pf1-f179.google.com [209.85.210.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA7DE7B3CD;
-	Thu, 29 Feb 2024 11:11:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B665A79DA7;
+	Thu, 29 Feb 2024 11:15:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.18
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709205096; cv=none; b=c3SrgMrFIm7sDRksJ+TKGK/LerKjlVuhRPjOXVWZgcAmHc6W/aFmEpVvxZ/5WPgSQYX+bOmPnHj3BvQA0+XGHa+KoMlRM6CAyzPd0OebprY/It3xIsxpyYni/EK4BbpXuk2ucHQMurz1eGBwkGXc5YjiSO0o4uVqImT5NSXEAsk=
+	t=1709205355; cv=none; b=EHiSUCvlaena6Yq7MXgnPJs5zx+t3ijTzBZq8XAHIy0xC6KMJgGorEJfhGPvKY7Z1xjpaZAJRomrsIkSsMDKF4rNZQ+l/yzgMWx6CkxGvUygV70apeFvTLrzbn8in0aBRppQSekVpTcxs51lMneLUiXFHgDZzrNReKqGqEU8qIE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709205096; c=relaxed/simple;
-	bh=ccYnjhH5EoXBC3ZMdZNrvPl2xOXrjr3sTtF2dUvXFzA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=l6iaBdEfV6KjrUD+fb5MloJU5krFVEkyMXL8hh+asgQiQgMiRemuDRIfbwAajrZ9at7QrK7LBFiUGymk0vkxMhQTUN5jqo7HfOpyssCbyFMmMtOogDiyYY7NOnIchthJNFMy07Qlkh1cFjEK0qHeoDgJwKzNC8EDSKQBeWaoUMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UERIIl8h; arc=none smtp.client-ip=209.85.210.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f179.google.com with SMTP id d2e1a72fcca58-6e57ab846a1so490658b3a.3;
-        Thu, 29 Feb 2024 03:11:34 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709205094; x=1709809894; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=tzBaudLyufF66rX72+tonqy9eFxvsUGBqKa8grj+LfA=;
-        b=UERIIl8h6GSknS9RWpsdUlMIDBpOWXAxcnRgYTGpHPm+NR+Z/aZs3nKnIz8VI0yw09
-         Z1i/nROO41K5/uGUa7BRNBb5EdkIJ17yDEk6C+97cGGphRIuG/k8dqL5nThB5jqvjf14
-         RGENE7EjrrRUj1sOZxftcSX8ku55C9o8Bm0NKIml/ilKqfjij1qZh0lz+KECfZE5XSrZ
-         oCWK2guiCehoSL9wqpQKfXsdzFpibAvHzeUgHMg5I4+lYDy7RqowbaEYPNL7sEc0KVdp
-         G4C/8upPJsBi+ve938F27MUSJxjn2EdQzjH+GmBua1OpW1nD352Trcn4eiyiva62Tc6l
-         c9zw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709205094; x=1709809894;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=tzBaudLyufF66rX72+tonqy9eFxvsUGBqKa8grj+LfA=;
-        b=nPQT+Nut+19q3lElSnLFcnDIsUUQaWsT+sr17/7Tzb9tZjaIN+p9mESLf4rNQV7U4c
-         AvfCTOq1as7lpJ9+r9Gmiw3HDL+WE8Qof3AK0uQPvu7rzgYbrIsVYNadigY70/cwfu0K
-         dnjtCpaDLyx1XB5ulIwcl/ih0IeYHw5asUnCbe3k0/tsuLuyVa7QGGPY7mNWkct6w2mF
-         htzwU+7/FRiIGGymjC2nodD1YNPyW8gP9Id/LAvEikevGKClPu/YdBFKh/Zx9hi5WLjZ
-         4AfGLR28damY7PD1qS+H09eYtq0xMKRQ8PzijgPO0/GwjuTHYqQigktUcYhcqqhieR73
-         2VVg==
-X-Forwarded-Encrypted: i=1; AJvYcCWH0Egw9C3d+4DY1PhP4QXoKIIystzSqQj3FfHOmqR7fD8Z0Yueuau1YNsr0kizCzeCpI2C0H3x39Rc2tAT65seBr09yWrdNlzGoAQAsiXpw35olCOvfj89t9kLmXjkF6GA+2/5EFFHIA==
-X-Gm-Message-State: AOJu0Yzf/btA5O5/VmLtcedZ6POn5rcKd/JY2DzjkiRAny1Z8O0mMsdG
-	wY7YvuD3l3duo1RuzejujncBdbnlwhyOeCbL/v3L+xcnZuC5WKIf
-X-Google-Smtp-Source: AGHT+IHAwlE9NyyAtguHDuWr5D6NSWavPEZnna+1oVFKvCOAWvz/eenNKEMCl3zZuuvfCEhHBQDbKA==
-X-Received: by 2002:a05:6a20:d907:b0:1a0:e234:bc79 with SMTP id jd7-20020a056a20d90700b001a0e234bc79mr2443760pzb.0.1709205093939;
-        Thu, 29 Feb 2024 03:11:33 -0800 (PST)
-Received: from localhost.localdomain (125-229-150-10.hinet-ip.hinet.net. [125.229.150.10])
-        by smtp.gmail.com with ESMTPSA id k6-20020a63f006000000b005e4666261besm1059693pgh.50.2024.02.29.03.11.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Feb 2024 03:11:33 -0800 (PST)
-From: Kelly Hung <ppighouse@gmail.com>
-X-Google-Original-From: Kelly Hung <Kelly_Hung@asus.com>
-To: robh+dt@kernel.org
-Cc: krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	joel@jms.id.au,
-	andrew@codeconstruct.com.au,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org,
-	openbmc@lists.ozlabs.org,
-	kelly_hung@asus.com,
-	Allenyy_Hsu@asus.com,
-	Kelly Hung <Kelly_Hung@asus.com>
-Subject: [PATCH v5 2/2] ARM: dts: aspeed: x4tf: Add dts for asus x4tf project
-Date: Thu, 29 Feb 2024 19:11:23 +0800
-Message-Id: <20240229111123.1932504-2-Kelly_Hung@asus.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240229111123.1932504-1-Kelly_Hung@asus.com>
-References: <20240229111123.1932504-1-Kelly_Hung@asus.com>
+	s=arc-20240116; t=1709205355; c=relaxed/simple;
+	bh=kSg5s07sAS2oPjs5L+tzUrFY7l5odKVVpQ4QLkplBxc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MeevtkXlwWE4qSIuT4sCXMhIDbvVQlvdNi/2Dczk/JvOQJX4m9WnepGiugZSrUh6Pkg2TIipsxJ6kWCSrZ90GLiQYnBGk5Y/ZveJafP9P3VG+QCscts+tNljByErCfqwlqYKSoeLuTTNxz6ip9OqmHr46erLZPvESif9HGS6Z00=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=JYRn2x1v; arc=none smtp.client-ip=198.175.65.18
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1709205353; x=1740741353;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=kSg5s07sAS2oPjs5L+tzUrFY7l5odKVVpQ4QLkplBxc=;
+  b=JYRn2x1vTptOgQeYPetNDNCHpwzcEWRdJy0ZH0OC5OdO+iEt8vt66Wv7
+   i2iFdgTSTSfj6dg7+0WUmUrOldIHaj+thFHRv+VwSpLJEMZRaVfqJDyrE
+   djL+nIHModY5YjyHFdiGf8ZASk28TrsyU0bGu/eXdu/2z+rSXjWPS3kBv
+   yc3RvSElyOKB2OFiP9yX1H+Fc6C1ofh7FUL66s2GKPykYBfLgMOu77p4A
+   CFGC2cGcnHAsPqWJMDpgWIveQsRDXmVrlolDGRGNL28YC3xSlhoSKPVdM
+   eINYbmt95wAC3oh/uMPjESLe2lXPQZZeAtq29W9+lvE6b1Aq2dY0bC++i
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="3791382"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="3791382"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Feb 2024 03:15:52 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10998"; a="913979423"
+X-IronPort-AV: E=Sophos;i="6.06,194,1705392000"; 
+   d="scan'208";a="913979423"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Feb 2024 03:15:47 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@intel.com>)
+	id 1rfeO8-00000008eOC-0rnF;
+	Thu, 29 Feb 2024 13:15:44 +0200
+Date: Thu, 29 Feb 2024 13:15:43 +0200
+From: Andy Shevchenko <andriy.shevchenko@intel.com>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	=?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	linux-mips@vger.kernel.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v8 03/10] clk: eyeq5: add platform driver, and init
+ routine at of_clk_init()
+Message-ID: <ZeBnX2upNRN0xXH4@smile.fi.intel.com>
+References: <20240227-mbly-clk-v8-0-c57fbda7664a@bootlin.com>
+ <20240227-mbly-clk-v8-3-c57fbda7664a@bootlin.com>
+ <Zd4X3NnBoEl0wu2H@smile.fi.intel.com>
+ <CZGSB2O8P572.28HK6WFT43N6S@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CZGSB2O8P572.28HK6WFT43N6S@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-Base on aspeed-g6.dtsi and can boot into BMC console.
+On Wed, Feb 28, 2024 at 03:33:29PM +0100, Théo Lebrun wrote:
+> On Tue Feb 27, 2024 at 6:11 PM CET, Andy Shevchenko wrote:
+> > On Tue, Feb 27, 2024 at 03:55:24PM +0100, Théo Lebrun wrote:
 
-Signed-off-by: Kelly Hung <Kelly_Hung@asus.com>
+[...]
 
----
-V4 -> V5: None
-V3 -> V4: None
-V2 -> V3:
-- fmc lable change to bmc.
-- use 64M partition layout.
-- rename spi1 label to bios.
-- remove bios partition section.
-V1 -> V2:
-- do schema check and remove all warings.
-- remove all unnecessary sections.
----
- arch/arm/boot/dts/aspeed/Makefile             |   1 +
- .../boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts  | 581 ++++++++++++++++++
- 2 files changed, 582 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts
+> > > +	depends on OF
+> >
+> > Since it's a functional dependency, why not allow compile test without OF
+> > being enabled?
+> 
+> I'd do this then:
+> 
+> 	depends on OF || COMPILE_TEST
+> 
+> Which is better than removing the depend line. I wouldn't want the
+> kernel to build fine with OF=n even though we need it. OK for you?
 
-diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
-index d3ac20e31..32c41f3d9 100644
---- a/arch/arm/boot/dts/aspeed/Makefile
-+++ b/arch/arm/boot/dts/aspeed/Makefile
-@@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
- 	aspeed-bmc-asrock-e3c246d4i.dtb \
- 	aspeed-bmc-asrock-romed8hm3.dtb \
-+	aspeed-bmc-asus-x4tf.dtb \
- 	aspeed-bmc-bytedance-g220a.dtb \
- 	aspeed-bmc-delta-ahe50dc.dtb \
- 	aspeed-bmc-facebook-bletchley.dtb \
-diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts
-new file mode 100644
-index 000000000..64f4ed07c
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts
-@@ -0,0 +1,581 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+// Copyright 2024 ASUS Corp.
-+
-+/dts-v1/;
-+
-+#include "aspeed-g6.dtsi"
-+#include "aspeed-g6-pinctrl.dtsi"
-+#include <dt-bindings/i2c/i2c.h>
-+#include <dt-bindings/gpio/aspeed-gpio.h>
-+
-+/ {
-+	model = "ASUS-X4TF";
-+	compatible = "asus,x4tf-bmc", "aspeed,ast2600";
-+
-+	aliases {
-+		serial4 = &uart5;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial4:115200n8";
-+	};
-+
-+	memory@80000000 {
-+		device_type = "memory";
-+		reg = <0x80000000 0x40000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		video_engine_memory: video {
-+			size = <0x04000000>;
-+			alignment = <0x01000000>;
-+			compatible = "shared-dma-pool";
-+			reusable;
-+		};
-+	};
-+
-+	iio-hwmon {
-+		compatible = "iio-hwmon";
-+		io-channels = <&adc0 0>, <&adc0 1>, <&adc0 2>, <&adc0 3>,
-+				<&adc0 4>, <&adc0 5>, <&adc0 6>, <&adc0 7>,
-+				<&adc1 0>, <&adc1 1>, <&adc1 2>, <&adc1 3>,
-+				<&adc1 4>, <&adc1 5>, <&adc1 6>, <&adc1 7>;
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led-heartbeat {
-+			gpios = <&gpio0 ASPEED_GPIO(P, 7) GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+
-+		led-uid {
-+			gpios = <&gpio0 ASPEED_GPIO(P, 1) (GPIO_ACTIVE_LOW | GPIO_OPEN_DRAIN)>;
-+			default-state = "off";
-+		};
-+
-+		led-status_Y {
-+			gpios = <&gpio1 ASPEED_GPIO(B, 1) GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+
-+		led-sys_boot_status {
-+			gpios = <&gpio1 ASPEED_GPIO(B, 0) GPIO_ACTIVE_LOW>;
-+			default-state = "off";
-+		};
-+	};
-+};
-+
-+&adc0 {
-+	vref = <2500>;
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc0_default &pinctrl_adc1_default
-+		&pinctrl_adc2_default &pinctrl_adc3_default
-+		&pinctrl_adc4_default &pinctrl_adc5_default
-+		&pinctrl_adc6_default &pinctrl_adc7_default>;
-+};
-+
-+&adc1 {
-+	vref = <2500>;
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_adc8_default &pinctrl_adc9_default
-+		&pinctrl_adc10_default &pinctrl_adc11_default
-+		&pinctrl_adc12_default &pinctrl_adc13_default
-+		&pinctrl_adc14_default &pinctrl_adc15_default>;
-+};
-+
-+&peci0 {
-+	status = "okay";
-+};
-+
-+&lpc_snoop {
-+	snoop-ports = <0x80>;
-+	status = "okay";
-+};
-+
-+&mac2 {
-+	status = "okay";
-+	phy-mode = "rmii";
-+	use-ncsi;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii3_default>;
-+};
-+
-+&mac3 {
-+	status = "okay";
-+	phy-mode = "rmii";
-+	use-ncsi;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rmii4_default>;
-+};
-+
-+&fmc {
-+	status = "okay";
-+
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "bmc";
-+		spi-max-frequency = <50000000>;
-+#include "openbmc-flash-layout-64.dtsi"
-+	};
-+};
-+
-+&spi1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_spi1_default>;
-+
-+	flash@0 {
-+		status = "okay";
-+		label = "bios";
-+		spi-max-frequency = <50000000>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+
-+	temperature-sensor@48 {
-+		compatible = "ti,tmp75";
-+		reg = <0x48>;
-+	};
-+
-+	temperature-sensor@49 {
-+		compatible = "ti,tmp75";
-+		reg = <0x49>;
-+	};
-+
-+	pca9555_4_20: gpio@20 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	pca9555_4_22: gpio@22 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	pca9555_4_24: gpio@24 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x24>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names =
-+		/*A0 - A3 0*/	"", "STRAP_BMC_BATTERY_GPIO1", "", "",
-+		/*A4 - A7 4*/	"", "", "", "",
-+		/*B0 - B7 8*/	"", "", "", "", "", "", "", "";
-+	};
-+
-+	pca9555_4_26: gpio@26 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x26>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9546";
-+		status = "okay";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		channel_1: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		channel_2: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		channel_3: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		channel_4: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+	};
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+
-+	pca9555_5_24: gpio@24 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x24>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	i2c-mux@70  {
-+		compatible = "nxp,pca9546";
-+		status = "okay";
-+		reg = <0x70 >;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		channel_5: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			pca9555_5_5_20: gpio@20 {
-+				compatible = "nxp,pca9555";
-+				reg = <0x20>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+				gpio-line-names =
-+					"", "", "", "", "", "", "", "",
-+					"", "", "SYS_FAN6", "SYS_FAN5",
-+					"SYS_FAN4", "SYS_FAN3",
-+					"SYS_FAN2", "SYS_FAN1";
-+			};
-+
-+			pca9555_5_5_21: gpio@21 {
-+				compatible = "nxp,pca9555";
-+				reg = <0x21>;
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+			};
-+
-+			power-monitor@44 {
-+				compatible = "ti,ina219";
-+				reg = <0x44>;
-+				shunt-resistor = <2>;
-+			};
-+		};
-+
-+		channel_6: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		channel_7: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		channel_8: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+	};
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+
-+	pca9555_6_27: gpio@27 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x27>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+
-+	pca9555_6_20: gpio@20 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		gpio-line-names =
-+		/*A0 0*/	"", "", "", "", "", "", "", "",
-+		/*B0 8*/	"Drive_NVMe1", "Drive_NVMe2", "", "",
-+		/*B4 12*/	"", "", "", "";
-+	};
-+
-+	pca9555_6_21: gpio@21 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9546";
-+		status = "okay";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		idle-state = <1>;
-+
-+		channel_9: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			temperature-sensor@48 {
-+				compatible = "ti,tmp75";
-+				reg = <0x48>;
-+			};
-+
-+			temperature-sensor@49 {
-+				compatible = "ti,tmp75";
-+				reg = <0x49>;
-+			};
-+
-+			power-monitor@40 {
-+				compatible = "ti,ina219";
-+				reg = <0x40>;
-+				shunt-resistor = <2>;
-+			};
-+
-+			power-monitor@41 {
-+				compatible = "ti,ina219";
-+				reg = <0x41>;
-+				shunt-resistor = <5>;
-+			};
-+		};
-+
-+		channel_10: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		channel_11: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		channel_12: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+	};
-+
-+	i2c-mux@71 {
-+		compatible = "nxp,pca9546";
-+		status = "okay";
-+		reg = <0x71>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		channel_13: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		channel_14: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+		};
-+
-+		channel_15: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		channel_16: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+	};
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+
-+	i2c-mux@70 {
-+		compatible = "nxp,pca9546";
-+		status = "okay";
-+		reg = <0x70>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		i2c-mux-idle-disconnect;
-+
-+		channel_17: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		channel_18: i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+
-+			temperature-sensor@48 {
-+				compatible = "ti,tmp75";
-+				reg = <0x48>;
-+			};
-+
-+			power-monitor@41 {
-+				compatible = "ti,ina219";
-+				reg = <0x41>;
-+				shunt-resistor = <5>;
-+			};
-+		};
-+
-+		channel_19: i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <2>;
-+		};
-+
-+		channel_20: i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <3>;
-+		};
-+	};
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+};
-+
-+&i2c14 {
-+	status = "okay";
-+	multi-master;
-+
-+	eeprom@50 {
-+		compatible = "atmel,24c08";
-+		reg = <0x50>;
-+	};
-+
-+	eeprom@51 {
-+		compatible = "atmel,24c08";
-+		reg = <0x51>;
-+	};
-+};
-+
-+&sgpiom0 {
-+	status = "okay";
-+	ngpios = <128>;
-+};
-+
-+&video {
-+	status = "okay";
-+	memory-region = <&video_engine_memory>;
-+};
-+
-+&sdc {
-+	status = "okay";
-+};
-+
-+&lpc_snoop {
-+	status = "okay";
-+	snoop-ports = <0x80>;
-+};
-+
-+&kcs1 {
-+	aspeed,lpc-io-reg = <0xca0>;
-+	status = "okay";
-+};
-+
-+&kcs2 {
-+	aspeed,lpc-io-reg = <0xca8>;
-+	status = "okay";
-+};
-+
-+&kcs3 {
-+	aspeed,lpc-io-reg = <0xca2>;
-+	status = "okay";
-+};
-+
-+&uart3 {
-+	status = "okay";
-+};
-+
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&uart_routing {
-+	status = "okay";
-+};
-+
-+&vhub {
-+	status = "okay";
-+};
-+
-+&gpio0 {
-+	gpio-line-names =
-+	/*A0 0*/	"", "", "", "", "", "", "", "",
-+	/*B0 8*/	"", "", "", "", "", "", "PS_PWROK", "",
-+	/*C0 16*/	"", "", "", "", "", "", "", "",
-+	/*D0 24*/	"", "", "", "", "", "", "", "",
-+	/*E0 32*/	"", "", "", "", "", "", "", "",
-+	/*F0 40*/	"", "", "", "", "", "", "", "",
-+	/*G0 48*/	"", "", "", "", "", "", "", "",
-+	/*H0 56*/	"", "", "", "", "", "", "", "",
-+	/*I0 64*/	"", "", "", "", "", "", "", "",
-+	/*J0 72*/	"", "", "", "", "", "", "", "",
-+	/*K0 80*/	"", "", "", "", "", "", "", "",
-+	/*L0 88*/	"", "", "", "", "", "", "", "",
-+	/*M0 96*/	"", "", "", "", "", "", "", "",
-+	/*N0 104*/	"", "", "", "",
-+	/*N4 108*/	"POST_COMPLETE", "ESR1_GPIO_AST_SPISEL", "", "",
-+	/*O0 112*/	"", "", "", "", "", "", "", "",
-+	/*P0 120*/	"ID_BUTTON", "ID_OUT", "POWER_BUTTON", "POWER_OUT",
-+	/*P4 124*/	"RESET_BUTTON", "RESET_OUT", "", "HEARTBEAT",
-+	/*Q0 128*/	"", "", "", "", "", "", "", "",
-+	/*R0 136*/	"", "", "", "", "", "", "", "",
-+	/*S0 144*/	"", "", "", "", "", "", "", "",
-+	/*T0 152*/	"", "", "", "", "", "", "", "",
-+	/*U0 160*/	"", "", "", "", "", "", "", "",
-+	/*V0 168*/	"", "", "", "", "", "", "", "",
-+	/*W0 176*/	"", "", "", "", "", "", "", "",
-+	/*X0 184*/	"", "", "", "", "", "", "", "",
-+	/*Y0 192*/	"", "", "", "", "", "", "", "",
-+	/*Z0 200*/	"", "", "", "", "", "", "", "";
-+};
+Yes!
+
+[...]
+
+> > > +	u32		reg;	/* next 8 bytes are r0 and r1 */
+> >
+> > Not sure this comments gives any clarification to a mere reader of the code.
+> > Perhaps you want to name this as reg64 (at least it will show that you have
+> > 8 bytes, but I have no clue what is the semantic relationship between r0 and
+> > r1, it's quite cryptic to me). Or maybe it should be reg_0_1?
+> 
+> Clocks are defined by two 32-bit registers. We only store the first
+> register offset because they always follow each other.
+
+> I like the reg64 name and will remove the comment. This straight forward
+> code is found in the rest of the code, I don't think it is anything
+> hard to understand (ie does not need a comment):
+> 
+> 	u32 r0 = readl(base_plls + pll->reg);
+> 	u32 r1 = readl(base_plls + pll->reg + sizeof(r0));
+
+Btw, why readq()/writeq() (with probably the inclusion of io-64-nonatomic-lo-hi.h)
+can be used in this case? It will be much better overall and be aligned with
+reg64 name.
+
+[...]
+
+> > I didn't get. If eq5c_init() was finished successfully, why do you need to
+> > seems repeat what it already done? What did I miss?
+> 
+> The key here is that eq5c_init() iterates on eq5c_early_plls[] while
+> eq5c_probe() iterates on eq5c_plls[]. I've tried to hint at this in the
+> commit message:
+> 
+> > Two PLLs are required early on and are therefore registered at
+> > of_clk_init(). Those are pll-cpu for the GIC timer and pll-per for the
+> > UARTs.
+> 
+> Doing everything in eq5c_init() is not clean because we expect all new
+> clock provider drivers to be standard platform drivers. Doing
+> everything from a platform driver probe doesn't work because some
+> clocks are required earlier than platform bus init. We therefore do a
+> mix.
+
+Am I missing something or these two pieces are using the same IO resources?
+This looks like a lot of code duplication without clear benefit. Perhaps
+you can have a helper?
+
+> This has been approved by Stephen Boyd in this email:
+> https://lore.kernel.org/lkml/fa32e6fae168e10d42051b89197855e9.sboyd@kernel.org/
+
+OK!
+
+[...]
+
+> > > +		eq5c_clk_data->hws[pll->index] = hw;
+> > > +		if (IS_ERR(hw))
+> >
+> > > +			dev_err_probe(dev, PTR_ERR(hw), "failed registering %s\n",
+> > > +				      pll->name);
+> >
+> > Missed return statement?
+> 
+> No, we still try to register all clocks even if one failed. I guess we
+> can call this being optimistic.
+
+But how critical these clocks are? I believe we should panic it we have no
+critical calls be available. Otherwise, why '_err_'? Shouldn't be dev_warn()?
+
 -- 
-2.25.1
+With Best Regards,
+Andy Shevchenko
+
 
 
