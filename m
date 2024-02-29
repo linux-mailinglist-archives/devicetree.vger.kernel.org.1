@@ -1,137 +1,112 @@
-Return-Path: <devicetree+bounces-47323-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47324-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CD8186CCC3
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:23:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10A2486CCCF
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:24:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 985571C21695
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:23:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A67F6B226D3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 15:24:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 061DE13B7A1;
-	Thu, 29 Feb 2024 15:23:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E6C01145B16;
+	Thu, 29 Feb 2024 15:23:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="p3HPaMpT"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="criRIg0d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5F93137747;
-	Thu, 29 Feb 2024 15:23:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 565F913774E;
+	Thu, 29 Feb 2024 15:23:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709220187; cv=none; b=ZoiUNUGgKhUj5PyTdQ9+cka1bHXawlPly8lYHdBwH5444wBreE1M0xs31c9Ql4zJPfmnyP/QFNlg1kmBHU0yc78Pw0Q6uvsBqIE1sDpRVPfCZJwfyG4uvDYxCLvnfJ3OQFViY0w25X+YiULtBqS8ylKw1ONbN6CrIK5AgBkOtjw=
+	t=1709220232; cv=none; b=uLsKZqZDOfR2v0S45dzfp+71xFdjMozAfjjc3xbRELm1vTXPiIoTg/mgNkZGlUYYiZuzzduq6AGblY2OOtLGiHq3kfxVir7QsCv9/yZuV5FYot7CZ55af+nlcvFsjPjdda24g68az5p6pWmbRA8cKlXrGGlX/+x7/Lma6+SymoU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709220187; c=relaxed/simple;
-	bh=FnJ5PRLHMbbCxiWolI/D484iJjQ+6LJl7Lv2B83l2e0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=uXs3c3w2zhV40ET0q+e3t5zpzWpJu/jeVHNap5J2UHZUaKxgsYdktD/LNEl1W8y10LFwD88p/qDsFdsnzoS1lzzmm5AG8gklEgy0Q/SUktX6092voopZcvTfRVx/UhoCSzWO7o3GlRFSpFxKyQ0fQSaaLsgeOR1Jp6jPQAC+Nnc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=p3HPaMpT; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0933FE0005;
-	Thu, 29 Feb 2024 15:23:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709220183;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=g5kXwCtNU0te2FYTDQ4q2dN9S7SUT7EeSjehv7fCtCk=;
-	b=p3HPaMpTCeMnY+v+RhRzOMfYf1hJRqMHo3mDiIUesLh6hAPkP84BiA1/4vN1Np1RzhMxL8
-	BJ1uJHxtM7AqiEI1cce7u4UVp8r8LqfZvNHOW/0j4W5wzAXLW6F+JhykK4QY9t9Zz3xTdl
-	j5t56sDZpKxwbF01428OmZHp4O/tmvJKJ0i5CR2HNxmkDocrMQIwAQejdScrk0m5byvTF9
-	3VIS/Y/t49hoiyd4lu007tVtJ6g4y9Fn8feOCpQ8S4JKVl9bXptA2rWgpgV5SSxF9IA8s4
-	Cj1JmrOzfVw2vUNqgwV36ZYdpNXQ6AEMGdBx59t7Xj2S2jPkCVyDCR7zkbppIA==
+	s=arc-20240116; t=1709220232; c=relaxed/simple;
+	bh=VR3w9qMQENCkQog/l/A9YqEp7V7m/a1O1eceAfQHDV8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JiJ3bl9KmuLAFCrjt7CDlv28tr/ZwofocIpiaqmKYnhCGmaGJYemGLhYF6zTV6lC/pQT//w+XQMQpHT/QgZIkw8gaNPYGNOiuQz64uQhcHUrgC+3C6CGPZhNH/4OHRfiCiBjV94z3x3DyeO6XGo3vZKWW8mlgKa+dGhvW3M883w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=criRIg0d; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=fpeGkSY3A7dXRsptcNnoUKHKhLiXr1DwW0RmJgm1X0Y=; b=criRIg0dtEXQf6tdodfSJg5wWp
+	sxJ7KokXv5tBurmJM4/okCh+eo2kWmM+bwf9A3ePMS5J9SiRALkz1FPVjGWDqnfRePCVEiXUZjjSs
+	24wfIEdBNh+OtS4QQXnEm32Sf2MykHIKqwoVHy7y0EsvIHMk9KzMwSUmx6zXc/YSTtLg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rfiGN-0093GS-LT; Thu, 29 Feb 2024 16:23:59 +0100
+Date: Thu, 29 Feb 2024 16:23:59 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Bastien Curutchet <bastien.curutchet@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
+	Richard Cochran <richardcochran@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-leds@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	herve.codina@bootlin.com, maxime.chevallier@bootlin.com,
+	christophercordahi@nanometrics.ca
+Subject: Re: [PATCH v2 6/6] net: phy: DP83640: Add fiber mode
+ enabling/disabling from device tree
+Message-ID: <c6840f8f-7d9c-49e8-b689-2af04605b99c@lunn.ch>
+References: <20240227093945.21525-1-bastien.curutchet@bootlin.com>
+ <20240227093945.21525-7-bastien.curutchet@bootlin.com>
+ <a9c2144a-f26b-4a71-b808-ce3a94f1264d@lunn.ch>
+ <c1b17410-b403-4c3a-9c00-de8f2b2b2fa7@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 29 Feb 2024 16:23:01 +0100
-Message-Id: <CZHNZJJ600CC.1WV7Q2520ZSKU@bootlin.com>
-Cc: "Gregory CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
- <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>, "Vladimir
- Kondratiev" <vladimir.kondratiev@mobileye.com>,
- <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>
-To: "Andy Shevchenko" <andriy.shevchenko@intel.com>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v8 04/10] reset: eyeq5: add platform driver
-X-Mailer: aerc 0.15.2
-References: <20240227-mbly-clk-v8-0-c57fbda7664a@bootlin.com>
- <20240227-mbly-clk-v8-4-c57fbda7664a@bootlin.com>
- <Zd4bbCsY54XEnvJM@smile.fi.intel.com>
- <CZGVIWR4H4DE.3M5H3H99X0QPT@bootlin.com>
- <ZeBo4N204gLO0eUd@smile.fi.intel.com>
- <CZHK1ZCSROM5.X4WYN7SAZJTH@bootlin.com>
- <ZeCLS17PhKPuGvkm@smile.fi.intel.com>
-In-Reply-To: <ZeCLS17PhKPuGvkm@smile.fi.intel.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <c1b17410-b403-4c3a-9c00-de8f2b2b2fa7@bootlin.com>
 
-Hello,
+On Thu, Feb 29, 2024 at 08:31:55AM +0100, Bastien Curutchet wrote:
+> Hi Andrew,
+> 
+> On 2/27/24 17:18, Andrew Lunn wrote:
+> > On Tue, Feb 27, 2024 at 10:39:45AM +0100, Bastien Curutchet wrote:
+> > > The PHY is able to use copper or fiber. The fiber mode can be enabled or
+> > > disabled by hardware strap. If hardware strap is incorrect, PHY can't
+> > > establish link.
+> > > 
+> > > Add a DT attribute 'ti,fiber-mode' that can be use to override the
+> > > hardware strap configuration. If the property is not present, hardware
+> > > strap configuration is left as is.
+> > How have you tested this? Do you have a RDK with it connected to an
+> > SFP cage?
+> 
+> I did not test fiber mode as my board uses copper.
+> 
+> My use case is that I need to explicitly disable the fiber mode because the
+> strap hardware is
+> misconfigured and could possibly enable fiber mode from time to time.
 
-On Thu Feb 29, 2024 at 2:48 PM CET, Andy Shevchenko wrote:
-> On Thu, Feb 29, 2024 at 01:18:08PM +0100, Th=C3=A9o Lebrun wrote:
-> > On Thu Feb 29, 2024 at 12:22 PM CET, Andy Shevchenko wrote:
-> > > On Wed, Feb 28, 2024 at 06:04:47PM +0100, Th=C3=A9o Lebrun wrote:
-> > > > On Tue Feb 27, 2024 at 6:27 PM CET, Andy Shevchenko wrote:
-> > > > > On Tue, Feb 27, 2024 at 03:55:25PM +0100, Th=C3=A9o Lebrun wrote:
->
-> ...
->
-> > > > > > +	priv->rcdev.of_node =3D np;
-> > > > >
-> > > > > It's better to use device_set_node().
-> > > >=20
-> > > > I don't see how device_set_node() can help? It works on struct devi=
-ce
-> > > > pointers. Here priv->rcdev is a reset_controller_dev struct. There =
-are
-> > > > no users of device_set_node() in drivers/reset/.
-> > >
-> > > No users doesn't mean it's good. The API is relatively "new" and take=
-s
-> > > care of two things:
-> > > 1) it uses agnostic interface;
-> > > 2) it doesn't require any firmware node direct dereference.
-> > >
-> > > The 2) is most important here as allows us to refactor (firmware node=
-) code
-> > > in the future.
-> >=20
-> > I think I get the point of device_set_node(). I still do not understand
-> > how it could help me fill the ->of_node field in a reset_controller_dev
-> > structure?
->
-> Exactly why I put the above comment as recommendation. And then I elabora=
-ted
-> that entire reset framework should rather move towards fwnode.
+O.K. So lets refocus this is little. Rather than support fibre mode,
+just support disabling fibre mode. But leave a clear path for somebody
+to add fibre support sometime in the future.
 
-OK now I get it. One question: would using fwnode abstractions make
-sense for a driver that is devicetree-only, and will stay that way?
+Looking at the current code, do you think fibre mode actually works
+today? If you think it cannot actually work today in fibre mode, one
+option would be to hard code it to copper mode. Leave the
+configuration between fibre and copper mode to the future when
+somebody actually implements fibre mode.
 
-However this sounds out-of-scope of such a driver addition. I also am
-not familiar enough (yet?) with the reset subsystem and/or fwnode to be
-able to bring this kind of changes upstream.
-
-Thanks,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+   Andrew
 
