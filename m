@@ -1,293 +1,146 @@
-Return-Path: <devicetree+bounces-47354-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47355-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0165F86CEFC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:27:03 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2AF986CF0E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:27:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AAF8F1F22CD5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:27:02 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2FF051C22BC1
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:27:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9741134413;
-	Thu, 29 Feb 2024 16:22:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D6B66CBFD;
+	Thu, 29 Feb 2024 16:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="3B0qRVmh"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GZLgHfHd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BE4A16062E
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 16:22:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267F26CBF7;
+	Thu, 29 Feb 2024 16:25:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709223775; cv=none; b=ZhIrEVWLeyrQKjMS2CeJjP1tjme5Z3wPRB7cLrdmUZ05tkVh1XVpXlTBqc5fB5Ov9sZAE/oogvBulygTxboG5YsBDn3Z2c+S9FcZxy15UYUkoGwkemVthanXltq/O0YmvsRwfzX8nz2m06QfndYF7uAxYOX1tcKxw0DK786sikU=
+	t=1709223933; cv=none; b=for3YRKMW2tTI9C7DE/lyDmcs0d67qoHul+28CVEkBzABa+tarCSWbnHfRcuGNpVvTIchm0OqEIuu4T4dmu60bGEvyFCLZayk+Ck5GV/OFxEzrH5j2h+sb+uGQaJqmYCodWDs9AWyV0ryVDVo+po+x7UaOd16DuOrcsFGwG1a3Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709223775; c=relaxed/simple;
-	bh=5yKIsKLL1Ux1kiogg8llg+QWU8tH43ddvVG6rGeOI+4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ui+6emrkl7sfgGMRgIJ9kysLR8DJ571TkzVEvd9S3o+KMWP0lm0Le1e5BHC1jZhDSV0E50YsyFWAW1ypCqkdMEy6lo0/bbrpdZdZh1djXtaq4rTTKyvrNQuvi6Q8ZBvi7PoLN7SvhTZTPP9ed5Jm4wD3Le7yIfKVfwODzOLbtiM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=3B0qRVmh; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1709223772;
-	bh=5yKIsKLL1Ux1kiogg8llg+QWU8tH43ddvVG6rGeOI+4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=3B0qRVmh+LtmZ1HHyyHF4ogQNjdccYAxq7VSiyWOTLM1HED7Z54FObMxc9X4YgqyP
-	 x59PXbuaTfK+0g5poGiQIYaP8rALcP7MZ/Ui4wliljpNjOM9b2wrdM8xulJRk1I2JS
-	 3NCiuliNCKGWNdkd4chcX8bKSGCUT+Yuhlhr0FqMxbZ7ZzCgM/LEpT1nv1WaMaJjBG
-	 4oZSlnSBGJzpxW4vjYi36csX9mfS3j8RDUERKyJzEs4HCviyROvpRGY6eFYwFudX/w
-	 5+bjM4BqDb54PGwU7kKJ7MOlRCM3E33XHFpdL9dnFlxXP+zfTFbIIzJQXxwI03rlhm
-	 0BwKS34DvK/dw==
-Received: from localhost.localdomain (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: bbrezillon)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id F3B0437820EA;
-	Thu, 29 Feb 2024 16:22:50 +0000 (UTC)
-From: Boris Brezillon <boris.brezillon@collabora.com>
-To: dri-devel@lists.freedesktop.org
-Cc: Daniel Vetter <daniel@ffwll.ch>,
-	"Marty E . Plummer" <hanetzer@startmail.com>,
-	Rob Herring <robh@kernel.org>,
-	=?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-	Nicolas Boichat <drinkcat@chromium.org>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Faith Ekstrand <faith.ekstrand@collabora.com>,
-	Daniel Stone <daniels@collabora.com>,
-	Liviu Dudau <Liviu.Dudau@arm.com>,
-	Steven Price <steven.price@arm.com>,
-	Robin Murphy <robin.murphy@arm.com>,
-	kernel@collabora.com,
-	Heiko Stuebner <heiko@sntech.de>,
-	Tatsuyuki Ishi <ishitatsuyuki@gmail.com>,
-	Chris Diamand <chris.diamand@foss.arm.com>,
-	Ketil Johnsen <ketil.johnsen@arm.com>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	Boris Brezillon <boris.brezillon@collabora.com>,
-	Maxime Ripard <mripard@kernel.org>
-Subject: [PATCH v6 13/14] dt-bindings: gpu: mali-valhall-csf: Add support for Arm Mali CSF GPUs
-Date: Thu, 29 Feb 2024 17:22:27 +0100
-Message-ID: <20240229162230.2634044-14-boris.brezillon@collabora.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240229162230.2634044-1-boris.brezillon@collabora.com>
-References: <20240229162230.2634044-1-boris.brezillon@collabora.com>
+	s=arc-20240116; t=1709223933; c=relaxed/simple;
+	bh=4V6OlYJLg2D2ADjTGoW0ZIdepDQib6cN9BnQe1KUkgs=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=JCo52qIJePbn8e2k6faIoPGlqAO590WulPvjPx/SDbNogLiLSDimBy8CV17JbixL486G6nlRPScD9lPSadZHWkAI3haQu8g9xltuLC6684kDsjpDNWlIwcc+KiQ4M2/6koW8d048H23Q2nOGf0esH0T+bE10Qa7SUsr87M5jgrM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GZLgHfHd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4AC6C43390;
+	Thu, 29 Feb 2024 16:25:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709223932;
+	bh=4V6OlYJLg2D2ADjTGoW0ZIdepDQib6cN9BnQe1KUkgs=;
+	h=From:Date:Subject:To:Cc:From;
+	b=GZLgHfHdzSDZATOabNXnku51/DMdtbXNqg834eIQlRHMbJQpyTu6bJ0it32ln7Czg
+	 L05lK4XjI5X4JlUOw13U9MsSSddCRxXuNu1mFijtMjYA6QMf26fWcR44aYpKnFUEft
+	 +O5itxPPnZy1pM3Nf3/V04FkkolCy/vhv2lY9OPlNORMnvte+FWgVDJCiZ85TvgqZz
+	 xPX8FAQcIGtYdOYBKG4PWvaxXI1qPqoLvwStoGVw5X+Rz3th/LsfwuGM5W6IeX+9PW
+	 pfoCnrnCDf4UZqwXi7Npfyv2vJYmTFhPUEddeEV0AjWcUya6DQQ1g8Ju3k3FxraEe2
+	 u0sv5w3ZU+xAQ==
+From: Roger Quadros <rogerq@kernel.org>
+Date: Thu, 29 Feb 2024 18:25:15 +0200
+Subject: [PATCH] arm: dts: ti: beagleplay: Fix Ethernet PHY RESET GPIOs
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240229-b4-for-v6-9-am65-beagleplay-ethernet-reset-v1-1-b3e4b33378bd@kernel.org>
+X-B4-Tracking: v=1; b=H4sIAOqv4GUC/x2NwQqDMBAFf0X23IUYom36K8VD0r7ogo2yEWkR/
+ 72hl4G5zBxUoIJC9+YgxS5FllylvTT0nEIewfKqTtZYZ6z1HB2nRXnv2XN49x1HhHHGOocvY5u
+ gGRsrSqXxt2SvLsXUdlSDqyLJ5z97DOf5A+0w5wt8AAAA
+To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: srk@ti.com, s-vadapalli@ti.com, r-gunasekaran@ti.com, 
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Roger Quadros <rogerq@kernel.org>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=openpgp-sha256; l=2613; i=rogerq@kernel.org;
+ h=from:subject:message-id; bh=4V6OlYJLg2D2ADjTGoW0ZIdepDQib6cN9BnQe1KUkgs=;
+ b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBl4K/5VGgg0Szc8M2O7/ORpqD/Is7v/MAK0hNAO
+ yZN9iblCjmJAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZeCv+QAKCRDSWmvTvnYw
+ kzl2D/9BPFAtmkgiacpXSs1V3058PyDLc+ehcKlCemroF4/f1teoqbZVV617xHmdgtCQgmlstNC
+ JBAlD2bzSDeM3X+Lb5/6X1bVqDripAj6Co8mhJAE9BumkI0Vdi2kVel/H+tqQkwlCnzOHYT/Gfj
+ 9sYYYXxP+IBJSkIqTw+QzLNqD24ya0wDNEj4LrYeqoBqsslyDKNN/tc4qyi6dWx0MH940sg2PUX
+ qi/1pBxm7Cj0t5ddFkOeI7T2wsyGWfV2LrnnBSKvx0tht9DV0R1oWlPqL131uIv6oMpfuh0RB2M
+ E+JFpytxkdL5YEpQKSLTWt+GRYDUWKBgvUW6w0LeGKvAAlgH2qdsmebSwQZ5NdIiHbJm8eAsfbJ
+ 9sIuvLQAwk05bXyoJLPJKj5ja68OCqoPF2hxU0qQ9PY9JoXi+MJ2wMxdIePPzn/M/bW6kESnb5B
+ 3qSD8/A6blQhAmwMEX0V356MuSYYN/dbl3jlWH/HNh9+37GELCz5QLwmodKlJKiHCDvJ1UVhOD/
+ PLrIhVWmFyB5OMTbCRQYvRG3qsORdw3b9ORDhtU6qlXsClRfmazCqcD0OmdJ3Gkf/EJw+LcJjJv
+ Ox55dQtwV+5Y9KJvkc2MUj17IaEaSQTKI9sxhegOortp/djLKE/z8oXQgGHOaHD2lf0NIV1Hg4k
+ 4gJ84c1Rye+34fg==
+X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
+ fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
 
-From: Liviu Dudau <liviu.dudau@arm.com>
+The RESET GPIO pinmux should be part of MDIO bus node
+so that they can be in the right state before the PHY
+can be probed via MDIO bus scan.
 
-Arm has introduced a new v10 GPU architecture that replaces the Job Manager
-interface with a new Command Stream Frontend. It adds firmware driven
-command stream queues that can be used by kernel and user space to submit
-jobs to the GPU.
+Add GPIO reset for the Gigabit Ethernet PHY. As per
+RTL8211F datasheet, reset assert width is 10ms and
+PHY registers can be access accessed after 50ms of
+reset deassert.
 
-Add the initial schema for the device tree that is based on support for
-RK3588 SoC. The minimum number of clocks is one for the IP, but on Rockchip
-platforms they will tend to expose the semi-independent clocks for better
-power management.
-
-v6:
-- Add Maxime's and Heiko's acks
-
-v5:
-- Move the opp-table node under the gpu node
-
-v4:
-- Fix formatting issue
-
-v3:
-- Cleanup commit message to remove redundant text
-- Added opp-table property and re-ordered entries
-- Clarified power-domains and power-domain-names requirements for RK3588.
-- Cleaned up example
-
-Note: power-domains and power-domain-names requirements for other platforms
-are still work in progress, hence the bindings are left incomplete here.
-
-v2:
-- New commit
-
-Signed-off-by: Liviu Dudau <liviu.dudau@arm.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Boris Brezillon <boris.brezillon@collabora.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Maxime Ripard <mripard@kernel.org>
-Acked-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Roger Quadros <rogerq@kernel.org>
 ---
- .../bindings/gpu/arm,mali-valhall-csf.yaml    | 147 ++++++++++++++++++
- 1 file changed, 147 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
+ arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-new file mode 100644
-index 000000000000..a5b4e0021758
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/arm,mali-valhall-csf.yaml
-@@ -0,0 +1,147 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpu/arm,mali-valhall-csf.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: ARM Mali Valhall GPU
-+
-+maintainers:
-+  - Liviu Dudau <liviu.dudau@arm.com>
-+  - Boris Brezillon <boris.brezillon@collabora.com>
-+
-+properties:
-+  $nodename:
-+    pattern: '^gpu@[a-f0-9]+$'
-+
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - rockchip,rk3588-mali
-+          - const: arm,mali-valhall-csf   # Mali Valhall GPU model/revision is fully discoverable
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: Job interrupt
-+      - description: MMU interrupt
-+      - description: GPU interrupt
-+
-+  interrupt-names:
-+    items:
-+      - const: job
-+      - const: mmu
-+      - const: gpu
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    items:
-+      - const: core
-+      - const: coregroup
-+      - const: stacks
-+
-+  mali-supply: true
-+
-+  operating-points-v2: true
-+  opp-table:
-+    type: object
-+
-+  power-domains:
-+    minItems: 1
-+    maxItems: 5
-+
-+  power-domain-names:
-+    minItems: 1
-+    maxItems: 5
-+
-+  sram-supply: true
-+
-+  "#cooling-cells":
-+    const: 2
-+
-+  dynamic-power-coefficient:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description:
-+      A u32 value that represents the running time dynamic
-+      power coefficient in units of uW/MHz/V^2. The
-+      coefficient can either be calculated from power
-+      measurements or derived by analysis.
-+
-+      The dynamic power consumption of the GPU is
-+      proportional to the square of the Voltage (V) and
-+      the clock frequency (f). The coefficient is used to
-+      calculate the dynamic power as below -
-+
-+      Pdyn = dynamic-power-coefficient * V^2 * f
-+
-+      where voltage is in V, frequency is in MHz.
-+
-+  dma-coherent: true
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - mali-supply
-+
-+additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: rockchip,rk3588-mali
-+    then:
-+      properties:
-+        clocks:
-+          minItems: 3
-+        power-domains:
-+          maxItems: 1
-+        power-domain-names: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rockchip,rk3588-cru.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/power/rk3588-power.h>
-+
-+    gpu: gpu@fb000000 {
-+        compatible = "rockchip,rk3588-mali", "arm,mali-valhall-csf";
-+        reg = <0xfb000000 0x200000>;
-+        interrupts = <GIC_SPI 92 IRQ_TYPE_LEVEL_HIGH 0>,
-+                     <GIC_SPI 93 IRQ_TYPE_LEVEL_HIGH 0>,
-+                     <GIC_SPI 94 IRQ_TYPE_LEVEL_HIGH 0>;
-+        interrupt-names = "job", "mmu", "gpu";
-+        clock-names = "core", "coregroup", "stacks";
-+        clocks = <&cru CLK_GPU>, <&cru CLK_GPU_COREGROUP>,
-+                 <&cru CLK_GPU_STACKS>;
-+        power-domains = <&power RK3588_PD_GPU>;
-+        operating-points-v2 = <&gpu_opp_table>;
-+        mali-supply = <&vdd_gpu_s0>;
-+        sram-supply = <&vdd_gpu_mem_s0>;
-+
-+        gpu_opp_table: opp-table {
-+            compatible = "operating-points-v2";
-+            opp-300000000 {
-+                opp-hz = /bits/ 64 <300000000>;
-+                opp-microvolt = <675000 675000 850000>;
-+            };
-+            opp-400000000 {
-+                opp-hz = /bits/ 64 <400000000>;
-+                opp-microvolt = <675000 675000 850000>;
-+            };
-+        };
-+    };
-+
-+...
+diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+index a34e0df2ab86..77240cf3ae4d 100644
+--- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
++++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+@@ -292,6 +292,8 @@ mdio0_pins_default: mdio0-default-pins {
+ 		pinctrl-single,pins = <
+ 			AM62X_IOPAD(0x0160, PIN_OUTPUT, 0) /* (AD24) MDIO0_MDC */
+ 			AM62X_IOPAD(0x015c, PIN_INPUT, 0) /* (AB22) MDIO0_MDIO */
++			AM62X_IOPAD(0x003c, PIN_INPUT, 7) /* (M25) GPMC0_AD0.GPIO0_15 */
++			AM62X_IOPAD(0x018c, PIN_OUTPUT, 7) /* (AC21) RGMII2_RD2.GPIO1_5 */
+ 		>;
+ 	};
+ 
+@@ -383,7 +385,6 @@ AM62X_IOPAD(0x017c, PIN_INPUT, 1) /* (AD22) RGMII2_RX_CTL.RMII2_RX_ER */
+ 			AM62X_IOPAD(0x016c, PIN_INPUT, 1) /* (Y18) RGMII2_TD0.RMII2_TXD0 */
+ 			AM62X_IOPAD(0x0170, PIN_INPUT, 1) /* (AA18) RGMII2_TD1.RMII2_TXD1 */
+ 			AM62X_IOPAD(0x0164, PIN_INPUT, 1) /* (AA19) RGMII2_TX_CTL.RMII2_TX_EN */
+-			AM62X_IOPAD(0x018c, PIN_OUTPUT, 7) /* (AC21) RGMII2_RD2.GPIO1_5 */
+ 			AM62X_IOPAD(0x0190, PIN_INPUT, 7) /* (AE22) RGMII2_RD3.GPIO1_6 */
+ 			AM62X_IOPAD(0x01f0, PIN_OUTPUT, 5) /* (A18) EXT_REFCLK1.CLKOUT0 */
+ 		>;
+@@ -597,6 +598,9 @@ &cpsw3g_mdio {
+ 
+ 	cpsw3g_phy0: ethernet-phy@0 {
+ 		reg = <0>;
++		reset-gpios = <&main_gpio0 15 GPIO_ACTIVE_LOW>;
++		reset-assert-us = <10000>;
++		reset-deassert-us = <50000>;
+ 	};
+ 
+ 	cpsw3g_phy1: ethernet-phy@1 {
+@@ -615,7 +619,7 @@ &main_gpio0 {
+ 		"USR0", "USR1", "USR2", "USR3", "", "", "USR4",	/* 3-9 */
+ 		"EEPROM_WP",					/* 10 */
+ 		"CSI2_CAMERA_GPIO1", "CSI2_CAMERA_GPIO2",	/* 11-12 */
+-		"CC1352P7_BOOT", "CC1352P7_RSTN", "", "", "",	/* 13-17 */
++		"CC1352P7_BOOT", "CC1352P7_RSTN", "GBE_RSTN", "", "",	/* 13-17 */
+ 		"USR_BUTTON", "", "", "", "", "", "", "", "",	/* 18-26 */
+ 		"", "", "", "", "", "", "", "", "", "HDMI_INT",	/* 27-36 */
+ 		"", "VDD_WLAN_EN", "", "", "WL_IRQ", "GBE_INTN",/* 37-42 */
+
+---
+base-commit: bbef42084cc170cbfc035bf784f2ff055c939d7e
+change-id: 20240229-b4-for-v6-9-am65-beagleplay-ethernet-reset-098f274fbf15
+
+Best regards,
 -- 
-2.43.0
+Roger Quadros <rogerq@kernel.org>
 
 
