@@ -1,145 +1,144 @@
-Return-Path: <devicetree+bounces-47199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3EEF86C686
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:13:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18C8886C694
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 11:14:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 680B62824E4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:13:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C5D29282246
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:14:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E63BC63506;
-	Thu, 29 Feb 2024 10:13:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A129A6350F;
+	Thu, 29 Feb 2024 10:14:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="gOuDSN94"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="VfMcgvOY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E8554634FA;
-	Thu, 29 Feb 2024 10:12:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 70A8561665;
+	Thu, 29 Feb 2024 10:14:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709201585; cv=none; b=kvrxbs2nCzkiMQIzHGmF/p2yTZ/+nfmyXMrxB1ZTfj2Y8X8XUIN3dcxQTrAUwAGE7tgfuAlkkKmr7U8bGkYVr3g9ij7sDzphw3Ep4+KB83XGw+VAp1jJkhw09u+5DBxukUgGte9BEKdVrvrNBYoxquihUZZJ7iWPf9HEKVqCmd4=
+	t=1709201678; cv=none; b=mIjw7BO0haAUkmmQKNtzRrbyetlUPn+6v53P2bVxKLDGwz48YLojqKueoYJjoTB2H4KU36lWRnRgxIAZR2+iYaeHb2HToBjdiLQ557/0+laTl4JVXNtvNB0LkHpMDOGart23mM2IdYsn1Y6ho6l/pzc1YwRJPhuFgSLZqPq14RY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709201585; c=relaxed/simple;
-	bh=3Y0napQcok6yYFzvKZKXvC27C5ldIaWsvbr5C99snto=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=h/aXKLzHKGuB5ViEjIBaqFyf0mxmEoNziLmQk7yxbCbv/qGNVShDuG6OD9R0fFsqkZFfnLLuKyfVVvwucwuYqdkGSQRwhXZSePdcEHKCs8qIfApt39XEV2wXv7FNt9ykB4LG1IJ1CCDoVS4lyHC0PFVsTJp4gEtx/dBWM4cX9Gc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=gOuDSN94; arc=none smtp.client-ip=93.104.207.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1709201583; x=1740737583;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=I0tG9nzHcCDklSXmw5EvPC2Z+AwV2Whi6F5Gzi5EvOI=;
-  b=gOuDSN94gLoT5fhWbf9HkSqfW/mjU2WxbYD1ZijHkjAbu4Rp0t7foYlp
-   ZK/3XpyBSSWxL4iqXJpBp0TPkEtwt5AYvvMkjCmIrWxYxyQfc0A2Oi156
-   4vv2udDUCCvvkTOVWngdhJYTuV27bbj3le7kqevmlTjpf3pZmRsq4XK7H
-   XQXoRBfNgX/ytwl4C2Qhay+Q6uauWdfgE5TGMtz7G+HQYl07brfTS3fdJ
-   ifjoEhWCnlJgOzfV9HHCzjf9lNF/FwwBKuYoSb007Oj0VYf4wJUnF/AOa
-   Wwh/oSUuqHHi7V/12GYAzQgPUQItojuyYbDWejxH6jcu2RbTZ3prQohhq
-   A==;
-X-IronPort-AV: E=Sophos;i="6.06,194,1705359600"; 
-   d="scan'208";a="35661153"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 29 Feb 2024 11:12:45 +0100
-Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id EA6ED280071;
-	Thu, 29 Feb 2024 11:12:39 +0100 (CET)
-From: Alexander Stein <alexander.stein@ew.tq-group.com>
-To: Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, linux-arm-kernel@lists.infradead.org
-Cc: devicetree@vger.kernel.org, imx@lists.linux.dev, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Frank Li <Frank.Li@nxp.com>, Alice Guo <alice.guo@nxp.com>, Peng Fan <peng.fan@nxp.com>, Frank Li <Frank.Li@nxp.com>
-Subject: Re: [PATCH 2/4] arm64: dts: imx8dxl: add lpuart device in cm40 subsystem
-Date: Thu, 29 Feb 2024 11:12:39 +0100
-Message-ID: <1889315.CQOukoFCf9@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20240228-m4_lpuart-v1-2-9e6947be15e7@nxp.com>
-References: <20240228-m4_lpuart-v1-0-9e6947be15e7@nxp.com> <20240228-m4_lpuart-v1-2-9e6947be15e7@nxp.com>
+	s=arc-20240116; t=1709201678; c=relaxed/simple;
+	bh=N/24cYqXozyOmOacjrNVgBVLbi7RWjtfqxIR2O+6Iwo=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=MjrHgqcIYTMhyFtgGvPAdiXsg3pu7xuZTPT/DThBkYQ0IpmtjeHlHpNdJgpEr5LiRPq3YlQ/GCrJrvExfzSc0HV2jocFrgHcik+9BIX6VA+b9mXUUDADFyLQMjmIYzOxy4lxBhkcMyB8AW9des7PgiTxrdz50M3psYuAmiFcEZQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=VfMcgvOY; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5DB2560003;
+	Thu, 29 Feb 2024 10:14:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709201672;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=C0Qg6WyRbahfjflhKo2Gr2gpsraYYAk4H6zxz/KiuF4=;
+	b=VfMcgvOYZaY3xiZssK0Ck2+vdea62Zr400HIkIteqKIYTIRamm8Zvb10WEdn2HzGqKyKWA
+	Qwi8tGsWypDoW2NX3GhWDwZMWjL/Cs3i9Qstgn/uqL3eWSGK7DjyXxrbG2uQ7dzQOYElY4
+	1KxFQhAG4KV+gtNB0L9AbZIS7MUbRNxGiEqJNPho10KN03/G5YP+1OTVThJevOSIaho6S9
+	DFeEJ16VUBD31OPV7yhA2eoEpU7N3zv82Xkbcgy59sY9BGxYoWsfOb90tIHmC99PUX/9k3
+	atBqJDpQeo1BBaZs5UEArjBtpCCNoHfD2m1tTH08qRs1/MQJh2ATSKFzA6k58A==
+Date: Thu, 29 Feb 2024 11:14:30 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Greg Kroah-Hartman  <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen
+ <max.zhen@amd.com>, Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini
+ <stefano.stabellini@xilinx.com>, Jonathan Cameron
+ <Jonathan.Cameron@Huawei.com>, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
+ Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] of: overlay: Synchronize of_overlay_remove()
+ with the devlink removals
+Message-ID: <20240229111430.54bdb6b1@bootlin.com>
+In-Reply-To: <c2b830bb4a4cf76dec8783f38b2477120edb1a15.camel@gmail.com>
+References: <20240229083953.607569-1-herve.codina@bootlin.com>
+	<20240229083953.607569-3-herve.codina@bootlin.com>
+	<c2b830bb4a4cf76dec8783f38b2477120edb1a15.camel@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Hi Frank,
+On Thu, 29 Feb 2024 10:50:21 +0100
+Nuno Sá <noname.nuno@gmail.com> wrote:
 
-thanks for the patch.
+> On Thu, 2024-02-29 at 09:39 +0100, Herve Codina wrote:
+> > In the following sequence:
+> >   1) of_platform_depopulate()
+> >   2) of_overlay_remove()
+> > 
+> > During the step 1, devices are destroyed and devlinks are removed.
+> > During the step 2, OF nodes are destroyed but
+> > __of_changeset_entry_destroy() can raise warnings related to missing
+> > of_node_put():
+> >   ERROR: memory leak, expected refcount 1 instead of 2 ...
+> > 
+> > Indeed, during the devlink removals performed at step 1, the removal
+> > itself releasing the device (and the attached of_node) is done by a job
+> > queued in a workqueue and so, it is done asynchronously with respect to
+> > function calls.
+> > When the warning is present, of_node_put() will be called but wrongly
+> > too late from the workqueue job.
+> > 
+> > In order to be sure that any ongoing devlink removals are done before
+> > the of_node destruction, synchronize the of_overlay_remove() with the
+> > devlink removals.
+> > 
+> > Fixes: 80dd33cf72d1 ("drivers: base: Fix device link removal")
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  drivers/of/overlay.c | 9 ++++++++-
+> >  1 file changed, 8 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
+> > index 2ae7e9d24a64..99659ae9fb28 100644
+> > --- a/drivers/of/overlay.c
+> > +++ b/drivers/of/overlay.c  
+> 
+> In the cover, you mention device.h inclusion but I'm not seeing it? This is
+> clearly up to the DT maintainers to decide but, IMHO, I would very much prefer
+> to see fwnode.h included in here rather than directly device.h (so yeah,
+> renaming the function to fwnode_*). But yeah, I might be biased by own series :)
+> 
 
-Am Mittwoch, 28. Februar 2024, 20:54:58 CET schrieb Frank Li:
-> From: Alice Guo <alice.guo@nxp.com>
->=20
-> Adding lpuart device in cm40 subsystem.
->=20
-> Signed-off-by: Alice Guo <alice.guo@nxp.com>
-> Reviewed-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8-ss-cm40.dtsi | 25 +++++++++++++++++++=
-++++++
->  1 file changed, 25 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-cm40.dtsi b/arch/arm64=
-/boot/dts/freescale/imx8-ss-cm40.dtsi
-> index b1d626862ddf8..ecca5ada224b7 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8-ss-cm40.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8-ss-cm40.dtsi
-> @@ -64,4 +64,29 @@ cm40_intmux: intmux@37400000 {
->  		power-domains =3D <&pd IMX_SC_R_M4_0_INTMUX>;
->  		status =3D "disabled";
->  	};
-> +
-> +	cm40_lpuart: serial@37220000 {
-> +		compatible =3D "fsl,imx8qxp-lpuart";
-> +		reg =3D <0x37220000 0x1000>;
-> +		interrupts =3D <7 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-parent =3D <&cm40_intmux>;
+Damned. I missed device.h in this patch.
+Without this one, the patch do not compile :(
 
-With interrupt-parent set in Patch 1 for the whole subsystem, this line
-is not needed anymore.
+A fixup commit I missed to squash before sending.
 
+A v3 is planned to add this device.h.
+
+Nuno, do you prefer I wait few days before sending this v3 waiting for more replies
+or I send it right now and you re-do your comment on the v3 ?
+
+I would really prefer to send it now :)
+
+Sorry about my mistake.
 Best regards,
-Alexander
+Hervé
 
-> +		clocks =3D <&cm40_uart_lpcg 1>, <&cm40_uart_lpcg 0>;
-> +		clock-names =3D "ipg", "baud";
-> +		assigned-clocks =3D <&clk IMX_SC_R_M4_0_UART IMX_SC_PM_CLK_PER>;
-> +		assigned-clock-rates =3D <24000000>;
-> +		power-domains =3D <&pd IMX_SC_R_M4_0_UART>;
-> +		status =3D "disabled";
-> +	};
-> +
-> +	cm40_uart_lpcg: clock-controller@37620000 {
-> +		compatible =3D "fsl,imx8qxp-lpcg";
-> +		reg =3D <0x37620000 0x1000>;
-> +		#clock-cells =3D <1>;
-> +		clocks =3D <&clk IMX_SC_R_M4_0_UART IMX_SC_PM_CLK_PER>,
-> +			 <&cm40_ipg_clk>;
-> +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_1>;
-> +		clock-output-names =3D "cm40_lpcg_uart_clk",
-> +				     "cm40_lpcg_uart_ipg_clk";
-> +		power-domains =3D <&pd IMX_SC_R_M4_0_UART>;
-> +	};
->  };
->=20
->=20
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
-
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
