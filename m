@@ -1,63 +1,75 @@
-Return-Path: <devicetree+bounces-47476-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47477-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E4D186D505
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:53:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0175F86D51F
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 21:55:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 896B02853F0
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:53:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACB7A1F2768A
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:55:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E44051527BE;
-	Thu, 29 Feb 2024 20:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8272A160EFD;
+	Thu, 29 Feb 2024 20:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EFQol4sV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="N4NIXlG0"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B54E41527B8;
-	Thu, 29 Feb 2024 20:40:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58091160EC9;
+	Thu, 29 Feb 2024 20:41:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709239245; cv=none; b=WguoM6ysEZpZ9ewgO4j7CbCgNih11Tu8Cv9Ok2ja4Dcj4xwAt0GEhAx9xJWQ6psiQt7nF+2hn43JyXrdALRX7C7JZjQlPkow+VUKR6f7hxkys0TrarfTK5ltGD6vBf3gpcLbuoQQL+XEx/KGqGCdXoxmpWkMFbpIRnXBy4xqRhI=
+	t=1709239263; cv=none; b=cPNvVuFv2fd7ZQm54whQJSSrlV2vQ1cp9pNs4cPT9Z/BttV+nPxHCB9DG/DUTY857NASyhSwNNNypujJ3VLR1tg5QjOMf3aP1o4Yd2I3OJMAVHj+n3GN8vwVOEWZ5SXQ87qIlbiwclwt4tlN7KTZu0K2RVAAth9OpcQLQPQavbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709239245; c=relaxed/simple;
-	bh=T/akRPi5ao0d12BmCz3WEgH+FPHY9KHNebOOEFBHkBM=;
+	s=arc-20240116; t=1709239263; c=relaxed/simple;
+	bh=9VfXSt1NiGcVAed46Ql4jw8lhSZWuC2t0JpuV/8gLi0=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=R/xOGmfB+TEl71fEVOpK/1Z5KoyZhIZMIMRS/HsmeRwzOG72L7NCki0y8XP/LKkj8VPdSH6+KEuZD0t/fJU3iHGbCj8ZIvf0iYGX9WlIOCdNis8tBrlo1ohOwRJrZKxF4mI2zWBu7WdZCUPlFUE5kexsp7El9w2+VHTS8KX0OTI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EFQol4sV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 022D6C433F1;
-	Thu, 29 Feb 2024 20:40:43 +0000 (UTC)
+	 MIME-Version; b=jpYOAG/DIKlMgNpPpJVgtcx2XWPG1ZZ2gkyYOMnizBtEiEoXSplW/o4k9rCqcHo6wzDiYkAinRJXeJ4bYDZvus3SlGTyFvIlTRnbC8d/EF3VeeFR1tySnR6XeZcpIHS62Znb6KKS9xlhiINAcProEoqnJbwRmJE7QvED/BlOdhw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=N4NIXlG0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A4335C433B2;
+	Thu, 29 Feb 2024 20:40:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709239245;
-	bh=T/akRPi5ao0d12BmCz3WEgH+FPHY9KHNebOOEFBHkBM=;
+	s=k20201202; t=1709239262;
+	bh=9VfXSt1NiGcVAed46Ql4jw8lhSZWuC2t0JpuV/8gLi0=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=EFQol4sVU2+K8g+pqLmbEc0eSBftT1N/OQVdjBoQHD8OUWSy3KNVThXj4t/Iar+dY
-	 lm9MvfkkypkxUdm7mJhSPsI6a3MF7ptGoteFFCSoVnJ57YudlGN72MVVItxStLqyen
-	 JBzdEeKE8B29IiMX+tYc5RE8KzhCLf9i1Ctnr8s/1ItScvVHX2YPb+cgnjfWUpWKHg
-	 +v+0kJaLIshKRyNcIEkuo56DoXTegBIJOm0kxd18v/Q3+II7V5V/4eF9rzlTqX/D/5
-	 1C9f8lq8+bGSAeIyvt1lnvQgk2GmiEJ18wpwG7f6WAY9V80tirZJrP5pB0avoNTI5M
-	 +F/nWzJ5crBBg==
+	b=N4NIXlG0u+//DwEfRDxevCUowifQ4nagwkvnzT7lYSDchWstTX0Hgt4z8uQrWUJii
+	 WHvIWkNLrDv969uBksT1X1kR6me2ROrDgzNjTyU3KNLnSEhvD6g3s8fPt7I4ohJtU3
+	 QjadssFCXBLTUpeYE9Ru6aYNua7wZF/kaaEjBpzyPxFNxjrtzPA+oEeW1zmWo/kTGk
+	 YmTqc2QEDiHJXRwn+C9uwhHiyxxkSkzKAwroURYHxzlT6ipdnSdxSdvQJ4vQC6ewle
+	 zyTloDkERCK/whdq0sX9gBU0vVcAsuzge0eOwhhfb0zaYxHns87auaBZHVETCOm+OQ
+	 A7JNNKC3TcmQg==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Conor Dooley <conor.dooley@microchip.com>,
-	Samuel Holland <samuel.holland@sifive.com>,
+Cc: Rob Herring <robh@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Chanho Min <chanho.min@lge.com>,
+	Arnd Bergmann <arnd@arndb.de>,
 	Sasha Levin <sashal@kernel.org>,
-	conor@kernel.org,
+	tsahee@annapurnalabs.com,
+	atenart@kernel.org,
 	robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
-	palmer@dabbelt.com,
-	paul.walmsley@sifive.com,
-	aou@eecs.berkeley.edu,
-	linux-riscv@lists.infradead.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.1 04/12] riscv: dts: sifive: add missing #interrupt-cells to pmic
-Date: Thu, 29 Feb 2024 15:40:26 -0500
-Message-ID: <20240229204039.2861519-4-sashal@kernel.org>
+	conor+dt@kernel.org,
+	rjui@broadcom.com,
+	sbranden@broadcom.com,
+	andrew@lunn.ch,
+	gregory.clement@bootlin.com,
+	sebastian.hesselbarth@gmail.com,
+	matthias.bgg@gmail.com,
+	magnus.damm@gmail.com,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	linux-mediatek@lists.infradead.org,
+	linux-renesas-soc@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.1 12/12] arm64: dts: Fix dtc interrupt_provider warnings
+Date: Thu, 29 Feb 2024 15:40:34 -0500
+Message-ID: <20240229204039.2861519-12-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20240229204039.2861519-1-sashal@kernel.org>
 References: <20240229204039.2861519-1-sashal@kernel.org>
@@ -72,34 +84,166 @@ X-Patchwork-Hint: Ignore
 X-stable-base: Linux 6.1.79
 Content-Transfer-Encoding: 8bit
 
-From: Conor Dooley <conor.dooley@microchip.com>
+From: Rob Herring <robh@kernel.org>
 
-[ Upstream commit ce6b6d1513965f500a05f3facf223fa01fd74920 ]
+[ Upstream commit 91adecf911e5df78ea3e8f866e69db2c33416a5c ]
 
-At W=2 dtc complains:
-hifive-unmatched-a00.dts:120.10-238.4: Warning (interrupt_provider): /soc/i2c@10030000/pmic@58: Missing '#interrupt-cells' in interrupt provider
+The dtc interrupt_provider warning is off by default. Fix all the warnings
+so it can be enabled.
 
-Add the missing property.
-
-Reviewed-by: Samuel Holland <samuel.holland@sifive.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+Reviewed-By: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com> #
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Acked-by: Florian Fainelli <florian.fainelli@broadcom.com> #Broadcom
+Acked-by: Chanho Min <chanho.min@lge.com>
+Link: https://lore.kernel.org/r/20240213-arm-dt-cleanups-v1-3-f2dee1292525@kernel.org
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts | 1 +
- 1 file changed, 1 insertion(+)
+ arch/arm64/boot/dts/amazon/alpine-v2.dtsi           | 1 -
+ arch/arm64/boot/dts/amazon/alpine-v3.dtsi           | 1 -
+ arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi    | 1 +
+ arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi | 1 +
+ arch/arm64/boot/dts/lg/lg1312.dtsi                  | 1 -
+ arch/arm64/boot/dts/lg/lg1313.dtsi                  | 1 -
+ arch/arm64/boot/dts/marvell/armada-ap80x.dtsi       | 1 -
+ arch/arm64/boot/dts/mediatek/mt8195-demo.dts        | 1 +
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi            | 4 ++++
+ 9 files changed, 7 insertions(+), 5 deletions(-)
 
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-index 07387f9c135ca..72b87b08ab444 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unmatched-a00.dts
-@@ -123,6 +123,7 @@ pmic@58 {
- 		interrupt-parent = <&gpio>;
- 		interrupts = <1 IRQ_TYPE_LEVEL_LOW>;
+diff --git a/arch/arm64/boot/dts/amazon/alpine-v2.dtsi b/arch/arm64/boot/dts/amazon/alpine-v2.dtsi
+index 4eb2cd14e00b0..9b6da84deae7a 100644
+--- a/arch/arm64/boot/dts/amazon/alpine-v2.dtsi
++++ b/arch/arm64/boot/dts/amazon/alpine-v2.dtsi
+@@ -145,7 +145,6 @@ pci@fbc00000 {
+ 		msix: msix@fbe00000 {
+ 			compatible = "al,alpine-msix";
+ 			reg = <0x0 0xfbe00000 0x0 0x100000>;
+-			interrupt-controller;
+ 			msi-controller;
+ 			al,msi-base-spi = <160>;
+ 			al,msi-num-spis = <160>;
+diff --git a/arch/arm64/boot/dts/amazon/alpine-v3.dtsi b/arch/arm64/boot/dts/amazon/alpine-v3.dtsi
+index 73a352ea8fd5c..b30014d4dc29c 100644
+--- a/arch/arm64/boot/dts/amazon/alpine-v3.dtsi
++++ b/arch/arm64/boot/dts/amazon/alpine-v3.dtsi
+@@ -351,7 +351,6 @@ pcie@fbd00000 {
+ 		msix: msix@fbe00000 {
+ 			compatible = "al,alpine-msix";
+ 			reg = <0x0 0xfbe00000 0x0 0x100000>;
+-			interrupt-controller;
+ 			msi-controller;
+ 			al,msi-base-spi = <336>;
+ 			al,msi-num-spis = <959>;
+diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+index fda97c47f4e97..d5778417455c0 100644
+--- a/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
++++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2.dtsi
+@@ -584,6 +584,7 @@ gpio_g: gpio@660a0000 {
+ 			#gpio-cells = <2>;
+ 			gpio-controller;
+ 			interrupt-controller;
++			#interrupt-cells = <2>;
+ 			interrupts = <GIC_SPI 400 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
+ 
+diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+index 8f8c25e51194d..473d7d0ddf369 100644
+--- a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
++++ b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
+@@ -442,6 +442,7 @@ gpio_hsls: gpio@d0000 {
+ 			#gpio-cells = <2>;
+ 			gpio-controller;
+ 			interrupt-controller;
++			#interrupt-cells = <2>;
+ 			interrupts = <GIC_SPI 183 IRQ_TYPE_LEVEL_HIGH>;
+ 			gpio-ranges = <&pinmux 0 0 16>,
+ 					<&pinmux 16 71 2>,
+diff --git a/arch/arm64/boot/dts/lg/lg1312.dtsi b/arch/arm64/boot/dts/lg/lg1312.dtsi
+index 78ae73d0cf365..98ff17b14b2a5 100644
+--- a/arch/arm64/boot/dts/lg/lg1312.dtsi
++++ b/arch/arm64/boot/dts/lg/lg1312.dtsi
+@@ -124,7 +124,6 @@ eth0: ethernet@c1b00000 {
+ 	amba {
+ 		#address-cells = <2>;
+ 		#size-cells = <1>;
+-		#interrupt-cells = <3>;
+ 
+ 		compatible = "simple-bus";
+ 		interrupt-parent = <&gic>;
+diff --git a/arch/arm64/boot/dts/lg/lg1313.dtsi b/arch/arm64/boot/dts/lg/lg1313.dtsi
+index 2173316573bee..8e9410d8f46c0 100644
+--- a/arch/arm64/boot/dts/lg/lg1313.dtsi
++++ b/arch/arm64/boot/dts/lg/lg1313.dtsi
+@@ -124,7 +124,6 @@ eth0: ethernet@c3700000 {
+ 	amba {
+ 		#address-cells = <2>;
+ 		#size-cells = <1>;
+-		#interrupt-cells = <3>;
+ 
+ 		compatible = "simple-bus";
+ 		interrupt-parent = <&gic>;
+diff --git a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
+index a06a0a889c43f..73d8803b54d8b 100644
+--- a/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
++++ b/arch/arm64/boot/dts/marvell/armada-ap80x.dtsi
+@@ -133,7 +133,6 @@ pmu {
+ 
+ 			odmi: odmi@300000 {
+ 				compatible = "marvell,odmi-controller";
+-				interrupt-controller;
+ 				msi-controller;
+ 				marvell,odmi-frames = <4>;
+ 				reg = <0x300000 0x4000>,
+diff --git a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+index 5117b2e7985af..998c2e78168a6 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
++++ b/arch/arm64/boot/dts/mediatek/mt8195-demo.dts
+@@ -111,6 +111,7 @@ mt6360: pmic@34 {
+ 		compatible = "mediatek,mt6360";
+ 		reg = <0x34>;
+ 		interrupt-controller;
++		#interrupt-cells = <1>;
+ 		interrupts-extended = <&pio 101 IRQ_TYPE_EDGE_FALLING>;
+ 		interrupt-names = "IRQB";
+ 
+diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+index 588b14b66b6fb..f37abfc13fe59 100644
+--- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
++++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+@@ -251,6 +251,7 @@ gpio_exp_74: gpio@74 {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
  		interrupt-controller;
 +		#interrupt-cells = <2>;
+ 		interrupt-parent = <&gpio6>;
+ 		interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
  
- 		onkey {
- 			compatible = "dlg,da9063-onkey";
+@@ -311,6 +312,7 @@ gpio_exp_75: gpio@75 {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 		interrupt-controller;
++		#interrupt-cells = <2>;
+ 		interrupt-parent = <&gpio6>;
+ 		interrupts = <4 IRQ_TYPE_EDGE_FALLING>;
+ 	};
+@@ -331,6 +333,7 @@ gpio_exp_76: gpio@76 {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 		interrupt-controller;
++		#interrupt-cells = <2>;
+ 		interrupt-parent = <&gpio7>;
+ 		interrupts = <3 IRQ_TYPE_EDGE_FALLING>;
+ 	};
+@@ -341,6 +344,7 @@ gpio_exp_77: gpio@77 {
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 		interrupt-controller;
++		#interrupt-cells = <2>;
+ 		interrupt-parent = <&gpio5>;
+ 		interrupts = <9 IRQ_TYPE_EDGE_FALLING>;
+ 	};
 -- 
 2.43.0
 
