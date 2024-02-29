@@ -1,108 +1,134 @@
-Return-Path: <devicetree+bounces-47446-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47448-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2C6586D394
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:46:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 458E686D39D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 20:47:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9EE9A28644D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:46:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B1B8D1F21178
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:47:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D10CE144038;
-	Thu, 29 Feb 2024 19:45:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C830D1428FE;
+	Thu, 29 Feb 2024 19:46:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="JyRjACOt"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="H9Yc8el0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E539144033;
-	Thu, 29 Feb 2024 19:45:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39C871428EF;
+	Thu, 29 Feb 2024 19:46:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709235903; cv=none; b=nDeN1jZJyshkgypSE3oxKor5nqlfFAMztUlUrN/XSFbGEU99w5JbqpF6SwUK0+Ok33TJ5gaSu9qDraTeMbIn3QCYoE2rvK/q/Pv21uoOpB3P+308gOU+hwzZE5bMDlJu0g/FMgkEoubhKFdgDXJoYu+uuD8+kdC1vVl3/UjZdnI=
+	t=1709235990; cv=none; b=GAlizf0hN1G0dS2UDJh4A2H1hEWTVcsRLem4TZiAUHTB3hPC4yjjdmTciBOz0r2uyL8QkZ1W/zWYCeLFtSDpl+RNRUkxxCFDc7nCvKEfm+SvYmlQHsPaO7EnwKk2mM/IsLa67d4BUpqhqnCNfPwZsQsPf32xRQmFFSZQnEdaLFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709235903; c=relaxed/simple;
-	bh=SG+BNB9V12ilA2yy6/wOnUl0q+5MszvwNnI3Q2lsT4o=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=FWIBWTYwdXXNSpOrHL4/6UfP4osWcJYfl9KClrW9hHkP5qfYgF1S64sGAE/pRfGEY+NtzU3OWgXDR9EsOEU3pw2eYOB73ZM0YU3G3Yp+5e0toHQ3q2kE2Tkx9i+FspECGeGjUDJokeROhQwqO0Vp9SQgt+SSZpT7dXnr6aYTg1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=JyRjACOt; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1709235900;
-	bh=SG+BNB9V12ilA2yy6/wOnUl0q+5MszvwNnI3Q2lsT4o=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
-	b=JyRjACOtVwRIDyFZBlm2b3Sl2LfyksB2Ms9fxLyNNItBrhnxr34d180RyVl6uUdfP
-	 MhUQEdIH8Cg/gACRmnYYCkMPfc73kArD+znNzA0eG4+FpwxvapbgBJS9uPdy7xGrPk
-	 u0YCMYSSUk9ymTM2pID6BI+mVpkTKowhhbzaiR//U2xl4Bu9uxErv734g+ABfwo/nd
-	 X0PCPJ2m30eahQCpLxtRqqgzpjWZ/5iUSFSVXvQ8VKisJ6OlsKiTi9MUdmq5waCJ7/
-	 I8aO8mGRrY64EuxqlGIzROi8GqdcN1bLw/qp0yT0tOBjsb1D0hasoy7ak6FPL+Jlcf
-	 XIWu9Ak9T3Avw==
-Received: from [192.168.1.200] (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9F1BF37820E2;
-	Thu, 29 Feb 2024 19:44:57 +0000 (UTC)
-From: =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-Date: Thu, 29 Feb 2024 14:44:31 -0500
-Subject: [PATCH 4/4] arm64: dts: mediatek: mt8195: Add missing
- gce-client-reg to mutex1
+	s=arc-20240116; t=1709235990; c=relaxed/simple;
+	bh=N60hj8bK/MPHewnHLJwKqCbGV5X7NGgQaRg8sEUD/Ho=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=XwjjG9TJrd9wcWA/Tgeqd42KIE31TT0/hh3luC9CyOtIJJJUT0pwknzPxxLLswV9fr5/bx5SYoeWSGdzDSRaiDdtmCBThfj53FnTOGMA/C7zkohrrdlSfAA95FLKcclR5fA3Zlo3UpbpfC5liqRVeWRVIMZzRneuRXJbq4rPQe0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=H9Yc8el0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41TIdBlV005591;
+	Thu, 29 Feb 2024 19:46:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=+KelDty0wxWhCzXHAyYD6vlvmk+OW6Qo5uQybSHnaZM=; b=H9
+	Yc8el075J3+8d4GD+nXf4h14nKsA1sR2Ht+4v97h1Y9nh2MZQP7f8uDDYY+SwYgd
+	FYBiZiggDpApdRzW3WS94fUn/USZruUOzS/JDb12jnU2G5cfsexhpGvA9B+sXS1c
+	nmywECm/q2iiNv2PdVhZVpLuNZzLCEk8P+Z0b07SO2ZFEES9UDkla5ZX0bLHgQKs
+	hU2uSQld01PLQT6dNV70RbUcg+yTln/N+IT8Y7MK6c+oGo3tXsfSo4VHUqiv8NUX
+	O80TzPNEnU69LMGaGr1lZkzjjpvLn6wGY0N3Ge/iZX4R17DdVIEdcvZ9Q9sWt4u8
+	drifnT32MVK1g/gcfLiw==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wjkkqabgk-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Feb 2024 19:46:19 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 41TJkIqn018607
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 29 Feb 2024 19:46:18 GMT
+Received: from [10.110.42.209] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 29 Feb
+ 2024 11:46:17 -0800
+Message-ID: <c48ead11-0e2a-4066-b324-84f802215c9a@quicinc.com>
+Date: Thu, 29 Feb 2024 11:46:16 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240229-gce-client-reg-add-missing-mt8192-95-v1-4-b12c233a8a33@collabora.com>
-References: <20240229-gce-client-reg-add-missing-mt8192-95-v1-0-b12c233a8a33@collabora.com>
-In-Reply-To: <20240229-gce-client-reg-add-missing-mt8192-95-v1-0-b12c233a8a33@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
- Matthias Brugger <matthias.bgg@gmail.com>
-Cc: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Allen-KH Cheng <allen-kh.cheng@mediatek.com>, 
- Tinghan Shen <tinghan.shen@mediatek.com>, 
- "Jason-JH.Lin" <jason-jh.lin@mediatek.com>, 
- "Nancy.Lin" <nancy.lin@mediatek.com>, kernel@collabora.com, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
- =?utf-8?q?N=C3=ADcolas_F=2E_R=2E_A=2E_Prado?= <nfraprado@collabora.com>
-X-Mailer: b4 0.13.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+Content-Language: en-US
+To: Conor Dooley <conor@kernel.org>, Kalle Valo <kvalo@kernel.org>
+CC: Marc Gonzalez <mgonzalez@freebox.fr>, ath10k <ath10k@lists.infradead.org>,
+        wireless <linux-wireless@vger.kernel.org>,
+        DT <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Pierre-Hugues Husson <phhusson@freebox.fr>,
+        Jami Kettunen
+	<jamipkettunen@gmail.com>,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+ <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
+ <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
+ <20240229-ageless-primal-7a0544420949@spud>
+From: Jeff Johnson <quic_jjohnson@quicinc.com>
+In-Reply-To: <20240229-ageless-primal-7a0544420949@spud>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: Ra0XPkIMN5IYWwSyBqp93GD6FLSAijgU
+X-Proofpoint-GUID: Ra0XPkIMN5IYWwSyBqp93GD6FLSAijgU
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-02-29_05,2024-02-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 phishscore=0
+ spamscore=0 bulkscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=709
+ lowpriorityscore=0 suspectscore=0 adultscore=0 malwarescore=0
+ clxscore=1011 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2402290153
 
-Add the missing mediatek,gce-client-reg property to the mutex1 node to
-allow it to use the GCE. This prevents the "can't parse gce-client-reg
-property" error from being printed and should result in better
-performance.
+On 2/29/2024 10:40 AM, Conor Dooley wrote:
+> On Wed, Feb 28, 2024 at 06:37:08PM +0200, Kalle Valo wrote:
+>> Marc Gonzalez <mgonzalez@freebox.fr> writes:
+> 
+>>> As mentioned in my other reply, there are several msm8998-based
+>>> devices affected by this issue. Is it not appropriate to consider
+>>> a kernel-based work-around?
+>>
+>> Sorry, not following you here. But I'll try to answer anyway:
+>>
+>> I have understood that Device Tree is supposed to describe hardware, not
+>> software. This is why having this property in DT does not look right
+>> place for this. For example, if the ath10k firmware is fixed then DT
+>> would have to be changed even though nothing changed in hardware. But of
+>> course DT maintainers have the final say.
+> 
+> I dunno, if the firmware affects the functionality of the hardware in a
+> way that cannot be detected from the operating system at runtime how
+> else is it supposed to deal with that?
+> The devicetree is supposed to describe hardware, yes, but at a certain
+> point the line between firmware and hardware is invisible :)
+> Not describing software is mostly about not using it to determine
+> software policy in the operating system.
 
-Fixes: 92d2c23dc269 ("arm64: dts: mt8195: add display node for vdosys1")
-Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
----
- arch/arm64/boot/dts/mediatek/mt8195.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+FWIW I've compared ath10k to the out-of-tree Android driver and there
+are discrepancies in this area. I've asked the development team that
+supports ath10k to provide a recommendation.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-index fd074103979c..5d8b68f86ce4 100644
---- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
-@@ -3335,6 +3335,7 @@ mutex1: mutex@1c101000 {
- 			power-domains = <&spm MT8195_POWER_DOMAIN_VDOSYS1>;
- 			clocks = <&vdosys1 CLK_VDO1_DISP_MUTEX>;
- 			clock-names = "vdo1_mutex";
-+			mediatek,gce-client-reg = <&gce0 SUBSYS_1c10XXXX 0x1000 0x1000>;
- 			mediatek,gce-events = <CMDQ_EVENT_VDO1_STREAM_DONE_ENG_0>;
- 		};
- 
-
--- 
-2.44.0
-
+/jeff
 
