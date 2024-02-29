@@ -1,638 +1,142 @@
-Return-Path: <devicetree+bounces-47114-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47115-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 530CB86C3CC
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:39:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2385186C3DB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:41:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B53ACB242DE
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 08:39:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0E631F263BB
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 08:41:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA88A53393;
-	Thu, 29 Feb 2024 08:37:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A57575339E;
+	Thu, 29 Feb 2024 08:40:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b="ZxtNsvT5"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fdbcXAaE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from omta36.uswest2.a.cloudfilter.net (omta36.uswest2.a.cloudfilter.net [35.89.44.35])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A11252F8A
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 08:37:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.89.44.35
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64BE052F7A;
+	Thu, 29 Feb 2024 08:40:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709195838; cv=none; b=u/5zFfSoaax4fX9OcO7FIaS5U7MI6aL8f7f4ZgMFbjscZTSmyyXCTVwaaqwnvXxJihiwNM8D5gpdiBUMdFf+AQBPvliBK1aUx6X573T/j98i5Rl3y99ReoBuKukqSotxbJw8uQOTTpl234MRzZ4iR65iNX7b33QKFU1eSZorjG8=
+	t=1709196016; cv=none; b=BDr92UaePWEz1IwrmGYnMiKaNDBdVeGHM11c9kuc76nbDmRI6e8bPxdsIdUTW9Bih8sSyreekt7gATfPUedMCZwFwtGUwNK0lDecUp18l+c/msIR1u07emw5D8qmzvT+rEQq7cnTJTHL+8MKryLSoddgEXA7mvWWluz3gVj/mMY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709195838; c=relaxed/simple;
-	bh=ZFn/kKszJGJ+hZv439HEvXPN0ZEFAeizsC4LEBDDlco=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MMU8wHFom3ezQG4znzSZSUbVfsTgNK54PulWS50OMFq1lNpRFRVe0twxy0y9nKJsjqccvmZ9id+LpbOpeSbkxIzPD3A2UyTHSg9EFhnhbcDc9BYyxfWtMMUtknWbOXRbskp1KQVnZ2GiFLB/zNXChc/Q+JkLLfA0yFZiz1eXCTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com; spf=pass smtp.mailfrom=linumiz.com; dkim=pass (2048-bit key) header.d=linumiz.com header.i=@linumiz.com header.b=ZxtNsvT5; arc=none smtp.client-ip=35.89.44.35
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linumiz.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linumiz.com
-Received: from eig-obgw-6001a.ext.cloudfilter.net ([10.0.30.140])
-	by cmsmtp with ESMTPS
-	id favRrw6uitf2QfbulrcJ1G; Thu, 29 Feb 2024 08:37:15 +0000
-Received: from md-in-79.webhostbox.net ([43.225.55.182])
-	by cmsmtp with ESMTPS
-	id fbuhrZ9mlPOmXfbujrXqYo; Thu, 29 Feb 2024 08:37:15 +0000
-X-Authority-Analysis: v=2.4 cv=T+SKTeKQ c=1 sm=1 tr=0 ts=65e0423b
- a=LfuyaZh/8e9VOkaVZk0aRw==:117 a=kofhyyBXuK/oEhdxNjf66Q==:17
- a=IkcTkHD0fZMA:10 a=k7vzHIieQBIA:10 a=oz0wMknONp8A:10 a=vU9dKmh3AAAA:8
- a=UXIAUNObAAAA:8 a=AaZsPGPmsafA2eLmkNAA:9 a=QEXdDO2ut3YA:10 a=bFq2RbqkfqsA:10
- a=rsP06fVo5MYu2ilr0aT5:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=linumiz.com
-	; s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-	References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-	Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-	Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-	List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=AnNK+AIrGk4ngQV5dAeJdqR4QKuqPbrScoRu615KNKM=; b=ZxtNsvT5ZVcsX295+OZjSW1VfU
-	SJD+TKqRbNTcqzXBmoIGQBH5GA4mtQJuORffJ8B0oLO/uCYYzycp5LyCwghtjdLQDExyoTXrTTRUJ
-	wQxoO/Ao7CUaMRF2PoP3+zuGz5Lf1Pz2AEB61vYOnSl30/T1p5WS1SgVFSzmM06sNXwhfTKznoDxL
-	GyDtFe9ev+vt7P2lYDjqO2KiXvmb7R7A/Sqrbhq6UQOcmnJzdmRGe2JdYTwWxyCJMPbG/EsYYAWYd
-	SglWvHXxiXAdzVNBVwgWNfcIryzGoMKfRhYrdKb5irzh8Ns8YqaC9/0GEpNXpv8ZkL19GQTnFJkOc
-	A1C6XdFg==;
-Received: from [122.165.245.213] (port=45048 helo=[192.168.1.101])
-	by md-in-79.webhostbox.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96.2)
-	(envelope-from <parthiban@linumiz.com>)
-	id 1rfbug-001KT2-26;
-	Thu, 29 Feb 2024 14:07:10 +0530
-Message-ID: <4f8287ae-acfa-447b-b9d0-d26d84d24b2d@linumiz.com>
-Date: Thu, 29 Feb 2024 14:07:06 +0530
+	s=arc-20240116; t=1709196016; c=relaxed/simple;
+	bh=BNo0yW2FLpDKUhmP2HaX0f6PbcoTDWSkMT1gkxmdvZE=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Sg1aihYy/QGL/SFRSX2cWUBx9z5n2TEOiXlv7rSU6giXyohssBUDBbhE1jKhBwXRSWKCTWEbaTXHnPmcS8n67Cjs/5hGwvlJbSJ76LmYIUDP25q7Y6hf1b+fOln9DC6sDvUt9677wBgrKhPfgZB4OkV4Bb+UTqljvfJJSeSRPPs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fdbcXAaE; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id B5F541C000E;
+	Thu, 29 Feb 2024 08:40:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709196011;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=66l5nnX2XD0JkszxdbTNgnTBzOtV2bLUDTMkK3+nFE4=;
+	b=fdbcXAaEGmYq4xDjfNLLpoZfYjl0yLzw91HYvMXGM0Rk7GIahIpgp/PD8MJc3XtdCCD8ft
+	Dyhg2CLbB3DE0DI8tN1a8oFnq3ncDc7RYM3otb43Lx1iGdfxJ4CuAEdSi8LhLsC2grptbG
+	xmgrXu97H663Qn08GdU3TNxJdkl1wzjIIQEd1UnEO6+E0eM3OOqMgaiRf2IvxBizQw5sf3
+	yNYGUc11/7MAAve97/BwKm+YVKBdBuqVOite+4ChfY3A5n5Q/dgOfEhmZEA3CYnPLDL07S
+	4XsnrlV07nBmPEDmyVmcI9qMU5+g3fU59+93KdCjyQj6GZsMB3BpbV/U2iyhzg==
+From: Herve Codina <herve.codina@bootlin.com>
+To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>
+Cc: Lizhi Hou <lizhi.hou@amd.com>,
+	Max Zhen <max.zhen@amd.com>,
+	Sonal Santan <sonal.santan@amd.com>,
+	Stefano Stabellini <stefano.stabellini@xilinx.com>,
+	Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Herve Codina <herve.codina@bootlin.com>
+Subject: [PATCH v2 0/2] Synchronize DT overlay removal with devlink removals
+Date: Thu, 29 Feb 2024 09:39:40 +0100
+Message-ID: <20240229083953.607569-1-herve.codina@bootlin.com>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: imx8mm: add support for compulab iot gateway
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
- s.hauer@pengutronix.de
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
- Parthiban <parthiban@linumiz.com>
-References: <20230512055230.811421-1-parthiban@linumiz.com>
- <e24e877e-4065-35b4-bbd2-edbbc694edf6@linaro.org>
-From: Parthiban <parthiban@linumiz.com>
-Organization: Linumiz
-In-Reply-To: <e24e877e-4065-35b4-bbd2-edbbc694edf6@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - md-in-79.webhostbox.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - linumiz.com
-X-BWhitelist: no
-X-Source-IP: 122.165.245.213
-X-Source-L: No
-X-Exim-ID: 1rfbug-001KT2-26
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.1.101]) [122.165.245.213]:45048
-X-Source-Auth: parthiban@linumiz.com
-X-Email-Count: 27
-X-Org: HG=dishared_whb_net_legacy;ORG=directi;
-X-Source-Cap: bGludW1jbWM7aG9zdGdhdG9yO21kLWluLTc5LndlYmhvc3Rib3gubmV0
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfJZ50243Rvfjt/dmF3MUuOunpGEo4V1T4ow07zA7PQenV5QgTW0eQ/T/O8lyYzmDIuyCTd0oPStvYsZdV0twrxxDt1pwZkJtjz6bSUn2E5jisFMtX3LO
- Gso30052gAhdOu9H9iv0Q2AAQuVA8QfN+rDRtoDiiX5nVZnydMSRCXn2T3pn+BfvPooucyNe36BzeTXonxz8MFpcHS5v961NUwA=
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
-Thanks for the review Krzysztof. I will send v2 after fixing the review comments.
+Hi,
 
-Thanks,
-Parthiban N
+In the following sequence:
+  of_platform_depopulate(); /* Remove devices from a DT overlay node */
+  of_overlay_remove(); /* Remove the DT overlay node itself */
 
-On 5/12/23 11:47, Krzysztof Kozlowski wrote:
-> On 12/05/2023 07:52, Parthiban Nallathambi wrote:
->> Add support for compulab for imx8mm IoT gateway with
->> UCM-iMX8M-Mini SoM. IoT gateway comes with dual ethernet,
->> USB and IO expansion.
->>
->> WLAN, Bluetooth can be part of SoM or extended over PCIE.
->>
->> Signed-off-by: Parthiban Nallathambi <parthiban@linumiz.com>
->> ---
->>  .../devicetree/bindings/arm/fsl.yaml          |   2 +
->>  .../bindings/net/microchip,lan95xx.yaml       |   1 +
->>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
->>  .../freescale/imx8mm-compulab-iot-gate.dts    | 315 +++++++++++
->>  .../dts/freescale/imx8mm-compulab-ucm.dtsi    | 532 ++++++++++++++++++
->>  5 files changed, 851 insertions(+)
->>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-compulab-iot-gate.dts
->>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mm-compulab-ucm.dtsi
->>
->> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
->> index 15d411084065..d2425c5ed4b7 100644
->> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
->> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
->> @@ -895,6 +895,8 @@ properties:
->>        - description: i.MX8MM based Boards
->>          items:
->>            - enum:
->> +              - compulab,imx8mm-ucm-som   # UCM-iMX8M-Mini Compulab SoM
->> +              - compulab,iot-gate-imx8    # iMX8M IoT Compulab Gateway with UCM-iMX8M-Mini
-> 
-> Bindings are always separate patches.
-> 
-> Please run scripts/checkpatch.pl and fix reported warnings. Checkpatch
-> tells you this, so you apparently did not run it.
-> 
-> 
->>                - beacon,imx8mm-beacon-kit  # i.MX8MM Beacon Development Kit
->>                - boundary,imx8mm-nitrogen8mm  # i.MX8MM Nitrogen Board
->>                - dmo,imx8mm-data-modul-edm-sbc # i.MX8MM eDM SBC
->> diff --git a/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml b/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
->> index 0b97e14d947f..86279724695e 100644
->> --- a/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
->> +++ b/Documentation/devicetree/bindings/net/microchip,lan95xx.yaml
->> @@ -22,6 +22,7 @@ properties:
->>        - enum:
->>            - usb424,9500   # SMSC9500 USB Ethernet Device
->>            - usb424,9505   # SMSC9505 USB Ethernet Device
->> +          - usb424,9514   # SMSC9514 USB Ethernet Device
-> 
-> No, really, I could understand squashing board bindings here but
-> changing drivers in the same patch is clearly too much.
-> 
->>            - usb424,9530   # SMSC LAN9530 USB Ethernet Device
->>            - usb424,9730   # SMSC LAN9730 USB Ethernet Device
->>            - usb424,9900   # SMSC9500 USB Ethernet Device (SAL10)
->> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
->> index ef7d17aef58f..2a613c576d29 100644
->> --- a/arch/arm64/boot/dts/freescale/Makefile
->> +++ b/arch/arm64/boot/dts/freescale/Makefile
->> @@ -51,6 +51,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-ls1028a-qds-9999.dtb
->>  
->>  dtb-$(CONFIG_ARCH_MXC) += imx8dxl-evk.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
->> +dtb-$(CONFIG_ARCH_MXC) += imx8mm-compulab-iot-gate.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-data-modul-edm-sbc.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-ddr4-evk.dtb
->>  dtb-$(CONFIG_ARCH_MXC) += imx8mm-emcon-avari.dtb
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-compulab-iot-gate.dts b/arch/arm64/boot/dts/freescale/imx8mm-compulab-iot-gate.dts
->> new file mode 100644
->> index 000000000000..678a9022549f
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/freescale/imx8mm-compulab-iot-gate.dts
->> @@ -0,0 +1,315 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright 2018 Compulab
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "imx8mm-compulab-ucm.dtsi"
->> +
->> +/ {
->> +	model = "CompuLab IOT-GATE-iMX8 board";
->> +	compatible = "compulab,iot-gate-imx8", "compulab,imx8mm-ucm-som", "fsl,imx8mm";
->> +
->> +	regulator-usbhub-ena {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "usbhub_ena";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio4 28 GPIO_ACTIVE_HIGH>;
->> +		regulator-always-on;
->> +		enable-active-high;
->> +	};
->> +
->> +	regulator-usbhub-rst {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "usbhub_rst";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio3 24 GPIO_ACTIVE_HIGH>;
->> +		regulator-always-on;
->> +		enable-active-high;
->> +	};
->> +
->> +	regulator-uart1-mode {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "uart1_mode";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio4 26 GPIO_ACTIVE_HIGH>;
->> +		enable-active-high;
->> +		regulator-always-on;
->> +	};
->> +
->> +	regulator-uart1-duplex {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "uart1_duplex";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio4 27 GPIO_ACTIVE_HIGH>;
->> +		regulator-always-on;
->> +		enable-active-high;
->> +	};
->> +
->> +	regulator-uart1-shdn {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "uart1_shdn";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio5 5 GPIO_ACTIVE_HIGH>;
->> +		regulator-always-on;
->> +		enable-active-high;
->> +	};
->> +
->> +	regulator-uart1-trmen {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "uart1_trmen";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio4 25 GPIO_ACTIVE_LOW>;
->> +		regulator-always-on;
->> +		enable-active-low;
->> +	};
->> +
->> +	regulator-usdhc2_v {
-> 
-> No underscores in node names. Fix it everywhere.
-> 
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "usdhc2_v";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio1 4 GPIO_ACTIVE_HIGH>;
->> +		regulator-always-on;
->> +		enable-active-high;
->> +	};
->> +
->> +	reg_usdhc2_rst: regulator-usdhc2_rst {
->> +		compatible = "regulator-fixed";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_reg_usdhc2_rst>;
->> +		regulator-name = "usdhc2_rst";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio2 19 GPIO_ACTIVE_HIGH>;
->> +		startup-delay-us = <100>;
->> +		off-on-delay-us = <12000>;
->> +		enable-active-high;
->> +	};
->> +
->> +	regulator-mpcie2_rst {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "mpcie2_rst";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio3 22 GPIO_ACTIVE_HIGH>;
->> +		regulator-always-on;
->> +		enable-active-high;
->> +	};
->> +
->> +	regulator-mpcie2lora_dis {
->> +		compatible = "regulator-fixed";
->> +		regulator-name = "mpcie2lora_dis";
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		gpio = <&gpio3 21 GPIO_ACTIVE_HIGH>;
->> +		regulator-always-on;
->> +		enable-active-high;
->> +	};
->> +
->> +	pcie0_refclk: pcie0-refclk {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +		clock-frequency = <100000000>;
->> +	};
->> +};
->> +
->> +&ethphy0 {
->> +	status = "okay";
->> +};
->> +
->> +&fec1 {
->> +	status = "okay";
->> +};
->> +
->> +&uart1 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_uart1 &pinctrl_uart1_gpio>;
->> +	assigned-clocks = <&clk IMX8MM_CLK_UART1>;
->> +	assigned-clock-parents = <&clk IMX8MM_SYS_PLL1_80M>;
->> +	linux,rs485-enabled-at-boot-time;
->> +	rts-gpios = <&gpio4 24 GPIO_ACTIVE_LOW>;
->> +	status = "okay";
->> +};
->> +
->> +&uart4 {
->> +	status = "disabled";
->> +};
->> +
->> +&i2c1 {
->> +	clock-frequency = <100000>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c1>;
->> +	status = "okay";
->> +
->> +	eeprom@54 {
->> +		compatible = "atmel,24c08";
->> +		reg = <0x54>;
->> +		pagesize = <16>;
->> +	};
->> +};
->> +
->> +&ecspi1 {
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
->> +	fsl,spi-num-chipselects = <1>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_ecspi1 &pinctrl_ecspi1_cs>;
->> +	cs-gpios = <&gpio5 9 GPIO_ACTIVE_LOW>;
->> +	status = "okay";
->> +};
->> +
->> +&usbotg1 {
->> +	dr_mode = "host";
->> +	disable-over-current;
->> +	status = "okay";
->> +};
->> +
->> +&usbotg2 {
->> +	dr_mode = "host";
->> +	disable-over-current;
->> +	status = "okay";
->> +
->> +	#address-cells = <1>;
->> +	#size-cells = <0>;
->> +
->> +	usb9514@1 {
-> 
-> Node names should be generic.
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
->> +		compatible = "usb424,9514";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_usb9514>;
->> +		reg = <1>;
-> 
-> reg is always after compatible.
-> 
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		ethernet: usbether@1 {
->> +			compatible = "usb424,ec00";
->> +			reg = <1>;
->> +		};
->> +	};
->> +};
->> +
->> +&usdhc1 {
->> +	status = "disabled";
->> +};
->> +
->> +&usdhc2 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_usdhc2>;
->> +	bus-width = <4>;
->> +	mmc-ddr-1_8v;
->> +	non-removable;
->> +	vmmc-supply = <&reg_usdhc2_rst>;
->> +	status = "okay";
->> +};
->> +
->> +&pcie0 {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_pcie0>;
->> +	reset-gpio = <&gpio3 20 GPIO_ACTIVE_LOW>;
->> +	clocks = <&clk IMX8MM_CLK_PCIE1_ROOT>,
->> +		 <&clk IMX8MM_CLK_PCIE1_AUX>,
->> +		 <&clk IMX8MM_CLK_PCIE1_PHY>,
->> +		 <&pcie0_refclk>;
->> +	clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
->> +	assigned-clocks = <&clk IMX8MM_CLK_PCIE1_AUX>,
->> +			  <&clk IMX8MM_CLK_PCIE1_PHY>,
->> +			  <&clk IMX8MM_CLK_PCIE1_CTRL>;
->> +	assigned-clock-rates = <10000000>, <100000000>, <250000000>;
->> +	assigned-clock-parents = <&clk IMX8MM_SYS_PLL2_50M>,
->> +				 <&clk IMX8MM_SYS_PLL2_100M>,
->> +				 <&clk IMX8MM_SYS_PLL2_250M>;
->> +	ext_osc = <1>;
->> +	status = "disabled";
->> +};
->> +
->> +&iomuxc {
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_hog_sb_iotgimx8>;
->> +
->> +	sb-iotgimx8 {
->> +		pinctrl_hog_sb_iotgimx8: hoggrp_sb-iotgimx8 {
-> 
-> Does not look like you tested the DTS against bindings. Please run `make
-> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-> for instructions).
-> 
->> +			fsl,pins = <
->> +				/* mPCIe2 */
->> +				MX8MM_IOMUXC_SAI5_RXD0_GPIO3_IO21	0x140 /* LORA_DISABLE */
->> +				MX8MM_IOMUXC_SAI5_RXD1_GPIO3_IO22	0x140 /* PERSTn */
->> +			>;
->> +		};
->> +
->> +		pinctrl_uart1: uart1grp {
->> +			fsl,pins = <
->> +				MX8MM_IOMUXC_SAI2_RXC_UART1_DCE_RX	0x140
->> +				MX8MM_IOMUXC_SAI2_RXFS_UART1_DCE_TX	0x140
->> +				MX8MM_IOMUXC_SAI2_TXFS_GPIO4_IO24	0x140 /* RTS */
->> +				MX8MM_IOMUXC_SAI2_RXD0_UART1_DCE_RTS_B	0x140 /* CTS */
->> +			>;
->> +		};
->> +
->> +		pinctrl_uart1_gpio: uart1gpiogrp {
->> +			fsl,pins = <
->> +				MX8MM_IOMUXC_SAI2_TXD0_GPIO4_IO26	0x000 /* RS_485_232_SEL */
->> +				MX8MM_IOMUXC_SAI2_MCLK_GPIO4_IO27	0x140 /* RS_485_H/F_SEL */
->> +				MX8MM_IOMUXC_SPDIF_EXT_CLK_GPIO5_IO5	0x140 /* SHDN */
->> +				MX8MM_IOMUXC_SAI2_TXC_GPIO4_IO25	0x140 /* RS_485_TRMEN */
->> +			>;
->> +		};
->> +
->> +		pinctrl_i2c1: i2c1grp {
->> +			fsl,pins = <
->> +				MX8MM_IOMUXC_I2C1_SCL_I2C1_SCL		0x400001c3
->> +				MX8MM_IOMUXC_I2C1_SDA_I2C1_SDA		0x400001c3
->> +			>;
->> +		};
->> +
->> +		pinctrl_ecspi1: ecspi1grp {
->> +			fsl,pins = <
->> +				MX8MM_IOMUXC_ECSPI1_SCLK_ECSPI1_SCLK	0x82
->> +				MX8MM_IOMUXC_ECSPI1_MOSI_ECSPI1_MOSI	0x82
->> +				MX8MM_IOMUXC_ECSPI1_MISO_ECSPI1_MISO	0x82
->> +			>;
->> +		};
->> +
->> +		pinctrl_ecspi1_cs: ecspi1cs {
-> 
-> Does not look like you tested the DTS against bindings. Please run `make
-> dtbs_check` (see Documentation/devicetree/bindings/writing-schema.rst
-> for instructions).
-> 
-> I guess you did not test it at all.
-> 
->> +			fsl,pins = <
->> +				MX8MM_IOMUXC_ECSPI1_SS0_GPIO5_IO9	0x40000
->> +			>;
->> +		};
->> +
->> +		pinctrl_usb9514: usb9514grp {
->> +			fsl,pins = <
->> +				MX8MM_IOMUXC_SAI3_RXFS_GPIO4_IO28	0x140 /* USB_PS_EN */
->> +				MX8MM_IOMUXC_SAI5_RXD3_GPIO3_IO24	0x140 /* HUB_RSTn */
->> +			>;
->> +		};
->> +
->> +		pinctrl_usdhc2: usdhc2grp {
->> +			fsl,pins = <
->> +				MX8MM_IOMUXC_SD2_CLK_USDHC2_CLK		0x190
->> +				MX8MM_IOMUXC_SD2_CMD_USDHC2_CMD		0x1d0
->> +				MX8MM_IOMUXC_SD2_DATA0_USDHC2_DATA0	0x1d0
->> +				MX8MM_IOMUXC_SD2_DATA1_USDHC2_DATA1	0x1d0
->> +				MX8MM_IOMUXC_SD2_DATA2_USDHC2_DATA2	0x1d0
->> +				MX8MM_IOMUXC_SD2_DATA3_USDHC2_DATA3	0x1d0
->> +				MX8MM_IOMUXC_GPIO1_IO04_GPIO1_IO4	0x1d0 /* SD2_VSEL */
->> +			>;
->> +		};
->> +
->> +		pinctrl_reg_usdhc2_rst: usdhc2rst {
->> +			fsl,pins = <
->> +				MX8MM_IOMUXC_SD2_RESET_B_GPIO2_IO19	0x41  /* EMMC_RST */
->> +			>;
->> +		};
->> +
->> +		pinctrl_pcie0: pcie0grp {
->> +			fsl,pins = <
->> +				MX8MM_IOMUXC_SAI5_RXC_GPIO3_IO20	0x140
->> +			>;
->> +		};
->> +	};
->> +};
->> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-compulab-ucm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-compulab-ucm.dtsi
->> new file mode 100644
->> index 000000000000..d6cdf833744e
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/freescale/imx8mm-compulab-ucm.dtsi
->> @@ -0,0 +1,532 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright 2018 Compulab
->> + */
->> +
->> +#include "imx8mm.dtsi"
->> +
->> +/ {
->> +	model = "Compulab i.MX8M-Mini UCM SoM";
->> +	compatible = "compulab,imx8mm-ucm-som", "fsl,imx8mm";
->> +
->> +	aliases {
->> +		rtc0 = &rtc0;
->> +		rtc1 = &snvs_rtc;
->> +	};
->> +
->> +	leds {
->> +		compatible = "gpio-leds";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_gpio_led>;
->> +
->> +		heartbeat-led {
->> +			label = "Heartbeat";
->> +			gpios = <&gpio1 12 GPIO_ACTIVE_LOW>;
->> +			linux,default-trigger = "heartbeat";
->> +		};
->> +	};
->> +
->> +	pmic_osc: clock-pmic {
->> +		compatible = "fixed-clock";
->> +		#clock-cells = <0>;
->> +		clock-frequency = <32768>;
->> +		clock-output-names = "pmic_osc";
->> +	};
->> +
->> +	reg_ethphy: regulator-ethphy {
->> +		compatible = "regulator-fixed";
->> +		enable-active-high;
->> +		gpio = <&gpio1 10 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_reg_eth>;
->> +		regulator-always-on;
->> +		regulator-boot-on;
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		regulator-name = "On-module +V3.3_ETH";
->> +		startup-delay-us = <500>;
->> +	};
->> +
->> +	reg_usdhc3_vmmc: regulator-usdhc3-vmmc {
->> +		compatible = "regulator-fixed";
->> +		enable-active-high;
->> +		gpio = <&gpio3 16 GPIO_ACTIVE_HIGH>;
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&pinctrl_reg_usdhc3>;
->> +		regulator-always-on;
->> +		regulator-min-microvolt = <3300000>;
->> +		regulator-max-microvolt = <3300000>;
->> +		regulator-name = "On-module +V3.3_USDHC";
->> +	};
->> +
->> +	usdhc1_pwrseq: usdhc1_pwrseq {
->> +		compatible = "mmc-pwrseq-simple";
->> +		reset-gpios = <&gpio2 10 GPIO_ACTIVE_LOW>;
->> +	};
->> +};
->> +
->> +&fec1 {
->> +	fsl,magic-packet;
->> +	fsl,rgmii_rxc_dly;
->> +	phy-handle = <&ethphy0>;
->> +	phy-mode = "rgmii-id";
->> +	phy-supply = <&reg_ethphy>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_fec1>;
->> +
->> +	mdio {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		ethphy0: ethernet-phy@0 {
->> +			compatible = "ethernet-phy-ieee802.3-c22";
->> +			micrel,led-mode = <0>;
->> +			reg = <0>;
->> +		};
->> +	};
->> +};
->> +
->> +&i2c2 {
->> +	clock-frequency = <400000>;
->> +	pinctrl-names = "default";
->> +	pinctrl-0 = <&pinctrl_i2c2>;
->> +	status = "okay";
->> +
->> +	rtc0: rtc@69 {
->> +		compatible = "abracon,ab1805";
->> +		reg = <0x69>;
->> +	};
->> +
->> +	pmic: bd71837@4b {
-> 
-> Node names should be generic.
-> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-> 
-> 
-> 
-> Best regards,
-> Krzysztof
-> 
+Some warnings are raised by __of_changeset_entry_destroy() which  was
+called from of_overlay_remove():
+  ERROR: memory leak, expected refcount 1 instead of 2 ...
+
+The issue is that, during the device devlink removals triggered from the
+of_platform_depopulate(), jobs are put in a workqueue.
+These jobs drop the reference to the devices. When a device is no more
+referenced (refcount == 0), it is released and the reference to its
+of_node is dropped by a call to of_node_put().
+These operations are fully correct except that, because of the
+workqueue, they are done asynchronously with respect to function calls.
+
+In the sequence provided, the jobs are run too late, after the call to
+__of_changeset_entry_destroy() and so a missing of_node_put() call is
+detected by __of_changeset_entry_destroy().
+
+This series fixes this issue introducing device_link_wait_removal() in
+order to wait for the end of jobs execution (patch 1) and using this
+function to synchronize the overlay removal with the end of jobs
+execution (patch 2).
+
+Compared to the previous iteration:
+  https://lore.kernel.org/linux-kernel/20231130174126.688486-1-herve.codina@bootlin.com/
+this v2 series mainly:
+- Renames the workqueue used.
+- Calls device_link_wait_removal() a bit later to handle cases reported
+  by Luca [1] and Nuno [2].
+  [1]: https://lore.kernel.org/all/20231220181627.341e8789@booty/
+  [2]: https://lore.kernel.org/all/20240205-fix-device-links-overlays-v2-2-5344f8c79d57@analog.com/
+
+Best regards,
+Hervé
+
+Changes v1 -> v2
+  - Patch 1
+    Rename the workqueue to 'device_link_wq'
+    Add 'Fixes' tag and Cc stable
+
+  - Patch 2
+    Add device.h inclusion.
+    Call device_link_wait_removal() later in the overlay removal
+    sequence (i.e. in free_overlay_changeset() function).
+    Drop of_mutex lock while calling device_link_wait_removal().
+    Add	'Fixes'	tag and Cc stable
+
+Herve Codina (2):
+  driver core: Introduce device_link_wait_removal()
+  of: overlay: Synchronize of_overlay_remove() with the devlink removals
+
+ drivers/base/core.c    | 26 +++++++++++++++++++++++---
+ drivers/of/overlay.c   |  9 ++++++++-
+ include/linux/device.h |  1 +
+ 3 files changed, 32 insertions(+), 4 deletions(-)
+
+-- 
+2.43.0
+
 
