@@ -1,109 +1,115 @@
-Return-Path: <devicetree+bounces-47352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8574486CEF1
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:26:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD3E86CEF9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:26:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B71311C20C6D
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:26:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E75B71F25CEC
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 16:26:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A273078294;
-	Thu, 29 Feb 2024 16:20:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Fh1o4r5V"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 393444AEF8;
+	Thu, 29 Feb 2024 16:22:06 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 65C7278290
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 16:20:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAAC37A15A
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 16:22:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709223629; cv=none; b=lY+CGr950W7DX8u++fye2odfiv3IAqZkOzRUxk36oS6xRwrwCUet7hLCzoUnjEiY9MQAY/kprWM+noLvjFdij+985SXPIDl4kJ1Yr/9UUigl8qlz5jt/je9RQn9oGUSSpmvD9YSOx827VX8+FwmRziwDTo+kS/xAMTbMpPI7pNc=
+	t=1709223726; cv=none; b=srcDtjrRcjpepQASChu4Fp6cy94+sS+z4rXaFQl7cCVAyQkz4t/qbOR0SEStUOWO67THcdf6HNHL2OAQHJxuN/F08kcdg8ANDZg+u3lr7CDDPKQqErSvR79SFg0F7PVkWtLh761Shi5R+YSJ32h7RYpcc+mlCG1eT1VADZ8O8t0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709223629; c=relaxed/simple;
-	bh=5akJAYIzzDJf3+0III/J1h+mlaUltOxaG9R8wmii+rY=;
+	s=arc-20240116; t=1709223726; c=relaxed/simple;
+	bh=9xr/DteE9ZS8doTdMEIRTmS8ga6UIWvenhyigxLRvhc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cfMHNZhNXtsRWye3lUhQx2DvGH8MQ8+7JWUWO3nW6i36vcrPdY5E21IyCHjUtJ/JEeXh7U57egYnYYnX9IrU/F8gtLXethNejHIA6Wz1xp/eiewRLZajVEfo5N5CsiTkSb1A9gamSq9Q12LyCD23LII8Qh/LwQHKZsl/PNFLs7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Fh1o4r5V; arc=none smtp.client-ip=209.85.166.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-36524116e30so4574075ab.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 08:20:26 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1709223625; x=1709828425; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=g8Qq8yPD2u9VlGqCnCi7K91emb+vPhb1JZTph4xZca0=;
-        b=Fh1o4r5V3NV6hYmmXDVU/Y9GxmzQ83D5o6s0cyDo2DHoJk1KKmJDqFr2UDN2ZYIuw5
-         +fFl6JK1gnZPmrRnL2r7QcPTwpF4NqL2lVd3JndkE95TcMi4NzER0qnmk3LnjG29orAM
-         wvdW6KZUuiiIjVKXMiJ+sG91PCzkhW8etUvXU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709223625; x=1709828425;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=g8Qq8yPD2u9VlGqCnCi7K91emb+vPhb1JZTph4xZca0=;
-        b=n/LymIq0VxWj77p6p4ETarVlTbyYhsPrhaoZlHLbRpQj7NSU0wYjQEWmmfZ6DlDdV+
-         1Qr5MDhO4Yl5Tpe2AbB+hV06VWxjuODsAaeOcBUGnO+RIR5qGJMMtiY1v5mfmhXGxAv4
-         KOizutkZyHhiIZcJyGPpTxMZdYs6GdGr43uu8EuYCr3gPT+9tGjbE8NR/b4OBdPWDyhb
-         PpX+8QhRlFiBD5gxr3wya/eIl51P5gIrmSRhRpBxROo7o+UBwtcGNnPhko+OkeEcj4QQ
-         bw8wzsd3FznIsb8XJClYHUzXR5GQd4gO2py6A0J9kpJMH6JsrGeQXsfACL5MO9QGrUqh
-         eGJA==
-X-Forwarded-Encrypted: i=1; AJvYcCWb600Ejqr/T8AYRQHkt3c0AtL2Xa9iDQtcQIGLbBLqdeELXJ/lbPNMmvl6pRTdmhZDVQwawiht0AprwDrx1SlThViui9V+P38P/Q==
-X-Gm-Message-State: AOJu0YydEBm5XLuLNZDEvrz46t8+r8buaHGmbj5CDAIYmgPGkuNmiJEd
-	AC98+nPmyZW7v/IBXEri/LwmyOgXVb3CwcNM9W25yf/d5xj+f/3lJAwCqDK/RA==
-X-Google-Smtp-Source: AGHT+IFreo0hr/9MzkZCTngz7lMqfGeDlbi8HZb7O7X2LxBPXUVABjMPoOBmX8meMjGxInCXYjaVSw==
-X-Received: by 2002:a92:c7d1:0:b0:365:1749:cae0 with SMTP id g17-20020a92c7d1000000b003651749cae0mr2946229ilk.7.1709223625514;
-        Thu, 29 Feb 2024 08:20:25 -0800 (PST)
-Received: from localhost (144.57.222.35.bc.googleusercontent.com. [35.222.57.144])
-        by smtp.gmail.com with UTF8SMTPSA id s17-20020a92cb11000000b00363d8ee8cf7sm393454ilo.48.2024.02.29.08.20.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 08:20:25 -0800 (PST)
-Date: Thu, 29 Feb 2024 16:20:24 +0000
-From: Matthias Kaehlcke <mka@chromium.org>
-To: Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Helen Koike <helen.koike@collabora.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Russell King <linux@armlinux.org.uk>,
-	linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-	dri-devel@lists.freedesktop.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 2/9] usb: misc: onboard_hub: use device supply names
-Message-ID: <ZeCuyLeC9SBNBkk_@google.com>
-References: <20240229-onboard_xvf3500-v6-0-a0aff2947040@wolfvision.net>
- <20240229-onboard_xvf3500-v6-2-a0aff2947040@wolfvision.net>
+	 Content-Type:Content-Disposition:In-Reply-To; b=V+Pg/PiDbT2OaGQQm/+ZM7YPaI6dnV7XslnJ837dGTCBXQerK/xQxJ3NzO+NomYTWO0+mIVj1eydP3hsNzH9eGSw0GoeA0kKFaszfwmvwtNYMZmqcqAn998pIcXrO3IwEcof7IIo3xynNams4m6cH/iugd2GVvweJbVRdA2rjIE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rfjAN-00085N-Kw; Thu, 29 Feb 2024 17:21:51 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rfjAM-003cf2-F7; Thu, 29 Feb 2024 17:21:50 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rfjAM-00E2c2-1C;
+	Thu, 29 Feb 2024 17:21:50 +0100
+Date: Thu, 29 Feb 2024 17:21:50 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Biju Das <biju.das.jz@bp.renesas.com>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v7 1/4] dt-bindings: pwm: Add RZ/V2M PWM binding
+Message-ID: <jubuf7nz65onuqrdrnt6bejplexvodsldqvqj527fxcotehxl7@z3kbhkhlnaxh>
+References: <20240212210652.368680-1-fabrizio.castro.jz@renesas.com>
+ <20240212210652.368680-2-fabrizio.castro.jz@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="rl3jxwyibjwzx6ez"
 Content-Disposition: inline
-In-Reply-To: <20240229-onboard_xvf3500-v6-2-a0aff2947040@wolfvision.net>
+In-Reply-To: <20240212210652.368680-2-fabrizio.castro.jz@renesas.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Thu, Feb 29, 2024 at 09:34:45AM +0100, Javier Carrasco wrote:
-> The current implementation uses generic names for the power supplies,
-> which conflicts with proper name definitions in the device bindings.
-> 
-> Add a per-device property to include real supply names and keep generic
-> names for existing devices to keep backward compatibility.
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
 
-Acked-by: Matthias Kaehlcke <mka@chromium.org>
+--rl3jxwyibjwzx6ez
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Feb 12, 2024 at 09:06:49PM +0000, Fabrizio Castro wrote:
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+>=20
+> Add device tree bindings for the RZ/V2{M, MA} PWM Timer (PWM).
+>=20
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+If you send a patch, it needs your S-o-b. (Though you could probably
+trick me into applying v6 :-)
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--rl3jxwyibjwzx6ez
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXgrx0ACgkQj4D7WH0S
+/k5dwAf/e179OLb30R7QH30xEqFAJN+SJBFnx3NXxhZTPSVo0cLHJVX3v4cEm6pU
+HLc0LLNY4e7y1GJgcglTL+rG2oCVVIpBEjX/HSBNmRma2OiAEa9leqvdOsDR4xW3
+al+XaqG01+XACbecDYJHr+2gpswmUHfvYXqIt+l6GK78XfUmQjrok+CaWKtYwOp5
+2U/NgOIeDGhLi6uTuJpI7K4UcDiHoXFcq7IlaKeSadGCXzawKxLNX8bdcp6qasUX
+jNFSNkcRkGNzL1Ww6+IrEETvUrzmBcVDCB3dbtNJ+R7CY4IoBDQQukdEEupNgrpa
+EEYb5KB8/i3C2vLn/X5NzXMzm1K75g==
+=cAGr
+-----END PGP SIGNATURE-----
+
+--rl3jxwyibjwzx6ez--
 
