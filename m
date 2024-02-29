@@ -1,107 +1,87 @@
-Return-Path: <devicetree+bounces-47359-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 00CF986CFF9
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:02:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B48886D04E
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:15:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 980E01F255CE
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:02:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE1FB1F226AD
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:15:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 807707A149;
-	Thu, 29 Feb 2024 16:58:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8E965E082;
+	Thu, 29 Feb 2024 17:15:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="N9ZbocCb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kUctBZkh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D23597A13B;
-	Thu, 29 Feb 2024 16:58:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8260838DEA;
+	Thu, 29 Feb 2024 17:15:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709225922; cv=none; b=jHH1bW+c9NIhd1yt/U8fa8dPlcMslK53ItJVmtixz0Vgs6lelChg2QfqAlhlfaA7LTziBCvsN/5yGueaWL6y9xou9eqF73BkziTSP/SOJL/w/Vg4ofIxUzMIQVqmrYGlGQ3h2cCSuNuxMMUl43brQPekhplGDGBpSLPf0TmHEEQ=
+	t=1709226951; cv=none; b=CY/tbINA5hwVzVLEM294Os5aIAydOZEduZ71GhUq/iaiwZ9X+i8uxYf+41LtSudLEtJBPioj+jeji/WeqHmhntxCnxdMxafizR/8HG2MqSJ/NkW3nEqlqKSaJ4p6AB0YdJQ58NBcHwMc8RRUGjjPo/zoW9G8zA0V5EgDWdqgv58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709225922; c=relaxed/simple;
-	bh=p6FqwOUMGbV2c5HR1BYCJhqK5gkHnO/jnmliZOTV0mY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=C6XcgzXqKw/Wcla3R3u5twDZ4Nc3PpVXTmABTZUHFRKzJTrQIpBYAdhEPgklejlDc3v61KpWXVZI4LxPSwQ5khF9KwkTzkvJm2WmjPg/ixTOh7SLGW4XFs5sAKhIfb4rokioMuRODjrqgvYOhMvUR2yaZTx8WAwhFcXbeejITBQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=N9ZbocCb; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=/cAast4b1moTClApH8MesOygPfzXLs7wuYy5qzSoQzM=; b=N9ZbocCbjrkXC3f/TVFZZiow7r
-	KBN807SMyg2iL4AZBkaetkYRUEGJogEhjby9l/ukSKUFudq4PgFkeQYr3CiS+OpEvk9TK3NbGGQRb
-	MyWKR4JMuMnwOguJHzsmJlyHvMfSainzvzZLOZM3YXJapOTONhS4y7ekVU+u3LRrAQ9H5qivH5xxm
-	e1DZRNdOjn7JJEAdK/paIzo+/vbWMq33Un4Z0Rquv1lzBBbg/2+MeuZwromNoUpc8G71XUWMCL9Om
-	opZfnSh+EvjifPbOYilY4QXwLFLyvYeu1r7zGNFu8yArqegaw35l6IupkKMr69+eAAQvujfzGT5h5
-	dA0w84bQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:45990)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rfjjl-0000WT-0y;
-	Thu, 29 Feb 2024 16:58:25 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rfjjh-0000yS-TA; Thu, 29 Feb 2024 16:58:21 +0000
-Date: Thu, 29 Feb 2024 16:58:21 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Bastien Curutchet <bastien.curutchet@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	herve.codina@bootlin.com, maxime.chevallier@bootlin.com,
-	christophercordahi@nanometrics.ca
-Subject: Re: [PATCH v2 2/6] leds: trigger: Create a new LED netdev trigger
- for collision
-Message-ID: <ZeC3raIM/wxGXsuz@shell.armlinux.org.uk>
-References: <20240227093945.21525-1-bastien.curutchet@bootlin.com>
- <20240227093945.21525-3-bastien.curutchet@bootlin.com>
- <e6351d0c-15e2-47a9-be6c-6f21aee9ae90@lunn.ch>
- <e1936774-14bf-4ae5-9754-e21f5a0c59b3@bootlin.com>
- <9dd1b2d0-4ba5-4d34-a892-a6cc8c01df28@lunn.ch>
+	s=arc-20240116; t=1709226951; c=relaxed/simple;
+	bh=UI4jw++HlohXMHIBnRWkHueqa0Yr6Rngz8KiocAyWx8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=XpwHsqgVTbt3RF7HCiE2WUQbyxWt52aXVHEpqeYx4rkUzHNKrQ+BANHzH0YpAjSo5JkFycG4HWQ1M/S72/WfW7fGxe7UtGPBvnmV7Bvb0RMta2E41zRF1KO3X2ht0aCHOy10ykKxA1Sc4lLyOYsxfUALYjaFK+HS1YGoBIa3Cso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kUctBZkh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3A7B7C433F1;
+	Thu, 29 Feb 2024 17:15:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709226951;
+	bh=UI4jw++HlohXMHIBnRWkHueqa0Yr6Rngz8KiocAyWx8=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=kUctBZkhC8D/OOpRfrC+Nt7tidVip0E2X+VOqp/uzWLVpziV5YQ2TNJuizjA1mYqG
+	 No/p82ee6K4Ud3mt4RCv5m+oSND1TRZIJtiq37ZfZMKQf6GP/RavqEze3wepRX5nte
+	 fB7zURhL+k9rQyhUx8Nfma+ld3KDKw5R1g4oPYrgHIj+0f/ZeiFBOyN8WsCuVKHYcU
+	 1vHsd8BZ528jTgFb7juNd7VtNwtdYeODHfvQ/JRXSTE9jA+4aaWqOKk3nrUKDDSh2f
+	 6fZfmC+5wwQB+9aerpSHyQzpRoe4ToWJTuYtK32+mFJ1BJGSBN9Nt3Ahza8ugCL8aJ
+	 yP8MjJW/SSVYw==
+From: Lee Jones <lee@kernel.org>
+To: Support Opensource <support.opensource@diasemi.com>, 
+ Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Steve Twiss <stwiss.opensource@diasemi.com>, 
+ Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Conor Dooley <conor.dooley@microchip.com>
+In-Reply-To: <f512045738d2102c771a171a514ed7cf612c6d6f.1708944455.git.geert+renesas@glider.be>
+References: <f512045738d2102c771a171a514ed7cf612c6d6f.1708944455.git.geert+renesas@glider.be>
+Subject: Re: (subset) [PATCH v2] dt-bindings: mfd: dlg,da9063: Make
+ #interrupt-cells required
+Message-Id: <170922694896.1610001.17817812880165232655.b4-ty@kernel.org>
+Date: Thu, 29 Feb 2024 17:15:48 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9dd1b2d0-4ba5-4d34-a892-a6cc8c01df28@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-Mailer: b4 0.12.4
 
-On Thu, Feb 29, 2024 at 04:17:47PM +0100, Andrew Lunn wrote:
-> 2) LEDs are the wild west, because it is not part of 802.3. Every
-> vendor does it differently, and has their own special blinking
-> patterns. My preference is to keep it simple to what people actually
-> use. You cannot actually generate a collision, the developer who wants
-> to add support for collision. I have to ask, is collision actually
-> useful?
+On Mon, 26 Feb 2024 11:50:02 +0100, Geert Uytterhoeven wrote:
+> '#interrupt-cells' is a required provided for interrupt providers,
+> hence make it required.
+> 
+> While at it, move '#interrupt-cells' in the example to match common sort
+> order.
+> 
+> 
+> [...]
 
-I'm not sure when you say "You cannot actually generate a collision"
-whether you're referring to the link or the LEDs here? Obviously, we
-can't detect a collision unless the hardware tells us that it happened.
+Applied, thanks!
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+[1/1] dt-bindings: mfd: dlg,da9063: Make #interrupt-cells required
+      commit: d3dc362b3a3d20d64208426cc86146eb241d7c7f
+
+--
+Lee Jones [李琼斯]
+
 
