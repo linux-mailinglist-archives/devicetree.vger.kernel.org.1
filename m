@@ -1,74 +1,73 @@
-Return-Path: <devicetree+bounces-47097-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47098-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C85986C367
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:25:52 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E4D5B86C370
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:27:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50B2F1C21017
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 08:25:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35CE7B21057
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 08:27:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B789A4E1D9;
-	Thu, 29 Feb 2024 08:25:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDC664F205;
+	Thu, 29 Feb 2024 08:27:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WRnN1GDG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yg1MzOsu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E091E38397
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 08:25:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A3964EB24
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 08:27:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709195146; cv=none; b=SZzMjkLjaM5cN2s//0fctTkXFckq+3t7M+l0jxZL6DjcgVsAAUz/nLhvMVZs6BXiuoALkonXt8OsTjtBt3oy1ZH5QLt4CQFtvPlM/HVAnDq+XDfPJlRdX9KfXQfkZRU2G81/VidEppFUnae64AdrYWh5lEzVEbiCLlwKTUrvWLc=
+	t=1709195246; cv=none; b=Z5UPWZcuCO/x36i5+zc8kZpOkuNvjQ4/xXwq8XP4VIGVff2e32NnPDLxzNWpTJ9m0fTzzPNJzKUBGbLlY13R6uLoOCiI0ycsGGtWowi14m0d8Eq1f/LViXEgKOIMqRBE2y+uldi0pjXpP6tnxSlRShtv0WHGSeN2E0xzxftH7ug=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709195146; c=relaxed/simple;
-	bh=+k6SMQqyldQYNx3b9w5bYaQJ0OzTpSI5/8PRew5oMq0=;
+	s=arc-20240116; t=1709195246; c=relaxed/simple;
+	bh=5A4KpH6bhYaq8PY2+FKOq/3hR98qtbP1GMAnSnIC3yI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=A2saZLA4+uQ9yX+hkPzl8sxML0UnysantIKX0aBkUbft4kQ+5LvuxKtBXfF3hsoPKDbmfDzukqo1poIRQA4Cea3nyO2D5No5LUrPkUaUWp3oo5+Ly56mpg2NGR9xc0HNPARXt04KInyxgx2REbFByWeCDCbqGEW4fipHNl5oS4E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WRnN1GDG; arc=none smtp.client-ip=209.85.218.48
+	 In-Reply-To:Content-Type; b=SpIF1NkglGFigwS+0NyNTLGLoAT6pzla9niy+QvOe2TApipEMJTuvMH03zEl7KWSYkxIo97EhgQqSyvb5TrKYJ3c9j+jE0DaKyq8WpOumXw+/0wlfC6LB44IOSG57FrR57XZm7BpUdXfxiqfWwSr+/nwnvHBz7O2OpgLh6rPsE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yg1MzOsu; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a2f22bfb4e6so112561866b.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 00:25:44 -0800 (PST)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a3e550ef31cso80173566b.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 00:27:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709195143; x=1709799943; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709195243; x=1709800043; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=PNXNtXezdPiz6WQwvH9xjCDeUeGJKj/mjFzziiI0LNM=;
-        b=WRnN1GDGXIPPP1I7suTsKDwVNT3HVjSB/Ua//71/w6Jx0UvquPVeiDo62pzzL4+1MN
-         ZdI4D+2uc/BQdPQ7oO3JWE9AMdrK1nGuL1P3c8GWd+0TlJI1jNLpqnJS5kYIbejrHvID
-         3Tb9vtollxuPabklhC4+amiWCOKJWCdxXuzev66KadeJWCP/JYqbpVdOyMB9OOOglzSP
-         dn1UbLDhGzPC8tQY8AQN/PYLnfsmcGvV8EFwvlBTsxEsZFkca6P71R067lnXSrI14O8O
-         e4fI1N4NOAtnWseSlmmv+UyKipS+r0f50XNutzVfPMnLA4SMr8nM3JIIx/loxu18YoYx
-         O3PA==
+        bh=+jC9NU+Sr0rM0Ox02DOM4ORkqse489i4dWP/gSCDCTs=;
+        b=yg1MzOsurAJGFHmhGBRclio1onafu031QC3gjrde37bsg4N7qF3YR1oj3YjSa979Lv
+         nPguYLAaq49ax7+o0utdoVmbo2bUe40jj5y5OmoA1lj6yPBLZ/+SfjHs06o+nTHiWP2a
+         U9xTkgS55cbaNq4pjSl3h71zukWPbMDjq4kG7TLF0KPzB+I+e4M4fRZ2MFbIsZh3/mk+
+         LhjWy66sjcY9IVUxH++3V2jVm2V6gdYnonqv0y6GBfV+BlQAzapGWfQavPCOriCRUv7C
+         P8LjIeD2Ddymm/29doeO3ku5jrNRg1cM2dDiJPIZ27Rzksg24vGTnKEbLsowOBXia8vq
+         pE0Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709195143; x=1709799943;
+        d=1e100.net; s=20230601; t=1709195243; x=1709800043;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=PNXNtXezdPiz6WQwvH9xjCDeUeGJKj/mjFzziiI0LNM=;
-        b=iro1LljUrz/Nln4iB1bfjQYyU3xghR79F0FcUtiJg+e91RyWur/PtXupbj4XC4lgeH
-         C+peDUFHTJhGFhCv5AesUTSIQmvyPZyI+gw0BrvLbv4wg2v4HDL9j9dZ87Q2rGkObjW1
-         2YNb1CPeWf09gGfnx41S+82UEF6rmOf1m0bkNl8IO78Qt2b79A+wcLj7wsHGsQZwTI+A
-         G1HgdxJPx4BgWePoEAamGRG2wwB1AEXyv5p9Wu/MmS08GjCeFG5af1jxfM3BgaXjDzK6
-         y2k9h3aZXNsdhNk9YqIeTap3Mk6E/BvvyeharHHDGFIfVdavAepMDQiQTxTSfeGEhzzl
-         kYIw==
-X-Forwarded-Encrypted: i=1; AJvYcCVwjN2mdX8QazS8IJkDHOqzSE5cQpLTzy/XeKAOE9k4yjwlly/mGxlbSgnNEe+7cQAvwKhPi6d5qBrRx+S7ttE/sPZI6OWpMxm1AQ==
-X-Gm-Message-State: AOJu0YxI2WxJnuGNG/WXFBJwbuvpRQGXv5Qp0lj7IgsE+QJ1evIZPs86
-	QAF4Lfz0jmBlCm4FJgvr9bv99k0RcLX27AiP16eboAbx8ebQcVl8uMjF7TacV1g=
-X-Google-Smtp-Source: AGHT+IEdRFYEnX4kAM1kYEF58dkyCyyKP45xIa7ZLp2VZd7u2TobvUB+aubfigdaalNJ9d2eEa2QgA==
-X-Received: by 2002:a17:906:56d0:b0:a43:f22e:57a6 with SMTP id an16-20020a17090656d000b00a43f22e57a6mr715486ejc.67.1709195143177;
-        Thu, 29 Feb 2024 00:25:43 -0800 (PST)
+        bh=+jC9NU+Sr0rM0Ox02DOM4ORkqse489i4dWP/gSCDCTs=;
+        b=Rq7woA1VElsAKqVISB1W67+l9yJuYXxfcjtDjRXh1XEKuP/xwuAzGpuptsDC35o9Zi
+         LEVZks2pSZ+spd8vtaRDwuMEv57skeYKKFvHU1YEDsPx+hTtB8BPcmqLZwTqh3NqzZzh
+         19orG4aYye+V641Nnmlc2Xh7tG5KSnJXe29c8/R1zcgqH57BKpr1WiEADZsuRrisvhFp
+         NM88WAxVY7ZB3KJPMOtC8/10R2qUdHsuXHJ6TFxJVp4DcvibbEsSGQSi6XVIuV40X9gx
+         WrITg/FYb4SzFWd8r/NMDWgejeuTkJAeBOVRzoHDGV1HvBco6zaUb0ldk2+590QOk/QI
+         jLTQ==
+X-Gm-Message-State: AOJu0YyfHvcMvxvedmD5GqzIln1Y4bW4CB/1SRNPGpWCAKJBFR5ZA/JL
+	rtGhcz1LGslVLWq0sVAmUHx5ThIYxojOZP63ncP156vynV26q8zmE3f2vsXGqSw=
+X-Google-Smtp-Source: AGHT+IHtFnTGokxus4yJA0VW8KJfoHKca5tzjEOBUp5rScvISxrFcHYTgLMG8YRVsaFj8MwttJR4fQ==
+X-Received: by 2002:a17:906:dd4:b0:a44:f88:323b with SMTP id p20-20020a1709060dd400b00a440f88323bmr967443eji.54.1709195242806;
+        Thu, 29 Feb 2024 00:27:22 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.116])
-        by smtp.gmail.com with ESMTPSA id vg9-20020a170907d30900b00a4439b7756bsm434508ejc.6.2024.02.29.00.25.38
+        by smtp.gmail.com with ESMTPSA id vg9-20020a170907d30900b00a4439b7756bsm434508ejc.6.2024.02.29.00.27.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 00:25:41 -0800 (PST)
-Message-ID: <32ff2f66-7a94-41ed-b77b-f78da2e57446@linaro.org>
-Date: Thu, 29 Feb 2024 09:25:37 +0100
+        Thu, 29 Feb 2024 00:27:22 -0800 (PST)
+Message-ID: <23a99e13-fe45-4cb7-8e1c-f6c85d70becc@linaro.org>
+Date: Thu, 29 Feb 2024 09:27:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,29 +75,27 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 18/22] ASoC: dt-bindings: mt8195: Document audio-routing
- and dai-link subnode
+Subject: Re: [PATCH 2/3] dt-bindings: display: mediatek: gamma: Add support
+ for MT8188
 Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- broonie@kernel.org
-Cc: wenst@chromium.org, lgirdwood@gmail.com, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com,
- trevor.wu@mediatek.com, maso.huang@mediatek.com,
- xiazhengqiao@huaqin.corp-partner.google.com, arnd@arndb.de,
- kuninori.morimoto.gx@renesas.com, shraash@google.com, amergnat@baylibre.com,
- nicolas.ferre@microchip.com, u.kleine-koenig@pengutronix.de,
- dianders@chromium.org, frank.li@vivo.com, allen-kh.cheng@mediatek.com,
- eugen.hristev@collabora.com, claudiu.beznea@tuxon.dev,
- jarkko.nikula@bitmer.com, jiaxin.yu@mediatek.com, alpernebiyasak@gmail.com,
- ckeepax@opensource.cirrus.com, zhourui@huaqin.corp-partner.google.com,
- nfraprado@collabora.com, alsa-devel@alsa-project.org,
- shane.chien@mediatek.com, linux-sound@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+To: "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- kernel@collabora.com
-References: <20240227120939.290143-1-angelogioacchino.delregno@collabora.com>
- <20240227120939.290143-19-angelogioacchino.delregno@collabora.com>
+ dri-devel@lists.freedesktop.org, linux-media@vger.kernel.org,
+ linaro-mm-sig@lists.linaro.org, Jason-ch Chen <jason-ch.chen@mediatek.com>,
+ Johnson Wang <johnson.wang@mediatek.com>,
+ Singo Chang <singo.chang@mediatek.com>, Nancy Lin <nancy.lin@mediatek.com>,
+ Shawn Sung <shawn.sung@mediatek.com>,
+ Project_Global_Chrome_Upstream_Group@mediatek.com,
+ Fei Shao <fshao@chromium.org>
+References: <20240229023522.15870-1-jason-jh.lin@mediatek.com>
+ <20240229023522.15870-3-jason-jh.lin@mediatek.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -144,123 +141,37 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240227120939.290143-19-angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240229023522.15870-3-jason-jh.lin@mediatek.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 27/02/2024 13:09, AngeloGioacchino Del Regno wrote:
-> Document the dai-link subnodes and the audio-routing property, allowing
-> to describe machine specific audio hardware and links in device tree.
+On 29/02/2024 03:35, Jason-JH.Lin wrote:
+> The gamma LUT setting of MT8188 and MT8195 are the same, so we create
+> a one of items for MT8188 to reuse the driver data settings of MT8195.
 > 
-> While at it, also deprecate the old properties which were previously
-> used with driver hardcoded configuration.
-> 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Jason-JH.Lin <jason-jh.lin@mediatek.com>
 > ---
+>  .../devicetree/bindings/display/mediatek/mediatek,gamma.yaml  | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
+> index 3e6cb8f48bcc..90c454eea06f 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,gamma.yaml
+> @@ -29,6 +29,10 @@ properties:
+>            - enum:
+>                - mediatek,mt6795-disp-gamma
+>            - const: mediatek,mt8173-disp-gamma
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt8188-disp-gamma
+> +          - const: mediatek,mt8195-disp-gamma
+>        - items:
+>            - enum:
+>                - mediatek,mt8186-disp-gamma
 
-
->  
->    mediatek,adsp:
->      $ref: /schemas/types.yaml#/definitions/phandle
-> @@ -45,12 +56,75 @@ properties:
->        A list of the desired dai-links in the sound card. Each entry is a
->        name defined in the machine driver.
->  
-> +patternProperties:
-> +  ".*-dai-link$":
-> +    type: object
-> +    description:
-> +      Container for dai-link level properties and CODEC sub-nodes.
-> +
-> +    properties:
-> +      link-name:
-> +        description: Indicates dai-link name and PCM stream name
-> +        items:
-
-That's not a list, but just enum.
-
-> +          enum:
-> +            - DPTX_BE
-> +            - ETDM1_IN_BE
-> +            - ETDM2_IN_BE
-> +            - ETDM1_OUT_BE
-> +            - ETDM2_OUT_BE
-> +            - ETDM3_OUT_BE
-> +            - PCM1_BE
-> +
-> +      codec:
-> +        description: Holds subnode which indicates codec dai.
-> +        type: object
-> +        additionalProperties: false
-> +        properties:
-> +          sound-dai:
-> +            minItems: 1
-> +            maxItems: 2
-> +        required:
-> +          - sound-dai
-> +
-> +      dai-format:
-> +        description: audio format
-> +        items:
-
-Ditto
-
-> +          enum:
-> +            - i2s
-> +            - right_j
-> +            - left_j
-> +            - dsp_a
-> +            - dsp_b
-> +
-> +      mediatek,clk-provider:
-> +        $ref: /schemas/types.yaml#/definitions/string
-> +        description: Indicates dai-link clock master.
-> +        items:
-
-Ditto
-
-> +          enum:
-> +            - cpu
-> +            - codec
-> +
-> +    additionalProperties: false
-
-This goes either to the top of the section (after type:object) for
-readability or after required: block below.
-
-> +
-> +    required:
-> +      - link-name
-> +
->  additionalProperties: false
-
->  
->  required:
->    - compatible
->    - mediatek,platform
->  
-> +# Disallow legacy properties if dai-link-xxx nodes are specified
-> +if:
-> +  not:
-
-I don't think this works. To test if node is present or node, you would
-need to use required.
-https://elixir.bootlin.com/linux/v6.4-rc7/source/Documentation/devicetree/bindings/net/qcom,ipa.yaml#L174
-
-Are you sure this if:then: works as expected?
-
-
-> +    patternProperties:
-> +      ".*-dai-link$": false
-> +then:
-> +  properties:
-> +    mediatek,dptx-codec: false
-> +    mediatek,hdmi-codec: false
-> +
->  examples:
->    - |
->  
-
+Please keep this ordered by fallback compatible, so your list with 8195
+fallback should go below the list here.
 
 Best regards,
 Krzysztof
