@@ -1,74 +1,73 @@
-Return-Path: <devicetree+bounces-47386-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF85B86D13F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:57:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5756C86D14D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 19:00:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA67B1C21D90
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 17:57:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C65B1C219D5
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 18:00:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1E0E75812;
-	Thu, 29 Feb 2024 17:57:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF75A757FD;
+	Thu, 29 Feb 2024 18:00:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Vi8wFU3X"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EAUOfYib"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB7DE70AFD
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 17:57:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3DFAA2E410
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 17:59:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709229438; cv=none; b=faFjD5f6FvFpG+hLr2iJzzEf7EOp0UaHs0yOpeiWzKqagGPKXkSbmhIuYxAuFf9myHrrRdL7v5ye6tkUi2pzamcvWrUReQ3rCmMZ/qmXsEvgSi1ZAoI5urxspfQ9/hJhoOvnEUuSQ4jtF3QU+yj4QwjCKtNh7DkhqESsUnv51Go=
+	t=1709229601; cv=none; b=flgw53GyAevnNtWglEtURoqUFoRmdKod/0VrYSk1Ob67A/LVlR3VGzr5s4GDuHSR0uXOyP925BTdEYI/yjq+9D98BGrCexaIC/4XYf6wwOJk+DfoBW5VBvW9AhPWJdaGBZ0I9eHKPc06O73dJo5bFbvXB7cgbuhopd6ZpZ/27Pc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709229438; c=relaxed/simple;
-	bh=P7nQhn3DAJ9i3Niab1QxHDxD6xtT6wxpVOwcDAJ4T58=;
+	s=arc-20240116; t=1709229601; c=relaxed/simple;
+	bh=f6yvwrlgX6pG4OvKzEcYwA122BwzvnJCFrTPc0XrNl4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tC8vY/M3yEfB6oKHYd13eDGQtUL5IpbyZr+3BVDbe9KwXlFNrzXE1K/TFNa4JKZojpXZ60g579pmETkHpfai40NPQipgXn0RzM0gYchuBn/D4woXm3eQoT3X6z7aVRATz65MSBKxA1hzcmlzvNCaItLYEUPHMnFtumQlIXIMr5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Vi8wFU3X; arc=none smtp.client-ip=209.85.208.42
+	 In-Reply-To:Content-Type; b=YGNqcAAGrzfhDhSkvukMUVctTRMo1TycQ9nySob5I7X498NSppfgJUdgsvPKuIZa9hbswXMaxgZVOaqVmjcUeqbm82q0ahjJGxV1AqvASwAmhnjaYnIWV1YzmL6WPO4N4dM79RQ+9EVOrrKFsvYOO5vWwaRZIr1hivnvuwjpNL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EAUOfYib; arc=none smtp.client-ip=209.85.208.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-563f675be29so1688603a12.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 09:57:15 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5645960cd56so1952180a12.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 09:59:58 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709229434; x=1709834234; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709229597; x=1709834397; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0VSCcHYawJXa1rt0x3Tg+kDAG9fenwtP0XfWlTJ01QI=;
-        b=Vi8wFU3X9mfeDiWqnkf2FMfpyOir8W/ia2J0xq8WAeC15TLueN/V/c3nLHLBMz3BXH
-         eW2msq5Pp5QRGfUX3cEqCUY9B1yKhMluxC8CUghbrDCHjycjfxTQ+Re4XxsKEhN13bf8
-         xI8kJcim3LDgs0uQ+pvJoo4qA25/a31WOveCiE2IqyXvzBCHM8iqE1pwYWMsp+As8sqB
-         UpDFdH2h5zavU5QbM+8KTOBTzPoz/rorkeu6VLbsO4JWcl3H9xGVSYxP8YPw2odGfu2t
-         z7nrDnM8S0XfuVVy8sErYxY4nC1rwmGNiJ9dNWwYSGWW9Sg6cULedfJUXARKAFKXtAOm
-         bvfA==
+        bh=vGdCAiPpjLuwXhDKipSyi5tsCPrPrZQJ57rIOm/jQ5E=;
+        b=EAUOfYib6526jn+c6siFCs8HD5TH97XtXafQZM00exbOdHnx5J0gKxlN4s6ekCQ3Ll
+         jotRZqHc9gqsK4Eqepa5XVGBbNnhtkZBSi15OL49WmaTxUErYr96vA8DyDnu2D5PNvPx
+         ZiGTkFrpIMOHpB3n0bBoLKVfDrSTkrsspsPxXaYbIyYfL2z/UbzREO/YUh93iQtosKSf
+         Qwezzp9jLn4EtIM9qaqygExAWHeAi+sJs1QZSgq6VrS6Y5xWbE5xISXql25ar7wcmYgS
+         0qhV0m2RuxLVcVzJDoi2riBOLoGjx3snCYk2hropo7PExX47H1Sr9+LhCu2tTtO1NwtR
+         Envg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709229434; x=1709834234;
+        d=1e100.net; s=20230601; t=1709229597; x=1709834397;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0VSCcHYawJXa1rt0x3Tg+kDAG9fenwtP0XfWlTJ01QI=;
-        b=M/xtVb50OA8FQKEvdnlPwHWGxaG77PJpK0raysawAJPaL5BcDxEex6mX/7YcI4EC91
-         XGVW+F8bNK0MDH0aYzHHOP5lH/MCl5SyHXmHgoMTqd7wZPEYApjhGM8YhNsx1/Y6huJf
-         rsU7VWWWsK8ThDqC4stGXxv+cmqYSu6mi3SqUtOF0Gp23Cbr6+VDc76xx2PJmuUK5LUG
-         1OCH0H1+oNKIXDGU/bN8P5S3uPzNQ1/nBF+n9jh3LX7VvB2r6jrKYbyM+gnoiFkZYrBC
-         ltVLZmU5gHj7xcmETF0U4LstOv3TC1LxptwCwHltufWaby0LnmZzIXcSrtqv4l4u8Kol
-         jLxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWFrusbtYju//Gf9NEy+EnYPQKv1jT3ZNlKd98PDuUKSKzJwAkmDkCSJO3tohrJpPq2cCPrXEAfwDj2eked8McMhDGqzuHuaeAyow==
-X-Gm-Message-State: AOJu0YwkvOzYOn3EwbzqfKt6cbjLNtvWPkD2UhWQHQ3Dr8gpVpEnJauw
-	5rzRzbb9gMSU7KsTEZQ9yqTPu5OuPEhxnwhdFSFMe03WC0A3fiRaDh8+zlBsmSM=
-X-Google-Smtp-Source: AGHT+IF56NSGBrEqJBOxqJHRaQaPzb3lTrNuWrOCeKIwLr0SE3ZZhoQ9MsCmRQWOrWsRdA+vWkACWQ==
-X-Received: by 2002:a50:cbc1:0:b0:566:5897:b3ba with SMTP id l1-20020a50cbc1000000b005665897b3bamr1909598edi.3.1709229434246;
-        Thu, 29 Feb 2024 09:57:14 -0800 (PST)
+        bh=vGdCAiPpjLuwXhDKipSyi5tsCPrPrZQJ57rIOm/jQ5E=;
+        b=b/FpI6fp+1xVj49ZP09STf1DaoPGtdj+K22jvYxIEGeieS71MeJ+sDvvVufEqaDUbv
+         isFeKw8T95lIHrXKKXJG6Bql9jicUAsDqK06AYGAxWixH4ymgJ38gNGLNvxlXU1sms/h
+         qy8wWxdKRK66TENUryi/HchlRL7x7We9UPvSm6FnsLLLEKwA+j4zlWtso31gPt5U6w/5
+         C2m3QZC7hy8penYm0LhtcXuuBukKL7UcFzpPJYCKOhKl903JznlUNoYS5+6BYtsCySnK
+         VLJ1iS3edFaEmsV/6Xb+SAiR1EydQ1/IlUPf0xmODpjBAnLgb3UpUVze9owZe8zpk7uL
+         7J1A==
+X-Gm-Message-State: AOJu0YyIqN2JIOXYsuQpMvKuSUMU7FYqlma0J0uieWiIPjtrh23/gaWo
+	Wx1IrX6tKX/6WyZSWBGfyabbUb/4Sye15ezJ8V0zTLiF+wwbgfUW6csHXa9e7eE=
+X-Google-Smtp-Source: AGHT+IEZGZ7G6oKJWqCvVkL3kk30VBexUorieh05+ZnlCSjO26CgSf0eTLXRIjj3smOg7LzNv4JS/w==
+X-Received: by 2002:a50:d597:0:b0:566:9448:9b05 with SMTP id v23-20020a50d597000000b0056694489b05mr2202981edi.39.1709229597638;
+        Thu, 29 Feb 2024 09:59:57 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id s24-20020aa7c558000000b0056664063ca6sm815241edr.44.2024.02.29.09.57.12
+        by smtp.gmail.com with ESMTPSA id p17-20020a056402075100b005662f95fa6dsm808619edy.89.2024.02.29.09.59.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 09:57:13 -0800 (PST)
-Message-ID: <6eb17b85-1b38-401d-84b6-4e995482d86f@linaro.org>
-Date: Thu, 29 Feb 2024 18:57:11 +0100
+        Thu, 29 Feb 2024 09:59:56 -0800 (PST)
+Message-ID: <1239b980-da57-4cb1-bde0-47550dcf1065@linaro.org>
+Date: Thu, 29 Feb 2024 18:59:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,23 +75,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] iommu/arm-smmu-qcom: Fix use-after-free issue in
- qcom_smmu_create()
+Subject: Re: [PATCH v5 1/7] dt-bindings: iommu: Add Qualcomm TBU bindings
 Content-Language: en-US
-To: Pratyush Brahma <quic_pbrahma@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: quic_c_gdjako@quicinc.com, andersson@kernel.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, djakov@kernel.org, iommu@lists.linux.dev,
- joro@8bytes.org, konrad.dybcio@linaro.org,
- krzysztof.kozlowski+dt@linaro.org, linux-arm-kernel@lists.infradead.org,
- linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_cgoldswo@quicinc.com, quic_pdaly@quicinc.com,
- quic_sudaraja@quicinc.com, quic_sukadev@quicinc.com, robdclark@gmail.com,
- robh+dt@kernel.org, robin.murphy@arm.com, will@kernel.org
-References: <20240201210529.7728-4-quic_c_gdjako@quicinc.com>
- <20240213062608.13018-1-quic_pbrahma@quicinc.com>
- <CAA8EJpoh-m_fzt9WcUXOkTxVZRQMDf-WrgqqoM0C_-qzjgDm1w@mail.gmail.com>
- <ccb6b2a2-040b-46cc-9b72-2e4bd4c75565@quicinc.com>
+To: Georgi Djakov <quic_c_gdjako@quicinc.com>, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, will@kernel.org,
+ robin.murphy@arm.com, joro@8bytes.org, iommu@lists.linux.dev
+Cc: devicetree@vger.kernel.org, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robdclark@gmail.com,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, quic_cgoldswo@quicinc.com,
+ quic_sukadev@quicinc.com, quic_pdaly@quicinc.com, quic_sudaraja@quicinc.com,
+ djakov@kernel.org
+References: <20240226172218.69486-1-quic_c_gdjako@quicinc.com>
+ <20240226172218.69486-2-quic_c_gdjako@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -138,33 +133,28 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ccb6b2a2-040b-46cc-9b72-2e4bd4c75565@quicinc.com>
+In-Reply-To: <20240226172218.69486-2-quic_c_gdjako@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/02/2024 09:17, Pratyush Brahma wrote:
+On 26/02/2024 18:22, Georgi Djakov wrote:
+> The "apps_smmu" on the Qualcomm sdm845 platform is an implementation
+> of the SMMU-500, that consists of a single TCU (Translation Control
+> Unit) and multiple TBUs (Translation Buffer Units). These TBUs have
+> hardware debugging features that are specific and only present on
+> Qualcomm hardware. Represent them as independent DT nodes. List all
+> the resources that are needed to operate them (such as registers,
+> clocks, power domains and interconnects).
 > 
-> On 2/13/2024 1:36 PM, Dmitry Baryshkov wrote:
->> On Tue, 13 Feb 2024 at 08:27, Pratyush Brahma <quic_pbrahma@quicinc.com> wrote:
->>> Currently, during arm smmu probe, struct arm_smmu_device pointer
->>> is allocated. The pointer is reallocated to a new struct qcom_smmu in
->>> qcom_smmu_create() with devm_krealloc() which frees the smmu device
->>> after copying the data into the new pointer.
->>>
->>> The freed pointer is then passed again in devm_of_platform_populate()
->>> inside qcom_smmu_create() which causes a use-after-free issue.
->>>
->>> Fix the use-after-free issue by reassigning the old pointer to
->>> the new pointer where the struct was copied by devm_krealloc().
->>>
->>> Signed-off-by: Pratyush Brahma <quic_pbrahma@quicinc.com>
->> Missing Fixes tag.
-> Haven't added as the patchset in-reply-to hasn't been merged to 
-> linux-next. Please refer my next reply.
+> Signed-off-by: Georgi Djakov <quic_c_gdjako@quicinc.com>
+> ---
+>  .../devicetree/bindings/iommu/qcom,tbu.yaml   | 65 +++++++++++++++++++
+>  1 file changed, 65 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iommu/qcom,tbu.yaml
 
-Why do you send patches for work being reviewed? Just perform the
-review. It looks like you deliberately want to apply bad code just to
-fix it a second later!
+Heh, I wonder how did you solve Robin's comments. I don't see you
+responding to Robin. Just v5 sent...
+
 
 Best regards,
 Krzysztof
