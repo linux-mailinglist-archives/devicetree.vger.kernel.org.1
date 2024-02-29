@@ -1,82 +1,82 @@
-Return-Path: <devicetree+bounces-47164-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47165-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3D7786C569
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:35:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E2E3586C572
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 10:36:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8EA9D2919F5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:35:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A5DCB24777
+	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 09:36:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74CF15732B;
-	Thu, 29 Feb 2024 09:35:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8045605C6;
+	Thu, 29 Feb 2024 09:36:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EmJIgriT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TnoDzhTP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C2555EE99
-	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 09:35:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F59C5F869
+	for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 09:36:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709199319; cv=none; b=qDKw3CZLG7FrQ0FFzvNQwoCVGMBgI8plq3Sp5JCwdyfpUVFhX6wIcBM4A2xD+ylJk/JWg2yrRdBTvOLTxuXYYxVImAzhaf6sg3hL0b1QM3Xbv0m5Z6REnpzGLsMQkmOpqMnIwQQ9ZCr63dNDxCTGSkSNsd2en5yekNP1rww3z30=
+	t=1709199381; cv=none; b=LXvA5LISCzYLdSWwhCOvCvvJyi6AH8PMDVkuADpKxHejYUx4tK9TWeA8OtABvHUdlBKdz/3GyKnpFEKILB/59g+6Wv6HXpVek5swR+WLUG2q0QSBlU+q/7BZHCtVHp6p5GL2ysSp84ikX07GmnGe6MoPs2Kr793k4g9hGQSz+pI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709199319; c=relaxed/simple;
-	bh=E2BCwCWKr83pu1Ph0WYIAlvgDlw5ksBM/Bs5jndzFeM=;
+	s=arc-20240116; t=1709199381; c=relaxed/simple;
+	bh=NIqCg2Lig+ehBNYGyTvhpjqd6T9MIQgC1nLdSgKx46A=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=to00i4Z2evH6IYUgq5piLX6Bj1VGNnETBwqjSqhuojm5TktKRPdWq/uOrSZ9E1KYOI1Xe8aheyPzNljAORRHrsUX+6F0LEWRyIWdWb4kp1XIudJPntQi57Pb7/Q0AZhFYOBKSiHQmp4IA313IdxemhXPHSUnG5bvzVwbTWvfFDE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EmJIgriT; arc=none smtp.client-ip=209.85.219.177
+	 To:Cc:Content-Type; b=gIc9LdDtjshsLxBX4zjSj+YuTbp14Tw/VmWMetYBQOx28Eta0s45EoVf8RO+ylw09Tl3lLBxoEOClAAvdTfRVqi9/x/WU6yoUDLUiSzDfAU6DN0biPrqeQ590brCY719GZoM/PewK++/cIXRCQllePxg+eEFE1jgg6LM0pxd4y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TnoDzhTP; arc=none smtp.client-ip=209.85.219.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dcc7cdb3a98so721711276.2
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 01:35:17 -0800 (PST)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dc238cb1b17so777004276.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 01:36:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709199316; x=1709804116; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709199378; x=1709804178; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=f50x61FNXrIWBR6f2QHRlicPFI4c+LBiZV4KjCEImyg=;
-        b=EmJIgriTLhwFa58qCl0w5+2kg9n1eUSXkpQWbhYvXRQKvuq5IMKs1050cmML5xRC2d
-         6iB7gVpoVtNKCZ6IrkJRFKkU/pF5qo9uwVAeOZelGZxS3aadCNun0CmKA+X8RklR/vCH
-         vRGcfw0bQOqWdisJUTNwlUqslQiKrDsHYncjLTWBQkVPXiZqI0RwL8+lAuE9huFI7SaC
-         TPs7A7XH80MBRVdeWTiz/edLSGlbPSaKRShB6kDLHy9JeKc9zG3wZq+nUzMQ+A6x16ls
-         UOTTacrQM2JWW2W/Txrbno7Ga6hbkrhHlGq6gFy9bIkB5O5LfcCo1nJcQD+BhhzQcDYH
-         a8mg==
+        bh=NIqCg2Lig+ehBNYGyTvhpjqd6T9MIQgC1nLdSgKx46A=;
+        b=TnoDzhTPL1NMEZWMb9nWQeHeTZInkBgPurxPFKbH38pZIo44mqQN+t6kAy2aVwxtwX
+         ygc0IC1VlxoEdbV1zVbiW/Tuk7tUaI6FR9L5hYq/cjpqoq+s0alxRTDL+tQiVmkph/5r
+         jhsdwpAY/PeTtiDYGgLJdsQI1dP6yeSs7H0XyjbgQaL6A8CxF7xfgAxQNO+n+ljguT6W
+         AuAx1TfyDCFT0fci2mNf20G0doXt1oPguN4lNCxkQCR/gHTogrdQT1qVFbJ2z5FHfDJS
+         bLetwnTif5DKGj8evqSdsQ45zXUKFLfL3CnmaKJAUzYNPKslEM2Rj2+AtuHQAdMg0gOi
+         fzJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709199316; x=1709804116;
+        d=1e100.net; s=20230601; t=1709199378; x=1709804178;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=f50x61FNXrIWBR6f2QHRlicPFI4c+LBiZV4KjCEImyg=;
-        b=wtdOk2/w7FCYeapV+mxYZfIhhYOT2mnrpGIzcVlFSY4tY7dZh7/ewKuB9jRt9v7iGe
-         KlOdqLvzbakb/bM7jFPZKIxMu5ITrNLlJKUGs+cJvjYqgK+phPBLO8PxP09r6Qu1mD2B
-         OJKBdu9/bmRfhm4rDJI3sut0xGOi2MSYXfHDxx9nQc3mYMGwqcJ6P6EcKzrSkf0oPDYK
-         2WXAP5CCiogF1AiU2f7jaCfZhMDRpKi0c4bkUMK2+Uexv4uUceR0ih3EiubNxxZteXnj
-         1x/sE5TgIagV0XxYNcyxYvM31vKUTschiT7YEjoXYAG2+7NnDcTbLuj7RxAOPoigxihn
-         A7Gg==
-X-Forwarded-Encrypted: i=1; AJvYcCVD/Eh4x03DA5U4SQB8GPkJRP3JdbE+GyGvzWfLjyI+R/o2dtZ/oYz9nplSfzRHWEKjSbmrCG3y6FJMOco3jgfYrxY4tpQUmcpNPA==
-X-Gm-Message-State: AOJu0Yzhy7d82SDDbziwSeE8MSyLhJVQg56hwx4ETaC3f2V7DvEaNz3P
-	md2HzL0Y6bAtlzeoDR8qSQeIfWxt9jqN/8CzMiDxD/BUhI5o/57Jriyc4DzyS3m/a8Bp23qGaaI
-	S3vIA40yCtj2qXKFsINX5FmOmPMNEDX80waAKYA==
-X-Google-Smtp-Source: AGHT+IFfB1CzRcwoLd5A9MKz+8jkh/89e61JZ8wEvR20tH5L9rZAg6gSACHkzLEHC6fcpjmod7PS/OVzmdDO4jPTA5M=
-X-Received: by 2002:a25:c904:0:b0:dcf:4663:ecd8 with SMTP id
- z4-20020a25c904000000b00dcf4663ecd8mr1840712ybf.8.1709199316704; Thu, 29 Feb
- 2024 01:35:16 -0800 (PST)
+        bh=NIqCg2Lig+ehBNYGyTvhpjqd6T9MIQgC1nLdSgKx46A=;
+        b=VpLv8xQ7qd5U8i5dSAthgfqFx7I0k5wQEyYEHkajfLXdpB/FkcTM2zZUc19wtsbOnW
+         9WJNMUJwJnfkOZhsFGZ9hktzbqAgirfW1MeKlLGnwepfNuhGyQpS+XB0ej3GO8qrx6rm
+         2IkMnjjAytdSU170L91dL/Zj8YUEVFG8KP0voqPrgmakUywt7p1Z27QeBkhergCBedDZ
+         4g1aVL8/+1uwTCOrvC5EFY+phwSG36GcC5QxrhitTK591O+8JRAeQLtlbhbyQfpu6cY1
+         Zr5+qvE9RJ2gpePPn9D5fNiZfmEn1HvEMT/8id88EKHhxAiAw6z1bgqPuBdbprFiy731
+         pBSA==
+X-Forwarded-Encrypted: i=1; AJvYcCU4d5VNrJ+1pzco9SieHzIQ1LE0TVK11zjV/8gwLbL8pzrM2GKJ+f17Jdd+M+oEECBXCHG+z82NXAv+4izzAN/56LQnQy1lIbqBPg==
+X-Gm-Message-State: AOJu0Yy6jhOZ1y5CJ8oJCB5Zi/HgSupwdR0YTGc0DArQ7AQhO2MRCoy1
+	HYOcrUCunbHJNan0sIfSXJzu0RtLritH9dY++XI/yIwTcq+05+tQda26OqAsrErMUXSJAxbvpnX
+	LUZTpgJvggEbcsljVuC6Tfh+v35XzY3S0z9i5Eg==
+X-Google-Smtp-Source: AGHT+IGmwaMXnIIeUIA6Bhmf0jz+VJ67d+9hoLzM+6q8PV0Woj1UIg0FkmlH8MD2QBtjAqYNuO4XZHGyfTuC4wsmq/c=
+X-Received: by 2002:a25:aa67:0:b0:dcc:4a0a:d0ba with SMTP id
+ s94-20020a25aa67000000b00dcc4a0ad0bamr1554828ybi.63.1709199378444; Thu, 29
+ Feb 2024 01:36:18 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240228-mbly-gpio-v2-0-3ba757474006@bootlin.com> <20240228-mbly-gpio-v2-21-3ba757474006@bootlin.com>
-In-Reply-To: <20240228-mbly-gpio-v2-21-3ba757474006@bootlin.com>
+References: <20240228-mbly-gpio-v2-0-3ba757474006@bootlin.com> <20240228-mbly-gpio-v2-22-3ba757474006@bootlin.com>
+In-Reply-To: <20240228-mbly-gpio-v2-22-3ba757474006@bootlin.com>
 From: Linus Walleij <linus.walleij@linaro.org>
-Date: Thu, 29 Feb 2024 10:35:05 +0100
-Message-ID: <CACRpkdb4egmLuudmhv5Lk23+RbKNOnxfQWmYz8S5pB2hJyV2jA@mail.gmail.com>
-Subject: Re: [PATCH v2 21/30] gpio: nomadik: change driver name from gpio to gpio-nomadik
+Date: Thu, 29 Feb 2024 10:36:07 +0100
+Message-ID: <CACRpkdZ01WqbRDA2B-8cM98RkPtcRbpf06oF2xHhYdfHqPhACQ@mail.gmail.com>
+Subject: Re: [PATCH v2 22/30] gpio: nomadik: support shared GPIO IRQs
 To: =?UTF-8?B?VGjDqW8gTGVicnVu?= <theo.lebrun@bootlin.com>
 Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -92,17 +92,19 @@ Content-Transfer-Encoding: quoted-printable
 On Wed, Feb 28, 2024 at 12:28=E2=80=AFPM Th=C3=A9o Lebrun <theo.lebrun@boot=
 lin.com> wrote:
 
-> This GPIO driver is historically related to the Nomadik platform. It
-> however can be used by others as it implements the ST STA2X11 IP block.
-> Pick a less ambiguous name for it.
+> Support a single IRQs used by multiple GPIO banks. Change the IRQ
+> handler type from a chained handler (as used by gpiolib
+> for ->parent_handler) to a threaded IRQ.
+>
+> Use the generic_handle_domain_irq_safe() helper. The non-safe version
+> must be called in a no-IRQ context.
+>
+> The Mobileye EyeQ5 platform uses this GPIO controller and share an IRQ
+> for its two banks.
 >
 > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-(...)
-> -               .name =3D "gpio",
-> +               .name =3D "nomadik-gpio",
 
-Patch applied after amending $SUBJECT to be nomadik-gpio rather than
-gpio-nomadik.
+Patch applied!
 
 Yours,
 Linus Walleij
