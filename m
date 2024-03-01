@@ -1,49 +1,49 @@
-Return-Path: <devicetree+bounces-47606-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47607-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60FF886DDBA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:00:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C4B886DDC0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:01:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DDCAEB2329F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:00:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1C7BC281DC6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D966F6A028;
-	Fri,  1 Mar 2024 09:00:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B162D6A037;
+	Fri,  1 Mar 2024 09:00:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="IfmzeAjg"
+	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="we1dloiL"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F00496A01C;
-	Fri,  1 Mar 2024 09:00:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0F6496A034;
+	Fri,  1 Mar 2024 09:00:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709283626; cv=none; b=GRMuYsEnHosUhqPB5Mr1gs5pvgSFPXFhZLrvjIQZTHfL4vOfKlmxdVXcE0lOgPIsTZDYe25fTC17oWqAY0QgAh2xKqx/itBsxQFjJTahf0lnMdnremorVPZgMCn8OI0YoLJChD1jWHi057SlNz/refzEQQOlrRHpIOCo8JbFm/Q=
+	t=1709283636; cv=none; b=tvJLZ0NNd86LFqmGZTvTuJmJp92csivTS5frpil+YqxdCO9YOuS7YmK+zovhigtD9gPgoX/kob+OKYSNSvjzB+P66WdtLNGU6owbyd1bsq7oFMziZ4tuggrY/fthaDkx3i5b2vRLrDpFLOVCqNwjCOmx71RggibsyTsT1811s68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709283626; c=relaxed/simple;
-	bh=SRR5laSaf3dxRN/Qmp9ZYXH6mHJfmvhGvnG0vUjM6JE=;
+	s=arc-20240116; t=1709283636; c=relaxed/simple;
+	bh=oAFztLp/4jG5aPVuwccvklYKukOY5Xi/lceGKNTY+II=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rtBknhtEjrnFZGD2yAp05AbCth8xRA5n/pj81Mei2O+fyHtZQr87PzyAJOwftPUDdwzX/6dIMjWfpd/AMo8qFarpYGtRzZ2wlCsXp0eIQU7bUqAITFvhQt6qM8B/qk6WxfKQI9/pGh1FpwBjZKahEmQ1saQn1DH8bndOaOL4VBs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=IfmzeAjg; arc=none smtp.client-ip=217.194.8.81
+	 Content-Type:Content-Disposition:In-Reply-To; b=kDPwDlwDpP4qd7pH8+qxHbiO58r+/aU9mDqJthN4Dk3Vhd+8WUadA/bppbCfxAVx7PiohlajggRPTcWsQt8MZUfJTgzXbGIyr8SMWZy4oUZf2vNqabDLvaFsGiWHDMjbCbRtXN4NM8cSUkp1/kywGGuzgAcKQ6bBYDGzjZYpceM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=we1dloiL; arc=none smtp.client-ip=217.194.8.81
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
 Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id B174C2208F;
-	Fri,  1 Mar 2024 10:00:12 +0100 (CET)
+	by mail11.truemail.it (Postfix) with ESMTPA id A8C872208C;
+	Fri,  1 Mar 2024 10:00:31 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1709283613;
-	bh=icnTFb6jMxQwiDQb08/KnNZdQPGMbV7AyxxSbGvlk+M=; h=From:To:Subject;
-	b=IfmzeAjgmMw5XKQ2zRa9/jXW8XwinnKdY9CqjERn2OTzr/+2VZRO9qIsf2qjbNVby
-	 JK34VWsIVo64KHNBu6UX6qySOznRLLBO2zQ+r3lC8/UgOiMti5VKfc3cDrPXj7Wp0A
-	 7t7OaE49VkKb7OGrQfCvfXHBFSp28HpZewQ+685u+HA8cFqcuuQ1Djp/iT1Qt+2aUn
-	 2varzrojjMh/KEuDa4YXFyGDv9PObUEaXbsjqIiXDRuFCitB8CAy5zJGynASVel14i
-	 oao8XEw953C3QFdU+rl7tNI1hDgalSK/QxC6SpRTdH4oTD4ctf3kZgejrU9Fw2eGeq
-	 4MXoySOXra+xA==
-Date: Fri, 1 Mar 2024 10:00:07 +0100
+	s=default; t=1709283632;
+	bh=AEjfsT6r+Ol9iuZ3KRRaO59JjAWFeCrR2k+DPca4gDU=; h=From:To:Subject;
+	b=we1dloiL7R8trMuVoMh8EhefI2DnPowzOV4bEK+vDJbAuAfChYkf+xBzkQ3lW5ILP
+	 Hy0zUl5MZ8+7Y6PXSeIyu/lCEXVVM74HRr0rVA3dyV1JL+oXxV052MOmgvireEiD6o
+	 KxnUpKgnE2nV/gv3V1+RcJLmR7PO/FP6JK8QhlMi4PeM3cZoi9FYHtdpSROHO/NQYh
+	 nI5KEcdUg1A6w7jV7yhgmUs8B6JV7Zxo+O6qy55pGaa2yP0K5d6RARoxF5rc7YQS2m
+	 0T9OtPoTsLUUDkT/DYrgDdTa25SXbwr+ho9XLHbuXM36l6vx2VnVMSSMUuGodYNxBV
+	 09V7f5w1JUtdg==
+Date: Fri, 1 Mar 2024 10:00:30 +0100
 From: Francesco Dolcini <francesco@dolcini.it>
 To: Stefan Eichenberger <eichest@gmail.com>
 Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
@@ -51,11 +51,11 @@ Cc: nm@ti.com, vigneshr@ti.com, kristo@kernel.org, robh+dt@kernel.org,
 	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org, francesco.dolcini@toradex.com,
 	Stefan Eichenberger <stefan.eichenberger@toradex.com>
-Subject: Re: [PATCH v1 1/2] arm64: dts: ti: k3-am62-verdin: replace
- sleep-moci hog with regulator
-Message-ID: <20240301090007.GA6605@francesco-nb>
+Subject: Re: [PATCH v1 2/2] arm64: dts: ti: k3-am62-verdin-dahlia: support
+ sleep-moci
+Message-ID: <20240301090030.GB6605@francesco-nb>
 References: <20240301084901.16656-1-eichest@gmail.com>
- <20240301084901.16656-2-eichest@gmail.com>
+ <20240301084901.16656-3-eichest@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +64,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240301084901.16656-2-eichest@gmail.com>
+In-Reply-To: <20240301084901.16656-3-eichest@gmail.com>
 
-On Fri, Mar 01, 2024 at 09:49:00AM +0100, Stefan Eichenberger wrote:
+On Fri, Mar 01, 2024 at 09:49:01AM +0100, Stefan Eichenberger wrote:
 > From: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 > 
-> The Verdin family has a signal called sleep-moci which can be used to
-> turn off peripherals on the carrier board when the SoM goes into
-> suspend. So far we have hogged this signal, which means the peripherals
-> are always on and it is not possible to add peripherals that depend on
-> the sleep-moci to be on. With this change, we replace the hog with a
-> regulator so that peripherals can add their own regulators that use the
-> same gpio. Carrier boards that allow peripherals to be powered off in
-> suspend can disable this regulator and implement their own regulator to
-> control the sleep-moci.
+> Previously, we had the sleep-moci pin set to always on. However, the
+> Dahlia carrier board supports disabling the sleep-moci when the system
+> is suspended to power down peripherals that support it. This reduces
+> overall power consumption. This commit adds support for this feature by
+> disabling the reg_force_sleep_moci regulator and adding a new regulator
+> for the USB hub that can be turned off when the system is suspended.
 > 
 > Signed-off-by: Stefan Eichenberger <stefan.eichenberger@toradex.com>
 
