@@ -1,131 +1,138 @@
-Return-Path: <devicetree+bounces-47530-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47533-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C08BE86D94F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 03:01:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id E125A86D9E8
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 04:00:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6E6561F227EE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 02:01:53 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A47501C20F60
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 03:00:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE43538DE0;
-	Fri,  1 Mar 2024 02:01:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7955F405CB;
+	Fri,  1 Mar 2024 03:00:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="F++7zWSI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="q7ZHeWEU"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B961FC03;
-	Fri,  1 Mar 2024 02:01:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CCD63FE5B;
+	Fri,  1 Mar 2024 03:00:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709258508; cv=none; b=Wwaa+FteXBNnHI1o520Jm/ZTWwxz3pVse6dlSzg4yQ0upWG84S/gCsKhCCdqf2R7je+lzEJzR0WWJAtnKWuS8wvv3ECIBOxNxN5hdsHv08asixAXPrZ5cSngb5TwHxT7+hrI8XXdJthqYjURZiimd4xIMOcfkW+2FdFVIDEJMIQ=
+	t=1709262018; cv=none; b=BC4rkBiwTogLC5LyThHsmFaTBR6p6ow0dQ2ojtedYTWFi2CEmrGON/G/GmKJl5P6k59YKQrNW5G5elvTH0cBsCyXZV22/vmInugqmPJy6dTBoTe5VcjZWPb9pEQ7gxE/lQFqlXO0uR7odjiwRFXDz2L8RSf3t2iStHiDC5p/hWM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709258508; c=relaxed/simple;
-	bh=qL6ryTGcMgCNWUne3Xb4F08g2n+lnz0zgQg6XVOU8ZY=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=iRk6fuagQYSCAd83Nv9OykEWFtSTMaT8dRNDgN/6xiKEUAWFPxQCFO9ZGkq38ziV2U99MyQT8JT+k7OM48J5OMzeN0Z/BMz4BCr6FgUCI+TRZoR3JmqJq5eBdgMnHze4OcrOh8BatZitF88CzPdCuAtpGo4dKTfBdtSrP3V9HQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=F++7zWSI; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 9fa86d68d76f11eeb8927bc1f75efef4-20240301
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=HBS1I/NOgPbbX1oZFpsgk/1CALyAPNq0suP+PJ3XesU=;
-	b=F++7zWSIF/rtO46xP5XMrm5P6hDqrY4yxfJE7EF1ORCuygCyGTeNkWAkKbqbhdvgrqqmjmrfCjJqf415/pPlZJq8QWVf6Z0jbytmK5cwzKKrVFW9XA4Ni39QTAdSas+gpZ8SanxipNyasWGa2TbXIxExH8WNGBlI51egEPv/VMI=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.37,REQID:dead455a-5c7c-44f8-81b6-dcbfbd48f4bf,IP:0,U
-	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
-	:release,TS:-5
-X-CID-META: VersionHash:6f543d0,CLOUDID:cde97984-8d4f-477b-89d2-1e3bdbef96d1,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: 9fa86d68d76f11eeb8927bc1f75efef4-20240301
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
-	(envelope-from <yunfei.dong@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 176012849; Fri, 01 Mar 2024 10:01:31 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- MTKMBS14N1.mediatek.inc (172.21.101.75) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 1 Mar 2024 10:01:29 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 1 Mar 2024 10:01:28 +0800
-From: Yunfei Dong <yunfei.dong@mediatek.com>
-To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>
-CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, "Yunfei
- Dong" <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH] media: mediatek: vcodec: support 36bit physical address
-Date: Fri, 1 Mar 2024 10:01:26 +0800
-Message-ID: <20240301020126.11539-1-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1709262018; c=relaxed/simple;
+	bh=cy1flkHCEkyjQ+LrDNJLACLTv5jxDK8tRiGxgC/lIvE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=W6ud2Q5HjyIT+dmA9gWCBCV1MaJR5CidvSsQSA/iRTK0BSQ2ZZ4bWSFiUDDqYT5hQWLkmyYPMGKBniVCRSrrGOBAK++T7t3tF+MQOy+sbdEf5nqdREI+1HHuPPbCSCYX7YjQK3RfZLo8NEAEFtqOGJiONawIwA5oD3PRvlSAq4o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=q7ZHeWEU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E8DC3C433C7;
+	Fri,  1 Mar 2024 03:00:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709262017;
+	bh=cy1flkHCEkyjQ+LrDNJLACLTv5jxDK8tRiGxgC/lIvE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=q7ZHeWEUc22dhyYG992U2xjzYmMHs507mtCLrQ/U9KDjLkZ+hSV8vl9YGB0ylZfVh
+	 3MSyxrRp8U1sMFVT4jMG4/e2Fk53x0b2T4scH/wjG4r8uSBZRCEJ32Nwajrd91uIQm
+	 qgii5nnOGaI4hg93i/Cu6NkMC180jRHtnkFbvsAoEZCmJJJuzkeWdvsou+3Nv0fhAC
+	 H+MWkpRuk6sweWa818+AsoZXgFYjeUFtG+F1N4c9Lcy7x90VjCXJMeUzC93r1f3xvJ
+	 /H+DUx/7LZ/hEhOphhAZwbXEltL6+Y1t7L7mUMgs0VHuLtFL97h8LTjfIo8TtqH6Nq
+	 adQGRd7KG7SyQ==
+Date: Thu, 29 Feb 2024 21:00:14 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Vinod Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH RFT 7/7] arm64: dts: qcom-mode-switch: allow 4 lanes for
+ DisplayPort and enable QMP PHY mode-switch
+Message-ID: <jfwskyt3wllpf33ceeibrodorsfmhctfulfkzpkgmjikzbr63n@f4llf7wcmyxi>
+References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
+ <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-7-07e24a231840@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--8.986100-8.000000
-X-TMASE-MatchedRID: MXmpjVMQBvchu4G5/VkGwwPZZctd3P4B7f6JAS2hKPgUtdRZTmEaIb9n
-	SsB9y3SmXfLeWSJ8nKvcFPFR1xoqQh8TzIzimOwPC24oEZ6SpSkj80Za3RRg8Nr8k9p6q6xQ8XR
-	JHb0N4gK2+HtcNQgId7UxHy5DZGDPwaVEpyapekM=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--8.986100-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP:
-	81F330C20FD882D5E9A3FF4558755189B19F9D12D06F1B64C5360A96E6826FDE2000:8
-X-MTK: N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-7-07e24a231840@linaro.org>
 
-The physical address is beyond 32bit for mt8188 platform, need
-to change the type from unsigned int to unsigned long in case of
-the high bit missing.
+On Thu, Feb 29, 2024 at 02:07:07PM +0100, Neil Armstrong wrote:
+> Allow up to 4 lanes for the DisplayPort link from the PHYs to the Controllers
+> and allow mode-switch events to the QMP Combo PHYs.
+> 
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c        | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Please adjust $subject and commit message to suite the x13s.dts...
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-index cf48d09b78d7..85df3e7c2983 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-@@ -1074,7 +1074,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
- 	unsigned int mi_row;
- 	unsigned int mi_col;
- 	unsigned int offset;
--	unsigned int pa;
-+	unsigned long pa;
- 	unsigned int size;
- 	struct vdec_vp9_slice_tiles *tiles;
- 	unsigned char *pos;
-@@ -1109,7 +1109,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
- 	pos = va + offset;
- 	end = va + bs->size;
- 	/* truncated */
--	pa = (unsigned int)bs->dma_addr + offset;
-+	pa = (unsigned long)bs->dma_addr + offset;
- 	tb = instance->tile.va;
- 	for (i = 0; i < rows; i++) {
- 		for (j = 0; j < cols; j++) {
--- 
-2.18.0
 
+With this series I'm reaching 4k@60 on my X13s (with some difficulty due
+to current hotplug issues in the DP driver) - but 4-lane DP works, and
+so does 2-lane combo.
+
+I tested switching between DP-only and a USB device, this worked fine a
+few (3-4) times, after which the USB device stopped showing up. The DP
+display continued to work nicely and the debug prints from the driver
+indicates that we're moving back and forth between the modes...
+
+The problems I had when trying to implement this previously, with the
+device crashing on disconnect have not been seen, across 20+
+attempts.
+
+Regards,
+Bjorn
+
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> index a0fdef55a40a..6c73e0fc001f 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> @@ -556,7 +556,7 @@ &mdss0_dp0 {
+>  };
+>  
+>  &mdss0_dp0_out {
+> -	data-lanes = <0 1>;
+> +	data-lanes = <0 1 2 3>;
+>  	remote-endpoint = <&usb_0_qmpphy_dp_in>;
+>  };
+>  
+> @@ -565,7 +565,7 @@ &mdss0_dp1 {
+>  };
+>  
+>  &mdss0_dp1_out {
+> -	data-lanes = <0 1>;
+> +	data-lanes = <0 1 2 3>;
+>  	remote-endpoint = <&usb_1_qmpphy_dp_in>;
+>  };
+>  
+> @@ -1112,6 +1112,7 @@ &usb_0_qmpphy {
+>  	vdda-phy-supply = <&vreg_l9d>;
+>  	vdda-pll-supply = <&vreg_l4d>;
+>  
+> +	mode-switch;
+>  	orientation-switch;
+>  
+>  	status = "okay";
+> @@ -1149,6 +1150,7 @@ &usb_1_qmpphy {
+>  	vdda-phy-supply = <&vreg_l4b>;
+>  	vdda-pll-supply = <&vreg_l3b>;
+>  
+> +	mode-switch;
+>  	orientation-switch;
+>  
+>  	status = "okay";
+> 
+> -- 
+> 2.34.1
+> 
 
