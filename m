@@ -1,211 +1,85 @@
-Return-Path: <devicetree+bounces-47791-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47792-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9898686E871
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 19:31:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EDD986E88C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 19:37:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D5631F2616D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:31:26 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 10F92B2921D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:31:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57FFD38DCD;
-	Fri,  1 Mar 2024 18:31:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gRSK5Ct6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A93BA2AE72;
+	Fri,  1 Mar 2024 18:31:46 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 952584C9C
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 18:31:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 036191E88A;
+	Fri,  1 Mar 2024 18:31:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709317879; cv=none; b=SF81gvwX2vugZUh48tEYZmZYB6yaajS0jTstKniPyMtI+KS2iA+FZLHX7u0G9F8kd08wznQrpC8mwUU+T9Zfuxpmr9S5/W1Vri/+S3yvnJWce36SOy657KB2ODFOhvTp7At90wuwJkg1uiz0y9DYElTp/f+SKc6KfjcBFAH8EIU=
+	t=1709317906; cv=none; b=saUj8wJzIA4f+o26VqBxn/5S6jPDP0i3Y6yrMBWqfk38Kdefxs9iUDq9L4BVnvFLROSWS45fHIb7Bud2cHSSc7r+srUSWrTTqmx2TXZ6MtERWrbE6Wd8JDbE2BasBOrz5hK4vNloOKMH7dmYMPsiERY8MW8PnhEaaJlqt/5UZtg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709317879; c=relaxed/simple;
-	bh=t2D6o82ramXjNQyWSQZ6o4bdmA4fnf7ZmkDue7UkBiI=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=YUSozYFxmX+B4TfzHxvre64Gi9bu97V6IgncHjyyS9PQnlhEFdPNLWRPXClyPS0U/Uwh9mNIwFlXvADS3W+0UN1yPZ4bkgNgG0sDmibPMZ2fiRjVkPN8YpHRDbXykLmJAY9SYo1w8BIbghrvyoCWmdsLvwMIEt6wkW2GEhTFfP0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gRSK5Ct6; arc=none smtp.client-ip=209.85.128.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-412cb4966c0so4446275e9.1
-        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 10:31:16 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709317875; x=1709922675; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=00fDWV96hGzMlgHmADg+FHDT30+NNE+7RPj/2lJdLsA=;
-        b=gRSK5Ct6ei4SZWbBSeL88XjNqqTu8jO0u9oerZ9V8dMAMRRgOEGNoEdNsNPST8xEZb
-         oOX6BU0Bw13r0fem9a0gC56KA9xKqYYr5oy6ySlfRrbBuLGPidRnB68SR8ClIjn1nNJh
-         EIglfZI0eGCIGKy2JuNH6cOO/l1Qm5Z6o1dJ+MS20DDNlvMNKQTiWWMDSwi3Kikncus9
-         yMyjZ/6iECT3OIg0V+OPGH6fS1sBj6wm1rCvYoDmGyVRxng6twMaOJ/P19Mc/mVxwSLE
-         6D0Kzhg97lj9C6ekIMGtgGUqbLUnQBeIIn6eGkfQ/7tnVYrd7pb+MLluHOsxjBc8vpO3
-         uebA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709317875; x=1709922675;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=00fDWV96hGzMlgHmADg+FHDT30+NNE+7RPj/2lJdLsA=;
-        b=I4RZmziwCGyHLeyMFBk1g0cUPbuTlDTHR9DufvySv94l7+kfScg/VCDSpbKWq7PbLN
-         r7k+ec3mvxGQMhwsQ+C24CZMBjuMwVjDecdf/x80dI5iQbiqseSBZ+px/afS1DhtpeZe
-         kw9Z3te7Qc3OB64ckb/oF9xUXW+yITdXpbUkrSymI+6VX2uhAmcbEXbqeRLHI956KPWH
-         SKKgcMNDSmrLHBYql07HDZcc523dmf8AxiOLN0SsErtyzS2vJQhtN9r/T1IxOxRxGjlt
-         mshfKvxchpo/MIwDxqyuqgISY+fq503Wos68uunPho29iKmmAkSRxUKYQzLp/P6JBqZa
-         w6Cw==
-X-Forwarded-Encrypted: i=1; AJvYcCXWc2oIGIAry9k0sJ2QrbOR8D4ADfHnvvutVRpM3DzMTK0WI4u92TeCZQnP2OU+w+o6vjWDZKVmZcyaiT6IFZ7W6ofR+PoJjT/rLQ==
-X-Gm-Message-State: AOJu0YzI1P/x+z7Gc7dGudUxLW+OnuPTZkw/QJDnObapTxg2v3cb4So6
-	dQntGV1RFSx06qgquo9gZVx/cEnb/NsSzEvqeRSRqHQb+/dceXiWud4xCWu8CI0=
-X-Google-Smtp-Source: AGHT+IFEic06454DIPjHdGIhjkTFcQQke8zNWqIpZhtgGWNUnK5McNBCaU6INJ6zvLIZyqlDxtOTcw==
-X-Received: by 2002:a05:600c:5105:b0:412:b0ef:22b1 with SMTP id o5-20020a05600c510500b00412b0ef22b1mr2001771wms.4.1709317874803;
-        Fri, 01 Mar 2024 10:31:14 -0800 (PST)
-Received: from ?IPV6:2a01:e0a:982:cbb0:7f8a:cf96:378:4490? ([2a01:e0a:982:cbb0:7f8a:cf96:378:4490])
-        by smtp.gmail.com with ESMTPSA id p26-20020a05600c205a00b00412b62f6e35sm8342697wmg.15.2024.03.01.10.31.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Mar 2024 10:31:14 -0800 (PST)
-Message-ID: <4ec8a486-285b-40f7-8501-28550a9f83b9@linaro.org>
-Date: Fri, 1 Mar 2024 19:31:13 +0100
+	s=arc-20240116; t=1709317906; c=relaxed/simple;
+	bh=uvA7MIHTJcGenB7nrHefgXzSSiCHXiAuvFdOm0hCOro=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CVUFtZensBr92ZMNKbpeVJVY0MDlqEYyNBR/CLy253FU5s3TDvtu4ptIRtMymcRnqwpBEm73OVBnpOLKc1LFhsCNCfexWWcn9LrAysTH4QV03biy6Aae8V/owwfZ9zdxAmENa/kMuZZ1y6QuhYiXV35gWVcxDyl4xks4pW2eMbM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
+X-IronPort-AV: E=McAfee;i="6600,9927,11000"; a="14573814"
+X-IronPort-AV: E=Sophos;i="6.06,196,1705392000"; 
+   d="scan'208";a="14573814"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2024 10:31:30 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11000"; a="914022371"
+X-IronPort-AV: E=Sophos;i="6.06,196,1705392000"; 
+   d="scan'208";a="914022371"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Mar 2024 10:31:26 -0800
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andy@kernel.org>)
+	id 1rg7fH-000000091u5-0DFJ;
+	Fri, 01 Mar 2024 20:31:23 +0200
+Date: Fri, 1 Mar 2024 20:31:22 +0200
+From: Andy Shevchenko <andy@kernel.org>
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: geert@linux-m68k.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	andrew@lunn.ch, gregory.clement@bootlin.com,
+	sebastian.hesselbarth@gmail.com, pavel@ucw.cz, lee@kernel.org,
+	linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/4] auxdisplay: 7 segment LED display
+Message-ID: <ZeIe-tr2IpwFvKw9@smile.fi.intel.com>
+References: <20240301014203.2033844-1-chris.packham@alliedtelesis.co.nz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH RFT 7/7] arm64: dts: qcom-mode-switch: allow 4 lanes for
- DisplayPort and enable QMP PHY mode-switch
-To: Bjorn Andersson <andersson@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
- <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-7-07e24a231840@linaro.org>
- <jfwskyt3wllpf33ceeibrodorsfmhctfulfkzpkgmjikzbr63n@f4llf7wcmyxi>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <jfwskyt3wllpf33ceeibrodorsfmhctfulfkzpkgmjikzbr63n@f4llf7wcmyxi>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240301014203.2033844-1-chris.packham@alliedtelesis.co.nz>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-On 01/03/2024 04:00, Bjorn Andersson wrote:
-> On Thu, Feb 29, 2024 at 02:07:07PM +0100, Neil Armstrong wrote:
->> Allow up to 4 lanes for the DisplayPort link from the PHYs to the Controllers
->> and allow mode-switch events to the QMP Combo PHYs.
->>
+On Fri, Mar 01, 2024 at 02:41:59PM +1300, Chris Packham wrote:
+> This series adds a driver for a 7 segment LED display.
 > 
-> Please adjust $subject and commit message to suite the x13s.dts...
+> I haven't had a chance to look at the gpio changes that'd be required to
+> have multiple characters as subnodes. I wanted to get the code that
+> addressed Andy and Rob's comments out before my weekend.
 
-Sure I realized this after sending the patches....
+Thank you for the update!
+Almost fine, one more iteration needed for some minor fixes.
 
-> 
-> 
-> With this series I'm reaching 4k@60 on my X13s (with some difficulty due
-> to current hotplug issues in the DP driver) - but 4-lane DP works, and
-> so does 2-lane combo.
-> 
-> I tested switching between DP-only and a USB device, this worked fine a
-> few (3-4) times, after which the USB device stopped showing up. The DP
-> display continued to work nicely and the debug prints from the driver
-> indicates that we're moving back and forth between the modes...
-> 
-> The problems I had when trying to implement this previously, with the
-> device crashing on disconnect have not been seen, across 20+
-> attempts.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-Greatm nice this was fixed!
-
-I also experienced USB issue after a few connect/disconnects, it seems that messing
-with the USB PHY doesn't make DWC3 very happy, not sure how we could actually fix that.
-
-Thx for testing!
-
-Neil
-
-> 
-> Regards,
-> Bjorn
-> 
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 6 ++++--
->>   1 file changed, 4 insertions(+), 2 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
->> index a0fdef55a40a..6c73e0fc001f 100644
->> --- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
->> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
->> @@ -556,7 +556,7 @@ &mdss0_dp0 {
->>   };
->>   
->>   &mdss0_dp0_out {
->> -	data-lanes = <0 1>;
->> +	data-lanes = <0 1 2 3>;
->>   	remote-endpoint = <&usb_0_qmpphy_dp_in>;
->>   };
->>   
->> @@ -565,7 +565,7 @@ &mdss0_dp1 {
->>   };
->>   
->>   &mdss0_dp1_out {
->> -	data-lanes = <0 1>;
->> +	data-lanes = <0 1 2 3>;
->>   	remote-endpoint = <&usb_1_qmpphy_dp_in>;
->>   };
->>   
->> @@ -1112,6 +1112,7 @@ &usb_0_qmpphy {
->>   	vdda-phy-supply = <&vreg_l9d>;
->>   	vdda-pll-supply = <&vreg_l4d>;
->>   
->> +	mode-switch;
->>   	orientation-switch;
->>   
->>   	status = "okay";
->> @@ -1149,6 +1150,7 @@ &usb_1_qmpphy {
->>   	vdda-phy-supply = <&vreg_l4b>;
->>   	vdda-pll-supply = <&vreg_l3b>;
->>   
->> +	mode-switch;
->>   	orientation-switch;
->>   
->>   	status = "okay";
->>
->> -- 
->> 2.34.1
->>
 
 
