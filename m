@@ -1,147 +1,162 @@
-Return-Path: <devicetree+bounces-47713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C60086E4C9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:56:09 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5627386E4F0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:05:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16428286AD5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:56:08 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EAE291F23901
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C217671745;
-	Fri,  1 Mar 2024 15:55:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D424670AD1;
+	Fri,  1 Mar 2024 16:05:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HOg7D5lQ"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="eaQFp5bZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E7B97173D;
-	Fri,  1 Mar 2024 15:55:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6107338DC3;
+	Fri,  1 Mar 2024 16:05:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709308541; cv=none; b=so/MYAkpK+UuXqBsVWkCzMrxR8KtLHJoCnZDFba/65qUrw25rpxxjp1/Bzq7k3HMGywbJBTi12GVkfI3/7W/ul8DXMTQWvu4rKEYbCh/yGJQJxvvA6wanD0+gAfoWEBGk5cSoZY69AI11Ju+HbMALpY2vpAuQA8Sq/eprz8ko2s=
+	t=1709309115; cv=none; b=eL6/Vw27B2wp+mwIK+cbXj+AaVm1HQy8zOQF4xJxl3ZIWtCWMfS6ZQs9yw+8pzMbb/WfepGEyMOWQG4ktyRQ6Byzvf3g7qZVKyV88oJ8UCVoz5VHR2PHbo7lLDkzaS78tFWEqOCghq5kZDjRMIxAA7jNTD/jnuukns1ptvSTQcs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709308541; c=relaxed/simple;
-	bh=+x3DnyLQr0FGuE3K5s58Ij+vb1+Fn/o9c7ysNtVLivo=;
+	s=arc-20240116; t=1709309115; c=relaxed/simple;
+	bh=GdiD6GetYQ7plMbY7Z0t9eGPdeIDnAI9+mc+CerOGzw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kDGmZmc1KaZqNwwP5+sS6V7rdl7edVzwmVi7t2bBGmJ/Jdbl8QMahtSVuLF4XglDUFdiK/enVa4QkzadlQh7akDZSeo2jVFq4wTIsqlTVO3cuuUEjCZuY47pvmZuLwLdCqRpq0/9abPIdVRr6zMOIxNZFHhjR0Al3rVSQuxacOA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HOg7D5lQ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D874C433F1;
-	Fri,  1 Mar 2024 15:55:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709308541;
-	bh=+x3DnyLQr0FGuE3K5s58Ij+vb1+Fn/o9c7ysNtVLivo=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=HOg7D5lQtK68Db2OuM3YK/C3ykhtKtUFLUe33QAxfMi1eCPf0ZJw4UE+cF9GhsYr/
-	 CSR0U0jJoxSPapzKr5jm5RAQovcbfQZRvY6Rh2d3hvrJjgQ3fTIdPdHLZ4MuazGt5O
-	 IBnx8PrAJWFWoE0NJVDFXHQk3A4n5uRbJmQK+qTWKYhv0UU4r8mvv4AWMZIt10f43i
-	 SGF+JXtpYRj80aJikeWMN2VX0mTnZQ2A7qCJHb11YXKjNFCcr4hG+legnrY4bUVp/p
-	 KWDw30kWpWfFnXdUZHgu1oCstpMnwtSYbXmwo6EfB0VtZTmY/3E35WCjxbtT4BAwdu
-	 yrXRgD0J1Y0CQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rg5Em-000000001l7-2rSd;
-	Fri, 01 Mar 2024 16:55:53 +0100
-Date: Fri, 1 Mar 2024 16:55:52 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=JRy0dqbU5TEspWf1UeVKmVg3nAvYZYuDCR00uZGWZK1DgFcnxh+IgzkNfYVGJMLCCMOhzXqFm//iSl2r6MSFRDqXOqp3oExcY/+8zZYjIMM1SlaVfTUL9Z3KtX0jSHuBLAna3Or4AzSbFgkWFAK1DdlbIPPpy7Tfe4m2zwRHs50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=eaQFp5bZ; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 95E3824000A;
+	Fri,  1 Mar 2024 16:05:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709309110;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=zelpl9Plgt9LUl8SLGJpDVPo1sGxGYnWY3UETmUttgY=;
+	b=eaQFp5bZScbGwpgadNiS1YbG9levV0au38YUoIL0hxygwV7g6FeLLeW96RsgM2JSK5/y/v
+	IuCyA/Uvy9RhUykUMzyHdX2sgVoaCwGHteXQclYrhITtGzJOMUov52/XHPBOPSkV/GSbCB
+	Wdmx1iozjOr2wkzXLy5PlzSWYmJni6Rr4WFJWzpNtnLXMXlqu0fvj+gm/VmlOVzhDX98Ch
+	8jGtXh86+iVXDMVRzC91FwJrUBqzt/5jEGy3DZEUJ30aOVDoeq7iTj7tefQaFWSuRO8ig4
+	OFRefvZWHEGSzHjLQ8YYJYMjHLCghOIQV8v1JDJ1TW/teic2A7i5MmwAix6yrQ==
+Date: Fri, 1 Mar 2024 17:05:08 +0100
+From: Kamel Bouhara <kamel.bouhara@bootlin.com>
+To: Dmitry Torokhov <dmitry.torokhov@gmail.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com,
-	quic_jackp@quicinc.com
-Subject: Re: [PATCH v15 9/9] usb: dwc3: qcom: Add multiport suspend/resume
- support for wrapper
-Message-ID: <ZeH6iHdOie0_UYwZ@hovoldconsulting.com>
-References: <20240216005756.762712-1-quic_kriskura@quicinc.com>
- <20240216005756.762712-10-quic_kriskura@quicinc.com>
+	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Marco Felsch <m.felsch@pengutronix.de>,
+	Jeff LaBundy <jeff@labundy.com>
+Cc: catalin.popescu@leica-geosystems.com, mark.satterthwaite@touchnetix.com,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	bsp-development.geo@leica-geosystems.com
+Subject: Re: [PATCH v9 0/3] Input: Add TouchNetix axiom touchscreen driver
+Message-ID: <20240301160508.GA190983@tpx1.home>
+References: <20240301103909.167923-1-kamel.bouhara@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240216005756.762712-10-quic_kriskura@quicinc.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240301103909.167923-1-kamel.bouhara@bootlin.com>
+X-GND-Sasl: kamel.bouhara@bootlin.com
 
-On Fri, Feb 16, 2024 at 06:27:56AM +0530, Krishna Kurapati wrote:
-> Power event IRQ stat registers are present for each port
-> connected to controller. Add support for modifying all power event
-> irq stat registers present in wrapper.
+Le Fri, Mar 01, 2024 at 11:39:05AM +0100, Kamel Bouhara a écrit :
+> Add a new driver for the TouchNetix's axiom family of touchscreen
+> controller. This driver only support i2c and can be later adapted for
+> SPI and USB support.
+>
+> Kamel Bouhara (3):
+>   dt-bindings: vendor-prefixes: Add TouchNetix AS
+>   dt-bindings: input: Add TouchNetix axiom touchscreen
+>   Input: Add TouchNetix axiom i2c touchscreen driver
+>
+>  .../input/touchscreen/touchnetix,ax54a.yaml   |  62 ++
+>  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+>  MAINTAINERS                                   |   7 +
+>  drivers/input/touchscreen/Kconfig             |  12 +
+>  drivers/input/touchscreen/Makefile            |   1 +
+>  drivers/input/touchscreen/touchnetix_axiom.c  | 669 ++++++++++++++++++
+>  6 files changed, 753 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/touchscreen/touchnetix,ax54a.yaml
+>  create mode 100644 drivers/input/touchscreen/touchnetix_axiom.c
+>
+> --
+> 2.25.1
+>
 
-Could you please say about what the power-event irqs are used for here
-in the commit message as I asked you before?
- 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-> Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 30 +++++++++++++++++++++++-------
->  1 file changed, 23 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index 572dc3fdae12..e789745a9468 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -37,7 +37,11 @@
->  #define PIPE3_PHYSTATUS_SW			BIT(3)
->  #define PIPE_UTMI_CLK_DIS			BIT(8)
->  
-> -#define PWR_EVNT_IRQ_STAT_REG			0x58
-> +#define PWR_EVNT_IRQ1_STAT_REG			0x58
-> +#define PWR_EVNT_IRQ2_STAT_REG			0x1dc
-> +#define PWR_EVNT_IRQ3_STAT_REG			0x228
-> +#define PWR_EVNT_IRQ4_STAT_REG			0x238
+Above is the missing changelog:
 
-Again, not sure it makes any defines too keep these defines when you
-only access them through the array.
+Changes in v2:
+ - Add device tree binding documentation
+ - Move core functions in axiom_i2c as we only care about i2c support now
+ - Use static function when required
+ - Use syntax dev_err_probe()
+ - Add an hardware based reset
 
-> +
->  #define PWR_EVNT_LPM_IN_L2_MASK			BIT(4)
->  #define PWR_EVNT_LPM_OUT_L2_MASK		BIT(5)
->  
-> @@ -109,6 +113,13 @@ struct dwc3_qcom {
->  	u8			num_ports;
->  };
->  
-> +static const u32 pwr_evnt_irq_stat_reg_offset[DWC3_MAX_PORTS] = {
+Changes in v3:
+ - Remove irq-gpios property in dt-binding
+ - Use a generic node name
+ - Fix issues reported in https://lore.kernel.org/oe-kbuild-all/202310100300.oAC2M62R-lkp@intel.com/
 
-Seems "_offset" is redundant here, 'pwr_evnt_irq_stat_reg' should be
-enough.
+Changes in v4:
+ - Cleanup unused headers and macros
+ - Use standard kernel type
+ - Namespace structures and functions
+ - Use packed struct when possible to avoid bitfield operators
+ - Fix missing break when address is found in axiom_populate_target_address()
+ - Split reads in two steps for the reports, first length then report
+   itself so we only read required bytes
+ - Get poll-interval from devicetree
+ - Add VDDI/VDDA regulators
+ - Add a startup delay of 110 ms required after VDDA/VDDI is applied
+ - Remove axiom_i2c_write() as it is no more used
 
-> +	PWR_EVNT_IRQ1_STAT_REG,
-> +	PWR_EVNT_IRQ2_STAT_REG,
-> +	PWR_EVNT_IRQ3_STAT_REG,
-> +	PWR_EVNT_IRQ4_STAT_REG,
-> +};
-> +
->  static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
->  {
->  	u32 reg;
-> @@ -444,9 +455,11 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
->  	if (qcom->is_suspended)
->  		return 0;
->  
-> -	val = readl(qcom->qscratch_base + PWR_EVNT_IRQ_STAT_REG);
-> -	if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
-> -		dev_err(qcom->dev, "HS-PHY not in L2\n");
-> +	for (i = 0; i < qcom->num_ports; i++) {
-> +		val = readl(qcom->qscratch_base + pwr_evnt_irq_stat_reg_offset[i]);
-> +		if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
-> +			dev_err(qcom->dev, "Port-%d HS-PHY not in L2\n", i + 1);
+Changes in v5:
+ - Fix wrong message constructed in axiom_i2c_read
+ - Delay required between i2c reads is >= 250us
+ - Do not split report reading in two phases as we'll
+   have to wait 500us
+ - Use lower-case in properties names
+ - Make regulators properties are required in dt-binding
+ - Fix bug report: https://lore.kernel.org/lkml/202312051457.y3N1q3sZ-lkp@intel.com/
+ - Fix bug report: https://lore.kernel.org/lkml/6f8e3b64-5b21-4a50-8680-063ef7a93bdb@suswa.mountain/
 
-Please use lower case "port-%d" for consistency.
+Changes in v6:
+ - Fix missing unevaluatedProperties.in dt-binding
+ - Use __le16 to correctly deal with device endianness
+ - Use standart kernel types s/char/u8/
+ - Use regmap api as driver might support spi later
+ - Use get_unaligned_le16() for the sake of clarity
+ - Use devm_regulator_enable_optional()
 
-Johan
+Changes in v7:
+ - Remove startup time from dt-binding
+ - Fix usage table not correctly populated
+
+Changes in v8:
+ - Fix missing call to input_report_slot_state()
+ - Fix issue reported in https://lore.kernel.org/oe-kbuild-all/202402020623.8T1Ah513-lkp@intel.com/
+
+Changes in v9:
+ - Fix issue reported in https://lore.kernel.org/oe-kbuild-all/202402201157.BKo97uWl-lkp@intel.com/
+ - Rebase on v6.8-rc2
+
+--
+Kamel Bouhara, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
 
