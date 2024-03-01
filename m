@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-47841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B6DD86ED19
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 00:56:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7FEF686ED1F
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 00:59:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E3E551F23B91
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 23:56:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36FC8287054
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 23:59:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A2045EE70;
-	Fri,  1 Mar 2024 23:56:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 24D185F493;
+	Fri,  1 Mar 2024 23:59:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GNZYa/8h"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IbgGIMwN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F15375F472
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 23:56:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 618555F46A
+	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 23:59:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709337380; cv=none; b=YMoeMHBBbosH0pNqSebvNdCK6YLMD+t+0BeD9iC0gT8g5Vzi2nMvZzR7ptLda1g8hYOt43Ngr8UiME/4lMyDKw8em5Ej68EAImhZgamt3qeN+TcPqRcogS5i8rLPRmm/90kyld7fkatoVIACbn9hDMVay2aNv1eG/kp62fDhCWI=
+	t=1709337543; cv=none; b=aFXPZJdt2gMSWRH7WrwCmiPuZB59pkvlwxXINytWyrrGxKHsbDq4ue1u2WZTeeUDYN/HzqKDVd1H1AeKthRagkupXxY+gn4Ki5NAjC8jATB3dDF+0Xd/M/xvV+t1t3Vz0ZCtazSX7y+0uleo/a5HFgnBzh+ORswdcytY1JV0D7Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709337380; c=relaxed/simple;
-	bh=QkJ1xdbAMKMnvRj2AyuRDjj1b4wJiMw5P0RDMBnY9oU=;
+	s=arc-20240116; t=1709337543; c=relaxed/simple;
+	bh=ETU0ZgkCoYAe6Z7VTDx08sZijKjkIDe8qT9lyHO3Dps=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=e0cd7mGVwj5WRMBhre0+4DA2Me8JpHzMAWja7hBc1kHR3JnbQzPGA9Bm23idHk4ZTmH9ZlAvEQH9f8y2Ehrr7JZDFg++JVXA8iInAuaqw2W1QC8g4i4HGKZc9oa8u/Q4eAW2eR8dxaYGrJeUcKgAW8cyTbiLZis9tjTe8NZtQZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GNZYa/8h; arc=none smtp.client-ip=209.85.218.41
+	 In-Reply-To:Content-Type; b=mEPKTfRdga+7Z9G3LZOhA333QhTMjs3WyQjQaKXiYj3sH07RSYN9z65WSMRLfnZTLldRRqJA8qxiRaK1XjGz0+OblTT2OqrcGtq0ImwsQOVf83gHHhpXn1ZTFODy4r6C+55xPDUdIFC7iLhtcox9oU0B3+eXVFONlPm+H0NkFU0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IbgGIMwN; arc=none smtp.client-ip=209.85.218.42
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a43f922b2c5so329728166b.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 15:56:16 -0800 (PST)
+Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a44b0b2c7cdso130414066b.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 15:59:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709337375; x=1709942175; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709337540; x=1709942340; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q4bK4AfVct1aRZS5U/svuHPQiO8tDHE4H8kEQpOUhsU=;
-        b=GNZYa/8hpS4M9OvFHilyIiXdDnT5EiUEIpVBKxYG43sktF0tNX3ZO1PA81Xrlrd6IR
-         r4yvMGsguHDtxFbm3ouLMSs9knIqyI6ZlWjvqlkGoKx3ns0TlPpLolBlwJ9I7SdMF1kO
-         lKJHzb7fnXSAnaqOik9GCFoJPYNQTuA4F0/hp+GMAEoAxVHj98MzuD+cclg8YNNA2gjo
-         l68auxY1tfz/1iNQkJK8yprcxceGAm+XwtP7FukQS1CXpO9JlRAYip6771aZnwouQeMU
-         lxmQPglumgg6Ymmm92pSB1Zse03VMbvH06iSFu8M/vuUohXKHj71Vyrfah2IhV1gSqwT
-         0Ffw==
+        bh=YA1O7kLB3C42ZIvzHJ983LhvtPhH5S4z7eGI8/yXF6Y=;
+        b=IbgGIMwNcfgw0Lpo/e5WIMtirGrC9J1p/5aPwI3PheLI52g9v17NjgFtxDuYR5ot3H
+         W6QPhcbm0eAb13IGZ/bnDIaIN/sdWHJk7LtFGe0AZHkgRt5vUgBRX1lYXTh+CNS4rCPx
+         G+ZA2VKPNRzfRh6LIjPdnEfUYy9cfoLdHOSn0A1VRrrHIeSyeA0epWPHuVbdfLczDMY5
+         BfhWuqWVCpWCMdTXgzPN48GbVhq6TOmtptQNeSzmdl6VdFnFOzjiTU//pDf5NrG4O1va
+         XhVe4H53VTZgHYfGz40yDcwJHQfmM0Y1vZOZRijqH7tVMba45/KLvyC2JSzNVzx+M1SJ
+         E+yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709337375; x=1709942175;
+        d=1e100.net; s=20230601; t=1709337540; x=1709942340;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q4bK4AfVct1aRZS5U/svuHPQiO8tDHE4H8kEQpOUhsU=;
-        b=d6jcDLYkjlQg3m2K1MXShqRrmeJXkYPJCGj2IeADlikOIIjn2IoYnxZo1w4DUv/2mM
-         16et615s6XdPGrCB52szrvaGwX3KgXXCijBW1mMWE0HwXbDor90sfHfPFP+LxbRm5PzR
-         w3LVhxmtLevuk4heekdibAv78l51GoEng7DL44eBShbMOJwgmMIWqj1wZUEiAcG8fTMT
-         5ef3i/+96UTq22Mq61GKSiX/goJjVF6B3xlo2qOVZDsgPWdUt8C28DBzpiNE9EbfL3H7
-         Lv5+achDccwuIIN13+5Ad1rl4DipJ86opwDqCXeNP8t5X+il1XdR51aCRacaQntEZAhF
-         ZJsA==
-X-Forwarded-Encrypted: i=1; AJvYcCUIGIwLu3YMO1rsfd/iNp2JWIgRVqsN2EwzvHvRyhd7QDd27FNFwQCA9rOnltHI3zHsymVhySP9zG5tIM2mjqrRCumKXYVNjm4FNQ==
-X-Gm-Message-State: AOJu0YzWmWiYNpcgWhSlIertyVJLdjDwi7DVz+A5qwKuLhxHbA8wmZxs
-	U76iH810A29TGrkyBaJICK3Om+ZJAqMUgjKKfwF3mxc6NmDd+5Hh8WWK3yrX1BE=
-X-Google-Smtp-Source: AGHT+IEHYTRyWRSIxB3bWILGlwC2NxaxqTT4jgrqo6fjDX/ZTPRKNg4OMrKKdvcN0EakUO8IrGKa+g==
-X-Received: by 2002:a17:906:7191:b0:a44:c896:6751 with SMTP id h17-20020a170906719100b00a44c8966751mr503841ejk.67.1709337375411;
-        Fri, 01 Mar 2024 15:56:15 -0800 (PST)
+        bh=YA1O7kLB3C42ZIvzHJ983LhvtPhH5S4z7eGI8/yXF6Y=;
+        b=ekq4IwCiXJb+E0EvRSvHAsJOJcVl21Cp1SKewzyGpGk/0EGIXS/Dhl8TOM4ah4zcTl
+         CS3Nb3hBPF7eHb/ngeEMmH/rel8IrCIPvMwyX1eNPkfDBbgXydz6oEUNKI17lqCHJlUI
+         37kShQQHIEBl412L3xkIUrhxS/q0QPPJuXSkt7RbN9rctFIXpQ44pKWP475Pzq2x2E8O
+         r8FmmEM01jWb9XCqAXbNTsgSvc45/Pbq/G9bIY+y8i/dUwyH8REiQooZn91kabK+nKIx
+         zM90opbJIBfgjZpAkHln5yj2MmXD4a0Zt04IZIiNGy4TCc1p3Agk9SfJ9ZewniDVRs6x
+         D9+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXmWLJKUQYBAVS6cbA5xcsauSRxV4ruAI+q2PAwlTbO7ob/IB4+Mq60qYggrC5f9z5AxWAuquPZfMxr9FR9edhA8wshvkNy4ymymA==
+X-Gm-Message-State: AOJu0YwCRQ+6jv9h5wBNQN8khRvxXRtWHkElNgbpWbYAEiCw3scPYOho
+	mfigfMIQuBvtiZhCHsQYbHkp7XvoRCFrX67BCNmndh6Xbm9WRkim1oqgg45TdJ4=
+X-Google-Smtp-Source: AGHT+IHwnfAnGr5O8kASzxqPfzRoY7ABHUTooFv/fIASs/MHqBMyWJpUwEDEXapcV/UhGZL43xXDXQ==
+X-Received: by 2002:a17:906:f194:b0:a3e:9231:fe7e with SMTP id gs20-20020a170906f19400b00a3e9231fe7emr2440937ejb.71.1709337539658;
+        Fri, 01 Mar 2024 15:58:59 -0800 (PST)
 Received: from [192.168.216.32] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id v23-20020a1709067d9700b00a42ee62b634sm2141583ejo.106.2024.03.01.15.56.12
+        by smtp.gmail.com with ESMTPSA id w23-20020a170906131700b00a432f3bc3a5sm2157029ejb.76.2024.03.01.15.58.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Mar 2024 15:56:14 -0800 (PST)
-Message-ID: <630bb10a-2197-4573-a6d5-01fa6650c315@linaro.org>
-Date: Sat, 2 Mar 2024 00:56:11 +0100
+        Fri, 01 Mar 2024 15:58:59 -0800 (PST)
+Message-ID: <2f6a5c83-69a4-480b-a235-c0d51feac31e@linaro.org>
+Date: Sat, 2 Mar 2024 00:58:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,23 +76,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] clk: qcom: clk-alpha-pll: Add support for Regera PLL
- ops
+Subject: Re: [PATCH] arm64: dts: qcom: sm8250-xiaomi-elish: add usb pd
+ negotiation support
 Content-Language: en-US
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
- Rob Herring <robh@kernel.org>,
+To: Jianhua Lu <lujianhua000@gmail.com>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>
-Cc: Stephen Boyd <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20240229-camcc-support-sm8150-v1-0-8c28c6c87990@quicinc.com>
- <20240229-camcc-support-sm8150-v1-2-8c28c6c87990@quicinc.com>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240227124529.12926-1-lujianhua000@gmail.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
 Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  xsFNBF9ALYUBEADWAhxdTBWrwAgDQQzc1O/bJ5O7b6cXYxwbBd9xKP7MICh5YA0DcCjJSOum
@@ -129,76 +122,53 @@ Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
  bGqMHex48FVZhexNPYOd58EY9/7mL5u0sJmo+jTeb4JBgIbFPJCFyng4HwbniWgQJZ1WqaUC
  nas9J77uICis2WH7N8Bs9jy0wQYezNzqS+FxoNXmDQg2jetX8en4bO2Di7Pmx0jXA4TOb9TM
  izWDgYvmBE8=
-In-Reply-To: <20240229-camcc-support-sm8150-v1-2-8c28c6c87990@quicinc.com>
+In-Reply-To: <20240227124529.12926-1-lujianhua000@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29.02.2024 06:38, Satya Priya Kakitapalli wrote:
-> From: Taniya Das <quic_tdas@quicinc.com>
+On 27.02.2024 13:45, Jianhua Lu wrote:
+> Add usb pd negotiation, but charging is controlled by pm8150b pmic,
+> so it can only charge battery with 5W,
 > 
-> Regera PLL ops are required to control the Regera PLL from clock
-> controller drivers, thus add support for the same.
-> 
-> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
-> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+> Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
 > ---
+>  arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi | 9 ++++++++-
+>  1 file changed, 8 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> index 6f54f50a70b0..ed103b90f4e6 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> @@ -636,7 +636,8 @@ &pm8150b_typec {
+>  	connector {
+>  		compatible = "usb-c-connector";
+>  
+> -		power-role = "source";
+> +		op-sink-microwatt = <10000000>;
 
-[...]
+Is 10W really the minimum value for this tablet to function as a sink?
 
+Is that what the downstream kernel sets?
 
-> +static int clk_regera_pll_enable(struct clk_hw *hw)
+> +		power-role = "dual";
+>  		data-role = "dual";
+>  		self-powered;
+>  
+> @@ -645,6 +646,12 @@ PDO_FIXED_DUAL_ROLE |
+>  					 PDO_FIXED_USB_COMM |
+>  					 PDO_FIXED_DATA_SWAP)>;
+>  
+> +		sink-pdos = <PDO_FIXED(5000, 3000,
+> +					 PDO_FIXED_DUAL_ROLE |
 
-This function is 1:1 clk_zonda_pll_enable() logic-wise, except for
-the `if (val & ZONDA_STAY_IN_CFA)` part. Would it be an issue on
-Regera?
+Please align the PDO_.. against the open brace
 
-> +static void clk_regera_pll_disable(struct clk_hw *hw)
+> +					 PDO_FIXED_USB_COMM |
+> +					 PDO_FIXED_DATA_SWAP)
+> +					 PDO_VAR(5000, 12000, 5000)>;
 
-This again is clk_zonda_pll_disable(), except the very last value written
-to PLL_OPMODE is different. Could you commonize them?
-
-
-> +
-> +static void zonda_pll_adjust_l_val(unsigned long rate, unsigned long prate,
-> +									u32 *l)
-
-(Ugly wrapping, please touch it up)
-
-..should it apply to zonda as the name suggests? Also, any explanations?
-
-> +	u64 remainder, quotient;
-> +
-> +	quotient = rate;
-> +	remainder = do_div(quotient, prate);
-> +	*l = quotient;
-> +
-> +	if ((remainder * 2) / prate)
-> +		*l = *l + 1;
-> +}
-> +
-> +static int clk_regera_pll_set_rate(struct clk_hw *hw, unsigned long rate,
-> +				  unsigned long prate)
-> +{
-> +	struct clk_alpha_pll *pll = to_clk_alpha_pll(hw);
-> +	unsigned long rrate;
-> +	u32 l, alpha_width = pll_alpha_width(pll);
-> +	u64 a;
-> +	int ret;
-> +
-> +	rrate = alpha_pll_round_rate(rate, prate, &l, &a, alpha_width);
-> +
-> +	ret = alpha_pll_check_rate_margin(hw, rrate, rate);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (a && (a & BIT(15)))
-
-What is BIT(15)?
-
-Also, the left part of the condition is totally bogus, if a is 0 then
-a & BIT(15) will surely be zero as well.
+60W max? This is not unheard of, but I'm just making sure you know..
 
 Konrad
-
 
 
