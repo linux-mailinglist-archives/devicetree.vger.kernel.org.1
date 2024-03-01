@@ -1,140 +1,125 @@
-Return-Path: <devicetree+bounces-47588-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47589-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B4686DD1C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:30:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 67EA786DD23
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:32:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A41F1C22910
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:30:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E24A51F26407
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:32:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE6FA69E10;
-	Fri,  1 Mar 2024 08:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C1BC67E6C;
+	Fri,  1 Mar 2024 08:32:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="XHAwqsJM"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="cZ7Opj3f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2C6569E19;
-	Fri,  1 Mar 2024 08:30:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F61C2B9D6;
+	Fri,  1 Mar 2024 08:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709281828; cv=none; b=LKm0zcFYX/mkEVVJ6KOpwl0vtYPqCEIxAWr7Vz8HJ0q6oWMdLC4LIdBuQaU2e1V9aN6sspsfeUPrj/D/+Wl8lWNZXJZlWpBL7b6jBdvQ7/8pKGrjJnWf9pRRln2NQPWDLeXvggceQmXrK6QJwsD8w7pqwIZfmniATYor34ey7W4=
+	t=1709281927; cv=none; b=faR8VpnhkEncd9HJi/Z4rn+XE/SJl2zs80qnVMauf9NuWaytAs8viwevYmF1Bf+Ghmc2Hkd2zlXiDBLF6LkwrMq+MJFihq7JMLImySN8GeAgZ88Kn3SBR6LjPnvfKA9WkschlfqUcYTBgZnVAdJUr4P7dCCRIH7bQabWRqvkNGY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709281828; c=relaxed/simple;
-	bh=BBhgeRx4yOLdW6NNuh+M5S/wHVDDwGe+mJfSD+9oj4c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=hiXKUBpLb/fI1CNFwv4sqJv5wVeESqoqBqNSVUsc3v8hj43bB1miem/2L/CSv0pgjJeQVYwLHjbAHSuX5GET9/c3R2iuPXyJGuSrKkO5hPo6QoOW0m+4XWeKz/G3267sKOjd5w0M3K1R/KGHW+CxxPlHeEBaZz82u6n3lqv1J10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=XHAwqsJM; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a26fa294e56so342364666b.0;
-        Fri, 01 Mar 2024 00:30:26 -0800 (PST)
+	s=arc-20240116; t=1709281927; c=relaxed/simple;
+	bh=tXo+3yPFTwnKSAxxXrAIP7alPGiEQwOwRgLL411etiA=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=nLgx4Noo01kT0dOmlVAk+ooaEPYxam3mYQrxAWhYTKLitKCiG7uVZEniV0NH8YwqEj4MIsoCfa9SYeRgou4k7OrDBysPhpjMj2Titp+M9DkFZjBSBEjO8y8i6QCF+y13DDTppbbtR5onP7qrHxMXY67aSldy5IqaoxUVPHLNzoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=cZ7Opj3f; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709281825; x=1709886625; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qV7g20c61SLdcO3hJdJz8nvxom42Edf9pzms73nygYQ=;
-        b=XHAwqsJMxScnnPgoOLY87hRy722D+DJG9l6B+JENMK/3hVyFFKcLqfHRIXmqgkfu3U
-         KeDYPLB//2O50vFnprOnoNOPxpCbdtTEBqQoOUZUP+4y+umYnYKAbecWZZD5f6e7Hlxx
-         B0HCrCwPvYTxwXNeOWjKaOhwcrbWS//JHA92rxIHFDCHRYsVcMbMB5pO/7g22oOgtlBA
-         EwNJ2/9MdJAYlTDuz/HEu5W0Dyvs3+bmAPrx/LDDgEgZG9/4/TCwqABVrqGNiFPQHZkl
-         zOuiNOs57xm0RqDPAkGb/bt1Hq/AgI+D3U34eji1ycxd23CMJjt5tuyLz3+pFaBYHrbh
-         nWpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709281825; x=1709886625;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qV7g20c61SLdcO3hJdJz8nvxom42Edf9pzms73nygYQ=;
-        b=qi6WFHDME76X11qKkuZ46C8qXoVRF5mGxXgRTm+7dphZ9G7A6GnAgrnrYz9I1mC3eY
-         2fosmnilUl0fGEgMzVZhF/OtXsJnImxKBQ5IjgPnzI45qskKVQDGfG/3Erj3n4cSt9tM
-         53K0ymST1lTTgceSyCyJqkB7JLiWESbhrW2ElxGSX10/u2ViCe+Awb7mVBqDk9IV7EXg
-         8Q+ZW6hAiLwUAYzanqmVv5iWbHBE7mnLh3O5sNy95Yty5AgkL6/p7FRNHnpBbUpSQ+0N
-         4h9CUR3yjGlA0v/8D+dRGn4TgIzXg0Bw4+TX5dpTRRDw3b9NNihp8yc9z+t1dxpUHtAt
-         ZA9g==
-X-Forwarded-Encrypted: i=1; AJvYcCVk+dgaZo0y6hVDG3WIfeTWAhwsNGqOFWpikJQ3h4MS2opm8n3x0PMNufwRaKq2tCgOKrqXmyd4h4muXWq6Hp2Cpy4aSuV4I0OK3d/DfQ1Qs10p1r8R/cc844AUdu0WvxmxXZrLH2EAUw==
-X-Gm-Message-State: AOJu0YzAyZRqF3UZSorF1vSggPNBplJ/SV4kyrDySRXKvslRmK/5X9Jh
-	xcXDonHQMYLeL7YAX3BHq1Lk9+OBPjfqA8eT26UG5MfjTFVTXx4IA5vl6ViQeQG2MPmGZ9GwMmv
-	k0Nm626UtvRsl0JgTUkw00Jj9aUY=
-X-Google-Smtp-Source: AGHT+IE+14OaOL2S1nEWF9pejEJNM+Y86qN34hhKNmuQ+PcOJOR+7Ftc71QqTn1J1VkQogD0UG7NN6abk3ewaAcfTsw=
-X-Received: by 2002:a17:906:5ad0:b0:a43:900a:31c5 with SMTP id
- x16-20020a1709065ad000b00a43900a31c5mr756052ejs.4.1709281825127; Fri, 01 Mar
- 2024 00:30:25 -0800 (PST)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1709281923; x=1740817923;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=tXo+3yPFTwnKSAxxXrAIP7alPGiEQwOwRgLL411etiA=;
+  b=cZ7Opj3f1HGipZ8mWY8LM3YxFKbRrggehPRR1oYRVzmyMYBSlqR8My7e
+   FM0Iq2/i6lmFFJKz4qpAmxGweF9zyCQ2v/i/EcZxLG3b8AN/zXwQF3UKK
+   w4eTI82blK7fKTlwwFHq7ZnZYsC5T3OAJhPbQ6gn8J0mTKT2FiWLzThlr
+   0qOtOIrq2/TLRolW/KhueEfNCIpXriAUDBSHKxVht/Q52A5gA0ZstR2dF
+   G/cZVfX63Lo4edjOvKMUOP8Yhr6naD1CrL2LaAjWChY4XtQOySlMZriJ+
+   IhWw0kGa5LXZ8xiHumI+ZMShLvDmTEz1prnJZNO3ekEfvzr9DTiEboz0c
+   g==;
+X-IronPort-AV: E=Sophos;i="6.06,195,1705359600"; 
+   d="scan'208";a="35680235"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 01 Mar 2024 09:32:00 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 6E141280071;
+	Fri,  1 Mar 2024 09:32:00 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/3] media: dt-bindings: nxp, imx8-isi: Allow single port for single pipeline models
+Date: Fri, 01 Mar 2024 09:32:00 +0100
+Message-ID: <6655016.GXAFRqVoOG@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <3f82eadb-a475-4ea0-8de3-0bfe0a46a27b@linaro.org>
+References: <20240223140445.1885083-1-alexander.stein@ew.tq-group.com> <bf892e5b-be7a-4197-9e68-5199e3aada23@linaro.org> <3f82eadb-a475-4ea0-8de3-0bfe0a46a27b@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
- <20240229-rk-dts-additions-v3-2-6afe8473a631@gmail.com> <823379825559bb76088c31f44f998dd3@manjaro.org>
- <CABjd4YybaQnKm+VpU_xVrCb=pxQ7oQXPHGZzn_u1w_h3yn7gwg@mail.gmail.com>
- <a8ebe39b28a34c3544481a4e43e61d2b@manjaro.org> <b16f1d40549554598a3658679ceba9bf@manjaro.org>
-In-Reply-To: <b16f1d40549554598a3658679ceba9bf@manjaro.org>
-From: Alexey Charkov <alchark@gmail.com>
-Date: Fri, 1 Mar 2024 12:30:14 +0400
-Message-ID: <CABjd4YwAq28C6gKTJKJdZQ_Fw1oEjR475oTS96xEXRj=XQ5_pg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/5] arm64: dts: rockchip: enable automatic active
- cooling on Rock 5B
-To: Dragan Simic <dsimic@manjaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Fri, Mar 1, 2024 at 12:25=E2=80=AFPM Dragan Simic <dsimic@manjaro.org> w=
-rote:
->
-> On 2024-03-01 07:17, Dragan Simic wrote:
-> > On 2024-03-01 06:21, Alexey Charkov wrote:
-> >> On Fri, Mar 1, 2024 at 1:25=E2=80=AFAM Dragan Simic <dsimic@manjaro.or=
-g>
-> >> wrote:
-> >>> On 2024-02-29 20:26, Alexey Charkov wrote:
-> >>> > This links the PWM fan on Radxa Rock 5B as an active cooling device
-> >>> > managed automatically by the thermal subsystem, with a target SoC
-> >>> > temperature of 65C and a minimum-spin interval from 55C to 65C to
-> >>> > ensure airflow when the system gets warm
-> >>>
-> >>> I'd suggest that you replace "automatic active cooling" with "active
-> >>> cooling" in the patch subject.  I know, it may seem like more of the
-> >>> unnecessary nitpicking, :) but I hope you'll agree that "automatic"
-> >>> is actually redundant there.  It would also make the patch subject
-> >>> a bit shorter.
-> >>>
-> >>> Another option would be to replace "automatic active cooling" with
-> >>> "automatic fan control", which may actually be a better choice.
-> >>> I'd be happy with whichever one you prefer. :)
-> >>
-> >> Sounds good to me, thanks!
-> >
-> > I'm glad that you like it. :)
-> >
-> >>> Otherwise, please feel free to add:
-> >>>
-> >>> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
-> >>
-> >> Thank you Dragan, much appreciated!
-> >
-> > Thank you for putting up with my nitpicking. :)
->
-> Perhaps the following tag would also be deserved for this patch:
->
-> Helped-by: Dragan Simic <dsimic@manjaro.org>
->
-> I hope you agree. :)
+Hi Krzysztof,
 
-Definitely! Thanks again for your feedback and contribution!
+Am Donnerstag, 29. Februar 2024, 19:18:14 CET schrieb Krzysztof Kozlowski:
+> On 29/02/2024 19:14, Krzysztof Kozlowski wrote:
+> > On 23/02/2024 15:17, Laurent Pinchart wrote:
+> >> On Fri, Feb 23, 2024 at 04:16:31PM +0200, Laurent Pinchart wrote:
+> >>> Hi Alexander,
+> >>>
+> >>> Thank you for the patch.
+> >>>
+> >>> On Fri, Feb 23, 2024 at 03:04:44PM +0100, Alexander Stein wrote:
+> >>>> In case the hardware only supports just one pipeline, allow using a
+> >>>> single port node as well.
+> >>>
+> >>> This is frowned upon in DT bindings, as it makes them more complicated
+> >>> for little gain. The recommendation is to always use a ports node if a
+> >>> device can have multiple ports for at least one of its compatibles.
+> >>
+> >> And reading the cover letter, I see this causes warnings. I think we
+> >> need guidance from Rob on this.
+> >=20
+> > Here was similar case:
+> > https://lore.kernel.org/all/20240227142440.GA3863852-robh@kernel.org/
+> > and @Rob recommendation was to just use ports.
+> >=20
+> > It's true it causes warnings... or I should say - it was causing
+> > warnings (one of my last warnings in Samsung DTS for W=3D1).
+> >=20
+> > I wonder what's the base of this patchset?
+> >=20
+> > https://lore.kernel.org/linux-samsung-soc/20231122-dtc-warnings-v2-1-bd=
+4087325392@kernel.org/
+>=20
+> Uh, wait, this was not merged, so the warning still appears. Anyway the
+> preference is simpler schema, so just "ports".
+
+Okay, thanks for that information. I'll drop this patch then.
+Just to be on the same side, this implies that using a single port
+in this case ( see patch 3) is not necessary/wanted, no?
+If so, I'll drop patch 3 as well.
 
 Best regards,
-Alexey
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
