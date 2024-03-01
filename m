@@ -1,170 +1,316 @@
-Return-Path: <devicetree+bounces-47657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 528CD86E10D
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 13:30:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C0B86E11E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 13:34:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D39E1C22190
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 12:30:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 348FE288BD3
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 12:34:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B9AA3D;
-	Fri,  1 Mar 2024 12:30:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AFAAEDB;
+	Fri,  1 Mar 2024 12:34:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fA4+Gg9C"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="p5UhcMKc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39A98816
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 12:30:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 295B1812;
+	Fri,  1 Mar 2024 12:34:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709296224; cv=none; b=bIP51VBVURXeOZEhJSSF2GYXcWfkiGDwtOubiqi2gZtK89Ywc2r1dQNwnIPoameh4C1p3Gz/S+x7hns1eGngXj+VKeO+gcQEH9N95lJgog02V32Ea4tQCefxHpYOQTiXMxWwsptHgr0+QKxqLvjFpfvVPznQ4SJwfhgO9RaRo3k=
+	t=1709296474; cv=none; b=QosqjLpF/aYsVAr478S+Chz+MKDCGay6zmANpp/ft5Toi+gNHRTfHByiJhJcvkPn29dSLJz2TgtKQQW9BzcPWji0DE6dQ6INyT4yMjlRARuL8f0rEaml9DLgflMo4WdAgtBgj43F3+LeJmuPNqngnEbyCL8tp4FgI99ITngwLw4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709296224; c=relaxed/simple;
-	bh=imlWPqqaoAQbWflokIpdffb2kyPFXhk1wjI1Fqe5uN8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F07091VaKb6oTKcaFXza2li+nzwcT+vhRwyUkaKRF6ACVZEZARAHu3eRFmrfQWOxjHlBdE39Dpj4MF845Tv+zDLLoR5k6kcmq8XMCk/xfhTdwPOsT6OT0DZOqi4ajkoPWmCecOZj4Ru7V1ha/+W5yrhPOwMCKzJ55t7SmqNKJhg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fA4+Gg9C; arc=none smtp.client-ip=209.85.218.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a3122b70439so352839266b.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 04:30:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709296220; x=1709901020; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=D2E6Lza6jvlwY8TOC6NENJsFl/OQfmtbf7Mqqg+pFao=;
-        b=fA4+Gg9CngY+VtlKK2/wNx8w1YOlgBZo9aXVxoO/Ld6PwqqWLTyIH0q0IKsDLMzYDs
-         f5WUpTD/DV05AZM2zb6rJuiGSR89s9nkmgbUuVvWPNecMomeuaXhUqw4Au8j8Ing4+Vd
-         3JS5himd85mlnPKefey7gkSMZpR24flk8dwNshDUxi1GZ7Bm4yjJxBwmiRkwYh5cUBO8
-         dix7yDux3oG1RqI6Q+UE/QjDA5vLI8/qUp7fM5f9RwaDTIaFGcf5ALRxf3KYhemg06mD
-         3GmG4c22sBoM5pDuaNYZTAg4VYbDY/zG31YDY/PFRPtbTI0Oeg+dfl7Wiz0H+zqAh4Fk
-         M54g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709296220; x=1709901020;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D2E6Lza6jvlwY8TOC6NENJsFl/OQfmtbf7Mqqg+pFao=;
-        b=pzNHGbVwbgxXim3PP0+40ahMBCZES3tU6phuvTeL6+KLZx5SAz8wX72/Gm3uQzG9Oe
-         gaPt6AYptMrhw2LeBG0C8GCrG8foRtOyJXsQJEGTXhOovYNKcoZdC2kvhdaP0I13Dbwh
-         /zaQhLBZKW/JbWrgBw8vX26uUu9og4deOFXwC0LdyTruSil9X7LfOqyACiGmsYaRDrLb
-         Vbxb8mZkfC/qbvj8B9Ch8zOTOmbk4ek92qf3bQ0gJJjIxL1YfUUO67fUBkFMQKaaPQoC
-         8B03CC2b/ZiBcf2z8kPCAe8QJbyRqr+NfuhCugKglXjWeTQJIzrucMm7HKoZvk/+odq5
-         9rzA==
-X-Forwarded-Encrypted: i=1; AJvYcCVF5vB5f6Ezy2iHqMyx17g4Km79CwhRKu9AG7eqIUdOK1gQB+Vx3lxwvBzYEeR8BRWYK3rwkJk4YBi7jQMZP/0TRcaXMNzMxx238Q==
-X-Gm-Message-State: AOJu0Yy0ITWlaeH9lkyYxpbEPH8sh1bgQNHTY/5b+vX6rV6kJ3BkubKD
-	WHAEG0ovu3Vb8mqkBSqSeI1AmUHjtzbbOjDNj3c1P6xmLg1MI/GWXdBOKxBBneY=
-X-Google-Smtp-Source: AGHT+IG2nhL9VcjRjhqf3UCjncstikvcmX5Gs+GWeHIXAafRZACodM8Jl5e4ixYtz+gz6GkY6Vvsdg==
-X-Received: by 2002:a17:906:507:b0:a3e:7cd8:3db7 with SMTP id j7-20020a170906050700b00a3e7cd83db7mr1120751eja.68.1709296220553;
-        Fri, 01 Mar 2024 04:30:20 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id lb24-20020a170906add800b00a4131367204sm1650486ejb.80.2024.03.01.04.30.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Mar 2024 04:30:19 -0800 (PST)
-Message-ID: <e5cff980-8fd1-4658-9c21-fe2e62b5063e@linaro.org>
-Date: Fri, 1 Mar 2024 13:30:18 +0100
+	s=arc-20240116; t=1709296474; c=relaxed/simple;
+	bh=v7pPKcM/LK+j7XMQkYI4Q1FyQ5pU6u6VvVtgS+onmWw=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=NKzihLLd/F1wQU9lB5AdDdj+YcWLshVz9BChHown27Yrz0T7d5w/hlG0teHohizL8EAMtVR8h81O5pKOkzxvh9z6Zw2PqoY3R+tFBROBIYilCYefmzXqCbFt5hXhZTCw2ToNB0tC6Ph+vUhU44dheY0v1Gi9wVDcN792gnVQcu0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=p5UhcMKc; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: pwm: add support for MC33XS2410
-To: Dimitri Fedrau <dima.fedrau@gmail.com>
-Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240301111124.29283-1-dima.fedrau@gmail.com>
- <20240301111124.29283-2-dima.fedrau@gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240301111124.29283-2-dima.fedrau@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709296467;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uXXrFPwA0W0DulbaMA1x6JuvLaWb0VOrWlzgP3c4M7Q=;
+	b=p5UhcMKc4xU9LuKVQWuvU/QxoXFmMBjrOiQ8NEc6RjpP2+2CQXenPt0qVjtgB3UWmHyK46
+	UdeRcK5vHBHG27dfzTXYKH2XdYhg8nma+o6WSEt02mHL3CPEYQ5+MlmS7zgLKtTEsYd/x5
+	8YAZ9nK6fBwVfl6/D/AACEH+KMYt2BzPlfdMWczsjmSaMHhCzcUwCyOrhYiTIdf8WCoX76
+	sIkFMrEKNc1B0/7ZUkWkvMY0rMV9QIL0w/zoraMLB9assOKRNwk6RL0KfIrNMUJWCY9Pev
+	ueRYy1TSLFVq2cFMYqSeIqQ5He6q18bPYJ61Of82YclwFKRShq4M3vXcODje5w==
+Date: Fri, 01 Mar 2024 13:34:26 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
+ Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] arm64: dts: rockchip: enable built-in thermal
+ monitoring on RK3588
+In-Reply-To: <CABjd4YzjQ8NdA-gdux3YPw2K6dwLn5oNWRAix7raSgoGsEdpbA@mail.gmail.com>
+References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
+ <20240229-rk-dts-additions-v3-1-6afe8473a631@gmail.com>
+ <a370efd768021ce1afd6ea5ce841acbb@manjaro.org>
+ <CABjd4YxM3HY20BbLZ2bJbEFuf6Uv9P_=v4NdHuvN2M-pxh652Q@mail.gmail.com>
+ <ad00189e1a25ca90128be6c8b3841b77@manjaro.org>
+ <CABjd4YwMtZUhZG12qXv-=L8e2itwr6_Pex3E_ma1UC9MPQ95EA@mail.gmail.com>
+ <8b48eeac7b629c39adc6024ff418724c@manjaro.org>
+ <CABjd4YzjQ8NdA-gdux3YPw2K6dwLn5oNWRAix7raSgoGsEdpbA@mail.gmail.com>
+Message-ID: <6e76db0b2e7739176bcea0b90746a35a@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 01/03/2024 12:11, Dimitri Fedrau wrote:
-> Adding documentation for NXPs MC33XS2410 high side switch.
+On 2024-03-01 12:10, Alexey Charkov wrote:
+> On Fri, Mar 1, 2024 at 12:52 PM Dragan Simic <dsimic@manjaro.org> 
+> wrote:
+>> On 2024-03-01 09:25, Alexey Charkov wrote:
+>> > On Fri, Mar 1, 2024 at 9:51 AM Dragan Simic <dsimic@manjaro.org> wrote:
+>> >> On 2024-03-01 06:12, Alexey Charkov wrote:
+>> >> > On Fri, Mar 1, 2024 at 12:21 AM Dragan Simic <dsimic@manjaro.org>
+>> >> > wrote:
+>> >> >> On 2024-02-29 20:26, Alexey Charkov wrote:
+>> >> >> > Include thermal zones information in device tree for RK3588 variants.
+>> >> >> >
+>> >> >> > This also enables the TSADC controller unconditionally on all boards
+>> >> >> > to ensure that thermal protections are in place via throttling and
+>> >> >> > emergency reset, once OPPs are added to enable CPU DVFS.
+>> >> >> >
+>> >> >> > The default settings (using CRU as the emergency reset mechanism)
+>> >> >> > should work on all boards regardless of their wiring, as CRU resets
+>> >> >> > do not depend on any external components. Boards that have the TSHUT
+>> >> >> > signal wired to the reset line of the PMIC may opt to switch to GPIO
+>> >> >> > tshut mode instead (rockchip,hw-tshut-mode = <1>;)
+>> >> >>
+>> >> >> Quite frankly, I'm still not sure that enabling this on the SoC level
+>> >> >> is the way to go.  As I already described in detail, [4] according to
+>> >> >> the RK3588 Hardware Design Guide v1.0 and the Rock 5B schematic, we
+>> >> >> should actually use GPIO-based handling for the thermal runaways on
+>> >> >> the Rock 5B.  Other boards should also be investigated individually,
+>> >> >> and the TSADC should be enabled on a board-to-board basis.
+>> >> >
+>> >> > With all due respect, I disagree, here is why:
+>> >> >  - Neither the schematic nor the hardware design guide, on which the
+>> >> > schematic seems to be based, prescribes a particular way to handle
+>> >> > thermal runaways. They only provide the possibility of GPIO based
+>> >> > resets, along with the CRU based one
+>> >>
+>> >> Please note that other documents from Rockchip also exist.  Below is
+>> >> a link to a screenshot from the Thermal developer guide, version 1.0,
+>> >> which describes the whole thing further.  I believe it's obvious that
+>> >> the thermal runaway is to be treated as a board-level feature.
+>> >>
+>> >> - https://i.imgur.com/IJ6dSAc.png
+>> >
+>> > Frankly, that still doesn't make TSADC per se a board-level thing IMO.
+>> > The only thing that is board-level is the wiring of GPIO based resets,
+>> > which I fully agree should go to board .dts for boards that support
+>> > it, but that's not part of the current defaults and can be safely
+>> > added later.
+>> >
+>> > TSADC is inside the SoC. CRU is inside the SoC. They work just fine
+>> > for a thermal reset, even if no dedicated reset logic is wired on the
+>> > board. I really don't see any downsides in having TSADC enabled by
+>> > default with CRU based resets:
+>> > - it's a safe default (i.e. I cannot think of any configuration or use
+>> > case where enabled-by-default TSADC does any harm)
+>> > - it's safer than accidentally forgetting to enable TSADC (as it adds
+>> > thermal protection which is otherwise missing)
+>> > - it will work on all boards (even if it doesn't utilize the full
+>> > hardware functionality by ignoring GPIO resets that some boards also
+>> > have in addition to the CRU)
+>> > - and it requires fewer overrides in board .dts files
+>> >
+>> > Sounds like a no-regret move to me.
+>> 
+>> Please see my comments below.
+>> 
+>> >> To be fair, that version of the Thermal developer guide dates back to
+>> >> 2019, meaning that it technically applies to the RK3399, for example,
+>> >> but the TSADC and reset circuitry design has basically remained the
+>> >> same for the RK3588.
+>> >>
+>> >> >  - My strong belief is that defaults (regardless of context) should be
+>> >> > safe and reasonable, and should also minimize the need to override
+>> >> > them
+>> >>
+>> >> Please note that the TSADC is disabled in the RK3399 SoC dtsi, so
+>> >> having
+>> >> it disabled in the RK3588(s) SoC dtsi would provide some consistency.
+>> >
+>> > I'm happy to produce a patch to reverse the logic in RK3399 (and any
+>> > others for that matter) to also have TSADC enabled by default there,
+>> > thus saving several lines of code, if it's just about consistency.
+>> 
+>> But why should we change something that has served us for years, on
+>> multiple SoCs, with zero troubles and with (AFAIK) zero boards 
+>> producing
+>> puffs of bluish smoke?
 > 
-> Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
-> ---
->  .../bindings/pwm/nxp,mc33xs2410.yaml          | 118 ++++++++++++++++++
->  1 file changed, 118 insertions(+)
+> That's just if we are concerned about consistency across different SoC
+> series. The point is that I'm happy to make whatever change we agree
+> upon in a consistent way across all related .dtsi/.dts files - thus no
+> need to worry about past decisions that have already been implemented
+> for other chips. Let's just agree on the technical merits of one or
+> the other approach, leaving "we've been doing it differently elsewhere"
+> aside for now.
 
+I see, I'd also be willing to implement such cleanup patches.  Though,
+let's also keep in mind that some past decisions might have some strong
+reasons behind them, which might not be obvious.  That's another reason
+why I'm against enabling TSADC by default.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> >> Though, the RK3399 still does it in a safe way, by moving the OPPs
+>> >> into
+>> >> a separate dtsi file, named rk3399-opp.dtsi, which the board dts files
+>> >> then include together with enabling the TSADC.
+>> >>
+>> >> If you agree, let's employ the same approach for the RK3588(s), by
+>> >> having
+>> >> the its OPPs defined in a separate file, named rk3588s-opp.dtsi, etc.
+>> >
+>> > Separate file for OPPs is a good no-regret move to declutter the SoC
+>> > level .dtsi (as the OPP table is long and boring) - happy to move it
+>> > regardless of the outcome of the above TSADC discussion. Thanks for
+>> > the pointer!
+>> 
+>> Yeah, but I'm not sure that everyone would like that kind of 
+>> separation.
+>> In fact, such separation may be frowned upon unless it's necessary.
+>> 
+>> As I already described in another thread, the separation for the 
+>> RK3399
+>> is there only because a couple of different variants of the RK3399 SoC
+>> require different OPPs.
+>> 
+>> >> >  - In context of dts/dtsi, as far as I understand the general logic
+>> >> > behind the split, the SoC .dtsi should contain all the things that are
+>> >> > fully contained within the SoC and do not depend on the wiring of a
+>> >> > particular board or its target use case. Boards then
+>> >> > add/remove/override settings to match their wiring and use case more
+>> >> > closely
+>> >>
+>> >> Of course, but the thermal shutdown is obviously a board-level
+>> >> feature,
+>> >> which I described further above.
+>> >
+>> > Not so obvious to me :-) I don't mean to be stubborn or uncooperative
+>> > here, but I really can't find any technical merit in having it enabled
+>> > at board level instead of SoC level.
+>> 
+>> Well, please also consider that the PMICs from Rockchip are kind of
+>> weird little chips, specifically customized to serve particular SoCs.
+>> For example, they ensure the right sequencing and ramping-up of
+>> different power rails, which is in many cases essential.
+> 
+> Sure. I'm not saying that switching to a PMIC-assisted reset shouldn't
+> be done where the board supports it - quite the opposite. All I'm
+> saying is that having at least passive cooling and CRU based resets
+> guaranteed for any board, regardless of how thought through its .dts
+> is, seems to be a better default than no thermal protection.
 
+The way I see it, which I tried to describe in my previous response, is
+that we can't be 100% sure that CRU-based resets would work as expected
+and 100% reliably on all boards.
 
----
+>> Thus, who knows what might (or might not) go wrong if we don't reset 
+>> the
+>> PMIC at the same time when the CRU resets the SoC?  Unfortunately, the
+>> things aren't that straightforward.
+>> 
+>> On top of that, some boards, such as the Rock 5B, use a few additional
+>> discrete voltage regulators instead of a master-slave PMIC
+>> configuration,
+>> which may actually introduce some weird power-related issues, which 
+>> also
+>> may be intermittent.  Actually, I've already overheard that the Rock 
+>> 5B
+>> experiences some issues of that nature, but I don't know the details.
+> 
+> Those discrete regulators seem to be out of scope of this discussion.
+> 
+> I agree that a deeper power-cycle with proper power-up sequence to
+> follow it is better when it's available in the respective hardware.
+> I'm also happy to provide a follow-up patch to switch from CRU to PMIC
+> resets for the boards I found to support the latter.
+> 
+> The question we have at hand is solely about the default behavior for
+> a hypothetical new board with minimal .dts, or an existing board where
+> we can't determine the wiring of the TSHUT signal:
+> Option 1. Let them stay nice and warm at 120C+ under load, because
+> they should have known better and should have enabled the TSADC in
+> their device tree before putting the system under load
+> Option 2. Get them passively cooled at 85C under load even with no
+> heatsink, then force a CRU reset out of abundance of caution at 120C
+> unless they defined PMIC reset in their device tree
+> 
+> I'm advocating for the latter.
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you know the process, you can skip it (please do
-not feel offended by me posting it here - no bad intentions intended).
-If you do not know the process, here is a short explanation:
+Just to clarify, the way I see it, we'd end up with having TSADC and
+CRU-based resets enabled for the boards we can't be sure to have support
+for PMIC resets.  It's just that, the way I see it, TSADC wouldn't be
+enabled on the SoC level, but no boards would be left with no thermal
+runaway handling in place.
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tag is "received", when
-provided in a message replied to you on the mailing list. Tools like b4
-can help here. However, there's no need to repost patches *only* to add
-the tags. The upstream maintainer will do that for tags received on the
-version they apply.
+>> > Switching to PMIC-assisted resets is one thing - it definitely should
+>> > go to board files, as it depends on the specific wiring of the
+>> > TSADC_SHUT signal. Enabling TSADC in a default configuration that can
+>> > and will work on all boards regardless of their wiring is another
+>> > thing. I'm just arguing for the latter.
+>> 
+>> CRU-based thermal runaway handling may in theory work on all boards, 
+>> but
+>> we simply can't be 100% sure without detailed insights into the board
+>> designs and testing.  Maybe even the downstream U-Boot does some magic
+>> during such thermal runaway resets, which we don't know.  It may be
+>> similar to the SoC reset issues that the RK3399 suffers from.
+> 
+> That might be true, but we're talking about operation at 120C+ here.
+> I'd rather have my board reboot in any way it pleases under those
+> conditions, and have that behavior triggered by default even if it's
+> imperfect, then worry about the correct state of all regulators and
+> peripherals upon next boot. The latter is important of course, but I'd
+> rather let it cool down and reboot it manually anyway, because that
+> heat could have made more things go sideways than just the regulators.
 
-https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+Makes sense, but as you can see above, the way I propose it no boards
+would be left to sizzle under load.  That would be irresponsible and bad
+on multiple levels.
 
-Best regards,
-Krzysztof
+>> See also my comment above.
+>> 
+>> > To me it seems similar to the watchdog timer situation: we enable it
+>> > at the SoC level [1], as it is expected to work in its default
+>> > configuration regardless of the board wiring, and it provides
+>> > protection against system malfunctions. Doesn't matter if the board or
+>> > its userspace code ends up using the full functionality - it just sits
+>> > there waiting for its spotlight without hurting anybody.
+>> 
+>> Frankly, I don't know much about the watchdog functionality, so I'd 
+>> need
+>> to research it before I could say something about it.
+> 
+> FWIW, watchdog resets are exclusively routed through the CRU (see
+> RK3588 TRM V1.0 part 1 page 31). So if we expect that one to work
+> somehow, probably we should expect thermal resets to work too.
 
+I'll see to reasearch that a bit, maybe I'll find something out that
+could be interesting or useful.
 
