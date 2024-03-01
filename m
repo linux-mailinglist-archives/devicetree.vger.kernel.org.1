@@ -1,123 +1,145 @@
-Return-Path: <devicetree+bounces-47623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D342A86DE75
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:41:21 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AE39486DE99
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:52:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8AE112823F3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:41:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1A67CB22C41
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:52:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A12756A8A4;
-	Fri,  1 Mar 2024 09:41:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 679126A8BB;
+	Fri,  1 Mar 2024 09:52:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="V1LViLZC"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="QlpjN5Nc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D82369312;
-	Fri,  1 Mar 2024 09:41:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A73446995C;
+	Fri,  1 Mar 2024 09:52:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709286076; cv=none; b=EKAjEdxKt/4kiMLrQ9rcSfzx637J1x6tK4KMmBua2jkz9ywBkQe27//dJcm9hZNtt6F3dKO/PWmnrzDd+O4rEHQWh9jfnJLD451W95Mi1Q5h3NOZ6VkGLqUdNwbkuIVWu8Utu/Mk+sNvEAylu7yUDRb2zOPiEVotdU55Gwb/chM=
+	t=1709286742; cv=none; b=HTd1UXeqxoy/xxeeq6S+vCJkkn8RujlbybltHWW7J1cUsLINLjjo2d38VTxWUWcBoNykGaeQAxYSTQHcIUqsVYxXs+AVzKHHHwfG5vhuU1jPVKLeDF76DGEe6JBXLA8OctfNu5iKtXwDojajaDEQZQ4QeAnOHAB1xFdJgIiPdaw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709286076; c=relaxed/simple;
-	bh=DlbN+IlGSuSBoRTtcplLOGm6dVJxnsnj3N4h136wbCk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=CJIbvgHow/Y8rdNuFRQWCdcSdZksArRqVB0cdnluPkqlFI6WENzR07XjY4MVYpVhrAUyA1B2tjiD3rgaCOTh9lNxur/bvAuncrFMMIa1DnK1yRgH/mWrienWoPYhJHDcb3bxZVXUTihnAb8gIuGf7P/KUgWADcwah/EgJvx+qok=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=V1LViLZC; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 55480C000F;
-	Fri,  1 Mar 2024 09:41:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709286071;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DlbN+IlGSuSBoRTtcplLOGm6dVJxnsnj3N4h136wbCk=;
-	b=V1LViLZCbMkJd3hJlK1iz6yXpb8XMcGqdCRu1BKJp8BPvkkRpWcWMZ4ZUMJzm+o9OSkVuC
-	vDJxfa1Yl/JUuYQuDktcTAMGc9QFw82RijvEgEHYRAm7PwqgTwczmOc9p0AnbTzlRWlaKK
-	bG6sGLHFdpeEx1rK/jPzV1AdzrE4ILid1ukjZcihAkdaUf1joaZtm1lI9YZnE2+sdqmSFk
-	mq3Y/tqm6Q6FaK2+zUAj04GGjT2aj5E9cUx5aFVmqR4UNdGfgGu7lp50dKghbQ1miji6qk
-	jxe8aP1sD1Rd3Y4pTkf80z0VHNhwkrimOYXfRMtDVxdXlKl1riZ05FKG8CRS3A==
+	s=arc-20240116; t=1709286742; c=relaxed/simple;
+	bh=0eEAsDUiGlym1jRBLErLtOHPYKonoraS/Q/lwYdLL6c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=umiwyrmIKcrGdeV+FDewlvy7nZbWk8eYlMk5732kPxWE7uKtCbi0ngTrsmB9LLzqnps4OXoWJLUiZSjNxZlKm1W2v1ZureQIs1KnE7qDfp9PNQcF4KzbGjdoqAYjldaF00PQQZE3DKmXixI0tQS/w7h9dhKCLveg/LCjmc5/dGQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=QlpjN5Nc; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1709286738;
+	bh=0eEAsDUiGlym1jRBLErLtOHPYKonoraS/Q/lwYdLL6c=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=QlpjN5NcAeEwbGqu8RBj8FauZX1FwPsgaeROmXHEoWtABFUvUWIUbaBKxyeneagj+
+	 1UMyEDl4P6erEOnJi3aTI2uM1hCwNRyrngSEcUGRVU0ADqgSHnhjKGJ2wkL0tIej5y
+	 Leu0Qqm0fJ+NA7PsAPAlPG4hCRWAToti342lVzo/jtY3F07QE5naDvn17ZiHnKo0wv
+	 tDob4iV+b+hgvM8LtksTiyL5m1Wt3SY6YUGeB/L3g0Q4UEHOa/KEUeKwliFIMsJ2vJ
+	 ubUxB9KvFGIfD7PLvjj4SPMfjJN1ut8Doyf29CMphkVvKLctsGmaGV61XRH55wxG5k
+	 093TghaWTwZKQ==
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sebastianfricke)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id B50A037820C2;
+	Fri,  1 Mar 2024 09:52:18 +0000 (UTC)
+Date: Fri, 1 Mar 2024 10:52:17 +0100
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>
+Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Nathan Hebert <nhebert@chromium.org>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH] media: mediatek: vcodec: support 36bit physical address
+Message-ID: <20240301095217.bmsnizobpb736fgg@basti-XPS-13-9310>
+References: <20240301020126.11539-1-yunfei.dong@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 01 Mar 2024 10:41:08 +0100
-Message-Id: <CZIBCBQ2IB0E.2N3HAVO0P2SHT@bootlin.com>
-Subject: Re: [PATCH v2 02/11] dt-bindings: hwmon: lm75: use common hwmon
- schema
-Cc: <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, "Gregory Clement"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, "Jean Delvare" <jdelvare@suse.com>,
- <linux-hwmon@vger.kernel.org>
-To: "Guenter Roeck" <linux@roeck-us.net>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski@linaro.org>, "Linus Walleij"
- <linus.walleij@linaro.org>, "Andi Shyti" <andi.shyti@kernel.org>, "Rob
- Herring" <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.15.2
-References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
- <20240229-mbly-i2c-v2-2-b32ed18c098c@bootlin.com>
- <6749c8df-c545-4aca-bc18-4dfe9c9f15b0@linaro.org>
- <d78fd3ca-ed0b-40e5-8f8f-21db152a7402@roeck-us.net>
-In-Reply-To: <d78fd3ca-ed0b-40e5-8f8f-21db152a7402@roeck-us.net>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240301020126.11539-1-yunfei.dong@mediatek.com>
 
-Hello,
+Hey Yunfei,
 
-On Fri Mar 1, 2024 at 7:53 AM CET, Guenter Roeck wrote:
-> On 2/29/24 22:37, Krzysztof Kozlowski wrote:
-> > On 29/02/2024 19:10, Th=C3=A9o Lebrun wrote:
-> >> Reference common hwmon schema which has the generic "label" property,
-> >> parsed by Linux hwmon subsystem.
-> >>
-> >=20
-> > Please do not mix independent patchsets. You create unneeded
-> > dependencies blocking this patch. This patch depends on hwmon work, so
-> > it cannot go through different tree.
+On 01.03.2024 10:01, Yunfei Dong wrote:
+>The physical address is beyond 32bit for mt8188 platform, need
+>to change the type from unsigned int to unsigned long in case of
+>the high bit missing.
 
-I had to pick between this or dtbs_check failing on my DTS that uses a
-label on temperature-sensor@48.
+I would reword this a bit, the address is not beyond 32 bit, which would
+could be interpret as if the address starts after 32nd bit, instead it
+is larger than 32bits. Secondly, we don't change the type in case the
+high bit is missing, we change the type unconditionally, we do change
+the type so that the high bit isn't missing.
 
-> > If you insist to combine independent patches, then at least clearly
-> > express merging strategy or dependency in patch changelog --- .
+My suggestion:
 
-I do not know how such indirect conflicts are usually resolved. Hwmon
-can take it but MIPS might want to also take it to have valid DTS.
+The physical address on the MT8188 platform is larger than 32 bits,
+change the type from unsigned int to unsigned long to be able to access
+the high bits of the address.
 
-Any advice?
+One more question below...
 
-> For my part I have to say that I don't know what to do with it.
-> Rob's robot reported errors, so I won't apply it, and I don't
-> feel comfortable giving it an ack either because of those errors.
+>
+>Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>---
+> .../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c        | 4 ++--
+> 1 file changed, 2 insertions(+), 2 deletions(-)
+>
+>diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+>index cf48d09b78d7..85df3e7c2983 100644
+>--- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+>+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+>@@ -1074,7 +1074,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
+> 	unsigned int mi_row;
+> 	unsigned int mi_col;
+> 	unsigned int offset;
+>-	unsigned int pa;
+>+	unsigned long pa;
+> 	unsigned int size;
+> 	struct vdec_vp9_slice_tiles *tiles;
+> 	unsigned char *pos;
+>@@ -1109,7 +1109,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
+> 	pos = va + offset;
+> 	end = va + bs->size;
+> 	/* truncated */
+>-	pa = (unsigned int)bs->dma_addr + offset;
+>+	pa = (unsigned long)bs->dma_addr + offset;
 
-Can reproduce the error when patch "dt-bindings: hwmon: add common
-properties" is not applied. Cannot reproduce when patch is applied.
-Commit d590900b62f0 on hwmon-next. Cannot reproduce with hwmon-next as
-parent.
+I can see in other parts of the driver that bs->dma_addr is converted to
+u64 or uint64_t. Is unsigned long always 64-bit on the different
+Mediatek platforms? If so, why do you prefer unsigned long over u64?
+(Which describes the type more precisely)
 
-Regards,
+(Same applies for:
+drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c:452)
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Greetings,
+Sebastian
 
+> 	tb = instance->tile.va;
+> 	for (i = 0; i < rows; i++) {
+> 		for (j = 0; j < cols; j++) {
+>-- 
+>2.18.0
+>
+>
 
