@@ -1,117 +1,151 @@
-Return-Path: <devicetree+bounces-47702-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47703-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 95F6D86E3DC
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:01:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 498A786E40F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:11:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25087B215CB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:01:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 784DB1C20F7F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:11:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D10D3AC01;
-	Fri,  1 Mar 2024 15:01:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A8734205A;
+	Fri,  1 Mar 2024 15:11:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ha+sPQ87"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rOvpOu8S"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1B8E3987C;
-	Fri,  1 Mar 2024 15:01:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D36F915CC;
+	Fri,  1 Mar 2024 15:11:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709305270; cv=none; b=mgfqmNe6nJfgAy4LbduYA6Iq2CnHZr16Ju6R27gyN+86usk8IokprogwgcM4EamTSPa4Hl7VzpEJtpe0csGPaZG2X6yK2ffp4a44y4ZJcG3Ti2qJxh8WKpMl6JboQ1gO0df6vEcIHF9xKWe8eyyJnXFS3zONeWh/egx0i66w4js=
+	t=1709305909; cv=none; b=LGjuSFYJQ41ztVentBh5ulHzhX+fQdW0YcIID4oR+bcWktwthulv4WMzcNOdsa93r86Co07cF6Ph4qI4PRtmBRnxi22crlCY/qJHUUFEKvwfuU4jFjuusERUw5KNGuSfDiCXtjTTJNuZ3a1L10nRBe7eqwkSq/194shDDRJo3RI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709305270; c=relaxed/simple;
-	bh=tHAFlcvz0AL6ZnBgVLqJf9VI78SZ372MIUyTON7zBw0=;
+	s=arc-20240116; t=1709305909; c=relaxed/simple;
+	bh=yYWhC8o+k18yDFAE/PF3lPXCt5+FY+PFPMPV0qxvv6s=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Yh7mvcucr6hkjn2McZJm53We0+pUVzWuObtA1KR+7AhO3XMDXwyS4KpD1ml/MqMH+vfih+gLtswC59yFZTx08x5CTHJrIRDw1XsFQmOobo1+RMmrrw9YuuUYxFCIbh+CnAdXsIa6SJf0EIsM+Ycm75yA54MbwC2Pz73u59jaaG8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ha+sPQ87; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA3DBC433F1;
-	Fri,  1 Mar 2024 15:01:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ABQVCHiqyCOuwJOlJcpgEKAf2LtX8jJ534fst2oo7KgWXIdT0xbae/UvHWxMSvweOfbZ786dTvvSVpC1IUzskt2StsU9Cmh75/VIpiOEwibv7LlaWEh9qc/VJuzLVVmRdMBSC3HuQZEAPDvIFwlhAvoIavgbcp5UbCIlh5bkkkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rOvpOu8S; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FE22C433F1;
+	Fri,  1 Mar 2024 15:11:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709305270;
-	bh=tHAFlcvz0AL6ZnBgVLqJf9VI78SZ372MIUyTON7zBw0=;
+	s=k20201202; t=1709305909;
+	bh=yYWhC8o+k18yDFAE/PF3lPXCt5+FY+PFPMPV0qxvv6s=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Ha+sPQ87jZDLawJKK6IVH5+h9r1NK29RAlN7I555n9m126A5sF1cWQHqnbkktjUnR
-	 RwVM0WaZml4HMsv7bXt5ixl0rNXovx7QTYp6tJ6shboC+nmEYvyw8UIjyDUkPYlaeN
-	 S7fmOPfXNRh5MzW2czOI6iLipuxCQZWFWwc2oAxvkUVdbgOjzLN/1pUI7cUXXP8kfu
-	 M5PC5GH+G5OZD0Z8ietqhocY9eI6P/C64ZSHvxSMx4vtpA4PDEmDJJ9rmvMR9/kcO1
-	 XuBspaD1x9ZIwbOj9w9KrqWFCL1tER3MVydW7z9k+7gAfDiQjAyKMpGSxVYDtL8X3M
-	 RNHg+N+yCdfJQ==
-Date: Fri, 1 Mar 2024 09:01:06 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Johan Hovold <johan@kernel.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Johan Hovold <johan+linaro@kernel.org>, 
-	Bjorn Helgaas <bhelgaas@google.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and
- GICv3 ITS enable
-Message-ID: <e5xhwfvqod6dtrlhftzbno5ktezpfmr32alnd4nvkscaackj7e@vd5c24cbwzuy>
-References: <ZeCCPRVvYCNfMYnd@hovoldconsulting.com>
- <20240229205240.GA361626@bhelgaas>
+	b=rOvpOu8ShoCHhRTbOwgSdne2Nc8JrVDe/apVggW4vE+x9ZWPmsaHpLbwQs8k7iECK
+	 KDhJCQwsTHbOy15eco9mq4BYcuTkKiIy06RTezuC/KV1SMAA+kGqXw7G6xJlyIhCVF
+	 JlQT2p1DFVlCbLNV50n1UaKMYutdlGvdN8qJCNIb3gnFvKsDru6ROfg/qAmeXELm3w
+	 cXdJcY3yRGcM99GU7BGEtNhq3m6vJhD0oLaUxD+yS4LFVlcWnJCnSaMLbpBpatk3Kv
+	 HKiJ6BhC16aLH1HwewnvNNml2ttHCwXxUz0RmxbbQRsot4X+c8oJtkMBunR/pYmyd1
+	 dMhgduJmYskcQ==
+Date: Fri, 1 Mar 2024 09:11:46 -0600
+From: Rob Herring <robh@kernel.org>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mips@vger.kernel.org,
+	Gregory Clement <gregory.clement@bootlin.com>,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH v2 01/11] dt-bindings: i2c: nomadik: add
+ mobileye,eyeq5-i2c bindings and example
+Message-ID: <20240301151146.GA2114576-robh@kernel.org>
+References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
+ <20240229-mbly-i2c-v2-1-b32ed18c098c@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240229205240.GA361626@bhelgaas>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240229-mbly-i2c-v2-1-b32ed18c098c@bootlin.com>
 
-On Thu, Feb 29, 2024 at 02:52:40PM -0600, Bjorn Helgaas wrote:
-> On Thu, Feb 29, 2024 at 02:10:21PM +0100, Johan Hovold wrote:
-> > On Thu, Feb 29, 2024 at 05:54:16PM +0530, Manivannan Sadhasivam wrote:
-> > > On Thu, Feb 29, 2024 at 11:25:48AM +0100, Johan Hovold wrote:
-> > 
-> > > > As I mentioned, the 'required-opps' binding update is needed to
-> > > > fix the missing OPP vote so blocking the binding patch would
-> > > > block merging the DT fix which could otherwise go into 6.8.
-> > 
-> > > I agree that the fix gets the priority. But some maintainers
-> > > perfer to merge fix patches _only_ if they are fixing the issue
-> > > introduced in the ongoing release.  But if Bjorn has no issues in
-> > > merging these for 6.8, then it is fine.
+On Thu, Feb 29, 2024 at 07:10:49PM +0100, Théo Lebrun wrote:
+> Add EyeQ5 bindings to the existing Nomadik I2C dt-bindings. Add the
+> EyeQ5-specific property behind a conditional. Add an example for this
+> compatible.
 > 
-> I do prefer to merge only regression and important fixes after the
-> merge window, so I want to be able to provide justification.
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  .../devicetree/bindings/i2c/st,nomadik-i2c.yaml    | 48 ++++++++++++++++++++--
+>  1 file changed, 44 insertions(+), 4 deletions(-)
 > 
-> > It also depends on the severity of the issue and to some extent the
-> > complexity of the fix. These binding fixes are certainly low risk.
-> > :)
-> 
-> IIUC we're talking about:
-> 
->   arm64: dts: qcom: sc8280xp: add missing PCIe minimum OPP
+> diff --git a/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml b/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+> index 16024415a4a7..2d9d5b276762 100644
+> --- a/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+> @@ -14,9 +14,6 @@ description: The Nomadik I2C host controller began its life in the ST
+>  maintainers:
+>    - Linus Walleij <linus.walleij@linaro.org>
+>  
+> -allOf:
+> -  - $ref: /schemas/i2c/i2c-controller.yaml#
+> -
+>  # Need a custom select here or 'arm,primecell' will match on lots of nodes
+>  select:
+>    properties:
+> @@ -24,6 +21,7 @@ select:
+>        contains:
+>          enum:
+>            - st,nomadik-i2c
+> +          - mobileye,eyeq5-i2c
+>    required:
+>      - compatible
+>  
+> @@ -39,6 +37,10 @@ properties:
+>            - const: stericsson,db8500-i2c
+>            - const: st,nomadik-i2c
+>            - const: arm,primecell
+> +      # The variant found on Mobileye EyeQ5
 
-I'd prefer to take this one through my tree. I will double check the
-hardware documentation (there are differences in sc8280xp here) and
-decide how to proceed...
+Kind of obvious from the compatible string, but maybe you are keeping 
+the existing style...
 
->   dt-bindings: PCI: qcom: Allow 'required-opps'
+> +      - items:
+> +          - const: mobileye,eyeq5-i2c
+> +          - const: arm,primecell
+>  
+>    reg:
+>      maxItems: 1
+> @@ -55,7 +57,7 @@ properties:
+>        - items:
+>            - const: mclk
+>            - const: apb_pclk
+> -      # Clock name in DB8500
+> +      # Clock name in DB8500 or EyeQ5
+>        - items:
+>            - const: i2cclk
+>            - const: apb_pclk
+> @@ -70,6 +72,16 @@ properties:
+>      minimum: 1
+>      maximum: 400000
+>  
+> +  mobileye,olb:
+> +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> +    items:
+> +      - items:
+> +          - description: Phandle to OLB system controller node.
+> +          - description: Platform-wide controller ID (integer starting from zero).
 
-Picking this for v6.9 is fine, no practical badness ensues. We would
-temporarily have a few additional DeviceTree validation warnings in the
-v6.8 release...
+Rather than a made up ID, just store the shift value you ultimately 
+need.
 
-Regards,
-Bjorn
+These properties are fragile because they break if anything that's not 
+defined in DT changes whether that's register offset, bit offset, 
+bitfield size or values. Or also if there are additional fields to 
+access. 
 
-> 
-> These don't look like a regression fix (correct me if I'm wrong), and
-> I can't tell whether they fix a user-visible problem, since
-> sc8280xp.dtsi does already contain 'required-opps' for ufs_mem_hc,
-> usb_0, and usb_1, which are mentioned in the commit log as covering up
-> the issue.
-> 
-> If these patches wait until v6.9, what badness ensues?
-> 
-> Bjorn
+Rob
 
