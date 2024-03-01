@@ -1,76 +1,63 @@
-Return-Path: <devicetree+bounces-47571-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47572-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D1586DBB2
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 07:53:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id B7AFE86DBCF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:03:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 97D501C236B3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 06:53:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 13C6AB24CA4
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 07:03:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1348E67E9D;
-	Fri,  1 Mar 2024 06:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E3A996930F;
+	Fri,  1 Mar 2024 07:03:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="J9S+uVoJ"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="kn4dWbHn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2141969940;
-	Fri,  1 Mar 2024 06:53:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 242308464;
+	Fri,  1 Mar 2024 07:03:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709275994; cv=none; b=b07vbfX1y+BTYRhL/BKH7Ttz9ZF+sFua1ulwxxSzlImBnF/Ix/4IWp/IH2zCCUKeXquwqpKtN2oiMyrMfboUx7brimEE8Ho+KsMvwpOq8Zr1tvcO34jnoFVqBPyR08FpHh54y1O6LN0vc2IbjgdexDghAeFXxKnlPJ43Pgw31yw=
+	t=1709276597; cv=none; b=e6d9a97NzZ97mIMdGdG3B+1HnBIUaqiScMmQCgk36e2HI1LfCloXQxCoLzBS+QULcGFjNOElmyxt8vIEhS8HCMHvnx9ajY6jpHYp48o+SPofOymRaxLsIZXAEP2I/ocsx/ykE7l6l51PIkT1ksV++MwJrqKMk5NYFKMA5JFC3dM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709275994; c=relaxed/simple;
-	bh=yJ3qnuzsiD+vY7/3h2hLhh57k/nxh0MKDiLyXnJblD4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TtN9AaJgdiD7doexNEm7UahIIxOfm+p/CoFoVfOSsiQFVl8PRcn8SA7t3CVAgCupgJbRkEqxOpkCkwVDZJ2cuXZTeD6ziKdUTBbwzoiVS3bx42AV6M9Fj3+JKPd3LHdAWXGyVZecJf6l6t8kWgC2172AwlV+DDlQhRC3Zh7odu8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=J9S+uVoJ; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1dca3951ad9so16464195ad.3;
-        Thu, 29 Feb 2024 22:53:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709275991; x=1709880791; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:from:to:cc:subject:date:message-id:reply-to;
-        bh=wXiG6D5m4V4RhFeANN6ytUCYOxlqAHIxI03T8MEdzXo=;
-        b=J9S+uVoJsX8hXydEC/sV3k2A4dJUhhcbBvaivT+khvwY8sJs5/8uyMrT8lcpQ3pNnD
-         r0f/0aGuh1c76sPIBm5oNw+ooFaSso1z+TyH1oIwfXQ3MT9/ZkpjnakT8vYSHVmtknEq
-         u62CX30cUz8EPd7+S/2QiyTxJHHaQtunKUvZep8K3DWFDCLALJB73f2PPON5yFnGtjm+
-         cvABlz/82jlD1ubp2eZ170jLdDKGDpwMFsZJAKauOv3UM+YxQaDq9SWtpyJO7fCuwW/1
-         Gz4NNscRDg7XYmgiWV8OsFVnI0jqR/T6gfadIFU0Z0FBkEZ358uYjO+JlhD65pKjZvFp
-         phgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709275991; x=1709880791;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :sender:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=wXiG6D5m4V4RhFeANN6ytUCYOxlqAHIxI03T8MEdzXo=;
-        b=LhP6bB1EZK7rmTO3SqcrRt/JVTIQK8ELLujuV69btzF2TAmkNu1ImWB045i6xmFcxh
-         AdpU7JgN9QNTknRsttRvj+g2VkdTqYaE5BvIwdNoJrGScHMJuiQbit1WQ8dw4m8et7D7
-         pnM2ckj9n+77WHB2j85uYxWODG2pQ5z+PTq0qO4b36bAoJsjQfxGGLEx8CCxEF+76Lm2
-         fjoCMryK88C1AQZwiv9Pg1TIcX/9UuUlftpl8fedQWrwCXSRWbT7bWDbyt4oxYCFOAl2
-         IFOsHU16tbKvoT+kB+gNkJQk/yYf97pASg1CkDa901W8Z+GGW+rbAMlqEe+Fnt2rPPBX
-         d1Cw==
-X-Forwarded-Encrypted: i=1; AJvYcCVVg2hiienzkdJX936+HEgWRkcZm8M4A/PNmIRBshX2zb0GzWHzAoYUv51uqyG79Oy/d3TVkk8Tgq5TgSjI+IF9ZLCYsV9tawfmF7S94ZpMiBsdYlSsLN56rOvLga1+idfpPCdbiL3e0k0EvpoHjSROsofBV8bSJyEvpQhm9GcrvnfXY8RGcXCEFFMAIUIC2zrlHXj1dxrhl42qSVAvGC2thzB8pHZeR52pr+mBoICFvor0uGIvoZ7y/WKxaQ==
-X-Gm-Message-State: AOJu0Yygb9CcfAoc2H2LiF89R0mzouiX2SeE99m5qbfK/dcv/zbMbUR8
-	oydoE88x7ki0MTLY7ZKTqGv+F85KA6azWnxX2Yk3jqhANMVuwKgx
-X-Google-Smtp-Source: AGHT+IFpbSIiHEKTPKogLyHISu8ut/C5tr3wmgIj/iizT3dRu4HAqzDP5jIYhOI77adwEhkLqkAdmA==
-X-Received: by 2002:a17:902:a384:b0:1d9:167b:8e6c with SMTP id x4-20020a170902a38400b001d9167b8e6cmr668758pla.46.1709275991299;
-        Thu, 29 Feb 2024 22:53:11 -0800 (PST)
-Received: from ?IPV6:2600:1700:e321:62f0:329c:23ff:fee3:9d7c? ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id u2-20020a17090341c200b001dcb560d7f0sm2646773ple.11.2024.02.29.22.53.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 22:53:10 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Message-ID: <d78fd3ca-ed0b-40e5-8f8f-21db152a7402@roeck-us.net>
-Date: Thu, 29 Feb 2024 22:53:07 -0800
+	s=arc-20240116; t=1709276597; c=relaxed/simple;
+	bh=Jp2tHeRRc8dd+EZCimAuq4LfWDzTcaPj7pzUv5vapT4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JPE+Tdd4yHt34fkT/ndk++8z9BBGmUUaWYujQezJqf4B09qfJ4a4FR2A0AKfhTiR+bJOIKl9YKlYPMvYhSq6sceiGQtftxiVp4r+Fp+IJGCx/sQuIH428ww6mh90gzCeqmKrXaA/p54SoPF+slQ5+0+mPSmVZmCmpBVS3WX/GSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=kn4dWbHn; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4216fPLJ030785;
+	Fri, 1 Mar 2024 07:03:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=rkrf3Upi92FvYnyDJyL1qbj5k8+wIYXJBUtWQwQAwCA=; b=kn
+	4dWbHnt4P7BmuFLrMl8fCTMt/Ndvsu7DkgN65MEOndHyZCQkXnf6ST7ruW/Dg+94
+	5G3cpb03kJGSSSyUy+0rGO7hfR9sRtqOiSFj+3v/VfLuP9SZDHtd551RSGCtrEEf
+	topUbTQYmc8xibF5HPl6/h3k8l/MnXawYwitKGksr7U/0P6qpsuJPhWihGCZce17
+	NFHNpZXoLkbf5KJgbGgTyfX3he0HOtV6XcY9nI+L9ehxpg9wRHERe0tnMUT271Bk
+	M+hGQ0ZQOdzjz8g2NDZHa4NFrpZixn5sKXnLQhHrGMyX1kftXKEU879qWwA63uR2
+	x+olMUpd11TgLZt4aAgQ==
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wjx9y1tj8-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 01 Mar 2024 07:03:05 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 421734uR003269
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 1 Mar 2024 07:03:04 GMT
+Received: from [10.238.139.231] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 29 Feb
+ 2024 23:03:01 -0800
+Message-ID: <482ac768-ab2d-4f19-9245-df6b5ae5164a@quicinc.com>
+Date: Fri, 1 Mar 2024 15:02:52 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,106 +65,158 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 02/11] dt-bindings: hwmon: lm75: use common hwmon
- schema
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
- Linus Walleij <linus.walleij@linaro.org>, Andi Shyti
- <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-Cc: linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mips@vger.kernel.org, Gregory Clement <gregory.clement@bootlin.com>,
- Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, Jean Delvare
- <jdelvare@suse.com>, linux-hwmon@vger.kernel.org
-References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
- <20240229-mbly-i2c-v2-2-b32ed18c098c@bootlin.com>
- <6749c8df-c545-4aca-bc18-4dfe9c9f15b0@linaro.org>
-From: Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-In-Reply-To: <6749c8df-c545-4aca-bc18-4dfe9c9f15b0@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH RESEND v2] arm64: dts: qcom: qcm6490-idp: enable pwrkey
+ and volume-up/down function
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240228-gpio-keys-v2-1-3beb60225abe@quicinc.com>
+ <CAA8EJppHUYZ46Bz48HzY-D9brBRj+TEw_-6j_VUDyMZPxwf8tQ@mail.gmail.com>
+From: hui liu <quic_huliu@quicinc.com>
+In-Reply-To: <CAA8EJppHUYZ46Bz48HzY-D9brBRj+TEw_-6j_VUDyMZPxwf8tQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: csChZRxnKCfmSdZIbljLMKym2Ap6SAzT
+X-Proofpoint-ORIG-GUID: csChZRxnKCfmSdZIbljLMKym2Ap6SAzT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-01_04,2024-02-29_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
+ clxscore=1011 impostorscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ lowpriorityscore=0 priorityscore=1501 malwarescore=0 bulkscore=0
+ suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403010057
 
-On 2/29/24 22:37, Krzysztof Kozlowski wrote:
-> On 29/02/2024 19:10, Théo Lebrun wrote:
->> Reference common hwmon schema which has the generic "label" property,
->> parsed by Linux hwmon subsystem.
+
+
+On 2/29/2024 9:21 AM, Dmitry Baryshkov wrote:
+> On Wed, 28 Feb 2024 at 11:57, Hui Liu via B4 Relay
+> <devnull+quic_huliu.quicinc.com@kernel.org> wrote:
+>>
+>> From: Hui Liu <quic_huliu@quicinc.com>
+>>
+>> Add configurations to enable pwrkey, volume-up and volume-down function.
+> 
+> Please take a look at how similar patches describe the changes. E.g.
+> commit bb47bfbd5aa8 ("arm64: dts: qcom: sm8550-qrd: enable PMIC Volume
+> and Power buttons")
+Sure, I will refer to this description to update it.
+> 
+> 
+> 
+>>
+>> Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
+>> ---
+>> Changes in v2:
+>> - Update the commit description.
+>> - Link to v1: https://lore.kernel.org/r/20240206-gpio-keys-v1-1-7683799daf8d@quicinc.com
+>> ---
+>>   arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 43 ++++++++++++++++++++++++++++++++
+>>   1 file changed, 43 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>> index acf145d1d97c..4199ebf667af 100644
+>> --- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+>> @@ -9,6 +9,7 @@
+>>   #define PM7250B_SID 8
+>>   #define PM7250B_SID1 9
+>>
+>> +#include <dt-bindings/input/linux-event-codes.h>
+>>   #include <dt-bindings/leds/common.h>
+>>   #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+>>   #include "sc7280.dtsi"
+>> @@ -39,6 +40,24 @@ chosen {
+>>                  stdout-path = "serial0:115200n8";
+>>          };
+>>
+>> +       gpio-keys {
+>> +               compatible = "gpio-keys";
+>> +               label = "gpio-keys";
+>> +
+>> +               pinctrl-names = "default";
+>> +               pinctrl-0 = <&key_vol_up_default>;
+>> +
+>> +               key-volume-up {
+>> +                       label = "volume_up";
+>> +                       gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
+>> +                       linux,input-type = <1>;
+>> +                       linux,code = <KEY_VOLUMEUP>;
+>> +                       wakeup-source;
+>> +                       debounce-interval = <15>;
+>> +                       linux,can-disable;
+>> +               };
+>> +       };
+>> +
+>>          reserved-memory {
+>>                  xbl_mem: xbl@80700000 {
+>>                          reg = <0x0 0x80700000 0x0 0x100000>;
+>> @@ -421,6 +440,17 @@ vreg_bob_3p296: bob {
+>>          };
+>>   };
+>>
+>> +&pm7325_gpios {
+>> +       key_vol_up_default: key-vol-up-state {
+>> +               pins = "gpio6";
+>> +               function = "normal";
+>> +               input-enable;
+>> +               bias-pull-up;
+>> +               power-source = <0>;
+>> +               qcom,drive-strength = <3>;
+> 
+> Why is this property required? Anyway, it should use the defined name
+> rather than just numeric value.
+I will remove power-source defination, because the default value is 0.
+And "qcom, driver-strength" will update to "PMIC_GPIO_STRENGTH_LOW", 
+it's a special value for pm7325.
+> 
+>> +       };
+>> +};
+>> +
+>>   &pm8350c_pwm {
+>>          status = "okay";
+>>
+>> @@ -448,6 +478,19 @@ led@3 {
+>>          };
+>>   };
+>>
+>> +&pmk8350_pon {
+>> +       status = "okay";
+>> +};
+>> +
+>> +&pon_pwrkey {
+>> +       status = "okay";
+>> +};
+>> +
+>> +&pon_resin {
+>> +       linux,code = <KEY_VOLUMEDOWN>;
+>> +       status = "okay";
+>> +};
+>> +
+>>   &qupv3_id_0 {
+>>          status = "okay";
+>>   };
+>>
+>> ---
+>> base-commit: 23e11d0318521e8693459b0e4d23aec614b3b68b
+>> change-id: 20240206-gpio-keys-138bbd850298
+>>
+>> Best regards,
+>> --
+>> Hui Liu <quic_huliu@quicinc.com>
+>>
 >>
 > 
-> Please do not mix independent patchsets. You create unneeded
-> dependencies blocking this patch. This patch depends on hwmon work, so
-> it cannot go through different tree.
 > 
-> If you insist to combine independent patches, then at least clearly
-> express merging strategy or dependency in patch changelog --- .
-> 
-
-For my part I have to say that I don't know what to do with it.
-Rob's robot reported errors, so I won't apply it, and I don't
-feel comfortable giving it an ack either because of those errors.
-
-Guenter
-
-> 
->> To: Jean Delvare <jdelvare@suse.com>
->> To: Guenter Roeck <linux@roeck-us.net>
->> Cc: linux-hwmon@vger.kernel.org
->> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
->> ---
-> 
-> 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Best regards,
-> Krzysztof
-> 
-
 
