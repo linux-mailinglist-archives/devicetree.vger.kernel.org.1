@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-47566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47567-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C931C86DB91
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 07:38:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E7BE86DBA3
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 07:48:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A1ABB21A96
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 06:38:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C970281953
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 06:48:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78AFF67E65;
-	Fri,  1 Mar 2024 06:38:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AFC867E9A;
+	Fri,  1 Mar 2024 06:48:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pljycmGi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Oxjjr1KA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD9164655F
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 06:38:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C6267E80
+	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 06:48:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709275104; cv=none; b=XOTRj6X8ZcOazze8VjpzSrUnqAmQx35MQlQQ4Knd3IpsQ/sCzYwCLtizlMjN4Hi5lqzAXMaUF1ItBkVm+ujBuhym+SnLPcZsDyNAVGcdkroROP/fmuReqjkw60Jkkp53THyE4dO7V5tNJ5pj1pntjh8hAXr/5AZteFeeHHSDqrk=
+	t=1709275728; cv=none; b=ZW3dSlJrzfiKOxZUseFEI7kFPMA97Sz6Fis5SVX5jBud+I+51njejpwOebYpA0hsFZXzbHEUsd23ELobHodhocD/8Jo+WCNJRKOF85CYhhlL2FigP/hz5rqDVaus5N6qt2UP0rBVOAt0EbInZkCP6dUg3UL6Y4R2Qy3zT9ZEebQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709275104; c=relaxed/simple;
-	bh=iVCkm2XXuF1I213Ilxq0tiLLzJPWN89vdcerFp/PbRw=;
+	s=arc-20240116; t=1709275728; c=relaxed/simple;
+	bh=G++Qi8yD5BzvNdJJSXIzQDWIXgIEfZybobV5iV/smt4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=U5GL4Nc1vtR7KgY05e/pm57OOWMEMKMcbBFOOt31tdx0bKi5OwBThlyonCBFiE7JEppGfOaWuyPI6eyJ5uJiC4bnPIeXC0kjCjQC/QdvIVI+4o+HKGnpKcnBaz1tx+bFybdB4OO3cAxR830678doS/3OSYzmySVQ9uwkj4q4IBY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pljycmGi; arc=none smtp.client-ip=209.85.218.53
+	 In-Reply-To:Content-Type; b=H5ay3GWdA3al36BjWwCgpdJub6TeC4srAcvms1FhQIyETUsPUUfzLVPg/zQsYVimG29Uvqw9LTp6Av9SsgIBz1brBNrlsHilmbORST2YbVBDLLeOcDQx/3seh4+aETC1tf2w4jWKTSeXgwsCfMyRqZYHwDMBFISMTgsXDFuqCoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Oxjjr1KA; arc=none smtp.client-ip=209.85.218.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a446b5a08f0so122645666b.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 22:38:22 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3ed9cae56fso544840866b.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 22:48:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709275101; x=1709879901; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709275725; x=1709880525; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lJ2KofQHBphIxkjltTf4vzstE4LpxBVEAUIZ1CqKfMc=;
-        b=pljycmGi8AWkoztgzoHdN+7hTKKclr/dkWDv8YS63nBUKZufrLSxkZwK9jdCJ9bf39
-         5hwcFVxwyKYmtj2XdekxKq1nPzti6yQ5/bU3reun6BXYdQjNO6woo7+RpETPKZhbb9vS
-         WJtJuSzSxltkDv5c+BV+ZX7PaXnOe4/UMRViY1mqjGZ55Bts6SXDdt2si5ngR0yTFo26
-         CxKkyBo+flReiWDi+gC+oVLackkmnLjWtnKhmTp41hp4/l0882CuG7J52ZGNwp1va4rG
-         17wtFPCf3PEBi0OQUeOSKqvEmzIFBjeaL7Re5bKJgWeL9aKiMPxcQ2IYV3PnO452dMn+
-         EElQ==
+        bh=hgYnCqxeau9+FrE4aImGfqXl+jt68CSpwpKL6T7fXUQ=;
+        b=Oxjjr1KA/pA/6+DyoYeJfXArTcLyEYb4+CEOeaWkMtoSJ21BjgX+bFYjOaspW5YHLK
+         GSAySkGxuMxQcOkvXHqQVaFPD2sN+YOIqxjiUAbknuM27IaaTdg4nbAaT0dzDo/5Zf/H
+         JYb/tanbHTp4YCjYQ8sKjYsLwxM9SXAkXeuVAZvHz+w8KLAI7rvlXggwVEbTOyCeJpOe
+         s6kxV/jQnCtfJmF9j8xV31XtKzV4lKY8PUlZ6rHvfJIJAWqZBYPb8xsmgEsuBuwwU8ur
+         /x8DwHUs+XvvYzHMoZeX3AZL0nIMZJByWQJUbsDjYRitGPyns8MKNgugSq66GCxgwdnN
+         FEYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709275101; x=1709879901;
+        d=1e100.net; s=20230601; t=1709275725; x=1709880525;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lJ2KofQHBphIxkjltTf4vzstE4LpxBVEAUIZ1CqKfMc=;
-        b=Rdj2ayUsuPSeKg8QtxNCt5vSbED2Sdutb0RAKLfPlRQqSS26Spe9+qwYHIKHfdFqtS
-         /mD88dH21uVacuor1yGhofTtdQnquUWvE02QIrjBypiyefYvdF+Hd0Jh63RTUjiwRiSB
-         Xl4fWcoilaPed6i+USwCjBobBggLxhqjm3fTVu5lgVeSiDL3W7aQrWiI05cdpolh6Bsi
-         Yiq/C+BxlMjRYYYDXuNOWFB34kJugZrpl8tbHOMl7/pgYCLfiXKtrLhiIvS5RmhDBGG+
-         QPBuDo4oEnPC6/nRyQtCYWwErQiuknFEwNxH8k0z5Io9anWe6EemTEBYlYFTYK/5F6Rc
-         pzGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXq7V46Wm1z/hwd/33BqbSSEYvGFn8fn9h02BSNnWSeoOo29R1OsBcQdsYyXkWhap5hY8Rk0u6AEcXz0hViip0hoX8GTY1lcJfY7g==
-X-Gm-Message-State: AOJu0YzLv8cfCoejMwhAj7VIzMyesmKCTCODTHbh9DwU4SQYE7OPKgH+
-	sczCV14FrkoY6dZ33PcHB5OYuHxENAeARVNtaahpm13kTYebYsyNoNzXfcHJUA4=
-X-Google-Smtp-Source: AGHT+IEAmFk0JipYSYsM5JUTYrXS7UPg+xpxTkZm1AGcYlsV/I6qtm3daHM+q1NdwpmYOvzXWKbRqg==
-X-Received: by 2002:a17:906:ad8e:b0:a44:690:86de with SMTP id la14-20020a170906ad8e00b00a44069086demr593677ejb.0.1709275101406;
-        Thu, 29 Feb 2024 22:38:21 -0800 (PST)
+        bh=hgYnCqxeau9+FrE4aImGfqXl+jt68CSpwpKL6T7fXUQ=;
+        b=KjgTBKcwQr0VPAwtULdDZnEYPyYFr6j5x4+nGoHkDWva40jAwpdJtJ+47tjE/SR8JH
+         5YqA/5PMbG7WDoTITt0zSrIyWng01yfWQVNDE1la7QwKDgsJfjBdY4fvoZBuEBUG5T3l
+         WJTtnHUhU+r6Vvw1isDW2R0h4X8BCY0dxCDWKAxwh25DrV/qUwyH60FeG4p2e9/sAr98
+         BSdGTe9k1mPB1mkUhsMY+K9/sm2YYWp5p+QHSHeKQDNSPbNYH0I1jL2sWJ/u6zl+RgZT
+         Pa/h6tFYBXsdpTqztt/UUGigldK+i/y5NFMMih7QUTJp01k5F2wrLIbXYRlrV7g58Gc7
+         qJ+w==
+X-Forwarded-Encrypted: i=1; AJvYcCWjoOThwCJsD9XGM/3QVzH302Va5LD1bXNzuS51urV0CskqFUIyWWgQ6suhtn7YB6wxym8BPNGINK+GyhWW8wW1AGl+vXL0w4fXVQ==
+X-Gm-Message-State: AOJu0Yw3NrAZIvtL2gZC/oa9GDF0TeRgsrcUMDqD2k5YczwFsnD7984z
+	+4K+JIHjxO/xxIu9G4dFDAWn47GbCPA6qV/1eFQspNBQvDlULh0IWbiL7TIeUNc=
+X-Google-Smtp-Source: AGHT+IGtvYgkUBGkZE+o1YKeOQNeKUpWnPDO24Pw5oL1F2hnqzjyFwIwewa7TZuny2tak58ch839HQ==
+X-Received: by 2002:a17:906:d14a:b0:a43:fec3:b648 with SMTP id br10-20020a170906d14a00b00a43fec3b648mr637691ejb.24.1709275724792;
+        Thu, 29 Feb 2024 22:48:44 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id k3-20020a1709061c0300b00a3e0b7e7217sm1396572ejg.48.2024.02.29.22.38.19
+        by smtp.gmail.com with ESMTPSA id bq20-20020a170906d0d400b00a3cfe376116sm1399456ejb.57.2024.02.29.22.48.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 22:38:20 -0800 (PST)
-Message-ID: <a0e486d6-711d-414a-a391-97da12cdb531@linaro.org>
-Date: Fri, 1 Mar 2024 07:38:19 +0100
+        Thu, 29 Feb 2024 22:48:44 -0800 (PST)
+Message-ID: <a24320b7-5cf2-4a6d-af7f-d07dfd0dc29a@linaro.org>
+Date: Fri, 1 Mar 2024 07:48:42 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +76,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/1] dt-bindings: interrupt-controller: fsl,intmux:
- Include power-domains support
+Subject: Re: [PATCH net-next v7 7/9] net: hisi_femac: remove unused compatible
+ strings
 Content-Language: en-US
-To: Frank Li <Frank.Li@nxp.com>, Thomas Gleixner <tglx@linutronix.de>,
- Rob Herring <robh@kernel.org>,
+To: forbidden405@outlook.com, Yisen Zhuang <yisen.zhuang@huawei.com>,
+ Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Linux Team <linux-imx@nxp.com>,
- "open list:IRQCHIP DRIVERS" <linux-kernel@vger.kernel.org>,
- "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
- <devicetree@vger.kernel.org>
-Cc: imx@lists.linux.dev
-References: <20240229200911.712572-1-Frank.Li@nxp.com>
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240301-net-v7-0-45823597d4d4@outlook.com>
+ <20240301-net-v7-7-45823597d4d4@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,20 +136,38 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240229200911.712572-1-Frank.Li@nxp.com>
+In-Reply-To: <20240301-net-v7-7-45823597d4d4@outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 29/02/2024 21:09, Frank Li wrote:
-> Enable the power-domains property for the fsl,intmux node. This addition
-> accommodates i.MX8QXP, i.MX8QM, and i.MX8DXL, which utilize the
-> power-domains property. Incorporating this eliminates DTB_CHECK errors in
-> relevant device tree source files.
+On 01/03/2024 04:36, Yang Xiwen via B4 Relay wrote:
+> From: Yang Xiwen <forbidden405@outlook.com>
 > 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> It's hard to get the version number for each FEMAC core and it's unknown
+> how the version can be used. Remove them until it's really needed.
+> 
+> While at it, remove SoC compatibles and only use fallback compatible.
+> 
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 > ---
+>  drivers/net/ethernet/hisilicon/hisi_femac.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/hisilicon/hisi_femac.c b/drivers/net/ethernet/hisilicon/hisi_femac.c
+> index 2406263c9dd3..5a088cba7d4e 100644
+> --- a/drivers/net/ethernet/hisilicon/hisi_femac.c
+> +++ b/drivers/net/ethernet/hisilicon/hisi_femac.c
+> @@ -945,9 +945,7 @@ static int hisi_femac_drv_resume(struct platform_device *pdev)
+>  #endif
+>  
+>  static const struct of_device_id hisi_femac_match[] = {
+> -	{.compatible = "hisilicon,hisi-femac-v1",},
+> -	{.compatible = "hisilicon,hisi-femac-v2",},
+> -	{.compatible = "hisilicon,hi3516cv300-femac",},
+> +	{.compatible = "hisilicon,hisi-femac",},
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+This breaks the ABI. I explained at least twice - use SoC compatibles. ONLY.
 
 Best regards,
 Krzysztof
