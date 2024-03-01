@@ -1,84 +1,122 @@
-Return-Path: <devicetree+bounces-47767-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 326EB86E730
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:29:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F5EE86E74C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:32:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C99C3281DF7
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:29:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E773128CC6A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:32:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8CE2F8825;
-	Fri,  1 Mar 2024 17:29:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82E5C36135;
+	Fri,  1 Mar 2024 17:29:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nlWKVeHW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uIOF4Ss5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66CA0848D
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 17:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F1F33BB53;
+	Fri,  1 Mar 2024 17:29:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709314151; cv=none; b=LhU7b3fAbvO0PC+miC6ZA1uDg8N5Wt9UvBc6r22uqoK4rk27Pcu20aDpIYAZTs3Icbcs+Hf+spHne6d8W1LmHHyGBZbSjmEXWDxLQS4Mk/AXkagaPN5ovC4mBmJ58Yw6GXoJQbZPph1qWN00LGjitPmQ/XK1JV1XfFBJ+/Lmt+Q=
+	t=1709314193; cv=none; b=ClnFL2Ifsk4CWcPYZ1M/1HkZN2hgr2ga5Gz8DLoNFFzF1cZvcgA2rnHf5sPBen8Oom2b/T39IzNLVT0dOk5rd+gB7rQkT1nrjhaxZINO7zyA3+rfKrV/hKsUtL8CtGPKoOT6jzXd+b6W8OmmPYjECidetR7l0+bqqJIAJG5Z9cw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709314151; c=relaxed/simple;
-	bh=dBroICzuIky6ss8WWg6pr7PkdERntM7x2EXIFa1cyrk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=M1aYpLcuu974iueFSZ2m7Erly5a7ZRZxsv1v1rvyoYuSlwZ+GvB30bXp3iqcTeugdeXU+DyryFMaDqyULpjGBalTU5RvNcP/zvMkxzzFPXDR/x+eWL3K+OnY+aTFo/U/5hmsdeJImjT5Jm3vGmHw2LTxauIQGbd55tVe9ree7Mk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nlWKVeHW; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A810FC433C7;
-	Fri,  1 Mar 2024 17:29:09 +0000 (UTC)
+	s=arc-20240116; t=1709314193; c=relaxed/simple;
+	bh=WVxywXC3sbGUricAi2EXdBOzFdQ8QwJnE94UfbYDxFs=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=JcZIcS256HF80OZRxHoTkt3sHF1atPeH4IkOzEUhJnbSF6YX5fZkHXSU72V8CnZLj6/KEGNwwIkiXku70x8coEh49JbLUoyUpD+c1W8HA8/c7USv+ZU4t25YonVeG/AyYwAwv3WjoONtiX6lrgRBS4qnoS29groH/bG2vkACy9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uIOF4Ss5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A1C53C433C7;
+	Fri,  1 Mar 2024 17:29:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709314149;
-	bh=dBroICzuIky6ss8WWg6pr7PkdERntM7x2EXIFa1cyrk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nlWKVeHWRPwC4cvq/RXPXIdxnuzisTPWMUomXKH8CIq4rlrxmSzSHMcsdNw2JE0bN
-	 UJ84KQWIufc5jjyftrUpF1ggnIp4ehglTxnKX0SQXFrYKbfJ2G6hbTBqmpPkUxA0CL
-	 adj2WdnGY3caHpHs1+NGqJPGL482mMN/QOJO3dV+uZWiTm1Y+EFB+3S6nEMK3ondFS
-	 /PeSKvGoUgLkJXcRRz6+kIsFQ0bxreWu/accpZJv2rNZVoCCiVv9d4Q7cMZTHONBjz
-	 TXY+DZ1I0HyMYKRCJ31ZQro3ezlDobZvr7nUBP4SIXaszbuwgc2lgGdMgOd+LACOU/
-	 BmUoBy+jwfMLg==
-Date: Fri, 1 Mar 2024 11:29:07 -0600
-From: Rob Herring <robh@kernel.org>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: kernel@pengutronix.de, Frank Rowand <frowand.list@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] of/platform: Inform about created platform devices using
- pr_debug()
-Message-ID: <170931414536.2438329.2578791758443288308.robh@kernel.org>
-References: <20240222153119.2026363-2-u.kleine-koenig@pengutronix.de>
+	s=k20201202; t=1709314192;
+	bh=WVxywXC3sbGUricAi2EXdBOzFdQ8QwJnE94UfbYDxFs=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=uIOF4Ss549Pa5/GS1UuTqjZK59ux2hW/ydhhEXw+jc7kH1sUfbMIKf/2N9pRJlPme
+	 l+Hgb5hmGwOT9Q+ZoWc3d2/2qTn4EZE5WvymLVbMUDX15E3U+WoJSoeV+vcb+emUAK
+	 bhyceLdYgN2D1NCF4yRaCM9xpgI2kSiqraKHmQo1XdKgRi7pacPALnGAqJpUoQDwK2
+	 hZwhj/YUrBsVSpfWuXCC1jtF8vy2KaI9emP0W7//OiVZ5fH0Dwm98VwrjpRHmpPPWP
+	 PnVFAWFDlzlO4K0lfY8gyjaT0uAUN/iYae26XqCVeeSYiHA4F71o0L+AvevuXncLvP
+	 IuzYwm/Wtr9CQ==
+Date: Fri, 01 Mar 2024 11:29:51 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240222153119.2026363-2-u.kleine-koenig@pengutronix.de>
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Cc: Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+ Gregory CLEMENT <gregory.clement@bootlin.com>, 
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+ linux-kernel@vger.kernel.org, 
+ =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
+ Michael Turquette <mturquette@baylibre.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ linux-clk@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>, 
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, devicetree@vger.kernel.org, 
+ Rob Herring <robh+dt@kernel.org>, linux-mips@vger.kernel.org, 
+ linux-gpio@vger.kernel.org, Linus Walleij <linus.walleij@linaro.org>
+In-Reply-To: <20240301-mbly-clk-v9-1-cbf06eb88708@bootlin.com>
+References: <20240301-mbly-clk-v9-0-cbf06eb88708@bootlin.com>
+ <20240301-mbly-clk-v9-1-cbf06eb88708@bootlin.com>
+Message-Id: <170931419071.2439554.3352250315486620896.robh@kernel.org>
+Subject: Re: [PATCH v9 1/9] dt-bindings: soc: mobileye: add EyeQ5 OLB
+ system controller
 
 
-On Thu, 22 Feb 2024 16:31:20 +0100, Uwe Kleine-König wrote:
-> For most nodes with a compatible property a platform device is created.
-> For some an amba device is created instead. For the latter
-> of_amba_device_create() emits a message at debug level about the node
-> the device is created from. Add a similar message to
-> of_platform_device_create_pdata() to inform about the whole list of
-> created devices.
+On Fri, 01 Mar 2024 17:22:14 +0100, ThÃ©o Lebrun wrote:
+> Add documentation to describe the "Other Logic Block" syscon.
 > 
-> This also gives the right context for the following messages that
-> inform about created child devices.
-> 
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: ThÃ©o Lebrun <theo.lebrun@bootlin.com>
 > ---
->  drivers/of/platform.c | 2 ++
->  1 file changed, 2 insertions(+)
+>  .../bindings/soc/mobileye/mobileye,eyeq5-olb.yaml  | 94 ++++++++++++++++++++++
+>  1 file changed, 94 insertions(+)
 > 
 
-Applied, thanks!
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.yaml:
+Error in referenced schema matching $id: http://devicetree.org/schemas/clock/mobileye,eyeq5-clk.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.example.dtb: system-controller@e00000: clock-controller@2c: False schema does not allow {'compatible': ['mobileye,eyeq5-clk'], 'reg': [[44, 80], [284, 4]], 'reg-names': ['plls', 'ospi'], '#clock-cells': [[1]], 'clocks': [[4294967295]], 'clock-names': ['ref']}
+	from schema $id: http://devicetree.org/schemas/soc/mobileye/mobileye,eyeq5-olb.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.example.dtb: system-controller@e00000: reset-controller@0: False schema does not allow {'compatible': ['mobileye,eyeq5-reset'], 'reg': [[0, 12], [512, 52], [288, 4]], 'reg-names': ['d0', 'd1', 'd2'], '#reset-cells': [[2]]}
+	from schema $id: http://devicetree.org/schemas/soc/mobileye/mobileye,eyeq5-olb.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.example.dtb: system-controller@e00000: pinctrl@b0: False schema does not allow {'compatible': ['mobileye,eyeq5-pinctrl'], 'reg': [[176, 48]], 'uart2-pins': {'function': ['uart2'], 'pins': ['PB8', 'PB9']}}
+	from schema $id: http://devicetree.org/schemas/soc/mobileye/mobileye,eyeq5-olb.yaml#
+Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.example.dtb: /example-0/soc/system-controller@e00000/reset-controller@0: failed to match any schema with compatible: ['mobileye,eyeq5-reset']
+Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.example.dtb: /example-0/soc/system-controller@e00000/clock-controller@2c: failed to match any schema with compatible: ['mobileye,eyeq5-clk']
+Documentation/devicetree/bindings/soc/mobileye/mobileye,eyeq5-olb.example.dtb: /example-0/soc/system-controller@e00000/pinctrl@b0: failed to match any schema with compatible: ['mobileye,eyeq5-pinctrl']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240301-mbly-clk-v9-1-cbf06eb88708@bootlin.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
