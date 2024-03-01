@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-47550-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47551-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C820786DAFB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 06:20:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 508E086DAFF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 06:21:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E615E1C2138F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 05:20:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E55501F2131A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 05:21:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DAB950255;
-	Fri,  1 Mar 2024 05:20:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06ADE50263;
+	Fri,  1 Mar 2024 05:21:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="U3QczfiT"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="R0EmdqVA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 264333FE3F;
-	Fri,  1 Mar 2024 05:20:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5213947F77;
+	Fri,  1 Mar 2024 05:21:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709270419; cv=none; b=bsGO3sROpXBagL9ZSXAULhRgz/w/1DzyqjGnUHxcfq7xUaD6GMrN0mpKbPvI7x49jf7MnXJ31Jc1AmO/Wmxzv/TPG6ErIoik+jmQaQcLHMDMDiH6W69vEw553t5pFfnf4QQKADb+R3n6u2oH5QBbteHx8OL8tlvB3a08d4lRITg=
+	t=1709270503; cv=none; b=tSYPZGqQQ9p44EPHxz/P9rFoQp+Kl/MmYFUrv2UdaZaPLJpEOas4WvKRmsb6bynlAckNZ4X8L9/uOuvfW1RkbLhmViUmgMl4/ykmZ82VM+g4Vr4puUwWam2fjVcff400fdKgVEyXlQwGUuLdlFkGbYgqE/kLIxXKcFtLp6hUlzs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709270419; c=relaxed/simple;
-	bh=rilTJymgbQYh0i7VaqaanP4CHHQlETn9vSCCUZjr+6Y=;
+	s=arc-20240116; t=1709270503; c=relaxed/simple;
+	bh=Qj2tLZtZ2MnXE8HeAJjriLlacuwyb0Ao7gC+Tg1zCBs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=FNE2kJYY6lVarm2/aHoHLkC+BH4dSdFROxlxa1ZmSaua2vitfvUJVCGi4pjlL4h4XhAB/hCY2nChPLqaYLodol4jxdcfQgUNDtab+3tcbNm4HMLG5Dprb9awxUbrRWF7VIPFucNUNZBSMHzUcUdBXdmMscn3k+NgOZtkfuKZxnY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=U3QczfiT; arc=none smtp.client-ip=209.85.208.52
+	 To:Cc:Content-Type; b=aXay/mxVqiWRAvujGW+RAnfmXY1kOQ4+AaqHNsY4OKoA/SoHblFa8oBOfBlJcxWIGV5FKd6CjvAMEln5xKbXI4zFZw8jlR5vdOmdVx9OBhFbwnBoBn/6x4RxhvAFUADCCJWs8rCc10uRkgvrPqN7eW4KEYDXOPFRTSccqOqeVDs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=R0EmdqVA; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-56647babfe6so2596317a12.3;
-        Thu, 29 Feb 2024 21:20:16 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a449c5411e1so6017966b.1;
+        Thu, 29 Feb 2024 21:21:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709270415; x=1709875215; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1709270501; x=1709875301; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Gc6LIoZeSqeKBkR7IxxSk0V/bC6jtdsw4ETSag9XPjo=;
-        b=U3QczfiT20VeAr2E3OvxT/7OYWt0PrS4zWXyHAgKDOnankh2HlU5DXqZ0DaCZcO5AS
-         YGOH3eNMtFI1z6ZPxuGNr9GSfeg50KRxc3Znu0w08pWTVXLeD9X+xoiADIzAbKDyocAs
-         77r7iyB6qL9cWa//EtBj3w5+i5m3DztHlUwtaT/nAE86cBioCzYu+5QnkthRub75DKN+
-         Q4ynKPmo9625Lxtbi0zBW7dDuBPxtc0i+zu9NX+v/RKycwy3auZV35AD0aNc9BLCqlJi
-         MdNm5zZ7tf5vWLf9q7pc9kopZkK8CUdxSGyk0BlqWsIH+PBmvhSYKw0NAFCHQxYjMrOj
-         +7Cw==
+        bh=SklaswezKpY2+1y0XS0FlAH9tuUjyIoA0V4YKjlG8BI=;
+        b=R0EmdqVAmCJvccPa0sxuP0vi3JwbPcRHtXcu/AXzzN/o1hvB08+55tkibCSwYYA84t
+         MbgjKRlz5qrfbZLc+siZ0ggOkcF+WoiaLM4u53VTBkMl31u69li5un4v/SLXtpKrKtpG
+         C9CYMb4Sv7Zl6sp1CiWfhw/kZPE6bzZ6kBIhwA/a002qSzWtl7wfsHZfLk0FgSi/jxMO
+         IK280lDMxVD5mhspTp4PhHe8yAR1q/52KpFbuIAaLvn1E7nB2mxBU6jkBka3r/AzyyM8
+         3VLqkgUV5hQm2NFEQFVt1PeSrPwFQ/xGDuzcY2czLBVl88mfe5JwWkar4TCxMxtOjSMP
+         IAIQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709270415; x=1709875215;
+        d=1e100.net; s=20230601; t=1709270501; x=1709875301;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Gc6LIoZeSqeKBkR7IxxSk0V/bC6jtdsw4ETSag9XPjo=;
-        b=gwnxLTCQpNKPA/dhUydNoXJUe52Vo1igVv+jLayJAkV5zwS/VkHGqGeBZmSBYABCVl
-         owdfiAlp9074zRENPkdd8xpsgH1NkBxNcmhIcsdcxLME8L3pFiXVylgJze0hWua0wAQC
-         QnkheDTYZICwH7R/PiT1UiLuJqzWuLjw5zmZsk4CRDcyLVPvCe5S+b5Qqvv4mWrGHOKL
-         e6h92mXwiqfCtss5i5EF02Ox+3qNFk7N2g3zyUZ7OVwqQYbB5fFZqBq7A1qWt7QZEA/9
-         B7kwIxV8js62EI6sEJ7dZh/cMhKQAmnCLu2P/R+ceoU7DkjwpfkSi5okLYV5mw66c+up
-         20BA==
-X-Forwarded-Encrypted: i=1; AJvYcCVgUmjfhFLuaDDkfxONanCa9c4btV9i+YJ6GzDkJxDo3gxBVbbfkAGahxL3pnyU88A2ArhHrii40V2D4Wh3x61dbp9gDQ5EFOGmglbjbW9aZeyS9wlQ9GtFbuXgXeTnHSF0/E1RaEIwlQ==
-X-Gm-Message-State: AOJu0YyW5C5S9f2/fxfgHg1z9GmhAah9BZkqskUKkXqDAu9BcwfhGVNZ
-	XK56bdO8RzOuLvYKX1DnunZt6J8hhs1Pzf/MNSAyKqfATkDpdmA0FY9C1LTf44VUmwh3inJ+Pbh
-	MCpTRCHsWf3B0HaILFu+UcW0l7UI=
-X-Google-Smtp-Source: AGHT+IGSMxxiVcYd86mHVzcrjw2iUjp07D+Lx0VYJz8keWXW0tZSfb5PVFJ3yeYCgHYCKZuz602GtU6bQ7TmTuPYgB8=
-X-Received: by 2002:a17:906:2789:b0:a3f:bcff:18b8 with SMTP id
- j9-20020a170906278900b00a3fbcff18b8mr528927ejc.27.1709270415376; Thu, 29 Feb
- 2024 21:20:15 -0800 (PST)
+        bh=SklaswezKpY2+1y0XS0FlAH9tuUjyIoA0V4YKjlG8BI=;
+        b=JmwtRnUyOX0tuFCatdj3nelBshwZ7u1D36tBgG3JjtX6s32nMWV6ZL54WleCpqjwhr
+         Fp9XVxwu/o0ILOUzc7sRD/gNg1Tmxa1kHld8yuU7S5a4+142+vwEorAoo+jr8ATtuVgD
+         Ed8pZ9gsEg/3aTsREFBzUAb8W6ihPstgwmUFncJ8PI5wtBVCe/GDRUHnpb4Be3UtLZ22
+         knPygI7Pnnm1o7WG9DbHTCQB/jB7RjyOFe3jCjsjOj3+V/on3xp02xcTyi/DzGj0tyXg
+         xnOYZyMWkgO8Re299Ea8VbK4geAJ8V93ZD52JNuToCeNDtpHL8/mmBBAhfZ0meIEVFQS
+         QL6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXTCTfYTl0ifG4LbQA2qaf7hGXDAaOyIQZ98LOLo/GxElLy0urrZwwCAtG75GFdAWGrCGEy0vTrTvImv9VSx3DDfgxkpFTvZTzsNqjwtg2NLPt4EejUf5pyQENHbGwVZsW+Qq/v3nC7Fg==
+X-Gm-Message-State: AOJu0YyPqz1RXlaa8FBV+7W8GJCz/nygdPMFlIgW45WdADJZa3fIq8OB
+	pEd1Cl/zGrbNuAOy/NnAEduhHC/9bRdsfT+rY2PRuweL2h9tjV80t0fdmtetm5iPLDANMGe54BG
+	VobSk0NCS7kXN5BktBpLhd8NwjKU=
+X-Google-Smtp-Source: AGHT+IGET3NOaLRRZnH2bw1a3UmEv71dQ2BUqrpAAHnkRq0XM79z2IXN07RFGJg5LqpXTEmuY26raYoc+M7W22Jy3HI=
+X-Received: by 2002:a17:906:f989:b0:a44:27e8:f514 with SMTP id
+ li9-20020a170906f98900b00a4427e8f514mr407888ejb.38.1709270500676; Thu, 29 Feb
+ 2024 21:21:40 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,13 +72,13 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
- <20240229-rk-dts-additions-v3-1-6afe8473a631@gmail.com> <5eb9193a44fb9f9b1e976412874cecef@manjaro.org>
-In-Reply-To: <5eb9193a44fb9f9b1e976412874cecef@manjaro.org>
+ <20240229-rk-dts-additions-v3-2-6afe8473a631@gmail.com> <823379825559bb76088c31f44f998dd3@manjaro.org>
+In-Reply-To: <823379825559bb76088c31f44f998dd3@manjaro.org>
 From: Alexey Charkov <alchark@gmail.com>
-Date: Fri, 1 Mar 2024 09:20:04 +0400
-Message-ID: <CABjd4YzFuhfS9RhJ6svb9ZD0NqMT5B6GmqigHFLr8YG6FR5k=w@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] arm64: dts: rockchip: enable built-in thermal
- monitoring on RK3588
+Date: Fri, 1 Mar 2024 09:21:30 +0400
+Message-ID: <CABjd4YybaQnKm+VpU_xVrCb=pxQ7oQXPHGZzn_u1w_h3yn7gwg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/5] arm64: dts: rockchip: enable automatic active
+ cooling on Rock 5B
 To: Dragan Simic <dsimic@manjaro.org>
 Cc: Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
@@ -89,305 +89,35 @@ Cc: Rob Herring <robh+dt@kernel.org>,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 1, 2024 at 1:11=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> wr=
+On Fri, Mar 1, 2024 at 1:25=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> wr=
 ote:
 >
 > Hello Alexey,
 >
-> Please see also some nitpicks below, which I forgot to mention in
-> my earlier response.  I'm sorry for that.
->
 > On 2024-02-29 20:26, Alexey Charkov wrote:
-> > Include thermal zones information in device tree for RK3588 variants.
-> >
-> > This also enables the TSADC controller unconditionally on all boards
-> > to ensure that thermal protections are in place via throttling and
-> > emergency reset, once OPPs are added to enable CPU DVFS.
-> >
-> > The default settings (using CRU as the emergency reset mechanism)
-> > should work on all boards regardless of their wiring, as CRU resets
-> > do not depend on any external components. Boards that have the TSHUT
-> > signal wired to the reset line of the PMIC may opt to switch to GPIO
-> > tshut mode instead (rockchip,hw-tshut-mode =3D <1>;)
-> >
-> > It seems though that downstream kernels don't use that, even for
-> > those boards where the wiring allows for GPIO based tshut, such as
-> > Radxa Rock 5B [1], [2], [3]
-> >
-> > [1]
-> > https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/=
-dts/rockchip/rk3588-rock-5b.dts#L540
-> > [2]
-> > https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/=
-dts/rockchip/rk3588s.dtsi#L5433
-> > [3] https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock_5b_v1423_sch.pdf
-> > page 11 (TSADC_SHUT_H)
-> >
-> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 176
-> > +++++++++++++++++++++++++++++-
-> >  1 file changed, 175 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> > b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> > index 36b1b7acfe6a..9bf197358642 100644
-> > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-> > @@ -10,6 +10,7 @@
-> >  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
-> >  #include <dt-bindings/phy/phy.h>
-> >  #include <dt-bindings/ata/ahci.h>
-> > +#include <dt-bindings/thermal/thermal.h>
-> >
-> >  / {
-> >       compatible =3D "rockchip,rk3588";
-> > @@ -2225,7 +2226,180 @@ tsadc: tsadc@fec00000 {
-> >               pinctrl-1 =3D <&tsadc_shut>;
-> >               pinctrl-names =3D "gpio", "otpout";
-> >               #thermal-sensor-cells =3D <1>;
-> > -             status =3D "disabled";
-> > +             status =3D "okay";
-> > +     };
-> > +
-> > +     thermal_zones: thermal-zones {
-> > +             /* sensor near the center of the SoC */
-> > +             package_thermal: package-thermal {
-> > +                     polling-delay-passive =3D <0>;
-> > +                     polling-delay =3D <0>;
-> > +                     thermal-sensors =3D <&tsadc 0>;
-> > +
-> > +                     trips {
-> > +                             package_crit: package-crit {
-> > +                                     temperature =3D <115000>;
-> > +                                     hysteresis =3D <0>;
-> > +                                     type =3D "critical";
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             /* sensor between A76 cores 0 and 1 */
-> > +             bigcore0_thermal: bigcore0-thermal {
-> > +                     polling-delay-passive =3D <100>;
-> > +                     polling-delay =3D <0>;
-> > +                     thermal-sensors =3D <&tsadc 1>;
-> > +
-> > +                     trips {
-> > +                             /* threshold to start collecting temperat=
-ure
-> > +                              * statistics e.g. with the IPA governor
-> > +                              */
+> > This links the PWM fan on Radxa Rock 5B as an active cooling device
+> > managed automatically by the thermal subsystem, with a target SoC
+> > temperature of 65C and a minimum-spin interval from 55C to 65C to
+> > ensure airflow when the system gets warm
 >
-> See, I'm not a native English speaker, but I've spent a lot of time
-> and effort improving my English skills.  Thus, perhaps these comments
-> may or may not seem like unnecessary nitpicking, depending on how much
-> someone pays attention to writing style in general, but I'll risk to
-> be annoying and state these comments anyway. :)
+> I'd suggest that you replace "automatic active cooling" with "active
+> cooling" in the patch subject.  I know, it may seem like more of the
+> unnecessary nitpicking, :) but I hope you'll agree that "automatic"
+> is actually redundant there.  It would also make the patch subject
+> a bit shorter.
 >
-> The comment above could be written in a much more condensed form like
-> this, which would also be a bit more accurate:
->
->
->                                 /* IPA threshold, when IPA governor is us=
-ed */
->
-> IOW, we're writing all this for someone to read later, but we should
-> (and can) perfectly reasonably expect some already existing background
-> knowledge from the readers.  In other words, we should be as concise
-> as possible.
+> Another option would be to replace "automatic active cooling" with
+> "automatic fan control", which may actually be a better choice.
+> I'd be happy with whichever one you prefer. :)
 
-In fact, the power allocation governor code itself doesn't call those
-trips threshold or target as your suggested wording would imply.
-Instead, it calls them "switch on temperature" and "maximum desired
-temperature" [1]. Maybe we can call them that in the comments (and
-also avoid calling the governor IPA, because upstream code only calls
-it a "power allocator").
+Sounds good to me, thanks!
+
+> Otherwise, please feel free to add:
+>
+> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
+
+Thank you Dragan, much appreciated!
 
 Best regards,
 Alexey
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
-/drivers/thermal/gov_power_allocator.c#n483
-
-> > +                             bigcore0_alert0: bigcore0-alert0 {
-> > +                                     temperature =3D <75000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             /* actual control temperature */
->
-> Similarly to the above, I'd suggest this:
->
->                                 /* IPA target, when IPA governor is used =
-*/
->
-> Having such brief comments should make it all perfectly understandable
-> to anyone who's already familiar with the way IPA governor works.
-> Everyone
-> else should be welcome to read up a bit on IPA first.
->
-> > +                             bigcore0_alert1: bigcore0-alert1 {
-> > +                                     temperature =3D <85000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             bigcore0_crit: bigcore0-crit {
-> > +                                     temperature =3D <115000>;
-> > +                                     hysteresis =3D <0>;
-> > +                                     type =3D "critical";
-> > +                             };
-> > +                     };
-> > +                     cooling-maps {
-> > +                             map0 {
-> > +                                     trip =3D <&bigcore0_alert1>;
-> > +                                     cooling-device =3D
-> > +                                             <&cpu_b0 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>,
-> > +                                             <&cpu_b1 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>;
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             /* sensor between A76 cores 2 and 3 */
-> > +             bigcore2_thermal: bigcore2-thermal {
-> > +                     polling-delay-passive =3D <100>;
-> > +                     polling-delay =3D <0>;
-> > +                     thermal-sensors =3D <&tsadc 2>;
-> > +
-> > +                     trips {
-> > +                             /* threshold to start collecting temperat=
-ure
-> > +                              * statistics e.g. with the IPA governor
-> > +                              */
->
-> The same as above.
->
-> > +                             bigcore2_alert0: bigcore2-alert0 {
-> > +                                     temperature =3D <75000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             /* actual control temperature */
->
-> The same as above.
->
-> > +                             bigcore2_alert1: bigcore2-alert1 {
-> > +                                     temperature =3D <85000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             bigcore2_crit: bigcore2-crit {
-> > +                                     temperature =3D <115000>;
-> > +                                     hysteresis =3D <0>;
-> > +                                     type =3D "critical";
-> > +                             };
-> > +                     };
-> > +                     cooling-maps {
-> > +                             map0 {
-> > +                                     trip =3D <&bigcore2_alert1>;
-> > +                                     cooling-device =3D
-> > +                                             <&cpu_b2 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>,
-> > +                                             <&cpu_b3 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>;
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             /* sensor between the four A55 cores */
-> > +             little_core_thermal: littlecore-thermal {
-> > +                     polling-delay-passive =3D <100>;
-> > +                     polling-delay =3D <0>;
-> > +                     thermal-sensors =3D <&tsadc 3>;
-> > +
-> > +                     trips {
-> > +                             /* threshold to start collecting temperat=
-ure
-> > +                              * statistics e.g. with the IPA governor
-> > +                              */
->
-> The same as above.
->
-> > +                             littlecore_alert0: littlecore-alert0 {
-> > +                                     temperature =3D <75000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             /* actual control temperature */
->
-> The same as above.
->
-> > +                             littlecore_alert1: littlecore-alert1 {
-> > +                                     temperature =3D <85000>;
-> > +                                     hysteresis =3D <2000>;
-> > +                                     type =3D "passive";
-> > +                             };
-> > +                             littlecore_crit: littlecore-crit {
-> > +                                     temperature =3D <115000>;
-> > +                                     hysteresis =3D <0>;
-> > +                                     type =3D "critical";
-> > +                             };
-> > +                     };
-> > +                     cooling-maps {
-> > +                             map0 {
-> > +                                     trip =3D <&littlecore_alert1>;
-> > +                                     cooling-device =3D
-> > +                                             <&cpu_l0 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>,
-> > +                                             <&cpu_l1 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>,
-> > +                                             <&cpu_l2 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>,
-> > +                                             <&cpu_l3 THERMAL_NO_LIMIT=
- THERMAL_NO_LIMIT>;
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             /* sensor near the PD_CENTER power domain */
-> > +             center_thermal: center-thermal {
-> > +                     polling-delay-passive =3D <0>;
-> > +                     polling-delay =3D <0>;
-> > +                     thermal-sensors =3D <&tsadc 4>;
-> > +
-> > +                     trips {
-> > +                             center_crit: center-crit {
-> > +                                     temperature =3D <115000>;
-> > +                                     hysteresis =3D <0>;
-> > +                                     type =3D "critical";
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             gpu_thermal: gpu-thermal {
-> > +                     polling-delay-passive =3D <0>;
-> > +                     polling-delay =3D <0>;
-> > +                     thermal-sensors =3D <&tsadc 5>;
-> > +
-> > +                     trips {
-> > +                             gpu_crit: gpu-crit {
-> > +                                     temperature =3D <115000>;
-> > +                                     hysteresis =3D <0>;
-> > +                                     type =3D "critical";
-> > +                             };
-> > +                     };
-> > +             };
-> > +
-> > +             npu_thermal: npu-thermal {
-> > +                     polling-delay-passive =3D <0>;
-> > +                     polling-delay =3D <0>;
-> > +                     thermal-sensors =3D <&tsadc 6>;
-> > +
-> > +                     trips {
-> > +                             npu_crit: npu-crit {
-> > +                                     temperature =3D <115000>;
-> > +                                     hysteresis =3D <0>;
-> > +                                     type =3D "critical";
-> > +                             };
-> > +                     };
-> > +             };
-> >       };
-> >
-> >       saradc: adc@fec10000 {
 
