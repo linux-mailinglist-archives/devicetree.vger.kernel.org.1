@@ -1,89 +1,134 @@
-Return-Path: <devicetree+bounces-47693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF70A86E2E2
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:00:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FB5986E307
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:10:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 67DF1286E0F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 14:00:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9CBA9B22E0A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 14:10:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D6426EB6B;
-	Fri,  1 Mar 2024 14:00:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3276E6EF1B;
+	Fri,  1 Mar 2024 14:09:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="VEsMCUKB"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lM8WOcga"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDB765F84C;
-	Fri,  1 Mar 2024 14:00:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 09A4D6EB79;
+	Fri,  1 Mar 2024 14:09:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709301619; cv=none; b=HDXnAXBHMPghVPaXnPaFR2qmc0Z9acSWPhh5FBsZVUumPPakh7gEfA/gbo3fwmkyVKGorScUMDe2xViIqSVLGbUn26cJJRs3/T1T3VBFRw8WbVMaJIe8IE78i5JO0hjKDmcJ1qS5wc9fv5MlaeWu8SB2GO45c/qWW3/SB0zSr6Y=
+	t=1709302199; cv=none; b=Bnr+UEKrpR+zxXLtrTwVnvOHztgPC91VTycKlvI0Z647OM3EQE0aO85tLkok+WoSrPeY9u+CO0lhavSV1QgFy46KaValqC4gN+6MsglXfylqJA3zVXh0WaKjC+DleYkESf5uTUH8NQj4bPvBfophCVq6/wheNXWYRUJs75UwNRc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709301619; c=relaxed/simple;
-	bh=Uwm4z9If+tkCUKr8I6N3lywyOJRH6O9UKwPft2Dlxs0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=iwmd8loJ1F06dRDhlAGbCNdRv9cmnFi6BKSJbPk30kw5I3rxmfesGu48n9Leptavgs4TjfN3xmU1oLr4RH/rACC79ut5lh5/cdVfY7KDCtUIl4q+Ne0KWP+HSYpk8EaVdi7l6LG/w5e+fbzLrdMFFVE3AzR3Xf18kKVj/fart9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=VEsMCUKB; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=lt7udYsocuVhKxHFS4ifPlstkCMspm0P7cqn/fPP8AU=; b=VEsMCUKB+WhD2pxB/+erGT/mHN
-	IvTI5J2+LH0v2cRGGXVk3E051GWncATp6v5s1ZgNynJhqXaclaud3WIfIXV3KToDE+hUv85jfqDVB
-	02zFW4w4eQX7GMzCAufwskR/ZUX5OruKoN96GbOzTrJx3nW5b2acVijbV6uBqpzLgBU4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rg3R0-0098kj-Tr; Fri, 01 Mar 2024 15:00:22 +0100
-Date: Fri, 1 Mar 2024 15:00:22 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc: Bastien Curutchet <bastien.curutchet@bootlin.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-	Lee Jones <lee@kernel.org>,
-	Richard Cochran <richardcochran@gmail.com>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>, linux-kernel@vger.kernel.org,
-	netdev@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-leds@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	herve.codina@bootlin.com, christophercordahi@nanometrics.ca
-Subject: Re: [PATCH v2 6/6] net: phy: DP83640: Add fiber mode
- enabling/disabling from device tree
-Message-ID: <7d70e512-ce6f-43ca-b297-fd3397469276@lunn.ch>
-References: <20240227093945.21525-1-bastien.curutchet@bootlin.com>
- <20240227093945.21525-7-bastien.curutchet@bootlin.com>
- <a9c2144a-f26b-4a71-b808-ce3a94f1264d@lunn.ch>
- <c1b17410-b403-4c3a-9c00-de8f2b2b2fa7@bootlin.com>
- <c6840f8f-7d9c-49e8-b689-2af04605b99c@lunn.ch>
- <20240301113703.102bbad0@device-28.home>
+	s=arc-20240116; t=1709302199; c=relaxed/simple;
+	bh=8SNJXFocJybYWAAETOVv1TEYZIaxUQ2TZ7T/99SzvUM=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=srbN0GoqR3vjHiwd0qlYeYq1QyOaa+cIbnLw5DOe9lwqF788cGrnWnRMiy7neEkw/f06SqsZqfO8Yp5JCvC1h6/vLLSyY+xOnJtTz7I/SlBw/qn1qE9LfGKmJLyVDfUeKiIjXA7Tsi5mqeurSeNl8jBBjln1gd7YGZPt+mrCNlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lM8WOcga; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D87D22000E;
+	Fri,  1 Mar 2024 14:09:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709302192;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=8SNJXFocJybYWAAETOVv1TEYZIaxUQ2TZ7T/99SzvUM=;
+	b=lM8WOcgal/GAYSfmKYiFd2PrZduh0Lidq2w93U4R1WOTMwx/ACXg69RwP2dvQzAZTxAJl6
+	Zs66mf73xi1zf52UoZjbjgVdcvDR4eoKiUP0LLqhlJ0JBTD+32HlN0d6wpTJJR/gLbBS25
+	DiKMiQYvPJdsDD4+FMQv7Lgw/GS3mGL4tqUZ9IuyKnRToydRSFcooe9I/+jLR0F9tAcDBk
+	efI9Yh3S7GoL/2YisW39jiAPrD7NLU9TO54NyC+qq2vlc7IwyGlnD32y54WAlHGyVhbobT
+	y59JAMOCS5ZkmdDuV26TmP0tuft5/+QEFB/sEQTG+se6yxzqUPv1MyaUlFtIWQ==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240301113703.102bbad0@device-28.home>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 01 Mar 2024 15:09:50 +0100
+Message-Id: <CZIH21XQPA24.17TEKSPWLL7KR@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v2 02/11] dt-bindings: hwmon: lm75: use common hwmon
+ schema
+Cc: <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mips@vger.kernel.org>, "Gregory Clement"
+ <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>, "Jean Delvare" <jdelvare@suse.com>,
+ <linux-hwmon@vger.kernel.org>
+To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Guenter Roeck"
+ <linux@roeck-us.net>, "Linus Walleij" <linus.walleij@linaro.org>, "Andi
+ Shyti" <andi.shyti@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
+X-Mailer: aerc 0.15.2
+References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
+ <20240229-mbly-i2c-v2-2-b32ed18c098c@bootlin.com>
+ <6749c8df-c545-4aca-bc18-4dfe9c9f15b0@linaro.org>
+ <d78fd3ca-ed0b-40e5-8f8f-21db152a7402@roeck-us.net>
+ <CZIBCBQ2IB0E.2N3HAVO0P2SHT@bootlin.com>
+ <f802a1e0-cedd-488a-a6fb-df793718d94b@linaro.org>
+ <CZICOX6DR0SA.O876YRG8P03C@bootlin.com>
+ <d0826186-ac2a-4229-abd2-1be33fc177d6@linaro.org>
+In-Reply-To: <d0826186-ac2a-4229-abd2-1be33fc177d6@linaro.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-> All in all, do you think that defaulting to copper and leaving users an
-> option to implement "ti,fiber-mode" is an acceptable risk to take ?
+Hello,
 
-Yes, lets do that. But try to make it easy to revert the change if
-anybody complains about a regression.
+On Fri Mar 1, 2024 at 12:35 PM CET, Krzysztof Kozlowski wrote:
+> On 01/03/2024 11:44, Th=C3=A9o Lebrun wrote:
+> > On Fri Mar 1, 2024 at 11:13 AM CET, Krzysztof Kozlowski wrote:
+> >> On 01/03/2024 10:41, Th=C3=A9o Lebrun wrote:
+> >>> On Fri Mar 1, 2024 at 7:53 AM CET, Guenter Roeck wrote:
+> >>>> On 2/29/24 22:37, Krzysztof Kozlowski wrote:
+> >>>>> On 29/02/2024 19:10, Th=C3=A9o Lebrun wrote:
+> >>>>>> Reference common hwmon schema which has the generic "label" proper=
+ty,
+> >>>>>> parsed by Linux hwmon subsystem.
+> >>>>>
+> >>>>> Please do not mix independent patchsets. You create unneeded
+> >>>>> dependencies blocking this patch. This patch depends on hwmon work,=
+ so
+> >>>>> it cannot go through different tree.
+> >>>
+> >>> I had to pick between this or dtbs_check failing on my DTS that uses =
+a
+> >>> label on temperature-sensor@48.
+> >>
+> >> I don't see how is that relevant. You can organize your branches as yo=
+u
+> >> wish, e.g. base one b4 branch on another and you will not have any war=
+nings.
+> >=20
+> > That is what I do, I however do not want mips-next to have errors when
+> > running dtbs_check. Having dtbs_check return errors is not an issue?
+>
+> You should ask your maintainer, but I don't understand how this is
+> achievable anyway. Subsystem bindings *should not* go via MIPS-next, so
+> how are you going to solve this?
 
-	Andrew
+I thought it'd go in hwmon-next and be picked up by mips-next as well.
+It's clear now that the right approach is to send the lm75.yaml patch
+alone.
+
+I'll wait some more before sending a new revision that drops this
+lm75.yaml patch.
+
+Have a nice day,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
