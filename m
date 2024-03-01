@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-47567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E7BE86DBA3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 07:48:53 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C7C086DBA5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 07:49:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6C970281953
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 06:48:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 506BE1C231D9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 06:49:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AFC867E9A;
-	Fri,  1 Mar 2024 06:48:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B30B67E90;
+	Fri,  1 Mar 2024 06:49:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Oxjjr1KA"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ht0hyN+D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C6267E80
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 06:48:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BABE567E78
+	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 06:49:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709275728; cv=none; b=ZW3dSlJrzfiKOxZUseFEI7kFPMA97Sz6Fis5SVX5jBud+I+51njejpwOebYpA0hsFZXzbHEUsd23ELobHodhocD/8Jo+WCNJRKOF85CYhhlL2FigP/hz5rqDVaus5N6qt2UP0rBVOAt0EbInZkCP6dUg3UL6Y4R2Qy3zT9ZEebQ=
+	t=1709275766; cv=none; b=qsFkWZQZ0LFJk2YPxvdv143grMjifv9nlAQlVvE8wJouPMQ3wqRBua9YvCFypW4b2nAknIalE2y+OxDKUino9+RviXEFzHJjOhrTyGfTBMKM9igK5nlVQW+E90slSlWT9dQsw5ds/MABtcK+VfTmK9fW2sEijuR9OAkYXcN14Uw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709275728; c=relaxed/simple;
-	bh=G++Qi8yD5BzvNdJJSXIzQDWIXgIEfZybobV5iV/smt4=;
+	s=arc-20240116; t=1709275766; c=relaxed/simple;
+	bh=k/kS463kjbnO2EiOqnRWTGCiGgnNsrPfzZb0hyDuUGc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=H5ay3GWdA3al36BjWwCgpdJub6TeC4srAcvms1FhQIyETUsPUUfzLVPg/zQsYVimG29Uvqw9LTp6Av9SsgIBz1brBNrlsHilmbORST2YbVBDLLeOcDQx/3seh4+aETC1tf2w4jWKTSeXgwsCfMyRqZYHwDMBFISMTgsXDFuqCoo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Oxjjr1KA; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:Content-Type; b=cQ7gyKcIOGKHw1o1FA4qPovwB3R7SDb81dPZcx/RKhEcCzLjplq9GoR7s4dWxfwIJ1ZvfMtUnmDKcPmGkj1oDd2VraNDNRxN1xmF5lgtkqKAVn9g+4HFVHHGOZJ4ybiG9aXvFNTeoSZrh2XqHVRpU8XDz/MSZpNQ5NErJS3PXYw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ht0hyN+D; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3ed9cae56fso544840866b.1
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 22:48:46 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a3e550ef31cso251128766b.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 22:49:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709275725; x=1709880525; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709275763; x=1709880563; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hgYnCqxeau9+FrE4aImGfqXl+jt68CSpwpKL6T7fXUQ=;
-        b=Oxjjr1KA/pA/6+DyoYeJfXArTcLyEYb4+CEOeaWkMtoSJ21BjgX+bFYjOaspW5YHLK
-         GSAySkGxuMxQcOkvXHqQVaFPD2sN+YOIqxjiUAbknuM27IaaTdg4nbAaT0dzDo/5Zf/H
-         JYb/tanbHTp4YCjYQ8sKjYsLwxM9SXAkXeuVAZvHz+w8KLAI7rvlXggwVEbTOyCeJpOe
-         s6kxV/jQnCtfJmF9j8xV31XtKzV4lKY8PUlZ6rHvfJIJAWqZBYPb8xsmgEsuBuwwU8ur
-         /x8DwHUs+XvvYzHMoZeX3AZL0nIMZJByWQJUbsDjYRitGPyns8MKNgugSq66GCxgwdnN
-         FEYw==
+        bh=e9yQxgEwA+V3hfeUspmNH6wxUAFH4Nw5gJjNuDJi1E8=;
+        b=Ht0hyN+DK6DnZBgBUr248u3B1Ctrw/o8tffPHqS/tJJJC3yD4IlXq7GBVSs5LfZhMi
+         9dKKW0FfwVo8XfyCtaMdrHiiEGDP8s4CEJpqfDNmFCmPMW7sEXcPsJwSsMEQ8e6+SLqn
+         0HLrPyisxVfcLJWwGbN/OHPjrE1b5VGM8X5pZ41ysS2Br/f2ufg6hkS2nePxku6SbYK2
+         vef7N0/MYv5D0cfgAm8t6QP+40V5OO+NgmaEjoinNwE6DVfmR20NwbvQJiKMj+9qkXxV
+         z8l0eQzDbuxQvHPgYrlY/uUWbhIgrYH1RPoKRXAGDAdzaoqg27Vz8i9fBIHtCBvxVhx8
+         5Mug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709275725; x=1709880525;
+        d=1e100.net; s=20230601; t=1709275763; x=1709880563;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hgYnCqxeau9+FrE4aImGfqXl+jt68CSpwpKL6T7fXUQ=;
-        b=KjgTBKcwQr0VPAwtULdDZnEYPyYFr6j5x4+nGoHkDWva40jAwpdJtJ+47tjE/SR8JH
-         5YqA/5PMbG7WDoTITt0zSrIyWng01yfWQVNDE1la7QwKDgsJfjBdY4fvoZBuEBUG5T3l
-         WJTtnHUhU+r6Vvw1isDW2R0h4X8BCY0dxCDWKAxwh25DrV/qUwyH60FeG4p2e9/sAr98
-         BSdGTe9k1mPB1mkUhsMY+K9/sm2YYWp5p+QHSHeKQDNSPbNYH0I1jL2sWJ/u6zl+RgZT
-         Pa/h6tFYBXsdpTqztt/UUGigldK+i/y5NFMMih7QUTJp01k5F2wrLIbXYRlrV7g58Gc7
-         qJ+w==
-X-Forwarded-Encrypted: i=1; AJvYcCWjoOThwCJsD9XGM/3QVzH302Va5LD1bXNzuS51urV0CskqFUIyWWgQ6suhtn7YB6wxym8BPNGINK+GyhWW8wW1AGl+vXL0w4fXVQ==
-X-Gm-Message-State: AOJu0Yw3NrAZIvtL2gZC/oa9GDF0TeRgsrcUMDqD2k5YczwFsnD7984z
-	+4K+JIHjxO/xxIu9G4dFDAWn47GbCPA6qV/1eFQspNBQvDlULh0IWbiL7TIeUNc=
-X-Google-Smtp-Source: AGHT+IGtvYgkUBGkZE+o1YKeOQNeKUpWnPDO24Pw5oL1F2hnqzjyFwIwewa7TZuny2tak58ch839HQ==
-X-Received: by 2002:a17:906:d14a:b0:a43:fec3:b648 with SMTP id br10-20020a170906d14a00b00a43fec3b648mr637691ejb.24.1709275724792;
-        Thu, 29 Feb 2024 22:48:44 -0800 (PST)
+        bh=e9yQxgEwA+V3hfeUspmNH6wxUAFH4Nw5gJjNuDJi1E8=;
+        b=iz+FqOmP3VGUSiVQLztaq4ftF01ShVKCiazxBg2VdJP7w0tOTb/HxJ8x1/51+I+nmp
+         uxXyW/GqnfHOEqkZEWnVZZQ0WSloeo0tFpvlWRMst1+GZprUMNgVstn5H/rQYbLLoxD+
+         j3tKysR9WnJk9IlxJRSQYCaA35e2Xl2X/nR8F40W4O/E6cQd+NUApKiQqI47nLUzWMj4
+         P0jLu22udmzoAe/MpMDarfxe+1mYQqMuyr8k98JGNqIQV9ovNHcD4NL6GjaItZ3Mydtp
+         rISw7qbu2tlkf+3umlvNqia14ZnFyBmWPYMSkjfr9smg0GKPh8yEeBCvlvZnqBtXdXMY
+         f8Tg==
+X-Forwarded-Encrypted: i=1; AJvYcCXhnWJyB6lkDw8URY5wcWbQqPoyrSgq8nNiVU6IaghhQsfJVb+wLEz8RsEyttn4huvfT6hprJ095T+8AQ6sriYgn/CEgeRPliORMg==
+X-Gm-Message-State: AOJu0YwB4OD5gVeX4W3yveOpmRWI3gD1rNm1We4F8Q9Y+stRhSKCllK3
+	QlZkCHIkU0uqjdE+IhikMlKxzi3PpOBHV1UwefAx0id7rWrtrrdFCq3q3YQbONA=
+X-Google-Smtp-Source: AGHT+IEsiEo1/lXUDhzncXqx01aE4KwhtuUJQeEFtE8Z8ZrWHZ0A67cTFstZPQLvc+CFLC1ZYyi6Uw==
+X-Received: by 2002:a17:907:367:b0:a43:f020:57ed with SMTP id rs7-20020a170907036700b00a43f02057edmr518134ejb.73.1709275763099;
+        Thu, 29 Feb 2024 22:49:23 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id bq20-20020a170906d0d400b00a3cfe376116sm1399456ejb.57.2024.02.29.22.48.43
+        by smtp.gmail.com with ESMTPSA id bq20-20020a170906d0d400b00a3cfe376116sm1399456ejb.57.2024.02.29.22.49.21
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Feb 2024 22:48:44 -0800 (PST)
-Message-ID: <a24320b7-5cf2-4a6d-af7f-d07dfd0dc29a@linaro.org>
-Date: Fri, 1 Mar 2024 07:48:42 +0100
+        Thu, 29 Feb 2024 22:49:22 -0800 (PST)
+Message-ID: <2c90731b-709a-4baa-963a-fbd35372fb3b@linaro.org>
+Date: Fri, 1 Mar 2024 07:49:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 7/9] net: hisi_femac: remove unused compatible
- strings
+Subject: Re: [PATCH net-next v7 4/9] dt-bindings: net: convert hisi-femac.txt
+ to YAML
 Content-Language: en-US
 To: forbidden405@outlook.com, Yisen Zhuang <yisen.zhuang@huawei.com>,
  Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
@@ -90,7 +90,7 @@ To: forbidden405@outlook.com, Yisen Zhuang <yisen.zhuang@huawei.com>,
 Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
  devicetree@vger.kernel.org
 References: <20240301-net-v7-0-45823597d4d4@outlook.com>
- <20240301-net-v7-7-45823597d4d4@outlook.com>
+ <20240301-net-v7-4-45823597d4d4@outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,38 +136,65 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240301-net-v7-7-45823597d4d4@outlook.com>
+In-Reply-To: <20240301-net-v7-4-45823597d4d4@outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/03/2024 04:36, Yang Xiwen via B4 Relay wrote:
+On 01/03/2024 04:35, Yang Xiwen via B4 Relay wrote:
 > From: Yang Xiwen <forbidden405@outlook.com>
 > 
-> It's hard to get the version number for each FEMAC core and it's unknown
-> how the version can be used. Remove them until it's really needed.
+> Convert the old text binding to new YAML.
 > 
-> While at it, remove SoC compatibles and only use fallback compatible.
+> While at it, make some changes to the binding:
+> - The version numbers are not documented publicly. The version also does
+> not change programming interface. Remove it until it's really needed.
+> - A few clocks are missing in old binding file. Add them to match the real
+> hardware.
 > 
 > Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 > ---
->  drivers/net/ethernet/hisilicon/hisi_femac.c | 4 +---
->  1 file changed, 1 insertion(+), 3 deletions(-)
+>  .../bindings/net/hisilicon,hisi-femac.yaml         | 89 ++++++++++++++++++++++
+>  .../devicetree/bindings/net/hisilicon-femac.txt    | 41 ----------
+>  2 files changed, 89 insertions(+), 41 deletions(-)
 > 
-> diff --git a/drivers/net/ethernet/hisilicon/hisi_femac.c b/drivers/net/ethernet/hisilicon/hisi_femac.c
-> index 2406263c9dd3..5a088cba7d4e 100644
-> --- a/drivers/net/ethernet/hisilicon/hisi_femac.c
-> +++ b/drivers/net/ethernet/hisilicon/hisi_femac.c
-> @@ -945,9 +945,7 @@ static int hisi_femac_drv_resume(struct platform_device *pdev)
->  #endif
->  
->  static const struct of_device_id hisi_femac_match[] = {
-> -	{.compatible = "hisilicon,hisi-femac-v1",},
-> -	{.compatible = "hisilicon,hisi-femac-v2",},
-> -	{.compatible = "hisilicon,hi3516cv300-femac",},
-> +	{.compatible = "hisilicon,hisi-femac",},
+> diff --git a/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
+> new file mode 100644
+> index 000000000000..ba207f2c9ae4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
+> @@ -0,0 +1,89 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/hisilicon,hisi-femac.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Hisilicon Fast Ethernet MAC controller
+> +
+> +maintainers:
+> +  - Yang Xiwen <forbidden405@foxmail.com>
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - hisilicon,hi3516cv300-femac
+> +      - const: hisilicon,hisi-femac
 
 
-This breaks the ABI. I explained at least twice - use SoC compatibles. ONLY.
+This is a friendly reminder during the review process.
+
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
+
+Thank you.
+
+
 
 Best regards,
 Krzysztof
