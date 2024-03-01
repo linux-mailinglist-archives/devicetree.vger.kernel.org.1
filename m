@@ -1,111 +1,77 @@
-Return-Path: <devicetree+bounces-47619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C22BB86DE4C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:30:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12BF386DE4F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:32:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E12B51C20EA3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:30:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BD019284689
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:32:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A23B16A346;
-	Fri,  1 Mar 2024 09:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Tl5jns5Y"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C58646A8A7;
+	Fri,  1 Mar 2024 09:32:03 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 790DA69DEA;
-	Fri,  1 Mar 2024 09:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E47F6A35C;
+	Fri,  1 Mar 2024 09:32:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709285432; cv=none; b=ivONRxQcT3LWEk5D7UF65BqDL/QowIt19ydH2WR6WBzyzrVdD8u8XBppPKtj7d+g5tBeZMReWvrs1GQzEFxuWLcP6B8EjfuvqEbkBbBmuVoX9AH7rPA4MUU72SNmsb2U+DbJ4bjwp2NdC6ftmX+bi3T0xz/ra5ZpGAD1oB8z/BA=
+	t=1709285523; cv=none; b=Irvn0ZFIdrpvWt9NMJq5gSRvBVE59I1lsUqNZCR+RdfVUazZPB43f8fkx62fr24He7WgMOxCJY1QLNmNQmY0Z2E6LV+qszqglMe5FqXQlnSpk0NDErQd0JxlSKK6fqxuKTsdbUL5Jx8JdFmPb+linz6lmmmsdPOq/VWuu67Ulzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709285432; c=relaxed/simple;
-	bh=TpiIC487q0AstORpwvTUdNDZ7Z2PIWOGZ4se6WsW4qY=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=WQvNqhNRqvd3gL4bOLQh8A6v4/kXNAh4uqvzepszBYcYq1qg01SolIIoVGV/ldZJMsDHQlrVXl/4+O5zu64896R6agcXg8c6L37kTPthURLuvvZmsvK6uvq1fzi5Ok2ZS3fhqXFRib8mPqvOBYsDqCSJP5vxFegDFRBgRcN6o6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Tl5jns5Y; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E83DCC43390;
-	Fri,  1 Mar 2024 09:30:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709285432;
-	bh=TpiIC487q0AstORpwvTUdNDZ7Z2PIWOGZ4se6WsW4qY=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=Tl5jns5YG73wbwINUVlg5Lc9oFCBSAbYUuUj3C0yEveZwPMLn60JHf6krDOY+VBf/
-	 r6jp04vPBe1uuipDX+57/zMQuOkbi9xdyjxbGmTOVEgnWrEbeBCD1V6+zcvRK5lok/
-	 VArLD3/USL6ZlQ+KcYiksyLT8Fz80xYzapNLo422pCOYIsKY+8FOqscIrgvGTPQIQD
-	 +9N8ZXNL0fts6d2kkwvFjrsuQHTMVqEHr7NzvptZuEzM4OXoz3D9yMBGjQd9R5RcoL
-	 k5SwZvsmB6VnquhzpEhGGVZfOO6VJiSFoBrRMM1VQal+zbDXzCPzUS2ImZVEH+nydl
-	 Hkh1o6tVXUWrg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id CB7DBD990AE;
-	Fri,  1 Mar 2024 09:30:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1709285523; c=relaxed/simple;
+	bh=k9i8rJ7Ge2FeFZOsQ8ywHxiOYkWVHKe0l76fgYSB6CI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=UuZoCUv5AafablWIsFgD6XAdBan9z44lReC5K1fDzQUY1Tlyw0QpOTSVcuxpZwdC6QcqcMpZr76IVOtk4sri3CCcjzoVqn+RnwIlyAUF9sk8Itt630I9rcF2N7ykD5JJmu2Tyf/FNzDrmB3imqbloQYvSLVU62ASmpCtyroCmjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 819451FB;
+	Fri,  1 Mar 2024 01:32:38 -0800 (PST)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E42E43F762;
+	Fri,  1 Mar 2024 01:31:58 -0800 (PST)
+Date: Fri, 1 Mar 2024 09:31:56 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Cristian Marussi <cristian.marussi@arm.com>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: support system power
+ protocol
+Message-ID: <ZeGgjL6TkEdIHgzq@bogus>
+References: <20240226130243.3820915-1-peng.fan@oss.nxp.com>
+ <ZdyR_MWeqOWga8iQ@pluto>
+ <ZdyoAsYGXK9GjHVx@pluto>
+ <DU0PR04MB941710FB1400D0A17F99B6ED88592@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <ZeCNyLxQOIazc07h@bogus>
+ <DU0PR04MB9417C06FD66182C705238662885E2@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <ZeGJIvk_LqglqdBa@pluto>
+ <DU0PR04MB9417EAC31D3D7EC716A66C05885E2@DU0PR04MB9417.eurprd04.prod.outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next v3 0/6] Support for ASP 2.2 and optimizations
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <170928543182.25294.16027114391338365355.git-patchwork-notify@kernel.org>
-Date: Fri, 01 Mar 2024 09:30:31 +0000
-References: <20240228225400.3509156-1-justin.chen@broadcom.com>
-In-Reply-To: <20240228225400.3509156-1-justin.chen@broadcom.com>
-To: Justin Chen <justin.chen@broadcom.com>
-Cc: netdev@vger.kernel.org, horms@kernel.org,
- bcm-kernel-feedback-list@broadcom.com, florian.fainelli@broadcom.com,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- opendmb@gmail.com, andrew@lunn.ch, hkallweit1@gmail.com,
- linux@armlinux.org.uk, rafal@milecki.pl, devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DU0PR04MB9417EAC31D3D7EC716A66C05885E2@DU0PR04MB9417.eurprd04.prod.outlook.com>
 
-Hello:
+On Fri, Mar 01, 2024 at 09:22:24AM +0000, Peng Fan wrote:
+> " Ignoring unsupported system_state:" we have new defined
+> number here.
 
-This series was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
+Why ?
 
-On Wed, 28 Feb 2024 14:53:54 -0800 you wrote:
-> ASP 2.2 adds some power savings during low power modes.
-> 
-> Also make various improvements when entering low power modes and
-> reduce MDIO traffic by hooking up interrupts.
-> 
-> Justin Chen (6):
->   dt-bindings: net: brcm,unimac-mdio: Add asp-v2.2
->   dt-bindings: net: brcm,asp-v2.0: Add asp-v2.2
->   net: bcmasp: Add support for ASP 2.2
->   net: phy: mdio-bcm-unimac: Add asp v2.2 support
->   net: bcmasp: Keep buffers through power management
->   net: bcmasp: Add support for PHY interrupts
-> 
-> [...]
-
-Here is the summary with links:
-  - [net-next,v3,1/6] dt-bindings: net: brcm,unimac-mdio: Add asp-v2.2
-    https://git.kernel.org/netdev/net-next/c/edac4b113297
-  - [net-next,v3,2/6] dt-bindings: net: brcm,asp-v2.0: Add asp-v2.2
-    https://git.kernel.org/netdev/net-next/c/5682a878e7f1
-  - [net-next,v3,3/6] net: bcmasp: Add support for ASP 2.2
-    https://git.kernel.org/netdev/net-next/c/1d472eb5b670
-  - [net-next,v3,4/6] net: phy: mdio-bcm-unimac: Add asp v2.2 support
-    https://git.kernel.org/netdev/net-next/c/9112fc0109fc
-  - [net-next,v3,5/6] net: bcmasp: Keep buffers through power management
-    https://git.kernel.org/netdev/net-next/c/4688f4f41cfa
-  - [net-next,v3,6/6] net: bcmasp: Add support for PHY interrupts
-    https://git.kernel.org/netdev/net-next/c/cc7f105e7604
-
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Regards,
+Sudeep
 
