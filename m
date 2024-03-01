@@ -1,163 +1,95 @@
-Return-Path: <devicetree+bounces-47622-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47628-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23F3D86DE5C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:36:19 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED08786DF1A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 11:17:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CFCB4286632
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:36:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A2A691F22722
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:17:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5F716A8A8;
-	Fri,  1 Mar 2024 09:36:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Ig46G8V0"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A890C6A325;
+	Fri,  1 Mar 2024 10:17:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39E606A356;
-	Fri,  1 Mar 2024 09:36:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE3672EB0E;
+	Fri,  1 Mar 2024 10:17:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709285773; cv=none; b=ausKpaDY5IUSz33MJQuHAFvEho6lRc7wOKD2Rsxu2zmdPWbJ7b0AjlS9aDz4t6hFlLSqWdE3b8a9oVlgc2fIB9sylTHQhriJgmZAzP68xOHg6oEkjTWeoHF7QmPDEoyswHwNpnA3v/gvTwTP3v8sYmocktzn2nua9OBtsDHzdWg=
+	t=1709288225; cv=none; b=K3L6aqGnk+sHYUMY01hakWaaWMCjdZCU9ZC0PpLAmSrJkMSt3w4v2mGaX4kkYTCQv4DiwlKIJror4zrL98VgT89ESr6008BdNZrOMLcQLsSHNLlXBaO7171Do8cDWnd6UOOq0NeiA4+FZs5hda6oBCVwBoXxuAdrykNRFz7z5Xo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709285773; c=relaxed/simple;
-	bh=Gmf0uAuSVCHCNz8dYID/8N8Eng78uQAJL21zEESINHQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=X10kmOS1TUoy4QhukLO/lWenWri9Qsou3TMYld99Fns+CaIfE9cqBOYiA3zWpK0ys2O/I1NZmP0Gl0+plzgHca3XqsEi5HmpIQXVkGxCEVUYYYTvBs8ZuyWUvm6bGbhH9IXOwllEq5yUIAHCfJk3i8krDX3+CPVSypDtB0I93Pg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Ig46G8V0; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1709285770;
-	bh=Gmf0uAuSVCHCNz8dYID/8N8Eng78uQAJL21zEESINHQ=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=Ig46G8V0pkgNPXWHGVJB/JcKf0H593/uLUmsUXQHbWjQx4kF5UVwVCYRuSoK2aOdw
-	 BP3PDLMyaGt+zv3W7kFW1FMQSsNolK0+DaQ4EG4RRDTAJnkA28kNFcs/Utre/aP0eK
-	 q+RDgJWxv+p1RjN5fwX5tad13FyU54e2tPc5j+iwYEI5FJUCEjWMO8I5wS+jAD79rG
-	 NOn7t+DvE0GrKqvqoFxYDp22QBfde1KIDbxhIJ77KEz1887NulmfZIgyvACmGBGzVU
-	 y+DmCWHqEOzCv+QJT68pdrrbES/pVEyoycyNuP2AIWR42ajqEP97BUhealuWYyeiF0
-	 aIbd4jGPtJgGg==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 6783B37810CD;
-	Fri,  1 Mar 2024 09:36:09 +0000 (UTC)
-Message-ID: <7de218a7-680f-40a8-a002-d6a2c87f53ee@collabora.com>
-Date: Fri, 1 Mar 2024 10:36:08 +0100
+	s=arc-20240116; t=1709288225; c=relaxed/simple;
+	bh=qwVIxiufJj1mr1cm23cxINBd1eTGOKopYIHThjoyex4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iaG5YaBDQYDKdDoOQnyozHQDFvyljgi4X7nOO2IpGHaO8H0+a0BlYw/pv5ZWITphUrLIWSTYj8l+Ot7rATLSDL3jWz1ehQn8oLpvR63O0CF/zSfa5BO7+8RVEJueyQcSBxIwye+edDqVTLTvx2U4oBesR9790cpiPmJKLCu7tcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1rfzwh-0002zb-00; Fri, 01 Mar 2024 11:16:51 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id D28FDC0267; Fri,  1 Mar 2024 10:39:47 +0100 (CET)
+Date: Fri, 1 Mar 2024 10:39:47 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: =?iso-8859-1?Q?Th=E9o?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Gregory CLEMENT <gregory.clement@bootlin.com>,
+	Paul Burton <paulburton@kernel.org>, linux-mips@vger.kernel.org,
+	Jiaxun Yang <jiaxun.yang@flygoat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+	Tawfik Bayouk <tawfik.bayouk@mobileye.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v8 00/14] Add support for the Mobileye EyeQ5 SoC
+Message-ID: <ZeGiYyiQQ7pwpECE@alpha.franken.de>
+References: <20240216174227.409400-1-gregory.clement@bootlin.com>
+ <ZdSst3fM3EOQGH03@alpha.franken.de>
+ <CZGOPF51JA1R.2YN65K6WUH9N4@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] media: mediatek: vcodec: support 36bit physical address
-Content-Language: en-US
-To: =?UTF-8?B?WXVuZmVpIERvbmcgKOiRo+S6kemjnik=?= <Yunfei.Dong@mediatek.com>,
- "nhebert@chromium.org" <nhebert@chromium.org>,
- "benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
- "nfraprado@collabora.com" <nfraprado@collabora.com>,
- "nicolas.dufresne@collabora.com" <nicolas.dufresne@collabora.com>,
- "hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>
-Cc: "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
- "frkoenig@chromium.org" <frkoenig@chromium.org>,
- "stevecho@chromium.org" <stevecho@chromium.org>,
- "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "daniel@ffwll.ch" <daniel@ffwll.ch>,
- Project_Global_Chrome_Upstream_Group
- <Project_Global_Chrome_Upstream_Group@mediatek.com>,
- "hsinyi@chromium.org" <hsinyi@chromium.org>,
- "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-References: <20240301020126.11539-1-yunfei.dong@mediatek.com>
- <ea7f25bf-2294-4ad4-bc18-226827d49ae8@collabora.com>
- <c1f489c474e3d00ff8573225c5d282df4d82f9e1.camel@mediatek.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <c1f489c474e3d00ff8573225c5d282df4d82f9e1.camel@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CZGOPF51JA1R.2YN65K6WUH9N4@bootlin.com>
 
-Il 01/03/24 10:23, Yunfei Dong (董云飞) ha scritto:
-> Hi AngeloGioacchino,
+On Wed, Feb 28, 2024 at 12:44:09PM +0100, Th�o Lebrun wrote:
+> Hello Thomas,
 > 
-> Thanks for you reviewing.
-> On Fri, 2024-03-01 at 10:03 +0100, AngeloGioacchino Del Regno wrote:
->> Il 01/03/24 03:01, Yunfei Dong ha scritto:
->>> The physical address is beyond 32bit for mt8188 platform, need
->>> to change the type from unsigned int to unsigned long in case of
->>> the high bit missing.
->>>
->>> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
->>> ---
->>>    .../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c        | 4
->>> ++--
->>>    1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git
->>> a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
->>> lat_if.c
->>> b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
->>> lat_if.c
->>> index cf48d09b78d7..85df3e7c2983 100644
->>> ---
->>> a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
->>> lat_if.c
->>> +++
->>> b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
->>> lat_if.c
->>> @@ -1074,7 +1074,7 @@ static int
->>> vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance
->>> *inst
->>>    	unsigned int mi_row;
->>>    	unsigned int mi_col;
->>>    	unsigned int offset;
->>> -	unsigned int pa;
->>> +	unsigned long pa;
->>
->> If you used the right type from the beginning, you wouldn't have to
->> fix that ;-)
->>
-> Yes, you are right, thanks for your remind.
->> Is there any reason why you didn't - and still don't use the
->> `phys_addr_t` type
->> for the `pa` member?
->>
-> pa is also iova, dma address. Change it to dma_addr_t looks much
-> better.
+> On Tue Feb 20, 2024 at 2:44 PM CET, Thomas Bogendoerfer wrote:
+> > On Fri, Feb 16, 2024 at 06:42:09PM +0100, Gregory CLEMENT wrote:
+> > > Hello,
+> > > 
+> > > The EyeQ5 SoC from Mobileye is based on the MIPS I6500 architecture
+> > > and features multiple controllers such as the classic UART, I2C, SPI,
+> > > as well as CAN-FD, PCIe, Octal/Quad SPI Flash interface, Gigabit
+> > > Ethernet, MIPI CSI-2, and eMMC 5.1. It also includes a Hardware
+> > > Security Module, Functional Safety Hardware, and MJPEG encoder.
 > 
+> [...]
+> 
+> > series applied to mips-next.
+> >
+> > I've fixed generic|ingenic|realtek builds by adding select MACH_GENERIC_CORE
+> > in arch/mips/Kconfig.
+> 
+> Would it be possible to provide an immutable branch containing the two
+> series? I've got quite a few series that depend on them as they target
+> EyeQ5 devicetrees and defconfig.
 
-Ok, dma_addr_t looks good as well.
+that's IMHO too late, as I've merged it already to mips-next. mips-linux
+itself is immutable, but contains other mips related stuff.
 
-Cheers!
+Thomas.
 
-> I will change it in next patch.
->> Cheers,
->> Angelo
->>
-> Best Regards,
-> Yunfei Dong
->>>    	unsigned int size;
->>>    	struct vdec_vp9_slice_tiles *tiles;
->>>    	unsigned char *pos;
->>> @@ -1109,7 +1109,7 @@ static int
->>> vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance
->>> *inst
->>>    	pos = va + offset;
->>>    	end = va + bs->size;
->>>    	/* truncated */
->>> -	pa = (unsigned int)bs->dma_addr + offset;
->>> +	pa = (unsigned long)bs->dma_addr + offset;
->>>    	tb = instance->tile.va;
->>>    	for (i = 0; i < rows; i++) {
->>>    		for (j = 0; j < cols; j++) {
->>
->>
-
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
