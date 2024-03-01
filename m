@@ -1,166 +1,228 @@
-Return-Path: <devicetree+bounces-47755-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47756-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D90B86E670
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:57:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A0DB786E67B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:58:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7BDFC1C2257F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:57:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5503828A29F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:58:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D85F12E415;
-	Fri,  1 Mar 2024 16:51:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBAA14C87;
+	Fri,  1 Mar 2024 16:56:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="QuEM5z5w"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="l45mJ6sZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2079.outbound.protection.outlook.com [40.107.14.79])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f169.google.com (mail-vk1-f169.google.com [209.85.221.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCFA92AD00;
-	Fri,  1 Mar 2024 16:51:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.14.79
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709311873; cv=fail; b=fI0y48G7S32E6wPrxTIOWTlWPxIzd6ABFMq4AbMCot8qs7Z9xG/HKpyXimqDCd0sBomEsVSzzWTJTJxamFAd5pz4YIOk0+v9PwE+QT41XJ/tLOBGegP/9ri7BQm5NB0ypsxk2rsqPHLnfuUWYnm9S0R4FkjocLV8ynzDspHyI9U=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709311873; c=relaxed/simple;
-	bh=ZzmM3hZ8qFIM9cFk7NWDIbMv2eWcLzogUAmToORKlDI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=qG/UhxE6AYJNgKpqxKdC4Tv5gjrbwEA356X63P3FX2ugxo8ylMCvT6a8J8T11RImDWIVz2AtwutCGPC2twAZrQ1ARLuuCfpPbVE2mrKge7c5fy7g7flje7/mw7SWGaAkT8reOyYQuxH2x7rCOYuP+ksfGP4C3TZHDUdjNSjgeH4=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=QuEM5z5w; arc=fail smtp.client-ip=40.107.14.79
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=X/VdZqS3q85HCjMLmmi+rgUMrOcYPvsE19/I4MJ+4JVeWr4ydCkj7Kztstf7jp5lroSX9ActJ/ITXnPRszeIN7Yw4mal0esbz7jGHywpssXbW/8bdr1eaSdiFvngOGWowQnWPP6pvE2k32ThpuDuzEF/qe+vE3pjRA+hKxTyDx1hUx8t/JWHuqXSBBwrgh5faUEpJ6a3mJKBK92k5IB71QZ6bqrQjaG95fUvgWcuVbP/F2+0bCQLdIYUtsTdbmlaORgf6VCxI4APpICOPEukKnXe+g3nF/a+QgJ819sSwDhMa5Pn0S3ArhCCdfeirtcLWqBIRZ1PtmcOzAW84fBxdQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nMmkfYwc5gJshluNpnzyBUxaxPUMakrRlWXvAVkjZxM=;
- b=RAq5zWNOqYGMD7sotPYeNeLbnd89QifOg6qfsTHPq/P9u93S7GVxioUwPbubNSSWqGWqZlCuSzJl6o0yR5fAtRo/nNuKYXRLVqj12/mUkf9LQObOmuelD8Pwf5P5imNLwpq9Stswaz6mNQItps2pNBIE7C3SACumKVJpZLXtjhHMecaYbftQBIfWf+f9hgA317AU2I6xgI7thkSeLMOXbcCp6VyQh0dJOtCZwxptKrTw4LfaBpkWf50Q9Bxs4DWfmqU/QyOpyF+uQRwuFoywVBE68Tn6Fq42MXRmGbWIsWEp4dMxDuRBVjEdzAWMwNNqHJRHlF7X5ND7vXhb4rvZYw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nMmkfYwc5gJshluNpnzyBUxaxPUMakrRlWXvAVkjZxM=;
- b=QuEM5z5wDaN5fOJW1A6gO6gRh3DedLoWgF1aN3fugOEa9FV1bGL2ZtGLuc6jpGO2lpDd9h+DvIMUJxLdZOtXQP9BHtCs+UtMwU1ok5caER9OLUEMTjfgb84QgfpmK5AmF/9pdzmHmEjc064z2jaYqzHjAkKoobGVJuRMTM+izSA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by GVXPR04MB10134.eurprd04.prod.outlook.com (2603:10a6:150:1b1::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.41; Fri, 1 Mar
- 2024 16:51:08 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9af4:87e:d74:94aa]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::9af4:87e:d74:94aa%7]) with mapi id 15.20.7316.035; Fri, 1 Mar 2024
- 16:51:07 +0000
-Date: Fri, 1 Mar 2024 11:50:58 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] ASoC: dt-bindings: fsl-sai: allow only one
- dma-names
-Message-ID: <ZeIHck8wUqdYbzeK@lizhi-Precision-Tower-5810>
-References: <20240227-asrc_8qxp-v2-0-521bcc7eb1c0@nxp.com>
- <20240227-asrc_8qxp-v2-3-521bcc7eb1c0@nxp.com>
- <20240229-husband-penalty-8c1ab0f57f55@spud>
- <ZeDbiLR8vLtVfgGX@lizhi-Precision-Tower-5810>
- <20240301-ending-resize-9ee4e1998f6c@spud>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240301-ending-resize-9ee4e1998f6c@spud>
-X-ClientProxiedBy: SJ0PR03CA0335.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0BE2446B3;
+	Fri,  1 Mar 2024 16:56:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709312163; cv=none; b=gyKT4zAoXUFKfUBamUw15sEic8suqrksm+A8knGjoATgdFVT3yi9D3fJf/wftKk6jSNFR9UQkjkissDVSimx2NuYE3YiQNDB+k0az9aVbFx/nMHxpJ8Um75JUrcF6oDzIo4APpT5WU2nV3LRB0917E2Cz19TByANmKofB90ZX4A=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709312163; c=relaxed/simple;
+	bh=tcWwucxZhE6pxYFHGKRVseFc+s2my29VBUkiq6oiXAE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KbiJ/NEWePO3o+bPNaVQMa2eNGjps//BBIw+skIMPlUCJjtxdq32lj+YPOK3egIszfYWdgQ7g0PkdYSAP33JHSVkxtxb65qSyV9y8fGyWWxqWR1WDDTAK/ILZLMJMiLsiR2KzbVJUxgMbL0pd/Un4cxazhUDRNaVYQLmh3l2/eg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=l45mJ6sZ; arc=none smtp.client-ip=209.85.221.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f169.google.com with SMTP id 71dfb90a1353d-4caabc3f941so1907519e0c.1;
+        Fri, 01 Mar 2024 08:56:01 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709312161; x=1709916961; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yPAJ6R6o80p6wf3uDCdNNC+SWw3RQ8ctedBqfsViuIc=;
+        b=l45mJ6sZDhtcAAqByEUzojstig+2Wv3XnCLQG3foa+KZN6eXpf0UqbIh8qNT9bUnnw
+         VMvL7ayRbilVcxiuHQuVm/94RB/B2DKKXU8bYt5O/5Ksiu6U9U+II1ESZsDULLknGJu+
+         9hTnGZBprG8/GVjVZPZCoXEPKryAbHgUPi3DTBcczMzfNy3zZO8QWUWlnUylopCxnJoJ
+         GTmLOaz1uUtafcPqpII40yYhR49ddCLW/EvhQYwgozwIshmylFmSVuMtPMHcoKxw3hAL
+         HxuBAddLX8NaHfaUVQ5QOlveAKHNRZbyKh4OHFKHMncLXekph/Yc1adq2u2PHA3PGI4W
+         mjQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709312161; x=1709916961;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yPAJ6R6o80p6wf3uDCdNNC+SWw3RQ8ctedBqfsViuIc=;
+        b=Sb677c2/Zn1hzFu1bkfnve+FHHm8zNCz2jmB45CmJNwH+LDiRV1k/BksEnik4el8S0
+         zDE/8FuV3slyltoksN7GxgNalMWCUr7Egbf3fKsdGNTjLRW1nNrnOB9QEcfA8F3sy1O0
+         GwvN8twfPGEKj22jrl9ZjXMK1VivEKZUsHh0fpJZgiBX46XkUD7NloRGZZe0eYP/G/9T
+         jIWyH6BnligGd3tZy/8MKTbr9FrKPhUJ/GhFWo2Lo9A7PDYmuBRH0Se4CVRx6fvWE6mK
+         ojb1xMF2Yv+NsoC/PJz9yoVdabkdnr5UKN/ZKxo4WBSCNp0FF13lnWIdcXZ7xszswAP7
+         8EMQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWt4Gd90ONpZVWNxNvnUp4W2Znzct/TQjx/jyP30gF3q6q/n9FNZ6ey9NhmoPH81tcKWIJyCC2IOmp88PyKaoalmUCmlW2w4RiO6ui7TE7AnAnrbbcmsKo/25qOvI/1OIPald/mdgO1EA==
+X-Gm-Message-State: AOJu0YySDwjnBDfEoDAzILjEVliM+bsULPzpRRicoFxjS98y9RO9sHHM
+	obb0tV4lylvmo5U23Tbj+5UhXf/y+Jm99Ui4DwtUIwNO/GpM9mF/
+X-Google-Smtp-Source: AGHT+IEXv5sPjY0IX0b69xli3x9+etwkVq0o/XCPKPjVDoSuX9MHOluxkIQzzJVAIH4VqCDYQ1PWiQ==
+X-Received: by 2002:a05:6122:280a:b0:4c8:aaf1:1558 with SMTP id en10-20020a056122280a00b004c8aaf11558mr4519010vkb.3.1709312160820;
+        Fri, 01 Mar 2024 08:56:00 -0800 (PST)
+Received: from ?IPV6:2001:861:3385:e20:6384:4cf:52c5:3194? ([2001:861:3385:e20:6384:4cf:52c5:3194])
+        by smtp.gmail.com with ESMTPSA id h14-20020ac5cbce000000b004c880fc9728sm497196vkn.46.2024.03.01.08.55.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Mar 2024 08:56:00 -0800 (PST)
+Message-ID: <f97cfe34-88e6-4444-876d-7eb6a636e877@gmail.com>
+Date: Fri, 1 Mar 2024 17:55:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB10134:EE_
-X-MS-Office365-Filtering-Correlation-Id: 945a35f8-1265-4498-c76b-08dc3a0fca45
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	zNFGOSTZRCcADa1bSlt24EQb2pSC1KasdGTmceW7D/IFeNUlEMBZFDGArbfN/pZlOvCuxScCJc5lPHeopoUT8GaDCxY7K2P5CrgL8EHeeocAKRU/HUuQSn3KVsFJCVczuOqT0HQ6ttSM10LvZLfG929ps/jOvrPqlFqRbt7uLhV/pvHYjeeaz9Ib3tkg0da8mQWxrYdn6bcSfG3zK71oO6Ruc19r7xdhuyrvTtZPOc0z+yZ5H2HobeR+u8OxmwZExu98ZaKEoOlST3trl8vqZMz2dqoPD90Bqz3vyZVBzjs9QyNV3fNWndq0d+oyx3d1nuY/YBWIZEtRu16jpjvSvXIeDhAh8Qbfp8OtXYEfgIShIiD3Kb2ERLpaIUMUXrX6qT5wpQmODL+N/dLyenABKBDjTtcFg09JE5p+QJNJ0HaqvvzY66xwnO1FRIVE0WBqE4JUzfJcdvsCOQxiFLLas1oFCKPTWOMOUNxdkfEfCY+pN9jCNSJaJjP7QR/jHRECPokPwN2uuCMbRUp3g+LoZ7GTpG7MQTJuZVTT5W6ddz3OHgPHDptxXwPvV7vFdQzys2GnfXmWxZRKM3NGhICVS37jDu1VOKmCxiARa4FBCQ7MOSX7nHuDB+hWXXAeMYu5ZosOVDltG13dnxpgzy+/CbKZAgsicsDWsKRpjisdKL7BLGPB57W0XdyzzzQvc5BQirXx0gxy/+xSNWX6tx4/CQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?9SsNKuTz8Wupbg/O7Kc71O98RiGRWv+cg2yM796vVej673H6nsNXW3/squcl?=
- =?us-ascii?Q?tVjayZRL+pEgdvlZGL/DrdGz2U+szQBD360AsAHHIr8hLQNEmy7Camr49MEe?=
- =?us-ascii?Q?090VTDz7l7hlzOKv9qdc8Tv6M4ROzz7XyiPYCUSb0pTATfDfS9LKNjztuB+W?=
- =?us-ascii?Q?XqyOZdnD53aF8ST47aHbSOPFUGujEuslfB0pR9TXxZetX8Piq1MxttiPz8CR?=
- =?us-ascii?Q?MdK+6llDVVk7yjeoPw1yNi0n/p8voC99jDewqEvAW7YOI+kVMjfEKlziwSSo?=
- =?us-ascii?Q?s3dYP7GKSf75XRh59s1q+TIkgko7H8c8GD58hOSyKsOiAyj1QoiLH3hfLA6Q?=
- =?us-ascii?Q?Q9fxN4k0R32V3K2jHpykxzicEi1P8FdxFvUc3/tKFbR26+CuPd9r53NyyCMC?=
- =?us-ascii?Q?OUZdfC4F48YvfHUdf5ShgDvpXW/fiAXw1BolSLw/4R9f99LC1Xq6Ilwq+uqu?=
- =?us-ascii?Q?Pb5/mIFVzetlPUQe+e5ok7o2/0034S+cDMbpedFaT8/CtOzfvGyYsPyl3NkI?=
- =?us-ascii?Q?k8eGfer/Zw335CgD5LC1M2RB4ElX79t7D9UWlao/XvBo4re+m+fea+qJGhm+?=
- =?us-ascii?Q?R0fqP/4COZMm/5OYxztNVZL7kggWso3mtSk376zV0yukpIDYpCCfp8FIipSq?=
- =?us-ascii?Q?HAuk/MUd6E8DutY7/LEdfSrMLFyYApyrKB6Vi7x/FI9hu0vSfzpwWPrEgRK9?=
- =?us-ascii?Q?ERPN1DSmAmHcVp8qsPpO2WvcLxBGg1GZdsmPSeNseafVcO1mGJAm5M12yIv7?=
- =?us-ascii?Q?5DOgk2b+RXNx2xjWZc92ma2nt1T8koQKjAjfkWkuDayaTSObtlsldCcvkYyW?=
- =?us-ascii?Q?Tf9MOme/hJFcLfeHBj8oG/W1S/2ohBtN/399+4PNSPhpP8Cue508WbWTqPVY?=
- =?us-ascii?Q?Ci1fKoMoYiWvkc4Kx8k3lecBZZiI7zomLT8VNAfas/Pw3nZp2TFiiQO1ijDV?=
- =?us-ascii?Q?4pcqspME0do3b6rYGnme04T2qUJll56i3f5sKhGV14BDYhKwbPiC+a/khjLg?=
- =?us-ascii?Q?JBP7v93CAfJ1Ds7XUwxOg9K0qjK4SXKH23U6b0os5ij0WJ8u8HUVjcMB3czr?=
- =?us-ascii?Q?WnLHZxfZZc6sr1v1PKcp7uebbdWZN1+bzXCjReXW+ID/wk4DyblAiVjsf5Ty?=
- =?us-ascii?Q?vHEr8f1i70gV46mp3RCrS5VGI3ZN53VF+h4Sd7ThtB6zvDG5DZtend2iJWKc?=
- =?us-ascii?Q?+ViBc3YDTS9rmkDgAOTGZItD7WMLOQ+lNzqVZ2RdifFNiYUnCWqE9GF+UZv5?=
- =?us-ascii?Q?WMo9gTO6wHTHbhtuHd6Rbaw/b0Bm/zMcOlNcoJ9NyjKVTGjIR5KXWRpte7gE?=
- =?us-ascii?Q?fdnS2gvE0nLwa9/ld2KM2K4M/mMVYIaZHadl0yHNzqQdUueOjQtRC8d6y3H0?=
- =?us-ascii?Q?STmC2dw+bqRaC+dhxDLT2CunSQYT+4c+B29v/dhtsf6EuVc+Gfxgln3bwbDN?=
- =?us-ascii?Q?KmvRXqyAwe2zvkoyXzwtctMIVQKgDG14tFeeg4hM5LGeDxtw7HEuNHCtodkQ?=
- =?us-ascii?Q?NvUuPHG/oTbNhDND3Flckq41uFF7UeRkpVFG4G+EAjSGkw7SDk0f1UqNggC+?=
- =?us-ascii?Q?xH4I21hSYIRUKQXQ9kkz6/yS7gzO1xafnX9woMry?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 945a35f8-1265-4498-c76b-08dc3a0fca45
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2024 16:51:07.3304
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Vwx2JAykdTtsPwQFgYDAzZ83nYHcqRU5BgsnCLJnFlJd+6xhaTK6kaRuW0GDbJehA+Wu9qER02BtPykVMPWQ/A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10134
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: thermal: convert st,stih407-thermal to
+ DT schema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>,
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Patrice Chotard <patrice.chotard@foss.st.com>, Lee Jones <lee@kernel.org>
+Cc: linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240226-thermal-v1-0-8b03589ece73@gmail.com>
+ <20240226-thermal-v1-1-8b03589ece73@gmail.com>
+ <6db2491d-5f8f-43e7-a8c2-b9018bdb7617@linaro.org>
+Content-Language: en-US, fr
+From: =?UTF-8?Q?Rapha=C3=ABl_Gallais-Pou?= <rgallaispou@gmail.com>
+In-Reply-To: <6db2491d-5f8f-43e7-a8c2-b9018bdb7617@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Fri, Mar 01, 2024 at 04:06:35PM +0000, Conor Dooley wrote:
-> On Thu, Feb 29, 2024 at 02:31:20PM -0500, Frank Li wrote:
-> > On Thu, Feb 29, 2024 at 06:55:58PM +0000, Conor Dooley wrote:
-> > > On Tue, Feb 27, 2024 at 03:54:11PM -0500, Frank Li wrote:
-> > > > Some sai only connect one direction. So allow only "rx" or "tx" for
-> > > > dma-names.
-> > > 
-> > > Which sai? Can you restrict this per compatible please, so that someone
-> > > cannot add 2 dmas for ones where only the tx is supported.
-> > 
-> > SAI is exact the same. Only external connect one dma channel.
+Hi Krzysztof,
+
+Le 29/02/2024 à 20:15, Krzysztof Kozlowski a écrit :
+> On 26/02/2024 08:48, Raphael Gallais-Pou wrote:
+>> Converts st,stih407-thermal binding to DT schema format and cleans
 > 
-> Right. The wording made it sound like some SAIs were capable of this and
-> some were not, but what you actually mean is that all SAIs can sometimes
-> be connected in only one direction.
+> Please use imperative for your future patches.
+> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+> 
+>> unused property "st,passive_cooling_temp" which does not appear in the
+>> device-tree.
+>>
+>> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+>> ---
+>>   .../bindings/thermal/st,stih407-thermal.yaml       | 61 ++++++++++++++++++++++
+>>   .../devicetree/bindings/thermal/st-thermal.txt     | 32 ------------
+>>   2 files changed, 61 insertions(+), 32 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/thermal/st,stih407-thermal.yaml b/Documentation/devicetree/bindings/thermal/st,stih407-thermal.yaml
+>> new file mode 100644
+>> index 000000000000..807f8d77edf5
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/thermal/st,stih407-thermal.yaml
+>> @@ -0,0 +1,61 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/thermal/st,stih407-thermal.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: STMicroelectronics STi digital thermal sensor (DTS)
+>> +
+>> +maintainers:
+>> +  - Patrice Chotard <patrice.chotard@foss.st.com>
+>> +  - Lee Jones <lee@kernel.org>
+>> +
+>> +description:
+>> +  Binding for Thermal Sensor device for STMicroelectronics STi SoCs series.
+> 
+> Drop "Binding for" and describe the hardware. If you repeat the title,
+> then the description is not really needed.
+> 
+>> +
+>> +allOf:
+>> +  - $ref: thermal-sensor.yaml
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: st,stih407-thermal
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +    description: Phandle of the clock used by the thermal sensor.
+> 
+> Drop description, it's obvious.
+> 
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: thermal
+>> +
+>> +  reg:
+>> +    description:
+>> +      For non-sysconf based sensors, this should be the physical base
+>> +      address and length of the sensor's registers.
+> 
+> That's odd, probably old binding was incomplete. You have only one
+> device described here, so I expect this to be always present (thus
+> description is obvious).
 
-IP is the same, just some instance only connect one direction dma. for
-example there are 6 sai instance in SOC. sai0, ... sai4 have both rx and
-tx. sai5 only connect tx. 
+It is indeed missing in the old file.
+> 
+>> +
+>> +  interrupts:
+>> +    description: |
+> 
+> Do not need '|' unless you need to preserve formatting.
+> 
+>> +      Standard way to define interrupt number.
+> 
+> ???
+> 
+>> +      For thermal sensor's for which no interrupt has been
+>> +      defined, a polling delay of 1000ms will be used to read the
+>> +      temperature from device.
+> 
+> Missing thermal-sensor-cells.
+> 
+>> +
+>> +required:
+>> +  - compatible
+>> +  - clocks
+>> +  - clock-names
+> 
+> Missing reg and please mention the change from pure conversion in commit
+> msg.
+> 
+>> +
+>> +unevaluatedProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +    temp0@91a0000 {
+> 
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> 
+> 
+>> +        compatible = "st,stih407-thermal";
+>> +        reg = <0x91a0000 0x28>;
+>> +        clock-names = "thermal";
+>> +        clocks = <&CLK_SYSIN>;
+>> +        interrupts = <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>;
+>> +        #thermal-sensor-cells = <0>;
+>> +    };
+> 
+> 
+> 
+Thanks for your review. I will send a v2 with the changes your mentioned 
+above.
 
+Regards,
+Raphaël
 
-
-
+> Best regards,
+> Krzysztof
+> 
 
