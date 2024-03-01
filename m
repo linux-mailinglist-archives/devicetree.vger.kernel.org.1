@@ -1,145 +1,169 @@
-Return-Path: <devicetree+bounces-47574-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47576-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49B4E86DBF7
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:17:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id DE63586DC52
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:48:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6FDE1B221F5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 07:16:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9277F28C3F1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 07:48:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1BB269940;
-	Fri,  1 Mar 2024 07:16:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886F067E74;
+	Fri,  1 Mar 2024 07:48:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="leng/8N5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hGO07pqJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 07AEF6930F;
-	Fri,  1 Mar 2024 07:16:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E6D50275;
+	Fri,  1 Mar 2024 07:48:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709277416; cv=none; b=DQBVil/mphwM3RsZfe5V2aLCUI+40H0nNI08MuaCWV+exBT8LJSjfBogj41Nrtfb77vgtK82RfrizG0DajlOn5+DHcP78jCCJ71QjykPvOZq5r8IGmoa+LvCrc3gLbOoD+/n3koR1mV2wS3JeKORWOB10FMmjrFU2tIYRL3n3Nk=
+	t=1709279288; cv=none; b=cOGGWy7VXf+Sa4BMwtVlNAYlNr2fm4cQZ546xO05DC8r6cnC7Z/CTvD6tg+ixjZFI1tl4FzCbHWtJ4Uchay+moQ0RVhHK14XOTpQFtOEdSQKJ/s0mssFVbtVQyLgZyJ989GG2lY5IHJR/tQ3XQlH7NSAWMZbh23F/78MuYzhVIY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709277416; c=relaxed/simple;
-	bh=WHKVZdrxfAxAeyIcsa7IjNySNrmUfuP0ojsYfxM1XHI=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=RFBxh+OdKQy+iNZL/OsooxJvRCNOElK+po4E49MAdCx1tsqJjS1q98GtU9fPbnp9ry6OALngOmJJ/u2qyb3ooyzYpQgZANV9cFIa7SQlUe/9HMF7wqYlMD/Tktq3pF+La2laudM2ABHQA2u9/XuOHQlG66xjymUjTnu06ckQbmU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=leng/8N5; arc=none smtp.client-ip=209.85.128.49
+	s=arc-20240116; t=1709279288; c=relaxed/simple;
+	bh=Pofs6Iq1R1/s2g+DzmAmCcTOqm3WK2u+gBotuVmy8uI=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=FoWXB+jPgqEPjzLLEOkaCND4Oa8Wkkfk9dTmnFRmcM49aR2+7tI4vdtQuzVJDq/6XDAjatebedmYmE9PxlJfmzz2KYWs2AUI9G7/OQ584ULz+jfr5wWXSBoq0GnxCSLoX5LO6KU50LZW9Biqqb/GHj9CNkB0sZsVkQXZfaEOQS4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hGO07pqJ; arc=none smtp.client-ip=209.85.218.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-412c227c80bso7878945e9.1;
-        Thu, 29 Feb 2024 23:16:54 -0800 (PST)
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a28a6cef709so278799766b.1;
+        Thu, 29 Feb 2024 23:48:06 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709277413; x=1709882213; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=0F7J/E4zNfIGX63i/LqfI7L83PfKXt6U/fCuTc8OprU=;
-        b=leng/8N5qrrVhKhYYfnlwwjtDXjtcTFQzut6i0i+d1SkPfYBebzd3wRX9DFqaWxin8
-         rWQC9o0FY2zjyFFyZbdnUow6Zt60VguEuWjbNiCSIwLEHtpAfwI6bJy1By0Ng7E0QI96
-         dWWCHDPB6ObnkYkkTENH/JPgNvG8OG11wEdRuOVcF4iQ/2fSrH5DK+KEL7zM8SVmTrDm
-         us6FL9LwMmuK4FV+jAD6dsBIkmsqTTUh4maKP2zXeEzTXZ6kx91n1FqCVqUawIZqfN3x
-         me2qRhfK3VTxD9sxXHTre46cjwyOx6A5tlmMZH4vdMe8+nTi9FHnUJfX+MKs8CkOqtWo
-         12DQ==
+        d=gmail.com; s=20230601; t=1709279285; x=1709884085; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=blIn0p2u3QS9iJ7wxkzaIEJOBeHVH2WoSM8ME7du+Nk=;
+        b=hGO07pqJ6weukzqtPRODYokchILfX8JQEygCESdX/MGS/K+iS1oWz8LlCZ1keq0Tah
+         lPVvygFD8meNAxXpa+vY+c9Omx6OtogCYfLVWgfIl7nNhTZ2By91p8CBD0cq4MQ6Sxig
+         cy11q6zf3Zu3retZROXB2k1R96SnPHYZ/4CH3CynjTPaq8SHrVNJhY9wWM0G8rJVhODN
+         f+KodzL4gdiEXQAeEEIfiSkpq39Vq4QmWtsdGKl7iGlRQqzKywIPN6Qx/u9x/NmP3wII
+         3XxbloQEaAKwGYgPASeawlnir1hr3xelZsfBpadD6SAMjttaTB5hazqzZoRslsErmW82
+         OqnQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709277413; x=1709882213;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0F7J/E4zNfIGX63i/LqfI7L83PfKXt6U/fCuTc8OprU=;
-        b=ZLIcmZodQVjdGcyLqa0KErRC/EPB3Gko4wZoSchABItmvjePVTFcLClDphT6spgqcZ
-         Q8q4H9Vre87jvPKxQj4tjrq8Fc++C/r3O4SB0H3i6Llwbr5Y+SpgX2R8FwFZ5C0GKknh
-         IY43Ht2M1C3/Bqb8/lU+2u0DEKSxa2p0RhSGuMry/j/r7prLWg+OE2HUY2wyaBcl2jn2
-         a50is9OspTbP9I0e5j+UqN+xT1I1uayE61ujBK1nxLuzkmBENQdwO8LqCaCXuxmsgoNc
-         SrvllKttysBpBQKjdlfrFk+WNScDPyULlhtXtpsQRITZjk9MgUZylgsAbX4HjDG7yRJe
-         NDBQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWmAwZSx0EtvllH62gaBCZW7tVvQyeD4tdxfu+tIIt3r5RC4sOWuidEDGqIltk0I4ERSlsQv3rRhVOyFd4M/9h/0fdZuRectLfSDA==
-X-Gm-Message-State: AOJu0YxZwJdhPoB7T6KWjYdZedMFfDSjDtVycntxWi749fpTcAUYdTKo
-	pKY+IJL10fbO+3J2WsnVL2loPf5T+AF5D3lHqiJ6z2b6oMS06tVA
-X-Google-Smtp-Source: AGHT+IGVXdRL1BMgIqQojocmat4yNXQDqAi1l/tVjGo/Ip7UUfXPxszmXYIcMd5luwPJXYayGLe1Rg==
-X-Received: by 2002:a05:600c:458f:b0:412:bfa1:2139 with SMTP id r15-20020a05600c458f00b00412bfa12139mr622553wmo.37.1709277413046;
-        Thu, 29 Feb 2024 23:16:53 -0800 (PST)
-Received: from ?IPv6:2001:a61:343e:8301:d737:22b0:7431:8d01? ([2001:a61:343e:8301:d737:22b0:7431:8d01])
-        by smtp.gmail.com with ESMTPSA id iv11-20020a05600c548b00b00412a9a60f83sm4444327wmb.3.2024.02.29.23.16.52
+        d=1e100.net; s=20230601; t=1709279285; x=1709884085;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=blIn0p2u3QS9iJ7wxkzaIEJOBeHVH2WoSM8ME7du+Nk=;
+        b=D6goiLuDKyiPiGeozWn/L6t7uubV8VBio2dZbBcuDkDq18S7SiPbU60UHowgK/ul+f
+         So6hp2V5WuZToVAgFpgsOVSlriubViE415RdT9A0jE+nn3ewO/69qWswmOSPMwrqS7h5
+         Fy+gxWO5+AuJWrHB3QLFTZN9rDhDl/3MHliRSZor160xs+YI3ZPZ696kTUxLnrTMiEG2
+         zpwBVVvDR1kGe4pwNFLtHkjTgDp9C0e7sov05IF45H5eclDlMIFZHd96PHVulRlcRtu3
+         65PMaAmlwG+Vflg9q6BNLXaikBdExS/ZNJ/zdrPEcjjOZw/7f0uY9L7SN0BDcPfVQb6e
+         eIGQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUoEoJH02FM5j0nsemadM7c1+yQG3MiI4j7xumL8P/NLVc9RD04OoQx7K68Q0kdgynvZEaCtErnXVlWvr1mnHvuGJqVmZWD9NR8NfBi
+X-Gm-Message-State: AOJu0YxZV03c+/yMKx9rklnucMgMqAByLQ8114yv4DthtTP7qG5MEWHF
+	zKtvBEyYNCaaE+RvF+rsly6MYPrYIMfWvjLU1E6wjXQ5DkMGXsro
+X-Google-Smtp-Source: AGHT+IGjvcG3NiU3BthL7n7m+TBWOhPmabQI29Jtj8gY4+rhklgDETXkIcNQ2rOzg+GWx51/qkCVIQ==
+X-Received: by 2002:a17:906:c49:b0:a3e:e678:556 with SMTP id t9-20020a1709060c4900b00a3ee6780556mr646579ejf.58.1709279284547;
+        Thu, 29 Feb 2024 23:48:04 -0800 (PST)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id f26-20020a170906139a00b00a4417c46efbsm1438684ejc.82.2024.02.29.23.48.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Feb 2024 23:16:52 -0800 (PST)
-Message-ID: <af4539ebb5786d1f93c3d9b2b427412838e75160.camel@gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: iio: temperature: ltc2983: document
- power supply
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Rob Herring <robh@kernel.org>, Nuno Sa <nuno.sa@analog.com>
-Cc: linux-iio@vger.kernel.org, devicetree@vger.kernel.org, Jonathan Cameron
- <jic23@kernel.org>, Conor Dooley <conor+dt@kernel.org>, Lars-Peter Clausen
- <lars@metafoo.de>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-  Michael Hennerich <Michael.Hennerich@analog.com>, Rob Herring
- <robh+dt@kernel.org>
-Date: Fri, 01 Mar 2024 08:16:52 +0100
-In-Reply-To: <170922758600.4099132.651212743562426191.robh@kernel.org>
-References: <20240229-ltc2983-misc-improv-v2-0-cc6f03da2529@analog.com>
-	 <20240229-ltc2983-misc-improv-v2-2-cc6f03da2529@analog.com>
-	 <170922758600.4099132.651212743562426191.robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+        Thu, 29 Feb 2024 23:48:03 -0800 (PST)
+From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] arm64: dts: mediatek: mt2712: fix validation errors
+Date: Fri,  1 Mar 2024 08:47:41 +0100
+Message-Id: <20240301074741.8362-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, 2024-02-29 at 11:26 -0600, Rob Herring wrote:
->=20
-> On Thu, 29 Feb 2024 17:11:42 +0100, Nuno Sa wrote:
-> > Add a property for the VDD power supply regulator.
-> >=20
-> > Signed-off-by: Nuno Sa <nuno.sa@analog.com>
-> > ---
-> > =C2=A0Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.yam=
-l | 3 +++
-> > =C2=A01 file changed, 3 insertions(+)
-> >=20
->=20
-> My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_check'
-> on your patch (DT_CHECKER_FLAGS is new in v5.13):
->=20
-> yamllint warnings/errors:
->=20
-> dtschema/dtc warnings/errors:
-> /builds/robherring/dt-review-
-> ci/linux/Documentation/devicetree/bindings/iio/temperature/adi,ltc2983.ex=
-ample.dtb:
-> temperature-sensor@0: 'vdd-supply' is a required property
-> 	from schema $id:
-> http://devicetree.org/schemas/iio/temperature/adi,ltc2983.yaml#
->=20
-> doc reference errors (make refcheckdocs):
->=20
-> See
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240229-l=
-tc2983-misc-improv-v2-2-cc6f03da2529@analog.com
->=20
-> The base for the series is generally the latest rc1. A different dependen=
-cy
-> should be noted in *this* patch.
->=20
-> If you already ran 'make dt_binding_check' and didn't see the above
-> error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> date:
->=20
-> pip3 install dtschema --upgrade
->=20
-> Please check and re-submit after running the above command yourself. Note
-> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-> your schema. However, it must be unset to test all examples with your sch=
-ema.
->=20
+From: Rafał Miłecki <rafal@milecki.pl>
 
-Damn!!!! I'll send a v3 fixing this...
+1. Fixup infracfg clock controller binding
+   It also acts as reset controller so #reset-cells is required.
+2. Use -pins suffix for pinctrl
 
-- Nuno S=C3=A1
+This fixes:
+arch/arm64/boot/dts/mediatek/mt2712-evb.dtb: syscon@10001000: '#reset-cells' is a required property
+        from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,infracfg.yaml#
+arch/arm64/boot/dts/mediatek/mt2712-evb.dtb: pinctrl@1000b000: 'eth_default', 'eth_sleep', 'usb0_iddig', 'usb1_iddig' do not match any of the regexes: 'pinctrl-[0-9]+', 'pins$'
+        from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt65xx-pinctrl.yaml#
+
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm64/boot/dts/mediatek/mt2712-evb.dts | 8 ++++----
+ arch/arm64/boot/dts/mediatek/mt2712e.dtsi   | 3 ++-
+ 2 files changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+index 0c38f7b51763..234e3b23d7a8 100644
+--- a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
++++ b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
+@@ -129,7 +129,7 @@ ethernet_phy0: ethernet-phy@5 {
+ };
+ 
+ &pio {
+-	eth_default: eth_default {
++	eth_default: eth-default-pins {
+ 		tx_pins {
+ 			pinmux = <MT2712_PIN_71_GBE_TXD3__FUNC_GBE_TXD3>,
+ 				 <MT2712_PIN_72_GBE_TXD2__FUNC_GBE_TXD2>,
+@@ -156,7 +156,7 @@ mdio_pins {
+ 		};
+ 	};
+ 
+-	eth_sleep: eth_sleep {
++	eth_sleep: eth-sleep-pins {
+ 		tx_pins {
+ 			pinmux = <MT2712_PIN_71_GBE_TXD3__FUNC_GPIO71>,
+ 				 <MT2712_PIN_72_GBE_TXD2__FUNC_GPIO72>,
+@@ -182,14 +182,14 @@ mdio_pins {
+ 		};
+ 	};
+ 
+-	usb0_id_pins_float: usb0_iddig {
++	usb0_id_pins_float: usb0-iddig-pins {
+ 		pins_iddig {
+ 			pinmux = <MT2712_PIN_12_IDDIG_P0__FUNC_IDDIG_A>;
+ 			bias-pull-up;
+ 		};
+ 	};
+ 
+-	usb1_id_pins_float: usb1_iddig {
++	usb1_id_pins_float: usb1-iddig-pins {
+ 		pins_iddig {
+ 			pinmux = <MT2712_PIN_14_IDDIG_P1__FUNC_IDDIG_B>;
+ 			bias-pull-up;
+diff --git a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
+index 6d218caa198c..082672efba0a 100644
+--- a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
+@@ -249,10 +249,11 @@ topckgen: syscon@10000000 {
+ 		#clock-cells = <1>;
+ 	};
+ 
+-	infracfg: syscon@10001000 {
++	infracfg: clock-controller@10001000 {
+ 		compatible = "mediatek,mt2712-infracfg", "syscon";
+ 		reg = <0 0x10001000 0 0x1000>;
+ 		#clock-cells = <1>;
++		#reset-cells = <1>;
+ 	};
+ 
+ 	pericfg: syscon@10003000 {
+-- 
+2.35.3
+
 
