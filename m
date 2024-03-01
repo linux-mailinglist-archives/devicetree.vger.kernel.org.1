@@ -1,252 +1,532 @@
-Return-Path: <devicetree+bounces-47638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43B0086DFA5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 11:53:50 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B62286DFC5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 12:01:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 503CA1C22458
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:53:49 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4D29286D8A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 11:01:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F9276BFB8;
-	Fri,  1 Mar 2024 10:53:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 394FA6BFA8;
+	Fri,  1 Mar 2024 11:00:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from abb.hmeau.com (abb.hmeau.com [144.6.53.87])
+Received: from CHN02-BJS-obe.outbound.protection.partner.outlook.cn (mail-bjschn02on2120.outbound.protection.partner.outlook.cn [139.219.17.120])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 261246BFA4;
-	Fri,  1 Mar 2024 10:53:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=144.6.53.87
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709290410; cv=none; b=KjyFmVZfTyuQb0Z1cRiEC7k9nrSGrFIsMPODHhVudvpmv1a5cAR+UVQn0oGE8RK+/S78cNtszJqfDh3BxQlgHTkzEQnYaBubGiDvkwKPz9edoJcYHyTfnyX57T1ioFRGCht3bOKej8VsoJHVmjZ/jlurh0pmhi2SRLiNhp7GBWU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709290410; c=relaxed/simple;
-	bh=t4ccu+GWe684aqIDSKF9bD//mn+pVsNSlItyqSKCQgM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ThG9ajKwQuEM+6aiQJ6J1MrUBPD6GEoxaZRIvott21tk4R3d5oEEEZTMtlaZ2aPM5Y5luzQtV2wMga8FNnUMVnqDG3GMn8Ukc+W8/U0TRbE7vlYIEnJhRJFI4V2ddO8bzNVjwsemeyX/PjNJyhVKME/Vj3sZsoAyhVcEKa4DFXY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au; spf=pass smtp.mailfrom=gondor.apana.org.au; arc=none smtp.client-ip=144.6.53.87
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=gondor.apana.org.au
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gondor.apana.org.au
-Received: from loth.rohan.me.apana.org.au ([192.168.167.2])
-	by formenos.hmeau.com with smtp (Exim 4.94.2 #2 (Debian))
-	id 1rg0UC-002Hbb-4N; Fri, 01 Mar 2024 18:51:29 +0800
-Received: by loth.rohan.me.apana.org.au (sSMTP sendmail emulation); Fri, 01 Mar 2024 18:51:43 +0800
-Date: Fri, 1 Mar 2024 18:51:43 +0800
-From: Herbert Xu <herbert@gondor.apana.org.au>
-To: Varshini Rajendran <varshini.rajendran@microchip.com>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, nicolas.ferre@microchip.com,
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
-	mturquette@baylibre.com, sboyd@kernel.org, davem@davemloft.net,
-	andi.shyti@kernel.org, tglx@linutronix.de, tudor.ambarus@linaro.org,
-	miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-	edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-	linus.walleij@linaro.org, sre@kernel.org,
-	u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
-	olivia@selenic.com, radu_nicolae.pirea@upb.ro,
-	richard.genoud@gmail.com, gregkh@linuxfoundation.org,
-	jirislaby@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-	wim@linux-watchdog.org, linux@roeck-us.net, linux@armlinux.org.uk,
-	andrei.simion@microchip.com, mihai.sain@microchip.com,
-	andre.przywara@arm.com, neil.armstrong@linaro.org, tony@atomide.com,
-	durai.manickamkr@microchip.com, geert+renesas@glider.be,
-	arnd@arndb.de, Jason@zx2c4.com, rdunlap@infradead.org,
-	rientjes@google.com, vbabka@suse.cz, mripard@kernel.org,
-	codrin.ciubotariu@microchip.com, eugen.hristev@collabora.com,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	linux-crypto@vger.kernel.org, linux-i2c@vger.kernel.org,
-	linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
-	linux-gpio@vger.kernel.org, linux-pm@vger.kernel.org,
-	linux-pwm@vger.kernel.org, linux-rtc@vger.kernel.org,
-	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
-	alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
-	linux-watchdog@vger.kernel.org
-Subject: Re: [PATCH v4 00/39] Add support for sam9x7 SoC family
-Message-ID: <ZeGzPwdslHIj5IWt@gondor.apana.org.au>
-References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCE1467E79;
+	Fri,  1 Mar 2024 11:00:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=139.219.17.120
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709290857; cv=fail; b=HBsH/rVOtJ9ArNvMSH/8IE8roWx6OHQaYDBehMTQ7oBHC1KggeSEVNW8OjfNh75XgF07Co3vlLZIOUrv/auxSj5d4T2V60Oh6FJ8TyxVwcMcjFH+dsxRWJvw75bdn50+hfSFL7SKP7zdkyuAUZzzCTGzwurDiwSLL4UvsSRvnBA=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709290857; c=relaxed/simple;
+	bh=4EcKGVtFipKhFck54VfV2gsAgyjliwXZs/n+2uvmoG0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=JPID4LL4omM9bPQMSqRACze/o+tsVmwIuxne5OzhDfEUUFcw9jNj8S0FJ0sVXn1t1XxO+VF7B2m0zS4S+2wPHMmjnFTrXbAMeFhCygRc2La15Au9gKmWSY9wSBVnfIIJi50J3xCXvsr+1iaNHbJfK33vQtnzmXb19pwWwX/GXOE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com; spf=pass smtp.mailfrom=starfivetech.com; arc=fail smtp.client-ip=139.219.17.120
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=starfivetech.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=starfivetech.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NPeZRXF7aSVl7H1oFBQiYR1A24jzawTN4XN9B3ikRbUxybGlAPC0s+QcdrShyqA76mKHp0GwWAQhJL+41MgMUNWf3aDgL6U+zOTMUoOJwH3htSFX/y6qHXnbkwUbXrjklRwocKEfgHrniAfskXR25Lpmk2B5yAxsj5PPfQ54OHsxHc2O2cfaqqRK0msgYeZx3lLnRQwZaEXtkayMKYuJYLySxx49nF1Hlx3Yykdy93XM5x44RjfgMeOuSfKirHN9qnfsxPvAlyTOObEH6Kl32Oyiai160BMESPiHInbJr/RL6Y3dI7BWWqZmUhBZ0PbAa97elkpXEirviU6kaa20hg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=GIQewHXYNnVedN1Ibxzsh/skDP7UfnwRjFP1/PaKsn8=;
+ b=nEH8BSQfRoFLk5XBq3+Q6lFWhI93EEDs4Cghxam6Vpy8mi7skh+GM2md62fw3ywcURsbNCQJwov2NVFgjR4OztF49RU8YeDncg6FsE55Gho/bdaPvt6YkakswQFfQ8ENGvcd6oiFCcBCw/4Jp3Ud0aNEKsB0ww+Vfpm5KWgAOYwujWdeLMSw+v2hV8Rbhr71trq/CLzZhl2g6pudblY1p4iNUZJkCtkLk5bqcwEMW47bjgY5L2C9vqgHpQOcVVkVoPQquJvHY7AoVYBMJv9c792KDasdUw2a/iD4HIOTOEyISQ13gYe2s7wOzVybIW2XIS+gtPsrU09A9HrQ0hbPWQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=starfivetech.com; dmarc=pass action=none
+ header.from=starfivetech.com; dkim=pass header.d=starfivetech.com; arc=none
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn (10.43.107.79) by
+ SHXPR01MB0541.CHNPR01.prod.partner.outlook.cn (10.43.110.16) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7316.47; Fri, 1 Mar 2024 11:00:41 +0000
+Received: from SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+ ([fe80::5a5a:fa59:15fd:63dc]) by
+ SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn ([fe80::5a5a:fa59:15fd:63dc%3])
+ with mapi id 15.20.7316.039; Fri, 1 Mar 2024 11:00:41 +0000
+From: Minda Chen <minda.chen@starfivetech.com>
+To: Lorenzo Pieralisi <lpieralisi@kernel.org>
+CC: Conor Dooley <conor@kernel.org>, =?iso-8859-2?Q?Krzysztof_Wilczy=F1ski?=
+	<kw@linux.com>, Rob Herring <robh+dt@kernel.org>, Bjorn Helgaas
+	<bhelgaas@google.com>, Thomas Gleixner <tglx@linutronix.de>, Daire McNamara
+	<daire.mcnamara@microchip.com>, Emil Renner Berthing
+	<emil.renner.berthing@canonical.com>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-riscv@lists.infradead.org"
+	<linux-riscv@lists.infradead.org>, "linux-pci@vger.kernel.org"
+	<linux-pci@vger.kernel.org>, Paul Walmsley <paul.walmsley@sifive.com>, Palmer
+ Dabbelt <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>, Philipp
+ Zabel <p.zabel@pengutronix.de>, Mason Huo <mason.huo@starfivetech.com>,
+	Leyfoon Tan <leyfoon.tan@starfivetech.com>, Kevin Xie
+	<kevin.xie@starfivetech.com>
+Subject: Re: [PATCH v15,RESEND 05/23] PCI: microchip: Rename two PCIe data
+ structures
+Thread-Topic: [PATCH v15,RESEND 05/23] PCI: microchip: Rename two PCIe data
+ structures
+Thread-Index: AQHaaWiyA7Q5tqIZOEWq+4FAhKnLMrEhGcSAgAGi0EA=
+Date: Fri, 1 Mar 2024 11:00:41 +0000
+Message-ID:
+ <SHXPR01MB0863701294B9FA8F9CFA6A1FE65EA@SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn>
+References: <20240227103522.80915-1-minda.chen@starfivetech.com>
+ <20240227103522.80915-6-minda.chen@starfivetech.com>
+ <ZeBWBfMlS4nxMZJ2@lpieralisi>
+In-Reply-To: <ZeBWBfMlS4nxMZJ2@lpieralisi>
+Accept-Language: en-US
+Content-Language: zh-CN
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=starfivetech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: SHXPR01MB0863:EE_|SHXPR01MB0541:EE_
+x-ms-office365-filtering-correlation-id: cb9db192-85d3-4e17-5247-08dc39ded625
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ NIEN88yE0r8+js/O02HOsf0AJ6RgXio6PCQ60MD1tEq4Sn4jTNGGg5hz+pj46WDUstiYjVFu/msyHPNjA9Lir4IiowzYWcIKIICksvo1BWog08bH4XEyx4lbV+c6bGuHd3RJJftW7dqp8ADCHqHBA1aGx6T98sCVjKBO/IVGag1Y0BAPzVrbGqGQMLurMP24qpPQn0RlWXVNJxjFzHVud3S8/TUibP4wOk/OiiuKg5ulMoaWEVOn3AsPJhYAcF9yhrtGUoIe0XM6suNTbriOygUWcMFb2W7hHyGJZsZ3vpH5wWc//AdmvM0slLts87vK202kekPg9NkZev/Hi6lm5FvkPpWLHVGFrtmo52p/a0qgHTVNU4YjSB1DBDIWpcg6GjY0Dws2JdkvqnnskPAwonq8QE6sHbF9eLh4StljamSM4wdjf2ySkssLoLroUSU98LiKyALmCarzDdJ1KKs39l/F+6V6+Zh5Spjo3KHH67FONeexKCMo0y3z9TuId2FuD6eJaIGTcRk1JqD/hRhF5GPE9h17D9zFxpXCKXjzZ/fL8tDQa4lRSMEm4sUAcPuZ2iODqa/hBII+MFwEc4OA4K8vEqgvpQwn44y4BQ+OY62lnKxhz8T5mdYZSmVRQdPK
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:zh-cn;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn;PTR:;CAT:NONE;SFS:(13230031)(41320700004)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-2?Q?3eJXK433xUJmfLvsuSTHLgqSo/ygSJ8l/DRmRlB/7JTOXP+dzwOrgn21bu?=
+ =?iso-8859-2?Q?oh+ktUWNCo/IB/ITPxN6dHZrHKSfNrx3cTkvyQcGdrH/l7kz79iLh2D5fW?=
+ =?iso-8859-2?Q?r07SaoNuwcb6qtIalH1bQm5jccAjiDah2Q0nAJBxC37ZGNG8HzyUj5F/Te?=
+ =?iso-8859-2?Q?In4LDB73+Tw8I27fnqGS2O0qlc3UPofIiW0HDbWO1SWG9svU9U5BPn//Jt?=
+ =?iso-8859-2?Q?iMyroj20SPi6/oo/E56civOFjokuOFj1UcMUhJMpcIE7nlD8KLiDSDQ0Yj?=
+ =?iso-8859-2?Q?e1jwSYkj9Aeqv03ogonyWYhkdZO/XlRTJabOgxnvLTPBh605/BKrRLfyZr?=
+ =?iso-8859-2?Q?3xizZhDOuhwtmp0ipD3PeSYwIsKhi53lrq6m+UhcTOyQ0jWZRNnZXMf2Vv?=
+ =?iso-8859-2?Q?7Ib4Kiue5tuDhoaXKSuBy50wB5NpvJofdMoo+N+nbu1x+izdqZKQ4xXyDy?=
+ =?iso-8859-2?Q?dOcZd3y4Fzq4V98D1LoChALR43YRpkb215+FmRTT6Iy+Yx/utTBSpjjwzW?=
+ =?iso-8859-2?Q?OBVXPInXIYzoMYfOfZ+uGoiK3LwbWtntTmn9brl9OeCLoFABl0He/uFxQS?=
+ =?iso-8859-2?Q?cBjAaZA8WWkrXnWa23r4cYEZWekq2+1aXtGwnJPSlkWRmZlOtTJl01i9qj?=
+ =?iso-8859-2?Q?7p7qav+ypEopqg5zIGSQxrBfG7qYp5oWWUdcBpnGm+5XV9MuuOtjUAUhmY?=
+ =?iso-8859-2?Q?QNwvu84d4SZTR3xI7I3bAQef2ma5b0PPOJj/PmbibeXevoAdhtsG6+oENV?=
+ =?iso-8859-2?Q?g4cWzojChnHAq827KGpW5esOHX/imQu6+DBqkC6quT6jAhFKj1rA5tPErv?=
+ =?iso-8859-2?Q?e3aAK/VXOVUVJ+NOixGXxPnoGpHd2d7ttk1BnRTsp7nvjXsX/R4ju+DkQy?=
+ =?iso-8859-2?Q?TaPkJf/Y8WK3UzQp8Ki1YCwAIAFk2Mvu/SQyglSu5CO80gp7EX0/QSC5Do?=
+ =?iso-8859-2?Q?yaAYUjc1bl71X6w/UM1cPhDcoYq7cPm59TGa+EpyScS84EMnpXRH/tqOuH?=
+ =?iso-8859-2?Q?yU5LpARXSEPli3Y/ARbcOYU8x+AvR9pPkaX1i61Rw+oj9HDGbgChVjY/6i?=
+ =?iso-8859-2?Q?s8PV/k43OudhXjU1RUINOjOgeVQZvNskdeaTbIM2Z4t/Y5qWD6tjShNfgG?=
+ =?iso-8859-2?Q?wd9ELMlFJ2KL6mhiEelpn8oe1hye3twsb0bcxrHlKDQBNeHHxo08rm6Qch?=
+ =?iso-8859-2?Q?MSNkyPJddftlAZlRdDh1KcZCKOx4ibJVKsQXn8lQxnI4r/BfmMyjekv3Cm?=
+ =?iso-8859-2?Q?t7y/4QZlBYT7wCF584nNnX/gpdVKyKyz72obNjUx+FhLz6oOZ3eWZxhIoY?=
+ =?iso-8859-2?Q?GS94y8SwWe4ZqAK8nJ381jyChFgWz0w2HIQqDDvrJO9nG0zTrgN7TlhobF?=
+ =?iso-8859-2?Q?J6pK6e4a4JW6b5q1js2yze+rVefUVObiU4ntJ6RsFLm5fgDqvNsN7WmcPo?=
+ =?iso-8859-2?Q?hbhsIuZ02Kmtxjcscxm782jvoFiFqu4sGKIUK/ZvahGOfqDDmW4WuJrJGS?=
+ =?iso-8859-2?Q?WEzZTCvBDMh8hOK/cRUhZqRODfJrgaXgpVx9yyTq/5J3beOAh3QBE0rc6b?=
+ =?iso-8859-2?Q?CONCGphK4Elf5HUVsqMzglWDjxG/f6r3IKMaQP7xJpXXhkxq3Wznr/y1Mf?=
+ =?iso-8859-2?Q?mBNPd318UZAJnw+90HmyWidFnyS7JMp0bkjQXiuAWr0rBW0vRV1SutLg?=
+ =?iso-8859-2?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+X-OriginatorOrg: starfivetech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: SHXPR01MB0863.CHNPR01.prod.partner.outlook.cn
+X-MS-Exchange-CrossTenant-Network-Message-Id: cb9db192-85d3-4e17-5247-08dc39ded625
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Mar 2024 11:00:41.7499
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 06fe3fa3-1221-43d3-861b-5a4ee687a85c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0RDHmq517XCOWA9ttGjC6STo7CYMGaBRf+NWfdlwq14wul25ZHjZXhBxM07b8mIqvbfbk/Ie7PZwLMvcNXXtWqs1wyYE5DlacGTvWfX0rRo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SHXPR01MB0541
 
-On Fri, Feb 23, 2024 at 10:43:42PM +0530, Varshini Rajendran wrote:
-> This patch series adds support for the new SoC family - sam9x7.
->  - The device tree, configs and drivers are added
->  - Clock driver for sam9x7 is added
->  - Support for basic peripherals is added
->  - Target board SAM9X75 Curiosity is added
-> 
->  Changes in v4:
->  --------------
-> 
->  - Addressed all the review comments in the patches
->  - Picked up all Acked-by and Reviewed-by tags
->  - Dropped applied patches from the series
->  - Added pwm node and related dt binding documentation
->  - Added support for exporting some clocks to DT
->  - Dropped USB related patches and changes. See NOTE.
->  - All the specific changes are captured in the corresponding patches
-> 
->  NOTE: Owing to the discussion here
->  https://lore.kernel.org/linux-devicetree/CAL_JsqJ9PrX6fj-EbffeJce09MXs=B7t+KS_kOinxaRx38=WxA@mail.gmail.com/
->  the USB related changes are dropped from this series in order to enable
->  us to work on the mentioned issues before adding new compatibles as
->  said. The issues/warnings will be addressed in subsequent patches.
->  After which the USB related support for sam9x7 SoCs will be added. Hope
->  this works out fine.
-> 
->  Changes in v3:
->  --------------
-> 
->  - Fixed the DT documentation errors pointed out in v2.
->  - Dropped Acked-by tag in tcb DT doc patch as it had to be adapted
->    according to sam9x7 correctly.
->  - Picked by the previously missed tags.
->  - Dropped this patch "dt-bindings: usb: generic-ehci: Document clock-names
->    property" as the warning was not found while validating DT-schema for
->    at91-sam9x75_curiosity.dtb.
->  - Dropped redundant words in the commit message.
->  - Fixed the CHECK_DTBS warnings validated against
->    at91-sam9x75_curiosity.dtb.
->  - Renamed dt nodes according to naming convention.
->  - Dropped unwanted status property in dts.
->  - Removed nodes that are not in use from the board dts.
->  - Removed spi DT doc patch from the series as it was already applied
->    and a fix patch was applied subsequently. Added a patch to remove the
->    compatible to adapt sam9x7.
->  - Added sam9x7 compatibles in usb dt documentation.
-> 
-> 
->  Changes in v2:
->  --------------
-> 
->  - Added sam9x7 specific compatibles in DT with fallbacks
->  - Documented all the newly added DT compatible strings
->  - Added device tree for the target board sam9x75 curiosity and
->    documented the same in the DT bindings documentation
->  - Removed the dt nodes that are not supported at the moment
->  - Removed the configs added by previous version that are not supported
->    at the moment
->  - Fixed all the corrections in the commit message
->  - Changed all the instances of copyright year to 2023
->  - Added sam9x7 flag in PIT64B configuration
->  - Moved macro definitions to header file
->  - Added another divider in mck characteristics in the pmc driver
->  - Fixed the memory leak in the pmc driver
->  - Dropped patches that are no longer needed
->  - Picked up Acked-by and Reviewed-by tags
-> 
-> 
-> Varshini Rajendran (39):
->   dt-bindings: net: cdns,macb: add sam9x7 ethernet interface
->   dt-bindings: atmel-sysreg: add sam9x7
->   dt-bindings: crypto: add sam9x7 in Atmel AES
->   dt-bindings: crypto: add sam9x7 in Atmel SHA
->   dt-bindings: crypto: add sam9x7 in Atmel TDES
->   dt-bindings: i2c: at91: Add sam9x7 compatible string
->   dt-bindings: atmel-ssc: add microchip,sam9x7-ssc
->   dt-bindings: atmel-nand: add microchip,sam9x7-pmecc
->   dt-bindings: pinctrl: at91: add sam9x7
->   dt-bindings: rng: atmel,at91-trng: add sam9x7 TRNG
->   dt-bindings: rtt: at91rm9260: add sam9x7 compatible
->   dt-bindings: serial: atmel,at91-usart: add compatible for sam9x7.
->   ASoC: dt-bindings: atmel-classd: add sam9x7 compatible
->   dt-bindings: pwm: at91: Add sam9x7 compatible strings list
->   dt-bindings: watchdog: sama5d4-wdt: add compatible for sam9x7-wdt
->   spi: dt-bindings: atmel,at91rm9200-spi: remove 9x60 compatible from
->     list
->   ASoC: dt-bindings: microchip: add sam9x7
->   ARM: at91: pm: add support for sam9x7 SoC family
->   ARM: at91: pm: add sam9x7 SoC init config
->   ARM: at91: add support in SoC driver for new sam9x7
->   dt-bindings: clk: at91: add sam9x7
->   dt-bindings: clk: at91: add sam9x7 clock controller
->   clk: at91: clk-sam9x60-pll: re-factor to support individual core freq
->     outputs
->   clk: at91: sam9x7: add support for HW PLL freq dividers
->   clk: at91: sama7g5: move mux table macros to header file
->   dt-bindings: clock: at91: Allow PLLs to be exported and referenced in
->     DT
->   clk: at91: sam9x7: add sam9x7 pmc driver
->   dt-bindings: irqchip/atmel-aic5: Add support for sam9x7 aic
->   irqchip/atmel-aic5: Add support to get nirqs from DT for sam9x60 &
->     sam9x7
->   power: reset: at91-poweroff: lookup for proper pmc dt node for sam9x7
->   power: reset: at91-reset: add reset support for sam9x7 SoC
->   power: reset: at91-reset: add sdhwc support for sam9x7 SoC
->   dt-bindings: reset: atmel,at91sam9260-reset: add sam9x7
->   dt-bindings: power: reset: atmel,sama5d2-shdwc: add sam9x7
->   ARM: at91: Kconfig: add config flag for SAM9X7 SoC
->   ARM: configs: at91: enable config flags for sam9x7 SoC family
->   ARM: dts: at91: sam9x7: add device tree for SoC
->   dt-bindings: arm: add sam9x75 curiosity board
->   ARM: dts: at91: sam9x75_curiosity: add sam9x75 curiosity board
-> 
->  .../devicetree/bindings/arm/atmel-at91.yaml   |    6 +
->  .../devicetree/bindings/arm/atmel-sysregs.txt |    7 +-
->  .../bindings/clock/atmel,at91rm9200-pmc.yaml  |    2 +
->  .../bindings/clock/atmel,at91sam9x5-sckc.yaml |    4 +-
->  .../crypto/atmel,at91sam9g46-aes.yaml         |    6 +-
->  .../crypto/atmel,at91sam9g46-sha.yaml         |    6 +-
->  .../crypto/atmel,at91sam9g46-tdes.yaml        |    6 +-
->  .../bindings/i2c/atmel,at91sam-i2c.yaml       |    4 +-
->  .../interrupt-controller/atmel,aic.txt        |    2 +-
->  .../devicetree/bindings/misc/atmel-ssc.txt    |    1 +
->  .../devicetree/bindings/mtd/atmel-nand.txt    |    1 +
->  .../devicetree/bindings/net/cdns,macb.yaml    |    5 +
->  .../bindings/pinctrl/atmel,at91-pinctrl.txt   |    2 +
->  .../power/reset/atmel,sama5d2-shdwc.yaml      |    3 +
->  .../bindings/pwm/atmel,at91sam-pwm.yaml       |    3 +
->  .../reset/atmel,at91sam9260-reset.yaml        |    4 +
->  .../bindings/rng/atmel,at91-trng.yaml         |    4 +
->  .../bindings/rtc/atmel,at91sam9260-rtt.yaml   |    4 +-
->  .../bindings/serial/atmel,at91-usart.yaml     |   12 +-
->  .../bindings/sound/atmel,sama5d2-classd.yaml  |    7 +-
->  .../sound/microchip,sama7g5-i2smcc.yaml       |   11 +-
->  .../bindings/spi/atmel,at91rm9200-spi.yaml    |    1 -
->  .../bindings/watchdog/atmel,sama5d4-wdt.yaml  |   12 +-
->  arch/arm/boot/dts/microchip/Makefile          |    3 +
->  .../dts/microchip/at91-sam9x75_curiosity.dts  |  309 +++++
->  arch/arm/boot/dts/microchip/sam9x60.dtsi      |    1 +
->  arch/arm/boot/dts/microchip/sam9x7.dtsi       | 1214 +++++++++++++++++
->  arch/arm/configs/at91_dt_defconfig            |    1 +
->  arch/arm/mach-at91/Kconfig                    |   23 +-
->  arch/arm/mach-at91/Makefile                   |    1 +
->  arch/arm/mach-at91/generic.h                  |    2 +
->  arch/arm/mach-at91/pm.c                       |   35 +
->  arch/arm/mach-at91/sam9x7.c                   |   34 +
->  drivers/clk/at91/Makefile                     |    1 +
->  drivers/clk/at91/clk-sam9x60-pll.c            |   50 +-
->  drivers/clk/at91/pmc.h                        |   18 +
->  drivers/clk/at91/sam9x60.c                    |    7 +
->  drivers/clk/at91/sam9x7.c                     |  946 +++++++++++++
->  drivers/clk/at91/sama7g5.c                    |   42 +-
->  drivers/irqchip/irq-atmel-aic5.c              |   12 +-
->  drivers/power/reset/Kconfig                   |    4 +-
->  drivers/power/reset/at91-sama5d2_shdwc.c      |    1 +
->  drivers/soc/atmel/soc.c                       |   23 +
->  drivers/soc/atmel/soc.h                       |    9 +
->  include/dt-bindings/clock/at91.h              |    4 +
->  45 files changed, 2788 insertions(+), 65 deletions(-)
->  create mode 100644 arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
->  create mode 100644 arch/arm/boot/dts/microchip/sam9x7.dtsi
->  create mode 100644 arch/arm/mach-at91/sam9x7.c
->  create mode 100644 drivers/clk/at91/sam9x7.c
-> 
-> -- 
-> 2.25.1
 
-Patches 3-5 and 10 applied.  Thanks.
--- 
-Email: Herbert Xu <herbert@gondor.apana.org.au>
-Home Page: http://gondor.apana.org.au/~herbert/
-PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
+
+>=20
+> On Tue, Feb 27, 2024 at 06:35:04PM +0800, Minda Chen wrote:
+> > Add PLDA PCIe related data structures by rename data structure name
+> > from
+> > mc_* to plda_*.
+> >
+> > axi_base_addr is stayed in struct mc_pcie for it's microchip its own da=
+ta.
+>=20
+> Here in "for it's microchip" you mean "since it's microchip" own data.
+>=20
+> Please fix this "for" usage in all commit logs, I noticed it is a recurre=
+nt mistake
+> you make I can do it but it is tedious.
+>=20
+> Don't resend another version yet, I am trying to see what I can take from=
+ this
+> one.
+>=20
+Thanks. I will change this. I know the Starfive codes need time to review. =
+So previous=20
+I just request accept some refactoring patches first. It looks now this can=
+'t be achieved.=20
+I will send next version in 6.9-rc1.=20
+And Kevin will reply the Starfive patch(patch 21, patch 22).
+
+> > The event interrupt codes is still using struct mc_pcie because the
+> > event
+>=20
+> "code", please not "codes". Please fix it everywhere in your patch series=
+, same
+> as above.
+>=20
+> Lorenzo
+>=20
+I will check all the commit message.
+
+> > interrupt codes can not be re-used.
+> >
+> > Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
+> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >  .../pci/controller/plda/pcie-microchip-host.c | 96
+> > ++++++++++---------
+> >  1 file changed, 53 insertions(+), 43 deletions(-)
+> >
+> > diff --git a/drivers/pci/controller/plda/pcie-microchip-host.c
+> > b/drivers/pci/controller/plda/pcie-microchip-host.c
+> > index c55ede80a6d0..df0736f688ce 100644
+> > --- a/drivers/pci/controller/plda/pcie-microchip-host.c
+> > +++ b/drivers/pci/controller/plda/pcie-microchip-host.c
+> > @@ -22,7 +22,7 @@
+> >  #include "pcie-plda.h"
+> >
+> >  /* Number of MSI IRQs */
+> > -#define MC_MAX_NUM_MSI_IRQS			32
+> > +#define PLDA_MAX_NUM_MSI_IRQS			32
+> >
+> >  /* PCIe Bridge Phy and Controller Phy offsets */
+> >  #define MC_PCIE1_BRIDGE_ADDR			0x00008000u
+> > @@ -179,25 +179,29 @@ struct event_map {
+> >  	u32 event_bit;
+> >  };
+> >
+> > -struct mc_msi {
+> > +struct plda_msi {
+> >  	struct mutex lock;		/* Protect used bitmap */
+> >  	struct irq_domain *msi_domain;
+> >  	struct irq_domain *dev_domain;
+> >  	u32 num_vectors;
+> >  	u64 vector_phy;
+> > -	DECLARE_BITMAP(used, MC_MAX_NUM_MSI_IRQS);
+> > +	DECLARE_BITMAP(used, PLDA_MAX_NUM_MSI_IRQS);
+> >  };
+> >
+> > -struct mc_pcie {
+> > -	void __iomem *axi_base_addr;
+> > +struct plda_pcie_rp {
+> >  	struct device *dev;
+> >  	struct irq_domain *intx_domain;
+> >  	struct irq_domain *event_domain;
+> >  	raw_spinlock_t lock;
+> > -	struct mc_msi msi;
+> > +	struct plda_msi msi;
+> >  	void __iomem *bridge_addr;
+> >  };
+> >
+> > +struct mc_pcie {
+> > +	struct plda_pcie_rp plda;
+> > +	void __iomem *axi_base_addr;
+> > +};
+> > +
+> >  struct cause {
+> >  	const char *sym;
+> >  	const char *str;
+> > @@ -313,7 +317,7 @@ static struct mc_pcie *port;
+> >
+> >  static void mc_pcie_enable_msi(struct mc_pcie *port, void __iomem
+> > *ecam)  {
+> > -	struct mc_msi *msi =3D &port->msi;
+> > +	struct plda_msi *msi =3D &port->plda.msi;
+> >  	u16 reg;
+> >  	u8 queue_size;
+> >
+> > @@ -336,10 +340,10 @@ static void mc_pcie_enable_msi(struct mc_pcie
+> > *port, void __iomem *ecam)
+> >
+> >  static void mc_handle_msi(struct irq_desc *desc)  {
+> > -	struct mc_pcie *port =3D irq_desc_get_handler_data(desc);
+> > +	struct plda_pcie_rp *port =3D irq_desc_get_handler_data(desc);
+> >  	struct irq_chip *chip =3D irq_desc_get_chip(desc);
+> >  	struct device *dev =3D port->dev;
+> > -	struct mc_msi *msi =3D &port->msi;
+> > +	struct plda_msi *msi =3D &port->msi;
+> >  	void __iomem *bridge_base_addr =3D port->bridge_addr;
+> >  	unsigned long status;
+> >  	u32 bit;
+> > @@ -364,7 +368,7 @@ static void mc_handle_msi(struct irq_desc *desc)
+> >
+> >  static void mc_msi_bottom_irq_ack(struct irq_data *data)  {
+> > -	struct mc_pcie *port =3D irq_data_get_irq_chip_data(data);
+> > +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> >  	void __iomem *bridge_base_addr =3D port->bridge_addr;
+> >  	u32 bitpos =3D data->hwirq;
+> >
+> > @@ -373,7 +377,7 @@ static void mc_msi_bottom_irq_ack(struct irq_data
+> > *data)
+> >
+> >  static void mc_compose_msi_msg(struct irq_data *data, struct msi_msg
+> > *msg)  {
+> > -	struct mc_pcie *port =3D irq_data_get_irq_chip_data(data);
+> > +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> >  	phys_addr_t addr =3D port->msi.vector_phy;
+> >
+> >  	msg->address_lo =3D lower_32_bits(addr); @@ -400,8 +404,8 @@ static
+> > struct irq_chip mc_msi_bottom_irq_chip =3D {  static int
+> > mc_irq_msi_domain_alloc(struct irq_domain *domain, unsigned int virq,
+> >  				   unsigned int nr_irqs, void *args)  {
+> > -	struct mc_pcie *port =3D domain->host_data;
+> > -	struct mc_msi *msi =3D &port->msi;
+> > +	struct plda_pcie_rp *port =3D domain->host_data;
+> > +	struct plda_msi *msi =3D &port->msi;
+> >  	unsigned long bit;
+> >
+> >  	mutex_lock(&msi->lock);
+> > @@ -425,8 +429,8 @@ static void mc_irq_msi_domain_free(struct
+> irq_domain *domain, unsigned int virq,
+> >  				   unsigned int nr_irqs)
+> >  {
+> >  	struct irq_data *d =3D irq_domain_get_irq_data(domain, virq);
+> > -	struct mc_pcie *port =3D irq_data_get_irq_chip_data(d);
+> > -	struct mc_msi *msi =3D &port->msi;
+> > +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(d);
+> > +	struct plda_msi *msi =3D &port->msi;
+> >
+> >  	mutex_lock(&msi->lock);
+> >
+> > @@ -456,11 +460,11 @@ static struct msi_domain_info
+> mc_msi_domain_info =3D {
+> >  	.chip =3D &mc_msi_irq_chip,
+> >  };
+> >
+> > -static int mc_allocate_msi_domains(struct mc_pcie *port)
+> > +static int mc_allocate_msi_domains(struct plda_pcie_rp *port)
+> >  {
+> >  	struct device *dev =3D port->dev;
+> >  	struct fwnode_handle *fwnode =3D of_node_to_fwnode(dev->of_node);
+> > -	struct mc_msi *msi =3D &port->msi;
+> > +	struct plda_msi *msi =3D &port->msi;
+> >
+> >  	mutex_init(&port->msi.lock);
+> >
+> > @@ -484,7 +488,7 @@ static int mc_allocate_msi_domains(struct mc_pcie
+> > *port)
+> >
+> >  static void mc_handle_intx(struct irq_desc *desc)  {
+> > -	struct mc_pcie *port =3D irq_desc_get_handler_data(desc);
+> > +	struct plda_pcie_rp *port =3D irq_desc_get_handler_data(desc);
+> >  	struct irq_chip *chip =3D irq_desc_get_chip(desc);
+> >  	struct device *dev =3D port->dev;
+> >  	void __iomem *bridge_base_addr =3D port->bridge_addr; @@ -511,7 +515,=
+7
+> > @@ static void mc_handle_intx(struct irq_desc *desc)
+> >
+> >  static void mc_ack_intx_irq(struct irq_data *data)  {
+> > -	struct mc_pcie *port =3D irq_data_get_irq_chip_data(data);
+> > +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> >  	void __iomem *bridge_base_addr =3D port->bridge_addr;
+> >  	u32 mask =3D BIT(data->hwirq + PM_MSI_INT_INTX_SHIFT);
+> >
+> > @@ -520,7 +524,7 @@ static void mc_ack_intx_irq(struct irq_data *data)
+> >
+> >  static void mc_mask_intx_irq(struct irq_data *data)  {
+> > -	struct mc_pcie *port =3D irq_data_get_irq_chip_data(data);
+> > +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> >  	void __iomem *bridge_base_addr =3D port->bridge_addr;
+> >  	unsigned long flags;
+> >  	u32 mask =3D BIT(data->hwirq + PM_MSI_INT_INTX_SHIFT); @@ -535,7
+> > +539,7 @@ static void mc_mask_intx_irq(struct irq_data *data)
+> >
+> >  static void mc_unmask_intx_irq(struct irq_data *data)  {
+> > -	struct mc_pcie *port =3D irq_data_get_irq_chip_data(data);
+> > +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> >  	void __iomem *bridge_base_addr =3D port->bridge_addr;
+> >  	unsigned long flags;
+> >  	u32 mask =3D BIT(data->hwirq + PM_MSI_INT_INTX_SHIFT); @@ -625,21
+> > +629,22 @@ static u32 local_events(struct mc_pcie *port)
+> >  	return val;
+> >  }
+> >
+> > -static u32 get_events(struct mc_pcie *port)
+> > +static u32 get_events(struct plda_pcie_rp *port)
+> >  {
+> > +	struct mc_pcie *mc_port =3D container_of(port, struct mc_pcie, plda);
+> >  	u32 events =3D 0;
+> >
+> > -	events |=3D pcie_events(port);
+> > -	events |=3D sec_errors(port);
+> > -	events |=3D ded_errors(port);
+> > -	events |=3D local_events(port);
+> > +	events |=3D pcie_events(mc_port);
+> > +	events |=3D sec_errors(mc_port);
+> > +	events |=3D ded_errors(mc_port);
+> > +	events |=3D local_events(mc_port);
+> >
+> >  	return events;
+> >  }
+> >
+> >  static irqreturn_t mc_event_handler(int irq, void *dev_id)  {
+> > -	struct mc_pcie *port =3D dev_id;
+> > +	struct plda_pcie_rp *port =3D dev_id;
+> >  	struct device *dev =3D port->dev;
+> >  	struct irq_data *data;
+> >
+> > @@ -655,7 +660,7 @@ static irqreturn_t mc_event_handler(int irq, void
+> > *dev_id)
+> >
+> >  static void mc_handle_event(struct irq_desc *desc)  {
+> > -	struct mc_pcie *port =3D irq_desc_get_handler_data(desc);
+> > +	struct plda_pcie_rp *port =3D irq_desc_get_handler_data(desc);
+> >  	unsigned long events;
+> >  	u32 bit;
+> >  	struct irq_chip *chip =3D irq_desc_get_chip(desc); @@ -672,12 +677,13
+> > @@ static void mc_handle_event(struct irq_desc *desc)
+> >
+> >  static void mc_ack_event_irq(struct irq_data *data)  {
+> > -	struct mc_pcie *port =3D irq_data_get_irq_chip_data(data);
+> > +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> > +	struct mc_pcie *mc_port =3D container_of(port, struct mc_pcie, plda);
+> >  	u32 event =3D data->hwirq;
+> >  	void __iomem *addr;
+> >  	u32 mask;
+> >
+> > -	addr =3D port->axi_base_addr + event_descs[event].base +
+> > +	addr =3D mc_port->axi_base_addr + event_descs[event].base +
+> >  		event_descs[event].offset;
+> >  	mask =3D event_descs[event].mask;
+> >  	mask |=3D event_descs[event].enb_mask; @@ -687,13 +693,14 @@ static
+> > void mc_ack_event_irq(struct irq_data *data)
+> >
+> >  static void mc_mask_event_irq(struct irq_data *data)  {
+> > -	struct mc_pcie *port =3D irq_data_get_irq_chip_data(data);
+> > +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> > +	struct mc_pcie *mc_port =3D container_of(port, struct mc_pcie, plda);
+> >  	u32 event =3D data->hwirq;
+> >  	void __iomem *addr;
+> >  	u32 mask;
+> >  	u32 val;
+> >
+> > -	addr =3D port->axi_base_addr + event_descs[event].base +
+> > +	addr =3D mc_port->axi_base_addr + event_descs[event].base +
+> >  		event_descs[event].mask_offset;
+> >  	mask =3D event_descs[event].mask;
+> >  	if (event_descs[event].enb_mask) {
+> > @@ -717,13 +724,14 @@ static void mc_mask_event_irq(struct irq_data
+> > *data)
+> >
+> >  static void mc_unmask_event_irq(struct irq_data *data)  {
+> > -	struct mc_pcie *port =3D irq_data_get_irq_chip_data(data);
+> > +	struct plda_pcie_rp *port =3D irq_data_get_irq_chip_data(data);
+> > +	struct mc_pcie *mc_port =3D container_of(port, struct mc_pcie, plda);
+> >  	u32 event =3D data->hwirq;
+> >  	void __iomem *addr;
+> >  	u32 mask;
+> >  	u32 val;
+> >
+> > -	addr =3D port->axi_base_addr + event_descs[event].base +
+> > +	addr =3D mc_port->axi_base_addr + event_descs[event].base +
+> >  		event_descs[event].mask_offset;
+> >  	mask =3D event_descs[event].mask;
+> >
+> > @@ -811,7 +819,7 @@ static int mc_pcie_init_clks(struct device *dev)
+> >  	return 0;
+> >  }
+> >
+> > -static int mc_pcie_init_irq_domains(struct mc_pcie *port)
+> > +static int mc_pcie_init_irq_domains(struct plda_pcie_rp *port)
+> >  {
+> >  	struct device *dev =3D port->dev;
+> >  	struct device_node *node =3D dev->of_node; @@ -889,7 +897,7 @@ static
+> > void mc_pcie_setup_window(void __iomem *bridge_base_addr, u32 index,
+> > }
+> >
+> >  static int mc_pcie_setup_windows(struct platform_device *pdev,
+> > -				 struct mc_pcie *port)
+> > +				 struct plda_pcie_rp *port)
+> >  {
+> >  	void __iomem *bridge_base_addr =3D port->bridge_addr;
+> >  	struct pci_host_bridge *bridge =3D platform_get_drvdata(pdev); @@
+> > -970,7 +978,7 @@ static void mc_disable_interrupts(struct mc_pcie *port=
+)
+> >  	writel_relaxed(GENMASK(31, 0), bridge_base_addr + ISTATUS_HOST);  }
+> >
+> > -static int mc_init_interrupts(struct platform_device *pdev, struct
+> > mc_pcie *port)
+> > +static int mc_init_interrupts(struct platform_device *pdev, struct
+> > +plda_pcie_rp *port)
+> >  {
+> >  	struct device *dev =3D &pdev->dev;
+> >  	int irq;
+> > @@ -1043,12 +1051,12 @@ static int mc_platform_init(struct
+> pci_config_window *cfg)
+> >  	mc_pcie_enable_msi(port, cfg->win);
+> >
+> >  	/* Configure non-config space outbound ranges */
+> > -	ret =3D mc_pcie_setup_windows(pdev, port);
+> > +	ret =3D mc_pcie_setup_windows(pdev, &port->plda);
+> >  	if (ret)
+> >  		return ret;
+> >
+> >  	/* Address translation is up; safe to enable interrupts */
+> > -	ret =3D mc_init_interrupts(pdev, port);
+> > +	ret =3D mc_init_interrupts(pdev, &port->plda);
+> >  	if (ret)
+> >  		return ret;
+> >
+> > @@ -1059,6 +1067,7 @@ static int mc_host_probe(struct platform_device
+> > *pdev)  {
+> >  	struct device *dev =3D &pdev->dev;
+> >  	void __iomem *bridge_base_addr;
+> > +	struct plda_pcie_rp *plda;
+> >  	int ret;
+> >  	u32 val;
+> >
+> > @@ -1066,7 +1075,8 @@ static int mc_host_probe(struct platform_device
+> *pdev)
+> >  	if (!port)
+> >  		return -ENOMEM;
+> >
+> > -	port->dev =3D dev;
+> > +	plda =3D &port->plda;
+> > +	plda->dev =3D dev;
+> >
+> >  	port->axi_base_addr =3D devm_platform_ioremap_resource(pdev, 1);
+> >  	if (IS_ERR(port->axi_base_addr))
+> > @@ -1075,7 +1085,7 @@ static int mc_host_probe(struct platform_device
+> *pdev)
+> >  	mc_disable_interrupts(port);
+> >
+> >  	bridge_base_addr =3D port->axi_base_addr + MC_PCIE_BRIDGE_ADDR;
+> > -	port->bridge_addr =3D bridge_base_addr;
+> > +	plda->bridge_addr =3D bridge_base_addr;
+> >
+> >  	/* Allow enabling MSI by disabling MSI-X */
+> >  	val =3D readl(bridge_base_addr + PCIE_PCI_IRQ_DW0); @@ -1087,10
+> > +1097,10 @@ static int mc_host_probe(struct platform_device *pdev)
+> >  	val &=3D NUM_MSI_MSGS_MASK;
+> >  	val >>=3D NUM_MSI_MSGS_SHIFT;
+> >
+> > -	port->msi.num_vectors =3D 1 << val;
+> > +	plda->msi.num_vectors =3D 1 << val;
+> >
+> >  	/* Pick vector address from design */
+> > -	port->msi.vector_phy =3D readl_relaxed(bridge_base_addr + IMSI_ADDR);
+> > +	plda->msi.vector_phy =3D readl_relaxed(bridge_base_addr + IMSI_ADDR);
+> >
+> >  	ret =3D mc_pcie_init_clks(dev);
+> >  	if (ret) {
+> > --
+> > 2.17.1
+> >
+> >
+> > _______________________________________________
+> > linux-riscv mailing list
+> > linux-riscv@lists.infradead.org
+> > http://lists.infradead.org/mailman/listinfo/linux-riscv
 
