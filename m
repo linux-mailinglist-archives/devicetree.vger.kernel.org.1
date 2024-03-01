@@ -1,184 +1,207 @@
-Return-Path: <devicetree+bounces-47515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A05186D85C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 01:34:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3604086D86F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 01:41:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B94291F236BE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 00:34:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9F38C1F21E2D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 00:41:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5CF72582;
-	Fri,  1 Mar 2024 00:34:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B158AC135;
+	Fri,  1 Mar 2024 00:41:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qUuJddeg"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="hvCzkK1A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2084.outbound.protection.outlook.com [40.107.7.84])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2723E23A7
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 00:34:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709253251; cv=none; b=TSkbeJQFOrf2mDblYRysph8w5UiHiVuAHKIOzg3lnqg70VxbnAijRVTcQT/B67tWRMcJpHQGmBkMU/ZD1kT6CHCMPKnjuRjGa5yl93dK4uR7DDHi38TOe7BYqbnaKCB8fRP1XMbtEf3JbUp5nSMK4rqeu0VDe4VujnKB835lhN8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709253251; c=relaxed/simple;
-	bh=oPPqS797xDYUweWK6+HpZH6RKCECnkHEB/M92xm1Slc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=LBeYemoCLqEBjbzY4DmLh2ozUctBCjjqMtqIw7tGtBNmpcWgCCGmJQ02+ykN7PAnv80kQCQR/oKvWR4qRGBoMQTlHN+3dydV/YJZ8zgGUtaSLR9xqgONVtK/y57ELXyhKN3sy4WdVnj9sevyg95gKU5uG0KWmjQO4NbgoHz/b0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qUuJddeg; arc=none smtp.client-ip=209.85.219.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dcc86086c9fso1781599276.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Feb 2024 16:34:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709253248; x=1709858048; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iSdkimAv7FIB+VJJwLXHXIBUn34V60qyMzBCrZfAS3c=;
-        b=qUuJddegDqcIzVq2Y0ZOt1COZVM7hZZo6cGfGmUKTNDAf9R2brvi8irGot2qVUzh0D
-         rUNn77zIzLxUHF4xis0fgrwlo6me/P1mA1QOy+Kte8STZKjcs/KlLzvS0KgU6W9lh8gC
-         t2qyuYJU93/DArK5XRLp+ujJ8zCYwbMS3XNNf9LCU869yPLEnK5dA9pmoBcxPorwfEgk
-         pjtxV3HunexUpMlCiTMOfz02/Wwla+ZTEqf7Ti+UgrutUzUJFMtcvzjAEX863TvHLEHQ
-         in0ArXLvALg8QQVm4JwKCbK/h6DAQszxlJtg+fkpv5Uy2cJ03TCA68tM+jONEfBQN7cn
-         fdvw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709253248; x=1709858048;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=iSdkimAv7FIB+VJJwLXHXIBUn34V60qyMzBCrZfAS3c=;
-        b=lFIHkfcvH4zR4R7aYpJ6pGDIBHZkG18ZCBO4QUieMPEzTx1zG3ARWL9y21gKWb72V3
-         Q8BDMB64UlGEInHV9upRMEX5eCwQzBLY1TuvVU03p2/NFyTVIWXmHjDuDpstl5+QH7Ws
-         Z6wntZdI2ZNdD39eDtdkOEh0x12pqnI75urg7jT4BvHVPBPzdsg+lG+LrG+4xGiu3vwJ
-         JMopY6lZst5H2Ml+EKLTNVF7GnVQHIuGLa7pc8OoPpnEReboHVVQoK8l56NMzTwfbl+t
-         z/H9aISKHJ8nHheVy2dvZZvMYfyjj/NdA6Pea5YjYpAVOL8sa4SS7Z8fc+Za4faad5n+
-         CMrg==
-X-Forwarded-Encrypted: i=1; AJvYcCVYJBTfFwaWsxZtlfWSeNa0JxB4p7BVhgkTyqUrwFGG7gN03ujOh0jg9dATCb3VaDYogQ+iPO+uPWOpdgGc66IgsKlYYA+I8N7X9A==
-X-Gm-Message-State: AOJu0YxvoNiRqaJRxUFZnrBTsztfcb8wkWMzkn/SBfb4HhleK1O6gfzb
-	KPYN2P9acrEjVgx+PBH4ZwYeD3mxZzx1HRwxeV+VwZ1NIwFgJ1HBPPP2zoBIaXRxLW/uqq8n1Pl
-	vMgJd2KszR5BOilobZqImfGIe3ofbrcpSXE5p5Q==
-X-Google-Smtp-Source: AGHT+IGO052qMGTy68AezpL00xWMIAmsXAfDl6npoL87lHFYKm8VLeaKxYL2/jBLwapx2RWtJY3sEYVhLmstVrwPzY0=
-X-Received: by 2002:a25:c2c1:0:b0:dc3:7041:b81b with SMTP id
- s184-20020a25c2c1000000b00dc37041b81bmr66412ybf.36.1709253248163; Thu, 29 Feb
- 2024 16:34:08 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9987AC12A;
+	Fri,  1 Mar 2024 00:41:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.84
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709253695; cv=fail; b=qQGZ/aEcbda2ShDgWFXbEvgJkO2tRuAOv3q6BvHEAk184yzX70nH58CovujZKBW8NdFlNfd8wsoNpJJtwDx86/K3JBAf1IGXC2k8iJjLFiWiQwwJr16ZVi1MVqOhLrTs90NUOBiAqDVyGxYW/P6Qzn3RsbspqLYWBb84qMhECbc=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709253695; c=relaxed/simple;
+	bh=4jpp2BlOTziBn6d0opJxIC9ulZdcfUciduLduIymFVE=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=LXE+ZqcP3AHJeMXKmNf1dfUTw7fopXGOtMOKLhSPTR6K17Gn0dg7ejyxnvyvDUF9oJBB8hwFyZggHISZCFvNgjOeWHCf+VKMegwGn8y6OLdjGj9W8gwX4b/vXQzuPNArdpyMw6W2JzyUBYCZVcJpAAZs5/YjEUSPebDFGKuS5GU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=hvCzkK1A; arc=fail smtp.client-ip=40.107.7.84
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gSiMmiN/ghY9IQh7Po8H+N47o+ezVFGeR2dkylE67dI74/dJOIukoIFVYEvtGjGY052HMZEvdRdbg9yENPn5qZD3NwffRgEQpLboBRKx07P3OJr86dfrrxwWJaIXF6dIMmTanCD/6EOUDGuG2BlFESgcNbluhJ2k8DuP2mbGK50K4KoC7jqNavptoea/aNlrnSNwMzeAZpzYN8Alq/C7OSWYPZ4B+cgGl8Q5/53QF0XpKAfDVPHhJ2m4dtGmO68WHHxJo3LXP08QMwPh/5oYLu1GOm1a57STYq7USfls8ky8Q+wdu1IAwt8tCCZKb6kyaKyMRekDs3zYxsU6QAEz8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4jpp2BlOTziBn6d0opJxIC9ulZdcfUciduLduIymFVE=;
+ b=JN8PDm+OM0Jq3dpTLCzOZIynJbZ/qiLNoIcTuD0qiNMqaTyrDIP0SexHNTKXX9s1ZXNKoREgsnskl+Tv+mvFyg4yp83My0GRWvAhKvCHwIGSJ/7US3P9qRX5OaIRPIFvchI6Ht8htma9OTs+aLTOpj+Urah0233JjFu1HrfDaBZbl7Rg9png8tc5LOzM5f4s0oLBzR5gPUDsGPxwX/JxRJKUNYmrq0yjzalDfUnSBsuHEyou+N5KKNMZQAqWWwJONihNAwm3vQWsxO8+cyN/ZCF42mh4/dko/gB3tN5Fr1QqyxRdCzlZzVGWnqAUVJ083VgRYuVnyObYhMyuJrN7gA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4jpp2BlOTziBn6d0opJxIC9ulZdcfUciduLduIymFVE=;
+ b=hvCzkK1AAMw5VG7TLT7i7zOPs9IAayPoen0VifExZmr0KfpweA5+Jj+W4nsM00Qib+a5zwOBvl3B7Y6pgwIuj9jkfURM1kr1ZJGgmuqJ93NPVWPMdc12rlG/i0MIMQ0FYnHlE93G5ci2fSgZ0kik2dMIUgoLXbKNCCLeAcmTZS8=
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by AS8PR04MB8117.eurprd04.prod.outlook.com (2603:10a6:20b:3fc::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.39; Fri, 1 Mar
+ 2024 00:41:29 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::1232:ed97:118f:72fd]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::1232:ed97:118f:72fd%4]) with mapi id 15.20.7316.034; Fri, 1 Mar 2024
+ 00:41:29 +0000
+From: Peng Fan <peng.fan@nxp.com>
+To: Sudeep Holla <sudeep.holla@arm.com>
+CC: Cristian Marussi <cristian.marussi@arm.com>, "Peng Fan (OSS)"
+	<peng.fan@oss.nxp.com>, "robh@kernel.org" <robh@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH] dt-bindings: firmware: arm,scmi: support system power
+ protocol
+Thread-Topic: [PATCH] dt-bindings: firmware: arm,scmi: support system power
+ protocol
+Thread-Index: AQHaaLLyfnmFjzyGqEimlBHwa2+g1LEcnfcAgAAaQQCAAKcG0IAD/moAgACytyA=
+Date: Fri, 1 Mar 2024 00:41:29 +0000
+Message-ID:
+ <DU0PR04MB9417C06FD66182C705238662885E2@DU0PR04MB9417.eurprd04.prod.outlook.com>
+References: <20240226130243.3820915-1-peng.fan@oss.nxp.com>
+ <ZdyR_MWeqOWga8iQ@pluto> <ZdyoAsYGXK9GjHVx@pluto>
+ <DU0PR04MB941710FB1400D0A17F99B6ED88592@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <ZeCNyLxQOIazc07h@bogus>
+In-Reply-To: <ZeCNyLxQOIazc07h@bogus>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU0PR04MB9417:EE_|AS8PR04MB8117:EE_
+x-ms-office365-filtering-correlation-id: 03d4d220-11fc-4d47-624c-08dc39885599
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ Q9a8au0LE6+WOR+Q/NnYw1jY7w+mTs2ggWmORu2vbCjymrikB0iKHI7d2vSe0kaiK10IMjczl1xsg2l2HTtXIKeGM490TTNk3gOeMKzYG1PjH5iCrddwQmvKBOfUZykevWcJiUkCyWu5xEaaHoCVe6Xwsuc49a50kBlYqd/i8r6Gwf76TB8v0FLLmhIt34ZYbPVSWbcfiEYAGq3kLaDZOKRKb6dWQ7rk6QK16w5EXoSN4i4mbXm0eENJzO0tDNRKVmuxO1+UkCe14ZvQMtuLGuVzwsuHHHSNQJlBq5BYmy2Jfuai/tVH24MVm0xkXxDZSRm+lHT2isoOmimh7QZqtszpFe6VGcyywiBEscQRXNHvwOT3GEceEDmTm8s2j8XQesKVtf6+74FH3tzJaiVIyfGyteb4/6Th4rYMwGvdGckgErNxoLU4YgTejWytk0I2Nwe+H7/opvcHIBMrLXsg1hSkvkpLtsD0uehzEJDuICudFss1nDLudzCMRfmNRkEm1K9/VGtfvo5Qv818D9493A4X+q71lby/tqt3DOOHmxG8/grPAztNLVv3bycic0eawzOS27U7pogsyV+/PZb5hOYx+dPSer4N41RdvCGDsdJ8HgZZbIwk00FNStvVRGFJ1ZoCqqbxLimGt25XLQr2ZZ9TYxnU9VBPtTydH7vRSd8+XmU5xA+IFychvhDbPowtFh8L4LyteHxf1OJyk6/Z3bOjOkNtdsqy9IJSZr57SOI=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?MCKrCOWFOUuZf2jI4bmPxmLv2P/mBsEsTbW8v2+PIECi0VGZZA5ukI8Yj6vm?=
+ =?us-ascii?Q?wq4TTevIT4MDFCfctH7802G1hbSYraKTce4DW/p2t4pkKXVVKnfUA/geGVGg?=
+ =?us-ascii?Q?GH7YgqyVzltkSz8qnUSr7b5luveUt0QYFDYXCaN/kiqyFZr3kAzOvpe56HS0?=
+ =?us-ascii?Q?1rI/NE7ebS18qBzH+M6lkUeyW+krf235juZB+aHUI8uupSo9DPUod/XUkVTw?=
+ =?us-ascii?Q?Pl7sEw7lxlSFFhCb23oKMpYS8zPtoj/0BBK85Nsz+s5kFYnwvgC8AxL8c6ja?=
+ =?us-ascii?Q?PTTHZDGqRriV3P1Z5XqHqsWzEmsfIjL6ElCyFd0MWp7T5927EKrhtGFU7TWi?=
+ =?us-ascii?Q?UP0JkN5tEUNOrSKB7KUBWMBMMwG0TCq4gLPw8E89xqOoSCwFxFZ9C1QDxhRE?=
+ =?us-ascii?Q?t0yoPR8vJyGV/c+EyjRceRt07thhzK8gRJgkcwhtNwqBlR7febHF0B+Haj6n?=
+ =?us-ascii?Q?1x4pizn3GjYGa8nAamEtZeSIwjuveBNjd4pFeDzmqcdKWOpnKr5epo9mk0xk?=
+ =?us-ascii?Q?f0v/gAARk4PiiZVmfinZM4jrReZo8tl93/wbjxXlQ/j8B6TaDZio3Jveo/eu?=
+ =?us-ascii?Q?k3IOZEQRSRO2ms+XUY+2WGI+WAjUpKngh7ruhPJskizafYgEPXH42I8SJiPO?=
+ =?us-ascii?Q?PKzmMMurt/dV+7xzIq+z4EQkw+BRqzy8FaAJN/NRCjYO+TTI5KxM0i/YoXiJ?=
+ =?us-ascii?Q?kk8CqaGfCQBIavjGq3HXOylXXM4wgfzkwRH3DW7uMpGqbT/VpNKJBgFZQ22C?=
+ =?us-ascii?Q?AKi7Gv1ztkRcKvDewV3b+mlAUJxSlNHgBAYZQZG7wl1KAEvwalm/eI4x0hcx?=
+ =?us-ascii?Q?o10DdlhrOgWPp7CvL+2eJQF9hO/+F9ULtK06pbb+U2IYXFZbHRHe9oHphOth?=
+ =?us-ascii?Q?XnZ/HjNKf1B1oUt3kEACnSgi6FgfJutRvDLEHTrhOKhuxaJcFOBOhla7nhfe?=
+ =?us-ascii?Q?vWWP+lSIPaTEejGB3aZQ5xyXeTvafw61i5/Z5Sc2zU2WTtF2SrQNkunFrQ7T?=
+ =?us-ascii?Q?b6+6c6OX/+pOMcAZ7adwy7nnX/KcG3hy2UFW3COGeHNSBnPEAxExO8W32QGM?=
+ =?us-ascii?Q?B/QHcLA1hpjRs7hU625zMmmvq4r6iNDroGP2xnH4vEY3bL65vButAAz6fLXD?=
+ =?us-ascii?Q?2k2JXsyOJz8kUJs/rCj2ResPtioDGhyWbo03+GVuVGZ2HpiIi7vqp7UPVlAQ?=
+ =?us-ascii?Q?pGX5aHXb3sK7gD/+WHV48uXCJ0CmTDFZRUh7UNjCVrXtNQyhAByyivaJS/Bu?=
+ =?us-ascii?Q?0bYAjOUsVJUxJ8wlMdddHkg7Mzv+AAkU4haFFXgHUckmu+iysqToKJs7fF56?=
+ =?us-ascii?Q?092Wk2vlpVar40B0fjwZ0RbWpBes9/Wcqf4j0HQuHGBF1KFjqfQ46CbmihCG?=
+ =?us-ascii?Q?IREyRYseg0Z73j0NssmGedz2DhAe75tX/fxda4KqdeX0LXfbQ0jLmXSqIbXd?=
+ =?us-ascii?Q?NS1h+QzcTpzcBva/2Zg9dj5kysKEVLqmrA0grtaz7NiqIHPruawslGJnKXSe?=
+ =?us-ascii?Q?UZHtT5VzsVmmai3Ia5JbfLB/Rhjc1qo4m8lrwMiraa8N67i3CQhZPSRHTg9l?=
+ =?us-ascii?Q?QNdRs95ESrcA9DVyg+o=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240224202053.25313-1-semen.protsenko@linaro.org>
- <20240224202053.25313-14-semen.protsenko@linaro.org> <eb968e2b-495b-44dd-aad9-3cd5eac72bdf@linaro.org>
-In-Reply-To: <eb968e2b-495b-44dd-aad9-3cd5eac72bdf@linaro.org>
-From: Sam Protsenko <semen.protsenko@linaro.org>
-Date: Thu, 29 Feb 2024 18:33:56 -0600
-Message-ID: <CAPLW+4=zjqHreRW83Ag_g0zdNYMfU06JWjmJGm1nkT=Th45whg@mail.gmail.com>
-Subject: Re: [PATCH v3 13/15] clk: samsung: Implement manual PLL control for
- ARM64 SoCs
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Sylwester Nawrocki <s.nawrocki@samsung.com>, Chanwoo Choi <cw00.choi@samsung.com>, 
-	Alim Akhtar <alim.akhtar@samsung.com>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Tomasz Figa <tomasz.figa@gmail.com>, linux-samsung-soc@vger.kernel.org, 
-	linux-clk@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 03d4d220-11fc-4d47-624c-08dc39885599
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Mar 2024 00:41:29.4077
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: tU2EGMqm9TNG4Lmt6I7RGwLz/ddVSVcLbShv4UAzEVIqIJo+/IWDTYV7cOL73BYdiNFL0ybcaWWewnONam8AOQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8117
 
-On Sun, Feb 25, 2024 at 10:09=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 24/02/2024 21:20, Sam Protsenko wrote:
-> > Some ARM64 Exynos chips are capable to control PLL clocks automatically=
-.
-> > For those chips, whether the PLL is controlled automatically or manuall=
-y
-> > is chosen in PLL_CON1 register with next bits:
+> Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: support system powe=
+r
+> protocol
+>=20
+> On Tue, Feb 27, 2024 at 01:01:41AM +0000, Peng Fan wrote:
+> > > Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: support system
+> > > power protocol
+> > >
+> > > On Mon, Feb 26, 2024 at 01:28:31PM +0000, Cristian Marussi wrote:
+> > > > On Mon, Feb 26, 2024 at 09:02:43PM +0800, Peng Fan (OSS) wrote:
+> > > > > From: Peng Fan <peng.fan@nxp.com>
+> > > > >
+> > > > > Add SCMI System Power Protocol bindings, and the protocol id is 0=
+x12.
+> > > > >
+> > > > Hi,
+> > > >
+> > > > yes this is something I spotted in the past it was missing and I
+> > > > posted a similar patch but I was told that a protocol node without
+> > > > any specific additional properties is already being described by
+> > > > the general protocol node described above.
 > >
-> >     [28]  ENABLE_AUTOMATIC_CLKGATING
-> >     [1]   MANUAL_PLL_CTRL
-> >     [0]   AUTO_PLL_CTRL
+> > Without this patch, there is dtbs_check warning.
 > >
-> > The bl2 bootloader sets 0x10000001 value for some PLL_CON1 registers,
-> > which means any attempt to control those PLLs manually (e.g.
-> > disabling/enabling those PLLs or changing MUX parent clocks) would lead
-> > to PLL lock timeout with error message like this:
+> > scmi: 'protocol@12' does not match any of the regexes: 'pinctrl-[0-9]+'
+> > from schema $id:
+> > https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fdevi=
+c
 > >
-> >     Could not lock PLL ...
+> etree.org%2Fschemas%2Ffirmware%2Farm%2Cscmi.yaml%23&data=3D05%7C0
+> 2%7Cpen
 > >
-> > At the moment, all Samsung clock drivers implement manual clock control=
-.
-> > So in order to make it possible to control PLLs, corresponding PLL_CON1
-> > registers should be set to 0x2 first.
+> g.fan%40nxp.com%7Ccac77deb5f6a4b20460a08dc392ead40%7C686ea1d3b
+> c2b4c6fa
 > >
-> > Some older ARM64 chips don't implement the automatic clock control
-> > though. It also might be desirable to configure some PLLs for manual
-> > control, while keeping the default configuration for the rest. So it'd
-> > convenient to choose this PLL mode for each CMU separately. Introduce
-> > .manual_plls field to CMU structure to choose the PLL control mode.
-> > Because it'll be initialized with "false" in all existing CMU
-> > structures by default, it won't affect any existing clock drivers,
-> > allowing for this feature to be enabled gradually when it's needed with
-> > no change for the rest of users. In case .manual_plls is set, set
-> > PLL_CON1 registers to manual control, akin to what's already done for
-> > gate clocks in exynos_arm64_init_clocks(). Of course, PLL_CON1 register=
-s
-> > should be added to corresponding struct samsung_cmu_info::clk_regs arra=
-y
-> > to make sure they get initialized.
+> 92cd99c5c301635%7C0%7C0%7C638448119832543335%7CUnknown%7CT
+> WFpbGZsb3d8e
 > >
-> > No functional change. This patch adds a feature, but doesn't enable it
-> > for any users.
+> yJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D
+> %7C0%
 > >
-> > Signed-off-by: Sam Protsenko <semen.protsenko@linaro.org>
-> > ---
-> > Changes in v3:
-> >   - none
+> 7C%7C%7C&sdata=3D6MldIOUQ4hxn%2BRffwJJJ3jxXXtHCSxLUOa4JMWB0htU%
+> 3D&reserv
+> > ed=3D0
 > >
-> > Changes in v2:
-> >   - none
-> >
-> >  drivers/clk/samsung/clk-exynos-arm64.c | 44 +++++++++++++++++---------
-> >  drivers/clk/samsung/clk.h              |  4 +++
-> >  2 files changed, 33 insertions(+), 15 deletions(-)
-> >
-> > diff --git a/drivers/clk/samsung/clk-exynos-arm64.c b/drivers/clk/samsu=
-ng/clk-exynos-arm64.c
-> > index 6fb7194df7ab..55490209b9a9 100644
-> > --- a/drivers/clk/samsung/clk-exynos-arm64.c
-> > +++ b/drivers/clk/samsung/clk-exynos-arm64.c
-> > @@ -25,6 +25,19 @@
-> >  #define GATE_OFF_START               0x2000
-> >  #define GATE_OFF_END         0x2fff
-> >
-> > +/* PLL CON register offsets range */
-> > +#define PLL_CON_START                0x100
-> > +#define PLL_CON_END          0x600
-> > +
-> > +/* PLL register bits */
-> > +#define PLL_CON1_MANUAL              BIT(1)
-> > +
-> > +/* Helper macros to check for particular clock regiter by its offset *=
-/
-> > +#define IS_GATE_REG(o)               ((o) >=3D GATE_OFF_START && (o) <=
-=3D GATE_OFF_END)
-> > +#define IS_PLL_CONx_REG(o)   ((o) >=3D PLL_CON_START && (o) <=3D PLL_C=
-ON_END)
-> > +#define IS_PLL_CON1_REG(o)   \
-> > +     (IS_PLL_CONx_REG(o) && ((o) & 0xf) =3D=3D 0x4 && !((o) & 0x10))
->
-> These should be static functions, because it leads to trickier code. See
-> also checkpatch warning.
->
+>=20
+> Why are you adding protocol@12 to the device tree ? Does it have a
+> dedicated channel ? If not, you shouldn't need to add it.
 
-For my taste macros are more compact in this particular case. But I
-don't mind, will send out the reworked patches soon.
+No dedicated channel.
+The idea is we have multile Agent, the M7 agent may ask to shutdown Linux
+Agent. So the linux agent need use protocol@12 to do the action.
 
-> Best regards,
-> Krzysztof
->
+For now, we have not finish implementing this in linux side, just add
+the node in dts.
+
+Regards,
+Peng.
+>=20
+> --
+> Regards,
+> Sudeep
 
