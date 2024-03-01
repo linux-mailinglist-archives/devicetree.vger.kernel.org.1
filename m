@@ -1,278 +1,171 @@
-Return-Path: <devicetree+bounces-47733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 067CA86E55B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:24:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B9BE86E565
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:25:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 85FAB2877EC
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:24:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E7021B2282D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:25:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0652A74E37;
-	Fri,  1 Mar 2024 16:22:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC3117173D;
+	Fri,  1 Mar 2024 16:23:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="p4Nw1dwx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qAWYWgKW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B32973194;
-	Fri,  1 Mar 2024 16:22:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E5B971723;
+	Fri,  1 Mar 2024 16:23:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709310149; cv=none; b=hcf+QBQz1Dy8pA7PwGeqiIRUWcxK1Zln3hwFjPBKhPQhZSBBrBetqMKL8LElasmOuhFJfW6oa8LhrZV+j+XsiFlIEu8xA6kjxF2TvREj7nzwKagcgK0z8CaHKfsWs9hye+IZ6KCBpjxubIxDOTXrS7LuAFwLs9HHGhiCDLczNV4=
+	t=1709310215; cv=none; b=Rw0J6LlFFpS+RPqV0Buef56lb54UAUjPv5b9lXyzLZvF7t/67bRwoCxOgFGhGnImVmWMiIh399HBwlFG4Q6+INUTFBsoOhnQBDE73jX9MZAtdrEpU65UDU0nQF7zKX1wP72wltnesX2u2zBYwjCyDpGknkmB5puAXHPitdZOpag=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709310149; c=relaxed/simple;
-	bh=AAJTdXRM0Re+DCVXVGJxubzVOx467C+c5nb+jYksNi8=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=ficdRmrzqANMzLvG6TiH2xQaLflsgR1JTXTO4lgJfQCNHLfkcsWzCNL/mDLOwEp4zKJ+adtM6aS40biG/dnIuKTv7l1J/BqIVlAZIsF7WI32Wk2e5Q5EhfQ15DC5ZJmwl4xLqaGoqcfibKio/XeLsWTMAt9Oac8J75u+8tNgguw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=p4Nw1dwx; arc=none smtp.client-ip=217.70.183.198
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id F2160C0003;
-	Fri,  1 Mar 2024 16:22:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709310145;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=aqd7RNSKgF1eQYnYzns3slAE3h9undBdrUHi47AKr1g=;
-	b=p4Nw1dwx23jlXzuZVNDHLnva4yWkgtDcYdTPeU0/3rHKCFnYFPqJn58/Ds1SyDAP6TGe8c
-	jZ1lZ7YX4LIrQ2HGGkXEy90vbfOV9qE0hMv6WM/OVYkQFnyfzHYQtORxOFuUOC281mf/tW
-	UQqfPauPpxdSFb2Y8GGr2PVS921W7MV0qtVymwN8ZiJZvQidy/IuARUun2gGmpD7M3bDPy
-	8nEQq0V0WalT4xSNJBzHTNvwxnQGTjZpzC4bDL8si2wqGIsLO78po3k0NBMiqp/KkTBO00
-	oxGJsy7ZYZDjsjedCjohjn/UGolU60gaeiYBvGn7+jKwag+ieWFBhlc2ksL2qw==
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Date: Fri, 01 Mar 2024 17:22:22 +0100
-Subject: [PATCH v9 9/9] MIPS: mobileye: eyeq5: add pinctrl node & pinmux
- function nodes
+	s=arc-20240116; t=1709310215; c=relaxed/simple;
+	bh=RscPVpBVXQTjgLx4AVtkDBetgZa3PwgrTnXE4Ytt5LI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tvep6uLXL+kOuKyNuUHfbuZncTwnNdVTAgP0TziQvBWb3OXGH5gV2hShTktY9Es2XooeLgq65d4M13GECuw62vLh+TgB7vmFkVOHl2ZQaYTdA9LJn3frQSdlqXykFK1sgDPfDhJJh4gUNDklq3J0hMldfd7q6A3Y2oszmlyt07U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qAWYWgKW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB936C433F1;
+	Fri,  1 Mar 2024 16:23:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709310215;
+	bh=RscPVpBVXQTjgLx4AVtkDBetgZa3PwgrTnXE4Ytt5LI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=qAWYWgKWR46imHIWTbUTXwEWJX9VEMJiyL2E7t653iNAC1A7s0Xqw2lS64yXiddqm
+	 XzApDE9AG1cE5xTCg/n+CD6tpS5lE50hIZxWb2wUOKQOywhnrmImqK2iNk6w0DUywc
+	 RQjLJLKUFka6pTWwq+9MCUVU/MO/1oY80wUwsfwAb79wuOqj5T21W1BZuqWakiVwNO
+	 fui6qQzsNLeDshtWnbYKdWuOBIANpwBH2I7IhAogHJOskVp1TQd3xNEnXA8DzduG+x
+	 1gO/HVJVCHM6Ax7cRg34rxqxIbFjZiMKJtRs4pIKNQNgPOu118ZNnPQOEvdv8+GTNn
+	 avu68GeDou8Dg==
+Date: Fri, 1 Mar 2024 16:23:30 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: mdf@kernel.org, Wu Hao <hao.wu@intel.com>,
+	Xu Yilun <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-fpga@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: altera-fpga2sdram-bridge: Convert to
+ dtschema
+Message-ID: <20240301-uphold-numerous-305c3702805b@spud>
+References: <20240301161648.124859-1-animeshagarwal28@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-Message-Id: <20240301-mbly-clk-v9-9-cbf06eb88708@bootlin.com>
-References: <20240301-mbly-clk-v9-0-cbf06eb88708@bootlin.com>
-In-Reply-To: <20240301-mbly-clk-v9-0-cbf06eb88708@bootlin.com>
-To: Gregory CLEMENT <gregory.clement@bootlin.com>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
- Linus Walleij <linus.walleij@linaro.org>, 
- =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?= <rafal@milecki.pl>, 
- Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
- linux-mips@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Tawfik Bayouk <tawfik.bayouk@mobileye.com>, linux-gpio@vger.kernel.org, 
- =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: b4 0.13.0
-X-GND-Sasl: theo.lebrun@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="YxSL1ja5VovT/CjZ"
+Content-Disposition: inline
+In-Reply-To: <20240301161648.124859-1-animeshagarwal28@gmail.com>
 
-Pins on this platform have two functions: GPIO or something-else. We
-create function nodes for each something-else based on functions.
 
-UART nodes are present in the platform devicetree. Add pinctrl to them
-now that the pin controller is supported.
+--YxSL1ja5VovT/CjZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
----
- arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi | 125 ++++++++++++++++++++++++++++
- arch/mips/boot/dts/mobileye/eyeq5.dtsi      |  13 +++
- 2 files changed, 138 insertions(+)
+Hey,
 
-diff --git a/arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi b/arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi
-new file mode 100644
-index 000000000000..42acda13e57a
---- /dev/null
-+++ b/arch/mips/boot/dts/mobileye/eyeq5-pins.dtsi
-@@ -0,0 +1,125 @@
-+// SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+
-+/*
-+ * Default pin configuration for Mobileye EyeQ5 boards. We mostly create one
-+ * pin configuration node per function.
-+ */
-+
-+&pinctrl {
-+	timer0_pins: timer0-pins {
-+		function = "timer0";
-+		pins = "PA0", "PA1";
-+	};
-+	timer1_pins: timer1-pins {
-+		function = "timer1";
-+		pins = "PA2", "PA3";
-+	};
-+	timer2_pins: timer2-pins {
-+		function = "timer2";
-+		pins = "PA4", "PA5";
-+	};
-+	pps0_pins: pps0-pin {
-+		function = "timer2";
-+		pins = "PA4";
-+	};
-+	pps1_pins: pps1-pin {
-+		function = "timer2";
-+		pins = "PA5";
-+	};
-+	timer5_ext_pins: timer5-ext-pins {
-+		function = "timer5";
-+		pins = "PA6", "PA7", "PA8", "PA9";
-+	};
-+	timer5_ext_input_pins: timer5-ext-input-pins {
-+		function = "timer5";
-+		pins = "PA6", "PA7";
-+	};
-+	timer5_ext_incap_a_pins: timer5-ext-incap-a-pin {
-+		function = "timer5";
-+		pins = "PA6";
-+	};
-+	timer5_ext_incap_b_pins: timer5-ext-incap-b-pin {
-+		function = "timer5";
-+		pins = "PA7";
-+	};
-+	can0_pins: can0-pins {
-+		function = "can0";
-+		pins = "PA14", "PA15";
-+	};
-+	can1_pins: can1-pins {
-+		function = "can1";
-+		pins = "PA16", "PA17";
-+	};
-+	uart0_pins: uart0-pins {
-+		function = "uart0";
-+		pins = "PA10", "PA11";
-+	};
-+	uart1_pins: uart1-pins {
-+		function = "uart1";
-+		pins = "PA12", "PA13";
-+	};
-+	spi0_pins: spi0-pins {
-+		function = "spi0";
-+		pins = "PA18", "PA19", "PA20", "PA21", "PA22";
-+	};
-+	spi1_pins: spi1-pins {
-+		function = "spi1";
-+		pins = "PA23", "PA24", "PA25", "PA26", "PA27";
-+	};
-+	spi1_slave_pins: spi1-slave-pins {
-+		function = "spi1";
-+		pins = "PA24", "PA25", "PA26";
-+	};
-+	refclk0_pins: refclk0-pin {
-+		function = "refclk0";
-+		pins = "PA28";
-+	};
-+	timer3_pins: timer3-pins {
-+		function = "timer3";
-+		pins = "PB0", "PB1";
-+	};
-+	timer4_pins: timer4-pins {
-+		function = "timer4";
-+		pins = "PB2", "PB3";
-+	};
-+	timer6_ext_pins: timer6-ext-pins {
-+		function = "timer6";
-+		pins = "PB4", "PB5", "PB6", "PB7";
-+	};
-+	timer6_ext_input_pins: timer6-ext-input-pins {
-+		function = "timer6";
-+		pins = "PB4", "PB5";
-+	};
-+	timer6_ext_incap_a_pins: timer6-ext-incap-a-pin {
-+		function = "timer6";
-+		pins = "PB4";
-+	};
-+	timer6_ext_incap_b_pins: timer6-ext-incap-b-pin {
-+		function = "timer6";
-+		pins = "PB5";
-+	};
-+	can2_pins: can2-pins {
-+		function = "can2";
-+		pins = "PB10", "PB11";
-+	};
-+	uart2_pins: uart2-pins {
-+		function = "uart2";
-+		pins = "PB8", "PB9";
-+	};
-+	spi2_pins: spi2-pins {
-+		function = "spi2";
-+		pins = "PB12", "PB13", "PB14", "PB15", "PB16";
-+	};
-+	spi3_pins: spi3-pins {
-+		function = "spi3";
-+		pins = "PB17", "PB18", "PB19", "PB20", "PB21";
-+	};
-+	spi3_slave_pins: spi3-slave-pins {
-+		function = "spi3";
-+		pins = "PB18", "PB19", "PB20";
-+	};
-+	mclk0_pins: mclk0-pin {
-+		function = "mclk0";
-+		pins = "PB22";
-+	};
-+};
-diff --git a/arch/mips/boot/dts/mobileye/eyeq5.dtsi b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-index 76935f237ab5..8d4f65ec912d 100644
---- a/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-+++ b/arch/mips/boot/dts/mobileye/eyeq5.dtsi
-@@ -79,6 +79,8 @@ uart0: serial@800000 {
- 			clocks  = <&uart_clk>, <&occ_periph>;
- 			clock-names = "uartclk", "apb_pclk";
- 			resets = <&reset 0 10>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart0_pins>;
- 		};
- 
- 		uart1: serial@900000 {
-@@ -90,6 +92,8 @@ uart1: serial@900000 {
- 			clocks  = <&uart_clk>, <&occ_periph>;
- 			clock-names = "uartclk", "apb_pclk";
- 			resets = <&reset 0 11>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart1_pins>;
- 		};
- 
- 		uart2: serial@a00000 {
-@@ -101,6 +105,8 @@ uart2: serial@a00000 {
- 			clocks  = <&uart_clk>, <&occ_periph>;
- 			clock-names = "uartclk", "apb_pclk";
- 			resets = <&reset 0 12>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart2_pins>;
- 		};
- 
- 		olb: system-controller@e00000 {
-@@ -125,6 +131,11 @@ clocks: clock-controller@e0002c {
- 				clocks = <&xtal>;
- 				clock-names = "ref";
- 			};
-+
-+			pinctrl: pinctrl@e000b0 {
-+				compatible = "mobileye,eyeq5-pinctrl";
-+				reg = <0x0b0 0x30>;
-+			};
- 		};
- 
- 		gic: interrupt-controller@140000 {
-@@ -149,3 +160,5 @@ timer {
- 		};
- 	};
- };
-+
-+#include "eyeq5-pins.dtsi"
+On Fri, Mar 01, 2024 at 09:46:43PM +0530, Animesh Agarwal wrote:
+> Convert the altera-fpga2sdram-bridge bindings to DT schema.
+>=20
+> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> ---
+>  .../fpga/altera-fpga2sdram-bridge.txt         | 13 -----------
+>  .../fpga/altera-fpga2sdram-bridge.yaml        | 23 +++++++++++++++++++
+>  2 files changed, 23 insertions(+), 13 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/fpga/altera-fpga2sd=
+ram-bridge.txt
+>  create mode 100644 Documentation/devicetree/bindings/fpga/altera-fpga2sd=
+ram-bridge.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bri=
+dge.txt b/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.t=
+xt
+> deleted file mode 100644
+> index 5dd0ff0f7b4e..000000000000
+> --- a/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.txt
+> +++ /dev/null
+> @@ -1,13 +0,0 @@
+> -Altera FPGA To SDRAM Bridge Driver
+> -
+> -Required properties:
+> -- compatible		: Should contain "altr,socfpga-fpga2sdram-bridge"
+> -
+> -See Documentation/devicetree/bindings/fpga/fpga-bridge.txt for generic b=
+indings.
+> -
+> -Example:
+> -	fpga_bridge3: fpga-bridge@ffc25080 {
+> -		compatible =3D "altr,socfpga-fpga2sdram-bridge";
+> -		reg =3D <0xffc25080 0x4>;
+> -		bridge-enable =3D <0>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bri=
+dge.yaml b/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.=
+yaml
+> new file mode 100644
+> index 000000000000..88bf9e3151b6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.yaml
+> @@ -0,0 +1,23 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/fpga/altr-fpga2sdram-bridge.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Altera FPGA To SDRAM Bridge Driver
+> +
 
--- 
-2.44.0
+You're missing maintainers: (shouldn't dt_binding_check complain?)
 
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - altr,socfpga-fpga2sdram-bridge
+> +
+> +required:
+> +  - compatible
+> +
+
+Missing "unevaluatedProperties: false".
+
+> +examples:
+> +  - |
+> +    fpga_bridge3: fpga-bridge@ffc25080 {
+> +        compatible =3D "altr,socfpga-fpga2sdram-bridge";
+> +        reg =3D <0xffc25080 0x4>;
+> +        bridge-enable =3D <0>;
+
+This has not been documented in your binding. You need a ref to
+fpga-bridge.yaml. Did you test this patch?
+
+Cheers,
+Conor.
+
+> +    };
+> --=20
+> 2.44.0
+>=20
+
+--YxSL1ja5VovT/CjZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeIBAgAKCRB4tDGHoIJi
+0iJAAQDDJuMdfxauTAhhp+iYirA+jQjOuNlPeCK7ClcoTKzb3AD/fBRU/wSm7y0r
+1NKqN+OtLuM7C+Cjrtin6Sr+PW2A+QE=
+=zspR
+-----END PGP SIGNATURE-----
+
+--YxSL1ja5VovT/CjZ--
 
