@@ -1,169 +1,244 @@
-Return-Path: <devicetree+bounces-47576-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47578-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id DE63586DC52
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:48:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3D4986DC68
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:52:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9277F28C3F1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 07:48:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 219FD1F21584
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 07:52:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 886F067E74;
-	Fri,  1 Mar 2024 07:48:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7293569D0E;
+	Fri,  1 Mar 2024 07:52:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hGO07pqJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="MAzKGl3F"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8E6D50275;
-	Fri,  1 Mar 2024 07:48:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86A8E6930E;
+	Fri,  1 Mar 2024 07:52:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709279288; cv=none; b=cOGGWy7VXf+Sa4BMwtVlNAYlNr2fm4cQZ546xO05DC8r6cnC7Z/CTvD6tg+ixjZFI1tl4FzCbHWtJ4Uchay+moQ0RVhHK14XOTpQFtOEdSQKJ/s0mssFVbtVQyLgZyJ989GG2lY5IHJR/tQ3XQlH7NSAWMZbh23F/78MuYzhVIY=
+	t=1709279531; cv=none; b=hT/uhkv4+JXeWgBSOi3yBLumNv9OmXwk66EAbo3jc1HIzM93tfoztdMoBdeH9w3SpxUNQ6N4BsywF7YMsO+NsSmRgxNeynw+JTMVTg7Jt4BZH0KcxY5mmaUbu6FrmPK62XH373h451zD2uhI39YMR8YnjflLZTuIE3QBGGOLd9c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709279288; c=relaxed/simple;
-	bh=Pofs6Iq1R1/s2g+DzmAmCcTOqm3WK2u+gBotuVmy8uI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=FoWXB+jPgqEPjzLLEOkaCND4Oa8Wkkfk9dTmnFRmcM49aR2+7tI4vdtQuzVJDq/6XDAjatebedmYmE9PxlJfmzz2KYWs2AUI9G7/OQ584ULz+jfr5wWXSBoq0GnxCSLoX5LO6KU50LZW9Biqqb/GHj9CNkB0sZsVkQXZfaEOQS4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hGO07pqJ; arc=none smtp.client-ip=209.85.218.52
+	s=arc-20240116; t=1709279531; c=relaxed/simple;
+	bh=bwGwuN3I8+Gi5Abe4YFrdv0+3daP+lMaLVTOlnHEcTU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=NWBYszqpagG4B2WVZbGhEun1PKBSHP9/dPS76AJmPgcqC7z8Db5dcbapTRBhX4f4WfoYTnDV1hRVKBkImLNePcUFT0v1k3OhG77PV3u/bGfqivmxo/1XLXiE2+lf/Fz8FM5POVetGACVqf7GTjUmqnzA/cvcPTPukE5Qzn+jNpg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=MAzKGl3F; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a28a6cef709so278799766b.1;
-        Thu, 29 Feb 2024 23:48:06 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-563bb51c36eso2660387a12.2;
+        Thu, 29 Feb 2024 23:52:09 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709279285; x=1709884085; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=blIn0p2u3QS9iJ7wxkzaIEJOBeHVH2WoSM8ME7du+Nk=;
-        b=hGO07pqJ6weukzqtPRODYokchILfX8JQEygCESdX/MGS/K+iS1oWz8LlCZ1keq0Tah
-         lPVvygFD8meNAxXpa+vY+c9Omx6OtogCYfLVWgfIl7nNhTZ2By91p8CBD0cq4MQ6Sxig
-         cy11q6zf3Zu3retZROXB2k1R96SnPHYZ/4CH3CynjTPaq8SHrVNJhY9wWM0G8rJVhODN
-         f+KodzL4gdiEXQAeEEIfiSkpq39Vq4QmWtsdGKl7iGlRQqzKywIPN6Qx/u9x/NmP3wII
-         3XxbloQEaAKwGYgPASeawlnir1hr3xelZsfBpadD6SAMjttaTB5hazqzZoRslsErmW82
-         OqnQ==
+        d=gmail.com; s=20230601; t=1709279528; x=1709884328; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TjRED4N553XEXI5Rtvk5JEdQ+G4+1D6ZpvBBjUxLoiM=;
+        b=MAzKGl3FjxKvzRP/MxS4Fd0Adr8L8yKhNoDhRQl38jklS+DopaYgb3zx+jA6X63nEj
+         yTQ4AzE8bDD+PaQYNM04CPb8JgdHAG43KthZGPrqyTkblvTFTjjOCCVtkKtxjGFvnNkm
+         hCKPFxnUpgKxYhyS5/yXnn3rHWbkXfsOHN6pebe+JhEQEgArwlRDNly51DkdbCXmQQV+
+         tOpdLmHa1SyRZoX5OhfGkDUrnKgGAluNmTRceyzLgw71JgWXo3Ya14we9YN6JTkbSnhd
+         /naMLxtHf5Wz3DHLrG4zbuRDGZyOoRrKW8URULMR7HdXyyJKdsLjVdNmzw+STIICFtKF
+         6DLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709279285; x=1709884085;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=blIn0p2u3QS9iJ7wxkzaIEJOBeHVH2WoSM8ME7du+Nk=;
-        b=D6goiLuDKyiPiGeozWn/L6t7uubV8VBio2dZbBcuDkDq18S7SiPbU60UHowgK/ul+f
-         So6hp2V5WuZToVAgFpgsOVSlriubViE415RdT9A0jE+nn3ewO/69qWswmOSPMwrqS7h5
-         Fy+gxWO5+AuJWrHB3QLFTZN9rDhDl/3MHliRSZor160xs+YI3ZPZ696kTUxLnrTMiEG2
-         zpwBVVvDR1kGe4pwNFLtHkjTgDp9C0e7sov05IF45H5eclDlMIFZHd96PHVulRlcRtu3
-         65PMaAmlwG+Vflg9q6BNLXaikBdExS/ZNJ/zdrPEcjjOZw/7f0uY9L7SN0BDcPfVQb6e
-         eIGQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUoEoJH02FM5j0nsemadM7c1+yQG3MiI4j7xumL8P/NLVc9RD04OoQx7K68Q0kdgynvZEaCtErnXVlWvr1mnHvuGJqVmZWD9NR8NfBi
-X-Gm-Message-State: AOJu0YxZV03c+/yMKx9rklnucMgMqAByLQ8114yv4DthtTP7qG5MEWHF
-	zKtvBEyYNCaaE+RvF+rsly6MYPrYIMfWvjLU1E6wjXQ5DkMGXsro
-X-Google-Smtp-Source: AGHT+IGjvcG3NiU3BthL7n7m+TBWOhPmabQI29Jtj8gY4+rhklgDETXkIcNQ2rOzg+GWx51/qkCVIQ==
-X-Received: by 2002:a17:906:c49:b0:a3e:e678:556 with SMTP id t9-20020a1709060c4900b00a3ee6780556mr646579ejf.58.1709279284547;
-        Thu, 29 Feb 2024 23:48:04 -0800 (PST)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id f26-20020a170906139a00b00a4417c46efbsm1438684ejc.82.2024.02.29.23.48.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Feb 2024 23:48:03 -0800 (PST)
-From: =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] arm64: dts: mediatek: mt2712: fix validation errors
-Date: Fri,  1 Mar 2024 08:47:41 +0100
-Message-Id: <20240301074741.8362-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        d=1e100.net; s=20230601; t=1709279528; x=1709884328;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TjRED4N553XEXI5Rtvk5JEdQ+G4+1D6ZpvBBjUxLoiM=;
+        b=qyGufdKmV8J0oUlAwSWDIP+M6P3DOj+ppQ4HOQTsdqQ5sYfBvnDf3kC7DBGdClsnQM
+         Ovtu5gwcvT9MFUO/UaVMZLA7Uk5qBOWVm/CE+qsZyuTRcidib/HN3rGYBE8R07K/iHQg
+         Bf9Wc93WRvqQpAgGOPsoO0yrU0Gw15tfjH6SqOK4lqsFel/3t7qOnpj2Ek4I43jUssLH
+         V1THKskA6AFR7xF8TjyEpZk3ihTAnqh0MTbuRNKTWQ7FL5WlU8SxksuvzJBzIBRx3FvO
+         FE4F92tYaZHmPCwhgFTMR87OXLXDq2Tmbkp/MCLWcNdl/9+m7I0/pryxvW5zO5c0p2Fr
+         zMxw==
+X-Forwarded-Encrypted: i=1; AJvYcCVL1epIOWm1XtMMydXCSLhf/OzHeAgvdPdFF+EsbOHxd4N1/hhkrFzfR97u7rD9LArsFOvvJRAwxVI2N5j3lp+51ZeOB2YI+uc+PJzURS1FFG09eFD/3buQ5hnp6en6Wx3oLe0687rZsQ==
+X-Gm-Message-State: AOJu0Yxl2EJjQzxulLaWno2DbUPmEriJ1wo2SiltUMLnhyhCnirG5nM5
+	iZM7qdSXOojbdfWKgW7Usr2EMaai3jN7hHdOqH2v+RVyfs8AeNrQPynzv0nJJNotHv/ha5Kbp9S
+	yxApMiRTgDZhlqXqogSLFMfh9AFvzsRr7FJ0ynQ==
+X-Google-Smtp-Source: AGHT+IEOKM2TDaDf2kpCzYd+hKnXahebUjnVZ+dJz6yZ+lQnN5+xluHc6aNdAXebEUqYLzLqfIOg3AADhHt3Vmh8zak=
+X-Received: by 2002:a17:906:71d1:b0:a44:9cdb:9ec1 with SMTP id
+ i17-20020a17090671d100b00a449cdb9ec1mr296185ejk.11.1709279527552; Thu, 29 Feb
+ 2024 23:52:07 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
+ <20240229-rk-dts-additions-v3-1-6afe8473a631@gmail.com> <5eb9193a44fb9f9b1e976412874cecef@manjaro.org>
+ <CABjd4YzFuhfS9RhJ6svb9ZD0NqMT5B6GmqigHFLr8YG6FR5k=w@mail.gmail.com> <90d0cfd9b7d018e7332213f624f0f658@manjaro.org>
+In-Reply-To: <90d0cfd9b7d018e7332213f624f0f658@manjaro.org>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Fri, 1 Mar 2024 11:51:56 +0400
+Message-ID: <CABjd4YxhL7m-neLFCQG5Aja2=stFdou7ji8m==UGPSSH-CybVw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/5] arm64: dts: rockchip: enable built-in thermal
+ monitoring on RK3588
+To: Dragan Simic <dsimic@manjaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu Tsai <wens@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-From: Rafał Miłecki <rafal@milecki.pl>
+On Fri, Mar 1, 2024 at 10:14=E2=80=AFAM Dragan Simic <dsimic@manjaro.org> w=
+rote:
+>
+> On 2024-03-01 06:20, Alexey Charkov wrote:
+> > On Fri, Mar 1, 2024 at 1:11=E2=80=AFAM Dragan Simic <dsimic@manjaro.org=
+> wrote:
+> >> Please see also some nitpicks below, which I forgot to mention in
+> >> my earlier response.  I'm sorry for that.
+> >>
+> >> On 2024-02-29 20:26, Alexey Charkov wrote:
+> >> > Include thermal zones information in device tree for RK3588 variants=
+.
+> >> >
+> >> > This also enables the TSADC controller unconditionally on all boards
+> >> > to ensure that thermal protections are in place via throttling and
+> >> > emergency reset, once OPPs are added to enable CPU DVFS.
+> >> >
+> >> > The default settings (using CRU as the emergency reset mechanism)
+> >> > should work on all boards regardless of their wiring, as CRU resets
+> >> > do not depend on any external components. Boards that have the TSHUT
+> >> > signal wired to the reset line of the PMIC may opt to switch to GPIO
+> >> > tshut mode instead (rockchip,hw-tshut-mode =3D <1>;)
+> >> >
+> >> > It seems though that downstream kernels don't use that, even for
+> >> > those boards where the wiring allows for GPIO based tshut, such as
+> >> > Radxa Rock 5B [1], [2], [3]
+> >> >
+> >> > [1]
+> >> > https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/bo=
+ot/dts/rockchip/rk3588-rock-5b.dts#L540
+> >> > [2]
+> >> > https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/bo=
+ot/dts/rockchip/rk3588s.dtsi#L5433
+> >> > [3] https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock_5b_v1423_sch.pd=
+f
+> >> > page 11 (TSADC_SHUT_H)
+> >> >
+> >> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> >> > ---
+> >> >  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 176
+> >> > +++++++++++++++++++++++++++++-
+> >> >  1 file changed, 175 insertions(+), 1 deletion(-)
+> >> >
+> >> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> >> > b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> >> > index 36b1b7acfe6a..9bf197358642 100644
+> >> > --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> >> > +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> >> > @@ -10,6 +10,7 @@
+> >> >  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+> >> >  #include <dt-bindings/phy/phy.h>
+> >> >  #include <dt-bindings/ata/ahci.h>
+> >> > +#include <dt-bindings/thermal/thermal.h>
+> >> >
+> >> >  / {
+> >> >       compatible =3D "rockchip,rk3588";
+> >> > @@ -2225,7 +2226,180 @@ tsadc: tsadc@fec00000 {
+> >> >               pinctrl-1 =3D <&tsadc_shut>;
+> >> >               pinctrl-names =3D "gpio", "otpout";
+> >> >               #thermal-sensor-cells =3D <1>;
+> >> > -             status =3D "disabled";
+> >> > +             status =3D "okay";
+> >> > +     };
+> >> > +
+> >> > +     thermal_zones: thermal-zones {
+> >> > +             /* sensor near the center of the SoC */
+> >> > +             package_thermal: package-thermal {
+> >> > +                     polling-delay-passive =3D <0>;
+> >> > +                     polling-delay =3D <0>;
+> >> > +                     thermal-sensors =3D <&tsadc 0>;
+> >> > +
+> >> > +                     trips {
+> >> > +                             package_crit: package-crit {
+> >> > +                                     temperature =3D <115000>;
+> >> > +                                     hysteresis =3D <0>;
+> >> > +                                     type =3D "critical";
+> >> > +                             };
+> >> > +                     };
+> >> > +             };
+> >> > +
+> >> > +             /* sensor between A76 cores 0 and 1 */
+> >> > +             bigcore0_thermal: bigcore0-thermal {
+> >> > +                     polling-delay-passive =3D <100>;
+> >> > +                     polling-delay =3D <0>;
+> >> > +                     thermal-sensors =3D <&tsadc 1>;
+> >> > +
+> >> > +                     trips {
+> >> > +                             /* threshold to start collecting tempe=
+rature
+> >> > +                              * statistics e.g. with the IPA govern=
+or
+> >> > +                              */
+> >>
+> >> See, I'm not a native English speaker, but I've spent a lot of time
+> >> and effort improving my English skills.  Thus, perhaps these comments
+> >> may or may not seem like unnecessary nitpicking, depending on how much
+> >> someone pays attention to writing style in general, but I'll risk to
+> >> be annoying and state these comments anyway. :)
+> >>
+> >> The comment above could be written in a much more condensed form like
+> >> this, which would also be a bit more accurate:
+> >>
+> >>
+> >>                                 /* IPA threshold, when IPA governor is
+> >> used */
+> >>
+> >> IOW, we're writing all this for someone to read later, but we should
+> >> (and can) perfectly reasonably expect some already existing background
+> >> knowledge from the readers.  In other words, we should be as concise
+> >> as possible.
+> >
+> > In fact, the power allocation governor code itself doesn't call those
+> > trips threshold or target as your suggested wording would imply.
+> > Instead, it calls them "switch on temperature" and "maximum desired
+> > temperature" [1]. Maybe we can call them that in the comments (and
+> > also avoid calling the governor IPA, because upstream code only calls
+> > it a "power allocator").
+>
+> Hmm, but "IPA" is still mentioned in exactly three places in the files
+> under drivers/thermal.  I think that warrants the use of "IPA", which
+> is also widely used pretty much everywhere.
+>
+> Perhaps a win-win would be to have only the very first of the comments
+> like this, to introduce "IPA" as an acronym:
+>
+>                                    /* Power allocator (IPA) thermal
+> governor       */
+>                                    /* switch-on point, when IPA governor
+> is used   */
 
-1. Fixup infracfg clock controller binding
-   It also acts as reset controller so #reset-cells is required.
-2. Use -pins suffix for pinctrl
+Yes, good point, thanks!
 
-This fixes:
-arch/arm64/boot/dts/mediatek/mt2712-evb.dtb: syscon@10001000: '#reset-cells' is a required property
-        from schema $id: http://devicetree.org/schemas/arm/mediatek/mediatek,infracfg.yaml#
-arch/arm64/boot/dts/mediatek/mt2712-evb.dtb: pinctrl@1000b000: 'eth_default', 'eth_sleep', 'usb0_iddig', 'usb1_iddig' do not match any of the regexes: 'pinctrl-[0-9]+', 'pins$'
-        from schema $id: http://devicetree.org/schemas/pinctrl/mediatek,mt65xx-pinctrl.yaml#
+> Next, "the target temperature" is mentioned more than a few times in
+> drivers/thermal/gov_power_allocator.c, which I believe makes the use
+> of "IPA target" perfectly valid.  Actually, let's use "IPA target
+> temperature", if you agree, to make it self descriptive.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- arch/arm64/boot/dts/mediatek/mt2712-evb.dts | 8 ++++----
- arch/arm64/boot/dts/mediatek/mt2712e.dtsi   | 3 ++-
- 2 files changed, 6 insertions(+), 5 deletions(-)
+Or perhaps simply "target temperature"? Stepwise governor will also
+use this trip as its target, so it's not IPA specific, unlike the
+switch-on point.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-index 0c38f7b51763..234e3b23d7a8 100644
---- a/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-+++ b/arch/arm64/boot/dts/mediatek/mt2712-evb.dts
-@@ -129,7 +129,7 @@ ethernet_phy0: ethernet-phy@5 {
- };
- 
- &pio {
--	eth_default: eth_default {
-+	eth_default: eth-default-pins {
- 		tx_pins {
- 			pinmux = <MT2712_PIN_71_GBE_TXD3__FUNC_GBE_TXD3>,
- 				 <MT2712_PIN_72_GBE_TXD2__FUNC_GBE_TXD2>,
-@@ -156,7 +156,7 @@ mdio_pins {
- 		};
- 	};
- 
--	eth_sleep: eth_sleep {
-+	eth_sleep: eth-sleep-pins {
- 		tx_pins {
- 			pinmux = <MT2712_PIN_71_GBE_TXD3__FUNC_GPIO71>,
- 				 <MT2712_PIN_72_GBE_TXD2__FUNC_GPIO72>,
-@@ -182,14 +182,14 @@ mdio_pins {
- 		};
- 	};
- 
--	usb0_id_pins_float: usb0_iddig {
-+	usb0_id_pins_float: usb0-iddig-pins {
- 		pins_iddig {
- 			pinmux = <MT2712_PIN_12_IDDIG_P0__FUNC_IDDIG_A>;
- 			bias-pull-up;
- 		};
- 	};
- 
--	usb1_id_pins_float: usb1_iddig {
-+	usb1_id_pins_float: usb1-iddig-pins {
- 		pins_iddig {
- 			pinmux = <MT2712_PIN_14_IDDIG_P1__FUNC_IDDIG_B>;
- 			bias-pull-up;
-diff --git a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-index 6d218caa198c..082672efba0a 100644
---- a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-@@ -249,10 +249,11 @@ topckgen: syscon@10000000 {
- 		#clock-cells = <1>;
- 	};
- 
--	infracfg: syscon@10001000 {
-+	infracfg: clock-controller@10001000 {
- 		compatible = "mediatek,mt2712-infracfg", "syscon";
- 		reg = <0 0x10001000 0 0x1000>;
- 		#clock-cells = <1>;
-+		#reset-cells = <1>;
- 	};
- 
- 	pericfg: syscon@10003000 {
--- 
-2.35.3
+> Finally, the threshold...  Based on
+> drivers/thermal/gov_power_allocator.c,
+> I think "IPA switch-on point" would be a good choice, which I already
+> used above in the proposed opening comment.
 
+Agreed, that sounds good to me, will reflect in the next iteration.
+Thanks for bringing it up!
+
+Best,
+Alexey
 
