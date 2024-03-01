@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-47596-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47600-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29D9E86DD74
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:49:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CF62486DD7F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:50:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D66F4289AA8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:49:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5C7F1C23292
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:50:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C34D69E02;
-	Fri,  1 Mar 2024 08:49:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72216A01C;
+	Fri,  1 Mar 2024 08:49:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="uezOqMM9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LesMyAuF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20D156994E
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 08:49:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24B4D69E16
+	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 08:49:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709282958; cv=none; b=OW3ctuQ2fSgs2+2MDikQ9UqxcOwATT91JDByU0EZMZUaSIXQEE70UpTD9Ls2NuAN9e6PPD/hzn0IQu8ijING4h8aCzmoCToFPjlzbz0vfr+cSQTUWFu/9AgDTQich9yr8fz4a0xdXGfObi+W65uvYfVxkOR/rXOxX/GMhdjAxfA=
+	t=1709282982; cv=none; b=BuExsrsoXZXmmtqZN6MOjeKh9iXVEq+81nzDtdhzNbhbmpvappwxgapPhC3rPO1tJ7SO6ZniQucVybYH//DuRWXxsawEjoVgigV/b0rOVHLwl7eQz/BZPwmFgLTfxENFNlbJ2RWK/J81mQ9zQOtaFZ5IryIU5SpRGKgmxz4Nnck=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709282958; c=relaxed/simple;
-	bh=AZOAnpKJpuegVNZBxy0owMWljBKFX08lCgRAENf499k=;
+	s=arc-20240116; t=1709282982; c=relaxed/simple;
+	bh=jN3VkU6TTj0itUtfWez0NxgdQx4sHDHdXqBKKHVWAkY=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jaudNrrX6uRtw4SzcpXnZQmySOoLinqEl+zTJkMMxbJipepXgrk6YTb8uWp+Mw8VO+/A+tV+5nDxK/5+U0kKlwaoRWur7CX1qAY0GHCqyd74oqnglqkOPwfLX4G0bv4kqY7oT7gsSbLayoTNdLd76xslURTTtkxhJmOIh+aivhE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=uezOqMM9; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:Content-Type; b=DCZkoJuKKOVpDfwKkOe3AZqs7XHrk7sZbyXmg9GCthTVYUrhEPXxE6jqQL6CG3lLkEeawDGvwZ9QE0JLqRe7/jvX5ew8Wh4Q267S+BtYBJ2wPFgVQGdGR8ALPXarK8pWBbBxNpFy6BN6foQDOQjv+88Kc6AVoymodplKoK6+nJU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LesMyAuF; arc=none smtp.client-ip=209.85.208.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a36126ee41eso299165366b.2
-        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 00:49:16 -0800 (PST)
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-564372fb762so2720276a12.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 00:49:40 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709282955; x=1709887755; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709282979; x=1709887779; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=4ppjBM3tOprCP+eIE3UmzbaBVxUdXpPShP0Sd0gymZo=;
-        b=uezOqMM9NdJWMAvNqz0Z3HQwCsz/64MPLDLFo0rkE0w1UROHgRytkoQQJBJwrAHvim
-         4uLa85F6n+pM4Jr9kygAwPIZp5z3nCFPeOm+DZ4vxjp5026U4R+gmJAew4WBzpC0SBlT
-         jKpCUb/Mimk7nYZjmanFHgFiGzD3G1udesRadp++seYuC+OEOuti0hxUu1ZfhrID8yOM
-         +NmCv3NQ0/SrBpVGS5b7gm4YdpK9/JEjsU2TzY2bWpvwT1GR0xaeTxw75DvL2E+skcrZ
-         vmN7yfBouAcvpN6pC2/sFxGbpH+2gKKxy3SyW03imsDnV6l7z2xVAWNHspaRVGAffo5a
-         5Jmw==
+        bh=NygG+zgVE75okJaCIKi9Z46sh0xdDb3WRJLYh6SeQuE=;
+        b=LesMyAuFQI0xBKJ3OH1aynpgm1JaR8CttEu+uxow1q2nK93dZPbFDHVowVtVAkve3K
+         YZCPdRFjzgKbpPP0aUODUUqL+EofZWlFTWAxflE5Kb6B/1RysvzZETsuJpzalPGg+kgL
+         BP4tPSMHkUI4YpujDWkkTPABosEXuqkyP7pckoSjRfg+MetHk/8s9oXWFYNrIKPkoFgl
+         QhE2Wv8f1hj/PXUo4QloJTLXd+fTkA1m6qKlp7uxkDbPVQOcWal1tWisN4bFZuhwnbj7
+         z3GmkXLgPv7WRDjZYefSGtTL5O/QajIY/PD5DJRLz45PmCYH06oAVFN8vANTOz3Be+LA
+         /L7w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709282955; x=1709887755;
+        d=1e100.net; s=20230601; t=1709282979; x=1709887779;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4ppjBM3tOprCP+eIE3UmzbaBVxUdXpPShP0Sd0gymZo=;
-        b=mKJnQAqJ2tg/BYNFjRp3X4lJ4J//wfv9aQCB8WNkhYit2k7agCkTjBnBs1Vufhaspy
-         0H5Nn9UnA/Kj7sPWcEK0RCvQF91EjsIYxK/h2xcRjel+cUACgZz76VrNmGiO0rG4D0lj
-         viZ1EqO3xnCzC3/I0ejnrwgZlmyF59GTUgM2gLhVX+XN2Vwc/bpMNWpswJ4kbQxtHEnc
-         D/2qdubsKBWicONNDLWAynR18hkqoFi1xveYV0DC3RvvM4oeW37T3P8CNNSRAwwVPmml
-         MHltwz4uYc+ED3+xmq5+vEnMhn5PDbQJjcEooHqHbGo0zwgA1NjmfV3Ao2iF07CXE9Ph
-         PxrQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUPbBXQJrAlRobJ440mV+17+czLgbHu7meYB0H856FlTQ+Y2tmhzAb1Wu2qYaAVP2A1NqhtGAxh4NgEDR3USGpOOBoEPfG0hA+4qw==
-X-Gm-Message-State: AOJu0Yw6/3mnhiYDSpRmuANW3o1V/bnzNcCoGOSOJFzL0+x19LnaaWp8
-	hR98Twj7+/N7XeeDDBjd8cw38N5t1MmXAi5leeuAclN9G9IG+iSUIJGnvReg3Y4=
-X-Google-Smtp-Source: AGHT+IFmsEg3GiieccV0GxaPLBxLcsxynf6XvYaAhB2Rt215komKg9oVuaWQXvdT1HLCzxgZIlx79A==
-X-Received: by 2002:a17:906:1193:b0:a3e:58df:fb08 with SMTP id n19-20020a170906119300b00a3e58dffb08mr719141eja.44.1709282955391;
-        Fri, 01 Mar 2024 00:49:15 -0800 (PST)
+        bh=NygG+zgVE75okJaCIKi9Z46sh0xdDb3WRJLYh6SeQuE=;
+        b=N6evEPOwCS0hF0ILk3cbaTK3U0/egWpIPOVHZDbCWdaaLHcotYPMNXjpZS3+EXqRCu
+         4DJR4QAi3gwkNdfvNxDfmFTxWMrdjtYUZRiOaKaMsh+UMWF5zxyQhWgAA66nAkDB0qPe
+         K7LavRoelw8xl6FfoevYsyok3NsKp/xcFzo1fcpRY4+s/wRXLqWThYKa0JPd5QA3DDvJ
+         hQoKpNlGtZbPdUzKPTfIxzD45wJC/tjO50jgWkZ4QwC6zWZlgelqmp3TZTYICRh+Nc1e
+         J8GqKWTb7eFsCyBwdW50/Z7827k4hUi4OuKRkluWoomikM0/isYXVVAp7hNqLz7yjhFY
+         jA2w==
+X-Forwarded-Encrypted: i=1; AJvYcCXZfH4GeCEqyAYiQhoJPz6yhLpV/AQF6NOVa1Hy8UA7+e+oHDIiOkRvN7WQW8lSm13MamD5DFLEBf6CFotqWuu2LP3gkYxGofsGKQ==
+X-Gm-Message-State: AOJu0YwUGHMGqwmW/D1JoDCTQc00icSEJTHOFW3wzyLVWbhW+mEBpiSa
+	fC9xYVCBw7U6f0Vs9HTNg9c7TvD9FqDhUHttzRgrscLXKL6m82o5u1deISwu+Dg=
+X-Google-Smtp-Source: AGHT+IHhVoesLGysr23SUpYTmXJ9xUF3CoWngGj/ChhbIYLGPW3SiC8g4fo+Psl+4rrcc+Gw60jnQg==
+X-Received: by 2002:a17:906:685a:b0:a44:5515:3b57 with SMTP id a26-20020a170906685a00b00a4455153b57mr715504ejs.4.1709282979470;
+        Fri, 01 Mar 2024 00:49:39 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id ps7-20020a170906bf4700b00a3e53eb1dcasm1492497ejb.107.2024.03.01.00.49.13
+        by smtp.gmail.com with ESMTPSA id ps7-20020a170906bf4700b00a3e53eb1dcasm1492497ejb.107.2024.03.01.00.49.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Mar 2024 00:49:14 -0800 (PST)
-Message-ID: <44adf15a-7a33-4618-b046-30a370b0628a@linaro.org>
-Date: Fri, 1 Mar 2024 09:49:12 +0100
+        Fri, 01 Mar 2024 00:49:38 -0800 (PST)
+Message-ID: <0ff97f06-717d-4cd2-8a52-b1838fceed5a@linaro.org>
+Date: Fri, 1 Mar 2024 09:49:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,23 +76,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] media: dt-bindings: nxp, imx8-isi: Allow single port
- for single pipeline models
+Subject: Re: [PATCH v3 2/2] media: dt-bindings: i2c: use absolute path to
+ other schema
 Content-Language: en-US
 To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring
- <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sebastian Reichel <sre@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alain Volmat <alain.volmat@foss.st.com>,
+ Ricardo Ribalda <ribalda@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
  Sascha Hauer <s.hauer@pengutronix.de>,
  Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
- linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ Fabio Estevam <festevam@gmail.com>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Michael Riesch <michael.riesch@wolfvision.net>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, imx@lists.linux.dev,
  linux-arm-kernel@lists.infradead.org
-References: <20240223140445.1885083-1-alexander.stein@ew.tq-group.com>
- <bf892e5b-be7a-4197-9e68-5199e3aada23@linaro.org>
- <3f82eadb-a475-4ea0-8de3-0bfe0a46a27b@linaro.org>
- <6655016.GXAFRqVoOG@steina-w>
+References: <20240301084009.3030753-1-alexander.stein@ew.tq-group.com>
+ <20240301084009.3030753-2-alexander.stein@ew.tq-group.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -138,53 +141,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <6655016.GXAFRqVoOG@steina-w>
+In-Reply-To: <20240301084009.3030753-2-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/03/2024 09:32, Alexander Stein wrote:
-> Hi Krzysztof,
+On 01/03/2024 09:40, Alexander Stein wrote:
+> Absolute path to other DT schema is preferred over relative one.
 > 
-> Am Donnerstag, 29. Februar 2024, 19:18:14 CET schrieb Krzysztof Kozlowski:
->> On 29/02/2024 19:14, Krzysztof Kozlowski wrote:
->>> On 23/02/2024 15:17, Laurent Pinchart wrote:
->>>> On Fri, Feb 23, 2024 at 04:16:31PM +0200, Laurent Pinchart wrote:
->>>>> Hi Alexander,
->>>>>
->>>>> Thank you for the patch.
->>>>>
->>>>> On Fri, Feb 23, 2024 at 03:04:44PM +0100, Alexander Stein wrote:
->>>>>> In case the hardware only supports just one pipeline, allow using a
->>>>>> single port node as well.
->>>>>
->>>>> This is frowned upon in DT bindings, as it makes them more complicated
->>>>> for little gain. The recommendation is to always use a ports node if a
->>>>> device can have multiple ports for at least one of its compatibles.
->>>>
->>>> And reading the cover letter, I see this causes warnings. I think we
->>>> need guidance from Rob on this.
->>>
->>> Here was similar case:
->>> https://lore.kernel.org/all/20240227142440.GA3863852-robh@kernel.org/
->>> and @Rob recommendation was to just use ports.
->>>
->>> It's true it causes warnings... or I should say - it was causing
->>> warnings (one of my last warnings in Samsung DTS for W=1).
->>>
->>> I wonder what's the base of this patchset?
->>>
->>> https://lore.kernel.org/linux-samsung-soc/20231122-dtc-warnings-v2-1-bd4087325392@kernel.org/
->>
->> Uh, wait, this was not merged, so the warning still appears. Anyway the
->> preference is simpler schema, so just "ports".
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> ---
+> Changes in v3:
+> * Squashed patches 2-5 from v2 into a single one
 > 
-> Okay, thanks for that information. I'll drop this patch then.
-> Just to be on the same side, this implies that using a single port
-> in this case ( see patch 3) is not necessary/wanted, no?
-> If so, I'll drop patch 3 as well.
 
-Both patches are related, so if you drop this one, you cannot have #3.
-Drop this and #3 as well.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
