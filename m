@@ -1,153 +1,170 @@
-Return-Path: <devicetree+bounces-47656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3FC8986E100
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 13:24:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 528CD86E10D
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 13:30:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 074FCB21C82
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 12:24:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D39E1C22190
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 12:30:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FD8E6E5E3;
-	Fri,  1 Mar 2024 12:24:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90B9AA3D;
+	Fri,  1 Mar 2024 12:30:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aFZyELV8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fA4+Gg9C"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com [209.85.218.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EA7CA69E1C
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 12:24:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39A98816
+	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 12:30:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709295856; cv=none; b=G3uXPCQxftOo3WTqS5jXLAC1YkODZ61zKnNQKx4R2HoqhjZ2KmLex69LfDWpK7vfcVrnxdf8MXoK80HrZ1bhr5o8CfD2qhBdqruTHlQMyLPIh+KIS1Ckxv6K/1s7j+bQSORKw7d0+YMqbWzgxCGuCKmnPxXJZQMGqyVnYjb8AMM=
+	t=1709296224; cv=none; b=bIP51VBVURXeOZEhJSSF2GYXcWfkiGDwtOubiqi2gZtK89Ywc2r1dQNwnIPoameh4C1p3Gz/S+x7hns1eGngXj+VKeO+gcQEH9N95lJgog02V32Ea4tQCefxHpYOQTiXMxWwsptHgr0+QKxqLvjFpfvVPznQ4SJwfhgO9RaRo3k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709295856; c=relaxed/simple;
-	bh=GeK7NXU8+bwfBSHzsZlUNBLhTVjfM+PRqah5iO9UP7A=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CavHTVz4TeBSYae/AqQyZcGKH4wo6sn67r2w9OI9RK/ACONtOjPj7sSTRLV4HOGHHBu+fbPorDWJURwv1eLHBJM3+DkItGrOkSMDOzXEP/40MX1IBj9E299pxVvJLvJ3LW5QLTSCdwIIcC/FMC9jdhxIvEKLWZlXGIezGhYJZ70=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aFZyELV8; arc=none smtp.client-ip=209.85.166.169
+	s=arc-20240116; t=1709296224; c=relaxed/simple;
+	bh=imlWPqqaoAQbWflokIpdffb2kyPFXhk1wjI1Fqe5uN8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=F07091VaKb6oTKcaFXza2li+nzwcT+vhRwyUkaKRF6ACVZEZARAHu3eRFmrfQWOxjHlBdE39Dpj4MF845Tv+zDLLoR5k6kcmq8XMCk/xfhTdwPOsT6OT0DZOqi4ajkoPWmCecOZj4Ru7V1ha/+W5yrhPOwMCKzJ55t7SmqNKJhg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fA4+Gg9C; arc=none smtp.client-ip=209.85.218.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-36524116e30so8160125ab.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 04:24:14 -0800 (PST)
+Received: by mail-ej1-f45.google.com with SMTP id a640c23a62f3a-a3122b70439so352839266b.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 04:30:21 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709295854; x=1709900654; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/b5kEb7iwEP3csgzWIGJ8JouHXy+H/cUYJXmmRjhdKE=;
-        b=aFZyELV89/ojTEZjsaa6LrmkxmcsyGsIIv4IfcnBC5zUmeTiOTe1EYaHtJGWP+goDe
-         Myy9og1eWl+voL2fSpJDp3FdKtK+Q6UCQJM+1emF9oWo9dEY4bzPkEjzqet65QFHramv
-         yBkfpJtsmcQXtdkkYQNSmpHcNuZiJ1t9EmUXufby7xGTbjxhOzBvfdwJ9wqBByLE1wbU
-         olz4U+GHwJcMwtvmJpTYK2Gc+DOjVCv6w1O/D/F5fmwa9KIXVMZNMVT0sC41C5pnLmV1
-         TTBAfMXM+mpMFxdidYD0X2PNLoOOVJq316pphS2+59mWcAPW6+Z5t2X2ajcoKQPPE9lp
-         ARMA==
+        d=linaro.org; s=google; t=1709296220; x=1709901020; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=D2E6Lza6jvlwY8TOC6NENJsFl/OQfmtbf7Mqqg+pFao=;
+        b=fA4+Gg9CngY+VtlKK2/wNx8w1YOlgBZo9aXVxoO/Ld6PwqqWLTyIH0q0IKsDLMzYDs
+         f5WUpTD/DV05AZM2zb6rJuiGSR89s9nkmgbUuVvWPNecMomeuaXhUqw4Au8j8Ing4+Vd
+         3JS5himd85mlnPKefey7gkSMZpR24flk8dwNshDUxi1GZ7Bm4yjJxBwmiRkwYh5cUBO8
+         dix7yDux3oG1RqI6Q+UE/QjDA5vLI8/qUp7fM5f9RwaDTIaFGcf5ALRxf3KYhemg06mD
+         3GmG4c22sBoM5pDuaNYZTAg4VYbDY/zG31YDY/PFRPtbTI0Oeg+dfl7Wiz0H+zqAh4Fk
+         M54g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709295854; x=1709900654;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/b5kEb7iwEP3csgzWIGJ8JouHXy+H/cUYJXmmRjhdKE=;
-        b=BRxcx3UM+rR/9Xnv5W5mEQDMeHob+Up8BahGiHaGdi0/6QLqn9qqTdWm5hw374IHbM
-         BHQ1IkLRrSatPIg6V6WT6SOBmQ6gSYpXsBwh+n7hNC5Dg73nX5Hu3HVEPFUTOHw7kDWr
-         Jdt1KJhjBZY37ciDnhIG5p6Td2rQqqflBT2RwB40EASc96F2E9uaJaowqZJC2AnidJU/
-         Vh4XXV4afG5iTHRfSOMYapSjBoX9seZohvpSTEhR8CdG+U/0w3k40BoK1IfMZ4JfEQWd
-         woULy8Y6hCSMdQrg0/1jmgeU+KaVTv6iu9Ux2x/XnMiVr8vwquEJdCnMM3Fwk4QCI3ir
-         pXQw==
-X-Forwarded-Encrypted: i=1; AJvYcCUfz5xkFWQ/KxSW2Ia0a3OtqPpOMWfHOEEwmOBbF4MNtrBW++xMi9MmgRLbbOvoHJD4Bsi0pHq5Y5qCkySFsIX3l10D+NCw8iJkiw==
-X-Gm-Message-State: AOJu0YzuWh6hJ7CCWW4nkr6QWAyoqlqPno+pZG80dSE1FnYQQjRjUvgE
-	LhU6nmY1kXIpfTSlrnzGvHbGrbWqFoM7+J/dUl8R4x/T9Qy2yXpRw/usXzW1eQ==
-X-Google-Smtp-Source: AGHT+IGjonEgf53n7CtJrGJKoHCICELzX7ssAuT3mNd1cdbBKw/KgfiA65RmCI0QdqSvYfVXPwiQRg==
-X-Received: by 2002:a6b:ef13:0:b0:7c4:9c09:218c with SMTP id k19-20020a6bef13000000b007c49c09218cmr1513631ioh.7.1709295854030;
-        Fri, 01 Mar 2024 04:24:14 -0800 (PST)
-Received: from thinkpad ([2409:40f4:13:3cbc:2484:3780:dcff:ebcf])
-        by smtp.gmail.com with ESMTPSA id l20-20020a63da54000000b005cd8044c6fesm2934212pgj.23.2024.03.01.04.24.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Mar 2024 04:24:13 -0800 (PST)
-Date: Fri, 1 Mar 2024 17:54:06 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Johan Hovold <johan@kernel.org>
-Cc: Bjorn Helgaas <helgaas@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and
- GICv3 ITS enable
-Message-ID: <20240301122406.GA2401@thinkpad>
-References: <20240223152124.20042-1-johan+linaro@kernel.org>
- <20240228220843.GA309344@bhelgaas>
- <20240229100853.GA2999@thinkpad>
- <ZeBbrJhks46XByMD@hovoldconsulting.com>
- <20240229122416.GD2999@thinkpad>
- <ZeCCPRVvYCNfMYnd@hovoldconsulting.com>
- <20240229135407.GE2999@thinkpad>
- <ZeCktwcEFAfCEVkV@hovoldconsulting.com>
+        d=1e100.net; s=20230601; t=1709296220; x=1709901020;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=D2E6Lza6jvlwY8TOC6NENJsFl/OQfmtbf7Mqqg+pFao=;
+        b=pzNHGbVwbgxXim3PP0+40ahMBCZES3tU6phuvTeL6+KLZx5SAz8wX72/Gm3uQzG9Oe
+         gaPt6AYptMrhw2LeBG0C8GCrG8foRtOyJXsQJEGTXhOovYNKcoZdC2kvhdaP0I13Dbwh
+         /zaQhLBZKW/JbWrgBw8vX26uUu9og4deOFXwC0LdyTruSil9X7LfOqyACiGmsYaRDrLb
+         Vbxb8mZkfC/qbvj8B9Ch8zOTOmbk4ek92qf3bQ0gJJjIxL1YfUUO67fUBkFMQKaaPQoC
+         8B03CC2b/ZiBcf2z8kPCAe8QJbyRqr+NfuhCugKglXjWeTQJIzrucMm7HKoZvk/+odq5
+         9rzA==
+X-Forwarded-Encrypted: i=1; AJvYcCVF5vB5f6Ezy2iHqMyx17g4Km79CwhRKu9AG7eqIUdOK1gQB+Vx3lxwvBzYEeR8BRWYK3rwkJk4YBi7jQMZP/0TRcaXMNzMxx238Q==
+X-Gm-Message-State: AOJu0Yy0ITWlaeH9lkyYxpbEPH8sh1bgQNHTY/5b+vX6rV6kJ3BkubKD
+	WHAEG0ovu3Vb8mqkBSqSeI1AmUHjtzbbOjDNj3c1P6xmLg1MI/GWXdBOKxBBneY=
+X-Google-Smtp-Source: AGHT+IG2nhL9VcjRjhqf3UCjncstikvcmX5Gs+GWeHIXAafRZACodM8Jl5e4ixYtz+gz6GkY6Vvsdg==
+X-Received: by 2002:a17:906:507:b0:a3e:7cd8:3db7 with SMTP id j7-20020a170906050700b00a3e7cd83db7mr1120751eja.68.1709296220553;
+        Fri, 01 Mar 2024 04:30:20 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id lb24-20020a170906add800b00a4131367204sm1650486ejb.80.2024.03.01.04.30.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Mar 2024 04:30:19 -0800 (PST)
+Message-ID: <e5cff980-8fd1-4658-9c21-fe2e62b5063e@linaro.org>
+Date: Fri, 1 Mar 2024 13:30:18 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ZeCktwcEFAfCEVkV@hovoldconsulting.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/3] dt-bindings: pwm: add support for MC33XS2410
+To: Dimitri Fedrau <dima.fedrau@gmail.com>
+Cc: =?UTF-8?Q?Uwe_Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-pwm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240301111124.29283-1-dima.fedrau@gmail.com>
+ <20240301111124.29283-2-dima.fedrau@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240301111124.29283-2-dima.fedrau@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, Feb 29, 2024 at 04:37:27PM +0100, Johan Hovold wrote:
-> On Thu, Feb 29, 2024 at 07:24:07PM +0530, Manivannan Sadhasivam wrote:
-> > On Thu, Feb 29, 2024 at 02:10:21PM +0100, Johan Hovold wrote:
+On 01/03/2024 12:11, Dimitri Fedrau wrote:
+> Adding documentation for NXPs MC33XS2410 high side switch.
 > 
-> > > I think that based on the available data it's reasonable to go ahead and
-> > > merge these patches. In the event that this turns out to be a
-> > > configuration issue, we can just drop the 'aspm-no-l0s' properties
-> > > again.
-> > 
-> > Well the problem is, if you are not sure, then adding the DT properties is
-> > certainly not correct. As that implies a hardware defect, but it may not be.
-> > So let's wait for some time to find out the actual issue.
-> 
-> Our devicetrees are always going to be a tentative description of the
-> hardware, and this especially true for Qualcomm that don't publish any
-> documentation so that people are forced to rely on informed guesses
-> based on downstream devicetrees and drivers and reverse engineering.
-> 
-> As far as I can tell, after having spent a lot of time on this and
-> checking with sources inside Qualcomm, the hardware is to blame here. If
-> this turns out not to be true, we can always revise later. We do this
-> all the time, as you know.
-> 
-> I'm all for digging further into this issue with the help of Qualcomm,
-> but I don't think that should block this series as that would leave the
-> link errors that we hit since 6.7 in place and effectively prevent us
-> from enabling the ITS in 6.9.
-> 
+> Signed-off-by: Dimitri Fedrau <dima.fedrau@gmail.com>
+> ---
+>  .../bindings/pwm/nxp,mc33xs2410.yaml          | 118 ++++++++++++++++++
+>  1 file changed, 118 insertions(+)
 
-Sounds fair. I will report back, perhaps with a fix based on what I get to know.
 
-But I think it is better to disable L0s in the SoC dtsi itself. That's not only
-because there are patches to essentially disable L0s in 2 of the available
-platforms making use of this Soc, but also you are enabling GIC ITS in the SoC
-dtsi and that may affect sa8540p which is making use of this dtsi.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-The users of that SoC may have not noticed the errors as you did before, but
-enabling GIC ITS will certainly make the issue visible to them (more likely).
 
-Also, if it turns out to be a hardware IP issue, then we can leave the patches
-as it is, otherwise we can revert them easily.
+---
 
-- Mani
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
 
--- 
-மணிவண்ணன் சதாசிவம்
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+Best regards,
+Krzysztof
+
 
