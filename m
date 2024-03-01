@@ -1,95 +1,156 @@
-Return-Path: <devicetree+bounces-47591-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47594-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC15286DD3E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:40:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C26886DD64
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:47:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 590BB289E4F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:40:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 17309286F42
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:47:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E130F6A00F;
-	Fri,  1 Mar 2024 08:40:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 204206A034;
+	Fri,  1 Mar 2024 08:46:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fY3dUfgT"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="sf6YDV5o"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B274B69E08;
-	Fri,  1 Mar 2024 08:40:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B5AC56A013;
+	Fri,  1 Mar 2024 08:46:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709282428; cv=none; b=tk+z0PkeKwn8TvnRyJfD9agQRzgvZwDWFuU8Gs6EJcYPAU0QeqgZUjz7gs7XwkBxHQSfeS3TqvL4SJPciyTU2snfVPv4vO41waNMYO0AoA5MixzuyycnRhqluprZDkPEMuwcwuxiwFk4loYEIwubOxv+x+9XerIT2RcH5/nUtUQ=
+	t=1709282782; cv=none; b=V+7JnE6Zjkn9DbFqmg0JbProDQ7UTX5tO8CwIMO+06mENt3XupZKzc0y6bSCEmgxDTKLbc2Mj7/28pNoInAnCrWpJ20Tn7Lpb1RM2jDIk43J36I0A3mJwDHdkLNLnv1Fu4CvsopVbUXWMYzFTW5+IG4xP35XVamvtPi/AY0YV04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709282428; c=relaxed/simple;
-	bh=g3W9bfD1bp+3K2t6lLCQEeN+YO5gTJflaVUumBmw9Xk=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=NzNg1qzdAitXPGXlXeATw9ZZxUP9aE7NSBlJ6TgqqPshgvoKPh+KAqknHxjswO6EKvPqsmq5y4fuKvBCs+IUm1j/ZJWf6SGStxADqOoQPtiR8xvw/4HYIDL1MV1OAD8HUCX12pe6qC7LHym0y7N1Er0szxCF/qYMTb/5dNjmp3c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fY3dUfgT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3542DC433A6;
-	Fri,  1 Mar 2024 08:40:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709282428;
-	bh=g3W9bfD1bp+3K2t6lLCQEeN+YO5gTJflaVUumBmw9Xk=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=fY3dUfgTB1Wsw1zAP6moTZn4vXqTRfGmvfguTSFv3X57i5YZupgFiC88NffI9+NKE
-	 WEtT2XXCC6kNHufM/k4moVvBqLj1wbQsc8saxwVlLrjeXHAssiNDrzCRrUyuWYSRku
-	 2WIFzqLDTpKTVlcRS/NRigK2/VLitC2mBpcJMmykN106mZLtmbC/qwV9XIkGOqd7Sh
-	 tWu/O+HnySmc1Ryt4Rq4XjD7KxVAFIJvjAN8pikUTTuzdUqIpbZqfY7Qv0ZZtsScqU
-	 bKI2RJ68Llqv+/4Smzb6MxEfkxNoOaiMoNWL7VWNhT76+yKnkOVv/vaxGRtUzox3Ps
-	 LNAQGOmasXiTQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 13529C595C4;
-	Fri,  1 Mar 2024 08:40:28 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1709282782; c=relaxed/simple;
+	bh=mBbrNX9zQ1NKiLd7Z/pgJVu1yxTulmTFb/zYC3nwzCQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LikZzuklOaCMeSBC19FoSCI3VKh1lO4CrpAiB+HtKTZGVSDbGWjl4WQ8UTCutM9kwcURN6pJ3TYkebM70GKxBQ4pm+4Lr93u3+NEINLjX23aqSh3G6VCI0MdpzlONglLV07o6e98hT3XmPRBDG1R7i3bWYckgHWcp6iFsSlemZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=sf6YDV5o; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 2A0B29CE;
+	Fri,  1 Mar 2024 09:46:03 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1709282763;
+	bh=mBbrNX9zQ1NKiLd7Z/pgJVu1yxTulmTFb/zYC3nwzCQ=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=sf6YDV5op3dLA/N3+Ozhjb7/lB0cdTcAozK5vJl8PoNVaqmgo67FXaF+27gZdQutN
+	 wMPmDtaPISEj4Hl0I4h/tMNACO3DO6g1CYYglgyB3u5FFhsFYqvPf/+eLKzba4ILFj
+	 WyRhPCqAmrS3sWEVaNuHzApeAXsh9v4IQZO4dpC8=
+Date: Fri, 1 Mar 2024 10:46:20 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: Sebastian Reichel <sre@kernel.org>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alain Volmat <alain.volmat@foss.st.com>,
+	Ricardo Ribalda <ribalda@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Michael Riesch <michael.riesch@wolfvision.net>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/2] media: dt-bindings: i2c: use absolute path to
+ other schema
+Message-ID: <20240301084620.GB30104@pendragon.ideasonboard.com>
+References: <20240301084009.3030753-1-alexander.stein@ew.tq-group.com>
+ <20240301084009.3030753-2-alexander.stein@ew.tq-group.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH] dt-bindings: net: renesas,ethertsn: Document default for
- delays
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <170928242807.14717.8003548879509335278.git-patchwork-notify@kernel.org>
-Date: Fri, 01 Mar 2024 08:40:28 +0000
-References: <20240223195526.1161232-1-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20240223195526.1161232-1-niklas.soderlund+renesas@ragnatech.se>
-To: =?utf-8?q?Niklas_S=C3=B6derlund_=3Cniklas=2Esoderlund+renesas=40ragnatech=2E?=@codeaurora.org,
-	=?utf-8?q?se=3E?=@codeaurora.org
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, geert@linux-m68k.org, devicetree@vger.kernel.org,
- davem@davemloft.net, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
- netdev@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240301084009.3030753-2-alexander.stein@ew.tq-group.com>
 
-Hello:
+Hi Alexander,
 
-This patch was applied to netdev/net.git (main)
-by David S. Miller <davem@davemloft.net>:
+Thank you for the patch.
 
-On Fri, 23 Feb 2024 20:55:26 +0100 you wrote:
-> The internal delay properties are not mandatory and should have a
-> documented default value. The device only supports either no delay or a
-> fixed delay and the device reset default is no delay, document the
-> default as no delay.
+On Fri, Mar 01, 2024 at 09:40:08AM +0100, Alexander Stein wrote:
+> Absolute path to other DT schema is preferred over relative one.
 > 
-> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+
+> ---
+> Changes in v3:
+> * Squashed patches 2-5 from v2 into a single one
 > 
-> [...]
+>  .../devicetree/bindings/media/i2c/galaxycore,gc0308.yaml        | 2 +-
+>  .../devicetree/bindings/media/i2c/galaxycore,gc2145.yaml        | 2 +-
+>  Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml    | 2 +-
+>  Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml    | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc0308.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc0308.yaml
+> index f81e7daed67b6..2bf1a81feaf47 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc0308.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc0308.yaml
+> @@ -15,7 +15,7 @@ description: |
+>    They include an ISP capable of auto exposure and auto white balance.
+>  
+>  allOf:
+> -  - $ref: ../video-interface-devices.yaml#
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+>  
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
+> index 1726ecca4c77e..9eac588de0bc2 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/galaxycore,gc2145.yaml
+> @@ -19,7 +19,7 @@ description:
+>    either through a parallel interface or through MIPI CSI-2.
+>  
+>  allOf:
+> -  - $ref: ../video-interface-devices.yaml#
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+>  
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> index 60903da84e1f3..0162eec8ca993 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx214.yaml
+> @@ -16,7 +16,7 @@ description: |
+>    maximum throughput of 1.2Gbps/lane.
+>  
+>  allOf:
+> -  - $ref: ../video-interface-devices.yaml#
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+>  
+>  properties:
+>    compatible:
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
+> index 9a00dab2e8a3f..34962c5c70065 100644
+> --- a/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx415.yaml
+> @@ -18,7 +18,7 @@ description: |-
+>    available via CSI-2 serial data output (two or four lanes).
+>  
+>  allOf:
+> -  - $ref: ../video-interface-devices.yaml#
+> +  - $ref: /schemas/media/video-interface-devices.yaml#
+>  
+>  properties:
+>    compatible:
 
-Here is the summary with links:
-  - dt-bindings: net: renesas,ethertsn: Document default for delays
-    https://git.kernel.org/netdev/net/c/7be40883b1cb
-
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+Regards,
 
-
+Laurent Pinchart
 
