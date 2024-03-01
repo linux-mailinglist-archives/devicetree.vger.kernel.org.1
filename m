@@ -1,118 +1,95 @@
-Return-Path: <devicetree+bounces-47691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 479D786E2CF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 14:54:23 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 47B3986E2DA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 14:57:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DA97B1F25AE3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 13:54:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DC14A1F25D46
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 13:57:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1944A6EB56;
-	Fri,  1 Mar 2024 13:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F1956EEF7;
+	Fri,  1 Mar 2024 13:57:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HkIbbKag"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O9tcttBq"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E28A16D1D8;
-	Fri,  1 Mar 2024 13:54:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 35DAF6EB7C;
+	Fri,  1 Mar 2024 13:57:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709301258; cv=none; b=TWXxFktTabKxRiGVbZCh4R6xSblZ//KLSAqA5NI2yYVQNBPYVyPm26dBZaLurd+Td8fRg5BCwfN+ytvk+3ZL7Hh89a+3EaBs7PVH2ZLIe7RMdE+A9aUidOUT9nNA1kSp2vKdOmzecY5W71k4FM/2BHGywhUwmx3qartIvFhaAic=
+	t=1709301435; cv=none; b=VzKa1mxro6ORqXvcU9msuPmBq2C1IrRE3NpO3EsTxLfWvI2WrRll2pJD4c/mVnUTodIH0O6oBy1+Sp0XHmrS0rhvdSkTLqmu+g68GywLwDgQmwX51YHTUbfe3wbR8ZBNmtmp+W89X2969nLo8Q5RwIGUnkSwd2PLMWQujCptklg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709301258; c=relaxed/simple;
-	bh=/OaGiLJtrULdsIFtAqm8m7gXWB3q0oZKx+xJ7Drw82w=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=AcksUr7Bw1WV+sSDpgGvMyhQfvoNqr4sfgnGK17Oo/exWtZvKt+u+2TX/x8aIl4KvGfdHUcl16kuIFeWxxJVfniQ0dQ6lIh8WEiJJucpbUDSuC7A0/19f+XJ6vZbcFkqreO3ACrJHrOgJCVzWInWr8MGi3Grn5Qiez52KA8nWHM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HkIbbKag; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B250C433F1;
-	Fri,  1 Mar 2024 13:54:17 +0000 (UTC)
+	s=arc-20240116; t=1709301435; c=relaxed/simple;
+	bh=q6H+s7+gd2Vvp0gLoYzsJzAn9VGVJNmi9tsrXyKTsuU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=urSPiTHHioSNTzQgMxmUw4s8mv46X3ULm3W3LH2GqfOjk3RJPYqYWpp/S/XT4CAMsjn/uz1XPwlhIW3CsTwqq8X6kZQssLHf+d2/jqwK9iATOPS2pYPJaZc/61TbK4whYrNELw4x24l7wjCVwM3rBCEdZGeTtD7/A4v3pC5HH5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O9tcttBq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5ADEC433C7;
+	Fri,  1 Mar 2024 13:57:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709301257;
-	bh=/OaGiLJtrULdsIFtAqm8m7gXWB3q0oZKx+xJ7Drw82w=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=HkIbbKagH9iaMIX9jJ79WqOKt++6DwSUwKeDinv2zEv9lechl0hJW9KIBDWASW0Ro
-	 JtknL2zMZYX5rhJKXYR4X58vpOnpsBcH+ODg/NHOZEpJsqA+IYlB9n1z33QbxVResH
-	 FA5Rs6DSXBIwq3gTw1v/Jky+bGgYTPPIoG5OfcyTAS/ALgKIxy8nLrzYma+a9kPGXk
-	 ga10OGlFBBjiumNLDsNg6/tzctk9eADMzQb0PZ1DGTGznaDh5jGRod5Hl8dZhV2G7P
-	 NYBvwgjnPj9S4GKUFxKTdhifqdn5xKmX7S1NutNDEEP6ybdOkJY4xzZ8spf4YdFGuo
-	 QbbJhx/K34+GQ==
-Date: Fri, 01 Mar 2024 07:54:16 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1709301434;
+	bh=q6H+s7+gd2Vvp0gLoYzsJzAn9VGVJNmi9tsrXyKTsuU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=O9tcttBqZrp/c+OnpaWXkOIUnpaVgqBWjmTwwkfJqTek+iVdzbKGBDtgdhbR13487
+	 LnJBXr+InD5qozAtlvdt8l61YC0km25+cjg6gbI1S30Br9IilmkNJM3PGopc9XDvej
+	 e3QjvX4ahfxKI7k0p3ywte51LhpIbGxCdUUMzI3lalEVy3Tz+GdGJXG7FaxVaQydg1
+	 V8XzalgF71zkDc+i5q4ghvw9GHEikHiu0bkX1cCGXDZMEbhO7y8q7x2VMwgXRYKSLd
+	 xhpek+lGfGT3jaCv0n0mpyEUXnvNqrjP3mabqPemM1HqzLWteTCAc74d2kRBqm2z+0
+	 4e5vjkgBdLszg==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rg3OA-000000001PI-2QRh;
+	Fri, 01 Mar 2024 14:57:26 +0100
+Date: Fri, 1 Mar 2024 14:57:26 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc: Bjorn Helgaas <helgaas@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and
+ GICv3 ITS enable
+Message-ID: <ZeHexh-TJ8qxLTCO@hovoldconsulting.com>
+References: <20240228220843.GA309344@bhelgaas>
+ <20240229100853.GA2999@thinkpad>
+ <ZeBbrJhks46XByMD@hovoldconsulting.com>
+ <20240229122416.GD2999@thinkpad>
+ <ZeCCPRVvYCNfMYnd@hovoldconsulting.com>
+ <20240229135407.GE2999@thinkpad>
+ <ZeCktwcEFAfCEVkV@hovoldconsulting.com>
+ <20240301122406.GA2401@thinkpad>
+ <ZeHOF4p1LlNDiLcy@hovoldconsulting.com>
+ <20240301131445.GA5414@thinkpad>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Adam Ford <aford173@gmail.com>
-Cc: Conor Dooley <conor+dt@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
- aford@beaconembedded.com, imx@lists.linux.dev, linux-kernel@vger.kernel.org, 
- Pengutronix Kernel Team <kernel@pengutronix.de>, 
- Sascha Hauer <s.hauer@pengutronix.de>, linux-arm-kernel@lists.infradead.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org
-In-Reply-To: <20240229233556.116944-1-aford173@gmail.com>
-References: <20240229233556.116944-1-aford173@gmail.com>
-Message-Id: <170930076224.1938438.16034343987415144490.robh@kernel.org>
-Subject: Re: [PATCH 1/2] arm64: dts: imx8mp-beacon-kit: Move sai3 to
- Audio_PLL1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240301131445.GA5414@thinkpad>
 
+On Fri, Mar 01, 2024 at 06:44:45PM +0530, Manivannan Sadhasivam wrote:
 
-On Thu, 29 Feb 2024 17:35:54 -0600, Adam Ford wrote:
-> The Beacon board has an LVDS display that cannot get a proper clock rate
-> from Video_PLL if the DSI is operational due to the way the clock divides
-> the pixel clocks from video_pll.  To make the LVDS work, the LVDS needs
-> to use an alternative clock.
+> For the series:
 > 
-> Because the clock rated needed for the LDB driving the LVDS display
-> isn't divisible by the clock rate needed by SAI3, move SAI3 to use
-> Audio_PLL1, and reconfigure the CODEC to use a 12MHz fixed clock.
-> 
-> Because these clocks are no longer in sync with each other, the sound
-> generated as the wrong pitch, so reconfigure the SAI3 to be the master
-> since the CODEC can internally compensate when fed a fixed clock
-> reference, even if it is not an even multiple of the desired rate.
-> 
-> This now leaves AUDIO_PLL2 completely free for the LDB without
-> compromising the audio sound from the codec.
-> 
-> Signed-off-by: Adam Ford <aford173@gmail.com>
-> 
+> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
+Thanks for reviewing.
 
-My bot found new DT warnings on the .dts files added or changed in this
-series.
-
-Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-are fixed by another series. Ultimately, it is up to the platform
-maintainer whether these warnings are acceptable or not.
-
-If you already ran DT checks and didn't see these error(s), then
-make sure dt-schema is up to date:
-
-  pip3 install dtschema --upgrade
-
-
-New warnings running 'make CHECK_DTBS=y freescale/imx8mp-beacon-kit.dtb' for 20240229233556.116944-1-aford173@gmail.com:
-
-arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dtb: lvds-1: panel-timing:vsync-active:0:0: 3 is not one of [0, 1]
-	from schema $id: http://devicetree.org/schemas/display/panel/panel-lvds.yaml#
-arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dtb: lvds-1: compatible:0: 'panel-lvds' is not one of ['admatec,9904379', 'auo,b101ew05', 'chunghwa,claa070wp03xg', 'edt,etml0700z9ndha', 'hannstar,hsd101pww2', 'hydis,hv070wx2-1e0', 'tbs,a711-panel']
-	from schema $id: http://devicetree.org/schemas/display/panel/panel-lvds.yaml#
-arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dtb: lvds-1: compatible: ['panel-lvds'] is too short
-	from schema $id: http://devicetree.org/schemas/display/panel/panel-lvds.yaml#
-arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dtb: lvds-1: Unevaluated properties are not allowed ('backlight', 'compatible', 'height-mm', 'panel-timing', 'port', 'power-supply', 'width-mm' were unexpected)
-	from schema $id: http://devicetree.org/schemas/display/panel/panel-lvds.yaml#
-
-
-
-
-
+Johan
 
