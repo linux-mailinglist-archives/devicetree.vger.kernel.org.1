@@ -1,157 +1,91 @@
-Return-Path: <devicetree+bounces-47718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACFE786E508
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:10:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0CC586E511
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:14:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4DAD9B222DE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:10:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 49B61B221BC
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:14:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C7A9370CB0;
-	Fri,  1 Mar 2024 16:10:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFD9670030;
+	Fri,  1 Mar 2024 16:14:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Pbva1Ex4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TEOzgbzV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C41E941C7A;
-	Fri,  1 Mar 2024 16:10:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6B64368;
+	Fri,  1 Mar 2024 16:14:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709309413; cv=none; b=jnC3xb1aGJJHHRUh9EaRqYP/abv4+8D+r3HSiFamID3x8E95ssWu6e9CVAWQXo/71dnqhD+Uv0UjgnGkrFrNuNxCZoJlQbAzLwc3snLML/QC5TvAu2FkA+amdlXTqH5IJiLCv/MULxBuUFTnn/ENQc+eLoKp2bS+QwmVwq7dBnM=
+	t=1709309650; cv=none; b=HbIbgNg+wuRrLkIm2n4tQLTFbMTihHcWi9Mtywm9XypdyGxL4MNYOJzGFQH3erqTsNPP7brA8AvzDj5/BgBeqgUx3cfmbDamyFG92LVB1yPvkjCe+lHGVa4y9MqaxYV0obhU/qRnUZ19WWfKqZHPo6hhlQ5rocYzhGvmR4BleP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709309413; c=relaxed/simple;
-	bh=ZfWPAHRMQ4AV1/EmBLZZvxi+ZiKHtDAYbU0vxjHvS+Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=iYVRmzOmebzyS4EUjH4tzfU3RlPkSqQQk0wRXrlBdW2inVp/AOt6C8LLO3kmhMdix7EOLdNmXcLfTJBid1eMK/ogaNNrK2bBCRC8WUgaj0QMHdNUEbiHo4uI8D0f2YKlI6+9LpaIBOcqlbco1ArxIcduQmF51gsDC+F/wZYzezU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Pbva1Ex4; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 116C620008;
-	Fri,  1 Mar 2024 16:10:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709309408;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7Y/1rcI5WNB1I1M/cu+SE5UCu5kGQ0fc3QK9NH0VpIo=;
-	b=Pbva1Ex4/Wg84CrwIHwBfQh1USib/V/EEcBXecMJuMXt7tVkm1STF5m+fqMDRtGu/ysDbc
-	tuzEbouoCe5W2iDBywLAuOMaj6d+b5hsFyMJW731CcttscM3uXPKcKTy9mEqRTY3c1A8IW
-	lswFTLcOod9Cwy9OYwEmmF5m+8iOxd0yAGCKnhXmb/au1eDyHvGisDwsqlvapDFtTeZ0dJ
-	drn3E7U7sPKY0VO0jdLiqdzH3oxZ9Dt1M9MQ6D2Da+uz+VvWYNU/hninzYICa9ulnyiWBb
-	WabfSaCHltjbwwxg5uQGxRlk3ijBuDGHxv0zhoVN18B63gENMr6BeE1cKCVmPw==
-Date: Fri, 1 Mar 2024 17:10:05 +0100
-From: =?UTF-8?B?S8O2cnk=?= Maincent <kory.maincent@bootlin.com>
-To: Oleksij Rempel <o.rempel@pengutronix.de>
-Cc: "David S. Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni
- <pabeni@redhat.com>, Jonathan Corbet <corbet@lwn.net>, Luis Chamberlain
- <mcgrof@kernel.org>, Russ Weight <russ.weight@linux.dev>, Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Mark Brown <broonie@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
- Andrew Lunn <andrew@lunn.ch>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, netdev@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
- devicetree@vger.kernel.org, Dent Project <dentproject@linuxfoundation.org>
-Subject: Re: [PATCH net-next v5 10/17] net: pse-pd: Add support for PSE PIs
-Message-ID: <20240301171005.43188d02@kmaincent-XPS-13-7390>
-In-Reply-To: <ZeHlB8DLEqWxBRYH@pengutronix.de>
-References: <20240227-feature_poe-v5-0-28f0aa48246d@bootlin.com>
-	<20240227-feature_poe-v5-10-28f0aa48246d@bootlin.com>
-	<ZeHlB8DLEqWxBRYH@pengutronix.de>
-Organization: bootlin
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1709309650; c=relaxed/simple;
+	bh=BikzDK1QW0K2bWi7muKUljDgu1skoyyFPZELijkX52k=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Dirbx7EbcL3vTgfHH/Zk8+hpKhEs1Oe2UVoOz8ozw6Bue1IXRVWi2CQKNoWaysrLitsI/XHY3riv3GAMIBKe6SnluU8eCWtPDyYahqi0KEesfr3JGFMGifu9ifTdLzZaS1jksOr0ju9lq1ArcKd6wWr33bvyrAQJD4N5mqNGSsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TEOzgbzV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B3EEC433C7;
+	Fri,  1 Mar 2024 16:14:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709309650;
+	bh=BikzDK1QW0K2bWi7muKUljDgu1skoyyFPZELijkX52k=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=TEOzgbzVFsLomQFvAfuSVAfDEuhsD4VvQdASJ6LjNj10+td2wi0MCxU4FIP3pi0V7
+	 a1TdcPajbG1NfAVladYc6nqtbsgm3GdUE8uSqAUN76NLm1P3oOASJQ4NOcT87a7FzR
+	 a6Zk/13yRchQIQ8WyZpiIKujV3KCDpKc44CQgFzPorDsheHjwjGq4M6uDjEkuMLGuv
+	 x8Fkbl1iqCWIZsmUnn511pkATzZudzJ7jsOqi3iuhNBT6HV6r2eTimTDV9+4RhQZxM
+	 PZjiakJ1gh/Tjya4WNczaoQIZ7roUSxYyfZEpOHv4dc8uTxI0L6Y5Azs4Tgl0QTplD
+	 MbhZGTNc1pykA==
+From: Conor Dooley <conor@kernel.org>
+To: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Emil Renner Berthing <kernel@esmil.dk>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Changhuang Liang <changhuang.liang@starfivetech.com>
+Cc: conor@kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Jack Zhu <jack.zhu@starfivetech.com>,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [v3] riscv: dts: starfive: jh7110: Add camera subsystem nodes
+Date: Fri,  1 Mar 2024 16:14:00 +0000
+Message-ID: <20240301-wildfire-glue-983d58132599@spud>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240219032741.18387-1-changhuang.liang@starfivetech.com>
+References: <20240219032741.18387-1-changhuang.liang@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: kory.maincent@bootlin.com
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=355; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=caay3mRU/JhC/YsFIkNMgzQjqWb0CeveGJRpWt2VyHA=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDKkP/x03ZRMI+/XnQ7JJfsT3mQumPClRPfv3XWH47x9vh TuVZ3D96ShlYRDjYJAVU2RJvN3XIrX+j8sO5563MHNYmUCGMHBxCsBENixl+CuzbQHLC3uW2w1f 791QF1ryMNCNP8f9iIV7BsvOAh/9kr2MDH3cs4Rz1yz8W+G18e7FDdkWKlNPz9ixe+2WSf3P8rc cZWYHAA==
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
+Content-Transfer-Encoding: 8bit
 
-Hello Oleskij,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-Thanks you for the review.
+On Sun, 18 Feb 2024 19:27:41 -0800, Changhuang Liang wrote:
+> Add camera subsystem nodes for the StarFive JH7110 SoC. They contain the
+> dphy-rx, csi2rx, camss nodes.
+> 
+> 
 
-On Fri, 1 Mar 2024 15:24:07 +0100
-Oleksij Rempel <o.rempel@pengutronix.de> wrote:
+Applied to riscv-dt-for-next, thanks!
 
-> > -static int of_pse_simple_xlate(struct pse_controller_dev *pcdev,
-> > -			       const struct of_phandle_args *pse_spec)
-> > +static int of_load_pse_pis(struct pse_controller_dev *pcdev)
-> >  {
-> > -	if (pse_spec->args[0] >=3D pcdev->nr_lines)
-> > -		return -EINVAL;
-> > +	struct device_node *np =3D pcdev->dev->of_node;
-> > +	struct device_node *node, *pis;
-> > +	int ret, i;
-> > =20
-> > -	return pse_spec->args[0];
-> > +	if (!np)
-> > +		return -ENODEV;
-> > +
-> > +	pcdev->pi =3D kcalloc(pcdev->nr_lines, sizeof(*pcdev->pi),
-> > GFP_KERNEL);
-> > +	if (!pcdev->pi)
-> > +		return -ENOMEM;
-> > +
-> > +	pis =3D of_get_child_by_name(np, "pse-pis");
-> > +	if (!pis) { =20
->=20
-> Do we need to allocate pcdev->pi if there are no pse-pis?
+[1/1] riscv: dts: starfive: jh7110: Add camera subsystem nodes
+      https://git.kernel.org/conor/c/28ecaaa5af19
 
-In fact it is not needed in this patch but in the patch 13 which use regula=
-tor
-framework, as the regulator is described on each pi structure.
-
-I will update them accordingly.
-
-> > +		/* Legacy OF description of PSE PIs */
-> > +		pcdev->of_legacy =3D true; =20
->=20
-> It is not "legacy" :) PoDL do not providing definition of PSE PI since th=
-ere
-> is only one pair. May be: single_pair, no_pse_pi or any other idea.
-
-You right it is not needed for PoDL. Maybe no_pse_pi is better according to=
- the
-following thoughts.
-
-Just wondering, how a pse controller that support PoE and PoDL simultaneous=
-ly
-would be exposed in the binding. In that case I suppose all the PIs (PoE and
-PoDL) need to use the pse-pi subnode. Then the "alternative pinout" and
-"polarity" parameter would not be requested for PoDL PIs.
-
-> > +			dev_err(pcdev->dev, "wrong id of pse pi: %u\n",
-> > +				id);
-> > +			ret =3D -EINVAL;
-> > +			goto out;
-> > +		}
-> > +
-> > +		ret =3D of_property_count_strings(node, "pairset-names");
-> > +		if (ret <=3D 0) =20
->=20
-> if (ret < 0)
->    error: can't get "pairset-names" property: %pe
-> if (ret < 1 || ret > 2)
->    error: wrong number of pairset-names. Should be 1 or 2, got %i
-
-Need to modify this to be able to have PoDL PIs without pairset description.
-
-Regards,
---=20
-K=C3=B6ry Maincent, Bootlin
-Embedded Linux and kernel engineering
-https://bootlin.com
+Thanks,
+Conor.
 
