@@ -1,177 +1,112 @@
-Return-Path: <devicetree+bounces-47761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2937286E6B9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:07:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B67786E6FC
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:15:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A3571C21EBB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:07:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CC1071C20CB7
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:15:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C3C3FE0;
-	Fri,  1 Mar 2024 17:07:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BCE185C9C;
+	Fri,  1 Mar 2024 17:14:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o79NRdtq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="n4QQg76l"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5108259B;
-	Fri,  1 Mar 2024 17:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948C9FBF5;
+	Fri,  1 Mar 2024 17:14:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709312833; cv=none; b=JBc4IYK37bA6OsxXJbVBKrEJC/KliTuqHcQQNm5N+v2tthntPHBGTs89SAeGwWpySc5GWviMFZxpcTcWvPLI2V23xU8dkMM/DkCOaonSqXyRGh/wErqvOw7XlnuVezy5d1XMp4f9nf3KkXEvScRj8Rj3H2wqLziYperLOiERKN4=
+	t=1709313293; cv=none; b=CSSfaE3WmWf7BnoITo2qSyjPRewjdQysrXvqVd+sNK4kUzZms3lHaTw0ptGKFQuNJ9efBgBD5gQwJe3y45ZLUhNDpJRI9peARS9kzpxFJdWxB4KrPZaQXuU00K+th0EBwq1HyfcaXk3wKyNHuAWHS/fUN/3afVoaYNKOquQHs0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709312833; c=relaxed/simple;
-	bh=rykT00e9RnV6xM7py0pfTSN+OEy9OLvHdbWKnJFpStA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=qEz9CZyyF1Ff9AvVGP4WxGe4vY16VK2Qw91bfCRWK5Fzt8GGVRhekqYee3EZj6zkVOYHQZ0q6GZJXs0/0jIwuetyjDrmzf+FbkuwUELzK2NGj/7E8vp8FrnXiss8mOJJmXvXYdtFw4JGdchWZq0h0KNmh2I6IwPpPzXuduc5hpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o79NRdtq; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F3FC433C7;
-	Fri,  1 Mar 2024 17:07:09 +0000 (UTC)
+	s=arc-20240116; t=1709313293; c=relaxed/simple;
+	bh=iU4ye3YD5mJYIMLDbIQUPxRF5RMbXybTMwbi1mW2Z9g=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=eL8axTyJbPJSRm7iC4C42JaqWNNxGhqyv5UlnWOJ+Yih+Kk9ZMLVcgWax6WfbCHN1MX/wtxDc6ufxgu5BzbGJWYiIVfFAEN32ivCz9DAXclecCg9pCxf0e4yhXl4YRxItx4tjhE81MCxtNmRwMEU1GBZ3zCejBIIg4kUC7Aqprs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=n4QQg76l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 6CD69C433F1;
+	Fri,  1 Mar 2024 17:14:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709312833;
-	bh=rykT00e9RnV6xM7py0pfTSN+OEy9OLvHdbWKnJFpStA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o79NRdtq9bnUSEFuF4Du6Ce8be3X47MSFGfJJNzs56mnVYLPYxQiBGiXr1huhMbNE
-	 kg2dvmcCHxih7O+06875vfQwdNGSxLpawql30wk4YhOc2xYqW5aaQ92GjGdSfr2qvZ
-	 dRO8zWESf++QVH+HN/32QC+23RiTm5t3dBYfNAd9xacDfrQMv2sz1xYEoSla4j80Cm
-	 M3SmxxeT8WTryqGBobvVx4jOUgu3JQc7Qoq6fPDxc2wi8g6D9rIxz0LHmKP9naKeeE
-	 Au+jvNRTKsDC+o49XFE6S4cROK3wkgZY18iw8mUdD/oUSAK1ZzyuoJUafeLo/25vJ6
-	 NgiP3JyZCul3Q==
-Date: Fri, 1 Mar 2024 17:07:07 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] ASoC: dt-bindings: fsl-sai: allow only one
- dma-names
-Message-ID: <20240301-deluxe-tiptoeing-741af7d620b9@spud>
-References: <20240227-asrc_8qxp-v2-0-521bcc7eb1c0@nxp.com>
- <20240227-asrc_8qxp-v2-3-521bcc7eb1c0@nxp.com>
- <20240229-husband-penalty-8c1ab0f57f55@spud>
- <20240229-rundown-isotope-954ba9ea4c57@spud>
- <ZeDdMJlxBL4SGkws@lizhi-Precision-Tower-5810>
- <20240301-crudeness-resale-3c0a1228850d@spud>
- <ZeIGXEJ3l4tgjmxT@lizhi-Precision-Tower-5810>
+	s=k20201202; t=1709313293;
+	bh=iU4ye3YD5mJYIMLDbIQUPxRF5RMbXybTMwbi1mW2Z9g=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=n4QQg76l4qRiQQdPJc/NbO2/K8v5VUhe2GYcHZvsfdA7H/PMUrqE0z2ywIhMKA/H/
+	 sf8UXFHGDsIsXORvqMz8miMeeNI5xGIQ7EKD1K/RiMB38YNeg/AMF0Abn1Nag9SnTK
+	 nwAa30q1V+l/DHJL/hVErfBFRwcrqv6cwPDGgGiEg8NdJQBuGWiHCYt0yvJxd+Lxu9
+	 KR40c2Z2R8kdtHeyew/UD6fS1TulpAwiXOvkKsSir6b+WFq3V2gEvw1uxnNdZHNnm9
+	 lfAPxTvNrrqmmxS4KbnnwFj9wYGv4n0KBBsUz2xStYYex4S1K3qPOhrzdUrJyCENtC
+	 4ZaPac+vp44Eg==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5483FC5475B;
+	Fri,  1 Mar 2024 17:14:53 +0000 (UTC)
+From: Nuno Sa via B4 Relay <devnull+nuno.sa.analog.com@kernel.org>
+Subject: [PATCH v3 0/3] iio: temperature: ltc2983: small improvements
+Date: Fri, 01 Mar 2024 18:14:49 +0100
+Message-Id: <20240301-ltc2983-misc-improv-v3-0-c09516ac0efc@analog.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="6B1Z/Uo6ygJQ4MXY"
-Content-Disposition: inline
-In-Reply-To: <ZeIGXEJ3l4tgjmxT@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
+X-B4-Tracking: v=1; b=H4sIAAkN4mUC/x3MQQqAIBBA0avErBvIMUi7SrQom2ogLTQiiO6et
+ HyL/x9IHIUTtMUDkS9JsocMXRbg1iEsjDJlA1VUV0QNbqcjazR6SQ7FH3G/cLKuHrRRdlQz5PK
+ IPMv9X7v+fT+86InMZQAAAA==
+To: linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, 
+ Lars-Peter Clausen <lars@metafoo.de>, 
+ Michael Hennerich <Michael.Hennerich@analog.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Nuno Sa <nuno.sa@analog.com>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1709313291; l=885;
+ i=nuno.sa@analog.com; s=20231116; h=from:subject:message-id;
+ bh=iU4ye3YD5mJYIMLDbIQUPxRF5RMbXybTMwbi1mW2Z9g=;
+ b=SxIZfLh6ggzU9sPVChDLFPaB1wbTNwRMvddiUoVX1lYExajJS9DDvZjFioPAWgixGO2xiCaex
+ XI7r7G0nsxTA5cNaHKBVQMxCu5CN0DkLjyRo3OEnzbBr5/2XJZ7VrPc
+X-Developer-Key: i=nuno.sa@analog.com; a=ed25519;
+ pk=3NQwYA013OUYZsmDFBf8rmyyr5iQlxV/9H4/Df83o1E=
+X-Endpoint-Received:
+ by B4 Relay for nuno.sa@analog.com/20231116 with auth_id=100
+X-Original-From: Nuno Sa <nuno.sa@analog.com>
+Reply-To: <nuno.sa@analog.com>
 
+Hi Jonathan,
 
---6B1Z/Uo6ygJQ4MXY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The quick v3 is only to fix the error in the bindings patch...
 
-On Fri, Mar 01, 2024 at 11:46:20AM -0500, Frank Li wrote:
-> On Fri, Mar 01, 2024 at 04:05:25PM +0000, Conor Dooley wrote:
-> > On Thu, Feb 29, 2024 at 02:38:24PM -0500, Frank Li wrote:
-> > > On Thu, Feb 29, 2024 at 06:57:29PM +0000, Conor Dooley wrote:
-> > > > On Thu, Feb 29, 2024 at 06:55:58PM +0000, Conor Dooley wrote:
-> > > > > On Tue, Feb 27, 2024 at 03:54:11PM -0500, Frank Li wrote:
-> > > > > > Some sai only connect one direction. So allow only "rx" or "tx"=
- for
-> > > > > > dma-names.
-> > > > >=20
-> > > > > Which sai? Can you restrict this per compatible please, so that s=
-omeone
-> > > > > cannot add 2 dmas for ones where only the tx is supported.
-> > > > >=20
-> > > > > |  dmas:
-> > > > > |    minItems: 1
-> > > > > |    items:
-> > > > > |      - description: DMA controller phandle and request line for=
- RX
-> > > > > |      - description: DMA controller phandle and request line for=
- TX
-> > > > >=20
-> > > > > The binding already allows only one, but it documents that the fi=
-rst dma
-> > > > > is always the RX dma, and that doesn't change with this patch..
-> > > >=20
-> > > > I said "doesn't change" - but I don't think you can change this
-> > > > trivially, as something could rely on the first dma being the rx on=
-e.
-> > > > You'd have to check that there is nothing using these using indices
-> > > > rather than names before making any changes here.
-> > >=20
-> > > Linux driver and dts with tx only work well. Only issue is dtb_check =
-will
-> > > report error. I want to eliminate these DTB_CHECK warning.
-> >=20
-> > Linux is not the only user of these bindings, citing linux as your
-> > evidence here is only sufficient if no other users exist. Do they?
->=20
-> But, 'dmas' should be common property for all these bindings? I don't thi=
-nk
-> they use 'descriptions:' property, which should guide dts writer to write
-> dts file. actually words 'DMA controller phandle and request line' just
-> nonsense words. let 'regs', it'd better descript at 'reg-names' instead
-> of 'regs' if reg-names exist. Only meansful words is "RX" and "TX", which
-> already show at "dma-names".
+v1:
+ * https://lore.kernel.org/all/20240222-ltc2983-misc-improv-v1-0-cf7d4457e98c@analog.com/
 
-None of this matters. If there's a documented order for these, which
-there is, software is not obligated to use the names and can rely on the
-order alone. You need to check that there are no other users which will
-be broken by your proposed change.
+v2:
+ * https://lore.kernel.org/all/20240229-ltc2983-misc-improv-v2-0-cc6f03da2529@analog.com/
 
-> > > And it also reasonable, only rx or tx for a special SAI.
-> > >=20
-> > > Can we remove 'description'? dmas should already descripted at common=
- place
-> > > and 'RX' and 'TX' are listed at 'dma-names'
-> >=20
-> > Removing the description has the same problem. The existing binding has
-> > set a fixed order that you now want to make flexible.
->=20
-> Actually original set minItems: is 1, which means allow 1 channel. but
-> set items to force two channel.=20
->=20
-> Does it work
->=20
-> oneOf:
->   items:=20
->   	- description: TX
-> 	- description: RX
->   items:
-> 	- description: TX
->   items:
-> 	- description: RX
->=20
-> >=20
-> > Thanks,
-> > Conor.
->=20
->=20
+v3:
+ - Patch 2
+   * Added vdd-supply to the dts example;
 
---6B1Z/Uo6ygJQ4MXY
-Content-Type: application/pgp-signature; name="signature.asc"
+---
+Nuno Sa (3):
+      iio: temperature: ltc2983: convert to dev_err_probe()
+      dt-bindings: iio: temperature: ltc2983: document power supply
+      iio: temperature: ltc2983: support vdd regulator
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/iio/temperature/adi,ltc2983.yaml      |   4 +
+ drivers/iio/temperature/ltc2983.c                  | 267 ++++++++++-----------
+ 2 files changed, 131 insertions(+), 140 deletions(-)
+---
+base-commit: 74744b27ba8cb8c265263aa0ff0693350a8cbc19
+change-id: 20240227-ltc2983-misc-improv-d9c4a3819b1f
+--
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeILOwAKCRB4tDGHoIJi
-0vPRAQD30nLmqvnQSjER93Ue59P+ueynbOrDKfMBE0R2y7D7TAD+NnAAqA7ycgcG
-24A0m2khdUZJAoZ7TGqfgOL5wSHiMww=
-=Mxzk
------END PGP SIGNATURE-----
+Thanks!
+- Nuno Sá
 
---6B1Z/Uo6ygJQ4MXY--
 
