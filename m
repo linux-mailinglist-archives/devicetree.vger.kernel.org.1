@@ -1,34 +1,34 @@
-Return-Path: <devicetree+bounces-47585-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47586-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3F5686DCED
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:21:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6015A86DCFE
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:25:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 229541C21BF5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:21:13 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 170051F26F0B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:25:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E47FF69D22;
-	Fri,  1 Mar 2024 08:21:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A2E5169D22;
+	Fri,  1 Mar 2024 08:25:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="bC1hZFSR"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="aexe0ZLN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
 	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A1F14C629;
-	Fri,  1 Mar 2024 08:21:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F44B69D25;
+	Fri,  1 Mar 2024 08:25:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709281269; cv=none; b=WyHT06tUOhEuja4sbP4M9JJspEddSAFKGNJGpE+HwPRj47pOF4wfFPvlIc8FSza7NhSl3fYOEtwXblDt0t8dU8ViIjmJBrAWHjjQ/dIEScD+qKPiMQG50Hy4bWpavk6szWYuyh4438lFLPfQHdcbZ6mFWfzgcRT9JFdecnGfVLs=
+	t=1709281511; cv=none; b=ixQJIui6eeL5woPjJDOn5fHdvroVDBIHY+ExjcA7IgTbg1x0uBj1hSVRo++R+KRGiTWzgIPEgIHtO9viNLzeMgxPAEJ2WyQSzJCkp2nSSA9fq2QENS5OeuyTtDiTkQGziH2c/1zZOYDTJnYRoDj+3SQWlWKDLAj36OV+nYDVUTM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709281269; c=relaxed/simple;
-	bh=sTDWu7ch8miz/GZAckiUfRCxVjKtxzaPPw16BArEcvk=;
+	s=arc-20240116; t=1709281511; c=relaxed/simple;
+	bh=X4RuAEbCwi7LK+wrIeZK9w07Qub5Uxb8j6kTg3iOLfI=;
 	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=KprHFexOsHKeqdEATi8OFdMa/aSnvEOZODOb6kjNE0i8vTvHs8lHBIGVlDzpXTovTgGIF4hflypNhR/Wdp2btUjbE/paBJ1lN3mE9gzz2oC1NT51yqcGZx2FbD6+qH0HS7BdRhxJj7/76/hfzb/BFmo7f060tRZBj7lr/RBzHfE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=bC1hZFSR; arc=none smtp.client-ip=116.203.91.91
+	 Message-ID:Content-Type; b=ZHEkuOJ7V1g7+Nip2+Nyi8lkiXfR33Onq25XdjFs25GiYKkCkiip0K5LB/eO7UrSANGo/tOT/sYsnr02VMDTwHLdbSer/1OlIGftcn51bR64AR4i4k6PvsJ3/bpYw3L1Fi/2EXgAIrZIKxHCdvGHs0FpHc1joPXVFq7OqwucQE4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=aexe0ZLN; arc=none smtp.client-ip=116.203.91.91
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
@@ -38,18 +38,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1709281264;
+	t=1709281507;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=W+18udHpLdy95OkiC4n4xDRRezey7Z+tS7O6jkyULnM=;
-	b=bC1hZFSR6GR/rYNrKd+NODHBKVtCHrUY0yriO6RgAHLtfMikoIxClwf576UijbczLn6MpV
-	5j+NK4EscAmZGoL03JaUQVuYk5WzULPgSQBqwpoIHUfynLJWHr9b8pFUn2AUvZ9V2eZiut
-	UMviP+9UbnIxlvkq8OHvFSlftQ3NvoHYr8P6VbQ8onhDdm78RyHa153pbpZ2XYE8ge5iKW
-	mdE4sIT2TmOh2CY7kZ32GiVTB/R50vXIkt9Uosb+I4WBxZfPro7ApGAFzzANLC/VpX7MNY
-	aZQlH4kaXNPukaVR54Mg6fYIzG/+D6PQIBfnKg3P4r9LWEQsBzG+MB9N4SGRdQ==
-Date: Fri, 01 Mar 2024 09:21:04 +0100
+	bh=PML2KXW2NNHKig0QUJIbOqrTp9cjXhSc3Xi08SDJ2+4=;
+	b=aexe0ZLNbDKkg3CyRRdMeFW2hP8JVq3Si/3axw4AXvBM5sKWsTH0ZeW8kptyRFqeP7y/gl
+	SuX1UIlzo6PjaFE17g7+ohi8JC+ld5kGeyiAJOYBl6BzJIfPDJQy4WnbL4S6bLSwb4gQnL
+	hAuk0bf1UcQb9BUGltiQytmPW+uyBksKZpcoGVuRgsHdqpVOn/IJhX+cuSszim35vG0cXN
+	oFo7Nmex0agyQnFEyrXqcSredmgCUzcO87JTcoDZxPjGiwovxLiGihVAQ3PJToCMad2M/7
+	LNsD2KCiWBqe1lGazWjpUxdye3+DAf4661WuIdh/YTnqMok+IyaRehDPaHcpog==
+Date: Fri, 01 Mar 2024 09:25:07 +0100
 From: Dragan Simic <dsimic@manjaro.org>
 To: Alexey Charkov <alchark@gmail.com>
 Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
@@ -59,16 +59,15 @@ Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
  Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] arm64: dts: rockchip: enable built-in thermal
- monitoring on RK3588
-In-Reply-To: <CABjd4YxhL7m-neLFCQG5Aja2=stFdou7ji8m==UGPSSH-CybVw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/5] arm64: dts: rockchip: enable automatic active
+ cooling on Rock 5B
+In-Reply-To: <a8ebe39b28a34c3544481a4e43e61d2b@manjaro.org>
 References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
- <20240229-rk-dts-additions-v3-1-6afe8473a631@gmail.com>
- <5eb9193a44fb9f9b1e976412874cecef@manjaro.org>
- <CABjd4YzFuhfS9RhJ6svb9ZD0NqMT5B6GmqigHFLr8YG6FR5k=w@mail.gmail.com>
- <90d0cfd9b7d018e7332213f624f0f658@manjaro.org>
- <CABjd4YxhL7m-neLFCQG5Aja2=stFdou7ji8m==UGPSSH-CybVw@mail.gmail.com>
-Message-ID: <edb0ba399467359e16e50c89a1671b7f@manjaro.org>
+ <20240229-rk-dts-additions-v3-2-6afe8473a631@gmail.com>
+ <823379825559bb76088c31f44f998dd3@manjaro.org>
+ <CABjd4YybaQnKm+VpU_xVrCb=pxQ7oQXPHGZzn_u1w_h3yn7gwg@mail.gmail.com>
+ <a8ebe39b28a34c3544481a4e43e61d2b@manjaro.org>
+Message-ID: <b16f1d40549554598a3658679ceba9bf@manjaro.org>
 X-Sender: dsimic@manjaro.org
 Content-Type: text/plain; charset=UTF-8;
  format=flowed
@@ -76,72 +75,41 @@ Content-Transfer-Encoding: 8bit
 Authentication-Results: ORIGINATING;
 	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 2024-03-01 08:51, Alexey Charkov wrote:
-> On Fri, Mar 1, 2024 at 10:14 AM Dragan Simic <dsimic@manjaro.org> 
-> wrote:
->> On 2024-03-01 06:20, Alexey Charkov wrote:
->> > On Fri, Mar 1, 2024 at 1:11 AM Dragan Simic <dsimic@manjaro.org> wrote:
->> >> See, I'm not a native English speaker, but I've spent a lot of time
->> >> and effort improving my English skills.  Thus, perhaps these comments
->> >> may or may not seem like unnecessary nitpicking, depending on how much
->> >> someone pays attention to writing style in general, but I'll risk to
->> >> be annoying and state these comments anyway. :)
->> >>
->> >> The comment above could be written in a much more condensed form like
->> >> this, which would also be a bit more accurate:
->> >>
->> >>
->> >>                                 /* IPA threshold, when IPA governor is
->> >> used */
->> >>
->> >> IOW, we're writing all this for someone to read later, but we should
->> >> (and can) perfectly reasonably expect some already existing background
->> >> knowledge from the readers.  In other words, we should be as concise
->> >> as possible.
->> >
->> > In fact, the power allocation governor code itself doesn't call those
->> > trips threshold or target as your suggested wording would imply.
->> > Instead, it calls them "switch on temperature" and "maximum desired
->> > temperature" [1]. Maybe we can call them that in the comments (and
->> > also avoid calling the governor IPA, because upstream code only calls
->> > it a "power allocator").
+On 2024-03-01 07:17, Dragan Simic wrote:
+> On 2024-03-01 06:21, Alexey Charkov wrote:
+>> On Fri, Mar 1, 2024 at 1:25 AM Dragan Simic <dsimic@manjaro.org> 
+>> wrote:
+>>> On 2024-02-29 20:26, Alexey Charkov wrote:
+>>> > This links the PWM fan on Radxa Rock 5B as an active cooling device
+>>> > managed automatically by the thermal subsystem, with a target SoC
+>>> > temperature of 65C and a minimum-spin interval from 55C to 65C to
+>>> > ensure airflow when the system gets warm
+>>> 
+>>> I'd suggest that you replace "automatic active cooling" with "active
+>>> cooling" in the patch subject.  I know, it may seem like more of the
+>>> unnecessary nitpicking, :) but I hope you'll agree that "automatic"
+>>> is actually redundant there.  It would also make the patch subject
+>>> a bit shorter.
+>>> 
+>>> Another option would be to replace "automatic active cooling" with
+>>> "automatic fan control", which may actually be a better choice.
+>>> I'd be happy with whichever one you prefer. :)
 >> 
->> Hmm, but "IPA" is still mentioned in exactly three places in the files
->> under drivers/thermal.  I think that warrants the use of "IPA", which
->> is also widely used pretty much everywhere.
+>> Sounds good to me, thanks!
+> 
+> I'm glad that you like it. :)
+> 
+>>> Otherwise, please feel free to add:
+>>> 
+>>> Reviewed-by: Dragan Simic <dsimic@manjaro.org>
 >> 
->> Perhaps a win-win would be to have only the very first of the comments
->> like this, to introduce "IPA" as an acronym:
->> 
->>                                    /* Power allocator (IPA) thermal
->> governor       */
->>                                    /* switch-on point, when IPA 
->> governor
->> is used   */
+>> Thank you Dragan, much appreciated!
 > 
-> Yes, good point, thanks!
+> Thank you for putting up with my nitpicking. :)
 
-I'm glad that you agree. :)
+Perhaps the following tag would also be deserved for this patch:
 
->> Next, "the target temperature" is mentioned more than a few times in
->> drivers/thermal/gov_power_allocator.c, which I believe makes the use
->> of "IPA target" perfectly valid.  Actually, let's use "IPA target
->> temperature", if you agree, to make it self descriptive.
-> 
-> Or perhaps simply "target temperature"? Stepwise governor will also
-> use this trip as its target, so it's not IPA specific, unlike the
-> switch-on point.
+Helped-by: Dragan Simic <dsimic@manjaro.org>
 
-I also had similar thoughts about the shared nature.  I agree, just
-"/* target temperature */" would be fine.
-
->> Finally, the threshold...  Based on
->> drivers/thermal/gov_power_allocator.c,
->> I think "IPA switch-on point" would be a good choice, which I already
->> used above in the proposed opening comment.
-> 
-> Agreed, that sounds good to me, will reflect in the next iteration.
-> Thanks for bringing it up!
-
-Great, thanks!
+I hope you agree. :)
 
