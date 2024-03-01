@@ -1,123 +1,126 @@
-Return-Path: <devicetree+bounces-47581-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47582-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A559786DCB6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:09:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 455FF86DCBF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:10:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 609E428A01C
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:09:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00B3028A1BA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:10:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6245F69D09;
-	Fri,  1 Mar 2024 08:09:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40B7F69D08;
+	Fri,  1 Mar 2024 08:10:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V4ZroOJY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q1dp3Nk5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E379200C3;
-	Fri,  1 Mar 2024 08:09:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B3069D13;
+	Fri,  1 Mar 2024 08:10:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709280576; cv=none; b=t02ASlfVUqN32RFdT5n7ifKxAu9UsFGfJHDBmw8pSejPJhgjRU6TXfV/8fJ9H023hmzPtRTqXOaMh7DHdw5Y0pej9iDmBE5vh/y9sG0n3I6Ffau0/TLtYTDz62sam3hH+eGdh8RpnTwxmaUmemG4Vtn+LfFlTFztdZwP3mdzAwM=
+	t=1709280634; cv=none; b=tkUbImPALQJldaVh/uWqTBaPHptrQAd8VrxLTpeNBPlHl9Z5bQfi06iAExxlARZJZGGx+1H65QnLqaaMu0iQiRcA538PVYoHFR6HP7QNORpaXILDWrcVb/TL3euyyq6TLq27ZfUpIqSsNICiXY4w54q60lorr1UleN5Hp+U9FkI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709280576; c=relaxed/simple;
-	bh=SDOpostQbxSaHQbVT+H3u8LtntR385azXDotbcIDeEs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DWsoCnIJqu4wbCIXcWgxMV7+cqN2EY357NIYfVM8QAL+K/kDzqsSnz2cn1VTVLhWpg9KtDY58NcRWlD1FfVc3wdJxZPJb8Gqwx5VCmES5E4Ugi1xGR/5VrQrQI/Kukbt3OVieawn3iEp3To/6jmiPpyCfMofTKsIl96eDoSMCd0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V4ZroOJY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BEF45C433C7;
-	Fri,  1 Mar 2024 08:09:35 +0000 (UTC)
+	s=arc-20240116; t=1709280634; c=relaxed/simple;
+	bh=X72NJCeGEpyO5TljCIfKuVss8NrQT972LEnQW9Au8jM=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=TwMP5baYS1YzsF80kAiLJaFaVM3n970+2OLVDJKNoMXUyDA8p5fnrMTRx131GWurtwW5186+k+ltkppG6cPhNYy+DLklKTI3moq7Ey3bZyIOyMqzykWHFyF78LfonXHTyVbxH4cKwrZj6Xc7E75KgG4pylGp64mtA6o2LNw2u2E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q1dp3Nk5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82F44C433F1;
+	Fri,  1 Mar 2024 08:10:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709280575;
-	bh=SDOpostQbxSaHQbVT+H3u8LtntR385azXDotbcIDeEs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V4ZroOJYkhMhHrVl1Ap4ozy2FeV7TA0/Efnc93tTYUHxflBLZOl8k1ljZ70MuD6HI
-	 +KD5jrkApO4SgulrrTz5XoH6+JBz96ZO+j12YNr/jBjAhY1fsZdaZfA7IYMvkqtl0K
-	 5772p83G7hOiJXoTVe+CclZocIbEFK7fI4jGNhBW8q9hBK1A01WUDvHoVdsHUClY7i
-	 iM9aXaWeD7z8XehuHy0JmAn/Nb8JcBjw9Usv22n+UfguUVaECBXPYVg+9/E09tOAAm
-	 qv6YDkjIgVmvSR3cku0DRHQewuOaXxltaz9f7jAYWeeD6xtcgfpmUjeih9lO6Ge2KT
-	 uExrktrOerLuA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rfxxh-000000006eC-2A9v;
-	Fri, 01 Mar 2024 09:09:46 +0100
-Date: Fri, 1 Mar 2024 09:09:45 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Bjorn Helgaas <helgaas@kernel.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and
- GICv3 ITS enable
-Message-ID: <ZeGNSbPjxELBklbx@hovoldconsulting.com>
-References: <ZeCCPRVvYCNfMYnd@hovoldconsulting.com>
- <20240229205240.GA361626@bhelgaas>
+	s=k20201202; t=1709280633;
+	bh=X72NJCeGEpyO5TljCIfKuVss8NrQT972LEnQW9Au8jM=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=Q1dp3Nk59WBXj18jqNBXspTsq5n0O4AOx0Og1H93g0tbsS+tbBCzrVB+pjBRHSE4g
+	 9IHoheYQ6qlctQ+vd9fsnFDXQyr6OHSi6J+zttT/c3C5oZ9+zG+HLFeHRzsAWAqyw/
+	 RslBzZcW+LJmGH74iLKKYXK1ddG5eizTYw9jorCkKEiXBqrs2OwlziLQEggpSZWmwc
+	 HFahnW+dpjO4+AQCBkVO70s9VDffgevfO1Q/X5AlYreZGjz7VZ5uObFt7hhR55F0gg
+	 LUjpdfO4qkKlsjfwPh9YdqYFhrbzI9wuKofxuRzHU6AnJ7ZYRVCbDq+tj+NToO/MyF
+	 hQFY+Cog5LBUg==
+From: Kalle Valo <kvalo@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  ath10k
+ <ath10k@lists.infradead.org>,  wireless <linux-wireless@vger.kernel.org>,
+  DT <devicetree@vger.kernel.org>,  Rob Herring <robh+dt@kernel.org>,
+  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  Pierre-Hugues Husson <phhusson@freebox.fr>,  Jami
+ Kettunen <jamipkettunen@gmail.com>,  Jeffrey Hugo <quic_jhugo@quicinc.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+	<b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
+	<871q8wk7o3.fsf@kernel.org>
+	<3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr>
+	<87wmqoilzf.fsf@kernel.org>
+	<c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr>
+Date: Fri, 01 Mar 2024 10:10:29 +0200
+In-Reply-To: <c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr> (Marc
+	Gonzalez's message of "Wed, 28 Feb 2024 18:19:03 +0100")
+Message-ID: <87cyse8j9m.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240229205240.GA361626@bhelgaas>
+Content-Type: text/plain
 
-On Thu, Feb 29, 2024 at 02:52:40PM -0600, Bjorn Helgaas wrote:
-> On Thu, Feb 29, 2024 at 02:10:21PM +0100, Johan Hovold wrote:
+Marc Gonzalez <mgonzalez@freebox.fr> writes:
 
-> > It also depends on the severity of the issue and to some extent the
-> > complexity of the fix. These binding fixes are certainly low risk.
-> > :)
-> 
-> IIUC we're talking about:
-> 
->   arm64: dts: qcom: sc8280xp: add missing PCIe minimum OPP
->   dt-bindings: PCI: qcom: Allow 'required-opps'
+>> Here's one example where in ath10k we use a feature bit as a workaround:
+>> 
+>> 	/* Don't trust error code from otp.bin */
+>> 	ATH10K_FW_FEATURE_IGNORE_OTP_RESULT = 7,
+>> 
+>>         ....
+>> 
+>> 	if (!(skip_otp || test_bit(ATH10K_FW_FEATURE_IGNORE_OTP_RESULT,
+>> 				   ar->running_fw->fw_file.fw_features)) &&
+>> 	    result != 0) {
+>> 		ath10k_err(ar, "otp calibration failed: %d", result);
+>> 		return -EINVAL;
+>> 	}
+>> 
+>> BTW for modifying firmware-N.bin files we have a script here:
+>> 
+>> https://github.com/qca/qca-swiss-army-knife/blob/master/tools/scripts/ath10k/ath10k-fwencoder
+>
+> If I understand correctly, you are saying that there is
+> (maybe... probably) a bug in the FW, so it makes sense to
+> tag that specific FW file with a special bit which the kernel
+> will interpret as "this FW is broken in a specific way;
+> and here's how to work around the issue."
+>
+> So this bit would serve the same purpose as my proposed
+> "qcom,no-msa-ready-indicator" bit (that bit existed instead
+> in my board's device tree).
+>
+> The problem I see is that the firmware files are signed.
+> Thus, changing a single bit breaks the verification...
+> UNLESS the FW format allows for a signed section ALONG-SIDE
+> an unsigned section?
 
-Right.
+firmware-N.bin is ath10k specific container file format and we (the
+Linux community) have full access to it using ath10k-fwencoder, there's
+no signing or anything like that. One of the major reasons why it was
+designed was to handle differences between firmware branches, just like
+in this case.
 
-> These don't look like a regression fix (correct me if I'm wrong), and
-> I can't tell whether they fix a user-visible problem, since
-> sc8280xp.dtsi does already contain 'required-opps' for ufs_mem_hc,
-> usb_0, and usb_1, which are mentioned in the commit log as covering up
-> the issue.
+Of course plan A should be to fix the firmware but if that doesn't work
+out then plan B could be using the feature bit in firmware-N.bin.
 
-The issue has been there since PCIe support was added for this platform
-and does not cause any issues until the USB and UFS controllers are
-runtime suspended.
+BTW related to this Dmitry is extending firmware-N.bin handling for
+WCN3990, you will most likely need to use that:
 
-When that happens nothing is currently making sure that we have enough
-power to run PCIe at gen3 speeds, something which can potentially result
-in system instability (e.g. resets).
+https://patchwork.kernel.org/project/linux-wireless/cover/20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org/
 
-> If these patches wait until v6.9, what badness ensues?
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-We'd have a few more weeks where users enabling runtime PM for USB on
-the X13s could hit this before we can get the fix backported to stable.
-
-I could have put some more details in the commit message for the DT
-patch, but I did not think that amending the PCIe binding would be
-controversial. (I guess we can also take the DT fix without waiting for
-the binding update as it has been acked by a DT maintainer even if that
-would result in some DT checker warnings until things are aligned
-again.)
-
-Let me know what you decide regarding getting the whole series into 6.8,
-and then I can spend some more time on rewording, splitting and rebasing
-this series if needed.
-
-Johan
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
