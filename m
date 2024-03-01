@@ -1,304 +1,177 @@
-Return-Path: <devicetree+bounces-47760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF02486E6B6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:06:30 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2937286E6B9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:07:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5EBA2286023
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:06:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A3571C21EBB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:07:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C8ADC468D;
-	Fri,  1 Mar 2024 17:06:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00C3C3FE0;
+	Fri,  1 Mar 2024 17:07:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="iJJfoCi0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o79NRdtq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B88522C;
-	Fri,  1 Mar 2024 17:06:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5108259B;
+	Fri,  1 Mar 2024 17:07:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709312776; cv=none; b=toUcFVyrQ/AAO8mPT5nAJpnsk8XKJf2ZriI1ztqFNp7HRnclqowmc0tY0kOJuKcAjL583HryMRjuWkDH0qoH4xN4v0L6BvHQDdOn30naMeMWpsRmKm4qVC9tUF0W/1ByYGyxgQM+VNLehiwsxAI/6rdqIMKo8LG+FyzSKRNrBw8=
+	t=1709312833; cv=none; b=JBc4IYK37bA6OsxXJbVBKrEJC/KliTuqHcQQNm5N+v2tthntPHBGTs89SAeGwWpySc5GWviMFZxpcTcWvPLI2V23xU8dkMM/DkCOaonSqXyRGh/wErqvOw7XlnuVezy5d1XMp4f9nf3KkXEvScRj8Rj3H2wqLziYperLOiERKN4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709312776; c=relaxed/simple;
-	bh=id7HKy1iRPkh/X8oX93ETVq/oQ55UfgJENLJylkOgs4=;
+	s=arc-20240116; t=1709312833; c=relaxed/simple;
+	bh=rykT00e9RnV6xM7py0pfTSN+OEy9OLvHdbWKnJFpStA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=hWCOshICfWGC+Kfx2C9itvgE1RcRuz1Dm1llR+/CWOAwPKAfSazOAhlKkHLg1zwvwT/DBkGisjOi3Nb36JYtLCxaD2PcDqxjaYp83sq0SeOvN3OOaI3gyMQ9BsYcgjhyVXGPJblMOUfSRL8awFgnelMshH+ikHzCuLB05yhgCDU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=iJJfoCi0; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1709312773;
-	bh=id7HKy1iRPkh/X8oX93ETVq/oQ55UfgJENLJylkOgs4=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=qEz9CZyyF1Ff9AvVGP4WxGe4vY16VK2Qw91bfCRWK5Fzt8GGVRhekqYee3EZj6zkVOYHQZ0q6GZJXs0/0jIwuetyjDrmzf+FbkuwUELzK2NGj/7E8vp8FrnXiss8mOJJmXvXYdtFw4JGdchWZq0h0KNmh2I6IwPpPzXuduc5hpQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o79NRdtq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 20F3FC433C7;
+	Fri,  1 Mar 2024 17:07:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709312833;
+	bh=rykT00e9RnV6xM7py0pfTSN+OEy9OLvHdbWKnJFpStA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iJJfoCi0FiBs6A3R8jLo/TErc9BGBVY+4htdWwuMkfseSX9ckWC9f7H125N4I6oEF
-	 3tx2WH6D5VoHc+BsQO0P1C1D69Ax2bep6tnllteR4zwhzczsYm2yRnJ4SyAb1WDwKj
-	 vrsHhhYHfgow9POYKQUwcYhHHjWos1e0pBq2TzCCV/Qa2FP52yrR998qzgzPse1IBo
-	 LVTw4THUvTv6LQ9HPQQWiv8nN18gE6GA+m2DyodND5OHks9qRTUXfOHHsHPFVDU0Xr
-	 f7LOtrvgWeQtqBmsiZJ17JHoDvSLEW62emYWUTvq+CuFQwXrvLEHUSsLGS0twM62Rb
-	 EKNj1V6/6uuZw==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sebastianfricke)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C9B8837813F2;
-	Fri,  1 Mar 2024 17:06:12 +0000 (UTC)
-Date: Fri, 1 Mar 2024 18:06:11 +0100
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-To: Devarsh Thakkar <devarsht@ti.com>
-Cc: mchehab@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, hverkuil-cisco@xs4all.nl,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, benjamin.gaignard@collabora.com,
-	laurent.pinchart@ideasonboard.com, praneeth@ti.com, nm@ti.com,
-	vigneshr@ti.com, a-bhatia1@ti.com, j-luthra@ti.com, b-brnich@ti.com,
-	detheridge@ti.com, p-mantena@ti.com, vijayp@ti.com,
-	andrzej.p@collabora.com, nicolas@ndufresne.ca, afd@ti.com,
-	milkfafa@gmail.com
-Subject: Re: [PATCH v6 1/3] media: dt-bindings: Add Imagination E5010 JPEG
- Encoder
-Message-ID: <20240301170611.tknj7ncwvgqjwkx5@basti-XPS-13-9310>
-References: <20240228141140.3530612-1-devarsht@ti.com>
- <20240228141140.3530612-2-devarsht@ti.com>
- <20240229102623.ihwhbba4qwzvxzzq@basti-XPS-13-9310>
- <7a83fe91-5afa-6aee-a8a4-44f6e3d713c2@ti.com>
- <20240229133046.64h2f4n27emvdhnq@basti-XPS-13-9310>
- <eff7080b-42e9-19ae-6022-bfbcc337b4a0@ti.com>
+	b=o79NRdtq9bnUSEFuF4Du6Ce8be3X47MSFGfJJNzs56mnVYLPYxQiBGiXr1huhMbNE
+	 kg2dvmcCHxih7O+06875vfQwdNGSxLpawql30wk4YhOc2xYqW5aaQ92GjGdSfr2qvZ
+	 dRO8zWESf++QVH+HN/32QC+23RiTm5t3dBYfNAd9xacDfrQMv2sz1xYEoSla4j80Cm
+	 M3SmxxeT8WTryqGBobvVx4jOUgu3JQc7Qoq6fPDxc2wi8g6D9rIxz0LHmKP9naKeeE
+	 Au+jvNRTKsDC+o49XFE6S4cROK3wkgZY18iw8mUdD/oUSAK1ZzyuoJUafeLo/25vJ6
+	 NgiP3JyZCul3Q==
+Date: Fri, 1 Mar 2024 17:07:07 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] ASoC: dt-bindings: fsl-sai: allow only one
+ dma-names
+Message-ID: <20240301-deluxe-tiptoeing-741af7d620b9@spud>
+References: <20240227-asrc_8qxp-v2-0-521bcc7eb1c0@nxp.com>
+ <20240227-asrc_8qxp-v2-3-521bcc7eb1c0@nxp.com>
+ <20240229-husband-penalty-8c1ab0f57f55@spud>
+ <20240229-rundown-isotope-954ba9ea4c57@spud>
+ <ZeDdMJlxBL4SGkws@lizhi-Precision-Tower-5810>
+ <20240301-crudeness-resale-3c0a1228850d@spud>
+ <ZeIGXEJ3l4tgjmxT@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="6B1Z/Uo6ygJQ4MXY"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <eff7080b-42e9-19ae-6022-bfbcc337b4a0@ti.com>
+In-Reply-To: <ZeIGXEJ3l4tgjmxT@lizhi-Precision-Tower-5810>
 
-Hey Devarsh,
 
-On 01.03.2024 22:02, Devarsh Thakkar wrote:
->Hi Sebastian,
->
->On 29/02/24 19:00, Sebastian Fricke wrote:
->> Hey Devarsh,
->>
->> On 29.02.2024 16:50, Devarsh Thakkar wrote:
->>> Hi Sebastian,
->>>
->>> Thanks for the review.
->>>
->>> On 29/02/24 15:56, Sebastian Fricke wrote:
->>>> Hey Devarsh,
->>>>
->>>> On 28.02.2024 19:41, Devarsh Thakkar wrote:
->>>>> Add dt-bindings for Imagination E5010 JPEG Encoder [1] which is implemented
->>>>> as stateful V4L2 M2M driver.
->>>>>
->>>>> The device supports baseline encoding with two different quantization
->>>>> tables and compression ratio as demanded.
->>>>>
->>>>> Minimum resolution supported is 64x64 and Maximum resolution supported is
->>>>> 8192x8192.
->>>>>
->>>>> [1]:  AM62A TRM (Section 7.6 is for JPEG Encoder)
->>>>> Link: https://www.ti.com/lit/pdf/spruj16
->>>>>
->>>>> Co-developed-by: David Huang <d-huang@ti.com>
->>>>> Signed-off-by: David Huang <d-huang@ti.com>
->>>>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
->>>>> Reviewed-by: Rob Herring <robh@kernel.org>
->>>>
->>>> hmmm when did Rob give his reviewed by on this patch? (As this is not a
->>>> DT binding I find that odd)
->>>
->>> [PATCH v6 1/3] media: dt-bindings: Add Imagination E5010 JPEG Encoder : This
->>> is indeed the dt-binding patch. Also As shared in version history it is at V4
->>> where Rob Herring added a Reviewed-By as seen here [0]
->>>
->>>> And where is the Reviewed by tag from Benjamin that he provided on V5?
->>>>
->>>
->>> As captured in patch version history here [1] I thought to remove the
->>> Reviewed-By since the Reviewed-By tag was on V5 and with V6 the driver got
->>> updated with some changes to handle reported sparse warnings and so I have
->>> asked Benjamin to check the range-diff and help with a quick review again if
->>> possible.
->>>
->>> Kindly let me know if I missed something or anything needs to be done from
->>> my end.
->>
->> Yes thanks I was a bit too swift to write here, sorry for the noise.
->> We'll have a look.
->>
->
->Sorry for the back and forth, but on the hindsight and re-looking at the
->kernel patch guidelines [0] they suggest that Reviewed-By tag should only be
->removed if substantial changes were made in further revisions.
->
->So looks to me in-fact it was a mistake on my part to remove the Reviewed-by
->considering the change made in the following patch series was not a
->substantial one as seen in the range-diff [1].
->
->Considering this, just wanted to check with you if it's possible for you to
->consider the Reviewed-by tag :
->`Reviewed-by: Benjamin Gaignard <benjamin.gaignard@collabora.com`
->if it helps consolidate things faster to get this series in given we are close
->to final RC's ?
+--6B1Z/Uo6ygJQ4MXY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yup I think we can keep it as the changes are very minor. Otherwise the
-series is pretty much good to go, I'll prepare the PR asap.
+On Fri, Mar 01, 2024 at 11:46:20AM -0500, Frank Li wrote:
+> On Fri, Mar 01, 2024 at 04:05:25PM +0000, Conor Dooley wrote:
+> > On Thu, Feb 29, 2024 at 02:38:24PM -0500, Frank Li wrote:
+> > > On Thu, Feb 29, 2024 at 06:57:29PM +0000, Conor Dooley wrote:
+> > > > On Thu, Feb 29, 2024 at 06:55:58PM +0000, Conor Dooley wrote:
+> > > > > On Tue, Feb 27, 2024 at 03:54:11PM -0500, Frank Li wrote:
+> > > > > > Some sai only connect one direction. So allow only "rx" or "tx"=
+ for
+> > > > > > dma-names.
+> > > > >=20
+> > > > > Which sai? Can you restrict this per compatible please, so that s=
+omeone
+> > > > > cannot add 2 dmas for ones where only the tx is supported.
+> > > > >=20
+> > > > > |  dmas:
+> > > > > |    minItems: 1
+> > > > > |    items:
+> > > > > |      - description: DMA controller phandle and request line for=
+ RX
+> > > > > |      - description: DMA controller phandle and request line for=
+ TX
+> > > > >=20
+> > > > > The binding already allows only one, but it documents that the fi=
+rst dma
+> > > > > is always the RX dma, and that doesn't change with this patch..
+> > > >=20
+> > > > I said "doesn't change" - but I don't think you can change this
+> > > > trivially, as something could rely on the first dma being the rx on=
+e.
+> > > > You'd have to check that there is nothing using these using indices
+> > > > rather than names before making any changes here.
+> > >=20
+> > > Linux driver and dts with tx only work well. Only issue is dtb_check =
+will
+> > > report error. I want to eliminate these DTB_CHECK warning.
+> >=20
+> > Linux is not the only user of these bindings, citing linux as your
+> > evidence here is only sufficient if no other users exist. Do they?
+>=20
+> But, 'dmas' should be common property for all these bindings? I don't thi=
+nk
+> they use 'descriptions:' property, which should guide dts writer to write
+> dts file. actually words 'DMA controller phandle and request line' just
+> nonsense words. let 'regs', it'd better descript at 'reg-names' instead
+> of 'regs' if reg-names exist. Only meansful words is "RX" and "TX", which
+> already show at "dma-names".
 
-Greetings,
-Sebastian
+None of this matters. If there's a documented order for these, which
+there is, software is not obligated to use the names and can rely on the
+order alone. You need to check that there are no other users which will
+be broken by your proposed change.
 
->
->[0]:
->https://docs.kernel.org/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes:~:text=changed%20substantially
->
->[1]: https://gist.github.com/devarsht/c89180ac2b0d2814614f2b59d0705c19
->
->Regards
->Devarsh
->
->>
->> Greetings,
->> Sebastian
->>
->>>
->>> [0] :
->>> https://lore.kernel.org/all/170716378412.295212.11603162949482063011.robh@kernel.org/
->>> [1] : https://lore.kernel.org/all/20240228141140.3530612-4-devarsht@ti.com/
->>>
->>>
->>> Regards
->>> Devarsh
->>>>> ---
->>>>> V2: No change
->>>>> V3:
->>>>> - Add vendor specific compatible
->>>>> - Update reg names
->>>>> - Update clocks to 1
->>>>> - Fix dts example with proper naming
->>>>> V4:
->>>>> - Use ti-specific compatible ti,am62a-jpeg-enc as secondary one
->>>>> - Update commit message and title
->>>>> - Remove clock-names as only single clock
->>>>> V5:
->>>>> - Add Reviewed-By tag
->>>>> V6:
->>>>> - No change
->>>>>
->>>>> .../bindings/media/img,e5010-jpeg-enc.yaml    | 75 +++++++++++++++++++
->>>>> MAINTAINERS                                   |  5 ++
->>>>> 2 files changed, 80 insertions(+)
->>>>> create mode 100644
->>>>> Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->>>>> b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->>>>> new file mode 100644
->>>>> index 000000000000..085020cb9e61
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->>>>> @@ -0,0 +1,75 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Imagination E5010 JPEG Encoder
->>>>> +
->>>>> +maintainers:
->>>>> +  - Devarsh Thakkar <devarsht@ti.com>
->>>>> +
->>>>> +description: |
->>>>> +  The E5010 is a JPEG encoder from Imagination Technologies implemented on
->>>>> +  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YUV422
->>>>> +  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
->>>>> +  8Kx8K resolution.
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    oneOf:
->>>>> +      - items:
->>>>> +          - const: ti,am62a-jpeg-enc
->>>>> +          - const: img,e5010-jpeg-enc
->>>>> +      - const: img,e5010-jpeg-enc
->>>>> +
->>>>> +  reg:
->>>>> +    items:
->>>>> +      - description: The E5010 core register region
->>>>> +      - description: The E5010 mmu register region
->>>>> +
->>>>> +  reg-names:
->>>>> +    items:
->>>>> +      - const: core
->>>>> +      - const: mmu
->>>>> +
->>>>> +  power-domains:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  resets:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  clocks:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  interrupts:
->>>>> +    maxItems: 1
->>>>> +
->>>>> +required:
->>>>> +  - compatible
->>>>> +  - reg
->>>>> +  - reg-names
->>>>> +  - interrupts
->>>>> +  - clocks
->>>>> +
->>>>> +additionalProperties: false
->>>>> +
->>>>> +examples:
->>>>> +  - |
->>>>> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
->>>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
->>>>> +
->>>>> +    soc {
->>>>> +      #address-cells = <2>;
->>>>> +      #size-cells = <2>;
->>>>> +      jpeg-encoder@fd20000 {
->>>>> +          compatible = "img,e5010-jpeg-enc";
->>>>> +          reg = <0x00 0xfd20000 0x00 0x100>,
->>>>> +                <0x00 0xfd20200 0x00 0x200>;
->>>>> +          reg-names = "core", "mmu";
->>>>> +          clocks = <&k3_clks 201 0>;
->>>>> +          power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
->>>>> +          interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
->>>>> +      };
->>>>> +    };
->>>>> diff --git a/MAINTAINERS b/MAINTAINERS
->>>>> index e1475ca38ff2..6b34ee8d92b5 100644
->>>>> --- a/MAINTAINERS
->>>>> +++ b/MAINTAINERS
->>>>> @@ -10572,6 +10572,11 @@ S:    Maintained
->>>>> F:    Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
->>>>> F:    drivers/auxdisplay/img-ascii-lcd.c
->>>>>
->>>>> +IMGTEC JPEG ENCODER DRIVER
->>>>> +M:    Devarsh Thakkar <devarsht@ti.com>
->>>>> +S:    Supported
->>>>> +F:    Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
->>>>> +
->>>>> IMGTEC IR DECODER DRIVER
->>>>> S:    Orphan
->>>>> F:    drivers/media/rc/img-ir/
->>>>> -- 
->>>>> 2.39.1
->>>>>
+> > > And it also reasonable, only rx or tx for a special SAI.
+> > >=20
+> > > Can we remove 'description'? dmas should already descripted at common=
+ place
+> > > and 'RX' and 'TX' are listed at 'dma-names'
+> >=20
+> > Removing the description has the same problem. The existing binding has
+> > set a fixed order that you now want to make flexible.
+>=20
+> Actually original set minItems: is 1, which means allow 1 channel. but
+> set items to force two channel.=20
+>=20
+> Does it work
+>=20
+> oneOf:
+>   items:=20
+>   	- description: TX
+> 	- description: RX
+>   items:
+> 	- description: TX
+>   items:
+> 	- description: RX
+>=20
+> >=20
+> > Thanks,
+> > Conor.
+>=20
+>=20
+
+--6B1Z/Uo6ygJQ4MXY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeILOwAKCRB4tDGHoIJi
+0vPRAQD30nLmqvnQSjER93Ue59P+ueynbOrDKfMBE0R2y7D7TAD+NnAAqA7ycgcG
+24A0m2khdUZJAoZ7TGqfgOL5wSHiMww=
+=Mxzk
+-----END PGP SIGNATURE-----
+
+--6B1Z/Uo6ygJQ4MXY--
 
