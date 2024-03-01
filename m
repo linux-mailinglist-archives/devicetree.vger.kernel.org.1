@@ -1,70 +1,72 @@
-Return-Path: <devicetree+bounces-47769-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47770-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 79A2A86E760
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:35:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB34786E765
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:35:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A50528FF17
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:35:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6941C1F2AC44
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:35:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C87EF282E3;
-	Fri,  1 Mar 2024 17:33:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E1753AC14;
+	Fri,  1 Mar 2024 17:33:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ay3h0ZBm"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="J+yiRCQ2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9676327459
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 17:33:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 817F527471
+	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 17:33:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709314431; cv=none; b=egtnkr0q/M2H26pTSFeE2B+MuYWiouYj83ivP/ib/Dr/ok9oleGR+zOj6pIE8CTLvUOPSEFC4LtmffXyr6yX9HNtHm508sG7LbKHYAZl/TT0g+AJ9emdIec3N3l9c8n6J0MsfaKXTcrKG+X3CsECM+kvqwCehoYx7r91AW6eB1w=
+	t=1709314434; cv=none; b=Nbect3Jvt1ravlQWN9tMBfnfujdvzZxqThbVPiLLjWD6w8/cTpjFeNpwFy8Ce+no5oIp3jygcvvW89Sy/NHofW9k089QRx/oB28Nwc1q60YL8tXyVSC1s+Ee2IUqB+qh2BcaD0YsLaoOuN+/ywdv6NCnut0P3pIe2dgr8reaa5s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709314431; c=relaxed/simple;
-	bh=TCSXMg81EsOE/fbyZwViVsT5K6QOfN37XAWM9EXzavc=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=einoz8dC0bUjHIpmQJWB1RRurG96MSVk+7jLnaQM4QxwLxS9e5X838S5VjHy2ljoKLHRE4ZF+z2SFYlhBy8uu5/NrSFtJjvoIsRQagPxzY9u40oZq1fQPj6d73Su81QJLmexdlrlpWKCDjpztPthgYpw3UCqF5o5VU8t9HxO6WE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ay3h0ZBm; arc=none smtp.client-ip=209.85.161.47
+	s=arc-20240116; t=1709314434; c=relaxed/simple;
+	bh=eDOV5VADLuhmamPXiau7MIQpJJpDlwx0jJbL6ICaRbI=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=n6/7W7H50tscX3QjHz8yak9LO4I4hTsl9J6wUmahn5SA9UuHJJxeAZ9kSNBdwbouUYTULWgMj75Hz33GX0oreqZO1mlStI89/9d5MsVlApL/ig8S3R/ODyj8pN7M2cOf/9fo8Jf1bYdtlMyCnYqeOn1JHJBiXqwmHuvtvDE6bCw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=J+yiRCQ2; arc=none smtp.client-ip=209.85.160.176
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-oo1-f47.google.com with SMTP id 006d021491bc7-5a0d96012d0so1171128eaf.3
-        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 09:33:48 -0800 (PST)
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-42e67ee5b48so9939271cf.1
+        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 09:33:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1709314427; x=1709919227; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=xImxJWc7Iog9OBF/0ks2T7kTvBm8QFAslDMxg3rdGPY=;
-        b=ay3h0ZBmVuRkGAoh2VyfAUd0ZhymQ7vgPYPcUM5Lhl/88nCG7pGWEDu5idilOve55f
-         PrHsq2VrVdklHKaNu4IQrwOGmxVmrVToejea8/bYe5Wp7Ij+njH2xscsEpOEfrQWp+by
-         AzRI3YLBBfKzv8TelPmIYbIZQB/XY0TVCS59up2quYyRE/r68Pp+W105zK74+Ex+grvH
-         6LZ5JIEVQuJ+rNZ8o5dxnbNTAjmuui683ZaXEYKM6vqyEGdqrqdU4JQNbl8RMcjel0kK
-         sZ7GDocVOi4s2jWVS2BPTGWJ41g4l3V7HPZRtybklizUDaXaMuG++kMcCQK418di92OI
-         uqkw==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1709314430; x=1709919230; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Juxbg18xJZd3rHji4DzaLEBNbibnqPm40zLT2aT7p/M=;
+        b=J+yiRCQ2pcVTs6/X7YBTp6BoBm6drIz+d8f0JiiF3//NieXNQLkZfg5h4PNeqUb/BI
+         ikQ7gHgZY7V5KIz9Ip3+hZk02MSMkQwAOXtzn927KA8aD9vMs77RUv/BDdcTklwo+Mdb
+         WpX24fNU97E3fsFmFgDnRHAnqv6LuNsbF4AFiNdhL9OyBSNi5/I99YU1K0HCP3nj8V4Y
+         C4VWw/LLDTAVH9dIaiS20s7aQXR18Co0N0jQ08VhFad8LRApmhjGzl5u5Bi+GgYTjKvl
+         F+HqKbFzaubhCiFYzGwyTBv71NE75ak6f07VkxnGv7zf9YJmLbTuxWbmboKKp9ONIkyo
+         QhyA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709314427; x=1709919227;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xImxJWc7Iog9OBF/0ks2T7kTvBm8QFAslDMxg3rdGPY=;
-        b=fzL6U/XUbLx5jVFZ4drRX5ZOfPftsNJWm7zHEiGvu+aSq5q8uKhCbxGzF4Dz8XLMgv
-         Z8hManefFwxAyfFEFTrIEpQHqBMv+S8jcIIIV/RjNyxr6IK63bDIApqX5PmfeXYSsYy5
-         ZoUekpZtwW0uAhNUbQeaGNqMK6hDzzEis34i4uM1zHPxR5FPZDn+mX7bHzovdLE5rSFS
-         Fo7S7kLkMPP9sqe/vfbbw076vJlOI3vygInZctoZzVPnJ6dvf1WTuyKmMa1Zp4M8gOAH
-         70tbUCKqKbT/dS8V85Rnl7+KAnVwERZa1cxlhWXoTD+OeXunif3wFaJOJeII/EL9BBOt
-         B9rw==
-X-Forwarded-Encrypted: i=1; AJvYcCWTO3eDERfIQdkKznXmeNOnHOZ2kAAbPuDB5jUK65pX4HyUO/oKGkukYubz06k8/t+0VirG53TgVahvvy1Ew4nZvnjh/JZXCPOi5g==
-X-Gm-Message-State: AOJu0Yy8Rstuim10mAdahIJ0B3uWOcR8nBUIBGbaTA5Kt55+51tzJrvY
-	4iGjnpb8r1zfFJix8cs0oGIOxx/UTR9FfY3yXdXkJKY2n/mCy2wja/HqdVWaaUM=
-X-Google-Smtp-Source: AGHT+IEaS7QiqN3fYN6eqlEpEHexB1BrGI/DGifcbsfq0aYXNTMbYdF9ufVL3gHeLbRiAI+Dvz03rA==
-X-Received: by 2002:a05:6358:7e99:b0:17b:7738:de5a with SMTP id o25-20020a0563587e9900b0017b7738de5amr2678947rwn.2.1709314427513;
-        Fri, 01 Mar 2024 09:33:47 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709314430; x=1709919230;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Juxbg18xJZd3rHji4DzaLEBNbibnqPm40zLT2aT7p/M=;
+        b=jved/+QnR7PEQdJ05C2J4umC370hXI8WOQCgB33e1G259HXAE+zlIGIgDzfb1kDshS
+         QemZll45XsI5izGvb7INmWBTKHdhGrKAhx6CmqvpDau/Mw3lDcyg1a0qgTWFL+Uep4nS
+         B05udQmgDrN/3nmlQz/tJmPtyuVqV0AQvfGspUP5b2VhVRUJoBpeLCNBRyDCDXZxWPF2
+         igm1V13zhbpwmi0tePLxGbFK2UHc7nCBZg0w36pdJfiIPCHRAF/aP2WM7qL2el1adetH
+         qoSNQ4XoOUW1L4Q8CsfNjjyPe5t+bVthCMoHe2NgSmbciThGOx/C+MaMxMck5gVXNsqC
+         2zWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWG2lZ32mNLQAuhgbTwt+xqSMJxOy1XRSja6CMWK3ub4kORibGZiQpIitFFNIfOJnTRPBHpUqnUBH2L2/sWjNwVX3ky+zImQQtPzg==
+X-Gm-Message-State: AOJu0YyNiyM366f406j54bSprU1XZR2+1+XVk2AE7vnwzMAHWPYh607w
+	EtKwwULFuhDo+v1qvcmDavyd/BAORb88UL+Nd/wQ6ucVkUN2fQhOLJL58CQatHU=
+X-Google-Smtp-Source: AGHT+IGB19uIFHvCCyYMV82pyo7ziPJ0KeqFUF1gDDCITNbAmrjmgyaYjdIIyS2Fc2u7sEwUsMKpWw==
+X-Received: by 2002:a05:622a:19a2:b0:42e:c411:8f6c with SMTP id u34-20020a05622a19a200b0042ec4118f6cmr2477322qtc.44.1709314430435;
+        Fri, 01 Mar 2024 09:33:50 -0800 (PST)
 Received: from workbox.oryx-coho.ts.net (d24-150-219-207.home.cgocable.net. [24.150.219.207])
-        by smtp.gmail.com with ESMTPSA id t14-20020ac86a0e000000b0042e6b901ebesm1885433qtr.40.2024.03.01.09.33.46
+        by smtp.gmail.com with ESMTPSA id t14-20020ac86a0e000000b0042e6b901ebesm1885433qtr.40.2024.03.01.09.33.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Mar 2024 09:33:47 -0800 (PST)
+        Fri, 01 Mar 2024 09:33:50 -0800 (PST)
 From: Trevor Gamblin <tgamblin@baylibre.com>
 To: linux-pwm@vger.kernel.org
 Cc: linux-kernel@vger.kernel.org,
@@ -76,88 +78,121 @@ Cc: linux-kernel@vger.kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
 	tgamblin@baylibre.com,
-	dlechner@baylibre.com
-Subject: [PATCH 0/2 v4] pwm: add axi-pwm-gen driver
-Date: Fri,  1 Mar 2024 12:33:40 -0500
-Message-ID: <20240301173343.1086332-1-tgamblin@baylibre.com>
+	dlechner@baylibre.com,
+	Drew Fustini <dfustini@baylibre.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2 v4] dt-bindings: pwm: Add AXI PWM generator
+Date: Fri,  1 Mar 2024 12:33:41 -0500
+Message-ID: <20240301173343.1086332-2-tgamblin@baylibre.com>
 X-Mailer: git-send-email 2.43.2
+In-Reply-To: <20240301173343.1086332-1-tgamblin@baylibre.com>
+References: <20240301173343.1086332-1-tgamblin@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-This series adds support for the AXI PWM GEN subsystem found on FPGA IP
-cores. It can be used to generate configurable PWM outputs, and includes
-options for external synchronization and clock signals.  The work is
-being done on behalf of, and therefore lists maintainers from Analog
-Devices, Inc.
+From: Drew Fustini <dfustini@baylibre.com>
 
-The series has been tested on actual hardware using an EVAL-AD7985FMCZ
-evaluation board. An oscilloscope was used to validate that the
-generated PWM signal matched the requested one.
+Add Analog Devices AXI PWM generator.
 
+Link: https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
+Signed-off-by: Drew Fustini <dfustini@baylibre.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Co-developed-by: Trevor Gamblin <tgamblin@baylibre.com>
+Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
 ---
-v4 changes:
-* Address feedback for driver in v3:
-  * Update to use devm_pwmchip_alloc() function
-  * Simplify use of dev symbol in axi_pwmgen_probe
-  * Remove unnecessary axi_pwmgen_from_chip function and use
-    pwmchip_get_drvdata directly
-
-Link to v3: https://lore.kernel.org/linux-pwm/20240131214042.1335251-1-tgamblin@baylibre.com/
-
-v3 changes:
-* Address feedback for driver in v2:
-  * Remove unnecessary blank line in axi_pwmgen_apply
-  * Use macros already defined in <linux/fpga/adi-axi-common.h> for
-    version checking
-
-Link to v2: https://lore.kernel.org/linux-pwm/20240123220515.279439-1-tgamblin@baylibre.com/
+v4 changes: None (rebased, added maintainer's previous Reviewed-by)
+v3 changes: None (rebased, added maintainer's previous Reviewed-by)
 
 v2 changes:
 * Address feedback for driver and device tree in v1:
-  * Use more reasonable Kconfig approach
-  * Use common prefixes for all functions
-  * Rename axi_pwmgen struct to axi_pwmgen_ddata
-  * Change use of "pwm" to "ddata"
-  * Set and check state->polarity
-  * Multiply safely with mul_u64_u64_div_u64()
-  * Improve handling of max and zero periods
-  * Error if clk_rate_hz > NSEC_PER_SEC
-  * Add "Limitations" section at top of pwm-axi-pwmgen.c
-  * Don't disable outputs by default
-  * Remove unnecessary macros for period, duty, offset
-  * Fix axi_pwmgen_ddata alignment
-  * Don't artificially limit npwm to four
-  * Use clk_rate_exclusive_get(), balance with clk_rate_exclusive_put()
-  * Cache clk rate in axi_pwmgen_ddata
-  * Don't assign pwm->chip.base, do assign pwm->chip.atomic
   * Relocate "unevaluatedProperties" in device tree binding
-* Remove redundant calls to clk_get_rate
-* Test contents of AXI_PWMGEN_REG_CORE_MAGIC instead of
-  arbitrary AXI_PWMGEN_TEST_DATA in AXI_PWMGEN_REG_SCRATCHPAD
-* Remove redundant clk struct from axi_pwmgen_ddata
-* Add self as module author
-* Add major version check for IP core
+  * Remove redundant "bindings for" in description
 
-Link to v1: https://lore.kernel.org/linux-pwm/20240115201222.1423626-1-tgamblin@baylibre.com/
-
-Drew Fustini (2):
-  dt-bindings: pwm: Add AXI PWM generator
-  pwm: Add driver for AXI PWM generator
-
- .../bindings/pwm/adi,axi-pwmgen.yaml          |  48 ++++
- MAINTAINERS                                   |   9 +
- drivers/pwm/Kconfig                           |  13 +
- drivers/pwm/Makefile                          |   1 +
- drivers/pwm/pwm-axi-pwmgen.c                  | 244 ++++++++++++++++++
- 5 files changed, 315 insertions(+)
+---
+ .../bindings/pwm/adi,axi-pwmgen.yaml          | 48 +++++++++++++++++++
+ MAINTAINERS                                   |  8 ++++
+ 2 files changed, 56 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
- create mode 100644 drivers/pwm/pwm-axi-pwmgen.c
 
+diff --git a/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+new file mode 100644
+index 000000000000..63461920a362
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
+@@ -0,0 +1,48 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/adi,axi-pwmgen.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices AXI PWM generator
++
++maintainers:
++  - Michael Hennerich <Michael.Hennerich@analog.com>
++  - Nuno Sá <nuno.sa@analog.com>
++
++description:
++  The Analog Devices AXI PWM generator can generate PWM signals
++  with variable pulse width and period.
++
++  https://wiki.analog.com/resources/fpga/docs/axi_pwm_gen
++
++allOf:
++  - $ref: pwm.yaml#
++
++properties:
++  compatible:
++    const: adi,axi-pwmgen-1.00.a
++
++  reg:
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 2
++
++  clocks:
++    maxItems: 1
++
++required:
++  - reg
++  - clocks
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    pwm@44b00000 {
++       compatible = "adi,axi-pwmgen-1.00.a";
++       reg = <0x44b00000 0x1000>;
++       clocks = <&spi_clk>;
++       #pwm-cells = <2>;
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 8d1052fa6a69..8a4ed5545680 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3431,6 +3431,14 @@ W:	https://ez.analog.com/linux-software-drivers
+ F:	Documentation/devicetree/bindings/spi/adi,axi-spi-engine.yaml
+ F:	drivers/spi/spi-axi-spi-engine.c
+ 
++AXI PWM GENERATOR
++M:	Michael Hennerich <michael.hennerich@analog.com>
++M:	Nuno Sá <nuno.sa@analog.com>
++L:	linux-pwm@vger.kernel.org
++S:	Supported
++W:	https://ez.analog.com/linux-software-drivers
++F:	Documentation/devicetree/bindings/pwm/adi,axi-pwmgen.yaml
++
+ AXXIA I2C CONTROLLER
+ M:	Krzysztof Adamski <krzysztof.adamski@nokia.com>
+ L:	linux-i2c@vger.kernel.org
 -- 
 2.43.2
 
