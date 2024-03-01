@@ -1,79 +1,57 @@
-Return-Path: <devicetree+bounces-47753-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47743-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7384786E664
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:56:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA71E86E60C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:48:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8F4DE1C22AE8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:56:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43102B24CC5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:48:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B66D36F507;
-	Fri,  1 Mar 2024 16:47:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="i4f7gS//"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BBC23C29;
+	Fri,  1 Mar 2024 16:43:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C90111947E;
-	Fri,  1 Mar 2024 16:47:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.16
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 660DD5231;
+	Fri,  1 Mar 2024 16:42:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709311669; cv=none; b=e0YK5ISZKFaV4fmjcx39suf7fPdyrVs4xt1W9cPXxUAi7TP9MjE7hX5OtVVKK0LxTcc54J+gsBv0KtFvXlf0ylvePHyn++844j/0TqK6Jvy0S38G1JRat3fWtbhLlq4305FyS70wdwBwUpzIQZ8n57C3gSacu8TbX4Ro1M7K75k=
+	t=1709311381; cv=none; b=eMZgRc0UUzP1OTq6MRT3HjEK79Tcyz9KAHNOFae5xSG1yDNZ9M4gLJOtsq5M/xwX55ZqTd7yYO00KKYbML/3C0/MMa81+K4N7Dns/bMycMxcfbkfw+9MIJUTGmwjWEHzFgnhJmlvyoNzlGcuEVBx2a+oW5w6RSz272bJIjLimiA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709311669; c=relaxed/simple;
-	bh=TwO38cA3UyCr2W+EpuHHLQjPXPcd10Pe64Cu4R4UPC0=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=pwSa8p/m9dkTnbqnYijT/Ak1bt2eeqAw46qZR0wZb+WsAWTTj1xgmY+dj1RaPutVmxPp9w0fnyUWXG0i/L0tFXg1VQJxZ00f9C/qfrGGQLWibJe9OyrrCy4gOx/SEisrGU3F7i3dMQKks0fzfW4TRnQxENCWqTB7tUPMJ842M2U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz; dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b=i4f7gS//; arc=none smtp.client-ip=195.113.20.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
-Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id 8239C284258;
-	Fri,  1 Mar 2024 17:47:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
-	s=gen1; t=1709311658;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=O7DmL1iFyPuL+YAdM6p9eG7fp01uB00uvAhrDZTooCM=;
-	b=i4f7gS//gRybv9G91n4rfHD3U3QiMVHe+6kQ6HKg543tZlwYFWSeirBz1b8NB7+jZNC3fu
-	0cgiuBMh8OKMRcDzFqXxgij0z4/gESuUIQX74rEZ3UGjt2StU43OCyqvDc06G+bNm8lhZX
-	cOgXDxbXnoUy23vLudtQ1KKBxuNJIiE=
-Received: from localhost (internet5.mraknet.com [185.200.108.250])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: karelb)
-	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 4CF374587C6;
-	Fri,  1 Mar 2024 17:47:38 +0100 (CET)
-From: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-To: Markuss Broks <markuss.broks@gmail.com>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1709311381; c=relaxed/simple;
+	bh=MSl2PxTtAMP4r+b1ezxUj0gj2cNUYpY54lAEfO3G6p4=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=mhUoMa41HMFnG4WvVB4B9Zbci5ilRL5yjaE5alNCf0P1LYLlg8Je1CAXGhZizWLg30hPDYBisWwBnt6UKlxdGk+rAOzm1R/5gGfviz7xShum3dnOEGql1VqI30Pid15SCM6o9IqcCMKRWzoftecfVySpKP49OsB4ETFBfrI1B30=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D8F8E1FB;
+	Fri,  1 Mar 2024 08:43:36 -0800 (PST)
+Received: from e130802.arm.com (unknown [10.57.69.63])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C03383F73F;
+	Fri,  1 Mar 2024 08:42:55 -0800 (PST)
+From: abdellatif.elkhlifi@arm.com
+To: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>
+Cc: Liviu Dudau <liviu.dudau@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>,
-	linux-input@vger.kernel.org,
+	Drew.Reed@arm.com,
+	Adam.Johnston@arm.com,
+	Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>,
+	linux-arm-kernel@lists.infradead.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: =?UTF-8?q?Duje=20Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org,
-	karelb@gimli.ms.mff.cuni.cz
-Subject: [RESEND PATCH v5 5/5] input/touchscreen: imagis: add support for IST3032C
-Date: Fri,  1 Mar 2024 17:41:04 +0100
-Message-ID: <20240301164659.13240-6-karelb@gimli.ms.mff.cuni.cz>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240301164659.13240-1-karelb@gimli.ms.mff.cuni.cz>
-References: <20240301164659.13240-1-karelb@gimli.ms.mff.cuni.cz>
+	linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org
+Subject: [PATCH 0/3] remoteproc: introduce Arm remoteproc support
+Date: Fri,  1 Mar 2024 16:42:24 +0000
+Message-Id: <20240301164227.339208-1-abdellatif.elkhlifi@arm.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,61 +60,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Karel Balej <balejk@matfyz.cz>
+From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
 
-IST3032C is a touchscreen chip used for instance in the
-samsung,coreprimevelte smartphone, with which this was tested. Add the
-chip specific information to the driver.
+Some Arm heterogeneous System-On-Chips feature remote processors that can
+be controlled with a reset control register and a reset status register to
+start or stop the processor.
 
-Reviewed-by: Markuss Broks <markuss.broks@gmail.com>
-Signed-off-by: Karel Balej <balejk@matfyz.cz>
----
+This patchset adds support for these processors by providing the
+following:
 
-Notes:
-    v4:
-    * Change the WHOAMI definition position to preserve alphanumerical order
-      of the definitions.
-    * Add Markuss' Reviewed-by trailer.
+1) A remoteproc driver that retrieves the reset registers addresses from
+the DT, register a new rproc device with the remoteproc subsystem and
+provides the start and stop operations for switching on or off the remote
+processor.
 
- drivers/input/touchscreen/imagis.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+The start and stop operations are provided as a data config selected on DT node match.
+Currently we are providing support for Corstone-1000 External System (Cortex-M3) [1]
+as a remote processor. The driver can be extended to support other remote processors
+by adding a data config and custom implementation of the start and stop operations.
 
-diff --git a/drivers/input/touchscreen/imagis.c b/drivers/input/touchscreen/imagis.c
-index 9af8a6332ae6..e1fafa561ee3 100644
---- a/drivers/input/touchscreen/imagis.c
-+++ b/drivers/input/touchscreen/imagis.c
-@@ -11,6 +11,8 @@
- #include <linux/property.h>
- #include <linux/regulator/consumer.h>
- 
-+#define IST3032C_WHOAMI			0x32c
-+
- #define IST3038B_REG_STATUS		0x20
- #define IST3038B_REG_CHIPID		0x30
- #define IST3038B_WHOAMI			0x30380b
-@@ -363,6 +365,13 @@ static int imagis_resume(struct device *dev)
- 
- static DEFINE_SIMPLE_DEV_PM_OPS(imagis_pm_ops, imagis_suspend, imagis_resume);
- 
-+static const struct imagis_properties imagis_3032c_data = {
-+	.interrupt_msg_cmd = IST3038C_REG_INTR_MESSAGE,
-+	.touch_coord_cmd = IST3038C_REG_TOUCH_COORD,
-+	.whoami_cmd = IST3038C_REG_CHIPID,
-+	.whoami_val = IST3032C_WHOAMI,
-+};
-+
- static const struct imagis_properties imagis_3038b_data = {
- 	.interrupt_msg_cmd = IST3038B_REG_STATUS,
- 	.touch_coord_cmd = IST3038B_REG_STATUS,
-@@ -380,6 +389,7 @@ static const struct imagis_properties imagis_3038c_data = {
- 
- #ifdef CONFIG_OF
- static const struct of_device_id imagis_of_match[] = {
-+	{ .compatible = "imagis,ist3032c", .data = &imagis_3032c_data },
- 	{ .compatible = "imagis,ist3038b", .data = &imagis_3038b_data },
- 	{ .compatible = "imagis,ist3038c", .data = &imagis_3038c_data },
- 	{ },
+2) DT bindings
+
+3) Support control of multiple remote processors at the same time
+
+[1]: https://developer.arm.com/documentation/102360/0000/Overview-of-Corstone-1000/Corstone-1000
+
+Cheers,
+Abdellatif
+
+Abdellatif El Khlifi (3):
+  remoteproc: Add Arm remoteproc driver
+  arm64: dts: Add corstone1000 external system device node
+  dt-bindings: remoteproc: Add Arm remoteproc
+
+ .../bindings/remoteproc/arm,rproc.yaml        |  69 +++
+ MAINTAINERS                                   |   7 +
+ arch/arm64/boot/dts/arm/corstone1000.dtsi     |  10 +-
+ drivers/remoteproc/Kconfig                    |  18 +
+ drivers/remoteproc/Makefile                   |   1 +
+ drivers/remoteproc/arm_rproc.c                | 395 ++++++++++++++++++
+ 6 files changed, 499 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/remoteproc/arm,rproc.yaml
+ create mode 100644 drivers/remoteproc/arm_rproc.c
+
+
+base-commit: 8b46dc5cfa5ffea279aed0fc05dc4b1c39a51517
 -- 
-2.44.0
+2.25.1
 
 
