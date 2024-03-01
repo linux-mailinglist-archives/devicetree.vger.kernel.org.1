@@ -1,202 +1,192 @@
-Return-Path: <devicetree+bounces-47710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8C2986E496
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:43:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D72A86E4AA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:48:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2C78C1F26865
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:43:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id ACE481F25B2A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 28E6B7002E;
-	Fri,  1 Mar 2024 15:43:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76FD970CCC;
+	Fri,  1 Mar 2024 15:47:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F4ZRSLhV"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="gnZwGnhu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED20F3A8DE;
-	Fri,  1 Mar 2024 15:43:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCC456EF1F;
+	Fri,  1 Mar 2024 15:47:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709307824; cv=none; b=scet6aqXdlCZlxcdhjZ6berqU15bcdOB1PJb7rSuh/TFzOo82jz5nA4P34UxkVwByCD3JMaH5sfcxuBzw1Wx1igX6oXcHvzVq3jpPJhs88dVOTzCphfkkFz+jWClvWP3r+KJd02XuvDUsjIkemW/1UdYy8tNXkKSLNi/UgKm40s=
+	t=1709308064; cv=none; b=qUbe0nE1n+sVpRrFgABydTMgtDUzpXJVqxjEeyTKtMrT7oSfH2yEXwUHFD0K8Mk5kzRMD0QxF4QbrLm6A6y1jEHGmUQJmTdsCUBZloiovxVRHXemT+ggQUMak4qZxTkmKfe1BM7PT9QEf/F/I572tE2SBS8vDVUxUzrGlIYNAmQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709307824; c=relaxed/simple;
-	bh=bG9hQ66MYcnqctgrAOl+DucX9thMeIyw3inwy+5KOqk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HBxpR5uGYNbuctjKR8UHaiocoGoHskDBaUyVwjBJ+5d+zf2FUse+Z24+P152IIWvfbeeZPqvd2IShqW3wUDgHlGBzINbHslPz4wZMY5RCG04aSGqBj5hwxvlxnCPtbL9ScG2kFOqRNQkAZMhF+O360Eb62HT1gpAirxAdJDSZlc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F4ZRSLhV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 680CEC433F1;
-	Fri,  1 Mar 2024 15:43:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709307822;
-	bh=bG9hQ66MYcnqctgrAOl+DucX9thMeIyw3inwy+5KOqk=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F4ZRSLhVZixnb8wRCaw8T7ek/UOS49fnu8jBUY918pHyaSHtkJin4mJyCZG0D4aFE
-	 3MJH7MdLOkSV3iNdYoFMsNe8fHtdPIyc9pxIIveu9ml9fQlsaZQ5F+cO3CQtOHwNXM
-	 Uea2nemNIVtE4aTQWrE7Ug7aiU5whWynJXpzijOA4XM9V/xLT0eSBDbLiZ/OoM3qym
-	 SnDG0Nl7WdIp3QRU8I+wjjtQDFJ28Nj7zFGkQC1dmGwAWYs7KKN2Ji092RS4G/Hi0J
-	 GklanWOALbNCfJKDyUVxKdYHb7PTc44V/RTAoVofbzkX6l7Q1NZFe5WXqWoT/FoKlZ
-	 PRPyunVZ8HPDQ==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rg53B-000000001io-0yeT;
-	Fri, 01 Mar 2024 16:43:53 +0100
-Date: Fri, 1 Mar 2024 16:43:53 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com,
-	quic_jackp@quicinc.com
-Subject: Re: [PATCH v15 8/9] usb: dwc3: qcom: Enable wakeup for applicable
- ports of multiport
-Message-ID: <ZeH3uXyp3YJTU3cL@hovoldconsulting.com>
-References: <20240216005756.762712-1-quic_kriskura@quicinc.com>
- <20240216005756.762712-9-quic_kriskura@quicinc.com>
+	s=arc-20240116; t=1709308064; c=relaxed/simple;
+	bh=/lpcu1cwKToP1YTl3Vb9NOZDrttRJdM4V2OIwh/bNeU=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
+	 References:In-Reply-To; b=keZvwJL6Q/t51SQg4uQwu+uibwAaFqnC3GZdC45RJ6OvdrgYZxxQiJdApzbgbq5pHkkQzhRnqpRTtsrnkO9ikknkdisNLPyhXwVG683nlgSlh88M3NZe4YCzdcKVTGe0aMEvGxAVHS3OFifcR9AOai+VKq2VsTGoPbW/tiWAwTY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=gnZwGnhu; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BDC736000D;
+	Fri,  1 Mar 2024 15:47:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709308055;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uE39Tdusc2iOYu8yciRGo5J13AkSfvwvY5k+yQjJTiM=;
+	b=gnZwGnhuFM4BkMTf3c2iQy2zn50vixMSBMJd1pZ/Uj585gJ7pwh7Rj/65XsyYXnpMcTQHD
+	urBkPI0KQ73Hber0gd+u09Ddbmb0+a+todMeqWvN4hzfA04RUhlZ5vHV/ajeY7MO7Ob52o
+	OgcyZbXgdDgVOuzBVzyjReeWYF0viu1xoCD9M7u6Z5H1gnweu9zhfCCCbC/WG1dGnJ66M+
+	uIV698Tbs/E0E2rlyjFlfqzzzA2O4hEg5xyY1bky16X2ad7VFBVXvNhaKiNor8AQaJDzpV
+	kWc6TZWTcHnksWEwM5rsFy45QORQxBFeYpwzqXBzjo/7E8Y9nW4yRMHIO0Gc5Q==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240216005756.762712-9-quic_kriskura@quicinc.com>
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 01 Mar 2024 16:47:34 +0100
+Message-Id: <CZIJ4VQULK8C.QA1KAO3BTVR0@bootlin.com>
+Subject: Re: [PATCH v2 01/11] dt-bindings: i2c: nomadik: add
+ mobileye,eyeq5-i2c bindings and example
+Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Andi Shyti"
+ <andi.shyti@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mips@vger.kernel.org>, "Gregory Clement"
+ <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Rob Herring" <robh@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+X-Mailer: aerc 0.15.2
+References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
+ <20240229-mbly-i2c-v2-1-b32ed18c098c@bootlin.com>
+ <20240301151146.GA2114576-robh@kernel.org>
+In-Reply-To: <20240301151146.GA2114576-robh@kernel.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Fri, Feb 16, 2024 at 06:27:55AM +0530, Krishna Kurapati wrote:
-> DWC3 Qcom wrapper currently supports only wakeup configuration
-> for single port controllers. Read speed of each port connected
-> to the controller and enable wakeup for each of them accordingly.
-> 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
-> Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 72 ++++++++++++++++++------------------
->  1 file changed, 37 insertions(+), 35 deletions(-)
-> 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index a20d63a791bd..572dc3fdae12 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -78,6 +78,7 @@ struct dwc3_qcom_port {
->  	int			dp_hs_phy_irq;
->  	int			dm_hs_phy_irq;
->  	int			ss_phy_irq;
-> +	enum usb_device_speed	usb2_speed;
+Hello,
 
-You need to remove the corresponding, and now unused, field from struct
-dwc3_qcom as well.
+On Fri Mar 1, 2024 at 4:11 PM CET, Rob Herring wrote:
+> On Thu, Feb 29, 2024 at 07:10:49PM +0100, Th=C3=A9o Lebrun wrote:
+> > Add EyeQ5 bindings to the existing Nomadik I2C dt-bindings. Add the
+> > EyeQ5-specific property behind a conditional. Add an example for this
+> > compatible.
+> >=20
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  .../devicetree/bindings/i2c/st,nomadik-i2c.yaml    | 48 ++++++++++++++=
+++++++--
+> >  1 file changed, 44 insertions(+), 4 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml =
+b/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+> > index 16024415a4a7..2d9d5b276762 100644
+> > --- a/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+> > +++ b/Documentation/devicetree/bindings/i2c/st,nomadik-i2c.yaml
+> > @@ -14,9 +14,6 @@ description: The Nomadik I2C host controller began it=
+s life in the ST
+> >  maintainers:
+> >    - Linus Walleij <linus.walleij@linaro.org>
+> > =20
+> > -allOf:
+> > -  - $ref: /schemas/i2c/i2c-controller.yaml#
+> > -
+> >  # Need a custom select here or 'arm,primecell' will match on lots of n=
+odes
+> >  select:
+> >    properties:
+> > @@ -24,6 +21,7 @@ select:
+> >        contains:
+> >          enum:
+> >            - st,nomadik-i2c
+> > +          - mobileye,eyeq5-i2c
+> >    required:
+> >      - compatible
+> > =20
+> > @@ -39,6 +37,10 @@ properties:
+> >            - const: stericsson,db8500-i2c
+> >            - const: st,nomadik-i2c
+> >            - const: arm,primecell
+> > +      # The variant found on Mobileye EyeQ5
+>
+> Kind of obvious from the compatible string, but maybe you are keeping=20
+> the existing style...
 
->  };
->  
->  struct dwc3_qcom {
-> @@ -336,7 +337,8 @@ static bool dwc3_qcom_is_host(struct dwc3_qcom *qcom)
->  	return dwc->xhci;
->  }
->  
-> -static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom)
-> +static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom,
-> +						       int port_index)
+I indeed kept the existing style.
+Ping me if you want this removed!
 
-As I mentioned, there's no need for a line break after the first
-parameter as this is a function definition (e.g. Linus as expressed a
-preference for this as it makes functions easier to grep for).
+> > +      - items:
+> > +          - const: mobileye,eyeq5-i2c
+> > +          - const: arm,primecell
+> > =20
+> >    reg:
+> >      maxItems: 1
+> > @@ -55,7 +57,7 @@ properties:
+> >        - items:
+> >            - const: mclk
+> >            - const: apb_pclk
+> > -      # Clock name in DB8500
+> > +      # Clock name in DB8500 or EyeQ5
+> >        - items:
+> >            - const: i2cclk
+> >            - const: apb_pclk
+> > @@ -70,6 +72,16 @@ properties:
+> >      minimum: 1
+> >      maximum: 400000
+> > =20
+> > +  mobileye,olb:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle-array
+> > +    items:
+> > +      - items:
+> > +          - description: Phandle to OLB system controller node.
+> > +          - description: Platform-wide controller ID (integer starting=
+ from zero).
+>
+> Rather than a made up ID, just store the shift value you ultimately=20
+> need.
 
->  {
->  	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
->  	struct usb_device *udev;
-> @@ -347,14 +349,8 @@ static enum usb_device_speed dwc3_qcom_read_usb2_speed(struct dwc3_qcom *qcom)
->  	 */
->  	hcd = platform_get_drvdata(dwc->xhci);
->  
-> -	/*
-> -	 * It is possible to query the speed of all children of
-> -	 * USB2.0 root hub via usb_hub_for_each_child(). DWC3 code
-> -	 * currently supports only 1 port per controller. So
-> -	 * this is sufficient.
-> -	 */
->  #ifdef CONFIG_USB
-> -	udev = usb_hub_find_child(hcd->self.root_hub, 1);
-> +	udev = usb_hub_find_child(hcd->self.root_hub, port_index + 1);
->  #else
->  	udev = NULL;
->  #endif
-> @@ -387,23 +383,29 @@ static void dwc3_qcom_disable_wakeup_irq(int irq)
->  
->  static void dwc3_qcom_disable_interrupts(struct dwc3_qcom *qcom)
->  {
-> +	int i;
-> +
->  	dwc3_qcom_disable_wakeup_irq(qcom->qusb2_phy_irq);
->  
-> -	if (qcom->usb2_speed == USB_SPEED_LOW) {
-> -		dwc3_qcom_disable_wakeup_irq(qcom->port_info[0].dm_hs_phy_irq);
-> -	} else if ((qcom->usb2_speed == USB_SPEED_HIGH) ||
-> -			(qcom->usb2_speed == USB_SPEED_FULL)) {
-> -		dwc3_qcom_disable_wakeup_irq(qcom->port_info[0].dp_hs_phy_irq);
-> -	} else {
-> -		dwc3_qcom_disable_wakeup_irq(qcom->port_info[0].dp_hs_phy_irq);
-> -		dwc3_qcom_disable_wakeup_irq(qcom->port_info[0].dm_hs_phy_irq);
-> -	}
-> +	for (i = 0; i < qcom->num_ports; i++) {
-> +		if (qcom->port_info[i].usb2_speed == USB_SPEED_LOW) {
-> +			dwc3_qcom_disable_wakeup_irq(qcom->port_info[i].dm_hs_phy_irq);
-> +		} else if ((qcom->port_info[i].usb2_speed == USB_SPEED_HIGH) ||
-> +				(qcom->port_info[i].usb2_speed == USB_SPEED_FULL)) {
-> +			dwc3_qcom_disable_wakeup_irq(qcom->port_info[i].dp_hs_phy_irq);
-> +		} else {
-> +			dwc3_qcom_disable_wakeup_irq(qcom->port_info[i].dp_hs_phy_irq);
-> +			dwc3_qcom_disable_wakeup_irq(qcom->port_info[i].dm_hs_phy_irq);
-> +		}
->  
-> -	dwc3_qcom_disable_wakeup_irq(qcom->port_info[0].ss_phy_irq);
-> +		dwc3_qcom_disable_wakeup_irq(qcom->port_info[i].ss_phy_irq);
-> +	}
+Issue with storing the shift value is that you also need to know what
+value to put in that field. It's an enum mapping the I2C speed which
+isn't found in DT.
 
-As I already commented on v13, this should be a per-port helper rather
-than special casing qusb2_phy_irq and a for loop for the other
-interrupts:
+> These properties are fragile because they break if anything that's not=20
+> defined in DT changes whether that's register offset, bit offset,=20
+> bitfield size or values. Or also if there are additional fields to=20
+> access.
 
-	A lot of these functions should become port operation where you
-	either pass in a port structure directly or possibly a port
-	index as I've mentioned before.
+My take is that it is better to have it all either in DT or in driver.
+Having a mix of both is a mess when debugging. If something breaks it
+is a driver bug; such bugs get fixed in driver code. That way DT
+doesn't know about it and doesn't have to be changed.
 
->  }
- 
->  static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
-> @@ -455,10 +459,8 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
->  	 * The role is stable during suspend as role switching is done from a
->  	 * freezable workqueue.
->  	 */
-> -	if (dwc3_qcom_is_host(qcom) && wakeup) {
-> -		qcom->usb2_speed = dwc3_qcom_read_usb2_speed(qcom);
+Putting shifts in DT is an abstraction that ends up being unhelpful. You
+split hardware knowledge half in DT (register offset and/or mask), half
+in driver (value to put in the field). We'd rather have it all in
+driver code.
 
-And again, as I said for v13:
+Next hardware revision will be more complex with potentially fields
+split across registers. A shift value wouldn't cut it. A new
+compatible + made up ID allows accomodating for that. That way we have
+homogeneity across compatibles.
 
-	So just let this function update the usb2 speed for all ports
-	unless there are reasons not to.
+Have a nice day,
 
-rather than hide it away in an odd for loop in
-dwc3_qcom_enable_interrupts().
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
-> +	if (dwc3_qcom_is_host(qcom) && wakeup)
->  		dwc3_qcom_enable_interrupts(qcom);
-> -	}
->  
->  	qcom->is_suspended = true;
-
-Johan
 
