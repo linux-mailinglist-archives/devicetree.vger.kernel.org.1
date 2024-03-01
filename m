@@ -1,74 +1,55 @@
-Return-Path: <devicetree+bounces-47600-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47601-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF62486DD7F
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:50:28 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA81B86DD8B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:51:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5C7F1C23292
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:50:27 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 189221C230EA
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:51:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E72216A01C;
-	Fri,  1 Mar 2024 08:49:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F03CA6A029;
+	Fri,  1 Mar 2024 08:50:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LesMyAuF"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="Uo/WGCtA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 24B4D69E16
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 08:49:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F2D76A03E;
+	Fri,  1 Mar 2024 08:50:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709282982; cv=none; b=BuExsrsoXZXmmtqZN6MOjeKh9iXVEq+81nzDtdhzNbhbmpvappwxgapPhC3rPO1tJ7SO6ZniQucVybYH//DuRWXxsawEjoVgigV/b0rOVHLwl7eQz/BZPwmFgLTfxENFNlbJ2RWK/J81mQ9zQOtaFZ5IryIU5SpRGKgmxz4Nnck=
+	t=1709283036; cv=none; b=KSH16QW8AsBz/lW8fW0IWlWR+0u+Ay+/BJuQfdMF3g/yRg8f8zLU5kmKqX0xDRXa9rO8uqe7OhBZjoAt/PviepJqKk3UHkMPFm+vS5rbnBpUxCyi96cKVK+b0pu0eNiePBhwpd8KNjAnBKTznIoqXE0fSo1dqd2pYO3FLPe+kSM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709282982; c=relaxed/simple;
-	bh=jN3VkU6TTj0itUtfWez0NxgdQx4sHDHdXqBKKHVWAkY=;
+	s=arc-20240116; t=1709283036; c=relaxed/simple;
+	bh=p0+gL2pGtqtFlpqt0S3w2xlnVMGKK7Z0m4Og3mVvC2M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DCZkoJuKKOVpDfwKkOe3AZqs7XHrk7sZbyXmg9GCthTVYUrhEPXxE6jqQL6CG3lLkEeawDGvwZ9QE0JLqRe7/jvX5ew8Wh4Q267S+BtYBJ2wPFgVQGdGR8ALPXarK8pWBbBxNpFy6BN6foQDOQjv+88Kc6AVoymodplKoK6+nJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LesMyAuF; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-564372fb762so2720276a12.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 00:49:40 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709282979; x=1709887779; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=NygG+zgVE75okJaCIKi9Z46sh0xdDb3WRJLYh6SeQuE=;
-        b=LesMyAuFQI0xBKJ3OH1aynpgm1JaR8CttEu+uxow1q2nK93dZPbFDHVowVtVAkve3K
-         YZCPdRFjzgKbpPP0aUODUUqL+EofZWlFTWAxflE5Kb6B/1RysvzZETsuJpzalPGg+kgL
-         BP4tPSMHkUI4YpujDWkkTPABosEXuqkyP7pckoSjRfg+MetHk/8s9oXWFYNrIKPkoFgl
-         QhE2Wv8f1hj/PXUo4QloJTLXd+fTkA1m6qKlp7uxkDbPVQOcWal1tWisN4bFZuhwnbj7
-         z3GmkXLgPv7WRDjZYefSGtTL5O/QajIY/PD5DJRLz45PmCYH06oAVFN8vANTOz3Be+LA
-         /L7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709282979; x=1709887779;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NygG+zgVE75okJaCIKi9Z46sh0xdDb3WRJLYh6SeQuE=;
-        b=N6evEPOwCS0hF0ILk3cbaTK3U0/egWpIPOVHZDbCWdaaLHcotYPMNXjpZS3+EXqRCu
-         4DJR4QAi3gwkNdfvNxDfmFTxWMrdjtYUZRiOaKaMsh+UMWF5zxyQhWgAA66nAkDB0qPe
-         K7LavRoelw8xl6FfoevYsyok3NsKp/xcFzo1fcpRY4+s/wRXLqWThYKa0JPd5QA3DDvJ
-         hQoKpNlGtZbPdUzKPTfIxzD45wJC/tjO50jgWkZ4QwC6zWZlgelqmp3TZTYICRh+Nc1e
-         J8GqKWTb7eFsCyBwdW50/Z7827k4hUi4OuKRkluWoomikM0/isYXVVAp7hNqLz7yjhFY
-         jA2w==
-X-Forwarded-Encrypted: i=1; AJvYcCXZfH4GeCEqyAYiQhoJPz6yhLpV/AQF6NOVa1Hy8UA7+e+oHDIiOkRvN7WQW8lSm13MamD5DFLEBf6CFotqWuu2LP3gkYxGofsGKQ==
-X-Gm-Message-State: AOJu0YwUGHMGqwmW/D1JoDCTQc00icSEJTHOFW3wzyLVWbhW+mEBpiSa
-	fC9xYVCBw7U6f0Vs9HTNg9c7TvD9FqDhUHttzRgrscLXKL6m82o5u1deISwu+Dg=
-X-Google-Smtp-Source: AGHT+IHhVoesLGysr23SUpYTmXJ9xUF3CoWngGj/ChhbIYLGPW3SiC8g4fo+Psl+4rrcc+Gw60jnQg==
-X-Received: by 2002:a17:906:685a:b0:a44:5515:3b57 with SMTP id a26-20020a170906685a00b00a4455153b57mr715504ejs.4.1709282979470;
-        Fri, 01 Mar 2024 00:49:39 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id ps7-20020a170906bf4700b00a3e53eb1dcasm1492497ejb.107.2024.03.01.00.49.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 01 Mar 2024 00:49:38 -0800 (PST)
-Message-ID: <0ff97f06-717d-4cd2-8a52-b1838fceed5a@linaro.org>
-Date: Fri, 1 Mar 2024 09:49:37 +0100
+	 In-Reply-To:Content-Type; b=SYLaXAErUH3pAMqkOX+KlCoB935gN6PjX/RbY6AQWSaVmSx3l8ghU2i6gg3SIDEDNwkvu5KSzm9LREi8ouFo88ASheGnGd0bpURZO1lnl2+S3WvnIDAMEphi3ism8ithBfIFjWkx0Z7iW08Kq3ymZnhel5SQsppKzpuS/d4guWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=Uo/WGCtA; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1709283033;
+	bh=p0+gL2pGtqtFlpqt0S3w2xlnVMGKK7Z0m4Og3mVvC2M=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Uo/WGCtA6Dqs1bk7v68YrMs+VoVpdYlx5GyjyYpIoL6TALzcXa9P5nppoKgA2l9L4
+	 ChPQ+9u1IWbw0s/aIJUIrkuLSD8peA7zPMMp9kz+iTVtO94i4PBppkXQSlvYFDPJ3/
+	 UBh//ttvR5FMLF+RuMFyBO5aFR/7so6atM5lhlaRe1AQTSHLlOnCVd8M67pM72jqLe
+	 7aGNRg8p7tC3XD3Y2DxOqSqf+AykymBmRy8wl70w7Vn4oJtASLzHMRb7taee6yuj2Q
+	 oCvnflAu+hvSt/AoWX/fU+GY69bhUIJv4I6bLBeUJti1odttt1BdC2F39YvHDEsCTE
+	 XTSym6OW6jL+w==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9AC9837814A4;
+	Fri,  1 Mar 2024 08:50:32 +0000 (UTC)
+Message-ID: <22e2cf1b-9560-4f4b-b08b-a112e8e272a8@collabora.com>
+Date: Fri, 1 Mar 2024 09:50:31 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,87 +57,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] media: dt-bindings: i2c: use absolute path to
- other schema
+Subject: Re: [PATCH 2/4] arm64: dts: mediatek: mt8195: Add missing
+ gce-client-reg to vpp/vdosys
 Content-Language: en-US
-To: Alexander Stein <alexander.stein@ew.tq-group.com>,
- Sebastian Reichel <sre@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>, Rob Herring <robh@kernel.org>,
+To: =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= <nfraprado@collabora.com>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Alain Volmat <alain.volmat@foss.st.com>,
- Ricardo Ribalda <ribalda@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
- Michael Riesch <michael.riesch@wolfvision.net>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, imx@lists.linux.dev,
- linux-arm-kernel@lists.infradead.org
-References: <20240301084009.3030753-1-alexander.stein@ew.tq-group.com>
- <20240301084009.3030753-2-alexander.stein@ew.tq-group.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240301084009.3030753-2-alexander.stein@ew.tq-group.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+ Conor Dooley <conor+dt@kernel.org>,
+ Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+ Tinghan Shen <tinghan.shen@mediatek.com>,
+ "Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
+ "Nancy.Lin" <nancy.lin@mediatek.com>, kernel@collabora.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+References: <20240229-gce-client-reg-add-missing-mt8192-95-v1-0-b12c233a8a33@collabora.com>
+ <20240229-gce-client-reg-add-missing-mt8192-95-v1-2-b12c233a8a33@collabora.com>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240229-gce-client-reg-add-missing-mt8192-95-v1-2-b12c233a8a33@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On 01/03/2024 09:40, Alexander Stein wrote:
-> Absolute path to other DT schema is preferred over relative one.
+Il 29/02/24 20:44, Nícolas F. R. A. Prado ha scritto:
+> Add the missing mediatek,gce-client-reg property to the vppsys and
+> vdosys nodes to allow them to use the GCE. This prevents the "can't
+> parse gce-client-reg property" error from being printed and should
+> result in better performance.
 > 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Fixes: 6aa5b46d1755 ("arm64: dts: mt8195: Add vdosys and vppsys clock nodes")
+> Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
+Can you please squash patches 2,3,4 in a single one?
+
+It doesn't make a lot of sense to have them separated in this case, only
+generates commit noise for no practical reason imo.
+
+arm64: dts: mediatek: mt8195: Add missing gce-client-reg to vpp/vdo/mutex
+
+Thanks,
+Angelo
+
 > ---
-> Changes in v3:
-> * Squashed patches 2-5 from v2 into a single one
+>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 3 +++
+>   1 file changed, 3 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> index ea6dc220e1cc..f2912e1a0e49 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
+> @@ -2028,6 +2028,7 @@ vppsys0: syscon@14000000 {
+>   			compatible = "mediatek,mt8195-vppsys0", "syscon";
+>   			reg = <0 0x14000000 0 0x1000>;
+>   			#clock-cells = <1>;
+> +			mediatek,gce-client-reg = <&gce1 SUBSYS_1400XXXX 0 0x1000>;
+>   		};
+>   
+>   		dma-controller@14001000 {
+> @@ -2251,6 +2252,7 @@ vppsys1: syscon@14f00000 {
+>   			compatible = "mediatek,mt8195-vppsys1", "syscon";
+>   			reg = <0 0x14f00000 0 0x1000>;
+>   			#clock-cells = <1>;
+> +			mediatek,gce-client-reg = <&gce1 SUBSYS_14f0XXXX 0 0x1000>;
+>   		};
+>   
+>   		mutex@14f01000 {
+> @@ -3080,6 +3082,7 @@ vdosys0: syscon@1c01a000 {
+>   			reg = <0 0x1c01a000 0 0x1000>;
+>   			mboxes = <&gce0 0 CMDQ_THR_PRIO_4>;
+>   			#clock-cells = <1>;
+> +			mediatek,gce-client-reg = <&gce0 SUBSYS_1c01XXXX 0xa000 0x1000>;
+>   		};
+>   
+>   
 > 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
 
 
