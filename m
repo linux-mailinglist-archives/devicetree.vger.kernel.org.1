@@ -1,136 +1,256 @@
-Return-Path: <devicetree+bounces-47780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02FEB86E7FB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 19:10:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B22CD86E809
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 19:17:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CEDC61C222F5
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:10:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8BBFE1C2172E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 18:17:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35F7520DC5;
-	Fri,  1 Mar 2024 18:10:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6BBB524B23;
+	Fri,  1 Mar 2024 18:17:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IK8N7CTx"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="HyU/H9Qu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2060.outbound.protection.outlook.com [40.107.92.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E671171A1;
-	Fri,  1 Mar 2024 18:10:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709316611; cv=none; b=p5AD+yL9ml4mQMCL2SHe65HGPVwRVbBPGG4UPQp4daBMttg/iK+2JGG5qIm0XhJ7DWlp9WVX58GIIZ+2wt/7rxvWLAWMMvVKFU1q9uJ4N8LIb+B6wjFfx+tFm2cusG2EKFWpz3aI3weaepAxX6/F6X2yEtDaawBIyqiDiCFgt6g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709316611; c=relaxed/simple;
-	bh=oGgDYAMEcOek5vzs12UcoMNqw0pBRI+Tp6Tw2lcrknA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WlS89qIMMwZ0wJH4w0bUjp5RooPyKd24E+udTakoKDI6UMM5txujGv+YjVYztGHZDm7VXlDQ+plZb+2WCbBsKhKKh53Kco2Yt4t31awTUPPEc1Lq7sLUjOLdeKRnkT/uWrYt2VCBxBtgIaIqtVfm9ydHPtgUzTODaKJEPgFYOQM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IK8N7CTx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 524E8C433C7;
-	Fri,  1 Mar 2024 18:10:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709316609;
-	bh=oGgDYAMEcOek5vzs12UcoMNqw0pBRI+Tp6Tw2lcrknA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=IK8N7CTxXCT+ZohlOgRwslhOwKmwn14JE//RO0B49dvzoU0LIQhX04JV9TqoA6xB3
-	 kZH1ErLMAK+dq4z/Lne+YMOjfFwrtGAyeGR8QvXI2IyTdV7wrFEERyDKF29Lq6/xIQ
-	 z2Aal86VP39Ab2yob5tMqJ5CJLpBO6Nr/bhi5+oM4v2m+rdP+jy5IbmeNcDvj8HS3K
-	 S7C/BCRe4HE6QNg4pXYsrBGO7jlsdcqDho7ZRR65wFGKfRXi6SjxWewX+5ZiAEFCiL
-	 t1cUzHAxEKftKEJuTfm89UIrrIEMeMOO9zH2j//+g+54Uk4f8nRXg3lLRQVb+He3mV
-	 juJGoyCGAIgXw==
-Date: Fri, 1 Mar 2024 12:10:07 -0600
-From: Rob Herring <robh@kernel.org>
-To: Dharma.B@microchip.com
-Cc: krzysztof.kozlowski@linaro.org, maarten.lankhorst@linux.intel.com,
-	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
-	daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, Nicolas.Ferre@microchip.com,
-	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: display: atmel,lcdc: convert to dtschema
-Message-ID: <20240301181007.GA2481641-robh@kernel.org>
-References: <20240223-lcdc-fb-v1-1-4c64cb6277df@microchip.com>
- <796652d5-af57-4aca-87c2-10a7b0b55959@linaro.org>
- <11c545e2-45df-4587-a5c7-12b05c2f01e0@microchip.com>
- <9bf7e492-891c-4d8f-b388-3b2ebae611c1@linaro.org>
- <e5cb705f-56cc-47cc-beb5-700c9a35c8cf@microchip.com>
- <34388175-7d5b-4f6b-b264-e85b84e98677@linaro.org>
- <dc8181d9-c7c9-4817-96f1-84a1b64575d6@microchip.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C6564C9C;
+	Fri,  1 Mar 2024 18:17:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.92.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709317033; cv=fail; b=GaYj2twvUZhXvs2oAxMzg/BEOdiQE4v02Pdns5KNiBc+eJpApB91GLrAXLJ3SIbJgYgOkGjlRv1lraT2j7nmRtYGo14u9TXlJJ5deYZWb13VWerooPi2rtUN+EY6fQg+1gEsNF5DxwDc6XR9quSQM2zV99dFBXRw1fxAcm6Yntg=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709317033; c=relaxed/simple;
+	bh=e1WdpvvNAZmvMX8854bFJADPv6ULZ1+yOXi5yvTHeO4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=qa041Yly5SGCu+cA8MVLFdqYzuFJd6LjRFXsrl9IAZGiw8xIbLw2H6TK/hu5NibAUpuyoKZHiaSMTyuXKZt7dAjBl1YZbW6g15QKrB4S4a4+iKoZDWQjmIARed9liR/WqabFg8+quOzAAL3/IDKpZqrY/ToErbp6R8xznaApWQE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=HyU/H9Qu; arc=fail smtp.client-ip=40.107.92.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hBkmEMggeKHwWIpzSGOzrG/bMgmwzCrZG0EMVWh1VVcDzvPXYq7U/jhLMbC+ySxbWcUlUoRVb6WdrAOPzwKBJTRuklK4ttU/L8kJf7S0Sq7izLzoCSVqgQ99SiK82yOpgO/4qMrWJm2cMpnRNVGJqJtZH2qVcuPoXSGILm3nNt7q+324qWzeNrxLhx6JoycHN8rvXyuF/Qxyh+QAS9RFoE0fesD7/+o9274Of3xMCO5dKi6s4Vfz11iAoA/eMVmdrZeLpW0xy1iish5epoq29piqEkU+9TeTxczKDYpNJBA6iJJsqzAHPuhpAHUQlo9o1pkJ4d47ydEbeJgMpjDagQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=zrX3MMPRqQJus5w25I71CgaSCwgpJAonf5T5gWm2orc=;
+ b=fKvK797EcbNZwp09nEq56EPj8B7GnW0RvLfN37I6YmwZ7DCiWXgv+zzuvv3XTEI7BGq1RnHlAv1tqi6bmvQc2RXhWMWBqrbsEJ11yuO1WDDbEdFZxwqnEv/bcz2xaSNQyT2fV5iiihZ7AeFanOT0tBzy0qQmOL7UUX9ut3c97ic/UKqVyzB971QsiPET5rkG9BkIFrWX8sxKsmum20982BlOoZQb+3pkFgpxLIoI3wabLzJquX15swORpeqouxVH6HwJyworISoWRS4udIjkemXP8+4HuPfUKyECXfVJSpYR/oJ1cUGCXZi6C94Ui+2NhCXKo7HS+XuiTMduVvSjgw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=zrX3MMPRqQJus5w25I71CgaSCwgpJAonf5T5gWm2orc=;
+ b=HyU/H9QuLWKLndm9EaFDCGuOdehaKTz4GsQmT8fS4j8SsxX0zaBnbxXzUj9H1YbHwt71n4q17JBmWgARSLIKu6a/0DOsaJMOYRSqbfp+qzh311+AQPH9HV8aK5hymf5R4Qxf+gCexHDWPBbopGvaWe2B9SbMxvxZZ2A+jGGVpZE=
+Received: from BN0PR08CA0023.namprd08.prod.outlook.com (2603:10b6:408:142::17)
+ by CY8PR12MB7660.namprd12.prod.outlook.com (2603:10b6:930:84::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.34; Fri, 1 Mar
+ 2024 18:17:05 +0000
+Received: from BN3PEPF0000B069.namprd21.prod.outlook.com
+ (2603:10b6:408:142:cafe::52) by BN0PR08CA0023.outlook.office365.com
+ (2603:10b6:408:142::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.34 via Frontend
+ Transport; Fri, 1 Mar 2024 18:17:05 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ BN3PEPF0000B069.mail.protection.outlook.com (10.167.243.68) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7362.0 via Frontend Transport; Fri, 1 Mar 2024 18:17:03 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 1 Mar
+ 2024 12:17:03 -0600
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 1 Mar
+ 2024 12:17:03 -0600
+Received: from xsjtanmays50.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Fri, 1 Mar 2024 12:17:02 -0600
+From: Tanmay Shah <tanmay.shah@amd.com>
+To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>,
+	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+	<conor+dt@kernel.org>, <michal.simek@amd.com>, <ben.levinsky@amd.com>,
+	<tanmay.shah@amd.com>
+CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v12 0/4] add zynqmp TCM bindings
+Date: Fri, 1 Mar 2024 10:16:34 -0800
+Message-ID: <20240301181638.814215-1-tanmay.shah@amd.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <dc8181d9-c7c9-4817-96f1-84a1b64575d6@microchip.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+Received-SPF: None (SATLEXMB05.amd.com: tanmay.shah@amd.com does not designate
+ permitted sender hosts)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN3PEPF0000B069:EE_|CY8PR12MB7660:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc8db4d9-bc40-4de0-f226-08dc3a1bcbf7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	4FQ4rrXS9hbdlQqZGdc/jlg8CjnLunNVmk9RdyhoDXrvD1tjkfmHIKZNC0JnoW/DBWzz0wNuCMDv2XTx6dGOb90s4VuDL1GoQ+wk7BjPvpnfIXx84rRUX2Vndhlg3YOvjxl6QFxUbAPNQKFCoOBCOu3mNArB9e49FscPEug7AnKbNGutajG0/VuggQeR58tugYIKEK/RS8EZrEYb19wnD2CL2gyVsz28lbziWN2yQY3qPDFruUiH+wb8fzWKQ2xMo4jY4EXRHYrGitfeAOYNTNvQhn7HuXn66fvwoTxvSS+wjfQxY5gPAwGzKlkqv/wiprhWCfagE07bE+ZQ4ggmTdY96yIkMGwTAo+02O9t6+8sp/XdknJslSOi+fAKkpTMj3OZ83j3lJpPG97p7llpBebPutM9qctfAbnDX7uO+NmfN9B0pRtCASxjHGwbRF8Fi12fNge13c8LXdPbQOVlOnR81mTczgkCXtky9j39c0xkt7vSjUbnAONNrvU6gDfxqYHkOcihbiLk3MLHyW/OSnI9chIGkGbJp+SFiV7H4e5ZpLI7+nIN3gD0fLENc7FQU8D3hhbfgZfORokjBgwbp/emdJuVA+Mc9r74yYiTBVSZQ1qecZ6WNwKJ3MbFgiGM0mQm4cTQDZfQYB07mKJeJWb4DfjRq4MCdz2Hp15dZHsKBdPf4y4qkSp1BV3P7uRrG17DrCv/GeeSMzPkVXKBQQ==
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(82310400014)(36860700004);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2024 18:17:03.9695
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc8db4d9-bc40-4de0-f226-08dc3a1bcbf7
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	BN3PEPF0000B069.namprd21.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR12MB7660
 
-On Thu, Feb 29, 2024 at 06:25:56AM +0000, Dharma.B@microchip.com wrote:
-> On 28/02/24 3:53 pm, Krzysztof Kozlowski wrote:
-> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> > 
-> > On 28/02/2024 11:18, Dharma.B@microchip.com wrote:
-> >> On 28/02/24 12:43 pm, Krzysztof Kozlowski wrote:
-> >>> EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
-> >>>
-> >>> On 28/02/2024 07:59, Dharma.B@microchip.com wrote:
-> >>>>
-> >>>>>
-> >>>>> I don't know what's this exactly, but if embedded display then maybe
-> >>>>> could be part of this device node. If some other display, then maybe you
-> >>>>> need another schema, with compatible? But first I would check how others
-> >>>>> are doing this.
-> >>>>
-> >>>> Okay, then I think the driver also needs to be modified, currently the
-> >>>> driver parses the phandle and looks for these properties. Also the
-> >>>> corresponding dts files.
-> >>>
-> >>> Driver does not have to be modified in my proposal. You would still have
-> >>> phandle.
-> >>
-> >> If I understand correctly, I could define the dt bindings as below
-> >>
-> >>     display:
-> >>       $ref: /schemas/types.yaml#/definitions/phandle
-> >>       description: A phandle pointing to the display node.
-> >>
-> >>     panel:
-> >>       $ref: panel/panel-common.yaml#
-> >>       properties:
-> >>
-> > 
-> > So these are standard panel bindings? Then the node should live outside
-> > of lcdc. If current driver needs to poke inside panel and panel could be
-> > anything, then probably you need peripheral-props-like approach. :/
-> 
-> Thank you so much, so can I use something like this
-> 
->    display:
->      $ref: /schemas/types.yaml#/definitions/phandle
->      description: A phandle pointing to the display node.
-> 
-> patternProperties:
->    "^panel":
+Tightly-Coupled Memories(TCMs) are low-latency memory that provides
+predictable instruction execution and predictable data load/store
+timing. Each Cortex-R5F processor contains exclusive two 64 KB memory
+banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
+In lockstep mode, both 128KB memory is accessible to the cluster.
 
-Just 'panel' and not a pattern.
+As per ZynqMP Ultrascale+ Technical Reference Manual UG1085, following
+is address space of TCM memory. The bindings in this patch series
+introduces properties to accommodate following address space with
+address translation between Linux and Cortex-R5 views.
 
-However, that's not what the original binding had. It was a separate 
-node. If you want to preserve that, then you'll need a separate 
-schema file and a special 'select'. Something like:
+|     |     |     |
+| --- | --- | --- |
+|      *Mode*        |   *R5 View* | *Linux view* |  Notes               |
+| *Split Mode*       | *start addr*| *start addr* |                      |
+| R5_0 ATCM (64 KB)  | 0x0000_0000 | 0xFFE0_0000  |                      |
+| R5_0 BTCM (64 KB)  | 0x0002_0000 | 0xFFE2_0000  |                      |
+| R5_1 ATCM (64 KB)  | 0x0000_0000 | 0xFFE9_0000  | alias of 0xFFE1_0000 |
+| R5_1 BTCM (64 KB)  | 0x0002_0000 | 0xFFEB_0000  | alias of 0xFFE3_0000 |
+|  ___               |     ___     |    ___       |                      |
+| *Lockstep Mode*    |             |              |                      |
+| R5_0 ATCM (128 KB) | 0x0000_0000 | 0xFFE0_0000  |                      |
+| R5_0 BTCM (128 KB) | 0x0002_0000 | 0xFFE2_0000  |                      |
 
-select:
-  anyOf:
-    - required: [ atmel,dmacon ]
-    - required: [ atmel,lcdcon2 ]
-    - required: [ atmel,guard-time ]
+References:
+UG1085 TCM address space:
+https://docs.xilinx.com/r/en-US/ug1085-zynq-ultrascale-trm/Tightly-Coupled-Memory-Address-Map
 
-Up to you and at91 maintainers if you want to have to update your dts 
-files or not.
+Changes in v12:
+  - add "reg", "reg-names" and "power-domains" in pattern properties
+  - add "reg" and "reg-names" in required list
+  - keep "power-domains" in required list as it was before the change
 
-Rob
+Changes in v11:
+  - Fix yamllint warning and reduce indentation as needed
+  - Remove redundant initialization of the variable
+  - Return correct error code if memory allocation failed
+
+Changs in v10:
+  - Add new patch (1/4) to series that changes hardcode TCM addresses in
+    lockstep mode and removes separate handling of TCM in lockstep and
+    split mode
+  - modify number of "reg", "reg-names" and "power-domains" entries
+    based on cluster mode
+  - Add extra optional atcm and btcm in "reg" property for lockstep mode
+  - Add "reg-names" for extra optional atcm and btcm for lockstep mode
+  - Drop previous Ack as bindings has new change
+  - Add individual tcm regions via "reg" and "reg-names" for lockstep mode
+  - Add each tcm's power-domains in lockstep mode
+  - Drop previous Ack as new change in dts patchset
+  - Remove redundant changes in driver to handle TCM in lockstep mode
+
+Changes in v9:
+  - Fix rproc lockstep dts
+  - Introduce new API to request and release core1 TCM power-domains in
+    lockstep mode. This will be used during prepare -> add_tcm_banks
+    callback to enable TCM in lockstep mode.
+  - Parse TCM from device-tree in lockstep mode and split mode in
+    uniform way.
+  - Fix TCM representation in device-tree in lockstep mode.
+  - Fix comments as suggested
+
+Changes in v8:
+  - Remove use of pm_domains framework
+  - Remove checking of pm_domain_id validation to power on/off tcm
+  - Remove spurious change
+  - parse power-domains property from device-tree and use EEMI calls
+    to power on/off TCM instead of using pm domains framework
+
+Changes in v7:
+  - %s/pm_dev1/pm_dev_core0/r
+  - %s/pm_dev_link1/pm_dev_core0_link/r
+  - %s/pm_dev2/pm_dev_core1/r
+  - %s/pm_dev_link2/pm_dev_core1_link/r
+  - remove pm_domain_id check to move next patch
+  - add comment about how 1st entry in pm domain list is used
+  - fix loop when jump to fail_add_pm_domains loop
+  - move checking of pm_domain_id from previous patch
+  - fix mem_bank_data memory allocation
+
+Changes in v6:
+  - Introduce new node entry for r5f cluster split mode dts and
+    keep it disabled by default.
+  - Keep remoteproc lockstep mode enabled by default to maintian
+    back compatibility.
+  - Enable split mode only for zcu102 board to demo split mode use
+  - Remove spurious change
+  - Handle errors in add_pm_domains function
+  - Remove redundant code to handle errors from remove_pm_domains
+  - Missing . at the end of the commit message
+  - remove redundant initialization of variables
+  - remove fail_tcm label and relevant code to free memory
+    acquired using devm_* API. As this will be freed when device free it
+  - add extra check to see if "reg" property is supported or not
+
+Changes in v5:
+  - maintain Rob's Ack on bindings patch as no changes in bindings
+  - split previous patch into multiple patches
+  - Use pm domain framework to turn on/off TCM
+  - Add support of parsing TCM information from device-tree
+  - maintain backward compatibility with previous bindings without
+    TCM information available in device-tree
+
+This patch series continues previous effort to upstream ZynqMP
+TCM bindings:
+Previous v4 version link:
+https://lore.kernel.org/all/20230829181900.2561194-1-tanmay.shah@amd.com/
+
+Previous v3 version link:
+https://lore.kernel.org/all/1689964908-22371-1-git-send-email-radhey.shyam.pandey@amd.com/
+Radhey Shyam Pandey (1):
+  dt-bindings: remoteproc: add Tightly Coupled Memory (TCM) bindings
+
+
+Radhey Shyam Pandey (1):
+  dt-bindings: remoteproc: add Tightly Coupled Memory (TCM) bindings
+
+Tanmay Shah (3):
+  remoteproc: zynqmp: fix lockstep mode memory region
+  dts: zynqmp: add properties for TCM in remoteproc
+  remoteproc: zynqmp: parse TCM from device tree
+
+ .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 188 +++++++++++--
+ .../boot/dts/xilinx/zynqmp-zcu102-rev1.0.dts  |   8 +
+ arch/arm64/boot/dts/xilinx/zynqmp.dtsi        |  65 ++++-
+ drivers/remoteproc/xlnx_r5_remoteproc.c       | 257 ++++++++----------
+ 4 files changed, 355 insertions(+), 163 deletions(-)
+
+
+base-commit: b401b621758e46812da61fa58a67c3fd8d91de0d
+-- 
+2.25.1
+
 
