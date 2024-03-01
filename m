@@ -1,126 +1,246 @@
-Return-Path: <devicetree+bounces-47582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 455FF86DCBF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:10:38 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A556B86DCCC
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:13:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00B3028A1BA
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:10:37 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 69BF8B222DF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:13:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40B7F69D08;
-	Fri,  1 Mar 2024 08:10:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C1CBF69D0B;
+	Fri,  1 Mar 2024 08:13:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q1dp3Nk5"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="hdfnM5bg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 19B3069D13;
-	Fri,  1 Mar 2024 08:10:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E7036995D;
+	Fri,  1 Mar 2024 08:13:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709280634; cv=none; b=tkUbImPALQJldaVh/uWqTBaPHptrQAd8VrxLTpeNBPlHl9Z5bQfi06iAExxlARZJZGGx+1H65QnLqaaMu0iQiRcA538PVYoHFR6HP7QNORpaXILDWrcVb/TL3euyyq6TLq27ZfUpIqSsNICiXY4w54q60lorr1UleN5Hp+U9FkI=
+	t=1709280820; cv=none; b=m2aA1r6nWum+lHjuBL4YOPobFhi1gkc+0ZyKvJjDMuOUoZLW1WLixZpQ5xcg6G/+ERp9ycDSWYjswlXP1sauPfSW8AP/xkSCgtSbPupGop2D1VRXFh+l2LfG58DQCs1lxIzmu4GLUQf4ye/vZQLXnyMv/HiObOtuemDfBbilAE8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709280634; c=relaxed/simple;
-	bh=X72NJCeGEpyO5TljCIfKuVss8NrQT972LEnQW9Au8jM=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=TwMP5baYS1YzsF80kAiLJaFaVM3n970+2OLVDJKNoMXUyDA8p5fnrMTRx131GWurtwW5186+k+ltkppG6cPhNYy+DLklKTI3moq7Ey3bZyIOyMqzykWHFyF78LfonXHTyVbxH4cKwrZj6Xc7E75KgG4pylGp64mtA6o2LNw2u2E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q1dp3Nk5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 82F44C433F1;
-	Fri,  1 Mar 2024 08:10:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709280633;
-	bh=X72NJCeGEpyO5TljCIfKuVss8NrQT972LEnQW9Au8jM=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=Q1dp3Nk59WBXj18jqNBXspTsq5n0O4AOx0Og1H93g0tbsS+tbBCzrVB+pjBRHSE4g
-	 9IHoheYQ6qlctQ+vd9fsnFDXQyr6OHSi6J+zttT/c3C5oZ9+zG+HLFeHRzsAWAqyw/
-	 RslBzZcW+LJmGH74iLKKYXK1ddG5eizTYw9jorCkKEiXBqrs2OwlziLQEggpSZWmwc
-	 HFahnW+dpjO4+AQCBkVO70s9VDffgevfO1Q/X5AlYreZGjz7VZ5uObFt7hhR55F0gg
-	 LUjpdfO4qkKlsjfwPh9YdqYFhrbzI9wuKofxuRzHU6AnJ7ZYRVCbDq+tj+NToO/MyF
-	 hQFY+Cog5LBUg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  ath10k
- <ath10k@lists.infradead.org>,  wireless <linux-wireless@vger.kernel.org>,
-  DT <devicetree@vger.kernel.org>,  Rob Herring <robh+dt@kernel.org>,
-  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
- <conor+dt@kernel.org>,  Pierre-Hugues Husson <phhusson@freebox.fr>,  Jami
- Kettunen <jamipkettunen@gmail.com>,  Jeffrey Hugo <quic_jhugo@quicinc.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
-	<b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
-	<871q8wk7o3.fsf@kernel.org>
-	<3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr>
-	<87wmqoilzf.fsf@kernel.org>
-	<c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr>
-Date: Fri, 01 Mar 2024 10:10:29 +0200
-In-Reply-To: <c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr> (Marc
-	Gonzalez's message of "Wed, 28 Feb 2024 18:19:03 +0100")
-Message-ID: <87cyse8j9m.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1709280820; c=relaxed/simple;
+	bh=dIBc7HjV1Jitsja9ViMJ47634yFWwSSxGW6Tq58Pth4=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=fKJ73IY2QgQAZQTY1idJHX4fqA6JLpfYcwb49WUny+1YjJr0xEc7Lt6sX3KTpq1DlqIX5peFnCzq75qsRNY+YM9EREgxHCc43rCjedWlGhd3KN33r3Q0YOi7BurWj2FOGQad5ldsK9KKoVnfb6LSNwjvsu/vJKcXmo8z+8vONfA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=hdfnM5bg; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709280815;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=2ERX/sFnvQOPRQmjacsPInt4AlnqdKFHst8ABmqjoTY=;
+	b=hdfnM5bgbjvJIwpYUw2STixSsJuPQE86CfBtC2K6cIeP8wxJnjEaSVtUUk3opxjhCe7SlE
+	K9y2fZ0ISF5aajNWYUQZE7DNgX785YEYnn3VaZVuk5NUdGkzOUJ9YVY9/hlZHyHsIkXJ5z
+	RpS1cniJO4VNCDq4iJ7PkRagCeWPq4cZM2OYbzcoXT5U5/k0tpLbzrRhDIYowphhwRGvQn
+	bOPe+PLoVHPCBO6dEBzVD3Qw2CP1leOYVH+/D0BmOhg9nLiGeOFH5KsL/zCbxPqES4CVP4
+	7JGiYkqmsc5g9o7WnJHBH0Hy3kuRODL1jgPmBAPbGG4OFeIUsEE4J1inn6bUPw==
+Date: Fri, 01 Mar 2024 09:13:34 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
+ Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] arm64: dts: rockchip: Add CPU/memory regulator
+ coupling for RK3588
+In-Reply-To: <20240229-rk-dts-additions-v3-3-6afe8473a631@gmail.com>
+References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
+ <20240229-rk-dts-additions-v3-3-6afe8473a631@gmail.com>
+Message-ID: <7e4379931dc6e35ca79a0ec7d27cf590@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Marc Gonzalez <mgonzalez@freebox.fr> writes:
+On 2024-02-29 20:26, Alexey Charkov wrote:
+> RK3588 chips allow for their CPU cores to be powered by a different
+> supply vs. their corresponding memory interfaces, and two of the
+> boards currently upstream do that (EVB1 and QuartzPro64).
 
->> Here's one example where in ath10k we use a feature bit as a workaround:
->> 
->> 	/* Don't trust error code from otp.bin */
->> 	ATH10K_FW_FEATURE_IGNORE_OTP_RESULT = 7,
->> 
->>         ....
->> 
->> 	if (!(skip_otp || test_bit(ATH10K_FW_FEATURE_IGNORE_OTP_RESULT,
->> 				   ar->running_fw->fw_file.fw_features)) &&
->> 	    result != 0) {
->> 		ath10k_err(ar, "otp calibration failed: %d", result);
->> 		return -EINVAL;
->> 	}
->> 
->> BTW for modifying firmware-N.bin files we have a script here:
->> 
->> https://github.com/qca/qca-swiss-army-knife/blob/master/tools/scripts/ath10k/ath10k-fwencoder
->
-> If I understand correctly, you are saying that there is
-> (maybe... probably) a bug in the FW, so it makes sense to
-> tag that specific FW file with a special bit which the kernel
-> will interpret as "this FW is broken in a specific way;
-> and here's how to work around the issue."
->
-> So this bit would serve the same purpose as my proposed
-> "qcom,no-msa-ready-indicator" bit (that bit existed instead
-> in my board's device tree).
->
-> The problem I see is that the firmware files are signed.
-> Thus, changing a single bit breaks the verification...
-> UNLESS the FW format allows for a signed section ALONG-SIDE
-> an unsigned section?
+The only reasonable explanation, based on the Cortex-A55 and Cortex-A76
+technical reference manuals (TRMs), and some other documents, including
+the RK3588 hardware design guide (HDG), is that the VDD_CPU_BIG0_MEM_S0,
+VDD_CPU_BIG1_MEM_S0 and VDD_CPU_LIT_MEM_S0 voltages are internally
+used as the supplies for the SRAM used for the A76's and A55's L1 and
+L2 caches, which are both per-core and private in the DynamIQ SoC layout
+that the RK3588 is based on.
 
-firmware-N.bin is ath10k specific container file format and we (the
-Linux community) have full access to it using ath10k-fwencoder, there's
-no signing or anything like that. One of the major reasons why it was
-designed was to handle differences between firmware branches, just like
-in this case.
+Sure, using "MEM" there is confusing, but actually, the Cortex-A55 and
+Cortex-A76 refer to the L1 and L2 caches as "memory" in multiple places.
+I'd say that's the reason for "MEM" (and "memory", in the RK3588 HDG) to
+be used in the board schematics (and in the RK3588 HDG).
 
-Of course plan A should be to fix the firmware but if that doesn't work
-out then plan B could be using the feature bit in firmware-N.bin.
+The RK3588 HDG specifically allows what the Rock 5B does there, i.e. to
+basically short the RK3588's individual *_MEM_S0 power inputs to the
+respective CPU core power supplies, which avoids the need to use 
+separate
+voltage regulators for the RK3588's *_MEM_S0 power inputs.
 
-BTW related to this Dmitry is extending firmware-N.bin handling for
-WCN3990, you will most likely need to use that:
+However, I'd really, _really_ love to know why did Rockchip opt to make
+the power supply voltages separate for the RK3588's L1 and L2 caches,
+which are, BTW, rated for up to 100 mA for each *_MEM_S0 input, meaning
+that they present no large loads?  All that under the assumption that
+my analysis is correct, of course.
 
-https://patchwork.kernel.org/project/linux-wireless/cover/20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org/
+> The voltage of the memory interface though has to match that of the
+> CPU cores that use it, which downstream kernels achieve by the means
+> of a custom cpufreq driver which adjusts both at the same time.
+> 
+> It seems that regulator coupling is a more appropriate generic
+> interface for it, so this patch introduces coupling to affected
+> device trees to ensure that memory interface voltage is also updated
+> whenever cpufreq switches between CPU OPPs.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+I'll verify this a bit later and provide a separate response.
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> Note that other boards, such as Radxa Rock 5B, define both the CPU
+> and memory interface regulators as aliases to the same DT node, so
+> this doesn't apply there.
+
+Yup, they're actually shorted on the Rock 5B, as I described above.
+
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts    | 12 ++++++++++++
+>  arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts | 12 ++++++++++++
+>  2 files changed, 24 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> index de30c2632b8e..dfae67f1e9c7 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+> @@ -788,6 +788,8 @@ regulators {
+>  			vdd_cpu_big1_s0: dcdc-reg1 {
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_big1_mem_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <550000>;
+>  				regulator-max-microvolt = <1050000>;
+>  				regulator-ramp-delay = <12500>;
+> @@ -800,6 +802,8 @@ regulator-state-mem {
+>  			vdd_cpu_big0_s0: dcdc-reg2 {
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_big0_mem_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <550000>;
+>  				regulator-max-microvolt = <1050000>;
+>  				regulator-ramp-delay = <12500>;
+> @@ -812,6 +816,8 @@ regulator-state-mem {
+>  			vdd_cpu_lit_s0: dcdc-reg3 {
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_lit_mem_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <550000>;
+>  				regulator-max-microvolt = <950000>;
+>  				regulator-ramp-delay = <12500>;
+> @@ -836,6 +842,8 @@ regulator-state-mem {
+>  			vdd_cpu_big1_mem_s0: dcdc-reg5 {
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_big1_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <675000>;
+>  				regulator-max-microvolt = <1050000>;
+>  				regulator-ramp-delay = <12500>;
+> @@ -849,6 +857,8 @@ regulator-state-mem {
+>  			vdd_cpu_big0_mem_s0: dcdc-reg6 {
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_big0_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <675000>;
+>  				regulator-max-microvolt = <1050000>;
+>  				regulator-ramp-delay = <12500>;
+> @@ -873,6 +883,8 @@ regulator-state-mem {
+>  			vdd_cpu_lit_mem_s0: dcdc-reg8 {
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_lit_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <675000>;
+>  				regulator-max-microvolt = <950000>;
+>  				regulator-ramp-delay = <12500>;
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+> b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+> index 87a0abf95f7d..9c038450cd7c 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+> @@ -818,6 +818,8 @@ vdd_cpu_big1_s0: dcdc-reg1 {
+>  				regulator-name = "vdd_cpu_big1_s0";
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_big1_mem_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <550000>;
+>  				regulator-max-microvolt = <1050000>;
+>  				regulator-ramp-delay = <12500>;
+> @@ -831,6 +833,8 @@ vdd_cpu_big0_s0: dcdc-reg2 {
+>  				regulator-name = "vdd_cpu_big0_s0";
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_big0_mem_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <550000>;
+>  				regulator-max-microvolt = <1050000>;
+>  				regulator-ramp-delay = <12500>;
+> @@ -844,6 +848,8 @@ vdd_cpu_lit_s0: dcdc-reg3 {
+>  				regulator-name = "vdd_cpu_lit_s0";
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_lit_mem_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <550000>;
+>  				regulator-max-microvolt = <950000>;
+>  				regulator-ramp-delay = <12500>;
+> @@ -870,6 +876,8 @@ vdd_cpu_big1_mem_s0: dcdc-reg5 {
+>  				regulator-name = "vdd_cpu_big1_mem_s0";
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_big1_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <675000>;
+>  				regulator-max-microvolt = <1050000>;
+>  				regulator-ramp-delay = <12500>;
+> @@ -884,6 +892,8 @@ vdd_cpu_big0_mem_s0: dcdc-reg6 {
+>  				regulator-name = "vdd_cpu_big0_mem_s0";
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_big0_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <675000>;
+>  				regulator-max-microvolt = <1050000>;
+>  				regulator-ramp-delay = <12500>;
+> @@ -910,6 +920,8 @@ vdd_cpu_lit_mem_s0: dcdc-reg8 {
+>  				regulator-name = "vdd_cpu_lit_mem_s0";
+>  				regulator-always-on;
+>  				regulator-boot-on;
+> +				regulator-coupled-with = <&vdd_cpu_lit_s0>;
+> +				regulator-coupled-max-spread = <10000>;
+>  				regulator-min-microvolt = <675000>;
+>  				regulator-max-microvolt = <950000>;
+>  				regulator-ramp-delay = <12500>;
 
