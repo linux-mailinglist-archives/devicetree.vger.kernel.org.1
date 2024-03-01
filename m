@@ -1,95 +1,163 @@
-Return-Path: <devicetree+bounces-47721-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47723-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA19686E524
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:19:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 79D9486E52C
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 17:21:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8BF421F25CC1
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:19:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C3B89B21E1F
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:21:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 33B3C40BE3;
-	Fri,  1 Mar 2024 16:19:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83B4D70CB8;
+	Fri,  1 Mar 2024 16:21:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b="gmow9JDw"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="czy4G/u4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from master.debian.org (master.debian.org [82.195.75.110])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8956441E4E
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 16:19:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=82.195.75.110
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF5446F514;
+	Fri,  1 Mar 2024 16:21:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709309971; cv=none; b=u29FUjRUDTbippi8wmaYiS9t2PdOtHB4SiFZQiHzMXyogHRaaq8DaJ1zg7Gl6WYj3p7NQsA332e0bebd0s9xYnkxMwP2ftuNSNlbO2u67Tu06xRZjoqOfA1c5I0OEgcPROmfJaKI/Em+3JjZqTbEc7zsOyLogwn1/ZudSw2lmlI=
+	t=1709310109; cv=none; b=MjM8Uunz5Uxm0UhT5orEJOxFfWOKiU+GKKiXiUtwR8dwAAi7oSaNkagSpwdvxOTghehKS+3vh0P1dQfqIFYo592AY6Lp/X+B9Ue1Pr+cGDHsWyUwNnpgEI1s+5/zwNqGcjLuvLUHbuLWs6DO+OcAEy2FWy7mzm0HmI6PsF42/Tc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709309971; c=relaxed/simple;
-	bh=BxfXF7N/PpOIsKgeQQq9QzSICzrigsYszswaL8R9Lr8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=pwtfnHJkBBSSw4THcGwmeWtQe1aFHNHFvXITnEkRlHxaW3uuO/l8ikX7Q1RnrOiq8sE3L9LomJbpnfIoSd+lCPnuD3h6b7iVCBubNl0lJsDP3FU5TASZRDM/GJzgkqe2O6xlQFq4mVdRTFJTE5sxPqmQH8h1E9AwEfe8T2+ie6s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org; spf=none smtp.mailfrom=master.debian.org; dkim=pass (2048-bit key) header.d=debian.org header.i=@debian.org header.b=gmow9JDw; arc=none smtp.client-ip=82.195.75.110
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=debian.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=master.debian.org
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-	s=smtpauto.master; h=Content-Transfer-Encoding:Content-Type:MIME-Version:
-	Message-ID:Date:Subject:Cc:To:From:Reply-To:Content-ID:Content-Description:
-	In-Reply-To:References; bh=IpAWeoNur8XPIpmTyfMcESNz/wRzFONQ9VyIf7SnmZw=; b=gm
-	ow9JDwFHI4VWSStlrK5k5F00kB8UFc1afFSwxQGhv26C797k7Zamku37cYgDTzR+LS6+xQM4jUqfW
-	zlhTwkLX69P+MsisjUewPR30VOhbNDkule9/DVElZ5NKOkUgtVZjqBYs4e8AQ5VhX+OwKE1aZ8XTX
-	fDZYnfX2RVRhlr963mBCiwbdl9sVZt+bnvTvRlwuGGCOIDZk+JEEIRTe2V1GiBXqo7fKp2yivfYhw
-	6P3tsotZVC2K4WDOxAJLEWsS55ZmmjhwTls++a33IhDshZszgkHfzOgQQ3uie/YLzYaTtkvXgjNro
-	es21vMSTXyG47MRZBYjmhnlqjoO2RJKQ==;
-Received: from ukleinek by master.debian.org with local (Exim 4.94.2)
-	(envelope-from <ukleinek@master.debian.org>)
-	id 1rg5bP-00AnHs-MQ; Fri, 01 Mar 2024 16:19:15 +0000
-From: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <ukleinek@debian.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org,
-	=?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Subject: [PATCH] arm64: dts: rockchip: qnap-ts433: Fix name for UART pin header
-Date: Fri,  1 Mar 2024 17:19:11 +0100
-Message-ID: <20240301161911.558982-2-ukleinek@debian.org>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1709310109; c=relaxed/simple;
+	bh=uLo8DCt9T/OGLjkjcfkmhBFOpOALF0agDtdLfzAchAQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=QgliS5jDdDwcdmnFRqS/ewz0Uo5rWK0l/7FAQ2Dpop/aGDRb8dZo2nieE3kBYfYFl8bplBrDaRmdohWIBj/hb2tKmPK6bwticm7j12VFAE5EEY9oj5vyIeHYN3T8JeUN3fv3zYw8AuvtuBzPQacenNe/W6viSdtE787+mhyvIJw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=czy4G/u4; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from [192.168.0.43] (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BF4DC673;
+	Fri,  1 Mar 2024 17:21:29 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1709310090;
+	bh=uLo8DCt9T/OGLjkjcfkmhBFOpOALF0agDtdLfzAchAQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=czy4G/u4njGCJuUhI9i/3DF46OKAexRoGpz18R5/l3IF2Cw0Q2k2UpKapw3RXiLUY
+	 YdmZZONebJXzbIcHLSb5/i+BAw0VyrpiN26f5YueZI2dvW+raoQ0VC3SyTAIuFVzsD
+	 fAKVTmjbsZKHPY/q4XZFQZXTfeAuINz2pSYipTcQ=
+Message-ID: <acfb2294-089d-4246-a8da-62eaf84c162f@ideasonboard.com>
+Date: Fri, 1 Mar 2024 16:21:41 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-Developer-Signature: v=1; a=openpgp-sha256; l=911; i=ukleinek@debian.org; h=from:subject; bh=BxfXF7N/PpOIsKgeQQq9QzSICzrigsYszswaL8R9Lr8=; b=owEBbQGS/pANAwAKAY+A+1h9Ev5OAcsmYgBl4f//Qh1JlbqOm+AmJNZ07ajDTSmWSAvFY+53r +Mb5KQse7GJATMEAAEKAB0WIQQ/gaxpOnoeWYmt/tOPgPtYfRL+TgUCZeH//wAKCRCPgPtYfRL+ TptxB/9+7OFndy9pHJP9co/+LGWLjI73BcfyCn3fYlN0eXLT2qhe3DaUCq8SvLxXMDm2Lv9kmTL tffTYsVL1EVEntBGvaww73CA4aO5c7o0jj2OIjRnVNvKOH1CV4po2oiHE3/ofpzXoso4r4bohyu Z31B93BjcFz7R7a2EF0r061voQ5NfrHhMIJ69KC2FvegtDzmBZZTH0P7neBsCP6j9Uo6+If+sEU vJ3GMDorV0dxt/MoGTHjLj6Q0AN0u4NjJU6t6Hj1iLcvvhJJ8PobT92vlkP82VnBe13Nvxd0eiJ R4Tm5ZnFGBSPQeavU6CT/fBtEuDKU9H2dHvL/h7IPQfeOYa8
-X-Developer-Key: i=ukleinek@debian.org; a=openpgp; fpr=0D2511F322BFAB1C1580266BE2DCDD9132669BD6
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/5] media: mali-c55: Add Mali-C55 ISP driver
+Content-Language: en-US
+To: Sakari Ailus <sakari.ailus@iki.fi>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com,
+ nayden.kanchev@arm.com, robh+dt@kernel.org, mchehab@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com,
+ laurent.pinchart@ideasonboard.com
+References: <20240214141906.245685-1-dan.scally@ideasonboard.com>
+ <20240214141906.245685-4-dan.scally@ideasonboard.com>
+ <ZdxwE3omXmUjfLMn@valkosipuli.retiisi.eu>
+From: Dan Scally <dan.scally@ideasonboard.com>
+Autocrypt: addr=dan.scally@ideasonboard.com; keydata=
+ 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
+In-Reply-To: <ZdxwE3omXmUjfLMn@valkosipuli.retiisi.eu>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-I typoed the pin header name when copying it from my notes on paper.
+Hi Sakari
 
-Fixes: 9da1c0327d58 ("arm64: dts: rockchip: Add basic support for QNAP TS-433")
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On 26/02/2024 11:03, Sakari Ailus wrote:
+> < snip>
+>> +const struct mali_c55_fmt *mali_c55_cap_fmt_next(const struct mali_c55_fmt *fmt,
+>> +						 bool allow_raw, bool unique)
+>> +{
+>> +	if (!fmt)
+>> +		fmt = &mali_c55_fmts[0];
+>> +	else
+>> +		++fmt;
+> fmt++, please.
+>
+>> +
+>> +	for (; fmt < &mali_c55_fmts[ARRAY_SIZE(mali_c55_fmts)]; ++fmt) {
+> Ditto.
+>
+>> +		if (!allow_raw && fmt->is_raw) {
+>> +			fmt++;
+> Why?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-index 2908486bc924..6a998166003c 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-qnap-ts433.dts
-@@ -76,7 +76,7 @@ &sdhci {
- };
- 
- /*
-- * Pins available on CN2 connector at TTL voltage level (3V3).
-+ * Pins available on CN3 connector at TTL voltage level (3V3).
-  * ,_  _.
-  * |1234|  1=TX 2=VCC
-  * `----'  3=RX 4=GND
 
-base-commit: 1870cdc0e8dee32e3c221704a2977898ba4c10e8
--- 
-2.43.0
+Sorry, I forgot to reply here...I think neither this nor the enumeration filter below is actually 
+used - I'll double check and remove them for the v3.
 
+
+Thanks
+
+Dan
+
+>
+>> +			continue;
+>> +		}
+>> +
+>> +		if (unique && !fmt->enumerate) {
+>> +			fmt++;
+> Here, too.
+
+
+
+>
+>> +			continue;
+>> +		}
+>> +
+>> +		return fmt;
+>> +	}
+>> +
+>> +	return NULL;
+>> +}
+>> +
 
