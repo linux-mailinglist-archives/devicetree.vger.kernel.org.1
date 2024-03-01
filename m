@@ -1,191 +1,249 @@
-Return-Path: <devicetree+bounces-47831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 218B186EB89
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:59:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6B59086EBCC
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 23:23:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC5F02837AF
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 21:59:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1EFD228A3B4
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:23:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 774CE58ADD;
-	Fri,  1 Mar 2024 21:58:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E31E59169;
+	Fri,  1 Mar 2024 22:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="KYkuHNZB"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="2DZIEMSj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2075.outbound.protection.outlook.com [40.107.243.75])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB6EE54273;
-	Fri,  1 Mar 2024 21:58:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709330338; cv=none; b=Ck/07dE1OoY+NFBgrhoA05bwB6Nc8FRAAQYDK+JdlsKjqmvhs/lmsLc1mfXFyVWpatTRjsGi5vpaXS7Zv5l7FIMP77zR6A/hqzYGHSYO6wTmRMutj3kmrfIrFR7JbxufLPBw3+dB9DGmjJ/5O/dnI+oqMkHlmV6vXTnAir5rJL4=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709330338; c=relaxed/simple;
-	bh=rpzufhBBWlnizeYu1YPoPTlBU0W7X0rYNgxoUx78zaU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D9ks7LSYrs2afRZxD6rbFQ7bBiRmccEFVkE5FbyMkEBxwRArVjyu6TYisGGo4bgOHYS8mYXh6Y7Cutc5MJed/oE4a9x6pvbFrXDeDAjJjtyZol7HZukL4xMDGy+V/9dA6RSzEo1WICixE5+KD00A3mUR7HyTJ8Cd5jSVqN953qI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=KYkuHNZB; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6405E673;
-	Fri,  1 Mar 2024 22:58:40 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1709330320;
-	bh=rpzufhBBWlnizeYu1YPoPTlBU0W7X0rYNgxoUx78zaU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KYkuHNZBS1+Vj5TCndthQQr4jD+3GRr1gTOwYfdsCdmbieLEqQK37UPIc3P1gtBrv
-	 PCzGDn3FkQJcYcKHoDW0A3U6QKapE18Ad+eBRraIoTO9gjCB8OxLkDuVd9XrXk+W4Z
-	 IDEfn4nMSbDR2ZWqMh9iMCEGuAiyiLKHV9sP0XB0=
-Date: Fri, 1 Mar 2024 23:58:57 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: Linux Media Mailing List <linux-media@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 7/9] media: dt-bindings: Add bindings for Raspberry Pi
- PiSP Back End
-Message-ID: <20240301215857.GO30889@pendragon.ideasonboard.com>
-References: <20240223163012.300763-1-jacopo.mondi@ideasonboard.com>
- <20240223163012.300763-8-jacopo.mondi@ideasonboard.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50CA238DCD;
+	Fri,  1 Mar 2024 22:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.243.75
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709331807; cv=fail; b=b40Sd2r1knge2roD/dV5+OC6TvKfmJ833noS/yCOG95CfjXpZd9kBAobHIFhUnsi8ActWAe99ZiVypiPUwUjiJa96cwWbAnJriQb7xRaYsL1b+XO4jQ2T4aOydEf8ddJ1i0J7XvuF7c2/Xz5ipSDlbKNPRg9WN6iB50hTV5G+cQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709331807; c=relaxed/simple;
+	bh=Br0dHaPf/zsyKdse6NF7ocDjkDTzt0I3+DcZanQwJVs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=BJoj8cPckaghauS1ygzbFaCbpGLmfqOTGp+FItF/hb3L+ANXvaROOK2J3lA2dWNlrk50yBxni+YQvKuo4E99mzv0TBkmJGPqSJ8JsVQbncrOv4IVjLV4PVqOgYHU0PkMsXNVXkqr1x18FYdlc1A7bW4C3BbwTZay6lrnBmmOlDI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=2DZIEMSj; arc=fail smtp.client-ip=40.107.243.75
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bqetMl6oCr26vfhs0lz+YhNQ1VJfN5E2AWSv+L4FLnUHhvG+98D1Y4zYfZWD0QD/jnyZe34hVAQntQwE5XjfAO9DZVZPQiacPCTC2lv+SvmUbVRJhsWbXq6Wq1OiVzq45hQbphhP323pcwbksUIi93q2xuK1eHn/o7vBBvkvTLy3kkQB6Be7XPZXfiphIcZv1BlnzLZRlLWrz3wbHugmuCe0zh5B5C6nUok/1gsj3Wcb7ZwhAAB7IDbSkYLXUWDZCyvW2kf0o59+GWwpA63dCJU4VtN0HExAuCqNUt0awyOJSKr9qriXY1ITsulNlHumzoP/q5l7fcz735AFsljLSA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RL4dEJAlIwDlPYlI9vmoWjrrkKiS5cF0OL/agpmraM8=;
+ b=d/ugIZRhMmw432ymwIj4QA7y+6a+NU4r+dqdBTd2caYA+3sK+CcEvUSBtq3xUbmU7qe34IP23N057UfDAXYtH6B3BNuqcCQuO5lp7I6ttpfHP4WNRwiHUxgr8kg8dvvP0n9dOmBcZvse7+N5biTV6QAUR22rA5tTY0oOr7r3CR8N7lQTbN3GHY46YLjEXepaieECHjqc1RsikRmAOECEgpPfm1Y43hpVtZdaZDd0kMvOZjQt6jWSOHhml0qTkCbzfBHbEi9UOjVEnH25irkezWJnQKDDdXZ+5U82vg0nCl3+PphxifQmT50CxeQw66sZfsJsjoTRwgfP51yt3aGd0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=jms.id.au smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RL4dEJAlIwDlPYlI9vmoWjrrkKiS5cF0OL/agpmraM8=;
+ b=2DZIEMSjh9zG2NhtAABOsW3XsmEpMWHSZ7hVpsyawwO7WzNZEM3AZHYZAG1lp5BJU2P5TWD28JSOHAfQ+Ynt6M8HaAdRkulzwqn8jgW3UnseMvPXuWTPS96szBZ158cnjc0zmTzrxSr/8uMXf+xb5MmZ8My6q9U0B1AbV1AIIe8=
+Received: from CY5P221CA0030.NAMP221.PROD.OUTLOOK.COM (2603:10b6:930:b::36) by
+ SJ2PR12MB9139.namprd12.prod.outlook.com (2603:10b6:a03:564::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.7316.36; Fri, 1 Mar 2024 22:23:23 +0000
+Received: from CY4PEPF0000EDD6.namprd03.prod.outlook.com
+ (2603:10b6:930:b:cafe::e) by CY5P221CA0030.outlook.office365.com
+ (2603:10b6:930:b::36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.34 via Frontend
+ Transport; Fri, 1 Mar 2024 22:23:22 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CY4PEPF0000EDD6.mail.protection.outlook.com (10.167.241.210) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.7362.11 via Frontend Transport; Fri, 1 Mar 2024 22:23:22 +0000
+Received: from BMCDEV-TH3.amd.com (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 1 Mar
+ 2024 16:23:21 -0600
+From: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+To: <joel@jms.id.au>, <andrew@aj.id.au>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-aspeed@lists.ozlabs.org>,
+	<linux-kernel@vger.kernel.org>, <openbmc@lists.ozlabs.org>,
+	<robh+dt@kernel.org>
+CC: <supreeth.venkatesh@amd.com>
+Subject: [PATCH v2 1/1] ARM:dts:aspeed: Initial device tree for AMD Onyx Platform
+Date: Fri, 1 Mar 2024 16:22:57 -0600
+Message-ID: <20240301222257.3309541-1-supreeth.venkatesh@amd.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240223163012.300763-8-jacopo.mondi@ideasonboard.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SATLEXMB03.amd.com (10.181.40.144) To SATLEXMB04.amd.com
+ (10.181.40.145)
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD6:EE_|SJ2PR12MB9139:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6f1db55a-2123-4c51-2687-08dc3a3e34c8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	J1B2IjjjbE2bpoQwbYV1+ZmVsVjjunF8+Zr9TIXTBVQtMtO/LPOiyOh82n3BJgagzZ1IlCK9pdsUlXD5tVf87Zz1FdVmGuh8WfFaP7VVE/SLSR6bvUDEsKgSWyiI20JVMT60gDrl+tmEW8HmfAn2o/zTEMo2BiNU2jS9gvcsPB2NKvCTsz3qYbRnM5Z640NTN8gVh/yLZKmc0xq5oi956aeUc/f5qaAf8FH9Iosa3Wk9S01aaDBaW6p9QWa3Z073fV2hmqyv7xkhZLafuyJ3Jy0FqIPt87Aj1E/DescSQ1PT8h1PaEQsJi8IxJrn3+OJ8cf/YqGL4uPX9Y3U0uy1k6J2LXJQx02OX4MizvKYLz0ECMzI5pKbDZbXEfe8td3t3UwD5DfJvCzy5COWXeZZyP/dlBtamkuGnpBA4Y4kT1lrI/ETxOvzWAqlB1uqqEQ3J6HhOAe5DXA5wZGCA+NEkvXsUNMIt3h1FqIml5eQ68/8jQis829qpZsK/oc6A3fe8Yd72amP3XBg+v0nd88C6wWCsI3ZE+EYrcThLaAixCtZH5Cosg7xkxo85l4rvSNde15iGJS6wXuurV227/L2t2NGi11fj9LL4bZgbU+MfPchOZX0Fh8hhwdunFOkZcMWFtJGSzIj4cnNCSN4kbRbQ7ymxNuJEtstc1FhwoYQOV9PJr6PGn+6mWpPu+Hf2TVySFD20P1w0TzBzu56/c8M38i5Qr9HGvzEY69+OIvxcocvG6lK6Owunq+NBNj0pg3f
+X-Forefront-Antispam-Report:
+	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(36860700004)(82310400014);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2024 22:23:22.6589
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6f1db55a-2123-4c51-2687-08dc3a3e34c8
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource:
+	CY4PEPF0000EDD6.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR12MB9139
 
-Hi Jacopo,
+Add initial device tree and makefile updates for
+AMD Onyx platform.
 
-Thank you for the patch.
+AMD Onyx platform is an AMD customer reference board with an Aspeed
+ast2600 BMC manufactured by AMD.
+It describes I2C devices, UARTs, MAC, FMC, etc.
+present on AMD Onyx platform.
 
-On Fri, Feb 23, 2024 at 05:30:09PM +0100, Jacopo Mondi wrote:
-> Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
-> signal processor.
-> 
-> Datasheet:
-> https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
-> 
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> ---
->  .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
-> new file mode 100644
-> index 000000000000..d7839f32eabf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
-> @@ -0,0 +1,63 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/raspberrypi,pispbe.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Raspberry Pi PiSP Image Signal Processor (ISP) Back End
-> +
-> +maintainers:
-> +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-> +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> +
-> +description: |
-> +  The Raspberry Pi PiSP Image Signal Processor (ISP) Back End is an image
-> +  processor that fetches images in Bayer or Grayscale format from DRAM memory
-> +  in tiles and produces images consumable by application.
+Signed-off-by: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+---
+Changes since v1:
+* Incorporate review comments
+* Update commit message
+* Remove vmalloc and earlyprintk
+---
+ arch/arm/boot/dts/aspeed/Makefile             |  1 +
+ .../boot/dts/aspeed/aspeed-bmc-amd-onyx.dts   | 94 +++++++++++++++++++
+ 2 files changed, 95 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
 
-s/application/applications/
+diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+index fb9cc95f1b60..2b27d377aae2 100644
+--- a/arch/arm/boot/dts/aspeed/Makefile
++++ b/arch/arm/boot/dts/aspeed/Makefile
+@@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+ 	aspeed-ast2600-evb.dtb \
+ 	aspeed-bmc-amd-daytonax.dtb \
+ 	aspeed-bmc-amd-ethanolx.dtb \
++	aspeed-bmc-amd-onyx.dtb \
+ 	aspeed-bmc-ampere-mtjade.dtb \
+ 	aspeed-bmc-ampere-mtmitchell.dtb \
+ 	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+new file mode 100644
+index 000000000000..1831b8d18db2
+--- /dev/null
++++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+@@ -0,0 +1,94 @@
++// SPDX-License-Identifier: GPL-2.0+
++// Copyright (c) 2021 - 2024 AMD Inc.
++// Author: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
++
++/dts-v1/;
++
++#include "aspeed-g6.dtsi"
++#include <dt-bindings/gpio/aspeed-gpio.h>
++
++/ {
++	model = "AMD Onyx BMC";
++	compatible = "amd,onyx-bmc", "aspeed,ast2600";
++
++	aliases {
++		serial0 = &uart1;
++		serial4 = &uart5;
++	};
++
++	chosen {
++		stdout-path = &uart5;
++		bootargs = "console=ttyS4,115200n8";
++	};
++
++	memory@80000000 {
++		device_type = "memory";
++		reg = <0x80000000 0x80000000>;
++	};
++
++};
++
++&mdio0 {
++	status = "okay";
++	ethphy0: ethernet-phy@0 {
++		compatible = "ethernet-phy-ieee802.3-c22";
++		reg = <0>;
++	};
++};
++
++&mac3 {
++	status = "okay";
++	phy-mode = "rgmii";
++	phy-handle = <&ethphy0>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_rgmii4_default>;
++};
++
++&fmc {
++	status = "okay";
++	flash@0 {
++		compatible = "jedec,spi-nor";
++		status = "okay";
++		#include "openbmc-flash-layout-128.dtsi"
++	};
++};
++
++//Host Console
++&uart1 {
++	status = "okay";
++};
++
++//BMC Console
++&uart5 {
++	status = "okay";
++};
++
++&gpio0 {
++gpio-line-names =
++	/*A0-A7*/	"","","","","","","","",
++	/*B0-B7*/	"","","","","MON_POST_COMPLETE","P0_PRESENT_L","","",
++	/*C0-C7*/	"","","","","","","","",
++	/*D0-D7*/	"","","","","","","","",
++	/*E0-E7*/	"","","","","","","","",
++	/*F0-F7*/	"","","","","","","","",
++	/*G0-G7*/	"","","","","","","","",
++	/*H0-H7*/	"","ASSERT_WARM_RST_BTN_L","ASSERT_SOC_RST_BTN_L","","","","","",
++	/*I0-I7*/	"","","","","","","","P0_I3C_APML_ALERT_L",
++	/*J0-J7*/	"","","","","","","","",
++	/*K0-K7*/	"","","","","","","","",
++	/*L0-L7*/	"","","","","","","","",
++	/*M0-M7*/	"","","","","","","","",
++	/*N0-N7*/	"","","","","","","PSP_SOFT_FUSE_NOTIFY","ASSERT_BMC_READY",
++	/*O0-O7*/	"","","HDT_SEL","HDT_XTRIG5","HDT_XTRIG6","JTAG_TRST_N","","",
++	/*P0-P7*/	"MON_RST_BTN_L","ASSERT_RST_BTN_L","MON_PWR_BTN_L","ASSERT_PWR_BTN_L","HPM_FPGA_LOCKOUT","ASSERT_NMI_BTN_L","MON_PWR_GOOD","",
++	/*Q0-Q7*/	"","","HDT_DBREQ_L","","BIOS_SPD_MUX_CTRL_RELEASED_L","","","",
++	/*R0-R7*/	"","","","","","","","",
++	/*S0-S7*/	"","","","","","","P0_DIMM_AF_ERROR","P0_DIMM_GL_ERROR",
++	/*T0-T7*/	"","","","","","","","",
++	/*U0-U7*/	"","","","","","","","",
++	/*V0-V7*/	"","","","","","","","",
++	/*W0-W7*/	"","","","","","","","",
++	/*X0-X7*/	"","","","","","","","",
++	/*Y0-Y7*/	"","","","","","","","",
++	/*Z0-Z7*/	"","","","","","","","";
++};
+--
+2.34.1
 
-> +
-> +  The full ISP documentation is available at:
-
-s/:$//
-
-> +  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - brcm,bcm2712-pispbe
-> +      - const: raspberrypi,pispbe
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-
-As this is a SoC IP with only memory and register interfaces, I would
-expect two clocks to be present, one for the register interface (AHB ?
-AXI4-Lite ?) and one for the memory interfaces (AXI4 ?). While the
-register interface clock is likely always enabled (in all cases that
-matter in practice) in the BCM2712, I'm not sure this can be guaranteed
-for future integration in different SoCs. Should we plan for this, and
-either define two clocks already (with one of them being optional), or
-name the single clock ?
-
-I know v1 named this clock "isp_be", and the name was dropped upon
-Krzysztof's request, but I think naming the single clock "axi" or "aclk"
-(assuming that one of them would be the right name) would be fine for
-the reason explained above.
-
-> +
-> +  iommus:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        isp@880000  {
-> +             compatible = "brcm,bcm2712-pispbe", "raspberrypi,pispbe";
-> +             reg = <0x10 0x00880000  0x0 0x4000>;
-
-Double space, I don't know if that's on purpose.
-
-> +             interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> +             clocks = <&firmware_clocks 7>;
-> +             iommus = <&iommu2>;
-> +        };
-> +    };
-
--- 
-Regards,
-
-Laurent Pinchart
 
