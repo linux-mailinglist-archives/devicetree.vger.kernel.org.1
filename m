@@ -1,213 +1,115 @@
-Return-Path: <devicetree+bounces-47518-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47523-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0908B86D8ED
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 02:36:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 10CC086D90A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 02:42:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E5273B23484
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 01:36:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 89B2BB21025
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 01:42:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 93D6E2BAE9;
-	Fri,  1 Mar 2024 01:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D0C563399B;
+	Fri,  1 Mar 2024 01:42:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="c7UFXKtO"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="Ijun7IBy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34024A92E;
-	Fri,  1 Mar 2024 01:36:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F1A82E40E
+	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 01:42:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709256971; cv=none; b=m7zhoKgNuzGvjOJiz3O8bVlS5HGu4SKxJ+c7funvTe7ISWC7fcfMd8x0X5L791hyp2yh5v2bPrQMYPgaBQ8exialYJJnMzHJ8LP9RfyLK2V5axJj1s158uTyJ4jasxy3vZnd1n9sIjPgoVPJj4rWnrAXqjdaEjMAT0ZO9LEQRA8=
+	t=1709257334; cv=none; b=cDZzKDRtllOR92yHViwPGvsArSnFCB3Bc3drfc5vtYoRFuSpPYMycWWvXtRWYkCyNfmSHrDvFaKgRkdoSvGxVZUH7QZs+WrfI00S2PhX9ItwOAq+hvUFZ9LEU1YEEnGEEg6R+F8pJnS8nLDPMhMMp68jpNyeURLLyG52ctNeAN8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709256971; c=relaxed/simple;
-	bh=lnWUWgTACekg7SxM68wQvGPTavjyMmJFPT+m1gI3OdU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=a02xOODT9+5U+m7GA2UzzVvh8y2oztkN+M5f8amz1YkMUfOj+hVR8H0BM7omdDIA3xgNxefZmznP2xaLKmDIlqEvWRSMNK8FsLn71uRAtE5cTIK3FGWlICJ/fIQP4G+VDrcrwyqXMwyv5lfQUNxsQ30qDKh21bZxnR4v9tnXx7g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=c7UFXKtO; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 41TEQpkM006786;
-	Fri, 1 Mar 2024 01:35:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=TtHNnTfGoMKg5efEVBnGq
-	6NLMyaY4z6AKIS0EWb8b0s=; b=c7UFXKtONcJtN6LV0x+OL5V7yrZXGu59BzQKX
-	LWMwCrvJmYd/hSonLiwG7dDdZ+M0V+TCrJYW3aUJ5qKNXpsTUB6xptdTVglYKVjr
-	Ej2UHzevU5p0RNcumlKmSujtgrm46wxF518KGPvKCt67SwXuBL9B9LfECWpPwU4j
-	InVfdIT0OzttKH2+fWcXrECDDzwsy+/4kh7qqp8fLy/Jkhv5OHBm7pg4zXnqwr2P
-	QRW9LLuE+3v/QAJubXyk7Qn/KdO/JbHpU1SKRdoEn1nNTc4ae3kyxVzSErRxkxaw
-	PV7dpP/YdiSVP3+a2l8RVY4IZZNP4O8I/dT34XmEYQTlNPomQ==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wjupp1sgu-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 01 Mar 2024 01:35:47 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4211ZkLN012568
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 1 Mar 2024 01:35:46 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 29 Feb 2024 17:35:45 -0800
-Date: Thu, 29 Feb 2024 17:35:45 -0800
-From: Elliot Berman <quic_eberman@quicinc.com>
-To: David Hildenbrand <david@redhat.com>
-CC: Christoph Hellwig <hch@infradead.org>, Will Deacon <will@kernel.org>,
-        Quentin Perret <qperret@google.com>,
-        Chris Goldsworthy
-	<quic_cgoldswo@quicinc.com>,
-        Android KVM <android-kvm@google.com>,
-        "Patrick
- Daly" <quic_pdaly@quicinc.com>,
-        Alex Elder <elder@linaro.org>,
-        "Srinivas
- Kandagatla" <srinivas.kandagatla@linaro.org>,
-        Murali Nalajal
-	<quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        "Srivatsa
- Vaddagiri" <quic_svaddagi@quicinc.com>,
-        Carl van Schaik
-	<quic_cvanscha@quicinc.com>,
-        Philip Derrin <quic_pderrin@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Jonathan Corbet
-	<corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Dmitry
- Baryshkov" <dmitry.baryshkov@linaro.org>,
-        Fuad Tabba <tabba@google.com>,
-        "Sean Christopherson" <seanjc@google.com>,
-        Andrew Morton
-	<akpm@linux-foundation.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
-Subject: Re: Re: [PATCH v17 19/35] arch/mm: Export direct {un,}map functions
-Message-ID: <20240229170329275-0800.eberman@hu-eberman-lv.qualcomm.com>
-Mail-Followup-To: David Hildenbrand <david@redhat.com>, 
-	Christoph Hellwig <hch@infradead.org>, Will Deacon <will@kernel.org>, 
-	Quentin Perret <qperret@google.com>, Chris Goldsworthy <quic_cgoldswo@quicinc.com>, 
-	Android KVM <android-kvm@google.com>, Patrick Daly <quic_pdaly@quicinc.com>, 
-	Alex Elder <elder@linaro.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Murali Nalajal <quic_mnalajal@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
-	Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>, Carl van Schaik <quic_cvanscha@quicinc.com>, 
-	Philip Derrin <quic_pderrin@quicinc.com>, Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>, 
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Fuad Tabba <tabba@google.com>, Sean Christopherson <seanjc@google.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mm@kvack.org
-References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
- <20240222-gunyah-v17-19-1e9da6763d38@quicinc.com>
- <ZdhEtH7xzbzdhS2j@infradead.org>
- <20240223071006483-0800.eberman@hu-eberman-lv.qualcomm.com>
- <Zdxwo0abvklfam-Z@infradead.org>
- <2f4c44ad-b309-4baa-ac21-2ae19efd31fb@redhat.com>
- <20240226092020370-0800.eberman@hu-eberman-lv.qualcomm.com>
- <49d14780-56f4-478d-9f5f-0857e788c667@redhat.com>
+	s=arc-20240116; t=1709257334; c=relaxed/simple;
+	bh=INZY+SadHUfqA83CZH6RrT2XxFFOy/Ey75oZx6N8c58=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Ri2UAaOG4TCCr26UDMUEQtHAf3N3G/I93CM8D7Ed1tWkQcWfgXicgyhaiv2Bt1hoSy+JdVK4XjnDpvhqiymTh+DQ1hlKs5357flxkGnVQ3ux5rPGfs1NHczpRGd5ipSnvjn1em1fWLHtGuqyPJL0h6ypRXITRc1G4mIgEs3Wdao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=Ijun7IBy; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 380B12C0357;
+	Fri,  1 Mar 2024 14:42:10 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1709257330;
+	bh=OXAJeaE3GvagN6nGaX3LLx/j6ndgTitcWcCU1jpTvfc=;
+	h=From:To:Cc:Subject:Date:From;
+	b=Ijun7IByBJnY05GU24Hh+uEs2REurx7LH0e6u4ganznmmQpj2CuruhF7pkgUCjiVp
+	 UWFXAOf8vThxo0Z41QX2ltf1N3chfbAOhQiQA6AYFanK6PHSIHZ1cmHqJjT5vsQ7UZ
+	 g8Esw+p69AnuQ09CWgqmMwn8aXcI/XvMNcHZW+TPq8wICUDeso66qhx8DTILOcCnGa
+	 fwO7+lTCrdb36uMjV9kTZZtyoIymyvsReWmLVwOWBT+yBCO0jw4+nWdtOrQ09JTrF0
+	 21dSN82hBiGj9b7LA0fKD+IqLWZCjS84E9IxzyAEAfJPE/q8aj4bQdSwPjy9IKJOx4
+	 X+wclV0L7/LQQ==
+Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B65e132720000>; Fri, 01 Mar 2024 14:42:10 +1300
+Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
+	by pat.atlnz.lc (Postfix) with ESMTP id 0993413EDA8;
+	Fri,  1 Mar 2024 14:42:10 +1300 (NZDT)
+Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
+	id 0457F2807C4; Fri,  1 Mar 2024 14:42:09 +1300 (NZDT)
+From: Chris Packham <chris.packham@alliedtelesis.co.nz>
+To: andy@kernel.org,
+	geert@linux-m68k.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	andrew@lunn.ch,
+	gregory.clement@bootlin.com,
+	sebastian.hesselbarth@gmail.com,
+	pavel@ucw.cz,
+	lee@kernel.org
+Cc: linux-leds@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v3 0/4] auxdisplay: 7 segment LED display
+Date: Fri,  1 Mar 2024 14:41:59 +1300
+Message-ID: <20240301014203.2033844-1-chris.packham@alliedtelesis.co.nz>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <49d14780-56f4-478d-9f5f-0857e788c667@redhat.com>
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: OYxMkhK68XESzq23hFsSJIpyHes2RpDe
-X-Proofpoint-GUID: OYxMkhK68XESzq23hFsSJIpyHes2RpDe
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-02-29_08,2024-02-29_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
- lowpriorityscore=0 impostorscore=0 bulkscore=0 phishscore=0 suspectscore=0
- mlxlogscore=999 mlxscore=0 malwarescore=0 adultscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
- definitions=main-2403010011
+Content-Transfer-Encoding: quoted-printable
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65e13272 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=K6JAEmCyrfEA:10 a=VwQbUJbxAAAA:8 a=0R7D7yuIXD4GK1tbB18A:9 a=3ZKOabzyN94A:10 a=AjGcO6oz07-iQ99wixmX:22
+X-SEG-SpamProfiler-Score: 0
+x-atlnz-ls: pat
 
-On Tue, Feb 27, 2024 at 10:49:32AM +0100, David Hildenbrand wrote:
-> On 26.02.24 18:27, Elliot Berman wrote:
-> > On Mon, Feb 26, 2024 at 12:53:48PM +0100, David Hildenbrand wrote:
-> > > On 26.02.24 12:06, Christoph Hellwig wrote:
-> > > > The point is that we can't we just allow modules to unmap data from
-> > > > the kernel mapping, no matter how noble your intentions are.
-> > > 
-> > > I absolutely agree.
-> > > 
-> > 
-> > Hi David and Chirstoph,
-> > 
-> > Are your preferences that we should make Gunyah builtin only or should add
-> > fixing up S2 PTW errors (or something else)?
-> 
-> Having that built into the kernel certainly does sound better than exposing
-> that functionality to arbitrary OOT modules. But still, this feels like it
-> is using a "too-low-level" interface.
-> 
+This series adds a driver for a 7 segment LED display.
 
-What are your thoughts about fixing up the stage-2 fault instead? I
-think this gives mmu-based isolation a slight speed boost because we
-avoid modifying kernel mapping. The hypervisor driver (KVM or Gunyah)
-knows that the page isn't mapped. Whether we get S2 or S1 fault, the
-kernel is likely going to crash, except in the rare case where we want
-to fix the exception. In that case, we can modify the S2 fault handler
-to call fixup_exception() when appropriate.
+I haven't had a chance to look at the gpio changes that'd be required to
+have multiple characters as subnodes. I wanted to get the code that
+addressed Andy and Rob's comments out before my weekend.
+--
+[1] - https://lore.kernel.org/lkml/2a8d19ee-b18b-4b7c-869f-7d601cea30b6@a=
+lliedtelesis.co.nz/
 
-> > 
-> > Also, do you extend that preference to modifying S2 mappings? This would
-> > require any hypervisor driver that supports confidential compute
-> > usecases to only ever be builtin.
-> > 
-> > Is your concern about unmapping data from kernel mapping, then module
-> > being unloaded, and then having no way to recover the mapping? Would a
-> > permanent module be better? The primary reason we were wanting to have
-> > it as module was to avoid having driver in memory if you're not a Gunyah
-> > guest.
-> 
-> What I didn't grasp from this patch description: is the area where a driver
-> would unmap/remap that memory somehow known ahead of time and limited?
-> 
-> How would the driver obtain that memory it would try to unmap/remap the
-> direct map of? Simply allocate some pages and then unmap the direct map?
+Chris Packham (4):
+  auxdisplay: Add 7-segment LED display driver
+  dt-bindings: auxdisplay: Add bindings for generic 7-segment LED
+  ARM: dts: marvell: Add 7-segment LED display on x530
+  ARM: dts: marvell: Indicate USB activity on x530
 
-That's correct.
+ .../bindings/auxdisplay/gpio-7-segment.yaml   |  42 ++++++
+ .../boot/dts/marvell/armada-385-atl-x530.dts  |  22 +++-
+ drivers/auxdisplay/Kconfig                    |  10 ++
+ drivers/auxdisplay/Makefile                   |   1 +
+ drivers/auxdisplay/seg-led-gpio.c             | 122 ++++++++++++++++++
+ 5 files changed, 196 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/auxdisplay/gpio-7-s=
+egment.yaml
+ create mode 100644 drivers/auxdisplay/seg-led-gpio.c
 
-> 
-> For example, we do have mm/secretmem.c, where we unmap the directmap on
-> allocation and remap when freeing a page. A nice abstraction on alloc/free,
-> so one cannot really do a lot of harm.
-> 
-> Further, we enlightened the remainder of the system about secretmem, such
-> that we can detect that the directmap is no longer there. As one example,
-> see the secretmem_active() check in kernel/power/hibernate.c.
-> 
+--=20
+2.43.2
 
-I'll take a look at this. guest_memfd might be able to use PM notifiers here
-instead, but I'll dig in the archives to see why secretmem isn't using that.
-
-> A similar abstraction would make sense (I remember a discussion about having
-> secretmem functionality in guest_memfd, would that help?), but the question
-> is "which" memory you want to unmap the direct map of, and how the driver
-> became "owner" of that memory such that it would really be allowed to mess
-> with the directmap.
 
