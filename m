@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-47699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A438686E396
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:42:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 80C4586E3B2
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:47:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D40DA1C20FBB
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 14:42:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B083E1C22A2E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 14:47:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034EE39846;
-	Fri,  1 Mar 2024 14:42:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05D0A2B9A2;
+	Fri,  1 Mar 2024 14:47:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dwt/JV20"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fEr9Rad7"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B461A2B9D5;
-	Fri,  1 Mar 2024 14:42:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C847AEDB;
+	Fri,  1 Mar 2024 14:47:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709304145; cv=none; b=vD/d1Qkz4OgV2Wt7lU+6Kc77CdXsAF9tYs5WqfMGm+m0Pw4KmtvjRY0dc9V7hqbzvUyjEmqtAmHojbGqPGCoe3CSbiXxhitcfV9HN1PVb6HEnUfUcIHtl0W9u5jC6JteFqwzNpmdZb7Wi4CpS+KpMRdUpR3Vy9xeubM63j3oPjw=
+	t=1709304462; cv=none; b=TvHaXmKAL1mZmFhGsf90h03WCMNVEJDGfSALiUGGhgd7Mai+3fCQJORFjCuVUIYO8yZCS+L8QhYzvAiROl943zAjs+VYuNB9UqJ9tWsPJ6FdApFG9MJpb6hTn+DDYxSypTSHKV6D/XARQ6Xt6hPO/fniX4WHwIWXg9bVrYeo+U8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709304145; c=relaxed/simple;
-	bh=KACukKEnJXFukkXmjTQgXX49As3BIWd4peTBZp//0+g=;
+	s=arc-20240116; t=1709304462; c=relaxed/simple;
+	bh=doXwc+HnpAdZ9CAsr12bsREMrG/H40nyaPLWjZvbd38=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dawNzIQS4RU2K5We8S5sOGMvfxb1Lwk1/+Bjt1vMfbVd4Jl0lfpxTtLrwzRSCFuXpkDRmBfR0860hL1Qhrkf3pupG+/5/d395tOyZRvCKnAZf2rdP48Guw8/PBlFn7xYJx8E2Fj2AfV5860totF/3IxWlnAL7cHx0DVokefbUh8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dwt/JV20; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE57AC43394;
-	Fri,  1 Mar 2024 14:42:24 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=SS5Pkzun5spYSY2FBCwOwckvGuxsNNfsDem3pzZYVimk1bb0jzO/MGC591/GSxCaIL25rw/oXSuYyWel1K59SanMZS+RaU55ohxfsr4AZxhFiXK/SBSejWNV5AdTURLcbW6dPi+aHICKKt8irIEVxIDGFIXGEDaVF5/iPqt1lrU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fEr9Rad7; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 10F06C433F1;
+	Fri,  1 Mar 2024 14:47:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709304145;
-	bh=KACukKEnJXFukkXmjTQgXX49As3BIWd4peTBZp//0+g=;
+	s=k20201202; t=1709304462;
+	bh=doXwc+HnpAdZ9CAsr12bsREMrG/H40nyaPLWjZvbd38=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dwt/JV20KkXI8J8VpICUQOxmVPe6+NHLfVYlc86oQ9FPfArN6MtXomfjwSVPFszDH
-	 Ipu6JRvPLOml/w5gvOrbOBnU7WxI3EhmAiDbDNNTX4cGB0l6FO48YoByHfLCbNYD1H
-	 O0X4beCpos/ilRve896KhZub+JYKhhwq4g+m59H5b2itWyVx0yutBZnp/A9Go8zyPh
-	 fw/hdy0sSu2gpgvCyL/8A/kLmzJxT/1uVhypWoYPAAjGuiGYlrlbE1rf4ioJ03lMnZ
-	 YjNVpEDyWPn6IyMMLpxDzlm+BB4JLdKBWkALkximtSU9EgoQzLztKhJ5ydgOFIW4F3
-	 K78ScNPXaX9Gg==
-Date: Fri, 1 Mar 2024 08:42:22 -0600
+	b=fEr9Rad7yvcM2enzGLz1qYGqnObleMpmze27KBcxkkgN7/EPf03A68TYeGIXPZpjc
+	 +gjUbeOb4tsoRRNxILFbYpOS2lZEuLYDcEuYpJmg/yITGuArNz3D4mF9JewcsP56MS
+	 4cMFwmhBKPs8AKB14PuBEWyBFVTGhCGuXyYf1XTFyWrLus7Ir1xKusSLAcOACuB0vJ
+	 dgmo+r59SQ6ufw5EOvRZynahUgFQI9wVXCPaOCDoNKiXTlAzyQJy7cBUVD3InHzdyw
+	 H/F6IuhXLfSr0IvrqB0EE20uV+J+hmoUkuV9t1H6MJUKEk0e7417SMsniFS2+rQaOE
+	 BUDzqUOGqJQbA==
+Date: Fri, 1 Mar 2024 08:47:38 -0600
 From: Rob Herring <robh@kernel.org>
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Andi Shyti <andi.shyti@kernel.org>, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH RFT 1/3] dt-bindings: i2c: mpc: use proper binding for
- transfer timeouts
-Message-ID: <170930414189.2106142.4220146551084193594.robh@kernel.org>
-References: <20240229105810.29220-5-wsa+renesas@sang-engineering.com>
- <20240229105810.29220-6-wsa+renesas@sang-engineering.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: imx@lists.linux.dev, conor@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
+	linux-kernel@vger.kernel.org, conor+dt@kernel.org,
+	linux-pci@vger.kernel.org, lpieralisi@kernel.org,
+	helgaas@kernel.org, bhelgaas@google.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH v5 1/5] dt-bindings: pci: layerscape-pci: Convert to yaml
+ format
+Message-ID: <20240301144738.GA2110767-robh@kernel.org>
+References: <20240228190321.580846-1-Frank.Li@nxp.com>
+ <20240228190321.580846-2-Frank.Li@nxp.com>
+ <170915420970.759733.12998246565079147606.robh@kernel.org>
+ <ZeDCQezI2zj8bWBP@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,21 +64,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240229105810.29220-6-wsa+renesas@sang-engineering.com>
+In-Reply-To: <ZeDCQezI2zj8bWBP@lizhi-Precision-Tower-5810>
 
-
-On Thu, 29 Feb 2024 11:58:11 +0100, Wolfram Sang wrote:
-> "i2c-scl-clk-low-timeout-us" has flaws in itself and the usage here is
-> all wrong. The driver doesn't use it as a maximum time for clock
-> stretching but the maximum time for a total transfer. We already have
-> a binding for the latter. Convert the wrong binding from examples.
+On Thu, Feb 29, 2024 at 12:43:29PM -0500, Frank Li wrote:
+> On Wed, Feb 28, 2024 at 03:03:31PM -0600, Rob Herring wrote:
+> > 
+> > On Wed, 28 Feb 2024 14:03:17 -0500, Frank Li wrote:
+> > > Split layerscape-pci.txt into two yaml files: fsl,layerscape-pcie-ep.yaml
+> > > and fsl,layerscape-pcie.yaml.
+> > > yaml files contain the same content as the original txt file.
+> > > 
+> > > The subsequent commit will fix DTB_CHECK failure.
+> > > 
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  .../bindings/pci/fsl,layerscape-pcie-ep.yaml  |  89 +++++++++++++
+> > >  .../bindings/pci/fsl,layerscape-pcie.yaml     | 123 ++++++++++++++++++
+> > >  .../bindings/pci/layerscape-pci.txt           |  79 -----------
+> > >  3 files changed, 212 insertions(+), 79 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
+> > >  create mode 100644 Documentation/devicetree/bindings/pci/fsl,layerscape-pcie.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/pci/layerscape-pci.txt
+> > > 
+> > 
+> > My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
 > 
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> ---
->  Documentation/devicetree/bindings/i2c/i2c-mpc.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+> Please omit these errors. Bjorn require create a identical version as
+> old txt file.
 > 
+> Origial txt will cause DTB_CHECK error. The problem will be fixed at next
+> patches.
 
-Acked-by: Rob Herring <robh@kernel.org>
+Nope. We can't have warnings. Please fix them in the conversion. Call 
+out the changes in the commit message.
 
+Rob
 
