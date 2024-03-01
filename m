@@ -1,195 +1,123 @@
-Return-Path: <devicetree+bounces-47653-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47654-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 370DA86E0BD
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 12:54:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 162D186E0C0
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 12:56:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 90B0BB216DE
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 11:54:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ADB82284369
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 11:56:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EAC5C6D1A8;
-	Fri,  1 Mar 2024 11:54:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84D946D1C8;
+	Fri,  1 Mar 2024 11:55:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BGxBGYWT"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eIFn0f9H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2366CDDC
-	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 11:54:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 189C66A8AE
+	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 11:55:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709294044; cv=none; b=Y5N/a5f3dNf4yTJhg10QAEaq0+0MHdbUFfH2+evpxIdb9YkRdzdfMfo/t27hMgV65yVvCVNSo6ZBLHxFrQGmhcRafY57KxPWvdFolpONy09iT9lwVOs0+pi6y86qyXDXiB1n2kkNxSPo7JT2AjBh4yqSkFLNBXzHub2h5WBmOtI=
+	t=1709294154; cv=none; b=gzfGygrCLVYT/I6MZDizBuiIuGRzuVbsmqGjHGTmkn77T5Tn12yJpyrX3+TCHeH1nYHcbTrgpeAAfJ8RPAHTl0hG4uSTbsJ+6gMGzLH3cvnrScT8K09q/Tp9kTzWJBMMd4LxVqXiFVeT4BkU9OJtCsuEbGr9ES/pB2y/EIpTgrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709294044; c=relaxed/simple;
-	bh=FqfgiE8rTsjv2yZ13++4/tBbMd5srM6+IqM9XHJmupc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SlETm4+wHJ3tBY9iuNpVyQmQWLTEnSXB2Tp6tULoFIjf428wyL4ncfl35M9fbg+3aKKoKUM18yGshTn2B3ZwXyeRq5KWm2QEICKCdJMvJyF/FemyEZYf9r/aSxc4Epqw11vV97PGM6+OP2oEuhXva2+QJqra5RaZDbuKUavo/vE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BGxBGYWT; arc=none smtp.client-ip=209.85.219.172
+	s=arc-20240116; t=1709294154; c=relaxed/simple;
+	bh=9IBd4IHdnmgZMr9MhB2rgqeToI13RNjtnipSgmttHIg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=g/NRIBwYiH4ryhd6Y89Njn81NI5+4kCkZmyl+qp4yuM7lrWicklM5jaBJEgiwI7XeWiWo13U59KwFdFu7kxrW88J7h2dV9KgcZXTqyVpOyzoMrTs98OjfCAYWjnRHTnb+bnY563WvuBT2lmavT8uHrR9lpX+pM3ZnPOEmKdXjxk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eIFn0f9H; arc=none smtp.client-ip=209.85.167.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc236729a2bso1863321276.0
-        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 03:54:02 -0800 (PST)
+Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-51323dfce59so1781641e87.3
+        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 03:55:51 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709294042; x=1709898842; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=yso0ivGAInKc5Pvs5qCHC4r4ySELDjTsVXE+O+LwQ0A=;
-        b=BGxBGYWTmEW8aMCsng6Ue0IHMrpPluBogwfjxtBp+1vdwx/eOulBamlknkVcaWlCSi
-         4aSFM4Wepjgeyl6+wY22ypgAVZf5cw7FGJxXxFIki1FSLYidRfCHYnTCXWBfYMNRlu/3
-         205G+gwI+jdFGbuOFGPxuaqUqL3aocf6YU6yxx9w2CE8+5YF/Y7NDeT5Ecm/dxpI+BDv
-         XUuoOtzh2e3pPzEzS4rTI8+4gugdJiNG5lGvofMgjerBBD4pSOXSqBHM/IYDPATsgKcq
-         Rng5jb0MNdfstsK4bimMBINN844syW0IxZ8BY1MNwIAL8oD9mzgrbNlbxrVjXyEdUY0M
-         0AAg==
+        d=linaro.org; s=google; t=1709294150; x=1709898950; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PH9FTG8r38kw/2KGPIjmzvSzyg9hKHZV3106W9dU8K0=;
+        b=eIFn0f9HdsKAjpJMPIO8Ee42E6ZkP04W4IggB97tcnZ1GKtBpqH1bSNQsr5wMT9bTO
+         Y5t1ZdOwX56MmioM0UkWz/tUcL1rsbK8SarBRfQrrS/28usVFnviwKOljazO1XTM6kjM
+         TnpMEVxWO3Z/BXWxCE5fWePDE56pzPBNtoyeZWgnO4T8tiehbXKXuZy/ArP5qjch4BVy
+         nXbRFBO2jtL6Q77I3QOl8CrjPD47KgjJzgqNFCn7NYsfNbCl2kVfp/BxsJw4bEWEBXZg
+         /hTouSIb6r6qTGdVVwEIjxhCnfTvp+hMperYaqykRoM2p/ZulvIIjZdOp9Xqsf/wv+ki
+         M3UA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709294042; x=1709898842;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1709294150; x=1709898950;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=yso0ivGAInKc5Pvs5qCHC4r4ySELDjTsVXE+O+LwQ0A=;
-        b=xFiYo3Rmi2cXa5/kWD1Q09UnGqf6WEJidNbgOmnFyQWgaX4x0Hupgj2U2nnwAaGCfb
-         DtFbimY2X+F1a8Wwtt06m+5EBWDA6x6EeLkwvhP4Cc+w471svBPA0aD83k1Tz0MlfZS1
-         BEmDk+TYmf3srgT1Bt1wFoFt6M1v2lO3HkNUw92EPRfaL9PvWMiMUba2mQvG972Tc4u/
-         zmYmsA2mIhX95AuN29o7S5NkZVmFFq/mQ9HIFsbe6T6OEW91bhA2mekHww35qRyepYSz
-         HNWyzPPW7ShFuannIVEGEDShAihgJsaLEKgqx29R+E1N1Xce/ASRxT1I09NS1T4TY5dc
-         EPPw==
-X-Forwarded-Encrypted: i=1; AJvYcCWGRFu7nwAh8gJUbyHp28ey8PPewCH8tx5LFd9Ryl68hf2d9iZuIL6QasZFTYyF186d81LamRAHVxfI6j58SDsLl6pCV1bMyjTbRA==
-X-Gm-Message-State: AOJu0Yz8AW7IIow10h4IPTPA8zkNnRlGKrzRI08714fa0Zhx+GuxlxPR
-	BcFVCuorkixEILjP6Y/2w6K1WCnWPd0KiG+MlCRqF3NN3FBlt1rukk1RBfFlAXLF/h+ZUhh2Ohf
-	licEPHLs7EkgUNjXEYE8h+gEkYW9LgFAAcI7rmQ==
-X-Google-Smtp-Source: AGHT+IFkhH15rTpXomOcTL/sca0OLI+GKFzhdjujIJXL6fL++bosqGfhJfcmsdoBf/YIv5eeJKJPfDAPG5EKn/NWJB0=
-X-Received: by 2002:a25:ae58:0:b0:dcd:1436:a4ce with SMTP id
- g24-20020a25ae58000000b00dcd1436a4cemr1245758ybe.23.1709294042085; Fri, 01
- Mar 2024 03:54:02 -0800 (PST)
+        bh=PH9FTG8r38kw/2KGPIjmzvSzyg9hKHZV3106W9dU8K0=;
+        b=w74+xccwj17hRme2LLoI+6EoV6f0W1XsmRuHJRLb892pOD6RHPw8neGTP7vyaiAyLZ
+         2gxiF1LZt8pX3xAq+dV+omk4nUrjn/O2nx4hRtpVnol0BHgmnwVgOpy67A5/qT1dtCV/
+         WIHzn309r3/Pw7KQ1Tno7n/gCrURERve781DPEie40TBD1p3ehZPAOpjQx0+VuGPwB5z
+         8TsH+GXsvC9/ilbBHSKPOutEqtocdGKpgr/optm1Ny5hYQ66UadDvS1/t1vOXgnafN5F
+         lHUAjZNYhnc3jCc0ZKgG1kXWf7hkskJCxqe/2nYXzDirrA6HG3/tqByYTisNmTu8PhzA
+         p5oA==
+X-Forwarded-Encrypted: i=1; AJvYcCVdAgEGx13Trs1q1uH+PINrwp4HWfSJA+rfOhakj5oB2oNQoHGIFT45NKQP6iTVy2nGRsuWjV17xqKEQE1JcgQwESqcR1/1ZT1XWQ==
+X-Gm-Message-State: AOJu0YzhpcT170Mq9qZaI+7P0r8Ns3K8FQk0Tg6ck4L45cUIumhUO40l
+	wD35++q67lSG4Gs3poAjXQdFJG0gIKkfcc5rEgLtQl1ayr8vCLlP9sYKFHawxkw=
+X-Google-Smtp-Source: AGHT+IGe/5toR7aR9KlswPXRC7C3s6xaBbWIf2MKbXyVEOxjns4ZoEJA1I/mWf8hmVsKPNGdq0dHlQ==
+X-Received: by 2002:ac2:4c13:0:b0:513:24b8:a7b1 with SMTP id t19-20020ac24c13000000b0051324b8a7b1mr1236878lfq.47.1709294150170;
+        Fri, 01 Mar 2024 03:55:50 -0800 (PST)
+Received: from ta2.c.googlers.com.com (110.121.148.146.bc.googleusercontent.com. [146.148.121.110])
+        by smtp.gmail.com with ESMTPSA id i10-20020adff30a000000b0033b6e26f0f9sm4367674wro.42.2024.03.01.03.55.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Mar 2024 03:55:49 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: andi.shyti@kernel.org,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: linux-spi@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	andre.draszik@linaro.org,
+	peter.griffin@linaro.org,
+	semen.protsenko@linaro.org,
+	willmcvicker@google.com,
+	kernel-team@android.com,
+	Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH] spi: dt-bindings: samsung: make dma properties not required
+Date: Fri,  1 Mar 2024 11:55:46 +0000
+Message-ID: <20240301115546.2266676-1-tudor.ambarus@linaro.org>
+X-Mailer: git-send-email 2.44.0.278.ge034bb2e1d-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <7910de2d-6184-4f78-a286-d2e6e50c7a36@quicinc.com>
- <CAKfTPtCjR_MBO9Lh7=CU+dcFaigkbeKc27rVgCa-aEJyHyfK9A@mail.gmail.com>
- <ZbEY2X8CfOc-vPbe@bogus> <16db3da8-dfdd-4e06-b348-33e9197fe18d@quicinc.com>
- <ZbFH0UE9zZQFWm8Z@bogus> <32092ee9-018f-4cfb-950e-26c69764f35a@quicinc.com>
- <94a62a78-961a-4286-804c-fc0b9098b8a1@quicinc.com> <CAPDyKFrL2QcB-YbE25smGgJjf3iBEsSSB4ui3V98zJKghNNhKA@mail.gmail.com>
- <20240228140239.gkzcytw6cmb4opja@bogus> <799268ac-7ffb-4b99-b037-d5bb93d37f13@linaro.org>
- <20240228160925.fcitj2yz7hisidsl@bogus> <CAPDyKFqEDu1KRsT2YWv7MhoosCSj_bgV4xE=-2hDaS1ZP7AkvQ@mail.gmail.com>
- <2b0a11f4-f54e-461c-91e7-8f313d91abe8@linaro.org>
-In-Reply-To: <2b0a11f4-f54e-461c-91e7-8f313d91abe8@linaro.org>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Fri, 1 Mar 2024 12:53:25 +0100
-Message-ID: <CAPDyKFoo+-2AF096Sbn8EHP1H4Zw2+2sFnSyuq65sWGmMmXU0A@mail.gmail.com>
-Subject: Re: DT Query on "New Compatible vs New Property"
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Nikunj Kela <quic_nkela@quicinc.com>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, krzysztof.kozlowski+dt@linaro.org, 
-	Vincent Guittot <vincent.guittot@linaro.org>, robh+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, 
-	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Wed, 28 Feb 2024 at 18:11, Srinivas Kandagatla
-<srinivas.kandagatla@linaro.org> wrote:
->
->
->
-> On 28/02/2024 16:22, Ulf Hansson wrote:
-> > On Wed, 28 Feb 2024 at 17:09, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> >>
-> >> On Wed, Feb 28, 2024 at 03:20:44PM +0100, Krzysztof Kozlowski wrote:
-> >>> On 28/02/2024 15:02, Sudeep Holla wrote:
-> >>>> On Wed, Feb 28, 2024 at 02:27:30PM +0100, Ulf Hansson wrote:
-> >>>>> On Mon, 26 Feb 2024 at 15:24, Nikunj Kela <quic_nkela@quicinc.com> wrote:
-> >>>>>>
-> >>>>>> Hi Sudeep,
-> >>>>>>
-> >>>>>> I would like to conclude on this thread. I was discussing this with Ulf.
-> >>>>>> He thinks that using the domain names to identify if platform is
-> >>>>>> abstracting clocks etc. are not scalable and sufficient. Instead he
-> >>>>>> thinks that the change in the interface to OS(and FW) is a good
-> >>>>>> candidate for a new compatible(even though HW is same).  Even for SCMI,
-> >>>>>> we do change phandle in DT to SCMI protocol phandle so that is like a
-> >>>>>> different platform altogether. Could you please let me know if you still
-> >>>>>> think that using a different compatible in this case is not warranted.
-> >>>>>
-> >>>>> My apologies for joining this discussion at this late state. Yet, I
-> >>>>> just wanted to confirm what Nikunj said above.
-> >>>>>
-> >>>>> In the end we are indeed talking about adding a new platform, as
-> >>>>> changing the FW interface from a QCOM proprietary one into SCMI,
-> >>>>> simply requires updates to a DTS file(s) that is platform specific.
-> >>>>>
-> >>>>
-> >>>> The way I read this sounds like all this are platform specific and need
-> >>>> new compatible.
-> >>>>
-> >>>>> That said, it also seems reasonable to me to use a compatible string,
-> >>>>> to allow us to describe the update of HW for various affected devices.
-> >>>>>
-> >>>>
-> >>>> While I agree with the above statement, it depends on what you refer as
-> >>>> update of HW above. It is all Qcom specific and there is so much turn
-> >>>> between SoCs that this shouldn't matter but I would like to take example
-> >>>> and describe what I initially mentioned/argued against.
-> >>>>
-> >>>> Lets us assume 2 SoCs: A and B. A is old and didn't use SCMI while B is
-> >>>> new and migrated to use SCMI. Now let us assume both A and B SoCs have
-> >>>> exact same version/revision of an IP: X. Now just because B uses SCMI,
-> >>>> should X have one compatible to be used in A and another in B. That
-> >>>> doesn't sound right IMO.
-> >>>
-> >>> That's trivial to answer, because these are different SoCs. Compatibles
-> >>> are SoC specific and every SoC-IP-block needs its compatible. Rob was
-> >>> repeating this many times that versioned compatibles are discouraged.
-> >>
-> >> OK I may have confused or derailed the discussion with the mention of
-> >> "exact same version/revision" of X. This is not related versioned compatibles.
-> >> Let me try to explain it with some real example. If you look at all the
-> >> users of "arm,coresight-tpiu", they all have same compatible on all the
-> >> platforms irrespective of the clock/reset/voltage/power domain providers
-> >> on these platforms.
-> >>
-> >> E.g. on juno it is based on SCMI while on qcom-msm8974/apq8064 or
-> >> hi3660/hi6220 it is platform specific clock/power domain providers.
-> >> However all these platform have the same compatible "arm,coresight-tpiu".
-> >> That was the point I was trying to make and not related to versioned
-> >> compatible for different versions on an IP.
-> >
-> > That's perfectly fine, if that is sufficient. It would also be
-> > perfectly fine to extend it with a platform/soc specific compatible,
-> > when needed.
-> >
-> > An example could be:
-> > compatible = "qcom,sm8450-coresight-tpiu", "arm,coresight-tpiu";
->
-> The issue is not the same as the above example.
->
-> We already have a soc specific compatible in this case
-> ex: "qcom,sc8280xp-ufshc"
->
-> making another compatible like "qcom,sc8280xp-ufshc-scmi" or
-> "qcom,sc8280xp-ufshc-xyz" based on how some of the resources (clks,
-> regulators) are provided in bindings does not really make sense.
->
-> Fact is that we are representing the same IP block.
->
-> AFAIU, we should go with same compatible irrespective of how the
-> resourcing needs are satisfied.
+Since the addition of the driver in 2009, the driver selects between DMA
+and polling mode depending on the transfer length - DMA mode for
+transfers bigger than the FIFO depth, polling mode otherwise. All
+versions of the IP support polling mode, make the dma properties not
+required.
 
-I get your point. Nevertheless, we need to create a new platform (new
-DTS file), as we are changing the FW interface to SCMI. That means the
-toplevel compatible for the platform will be a new one
-(Documentation/devicetree/bindings/arm/qcom.yaml).
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+ Documentation/devicetree/bindings/spi/samsung,spi.yaml | 2 --
+ 1 file changed, 2 deletions(-)
 
-I am not sure if it's correct/allowed to use that new platform-part as
-an extension for the compatible for the IP blocks too? I thought it
-was okay, but if not, drivers could match on the platform's compatible
-too (not sure we want that though).
+diff --git a/Documentation/devicetree/bindings/spi/samsung,spi.yaml b/Documentation/devicetree/bindings/spi/samsung,spi.yaml
+index 2f0a0835ecfb..f681372da81f 100644
+--- a/Documentation/devicetree/bindings/spi/samsung,spi.yaml
++++ b/Documentation/devicetree/bindings/spi/samsung,spi.yaml
+@@ -76,8 +76,6 @@ required:
+   - compatible
+   - clocks
+   - clock-names
+-  - dmas
+-  - dma-names
+   - interrupts
+   - reg
+ 
+-- 
+2.44.0.278.ge034bb2e1d-goog
 
-Kind regards
-Uffe
 
