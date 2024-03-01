@@ -1,269 +1,138 @@
-Return-Path: <devicetree+bounces-47513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97CF286D802
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 00:45:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B01986D816
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 01:02:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 107121F2291F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Feb 2024 23:45:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC0AC284859
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 00:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83A4E7D062;
-	Thu, 29 Feb 2024 23:45:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA27515A5;
+	Fri,  1 Mar 2024 00:01:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="Niqeh+pH"
+	dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b="TDvZPeRh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (mail-bn1nam02on2079.outbound.protection.outlook.com [40.107.212.79])
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E20316FF51;
-	Thu, 29 Feb 2024 23:45:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.212.79
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709250334; cv=fail; b=rIUPvLYE906xb2yo5oW7QjwsEeDgTBLbS/NUvEmTl5zBGZKDZCMkQtJsqxDdhaa4niOljA0m6VLyaahmv3q5FtmgL14hMGFclGbQH2MpiYk7LXJdX67sME+plMGDMg2XNiVTRpE5q6aA3REFBl/4X+zRWrtZ6Ci7QTnplFYmVss=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709250334; c=relaxed/simple;
-	bh=fGWkrWcwdkBvkJxX7b7h2sPOzbLXNpYkc15UHMjiN8s=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=JDPqvWRkr0BKiRWIw6N0xwCupOeeqwD6/GYcB9ELzGAJt6ed0ntYWlS5LdIk1QA6LNpey8D3GDN698rcqN2x1JcejQ2KaC+aWEbjQPLZYr6nA8WVs6shMC7EgandpKgjYRKbyE7hMRb2WK2HhAKP2qGRc5l7UR5ebfUsp6zYTNI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=Niqeh+pH; arc=fail smtp.client-ip=40.107.212.79
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kIXI/vltSZ1YP+0EYb+daf172OvkYJfEzqxF7IRcNyQWVlq8pbGItcdOW+TA718gTPpLdu/bDBS5YB7MrEyr7GrnktZzgEPd3KHf2RWY9omXfZwunzDaSqWIniFR4SKFNL4VuSv2wPW30E6tfG2Jlu+4l3DkVj0+UPxzKohx0KHgAqyHHg/fXzYI5PQQWDdmDrDuJUbE6gA8jHZ9kPlHNHrqII3/FFAMlCpzOQxrfzFiXTYFg811D2GJu5jGNGEvR/ZHubRV1glR5cklwKK0b/kwWM2JF0WN/BRIsEoKN5P4Ex1VBmsWnEjMPuf93xBerV5fSRPb3XBXRp2t+AyxiA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=6rAkdWfRIgiHK0dTosl7qsamX5W3Fy5c/5nYuBR1oHw=;
- b=PD928uviyYWSioa1BSpO4wlfv+ZJ8JivJQuGG1FmEzHkTSiWTfHw1rprldqppssa+kS6bDsgHsd8zCwWzTc6WWfd2+1soYykkQ6+GAr/QvKGeB7omLTD6eZSSKAuOpGwHh2efJR0DAr7nsNZHUjfRCy+sMA4kZY4W5r4OQY+KsUYxONOMD0tveYb3DJaCx3EQBXhmfl81CM4TnbISPRxdqar9rxnsaAopsK/dSDIpXElcQNzYgCexMqiCZi5NCmuC8SrPfrqtuTYsLeyg4q9quOtxDsAZMuGUp55vBQuEPxMHMKSkkM5R72VW2+l0wQmTCm6Lw3ImZeZ/FsF5RJJOA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6rAkdWfRIgiHK0dTosl7qsamX5W3Fy5c/5nYuBR1oHw=;
- b=Niqeh+pHhldo/cgGZAglucv3jK2ymS1KdFsefZCwNtKELSlkY6GS+FHUWE7vnQ2yWfW2qpf2NYPj6yawj+5z/YyQgbQa8JrDQ2rRFZ9gS0RZRSfAsjaoP0/CfeSdfQCWWkj2qW9YhE54u5q9jsDw6zib4b9/sa2OZhIsBlcoT+o=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
- by DM4PR12MB5842.namprd12.prod.outlook.com (2603:10b6:8:65::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.39; Thu, 29 Feb
- 2024 23:45:29 +0000
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::8b3e:57e8:d574:309a]) by BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::8b3e:57e8:d574:309a%4]) with mapi id 15.20.7339.031; Thu, 29 Feb 2024
- 23:45:29 +0000
-Message-ID: <294dc34c-11ac-4220-9619-1578ebca6382@amd.com>
-Date: Thu, 29 Feb 2024 17:45:26 -0600
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v11 2/4] dt-bindings: remoteproc: add Tightly Coupled
- Memory (TCM) bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- andersson@kernel.org, mathieu.poirier@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, ben.levinsky@amd.com
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-References: <20240219174437.3722620-1-tanmay.shah@amd.com>
- <20240219174437.3722620-3-tanmay.shah@amd.com>
- <d0963aeb-1165-469b-b9c7-410a61b117f4@linaro.org>
-Content-Language: en-US
-From: Tanmay Shah <tanmay.shah@amd.com>
-In-Reply-To: <d0963aeb-1165-469b-b9c7-410a61b117f4@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SN6PR01CA0025.prod.exchangelabs.com (2603:10b6:805:b6::38)
- To BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 837FE365;
+	Fri,  1 Mar 2024 00:01:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.29.241.158
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709251315; cv=none; b=WflXAJ2v3oHcMMotQjKWAh9ozlZzbi8KV9aeIAUTmZ5ZovpEMA/mBHm0kGkm+hYZssD+t/OEW18cXxpnV5spphaJElpTuOR/iiTtqIRg1UDOfrhjgDhvuTXtYHKLrOASA3EyTOJfZWf9YjhhlMYizV0+8gArw8nhSzsjEVw8YPA=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709251315; c=relaxed/simple;
+	bh=t0X7t7GGFniRIOEqYfK4TYBaU7eXwThHc9/pKtKp17w=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=JnQrwfxGJwTp4Pv5vAp6oFP505Lgjanu4Fb0/YkR77CXHtbOFkwlS+w3n28hUUGspaizJUlKUhuc4eqA/Yz0rt7f2ft5P4YMQL2puskOqtMslwq9fpqY2Axhkpvu81sfFrixkiXmDI1e9TOoWvL+Tb85B0ntvztJ+z72pXea82E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au; spf=pass smtp.mailfrom=codeconstruct.com.au; dkim=pass (2048-bit key) header.d=codeconstruct.com.au header.i=@codeconstruct.com.au header.b=TDvZPeRh; arc=none smtp.client-ip=203.29.241.158
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=codeconstruct.com.au
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=codeconstruct.com.au
+Received: from [192.168.68.112] (ppp14-2-70-176.adl-apt-pir-bras31.tpg.internode.on.net [14.2.70.176])
+	by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 21BD22012A;
+	Fri,  1 Mar 2024 08:01:50 +0800 (AWST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=codeconstruct.com.au; s=2022a; t=1709251311;
+	bh=wLcneC51g0yvr2rzTMvDPFpjn3ptVrIuHETKFxaBzdQ=;
+	h=Subject:From:To:Cc:Date:In-Reply-To:References;
+	b=TDvZPeRhAQ/ae5/L624GhlPAeR3buY0n8UuSKpHSUNxzU+Oc12emprmoIoHsRaIeu
+	 MkFUPSISftOmnJv+B1ew/H3oAvCgSoxsCgcJue/SizLC6PMC2ElnRb9Fgj0dA9ZkhC
+	 yX/NfH5gtdMsaYAm595hUfiJwfeHC1hhAvVe4tLejzqS9SomPFYy10/gf+87knqox/
+	 f44qFlLO3i4WKXEBykHfikAVUP1Y47xSuKxn8PweCj16eENDn7HPq8PP1GaJ1RaCys
+	 sFUMhiZzA4J5CRayMyuEEpSzBYR49shqXw8LpD2HA15kz59xs/Ru87jSSCi0bScftq
+	 kCtM4H64KHGSw==
+Message-ID: <cc13d3f4fc7f117d0f29cf18a085066fd4b560cc.camel@codeconstruct.com.au>
+Subject: Re: [PATCH v5 2/2] ARM: dts: aspeed: x4tf: Add dts for asus x4tf
+ project
+From: Andrew Jeffery <andrew@codeconstruct.com.au>
+To: Kelly Hung <ppighouse@gmail.com>, robh+dt@kernel.org
+Cc: krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, joel@jms.id.au, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org, 
+	openbmc@lists.ozlabs.org, kelly_hung@asus.com, Allenyy_Hsu@asus.com
+Date: Fri, 01 Mar 2024 10:31:47 +1030
+In-Reply-To: <20240229111123.1932504-2-Kelly_Hung@asus.com>
+References: <20240229111123.1932504-1-Kelly_Hung@asus.com>
+	 <20240229111123.1932504-2-Kelly_Hung@asus.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.46.4-2 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5874:EE_|DM4PR12MB5842:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0e933d15-b0e5-4bc1-9af7-08dc398082dc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	Oj6nG47GufR8Wz9mpWtzyKgMvx/fGU9GzRn+c0JhUX/fg/0r3h4k1UVuK55AF2sxriEEmRoU0EptKKzjd4lO3CLilwWkfAhWJWpiC6RmxjTm5pwn/HZeOPRo0UrsWWGDp1LEhw8LPWaF6QmnnNMDlSfUXs7YO0gm9H8zGU1UeGu4My3bAlesSCEhptViEYFjgD5s/5l1D8FEji/90cFOYAWfIgeviVWBfBVJ/ULpgbdNh5nLrxEgXxb5kkEYn4QmUEv4g/7VzPbgOtndOH4S9I6E+HrVQSxwwFM9vcVsGHdlauANtyh9yu/jN3nLBSryzsFC4dlNoaLDDC8drYRUXfMgZNVqLy9vxzsnV0w3oURTeQziaEF/ddymbPwo7rXoFPa3FX+/CFYJ57pAJklCUHNLj6wdDALWWDzLZnjxlCNCkfbiotzMBj+yPv0D8tr4+6wZ78wflzdoTpwVwpnxFPjyOv0OvAuKE7yOD/FP3Hzqd3+qRpEVb7OmBK0eQiUaaXqJGz9L53w3T5yq4ZG6X6nxV2B+E7lDNd4/WUISCpqhJ7TF5R6gCLRkiqPhuX5KJU63uWTFfFF6lulNtoRTjWFOW2ftpOcYXrQwWz5PfbgQqhWbcYxyIV35Q1STdrhadb/mIUqx3S/ul85B5h9YdQ==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5874.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?RjFMbzNzUmpLekg2RDJaOFN6YjRwejk2N2FEK0g4Qnd6bG9Wb2NacXRDMVNC?=
- =?utf-8?B?M0pad0hSUFNkNFF6R3pENHhHR3N5L0xPTXU1Y0dKZ25GUlVsbDJ3dE5Nc1dm?=
- =?utf-8?B?cktYWlRHM2s3ZjFBd0VHeFg4UjZrMnNtbkRsVmhUNTRvKzNhc1FPQWkyeVFs?=
- =?utf-8?B?SDQyOGQwMDdEMFJ6NkdUY0RkYWg4SHpZazJzSEd5QzBZRFRoQjdKMC8wNzRp?=
- =?utf-8?B?OHJMWkFBMWlCVVU5Qmtmc2tOVCtnMnhSaU5NRzgxOUZYVU5yak1yalRYR2tZ?=
- =?utf-8?B?cHF6cVVPa080b1RUUUZBbExvV1Vwc1hYcWNMVmplS0JoNzV4eHF1dE5aWjYy?=
- =?utf-8?B?MHA3NkE0KzBWKzdpbmllVjg2dHBWbnd6REVCdEhpZnRLaFc1R21HeG9rb20r?=
- =?utf-8?B?bm1WWGRROEFCRWcxOXN6WHRvb0ZKc2tYNnNRakRCdVpodm5KTUUrdGZ6Zmht?=
- =?utf-8?B?QjZMOHVJYktuYWo4R3lTUEhDVkdyQm8yUWNwUkU2WTVadXFDczZmNUo3K0hz?=
- =?utf-8?B?SXl5SUtubU5Ya0dVRXpQWEZQZ3kxSlFhdWNaZTZFUndoeG4yUzlXTFJlRGpJ?=
- =?utf-8?B?aFRlckRla0J5SlBHK3oydUlQWkVvM3MvZkhQbkpOdnlFUHdmSjRBMXpVcGdK?=
- =?utf-8?B?eUk2YUVaSzJ0ZmluVXQ3ZUNMcjdIVTcrRUpYNzJrSTFEdHQvV2lJdGxKTnNK?=
- =?utf-8?B?REJubUdSY0tCMDMveVlhc3drSjhuemJUVVdWTE8wVklpbFBVY2hzSFhWOVA3?=
- =?utf-8?B?V1EzL0NtVjBlWERnMHgva2UrTHdyUFYySS9NNGZscUxhSHdrQlBlT0dxNmlS?=
- =?utf-8?B?RmhETDZaYXRSQnlVY3pUVTVFaG41Z3V0a2VBQXdXTVVpWGpIc1lTenRaaGJC?=
- =?utf-8?B?T2JqRUg4RVZuSENaODBpei95Q2VETy9iK0MrQkx3WTZMTUdSR2U3Wll5TmRL?=
- =?utf-8?B?OEpmTVZRenVoZzlUNElFZ1dvNVpoZTQvWVN0Y085VUIzQkdValE0R1VFTTZY?=
- =?utf-8?B?MHBZSjViVnlkbEJyeXNhcU1Yelc5S1RCbTE5L0g3MmN3eHBTNlBUWURuT3JE?=
- =?utf-8?B?OUpkN0hGUG0rWUMvbU01a0xiSnF5YUptUVJ6Ynphb2F4dzZlYmZwZzM4U09h?=
- =?utf-8?B?VWFMM1NWbCtTd0FhV1pZL1ZNckVDMjF1VzVUN0RrblBncGdkaHF5VXY4Sml5?=
- =?utf-8?B?YXNjQmdRbHBhcXh1alNLekNpbDBCWEpoN0NZc2J3U3NjSUxPSmg0eDBlRVZz?=
- =?utf-8?B?VjJxYnJJaE5JS3g4eFpvcGpiWUdMb0tReHVMUXFCTm1CUTgrM2RLVzJCR0NR?=
- =?utf-8?B?akRmZDdKWC8yWFhuVTVJZ05xaC9NdTBIcUxyNXN0Y3ZZdUVub0QyZ2g4cjZC?=
- =?utf-8?B?K0k1Rk9oWHVrQzR5dUYzbXpwenk0UkJMMW5TdXFlZHd2czljMVlBUGNjMTFu?=
- =?utf-8?B?VXMrSWZBalZCR0dlVVVQTzVOeW9qWGpyY2FzTTBUUWJQZDMrZzNTSmhiT3A1?=
- =?utf-8?B?L3J0NlFFUHBxR1R5aHZDM09LZzB2ak9obUk2QXl0V3RubWxkQ2Fza1h2c09O?=
- =?utf-8?B?YW4vRTRtV1ZYRkIvd1R1UmtxeTlrWVdHLzZxNE95dzRmbFkwZnFCdGpPRE1j?=
- =?utf-8?B?cGhpWXc4b0w5VVN0RXIzWEhxaW9UWTk3UjB0ZXdLQmtsRE5WUVBVa09jYlJO?=
- =?utf-8?B?NGhVVmIvMy84Rlo1OXdTNmk5YlFLM1g1bHlkandOa3I3OTNad3cwY29zRHVL?=
- =?utf-8?B?V0NaQVRiVW5pOE9BVUFvRmY4UGZ4Qmtta2Y2eGpmSWN0NGovRk0xWit5OFlK?=
- =?utf-8?B?VUhNYXh0UU9nRkxkMGRlVDd2RXdVUGErWTlxSldlRUo5Q0ZuU25YcCtIN3JJ?=
- =?utf-8?B?eThLc2NQVFlZOXBRZE5STXd0cWVnWEphU3hHVndSaVlKMXhMQ3Bpa2VqaHZ6?=
- =?utf-8?B?ZDNBdDF6TjltQkFRSEk0U21VVHA3V0UrOWg4amRMZE5qQ1l1UEVTa21BZE9h?=
- =?utf-8?B?OU1hM1V1UnBNNWx2dkpUdVlrRkpCaFR0QnlRYiswYndHWUhLUGs2ZGgxR2ND?=
- =?utf-8?B?TElyU3NROTJWRWRvcE1zOG0zWlpyYkZzcGlUY3FwWXIvNHZSV0g0R0xSYVJ1?=
- =?utf-8?Q?TjcYTcye6nREMIlAhJU35j8IE?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e933d15-b0e5-4bc1-9af7-08dc398082dc
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5874.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Feb 2024 23:45:29.5391
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8eCBUmD6n92W+IyzfB15SvAuis5ciM2resjrxLfF0segLVoKxPyL6Cs25Q6FDPm5
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5842
 
-Thanks for reviews.
+On Thu, 2024-02-29 at 19:11 +0800, Kelly Hung wrote:
+> Base on aspeed-g6.dtsi and can boot into BMC console.
+>=20
+> Signed-off-by: Kelly Hung <Kelly_Hung@asus.com>
+>=20
+> ---
+> V4 -> V5: None
+> V3 -> V4: None
+> V2 -> V3:
+> - fmc lable change to bmc.
+> - use 64M partition layout.
+> - rename spi1 label to bios.
+> - remove bios partition section.
+> V1 -> V2:
+> - do schema check and remove all warings.
+> - remove all unnecessary sections.
+> ---
+>  arch/arm/boot/dts/aspeed/Makefile             |   1 +
+>  .../boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts  | 581 ++++++++++++++++++
+>  2 files changed, 582 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts
+>=20
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed=
+/Makefile
+> index d3ac20e31..32c41f3d9 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -10,6 +10,7 @@ dtb-$(CONFIG_ARCH_ASPEED) +=3D \
+>  	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+>  	aspeed-bmc-asrock-e3c246d4i.dtb \
+>  	aspeed-bmc-asrock-romed8hm3.dtb \
+> +	aspeed-bmc-asus-x4tf.dtb \
+>  	aspeed-bmc-bytedance-g220a.dtb \
+>  	aspeed-bmc-delta-ahe50dc.dtb \
+>  	aspeed-bmc-facebook-bletchley.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts b/arch/arm=
+/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts
+> new file mode 100644
+> index 000000000..64f4ed07c
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-asus-x4tf.dts
+> @@ -0,0 +1,581 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +// Copyright 2024 ASUS Corp.
+> +
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include "aspeed-g6-pinctrl.dtsi"
 
-Ack to all comments, I will address in next revision.
+aspeed-g6.dtsi already includes aspeed-g6-pinctrl.dtsi, so the include
+here is unnecessary.
 
+Other than that the patch looks okay to me. There are bunch of issues
+exposed by `make CHECK_DTBS=3Dy aspeed/aspeed-bmc-asus-x4tf.dtb`, however
+they're almost all generic issues with aspeed-g6.dtsi or deficient
+binding definitions for the Aspeed controllers. I've put together a
+patch stack to clean them up and am working to upstream them.
 
-Tanmay
+So for now:
 
-On 2/29/24 3:59 AM, Krzysztof Kozlowski wrote:
-> On 19/02/2024 18:44, Tanmay Shah wrote:
-> > From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> > 
-> > Introduce bindings for TCM memory address space on AMD-xilinx Zynq
-> > UltraScale+ platform. It will help in defining TCM in device-tree
-> > and make it's access platform agnostic and data-driven.
-> > 
-> > Tightly-coupled memories(TCMs) are low-latency memory that provides
-> > predictable instruction execution and predictable data load/store
-> > timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
-> > banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
-> > 
-> > The TCM resources(reg, reg-names and power-domain) are documented for
-> > each TCM in the R5 node. The reg and reg-names are made as required
-> > properties as we don't want to hardcode TCM addresses for future
-> > platforms and for zu+ legacy implementation will ensure that the
-> > old dts w/o reg/reg-names works and stable ABI is maintained.
-> > 
-> > It also extends the examples for TCM split and lockstep modes.
-> > 
-> > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> > ---
-> > 
-> > Changes in v11:
-> >   - Fix yamllint warning and reduce indentation as needed
-> > 
-> >  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 192 ++++++++++++++++--
-> >  1 file changed, 170 insertions(+), 22 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> > index 78aac69f1060..77030edf41fa 100644
-> > --- a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> > +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> > @@ -20,9 +20,21 @@ properties:
-> >    compatible:
-> >      const: xlnx,zynqmp-r5fss
-> >  
-> > +  "#address-cells":
-> > +    const: 2
-> > +
-> > +  "#size-cells":
-> > +    const: 2
-> > +
-> > +  ranges:
-> > +    description: |
-> > +      Standard ranges definition providing address translations for
-> > +      local R5F TCM address spaces to bus addresses.
-> > +
-> >    xlnx,cluster-mode:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> >      enum: [0, 1, 2]
-> > +    default: 1
-> >      description: |
-> >        The RPU MPCore can operate in split mode (Dual-processor performance), Safety
-> >        lock-step mode(Both RPU cores execute the same code in lock-step,
-> > @@ -37,7 +49,7 @@ properties:
-> >        2: single cpu mode
-> >  
-> >  patternProperties:
-> > -  "^r5f-[a-f0-9]+$":
-> > +  "^r5f@[0-9a-f]+$":
-> >      type: object
-> >      description: |
-> >        The RPU is located in the Low Power Domain of the Processor Subsystem.
-> > @@ -54,9 +66,6 @@ patternProperties:
-> >        compatible:
-> >          const: xlnx,zynqmp-r5f
-> >  
-> > -      power-domains:
-> > -        maxItems: 1
->
-> Why power-domains are being dropped? This should have widest constraints
-> if you later customize it.
->
-> > -
-> >        mboxes:
-> >          minItems: 1
-> >          items:
-> > @@ -101,35 +110,174 @@ patternProperties:
-> >  
-> >      required:
-> >        - compatible
-> > -      - power-domains
->
-> Don't drop power domains.
->
->
-> >  
-> > -    unevaluatedProperties: false
-> > +allOf:
->
-> allOf block goes after required:
->
-> > +  - if:
-> > +      properties:
-> > +        xlnx,cluster-mode:
-> > +          enum:
-> > +            - 1
-> > +    then:
-> > +      patternProperties:
-> > +        "^r5f@[0-9a-f]+$":
-> > +          type: object
-> > +
-> > +          properties:
-> > +            reg:
->
-> reg is missing in your patternProperties earlier.
->
->
->
-> Best regards,
-> Krzysztof
->
+Reviewed-by: Andrew Jeffery <andrew@codeconstruct.com.au>
+
+I'll put v5 in a tree for Joel to pick up if he doesn't have any
+concerns. I'll drop the redundant include when applying the patch
+there.
+
+Andrew
 
