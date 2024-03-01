@@ -1,110 +1,83 @@
-Return-Path: <devicetree+bounces-47698-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47699-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id A566B86E378
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:39:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A438686E396
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:42:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50D561F228B2
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 14:39:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D40DA1C20FBB
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 14:42:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3288C442A;
-	Fri,  1 Mar 2024 14:39:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 034EE39846;
+	Fri,  1 Mar 2024 14:42:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="qwGrbyiD"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dwt/JV20"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8052E39879;
-	Fri,  1 Mar 2024 14:39:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B461A2B9D5;
+	Fri,  1 Mar 2024 14:42:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709303956; cv=none; b=E1CRLb2sfGdpJ3RzeG040ejdH8sx9Oi8PBdszQd5gYaczkIYrJ10q7hQsBLQAZ4+8js658b2wkntVgNsT8QoPDz3HY2jLD6Ako2QTNF4EKZjh/6bVy6jW9vAzfbT3U+ZhufESlHgBZFk/X9J/wvupxGUm8P/gDiXd363m9h6Rqw=
+	t=1709304145; cv=none; b=vD/d1Qkz4OgV2Wt7lU+6Kc77CdXsAF9tYs5WqfMGm+m0Pw4KmtvjRY0dc9V7hqbzvUyjEmqtAmHojbGqPGCoe3CSbiXxhitcfV9HN1PVb6HEnUfUcIHtl0W9u5jC6JteFqwzNpmdZb7Wi4CpS+KpMRdUpR3Vy9xeubM63j3oPjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709303956; c=relaxed/simple;
-	bh=rkisMHBNxL4woYqHRgn2zX3YF+vvPbgLoCprtb5HDEo=;
+	s=arc-20240116; t=1709304145; c=relaxed/simple;
+	bh=KACukKEnJXFukkXmjTQgXX49As3BIWd4peTBZp//0+g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YjST9BzBGZB0ba/ZhwGmnpKFE+Mf9vnD97Z0f1eLBwnLbnk02TLK1mr5FuPI80XnlJ8SnLjltLAaV0j6NHST1L5Ksx66NVmehB/PpGl4OPq3ZPBPGe3IvrmOBDwGLLhQUU+K09QKOfTAM6WySouxBvOMWufuvbpT9CD6To5UXb4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=qwGrbyiD; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1709303952;
-	bh=rkisMHBNxL4woYqHRgn2zX3YF+vvPbgLoCprtb5HDEo=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=dawNzIQS4RU2K5We8S5sOGMvfxb1Lwk1/+Bjt1vMfbVd4Jl0lfpxTtLrwzRSCFuXpkDRmBfR0860hL1Qhrkf3pupG+/5/d395tOyZRvCKnAZf2rdP48Guw8/PBlFn7xYJx8E2Fj2AfV5860totF/3IxWlnAL7cHx0DVokefbUh8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dwt/JV20; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE57AC43394;
+	Fri,  1 Mar 2024 14:42:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709304145;
+	bh=KACukKEnJXFukkXmjTQgXX49As3BIWd4peTBZp//0+g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qwGrbyiD3HL1uxENJtlW1aR0CSg+dtCmKxfw7fKvI86HzSzTqnUVSs/Gu2QrD4FAa
-	 f14OdmNBFA9sMQfzEHVbEh7XAtGJgKW9aqiSSR4yPEkFzgszcLTsY/MdKXqcJDl5Va
-	 VSP05hlU0O1sP0OWD+RAGXHS3DKe8d2m4YMmgtjLNIM6Qkkp5JKHhe5YYr4hRwJE4S
-	 7G76+xf+JhIJ+F93lcOCU1DcdotbJmBLmt0nlPbUr1QScpN7rGUtJn1jal4WdpiLDM
-	 XG5WQkxTcA5diXb0YCdG7SvxUoF3m+HqsG9CDYaeTUl4npVtbtFnzdclY1dCSpwZoE
-	 9oZBxUyxrEAfQ==
-Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: nfraprado)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 14B0437803EE;
-	Fri,  1 Mar 2024 14:39:09 +0000 (UTC)
-Date: Fri, 1 Mar 2024 09:39:07 -0500
-From: =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado <nfraprado@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Matthias Brugger <matthias.bgg@gmail.com>,
-	Rob Herring <robh@kernel.org>,
+	b=dwt/JV20KkXI8J8VpICUQOxmVPe6+NHLfVYlc86oQ9FPfArN6MtXomfjwSVPFszDH
+	 Ipu6JRvPLOml/w5gvOrbOBnU7WxI3EhmAiDbDNNTX4cGB0l6FO48YoByHfLCbNYD1H
+	 O0X4beCpos/ilRve896KhZub+JYKhhwq4g+m59H5b2itWyVx0yutBZnp/A9Go8zyPh
+	 fw/hdy0sSu2gpgvCyL/8A/kLmzJxT/1uVhypWoYPAAjGuiGYlrlbE1rf4ioJ03lMnZ
+	 YjNVpEDyWPn6IyMMLpxDzlm+BB4JLdKBWkALkximtSU9EgoQzLztKhJ5ydgOFIW4F3
+	 K78ScNPXaX9Gg==
+Date: Fri, 1 Mar 2024 08:42:22 -0600
+From: Rob Herring <robh@kernel.org>
+To: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
+	Chris Packham <chris.packham@alliedtelesis.co.nz>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-	Tinghan Shen <tinghan.shen@mediatek.com>,
-	"Jason-JH.Lin" <jason-jh.lin@mediatek.com>,
-	"Nancy.Lin" <nancy.lin@mediatek.com>, kernel@collabora.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH 2/4] arm64: dts: mediatek: mt8195: Add missing
- gce-client-reg to vpp/vdosys
-Message-ID: <40ae06f4-0cbe-40f0-84c8-9b57dfbeb91f@notapiano>
-References: <20240229-gce-client-reg-add-missing-mt8192-95-v1-0-b12c233a8a33@collabora.com>
- <20240229-gce-client-reg-add-missing-mt8192-95-v1-2-b12c233a8a33@collabora.com>
- <22e2cf1b-9560-4f4b-b08b-a112e8e272a8@collabora.com>
+	Andi Shyti <andi.shyti@kernel.org>, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH RFT 1/3] dt-bindings: i2c: mpc: use proper binding for
+ transfer timeouts
+Message-ID: <170930414189.2106142.4220146551084193594.robh@kernel.org>
+References: <20240229105810.29220-5-wsa+renesas@sang-engineering.com>
+ <20240229105810.29220-6-wsa+renesas@sang-engineering.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <22e2cf1b-9560-4f4b-b08b-a112e8e272a8@collabora.com>
+In-Reply-To: <20240229105810.29220-6-wsa+renesas@sang-engineering.com>
 
-On Fri, Mar 01, 2024 at 09:50:31AM +0100, AngeloGioacchino Del Regno wrote:
-> Il 29/02/24 20:44, Nícolas F. R. A. Prado ha scritto:
-> > Add the missing mediatek,gce-client-reg property to the vppsys and
-> > vdosys nodes to allow them to use the GCE. This prevents the "can't
-> > parse gce-client-reg property" error from being printed and should
-> > result in better performance.
-> > 
-> > Fixes: 6aa5b46d1755 ("arm64: dts: mt8195: Add vdosys and vppsys clock nodes")
-> > Suggested-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> > Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+
+On Thu, 29 Feb 2024 11:58:11 +0100, Wolfram Sang wrote:
+> "i2c-scl-clk-low-timeout-us" has flaws in itself and the usage here is
+> all wrong. The driver doesn't use it as a maximum time for clock
+> stretching but the maximum time for a total transfer. We already have
+> a binding for the latter. Convert the wrong binding from examples.
 > 
-> Can you please squash patches 2,3,4 in a single one?
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+> ---
+>  Documentation/devicetree/bindings/i2c/i2c-mpc.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> It doesn't make a lot of sense to have them separated in this case, only
-> generates commit noise for no practical reason imo.
-> 
-> arm64: dts: mediatek: mt8195: Add missing gce-client-reg to vpp/vdo/mutex
 
-I split them like this so that each has its own fixes tag and can all be easily
-backported (as mentioned in the cover letter). That said, the commits fixed in 2
-and 3 both landed in v6.1-rc1, so they could be squashed and still easily
-backported. But the commit fixed in patch 4 only landed in v6.4-rc1, so if we
-squash them all together, the first two won't be backported to v6.1.
+Acked-by: Rob Herring <robh@kernel.org>
 
-Let me know how you want to proceed.
-
-Thanks,
-Nícolas
 
