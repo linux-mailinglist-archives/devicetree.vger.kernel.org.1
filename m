@@ -1,174 +1,127 @@
-Return-Path: <devicetree+bounces-47825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47826-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4854E86EB41
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:33:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E36086EB4A
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:36:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F3F0A28CB49
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 21:33:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5440C286025
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 21:36:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DB3959B5C;
-	Fri,  1 Mar 2024 21:32:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16C358AD5;
+	Fri,  1 Mar 2024 21:36:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="KUMIFPZv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LYLz/Zns"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE33258AA7;
-	Fri,  1 Mar 2024 21:32:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91D2958ACC;
+	Fri,  1 Mar 2024 21:36:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709328779; cv=none; b=CZyB8VRsc7anhr5bJlOqstob3CgeR94Ob5OhlQBRd2PgGGO/969Q1+KhRMaGQQ9MCVpF15rnsRur66d2SkbSMs9NIsyHex9P64M8kgyLXwozhZP1jTXKFQvGZRoLtnQJxw8VEdkysbXMBsnJ/IJl0aWI3RgUJt8HJy47a3fg8Xo=
+	t=1709328975; cv=none; b=DUhuXVSbIkInrZIJHd8i1yZf8OyKF85uxGhjL7acscqdfIcaNXyd0iu9HuZVst6gjbA89XegWUfgq6EpEkGcNTZV1uTXWodd0i3tYvm6AGzJeKsxa4LOebpzUmNSb7l1f2shVmX1+GWtY5atwkp/bhv0+4IvosaZrR68E7SEjus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709328779; c=relaxed/simple;
-	bh=lEaMum6Hi4dQa17PbaGnwtoHBfI1CE4Ao30uOMkaZ/4=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=ue7/RvqcI/QIkW6LMNMkn2qVHACnW+vsGwGKjjwnM4H6NffK5EBxERkNc1l2lw96ZOm6Z4G0wxZi2H/I1D2UQ2cYL0wO2VFBE0qq6yvs0uVJkalPQhI9NFH1HvL/RvqB3tJb77JQXZL/CUGGD6zn/G89JECvT7wYuL1qq7gb27Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=KUMIFPZv; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id BFE7E3305;
-	Fri,  1 Mar 2024 22:32:36 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1709328757;
-	bh=lEaMum6Hi4dQa17PbaGnwtoHBfI1CE4Ao30uOMkaZ/4=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KUMIFPZvtpOxaGwpe4pCOHyqTN5+w63NMwYoJ1IAP2D/zm9TL0+eUXNEWyIIGHmiE
-	 QN7sETAYf5kdi9BYNPkaIik8mgNZA20Sxsa+nwAGi+zV8MUfGpl5zOqel/SqQy2ihi
-	 k/OdkLVFbo+cNc1KwtfE2HvUK05ac1oY8yW6XhXw=
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: linux-media@vger.kernel.org
-Cc: Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Naushir Patuck <naush@raspberrypi.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	kernel-list@raspberrypi.com,
-	linux-rpi-kernel@lists.infradead.org,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>,
-	Scott Branden <sbranden@broadcom.com>,
-	bcm-kernel-feedback-list@broadcom.com,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: [PATCH v6 15/15] [DNI] arm64: dts: broadcom: Add overlay for Raspberry Pi 4B IMX219 camera
-Date: Fri,  1 Mar 2024 23:32:30 +0200
-Message-ID: <20240301213231.10340-16-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240301213231.10340-1-laurent.pinchart@ideasonboard.com>
-References: <20240301213231.10340-1-laurent.pinchart@ideasonboard.com>
+	s=arc-20240116; t=1709328975; c=relaxed/simple;
+	bh=nNI1GFWV3VF+KBWjXYmR+1rViSk5YziUkARe0UzaTHE=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=h+r6yp4fHvHLlJL9/ItVyMBOIVY5JkiDalmmrWREyDr1RFKqEVuZhV3M6yQ1ak4ETX29pbv7zXgpwI+nW8LtgjE+HVY3g1FZVOcVfIg0JKZ4Odm6AZvXF2ZbIoDNH/Oe0ax5XgtS80BllFMV9cIBmRkNWymbSIUKcF6hmubqADo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LYLz/Zns; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B8B04C43390;
+	Fri,  1 Mar 2024 21:36:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709328975;
+	bh=nNI1GFWV3VF+KBWjXYmR+1rViSk5YziUkARe0UzaTHE=;
+	h=Date:From:To:Subject:References:In-Reply-To:From;
+	b=LYLz/ZnsEinauRuxr4yV1WGVUfRs0tq+0Tot9DU/uKbQeZEb5lw4RA2Iq7/yIdUiP
+	 HjrK8XFtaLipJS4P/sVNBh66ZbrHvC28PgCrPyYNECKUsXSLfi5Qx9R6gPD0+4WrEm
+	 wKl9ye33lOMRO+aG0nBrEhWD/w0W5Id3KMsrQaLHWfdlBkl9ZlGqCsOc8sva+/IAgP
+	 3s87FI+Omy163728oQT2rlDJp922OEJjzBzAeR6h52xiWMuOd8QtlKwoCqg6arKNul
+	 kfy4rLGXQ+QAB3qKDZNsV41rWFgr7QK4b2Q5Ercvxnlp4z6FWR7Dz9nK3iIl6nruJx
+	 UpBwUdRQtLyGg==
+Date: Fri, 1 Mar 2024 15:36:12 -0600
+From: Rob Herring <robh@kernel.org>
+To: =?utf-8?Q?Ond=C5=99ej?= Jirman <megi@xff.cz>,
+	linux-kernel@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Chen-Yu Tsai <wens@csie.org>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Samuel Holland <samuel@sholland.org>,
+	Arnaud Ferraris <arnaud.ferraris@collabora.com>,
+	linux-sound@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-sunxi@lists.linux.dev
+Subject: Re: [RESEND PATCH v2 1/5] dt-bindings: sound: Add jack-type property
+ to sun8i-a33-codec
+Message-ID: <20240301213612.GA3071318-robh@kernel.org>
+References: <20240224135501.3822390-1-megi@xff.cz>
+ <20240224135501.3822390-2-megi@xff.cz>
+ <20240226194727.GA1320480-robh@kernel.org>
+ <w75crq6ofqq6gisxdda6zeyem5gmsrexe7zarrza46awpstlvk@lc7bttbt63el>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <w75crq6ofqq6gisxdda6zeyem5gmsrexe7zarrza46awpstlvk@lc7bttbt63el>
 
-For testing only at this point.
+On Tue, Feb 27, 2024 at 12:57:08AM +0100, Ondřej Jirman wrote:
+> On Mon, Feb 26, 2024 at 01:47:27PM -0600, Rob Herring wrote:
+> > On Sat, Feb 24, 2024 at 02:54:54PM +0100, Ondřej Jirman wrote:
+> > > From: Ondrej Jirman <megi@xff.cz>
+> > > 
+> > > The codec driver needs to know what jack connector it is connected to
+> > > on the board. Add proprty to describe the type of connector.
+> > > 
+> > > Signed-off-by: Ondrej Jirman <megi@xff.cz>
+> > > ---
+> > >  .../bindings/sound/allwinner,sun8i-a33-codec.yaml        | 9 +++++++++
+> > >  1 file changed, 9 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun8i-a33-codec.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun8i-a33-codec.yaml
+> > > index 63eadc4200ac..399fc00ad3f4 100644
+> > > --- a/Documentation/devicetree/bindings/sound/allwinner,sun8i-a33-codec.yaml
+> > > +++ b/Documentation/devicetree/bindings/sound/allwinner,sun8i-a33-codec.yaml
+> > > @@ -44,6 +44,15 @@ properties:
+> > >        - const: bus
+> > >        - const: mod
+> > >  
+> > > +  jack-type:
+> > 
+> > I'm all for a generic property name, but it needs to be documented 
+> > somewhere common. Perhaps dai-common.yaml.
+> > 
+> > I'm sure there is some prior art here to consider as well.
+> 
+> There's only a mention in the code. But there's no use of similar property
+> on the codec nodes.
+> 
+> https://elixir.bootlin.com/linux/latest/source/sound/soc/soc-component.c#L288
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- arch/arm64/boot/dts/broadcom/Makefile         |  2 +
- .../dts/broadcom/bcm2711-rpi-4-b-imx219.dtso  | 65 +++++++++++++++++++
- 2 files changed, 67 insertions(+)
- create mode 100644 arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b-imx219.dtso
+git grep 'jack' Documentation/devicetree/bindings/sound
 
-diff --git a/arch/arm64/boot/dts/broadcom/Makefile b/arch/arm64/boot/dts/broadcom/Makefile
-index 8b4591ddd27c..a64cfef8bd9a 100644
---- a/arch/arm64/boot/dts/broadcom/Makefile
-+++ b/arch/arm64/boot/dts/broadcom/Makefile
-@@ -12,6 +12,8 @@ dtb-$(CONFIG_ARCH_BCM2835) += bcm2711-rpi-400.dtb \
- 			      bcm2837-rpi-cm3-io3.dtb \
- 			      bcm2837-rpi-zero-2-w.dtb
- 
-+bcm2711-rpi-4-b-imx219-dtbs := bcm2711-rpi-4-b.dtb bcm2711-rpi-4-b-imx219.dtbo
-+
- subdir-y	+= bcmbca
- subdir-y	+= northstar2
- subdir-y	+= stingray
-diff --git a/arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b-imx219.dtso b/arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b-imx219.dtso
-new file mode 100644
-index 000000000000..33c3219ca4c3
---- /dev/null
-+++ b/arch/arm64/boot/dts/broadcom/bcm2711-rpi-4-b-imx219.dtso
-@@ -0,0 +1,65 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+// Definitions for IMX219 camera module on VC I2C bus
-+
-+/dts-v1/;
-+/plugin/;
-+
-+&{/} {
-+	cam1_clk: cam1_clk {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <24000000>;
-+	};
-+};
-+
-+&csi1 {
-+	status = "okay";
-+
-+	port {
-+		csi_ep: endpoint {
-+			remote-endpoint = <&cam_endpoint>;
-+			clock-lanes = <0>;
-+			data-lanes = <1 2>;
-+			clock-noncontinuous;
-+		};
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c0_1 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	status = "okay";
-+
-+	camera@10 {
-+		compatible = "sony,imx219";
-+		reg = <0x10>;
-+
-+		clocks = <&cam1_clk>;
-+		clock-names = "xclk";
-+
-+		VANA-supply = <&cam1_reg>;	/* 2.8v */
-+		VDIG-supply = <&cam1_reg>;	/* 1.8v */
-+		VDDL-supply = <&cam1_reg>;	/* 1.2v */
-+
-+		rotation = <180>;
-+		orientation = <2>;
-+
-+		port {
-+			cam_endpoint: endpoint {
-+				remote-endpoint = <&csi_ep>;
-+				clock-lanes = <0>;
-+				data-lanes = <1 2>;
-+				clock-noncontinuous;
-+				link-frequencies = /bits/ 64 <456000000>;
-+			};
-+		};
-+	};
-+};
-+
-+&i2c0mux {
-+	status = "okay";
-+};
--- 
-Regards,
+There's lots of things related to jack. I don't see type, but I didn't 
+go looking for 'mic' or 'headphone' or 'headset' or ...
 
-Laurent Pinchart
+> 
+> /**
+>  * snd_soc_component_get_jack_type
+>  * @component: COMPONENTs
+>  *
+>  * Returns the jack type of the component
+>  * This can either be the supported type or one read from
+>  * devicetree with the property: jack-type.
+>  */
+> 
+> This is part of a component, so maybe in sound/component-common.yaml ?
 
+A comment with no other usage I can find doesn't make it documented.
+
+Rob
 
