@@ -1,59 +1,58 @@
-Return-Path: <devicetree+bounces-47813-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47814-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8BD986EB1E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:27:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CBA1686EB21
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:28:27 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 77CFEB251D6
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 21:27:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 817262851B4
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 21:28:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A647C5810C;
-	Fri,  1 Mar 2024 21:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A99258128;
+	Fri,  1 Mar 2024 21:28:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ugeuB6tS"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nt0M7OVF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E8C25788F;
-	Fri,  1 Mar 2024 21:26:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 51F945810F;
+	Fri,  1 Mar 2024 21:28:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709328416; cv=none; b=GtdcYMEK1TFMNLO8dnH2haTkEKClNlNHTHweaYOEloH1Lkq6/Zid1D/aO+VdM5JuEU2I8XrNrh68qzdIcuijgt5TMH6A6JNuetK99l4GR+jA+mZUG5jt05SGUNh0YLgUzzwA3IDxPK7dBnGwycMcl8G4pEMzVwQAjEI2RbFtfIE=
+	t=1709328502; cv=none; b=hVu4I+jHPXF161oFk0Ycu/gKcu6TpTauNXpHrgFwln7sJ9bQfOpasDMtAj8TQZLBb/mHHFvIlDjhrsCg/NagymICdaC2lXsUZvyyVbcc8Sa4BH7swD/UqkRmEs2btGLelzSweMO56bepA3WcCirIfNeolsTdY8XzgrmyUfHTrUU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709328416; c=relaxed/simple;
-	bh=LJhDcUWUX1NzmdtO9WA6LfJwGILMllsjGn+KovvtI3U=;
+	s=arc-20240116; t=1709328502; c=relaxed/simple;
+	bh=nXjPiWNmBdKJjciRfvUp7jz/RJ04d81N51LnB9Qo/Ns=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p421jMG8SQcAZ7poWevIcXzgod9/B6Yo1MPqS4ReYb1csWXcxaXaEOvIcT0CldgN1WhympQtIXnmI3OPk5xd1Dw85dcehMQzc3HvOucb71wdq+QHptkmXHgoxuH9sTcIAcPUfG+SSzu6pSJrnFBVdvgjS8qlBR0Bggy8H6Ofr8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ugeuB6tS; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E5F2C433C7;
-	Fri,  1 Mar 2024 21:26:55 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lr0suzxsqf/l01Fj6l0s4dPMPRPqMz0iNqngxZ95TwioHoe14DnRCPjdMU6Es/ofnp+5GDZ5NqGqGaI2YPVyffM6elBT+y4noa1J/pi0UtMi2Hl90TLxDD4fSXemL2g/sIfO9gO/RoM6CP6hc310BG1zHRcIpTd6BhbryL1wDrc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nt0M7OVF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB55AC433C7;
+	Fri,  1 Mar 2024 21:28:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709328416;
-	bh=LJhDcUWUX1NzmdtO9WA6LfJwGILMllsjGn+KovvtI3U=;
+	s=k20201202; t=1709328502;
+	bh=nXjPiWNmBdKJjciRfvUp7jz/RJ04d81N51LnB9Qo/Ns=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ugeuB6tSUb3Rk7j/+mvje9YJb7UvtD/Y85YRJDM9wLqGA6ZirdzBIK8s8gtr7zIAp
-	 E8B3nPuRLLdtF2s9nBNWT+t139+bp6l9Top5Kql8cmuljnG2+lS2Qnztlo+Z2sxhVN
-	 bRU0epV/yZ+DiwFeNkeoEtmDFf9tpqbVQq4k5MR2VQen2XI0CENgsHl8xIKtWNUtF/
-	 jTOckQ8P0DOVe53GOalewzw90LvGJXU60HvUX0mghGoJKcpbyl3yIW9v+4G7I6ZXMN
-	 bEBoJrPtKTLaYLs52rS8UjNIgaxTNdyr/Au4aie9Bt/XOP3Ax1mwquHvCvFK5GCvo4
-	 N2Ylbz67vZAHw==
-Date: Fri, 1 Mar 2024 15:26:54 -0600
+	b=nt0M7OVFItSPUmJWsWBEdbqOH2y5PwmnkrWgk789KoUwJ1pMWJxp3dIEUe0JLvnLF
+	 edmbLw8pow3I3oPdnqkibkzOmsidP5GuWMrtb9EQTLqHEygdoPcR7vEtlqnY8dmql1
+	 tVDNTmaOFbum57rzfhe9lCyXoEfu50SYLmF34fhDABWT3pJUOz01nvkDEhDtErD5dU
+	 D4vSV3xAMJO9GAF6Ftzo5ImiHkUS0fxRWwm5N4n2IaczMa3zixJCD3o9c05WJMPbH/
+	 B+QI5OX3MalK2d4DF0fUi4fx5UfEmOHs9Pf2oaydUzOZk0UdwdhqFSkJObOiCBpjwf
+	 v7YSXpqKAVCHA==
+Date: Fri, 1 Mar 2024 15:28:19 -0600
 From: Rob Herring <robh@kernel.org>
-To: Varshini Rajendran <varshini.rajendran@microchip.com>
-Cc: alexandre.belloni@bootlin.com, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, andrei.simion@microchip.com,
-	robh+dt@kernel.org, nicolas.ferre@microchip.com,
-	linux-arm-kernel@lists.infradead.org, claudiu.beznea@tuxon.dev,
-	devicetree@vger.kernel.org, mihai.sain@microchip.com,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 38/39] dt-bindings: arm: add sam9x75 curiosity board
-Message-ID: <170932841355.3066947.7730098425368875692.robh@kernel.org>
-References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
- <20240223173100.673543-1-varshini.rajendran@microchip.com>
+To: Saravana Kannan <saravanak@google.com>
+Cc: Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	=?iso-8859-1?Q?Herv=E9?= Codina <herve.codina@bootlin.com>,
+	linux-kernel@vger.kernel.org, kernel-team@android.com,
+	devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH] of: property: fw_devlink: Fix stupid bug in
+ remote-endpoint parsing
+Message-ID: <170932849758.3069211.9107185737518213439.robh@kernel.org>
+References: <20240224052436.3552333-1-saravanak@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,18 +61,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240223173100.673543-1-varshini.rajendran@microchip.com>
+In-Reply-To: <20240224052436.3552333-1-saravanak@google.com>
 
 
-On Fri, 23 Feb 2024 23:01:00 +0530, Varshini Rajendran wrote:
-> Add documentation for SAM9X75 Curiosity board.
+On Fri, 23 Feb 2024 21:24:35 -0800, Saravana Kannan wrote:
+> Introduced a stupid bug in commit 782bfd03c3ae ("of: property: Improve
+> finding the supplier of a remote-endpoint property") due to a last minute
+> incorrect edit of "index !=0" into "!index". This patch fixes it to be
+> "index > 0" to match the comment right next to it.
 > 
-> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> Reported-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> Link: https://lore.kernel.org/lkml/20240223171849.10f9901d@booty/
+> Fixes: 782bfd03c3ae ("of: property: Improve finding the supplier of a remote-endpoint property")
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
 > ---
->  Documentation/devicetree/bindings/arm/atmel-at91.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> Using Link: instead of Closes: because Luca reported two separate issues.
+> 
+> Sorry about introducing a stupid bug in an -rcX Rob.
+> 
+> -Saravana
+> 
+>  drivers/of/property.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
 
 
