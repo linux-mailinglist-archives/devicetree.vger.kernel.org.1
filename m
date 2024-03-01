@@ -1,69 +1,60 @@
-Return-Path: <devicetree+bounces-47811-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47812-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2643B86EB16
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:23:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4486D86EB1B
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:26:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0A8528353E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 21:23:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D5B6C2847F7
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 21:26:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480A957867;
-	Fri,  1 Mar 2024 21:23:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D9865810F;
+	Fri,  1 Mar 2024 21:26:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V68D5UZs"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="McJ0P1P1"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B35C5733F;
-	Fri,  1 Mar 2024 21:23:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12D6C5810C;
+	Fri,  1 Mar 2024 21:26:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709328219; cv=none; b=OLZUufb+6DZVMirCpC4UNsdW88PyVXy4oXk6ib/CBW4pMObSDJEXVPBqnQvrUqqas8YrFQCiPlwFO0sYh8JhpcJHsV3firH6KxONDpzotcHeh3saTfX0WAMWnmK02K1oUVRoVddMaN5taGjSLbx4MuyGG04/rn/VlX/jBgMFaTk=
+	t=1709328399; cv=none; b=ZBgb7tfBDIp63wgZ0i5Majxa45U/ZAADE75Dozt1+7w4ulpLGipuXBNyn17Sk7QpnT11JOUTfEyrGAX3UUyptsS3VVZpKHtHihLBUDISSIS4c9f2ECJp6MgTV3KZLKMYZ9qH5NRkaDRib+gj4bgENnOhkV8SpQNYLE6qzyvm3uk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709328219; c=relaxed/simple;
-	bh=GX2qzQwDr7Zhypt11xhh2AlwjHUUCEBLsUYK1wQPLR8=;
+	s=arc-20240116; t=1709328399; c=relaxed/simple;
+	bh=aM1m7Tc6gmh3QqrzFtLm2I/l6fRMcyxvti7AKcZMJdM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FclcH2QZETv63ohgMHD+hbonsoxS4JRbu/QXAR3mRvQEup4zoIshYPk/SDdFnzIodhnVYpC6AN0vD71f6RwH+OMSoW1XOVomK07Ao8/ta1K4b/YBToKJFWK3ZD5sW/kgpMtvKCiKKzaqMIV6ll3yO7JUMEnKIc0hQKihgOxfsR4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V68D5UZs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D4F2C433F1;
-	Fri,  1 Mar 2024 21:23:38 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=RMZ9IFLMYv7o2+2QZGUSMqLWXHXI9j9WpuSixlA4RHRXxs0ArCDLwD4FcgAr7tFQE8/4MA8gyh4o+OefbSJldunB1lYW7x3+VTstnUblY6N4RuQe37Sj09j7L8tWD07InKpA0RjqLZT20OIfyDb/AopQP0MhZvtAo3hu2AZLl+I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=McJ0P1P1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 13B54C433C7;
+	Fri,  1 Mar 2024 21:26:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709328218;
-	bh=GX2qzQwDr7Zhypt11xhh2AlwjHUUCEBLsUYK1wQPLR8=;
+	s=k20201202; t=1709328398;
+	bh=aM1m7Tc6gmh3QqrzFtLm2I/l6fRMcyxvti7AKcZMJdM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=V68D5UZsGtv8HaqYrPm3tYqzsQxdB+Sh4lvGksAWx/x5d6fI7t1v58TLG4IVy5vAN
-	 oWuXzQL8Y3ar3GrCKRMAzCJhViEEkCvZkOWXOssWCPjocUdW3mNnEKWm+UKzzkOgRk
-	 EnXt9NAFcmYbk4ZRkyKi0GuzQZM9yDErEEWE5Rzf7h6NLyDp97ETr3kWSpZLGVRjwV
-	 n9vQGVQHQ3KUUZuljiRcJ4T265FypxsWsbY52eQ5KOhN1/jCvXfcAFRFlXbICBQUtx
-	 H8UQzLdPSzb1iK4FoDMhunOR2vp0iFp1POsoyg9IfIlPB7nkk5UDww+baQnvu/nVNk
-	 wLhE8soUNdogg==
-Date: Fri, 1 Mar 2024 15:23:36 -0600
+	b=McJ0P1P1Xqg6PtBhxAtmq+nxXisb0NL/qIAasGQTUBPz576osIqK+0rWGhBbOs5pE
+	 ZfdXepJWU2r7wHbMT4iIqZ+P3f9rAG0j36VV7zyikslHmPNd3PxGby9VgHwvfScucE
+	 V3bIG+notlUQK8qsDz6yJ+qNLOMb6Y1QjtdTPC203Tywmk1Jr6T8PgkKEl1KwB6zJP
+	 q2DrEgVb5x+SthecxbX6JkDjLU1l2/GLljsg8nAyRTemDyF7crNGdePZi3EIUi/TCr
+	 wrz719XdnqQKhFqUuoMY1pmUrggWzix+gGACs8CqyWwWZ6NCtDrht2uD0nEJysaWur
+	 d54eNby07nrrA==
+Date: Fri, 1 Mar 2024 15:26:35 -0600
 From: Rob Herring <robh@kernel.org>
-To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-Cc: devicetree@vger.kernel.org,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Linux Media Mailing List <linux-media@vger.kernel.org>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
-	Naushir Patuck <naush@raspberrypi.com>
-Subject: Re: [PATCH v2 7/9] media: dt-bindings: Add bindings for Raspberry Pi
- PiSP Back End
-Message-ID: <170932821578.3062059.18150159256247255021.robh@kernel.org>
-References: <20240223163012.300763-1-jacopo.mondi@ideasonboard.com>
- <20240223163012.300763-8-jacopo.mondi@ideasonboard.com>
+To: Varshini Rajendran <varshini.rajendran@microchip.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	mturquette@baylibre.com, claudiu.beznea@tuxon.dev,
+	krzysztof.kozlowski+dt@linaro.org, alexandre.belloni@bootlin.com,
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+	robh+dt@kernel.org, nicolas.ferre@microchip.com,
+	conor+dt@kernel.org, sboyd@kernel.org
+Subject: Re: [PATCH v4 26/39] dt-bindings: clock: at91: Allow PLLs to be
+ exported and referenced in DT
+Message-ID: <170932839461.3066401.7560967756154066315.robh@kernel.org>
+References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+ <20240223172822.672902-1-varshini.rajendran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -72,23 +63,19 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240223163012.300763-8-jacopo.mondi@ideasonboard.com>
+In-Reply-To: <20240223172822.672902-1-varshini.rajendran@microchip.com>
 
 
-On Fri, 23 Feb 2024 17:30:09 +0100, Jacopo Mondi wrote:
-> Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
-> signal processor.
+On Fri, 23 Feb 2024 22:58:22 +0530, Varshini Rajendran wrote:
+> Allow PLLADIV2 and LVDSPLL to be referenced as a PMC_TYPE_CORE
+> clock from phandle in DT for sam9x7 SoC family.
 > 
-> Datasheet:
-> https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
-> 
-> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
 > ---
->  .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
->  1 file changed, 63 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+>  include/dt-bindings/clock/at91.h | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
 
