@@ -1,55 +1,65 @@
-Return-Path: <devicetree+bounces-47806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D086A86EAE0
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:03:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C81686EAEF
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:11:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84EE71F2180E
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 21:03:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C75A62821E6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 21:11:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D949056B61;
-	Fri,  1 Mar 2024 21:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D2C056B8C;
+	Fri,  1 Mar 2024 21:11:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="rF195vfH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ke/foRsU"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B112D20DCD;
-	Fri,  1 Mar 2024 21:03:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1471920DCD;
+	Fri,  1 Mar 2024 21:11:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709327008; cv=none; b=mFIIUVcjfQPoKBIV4BcKyphhyBSPYc4ByAb3S4x8SriFbRwJTowIVLzegU/ClIb/40ki9WgpkGJlN1yDxh1+Azzs/2mgfLw/iJvM8A3apbkSU8uG1qPZHWMeAQmyzUbZpQv+3FX6UM2HMCMlZkgv++XyvWTJgK16pOHZZgzlqpY=
+	t=1709327471; cv=none; b=Ev0C9sVGJk4YvvO8Hrt19q4awP6BGPRiuYYQPHm4cZvVO1Cobiv2NvMEyGd2LPF6e8Lp/SNDPUUoUYR2qN0BWK5j0wLLWdFYKkW/4GLUj88kT6QOGoeMwDvmMR3v7l2+9yeyLW5PTlmak2xHtaq7WleT1pPSlAkU5xuuW0KOm0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709327008; c=relaxed/simple;
-	bh=0+v0RJjRiOKpETqQHZw+J50p87NMv2euXCc2vzkh0sI=;
+	s=arc-20240116; t=1709327471; c=relaxed/simple;
+	bh=PareT5Uh8qyKXVJmbXssDGNU+1BT0dFwAwAWmEQRgfE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=m2m57myyJhI9egUz0ecFWTxnYGPSMZjl2PvZouCJ9Wuc6u+OWwNujyyWRLSitR/BNIXqa1SxJoJkmPnKEUcuaraXi9TRt+qWHSwBq3KElpoemh6moAC209bl2Vwlq6g++A4Q1Yk8Yjbsii8+XgUeh+/heGU8vzblvZhPPA6e44Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=rF195vfH; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11F1FC433F1;
-	Fri,  1 Mar 2024 21:03:27 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FMSXrUeaziyxpW7F+j7RY8xs+lf8+f0T9V3SLJjdpC5SHDxNZQ6Fg9cnaDUarI9wQsmct0zYF1cJCMiIk60+ChixSMZfhkJHIE8ORAMULxoIGyAeLQRddaiutf5uO5CngNOGXnX+dcNeE9qH5e82Uhp4ggVFSELlJ9Nuv3xPZDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ke/foRsU; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38681C433C7;
+	Fri,  1 Mar 2024 21:11:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709327008;
-	bh=0+v0RJjRiOKpETqQHZw+J50p87NMv2euXCc2vzkh0sI=;
+	s=k20201202; t=1709327470;
+	bh=PareT5Uh8qyKXVJmbXssDGNU+1BT0dFwAwAWmEQRgfE=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=rF195vfH9NqLEfYBRFCJW8hJ5esSZkTil4aneAhIav6AwUyW0DSa8bDawy1Qrvywn
-	 IaLwnqb+WLKU9+/Sp6FktJapA4IoB5x4bXLyxQ/WxhjVCZd/f7rJCdTSOqHp8xcFdW
-	 pMJicdFX1aH8cgYXH5eU3zxr0Of2JOl9pHGsJQ9lkD2egeOblkQNPnrZ7HvdtfH3BH
-	 ySgJFGTKqLIi57b9zPyZKetxTE+2eWX8Eo6k/RYPEdODIWFRdqE1+kPN28EBNZ4vMW
-	 jAXq8UFjWKhIQQ+M17A2PJfxW4GdowfLT1OPXHlMeHQoC0xamiM0axa5/TYNQ+uMCT
-	 RXrE7efNSvW4w==
-Date: Fri, 1 Mar 2024 15:03:26 -0600
+	b=Ke/foRsUxfyuNyennmryYOLtImZiHI/U9cBz9KR4XL5KcRw/J3ekb0E2Wsj2RsYof
+	 FESedK9y3YvMR/MhHPRE0N3iD8mB0cvI3Fo9sPvrcSDlGC38nEPOGUV0nmAeFD2ay/
+	 L8oeCj+Z4vmhDmSnRNE/nTwKOFXsFmVbVHhDMlQ6RHNILq0ZTo/BmTZKbuVIJgqxqr
+	 gDuqaJvsSD9SS1T63uKw0ZnI0s5hk9/Bse6VdB8Czn9qAh1gALPXAAMtFwK7V73Evl
+	 EKpp8i9NFqjhEPgOHO9HabxpTHU/4uy6+8aEMuu8AB7ngJSf0MlFfFjDE/0DQFNk9e
+	 thFTy1aoc9ZiQ==
+Date: Fri, 1 Mar 2024 15:11:07 -0600
 From: Rob Herring <robh@kernel.org>
-To: Marco Felsch <m.felsch@pengutronix.de>
-Cc: frowand.list@gmail.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, kernel@pengutronix.de
-Subject: Re: [PATCH] of: property: lower loglevel of
- of_graph_get_next_endpoint
-Message-ID: <20240301210326.GA3020204-robh@kernel.org>
-References: <20240223104721.4140880-1-m.felsch@pengutronix.de>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Alexander Stein <alexander.stein@ew.tq-group.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>, linux-media@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 2/3] media: dt-bindings: nxp,imx8-isi: Allow single port
+ for single pipeline models
+Message-ID: <20240301211107.GA3037358-robh@kernel.org>
+References: <20240223140445.1885083-1-alexander.stein@ew.tq-group.com>
+ <20240223140445.1885083-3-alexander.stein@ew.tq-group.com>
+ <20240223141630.GA1313@pendragon.ideasonboard.com>
+ <20240223141731.GB1313@pendragon.ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -58,45 +68,40 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240223104721.4140880-1-m.felsch@pengutronix.de>
+In-Reply-To: <20240223141731.GB1313@pendragon.ideasonboard.com>
 
-On Fri, Feb 23, 2024 at 11:47:21AM +0100, Marco Felsch wrote:
-> Drivers like the tcpm.c do search for a remote endpoint on different
-> places to be dt-bindings compatible. The search is done on the device
-> itself or on the child fwnode in case it was not found the first time.
+On Fri, Feb 23, 2024 at 04:17:31PM +0200, Laurent Pinchart wrote:
+> On Fri, Feb 23, 2024 at 04:16:31PM +0200, Laurent Pinchart wrote:
+> > Hi Alexander,
+> > 
+> > Thank you for the patch.
+> > 
+> > On Fri, Feb 23, 2024 at 03:04:44PM +0100, Alexander Stein wrote:
+> > > In case the hardware only supports just one pipeline, allow using a
+> > > single port node as well.
+> > 
+> > This is frowned upon in DT bindings, as it makes them more complicated
+> > for little gain. The recommendation is to always use a ports node if a
+> > device can have multiple ports for at least one of its compatibles.
 > 
-> This indicates that not finding the remote endpoint at the first try is
-> a valid use-case and should not cause an error printing.
-> 
-> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> ---
-> Hi,
-> 
-> I'm not 100% certain if this is the correct place but if our platform
-> follows the dt-bindings we receive
-> 
-> | OF: graph: no port node found in /soc@0/bus@30800000/i2c@30a30000/tcpc@50
-> 
-> a few times because of the below pr_err() and EPROBE_DEFER.
-> 
-> Regards,
->   Marco
-> 
->  drivers/of/property.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/of/property.c b/drivers/of/property.c
-> index 641a40cf5cf3..155df04a9512 100644
-> --- a/drivers/of/property.c
-> +++ b/drivers/of/property.c
-> @@ -665,7 +665,7 @@ struct device_node *of_graph_get_next_endpoint(const struct device_node *parent,
->  		of_node_put(node);
->  
->  		if (!port) {
-> -			pr_err("graph: no port node found in %pOF\n", parent);
-> +			pr_notice("graph: no port node found in %pOF\n", parent);
+> And reading the cover letter, I see this causes warnings. I think we
+> need guidance from Rob on this.
 
-Already changed to pr_debug.
+The warning is for:
 
-Rob
+ports {
+  port@0 {};
+};
+
+It should/could be changed like this to fix it:
+
+ports {
+  port {};
+};
+
+But I've also said some warnings are guidance, not absolute. This is one 
+of them. Some devices have optional port@1. In those cases, switching 
+between 'port' and 'port@0' depending on 'port@1' makes little sense.
+
+Rob 
 
