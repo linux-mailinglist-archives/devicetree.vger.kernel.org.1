@@ -1,58 +1,61 @@
-Return-Path: <devicetree+bounces-47834-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47835-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C72D86EBE9
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 23:36:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61CC986EBF4
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 23:39:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1C6151F245C0
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:36:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83C2A1C21903
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:39:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E1BA5DF36;
-	Fri,  1 Mar 2024 22:36:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D3D195E3AF;
+	Fri,  1 Mar 2024 22:39:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="21WBm76q"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gUcXrBeu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED4345915D;
-	Fri,  1 Mar 2024 22:36:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3BAC59153;
+	Fri,  1 Mar 2024 22:39:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709332598; cv=none; b=chTpoixD9OQ3RtfPX3KNVgiowsmtodqcSBOTNbo9itQnpImLFod5gVxKRm5mg65Al+hNNQGBpVOPCyFJzCnMyP+WFOKpCRqKDJfkeDK+9GVQ8JP1OnOmCJoAdyvHV0l1XY9N2XkB9PjcVPSBF7RT7rk0acrkS7eggtd+php+2lI=
+	t=1709332784; cv=none; b=s1h1peWt3JvPoHzmfs07NqLtLo19i1m/49L7mdP1B3Sw//7QMVnoQYx2clcQRWITJznDcomvJgKLXANSVWQcqQCb3Zv5ma3F4Ggja8HblqvhoR427ANrd+bfvBr79K8lDpKfLgBJEUCPz5mfHOUDhsAwQR3w6Wsdnu2/Vcqtdzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709332598; c=relaxed/simple;
-	bh=YVqKyfzAKGmkSmL4KKBl0+G1eWM96JH+Sd4gxQKLKeI=;
+	s=arc-20240116; t=1709332784; c=relaxed/simple;
+	bh=gd1f0JmgW2lhfJwMqf/zdowmXxcjdaYyBE2I6GBLjTc=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kz368tu8o28XWqOaPKQXyThcDVfejAyWUou8LhNI/4KbxBpYvBy/4v/jcbF9S5FDRwh2O19jMV+ouZ+kXvKdFa1jJ3FgV8XuGtYKuuOrCSn6Fy/8kKzbnjhAgtqMFxmNlT5H1Jb69STmILoXpU6dyUHHzOiPqmAstp2neXb60r4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=21WBm76q; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=PG+oytNfd+recud757xU3maYgbs21CX5ihLnnh8yEe4=; b=21WBm76qNLnnqHkiK9DvL5yQQP
-	j2XVibxgLKK7bA7jYmasBOqXHLyhy48eOeqq3bxYRJQtQjtBfyCyvk0rhL10gVC59K2aAZQP0kRL6
-	vQyU0rxXYYBnDLOjmNoYJBftYXJ+tNsO6AvLkQVDq3VYtHJEpC4skyOd/GsCtGrx+v2g=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rgBUf-009B2N-CJ; Fri, 01 Mar 2024 23:36:41 +0100
-Date: Fri, 1 Mar 2024 23:36:41 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
-Cc: joel@jms.id.au, andrew@aj.id.au, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
-	linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-	robh+dt@kernel.org
-Subject: Re: [PATCH v2 1/1] ARM:dts:aspeed: Initial device tree for AMD Onyx
- Platform
-Message-ID: <c8686f40-e6e9-4652-b450-217de604b216@lunn.ch>
-References: <20240301222257.3309541-1-supreeth.venkatesh@amd.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=jGvxCYKXFzXrOiU6XfvvSG9xhoXLHoLSLg6YAB+nfvOj0YvtRxGet4cZOG19Ie1hmMp7QFB/3F2zO3eeAmzW8IL0KiGiEF5nC+2CPK0zkiBDhT65axxUh/bexTavdHwNKXqTTT3FR84ObrizGVQgsd01GMu7OPp62H7cjX6Z834=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gUcXrBeu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A9D3C433F1;
+	Fri,  1 Mar 2024 22:39:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709332784;
+	bh=gd1f0JmgW2lhfJwMqf/zdowmXxcjdaYyBE2I6GBLjTc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gUcXrBeuXb+gSba1MISbY8ZI9Asv/8gfB7IcJzmjThNAC3bu9EX8B8M4DHXxm5CmL
+	 EhSPkuG5X2QPns555r6RcdyhCXjmI6L7oIsQwDuDb2FcYsaN5KuIimzBCrtfHA8wHH
+	 GGju4TZ9bd2Dqwl0Wluz2TVtuVLhL11VEVSyO80M2YJJGifaP0WeGsolwZyY8iO70X
+	 YDpUpbnyY3NJopbypb68FKpb0M3NFxD7nGNl7qoOjibLeTPbkhrJtmBhpIAIG8nlv/
+	 4bpRDHVfSH3DZoI3e7SOqGeHpVCZsg0/dRKxW4DJ+b473x06C/rKXshhzYzVyamPIx
+	 g8XUsaomD19SA==
+Date: Fri, 1 Mar 2024 16:39:42 -0600
+From: Rob Herring <robh@kernel.org>
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
+	Frank Rowand <frowand.list@gmail.com>, linux-kernel@vger.kernel.org,
+	Julia Lawall <Julia.Lawall@inria.fr>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	marek.vasut@gmail.com,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [RESEND PATCH v2 0/4] of: automate of_node_put() - new approach
+ to loops.
+Message-ID: <20240301223942.GA3179769-robh@kernel.org>
+References: <20240225142714.286440-1-jic23@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -61,26 +64,52 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240301222257.3309541-1-supreeth.venkatesh@amd.com>
+In-Reply-To: <20240225142714.286440-1-jic23@kernel.org>
 
-> +&mdio0 {
-> +	status = "okay";
-> +	ethphy0: ethernet-phy@0 {
-> +		compatible = "ethernet-phy-ieee802.3-c22";
-> +		reg = <0>;
-> +	};
-> +};
-> +
-> +&mac3 {
-> +	status = "okay";
-> +	phy-mode = "rgmii";
-> +	phy-handle = <&ethphy0>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_rgmii4_default>;
-> +};
+On Sun, Feb 25, 2024 at 02:27:10PM +0000, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> Some discussion occured on previous posting.
+> https://lore.kernel.org/linux-iio/20240223124432.26443-1-Jonathan.Cameron@huawei.com/
+> 
+> Summary:
+> * fwnode conversions should be considered when applying this
+>   infrastructure to a driver. Perhaps better to move directly to
+>   the generic FW property handling rather than improve existing
+>   of specific code.
+> * There are lots of potential places to use this based on detections
+>   from Julia's coccinelle scripts linked below.
+> 
+> The equivalent device_for_each_child_node_scoped() series for
+> fwnode will be queued up in IIO for the merge window shortly as
+> it has gathered sufficient tags. Hopefully the precdent set there
+> for the approach will reassure people that instantiating the
+> child variable inside the macro definition is the best approach.
+> https://lore.kernel.org/linux-iio/20240217164249.921878-1-jic23@kernel.org/
+> 
+> v2: Andy suggested most of the original converted set should move to
+>     generic fwnode / property.h handling.  Within IIO that was
+>     a reasonable observation given we've been trying to move away from
+>     firmware specific handling for some time. Patches making that change
+>     to appropriate drivers posted.
+>     As we discussed there are cases which are not suitable for such
+>     conversion and this infrastructure still provides clear benefits
+>     for them.
+> 
+> Ideally it would be good if this introductory series adding the
+> infrastructure makes the 6.9 merge window. There are no dependencies
+> on work queued in the IIO tree, so this can go via devicetree
+> if the maintainers would prefer. I've had some off list messages
+> asking when this would be merged, as there is interest in building
+> on it next cycle for other parts of the kernel (where conversion to
+> fwnode handling may be less appropriate).
 
-That looks odd. Where are the RGMII delays coming from? Normally its
-"rgmii-id", which asks the PHY to insert the delays.
+I'll let you take it. For the series:
 
-	Andrew
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+I've got some drivers/of/ conversions too, but they are probably next 
+cycle at this point.
+
+Rob
 
