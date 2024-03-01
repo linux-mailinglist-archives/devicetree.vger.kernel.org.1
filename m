@@ -1,240 +1,271 @@
-Return-Path: <devicetree+bounces-47604-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47605-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01BFC86DDA8
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:52:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CAB586DDB1
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:58:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A233E285120
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:52:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09A111F20FC9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 08:58:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5452A69E1B;
-	Fri,  1 Mar 2024 08:52:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="orUcIuS7"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1009C6A028;
+	Fri,  1 Mar 2024 08:58:29 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 088EB69E16;
-	Fri,  1 Mar 2024 08:52:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F8CA6A01C
+	for <devicetree@vger.kernel.org>; Fri,  1 Mar 2024 08:58:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709283159; cv=none; b=HwMcgwHMKX7JtLzNGFNUy887rSxdgsbgiFTplk7sRLjATU9fNVVVx4U5JEVOTvnzJsFloITtmO3Pq0AWC26Lx1AhzFxxI1GhnwpQDxTzoG3gcPVusPU8P8WOzJlMmyuh8wzRcNh3QNzns6eS5Rvl3QAIWQlBMoRFa/29E7k22cE=
+	t=1709283509; cv=none; b=J3koSZYdSe0CNtNd3j8nSW623OttTx3FgH+T85rI5nti6FJJ/sz8NG3cz+BEmBuGUMmTXJcm/ZjhgWoqkiRAteRZjmnvYShaa4FtUxuO1BpI54pLlUe83mxEnGmJfTKsfxpLS1cTXs7sNCLeqt6GhIHOfT6k/fnnaCpoKk0pows=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709283159; c=relaxed/simple;
-	bh=ByJxXjUmVJOan1Gat8sDAxu1MHfl4qWUa465EQgUY7Q=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=kpqgRD3XxtvHiHDJL77t6wIiMHLA+IOITbpEMxK6F9C1pL5KPfGGfrNjjUwKYHHpOTTi6CzKLBVTBa2hMUr1B02FJJeNAaY6aJkCOTR2osqKocWGzYRM4z1D9TTNCvQWRwqNoV2TddiTmNZL2OvQIIjpwQnglhaV91n8a+yibQU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=orUcIuS7; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1709283509; c=relaxed/simple;
+	bh=Y2ooKxwu0DvEAlAO3yUTV8/LjvCmLJjEEzzi6omP6EE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rbuzXiGAESp0MLhqcFt7RpVJq3GplcRaQ0V5ZDtvVgW9nIbCEzgKVoFpAH7VhYmeSPWNjzvXzL1CyO4dnB7LMCV7UVVcAgvjlfUfoer9th1lxie8Cz/ibLrnpbHgq+Zwl+dy6VbDvz7UcHyJkFDTvxQja8H29J2RiuISxiMFbro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rfyif-0003jY-UI; Fri, 01 Mar 2024 09:58:17 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rfyie-003kKQ-Tg; Fri, 01 Mar 2024 09:58:16 +0100
+Received: from mfe by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <mfe@pengutronix.de>)
+	id 1rfyie-00F28a-2f;
+	Fri, 01 Mar 2024 09:58:16 +0100
+Date: Fri, 1 Mar 2024 09:58:16 +0100
+From: Marco Felsch <m.felsch@pengutronix.de>
+To: Adam Ford <aford173@gmail.com>
+Cc: linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Fabio Estevam <festevam@gmail.com>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	devicetree@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
+	aford@beaconembedded.com, linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mp-beacon: Enable LVDS-1
+Message-ID: <20240301085816.bam4ph43w7tikhea@pengutronix.de>
+References: <20240229233556.116944-1-aford173@gmail.com>
+ <20240229233556.116944-2-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1709283154;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=HLbvrgwUZZKBHF7NvvXt4qwWmyIAaI4FWrdM6t+PElo=;
-	b=orUcIuS7xstNMAE2D54STQMmWn3gzMFrWU0mCVp7v8cA9eEpuaqSdvrWrsQQ2Aee60Eerw
-	gf21eR1Ap0G3tJglp2/CuNjBCBpsw2dqpeuK8BeEJO0bBigoGu6k37inPdFpJ3ZZVtuElw
-	D1X3XRcX6eRn01R/fCmil5hxndf51F+f2/j9g/+dpjXuTNt/eGN4RbVRDD9X/fRYnHZSlp
-	Xmilmr7rmn/HoZmnd2Sv8pbV/TalK+glKMbGthe/TlspYoVnm09U6WFgeEqVCOnV3u2GdN
-	+y4vC8hUd5L5oyUDk7vNgkaQ1LVOJvjyJmG/FWX3kHPzPPeNoeFJAcDOrICdJA==
-Date: Fri, 01 Mar 2024 09:52:34 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Alexey Charkov <alchark@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
- Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] arm64: dts: rockchip: enable built-in thermal
- monitoring on RK3588
-In-Reply-To: <CABjd4YwMtZUhZG12qXv-=L8e2itwr6_Pex3E_ma1UC9MPQ95EA@mail.gmail.com>
-References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
- <20240229-rk-dts-additions-v3-1-6afe8473a631@gmail.com>
- <a370efd768021ce1afd6ea5ce841acbb@manjaro.org>
- <CABjd4YxM3HY20BbLZ2bJbEFuf6Uv9P_=v4NdHuvN2M-pxh652Q@mail.gmail.com>
- <ad00189e1a25ca90128be6c8b3841b77@manjaro.org>
- <CABjd4YwMtZUhZG12qXv-=L8e2itwr6_Pex3E_ma1UC9MPQ95EA@mail.gmail.com>
-Message-ID: <8b48eeac7b629c39adc6024ff418724c@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240229233556.116944-2-aford173@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 2024-03-01 09:25, Alexey Charkov wrote:
-> On Fri, Mar 1, 2024 at 9:51 AM Dragan Simic <dsimic@manjaro.org> wrote:
->> On 2024-03-01 06:12, Alexey Charkov wrote:
->> > On Fri, Mar 1, 2024 at 12:21 AM Dragan Simic <dsimic@manjaro.org>
->> > wrote:
->> >> On 2024-02-29 20:26, Alexey Charkov wrote:
->> >> > Include thermal zones information in device tree for RK3588 variants.
->> >> >
->> >> > This also enables the TSADC controller unconditionally on all boards
->> >> > to ensure that thermal protections are in place via throttling and
->> >> > emergency reset, once OPPs are added to enable CPU DVFS.
->> >> >
->> >> > The default settings (using CRU as the emergency reset mechanism)
->> >> > should work on all boards regardless of their wiring, as CRU resets
->> >> > do not depend on any external components. Boards that have the TSHUT
->> >> > signal wired to the reset line of the PMIC may opt to switch to GPIO
->> >> > tshut mode instead (rockchip,hw-tshut-mode = <1>;)
->> >>
->> >> Quite frankly, I'm still not sure that enabling this on the SoC level
->> >> is the way to go.  As I already described in detail, [4] according to
->> >> the RK3588 Hardware Design Guide v1.0 and the Rock 5B schematic, we
->> >> should actually use GPIO-based handling for the thermal runaways on
->> >> the Rock 5B.  Other boards should also be investigated individually,
->> >> and the TSADC should be enabled on a board-to-board basis.
->> >
->> > With all due respect, I disagree, here is why:
->> >  - Neither the schematic nor the hardware design guide, on which the
->> > schematic seems to be based, prescribes a particular way to handle
->> > thermal runaways. They only provide the possibility of GPIO based
->> > resets, along with the CRU based one
->> 
->> Please note that other documents from Rockchip also exist.  Below is
->> a link to a screenshot from the Thermal developer guide, version 1.0,
->> which describes the whole thing further.  I believe it's obvious that
->> the thermal runaway is to be treated as a board-level feature.
->> 
->> - https://i.imgur.com/IJ6dSAc.png
+Hi Adam,
+
+On 24-02-29, Adam Ford wrote:
+> Beacon has an LVDS display that can connect to one of the
+> LVDS ports on the baseboard.  The display requires a 30MHz
+> clock to display properly, and the LDB needs to run at 7x that.
+> With the audio CODEC now moved to the AUDIO_PLL1, the AUDIO_PLL2
+> is now available to source the LDB at 210MHz and the DISP_PIX2.
 > 
-> Frankly, that still doesn't make TSADC per se a board-level thing IMO.
-> The only thing that is board-level is the wiring of GPIO based resets,
-> which I fully agree should go to board .dts for boards that support
-> it, but that's not part of the current defaults and can be safely
-> added later.
+> Signed-off-by: Adam Ford <aford173@gmail.com>
 > 
-> TSADC is inside the SoC. CRU is inside the SoC. They work just fine
-> for a thermal reset, even if no dedicated reset logic is wired on the
-> board. I really don't see any downsides in having TSADC enabled by
-> default with CRU based resets:
-> - it's a safe default (i.e. I cannot think of any configuration or use
-> case where enabled-by-default TSADC does any harm)
-> - it's safer than accidentally forgetting to enable TSADC (as it adds
-> thermal protection which is otherwise missing)
-> - it will work on all boards (even if it doesn't utilize the full
-> hardware functionality by ignoring GPIO resets that some boards also
-> have in addition to the CRU)
-> - and it requires fewer overrides in board .dts files
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+> index 1f827ef38e36..731ee2667060 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
+> @@ -19,6 +19,26 @@ aliases {
+>  		ethernet1 = &fec;
+>  	};
+>  
+> +	backlight: backlight {
+> +		compatible = "pwm-backlight";
+> +		pwms = <&pwm2 0 100000 0>;
+> +		power-supply = <&reg_lcd1_reset>;
+> +		status = "okay";
+
+status is not required here.
+
+> +
+> +		brightness-levels = < 0  1  2  3  4  5  6  7  8  9
+> +				     10 11 12 13 14 15 16 17 18 19
+> +				     20 21 22 23 24 25 26 27 28 29
+> +				     30 31 32 33 34 35 36 37 38 39
+> +				     40 41 42 43 44 45 46 47 48 49
+> +				     50 51 52 53 54 55 56 57 58 59
+> +				     60 61 62 63 64 65 66 67 68 69
+> +				     70 71 72 73 74 75 76 77 78 79
+> +				     80 81 82 83 84 85 86 87 88 89
+> +				     90 91 92 93 94 95 96 97 98 99
+> +				    100>;
+
+Are you aware of: 'num-interpolated-steps' to avoid such arrays?
+
+> +		default-brightness-level = <80>;
+> +	};
+> +
+>  	chosen {
+>  		stdout-path = &uart2;
+>  	};
+> @@ -135,6 +155,38 @@ led-3 {
+>  		};
+>  	};
+>  
+> +	lvds-1 {
+> +		compatible = "panel-lvds";
+> +		power-supply = <&reg_lcd1>;
+> +		width-mm = <223>;
+> +		height-mm = <125>;
+> +		backlight = <&backlight>;
+> +		data-mapping = "vesa-24";
+> +
+> +		panel-timing {
+> +			/* 800x480@60Hz */
+> +			clock-frequency = <30000000>;
+> +			hactive = <800>;
+> +			vactive = <480>;
+> +			hsync-len = <48>;
+> +			hfront-porch = <40>;
+> +			hback-porch = <40>;
+> +			vfront-porch = <13>;
+> +			vback-porch = <29>;
+> +			vsync-len = <1>;
+> +			hsync-active = <1>;
+> +			vsync-active = <3>;
+> +			de-active = <1>;
+> +			pixelclk-active = <0>;
+> +		};
+
+I would like to have a proper panel-simple.c entry but that's just my
+POV of adding panels.
+
+> +
+> +		port {
+> +			panel1_in: endpoint {
+> +				remote-endpoint = <&ldb_lvds_ch1>;
+> +			};
+> +		};
+> +	};
+> +
+>  	reg_audio: regulator-wm8962 {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "3v3_aud";
+> @@ -144,6 +196,25 @@ reg_audio: regulator-wm8962 {
+>  		enable-active-high;
+>  	};
+>  
+> +	reg_lcd1_reset: regulator-lcd1-reset {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "LVDS-1 reset";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&pca6416_3 13 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +		vin-supply = <&reg_lcd1>;
+> +	};
+
+This reset "regulator" seems more like a workaround, why don't you use
+the reset-gpios property from "panel-lvds"?
+
+Regards,
+  Marco
+
+> +
+> +	reg_lcd1: regulator-lcd1 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "lvds-1 power";
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +		gpio = <&pca6416_3 14 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+>  	reg_usdhc2_vmmc: regulator-usdhc2 {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "VSD_3V3";
+> @@ -457,6 +528,38 @@ &lcdif1 {
+>  	status = "okay";
+>  };
+>  
+> +&lcdif2 {
+> +	status = "okay";
+> +};
+> +
+> +&lvds_bridge {
+> +	assigned-clocks = <&clk IMX8MP_CLK_MEDIA_LDB>, <&clk IMX8MP_AUDIO_PLL2_OUT>;
+> +	assigned-clock-parents = <&clk IMX8MP_AUDIO_PLL2_OUT>;
+> +	assigned-clock-rates = <210000000>, <210000000>;
+> +	status = "okay";
+> +
+> +	ports {
+> +		port@2 {
+> +			ldb_lvds_ch1: endpoint {
+> +				remote-endpoint = <&panel1_in>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&media_blk_ctrl {
+> +	assigned-clocks = <&clk IMX8MP_CLK_MEDIA_AXI>,
+> +			  <&clk IMX8MP_CLK_MEDIA_APB>,
+> +			  <&clk IMX8MP_CLK_MEDIA_DISP1_PIX>,
+> +			  <&clk IMX8MP_CLK_MEDIA_DISP2_PIX>,
+> +			  <&clk IMX8MP_VIDEO_PLL1>;
+> +	assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_1000M>,
+> +				 <&clk IMX8MP_SYS_PLL1_800M>,
+> +				 <&clk IMX8MP_VIDEO_PLL1_OUT>,
+> +				 <&clk IMX8MP_AUDIO_PLL2_OUT>;
+> +	assigned-clock-rates = <500000000>, <200000000>, <0>, <0>, <1039500000>;
+> +};
+> +
+>  &micfil {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_pdm>;
+> @@ -496,6 +599,12 @@ &pcie_phy {
+>  	status = "okay";
+>  };
+>  
+> +&pwm2 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_pwm2>;
+> +};
+> +
+>  &sai3 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_sai3>;
+> @@ -596,6 +705,13 @@ &usdhc2 {
+>  };
+>  
+>  &iomuxc {
+> +
+> +	pinctrl_pwm2: pwm2grp {
+> +		fsl,pins = <
+> +			MX8MP_IOMUXC_GPIO1_IO09__PWM2_OUT	0x116
+> +		>;
+> +	};
+> +
+>  	pinctrl_ecspi2: ecspi2grp {
+>  		fsl,pins = <
+>  			MX8MP_IOMUXC_ECSPI2_SCLK__ECSPI2_SCLK	0x82
+> -- 
+> 2.43.0
 > 
-> Sounds like a no-regret move to me.
-
-Please see my comments below.
-
->> To be fair, that version of the Thermal developer guide dates back to
->> 2019, meaning that it technically applies to the RK3399, for example,
->> but the TSADC and reset circuitry design has basically remained the
->> same for the RK3588.
->> 
->> >  - My strong belief is that defaults (regardless of context) should be
->> > safe and reasonable, and should also minimize the need to override
->> > them
->> 
->> Please note that the TSADC is disabled in the RK3399 SoC dtsi, so 
->> having
->> it disabled in the RK3588(s) SoC dtsi would provide some consistency.
 > 
-> I'm happy to produce a patch to reverse the logic in RK3399 (and any
-> others for that matter) to also have TSADC enabled by default there,
-> thus saving several lines of code, if it's just about consistency.
-
-But why should we change something that has served us for years, on
-multiple SoCs, with zero troubles and with (AFAIK) zero boards producing
-puffs of bluish smoke?
-
->> Though, the RK3399 still does it in a safe way, by moving the OPPs 
->> into
->> a separate dtsi file, named rk3399-opp.dtsi, which the board dts files
->> then include together with enabling the TSADC.
->> 
->> If you agree, let's employ the same approach for the RK3588(s), by
->> having
->> the its OPPs defined in a separate file, named rk3588s-opp.dtsi, etc.
 > 
-> Separate file for OPPs is a good no-regret move to declutter the SoC
-> level .dtsi (as the OPP table is long and boring) - happy to move it
-> regardless of the outcome of the above TSADC discussion. Thanks for
-> the pointer!
-
-Yeah, but I'm not sure that everyone would like that kind of separation.
-In fact, such separation may be frowned upon unless it's necessary.
-
-As I already described in another thread, the separation for the RK3399
-is there only because a couple of different variants of the RK3399 SoC
-require different OPPs.
-
->> >  - In context of dts/dtsi, as far as I understand the general logic
->> > behind the split, the SoC .dtsi should contain all the things that are
->> > fully contained within the SoC and do not depend on the wiring of a
->> > particular board or its target use case. Boards then
->> > add/remove/override settings to match their wiring and use case more
->> > closely
->> 
->> Of course, but the thermal shutdown is obviously a board-level 
->> feature,
->> which I described further above.
-> 
-> Not so obvious to me :-) I don't mean to be stubborn or uncooperative
-> here, but I really can't find any technical merit in having it enabled
-> at board level instead of SoC level.
-
-Well, please also consider that the PMICs from Rockchip are kind of
-weird little chips, specifically customized to serve particular SoCs.
-For example, they ensure the right sequencing and ramping-up of 
-different
-power rails, which is in many cases essential.
-
-Thus, who knows what might (or might not) go wrong if we don't reset the
-PMIC at the same time when the CRU resets the SoC?  Unfortunately, the
-things aren't that straightforward.
-
-On top of that, some boards, such as the Rock 5B, use a few additional
-discrete voltage regulators instead of a master-slave PMIC 
-configuration,
-which may actually introduce some weird power-related issues, which also
-may be intermittent.  Actually, I've already overheard that the Rock 5B
-experiences some issues of that nature, but I don't know the details.
-
-> Switching to PMIC-assisted resets is one thing - it definitely should
-> go to board files, as it depends on the specific wiring of the
-> TSADC_SHUT signal. Enabling TSADC in a default configuration that can
-> and will work on all boards regardless of their wiring is another
-> thing. I'm just arguing for the latter.
-
-CRU-based thermal runaway handling may in theory work on all boards, but
-we simply can't be 100% sure without detailed insights into the board
-designs and testing.  Maybe even the downstream U-Boot does some magic
-during such thermal runaway resets, which we don't know.  It may be
-similar to the SoC reset issues that the RK3399 suffers from.
-
-See also my comment above.
-
-> To me it seems similar to the watchdog timer situation: we enable it
-> at the SoC level [1], as it is expected to work in its default
-> configuration regardless of the board wiring, and it provides
-> protection against system malfunctions. Doesn't matter if the board or
-> its userspace code ends up using the full functionality - it just sits
-> there waiting for its spotlight without hurting anybody.
-
-Frankly, I don't know much about the watchdog functionality, so I'd need
-to research it before I could say something about it.
-
-> [1] 
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/rockchip/rk3588s.dtsi#n1872
 
