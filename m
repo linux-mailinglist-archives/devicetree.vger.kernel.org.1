@@ -1,149 +1,173 @@
-Return-Path: <devicetree+bounces-47636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47637-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25F5D86DF8B
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 11:46:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC1286DF92
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 11:46:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D089C1F24095
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:46:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 860AC28625E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:46:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5BF76BFC3;
-	Fri,  1 Mar 2024 10:44:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="isAJPYxi"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC4DF6313B;
+	Fri,  1 Mar 2024 10:46:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B7526A352;
-	Fri,  1 Mar 2024 10:44:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F5C72E842;
+	Fri,  1 Mar 2024 10:46:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709289882; cv=none; b=uO0NLROmmpC3SctYWMR4MgtjAAuaTf2AR2yqvzkV6Ts+9XBqBh63txW+fdqlQeBbbNEdWDxlhxfrFC3zIByXyhMxrQQFuSvmg2mmq7asFWTP33AWds6d3bnAA4MAefa7Qga+iOPSJO3wHTwIQArl36nktKj1pB6aJfuFNZ13R8c=
+	t=1709290014; cv=none; b=V8TS/DNbI04XO6yhGs5xOg5fdrOu86fkQKF1BsguZT7ftM7Yxt/iKx22Du7EZQFvaWHS/g/YXopiCVFvH1qTpY+IeacV2vqi8+IliY1F0BGj2JKxCR7ScGRoVuXFxilmwTmvBleTWIeConV3/8F6eEv4WGSjSXSVnDOzzW7oelM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709289882; c=relaxed/simple;
-	bh=M60DamTk+REH8J6SvrzI6jskDDkauIzqreNeeM+j2TI=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=I3OLVW5M8oxJ5U4pL2ftcSHManAfT2OF8z6D8Q/qrcdP4DaGdgmy76db/3gYNDjpvOF4rTf4I+wrZiYLqK0TiO+EP9zgjqZepVMAGVxjRYH6aUdfHAaSMWSfnHCw3GwNYpiIJnKPnQbyKT3gMR2AmTTZOH9/OMIFA9A3PY4H7vw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=isAJPYxi; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5981360006;
-	Fri,  1 Mar 2024 10:44:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709289878;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=M60DamTk+REH8J6SvrzI6jskDDkauIzqreNeeM+j2TI=;
-	b=isAJPYxi2GQpNJRl0t1C8hv/6w84b2gIIcunVelFVD1+C7mfM17zyo9k9/BZNodzOV0qGg
-	00wgxj8fvPMtzHVihsXGXGiUI22E7DmSH7oXpoH6edAcbK1eYIwPWg283AZd6NAVeB2l2A
-	+PoXuw1veDy9+wSiggnJg46DZ9clJF5nxj3Ky+7PWRqexrVWevozcY2NK+Q5mH8U/AnvEN
-	lhRJdESM0HwBsvjCyJvp/DU/Uff7N44QBSPhK6RJBwgp8vsa2IFfWUr5ZYc+kfvHRBqO/e
-	MKb5LzbWbdX3QJ64m02rl57Rw3jVbBXchV4Ks13cKCoBgTicwUkFb2E5pcVsEg==
+	s=arc-20240116; t=1709290014; c=relaxed/simple;
+	bh=UN5sHJ7QXFagmdwLEF68zP/JsL2TgCa2jDMBQq1FBn4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=E50qfbQ4QdMpOxtUt8eNtl166et2SdOQ0rbRBmAOs5/ab+b/2N8+iX5mboZ4zWImBpUAlkeo3OqnvlFQQwxOlIycISFuEpB7oAx99eP07hlLoUbLymCUKOK8nLGhyJVBS2EZN0626Ux1sc7rVSV+4bM6fyA0Xs1D7UyZ+9pl+Sk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E05AB1FB;
+	Fri,  1 Mar 2024 02:47:30 -0800 (PST)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 668A93F762;
+	Fri,  1 Mar 2024 02:46:51 -0800 (PST)
+Date: Fri, 1 Mar 2024 10:46:41 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: Peng Fan <peng.fan@nxp.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>,
+	"Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
+	"robh@kernel.org" <robh@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: support system power
+ protocol
+Message-ID: <ZeGyES-VOxafuAQx@pluto>
+References: <20240226130243.3820915-1-peng.fan@oss.nxp.com>
+ <ZdyR_MWeqOWga8iQ@pluto>
+ <ZdyoAsYGXK9GjHVx@pluto>
+ <DU0PR04MB941710FB1400D0A17F99B6ED88592@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <ZeCNyLxQOIazc07h@bogus>
+ <DU0PR04MB9417C06FD66182C705238662885E2@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <ZeGJIvk_LqglqdBa@pluto>
+ <DU0PR04MB9417EAC31D3D7EC716A66C05885E2@DU0PR04MB9417.eurprd04.prod.outlook.com>
+ <ZeGv-cDbkJMnJkJe@pluto>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 01 Mar 2024 11:44:37 +0100
-Message-Id: <CZICOX6DR0SA.O876YRG8P03C@bootlin.com>
-Subject: Re: [PATCH v2 02/11] dt-bindings: hwmon: lm75: use common hwmon
- schema
-Cc: <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, "Gregory Clement"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, "Jean Delvare" <jdelvare@suse.com>,
- <linux-hwmon@vger.kernel.org>
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Guenter Roeck"
- <linux@roeck-us.net>, "Linus Walleij" <linus.walleij@linaro.org>, "Andi
- Shyti" <andi.shyti@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.15.2
-References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
- <20240229-mbly-i2c-v2-2-b32ed18c098c@bootlin.com>
- <6749c8df-c545-4aca-bc18-4dfe9c9f15b0@linaro.org>
- <d78fd3ca-ed0b-40e5-8f8f-21db152a7402@roeck-us.net>
- <CZIBCBQ2IB0E.2N3HAVO0P2SHT@bootlin.com>
- <f802a1e0-cedd-488a-a6fb-df793718d94b@linaro.org>
-In-Reply-To: <f802a1e0-cedd-488a-a6fb-df793718d94b@linaro.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZeGv-cDbkJMnJkJe@pluto>
 
-Hello,
+On Fri, Mar 01, 2024 at 10:37:49AM +0000, Cristian Marussi wrote:
+> On Fri, Mar 01, 2024 at 09:22:24AM +0000, Peng Fan wrote:
+> > > Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: support system power
+> > > protocol
+> > > 
+> > > On Fri, Mar 01, 2024 at 12:41:29AM +0000, Peng Fan wrote:
+> > > > > Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: support system
+> > > > > power protocol
+> > > > >
+> > > > > On Tue, Feb 27, 2024 at 01:01:41AM +0000, Peng Fan wrote:
+> > > > > > > Subject: Re: [PATCH] dt-bindings: firmware: arm,scmi: support
+> > > > > > > system power protocol
+> > > > > > >
+> > > > > > > On Mon, Feb 26, 2024 at 01:28:31PM +0000, Cristian Marussi wrote:
+> > > > > > > > On Mon, Feb 26, 2024 at 09:02:43PM +0800, Peng Fan (OSS) wrote:
+> > > > > > > > > From: Peng Fan <peng.fan@nxp.com>
+> > > > > > > > >
+> > > > > > > > > Add SCMI System Power Protocol bindings, and the protocol id is
+> > > 0x12.
+> > > > > > > > >
+> > > > > > > > Hi,
+> > > > > > > >
+> > > > > > > > yes this is something I spotted in the past it was missing and
+> > > > > > > > I posted a similar patch but I was told that a protocol node
+> > > > > > > > without any specific additional properties is already being
+> > > > > > > > described by the general protocol node described above.
+> > > > > >
+> > > > > > Without this patch, there is dtbs_check warning.
+> > > > > >
+> > > > > > scmi: 'protocol@12' does not match any of the regexes: 'pinctrl-[0-9]+'
+> > > > > > from schema $id:
+> > > > > > https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fd
+> > > > > >
+> > > evic%2F&data=05%7C02%7Cpeng.fan%40nxp.com%7C3ef5d152a8e5463e9b
+> > > 3408
+> > > > > >
+> > > dc39c47e41%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63844
+> > > 87632
+> > > > > >
+> > > 86203182%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAwMDAiLCJQIjoi
+> > > V2luM
+> > > > > >
+> > > zIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C0%7C%7C%7C&sdata=kRBV9FPk6
+> > > Nrgu
+> > > > > > Hs2SHpL74VlNUH6cYO1kAsW74CkaTk%3D&reserved=0
+> > > > > >
+> > > > >
+> > > etree.org%2Fschemas%2Ffirmware%2Farm%2Cscmi.yaml%23&data=05%7C0
+> > > > > 2%7Cpen
+> > > > > >
+> > > > >
+> > > g.fan%40nxp.com%7Ccac77deb5f6a4b20460a08dc392ead40%7C686ea1d3b
+> > > > > c2b4c6fa
+> > > > > >
+> > > > >
+> > > 92cd99c5c301635%7C0%7C0%7C638448119832543335%7CUnknown%7CT
+> > > > > WFpbGZsb3d8e
+> > > > > >
+> > > > >
+> > > yJWIjoiMC4wLjAwMDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D
+> > > > > %7C0%
+> > > > > >
+> > > > >
+> > > 7C%7C%7C&sdata=6MldIOUQ4hxn%2BRffwJJJ3jxXXtHCSxLUOa4JMWB0htU%
+> > > > > 3D&reserv
+> > > > > > ed=0
+> > > > > >
+> > > > >
+> > > > > Why are you adding protocol@12 to the device tree ? Does it have a
+> > > > > dedicated channel ? If not, you shouldn't need to add it.
+> > > >
+> > > > No dedicated channel.
+> > > > The idea is we have multile Agent, the M7 agent may ask to shutdown
+> > > > Linux Agent. So the linux agent need use protocol@12 to do the action.
+> > > >
+> > > 
+> > > Ok, so indeed you need, AFAICR, the node in the DT even without a dedicated
+> > > channel nor anynone referring it: no DT node means no protocol initialization.
+> > 
+> > Yeah, so this binding update is needed, right?
+> > 
+> > > 
+> > > > For now, we have not finish implementing this in linux side, just add
+> > > > the node in dts.
+> > > 
+> > > On the linux side you should not need to do anything but adding the node
+> > > @12, the existent drivers/firmware/arm_scmi/system_power_control.c
+> > > driver when loaded will shutdown the system upon receiving the
+> > > SytemPower notification....what lacks Linux side in these regards ?
+> > 
+> > " Ignoring unsupported system_state:" we have new defined
+> > number here.
+> > 
+> 
+> So I suppose you are using the Vendor defined system states and writing
+> your own driver to handle these instead of system_power_control ?
 
-On Fri Mar 1, 2024 at 11:13 AM CET, Krzysztof Kozlowski wrote:
-> On 01/03/2024 10:41, Th=C3=A9o Lebrun wrote:
-> > Hello,
-> >=20
-> > On Fri Mar 1, 2024 at 7:53 AM CET, Guenter Roeck wrote:
-> >> On 2/29/24 22:37, Krzysztof Kozlowski wrote:
-> >>> On 29/02/2024 19:10, Th=C3=A9o Lebrun wrote:
-> >>>> Reference common hwmon schema which has the generic "label" property=
-,
-> >>>> parsed by Linux hwmon subsystem.
-> >>>>
-> >>>
-> >>> Please do not mix independent patchsets. You create unneeded
-> >>> dependencies blocking this patch. This patch depends on hwmon work, s=
-o
-> >>> it cannot go through different tree.
-> >=20
-> > I had to pick between this or dtbs_check failing on my DTS that uses a
-> > label on temperature-sensor@48.
->
-> I don't see how is that relevant. You can organize your branches as you
-> wish, e.g. base one b4 branch on another and you will not have any warnin=
-gs.
+Or some vendor extensions to the std driver ?
+IOW what is the plan...custom vendor states was left out from
+system_power_control waiting for a real usecase...that seems to have
+shown up eventually :D
 
-That is what I do, I however do not want mips-next to have errors when
-running dtbs_check. Having dtbs_check return errors is not an issue?
-
-> >>> If you insist to combine independent patches, then at least clearly
-> >>> express merging strategy or dependency in patch changelog --- .
-> >=20
-> > I do not know how such indirect conflicts are usually resolved. Hwmon
-> > can take it but MIPS might want to also take it to have valid DTS.
-> >=20
-> > Any advice?
->
-> I don't see any conflict.
-
-I shouldn't have called that a conflict, more like a dependency.
-
-> >> For my part I have to say that I don't know what to do with it.
-> >> Rob's robot reported errors, so I won't apply it, and I don't
-> >> feel comfortable giving it an ack either because of those errors.
-> >=20
-> > Can reproduce the error when patch "dt-bindings: hwmon: add common
-> > properties" is not applied. Cannot reproduce when patch is applied.
-> > Commit d590900b62f0 on hwmon-next. Cannot reproduce with hwmon-next as
-> > parent.
->
-> Yeah, but we see the error reported and it means something is missing.
-
-Yes, this series depends on "dt-bindings: hwmon: add common properties"
-which the bot doesn't know it needs to apply.
-
-Should I submit this patch independently and have my DTS be broken wrt
-dtbs_check?
-
-Have a nice day,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Thanks,
+Cristian
 
