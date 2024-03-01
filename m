@@ -1,60 +1,69 @@
-Return-Path: <devicetree+bounces-47810-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47811-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0606F86EB06
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:18:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2643B86EB16
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 22:23:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 55BBAB25579
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 21:18:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D0A8528353E
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 21:23:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2DDF57330;
-	Fri,  1 Mar 2024 21:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 480A957867;
+	Fri,  1 Mar 2024 21:23:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UCPijtkV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="V68D5UZs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A231B5732A;
-	Fri,  1 Mar 2024 21:18:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B35C5733F;
+	Fri,  1 Mar 2024 21:23:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709327889; cv=none; b=V+QEx/xrekCyVZDxNiifb2EALu4G3fN9zKuclMR1vmgWnC781rCZ+L/fr6DO23elNaK8lYGqXaqDWg1uPTl02CuYyv6cfiwbleYGfuZPKQpVA3qomMUUtuCfwjusKe3FAGgJmvGqEnOkmzM3Lx0oGc2HMOyvoCWHSKb25vWIsbc=
+	t=1709328219; cv=none; b=OLZUufb+6DZVMirCpC4UNsdW88PyVXy4oXk6ib/CBW4pMObSDJEXVPBqnQvrUqqas8YrFQCiPlwFO0sYh8JhpcJHsV3firH6KxONDpzotcHeh3saTfX0WAMWnmK02K1oUVRoVddMaN5taGjSLbx4MuyGG04/rn/VlX/jBgMFaTk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709327889; c=relaxed/simple;
-	bh=zxytVGMfrFUkY7rHqDZSUhzm0IK8y99ueBD485sWH9U=;
+	s=arc-20240116; t=1709328219; c=relaxed/simple;
+	bh=GX2qzQwDr7Zhypt11xhh2AlwjHUUCEBLsUYK1wQPLR8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n9hQRh13A4bgPMORj+PVbQu9/F+/NAiU8cn2BQg2eJAg6ibwplTPJup/ai2S12G3e1y0xDLZRdUPIrh5tO4F32MSg37U/kGPBrrX7YHtQlIBArJIo3M+DtUB4hp/wjdqBskeuVyGDYuXiZNqfluZaZuo171QI2QU7KSGPFHjdoc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UCPijtkV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9FD0C433C7;
-	Fri,  1 Mar 2024 21:18:08 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FclcH2QZETv63ohgMHD+hbonsoxS4JRbu/QXAR3mRvQEup4zoIshYPk/SDdFnzIodhnVYpC6AN0vD71f6RwH+OMSoW1XOVomK07Ao8/ta1K4b/YBToKJFWK3ZD5sW/kgpMtvKCiKKzaqMIV6ll3yO7JUMEnKIc0hQKihgOxfsR4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=V68D5UZs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D4F2C433F1;
+	Fri,  1 Mar 2024 21:23:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709327889;
-	bh=zxytVGMfrFUkY7rHqDZSUhzm0IK8y99ueBD485sWH9U=;
+	s=k20201202; t=1709328218;
+	bh=GX2qzQwDr7Zhypt11xhh2AlwjHUUCEBLsUYK1wQPLR8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=UCPijtkVbQ0865AGd1T4TriEvEbD8D5U1299GvPKjhYoyWpCmvkd2F8wd8BU8DwxY
-	 mHnIOva7/Aa7MxuBsF045XWM7rQluulU7BAauACMDJkokKG6FnxoElDCv6kw3u+1Bn
-	 tAnGmadabtuDvT/t3CtHXGcUcMTqX/QZ8ArE11JI9ZNlrTCXgCg1F1rdCOmnc5hVbx
-	 /IFAqQi3Nfh3YpOdyPyCruc4P1w2CiM4rmNtR3p6JMDrIISUPxoVEwhdzuoAOWrEH9
-	 sXwnPwaAIPHl/oSzZCoHm0s3/+L9jsO+uUEiOSQBspk/6SNVeCHgdM1qUZlSY6Hi08
-	 PoP5t6LXKXVyw==
-Date: Fri, 1 Mar 2024 15:18:06 -0600
+	b=V68D5UZsGtv8HaqYrPm3tYqzsQxdB+Sh4lvGksAWx/x5d6fI7t1v58TLG4IVy5vAN
+	 oWuXzQL8Y3ar3GrCKRMAzCJhViEEkCvZkOWXOssWCPjocUdW3mNnEKWm+UKzzkOgRk
+	 EnXt9NAFcmYbk4ZRkyKi0GuzQZM9yDErEEWE5Rzf7h6NLyDp97ETr3kWSpZLGVRjwV
+	 n9vQGVQHQ3KUUZuljiRcJ4T265FypxsWsbY52eQ5KOhN1/jCvXfcAFRFlXbICBQUtx
+	 H8UQzLdPSzb1iK4FoDMhunOR2vp0iFp1POsoyg9IfIlPB7nkk5UDww+baQnvu/nVNk
+	 wLhE8soUNdogg==
+Date: Fri, 1 Mar 2024 15:23:36 -0600
 From: Rob Herring <robh@kernel.org>
-To: Jeffrey Hugo <quic_jhugo@quicinc.com>
-Cc: quic_bgodavar@quicinc.com, marcel@holtmann.org, quic_rjliao@quicinc.com,
-	linux-bluetooth@vger.kernel.org, pabeni@redhat.com, kuba@kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-	luiz.dentz@gmail.com, edumazet@google.com, netdev@vger.kernel.org,
-	davem@davemloft.net, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, quic_bjorande@quicinc.com,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH RESEND] dt-bindings: net: bluetooth: qualcomm: Fix
- bouncing @codeaurora
-Message-ID: <170932788622.3054344.2673462722673584802.robh@kernel.org>
-References: <20240223162027.4016065-1-quic_jhugo@quicinc.com>
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: devicetree@vger.kernel.org,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Linux Media Mailing List <linux-media@vger.kernel.org>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Sakari Ailus <sakari.ailus@iki.fi>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
+	Naushir Patuck <naush@raspberrypi.com>
+Subject: Re: [PATCH v2 7/9] media: dt-bindings: Add bindings for Raspberry Pi
+ PiSP Back End
+Message-ID: <170932821578.3062059.18150159256247255021.robh@kernel.org>
+References: <20240223163012.300763-1-jacopo.mondi@ideasonboard.com>
+ <20240223163012.300763-8-jacopo.mondi@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -63,24 +72,23 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240223162027.4016065-1-quic_jhugo@quicinc.com>
+In-Reply-To: <20240223163012.300763-8-jacopo.mondi@ideasonboard.com>
 
 
-On Fri, 23 Feb 2024 09:20:27 -0700, Jeffrey Hugo wrote:
-> The servers for the @codeaurora domain are long retired and any messages
-> sent there will bounce.  Update the maintainer addresses for this
-> binding to match the entries in .mailmap so that anyone looking in the
-> file for a contact will see a correct address.
+On Fri, 23 Feb 2024 17:30:09 +0100, Jacopo Mondi wrote:
+> Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
+> signal processor.
 > 
-> Signed-off-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+> Datasheet:
+> https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
+> 
+> Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 > ---
-> 
-> Rob, will you take this patch into your tree for 6.9?
-> 
->  .../devicetree/bindings/net/bluetooth/qualcomm-bluetooth.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
+>  1 file changed, 63 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
