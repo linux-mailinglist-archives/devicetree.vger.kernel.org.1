@@ -1,144 +1,147 @@
-Return-Path: <devicetree+bounces-47712-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47713-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D721486E4BC
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:52:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C60086E4C9
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 16:56:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3CFD22884A7
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:52:27 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16428286AD5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 15:56:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1D8E70044;
-	Fri,  1 Mar 2024 15:52:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C217671745;
+	Fri,  1 Mar 2024 15:55:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="F13fjxPB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HOg7D5lQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2AA338DC3;
-	Fri,  1 Mar 2024 15:52:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E7B97173D;
+	Fri,  1 Mar 2024 15:55:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709308342; cv=none; b=B4+gEA4LSj3aNZ3/VJoueBF72d1h4cz5TnEoVc98bfvgSW3rDn/tH1672bB8xeCO9jMRvNwc4YZjfvq/luPzRqctSEhJlPqfoIgMjJKAZriVV+WUVYj9xCTe9yoQCzrKf5RNGLrt6OXtsd3oKzdEgJSCnFHYYhbKgcgSnOODuj0=
+	t=1709308541; cv=none; b=so/MYAkpK+UuXqBsVWkCzMrxR8KtLHJoCnZDFba/65qUrw25rpxxjp1/Bzq7k3HMGywbJBTi12GVkfI3/7W/ul8DXMTQWvu4rKEYbCh/yGJQJxvvA6wanD0+gAfoWEBGk5cSoZY69AI11Ju+HbMALpY2vpAuQA8Sq/eprz8ko2s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709308342; c=relaxed/simple;
-	bh=qEc3vNB2eDPfKsZPhlZr12jl/0AGDXOfDLnzJ+F4vaY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=hr9oJ9llM5vB6OyGjzGYxu3Iv+/Z6J1BslQqgXyq77hEz+ooCivm5nKpXj75vEwuMhRN+PhR83TfRNtllyqu/JPHvENYY37CBZ87U+41LA2qMY4pE1u/hYHYU3f3UpngrNcUCF6F5e8xjrLYRWlSrG7ZFu0NQXhNhg8LJaBHtBA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=F13fjxPB; arc=none smtp.client-ip=217.70.183.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6786240005;
-	Fri,  1 Mar 2024 15:52:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709308331;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=qEc3vNB2eDPfKsZPhlZr12jl/0AGDXOfDLnzJ+F4vaY=;
-	b=F13fjxPBFlTyjhUBPwi3qtwojQ4GFhwzwLexIq5JI8MevLOu2PZxIQzse+zygsHRLEuTA5
-	RBV3Db+CFCyzIXWCB55Fzb/W0vFj1hhNSN7gC1VeeEgoLDObF+m3ptZ1u6Wu5DwX1t5sC3
-	e4aRBOJTmAeg7i0piHrTf8STU9z/DZpMikTTCr1y8QqQLwVeHXlcTlCZMJHfWJcAejc/gz
-	aY4uCCqcsa2Js+xVsf2NqgRnggFvRmMNQOCJ/LCCrwys1jx1t8k0A8OiKCTcNAA6ZDml70
-	6MulpikfN6JO30Ls5GLyNu2mYdkzbqnnH1m9tyNCi2gqQeoCvP7ZZAvEY22HWw==
+	s=arc-20240116; t=1709308541; c=relaxed/simple;
+	bh=+x3DnyLQr0FGuE3K5s58Ij+vb1+Fn/o9c7ysNtVLivo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=kDGmZmc1KaZqNwwP5+sS6V7rdl7edVzwmVi7t2bBGmJ/Jdbl8QMahtSVuLF4XglDUFdiK/enVa4QkzadlQh7akDZSeo2jVFq4wTIsqlTVO3cuuUEjCZuY47pvmZuLwLdCqRpq0/9abPIdVRr6zMOIxNZFHhjR0Al3rVSQuxacOA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HOg7D5lQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5D874C433F1;
+	Fri,  1 Mar 2024 15:55:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709308541;
+	bh=+x3DnyLQr0FGuE3K5s58Ij+vb1+Fn/o9c7ysNtVLivo=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=HOg7D5lQtK68Db2OuM3YK/C3ykhtKtUFLUe33QAxfMi1eCPf0ZJw4UE+cF9GhsYr/
+	 CSR0U0jJoxSPapzKr5jm5RAQovcbfQZRvY6Rh2d3hvrJjgQ3fTIdPdHLZ4MuazGt5O
+	 IBnx8PrAJWFWoE0NJVDFXHQk3A4n5uRbJmQK+qTWKYhv0UU4r8mvv4AWMZIt10f43i
+	 SGF+JXtpYRj80aJikeWMN2VX0mTnZQ2A7qCJHb11YXKjNFCcr4hG+legnrY4bUVp/p
+	 KWDw30kWpWfFnXdUZHgu1oCstpMnwtSYbXmwo6EfB0VtZTmY/3E35WCjxbtT4BAwdu
+	 yrXRgD0J1Y0CQ==
+Received: from johan by xi.lan with local (Exim 4.97.1)
+	(envelope-from <johan@kernel.org>)
+	id 1rg5Em-000000001l7-2rSd;
+	Fri, 01 Mar 2024 16:55:53 +0100
+Date: Fri, 1 Mar 2024 16:55:52 +0100
+From: Johan Hovold <johan@kernel.org>
+To: Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Wesley Cheng <quic_wcheng@quicinc.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+	Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
+	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com,
+	quic_jackp@quicinc.com
+Subject: Re: [PATCH v15 9/9] usb: dwc3: qcom: Add multiport suspend/resume
+ support for wrapper
+Message-ID: <ZeH6iHdOie0_UYwZ@hovoldconsulting.com>
+References: <20240216005756.762712-1-quic_kriskura@quicinc.com>
+ <20240216005756.762712-10-quic_kriskura@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 01 Mar 2024 16:52:07 +0100
-Message-Id: <CZIJ8D23O5E1.79MDD3DCHPI8@bootlin.com>
-Subject: Re: [PATCH v2 02/11] dt-bindings: hwmon: lm75: use common hwmon
- schema
-Cc: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Guenter Roeck"
- <linux@roeck-us.net>, "Linus Walleij" <linus.walleij@linaro.org>, "Andi
- Shyti" <andi.shyti@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, "Gregory Clement"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, "Jean Delvare" <jdelvare@suse.com>,
- <linux-hwmon@vger.kernel.org>
-To: "Rob Herring" <robh@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.15.2
-References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
- <20240229-mbly-i2c-v2-2-b32ed18c098c@bootlin.com>
- <6749c8df-c545-4aca-bc18-4dfe9c9f15b0@linaro.org>
- <d78fd3ca-ed0b-40e5-8f8f-21db152a7402@roeck-us.net>
- <CZIBCBQ2IB0E.2N3HAVO0P2SHT@bootlin.com>
- <f802a1e0-cedd-488a-a6fb-df793718d94b@linaro.org>
- <CZICOX6DR0SA.O876YRG8P03C@bootlin.com>
- <20240301153534.GA2144041-robh@kernel.org>
-In-Reply-To: <20240301153534.GA2144041-robh@kernel.org>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240216005756.762712-10-quic_kriskura@quicinc.com>
 
-Hello,
+On Fri, Feb 16, 2024 at 06:27:56AM +0530, Krishna Kurapati wrote:
+> Power event IRQ stat registers are present for each port
+> connected to controller. Add support for modifying all power event
+> irq stat registers present in wrapper.
 
-On Fri Mar 1, 2024 at 4:35 PM CET, Rob Herring wrote:
-> On Fri, Mar 01, 2024 at 11:44:37AM +0100, Th=C3=A9o Lebrun wrote:
-> > Hello,
-> >=20
-> > On Fri Mar 1, 2024 at 11:13 AM CET, Krzysztof Kozlowski wrote:
-> > > On 01/03/2024 10:41, Th=C3=A9o Lebrun wrote:
-> > > > Hello,
-> > > >=20
-> > > > On Fri Mar 1, 2024 at 7:53 AM CET, Guenter Roeck wrote:
-> > > >> On 2/29/24 22:37, Krzysztof Kozlowski wrote:
-> > > >>> On 29/02/2024 19:10, Th=C3=A9o Lebrun wrote:
-> > > >>>> Reference common hwmon schema which has the generic "label" prop=
-erty,
-> > > >>>> parsed by Linux hwmon subsystem.
-> > > >>>>
-> > > >>>
-> > > >>> Please do not mix independent patchsets. You create unneeded
-> > > >>> dependencies blocking this patch. This patch depends on hwmon wor=
-k, so
-> > > >>> it cannot go through different tree.
-> > > >=20
-> > > > I had to pick between this or dtbs_check failing on my DTS that use=
-s a
-> > > > label on temperature-sensor@48.
-> > >
-> > > I don't see how is that relevant. You can organize your branches as y=
-ou
-> > > wish, e.g. base one b4 branch on another and you will not have any wa=
-rnings.
-> >=20
-> > That is what I do, I however do not want mips-next to have errors when
-> > running dtbs_check. Having dtbs_check return errors is not an issue?
->
-> That's a good goal, but difficult to achieve as you can see. Given=20
-> dtbs_check in general has tons of warnings already, we currently don't=20
-> worry about more warnings in specific branches. We just look at mainline=
-=20
-> and linux-next. And for that it's still so many, I'm just looking at=20
-> general trends. It runs daily here[1].
+Could you please say about what the power-event irqs are used for here
+in the commit message as I asked you before?
+ 
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+> Acked-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+> ---
+>  drivers/usb/dwc3/dwc3-qcom.c | 30 +++++++++++++++++++++++-------
+>  1 file changed, 23 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
+> index 572dc3fdae12..e789745a9468 100644
+> --- a/drivers/usb/dwc3/dwc3-qcom.c
+> +++ b/drivers/usb/dwc3/dwc3-qcom.c
+> @@ -37,7 +37,11 @@
+>  #define PIPE3_PHYSTATUS_SW			BIT(3)
+>  #define PIPE_UTMI_CLK_DIS			BIT(8)
+>  
+> -#define PWR_EVNT_IRQ_STAT_REG			0x58
+> +#define PWR_EVNT_IRQ1_STAT_REG			0x58
+> +#define PWR_EVNT_IRQ2_STAT_REG			0x1dc
+> +#define PWR_EVNT_IRQ3_STAT_REG			0x228
+> +#define PWR_EVNT_IRQ4_STAT_REG			0x238
 
-Here's my opportunity to ask a question I've had for a while: do you
-have a way to filter out dtbs that are known to be bad actors (ie have
-many many warnings)? Maybe a list of platforms you talk about below
-that aim at zero warnings?
+Again, not sure it makes any defines too keep these defines when you
+only access them through the array.
 
-Another way to ask this: what would be a good default DT_SCHEMA_FILES
-value? Not filtering leads to way too many errors.
+> +
+>  #define PWR_EVNT_LPM_IN_L2_MASK			BIT(4)
+>  #define PWR_EVNT_LPM_OUT_L2_MASK		BIT(5)
+>  
+> @@ -109,6 +113,13 @@ struct dwc3_qcom {
+>  	u8			num_ports;
+>  };
+>  
+> +static const u32 pwr_evnt_irq_stat_reg_offset[DWC3_MAX_PORTS] = {
 
-Regards,
+Seems "_offset" is redundant here, 'pwr_evnt_irq_stat_reg' should be
+enough.
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+> +	PWR_EVNT_IRQ1_STAT_REG,
+> +	PWR_EVNT_IRQ2_STAT_REG,
+> +	PWR_EVNT_IRQ3_STAT_REG,
+> +	PWR_EVNT_IRQ4_STAT_REG,
+> +};
+> +
+>  static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
+>  {
+>  	u32 reg;
+> @@ -444,9 +455,11 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
+>  	if (qcom->is_suspended)
+>  		return 0;
+>  
+> -	val = readl(qcom->qscratch_base + PWR_EVNT_IRQ_STAT_REG);
+> -	if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
+> -		dev_err(qcom->dev, "HS-PHY not in L2\n");
+> +	for (i = 0; i < qcom->num_ports; i++) {
+> +		val = readl(qcom->qscratch_base + pwr_evnt_irq_stat_reg_offset[i]);
+> +		if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
+> +			dev_err(qcom->dev, "Port-%d HS-PHY not in L2\n", i + 1);
 
+Please use lower case "port-%d" for consistency.
+
+Johan
 
