@@ -1,178 +1,151 @@
-Return-Path: <devicetree+bounces-47625-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47626-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 823AD86DEA3
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:54:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 04B9086DEB5
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 10:59:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DA3C1C21089
-	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:54:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 960641F218C6
+	for <lists+devicetree@lfdr.de>; Fri,  1 Mar 2024 09:59:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DCF66A8BF;
-	Fri,  1 Mar 2024 09:54:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3899C6A8BD;
+	Fri,  1 Mar 2024 09:59:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="tGYVJO92"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Qfh/gl+5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81B3B6995C;
-	Fri,  1 Mar 2024 09:54:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48C7469D09;
+	Fri,  1 Mar 2024 09:59:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709286852; cv=none; b=fiU4vVEMu8MsjLtvCYKpFA9XZRzZUGw3mSYtrTv1VFKBa2E2qKsVewV9b5haqStScpsebPAM3MtuOyFdYB6elPNmIdHs9blfJHXAGnWXvBdzTyRdVDOVJ+Iy9pYgo7rXljEKwPP1CwNqcn/1hls2D86THnMdtayk81p0ApAl5RM=
+	t=1709287164; cv=none; b=gHDudZUbQx04sXLzfD5DoKqC7pVHZuqeIIWm4Ni/H6B16DF3xt1ihUp+S7RBoSoXTJm4RgzFV9ID/jz9h6SGzk7t2Q2qppgZiAJ7EPWgbtOVWe0ghusKcNeqqFLLlmUuWzXLHD1kV29Vy+6bGxnge0E35N6v5BPecajzuN9Ya8k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709286852; c=relaxed/simple;
-	bh=TvOeS+gkrSoRl27YcSo8vGBcXBu+FwFHZ14acWBgVEc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cgRzOrfu0EKTSUaKCX11jXs5K9MLZAFmC+Za+AyxHUJ9KGj3LmXx2cgJ/3Px2+bJHqMWgXXVZT3eYXv7F0rcZ6mOAfLpdHqAs1BOxZ53cqmaH6ON5RjVHMCtDvZg8IXwwOV9Yp8dFeUlOSMls5HA7G7/iJGOXZhr3RVUNvuFLTw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=tGYVJO92; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1709286847;
-	bh=TvOeS+gkrSoRl27YcSo8vGBcXBu+FwFHZ14acWBgVEc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tGYVJO92s/E6trrtTDfgT+rP/d8KDOX34glXLf4m+QrACnCjhGQFkS61NSd/RtYCF
-	 8pQV8vHl1BXN0RvsMg20mMlWgowlIXj4u7OaTaG5W5WBm4xBzQOyWiTS/ZmEIdcZIZ
-	 /+EpvaJqbevyu6cTOK43M1ChP0zaLSdLHXL3nZvaOeIRj2IVPFRBn0Z0ZFzW+19ZPw
-	 pER4iNs+324frTCLttf+rGsb4BQYYGSwDk/pdPgbJjmNbhEIdNNJH/GuvALrLSwOdN
-	 A9wYGh9bD/PdgMGUgx9Jbp4prk+iLBBgeN2RVHdE4PCbrMj76auO5kMYxihIwy1IL9
-	 xGyZBwAfYDT7w==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sebastianfricke)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 788D737820C2;
-	Fri,  1 Mar 2024 09:54:07 +0000 (UTC)
-Date: Fri, 1 Mar 2024 10:54:06 +0100
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: Yunfei Dong =?utf-8?B?KOiRo+S6kemjnik=?= <Yunfei.Dong@mediatek.com>,
-	"nhebert@chromium.org" <nhebert@chromium.org>,
-	"benjamin.gaignard@collabora.com" <benjamin.gaignard@collabora.com>,
-	"nfraprado@collabora.com" <nfraprado@collabora.com>,
-	"nicolas.dufresne@collabora.com" <nicolas.dufresne@collabora.com>,
-	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mediatek@lists.infradead.org" <linux-mediatek@lists.infradead.org>,
-	"frkoenig@chromium.org" <frkoenig@chromium.org>,
-	"stevecho@chromium.org" <stevecho@chromium.org>,
-	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"daniel@ffwll.ch" <daniel@ffwll.ch>,
-	Project_Global_Chrome_Upstream_Group <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-	"hsinyi@chromium.org" <hsinyi@chromium.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] media: mediatek: vcodec: support 36bit physical address
-Message-ID: <20240301095406.4xu2fadgwgswn6jj@basti-XPS-13-9310>
-References: <20240301020126.11539-1-yunfei.dong@mediatek.com>
- <ea7f25bf-2294-4ad4-bc18-226827d49ae8@collabora.com>
- <c1f489c474e3d00ff8573225c5d282df4d82f9e1.camel@mediatek.com>
- <7de218a7-680f-40a8-a002-d6a2c87f53ee@collabora.com>
+	s=arc-20240116; t=1709287164; c=relaxed/simple;
+	bh=DM9FrFMvYTmMuDMxk7ODvfya/c8UKO1eBc5L44gAAcQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=elk6y90/M3souQa3MaRJ4MG/Pq5PcfUwX6Vvn+UlosyKweHXXzMVbop7NVBofhMMpKHe91W0Ic+Mmka0Z5R6QOSjtvHSF8jHht6qi2u97X0VdFpl81xnKacDmEjaXczzFOZDPhxJUdRan86vKeb7zXgvEbPZF0nVEI5+b0yFbXk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Qfh/gl+5; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id C5422C0009;
+	Fri,  1 Mar 2024 09:59:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709287159;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DM9FrFMvYTmMuDMxk7ODvfya/c8UKO1eBc5L44gAAcQ=;
+	b=Qfh/gl+5SPMgENwA3uyhB/TdKCc0EczKLO34Vn64FnY78fcdfc0V3ZPnC0EFbOALpYOBzc
+	pSb7TFngnh5DOJNJp5HbbrKkg5+xEUlwJWkQ1cg0BBiFneK708IXy+xtjXqT/8yZvtAlQj
+	WirqEY0t0+O8iMj8wtWlj4VS1sljbNLGYMbm56xpL+WTtQdZqeTvod8XYuX5dgI+EVOQtY
+	WZtM4EV229cxddFzneY8CW/eY2WgNPrq5/K7gAvJqxVgAqy1HHvv8lqDSwP/mJJQhStOs7
+	ugjgdVxsEy1EkKjDAHjBn6/P0bFhlTGT9UAn482HmJCDlwbx7HTR+dSvH1caDg==
+Date: Fri, 1 Mar 2024 10:59:17 +0100
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Saravana Kannan <saravanak@google.com>, Frank Rowand
+ <frowand.list@gmail.com>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Xu Yang <xu.yang_2@nxp.com>, kernel-team@android.com,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, =?UTF-8?Q?Herv?=
+ =?UTF-8?Q?=C3=A9?= Codina <herve.codina@bootlin.com>, Geert Uytterhoeven
+ <geert@linux-m68k.org>
+Subject: Re: [REGRESSION] Re: [PATCH v2 2/3] of: property: Improve finding
+ the supplier of a remote-endpoint property
+Message-ID: <20240301105917.746e626b@booty>
+In-Reply-To: <CAL_JsqLxDozqONeN818qYg9QxQVte-9Cv_GuAz7SQ1FsscwuVw@mail.gmail.com>
+References: <20240207011803.2637531-1-saravanak@google.com>
+	<20240207011803.2637531-3-saravanak@google.com>
+	<20240223171849.10f9901d@booty>
+	<CAGETcx99hhfOaEn1CH1OLDGp_pnrVeJ2nWb3X5=0j8tij4NR9w@mail.gmail.com>
+	<20240226125226.705efef3@booty>
+	<CAL_JsqLMY94KmiEUcOYT4p1HdHENffOFgRJ+Tv6RDH7ewVbyig@mail.gmail.com>
+	<CAGETcx_6UEpOJteQ0Gmfb=NgU+9MZumtmyLbn++C=uj7nOon=g@mail.gmail.com>
+	<CAL_Jsq+edTZ3yC0Xxojo5bR3aCwAMFERjuqVFaU8sFmj=nAB8w@mail.gmail.com>
+	<20240229103423.1244de38@booty>
+	<CAL_JsqLxDozqONeN818qYg9QxQVte-9Cv_GuAz7SQ1FsscwuVw@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <7de218a7-680f-40a8-a002-d6a2c87f53ee@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-Hey Yunfei,
+Hello Rob,
 
-On 01.03.2024 10:36, AngeloGioacchino Del Regno wrote:
->Il 01/03/24 10:23, Yunfei Dong (董云飞) ha scritto:
->>Hi AngeloGioacchino,
->>
->>Thanks for you reviewing.
->>On Fri, 2024-03-01 at 10:03 +0100, AngeloGioacchino Del Regno wrote:
->>>Il 01/03/24 03:01, Yunfei Dong ha scritto:
->>>>The physical address is beyond 32bit for mt8188 platform, need
->>>>to change the type from unsigned int to unsigned long in case of
->>>>the high bit missing.
->>>>
->>>>Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
->>>>---
->>>>   .../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c        | 4
->>>>++--
->>>>   1 file changed, 2 insertions(+), 2 deletions(-)
->>>>
->>>>diff --git
->>>>a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
->>>>lat_if.c
->>>>b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
->>>>lat_if.c
->>>>index cf48d09b78d7..85df3e7c2983 100644
->>>>---
->>>>a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
->>>>lat_if.c
->>>>+++
->>>>b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_
->>>>lat_if.c
->>>>@@ -1074,7 +1074,7 @@ static int
->>>>vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance
->>>>*inst
->>>>   	unsigned int mi_row;
->>>>   	unsigned int mi_col;
->>>>   	unsigned int offset;
->>>>-	unsigned int pa;
->>>>+	unsigned long pa;
->>>
->>>If you used the right type from the beginning, you wouldn't have to
->>>fix that ;-)
->>>
->>Yes, you are right, thanks for your remind.
->>>Is there any reason why you didn't - and still don't use the
->>>`phys_addr_t` type
->>>for the `pa` member?
->>>
->>pa is also iova, dma address. Change it to dma_addr_t looks much
->>better.
->>
->
->Ok, dma_addr_t looks good as well.
+On Thu, 29 Feb 2024 16:10:38 -0600
+Rob Herring <robh+dt@kernel.org> wrote:
+[...]
+> > > > > It's just this one of the 3 patches that needs reverting? =20
+> >
+> > Just this patch. I reverted only this and the issue disappeared.
+> > =20
+> > > > I sent a fix. With the fix, it's just exposing a bug elsewhere. =20
+> >
+> > Exactly, this patch has two issues and only the easy one has a fix [0]
+> > currently as far as I know.
+> > =20
+> > > You say apply the fix. Luca says revert. I say I wish I made this 6.9
+> > > material. Which is it?
+> > >
+> > > If the overlay applying depends on out of tree code (likely as there
+> > > are limited ways to apply an overlay in mainline), then I don't really
+> > > care if there is still a regression. =20
+> >
+> > Obviously, to load and unload the overlays I'm using code not yet
+> > in mainline. It is using of_overlay_fdt_apply() and of_overlay_remove()
+> > via a driver underdevelopment that is similar to the one Herv=C3=A9 and
+> > Lizhi Hou are working on [1][2].
+> >
+> > I see the point that "we are not breaking existing use cases as no code
+> > is (un)loading overlays except unittest", sure.
+> >
+> > As I see it, we have a feature in the kernel that is not used, but it
+> > will be, eventually: there are use cases, development is progressing and
+> > patches are being sent actively. My opinion is that we should not
+> > put additional known obstacles that will make it even harder than it
+> > already is. =20
+>=20
+> Well, I don't care to do extra work of applying things and then have
+> to turn right around fix or revert them. It happens enough as-is with
+> just mainline. And no one wants to step up and fix the problems with
+> overlays, but are fine just carrying their out of tree patches. What's
+> one more. This is the 2nd case of overlay problems with out of tree
+> users *today*! Some days I'm tempted to just remove overlay support
+> altogether given the only way to apply them is unittest.
 
-Ah alright, disregard my comment about unsigned long vs u64 then, but
-please have a look at the other casts in the driver as well as you
-currently cast to either:
-- u64
-- uint64_t
-- unsigned long
+Thanks for taking time to understand the situation.
 
-Greetings,
-Sebastian
+Just to clarify my position: together with Herv=C3=A9 we are not just
+carrying out of tree code, we are actively developing code that uses
+overlay load/unload at runtime and we will send it to mainline as soon
+as it is ready.
 
->
->Cheers!
->
->>I will change it in next patch.
->>>Cheers,
->>>Angelo
->>>
->>Best Regards,
->>Yunfei Dong
->>>>   	unsigned int size;
->>>>   	struct vdec_vp9_slice_tiles *tiles;
->>>>   	unsigned char *pos;
->>>>@@ -1109,7 +1109,7 @@ static int
->>>>vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance
->>>>*inst
->>>>   	pos = va + offset;
->>>>   	end = va + bs->size;
->>>>   	/* truncated */
->>>>-	pa = (unsigned int)bs->dma_addr + offset;
->>>>+	pa = (unsigned long)bs->dma_addr + offset;
->>>>   	tb = instance->tile.va;
->>>>   	for (i = 0; i < rows; i++) {
->>>>   		for (j = 0; j < cols; j++) {
->>>
->>>
->
->
+As part of this process, Herv=C3=A9 has already sent patches to fix various
+problems that happen when overlays are loaded and especially unloaded:
+https://lore.kernel.org/all/20240229105204.720717-1-herve.codina@bootlin.co=
+m/
+https://lore.kernel.org/all/20240227113426.253232-1-herve.codina@bootlin.co=
+m/
+https://lore.kernel.org/all/20240220133950.138452-1-herve.codina@bootlin.co=
+m/
+https://lore.kernel.org/all/20240220111044.133776-1-herve.codina@bootlin.co=
+m/
+
+Best regards,
+Luca
+
+--=20
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
