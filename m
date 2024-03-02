@@ -1,197 +1,162 @@
-Return-Path: <devicetree+bounces-47893-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47894-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 622ED86F168
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 17:47:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFAE386F1DF
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 19:38:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 865C41C20A86
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 16:47:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1009C282D9F
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 18:38:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 193AC2BAFA;
-	Sat,  2 Mar 2024 16:47:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 945B42C695;
+	Sat,  2 Mar 2024 18:38:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="gRgoImfW"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="aVO2U4iy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR04-DB3-obe.outbound.protection.outlook.com (mail-db3eur04on2077.outbound.protection.outlook.com [40.107.6.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1991422F0D;
-	Sat,  2 Mar 2024 16:47:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.6.77
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709398054; cv=fail; b=CwhvM7Lj3f/JTg7Cz4fBZQQRlF7MVRLpLKiLWulT8QLDi8Yjfw4yqkthB7R3jMYlf6K14rMDqSfgKk90htJYQQF/0DG9gJgw4h4MaWtU0/OA/z5nAfpkzktwX7ZW6FGAxG206D2tc3qTWlIJSkQ4gLhKGT6ANlzBq3s+eK2IuU4=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709398054; c=relaxed/simple;
-	bh=YNqgsgdJaGIjc5HGvVaaIsctI2PDohhUrI1s8ZEfWEU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=lppMt0dcFchfZSj42R1mt0d7ptlq/kaW6bbKezWoVGLs3q8QWPGISTzNqGN+48AdAE6AFwtjPJm7xEntaYg9mYw4w220h5YUZQRncTdYGQlD+VwwQaROifWCqTvl3LQzL2xee5qf4it2mQ+Lz/0srUUl4C1K8BlNj6La9kbCOBk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=gRgoImfW; arc=fail smtp.client-ip=40.107.6.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eLH4Eww6RsTnTJseSxPxr/KeBMJyGqn09AC2kviQkgR2WxdpYVqpLCvJfpYs2wsOP2EdZPtZ1+Rx8egWibvhInqisnqAf42iL5tw6lCkwNILIe3t4NbVr0OCD8hcB9j/XnUC6NZKf83+APWBIpzq8gG59gvWzcxq4AnuD1Mopqrop9w9WfSQMV+8DKveadKacVb9KXPfYkZnKTViqZcffsF84SiBx+VfZxQWUeQxkqQB4VBCnW1irD241gCdBSK2OoszAX6ImU7UXRuyz3VnuSODwh7TzFfMgBwVCTyxDLVLrepg3LtbpV3obqaWz12P01TulwEzA5V5+bd5O3A8Bw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KgW/qoL6g24dEqlgq99jl3UBJgS7x6x4PL2921EJrH4=;
- b=Ach62UIvEwqekVz7UhY5cAH5u64qa+ZtR1cuLeOaUYKVvTZp5vjRLBhH7CAOVWE5M2sai24XcAOY3aIk+lQLXMPwg0i+QVaB1VIIyf6Ibr078novnU3AQlhdxttwevbA5yaxBHOM12PlO4n77YAaPwimmoDYEdtjw4uHaSo4UYI5tND3oaj0I9leuA1NjFK3DDB5y/285r4vO+3MzNSkNj5ka7SF74PnvplT544w4s9n3dUXtcIhqYpe3LNl3zKDeMISYXlnyOztpQCuU4q7d9l0b+AL4X721rhWF2INCATpdLnCc0mseh3q8iRYCGTi4w3hyh7/cRDJGZXMIKgUHg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KgW/qoL6g24dEqlgq99jl3UBJgS7x6x4PL2921EJrH4=;
- b=gRgoImfWFPaoW5Ah4Ph6RXdjv8O2iSDEsF2IykGf1X8kGry6nFrW1F+zy2yIAucNksNYh/8RvgnDupQHScir22hSjqcSW5Ibp8Lqux7R2BomRyGd81a6XgvCtyrXKAg+HiRFJiC1P+YkaNDuvQ3gy3cfyjfwd5CkBxOIaFg2R2M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA4PR04MB9638.eurprd04.prod.outlook.com (2603:10a6:102:273::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.37; Sat, 2 Mar
- 2024 16:47:28 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7339.033; Sat, 2 Mar 2024
- 16:47:28 +0000
-Date: Sat, 2 Mar 2024 11:47:23 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
-	dmaengine@vger.kernel.org, imx@lists.linux.dev,
-	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
-	peng.fan@nxp.com, robh@kernel.org, vkoul@kernel.org
-Subject: Re: [PATCH v2 2/2] dt-bindings: dma: fsl-edma: allow 'power-domains'
- property
-Message-ID: <ZeNYG1IUfniWkhcp@lizhi-Precision-Tower-5810>
-References: <20240301214536.958869-1-Frank.Li@nxp.com>
- <20240301214536.958869-2-Frank.Li@nxp.com>
- <885501b5-0364-48bd-bc1d-3bc486d1b4c6@linaro.org>
- <ZeNI1nG1dmbwOqbb@lizhi-Precision-Tower-5810>
- <31e62acf-d605-4786-80a1-df52c8490913@linaro.org>
- <ZeNWXxzFBzNj0gM1@lizhi-Precision-Tower-5810>
- <e1d0aafe-e54f-4331-8505-135b9a8f9bff@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e1d0aafe-e54f-4331-8505-135b9a8f9bff@linaro.org>
-X-ClientProxiedBy: SA1P222CA0090.NAMP222.PROD.OUTLOOK.COM
- (2603:10b6:806:35e::22) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5755374DB;
+	Sat,  2 Mar 2024 18:38:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709404707; cv=none; b=ke6wENniZRfZvboOzvhNZzymIPULypRi8xeYVDQWekXnhjbQnRf+eaDbZdfMKcSAH4x9Nl+CAGDx20e6+9QvQn13m3xpnepCTAge1wrawu0QVBDBaqRYkF03TDx7skSqPBohiarmHqM2kFsGNIXz74oKUndwEIXv0j+i3igqrBQ=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709404707; c=relaxed/simple;
+	bh=DxMieUdGbPoFEJAzv8g2IGm2lj3iuTaFDdXF9YJKqnY=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=fxPBrjNd3wVXtKPtD9dRoZpI3UmT+DTQunrhBVWZfWyxU1oBaB1rOU+NsKzB88WNaPSPFLcM8rYJrALMJQ5FbsFElecs4xTyRToPSqKstxLgxP2bb0FHEFxISItHCyxDd+a+l0DMLQ+uNiHdu37EUbsIAuok86fDSwoSl1CGRLg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=aVO2U4iy; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB9638:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4b7cf3ba-162f-49e3-14de-08dc3ad87255
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	KAWa+1T4JY1vz5JfKVFXM4WvPH3Y4Qi+3t3LgmapdrmB3APF30Mb/RDB9fNkTzhjrYUNzX0y2hh6bkysZ6X1fY5TmeUSRp+bv6qDetIoPcV8jeXCsrEuPVWlTNJsAZt9ePodv3N1tLKP81Gsqx3to5iUYttqeqeIyWa3HvcKpvr27KSSM3xXO2RsBDUaFDYThBkcMfd1jUk4XGxf8SqFpoeC3kgifC1zkIQb82Y4sBdEoIwraYQE4UtUmvGhzf1EAxhXiBPwjKYzmR2QSyYwPDD5TgOEvQjAwR3L3WbPbCk8wrbsekf/dERlW0QlETOtzhTY/G1uvEgB4Zy810/T5gP5D3LCHRv/74tkU9fNU3pbBouP6LGBOKdN38sc3dQFPZ+EN0R4U9m2uEI0kVSKe9cufErl99F7BI1+/7T7ap1QEF0X5JCmA0+qaJCTfPBl7wv17kLEHOZUCOdkrt6VWp5LwoJlDdAnywXUSaKUoouojKlcrG5cX/SmVV0g3/Qzezp2GdXp46uFsAgztUk0KWufIFJOoDT2zrmi8FAqNrlFf3TyfTWUyKHZjIr6rZ+kb4i6PV8H9FbOp3HPfRcR622JCsKDNxxsdwioTX/yFlFFV8hOHnDcIA1Kqcy52ALGZy22E5V6j7mnGjmjqbugoYShFvCbvD2O0kE77fvIq/pAt9hwspEI0iQeFZgVGEFHqKLcz1n29VcyMthvAjPz9g==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?fnwftEcSHsFCm+96hnmZ85eQ+jDoRgN+48xZ0ZAHhQTFjoYAGd5JvK8XPnTl?=
- =?us-ascii?Q?kJyfZiELcjdyBwZLUX51DMkUzEmeJnfpl69WQRdZBo7BRxfh+BlE43XCDsoQ?=
- =?us-ascii?Q?Qf5rDjqRVsv4JAw5Tt/T5kaOnfiWxxtSpEa7w1eeHq6ydxRbgA42Lb2mOebg?=
- =?us-ascii?Q?NHkvsLKl+17qiz8ULVNx0p6/UfhzQ6PbgLuZZPXQy5xL6W2dV6iPbpyjUY7U?=
- =?us-ascii?Q?8PRJw4X+W4PKsFyGr95W9FajMtBOrcXYjc7RU+HiTohzh54kxOSeThlXp0+o?=
- =?us-ascii?Q?PrVCrYiuBNBil573bREEmVSEphZ96QQv5JCfJK4ksdYemDdYXRmdJ7Mx4o2A?=
- =?us-ascii?Q?5mjJSp0eNrKIFE11/oR4AAtoDW2fSy5it75OL/CL3Kvf9kXKzczLhOUsIL45?=
- =?us-ascii?Q?BV6+B8b5vpn1aY1HwAL9QKat1/ohdQxh2M7W3HGAIDBHcf4rRc24nDM6NEAR?=
- =?us-ascii?Q?qGuNzj4Hhr+kWjFF3ToQRu4L1HFvfpFxK8l1F64smPbLnlzOCWwr+amZ/WJd?=
- =?us-ascii?Q?SBfVOHQEp5apHt3HSG9kKALV+rONp3s3ObYHMjr7tyT5eiagyYZKxTCnlD4A?=
- =?us-ascii?Q?vrLhD+e4vV1MAJHYmdBDaqqkCfK/x6n/I8G6GsfmGATXEHAdoUbwSBI0Ozsi?=
- =?us-ascii?Q?wwv2uPUZi2a38bwgIGR4VBpjgbgxYDMpqDqqluKewZmA4OYlK/wby4zPFQRO?=
- =?us-ascii?Q?7MWyi/WpAhEODdci5hNlJHW4V26iMv2jP8g+rAuVxMFKnayZtCEjnwkNkZze?=
- =?us-ascii?Q?Vr+VgRfcaRLsB+FtNohFcb+FwNGUuoo0iE7M9Z7PdDMQjiNYDgz8ehpZHRmU?=
- =?us-ascii?Q?nHusBS/H+m39V/5DMgSCEQCFTH1pu3GJpbwRad1x/S2sUmxiS8rbis323J0J?=
- =?us-ascii?Q?BJo6JQ8LIwxQoxhy0WYAYJEP7CVq9CNEfKUXUAVAFA72DmeAAZ8nsc55/Sjc?=
- =?us-ascii?Q?sywibICEcTbD78VK5FvZrJ5igIgRQU1nEa6FXrotbXdwmp1RcwYM89vd9VWz?=
- =?us-ascii?Q?xOO/hz1fMFU8o7uWZQWIfMYUTiuI/DIOrbFb8Y9hUpLxO4afILlo2qpjdKL0?=
- =?us-ascii?Q?yAgXxcr9Fiyy7AdW9P/qFRxe/Gz4+8XpoPHruN84IUPtGAHxpGivtFLrXK04?=
- =?us-ascii?Q?eO12Bax0LZ16UEIQvYsh2J0Qh1gJIonanyjwDwi+8vZqx2I24OxYB315kd2G?=
- =?us-ascii?Q?hEC7FKO6N5a5/ku6GaLZ5zx0QmTN3yyzswHgnrlyq89HMDSQRPkeRgOAm/7O?=
- =?us-ascii?Q?TQBnFG0UcMga7j+nSqZQib+Fujgy7LZaL+nf1lY6LxvsZOd9oFApZPAPweID?=
- =?us-ascii?Q?4vQhdkAbA9BZhgp6soTWs7Z1SVqnZiPaq7hQywANgQ0NpXJfDma4us+TdsAT?=
- =?us-ascii?Q?W9vp+yvez9fLGxCFLxfAJn9dKJ87GEbNuXtEdHPABkDoi6ttGbhT5c2KatHF?=
- =?us-ascii?Q?oxrnQYWHLsPoPYhaNwwHgm+lJsg1RapkijVEjUCGi+LT5qvt/PLG7uuvO9X7?=
- =?us-ascii?Q?2TpdsP2Eq+czpP2FZljYpeqcnqWxixvjQdi4b8iO85KwUysa51883PQc9yLI?=
- =?us-ascii?Q?SkIP9S7RkIrLcvgVoErqmgZ3HQ0LxNtums2jMNUi?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4b7cf3ba-162f-49e3-14de-08dc3ad87255
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2024 16:47:28.6768
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: lkQGvqsrIpBy6CVSNd97MpHihEXNFdb1nHHzf36od2wX1uKfOJ+P4UwMw21Zxs1sOHSDIZLUIb3rLKmaYxk/mg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB9638
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709404695;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=g8ZlwO6znWmhb0i3vL98mOnE4UFnlmkSb9Ze7dDbIvw=;
+	b=aVO2U4iyixRmN8pxd49qgP99L5UhCddPgPtNq8RIiNWeg6l8r1BUftxz9RgrDpQT778eCk
+	ks4k3prN2Bb8e7SZNg+w5ypo/sTvkfwBIzdbdMMRnd75FLxasKhkWTxBDjmyxv0D6v/nP8
+	fsqRR5WQaDPso4IYQv/BYzq6/3z8qvYsCko3wfdpzbZ8+wAIOvogabY5hvTnoUxOJ2jdxG
+	N/HoC4I9ozA1MwXONMEfC0tevvu8BExiFIHDYIDlkPVEPek1FogRQkva+xLIB5PYVOsmlD
+	SecLkbeFJ0N+1Mskhvn5/yD+PEqYk7zO8sN5Cr40zOTtnr3DdInkrptklCPQQw==
+Date: Sat, 02 Mar 2024 19:38:14 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Heiko Stuebner <heiko@sntech.de>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Alexey Charkov <alchark@gmail.com>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
+ Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] arm64: dts: rockchip: enable built-in thermal
+ monitoring on RK3588
+In-Reply-To: <6279836.31r3eYUQgx@phil>
+References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
+ <20240229-rk-dts-additions-v3-1-6afe8473a631@gmail.com>
+ <6279836.31r3eYUQgx@phil>
+Message-ID: <3f73d847fbe9d7f6dd05802eb7e47d49@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Sat, Mar 02, 2024 at 05:43:01PM +0100, Krzysztof Kozlowski wrote:
-> On 02/03/2024 17:39, Frank Li wrote:
-> > On Sat, Mar 02, 2024 at 05:20:42PM +0100, Krzysztof Kozlowski wrote:
-> >> On 02/03/2024 16:42, Frank Li wrote:
-> >>> On Sat, Mar 02, 2024 at 02:59:39PM +0100, Krzysztof Kozlowski wrote:
-> >>>> On 01/03/2024 22:45, Frank Li wrote:
-> >>>>> Allow 'power-domains' property because i.MX8DXL i.MX8QM and i.MX8QXP need
-> >>>>> it.
-> >>>>>
-> >>>>> Fixed below DTB_CHECK warning:
-> >>>>>   dma-controller@599f0000: Unevaluated properties are not allowed ('power-domains' was unexpected)
-> >>>>>
-> >>>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> >>>>> ---
-> >>>>>
-> >>>>> Notes:
-> >>>>>     Change from v1 to v2
-> >>>>>     - using maxitem: 64. Each channel have one power domain. Max 64 dmachannel.
-> >>>>>     - add power-domains to 'required' when compatible string is fsl,imx8qm-adma
-> >>>>>     or fsl,imx8qm-edma
-> >>>>>
-> >>>>>  .../devicetree/bindings/dma/fsl,edma.yaml         | 15 +++++++++++++++
-> >>>>>  1 file changed, 15 insertions(+)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> >>>>> index cf0aa8e6b9ec3..76c1716b8b95c 100644
-> >>>>> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> >>>>> @@ -59,6 +59,10 @@ properties:
-> >>>>>      minItems: 1
-> >>>>>      maxItems: 2
-> >>>>>  
-> >>>>> +  power-domains:
-> >>>>> +    minItems: 1
-> >>>>> +    maxItems: 64
-> >>>>
-> >>>> Hm, this is odd. Blocks do not belong to almost infinite number of power
-> >>>> domains.
-> >>>
-> >>> Sorry, what's your means? 'power-domains' belong to 'properties'. 
-> >>> 'maxItems' belong to 'power-domains'.It is similar with 'clocks'. what's
-> >>> wrong? 
-> >>
-> >> That one device belong to 64 power domains. That's just random code...
-> > 
-> > Yes, each dma channel have one power domain. Total 64 dma channel. So
-> > there are 64 power-domains.
+Hello Heiko,
+
+On 2024-03-02 12:25, Heiko Stuebner wrote:
+> Am Donnerstag, 29. Februar 2024, 20:26:32 CET schrieb Alexey Charkov:
+>> Include thermal zones information in device tree for RK3588 variants.
+>> 
+>> This also enables the TSADC controller unconditionally on all boards
+>> to ensure that thermal protections are in place via throttling and
+>> emergency reset, once OPPs are added to enable CPU DVFS.
+>> 
+>> The default settings (using CRU as the emergency reset mechanism)
+>> should work on all boards regardless of their wiring, as CRU resets
+>> do not depend on any external components. Boards that have the TSHUT
+>> signal wired to the reset line of the PMIC may opt to switch to GPIO
+>> tshut mode instead (rockchip,hw-tshut-mode = <1>;)
+>> 
+>> It seems though that downstream kernels don't use that, even for
+>> those boards where the wiring allows for GPIO based tshut, such as
+>> Radxa Rock 5B [1], [2], [3]
+>> 
+>> [1] 
+>> https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts#L540
+>> [2] 
+>> https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/dts/rockchip/rk3588s.dtsi#L5433
+>> [3] https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock_5b_v1423_sch.pdf 
+>> page 11 (TSADC_SHUT_H)
+>> 
+>> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 176 
+>> +++++++++++++++++++++++++++++-
+>>  1 file changed, 175 insertions(+), 1 deletion(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi 
+>> b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>> index 36b1b7acfe6a..9bf197358642 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+>> @@ -10,6 +10,7 @@
+>>  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+>>  #include <dt-bindings/phy/phy.h>
+>>  #include <dt-bindings/ata/ahci.h>
+>> +#include <dt-bindings/thermal/thermal.h>
+>> 
+>>  / {
+>>  	compatible = "rockchip,rk3588";
+>> @@ -2225,7 +2226,180 @@ tsadc: tsadc@fec00000 {
+>>  		pinctrl-1 = <&tsadc_shut>;
+>>  		pinctrl-names = "gpio", "otpout";
+>>  		#thermal-sensor-cells = <1>;
+>> -		status = "disabled";
+>> +		status = "okay";
+>> +	};
 > 
-> OK, then how about extending the example to be complete?
-
-Let's add 8qxp example at next version.
-
-Frank
-
+> so I've skimmed over the general discussion, though don't have a hard
+> opinion in either direction yet. Still there are some low-hanging 
+> fruit:
 > 
-> Best regards,
-> Krzysztof
+> - having the thermal-zones addition in a separate patch would allow to
+>   merge the obvious stuff, while this discussion is still ongoing
+
+Very good suggestion.
+
+> - status=okay in a soc dtsi is wrong, because okay is the default 
+> status
+>   so if anything the status property should be removed
 > 
+> In general I'm not that much of a fan of things just working 
+> implicitly.
+> So somehow, when someone submits a board devicetree, I expect them to
+> having ensured stuff is enabled somewhat ok. So even seeing a simple
+> 
+> 	&tsadc {
+> 		status = "okay"
+> 	};
+> 
+> suggests that they have at least noticed the existence of thermal 
+> stuff.
+
+I agree that having such additional "signed-off markers", so to speak, 
+in
+a board dts is quite assuring.  I mean, someone implementing a new dts 
+file
+for a new board should simply know what needs to be done there, and 
+there
+should be no excuses for not checking the thermal throttling stuff.
 
