@@ -1,175 +1,180 @@
-Return-Path: <devicetree+bounces-47876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54EFD86F0A6
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 15:14:10 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0C2CC86F0E9
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 16:42:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0B3E5284A1C
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 14:14:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30F901C20B34
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 15:42:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C116E17BA2;
-	Sat,  2 Mar 2024 14:14:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AC7618C01;
+	Sat,  2 Mar 2024 15:42:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b="lVTcx+js"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="CjSxx4Fn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from xry111.site (xry111.site [89.208.246.23])
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2060.outbound.protection.outlook.com [40.107.105.60])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F1EC917573;
-	Sat,  2 Mar 2024 14:14:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.208.246.23
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709388845; cv=none; b=uBOUqjQeXSfgBgtXk2L0CoyoBqw0YkEf35iwXTVoUPvCncd9UwfLjG3sBNie3i/k405ScI3e82lzpaGDisxGDQKkz7n7wZNvkI3x5wFqLckj14phMNwE8oI0/OmHd4qZBahpj+cDSkLBavXsMITSO0S8egMlF+kUPQMEA3+TMog=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709388845; c=relaxed/simple;
-	bh=rrs7FTnn5zBbVusszKQ43BrCp14rs9R6rlivEgH7f50=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=K1l6FPeK+N5HeKok6Y5XO+pmGol9qHIrRGs4unCNOzT9qzPMA9uprhtABBwRcIRORaJTRLgqc4IMnN4aFhQa0wWJ9msm51aWEcYpZ8NWunqi2s1w8YdJyfTeR39/BCwKDWnN1P6hzS7Q3MNclSV6fNZnzSvMjxSVRxXWqQkPLlA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site; spf=pass smtp.mailfrom=xry111.site; dkim=pass (1024-bit key) header.d=xry111.site header.i=@xry111.site header.b=lVTcx+js; arc=none smtp.client-ip=89.208.246.23
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=xry111.site
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=xry111.site
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=xry111.site;
-	s=default; t=1709388840;
-	bh=rrs7FTnn5zBbVusszKQ43BrCp14rs9R6rlivEgH7f50=;
-	h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-	b=lVTcx+jsGLuJR11oql/QnfWS3jjbEP8a5/zlWwYoC+FHZnei9srvrgdW9IH1WkzQe
-	 ppyNY4UBWnKZlEXNFuruHrQymD0WOnE3CxHu1kY7AeJ20LaEQXby6ND544Vi21k+6T
-	 KFC42n6IiUbcLE073jvAa2FovXzOa4aHx5SXz11M=
-Received: from [127.0.0.1] (unknown [IPv6:2001:470:683e::1])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (P-256) server-signature ECDSA (P-384) server-digest SHA384)
-	(Client did not present a certificate)
-	(Authenticated sender: xry111@xry111.site)
-	by xry111.site (Postfix) with ESMTPSA id DDCBC66B29;
-	Sat,  2 Mar 2024 09:13:57 -0500 (EST)
-Message-ID: <110fa8d6be78a26ca21cd97c55903f5d62776430.camel@xry111.site>
-Subject: Re: [PATCH v8 4/4] riscv: dts: thead: Enable LicheePi 4A eMMC and
- microSD
-From: Xi Ruoyao <xry111@xry111.site>
-To: Drew Fustini <dfustini@baylibre.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
- <aou@eecs.berkeley.edu>, Jisheng Zhang <jszhang@kernel.org>, Guo Ren
- <guoren@kernel.org>, Fu Wei <wefu@redhat.com>, Conor Dooley
- <conor@kernel.org>,  Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>
-Cc: Jason Kridner <jkridner@beagleboard.org>, Robert Nelson
-	 <robertcnelson@beagleboard.org>, linux-riscv@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Date: Sat, 02 Mar 2024 22:13:55 +0800
-In-Reply-To: <20231206-th1520_mmc_dts-v8-4-69220e373e8f@baylibre.com>
-References: <20231206-th1520_mmc_dts-v8-0-69220e373e8f@baylibre.com>
-	 <20231206-th1520_mmc_dts-v8-4-69220e373e8f@baylibre.com>
-Autocrypt: addr=xry111@xry111.site; prefer-encrypt=mutual;
- keydata=mDMEYnkdPhYJKwYBBAHaRw8BAQdAsY+HvJs3EVKpwIu2gN89cQT/pnrbQtlvd6Yfq7egugi0HlhpIFJ1b3lhbyA8eHJ5MTExQHhyeTExMS5zaXRlPoiTBBMWCgA7FiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwMFCwkIBwICIgIGFQoJCAsCBBYCAwECHgcCF4AACgkQrKrSDhnnEOPHFgD8D9vUToTd1MF5bng9uPJq5y3DfpcxDp+LD3joA3U2TmwA/jZtN9xLH7CGDHeClKZK/ZYELotWfJsqRcthOIGjsdAPuDgEYnkdPhIKKwYBBAGXVQEFAQEHQG+HnNiPZseiBkzYBHwq/nN638o0NPwgYwH70wlKMZhRAwEIB4h4BBgWCgAgFiEEkdD1djAfkk197dzorKrSDhnnEOMFAmJ5HT4CGwwACgkQrKrSDhnnEOPjXgD/euD64cxwqDIqckUaisT3VCst11RcnO5iRHm6meNIwj0BALLmWplyi7beKrOlqKfuZtCLbiAPywGfCNg8LOTt4iMD
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2650618643;
+	Sat,  2 Mar 2024 15:42:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.60
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709394148; cv=fail; b=R6SHoZNBE9wEgUnbUDskJVujoKzu6ta4uHai/XFHlS/9AyvcAycfimDN6dLeYvXK3EaNtWRmPNc9yuQ4cb/QQ/Xv3asYpnzbILSxBWX4SUBUK0SQbWSKRB6S7yNcu4jJhbJyU4c/0QYDPIj2CjFB0kZ8fhE2/8hPphE+3xjvn8M=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709394148; c=relaxed/simple;
+	bh=kpWNcoVGAGW2Uewp5u+CeHnZ4Lz6J12SSYxRHphvHVA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=bvhxqAUmWJL5wEoYXjnlm5Jhp01rxyI48KckLd4wOHD1L9ObTTVr8ie38W8x+nzbCxppPyROmUXJvVgq3DC8OTpsDTd6eVS4tmWRk16IlBundtbSkGpek3VLALFflXBRpS4Pup4AGgNFpdnKSAC7cPQWnDhwOUF/4tyaP64ePuU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=CjSxx4Fn; arc=fail smtp.client-ip=40.107.105.60
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Ccszj7k0uIKHx8kYxyyYK26F3IDFCQaiAC3yWsz6orpUi7ZgOis8jXPoQ/5KH/NJt8/syJ7Ia1Ymdtc0nvwZ8bPFVOB6Ytmy9RUIMnhJIXOM3EqovsYKuaf3rLEWJ+IQoNQ9Oj+xPE9NE7aJRHSWgEJye4ET1kW0A3fUuOPlVH3fSpmV9SFFSnEgVnJhBo/9gBfBQwm2sDMIfVngQ8Zqpk/XwF5cIw/Bti7JU61hxXVy48E2dO06d2jJhxeRDUZF3cZLhICc2/CtPWLPPG/potF+TqEHwT1Zn7FW+nIJYhSmpRvmDEJwlyhYjcgeUggLYRrhO2t+bMOBktHm3isyNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=U0kU3NmwqTgtGqCGCI0PUU2VNccQGYIpFuR6mLWBffk=;
+ b=dFIjRizPezVAkWi7VjDXnTlGyAhrZhJpFBvKiYoUA3Pc3bbrtHLcjo0O4DIMQaJGjDMm3r47VTkJ8N3F/t/m+Iya6BQKx3v4bA+Jht39IKPdAppMqL5vWvRtbrgVKVG1XVMYJte5bHSt3r5woxiCq/IgB/DOJxdjS7sO5eHVXYPXTtFe6+J3QpsnhUvCJR7ohy2SO6Xa6jkllQrsAMyNjqY/9Rsd4ITWY6hVkBbchVqllQVWMDSLKa9/n1D+bh53PL1JSLoVd84EBB26vQJxDPS71YLTRTl6t5IvCqccp/Qwo0xLktUUNcyl3h+4vXxjFCIewvK81b0phdLKiJ5r8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=U0kU3NmwqTgtGqCGCI0PUU2VNccQGYIpFuR6mLWBffk=;
+ b=CjSxx4FnXh8QJ8M/QzF0/xzwPJvkz8H41SbkI62cjsvfVXkJ/eK/VM088znlOB68xbfDRO9fgnTuiSsYt6qcMP6+hq0VVf8x88XHmdDESDifCR+C9pj9qCw8AJgcdtQK5jvG6O0L8xZsRA9c4q3tKhH3pzbUz0EvR9TXQzEJXj8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by DU2PR04MB8648.eurprd04.prod.outlook.com (2603:10a6:10:2df::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.37; Sat, 2 Mar
+ 2024 15:42:23 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7339.033; Sat, 2 Mar 2024
+ 15:42:23 +0000
+Date: Sat, 2 Mar 2024 10:42:14 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+	dmaengine@vger.kernel.org, imx@lists.linux.dev,
+	krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+	peng.fan@nxp.com, robh@kernel.org, vkoul@kernel.org
+Subject: Re: [PATCH v2 2/2] dt-bindings: dma: fsl-edma: allow 'power-domains'
+ property
+Message-ID: <ZeNI1nG1dmbwOqbb@lizhi-Precision-Tower-5810>
+References: <20240301214536.958869-1-Frank.Li@nxp.com>
+ <20240301214536.958869-2-Frank.Li@nxp.com>
+ <885501b5-0364-48bd-bc1d-3bc486d1b4c6@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <885501b5-0364-48bd-bc1d-3bc486d1b4c6@linaro.org>
+X-ClientProxiedBy: BYAPR03CA0013.namprd03.prod.outlook.com
+ (2603:10b6:a02:a8::26) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DU2PR04MB8648:EE_
+X-MS-Office365-Filtering-Correlation-Id: da8e4114-92f2-4379-af81-08dc3acf5a65
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	rQ7gOoYQZtl3ocmtGLmogx1BV6L476cVUv5jnBexz53acC1gC3fZNt5aZPYwxgcOjeqmVlUwsfNvCWjDtOROFr5CvesXQYYR+tzzAyEG4DxH5yPBZgbqpfwDmYIvWbeosll0q65pNAlcY50yZ39koPgRZNcg7WArquStkNzSqPtIoa2jgKW282JB4dFgfqUtL4bm5VxM4lZ57gaIfem9obSOM6RDREZmN/UESUwfe/toSvPYJYblt+DzwB/o8P+hqunzC/rXxg0t3hLy0BUygkT/p+dlxJU0GfGD4HI28nCXHGmAcEvg4FjCktNbqBS7p/xZl8YGGyjXHya4YNudIQxO5BMLHUvE6/5sjrkpikxOXVpHU6WDw+D5qW+ZCcz9W3ETe4+q6UfWElqvbFi+R58Xrg2qRDwrRIep1JIK/SQMRVezKqNlbams3c2F95+24+LNKi1P7m2zzPiVLTsSN5kLowL4Gc3P/y44NGGEJ4ec5kb6Ul670gfZMFeiiZ60f5mP3te/YDtV58GPvAW2eCeXs4qVAtfn4Szw57kZKL1O2MB0gCTp3Q0mryMvYxCV8oaQEat6HnTjbn+r+JGy9kWJ/fhw3Xw5YFIJlLjr+yBBtFX4zTXj6c/9mBf75wzDSKnNSz4fce/buvlUWKbeTaS6vGUHXYvonnGoAyIFWaWeZFhUVu1UHstQ6xC8B1ZGd5aYFvwLUuFj4sbArugArvQSjp+xCjFhB+cJptHTzgQ=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?xvcnxJmCEJ2s2Vq22H2ZuObSOMpEvguJqLHSeTGINhKV/jtGKEzDmvN9jERe?=
+ =?us-ascii?Q?v7E9+4lQTyL6WyE5jpzTqD8SoSB5R8qEVXUB5P2z16kZSXiOiNt1ZVufHZMk?=
+ =?us-ascii?Q?0jp0jvj/vsgg4b/K1waGRHATGVTCLqFNxabcDMbONBSlnUEpv1wrlV7bNdUf?=
+ =?us-ascii?Q?rRIqaFI4tIdDupNXGG8wi7IWeHL0Pl7rV+06ZVgQ4xy62hpTliao0tzvGuc4?=
+ =?us-ascii?Q?sMqAk6hMdzWHFq3Nl4M8zAtM6406tPSzExGGBnKm/KTBpGiceOkXR1SYkDB8?=
+ =?us-ascii?Q?i6wz7phKhL5jf19HMn2kqD1pacnRksCz3ZxdsmPcnCx2/7UDLmUZTMiamcZd?=
+ =?us-ascii?Q?kWxcN0u+ZtVB5R8WulKzlirk4naGxRHZ+vr/xxrFYSqhLVgrA2/NyE6ufEfm?=
+ =?us-ascii?Q?QnpzoamFeCIkFJYY4IoipljNEAHKiKgffHALjc5dpy8/YbtGyaMFWB9R466G?=
+ =?us-ascii?Q?RaCHoDlIo2TZd0/WbjobwV2iupX17/ell9qB7RbwclZedqAJVoDzpve30mLP?=
+ =?us-ascii?Q?/f2pgmigExlTkVkBR3vsHev+n+nfXxaukd/hG0K422M6LFgs4IEYbm4IhRxu?=
+ =?us-ascii?Q?OtDZEIhzaZYRL+WI5PWhhddCup5GxIP/7eKn9V8XG6rEcIwZ0+urnb+btXp/?=
+ =?us-ascii?Q?87zSnM7iyXPRtaDsgNqm7BnbbCyAJ5sM+cJOKHLod88/4SDdNnTM3nyeWUiN?=
+ =?us-ascii?Q?i+RhtNeZAMcimUD+1HUIaV6EANNDIyT6gmzhbwb0tKNi1Z9qXbmvGrJcwv2I?=
+ =?us-ascii?Q?hOmQVH1FZhPd8VYtz/SEuQMaDqtjWy2dLfRTzpaDP7vCjlMSWc8CdMS/hkXQ?=
+ =?us-ascii?Q?12YQ4fP2nLzZ12R2kbPRkQz+WL9/THNc5vHzSvyJ/Ts9shli0bwgIkm1UQs2?=
+ =?us-ascii?Q?XPmeMuMz9VuwZt1fV+9Dc+09A3wM5ydGtxB42aJHScEhlvwI9xWdxz8eMaLv?=
+ =?us-ascii?Q?iWwMoNQf5wB1mmZp5d19ubO/TnAbKRCqdu+uJuW5t95O/0eaEdo+bL2xmjK2?=
+ =?us-ascii?Q?e+Ni1I7N18P6vIOD3/qE7xZIAxX6OvALoBqHzdGqQayE0OGXIC2WwkMIlTh2?=
+ =?us-ascii?Q?+pzuE4xf0dmXHaTC6HksTPThlxkzFIQqDqZhzyRkeM/ATgJSeBYD4Iy4Qt2c?=
+ =?us-ascii?Q?LxsJgcUUtamZC/QzjhuASP3bp08K4vP36+PXWOwhoJlCHBXzqcG0p/vkGqOG?=
+ =?us-ascii?Q?jCZ/jtUEOF+B//3ME0sp+1gaB05kJ+vYfs7kiryicVAwQ6rrdH6gwYIq2yvF?=
+ =?us-ascii?Q?Iv/7RpHQpPRi4yyGy1JFzQBv2AYNW/ehqobDeJDt1qHgge+uuGiDNB+9Iu3t?=
+ =?us-ascii?Q?vOISXJwytgnyufTheKz2ErbLwrpOMA7NsqXEtn6PB9Fhns64U4S/G1sPqv9A?=
+ =?us-ascii?Q?IxidkdPa1Iojs4hp06L+uQMoCi0f28I3zmH1sJbNaIcXSCddA2vkOu4GuY7d?=
+ =?us-ascii?Q?2gnTHopIyp+ZDuHOW6tXdzIx9CvHkWz+vePkffjLCzSLXIZgytLpTb4NZbat?=
+ =?us-ascii?Q?I33YFSfBrbZ8ZVj1bl0BTdTO1KGJNP528+m8LDfX1aubdQ55Gtd94+/cptT8?=
+ =?us-ascii?Q?HMXyhNRNEjFwMa2oeJI=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: da8e4114-92f2-4379-af81-08dc3acf5a65
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2024 15:42:23.3320
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bFHWbwAcn8nfTVzOTJcaWmkhgiIWXahGCd3og5j/dPtHiEZP0Vvv5+kCu8n5M6EQ5um6P4VHpOa/3Sr0aH9mrA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8648
 
-On Wed, 2023-12-06 at 00:09 -0800, Drew Fustini wrote:
-> Add emmc node properties for the eMMC device and add sdio0 node
-> properties for the microSD slot. Set the frequency for the sdhci
-> reference clock.
+On Sat, Mar 02, 2024 at 02:59:39PM +0100, Krzysztof Kozlowski wrote:
+> On 01/03/2024 22:45, Frank Li wrote:
+> > Allow 'power-domains' property because i.MX8DXL i.MX8QM and i.MX8QXP need
+> > it.
+> > 
+> > Fixed below DTB_CHECK warning:
+> >   dma-controller@599f0000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+> > 
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> > 
+> > Notes:
+> >     Change from v1 to v2
+> >     - using maxitem: 64. Each channel have one power domain. Max 64 dmachannel.
+> >     - add power-domains to 'required' when compatible string is fsl,imx8qm-adma
+> >     or fsl,imx8qm-edma
+> > 
+> >  .../devicetree/bindings/dma/fsl,edma.yaml         | 15 +++++++++++++++
+> >  1 file changed, 15 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> > index cf0aa8e6b9ec3..76c1716b8b95c 100644
+> > --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> > +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> > @@ -59,6 +59,10 @@ properties:
+> >      minItems: 1
+> >      maxItems: 2
+> >  
+> > +  power-domains:
+> > +    minItems: 1
+> > +    maxItems: 64
+> 
+> Hm, this is odd. Blocks do not belong to almost infinite number of power
+> domains.
 
-Hi Drew,
+Sorry, what's your means? 'power-domains' belong to 'properties'. 
+'maxItems' belong to 'power-domains'.It is similar with 'clocks'. what's
+wrong? 
 
-I've been using the emmc on LicheePi 4A for a while without any problem,
-but when I try the microSD slot I get:
+Frank
 
-[    0.531804] mmc1: SDHCI controller on ffe7090000.mmc [ffe7090000.mmc] us=
-ing ADMA 64-bit
-[    0.842674] mmc1: Tuning failed, falling back to fixed sampling clock
-[    0.855139] mmc1: tuning execution failed: -5
-[    0.859609] mmc1: error -5 whilst initialising SD card
-[   11.359879] mmc1: Timeout waiting for hardware cmd interrupt.
-[   11.365661] mmc1: sdhci: =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D SDHCI REGI=
-STER DUMP =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-[   11.372105] mmc1: sdhci: Sys addr:  0x00000001 | Version:  0x00000005
-[   11.378547] mmc1: sdhci: Blk size:  0x00007040 | Blk cnt:  0x00000000
-[   11.384989] mmc1: sdhci: Argument:  0x00000000 | Trn mode: 0x00000010
-[   11.391432] mmc1: sdhci: Present:   0x03ff0000 | Host ctl: 0x00000017
-[   11.397873] mmc1: sdhci: Power:     0x0000000f | Blk gap:  0x00000000
-[   11.404312] mmc1: sdhci: Wake-up:   0x00000000 | Clock:    0x0000000f
-[   11.410753] mmc1: sdhci: Timeout:   0x00000004 | Int stat: 0x00000000
-[   11.417192] mmc1: sdhci: Int enab:  0x00000020 | Sig enab: 0x00000020
-[   11.423633] mmc1: sdhci: ACmd stat: 0x00000000 | Slot int: 0x00000000
-[   11.430073] mmc1: sdhci: Caps:      0x3f69c881 | Caps_1:   0x08008177
-[   11.436513] mmc1: sdhci: Cmd:       0x00000102 | Max curr: 0x00191919
-[   11.442954] mmc1: sdhci: Resp[0]:   0x00000900 | Resp[1]:  0x07725f7f
-[   11.449394] mmc1: sdhci: Resp[2]:   0x32db7900 | Resp[3]:  0x00400e00
-[   11.455835] mmc1: sdhci: Host ctl2: 0x0000300b
-[   11.460280] mmc1: sdhci: ADMA Err:  0x00000000 | ADMA Ptr: 0x00000000008=
-82220
-[   11.467416] mmc1: sdhci: =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D
-[   11.563828] mmc1: Tuning failed, falling back to fixed sampling clock
-[   11.576053] mmc1: tuning execution failed: -5
-[   11.646438] mmc1: new high speed SDXC card at address aaaa
-[   11.653170] mmcblk1: mmc1:aaaa SR256 238 GiB
-
-I can write something into the SD card and read it back though.  But
-this makes me reluctant to use the SD card for "some real thing" afraid
-of a data loss.
-
-The SD card is a SanDisk Extreme Pro 256GB (rated "U3, A2, V30").
-
-Any idea how to debug this issue further?  (Maybe I should try change
-the SD card first but I'd like to discuss the issue before paying money
-for another card.)
-
-> Signed-off-by: Drew Fustini <dfustini@baylibre.com>
-> ---
-> =C2=A0.../boot/dts/thead/th1520-lichee-module-4a.dtsi=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 | 20 ++++++++++++++++++++
-> =C2=A01 file changed, 20 insertions(+)
->=20
-> diff --git a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi b/arc=
-h/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> index a802ab110429..1365d3a512a3 100644
-> --- a/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> +++ b/arch/riscv/boot/dts/thead/th1520-lichee-module-4a.dtsi
-> @@ -29,6 +29,10 @@ &apb_clk {
-> =C2=A0	clock-frequency =3D <62500000>;
-> =C2=A0};
-> =C2=A0
-> +&sdhci_clk {
-> +	clock-frequency =3D <198000000>;
-> +};
-> +
-> =C2=A0&uart_sclk {
-> =C2=A0	clock-frequency =3D <100000000>;
-> =C2=A0};
-> @@ -36,3 +40,19 @@ &uart_sclk {
-> =C2=A0&dmac0 {
-> =C2=A0	status =3D "okay";
-> =C2=A0};
-> +
-> +&emmc {
-> +	bus-width =3D <8>;
-> +	max-frequency =3D <198000000>;
-> +	mmc-hs400-1_8v;
-> +	non-removable;
-> +	no-sdio;
-> +	no-sd;
-> +	status =3D "okay";
-> +};
-> +
-> +&sdio0 {
-> +	bus-width =3D <4>;
-> +	max-frequency =3D <198000000>;
-> +	status =3D "okay";
-> +};
-
---=20
-Xi Ruoyao <xry111@xry111.site>
-School of Aerospace Science and Technology, Xidian University
+> 
+> Best regards,
+> Krzysztof
+> 
 
