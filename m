@@ -1,123 +1,200 @@
-Return-Path: <devicetree+bounces-47878-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47879-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27CB086F0F9
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 16:52:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id DB49786F11E
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 17:13:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52C191C20AEF
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 15:52:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 672411F21EE4
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 16:13:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8DE721B267;
-	Sat,  2 Mar 2024 15:52:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A729718658;
+	Sat,  2 Mar 2024 16:13:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="vM8rwEgN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hbV96z/U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDD6B17C77
-	for <devicetree@vger.kernel.org>; Sat,  2 Mar 2024 15:52:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E1C3220DF4
+	for <devicetree@vger.kernel.org>; Sat,  2 Mar 2024 16:13:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709394752; cv=none; b=nV8xnc65XDcEihRwdaNBKmuy6hzMocpU0cuG9olo8urHLeNmQa1wkiqq2VxmwmSLQszTvkKeR8BKIkyqweg3IlLy/Gj4Rcurszdb7i9Dxlc656SLUmS2rQxG0hB1mjjB5ZEtbwPILJf3zuQtFxo4UqlzexZao4AlppELBg9Nuys=
+	t=1709396006; cv=none; b=uuSMsk2/hthrrkXxscb10CnqJ6/4rWRy8sBtRyB0RQOnU1KVUL0DONFoE6g2lq2kZWanlOBI3H6gpa5tRWQeaUnRlz2wJXAW2lBGl/bGlKJkWglXpqsqc6jMeujMUyw/C7tcpX08k5H8QCdBLdxQRCheV59J6586/g2v2OXYfyo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709394752; c=relaxed/simple;
-	bh=IpeQuxZYHbOib0UXMdpmSgRLjR8MvxoaSxSpZYZToPE=;
-	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
-	 MIME-Version:Content-Type; b=IWrHj9vjvGpHCdw1uP5Y1Ro11H/79abOoWPRd+sp0oPA2LmXWJZjs9Z7ZfYLF6zMOr3lmOfzAKLj5eLnN+qilbuWJUPLM8ZNdXQZ4H3H0Au3kSsYpxPew4V48mD6A3EmBZFxm0YL3I9vI+sD9Hs85HR3pYFHAOgJaQJ2feNgRvQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=vM8rwEgN; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-412c83a8259so12242165e9.2
-        for <devicetree@vger.kernel.org>; Sat, 02 Mar 2024 07:52:29 -0800 (PST)
+	s=arc-20240116; t=1709396006; c=relaxed/simple;
+	bh=JeLgVGxq4GQg42VTNAyIVdsz1jUfH/1+h0YLlwMB8kU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OA2SdaV2MX5IqnPvXBeCdM2TtVQjh4gS5iYuGVlsbmXvwbH4rx8cMAqIENQJ8K4upYvReIqKyihvFrgA1BUD2MlYfddmZI4DkgtORSGgJqTMyh+i/1E6FJjI9qKMgXDQzdOtSidLx00vyoC2e9JrhhtcrnF+RAa7wuYMwhogCsI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hbV96z/U; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-412a9e9c776so24760825e9.0
+        for <devicetree@vger.kernel.org>; Sat, 02 Mar 2024 08:13:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1709394748; x=1709999548; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=HFHn5+gTrYvZdU2UMo/5Uu0slaoxEdGH237gIhxi8Fk=;
-        b=vM8rwEgNt86TgO93LZO8zpZ26DtyGOWECruz/CQ5hcynxeX/kKPL0C1+E4se/yGGH3
-         eKswlZSk+eq5N5NcBmR349G4cvIscSztS1QM11ZmMm8GSrBHJj9F3nMxDbV1LpKKNVPl
-         4YmGtOzA8k4x/yuLLij1ngC1fq6PHGOZLc1NhCMNnepvsrmezHeyCbPrlUnBhM5yDyDZ
-         TQiMXjVkPpxFS0O54cvmZs/Gi8MBHlfOUfi0OeYipBMPsP9BJaq6SZ9tfE/OuMShV1tg
-         WX1bO0m8UEEP54bEXS67GQ+hgeTINRCOvjnCO8bGPFxbfBlJCCnYqXIU6TvYfhI1CfQS
-         Mk0Q==
+        d=linaro.org; s=google; t=1709396002; x=1710000802; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bvQGYtN2vRBi+QYnwAZtvXa2o7whVTvKnKEEFe1E4KQ=;
+        b=hbV96z/UID9eG8YgjJCqXW00rt2Ed4n3iUZjJl6k52dlu6n5SWnBQh1L0ZuTahsvjk
+         1ba8QTm6KApkvDUH6YTlm7fdvbFWj4apSlorKbNE4Q1Ak1jky7X6q3ScclxagR0lX+Yq
+         6JebDQahDpRpnBJOWjdl7n8vWtQJHf1M/GMfWMd/wRmOrqsVApwnEpVvZKnqWUMr9LjH
+         JT8ZWYvJdj2sQ4rLa3fqG5oJ++cSwEqZvdbOX7RFr1SWUTbs903ZxwHsGWyBRrQQSYL3
+         g22ejuBdfSL9rwz3HpDvIU3NAQGLc3kvjNAQyNWmVsLKmDOr9AgabjtBCliXgqsLsA47
+         9gsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709394748; x=1709999548;
-        h=content-transfer-encoding:mime-version:message-id:in-reply-to:date
-         :subject:cc:to:from:user-agent:references:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=HFHn5+gTrYvZdU2UMo/5Uu0slaoxEdGH237gIhxi8Fk=;
-        b=E/L0Vzy+2bGX87qpEBY432MbQ5udj+hKiCXpLesFEnM42zAYHAaAkfSFmJu/jVqT0J
-         mSXBz+Z5ZQ1CU/boiYLYNx19AcAGEU/hZ5K1we2J/2502lpml3fXC3qmmgBZhd2iubL3
-         fL0WLx5YNEwKcCqlHl3w1bmCMNdtUHKzrtNxC2lHFDjbz/cMhIkHjScu3UDm+P03pY+n
-         mpANKmg+aVrm2p62HY6EvnMB0GLgTpz9VPimqK+NX9g8xeunwaQpEorul0+TBLNvGVMN
-         fJ6fzbtPSYbhygMsmuQNnxraCKUT4MRWqkc/1dn7KQLOg372XsYteytFtV6st1OSlx4t
-         0Vow==
-X-Forwarded-Encrypted: i=1; AJvYcCWF0kyIeiZ0UAovaAs+UeqZ83PJsR6xcp8qml1x4d7h42n0yC1dcf+c8Ye9+it04DCzNzNOWxhI4aOQ2DLUZEq0TTc7F9MA8x+PQg==
-X-Gm-Message-State: AOJu0YyQs+/jgP9PEvsRIbUuABAm7wmrwztr+PVMkrArnUB+wPbA+Gp3
-	kVdzVTYyybB4B8g8oM8EuarR22/BB2IeCX+kaiQcFHSUA1hYZTCYUpHRbWE2zV0=
-X-Google-Smtp-Source: AGHT+IHPEsKg9YL345VNJehawUEGJqX6jI1a45uLPxbSI3cJXqB9wbFooKxQnCv4HflprTmT7kTmXA==
-X-Received: by 2002:a05:600c:4f44:b0:412:a5ed:bb57 with SMTP id m4-20020a05600c4f4400b00412a5edbb57mr4177808wmq.31.1709394747993;
-        Sat, 02 Mar 2024 07:52:27 -0800 (PST)
-Received: from localhost ([2a01:e0a:3c5:5fb1:a62b:dc91:b659:dbf5])
-        by smtp.gmail.com with ESMTPSA id d22-20020a05600c34d600b00412d6357945sm2015404wmq.27.2024.03.02.07.52.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Mar 2024 07:52:27 -0800 (PST)
-References: <20240221151154.26452-1-jbrunet@baylibre.com>
- <b6jyherdfnehu3xrg6ulkxlcfknfej6ali2om27d7rjmwncwxz@3wrtx6sv4xm7>
-User-agent: mu4e 1.10.8; emacs 29.1
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, JunYi Zhao
- <junyi.zhao@amlogic.com>
-Subject: Re: [PATCH v5 0/5] pwm: meson: dt-bindings fixup
-Date: Sat, 02 Mar 2024 16:50:11 +0100
-In-reply-to: <b6jyherdfnehu3xrg6ulkxlcfknfej6ali2om27d7rjmwncwxz@3wrtx6sv4xm7>
-Message-ID: <1jsf18skat.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1709396002; x=1710000802;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bvQGYtN2vRBi+QYnwAZtvXa2o7whVTvKnKEEFe1E4KQ=;
+        b=KtKfI/xBNvF1WiyBosrVpxfA2OBY7yy67McfVao8lI+yaQcILc4tR0kOh7zA6KMt4R
+         cUSt7ARuQHRcOwzYwdi4vjOCrCjKtRMJlO2q5NmmAgG0MxaUQ0GKzbvXdIGukBHc+LFX
+         jZu3zASdlb3j+a/qYNcaE6nvj5vMqPMchcpTzdD74Mr5LlGwIxunL39skCuS1KyelAJo
+         bLe9lUn/80znLGhotMvrrN1/5PfboQFcRLkQ7ByM7S77eysY9XdUSAL843h3KXoPnKGq
+         M2wWemfqoHfKpa0Gq2n2CmMRhCO2iZPR+7l/p0oQMl3ZXrQ0rgW3TXFD+V0dzIPFRcIH
+         Xt7w==
+X-Forwarded-Encrypted: i=1; AJvYcCVQMykha2l/mrLLi0HdAdry9g0gPMFKHUuWOTbfdzduIDp+M/211r5QO0mQRXoXPLxT+wDIWyagZI82yAfzh2HP2NUxGiplo+D5iA==
+X-Gm-Message-State: AOJu0Yxp3fIOwQrbxKKOnl1AdIelV7ZYh1AUyd8FWFW/3kw8wA+JdkvZ
+	62yym730FPz+A0pLr8jkXGpHetoEl3fB6E8p5zPiO9YQZO9vOD5ZC7dJoGlskko=
+X-Google-Smtp-Source: AGHT+IEL9BKhdhIVjKmro2+K35KM05pC7dvn53IR+o/01gtD6rpiQa7LHmKF00AWVjh8Nm0NJ+w8Eg==
+X-Received: by 2002:adf:d009:0:b0:33e:152a:6b3d with SMTP id t9-20020adfd009000000b0033e152a6b3dmr4871168wrh.31.1709396002115;
+        Sat, 02 Mar 2024 08:13:22 -0800 (PST)
+Received: from [192.168.0.58] ([176.61.106.68])
+        by smtp.gmail.com with ESMTPSA id bu28-20020a056000079c00b0033dc7e50488sm7796549wrb.96.2024.03.02.08.13.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Mar 2024 08:13:21 -0800 (PST)
+Message-ID: <18567989-fb60-49ae-92e6-94e1bc2fa1c7@linaro.org>
+Date: Sat, 2 Mar 2024 16:13:19 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 4/5] clk: qcom: Add camera clock controller driver for
+ SM8150
+Content-Language: en-US
+To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240229-camcc-support-sm8150-v1-0-8c28c6c87990@quicinc.com>
+ <20240229-camcc-support-sm8150-v1-4-8c28c6c87990@quicinc.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20240229-camcc-support-sm8150-v1-4-8c28c6c87990@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
+On 29/02/2024 5:38 a.m., Satya Priya Kakitapalli wrote:
+> Add support for the camera clock controller for camera clients
+> to be able to request for camcc clocks on SM8150 platform.
+> 
+> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+> ---
 
-On Sat 02 Mar 2024 at 11:04, Uwe Kleine-K=C3=B6nig <u.kleine-koenig@pengutr=
-onix.de> wrote:
+> +static int cam_cc_sm8150_probe(struct platform_device *pdev)
+> +{
+> +	struct regmap *regmap;
+> +	int ret;
+> +
+> +	ret = devm_pm_runtime_enable(&pdev->dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = pm_runtime_resume_and_get(&pdev->dev);
+> +	if (ret)
+> +		return ret;
+> +
+> +	regmap = qcom_cc_map(pdev, &cam_cc_sm8150_desc);
+> +	if (IS_ERR(regmap)) {
+> +		pm_runtime_put(&pdev->dev);
+> +		return PTR_ERR(regmap);
+> +	}
+> +
+> +	clk_trion_pll_configure(&cam_cc_pll0, regmap, &cam_cc_pll0_config);
+> +	clk_trion_pll_configure(&cam_cc_pll1, regmap, &cam_cc_pll1_config);
+> +	clk_regera_pll_configure(&cam_cc_pll2, regmap, &cam_cc_pll2_config);
+> +	clk_trion_pll_configure(&cam_cc_pll3, regmap, &cam_cc_pll3_config);
+> +	clk_trion_pll_configure(&cam_cc_pll4, regmap, &cam_cc_pll4_config);
+> +
+> +	/* Keep the critical clock always-on */
+> +	qcom_branch_set_clk_en(regmap, 0xc1e4); /* cam_cc_gdsc_clk */
 
-> [[PGP Signed Part:Undecided]]
-> Hello Jerome,
->
-> On Wed, Feb 21, 2024 at 04:11:46PM +0100, Jerome Brunet wrote:
->> Jerome Brunet (5):
->>   dt-bindings: pwm: amlogic: fix s4 bindings
->>   dt-bindings: pwm: amlogic: Add a new binding for meson8 pwm types
->>   pwm: meson: generalize 4 inputs clock on meson8 pwm type
->>   pwm: meson: don't carry internal clock elements around
->>   pwm: meson: add generic compatible for meson8 to sm1
->
-> I applied patches #1 to #3. This doesn't mean #4 and #5 are bad, just
-> that I need some more time for review.
+Does this clock need to be specified this way ?
 
-No worries. The change in those, especially #5, are pretty simple but
-the diff are indeed hard to read :/
+drivers/clk/qcom/camcc-sc8280xp.c::camcc_gdsc_clk specifies the gdsc 
+clock as a shared op clock.
 
->
-> Best regards
-> Uwe
+Actually it looks to be register compatible, please try defining 
+titan_top_gdsc as per the example in 8280xp.
 
+> +
+> +	ret = qcom_cc_really_probe(pdev, &cam_cc_sm8150_desc, regmap);
+> +
+> +	pm_runtime_put(&pdev->dev);
+> +
+> +	return ret;
+> +}
 
---=20
-Jerome
+So this is a pattern we keep repeating in the clock probe() functions 
+which I am writing a series to address. There's no need to continue to 
+replicate the bug in new code though.
+
+Only switch on always-on clocks if probe succeeds.
+
+	ret = qcom_cc_really_probe(pdev, &cam_cc_sm8150_desc, regmap);
+	if (ret)
+		goto probe_err;
+
+	qcom_branch_set_clk_en(regmap, 0xc1e4); /* cam_cc_gdsc_clk */
+
+	pm_runtime_put(&pdev->dev);
+
+	return 0;
+
+probe_err:
+	pm_runtime_put_sync(&pdev->dev);
+
+Alternatively switch on the always-on clocks before the really_probe() 
+but then roll back in a probe_err: goto
+
+probe_err:
+	remap_bits_update(regmap, 0xc1e4, BIT(0), 0);
+	pm_runtime_put_sync(&pdev->dev);
+
+There may be corner cases where always-on has to happen before 
+really_probe() I suppose but as a general pattern the above should be 
+how we go.
+
+Anyway I suspect the right thing to do is to define a titan_top_gdsc_clk 
+with shared ops to "park" the GDSC clock to 19.2 MHz instead of turning 
+it off.
+
+You can get rid of the hard-coded always-on and indeed represent the 
+clock in /sysfs - which is preferable IMO to just whacking registers to 
+keep clocks always-on in probe anyway.
+
+Please try to define the titan_top_gdsc_clk as a shared_ops clock 
+instead of hard coding to always on.
+
+If that doesn't work for some reason, then please fix your always-on 
+logic in probe() to only make the clock fixed on, if really_probe() 
+succeeds.
+
+---
+bod
 
