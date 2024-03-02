@@ -1,164 +1,144 @@
-Return-Path: <devicetree+bounces-47856-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47857-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D08CD86EE29
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 03:44:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B565786EE44
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 04:05:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B364BB24445
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 02:44:20 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8CDBE1C203B1
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 03:05:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 41EA1A47;
-	Sat,  2 Mar 2024 02:44:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC08D6D39;
+	Sat,  2 Mar 2024 03:05:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b="mgqrISUd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mmIr4pis"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2044.outbound.protection.outlook.com [40.107.94.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pj1-f42.google.com (mail-pj1-f42.google.com [209.85.216.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1A607489;
-	Sat,  2 Mar 2024 02:44:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.94.44
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709347456; cv=fail; b=GCTERmXjHwbeQ7ju8jW0njTlyOw8mpSFi/ox6jOfIb+c1y2l5OvKw+FhxuDyizcW/BkHFLWJzKzD1E+s27CqDtcu4P/bOcAs2QLo6NyQeJf0+zOM2RgqqyATYlmORkOA7oG5Iv3gOb5ZBHmNI5LS+XBe2StbZR+VXFFgvkXF0d8=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709347456; c=relaxed/simple;
-	bh=e+Mhn8+65s+E2W6B47W6sFCuClcftgTT2vdhQwG+86g=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=rN23CogyKf0SrbFM0+wpv4H5NyCC+gNpsI2wwTiB1NPyRoJcMyN0+7XCLrVKcm2un8leYnBdOEHleGnzmubbta8s92qTI0ak8RM70BHNqO2ASYF2Wn5veKeUMej0hESkjtmpFyTsDDmkNdVyfAc6SGY61Shp1t05PRnpjEML80U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com; spf=fail smtp.mailfrom=nvidia.com; dkim=pass (2048-bit key) header.d=Nvidia.com header.i=@Nvidia.com header.b=mgqrISUd; arc=fail smtp.client-ip=40.107.94.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=nvidia.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nvidia.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EQHOlsn1d/bwLh83S0p3854qV1VP+gXugN+syrSyPYqstha65C00Y3wtnI/4EwWJEmVpmE6N93kXsNz33KybbGMaaoae2TW1nsNbuRW2Q5aQP22twKUlqJroid0+PzmgMV3dh4aADOX3P8xBUBDlsmDffHUFf2CxdZo7qAg32q1w18aM0vJRd7b4VZSHhp0Pn0LKfCgWZpYpyVZkPvnR/K1Ixqwdtvk1zhAumtxTSdKEVeevKq1a0Bw2AiBHDuFHSwlxM61vKtU/djxqt4fm1As9L2teVAMZCIiqsbIPffvtQ1NaRu505OnASgzIBKVliOojn1IJaMl/kCkwzB5cDQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RG/i2zQXQTxQLSDqG1RiGcj8jgijg4dCpiJMsqguz2A=;
- b=XLPQLHktl/JfVapap/95io/Pk3KxS+UjBfOiM2YJSjSucqq1bIpBob3KIEMWkIwwoMiAshxGnKEkNeFOc30bFMXbYRnz1wHyFEGFvwGvGSabAydQWQOscajGP6KgTMjCKzKfTVoZ1BnZPT37SP00UBlOivnhyLEsKMmR+dbW51eplE0I1//+LCkfhD6t5u59LhqcM/Z6uUIpGPBNXyvIOlBedeFX2xFexOrrcJ0umPDnYB/JXnbCIZKWujYA7HKJSgH0fgJqNJkElzBzE3y/XE+z2eZLo5RUS77d1Rlu0F8cXwn1xRu0i7mg3yKpgqw/S+8k9c1HU6NdC4/aqdMzsg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RG/i2zQXQTxQLSDqG1RiGcj8jgijg4dCpiJMsqguz2A=;
- b=mgqrISUdkOM0WLVFBesHpDIAmP9Nu7f8po1YUVarQF0aFhIX+9rq6WSogThLZGIqBQrphZ6AjjVf1aMm/bJdczXjGPXJqbufrQjgl9NcMp48FigV9dvoy9z43DVpi4xEpFyMrAimnt6ha7G1dgl+Wor/tO29UjaIIgoc+zgdqtSIxfB4P6R1iv1O1jmpimFxTtqSogv6V8QrSPgX096ObQ2B/Hgr51x2PZGf9V4Msllta5El2VJpeqMFvcwtcPDzbcbfp5OWiZG9oYKWeVdMejSBVbERVaE8GdnnYVaZe5dq7y8Noo/2UWm+JNvBh+Iq2UjuQYCNc+Q/mfpTkcyo0A==
-Received: from SJ1PR12MB6339.namprd12.prod.outlook.com (2603:10b6:a03:454::10)
- by SN7PR12MB8604.namprd12.prod.outlook.com (2603:10b6:806:273::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7316.39; Sat, 2 Mar
- 2024 02:44:11 +0000
-Received: from SJ1PR12MB6339.namprd12.prod.outlook.com
- ([fe80::ae74:c645:b13d:3d8c]) by SJ1PR12MB6339.namprd12.prod.outlook.com
- ([fe80::ae74:c645:b13d:3d8c%7]) with mapi id 15.20.7316.012; Sat, 2 Mar 2024
- 02:44:11 +0000
-From: Akhil R <akhilrajeev@nvidia.com>
-To: Herbert Xu <herbert@gondor.apana.org.au>
-CC: "davem@davemloft.net" <davem@davemloft.net>, "robh+dt@kernel.org"
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
-	<conor+dt@kernel.org>, "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-	Jon Hunter <jonathanh@nvidia.com>, "catalin.marinas@arm.com"
-	<catalin.marinas@arm.com>, "will@kernel.org" <will@kernel.org>, Mikko
- Perttunen <mperttunen@nvidia.com>, "linux-crypto@vger.kernel.org"
-	<linux-crypto@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-tegra@vger.kernel.org"
-	<linux-tegra@vger.kernel.org>, "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>, "krzk@kernel.org" <krzk@kernel.org>
-Subject: RE: [PATCH v5 3/5] crypto: tegra: Add Tegra Security Engine driver
-Thread-Topic: [PATCH v5 3/5] crypto: tegra: Add Tegra Security Engine driver
-Thread-Index: AQHaY1jZwFltH5yLb0OQSiEEFOMbgrEhGKTAgAAIigCAAq5Q8A==
-Date: Sat, 2 Mar 2024 02:44:11 +0000
-Message-ID:
- <SJ1PR12MB63398B52A8FB2978636FAF8DC05D2@SJ1PR12MB6339.namprd12.prod.outlook.com>
-References: <20240219172530.20517-1-akhilrajeev@nvidia.com>
- <20240219172530.20517-4-akhilrajeev@nvidia.com>
- <SJ1PR12MB63392983F30CA57CBCB69B93C05F2@SJ1PR12MB6339.namprd12.prod.outlook.com>
- <ZeBSEviAw/JVpICl@gondor.apana.org.au>
-In-Reply-To: <ZeBSEviAw/JVpICl@gondor.apana.org.au>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ1PR12MB6339:EE_|SN7PR12MB8604:EE_
-x-ms-office365-filtering-correlation-id: c880b022-389b-41a3-7f7c-08dc3a62a435
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- YDHy9uoNNg2sOpfQ5xFy6GhdlBrw5a1NMOyayv4W1lRbsOOv/JBkWfCpDVsDdxx4veZ8cpYaMuYbMk52HofxS6IIVOodKkUwXMO4iP95tnFGVpsucfeu1iYUyl1X0p/gvC0emfecTnPkxlXzXenWp/8piBmgcsSQrztOdzXn3DS8Lx56umzt510ii8U2IxHf6n1o8TnfDV5zahqyt+G834BSYS5rHUevmJwbsuLvLiwjCIwxy+V49Q5kEgj6qOZXXzykdktstiOyHtj7ZIDo7gGQWKWDa03yYvf/PfEDBe5tvcZSrmOJUwZQhoYpBOLO55agDUNLHIi8+ZT3ECDwJu+o5qFOT7xLVU1BBctsqg65xapERYZeqRqA6bmcz4aJN+jINsQ19xHIAuhNluGv1/+uXCMfIsOpsi7O4YNQneYwX3WoNk0lFO/HqdRV6ox6Dk71Ka7L7snKtArf0j/BhwVaDrG5kxpoCl6kQOJAAMVgXtfzISipt7kWZ44jzGYK13sSrxdqLF5CNhA/9qfsYrUiQjEDEAbAitZCDnDgFkUHlgNm/iTxJnxWYQO4f71TZOYxecw+meqekSN4YDJRBjK96ORftn5+3gKETkp7Mc/Xusvoc4DX5bQF5oLckA2k3lxuSz6wFH2e1R8xd1aObBytlAsgrEJCKkv0pqq9+8oTeZFT9uZb2blrIfKmLPTgscJBJZ3sxVPXPjlBPHQQzQ==
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SJ1PR12MB6339.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?gOhxFziD+xt1gEs//TYsFdzQbnbfjG952L5/H+Nb1kPxrOrch3tuse49Ujww?=
- =?us-ascii?Q?qHmgk2phjj54UZJr7cVDW74bcsdH7PTfh5GIh2+HI7EYhZMv4i0U3OnNgeqi?=
- =?us-ascii?Q?b2DjS+rllU5XK9MHQ11XUTvVEURAgVR3HLmFYQ9FS0bV871eb5zSeD1qWY5/?=
- =?us-ascii?Q?mMdSKjToueAExVZKnol0iX9l5qh4nvGF9Lcs+6Ny9xvI8xpCjVrT1DF0Mh6F?=
- =?us-ascii?Q?mObONGvaV1QY3mWNASvn+A2VQIL1klS0ODjBR85Tixfvy0LC5OSF4O6M4SZd?=
- =?us-ascii?Q?S7duroShPH9DRb161o3/trVN4kYw6Q8J6ioS281VaRkXn7+eRJa2tt1cWR7w?=
- =?us-ascii?Q?2jDB7wc6v5afmq4TpWdjvUyehgJXHiOXghC6KO/eTuYaEScOW+oSqYNj3Zsb?=
- =?us-ascii?Q?YdlxawM+49v7u5bvPOcqogrxMSalODZHiYftj64Z6yzs/Sl3WN36Psfs4Lw+?=
- =?us-ascii?Q?cblxJag5jnVZp9lYxYODPzoIJUspy1MU9R7SwTZdbPz09vhcDqr9FMNGrjrb?=
- =?us-ascii?Q?xKnHWxxPz6f+aKuBphbRNgWJ85nax9WGdRu+KBVJIopdz1zymv7s9h9IfvOT?=
- =?us-ascii?Q?26CONm9kHS/wE/SBnqRG42KC5PxX3ethq8UANrFSR3HxVP1ykd7bqhP3hZqD?=
- =?us-ascii?Q?ouY7clv0WNYfEcBF3/Rr61KgHCQ4eEZ/+FH2b3iqhthJvQudCwcJPfT1o5vl?=
- =?us-ascii?Q?RnJgzruiqlwuWT2WbeaF5YDEJpRKsxnPIez8L53Pi678DBhzEr4GZTAU15vY?=
- =?us-ascii?Q?To9+VSD/tLlVYxUQGjlkfr/idh+qgDNNOjXZZf9ihZQOlZIw0y+d3uGPCIIb?=
- =?us-ascii?Q?UrUvGiQed7CRquDRfXStrtjyg9jREA/YpsGvFEZgK53ve/1nYHapPf4QCemw?=
- =?us-ascii?Q?Dj3z5A8V1pJcJTBaIthLpO2YZ1jxYQCaq6+LLqqkT2v7LnftdOmboxua3nYu?=
- =?us-ascii?Q?bhc7N6BHycKdbdPLNkqqgElo0EIxZAMkf7DPwK6A2y1RWWFOFLi9Ewy7QGDV?=
- =?us-ascii?Q?jkuhH/yWjMl6Ev0PuZE4QPKzet6xvYyex1Pgv0Al7s8HyFJ3YddJHjcToKd5?=
- =?us-ascii?Q?bFWWuQSFxTMo1yRJKkYLU2pHiEpEo16ftgiIpXJxQJOEzosaE96sioQnuDNu?=
- =?us-ascii?Q?xD+SK7EM4IGBypyszELzrTNZ0ASNnJbkAco7Vmvfgkpcj7ZtpJgus1QAJUXl?=
- =?us-ascii?Q?vEEtX1McCUtXw1LzakuteY3J2vayijsDZigfZyZBTetCpq0wpwbGZbXkqVfJ?=
- =?us-ascii?Q?nNdqO+0rSJ9eGB94LDKHa1LLee8UQ7ndWZGWDOo+8cmyJIty6zKZNI5rMV/l?=
- =?us-ascii?Q?tiLCciEADt+LOn2awoG6cMtfdsUif254pPsH64LlqTbTuwb10BZL/yFajVun?=
- =?us-ascii?Q?2GYfGdKso4D1yqLSurXfEKwkiHZFsQ7EnPx7GUDnF+93OPoW83cl1g25LZ/m?=
- =?us-ascii?Q?9sXpaHj2+bTwEQ6zwhx5GyXATUx7ulHb7JzsYlKxzbUWEavxTl3DWaKSTAD8?=
- =?us-ascii?Q?P0OfUCjOUPq3/YFlMH6okgn2sgIk7UEnk8V2uOkqc9Zk2QdPCXT0oCHQVMmt?=
- =?us-ascii?Q?AQRAkYxWATgwM9XVIW7p+6GvguxBA0GbMiWvEXXRRHkQi/Rqw65TOL3wYhe6?=
- =?us-ascii?Q?uV8wzMsh66AnUg3hTluRPTawf3Plj+R6fM9EbvXMpmgb?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5AB526FC7;
+	Sat,  2 Mar 2024 03:05:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.42
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709348701; cv=none; b=UPds5TwgQCuwmiE1AY6RNZ0V8eIbtSoTR1h6xQs6hWg+3I8wAsKauJFBj14Ibgz/x2nqUaEiWJjcO6Wfj13Ku31Bo3jvbzRGNEyb3zwGsjQR2L1oOYg+XkM46qa4AK/oTLqlFVbuPGwjOqbgvgQMsulXopXO5Hyx9GxPgPabL1k=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709348701; c=relaxed/simple;
+	bh=LjRdtml+TWkAxLUN2QLF1D+9eq3HZY+GgDjZ4XrSTSQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A1KcRmNvL+/aT6QOdVnqiygWIrRX+pjhfskeiEodzxjrdpB+m8HbQI+rY0/cBxH9Eg7lxKYGV9OSXYPMkRkJ9hSulscSm7T1ERfPyLGZFhYNgwHwTLodL1A01A8zFcdgEhttYe1khejOMJ6QOsBdNhQPnrJkpC30qYs3j2rnVgQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mmIr4pis; arc=none smtp.client-ip=209.85.216.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pj1-f42.google.com with SMTP id 98e67ed59e1d1-29b2f10454aso543362a91.3;
+        Fri, 01 Mar 2024 19:05:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709348699; x=1709953499; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+Z6p65/mjNFQPH7dw5+cTMNx3ec1jAPgpJTpAMLhs/A=;
+        b=mmIr4pisOMa+SPojjyr5XwjZ0MieduDYku+KzzyYdedC2QxBDnRSiYASU2jegxLGA4
+         7v8vRpOVjSMARpcMe++TEmrwHCD9I2U7IozFn5KqPizIQ+RowXsa9D+5GRkwIZRLXTKM
+         Z2mcPkhO3cb1fzIK+8BMZGmz9mqYAALtQxSeHgvnrlzJ/lJALgFzNOnlGGXjmahPfPUU
+         hQXqdltkDLaLga+vCiM37wSTX24j/4qNcjoIuVWUCnz6UvdLmAyeXwALHsM5JQHFRSyl
+         9EPkXCzufC8o+iSfi0baiyB83xT1adGX8MbjhBx0iuPldmv1n2ii4UEaPEYhaYcp9bWM
+         lbIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709348699; x=1709953499;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Z6p65/mjNFQPH7dw5+cTMNx3ec1jAPgpJTpAMLhs/A=;
+        b=Efw96Kd4U12VmS0QkO6Z23sLcUwpEWbGxSL4hhw4zwR61DMeZzAUKXdc1PqUOB8g3v
+         /TQVyWLSdn3erWQA2uWLfNiwNq57PuAlVwbnvm92CDor3RfkqeEmP1pqhFe52MbkoLhL
+         Psajh8501OQschBcObSWF8MObw2ym/AERURUKqdLSff2zIo8j5GbeRG0sbsYFvXcbjf8
+         Z2UXBKfvwM7gprbhfIkT1jJsc0CcRl0FLtnIciJ9ks3kohiyKq+GLluUkq0/0fJpERLW
+         8y5sOUXzk+Q2LvS08aApUDdOpFGp/oN0hi5k+wX2V8xXlzZjWR/ZNXmyxEqB8/ds0Jeu
+         lP2A==
+X-Forwarded-Encrypted: i=1; AJvYcCWW8LUFz2WBZXLH3guWqaoUHCMYQyPvBr3vdMZACpI6dEuMYxfjbk0tP/NAb5PB7fbHGLRldZWJE5J4C5UzT/mk8jfVYXx6sE6a1JIydl6xdlxwBXcFOIYbUjR4qsPlOPMhXJxbEyUfKGe4iOaoEPKmdGzpQzeLM2wJOdLnnoB9Wp1qvywD9Fg=
+X-Gm-Message-State: AOJu0YzWZo3hEFzJh3oGG5oDjEQEr5VeCviqoTh5RF9P/KxWCoOEBySe
+	dc6GJkl8TXQq/8GCOM//JHwiFZJPePr9UiWNp3/6PuIzu8w0lar4ozpY0f3WdBtgGQ==
+X-Google-Smtp-Source: AGHT+IGVEmDcDGBZB8FBm1UyVE1F5P3FauUqNd7CNcpFCUyzo1/wS7jz144FjWLtV/HlqgVh8Lw5xA==
+X-Received: by 2002:a17:90a:df92:b0:29a:f9ad:a096 with SMTP id p18-20020a17090adf9200b0029af9ada096mr3092641pjv.35.1709348699363;
+        Fri, 01 Mar 2024 19:04:59 -0800 (PST)
+Received: from HP-Probook ([103.149.249.227])
+        by smtp.gmail.com with ESMTPSA id l5-20020a170902d34500b001d9bd8fa492sm4152232plk.211.2024.03.01.19.04.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 01 Mar 2024 19:04:58 -0800 (PST)
+Date: Sat, 2 Mar 2024 11:05:05 +0800
+From: Jianhua Lu <lujianhua000@gmail.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8250-xiaomi-elish: add usb pd
+ negotiation support
+Message-ID: <ZeKWc6rCJBLasn-h@HP-Probook>
+References: <20240227124529.12926-1-lujianhua000@gmail.com>
+ <2f6a5c83-69a4-480b-a235-c0d51feac31e@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ1PR12MB6339.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c880b022-389b-41a3-7f7c-08dc3a62a435
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Mar 2024 02:44:11.5748
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ODaZFAU826DqgmyMdh5ZyX5k1C8WfDVQfijaufh+r6MOLbmwRxCDHHIMTekN0FynZhvHpsg3p9QHXLJo4LRRFg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB8604
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2f6a5c83-69a4-480b-a235-c0d51feac31e@linaro.org>
 
-> >
-> > Do we have any other concerns with the driver currently, which I can
-> > address in the next revision?
->=20
-> The sha export/import code looks good now.  Does it pass all the self-tes=
-ts,
-> including extra fuzzing?
->=20
-> The same export/import issue still exists with cmac so please fix that.
->=20
-I do see some warnings for some AES algorithms with extra fuzzing.
-Will send a new version with the CMAC import/export update and the
-extra fuzzing warning fixes.
+On Sat, Mar 02, 2024 at 12:58:57AM +0100, Konrad Dybcio wrote:
+> On 27.02.2024 13:45, Jianhua Lu wrote:
+> > Add usb pd negotiation, but charging is controlled by pm8150b pmic,
+> > so it can only charge battery with 5W,
+> > 
+> > Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi | 9 ++++++++-
+> >  1 file changed, 8 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> > index 6f54f50a70b0..ed103b90f4e6 100644
+> > --- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
+> > @@ -636,7 +636,8 @@ &pm8150b_typec {
+> >  	connector {
+> >  		compatible = "usb-c-connector";
+> >  
+> > -		power-role = "source";
+> > +		op-sink-microwatt = <10000000>;
+> 
+> Is 10W really the minimum value for this tablet to function as a sink?
+> 
+> Is that what the downstream kernel sets?
 
-Thanks,
-Akhil
+This value is taken from other device, I will adjust it to minimum
+value in Patch v2.
+> 
+> > +		power-role = "dual";
+> >  		data-role = "dual";
+> >  		self-powered;
+> >  
+> > @@ -645,6 +646,12 @@ PDO_FIXED_DUAL_ROLE |
+> >  					 PDO_FIXED_USB_COMM |
+> >  					 PDO_FIXED_DATA_SWAP)>;
+> >  
+> > +		sink-pdos = <PDO_FIXED(5000, 3000,
+> > +					 PDO_FIXED_DUAL_ROLE |
+> 
+> Please align the PDO_.. against the open brace
+
+Acked
+> 
+> > +					 PDO_FIXED_USB_COMM |
+> > +					 PDO_FIXED_DATA_SWAP)
+> > +					 PDO_VAR(5000, 12000, 5000)>;
+> 
+> 60W max? This is not unheard of, but I'm just making sure you know..
+downstream kernel's pd adapter allowance is 5v or 9v-12v and vendor
+charger allowance is 5v-20v...6.2A-3.25A (67W max), so I set it to 60W.
+> 
+> Konrad
+> 
 
