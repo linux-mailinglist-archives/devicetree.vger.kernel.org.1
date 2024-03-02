@@ -1,146 +1,156 @@
-Return-Path: <devicetree+bounces-47854-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47855-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4CBE86EE10
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 03:02:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F9DC86EE1D
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 03:22:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7670028195B
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 02:02:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 735E41C211F1
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 02:22:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A06F6FC7;
-	Sat,  2 Mar 2024 02:01:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00BAE748F;
+	Sat,  2 Mar 2024 02:22:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="gZFeNkD1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yRa9NqxB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBF16320B;
-	Sat,  2 Mar 2024 02:01:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 303F16FCA
+	for <devicetree@vger.kernel.org>; Sat,  2 Mar 2024 02:22:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709344919; cv=none; b=rlOuLVy0Q9MLO6vDnqL8UozdJ8Q9xyKZC0V75w8Fi1V5FwY8uJXvUmNbDVUNU6po2b8Cd6wa7BOrvg5Rtttxc2F6ero7PdXFLODoLJ3uZ1H61/bN90e7MltS87iyIml083GT5KGcmFcW3HHLuOkrj58C1xuxXmwEFuEc/AY+nPM=
+	t=1709346160; cv=none; b=b02RV4t5h3idOSS1za4OIqwGjmSb6N+ezv8/jMtjchz6q0n5XsqqjbZ2Le89gHbLEGmp5a5jqwzVCBKGKlCcPB1wDlqMPLspaTarXCTVe0beLu/XPkK1MzinURgMqOhstwkGyV8gs7puFsfKphlXfX8qyrM1RZHQlXeyZGLtL/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709344919; c=relaxed/simple;
-	bh=LIqKAURAPbbMEH2j4IdH6pzC43kT8Yy0pz8xS+NLjPY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=jzrHwTHRAXd47HYnKXiaD/LYYMdwxPTD0f9EVDtgyVDrvHVyvQXU+On/Uhs+f8PObWV/KMk6uuV6NLauGPye3VXJNO7kMZDk6jRS2Z8kvO/8gL2cYOu6WI2kv5vU6cZzpFSOcfugh5bEKAY9e4mSorytZCzuAkgSrexh41nQFPQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=gZFeNkD1; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1dc29f1956cso24467105ad.0;
-        Fri, 01 Mar 2024 18:01:57 -0800 (PST)
+	s=arc-20240116; t=1709346160; c=relaxed/simple;
+	bh=+vcuOjMgyX3GXLrby3bKMf/a767VWPWJZQ2IjjlKxbQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=aCGZo81qDSX3gVuZALlEeds3NwMDXmd3kTf+XRD/TQTsty/QtquO1/1pOAQWzbCGHP+oy+vZnzN1YlGlCjN9E45pkut0l9XYuaaemowAZjjJG4SvDFwhEM1OUI9FltYfzJHgQx6714BLRQTEGTX3smUZhGIM9r6lwq2YRRud6QU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yRa9NqxB; arc=none smtp.client-ip=209.85.218.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a4499ef8b5aso149172266b.0
+        for <devicetree@vger.kernel.org>; Fri, 01 Mar 2024 18:22:38 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709344917; x=1709949717; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=I/ES75OINXio6Jg14hlcZ63hcfEZjDHEPfBn7kPat2w=;
-        b=gZFeNkD1jh81FZsWO7bRMVx9fh3lps8yGyzqReTdx5PrkKz7gUyHvCuAYOTMXE9VHS
-         Dlk84omO0G0lQKHcBdJLaZ32jVCgc1awBLTnKah8N+fX3dzfHspEDqamWxNpVWP4hbEj
-         UPyOiMKtedIKTVdvBjhAQlYeeiz0K8Kw01b9BmW8FOMW+LhYAkXpl3dlJ4CzLydxxova
-         v513n/pN2HxgMk/bvCQqZu9m8FfRbSpb3jDLb8197xIhPmWdRE/ZL+A65EI150CTLnj1
-         qtPI2Zw3uVbeg4H9c24cn7LOKA+ICAsIMhBzp1iVhA2npxVSptRuzvaBDDA2ftRDZkNr
-         mx9Q==
+        d=linaro.org; s=google; t=1709346157; x=1709950957; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kdTUSkVwl2tMINjrlSdiTdWGU31m8cJzam5nmke77Bg=;
+        b=yRa9NqxBRS6Qybyj2MFdaf1f56dIpYPIpG6jAwOLfeo9RXzMW1gwrsaNsZXPyzBVOv
+         e2QW3Hb9Ae18SK0KmQg7jZYGc3MIylC8x2XspCmQ5CTi8REGLpn5lYH3WnVRtj46CXQn
+         USVDISU3LxxfQdGbHNr2G74Eh2bMW9BuWIKxTfZKPd08Hzp+L63shg+DYv/0Y3K0eEeT
+         NnZDFzRUmCZ5W8dinqdqNJNPfJNRBTK8GlDwu3UMp6gXkXxNb5xa0hfGP7fHlJrr1iU0
+         DpsBE1NpHyJ1GgMXJ/7NKPfstBEO9Fr7uwWFwLEj2897x04g9PzJ8KRAUhYaGX6bdveW
+         jV4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709344917; x=1709949717;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I/ES75OINXio6Jg14hlcZ63hcfEZjDHEPfBn7kPat2w=;
-        b=vsyVaPNW2ZocX7CdA+Lr+J5J9/KnKu08CsT5EZHBK6iDwLiyNxiYv99izpKX5IkG6R
-         kgdwOpGg7od4VtI1YWJETSjaTzwu8YqLbNUfVuQS3VT6aVzp1eAX/vOVm8zs9rN3fEQk
-         wZ0WdTJq6kXbZON26oXpnfd+LJUdnIE6GaQcJQ4jLx2/pDzq6Dn/t4n4UF55hyXdp/k8
-         CQ+aLu2o7F5c+ZURl6jow2scsd3tZ62iitjr9XqJDUPhDRPFnmW0V5y5RNYpFWUIBu0a
-         /YgKpymS/JwxLMQR3+XiNuRYVr5ZgpiV1wgeop6Iyrq2M23Ta0az5Tt0nYs/2Rdibz6H
-         x6vg==
-X-Forwarded-Encrypted: i=1; AJvYcCVX9wxgwrDCVhdcjC1RdtHRhOCzZaS/cVS+rfty46RFwEAYuLE0MphrrgHqXcxJcjvX7xlmCaKYquQn4uhIxjtviPmJUoCsFQMP0kbbekQv9imUgSz4+SDh+r1sNjdtl+w0uYLXffRUp72IlGYdq5D9Gf+awNagQ0ZCtlEIU+Rfcsx0WA==
-X-Gm-Message-State: AOJu0YxlqTzawE+U0WkKcUg4KAqx9Rzk2mZUyT3FdDH0W7KBTAHPkaGH
-	f1NumeSPZ7aUDVtSq6rzWssiVBujCjVAG2HD+TN/juYrDjLj2naG
-X-Google-Smtp-Source: AGHT+IG/wQLDc3mJzbkZUilzgPH70FoHHXwvpIEuQUi67d1EuWHrRCL2C71gorxmluFqJf5/NEsxfA==
-X-Received: by 2002:a17:903:32c8:b0:1dc:fadb:4b1a with SMTP id i8-20020a17090332c800b001dcfadb4b1amr563181plr.54.1709344917098;
-        Fri, 01 Mar 2024 18:01:57 -0800 (PST)
-Received: from linux-8mug (111-248-209-112.dynamic-ip.hinet.net. [111.248.209.112])
-        by smtp.gmail.com with ESMTPSA id im22-20020a170902bb1600b001dcd00165a6sm4181614plb.208.2024.03.01.18.01.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 01 Mar 2024 18:01:56 -0800 (PST)
-Date: Sat, 2 Mar 2024 10:01:51 +0800
-From: Chester Lin <chester62515@gmail.com>
-To: Ghennadi Procopciuc <ghennadi.procopciuc@oss.nxp.com>
-Cc: Andreas Farber <afaerber@suse.de>, Matthias Brugger <mbrugger@suse.com>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, NXP S32 Linux Team <s32@nxp.com>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-	Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-Subject: Re: [PATCH v2 0/2] add uSDHC and SCMI nodes to the S32G2 SoC
-Message-ID: <ZeKIjyFF0ftnr19q@linux-8mug>
-References: <20240122140602.1006813-1-ghennadi.procopciuc@oss.nxp.com>
- <a7a55dc6-c204-4aad-adff-9806d3302b6b@oss.nxp.com>
+        d=1e100.net; s=20230601; t=1709346157; x=1709950957;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kdTUSkVwl2tMINjrlSdiTdWGU31m8cJzam5nmke77Bg=;
+        b=vVFHzMY7I8ls5EeOa1lXZ//w7G+HPVPnYHS6oolX9nbuA4LSQFV8k4KK/7ciI2sLqW
+         sm38PTDbr8Tj0XR2p0d92imGA5MXg/zGrKgjLpbbwcTIvCldgpPMC5IEBacfpP70TCvh
+         EVdZpSoEMCJVRKFOOWtaSX2LaFwOYIukf6w2vfWOTM6eIIS1x6Vc0c+aaXRg4Chly8HT
+         R0BO16gGcdw3wQOJpGjxwhGkQOwnIT/VyaJ0mURLsqerVyPNHs/hgClKNFQ+u1C/DYF/
+         qdyRKnqLYt/PbJYVOYI7WFsjW6S5DAmvVrR5lSHlWoUyB+Wz/eOszizrF+xwe46EZvPH
+         m5EQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVOJQsB//mMKJDtigPwxp96dJvJPrnQYc2v3sDozqiLxHQ0CqIqu3vY/v7orfEarWsb2RsXn06DXsADc5BWnmsIFMsZIBHvG0jZqA==
+X-Gm-Message-State: AOJu0YztOhQLH3RzcJl4i4CL/vG5ARYUel03aqVE04yduFrzKbFLGKcE
+	Aczh5OOy21u7ybGcGp0mHCs/2vVK2F5/mqJG4SFb0CdNj9hWsvHk/XNfzKiN+PY=
+X-Google-Smtp-Source: AGHT+IFeYLcTkjFHUMJRTsdqrsQ5qiDABIkQoO5ACOCWl8iqixjPyJ4gmXbZ53fgBi+gi9zJ2HGs2Q==
+X-Received: by 2002:a17:906:5fc1:b0:a44:512e:9e42 with SMTP id k1-20020a1709065fc100b00a44512e9e42mr1886274ejv.2.1709346156636;
+        Fri, 01 Mar 2024 18:22:36 -0800 (PST)
+Received: from [192.168.216.32] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id bq5-20020a170906d0c500b00a43bf243342sm2242197ejb.24.2024.03.01.18.22.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 01 Mar 2024 18:22:36 -0800 (PST)
+Message-ID: <6f329b93-1bea-4222-bbf2-e08ae7329283@linaro.org>
+Date: Sat, 2 Mar 2024 03:22:33 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a7a55dc6-c204-4aad-adff-9806d3302b6b@oss.nxp.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH V5 1/5] dt-bindings: arm: cpus: Add qcom,oryon compatible
+Content-Language: en-US
+To: Sibi Sankar <quic_sibis@quicinc.com>, andersson@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ catalin.marinas@arm.com, ulf.hansson@linaro.org
+Cc: agross@kernel.org, conor+dt@kernel.org, ayan.kumar.halder@amd.com,
+ j@jannau.net, dmitry.baryshkov@linaro.org, nfraprado@collabora.com,
+ m.szyprowski@samsung.com, u-kumar1@ti.com, peng.fan@nxp.com,
+ lpieralisi@kernel.org, quic_rjendra@quicinc.com, abel.vesa@linaro.org,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ quic_tsoni@quicinc.com, neil.armstrong@linaro.org
+References: <20231205062403.14848-1-quic_sibis@quicinc.com>
+ <20231205062403.14848-2-quic_sibis@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20231205062403.14848-2-quic_sibis@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi,
-
-On Thu, Feb 08, 2024 at 11:34:58AM +0200, Ghennadi Procopciuc wrote:
-> On 1/22/24 16:05, Ghennadi Procopciuc wrote:
-> > From: Ghennadi Procopciuc <ghennadi.procopciuc@nxp.com>
-> > 
-> > This patchset adds device tree support for S32G2 SCMI firmware and uSDHC
-> > node. The SCMI clock IDs are based on a downstream version of the TF-A
-> > stored on GitHub [0].
-> > 
-> > I can send the patches individually if you prefer that instead of
-> > submitting them all at once.??
-> > 
-> > [0] https://github.com/nxp-auto-linux/arm-trusted-firmware
-> > 
-> > Changes in v2:
-> >  - The SCMI clock bindings header has been removed.
-> > 
-> > Ghennadi Procopciuc (2):
-> >   arm64: dts: s32g: add SCMI firmware node
-> >   arm64: dts: s32g: add uSDHC node
-> > 
-> >  arch/arm64/boot/dts/freescale/s32g2.dtsi      | 37 ++++++++++++++++++-
-> >  .../arm64/boot/dts/freescale/s32g274a-evb.dts |  6 ++-
-> >  .../boot/dts/freescale/s32g274a-rdb2.dts      |  6 ++-
-> >  3 files changed, 46 insertions(+), 3 deletions(-)
-> > 
-> Hi Chester,
+On 5.12.2023 07:23, Sibi Sankar wrote:
+> From: Rajendra Nayak <quic_rjendra@quicinc.com>
 > 
-> I want to confirm if you are open to accepting the proposed changes for
-> ARM/NXP S32G architecture, given your maintainer role. Please let me
-> know if any revisions or adaptations are required.
+> Oryon is the custom ARM CPU core implementation used in Qualcomm's
+> X1E80100 SoC, document it.
 > 
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+> Co-developed-by: Sibi Sankar <quic_sibis@quicinc.com>
+> Signed-off-by: Sibi Sankar <quic_sibis@quicinc.com>
+> ---
 
-These patches look good to me.
+Chiming in on an old thread, please check with those in the know whether
+these cores are Spectre-v3a/4-safe, and if so, add the MIDR to the
+corresponding white/blacklists in arch/arm64/kernel/proton-pack.c
 
-Hi Shawn,
+Also, please check for any erratas and supported-but-not-advertized-for-
+-reasons features that may need to be implemented.
+Doing this early will ensure we will all spend less % of our time
+pulling out what remains of our hair when the platform suddenly
+crashes for no reason!
 
-Per the discussion in another thread, could you help to apply these two
-through the imx tree? Thanks!
+Konrad
 
-Chester
-
-> Regards,
-> Ghennadi
-> 
 
