@@ -1,162 +1,167 @@
-Return-Path: <devicetree+bounces-47894-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47895-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DFAE386F1DF
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 19:38:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id C7A1886F1E1
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 19:38:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1009C282D9F
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 18:38:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EFCF1F21B22
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 18:38:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 945B42C695;
-	Sat,  2 Mar 2024 18:38:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C89C3364C2;
+	Sat,  2 Mar 2024 18:38:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="aVO2U4iy"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mcU5ngDr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A5755374DB;
-	Sat,  2 Mar 2024 18:38:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD3922C696;
+	Sat,  2 Mar 2024 18:38:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709404707; cv=none; b=ke6wENniZRfZvboOzvhNZzymIPULypRi8xeYVDQWekXnhjbQnRf+eaDbZdfMKcSAH4x9Nl+CAGDx20e6+9QvQn13m3xpnepCTAge1wrawu0QVBDBaqRYkF03TDx7skSqPBohiarmHqM2kFsGNIXz74oKUndwEIXv0j+i3igqrBQ=
+	t=1709404728; cv=none; b=lh6mO5zfb9Kqa52m0285baLGq2fCfYgqA8yBUqaBUuS+X27VjFFYqJPTHt8yBl1WUissykLih/RugcmJe6Tx61goGNUel1rK6/qxoFFzI3+/T2bJQMhzvZJTDLMosfE9faqWgmk+b2aeWhTYaxwL+PvonNZ3UB0e++bIGsoNDm4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709404707; c=relaxed/simple;
-	bh=DxMieUdGbPoFEJAzv8g2IGm2lj3iuTaFDdXF9YJKqnY=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=fxPBrjNd3wVXtKPtD9dRoZpI3UmT+DTQunrhBVWZfWyxU1oBaB1rOU+NsKzB88WNaPSPFLcM8rYJrALMJQ5FbsFElecs4xTyRToPSqKstxLgxP2bb0FHEFxISItHCyxDd+a+l0DMLQ+uNiHdu37EUbsIAuok86fDSwoSl1CGRLg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=aVO2U4iy; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1709404728; c=relaxed/simple;
+	bh=GdQj8THIEWYkM1NUn/dan5wUIS3Kyoir/gqJN546cTc=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=facnQScSlTy2aBvDzQgQ13NHs2c7Q8PGYaGfTT3YgWya7qiGMIKpeBwqZy120mXyHX+0CdmCgmWObYvpHRKVXS1hW+PlT7+Wb8Xpd7N3HX7qVsOlIXiQqQ+KcQrQg+rmcQxlXkAT71fpgJVzpeFMr3FelJ/mM5dCNPvkV6gNxvc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mcU5ngDr; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-563cb3ba9daso4197538a12.3;
+        Sat, 02 Mar 2024 10:38:46 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709404725; x=1710009525; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=AHGgpyqNDh+jy1P0vdHUJZORIbiu77O9OBDUosL6iSs=;
+        b=mcU5ngDrtfD11BI4kcO8GcXoKdr9ZFMJBggYE9PyC68oJ62rD5mcko9whvn/n2FUG6
+         jfwvAKAZr5Qnce54PsK/IAjtqLNc2CKguVuIjTmOLzimhuXdDqOrJsYCTmivUkEMdclS
+         jPMuSaAlUxtwz/s1BUVKmDjsnSQWSbah7neQqyfTLEQ2gQTQw7pLJuqloZUMj6lo30y7
+         nBkP793c2LHLEdsqDeEp/cHWhs6/OgpESyk4CLIMk8T9ZNTVMBH4Bo/9CzXSmgXsDtey
+         Y0ILDxjN0LuOdPyGgFijhdE1WCpWu2K3zaKj3OY6D4bd/WpTF/q2UGR2bdOeyyG7oQh2
+         HuVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709404725; x=1710009525;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AHGgpyqNDh+jy1P0vdHUJZORIbiu77O9OBDUosL6iSs=;
+        b=R4MYhVZMkF5B+21RdBo676hSum669OA+07MkG+Bjxw6c9LnfFGSl+z/0kHWRPQVQPf
+         iw4YPrv46tMS2f7zohObgAEYp/Mr8/FGmatn7Py4oTGK+JGsr6ZV/VDQ599s8Mwjjjn3
+         ladnrQu+2IlDI/57Y9O7+nBfp+wzasPBNItghPPy1UINDRix+cz3A6YAWuV1xlvqG6sx
+         DHme48FIBKOB4BuRUiZybMs7aDjBeFkLrCdBVNU7TO6CAiSza2L0Q5Fv12u/Gm3FZxTh
+         T93S6KxSn7dM2lTP+q3kP8wzCZVyxVJAKcAfdkbumlzsDD0/EV+UeklsQH3n3wmKvsXo
+         /nNw==
+X-Forwarded-Encrypted: i=1; AJvYcCWh5ZBNtJOYlEX5k5JqibZ302KA1P8gK6eBLbf5WiVfu6f+xDxG3G8+4nP7biTn1ZjS502dxQHAehKRnr21E9TrRuVvRRWd+EsQ/w==
+X-Gm-Message-State: AOJu0YxwfwvRZdWu+t/1B6qP88YTUpB/E0bO176BxF+EfPQe/UKVVPSH
+	AOrdsx1jbf6yCmKqym6NggKWkdWld4Ec6VhbDZxWE/K7bi/eZusB
+X-Google-Smtp-Source: AGHT+IEw2/63uG0j4v7oU1aJPalr3u2K/nMEo2P0dswZ1Cq2LrQgofZn8RyyGdH+FmUaAKDZ/L8zDw==
+X-Received: by 2002:aa7:d61a:0:b0:567:17bb:14d2 with SMTP id c26-20020aa7d61a000000b0056717bb14d2mr737382edr.16.1709404724954;
+        Sat, 02 Mar 2024 10:38:44 -0800 (PST)
+Received: from corebook.localdomain (2001-1c00-020d-1300-1b1c-4449-176a-89ea.cable.dynamic.v6.ziggo.nl. [2001:1c00:20d:1300:1b1c:4449:176a:89ea])
+        by smtp.gmail.com with ESMTPSA id eo12-20020a056402530c00b0056452477a5esm2796676edb.24.2024.03.02.10.38.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 02 Mar 2024 10:38:44 -0800 (PST)
+From: Eric Woudstra <ericwouds@gmail.com>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	"Frank Wunderlich" <frank-w@public-files.de>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Lucien Jheng  <lucien.jheng@airoha.com>,
+	Zhi-Jun You <hujy652@protonmail.com>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Eric Woudstra <ericwouds@gmail.com>
+Subject: [PATCH v2 net-next 0/2] Add en8811h phy driver and devicetree binding doc
+Date: Sat,  2 Mar 2024 19:38:33 +0100
+Message-ID: <20240302183835.136036-1-ericwouds@gmail.com>
+X-Mailer: git-send-email 2.42.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1709404695;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=g8ZlwO6znWmhb0i3vL98mOnE4UFnlmkSb9Ze7dDbIvw=;
-	b=aVO2U4iyixRmN8pxd49qgP99L5UhCddPgPtNq8RIiNWeg6l8r1BUftxz9RgrDpQT778eCk
-	ks4k3prN2Bb8e7SZNg+w5ypo/sTvkfwBIzdbdMMRnd75FLxasKhkWTxBDjmyxv0D6v/nP8
-	fsqRR5WQaDPso4IYQv/BYzq6/3z8qvYsCko3wfdpzbZ8+wAIOvogabY5hvTnoUxOJ2jdxG
-	N/HoC4I9ozA1MwXONMEfC0tevvu8BExiFIHDYIDlkPVEPek1FogRQkva+xLIB5PYVOsmlD
-	SecLkbeFJ0N+1Mskhvn5/yD+PEqYk7zO8sN5Cr40zOTtnr3DdInkrptklCPQQw==
-Date: Sat, 02 Mar 2024 19:38:14 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Heiko Stuebner <heiko@sntech.de>
-Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Alexey Charkov <alchark@gmail.com>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
- Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/5] arm64: dts: rockchip: enable built-in thermal
- monitoring on RK3588
-In-Reply-To: <6279836.31r3eYUQgx@phil>
-References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
- <20240229-rk-dts-additions-v3-1-6afe8473a631@gmail.com>
- <6279836.31r3eYUQgx@phil>
-Message-ID: <3f73d847fbe9d7f6dd05802eb7e47d49@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: 8bit
 
-Hello Heiko,
+This patch series adds the driver and the devicetree binding documentation
+for the Airoha en8811h PHY.
 
-On 2024-03-02 12:25, Heiko Stuebner wrote:
-> Am Donnerstag, 29. Februar 2024, 20:26:32 CET schrieb Alexey Charkov:
->> Include thermal zones information in device tree for RK3588 variants.
->> 
->> This also enables the TSADC controller unconditionally on all boards
->> to ensure that thermal protections are in place via throttling and
->> emergency reset, once OPPs are added to enable CPU DVFS.
->> 
->> The default settings (using CRU as the emergency reset mechanism)
->> should work on all boards regardless of their wiring, as CRU resets
->> do not depend on any external components. Boards that have the TSHUT
->> signal wired to the reset line of the PMIC may opt to switch to GPIO
->> tshut mode instead (rockchip,hw-tshut-mode = <1>;)
->> 
->> It seems though that downstream kernels don't use that, even for
->> those boards where the wiring allows for GPIO based tshut, such as
->> Radxa Rock 5B [1], [2], [3]
->> 
->> [1] 
->> https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts#L540
->> [2] 
->> https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/dts/rockchip/rk3588s.dtsi#L5433
->> [3] https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock_5b_v1423_sch.pdf 
->> page 11 (TSADC_SHUT_H)
->> 
->> Signed-off-by: Alexey Charkov <alchark@gmail.com>
->> ---
->>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 176 
->> +++++++++++++++++++++++++++++-
->>  1 file changed, 175 insertions(+), 1 deletion(-)
->> 
->> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi 
->> b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> index 36b1b7acfe6a..9bf197358642 100644
->> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
->> @@ -10,6 +10,7 @@
->>  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
->>  #include <dt-bindings/phy/phy.h>
->>  #include <dt-bindings/ata/ahci.h>
->> +#include <dt-bindings/thermal/thermal.h>
->> 
->>  / {
->>  	compatible = "rockchip,rk3588";
->> @@ -2225,7 +2226,180 @@ tsadc: tsadc@fec00000 {
->>  		pinctrl-1 = <&tsadc_shut>;
->>  		pinctrl-names = "gpio", "otpout";
->>  		#thermal-sensor-cells = <1>;
->> -		status = "disabled";
->> +		status = "okay";
->> +	};
-> 
-> so I've skimmed over the general discussion, though don't have a hard
-> opinion in either direction yet. Still there are some low-hanging 
-> fruit:
-> 
-> - having the thermal-zones addition in a separate patch would allow to
->   merge the obvious stuff, while this discussion is still ongoing
+Changes in PATCH v2:
 
-Very good suggestion.
+air_en8811h.c:
+ * Implement air_buckpbus_reg_modify()
+ * Added if (saved_page >= 0)
+ * Use linkmode_adv_to_mii_10gbt_adv_t()
+ * Check led index within limit, before using it
+ * Renamed AIR_PBUS_XXX to AIR_BPBUS_XXX to indicate buckpbus, not pbus
+ * Cosmetic changes
 
-> - status=okay in a soc dtsi is wrong, because okay is the default 
-> status
->   so if anything the status property should be removed
-> 
-> In general I'm not that much of a fan of things just working 
-> implicitly.
-> So somehow, when someone submits a board devicetree, I expect them to
-> having ensured stuff is enabled somewhat ok. So even seeing a simple
-> 
-> 	&tsadc {
-> 		status = "okay"
-> 	};
-> 
-> suggests that they have at least noticed the existence of thermal 
-> stuff.
+airoha,en8811h.yaml:
+ * Add compatible
+ * Add description
+ * Cosmetic changes
 
-I agree that having such additional "signed-off markers", so to speak, 
-in
-a board dts is quite assuring.  I mean, someone implementing a new dts 
-file
-for a new board should simply know what needs to be done there, and 
-there
-should be no excuses for not checking the thermal throttling stuff.
+Changes in PATCH (mistakenly considered as v1):
+
+air_en8811h.c:
+ * Use the correct order in Kconfig and Makefile
+ * Change some register naming to correspond with datasheet
+ * Use phy_driver .read_page() and .write_page()
+ * Use module_phy_driver()
+ * Use get_unaligned_le16() instead of macro
+ * In .config_aneg() and .read_status() use genphy_xxx() C22
+ * Use another vendor register to read real speed
+ * Load firmware only once and store firmware version
+ * Apply 2.5G LPA work-around (firmware before 24011202)
+ * Read 2.5G LPA from vendor register (firmware 24011202 and later)
+
+airoha,en8811h.yaml:
+* Explicitly describe which pins are reversed in polarity.
+
+Notes for original RFC patch:
+
+ * Source originated from airoha's en8811h v1.2.1 driver
+ * Moved air_en8811h.h to air_en8811h.c
+ * Removed air_pbus_reg_write() as it writes to another device on mdio-bus
+   (Confirmed by Airoha, register on pbus does not need to be written to)
+ * Load firmware from /lib/firmware/airoha/ instead of /lib/firmware/
+ * Added .get_rate_matching()
+ * Use generic phy_read/write() and phy_read/write_mmd()
+ * Edited .get_features() to use generic C45 functions
+ * Edited .config_aneg() and .read_status() to use a mix of generic C22/C45
+ * Use led handling functions from mediatek-ge-soc.c
+ * Simplified led handling by storing led rules
+ * Cleanup macro definitions
+ * Cleanup code to pass checkpatch.pl
+ * General code cleanup
+
+Eric Woudstra (2):
+  dt-bindings: net: airoha,en8811h: Add en8811h
+  net: phy: air_en8811h: Add the Airoha EN8811H PHY driver
+
+ .../bindings/net/airoha,en8811h.yaml          |   56 +
+ drivers/net/phy/Kconfig                       |    5 +
+ drivers/net/phy/Makefile                      |    1 +
+ drivers/net/phy/air_en8811h.c                 | 1035 +++++++++++++++++
+ 4 files changed, 1097 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/airoha,en8811h.yaml
+ create mode 100644 drivers/net/phy/air_en8811h.c
+
+-- 
+2.42.1
+
 
