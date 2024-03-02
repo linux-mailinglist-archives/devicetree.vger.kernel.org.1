@@ -1,90 +1,79 @@
-Return-Path: <devicetree+bounces-47849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9474986ED81
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 01:39:50 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 092F986EDDE
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 02:31:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24D3D28531B
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 00:39:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8D085B244AF
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 01:31:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BB18810E3;
-	Sat,  2 Mar 2024 00:39:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B4D8F5C;
+	Sat,  2 Mar 2024 01:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fiFmYhpZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Wqd+8ruV"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 878F180C;
-	Sat,  2 Mar 2024 00:39:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F1788F41;
+	Sat,  2 Mar 2024 01:31:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709339984; cv=none; b=RTV+IXxFKyI5LG9LnYzoNS1t7kgOBYfMDYKvwf9QYsGFsf/RTfHsHngL5ZA+Jpfc7JrT8CKHUsWI2ZKx2rjk6hiaZ1+jsZ27SeKWUUfaXEWMB8Hc6CalcNdAuhh4CS+ezBt0owgu7WFiB7jUamdAhCtOW8MquA4lg3GKo76LLvI=
+	t=1709343085; cv=none; b=DrbFZS6o3GA4vI6B9n54Sc//6BSRubzsjJE62ljd+12ccDKbIrPuljzZPCtj3T9N90lItsE+e0ucGNPN+P9XkXQIDUNCHNqcL5EGioIpqtjtyw3XmbPw588DnXXpbgPQhDo2mynTgk2yoHXu0Xp8D0X/bWEtPcVzNF5+nfRUqtQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709339984; c=relaxed/simple;
-	bh=jyKjPvT/EkJla/5n/qmQEJ23pdly8CYhhVUOSg4aClA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QhzKBnqVqsyo+8ymkBTUaE4va7n3EWWnCiP4pa4d/nHpWGc/hJf67cvpyv9QVjFHJ4tCetWZV/yYkD1V0mroGeZwYtJJYpRf9BC+Brw7WKEIof+3TDx9qgXW/3CH/MroEWeS7ryjcbuFWnWAV2dkuMu9sSl3QcHSDGgrvtj+dmQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fiFmYhpZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5C75DC433F1;
-	Sat,  2 Mar 2024 00:39:43 +0000 (UTC)
+	s=arc-20240116; t=1709343085; c=relaxed/simple;
+	bh=B3BqHA4ZyWmcmOCMItyCJa7g672OEPohxC7YXaOzIWk=;
+	h=Subject:From:In-Reply-To:References:Message-Id:Date:To:Cc; b=OfuY7QuuShTUiKw0zGyiNlB/9bBYysbzVreaI5zU1Qxt/AxWxPtvum5hiOHyJQd8aQ4/Vjqs7u2LatKfuK0DRM/++lHhoBh8aj2wNJhFDkk5LKRZlaWPIDBemXgR1WUDU7Ol2m/TCZS1BWXAIUAdVrxcZbjEJAKfCFd3bGUUB7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Wqd+8ruV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id DE6CCC433F1;
+	Sat,  2 Mar 2024 01:31:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709339984;
-	bh=jyKjPvT/EkJla/5n/qmQEJ23pdly8CYhhVUOSg4aClA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fiFmYhpZjNSKGHgK13j3O4ixxb1b/aST6+7AGT/EFIPL2Ktp/CQqdvZOzfixrMiNw
-	 NYS1h5hVOUnPnpJEt4x+7Wgr3R9/3JoZj8jTNqXWMuOwGP2x7pVPnsgA1EprtCSUTE
-	 FY/jb0yFSeh/+lDBQKbMZrohKTrl9wmurE4lP0hTAAgBQInK4eE5r8LoQzp4B/e9A0
-	 XVR6C8Y+gN/rlcLnCg+45mlhIEBR2DaBPuhOsu/Ji4o6oWgNamMx7rba9RPQj/hedY
-	 TRzHgYJc14r4p1OyZQufKX5Xr8qAonCx1J3GRnzL1VkMbF2hat9wn3a18y8ODcmVOY
-	 lHncka/Hr5m8w==
-Date: Sat, 2 Mar 2024 01:39:39 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
-	Gregory Clement <gregory.clement@bootlin.com>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
-	Andi Shyti <andi.shyti@kernel.org>
-Subject: Re: [SPAM] [PATCH v2 04/11] i2c: nomadik: simplify IRQ masking logic
-Message-ID: <hbnkcqjgykfzivqvjnr5ixmp57am43mxslfnpxhro27kzd2pyt@q35uhgkxn5cv>
-References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
- <20240229-mbly-i2c-v2-4-b32ed18c098c@bootlin.com>
+	s=k20201202; t=1709343084;
+	bh=B3BqHA4ZyWmcmOCMItyCJa7g672OEPohxC7YXaOzIWk=;
+	h=Subject:From:In-Reply-To:References:Date:To:Cc:From;
+	b=Wqd+8ruVzEfKSms3L2BG77/fig91daQqJuAfPZBFy7RX3dAYz49w/38VCCMRA0qcT
+	 qZP09LHPVkykP7twtoHnktJJtOp0DNPqD2id7+q9VyklGCflAtlXBV6mTRvkujABx6
+	 szIWqpT2AhIVUdpB2abzi5iWzSbFY4jT2ZaIAPWx3YblqjwLrnicopYZ6UnlQdKBd9
+	 lKsfXrcEhsTlfYaYkEJWsZCC6kpcQnV4YNFbYlqYDbf6AxcAKhtmKkl4nFaw6QhOMz
+	 C+qUSfRcWu5BdEEMxa+Guoyf7dfyDb41bbzF4v2lP07Ss58imx6wwNE9rN2OfF/gW5
+	 JPrich67LRyzw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id CA741C595C4;
+	Sat,  2 Mar 2024 01:31:24 +0000 (UTC)
+Subject: Re: [GIT PULL] Devicetree fixes for v6.8, take 2
+From: pr-tracker-bot@kernel.org
+In-Reply-To: <20240301222902.GA3168830-robh@kernel.org>
+References: <20240301222902.GA3168830-robh@kernel.org>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <20240301222902.GA3168830-robh@kernel.org>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.8-2
+X-PR-Tracked-Commit-Id: 7cb50f6c9fbaa1c0b80100b8971bf13db5d75d06
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: fb54efc2932681dadeca91210007a4d246c49890
+Message-Id: <170934308482.29596.5964459552966492851.pr-tracker-bot@kernel.org>
+Date: Sat, 02 Mar 2024 01:31:24 +0000
+To: Rob Herring <robh@kernel.org>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>, Saravana Kannan <saravanak@google.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240229-mbly-i2c-v2-4-b32ed18c098c@bootlin.com>
 
-Hi Theo,
+The pull request you sent on Fri, 1 Mar 2024 16:29:02 -0600:
 
-On Thu, Feb 29, 2024 at 07:10:52PM +0100, Théo Lebrun wrote:
-> IRQ_MASK and I2C_CLEAR_ALL_INTS are redundant. One masks the top three
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-6.8-2
 
-if I2C_CLEAR_ALL_INTS is redundant why don't you remove it?
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/fb54efc2932681dadeca91210007a4d246c49890
 
-> bits off as reserved, the other one masks the reserved IRQs inside the
-> u32. Get rid of IRQ_MASK and only use the most restrictive mask.
+Thank you!
 
-Why is IRQ_MASK redundant? What happens if you write in the
-reserved bits?
-
-Can you please explain a bit better the change you did?
-
-Thanks,
-Andi
-
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/prtracker.html
 
