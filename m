@@ -1,128 +1,176 @@
-Return-Path: <devicetree+bounces-47873-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47874-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0114986F07E
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 14:10:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9727386F093
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 14:59:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1929F1C20BDC
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 13:10:25 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BA1031C21204
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 13:59:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 685CD14284;
-	Sat,  2 Mar 2024 13:10:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40A591799B;
+	Sat,  2 Mar 2024 13:59:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="A2+z2qUS"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xCquQX63"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD49C17981;
-	Sat,  2 Mar 2024 13:10:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5872917BAA
+	for <devicetree@vger.kernel.org>; Sat,  2 Mar 2024 13:59:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709385020; cv=none; b=gFyySlxXvAExUM0dx5tdM/6vyyvIDuBn+tbSQRTkugk1Ad0WFecnqK28M9CFn0fRxLgnJueDebHKpaC3ixSDVmCHcN1YiLdU9Ed+EEVcl97IU821PCpnklVNpGfxemGeLtHAzxf5h9o715uv2GxLrUMY8w0M3cul+ffORUb4dCU=
+	t=1709387985; cv=none; b=ejUfOPiycNrQVIAbfbT+WLI6nambeuw4LHWWkA3blDNH4kjiwqVhDFFZuXLmS7l7GdZSQtOJKIgsiPwjNKTm6Hx5zsiGzYXyX5QQuNs0G9u8HdtXX734b8HVMPhgTfJFCrNJVMCoEAlWhId2MfMU5dpFpr/KakPzQADL8J7Hv3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709385020; c=relaxed/simple;
-	bh=x/1N1H133E2sziauvMVCmgyf1SdDcb75X4JaidNMP+g=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=kIAG6DO8Nq+QczSqJc3U8HrpAAYG2VFzSxV8GGb+wrrJkLjWKBmCBV6NQ3N5GMNmDgX/4bxCxfdC4mV2w16pcx9GCKpe8S/qgiRdfJ9OwRGIIVsW/Ud/me/sjtuM7dknpazuYm0Brtw5j3tzGMU+6BWG2hOkrJx3ZF7Vg0W8lvw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=A2+z2qUS; arc=none smtp.client-ip=209.85.166.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-365b3d92354so17571065ab.1;
-        Sat, 02 Mar 2024 05:10:18 -0800 (PST)
+	s=arc-20240116; t=1709387985; c=relaxed/simple;
+	bh=ytYwRlSFsq4Rpg4+XTxJGMB16Nmqe+x03a7CtTu4qYw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=VXJ9RNiq4F3ZkU2EXWA/reqOcqiO1WlFM+q0mU/bUtwCEO7cXjx2gQ87rJzB5bWGA69J5uc0PEYUbokF9OJueeZM2gMP/UFG7WbivFDOuiUEawZmmnbGHTvOsW1EdxsS39vYNOOxjhIA/t0E1jHd7ocxbLj49lkEpOp8jc6aRsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xCquQX63; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-412d503f34dso3087365e9.3
+        for <devicetree@vger.kernel.org>; Sat, 02 Mar 2024 05:59:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709385018; x=1709989818; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=l+3zax9Ae+5S2Sw//698s5mgfIh6dzBPKe0NmMEjHJk=;
-        b=A2+z2qUSl5bwrS/icnqw+k1XvfGdnXxZY1jn8JECAwxy81HKAPuebTu9Asl5NMnEaN
-         OxnpFG3sgTh62oEafbKUo+Wl5LlK64eL7kvgeLMxJEQiUD3qXiHn6IvINhOQS+jETSHh
-         8akrYLD7I6S+ulecr4ojlt+xfWlTUZzKatplqsYlXRnWk04tyjxJT+v/Z2uN22E5hWna
-         5nmmsjYbVGqUMlGoY2yvRljTeDb8nU/WfEJM4tzXGBe7J3MPp0ZoSSWm1TuK8nSxecpy
-         ZpTaHnEcb4zG4sOAhM6YA2We2/iVToBixvEKm54MlTxaWg2BaC83JscAQ9vEP+oyc7NT
-         hAGg==
+        d=linaro.org; s=google; t=1709387982; x=1709992782; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=z2ATSc579AxmexsuG13YAb1qbi2nF1oW29/Ts8WYULM=;
+        b=xCquQX63UFlDEye6wnbsfVo6cPu44NE/6tLe6Bwdf1nfiZsGbS6pjhCKnZhpaD/K2A
+         2pjlkGmihcMtYjoaO1K/pW5a2BE7XvRl34DkqpoEplv4k50xHX0wMYr9I686FOeOs35P
+         M8dZO4ylixLsFUUybqOLnOvdIsal/78wVHbogluiW3mLllKnl86rpvoz9rj4MJzMD8xX
+         C73soSCE8cGfyKsGg1ViikNodIgZb/Zpnwz7gTNfNRfGmZa7HB5aV7gDJxnWSdqIqWon
+         VJZnLFV58umYrgf1AficBhvTqMZUJ4Fu9WO4eaA46XLoeu7rfRHYjedCo0gpqC0V8ynq
+         2v6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709385018; x=1709989818;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=l+3zax9Ae+5S2Sw//698s5mgfIh6dzBPKe0NmMEjHJk=;
-        b=VRpIOw3hgKWozmq9fuFYOLL4UCshk1qqgdv9yXN+brHtXbgh+XdQHcXtN03OCbyXmh
-         0gZZXcnccjAoETWYUBcxHVSeC0OV9/60rO65vD186aBmhW/+xI7qtgKg8Jrxev9iQDtv
-         BMLmqSfLyyeo4tkK9rAGcsg50U5R0piXWEH5uUqaIm1H+Zbuv6RzJi5wUcLOFc7fs3Al
-         q4QJs2sxYkcwSAz1y7qecRKIOqwCf3Oncs+V8nwo4MVjRIluOYWV70yS1waqWuTduJZF
-         SYy1VhPP9/LPuLm3yS/ZLI2S1LR6NyCnUkiNI5qLFjDPKT9/xkKI33BOYGD8AvU8ILcK
-         lVOw==
-X-Forwarded-Encrypted: i=1; AJvYcCXpqLjSzOPF8Y2xtM1QkEKEdKrtLjO76f/g5Wi0E7cKsDchW2RW14/GD86qdsutW0kA3WCo2XBIaq7hlMoV3UD1j/5QUAcj+DN79xXYZAZfxhYoMSRpicgCMIbvUVtmF09ebB7fqMr/bQ==
-X-Gm-Message-State: AOJu0Ywd8Gu0pik6M00xnMP02vUd2CAXYZBIgnE0bpNZJazt8PW5sAG+
-	0C7P7q/CV0FsD1XF2VkeQmWbNQzqStxDN5b6ea+WVRCOyOegsSjdiOZpKARIbNk6ew==
-X-Google-Smtp-Source: AGHT+IGp03+Ktmt6hq1uXymoLsMk09+TCaijjsNgHZnFpfE3tNd0hdnqD3CXW2IkfbgsNlwOur/VXA==
-X-Received: by 2002:a05:6e02:2145:b0:365:75b2:a338 with SMTP id d5-20020a056e02214500b0036575b2a338mr5688342ilv.24.1709385017961;
-        Sat, 02 Mar 2024 05:10:17 -0800 (PST)
-Received: from localhost.localdomain ([103.149.249.227])
-        by smtp.gmail.com with ESMTPSA id q1-20020aa79821000000b006e4d336c420sm4472549pfl.69.2024.03.02.05.10.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 02 Mar 2024 05:10:17 -0800 (PST)
-From: Jianhua Lu <lujianhua000@gmail.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Jianhua Lu <lujianhua000@gmail.com>
-Subject: [PATCH v2] arm64: dts: qcom: sm8250-xiaomi-elish: add usb pd negotiation support
-Date: Sat,  2 Mar 2024 21:10:25 +0800
-Message-ID: <20240302131025.13741-1-lujianhua000@gmail.com>
-X-Mailer: git-send-email 2.44.0
+        d=1e100.net; s=20230601; t=1709387982; x=1709992782;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z2ATSc579AxmexsuG13YAb1qbi2nF1oW29/Ts8WYULM=;
+        b=w2w4CFpZPj2qcs4NOWaGSMQKK3fbqqqkjdYM4pUihsUJex9jxfIalFaxWkPxZS8PwC
+         dFXLxU30nX81MXL9GsKO/jzXJDhelb/z1dsZS7t3RS8CQjjehfUA6cTsk+riwJMh5TFP
+         dgd6K4ZX6KNPUSpl0dvPLPMGfKbmd3J6AdRj7YCmO4O97cGVbKe7c9CJtoGAhAdMSw0B
+         Ae5BcIBQtWsECnHNGqXTej1bUNsAH/D4baX5Psl2sTd18bTpqUjrpQUZx6r/DhNFTJFc
+         mOZuFTq930tfGAYdQghj613WAsJzP6evWUNlldENcSAFrAqHrJA6qL+xDRcjCuf2uv27
+         bquA==
+X-Forwarded-Encrypted: i=1; AJvYcCXSbnLWQZhDh7VaziR0cENHwuCj0mbgicXVyqIlEfNybKObxcedqKCJkaspOa/Z6IXw5DExlfte6DSxCNgRsTV6Bwyjj7pnuSz4wg==
+X-Gm-Message-State: AOJu0YyMJcv1xn1EveGdtoD/6V0lCfPEGJWyulQtREDr0+wI9QknztXD
+	0ymSO8Al62kobBVbXJBRWzYhzihRBra1WCEymesFzA60yspdH5u9FtpkmLP0Iv8=
+X-Google-Smtp-Source: AGHT+IFTUYzI0LLkvJu4+nlfioe2GMj1QikEFf1Qd1aCCira9vwa1aikQpVcwSh7HYu4K+/F0xziog==
+X-Received: by 2002:a05:600c:35cb:b0:410:656c:d6d with SMTP id r11-20020a05600c35cb00b00410656c0d6dmr4263924wmq.18.1709387981645;
+        Sat, 02 Mar 2024 05:59:41 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id m26-20020a05600c3b1a00b00412cbe4f41bsm3714036wms.4.2024.03.02.05.59.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 02 Mar 2024 05:59:41 -0800 (PST)
+Message-ID: <885501b5-0364-48bd-bc1d-3bc486d1b4c6@linaro.org>
+Date: Sat, 2 Mar 2024 14:59:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dt-bindings: dma: fsl-edma: allow 'power-domains'
+ property
+To: Frank Li <Frank.Li@nxp.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dmaengine@vger.kernel.org, imx@lists.linux.dev,
+ krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+ peng.fan@nxp.com, robh@kernel.org, vkoul@kernel.org
+References: <20240301214536.958869-1-Frank.Li@nxp.com>
+ <20240301214536.958869-2-Frank.Li@nxp.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240301214536.958869-2-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add usb pd negotiation, but charging is controlled by pm8150b pmic,
-so it can only charge battery with 5W,
+On 01/03/2024 22:45, Frank Li wrote:
+> Allow 'power-domains' property because i.MX8DXL i.MX8QM and i.MX8QXP need
+> it.
+> 
+> Fixed below DTB_CHECK warning:
+>   dma-controller@599f0000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+> 
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+> 
+> Notes:
+>     Change from v1 to v2
+>     - using maxitem: 64. Each channel have one power domain. Max 64 dmachannel.
+>     - add power-domains to 'required' when compatible string is fsl,imx8qm-adma
+>     or fsl,imx8qm-edma
+> 
+>  .../devicetree/bindings/dma/fsl,edma.yaml         | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> index cf0aa8e6b9ec3..76c1716b8b95c 100644
+> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+> @@ -59,6 +59,10 @@ properties:
+>      minItems: 1
+>      maxItems: 2
+>  
+> +  power-domains:
+> +    minItems: 1
+> +    maxItems: 64
 
-Signed-off-by: Jianhua Lu <lujianhua000@gmail.com>
----
- arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+Hm, this is odd. Blocks do not belong to almost infinite number of power
+domains.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-index 6f54f50a70b0..2042020eb0dd 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-@@ -636,7 +636,8 @@ &pm8150b_typec {
- 	connector {
- 		compatible = "usb-c-connector";
- 
--		power-role = "source";
-+		op-sink-microwatt = <10000000>;
-+		power-role = "dual";
- 		data-role = "dual";
- 		self-powered;
- 
-@@ -645,6 +646,12 @@ PDO_FIXED_DUAL_ROLE |
- 					 PDO_FIXED_USB_COMM |
- 					 PDO_FIXED_DATA_SWAP)>;
- 
-+		sink-pdos = <PDO_FIXED(5000, 3000,
-+				       PDO_FIXED_DUAL_ROLE |
-+				       PDO_FIXED_USB_COMM |
-+				       PDO_FIXED_DATA_SWAP)
-+				       PDO_VAR(5000, 12000, 5000)>;
-+
- 		ports {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
--- 
-2.44.0
+Best regards,
+Krzysztof
 
 
