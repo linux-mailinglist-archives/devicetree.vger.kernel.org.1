@@ -1,114 +1,314 @@
-Return-Path: <devicetree+bounces-47868-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47869-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6A9C86EFFA
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 11:05:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E69086F03C
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 12:25:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 046A21C21550
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 10:05:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8D7DF1F21CAB
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 11:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9ED134DE;
-	Sat,  2 Mar 2024 10:05:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2A4E14296;
+	Sat,  2 Mar 2024 11:25:49 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C52751426D
-	for <devicetree@vger.kernel.org>; Sat,  2 Mar 2024 10:04:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB0AB79C8;
+	Sat,  2 Mar 2024 11:25:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709373902; cv=none; b=iJwIWRSQVvwQFCG77ABL0FMVb6ZlMhXyry9kN3jsHiOStawFTkIHK8Hot3aYUA3v8O5AJbU/TYSEspJDTxWAThO4+Hvkw8ZbcLP49li440k2nc0QcI+qEXCNLWOZ1mTRmg3V5jX5KpJbKuQywZ+xvcCTh2ox2vSiHdj2px1pzeA=
+	t=1709378749; cv=none; b=ZI4kgepFtQA0Kukq5BOztKcKJxCngasqlDOMpbJgn9C7DtoARR0cKicdWqlvlrchZ+/HoLCuCxtNqxrZ1d++69btvWdnrX+EAgykPhp6mO9Oi0XuMpFkDTaBF6JYqJxgPNzY5lajle1c9dDMPgJy86Vi711Cg8EKhFhv8O//RRk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709373902; c=relaxed/simple;
-	bh=aDB9dfxyhbZHvIbbTL7Fj8Qnie2r3ZpNJXX3OOO4Vgc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DXDgyrdG8nc5c1uI8OF8457MDu6JwhGQr543S0tYRpd+bRTN1v9XvbhXOFf/MYJQbGAqxkRWdS1nlCpkFmrC7SwIKsOebOT4SOzl44EHufBoPSFdGLUiSExnn4/h+AoISO+/JVHtAy/M9wH6qQxpErxNsPdZSgagfSROFsjqWaw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rgMEc-0004Fj-0z; Sat, 02 Mar 2024 11:04:50 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	s=arc-20240116; t=1709378749; c=relaxed/simple;
+	bh=sMqS1fumc/mbQ7Gx2OwAlS8gdIKqwndhQBFUGCp6lfw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=k8DlZr9FV12bli4+hSGHkFxo3lqZ41ac/nmgPHOHgak1cw2VvqJXiJ02Rj/6hDzLiOBPwb1e7SRuPdbqzyB8NhLBYmQOUPvOhxFTc9x0uFJQRe9WCI8jjGN0WxiLyxoBtX/QWXAg9I/ugqF+gcGqFvHb+oVdyizffnwZQKEE+7Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from [194.95.143.137] (helo=phil.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rgMEb-003wqT-29; Sat, 02 Mar 2024 11:04:49 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rgMEa-00FL58-39;
-	Sat, 02 Mar 2024 11:04:48 +0100
-Date: Sat, 2 Mar 2024 11:04:45 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, 
-	JunYi Zhao <junyi.zhao@amlogic.com>
-Subject: Re: [PATCH v5 0/5] pwm: meson: dt-bindings fixup
-Message-ID: <b6jyherdfnehu3xrg6ulkxlcfknfej6ali2om27d7rjmwncwxz@3wrtx6sv4xm7>
-References: <20240221151154.26452-1-jbrunet@baylibre.com>
+	(envelope-from <heiko@sntech.de>)
+	id 1rgNUb-0004tX-MU; Sat, 02 Mar 2024 12:25:25 +0100
+From: Heiko Stuebner <heiko@sntech.de>
+To: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Alexey Charkov <alchark@gmail.com>
+Cc: Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Dragan Simic <dsimic@manjaro.org>, Viresh Kumar <viresh.kumar@linaro.org>,
+ Chen-Yu Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Alexey Charkov <alchark@gmail.com>
+Subject:
+ Re: [PATCH v3 1/5] arm64: dts: rockchip: enable built-in thermal monitoring
+ on RK3588
+Date: Sat, 02 Mar 2024 12:25:24 +0100
+Message-ID: <6279836.31r3eYUQgx@phil>
+In-Reply-To: <20240229-rk-dts-additions-v3-1-6afe8473a631@gmail.com>
+References:
+ <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
+ <20240229-rk-dts-additions-v3-1-6afe8473a631@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="h3wvrlu5hxba7ods"
-Content-Disposition: inline
-In-Reply-To: <20240221151154.26452-1-jbrunet@baylibre.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+
+Am Donnerstag, 29. Februar 2024, 20:26:32 CET schrieb Alexey Charkov:
+> Include thermal zones information in device tree for RK3588 variants.
+> 
+> This also enables the TSADC controller unconditionally on all boards
+> to ensure that thermal protections are in place via throttling and
+> emergency reset, once OPPs are added to enable CPU DVFS.
+> 
+> The default settings (using CRU as the emergency reset mechanism)
+> should work on all boards regardless of their wiring, as CRU resets
+> do not depend on any external components. Boards that have the TSHUT
+> signal wired to the reset line of the PMIC may opt to switch to GPIO
+> tshut mode instead (rockchip,hw-tshut-mode = <1>;)
+> 
+> It seems though that downstream kernels don't use that, even for
+> those boards where the wiring allows for GPIO based tshut, such as
+> Radxa Rock 5B [1], [2], [3]
+> 
+> [1] https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts#L540
+> [2] https://github.com/radxa/kernel/blob/stable-5.10-rock5/arch/arm64/boot/dts/rockchip/rk3588s.dtsi#L5433
+> [3] https://dl.radxa.com/rock5/5b/docs/hw/radxa_rock_5b_v1423_sch.pdf page 11 (TSADC_SHUT_H)
+> 
+> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 176 +++++++++++++++++++++++++++++-
+>  1 file changed, 175 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> index 36b1b7acfe6a..9bf197358642 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
+> @@ -10,6 +10,7 @@
+>  #include <dt-bindings/reset/rockchip,rk3588-cru.h>
+>  #include <dt-bindings/phy/phy.h>
+>  #include <dt-bindings/ata/ahci.h>
+> +#include <dt-bindings/thermal/thermal.h>
+>  
+>  / {
+>  	compatible = "rockchip,rk3588";
+> @@ -2225,7 +2226,180 @@ tsadc: tsadc@fec00000 {
+>  		pinctrl-1 = <&tsadc_shut>;
+>  		pinctrl-names = "gpio", "otpout";
+>  		#thermal-sensor-cells = <1>;
+> -		status = "disabled";
+> +		status = "okay";
+> +	};
+
+so I've skimmed over the general discussion, though don't have a hard
+opinion in either direction yet. Still there are some low-hanging fruit:
+
+- having the thermal-zones addition in a separate patch would allow to
+  merge the obvious stuff, while this discussion is still ongoing
+- status=okay in a soc dtsi is wrong, because okay is the default status
+  so if anything the status property should be removed
+
+In general I'm not that much of a fan of things just working implicitly.
+So somehow, when someone submits a board devicetree, I expect them to
+having ensured stuff is enabled somewhat ok. So even seeing a simple
+
+	&tsadc {
+		status = "okay"
+	};
+
+suggests that they have at least noticed the existence of thermal stuff.
 
 
---h3wvrlu5hxba7ods
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+At least that is where my thought-process is at the moment ;-)
 
-Hello Jerome,
 
-On Wed, Feb 21, 2024 at 04:11:46PM +0100, Jerome Brunet wrote:
-> Jerome Brunet (5):
->   dt-bindings: pwm: amlogic: fix s4 bindings
->   dt-bindings: pwm: amlogic: Add a new binding for meson8 pwm types
->   pwm: meson: generalize 4 inputs clock on meson8 pwm type
->   pwm: meson: don't carry internal clock elements around
->   pwm: meson: add generic compatible for meson8 to sm1
+Heiko
 
-I applied patches #1 to #3. This doesn't mean #4 and #5 are bad, just
-that I need some more time for review.
+> +	thermal_zones: thermal-zones {
+> +		/* sensor near the center of the SoC */
+> +		package_thermal: package-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 0>;
+> +
+> +			trips {
+> +				package_crit: package-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		/* sensor between A76 cores 0 and 1 */
+> +		bigcore0_thermal: bigcore0-thermal {
+> +			polling-delay-passive = <100>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 1>;
+> +
+> +			trips {
+> +				/* threshold to start collecting temperature
+> +				 * statistics e.g. with the IPA governor
+> +				 */
+> +				bigcore0_alert0: bigcore0-alert0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				/* actual control temperature */
+> +				bigcore0_alert1: bigcore0-alert1 {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				bigcore0_crit: bigcore0-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&bigcore0_alert1>;
+> +					cooling-device =
+> +						<&cpu_b0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_b1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		/* sensor between A76 cores 2 and 3 */
+> +		bigcore2_thermal: bigcore2-thermal {
+> +			polling-delay-passive = <100>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 2>;
+> +
+> +			trips {
+> +				/* threshold to start collecting temperature
+> +				 * statistics e.g. with the IPA governor
+> +				 */
+> +				bigcore2_alert0: bigcore2-alert0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				/* actual control temperature */
+> +				bigcore2_alert1: bigcore2-alert1 {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				bigcore2_crit: bigcore2-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&bigcore2_alert1>;
+> +					cooling-device =
+> +						<&cpu_b2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_b3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		/* sensor between the four A55 cores */
+> +		little_core_thermal: littlecore-thermal {
+> +			polling-delay-passive = <100>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 3>;
+> +
+> +			trips {
+> +				/* threshold to start collecting temperature
+> +				 * statistics e.g. with the IPA governor
+> +				 */
+> +				littlecore_alert0: littlecore-alert0 {
+> +					temperature = <75000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				/* actual control temperature */
+> +				littlecore_alert1: littlecore-alert1 {
+> +					temperature = <85000>;
+> +					hysteresis = <2000>;
+> +					type = "passive";
+> +				};
+> +				littlecore_crit: littlecore-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +			cooling-maps {
+> +				map0 {
+> +					trip = <&littlecore_alert1>;
+> +					cooling-device =
+> +						<&cpu_l0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_l1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_l2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+> +						<&cpu_l3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+> +				};
+> +			};
+> +		};
+> +
+> +		/* sensor near the PD_CENTER power domain */
+> +		center_thermal: center-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 4>;
+> +
+> +			trips {
+> +				center_crit: center-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		gpu_thermal: gpu-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 5>;
+> +
+> +			trips {
+> +				gpu_crit: gpu-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+> +
+> +		npu_thermal: npu-thermal {
+> +			polling-delay-passive = <0>;
+> +			polling-delay = <0>;
+> +			thermal-sensors = <&tsadc 6>;
+> +
+> +			trips {
+> +				npu_crit: npu-crit {
+> +					temperature = <115000>;
+> +					hysteresis = <0>;
+> +					type = "critical";
+> +				};
+> +			};
+> +		};
+>  	};
+>  
+>  	saradc: adc@fec10000 {
+> 
+> 
 
-Best regards
-Uwe
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
---h3wvrlu5hxba7ods
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXi+bwACgkQj4D7WH0S
-/k5xXAf+ORcgnudezS1elCoc+vcwfRBfd+L8tYNpbx4BuKMVtVxaKQ/9sEV6m73x
-SJoD5+nOJsFAI0gJFeW1z0Mo2W9/AJly67xPNuwxg3MSwq0aDL+birkC1rKJX2GK
-eJ+6ax+MN8b1X85tHb9Z/Mzm1daUkiK5ReNRKKHXlm9yKsQHDMvDbqCS0K2DXATq
-iTU86vIjL+EB2dQFsTN/zbwY7GQU01MIa3veJsulPgZb9OJzM8njirll/61q2r+x
-Dx4pIsBpOpOEzAy1UytunBrntj6N2iUZz8tlX7nx+HEcfjii2ySHGKuY01tWJbIR
-7ffCqSAtvn3ghzC+5yIFk4EYjX66MA==
-=IVa9
------END PGP SIGNATURE-----
-
---h3wvrlu5hxba7ods--
 
