@@ -1,313 +1,673 @@
-Return-Path: <devicetree+bounces-47865-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47866-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8831686EE71
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 05:02:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C68F86EF84
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 09:25:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ABFE61C217DB
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 04:02:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5E46B22CEC
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 08:25:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7121F8C04;
-	Sat,  2 Mar 2024 04:01:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E980E13AC4;
+	Sat,  2 Mar 2024 08:25:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="f1kXHz4N"
+	dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b="AVbKjHJk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from thorn.bewilderbeest.net (thorn.bewilderbeest.net [71.19.156.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C42F1179BC;
-	Sat,  2 Mar 2024 04:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83BC113AD4;
+	Sat,  2 Mar 2024 08:25:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=71.19.156.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709352067; cv=none; b=Sy3/duhyLy7Y/rUf68A2zmp5m218IE+i7CM4FDCcomwNTMmMfcgLwpgoezS+aRgfrlu51kd4KhJ2QVcgWIzVuBA1Dep/h/vpvx2bcKTkw6j/B9w51/KIjyWq21bzaYZB7jzPNjrZ4Xqi82D3GyZ33O6kwYNxKD5Yxk3XbjAJcEw=
+	t=1709367933; cv=none; b=QBWFVroTssFUgIwewnBbP/K3Ww885cBAilKzWNYrU1GAKXY3I9BHqrkYEleUIx4Af+bGz+7m8FrDq4ALuI69BtcqLAfSEzLE/ESzOWZsA70qNa1H+sQE2eYO9K0/6FhVnRt1KZy8zFRqEj0Fhw0PRa5YGFrEVXa7B/JqP8Gc3FE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709352067; c=relaxed/simple;
-	bh=QUJ+uyOOht+Lnc6Y4adY/bs8ZcDhOvU50AmkDpCQsfQ=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=afqf6Xm9OnKHmcRPphzIesGuq++POjQeHN0YAkzMZrA1lnPi9mvBMfGOVNz0277IpxO0mbzX/UirwJM2VnEMpGcdgt8iJSvEYIXIWIkEDLuxfBBatZegnzHKJHWtGzDf0nyjyL1oqPkFKRoQ3arAaIkbOlH01UyaPIW6J72jo5c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=f1kXHz4N; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4223k3oR016757;
-	Sat, 2 Mar 2024 04:00:58 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=qcppdkim1; bh=UgXdaho2g1wAGEkx5lrs8R4Q61U+T3fkNPkjg6bs7M4
-	=; b=f1kXHz4N7n9Aak90wcQ+U+760SkFTu0zlkdH+9rpwa3Qx99B6dN7ik9LmpK
-	LFnfLbw47rqvqz2pMzuclBixdyXS6LuuSV/A0WU2+m9fwFpmtf23sFdsqXgyJKxY
-	fW9b1Xc48F4+tT1dgbGbFe2hMl2ItIOEbddtTugAweZ6Ev4a0woNW8bonysH0ZTU
-	GdWrTCWS5BxMDaRGECYRw+0LjmaJ7PTB1aWvCLyknJPqypAdIlynfnzmR7XrG5DZ
-	wIzrQVaSSR4aXDTzkObd1fewCdevns0UZ29PV0+1Ra+/E9J+DawKGR5Y9og5sa3p
-	LXsjCdfzpXof1GV0CXAeikHhLnA==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wkvb700v2-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 02 Mar 2024 04:00:58 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42240v8c022368
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sat, 2 Mar 2024 04:00:57 GMT
-Received: from hu-krichai-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Fri, 1 Mar 2024 20:00:51 -0800
-From: Krishna chaitanya chundru <quic_krichai@quicinc.com>
-Date: Sat, 2 Mar 2024 09:30:01 +0530
-Subject: [PATCH v8 7/7] PCI: qcom: Add OPP support to scale performance
- state of power domain
+	s=arc-20240116; t=1709367933; c=relaxed/simple;
+	bh=aOXt0etRn0iI2pTnk+q60Tvwdmn3qjTu+2GZ+MPbXEM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=b+ZRQgOEI5jcNr4D2ii8r6n5cHme3wVm87DaxXBiBfw7G9GRaCBzRQpCD9BBDTGmU18M3AQlHtY7rqsTAh+V+UJzP+5/UTMlov5dSkALi9GeSBJzpMYKQG7UaDARqw52sOkYJVSZwPlIxPtiANYDvtjXGB+8L357cCh4C4my9Qs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net; spf=pass smtp.mailfrom=bewilderbeest.net; dkim=pass (1024-bit key) header.d=bewilderbeest.net header.i=@bewilderbeest.net header.b=AVbKjHJk; arc=none smtp.client-ip=71.19.156.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bewilderbeest.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bewilderbeest.net
+Received: from hatter.bewilderbeest.net (unknown [IPv6:2602:61:712b:6300::2])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: zev)
+	by thorn.bewilderbeest.net (Postfix) with ESMTPSA id 4C31AA0F;
+	Sat,  2 Mar 2024 00:19:07 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bewilderbeest.net;
+	s=thorn; t=1709367547;
+	bh=uBcRNeJLWt5bXN8LL3zh8wUF673J9TLVGF0cM0s95Zw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=AVbKjHJkm+9uQlNqZO9YUUY2AI3k/3bKujwb4LdTE3TFigoSXbTYrBBJrSaVEGyfu
+	 LCOXbVH49UFqf63/bGdlbdnzMAWlUMa1evXrsRcVPkonuu/TeguMhhPtYEo5XBi3sr
+	 B8w6zTllSa6KlENs5z7DiPq6R5DANfSw8KyGjwuM=
+Date: Sat, 2 Mar 2024 00:18:57 -0800
+From: Zev Weiss <zev@bewilderbeest.net>
+To: baneric926@gmail.com
+Cc: jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	corbet@lwn.net, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, kcfeng0@nuvoton.com, kwliu@nuvoton.com,
+	openbmc@lists.ozlabs.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, DELPHINE_CHIU@wiwynn.com,
+	naresh.solanki@9elements.com, billy_tsai@aspeedtech.com
+Subject: Re: [PATCH v4 3/3] hwmon: Driver for Nuvoton NCT7363Y
+Message-ID: <a90ed00c-f836-4fb6-8191-9974937e3eb7@hatter.bewilderbeest.net>
+References: <20240227005606.1107203-1-kcfeng0@nuvoton.com>
+ <20240227005606.1107203-4-kcfeng0@nuvoton.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240302-opp_support-v8-7-158285b86b10@quicinc.com>
-References: <20240302-opp_support-v8-0-158285b86b10@quicinc.com>
-In-Reply-To: <20240302-opp_support-v8-0-158285b86b10@quicinc.com>
-To: Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring
-	<robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring
-	<robh+dt@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
-        Brian Masney
-	<bmasney@redhat.com>, Georgi Djakov <djakov@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <vireshk@kernel.org>, <quic_vbadigan@quicinc.com>,
-        <quic_skananth@quicinc.com>, <quic_nitegupt@quicinc.com>,
-        <quic_parass@quicinc.com>,
-        Krishna chaitanya chundru
-	<quic_krichai@quicinc.com>
-X-Mailer: b4 0.13-dev-83828
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1709352004; l=5942;
- i=quic_krichai@quicinc.com; s=20230907; h=from:subject:message-id;
- bh=QUJ+uyOOht+Lnc6Y4adY/bs8ZcDhOvU50AmkDpCQsfQ=;
- b=hW7ITjW6G5LvtaqTuJ34NeeUYCWzHiMfeFprZaObeexidG+hGigmIx//ij8DAZ0EZVd7NgK1+
- Sb7gRxYjNI7B+iIK3DWlCVI0HKfrNZ3wGYeUrRERqZuR99URx8KejEH
-X-Developer-Key: i=quic_krichai@quicinc.com; a=ed25519;
- pk=10CL2pdAKFyzyOHbfSWHCD0X0my7CXxj8gJScmn1FAg=
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: ksJOpkJ0QGO-ZZOAlhlqsbEcauEdec9Q
-X-Proofpoint-ORIG-GUID: ksJOpkJ0QGO-ZZOAlhlqsbEcauEdec9Q
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-01_24,2024-03-01_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- bulkscore=0 adultscore=0 mlxlogscore=999 lowpriorityscore=0 phishscore=0
- malwarescore=0 impostorscore=0 clxscore=1015 spamscore=0 mlxscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403020031
+Content-Type: text/plain; charset=us-ascii; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240227005606.1107203-4-kcfeng0@nuvoton.com>
 
-QCOM Resource Power Manager-hardened (RPMh) is a hardware block which
-maintains hardware state of a regulator by performing max aggregation of
-the requests made by all of the clients.
+On Mon, Feb 26, 2024 at 04:56:06PM PST, baneric926@gmail.com wrote:
+>From: Ban Feng <kcfeng0@nuvoton.com>
+>
+>NCT7363Y is an I2C based hardware monitoring chip from Nuvoton.
+>
+>Signed-off-by: Ban Feng <kcfeng0@nuvoton.com>
+>---
+> Documentation/hwmon/index.rst   |   1 +
+> Documentation/hwmon/nct7363.rst |  33 +++
+> MAINTAINERS                     |   2 +
+> drivers/hwmon/Kconfig           |  11 +
+> drivers/hwmon/Makefile          |   1 +
+> drivers/hwmon/nct7363.c         | 412 ++++++++++++++++++++++++++++++++
+> 6 files changed, 460 insertions(+)
+> create mode 100644 Documentation/hwmon/nct7363.rst
+> create mode 100644 drivers/hwmon/nct7363.c
+>
+>diff --git a/Documentation/hwmon/index.rst b/Documentation/hwmon/index.rst
+>index c7ed1f73ac06..302f954b45be 100644
+>--- a/Documentation/hwmon/index.rst
+>+++ b/Documentation/hwmon/index.rst
+>@@ -165,6 +165,7 @@ Hardware Monitoring Kernel Drivers
+>    mp5990
+>    nct6683
+>    nct6775
+>+   nct7363
+>    nct7802
+>    nct7904
+>    npcm750-pwm-fan
+>diff --git a/Documentation/hwmon/nct7363.rst b/Documentation/hwmon/nct7363.rst
+>new file mode 100644
+>index 000000000000..89699c95aa4b
+>--- /dev/null
+>+++ b/Documentation/hwmon/nct7363.rst
+>@@ -0,0 +1,33 @@
+>+.. SPDX-License-Identifier: GPL-2.0
+>+
+>+Kernel driver nct7363
+>+=====================
+>+
+>+Supported chip:
+>+
+>+  * Nuvoton NCT7363Y
+>+
+>+    Prefix: nct7363
+>+
+>+    Addresses: I2C 0x20, 0x21, 0x22, 0x23
+>+
+>+Author: Ban Feng <kcfeng0@nuvoton.com>
+>+
+>+
+>+Description
+>+-----------
+>+
+>+The NCT7363Y is a Fan controller which provides up to 16 independent
+>+FAN input monitors, and up to 16 independent PWM output with SMBus interface.
+>+
+>+
+>+Sysfs entries
+>+-------------
+>+
+>+Currently, the driver supports the following features:
+>+
+>+======================= =======================================================
+>+fanX_input		provide current fan rotation value in RPM
+>+
+>+pwmX			get or set PWM fan control value.
+>+======================= =======================================================
+>diff --git a/MAINTAINERS b/MAINTAINERS
+>index 7b1efefed7c4..7ca66b713e30 100644
+>--- a/MAINTAINERS
+>+++ b/MAINTAINERS
+>@@ -15089,6 +15089,8 @@ M:	Ban Feng <kcfeng0@nuvoton.com>
+> L:	linux-hwmon@vger.kernel.org
+> S:	Maintained
+> F:	Documentation/devicetree/bindings/hwmon/nuvoton,nct7363.yaml
+>+F:	Documentation/hwmon/nct7363.rst
+>+F:	drivers/hwmon/nct7363.c
+>
+> NETDEVSIM
+> M:	Jakub Kicinski <kuba@kernel.org>
+>diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
+>index a608264da87d..a297b5409b04 100644
+>--- a/drivers/hwmon/Kconfig
+>+++ b/drivers/hwmon/Kconfig
+>@@ -1616,6 +1616,17 @@ config SENSORS_NCT6775_I2C
+> 	  This driver can also be built as a module. If so, the module
+> 	  will be called nct6775-i2c.
+>
+>+config SENSORS_NCT7363
+>+	tristate "Nuvoton NCT7363Y"
+>+	depends on I2C
+>+	select REGMAP_I2C
+>+	help
+>+	  If you say yes here you get support for the Nuvoton NCT7363Y,
+>+	  hardware monitoring chip.
+>+
+>+	  This driver can also be built as a module. If so, the module
+>+	  will be called nct7363.
+>+
+> config SENSORS_NCT7802
+> 	tristate "Nuvoton NCT7802Y"
+> 	depends on I2C
+>diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
+>index 47be39af5c03..d5e7531204df 100644
+>--- a/drivers/hwmon/Makefile
+>+++ b/drivers/hwmon/Makefile
+>@@ -167,6 +167,7 @@ obj-$(CONFIG_SENSORS_NCT6775_CORE) += nct6775-core.o
+> nct6775-objs			:= nct6775-platform.o
+> obj-$(CONFIG_SENSORS_NCT6775)	+= nct6775.o
+> obj-$(CONFIG_SENSORS_NCT6775_I2C) += nct6775-i2c.o
+>+obj-$(CONFIG_SENSORS_NCT7363)	+= nct7363.o
+> obj-$(CONFIG_SENSORS_NCT7802)	+= nct7802.o
+> obj-$(CONFIG_SENSORS_NCT7904)	+= nct7904.o
+> obj-$(CONFIG_SENSORS_NPCM7XX)	+= npcm750-pwm-fan.o
+>diff --git a/drivers/hwmon/nct7363.c b/drivers/hwmon/nct7363.c
+>new file mode 100644
+>index 000000000000..c79d3ca4f111
+>--- /dev/null
+>+++ b/drivers/hwmon/nct7363.c
+>@@ -0,0 +1,412 @@
+>+// SPDX-License-Identifier: GPL-2.0-or-later
+>+/*
+>+ * Copyright (c) 2023 Nuvoton Technology corporation.
+>+ */
+>+
+>+#include <linux/bitfield.h>
+>+#include <linux/bits.h>
+>+#include <linux/err.h>
+>+#include <linux/hwmon.h>
+>+#include <linux/hwmon-sysfs.h>
+>+#include <linux/i2c.h>
+>+#include <linux/module.h>
+>+#include <linux/mutex.h>
+>+#include <linux/regmap.h>
+>+#include <linux/slab.h>
+>+
+>+#define NCT7363_REG_GPIO_0_3		0x20
+>+#define NCT7363_REG_GPIO_4_7		0x21
+>+#define NCT7363_REG_GPIO_10_13		0x22
+>+#define NCT7363_REG_GPIO_14_17		0x23
+>+#define NCT7363_REG_PWMEN_0_7		0x38
+>+#define NCT7363_REG_PWMEN_8_15		0x39
+>+#define NCT7363_REG_FANINEN_0_7		0x41
+>+#define NCT7363_REG_FANINEN_8_15	0x42
+>+#define NCT7363_REG_FANINX_HVAL(x)	(0x48 + ((x) * 2))
+>+#define NCT7363_REG_FANINX_LVAL(x)	(0x49 + ((x) * 2))
+>+#define NCT7363_REG_FSCPXDUTY(x)	(0x90 + ((x) * 2))
+>+
+>+#define PWM_SEL(x)			(BIT(0) << (((x) % 4) * 2))
+>+#define FANIN_SEL(x)			(BIT(1) << (((x) % 4) * 2))
+>+
+>+#define NCT7363_FANINX_LVAL_MASK	GENMASK(4, 0)
+>+#define NCT7363_FANIN_MASK		GENMASK(12, 0)
+>+
+>+#define NCT7363_PWM_COUNT		16
+>+
+>+static inline unsigned long FAN_FROM_REG(u16 val)
+>+{
+>+	/* In case fan is stopped or divide by 0 */
+>+	if (val == NCT7363_FANIN_MASK || val == 0)
+>+		return	0;
+>+
+>+	return (1350000UL / val);
+>+}
+>+
+>+static const struct of_device_id nct7363_of_match[] = {
+>+	{ .compatible = "nuvoton,nct7363" },
 
-PCIe controller can operate on different RPMh performance state of power
-domain based on the speed of the link. And this performance state varies
-from target to target, like some controllers support GEN3 in NOM (Nominal)
-voltage corner, while some other supports GEN3 in low SVS (static voltage
-scaling).
+As far as I can see from the code in this driver, it looks like this 
+driver should also be compatible with the nct7362; shall we add the ID 
+table entry for it now?  (Though I only have a datasheet for the 
+nct7362, not the nct7363, so I don't know exactly how they differ.)
 
-The SoC can be more power efficient if we scale the performance state
-based on the aggregate PCIe link bandwidth.
+>+	{ },
+>+};
+>+MODULE_DEVICE_TABLE(of, nct7363_of_match);
+>+
+>+struct nct7363_data {
+>+	struct regmap		*regmap;
+>+	struct mutex		lock; /* protect register access */
+>+
+>+	u16			fanin_mask;
+>+	u16			pwm_mask;
+>+};
+>+
+>+static int nct7363_read_fan(struct device *dev, u32 attr, int channel,
+>+			    long *val)
+>+{
+>+	struct nct7363_data *data = dev_get_drvdata(dev);
+>+	unsigned int hi, lo;
+>+	u16 cnt, rpm;
+>+	int ret = 0;
+>+
+>+	switch (attr) {
+>+	case hwmon_fan_input:
+>+		/*
+>+		 * High-byte register should be read first to latch
+>+		 * synchronous low-byte value
+>+		 */
+>+		ret = regmap_read(data->regmap,
+>+				  NCT7363_REG_FANINX_HVAL(channel), &hi);
+>+		if (ret)
+>+			return ret;
+>+
+>+		ret = regmap_read(data->regmap,
+>+			NCT7363_REG_FANINX_LVAL(channel), &lo);
+>+		if (ret)
+>+			return ret;
 
-Add Operating Performance Points (OPP) support to vote for RPMh state based
-on the aggregate link bandwidth.
+I think this pair of reads should be done under data->lock to ensure 
+that the LVAL read gets the right latched value in a scenario where 
+multiple threads executing this function end up with their register 
+reads interleaved.
 
-OPP can handle ICC bw voting also, so move ICC bw voting through OPP
-framework if OPP entries are present.
+>+
+>+		cnt = (hi << 5) | (lo & NCT7363_FANINX_LVAL_MASK);
+>+		rpm = FAN_FROM_REG(cnt);
+>+		*val = (long)rpm;
 
-Different link configurations may share the same aggregate bandwidth,
-e.g., a 2.5 GT/s x2 link and a 5.0 GT/s x1 link have the same bandwidth
-and share the same OPP entry.
+Given that rpm is assigned from an unsigned long (FAN_FROM_REG()) and 
+then to a long (*val), is there any reason we want it as a u16 in 
+between the two?  Or for that matter, why not just:
 
-As we are moving ICC voting as part of OPP, don't initialize ICC if OPP
-is supported.
+   *val = FAN_FROM_REG(cnt);
 
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
----
- drivers/pci/controller/dwc/pcie-qcom.c | 81 +++++++++++++++++++++++++++-------
- 1 file changed, 66 insertions(+), 15 deletions(-)
+?
 
-diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-index a0266bfe71f1..2ec14bfafcfc 100644
---- a/drivers/pci/controller/dwc/pcie-qcom.c
-+++ b/drivers/pci/controller/dwc/pcie-qcom.c
-@@ -22,6 +22,7 @@
- #include <linux/of.h>
- #include <linux/of_gpio.h>
- #include <linux/pci.h>
-+#include <linux/pm_opp.h>
- #include <linux/pm_runtime.h>
- #include <linux/platform_device.h>
- #include <linux/phy/pcie.h>
-@@ -244,6 +245,7 @@ struct qcom_pcie {
- 	const struct qcom_pcie_cfg *cfg;
- 	struct dentry *debugfs;
- 	bool suspended;
-+	bool opp_supported;
- };
- 
- #define to_qcom_pcie(x)		dev_get_drvdata((x)->dev)
-@@ -1405,15 +1407,13 @@ static int qcom_pcie_icc_init(struct qcom_pcie *pcie)
- 	return 0;
- }
- 
--static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
-+static void qcom_pcie_icc_opp_update(struct qcom_pcie *pcie)
- {
- 	struct dw_pcie *pci = pcie->pci;
--	u32 offset, status;
-+	u32 offset, status, freq;
-+	struct dev_pm_opp *opp;
- 	int speed, width;
--	int ret;
--
--	if (!pcie->icc_mem)
--		return;
-+	int ret, mbps;
- 
- 	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
- 	status = readw(pci->dbi_base + offset + PCI_EXP_LNKSTA);
-@@ -1425,11 +1425,30 @@ static void qcom_pcie_icc_update(struct qcom_pcie *pcie)
- 	speed = FIELD_GET(PCI_EXP_LNKSTA_CLS, status);
- 	width = FIELD_GET(PCI_EXP_LNKSTA_NLW, status);
- 
--	ret = icc_set_bw(pcie->icc_mem, 0, width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
--	if (ret) {
--		dev_err(pci->dev, "failed to set interconnect bandwidth: %d\n",
--			ret);
-+	if (pcie->opp_supported) {
-+		mbps = pcie_link_speed_to_mbps(pcie_link_speed[speed]);
-+		if (mbps < 0)
-+			return;
-+
-+		freq = mbps * 1000;
-+		opp = dev_pm_opp_find_freq_exact(pci->dev, freq * width, true);
-+		if (!IS_ERR(opp)) {
-+			ret = dev_pm_opp_set_opp(pci->dev, opp);
-+			if (ret)
-+				dev_err(pci->dev, "Failed to set opp: freq %ld ret %d\n",
-+					dev_pm_opp_get_freq(opp), ret);
-+			dev_pm_opp_put(opp);
-+		}
-+	} else {
-+		ret = icc_set_bw(pcie->icc_mem, 0,
-+				 width * QCOM_PCIE_LINK_SPEED_TO_BW(speed));
-+		if (ret) {
-+			dev_err(pci->dev,
-+				"failed to set interconnect bandwidth for pcie-mem: %d\n", ret);
-+		}
- 	}
-+
-+	return;
- }
- 
- static int qcom_pcie_link_transition_count(struct seq_file *s, void *data)
-@@ -1472,8 +1491,10 @@ static void qcom_pcie_init_debugfs(struct qcom_pcie *pcie)
- static int qcom_pcie_probe(struct platform_device *pdev)
- {
- 	const struct qcom_pcie_cfg *pcie_cfg;
-+	unsigned long max_freq = INT_MAX;
- 	struct device *dev = &pdev->dev;
- 	struct qcom_pcie *pcie;
-+	struct dev_pm_opp *opp;
- 	struct dw_pcie_rp *pp;
- 	struct resource *res;
- 	struct dw_pcie *pci;
-@@ -1540,9 +1561,36 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 		goto err_pm_runtime_put;
- 	}
- 
--	ret = qcom_pcie_icc_init(pcie);
--	if (ret)
-+	 /* OPP table is optional */
-+	ret = devm_pm_opp_of_add_table(dev);
-+	if (ret && ret != -ENODEV) {
-+		dev_err_probe(dev, ret, "Failed to add OPP table\n");
- 		goto err_pm_runtime_put;
-+	}
-+
-+	/*
-+	 * Use highest OPP here if the OPP table is present. At the end of
-+	 * the probe(), OPP will be updated using qcom_pcie_icc_opp_update().
-+	 */
-+	if (ret != -ENODEV) {
-+		opp = dev_pm_opp_find_freq_floor(dev, &max_freq);
-+		if (!IS_ERR(opp)) {
-+			ret = dev_pm_opp_set_opp(dev, opp);
-+			if (ret)
-+				dev_err_probe(pci->dev, ret,
-+					      "Failed to set opp: freq %ld\n",
-+					      dev_pm_opp_get_freq(opp));
-+			dev_pm_opp_put(opp);
-+		}
-+		pcie->opp_supported = true;
-+	}
-+
-+	/* Skip ICC init if OPP is supported as ICC bw is handled by OPP */
-+	if (!pcie->opp_supported) {
-+		ret = qcom_pcie_icc_init(pcie);
-+		if (ret)
-+			goto err_pm_runtime_put;
-+	}
- 
- 	ret = pcie->cfg->ops->get_resources(pcie);
- 	if (ret)
-@@ -1562,7 +1610,7 @@ static int qcom_pcie_probe(struct platform_device *pdev)
- 		goto err_phy_exit;
- 	}
- 
--	qcom_pcie_icc_update(pcie);
-+	qcom_pcie_icc_opp_update(pcie);
- 
- 	if (pcie->mhi)
- 		qcom_pcie_init_debugfs(pcie);
-@@ -1621,10 +1669,13 @@ static int qcom_pcie_suspend_noirq(struct device *dev)
- 			qcom_pcie_host_init(&pcie->pci->pp);
- 			pcie->suspended = false;
- 		}
--		qcom_pcie_icc_update(pcie);
-+		qcom_pcie_icc_opp_update(pcie);
- 		return ret;
- 	}
- 
-+	if (pcie->opp_supported)
-+		dev_pm_opp_set_opp(pcie->pci->dev, NULL);
-+
- 	return 0;
- }
- 
-@@ -1647,7 +1698,7 @@ static int qcom_pcie_resume_noirq(struct device *dev)
- 		pcie->suspended = false;
- 	}
- 
--	qcom_pcie_icc_update(pcie);
-+	qcom_pcie_icc_opp_update(pcie);
- 
- 	return 0;
- }
+>+		return 0;
+>+	default:
+>+		return -EOPNOTSUPP;
+>+	}
+>+}
+>+
+>+static umode_t nct7363_fan_is_visible(const void *_data, u32 attr, int channel)
+>+{
+>+	const struct nct7363_data *data = _data;
+>+
+>+	switch (attr) {
+>+	case hwmon_fan_input:
+>+		if (data->fanin_mask & BIT(channel))
+>+			return 0444;
+>+		break;
+>+	default:
+>+		break;
+>+	}
+>+
+>+	return 0;
+>+}
+>+
+>+static int nct7363_read_pwm(struct device *dev, u32 attr, int channel,
+>+			    long *val)
+>+{
+>+	struct nct7363_data *data = dev_get_drvdata(dev);
+>+	unsigned int regval;
+>+	u16 ret;
+>+
+>+	switch (attr) {
+>+	case hwmon_pwm_input:
+>+		ret = regmap_read(data->regmap,
+>+				  NCT7363_REG_FSCPXDUTY(channel), &regval);
+>+		if (ret)
+>+			return ret;
+>+
+>+		*val = (long)regval;
+>+		return 0;
+>+	default:
+>+		return -EOPNOTSUPP;
+>+	}
+>+}
+>+
+>+static int nct7363_write_pwm(struct device *dev, u32 attr, int channel,
+>+			     long val)
+>+{
+>+	struct nct7363_data *data = dev_get_drvdata(dev);
+>+	int ret;
+>+
+>+	switch (attr) {
+>+	case hwmon_pwm_input:
+>+		if (val < 0 || val > 255)
+>+			return -EINVAL;
+>+
+>+		mutex_lock(&data->lock);
+>+		ret = regmap_write(data->regmap,
+>+				   NCT7363_REG_FSCPXDUTY(channel), val);
+>+		mutex_unlock(&data->lock);
 
--- 
-2.42.0
+...though here, I'm not sure the locking is needed -- is there something 
+that necessitates it for a single register write?
 
+>+
+>+		return ret;
+>+
+>+	default:
+>+		return -EOPNOTSUPP;
+>+	}
+>+}
+>+
+>+static umode_t nct7363_pwm_is_visible(const void *_data, u32 attr, int channel)
+>+{
+>+	const struct nct7363_data *data = _data;
+>+
+>+	switch (attr) {
+>+	case hwmon_pwm_input:
+>+		if (data->pwm_mask & BIT(channel))
+>+			return 0644;
+>+		break;
+>+	default:
+>+		break;
+>+	}
+>+
+>+	return 0;
+>+}
+>+
+>+static int nct7363_read(struct device *dev, enum hwmon_sensor_types type,
+>+			u32 attr, int channel, long *val)
+>+{
+>+	switch (type) {
+>+	case hwmon_fan:
+>+		return nct7363_read_fan(dev, attr, channel, val);
+>+	case hwmon_pwm:
+>+		return nct7363_read_pwm(dev, attr, channel, val);
+>+	default:
+>+		return -EOPNOTSUPP;
+>+	}
+>+}
+>+
+>+static int nct7363_write(struct device *dev, enum hwmon_sensor_types type,
+>+			 u32 attr, int channel, long val)
+>+{
+>+	switch (type) {
+>+	case hwmon_pwm:
+>+		return nct7363_write_pwm(dev, attr, channel, val);
+>+	default:
+>+		return -EOPNOTSUPP;
+>+	}
+>+}
+>+
+>+static umode_t nct7363_is_visible(const void *data,
+>+				  enum hwmon_sensor_types type,
+>+				  u32 attr, int channel)
+>+{
+>+	switch (type) {
+>+	case hwmon_fan:
+>+		return nct7363_fan_is_visible(data, attr, channel);
+>+	case hwmon_pwm:
+>+		return nct7363_pwm_is_visible(data, attr, channel);
+>+	default:
+>+		return 0;
+>+	}
+>+}
+>+
+>+static const struct hwmon_channel_info *nct7363_info[] = {
+>+	HWMON_CHANNEL_INFO(fan,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT,
+>+			   HWMON_F_INPUT),
+>+	HWMON_CHANNEL_INFO(pwm,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT,
+>+			   HWMON_PWM_INPUT),
+>+	NULL
+>+};
+>+
+>+static const struct hwmon_ops nct7363_hwmon_ops = {
+>+	.is_visible = nct7363_is_visible,
+>+	.read = nct7363_read,
+>+	.write = nct7363_write,
+>+};
+>+
+>+static const struct hwmon_chip_info nct7363_chip_info = {
+>+	.ops = &nct7363_hwmon_ops,
+>+	.info = nct7363_info,
+>+};
+>+
+>+static int nct7363_init_chip(struct nct7363_data *data)
+>+{
+>+	u8 i, gpio0_3 = 0, gpio4_7 = 0, gpio10_13 = 0, gpio14_17 = 0;
+>+	int ret;
+>+
+>+	for (i = 0; i < NCT7363_PWM_COUNT; i++) {
+>+		if (i < 4) {
+>+			if (data->pwm_mask & BIT(i))
+>+				gpio0_3 |= PWM_SEL(i);
+>+			if (data->fanin_mask & BIT(i))
+>+				gpio10_13 |= FANIN_SEL(i);
+>+		} else if (i < 8) {
+>+			if (data->pwm_mask & BIT(i))
+>+				gpio4_7 |= PWM_SEL(i);
+>+			if (data->fanin_mask & BIT(i))
+>+				gpio14_17 |= FANIN_SEL(i);
+>+		} else if (i < 12) {
+>+			if (data->pwm_mask & BIT(i))
+>+				gpio10_13 |= PWM_SEL(i);
+>+			if (data->fanin_mask & BIT(i))
+>+				gpio0_3 |= FANIN_SEL(i);
+>+		} else {
+>+			if (data->pwm_mask & BIT(i))
+>+				gpio14_17 |= PWM_SEL(i);
+>+			if (data->fanin_mask & BIT(i))
+>+				gpio4_7 |= FANIN_SEL(i);
+>+		}
+>+	}
+
+With the caveat that I haven't actually sketched it out myself to be 
+sure, might it be a bit cleaner to do this with a 4-element array 
+indexed by 'i / 4' instead of a big if/else chain and a bunch of 
+near-duplicated blocks?
+
+>+
+>+	/* Pin Function Configuration */
+>+	ret = regmap_write(data->regmap, NCT7363_REG_GPIO_0_3, gpio0_3);
+>+	if (ret < 0)
+>+		return ret;
+>+	ret = regmap_write(data->regmap, NCT7363_REG_GPIO_4_7, gpio4_7);
+>+	if (ret < 0)
+>+		return ret;
+>+	ret = regmap_write(data->regmap, NCT7363_REG_GPIO_10_13, gpio10_13);
+>+	if (ret < 0)
+>+		return ret;
+>+	ret = regmap_write(data->regmap, NCT7363_REG_GPIO_14_17, gpio14_17);
+>+	if (ret < 0)
+>+		return ret;
+>+
+>+	/* PWM and FANIN Monitoring Enable */
+>+	ret = regmap_write(data->regmap, NCT7363_REG_PWMEN_0_7,
+>+			   data->pwm_mask & 0xff);
+>+	if (ret < 0)
+>+		return ret;
+>+	ret = regmap_write(data->regmap, NCT7363_REG_PWMEN_8_15,
+>+			   (data->pwm_mask >> 8) & 0xff);
+>+	if (ret < 0)
+>+		return ret;
+>+	ret = regmap_write(data->regmap, NCT7363_REG_FANINEN_0_7,
+>+			   data->fanin_mask & 0xff);
+>+	if (ret < 0)
+>+		return ret;
+>+	ret = regmap_write(data->regmap, NCT7363_REG_FANINEN_8_15,
+>+			   (data->fanin_mask >> 8) & 0xff);
+>+	if (ret < 0)
+>+		return ret;
+>+
+>+	return 0;
+>+}
+>+
+>+static int nct7363_present_pwm_fanin(struct device *dev,
+>+				     struct device_node *child,
+>+				     struct nct7363_data *data)
+>+{
+>+	struct of_phandle_args args;
+>+	int ret, fanin_cnt;
+>+	u8 *fanin_ch;
+>+	u8 ch, index;
+>+
+>+	ret = of_parse_phandle_with_args(child, "pwms", "#pwm-cells",
+>+					 0, &args);
+>+	if (ret)
+>+		return ret;
+>+
+>+	data->pwm_mask |= BIT(args.args[0]);
+
+Perhaps we should have
+
+   if (args.args[0] >= NCT7363_PWM_COUNT)
+     return -EINVAL;
+
+here?
+
+>+
+>+	fanin_cnt = of_property_count_u8_elems(child, "tach-ch");
+>+	if (fanin_cnt < 1)
+
+fanin_cnt < 1 || fanin_cnt >= NCT7363_PWM_COUNT
+
+>+		return -EINVAL;
+>+
+>+	fanin_ch = devm_kcalloc(dev, fanin_cnt, sizeof(*fanin_ch), GFP_KERNEL);
+
+Keeping this allocation around persistently for the whole lifetime of 
+the device seems unnecessary -- it's not used beyond this function, 
+right?  In fact, dynamically allocating it at all seems like overkill, 
+considering that in addition to being temporary, it's also got a pretty 
+small upper bound on its size.  I'd think a simple
+
+   u8 fanin_ch[NCT7363_PWM_COUNT];
+
+would suffice?  (Along with the check above to ensure fanin_cnt is 
+within range of course.)
+
+>+	if (!fanin_ch)
+>+		return -ENOMEM;
+>+
+>+	ret = of_property_read_u8_array(child, "tach-ch", fanin_ch, fanin_cnt);
+>+	if (ret)
+>+		return ret;
+>+
+>+	for (ch = 0; ch < fanin_cnt; ch++) {
+>+		index = fanin_ch[ch];
+
+...and likewise a range check here too?
+
+>+		data->fanin_mask |= BIT(index);
+>+	}
+>+
+
+Should we also grab the pulses-per-revolution property here and factor 
+that in in FAN_FROM_REG()?
+
+>+	return 0;
+>+}
+>+
+>+static const struct regmap_config nct7363_regmap_config = {
+>+	.reg_bits = 8,
+>+	.val_bits = 8,
+>+};
+>+
+>+static int nct7363_probe(struct i2c_client *client)
+>+{
+>+	struct device *dev = &client->dev;
+>+	struct device_node *child;
+>+	struct nct7363_data *data;
+>+	struct device *hwmon_dev;
+>+	int ret;
+>+
+>+	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>+	if (!data)
+>+		return -ENOMEM;
+>+
+>+	data->regmap = devm_regmap_init_i2c(client, &nct7363_regmap_config);
+>+	if (IS_ERR(data->regmap))
+>+		return PTR_ERR(data->regmap);
+>+
+>+	mutex_init(&data->lock);
+>+
+>+	for_each_child_of_node(dev->of_node, child) {
+>+		ret = nct7363_present_pwm_fanin(dev, child, data);
+>+		if (ret) {
+>+			of_node_put(child);
+>+			return ret;
+>+		}
+>+	}
+>+
+>+	/* Initialize the chip */
+>+	ret = nct7363_init_chip(data);
+>+	if (ret)
+>+		return ret;
+>+
+>+	hwmon_dev =
+>+		devm_hwmon_device_register_with_info(dev, client->name, data,
+>+						     &nct7363_chip_info, NULL);
+>+	return PTR_ERR_OR_ZERO(hwmon_dev);
+>+}
+>+
+>+static struct i2c_driver nct7363_driver = {
+>+	.class = I2C_CLASS_HWMON,
+
+Maybe add an i2c_device_id table to accompany the of_match table?
+
+>+	.driver = {
+>+		.name = "nct7363",
+>+		.of_match_table = nct7363_of_match,
+>+	},
+>+	.probe = nct7363_probe,
+>+};
+>+
+>+module_i2c_driver(nct7363_driver);
+>+
+>+MODULE_AUTHOR("CW Ho <cwho@nuvoton.com>");
+>+MODULE_AUTHOR("Ban Feng <kcfeng0@nuvoton.com>");
+>+MODULE_DESCRIPTION("NCT7363 Hardware Monitoring Driver");
+>+MODULE_LICENSE("GPL");
+>-- 
+>2.34.1
+>
+>
 
