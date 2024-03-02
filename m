@@ -1,141 +1,114 @@
-Return-Path: <devicetree+bounces-47867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FB6186EFD8
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 10:36:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C6A9C86EFFA
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 11:05:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EC2E51F21ADA
-	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 09:36:57 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 046A21C21550
+	for <lists+devicetree@lfdr.de>; Sat,  2 Mar 2024 10:05:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E885013FFA;
-	Sat,  2 Mar 2024 09:36:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rk1gZxzV"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9ED134DE;
+	Sat,  2 Mar 2024 10:05:02 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A7BC13AE8
-	for <devicetree@vger.kernel.org>; Sat,  2 Mar 2024 09:36:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C52751426D
+	for <devicetree@vger.kernel.org>; Sat,  2 Mar 2024 10:04:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709372212; cv=none; b=J6M3VxNh5iAuIda8+xkwg+W5gHeLFxIgCXxPXKVptGXct/RKDE5xWt8pBXchTvsy0sIpixaXZiEbsocQDeyPIFzDDCWUTn7GjoZWi5PmQjI39eG95+FYb9hCR375s5VDTUYFkW1QTglwISAjVnZKVWQ5DNo+nN6fuKAZD05SKHA=
+	t=1709373902; cv=none; b=iJwIWRSQVvwQFCG77ABL0FMVb6ZlMhXyry9kN3jsHiOStawFTkIHK8Hot3aYUA3v8O5AJbU/TYSEspJDTxWAThO4+Hvkw8ZbcLP49li440k2nc0QcI+qEXCNLWOZ1mTRmg3V5jX5KpJbKuQywZ+xvcCTh2ox2vSiHdj2px1pzeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709372212; c=relaxed/simple;
-	bh=X/AL9TvNX/+ErvbiZEnbteQ6E0iQD2tAJQ+ARrkNOXQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=HAIIBDT/ZXE1PfOINYAKneFfkxY1Qr/en+WxCLD+qJrnMxfoP6RCqNc0EUloEXihWZsS3X76un0X8NHuEgry/9fCxnTghCCV+TyzpBd+0B3I4dK7UgdrFWkIH3P/NbTuztQQkIl1HVs2rXAjpyic4Lm6XQEkZkVzj+FliBauxzc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rk1gZxzV; arc=none smtp.client-ip=209.85.218.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a26fa294e56so538558866b.0
-        for <devicetree@vger.kernel.org>; Sat, 02 Mar 2024 01:36:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709372209; x=1709977009; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LvcKz/ggpTufe8TwOw+mHRKPGyMuEJMkdqXs69fMMA8=;
-        b=rk1gZxzVOrImSi5lm6BSOIdmipt/aGrrQsjmXqjYJ0iPRPcew9Mi4ClysL3GOKE7Q4
-         jhns6tOoFMc4ppQ2kJ4CI6aNCz+o1RJr8JMwzQOI4rAJbxWNI6hf9eC3PnQ+vKUS55t2
-         QzxJ/PqrqgjowgwklGYa78//wsY0Hmuayh0BiG1RuURLV7k3H2agHuGDaTSHmL/SYOV7
-         T8vB0wecw9Za/c/njLPme6NlEoMbIxe67KHpI5x6rAS29eGXcu6ea7PhL3ynltror9C2
-         XU1Hmlp+jRoCWNV+ia4nSMIVCYCuFLACMfhlDrzyD2NB7jXzNiNvY7lmmTWRnxNwByto
-         /VfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709372209; x=1709977009;
-        h=content-transfer-encoding:in-reply-to:content-language:from
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LvcKz/ggpTufe8TwOw+mHRKPGyMuEJMkdqXs69fMMA8=;
-        b=dtBHL8jDLrIqapCuaDe6sDqelc1Hv/JSZhsMvvqEyW0Gn4NMOvKBZJqQReuGHq5pUC
-         q2yuipMKfi2Ym3Z3rmbXMg+az8q85awaDUW2u61zEPteIdJjfhkaWNzhrDHfRbfzy7NM
-         TElHt09qCSDcKREcFAfn31lyJNcWWejbgPVkfSA+25CevPVW4WySy70IWoIBX8hAnpfk
-         gwo5iXWbTKuxCMFmdfpU1e8VXDBU+D7WTUSlLgmI0EOAkMONZjCPi5O2gmbpZc8yZkB9
-         t1Yxm6d/sljdLduFId+nzeWsMVBOPb1BpvcOW26SYZ9s7QlUhKa8gJ+BcvZMNjTx6Zwt
-         ZqyQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXBAjtBr6/f29XQiazE5PvgR30YyjTbgfr9gGnlzwfrYnrCTYUCtcbZehtVAdz3bwDm6JysviyV/uHKQxQstVr1N6aSqacuVf5PAA==
-X-Gm-Message-State: AOJu0YzPmi84kzT8x0iMdSBCW3CQIBuTAyHIbPGzjddKwGwJKv7J/1QA
-	Zejq2tee0yn8fgx02kIqdBWhtflMtFMUZRHqQnCNLSky2IgCjaFnIfIl0OevyvQ=
-X-Google-Smtp-Source: AGHT+IHyHU7L10kTlkkTRniCEnzyER/dAOmXjiBsxNbkczBaTHO/POH2wBkjJHVx2ngJK0q2toRjLg==
-X-Received: by 2002:a17:906:5a9a:b0:a43:bf25:989 with SMTP id l26-20020a1709065a9a00b00a43bf250989mr2973140ejq.9.1709372209521;
-        Sat, 02 Mar 2024 01:36:49 -0800 (PST)
-Received: from [192.168.0.173] ([79.115.63.35])
-        by smtp.gmail.com with ESMTPSA id gs4-20020a170906f18400b00a449d12cdc5sm1210443ejb.119.2024.03.02.01.36.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 02 Mar 2024 01:36:49 -0800 (PST)
-Message-ID: <f06328e4-b283-4302-b9c1-6473aa3cfa25@linaro.org>
-Date: Sat, 2 Mar 2024 11:36:47 +0200
+	s=arc-20240116; t=1709373902; c=relaxed/simple;
+	bh=aDB9dfxyhbZHvIbbTL7Fj8Qnie2r3ZpNJXX3OOO4Vgc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=DXDgyrdG8nc5c1uI8OF8457MDu6JwhGQr543S0tYRpd+bRTN1v9XvbhXOFf/MYJQbGAqxkRWdS1nlCpkFmrC7SwIKsOebOT4SOzl44EHufBoPSFdGLUiSExnn4/h+AoISO+/JVHtAy/M9wH6qQxpErxNsPdZSgagfSROFsjqWaw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rgMEc-0004Fj-0z; Sat, 02 Mar 2024 11:04:50 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rgMEb-003wqT-29; Sat, 02 Mar 2024 11:04:49 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rgMEa-00FL58-39;
+	Sat, 02 Mar 2024 11:04:48 +0100
+Date: Sat, 2 Mar 2024 11:04:45 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org, linux-pwm@vger.kernel.org, 
+	JunYi Zhao <junyi.zhao@amlogic.com>
+Subject: Re: [PATCH v5 0/5] pwm: meson: dt-bindings fixup
+Message-ID: <b6jyherdfnehu3xrg6ulkxlcfknfej6ali2om27d7rjmwncwxz@3wrtx6sv4xm7>
+References: <20240221151154.26452-1-jbrunet@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] spi: dt-bindings: samsung: make dma properties not
- required
-To: Mark Brown <broonie@kernel.org>,
- Sam Protsenko <semen.protsenko@linaro.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: andi.shyti@kernel.org, robh+dt@kernel.org, conor+dt@kernel.org,
- linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- andre.draszik@linaro.org, peter.griffin@linaro.org, willmcvicker@google.com,
- kernel-team@android.com
-References: <20240301115546.2266676-1-tudor.ambarus@linaro.org>
- <CAPLW+4=6oYcs0NPXo4ffLiCvtNQ-tY1s_isaxTX8dcPkV56xMw@mail.gmail.com>
- <cb426fb0-2f27-4c9b-89f5-7139354ea425@sirena.org.uk>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-Content-Language: en-US
-In-Reply-To: <cb426fb0-2f27-4c9b-89f5-7139354ea425@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="h3wvrlu5hxba7ods"
+Content-Disposition: inline
+In-Reply-To: <20240221151154.26452-1-jbrunet@baylibre.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
 
+--h3wvrlu5hxba7ods
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 01.03.2024 22:42, Mark Brown wrote:
-> On Fri, Mar 01, 2024 at 01:28:35PM -0600, Sam Protsenko wrote:
->> On Fri, Mar 1, 2024 at 5:55 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
-> 
->>> Since the addition of the driver in 2009, the driver selects between DMA
->>> and polling mode depending on the transfer length - DMA mode for
->>> transfers bigger than the FIFO depth, polling mode otherwise. All
->>> versions of the IP support polling mode, make the dma properties not
->>> required.
-> 
->> AFAIU, the device tree has nothing to do with drivers, it's about
->> hardware description. Does making DMA properties not required here
+Hello Jerome,
 
-correct
+On Wed, Feb 21, 2024 at 04:11:46PM +0100, Jerome Brunet wrote:
+> Jerome Brunet (5):
+>   dt-bindings: pwm: amlogic: fix s4 bindings
+>   dt-bindings: pwm: amlogic: Add a new binding for meson8 pwm types
+>   pwm: meson: generalize 4 inputs clock on meson8 pwm type
+>   pwm: meson: don't carry internal clock elements around
+>   pwm: meson: add generic compatible for meson8 to sm1
 
->> mean that there are some HW out there which doesn't integrate DMA in
+I applied patches #1 to #3. This doesn't mean #4 and #5 are bad, just
+that I need some more time for review.
 
-no, to me it means that the IP can work without DMA, only in PIO mode,
-regardless if DMA is integrated or not. Not required means that the
-property is not mandatory, which is what I'm trying to achieve here.
+Best regards
+Uwe
 
->> SPI blocks? Even if this change is ok (I'm not sure), the
->> argumentation doesn't look sound to me.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-switching to PIO mode in the driver for sizes smaller than FIFO depths
-in the driver guarantees that all existing compatibles support PIO mode.
+--h3wvrlu5hxba7ods
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Are you saying that if there is a physical line between an IP and DMA
-controller, then the DMA properties must always be specified in dt? I
-thought they can be marked as optional in this case, and that's what I
-did with this patch.
+-----BEGIN PGP SIGNATURE-----
 
-> 
-> I do remember there being some SoC which shipped a SPI controller in
-> that configuration for some reason.  Possibly one of the OEM ones rather
-> than one in a Samsung SoC?
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXi+bwACgkQj4D7WH0S
+/k5xXAf+ORcgnudezS1elCoc+vcwfRBfd+L8tYNpbx4BuKMVtVxaKQ/9sEV6m73x
+SJoD5+nOJsFAI0gJFeW1z0Mo2W9/AJly67xPNuwxg3MSwq0aDL+birkC1rKJX2GK
+eJ+6ax+MN8b1X85tHb9Z/Mzm1daUkiK5ReNRKKHXlm9yKsQHDMvDbqCS0K2DXATq
+iTU86vIjL+EB2dQFsTN/zbwY7GQU01MIa3veJsulPgZb9OJzM8njirll/61q2r+x
+Dx4pIsBpOpOEzAy1UytunBrntj6N2iUZz8tlX7nx+HEcfjii2ySHGKuY01tWJbIR
+7ffCqSAtvn3ghzC+5yIFk4EYjX66MA==
+=IVa9
+-----END PGP SIGNATURE-----
 
-with DMA you mean?
-
-Thanks,
-ta
+--h3wvrlu5hxba7ods--
 
