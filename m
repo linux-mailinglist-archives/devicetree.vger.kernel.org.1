@@ -1,191 +1,193 @@
-Return-Path: <devicetree+bounces-47939-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47940-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E72B86F5FA
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 16:52:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id C8D9986F609
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 17:23:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 85366B20A1F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 15:52:46 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0ED88B2319C
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 16:23:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7FD567C5C;
-	Sun,  3 Mar 2024 15:52:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 346976BB39;
+	Sun,  3 Mar 2024 16:23:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="diqYF8Ik"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="i7z3tnNg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6D1067C50;
-	Sun,  3 Mar 2024 15:52:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 02B256FD1;
+	Sun,  3 Mar 2024 16:23:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709481160; cv=none; b=EFkmDohjkSaUpeB9aaXECT5uEbTSuNXV2zTYEegXrbqJCtsbkvqUYIXaQFYhRYa6iIEq4yEj4H121H69TTehO4MkV50Gu9Gat3uvodEzsTOqGJGbSSHbqxm1GUsuAmCbUo1xOAXOKZ25mKa8Htcw71uRvBWj9SEtXXVXDYLdt/0=
+	t=1709483002; cv=none; b=SF5S5LhjH9JqOE4YZHlvCv6k0MxCGDeecWW02xhWU1rrYyr4+8HOhiDUb5eOspx/xcKRvSZ7/08UP2psytU+ahPn94yE/OezmeJS/mu8FakaSJVWCpCjyO1b7S6aT0oZptWrrZfGlOOtz2gs2Y+iJf06lCSpO+/5AJS+cr4R4WQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709481160; c=relaxed/simple;
-	bh=heBYFeJDqEutK0Jap5MQNGri5HlpLGdN4xYRo+19dGA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=k9BSCO2mk6x7TVRdu7EU8HXXs9jVZFiS25Q3JF1LFFH6j1Okq+CusT8ZMPe4VnQ4ggx55umz14O1K9rFzjQUa9b4dAzer9gCGdBmBWiG5giljMFDK08uBJjqqBnsLMtaM+VALC5puDLlwN1HHfMVXeHHxS59S5BWA+lD2Uj+jDo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=diqYF8Ik; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id A4ADC9D5;
-	Sun,  3 Mar 2024 16:52:14 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1709481134;
-	bh=heBYFeJDqEutK0Jap5MQNGri5HlpLGdN4xYRo+19dGA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=diqYF8IklThnS+NJvqfc17HqckXUJapqtKc2Si4LHvdeUcHCn1TG5ZWn2NTdLVR+A
-	 f8il9+HnVnlEg06BYQfaqAdaT6Z6esk0/yCkjJ/7qrC+vnFJOr07TGYwE+e2s908RL
-	 T6bmBRvlj/BsKECTNHkI5J/YN6kcGyYbGBL7g9D8=
-Date: Sun, 3 Mar 2024 17:52:31 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Adam Ford <aford173@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
-	aford@beaconembedded.com, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Andrzej Hajda <andrzej.hajda@intel.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
-	Jernej Skrabec <jernej.skrabec@gmail.com>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] drm/bridge: adv7511: Allow IRQ to share GPIO pins
-Message-ID: <20240303155231.GC11285@pendragon.ideasonboard.com>
-References: <20240228113737.43434-1-aford173@gmail.com>
- <20240228163153.GH9863@pendragon.ideasonboard.com>
- <CAHCN7xLGL5gMhd7Fo907gPScdD15KW==BHSorQMjbd-=k-E9OA@mail.gmail.com>
+	s=arc-20240116; t=1709483002; c=relaxed/simple;
+	bh=ccLhOeCw63kO5+CZbFFUdM1Ipgk7yJPFonmL/Hkemm8=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=FUV4gwbtQi0aJZNDmmmM2wOog2xHjcCrTKsQ53y1kU+Wo2/1H1C8Y/OfiP+vTphEbDSyNuBKyg7h88+rhdFfPStt9VI5H+p2ohPqTF3pQmpRrRZezupYDjTVsmcVEBnDfb/ixfJNpCHVOkM1qWl+WcsM6o2zUYrdV11Xl4dts4U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=i7z3tnNg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1D096C433F1;
+	Sun,  3 Mar 2024 16:22:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709483001;
+	bh=ccLhOeCw63kO5+CZbFFUdM1Ipgk7yJPFonmL/Hkemm8=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=i7z3tnNgOhxmB37+92kFhOew3WuN23ILppFzZETM/639M26TqbDdsxnqChefUFmYH
+	 wJzLcbhn7kXDNyElc66x2gQDvlI0VueD/gF7ogoTK7e174G/WvDxbVuB39CX43r7iV
+	 j3N9hAKrL2RsjLRd31mI6py9/eGH0qqqdKA09ddD8PySQKoZloUW5U8yhEq6CngdZw
+	 FVef2+V+vJ1rXEY5PG7ozCyFYFQG116ZOXxP+jsABRuYPma3xPWZehgIBGb8yZSYZF
+	 us2jJJPikM/L07p9wHZ2tHM2WmuxC1BQj7cyitwdgzAVmW5t93b9uPN+JBvKA/18Kw
+	 Qqo1l6Mwvg5bA==
+Date: Sun, 3 Mar 2024 16:22:32 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: linus.walleij@linaro.org, brgl@bgdev.pl, andy@kernel.org,
+ linux-gpio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Michael Walle <michael@walle.cc>, Andy Shevchenko
+ <andy.shevchenko@gmail.com>, Arnd Bergmann <arnd@arndb.de>, ChiaEn Wu
+ <chiaen_wu@richtek.com>, Niklas Schnelle <schnelle@linux.ibm.com>, Leonard
+ =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>, Mike Looijmans
+ <mike.looijmans@topic.nl>, Haibo Chen <haibo.chen@nxp.com>, Hugo Villeneuve
+ <hvilleneuve@dimonoff.com>, David Lechner <dlechner@baylibre.com>, Ceclan
+ Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, Nuno Sa
+ <nuno.sa@analog.com>, Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: Re: [PATCH v16 3/3] iio: adc: ad7173: add AD7173 driver
+Message-ID: <20240303162148.3ad91aa2@jic23-huawei>
+In-Reply-To: <20240228110622.25114-3-mitrutzceclan@gmail.com>
+References: <20240228110622.25114-1-mitrutzceclan@gmail.com>
+	<20240228110622.25114-3-mitrutzceclan@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAHCN7xLGL5gMhd7Fo907gPScdD15KW==BHSorQMjbd-=k-E9OA@mail.gmail.com>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 
-On Sun, Mar 03, 2024 at 09:44:03AM -0600, Adam Ford wrote:
-> On Wed, Feb 28, 2024 at 10:31 AM Laurent Pinchart wrote:
-> > On Wed, Feb 28, 2024 at 05:37:35AM -0600, Adam Ford wrote:
-> > > The IRQ registration currently assumes that the GPIO is
-> > > dedicated to it, but that may not necessarily be the case.
-> > > If the board has another device sharing the IRQ, it won't be
-> > > registered and the hot-plug detect fails.  This is easily
-> > > fixed by add the IRQF_SHARED flag.
-> > >
-> > > Signed-off-by: Adam Ford <aford173@gmail.com>
-> > >
-> > > diff --git a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
-> > > index b5518ff97165..21f08b2ae265 100644
-> > > --- a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
-> > > +++ b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
-> > > @@ -1318,7 +1318,8 @@ static int adv7511_probe(struct i2c_client *i2c)
-> > >
-> > >               ret = devm_request_threaded_irq(dev, i2c->irq, NULL,
-> > >                                               adv7511_irq_handler,
-> > > -                                             IRQF_ONESHOT, dev_name(dev),
-> > > +                                             IRQF_ONESHOT | IRQF_SHARED,
-> > > +                                             dev_name(dev),
-> >
-> > This looks fine, but the IRQ handler doesn't.
-> 
-> Thanks for the review.
-> 
-> > static int adv7511_irq_process(struct adv7511 *adv7511, bool process_hpd)
-> > {
-> >         unsigned int irq0, irq1;
-> >         int ret;
-> >
-> >         ret = regmap_read(adv7511->regmap, ADV7511_REG_INT(0), &irq0);
-> >         if (ret < 0)
-> >                 return ret;
-> >
-> >         ret = regmap_read(adv7511->regmap, ADV7511_REG_INT(1), &irq1);
-> >         if (ret < 0)
-> >                 return ret;
-> 
-> If I did a check here and returned if there was no IRQ to handle,
-> would that be sufficient?
-> 
-> --- a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
-> +++ b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
-> @@ -477,6 +477,11 @@ static int adv7511_irq_process(struct adv7511
-> *adv7511, bool process_hpd)
->         if (ret < 0)
->                 return ret;
-> 
-> +       /* If there is no IRQ to handle, exit indicating no IRQ handled */
-> +       if (!(irq0 & (ADV7511_INT0_HPD | ADV7511_INT0_EDID_READY)) &&
-> +          !(irq1 & ADV7511_INT1_DDC_ERROR))
+On Wed, 28 Feb 2024 13:06:20 +0200
+Dumitru Ceclan <mitrutzceclan@gmail.com> wrote:
 
-If these are the only interrupt sources that the driver enables, this is
-fine.
+> The AD7173 family offer a complete integrated Sigma-Delta ADC solution
+> which can be used in high precision, low noise single channel
+> applications or higher speed multiplexed applications. The Sigma-Delta
+> ADC is intended primarily for measurement of signals close to DC but also
+> delivers outstanding performance with input bandwidths out to ~10kHz.
+> 
+> Reviewed-by: Andy Shevchenko <andy@kernel.org>
+> Reviewed-by: Michael Walle <michael@walle.cc> # for gpio-regmap
+> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+> Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+> Link: https://lore.kernel.org/r/20240223133758.9787-3-mitrutzceclan@gmail.com
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-> +               return -1;
+Err. I guess you pulled this down from the tree where we got build errors.
+If you do that make sure to drop the Link and sign off from next version
+as those reflect the path upstream so need to be done afresh for v16.
 
-Maybe a defined error code instead ?
+I fixed it up.
+
+Anyhow, I'm think there are a few cleanups that would be ideally done here
+but lets do those after it's merged.
+
+Applied to the togreg-normal branch of iio.git.
+
+Note that I'm not yet sure if I'll be able to squeeze in another pull
+request this cycle, so this may be waiting for a while.
+
+Jonathan
+
 
 > +
->         regmap_write(adv7511->regmap, ADV7511_REG_INT(0), irq0);
->         regmap_write(adv7511->regmap, ADV7511_REG_INT(1), irq1);
-> 
-> With this, I would expect adv7511_irq_handler to return IRQ_NONE.  If
-> you're OK with that approach, I can do that.  If you want me to merge
-> adv7511_irq_handler, and adv7511_irq_process, I can do that too to
-> make the return codes a little more intuitive.
-> 
-> >
-> >         regmap_write(adv7511->regmap, ADV7511_REG_INT(0), irq0);
-> >         regmap_write(adv7511->regmap, ADV7511_REG_INT(1), irq1);
-> >
-> >         if (process_hpd && irq0 & ADV7511_INT0_HPD && adv7511->bridge.encoder)
-> >                 schedule_work(&adv7511->hpd_work);
-> >
-> >         if (irq0 & ADV7511_INT0_EDID_READY || irq1 & ADV7511_INT1_DDC_ERROR) {
-> >                 adv7511->edid_read = true;
-> >
-> >                 if (adv7511->i2c_main->irq)
-> >                         wake_up_all(&adv7511->wq);
-> >         }
-> >
-> > #ifdef CONFIG_DRM_I2C_ADV7511_CEC
-> >         adv7511_cec_irq_process(adv7511, irq1);
-> > #endif
-> >
-> >         return 0;
-> > }
-> >
-> > static irqreturn_t adv7511_irq_handler(int irq, void *devid)
-> > {
-> >         struct adv7511 *adv7511 = devid;
-> >         int ret;
-> >
-> >         ret = adv7511_irq_process(adv7511, true);
-> >         return ret < 0 ? IRQ_NONE : IRQ_HANDLED;
-> > }
-> >
-> > The function will return IRQ_HANDLED as long as the registers can be
-> > read, even if they don't report any interrupt.
-> >
-> > >                                               adv7511);
-> > >               if (ret)
-> > >                       goto err_unregister_audio;
+> +static int ad7173_fw_parse_device_config(struct iio_dev *indio_dev)
+> +{
+> +	struct ad7173_state *st = iio_priv(indio_dev);
+> +	struct device *dev = indio_dev->dev.parent;
+> +	unsigned int num_channels;
+> +	int ret;
+> +
+> +	st->regulators[0].supply = ad7173_ref_sel_str[AD7173_SETUP_REF_SEL_EXT_REF];
+> +	st->regulators[1].supply = ad7173_ref_sel_str[AD7173_SETUP_REF_SEL_EXT_REF2];
+> +	st->regulators[2].supply = ad7173_ref_sel_str[AD7173_SETUP_REF_SEL_AVDD1_AVSS];
+> +
+> +	/*
+> +	 * If a regulator is not available, it will be set to a dummy regulator.
+> +	 * Each channel reference is checked with regulator_get_voltage() before
+> +	 * setting attributes so if any channel uses a dummy supply the driver
+> +	 * probe will fail.
+> +	 */
+> +	ret = devm_regulator_bulk_get(dev, ARRAY_SIZE(st->regulators),
+> +				      st->regulators);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to get regulators\n");
+> +
+> +	ret = regulator_bulk_enable(ARRAY_SIZE(st->regulators), st->regulators);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret, "Failed to enable regulators\n");
+> +
+> +	ret = devm_add_action_or_reset(dev, ad7173_disable_regulators, st);
+> +	if (ret)
+> +		return dev_err_probe(dev, ret,
+> +				     "Failed to add regulators disable action\n");
+> +
+> +	ret = device_property_match_property_string(dev, "clock-names",
+> +						    ad7173_clk_sel,
+> +						    ARRAY_SIZE(ad7173_clk_sel));
+> +	if (ret < 0) {
+> +		st->adc_mode |= FIELD_PREP(AD7173_ADC_MODE_CLOCKSEL_MASK,
+> +					   AD7173_ADC_MODE_CLOCKSEL_INT);
+> +		ad7173_register_clk_provider(indio_dev);
+> +	} else {
+> +		st->adc_mode |= FIELD_PREP(AD7173_ADC_MODE_CLOCKSEL_MASK,
+> +					   AD7173_ADC_MODE_CLOCKSEL_EXT + ret);
+> +		st->ext_clk = devm_clk_get(dev, ad7173_clk_sel[ret]);
+> +		if (IS_ERR(st->ext_clk))
+> +			return dev_err_probe(dev, PTR_ERR(st->ext_clk),
+> +					     "Failed to get external clock\n");
+> +
+> +		ret = clk_prepare_enable(st->ext_clk);
+> +		if (ret)
+> +			return dev_err_probe(dev, ret,
+> +					     "Failed to enable external clock\n");
+> +
+> +		ret = devm_add_action_or_reset(dev, ad7173_clk_disable_unprepare,
+> +					       st->ext_clk);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	ret = fwnode_irq_get_byname(dev_fwnode(dev), "rdy");
+> +	if (ret < 0)
+> +		return dev_err_probe(dev, ret, "Interrupt 'rdy' is required\n");
+> +
+> +	ad7173_sigma_delta_info.irq_line = ret;
+> +
+> +	num_channels = device_get_child_node_count(dev);
+> +
+> +	if (st->info->has_temp)
+> +		num_channels++;
+> +
+> +	if (num_channels == 0)
+> +		return dev_err_probe(dev, -ENODATA, "No channels specified\n");
+> +	indio_dev->num_channels = num_channels;
+> +	st->num_channels = num_channels;
 
--- 
-Regards,
+I'm not seeing benefit of duplication here really and logically it feels like
+a lot of this last chunk would sit better in ad7173_fw_parse_channel_config()
 
-Laurent Pinchart
+Perhaps that's a job for a future tidying up patch.
+
+> +
+> +	return ad7173_fw_parse_channel_config(indio_dev);
+> +}
+
+...
+
 
