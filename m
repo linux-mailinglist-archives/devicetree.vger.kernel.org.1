@@ -1,86 +1,82 @@
-Return-Path: <devicetree+bounces-47976-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47977-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 841FB86F784
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 23:59:10 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A1AC86F7DD
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 00:29:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 092BFB209D5
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 22:59:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 723A82814C0
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 23:29:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 343AD7A733;
-	Sun,  3 Mar 2024 22:59:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E45167B3FE;
+	Sun,  3 Mar 2024 23:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cm5rvxAj"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="De8fizQg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f49.google.com (mail-pj1-f49.google.com [209.85.216.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B07D179DBF;
-	Sun,  3 Mar 2024 22:59:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0EC267AE78;
+	Sun,  3 Mar 2024 23:29:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.15
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709506742; cv=none; b=Jsx1VGP1+uaviJjiPaujnnWnqUlM/s9HESZ07HcamteXtd07MaPXk4FgMqpyCo0rWWOPdXGYu8cJ4kwFINXl0wwhojQtHTyw0uFuKf5dLyVBvYbuU+7org0SZEeQI4MlGqwtEmJmHXTLP4xmXuX/Gguh+1Is01QOmZoCq4LZybE=
+	t=1709508575; cv=none; b=APNLcZ71muCHt8dZ3beybHEoUz4CR2y39mXoBuXZiCNP8gLcPMyH14HjIpvL+tBBCR0A2XwHaSysk+pxQFmcejoIb2R2kFejqUSQ42Umdvjhx1gzwEknm0PinUgpaGk/KbkuWoNUe5W+XqR0j5OYvdcvcKhblKT0DeBBe/H0Rzc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709506742; c=relaxed/simple;
-	bh=a8us3ZdpSazkEvduVCYQEoDVuVXDpMKBMzlCg7XAn2U=;
+	s=arc-20240116; t=1709508575; c=relaxed/simple;
+	bh=CyGQyvmbBBdQkWE0hZjr/baDC3wB1RFELJ1ax71eAF4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pnJomvJYxW07ZWP2btcPA0doak2N4pEm++CZC/MRA501/EKUagYQWEp2pNFc+cPkvAohm4JMo+Tfmlk+noq2Kp6qLjbM+j2OQ2k7UmgAHK9tNTlg4Oy7iaLOx8pmzzN4kP6SlZWN9aMIKzzaJOQ6uwGq7UUm+A7tMKt0PodUld0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cm5rvxAj; arc=none smtp.client-ip=209.85.216.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f49.google.com with SMTP id 98e67ed59e1d1-299354e5f01so3727592a91.1;
-        Sun, 03 Mar 2024 14:59:00 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709506740; x=1710111540; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cTn+//QzyiW38u/myQllBoB9A0lqzlf6kvaDbTws9rA=;
-        b=Cm5rvxAjkx7+9U0SAidKKovVKkNlKbi76bWxC4xn8DKNeZT/1uWkpO0iI4znjI2EAD
-         kJ4RElzO4o2c64lCuk4A4g/7eh6F0pXzbCGafNSjKRrrwYJAF2nZoeBJYEn46z5fRKiJ
-         fSVRQjcAPYxLLFWykvx+rop0QdqIM3Le79BC+z3vWak0J5hxDjy/0Mf4kTpgQSYQ1SCx
-         5bCfbJF1XDacfs1zq8aDzMGMq+FtPJrtb7t/i/H8aynkizoc0d54V6AEYeVBSL/+nug6
-         +AN4QOiKxN9h1ilx3FBorc6cYjMvkHMslXLDXqKVyZxIBcaB8tYjuZS+lRWRwc6w1BiZ
-         G2WQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709506740; x=1710111540;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cTn+//QzyiW38u/myQllBoB9A0lqzlf6kvaDbTws9rA=;
-        b=OLOmGPSWCyJVkIkogHs/Nlb9POEotX5dC/KTqIRQBi7TXZQTcQQNZf6MvtbEJBDJhT
-         eQrHspbAngFnbOJGwcWbVXkXiSkDAhi+CAAl8bQpsOUJOfYL0MWp50qNUyv87Vf/SCSb
-         3xt8v64JzWRry2ielmz3RPVJPWfjBQjMR5fsWKYwQlDujfv9pqca2S8YnTa19fffoknS
-         an8+6HDuLEWxT/5kkCFPldyfqyVs22TvaJqsQ2gGfs+zm2bcMx+NCWAYQTtjcNVJpJOg
-         NnveqBZKUXVD2I4TXdgJwSkjYduFJ/lwa+8xqvBqHbxgrU9Y7NeFXGuSMVGXBT4l2Akt
-         R2HQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVD73fuClMWlvDO28LkamHtGNlcXySThDbankH/VonqiLkkwVWq71Ln2SAY8ttpO/n7jC4MH45sM/udTKoWFuWxya2OeSfMu+T0A9X9D0aPpGrafOHgLKj9fs8wH7Hnj+GeKjQb5ocNw/9kX6xj8PEM5VFsUX5s5k13AZPa0oPiDLHSpZzNgI6cNJM3Uzis4MAPtOofsxgQwGxQoi0JBnA3wdc=
-X-Gm-Message-State: AOJu0YyQ03OxGbF8omgW+aL/AzuML2afW/0fjMds3M9g0LJe/gbmBB5E
-	OlxqxIJETKPvfIGYwvh1ksWggKebz/fyTPqZbpDKVJeh6AIm3h7Z
-X-Google-Smtp-Source: AGHT+IEGldfIl+eDJGL/DHASC/9Vsg+a9wXNA/kIUxPIBaxZYZj4m0QNBd8JUMK7LzXksn0JeilwFg==
-X-Received: by 2002:a17:90a:101:b0:29a:ea3d:5776 with SMTP id b1-20020a17090a010100b0029aea3d5776mr10423008pjb.11.1709506739845;
-        Sun, 03 Mar 2024 14:58:59 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:99d7:8333:f50c:d6a6])
-        by smtp.gmail.com with ESMTPSA id gx15-20020a17090b124f00b00298ca46547fsm6494320pjb.36.2024.03.03.14.58.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Mar 2024 14:58:59 -0800 (PST)
-Date: Sun, 3 Mar 2024 14:58:56 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Cc: Markuss Broks <markuss.broks@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=PtvMZefeH4OfnDMkpVwuOdSisQq1mj67drWqOX93UbCiXt6yf14sEBZcELntGf5fwgBUDeFYfwXV8VsKdkw1ydEiADWC2aJuq1fSck1BlwMQOyAUjpu+mI88sUXIclhVdBk3FHNMF9kIEoUDRd8lgxys/6A1XzpkmL2bOg+FF4k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=De8fizQg; arc=none smtp.client-ip=198.175.65.15
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1709508574; x=1741044574;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CyGQyvmbBBdQkWE0hZjr/baDC3wB1RFELJ1ax71eAF4=;
+  b=De8fizQgxmbaM9guD63NEajpunGJQYsomxVlE8wUC0jKGKYUrFL2DmcM
+   iz8HisDGIRKHbXaHkYHMMw46V/92yjZn1fPXeS3ounN+4Qgi38tSsZcCA
+   Ico9ofi/pITAWGJf2HqJj8kl6iw7R0hDjgSRM8pD891MfBfLKPfMEBK5+
+   L4SKT2OrGeD0S+UIxvJQf4zbDR/Gw230ErJwueKSv7EQcSydMV0lkI4Wx
+   KkmwqKmtiJnVlG5DC6WdG4LW3eHnryxpQNP7oQfdMjcrR6exEJytZa+d9
+   F+vjem3BvtF+Ak7okCnzcbNnNuHnVDQ+GuVrU/fmNg8Oefd2nAq2PRka4
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11002"; a="7803783"
+X-IronPort-AV: E=Sophos;i="6.06,201,1705392000"; 
+   d="scan'208";a="7803783"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Mar 2024 15:29:34 -0800
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.06,201,1705392000"; 
+   d="scan'208";a="9370453"
+Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
+  by orviesa008.jf.intel.com with ESMTP; 03 Mar 2024 15:29:30 -0800
+Received: from kbuild by b21307750695 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1rgvGp-0002Ao-13;
+	Sun, 03 Mar 2024 23:29:27 +0000
+Date: Mon, 4 Mar 2024 07:29:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: Canfeng Zhuang <quic_czhuang@quicinc.com>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Krzysztof Kozlowski <krzk@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Henrik Rydberg <rydberg@bitmath.org>, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [RESEND PATCH v5 0/5] input/touchscreen: imagis: add support for
- IST3032C
-Message-ID: <ZeUAsCKozr3y8DEA@google.com>
-References: <20240301164659.13240-1-karelb@gimli.ms.mff.cuni.cz>
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: oe-kbuild-all@lists.linux.dev, linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Canfeng Zhuang <quic_czhuang@quicinc.com>
+Subject: Re: [PATCH 1/2] misc: qualcomm: QRC driver for Robotic SDK MCU
+Message-ID: <202403040745.kD48ZDkC-lkp@intel.com>
+References: <20240304-qcom_qrc-v1-1-2a709f95fd61@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -89,32 +85,94 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240301164659.13240-1-karelb@gimli.ms.mff.cuni.cz>
+In-Reply-To: <20240304-qcom_qrc-v1-1-2a709f95fd61@quicinc.com>
 
-On Fri, Mar 01, 2024 at 05:40:59PM +0100, Karel Balej wrote:
-> From: Karel Balej <balejk@matfyz.cz>
-> 
-> Hello,
-> 
-> this patch series generalizes the Imagis touchscreen driver to support
-> other Imagis chips, namely IST3038B and IST3032C.
-> 
-> The motivation for IST3032C is the samsung,coreprimevelte smartphone
-> with which this series has been tested. However, the support for this
-> device is not yet in-tree, the effort is happening at [1]. Preliminary
-> version of the regulator driver needed to use the touchscreen on this
-> phone can be found here [2].
-> 
-> Note that this is a prerequisite for (at least a part of) this series
-> [3] which among other things implements support for touch keys for
-> Imagis touchscreens that have it.
-> 
-> [1] https://lore.kernel.org/all/20240110-pxa1908-lkml-v8-0-fea768a59474@skole.hr/
-> [2] https://lore.kernel.org/all/20240211094609.2223-1-karelb@gimli.ms.mff.cuni.cz/
-> [3] https://lore.kernel.org/all/20240120-b4-imagis-keys-v2-0-d7fc16f2e106@skole.hr/
+Hi Canfeng,
 
-Applied the lot, thank you.
+kernel test robot noticed the following build warnings:
+
+[auto build test WARNING on 805d849d7c3cc1f38efefd48b2480d62b7b5dcb7]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Canfeng-Zhuang/misc-qualcomm-QRC-driver-for-Robotic-SDK-MCU/20240304-005601
+base:   805d849d7c3cc1f38efefd48b2480d62b7b5dcb7
+patch link:    https://lore.kernel.org/r/20240304-qcom_qrc-v1-1-2a709f95fd61%40quicinc.com
+patch subject: [PATCH 1/2] misc: qualcomm: QRC driver for Robotic SDK MCU
+config: sh-allmodconfig (https://download.01.org/0day-ci/archive/20240304/202403040745.kD48ZDkC-lkp@intel.com/config)
+compiler: sh4-linux-gcc (GCC) 13.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240304/202403040745.kD48ZDkC-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202403040745.kD48ZDkC-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15,
+                    from include/linux/serdev.h:9,
+                    from drivers/misc/qrc/qrc_uart.c:10:
+   drivers/misc/qrc/qrc_uart.c: In function 'qrcuart_xmit':
+>> drivers/misc/qrc/qrc_uart.c:203:35: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'size_t' {aka 'unsigned int'} [-Wformat=]
+     203 |                 dev_err(dev->dev, "qrcuart transmit date overflow %ld\n", data_length);
+         |                                   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:110:30: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                              ^~~
+   include/linux/dev_printk.h:144:56: note: in expansion of macro 'dev_fmt'
+     144 |         dev_printk_index_wrap(_dev_err, KERN_ERR, dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |                                                        ^~~~~~~
+   drivers/misc/qrc/qrc_uart.c:203:17: note: in expansion of macro 'dev_err'
+     203 |                 dev_err(dev->dev, "qrcuart transmit date overflow %ld\n", data_length);
+         |                 ^~~~~~~
+   drivers/misc/qrc/qrc_uart.c:203:69: note: format string is defined here
+     203 |                 dev_err(dev->dev, "qrcuart transmit date overflow %ld\n", data_length);
+         |                                                                   ~~^
+         |                                                                     |
+         |                                                                     long int
+         |                                                                   %d
+
+
+vim +203 drivers/misc/qrc/qrc_uart.c
+
+   190	
+   191	static enum qrcdev_tx qrcuart_xmit(const char __user  *buf,
+   192					   size_t data_length, struct qrc_dev *dev)
+   193	{
+   194		struct qrcuart *qrc = qrc_get_data(dev);
+   195		struct qrc_device_stats *n_stats = &dev->stats;
+   196		size_t written;
+   197		u8 *pos;
+   198	
+   199		WARN_ON(qrc->tx_left);
+   200	
+   201		pos = qrc->tx_buffer + qrc->tx_left;
+   202		if ((data_length + qrc->tx_left) > QRC_TX_BUFF_SIZE) {
+ > 203			dev_err(dev->dev, "qrcuart transmit date overflow %ld\n", data_length);
+   204			return __QRCDEV_TX_MIN;
+   205		}
+   206	
+   207		if (copy_from_user(pos, buf, data_length))
+   208			return __QRCDEV_TX_MIN;
+   209	
+   210		pos += data_length;
+   211	
+   212		spin_lock(&qrc->lock);
+   213	
+   214		written = serdev_device_write_buf(qrc->serdev, qrc->tx_buffer,
+   215						  pos - qrc->tx_buffer);
+   216		if (written > 0) {
+   217			qrc->tx_left = (pos - qrc->tx_buffer) - written;
+   218			qrc->tx_head = qrc->tx_buffer + written;
+   219			n_stats->tx_bytes += written;
+   220		}
+   221	
+   222		spin_unlock(&qrc->lock);
+   223	
+   224		return QRCDEV_TX_OK;
+   225	}
+   226	
 
 -- 
-Dmitry
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
 
