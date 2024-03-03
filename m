@@ -1,252 +1,192 @@
-Return-Path: <devicetree+bounces-47953-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47954-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18E8886F682
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 18:51:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C775D86F6AB
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 20:04:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 84A981F20FB4
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 17:51:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 049291C2092E
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 19:04:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A48F76412;
-	Sun,  3 Mar 2024 17:51:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E1CA9768E7;
+	Sun,  3 Mar 2024 19:04:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="6bNE7rnA"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="ge9Be1XY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 94DC776415;
-	Sun,  3 Mar 2024 17:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3267076417
+	for <devicetree@vger.kernel.org>; Sun,  3 Mar 2024 19:04:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709488314; cv=none; b=X2RA+KE5vrKEn2f8+dyAeEsp5y9ERTMcEp22OcDpCnNXLk9j57noKYFSdY3uyNpfcskR/NMGWUSrXq/m4po5aMWDkA3Me8kiM6O9r5V6gWacSde7qajbbWxCirpXhVfYrWLAfF6w8ba3yEKbjaQBh7zdYbspzuVeDoDutacJBn8=
+	t=1709492691; cv=none; b=ME7dxVldFH19+e0uBJyP4PqmTeqUqkOpZmY45R/OxiHGEn9wNGGL+VFo4J/jNHU7PdY9DsvRcBv/K8wwmNskHImWPDhMnVadopm1FLMIumy1evUZ5XL+2E96uT7Ui55ikxkYg29setfcpiw5wYTQaUiNJBNNyGCUMLMLWJn1G/E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709488314; c=relaxed/simple;
-	bh=wboIMxMQE+RVFJ6PEzPpe+q7KTasSURe6mXLsQ7Toz0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JxqFsz4rBLZUhcw9Si2d38nt64VDVUHtPgx7mgCbcQUDKFsK8HUd4JJ7ME2SHa43xwbB1DECglTlt/Sxq9Bb1s9P6PKxkYlJRaiMPbLlxvvx9otD+wzg/Yzh+g780oU/G2879POY1IL/I3QnYYt34ortiynnn1cc9YAWjyFksg4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=6bNE7rnA; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=IjGJCSeONurj7PDmNjN0yS4ZGFr8/GiNUyaQ3Bs6l00=; b=6bNE7rnAiwA2lV7SQibMlTInKb
-	6axOKfVlax2Viupd+nzjYWcF1b/jf36BnnTi1yo6NCL8WVW8Vjb2aSXz9oShwtZtHqdgf88WUFi3X
-	JpjZjUU2OdV4UvBkHeU7G4AZL7N2n9mUwtdnWiHYSrvMWIdla16u48FlMW9xwrpDjmqM=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rgq0A-009FAx-RP; Sun, 03 Mar 2024 18:51:54 +0100
-Date: Sun, 3 Mar 2024 18:51:54 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Eric Woudstra <ericwouds@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Lucien Jheng <lucien.jheng@airoha.com>,
-	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
- EN8811H PHY driver
-Message-ID: <e056b4ac-fffb-41d9-a357-898e35e6d451@lunn.ch>
-References: <20240302183835.136036-1-ericwouds@gmail.com>
- <20240302183835.136036-3-ericwouds@gmail.com>
+	s=arc-20240116; t=1709492691; c=relaxed/simple;
+	bh=yUCKTERpm7RwVfsTUZyX+VOS3BZfvod5tti3+eOonYQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=I5t6F3bCJD6mU1+xQZXO+9ois6FtYwMU0369Lg14Mm6yKoaipgig5u5FjFBnTJyt0nfgg1SIXMSmbFeqxpZ0bS5PdYhGUPxNKZ37R9q53K6+DkJcAVxlmN9d2CWZMFI8WXIVOhZ8DRjf+/61jJXIFps/d5mJFm14YWZAUjbImpk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=ge9Be1XY; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709492679;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=PhdEsgsaQJt/ydW9Y2LBPPTw2gGhmjRcC5/1KGmz7K4=;
+	b=ge9Be1XYE5k0igwgLfxN/tTtlKhKW/QbvmJWyFTbGrIvenz3kfBnfp8xcf8e2jygsf2j/E
+	cNgYRGH1aswwwEAPIPrkBr+29ZnJ3w2YE9MafsmFYfl2y5vWsFf1R/ADBpxalEYSj7XTgr
+	2JbHt9GHguQHzDRZWWTJThXkr79EUZxl2BfAKjCTYLjJ1Rf6IRoy6e5iP6tynPMicsZ+Jj
+	04YwwBVmKJEKorKJyjk+RX/JblntjtqV3kvM+6G2EFZ4nfMnNA5mhE4aH8ULpLd4PITNK3
+	xD/HsgrJYtWMT9a8/njVU0d/ZQ1JMsevw5schtSBC+oNCP/F5lPl/Kx2yWt/qA==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Subject: [PATCH] arm64: dts: rockchip: Add cache information to the SoC dtsi for RK3328
+Date: Sun,  3 Mar 2024 20:04:27 +0100
+Message-Id: <e61173d87f5f41af80e6f87f8820ce8d06f7c20c.1709491127.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240302183835.136036-3-ericwouds@gmail.com>
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-> +static int en8811h_config_init(struct phy_device *phydev)
-> +{
-> +	struct en8811h_priv *priv = phydev->priv;
-> +	struct device *dev = &phydev->mdio.dev;
-> +	int ret, pollret, reg_value;
-> +	u32 pbus_value;
-> +
-> +	if (!priv->firmware_version)
-> +		ret = en8811h_load_firmware(phydev);
+Add missing cache information to the Rockchip RK3328 SoC dtsi, to allow
+the userspace, which includes /proc/cpuinfo and lscpu(1), to present proper
+RK3328 cache information.
 
-How long does this take for your hardware?
+While there, use a more self-descriptive label for the L2 cache node, which
+also makes it more consistent with other SoC dtsi files.
 
-We have a phylib design issue with loading firmware. It would be
-better if it happened during probe, but it might not be finished by
-the time the MAC driver tries to attach to the PHY and so that fails.
-This is the second PHY needing this, so maybe we need to think about
-adding a thread kicked off in probe to download the firmware? But
-probably later, not part of this patchset.
+The cache parameters for the RK3328 dtsi were obtained and partially derived
+by hand from the cache size and layout specifications found in the following
+datasheets, official vendor websites, and technical reference manuals:
 
-> +	else
-> +		ret = en8811h_restart_host(phydev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Because of mdio-lock, may have to wait for multiple loads */
-> +	pollret = phy_read_mmd_poll_timeout(phydev, MDIO_MMD_VEND1,
-> +					    EN8811H_PHY_FW_STATUS, reg_value,
-> +					    reg_value == EN8811H_PHY_READY,
-> +					    20000, 7500000, true);
-> +
-> +	ret = air_buckpbus_reg_read(phydev, EN8811H_FW_VERSION, &pbus_value);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (pollret || !pbus_value) {
-> +		phydev_err(phydev, "Firmware not ready: 0x%x\n", reg_value);
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (!priv->firmware_version) {
-> +		phydev_info(phydev, "MD32 firmware version: %08x\n", pbus_value);
-> +		priv->firmware_version = pbus_value;
-> +	}
-> +
-> +	/* Select mode 1, the only mode supported */
+  - Rockchip RK3328 datasheet, version 1.4
+  - https://opensource.rock-chips.com/wiki_RK3328, accessed on 2024-02-28
+  - ARM Cortex-A53 revision r0p3 TRM, version E
 
-Maybe a comment about what mode 1 actually is?
+For future reference, here's a brief summary of the documentation:
 
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AIR_PHY_HOST_CMD_1,
-> +			    AIR_PHY_HOST_CMD_1_MODE1);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AIR_PHY_HOST_CMD_2,
-> +			    AIR_PHY_HOST_CMD_2_MODE1);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AIR_PHY_HOST_CMD_3,
-> +			    AIR_PHY_HOST_CMD_3_MODE1);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AIR_PHY_HOST_CMD_4,
-> +			    AIR_PHY_HOST_CMD_4_MODE1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Serdes polarity */
-> +	pbus_value = 0;
-> +	if (device_property_read_bool(dev, "airoha,pnswap-rx"))
-> +		pbus_value |=  EN8811H_POLARITY_RX_REVERSE;
-> +	else
-> +		pbus_value &= ~EN8811H_POLARITY_RX_REVERSE;
-> +	if (device_property_read_bool(dev, "airoha,pnswap-tx"))
-> +		pbus_value &= ~EN8811H_POLARITY_TX_NORMAL;
-> +	else
-> +		pbus_value |=  EN8811H_POLARITY_TX_NORMAL;
-> +	ret = air_buckpbus_reg_modify(phydev, EN8811H_POLARITY,
-> +				      EN8811H_POLARITY_RX_REVERSE |
-> +				      EN8811H_POLARITY_TX_NORMAL, pbus_value);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = air_leds_init(phydev, EN8811H_LED_COUNT, AIR_PHY_LED_DUR,
-> +			    AIR_LED_MODE_USER_DEFINE);
-> +	if (ret < 0) {
-> +		phydev_err(phydev, "Failed to initialize leds: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = air_buckpbus_reg_modify(phydev, EN8811H_GPIO_OUTPUT,
-> +				      EN8811H_GPIO_OUTPUT_345,
-> +				      EN8811H_GPIO_OUTPUT_345);
+  - All caches employ the 64-byte cache line length
+  - Each Cortex-A53 core has 32 KB of L1 2-way, set-associative instruction
+    cache and 32 KB of L1 4-way, set-associative data cache
+  - The entire SoC has 256 KB of unified L2 16-way, set-associative cache
 
-What does this do? Configure them as inputs? Hopefully they are inputs
-by default, or at least Hi-Z.
+The RK3328 SoC dtsi is also used for the single RK3318-based supported board.
+Unfortunately, no datasheet is available for the RK3318, but some unofficial
+sources state that its L2 cache size is the same as RK3328's, so it's perhaps
+safe to assume the same for the L1 instruction and data cache sizes.
 
-> +static int en8811h_get_features(struct phy_device *phydev)
-> +{
-> +	linkmode_set_bit_array(phy_basic_ports_array,
-> +			       ARRAY_SIZE(phy_basic_ports_array),
-> +			       phydev->supported);
-> +
-> +	return genphy_c45_pma_read_abilities(phydev);
-> +}
-> +
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 37 ++++++++++++++++++++----
+ 1 file changed, 32 insertions(+), 5 deletions(-)
 
-> +static int en8811h_config_aneg(struct phy_device *phydev)
-> +{
-> +	bool changed = false;
-> +	int ret;
-> +	u32 adv;
-> +
-> +	adv = linkmode_adv_to_mii_10gbt_adv_t(phydev->advertising);
-> +
-> +	ret = phy_modify_mmd_changed(phydev, MDIO_MMD_AN, MDIO_AN_10GBT_CTRL,
-> +				     MDIO_AN_10GBT_CTRL_ADV2_5G, adv);
-> +	if (ret < 0)
-> +		return ret;
-> +	if (ret > 0)
-> +		changed = true;
-> +
-> +	return __genphy_config_aneg(phydev, changed);
-
-There was a comment that it does not support forced link mode, only
-auto-neg? It would be good to test the configuration here and return
-EOPNOTSUPP, or EINVAL if auto-neg is turned off.
-
-> +}
-> +
-> +static int en8811h_read_status(struct phy_device *phydev)
-> +{
-> +	struct en8811h_priv *priv = phydev->priv;
-> +	u32 pbus_value;
-> +	int ret, val;
-> +
-> +	ret = genphy_update_link(phydev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	phydev->master_slave_get = MASTER_SLAVE_CFG_UNSUPPORTED;
-> +	phydev->master_slave_state = MASTER_SLAVE_STATE_UNSUPPORTED;
-> +	phydev->speed = SPEED_UNKNOWN;
-> +	phydev->duplex = DUPLEX_UNKNOWN;
-> +	phydev->pause = 0;
-> +	phydev->asym_pause = 0;
-> +
-> +	ret = genphy_read_master_slave(phydev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = genphy_read_lpa(phydev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Get link partner 2.5GBASE-T ability from vendor register */
-> +	ret = air_buckpbus_reg_read(phydev, EN8811H_2P5G_LPA, &pbus_value);
-> +	if (ret < 0)
-> +		return ret;
-> +	linkmode_mod_bit(ETHTOOL_LINK_MODE_2500baseT_Full_BIT,
-> +			 phydev->lp_advertising,
-> +			 pbus_value & EN8811H_2P5G_LPA_2P5G);
-> +
-> +	if (phydev->autoneg == AUTONEG_ENABLE && phydev->autoneg_complete)
-
-Is the first part of that expression needed? I thought you could not
-turn auto-neg off?
-
-> +
-> +	/* Only supports full duplex */
-> +	phydev->duplex = DUPLEX_FULL;
-
-What does en8811h_get_features() indicate the PHY can do? Are any 1/2
-duplex modes listed?
-
-       Andrew
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index 7b4c15c4a9c3..ac2846c33dc9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -46,47 +46,71 @@ cpu0: cpu@0 {
+ 			cpu-idle-states = <&CPU_SLEEP>;
+ 			dynamic-power-coefficient = <120>;
+ 			enable-method = "psci";
+-			next-level-cache = <&l2>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+ 		cpu1: cpu@1 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0 0x1>;
+ 			clocks = <&cru ARMCLK>;
+ 			#cooling-cells = <2>;
+ 			cpu-idle-states = <&CPU_SLEEP>;
+ 			dynamic-power-coefficient = <120>;
+ 			enable-method = "psci";
+-			next-level-cache = <&l2>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+ 		cpu2: cpu@2 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0 0x2>;
+ 			clocks = <&cru ARMCLK>;
+ 			#cooling-cells = <2>;
+ 			cpu-idle-states = <&CPU_SLEEP>;
+ 			dynamic-power-coefficient = <120>;
+ 			enable-method = "psci";
+-			next-level-cache = <&l2>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+ 		cpu3: cpu@3 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0 0x3>;
+ 			clocks = <&cru ARMCLK>;
+ 			#cooling-cells = <2>;
+ 			cpu-idle-states = <&CPU_SLEEP>;
+ 			dynamic-power-coefficient = <120>;
+ 			enable-method = "psci";
+-			next-level-cache = <&l2>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+ 		idle-states {
+@@ -102,10 +126,13 @@ CPU_SLEEP: cpu-sleep {
+ 			};
+ 		};
+ 
+-		l2: l2-cache0 {
++		l2_cache: l2-cache {
+ 			compatible = "cache";
+ 			cache-level = <2>;
+ 			cache-unified;
++			cache-size = <0x40000>;
++			cache-line-size = <64>;
++			cache-sets = <256>;
+ 		};
+ 	};
+ 
 
