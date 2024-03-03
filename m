@@ -1,261 +1,107 @@
-Return-Path: <devicetree+bounces-47941-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47942-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 51CCD86F615
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 17:31:27 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 836CF86F632
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 17:47:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74F901C220A8
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 16:31:26 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4148D1F2315B
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 16:47:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B5815A117;
-	Sun,  3 Mar 2024 16:31:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C81A06BB5B;
+	Sun,  3 Mar 2024 16:47:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eq+O5bvY"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="yhOjDkKu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D238E2E40B;
-	Sun,  3 Mar 2024 16:31:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5785C41A80;
+	Sun,  3 Mar 2024 16:47:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709483481; cv=none; b=T1Ua3uLiuws7EoPkef+gBXELeYPFrNL3bfWVHmc+H8lXtSzhfmgxpjHUCzta0P819ZV2KDq5P1Gt6XkxT4IfEKH1OflR5IfwRvXRJvM2Utq80vu1L60gY36/ZZwRnT/lWTHfuqnp8TyF6hO2cbpJoQVDDqVGq2O2KBs5hmLfVoA=
+	t=1709484459; cv=none; b=A5iSX7rUu63T/CTQt5XJwsVPrDbZU5Bfhm0m1OX3hUYl2At9N7dSJIOg8VAte4dqsJKFgdfvJA+mBoT2bYqoBYiBPOd2PLCt+ahy0lNzidRKdUAeHZkwwgO+gJDawQvJTkGDRIvGYSot6vEw1acL24eBl/Os4HwR+c2mPz4tXGw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709483481; c=relaxed/simple;
-	bh=1/k7rOAef6xLqEQ3bxSBmMvZ2cjhxdxUFi46PrI5YVw=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=poqmc0gHi5kHqrU3ikEPFpRZbnZ+qB+HgJXofnwGJ/1+JikhYgsmKToO7WM+hMFHiafy8i8CyBb1jAAlHsBHmF5+2M8tWeqw90K+aDVSlxdNTMfJRMoZSUENyZIlsH9yDz4VjtjS5EbCzZSNtpIFHiH+4vvlH9Uwd2oRb0H6Sso=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eq+O5bvY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71908C433F1;
-	Sun,  3 Mar 2024 16:31:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709483481;
-	bh=1/k7rOAef6xLqEQ3bxSBmMvZ2cjhxdxUFi46PrI5YVw=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=eq+O5bvYIBvJeIdxC7UBcchAZ5mRByJj5pSqhk7j7dQsE7RgD3SfK8WxXxiHcKBmv
-	 /KPtG4qa3S+XCH68uGSylOXuWWq9fgLw2c5Geh35a8i4s6I4WbBPkp3Eri8izu7WXv
-	 1Iqtq2MNEOZ6MQGwkY1A329LaxuzCR7iHfFmTCFMr+seARLG2RhKpA8vRsD9u5xbnF
-	 mVPPLuVyx6KOtgkUaog4oaqXQI/A3z28fAEejI/SMoIoWInn5FiVs7/vrlwQl52XAb
-	 um6p1EnIFlJYTfLPwPbVtzd1aaMjRpvd/jQYt8/+eq+DY4+4Eve29Uzreac16jXWNu
-	 7f7n7QlRY2EVQ==
-Date: Sun, 3 Mar 2024 16:31:06 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Li peiyu <579lpy@gmail.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/3] iio: humidity: hdc3020: add power management
-Message-ID: <20240303163106.25dbf4e5@jic23-huawei>
-In-Reply-To: <20240226-hdc3020-pm-v2-1-cec6766086e8@gmail.com>
-References: <20240226-hdc3020-pm-v2-0-cec6766086e8@gmail.com>
-	<20240226-hdc3020-pm-v2-1-cec6766086e8@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1709484459; c=relaxed/simple;
+	bh=OPL1aIQTuGKgwQhRKtlPzp2Ss/iXbgK7g9IxNTuNO5w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=IFnAsNuTij3Or9uoX8Yr55m1s+qXdz/zV9E2+Ec8bG3zeMAKdAFGduxqVwleT6srO1b2/6O+IT1yqi9olfrzZIu2vrKrYbNIwg/S4WldvQKyaW2Decnz2HAp8cmfy5zyyFXohtCmjc9sQ4vGFOho6JMc1m62RjDz1eqChgQPbTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=yhOjDkKu; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=uOF+7FX2GYrjfEFD+K8IzTHJDjYcWidj50Q1BAozO0I=; b=yhOjDkKuzg82ykFIHZ43wKvG0G
+	7Ab6m39xlYjSJW5j9TqtUpFHLZUCRYG3308rRjomQ4hd/lfBjPgQlF5F6BAHBhBVDQOaAJRSoxK3+
+	AxJgIPvPxRgdRba9R+eDhMCBJpORc6ymCY03C29NU9/pwnU/gKUKRGNcHveOuvKq3tYc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rgozk-009F1k-VU; Sun, 03 Mar 2024 17:47:24 +0100
+Date: Sun, 3 Mar 2024 17:47:24 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Eric Woudstra <ericwouds@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Lucien Jheng <lucien.jheng@airoha.com>,
+	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
+ EN8811H PHY driver
+Message-ID: <d29b171b-c03a-44db-8e0d-15f9bd35c4b5@lunn.ch>
+References: <20240302183835.136036-1-ericwouds@gmail.com>
+ <20240302183835.136036-3-ericwouds@gmail.com>
+ <ZePicFOrsr5wTE_n@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZePicFOrsr5wTE_n@makrotopia.org>
 
-On Mon, 26 Feb 2024 22:25:55 +0100
-Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
-
-> The HDC3020 sensor carries out periodic measurements during normal
-> operation, but as long as the power supply is enabled, it will carry on
-> in low-power modes. In order to avoid that and reduce power consumption,
-> the device can be switched to Trigger-on Demand mode, and if possible,
-> turn off its regulator.
+> > +/* u32 (DWORD) component macros */
+> > +#define LOWORD(d) ((u16)(u32)(d))
+> > +#define HIWORD(d) ((u16)(((u32)(d)) >> 16))
 > 
-> According to the datasheet, the maximum "Power Up Ready" is 5 ms.
-> 
-> Add resume/suspend pm operations to manage measurement mode and
-> regulator state.
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Hi Javier,
+> You could use the existing macros in wordpart.h instead.
 
-I think you leave the power on in a bunch of error paths in the probe()
+I was also asking myself the question, is there a standard set of
+macros for this.
 
-Thanks,
+But
 
-Jonathan
+~/linux$ find . -name word*.h
+./tools/testing/selftests/powerpc/primitives/word-at-a-time.h
+./include/asm-generic/word-at-a-time.h
+./arch/arm64/include/asm/word-at-a-time.h
+./arch/powerpc/include/asm/word-at-a-time.h
+./arch/s390/include/asm/word-at-a-time.h
+./arch/xtensa/include/generated/asm/word-at-a-time.h
+./arch/riscv/include/asm/word-at-a-time.h
+./arch/arc/include/generated/asm/word-at-a-time.h
+./arch/arm/include/asm/word-at-a-time.h
+./arch/sh/include/asm/word-at-a-time.h
+./arch/alpha/include/asm/word-at-a-time.h
+./arch/x86/include/asm/word-at-a-time.h
 
+No wordpart.h
 
-> ---
->  drivers/iio/humidity/hdc3020.c | 89 ++++++++++++++++++++++++++++++++++--------
->  1 file changed, 73 insertions(+), 16 deletions(-)
-> 
-> diff --git a/drivers/iio/humidity/hdc3020.c b/drivers/iio/humidity/hdc3020.c
-> index 1e5d0d4797b1..6848be41e1c8 100644
-> --- a/drivers/iio/humidity/hdc3020.c
-> +++ b/drivers/iio/humidity/hdc3020.c
-> @@ -20,6 +20,8 @@
->  #include <linux/interrupt.h>
->  #include <linux/module.h>
->  #include <linux/mutex.h>
-> +#include <linux/pm.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/units.h>
->  
->  #include <asm/unaligned.h>
-> @@ -68,6 +70,7 @@
->  
->  struct hdc3020_data {
->  	struct i2c_client *client;
-> +	struct regulator *vdd_supply;
->  	/*
->  	 * Ensure that the sensor configuration (currently only heater is
->  	 * supported) will not be changed during the process of reading
-> @@ -551,9 +554,45 @@ static const struct iio_info hdc3020_info = {
->  	.write_event_value = hdc3020_write_thresh,
->  };
->  
-> -static void hdc3020_stop(void *data)
-> +static int hdc3020_power_off(struct hdc3020_data *data)
->  {
-> -	hdc3020_exec_cmd((struct hdc3020_data *)data, HDC3020_EXIT_AUTO);
-> +	hdc3020_exec_cmd(data, HDC3020_EXIT_AUTO);
-> +
-> +	return regulator_disable(data->vdd_supply);
-> +}
-> +
-> +static int hdc3020_power_on(struct hdc3020_data *data)
-> +{
-> +	int ret;
-> +
-> +	ret = regulator_enable(data->vdd_supply);
-> +	if (ret)
-> +		return ret;
-> +
-> +	fsleep(5000);
-> +
-> +	if (data->client->irq) {
-> +		/*
-> +		 * The alert output is activated by default upon power up,
-> +		 * hardware reset, and soft reset. Clear the status register.
-> +		 */
-> +		ret = hdc3020_exec_cmd(data, HDC3020_S_STATUS);
-> +		if (ret) {
-> +			hdc3020_power_off(data);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ret = hdc3020_exec_cmd(data, HDC3020_S_AUTO_10HZ_MOD0);
-> +	if (ret)
-> +		hdc3020_power_off(data);
-> +
-> +	return ret;
-> +}
-> +
-> +static void hdc3020_exit(void *data)
-> +{
-> +	hdc3020_power_off(data);
->  }
->  
->  static int hdc3020_probe(struct i2c_client *client)
-> @@ -569,6 +608,8 @@ static int hdc3020_probe(struct i2c_client *client)
->  	if (!indio_dev)
->  		return -ENOMEM;
->  
-> +	dev_set_drvdata(&client->dev, (void *)indio_dev);
-No need for casting to void *
-
-> +
->  	data = iio_priv(indio_dev);
->  	data->client = client;
->  	mutex_init(&data->lock);
-> @@ -580,6 +621,16 @@ static int hdc3020_probe(struct i2c_client *client)
->  	indio_dev->info = &hdc3020_info;
->  	indio_dev->channels = hdc3020_channels;
->  	indio_dev->num_channels = ARRAY_SIZE(hdc3020_channels);
-> +
-> +	data->vdd_supply = devm_regulator_get(&client->dev, "vdd");
-> +	if (IS_ERR(data->vdd_supply))
-> +		return dev_err_probe(&client->dev, PTR_ERR(data->vdd_supply),
-> +				     "Unable to get VDD regulator\n");
-> +
-> +	ret = hdc3020_power_on(data);
-> +	if (ret)
-> +		return dev_err_probe(&client->dev, ret, "Power on failed\n");
-
-Any error after this point needs to power down the regulator and stop the device.
-So the devm_add_action_or_reset needs to be here, not down below.
-
-When adding this sort of automated handling walk through the various paths
-to check where they diverge.  If you can put the cleanup code right after
-what it cleans up, then you get much less divergence where (in this case)
-the power gets left on.
-
-> +
->  	if (client->irq) {
->  		ret = devm_request_threaded_irq(&client->dev, client->irq,
->  						NULL, hdc3020_interrupt_handler,
-> @@ -588,22 +639,9 @@ static int hdc3020_probe(struct i2c_client *client)
->  		if (ret)
->  			return dev_err_probe(&client->dev, ret,
->  					     "Failed to request IRQ\n");
-> -
-> -		/*
-> -		 * The alert output is activated by default upon power up,
-> -		 * hardware reset, and soft reset. Clear the status register.
-> -		 */
-> -		ret = hdc3020_exec_cmd(data, HDC3020_S_STATUS);
-> -		if (ret)
-> -			return ret;
->  	}
->  
-> -	ret = hdc3020_exec_cmd(data, HDC3020_S_AUTO_10HZ_MOD0);
-> -	if (ret)
-> -		return dev_err_probe(&client->dev, ret,
-> -				     "Unable to set up measurement\n");
-> -
-> -	ret = devm_add_action_or_reset(&data->client->dev, hdc3020_stop, data);
-> +	ret = devm_add_action_or_reset(&data->client->dev, hdc3020_exit, data);
->  	if (ret)
->  		return ret;
->  
-> @@ -614,6 +652,24 @@ static int hdc3020_probe(struct i2c_client *client)
->  	return 0;
->  }
->  
-> +static int hdc3020_suspend(struct device *dev)
-> +{
-> +	struct iio_dev *iio_dev = dev_get_drvdata(dev);
-> +	struct hdc3020_data *data = iio_priv(iio_dev);
-> +
-> +	return hdc3020_power_off(data);
-> +}
-> +
-> +static int hdc3020_resume(struct device *dev)
-> +{
-> +	struct iio_dev *iio_dev = dev_get_drvdata(dev);
-> +	struct hdc3020_data *data = iio_priv(iio_dev);
-> +
-> +	return hdc3020_power_on(data);
-> +}
-> +
-> +static DEFINE_SIMPLE_DEV_PM_OPS(hdc3020_pm_ops, hdc3020_suspend, hdc3020_resume);
-> +
->  static const struct i2c_device_id hdc3020_id[] = {
->  	{ "hdc3020" },
->  	{ "hdc3021" },
-> @@ -633,6 +689,7 @@ MODULE_DEVICE_TABLE(of, hdc3020_dt_ids);
->  static struct i2c_driver hdc3020_driver = {
->  	.driver = {
->  		.name = "hdc3020",
-> +		.pm = pm_sleep_ptr(&hdc3020_pm_ops),
->  		.of_match_table = hdc3020_dt_ids,
->  	},
->  	.probe = hdc3020_probe,
-> 
-
+	Andrew
 
