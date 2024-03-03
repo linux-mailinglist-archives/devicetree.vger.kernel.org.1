@@ -1,98 +1,124 @@
-Return-Path: <devicetree+bounces-47926-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47932-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A1B086F510
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 14:24:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DE1786F521
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 14:30:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 132FF1F215DC
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 13:24:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1E5381F22139
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 13:30:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32C16CA73;
-	Sun,  3 Mar 2024 13:24:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EDAABF9CD;
+	Sun,  3 Mar 2024 13:30:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="K9naefPk"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="GctLVweN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out203-205-221-205.mail.qq.com (out203-205-221-205.mail.qq.com [203.205.221.205])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04CA1B641;
-	Sun,  3 Mar 2024 13:24:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ECD8FBFC;
+	Sun,  3 Mar 2024 13:30:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.205
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709472241; cv=none; b=UawQYFvpclbS6YdvSEAkYI6ByKyMeqClrq0sBTBBmzmsTk9OssqAVAeXmyFYjREzUlqZyvf/BFLqFcqRijMG8Hxn0v8xC5dklXU9StwCiSyF/4MFCCifGU21Leu/KIbI8mCz3MSfkzeMM5rUbicRRd2pw0u88boUHg6nGeTWjXU=
+	t=1709472641; cv=none; b=RjUFMilLrbaY/Xnq5AyiIzv08QUTL/FFK9WkwNc5AfG8quEM5qcbEoINnHiIaI6LetQBA3VnQ5erZMW5J6FVPeVAvh5otkLOih4Mo7w5gqjfbuxin/5GLDOADA11B51JCxggRM430vfcSEL8SO+6siQacwQz+sIu8RdpgjehALU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709472241; c=relaxed/simple;
-	bh=5HABLV55vqFa2+LegG4ZksipXRJADsbLdJAjy9nIQ+U=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=h40/7y7fn5sqpq1B6mYDsOmEWnNSQSIs0av2aveZPCD0hh6gSm/ahTHZ3dZJUyzv/c2nm/Xwl4qOylZ4O86GgOyAqFzpv7incZcYHBcpIOVenOVN4XrFqMG19QN1IT4F7Xv8BtglphetRSZgkp1GM2vV6fx9oo7AIimV0qAJt2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=K9naefPk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EB8BC433F1;
-	Sun,  3 Mar 2024 13:23:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709472240;
-	bh=5HABLV55vqFa2+LegG4ZksipXRJADsbLdJAjy9nIQ+U=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=K9naefPkvKMLjWvIuGRit0366N+wl1LWzPPQWhwVcS41ZSW6cb8MI9J64A3LU2wK5
-	 UAaux1cgpqerz0jeQ8MjItQmvyEP+vwY4F7Slrw/RByq8AuYhKUMQEyhSJy1VbU5gr
-	 LJoQx1CmjZgAn3+PMAtNXGyJQjTZEmrWrHnysw3OUL1IrRzSv3ki23vg//o2TiHsbf
-	 +OOPq71O0kKVhrJABjZ4teTddDc+ToC8RUo7pQcXAENCwPWkdtipDvtxLCjeiw48h5
-	 2metudhex+DFbTMxedtLbbC6pbap5ZOcP5aLDNN/dgwRb3+54kNH4El/JB/p3K/bfw
-	 z1/00aB2jVf4Q==
-Date: Sun, 3 Mar 2024 13:23:46 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: adc: add ad7944 ADCs
-Message-ID: <20240303132346.3db77d20@jic23-huawei>
-In-Reply-To: <20240229-ad7944-mainline-v4-1-f88b5ec4baed@baylibre.com>
-References: <20240229-ad7944-mainline-v4-0-f88b5ec4baed@baylibre.com>
-	<20240229-ad7944-mainline-v4-1-f88b5ec4baed@baylibre.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1709472641; c=relaxed/simple;
+	bh=rxdJ/+aOv2gHONz7u651HyYacZjNdwfVMJzTD8JojKE=;
+	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=dqU4tubVUsI7smYvGfj6xBUmH7PodVrP0bbN+/LVOsQ12rt7eMElKhZawkL3eBrFj404Wk8FqzwCvAGhhKnCThmCPDDaYQ6aN+q+bBLBqU+/QhLm/GhZETLNtkmw/PFgu/uhIe2pgGG8audyjvDkajnpk82JEg0nSxbaXQNmBUY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=GctLVweN; arc=none smtp.client-ip=203.205.221.205
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1709472337; bh=0NnuotmW82k9Uowjug3hFc1tBh20nPWYMO1pQs9NtRU=;
+	h=From:To:Cc:Subject:Date;
+	b=GctLVweN2bt94o0GW0IDtMFLTA2Ht8varYIami5ayj3VwOyQrExLu2nH3/wyAcOwO
+	 2sEzMxfIQDOxI8J512z+p9CG08FdHs5XiNgDbjUDx9gH/90VDh0E05/BGZ1YwAAGe0
+	 S4YkdR6rkepDV+Y5VJIJG3jQ+RtOVGFM0o6hl4VE=
+Received: from cyy-pc.lan ([240e:379:2240:e500:994d:62ab:74a6:932b])
+	by newxmesmtplogicsvrsza1-0.qq.com (NewEsmtp) with SMTP
+	id 66020E94; Sun, 03 Mar 2024 21:25:32 +0800
+X-QQ-mid: xmsmtpt1709472332tpga3oaze
+Message-ID: <tencent_E15F8FE0B6769E6338AE690C7F4844A31706@qq.com>
+X-QQ-XMAILINFO: OAope3s6+8XpDdhJJsQ3bRuNam29vw7aFRTpansOS8sQmNaPjd7Xszx2BYgI7u
+	 Td30rFfPDfs0CCsxthDeMzuSbG+KEfeDD88J9Chx0ds7Dgl78SHvhY5XIFFv/Yp2b3gs82bIEXtb
+	 jR0As8tbpQEP2ci/vrabea1X1eWOawXDEuvf7FMqLd05cx+zi1Pj9cpt63uQIC8vaCDLeFuPj8iE
+	 Gww+jVvbSw/pDiiiCZ3GTtuBzQqoKJSgLw2g1BWOSLyfATbKT1G8l+04+CE2gln2hGwCaGj4HgOk
+	 4Hntiax37kiHJcRfhp7+B0tVeb30deSakyaDf5d7HRnq1t2He6GzgiAhT7cHuKQ7Oom7fESNSLIm
+	 CTKPfxnr2rP0Z8T5yBA3ZScunYW7HOibZFkqro5u6cU6rLwyz9V4whWwtJXs2jhvem+SoEwnpMch
+	 KNJgbgpcx2ITmDZiWyaGC148LIj6qgjB7Cm31mFlDqyV6mz/ZeUy10DqjkgHCpskBsDHhQfEqBDq
+	 O8wUU5ogleoc5IUilB0ME6d12MCW+rTwNOHxTqdcx6Y0ZKPayfj8ylahTpxqJp5beKZj5+vls01Y
+	 CA6uH1+aL3EW6iDOMD+nFpKQ+3vdAsP3shtoxyTVvtQS+PR0I3Nl87dbCBBkS7A+AdunvA0JaxOp
+	 1msHnuAiOEQtUy9vNV45WE4QiAJsEGwSlPeZ84IxH3/yj08bH2W5GdeymU9W/skO88rrswAcqcs0
+	 q9OaH5gOoaa+pQBxZ8bA/ZynFu/7tHv5zmoOLzYfI6aeTydKwh9AgWRY5YtEqxTHNek/Yx1QMfd5
+	 CByDJU4VMgARlVzuB3d2h8SoBowF3A2BhkWyODLQe/6s6XTG0kO9dgYmNgrjJbTgE2/A6kDnV9oQ
+	 k20ZQqxYu/Qro2sTJguxJn0e4VklZHqy5k+x4iprefrQYrcs8otLPS+1bmulpXJ/TBmROIzpQXjS
+	 Hm7zb0lt+++33S0S2LldrcBeLJG/B0kuE1VDCkFMGsPtRTmp/XvfLpIWdNnWlflWZAO4FTR/CrkR
+	 AYPYtl2gPtCsdxJKmf
+X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
+From: Yangyu Chen <cyy@cyyself.name>
+To: linux-riscv@lists.infradead.org
+Cc: Conor Dooley <conor@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Guo Ren <guoren@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: [PATCH 0/5] riscv: add initial support for Canaan Kendryte K230
+Date: Sun,  3 Mar 2024 21:24:19 +0800
+X-OQ-MSGID: <20240303132419.553143-1-cyy@cyyself.name>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Thu, 29 Feb 2024 10:25:50 -0600
-David Lechner <dlechner@baylibre.com> wrote:
+K230 is an ideal chip for testing RISC-V Vector 1.0 now. Add initial
+support for it to allow more people to participate in building drivers
+to mainline for it.
 
-> This adds a new binding for the Analog Devices, Inc. AD7944, AD7985, and
-> AD7986 ADCs.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-Hi David,
+This kernel has been tested upon factory SDK [1] with
+k230_evb_only_linux_defconfig and patched mainline opensbi [2] to skip
+locked pmp and successfully booted to busybox on initrd with this log [3].
 
-One trivial comment. If this is all that comes up I can tweak that whilst applying.
+[1] https://github.com/kendryte/k230_sdk
+[2] https://github.com/cyyself/opensbi/tree/k230
+[3] https://gist.github.com/cyyself/b9445f38cc3ba1094924bd41c9086176
 
-Jonathan
+Yangyu Chen (5):
+  dt-bindings: riscv: Add T-HEAD C908 compatible
+  dt-bindings: add Canaan K230 boards compatible strings
+  riscv: Kconfig.socs: Allow SOC_CANAAN with MMU for K230
+  riscv: dts: add initial canmv-k230 and k230-evb dts
+  riscv: config: enable SOC_CANAAN in defconfig
 
-...
+ .../devicetree/bindings/riscv/canaan.yaml     |  13 +-
+ .../devicetree/bindings/riscv/cpus.yaml       |   1 +
+ arch/riscv/Kconfig.socs                       |   5 +-
+ arch/riscv/boot/dts/canaan/Makefile           |   2 +
+ arch/riscv/boot/dts/canaan/canmv-k230.dts     |  23 +++
+ arch/riscv/boot/dts/canaan/k230-evb.dts       |  23 +++
+ arch/riscv/boot/dts/canaan/k230.dtsi          | 146 ++++++++++++++++++
+ arch/riscv/configs/defconfig                  |   1 +
+ 8 files changed, 210 insertions(+), 4 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/canaan/canmv-k230.dts
+ create mode 100644 arch/riscv/boot/dts/canaan/k230-evb.dts
+ create mode 100644 arch/riscv/boot/dts/canaan/k230.dtsi
 
-> +  adi,spi-mode:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    enum: [ single, chain ]
-> +    description: |
-> +      This property indicates the SPI wiring configuration.
-> +
-> +      When this property is omitted, it is assumed that the device is using what
-> +      the he datasheet calls "4-wire mode". This is the conventional SPI mode
 
-Stray "he"?
+base-commit: 45e0b0fd6dc574101825ac2738b890da024e4cda
+prerequisite-patch-id: 2374c56c0032e616e45854d2bc2bb1073996313d
 
-> +      used when there are multiple devices on the same bus. In this mode, the
-> +      CNV line is used to initiate the conversion and the SDI line is connected
-> +      to CS on the SPI controller.
->
+Dependencies: https://lore.kernel.org/linux-riscv/tencent_88FEE0A2C5E0852436A2F1A1087E6803380A@qq.com/
+-- 
+2.43.0
+
 
