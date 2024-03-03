@@ -1,242 +1,129 @@
-Return-Path: <devicetree+bounces-47963-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47964-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E905286F6F2
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 21:05:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id AAA9D86F6F8
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 21:12:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 31D551F210F2
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 20:05:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CAD8C1C208AF
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 20:12:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FB3079DB3;
-	Sun,  3 Mar 2024 20:05:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7959C79DBC;
+	Sun,  3 Mar 2024 20:12:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YNN7a6Gr"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="mhWOQBAk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2AB2279DAB;
-	Sun,  3 Mar 2024 20:05:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E00D9C13D
+	for <devicetree@vger.kernel.org>; Sun,  3 Mar 2024 20:11:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709496336; cv=none; b=SkJ2EUk/BILo6CmASihYSHuzLEAixR4iNnHwAYWQNStv/5fzREkxBVBBb4+LDs9LcY8w3YFuW0mOaLigsL4AlH6oYf3r26p+YyPIvuA+qS2nY3T9WLtoGTKNmsH9XU+n4SW+YQNMKRRYlqIBgnzX3RMypNbSiCjg0Bk8/h55c0A=
+	t=1709496722; cv=none; b=Bl9JGe8vT83wnbeFkP8nUU/qQqrohxq3gjEFH8lGZK3vc2lPXkEPpYJYxYz0TV/3vcAmN4vrjLcz0ZpL+IPXdSjE2RZlZ3hgfr1KyxZx2kx66QNqUpdeWkzsjJ3TshsD9/zhsQzwWuB0TEJoYMGnlVz6LBsRks8uFceG0VqWH2o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709496336; c=relaxed/simple;
-	bh=mSc6/9DZ5vAhGlhAM+TSNJtNJSKbaDlFsVdJobh767k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=fKJ6DFLzBxPsTTPhSYzC9kE/6A6pmJpizW9th8Nhq3evHMpdnlWo09iZnR+XGJctuo10ax4uTMsN9e/VKP28+PjuwsOq9Qm+VCQh+eRcwQx0G9wUWyvk26G3sEdp/D53NWlRC2rBEoC3iPI6voJ78DxyfW/ED7am9mwE91QhImc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YNN7a6Gr; arc=none smtp.client-ip=209.85.218.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a4554d4cb62so12083166b.2;
-        Sun, 03 Mar 2024 12:05:33 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709496332; x=1710101132; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=htSk0pROujaKN4qxYLFUMLnC6DIqzsYsrcCbXo4CNs0=;
-        b=YNN7a6GrzUdC9t1zbESnvWpP5KXLhdhuPcinWPawt72rQQmnlGyozOwx5mo9m0jkF1
-         nlt+Fz+Ac2GErcmtCBuslsE0iIlOU+es67D0gi/cUXyK2gc4GrzEZh5AYET6gCm7S8C2
-         48rUBzyYnSAlP5JLQhsTgHbtM8c2k9LZgCqEerkTVGadsKPF/KzuzLuyvTqYY1pvxcn5
-         Uec15PKe0BA3DIdWtkSjcoChc5sz3w8rZaZkr/Unk8Hk1Mg7OOhTdyb4E8aqrpn+nbHs
-         vZOA0Yqxkn3IsBGCjxmHhAC01GKnGzfaGrWbEO8qhu8KhIlQ/VpcDhadpDVr3lpqg75L
-         45jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709496332; x=1710101132;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=htSk0pROujaKN4qxYLFUMLnC6DIqzsYsrcCbXo4CNs0=;
-        b=LydBnBZR4fPNlUUf4EAOj7ICRGmMEN15JARr8pBX0NJeEGeAolhsWci/VI6ZHtSVku
-         hDcl6pP7If9r31+ueZ+76wPzwNkFraE2Ad3+wuiHWzxQPBrN9NCgOPsr4LbNlj6OGMAG
-         AtPBGbUbYmptCkn9Vc59XeTTB5rz3Foxes4/nsHdsEbp9V0U1WeqyaQb7WU+HZisXrq7
-         Z8ZdbEEnAI2jCPRriPrPi+vzuJuUJsnqzoFqj6tq/jJ15h/BKNvq4tu7wi4ZvK5FMtuE
-         y5z/dvDnBgyii0AHyJjljdrwSaAIPlgYP3QqtKhJsBQ8ijyfJSyKR1DwB3K8ZRBpq5fw
-         yngw==
-X-Forwarded-Encrypted: i=1; AJvYcCXOBLo8VaMajuZp/0pKSJ6+371p2aPKZVP+jZOye4/ABHVbM7XTaPF/I3Xa53MRsRspPNzpBuuCXsoscu/rQvyiaMoDlH7RvpUi7SK+RXFauzTX9uePl7v2A1y0QMoBgoYTu9Bphh97Syh6iAUeh6wb4jXKwmfTQpnuWqxY7J/2nkty0A==
-X-Gm-Message-State: AOJu0YwLnNk7g+zsr9r6xf9iBwZRWNrSLHUZTwMU/XCkpI5Nb5G/VBzy
-	vNRyR17SMUo04nju1/b/53oXvbUnSnOYg4DaGTxH5SgRsaN297TW
-X-Google-Smtp-Source: AGHT+IFfzg5+j8Pd1ccg/DNJiXDPOAn9VJsCUGN78HHF1NINXncqxHsQQ8eVbSFDTxHD9kHorfuTIQ==
-X-Received: by 2002:a17:906:c411:b0:a44:e3c:c4dd with SMTP id u17-20020a170906c41100b00a440e3cc4ddmr4923065ejz.48.1709496332197;
-        Sun, 03 Mar 2024 12:05:32 -0800 (PST)
-Received: from ?IPV6:2a02:8389:41cf:e200:b3d8:5b4b:5188:4373? (2a02-8389-41cf-e200-b3d8-5b4b-5188-4373.cable.dynamic.v6.surfer.at. [2a02:8389:41cf:e200:b3d8:5b4b:5188:4373])
-        by smtp.gmail.com with ESMTPSA id pv18-20020a170907209200b00a44b90abb1dsm2347509ejb.110.2024.03.03.12.05.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Mar 2024 12:05:31 -0800 (PST)
-Message-ID: <fc81f249-7996-48f4-8573-5e20509c796c@gmail.com>
-Date: Sun, 3 Mar 2024 21:05:29 +0100
+	s=arc-20240116; t=1709496722; c=relaxed/simple;
+	bh=D5OGeOVlSMJFlPOZTuFHfjaOK2r326Q2K1gwABPtfFY=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=UG9Y3+s51NMlbs+sKoVB1jOn/j5sTLiRfT8mjWhcMx+EPipwT8pN0a40U5ZRYhNJLIhweGOesMepDCfvLV0LzJwGTjTOEdvcHKnYUQAnRvu71s+8fVgKY4qVOA+m/BGRvzVD2vWfA1ppXcvvNkyMjXODZ+E1X+QDvL61CEujvP0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=mhWOQBAk; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id C0A8B2C05EA;
+	Mon,  4 Mar 2024 09:11:57 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1709496717;
+	bh=D5OGeOVlSMJFlPOZTuFHfjaOK2r326Q2K1gwABPtfFY=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=mhWOQBAkr2eARYcr/1YYJLYVRchHZB5mGYvYsXMbHcd2u9dNDMik+79ob3gek3Sbn
+	 kc69Vff/ZbhZTX/EgLpPsOGVlrx9rLVoMvhU96PTqt3J/rAMyzpYfPIkUR/E4SOcYo
+	 AbtJl+8msnUvGb/llae2aVT9xnqTeOE5tF4cgFgvryjqUPYoN3H6VXo/pYAcNXurCY
+	 T7I67LLYMcBHOVIhnIeSiqYPOIuhSVweRWn/boS/peNz7TZpRlztJhBrPRz9BZi1l5
+	 h5opVHchzfex5Sfg/e+x2mHOhuIC+sE/K/mvZb8cwRuAd6fPbFeEC0cT513t7FrYql
+	 WvxrRL1HHFNuA==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B65e4d98d0001>; Mon, 04 Mar 2024 09:11:57 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 4 Mar 2024 09:11:57 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1118.040; Mon, 4 Mar 2024 09:11:57 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Geert Uytterhoeven <geert@linux-m68k.org>, Andy Shevchenko
+	<andy@kernel.org>
+CC: "robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "andrew@lunn.ch"
+	<andrew@lunn.ch>, "gregory.clement@bootlin.com"
+	<gregory.clement@bootlin.com>, "sebastian.hesselbarth@gmail.com"
+	<sebastian.hesselbarth@gmail.com>, "pavel@ucw.cz" <pavel@ucw.cz>,
+	"lee@kernel.org" <lee@kernel.org>, "linux-leds@vger.kernel.org"
+	<linux-leds@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 4/4] ARM: dts: marvell: Indicate USB activity on x530
+Thread-Topic: [PATCH v3 4/4] ARM: dts: marvell: Indicate USB activity on x530
+Thread-Index: AQHaa3mtyWWtVlg2vEC72XlMinhTXbEiWoIAgAKUiACAAK4qgA==
+Date: Sun, 3 Mar 2024 20:11:57 +0000
+Message-ID: <7248b6f6-86e7-4df1-8c48-c53f70c909b9@alliedtelesis.co.nz>
+References: <20240301014203.2033844-1-chris.packham@alliedtelesis.co.nz>
+ <20240301014203.2033844-5-chris.packham@alliedtelesis.co.nz>
+ <ZeIdXIx5zYjKQiSO@smile.fi.intel.com>
+ <CAMuHMdVJiWtB4MSGHXXz=OAEvu-+b9Xp-jQ_NXWck+hwKGK4TQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdVJiWtB4MSGHXXz=OAEvu-+b9Xp-jQ_NXWck+hwKGK4TQ@mail.gmail.com>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3FEBCA6EDEF9754691E92F9FAC177CD3@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] iio: humidity: hdc3020: add power management
-To: Jonathan Cameron <jic23@kernel.org>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Li peiyu <579lpy@gmail.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240226-hdc3020-pm-v2-0-cec6766086e8@gmail.com>
- <20240226-hdc3020-pm-v2-1-cec6766086e8@gmail.com>
- <20240303163106.25dbf4e5@jic23-huawei>
-Content-Language: en-US, en-GB
-From: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-In-Reply-To: <20240303163106.25dbf4e5@jic23-huawei>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65e4d98d a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=K6JAEmCyrfEA:10 a=VwQbUJbxAAAA:8 a=_l-1M7-265V4-iQ9KdUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22
+X-SEG-SpamProfiler-Score: 0
 
-Hi Jonathan,
-
-On 03.03.24 17:31, Jonathan Cameron wrote:
-> On Mon, 26 Feb 2024 22:25:55 +0100
-> Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
-> 
->> The HDC3020 sensor carries out periodic measurements during normal
->> operation, but as long as the power supply is enabled, it will carry on
->> in low-power modes. In order to avoid that and reduce power consumption,
->> the device can be switched to Trigger-on Demand mode, and if possible,
->> turn off its regulator.
->>
->> According to the datasheet, the maximum "Power Up Ready" is 5 ms.
->>
->> Add resume/suspend pm operations to manage measurement mode and
->> regulator state.
->>
->> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-> Hi Javier,
-> 
-> I think you leave the power on in a bunch of error paths in the probe()
-> 
-> Thanks,
-> 
-> Jonathan
-> 
-> 
->> ---
->>  drivers/iio/humidity/hdc3020.c | 89 ++++++++++++++++++++++++++++++++++--------
->>  1 file changed, 73 insertions(+), 16 deletions(-)
->>
->> diff --git a/drivers/iio/humidity/hdc3020.c b/drivers/iio/humidity/hdc3020.c
->> index 1e5d0d4797b1..6848be41e1c8 100644
->> --- a/drivers/iio/humidity/hdc3020.c
->> +++ b/drivers/iio/humidity/hdc3020.c
->> @@ -20,6 +20,8 @@
->>  #include <linux/interrupt.h>
->>  #include <linux/module.h>
->>  #include <linux/mutex.h>
->> +#include <linux/pm.h>
->> +#include <linux/regulator/consumer.h>
->>  #include <linux/units.h>
->>  
->>  #include <asm/unaligned.h>
->> @@ -68,6 +70,7 @@
->>  
->>  struct hdc3020_data {
->>  	struct i2c_client *client;
->> +	struct regulator *vdd_supply;
->>  	/*
->>  	 * Ensure that the sensor configuration (currently only heater is
->>  	 * supported) will not be changed during the process of reading
->> @@ -551,9 +554,45 @@ static const struct iio_info hdc3020_info = {
->>  	.write_event_value = hdc3020_write_thresh,
->>  };
->>  
->> -static void hdc3020_stop(void *data)
->> +static int hdc3020_power_off(struct hdc3020_data *data)
->>  {
->> -	hdc3020_exec_cmd((struct hdc3020_data *)data, HDC3020_EXIT_AUTO);
->> +	hdc3020_exec_cmd(data, HDC3020_EXIT_AUTO);
->> +
->> +	return regulator_disable(data->vdd_supply);
->> +}
->> +
->> +static int hdc3020_power_on(struct hdc3020_data *data)
->> +{
->> +	int ret;
->> +
->> +	ret = regulator_enable(data->vdd_supply);
->> +	if (ret)
->> +		return ret;
->> +
->> +	fsleep(5000);
->> +
->> +	if (data->client->irq) {
->> +		/*
->> +		 * The alert output is activated by default upon power up,
->> +		 * hardware reset, and soft reset. Clear the status register.
->> +		 */
->> +		ret = hdc3020_exec_cmd(data, HDC3020_S_STATUS);
->> +		if (ret) {
->> +			hdc3020_power_off(data);
->> +			return ret;
->> +		}
->> +	}
->> +
->> +	ret = hdc3020_exec_cmd(data, HDC3020_S_AUTO_10HZ_MOD0);
->> +	if (ret)
->> +		hdc3020_power_off(data);
->> +
->> +	return ret;
->> +}
->> +
->> +static void hdc3020_exit(void *data)
->> +{
->> +	hdc3020_power_off(data);
->>  }
->>  
->>  static int hdc3020_probe(struct i2c_client *client)
->> @@ -569,6 +608,8 @@ static int hdc3020_probe(struct i2c_client *client)
->>  	if (!indio_dev)
->>  		return -ENOMEM;
->>  
->> +	dev_set_drvdata(&client->dev, (void *)indio_dev);
-> No need for casting to void *
-
-Then I plagiarised the wrong driver :D I will remove it for v3.
-
-> 
->> +
->>  	data = iio_priv(indio_dev);
->>  	data->client = client;
->>  	mutex_init(&data->lock);
->> @@ -580,6 +621,16 @@ static int hdc3020_probe(struct i2c_client *client)
->>  	indio_dev->info = &hdc3020_info;
->>  	indio_dev->channels = hdc3020_channels;
->>  	indio_dev->num_channels = ARRAY_SIZE(hdc3020_channels);
->> +
->> +	data->vdd_supply = devm_regulator_get(&client->dev, "vdd");
->> +	if (IS_ERR(data->vdd_supply))
->> +		return dev_err_probe(&client->dev, PTR_ERR(data->vdd_supply),
->> +				     "Unable to get VDD regulator\n");
->> +
->> +	ret = hdc3020_power_on(data);
->> +	if (ret)
->> +		return dev_err_probe(&client->dev, ret, "Power on failed\n");
-> 
-> Any error after this point needs to power down the regulator and stop the device.
-> So the devm_add_action_or_reset needs to be here, not down below.
-> 
-> When adding this sort of automated handling walk through the various paths
-> to check where they diverge.  If you can put the cleanup code right after
-> what it cleans up, then you get much less divergence where (in this case)
-> the power gets left on.
-> 
-
-If I am not mistaken, the only case where the regulator will not be
-powered down is if an irq is defined and the threaded irq request fails,
-because the next action is a call to devm_add_action_or_reset. A single
-case is still greater than zero, so I will move the
-devm_add_function_or_reset up to be the next action after powering up.
-
-Thanks and best regards,
-Javier Carrasco
+DQpPbiAzLzAzLzI0IDIyOjQ4LCBHZWVydCBVeXR0ZXJob2V2ZW4gd3JvdGU6DQo+IEhpIEFuZHks
+DQo+DQo+IE9uIEZyaSwgTWFyIDEsIDIwMjQgYXQgNzoyNOKAr1BNIEFuZHkgU2hldmNoZW5rbyA8
+YW5keUBrZXJuZWwub3JnPiB3cm90ZToNCj4+IE9uIEZyaSwgTWFyIDAxLCAyMDI0IGF0IDAyOjQy
+OjAzUE0gKzEzMDAsIENocmlzIFBhY2toYW0gd3JvdGU6DQo+Pj4gVXNlIHRoZSBkb3Qgb24gdGhl
+IDctc2VnbWVudCBMRUQgYmxvY2sgdG8gaW5kaWNhdGUgVVNCIGFjY2VzcyBvbiB0aGUNCj4+PiB4
+NTMwLg0KPj4gQXMgSSBzYWlkLCBJJ20gbm90IGdvaW5nIHRvIGFwcGx5IHRoaXMgZXZlbiB3aXRo
+IEFja3MuDQoNCkknbGwgZHJvcCB0aGlzIG9uZSBmb3IgdGhlIG5leHQgcm91bmQuDQoNCj4gSSBn
+dWVzcyB5b3Ugc2hvdWxkIG5vdCBhcHBseSBhbnkgb2YgdGhlIGR0cyBwYXRjaGVzIHRvIHRoZQ0K
+PiBhdXhkaXNwbGF5IHRyZWUgYW55d2F5Pw0KDQpUaGF0J3MgT0sgYnkgbWUuIEkndmUganVzdCBi
+ZWVuIGluY2x1ZGluZyB0aGVtIHNvIHRoZXJlIGlzIGFuIGluLXRyZWUgDQp1c2VyIG9mIHRoZSBk
+cml2ZXIuIEl0IGFsc28gc2hvd3MgaG93IEkndmUgYmVlbiB0ZXN0aW5nIHRoaW5ncy4NCg0KSSBj
+YW4gc2VuZCB0aGVtIHZpYSB0aGUgQVJNIG1haW50YWluZXJzIG9uY2UgdGhlIGR1c3Qgc2V0dGxl
+cyBvbiB0aGUgDQpmaXJzdCB0d28gcGF0Y2hlcy4NCg0KPg0KPj4gVGhlIHByb2JsZW0gaGVyZSBh
+cyBJIHNlZSBpdCBpcyB0aGUgZnV0dXJlIGRlY2lzaW9uIG9uIGhvdyBEUCBzaG91bGQNCj4+IGJl
+aGF2ZSBsaWtlLiAgSWYgeW91IHB1dCB0aGlzIGludG8gRFQsIHdlIHdpbGwgdG8gc3VwcG9ydCB0
+aGlzIHRvIHRoZSBlbmQNCj4+IG9mIHRoZSBwbGF0Zm9ybS4NCj4gQXMgdGhlcmUgZXhpc3QgNy1z
+ZWcgZGlzcGxheXMgKGFuZCB3aXJpbmdzKSB3aXRoIGFuZCB3aXRob3V0IERQLA0KPiB0aGUgNy1z
+ZWcgZHJpdmVyIGFuZCBEVCBiaW5kaW5ncyBzaG91bGQgaGFuZGxlIGJvdGggY2FzZXMuICBIb3cg
+dG8NCj4gd2lyZS91c2UgdGhlIERQIExFRCBpcyB1cCB0byB0aGUgaGFyZHdhcmUgZGVzaWduZXIg
+LyBEVFMgd3JpdGVyLg0KPg0KPiBJIGFncmVlIGl0J3MgYSB0aGluIGJvdW5kYXJ5IGJldHdlZW4g
+aGFyZHdhcmUgZGVzY3JpcHRpb24gYW5kIHNvZnR3YXJlDQo+IHBvbGljeSwgdGhvdWdoLiAgSXMg
+dGhhdCB5b3VyIG1haW4gY29uY2Vybj8NCg0KSW4gdGhpcyBzcGVjaWZpYyBjYXNlIEknZCBqdXN0
+aWZ5IHRoZSAoYWIpdXNlIG9mIHRoZSBEUCBMRUQgb24gdGhpcyANCnByb2R1Y3QgYXMgYW4gb3B0
+aW1pemF0aW9uIHNvIHdlIGRvbid0IGhhdmUgdG8gZmluZCBib2FyZCBzcGFjZSBmb3IgYSANCnNl
+cGFyYXRlIExFRCB0byBpbmRpY2F0ZSBVU0IgYWN0aXZpdHkuDQoNCkkgZG8gaGF2ZSBhbiBpZGVh
+IGZvciBoYW5kbGluZyB0aGUgRFAgZm9yIHRoZSBtb3JlIGdlbmVyYWwgY2FzZS4gDQpCYXNpY2Fs
+bHkgaWYgOCBzZWdtZW50IEdQSU9zIGFyZSBzdXBwbGllZCB3ZSBjYW4gdXNlIGEgc2xpZ2h0bHkg
+DQpkaWZmZXJlbnQgc2VnbWVudMKgbWFwIChtYXA3cGx1czE/KSBzbyB0aGF0IGNoYXJhY3RlcnMg
+dGhhdCBhcmUgYmV0dGVyIA0KcmVwcmVzZW50ZWQgYXMgZG90cyB1c2UgdGhhdCBpbnN0ZWFkLg0K
+DQo=
 
