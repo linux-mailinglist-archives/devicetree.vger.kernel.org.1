@@ -1,96 +1,116 @@
-Return-Path: <devicetree+bounces-47961-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47962-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC02286F6E9
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 20:50:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EB4C86F6EF
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 20:58:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 154B41C20A13
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 19:50:44 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 340571C20AA2
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 19:58:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9AB77A14D;
-	Sun,  3 Mar 2024 19:50:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A167E79DB0;
+	Sun,  3 Mar 2024 19:58:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HAGNpe4v"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="TxVP0ht0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBA227A12E;
-	Sun,  3 Mar 2024 19:50:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 467491E508
+	for <devicetree@vger.kernel.org>; Sun,  3 Mar 2024 19:58:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709495426; cv=none; b=TJv++ktxGfRj22Eu198VvIDaugT1H219v024FIIFcfuvaUrW5O2poIwrrT4ZXWNrbusCMiRratt8sNXXKXx/FdpHSKNqqiK6EnSh314VWkWbUcxD3ARCjlD+m0jKH1kAIcu5qGe1m8UdvjbMlInhGx7GuTNVFljvAW6o5jrfU0I=
+	t=1709495897; cv=none; b=eJSe0pzGhAaH14dbD6S48wVJJ2gm2xFQt4f/ONiP7JDP6tAytfhLaAw+XeH/XzyMuCi24KQaRj7VawZYpFo2bU5AVnfPEL3EFQh2YKD4nSEqjJi95s0bR2iVWatD5WzefCaGfg7SSaq199cUuoHkMcO6PISu8yOevyTTCr1rM2A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709495426; c=relaxed/simple;
-	bh=NqOpHNUkPpcXOLnh/QWRufn/Ytxmtgs9sizhlMM6yUU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=rmHHnoHpJdiPaRRKuKDDsVS58YqV9eU+0geFtz4CW6hMPfmbg1rJKX/vBIQvrlcpQ36eDM3H9TEV07RqphxFkbjNJf/I5oFmuP8CkinNqn8bz1L4WUxGtO245QdHeSS+V2B1uLa6LujoG/q9WW0xc7D4Vq99ojluWDnUzHbsyVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HAGNpe4v; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 849B9C433B1;
-	Sun,  3 Mar 2024 19:50:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709495426;
-	bh=NqOpHNUkPpcXOLnh/QWRufn/Ytxmtgs9sizhlMM6yUU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=HAGNpe4vbmCT1lk0B4Ggv5UAZaXI/dje2Dg2hpGp03ESpBowujBmH4jQDaxPIFdZW
-	 mV05WggJJz+JLN4/eE47tWNX2sMbmi9aaHsFkBZocU6jWRx8nA4GVE1fJCdr+SlDTa
-	 f7OA5ay7cvWttsVjGxAYh+iu5b8XvAZBLGqJoE7Lo3wGMmsqIBOe9DEcCoZ9PpRukN
-	 8Y4S+DIVqhZQZXsbnm2VGDljEhN2eYjlTjokfamd/9qbyky71NjEN50Pe8VKtwehao
-	 NCYpbfv8DO9sz6ZdvWylP9Olyde5H4JBXB64ooYa7uBJF9HRIV01kM0mh896st8caw
-	 i7W7iqbID8UJg==
-From: Bjorn Andersson <andersson@kernel.org>
-To: Bjorn Helgaas <bhelgaas@google.com>,
-	Johan Hovold <johan+linaro@kernel.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and GICv3 ITS enable
-Date: Sun,  3 Mar 2024 13:50:20 -0600
-Message-ID: <170949540962.78121.423418904639454445.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240223152124.20042-1-johan+linaro@kernel.org>
-References: <20240223152124.20042-1-johan+linaro@kernel.org>
+	s=arc-20240116; t=1709495897; c=relaxed/simple;
+	bh=YMjGJq4umtyd/ClNiZa0elGCMycPIwJQx4Epcs2kpG8=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=It5VemH2DGwG7vo/NvWzZIRlNu+drNyewbg7EeBIJ3e3mDdATMj16YPvWgftID4NX0egsaKWf4+bM9eStdEoLCupy437xyPDS9bOeueQ33IMDg2doaIjk9qAK2JxOjez+Mr8BHWAMrCxRCGutxHgVwQYt9aEhAjiKxxuyhkMqn8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=TxVP0ht0; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 600AB2C05EA;
+	Mon,  4 Mar 2024 08:58:07 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1709495887;
+	bh=YMjGJq4umtyd/ClNiZa0elGCMycPIwJQx4Epcs2kpG8=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=TxVP0ht0zTq714jFvRsf2+3s8wz6BZjd/L1eUYztGSU7sdy8uMIdw2nS4U4FERJUL
+	 GyUkkW9mjgwhTpaCZx5FzIXEyEEn3bRMnW/VFtzaZJSL6oCOA9qFYVxEJVu3aoutkQ
+	 sT84aToNkip9w1slWzHAX9/K5OS3rvfQMpTEeSeN9YHHgcG77wOTz/vLxFroHRUd6z
+	 wfF6TdgVVthiZCEwxRJ0yJziF9mnsNCLhFiUA9WbpVIqj4BcASZXF762zMrkizAqnK
+	 CyhKdFM4tfxm0aL1iSXrYSwhNZS4sfkt2hfkPFfuSIbungxxQ2ENLn1Zj+gZPB25xX
+	 XfzHV+MziUyZQ==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B65e4d64f0001>; Mon, 04 Mar 2024 08:58:07 +1300
+Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.2.1118.40; Mon, 4 Mar 2024 08:58:07 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
+ svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8:409d:36f5:8899:92e8) with Microsoft
+ SMTP Server (TLS) id 15.0.1497.48; Mon, 4 Mar 2024 08:58:06 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1118.040; Mon, 4 Mar 2024 08:58:06 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Andy Shevchenko <andy@kernel.org>
+CC: "geert@linux-m68k.org" <geert@linux-m68k.org>, "robh+dt@kernel.org"
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, "conor+dt@kernel.org"
+	<conor+dt@kernel.org>, "andrew@lunn.ch" <andrew@lunn.ch>,
+	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+	"sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+	"pavel@ucw.cz" <pavel@ucw.cz>, "lee@kernel.org" <lee@kernel.org>,
+	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 1/4] auxdisplay: Add 7-segment LED display driver
+Thread-Topic: [PATCH v3 1/4] auxdisplay: Add 7-segment LED display driver
+Thread-Index: AQHaa3mtvfhJncEIXkulWlzHVNRh9LEiWOCAgANAdQA=
+Date: Sun, 3 Mar 2024 19:58:06 +0000
+Message-ID: <f17adc70-be85-4be2-bbe2-336866907d68@alliedtelesis.co.nz>
+References: <20240301014203.2033844-1-chris.packham@alliedtelesis.co.nz>
+ <20240301014203.2033844-2-chris.packham@alliedtelesis.co.nz>
+ <ZeIb_TaKK1DE6l6U@smile.fi.intel.com>
+In-Reply-To: <ZeIb_TaKK1DE6l6U@smile.fi.intel.com>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <EB777336AFC8B84A8882CF208885582F@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65e4d64f a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=K6JAEmCyrfEA:10 a=62ntRvTiAAAA:8 a=1LykzZ4aAAAA:8 a=_24Lg-2B7_NxD4znq2UA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=pToNdpNmrtiFLRE6bQ9Z:22 a=bH51_Tnmb_xWNYlIng18:22
+X-SEG-SpamProfiler-Score: 0
 
-
-On Fri, 23 Feb 2024 16:21:12 +0100, Johan Hovold wrote:
-> This series addresses a few problems with the sc8280xp PCIe
-> implementation.
-> 
-> The DWC PCIe controller can either use its internal MSI controller or an
-> external one such as the GICv3 ITS. Enabling the latter allows for
-> assigning affinity to individual interrupts, but results in a large
-> amount of Correctable Errors being logged on both the Lenovo ThinkPad
-> X13s and the sc8280xp-crd reference design.
-> 
-> [...]
-
-Applied, thanks!
-
-[06/12] arm64: dts: qcom: sc8280xp-crd: limit pcie4 link speed
-        commit: db8138845cebcdd0c709570b8217bd052757b8df
-[07/12] arm64: dts: qcom: sc8280xp-x13s: limit pcie4 link speed
-        commit: 7a1c6a8bf47b0b290c79b9cc3ba6ee68be5522e8
-
-Best regards,
--- 
-Bjorn Andersson <andersson@kernel.org>
+DQpPbiAyLzAzLzI0IDA3OjE4LCBBbmR5IFNoZXZjaGVua28gd3JvdGU6DQo+PiArc3RhdGljIHZv
+aWQgc2VnX2xlZF91cGRhdGUoc3RydWN0IHdvcmtfc3RydWN0ICp3b3JrKQ0KPj4gK3sNCj4+ICsJ
+c3RydWN0IHNlZ19sZWRfcHJpdiAqcHJpdiA9IGNvbnRhaW5lcl9vZih3b3JrLCBzdHJ1Y3Qgc2Vn
+X2xlZF9wcml2LGh0dHA6Ly9zY2FubWFpbC50cnVzdHdhdmUuY29tLz9jPTIwOTg4JmQ9aVp6aTVi
+M1MtVFFDZnQ5aUVYREU2OVU5VXRZMC03R0FOazl0MVdrQ3hnJnU9aHR0cCUzYSUyZiUyZndvcmsl
+MmV3b3JrJTI5JTNiDQo+PiArCXN0cnVjdCBsaW5lZGlzcCAqbGluZWRpc3AgPSAmcHJpdi0+bGlu
+ZWRpc3A7DQo+PiArCXN0cnVjdCBsaW5lZGlzcF9tYXAgKm1hcCA9IGxpbmVkaXNwLT5tYXA7DQo+
+PiArCURFQ0xBUkVfQklUTUFQKHZhbHVlcywgOCk7DQo+PiArCWJpdG1hcF96ZXJvKHZhbHVlcywg
+OCk7DQo+IFdoeSBkbyB5b3UgbmVlZCB0aGlzIHplcm9pbmc/DQo+DQo+PiArCWJpdG1hcF9zZXRf
+dmFsdWU4KHZhbHVlcywgbWFwX3RvX3NlZzcoJm1hcC0+bWFwLnNlZzcsIGxpbmVkaXNwLT5idWZb
+MF0pLCAwKTsNCj4+ICsNCldpdGhvdXQgdGhlIHplcm9pbmcgYWJvdmUgR0NDIGNvbXBsYWlucyBh
+Ym91dCB1c2XCoCBvZiBhIHBvdGVudGlhbGx5IA0KdW5pbml0aWFsaXplZCB2YXJpYWJsZSBoZXJl
+LiBJIHRoaW5rIGJlY2F1c2UgYml0bWFwX3NldF92YWx1ZTgoKSBkb2VzICY9IA0KYW5kIHw9Lg0K
+Pj4gKwlncGlvZF9zZXRfYXJyYXlfdmFsdWVfY2Fuc2xlZXAocHJpdi0+c2VnbWVudF9ncGlvcy0+
+bmRlc2NzLCBwcml2LT5zZWdtZW50X2dwaW9zLT5kZXNjLA0KPj4gKwkJCQkgICAgICAgcHJpdi0+
+c2VnbWVudF9ncGlvcy0+aW5mbywgdmFsdWVzKTsNCj4+ICt9
 
