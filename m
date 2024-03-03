@@ -1,246 +1,124 @@
-Return-Path: <devicetree+bounces-47933-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47934-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B14A86F52E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 14:44:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C402086F581
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 15:22:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CD6282810B6
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 13:44:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD1761C209E7
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 14:22:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B645E59149;
-	Sun,  3 Mar 2024 13:44:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D48405A0FA;
+	Sun,  3 Mar 2024 14:22:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DFq57xDL"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ts34U3IO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 87A58F9E0;
-	Sun,  3 Mar 2024 13:44:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254B359B78;
+	Sun,  3 Mar 2024 14:22:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709473453; cv=none; b=Bwkm0n3DrAwpH7L56dvd6o1TLVHRh4+Rg6WnmYfvr8fZ+NObmufZV7RT+h5hHBTP0/yYLfDu5ZGAeqhxLCngi/g7W26KD+nAm9Jxa9rVY3gz9ZG/+1kQiJsjOciMDbMe+1J0ijyVlzPAUvOCXUoEOc5lYifoxMriGYFAXbM9woY=
+	t=1709475757; cv=none; b=NUFEEAeXqrzRfySMBDfxqAuix+QFre5BBCUeQSlwAGEiHt8qvvQ/ogHor9AUsDb9WDQrVSWmOojfM+PgyNgLAeiQhSQkfcwrbDiS8zk5IMdDjDKYnJrXyar6FrlHibCFXX4kmD14v4PUeOOetjKK8idu77flKtoJBqTBBVkHbcU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709473453; c=relaxed/simple;
-	bh=ugMvCw6zGRAzhtBt0eT9PK0o3WRLP6J3rcIwKvAF0Gc=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=PGlFKjxHQfXfEvE+WR/b2coVwNCcCx1xVTiXxEnTy+Z+GCRUjXcBvNMHv7K47SKgohsOEP/wNV+3Fo+hEzlZmdqegHb0IWo86u6JGYUdBddnh0UjaFhp4y0PAwlbVRHjEQlJDNEc5BmT36rt7Fn/of8U2NB0rbKmiEVgJgUAkJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DFq57xDL; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BF006C433C7;
-	Sun,  3 Mar 2024 13:44:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709473453;
-	bh=ugMvCw6zGRAzhtBt0eT9PK0o3WRLP6J3rcIwKvAF0Gc=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=DFq57xDLrYxOe9w7PzvF4LRKqHFPVjGbOopKrunvEi/wkXqToI6eChzOoVkMIgo9N
-	 yTw2rdDy4sEZ5ApuLXgPwTuM6Db2ThzTt95x78Qj/5rsoEwpOiE/q3a6APeUhlHujU
-	 tJdWQysTryZze1Ri1+ZPtYUT+hQOtRP+PSkpOM+zEVR9vDWoW9HGKY68tlDwcym4Rz
-	 uxal08cSsvCkzvm6iUIbZx+Z8su5fqUosrHI5OO9g9zdmjQ7Vq0GovmxaTa8hH99kK
-	 N5c71EatrVgfsDmChZjzR3fkJGwvVm1yam8qCYzQN5/e04KHSXj93eUYpO6yObTUM8
-	 LWdlk0OJHlfOQ==
-Date: Sun, 3 Mar 2024 13:43:59 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org, Michael Hennerich
- <Michael.Hennerich@analog.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Nuno =?UTF-8?B?U8Oh?= <nuno.sa@analog.com>, Liam
- Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] iio: adc: ad7944: add driver for
- AD7944/AD7985/AD7986
-Message-ID: <20240303134359.16d5e5f1@jic23-huawei>
-In-Reply-To: <20240229-ad7944-mainline-v4-2-f88b5ec4baed@baylibre.com>
-References: <20240229-ad7944-mainline-v4-0-f88b5ec4baed@baylibre.com>
-	<20240229-ad7944-mainline-v4-2-f88b5ec4baed@baylibre.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1709475757; c=relaxed/simple;
+	bh=dEoI8+Y6evE+5Ghh9a8OXg7doC5akRrXNHsbHzSrFUg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=qTq2RhD8JzM2pWajdjou7/oq1il9Q0bUzabEaPdLLBSYI38BCwiQtG3/DOT9Dz88M9tb4Z5Bvy7JEY8AWOeXE7oHTkovac0bExMObxUj8Q27kGiEfxjMEFEkUmc4Ap64KqXry+bfVLmJEE9nl6AXT0uMheMdQbEgReczSXikSZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ts34U3IO; arc=none smtp.client-ip=209.85.208.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d208be133bso46278891fa.2;
+        Sun, 03 Mar 2024 06:22:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709475754; x=1710080554; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1/ki2/RE7Lf64PFKVEEzHdKXP6S/+P7mkgvPKDo5WrA=;
+        b=Ts34U3IOAUUfLJh20h3WVnt5uDFWLq7awzzZsCe4GQ4c+F2ttDw0vSehtjhsLSU/gx
+         +J2ZLJ9Z4kuCFCePJu/IsL3YUPCQtTm0UtqqWP8Nw6DpVn5Nf7ub6XG1M6ysmeqSp16v
+         EOYAda2pKQ1Uv5Fse9rVwDnBWRqH+JPN3BX8xFTcImyrX6u2rbjWXiYO+udWkahpOoeC
+         wd/i1fhThdkqVKKOlhIj/d/p+LcPE+UCTOY86jHWQM1/OpkmKiRFp4Vo6uPTKG306i8b
+         /Af1hlHgasA5z7XZCiXqNNKp9xhRoBz9MlLkHht+t4tg7EX7V//8e7J0QidcE9ZrLHLv
+         FwMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709475754; x=1710080554;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1/ki2/RE7Lf64PFKVEEzHdKXP6S/+P7mkgvPKDo5WrA=;
+        b=vfecoZXBXk0XvgSkMahDQuUXn9Un8B9392B1BA1frT5zlcXQau6jPtizFniOX0wDQv
+         cj/HZXb/thIPrvJfdbYxdsykcnFf7DAKfjfjKn9yBwIUlwP03oJaqJbARqJtyjjsYxJ5
+         FWfHOjlXeq25Nt9WmUYPcCoXD2K/767UYyViYveafsXw9bdQgX+V5SGNe1ZzEcDO7Ebg
+         FdZuPvUkoS2yXcN92VZ0CBmrYVX5fk8dBQdrrtK+gCzdlsZt+Eq3VC5PuRvaXK4W3Gae
+         H3GIhtlHNjChPgny6oRiNxRuMsXmPmAGQmAS3lgxZlhQWbrycjGCi2ghvikKoP5gI+SK
+         LDBw==
+X-Forwarded-Encrypted: i=1; AJvYcCVcWBm7egBqHQC0bHVFG3nfA4XT5vNT9tcxfDix2IL4MuubvkRLRKCMEs1iDE7upaDhqiAM7L3/VJYDIqnhtTYvy674zbpUcQkgarZbjlJSFPFuWSUUSyegPpAGw2fsR2LOAw==
+X-Gm-Message-State: AOJu0YyG81AGvGX+vRah9BtdwSET9L/IXS5ewBD7WknwDbpy8vKcD54d
+	izx3Qoft2hfP6FNo9GTtZE8Z3WwwafCfKZuNVfLcSUyfR3aPMW9T
+X-Google-Smtp-Source: AGHT+IEalUf1X6Z6TIye7uXheYO0SHCuJXcB+Aa3XVNG85+TOoOyvPR8FFd27AQCLzC3AKCxgVw+Bg==
+X-Received: by 2002:a05:651c:19a9:b0:2d3:28b3:d9db with SMTP id bx41-20020a05651c19a900b002d328b3d9dbmr5327982ljb.16.1709475754071;
+        Sun, 03 Mar 2024 06:22:34 -0800 (PST)
+Received: from ?IPV6:2001:1c00:20d:1300:1b1c:4449:176a:89ea? (2001-1c00-020d-1300-1b1c-4449-176a-89ea.cable.dynamic.v6.ziggo.nl. [2001:1c00:20d:1300:1b1c:4449:176a:89ea])
+        by smtp.gmail.com with ESMTPSA id s9-20020a508dc9000000b005651ae4ac91sm3499722edh.41.2024.03.03.06.22.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Mar 2024 06:22:33 -0800 (PST)
+Message-ID: <049689b5-2b36-4dbe-b910-5e570618ce05@gmail.com>
+Date: Sun, 3 Mar 2024 15:22:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
+ EN8811H PHY driver
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <frank-w@public-files.de>,
+ Lucien Jheng <lucien.jheng@airoha.com>, Zhi-Jun You
+ <hujy652@protonmail.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240302183835.136036-1-ericwouds@gmail.com>
+ <20240302183835.136036-3-ericwouds@gmail.com>
+ <ZePicFOrsr5wTE_n@makrotopia.org>
+Content-Language: en-US
+From: Eric Woudstra <ericwouds@gmail.com>
+In-Reply-To: <ZePicFOrsr5wTE_n@makrotopia.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Thu, 29 Feb 2024 10:25:51 -0600
-David Lechner <dlechner@baylibre.com> wrote:
 
-> This adds a driver for the Analog Devices Inc. AD7944, AD7985, and
-> AD7986 ADCs. These are a family of pin-compatible ADCs that can sample
-> at rates up to 2.5 MSPS.
+
+On 3/3/24 03:37, Daniel Golle wrote:
+
+>> +
+>> +	/* BUG in PHY firmware: MDIO_AN_10GBT_STAT_LP2_5G does not get set.
 > 
-> The initial driver adds support for sampling at lower rates using the
-> usual IIO triggered buffer and can handle all 3 possible reference
-> voltage configurations.
+> EN8811H completely lacks MDIO_AN_10GBT_STAT, hence referencing
+> MDIO_AN_10GBT_STAT_LP2_5G here is confusing.
 > 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> Suggestion:
+> 	/* BUG in PHY firmware: EN8811H_2P5G_LPA_2P5G does not get set.
 > 
-Hi David,
-
-Fresh read through showed up a few more things.  They are all trivial except
-for what I think is an inverted error condition which would break
-cases where ref was not supplied in DT.
-
-Jonathan
-
-
-> ---
-> v4 changes: none
+> Or just skip that line entirely as the following two lines already
+> perfectly explain the situation.
 > 
-> v3 changes:
-> - Replaced _sign with _diff in chip info struct to properly handle
->   pseudo-differential vs. true differential chips. Pseudo-differential chips
->   now just have a voltage0 channel instead of voltage0-voltage1.
-> - Fixed not resetting the CNV gpio on error return.
-> - Simplified check of adi,spi-mode property now that "multi" is no longer a
->   valid option.
 
-> diff --git a/drivers/iio/adc/ad7944.c b/drivers/iio/adc/ad7944.c
-> new file mode 100644
-> index 000000000000..d0ba4ae409c4
-> --- /dev/null
-> +++ b/drivers/iio/adc/ad7944.c
-> @@ -0,0 +1,413 @@
+Thanks
 
-> +#define AD7944_INTERNAL_REF_MV		4096
-> +
-> +struct ad7944_timing_spec {
-> +	/* Normal mode max conversion time (t_{CONV}) in nanoseconds. */
-Trivial.
-Name makes unit obvious (which is exactly how it should be!),
-so can drop it from the comment.
+I also have a reply from kernel test robot, so I'll need to fix some more.
 
-> +	unsigned int conv_ns;
-> +	/* TURBO mode max conversion time (t_{CONV}) in nanoseconds. */
-> +	unsigned int turbo_conv_ns;
-> +};
-> +
-> +struct ad7944_adc {
-> +	struct spi_device *spi;
-> +	/* Chip-specific timing specifications. */
-> +	const struct ad7944_timing_spec *t;
-
-As mentioned below, t is too succinct. Just pay the price in characters for
-timing_spec or something along those lines.
-
-> +	/* GPIO connected to CNV pin. */
-> +	struct gpio_desc *cnv;
-> +	/* Optional GPIO to enable turbo mode. */
-> +	struct gpio_desc *turbo;
-> +	/* Indicates TURBO is hard-wired to be always enabled. */
-> +	bool always_turbo;
-> +	/* Reference voltage (millivolts). */
-> +	unsigned int ref_mv;
-> +
-> +	/*
-> +	 * DMA (thus cache coherency maintenance) requires the
-> +	 * transfer buffers to live in their own cache lines.
-> +	 */
-> +	struct {
-> +		union {
-> +			u16 u16;
-> +			u32 u32;
-> +		} raw;
-> +		u64 timestamp __aligned(8);
-> +	 } sample __aligned(IIO_DMA_MINALIGN);
-> +};
-
-
-> +
-> +static int ad7944_probe(struct spi_device *spi)
-> +{
-> +	const struct ad7944_chip_info *chip_info;
-> +	struct iio_dev *indio_dev;
-> +	struct ad7944_adc *adc;
-> +	bool have_refin = false;
-> +	struct regulator *ref;
-> +	int ret;
-> +
-> +	/*
-> +	 * driver currently only supports the conventional "4-wire" mode and
-> +	 * not other special wiring configurations.
-> +	 */
-> +	if (device_property_present(&spi->dev, "adi,spi-mode"))
-Trivial, so ignore if you like..
-
-There are a lot of spi->dev in here, maybe it's wroth
-a local variable
-struct device *dev = &spi->dev;
-
-> +		return dev_err_probe(&spi->dev, -EINVAL,
-> +				     "adi,spi-mode is not currently supported\n");
-> +
-> +	indio_dev = devm_iio_device_alloc(&spi->dev, sizeof(*adc));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	adc = iio_priv(indio_dev);
-> +	adc->spi = spi;
-> +
-> +	chip_info = spi_get_device_match_data(spi);
-> +	if (!chip_info)
-> +		return dev_err_probe(&spi->dev, -EINVAL, "no chip info\n");
-> +
-> +	adc->t = chip_info->t;
-
-That might want a bit more informative a name. Even ts is better than t!
-
->
-> +
-> +	/*
-> +	 * Sort out what is being used for the reference voltage. Options are:
-> +	 * - internal reference: neither REF or REFIN is connected
-> +	 * - internal reference with external buffer: REF not connected, REFIN
-> +	 *   is connected
-> +	 * - external reference: REF is connected, REFIN is not connected
-> +	 */
-> +
-> +	ref = devm_regulator_get_optional(&spi->dev, "ref");
-> +	if (IS_ERR(ref)) {
-> +		if (PTR_ERR(ref) != -ENODEV)
-
-Confused. Isn't this inverse of what we want?
-return an error if we got anything other than -ENODEV.
-		if (PTR_ERR(ref) |= -ENODEV)
-			return dev_err_probe(&spi->dev, PTR_ERR(ref),
-					     "failed to get REF supply\n");
-		ref = NULL;
-	}
-
-> +			ref = NULL;
-> +		else
-> +			return dev_err_probe(&spi->dev, PTR_ERR(ref),
-> +					     "failed to get REF supply\n");
-> +	}
-> +
-
-> +
-> +	adc->cnv = devm_gpiod_get(&spi->dev, "cnv", GPIOD_OUT_LOW);
-> +	if (IS_ERR(adc->cnv))
-> +		return dev_err_probe(&spi->dev, PTR_ERR(adc->cnv),
-> +				     "failed to get CNV GPIO\n");
-
-Is this optional?  If we don't yet support the case the dt binding talks
-about worth a comment here to say we don't yet support XYZ so this
-is not optional.  
-
-> +
-> +	adc->turbo = devm_gpiod_get_optional(&spi->dev, "turbo", GPIOD_OUT_LOW);
-> +	if (IS_ERR(adc->turbo))
-> +		return dev_err_probe(&spi->dev, PTR_ERR(adc->turbo),
-> +				     "failed to get TURBO GPIO\n");
-> +
-> +	if (device_property_present(&spi->dev, "adi,always-turbo"))
-> +		adc->always_turbo = true;
-> +
-
-Trivial, but maybe..
-	adc->always_turbo = device_property_present(&spi->dev, "adi,always_turbo");
-
-Jonathan
-
+Better to see if I can only send to the test robot first.
 
