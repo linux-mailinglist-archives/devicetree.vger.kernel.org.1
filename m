@@ -1,1182 +1,283 @@
-Return-Path: <devicetree+bounces-47908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2EBB86F36A
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 03:38:18 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4163F86F36C
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 03:46:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6DC751F216FF
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 02:38:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7776284079
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 02:46:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3DC9B197;
-	Sun,  3 Mar 2024 02:38:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9227B4690;
+	Sun,  3 Mar 2024 02:46:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="PJrPhpoP";
+	dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b="ribFKx66"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B1847F;
-	Sun,  3 Mar 2024 02:38:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709433495; cv=none; b=pJA5RF5oalHwm9IgYTHtT/sPunD/nnPNIQuXsKEFC1cVkHxotLzB4IT6PIOhqoHTC4ucL2cahXAxROF/yf2xlrOxEOkMnJeSA3KR2e4tvBpWRMDOqSL4PJuJ9xKalNWhg+r5A0UPQ6hKqvbEYNE/JreB6DktG5ifMehEd6zpWE8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709433495; c=relaxed/simple;
-	bh=/owaB6FdSQQfOjPlvI/b1O+jpqJDjalglYwdjYSbGHo=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VxUfMql5f44/w+g3SoSn08OdXmGhXzCYtOw2OybZVBUImRKqewEGz/2pM2wsJ+cooUpvRcXMo6i7kha8L5xPTXnSEAg7pF+4y79DUg1tKK+32mNHQ06ds2olVfLbowu0lRo+ijTVp5W/21gUCkrkA3GmZKfzdfMDcCcuAT7136Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1rgbjR-0003j8-0T;
-	Sun, 03 Mar 2024 02:37:41 +0000
-Date: Sun, 3 Mar 2024 02:37:36 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Eric Woudstra <ericwouds@gmail.com>
-Cc: "David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	Lucien Jheng <lucien.jheng@airoha.com>,
-	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
- EN8811H PHY driver
-Message-ID: <ZePicFOrsr5wTE_n@makrotopia.org>
-References: <20240302183835.136036-1-ericwouds@gmail.com>
- <20240302183835.136036-3-ericwouds@gmail.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 639D033C7;
+	Sun,  3 Mar 2024 02:46:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=60.244.123.138
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709434009; cv=fail; b=ACZtn7r4Qsi6L8KFBWwyfficMKxWVpCfp7iCyXLQxLwIRHUzjpTisGNC36ooXUnPZ1o8OMO3hJYEYCHypGjuscuBDyUsprp2HUaZfhH4ldAd3dn5Z2q3RPx+uCDCr5Ul+7Pk0rGDVuLATUhunGqxTzrsf7Q+qFcNCAgR5jgQ8Is=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709434009; c=relaxed/simple;
+	bh=H5+kCAw5NQXxL1FJP4RV4+l0EaFfXtXFqA80L/tQhPo=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=kOE1Xt2dPHxzHqfxYcle3mi2Vu43mE++w+CBGmIc7C989EEYH1BVSfOtgJgo7zHnutmtn5J2td82YxTv2hUpdGOWC7EAHR9tAR2hwU8IszaUp+1pLgSkCyD8A2DDXgGI7mPkhMzLoU6bd/zH2yAaShuQVKTeUPaVVXs19rc9E60=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=PJrPhpoP; dkim=pass (1024-bit key) header.d=mediateko365.onmicrosoft.com header.i=@mediateko365.onmicrosoft.com header.b=ribFKx66; arc=fail smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 43986808d90811eeb8927bc1f75efef4-20240303
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=MIME-Version:Content-Transfer-Encoding:Content-ID:Content-Type:In-Reply-To:References:Message-ID:Date:Subject:CC:To:From; bh=H5+kCAw5NQXxL1FJP4RV4+l0EaFfXtXFqA80L/tQhPo=;
+	b=PJrPhpoPYZLtzWo6SqDiZ0oMZ8daL63NMnAbqq+8r50Rr207T08sUFNliXYaK43ZT1tgnold5bYrttZtyQP+Zxe63jq/QWsSA3z11RLaUqSbnoEcc/E4HYpm6Qq3NrBjVpDURVIgaEHGxbyKx++s/R8TT6gxcq7S24Y3RdLRdEg=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.37,REQID:c2568f28-4b26-4335-8d96-59d1834ab0ab,IP:0,U
+	RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+	release,TS:0
+X-CID-META: VersionHash:6f543d0,CLOUDID:1827f18f-e2c0-40b0-a8fe-7c7e47299109,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 43986808d90811eeb8927bc1f75efef4-20240303
+Received: from mtkmbs13n2.mediatek.inc [(172.21.101.108)] by mailgw01.mediatek.com
+	(envelope-from <zhi.mao@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 33296706; Sun, 03 Mar 2024 10:46:41 +0800
+Received: from mtkmbs10n2.mediatek.inc (172.21.101.183) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Sun, 3 Mar 2024 10:46:39 +0800
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (172.21.101.237)
+ by mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Sun, 3 Mar 2024 10:46:39 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Tq4d68GFUJLP0ezW8nfKSfIdhEo+vIv/RuVMdiEWuin0er2EdthzAYml0jANXG+Q+xb8bPCWQtBK6gamKkCcQGaVWjLyjb7EFL8rXnUNYocE1IG1x8fUTc8BnUQQLYkU0l4aDellpH15dxA+dk5jlaQc9a5ZL7hy89AtF8uNx1kUOOUGjT/iiM+46B/fni+3//A3qCEEYO7dZqxS11gN+Hj4GfLyIdCrcgf5AiuDUIyVHLNSozx7GIqwi557JHFl7VzUgus8kqOXhc3tLsKeUe9mj3saV+0VoKlhBt2N0lq0r0Vre/oFiOSk7SftN71QCSRjUjsfUCbyfWS+5YyInA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H5+kCAw5NQXxL1FJP4RV4+l0EaFfXtXFqA80L/tQhPo=;
+ b=Xj/Guy6KEMeACsVDohZnRQBmIj69SI6dKM+RrgcqisLwo1mTVqhXVJOUzlLi8H8VMaXGLA4KxfYrWRuJmbTYMyG0p+CbLXeV6n9M68h+4vHeCSufqESQzpefupywc7nkxCpuw4PPqfJvsYoIEtWWKMwaBNOcwHuy5bFBrlvY6UBO/HljC+vuFm6AytBsdCc/wB51F2RAA3hS7/MsoRem/AQXZZTZxSB7h+ctgkiqf99VxF0IOmE7Yf+XkkZMWf7SyIVKEzQYV8Nj/JhEuiXcUN6vqSGwTl1GWROLZO/iwa2Rb2Z1GJyssi5NHH5bOb1rLIg59IxzfXWNqYbmUPVt8w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=mediatek.com; dmarc=pass action=none header.from=mediatek.com;
+ dkim=pass header.d=mediatek.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=mediateko365.onmicrosoft.com; s=selector2-mediateko365-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=H5+kCAw5NQXxL1FJP4RV4+l0EaFfXtXFqA80L/tQhPo=;
+ b=ribFKx660iXXZpZYc1rt64FD+JQqOxwZw6O2F88AsXgRoQv0bS1RfzdGE1rqlUngovRvskm1X0wBoHyhqPDVRrsl3UJAgPbxLLrW/BvFwfs5TLEt6D/cfiu5/P91v2kxU1V8Rz1s4Zv8d+3wOgVkLvolorHzr1guAoxAf+V9LsE=
+Received: from TYZPR03MB5566.apcprd03.prod.outlook.com (2603:1096:400:53::7)
+ by SEZPR03MB7218.apcprd03.prod.outlook.com (2603:1096:101:e7::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.32; Sun, 3 Mar
+ 2024 02:46:34 +0000
+Received: from TYZPR03MB5566.apcprd03.prod.outlook.com
+ ([fe80::ea44:b3b4:28a4:c731]) by TYZPR03MB5566.apcprd03.prod.outlook.com
+ ([fe80::ea44:b3b4:28a4:c731%7]) with mapi id 15.20.7339.033; Sun, 3 Mar 2024
+ 02:46:34 +0000
+From: =?utf-8?B?WmhpIE1hbyAo5q+b5pm6KQ==?= <zhi.mao@mediatek.com>
+To: "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>
+CC: "heiko@sntech.de" <heiko@sntech.de>, "tomi.valkeinen@ideasonboard.com"
+	<tomi.valkeinen@ideasonboard.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"yunkec@chromium.org" <yunkec@chromium.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "dan.scally@ideasonboard.com"
+	<dan.scally@ideasonboard.com>, "gerald.loacker@wolfvision.net"
+	<gerald.loacker@wolfvision.net>,
+	=?utf-8?B?U2hlbmduYW4gV2FuZyAo546L5Zyj55S3KQ==?=
+	<shengnan.wang@mediatek.com>, "hdegoede@redhat.com" <hdegoede@redhat.com>,
+	"linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+	"linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+	"linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>,
+	=?utf-8?B?WWF5YSBDaGFuZyAo5by16ZuF5riFKQ==?= <Yaya.Chang@mediatek.com>,
+	"mchehab@kernel.org" <mchehab@kernel.org>, "jacopo.mondi@ideasonboard.com"
+	<jacopo.mondi@ideasonboard.com>, "jernej.skrabec@gmail.com"
+	<jernej.skrabec@gmail.com>, "linux-mediatek@lists.infradead.org"
+	<linux-mediatek@lists.infradead.org>, "bingbu.cao@intel.com"
+	<bingbu.cao@intel.com>, "sakari.ailus@linux.intel.com"
+	<sakari.ailus@linux.intel.com>, Project_Global_Chrome_Upstream_Group
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, "10572168@qq.com"
+	<10572168@qq.com>, "conor+dt@kernel.org" <conor+dt@kernel.org>,
+	"hverkuil-cisco@xs4all.nl" <hverkuil-cisco@xs4all.nl>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+	"laurent.pinchart@ideasonboard.com" <laurent.pinchart@ideasonboard.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"angelogioacchino.delregno@collabora.com"
+	<angelogioacchino.delregno@collabora.com>, "macromorgan@hotmail.com"
+	<macromorgan@hotmail.com>
+Subject: Re: [PATCH v6 2/2] media: i2c: Add GC08A3 image sensor driver
+Thread-Topic: [PATCH v6 2/2] media: i2c: Add GC08A3 image sensor driver
+Thread-Index: AQHaaR0Dr2G8OwgcZUiafwf4WUg7y7EeI9sAgAcz6gA=
+Date: Sun, 3 Mar 2024 02:46:33 +0000
+Message-ID: <2c8ae94c1477a933ca78ac7b0f2c92f66ed029f7.camel@mediatek.com>
+References: <20240227013221.21512-1-zhi.mao@mediatek.com>
+	 <20240227013221.21512-3-zhi.mao@mediatek.com>
+	 <CAHp75VciCJuoOwC8ozanWYqSCM=vWpiaqymJ2-gQfrSt5Ts6fQ@mail.gmail.com>
+In-Reply-To: <CAHp75VciCJuoOwC8ozanWYqSCM=vWpiaqymJ2-gQfrSt5Ts6fQ@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=mediatek.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR03MB5566:EE_|SEZPR03MB7218:EE_
+x-ms-office365-filtering-correlation-id: e952ed96-6fa0-450f-6e8b-08dc3b2c237f
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: APBZrpjsHj4QgnAxISuVaJn+ummJhEtfW76PHXSvfUAp5sEeTMMu2JvGpS93ryriezhFjddNakTfi4FeHNFtlwhzkt5du/B/Eg0gLf9NE94N6ch/YOPkFdIta//+psnbtRYqE5OMElDv325hGdCxcTEHzTWa513alVYE9EGjMnNZbpL+rBM4T60X18egYtBihIDa2PA3DxX3klawoGRfYqZH6GDQl1P77hNtAus8kCLgEobZ+Q97HPSoISSsnCDEobNY864cqhhvU7aWcGGbW8tcLAjOw6Gywq9J/owyzLXiH7hUerC0m8PwCi7qy6KJBCyBTi/jANhIbLpaXGCPwdddP7ujuwlDYBiX2LE3WrXuin3Uc9NLfE3JiOM0Bbb3J9NaKvkqlnfaLMRPoZWYHjZdZaOJv6wY8RLTiSOIrDOD/NxQv1Oham5PRg7+S/Vz0h2ig6TfhZ4XU2JNORior3Pjvj/0W889cylh1LwwkUADxz5wnkKeI3OONIMZuv9aACiN1njCgzl1kdrfz09jxaMFqU4biKAWr+NgT4OLuADZH90kipX5UAlPA8fQ5LFFM2aWi5Jbf0ovbcX+MZV2MTcqe7ztI/tI7iSHQqymHpR/fqELAAQWmvHmO0iv7I0S3WYDJhk8S5IiuDrd5gYy09K5yWQMnDerBSOdjP5NKrh2D4Q3ZHh42MxXbDfgK+mtAUz1pQxXvV6v2Lg2Ep6b3gQkO8zhffN0z2wiltxDQfM=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB5566.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b1hQRS96RmZXK09iVy80RC95MjZnNjN4UGxzY3ptR1FhUE1YTndSWTMvVTJx?=
+ =?utf-8?B?SjdEVjQwaW5CbVVkTjFNaXVQN3FnNTdmUTBlQmk2M3ZZOGdDTWtIYjAxZDRV?=
+ =?utf-8?B?OWtpdUtMc2NTTk1WVGh0WENsUzRwMHZlM3NNTThlUlBKL2NMcWovb2V2aVp6?=
+ =?utf-8?B?QVR4dS9ZaFl0TEdzVHZCOTBhTzY1anJDNWRZWHFhM1g5UDhCNmQraXMwTTZF?=
+ =?utf-8?B?bENSaTFCK3hJT096UFdmY3A2R2FWVFEzamFKL2FISitYM0NNaXNRRGpoTGxj?=
+ =?utf-8?B?WmNFTVVuTnJPV21oc3BiTzJoVGdoMkZpOVk4WUo1YU45QnhTMEJSQi9iUmdS?=
+ =?utf-8?B?T0pNT0lVQzdEOTlaZUY0dWNaWkpXVXB5WjQrNU1oQk8rTmRqSDd0N3FJSDBO?=
+ =?utf-8?B?TWErVlQvU2hQalEzRzdmZmI2RzFFSzQ5ZWpBQWpRQnZRRy83cHNMSmJZWUtP?=
+ =?utf-8?B?akVDTy8wT2lZL2gxMkhra2x6T1ozYWhkU21mcHBmOExPVW9ta3lqZEU0aVFj?=
+ =?utf-8?B?bWE1K3hMZXRLWVJxbWcyYnByaXR3cE52dGppWC9wb3pIVnZNWmRlRlFwZ1NU?=
+ =?utf-8?B?Q3Jqem1LQXNKYVFtcThTbWsxOVM0L0plZ3p6S1BsR1k1MlFjMG1jV3NtV3p3?=
+ =?utf-8?B?Z2FDLy83MzU2SHlsS0ZJbm8yczVlOFRYSEQwSGpodkFKM3JCR0lOS2dnWTFQ?=
+ =?utf-8?B?MzJacFR5Q3NzM1htOGRZZWJoMFExZ3VFWkVuU01CZHVwcmQxczQ1bUJXakFs?=
+ =?utf-8?B?UllQVjhtdUVyNTBkbFR5bE1jWkplL29MUlZwRW9ONFdKK1I1UlNSdmRwN2l3?=
+ =?utf-8?B?dW13ZElhWmVYR2wvUVpOTW1uSlRYSGgxNlJBbUNQUzNhMFBydS9ia1RQS3Nw?=
+ =?utf-8?B?ME1VWTBnWm1hc3k2WVRTbHUzRzVoNkhuZ3dNWWJOMTJBSC9vb2JYL1Via0w0?=
+ =?utf-8?B?ZzlNZFBvWk5LcWRrbnIxT1p4NlRaT21wY0J3akRSb0tqR2Vrd3VaKzRERW40?=
+ =?utf-8?B?V2hiTC9Hc3JPWHA0c0VTWHRFQzlvL2o0Q1E0dnlxb0hnSnViNGYwZXdlbzJW?=
+ =?utf-8?B?YnE2UENKcjVXTlZJODd4ZWNhS2RFREthQ1ZpUG1tWitVUkxOTlZURXgyTGVs?=
+ =?utf-8?B?cUhSKzQza3BtbjJqRGI1K25pcVRqZDJYSEFkVnF3SjFNeld4T2hDcUY5Q3F4?=
+ =?utf-8?B?SlRNbFBMbm5KZmQ5QlpXbUJtNEVUekdoRytYeGp6QkowZndXL0xscWRIVCtl?=
+ =?utf-8?B?b09qbXBLS2g0c29nVkoyNjIwb2ovRDZDb3B1TkpNU0RBOXlubHBCUXRxMFNT?=
+ =?utf-8?B?UnBZREN3U09hbE9CbTFPZ3NPcDR6MkdhdU9rNHRYRmxQajkzOHFhYVVvTWZz?=
+ =?utf-8?B?UHE3VXNJMUc2VGlRT3hwMWkzOTk2OEpuOUtrNzdpUWNCblVFTWQxRjR0R2du?=
+ =?utf-8?B?QnJHV0hQSGZYTFVQcUpCRE9XamxyRDBJenh4c1R0Z01wUWo2SE1McE85RWZ6?=
+ =?utf-8?B?K201bTdvUGF1ZTRtRmtpdXByL3lRdjlicXZMVkt2OE5uVXFBK1Fqa2huZGh0?=
+ =?utf-8?B?bE50cFdWZUZYcmhGMkhNc0hGVGR2QVduaGRXbkt6REJkekI4SjJUbjVZQXZK?=
+ =?utf-8?B?YTBLa1hENmJFcmxDMkk2WkJBQVdLcnJyZlZoRGtGZHorZ3REaUZMVGFjWDJJ?=
+ =?utf-8?B?QnhuM0NrQjNPaVR6MkhzRW43WXBEN2NUdWJYaGZBbGNxKzRxem01emJYMWtP?=
+ =?utf-8?B?NjFPYVEwOVdWZGx0a0hUd2s2em5INjdLSGV1aExRZDVIUVZGTUljdFNYVmtv?=
+ =?utf-8?B?OUtuK0pQREdNUkM5NWI1TlVqYWwvVWg1Z0hWTVhwYjczVXhWSmNVZDNNYU9y?=
+ =?utf-8?B?VXpxUVZsMEh3ai8zREh6dDV1emJpbExmUmcvUFoyYkJxUTV6Sy9xcjZjcll5?=
+ =?utf-8?B?TmZZMWVTUGNQWG5KN3ByNmxmRUwzd0lGL3l1V3NlMG9Fd3hKajM0MFZDdEZW?=
+ =?utf-8?B?b3MrTmhPeW1rNzI4SHVnRUQ3VUpncmJpUmkwZEEzTGtrWXR5cVRHOXJCMXhv?=
+ =?utf-8?B?YURvMHBDbE5zeWNNdkVVdmZVNVN2Smc4bTRXalNrYWw4SVltekhyYXQwZVRG?=
+ =?utf-8?B?UWdSVUdRYStWZWc1aFhpZVMybEorVlk0ZUxvL3BqRnlJckdXY2Rqei9CUkFJ?=
+ =?utf-8?B?Y2c9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F34586DD0B347D4EB24F23FC0309F02D@apcprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240302183835.136036-3-ericwouds@gmail.com>
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB5566.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e952ed96-6fa0-450f-6e8b-08dc3b2c237f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Mar 2024 02:46:33.9773
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: a7687ede-7a6b-4ef6-bace-642f677fbe31
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: w9/VCLInHkqHGXgkqf9msGfdsaLMtcho0P2QbpYlMi9+qtTSfpHffdnEGXprkFxdDTvMQ4GmgKiBl360028Lzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7218
 
-On Sat, Mar 02, 2024 at 07:38:35PM +0100, Eric Woudstra wrote:
-> Add the driver for the Airoha EN8811H 2.5 Gigabit PHY. The phy supports
-> 100/1000/2500 Mbps with auto negotiation only.
-> 
-> The driver uses two firmware files, for which updated versions are added to
-> linux-firmware already.
-> 
-> Note: At phy-address + 8 there is another device on the mdio bus, that
-> belongs to the EN881H. While the original driver writes to it, Airoha
-Typo, missing '1'   ^^^
-
-> has confirmed this is not needed. Therefore, communication with this
-> device is not included in this driver.
-> 
-> Signed-off-by: Eric Woudstra <ericwouds@gmail.com>
-
-Reviewed-by: Daniel Golle <daniel@makrotopia.org>
-
-See some minor comments inline below
-
-> ---
->  drivers/net/phy/Kconfig       |    5 +
->  drivers/net/phy/Makefile      |    1 +
->  drivers/net/phy/air_en8811h.c | 1035 +++++++++++++++++++++++++++++++++
->  3 files changed, 1041 insertions(+)
->  create mode 100644 drivers/net/phy/air_en8811h.c
-> 
-> diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
-> index 1df0595c5ba9..7fddc8306d82 100644
-> --- a/drivers/net/phy/Kconfig
-> +++ b/drivers/net/phy/Kconfig
-> @@ -76,6 +76,11 @@ config SFP
->  
->  comment "MII PHY device drivers"
->  
-> +config AIR_EN8811H_PHY
-> +	tristate "Airoha EN8811H 2.5 Gigabit PHY"
-> +	help
-> +	  Currently supports the Airoha EN8811H PHY.
-> +
->  config AMD_PHY
->  	tristate "AMD and Altima PHYs"
->  	help
-> diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
-> index 197acfa0b412..202ed7f450da 100644
-> --- a/drivers/net/phy/Makefile
-> +++ b/drivers/net/phy/Makefile
-> @@ -34,6 +34,7 @@ obj-y				+= $(sfp-obj-y) $(sfp-obj-m)
->  
->  obj-$(CONFIG_ADIN_PHY)		+= adin.o
->  obj-$(CONFIG_ADIN1100_PHY)	+= adin1100.o
-> +obj-$(CONFIG_AIR_EN8811H_PHY)   += air_en8811h.o
->  obj-$(CONFIG_AMD_PHY)		+= amd.o
->  obj-$(CONFIG_AQUANTIA_PHY)	+= aquantia/
->  ifdef CONFIG_AX88796B_RUST_PHY
-> diff --git a/drivers/net/phy/air_en8811h.c b/drivers/net/phy/air_en8811h.c
-> new file mode 100644
-> index 000000000000..8a3bd40cf4d1
-> --- /dev/null
-> +++ b/drivers/net/phy/air_en8811h.c
-> @@ -0,0 +1,1035 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Driver for the Airoha EN8811H 2.5 Gigabit PHY.
-> + *
-> + * Limitations of the EN8811H:
-> + * - Only full duplex supported
-> + * - Forced speed (AN off) is not supported by hardware (100Mbps)
-> + *
-> + * Source originated from airoha's en8811h.c and en8811h.h v1.2.1
-> + *
-> + * Copyright (C) 2023 Airoha Technology Corp.
-> + */
-> +
-> +#include <linux/phy.h>
-> +#include <linux/firmware.h>
-> +#include <linux/property.h>
-> +#include <asm/unaligned.h>
-> +
-> +#define EN8811H_PHY_ID		0x03a2a411
-> +
-> +#define EN8811H_MD32_DM		"airoha/EthMD32.dm.bin"
-> +#define EN8811H_MD32_DSP	"airoha/EthMD32.DSP.bin"
-> +
-> +#define AIR_FW_ADDR_DM	0x00000000
-> +#define AIR_FW_ADDR_DSP	0x00100000
-> +
-> +/* u32 (DWORD) component macros */
-> +#define LOWORD(d) ((u16)(u32)(d))
-> +#define HIWORD(d) ((u16)(((u32)(d)) >> 16))
-
-You could use the existing macros in wordpart.h instead.
-
-> +
-> +/* MII Registers */
-> +#define AIR_AUX_CTRL_STATUS		0x1d
-> +#define   AIR_AUX_CTRL_STATUS_SPEED_MASK	GENMASK(4, 2)
-> +#define   AIR_AUX_CTRL_STATUS_SPEED_100		0x4
-> +#define   AIR_AUX_CTRL_STATUS_SPEED_1000	0x8
-> +#define   AIR_AUX_CTRL_STATUS_SPEED_2500	0xc
-> +
-> +#define AIR_EXT_PAGE_ACCESS		0x1f
-> +#define   AIR_PHY_PAGE_STANDARD			0x0000
-> +#define   AIR_PHY_PAGE_EXTENDED_4		0x0004
-> +
-> +/* MII Registers Page 4*/
-> +#define AIR_BPBUS_MODE			0x10
-> +#define   AIR_BPBUS_MODE_ADDR_FIXED		0x0000
-> +#define   AIR_BPBUS_MODE_ADDR_INCR		BIT(15)
-> +#define AIR_BPBUS_WR_ADDR_HIGH		0x11
-> +#define AIR_BPBUS_WR_ADDR_LOW		0x12
-> +#define AIR_BPBUS_WR_DATA_HIGH		0x13
-> +#define AIR_BPBUS_WR_DATA_LOW		0x14
-> +#define AIR_BPBUS_RD_ADDR_HIGH		0x15
-> +#define AIR_BPBUS_RD_ADDR_LOW		0x16
-> +#define AIR_BPBUS_RD_DATA_HIGH		0x17
-> +#define AIR_BPBUS_RD_DATA_LOW		0x18
-> +
-> +/* Registers on MDIO_MMD_VEND1 */
-> +#define EN8811H_PHY_FW_STATUS		0x8009
-> +#define   EN8811H_PHY_READY			0x02
-> +
-> +#define AIR_PHY_HOST_CMD_1		0x800c
-> +#define AIR_PHY_HOST_CMD_1_MODE1		0x0
-> +#define AIR_PHY_HOST_CMD_2		0x800d
-> +#define AIR_PHY_HOST_CMD_2_MODE1		0x0
-> +#define AIR_PHY_HOST_CMD_3		0x800e
-> +#define AIR_PHY_HOST_CMD_3_MODE1		0x1101
-> +#define AIR_PHY_HOST_CMD_3_DOCMD		0x1100
-> +#define AIR_PHY_HOST_CMD_4		0x800f
-> +#define AIR_PHY_HOST_CMD_4_MODE1		0x0002
-> +#define AIR_PHY_HOST_CMD_4_INTCLR		0x00e4
-> +
-> +/* Registers on MDIO_MMD_VEND2 */
-> +#define AIR_PHY_LED_BCR			0x021
-> +#define   AIR_PHY_LED_BCR_MODE_MASK		GENMASK(1, 0)
-> +#define   AIR_PHY_LED_BCR_TIME_TEST		BIT(2)
-> +#define   AIR_PHY_LED_BCR_CLK_EN		BIT(3)
-> +#define   AIR_PHY_LED_BCR_EXT_CTRL		BIT(15)
-> +
-> +#define AIR_PHY_LED_DUR_ON		0x022
-> +
-> +#define AIR_PHY_LED_DUR_BLINK		0x023
-> +
-> +#define AIR_PHY_LED_ON(i)	       (0x024 + ((i) * 2))
-> +#define   AIR_PHY_LED_ON_MASK			(GENMASK(6, 0) | BIT(8))
-> +#define   AIR_PHY_LED_ON_LINK1000		BIT(0)
-> +#define   AIR_PHY_LED_ON_LINK100		BIT(1)
-> +#define   AIR_PHY_LED_ON_LINK10			BIT(2)
-> +#define   AIR_PHY_LED_ON_LINKDOWN		BIT(3)
-> +#define   AIR_PHY_LED_ON_FDX			BIT(4) /* Full duplex */
-> +#define   AIR_PHY_LED_ON_HDX			BIT(5) /* Half duplex */
-> +#define   AIR_PHY_LED_ON_FORCE_ON		BIT(6)
-> +#define   AIR_PHY_LED_ON_LINK2500		BIT(8)
-> +#define   AIR_PHY_LED_ON_POLARITY		BIT(14)
-> +#define   AIR_PHY_LED_ON_ENABLE			BIT(15)
-> +
-> +#define AIR_PHY_LED_BLINK(i)	       (0x025 + ((i) * 2))
-> +#define   AIR_PHY_LED_BLINK_1000TX		BIT(0)
-> +#define   AIR_PHY_LED_BLINK_1000RX		BIT(1)
-> +#define   AIR_PHY_LED_BLINK_100TX		BIT(2)
-> +#define   AIR_PHY_LED_BLINK_100RX		BIT(3)
-> +#define   AIR_PHY_LED_BLINK_10TX		BIT(4)
-> +#define   AIR_PHY_LED_BLINK_10RX		BIT(5)
-> +#define   AIR_PHY_LED_BLINK_COLLISION		BIT(6)
-> +#define   AIR_PHY_LED_BLINK_RX_CRC_ERR		BIT(7)
-> +#define   AIR_PHY_LED_BLINK_RX_IDLE_ERR		BIT(8)
-> +#define   AIR_PHY_LED_BLINK_FORCE_BLINK		BIT(9)
-> +#define   AIR_PHY_LED_BLINK_2500TX		BIT(10)
-> +#define   AIR_PHY_LED_BLINK_2500RX		BIT(11)
-> +
-> +/* Registers on BUCKPBUS */
-> +#define EN8811H_2P5G_LPA		0x3b30
-> +#define   EN8811H_2P5G_LPA_2P5G			BIT(0)
-> +
-> +#define EN8811H_FW_VERSION		0x3b3c
-> +
-> +#define EN8811H_POLARITY		0xca0f8
-> +#define   EN8811H_POLARITY_TX_NORMAL		BIT(0)
-> +#define   EN8811H_POLARITY_RX_REVERSE		BIT(1)
-> +
-> +#define EN8811H_GPIO_OUTPUT		0xcf8b8
-> +#define   EN8811H_GPIO_OUTPUT_345		(BIT(3) | BIT(4) | BIT(5))
-> +
-> +#define EN8811H_FW_CTRL_1		0x0f0018
-> +#define   EN8811H_FW_CTRL_1_START		0x0
-> +#define   EN8811H_FW_CTRL_1_FINISH		0x1
-> +#define EN8811H_FW_CTRL_2		0x800000
-> +#define EN8811H_FW_CTRL_2_LOADING		BIT(11)
-> +
-> +/* Led definitions */
-> +#define EN8811H_LED_COUNT	3
-> +
-> +/* GPIO5  <-> BASE_T_LED0
-> + * GPIO4  <-> BASE_T_LED1
-> + * GPIO3  <-> BASE_T_LED2
-> + *
-> + * Default setup suitable for 2 leds connected:
-> + *    100M link up triggers led0, only led0 blinking on traffic
-> + *   1000M link up triggers led1, only led1 blinking on traffic
-> + *   2500M link up triggers led0 and led1, both blinking on traffic
-> + * Also suitable for 1 led connected:
-> + *     any link up triggers led2
-> + */
-> +#define AIR_DEFAULT_TRIGGER_LED0 (BIT(TRIGGER_NETDEV_LINK_2500) | \
-> +				  BIT(TRIGGER_NETDEV_LINK_100)  | \
-> +				  BIT(TRIGGER_NETDEV_RX)        | \
-> +				  BIT(TRIGGER_NETDEV_TX))
-> +#define AIR_DEFAULT_TRIGGER_LED1 (BIT(TRIGGER_NETDEV_LINK_2500) | \
-> +				  BIT(TRIGGER_NETDEV_LINK_1000) | \
-> +				  BIT(TRIGGER_NETDEV_RX)        | \
-> +				  BIT(TRIGGER_NETDEV_TX))
-> +#define AIR_DEFAULT_TRIGGER_LED2  BIT(TRIGGER_NETDEV_LINK)
-> +
-> +struct led {
-> +	unsigned long rules;
-> +	unsigned long state;
-> +};
-> +
-> +struct en8811h_priv {
-> +	u32		firmware_version;
-> +	struct led	led[EN8811H_LED_COUNT];
-> +};
-> +
-> +enum {
-> +	AIR_PHY_LED_STATE_FORCE_ON,
-> +	AIR_PHY_LED_STATE_FORCE_BLINK,
-> +};
-> +
-> +enum {
-> +	AIR_PHY_LED_DUR_BLINK_32M,
-> +	AIR_PHY_LED_DUR_BLINK_64M,
-> +	AIR_PHY_LED_DUR_BLINK_128M,
-> +	AIR_PHY_LED_DUR_BLINK_256M,
-> +	AIR_PHY_LED_DUR_BLINK_512M,
-> +	AIR_PHY_LED_DUR_BLINK_1024M,
-> +};
-> +
-> +enum {
-> +	AIR_LED_DISABLE,
-> +	AIR_LED_ENABLE,
-> +};
-> +
-> +enum {
-> +	AIR_ACTIVE_LOW,
-> +	AIR_ACTIVE_HIGH,
-> +};
-> +
-> +enum {
-> +	AIR_LED_MODE_DISABLE,
-> +	AIR_LED_MODE_USER_DEFINE,
-> +};
-> +
-> +#define AIR_PHY_LED_DUR_UNIT	1024
-> +#define AIR_PHY_LED_DUR (AIR_PHY_LED_DUR_UNIT << AIR_PHY_LED_DUR_BLINK_64M)
-> +
-> +static const unsigned long en8811h_led_trig = BIT(TRIGGER_NETDEV_FULL_DUPLEX) |
-> +					      BIT(TRIGGER_NETDEV_LINK)        |
-> +					      BIT(TRIGGER_NETDEV_LINK_10)     |
-> +					      BIT(TRIGGER_NETDEV_LINK_100)    |
-> +					      BIT(TRIGGER_NETDEV_LINK_1000)   |
-> +					      BIT(TRIGGER_NETDEV_LINK_2500)   |
-> +					      BIT(TRIGGER_NETDEV_RX)          |
-> +					      BIT(TRIGGER_NETDEV_TX);
-> +
-> +static int air_phy_read_page(struct phy_device *phydev)
-> +{
-> +	return __phy_read(phydev, AIR_EXT_PAGE_ACCESS);
-> +}
-> +
-> +static int air_phy_write_page(struct phy_device *phydev, int page)
-> +{
-> +	return __phy_write(phydev, AIR_EXT_PAGE_ACCESS, page);
-> +}
-> +
-> +static int __air_buckpbus_reg_write(struct phy_device *phydev,
-> +				    u32 pbus_address, u32 pbus_data,
-> +				    bool set_mode)
-> +{
-> +	int ret;
-> +
-> +	if (set_mode) {
-> +		ret = __phy_write(phydev, AIR_BPBUS_MODE,
-> +				  AIR_BPBUS_MODE_ADDR_FIXED);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_WR_ADDR_HIGH, HIWORD(pbus_address));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_WR_ADDR_LOW,  LOWORD(pbus_address));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_WR_DATA_HIGH, HIWORD(pbus_data));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_WR_DATA_LOW,  LOWORD(pbus_data));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int air_buckpbus_reg_write(struct phy_device *phydev,
-> +				  u32 pbus_address, u32 pbus_data)
-> +{
-> +	int saved_page;
-> +	int ret = 0;
-> +
-> +	saved_page = phy_select_page(phydev, AIR_PHY_PAGE_EXTENDED_4);
-> +
-> +	if (saved_page >= 0) {
-> +		ret = __air_buckpbus_reg_write(phydev, pbus_address, pbus_data,
-> +					       true);
-> +		if (ret < 0)
-> +			phydev_err(phydev, "%s 0x%08x failed: %d\n", __func__,
-> +				   pbus_address, ret);
-> +	}
-> +
-> +	return phy_restore_page(phydev, saved_page, ret);
-> +}
-> +
-> +static int __air_buckpbus_reg_read(struct phy_device *phydev,
-> +				   u32 pbus_address, u32 *pbus_data)
-> +{
-> +	int pbus_data_low, pbus_data_high;
-> +	int ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_MODE, AIR_BPBUS_MODE_ADDR_FIXED);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_RD_ADDR_HIGH, HIWORD(pbus_address));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_RD_ADDR_LOW,  LOWORD(pbus_address));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	pbus_data_high = __phy_read(phydev, AIR_BPBUS_RD_DATA_HIGH);
-> +	if (pbus_data_high < 0)
-> +		return ret;
-> +
-> +	pbus_data_low = __phy_read(phydev, AIR_BPBUS_RD_DATA_LOW);
-> +	if (pbus_data_low < 0)
-> +		return ret;
-> +
-> +	*pbus_data = pbus_data_low | (pbus_data_high << 16);
-> +	return 0;
-> +}
-> +
-> +static int air_buckpbus_reg_read(struct phy_device *phydev,
-> +				 u32 pbus_address, u32 *pbus_data)
-> +{
-> +	int saved_page;
-> +	int ret = 0;
-> +
-> +	saved_page = phy_select_page(phydev, AIR_PHY_PAGE_EXTENDED_4);
-> +
-> +	if (saved_page >= 0) {
-> +		ret = __air_buckpbus_reg_read(phydev, pbus_address, pbus_data);
-> +		if (ret < 0)
-> +			phydev_err(phydev, "%s 0x%08x failed: %d\n", __func__,
-> +				   pbus_address, ret);
-> +	}
-> +
-> +	return phy_restore_page(phydev, saved_page, ret);
-> +}
-> +
-> +static int air_buckpbus_reg_modify(struct phy_device *phydev,
-> +				   u32 pbus_address, u32 mask, u32 set)
-> +{
-> +	u32 pbus_data_old, pbus_data_new;
-> +	int saved_page;
-> +	int ret = 0;
-> +
-> +	saved_page = phy_select_page(phydev, AIR_PHY_PAGE_EXTENDED_4);
-> +
-> +	if (saved_page >= 0) {
-> +		ret = __air_buckpbus_reg_read(phydev, pbus_address, &pbus_data_old);
-> +
-> +		if (!ret) {
-> +			pbus_data_new = (pbus_data_old & ~mask) | set;
-> +			if (pbus_data_new != pbus_data_old)
-> +				ret = __air_buckpbus_reg_write(phydev, pbus_address,
-> +							       pbus_data_new, false);
-> +			else
-> +				ret = 0;
-> +		}
-> +
-> +		if (ret < 0)
-> +			phydev_err(phydev, "%s 0x%08x failed: %d\n", __func__,
-> +				   pbus_address, ret);
-> +	}
-> +
-> +	return phy_restore_page(phydev, saved_page, ret);
-> +}
-> +
-> +static int __air_write_buf(struct phy_device *phydev, u32 address,
-> +			   const struct firmware *fw)
-> +{
-> +	unsigned int offset;
-> +	int ret;
-> +	u16 val;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_MODE, AIR_BPBUS_MODE_ADDR_INCR);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_WR_ADDR_HIGH, HIWORD(address));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = __phy_write(phydev, AIR_BPBUS_WR_ADDR_LOW,  LOWORD(address));
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	for (offset = 0; offset < fw->size; offset += 4) {
-> +		val = get_unaligned_le16(&fw->data[offset + 2]);
-> +		ret = __phy_write(phydev, AIR_BPBUS_WR_DATA_HIGH, val);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		val = get_unaligned_le16(&fw->data[offset]);
-> +		ret = __phy_write(phydev, AIR_BPBUS_WR_DATA_LOW, val);
-> +		if (ret < 0)
-> +			return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int air_write_buf(struct phy_device *phydev, u32 address,
-> +			 const struct firmware *fw)
-> +{
-> +	int saved_page;
-> +	int ret = 0;
-> +
-> +	saved_page = phy_select_page(phydev, AIR_PHY_PAGE_EXTENDED_4);
-> +
-> +	if (saved_page >= 0) {
-> +		ret = __air_write_buf(phydev, address, fw);
-> +		if (ret < 0)
-> +			phydev_err(phydev, "%s 0x%08x failed: %d\n", __func__,
-> +				   address, ret);
-> +	}
-> +
-> +	return phy_restore_page(phydev, saved_page, ret);
-> +}
-> +
-> +static int en8811h_load_firmware(struct phy_device *phydev)
-> +{
-> +	struct device *dev = &phydev->mdio.dev;
-> +	const struct firmware *fw1, *fw2;
-> +	int ret;
-> +
-> +	ret = request_firmware_direct(&fw1, EN8811H_MD32_DM, dev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = request_firmware_direct(&fw2, EN8811H_MD32_DSP, dev);
-> +	if (ret < 0)
-> +		goto en8811h_load_firmware_rel1;
-> +
-> +	ret = air_buckpbus_reg_write(phydev, EN8811H_FW_CTRL_1,
-> +				     EN8811H_FW_CTRL_1_START);
-> +	if (ret < 0)
-> +		goto en8811h_load_firmware_out;
-> +
-> +	ret = air_buckpbus_reg_modify(phydev, EN8811H_FW_CTRL_2,
-> +				      EN8811H_FW_CTRL_2_LOADING,
-> +				      EN8811H_FW_CTRL_2_LOADING);
-> +	if (ret < 0)
-> +		goto en8811h_load_firmware_out;
-> +
-> +	ret = air_write_buf(phydev, AIR_FW_ADDR_DM,  fw1);
-> +	if (ret < 0)
-> +		goto en8811h_load_firmware_out;
-> +
-> +	ret = air_write_buf(phydev, AIR_FW_ADDR_DSP, fw2);
-> +	if (ret < 0)
-> +		goto en8811h_load_firmware_out;
-> +
-> +	ret = air_buckpbus_reg_modify(phydev, EN8811H_FW_CTRL_2,
-> +				      EN8811H_FW_CTRL_2_LOADING, 0);
-> +	if (ret < 0)
-> +		goto en8811h_load_firmware_out;
-> +
-> +	ret = air_buckpbus_reg_write(phydev, EN8811H_FW_CTRL_1,
-> +				     EN8811H_FW_CTRL_1_FINISH);
-> +	if (ret < 0)
-> +		goto en8811h_load_firmware_out;
-> +
-> +	ret = 0;
-> +
-> +en8811h_load_firmware_out:
-> +	release_firmware(fw2);
-> +
-> +en8811h_load_firmware_rel1:
-> +	release_firmware(fw1);
-> +
-> +	if (ret < 0)
-> +		phydev_err(phydev, "Load firmware failed: %d\n", ret);
-> +
-> +	return ret;
-> +}
-> +
-> +static int en8811h_restart_host(struct phy_device *phydev)
-> +{
-> +	int ret;
-> +
-> +	ret = air_buckpbus_reg_write(phydev, EN8811H_FW_CTRL_1,
-> +				     EN8811H_FW_CTRL_1_START);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return air_buckpbus_reg_write(phydev, EN8811H_FW_CTRL_1,
-> +				     EN8811H_FW_CTRL_1_FINISH);
-> +}
-> +
-> +static int air_hw_led_on_set(struct phy_device *phydev, u8 index, bool on)
-> +{
-> +	struct en8811h_priv *priv = phydev->priv;
-> +	bool changed;
-> +
-> +	if (index >= EN8811H_LED_COUNT)
-> +		return -EINVAL;
-> +
-> +	if (on)
-> +		changed = !test_and_set_bit(AIR_PHY_LED_STATE_FORCE_ON,
-> +					    &priv->led[index].state);
-> +	else
-> +		changed = !!test_and_clear_bit(AIR_PHY_LED_STATE_FORCE_ON,
-> +					       &priv->led[index].state);
-> +
-> +	changed |= (priv->led[index].rules != 0);
-> +
-> +	if (changed)
-> +		return phy_modify_mmd(phydev, MDIO_MMD_VEND2,
-> +				      AIR_PHY_LED_ON(index),
-> +				      AIR_PHY_LED_ON_MASK,
-> +				      on ? AIR_PHY_LED_ON_FORCE_ON : 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static int air_hw_led_blink_set(struct phy_device *phydev, u8 index,
-> +				bool blinking)
-> +{
-> +	struct en8811h_priv *priv = phydev->priv;
-> +	bool changed;
-> +
-> +	if (index >= EN8811H_LED_COUNT)
-> +		return -EINVAL;
-> +
-> +	if (blinking)
-> +		changed = !test_and_set_bit(AIR_PHY_LED_STATE_FORCE_BLINK,
-> +					    &priv->led[index].state);
-> +	else
-> +		changed = !!test_and_clear_bit(AIR_PHY_LED_STATE_FORCE_BLINK,
-> +					       &priv->led[index].state);
-> +
-> +	changed |= (priv->led[index].rules != 0);
-> +
-> +	if (changed)
-> +		return phy_write_mmd(phydev, MDIO_MMD_VEND2,
-> +				     AIR_PHY_LED_BLINK(index),
-> +				     blinking ?
-> +				     AIR_PHY_LED_BLINK_FORCE_BLINK : 0);
-> +	else
-> +		return 0;
-> +}
-> +
-> +static int air_led_blink_set(struct phy_device *phydev, u8 index,
-> +			     unsigned long *delay_on,
-> +			     unsigned long *delay_off)
-> +{
-> +	struct en8811h_priv *priv = phydev->priv;
-> +	bool blinking = false;
-> +	int err;
-> +
-> +	if (index >= EN8811H_LED_COUNT)
-> +		return -EINVAL;
-> +
-> +	if (delay_on && delay_off && (*delay_on > 0) && (*delay_off > 0)) {
-> +		blinking = true;
-> +		*delay_on = 50;
-> +		*delay_off = 50;
-> +	}
-> +
-> +	err = air_hw_led_blink_set(phydev, index, blinking);
-> +	if (err)
-> +		return err;
-> +
-> +	/* led-blink set, so switch led-on off */
-> +	err = air_hw_led_on_set(phydev, index, false);
-> +	if (err)
-> +		return err;
-> +
-> +	/* hw-control is off*/
-> +	if (!!test_bit(AIR_PHY_LED_STATE_FORCE_BLINK, &priv->led[index].state))
-> +		priv->led[index].rules = 0;
-> +
-> +	return 0;
-> +}
-> +
-> +static int air_led_brightness_set(struct phy_device *phydev, u8 index,
-> +				  enum led_brightness value)
-> +{
-> +	struct en8811h_priv *priv = phydev->priv;
-> +	int err;
-> +
-> +	if (index >= EN8811H_LED_COUNT)
-> +		return -EINVAL;
-> +
-> +	/* led-on set, so switch led-blink off */
-> +	err = air_hw_led_blink_set(phydev, index, false);
-> +	if (err)
-> +		return err;
-> +
-> +	err = air_hw_led_on_set(phydev, index, (value != LED_OFF));
-> +	if (err)
-> +		return err;
-> +
-> +	/* hw-control is off */
-> +	if (!!test_bit(AIR_PHY_LED_STATE_FORCE_ON, &priv->led[index].state))
-> +		priv->led[index].rules = 0;
-> +
-> +	return 0;
-> +}
-> +
-> +static int air_led_hw_control_get(struct phy_device *phydev, u8 index,
-> +				  unsigned long *rules)
-> +{
-> +	struct en8811h_priv *priv = phydev->priv;
-> +
-> +	if (index >= EN8811H_LED_COUNT)
-> +		return -EINVAL;
-> +
-> +	*rules = priv->led[index].rules;
-> +
-> +	return 0;
-> +};
-> +
-> +static int air_led_hw_control_set(struct phy_device *phydev, u8 index,
-> +				  unsigned long rules)
-> +{
-> +	struct en8811h_priv *priv = phydev->priv;
-> +	u16 on = 0, blink = 0;
-> +	int ret;
-> +
-> +	if (index >= EN8811H_LED_COUNT)
-> +		return -EINVAL;
-> +
-> +	priv->led[index].rules = rules;
-> +
-> +	if (rules & (BIT(TRIGGER_NETDEV_LINK_10)   | BIT(TRIGGER_NETDEV_LINK))) {
-> +		on |= AIR_PHY_LED_ON_LINK10;
-> +		if (rules & BIT(TRIGGER_NETDEV_RX))
-> +			blink |= AIR_PHY_LED_BLINK_10RX;
-> +		if (rules & BIT(TRIGGER_NETDEV_TX))
-> +			blink |= AIR_PHY_LED_BLINK_10TX;
-> +	}
-> +
-> +	if (rules & (BIT(TRIGGER_NETDEV_LINK_100)  | BIT(TRIGGER_NETDEV_LINK))) {
-> +		on |= AIR_PHY_LED_ON_LINK100;
-> +		if (rules & BIT(TRIGGER_NETDEV_RX))
-> +			blink |= AIR_PHY_LED_BLINK_100RX;
-> +		if (rules & BIT(TRIGGER_NETDEV_TX))
-> +			blink |= AIR_PHY_LED_BLINK_100TX;
-> +	}
-> +
-> +	if (rules & (BIT(TRIGGER_NETDEV_LINK_1000) | BIT(TRIGGER_NETDEV_LINK))) {
-> +		on |= AIR_PHY_LED_ON_LINK1000;
-> +		if (rules & BIT(TRIGGER_NETDEV_RX))
-> +			blink |= AIR_PHY_LED_BLINK_1000RX;
-> +		if (rules & BIT(TRIGGER_NETDEV_TX))
-> +			blink |= AIR_PHY_LED_BLINK_1000TX;
-> +	}
-> +
-> +	if (rules & (BIT(TRIGGER_NETDEV_LINK_2500) | BIT(TRIGGER_NETDEV_LINK))) {
-> +		on |= AIR_PHY_LED_ON_LINK2500;
-> +		if (rules & BIT(TRIGGER_NETDEV_RX))
-> +			blink |= AIR_PHY_LED_BLINK_2500RX;
-> +		if (rules & BIT(TRIGGER_NETDEV_TX))
-> +			blink |= AIR_PHY_LED_BLINK_2500TX;
-> +	}
-> +
-> +	if (on == 0) {
-> +		if (rules & BIT(TRIGGER_NETDEV_RX)) {
-> +			blink |= AIR_PHY_LED_BLINK_10RX   |
-> +				 AIR_PHY_LED_BLINK_100RX  |
-> +				 AIR_PHY_LED_BLINK_1000RX |
-> +				 AIR_PHY_LED_BLINK_2500RX;
-> +		}
-> +		if (rules & BIT(TRIGGER_NETDEV_TX)) {
-> +			blink |= AIR_PHY_LED_BLINK_10TX   |
-> +				 AIR_PHY_LED_BLINK_100TX  |
-> +				 AIR_PHY_LED_BLINK_1000TX |
-> +				 AIR_PHY_LED_BLINK_2500TX;
-> +		}
-> +	}
-> +
-> +	if (rules & BIT(TRIGGER_NETDEV_FULL_DUPLEX))
-> +		on |= AIR_PHY_LED_ON_FDX;
-> +
-> +	if (rules & BIT(TRIGGER_NETDEV_HALF_DUPLEX))
-> +		on |= AIR_PHY_LED_ON_HDX;
-> +
-> +	if (blink || on) {
-> +		/* switch hw-control on, so led-on and led-blink are off */
-> +		clear_bit(AIR_PHY_LED_STATE_FORCE_ON, &priv->led[index].state);
-> +		clear_bit(AIR_PHY_LED_STATE_FORCE_BLINK, &priv->led[index].state);
-> +	} else {
-> +		priv->led[index].rules = 0;
-> +	}
-> +
-> +	ret = phy_modify_mmd(phydev, MDIO_MMD_VEND2, AIR_PHY_LED_ON(index),
-> +			     AIR_PHY_LED_ON_MASK, on);
-> +
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return phy_write_mmd(phydev, MDIO_MMD_VEND2, AIR_PHY_LED_BLINK(index),
-> +			     blink);
-> +};
-> +
-> +static int air_led_init(struct phy_device *phydev, u8 index, u8 state, u8 pol)
-> +{
-> +	int val;
-> +	int err;
-> +
-> +	if (index >= EN8811H_LED_COUNT)
-> +		return -EINVAL;
-> +
-> +	if (state == AIR_LED_ENABLE)
-> +		val |= AIR_PHY_LED_ON_ENABLE;
-> +	else
-> +		val &= ~AIR_PHY_LED_ON_ENABLE;
-> +
-> +	if (pol == AIR_ACTIVE_HIGH)
-> +		val |= AIR_PHY_LED_ON_POLARITY;
-> +	else
-> +		val &= ~AIR_PHY_LED_ON_POLARITY;
-> +
-> +	err = phy_modify_mmd(phydev, MDIO_MMD_VEND2, AIR_PHY_LED_ON(index),
-> +			     AIR_PHY_LED_ON_ENABLE |
-> +			     AIR_PHY_LED_ON_POLARITY, val);
-> +
-> +	if (err < 0)
-> +		return err;
-> +
-> +	return 0;
-> +}
-> +
-> +static int air_leds_init(struct phy_device *phydev, int num, int dur, int mode)
-> +{
-> +	struct en8811h_priv *priv = phydev->priv;
-> +	int ret, i;
-> +
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND2, AIR_PHY_LED_DUR_BLINK,
-> +			    dur);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND2, AIR_PHY_LED_DUR_ON,
-> +			    dur >> 1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	switch (mode) {
-> +	case AIR_LED_MODE_DISABLE:
-> +		ret = phy_modify_mmd(phydev, MDIO_MMD_VEND2, AIR_PHY_LED_BCR,
-> +				     AIR_PHY_LED_BCR_EXT_CTRL |
-> +				     AIR_PHY_LED_BCR_MODE_MASK, 0);
-> +		if (ret < 0)
-> +			return ret;
-> +		break;
-> +	case AIR_LED_MODE_USER_DEFINE:
-> +		ret = phy_modify_mmd(phydev, MDIO_MMD_VEND2, AIR_PHY_LED_BCR,
-> +				     AIR_PHY_LED_BCR_EXT_CTRL |
-> +				     AIR_PHY_LED_BCR_CLK_EN,
-> +				     AIR_PHY_LED_BCR_EXT_CTRL |
-> +				     AIR_PHY_LED_BCR_CLK_EN);
-> +		if (ret < 0)
-> +			return ret;
-> +		break;
-> +	default:
-> +		phydev_err(phydev, "LED mode %d is not supported\n", mode);
-> +		return -EINVAL;
-> +	}
-> +
-> +	for (i = 0; i < num; ++i) {
-> +		ret = air_led_init(phydev, i, AIR_LED_ENABLE, AIR_ACTIVE_HIGH);
-> +		if (ret < 0) {
-> +			phydev_err(phydev, "LED%d init failed: %d\n", i, ret);
-> +			return ret;
-> +		}
-> +		air_led_hw_control_set(phydev, i, priv->led[i].rules);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int en8811h_led_hw_is_supported(struct phy_device *phydev, u8 index,
-> +				       unsigned long rules)
-> +{
-> +	if (index >= EN8811H_LED_COUNT)
-> +		return -EINVAL;
-> +
-> +	/* All combinations of the supported triggers are allowed */
-> +	if (rules & ~en8811h_led_trig)
-> +		return -EOPNOTSUPP;
-> +
-> +	return 0;
-> +};
-> +
-> +static int en8811h_probe(struct phy_device *phydev)
-> +{
-> +	struct en8811h_priv *priv;
-> +
-> +	priv = devm_kzalloc(&phydev->mdio.dev, sizeof(struct en8811h_priv),
-> +			    GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	priv->led[0].rules = AIR_DEFAULT_TRIGGER_LED0;
-> +	priv->led[1].rules = AIR_DEFAULT_TRIGGER_LED1;
-> +	priv->led[2].rules = AIR_DEFAULT_TRIGGER_LED2;
-> +
-> +	phydev->priv = priv;
-> +
-> +	/* MDIO_DEVS1/2 empty, so set mmds_present bits here */
-> +	phydev->c45_ids.mmds_present |= MDIO_DEVS_PMAPMD | MDIO_DEVS_AN;
-> +
-> +	return 0;
-> +}
-> +
-> +static int en8811h_config_init(struct phy_device *phydev)
-> +{
-> +	struct en8811h_priv *priv = phydev->priv;
-> +	struct device *dev = &phydev->mdio.dev;
-> +	int ret, pollret, reg_value;
-> +	u32 pbus_value;
-> +
-> +	if (!priv->firmware_version)
-> +		ret = en8811h_load_firmware(phydev);
-> +	else
-> +		ret = en8811h_restart_host(phydev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Because of mdio-lock, may have to wait for multiple loads */
-> +	pollret = phy_read_mmd_poll_timeout(phydev, MDIO_MMD_VEND1,
-> +					    EN8811H_PHY_FW_STATUS, reg_value,
-> +					    reg_value == EN8811H_PHY_READY,
-> +					    20000, 7500000, true);
-> +
-> +	ret = air_buckpbus_reg_read(phydev, EN8811H_FW_VERSION, &pbus_value);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (pollret || !pbus_value) {
-> +		phydev_err(phydev, "Firmware not ready: 0x%x\n", reg_value);
-> +		return -ENODEV;
-> +	}
-> +
-> +	if (!priv->firmware_version) {
-> +		phydev_info(phydev, "MD32 firmware version: %08x\n", pbus_value);
-> +		priv->firmware_version = pbus_value;
-> +	}
-> +
-> +	/* Select mode 1, the only mode supported */
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AIR_PHY_HOST_CMD_1,
-> +			    AIR_PHY_HOST_CMD_1_MODE1);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AIR_PHY_HOST_CMD_2,
-> +			    AIR_PHY_HOST_CMD_2_MODE1);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AIR_PHY_HOST_CMD_3,
-> +			    AIR_PHY_HOST_CMD_3_MODE1);
-> +	if (ret < 0)
-> +		return ret;
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AIR_PHY_HOST_CMD_4,
-> +			    AIR_PHY_HOST_CMD_4_MODE1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Serdes polarity */
-> +	pbus_value = 0;
-> +	if (device_property_read_bool(dev, "airoha,pnswap-rx"))
-> +		pbus_value |=  EN8811H_POLARITY_RX_REVERSE;
-> +	else
-> +		pbus_value &= ~EN8811H_POLARITY_RX_REVERSE;
-> +	if (device_property_read_bool(dev, "airoha,pnswap-tx"))
-> +		pbus_value &= ~EN8811H_POLARITY_TX_NORMAL;
-> +	else
-> +		pbus_value |=  EN8811H_POLARITY_TX_NORMAL;
-> +	ret = air_buckpbus_reg_modify(phydev, EN8811H_POLARITY,
-> +				      EN8811H_POLARITY_RX_REVERSE |
-> +				      EN8811H_POLARITY_TX_NORMAL, pbus_value);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = air_leds_init(phydev, EN8811H_LED_COUNT, AIR_PHY_LED_DUR,
-> +			    AIR_LED_MODE_USER_DEFINE);
-> +	if (ret < 0) {
-> +		phydev_err(phydev, "Failed to initialize leds: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = air_buckpbus_reg_modify(phydev, EN8811H_GPIO_OUTPUT,
-> +				      EN8811H_GPIO_OUTPUT_345,
-> +				      EN8811H_GPIO_OUTPUT_345);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int en8811h_get_features(struct phy_device *phydev)
-> +{
-> +	linkmode_set_bit_array(phy_basic_ports_array,
-> +			       ARRAY_SIZE(phy_basic_ports_array),
-> +			       phydev->supported);
-> +
-> +	return genphy_c45_pma_read_abilities(phydev);
-> +}
-> +
-> +static int en8811h_get_rate_matching(struct phy_device *phydev,
-> +				     phy_interface_t iface)
-> +{
-> +	return RATE_MATCH_PAUSE;
-> +}
-> +
-> +static int en8811h_config_aneg(struct phy_device *phydev)
-> +{
-> +	bool changed = false;
-> +	int ret;
-> +	u32 adv;
-> +
-> +	adv = linkmode_adv_to_mii_10gbt_adv_t(phydev->advertising);
-> +
-> +	ret = phy_modify_mmd_changed(phydev, MDIO_MMD_AN, MDIO_AN_10GBT_CTRL,
-> +				     MDIO_AN_10GBT_CTRL_ADV2_5G, adv);
-> +	if (ret < 0)
-> +		return ret;
-> +	if (ret > 0)
-> +		changed = true;
-> +
-> +	return __genphy_config_aneg(phydev, changed);
-> +}
-> +
-> +static int en8811h_read_status(struct phy_device *phydev)
-> +{
-> +	struct en8811h_priv *priv = phydev->priv;
-> +	u32 pbus_value;
-> +	int ret, val;
-> +
-> +	ret = genphy_update_link(phydev);
-> +	if (ret)
-> +		return ret;
-> +
-> +	phydev->master_slave_get = MASTER_SLAVE_CFG_UNSUPPORTED;
-> +	phydev->master_slave_state = MASTER_SLAVE_STATE_UNSUPPORTED;
-> +	phydev->speed = SPEED_UNKNOWN;
-> +	phydev->duplex = DUPLEX_UNKNOWN;
-> +	phydev->pause = 0;
-> +	phydev->asym_pause = 0;
-> +
-> +	ret = genphy_read_master_slave(phydev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = genphy_read_lpa(phydev);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Get link partner 2.5GBASE-T ability from vendor register */
-> +	ret = air_buckpbus_reg_read(phydev, EN8811H_2P5G_LPA, &pbus_value);
-> +	if (ret < 0)
-> +		return ret;
-> +	linkmode_mod_bit(ETHTOOL_LINK_MODE_2500baseT_Full_BIT,
-> +			 phydev->lp_advertising,
-> +			 pbus_value & EN8811H_2P5G_LPA_2P5G);
-> +
-> +	if (phydev->autoneg == AUTONEG_ENABLE && phydev->autoneg_complete)
-> +		phy_resolve_aneg_pause(phydev);
-> +
-> +	if (!phydev->link)
-> +		return 0;
-> +
-> +	/* Get real speed from vendor register */
-> +	val = phy_read(phydev, AIR_AUX_CTRL_STATUS);
-> +	if (val < 0)
-> +		return val;
-> +	switch (val & AIR_AUX_CTRL_STATUS_SPEED_MASK) {
-> +	case AIR_AUX_CTRL_STATUS_SPEED_2500:
-> +		phydev->speed = SPEED_2500;
-> +		break;
-> +	case AIR_AUX_CTRL_STATUS_SPEED_1000:
-> +		phydev->speed = SPEED_1000;
-> +		break;
-> +	case AIR_AUX_CTRL_STATUS_SPEED_100:
-> +		phydev->speed = SPEED_100;
-> +		break;
-> +	}
-> +
-> +	/* BUG in PHY firmware: MDIO_AN_10GBT_STAT_LP2_5G does not get set.
-
-EN8811H completely lacks MDIO_AN_10GBT_STAT, hence referencing
-MDIO_AN_10GBT_STAT_LP2_5G here is confusing.
-
-Suggestion:
-	/* BUG in PHY firmware: EN8811H_2P5G_LPA_2P5G does not get set.
-
-Or just skip that line entirely as the following two lines already
-perfectly explain the situation.
-
-> +	 * Firmware before version 24011202 has no vendor register 2P5G_LPA.
-> +	 * Assume link partner advertised it if connected at 2500Mbps.
-> +	 */
-> +	if (priv->firmware_version < 0x24011202) {
-> +		linkmode_mod_bit(ETHTOOL_LINK_MODE_2500baseT_Full_BIT,
-> +				 phydev->lp_advertising,
-> +				 phydev->speed == SPEED_2500);
-> +	}
-> +
-> +	/* Only supports full duplex */
-> +	phydev->duplex = DUPLEX_FULL;
-> +
-> +	return 0;
-> +}
-> +
-> +static int en8811h_clear_intr(struct phy_device *phydev)
-> +{
-> +	int ret;
-> +
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AIR_PHY_HOST_CMD_3,
-> +			    AIR_PHY_HOST_CMD_3_DOCMD);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret = phy_write_mmd(phydev, MDIO_MMD_VEND1, AIR_PHY_HOST_CMD_4,
-> +			    AIR_PHY_HOST_CMD_4_INTCLR);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t en8811h_handle_interrupt(struct phy_device *phydev)
-> +{
-> +	int ret;
-> +
-> +	ret = en8811h_clear_intr(phydev);
-> +	if (ret < 0) {
-> +		phy_error(phydev);
-> +		return IRQ_NONE;
-> +	}
-> +
-> +	phy_trigger_machine(phydev);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static struct phy_driver en8811h_driver[] = {
-> +{
-> +	PHY_ID_MATCH_MODEL(EN8811H_PHY_ID),
-> +	.name			= "Airoha EN8811H",
-> +	.probe			= en8811h_probe,
-> +	.get_features		= en8811h_get_features,
-> +	.config_init		= en8811h_config_init,
-> +	.get_rate_matching	= en8811h_get_rate_matching,
-> +	.config_aneg		= en8811h_config_aneg,
-> +	.read_status		= en8811h_read_status,
-> +	.config_intr		= en8811h_clear_intr,
-> +	.handle_interrupt	= en8811h_handle_interrupt,
-> +	.led_hw_is_supported	= en8811h_led_hw_is_supported,
-> +	.read_page		= air_phy_read_page,
-> +	.write_page		= air_phy_write_page,
-> +	.led_blink_set		= air_led_blink_set,
-> +	.led_brightness_set	= air_led_brightness_set,
-> +	.led_hw_control_set	= air_led_hw_control_set,
-> +	.led_hw_control_get	= air_led_hw_control_get,
-> +} };
-> +
-> +module_phy_driver(en8811h_driver);
-> +
-> +static struct mdio_device_id __maybe_unused en8811h_tbl[] = {
-> +	{ PHY_ID_MATCH_MODEL(EN8811H_PHY_ID) },
-> +	{ }
-> +};
-> +
-> +MODULE_DEVICE_TABLE(mdio, en8811h_tbl);
-> +MODULE_FIRMWARE(EN8811H_MD32_DM);
-> +MODULE_FIRMWARE(EN8811H_MD32_DSP);
-> +
-> +MODULE_DESCRIPTION("Airoha EN8811H PHY drivers");
-> +MODULE_AUTHOR("Airoha");
-> +MODULE_AUTHOR("Eric Woudstra <ericwouds@gmail.com>");
-> +MODULE_LICENSE("GPL");
-> -- 
-> 2.42.1
-> 
+SGkgQW5keSwNCg0KVGhhbmtzIGZvciB5b3VyIHJldmlldy4NCg0KDQpPbiBUdWUsIDIwMjQtMDIt
+MjcgYXQgMTQ6NDYgKzAyMDAsIEFuZHkgU2hldmNoZW5rbyB3cm90ZToNCj4gIAkgDQo+IEV4dGVy
+bmFsIGVtYWlsIDogUGxlYXNlIGRvIG5vdCBjbGljayBsaW5rcyBvciBvcGVuIGF0dGFjaG1lbnRz
+IHVudGlsDQo+IHlvdSBoYXZlIHZlcmlmaWVkIHRoZSBzZW5kZXIgb3IgdGhlIGNvbnRlbnQuDQo+
+ICBPbiBUdWUsIEZlYiAyNywgMjAyNCBhdCAzOjMz4oCvQU0gWmhpIE1hbyA8emhpLm1hb0BtZWRp
+YXRlay5jb20+DQo+IHdyb3RlOg0KPiA+DQo+ID4gQWRkIGEgVjRMMiBzdWItZGV2aWNlIGRyaXZl
+ciBmb3IgR2FsYXh5Y29yZSBHQzA4QTMgaW1hZ2Ugc2Vuc29yLg0KPiANCj4gLi4uDQo+IA0KPiA+
+ICsvKg0KPiA+ICsgKiBnYzA4YTMuYyAtIGdjMDhhMyBzZW5zb3IgZHJpdmVyDQo+IA0KPiBEcm9w
+IHRoZSBmaWxlbmFtZSBmcm9tIHRoZSBmaWxlLCBpdCdzIGltcHJhY3RpY2FsIChlc3AuIGlmIHRo
+ZSBmaWxlDQo+IHdpbGwgYmUgcmVuYW1lZCBmb3Igc29tZSByZWFzb24gaW4gdGhlIGZ1dHVyZSku
+DQo+IA0KZml4ZWQgaW4gcGF0Y2g6djcuDQoNCj4gPiArICoNCj4gPiArICogQ29weXJpZ2h0IDIw
+MjMgTWVkaWFUZWsNCj4gPiArICoNCj4gPiArICogWmhpIE1hbyA8emhpLm1hb0BtZWRpYXRlay5j
+b20+DQo+ID4gKyAqLw0KPiANCj4gLi4uDQo+IA0KPiA+ICsjaW5jbHVkZSA8bGludXgvY2xrLmg+
+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9kZWxheS5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvZ3Bp
+by9jb25zdW1lci5oPg0KPiA+ICsjaW5jbHVkZSA8bGludXgvcG1fcnVudGltZS5oPg0KPiA+ICsj
+aW5jbHVkZSA8bGludXgvcmVndWxhdG9yL2NvbnN1bWVyLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51
+eC91bml0cy5oPg0KPiANCj4gVGhpcyBpcyBhIHNlbWktcmFuZG9tIGxpc3Qgb2YgaW5jbHVzaW9u
+cy4gUGxlYXNlLCBmb2xsb3cgdGhlIElXWVUNCj4gKEluY2x1ZGUgV2hhdCBZb3UgVXNlKSBwcmlu
+Y2lwbGUuICpBdCBsZWFzdCogdGhpcyBsaXN0IG1pc3NlcyB0aGUNCj4gZm9sbG93aW5nOiAgYXJy
+YXlfc2l6ZS5oLCBiaXRzLmgsIGNvbnRhaW5lcl9vZi5oLCBkZXZpY2UuaCwgZXJyLmgsDQo+IGky
+Yy5oLCBtYXRoNjQuaCwgbW9kdWxlLmgsIG1vZF9kZXZpY2V0YWJsZS5oLCBwcm9wZXJ0eS5oLCB0
+eXBlcy5oLg0KPiANCmZpeGVkIGluIHBhdGNoOnY3Lg0KDQo+IC4uLg0KPiANCj4gPiArICAgICAg
+IC8qdXBkYXRlIGNyb3AgaW5mbyB0byBzdWJkZXYgc3RhdGUqLw0KPiANCj4gTWlzc2luZyBzcGFj
+ZXMuDQo+IA0KZml4ZWQgaW4gcGF0Y2g6djcuDQoNCj4gLi4uDQo+IA0KPiA+ICsgICAgICAgLyp1
+cGRhdGUgZm10IGluZm8gdG8gc3ViZGV2IHN0YXRlKi8NCj4gDQo+IERpdHRvLg0KPiANCmZpeGVk
+IGluIHBhdGNoOnY3Lg0KDQo+IC4uLg0KPiANCj4gPiArc3RhdGljIGludCBnYzA4YTNfdGVzdF9w
+YXR0ZXJuKHN0cnVjdCBnYzA4YTMgKmdjMDhhMywgdTMyDQo+IHBhdHRlcm5fbWVudSkNCj4gPiAr
+ew0KPiA+ICsgICAgICAgdTMyIHBhdHRlcm4gPSAwOw0KPiANCj4gTm8sIHBsZWFzZSB1c2UgdGhl
+IGRlZmF1bHQgY2FzZSBmb3IgdGhpcyBhc3NpZ25tZW50Lg0KPiANCmZpeGVkIGluIHBhdGNoOnY3
+Lg0KDQo+ID4gKyAgICAgICBpbnQgcmV0Ow0KPiA+ICsNCj4gPiArICAgICAgIGlmIChwYXR0ZXJu
+X21lbnUpIHsNCj4gPiArICAgICAgICAgICAgICAgc3dpdGNoIChwYXR0ZXJuX21lbnUpIHsNCj4g
+PiArICAgICAgICAgICAgICAgY2FzZSAxOg0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHBh
+dHRlcm4gPSAweDAwOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGJyZWFrOw0KPiA+ICsg
+ICAgICAgICAgICAgICBjYXNlIDI6DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgcGF0dGVy
+biA9IDB4MTA7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgYnJlYWs7DQo+ID4gKyAgICAg
+ICAgICAgICAgIGNhc2UgMzoNCj4gPiArICAgICAgICAgICAgICAgY2FzZSA0Og0KPiA+ICsgICAg
+ICAgICAgICAgICBjYXNlIDU6DQo+ID4gKyAgICAgICAgICAgICAgIGNhc2UgNjoNCj4gPiArICAg
+ICAgICAgICAgICAgY2FzZSA3Og0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHBhdHRlcm4g
+PSBwYXR0ZXJuX21lbnUgKyAxOw0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGJyZWFrOw0K
+PiA+ICsgICAgICAgICAgICAgICB9DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICByZXQgPSBj
+Y2lfd3JpdGUoZ2MwOGEzLT5yZWdtYXAsDQo+IEdDMDhBM19SRUdfVEVTVF9QQVRURVJOX0lEWCwN
+Cj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHBhdHRlcm4sIE5VTEwpOw0KPiA+
+ICsgICAgICAgICAgICAgICBpZiAocmV0KQ0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHJl
+dHVybiByZXQ7DQo+ID4gKw0KPiANCj4gPiArICAgICAgICAgICAgICAgcmV0ID0gY2NpX3dyaXRl
+KGdjMDhhMy0+cmVnbWFwLA0KPiBHQzA4QTNfUkVHX1RFU1RfUEFUVEVSTl9FTiwNCj4gPiArICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgIEdDMDhBM19URVNUX1BBVFRFUk5fRU4sIE5VTEwp
+Ow0KPiA+ICsgICAgICAgICAgICAgICBpZiAocmV0KQ0KPiA+ICsgICAgICAgICAgICAgICAgICAg
+ICAgIHJldHVybiByZXQ7DQo+ID4gKyAgICAgICB9IGVsc2Ugew0KPiA+ICsgICAgICAgICAgICAg
+ICByZXQgPSBjY2lfd3JpdGUoZ2MwOGEzLT5yZWdtYXAsDQo+IEdDMDhBM19SRUdfVEVTVF9QQVRU
+RVJOX0VOLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMHgwMCwgTlVMTCk7
+DQo+ID4gKyAgICAgICAgICAgICAgIGlmIChyZXQpDQo+ID4gKyAgICAgICAgICAgICAgICAgICAg
+ICAgcmV0dXJuIHJldDsNCj4gPiArICAgICAgIH0NCj4gPiArDQo+ID4gKyAgICAgICByZXR1cm4g
+MDsNCj4gDQo+ICdlbHNlJyBpcyByZWR1bmRhbnQsIGJ1dCB5b3UgY2FuIGRlZHVwbGljYXRlIGNv
+ZGUgYWJvdmUgd2l0aA0KPiANCj4gICByZXR1cm4gY2NpX3dyaXRlKC4uLik7DQo+IH0gZWxzZSB7
+DQo+ICAgcmV0dXJuIGNjaV93cml0ZSguLi4pOw0KPiB9DQo+IA0KPiBPZiBjb3Vyc2UgeW91IGNh
+biBnbyBldmVuIGZ1cnRoZXIsIGJ1dCBJIHRoaW5rIHdpdGggdGhlIGFib3ZlIGl0IHdpbGwNCj4g
+YmUgYmFsYW5jZWQgdG8gdGhlIHdheSB0aGF0IGl0J3MgZWFzeSB0byB1bmRlcnN0YW5kIGhvdyBi
+cmFuY2hlcw0KPiBiZWhhdmUgKCdlbHNlJyBpbiB0aGlzIGNhc2UgaGVscHMgdG8gaW5kZW50IHNl
+bWFudGljYWxseSBjb3VwbGVkDQo+IGxpbmVzKS4NCj4gDQpmaXhlZCBpbiBwYXRjaDp2Ny4NCg0K
+PiA+ICt9DQo+IA0KPiANCj4gPiArICAgICAgIC8qDQo+ID4gKyAgICAgICAgKiBBcHBseWluZyBW
+NEwyIGNvbnRyb2wgdmFsdWUgb25seSBoYXBwZW5zDQo+ID4gKyAgICAgICAgKiB3aGVuIHBvd2Vy
+IGlzIG9uIGZvciBzdHJlYW1pbmcNCj4gPiArICAgICAgICAqLw0KPiANCj4gUmVzcGVjdCBFbmds
+aXNoIGdyYW1tYXIgYW5kIHB1bmN0dWF0aW9uLCBpLmUuIGRvbid0IGZvcmdldCBwZXJpb2RzIGF0
+DQo+IHRoZSBlbmQgb2Ygc2VudGVuY2VzIGluIG11bHRpLWxpbmUgY29tbWVudHMuDQo+IA0KZml4
+ZWQgaW4gcGF0Y2g6djcuDQoNCj4gLi4uDQo+IA0KPiA+ICsgICAgICAgZW5kcG9pbnQgPQ0KPiA+
+ICsgICAgICAgICAgICAgICBmd25vZGVfZ3JhcGhfZ2V0X2VuZHBvaW50X2J5X2lkKGRldl9md25v
+ZGUoZGV2KSwgMCwNCj4gMCwNCj4gPg0KPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICBGV05PREVfR1JBUEhfRU5EUE9JTlQNCj4gX05FWFQpOw0KPiA+ICsg
+ICAgICAgaWYgKCFlbmRwb2ludCkgew0KPiANCj4gU3RyaWN0bHkgc3BlYWtpbmcgZGV2X2Z3bm9k
+ZShkZXYpIG1pZ2h0IGJlIE5VTEwgb3IgYW4gZXJyb3IgcG9pbnRlci4NCj4gSQ0KPiBkdW5ubyBo
+b3cgdGhlIGdyYXBoIGlzIGltcGxlbWVudGVkIHRoZXJlIGFuZCBpZiBpdCdzIHBvc3NpYmxlIHRv
+IGdldA0KPiBhbiBlcnJvciBwb2ludGVyIG91dCBvZiBpdC4gQXQgbGVhc3QgdGhpcyBwcm9iYWJs
+eSBuZWVkcyB0byBiZQ0KPiBhbGlnbmVkDQo+IHRoZXJlIGF0IHNvbWUgcG9pbnQuDQo+IA0KTXIu
+U2FrYXJpIGhhcyBleHBsYWluZWQgdGhpcyBjb21tZW50cy4NCiJUaGlzIGlzIGZpbmUtLS10aGUg
+Zndub2RlIEFQSSByZXR1cm5zIGVycm9ycyAoZm9yIGZ1bmN0aW9ucyB0aGF0IGNhbikNCmZvciBO
+VUxMIG9yIGVycm9yIHBvaW50ZXIgZndub2Rlcy4iDQoNCj4gPiArICAgICAgICAgICAgICAgZGV2
+X2VycihkZXYsICJlbmRwb2ludCBub2RlIG5vdCBmb3VuZFxuIik7DQo+ID4gKyAgICAgICAgICAg
+ICAgIHJldHVybiAtRUlOVkFMOw0KPiA+ICsgICAgICAgfQ0KPiANCj4gLi4uDQo+IA0KPiA+ICtz
+dGF0aWMgY29uc3Qgc3RydWN0IGRldl9wbV9vcHMgZ2MwOGEzX3BtX29wcyA9IHsNCj4gPiArICAg
+ICAgIFJVTlRJTUVfUE1fT1BTKGdjMDhhM19wb3dlcl9vZmYsIGdjMDhhM19wb3dlcl9vbiwgTlVM
+TCkNCj4gPiArfTsNCj4gDQo+IFRoZXJlIGlzIGEgREVGSU5FXyogUE0gbWFjcm8sIHVzZSBpdC4N
+Cj4gDQpmaXhlZCBpbiBwYXRjaDp2Ny4NCg0KPiAuLi4NCj4gDQo+ID4gKw0KPiANCj4gUmVkdW5k
+YW50IGJsYW5rIGxpbmUuDQo+IA0KZml4ZWQgaW4gcGF0Y2g6djcuDQoNCj4gPiArbW9kdWxlX2ky
+Y19kcml2ZXIoZ2MwOGEzX2kyY19kcml2ZXIpOw0KPiANCj4gLS0gDQo+IFdpdGggQmVzdCBSZWdh
+cmRzLA0KPiBBbmR5IFNoZXZjaGVua28NCg==
 
