@@ -1,196 +1,223 @@
-Return-Path: <devicetree+bounces-47955-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47956-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29C5486F6AC
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 20:05:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B6886F6AE
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 20:07:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5BE581C20911
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 19:05:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 242D51F21453
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 19:07:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE93D768E7;
-	Sun,  3 Mar 2024 19:05:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 872A779DBA;
+	Sun,  3 Mar 2024 19:07:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="A2ZJ9H21"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SO7/Pzm9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 464167641C
-	for <devicetree@vger.kernel.org>; Sun,  3 Mar 2024 19:05:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8B28579DAC
+	for <devicetree@vger.kernel.org>; Sun,  3 Mar 2024 19:07:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709492706; cv=none; b=tyZpAQT6HGOIW7i/Oui0cdZrAwEClG8YazWvLuPRJfeQyKYROpGLYHZtwdI/r8hbXKPWFNCP4QqV8TPjLDIBkAQ6cBld1arcubx6F7nG0Ejb3ks1QTF09BJeahNPKv7nQIuUnYivxxHoAhfrtj/yXeaQ5bLxSFXPMcvilT3M7hs=
+	t=1709492832; cv=none; b=UcjtRWoul1JzCFTmxUYq5nNlCp459c/fUgzjT8oT+OJSihdq4+AQmQvJVF3OGC/X6h35JniPQibIgkPwkYnrG3BocCIRDjic/MHKP5pvYhhOdlsgU5yHWmBpAd+PCsDkOQs3fVRkDHuhFEUm8y0iOHeGLnqupEzuh8loM7jA/ew=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709492706; c=relaxed/simple;
-	bh=3Msr0kf9JJbjKsmt9uK226K1/N0RkpTHQFTp2SH9kGI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=RvaRM9ww3FXfc8TNPAMMu1wqW8VjcjYxe707ItbJwePcRrwbDSUrRpYNENAOSb1lYH9WbkToL8VBA1ShTOwTnQ+fryZY84p53p91GGP3tv6IVXkd3mQ0OZWfM4OpVKXfCwDeDmHeybfLEq6y9RSQsfjYXAT/Tkjpy6PeXqbHPl4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=A2ZJ9H21; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1709492702;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=eclI6Nht94ihjn4YyAdHXbtFQ8yPR/LbXHslJ7ic0X4=;
-	b=A2ZJ9H21YFjy9KxtqqQ74xNwF6wVwv3+I2cqbDdEXZRlXUaa29u3tFxIdNkEVTfUN+rI5E
-	yuooFF4t9Vk7B/T0OJMsv/xPXHjz0YIHzNKLwrxPUo+YW+jTQG82MUEhnRgq9QSfUKSWhE
-	XhV69OUvjqqRZ1cUh9rpmxKuRllNfkLrPoWjO0+IKy4PV6LYGSGLGBneE94U+RabumpM//
-	jYUo6HLdcG8W0Fukysj3hbtFMQ4Eemx4DcuJ26bhGB2Ey92iVM2/E8qSUwLvjVqE7zOIYc
-	x8Uy7a41qD5slXRxPwReh2G1Q8S08/5DSEacW8x5irDgVcBixe9K0cD+T1qLWA==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	Anand Moon <linux.amoon@gmail.com>
-Subject: [PATCH] arm64: dts: rockchip: Add cache information to the SoC dtsi for RK356x
-Date: Sun,  3 Mar 2024 20:04:50 +0100
-Message-Id: <2285ee41e165813011220f9469e28697923aa6e0.1709491108.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1709492832; c=relaxed/simple;
+	bh=Xq/6EX7Vma5DVArRtVZxDv2nekiTsrf7RQfu18aVsJM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b8PZ0gFo/PHFvBvPiBMezHz9KBDQBI7XNakGMcLVdPSpclnNmRMf+NpmMWASwPpqrf+Lw86VTa1n0oUVkjFw/o/bigS59DgXj4UVxaXrwxQKpNoFj79o7D7AchsUBzs3IUdbSEPk8vU5d2dD8Q24HjbJI42jlXzVF4BO23DMcZY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SO7/Pzm9; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a28a6cef709so614389166b.1
+        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 11:07:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709492829; x=1710097629; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=t8+5hz1pC1NUruMJAl+eg8w3VSt8O+IZDxY81DWZbIU=;
+        b=SO7/Pzm9XXLWchfdpbRM7BK4v1xSE2gJZO6QvknP/GGWh4HQiYt23TF7R5Mo3SRPJk
+         Tini7fQ1mr2gRlMkpyLEn5XYngrkSfOP/8vHwSLNy0n5E8sn88YfFv/CY2IbzL9LbXwx
+         MrEEX9DRZ8n3qvGEz68ipgB78d9gZsJAwTXXBoGAHYqeEBqzIAjKLKV9Sp8z5e/f2DiW
+         j2UnoJ8EUe1bS/lQAlkq8PHs29hu0aq5LYMWhW5dHFRkm7K1CS4gmA+ArScysfm3Mgra
+         eT4um6nF9vQxWOI3R/6jv7VL5PMEUIxHGAtw7sm60eZUag5GkqTBxokevwQS/AE9UYMt
+         HLWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709492829; x=1710097629;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=t8+5hz1pC1NUruMJAl+eg8w3VSt8O+IZDxY81DWZbIU=;
+        b=bBrG29ucy+5VtPXmtgtQh8ThEcSGmLjoHXzMhDYtZlPv1gUOCQVbp5lPGegmI6W0Yv
+         a1Vmmbj0i3d8db+TkwFeVLqjwSgV4n8R12/OPBRc7tf6ri9tmFrtafmZ41I8yqMFNTta
+         pLUsLzeQ5vFOjOI3iqGgU4qF4dUoMD/J6UKlnj5/twPNj/mTF6pUC5AxS38EicB7PzTI
+         sTnjFTmB6LzamqDuzjlwLgqeXnvCIkOK0yOg0q+nG9ZfkiQ4u4tvv6vzznkel6mc5XQj
+         5fNZcxLTbJcV7UZwCpG1XJzAhco9Uebvt66mgCFoGr06VhuIA+E/PC8rXI97zSB9xIKG
+         I8yA==
+X-Forwarded-Encrypted: i=1; AJvYcCUgDxx1K/aUHkjHmXQ9O6r9jScx+ZKZHHPJGBcI6pjo1tYrbC0XfbOELj68R47vGU5FLOEZHq07pHD1zEjpbfUMGkQtufx8E7czmg==
+X-Gm-Message-State: AOJu0YxAe8fMwhvme4lvMpDfkyQqfravcGshHToaWqoKpamGMJr+xq9v
+	zXCpMbxsJrlQhawUc6HxNJMKLSNACoHp1jFPaLWyuSfjbCt9mHn8UVVk5ZPpqb6mtsCaUZ0ZKYn
+	i
+X-Google-Smtp-Source: AGHT+IE0gq/QoToo3IKKgK/wLQhOrWdvlyROKGxYxQmMgG7sJ8DJthEQl1WpJmZwJWFdPBX9DJ+/Sw==
+X-Received: by 2002:a17:906:48c6:b0:a45:2038:4caa with SMTP id d6-20020a17090648c600b00a4520384caamr1109660ejt.76.1709492828895;
+        Sun, 03 Mar 2024 11:07:08 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id ld15-20020a170906f94f00b00a44e7afde87sm1669822ejb.148.2024.03.03.11.07.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Mar 2024 11:07:08 -0800 (PST)
+Message-ID: <e13610f6-6e09-4073-bc26-108b76c2a88f@linaro.org>
+Date: Sun, 3 Mar 2024 20:07:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] dt-bindings: misc: merge qcom,qrc
+To: Canfeng Zhuang <quic_czhuang@quicinc.com>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240304-qcom_qrc-v1-0-2a709f95fd61@quicinc.com>
+ <20240304-qcom_qrc-v1-2-2a709f95fd61@quicinc.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240304-qcom_qrc-v1-2-2a709f95fd61@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add missing cache information to the Rockchip RK356x SoC dtsi, to allow
-the userspace, which includes /proc/cpuinfo and lscpu(1), to present proper
-RK3566 and RK3568 cache information.  Also, it gets rid of the following
-error in the kernel log:
+On 03/03/2024 17:53, Canfeng Zhuang wrote:
+> Merge Qualcomm-specific qrc binding
 
-  cacheinfo: Unable to detect cache hierarchy for CPU 0
+Merge? No, instead describe the hardware.
 
-The cache parameters for the RK356x dtsi were obtained and partially derived
-by hand from the cache size and layout specifications found in the following
-datasheets and technical reference manuals:
+Similar problem with the sibject.
 
-  - Rockchip RK3566 datasheet, version 1.1
-  - Rockchip RK3568 datasheet, version 1.3
-  - ARM Cortex-A55 revision r1p0 TRM, version 0100-00
-  - ARM DynamIQ Shared Unit revision r4p0 TRM, version 0400-02
+> 
+> Signed-off-by: Canfeng Zhuang <quic_czhuang@quicinc.com>
+> ---
+>  .../devicetree/bindings/misc/qcom,qrc.yaml         | 32 ++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/qcom,qrc.yaml b/Documentation/devicetree/bindings/misc/qcom,qrc.yaml
+> new file mode 100644
+> index 000000000000..730efd679ba0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/qcom,qrc.yaml
+> @@ -0,0 +1,32 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/qcom,qrc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Robotics Communication Driver
 
-For future reference, here's a rather detailed summary of the documentation,
-which applies to both Rockchip RK3566 and RK3568 SoCs:
+Driver? Unfortunately bindings are for hardware, not drivers.
 
-  - All caches employ the 64-byte cache line length
-  - Each Cortex-A55 core has 32 KB of L1 4-way, set-associative instruction
-    cache and 32 KB of L1 4-way, set-associative data cache
-  - There are no L2 caches, which are per-core and private in Cortex-A55,
-    because it belongs to the ARM DynamIQ IP core lineup
-  - The entire SoC has 512 KB of unified L3 16-way, set-associative cache,
-    which is shared among all four Cortex-A55 CPU cores
-  - Cortex-A55 cores can be configured without private per-core L2 caches,
-    in which case the shared L3 cache appears to them as an L2 cache;  this
-    is the case for the RK356x SoCs, so let's use "cache-level = <2>" to
-    prevent the "huh, no L2 caches, but an L3 cache?" confusion among the
-    users viewing the data presented to the userspace;  another option could
-    be to have additional 0 KB L2 caches defined, which may be technically
-    correct, but would probably be even more confusing
+> +
+> +maintainers:
+> +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> +
+> +description: |
 
-Helped-by: Anand Moon <linux.amoon@gmail.com>
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
+Do not need '|' unless you need to preserve formatting.
 
-Notes:
-    As already agreed upon with Anand Moon, this patch replaces the submission
-    of a similar, albeit a bit incorrect patch [1] that appeared a bit earlier
-    on the linux-rockchip mailing list.
-    
-    [1] https://lore.kernel.org/linux-rockchip/20240226182310.4032-1-linux.amoon@gmail.com/T/#u
+> +  The QRC (Qualcomm Robotics Communication) driver is used for information interaction
 
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 41 ++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+Agaim, driver?
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index c19c0f1b3778..6dfb2d47d3d0 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -57,36 +57,77 @@ cpu0: cpu@0 {
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cpu0_opp_table>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l3_cache>;
- 		};
- 
- 		cpu1: cpu@100 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a55";
- 			reg = <0x0 0x100>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cpu0_opp_table>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l3_cache>;
- 		};
- 
- 		cpu2: cpu@200 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a55";
- 			reg = <0x0 0x200>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cpu0_opp_table>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l3_cache>;
- 		};
- 
- 		cpu3: cpu@300 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a55";
- 			reg = <0x0 0x300>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cpu0_opp_table>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l3_cache>;
- 		};
- 	};
- 
-+	/*
-+	 * There are no private per-core L2 caches, but only the
-+	 * L3 cache that appears to the CPU cores as L2 caches
-+	 */
-+	l3_cache: l3-cache {
-+		compatible = "cache";
-+		cache-level = <2>;
-+		cache-unified;
-+		cache-size = <0x80000>;
-+		cache-line-size = <64>;
-+		cache-sets = <512>;
-+	};
-+
- 	cpu0_opp_table: opp-table-0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
+> +  between the robot control board and the main board when using a uart port connection.
+> +  This Driver will support uart read & write and robot control board
+
+No, describe the hardware.
+
+> +  reset function.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,qrc-uart
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    qrc: qcom,qrc_uart {
+
+
+How does it remotely look like upstream DTS? Please don't send
+downstream/vendor DTS before cleaning it up. Before posting, please read
+submitting patches and/or quite extensive Qualcomm upstreaming guides.
+
+> +        compatible = "qcom,qrc-uart";
+
+Nope, so this is just to instantiate Linux device? No resources? This
+looks really incomplete.
+
+> +    };
+> +
+> 
+
+Best regards,
+Krzysztof
+
 
