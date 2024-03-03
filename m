@@ -1,80 +1,79 @@
-Return-Path: <devicetree+bounces-47918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47919-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4372586F457
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 11:16:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D9DF86F47C
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 11:49:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7BA21F21A8E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 10:16:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BDBFA2828C8
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 10:49:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE7D9B662;
-	Sun,  3 Mar 2024 10:15:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 161A8B664;
+	Sun,  3 Mar 2024 10:49:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="CvoH8IKr"
+	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="yyGQN/T3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC73511188;
-	Sun,  3 Mar 2024 10:15:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 423C0B641
+	for <devicetree@vger.kernel.org>; Sun,  3 Mar 2024 10:48:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709460941; cv=none; b=QIaDjvOKVg5gkwj0EXvNTEuioe6mQYppH/7DtfYtzoUKS5RujIQjzECBh3U2SFw+JmeD58SJCpgxE+NHNidjsemMebi2g1LAc5IQVYCKMd8M8c4qhT3I+Id23u7sHUcwVkI1ZJoVWDRsKMphm5ryrJ0OiE5h5KGRQN7lUUzfFfg=
+	t=1709462941; cv=none; b=Slu7m2ZqpKUIhmZfdfPyC0TCMYUBOUvvowT40lhUxj9qfGUEbpBCFnInfyZGAF7xjHcPBFtfkbxKE9SosV0NzfWU0vg8utqqjoSKtq6RAjQS3d2NXu1Bk8DlpVcdrAnqicZv4X+tkw4uA9RoOBLyt+zDoI8UdI/ChVVdCtiNiCE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709460941; c=relaxed/simple;
-	bh=X8u1uSp8PSGBxfTjwO9Jh3/p2urwTYeubgK79OdVU/E=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=esWy7olqSSVjb9wv2H5e53O5amnH28Vm1YMgwmW8KvY5RYaz8sdBxN9QNGxUsj1HRynMaF+Ahf9n1wQ2B6jpmM0Psll/0gvLQKVpinr6mn5pzI62ofE4UqkvbiLD3tAdj3d9dgIfucp4CVPVx2eG2IqLLeCvo5hfdUJ0zCZNupU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz; dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b=CvoH8IKr; arc=none smtp.client-ip=195.113.20.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
-Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id 2578628428C;
-	Sun,  3 Mar 2024 11:15:38 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
-	s=gen1; t=1709460938;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=L8AQ4xgfMvMsXIMfpwAjFqhheRmmqGTQDMpqDvceVgs=;
-	b=CvoH8IKrHNt16qFEKIgD+LeIQF2An8FpTMMtyevmadTwAcgVHFlayLzjnwmKNTGwIDOqVV
-	q6W6AVjSLvMO1IH/9BJcyg4V1juL2En5eI3btM/oTsHWGMabRlNoEW50yCZKi7IdybkZCv
-	e0GfCAhxoKH084aTM0/g+khnMOdOU5k=
-Received: from localhost (internet5.mraknet.com [185.200.108.250])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: karelb)
-	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 01C8F456F3E;
-	Sun,  3 Mar 2024 11:15:37 +0100 (CET)
-From: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-To: Karel Balej <balejk@matfyz.cz>,
-	Lee Jones <lee@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	devicetree@vger.kernel.org,
+	s=arc-20240116; t=1709462941; c=relaxed/simple;
+	bh=wdMZvlY9a5pjvdej/k7MCIk+lVgoJHMV1KhOOpZkf8I=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=LSG/B/KyCzL65DGJ/Ts4xouDSslIOuoZEcRWyG19LrXKDEHOSFFH+R43VIBbUuKIxQffl5GIXLNdFgD125ZDt4v6qSTVinuMHQkTOTbbo9v6SFhMsSp4RP6gttKaoneAgwiU1b9M00IrkuFaTpteCerXwoaCBDw8udVb5BVbQ/o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=yyGQN/T3; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a450615d1c4so77142266b.0
+        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 02:48:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1709462937; x=1710067737; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=qntDsCq8rgJuk7hdQSQYmfEUmAPY9qw4QwTul/rj/lU=;
+        b=yyGQN/T3j++gHMHFi+q96mX9ZYpLRXZHUtxxVLrSfY4jPIzs4FBiHMO7v27ugR4dAM
+         1UjVs383IAWeFD7qt4qIdbI8XBzLrlTtvhYvS34X01jFQLeXA4UZOpaciWbQiKWPtKey
+         aOBLp8NkSH6Noh/5qAywHzIh4gVpnluzTbVTIySJdTjoy0fxQDknTqKVYepxt8v/Vl8z
+         R3lvZDhnBd1I+cDwEZiQvTS+DswITDf4n/1T7UvsbT0RuvD8IVO0onooq6XKdXkGQ431
+         YsZWai15/A4qYLmnfVfy4mLbL8JPh7MNgpG6QLBrSVnZ6Eo8xk/P57k8mXyLpLFYIn8N
+         VRew==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709462937; x=1710067737;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qntDsCq8rgJuk7hdQSQYmfEUmAPY9qw4QwTul/rj/lU=;
+        b=ZE8p3OmpbiZ/ARRWwFx71SWPY96HCUWttemObo9OtaoPfyzqdJvpA8C3R/C9C864Fa
+         yS9+8cblkvLOwJod4h6lQDBbIWZ9q7KN7OoRyczXjsxtFiu+NOHYGfq1/idJO8IQmyoi
+         g048kk/EfDvRe+O0lOZ5kNjSgiseh4QIKibbTPmS9o63wN32xoanuD4qsuXc4HVg89sz
+         unxddwn6c9583MQK7H8cZSesSvfXdVb0/0JMHAuvC64poxYwvk/IO3vUaT24VxKxC3IW
+         8J9glvA+nHudo8wpL81expLzBsCwzgbVAXAZpmc2HyOQZ7/T/AyDCggxQPPVEeJKceis
+         XT0A==
+X-Gm-Message-State: AOJu0Yw9+nx3M0Y46vR1X7AgKuWthgz4c3sNiRGJ+a+MvNhaW4P8uOcd
+	dQ2/0V1RxFSG3yTdIV77tDVzQjL5VbZc6ybia5hDVlOEBkvkx3NjaxTJLWMo4/E=
+X-Google-Smtp-Source: AGHT+IFpd7/0A8HZA8X0BaCKoqokGmayqMEq28RDQ2RuXymWMt5xBJCQfQZs2Qv/VI3r31VlyOkWcA==
+X-Received: by 2002:a17:906:6c97:b0:a45:2cf3:6c65 with SMTP id s23-20020a1709066c9700b00a452cf36c65mr445528ejr.25.1709462937430;
+        Sun, 03 Mar 2024 02:48:57 -0800 (PST)
+Received: from brgl-uxlite.. (5-226-109-134.static.ip.netia.com.pl. [5.226.109.134])
+        by smtp.gmail.com with ESMTPSA id he44-20020a1709073dac00b00a4323d1b18fsm3582303ejc.34.2024.03.03.02.48.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Mar 2024 02:48:57 -0800 (PST)
+From: Bartosz Golaszewski <brgl@bgdev.pl>
+To: Rob Herring <robh+dt@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>
+Cc: devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	linux-input@vger.kernel.org
-Cc: =?UTF-8?q?Duje=20Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht,
-	phone-devel@vger.kernel.org
-Subject: [RFC PATCH v3 5/5] MAINTAINERS: add myself for Marvell 88PM886 PMIC
-Date: Sun,  3 Mar 2024 11:04:26 +0100
-Message-ID: <20240303101506.4187-6-karelb@gimli.ms.mff.cuni.cz>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240303101506.4187-1-karelb@gimli.ms.mff.cuni.cz>
-References: <20240303101506.4187-1-karelb@gimli.ms.mff.cuni.cz>
+	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [PATCH] of: make for_each_property_of_node() available to to !OF
+Date: Sun,  3 Mar 2024 11:48:53 +0100
+Message-Id: <20240303104853.31511-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -83,46 +82,47 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-From: Karel Balej <balejk@matfyz.cz>
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Add an entry to MAINTAINERS for the Marvell 88PM886 PMIC MFD, onkey and
-regulator drivers.
+for_each_property_of_node() is a macro and so doesn't have a stub inline
+function for !OF. Move it out of the relevant #ifdef to make it available
+to all users.
 
-Signed-off-by: Karel Balej <balejk@matfyz.cz>
+Fixes: 611cad720148 ("dt: add of_alias_scan and of_alias_get_id")
+Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 ---
+I have an upcoming driver that will use this but which can also be built
+on non-DT systems. I'd like to get that in as a fix to avoid inter-tree
+dependencies later.
 
-Notes:
-    RFC v3:
-    - Remove onkey bindings file.
-    RFC v2:
-    - Only mention 88PM886 in the commit message.
-    - Add regulator driver.
-    - Rename the entry.
+ include/linux/of.h | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 960512bec428..944f88c92df6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12949,6 +12949,15 @@ F:	drivers/net/dsa/mv88e6xxx/
- F:	include/linux/dsa/mv88e6xxx.h
- F:	include/linux/platform_data/mv88e6xxx.h
+diff --git a/include/linux/of.h b/include/linux/of.h
+index 6a9ddf20e79a..a3e8e429ad7f 100644
+--- a/include/linux/of.h
++++ b/include/linux/of.h
+@@ -362,9 +362,6 @@ extern struct device_node *of_get_cpu_state_node(struct device_node *cpu_node,
+ 						 int index);
+ extern u64 of_get_cpu_hwid(struct device_node *cpun, unsigned int thread);
  
-+MARVELL 88PM886 PMIC DRIVER
-+M:	Karel Balej <balejk@matfyz.cz>
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/mfd/marvell,88pm886-a1.yaml
-+F:	drivers/input/misc/88pm886-onkey.c
-+F:	drivers/mfd/88pm886.c
-+F:	drivers/regulators/88pm886-regulator.c
-+F:	include/linux/mfd/88pm886.h
+-#define for_each_property_of_node(dn, pp) \
+-	for (pp = dn->properties; pp != NULL; pp = pp->next)
+-
+ extern int of_n_addr_cells(struct device_node *np);
+ extern int of_n_size_cells(struct device_node *np);
+ extern const struct of_device_id *of_match_node(
+@@ -892,6 +889,9 @@ static inline int of_prop_val_eq(struct property *p1, struct property *p2)
+ 	       !memcmp(p1->value, p2->value, (size_t)p1->length);
+ }
+ 
++#define for_each_property_of_node(dn, pp) \
++	for (pp = dn->properties; pp != NULL; pp = pp->next)
 +
- MARVELL ARMADA 3700 PHY DRIVERS
- M:	Miquel Raynal <miquel.raynal@bootlin.com>
- S:	Maintained
+ #if defined(CONFIG_OF) && defined(CONFIG_NUMA)
+ extern int of_node_to_nid(struct device_node *np);
+ #else
 -- 
-2.44.0
+2.40.1
 
 
