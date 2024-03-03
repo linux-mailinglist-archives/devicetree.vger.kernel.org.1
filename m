@@ -1,161 +1,105 @@
-Return-Path: <devicetree+bounces-47945-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47946-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C697886F644
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 17:54:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E7E086F654
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 18:03:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8186E28663A
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 16:54:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5949828107B
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 17:03:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 972F06F08A;
-	Sun,  3 Mar 2024 16:54:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="Rnmdvkck"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C032F7603E;
+	Sun,  3 Mar 2024 17:03:40 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2AF16EB4B;
-	Sun,  3 Mar 2024 16:54:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7B9B41A80;
+	Sun,  3 Mar 2024 17:03:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709484850; cv=none; b=kwp40cdiPT6wXgRKjA0k0cmJKbALEzpGGZn7PouCR7I9aFjZE1Bz2VAnGDsOPGKDKXTvkhv2cpqI+P/ymRWlL95p049fMDFyXPh2MflZ6F6DeH3Ozp4Ux80BQMJtyjixRtmt1b+JRTedOojogOWuhQY9qgze7tBgrX0JnHMkKNU=
+	t=1709485420; cv=none; b=E8lL/fGWaoOUoNugEFbn+kucrprnOiPBOdOnXIHJ0t6/GHjQysD5Y9JK/uRI3raggy2N9bQxUGuR5nV7Xe+RGzVJSsGZweTsg9RNbnnEjHZ3e7BJ4vbNrFloDWmZQXi1+ToyFdQkmwceIMcW286mHBbFdAsQk6S6ch4582B6UGA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709484850; c=relaxed/simple;
-	bh=lMwnrLeCvVz6MVMwOx8zbh7VgWcU3y59cceellDGewY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:References:
-	 In-Reply-To:To:CC; b=bpogO4O90HHn5jCKwUHcXIcReECo8+gagB6f9WP76l2KAYIiWL0cTR/VgupYyL9d++GJHlJqbrz+Fyt+jhROJwkKZzuwdrua5pBt74IjEIcbSXN5p41Y5aj3ymBrmyhdCeMpPTisMvZpwWGulNK9+bZnwxT02mQr+98MKY8rvmY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=Rnmdvkck; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 423Gk8w3021392;
-	Sun, 3 Mar 2024 16:53:49 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:date:subject:mime-version:content-type
-	:content-transfer-encoding:message-id:references:in-reply-to:to
-	:cc; s=qcppdkim1; bh=snaF0gfNSgpz2yUDbhT9E15ErTrvt/AaN/jKFXto6zE
-	=; b=RnmdvkckpvMhkybNiN58WUuN1P6RoA6wcmh6wtjWLCma7MGV08HtHdq1srV
-	XgPoW8L4ITuksSNAssNhMPuavRlw/gic8ZQO3kilL4pgjrvvWuTH7NjC5X0RUQXz
-	/Nh2u8r0DBqjI3i5ivLnOSLN8kkOItS/TLwigZxg0doN0W5hWgDQSWQgptxqpHp9
-	1vwLq6yymi7vyGuOa2aYi1lm4hI/poK2vIQ/hrB/WtU1uEPJKyfMiHqqbeUmqaYy
-	w1Fgd5wsbVVMJzpsKokwugmfDTYSTjqZRgp3CMByKRpyXe8gE/5F83n5jMY9a0VP
-	/9msvXFrby65n0h7aYJyBSJ9dJQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wksfrj4xn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 03 Mar 2024 16:53:48 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 423GrliU025370
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Sun, 3 Mar 2024 16:53:47 GMT
-Received: from robotics-lnxbld034.qualcomm.com (10.80.80.8) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Sun, 3 Mar 2024 08:53:43 -0800
-From: Canfeng Zhuang <quic_czhuang@quicinc.com>
-Date: Mon, 4 Mar 2024 00:53:17 +0800
-Subject: [PATCH 2/2] dt-bindings: misc: merge qcom,qrc
+	s=arc-20240116; t=1709485420; c=relaxed/simple;
+	bh=VUws4B8KxC6iqq7l6ZrU1SlkYalVDKAq9rQpX9xceU0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tFSuHQ8TjALtGoqt33p/bPEOoFdAKcx2RCubAutp4R4OsXVs+gUZqyys2JfMPqrLRQjZ44Q30ZkEx4WR7f6Tc+QJrQwdzVaBz7n6Qy5+xT4eNSUTqWotTVoq+JCqXkFWCtDUTasVRzAXxS3+ItfBPR0sXrKM6/5a6gJuJSsS2aU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rgpFA-00066g-29;
+	Sun, 03 Mar 2024 17:03:20 +0000
+Date: Sun, 3 Mar 2024 17:03:16 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Eric Woudstra <ericwouds@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Lucien Jheng <lucien.jheng@airoha.com>,
+	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
+ EN8811H PHY driver
+Message-ID: <ZeStVG-GI0V-cYHK@makrotopia.org>
+References: <20240302183835.136036-1-ericwouds@gmail.com>
+ <20240302183835.136036-3-ericwouds@gmail.com>
+ <ZePicFOrsr5wTE_n@makrotopia.org>
+ <d29b171b-c03a-44db-8e0d-15f9bd35c4b5@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240304-qcom_qrc-v1-2-2a709f95fd61@quicinc.com>
-References: <20240304-qcom_qrc-v1-0-2a709f95fd61@quicinc.com>
-In-Reply-To: <20240304-qcom_qrc-v1-0-2a709f95fd61@quicinc.com>
-To: Derek Kiernan <derek.kiernan@amd.com>,
-        Dragan Cvetic
-	<dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Konrad
- Dybcio" <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        Canfeng Zhuang <quic_czhuang@quicinc.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1709484815; l=1343;
- i=quic_czhuang@quicinc.com; s=20240304; h=from:subject:message-id;
- bh=lMwnrLeCvVz6MVMwOx8zbh7VgWcU3y59cceellDGewY=;
- b=kcQunjyDHPqMorGPKhFqjSANzV5uQ4TwRuEIdywO4nZvWBpkgVZb7Zp/agwOjkjvoVUr79GSG
- oDZ1N0VWDLOB8yMJyggu/yBwJdD+MV5p6vCgCEBMNS5CIRlh8GPBiJr
-X-Developer-Key: i=quic_czhuang@quicinc.com; a=ed25519;
- pk=uQG1beHWTQyrSp8QCUkEKgprUZM/nlhxKMyUwzilvXQ=
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: -_S58zLGaULi4NYa-xBCwRGto6RoP_3m
-X-Proofpoint-GUID: -_S58zLGaULi4NYa-xBCwRGto6RoP_3m
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-03_07,2024-03-01_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 adultscore=0
- lowpriorityscore=0 clxscore=1015 suspectscore=0 impostorscore=0
- mlxlogscore=999 bulkscore=0 mlxscore=0 spamscore=0 malwarescore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403030142
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <d29b171b-c03a-44db-8e0d-15f9bd35c4b5@lunn.ch>
 
-Merge Qualcomm-specific qrc binding
+On Sun, Mar 03, 2024 at 05:47:24PM +0100, Andrew Lunn wrote:
+> > > +/* u32 (DWORD) component macros */
+> > > +#define LOWORD(d) ((u16)(u32)(d))
+> > > +#define HIWORD(d) ((u16)(((u32)(d)) >> 16))
+> > 
+> > You could use the existing macros in wordpart.h instead.
+> 
+> I was also asking myself the question, is there a standard set of
+> macros for this.
+> 
+> But
+> 
+> ~/linux$ find . -name word*.h
+> ./tools/testing/selftests/powerpc/primitives/word-at-a-time.h
+> ./include/asm-generic/word-at-a-time.h
+> ./arch/arm64/include/asm/word-at-a-time.h
+> ./arch/powerpc/include/asm/word-at-a-time.h
+> ./arch/s390/include/asm/word-at-a-time.h
+> ./arch/xtensa/include/generated/asm/word-at-a-time.h
+> ./arch/riscv/include/asm/word-at-a-time.h
+> ./arch/arc/include/generated/asm/word-at-a-time.h
+> ./arch/arm/include/asm/word-at-a-time.h
+> ./arch/sh/include/asm/word-at-a-time.h
+> ./arch/alpha/include/asm/word-at-a-time.h
+> ./arch/x86/include/asm/word-at-a-time.h
+> 
+> No wordpart.h
 
-Signed-off-by: Canfeng Zhuang <quic_czhuang@quicinc.com>
----
- .../devicetree/bindings/misc/qcom,qrc.yaml         | 32 ++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+It's very new:
 
-diff --git a/Documentation/devicetree/bindings/misc/qcom,qrc.yaml b/Documentation/devicetree/bindings/misc/qcom,qrc.yaml
-new file mode 100644
-index 000000000000..730efd679ba0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/misc/qcom,qrc.yaml
-@@ -0,0 +1,32 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/misc/qcom,qrc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Robotics Communication Driver
-+
-+maintainers:
-+  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-+
-+description: |
-+  The QRC (Qualcomm Robotics Communication) driver is used for information interaction
-+  between the robot control board and the main board when using a uart port connection.
-+  This Driver will support uart read & write and robot control board
-+  reset function.
-+
-+properties:
-+  compatible:
-+    const: qcom,qrc-uart
-+
-+required:
-+  - compatible
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    qrc: qcom,qrc_uart {
-+        compatible = "qcom,qrc-uart";
-+    };
-+
-
--- 
-2.25.1
+https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/include/linux/wordpart.h
 
 
