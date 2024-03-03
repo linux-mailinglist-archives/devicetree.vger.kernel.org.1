@@ -1,124 +1,183 @@
-Return-Path: <devicetree+bounces-47934-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47935-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C402086F581
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 15:22:41 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B1FFF86F588
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 15:34:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DD1761C209E7
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 14:22:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CD84285C5F
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 14:34:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D48405A0FA;
-	Sun,  3 Mar 2024 14:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4AD767A00;
+	Sun,  3 Mar 2024 14:34:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Ts34U3IO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aQdNt5/5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 254B359B78;
-	Sun,  3 Mar 2024 14:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934DE3EA68;
+	Sun,  3 Mar 2024 14:34:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709475757; cv=none; b=NUFEEAeXqrzRfySMBDfxqAuix+QFre5BBCUeQSlwAGEiHt8qvvQ/ogHor9AUsDb9WDQrVSWmOojfM+PgyNgLAeiQhSQkfcwrbDiS8zk5IMdDjDKYnJrXyar6FrlHibCFXX4kmD14v4PUeOOetjKK8idu77flKtoJBqTBBVkHbcU=
+	t=1709476483; cv=none; b=G1RbSQIYMGeJ1ltfBjbibmAKZtSLq54gsgvetHWBuRDsLAoltJwHuGqOcSevfvgbzUQLuazP8XjMbTm4yOni+sa0CxfxMO4UjY7AzRST88K0W4qwW4seXa5s6F/gNbR241fDUaQqYgAbwX65bvWR56FCBOneDBubfBS6WPPGlvY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709475757; c=relaxed/simple;
-	bh=dEoI8+Y6evE+5Ghh9a8OXg7doC5akRrXNHsbHzSrFUg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=qTq2RhD8JzM2pWajdjou7/oq1il9Q0bUzabEaPdLLBSYI38BCwiQtG3/DOT9Dz88M9tb4Z5Bvy7JEY8AWOeXE7oHTkovac0bExMObxUj8Q27kGiEfxjMEFEkUmc4Ap64KqXry+bfVLmJEE9nl6AXT0uMheMdQbEgReczSXikSZ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Ts34U3IO; arc=none smtp.client-ip=209.85.208.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d208be133bso46278891fa.2;
-        Sun, 03 Mar 2024 06:22:35 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709475754; x=1710080554; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1/ki2/RE7Lf64PFKVEEzHdKXP6S/+P7mkgvPKDo5WrA=;
-        b=Ts34U3IOAUUfLJh20h3WVnt5uDFWLq7awzzZsCe4GQ4c+F2ttDw0vSehtjhsLSU/gx
-         +J2ZLJ9Z4kuCFCePJu/IsL3YUPCQtTm0UtqqWP8Nw6DpVn5Nf7ub6XG1M6ysmeqSp16v
-         EOYAda2pKQ1Uv5Fse9rVwDnBWRqH+JPN3BX8xFTcImyrX6u2rbjWXiYO+udWkahpOoeC
-         wd/i1fhThdkqVKKOlhIj/d/p+LcPE+UCTOY86jHWQM1/OpkmKiRFp4Vo6uPTKG306i8b
-         /Af1hlHgasA5z7XZCiXqNNKp9xhRoBz9MlLkHht+t4tg7EX7V//8e7J0QidcE9ZrLHLv
-         FwMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709475754; x=1710080554;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1/ki2/RE7Lf64PFKVEEzHdKXP6S/+P7mkgvPKDo5WrA=;
-        b=vfecoZXBXk0XvgSkMahDQuUXn9Un8B9392B1BA1frT5zlcXQau6jPtizFniOX0wDQv
-         cj/HZXb/thIPrvJfdbYxdsykcnFf7DAKfjfjKn9yBwIUlwP03oJaqJbARqJtyjjsYxJ5
-         FWfHOjlXeq25Nt9WmUYPcCoXD2K/767UYyViYveafsXw9bdQgX+V5SGNe1ZzEcDO7Ebg
-         FdZuPvUkoS2yXcN92VZ0CBmrYVX5fk8dBQdrrtK+gCzdlsZt+Eq3VC5PuRvaXK4W3Gae
-         H3GIhtlHNjChPgny6oRiNxRuMsXmPmAGQmAS3lgxZlhQWbrycjGCi2ghvikKoP5gI+SK
-         LDBw==
-X-Forwarded-Encrypted: i=1; AJvYcCVcWBm7egBqHQC0bHVFG3nfA4XT5vNT9tcxfDix2IL4MuubvkRLRKCMEs1iDE7upaDhqiAM7L3/VJYDIqnhtTYvy674zbpUcQkgarZbjlJSFPFuWSUUSyegPpAGw2fsR2LOAw==
-X-Gm-Message-State: AOJu0YyG81AGvGX+vRah9BtdwSET9L/IXS5ewBD7WknwDbpy8vKcD54d
-	izx3Qoft2hfP6FNo9GTtZE8Z3WwwafCfKZuNVfLcSUyfR3aPMW9T
-X-Google-Smtp-Source: AGHT+IEalUf1X6Z6TIye7uXheYO0SHCuJXcB+Aa3XVNG85+TOoOyvPR8FFd27AQCLzC3AKCxgVw+Bg==
-X-Received: by 2002:a05:651c:19a9:b0:2d3:28b3:d9db with SMTP id bx41-20020a05651c19a900b002d328b3d9dbmr5327982ljb.16.1709475754071;
-        Sun, 03 Mar 2024 06:22:34 -0800 (PST)
-Received: from ?IPV6:2001:1c00:20d:1300:1b1c:4449:176a:89ea? (2001-1c00-020d-1300-1b1c-4449-176a-89ea.cable.dynamic.v6.ziggo.nl. [2001:1c00:20d:1300:1b1c:4449:176a:89ea])
-        by smtp.gmail.com with ESMTPSA id s9-20020a508dc9000000b005651ae4ac91sm3499722edh.41.2024.03.03.06.22.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Mar 2024 06:22:33 -0800 (PST)
-Message-ID: <049689b5-2b36-4dbe-b910-5e570618ce05@gmail.com>
-Date: Sun, 3 Mar 2024 15:22:32 +0100
+	s=arc-20240116; t=1709476483; c=relaxed/simple;
+	bh=7pIB5wDzFt9Tko9FAC1MbXUYpB6Pon2A5GdhinIvdXc=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=ZvCDaMeCY0E85ZT2zc2tsMLZstnRm+6uiC1SCUYB35P6MSo+gGmhbRWbQ7h8oZRFtqZT/2GtfwBh1QA8/QMW7lmsYHQnrYgisItgF7QGFhd8JOxuvplGBiVG5OoSzeHTWSAdd8S2MBYgZXmnX9G+wZMVlNozNS6i7N4SaNXozJ0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aQdNt5/5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BCE4C433F1;
+	Sun,  3 Mar 2024 14:34:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709476483;
+	bh=7pIB5wDzFt9Tko9FAC1MbXUYpB6Pon2A5GdhinIvdXc=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=aQdNt5/5Gd/t21et4QpZZ7GLN0pXVKLQ9LrQzknFIW6e+My6HzsHZW3oZMauviVKG
+	 2QsgL+7/Qpc8/gBm2tNjbTR7ZGHxkbsUSHL4edTD2z4q8n0cziJVRzp1WdihUKbnSw
+	 FtE5VSO/DfOKvQ79zm/sHe8knsNpefKjE+0lJgJ9tUPB61kLnDw4FYBP+96po62EEK
+	 XxfucQVW+Ea7K7S/S///TiGE1KuRXcn8rF9tzPeofkhg1NGnA8RCB6ua9yg8l9asQF
+	 k23f7eE1afP1WSws3EXvrVZhX/IvweX9Izqhg+inHzBmmwlYfYxAItuJAOPwnlDpvl
+	 yzbLpQ65Mgytg==
+Date: Sun, 3 Mar 2024 14:34:29 +0000
+From: Jonathan Cameron <jic23@kernel.org>
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ David Lechner <dlechner@baylibre.com>, Ceclan Dumitru
+ <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] iio: adc: ad7173: add support for additional
+ models
+Message-ID: <20240303143429.68fd5cd4@jic23-huawei>
+In-Reply-To: <20240228135532.30761-3-mitrutzceclan@gmail.com>
+References: <20240228135532.30761-1-mitrutzceclan@gmail.com>
+	<20240228135532.30761-3-mitrutzceclan@gmail.com>
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
- EN8811H PHY driver
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Frank Wunderlich <frank-w@public-files.de>,
- Lucien Jheng <lucien.jheng@airoha.com>, Zhi-Jun You
- <hujy652@protonmail.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240302183835.136036-1-ericwouds@gmail.com>
- <20240302183835.136036-3-ericwouds@gmail.com>
- <ZePicFOrsr5wTE_n@makrotopia.org>
-Content-Language: en-US
-From: Eric Woudstra <ericwouds@gmail.com>
-In-Reply-To: <ZePicFOrsr5wTE_n@makrotopia.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
+On Wed, 28 Feb 2024 15:54:57 +0200
+Dumitru Ceclan <mitrutzceclan@gmail.com> wrote:
 
-
-On 3/3/24 03:37, Daniel Golle wrote:
-
->> +
->> +	/* BUG in PHY firmware: MDIO_AN_10GBT_STAT_LP2_5G does not get set.
+> Add support for Analog Devices AD7172-2, AD7175-8, AD7177-2.
 > 
-> EN8811H completely lacks MDIO_AN_10GBT_STAT, hence referencing
-> MDIO_AN_10GBT_STAT_LP2_5G here is confusing.
-> 
-> Suggestion:
-> 	/* BUG in PHY firmware: EN8811H_2P5G_LPA_2P5G does not get set.
-> 
-> Or just skip that line entirely as the following two lines already
-> perfectly explain the situation.
-> 
+> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Hi Dumitru
 
-Thanks
+Some of the changes in here make it clear more inter chip variability
+should be specified directly in your device_info structures, and less
+(preferably none) use made of the id field + if statements inline.
 
-I also have a reply from kernel test robot, so I'll need to fix some more.
+Those ID fields should just be for matching, not for direct use to adjust
+code flow.
 
-Better to see if I can only send to the test robot first.
+Jonathan
+
+
+> ---
+>  drivers/iio/adc/ad7173.c | 82 ++++++++++++++++++++++++++++++++++++----
+>  1 file changed, 74 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/iio/adc/ad7173.c b/drivers/iio/adc/ad7173.c
+> index b42fbe28a325..e60ecce20e08 100644
+> --- a/drivers/iio/adc/ad7173.c
+> +++ b/drivers/iio/adc/ad7173.c
+> @@ -1,6 +1,11 @@
+>  // SPDX-License-Identifier: GPL-2.0+
+>  /*
+> - * AD7172-2/AD7173-8/AD7175-2/AD7176-2 SPI ADC driver
+> + * AD717x family SPI ADC driver
+> + *
+> + * Supported devices:
+> + *  AD7172-2/AD7172-4/AD7173-8/AD7175-2
+> + *  AD7175-8/AD7176-2/AD7177-2
+> + *
+>   * Copyright (C) 2015, 2024 Analog Devices, Inc.
+>   */
+>  
+> @@ -61,10 +66,13 @@
+>  #define AD7173_AIN_TEMP_POS	17
+>  #define AD7173_AIN_TEMP_NEG	18
+>  
+> -#define AD7172_ID			0x00d0
+> -#define AD7173_ID			0x30d0
+> -#define AD7175_ID			0x0cd0
+> +#define AD7172_2_ID			0x00d0
+>  #define AD7176_ID			0x0c90
+> +#define AD7175_2_ID			0x0cd0
+> +#define AD7172_4_ID			0x2050
+> +#define AD7173_ID			0x30d0
+> +#define AD7175_8_ID			0x3cd0
+> +#define AD7177_ID			0x4fd0
+>  #define AD7173_ID_MASK			GENMASK(15, 4)
+>  
+>  #define AD7173_ADC_MODE_REF_EN		BIT(15)
+> @@ -110,15 +118,19 @@
+>  #define AD7173_SETUP_REF_SEL_EXT_REF	0x0
+>  #define AD7173_VOLTAGE_INT_REF_uV	2500000
+>  #define AD7173_TEMP_SENSIIVITY_uV_per_C	477
+> +#define AD7177_ODR_START_VALUE		0x07
+>  
+>  #define AD7173_FILTER_ODR0_MASK		GENMASK(5, 0)
+>  #define AD7173_MAX_CONFIGS		8
+>  
+...
+
+>  
+>  static const char *const ad7173_ref_sel_str[] = {
+> @@ -656,7 +701,12 @@ static int ad7173_write_raw(struct iio_dev *indio_dev,
+>  	switch (info) {
+>  	case IIO_CHAN_INFO_SAMP_FREQ:
+>  		freq = val * MILLI + val2 / MILLI;
+> -		for (i = 0; i < st->info->num_sinc5_data_rates - 1; i++)
+> +		/*
+> +		 * AD7177-2 has the filter values [0-6] marked as reserved
+> +		 * datasheet page 58
+> +		 */
+> +		i = (st->info->id == AD7177_ID) ? AD7177_ODR_START_VALUE : 0;
+
+Add an st->info->odr_start_value field. Can set it only for this part, but
+if in future others turn up that needs similar it becomes very easy to support.
+
+> +		for (; i < st->info->num_sinc5_data_rates - 1; i++)
+>  			if (freq >= st->info->sinc5_data_rates[i])
+>  				break;
+>  
+> @@ -908,8 +958,15 @@ static int ad7173_fw_parse_channel_config(struct iio_dev *indio_dev)
+>  		else
+>  			ref_sel = ret;
+>  
+> +		if (ref_sel == AD7173_SETUP_REF_SEL_INT_REF &&
+> +		    st->info->id == AD7172_2_ID) {
+
+As below.  You may well end up adding more devices here. Make it data instead by
+adding  has_ref1 boolean to your st->info structure.
+
+> +			fwnode_handle_put(child);
+> +			return dev_err_probe(dev, -EINVAL,
+> +				"Internal reference is not available on ad7172-2\n");
+> +		}
+> +
+>  		if (ref_sel == AD7173_SETUP_REF_SEL_EXT_REF2 &&
+> -		    st->info->id != AD7173_ID) {
+> +		    st->info->id != AD7173_ID && st->info->id != AD7172_2_ID) {
+This is one of those cases that clearly shows why ID matching doesn't generalize well.
+Better to have a flag in info that directly says if there is an external reference 2 
+possible for each chip variant.  Otherwise this list just keeps on growing!
+
+		   !st->info->has_ref2
+
+>  			fwnode_handle_put(child);
+>  			return dev_err_probe(dev, -EINVAL,
+>  				"External reference 2 is only available on ad7173-8\n");
+
 
