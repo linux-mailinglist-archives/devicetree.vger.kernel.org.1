@@ -1,267 +1,241 @@
-Return-Path: <devicetree+bounces-47950-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47951-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0243486F666
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 18:22:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E07686F66A
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 18:29:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ABE76281E7C
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 17:22:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9188C1C20C8C
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 17:29:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95BC3763FF;
-	Sun,  3 Mar 2024 17:22:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E1667640A;
+	Sun,  3 Mar 2024 17:29:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="gEANmTVk"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="pdUS7eCf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 551AB763F0;
-	Sun,  3 Mar 2024 17:22:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1399DBA5F;
+	Sun,  3 Mar 2024 17:29:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709486563; cv=none; b=rUahNaMEnYGc+3u9S0PivJ9K9SZkH4z7DUY5tDZpmD/mD/WLp1AzODb2C4K0yExS0h9VCLZosPpxFBq7ZA0gD2xsep+xDEm4uVbN9r0Skni9WeYYynFdxHEl/qB2e8YkQf1El3Xj6plWgVn4ruJqulYz9UpPTxdBF1iRsuPCJaA=
+	t=1709486956; cv=none; b=KOzeAeSV51ShsmcG2mUXxncCjlPILyKaibB01nv95lvpw6Glm1ejkj5+uDOAMbM255xQTfYnclBKLJXn7DVp/l6Nvpu5jhPE02Mkb7EClfP9vq67pQTogFdNz/dai8wVcQy8z5eik8akvJ8wKKDzPS7MmdaRLeq/iGbPT56o3D8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709486563; c=relaxed/simple;
-	bh=bbktXTw1McDuzlDhGJXTGfCB0cZkHxH5voH2HeCvwMU=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=JkZZDMcAYImy9W8Zsut9DudcBTrQlqhBfWba1JKQOToN4N8vb8yvJCvvTQYERASaZuBvijkqm+BWgVlotTxQxjk/0zHdTiqRnhODeJLc1+jdBuFSBScy8gORliq+CFm5cwvYPC0qu7Mewtxq97KfEcrzm8glCmdnuRG7yUguzfU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=gEANmTVk; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 5DA389C53A7;
-	Sun,  3 Mar 2024 12:22:40 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id 3YztJd6ty_VX; Sun,  3 Mar 2024 12:22:39 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id DFB029C53B1;
-	Sun,  3 Mar 2024 12:22:38 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com DFB029C53B1
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1709486559; bh=Ghhg5QGuqNphzv/8uftqyGXgcgncjQGiW573al8NqGI=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=gEANmTVkq1H7ZEEm6JW+VCuVYFXjs3z/JuMTBbfjZppKdbaPdejR/sSaSHPTWJv8W
-	 TCnb1leFf5sP6VlRJOXz0T/1466qYlaedAaaTBm1vuBL9G2Ev4aBpxUHlavnlaT9xn
-	 3/lTOp7ESsc99g0kjhKh/2Ogn9pjNtw1XoEWAr1AvCdz2APuD5COWLkDh2eG9xGk6e
-	 YOiR/W0tq9dUkVvuLfnx59zDcg8GZ7/e4FBl1KkLicFUDkoJsC4A+P1PQam41izUkn
-	 hBmuogBVP9cSqap9g+GTlPPvDkyg10q1JCUCrMCWlHK4Vrt231Hxw6Gk2Sw93VWO0H
-	 vzPyPghDfIvtQ==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id ukMMPtoHsb8E; Sun,  3 Mar 2024 12:22:38 -0500 (EST)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id AAA279C53A7;
-	Sun,  3 Mar 2024 12:22:38 -0500 (EST)
-Date: Sun, 3 Mar 2024 12:22:38 -0500 (EST)
-From: Charles Perry <charles.perry@savoirfairelinux.com>
-To: Xu Yilun <yilun.xu@linux.intel.com>
-Cc: mdf <mdf@kernel.org>, Allen VANDIVER <avandiver@markem-imaje.com>, 
-	Brian CODY <bcody@markem-imaje.com>, hao wu <hao.wu@intel.com>, 
-	yilun xu <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Michal Simek <michal.simek@amd.com>, 
-	linux-fpga <linux-fpga@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Message-ID: <1667978841.1508200.1709486558665.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <Zdxe7mvBbHDHzbiS@yilunxu-OptiPlex-7050>
-References: <20240221195058.1281973-1-charles.perry@savoirfairelinux.com> <20240221195058.1281973-4-charles.perry@savoirfairelinux.com> <Zdxe7mvBbHDHzbiS@yilunxu-OptiPlex-7050>
-Subject: Re: [PATCH v4 3/3] fpga: xilinx-selectmap: add new driver
+	s=arc-20240116; t=1709486956; c=relaxed/simple;
+	bh=rnYw+AOo8cpE6gLKNrgHSIclcBJojMCpzxczKpn2Y0k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=nEfbq3KmQnqmWRxmoe91ew0mFhFNtIyV89GdlnsikP7Y3PtOAsaiF10F4FcYNSNx1POHEVB/Gf1wB6Tl+CahYRqxIR+BoOuN/l818h2qSdyboD2JXWA3NqhssIFyAOY/UH9FtyjjXrvMIVTacjXzyM4cVbaUflcZjawBHX3aH18=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=pdUS7eCf; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=eTGSsx2NfF37A4LhU0Ufa0dc3CdGXwjkN6RA+oF6vbw=; b=pdUS7eCfDQfBdVBXU4exTVoJTt
+	nZqV8wTfpD9weOVo5rxwA5taqmgWYFcbgnqfCOkqj8R4Bzvg4FwfX7uLxu2A4x0AvhBAbvqCstDI1
+	U0mc4/Ub4nDDF2ME3i73HrOEfDD6KaWvrzMTSVTd5Ty+qN7LIniucypq3D6kINA7wJIE=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rgpeK-009F8A-Dv; Sun, 03 Mar 2024 18:29:20 +0100
+Date: Sun, 3 Mar 2024 18:29:20 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Eric Woudstra <ericwouds@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Lucien Jheng <lucien.jheng@airoha.com>,
+	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
+ EN8811H PHY driver
+Message-ID: <89f237e0-75d4-4690-9d43-903e087e4f46@lunn.ch>
+References: <20240302183835.136036-1-ericwouds@gmail.com>
+ <20240302183835.136036-3-ericwouds@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - FF123 (Linux)/8.8.15_GA_4581)
-Thread-Topic: fpga: xilinx-selectmap: add new driver
-Thread-Index: ZKiev4qNzSquSIuuXA0kTMbwGPBpeA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240302183835.136036-3-ericwouds@gmail.com>
 
-On Feb 26, 2024, at 2:50 AM, Xu Yilun yilun.xu@linux.intel.com wrote:
+> +enum {
+> +	AIR_PHY_LED_DUR_BLINK_32M,
+> +	AIR_PHY_LED_DUR_BLINK_64M,
+> +	AIR_PHY_LED_DUR_BLINK_128M,
+> +	AIR_PHY_LED_DUR_BLINK_256M,
+> +	AIR_PHY_LED_DUR_BLINK_512M,
+> +	AIR_PHY_LED_DUR_BLINK_1024M,
 
-> On Wed, Feb 21, 2024 at 02:50:49PM -0500, Charles Perry wrote:
->> Xilinx 7 series FPGA can be programmed using a parallel port named
->> the SelectMAP interface in the datasheet. This interface is compatible
->> with the i.MX6 EIM bus controller but other types of external memory
->> mapped parallel bus might work.
->> 
->> xilinx-selectmap currently only supports the x8 mode where data is loaded
->> at one byte per rising edge of the clock, with the MSb of each byte
->> presented to the D0 pin.
->> 
->> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
->> ---
->>  drivers/fpga/Kconfig            |  8 +++
->>  drivers/fpga/Makefile           |  1 +
->>  drivers/fpga/xilinx-selectmap.c | 97 +++++++++++++++++++++++++++++++++
->>  3 files changed, 106 insertions(+)
->>  create mode 100644 drivers/fpga/xilinx-selectmap.c
->> 
->> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
->> index d27a1ebf40838..37b35f58f0dfb 100644
->> --- a/drivers/fpga/Kconfig
->> +++ b/drivers/fpga/Kconfig
->> @@ -67,6 +67,14 @@ config FPGA_MGR_STRATIX10_SOC
->>  config FPGA_MGR_XILINX_CORE
->>  	tristate
->>  
->> +config FPGA_MGR_XILINX_SELECTMAP
->> +	tristate "Xilinx Configuration over SelectMAP"
->> +	depends on HAS_IOMEM
->> +	select FPGA_MGR_XILINX_CORE
->> +	help
->> +	  FPGA manager driver support for Xilinx FPGA configuration
->> +	  over SelectMAP interface.
->> +
->>  config FPGA_MGR_XILINX_SPI
->>  	tristate "Xilinx Configuration over Slave Serial (SPI)"
->>  	depends on SPI
->> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
->> index 7ec795b6a5a70..aeb89bb13517e 100644
->> --- a/drivers/fpga/Makefile
->> +++ b/drivers/fpga/Makefile
->> @@ -16,6 +16,7 @@ obj-$(CONFIG_FPGA_MGR_SOCFPGA_A10)	+= socfpga-a10.o
->>  obj-$(CONFIG_FPGA_MGR_STRATIX10_SOC)	+= stratix10-soc.o
->>  obj-$(CONFIG_FPGA_MGR_TS73XX)		+= ts73xx-fpga.o
->>  obj-$(CONFIG_FPGA_MGR_XILINX_CORE)	+= xilinx-core.o
->> +obj-$(CONFIG_FPGA_MGR_XILINX_SELECTMAP)	+= xilinx-selectmap.o
->>  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
->>  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
->>  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
->> diff --git a/drivers/fpga/xilinx-selectmap.c b/drivers/fpga/xilinx-selectmap.c
->> new file mode 100644
->> index 0000000000000..b63f4623f8b2c
->> --- /dev/null
->> +++ b/drivers/fpga/xilinx-selectmap.c
->> @@ -0,0 +1,97 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Xilinx Spartan6 and 7 Series SelectMAP interface driver
->> + *
->> + * (C) 2024 Charles Perry <charles.perry@savoirfairelinux.com>
->> + *
->> + * Manage Xilinx FPGA firmware loaded over the SelectMAP configuration
->> + * interface.
->> + */
->> +
->> +#include "xilinx-core.h"
->> +
->> +#include <linux/platform_device.h>
->> +#include <linux/gpio/consumer.h>
->> +#include <linux/module.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/of.h>
->> +#include <linux/io.h>
->> +
->> +struct xilinx_selectmap_conf {
->> +	struct xilinx_fpga_core core;
->> +	void __iomem *base;
->> +};
->> +
->> +#define to_xilinx_selectmap_conf(obj) \
->> +	container_of(obj, struct xilinx_selectmap_conf, core)
->> +
->> +static int xilinx_selectmap_write(struct xilinx_fpga_core *core,
->> +				  const char *buf, size_t count)
->> +{
->> +	struct xilinx_selectmap_conf *conf = to_xilinx_selectmap_conf(core);
->> +	u32 i;
->> +
->> +	for (i = 0; i < count; ++i)
->> +		writeb(buf[i], conf->base);
->> +
->> +	return 0;
->> +}
->> +
->> +static int xilinx_selectmap_probe(struct platform_device *pdev)
->> +{
->> +	struct xilinx_selectmap_conf *conf;
->> +	struct resource *r;
->> +	void __iomem *base;
->> +	struct gpio_desc *csi_b;
->> +	struct gpio_desc *rdwr_b;
->> +
->> +	conf = devm_kzalloc(&pdev->dev, sizeof(*conf), GFP_KERNEL);
->> +	if (!conf)
->> +		return -ENOMEM;
->> +
->> +	conf->core.dev = &pdev->dev;
->> +	conf->core.write = xilinx_selectmap_write;
->> +
->> +	base = devm_platform_get_and_ioremap_resource(pdev, 0, &r);
->> +	if (IS_ERR(base))
->> +		return dev_err_probe(&pdev->dev, PTR_ERR(base),
->> +				     "ioremap error\n");
->> +	conf->base = base;
->> +
->> +	/* CSI_B is active low */
->> +	csi_b = devm_gpiod_get_optional(&pdev->dev, "csi", GPIOD_OUT_HIGH);
->> +	if (IS_ERR(csi_b))
->> +		return dev_err_probe(&pdev->dev, PTR_ERR(csi_b),
->> +				     "Failed to get CSI_B gpio\n");
->> +
->> +	/* RDWR_B is active low */
->> +	rdwr_b = devm_gpiod_get_optional(&pdev->dev, "rdwr", GPIOD_OUT_HIGH);
->> +	if (IS_ERR(rdwr_b))
->> +		return dev_err_probe(&pdev->dev, PTR_ERR(rdwr_b),
->> +				     "Failed to get RDWR_B gpio\n");
->> +
->> +	return xilinx_core_probe(&conf->core);
->> +}
->> +
->> +static const struct of_device_id xlnx_selectmap_of_match[] = {
->> +	{ .compatible = "xlnx,fpga-xc7s-selectmap", }, // Spartan-7
->> +	{ .compatible = "xlnx,fpga-xc7a-selectmap", }, // Artix-7
->> +	{ .compatible = "xlnx,fpga-xc7k-selectmap", }, // Kintex-7
->> +	{ .compatible = "xlnx,fpga-xc7v-selectmap", }, // Virtex-7
->> +	{},
->> +};
->> +MODULE_DEVICE_TABLE(of, xlnx_selectmap_of_match);
-> 
-> Does the driver have to be used with OF or not?
-> 
-> If yes, please specify the reason and enforce in Kconfig.
-> If no, please ensure it decently compiles without CONFIG_OF.
-> 
-> Thanks,
-> Yilun
-> 
+DUR meaning duration? It has a blinks on for a little over a
+kilometre? So a wave length of a little over 2 kilometres, or a
+frequency of around 0.0005Hz :-)
 
-No, it doesn't need OF explicitly as it only needs a few GPIO and a
-memory mapped IO region. It would be possible to get this info from
-platform data.
+> +static int __air_buckpbus_reg_write(struct phy_device *phydev,
+> +				    u32 pbus_address, u32 pbus_data,
+> +				    bool set_mode)
+> +{
+> +	int ret;
+> +
+> +	if (set_mode) {
+> +		ret = __phy_write(phydev, AIR_BPBUS_MODE,
+> +				  AIR_BPBUS_MODE_ADDR_FIXED);
+> +		if (ret < 0)
+> +			return ret;
+> +	}
 
-I'll fix the compilation without CONFIG_OF.
+What does set_mode mean?
 
-Regards,
-Charles
+> +static int en8811h_load_firmware(struct phy_device *phydev)
+> +{
+> +	struct device *dev = &phydev->mdio.dev;
+> +	const struct firmware *fw1, *fw2;
+> +	int ret;
+> +
+> +	ret = request_firmware_direct(&fw1, EN8811H_MD32_DM, dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ret = request_firmware_direct(&fw2, EN8811H_MD32_DSP, dev);
+> +	if (ret < 0)
+> +		goto en8811h_load_firmware_rel1;
+> +
 
->> +
->> +static struct platform_driver xilinx_selectmap_driver = {
->> +	.driver = {
->> +		.name = "xilinx-selectmap",
->> +		.of_match_table = xlnx_selectmap_of_match,
->> +	},
->> +	.probe  = xilinx_selectmap_probe,
->> +};
->> +
->> +module_platform_driver(xilinx_selectmap_driver);
->> +
->> +MODULE_LICENSE("GPL");
->> +MODULE_AUTHOR("Charles Perry <charles.perry@savoirfairelinux.com>");
->> +MODULE_DESCRIPTION("Load Xilinx FPGA firmware over SelectMap");
->> --
->> 2.43.0
->> 
+How big are these firmwares? This will map the entire contents into
+memory. There is an alternative interface which allows you to get the
+firmware in chunks. I the firmware is big, just getting 4K at a time
+might be better, especially if this is an OpenWRT class device.
+
+> +static int en8811h_restart_host(struct phy_device *phydev)
+> +{
+> +	int ret;
+> +
+> +	ret = air_buckpbus_reg_write(phydev, EN8811H_FW_CTRL_1,
+> +				     EN8811H_FW_CTRL_1_START);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	return air_buckpbus_reg_write(phydev, EN8811H_FW_CTRL_1,
+> +				     EN8811H_FW_CTRL_1_FINISH);
+> +}
+
+What is host in this context?
+
+> +static int air_led_hw_control_set(struct phy_device *phydev, u8 index,
+> +				  unsigned long rules)
+> +{
+> +	struct en8811h_priv *priv = phydev->priv;
+> +	u16 on = 0, blink = 0;
+> +	int ret;
+> +
+> +	if (index >= EN8811H_LED_COUNT)
+> +		return -EINVAL;
+> +
+> +	priv->led[index].rules = rules;
+> +
+> +	if (rules & (BIT(TRIGGER_NETDEV_LINK_10)   | BIT(TRIGGER_NETDEV_LINK))) {
+> +		on |= AIR_PHY_LED_ON_LINK10;
+> +		if (rules & BIT(TRIGGER_NETDEV_RX))
+> +			blink |= AIR_PHY_LED_BLINK_10RX;
+> +		if (rules & BIT(TRIGGER_NETDEV_TX))
+> +			blink |= AIR_PHY_LED_BLINK_10TX;
+> +	}
+> +
+> +	if (rules & (BIT(TRIGGER_NETDEV_LINK_100)  | BIT(TRIGGER_NETDEV_LINK))) {
+> +		on |= AIR_PHY_LED_ON_LINK100;
+> +		if (rules & BIT(TRIGGER_NETDEV_RX))
+> +			blink |= AIR_PHY_LED_BLINK_100RX;
+> +		if (rules & BIT(TRIGGER_NETDEV_TX))
+> +			blink |= AIR_PHY_LED_BLINK_100TX;
+> +	}
+> +
+> +	if (rules & (BIT(TRIGGER_NETDEV_LINK_1000) | BIT(TRIGGER_NETDEV_LINK))) {
+> +		on |= AIR_PHY_LED_ON_LINK1000;
+> +		if (rules & BIT(TRIGGER_NETDEV_RX))
+> +			blink |= AIR_PHY_LED_BLINK_1000RX;
+> +		if (rules & BIT(TRIGGER_NETDEV_TX))
+> +			blink |= AIR_PHY_LED_BLINK_1000TX;
+> +	}
+> +
+> +	if (rules & (BIT(TRIGGER_NETDEV_LINK_2500) | BIT(TRIGGER_NETDEV_LINK))) {
+> +		on |= AIR_PHY_LED_ON_LINK2500;
+> +		if (rules & BIT(TRIGGER_NETDEV_RX))
+> +			blink |= AIR_PHY_LED_BLINK_2500RX;
+> +		if (rules & BIT(TRIGGER_NETDEV_TX))
+> +			blink |= AIR_PHY_LED_BLINK_2500TX;
+> +	}
+> +
+> +	if (on == 0) {
+> +		if (rules & BIT(TRIGGER_NETDEV_RX)) {
+> +			blink |= AIR_PHY_LED_BLINK_10RX   |
+> +				 AIR_PHY_LED_BLINK_100RX  |
+> +				 AIR_PHY_LED_BLINK_1000RX |
+> +				 AIR_PHY_LED_BLINK_2500RX;
+> +		}
+> +		if (rules & BIT(TRIGGER_NETDEV_TX)) {
+> +			blink |= AIR_PHY_LED_BLINK_10TX   |
+> +				 AIR_PHY_LED_BLINK_100TX  |
+> +				 AIR_PHY_LED_BLINK_1000TX |
+> +				 AIR_PHY_LED_BLINK_2500TX;
+> +		}
+> +	}
+
+Vendors do like making LED control unique. I've not seen any other MAC
+or PHY where you can blink for activity at a given speed. You cannot
+have 10 and 100 at the same time, so why are there different bits for
+them?
+
+I _think_ this can be simplified
+
++	if (rules & (BIT(TRIGGER_NETDEV_LINK_10)   | BIT(TRIGGER_NETDEV_LINK))) {
++		on |= AIR_PHY_LED_ON_LINK10;
++	}
++
++	if (rules & (BIT(TRIGGER_NETDEV_LINK_100)  | BIT(TRIGGER_NETDEV_LINK))) {
++		on |= AIR_PHY_LED_ON_LINK100;
++	}
++
++	if (rules & (BIT(TRIGGER_NETDEV_LINK_1000) | BIT(TRIGGER_NETDEV_LINK))) {
++		on |= AIR_PHY_LED_ON_LINK1000;
++	}
++
++	if (rules & (BIT(TRIGGER_NETDEV_LINK_2500) | BIT(TRIGGER_NETDEV_LINK))) {
++		on |= AIR_PHY_LED_ON_LINK2500;
++	}
++
++	if (rules & BIT(TRIGGER_NETDEV_RX)) {
++		blink |= AIR_PHY_LED_BLINK_10RX   |
++			 AIR_PHY_LED_BLINK_100RX  |
++			 AIR_PHY_LED_BLINK_1000RX |
++			 AIR_PHY_LED_BLINK_2500RX;
++	}
++	if (rules & BIT(TRIGGER_NETDEV_TX)) {
++		blink |= AIR_PHY_LED_BLINK_10TX   |
++			 AIR_PHY_LED_BLINK_100TX  |
++			 AIR_PHY_LED_BLINK_1000TX |
++			 AIR_PHY_LED_BLINK_2500TX;
+
+Does this work?
+
+
+    Andrew
+
+---
+pw-bot: cr
 
