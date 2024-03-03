@@ -1,112 +1,96 @@
-Return-Path: <devicetree+bounces-47960-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47961-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C32286F6DA
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 20:41:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC02286F6E9
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 20:50:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05FCC1C20A28
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 19:41:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 154B41C20A13
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 19:50:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1F89879DAF;
-	Sun,  3 Mar 2024 19:41:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9AB77A14D;
+	Sun,  3 Mar 2024 19:50:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pDabq1Fo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="HAGNpe4v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7266167A19
-	for <devicetree@vger.kernel.org>; Sun,  3 Mar 2024 19:41:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBA227A12E;
+	Sun,  3 Mar 2024 19:50:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709494900; cv=none; b=piJr1jFqzxQ0j63hn2FDbuSagIyTgBBW3EjhUAPrAXKb2lUNxodAMuvIZTvjlfKDYsCl+pefuLu0NyMEhpO4PrBsziH8x1QAJHiPg3+NR8X+1ZOpNS7T6cEwh2ottW5heFiA35gE6UtmW0NiMzdltv0g9DG65P+m/jsk2wvoOsw=
+	t=1709495426; cv=none; b=TJv++ktxGfRj22Eu198VvIDaugT1H219v024FIIFcfuvaUrW5O2poIwrrT4ZXWNrbusCMiRratt8sNXXKXx/FdpHSKNqqiK6EnSh314VWkWbUcxD3ARCjlD+m0jKH1kAIcu5qGe1m8UdvjbMlInhGx7GuTNVFljvAW6o5jrfU0I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709494900; c=relaxed/simple;
-	bh=yH8Iyl/clwz7ah3TSa82CMm2zdGUdQJuFN+sjwh1jTU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=biHDT6ei1areXjeR6PTYK/4hgy7rPfoYsyIh012mXLMyhT08Oyi44ll0qRkkI8/2aJpQlOhmoa7SkF54OASGBm/s0M/yjrV4rRClIe1o8lU3yl+vzu0pPD36mzJwakKQOMGm9xDV3zHZVNhj5sR/GsEzBQlzSjXuXPdu8InzZ7E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pDabq1Fo; arc=none smtp.client-ip=209.85.219.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dc6d24737d7so3679572276.0
-        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 11:41:37 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709494896; x=1710099696; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yH8Iyl/clwz7ah3TSa82CMm2zdGUdQJuFN+sjwh1jTU=;
-        b=pDabq1Fo/E/uxjkEV8Ab4n1p8htShtGbdpCEQpAZ4qWBViqsPV4MLX4pa5O5WwEzPj
-         UntQzmeeJRL0ZidY/8TjHrrSHK61norratjQHq7pFdSN+4ZkEZaKZ5vuAEBaVXMbQreP
-         tZrY5xrxymzDdUUiDk40Z4NAmLo4ftk82iz5I7qlIa3E3K9QtbcPu+Lpb18uoQVFAO8J
-         IHJ7ZTogFFjFQgBRwPKSsSmQmrOjUdACHEL22mtbOKgSVHvd4EGpPnROhqYN71+6Sapz
-         7pHRHs4j8+rHIgHrocvKl/PZ4cwN1eYpyPITfk6auMTznadsej7bb03FuQzOzTfLynDM
-         Jr8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709494896; x=1710099696;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yH8Iyl/clwz7ah3TSa82CMm2zdGUdQJuFN+sjwh1jTU=;
-        b=qTP0WzXfDb3RH37qCHHmRLWJXFNB3mMd1aiV1z7iES+KFIq0qzQtsP/7BxD57+qrlC
-         NdYz6QqbfQDQ4Dl6Fd5uQnEmEzOY2I3rfpXRwg3l3IjXmhEl2MBi74AX5169jMjMVwjE
-         48gHBFSjsOX9ns3EACtcGcfDRGGAcY8fYq+tNkQ7umfRS5ZVe1oleHsx11VQbzDMbsf+
-         jm5KjRrATA3dw/EO8y8bdYbu2xQJph8IfFzidZheVastuUrNsblsL3DviDsUip+oGn9B
-         YARDEzJO/OCpLPjW704IhZCf4Q/Z+9IOz4W6On1V+t2omb0VTJB1SGd1VPNXd6vplYOB
-         N9+w==
-X-Forwarded-Encrypted: i=1; AJvYcCUXU5QJZJVh/vQmrDLIZBH/v2cWa/TdBJRfWMkyVuZPfkONWb24irug53PhhxWc4GElkw6E2/JAMZR+GwF3YE6BYNI4UtHreFiXgA==
-X-Gm-Message-State: AOJu0Yz9E+kEY+fbzSIMx3X2rehIayF1UpFmnwbHzEQdc/HNdVxlsdng
-	2XLtnZCz+2dWQRXrFYorFbZjrRIclXKJxOfod5c4Orj+i4NBhfp2BZgUzZq/6382CZcsJdcoT+P
-	+imQ3v6V2RtP6j2Ldtikvvu12kWG2pciG/8hzBg==
-X-Google-Smtp-Source: AGHT+IHW0/nslv9u7HI0yXnFPSD2Ds4CD4VUyxbU3QrHmEzNEYwVNoNeNJMBdXZvU06WqbJKs8wj2rVhJ6JRSfpVQwA=
-X-Received: by 2002:a25:824a:0:b0:d80:68d1:b826 with SMTP id
- d10-20020a25824a000000b00d8068d1b826mr4576752ybn.6.1709494896554; Sun, 03 Mar
- 2024 11:41:36 -0800 (PST)
+	s=arc-20240116; t=1709495426; c=relaxed/simple;
+	bh=NqOpHNUkPpcXOLnh/QWRufn/Ytxmtgs9sizhlMM6yUU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=rmHHnoHpJdiPaRRKuKDDsVS58YqV9eU+0geFtz4CW6hMPfmbg1rJKX/vBIQvrlcpQ36eDM3H9TEV07RqphxFkbjNJf/I5oFmuP8CkinNqn8bz1L4WUxGtO245QdHeSS+V2B1uLa6LujoG/q9WW0xc7D4Vq99ojluWDnUzHbsyVs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=HAGNpe4v; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 849B9C433B1;
+	Sun,  3 Mar 2024 19:50:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709495426;
+	bh=NqOpHNUkPpcXOLnh/QWRufn/Ytxmtgs9sizhlMM6yUU=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=HAGNpe4vbmCT1lk0B4Ggv5UAZaXI/dje2Dg2hpGp03ESpBowujBmH4jQDaxPIFdZW
+	 mV05WggJJz+JLN4/eE47tWNX2sMbmi9aaHsFkBZocU6jWRx8nA4GVE1fJCdr+SlDTa
+	 f7OA5ay7cvWttsVjGxAYh+iu5b8XvAZBLGqJoE7Lo3wGMmsqIBOe9DEcCoZ9PpRukN
+	 8Y4S+DIVqhZQZXsbnm2VGDljEhN2eYjlTjokfamd/9qbyky71NjEN50Pe8VKtwehao
+	 NCYpbfv8DO9sz6ZdvWylP9Olyde5H4JBXB64ooYa7uBJF9HRIV01kM0mh896st8caw
+	 i7W7iqbID8UJg==
+From: Bjorn Andersson <andersson@kernel.org>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+	Johan Hovold <johan+linaro@kernel.org>
+Cc: Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v2 00/12] arm64: dts: qcom: sc8280xp: PCIe fixes and GICv3 ITS enable
+Date: Sun,  3 Mar 2024 13:50:20 -0600
+Message-ID: <170949540962.78121.423418904639454445.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240223152124.20042-1-johan+linaro@kernel.org>
+References: <20240223152124.20042-1-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240223112223.1368-1-zajec5@gmail.com>
-In-Reply-To: <20240223112223.1368-1-zajec5@gmail.com>
-From: Linus Walleij <linus.walleij@linaro.org>
-Date: Sun, 3 Mar 2024 20:41:25 +0100
-Message-ID: <CACRpkdbAjJQbAnB3E5HYkd-Bmb3NhBR_p5K=BHtRy+DhRFa6Pw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: leds: Add LED_FUNCTION_WAN_ONLINE for
- Internet access
-To: =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc: Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, 
-	Matthias Brugger <matthias.bgg@gmail.com>, linux-leds@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org, =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 
-On Fri, Feb 23, 2024 at 12:22=E2=80=AFPM Rafa=C5=82 Mi=C5=82ecki <zajec5@gm=
-ail.com> wrote:
 
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
->
-> It's common for routers to have LED indicating link on the WAN port.
->
-> Some devices however have an extra LED that's meant to be used if WAN
-> connection is actually "online" (there is Internet access available).
->
-> It was suggested to add #define for such use case.
->
-> Link: https://lore.kernel.org/linux-devicetree/80e92209-5578-44e7-bd4b-60=
-3a29053ddf@collabora.com/T/#u
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+On Fri, 23 Feb 2024 16:21:12 +0100, Johan Hovold wrote:
+> This series addresses a few problems with the sc8280xp PCIe
+> implementation.
+> 
+> The DWC PCIe controller can either use its internal MSI controller or an
+> external one such as the GICv3 ITS. Enabling the latter allows for
+> assigning affinity to individual interrupts, but results in a large
+> amount of Correctable Errors being logged on both the Lenovo ThinkPad
+> X13s and the sc8280xp-crd reference design.
+> 
+> [...]
 
-That looks helpful.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+Applied, thanks!
 
-Yours,
-Linus Walleij
+[06/12] arm64: dts: qcom: sc8280xp-crd: limit pcie4 link speed
+        commit: db8138845cebcdd0c709570b8217bd052757b8df
+[07/12] arm64: dts: qcom: sc8280xp-x13s: limit pcie4 link speed
+        commit: 7a1c6a8bf47b0b290c79b9cc3ba6ee68be5522e8
+
+Best regards,
+-- 
+Bjorn Andersson <andersson@kernel.org>
 
