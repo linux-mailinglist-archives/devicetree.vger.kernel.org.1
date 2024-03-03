@@ -1,138 +1,216 @@
-Return-Path: <devicetree+bounces-47920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AB4086F4A4
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 12:56:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34F2086F4AB
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 13:04:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9E9901C2095E
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 11:56:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 985282821B6
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 12:04:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D114BE4A;
-	Sun,  3 Mar 2024 11:56:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C495BE4E;
+	Sun,  3 Mar 2024 12:04:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L94S4Hdg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RZdc1srT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 14915BE49;
-	Sun,  3 Mar 2024 11:56:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 997D4BE49
+	for <devicetree@vger.kernel.org>; Sun,  3 Mar 2024 12:04:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709467007; cv=none; b=jAXa1O5RW/4kyoRDxhGGwG9XjpynuN/ivTPW7yfcja0YYEkC8JcjvjlUfHnMG1vQUIjjNG4JbzYb5qaAfdr+oJyzWUzCW2+iX326NZaxnfCzVoaesgxzmpBRg+AYYDhErPeWIDolr+ng+ujRTn/IHlWYi3KG3SkyTs+ZET6l4L0=
+	t=1709467442; cv=none; b=QU6GKq62LpBvoxVDKyzvsRsMF5mt7EWgw3YVYkerRoKCs8H1FMpebk0mHxD81mexR5PUMywGoA6eB2YNZqPNesmB9ew1bSwBynigT0h1X79DRhRbTVjRKMpp7ulnbkW6uF7QPa/vTBP/UBxbk3A87gFzr8yZ29W3fcd6dko0WX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709467007; c=relaxed/simple;
-	bh=rsWl8E4VnDoBE0w9p8LDB9GFa21nhzS6req7J0ChWt8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gunc1D3mporN6VnXhHcOMqHGZGG+kgxIUWNPCtT/M0eAROGwv4twGWAW2jdJmV9bUQBupIQXpL+doMsJUzVdfbO0yGgrUyshzvEbyKPfCgzqzS98ADVUx+Y5blClITvX1pn3Yf+fJrj64eNnxYJTk6QPr4orl0JRNvsEnZnse7Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L94S4Hdg; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 862E4C433F1;
-	Sun,  3 Mar 2024 11:56:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709467006;
-	bh=rsWl8E4VnDoBE0w9p8LDB9GFa21nhzS6req7J0ChWt8=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=L94S4Hdg4NOB/gnWF3F3EtBD6SGQZtG8ZR+nZBM8YKXgqzxKsMaKmpYTCDmeH+CFg
-	 lSwg35SgBsBeo2QI1hZrm+yPvuZyz6dUO9gm8cb8GoH1EOZju3TU4eMgvVarEq6nfQ
-	 pyH+d0bIUJbKalgO4MClmvFkoh799XVpq0JGvUp2H9u/puZefqefWlZBXpw7AMRk7r
-	 ZczF3yigRFMJzVusJRBFINZLcu1VIbM3e7liPgLGJMp2mglQ0SVzKjvI52mHvruy9L
-	 NYScZMnnN3Gy6jNKMsvlzyhDa8gnymCmMLWxSPGNROBjXyLay2eaYTwdAzXmXENyQY
-	 Z6vWuCQOfFbDg==
-Date: Sun, 3 Mar 2024 11:56:33 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Frank Rowand
- <frowand.list@gmail.com>, linux-kernel@vger.kernel.org, Julia Lawall
- <Julia.Lawall@inria.fr>, Peter Zijlstra <peterz@infradead.org>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, marek.vasut@gmail.com, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>
-Subject: Re: [RESEND PATCH v2 0/4] of: automate of_node_put() - new approach
- to loops.
-Message-ID: <20240303115633.41128a62@jic23-huawei>
-In-Reply-To: <20240301223942.GA3179769-robh@kernel.org>
-References: <20240225142714.286440-1-jic23@kernel.org>
-	<20240301223942.GA3179769-robh@kernel.org>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1709467442; c=relaxed/simple;
+	bh=oPXSk/YxU1QIPz3f+1SftqYNzi1kMy8lY2qsKcTPLNo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
+	 In-Reply-To:Content-Type; b=jbKlDGvfYpdP+Qm5gMnlu6jjyw6oSw17GGQJN7GOITofczndAMTVYJaSRuPHSClhYNeEMBKlCreaMvtYGnvqS9ULVhv2olKX8LaO4QluaXRYyCYNCTuOZivTZT33ZVGKpF0wuX7npF2evyM/GLN4J6CJSEt2dQAMEjwOm/H0Rl0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RZdc1srT; arc=none smtp.client-ip=209.85.218.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a3ddc13bbb3so775783566b.0
+        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 04:04:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709467439; x=1710072239; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Cz3U70A99f5HFVcKmyUTH22KHtdQlBYgBoI/eOiSa2c=;
+        b=RZdc1srTIzBm+BU8z7zJ+33xDE6T0kA2neWh4nXUi035KyG0wWyuRxocdfKmrtlUOh
+         xx0u7B9PiuGz+82OuAeWpXxI3H9lga9VTEfNp5HJ6XdzE6/hnK003yfO8oW7lRchSwzC
+         51HwnM/c2Qoww+tFCmbkYWTlAwA4r1YhdW5/IKdk+mtF9u6RwLuV/ynyoLVxoBQs8b8L
+         sL85ToMkJ1omwljnEhLp6kEVK4omsxffNvh4UFGKa20Zqgo52LenkzUu0KN3wsNVfq+1
+         R+6pqomIZ5Jesj5FZZZr6+OR7qrIOqOPQj54GGZU4D7tUbzOnQGlOhqEGTDmHWsscmpi
+         CbUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709467439; x=1710072239;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cz3U70A99f5HFVcKmyUTH22KHtdQlBYgBoI/eOiSa2c=;
+        b=Q4BkdjzAeyUS+f5N+vg75Oyf8akzylXgE5Ov51dUbiLpdY+DS8ihgxuBi+Omh8XUb0
+         6pndCsS4Zp3mjOMVRknYD0BoCe5vxEBga6H02PtyfEli2H5qSzl0Dmd9whI6QNE5QFaI
+         z1BlIC3edGI/qdMvABozve12gHQ2CSLYN7lrvussOQD9KWyApyDTAdmI/SlMCIyqD1GI
+         z6vYk4s2ZhMCCT4buPRk3agscXickwiSk3LUesoRP0QLJoOlQi3tsAP3BnpIgjG5cSxd
+         uT07dHo0yZzOSMhI6tmPN408/ZGQKTkw326HWS/1Obe3DLftv05ndYcfnhqvyPfw3eDi
+         Ao8w==
+X-Forwarded-Encrypted: i=1; AJvYcCV5+55pB/DZmu2c5JYP2XvTES3UZpJ+vRjiiF4uUhpMt5jYLfEQrwY3pmoEpKlWMw3Wtl/2+MXKxiZ1BM1SPTNSPbnK3k+1RLdtdg==
+X-Gm-Message-State: AOJu0YxKN1M6xw4zLbHKaOKBAUyOrPjO5KGWTDQnlkWM9rK0HaA20lMT
+	yaQQfDVi39xLX0A31JsYtz1j32tBeETqmvfXuQS7whM1/uLb7FldFcH9wW0ZKEKujEMP7WdKu0F
+	R
+X-Google-Smtp-Source: AGHT+IFWR/nXu1pgKsznuU346uBOJfm39XaoOATJ7iWJ2v6/8StwzLe8UPwoC5LHxCcyem3dj/F5uw==
+X-Received: by 2002:a17:906:f6d7:b0:a3f:c3f0:69bf with SMTP id jo23-20020a170906f6d700b00a3fc3f069bfmr5945044ejb.13.1709467439042;
+        Sun, 03 Mar 2024 04:03:59 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id oy29-20020a170907105d00b00a43fe57b2basm3628120ejb.61.2024.03.03.04.03.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Mar 2024 04:03:58 -0800 (PST)
+Message-ID: <86387c8d-35f2-4715-86a2-3aff571c3dd8@linaro.org>
+Date: Sun, 3 Mar 2024 13:03:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/1] ARM:dts:aspeed: Initial device tree for AMD Onyx
+ Platform
+Content-Language: en-US
+To: Supreeth Venkatesh <supreeth.venkatesh@amd.com>, joel@jms.id.au,
+ andrew@aj.id.au, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-aspeed@lists.ozlabs.org,
+ linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org, robh+dt@kernel.org
+References: <20240301222257.3309541-1-supreeth.venkatesh@amd.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240301222257.3309541-1-supreeth.venkatesh@amd.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On Fri, 1 Mar 2024 16:39:42 -0600
-Rob Herring <robh@kernel.org> wrote:
-
-> On Sun, Feb 25, 2024 at 02:27:10PM +0000, Jonathan Cameron wrote:
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > Some discussion occured on previous posting.
-> > https://lore.kernel.org/linux-iio/20240223124432.26443-1-Jonathan.Cameron@huawei.com/
-> > 
-> > Summary:
-> > * fwnode conversions should be considered when applying this
-> >   infrastructure to a driver. Perhaps better to move directly to
-> >   the generic FW property handling rather than improve existing
-> >   of specific code.
-> > * There are lots of potential places to use this based on detections
-> >   from Julia's coccinelle scripts linked below.
-> > 
-> > The equivalent device_for_each_child_node_scoped() series for
-> > fwnode will be queued up in IIO for the merge window shortly as
-> > it has gathered sufficient tags. Hopefully the precdent set there
-> > for the approach will reassure people that instantiating the
-> > child variable inside the macro definition is the best approach.
-> > https://lore.kernel.org/linux-iio/20240217164249.921878-1-jic23@kernel.org/
-> > 
-> > v2: Andy suggested most of the original converted set should move to
-> >     generic fwnode / property.h handling.  Within IIO that was
-> >     a reasonable observation given we've been trying to move away from
-> >     firmware specific handling for some time. Patches making that change
-> >     to appropriate drivers posted.
-> >     As we discussed there are cases which are not suitable for such
-> >     conversion and this infrastructure still provides clear benefits
-> >     for them.
-> > 
-> > Ideally it would be good if this introductory series adding the
-> > infrastructure makes the 6.9 merge window. There are no dependencies
-> > on work queued in the IIO tree, so this can go via devicetree
-> > if the maintainers would prefer. I've had some off list messages
-> > asking when this would be merged, as there is interest in building
-> > on it next cycle for other parts of the kernel (where conversion to
-> > fwnode handling may be less appropriate).  
+On 01/03/2024 23:22, Supreeth Venkatesh wrote:
+> Add initial device tree and makefile updates for
+> AMD Onyx platform.
 > 
-> I'll let you take it. For the series:
+> AMD Onyx platform is an AMD customer reference board with an Aspeed
+> ast2600 BMC manufactured by AMD.
+> It describes I2C devices, UARTs, MAC, FMC, etc.
+> present on AMD Onyx platform.
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+> ---
+> Changes since v1:
+> * Incorporate review comments
+
+I don't see how did you resolve checkpatch warning.
+
+> * Update commit message
+> * Remove vmalloc and earlyprintk
+> ---
+>  arch/arm/boot/dts/aspeed/Makefile             |  1 +
+>  .../boot/dts/aspeed/aspeed-bmc-amd-onyx.dts   | 94 +++++++++++++++++++
+>  2 files changed, 95 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
 > 
-> I've got some drivers/of/ conversions too, but they are probably next 
-> cycle at this point.
-> 
-> Rob
+> diff --git a/arch/arm/boot/dts/aspeed/Makefile b/arch/arm/boot/dts/aspeed/Makefile
+> index fb9cc95f1b60..2b27d377aae2 100644
+> --- a/arch/arm/boot/dts/aspeed/Makefile
+> +++ b/arch/arm/boot/dts/aspeed/Makefile
+> @@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-ast2600-evb.dtb \
+>  	aspeed-bmc-amd-daytonax.dtb \
+>  	aspeed-bmc-amd-ethanolx.dtb \
+> +	aspeed-bmc-amd-onyx.dtb \
+>  	aspeed-bmc-ampere-mtjade.dtb \
+>  	aspeed-bmc-ampere-mtmitchell.dtb \
+>  	aspeed-bmc-arm-stardragon4800-rep2.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+> new file mode 100644
+> index 000000000000..1831b8d18db2
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed/aspeed-bmc-amd-onyx.dts
+> @@ -0,0 +1,94 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +// Copyright (c) 2021 - 2024 AMD Inc.
+> +// Author: Supreeth Venkatesh <supreeth.venkatesh@amd.com>
+> +
+> +/dts-v1/;
+> +
+> +#include "aspeed-g6.dtsi"
+> +#include <dt-bindings/gpio/aspeed-gpio.h>
+> +
+> +/ {
+> +	model = "AMD Onyx BMC";
+> +	compatible = "amd,onyx-bmc", "aspeed,ast2600";
+> +
+> +	aliases {
+> +		serial0 = &uart1;
+> +		serial4 = &uart5;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &uart5;
+> +		bootargs = "console=ttyS4,115200n8";
 
-Thanks Rob,
+Again: drop, not needed. You ignored my comment. Use stdout path.
 
-Whether this makes it for this cycle is probably dependent on whether
-Linus does decide to do got to rc8 as hinted at as a possibility
-+ whether Greg feels comfortable taking these through his tree
-(char-misc is the normal path for IIO).  I know various people
-are hoping this series makes it, but if doesn't we can do an immutable
-tree early next cycle (though obviously that may reduce speed of adoption).
+This is a friendly reminder during the review process.
 
-We are discussing the equivalent pull request for the fwnode version here:
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
 
-https://lore.kernel.org/linux-iio/2024030239-gift-cabdriver-266b@gregkh/T/#m87e7208820ebf6416a77a2973773b65a087b4796
+Thank you.
 
-I've optimistically applied this series to my togreg-cleanup branch
-and merged that into the togreg branch of iio.git for linux-next to pick up.
 
-Thanks,
+Best regards,
+Krzysztof
 
-Jonathan
 
