@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-47923-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47924-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E316086F4C8
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 13:19:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A4BB86F4CF
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 13:21:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8121A28205C
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 12:19:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D25831F211F8
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 12:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 04BAEBE7D;
-	Sun,  3 Mar 2024 12:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8AA8DBE4E;
+	Sun,  3 Mar 2024 12:21:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="MuGHtgFO"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="fMDUwWOq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DB30BE4A
-	for <devicetree@vger.kernel.org>; Sun,  3 Mar 2024 12:19:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6F01F9E0
+	for <devicetree@vger.kernel.org>; Sun,  3 Mar 2024 12:21:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709468373; cv=none; b=d8FjrspXd3m9DDglZ1iIqCvygTAG6wTET71QPB5zu6Ya/mkMkBwxrHyxQxlXvEEVojonBDozamylhEuLpoPBS5kXACePYUc6N6a3OOGCjUrzoKxLiq82BSranJtG35UhW+LORD9iB97IONHsGXy7l5TC5dW/p5laPR4Rv/cfJfM=
+	t=1709468514; cv=none; b=QVlJcjuxI48sG19WNskImrV80DOMcGf8MWvq+kbg7IFo7mvg3aAkkZVzLvEyP6rN16YEqrjAy+5QA9O1nR7+3qVVFqZ8Zx0fAwyzeKn910/OyJlZm6URQUh9epRIM/T59NkJyg5/Hv+PuOI7ixAhOkrg8YUBypAOss+P09vS0sg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709468373; c=relaxed/simple;
-	bh=+cDj9jDNP5HtD69tQtvBlX0YxvDmWc/3iFao+F3d3iQ=;
+	s=arc-20240116; t=1709468514; c=relaxed/simple;
+	bh=CZZXtdt1IZjDHp5whHyiFRaG/76yuvSfTFvAoAv+j9E=;
 	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=EgUCNhlxdKPEdlWqsWHDKpkrbpmQbBcnntHKgi7qspByv1weBxDPJ/ILcrqzszbJ35PE8OOS1dgx/pAujqafq0b/UTE3QVbjrhSe0HYTs+AR9w9BlNOf4GvVBrDIb5XbrKmvGZV54od2NI3IzXgaiqkmcm3FSCd9uK3GAX4LARs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=MuGHtgFO; arc=none smtp.client-ip=209.85.221.52
+	 In-Reply-To:Content-Type; b=tMltR7+uMMPFCpQOBNFzdi0xNUBvi4iI2sz+EUeeC83SyR+K7ptz35+bO1G4tuiFc42DtBgHDRZX3eZGuwTH0Vi4FGjZfKxJ7RuuCHUlCTQgpibiGkpX/U+0rTymiQP5iqjegMXQA82H5bDTgCIv9VkxCdYQ7yT/KXdP1/Uakl8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=fMDUwWOq; arc=none smtp.client-ip=209.85.221.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-33e162b1b71so2564250f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 04:19:29 -0800 (PST)
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33d28468666so2372206f8f.0
+        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 04:21:52 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=tuxon.dev; s=google; t=1709468368; x=1710073168; darn=vger.kernel.org;
+        d=tuxon.dev; s=google; t=1709468511; x=1710073311; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=61loYWp2oxp+yoBoKT1ZsTxMVVn57Gc8DSrSZbWgMN0=;
-        b=MuGHtgFO/3kwJnhP94sP+3HoAKjAZr7PM1NjirwvCYOUkvWOYE8iXh6b/shZwpd49p
-         iFw8ZQXNYXGUqcD4qnN32Dy3ozLij/n4PNUuwFBpK1lU2rTLK/8fd9SC/e9TTme+sx2A
-         JXw14wuaOGG2w9y1Ei1ZzvNNty7kqXq3g668Bs5dHQH+RBRTPOOTzdWuhCzjoqrr+VWb
-         Lbd2Qt3eqWSIjsg82JlubYzFxPbe4CxzBMq9tX05ozxGquo4Sa7UpzEumX9JvR27NCuE
-         sDTmZFR1N9A3tyU+m3tNOCL4UhsirppKpbOjd+jN4r9bWPVMMHmQN/q+Kn+mTMlqrjP9
-         o6Lw==
+        bh=cqQVtMCteF6vcIB8GNjsI4lJiOVGsEEIhmJjprsB3tk=;
+        b=fMDUwWOq9vWOUE6rZbWFwrgM/VTwF3iel/b8tGHuCxjcEaKeQRxUrtcSHQLrNv2CxS
+         x1aSVToZW3JryEfmo8kt9UTaT11vIc1DN3byAOrjPWmOMzYLKeyGJ2WNxetkkDi6Bjcv
+         crKmLENyMX9LQMI0C6blQmd7rcOuN2AaDtoqUjReoML+pegH7m1byml/JZso7/g0YbmT
+         QC+iayUbHlGjk2qYuAWYBiyEvEphONw/wnSL82uIXpts2vgr/IxTLI/lBl8z0t3DTxEn
+         bt4j9e2HUx0MbPPylHRDClXaFB/etEbMv+38JYWzmCn9DeU9ygeNfDz1gDbyxlwBoi+R
+         a0uA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709468368; x=1710073168;
+        d=1e100.net; s=20230601; t=1709468511; x=1710073311;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=61loYWp2oxp+yoBoKT1ZsTxMVVn57Gc8DSrSZbWgMN0=;
-        b=mGnJLWwZiBXG6cEEfD6e2Oyl/JpOYj+WsfkzM3qcyNylbbkAu5YP4Ooo4Cuh/RczA7
-         Z9/D0IFPt24xinLBjltVY2N20tOEGCKl6R+aZv7hycK814ePT8npTd7mxGsEsN95K1y4
-         Vz3cpJxNcCfncku1VOTAzw51pSQpyou8/0Lc6QHYhJn3qphdfLijxKmvWYX8JIHb5aDo
-         JQJMfX4Niv5dZd+fDljd5sIqMWCzMQxQV5Dlj5jbyF49BJWVXa0/N2XETwqSN/i2xgih
-         QzOE67hKu1SombOKvJ+/HUNsg3mfOlzE40kwd/3BXyUln/eajUl4LcwQvn+vXT+oQa0t
-         pqrw==
-X-Forwarded-Encrypted: i=1; AJvYcCURX5UWa4Z3lG0cZoW16BAZxXfqerlG9ZqI37EcQuO+7lzeJLm2xSsehm7KESEz9wKFvAVuXj4CvMbJQ1/QB1tiCfe3iwqZOnlgsw==
-X-Gm-Message-State: AOJu0YxfL0orww2mFC4/YJqhTnjwYY34PcxfYe5lnIvoSOBINNSdr6ec
-	n/9mA0lesee0SRlvQe/ritp4iAak4UzhHyF8eDMRqZwmCE+VAvjI2TzBssFrayLEYSPAsLx0wzl
-	9
-X-Google-Smtp-Source: AGHT+IHTjlrHe1jJJvpBqb73j6cv1HKxHNu1LUXV0MmbTrlrCpnjl1nxZpRxjmqAuGftXtPum1jAPg==
-X-Received: by 2002:adf:cc06:0:b0:33e:1e29:48fe with SMTP id x6-20020adfcc06000000b0033e1e2948femr6481613wrh.14.1709468368200;
-        Sun, 03 Mar 2024 04:19:28 -0800 (PST)
+        bh=cqQVtMCteF6vcIB8GNjsI4lJiOVGsEEIhmJjprsB3tk=;
+        b=FkDQBXwTp0TspUvkWSvoJV0Z+QJPrMe4bjmegGwdRgSbM5g81O4fUWtygGOkwhi/NO
+         azfPpopENHxddEILSINjrAkznZN3Bv6yClcS74LQfgBoOXworUUgkSB2XX+oxVKXTOVj
+         NDuSAvXxIALM7d5KGigtX/zdWwYCQ8gdOHlvV5NsELosWuCRGsWRq/P47XgYaQ5ZDq/e
+         fEBw8mM0vl4heSOQt/jP9VgHGmZSbwKDbT6C4teXdOr0yrgEPZWl1Ipdnhz4ASdE4eey
+         knSYM60aqOoGNWDrEAfcLiW8Y3neSgmv+hpCVTOFD8csTd6FS6DvkBh/TEFCexke3oDq
+         r4UQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXhOCSMKGqFlISlmZZ3vd9a+dx2YcJC6ll7VIsbp+elVwJ2uvn0CVaSue1K3jY+oQ4bFYucDl4cubRwR6Qe2p9AoBhUjhD19P4KkQ==
+X-Gm-Message-State: AOJu0Yy5Uer8M0sXsFROik/e96YOhJ5ppnX9+hmbs8lW24u+GGJ3FGnR
+	R+YVScDlPpiLiEK596b5Z29g1dm8NhcZ6U3YLslIG7HKjLojqlHMAcsRxBueHGEu98JGHqlBS1L
+	Z
+X-Google-Smtp-Source: AGHT+IEu5lNzZcOQMvaj3aD3ucAe4AnZoeQHEj7SRA/srmJnV1u3ip0F9kF0Dy0Mtto3LEWcBAh9tQ==
+X-Received: by 2002:a5d:5950:0:b0:33d:2899:3a8a with SMTP id e16-20020a5d5950000000b0033d28993a8amr4240620wri.39.1709468511266;
+        Sun, 03 Mar 2024 04:21:51 -0800 (PST)
 Received: from [192.168.50.4] ([82.78.167.38])
-        by smtp.gmail.com with ESMTPSA id dw2-20020a0560000dc200b0033ddfba0c67sm9477927wrb.41.2024.03.03.04.19.26
+        by smtp.gmail.com with ESMTPSA id dw2-20020a0560000dc200b0033ddfba0c67sm9477927wrb.41.2024.03.03.04.21.49
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Mar 2024 04:19:27 -0800 (PST)
-Message-ID: <b189dbc3-e875-45c9-b742-928a6a323d5c@tuxon.dev>
-Date: Sun, 3 Mar 2024 14:19:25 +0200
+        Sun, 03 Mar 2024 04:21:50 -0800 (PST)
+Message-ID: <f1f9c53f-b11a-4fe1-9541-356ea75e883c@tuxon.dev>
+Date: Sun, 3 Mar 2024 14:21:49 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,415 +77,80 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 39/39] ARM: dts: at91: sam9x75_curiosity: add sam9x75
- curiosity board
+Subject: Re: [PATCH v4 29/39] irqchip/atmel-aic5: Add support to get nirqs
+ from DT for sam9x60 & sam9x7
 Content-Language: en-US
 To: Varshini Rajendran <varshini.rajendran@microchip.com>,
  robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
- andre.przywara@arm.com, gregory.clement@bootlin.com,
- linus.walleij@linaro.org, baruch@tkos.co.il, mihai.sain@microchip.com,
+ tglx@linutronix.de, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, andre.przywara@arm.com, mani@kernel.org,
+ shawnguo@kernel.org, durai.manickamkr@microchip.com,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org
 References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
- <20240223173113.673595-1-varshini.rajendran@microchip.com>
+ <20240223172905.673053-1-varshini.rajendran@microchip.com>
 From: claudiu beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240223173113.673595-1-varshini.rajendran@microchip.com>
+In-Reply-To: <20240223172905.673053-1-varshini.rajendran@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-s/ARM: dts: at91/ARM: dts: microchip
 
-in title.
 
-On 23.02.2024 19:31, Varshini Rajendran wrote:
-> Add device tree file for sam9x75 curiosity board.
+On 23.02.2024 19:29, Varshini Rajendran wrote:
+> Add support to get number of IRQs from the respective DT node for sam9x60
+> and sam9x7 devices. Since only this factor differs between the two SoCs,
+> this patch adds support for the same. Adapt the sam9x60 dtsi
+> accordingly.
 > 
 > Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
 > ---
 > Changes in v4:
-> - Removed full node paths
-> - Renamed Leds with color names
-> - Corrected regulator node names
-> - Added support for classd and i2s nodes and their corresponding
->   pinctrl nodes
-> - Dropped USB nodes owing to the discussion here
-> https://lore.kernel.org/linux-devicetree/CAL_JsqJ9PrX6fj-EbffeJce09MXs=B7t+KS_kOinxaRx38=WxA@mail.gmail.com/
-> (Explained elaborately in the cover letter)
-> - Updated the linux,code property with the necessary value
+> - Changed the implementation to fetch the NIRQs from DT as per the
+>   comment to avoid introducing a new compatible when this is the only
+>   difference between the SoCs related to this IP.
 > ---
->  arch/arm/boot/dts/microchip/Makefile          |   3 +
->  .../dts/microchip/at91-sam9x75_curiosity.dts  | 309 ++++++++++++++++++
->  2 files changed, 312 insertions(+)
->  create mode 100644 arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
+>  arch/arm/boot/dts/microchip/sam9x60.dtsi |  1 +
+>  drivers/irqchip/irq-atmel-aic5.c         | 11 ++++++++---
+>  2 files changed, 9 insertions(+), 3 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/microchip/Makefile b/arch/arm/boot/dts/microchip/Makefile
-> index efde9546c8f4..5b3d518da319 100644
-> --- a/arch/arm/boot/dts/microchip/Makefile
-> +++ b/arch/arm/boot/dts/microchip/Makefile
-> @@ -12,6 +12,7 @@ DTC_FLAGS_at91-sama5d3_eds := -@
->  DTC_FLAGS_at91-sama5d3_xplained := -@
->  DTC_FLAGS_at91-sama5d4_xplained := -@
->  DTC_FLAGS_at91-sama7g5ek := -@
-> +DTC_FLAGS_at91-sam9x75_curiosity := -@
+> diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> index 73d570a17269..e405f68c9f54 100644
+> --- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> +++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> @@ -1201,6 +1201,7 @@ aic: interrupt-controller@fffff100 {
+>  				interrupt-controller;
+>  				reg = <0xfffff100 0x100>;
+>  				atmel,external-irqs = <31>;
+> +				microchip,nr-irqs = <50>;
+>  			};
+>  
+>  			dbgu: serial@fffff200 {
+> diff --git a/drivers/irqchip/irq-atmel-aic5.c b/drivers/irqchip/irq-atmel-aic5.c
+> index 145535bd7560..5d96ad8860d3 100644
+> --- a/drivers/irqchip/irq-atmel-aic5.c
+> +++ b/drivers/irqchip/irq-atmel-aic5.c
+> @@ -398,11 +398,16 @@ static int __init sama5d4_aic5_of_init(struct device_node *node,
+>  }
+>  IRQCHIP_DECLARE(sama5d4_aic5, "atmel,sama5d4-aic", sama5d4_aic5_of_init);
+>  
+> -#define NR_SAM9X60_IRQS		50
+> -
+>  static int __init sam9x60_aic5_of_init(struct device_node *node,
+>  				       struct device_node *parent)
+>  {
+> -	return aic5_of_init(node, parent, NR_SAM9X60_IRQS);
+> +	int ret, nr_irqs;
+> +
+> +	ret = of_property_read_u32(node, "microchip,nr-irqs", &nr_irqs);
+> +	if (ret) {
+> +		pr_err("Not found microchip,nr-irqs property\n");
 
-Keep it alphanumerically sorted, thus after sam9x60 entry.
+This breaks the ABI. You should ensure old device trees are still working
+with this patch.
 
->  dtb-$(CONFIG_SOC_AT91RM9200) += \
->  	at91rm9200ek.dtb \
->  	mpa1600.dtb
-> @@ -59,6 +60,8 @@ dtb-$(CONFIG_SOC_AT91SAM9) += \
->  dtb-$(CONFIG_SOC_SAM9X60) += \
->  	at91-sam9x60_curiosity.dtb \
->  	at91-sam9x60ek.dtb
-> +dtb-$(CONFIG_SOC_SAM9X7) += \
-> +	at91-sam9x75_curiosity.dtb
->  dtb-$(CONFIG_SOC_SAM_V7) += \
->  	at91-kizbox2-2.dtb \
->  	at91-kizbox3-hs.dtb \
-> diff --git a/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-> new file mode 100644
-> index 000000000000..be37022d3d05
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/microchip/at91-sam9x75_curiosity.dts
-> @@ -0,0 +1,309 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * at91-sam9x75_curiosity.dts - Device Tree file for Microchip SAM9X75 Curiosity board
-> + *
-> + * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
-> + *
-> + * Author: Varshini Rajendran <varshini.rajendran@microchip.com>
-> + */
-> +/dts-v1/;
-> +#include "sam9x7.dtsi"
-> +#include <dt-bindings/input/input.h>
-> +
-> +/ {
-> +	model = "Microchip SAM9X75 Curiosity";
-> +	compatible = "microchip,sam9x75-curiosity", "microchip,sam9x7", "atmel,at91sam9";
-> +
-> +	aliases {
-> +		i2c0 = &i2c6;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_key_gpio_default>;
-> +
-> +		button-user {
-> +			label = "USER";
-> +			gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
-> +			linux,code = <KEY_0>;
-> +			wakeup-source;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_led_gpio_default>;
-> +
-> +		led-red {
-> +			label = "red";
-> +			gpios = <&pioC 19 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		led-green {
-> +			label = "green";
-> +			gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
-> +		};
-> +
-> +		led-blue {
-> +			label = "blue";
-> +			gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +
-> +	memory@20000000 {
-> +		device_type = "memory";
-> +		reg = <0x20000000 0x10000000>;
-> +	};
-> +};
-> +
-> +&classd {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_classd>;
-> +	atmel,pwm-type = "diff";
-> +	atmel,non-overlap-time = <10>;
-> +	status = "okay";
-> +};
-> +
-> +&dbgu {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_dbgu>;
-> +	status = "okay";
-> +};
-> +
-> +&dma0 {
-> +	status = "okay";
-> +};
-> +
-> +&flx6 {
-> +	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c6 {
-
-I don't know if you got any review comments w/ regards to this in the
-previous email but having flexcoms and inner node grouped together is
-easier to follow (at least to me). e.g.:
-
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flx6_default>;
-> +	i2c-analog-filter;
-> +	i2c-digital-filter;
-> +	i2c-digital-filter-width-ns = <35>;
-> +	status = "okay";
-> +
-> +	pmic@5b {
-> +		compatible = "microchip,mcp16502";
-> +		reg = <0x5b>;
-> +
-> +		regulators {
-> +			vdd_3v3: VDD_IO {
-> +				regulator-name = "VDD_IO";
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3600000>;
-
-I can't find the schematics for this but these values here should reflect
-the voltage that the board support not the ones that the PMIC itself
-supports. Valid for all the other regulators.
-
-
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-mode = <4>;
-> +				};
-> +			};
-> +
-> +			vddioddr: VDD_DDR {
-> +				regulator-name = "VDD_DDR";
-> +				regulator-min-microvolt = <1283000>;
-> +				regulator-max-microvolt = <1450000>;
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +			};
-> +
-> +			vddcore: VDD_CORE {
-> +				regulator-name = "VDD_CORE";
-> +				regulator-min-microvolt = <500000>;
-> +				regulator-max-microvolt = <1210000>;
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-mode = <4>;
-> +				};
-> +			};
-> +
-> +			vddcpu: VDD_OTHER {
-> +				regulator-name = "VDD_OTHER";
-> +				regulator-min-microvolt = <1700000>;
-> +				regulator-max-microvolt = <3600000>;
-> +				regulator-initial-mode = <2>;
-> +				regulator-allowed-modes = <2>, <4>;
-> +				regulator-ramp-delay = <3125>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +					regulator-mode = <4>;
-> +				};
-> +
-> +				regulator-state-mem {
-> +					regulator-mode = <4>;
-> +				};
-> +			};
-> +
-> +			vldo1: LDO1 {
-> +				regulator-name = "LDO1";
-> +				regulator-min-microvolt = <1200000>;
-> +				regulator-max-microvolt = <3700000>;
-> +				regulator-always-on;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			vldo2: LDO2 {
-> +				regulator-name = "LDO2";
-> +				regulator-min-microvolt = <1200000>;
-> +				regulator-max-microvolt = <3700000>;
-> +
-> +				regulator-state-standby {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2s {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2s_default>;
-> +	#sound-dai-cells = <0>;
-> +	status = "disabled";
-
-Any reason this is disabled?
-
-> +};
-> +
-> +&main_xtal {
-> +	clock-frequency = <24000000>;
-> +};
-> +
-> +&pinctrl {
-> +
-
-This line could be removed.
-
-> +	classd {
-> +		pinctrl_classd: classd {
-> +			atmel,pins =
-> +				<AT91_PIOA 18 AT91_PERIPH_C AT91_PINCTRL_PULL_UP
-
-Try to be compliant with coding style from here (valid everywhere):
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dts-coding-style.rst#n167
-
-> +				 AT91_PIOA 19 AT91_PERIPH_C AT91_PINCTRL_PULL_DOWN>;
-> +		};
-> +	};
-> +
-> +	dbgu {
-> +		pinctrl_dbgu: dbgu-0 {
-
-usually pinctrl label is something like the following in Microchip AT91 DTSes:
-pinctrl_<ip-name>_default and node name is <ip-name>-default.
-
-Please use the same rule everywhere.
-
-> +			atmel,pins = <AT91_PIOA 26 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-> +				      AT91_PIOA 27 AT91_PERIPH_A AT91_PINCTRL_NONE>;
-> +		};
-> +	};
-> +
-> +	flexcom {
-> +		pinctrl_flx6_default: flx6-twi {
-> +			atmel,pins =
-> +				<AT91_PIOA 24 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-> +				 AT91_PIOA 25 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		pinctrl_key_gpio_default: key-gpio-default {
-> +			atmel,pins = <AT91_PIOC 9 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-> +		};
-> +	};
-> +
-> +	i2s {
-> +		pinctrl_i2s_default: i2s {
-> +			atmel,pins =
-> +				<AT91_PIOB 26 AT91_PERIPH_D AT91_PINCTRL_NONE		/* I2SCK */
-> +				 AT91_PIOB 15 AT91_PERIPH_D AT91_PINCTRL_NONE		/* I2SWS */
-> +				 AT91_PIOB 16 AT91_PERIPH_D AT91_PINCTRL_NONE		/* I2SDIN */
-> +				 AT91_PIOB 17 AT91_PERIPH_D AT91_PINCTRL_NONE		/* I2SDOUT */
-> +				 AT91_PIOB 25 AT91_PERIPH_D AT91_PINCTRL_NONE>;		/* I2SMCK */
-> +		};
-> +	};
-> +
-> +	leds {
-> +		pinctrl_led_gpio_default: led-gpio-default {
-> +			atmel,pins = <AT91_PIOC 19 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-> +				      AT91_PIOC 21 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-> +				      AT91_PIOC 20 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-> +		};
-> +	};
-> +
-> +	sdmmc0 {
-> +		pinctrl_sdmmc0_default: sdmmc0 {
-> +			atmel,pins =
-> +				<AT91_PIOA 2 AT91_PERIPH_A (AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)					/* PA2 CK  periph A with pullup */
-> +				 AT91_PIOA 1 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA1 CMD periph A with pullup */
-> +				 AT91_PIOA 0 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA0 DAT0 periph A */
-> +				 AT91_PIOA 3 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA3 DAT1 periph A with pullup */
-> +				 AT91_PIOA 4 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA4 DAT2 periph A with pullup */
-> +				 AT91_PIOA 5 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)>;	/* PA5 DAT3 periph A with pullup */
-> +		};
-> +	};
-> +
-
-You can remove this line
-
-> +}; /* pinctrl */
-> +
-> +&rtt {
-> +	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-> +};
-> +
-> +&sdmmc0 {
-> +	bus-width = <4>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_sdmmc0_default>;
-> +	cd-gpios = <&pioA 23 GPIO_ACTIVE_LOW>;
-> +	disable-wp;
-> +	status = "okay";
-> +};
-> +
-> +&slow_xtal {
-> +	clock-frequency = <32768>;
-> +};
-> +
-> +&power_management {
-> +	debounce-delay-us = <976>;
-> +	status = "okay";
-> +
-> +	input@0 {
-> +		reg = <0>;
-> +	};
-> +};
-> +
-> +&trng {
-> +	status = "okay";
-> +};
-> +
-> +&watchdog {
-> +	status = "okay";
-> +};
+> +		return ret;
+> +	}
+> +	return aic5_of_init(node, parent, nr_irqs);
+>  }
+>  IRQCHIP_DECLARE(sam9x60_aic5, "microchip,sam9x60-aic", sam9x60_aic5_of_init);
 
