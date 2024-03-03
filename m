@@ -1,321 +1,212 @@
-Return-Path: <devicetree+bounces-47937-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47938-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD41186F5BF
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 16:14:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E36686F5F1
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 16:44:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 424221F22DFA
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 15:14:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2BFF11C2103A
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 15:44:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00A6467A18;
-	Sun,  3 Mar 2024 15:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D905167C50;
+	Sun,  3 Mar 2024 15:44:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="r6CLbutE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="g0qOn8Wt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C664C5A0FA;
-	Sun,  3 Mar 2024 15:14:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45F51BE66;
+	Sun,  3 Mar 2024 15:44:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709478878; cv=none; b=VOrQ+rvhGntp7V4TIu9S9hj08/YLjd0gc4mvw4R/3Kew22o//XBOg1AA0lhvBf1g6sD8apiJv/fgJzuHOy30DlM9FI72491MWFrs3YglxNROr87ynvGiMloM0IRdh6MFmktpPI4ZIpuepuHaSH0H+cmXYEQ/zjcDoVspCEZEcMs=
+	t=1709480656; cv=none; b=DFZs4aXyZyD+MqXjKb3eGcus2CWei8/fznJWShqHLtfZHmklq3vmtpUtCjchvIDpyAUjaSv8kvLTCM1uRQ8LjholQOm7eR7P7OLKgUQcJ/OluPW8VLmtAvfc/MI4CxU9kzDIqq7bUBhmgHjR0rmZ+iNo0XG7t/CFtGdgnNVILZU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709478878; c=relaxed/simple;
-	bh=ar5msKX4t8/TY0Rlc2uvgoxlQoM1O/vhJlEwR83EsOA=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TJeLB+BMEgb7E7Js4TQihr20tpV+XUayKsPeaSpBJ3uX3CziQWEANH7XK1+3n6DcycGs3fzgnLtRlRksu+xLJBwh/RlPdjiJk2m0NIdJLh1mOwgvj1HZ2t7m4wzosriWkb/jsw5l7fGcFQ6VR86gCXimWUkkZ6ppemwZyY//UbU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=r6CLbutE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37B38C433F1;
-	Sun,  3 Mar 2024 15:14:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709478878;
-	bh=ar5msKX4t8/TY0Rlc2uvgoxlQoM1O/vhJlEwR83EsOA=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=r6CLbutEFrMGyN42yiBRFUq6X+PaqWIdxWFL7T8w+nP7Kpawe8Vm5MWIjvUcsVm3m
-	 T4btWHnnfRk8uK68RMT7NvlUvz16Ei4ZtEtpvZrHp+7bc4HJCl5/H5el2n7NS+v5Eb
-	 utlsSf8q1vUfMAGQaf4vEbgBd3e05GbiX56KeTQcQSETeQGOtYeBo4TeYiBfERuENM
-	 EYR2ZUBgIE6IahC5VKjBJqPgxCtIYKuv7BN1fEEc7Ba2TFImQi3F+dHbauEhsfGZQY
-	 QSAARgm0Wjh68z3mzannGk2so6FKzzXX/KnB1yoeZ6hiQjSDNiPfCjj8FR0oeyWcwT
-	 YWpWf1ZgsFWsw==
-Date: Sun, 3 Mar 2024 15:14:22 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Marek Vasut
- <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Matt Ranostay <matt@ranostay.sg>, Stefan
- Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 5/5] iio: light: Add support for APDS9306 Light
- Sensor
-Message-ID: <20240303151422.5fc3c2f2@jic23-huawei>
-In-Reply-To: <20240228122408.18619-6-subhajit.ghosh@tweaklogic.com>
-References: <20240228122408.18619-1-subhajit.ghosh@tweaklogic.com>
-	<20240228122408.18619-6-subhajit.ghosh@tweaklogic.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1709480656; c=relaxed/simple;
+	bh=Pq1xs9swixQ3S4BcqZ6BTxVKKAgiy8m15Wu0wILEoqo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=nYQk+UuMEarAE/W9wJw0HI3wEglAsIe7C+eMTtBA4lABeNGwRhJ+Za29i+TrbhTbACgKWFDa3VIyef8F6hxVlg35obHydwBJYvdjCnEpflJZVrxqPIjmDJgkOjlUtdHrHHfDFB3XaUPof/KwIM/bciyROU4yFBweBMQ9S6i7dxM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=g0qOn8Wt; arc=none smtp.client-ip=209.85.214.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1dcce5e84bcso29488525ad.1;
+        Sun, 03 Mar 2024 07:44:15 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709480654; x=1710085454; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=eS5rXsUD0/yP0O/b336cGPihzWh42DmpRxXHDyRlWmk=;
+        b=g0qOn8WtUI6GN/E8Z2atSLut+4+UXZ31x+4bF5vlyXZihF9Usk3W3jrXK3LsLinLym
+         u50N9vA8gJIMw/0cVr2R60S/iA4Q8zNtA21TT4c0yzHdsS6SdOBviRbQjC2z88IYC3cG
+         1TbtmYkxaKIfvhsoOP5RlQQXjeNfhLkbi3VEWrGJv7I2Wvqi12O2tM/ajOt4tHD32I2G
+         BnLocGnRxOpQcW6I4kCnFpiEfj3tkOmGpAtKsCUwfrZSzrKFr9tC98dxiqLxYsSJuXsD
+         1xG2Ytg2Qo2vrzKuVput7PGTJorrYXAmuNVQYrY0WyuCodhrjTyivx2mwbZQlFNOl/f7
+         +Plg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709480654; x=1710085454;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eS5rXsUD0/yP0O/b336cGPihzWh42DmpRxXHDyRlWmk=;
+        b=q57Vir7oUuOYfPDH1QPFjukWKwT4IiUSlmouL1ucsuEWY6dsm+/Dc6AtJIe48JmMa7
+         gg0hbTYk89Gp/FH+42u/KEOBE3Vgxl71ynspQuL68HeFupR/hvzpCuLbbJY/j2plOUS2
+         KNR2Sd0HrNQRwYz+McoFqlF9VJ8Ln7HCuClOzP+LIYhQ8HisEOuPaqEmOat0dP7oPL2D
+         pZIrgNYjKzMKsRKXWOKshRCLg87hEBhXPUpfldxAyTrGSaeV8g6dnFY85rhhGAGYIcCh
+         YRDdKQtCu37OC9yywxIaIEI5dfm4PE/egu2AK9tWKtetxYlQ63LVlY6PikbLyhg3qaeG
+         ju/Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVjlNTXtYTlc8JISUTArqdURiWjd7fA4uvZoPf1qhWik7VTcOAYIAU856TZn9KtEOwlpc7XmJV2xG44qyJuaVe2SSKcHetr69gppl3OmbAXO/D5jttUYZIqh8Je+oF21HCoQ9WnRLjwYw==
+X-Gm-Message-State: AOJu0YxxaOrptAPJmaTBApZ5bqkcIVteo9OxWhuygNl4zpcoYF8UZzTQ
+	0kQjwNP4PfyzP/1N876UX/0NOhF+C1cb7ay0yMPysxne1hS7PdZ+IJwImg5t9QIiEc3PeP2QwpF
+	RuDKz3i8/G8jz5wXMLtCBSVS3Zn0=
+X-Google-Smtp-Source: AGHT+IGS6ew4nXt5BAU7Sc1tW8kxz61GMLFbWf8a7QA3VlraCLCBHo9R/O9Y4HzIfJGI2oHtZRtm2+wi4R98LC4v56A=
+X-Received: by 2002:a17:902:db0e:b0:1dc:524:6da4 with SMTP id
+ m14-20020a170902db0e00b001dc05246da4mr6348460plx.8.1709480654469; Sun, 03 Mar
+ 2024 07:44:14 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20240228113737.43434-1-aford173@gmail.com> <20240228163153.GH9863@pendragon.ideasonboard.com>
+In-Reply-To: <20240228163153.GH9863@pendragon.ideasonboard.com>
+From: Adam Ford <aford173@gmail.com>
+Date: Sun, 3 Mar 2024 09:44:03 -0600
+Message-ID: <CAHCN7xLGL5gMhd7Fo907gPScdD15KW==BHSorQMjbd-=k-E9OA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] drm/bridge: adv7511: Allow IRQ to share GPIO pins
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: dri-devel@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+	aford@beaconembedded.com, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Andrzej Hajda <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, 28 Feb 2024 22:54:08 +1030
-Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
+On Wed, Feb 28, 2024 at 10:31=E2=80=AFAM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Adam,
+>
+> Thank you for the patch.
+>
+> On Wed, Feb 28, 2024 at 05:37:35AM -0600, Adam Ford wrote:
+> > The IRQ registration currently assumes that the GPIO is
+> > dedicated to it, but that may not necessarily be the case.
+> > If the board has another device sharing the IRQ, it won't be
+> > registered and the hot-plug detect fails.  This is easily
+> > fixed by add the IRQF_SHARED flag.
+> >
+> > Signed-off-by: Adam Ford <aford173@gmail.com>
+> >
+> > diff --git a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c b/drivers/gpu=
+/drm/bridge/adv7511/adv7511_drv.c
+> > index b5518ff97165..21f08b2ae265 100644
+> > --- a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+> > +++ b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+> > @@ -1318,7 +1318,8 @@ static int adv7511_probe(struct i2c_client *i2c)
+> >
+> >               ret =3D devm_request_threaded_irq(dev, i2c->irq, NULL,
+> >                                               adv7511_irq_handler,
+> > -                                             IRQF_ONESHOT, dev_name(de=
+v),
+> > +                                             IRQF_ONESHOT | IRQF_SHARE=
+D,
+> > +                                             dev_name(dev),
+>
+> This looks fine, but the IRQ handler doesn't.
 
-> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
-> It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
-> channel approximates the response of the human-eye providing direct
-> read out where the output count is proportional to ambient light levels.
-> It is internally temperature compensated and rejects 50Hz and 60Hz flicker
-> caused by artificial light sources. Hardware interrupt configuration is
-> optional. It is a low power device with 20 bit resolution and has
-> configurable adaptive interrupt mode and interrupt persistence mode.
-> The device also features inbuilt hardware gain, multiple integration time
-> selection options and sampling frequency selection options.
-> 
-> This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for
-> Scales, Gains and Integration time implementation.
-> 
-> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-> ---
-> v7 -> v8:
->  - Renamed APDS9306_INT_CH_CLEAR to APDS9306_INT_SRC_CLEAR macro for higher
->    readability
->  - Removed APDS9306_CHANNEL macro for higher readability
->  - Updated iio_push_event() functions with correct type of events (Light or Intensity)
+Thanks for the review.
 
-Partly right.  Need to push the modified part for the intensity channel.
-The event should match the channel description.
+>
+> static int adv7511_irq_process(struct adv7511 *adv7511, bool process_hpd)
+> {
+>         unsigned int irq0, irq1;
+>         int ret;
+>
+>         ret =3D regmap_read(adv7511->regmap, ADV7511_REG_INT(0), &irq0);
+>         if (ret < 0)
+>                 return ret;
+>
+>         ret =3D regmap_read(adv7511->regmap, ADV7511_REG_INT(1), &irq1);
+>         if (ret < 0)
+>                 return ret;
 
-I also noted some missing elements in the event specs (sorry missed those
-before!).  Whilst what you have will work, that's just because the error checking
-is relaxed in the IIO core and we don't complain if they aren't fully specified.
-What you have creates the correct attributes, but that's a side effect of how
-we use the data, not what data should be provided.
+If I did a check here and returned if there was no IRQ to handle,
+would that be sufficient?
 
-Thanks,
+--- a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
++++ b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+@@ -477,6 +477,11 @@ static int adv7511_irq_process(struct adv7511
+*adv7511, bool process_hpd)
+        if (ret < 0)
+                return ret;
 
-Jonathan
++       /* If there is no IRQ to handle, exit indicating no IRQ handled */
++       if (!(irq0 & (ADV7511_INT0_HPD | ADV7511_INT0_EDID_READY)) &&
++          !(irq1 & ADV7511_INT1_DDC_ERROR))
++               return -1;
++
+        regmap_write(adv7511->regmap, ADV7511_REG_INT(0), irq0);
+        regmap_write(adv7511->regmap, ADV7511_REG_INT(1), irq1);
 
->  - Updated variable name "event_ch_is_light" to "int_src" and change as per
->    review to fix compiler warning
->  - Used scope for guard() functions
->  - Other fixes as per reviews
->    https://lore.kernel.org/all/20240224151340.3f2f51e8@jic23-huawei/
->    https://lore.kernel.org/all/ZdycR6nr3rtrnuth@smile.fi.intel.com/
-> 
+With this, I would expect adv7511_irq_handler to return IRQ_NONE.  If
+you're OK with that approach, I can do that.  If you want me to merge
+adv7511_irq_handler, and adv7511_irq_process, I can do that too to
+make the return codes a little more intuitive.
 
-> diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
-> index 2e5fdb33e0e9..a30f906e91ba 100644
-> --- a/drivers/iio/light/Makefile
-> +++ b/drivers/iio/light/Makefile
-> @@ -10,6 +10,7 @@ obj-$(CONFIG_ADUX1020)		+= adux1020.o
-...
+adam
 
-> +	GAIN_SCALE_ITIME_US(3125, APDS9306_MEAS_MODE_3125US, BIT(0)),
-> +};
-> +
-> +static struct iio_event_spec apds9306_event_spec_als[] = {
-> +	{
-> +		.type = IIO_EV_TYPE_THRESH,
-> +		.dir = IIO_EV_DIR_RISING,
-> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
-> +	}, {
-> +		.type = IIO_EV_TYPE_THRESH,
-> +		.dir = IIO_EV_DIR_FALLING,
-> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
-> +	}, {
-> +		.type = IIO_EV_TYPE_THRESH,
-> +		.dir = IIO_EV_DIR_EITHER,
-> +		.mask_shared_by_all = BIT(IIO_EV_INFO_PERIOD),
-> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
-> +	}, {
-> +		.type = IIO_EV_TYPE_THRESH_ADAPTIVE,
-> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
-> +			BIT(IIO_EV_INFO_ENABLE),
-> +	},
-> +};
-> +
-> +static struct iio_event_spec apds9306_event_spec_clear[] = {
-> +	{
-> +		.type = IIO_EV_TYPE_THRESH,
-> +		.dir = IIO_EV_DIR_EITHER,
-> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
-
-Can't configure the threshold for this channel?
-
-Whilst the IIO core doesn't check these for missing entries in 
-shared attributes, you driver should replicate the parts that
-are in mask_shared_by_all above.  The code that builds the attributes
-expects duplication of entries so they are here to provide an easy
-place for us to visually check what is supported.
-
-I think that means this event spec will be identical to that for the
-als channel. So reuse that.
-
-Let us know if you copied this pattern from another driver as we
-should fix any that have gotten through review doing this.
-
-> +	},
-> +};
-> +
-> +static struct iio_chan_spec apds9306_channels_with_events[] = {
-> +	{
-> +		.type = IIO_LIGHT,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> +				      BIT(IIO_CHAN_INFO_SCALE),
-> +		.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),
-> +		.event_spec = apds9306_event_spec_als,
-> +		.num_event_specs = ARRAY_SIZE(apds9306_event_spec_als),
-> +	}, {
-> +		.type = IIO_INTENSITY,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.channel2 = IIO_MOD_LIGHT_CLEAR,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-> +		.modified = 1,
-> +		.event_spec = apds9306_event_spec_clear,
-> +		.num_event_specs = ARRAY_SIZE(apds9306_event_spec_clear),
-> +	},
-> +};
-> +
-> +static struct iio_chan_spec apds9306_channels_without_events[] = {
-> +	{
-> +		.type = IIO_LIGHT,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> +				      BIT(IIO_CHAN_INFO_SCALE),
-> +		.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),
-> +	}, {
-> +		.type = IIO_INTENSITY,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.channel2 = IIO_MOD_LIGHT_CLEAR,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-> +		.modified = 1,
-> +	},
-> +};
-
-
-> +static int apds9306_read_data(struct apds9306_data *data, int *val, int reg)
-> +{
-
-...
-
-> +	/* If we reach here before the interrupt handler we push an event */
-> +	if ((status & APDS9306_ALS_INT_STAT_MASK)) {
-> +		ev_code = IIO_UNMOD_EVENT_CODE((int_src == APDS9306_INT_SRC_ALS ?
-> +						IIO_LIGHT : IIO_INTENSITY), 0,
-> +					       IIO_EV_TYPE_THRESH,
-> +					       IIO_EV_DIR_EITHER);
-
-As below.  The intensity channel is modified, so you need to push an event
-for a modified channel for that - otherwise it won't match with the channel.
-
-> +
-> +		iio_push_event(indio_dev, ev_code, iio_get_time_ns(indio_dev));
-> +	}
-> +
-> +	ret = regmap_bulk_read(data->regmap, reg, buff, sizeof(buff));
-> +	if (ret) {
-> +		dev_err_ratelimited(dev, "read data failed\n");
-> +		return ret;
-> +	}
-> +
-> +	*val = get_unaligned_le24(&buff);
-> +
-> +	pm_runtime_mark_last_busy(data->dev);
-> +	pm_runtime_put_autosuspend(data->dev);
-> +
-> +	return 0;
-> +}
-> +
-
-> +
-> +static int apds9306_sampling_freq_set(struct apds9306_data *data, int val,
-> +				      int val2)
-> +{
-> +	struct apds9306_regfields *rf = &data->rf;
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(apds9306_repeat_rate_freq); i++) {
-> +		if (apds9306_repeat_rate_freq[i][0] == val &&
-> +		    apds9306_repeat_rate_freq[i][1] == val2)
-> +			break;
-Up to you, but you could simplify this.
-
-			return regmap_field_write(rf->repeate_rate, i);
-	}
-
-	return -EINVAL;
-
-> +	}
-> +
-> +	if (i == ARRAY_SIZE(apds9306_repeat_rate_freq))
-> +		return -EINVAL;
-> +
-> +	return regmap_field_write(rf->repeat_rate, i);
-> +}
-> +
-> +static irqreturn_t apds9306_irq_handler(int irq, void *priv)
-> +{
-
-...
-
-> +	if ((status & APDS9306_ALS_INT_STAT_MASK)) {
-> +		ev_code = IIO_UNMOD_EVENT_CODE((int_src == APDS9306_INT_SRC_ALS ?
-> +						IIO_LIGHT : IIO_INTENSITY), 0,
-
-That ternary is not good for readability, particularly not with the trailing 0,
-Use a local variable, though you won't need this anyway after the fix below.
-
-> +					       IIO_EV_TYPE_THRESH,
-> +					       IIO_EV_DIR_EITHER);
-
-The INTENSITY channel is a modified channel so events on it need to report
-as modified.  Right now you are reporting an event code that userspace will not
-expect an unmodified intensity event because it is looking for something like
-
-	IIO_MOD_EVENT_CODE(IIO_INTENSITY, 0, IIO_MOD_LIGHT_CLEAR,
-			   IIO_EV_TYPE_THRESH, IIO_EV_DIR_EITHER);
-
-> +
-> +		iio_push_event(indio_dev, ev_code, iio_get_time_ns(indio_dev));
-> +	}
-> +
-> +	/*
-> +	 * If a one-shot read through sysfs is underway at the same time
-> +	 * as this interrupt handler is executing and a read data available
-> +	 * flag was set, this flag is set to inform read_poll_timeout()
-> +	 * to exit.
-> +	 */
-> +	if ((status & APDS9306_ALS_DATA_STAT_MASK))
-> +		data->read_data_available = 1;
-> +
-> +	return IRQ_HANDLED;
-> +}
-
-
-
+>
+>         regmap_write(adv7511->regmap, ADV7511_REG_INT(0), irq0);
+>         regmap_write(adv7511->regmap, ADV7511_REG_INT(1), irq1);
+>
+>         if (process_hpd && irq0 & ADV7511_INT0_HPD && adv7511->bridge.enc=
+oder)
+>                 schedule_work(&adv7511->hpd_work);
+>
+>         if (irq0 & ADV7511_INT0_EDID_READY || irq1 & ADV7511_INT1_DDC_ERR=
+OR) {
+>                 adv7511->edid_read =3D true;
+>
+>                 if (adv7511->i2c_main->irq)
+>                         wake_up_all(&adv7511->wq);
+>         }
+>
+> #ifdef CONFIG_DRM_I2C_ADV7511_CEC
+>         adv7511_cec_irq_process(adv7511, irq1);
+> #endif
+>
+>         return 0;
+> }
+>
+> static irqreturn_t adv7511_irq_handler(int irq, void *devid)
+> {
+>         struct adv7511 *adv7511 =3D devid;
+>         int ret;
+>
+>         ret =3D adv7511_irq_process(adv7511, true);
+>         return ret < 0 ? IRQ_NONE : IRQ_HANDLED;
+> }
+>
+> The function will return IRQ_HANDLED as long as the registers can be
+> read, even if they don't report any interrupt.
+>
+> >                                               adv7511);
+> >               if (ret)
+> >                       goto err_unregister_audio;
+>
+> --
+> Regards,
+>
+> Laurent Pinchart
 
