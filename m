@@ -1,146 +1,142 @@
-Return-Path: <devicetree+bounces-47904-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47905-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4D0686F342
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 02:43:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5BA7086F35B
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 03:26:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C12328439F
-	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 01:43:15 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5F1E4B22D41
+	for <lists+devicetree@lfdr.de>; Sun,  3 Mar 2024 02:26:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA1904436;
-	Sun,  3 Mar 2024 01:43:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF9454436;
+	Sun,  3 Mar 2024 02:26:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="NN8ctIDa"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="JcMxFgGz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B3DF763C;
-	Sun,  3 Mar 2024 01:43:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.14
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1F7D1FB2;
+	Sun,  3 Mar 2024 02:26:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709430191; cv=none; b=H2TiJfq3f0KNDA+o+R2NyTKZn3cVKSrNUeW5aAS/DQck1xbjXvJu8h+RsixWxVzJenJiiF3wbGgeQO3H+ZvjXGbUFJHmO/tQ/U0e7ze7QkBEHMnGbVamlDKDTP26fQIPSpoJqWODHpWaaq7UJDMMCV10xU5fjZ0B2IyYhhu9xnM=
+	t=1709432790; cv=none; b=MHeXD/2qnYivmj3j93Zjl+sthRgPdW6DxHp2K7l9g0HM0h3rFRc2z1Rs8zc+N5X13pxf10HmDwG7EWzZgBGsyUo8ubqmWadaK587ON2IGT4BpwFPhV8K97nWUje0D97m+CcrR9wNAzxh5heCf0BePX9mqe241L0Sz85qO9/LW2w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709430191; c=relaxed/simple;
-	bh=bPtaNql4S+FrAHjRxxcQH2iuVQisNn3g9p6ODBEDHVU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=shMfmVOktPAyWD5l+IqJddpHYg4Y4lXpo1DMWwmWvaXMuZGGlbwhvvdwgnZkjfwk1ROyxp0HrSbUquyj38h2jLu+5q4cDrLE0TT44NdG4S8zfGAT3LCKI2Vwg6JAogLuiKhtDx6tjInMn8Yro2Zidx6wYokAZvUzDm89I2sC/TY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com; spf=pass smtp.mailfrom=intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=NN8ctIDa; arc=none smtp.client-ip=192.198.163.14
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1709430190; x=1740966190;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=bPtaNql4S+FrAHjRxxcQH2iuVQisNn3g9p6ODBEDHVU=;
-  b=NN8ctIDaNi0LvPfqsxqd52+hM0rOJKU2lKZd50EWWf20VmU7DRIIXW9u
-   7pCju84EZxrTgKlNN4Sas6w4+pTVyh7yX6ZzHY6uColmmOq5sqJg015DW
-   NWgRolD3BwTDxcNbslHzeSYakE8I3YwWbQzE8KG6pHX8LerhtEauR56kq
-   lMjJusOXPPaDK6tmZMrzKP1etQfAJmQrK5KGVqJF4K3P4C30zJYOdnDAn
-   2yw6X8AWaQcdXbexAYPMhDQDpW7JA0Fo2WjBAAsZQA3ffRIAL7r1TQzHO
-   KGyGTVpncRJnSUP0OphahOXT512ccPpm4r6rychV+JjIzCje6Wceeg5Nl
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11001"; a="4114457"
-X-IronPort-AV: E=Sophos;i="6.06,200,1705392000"; 
-   d="scan'208";a="4114457"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
-  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Mar 2024 17:43:09 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.06,200,1705392000"; 
-   d="scan'208";a="8722174"
-Received: from lkp-server01.sh.intel.com (HELO b21307750695) ([10.239.97.150])
-  by fmviesa008.fm.intel.com with ESMTP; 02 Mar 2024 17:43:05 -0800
-Received: from kbuild by b21307750695 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1rgasY-0000QO-20;
-	Sun, 03 Mar 2024 01:43:02 +0000
-Date: Sun, 3 Mar 2024 09:42:43 +0800
-From: kernel test robot <lkp@intel.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Abel Vesa <abelvesa@kernel.org>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzk@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>
-Cc: oe-kbuild-all@lists.linux.dev, linux-clk@vger.kernel.org,
-	imx@lists.linux.dev, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH 2/2] clk: imx: add i.MX95 BLK CTL clk driver
-Message-ID: <202403030856.IfA30QpA-lkp@intel.com>
-References: <20240228-imx95-blk-ctl-v1-2-9b5ae3c14d83@nxp.com>
+	s=arc-20240116; t=1709432790; c=relaxed/simple;
+	bh=VHhOwGgKehTkXLHsKsR4w5PYWBrDzh9YtNkW1xnnd6o=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=MzlUnvSVZrEvRZ9QbEYdSLVgTdsEiaie03+u1H0Mn3ihJeScCHrulXj0LJR1KLcHJ5chluWgtLZAc2Xc5FLqoanaqeg3dWi19hpw08r1byPZIWO24d2HAenyMFkBj3XXh4Y8dEIcLmgm64xQ5IMbasxCLDXwwNNV+I7riYtMV5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=JcMxFgGz; arc=none smtp.client-ip=60.244.123.138
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 68ffba7cd90511eeb8927bc1f75efef4-20240303
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=hpmBaMt1Dkaty0Jefpa9C3rhyTYy3rtZZM/Xf71Nj84=;
+	b=JcMxFgGze9lunnzue68of3ZYWbG0BEr/SyaBVQkQ5M7aYC4wyF/XqBDWetzQQ7OWZFFrUv9iPt82jqU+KYzq0wsdGWFLGRu1gxzEIJxTaXxd8NbDbvBqDOUo2K2QlYHs0cduS0eOtkB3tANSTxytytbsSjJkRiZBMxIKJ9rSoos=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.37,REQID:982da1a6-856d-4ce6-bf56-013039596f95,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:6f543d0,CLOUDID:9914f18f-e2c0-40b0-a8fe-7c7e47299109,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
+X-UUID: 68ffba7cd90511eeb8927bc1f75efef4-20240303
+Received: from mtkmbs14n1.mediatek.inc [(172.21.101.75)] by mailgw01.mediatek.com
+	(envelope-from <zhi.mao@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 153455764; Sun, 03 Mar 2024 10:26:15 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Sun, 3 Mar 2024 10:26:13 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Sun, 3 Mar 2024 10:26:12 +0800
+From: Zhi Mao <zhi.mao@mediatek.com>
+To: <mchehab@kernel.org>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <sakari.ailus@linux.intel.com>
+CC: <laurent.pinchart@ideasonboard.com>, <shengnan.wang@mediatek.com>,
+	<yaya.chang@mediatek.com>, <10572168@qq.com>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>, <yunkec@chromium.org>,
+	<conor+dt@kernel.org>, <matthias.bgg@gmail.com>,
+	<angelogioacchino.delregno@collabora.com>, <jacopo.mondi@ideasonboard.com>,
+	<zhi.mao@mediatek.com>, <hverkuil-cisco@xs4all.nl>, <heiko@sntech.de>,
+	<jernej.skrabec@gmail.com>, <macromorgan@hotmail.com>,
+	<linus.walleij@linaro.org>, <hdegoede@redhat.com>,
+	<tomi.valkeinen@ideasonboard.com>, <gerald.loacker@wolfvision.net>,
+	<andy.shevchenko@gmail.com>, <bingbu.cao@intel.com>,
+	<dan.scally@ideasonboard.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>
+Subject: [PATCH v7 0/2] media: i2c: Add support for GC08A3 sensor
+Date: Sun, 3 Mar 2024 10:26:07 +0800
+Message-ID: <20240303022609.26263-1-zhi.mao@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240228-imx95-blk-ctl-v1-2-9b5ae3c14d83@nxp.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK: N
 
-Hi Peng,
+This series adds YAML DT binding and V4L2 sub-device driver for Galaxycore's
+GC08A3 8-megapixel 10-bit RAW CMOS 1/4" sensor, with an MIPI CSI-2 image data
+interface and the I2C control bus.
 
-kernel test robot noticed the following build errors:
+The driver is implemented with V4L2 framework.
+ - Async registered as a V4L2 sub-device.
+ - As the first component of camera system including Seninf, ISP pipeline.
+ - A media entity that provides one source pad in common.
+ - Used in camera features on ChromeOS application.
 
-[auto build test ERROR on 22ba90670a51a18c6b36d285fddf92b9887c0bc3]
+Also this driver supports following features:
+ - manual exposure and analog gain control support
+ - vertical blanking control support
+ - test pattern support
+ - media controller support
+ - runtime PM support
+ - support resolution: 3264x2448@30fps, 1920x1080@60fps
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Peng-Fan-OSS/dt-bindindgs-clock-support-NXP-i-MX95-BLK-CTL-module/20240228-122408
-base:   22ba90670a51a18c6b36d285fddf92b9887c0bc3
-patch link:    https://lore.kernel.org/r/20240228-imx95-blk-ctl-v1-2-9b5ae3c14d83%40nxp.com
-patch subject: [PATCH 2/2] clk: imx: add i.MX95 BLK CTL clk driver
-config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20240303/202403030856.IfA30QpA-lkp@intel.com/config)
-compiler: loongarch64-linux-gcc (GCC) 13.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20240303/202403030856.IfA30QpA-lkp@intel.com/reproduce)
+Previous versions of this patch-set can be found here:
+v6: https://lore.kernel.org/linux-media/20240227013221.21512-1-zhi.mao@mediatek.com/
+v5: https://lore.kernel.org/linux-media/20240220012540.10607-1-zhi.mao@mediatek.com/
+v4: https://lore.kernel.org/linux-media/20240204061538.2105-1-zhi.mao@mediatek.com/
+v3: https://lore.kernel.org/linux-media/20240109022715.30278-1-zhi.mao@mediatek.com/
+v2: https://lore.kernel.org/linux-media/20231207052016.25954-1-zhi.mao@mediatek.com/
+v1: https://lore.kernel.org/linux-media/20231123115104.32094-1-zhi.mao@mediatek.com/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202403030856.IfA30QpA-lkp@intel.com/
+This series is based on linux-next, tag: next-20240229
+Changes in v7:
+- gc08a3 sensor driver:
+-- refine header files in driver code follow iwyu rules
+-- modify some commets to match code style and english grammar and punctuation
+-- use the default case for assign variable in function: gc08a3_test_pattern
+-- use DEFINE_* PM macro for runtime pm ops
 
-All errors (new ones prefixed by >>):
+Thanks
 
-   In file included from include/linux/device/driver.h:21,
-                    from include/linux/device.h:32,
-                    from include/linux/pm_runtime.h:11,
-                    from drivers/clk/imx/clk-imx95-blk-ctl.c:9:
->> drivers/clk/imx/clk-imx95-blk-ctl.c:425:25: error: 'imx95_blk_ctl_match' undeclared here (not in a function); did you mean 'imx95_bc_of_match'?
-     425 | MODULE_DEVICE_TABLE(of, imx95_blk_ctl_match);
-         |                         ^~~~~~~~~~~~~~~~~~~
-   include/linux/module.h:244:15: note: in definition of macro 'MODULE_DEVICE_TABLE'
-     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
-         |               ^~~~
->> include/linux/module.h:244:21: error: '__mod_of__imx95_blk_ctl_match_device_table' aliased to undefined symbol 'imx95_blk_ctl_match'
-     244 | extern typeof(name) __mod_##type##__##name##_device_table               \
-         |                     ^~~~~~
-   drivers/clk/imx/clk-imx95-blk-ctl.c:425:1: note: in expansion of macro 'MODULE_DEVICE_TABLE'
-     425 | MODULE_DEVICE_TABLE(of, imx95_blk_ctl_match);
-         | ^~~~~~~~~~~~~~~~~~~
+Zhi Mao (2):
+  media: dt-bindings: i2c: add GalaxyCore GC08A3 image sensor
+  media: i2c: Add GC08A3 image sensor driver
 
-
-vim +425 drivers/clk/imx/clk-imx95-blk-ctl.c
-
-   415	
-   416	static const struct of_device_id imx95_bc_of_match[] = {
-   417		{ .compatible = "nxp,imx95-cameramix-csr", .data = &camblk_dev_data },
-   418		{ .compatible = "nxp,imx95-display-master-csr", },
-   419		{ .compatible = "nxp,imx95-dispmix-lvds-csr", .data = &lvds_csr_dev_data },
-   420		{ .compatible = "nxp,imx95-dispmix-csr", .data = &dispmix_csr_dev_data },
-   421		{ .compatible = "nxp,imx95-netcmix-blk-ctrl", },
-   422		{ .compatible = "nxp,imx95-vpumix-csr", .data = &vpublk_dev_data },
-   423		{ /* Sentinel */ },
-   424	};
- > 425	MODULE_DEVICE_TABLE(of, imx95_blk_ctl_match);
-   426	
+ .../bindings/media/i2c/galaxycore,gc08a3.yaml |  112 ++
+ drivers/media/i2c/Kconfig                     |   10 +
+ drivers/media/i2c/Makefile                    |    1 +
+ drivers/media/i2c/gc08a3.c                    | 1339 +++++++++++++++++
+ 4 files changed, 1462 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/galaxycore,gc08a3.yaml
+ create mode 100644 drivers/media/i2c/gc08a3.c
 
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.25.1
+
+
 
