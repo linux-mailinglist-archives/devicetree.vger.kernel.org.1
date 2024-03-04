@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-48131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EA89E870530
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:18:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2F8F87053C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:19:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5526DB28A05
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:18:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9168A1F26016
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:19:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D40B4A9BF;
-	Mon,  4 Mar 2024 15:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EB7B535D1;
+	Mon,  4 Mar 2024 15:17:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="zMZnaViR"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="tKhV0KcK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from out162-62-58-216.mail.qq.com (out162-62-58-216.mail.qq.com [162.62.58.216])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0907487AE
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 15:16:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1BB05026A
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 15:16:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.58.216
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709565415; cv=none; b=LW2NHr+eXCWWC/hh/kpj4ixQkLW2EEIJMA176Qbexq1eP2Gg1O6n0TsKLpqE/HW+8OzS5zfJDrQ72arG4rl0tN5z4OC4oXtkW39S8oJWBsLXazZXqv3BRtJZIUjzIS6xhEcNpPPJgMrDv0e2/m2+l8fOtZIn9QY/RbANOUXsIyU=
+	t=1709565421; cv=none; b=Ee2J+QRYeF1dt//yNVJVN8E80YTWBOXe36ac8A+l+/kfW081nYsllLi/9YYQRfXr1NtXzdQLxjvjRekd44lzo5PZcO8La76s3xf27dQSv8WjbrtO3MY2U8IUZqxAaj5IEx4cImbntSgNUCVr2pEKQ56coZBGz/GtObOSyFOf99M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709565415; c=relaxed/simple;
-	bh=jM3OJNwKB81cUdcyvS7QazGsC6f8eN6sQOqfgimcGAg=;
+	s=arc-20240116; t=1709565421; c=relaxed/simple;
+	bh=1RBPyuhoclV+3nHd2TvOxcik9pGmejSzJqo7b+biXls=;
 	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version; b=oh8uJusdTEns9FyymlSbemK6cqhIViuSQs9LnrwrlGO/8xrS4UaihfU/j23PSCVdn1blM24VeFD+lrGjpwO33qlr/I+eOL5XiMHf4G3HOSPfy1dpnv7DhE4FeI4ZGU9gmfxpzCcDHaiAtWi+N9a9XPSUdWn056x9USrid39cmZc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=zMZnaViR; arc=none smtp.client-ip=162.62.58.216
+	 MIME-Version; b=hkN8VJ/GCErpxHbNEoV6bB7uSRvXbScfve+oRfw8JmD/9jdOqBezpHWfbf2xtUP2ld79H7R4/Im4nJL2TZbHT6PvFhv1lbAsHPe0MzkrlNRbDeW0f/w0Vh3TEthkYdM9fWiTI9V4Fv+BAO/otk08cm+Vbr2JcHFdRVKFWNyFO4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=tKhV0KcK; arc=none smtp.client-ip=162.62.58.216
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1709565408; bh=0+JXxUau3OkyJeeGutyiyK3QETtDeC61mbo4iJi+WJQ=;
+	t=1709565410; bh=Zq7j+pO9atzoOOHePaxM6b0KaYKNJGrtsSo0TfDn0y8=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=zMZnaViRsfpH/EcpyRYr/MYac3GZTcF+iSEmTT8D+QKGbPhn+FvRjOFugZhkLvyK1
-	 uUM/ggRQN8JjEuEJ+pB+EHhmdWtPpyBorNnjL3aGFsZhSweKrSOrHJATJvfKQEBIYL
-	 qcxwd+eTFjNq4lv1nXCqz3uJIh1rKvBGyALC5vk8=
+	b=tKhV0KcKbi3Z3cCBkgQQ44qTruieoW0apVY5TC0CCNKH8cT58DkFrVyPWKWir1gNW
+	 3XgFiiVxhdf6xHwi0xVXzALhfeqZTqQ1DVMd//PyBk8dAmbG/660jT1BRVUfjfLzRB
+	 pJSaQe20khusIvP7P41P30LUJbXd7sST/oLZGx08=
 Received: from cyy-pc.lan ([240e:379:2240:e500:994d:62ab:74a6:932b])
 	by newxmesmtplogicsvrszb6-0.qq.com (NewEsmtp) with SMTP
 	id 42726AAD; Mon, 04 Mar 2024 23:16:39 +0800
-X-QQ-mid: xmsmtpt1709565406ti8xoznv3
-Message-ID: <tencent_23A08076AB6331AE43CC64C87FA3081F8006@qq.com>
-X-QQ-XMAILINFO: NX3IH4pixvQA+Il7G9Idge2OWHMvE5RPgPBSoWeYsrW7Dx9cnsEv9kw/bcUdvh
-	 V4ai4Pewg6j/09bHaCBhnbkn+wyxDM2RKGdyGac5C5vuuQh+MVgJhff5rZDg/2TkjlPYXThH5xZl
-	 wsfo6W0SuilP7sxMyDkBMzY6PqjlMjrT2lK/I4Q75bJBL6aAmfab75GXPLEgen2f/CN/hcr+6Vf5
-	 Wsw+g05TrIaj5Sq2DRMgFiLQ9SA5FkD2xyJniplHoOSXcrq5jnXnDfydDR1B0UrvDa7dVMVK7uJe
-	 cmKCTGVOXdkW4fU5BKWjKzFKu0puqVGlmpNo4PPLf+Z6qei6Mb0JxW2EpXNsmQb0MgA95FrqbXyO
-	 q2UBwGnJHZ9hGMK/tiBbh7CSn0qzW3cA8GWHDbiGVaf1c2OYx8cb6TrnFnYL5BBngmixE/yA+ke7
-	 u8VTGpzymxcphKzlozq3w2fESNeK/SlegbbbYhz/fUB/Cm4wO/rqkhiznE4jMFDhprQKCBjzss63
-	 6uuXTrJTzvi/U14yKQVFfZMTZDZDq35sDpVWo4ByAf3SX38vlv2V3oFbUJR+Ze6r4l57Oo2S4W0L
-	 tqDW304xB1wZb34hnbBdyNB3pRbzLI9rLbMmcOopO/O7fa5GvN1MRyi1QD/gFB85ZGgB2qD5pVBR
-	 fyqXVmaXCgdeMiNOQhU975Rh6f8Ec6AMnEjrxvZdquUYsXsTa5C5GEg+OYl0w6th3gBh7Uw5iKp+
-	 NojD6niXJ1TTSJlrqOXJeGtFcEgYy3X3f4eghsZL/Qv+/yOREh6NkMVsmZNR32JWgB0EgDZFiEVT
-	 1QYCd5J2/FCp2Ps62V7ELJy99ol+xXlWf7FR7rf4Gq8Vw6q0jgOJoVaZqJul0pHJORmVJTExbmoB
-	 aZYjTTOtiVkML3ERoOp/TNYxO0/Ah/lynP0PnouSLNtYlXLlNHzkh+iiVOYegu26Uud9D1XbcLwD
-	 TPx0UwZqloYnki6LvmKQgvT0iixuUPNnSuUM7Jnq6hOlqAaCtch9/h7b6c9rA7rDJVwpWx7uhnaw
-	 biRtYSFAJsuD87Q8a6
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
+X-QQ-mid: xmsmtpt1709565408tx6g6kx2w
+Message-ID: <tencent_CB98AA10FE4664BE0F410BED454764DCE007@qq.com>
+X-QQ-XMAILINFO: OM81xDxpmoVkDm+I0fbFX/1HJ5fb/wJR3WA281dpFCJUX+Y9svJyFTnWk0b8Wt
+	 BBmm2rtsHQyvqlRqS2sd3Cps94Fe/wscI9DMghzT6HYz+Cu2dDl/dRH7KRYt+XietT3N1wj64vbz
+	 VYdnu13rxhB21jkieir24daSNqVfvDaqMzibq+PE+Ut0JUrNJ++fmX4nOTgy6E5kU4NV1LvHugeX
+	 vfcJV1Wz+1EkvlOvnZeZqtdAx86XAnvra8U00nY5p+Jq5HFUoqgfQwSS2kGl02l08meWQN0SF70I
+	 YGgRvyhL7Rlfgl9U80FACVscHLI/JmQIfBNr6nu2BsuCkHcCukrPzNKXsbreKo7Ta15PznGlOyP2
+	 bEsT1eh7ijip57Jp26NsPSw+gx6QBWK2VCisXtb9J92Km8D5nU+MY8XX6pZlOrEd7do8F1v+TbN2
+	 c3KrvmUdlnd8ALIsCSSYB4tDgFT7Rt5np0rhT4we6eMxfufZzigDAvbuqXwJqb7R35mQVYmNzUWM
+	 ZwlgTx5PD/uG9vHuUSTIykPVCEXGJvGijfDWNMZLMr0CvyGMVu+h4B+6TlEuPhNE1/JdCEq2RvVj
+	 CtYUozqcbC+spPi3W7lrxcryl3fwVOr9pYOAY4gJXlN+pvrXF1mz7zqqgUJ3DlyFHPQTKMfeUBo1
+	 +iVmq1aKA7jLx4vxMpn9GIO7qEv+/bYU/h/f8D98X28SAJCOaE1kcSKJRSCellXBLDmHKZGtzAPo
+	 TJHPmL4eAgKusBmKfyZCO1+kdh/Z2YIF6yzgTE4HA8UxhyjzGmFLZuHhi2cTgbYeOacU376K3YaL
+	 AhKmhou5AlnYwfgj+XI2JMQzQYDbD+SDFanEEU1Dq8wA723oLJdZwnwcdfrszbhoLmbP2qS9K4P5
+	 +EFjnkWL7WdchhJOhLwu+iox8TcJ0o7YaRdFmA0p/+5zuHzBLP48bX59AyZMlgKTpzVLLWp5d9MC
+	 rqorNR6TJY8rOyvNIzaqFM8VuQRs8qHLRtrzN6fSRu36ZQgZOzXoiYXgZAH/n/PyJ5cPmDudZPUW
+	 DAhfE3QRYjrUVyUqGD7XucC3ooVVA=
+X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
 From: Yangyu Chen <cyy@cyyself.name>
 To: linux-riscv@lists.infradead.org
 Cc: Conor Dooley <conor@kernel.org>,
@@ -70,10 +70,11 @@ Cc: Conor Dooley <conor@kernel.org>,
 	Guo Ren <guoren@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: [PATCH v2 4/7] dt-bindings: interrupt-controller: Add Canaan K230 PLIC
-Date: Mon,  4 Mar 2024 23:16:23 +0800
-X-OQ-MSGID: <20240304151626.759150-4-cyy@cyyself.name>
+	Yangyu Chen <cyy@cyyself.name>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v2 5/7] riscv: Kconfig.socs: Allow SOC_CANAAN with MMU for K230
+Date: Mon,  4 Mar 2024 23:16:24 +0800
+X-OQ-MSGID: <20240304151626.759150-5-cyy@cyyself.name>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <tencent_64A9B4B31C2D70D5633042461AC9F80C0509@qq.com>
 References: <tencent_64A9B4B31C2D70D5633042461AC9F80C0509@qq.com>
@@ -85,25 +86,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add compatible string for Canaan K230 PLIC.
+Since K230 was released, SOC_CANAAN is no longer only referred to the K210.
+Remove it depends on !MMU will allow building dts for K230 and remove the
+K210 string from the help message.
 
 Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 ---
- .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
- 1 file changed, 1 insertion(+)
+ arch/riscv/Kconfig.socs | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-index 709b2211276b..da147faf32bd 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
-@@ -69,6 +69,7 @@ properties:
-               - sophgo,cv1812h-plic
-               - sophgo,sg2042-plic
-               - thead,th1520-plic
-+              - canaan,k230-plic
-           - const: thead,c900-plic
-       - items:
-           - const: sifive,plic-1.0.0
+diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+index 623de5f8a208..b4e9b7f75510 100644
+--- a/arch/riscv/Kconfig.socs
++++ b/arch/riscv/Kconfig.socs
+@@ -75,13 +75,12 @@ config ARCH_CANAAN
+ 	def_bool SOC_CANAAN
+ 
+ config SOC_CANAAN
+-	bool "Canaan Kendryte K210 SoC"
+-	depends on !MMU
++	bool "Canaan Kendryte SoC"
+ 	select CLINT_TIMER if RISCV_M_MODE
+ 	select ARCH_HAS_RESET_CONTROLLER
+ 	select PINCTRL
+ 	select COMMON_CLK
+ 	help
+-	  This enables support for Canaan Kendryte K210 SoC platform hardware.
++	  This enables support for Canaan Kendryte SoC platform hardware.
+ 
+ endmenu # "SoC selection"
 -- 
 2.43.0
 
