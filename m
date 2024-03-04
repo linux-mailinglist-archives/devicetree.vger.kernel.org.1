@@ -1,156 +1,153 @@
-Return-Path: <devicetree+bounces-48028-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48029-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5567F86FC74
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 09:55:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E6B186FC87
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 09:59:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 877011C21A59
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:55:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 195102812E3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:59:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 518693839A;
-	Mon,  4 Mar 2024 08:51:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B6118057;
+	Mon,  4 Mar 2024 08:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="fEU1JPvC"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jnp0AdMf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out203-205-251-84.mail.qq.com (unknown [203.205.251.84])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E2A720B2E
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 08:51:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.251.84
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 331A21AAD4;
+	Mon,  4 Mar 2024 08:59:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709542276; cv=none; b=H0LXmWQ/kuHqq5rYxA+ZyJ0ebVkJGwBX1LxfRi258rfMvBu+rbtP/1fY1nu7Nap4WbEDDJfm92LZGIVQAmZkEBMAOQm5Cm6hYpI6azxpZ8+/YImjZ5gXKqZIwVXnR4pVzA5GaB6HjnAgNbEvK0z0e55tMb2Gp95r60KJHeI48z4=
+	t=1709542779; cv=none; b=onz8jKTFhe36I+xXOv3jIc50BskvKkUxpeFY0JqUgVw+QL+mw9oKFHy52Ojhpi9WjitZaCib/GAeSUmK67hq1WJ8ohk63/D9jH4F4N5jUBgzGKghIbjBT0YY0TwwgCGpgEsg2xIBomhQ/6ohdjhy22K7/GXg1YSuNmA6abui7AE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709542276; c=relaxed/simple;
-	bh=dFdLZwzVb32v1eTbKWoNzytYjuFHCSDRMkVJM58ZX+M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YCP05AsxtY73W8inuFk8VybedHBlPrxTTxFKA5uVWCLX9O94U09NJuLFxul6i22Dpf+EGjAeyXAQwZ9pjco0/hN1WzJOJIFiqfyz4xwniyfyTJtOzzP0HhZaWc3pgd0NmV1e/EqKs83xiUfOoWTRKisvX1Sf3WeFd+6JhCoc1SE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=fEU1JPvC; arc=none smtp.client-ip=203.205.251.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1709542269; bh=mbuvwZO50R9Q6N8yNmFTfgRFRn2FhfRiifIW8jkWut0=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To;
-	b=fEU1JPvCJDyBjMsGBpqHwtmWIffVba9r6eWWKqZqfpo92s+ZiJSXgXpr1tMfoRS5s
-	 Q2Vo07Keg/2j867oHx4fp/cjAJfO3sXgTB058H4o4eaa+PxpIu1XwdbeyDiDi5yZO5
-	 M42IO3dePXnxlAsS9T/SzU8bEjF9l9Ff4SIZONnU=
-Received: from [IPV6:2001:da8:c800:d084:f0c8:5d03:8100:4abe] ([2001:da8:c800:d084:f0c8:5d03:8100:4abe])
-	by newxmesmtplogicsvrsza7-0.qq.com (NewEsmtp) with SMTP
-	id CC5BCEE2; Mon, 04 Mar 2024 16:51:05 +0800
-X-QQ-mid: xmsmtpt1709542265tg1r7o721
-Message-ID: <tencent_BF607C338244DA7F8EB2B8F2314A218B8D08@qq.com>
-X-QQ-XMAILINFO: M1rD3f8svNznan3rGAt6euEY2qNi8leQ7tpHeu6fo+m9tItMjXsZj8H0v9S+83
-	 qpSGVhUnE1gxye9pkJ0kgG5xMB8tC2p3Wk67WyeosYwmYPqyax2KEBjVppVuZ8pEiYWBL1BDz849
-	 Z3hnL53It3BNVZxnk04A1fZ14wE7yPGDF0bDyjoiySIKzQfCq9HPTCWw/fDzvTdIXyypX2QQ05kf
-	 8ABXE7ywGTdlBkPaZq6c3JCznPaYAQL+TxWKdOUPGxmmbSQ6nYxV8ouM64rtTdoUbhs0+fTmt9P3
-	 7gPwLbV4kyXZArCozSJ92Ikp41cJPbbCCVxzjq+HFdP5lXBI/IJbmiZ92WRQ92qGO/N7nT8/j/I1
-	 2LfvF+q39t6UDiWbu8ZefO06zHn7lh8fKjpe52ZlaUGtIjt7UNk6v+YBQix56MlVSQwBMdWzRF+a
-	 pZVGgO+SoL5Xv2eks5aATQPV5QWdbtG/8maE3y7njD6RY3wc8U7AId/1Z8BMmKmgCTRRbigMiuLY
-	 l22NeZNjMBYs8GRYLmlbhgQCHS+hb4WFb9yzRbcmraQxzaFK19J/RPDz3XjmEQbfUPjTj9rxhkCB
-	 eXDOKp4XFV/o/8mlmP9zPR0/WaKTmyzOUBupFdCXVI/QHX/NEzAe7XYoWH2kzjUSb4MpAxTpibB1
-	 VYKTqtNpC2zvkNZvBvl4HNbke6E0R2sF/jTFTjWRYbPClfFs1+E70Md+BZOwEhLMo+0AdMkSs5w/
-	 WZlqgPI4Qmg58sj3wXS0ic0YU+yb9xjLNX+xp7In4oRDRWq7S0+1fcJQGxJTsLtk1S3TBDjtMSzy
-	 x8HCu/yX5tANxqGl07MR6bsQZ0b46G0q4kszlAsFKoJq47/m5GHAd6vJN12QdjOtKmkGcxvkQ8gn
-	 7W/60Jz1cee332QVexi9+o6YeJZCxnRgV7oMZoJ/pmrpzzumqBygCvJ4NvQkIrkIwC/CY/ZNH2Im
-	 rTDIXeDlRvswf0j8UrTGqBd09Y8nYznWGYBnRbuGLHI69voorfkB/+eQCg/HM7
-X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
-X-OQ-MSGID: <db0272a3-ee70-4de8-85ce-1b65d7dfdaa9@cyyself.name>
-Date: Mon, 4 Mar 2024 16:51:05 +0800
+	s=arc-20240116; t=1709542779; c=relaxed/simple;
+	bh=a2u99KZ/g8QH3+B1Mc/rpYOTu5OPl8vhwz5casgIp5Y=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XZfVZwfr4xZUMDyVVD3IVZLeFLOOSR/paSGBvMFYmIiZZS+WyGnh7q3vxJUzx63+Iq01c1zaBcuOH4wNCuTaDb3DaIJe+yLNWXvhRup8cPNYALsEmTYUYsMG548VmtLjGG81upiSSdFBgZqBm0ViNGs+YEemBr0gGgGWqoGPMbY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jnp0AdMf; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1dc9222b337so42062665ad.2;
+        Mon, 04 Mar 2024 00:59:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709542777; x=1710147577; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NCgMNgIsQ5yH5yGtzt3c+nzo8902LdhWh/xibCGfDJw=;
+        b=jnp0AdMfJGu712i5JtvvbNvNGUzKJcu4re/EZ48wxCLuGPad7sN1y1axDUk1ALaLUN
+         8Mb1w5bvpxtcuLrwxZCDq87It2KSGx7riU32wzL+aZyJiqZ3uE9IAYNyH2JFOfcr61I4
+         zkB+MbQp2s/vyNc/fuTeLHwftqI8SvMrUjMOluxtQvjwAciGUj8FVNxG4li0pUhOcYa8
+         wy5N///zkCopQAUIlCVvanoI4ZsS727Z0yitWUHCJ9IkUbMtnlEVNju5krlLrkJhFt/1
+         fnHioszQNAyU5OUdY4Q8QgJcTmMBY6AiS7TadpZq3QAzztECOWCJjo4iR/+3DzHKs2h/
+         IYgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709542777; x=1710147577;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NCgMNgIsQ5yH5yGtzt3c+nzo8902LdhWh/xibCGfDJw=;
+        b=ss8bEWMzF6EBKEyE6GaO1j/atPgRICqPmV84/ZVFm3WcCbRVjqy0ROD+Sn20zoVujn
+         dvI/xBFzDmmJYSwcummi+E7h2O1m6bZ95WSYDj+1GikwtC1HrUnbRUl8WkCdy3XEmJ3W
+         Jnwr9yD1oCuhBl1ehPQ4qPbVW5kPeWcHN6u7LqbjdQ88KnfYgusZvRNVokufcFJNCC5+
+         97ZlTKS7vpOnPPbxHPpkUcaAxK3UBUHejzBN4WWqjxhV+oV76K0G22NASzRIRFgO4jTr
+         uM3GYJgQ1lXTIOXZYaZ7Q5C2VQcEeDAYnpCyCxQQQqIUnRTB84aqWXhj9PRRL2IX6WVt
+         HCXg==
+X-Forwarded-Encrypted: i=1; AJvYcCVAbVLkKGuIbxCu0JiDq+4ik8qaz4YAZjw1ksNeYPoDKMayftfoSjbBu12uE7ovgGzqY4jq8lmc1PKqhKGqamgYZadfA8OkRURcCW8qGKVtOzZxn29Rq8hZ0KhmMjuBY6pkUl+cniMvrQ==
+X-Gm-Message-State: AOJu0YwJwRVNBUtyMvUsqOq0QBKTyT29OBn3q0kTcX5kv/af3/cgp+ih
+	IrD3dIv6kBnxVRNrave38O4LAJci/4BdT3vB7wrW+jhj8cbGtH9t
+X-Google-Smtp-Source: AGHT+IGJssglye0z9dA/EIYkGmMwL5UqzajKCPrB/EkEGyZOtMVWFHXED5Fw+PmbpEjlmLhJKYdCOg==
+X-Received: by 2002:a17:902:ab96:b0:1dc:abeb:22fe with SMTP id f22-20020a170902ab9600b001dcabeb22femr8317535plr.65.1709542777408;
+        Mon, 04 Mar 2024 00:59:37 -0800 (PST)
+Received: from localhost ([46.3.240.108])
+        by smtp.gmail.com with ESMTPSA id s13-20020a170902ea0d00b001dcc0c84721sm7982371plg.99.2024.03.04.00.59.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Mar 2024 00:59:37 -0800 (PST)
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+To: u.kleine-koenig@pengutronix.de,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	paul.walmsley@sifive.com,
+	palmer@dabbelt.com,
+	aou@eecs.berkeley.edu
+Cc: linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
+	dlan@gentoo.org,
+	inochiama@outlook.com,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Subject: [PATCH v4 0/2] riscv: pwm: sophgo: add pwm support for CV1800
+Date: Mon,  4 Mar 2024 16:59:31 +0800
+Message-Id: <20240304085933.1246964-1-qiujingbao.dlmu@gmail.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: add Canaan K230 boards compatible
- strings
-Content-Language: en-US
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
- Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <tencent_E15F8FE0B6769E6338AE690C7F4844A31706@qq.com>
- <tencent_D5188EA5B85A31AC21588DBD7C7482ACDA08@qq.com>
- <7c3c578a-d662-4485-ad15-47250ad0e935@linaro.org>
-From: Yangyu Chen <cyy@cyyself.name>
-In-Reply-To: <7c3c578a-d662-4485-ad15-47250ad0e935@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 2024/3/4 16:11, Krzysztof Kozlowski wrote:
-> On 03/03/2024 14:26, Yangyu Chen wrote:
->> Since K230 was released, K210 is no longer the only SoC in the Kendryte
->> series, so remove the K210 string from the description. Also, add two
->> boards based on k230 to compatible strings to allow them to be used in the
->> dt.
->>
->> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
->> ---
->>   Documentation/devicetree/bindings/riscv/canaan.yaml | 13 ++++++++++++-
->>   1 file changed, 12 insertions(+), 1 deletion(-)
->>
->> diff --git a/Documentation/devicetree/bindings/riscv/canaan.yaml b/Documentation/devicetree/bindings/riscv/canaan.yaml
->> index 41fd11f70a49..444758db964e 100644
->> --- a/Documentation/devicetree/bindings/riscv/canaan.yaml
->> +++ b/Documentation/devicetree/bindings/riscv/canaan.yaml
->> @@ -10,7 +10,7 @@ maintainers:
->>     - Damien Le Moal <dlemoal@kernel.org>
->>   
->>   description:
->> -  Canaan Kendryte K210 SoC-based boards
->> +  Canaan Kendryte SoC-based boards
->>   
->>   properties:
->>     $nodename:
->> @@ -42,6 +42,17 @@ properties:
->>         - items:
->>             - const: canaan,kendryte-k210
->>   
->> +      - items:
->> +          - const: canaan,k230-usip-lp3-evb
->> +          - const: canaan,kendryte-k230
->> +
->> +      - items:
->> +          - const: canaan,canmv-k230
-> 
-> Why this is not part of previous entry in an enum?
-> 
->> +          - const: canaan,kendryte-k230
->> +
->> +      - items:
->> +          - const: canaan,kendryte-k230
-> 
-> Usually you cannot run SoCs alone. What does it represent (in real life)?
-> 
+The Sophgo CV1800 chip provides a set of four independent
+PWM channel outputs.
+This series adds PWM controller support for Sophgo cv1800.
 
-I'm not sure what it means.
+Changes since v3:
+- use macro instead of npwm number
+- add support for polarity feature
+- add Output-Enable/OE check
 
-If you wonder why should I add a compatible string for soc, that is 
-although we cannot run SoCs alone, adding a soc compatible will allow 
-some bootloaders or SBI on RISC-V to choose an errata for a soc. Such as 
-this opensbi patch. [1]
+v3: https://lore.kernel.org/all/20240223082014.109385-1-qiujingbao.dlmu@gmail.com/
 
-If you wonder why I should allow a soc-compatible string with soc alone, 
-that is because k210 did it previously. And provide a k210_generic.dts 
-to use it. I haven't provided generic dts now but allowing only 
-soc-compatible string alone would also be acceptable I think.
+Changes since v2:
+- use 0x08 instead of macro
+- split if statements based on conditions
+- in order to round up, first calculate the
+  number of high-level cycles, then subtract
+  it from the PERIOD to obtain the number of HLPERIOD
+- use new pwmchip_alloc() API instead of old style
 
-[1] 
-https://github.com/cyyself/opensbi/commit/b113c1c01d700314a4a696297ec09031a9399354
+v2: https://lore.kernel.org/all/20240212121729.1086718-1-qiujingbao.dlmu@gmail.com/
 
-Thanks,
-Yangyu Chen
+Changes since v1:
+- drop full stop from subject
+- re-order maintainers and description
+- pass checkpatch.pl --strict
+- fix naming errors
+- add "Limitations" section
+- use a driver specific prefix for all defines
+- using bool instead u32 in cv1800_pwm_enable
+- check and set state->polarity
+- use mul_u64_u64_div_u64
+- use clk_rate_exclusive_get(), balance with clk_rate_exclusive_put()
+- using macro definitions instead of shift operations
+- remove shift operation on 0
+- use priv replace cv_pwm
+- hardcode npwm
+- set atomic to true
+- remove MODULE_ALIAS
 
-> Best regards,
-> Krzysztof
-> 
+v1: https://lore.kernel.org/all/20240207055856.672184-1-qiujingbao.dlmu@gmail.com/
+
+Jingbao Qiu (2):
+  dt-bindings: pwm: sophgo: add pwm for Sophgo CV1800 series SoC
+  pwm: sophgo: add pwm support for Sophgo CV1800 SoC
+
+ .../bindings/pwm/sophgo,cv1800-pwm.yaml       |  45 +++
+ drivers/pwm/Kconfig                           |  10 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-cv1800.c                      | 314 ++++++++++++++++++
+ 4 files changed, 370 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/sophgo,cv1800-pwm.yaml
+ create mode 100644 drivers/pwm/pwm-cv1800.c
+
+
+base-commit: 801de0882d8a95aa1b1fe67df1696e037d785656
+-- 
+2.25.1
 
 
