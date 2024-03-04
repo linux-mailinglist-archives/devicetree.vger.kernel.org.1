@@ -1,141 +1,132 @@
-Return-Path: <devicetree+bounces-48167-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48168-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CD6C8707AA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:52:51 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C27178707C1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:56:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFD52B24E30
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:52:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C2CD28269D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:56:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A31D66086C;
-	Mon,  4 Mar 2024 16:51:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D8B5CDDD;
+	Mon,  4 Mar 2024 16:56:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Xz6yhItV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F+h3DOW9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D10DF605B7
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 16:51:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E92A20;
+	Mon,  4 Mar 2024 16:56:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709571089; cv=none; b=PQ4lXsfmHdv24LTeMOkZ9ew8XnZroCUEqVB4aBexmoFp/df8kEV/HLnf0WUx3H9NPiymMgw/WHD9TJj4RwbuS4324twaZOusj8OkGYr5daMfsY2Ea/1ibZUc6iymv6/Zw2HICjO0ysJN3zAnpP50k19cNWWdxPl6ZIjqTe/TArY=
+	t=1709571397; cv=none; b=uw1fLOFs5DeZqyt4qLBpkPULvLxn9NqWFa6XQE3QE8fqDusvYr+4NVE2+ZeaT8mP0OuMsLRhQVnUGPpf2hzEjraLKWd9L00Z2sQXm2jEeAvWNG3uDHetJz82kX1c5Xx7VGaVxHgLuMqVrsCstGY7o8VbMK2rJOJ3QhYFu99Euv0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709571089; c=relaxed/simple;
-	bh=8YEW8/QYd153IU1YcCsQ5FCqtApBQaAp36ELoAoTGug=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rfEkEPnELTtCMMpDmKdpiqhya0X1pNLo3vtuQwTB/vDAp7QWKpWQrzjprrWOYjCfbSsXE5qEw0VGbBzOZxYZT8IqeLGQn4WHfMjG+KyboHrwJDWcUv6RuQSH/TFNdaJPg9hEzpASVzexZBgDV+eT5rBkXVg5kmPgz/2hxm1/y3Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Xz6yhItV; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a458eb7db13so30071866b.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 08:51:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1709571084; x=1710175884; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=xOyMFcdZeiizIIdM2h9cviSaGUWkoYW6H6plPEQ7/JE=;
-        b=Xz6yhItVu+bd1OAN+7W4IPdXqG1psTBThcOsS9BGq2nKTtjGKtg5WzzH41d74Rrgf4
-         KUIk8doq6pwt4t5ZlWE+Qvsvu5NPKYFluovGINCBMnJcJfaZLEV1xWCG03um9qOHt4oO
-         lD96ebXl460RM4ACBsNlXtAgY0EOGG+1BpxoU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709571084; x=1710175884;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xOyMFcdZeiizIIdM2h9cviSaGUWkoYW6H6plPEQ7/JE=;
-        b=Vio1alwsBc5rkB5YkWnng0DiQgMOEPtHczzuLSNY3+gRWpS/AB9hg7P/eRFkCDhTi9
-         B1jIyjdjpjjg2e3G0mVp6kuz+Na6gCP5TC2YuQKPa3/hWOGmuVc9JGUGU9QiQYzTlciv
-         Ex/fJVYA+Ax6mD6LqdhVBYnfBwKdKynnFsEfByMswfGqEChs4kUcQjo7ZB5Dpi6fsSom
-         UFZUdoqViPQQYNU/fVYGIxcDlKkeZPKKyUdEoU0g9D8QYlwqrwSB19pX4j6kZf5RsTuh
-         +YXuCkrTB1iNOHcTSQZzYEsGV74d9dpQctTR89O6MxnQE+M8eonlo+fOz3eNSwYbtTN0
-         jsRw==
-X-Forwarded-Encrypted: i=1; AJvYcCVsND/pWKCZuZd3B10xF7MJLSyFvKyiXpZOOHH/91V6kg75laBKzBjxHaxuFtJJCOpvjGCOSV8bWxuKCaZR0Ra31Z96mJV5C4YEGQ==
-X-Gm-Message-State: AOJu0YyFOjR8d3VmMVham6jrbNF90jKaUvy/iS0UBz3WrKd9rOZTNWln
-	tWlCKBMQF6svdo0gMD4604j4G99HH5f1OsBwPrFfxGTLRmrUjUsI6rsCgM9EiOjkme7EtuWaWHk
-	CZBl6
-X-Google-Smtp-Source: AGHT+IFRuUvhQP6T2jkYTPye/7k0pDY0FoCqvH5W+BzFfF5V2PnKujWBZcpEAXgSDoAR8BcaOT2AdA==
-X-Received: by 2002:a17:906:f750:b0:a3f:2b6f:6d57 with SMTP id jp16-20020a170906f75000b00a3f2b6f6d57mr6617416ejb.29.1709571084005;
-        Mon, 04 Mar 2024 08:51:24 -0800 (PST)
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
-        by smtp.gmail.com with ESMTPSA id hj12-20020a170906874c00b00a456a97faaesm903350ejb.86.2024.03.04.08.51.22
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Mar 2024 08:51:23 -0800 (PST)
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-412d84ffbfaso98035e9.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 08:51:22 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXi0rclBWQx6DXB1Ybu99JxETbRKojBD4UO4sCDUUbf85QO7Cq/Mt+7FLbif0yAUiM1xNSFdFaaoyM5IkWRz077yUduFXUnIhAuzw==
-X-Received: by 2002:a7b:c417:0:b0:412:dd21:292 with SMTP id
- k23-20020a7bc417000000b00412dd210292mr263164wmi.0.1709571082557; Mon, 04 Mar
- 2024 08:51:22 -0800 (PST)
+	s=arc-20240116; t=1709571397; c=relaxed/simple;
+	bh=xVMa7i8oPGdLj8iX76oU3OuSEEgYdE3cXj3g2JVHqYA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FK6ZTCqd8vTUuYMnuhdz1e4rK/2ljC9WqvUz2QCE3qq29CdnwnEG7vscsLav6qXDXuUvQSr0LCYroR9d7csFOyFTfNNazepoft210c5lsTJEEaLw/1AiNLD4diUqyZB1B6TU2KKVYVwVNfSVOEHzbx0+XNxNMNPqmFjdE5dkaro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F+h3DOW9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43584C433F1;
+	Mon,  4 Mar 2024 16:56:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709571397;
+	bh=xVMa7i8oPGdLj8iX76oU3OuSEEgYdE3cXj3g2JVHqYA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=F+h3DOW9ORlN/9HF9TaxmR/fYvUag0uSF8Hc9e/12dJNoz+71goZo2H8TackF4ndY
+	 NfVYqGj/6OFDRiDCsry5FDGozEtGEBurPUvzd9yu6rOK0cbMv8vDpUXzA1HT0Z0/sA
+	 qujKdTO7/OeWMSBL96U+8G+buwL9ScaI1Mid9Lcybrym8Th/7y5NAPq1JqK70JXxKQ
+	 WvLrG00pt/H1qdoz+81PJJ5YiS22nvmqncYZfgaMLdXthBsu3rxy5UE35nXH9gpq8q
+	 KeiaEoMNsjjEdzpngrMHC/ZI1eja3L9D7ZMCGBt+YMsACvSIS2ioHguEOpdgDRyZDa
+	 YZKTSWcYAv91A==
+Date: Mon, 4 Mar 2024 10:56:35 -0600
+From: Rob Herring <robh@kernel.org>
+To: Sam Protsenko <semen.protsenko@linaro.org>
+Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	andi.shyti@kernel.org, conor+dt@kernel.org,
+	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	andre.draszik@linaro.org, peter.griffin@linaro.org,
+	willmcvicker@google.com, kernel-team@android.com
+Subject: Re: [PATCH] spi: dt-bindings: samsung: make dma properties not
+ required
+Message-ID: <20240304165635.GA739022-robh@kernel.org>
+References: <20240301115546.2266676-1-tudor.ambarus@linaro.org>
+ <CAPLW+4=6oYcs0NPXo4ffLiCvtNQ-tY1s_isaxTX8dcPkV56xMw@mail.gmail.com>
+ <cb426fb0-2f27-4c9b-89f5-7139354ea425@sirena.org.uk>
+ <f06328e4-b283-4302-b9c1-6473aa3cfa25@linaro.org>
+ <CAPLW+4kjXK=EWx__h0bX0rJMrL33E=t4YDzSOfObmvtG9aS+jg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240301061128.3145982-1-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20240301061128.3145982-1-yangcong5@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Mon, 4 Mar 2024 08:51:06 -0800
-X-Gmail-Original-Message-ID: <CAD=FV=UP9NxfmT8rqLd-HUq8QwJXa5xO7UbrgYHLw4vOKZO7hA@mail.gmail.com>
-Message-ID: <CAD=FV=UP9NxfmT8rqLd-HUq8QwJXa5xO7UbrgYHLw4vOKZO7hA@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel: boe-tv101wum-nl6: Fine tune Himax83102-j02
- panel HFP and HBP
-To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	hsinyi@chromium.org, swboyd@chromium.org, airlied@gmail.com, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAPLW+4kjXK=EWx__h0bX0rJMrL33E=t4YDzSOfObmvtG9aS+jg@mail.gmail.com>
 
-Hi,
+On Sat, Mar 02, 2024 at 10:23:16AM -0600, Sam Protsenko wrote:
+> On Sat, Mar 2, 2024 at 3:36 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+> >
+> >
+> >
+> > On 01.03.2024 22:42, Mark Brown wrote:
+> > > On Fri, Mar 01, 2024 at 01:28:35PM -0600, Sam Protsenko wrote:
+> > >> On Fri, Mar 1, 2024 at 5:55 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+> > >
+> > >>> Since the addition of the driver in 2009, the driver selects between DMA
+> > >>> and polling mode depending on the transfer length - DMA mode for
+> > >>> transfers bigger than the FIFO depth, polling mode otherwise. All
+> > >>> versions of the IP support polling mode, make the dma properties not
+> > >>> required.
+> > >
+> > >> AFAIU, the device tree has nothing to do with drivers, it's about
+> > >> hardware description. Does making DMA properties not required here
+> >
+> > correct
+> >
+> > >> mean that there are some HW out there which doesn't integrate DMA in
+> >
+> > no, to me it means that the IP can work without DMA, only in PIO mode,
+> > regardless if DMA is integrated or not. Not required means that the
+> > property is not mandatory, which is what I'm trying to achieve here.
+> >
+> > >> SPI blocks? Even if this change is ok (I'm not sure), the
+> > >> argumentation doesn't look sound to me.
+> >
+> > switching to PIO mode in the driver for sizes smaller than FIFO depths
+> > in the driver guarantees that all existing compatibles support PIO mode.
+> >
+> > Are you saying that if there is a physical line between an IP and DMA
+> > controller, then the DMA properties must always be specified in dt? I
+> > thought they can be marked as optional in this case, and that's what I
+> > did with this patch.
+> >
+> 
+> No, I would wait for maintainers to clarify on that bit. Change itself
+> can be ok. But the commit message shouldn't mention the driver,
+> because the driver uses (depends on) device tree, not vice versa. The
+> device tree can be used in other projects as well (like U-Boot and
+> OP-TEE), so it should be designed to be universal and not depend on
+> kernel drivers. The commit message should be based on particular HW
+> layout features and how the patch makes the bindings describe that HW
+> better. It shouldn't rely on driver implementations.
 
-On Thu, Feb 29, 2024 at 10:11=E2=80=AFPM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> The current measured frame rate is 59.95Hz, which does not meet the
-> requirements of touch-stylus and stylus cannot work normally. After
-> adjustment, the actual measurement is 60.001Hz. Now this panel looks
-> like it's only used by me on the MTK platform, so let's change this
-> set of parameters.
->
-> Fixes: cea7008190ad ("drm/panel: Fine tune Himax83102-j02 panel HFP and H=
-BP")
+If the controller is DMA capable then it should have dma properties. The 
+compatible should be enough to tell if it is a case of 'can only work 
+with DMA'. Otherwise, it is going to be up to a specific user. Even 
+within Linux, you may have a serial port that doesn't use DMA for the 
+console, but uses it for the tty or serdev.
 
-Your "Fixes:" tag is not quite right. It needs to have the _exact_
-subject of the old commit message, AKA:
+Of course, if a new device is added without DMA properties and they 
+are added later on, then they are going to be optional even though the 
+DMA support is always there. I can't fully understand everyone's h/w. 
 
-Fixes: cea7008190ad ("drm/panel: boe-tv101wum-nl6: Fine tune
-Himax83102-j02 panel HFP and HBP")
-
-> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> ---
->  drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-
-A little odd that the patch you're fixing claimed that it caused the
-measured rate to be 60.01Hz and here you're saying that it ended up
-being 59.95Hz. I guess there was a measurement error when the previous
-patch was posted?
-
-In any case, the argument still holds that this is a panel that still
-appears to be only used by your board, so small tweaks to the numbers
-here seem OK.
-
-Landed to "drm-misc-fixes" after:
-* Adding "(again)" to the end of the subject to make it distinct from
-the previous patch description
-* Fixing your Fixes tag
-
-9dfc46c87cdc drm/panel: boe-tv101wum-nl6: Fine tune Himax83102-j02
-panel HFP and HBP (again)
-
-
--Doug
+Rob
 
