@@ -1,72 +1,64 @@
-Return-Path: <devicetree+bounces-48025-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48026-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0C6A86FC06
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 09:40:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8484486FC46
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 09:50:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0EDAC1C210E5
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:40:55 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B68BC1C21202
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:50:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 652F61947D;
-	Mon,  4 Mar 2024 08:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CDD7A3D0B5;
+	Mon,  4 Mar 2024 08:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="AIha+gAR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GXE51NYD"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2EAD519472;
-	Mon,  4 Mar 2024 08:40:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1F11DA5B;
+	Mon,  4 Mar 2024 08:44:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709541650; cv=none; b=fsTyHO+pMVy9qlZbv8m0/xrhqvT/nGnsOlj05BjjflJWwZinFaYScJr5q4fJvkqlK6guwv6rG7ZKR98iyGFBYOiXLQd127clgYF23Pm9qHibE/01gtIzXGxxEEZ8V0tUUBNVJbwBnGrw+uapMw9askxwqLyXwpd7sEQHuGN98SA=
+	t=1709541857; cv=none; b=Z/YOcVD7FlkLgfutSGPiyQaUfkf3BI5BkPihzBd/L/BELEmT0ASHDIjjDYbsKUX+qAxRMaMe+/sIcq3Gbs1/vMe8Q1ytbTbQdAqQZCShz4SoQgEdKhLrzCulX2jzgo/0x1NGbOYCm7EYqrsYhrHofOmVCOi0RuZ9+bSE5t+FQL8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709541650; c=relaxed/simple;
-	bh=t1T3OPaWjo53wfG6TOrATqy44YsWokKu6HeHAougC1I=;
+	s=arc-20240116; t=1709541857; c=relaxed/simple;
+	bh=m3btwuB1XUM+0/1Srhrmy8oBrwYrCSMk8C4cHIhZwpI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Viip6tdYtwNQ+pwkD2Xzue4CVUcEedHdLUxtbKAKYMS/nleisHs7GV6pO5GIF4Rp4RHyCea8k/NPi5/r4z6WD2y14cq+r5/CBXIfYd4he8PUGgEL+r/76lRQTTWH6Q+mbIHzwTJn6VWL2fAlHbTb8EvLvBew2OkbkmkaIfr2jAk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=AIha+gAR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4C71C433C7;
-	Mon,  4 Mar 2024 08:40:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=h8//Pn/8aHczXdhdITMkbuoWyNbn3fJiFBrsNln9Ub4R1wkPgydhVBH0yQidmnROAm7SV3Boq0tDsLbjsr9Azd9mpMBVZIqBeHbORynRXi8OeMH7brpc5hc5VC4qz4Qlipdoh8Zevnr0kPc1wopNIoRkYoWgohR5ARRV+jdM668=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GXE51NYD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E0C3C43399;
+	Mon,  4 Mar 2024 08:44:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709541649;
-	bh=t1T3OPaWjo53wfG6TOrATqy44YsWokKu6HeHAougC1I=;
+	s=k20201202; t=1709541857;
+	bh=m3btwuB1XUM+0/1Srhrmy8oBrwYrCSMk8C4cHIhZwpI=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=AIha+gARcNYuhSwcukKIYg4p45pb6A8Eb1BoGaDioSXtNDt/XHo9+tu0OWSVMTEDA
-	 TCdLZhy/DEYy3mXFG+TLdphs/qsaLNPSRkHtzvVQYJn2flmCpGyYwREyE7oQKo6+3B
-	 ab1V4gnRlHvDLwrqCQ2HaaJ/uW1j7jwnDDI/78dkQiPBsu5gqoaWB8AVtadiHrg7Kw
-	 weBRT0t9pBuAWt/8MA0WpUtAj0ffodEALaUXLIezNXPWFwitJn+nQL6uYga8eqMPRH
-	 9CFfdeOxkoh47pFCQwDEodcKaXFs0+9NHo3NzvtQdxPprBAvT5REFms3RWYuvcrmdY
-	 vOUUDcyUeUSFA==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rh3sW-000000006DZ-199L;
-	Mon, 04 Mar 2024 09:40:56 +0100
-Date: Mon, 4 Mar 2024 09:40:56 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Wesley Cheng <quic_wcheng@quicinc.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-	Felipe Balbi <balbi@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-	linux-kernel@vger.kernel.org, quic_ppratap@quicinc.com,
-	quic_jackp@quicinc.com
-Subject: Re: [PATCH v15 2/9] usb: dwc3: core: Access XHCI address space
- temporarily to read port info
-Message-ID: <ZeWJGCsUiZFw6ECl@hovoldconsulting.com>
-References: <20240216005756.762712-1-quic_kriskura@quicinc.com>
- <20240216005756.762712-3-quic_kriskura@quicinc.com>
- <ZeBSp0EWnHo8Wbsv@hovoldconsulting.com>
- <c4607aa4-7af7-443f-8ccc-aa4fe3ede3cc@quicinc.com>
+	b=GXE51NYDqpQ6Rpt9NCI+I0KTgTxx8Ob9USgAHcXYvtmVdkGqv9AJOiPikODi/j8+J
+	 7JMubxXRMWEnVhoLTktK0+ZSoBnHvSbaG7TShTXMSmNd9wdyeXvcVBKx5E859ICTT4
+	 HBoz1rjslk7YRW72BGTovEg/P++8uW9LfQTYy3vhl5wn0yn/ioLGvJ/fW707WhVa78
+	 m216Hm24/eDT/aA9PiVuIvA2ukGsRri5g7nghmfQOMZv6wHhIPtASbOLZCoWVsjGHV
+	 N/uK6O2Dkz6XaukXb+Ik9dnu49PD3loVvBZsOhM/NIJ7CUuAonay1v5ra93D6LBqYR
+	 PKHtKW3BB9x3g==
+Date: Mon, 4 Mar 2024 09:44:09 +0100
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Bjorn Helgaas <helgaas@kernel.org>
+Cc: Frank Li <Frank.Li@nxp.com>, bhelgaas@google.com, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, festevam@gmail.com,
+	hongxing.zhu@nxp.com, imx@lists.linux.dev, kernel@pengutronix.de,
+	krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+	kw@linux.com, l.stach@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	manivannan.sadhasivam@linaro.org, robh@kernel.org,
+	s.hauer@pengutronix.de, shawnguo@kernel.org,
+	Nathan Chancellor <nathan@kernel.org>
+Subject: Re: [PATCH v10 03/14] PCI: imx6: Simplify reset handling by using by
+ using *_FLAG_HAS_*_RESET
+Message-ID: <ZeWJ2Z5kKoqbeWYn@lpieralisi>
+References: <20240205173335.1120469-4-Frank.Li@nxp.com>
+ <20240301190931.GA403500@bhelgaas>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -75,76 +67,29 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <c4607aa4-7af7-443f-8ccc-aa4fe3ede3cc@quicinc.com>
+In-Reply-To: <20240301190931.GA403500@bhelgaas>
 
-On Thu, Feb 29, 2024 at 05:23:08PM +0530, Krishna Kurapati PSSNV wrote:
-> On 2/29/2024 3:17 PM, Johan Hovold wrote:
-> > On Fri, Feb 16, 2024 at 06:27:49AM +0530, Krishna Kurapati wrote:
-> >> Currently Multiport DWC3 controllers are host-only capable.
+On Fri, Mar 01, 2024 at 01:09:31PM -0600, Bjorn Helgaas wrote:
+> [+cc Nathan]
+> 
+> On Mon, Feb 05, 2024 at 12:33:24PM -0500, Frank Li wrote:
+> > Refactors the reset handling logic in the imx6 PCI driver by adding
+> > IMX6_PCIE_FLAG_HAS_*_RESET bitmask define for drvdata::flags.
 > > 
-> > I already asked you to rephrase this so that it becomes clear that you
-> > are describing a property of the current hardware (and similar
-> > throughout the series):
+> > The drvdata::flags and a bitmask ensures a cleaner and more scalable
+> > switch-case structure for handling reset.
 > > 
-> > 	https://lore.kernel.org/all/ZTI7AtCJWgAnACSh@hovoldconsulting.com/
-
-> IMO, the statement is describing a property unique to current hardware, 
-> that "If it is a multiport controller, it is then host-only capable"
+> > Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Reviewed-by: Philipp Zabel <p.zabel@pengutronix.de>
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > 
-> I used the word "Currently" to indicate that "Today, the multiport 
-> devices present...". Let me know if there is any ambiguity in the sentence.
+> Lorenzo, would you mind squashing in Nathan's fix from
+> https://lore.kernel.org/r/20240301-pci-imx6-fix-clang-implicit-fallthrough-v1-1-db78c7cbb384@kernel.org?
 > 
-> In v13, I wrote:
-> "Currently host-only capable DWC3 controllers support Multiport."
-> You were right. It was ambiguous as it might refer to even single port 
-> controllers.
-> 
-> So I changed it saying all the DWC3 multiport controllers are host only 
-> capable.
-> 
-> How about:
-> 
-> "All the DWC3 Multi Port controllers that exist today only support host 
-> mode"
+> Also, the subject line has a repeated "by using by using".
 
-That should be clear enough, thanks.
+I will fix it up.
 
-> >> +	/*
-> >> +	 * Currently only DWC3 controllers that are host-only capable
-> >> +	 * support Multiport.
-> >> +	 */
-> > 
-> > So again, also here, rephrase the comment so that it is clear that you
-> > are referring to a property of the current hardware.
-> 
-> I put the comment this way to indicate that we don't want to check for 
-> existence of multiple ports if the controller is not "host-only" 
-> capable. We should only check for multport support only if we are 
-> host-only capable. I think the statement clearly tells that "check for 
-> host-only" configuration before proceeding to check for xhci register reads.
-
-Fair enough, this comment could be considered to apply only to the
-implementation. Perhaps the following would be more clear though:
-
-	Currently only DWC3 controllers that are host-only capable
-	can have more than one port.
-
-or simply
-
-	Host-only capable controllers can have more than one port.
-
-Both of these also gives a hint that this is a property of the hardware.
-
-> I replied the same on:
-> https://lore.kernel.org/all/279a54f2-7260-4270-83c7-d6f5c5ba0873@quicinc.com/
-> 
-> And since you didn't mention anything else at this part of code in your 
-> return reply in:
-> https://lore.kernel.org/all/ZTYyXhyZN3jBXEfm@hovoldconsulting.com/
-
-I left in the following quote on purpose in that reply:
-
-	> > Please rephrase accordingly throughout so that this becomes clear.
-
-Johan
+Thanks,
+Lorenzo
 
