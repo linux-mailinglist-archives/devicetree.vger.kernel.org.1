@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-48006-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48010-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAF0386FAD2
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:31:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA31A86FAE0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:32:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DE11D1C20815
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 07:31:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0946E1C219AE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 07:32:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6151B13AD9;
-	Mon,  4 Mar 2024 07:30:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6750F13AE9;
+	Mon,  4 Mar 2024 07:31:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xqcLb7mu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iIJDkBJF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 452C1171AE
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 07:30:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F159134C5
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 07:31:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709537422; cv=none; b=VUteATNVwx2BIqaFa++HfHQixF2RUjWGEszIOErwLrRLsrfgr0/XDGandlyr1oHjt1Innm/O3rPWZ84S1pLDo+Oco/Uc+GyUy+8WIaqgjE0UaKi8PFBtolCJnej45bKC6ziYJhasAzwyYvtIPwsyfguu/iTbXUvYjwtFI13apic=
+	t=1709537507; cv=none; b=IIE8sh1qxhXZDZ7U/fvvq9PX3rjGBlGgf3O0FaBLN+xVKVTQWMub7ZkEDvaK3Ljrx2Bh/mWpSPvA7dwxt3ZzUGgn45jysZZMzbKU68isfyZUg/6jhsLZ58JnzfwL0bJj8gAyvw0t0dV3+AqikMzPAEixy6bxNvqGqGRfSNrimpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709537422; c=relaxed/simple;
-	bh=T9CJwU7JJlWalRdy7ev8+NX3fm5mBPdXRiF8u/fzrns=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DF3Kxf3G1EErkr0MawqyrtgOcvhIJGp8EH/JynShFuElxEVD1vdaWd2b3c59ycnkmTpOHprqGnZYSVKmEFTfnPuKuAamH9q++8AzseKaVZ5y8LMRNb/QFU1VisjLM7/RmvtKSYbGUQbPb1OeDxEbSIG4D3g092k0X7cAB7Ji7L8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xqcLb7mu; arc=none smtp.client-ip=209.85.208.177
+	s=arc-20240116; t=1709537507; c=relaxed/simple;
+	bh=66nqHdi7M5gLFbhxmC17gUfb4ScsEict20Pb1KD6cwE=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=OPOe/sDC2SuScWx+coTqN/saJ79GrG5bwPnNE9HmYJHY+5GgE+PSrePZ0KWNMBZT9TVsHSHWoDlmGqNkAxpv7W2zXVRL2HIdesqInUe/SKHE97Iran+KifBr+NUQtg+wqWrTRdntErFutRaf4My2gsp3vxm6V42zSAj3PnVXJKc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iIJDkBJF; arc=none smtp.client-ip=209.85.128.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d28387db09so47134901fa.0
-        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 23:30:20 -0800 (PST)
+Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-412e66bc492so1243155e9.0
+        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 23:31:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709537418; x=1710142218; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/TER1wmHNOOjv/GulNATrBtLGlH29aFe8AWFhg8Tr/o=;
-        b=xqcLb7muQjvBKuB4AC1bytt0Uc9SeLrRmuvAoYNVUvOL8XyDXCibnaZc2bL0MPAjG8
-         /NLJiDLleqpxUcTNIQdoMl1BKcfv2LXD49/M3pJXldPjZmYEv0dkq/GAe5rOXpICv/j3
-         o1RhO3l81bmu8JLEgRVI0S/GD5yjky0zdtfYMGC1u3nR5Bizyir2IeXgPPfdt5Q2qQqC
-         1EEOwcw3xp/A1ExFWdLtb9FQKT/InRDj2W9BNmMY/4okJjbUaoa9Qeu+kLuKaCSgraCL
-         sof5DYa1XGCkyBDPrrtipisqeK+tIUhlFcov6QQtzvlgSO9MwHZezybZgVqPNOifhqvj
-         /G0w==
+        d=linaro.org; s=google; t=1709537504; x=1710142304; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=f51VA5MtxnAU0efzg76cN/fIARzVpps0Hh4Af04eUTk=;
+        b=iIJDkBJFM6PJ/b9oio9oUPa1KcIx5Y1WixswOjL5orFeYMqjNLV7+g6bMDpjB8g6NG
+         0D+uNDMYmPI/mfSlR9JhRfF6TiwXUW26CVG9E74QgoUqaCZ0a4mfdHVP775QLL4xFb6S
+         sfmdVx2XVN1xr7lk9vxkTu+Z4RSZhiUxGgW3UE6lz/9GEZft8kt3eROwd3nV78/0fKz5
+         n2USfduodHr6PYWIFCRcJg468D14XFR6Z1+Un+8tnOUe9Txv3viZErQ9y19AOV+vpfqV
+         ZoyQ143hYHGkWq7DaxiZgQrMRhUm1DWrCxGUtwLbNpgdTTkRPJM1e//w9Y2vYua1dK7N
+         rzqQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709537418; x=1710142218;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/TER1wmHNOOjv/GulNATrBtLGlH29aFe8AWFhg8Tr/o=;
-        b=izo3ycHkDkxj0BJgSlZpiou8hfXicUJNnJq7bqcl6NUC2CiW5ibhsaZ4NSZsl9hwvx
-         xNwaKCTO0LZ9BlEjSU8L1Nmw5yy4NijvdlscebxoLC9yML1/kcAdSKRG8apEdEcx4/9m
-         ithEP8ZDYv5CDhbuOmgV6jJ98y7J4evr3GQPbb++MFzo2MuXYGT23GPCIhrRmWrsS1ho
-         2qPm7PJrzPiVLRd0KDGPKfkO44dmOHpmtPsVGdm6TOVBeWDb2d6hFGdIQSXhpc+y6CN9
-         TmNGp+/Iry+3vlRzkay7WYzxQq7ByR1471sZ6d1iT+/NeM+p8EqUDBrrCu6zFsRr37Tu
-         Cpzg==
-X-Forwarded-Encrypted: i=1; AJvYcCXx1dLqEJpNOzPrqC8SCTIZ/YbSaL1XAcl7REw1zwGzuw5Rfz13lg3Ei/zMXY2mJnscGF4SXfLleCr5asYhewuXBJ48+S99F7+tFw==
-X-Gm-Message-State: AOJu0Yx/CE28GY0gx/gu6bdyu+vLcIQnlsOauveUrWzf9hNImL+cxRKA
-	aMy2eZ75EH6kGVZ4rjv3EUyIYEIY96VHOjXvYcgkdx5gHE5Wi12ra1uMGaC7bVk=
-X-Google-Smtp-Source: AGHT+IFkRrv4anxymQqaC6+gFUNW1PWC79HVhB7OQRfg7dRzO6pQjj6UNsBav1jFcSM3y/jmL9nPZg==
-X-Received: by 2002:a2e:9592:0:b0:2d2:c3ba:fe26 with SMTP id w18-20020a2e9592000000b002d2c3bafe26mr4940806ljh.48.1709537418377;
-        Sun, 03 Mar 2024 23:30:18 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709537504; x=1710142304;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=f51VA5MtxnAU0efzg76cN/fIARzVpps0Hh4Af04eUTk=;
+        b=mtMxQw9caCi77tx/cLHAja8o8hFNCjcR287C6/dl9mWOjsi3eKcbGC1jRi4pI2yDQS
+         rpniPrpr2j9qzIFMk3qYb/3djEhf81scHqZ1r+oDu7Jd50fpsrBGjZrg/cRHp0fHr6Jt
+         SEUVY6dgRWskTSHZKd+Njunk96zQk1nVvyWLrNX5GoC+NAmUpo/aCtlIbYnmq6Vov1Ww
+         D9+IYjBpOqoNhk7sPU8sSdr9gRNXJ9EYea9osMWUrwWt/9yTPURJ7k2PKx0yYMdjGqtW
+         vHXgiJ58AhzRF0YWNmcq0AcGKhsxoTdWQhFjsew2Pw8jHk77sYJykye0bA/uazTPtOe/
+         oCAw==
+X-Forwarded-Encrypted: i=1; AJvYcCXj5AE+en6BksBKPR5zTbOKjeot2ClW0Jle876nR4toAvFYd19Q+EdtoZhZAJP8nr48FL1D5ru+ZoLuhSKqYYudoUl0f3Ebm3fscw==
+X-Gm-Message-State: AOJu0Yx6wBx7dD79F6yJiDjlwoSsXVQBELOwyDaAMiq+NEGLANE9KN7/
+	xgki+nmhisgvuY4iF/FiH9Jx8zS4doxd7wXUcA6LLkabIPEpAqX5Q8KPBsTE4Ac=
+X-Google-Smtp-Source: AGHT+IH50+zD8hJJZMhOea5o5klj2GNCPU/jhf8hnaytno2hnVtJ77HuPpiGjm37w2PqW+nTVUVZwQ==
+X-Received: by 2002:a05:600c:470e:b0:412:bcc1:44cc with SMTP id v14-20020a05600c470e00b00412bcc144ccmr6723784wmo.3.1709537503717;
+        Sun, 03 Mar 2024 23:31:43 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id e2-20020a05600c218200b004125f34fd7csm16569261wme.31.2024.03.03.23.30.16
+        by smtp.gmail.com with ESMTPSA id e2-20020a05600c218200b004125f34fd7csm16569261wme.31.2024.03.03.23.31.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Mar 2024 23:30:17 -0800 (PST)
-Message-ID: <cb51aadd-c350-42e2-9684-ac4f7dbf864c@linaro.org>
-Date: Mon, 4 Mar 2024 08:30:16 +0100
+        Sun, 03 Mar 2024 23:31:43 -0800 (PST)
+Message-ID: <d377f0ea-2df2-4d4e-b1bc-8a4ca55eec15@linaro.org>
+Date: Mon, 4 Mar 2024 08:31:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,6 +80,7 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v4 2/3] dt-bindings: fpga: xlnx,fpga-selectmap: add DT
  schema
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Charles Perry <charles.perry@savoirfairelinux.com>,
  Rob Herring <robh+dt@kernel.org>, yilun xu <yilun.xu@intel.com>
 Cc: mdf <mdf@kernel.org>, Allen VANDIVER <avandiver@markem-imaje.com>,
@@ -94,7 +96,7 @@ References: <20240221195058.1281973-1-charles.perry@savoirfairelinux.com>
  <20240221195058.1281973-3-charles.perry@savoirfairelinux.com>
  <4a9f0eef-590b-45df-92bc-b63ad9282e18@linaro.org>
  <1012793477.1508198.1709486517581.JavaMail.zimbra@savoirfairelinux.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <cb51aadd-c350-42e2-9684-ac4f7dbf864c@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -139,119 +141,122 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1012793477.1508198.1709486517581.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <cb51aadd-c350-42e2-9684-ac4f7dbf864c@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 03/03/2024 18:21, Charles Perry wrote:
-> On Feb 27, 2024, at 3:10 AM, Krzysztof Kozlowski krzysztof.kozlowski@linaro.org wrote:
-> 
->> On 21/02/2024 20:50, Charles Perry wrote:
->>> Document the SelectMAP interface of Xilinx 7 series FPGA.
+On 04/03/2024 08:30, Krzysztof Kozlowski wrote:
+> On 03/03/2024 18:21, Charles Perry wrote:
+>> On Feb 27, 2024, at 3:10 AM, Krzysztof Kozlowski krzysztof.kozlowski@linaro.org wrote:
+>>
+>>> On 21/02/2024 20:50, Charles Perry wrote:
+>>>> Document the SelectMAP interface of Xilinx 7 series FPGA.
+>>>>
+>>>> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
+>>>> ---
+>>>>  .../bindings/fpga/xlnx,fpga-selectmap.yaml    | 86 +++++++++++++++++++
+>>>>  1 file changed, 86 insertions(+)
+>>>>  create mode 100644
+>>>>  Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>>>> b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>>>> new file mode 100644
+>>>> index 0000000000000..08a5e92781657
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>>>> @@ -0,0 +1,86 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/fpga/xlnx,fpga-selectmap.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Xilinx SelectMAP FPGA interface
+>>>> +
+>>>> +maintainers:
+>>>> +  - Charles Perry <charles.perry@savoirfairelinux.com>
+>>>> +
+>>>> +description: |
+>>>> +  Xilinx 7 Series FPGAs support a method of loading the bitstream over a
+>>>> +  parallel port named the SelectMAP interface in the documentation. Only
+>>>> +  the x8 mode is supported where data is loaded at one byte per rising edge of
+>>>> +  the clock, with the MSB of each byte presented to the D0 pin.
+>>>> +
+>>>> +  Datasheets:
+>>>> +
+>>>> https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf
+>>>> +
+>>>> +allOf:
+>>>> +  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    enum:
+>>>> +      - xlnx,fpga-xc7s-selectmap
+>>>> +      - xlnx,fpga-xc7a-selectmap
+>>>> +      - xlnx,fpga-xc7k-selectmap
+>>>> +      - xlnx,fpga-xc7v-selectmap
+>>>> +
+>>>> +  reg:
+>>>> +    description:
+>>>> +      At least 1 byte of memory mapped IO
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  prog_b-gpios:
 >>>
->>> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
->>> ---
->>>  .../bindings/fpga/xlnx,fpga-selectmap.yaml    | 86 +++++++++++++++++++
->>>  1 file changed, 86 insertions(+)
->>>  create mode 100644
->>>  Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>>> I commented on this and still see underscore. Nothing in commit msg
+>>> explains why this should have underscore. Changelog is also vague -
+>>> describes that you brought back underscores, instead of explaining why
+>>> you did it.
 >>>
->>> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
->>> b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
->>> new file mode 100644
->>> index 0000000000000..08a5e92781657
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
->>> @@ -0,0 +1,86 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/fpga/xlnx,fpga-selectmap.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Xilinx SelectMAP FPGA interface
->>> +
->>> +maintainers:
->>> +  - Charles Perry <charles.perry@savoirfairelinux.com>
->>> +
->>> +description: |
->>> +  Xilinx 7 Series FPGAs support a method of loading the bitstream over a
->>> +  parallel port named the SelectMAP interface in the documentation. Only
->>> +  the x8 mode is supported where data is loaded at one byte per rising edge of
->>> +  the clock, with the MSB of each byte presented to the D0 pin.
->>> +
->>> +  Datasheets:
->>> +
->>> https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf
->>> +
->>> +allOf:
->>> +  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
->>> +
->>> +properties:
->>> +  compatible:
->>> +    enum:
->>> +      - xlnx,fpga-xc7s-selectmap
->>> +      - xlnx,fpga-xc7a-selectmap
->>> +      - xlnx,fpga-xc7k-selectmap
->>> +      - xlnx,fpga-xc7v-selectmap
->>> +
->>> +  reg:
->>> +    description:
->>> +      At least 1 byte of memory mapped IO
->>> +    maxItems: 1
->>> +
->>> +  prog_b-gpios:
+>>> So the same comments as usual:
+>>>
+>>> No underscores in names.
+>>>
+>>> Best regards,
+>>> Krzysztof
 >>
->> I commented on this and still see underscore. Nothing in commit msg
->> explains why this should have underscore. Changelog is also vague -
->> describes that you brought back underscores, instead of explaining why
->> you did it.
+>> Hello Krzysztof,
 >>
->> So the same comments as usual:
+>> Yes, I've gone full circle on that issue. Here's what I tried so far:
+> 
+> And what part of the commit description allows me to understand this?
+> 
 >>
->> No underscores in names.
+>>  1) Reuse the same gpio names: Duplicates errors of the past, Krzysztof
+>>     doesn't like it.
+>>  2) Different gpio names for new driver only: Makes the driver code
+>>     overly complicated, Yilun doesn't like it.
+> 
+> That's a new driver, right? So what is complicated here? You have new
+> code and you take prog-b or prog_b?
+> 
+>>  3) Change gpio names for both drivers, deprecate the old names: Makes
+>>     the DT binding and the driver code overly complicated, Rob doesn't
+>>     like it.
+> 
+> I don't think I proposed changing existing bindings.
+> 
 >>
->> Best regards,
->> Krzysztof
+>> I think that while the driver code shouldn't be the driving force for
+>> the DT spec, it can be a good indication that the spec is unpractical to
+>> implement.
 > 
-> Hello Krzysztof,
+> What is impractical in implementing this? You just pass either A or B to
+> function requesting GPIO. Just choose proper name.
 > 
-> Yes, I've gone full circle on that issue. Here's what I tried so far:
-
-And what part of the commit description allows me to understand this?
-
+>>
+>> In this case, there are two interfaces on a chip that uses the same GPIO
+>> protocol, it would only make sense that they use the same names, this
+>> discards solution #2.
 > 
->  1) Reuse the same gpio names: Duplicates errors of the past, Krzysztof
->     doesn't like it.
->  2) Different gpio names for new driver only: Makes the driver code
->     overly complicated, Yilun doesn't like it.
+> I don't understand this. You have devm_gpiod_get() in your new code. Why
+> is it difficult to use different name?
 
-That's a new driver, right? So what is complicated here? You have new
-code and you take prog-b or prog_b?
-
->  3) Change gpio names for both drivers, deprecate the old names: Makes
->     the DT binding and the driver code overly complicated, Rob doesn't
->     like it.
-
-I don't think I proposed changing existing bindings.
-
-> 
-> I think that while the driver code shouldn't be the driving force for
-> the DT spec, it can be a good indication that the spec is unpractical to
-> implement.
-
-What is impractical in implementing this? You just pass either A or B to
-function requesting GPIO. Just choose proper name.
-
-> 
-> In this case, there are two interfaces on a chip that uses the same GPIO
-> protocol, it would only make sense that they use the same names, this
-> discards solution #2.
-
-I don't understand this. You have devm_gpiod_get() in your new code. Why
-is it difficult to use different name?
-
-
+And I forgot to emphasize: none of these is mentioned in commit msg, so
+for v5 you will get exactly the same complains. And for every other
+patch which repeats the same and does not clarify caveats or exceptions.
 
 Best regards,
 Krzysztof
