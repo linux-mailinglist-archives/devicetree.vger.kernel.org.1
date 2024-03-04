@@ -1,182 +1,403 @@
-Return-Path: <devicetree+bounces-47990-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47991-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDFFA86F92E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 05:24:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ED90486F9A0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 06:37:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id EFBD41C20859
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 04:24:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25F1F1C20AD6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 05:37:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAAC86117;
-	Mon,  4 Mar 2024 04:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B0B7B675;
+	Mon,  4 Mar 2024 05:37:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="gd96gwWk"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="GxdzCPv0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D94D3539E;
-	Mon,  4 Mar 2024 04:24:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.248
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A059933CF;
+	Mon,  4 Mar 2024 05:37:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709526287; cv=none; b=mK1oNTsevRZfSSv3CkvAmh5L1AzFIutDL5cU1tVsDL3ZxhY2e6+KLH9gpweR62oBdlqQL7fs0FdnTTSLlSjLk1mWoO0Ub8BpYFWqP0ardzOHnmD6LhvSMvbmyHYUpLRY3DCNWtrrNgq6zsLi7GFfEb6UXg0zTeZ93407+peJQLc=
+	t=1709530635; cv=none; b=nhGTXvUzTGnPxkoeSIrrh0mTIIaCBttbNnWBDPqllU7RzE+Nj+dofEUdQAe/z/MwUnofKrhhfJ0YWAL8Aj8kp6UE6Lv71P1EP8V46F8ov3a+gEcJuzeL5Jw0lJqMSasb3XE1b89515Gqq5dhnn3o3S34SZem9i1K2yUT5fbfdRw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709526287; c=relaxed/simple;
-	bh=/UO1JchsRlaHph8IMHDSkaKMTLSRO+gYXsqGVjDeD5M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=iMyC1lVYWvQ9Rc2W8WTOiQz4WXcvapT288unDj5HyLeKUwEyI7YeNOeD1V73teShCR9oD7LL2H2RPgbSYLrX2/aA//PltH7vdwt2u9sLh30zke1P3logr2pRoV5Ujit8BqYllPYkoIV4rAOdfei5++NjbplZdQmVTQYqSgHO4ZQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=gd96gwWk; arc=none smtp.client-ip=198.47.23.248
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 4244OOc7068967;
-	Sun, 3 Mar 2024 22:24:24 -0600
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1709526264;
-	bh=6xyNnzj+dboJSEAS1HgU2JHeEMGGFllhk6cp37pKr7w=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=gd96gwWkdfPTta0rogXvDAX8ygh0VKreIvt+8CiUeY9v2Ac61Fii5K0ky+9Ru4MKS
-	 dhSnpSDbJwHaf9CKqohRQ8sKc4nzpk3OuQWNjcdm9lUf+imcsq8iKstY59r8VF0LCN
-	 U/+sedfjJDLDOMVk4o36lcMeQUU9fQJApLNfg5uw=
-Received: from DLEE110.ent.ti.com (dlee110.ent.ti.com [157.170.170.21])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 4244OOJH055999
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Sun, 3 Mar 2024 22:24:24 -0600
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sun, 3
- Mar 2024 22:24:24 -0600
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sun, 3 Mar 2024 22:24:24 -0600
-Received: from [172.24.227.94] (uda0132425.dhcp.ti.com [172.24.227.94])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 4244OKxK077275;
-	Sun, 3 Mar 2024 22:24:20 -0600
-Message-ID: <392def9d-5e02-4ca6-8838-c4252ccd4c54@ti.com>
-Date: Mon, 4 Mar 2024 09:54:19 +0530
+	s=arc-20240116; t=1709530635; c=relaxed/simple;
+	bh=HjXWF3YIEhulQdNJEtfbqmTCEkvDaFvH0ggPzHbk8Cc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=K+bQN5/LWlxr1Y/tSuJbg42blmgQDi0BJrIQCU7oXIyHsBUM1v3vLvWLA5R0x+8bHZZOJ3s8B2p2k3haJQa7L9x6n/RCP6j7LcKe3NqZuJUWzEg+vhde8gsyaJfoB8yGhhernauz5XVbiAxBUsDMA5RSDKaU7FmHSwMAM1aDi44=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=GxdzCPv0; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1709530633; x=1741066633;
+  h=from:date:subject:mime-version:content-transfer-encoding:
+   message-id:to:cc;
+  bh=HjXWF3YIEhulQdNJEtfbqmTCEkvDaFvH0ggPzHbk8Cc=;
+  b=GxdzCPv0kdlDxubyZnN40Ef0ci5M0rolaxgGJA7+OR60xl1uQeFgNR1r
+   w8cXfl6uGsAbgHVq01SznhhkfM0QsdbgxMypWMbp13joklE0AomIx9j/x
+   zl2tAOKn0qMSvoGguI/kv37kDGDlDnroOs8UE7ZWeYr85fEpJf9+yeO0D
+   IDGgyeNMwV/7cOHbVGW6QbWoIoC7KXFCx9gXDHLbA7tnRqtUBbxZffyId
+   stk7W+NmavcpyKGnObuG3SJK/DroBtm8ELCc/PSYLEvAtOyAMpe5Lrpji
+   EozItrEL0Xjg3/Nbe+zBzWKmPXZ73Sjgq6LDYSbdJIcWIv/aqJmjR+u8+
+   Q==;
+X-CSE-ConnectionGUID: BFFWnpeARXSwNbz8PKIqCA==
+X-CSE-MsgGUID: TFY0ZBszR/y5IYBHvTBWdQ==
+X-IronPort-AV: E=Sophos;i="6.06,203,1705388400"; 
+   d="scan'208";a="18764271"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Mar 2024 22:37:06 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Sun, 3 Mar 2024 22:37:00 -0700
+Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.35 via Frontend Transport; Sun, 3 Mar 2024 22:36:54 -0700
+From: Dharma Balasubiramani <dharma.b@microchip.com>
+Date: Mon, 4 Mar 2024 11:06:39 +0530
+Subject: [PATCH v2] dt-bindings: display: atmel,lcdc: convert to dtschema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm: dts: ti: beagleplay: Fix Ethernet PHY RESET GPIOs
-Content-Language: en-US
-To: Roger Quadros <rogerq@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo
-	<kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC: <srk@ti.com>, <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20240229-b4-for-v6-9-am65-beagleplay-ethernet-reset-v1-1-b3e4b33378bd@kernel.org>
- <bfd9b146-061b-4f82-a703-3bd32ffc09b7@kernel.org>
- <c75d35c1-13f8-4f79-bf96-9a73e88d1b19@kernel.org>
-From: Vignesh Raghavendra <vigneshr@ti.com>
-In-Reply-To: <c75d35c1-13f8-4f79-bf96-9a73e88d1b19@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Message-ID: <20240304-lcdc-fb-v2-1-a14b463c157a@microchip.com>
+X-B4-Tracking: v=1; b=H4sIAOZd5WUC/2XMQQrCMBCF4auUWRtppqFVV95DujCTiRmwTUmkK
+ CV3N3br8n88vg0yJ+EMl2aDxKtkiXMNPDRA4T4/WImrDdiiaRE79SRHyltlTw4ZfUdnbaC+l8R
+ e3rt0G2sHya+YPju86t/6b6xaaWWoN2R7HAbnr5NQihRkOVKcYCylfAHkeWP8ogAAAA==
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring
+	<robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni
+	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>
+CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
+	Dharma Balasubiramani <dharma.b@microchip.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1709530605; l=9543;
+ i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
+ bh=HjXWF3YIEhulQdNJEtfbqmTCEkvDaFvH0ggPzHbk8Cc=;
+ b=94IRQwX7s9gnTfvI89sYFyGFfb2/zTDBlP2tesca5BXKYhwTOxOR2fmhzfCVTizuThfraY/xL
+ vlXlKQ8yR2iDuJ0PGZEAl+ibN2vL9V6ZHreClongs0/iqur3eXTsAtq
+X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
+ pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
 
-Hi Roger,
+Convert the atmel,lcdc bindings to DT schema.
+Changes during conversion: add missing clocks and clock-names properties.
 
-On 02/03/24 02:59, Roger Quadros wrote:
-> 
-> 
-> On 01/03/2024 22:58, Roger Quadros wrote:
->>
->>
->> On 29/02/2024 18:25, Roger Quadros wrote:
->>> The RESET GPIO pinmux should be part of MDIO bus node
->>> so that they can be in the right state before the PHY
->>> can be probed via MDIO bus scan.
->>>
->>> Add GPIO reset for the Gigabit Ethernet PHY. As per
->>> RTL8211F datasheet, reset assert width is 10ms and
->>> PHY registers can be access accessed after 50ms of
->>> reset deassert.
->>>
->>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
->>> ---
->>>  arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 8 ++++++--
->>>  1 file changed, 6 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
->>> index a34e0df2ab86..77240cf3ae4d 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
->>> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
->>> @@ -292,6 +292,8 @@ mdio0_pins_default: mdio0-default-pins {
->>>  		pinctrl-single,pins = <
->>>  			AM62X_IOPAD(0x0160, PIN_OUTPUT, 0) /* (AD24) MDIO0_MDC */
->>>  			AM62X_IOPAD(0x015c, PIN_INPUT, 0) /* (AB22) MDIO0_MDIO */
->>> +			AM62X_IOPAD(0x003c, PIN_INPUT, 7) /* (M25) GPMC0_AD0.GPIO0_15 */
->>
->> This should be PIN_OUTPUT.
->> Will fix in next spin.
-> 
-> Actually PIN_INPUT is correct else we won't be able to read the correct GPIO pin status
-> on gpio read.
-> I observe this issue on u-boot at least.
-> 
->>
->>> +			AM62X_IOPAD(0x018c, PIN_OUTPUT, 7) /* (AC21) RGMII2_RD2.GPIO1_5 */
-> 
-> This one needs to be fixed to PIN_INPUT.
+Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+---
+This patch converts the existing lcdc display text binding to JSON schema.
+The binding is split into two namely
+lcdc.yaml
+- Holds the frame buffer properties
+lcdc-display.yaml
+- Holds the display panel properties which is a phandle to the display
+property in lcdc fb node.
 
-While at it, please fix the $subject prefix:
+These bindings are tested against the existing at91 dts files using
+dtbs_check.
+---
+Changes in v2:
+- Run checkpatch and remove whitespace errors.
+- Add the standard interrupt flags.
+- Split the binding into two, namely lcdc.yaml and lcdc-display.yaml.
+- Link to v1: https://lore.kernel.org/r/20240223-lcdc-fb-v1-1-4c64cb6277df@microchip.com
+---
+ .../bindings/display/atmel,lcdc-display.yaml       | 98 ++++++++++++++++++++++
+ .../devicetree/bindings/display/atmel,lcdc.txt     | 87 -------------------
+ .../devicetree/bindings/display/atmel,lcdc.yaml    | 70 ++++++++++++++++
+ 3 files changed, 168 insertions(+), 87 deletions(-)
 
-arm64: dts: ti: beagleplay: ...
+diff --git a/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml b/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml
+new file mode 100644
+index 000000000000..ea4fd34b9e2c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml
+@@ -0,0 +1,98 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/atmel,lcdc-display.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip's LCDC Display
++
++maintainers:
++  - Nicolas Ferre <nicolas.ferre@microchip.com>
++  - Dharma Balasubiramani <dharma.b@microchip.com>
++
++description:
++  The LCD Controller (LCDC) consists of logic for transferring LCD image data
++  from an external display buffer to a TFT LCD panel. The LCDC has one display
++  input buffer per layer that fetches pixels through the single bus host
++  interface and a look-up table to allow palletized display configurations. The
++  LCDC is programmable on a per layer basis, and supports different LCD
++  resolutions, window sizes, image formats and pixel depths.
++
++# We need a select here since this schema is applicable only for nodes with the
++# following properties
++
++select:
++  anyOf:
++    - required: [ 'atmel,dmacon' ]
++    - required: [ 'atmel,lcdcon2' ]
++    - required: [ 'atmel,guard-time' ]
++    - required: [ bits-per-pixel ]
++
++properties:
++  atmel,dmacon:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: dma controller configuration
++
++  atmel,lcdcon2:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: lcd controller configuration
++
++  atmel,guard-time:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: lcd guard time (Delay in frame periods)
++
++  bits-per-pixel:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: lcd panel bit-depth.
++
++  atmel,lcdcon-backlight:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: enable backlight
++
++  atmel,lcdcon-backlight-inverted:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: invert backlight PWM polarity
++
++  atmel,lcd-wiring-mode:
++    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
++    description: lcd wiring mode "RGB" or "BRG"
++
++  atmel,power-control-gpio:
++    description: gpio to power on or off the LCD (as many as needed)
++
++  display-timings:
++    $ref: panel/display-timings.yaml#
++
++required:
++  - atmel,dmacon
++  - atmel,lcdcon2
++  - atmel,guard-time
++  - bits-per-pixel
++
++additionalProperties: false
++
++examples:
++  - |
++    display: panel {
++      bits-per-pixel = <32>;
++      atmel,lcdcon-backlight;
++      atmel,dmacon = <0x1>;
++      atmel,lcdcon2 = <0x80008002>;
++      atmel,guard-time = <9>;
++      atmel,lcd-wiring-mode = <1>;
++
++      display-timings {
++        native-mode = <&timing0>;
++        timing0: timing0 {
++          clock-frequency = <9000000>;
++          hactive = <480>;
++          vactive = <272>;
++          hback-porch = <1>;
++          hfront-porch = <1>;
++          vback-porch = <40>;
++          vfront-porch = <1>;
++          hsync-len = <45>;
++          vsync-len = <1>;
++        };
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/display/atmel,lcdc.txt b/Documentation/devicetree/bindings/display/atmel,lcdc.txt
+deleted file mode 100644
+index b5e355ada2fa..000000000000
+--- a/Documentation/devicetree/bindings/display/atmel,lcdc.txt
++++ /dev/null
+@@ -1,87 +0,0 @@
+-Atmel LCDC Framebuffer
+------------------------------------------------------
+-
+-Required properties:
+-- compatible :
+-	"atmel,at91sam9261-lcdc" , 
+-	"atmel,at91sam9263-lcdc" ,
+-	"atmel,at91sam9g10-lcdc" ,
+-	"atmel,at91sam9g45-lcdc" ,
+-	"atmel,at91sam9g45es-lcdc" ,
+-	"atmel,at91sam9rl-lcdc" ,
+-- reg : Should contain 1 register ranges(address and length).
+-	Can contain an additional register range(address and length)
+-	for fixed framebuffer memory. Useful for dedicated memories.
+-- interrupts : framebuffer controller interrupt
+-- display: a phandle pointing to the display node
+-
+-Required nodes:
+-- display: a display node is required to initialize the lcd panel
+-	This should be in the board dts.
+-- default-mode: a videomode within the display with timing parameters
+-	as specified below.
+-
+-Optional properties:
+-- lcd-supply: Regulator for LCD supply voltage.
+-
+-Example:
+-
+-	fb0: fb@00500000 {
+-		compatible = "atmel,at91sam9g45-lcdc";
+-		reg = <0x00500000 0x1000>;
+-		interrupts = <23 3 0>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_fb>;
+-		display = <&display0>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-
+-	};
+-
+-Example for fixed framebuffer memory:
+-
+-	fb0: fb@00500000 {
+-		compatible = "atmel,at91sam9263-lcdc";
+-		reg = <0x00700000 0x1000 0x70000000 0x200000>;
+-		[...]
+-	};
+-
+-Atmel LCDC Display
+------------------------------------------------------
+-Required properties (as per of_videomode_helper):
+-
+- - atmel,dmacon: dma controller configuration
+- - atmel,lcdcon2: lcd controller configuration
+- - atmel,guard-time: lcd guard time (Delay in frame periods)
+- - bits-per-pixel: lcd panel bit-depth.
+-
+-Optional properties (as per of_videomode_helper):
+- - atmel,lcdcon-backlight: enable backlight
+- - atmel,lcdcon-backlight-inverted: invert backlight PWM polarity
+- - atmel,lcd-wiring-mode: lcd wiring mode "RGB" or "BRG"
+- - atmel,power-control-gpio: gpio to power on or off the LCD (as many as needed)
+-
+-Example:
+-	display0: display {
+-		bits-per-pixel = <32>;
+-		atmel,lcdcon-backlight;
+-		atmel,dmacon = <0x1>;
+-		atmel,lcdcon2 = <0x80008002>;
+-		atmel,guard-time = <9>;
+-		atmel,lcd-wiring-mode = <1>;
+-
+-		display-timings {
+-			native-mode = <&timing0>;
+-			timing0: timing0 {
+-				clock-frequency = <9000000>;
+-				hactive = <480>;
+-				vactive = <272>;
+-				hback-porch = <1>;
+-				hfront-porch = <1>;
+-				vback-porch = <40>;
+-				vfront-porch = <1>;
+-				hsync-len = <45>;
+-				vsync-len = <1>;
+-			};
+-		};
+-	};
+diff --git a/Documentation/devicetree/bindings/display/atmel,lcdc.yaml b/Documentation/devicetree/bindings/display/atmel,lcdc.yaml
+new file mode 100644
+index 000000000000..1b6f7e395006
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/atmel,lcdc.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/atmel,lcdc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip's LCDC Framebuffer
++
++maintainers:
++  - Nicolas Ferre <nicolas.ferre@microchip.com>
++  - Dharma Balasubiramani <dharma.b@microchip.com>
++
++description:
++  The LCDC works with a framebuffer, which is a section of memory that contains
++  a complete frame of data representing pixel values for the display. The LCDC
++  reads the pixel data from the framebuffer and sends it to the LCD panel to
++  render the image.
++
++properties:
++  compatible:
++    enum:
++      - atmel,at91sam9261-lcdc
++      - atmel,at91sam9263-lcdc
++      - atmel,at91sam9g10-lcdc
++      - atmel,at91sam9g45-lcdc
++      - atmel,at91sam9g45es-lcdc
++      - atmel,at91sam9rl-lcdc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 2
++
++  clock-names:
++    items:
++      - const: hclk
++      - const: lcdc_clk
++
++  display:
++    $ref: /schemas/types.yaml#/definitions/phandle
++    description: A phandle pointing to the display node.
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - display
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/clock/at91.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    fb@500000 {
++      compatible = "atmel,at91sam9g45-lcdc";
++      reg = <0x00500000 0x1000>;
++      interrupts = <23 IRQ_TYPE_LEVEL_HIGH 0>;
++      pinctrl-names = "default";
++      pinctrl-0 = <&pinctrl_fb>;
++      clocks = <&pmc PMC_TYPE_PERIPHERAL 23>, <&pmc PMC_TYPE_PERIPHERAL 23>;
++      clock-names = "hclk", "lcdc_clk";
++      display = <&display>;
++    };
 
-Do we need a Fixes: Tag too?
+---
+base-commit: 90d35da658da8cff0d4ecbb5113f5fac9d00eb72
+change-id: 20240223-lcdc-fb-b8d2e2f3c914
 
-> 
->>>  		>;
->>>  	};
->>>  
->>> @@ -383,7 +385,6 @@ AM62X_IOPAD(0x017c, PIN_INPUT, 1) /* (AD22) RGMII2_RX_CTL.RMII2_RX_ER */
->>>  			AM62X_IOPAD(0x016c, PIN_INPUT, 1) /* (Y18) RGMII2_TD0.RMII2_TXD0 */
->>>  			AM62X_IOPAD(0x0170, PIN_INPUT, 1) /* (AA18) RGMII2_TD1.RMII2_TXD1 */
->>>  			AM62X_IOPAD(0x0164, PIN_INPUT, 1) /* (AA19) RGMII2_TX_CTL.RMII2_TX_EN */
->>> -			AM62X_IOPAD(0x018c, PIN_OUTPUT, 7) /* (AC21) RGMII2_RD2.GPIO1_5 */
->>>  			AM62X_IOPAD(0x0190, PIN_INPUT, 7) /* (AE22) RGMII2_RD3.GPIO1_6 */
->>>  			AM62X_IOPAD(0x01f0, PIN_OUTPUT, 5) /* (A18) EXT_REFCLK1.CLKOUT0 */
->>>  		>;
->>> @@ -597,6 +598,9 @@ &cpsw3g_mdio {
->>>  
->>>  	cpsw3g_phy0: ethernet-phy@0 {
->>>  		reg = <0>;
->>> +		reset-gpios = <&main_gpio0 15 GPIO_ACTIVE_LOW>;
->>> +		reset-assert-us = <10000>;
->>> +		reset-deassert-us = <50000>;
->>>  	};
->>>  
->>>  	cpsw3g_phy1: ethernet-phy@1 {
->>> @@ -615,7 +619,7 @@ &main_gpio0 {
->>>  		"USR0", "USR1", "USR2", "USR3", "", "", "USR4",	/* 3-9 */
->>>  		"EEPROM_WP",					/* 10 */
->>>  		"CSI2_CAMERA_GPIO1", "CSI2_CAMERA_GPIO2",	/* 11-12 */
->>> -		"CC1352P7_BOOT", "CC1352P7_RSTN", "", "", "",	/* 13-17 */
->>> +		"CC1352P7_BOOT", "CC1352P7_RSTN", "GBE_RSTN", "", "",	/* 13-17 */
->>>  		"USR_BUTTON", "", "", "", "", "", "", "", "",	/* 18-26 */
->>>  		"", "", "", "", "", "", "", "", "", "HDMI_INT",	/* 27-36 */
->>>  		"", "VDD_WLAN_EN", "", "", "WL_IRQ", "GBE_INTN",/* 37-42 */
->>>
->>> ---
->>> base-commit: bbef42084cc170cbfc035bf784f2ff055c939d7e
->>> change-id: 20240229-b4-for-v6-9-am65-beagleplay-ethernet-reset-098f274fbf15
->>>
->>> Best regards,
->>
-> 
-
+Best regards,
 -- 
-Regards
-Vignesh
+Dharma Balasubiramani <dharma.b@microchip.com>
+
 
