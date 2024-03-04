@@ -1,224 +1,228 @@
-Return-Path: <devicetree+bounces-48234-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48235-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21875870E58
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 22:43:11 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 42CFF870FAC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 23:02:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8732CB2836D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:43:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ED005282755
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 22:01:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 307B01EB5A;
-	Mon,  4 Mar 2024 21:43:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84F2079DCA;
+	Mon,  4 Mar 2024 22:01:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="g8sLL/XG"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kzwDgspQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 502168F58
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 21:43:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C7C81F60A;
+	Mon,  4 Mar 2024 22:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709588586; cv=none; b=bVpvJP7EHRQ1u0IvKiQYEruaq5JPVBy2sa1BcPIirHV5IAXm4MWUyfkuRfroQwMhcCll8LpdVfL3NkvHDkNvP5HAfLEF/egBiJZrGZGmfixuBXacLHvd5o06R0vyBBBVQeOfpK0b0FeeAQshd4sfW0HpY0sCJ4R3lwnVL5mYYQ4=
+	t=1709589716; cv=none; b=pYho1rsLgfB7jsGuDgFQ5eWXBeaO/G/JJuQ2sJuS9RD+lll69Xe9wJFTR97k+dqamIxS9IaQoWPSPigdCE9uUV41GzhZnl6HzecWAm3j+qTNuof9nYmm6k9uuMOydx7nLxTocAu8vh6eYEyE09AJPxdOtV0I6quUC6eQW/SQ7+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709588586; c=relaxed/simple;
-	bh=NcZbdb3mJZwySumOHN45aR4MKl3xOW7cEaAqQHBZKLg=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=N6qzV0Q+JYy/TElMyAVyQmvory5wMZncW7UvKRz68z+AW0cga9zMseMAJMpRJzHtqR2XFxB6IExqFYCov+rVPNMksQznYX5NqCFOXX7V2x65ncG4/AiQ4OEvc81BLB61kuSGHC/MsZwMeVKrMEH7VKHkxfhD10Opxscr2gqxyGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=g8sLL/XG; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33d118a181fso3169593f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 13:43:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709588583; x=1710193383; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=y0WV0jwQBZsJcLmuwWex956CkPmkwWx0VAGntPbjYM8=;
-        b=g8sLL/XGQYrqjVdu61HS8OGarH1VchFW9Gx06UJKd1WedgsAJhFWjAgFL4+6ZsO4lw
-         NoaYlG18RiMiatUa+I1uCQKAevRsT/gesh8liwG1Bwyg3S7R7S/GjsHRj9jrANiOWvZG
-         JuqZAPCJQ4GyMMPJf+3MzilLihKHs0rCZc0nGbUjmdNKmWB5OoU8G1DBuoYfpUxptnCi
-         FYXo2VGsHSoq+di5l7gkA2JFcD6sENTVvNag4+ISFWW+0AEqyw7nR6BjSKYqyrXC+Snm
-         IoQfxTb85JfIHuaYwCydKB6eL4HAAD1XiedeTNUK/udocoZ4op8byrL6OiwCI2o6zsOf
-         e8YQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709588583; x=1710193383;
-        h=content-transfer-encoding:in-reply-to:references:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=y0WV0jwQBZsJcLmuwWex956CkPmkwWx0VAGntPbjYM8=;
-        b=Jemq3nn8rXLOk1ofl54sSgvBp35sC943QfhlkDIFXNhqtaLibBS3rvAwHCJzsfx8Ho
-         DHBy029yPSQvT/xb3fM0RiVzoEpfTUUPOVHSMkljXM0Cb0xI6Vyo3pSjPFA57PFcgJF8
-         64Fx+6rZpI0tJIQekPuDLoxgHca8Eu3ajiRMC+eaiSx+l8rip00R4P7317y7UhwiA8Zh
-         ICx+CSA/+wyroDvPac9bMc30xsBoPpwS/63BmydW0zO4WfDzzv3b7fB66I35Yth/mZXM
-         EwicPlYU+NwCSOf2U1mta7daBGh7BjHDBilEDLYclFng7GJgtEvVx9FB4NaQx4cxu0uU
-         LASg==
-X-Forwarded-Encrypted: i=1; AJvYcCXDPSoTKgCNz0BBnTnZYqqr/fENju30R4lxaYMrLcIQ+StnnMF7iRXntOQR1nJVp9MfHXYGGQz6YJTcbwmwU0ZDmrZSmOyTz9hYuQ==
-X-Gm-Message-State: AOJu0YwY0jIEpZpHxwlgB3aCNxmSVtgjobhfz2tV1OnkNyczMx0QwuGt
-	2pLsWFpH5nUPAeNoOJE9QDzOx6C2Mikrpui+mI9dIyLvyg9dvBEr9ezLLAfo544=
-X-Google-Smtp-Source: AGHT+IGdwPbU6QcEbB9P7le+/pUg8GqOczNkE8PcfWYyj6AsotD06BnVYlD9+IEm8fNe+f0ObiXcGw==
-X-Received: by 2002:a5d:594b:0:b0:33d:f30:5689 with SMTP id e11-20020a5d594b000000b0033d0f305689mr7000761wri.30.1709588582788;
-        Mon, 04 Mar 2024 13:43:02 -0800 (PST)
-Received: from [192.168.1.78] (host-92-17-96-232.as13285.net. [92.17.96.232])
-        by smtp.gmail.com with ESMTPSA id h6-20020a05600c314600b00412e8c645a1sm1753289wmo.46.2024.03.04.13.43.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Mar 2024 13:43:02 -0800 (PST)
-Message-ID: <3d8bcab2-70d3-432e-ad18-150230006223@linaro.org>
-Date: Mon, 4 Mar 2024 21:43:01 +0000
+	s=arc-20240116; t=1709589716; c=relaxed/simple;
+	bh=cqXMB5LaH1/xbA9ssgEQZjW69NwMDww1M1qLrr+EmDM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y4NQl4zIvm6rTDGNyWYo1P0jqLszlDXUc+EYePNI3IBkLPCqV8Kgeyt12J/yhe0+Cg1BfzVUzxMGc3TEAng6KH5KFk7lTHM16lVExQ/r6L/GDhP1j+XoT20KA/FYxMpxO769LcyfLK3aLqAek/RiQWC0DhtrYeQGBXJo3eVvA5M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kzwDgspQ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0715DC433C7;
+	Mon,  4 Mar 2024 22:01:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709589716;
+	bh=cqXMB5LaH1/xbA9ssgEQZjW69NwMDww1M1qLrr+EmDM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=kzwDgspQIO25NArRMwENJ9Lcj00WGdi2KhrHvwxCo7fsbV2LTA9bHtNHbfhvYoF65
+	 o0E8Ccy9lQEJZB2GDGnvUvBfpSXFffA8u3NCkWeqpiRllSvP4R6t6DQbAcHi2Mqe3a
+	 BiI2jYmtfugdMRsHeeeIUriNJCJaT/rZBgM+tCz6t+hkbrYX7SnBjZ5B3O9qGV9VJc
+	 /HvYp6ur22G2Im0S0T39SDa4rsiUYQLooEGFoHWLsE99i8kOpMGmtIbUksbhbwltZd
+	 Rs3TR++2GxK/f3kGwAmAL/RE305D06Xtj4QdC9jjgICE1O3FTofrPr+4JkWuZIu97b
+	 c0inMgWAuyrgA==
+Date: Mon, 4 Mar 2024 16:01:54 -0600
+From: Rob Herring <robh@kernel.org>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Nicolas Ferre <nicolas.ferre@microchip.com>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Claudiu Beznea <claudiu.beznea@tuxon.dev>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: display: atmel,lcdc: convert to dtschema
+Message-ID: <20240304220154.GA1115739-robh@kernel.org>
+References: <20240304-lcdc-fb-v3-1-8b616fbb0199@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] drm/panel: add samsung s6e3fa7 panel driver
-Content-Language: en-US
-From: Caleb Connolly <caleb.connolly@linaro.org>
-To: Richard Acayan <mailingradian@gmail.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Thierry Reding <thierry.reding@gmail.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20240209001639.387374-6-mailingradian@gmail.com>
- <20240209001639.387374-8-mailingradian@gmail.com>
- <daf91db8-c03c-412b-9f0e-8134a7a6e8d5@linaro.org>
-In-Reply-To: <daf91db8-c03c-412b-9f0e-8134a7a6e8d5@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240304-lcdc-fb-v3-1-8b616fbb0199@microchip.com>
 
+On Mon, Mar 04, 2024 at 08:00:03PM +0530, Dharma Balasubiramani wrote:
+> Convert the atmel,lcdc bindings to DT schema.
+> Changes during conversion: add missing clocks and clock-names properties.
+> 
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+> This patch converts the existing lcdc display text binding to JSON schema.
+> The binding is split into two namely
+> lcdc.yaml
+> - Holds the frame buffer properties
+> lcdc-display.yaml
+> - Holds the display panel properties which is a phandle to the display
+> property in lcdc fb node.
+> 
+> These bindings are tested using the following command.
+> 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> ---
+> Changes in v3:
+> - Remove the generic property "bits-per-pixel"
+> - Link to v2: https://lore.kernel.org/r/20240304-lcdc-fb-v2-1-a14b463c157a@microchip.com
+> 
+> Changes in v2:
+> - Run checkpatch and remove whitespace errors.
+> - Add the standard interrupt flags.
+> - Split the binding into two, namely lcdc.yaml and lcdc-display.yaml.
+> - Link to v1: https://lore.kernel.org/r/20240223-lcdc-fb-v1-1-4c64cb6277df@microchip.com
+> ---
+>  .../bindings/display/atmel,lcdc-display.yaml       | 97 ++++++++++++++++++++++
+>  .../devicetree/bindings/display/atmel,lcdc.txt     | 87 -------------------
+>  .../devicetree/bindings/display/atmel,lcdc.yaml    | 70 ++++++++++++++++
+>  3 files changed, 167 insertions(+), 87 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml b/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml
+> new file mode 100644
+> index 000000000000..5e0b706d695d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml
+> @@ -0,0 +1,97 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/atmel,lcdc-display.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip's LCDC Display
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Dharma Balasubiramani <dharma.b@microchip.com>
+> +
+> +description:
+> +  The LCD Controller (LCDC) consists of logic for transferring LCD image data
+> +  from an external display buffer to a TFT LCD panel. The LCDC has one display
+> +  input buffer per layer that fetches pixels through the single bus host
+> +  interface and a look-up table to allow palletized display configurations. The
+> +  LCDC is programmable on a per layer basis, and supports different LCD
+> +  resolutions, window sizes, image formats and pixel depths.
+> +
+> +# We need a select here since this schema is applicable only for nodes with the
+> +# following properties
+> +
+> +select:
+> +  anyOf:
+> +    - required: [ 'atmel,dmacon' ]
+> +    - required: [ 'atmel,lcdcon2' ]
+> +    - required: [ 'atmel,guard-time' ]
+> +
+> +properties:
+> +  atmel,dmacon:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: dma controller configuration
+> +
+> +  atmel,lcdcon2:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: lcd controller configuration
+> +
+> +  atmel,guard-time:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: lcd guard time (Delay in frame periods)
 
+Is there a maximum?
 
-On 04/03/2024 21:41, Caleb Connolly wrote:
-> 
-> 
-> On 09/02/2024 00:16, Richard Acayan wrote:
->> The S6E3FA7 display controller is enabled in every Pixel 3a (non-XL)
->> variant. Add the driver for it, generated by
->> linux-mdss-dsi-panel-driver-generator.
->>
->> There are other panels connected to the same S6E3FA7 display controller,
->> such as the AMS604NL01 panel, which are incompatible with this driver.
->> Name the device tree compatible after the panel model according to
->> iFixit.
->>
->> Link: https://github.com/msm8916-mainline/linux-mdss-dsi-panel-driver-generator
->> Link: https://android.googlesource.com/kernel/msm/+/7fda1cd7b64710dafac5f34899611c6d35eb4cd2/arch/arm64/boot/dts/google/dsi-panel-s6e3fa7-1080p-cmd.dtsi
->> Link: https://github.com/msm8953-mainline/linux/blob/v6.6.12-r0/drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c
->> Link: https://www.ifixit.com/Guide/Image/meta/muyjtLQTHu6MDkhK
->> Signed-off-by: Richard Acayan <mailingradian@gmail.com>
->> ---
->>  drivers/gpu/drm/panel/Kconfig                 |   9 +
->>  drivers/gpu/drm/panel/Makefile                |   1 +
->>  drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c | 285 ++++++++++++++++++
->>  3 files changed, 295 insertions(+)
->>  create mode 100644 drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c
->>
-> 
->> diff --git a/drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c b/drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c
->> new file mode 100644
->> index 000000000000..10bc8fb5f1f9
->> --- /dev/null
->> +++ b/drivers/gpu/drm/panel/panel-samsung-s6e3fa7.c
->> @@ -0,0 +1,285 @@
-> 
-> [snip]
->> +
->> +static int s6e3fa7_panel_probe(struct mipi_dsi_device *dsi)
->> +{
->> +	struct device *dev = &dsi->dev;
->> +	struct s6e3fa7_panel *ctx;
->> +	int ret;
->> +
->> +	ctx = devm_kzalloc(dev, sizeof(*ctx), GFP_KERNEL);
->> +	if (!ctx)
->> +		return -ENOMEM;
->> +
->> +	ctx->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
->> +	if (IS_ERR(ctx->reset_gpio))
->> +		return dev_err_probe(dev, PTR_ERR(ctx->reset_gpio),
->> +				     "Failed to get reset-gpios\n");
->> +
->> +	ctx->dsi = dsi;
->> +	mipi_dsi_set_drvdata(dsi, ctx);
->> +
->> +	dsi->lanes = 4;
->> +	dsi->format = MIPI_DSI_FMT_RGB888;
->> +	dsi->mode_flags = MIPI_DSI_MODE_VIDEO_BURST |
-> This flag is only used for video mode panels, you can drop it.
+> +
+> +  bits-per-pixel:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: lcd panel bit-depth.
 
-Nevermind, I should really check the dates before hitting reply :/
-> 
-> With that,
-> 
-> Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
->> +			  MIPI_DSI_CLOCK_NON_CONTINUOUS | MIPI_DSI_MODE_LPM;
->> +
->> +	drm_panel_init(&ctx->panel, dev, &s6e3fa7_panel_funcs,
->> +		       DRM_MODE_CONNECTOR_DSI);
->> +	ctx->panel.prepare_prev_first = true;
->> +
->> +	ctx->panel.backlight = s6e3fa7_panel_create_backlight(dsi);
->> +	if (IS_ERR(ctx->panel.backlight))
->> +		return dev_err_probe(dev, PTR_ERR(ctx->panel.backlight),
->> +				     "Failed to create backlight\n");
->> +
->> +	drm_panel_add(&ctx->panel);
->> +
->> +	ret = mipi_dsi_attach(dsi);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Failed to attach to DSI host: %d\n", ret);
->> +		drm_panel_remove(&ctx->panel);
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void s6e3fa7_panel_remove(struct mipi_dsi_device *dsi)
->> +{
->> +	struct s6e3fa7_panel *ctx = mipi_dsi_get_drvdata(dsi);
->> +	int ret;
->> +
->> +	ret = mipi_dsi_detach(dsi);
->> +	if (ret < 0)
->> +		dev_err(&dsi->dev, "Failed to detach from DSI host: %d\n", ret);
->> +
->> +	drm_panel_remove(&ctx->panel);
->> +}
->> +
->> +static const struct of_device_id s6e3fa7_panel_of_match[] = {
->> +	{ .compatible = "samsung,s6e3fa7-ams559nk06" },
->> +	{ /* sentinel */ }
->> +};
->> +MODULE_DEVICE_TABLE(of, s6e3fa7_panel_of_match);
->> +
->> +static struct mipi_dsi_driver s6e3fa7_panel_driver = {
->> +	.probe = s6e3fa7_panel_probe,
->> +	.remove = s6e3fa7_panel_remove,
->> +	.driver = {
->> +		.name = "panel-samsung-s6e3fa7",
->> +		.of_match_table = s6e3fa7_panel_of_match,
->> +	},
->> +};
->> +module_mipi_dsi_driver(s6e3fa7_panel_driver);
->> +
->> +MODULE_AUTHOR("Richard Acayan <mailingradian@gmail.com>");
->> +MODULE_DESCRIPTION("DRM driver for Samsung S6E3FA7 command mode DSI panel");
->> +MODULE_LICENSE("GPL");
-> 
+Constraints?
 
--- 
-// Caleb (they/them)
+> +
+> +  atmel,lcdcon-backlight:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: enable backlight
+> +
+> +  atmel,lcdcon-backlight-inverted:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description: invert backlight PWM polarity
+> +
+> +  atmel,lcd-wiring-mode:
+> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+
+Isn't this just a single string rather than an array?
+
+> +    description: lcd wiring mode "RGB" or "BRG"
+
+enum:
+  - RGB
+  - BRG
+
+No BGR?
+
+But wait, the example shows the value is '1'. That should fail testing. 
+It didn't, but I've now fixed that.
+
+> +
+> +  atmel,power-control-gpio:
+> +    description: gpio to power on or off the LCD (as many as needed)
+
+maxItems: 1
+
+> +
+> +  display-timings:
+> +    $ref: panel/display-timings.yaml#
+> +
+> +required:
+> +  - atmel,dmacon
+> +  - atmel,lcdcon2
+> +  - atmel,guard-time
+> +  - bits-per-pixel
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    display: panel {
+> +      bits-per-pixel = <32>;
+> +      atmel,lcdcon-backlight;
+> +      atmel,dmacon = <0x1>;
+> +      atmel,lcdcon2 = <0x80008002>;
+> +      atmel,guard-time = <9>;
+> +      atmel,lcd-wiring-mode = <1>;
+> +
+> +      display-timings {
+> +        native-mode = <&timing0>;
+> +        timing0: timing0 {
+> +          clock-frequency = <9000000>;
+> +          hactive = <480>;
+> +          vactive = <272>;
+> +          hback-porch = <1>;
+> +          hfront-porch = <1>;
+> +          vback-porch = <40>;
+> +          vfront-porch = <1>;
+> +          hsync-len = <45>;
+> +          vsync-len = <1>;
+> +        };
+> +      };
+> +    };
 
