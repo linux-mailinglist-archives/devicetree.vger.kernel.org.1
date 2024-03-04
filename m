@@ -1,166 +1,160 @@
-Return-Path: <devicetree+bounces-48059-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48060-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F6F786FE38
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 11:01:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 64DC686FE5B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 11:07:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3C8D1F2117A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 10:01:03 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B8172819D1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 10:07:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C890022331;
-	Mon,  4 Mar 2024 10:00:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DC52224E0;
+	Mon,  4 Mar 2024 10:06:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="maGBN6NO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Pww2daha"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C2A24B2B;
-	Mon,  4 Mar 2024 10:00:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D97452208A;
+	Mon,  4 Mar 2024 10:06:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709546451; cv=none; b=l0MT5Bsw8eczFjqsaGmUMf5MBFplnBxuno1zfVakksakhQjqlSFbo/fZcvFGt8aNIzuKTgBv20DdnPBcDYtjJT7gp7WZkDOwziZHZMU7+HiKwezUdNEoDEH00fE1CIPaYlr3uvifetFSKndXRLb7ubu+rsAgcMV0VUOd65Oz7t0=
+	t=1709546802; cv=none; b=Eaf2q6fyVkUyKWEliy761kqG/85oqXS0LqVJWwzDW+qiv786vyV66nsvMzCDM1SzcrmpK93HI6XOrFq5P8sq2CGZmMjAXZqUhL/wNvH/FdrS3GStv2SHaJAeLimjO2JLk+j9F3c/9rO042HwHYzUNNU+I+0pFw5KuADJI1JlHFQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709546451; c=relaxed/simple;
-	bh=Ltz90TO6kzYU5NNZDHlenUvdrRAeb9Z4YTkBpwDlM6k=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=flHKRM4ThWRKTv0OM7OnOduDta4uLQ23yuEzktjmGbirnDdkNqSlvu93BFRVHOspDzqXhf5agjf5KEJv2N6JlFbBYOBY10X53FvQdo1Bw+WtOT4ZpzMmBFOZieZioh9sG0jxUw+45nVSD9zWXhPpTyonGwLdbhRRVBzbUWNxiJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=maGBN6NO; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 35D9C240011;
-	Mon,  4 Mar 2024 10:00:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709546446;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=pz1yibsIsNHyK2XZsyjOxrFSmLQ7xgeVb+gsJobLKuE=;
-	b=maGBN6NOtE6vKHL1RnDS5WOvUaS37rhoc/gAC3aGOI2TqC8PyRPfBQq4vQxP0Gyyl2s4ax
-	NviTY9rFf8juUhThZVE4NqOCS0a8GhBFxTqjJTWIT0Qj92967tm4lPeJtTyWmQd84EBBiy
-	qldXFnyRJGr0n3OuBAJuYV7jdzwjN9j4fa4AG3ajgES9yK3hpFDGwv1AjLl3lXErJFMoxG
-	7PuFTSOxSFKsoOpmefpFyzU8wNLVcdJdgZE3F/4Q90L28+Q9T6+qgs8fZ0FGyFNNGffDEW
-	B8V6f6p/JiNEsog8hUpRWKfVtcsdad7apTXg6PhzhUHOJ8dM2k1+VK0+1p+3HA==
+	s=arc-20240116; t=1709546802; c=relaxed/simple;
+	bh=ql2YE9dLy7/HqksxFsL3EMa70qfrq6G0Ss3uyxIAfU8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=fZoTFFMh32rIdVTHLNSgZNTNpITE7oBUZNWGWJoNLCgRTxmsLOON0c/5Ftd1cjQX+AliqQ0ep/oe1rz5QtXIvEbuMY0NK6Qlr32ByClNWHNg3eBR7jIupZMU9Ohep1mgMXXatacYHSLZoBlwaxJxg5vRtJsNXJ+k5OnvnkEDX5s=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Pww2daha; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D6E61C433C7;
+	Mon,  4 Mar 2024 10:06:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709546801;
+	bh=ql2YE9dLy7/HqksxFsL3EMa70qfrq6G0Ss3uyxIAfU8=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Pww2dahaYktpZw8zT+GAeiG3eZOnqVJMgGXYa9jEHCUPuvpwexEgiwYHLp8oIPWV1
+	 p9Nfs2tLGMtfRtk/61TvqOxv6B/o8bdnNnoNv4fmtMezl9QEk1KTwDhwsXfJQhjb0R
+	 S8h/M2BjnZsTX1daFrf3PHgFHyPx/I/hW2Bd7Tg7nKt2GEvzlbv3awpzmXs8VmBuEz
+	 YAzCR9rxIfj0eY9MHL/Hs6xaKa1v/WiUM4kjerG4w5F0PtzOvRZsegSxW7fevoo+Wl
+	 L6UHJUJs6JB0QPzhTtfH3TutaU8TBxfoCo5iNyFvwFfdBp+I8psu0Q8zPKUB5ig+iD
+	 mpOFS/TxydkMA==
+Date: Mon, 4 Mar 2024 11:06:38 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Frank Oltmanns <frank@oltmanns.dev>
+Cc: Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, 
+	Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>, Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Sam Ravnborg <sam@ravnborg.org>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+	Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] clk: sunxi-ng: common: Support minimum and
+ maximum rate
+Message-ID: <20240304-satisfied-terrier-of-refinement-af48cd@houat>
+References: <20240304-pinephone-pll-fixes-v3-0-94ab828f269a@oltmanns.dev>
+ <20240304-pinephone-pll-fixes-v3-1-94ab828f269a@oltmanns.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="66d2eote3zmcdjtu"
+Content-Disposition: inline
+In-Reply-To: <20240304-pinephone-pll-fixes-v3-1-94ab828f269a@oltmanns.dev>
+
+
+--66d2eote3zmcdjtu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 04 Mar 2024 11:00:45 +0100
-Message-Id: <CZKVMZC3BEXV.380JV1IP5RYFG@bootlin.com>
-Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, "Gregory Clement"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Andi Shyti" <andi.shyti@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v2 05/11] i2c: nomadik: use bitops helpers
-X-Mailer: aerc 0.15.2
-References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
- <20240229-mbly-i2c-v2-5-b32ed18c098c@bootlin.com>
- <3kooaexx6vhlfwoojcpmnyhagupqwppwenjh4k7ucxbvlfpjn6@e3b7c3ocu6kc>
-In-Reply-To: <3kooaexx6vhlfwoojcpmnyhagupqwppwenjh4k7ucxbvlfpjn6@e3b7c3ocu6kc>
-X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hello,
+On Mon, Mar 04, 2024 at 08:29:17AM +0100, Frank Oltmanns wrote:
+> The Allwinner SoC's typically have an upper and lower limit for their
+> clocks' rates. Up until now, support for that has been implemented
+> separately for each clock type.
+>=20
+> Implement that functionality in the sunxi-ng's common part making use of
+> the CCF rate liming capabilities, so that it is available for all clock
+> types.
+>=20
+> Suggested-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+> Cc: stable@vger.kernel.org
+> ---
+>  drivers/clk/sunxi-ng/ccu_common.c | 15 +++++++++++++++
+>  drivers/clk/sunxi-ng/ccu_common.h |  3 +++
+>  2 files changed, 18 insertions(+)
+>=20
+> diff --git a/drivers/clk/sunxi-ng/ccu_common.c b/drivers/clk/sunxi-ng/ccu=
+_common.c
+> index 8babce55302f..2152063eee16 100644
+> --- a/drivers/clk/sunxi-ng/ccu_common.c
+> +++ b/drivers/clk/sunxi-ng/ccu_common.c
+> @@ -44,6 +44,12 @@ bool ccu_is_better_rate(struct ccu_common *common,
+>  			unsigned long current_rate,
+>  			unsigned long best_rate)
+>  {
+> +	if (common->max_rate && current_rate > common->max_rate)
+> +		return false;
+> +
+> +	if (common->min_rate && current_rate < common->min_rate)
+> +		return false;
+> +
 
-On Sat Mar 2, 2024 at 2:31 AM CET, Andi Shyti wrote:
+We should use clk_hw_get_rate_range() here, there might be some
+additional constraints to the rate range than the hardware ones (ie,
+calls to clk_set_rate_range()).
 
-[...]
+>  	if (common->features & CCU_FEATURE_CLOSEST_RATE)
+>  		return abs(current_rate - target_rate) < abs(best_rate - target_rate);
+> =20
+> @@ -122,7 +128,10 @@ static int sunxi_ccu_probe(struct sunxi_ccu *ccu, st=
+ruct device *dev,
+> =20
+>  	for (i =3D 0; i < desc->hw_clks->num ; i++) {
+>  		struct clk_hw *hw =3D desc->hw_clks->hws[i];
+> +		struct ccu_common *common =3D hw_to_ccu_common(hw);
+>  		const char *name;
+> +		unsigned long min_rate =3D 0;
+> +		unsigned long max_rate =3D ULONG_MAX;
+> =20
+>  		if (!hw)
+>  			continue;
+> @@ -136,6 +145,12 @@ static int sunxi_ccu_probe(struct sunxi_ccu *ccu, st=
+ruct device *dev,
+>  			pr_err("Couldn't register clock %d - %s\n", i, name);
+>  			goto err_clk_unreg;
+>  		}
+> +
+> +		if (common->min_rate)
+> +			min_rate =3D common->min_rate;
+> +		if (common->max_rate)
+> +			max_rate =3D common->max_rate;
 
-> > @@ -284,7 +290,7 @@ static int init_hw(struct nmk_i2c_dev *priv)
-> >  }
-> > =20
-> >  /* enable peripheral, master mode operation */
-> > -#define DEFAULT_I2C_REG_CR	((1 << 1) | I2C_CR_PE)
-> > +#define DEFAULT_I2C_REG_CR	(FIELD_PREP(I2C_CR_OM, 0b01) | I2C_CR_PE)
->
-> 0b01?
+max_rate should always be set to ULONG_MAX. I would drop the tests for
+both here, and warn if max_rate is set to 0.
 
-OM is a two-bit field. We want to put 0b01 in that. We do not declare
-constants for its 4 potential values. Values are:
+Maxime
 
- - 0b00 slave mode
- - 0b01 master mode
- - 0b10 master/slave mode
- - 0b11 reserved
+--66d2eote3zmcdjtu
+Content-Type: application/pgp-signature; name="signature.asc"
 
-To me the comment above DEFAULT_I2C_REG_CR is enough to show that we go
-into master mode. We could declare all values as constants but only
-0b01 would get used.
+-----BEGIN PGP SIGNATURE-----
 
->
-> >  /**
-> >   * load_i2c_mcr_reg() - load the MCR register
-> > @@ -296,41 +302,42 @@ static u32 load_i2c_mcr_reg(struct nmk_i2c_dev *p=
-riv, u16 flags)
-> >  	u32 mcr =3D 0;
-> >  	unsigned short slave_adr_3msb_bits;
-> > =20
-> > -	mcr |=3D GEN_MASK(priv->cli.slave_adr, I2C_MCR_A7, 1);
-> > +	mcr |=3D FIELD_PREP(I2C_MCR_A7, priv->cli.slave_adr);
-> > =20
-> >  	if (unlikely(flags & I2C_M_TEN)) {
-> >  		/* 10-bit address transaction */
-> > -		mcr |=3D GEN_MASK(2, I2C_MCR_AM, 12);
-> > +		mcr |=3D FIELD_PREP(I2C_MCR_AM, 2);
-> >  		/*
-> >  		 * Get the top 3 bits.
-> >  		 * EA10 represents extended address in MCR. This includes
-> >  		 * the extension (MSB bits) of the 7 bit address loaded
-> >  		 * in A7
-> >  		 */
-> > -		slave_adr_3msb_bits =3D (priv->cli.slave_adr >> 7) & 0x7;
-> > +		slave_adr_3msb_bits =3D FIELD_GET(GENMASK(9, 7),
-> > +						priv->cli.slave_adr);
->
-> This looks like the only one not having a define. Shall we give a
-> definition to GENMASK(9, 7)?
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZeWdLgAKCRDj7w1vZxhR
+xb2SAP9ET0NeahIoRnvn18FEj694GWHVCshWmVdZSbx52ubyUQEAquQE3UNMNiFK
+TI7im2BmnlMaX7gl9ElohBH6qB5TBgE=
+=/sgn
+-----END PGP SIGNATURE-----
 
-Indeed. What should it be named? It could be generic; this is about
-getting the upper 3 bits from an extended (10-bit) I2C address?
-
-> > -		mcr |=3D GEN_MASK(slave_adr_3msb_bits, I2C_MCR_EA10, 8);
-> > +		mcr |=3D FIELD_PREP(I2C_MCR_EA10, slave_adr_3msb_bits);
->
-> ...
->
-> > @@ -824,15 +827,16 @@ static irqreturn_t i2c_irq_handler(int irq, void =
-*arg)
-> >  	 * during the transaction.
-> >  	 */
-> >  	case I2C_IT_BERR:
-> > +	{
-> > +		u32 sr =3D readl(priv->virtbase + I2C_SR);
->
-> please give a blank line after the variable definition.
->
-> Besides, I'd prefer the assignment, when it is a bit more
-> complex, in a different line, as well.
-
-Will do.
-
-> Rest looks OK, didn't see anything off.
-
-Thanks for the review Andi!
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+--66d2eote3zmcdjtu--
 
