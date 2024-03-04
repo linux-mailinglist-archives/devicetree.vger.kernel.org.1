@@ -1,146 +1,167 @@
-Return-Path: <devicetree+bounces-48128-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48129-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ED0A8704F4
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:11:20 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D59F8870519
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:15:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7D0521F22CEC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:11:19 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 39503B27DC2
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:15:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6537A481DE;
-	Mon,  4 Mar 2024 15:09:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 83EC546BA6;
+	Mon,  4 Mar 2024 15:12:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NcJBfY3t"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="ZwIb9/L8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 343614653A;
-	Mon,  4 Mar 2024 15:09:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8E843D977;
+	Mon,  4 Mar 2024 15:12:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709564983; cv=none; b=iF1SA613CXY4B6o/HXSwFgvHNcD1EYdSltg2QzPF0Qf+l61fYGvP4T2wF/WZEAo4ntKmUKVkUTqWbnK1iu1WWmc/4LCO/H23d3tSdhzZHHWCbZqI9I5AMNnUeHDbOAKABXtSMbTuKM6bGkKIu2wCrcdt1dHsAHakfTQuQR/SiqE=
+	t=1709565145; cv=none; b=eKcIvX2J5QXStWWLiMGMNyvBjbchTv7NaxJk5br/otN0s0SZuUqg707ag1OUnYyDUPEQI5bvhpVRoj6lJA6wu3+SxfvQXsz4dcgSMcNUgOYdZzn29YNG2dbgh+qx4OtzEHkuiW2kkzRqVcWYXNW6IO4hdEKsXfwTjIOgqd2GA0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709564983; c=relaxed/simple;
-	bh=0EN/djUllp20WYcpsZJ+YqgTYOv5D/8q+MIeYGrZwYs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=T6tat9dOhlSbDaN8zi07nUWJJXel39CrStkuJP78Lw13xOlZ3KvYQJLXnbaFpmcyCLGNpgKrxjHC4rF2LRlBvjjvMSqOWueo1nLbSiMOF6PK+YEiN/1ZDG62M6TRridDz+I2OlwGGA/WMKv/hJdAN0ruMcIkIQ9WmGZbz9MggVw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NcJBfY3t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 101C1C43399;
-	Mon,  4 Mar 2024 15:09:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709564983;
-	bh=0EN/djUllp20WYcpsZJ+YqgTYOv5D/8q+MIeYGrZwYs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NcJBfY3tWVDpuLt/lYCRgDIKDTl7ZAxziWE8a75pn2ypL9ZwdKNKqAK55sRqNjNDx
-	 H+0HetMxYYbBKxO/vdb8Ve8331ccpLJXo2tWedX+hxJxqTtSBxVKlsTS21Ui2Ibnd0
-	 jwR2fECfOjr1uh4gkXYbNWW1p0tVRlgDcZKqLHcZTsgYmGcyMarFY98PGSNP2XWSvh
-	 eRDOYtqTcVp2ypAhC/ZoeL2EG+jx4JrbeLVjVXnaBTRGR11z2YxbsOwVeNa10HP7UZ
-	 1k7SWDzWnHyBFtW8BFVvMO/cVpTRh/+ZODJNQc6ox52eo8CYpM9Z97kbrEGwMLPX3s
-	 wfSFdiQrjZzLA==
-Date: Mon, 4 Mar 2024 16:09:38 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
-	Gregory Clement <gregory.clement@bootlin.com>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
-	Andi Shyti <andi.shyti@kernel.org>
-Subject: Re: Re: [PATCH v2 06/11] i2c: nomadik: support short xfer timeouts
- using waitqueue & hrtimer
-Message-ID: <stofbh7be43it734k5icmjpo7oya2x4maevl2xirnf7spfkrzv@h27rc5riemao>
-References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
- <20240229-mbly-i2c-v2-6-b32ed18c098c@bootlin.com>
- <uq6n6s4ksuxvkonowouhr747cnu4ccwvhgpl6r7txgdtnimqnz@sl33zjshzemk>
- <CZL1F576XCJB.2DBGD5Z7UUXIH@bootlin.com>
+	s=arc-20240116; t=1709565145; c=relaxed/simple;
+	bh=b0p50hTtt8W7peOgfISHPiGdFO1VppSjrn+SSf5nf3A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=W3jwb6kVNTADS82rg1+DeNqTIYcqKuw4Zg2zLUL1bMJ4dFsMDfTnsNXWsaTl/niqzzgBR+9qz+TsxeRuWeWHNhaCOUdOOalBB4tmowsNvtkQI+qOisyYzKjrXi9AVE1F9waCEGYUEIBiAJSQnZ1Woh+FwqP6wLNsIJ8NuMhpBg0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=ZwIb9/L8; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id CB00E240003;
+	Mon,  4 Mar 2024 15:12:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709565141;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=VbiwlUjr6ExtcFQ9Ws/RMeHGGDWtQPpyfYEDdyzTn7Y=;
+	b=ZwIb9/L8b9+P8hLQkwWecey4tX3uV5MxStei82bELTW70MoNAszGdfg9U+L17+0xYPJ7TV
+	mPV4eMjTgI2WQZ4XQk53YcILAVAZa+SxRbX+rcRo8ZWnDa/UIMxt+9fH65HFviksUyPyJ7
+	Dc2+1xpf6cg06BrR3nSY1A9A/clQxlyR+2Ootnefw4IiR88iJQNMviQgoQROwURKwKT2km
+	jdWYjyZgbRL5YfDuP4hq1/M4gNpMUG7WFj/5CSALNd9AjFeoC+2Eb0iEYnK+haThLWNOZ8
+	MjI/XkMV/Y6VNfSi2tohjFKhXasMgOEKmMXxSkbDmFJVIIGjjF6N8P8Tp4CCkg==
+Message-ID: <021dbe50-5eb9-4552-b2bb-80d58d3eb076@bootlin.com>
+Date: Mon, 4 Mar 2024 16:12:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-15
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dp83822: support
+ configuring RMII master/slave mode
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Andrew Davis <afd@ti.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, =?UTF-8?Q?Miqu=C3=A8l_Raynal?=
+ <miquel.raynal@bootlin.com>, Yen-Mei Goh <yen-mei.goh@keysight.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>
+References: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
+ <20240222103117.526955-2-jeremie.dautheribes@bootlin.com>
+ <d14ba685-dc7e-4f99-a21e-bae9f3e6bc79@lunn.ch>
+ <860648fa-11f5-4e0d-ac4e-e81ea111ef31@bootlin.com>
+ <68112ecb-532f-4799-912d-16d6ceb9a6f3@lunn.ch>
+Content-Language: en-US
+From: =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?=
+ <jeremie.dautheribes@bootlin.com>
+In-Reply-To: <68112ecb-532f-4799-912d-16d6ceb9a6f3@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CZL1F576XCJB.2DBGD5Z7UUXIH@bootlin.com>
+X-GND-Sasl: jeremie.dautheribes@bootlin.com
 
-Hi Theo,
+Hi Andrew,
 
-On Mon, Mar 04, 2024 at 03:32:38PM +0100, Th�o Lebrun wrote:
-> On Mon Mar 4, 2024 at 2:54 PM CET, Andi Shyti wrote:
-> > > +static bool nmk_i2c_wait_xfer_done(struct nmk_i2c_dev *priv)
-> > > +{
-> > > +	if (priv->timeout_usecs < jiffies_to_usecs(1)) {
-> > > +		unsigned long timeout_usecs = priv->timeout_usecs;
-> > > +		ktime_t timeout = ktime_set(0, timeout_usecs * NSEC_PER_USEC);
-> > > +
-> > > +		wait_event_hrtimeout(priv->xfer_wq, priv->xfer_done, timeout);
-> > > +	} else {
-> > > +		unsigned long timeout = usecs_to_jiffies(priv->timeout_usecs);
-> > > +
-> > > +		wait_event_timeout(priv->xfer_wq, priv->xfer_done, timeout);
-> > > +	}
-> > > +
-> > > +	return priv->xfer_done;
-> >
-> > You could eventually write this as
-> >
-> >   static bool nmk_i2c_wait_xfer_done(struct nmk_i2c_dev *priv)
-> >   {
-> > 	if (priv->timeout_usecs < jiffies_to_usecs(1)) {
-> > 		...
-> >
-> > 		return !wait_event_hrtimeout(...);
-> > 	}
-> >
-> > 	...
-> > 	return wait_event_timeout(...);
-> >   }
-> >
-> > It looks a bit cleaner to me... your choice.
+On 29/02/2024 22:23, Andrew Lunn wrote:
+>>>> --- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+>>>> +++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+>>>> @@ -80,6 +80,22 @@ properties:
+>>>>               10625, 11250, 11875, 12500, 13125, 13750, 14375, 15000]
+>>>>        default: 10000
+>>>> +  ti,rmii-mode:
+>>>> +    description: |
+>>>> +       If present, select the RMII operation mode. Two modes are
+>>>> +       available:
+>>>> +         - RMII master, where the PHY operates from a 25MHz clock reference,
+>>>> +         provided by a crystal or a CMOS-level oscillator
+>>>> +         - RMII slave, where the PHY operates from a 50MHz clock reference,
+>>>> +         provided by a CMOS-level oscillator
+>>>
+>>> What has master and slave got to do with this?
+>>>
+>>> Sometimes, the MAC provides a clock to the PHY, and all data transfer
+>>> over the RMII bus is timed by that.
+>>>
+>>> Sometimes, the PHY provides a clock to the MAC, and all data transfer
+>>> over the RMII bus is timed by that.
+>>>
+>>> Here there is a clear master/slave relationship, who is providing the
+>>> clock, who is consuming the clock. However, what you describe does not
+>>> fit that. Maybe look at other PHY bindings, and copy what they do for
+>>> clocks.
+>>
+>> In fact, I hesitated a lot before choosing this master/slave designation
+>> because of the same reasoning as you. But the TI DP83826 datasheet [1] uses
+>> this name for two orthogonal yet connected meanings, here's a copy of the
+>> corresponding § (in section 9.3.10):
+>>
+>> "The DP83826 offers two types of RMII operations: RMII Slave and RMII
+>> Master. In RMII Master operation, the DP83826 operates from either a 25-MHz
+>> CMOS-level oscillator connected to XI pin, a 25-MHz crystal connected across
+>> XI and XO pins. A 50-MHz output clock referenced from DP83826 can be
+>> connected to the MAC. In RMII Slave operation, the DP83826 operates from a
+>> 50-MHz CMOS-level oscillator connected to the XI pin and shares the same
+>> clock as the MAC. Alternatively, in RMII slave mode, the PHY can operate
+>> from a 50-MHz clock provided by the Host MAC."
+>>
+>> So it seems that in some cases this also fits the master/slave relationship
+>> you describe.
 > 
-> The full block would become:
+> We are normally interested in this 50Mhz reference clock. So i would
+> drop all references to 25Mhz. It is not relevant to the binding, since
+> it is nothing to do with connecting the PHY to the MAC, and it has a
+> fixed value.
 > 
-> static bool nmk_i2c_wait_xfer_done(struct nmk_i2c_dev *priv)
-> {
-> 	if (priv->timeout_usecs < jiffies_to_usecs(1)) {
-> 		unsigned long timeout_usecs = priv->timeout_usecs;
-> 		ktime_t timeout = ktime_set(0, timeout_usecs * NSEC_PER_USEC);
+> So you can simplify this down to:
 > 
-> 		return !wait_event_hrtimeout(priv->xfer_wq, priv->xfer_done,
-> 					     timeout);
-> 	}
+> RMII Master: Outputs a 50Mhz Reference clock which can be connected to the MAC.
 > 
-> 	return wait_event_timeout(priv->xfer_wq, priv->xfer_done,
-> 				  usecs_to_jiffies(priv->timeout_usecs));
-> }
+> RMII Slave: Expects a 50MHz Reference clock input, shared with the
+> MAC.
 > 
-> Three things:
+>> That said, would you like me to include this description (or some parts) in
+>> the binding in addition to what I've already written? Or would you prefer me
+>> to use a more meaningful property name?
 > 
->  - Deindenting the jiffy timeout case means no variable declaration
->    after the if-block. This is fine from my point-of-view.
-> 
->  - It means we depend on the half-mess that are return values from
->    wait_event_*timeout() macros. I wanted to avoid that because it
->    looks like an error when you read the above code and see one is
->    negated while the other is not.
-> 
->  - Also, I'm not confident in casting either return value to bool; what
->    happens if either macro returns an error? This is a theoretical case
->    that shouldn't happen, but behavior might change at some point or
->    bugs could occur. We know priv->xfer_done will give us the right
->    answer.
-> 
-> My preference still goes to the original version, but I'm happy we are
-> having a discussion about this code block.
+> We don't really have any vendor agnostic consistent naming. dp83867
+> and dp83869 seems to call this ti,clk-output-sel. Since this is
+> another dp83xxx device, it would be nice if there was consistency
+> between all these TI devices. So could you check if the concept is the
+> same, and if so, change dp83826 to follow what other TI devices do.
 
-sure... it's not a binding comment.
 
-Andi
+So I had a look at this ti,clk-output-sel property on the TI DP8386x 
+bindings, but unfortunately it does not correspond to our use case. In 
+their case, it is used to select one of the various internal clocks to 
+output on the CLK_OUT pin.
+In our case, we would prefer to describe the direction of the clock (OUT 
+in master mode, IN in slave mode).
+
+Given this, should we stick to "ti,rmii-mode" which is consistent with 
+the datasheet terminology, or consider perhaps something like 
+ti,clock-dir-sel (with possible values of in/out)?"
+
+Best regards,
+Jérémie
 
