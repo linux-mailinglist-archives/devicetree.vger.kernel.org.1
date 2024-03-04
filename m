@@ -1,101 +1,124 @@
-Return-Path: <devicetree+bounces-48160-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48161-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6D4A8706FD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:28:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E0AC287070C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:32:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63C1D281DE0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:28:17 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14A2F281F1F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F094E4C62E;
-	Mon,  4 Mar 2024 16:28:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF26B24A04;
+	Mon,  4 Mar 2024 16:32:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KB4RHpau"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="F5NN31SA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5544482EF;
-	Mon,  4 Mar 2024 16:28:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEE191DDE9;
+	Mon,  4 Mar 2024 16:32:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709569693; cv=none; b=EWFuCpv+QDsa5XdFHBH41b3CIrIpSMhw/YXMTcQcaPd1H76pjehYTwcMwxCEfhjLLt9swPD0uiKLtOlxAT62EKhq9wj2zAvR7Q/Al+FOX8B+FcjKA3dBJzyMzkfWAaATDkDLgW7UqDzfAI+EB9jgeDvUC6NBKUwzo+cZV/eforQ=
+	t=1709569925; cv=none; b=YHKu5x3NHVcXlhhLEL7gsp8m8nTbd4Jg/AaifE8xVma33kcXJBhxdO797S2p+GXKR0pEG00S+AWSMUFFIqMz5vr/9mioOrZIOqOH563fqnWI73H5drThYHhvCETiSe2PHqOToNdqnC2i3A3x1pM1Ojt0dVedIKqg9SbI2RZS2n4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709569693; c=relaxed/simple;
-	bh=L0jLtyPZbItn8KbijN41lcA/FmtrSMyJCLKJ1HIJGi0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pM2erjv9UfBQcaDgas/mc+4foBtoWZfm/NFOXHIq+AYgNeqOf3GQhVCzAidYgS7C9cOabpbkCvgHIJmVbz4kf/f/Riv8n/rxXUzTGfcCoLZ7rMImttSwR68/GcjfN8rgnxN81Clsh3znpg3WL29+Zppivqzcb9d9/0d5gdRu3wY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KB4RHpau; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E761C433C7;
-	Mon,  4 Mar 2024 16:28:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709569693;
-	bh=L0jLtyPZbItn8KbijN41lcA/FmtrSMyJCLKJ1HIJGi0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=KB4RHpauAvX0OazxS1wZX4PwHWd0afUdhxmvohYXv0W1NAqqcMtSErNc1mpc6MWX8
-	 K4VuUYLkgACJUEwKXNtPU//BlRmW9eak8pFhH73XC933gNfei7QpwEOs1BLgw4xaDQ
-	 oGF4gWn7Jq1+8b3SAlZ5sMcwLkfmTNqGwKuXYIhxjYxiT1Y4j8qJ0chSltG0f3wL9F
-	 nYOSySqcXYDIyAvwWMNyNt5YjMZJjLsicViSEPA8P0O6aop1lnAuX8xGEyODJyASZr
-	 xWw3y+7PXFzC2JakT8CVThdu2a3Zz+Y7nCA+chm9BQ54ezB5Fyzfk1Q2ahkj7fBuJ0
-	 TMIDkvk2FXAgQ==
-Date: Mon, 4 Mar 2024 10:28:11 -0600
-From: Rob Herring <robh@kernel.org>
-To: David Lechner <dlechner@baylibre.com>
-Cc: linux-iio@vger.kernel.org,
-	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Michael Hennerich <Michael.Hennerich@analog.com>,
-	Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-	Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: iio: adc: add ad7944 ADCs
-Message-ID: <170956969031.622753.9168069143401175386.robh@kernel.org>
-References: <20240229-ad7944-mainline-v4-0-f88b5ec4baed@baylibre.com>
- <20240229-ad7944-mainline-v4-1-f88b5ec4baed@baylibre.com>
+	s=arc-20240116; t=1709569925; c=relaxed/simple;
+	bh=+vFU8S+QBfINigPakfidbvLfH8t5sKKvHRwRghI+MSc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=uOLPIOs6m4MtU55PuFAF30I8b9/l3JAcjTph8AXd4nlHGN7g0OGO5jp+8H7a+ERfaB+l0a1nN4nhNSy9fdvWlPmr0VrKg3Ss5Uaac0iy19GFg6sBiyVxGGvNKWkace+yV31FyPCW8HclVl8K9T1e0y8fBoe/Eb6LvhfNXu/uVgA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=F5NN31SA; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 973AE20002;
+	Mon,  4 Mar 2024 16:31:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709569921;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=3/qnNib0M9GUnijyk9s7zwiVKRUpPX2GRvn3P5WKj04=;
+	b=F5NN31SAPn67/H+8+2IjeoMzc+jGn9CxQT4ANWg4ABSznO2IH5W6/E/rL/jKzLbY3zi1ti
+	KJcBbJi+0ddgVIyU/I4hEB3Y10wnsk7PXY9il2GKJGkQNB0BHYZsuoEy1YlP2AV+7WNYOy
+	gzXVVJZr4zn6XVVv0nmiFS5Qfhg17XTVZbSgvYreIX1qDQ3cx6KRStlh+JXU+k7gzq6D35
+	82h1uWDCQg9Kd8ZkcZvn8VNep/XRL5ZEaNMVRH98rsg0HMqrZ7hExrncAykCkoVHau1xmY
+	UVpKOW9OakW1X74yhAByY24evUAnmThSkJ1UoKgDioYSWahVsMvbc8P0QnjGEA==
+Message-ID: <70a00ad4-ee8e-4325-af09-b013247a003a@bootlin.com>
+Date: Mon, 4 Mar 2024 17:31:59 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240229-ad7944-mainline-v4-1-f88b5ec4baed@baylibre.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 1/3] dt-bindings: net: dp83822: support
+ configuring RMII master/slave mode
+Content-Language: en-US
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
+ Russell King <linux@armlinux.org.uk>, Andrew Davis <afd@ti.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, =?UTF-8?Q?Miqu=C3=A8l_Raynal?=
+ <miquel.raynal@bootlin.com>, Yen-Mei Goh <yen-mei.goh@keysight.com>,
+ Maxime Chevallier <maxime.chevallier@bootlin.com>
+References: <20240222103117.526955-1-jeremie.dautheribes@bootlin.com>
+ <20240222103117.526955-2-jeremie.dautheribes@bootlin.com>
+ <d14ba685-dc7e-4f99-a21e-bae9f3e6bc79@lunn.ch>
+ <860648fa-11f5-4e0d-ac4e-e81ea111ef31@bootlin.com>
+ <68112ecb-532f-4799-912d-16d6ceb9a6f3@lunn.ch>
+ <021dbe50-5eb9-4552-b2bb-80d58d3eb076@bootlin.com>
+ <d994001c-dff2-402d-bd19-7ddb0c148805@lunn.ch>
+From: =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?=
+ <jeremie.dautheribes@bootlin.com>
+In-Reply-To: <d994001c-dff2-402d-bd19-7ddb0c148805@lunn.ch>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: jeremie.dautheribes@bootlin.com
+
+>>> We are normally interested in this 50Mhz reference clock. So i would
+>>> drop all references to 25Mhz. It is not relevant to the binding, since
+>>> it is nothing to do with connecting the PHY to the MAC, and it has a
+>>> fixed value.
+>>>
+>>> So you can simplify this down to:
+>>>
+>>> RMII Master: Outputs a 50Mhz Reference clock which can be connected to the MAC.
+>>>
+>>> RMII Slave: Expects a 50MHz Reference clock input, shared with the
+>>> MAC.
+>>>
+>>>> That said, would you like me to include this description (or some parts) in
+>>>> the binding in addition to what I've already written? Or would you prefer me
+>>>> to use a more meaningful property name?
+>>>
+>>> We don't really have any vendor agnostic consistent naming. dp83867
+>>> and dp83869 seems to call this ti,clk-output-sel. Since this is
+>>> another dp83xxx device, it would be nice if there was consistency
+>>> between all these TI devices. So could you check if the concept is the
+>>> same, and if so, change dp83826 to follow what other TI devices do.
+>>
+>>
+>> So I had a look at this ti,clk-output-sel property on the TI DP8386x
+>> bindings, but unfortunately it does not correspond to our use case. In their
+>> case, it is used to select one of the various internal clocks to output on
+>> the CLK_OUT pin.
+>> In our case, we would prefer to describe the direction of the clock (OUT in
+>> master mode, IN in slave mode).
+> 
+> I would suggest we keep with the current property name, but simplify
+> the description. Focus on the reference clock, and ignore the crystal.
 
 
-On Thu, 29 Feb 2024 10:25:50 -0600, David Lechner wrote:
-> This adds a new binding for the Analog Devices, Inc. AD7944, AD7985, and
-> AD7986 ADCs.
-> 
-> Signed-off-by: David Lechner <dlechner@baylibre.com>
-> 
-> ---
-> v4 changes:
-> - Fixed broken patch due to misplaced changelog
-> 
-> v3 changes:
-> - Removed default 'multi' value from adi,spi-mode property. This simplifies
->   things a bit by not having to check for two possible conditions (absence of
->   property or explicit default value). Now, only absence of property is valid to
->   indicate the default mode. Constraints that depend on this property are
->   updated accordingly.
-> - Fixed spelling of 'conventional'.
-> - Expanded description to call out potential confusion of '3-wire' mode being
->   unrelated to the standard spi-3wire property.
-> - Added standard '#daisy-chained-devices' property for chain mode.
-> - Relaxed requirement of cnv-gpios since it was determined that an active high
->   CS could actually be used in chain mode.
-> ---
->  .../devicetree/bindings/iio/adc/adi,ad7944.yaml    | 213 +++++++++++++++++++++
->  MAINTAINERS                                        |   8 +
->  2 files changed, 221 insertions(+)
-> 
+Ok noted, thanks for your feedback! I will send a v2 containing a 
+simplified description + implement your suggested changes on patch 2.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+Jérémie
 
