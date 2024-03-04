@@ -1,146 +1,152 @@
-Return-Path: <devicetree+bounces-48076-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C33DF86FEDE
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 11:21:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8266386FEF7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 11:24:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FB792837EA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 10:21:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A62D81C20EAE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 10:24:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81FF92575B;
-	Mon,  4 Mar 2024 10:19:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E95F8374F7;
+	Mon,  4 Mar 2024 10:22:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="Vshu1amp"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="o4fwxKyg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0C9C2574F;
-	Mon,  4 Mar 2024 10:19:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 451853716F
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 10:22:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709547596; cv=none; b=W3fjcLsQHId5tCY74vS9aFWq/UxSI7jH0W1Rm/LhhSeSOeqDck2eFhPPNtyTX7bGwzY76dxBfAwoAjtm+alLAMlC4AMZKzNj7EVxgkdIpSKTh4O6PlFeX1xKZniWDNv1ZxqN+GA1ioEV26TNsJvddY946M3t+2DnHu6HDrLiqA8=
+	t=1709547727; cv=none; b=mahOYmZRCFa87vFYogV/W518k1lBK3TP9qZzJsJechjBovj04tG8CvDImRUl6wSHrseJaU9TySQDf1hhy4Eu6JuE1YXkhCcDC+BgLMTOf3G7YPUOdk3ly3DkmOGkH+lwi53rc2aeJoaVmWNI7ithefPH6nkZLpHFmORGtfSQaJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709547596; c=relaxed/simple;
-	bh=oAwVOvhNSYIJcvi3KYz9lODQVXjEBbjFSOCNDTXHkGU=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p/GKxd+5BlGqmJ7xoAZE/BisF8EI2MDesMY3sxvlKYq+H53se571voHbuouyT5fNBPnmLKe5Yywv9PQAxO9vpuAFnmZTY2GL4IUrBeyDr7uxDJ/g38VC0PVJutpUJZ7V0QXq05Kugje+VZaHyVqYvJQ9FXMDCNerv2PhXlaeYJ8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=Vshu1amp; arc=none smtp.client-ip=68.232.154.123
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1709547594; x=1741083594;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=oAwVOvhNSYIJcvi3KYz9lODQVXjEBbjFSOCNDTXHkGU=;
-  b=Vshu1ampPiqd+WHO3renK91BhvwSJfSxsz8kYUpG//zOWSqmjeL367A4
-   xHsaPSRGyF9KMMCKFbF5a5qpToHYwAfk5O6oRHotPapa98GaKnMJNLX3W
-   81ZyGFpOjCwIxd5tNoSgPh5qHRoHqmOVFR1A8NTuajd5u9i4hlKJuRdEr
-   A7++Jhy0yKosGnIkoSvevP1t2hd1ExipqbHbgcl0wgRW3dl07iDzBtgcQ
-   xZPZ5fi911h/uaI1JU5HcfhF88CXS8xZeZHDcZKXyYd4EAKx53YZbGwvd
-   iRK4RlT16fFxXOvKR4R7DD9doStSZvZKckK6iAH7FD1AxB2OPMeIWtopN
-   w==;
-X-CSE-ConnectionGUID: GTh8GKPTQM2QJHexAl2qug==
-X-CSE-MsgGUID: qt1xL4hmQbGjG2oZQGGyKQ==
-X-IronPort-AV: E=Sophos;i="6.06,203,1705388400"; 
-   d="asc'?scan'208";a="17693872"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 04 Mar 2024 03:19:53 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Mon, 4 Mar 2024 03:19:36 -0700
-Received: from wendy (10.10.85.11) by chn-vm-ex04.mchp-main.com (10.10.85.152)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Mon, 4 Mar 2024 03:19:34 -0700
-Date: Mon, 4 Mar 2024 10:18:50 +0000
-From: Conor Dooley <conor.dooley@microchip.com>
-To: Yangyu Chen <cyy@cyyself.name>
-CC: <linux-riscv@lists.infradead.org>, Conor Dooley <conor@kernel.org>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Paul Walmsley
-	<paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, Albert Ou
-	<aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/5] riscv: Kconfig.socs: Allow SOC_CANAAN with MMU for
- K230
-Message-ID: <20240304-henna-verbalize-c206ba771a9e@wendy>
-References: <tencent_E15F8FE0B6769E6338AE690C7F4844A31706@qq.com>
- <tencent_4F1B21F8A605B7B4091DBB70B5635442BE09@qq.com>
+	s=arc-20240116; t=1709547727; c=relaxed/simple;
+	bh=ynzGAT32HexDFm6FPlAHCjP8RUHKUAAhNvGtE9tXkQI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=rCwxAtUn9lIRdpP1MEjrLk6dQwlvsw806l0zuZgSsB4P/9YYz8cWyxw6ZqA7TZcEYVP3qKVUP+/ZjoiR/UhUrbOYUR65n1xbtZNGEg1PwF0LKxq/dbuEsSRWqyxNk6osg5ky3l04a+kyvMXr+HgCj3arVdyI29dmjmeHPQHpOnE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=o4fwxKyg; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-5672afabb86so853892a12.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 02:22:06 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709547725; x=1710152525; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BFodGPuwnVhLBpSrIjfp89HPVh97pvyOLhSLS3/wkV4=;
+        b=o4fwxKyg+N6ayj9TrXq8FoJHZwpNfTQApE8Kt2TMPz9S08DCgvBpxUwPr68vtjZd1g
+         hOUJWFLHcRgQXNjqigQoDChCPXjuXHfw1rWVUbcj9GPkxXkAKF8CdfoLkP4U4ocfJYjq
+         GomkBQXlx1cwjaQRGISfo0PqjxOzoOjrP1GVH8tt/KJxCGxB2Irr0S+UXzPsoBdV/QyN
+         ufUrNJli52bEFxGn2v4+vQFSekVOQLmmapAffxEnyKs5d2FOJtACVmmsLgzNvznBshjq
+         ry4XuYxuBAJxAKjiplK8KWc9/c9JCu0Ej3tE6nMC95cPB4gXR6XpupL/3MuZRBkz+yfD
+         bbiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709547725; x=1710152525;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BFodGPuwnVhLBpSrIjfp89HPVh97pvyOLhSLS3/wkV4=;
+        b=UA6D3r7R/4+uIdC+8GyNotMK89lQlYmycZlB6mvw+696qumo9os6f7F8ldWEtlutIG
+         p+jx1CZZdzt3Dy2Ygl3xQ26ZMIoHr00XehUiItdiFI1MXGqICMMyQFhUPmJG8J1oTlsJ
+         jpFOOt3sQTJKKkhath5EUfEysuVM/Q56pq6NT8n19dqSia7xtHAAtoZLMwyAKkPOtwhr
+         6YkhyDlR6BXcCVOGSYSvzlsdLt/ivyBNOjPPpMVlp1iuwoQRfDTb/GTpMj1qUR4pI/OX
+         649uqqtyljvJb5TqrB9U6R5DO6sO8AEsQqCd9SCmSgsO6CMAWZA6/h4HVeUbz4s2DcHN
+         yh/g==
+X-Forwarded-Encrypted: i=1; AJvYcCWjjqIXPIxhpbzH8PkcnyL7VqyrHSunkGZ0nNYWp+EY3C3WuAoptcoqI7wZAvoREbLYMxXYLCdJswrKWnm4eUAuxEIeesyYczsakA==
+X-Gm-Message-State: AOJu0YzTw5JGavb6cIoF40AFH+XfsnCXxD9OyUUnExvka3VplwcyHNLN
+	z9PqOoPkYPAnW4/W9rgXRD/1UL24q5uE563xTh44LFFr8wa/XsvvzIgzfbSFfOw=
+X-Google-Smtp-Source: AGHT+IG/2JqWclRPTs/hv3E5By7cSITYOuLLZr051C04g62W01lTXdYB47VP+mxf2gav67pfWkITxw==
+X-Received: by 2002:aa7:c944:0:b0:566:18ba:6b80 with SMTP id h4-20020aa7c944000000b0056618ba6b80mr6851343edt.31.1709547724717;
+        Mon, 04 Mar 2024 02:22:04 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id q33-20020a05640224a100b00565ba75a739sm4441572eda.95.2024.03.04.02.22.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Mar 2024 02:22:04 -0800 (PST)
+Message-ID: <a68585bb-0790-411b-b591-ad7826223517@linaro.org>
+Date: Mon, 4 Mar 2024 11:22:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="jHXxCXVHqhS+kbK3"
-Content-Disposition: inline
-In-Reply-To: <tencent_4F1B21F8A605B7B4091DBB70B5635442BE09@qq.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/3] dt-bindings: iio: temperature: ltc2983: document
+ power supply
+Content-Language: en-US
+To: nuno.sa@analog.com, linux-iio@vger.kernel.org, devicetree@vger.kernel.org
+Cc: Jonathan Cameron <jic23@kernel.org>, Lars-Peter Clausen
+ <lars@metafoo.de>, Michael Hennerich <Michael.Hennerich@analog.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20240301-ltc2983-misc-improv-v3-0-c09516ac0efc@analog.com>
+ <20240301-ltc2983-misc-improv-v3-2-c09516ac0efc@analog.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240301-ltc2983-misc-improv-v3-2-c09516ac0efc@analog.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---jHXxCXVHqhS+kbK3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Sun, Mar 03, 2024 at 09:26:25PM +0800, Yangyu Chen wrote:
-> Since K230 was released, SOC_CANAAN is no longer only referred to the K21=
-0.
-> Remove it depends on !MMU will allow building dts for K230 and remove the
-> K210 string from the help message.
->=20
-> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
+On 01/03/2024 18:14, Nuno Sa via B4 Relay wrote:
+> From: Nuno Sa <nuno.sa@analog.com>
+> 
+> Add a property for the VDD power supply regulator.
+> 
+> Signed-off-by: Nuno Sa <nuno.sa@analog.com>
 > ---
->  arch/riscv/Kconfig.socs | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
->=20
-> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> index 623de5f8a208..b4e9b7f75510 100644
-> --- a/arch/riscv/Kconfig.socs
-> +++ b/arch/riscv/Kconfig.socs
-> @@ -75,13 +75,12 @@ config ARCH_CANAAN
->  	def_bool SOC_CANAAN
-> =20
->  config SOC_CANAAN
-> -	bool "Canaan Kendryte K210 SoC"
-> -	depends on !MMU
-> +	bool "Canaan Kendryte SoC"
->  	select CLINT_TIMER if RISCV_M_MODE
->  	select ARCH_HAS_RESET_CONTROLLER
->  	select PINCTRL
->  	select COMMON_CLK
->  	help
-> -	  This enables support for Canaan Kendryte K210 SoC platform hardware.
-> +	  This enables support for Canaan Kendryte SoC platform hardware.
-> =20
->  endmenu # "SoC selection"
-> --=20
-> 2.43.0
->=20
 
---jHXxCXVHqhS+kbK3
-Content-Type: application/pgp-signature; name="signature.asc"
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
------BEGIN PGP SIGNATURE-----
+Best regards,
+Krzysztof
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeWgCgAKCRB4tDGHoIJi
-0vUCAQD0CoV1uSDQ7JiawSnX85ZEZiRg4TPZmr77Rl0SGLt59QD/f9B6sx7gnPhW
-rqAFj5vm3UQ/ZofMS/3ltXvO8/WkNA4=
-=vnEB
------END PGP SIGNATURE-----
-
---jHXxCXVHqhS+kbK3--
 
