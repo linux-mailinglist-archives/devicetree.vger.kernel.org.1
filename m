@@ -1,162 +1,166 @@
-Return-Path: <devicetree+bounces-48117-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48118-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15276870435
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:32:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0757087045C
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:39:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B4FB9B21E1A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:32:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 38B681C20FC4
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:39:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21E473CF68;
-	Mon,  4 Mar 2024 14:32:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DDAD746525;
+	Mon,  4 Mar 2024 14:39:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UlFpoy3w"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vGZN+aUG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A29722630;
-	Mon,  4 Mar 2024 14:32:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC5A03FE58;
+	Mon,  4 Mar 2024 14:39:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709562768; cv=none; b=agv/mRe4+JX9OgNbxwxMjEw037h8WqF3PQz8AtFJ0YsIAXK2Kk37Hj2Ii94IGnvtl3vXEBy8ZODROPqG/g3auIWAQgnDC8f+A9lcuM2JCE1bnyE3OKdKLg9L7jvp9lHkKhMGITmeno7o4o6KIA5m4Zp62jSbllyJ4pbfa2TH9LA=
+	t=1709563159; cv=none; b=PwoBjaO0o4c2gZlT4tdO/0iCbiNitDqK/dbMCBL3PoC+JtoSRnu/VQeicDtq8oEMZLTJxLQzKEXDq8FfH5zGw7BYvtLDOftlc8MqabqH2b93m3YM9mB2uARdq+yI5C6F8YWjCFH1JbGjJv2YQZM/z5+6LG9GzQen/TOtLVDpDsQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709562768; c=relaxed/simple;
-	bh=GTxNYf9/QPpJeKyDdvLNK9UeysxfJxAAQUupeLW1ux0=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=SxDpmDEiZELll28xrtxgi1oTgf3nBJoquKeubktizF+Rt0ByMRJC36bBz3YHyLRMZjHZsmVjqB+vmHRELMgSPq0/ypHMUoZFq1ARutqmae+VO7xz95OdWta6ePwo3DWqZYipc+TcT98TPBNqMTzKlUV7ef6BzUGoxSPO/5S/4Cc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UlFpoy3w; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CFD5FE0016;
-	Mon,  4 Mar 2024 14:32:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709562759;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=VVcCK+YkQiSdvPAjSAPwRLt7JpKB10rUh9LOYhzJwGM=;
-	b=UlFpoy3wrHro67QQBJ0DptvXOr4Cqkfs1JFHZjHquMpwfsgqOWNanaS78AQYrF9yxr6PXj
-	9TpZZSsXQxDYVwQOyuta/S9JRhVfqZS+52iaQkzZ8LF3DByo60Fgk7BkVMVM7UBw4gk3kx
-	UgmdtzavFb9uDZmyYbSxz6M2i4CEeWe2KpmTL0qRUV8PhtiLEI9JzQS5S1ory1ZPRDs9D9
-	uDjcKKpSZ+20wWrm5gMYzwfbqm6ROWR9eFRvCdLuCTH0sNzPftgyRkwABBtcaeQkXHPuic
-	jHFsqlcnpDG3KELTx5kgf9eeRN+Xvg3h2SsDW4pjudTqcLNy+Cf3F/MesMR7zg==
+	s=arc-20240116; t=1709563159; c=relaxed/simple;
+	bh=jMLHce6fSNV1ibpvqXecN80o6gKL25oVTs9fW+eNgJc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=R+hKH7pQLLklaoi+4B9wve6MO8KUA47/6GMVZu90mRqT03ELUAEZdJD6zLA8fPFIw5Z7yt4tR5x8hGzcVM+If4qv2/DB4cVoK9DMysyf/PAWk5B3GNdY1UqP3KntWGjGV9al92q8y34Ee0c93YeE3JQGXI6Y1KuuNOGMD2Lv1jQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vGZN+aUG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0AFCC43394;
+	Mon,  4 Mar 2024 14:39:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709563159;
+	bh=jMLHce6fSNV1ibpvqXecN80o6gKL25oVTs9fW+eNgJc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=vGZN+aUGRCHUXtaClyfB0lW2zx8oz2EnMN+dEfj6++ZyYSSPq+FTcQGe47oCabaHn
+	 hygA37nDu5yUChLQS9ebQxaY9xeRyhxwKzTewrv7ZIR2lHPrJLQZohTwDPi7lZot4D
+	 LitPMpmhwwPXWmLEsDuhowiAnSHHcTmkT3gviCMR5NFWBKnrdHVMRFmpnc7zmZBPLD
+	 +GfgdyJa6DQltRPUVE6O0V0p8Y4Cp6UoF4dXx89qS8OuIHn5/uCHo6yTci+iBzcrpM
+	 P+HtDaM2cLgfXTu/82Bbm7HMPGBl+43c1PadJmvN73yy0z16/sulhotTpO4BMongqE
+	 oVCTYKNNJftgQ==
+Date: Mon, 4 Mar 2024 08:39:16 -0600
+From: Rob Herring <robh@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Abel Vesa <abelvesa@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>, linux-clk@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v3 1/2] dt-bindindgs: clock: support NXP i.MX95 BLK CTL
+ module
+Message-ID: <20240304143916.GA181628-robh@kernel.org>
+References: <20240228-imx95-blk-ctl-v3-0-40ceba01a211@nxp.com>
+ <20240228-imx95-blk-ctl-v3-1-40ceba01a211@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 04 Mar 2024 15:32:38 +0100
-Message-Id: <CZL1F576XCJB.2DBGD5Z7UUXIH@bootlin.com>
-Subject: Re: [SPAM] [PATCH v2 06/11] i2c: nomadik: support short xfer
- timeouts using waitqueue & hrtimer
-Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, "Gregory Clement"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Andi Shyti" <andi.shyti@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.15.2
-References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
- <20240229-mbly-i2c-v2-6-b32ed18c098c@bootlin.com>
- <uq6n6s4ksuxvkonowouhr747cnu4ccwvhgpl6r7txgdtnimqnz@sl33zjshzemk>
-In-Reply-To: <uq6n6s4ksuxvkonowouhr747cnu4ccwvhgpl6r7txgdtnimqnz@sl33zjshzemk>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240228-imx95-blk-ctl-v3-1-40ceba01a211@nxp.com>
 
-Hello,
+On Wed, Feb 28, 2024 at 03:48:22PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> i.MX95 includes BLK CTL module in several MIXes, such as VPU_CSR in
+> VPUMIX, BLK_CTRL_NETCMIX in NETCMIX, CAMERA_CSR in CAMERAMIX and etc.
+> 
+> The BLK CTL module is used for various settings of a specific MIX, such
+> as clock, QoS and etc.
+> 
+> This patch is to add some BLK CTL modules that has clock features.
 
-On Mon Mar 4, 2024 at 2:54 PM CET, Andi Shyti wrote:
-> Hi Theo,
->
-> ...
->
-> > +static bool nmk_i2c_wait_xfer_done(struct nmk_i2c_dev *priv)
-> > +{
-> > +	if (priv->timeout_usecs < jiffies_to_usecs(1)) {
-> > +		unsigned long timeout_usecs =3D priv->timeout_usecs;
-> > +		ktime_t timeout =3D ktime_set(0, timeout_usecs * NSEC_PER_USEC);
-> > +
-> > +		wait_event_hrtimeout(priv->xfer_wq, priv->xfer_done, timeout);
-> > +	} else {
-> > +		unsigned long timeout =3D usecs_to_jiffies(priv->timeout_usecs);
-> > +
-> > +		wait_event_timeout(priv->xfer_wq, priv->xfer_done, timeout);
-> > +	}
-> > +
-> > +	return priv->xfer_done;
->
-> You could eventually write this as
->
->   static bool nmk_i2c_wait_xfer_done(struct nmk_i2c_dev *priv)
->   {
-> 	if (priv->timeout_usecs < jiffies_to_usecs(1)) {
-> 		...
->
-> 		return !wait_event_hrtimeout(...);
-> 	}
->
-> 	...
-> 	return wait_event_timeout(...);
->   }
->
-> It looks a bit cleaner to me... your choice.
+This sentence doesn't add anything you haven't already said.
 
-The full block would become:
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../devicetree/bindings/clock/imx95-blk-ctl.yaml   | 61 ++++++++++++++++++++++
+>  include/dt-bindings/clock/nxp,imx95-clock.h        | 32 ++++++++++++
+>  2 files changed, 93 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/imx95-blk-ctl.yaml b/Documentation/devicetree/bindings/clock/imx95-blk-ctl.yaml
+> new file mode 100644
+> index 000000000000..c8974b927bee
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/imx95-blk-ctl.yaml
+> @@ -0,0 +1,61 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/imx95-blk-ctl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX95 Block Control
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - nxp,imx95-cameramix-csr
+> +          - nxp,imx95-display-master-csr
+> +          - nxp,imx95-dispmix-lvds-csr
+> +          - nxp,imx95-dispmix-csr
+> +          - nxp,imx95-netcmix-blk-ctrl
+> +          - nxp,imx95-vpumix-csr
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +    description:
+> +      The clock consumer should specify the desired clock by having the clock
+> +      ID in its "clocks" phandle cell. See
+> +      include/dt-bindings/clock/nxp,imx95-clock.h
+> +
+> +  mux-controller:
+> +    type: object
+> +    $ref: /schemas/mux/reg-mux.yaml
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Clock Control Module node:
+> +  - |
+> +    #include <dt-bindings/clock/nxp,imx95-clock.h>
+> +
+> +    syscon@4c410000 {
 
-static bool nmk_i2c_wait_xfer_done(struct nmk_i2c_dev *priv)
-{
-	if (priv->timeout_usecs < jiffies_to_usecs(1)) {
-		unsigned long timeout_usecs =3D priv->timeout_usecs;
-		ktime_t timeout =3D ktime_set(0, timeout_usecs * NSEC_PER_USEC);
+clock-controller@...
 
-		return !wait_event_hrtimeout(priv->xfer_wq, priv->xfer_done,
-					     timeout);
-	}
+As that is the main feature/function.
 
-	return wait_event_timeout(priv->xfer_wq, priv->xfer_done,
-				  usecs_to_jiffies(priv->timeout_usecs));
-}
+> +      compatible = "nxp,imx95-vpumix-csr", "syscon";
+> +      reg = <0x4c410000 0x10000>;
+> +      #clock-cells = <1>;
 
-Three things:
-
- - Deindenting the jiffy timeout case means no variable declaration
-   after the if-block. This is fine from my point-of-view.
-
- - It means we depend on the half-mess that are return values from
-   wait_event_*timeout() macros. I wanted to avoid that because it
-   looks like an error when you read the above code and see one is
-   negated while the other is not.
-
- - Also, I'm not confident in casting either return value to bool; what
-   happens if either macro returns an error? This is a theoretical case
-   that shouldn't happen, but behavior might change at some point or
-   bugs could occur. We know priv->xfer_done will give us the right
-   answer.
-
-My preference still goes to the original version, but I'm happy we are
-having a discussion about this code block.
-
-> Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
-
-Thanks for your review Andi!
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Please make the example as full as possible. For example, add 
+mux-controller node. Do some of the blocks not have mux ctrl?
 
