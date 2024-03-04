@@ -1,150 +1,158 @@
-Return-Path: <devicetree+bounces-48142-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48143-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9F887059A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:34:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F66A870597
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:34:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CD3F8B2680E
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:34:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BA4AE281D51
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:34:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 232B44CB4E;
-	Mon,  4 Mar 2024 15:32:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B87EF47F59;
+	Mon,  4 Mar 2024 15:32:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b="r/U9ZzjP"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xPAbY96G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out-177.mta1.migadu.com (out-177.mta1.migadu.com [95.215.58.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 925EE46B9A
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 15:32:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=95.215.58.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6E204778C
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 15:32:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709566345; cv=none; b=HTVi5T4x5HIDUu/KdbxT6XRj3joepkP4215/pbJS0LpNAI6NEP3NHElRIL9i8HElScc6ZyfXxeBMdDUvXgbBEDtUJRwRoe3OGQ455Cp8XqnsXWlw1g9BHVtEEeNZ7hMIeuldLENCasA8paqGupDBvOo8d+t6UGyrfQj2tN5+sOA=
+	t=1709566372; cv=none; b=smN7UIJ2QXeDlvbehhl6Wuc9N8MRLguDoqa/KDTcKSEqV/vvS4SNAeow/Q+Nvnw6arCB/Ma21DX+TOY7EoJ98Pm8Af0zmHHRYWpUc9+o4Txx5L8mP2kllGJwLW8WIBI03oMsoyNeOhoaW/yEWqIruxkj8vDlfvgNTnqFILfgwMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709566345; c=relaxed/simple;
-	bh=mqhRv8gKiq2HtS9aU8kqWOp7aTHQPAx3HKPUoy15+Vk=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=s6u8X/Y/GTzIzuHCBoMPgAOhYVzzCy/7c9N90+B+02xy8nnAGaiivuK8qSDLbZe46EyNX6A2BPRvEqVBnZSXoIlvFlCWhNQTXcE/1eQ/2tdLmg94F4MnF6a71ggNZtzIXrTNmVsgeU8Il7v9ZiBdquii5uekbSAUXdVDkKt2Fos=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org; spf=pass smtp.mailfrom=cknow.org; dkim=pass (2048-bit key) header.d=cknow.org header.i=@cknow.org header.b=r/U9ZzjP; arc=none smtp.client-ip=95.215.58.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=cknow.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=cknow.org
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cknow.org; s=key1;
-	t=1709566339;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Wqu+8C8GMaK6bDCk9aGSUCngS8D7qmdXKRr3pJsbYzU=;
-	b=r/U9ZzjPn0fMfmjS4kL0Kyo2EiyxBYMaJYIBtTKsAgufoOtx87HjO3ukmaFmd/1svqwPNg
-	DHV7v9SA3kFBaZgGQ92pNw7TW1/KePnB0TpVoAhZrtv3M20YrA6JNf+1u+bnl1tTkzX+2+
-	SBPsQFkEPk1Wf97Gp39a2Y8sPLGgsHk/LX77JY9BsYY0+gFTM4ktGhT46NO2u2wxvLFc+/
-	/NPOJQcC7Sjp6qpl9sSG33KXKYBWFT9Ne+/O5iOsEbAUhtSY9uD2isFgSIj1ql2RYSPIKQ
-	g19mpdc6Xt1GNK73R1fLWIkP9I0soTu2aUjnfU0D7bUr/0UKJJjQYO0Ja9tFow==
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Chen-Yu Tsai <wens@kernel.org>, linux-rockchip@lists.infradead.org
-Cc: Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= <ukleinek@debian.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, Andrew Lunn <andrew@lunn.ch>,
- Jonas Karlman <jonas@kwiboo.se>
-Subject:
- Re: [PATCH] arm64: dts: rockchip: qnap-ts433: Simplify network PHY connection
-Date: Mon, 04 Mar 2024 16:32:03 +0100
-Message-ID: <27139798.WhXITi6ROJ@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <0ed81fbf-cc25-4582-899e-4270932e897c@lunn.ch>
-References:
- <20240304084612.711678-2-ukleinek@debian.org>
- <CAGb2v67xA0z3KWBo=ierkK9qxBAnaLuVkta05qEaFmMciB1-ng@mail.gmail.com>
- <0ed81fbf-cc25-4582-899e-4270932e897c@lunn.ch>
+	s=arc-20240116; t=1709566372; c=relaxed/simple;
+	bh=ipSpV2qD9jkYTa4eAd/rzpfOh1a8zEwZPzXdy0N/iBs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mMjoqj1hTIfrR2cmDJ1kJHzwZBiR2Vjc9D8G9kc2bhIflsKMSSXjRh/LA9p9ojYk1bY37CS/5pCHgCj0Sd2KyFL9f/pAwwimPBTNW7VFH2MrWSZX7Pw1r/pyIyWNRbaNx+EwNCb9wOHee5Jg8/lh/2WTaJUpj2e+dSU3bbidsvI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xPAbY96G; arc=none smtp.client-ip=209.85.208.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-56454c695e6so7638636a12.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 07:32:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709566369; x=1710171169; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=g242gZ20gMqlxDrc+4jsxkuK7MSNCCnXaLkzx45ab5k=;
+        b=xPAbY96GzO2qHp7OJF22QwtcNgL5U3OOcHcagqFJ7XwU3EKslkjJWssAHkcpJmqhBk
+         i7zYNDjdDx2LJrjwSiylAJEgBswlK5hbTpGvtYRJcy09ipcpg5Yl5dhHjPTp3vAck3lu
+         SIYys4CZnKZpfndWnTO/qPIALMQ6spXZTPXEIsWsUA7EQZ5IbNCYHNThfUKmkVgvJ9nN
+         AreuUVzKgJxYXXWKGxGGWxJ0XJsSvcMatkF6IU2jl8VD84PgjfkTGDOYpXDOGqzqyOiK
+         qhdZG6ZsqBC3I/F1b/a/7keap3JuO8/ovxvYn/+GgGlQ1e1WGrIBoDZUQG80ruporFJU
+         eKnQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709566369; x=1710171169;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=g242gZ20gMqlxDrc+4jsxkuK7MSNCCnXaLkzx45ab5k=;
+        b=FbITdquWEbYKH//Ni31Nw2eqkbe3kO2HbsavqSotl4/evVyqeI0628zz7dVfPIWfMo
+         sOyi30KXyHi5KpfR6kJCixl+x10sWECmmCj/pC2+ZCoKLTt6SkUKvzbNNNQJ0BMoPs9R
+         t6CPm9DkLG2YahcS8PeoeJ3GDiQdvQQGN7O1G4CjbYqS3Ocx5x/L0UDeUpP8K7++BND9
+         vjsH8ZPQVq6EQCMYtljPOIZFHewF684jrRJiIXEFD+MPbxDUrUhM7ebdfmFWoMp2CyZk
+         yS81ewU5RiDnS61kobC2YRleuJ0NHqmvzJtP0vifvsIpEBiQx7uWds8nby8uG2L7OBgM
+         ZBvw==
+X-Forwarded-Encrypted: i=1; AJvYcCUpjtZNxnmY4M6SNLTRLy9358or3yhwm5IlQ4r0x74T+2rPOyMps0YhJoopBYbGVjBx7phD5Vvr3fH2IMR1ACwg6QRLMC9qGVCYMg==
+X-Gm-Message-State: AOJu0YydcyAwHZt7U0mvBVfJqwJ0MSDXjdivAdKvpN5Kv3kaAP9wTKJW
+	bMucaPiDcPgUljqWLIZ/kaYx7SdQoSCK/Skog+FNyA+fS1mEBkkf/uT/nV5PV1A=
+X-Google-Smtp-Source: AGHT+IEVmrIE42z1UaAPiKEVaJl6mRUA7Z3DIpCzRppDZZh15CmBAiQmpyv7ylWIH3NWJwMPcY49kg==
+X-Received: by 2002:a05:6402:40c2:b0:567:1947:d53f with SMTP id z2-20020a05640240c200b005671947d53fmr5769203edb.9.1709566369353;
+        Mon, 04 Mar 2024 07:32:49 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id ig10-20020a056402458a00b005657eefa8e9sm4763217edb.4.2024.03.04.07.32.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Mar 2024 07:32:48 -0800 (PST)
+Message-ID: <c93d53b8-fcfa-4e32-a167-31646b6b9086@linaro.org>
+Date: Mon, 4 Mar 2024 16:32:47 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart1786480.ieIM7KbnEy";
- micalg="pgp-sha256"; protocol="application/pgp-signature"
-X-Migadu-Flow: FLOW_OUT
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/7] dt-bindings: add Canaan K230 boards compatible
+ strings
+Content-Language: en-US
+To: Yangyu Chen <cyy@cyyself.name>, linux-riscv@lists.infradead.org
+Cc: Conor Dooley <conor@kernel.org>, Damien Le Moal <dlemoal@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <tencent_64A9B4B31C2D70D5633042461AC9F80C0509@qq.com>
+ <tencent_1DF18DF87C3E8281DA758E55B82831AD2108@qq.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <tencent_1DF18DF87C3E8281DA758E55B82831AD2108@qq.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
---nextPart1786480.ieIM7KbnEy
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"; protected-headers="v1"
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and include these headers.
-From: Diederik de Haas <didi.debian@cknow.org>
-To: Chen-Yu Tsai <wens@kernel.org>, linux-rockchip@lists.infradead.org
-Date: Mon, 04 Mar 2024 16:32:03 +0100
-Message-ID: <27139798.WhXITi6ROJ@bagend>
-Organization: Connecting Knowledge
-In-Reply-To: <0ed81fbf-cc25-4582-899e-4270932e897c@lunn.ch>
-MIME-Version: 1.0
-
-On Monday, 4 March 2024 14:09:15 CET Andrew Lunn wrote:
-> > > Andrew already pointed out when I posted the patch introducing the gmac0
-> > > node that rgmii-id would be the preferred way to setup things. Back
-> > > then this didn't happen because this change broke reception of network
-> > > packets. However this only happend because I didn't have the right phy
-> > > driver loaded.
-> > 
-> > It could be that the PHY is strapped to not use its internal RX delay.
-> > And the PHY has some weird default TX delay, so having the driver
-> > put some sensible values in is probably better.
+On 04/03/2024 16:16, Yangyu Chen wrote:
+> Since K230 was released, K210 is no longer the only SoC in the Kendryte
+> series, so remove the K210 string from the description. Also, add two
+> boards based on k230 to compatible strings to allow them to be used in the
+> dt.
 > 
-> It could also be the bootloader putting odd values into the PHY.
-> 
-> Anyway, it will work better with the correct PHY, and enable WoL
-> support.
-
-Not sure if this is the right place or way, but here we go...
-
-A few days ago on #debian-kernel@OFTC:
-[28.02 16:35] <ukleinek> u-boot should be out of the game
-[28.02 16:36] <diederik> I'm not so sure anymore. On Quartz64 Model A and B 
-(rk3566) I had massive packet loss and tracked it down to a change in u-boot
-[28.02 16:37] <ukleinek> diederik: sounds like the Linux network driver on 
-that machine could do something better
-[28.02 16:38] <diederik> yeah, probably
-
-I reported this about a month ago to Jonas Karlman as I bisected the problem 
-to a change in u-boot:
-
-> diederik@bagend:~/dev/u-boot/u-boot$ git bisect bad
-> 25f56459aebced8e4bb7d01061dcb1b765b197e2 is the first bad commit
-> commit 25f56459aebced8e4bb7d01061dcb1b765b197e2
-> Author: Jonas Karlman <jonas@kwiboo.se>
-> Date:   Sun Oct 1 19:17:21 2023 +0000
-> 
->     configs: rockchip: Enable ethernet driver on RK356x boards
->     
->     Enable DWC_ETH_QOS_ROCKCHIP and related PHY driver on RK356x boards that
->     have an enabled gmac node.
-
-I just checked and both Quartz64 Model A and B have `phy-mode = "rgmii";` and 
-set `tx_delay` and `rx_delay` to some (other) values.
-Without knowing nor understanding the details, this seem very much related?
-
-Cheers,
-  Diederik
---nextPart1786480.ieIM7KbnEy
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQT1sUPBYsyGmi4usy/XblvOeH7bbgUCZeXpcwAKCRDXblvOeH7b
-bmv2AQDC3ezAjgZekid7Sv/zN01j4p8v1AJm/VfZ1LXruWO2gAEAs/SOIp7zLJDJ
-RkD5rS7mQOiPttiummSZXlApHwUcnAc=
-=obWu
------END PGP SIGNATURE-----
-
---nextPart1786480.ieIM7KbnEy--
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> ---
+>  Documentation/devicetree/bindings/riscv/canaan.yaml | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
 
 
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
 
