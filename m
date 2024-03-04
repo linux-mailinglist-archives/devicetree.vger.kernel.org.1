@@ -1,155 +1,146 @@
-Return-Path: <devicetree+bounces-48198-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48199-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70B07870AC5
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 20:34:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C636870ACC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 20:36:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2533C1F22D51
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:34:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE9191C21048
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:36:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4145379948;
-	Mon,  4 Mar 2024 19:34:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D8E779950;
+	Mon,  4 Mar 2024 19:35:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P/6bN++K"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="RgC1/X7e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 161DE79941;
-	Mon,  4 Mar 2024 19:34:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B770E78664;
+	Mon,  4 Mar 2024 19:35:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709580870; cv=none; b=MHP28EQB3sjpmpRL5AWt79GF7chSc+p1eEasf68XI+Pas+8b4BjOTfpfJkFrQkM4To+p9coe1cH9u2PwX1HZihb8DbfgGlbVC2D+EVbJ8ciGtmyk1f0T41ky876L0xMS+dFsK1T4lk25bEiKACRTFopmeKFjf0lWMuhXPQ87d4U=
+	t=1709580959; cv=none; b=RhO+NgXLDetWMShGSSBpNA79eclt5L/XPqCVzOrP4XxlBrx+oQtKF0TgyC23uxg6c3y2rmgqlAzNE3qLHgaA6F3uIkqndDZZwIHClEVRuoa7AR1DtQk2yQqcwGh30+FfPpJh4tPqqMg5/a4k6GhdEhyTOUdAlReZy3TNunzBI64=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709580870; c=relaxed/simple;
-	bh=hfPu6EysdEbjriYSDjgUpEYkvags1PNmUGb2z5pWclw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=B2qn2gTl05NqeXoUoUMYW7MkclSj0ygzWMaMqKH/q95QGIA9OoxvKJkKpPxtCElu69PdYL/TPC+x3OIP69YZtCPIF9JJYjBo2riZx9JThXWj7NcV9i9XGUOB87f/b34k3x2eYhR+uXqXWPq4/UYiYH8ikzqIJCTZ0Zt6B5HkR9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P/6bN++K; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06443C433F1;
-	Mon,  4 Mar 2024 19:34:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709580869;
-	bh=hfPu6EysdEbjriYSDjgUpEYkvags1PNmUGb2z5pWclw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=P/6bN++KlvhxwGzW8fk9o6qDNjmeFkSZIuwI+dSb0H8FKkH/2Gk+XknF5dHn8clxI
-	 v9Vo2AdMK9uu5/Juq87GzpxCFlUhTLjJvn6Ql9HY3YhQ6/xclXTPPSKhHR6yhCR/bV
-	 kSN4tD5uWhSqqLJhs2+GwF+IoVavhPYOafTiVFMPxH7W7Um7TZNH3e01UWVbdH5Q4T
-	 GkLwoIybbltYihMGQa7Gmfqap08PwBWJlgGyQuOUe4+ppvPzUjfjDjzShTDXVMz4E4
-	 p2Zco/h4/LTDXalQ1nnrAiQ0FQ9fDqk8UuBPpZ6ak74mLYUxnTaTF/N99GXYUKZpmp
-	 rcV/h1uJQ9Pmw==
-Date: Mon, 4 Mar 2024 19:34:24 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
-	ath10k <ath10k@lists.infradead.org>,
-	wireless <linux-wireless@vger.kernel.org>,
-	DT <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pierre-Hugues Husson <phhusson@freebox.fr>,
-	Jami Kettunen <jamipkettunen@gmail.com>,
-	Jeffrey Hugo <quic_jhugo@quicinc.com>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-Message-ID: <20240304-component-animator-e2ee0ab7574a@spud>
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
- <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
- <871q8wk7o3.fsf@kernel.org>
- <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr>
- <87wmqoilzf.fsf@kernel.org>
- <20240229-ageless-primal-7a0544420949@spud>
- <68a49964-7c05-4575-a4f3-35848c08fefc@freebox.fr>
+	s=arc-20240116; t=1709580959; c=relaxed/simple;
+	bh=AWwt9iWslA/+2HB0N1qeBZ0N+tWGyi7ScfyPtfMBDqI=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ozfM2hIU/iEFe7ESUALE5iOnkqmopu257AAS4UHG5DFmHLD9ULzCyRqfZlnyxoNP7Nlc6VAh4lOyiJnGEzE4+Fw+JK1gxEaPPKtThUEErQYuF+KrGalAYfkVNs2HmM9f97JPPClbugix6QbZmc47aLwE9Gm7fNjG0A4CTb0Um6I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=RgC1/X7e; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 424HlVAO026348;
+	Mon, 4 Mar 2024 19:35:38 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=roM4l3ctcAaYii9wFZPAF
+	0RE2wcIuL57dvuM5l1K7lk=; b=RgC1/X7esUR/Pz/MXpwdIr38qGv0Ps+HelQPA
+	h48kG18M5ocojtFNaVPMP2ejV7HTa9i5dQebpD0Fb9H0t6SbNSufoHxwhohbuYM6
+	INu/XH9cbnOR/ayW7aKPe3TPR0vqD/RxVxwu4rrI9S3QqsNyzB6Z6lTj0mmXbzlh
+	Qi4xOsrOKaiwtzToGty5GNcCcDYd8Sfxsr3ZATpTw+MeNKBOEIsiZvyOMRcVk5AF
+	PuRpktEt0FzyjWjUZblL6Ta600UCGdbkm6UcR5F4y0MMJ9IpgxEPjmP78LDdOQqC
+	AflYJIJ2kS2tyLdAJ8cbEKvHIxImvx4+QLv+UMRlvArf1GhMw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wn96esjmw-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Mar 2024 19:35:37 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 424JZbDh011531
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Mar 2024 19:35:37 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 4 Mar 2024 11:35:18 -0800
+Date: Mon, 4 Mar 2024 11:35:17 -0800
+From: Bjorn Andersson <quic_bjorande@quicinc.com>
+To: Canfeng Zhuang <quic_czhuang@quicinc.com>
+CC: Derek Kiernan <derek.kiernan@amd.com>,
+        Dragan Cvetic
+	<dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman
+	<gregkh@linuxfoundation.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Konrad
+ Dybcio" <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 0/2] QCOM QRC device driver
+Message-ID: <20240304193517.GA4014015@hu-bjorande-lv.qualcomm.com>
+References: <20240304-qcom_qrc-v1-0-2a709f95fd61@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="bhDdbVFfGqGZqHQo"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <68a49964-7c05-4575-a4f3-35848c08fefc@freebox.fr>
+In-Reply-To: <20240304-qcom_qrc-v1-0-2a709f95fd61@quicinc.com>
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: a-mrT3blGKGjGbxzQc-VMt5AqHPkoBTI
+X-Proofpoint-GUID: a-mrT3blGKGjGbxzQc-VMt5AqHPkoBTI
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-04_15,2024-03-04_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ adultscore=0 lowpriorityscore=0 bulkscore=0 spamscore=0 malwarescore=0
+ mlxscore=0 impostorscore=0 clxscore=1011 mlxlogscore=999
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403040150
 
+On Mon, Mar 04, 2024 at 12:53:15AM +0800, Canfeng Zhuang wrote:
+> QCOM QRC device driver is used for Robotic SDK MCU
+> 
 
---bhDdbVFfGqGZqHQo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please review go/upstream and have your patches reviewed on the internal
+list before posting to the public mailing lists.
 
-On Mon, Mar 04, 2024 at 05:21:37PM +0100, Marc Gonzalez wrote:
-> On 29/02/2024 19:40, Conor Dooley wrote:
->=20
-> > On Wed, Feb 28, 2024 at 06:37:08PM +0200, Kalle Valo wrote:
-> >
-> >> Marc Gonzalez wrote:
-> >>=20
-> >>> As mentioned in my other reply, there are several msm8998-based
-> >>> devices affected by this issue. Is it not appropriate to consider
-> >>> a kernel-based work-around?
-> >>
-> >> Sorry, not following you here. But I'll try to answer anyway:
-> >>
-> >> I have understood that Device Tree is supposed to describe hardware, n=
-ot
-> >> software. This is why having this property in DT does not look right
-> >> place for this. For example, if the ath10k firmware is fixed then DT
-> >> would have to be changed even though nothing changed in hardware. But =
-of
-> >> course DT maintainers have the final say.
-> >=20
-> > I dunno, if the firmware affects the functionality of the hardware in a
-> > way that cannot be detected from the operating system at runtime how
-> > else is it supposed to deal with that?
-> > The devicetree is supposed to describe hardware, yes, but at a certain
-> > point the line between firmware and hardware is invisible :)
-> > Not describing software is mostly about not using it to determine
-> > software policy in the operating system.
->=20
-> Recording here what was discussed a few days ago on IRC:
->=20
-> If all msm8998 boards are affected, then it /might/ make sense
-> to work around the issue for ALL msm8998 boards:
->=20
-> diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless=
-/ath/ath10k/qmi.c
-> index 0776e79b25f3a..9da06da518fb6 100644
-> --- a/drivers/net/wireless/ath/ath10k/qmi.c
-> +++ b/drivers/net/wireless/ath/ath10k/qmi.c
-> @@ -1076,6 +1076,9 @@ int ath10k_qmi_init(struct ath10k *ar, u32 msa_size)
->  	qmi->ar =3D ar;
->  	ar_snoc->qmi =3D qmi;
-> =20
-> +	if (of_device_is_compatible(of_root, "qcom,msm8998")
-> +		qmi->no_point_in_waiting_for_msa_ready_indicator =3D true;
-> +
->  	if (of_property_read_bool(dev->of_node, "qcom,msa-fixed-perm"))
->  		qmi->msa_fixed_perm =3D true;
-> =20
->=20
-> Thus, anyone porting an msm8998 board to mainline would automatically
-> get the work-around, without having to hunt down the feature bit,
-> and tweak the FW files.
+Thank you,
+Bjorn
 
-How come the root node comes into this, don't you have a soc-specific
-compatible for the integration on this SoC?
-(I am assuming that this is not the SDIO variant, given then it'd not be
-fixed to this particular implementation)
-
---bhDdbVFfGqGZqHQo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeYiQAAKCRB4tDGHoIJi
-0gLiAP9ae+USWPlOTK3qJiAXdwckG5buGi5gBreOCjcOL9NtDQD/Uvk0cIeTq05/
-61GvL37kjGGBqpiFoPi5PQwgR+EUHAE=
-=rob9
------END PGP SIGNATURE-----
-
---bhDdbVFfGqGZqHQo--
+> [commit]misc: qualcomm: QRC driver for Robotic SDK MCU
+> This commit is used to enable robotic controller device driver.
+> QRC Driver support functions:
+> - Read data from serial device port.
+> - Write data to serial device port.
+> - Pin control reset robotic controller.
+> 
+> [commit]dt-bindings: misc: merge qcom,qrc
+> This commit is used to support qcom qrc devicetree binding.
+> 
+> Signed-off-by: Canfeng Zhuang <quic_czhuang@quicinc.com>
+> ---
+> Canfeng Zhuang (2):
+>       misc: qualcomm: QRC driver for Robotic SDK MCU
+>       dt-bindings: misc: merge qcom,qrc
+> 
+>  .../devicetree/bindings/misc/qcom,qrc.yaml         |  32 ++
+>  drivers/misc/Kconfig                               |   1 +
+>  drivers/misc/Makefile                              |   1 +
+>  drivers/misc/qrc/Kconfig                           |  16 +
+>  drivers/misc/qrc/Makefile                          |   6 +
+>  drivers/misc/qrc/qrc_core.c                        | 336 ++++++++++++++++++++
+>  drivers/misc/qrc/qrc_core.h                        | 143 +++++++++
+>  drivers/misc/qrc/qrc_uart.c                        | 345 +++++++++++++++++++++
+>  8 files changed, 880 insertions(+)
+> ---
+> base-commit: 805d849d7c3cc1f38efefd48b2480d62b7b5dcb7
+> change-id: 20240304-qcom_qrc-778c8fad8846
+> 
+> Best regards,
+> -- 
+> Canfeng Zhuang <quic_czhuang@quicinc.com>
+> 
 
