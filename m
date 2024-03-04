@@ -1,403 +1,289 @@
-Return-Path: <devicetree+bounces-47991-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-47992-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED90486F9A0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 06:37:20 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3FD586F9B6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 06:49:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 25F1F1C20AD6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 05:37:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 45EA61F211B4
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 05:49:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B0B7B675;
-	Mon,  4 Mar 2024 05:37:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36E13C147;
+	Mon,  4 Mar 2024 05:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="GxdzCPv0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xW8T/5sS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A059933CF;
-	Mon,  4 Mar 2024 05:37:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 530E2BA27
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 05:49:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709530635; cv=none; b=nhGTXvUzTGnPxkoeSIrrh0mTIIaCBttbNnWBDPqllU7RzE+Nj+dofEUdQAe/z/MwUnofKrhhfJ0YWAL8Aj8kp6UE6Lv71P1EP8V46F8ov3a+gEcJuzeL5Jw0lJqMSasb3XE1b89515Gqq5dhnn3o3S34SZem9i1K2yUT5fbfdRw=
+	t=1709531383; cv=none; b=CtwouDrOJ3Whms7bRmREfy73cwc6Q5B4I/BEs21fqfYpZdNFFtHRT/+bi2D205I0xBDgggQ56P5hq+3QjU4ZSdRMx7hbAIhZMZukpo0Di3cwf7VqbSSjaQ2HOs0OUsOlGGH8ZAGeQeIcbeF0ypce1UHtvaYtVCYkPdLeyQ9+wC8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709530635; c=relaxed/simple;
-	bh=HjXWF3YIEhulQdNJEtfbqmTCEkvDaFvH0ggPzHbk8Cc=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-ID:To:CC; b=K+bQN5/LWlxr1Y/tSuJbg42blmgQDi0BJrIQCU7oXIyHsBUM1v3vLvWLA5R0x+8bHZZOJ3s8B2p2k3haJQa7L9x6n/RCP6j7LcKe3NqZuJUWzEg+vhde8gsyaJfoB8yGhhernauz5XVbiAxBUsDMA5RSDKaU7FmHSwMAM1aDi44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=GxdzCPv0; arc=none smtp.client-ip=68.232.153.233
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1709530633; x=1741066633;
-  h=from:date:subject:mime-version:content-transfer-encoding:
-   message-id:to:cc;
-  bh=HjXWF3YIEhulQdNJEtfbqmTCEkvDaFvH0ggPzHbk8Cc=;
-  b=GxdzCPv0kdlDxubyZnN40Ef0ci5M0rolaxgGJA7+OR60xl1uQeFgNR1r
-   w8cXfl6uGsAbgHVq01SznhhkfM0QsdbgxMypWMbp13joklE0AomIx9j/x
-   zl2tAOKn0qMSvoGguI/kv37kDGDlDnroOs8UE7ZWeYr85fEpJf9+yeO0D
-   IDGgyeNMwV/7cOHbVGW6QbWoIoC7KXFCx9gXDHLbA7tnRqtUBbxZffyId
-   stk7W+NmavcpyKGnObuG3SJK/DroBtm8ELCc/PSYLEvAtOyAMpe5Lrpji
-   EozItrEL0Xjg3/Nbe+zBzWKmPXZ73Sjgq6LDYSbdJIcWIv/aqJmjR+u8+
-   Q==;
-X-CSE-ConnectionGUID: BFFWnpeARXSwNbz8PKIqCA==
-X-CSE-MsgGUID: TFY0ZBszR/y5IYBHvTBWdQ==
-X-IronPort-AV: E=Sophos;i="6.06,203,1705388400"; 
-   d="scan'208";a="18764271"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 03 Mar 2024 22:37:06 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Sun, 3 Mar 2024 22:37:00 -0700
-Received: from che-lt-i70843lx.microchip.com (10.10.85.11) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
- 15.1.2507.35 via Frontend Transport; Sun, 3 Mar 2024 22:36:54 -0700
-From: Dharma Balasubiramani <dharma.b@microchip.com>
-Date: Mon, 4 Mar 2024 11:06:39 +0530
-Subject: [PATCH v2] dt-bindings: display: atmel,lcdc: convert to dtschema
+	s=arc-20240116; t=1709531383; c=relaxed/simple;
+	bh=0lWW9AfozQqKBDt6Ue4iDfWuXKOlKqj5H3BkAFd4JsI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xsjc4aYE5W7TJB+OpVYDumHB+Y2rrtwlVDnzgqS8VH5i4ksjcciJZ4KL8o1oWGLF05JEGH4/TQCnm05gqb0EIk3Rmh0ZqFmnuR6I37o5XY8B/lgPPJJGBQ5m8EiYvJuRMeJe0OKY7SuvhYiNEunZh6Hq2Y5NmuceezHaiKsGgK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xW8T/5sS; arc=none smtp.client-ip=209.85.167.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-oi1-f171.google.com with SMTP id 5614622812f47-3c1a172e46bso3376782b6e.3
+        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 21:49:40 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709531379; x=1710136179; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=eUCm3cHKUrzsBg+iebnTzHjVpJQ4bu98MP5OPl6dous=;
+        b=xW8T/5sSd9tSjpPLOEOdcQTshvw8nhP8AJzWHI/vhdp+l34IZdL1+69QSOfwxSjx90
+         /YyAGTsLnadLzgzX6ImgKBwl2YnJ/OV1+XzQcH8vuOKfdi3Fy9eu9HLhwpvUaKq4Pq21
+         pXtIDEHHqlLc2P+7TC/FFTn+WG2r1FXR9TORbD0f5YQ4OqFv6xfAiWQhaj5wjYTAGt0s
+         +nCzAVG91cK07J1p/jOIHnG8V6ebOP8eZTfSq3zOaMhD0sYgzNDlKpg9vNneHI1LU6vg
+         gcTnD9rxMdNlTr0ZUPyZpuAe8ie24uUR2eq4u+9bSbY9zmAWLABxo6si1hMiu9QXbg5t
+         mBhg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709531379; x=1710136179;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eUCm3cHKUrzsBg+iebnTzHjVpJQ4bu98MP5OPl6dous=;
+        b=CBvWZJDhi2ByX22ZXx/1zTBEVVyr/0Z2mQ/02Kd0MgqL3n+e6sSwzhJYhz3TzLHMkI
+         w2aZWWlA2zO8I0VLrYL2FYkgtTN9FrYnrl+fPyz3N+hDpw3PqgozMkUA6jVAfXNJebd2
+         SrP54ZSurjF4VGkRYP5MSJ1C1YvLRMePA5sdNrvy4FrPFmsYVjXL0RCvDc5/FLP4Pmtz
+         kypWBPrzxr5c4J240WVFge3/0BFJ6Knh3piCe1kQ4HlXWZfA2TI1PYZvYSVqNEtmdQzv
+         XyhrYmh1uXOnbdytBeAb+bokdqUlQ/vTLNjgwAhzKp41XYsm1XqrMpi/qkDqwGf4xN9u
+         N+gA==
+X-Forwarded-Encrypted: i=1; AJvYcCUaB1lmkbIUj+6JeGP3EYLPakTBUOaZfR9OjS0q9VLKviQtIl9PjiG2kNF3+9BO7AR75O464Ku+ue3Q3quHE6uXY1iY26VKtbHx4g==
+X-Gm-Message-State: AOJu0Yx2T+u34T5Y1kUtzXX5isQip0rGhqEDBONIib8PtNFOe8pjZM7c
+	WnlPFtGk/m+DLPrbE+qbzPrd+NtjP2f8LnLZZ5+hW+/KTO8d8Cmyl0gR8Vd0Eg==
+X-Google-Smtp-Source: AGHT+IGrhz7hfkOSFRicSn1ybgnXsi9KuNOUzMyw7lHfQRZv3dDJpwKFk4OY64adl6kfzl/7mLgV0A==
+X-Received: by 2002:a05:6808:1782:b0:3c1:d903:fd40 with SMTP id bg2-20020a056808178200b003c1d903fd40mr8727895oib.55.1709531379437;
+        Sun, 03 Mar 2024 21:49:39 -0800 (PST)
+Received: from thinkpad ([117.207.30.163])
+        by smtp.gmail.com with ESMTPSA id p23-20020aa78617000000b006e091a254adsm6480796pfn.30.2024.03.03.21.49.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 03 Mar 2024 21:49:39 -0800 (PST)
+Date: Mon, 4 Mar 2024 11:19:32 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] dt-bindings: PCI: qcom: Document the X1E80100
+ PCIe Controller
+Message-ID: <20240304054932.GB2647@thinkpad>
+References: <20240301-x1e80100-pci-v4-0-7ab7e281d647@linaro.org>
+ <20240301-x1e80100-pci-v4-1-7ab7e281d647@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20240304-lcdc-fb-v2-1-a14b463c157a@microchip.com>
-X-B4-Tracking: v=1; b=H4sIAOZd5WUC/2XMQQrCMBCF4auUWRtppqFVV95DujCTiRmwTUmkK
- CV3N3br8n88vg0yJ+EMl2aDxKtkiXMNPDRA4T4/WImrDdiiaRE79SRHyltlTw4ZfUdnbaC+l8R
- e3rt0G2sHya+YPju86t/6b6xaaWWoN2R7HAbnr5NQihRkOVKcYCylfAHkeWP8ogAAAA==
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
-	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
-	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Rob Herring
-	<robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Nicolas Ferre <nicolas.ferre@microchip.com>, Alexandre Belloni
-	<alexandre.belloni@bootlin.com>, Claudiu Beznea <claudiu.beznea@tuxon.dev>
-CC: <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-	Dharma Balasubiramani <dharma.b@microchip.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1709530605; l=9543;
- i=dharma.b@microchip.com; s=20240209; h=from:subject:message-id;
- bh=HjXWF3YIEhulQdNJEtfbqmTCEkvDaFvH0ggPzHbk8Cc=;
- b=94IRQwX7s9gnTfvI89sYFyGFfb2/zTDBlP2tesca5BXKYhwTOxOR2fmhzfCVTizuThfraY/xL
- vlXlKQ8yR2iDuJ0PGZEAl+ibN2vL9V6ZHreClongs0/iqur3eXTsAtq
-X-Developer-Key: i=dharma.b@microchip.com; a=ed25519;
- pk=kCq31LcpLAe9HDfIz9ZJ1U7T+osjOi7OZSbe0gqtyQ4=
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240301-x1e80100-pci-v4-1-7ab7e281d647@linaro.org>
 
-Convert the atmel,lcdc bindings to DT schema.
-Changes during conversion: add missing clocks and clock-names properties.
+On Fri, Mar 01, 2024 at 06:59:01PM +0200, Abel Vesa wrote:
+> Add dedicated schema for the PCIe controllers found on X1E80100.
+> 
+> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 
-Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
----
-This patch converts the existing lcdc display text binding to JSON schema.
-The binding is split into two namely
-lcdc.yaml
-- Holds the frame buffer properties
-lcdc-display.yaml
-- Holds the display panel properties which is a phandle to the display
-property in lcdc fb node.
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-These bindings are tested against the existing at91 dts files using
-dtbs_check.
----
-Changes in v2:
-- Run checkpatch and remove whitespace errors.
-- Add the standard interrupt flags.
-- Split the binding into two, namely lcdc.yaml and lcdc-display.yaml.
-- Link to v1: https://lore.kernel.org/r/20240223-lcdc-fb-v1-1-4c64cb6277df@microchip.com
----
- .../bindings/display/atmel,lcdc-display.yaml       | 98 ++++++++++++++++++++++
- .../devicetree/bindings/display/atmel,lcdc.txt     | 87 -------------------
- .../devicetree/bindings/display/atmel,lcdc.yaml    | 70 ++++++++++++++++
- 3 files changed, 168 insertions(+), 87 deletions(-)
+- Mani
 
-diff --git a/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml b/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml
-new file mode 100644
-index 000000000000..ea4fd34b9e2c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml
-@@ -0,0 +1,98 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/atmel,lcdc-display.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip's LCDC Display
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Dharma Balasubiramani <dharma.b@microchip.com>
-+
-+description:
-+  The LCD Controller (LCDC) consists of logic for transferring LCD image data
-+  from an external display buffer to a TFT LCD panel. The LCDC has one display
-+  input buffer per layer that fetches pixels through the single bus host
-+  interface and a look-up table to allow palletized display configurations. The
-+  LCDC is programmable on a per layer basis, and supports different LCD
-+  resolutions, window sizes, image formats and pixel depths.
-+
-+# We need a select here since this schema is applicable only for nodes with the
-+# following properties
-+
-+select:
-+  anyOf:
-+    - required: [ 'atmel,dmacon' ]
-+    - required: [ 'atmel,lcdcon2' ]
-+    - required: [ 'atmel,guard-time' ]
-+    - required: [ bits-per-pixel ]
-+
-+properties:
-+  atmel,dmacon:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: dma controller configuration
-+
-+  atmel,lcdcon2:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: lcd controller configuration
-+
-+  atmel,guard-time:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: lcd guard time (Delay in frame periods)
-+
-+  bits-per-pixel:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: lcd panel bit-depth.
-+
-+  atmel,lcdcon-backlight:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: enable backlight
-+
-+  atmel,lcdcon-backlight-inverted:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+    description: invert backlight PWM polarity
-+
-+  atmel,lcd-wiring-mode:
-+    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-+    description: lcd wiring mode "RGB" or "BRG"
-+
-+  atmel,power-control-gpio:
-+    description: gpio to power on or off the LCD (as many as needed)
-+
-+  display-timings:
-+    $ref: panel/display-timings.yaml#
-+
-+required:
-+  - atmel,dmacon
-+  - atmel,lcdcon2
-+  - atmel,guard-time
-+  - bits-per-pixel
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    display: panel {
-+      bits-per-pixel = <32>;
-+      atmel,lcdcon-backlight;
-+      atmel,dmacon = <0x1>;
-+      atmel,lcdcon2 = <0x80008002>;
-+      atmel,guard-time = <9>;
-+      atmel,lcd-wiring-mode = <1>;
-+
-+      display-timings {
-+        native-mode = <&timing0>;
-+        timing0: timing0 {
-+          clock-frequency = <9000000>;
-+          hactive = <480>;
-+          vactive = <272>;
-+          hback-porch = <1>;
-+          hfront-porch = <1>;
-+          vback-porch = <40>;
-+          vfront-porch = <1>;
-+          hsync-len = <45>;
-+          vsync-len = <1>;
-+        };
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/display/atmel,lcdc.txt b/Documentation/devicetree/bindings/display/atmel,lcdc.txt
-deleted file mode 100644
-index b5e355ada2fa..000000000000
---- a/Documentation/devicetree/bindings/display/atmel,lcdc.txt
-+++ /dev/null
-@@ -1,87 +0,0 @@
--Atmel LCDC Framebuffer
-------------------------------------------------------
--
--Required properties:
--- compatible :
--	"atmel,at91sam9261-lcdc" , 
--	"atmel,at91sam9263-lcdc" ,
--	"atmel,at91sam9g10-lcdc" ,
--	"atmel,at91sam9g45-lcdc" ,
--	"atmel,at91sam9g45es-lcdc" ,
--	"atmel,at91sam9rl-lcdc" ,
--- reg : Should contain 1 register ranges(address and length).
--	Can contain an additional register range(address and length)
--	for fixed framebuffer memory. Useful for dedicated memories.
--- interrupts : framebuffer controller interrupt
--- display: a phandle pointing to the display node
--
--Required nodes:
--- display: a display node is required to initialize the lcd panel
--	This should be in the board dts.
--- default-mode: a videomode within the display with timing parameters
--	as specified below.
--
--Optional properties:
--- lcd-supply: Regulator for LCD supply voltage.
--
--Example:
--
--	fb0: fb@00500000 {
--		compatible = "atmel,at91sam9g45-lcdc";
--		reg = <0x00500000 0x1000>;
--		interrupts = <23 3 0>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_fb>;
--		display = <&display0>;
--		#address-cells = <1>;
--		#size-cells = <1>;
--
--	};
--
--Example for fixed framebuffer memory:
--
--	fb0: fb@00500000 {
--		compatible = "atmel,at91sam9263-lcdc";
--		reg = <0x00700000 0x1000 0x70000000 0x200000>;
--		[...]
--	};
--
--Atmel LCDC Display
-------------------------------------------------------
--Required properties (as per of_videomode_helper):
--
-- - atmel,dmacon: dma controller configuration
-- - atmel,lcdcon2: lcd controller configuration
-- - atmel,guard-time: lcd guard time (Delay in frame periods)
-- - bits-per-pixel: lcd panel bit-depth.
--
--Optional properties (as per of_videomode_helper):
-- - atmel,lcdcon-backlight: enable backlight
-- - atmel,lcdcon-backlight-inverted: invert backlight PWM polarity
-- - atmel,lcd-wiring-mode: lcd wiring mode "RGB" or "BRG"
-- - atmel,power-control-gpio: gpio to power on or off the LCD (as many as needed)
--
--Example:
--	display0: display {
--		bits-per-pixel = <32>;
--		atmel,lcdcon-backlight;
--		atmel,dmacon = <0x1>;
--		atmel,lcdcon2 = <0x80008002>;
--		atmel,guard-time = <9>;
--		atmel,lcd-wiring-mode = <1>;
--
--		display-timings {
--			native-mode = <&timing0>;
--			timing0: timing0 {
--				clock-frequency = <9000000>;
--				hactive = <480>;
--				vactive = <272>;
--				hback-porch = <1>;
--				hfront-porch = <1>;
--				vback-porch = <40>;
--				vfront-porch = <1>;
--				hsync-len = <45>;
--				vsync-len = <1>;
--			};
--		};
--	};
-diff --git a/Documentation/devicetree/bindings/display/atmel,lcdc.yaml b/Documentation/devicetree/bindings/display/atmel,lcdc.yaml
-new file mode 100644
-index 000000000000..1b6f7e395006
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/atmel,lcdc.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/atmel,lcdc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Microchip's LCDC Framebuffer
-+
-+maintainers:
-+  - Nicolas Ferre <nicolas.ferre@microchip.com>
-+  - Dharma Balasubiramani <dharma.b@microchip.com>
-+
-+description:
-+  The LCDC works with a framebuffer, which is a section of memory that contains
-+  a complete frame of data representing pixel values for the display. The LCDC
-+  reads the pixel data from the framebuffer and sends it to the LCD panel to
-+  render the image.
-+
-+properties:
-+  compatible:
-+    enum:
-+      - atmel,at91sam9261-lcdc
-+      - atmel,at91sam9263-lcdc
-+      - atmel,at91sam9g10-lcdc
-+      - atmel,at91sam9g45-lcdc
-+      - atmel,at91sam9g45es-lcdc
-+      - atmel,at91sam9rl-lcdc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 2
-+
-+  clock-names:
-+    items:
-+      - const: hclk
-+      - const: lcdc_clk
-+
-+  display:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: A phandle pointing to the display node.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - display
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/at91.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    fb@500000 {
-+      compatible = "atmel,at91sam9g45-lcdc";
-+      reg = <0x00500000 0x1000>;
-+      interrupts = <23 IRQ_TYPE_LEVEL_HIGH 0>;
-+      pinctrl-names = "default";
-+      pinctrl-0 = <&pinctrl_fb>;
-+      clocks = <&pmc PMC_TYPE_PERIPHERAL 23>, <&pmc PMC_TYPE_PERIPHERAL 23>;
-+      clock-names = "hclk", "lcdc_clk";
-+      display = <&display>;
-+    };
+> ---
+>  .../bindings/pci/qcom,pcie-x1e80100.yaml           | 165 +++++++++++++++++++++
+>  1 file changed, 165 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml
+> new file mode 100644
+> index 000000000000..1074310a8e7a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pci/qcom,pcie-x1e80100.yaml
+> @@ -0,0 +1,165 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pci/qcom,pcie-x1e80100.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm X1E80100 PCI Express Root Complex
+> +
+> +maintainers:
+> +  - Bjorn Andersson <andersson@kernel.org>
+> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> +
+> +description:
+> +  Qualcomm X1E80100 SoC (and compatible) PCIe root complex controller is based on
+> +  the Synopsys DesignWare PCIe IP.
+> +
+> +properties:
+> +  compatible:
+> +    const: qcom,pcie-x1e80100
+> +
+> +  reg:
+> +    minItems: 5
+> +    maxItems: 6
+> +
+> +  reg-names:
+> +    minItems: 5
+> +    items:
+> +      - const: parf # Qualcomm specific registers
+> +      - const: dbi # DesignWare PCIe registers
+> +      - const: elbi # External local bus interface registers
+> +      - const: atu # ATU address space
+> +      - const: config # PCIe configuration space
+> +      - const: mhi # MHI registers
+> +
+> +  clocks:
+> +    minItems: 7
+> +    maxItems: 7
+> +
+> +  clock-names:
+> +    items:
+> +      - const: aux # Auxiliary clock
+> +      - const: cfg # Configuration clock
+> +      - const: bus_master # Master AXI clock
+> +      - const: bus_slave # Slave AXI clock
+> +      - const: slave_q2a # Slave Q2A clock
+> +      - const: noc_aggr # Aggre NoC PCIe AXI clock
+> +      - const: cnoc_sf_axi # Config NoC PCIe1 AXI clock
+> +
+> +  interrupts:
+> +    minItems: 8
+> +    maxItems: 8
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: msi0
+> +      - const: msi1
+> +      - const: msi2
+> +      - const: msi3
+> +      - const: msi4
+> +      - const: msi5
+> +      - const: msi6
+> +      - const: msi7
+> +
+> +  resets:
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  reset-names:
+> +    minItems: 1
+> +    items:
+> +      - const: pci # PCIe core reset
+> +      - const: link_down # PCIe link down reset
+> +
+> +allOf:
+> +  - $ref: qcom,pcie-common.yaml#
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/qcom,x1e80100-gcc.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interconnect/qcom,x1e80100-rpmh.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        pcie@1c08000 {
+> +            compatible = "qcom,pcie-x1e80100";
+> +            reg = <0 0x01c08000 0 0x3000>,
+> +                  <0 0x7c000000 0 0xf1d>,
+> +                  <0 0x7c000f40 0 0xa8>,
+> +                  <0 0x7c001000 0 0x1000>,
+> +                  <0 0x7c100000 0 0x100000>,
+> +                  <0 0x01c0b000 0 0x1000>;
+> +            reg-names = "parf", "dbi", "elbi", "atu", "config", "mhi";
+> +            ranges = <0x01000000 0x0 0x00000000 0x0 0x60200000 0x0 0x100000>,
+> +                     <0x02000000 0x0 0x60300000 0x0 0x60300000 0x0 0x3d00000>;
+> +
+> +            bus-range = <0x00 0xff>;
+> +            device_type = "pci";
+> +            linux,pci-domain = <0>;
+> +            num-lanes = <2>;
+> +
+> +            #address-cells = <3>;
+> +            #size-cells = <2>;
+> +
+> +            clocks = <&gcc GCC_PCIE_4_AUX_CLK>,
+> +                     <&gcc GCC_PCIE_4_CFG_AHB_CLK>,
+> +                     <&gcc GCC_PCIE_4_MSTR_AXI_CLK>,
+> +                     <&gcc GCC_PCIE_4_SLV_AXI_CLK>,
+> +                     <&gcc GCC_PCIE_4_SLV_Q2A_AXI_CLK>,
+> +                     <&gcc GCC_CFG_NOC_PCIE_ANOC_NORTH_AHB_CLK>,
+> +                     <&gcc GCC_CNOC_PCIE_NORTH_SF_AXI_CLK>;
+> +            clock-names = "aux",
+> +                          "cfg",
+> +                          "bus_master",
+> +                          "bus_slave",
+> +                          "slave_q2a",
+> +                          "noc_aggr",
+> +                          "cnoc_sf_axi";
+> +
+> +            dma-coherent;
+> +
+> +            interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
+> +                         <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
+> +            interrupt-names = "msi0", "msi1", "msi2", "msi3",
+> +                              "msi4", "msi5", "msi6", "msi7";
+> +            #interrupt-cells = <1>;
+> +            interrupt-map-mask = <0 0 0 0x7>;
+> +            interrupt-map = <0 0 0 1 &intc 0 0 0 149 IRQ_TYPE_LEVEL_HIGH>, /* int_a */
+> +                            <0 0 0 2 &intc 0 0 0 150 IRQ_TYPE_LEVEL_HIGH>, /* int_b */
+> +                            <0 0 0 3 &intc 0 0 0 151 IRQ_TYPE_LEVEL_HIGH>, /* int_c */
+> +                            <0 0 0 4 &intc 0 0 0 152 IRQ_TYPE_LEVEL_HIGH>; /* int_d */
+> +
+> +            interconnects = <&pcie_noc MASTER_PCIE_4 0 &mc_virt SLAVE_EBI1 0>,
+> +                            <&gem_noc MASTER_APPSS_PROC 0 &cnoc_main SLAVE_PCIE_4 0>;
+> +            interconnect-names = "pcie-mem", "cpu-pcie";
+> +
+> +            iommu-map = <0x0 &apps_smmu 0x1400 0x1>,
+> +                        <0x100 &apps_smmu 0x1401 0x1>;
+> +
+> +            phys = <&pcie4_phy>;
+> +            phy-names = "pciephy";
+> +
+> +            pinctrl-0 = <&pcie0_default_state>;
+> +            pinctrl-names = "default";
+> +
+> +            power-domains = <&gcc GCC_PCIE_4_GDSC>;
+> +
+> +            resets = <&gcc GCC_PCIE_4_BCR>;
+> +            reset-names = "pci";
+> +
+> +            perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
+> +            wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+> +        };
+> +    };
+> 
+> -- 
+> 2.34.1
+> 
 
----
-base-commit: 90d35da658da8cff0d4ecbb5113f5fac9d00eb72
-change-id: 20240223-lcdc-fb-b8d2e2f3c914
-
-Best regards,
 -- 
-Dharma Balasubiramani <dharma.b@microchip.com>
-
+மணிவண்ணன் சதாசிவம்
 
