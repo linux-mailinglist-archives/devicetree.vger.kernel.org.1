@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-48100-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48101-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A93A78702DA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:37:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CF2888702E0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:39:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 48D1E1F24FC1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 13:37:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 632611F263F7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 13:39:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2DB003E478;
-	Mon,  4 Mar 2024 13:37:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72AEC3E47A;
+	Mon,  4 Mar 2024 13:38:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W6YTCCzx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pZMksxHI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 066EF3DB9A;
-	Mon,  4 Mar 2024 13:37:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A1741EB2C;
+	Mon,  4 Mar 2024 13:38:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709559454; cv=none; b=qRAxaF5qzZX7dKjbmNLvmYwTvdw61ivh8XBpw1jHfExePCP4uepE5cH2Jnh8+Pb7F4peNJBBK6FZD0ktwae2P5K+zLjP5UgTVhI2BPMCFjsqPUQ3KnddKeVXYM//vKLJAxWJzAJw7rjFwIAdJzNanez44gD90ddJFUobKjw+eq0=
+	t=1709559535; cv=none; b=czBCKn2tpds9ZJ/JXL3vtq7m5VNinyKyNlxmn/KTqOBeNjA97DpIhPNYKXLHrX7omBy0bRk5RBbudwe5gm0gwVn0SP36trZWzIzb9wRvY2hQBsIELZJjoL4LWOW0akvsjd55rYaHL/Wpl03KNjkBq+d/oA/v5+82/EfDldQ6KeI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709559454; c=relaxed/simple;
-	bh=Ph0t88urpiIfgX3lePmkozKVSowGvKDDtWxRZ0hH0SY=;
+	s=arc-20240116; t=1709559535; c=relaxed/simple;
+	bh=FXo9W2jWdmeP+JJdvlkOdOBLnpOXWalykdF25smen3E=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LM2uXiA5HaluMkyc4MUbmF3vrZnaYKTE3j0/9JXXEsP3o6OXYdfmmGOgwR2AF9+Zs8aH6YBVt3hH47CHHZ7fpjtEJB9zp4I6Lpl+UkPkkR/Ky9JxLvxpa2QS+hzJuI/uhkzsQ7yXoCRNyOIGA4BJ33TsXknHAsQ/J6tpjNmEmMc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W6YTCCzx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 87519C433C7;
-	Mon,  4 Mar 2024 13:37:33 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=uJ6gquzJU2zxId6g8JzvGH0x/ObMtBEwD2XGWZu3RYYMSlHsKwFcdWEKMeEPA/JNcrxa51S6eN9ZF4YiyW6Cjp7tZ2+P0bvIRAJflMfsqrb9ZAub/zMhjUHsMGq1aMw4+Lgp1twG/RKBry7F/0UgHjL1md8F6+IjXEIVSL56k0Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pZMksxHI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79B6BC433C7;
+	Mon,  4 Mar 2024 13:38:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709559453;
-	bh=Ph0t88urpiIfgX3lePmkozKVSowGvKDDtWxRZ0hH0SY=;
+	s=k20201202; t=1709559534;
+	bh=FXo9W2jWdmeP+JJdvlkOdOBLnpOXWalykdF25smen3E=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=W6YTCCzx3azyARlHLnJKj7DlRItWL5zU5z7c2kkrB/veS/4VLDVzLIqutidwIFPXg
-	 +oD7pa46iAuCawIFdTOfPQ6mc44Z6RgVRaTAjLlVuu3xNHt4PaUoswpEmeRc0FCZB3
-	 mJmG7dn8ArXlzs0hQK0ZsgqgKemoQSyigGvy3Hn/ibL04I17ATwReEFGw+n4OZ65Gq
-	 hwjgWQUX6h4vcG+oJiZQy4jZgJ2VuuWXyjYsTzlRXgicBTDfFdTVZBBkzhkrZP+6fd
-	 AZbPzsmiLKkxUmA/Ho1OCOaCbT12Q1EOxlJn4pWPgRB+MrK2+VBcefw3oX6AR+aM0S
-	 kRH+qRae3MZbg==
-Date: Mon, 4 Mar 2024 07:37:31 -0600
+	b=pZMksxHIj5/ILwrJERYOXzmQchIsiuHmjBbq8wdPHmJvADQzsDFhKn96NraVCmjwn
+	 QwXxHmlrBlRGQo2jfGpe5/XW1Fc0LgWOLtluQVLwszWtcJgjUxjs/pG8khaQtbXa6y
+	 BZJZ3HRxZzn2Dncqg7keLOXnzH0Ry8qZ+74BxGRitGLkzq6I5LzfUcmN+9/IqdWLr1
+	 cCxL4e5HlOuwcThu4OpEIREOwypWrU619Wi/2rGj/DWZZHfFZn9lR9fpUbRWbjl9xP
+	 W3gV84XJU7gUV5UwJWXy1CeOfnkk79GnJN6XVgMR1neZ/ahcvbcPn8T4OaPDdS6A/Y
+	 c2dFvKFCgEXyA==
+Date: Mon, 4 Mar 2024 07:38:52 -0600
 From: Rob Herring <robh@kernel.org>
-To: Seven Lee <wtli@nuvoton.com>
-Cc: broonie@kernel.org, lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	conor+dt@kernel.org, YHCHuang@nuvoton.com, KCHSU0@nuvoton.com,
-	CTLIN0@nuvoton.com, SJLIN0@nuvoton.com, scott6986@gmail.com,
-	supercraig0719@gmail.com, dardar923@gmail.com
-Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: Added schema for
- "nuvoton,nau8325"
-Message-ID: <20240304133731.GA105655-robh@kernel.org>
-References: <20240304101523.538989-1-wtli@nuvoton.com>
- <20240304101523.538989-2-wtli@nuvoton.com>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: claudiu.beznea@tuxon.dev, tglx@linutronix.de,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	alexandre.belloni@bootlin.com,
+	Conor Dooley <conor.dooley@microchip.com>,
+	Nicolas.Ferre@microchip.com, conor+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v4] dt-bindings: interrupt-controller: Convert Atmel AIC
+ to json-schema
+Message-ID: <170955953165.116756.5262999318809520557.robh@kernel.org>
+References: <20240222090738.41628-1-dharma.b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -62,113 +62,38 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240304101523.538989-2-wtli@nuvoton.com>
+In-Reply-To: <20240222090738.41628-1-dharma.b@microchip.com>
 
-On Mon, Mar 04, 2024 at 06:15:22PM +0800, Seven Lee wrote:
-> Added a DT schema for describing nau8325 audio amplifiers.
 
-Present tense: Add a ...
-
-Please say more about this device. Features, link to datasheet, etc.
-
+On Thu, 22 Feb 2024 14:37:38 +0530, Dharma Balasubiramani wrote:
+> Convert the Atmel AIC binding document to DT schema format using
+> json-schema.
 > 
-> Signed-off-by: Seven Lee <wtli@nuvoton.com>
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../bindings/sound/nuvoton,nau8325.yaml       | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
->  create mode 100755 Documentation/devicetree/bindings/sound/nuvoton,nau8325.yaml
-
-Schemas aren't executable. checkpatch.pl will tell you this.
-
+> Changelog
+> v3 -> v4
+> - Move the allOf after "atmel,external-irqs" as it handles its restriction.
+> v2 -> v3
+> - Add constraints to the "atmel,external-irqs" property.
+> - Move 'reg' before 'interrupt-controller' in the example.
+> v1 -> v2
+> - Drop the '|' as there is no formatting to preserve.
+> - Remove unnecessary marketing statement from description.
+> - Drop the description for interrupts and reg, it's obvious.
+> - Put reg after compatible.
+> - Drop comment in example.
+> - Drop the example of device that is wired to an AIC as it's(dma) binding is
+>   not yet available.
+> ---
+>  .../interrupt-controller/atmel,aic.txt        | 43 ---------
+>  .../interrupt-controller/atmel,aic.yaml       | 89 +++++++++++++++++++
+>  2 files changed, 89 insertions(+), 43 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/atmel,aic.txt
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/atmel,aic.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8325.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8325.yaml
-> new file mode 100755
-> index 000000000000..297d29462812
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8325.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/nuvoton,nau8325.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: NAU8325 audio Amplifier
-> +
-> +maintainers:
-> +  - Seven Lee <WTLI@nuvoton.com>
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: nuvoton,nau8325
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  nuvoton,vref-impedance:
-> +    description:
-> +      VREF impedance selection.
-> +    enum: ["Open", "25kOhm", "125kOhm", "2.5kOhm"]
 
-Use standard units (-ohms), not strings. For "open", just omit the 
-property.
+Applied, thanks!
 
-> +
-> +
-> +  nuvoton,dac-vref:
-> +    description: DAC Reference Voltage Setting.
-> +    enum: ["External VDDA", "1.5V", "1.6V", "1.7V"]
-
-Use standard units.
-
-> +
-> +
-> +  nuvoton,alc-enable:
-> +    description:
-> +      Enable digital automatic level control (ALC) function.
-> +    type: boolean
-> +
-> +  nuvoton,clock-detection-disable:
-> +    description:
-> +      When clock detection is enabled, it will detect whether MCLK
-> +      and FS are within the range. MCLK range is from 2.048MHz to 24.576MHz.
-> +      FS range is from 8kHz to 96kHz. And also needs to detect the ratio
-> +      MCLK_SRC/LRCK of 256, 400 or 500, and needs to detect the BCLK
-> +      to make sure data is present. There needs to be at least 8 BCLK
-> +      cycles per Frame Sync.
-> +    type: boolean
-> +
-> +  nuvoton,clock-det-data:
-> +    description:
-> +      Request clock detection to require 2048 non-zero samples before enabling
-> +      the audio paths. If set then non-zero samples is required, otherwise it
-> +      doesn't matter.
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        codec@21 {
-> +            compatible = "nuvoton,nau8325";
-> +            reg = <0x21>;
-> +            nuvoton,vref-impedance = "125kOhm";
-> +            nuvoton,dac-vref = "1.6V";
-> +            nuvoton,alc-enable;
-> +            nuvoton,clock-det-data;
-> +        };
-> +    };
-> -- 
-> 2.25.1
-> 
 
