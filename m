@@ -1,247 +1,156 @@
-Return-Path: <devicetree+bounces-48238-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48239-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5301C871042
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 23:45:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D2B758710D3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 00:02:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CBA011F21A3F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 22:45:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DCFFB20EDD
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 23:02:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E5747BB14;
-	Mon,  4 Mar 2024 22:45:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359C37C0A9;
+	Mon,  4 Mar 2024 23:02:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hLSrZ2S0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8856B482DA
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 22:45:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A0067B3FA;
+	Mon,  4 Mar 2024 23:02:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709592317; cv=none; b=RpnhpYbqK4YOhL2DwNIuw87ut8SMDJqqNEgatocOZDi9Hu+nZ0dwFrm7TMYSq17jE2dLEzM7WL6ok5Oy19WqcofYiQwpMmvKi5adqiSFJ7gD9Mmwi5486gC44YO/yCZVCPIA7IoUepBJsvoGTfz0oEuBRsrMF37NiZIKxbUQrsk=
+	t=1709593347; cv=none; b=Eh0FXVnFNDd/DIjenZyRuX0Rw3VFoJ/qtIrQx4SvpA4/hWqkbXHQ4rlSi0p3uwZ/vglHJu6KTxORYwfvJB17LGDxiAe1QAAWqC7aMl01kK6HPAFLciu49Wo75ueOdTrWrdbshvAXC26fTsAP2tKn70Ry2D8TC5AbnTRO7FcnTEI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709592317; c=relaxed/simple;
-	bh=qmxE8v5j4Tw2Hfu8elxAYuMasbqWPs9bFNIDUyl9F2w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=LcarBsgGBIXjXMgjFJ3EGXzndLk8lvNjQocAgwfG5XHQ5VDtDzHJKZPeHSIJ+A1Yj2bwK3TB2hFwuSzzxx5BiHydOJF0loucPqeqTfH2G6yBcPsZF7NYWiTU73TCFLEwUym8wpOHSoqg23lYuDywR5k0ARvfr1TwefVnuCO5SX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rhH3U-0001oC-Ow; Mon, 04 Mar 2024 23:45:08 +0100
-Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rhH3T-004REp-Bg; Mon, 04 Mar 2024 23:45:07 +0100
-Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <ukl@pengutronix.de>)
-	id 1rhH3T-00H7rN-0r;
-	Mon, 04 Mar 2024 23:45:07 +0100
-Date: Mon, 4 Mar 2024 23:44:48 +0100
-From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To: Diederik de Haas <didi.debian@cknow.org>
-Cc: Andrew Lunn <andrew@lunn.ch>, Chen-Yu Tsai <wens@kernel.org>, 
-	linux-rockchip@lists.infradead.org, Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	Jonas Karlman <jonas@kwiboo.se>
-Subject: Re: [PATCH] arm64: dts: rockchip: qnap-ts433: Simplify network PHY
- connection
-Message-ID: <yumnuz5w5yw4pixruukeeh5pjdheiuuxkiazmke5oh3wxpfg7c@4l3rcxcgjfts>
-References: <20240304084612.711678-2-ukleinek@debian.org>
- <27139798.WhXITi6ROJ@bagend>
- <b614dd49-7dbe-452e-b3b5-cb014b30f0f8@lunn.ch>
- <2662566.GSV3oLgti5@bagend>
+	s=arc-20240116; t=1709593347; c=relaxed/simple;
+	bh=8s3rhoaVWDD9dh7rGLfJ4Uu5zG4qUAoq6ZECch3DUvY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JBValmE4McWEgbbAuH82T0CZC6UuqvGEc9o+881KdnWOLXf2NIZGF5Td3VbgKY5HQ0/ISzYL8RjEcZkyrFGypAQNxKmnGUXtiLaWPwMJHON+HMva3Ncf+Kiyt93v9Vl+A2vTYPdBtlSh0uAlr8UmiBxUZu4b/MNFh0T6oq+5JPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hLSrZ2S0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6837BC43399;
+	Mon,  4 Mar 2024 23:02:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709593346;
+	bh=8s3rhoaVWDD9dh7rGLfJ4Uu5zG4qUAoq6ZECch3DUvY=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=hLSrZ2S0xAeiE5BctUD/BCMiUxrw+aDhuOJsvU6FCjANj2UsfXb+q7sVM/UTGqdI0
+	 vhcyRBXkrJ9o2aN3O7A2f0SLL8DBNtDtsuckJv52k3X7My/4/89VrXWuKK/koyadnX
+	 0a6lcKCR/q/R4YD3GYIMB1otp/H8DuQai16mloeTq3QLwiM84T2/4EOrjp3/jyB+Xa
+	 p6neNqLafrOfXcdh3fjprp+jXdC12utL7xDYKeYnAl05y2oGQJfkgz1eeLPH7V0p3X
+	 PQ1FyNi7AInReSBwWAit3J/u8GzOtH9A8pTsmgYk5OvbSHc1ob8w6F1FcW6dUofjsK
+	 Nvn/Vh3o4DS1w==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d275e63590so72111741fa.2;
+        Mon, 04 Mar 2024 15:02:26 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXJ6QcLS7HemLOLjvTMKDRZ2aVS1ju8VJ2Wo4G//K79d8MLF6IUpYnV3DagPPoqu/fOnPfK80+Z5mp8fmrjkeUXLWoFNOYhprXvv786UqfWpWmQFKGbp+qcxTFsXzUd+j1sVs1Ge7/cP+R5tsOKginCI8797ADQrWdIaoFda50Gu8aU
+X-Gm-Message-State: AOJu0Yz7ZAJKzKMwHiDH31x5MMQfxIPsLDn9HAcjl2JbVeU3NfJOTakl
+	IMZx/NZMQlbuDYc0BXc422OlbtUxDIlHnGGie3nkuazH7Q5E1KppU8EPf40/NpqYmdrtotsLnJv
+	2PIuFwXmYhyXpxdx0MTKadO+Uxg==
+X-Google-Smtp-Source: AGHT+IHajaW7ao8oszFfzNUf6WEtIArJcqWeT/LVDUm4oHEI1OMP9txP4fYJa9ko2AQVpY1RT8JCfUQCyX+YOBErgQY=
+X-Received: by 2002:a2e:81c8:0:b0:2d3:4b84:9176 with SMTP id
+ s8-20020a2e81c8000000b002d34b849176mr157840ljg.19.1709593344541; Mon, 04 Mar
+ 2024 15:02:24 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="dkkowzgn4atazppy"
-Content-Disposition: inline
-In-Reply-To: <2662566.GSV3oLgti5@bagend>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-
-
---dkkowzgn4atazppy
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+References: <20231229191038.247258-1-david@ixit.cz> <2c9e91c7-8588-4260-8f5d-22c822019f62@linaro.org>
+ <20240102235815.GA3700567-robh@kernel.org> <20240130170625.GA1847581-robh@kernel.org>
+ <eb21360c-9a08-4cb7-a25d-83679aa87ead@ixit.cz>
+In-Reply-To: <eb21360c-9a08-4cb7-a25d-83679aa87ead@ixit.cz>
+From: Rob Herring <robh@kernel.org>
+Date: Mon, 4 Mar 2024 17:02:11 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL41h=BceT=eqNiFs+aQtZmiAXR5p-D0sL_jLFEiMpKDA@mail.gmail.com>
+Message-ID: <CAL_JsqL41h=BceT=eqNiFs+aQtZmiAXR5p-D0sL_jLFEiMpKDA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: opp: switch inner and outer min/maxItems
+ rules for opp-hz
+To: David Heidelberg <david@ixit.cz>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Viresh Kumar <vireshk@kernel.org>, 
+	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Viresh Kumar <viresh.kumar@linaro.org>, linux-pm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On Mon, Mar 4, 2024 at 2:34=E2=80=AFPM David Heidelberg <david@ixit.cz> wro=
+te:
+>
+> On 30/01/2024 18:06, Rob Herring wrote:
+> > On Tue, Jan 02, 2024 at 04:58:15PM -0700, Rob Herring wrote:
+> >> On Sat, Dec 30, 2023 at 03:17:21PM +0100, Krzysztof Kozlowski wrote:
+> >>> On 29/12/2023 20:10, David Heidelberg wrote:
+> >>>> Fixes issue as:
+> >>>> ```
+> >>> Drop, it's not RST, but commit msg.
+> >>>
+> >>>> arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb: opp-table: op=
+p-200000000:opp-hz:0: [200000000, 0, 0, 150000000, 0, 0, 0, 0, 300000000] i=
+s too long
+> >>>> ```
+> >>>>
+> >>>> Fixes: 3cb16ad69bef ("dt-bindings: opp: accept array of frequencies"=
+)
+> >>>>
+> >>>> Signed-off-by: David Heidelberg <david@ixit.cz>
+> >>>> ---
+> >>>>   Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 5 ++---
+> >>>>   1 file changed, 2 insertions(+), 3 deletions(-)
+> >>>>
+> >>>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml =
+b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> >>>> index e2f8f7af3cf4..86d3aa0eb435 100644
+> >>>> --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> >>>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
+> >>>> @@ -55,10 +55,9 @@ patternProperties:
+> >>>>             to relate the values to their clocks or the order in whi=
+ch the clocks
+> >>>>             need to be configured and that is left for the implement=
+ation
+> >>>>             specific binding.
+> >>>> -        minItems: 1
+> >>>> -        maxItems: 32
+> >>>>           items:
+> >>>> -          maxItems: 1
+> >>>> +          minItems: 1
+> >>>> +          maxItems: 32
+> >>> This does not look like correct fix. The original code looked fine -
+> >>> only one item is allowed in each sub-element (array).
+> >> This one is special being 64-bit values so we have an exception in
+> >> property-units.yaml. The constraints here don't get used in decoding t=
+he
+> >> dtb and the default way of 1 outer element is used.
+> >>
+> >> It doesn't look like opp-hz needs to be a matrix as it is really just =
+an
+> >> array. Perhaps it should just be changed to an array type.
+> >> Alternatively, adding 'items: { maxItems: 1 }' to the definition in
+> >> property-units.yaml fixes the issue as well.
+> >>
+> >> Though we can fix this, I'm looking into if we have other cases where =
+we
+> >> need this to work as-is. There's probably some room for improvement in
+> >> how matrix dimensions are handled.
+> > I've made some improvements on matrix dimensions, but this one is still
+> > an issue. Can you respin this dropping 'items: {maxItems: 1}'. I'm goin=
+g
+> > to change the definition in property-units.yaml to uint64-array.
+>
+> Keeping the rest of my changes still generates warnings (today dt-schema
+> git) even with `maxItems` dropped.
+>
+> The only working scenario is when I do only the dropping of `items:
+> {maxItems: 1}` from the original code.
+>
+> Is it the standalone change of just dropping this what did you desired?
+> If yes, I have the patch prepared.
 
-On Mon, Mar 04, 2024 at 05:43:08PM +0100, Diederik de Haas wrote:
-> On Monday, 4 March 2024 16:59:38 CET Andrew Lunn wrote:
-> > On Mon, Mar 04, 2024 at 04:32:03PM +0100, Diederik de Haas wrote:
-> > > On Monday, 4 March 2024 14:09:15 CET Andrew Lunn wrote:
-> > > > > > Andrew already pointed out when I posted the patch introducing =
-the
-> > > > > > gmac0 node that rgmii-id would be the preferred way to setup th=
-ings.
-> > > > > > Back then this didn't happen because this change broke receptio=
-n of
-> > > > > > network packets. However this only happend because I didn't hav=
-e the
-> > > > > > right phy driver loaded.
-> > > > >=20
-> > > > > It could be that the PHY is strapped to not use its internal RX d=
-elay.
-> > > > > And the PHY has some weird default TX delay, so having the driver
-> > > > > put some sensible values in is probably better.
-> > > >=20
-> > > > It could also be the bootloader putting odd values into the PHY.
-> > > >=20
-> > > > Anyway, it will work better with the correct PHY, and enable WoL
-> > > > support.
-> > >=20
-> > > Not sure if this is the right place or way, but here we go...
-> > >=20
-> > > A few days ago on #debian-kernel@OFTC:
-> > > [28.02 16:35] <ukleinek> u-boot should be out of the game
-> > > [28.02 16:36] <diederik> I'm not so sure anymore. On Quartz64 Model A=
- and
-> > > B
-> > > (rk3566) I had massive packet loss and tracked it down to a change in
-> > > u-boot [28.02 16:37] <ukleinek> diederik: sounds like the Linux netwo=
-rk
-> > > driver on that machine could do something better
-> > > [28.02 16:38] <diederik> yeah, probably
-> > >=20
-> > > I reported this about a month ago to Jonas Karlman as I bisected the
-> > > problem>=20
-> > > to a change in u-boot:
-> > > > diederik@bagend:~/dev/u-boot/u-boot$ git bisect bad
-> > > > 25f56459aebced8e4bb7d01061dcb1b765b197e2 is the first bad commit
-> > > > commit 25f56459aebced8e4bb7d01061dcb1b765b197e2
-> > > > Author: Jonas Karlman <jonas@kwiboo.se>
-> > > > Date:   Sun Oct 1 19:17:21 2023 +0000
-> > > >=20
-> > > >     configs: rockchip: Enable ethernet driver on RK356x boards
-> > > >    =20
-> > > >     Enable DWC_ETH_QOS_ROCKCHIP and related PHY driver on RK356x bo=
-ards
-> > > >     that
-> > > >     have an enabled gmac node.
-> > >=20
-> > > I just checked and both Quartz64 Model A and B have `phy-mode =3D "rg=
-mii";`
-> > > and set `tx_delay` and `rx_delay` to some (other) values.
-> > > Without knowing nor understanding the details, this seem very much
-> > > related?
-> >=20
-> > If you don't have a specific Linux PHY driver, you are at the mercies
-> > of how the bootloader, or strapping set up the PHY. So it is always
-> > best to use the correct PHY driver.=20
->=20
-> This part is a bit over my head (that's ok, no need to explain it).
->=20
-> > The Linux PHY driver should assume
-> > nothing and setup the hardware from scratch, removing anything odd the
-> > bootloader did. However, the fall back generic PHY driver has no chip
-> > specific knowledge, so it cannot undo whatever the bootloader did.
-> >=20
-> > So, in an ideal world, we don't care about what the bootloader did,
-> > just use the correct MAC and PHY driver and it should work. And if it
-> > does not work, it is a Linux bug, which needs to be found and fixed.
->=20
-> I agree.
->=20
-> > > Not sure if this is the right place or way, but here we go...
->=20
-> That was because it's actually a bug report (wrt Quartz64 A and B), but=
-=20
-> especially your remark made all the pieces I found earlier fall into plac=
-e.
-> Therefor I 'abused' this thread/patch to report it.
->=20
-> I'm happy to test patches, but I lack the knowledge to come up with one=
-=20
-> myself.
+Yes. I still need to look at changing the type, but that shouldn't
+hold up the kernel change.
 
-I guess that would be:
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts b/arch/arm6=
-4/boot/dts/rockchip/rk3566-quartz64-a.dts
-index 59843a7a199c..f4d1deba3110 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-a.dts
-@@ -269,7 +269,7 @@ &gmac1 {
- 	assigned-clock-parents =3D <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru SCLK_GMAC=
-1>, <&gmac1_clkin>;
- 	clock_in_out =3D "input";
- 	phy-supply =3D <&vcc_3v3>;
--	phy-mode =3D "rgmii";
-+	phy-mode =3D "rgmii-id";
- 	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&gmac1m0_miim
- 		     &gmac1m0_tx_bus2
-@@ -281,8 +281,6 @@ &gmac1m0_clkinout
- 	snps,reset-active-low;
- 	/* Reset time is 20ms, 100ms for rtl8211f */
- 	snps,reset-delays-us =3D <0 20000 100000>;
--	tx_delay =3D <0x30>;
--	rx_delay =3D <0x10>;
- 	phy-handle =3D <&rgmii_phy1>;
- 	status =3D "okay";
- };
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts b/arch/arm6=
-4/boot/dts/rockchip/rk3566-quartz64-b.dts
-index 2d92713be2a0..ec1351a171d4 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-quartz64-b.dts
-@@ -176,7 +176,7 @@ &gmac1 {
- 	assigned-clocks =3D <&cru SCLK_GMAC1_RX_TX>, <&cru SCLK_GMAC1_RGMII_SPEED=
->, <&cru SCLK_GMAC1>;
- 	assigned-clock-parents =3D <&cru SCLK_GMAC1_RGMII_SPEED>, <&cru SCLK_GMAC=
-1>, <&gmac1_clkin>;
- 	clock_in_out =3D "input";
--	phy-mode =3D "rgmii";
-+	phy-mode =3D "rgmii-id";
- 	phy-supply =3D <&vcc_3v3>;
- 	pinctrl-names =3D "default";
- 	pinctrl-0 =3D <&gmac1m1_miim
-@@ -189,8 +189,6 @@ &gmac1m1_clkinout
- 	snps,reset-active-low;
- 	/* Reset time is 20ms, 100ms for rtl8211f, also works well here */
- 	snps,reset-delays-us =3D <0 20000 100000>;
--	tx_delay =3D <0x4f>;
--	rx_delay =3D <0x24>;
- 	phy-handle =3D <&rgmii_phy1>;
- 	status =3D "okay";
- };
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---dkkowzgn4atazppy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXmTt8ACgkQj4D7WH0S
-/k7fvwf/ahDTgIknS2dCz9wAhHSepa0xfncRl6VVdR7aVbTXvHZChbgFFgmiT6KP
-gHQLpjnX6YYTwX+if4TcupatKceBx50DeNZqgycYbBbBBKcv69IOwhM0FiuNXiKe
-uApDcDp00A7u52i5KXeFjnKsavCx/bHv5BOecygIJFWtFWpefIj+wwnycSHOJNST
-gaODQYBW8V3J3EL0nF8SAExmZeliN18SYeigwSl5ggyJbwq3D3szVQUQ9SZ16p9G
-MIIv6rVzheZCy4lCWXvNn8plLY5rdrC3mUSmIZcglmoiWlzw6qcFA9xPszAz8Yvl
-w2Xcr4yQlPch+Q/ed0puSCzQvYM3Mw==
-=Z4tS
------END PGP SIGNATURE-----
-
---dkkowzgn4atazppy--
+Rob
 
