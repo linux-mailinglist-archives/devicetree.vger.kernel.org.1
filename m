@@ -1,111 +1,109 @@
-Return-Path: <devicetree+bounces-48135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48138-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A9FBE87053D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:19:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id A893C870546
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:20:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4A7ABB29125
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:19:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA86A1C23CB1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:20:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4A6535B9;
-	Mon,  4 Mar 2024 15:17:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D46AA47A7A;
+	Mon,  4 Mar 2024 15:18:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="j3ol+2Jo"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JxOxqIhv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-49.mail.qq.com (out162-62-57-49.mail.qq.com [162.62.57.49])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 561594CB37
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 15:16:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A971D47793;
+	Mon,  4 Mar 2024 15:18:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709565421; cv=none; b=TfAS6e1+wSybaRUqH27Vq9qbpnxnc2KarkLar0jqSAUulBjgm3a+69yoP7uICOAzi66C6vSCP8U+ZIJAlqYfp8Nd+g//SzK4AgzqGYbuGmrXYEzOYL0/sABBafmiqh3bGkyrgg0A4iVk5LKbpj+Yst5W6XaS8RZgRPDPSOGl+6c=
+	t=1709565484; cv=none; b=I3F8O280dJx/5vfZOKGaeV3SIU/WgBW/kSOvdI0Gj44sXtE7lCDHEemCaTFQs+QGvAMS9dRl8JExCuOJDWkYME2KJIV/lQRMjO61vsurJ6G67jDY7D+h/CFN70Z+NjrxfV4a56LMSjoUimHvLU5dkJplwtHguJRDmQqFhcoOAto=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709565421; c=relaxed/simple;
-	bh=kOAHXIVkNpGVFPmgvWaDzJT7LEV1p/mFzFaumoZj+yo=;
-	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version; b=HxHcB80W0ngw1RWPTmfQ2qjkBMHJv1V50Dp2g3U9FFek+Rzv+V4+QXQiTObH69WV7qyKgQUVAk8YkLei8du+vmbE+5vtwJGwAw5S/EagKtGgXITxOn2DmSTMVJwq4X6KShxf3f0O/G/PCwP1iP5aH6dwm0WXq/TvYLlh+fLytw4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=j3ol+2Jo; arc=none smtp.client-ip=162.62.57.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1709565414; bh=n2s+gXwdW2+QjJ47xTyefHF5QVT8S/PZfQcur2EDRe0=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=j3ol+2JoIQBph5BuNY5V5Szf5bJnT0hygqPtwgwqTzSEeBfsGwmZ1QhmsJ4TsZufN
-	 msiWhVhaRGvpcCpWM1neuK71sMNtT2Of7m8krmvXUoNlSUWzZW59DxGcU2iIIXP+UL
-	 lsBdf62uWj7MM8lV/tI+RlHzkgY2Jfos3Bg0KY84=
-Received: from cyy-pc.lan ([240e:379:2240:e500:994d:62ab:74a6:932b])
-	by newxmesmtplogicsvrszb6-0.qq.com (NewEsmtp) with SMTP
-	id 42726AAD; Mon, 04 Mar 2024 23:16:39 +0800
-X-QQ-mid: xmsmtpt1709565411tqrwawkx7
-Message-ID: <tencent_FE1B7BF85E04C1B5C51D7F707D6204436809@qq.com>
-X-QQ-XMAILINFO: MM4ufCTznNl4MMW3F7b3Ci74hjocqi2o1Nihg6PtsJDuuka/8lkKOKSSViFeiX
-	 7CE7lvTCYTehIzUI1qKDREa+4CRiyqbM2hu6vcdDoKNG90fQwD5fD9IuSE/HcElo8x+dJMO4p6V+
-	 ohW4++CDtyjeFrXNGks2vv/C6JdjmhkR0sDNUig5864OlcvHd17ISrzCJ7YS0MvH4auu11ikjzlH
-	 0uJLoRTmf9bC54ZVUoE5Ns0I/pYzGsZtJIvOBT4nln/f9dbt5BmwjFaKVuDbh3+Uy2yPj3dhLOcy
-	 d19Gl8pKrZVpmWdPz9ps7HIpLVpPBE5HjLlwOinGpCiD85jTH6e5DZM8hW1SN01V7Se6K2LLpq/e
-	 1ObOzq/2MpLp2wm/myhzJEIO9shIOYGN154JQSTNtSPyPUrJWfiBkYhuNNeVABm0QwMY0C5WBA/Q
-	 UEGMR9xtdQAJfqSUQNDfn6Yvq4sdS3iwRwZeRKPWQYdJGmjyghNBCKs5OUdb2Gyy+HqrCR7VpOko
-	 bmtA9mCdceG2yejcwupzL0Cc3LPaZrDaWjSNBJqBj0x29vyR1K2B1jr8CnPsMj2nT/hVuh7gqnqj
-	 eHpSYOB3CzE79/YhM5ICGyFZLdgEQbMqHwwcgnRF7ARUnrz7Q3IevKd5pfNGSM6o2kw2q6UUb00K
-	 ln58Uj3kh3Kmly5Mkx1wa30mOXJ4LizjWM/jwjhslVDuLGmAET8J+sFraet7IxX36m316aObQLlJ
-	 McIpbrzcz78Us7qfdYWF4btBbks9+6dCXn/9VFc8DnudTgvJ5nvezx1+jZet+4d6z/523WB3ZDha
-	 1OP21XZZ8JHKmlkEZ+TnhEi8dYAAzE1oePD2QgcbBUg0KOiEYv4wiTSIUSehUBLwZbGZ3xRqLZik
-	 2OPViMecRiBaUnbRLXNQ7FyF4UyYZxFQwuNYiVk1iDTmKkFMdzfyPwy+8LJVd/8Ekj4w5w1A7/bt
-	 T2BXRsyrlZj7hqfFGyxntSo4gHtXp7jTy/uxx1RDeYP0AASf5cSVIHwEeduuiC4UDqaV7Gw/Iu0O
-	 Hthi81egjBt3C3TfyWGWpoEeSHnrsMhTERTV6pf76lUJ8oSOQV9xQa45OZKzI=
-X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
-From: Yangyu Chen <cyy@cyyself.name>
-To: linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
+	s=arc-20240116; t=1709565484; c=relaxed/simple;
+	bh=m8IOE/o5VvohqpjXBtrbigMUqed0yEWG8TTcV+4qeRM=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=G2O0DyBCY2cOwhrAXCVdI6t+C9O3x5O0biWTcsdPEzWgE8Hmm7EzwNx2HumBu0Q65EV6NotO0fmf1WdDWb6grNiLrtnj+DnWYMVvoWOlWTvWbM78MlysovtM/8TABxxpfmZVg8uQbb89iGGKjBKk+NesLGRslneecoFVas3WJDM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JxOxqIhv; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2AE8C43394;
+	Mon,  4 Mar 2024 15:18:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709565484;
+	bh=m8IOE/o5VvohqpjXBtrbigMUqed0yEWG8TTcV+4qeRM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=JxOxqIhvL+o2H3sSeNxhMyEDlxT/3+QRuVcRD/t70pz5KglppCH3uaUF1Kr4STmgc
+	 BHR8CR/SiafRHaZQkVFhgZuOKRfngmX3K/cQwcXfdu6U/fr9+G+Cu4/OJQJlcu1tD1
+	 Ytg1AO4QOs9QpPFi0L+DyHE095Y65ZZLulvsOr9oyX2yh3CynKChqCG9W+5Jxsazg3
+	 81Ai5P3NjI7AM8+3VhHhPbE1rwZiDF6ZEMZOhKFQbtUiwUKrM9lhMiOTDO2siFVvUV
+	 qo8Ct5fpYz4B5TebH0FsZ/Bn2489Z3Xf027NXkCvriTG45WU3FeXIwmyxQgCY1f4/W
+	 kgkR2A8p45vAw==
+From: Will Deacon <will@kernel.org>
+To: Jonathan Corbet <corbet@lwn.net>,
+	Mark Rutland <mark.rutland@arm.com>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Guo Ren <guoren@kernel.org>,
-	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dan Williams <dan.j.williams@intel.com>,
+	Ilkka Koskinen <ilkka@os.amperecomputing.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	Dave Jiang <dave.jiang@intel.com>,
+	Kan Liang <kan.liang@linux.intel.com>,
+	Ji Sheng Teoh <jisheng.teoh@starfivetech.com>
+Cc: catalin.marinas@arm.com,
+	kernel-team@android.com,
+	Will Deacon <will@kernel.org>,
+	Ley Foon Tan <leyfoon.tan@starfivetech.com>,
+	linux-doc@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: [PATCH v2 7/7] riscv: config: enable SOC_CANAAN in defconfig
-Date: Mon,  4 Mar 2024 23:16:26 +0800
-X-OQ-MSGID: <20240304151626.759150-7-cyy@cyyself.name>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <tencent_64A9B4B31C2D70D5633042461AC9F80C0509@qq.com>
-References: <tencent_64A9B4B31C2D70D5633042461AC9F80C0509@qq.com>
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 0/4] StarFive's StarLink PMU Support
+Date: Mon,  4 Mar 2024 15:17:53 +0000
+Message-Id: <170956198957.3271304.10140223421156074821.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20240229072720.3987876-1-jisheng.teoh@starfivetech.com>
+References: <20240229072720.3987876-1-jisheng.teoh@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
-Since K230 has been supported, allow SOC_CANAAN to be selected to build dt
-and drivers for it in defconfig.
+On Thu, 29 Feb 2024 15:27:16 +0800, Ji Sheng Teoh wrote:
+> Changes since v6:
+> - Address comments from Will
+>   - Add "COMPILE_TEST" to STARFIVE_STARLINK_PMU Kconfig dependency.
+>   - Fix incorrect bitmask with BIT_ULL().
+>   - Drop kfree() which is not needed in devm_kzalloc() allocation.
+> 
+> Changes since v5:
+> - Add entry to MAINTAINERS and mark the driver as "Maintained".
+> 
+> [...]
 
-Signed-off-by: Yangyu Chen <cyy@cyyself.name>
----
- arch/riscv/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+Applied to will (for-next/perf), thanks!
 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index 89a009a580fe..20b557ec28df 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -33,6 +33,7 @@ CONFIG_SOC_STARFIVE=y
- CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_THEAD=y
- CONFIG_SOC_VIRT=y
-+CONFIG_SOC_CANAAN=y
- CONFIG_SMP=y
- CONFIG_HOTPLUG_CPU=y
- CONFIG_PM=y
+[1/4] perf: starfive: Add StarLink PMU support
+      https://git.kernel.org/will/c/c2b24812f7bc
+[2/4] dt-bindings: perf: starfive: Add JH8100 StarLink PMU
+      https://git.kernel.org/will/c/66461b43b0c0
+[3/4] docs: perf: Add description for StarFive's StarLink PMU
+      https://git.kernel.org/will/c/49925c1c5a6c
+[4/4] MAINTAINERS: Add entry for StarFive StarLink PMU
+      https://git.kernel.org/will/c/b9f71ab2152e
+
+Cheers,
 -- 
-2.43.0
+Will
 
+https://fixes.arm64.dev
+https://next.arm64.dev
+https://will.arm64.dev
 
