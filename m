@@ -1,225 +1,130 @@
-Return-Path: <devicetree+bounces-48148-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48150-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 023B6870637
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:52:00 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA3D287066E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:02:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 622691F231E0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:51:59 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A817AB23252
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:59:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B504D487AE;
-	Mon,  4 Mar 2024 15:51:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4525487A9;
+	Mon,  4 Mar 2024 15:59:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="unmXPMir"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="hlSnIHJ3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F63F4654E
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 15:51:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F271447A6A
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 15:59:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709567503; cv=none; b=RIFG/6w+BxZRXTUuLMQkWx2Zm26ywIlY4Rk3T6OWIaTXVaGXMeov+rNGWF9y598URCUUZSYI/tDuyZkQjVxTEZzkR2DDRce9XABztgeEQ7yMNcyOwtv/x5N2C6+p7pxBEfb5Oij1sILuLO0TaCpYLCOlWkFUi8r74BhsLHI7HA4=
+	t=1709567961; cv=none; b=WbZ40TO4z4Oxa+KZa5ca7SJsHKxoxaqAVsX8fXX7SQnLXdhHgk5i3RbDvglog3rSLRJc2RGVAPGCQ0Lj8FDpacYHELpleU5+q1sFZBCi1lhXXb7wEpuH0aDwLrDD6rYsGkXDpysjYEbhjH/QiRizcDC2VkIF7MGSU9vW7xU1pis=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709567503; c=relaxed/simple;
-	bh=kdZve0sL9jBwyg4TW/Vv2hHeFdtOmfRmPAGzVwar+yc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LuorLJGJ/0s+bKdFFwA97iD2unBUg8ry90X01fqxMars86mZzrSztM8BpiteGl1JIJeVn9S+UJdvS5DOrxGY43MfhMNZIleRFMKI9IwuCw3tUTVlREDrHqXK0z6ig+HAx7rbDL9SG3fpe6Uen8qii6vic6GqH17B/Oe+jzL3sH4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=unmXPMir; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-33d38c9ca5bso2326237f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 07:51:39 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1709567498; x=1710172298; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IUb/5Oupvxe0SuRsceM3xY4GgJJePH6d2omdHhOHGS8=;
-        b=unmXPMiruHGIP687IlVqrPaXoxyBoSog9WsS5s7cMcydGC4PVQHSTe/SS7GgifbnkW
-         Tq8X3vGhYz95T4GFL87cHCAcj9RL1hzRDdNYHsuNVVXWC9bhI4W9vX5EPFch1STPdCFk
-         DSv+bcKOUVQS4zXlrtwRadwOzO8LNRljDu7TK3cvkqogp0s24P6p3af7tEPzdElr1wNw
-         j+K6+hrasW+k+GvRuwu67Qe5eaZVkgS8+7DA15s9BfXX5c8Bvyf07Axo9ySL2WQOt3je
-         7oNX1qCDVoNArRs65QIjroFi/FSrHYj0f7wTn2VN8UHAoxAaSRS8Vu3Y3TZ1oR9t0uMz
-         hHDQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709567498; x=1710172298;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IUb/5Oupvxe0SuRsceM3xY4GgJJePH6d2omdHhOHGS8=;
-        b=dHPkfU1jcPpKPlhjnVf72NyMKGX5FcjoV2qpCuQ0oGPsC2tVHBlpYpB3w0twgrg32g
-         ORbz6D5gXyCAAc7nH0B+TTsBAmtdszKm6GDbQ2hiWRonstDVf9qwUaqbedARf0h6cst+
-         iYIJQBfOMy/wpTZqhPxBDOPWqpy9nqcfi99ofavUno9ngaNvfEIjnLOWmtsFrimD4Ad0
-         QJ4OKDGdyunCv5vEH37p+swSljOrudfQQyyzpFySoBOpvZ0BbAsWVwlGKri3pDwxDk3Y
-         wQMygsx0wn6ZOCwGqKxTKLZwvElyYJgJMMpgnkTR2vHjcyXeXb75HTR/QFpXZYpAQlS1
-         1pYg==
-X-Forwarded-Encrypted: i=1; AJvYcCVBtSa9nNgQ7YSUrxH9mbFzbYMqtfnDPe1N0Eo36p9ZDGRsP5BXt4evnIH+T1eR+EiUeRK47BYnVzo4cqkvl7kmFuOB+igAny58HA==
-X-Gm-Message-State: AOJu0Yz7gLSTZ/av/BU+tYvGTBoEKfPPXVHik3MnL7w9q/AUpoo19UOl
-	lNgUGw1ivEhuS4Cf87Gt53dTP5MMAPuxNF+yM8aE61cPULE8lkYj6y5DMChYeIM=
-X-Google-Smtp-Source: AGHT+IHqeWxijSP3Z1JMmmpZW/+BOmf4YxhMIFDWJw0VvSavoo6l4GTlTDqOtaWvfv49THeLaj4ykQ==
-X-Received: by 2002:adf:ec43:0:b0:33e:3d75:b6bc with SMTP id w3-20020adfec43000000b0033e3d75b6bcmr2171129wrn.58.1709567498520;
-        Mon, 04 Mar 2024 07:51:38 -0800 (PST)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id m26-20020a05600c3b1a00b00412cbe4f41bsm10118812wms.4.2024.03.04.07.51.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Mar 2024 07:51:38 -0800 (PST)
-Message-ID: <6d4b1381-c121-4cda-a8c9-9ccac56bd447@freebox.fr>
-Date: Mon, 4 Mar 2024 16:51:37 +0100
+	s=arc-20240116; t=1709567961; c=relaxed/simple;
+	bh=Ktv0qFkGUvRfuCtiXRVRRdD2ALNkiQK4oYThDtNTL6s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CCm9KR39o9vuv3k1sqj37Zk1lfTI42wFTcO2XQcU3YQDew98IUn8PHubOR8DT1CXfrBJ5zY0b7KFI/f5cQYIrl/k7Gdp2j9uMsF9gog/MunjHYyVFQlLYPKhS2M/WQlHj/exG2z7IUngOv8REGQGtiZ70TWQNloChK0n4YUVZiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=hlSnIHJ3; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=OZDRvBSgigE3tIIRQWQZVjWXgyULo9fdLqfBNvEOG6M=; b=hlSnIHJ33T4N1L0DxCC6/w/s4f
+	62mSEpeXgZv6wiqeTM44HTVB3uxFMJr+o2xSHmn7BhthrPAh6JNy9aizVCoyzm65HZvv0GMr7fc7A
+	I0rrBdlOAIu4SMuksKExDTrcivolIGRYLNKzc9OuTM9hQ0AuJ0caSbqo83ZW+urXI7XQ=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rhAj4-009L9G-H1; Mon, 04 Mar 2024 16:59:38 +0100
+Date: Mon, 4 Mar 2024 16:59:38 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Diederik de Haas <didi.debian@cknow.org>
+Cc: Chen-Yu Tsai <wens@kernel.org>, linux-rockchip@lists.infradead.org,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	Jonas Karlman <jonas@kwiboo.se>
+Subject: Re: [PATCH] arm64: dts: rockchip: qnap-ts433: Simplify network PHY
+ connection
+Message-ID: <b614dd49-7dbe-452e-b3b5-cb014b30f0f8@lunn.ch>
+References: <20240304084612.711678-2-ukleinek@debian.org>
+ <CAGb2v67xA0z3KWBo=ierkK9qxBAnaLuVkta05qEaFmMciB1-ng@mail.gmail.com>
+ <0ed81fbf-cc25-4582-899e-4270932e897c@lunn.ch>
+ <27139798.WhXITi6ROJ@bagend>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-Content-Language: en-US
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,
- ath10k <ath10k@lists.infradead.org>,
- wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
- <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
- <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
- <c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr> <87cyse8j9m.fsf@kernel.org>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <87cyse8j9m.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <27139798.WhXITi6ROJ@bagend>
 
-On 01/03/2024 09:10, Kalle Valo wrote:
-
-> Marc Gonzalez wrote:
+On Mon, Mar 04, 2024 at 04:32:03PM +0100, Diederik de Haas wrote:
+> On Monday, 4 March 2024 14:09:15 CET Andrew Lunn wrote:
+> > > > Andrew already pointed out when I posted the patch introducing the gmac0
+> > > > node that rgmii-id would be the preferred way to setup things. Back
+> > > > then this didn't happen because this change broke reception of network
+> > > > packets. However this only happend because I didn't have the right phy
+> > > > driver loaded.
+> > > 
+> > > It could be that the PHY is strapped to not use its internal RX delay.
+> > > And the PHY has some weird default TX delay, so having the driver
+> > > put some sensible values in is probably better.
+> > 
+> > It could also be the bootloader putting odd values into the PHY.
+> > 
+> > Anyway, it will work better with the correct PHY, and enable WoL
+> > support.
 > 
->> Kalle Valo wrote:
->> 
->>> Here's one example where in ath10k we use a feature bit as a workaround:
->>>
->>> 	/* Don't trust error code from otp.bin */
->>> 	ATH10K_FW_FEATURE_IGNORE_OTP_RESULT = 7,
->>>
->>>         ....
->>>
->>> 	if (!(skip_otp || test_bit(ATH10K_FW_FEATURE_IGNORE_OTP_RESULT,
->>> 				   ar->running_fw->fw_file.fw_features)) &&
->>> 	    result != 0) {
->>> 		ath10k_err(ar, "otp calibration failed: %d", result);
->>> 		return -EINVAL;
->>> 	}
->>>
->>> BTW for modifying firmware-N.bin files we have a script here:
->>>
->>> https://github.com/qca/qca-swiss-army-knife/blob/master/tools/scripts/ath10k/ath10k-fwencoder
->>
->> If I understand correctly, you are saying that there is
->> (maybe... probably) a bug in the FW, so it makes sense to
->> tag that specific FW file with a special bit which the kernel
->> will interpret as "this FW is broken in a specific way;
->> and here's how to work around the issue."
->>
->> So this bit would serve the same purpose as my proposed
->> "qcom,no-msa-ready-indicator" bit (that bit existed instead
->> in my board's device tree).
->>
->> The problem I see is that the firmware files are signed.
->> Thus, changing a single bit breaks the verification...
->> UNLESS the FW format allows for a signed section ALONG-SIDE
->> an unsigned section?
+> Not sure if this is the right place or way, but here we go...
 > 
-> firmware-N.bin is ath10k specific container file format and we (the
-> Linux community) have full access to it using ath10k-fwencoder, there's
-> no signing or anything like that. One of the major reasons why it was
-> designed was to handle differences between firmware branches, just like
-> in this case.
+> A few days ago on #debian-kernel@OFTC:
+> [28.02 16:35] <ukleinek> u-boot should be out of the game
+> [28.02 16:36] <diederik> I'm not so sure anymore. On Quartz64 Model A and B 
+> (rk3566) I had massive packet loss and tracked it down to a change in u-boot
+> [28.02 16:37] <ukleinek> diederik: sounds like the Linux network driver on 
+> that machine could do something better
+> [28.02 16:38] <diederik> yeah, probably
 > 
-> Of course plan A should be to fix the firmware but if that doesn't work
-> out then plan B could be using the feature bit in firmware-N.bin.
+> I reported this about a month ago to Jonas Karlman as I bisected the problem 
+> to a change in u-boot:
 > 
-> BTW related to this Dmitry is extending firmware-N.bin handling for
-> WCN3990, you will most likely need to use that:
+> > diederik@bagend:~/dev/u-boot/u-boot$ git bisect bad
+> > 25f56459aebced8e4bb7d01061dcb1b765b197e2 is the first bad commit
+> > commit 25f56459aebced8e4bb7d01061dcb1b765b197e2
+> > Author: Jonas Karlman <jonas@kwiboo.se>
+> > Date:   Sun Oct 1 19:17:21 2023 +0000
+> > 
+> >     configs: rockchip: Enable ethernet driver on RK356x boards
+> >     
+> >     Enable DWC_ETH_QOS_ROCKCHIP and related PHY driver on RK356x boards that
+> >     have an enabled gmac node.
 > 
-> https://patchwork.kernel.org/project/linux-wireless/cover/20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org/
+> I just checked and both Quartz64 Model A and B have `phy-mode = "rgmii";` and 
+> set `tx_delay` and `rx_delay` to some (other) values.
+> Without knowing nor understanding the details, this seem very much related?
 
+If you don't have a specific Linux PHY driver, you are at the mercies
+of how the bootloader, or strapping set up the PHY. So it is always
+best to use the correct PHY driver. The Linux PHY driver should assume
+nothing and setup the hardware from scratch, removing anything odd the
+bootloader did. However, the fall back generic PHY driver has no chip
+specific knowledge, so it cannot undo whatever the bootloader did.
 
-If I understand correctly (happy to have anyone correct any
-misunderstandings), if the FW cannot be fixed (for any reason),
-then we would have to do something like this:
+So, in an ideal world, we don't care about what the bootloader did,
+just use the correct MAC and PHY driver and it should work. And if it
+does not work, it is a Linux bug, which needs to be found and fixed.
 
-
-diff --git a/drivers/net/wireless/ath/ath10k/core.c b/drivers/net/wireless/ath/ath10k/core.c
-index 0032f8aa892ff..c8778ebe922af 100644
---- a/drivers/net/wireless/ath/ath10k/core.c
-+++ b/drivers/net/wireless/ath/ath10k/core.c
-@@ -769,6 +769,7 @@ static const char *const ath10k_core_fw_feature_str[] = {
- 	[ATH10K_FW_FEATURE_SINGLE_CHAN_INFO_PER_CHANNEL] = "single-chan-info-per-channel",
- 	[ATH10K_FW_FEATURE_PEER_FIXED_RATE] = "peer-fixed-rate",
- 	[ATH10K_FW_FEATURE_IRAM_RECOVERY] = "iram-recovery",
-+	[ATH10K_FW_FEATURE_NO_MSA_READY] = "no-msa-ready-indicator",
- };
- 
- static unsigned int ath10k_core_get_fw_feature_str(char *buf,
-@@ -2941,6 +2942,9 @@ int ath10k_core_start(struct ath10k *ar, enum ath10k_firmware_mode mode,
- 
- 	ar->running_fw = fw;
- 
-+	if (test_bit(ATH10K_FW_FEATURE_NO_MSA_READY, fw->fw_file.fw_features))
-+		ar->fake_msa_ready = true;
-+
- 	if (!test_bit(ATH10K_FW_FEATURE_NON_BMI,
- 		      ar->running_fw->fw_file.fw_features)) {
- 		ath10k_bmi_start(ar);
-diff --git a/drivers/net/wireless/ath/ath10k/core.h b/drivers/net/wireless/ath/ath10k/core.h
-index c110d15528bd0..ce71097b97a1d 100644
---- a/drivers/net/wireless/ath/ath10k/core.h
-+++ b/drivers/net/wireless/ath/ath10k/core.h
-@@ -835,6 +835,9 @@ enum ath10k_fw_features {
- 	/* Firmware support IRAM recovery */
- 	ATH10K_FW_FEATURE_IRAM_RECOVERY = 22,
- 
-+	/* Firware does not send MSA_READY indicator */
-+	ATH10K_FW_FEATURE_NO_MSA_READY = 23,
-+
- 	/* keep last */
- 	ATH10K_FW_FEATURE_COUNT,
- };
-@@ -1151,6 +1154,9 @@ struct ath10k {
- 	u8 cfg_tx_chainmask;
- 	u8 cfg_rx_chainmask;
- 
-+	/* FW does not send MSA_READY indicator. Fake it */
-+	bool fake_msa_ready; /* bool or u8? or s8? or bitfield? */
-+
- 	struct completion install_key_done;
- 
- 	int last_wmi_vdev_start_status;
-diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
-index 38e939f572a9e..0776e79b25f3a 100644
---- a/drivers/net/wireless/ath/ath10k/qmi.c
-+++ b/drivers/net/wireless/ath/ath10k/qmi.c
-@@ -1040,6 +1040,8 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
- 		switch (event->type) {
- 		case ATH10K_QMI_EVENT_SERVER_ARRIVE:
- 			ath10k_qmi_event_server_arrive(qmi);
-+			if (ar->fake_msa_ready)
-+				ath10k_qmi_event_msa_ready(qmi);
- 			break;
- 		case ATH10K_QMI_EVENT_SERVER_EXIT:
- 			ath10k_qmi_event_server_exit(qmi);
-
-
--- 
-Regards
-
+     Andrew
 
