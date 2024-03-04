@@ -1,57 +1,59 @@
-Return-Path: <devicetree+bounces-48190-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48191-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 784CD8709EA
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:53:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id E3FD7870A00
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 20:00:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0D2771F22E32
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 18:53:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6B99EB26A40
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:00:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5BCC578B4C;
-	Mon,  4 Mar 2024 18:53:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1916778B48;
+	Mon,  4 Mar 2024 19:00:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="chh0mb+L"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DERdcgyr"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 31D8E1E487;
-	Mon,  4 Mar 2024 18:53:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7AF361683;
+	Mon,  4 Mar 2024 19:00:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709578394; cv=none; b=FDg7vpE1R8wDT8YNt7kNcNbAdhi9xYXGRy5j8RBud3nVpb7JCgX8ufLDxE+FbAz/llcz0q7ZEqImiIa13n5fkH8439rhgbMuVdH30BgrSfpjvfam31/4Bwfb9o39zALe6BABO9GA9rhi4u/ea63uvXAUnBpezUgjkd419+dnUOU=
+	t=1709578814; cv=none; b=qyWLvMAuINECpUxbercIgN2kvmObflk4NSV0PxoDogE1QgXIZC3YfWDhR9LK5lwratgJNnI7I5C1hhVRQCDSrXGbV86T3uSHznrgCB2pk5ujyqkxbf2o4tThC4Pz8wgBaFY0Iv/ullNOalX0hqomjfBd4fgfjQJg7Gi3qjSbfmc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709578394; c=relaxed/simple;
-	bh=V37rd8PiGAomhKd4+inZBZxarQhrmyPY3/x1sHNH0Fg=;
+	s=arc-20240116; t=1709578814; c=relaxed/simple;
+	bh=SWDsJO4ZHNXRWOcWTB3PKNmeEVWvRKfUX+uqo98LLi8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=TwtD5qElsLcYD5yG3Yf0nv51Rao1UA9RdPLYFz89Q+7a9hEXj25dGzMJXHfk55vpgXEpHBo+9QTj7lRbbzJcIqi71pH80XIhaLTSCtQgp9voPV7MO8CFqm793ISO+yK/n3HvfBHr0easGFlAR2g+TPTi10NVct4MuTBHVNtov0I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=chh0mb+L; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39F1FC433F1;
-	Mon,  4 Mar 2024 18:53:12 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=Y4tqdgy5g8Kho/SCn/b4WIslAjG+Sb25KRimaYcsoTYKqtYizIIyhFf3LVEq8czMdwgDBGdMeXpt47WMXPktw435F5y6WtwMe0Wl6/JEvDI0ZuH7T3XJdV8qdspZv0sfM8lmdkluItxvcPrTfNNKR1f2rZd5rre7Lp/1O/QHc4Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DERdcgyr; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 68129C433C7;
+	Mon,  4 Mar 2024 19:00:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709578393;
-	bh=V37rd8PiGAomhKd4+inZBZxarQhrmyPY3/x1sHNH0Fg=;
+	s=k20201202; t=1709578813;
+	bh=SWDsJO4ZHNXRWOcWTB3PKNmeEVWvRKfUX+uqo98LLi8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=chh0mb+LqnBnkw4LaW7GXGcf4MUfQbxrI1GPiO3rGliHt+iEnuPpVrGL74YA+11eB
-	 YKqeYxSxlpofVGMQM0Ja6YGuaQetDJzVb60hbUJEDi1PlVG4cEb4nVdlDtqRQ9JXbq
-	 xBD4P6A8pk6pRh83Ib26Riarw33D4f+xUWUobiJzyUK37lSJ4MH4DTgL1ty+ROff6f
-	 yEAplu4CapIknsh9V56kknwXU5O2uknTdnA6forEuztZiC95OLeI4Uc2V1tdzE6bh5
-	 qZm+mAKS/4704cicL872uYrMIEY/X9AfbnztAqIguotzkk9tiEBGdZBMHcp4/LRSmc
-	 /PYattFbOnngQ==
-Date: Mon, 4 Mar 2024 18:53:09 +0000
+	b=DERdcgyrjXto8iQ69aYWa2VEWcp0xllWKxDjq4BNdq95iZSzXZ/uUDvz8YeZBouA+
+	 pT+yax23HQKzVr1KWd0OZ/F2ZBZJ2y+5vRRvffZC8eRABcrSPibC3K5ep21WV6x46l
+	 y1rjNu3Ui/i+jkvWwJj8qSQhKFzLbJtaQNe3OnRsLzILkc/ImLhsPPDBlN6ugYh4Lr
+	 xH8knnTEHFVtwgjrOv0MNz/qLJkXYfXrHuQq5xZglDpGnUSQraokeB4NpoM2MR6ynv
+	 pkdKTG2RI3BUkDypfAVKeOVoNHACr/lETGerfqzZhGLJrf4ETLbKlDcK3Jeirx74mX
+	 LOD3XIJBkAvgw==
+Date: Mon, 4 Mar 2024 19:00:09 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: linux-riscv@lists.infradead.org,
-	Samuel Holland <samuel.holland@sifive.com>,
+To: Yangyu Chen <cyy@cyyself.name>
+Cc: linux-riscv@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Paul Walmsley <paul.walmsley@sifive.com>,
-	devicetree@vger.kernel.org, linux-serial@vger.kernel.org,
-	Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [RFC] Inconsistent sifive,fu540-c000-uart binding.
-Message-ID: <20240304-whomever-gladly-d43da7ad2fe6@spud>
-References: <20240304105947.SJcVAdr1@linutronix.de>
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/5] riscv: dts: add initial canmv-k230 and k230-evb dts
+Message-ID: <20240304-veteran-frightful-b0700233c98f@spud>
+References: <tencent_E15F8FE0B6769E6338AE690C7F4844A31706@qq.com>
+ <tencent_1DB2D1914F4E30569BC4B103B724A6214405@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -59,60 +61,138 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="9HC0fzGtO/m/qkzE"
+	protocol="application/pgp-signature"; boundary="UYXkKkp3DI44EvOn"
 Content-Disposition: inline
-In-Reply-To: <20240304105947.SJcVAdr1@linutronix.de>
+In-Reply-To: <tencent_1DB2D1914F4E30569BC4B103B724A6214405@qq.com>
 
 
---9HC0fzGtO/m/qkzE
+--UYXkKkp3DI44EvOn
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 04, 2024 at 11:59:47AM +0100, Sebastian Andrzej Siewior wrote:
-> | $ git grep fu540-c000-uart
-> | Documentation/devicetree/bindings/serial/sifive-serial.yaml:          -=
- sifive,fu540-c000-uart
-> | Documentation/devicetree/bindings/serial/sifive-serial.yaml:        com=
-patible =3D "sifive,fu540-c000-uart", "sifive,uart0";
-> | Documentation/devicetree/bindings/sifive/sifive-blocks-ip-versioning.tx=
-t:"sifive,fu540-c000-uart".  This way, if SoC-specific
-> | Documentation/devicetree/bindings/sifive/sifive-blocks-ip-versioning.tx=
-t:    compatible =3D "sifive,fu540-c000-uart", "sifive,uart0";
-> | arch/riscv/boot/dts/sifive/fu540-c000.dtsi:                     compati=
-ble =3D "sifive,fu540-c000-uart", "sifive,uart0";
-> | arch/riscv/boot/dts/sifive/fu540-c000.dtsi:                     compati=
-ble =3D "sifive,fu540-c000-uart", "sifive,uart0";
-> | drivers/tty/serial/sifive.c:OF_EARLYCON_DECLARE(sifive, "sifive,fu540-c=
-000-uart0",
-> | drivers/tty/serial/sifive.c:    { .compatible =3D "sifive,fu540-c000-ua=
-rt0" },
->=20
-> note that the driver has a trailing 0 in the binding while the yaml
-> description and the DT part does not.
-> The 'sifive,uart' has a trailing 0 where the 0 denotes the version UART
-> IP.
->=20
-> Was this also intended for the fu540-c000-uart binding? Should the 0 be
-> added everywhere or removed from the driver?
+Hey,
 
-I suspect that the driver is what's incorrect, given there's little
-value in putting the IP version in the SoC-specific compatible as it's
-a fixed implementation. I'd change the driver to match the bindings.
+Meant to reply here earlier but I got distracted.
+
+On Sun, Mar 03, 2024 at 09:26:26PM +0800, Yangyu Chen wrote:
+> Add initial dts for CanMV-K230 and K230-EVB powered by Canaan Kendryte
+> K230 SoC [1].
+>=20
+> Some key considerations:
+> - Only enable BigCore which is 1.6GHz RV64GCBV
+>=20
+> Since is there cache coherence between two cores remains a mystery since
+> they have a dedicated L2 Cache. And the factory SDK uses it for other OS
+> by default.
+>=20
+> Meanwhile, although docs from Canaan said 1.6GHz Core with Vector is
+> CPU1, the csr.mhartid of this core is 0.
+>=20
+> - Support for "zba" "zbb" "zbc" "zbs" are tested by hand
+>=20
+> The user manual of C908 from T-Head does not document it specifically.
+> It just said it supports B extension V1.0-rc1. [2]
+>=20
+> - Support for "zicbom" is tested by hand
+>=20
+> Have tested with some out-of-tree drivers that need DMA and they do not
+> come to the dts currently.
+>=20
+> - Cache parameters are inferred from T-Head docs [2] and Cannan docs [1]
+>=20
+> L1i: 32KB, VIPT 4-Way set-associative, 64B Cacheline
+> L1d: 32KB, VIPT 4-Way set-associative, 64B Cacheline
+> L2: 256KB, PIPI 16-way set-associative, 64B Cacheline
+>=20
+> The numbers of cache sets are calculated from these parameters.
+>=20
+> - MMU only supports Sv39
+>=20
+> Since T-Head docs [2] says C908 should support sv48. However, it will fail
+> during the kernel probe. I also tested it by hand on M-Mode software,
+> writing sv48 to satp.mode will not trap but will leave the csr unchanged.
+>=20
+> [1] https://developer.canaan-creative.com/k230/dev/zh/00_hardware/K230_da=
+tasheet.html#chapter-1-introduction
+> [2] https://occ-intl-prod.oss-ap-southeast-1.aliyuncs.com/resource//16992=
+68369347/XuanTie-C908-UserManual.pdf
+>=20
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> ---
+>  arch/riscv/boot/dts/canaan/Makefile       |   2 +
+>  arch/riscv/boot/dts/canaan/canmv-k230.dts |  23 ++++
+
+Could you name this file "k230-canmv.dts" please, so that the soc comes
+first?
+
+>  arch/riscv/boot/dts/canaan/k230-evb.dts   |  23 ++++
+>  arch/riscv/boot/dts/canaan/k230.dtsi      | 146 ++++++++++++++++++++++
+>  4 files changed, 194 insertions(+)
+>  create mode 100644 arch/riscv/boot/dts/canaan/canmv-k230.dts
+>  create mode 100644 arch/riscv/boot/dts/canaan/k230-evb.dts
+>  create mode 100644 arch/riscv/boot/dts/canaan/k230.dtsi
+>=20
+> diff --git a/arch/riscv/boot/dts/canaan/Makefile b/arch/riscv/boot/dts/ca=
+naan/Makefile
+> index 987d1f0c41f0..b4a0ec668f9a 100644
+> --- a/arch/riscv/boot/dts/canaan/Makefile
+> +++ b/arch/riscv/boot/dts/canaan/Makefile
+> @@ -5,3 +5,5 @@ dtb-$(CONFIG_ARCH_CANAAN) +=3D sipeed_maix_bit.dtb
+>  dtb-$(CONFIG_ARCH_CANAAN) +=3D sipeed_maix_dock.dtb
+>  dtb-$(CONFIG_ARCH_CANAAN) +=3D sipeed_maix_go.dtb
+>  dtb-$(CONFIG_ARCH_CANAAN) +=3D sipeed_maixduino.dtb
+> +dtb-$(CONFIG_ARCH_CANAAN) +=3D k230-evb.dtb
+> +dtb-$(CONFIG_ARCH_CANAAN) +=3D canmv-k230.dtb
+> \ No newline at end of file
+> diff --git a/arch/riscv/boot/dts/canaan/canmv-k230.dts b/arch/riscv/boot/=
+dts/canaan/canmv-k230.dts
+> new file mode 100644
+> index 000000000000..09777616d30e
+> --- /dev/null
+> +++ b/arch/riscv/boot/dts/canaan/canmv-k230.dts
+> @@ -0,0 +1,23 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+
+Is there a reason that you only put these under GPL-2.0+?
+The usual license for DT stuff is (GPL-2.0 OR BSD-2-Clause), dual
+licensing makes it easier for other projects to use the devicetrees.
+
+> +
+> +		plic: interrupt-controller@f00000000 {
+> +			compatible =3D "thead,c900-plic";
+> +			reg =3D <0xf 0x00000000 0x0 0x04000000>;
+> +			interrupts-extended =3D <&cpu0_intc 11>, <&cpu0_intc 9>;
+> +			interrupt-controller;
+> +			reg-names =3D "control";
+> +			#address-cells =3D <0>;
+> +			#interrupt-cells =3D <2>;
+> +			riscv,ndev =3D <208>;
+> +		};
+> +
+> +		clint: timer@f04000000 {
+> +			compatible =3D "thead,c900-clint";
+> +			reg =3D <0xf 0x04000000 0x0 0x04000000>;
+> +			interrupts-extended =3D <&cpu0_intc 3>, <&cpu0_intc 7>;
+> +		};
+
+Both of these should have SoC-specific compatibles. Without them, this
+should not pass dtbs_check. Did you run it?
 
 Cheers,
 Conor.
 
---9HC0fzGtO/m/qkzE
+
+--UYXkKkp3DI44EvOn
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeYYkgAKCRB4tDGHoIJi
-0hLtAQCeh/vjouGnruLo6WjBW4ItX+rl8PSOfBxPoyZ6qLT1pAD/VFIkqqRSQoJT
-5af4p39+MyG3lRoOA+H3k7VIM/w0xAE=
-=qY/D
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeYaOQAKCRB4tDGHoIJi
+0jU9AP9wbUelD6ratQqXy2IleW+7MGXimY6JP5GbRbgIUomb2gD+O6cGO3g9VH5+
+vpEpWkPBpVWXpFbpnYKra7HLPzeuJQE=
+=2txQ
 -----END PGP SIGNATURE-----
 
---9HC0fzGtO/m/qkzE--
+--UYXkKkp3DI44EvOn--
 
