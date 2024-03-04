@@ -1,63 +1,63 @@
-Return-Path: <devicetree+bounces-48185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C5A6B87098C
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:30:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91AA38709C1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:40:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 032FD1C2232A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 18:30:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B75328A85A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 18:40:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D62E5629F5;
-	Mon,  4 Mar 2024 18:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 702E978685;
+	Mon,  4 Mar 2024 18:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ODDTDWd5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Rahm3Kp4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E8DD629ED;
-	Mon,  4 Mar 2024 18:30:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45D3F3F9FD;
+	Mon,  4 Mar 2024 18:40:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709577030; cv=none; b=tEWkQyonciv1x+ge0p8hUPoYEum3dmDuK/hEKKTmD6bybYOZ7tgj4RYlBR99XDPW/Vs6YkorsJv9pbUjq8ndlBXabnLoQr85L5sCKlRRviobqpwHPDLkhExepBmS2dvnR0HOSnyidZvmieH5qicXNt6xOVjru+60QaUVLWjIP1A=
+	t=1709577635; cv=none; b=ggziK9t+BcNNKvZ/I/cMegw+lGhVc21IcrDPV6vVwwbgQf8XN1gukH5UYl3B/HN1zlTWbDF22B5TfivnHmn11n8XO/KUIkUd70Z2fA3/urdraHUL/4kQkYgeh+8HuxFcUqjmREgj2D1C3ZohMDpSjS3cMwU0o5xJIKmEiPbf8IA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709577030; c=relaxed/simple;
-	bh=ziA5WYvRRKeMAVzULW5DZrSwZgVRble6/Vv6u6klgFo=;
+	s=arc-20240116; t=1709577635; c=relaxed/simple;
+	bh=7vh4iyPXOaOgnr49RuHWi1jSWORQ0cB+J4ov6rz10CY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WfU9eMQy5078M2x200AFI/RN3zYMHvJlzPzd7YHIgJSRPsAB2XR9xpnfdGU52iB3yjiNKg/2bOz2tbIvrN6YlQdIxS4ZTgj2sHCZ1nt8q5sSz8/6/tWQdDJdQ13KYHzG5uab5na9AvxdYtHlKBOclr+rE641qcWsXoiO4CSrjt4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ODDTDWd5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6860C433F1;
-	Mon,  4 Mar 2024 18:30:29 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=iYTE8JKASTqNRpTlXLSn0+lXdx+aFwoyR6nY2iWiqZ5LuOddNpKCvzHJLBMhaZch+EhXEBrKN5yV/toqTl8/ZRG9RSny8rgZey+V2O/SciLQlnqAHsr2Tnk/eYJqR0mElViIEAj8Zf1U1J7l6lUboO/hMBbOeV3WWucX7qNOWcc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Rahm3Kp4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CCE45C433C7;
+	Mon,  4 Mar 2024 18:40:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709577030;
-	bh=ziA5WYvRRKeMAVzULW5DZrSwZgVRble6/Vv6u6klgFo=;
+	s=k20201202; t=1709577635;
+	bh=7vh4iyPXOaOgnr49RuHWi1jSWORQ0cB+J4ov6rz10CY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ODDTDWd5dsvBmvO6XdiAVMwH149tJPAqQaCPw0Vl8CLxF38gNQateBMMrjXbkSusd
-	 vRQTWw9chXqiXtS5RHNoDboBDdQU30amnA0XAahk1ucXWPJuNtRl+eBk674JUjCzmP
-	 q992pDkt6r9K/xiQ2sqtKTUh0Q45ZlqdOXNbw/csWEXgsEpFHhcM0pDdr0r31YvMzv
-	 iFAvf5oD3BtuqkW5S/48K68MRC+ty7AmMOJ6+XbgUcvuulNgrEGXMOJrAd5YPnM5bT
-	 odXJeudAONXhEyDF7uO2xmu2eCmYxhw2HygbVi12Jwt0NYSeCRn684FzVPAgaQnWf6
-	 tgZXbBT6H7quw==
-Date: Mon, 4 Mar 2024 12:30:27 -0600
+	b=Rahm3Kp4K15IbjidKWNlUNUEbKT1XAqkt9tB2YlZqVXTPrYMa7IrMt9UxN9cdRdNV
+	 SN11popSbGR9Ujlg49wTuKDZt+EamtXziRhi8KU/S+hDlGQnWrqVphkVFPEHUuGZPJ
+	 yPfDZ5aTeI8vOWndAXulFV010eWAwduB5upNgWONQ5GPHc4oKw0u1WAfh/2cq7pr5h
+	 Sl19wQvMPbJD1dPFmX0FBDRfoZJTSErer8kIc1ZA2gENu2NxMa5z5u8NZWb0SJEcyf
+	 URAMwAd5p/K/u7NZXL7FljcG9XsfE402zSdX00M4Z7mBWprpZ2NhNgtMYvqGk2Gscj
+	 a+Do5D6CO5Suw==
+Date: Mon, 4 Mar 2024 12:40:32 -0600
 From: Rob Herring <robh@kernel.org>
-To: abdellatif.elkhlifi@arm.com
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+To: Raphael Gallais-Pou <rgallaispou@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>,
+	Daniel Lezcano <daniel.lezcano@linaro.org>,
+	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
-	Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Patrice Chotard <patrice.chotard@foss.st.com>,
+	Lee Jones <lee@kernel.org>, linux-pm@vger.kernel.org,
 	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 1/3] remoteproc: Add Arm remoteproc driver
-Message-ID: <20240304183027.GA854977-robh@kernel.org>
-References: <20240301164227.339208-1-abdellatif.elkhlifi@arm.com>
- <20240301164227.339208-2-abdellatif.elkhlifi@arm.com>
+	linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: thermal: convert st,stih407-thermal
+ to DT schema
+Message-ID: <20240304184032.GA865748-robh@kernel.org>
+References: <20240301-thermal-v2-0-1b32752029ec@gmail.com>
+ <20240301-thermal-v2-1-1b32752029ec@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -66,121 +66,99 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240301164227.339208-2-abdellatif.elkhlifi@arm.com>
+In-Reply-To: <20240301-thermal-v2-1-1b32752029ec@gmail.com>
 
-On Fri, Mar 01, 2024 at 04:42:25PM +0000, abdellatif.elkhlifi@arm.com wrote:
-> From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+On Fri, Mar 01, 2024 at 06:47:28PM +0100, Raphael Gallais-Pou wrote:
+> 'st,passive_colling_temp' does not appear in the device-tree, and 'reg'
+> is missing in the device description.
 > 
-> introduce remoteproc support for Arm remote processors
+> Convert st,stih407-thermal binding to DT schema format in order to clean
+> unused 'st,passive_cooling_temp' and add missing 'reg' property.
 > 
-> The supported remote processors are those that come with a reset
-> control register and a reset status register. The driver allows to
-> switch on or off the remote processor.
-> 
-> The current use case is Corstone-1000 External System (Cortex-M3).
-> 
-> The driver can be extended to support other remote processors
-> controlled with a reset control and a reset status registers.
-> 
-> The driver also supports control of multiple remote processors at the
-> same time.
-> 
-> Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
 > ---
->  MAINTAINERS                    |   6 +
->  drivers/remoteproc/Kconfig     |  18 ++
->  drivers/remoteproc/Makefile    |   1 +
->  drivers/remoteproc/arm_rproc.c | 395 +++++++++++++++++++++++++++++++++
->  4 files changed, 420 insertions(+)
->  create mode 100644 drivers/remoteproc/arm_rproc.c
+> Changes in v2:
+>   - Change commit log to use imperative
+>   - Drop description
+>   - Drop 'clocks' description
+>   - Add 'reg' property
+>   - Add '#thermal-sensor-cells'
+>   - Make node name generic in example
+>   - Fix YAML style
+> ---
+>  .../bindings/thermal/st,stih407-thermal.yaml       | 56 ++++++++++++++++++++++
+>  .../devicetree/bindings/thermal/st-thermal.txt     | 32 -------------
+>  2 files changed, 56 insertions(+), 32 deletions(-)
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8d1052fa6a69..54d6a40feea5 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1764,6 +1764,12 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
->  F:	drivers/irqchip/irq-vic.c
->  
-> +ARM REMOTEPROC DRIVER
-> +M:	Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-> +L:	linux-remoteproc@vger.kernel.org
-> +S:	Maintained
-> +F:	drivers/remoteproc/arm_rproc.c
-> +
->  ARM SMC WATCHDOG DRIVER
->  M:	Julius Werner <jwerner@chromium.org>
->  R:	Evan Benn <evanbenn@chromium.org>
-> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
-> index 48845dc8fa85..57fbac454a5d 100644
-> --- a/drivers/remoteproc/Kconfig
-> +++ b/drivers/remoteproc/Kconfig
-> @@ -365,6 +365,24 @@ config XLNX_R5_REMOTEPROC
->  
->  	  It's safe to say N if not interested in using RPU r5f cores.
->  
-> +config ARM_REMOTEPROC
-> +	tristate "Arm remoteproc support"
-
-Too generic of a name. It should say Corstone or Corstone-1000. Here and 
-everywhere you use just 'Arm'.
-
-> +	depends on HAS_IOMEM && ARM64
-
-depends on ARM64 || (HAS_IOMEM && COMPILE_TEST)
-
-That gets us wider build coverage. You should check at least x86 
-allmodconfig passes.
-
-> +	default n
-
-The default is already n, so drop.
-
-> +	help
-> +	  Say y here to support Arm remote processors via the remote
-> +	  processor framework.
-> +
-> +	  The supported processors are those that come with a reset control register
-> +	  and a reset status register. The design can be extended to support different
-> +	  processors meeting these requirements.
-> +	  The driver also supports control of multiple remote cores at the same time.
-> +
-> +	  Supported remote cores:
-> +	      Corstone-1000 External System (Cortex-M3)
-> +
-> +	  It's safe to say N here.
-> +
->  endif # REMOTEPROC
->  
->  endmenu
-> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
-> index 91314a9b43ce..73126310835b 100644
-> --- a/drivers/remoteproc/Makefile
-> +++ b/drivers/remoteproc/Makefile
-> @@ -39,3 +39,4 @@ obj-$(CONFIG_STM32_RPROC)		+= stm32_rproc.o
->  obj-$(CONFIG_TI_K3_DSP_REMOTEPROC)	+= ti_k3_dsp_remoteproc.o
->  obj-$(CONFIG_TI_K3_R5_REMOTEPROC)	+= ti_k3_r5_remoteproc.o
->  obj-$(CONFIG_XLNX_R5_REMOTEPROC)	+= xlnx_r5_remoteproc.o
-> +obj-$(CONFIG_ARM_REMOTEPROC)		+= arm_rproc.o
-> diff --git a/drivers/remoteproc/arm_rproc.c b/drivers/remoteproc/arm_rproc.c
+> diff --git a/Documentation/devicetree/bindings/thermal/st,stih407-thermal.yaml b/Documentation/devicetree/bindings/thermal/st,stih407-thermal.yaml
 > new file mode 100644
-> index 000000000000..6afa78ae7ad3
+> index 000000000000..68d7dd8b892f
 > --- /dev/null
-> +++ b/drivers/remoteproc/arm_rproc.c
-> @@ -0,0 +1,395 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright 2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
+> +++ b/Documentation/devicetree/bindings/thermal/st,stih407-thermal.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/st,stih407-thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: STMicroelectronics STi digital thermal sensor (DTS)
+> +
+> +maintainers:
+> +  - Patrice Chotard <patrice.chotard@foss.st.com>
+> +  - Lee Jones <lee@kernel.org>
+> +
+> +allOf:
+> +  - $ref: thermal-sensor.yaml
+> +
+> +properties:
+> +  compatible:
+> +    const: st,stih407-thermal
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    items:
+> +      - const: thermal
+> +
+> +  interrupts:
+> +    description:
+> +      For thermal sensors for which no interrupt has been defined, a polling
+> +      delay of 1000ms will be used to read the temperature from device.
 
-We don't normally put OSO email in here.
+maxItems: 1
 
-> + *
-> + * Authors:
-> + *   Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+> +
+> +  '#thermal-sensor-cells': true
 
-That's recorded in the commit message and by git, so no need to put it 
-in the file.
+const: 1
 
-> + */
+Also, not in the original binding, so please state in the commit msg 
+why you are adding it.
 
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    temperature-sensor@91a0000 {
+> +        compatible = "st,stih407-thermal";
+> +        reg = <0x91a0000 0x28>;
+> +        clock-names = "thermal";
+> +        clocks = <&CLK_SYSIN>;
+> +        interrupts = <GIC_SPI 205 IRQ_TYPE_EDGE_RISING>;
+> +        #thermal-sensor-cells = <0>;
+> +    };
+> +...
 
