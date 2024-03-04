@@ -1,147 +1,125 @@
-Return-Path: <devicetree+bounces-48169-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48170-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2AFA8707F6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 18:05:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 55A52870800
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 18:08:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22EE81C208E6
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:05:42 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11B23286AB8
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:08:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E05545D73A;
-	Mon,  4 Mar 2024 17:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F07254653C;
+	Mon,  4 Mar 2024 17:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbwyWtuK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="advEshHs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B80FB4642A;
-	Mon,  4 Mar 2024 17:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5A6C39AF1;
+	Mon,  4 Mar 2024 17:08:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709571937; cv=none; b=dXDbkAt8xr7h9m99ck57lruSFVxgaQxVLsSFKFU1zoOXFSUdPc2VtpjnhazLa5DeMJfKQGwOPkz05nprCucjbhzRB7esTp/I7/yTyMEN/BlmtfJuPSepWeiUIKoDKHKbD8TSt3W4DSgAxDTl4Z3iahrBcX82Q0sa6UmDcxN5q6w=
+	t=1709572081; cv=none; b=MuGOauwvym+p9DtNjk0UU7faf7CCoUMcZJFHEm3qDxyXWhfC3J9m98lZmHDFTct5nN3SIyYP2K1WsG1eFOt3WCby2z+hoGZm6uE12IN9P7OQPu/HTbmtwX5tQWBf8zbKynn1sAWt5/3yRAiyBBBgRP0dAc2XTaicvHdqySoSAwM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709571937; c=relaxed/simple;
-	bh=zD/c78WU8bA5wQQx/rSC8cu3BgvCF8zH72PFnPryMV4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ty2Fuo2jnexM+nb/wiSYyNBF5CHE9HZ5i0hyBdqw3PbK6Tn5yyRGu5Q0jhEuawyzWX8x0LwAll+pA4SM2rmFfktNPfI/+q6ODedpsq7leDjUQ9GY97J5Y5IpW5OVi7/1maBNsJBHBSpcNYZPVM+gLmXkLTE2CMhq7mtScHsJQ+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbwyWtuK; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BB05C433F1;
-	Mon,  4 Mar 2024 17:05:37 +0000 (UTC)
+	s=arc-20240116; t=1709572081; c=relaxed/simple;
+	bh=oo8N+RP2c/iFxHR/IdQJQEesKtVFD/spy8V9i7MIHuU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=uvuzknVrJzxsIhAEQhcNT/N3Rn5WANcn+TPHtPp/vyi+N3NgQPJH2mS68e/PS/CIg//2fvi+O4Hoqng69666iFmyUTUp4CPzPr3vSnu1I8u9/XKDneCY3BYG0lF/ShH5s9erzayTmHfxNh/wET9NCbHm9YJHt+35rBgDf1e3rFg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=advEshHs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 393A7C433F1;
+	Mon,  4 Mar 2024 17:08:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709571937;
-	bh=zD/c78WU8bA5wQQx/rSC8cu3BgvCF8zH72PFnPryMV4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=SbwyWtuK6Rx2U+B0kvWk5iyMuOMeQI5LTV9i1o+wsg9u6IgWRj8IdS3bp18lLU+ba
-	 dYlNm9VRoClfUQRYeqnVXTzunuNhbDdN6aJowp6W2opIPxDF3d8j/ccBAN1NCxwbTo
-	 0ctZiAFaike4Vqkxce3WTT3+b+0Iq6OiVKcsXu4ElZmCs4jpERA56BuDk61LPGV95B
-	 4t2HRl5q3aYFPO8qsJMerOOITjwgbmkbfhQk0HvbvemAZTrtj5KYTswLRmWbcAtkoe
-	 S8rKdizzTP6rhozbgC8929PXnrl7p2lkjnoWaG8wwBPvFBp/SG+hb1XrzG5Ya8MY9O
-	 t0osBkJ4gTOBg==
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d382a78c38so22718911fa.1;
-        Mon, 04 Mar 2024 09:05:37 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX/CT9qWhdRZ/ZAql39wWgjVqSSFK4l+YHR+uiJksXfs70iQ0BcSeyqswtrgnm0azL/6CHWvI7+kPY1AWGo5p7RWtTx8DOxsoY/eMHw
-X-Gm-Message-State: AOJu0YwqcJ7kg0ZKtS/i0D0MbM+xPdfJW6nF+FEZGR9made4xcNjjbLk
-	S9Ab8Zw+0RFaHtdYcrlB0lKmOeXzYob//6qgXp0a76V0EfZUg89q6Ep8jwQ+qH2TP/Lb6TbSmVR
-	Ab5yA3i4WMOs4zGUvvbEzY0mnBA==
-X-Google-Smtp-Source: AGHT+IEG/k9XM1uX3m8yp7kREFJTf/frvjwwPIpybcwq84QP9Bm88kROlZOHDg9QRJu54OsPp4uTFKgsgcB0L908Yi0=
-X-Received: by 2002:a2e:a4c4:0:b0:2d2:a2f5:596e with SMTP id
- p4-20020a2ea4c4000000b002d2a2f5596emr6113226ljm.38.1709571935590; Mon, 04 Mar
- 2024 09:05:35 -0800 (PST)
+	s=k20201202; t=1709572081;
+	bh=oo8N+RP2c/iFxHR/IdQJQEesKtVFD/spy8V9i7MIHuU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=advEshHsEmpUPOvyd59svVQwDfYQmy4ibHko62SjjRMD8AwzVJUw98yxTtzHe5oKw
+	 ItafxNx26LOmTHQJ962f1O5H4yiv5FPq26qMzfd/L7tQXHiK7xtCTOnROMkcuNDZAh
+	 Uyj631YdmxhqcyayqGanXu90ZduiMXCHTo0CLs3MMusmdUwFN2xbKVrEboQ/jRfpu0
+	 dgGqFWYcGyE60wMZ4P3QSENIM601mysZDpZikbw0pKwfyl7O4EsnuTYcrD7ipCrHfl
+	 Uq318gJ3Q8xfQleEn+cdZApVG4NFwd4tbIt4QerBSu6PwtxwK1MgwbNccd70rpNotB
+	 c3kP1lZYSLeMg==
+Date: Mon, 4 Mar 2024 11:07:59 -0600
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: Animesh Agarwal <animeshagarwal28@gmail.com>, mdf@kernel.org,
+	Wu Hao <hao.wu@intel.com>, Xu Yilun <yilun.xu@intel.com>,
+	Tom Rix <trix@redhat.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-fpga@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: altera-fpga2sdram-bridge: Convert to
+ dtschema
+Message-ID: <20240304170759.GA752387-robh@kernel.org>
+References: <20240301161648.124859-1-animeshagarwal28@gmail.com>
+ <20240301-uphold-numerous-305c3702805b@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAL_JsqKNGjKq3vcUPFiPa9JNq-8=oP=uBSD=tyKaPMH3cvAkww@mail.gmail.com>
- <20240304150227.166053-1-skseofh@gmail.com>
-In-Reply-To: <20240304150227.166053-1-skseofh@gmail.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 4 Mar 2024 11:05:22 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKaZ4KcvfNZmn2gj+yXa8eLgzMpdhJJ=+OmMJPvzm-1Qg@mail.gmail.com>
-Message-ID: <CAL_JsqKaZ4KcvfNZmn2gj+yXa8eLgzMpdhJJ=+OmMJPvzm-1Qg@mail.gmail.com>
-Subject: Re: [PATCH] of: fdt: modify small size memory check
-To: skseofh@gmail.com
-Cc: devicetree@vger.kernel.org, frowand.list@gmail.com, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240301-uphold-numerous-305c3702805b@spud>
 
-On Mon, Mar 4, 2024 at 9:03=E2=80=AFAM <skseofh@gmail.com> wrote:
->
->
-> >>
-> >> From: Daero Lee <skseofh@gmail.com>
-> >>
-> >> After page aligning, the size may become zero. So I added exception
-> >> handling code for size 0.
-> >
-> >That may be true, but when would anyone only have memory regions of
-> >less than 2 pages. In any case memblock_add will just do nothing. What
-> >is the actual problem you are having?
-> >
-> >Rob
->
-> Ignore the previous mail.
-> I modified the patch to clear this size check routine. Please check
+On Fri, Mar 01, 2024 at 04:23:30PM +0000, Conor Dooley wrote:
+> Hey,
+> 
+> On Fri, Mar 01, 2024 at 09:46:43PM +0530, Animesh Agarwal wrote:
+> > Convert the altera-fpga2sdram-bridge bindings to DT schema.
+> > 
+> > Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> > ---
+> >  .../fpga/altera-fpga2sdram-bridge.txt         | 13 -----------
+> >  .../fpga/altera-fpga2sdram-bridge.yaml        | 23 +++++++++++++++++++
+> >  2 files changed, 23 insertions(+), 13 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.txt
+> >  create mode 100644 Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.txt b/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.txt
+> > deleted file mode 100644
+> > index 5dd0ff0f7b4e..000000000000
+> > --- a/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.txt
+> > +++ /dev/null
+> > @@ -1,13 +0,0 @@
+> > -Altera FPGA To SDRAM Bridge Driver
+> > -
+> > -Required properties:
+> > -- compatible		: Should contain "altr,socfpga-fpga2sdram-bridge"
+> > -
+> > -See Documentation/devicetree/bindings/fpga/fpga-bridge.txt for generic bindings.
+> > -
+> > -Example:
+> > -	fpga_bridge3: fpga-bridge@ffc25080 {
+> > -		compatible = "altr,socfpga-fpga2sdram-bridge";
+> > -		reg = <0xffc25080 0x4>;
+> > -		bridge-enable = <0>;
+> > -	};
+> > diff --git a/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.yaml b/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.yaml
+> > new file mode 100644
+> > index 000000000000..88bf9e3151b6
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/fpga/altera-fpga2sdram-bridge.yaml
+> > @@ -0,0 +1,23 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/fpga/altr-fpga2sdram-bridge.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Altera FPGA To SDRAM Bridge Driver
 
-You still haven't answered my questions above.
+Bindings are for h/w blocks, not Drivers.
 
-Though the patch below is a bit more readable than what we currently have..=
-.
+> > +
+> 
+> You're missing maintainers: (shouldn't dt_binding_check complain?)
 
->
-> -------------------------------------------------------------------------
-> From 2135d37c37f8c369033f79102b17ddf5bb3ff838 Mon Sep 17 00:00:00 2001
-> From: Daero Lee <skseofh@gmail.com>
-> Date: Mon, 4 Mar 2024 23:21:14 +0900
-> Subject: [PATCH] of: fdt: modify small size memory check
->
-> Small size memory which is less than 1 PAGE_SIZE after page align
-> should not be added to memblock.
->
-> In this patch, the size check was modified to make it clear.
->
-> Signed-off-by: Daero Lee <skseofh@gmail.com>
-> ---
->  drivers/of/fdt.c | 10 ++++------
->  1 file changed, 4 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index bf502ba8da95..9cf844e664b0 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1220,18 +1220,16 @@ int __init early_init_dt_scan_chosen(char *cmdlin=
-e)
->  void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
->  {
->         const u64 phys_offset =3D MIN_MEMBLOCK_ADDR;
-> +       u64 abase =3D PAGE_ALIGN(base), aend =3D PAGE_ALIGN_DOWN(base + s=
-ize);
->
-> -       if (size < PAGE_SIZE - (base & ~PAGE_MASK)) {
-> +       if((aend - abase) < PAGE_SIZE) {
->                 pr_warn("Ignoring memory block 0x%llx - 0x%llx\n",
->                         base, base + size);
->                 return;
->         }
->
-> -       if (!PAGE_ALIGNED(base)) {
-> -               size -=3D PAGE_SIZE - (base & ~PAGE_MASK);
-> -               base =3D PAGE_ALIGN(base);
-> -       }
-> -       size &=3D PAGE_MASK;
-> +       base =3D abase;
-> +       size =3D (aend - abase) & PAGE_MASK;
->
->         if (base > MAX_MEMBLOCK_ADDR) {
->                 pr_warn("Ignoring memory block 0x%llx - 0x%llx\n",
-> --
-> 2.25.1
->
->
+Yes. Patchwork says this failed to apply which is odd because it is 
+doubtful that altera-fpga2sdram-bridge.txt has been modified.
+
+Rob
 
