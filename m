@@ -1,85 +1,108 @@
-Return-Path: <devicetree+bounces-48098-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48099-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 032628702A8
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:27:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A974E8702CC
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:34:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9385F1F25F53
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 13:27:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6409328699D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 13:34:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81A453D96D;
-	Mon,  4 Mar 2024 13:27:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CBBA3DB9B;
+	Mon,  4 Mar 2024 13:32:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="l8RaCFde"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="FtebJCye"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 58AB23D542;
-	Mon,  4 Mar 2024 13:27:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 882CB3F8E0;
+	Mon,  4 Mar 2024 13:32:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709558828; cv=none; b=GJwiY+SkV+T/imu/30H/TLUoX2vxH2SbwqVWuTP/XbRgPmGEguiGyyZYVgYxPghxdjQWaWpNerJ5RwIEIqQ7IZky8vA7UuPDj4a4sLNv11lJNeAD4r+ZUl+Ww89siVWkcCY+sQQHccBSNtFNze4O5UhWw7/FNtMyK+unFnO8tKc=
+	t=1709559167; cv=none; b=vCVdiCkYV85Rr2n2Rbif1ro7QFCDqgypcvyGJSYTOVO40GNQjyiH6pRRpK66YoUN5DhmZ1cneZH+mDEACcbuaDvhk+lJ8LZq7GF5HAdbe5qDxOa/2mDlvBRpT3aHcyW3lF/hF1QBfo12xcxcVX7hb9YiIVj4xIh0e9Bxzd6OyVw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709558828; c=relaxed/simple;
-	bh=5b+Cvu8XLy0B3CcR4jvhEyTFX5ESyq9Rd4VnECSgIU8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=i9u9y2XN3hpoC9CxFosOwxSP4Tqkm0hhyecr3tycXuXj730krfV9lYAqyDnbqqtjTSdpoQQmXwHwVyuoIuB6qIAYEBXQWv5OevGsXdv7dmBIXq7GvH8YwSRghwAq3P/CJqNbZV/d9sudyT2ECU0FAKTHqgeRZ5Y77RN2+MQC99g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=l8RaCFde; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EA314C433A6;
-	Mon,  4 Mar 2024 13:27:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709558828;
-	bh=5b+Cvu8XLy0B3CcR4jvhEyTFX5ESyq9Rd4VnECSgIU8=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=l8RaCFdeXFpTv+51Lyzgr1WUhKCPqi9wyUt4e6vv1h51t2REPTPWmT/3twLvgfIAG
-	 PpsT38GUk1KwShSmh+jGdj7j0PPznL6fUE6reuB+c3dOYkmJeQexe06wuYqYzf/7Sp
-	 gHCb6XRIXDQ5Hfx6sirnUXiDgSJmmI1vZ1miCGUhRke1XBn0eTUnDKgap2HcqQ5zeU
-	 ahZ2WiZgt8fx0ba1U2L05hGIzjfLS8FNKyIt7uLZLJJdjC5oYxvazxc3Qb015ZLQ34
-	 NmXFt3gXQU22s5QlLYZsZmyOQR8ruizjvb07WC+bItA10Wxfr+YQIBWFdVSPc3QAun
-	 c89ooRjQkoH/g==
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-51320ca689aso5220853e87.2;
-        Mon, 04 Mar 2024 05:27:07 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVIKdzDWUZtNCfu5tDqjwxwd+89Lt5DAdbi6O0g37rDPCTASY/RnuCYOGW6nz7LlQaQ1Pe623KHPD++ChGsmYyx+YJGCKUqXz3GDhng5n/XX4E9f6R9mOUDeMhAXDHwSXZ1geb7AfVvwQ==
-X-Gm-Message-State: AOJu0YxSYUS9YF62MS+hEsgBbQWdf5Nh025qP0a+U6Lo49eSBSaYuUIy
-	v/h/nqFMVKvxpiIyA6dkBjL81EvYwckYX5LQOn86Txs/nm1A+E37qgcGczcu25XZNlc+eJ20XYM
-	UOdG6rmCQ9FTjAebvvkN/7JFzwA==
-X-Google-Smtp-Source: AGHT+IF7JBMM2JWKgq5k5uJTn7RrGrJFkam98ENzkoB3Q+jVvojAUOu2ms2q2hTFeUKQ3xlB/DXxSQ/G5J+GwkZpELw=
-X-Received: by 2002:a05:6512:3b90:b0:513:45b6:18b2 with SMTP id
- g16-20020a0565123b9000b0051345b618b2mr2698906lfv.44.1709558826164; Mon, 04
- Mar 2024 05:27:06 -0800 (PST)
+	s=arc-20240116; t=1709559167; c=relaxed/simple;
+	bh=0atBaHXl1e3n7AZO5fT2Mm64OWqwf3KkX/ptCgjWNPE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ezZYGjoAWoQhifxPmGUccPFeVTpjBzdpevudypsjkY0zhqi6vlStMMsZQHi31LdSoHID6lURg9IPakdH98WQ4+RBtXmJYKLG1PeKs+UhLSCTET+lZjoJf9TyPJsKUKxbDh+j4bO8b1hPWUKkKIwz1WYv720t07jRAQ5sUAbGHgM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=FtebJCye; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=OZLHOEQOwrKYkhkP5YCytEcFYTUgdUuOzV0w6B1zc5w=; b=FtebJCyeTDDX8B9ncGsT+3dwiL
+	S/NRnnAK6ew7ipqWGNe7yO3T6105XYq4XD9wuBMEA9pKAL3wxp0sPSpOxvkQp+PKPAoCn4YeKijJQ
+	/TOjzehI3Xhj0WU+wlS/ZS19CRhlv4Re7nhdAmWMH6c3r46K3efgJy+SdsJPdq9Tni7s=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rh8R0-009KGP-11; Mon, 04 Mar 2024 14:32:50 +0100
+Date: Mon, 4 Mar 2024 14:32:50 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: =?iso-8859-1?Q?K=F6ry?= Maincent <kory.maincent@bootlin.com>
+Cc: Oleksij Rempel <o.rempel@pengutronix.de>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Jonathan Corbet <corbet@lwn.net>,
+	Luis Chamberlain <mcgrof@kernel.org>,
+	Russ Weight <russ.weight@linux.dev>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+	Dent Project <dentproject@linuxfoundation.org>
+Subject: Re: [PATCH net-next v5 13/17] net: pse-pd: Use regulator framework
+ within PSE framework
+Message-ID: <84b300c7-8295-424b-9117-c604fb4cd73e@lunn.ch>
+References: <20240227-feature_poe-v5-0-28f0aa48246d@bootlin.com>
+ <20240227-feature_poe-v5-13-28f0aa48246d@bootlin.com>
+ <ZeObuKHkPN3tiWz_@pengutronix.de>
+ <20240304102708.5bb5d95c@kmaincent-XPS-13-7390>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240302140335.117769-1-skseofh@gmail.com>
-In-Reply-To: <20240302140335.117769-1-skseofh@gmail.com>
-From: Rob Herring <robh+dt@kernel.org>
-Date: Mon, 4 Mar 2024 07:26:52 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKNGjKq3vcUPFiPa9JNq-8=oP=uBSD=tyKaPMH3cvAkww@mail.gmail.com>
-Message-ID: <CAL_JsqKNGjKq3vcUPFiPa9JNq-8=oP=uBSD=tyKaPMH3cvAkww@mail.gmail.com>
-Subject: Re: [PATCH] of: fdt: add size 0 check after page align
-To: skseofh@gmail.com
-Cc: frowand.list@gmail.com, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240304102708.5bb5d95c@kmaincent-XPS-13-7390>
 
-On Sat, Mar 2, 2024 at 8:03=E2=80=AFAM <skseofh@gmail.com> wrote:
->
-> From: Daero Lee <skseofh@gmail.com>
->
-> After page aligning, the size may become zero. So I added exception
-> handling code for size 0.
+> > > +	psec = dev_find_pse_control(&phy->mdio.dev);
+> > > +	if (IS_ERR(psec)) {
+> > > +		rc = PTR_ERR(psec);
+> > > +		goto unregister_phy;
+> > > +	}
+> > > +  
+> > 
+> > I do not think it is a good idea to make PSE controller depend on
+> > phy->mdio.dev. The only reason why we have fwnode_find_pse_control()
+> > here was the missing port abstraction.
+> 
+> I totally agree that having port abstraction would be more convenient.
+> Maxime Chevallier is currently working on this and will post it after his
+> multi-phy series get merged.
+> Meanwhile, we still need a device pointer for getting the regulator. The
+> phy->mdio.dev is the only one I can think of as a regulator consumer.
+> Another idea?
 
-That may be true, but when would anyone only have memory regions of
-less than 2 pages. In any case memblock_add will just do nothing. What
-is the actual problem you are having?
+Sorry, i've not been keeping up...
 
-Rob
+Doesn't the device tree binding determine this? Where is the consumer
+in the tree?
+
+   Andrew
 
