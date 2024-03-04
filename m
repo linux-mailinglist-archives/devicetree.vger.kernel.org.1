@@ -1,66 +1,62 @@
-Return-Path: <devicetree+bounces-48109-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48110-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 065B9870397
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:07:07 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E51418703AE
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:08:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 385761C226E4
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:07:06 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 254FBB26AF7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:08:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AD113FB32;
-	Mon,  4 Mar 2024 14:06:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F623FB19;
+	Mon,  4 Mar 2024 14:08:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="iaxBuQMZ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QKhwZti5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD0643FB1D;
-	Mon,  4 Mar 2024 14:06:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1573FB0D;
+	Mon,  4 Mar 2024 14:08:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709561210; cv=none; b=UymyO6BlxVAmrOYefayKuQsZFPaYumIp6ov87LCVNdQdNfoELLe48ClXYjm/HARc8Y3If+W6pdT/uniXOZ5bqjkIEBrfU9q0x0bynh/jcWUve+A+lRDSy1we8v3Pg718C/QD1aznE/75hBE0KvayvnEvTQ1AiJdMS+DcwRBMOak=
+	t=1709561321; cv=none; b=dsqXffidY5YY9E1ToJ02qnvTxFubhmXD2bmN0rP9YnZdPBzd+nES0qpRpqXprfzh4cfi/fX1AnjOf6yxBead030d1rR9I+9hxa0lkaN/ze3GvhKWgcNVEUqaPFK1fkdyVJcH2ksFZoMgehlRv/Yviwl2C24+0INxa5u1DwZ81Do=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709561210; c=relaxed/simple;
-	bh=xPL76FHS6HJ3s8ync8Ft9aXKhFA0XZzDoh4MMW7HTYk=;
+	s=arc-20240116; t=1709561321; c=relaxed/simple;
+	bh=mGavApi6w7ofRRdajIRCPCMtvgMiEtdIO9FBAOcKrK0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gzcfRM9/oFXnyUhJvEM87IrrnrbIZjnsbx2pPoKczUcuZOjycDT5sZZ7IKw1cBUP/fuasRwZDw7l3MVpAyP38YBXomEsbZIRU1WOlmS0JT5XbK1ajpKn7d7Fx/eM9vu+NWz3rKDzM3X37dtci+eCxR6XvuS1BAbXDG2sfc6iu6A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=iaxBuQMZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 240FCC43143;
-	Mon,  4 Mar 2024 14:06:49 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=JWe9o+DqDU6bpsRIYDjHgd+tVI17X5xFsuOZbLFYluxwlOmN2GTO/wc5tY+4ocxZWWdq+TPro1Rv66it9HA5YrMym3ptGNHHXnymFOM9e713knZDAuYLInLxnqAbVKXQE0X+OEgAqqcosOQ1wCCjULpmWP9Q/ZD4GXDLRXeZVEk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QKhwZti5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63D70C43390;
+	Mon,  4 Mar 2024 14:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709561209;
-	bh=xPL76FHS6HJ3s8ync8Ft9aXKhFA0XZzDoh4MMW7HTYk=;
+	s=k20201202; t=1709561321;
+	bh=mGavApi6w7ofRRdajIRCPCMtvgMiEtdIO9FBAOcKrK0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=iaxBuQMZPL708GUjbD43Ki86fiVubj9E5DaxUUAuIa+trp6r0+/5td1d5FOqNwcJv
-	 O2XhNtt/0b4+UhYXHEKzU9H1xnRu5WfIrimL5iDZ/OpgPS+rHIygqh0sKDWpf+OU/6
-	 cyVRdRpNqKYKdoBaN+No1tB+kHlBCLUu2l7FZ3s1su0gt7p/xzh6SeH1VQx+wVMwxh
-	 HqyhMw9DcRNjMm4Lvi732rPbwGScSPlvXVMf79su3xuHEt3JjiwId8zyjeaDCG+uwI
-	 7UEcTBVH7IRT84PO1G4+yvZDLSWfCHSD0zs7eGgxn7ObW9DVgeMnKX7e9M2ytZPgsR
-	 xHTxhadBnE7Zw==
-Date: Mon, 4 Mar 2024 08:06:47 -0600
-From: Rob Herring <robh@kernel.org>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Ard Biesheuvel <ardb@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Daniel Scally <djrscally@gmail.com>,
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	Len Brown <lenb@kernel.org>, kernel-team@android.com,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-efi@vger.kernel.org, linux-acpi@vger.kernel.org
-Subject: Re: [PATCH v4 0/4] Add post-init-providers binding to improve
- suspend/resume stability
-Message-ID: <20240304140647.GA148861-robh@kernel.org>
-References: <20240222034624.2970024-1-saravanak@google.com>
+	b=QKhwZti5qxer0MQBIkoAhnJwwnxBdoHzXNIrtkspZueeH6FpLx3XTPV1NhCPPLz29
+	 BULfYRkejdIO2Pop70eNvGR76v3kQj3XY/B0xCkYz6zu6HsB/lMO1CpYKpQQG+yRSD
+	 6eBIYcL9JDBIu4nPI3o9gNIidBt8NkQk42Jw+xuPRTFYIuruzVMRNytiyVrOWaopBp
+	 poiJO9tsmy9OzxJrWUR38CrzBu1dwevCTH3pwORypoOnQmlBYBhEigR4VwKrpOU6zN
+	 w0EG2NbthUoGWVqpGdPO6L1zbAVxYc3Fhg+5OvspiJf802zwQpfVrb0wtEmam37HSm
+	 vapr3O4W8lMqw==
+Date: Mon, 4 Mar 2024 15:08:37 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
+	Gregory Clement <gregory.clement@bootlin.com>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
+	Andi Shyti <andi.shyti@kernel.org>
+Subject: Re: [PATCH v2 09/11] i2c: nomadik: support Mobileye EyeQ5 I2C
+ controller
+Message-ID: <yqyhu3qsrfyj52sraeo76jnpbgq6wi4o66hfqepxwwwupaggoa@7t5bah3qqcwb>
+References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
+ <20240229-mbly-i2c-v2-9-b32ed18c098c@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -69,45 +65,135 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240222034624.2970024-1-saravanak@google.com>
+In-Reply-To: <20240229-mbly-i2c-v2-9-b32ed18c098c@bootlin.com>
 
-On Wed, Feb 21, 2024 at 07:46:18PM -0800, Saravana Kannan wrote:
-> This patch series adds a "post-init-providers" device tree binding that
-> can be used to break dependency cycles in device tree and enforce a more
-> determinstic probe/suspend/resume order. This will also improve the
-> stability of global async probing and async suspend/resume and allow us
-> to enable them more easily. Yet another step away from playing initcall
-> chicken with probing and step towards fully async probing and
-> suspend/resume.
-> 
-> Patch 3 (the binding documentation) provides a lot more details and
-> examples.
-> 
-> v3->v4:
-> - Fixed MAINTAINERS file to go with the file rename.
-> 
-> v2->v3:
-> - Changes doc/code from "post-init-supplier" to "post-init-providers"
-> - Fixed some wording that was ambiguous for Conor.
-> - Fixed indentation, additionalProperies and white space issues in the
->   yaml syntax.
-> - Fixed syntax errors in the example.
-> 
-> v1->v2:
-> - Addressed Documentation/commit text errors pointed out by Rob
-> - Reordered MAINTAINERS chunk as pointed out by Krzysztof
-> 
-> Saravana Kannan (4):
->   driver core: Adds flags param to fwnode_link_add()
->   driver core: Add FWLINK_FLAG_IGNORE to completely ignore a fwnode link
->   dt-bindings: Add post-init-providers property
->   of: property: fw_devlink: Add support for "post-init-providers"
->     property
+Hi Theo,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+...
 
-I'm assuming Greg takes this. You'll probably need to resend without the 
-binding. Submit it to dtschema please.
+> +#include <linux/amba/bus.h>
+>  #include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+>  #include <linux/init.h>
+> -#include <linux/module.h>
+> -#include <linux/amba/bus.h>
+> -#include <linux/slab.h>
+>  #include <linux/interrupt.h>
+> -#include <linux/i2c.h>
+> -#include <linux/err.h>
+> -#include <linux/clk.h>
+>  #include <linux/io.h>
+> -#include <linux/pm_runtime.h>
+> +#include <linux/mfd/syscon.h>
+> +#include <linux/module.h>
+>  #include <linux/of.h>
+>  #include <linux/pinctrl/consumer.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+> +#include <linux/slab.h>
 
-Rob
+Please reorder the headers in a different patch.
+
+>  #define DRIVER_NAME "nmk-i2c"
+>  
+
+...
+
+> +static inline u8 nmk_i2c_readb(const struct nmk_i2c_dev *priv,
+> +			       unsigned long reg)
+> +{
+> +	if (priv->has_32b_bus)
+> +		return readl(priv->virtbase + reg);
+> +	else
+> +		return readb(priv->virtbase + reg);
+
+nit: no need for the else (your choice though, if you want to
+have ti coherent with the write counterpart).
+
+> +}
+> +
+> +static inline void nmk_i2c_writeb(const struct nmk_i2c_dev *priv, u32 val,
+> +				unsigned long reg)
+> +{
+> +	if (priv->has_32b_bus)
+> +		writel(val, priv->virtbase + reg);
+> +	else
+> +		writeb(val, priv->virtbase + reg);
+> +}
+
+...
+
+> +static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev *priv)
+> +{
+> +	struct device *dev = &priv->adev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	unsigned int shift, speed_mode;
+> +	struct regmap *olb;
+> +	unsigned int id;
+> +
+> +	priv->has_32b_bus = true;
+> +
+> +	olb = syscon_regmap_lookup_by_phandle_args(np, "mobileye,olb", 1, &id);
+> +	if (IS_ERR_OR_NULL(olb)) {
+> +		if (!olb)
+> +			olb = ERR_PTR(-ENOENT);
+> +		return dev_err_probe(dev, PTR_ERR(olb),
+> +				     "failed OLB lookup: %lu\n", PTR_ERR(olb));
+
+just return PTR_ERR(olb) and use dev_err_probe() in the upper
+layer probe.
+
+> +	}
+> +
+> +	if (priv->clk_freq <= 400000)
+> +		speed_mode = 0b00;
+> +	else if (priv->clk_freq <= 1000000)
+> +		speed_mode = 0b01;
+> +	else
+> +		speed_mode = 0b10;
+
+would be nice to have these as defines.
+
+> +
+> +	shift = NMK_I2C_EYEQ5_OLB_IOCR2_SHIFT(id);
+> +	regmap_update_bits(olb, NMK_I2C_EYEQ5_OLB_IOCR2,
+> +			   0b11 << shift, speed_mode << shift);
+
+please define these values and for hexadecimals use 0x...
+
+> +	return 0;
+> +}
+> +
+>  static int nmk_i2c_probe(struct amba_device *adev, const struct amba_id *id)
+>  {
+>  	int ret = 0;
+> @@ -1001,8 +1065,17 @@ static int nmk_i2c_probe(struct amba_device *adev, const struct amba_id *id)
+>  
+>  	priv->vendor = vendor;
+>  	priv->adev = adev;
+> +	priv->has_32b_bus = false;
+>  	nmk_i2c_of_probe(np, priv);
+>  
+> +	if (of_device_is_compatible(np, "mobileye,eyeq5-i2c")) {
+> +		ret = nmk_i2c_eyeq5_probe(priv);
+> +		if (ret) {
+> +			dev_info(dev, "%s: %d: %d\n", __func__, __LINE__, ret);
+> +			return ret;
+> +		}
+
+as said above, use dev_err_probe here.
+
+Andi
+
+> +	}
+> +
+>  	if (priv->tft > max_fifo_threshold) {
+>  		dev_warn(dev, "requested TX FIFO threshold %u, adjusted down to %u\n",
+>  			 priv->tft, max_fifo_threshold);
+> 
+> -- 
+> 2.44.0
+> 
 
