@@ -1,131 +1,166 @@
-Return-Path: <devicetree+bounces-48058-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48059-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18A4386FE2F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 10:58:07 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F6F786FE38
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 11:01:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5F88B237DE
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 09:58:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B3C8D1F2117A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 10:01:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 297632230C;
-	Mon,  4 Mar 2024 09:57:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C890022331;
+	Mon,  4 Mar 2024 10:00:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="maGBN6NO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E458518EAD;
-	Mon,  4 Mar 2024 09:57:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 78C2A24B2B;
+	Mon,  4 Mar 2024 10:00:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709546257; cv=none; b=KD+jNf3Isdz0dum5qF0W9QqzI8sXwXDbnUgd6eJldTp3gUjvYtplIC4Pah7ySOvQi6OmDtSM+aESBH7nUDtGpc5J8cdNvto71bSmdz4XQnMGk8MhWaFl1gqbknS1Jzc3k/Q1RWFR5/STINRiTyYYz6jlELFeUCmkwF8b2brMXYY=
+	t=1709546451; cv=none; b=l0MT5Bsw8eczFjqsaGmUMf5MBFplnBxuno1zfVakksakhQjqlSFbo/fZcvFGt8aNIzuKTgBv20DdnPBcDYtjJT7gp7WZkDOwziZHZMU7+HiKwezUdNEoDEH00fE1CIPaYlr3uvifetFSKndXRLb7ubu+rsAgcMV0VUOd65Oz7t0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709546257; c=relaxed/simple;
-	bh=VQUbdknHO6RkXDQ0UrVgddhCbWDC7HI+5GWyQhFlF4c=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RcVmLT0InOA2eAO6QTr2tO3SlUGapZfqAzB/wOLOWleK0Erc3frkj2L6g55O9m2DUleWgzNAZm/5NpToxPjNRykyOBIZwZnhq2gJnN/tQZonIz8DtY3nmbkx7lTCFM6ziF5eVXr3X8uhq0OGSdF+hnqQepUyNZhrEjI7omGZfOo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-609acac53d0so6095337b3.1;
-        Mon, 04 Mar 2024 01:57:34 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709546253; x=1710151053;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=OEjmMieOpm8/C+3ZzaHx+WpaiZP/Z9Je007UZUtRBSI=;
-        b=TinfLoicUEwE0zzS4HIQqB9PJBtpcteMNZ3gNKOhSkzhgPiZTxzOLKiyfqqq6sF1pW
-         8NpDq2ygrdgE64k6J+hGRlH/FX3hNw6m7+lwSLTm2tVQHouJ+zQdBttdPFX+n0W+4ow6
-         Y2TjhUSGhoJdV4WR7FHJHWEVSZcWGq0JUM2y3QmpED1HH+fGJqv5a3s2vpXohFwkPxFh
-         QTVzW5l8aRF6BLh6PfgaI0y9bE5kIdxsTJTuk9fYl/hEONs8h2TlP7u6e8Wrxsa6LlgF
-         GN50t3tEvwCTmm43xcI2MmfCNrzi39wP2FRxqa8MGuHSsmDFdX+MWL8X6yXkhZ4rsyf5
-         KOFA==
-X-Forwarded-Encrypted: i=1; AJvYcCUnKEf9zAPeODraa7bF1iInSMwhuD6io/SSIehge6nmnZ0GDVyAwwPK6Mv1EDEyyTvNcpgDlK1vP3SIdlhultaIyYGWUUMuC6rB6dey9l6ddb8lC1CQsr04xL2Eud1gkmuHxXYi96C0bQb0VxwzyYyEcBegzo99LNyZ2S7ppsVAOpfua0I=
-X-Gm-Message-State: AOJu0YxLfQDYxtjeuTn2MqNS1/SAgLQE6L019eG3u2SGqVbtBJFIW2Ty
-	wRfL7iyzba2fCtPk6h6wg15GEvZdz/SEHiNZ3Smkco3025Jwtw/RxkX4V/la8Ss=
-X-Google-Smtp-Source: AGHT+IE0fQgo/0LEf3P6bzQWQDRjzR5S0ydJWD4k49e/n42lvR+uJ8e4QB+MimBcyNvIxhBstp4KcQ==
-X-Received: by 2002:a81:5f09:0:b0:609:7f97:de2f with SMTP id t9-20020a815f09000000b006097f97de2fmr10014079ywb.36.1709546252983;
-        Mon, 04 Mar 2024 01:57:32 -0800 (PST)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id r7-20020a814407000000b00609498508acsm2538495ywa.42.2024.03.04.01.57.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Mar 2024 01:57:32 -0800 (PST)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-60978479651so37263977b3.3;
-        Mon, 04 Mar 2024 01:57:32 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCUwI0PTQ7P+EDolcnAfo0oRBfL4PKbChEX1q9VcYjGTB4csDzY0lfnyvPsZf+n0ZEcPsETG440gGLidSyysuNjTjG/J/MJWZ0ZDZT33S3xeed7LZTZ4K0QtmDICarct1Jyh17NFMDiuZju7nMve4knkxy+ZKJgPATWCS4yTyL6TfLRYoVU=
-X-Received: by 2002:a0d:d6c2:0:b0:609:8710:570d with SMTP id
- y185-20020a0dd6c2000000b006098710570dmr8364187ywd.12.1709546252552; Mon, 04
- Mar 2024 01:57:32 -0800 (PST)
+	s=arc-20240116; t=1709546451; c=relaxed/simple;
+	bh=Ltz90TO6kzYU5NNZDHlenUvdrRAeb9Z4YTkBpwDlM6k=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=flHKRM4ThWRKTv0OM7OnOduDta4uLQ23yuEzktjmGbirnDdkNqSlvu93BFRVHOspDzqXhf5agjf5KEJv2N6JlFbBYOBY10X53FvQdo1Bw+WtOT4ZpzMmBFOZieZioh9sG0jxUw+45nVSD9zWXhPpTyonGwLdbhRRVBzbUWNxiJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=maGBN6NO; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 35D9C240011;
+	Mon,  4 Mar 2024 10:00:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709546446;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=pz1yibsIsNHyK2XZsyjOxrFSmLQ7xgeVb+gsJobLKuE=;
+	b=maGBN6NOtE6vKHL1RnDS5WOvUaS37rhoc/gAC3aGOI2TqC8PyRPfBQq4vQxP0Gyyl2s4ax
+	NviTY9rFf8juUhThZVE4NqOCS0a8GhBFxTqjJTWIT0Qj92967tm4lPeJtTyWmQd84EBBiy
+	qldXFnyRJGr0n3OuBAJuYV7jdzwjN9j4fa4AG3ajgES9yK3hpFDGwv1AjLl3lXErJFMoxG
+	7PuFTSOxSFKsoOpmefpFyzU8wNLVcdJdgZE3F/4Q90L28+Q9T6+qgs8fZ0FGyFNNGffDEW
+	B8V6f6p/JiNEsog8hUpRWKfVtcsdad7apTXg6PhzhUHOJ8dM2k1+VK0+1p+3HA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240301014203.2033844-1-chris.packham@alliedtelesis.co.nz>
- <20240301014203.2033844-5-chris.packham@alliedtelesis.co.nz>
- <ZeIdXIx5zYjKQiSO@smile.fi.intel.com> <CAMuHMdVJiWtB4MSGHXXz=OAEvu-+b9Xp-jQ_NXWck+hwKGK4TQ@mail.gmail.com>
- <CAHp75VesLCo72ftQ2BNEKSXwF9A2pe0Vbnuves2-L3ist_twNQ@mail.gmail.com>
-In-Reply-To: <CAHp75VesLCo72ftQ2BNEKSXwF9A2pe0Vbnuves2-L3ist_twNQ@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 4 Mar 2024 10:57:18 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXjqVQeQF6TFr1nQmUCLrEbY1gq5OdCcz6T60W33QO2-Q@mail.gmail.com>
-Message-ID: <CAMuHMdXjqVQeQF6TFr1nQmUCLrEbY1gq5OdCcz6T60W33QO2-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] ARM: dts: marvell: Indicate USB activity on x530
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Andy Shevchenko <andy@kernel.org>, Chris Packham <chris.packham@alliedtelesis.co.nz>, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	andrew@lunn.ch, gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com, 
-	pavel@ucw.cz, lee@kernel.org, linux-leds@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 04 Mar 2024 11:00:45 +0100
+Message-Id: <CZKVMZC3BEXV.380JV1IP5RYFG@bootlin.com>
+Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mips@vger.kernel.org>, "Gregory Clement"
+ <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Andi Shyti" <andi.shyti@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v2 05/11] i2c: nomadik: use bitops helpers
+X-Mailer: aerc 0.15.2
+References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
+ <20240229-mbly-i2c-v2-5-b32ed18c098c@bootlin.com>
+ <3kooaexx6vhlfwoojcpmnyhagupqwppwenjh4k7ucxbvlfpjn6@e3b7c3ocu6kc>
+In-Reply-To: <3kooaexx6vhlfwoojcpmnyhagupqwppwenjh4k7ucxbvlfpjn6@e3b7c3ocu6kc>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hi Andy,
+Hello,
 
-On Sun, Mar 3, 2024 at 9:43=E2=80=AFPM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Sun, Mar 3, 2024 at 11:48=E2=80=AFAM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> > On Fri, Mar 1, 2024 at 7:24=E2=80=AFPM Andy Shevchenko <andy@kernel.org=
-> wrote:
-> > > The problem here as I see it is the future decision on how DP should
-> > > behave like.  If you put this into DT, we will to support this to the=
- end
-> > > of the platform.
-> >
-> > As there exist 7-seg displays (and wirings) with and without DP,
-> > the 7-seg driver and DT bindings should handle both cases.  How to
-> > wire/use the DP LED is up to the hardware designer / DTS writer.
+On Sat Mar 2, 2024 at 2:31 AM CET, Andi Shyti wrote:
+
+[...]
+
+> > @@ -284,7 +290,7 @@ static int init_hw(struct nmk_i2c_dev *priv)
+> >  }
+> > =20
+> >  /* enable peripheral, master mode operation */
+> > -#define DEFAULT_I2C_REG_CR	((1 << 1) | I2C_CR_PE)
+> > +#define DEFAULT_I2C_REG_CR	(FIELD_PREP(I2C_CR_OM, 0b01) | I2C_CR_PE)
 >
-> Right. But my personal statistics for now is: 100% has DP (out of
-> about a dozen of different chip + LED combinations). What's yours?
+> 0b01?
 
-It's indeed hard to find contemporary 7-segment LED assemblies that
-lack the DP.  But they do exist[1].  There's also no guarantee that the
-DP is wired.
-And don't forget custom or home-built assemblies using discrete LEDs,
-especially for huge displays (e.g. using one LED-strip per segment).
-So IMHO it would be a bad idea to make the DP mandatory.
+OM is a two-bit field. We want to put 0b01 in that. We do not declare
+constants for its 4 potential values. Values are:
 
-[1] https://www.alibaba.com/product-detail/CC-CA-188-led-display-0_60626228=
-913.html
+ - 0b00 slave mode
+ - 0b01 master mode
+ - 0b10 master/slave mode
+ - 0b11 reserved
 
-Gr{oetje,eeting}s,
+To me the comment above DEFAULT_I2C_REG_CR is enough to show that we go
+into master mode. We could declare all values as constants but only
+0b01 would get used.
 
-                        Geert
+>
+> >  /**
+> >   * load_i2c_mcr_reg() - load the MCR register
+> > @@ -296,41 +302,42 @@ static u32 load_i2c_mcr_reg(struct nmk_i2c_dev *p=
+riv, u16 flags)
+> >  	u32 mcr =3D 0;
+> >  	unsigned short slave_adr_3msb_bits;
+> > =20
+> > -	mcr |=3D GEN_MASK(priv->cli.slave_adr, I2C_MCR_A7, 1);
+> > +	mcr |=3D FIELD_PREP(I2C_MCR_A7, priv->cli.slave_adr);
+> > =20
+> >  	if (unlikely(flags & I2C_M_TEN)) {
+> >  		/* 10-bit address transaction */
+> > -		mcr |=3D GEN_MASK(2, I2C_MCR_AM, 12);
+> > +		mcr |=3D FIELD_PREP(I2C_MCR_AM, 2);
+> >  		/*
+> >  		 * Get the top 3 bits.
+> >  		 * EA10 represents extended address in MCR. This includes
+> >  		 * the extension (MSB bits) of the 7 bit address loaded
+> >  		 * in A7
+> >  		 */
+> > -		slave_adr_3msb_bits =3D (priv->cli.slave_adr >> 7) & 0x7;
+> > +		slave_adr_3msb_bits =3D FIELD_GET(GENMASK(9, 7),
+> > +						priv->cli.slave_adr);
+>
+> This looks like the only one not having a define. Shall we give a
+> definition to GENMASK(9, 7)?
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Indeed. What should it be named? It could be generic; this is about
+getting the upper 3 bits from an extended (10-bit) I2C address?
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> > -		mcr |=3D GEN_MASK(slave_adr_3msb_bits, I2C_MCR_EA10, 8);
+> > +		mcr |=3D FIELD_PREP(I2C_MCR_EA10, slave_adr_3msb_bits);
+>
+> ...
+>
+> > @@ -824,15 +827,16 @@ static irqreturn_t i2c_irq_handler(int irq, void =
+*arg)
+> >  	 * during the transaction.
+> >  	 */
+> >  	case I2C_IT_BERR:
+> > +	{
+> > +		u32 sr =3D readl(priv->virtbase + I2C_SR);
+>
+> please give a blank line after the variable definition.
+>
+> Besides, I'd prefer the assignment, when it is a bit more
+> complex, in a different line, as well.
+
+Will do.
+
+> Rest looks OK, didn't see anything off.
+
+Thanks for the review Andi!
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
