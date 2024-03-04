@@ -1,106 +1,246 @@
-Return-Path: <devicetree+bounces-48119-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48120-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B5CA870488
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:51:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5CDC870490
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:54:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D5F5C1F23973
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:51:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2ACAA1F23C30
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:54:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B5FF40BE3;
-	Mon,  4 Mar 2024 14:51:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C1CC41C76;
+	Mon,  4 Mar 2024 14:53:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LNqZ8Z6t"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="InYb+2E1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 417C03F9C0;
-	Mon,  4 Mar 2024 14:51:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44CF7168A8;
+	Mon,  4 Mar 2024 14:53:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709563913; cv=none; b=T2qOAZCtw+jzzJWKWGP7aQ5Q7b73/bdwH4oiUlRV6XrU0CwaGTnFNEHiwTQYNG+Q2KXHm2eRcbuj3NFyS0dBeSsXxf9gmOHF2wnn1k0zvhOq4zNhcT1NqjPxCu9acUIYLO2wqnMU3fE1Wl2KCg/PJC/LxqwMX6NVOMs/opG+QPI=
+	t=1709564039; cv=none; b=NjDIZcye0jiTe6iqvf0uebzE5HtUj4VyyDlq6DzIsgdnLM3qFnXlGzS8ArmTPweVNlL3ikZgupkLhZCBFkb0knoQNbcrpgj/5QbAr9FlmA9tb0h5rIFiZixgxFsS630nkvQ/2xN5DENVzoITd3l+ZmhhDK6VkCe63F0uYAMT32Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709563913; c=relaxed/simple;
-	bh=FBrOGsh5xv9/HCNVxTPsEbEIIxOX+UvVmPXRgPFaPEA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=elUM1co+DxjeX7ewxXDZtjXI3IQk34FRZKC0e44XRhqzfMajqpbjitFiHo99lKdiW3TBgmc0Hl1cZF7KPyZiof4oZ68RIre2UQsaNJVHoosB/RsvmqXpLGkG9X/QPUyC8U+zKMNS0t9u/eEavi8Ya2whID7ka/aypQbK8piX3X8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LNqZ8Z6t; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1dcb3e6ff3fso19733855ad.2;
-        Mon, 04 Mar 2024 06:51:52 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709563911; x=1710168711; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=h+buNMSyZ9brTA6XcUMRnnsjRRgboTCbHH7+GZjb/bU=;
-        b=LNqZ8Z6tOihgXfx3I5J4qpVYy/lWi2DkAQ3Q/pA9JGBaZFM6v6lKcAUz79kG7so2HJ
-         Ob5KRneRCUz3OnicvH/sY9p5MLU22TLIdSDBScsmc8EGXrCrUFyJiVpgrb09ZwoALjmx
-         RlD/sDzoNP9W9k+D/PGgRiNIb1SfoYTyajlDnE5GUAr0KVkEtkrN2/MnPE9Ca4dqJj4P
-         rBQH4eYUHnfmaF2+PFSL0mwOpGy4LyYNoHB5u8Lalr+CurKmVhLGTiLr5DULz7XqxJ/9
-         DICf17ARsDqjyZbBCegv6PtRSYdc1n0kCJp0hSjElnwNvDijwOSpS9i26IQ6qAE2uRt1
-         +Opg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709563911; x=1710168711;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=h+buNMSyZ9brTA6XcUMRnnsjRRgboTCbHH7+GZjb/bU=;
-        b=eUu21xP6kBw++TIA3MKqk4UbZ5ICmodkHJxuVqGJiK/IEr36XyKvW6n7+n7fWJUPkm
-         U3qM/5Ih4buOpvs8pPpdWYZbk7DNPOy/Ib/M2dK/rp2sjsLgRkAhjyqkwaog/hoyUv9A
-         ybjpS3C1HPghqFezTcUfvh0ju/zL13rIgQUC34V4NN7ydSFcBvisKCecL5feTHXu/YWe
-         rR7+j8N3hPM2UPxJaZrkvfwDuiiBEyOXYgIAL2i71EamVJC2hMmvgciqEEVQncRmb7CY
-         6g/sor5Zwb44kcKXDXRbdzhhZx0xqJDKH5D77MUCrI6ZcxyWOv/L4KxNSpDZpBld2B5o
-         buiw==
-X-Forwarded-Encrypted: i=1; AJvYcCXhG27cdju2FL3lzwjE0tziPEvmXxbCJ/1Opn7wwVFfaYx3IlHhn1wHtdjrIGYwTFkYLhRqwLw3Tz1VrFmVlUv6s18LVcs2wZu3ND/n
-X-Gm-Message-State: AOJu0YwBWkrW3YCUDY/LJaaaE9959IGcIH2YoPTpJXl/YInoThXJct9r
-	qtSkLfgw2/mlSi/FnU+8XBPXAOqBiFUf4hYknuTpELWoDRAfQAiVmaPD2Fwv
-X-Google-Smtp-Source: AGHT+IHM1vEaWmP4Da0UP7NmgT0Cm17ez0na3GOYLfG5yqkp8ZRLlHlLY7OFSIW3G+hfOm9xrTw4Mw==
-X-Received: by 2002:a17:902:ccc2:b0:1dd:159:e2e7 with SMTP id z2-20020a170902ccc200b001dd0159e2e7mr5928354ple.39.1709563911166;
-        Mon, 04 Mar 2024 06:51:51 -0800 (PST)
-Received: from localhost.localdomain ([49.142.40.215])
-        by smtp.gmail.com with ESMTPSA id n14-20020a170902e54e00b001d9641003cfsm7618409plf.142.2024.03.04.06.51.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Mar 2024 06:51:50 -0800 (PST)
-From: skseofh@gmail.com
-To: robh+dt@kernel.org
-Cc: devicetree@vger.kernel.org,
-	frowand.list@gmail.com,
-	linux-kernel@vger.kernel.org,
-	skseofh@gmail.com
-Subject: 
-Date: Mon,  4 Mar 2024 23:51:26 +0900
-Message-Id: <20240304145127.165250-1-skseofh@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <CAL_JsqKNGjKq3vcUPFiPa9JNq-8=oP=uBSD=tyKaPMH3cvAkww@mail.gmail.com>
-References: <CAL_JsqKNGjKq3vcUPFiPa9JNq-8=oP=uBSD=tyKaPMH3cvAkww@mail.gmail.com>
+	s=arc-20240116; t=1709564039; c=relaxed/simple;
+	bh=877LLuKe2NbaQT+sN5vEnqY5OtwPmsoasNubm8CyC9A=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
+	 References:In-Reply-To; b=Mf1BzDmdUA1EfSAxtNYxLtsOciTEq3UGZTXELJRY/JzwFJw/UhC3g7D7BvThhJJcLHHgsOt/IRIrC3cuNOhCOy4tQo8yJcC2zg0ZMdSSHL1TL/hnu6+dlf51nxUNll/Ag4NBjjblFt+S8mTM9SaF+fmnjA9qSx0A/8b9ArTxuRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=InYb+2E1; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8010FE0009;
+	Mon,  4 Mar 2024 14:53:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709564034;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Y2mZgoKXYTO1ujBY2Bxuy+zGS8qyMDZgJ2hp2iONc9U=;
+	b=InYb+2E1syN3tbl5sbWUUNtuoCgNn3nrekFusBtyA5lFrKKfL8Nsc6B97SJH6WJlxYOpIT
+	2OJBK8FDkBy35AJInmol9dDEWp2doHu6ygimpZrNsMIdWCROjksOvL3jhE1EH7Nsh7quFj
+	rUqdwwz5PCzfk+BWIW1s37+JuX4xmQBla6MXBaTtbQQyDEkbFOAsV+ChmeiQKqytouP//U
+	8l/g/BCidGQzdEOBsfcwgbz+5cXyKkJXrZNxxQ+dVeyYqXg9RgcDk1Pfz1A8a5CKJd9FaF
+	gHLvkJwRyo7L3E4IAJbqF6Og5WsA6laxnq5EhVDoIPvwGmdSX1hXg5DjfKDz1g==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 04 Mar 2024 15:53:52 +0100
+Message-Id: <CZL1VED24SZ0.7ETRO4YZ70CF@bootlin.com>
+Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring"
+ <robh+dt@kernel.org>, "Krzysztof Kozlowski"
+ <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
+ "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
+ <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-mips@vger.kernel.org>, "Gregory Clement"
+ <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
+ <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
+ <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
+ <tawfik.bayouk@mobileye.com>
+To: "Andi Shyti" <andi.shyti@kernel.org>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v2 09/11] i2c: nomadik: support Mobileye EyeQ5 I2C
+ controller
+X-Mailer: aerc 0.15.2
+References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
+ <20240229-mbly-i2c-v2-9-b32ed18c098c@bootlin.com>
+ <yqyhu3qsrfyj52sraeo76jnpbgq6wi4o66hfqepxwwwupaggoa@7t5bah3qqcwb>
+In-Reply-To: <yqyhu3qsrfyj52sraeo76jnpbgq6wi4o66hfqepxwwwupaggoa@7t5bah3qqcwb>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-From: skseofh@gmail.com
-Reply-To: 
-Subject: 
-In-Reply-To: CAL_JsqKNGjKq3vcUPFiPa9JNq-8=oP=uBSD=tyKaPMH3cvAkww@mail.gmail.com
+Hello,
 
->>
->> From: Daero Lee <skseofh@gmail.com>
->>
->> After page aligning, the size may become zero. So I added exception
->> handling code for size 0.
+On Mon Mar 4, 2024 at 3:08 PM CET, Andi Shyti wrote:
+> Hi Theo,
 >
->That may be true, but when would anyone only have memory regions of
->less than 2 pages. In any case memblock_add will just do nothing. What
->is the actual problem you are having?
+> ...
+>
+> > +#include <linux/amba/bus.h>
+> >  #include <linux/bitfield.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/err.h>
+> > +#include <linux/i2c.h>
+> >  #include <linux/init.h>
+> > -#include <linux/module.h>
+> > -#include <linux/amba/bus.h>
+> > -#include <linux/slab.h>
+> >  #include <linux/interrupt.h>
+> > -#include <linux/i2c.h>
+> > -#include <linux/err.h>
+> > -#include <linux/clk.h>
+> >  #include <linux/io.h>
+> > -#include <linux/pm_runtime.h>
+> > +#include <linux/mfd/syscon.h>
+> > +#include <linux/module.h>
+> >  #include <linux/of.h>
+> >  #include <linux/pinctrl/consumer.h>
+> > +#include <linux/pm_runtime.h>
+> > +#include <linux/regmap.h>
+> > +#include <linux/slab.h>
+>
+> Please reorder the headers in a different patch.
 
-I modified the patch to clear this. Please check.
+Will do.
+
+>
+> >  #define DRIVER_NAME "nmk-i2c"
+> > =20
+>
+> ...
+>
+> > +static inline u8 nmk_i2c_readb(const struct nmk_i2c_dev *priv,
+> > +			       unsigned long reg)
+> > +{
+> > +	if (priv->has_32b_bus)
+> > +		return readl(priv->virtbase + reg);
+> > +	else
+> > +		return readb(priv->virtbase + reg);
+>
+> nit: no need for the else (your choice though, if you want to
+> have ti coherent with the write counterpart).
+
+Indeed, the useless else block can be removed. Will do.
+
+> > +}
+> > +
+> > +static inline void nmk_i2c_writeb(const struct nmk_i2c_dev *priv, u32 =
+val,
+> > +				unsigned long reg)
+> > +{
+> > +	if (priv->has_32b_bus)
+> > +		writel(val, priv->virtbase + reg);
+> > +	else
+> > +		writeb(val, priv->virtbase + reg);
+> > +}
+>
+> ...
+>
+> > +static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev *priv)
+> > +{
+> > +	struct device *dev =3D &priv->adev->dev;
+> > +	struct device_node *np =3D dev->of_node;
+> > +	unsigned int shift, speed_mode;
+> > +	struct regmap *olb;
+> > +	unsigned int id;
+> > +
+> > +	priv->has_32b_bus =3D true;
+> > +
+> > +	olb =3D syscon_regmap_lookup_by_phandle_args(np, "mobileye,olb", 1, &=
+id);
+> > +	if (IS_ERR_OR_NULL(olb)) {
+> > +		if (!olb)
+> > +			olb =3D ERR_PTR(-ENOENT);
+> > +		return dev_err_probe(dev, PTR_ERR(olb),
+> > +				     "failed OLB lookup: %lu\n", PTR_ERR(olb));
+>
+> just return PTR_ERR(olb) and use dev_err_probe() in the upper
+> layer probe.
+
+Good catch. In previous revisions nmk_i2c_eyeq5_probe() had multiple
+error cases so it had to be the one doing the logging. Now that there
+is a single possible error parent can do it. It should simplify code.
+
+>
+> > +	}
+> > +
+> > +	if (priv->clk_freq <=3D 400000)
+> > +		speed_mode =3D 0b00;
+> > +	else if (priv->clk_freq <=3D 1000000)
+> > +		speed_mode =3D 0b01;
+> > +	else
+> > +		speed_mode =3D 0b10;
+>
+> would be nice to have these as defines.
+
+Agreed. Will be named based on I2C mode names, eg standard, fast, high
+speed, fast plus.
+
+>
+> > +
+> > +	shift =3D NMK_I2C_EYEQ5_OLB_IOCR2_SHIFT(id);
+> > +	regmap_update_bits(olb, NMK_I2C_EYEQ5_OLB_IOCR2,
+> > +			   0b11 << shift, speed_mode << shift);
+>
+> please define these values and for hexadecimals use 0x...
+
+0b11 is a two-bit mask. What do you mean by "these values"? Something
+like:
+
+
+
+#define NMK_I2C_EYEQ5_SPEED_MODE_FAST		0b00
+#define NMK_I2C_EYEQ5_SPEED_MODE_FAST_PLUS	0b01
+#define NMK_I2C_EYEQ5_SPEED_MODE_HIGH_SPEED	0b10
+
+static const u8 nmk_i2c_eyeq5_masks[] =3D {
+	[0] =3D 0x0030,
+	[1] =3D 0x00C0,
+	[2] =3D 0x0300,
+	[3] =3D 0x0C00,
+	[4] =3D 0x3000,
+};
+
+static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev *priv)
+{
+	// ...
+	unsigned int id, mask, speed_mode;
+
+	priv->has_32b_bus =3D true;
+
+	olb =3D syscon_regmap_lookup_by_phandle_args(np, "mobileye,olb", 1, &id);
+	// TODO: olb error checking
+	// TODO: check id is valid
+
+	if (priv->clk_freq <=3D 400000)
+		speed_mode =3D NMK_I2C_EYEQ5_SPEED_MODE_FAST;
+	else if (priv->clk_freq <=3D 1000000)
+		speed_mode =3D NMK_I2C_EYEQ5_SPEED_MODE_FAST_PLUS;
+	else
+		speed_mode =3D NMK_I2C_EYEQ5_SPEED_MODE_HIGH_SPEED;
+
+	mask =3D nmk_i2c_eyeq5_masks[id];
+	regmap_update_bits(olb, NMK_I2C_EYEQ5_OLB_IOCR2,
+			   mask, speed_mode << __fls(mask));
+	return 0;
+}
+
+Else I do not see what you are suggesting by "please define these
+values".
+
+Have a nice day,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
