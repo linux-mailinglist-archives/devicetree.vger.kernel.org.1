@@ -1,134 +1,194 @@
-Return-Path: <devicetree+bounces-47999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 310FB86FA2A
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 07:36:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C3D3F86FA7F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:09:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C47E31F21516
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 06:36:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2D881C20DE4
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 07:09:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDDC1118F;
-	Mon,  4 Mar 2024 06:36:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1089112E72;
+	Mon,  4 Mar 2024 07:09:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jxriXqJb"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="NsID04GF"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A418353A6;
-	Mon,  4 Mar 2024 06:36:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D84D412E4F;
+	Mon,  4 Mar 2024 07:09:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709534208; cv=none; b=uw+2/rGqWR6Fyi3Wd2NraA70Yo2CHlktY2s9zAiWMe6xp0cJ36wt1f4RchQdK6/epJ7EVbpYFNUDIPQFyrLhID/BawpH7ubFIx7L5FHXXCLmZwgE/F9rJZm31uiuGZZQRhAUq/xKWLYM6grR65ljorNR6QmAkAUd8KT0TItFKLc=
+	t=1709536188; cv=none; b=MjoD0uPcr4rR6Var5iCTgZTgq7gfwFzLiJOJZzbcLG5R37I/9s3o+L/HZZTk+rFBWTiQJqElvvOUe+HyrrFIAyBEXtOWQkf0zSJ6Qz1WvvQc9/0cJYKFew6p6s2coGb1Rvxs2N6d1gX0iTCv/Rzp/7EaAhjOp35gIbK82eh+L0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709534208; c=relaxed/simple;
-	bh=Lxit3tCPkuMKtuJFSH+dJUeNvHqA7L8OYQppQC6rPNY=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=aDVwQGRdfnsLkE1iWTBKcyZNJI1+PkGAJQMLXzGPmr8caZTOmBsC31xM2W+hF3XOfCk8EgDkwi6vN6c7/S7XT5HaBESiktrjSj1bNORd13I8tcJLaHgbvb1gC5n7/W5IJKPJDBIbGTCBVjmMgz+Gm0CVMDYgToA14nrj2TYWrJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jxriXqJb; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0A2FBC433F1;
-	Mon,  4 Mar 2024 06:36:47 +0000 (UTC)
+	s=arc-20240116; t=1709536188; c=relaxed/simple;
+	bh=2ijnbHwObwY7khqqO6e422ywpHeLzyDhZfDGrq2Kusc=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=PYJ0WRRqp8B0bdCD7GJXJ7SWuFGZ+M31CD8QtcnWptFuZEnqvFod7U/FP/IA1SoyVtdwJt+Plq/y9pNHj3RwwKubry8kURCPFqhPrVS/yqhc/PurPrAlXBgnYaIlZkZ3Iskz9BiqcevGv4AcLrjU2046eqPaAvOz4FOptfIvfec=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=NsID04GF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 7AA16C433C7;
+	Mon,  4 Mar 2024 07:09:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709534208;
-	bh=Lxit3tCPkuMKtuJFSH+dJUeNvHqA7L8OYQppQC6rPNY=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=jxriXqJbBviYoORKOQcXJDUwyJsaZY0CPgW6Oe8TttKAmSvfyE4BQuW25aT/hQlip
-	 EycujU65LIlA+jvjSZY2ZFc2IA3AZ63veV7cNkFfzAqebsXNMM25mAA0ujeDDnVhRP
-	 rOSIkqhGdiHG3XvfyG3VMIIydikTnGfAupeIzWZNZ0caug7zTU1TtQDmT7h43pJ+Sq
-	 jwPiEzucalG88tLoMPULbKYiPL2+V5tsY1ZRNY/L938nJVJhd0CmKXUpSQxmfGvjeC
-	 fakbtsn35UIpcUtJ1iirJGZURsxYp2sUxGrHFDwHX6m2aQ2+CT1qDAyeMtb5QNaoue
-	 Lepbx/p3VrHzw==
-Date: Mon, 04 Mar 2024 00:36:46 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1709536187;
+	bh=2ijnbHwObwY7khqqO6e422ywpHeLzyDhZfDGrq2Kusc=;
+	h=From:Date:Subject:To:Cc:Reply-To:From;
+	b=NsID04GFBrFEq2mhYG9GLBxTGuGQzGzgljIvINybpXBcuIdQt6cjjPtGoqSpKAscz
+	 mF1foLiiqHrkoRlxRfj2olGQdL2aXk97qrx0PiyvNTeg9+yUE4u6Z0fSbR8CylCpuv
+	 5S7A2Gu7HJ2n0bxd/64xyn2iB2Aiza8NHoqkRUPqRWB6f6pQSPynRCs4mLiNxXZt6t
+	 24q3AwHf0Fe9bnvey17Kjf4ClDb1HoVroNQRclzWXtPQfmxCxrVScfXjeWi/7iWt7S
+	 hXR43HSDfKU3tdmKAVIixf0rDPkyywJekSPH4w9KlfQR3nanE4jiTM3pAUMRDZWZfs
+	 awL5kDllj5NCw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 619E4C48BF6;
+	Mon,  4 Mar 2024 07:09:47 +0000 (UTC)
+From: Hui Liu via B4 Relay <devnull+quic_huliu.quicinc.com@kernel.org>
+Date: Mon, 04 Mar 2024 15:09:34 +0800
+Subject: [PATCH v4] arm64: dts: qcom: qcm6490-idp: enable PMIC Volume and
+ Power buttons
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Dharma Balasubiramani <dharma.b@microchip.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- dri-devel@lists.freedesktop.org, Conor Dooley <conor+dt@kernel.org>, 
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, Rob Herring <robh+dt@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, 
- Nicolas Ferre <nicolas.ferre@microchip.com>, 
- Maxime Ripard <mripard@kernel.org>, 
- Alexandre Belloni <alexandre.belloni@bootlin.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@gmail.com>, 
- Claudiu Beznea <claudiu.beznea@tuxon.dev>
-In-Reply-To: <20240304-lcdc-fb-v2-1-a14b463c157a@microchip.com>
-References: <20240304-lcdc-fb-v2-1-a14b463c157a@microchip.com>
-Message-Id: <170953420588.3592333.10799403141422424018.robh@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: display: atmel,lcdc: convert to
- dtschema
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20240304-gpio-keys-v4-1-03604d778c86@quicinc.com>
+X-B4-Tracking: v=1; b=H4sIAK9z5WUC/23MTQ6CMBCG4auYrq3pH21x5T2MC2gLTIwUW20kh
+ Ltb2IjR5TeZ551QdAFcRMfdhIJLEMH3eYj9Dpmu6luHweaNGGGCMCJxO4DHVzdGTLmua6sLwkq
+ N8v8QXAOvtXW+5N1BfPgwrulEl+u/SqKYYiU1V2Vpq0bb0/0JBnpzMP6Glk5iG8v41rJsadkIX
+ XOrlWS/ln8sJ3RrebamklJYp5UqzLed5/kNFxAXDxwBAAA=
+To: Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Hui Liu <quic_huliu@quicinc.com>
+X-Mailer: b4 0.13-dev-83828
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1709536186; l=2848;
+ i=quic_huliu@quicinc.com; s=20230823; h=from:subject:message-id;
+ bh=DmuCpd4eRqEEUGUcUCiLEb7DRgH2P8prW7W/cQOxkwE=;
+ b=ihk9653yGVvrrofzSCIhnexlgDvC2L7KUxE6BEDvt1b0oR6rWZCL9f2uoOElF52DUDwDZEz+8
+ 0i6TwHzZVrTAIe4GKO6UKcwrnD7+T3uB/Km6BZtjs/pio/KVpbPRkl4
+X-Developer-Key: i=quic_huliu@quicinc.com; a=ed25519;
+ pk=1z+A50UnTuKe/FdQv2c0W3ajDsJOYddwIHo2iivhTTA=
+X-Endpoint-Received:
+ by B4 Relay for quic_huliu@quicinc.com/20230823 with auth_id=80
+X-Original-From: Hui Liu <quic_huliu@quicinc.com>
+Reply-To: <quic_huliu@quicinc.com>
 
+From: Hui Liu <quic_huliu@quicinc.com>
 
-On Mon, 04 Mar 2024 11:06:39 +0530, Dharma Balasubiramani wrote:
-> Convert the atmel,lcdc bindings to DT schema.
-> Changes during conversion: add missing clocks and clock-names properties.
-> 
-> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
-> ---
-> This patch converts the existing lcdc display text binding to JSON schema.
-> The binding is split into two namely
-> lcdc.yaml
-> - Holds the frame buffer properties
-> lcdc-display.yaml
-> - Holds the display panel properties which is a phandle to the display
-> property in lcdc fb node.
-> 
-> These bindings are tested against the existing at91 dts files using
-> dtbs_check.
-> ---
-> Changes in v2:
-> - Run checkpatch and remove whitespace errors.
-> - Add the standard interrupt flags.
-> - Split the binding into two, namely lcdc.yaml and lcdc-display.yaml.
-> - Link to v1: https://lore.kernel.org/r/20240223-lcdc-fb-v1-1-4c64cb6277df@microchip.com
-> ---
->  .../bindings/display/atmel,lcdc-display.yaml       | 98 ++++++++++++++++++++++
->  .../devicetree/bindings/display/atmel,lcdc.txt     | 87 -------------------
->  .../devicetree/bindings/display/atmel,lcdc.yaml    | 70 ++++++++++++++++
->  3 files changed, 168 insertions(+), 87 deletions(-)
-> 
+The Volume Down & Power buttons are controlled by the PMIC via
+the PON hardware, and the Volume Up is connected to a PMIC gpio.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Enable the necessary hardware and setup the GPIO state for the
+Volume Up gpio key.
 
-yamllint warnings/errors:
+Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
+---
+Changes in v4:
+- Switch the order of "pinctrl-0" and "pinctrl-names".
+- Update "volume_up" to "Volume_up".
+- Remove "linux,input-type", because the default value is 1(EV_KEY).
+- Link to v3: https://lore.kernel.org/r/20240301-gpio-keys-v3-1-ca664de8775c@quicinc.com
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.example.dtb: display0: 'atmel,dmacon' is a required property
-	from schema $id: http://devicetree.org/schemas/display/atmel,lcdc-display.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.example.dtb: display0: 'atmel,lcdcon2' is a required property
-	from schema $id: http://devicetree.org/schemas/display/atmel,lcdc-display.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.example.dtb: display0: 'atmel,guard-time' is a required property
-	from schema $id: http://devicetree.org/schemas/display/atmel,lcdc-display.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/imx/fsl,imx-lcdc.example.dtb: display0: 'fsl,pcr', 'model' do not match any of the regexes: 'pinctrl-[0-9]+'
-	from schema $id: http://devicetree.org/schemas/display/atmel,lcdc-display.yaml#
+Changes in v3:
+- Update the commit more concise and explicit.
+- remove "power-source" property and update the numeric value to defined
+name for "qcom,drive-strength".
+- Link to v2: https://lore.kernel.org/r/20240223-gpio-keys-v2-1-19f48b3d8762@quicinc.com
 
-doc reference errors (make refcheckdocs):
+Changes in v2:
+- Update the commit description.
+- Link to v1: https://lore.kernel.org/r/20240206-gpio-keys-v1-1-7683799daf8d@quicinc.com
+---
+ arch/arm64/boot/dts/qcom/qcm6490-idp.dts | 41 ++++++++++++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240304-lcdc-fb-v2-1-a14b463c157a@microchip.com
+diff --git a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+index acf145d1d97c..12e162613ed0 100644
+--- a/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
++++ b/arch/arm64/boot/dts/qcom/qcm6490-idp.dts
+@@ -9,7 +9,9 @@
+ #define PM7250B_SID 8
+ #define PM7250B_SID1 9
+ 
++#include <dt-bindings/input/linux-event-codes.h>
+ #include <dt-bindings/leds/common.h>
++#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
+ #include "sc7280.dtsi"
+ #include "pm7250b.dtsi"
+@@ -39,6 +41,22 @@ chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+ 
++	gpio-keys {
++		compatible = "gpio-keys";
++
++		pinctrl-0 = <&key_vol_up_default>;
++		pinctrl-names = "default";
++
++		key-volume-up {
++			label = "Volume_up";
++			gpios = <&pm7325_gpios 6 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_VOLUMEUP>;
++			wakeup-source;
++			debounce-interval = <15>;
++			linux,can-disable;
++		};
++	};
++
+ 	reserved-memory {
+ 		xbl_mem: xbl@80700000 {
+ 			reg = <0x0 0x80700000 0x0 0x100000>;
+@@ -421,6 +439,16 @@ vreg_bob_3p296: bob {
+ 	};
+ };
+ 
++&pm7325_gpios {
++	key_vol_up_default: key-vol-up-state {
++		pins = "gpio6";
++		function = "normal";
++		input-enable;
++		bias-pull-up;
++		qcom,drive-strength = <PMIC_GPIO_STRENGTH_LOW>;
++	};
++};
++
+ &pm8350c_pwm {
+ 	status = "okay";
+ 
+@@ -448,6 +476,19 @@ led@3 {
+ 	};
+ };
+ 
++&pmk8350_pon {
++	status = "okay";
++};
++
++&pon_pwrkey {
++	status = "okay";
++};
++
++&pon_resin {
++	linux,code = <KEY_VOLUMEDOWN>;
++	status = "okay";
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+---
+base-commit: 23e11d0318521e8693459b0e4d23aec614b3b68b
+change-id: 20240206-gpio-keys-138bbd850298
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Best regards,
+-- 
+Hui Liu <quic_huliu@quicinc.com>
 
 
