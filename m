@@ -1,160 +1,141 @@
-Return-Path: <devicetree+bounces-48166-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48167-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1AF187077F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:49:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CD6C8707AA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:52:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FBFD1C2128F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:49:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CFD52B24E30
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:52:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F37534D9F9;
-	Mon,  4 Mar 2024 16:49:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A31D66086C;
+	Mon,  4 Mar 2024 16:51:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Rcy2SEZ6"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="Xz6yhItV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3500120323;
-	Mon,  4 Mar 2024 16:49:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D10DF605B7
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 16:51:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709570979; cv=none; b=MIpPqPdKk5XhQmJMf2IE/7NC03n0E26LC7Pw0g8DjDwqRi1GUGjcZlfMZPSv70PJzNI5Tcw6IXOaTJaSSRKx3wlDzhaWXXt7wjwwm8LXJtoy6twOViSOhlp4NbGHa6Aan+VlZdcwiXQXpJWK06Em8M1RVaOoZ0vjgIWOPOrTkeM=
+	t=1709571089; cv=none; b=PQ4lXsfmHdv24LTeMOkZ9ew8XnZroCUEqVB4aBexmoFp/df8kEV/HLnf0WUx3H9NPiymMgw/WHD9TJj4RwbuS4324twaZOusj8OkGYr5daMfsY2Ea/1ibZUc6iymv6/Zw2HICjO0ysJN3zAnpP50k19cNWWdxPl6ZIjqTe/TArY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709570979; c=relaxed/simple;
-	bh=DthIDebhc9oRYRMRr+A3AN2PQCmUqSXLow3JcSS2AFg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=KPNjmnskVwPdasOjiOXKBwOWjj/8a4ZPtgYxpnxLd+1+Og6ClSEgrySD2fN1WZ1UNJM/KrKGL0GUUPlQYF7Hzh+cgeYMHIv2fLCXxS6UVeJFrD0lRW5g+MLA7Ciki+bRfsPtXFlUYyXh6EnHt5vvQxxrG+mXqZdQy8dmME8Bd34=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Rcy2SEZ6; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 42D621C0005;
-	Mon,  4 Mar 2024 16:49:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709570975;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=7nFz0hedyTLHASYMUFC14BfBNjbRjwJUmoXNnUghM5I=;
-	b=Rcy2SEZ6t1Mu02zbdb+Mh7xqcRqdUDkoyGA7N+WeuN6VIt4goMj5qZh/JLn9U2JCqKkfCf
-	2KSfnM92Rkjl5T6+BIHlsPI3Z3/mfWbGbe4NfsnM4rGsB19M1U8SrvI8FFVPtPgUNmxhHX
-	Ucwtijg1XCjPB4m9ouUrtruYcUBlbx8qFDeELKaZmRN7kPGPxzstlGt8D6tWsUeY5QXZEg
-	XSlXAZ0DGSoiLXrY4Hse1c2d/Bu4pKD0Eo9lwthvJY4Mz7cI8RFrVkvezLqmTIaJMV6BNA
-	c3ZklZKOhY96HEoT4+bKnAHD9IhiGqcKpGFpWu3xQhgZSnAZsBvMNZpTYkBS8A==
-Date: Mon, 4 Mar 2024 17:49:33 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max
- Zhen <max.zhen@amd.com>, Sonal Santan <sonal.santan@amd.com>, Stefano
- Stabellini <stefano.stabellini@xilinx.com>, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>,
- Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org, Saravana Kannan
- <saravanak@google.com>
-Subject: Re: [PATCH v3 2/2] of: overlay: Synchronize of_overlay_remove()
- with the devlink removals
-Message-ID: <20240304174933.7ad023f9@bootlin.com>
-In-Reply-To: <20240304152202.GA222088-robh@kernel.org>
-References: <20240229105204.720717-1-herve.codina@bootlin.com>
-	<20240229105204.720717-3-herve.codina@bootlin.com>
-	<acb69aa8c1a4c4e9849123ef538b9646a71507a0.camel@gmail.com>
-	<20240304152202.GA222088-robh@kernel.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1709571089; c=relaxed/simple;
+	bh=8YEW8/QYd153IU1YcCsQ5FCqtApBQaAp36ELoAoTGug=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rfEkEPnELTtCMMpDmKdpiqhya0X1pNLo3vtuQwTB/vDAp7QWKpWQrzjprrWOYjCfbSsXE5qEw0VGbBzOZxYZT8IqeLGQn4WHfMjG+KyboHrwJDWcUv6RuQSH/TFNdaJPg9hEzpASVzexZBgDV+eT5rBkXVg5kmPgz/2hxm1/y3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=Xz6yhItV; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a458eb7db13so30071866b.2
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 08:51:27 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1709571084; x=1710175884; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xOyMFcdZeiizIIdM2h9cviSaGUWkoYW6H6plPEQ7/JE=;
+        b=Xz6yhItVu+bd1OAN+7W4IPdXqG1psTBThcOsS9BGq2nKTtjGKtg5WzzH41d74Rrgf4
+         KUIk8doq6pwt4t5ZlWE+Qvsvu5NPKYFluovGINCBMnJcJfaZLEV1xWCG03um9qOHt4oO
+         lD96ebXl460RM4ACBsNlXtAgY0EOGG+1BpxoU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709571084; x=1710175884;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=xOyMFcdZeiizIIdM2h9cviSaGUWkoYW6H6plPEQ7/JE=;
+        b=Vio1alwsBc5rkB5YkWnng0DiQgMOEPtHczzuLSNY3+gRWpS/AB9hg7P/eRFkCDhTi9
+         B1jIyjdjpjjg2e3G0mVp6kuz+Na6gCP5TC2YuQKPa3/hWOGmuVc9JGUGU9QiQYzTlciv
+         Ex/fJVYA+Ax6mD6LqdhVBYnfBwKdKynnFsEfByMswfGqEChs4kUcQjo7ZB5Dpi6fsSom
+         UFZUdoqViPQQYNU/fVYGIxcDlKkeZPKKyUdEoU0g9D8QYlwqrwSB19pX4j6kZf5RsTuh
+         +YXuCkrTB1iNOHcTSQZzYEsGV74d9dpQctTR89O6MxnQE+M8eonlo+fOz3eNSwYbtTN0
+         jsRw==
+X-Forwarded-Encrypted: i=1; AJvYcCVsND/pWKCZuZd3B10xF7MJLSyFvKyiXpZOOHH/91V6kg75laBKzBjxHaxuFtJJCOpvjGCOSV8bWxuKCaZR0Ra31Z96mJV5C4YEGQ==
+X-Gm-Message-State: AOJu0YyFOjR8d3VmMVham6jrbNF90jKaUvy/iS0UBz3WrKd9rOZTNWln
+	tWlCKBMQF6svdo0gMD4604j4G99HH5f1OsBwPrFfxGTLRmrUjUsI6rsCgM9EiOjkme7EtuWaWHk
+	CZBl6
+X-Google-Smtp-Source: AGHT+IFRuUvhQP6T2jkYTPye/7k0pDY0FoCqvH5W+BzFfF5V2PnKujWBZcpEAXgSDoAR8BcaOT2AdA==
+X-Received: by 2002:a17:906:f750:b0:a3f:2b6f:6d57 with SMTP id jp16-20020a170906f75000b00a3f2b6f6d57mr6617416ejb.29.1709571084005;
+        Mon, 04 Mar 2024 08:51:24 -0800 (PST)
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
+        by smtp.gmail.com with ESMTPSA id hj12-20020a170906874c00b00a456a97faaesm903350ejb.86.2024.03.04.08.51.22
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Mar 2024 08:51:23 -0800 (PST)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-412d84ffbfaso98035e9.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 08:51:22 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXi0rclBWQx6DXB1Ybu99JxETbRKojBD4UO4sCDUUbf85QO7Cq/Mt+7FLbif0yAUiM1xNSFdFaaoyM5IkWRz077yUduFXUnIhAuzw==
+X-Received: by 2002:a7b:c417:0:b0:412:dd21:292 with SMTP id
+ k23-20020a7bc417000000b00412dd210292mr263164wmi.0.1709571082557; Mon, 04 Mar
+ 2024 08:51:22 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+References: <20240301061128.3145982-1-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20240301061128.3145982-1-yangcong5@huaqin.corp-partner.google.com>
+From: Doug Anderson <dianders@chromium.org>
+Date: Mon, 4 Mar 2024 08:51:06 -0800
+X-Gmail-Original-Message-ID: <CAD=FV=UP9NxfmT8rqLd-HUq8QwJXa5xO7UbrgYHLw4vOKZO7hA@mail.gmail.com>
+Message-ID: <CAD=FV=UP9NxfmT8rqLd-HUq8QwJXa5xO7UbrgYHLw4vOKZO7hA@mail.gmail.com>
+Subject: Re: [PATCH] drm/panel: boe-tv101wum-nl6: Fine tune Himax83102-j02
+ panel HFP and HBP
+To: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	hsinyi@chromium.org, swboyd@chromium.org, airlied@gmail.com, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
+Hi,
 
-On Mon, 4 Mar 2024 09:22:02 -0600
-Rob Herring <robh@kernel.org> wrote:
+On Thu, Feb 29, 2024 at 10:11=E2=80=AFPM Cong Yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> The current measured frame rate is 59.95Hz, which does not meet the
+> requirements of touch-stylus and stylus cannot work normally. After
+> adjustment, the actual measurement is 60.001Hz. Now this panel looks
+> like it's only used by me on the MTK platform, so let's change this
+> set of parameters.
+>
+> Fixes: cea7008190ad ("drm/panel: Fine tune Himax83102-j02 panel HFP and H=
+BP")
 
-...
+Your "Fixes:" tag is not quite right. It needs to have the _exact_
+subject of the old commit message, AKA:
 
-> > > @@ -853,6 +854,14 @@ static void free_overlay_changeset(struct
-> > > overlay_changeset *ovcs)
-> > >  {
-> > >  	int i;
-> > >  
-> > > +	/*
-> > > +	 * Wait for any ongoing device link removals before removing some of
-> > > +	 * nodes. Drop the global lock while waiting
-> > > +	 */
-> > > +	mutex_unlock(&of_mutex);
-> > > +	device_link_wait_removal();
-> > > +	mutex_lock(&of_mutex);  
-> > 
-> > I'm still not convinced we need to drop the lock. What happens if someone else
-> > grabs the lock while we are in device_link_wait_removal()? Can we guarantee that
-> > we can't screw things badly?  
-> 
-> It is also just ugly because it's the callers of 
-> free_overlay_changeset() that hold the lock and now we're releasing it 
-> behind their back.
-> 
-> As device_link_wait_removal() is called before we touch anything, can't 
-> it be called before we take the lock? And do we need to call it if 
-> applying the overlay fails?
-> 
+Fixes: cea7008190ad ("drm/panel: boe-tv101wum-nl6: Fine tune
+Himax83102-j02 panel HFP and HBP")
 
-Indeed, having device_link_wait_removal() is not needed when applying the
-overlay fails.
+> Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+> ---
+>  drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c | 8 ++++----
+>  1 file changed, 4 insertions(+), 4 deletions(-)
 
-I can call device_link_wait_removal() from the caller of_overlay_remove()
-but not before the lock is taken.
-We need to call it between __of_changeset_revert_notify() and
-free_overlay_changeset() and so, the lock is taken.
+A little odd that the patch you're fixing claimed that it caused the
+measured rate to be 60.01Hz and here you're saying that it ended up
+being 59.95Hz. I guess there was a measurement error when the previous
+patch was posted?
 
-This lead to the following sequence:
---- 8< ---
-int of_overlay_remove(int *ovcs_id)
-{
-	...
-	mutex_lock(&of_mutex);
-	...
+In any case, the argument still holds that this is a panel that still
+appears to be only used by your board, so small tweaks to the numbers
+here seem OK.
 
-	ret = __of_changeset_revert_notify(&ovcs->cset);
-	...
+Landed to "drm-misc-fixes" after:
+* Adding "(again)" to the end of the subject to make it distinct from
+the previous patch description
+* Fixing your Fixes tag
 
-	ret_tmp = overlay_notify(ovcs, OF_OVERLAY_POST_REMOVE);
-	...
+9dfc46c87cdc drm/panel: boe-tv101wum-nl6: Fine tune Himax83102-j02
+panel HFP and HBP (again)
 
-	mutex_unlock(&of_mutex);
-	device_link_wait_removal();
-	mutex_lock(&of_mutex);
 
-	free_overlay_changeset(ovcs);
-	...
-	mutex_unlock(&of_mutex);
-	...
-}
---- 8< ---
-
-In this sequence, the question is:
-Do we need to release the mutex lock while device_link_wait_removal() is
-called ?
-
-Best regards,
-Hervé
-
--- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-Doug
 
