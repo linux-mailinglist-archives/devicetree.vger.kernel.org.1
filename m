@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-48010-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48011-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA31A86FAE0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:32:13 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A524186FAF0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:36:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0946E1C219AE
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 07:32:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B44F281E51
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 07:36:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6750F13AE9;
-	Mon,  4 Mar 2024 07:31:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0743E14004;
+	Mon,  4 Mar 2024 07:36:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iIJDkBJF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="DC1rQkFq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f43.google.com (mail-wm1-f43.google.com [209.85.128.43])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F159134C5
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 07:31:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 160BC13FFD
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 07:36:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709537507; cv=none; b=IIE8sh1qxhXZDZ7U/fvvq9PX3rjGBlGgf3O0FaBLN+xVKVTQWMub7ZkEDvaK3Ljrx2Bh/mWpSPvA7dwxt3ZzUGgn45jysZZMzbKU68isfyZUg/6jhsLZ58JnzfwL0bJj8gAyvw0t0dV3+AqikMzPAEixy6bxNvqGqGRfSNrimpU=
+	t=1709537781; cv=none; b=UnmWTe3MNh49fVyrA8AyrbPxF+HwK3Yo3JVw7aVufv2jBryfynVmdIrA1DsDkATpxV6B2fx83FkEH4uWsPTgNCTcJu3BKnJDBZwQqhyMrnBy+Eg0dXRJNDjZDbmizBuEnWAi54ei4noY2Cb4okJIZ5Kalf5aLJ1e4fSBMm0mH4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709537507; c=relaxed/simple;
-	bh=66nqHdi7M5gLFbhxmC17gUfb4ScsEict20Pb1KD6cwE=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=OPOe/sDC2SuScWx+coTqN/saJ79GrG5bwPnNE9HmYJHY+5GgE+PSrePZ0KWNMBZT9TVsHSHWoDlmGqNkAxpv7W2zXVRL2HIdesqInUe/SKHE97Iran+KifBr+NUQtg+wqWrTRdntErFutRaf4My2gsp3vxm6V42zSAj3PnVXJKc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iIJDkBJF; arc=none smtp.client-ip=209.85.128.43
+	s=arc-20240116; t=1709537781; c=relaxed/simple;
+	bh=zXQlhn1OKr5ZhbfALUDNhNe8VoKcA7jALtchFjIzMzo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AX+E4aQCnkdvJESkiowEv3mZl6gwNY3kWydI0BRmgFulUiWNqACB2bJbx2uVnLEpureiZmYPKwqaJgcKGJap2Z28+QpRfO+SLlpYNSbA4zszDqR81tTn2SgEiAAClEqpxv2lqb+umXrWgQcDhHoChqFNarbgfngRrUMrcmv/k6A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=DC1rQkFq; arc=none smtp.client-ip=209.85.208.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f43.google.com with SMTP id 5b1f17b1804b1-412e66bc492so1243155e9.0
-        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 23:31:45 -0800 (PST)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d220e39907so61837671fa.1
+        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 23:36:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709537504; x=1710142304; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=f51VA5MtxnAU0efzg76cN/fIARzVpps0Hh4Af04eUTk=;
-        b=iIJDkBJFM6PJ/b9oio9oUPa1KcIx5Y1WixswOjL5orFeYMqjNLV7+g6bMDpjB8g6NG
-         0D+uNDMYmPI/mfSlR9JhRfF6TiwXUW26CVG9E74QgoUqaCZ0a4mfdHVP775QLL4xFb6S
-         sfmdVx2XVN1xr7lk9vxkTu+Z4RSZhiUxGgW3UE6lz/9GEZft8kt3eROwd3nV78/0fKz5
-         n2USfduodHr6PYWIFCRcJg468D14XFR6Z1+Un+8tnOUe9Txv3viZErQ9y19AOV+vpfqV
-         ZoyQ143hYHGkWq7DaxiZgQrMRhUm1DWrCxGUtwLbNpgdTTkRPJM1e//w9Y2vYua1dK7N
-         rzqQ==
+        d=linaro.org; s=google; t=1709537778; x=1710142578; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=O4FlQyVTG7p+3ARaoCOGwbmy/932YEedHD7xhr0/eEY=;
+        b=DC1rQkFqxESWweJWvb1PZ2fTBBUm9wom842hGVoYS8C/KivfTn4napHnvTEMzC/SrP
+         BL1Fwl49IUBbrkoUh0IMyVWTc15M8ZiyyBWRIzMgQmwalQL3HeaPhnRLG1MnAiSZi9Wh
+         RMHvqmGaci/xrwjYgmzvmWTZrL8Nm6DklQymi/MiZDvb6XOJx0DxSnYGRLpeleE8H2LC
+         z7XRrQPraeZ3y8E+E4SuCAvdt7AIFHTuVt+jmR9vEsgmFnY+ZAUlTX12PAPR9oklmbPJ
+         u2w8xig1hxlGz1ZdZ8xmPyZM29BAbuv2/lmSqkbWIhDeqZoOOHSGtUMkLxSEjcbhme8Y
+         umHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709537504; x=1710142304;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=f51VA5MtxnAU0efzg76cN/fIARzVpps0Hh4Af04eUTk=;
-        b=mtMxQw9caCi77tx/cLHAja8o8hFNCjcR287C6/dl9mWOjsi3eKcbGC1jRi4pI2yDQS
-         rpniPrpr2j9qzIFMk3qYb/3djEhf81scHqZ1r+oDu7Jd50fpsrBGjZrg/cRHp0fHr6Jt
-         SEUVY6dgRWskTSHZKd+Njunk96zQk1nVvyWLrNX5GoC+NAmUpo/aCtlIbYnmq6Vov1Ww
-         D9+IYjBpOqoNhk7sPU8sSdr9gRNXJ9EYea9osMWUrwWt/9yTPURJ7k2PKx0yYMdjGqtW
-         vHXgiJ58AhzRF0YWNmcq0AcGKhsxoTdWQhFjsew2Pw8jHk77sYJykye0bA/uazTPtOe/
-         oCAw==
-X-Forwarded-Encrypted: i=1; AJvYcCXj5AE+en6BksBKPR5zTbOKjeot2ClW0Jle876nR4toAvFYd19Q+EdtoZhZAJP8nr48FL1D5ru+ZoLuhSKqYYudoUl0f3Ebm3fscw==
-X-Gm-Message-State: AOJu0Yx6wBx7dD79F6yJiDjlwoSsXVQBELOwyDaAMiq+NEGLANE9KN7/
-	xgki+nmhisgvuY4iF/FiH9Jx8zS4doxd7wXUcA6LLkabIPEpAqX5Q8KPBsTE4Ac=
-X-Google-Smtp-Source: AGHT+IH50+zD8hJJZMhOea5o5klj2GNCPU/jhf8hnaytno2hnVtJ77HuPpiGjm37w2PqW+nTVUVZwQ==
-X-Received: by 2002:a05:600c:470e:b0:412:bcc1:44cc with SMTP id v14-20020a05600c470e00b00412bcc144ccmr6723784wmo.3.1709537503717;
-        Sun, 03 Mar 2024 23:31:43 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709537778; x=1710142578;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=O4FlQyVTG7p+3ARaoCOGwbmy/932YEedHD7xhr0/eEY=;
+        b=jXiDFDMx6pcB64SBAou+vMz1KS5cWI59JFPbtDva2Z4gRBqh62mzEFtbmZazEKRVXI
+         4QAoywBlVvJIl/ewlAnsN6jfg2xchqrYkuidCf9Lh/78M7HCnVGywMe6ZpnK21M26ixu
+         rm7qAozq4q63saY1VYdxkrzHkkZR0k/aEmj0+55FSuYLEq1flA0LasiWgwkBrfovysj9
+         1lKJSQOfHu0B1veAUjgsNzPwokprs0h8km170hIe/xH4+RAvGKkR+8oEIS+cauwdpfFJ
+         RT2ScFoFzmctpUzdEabIquFIk4zMWvwwKkg8jFR+tuDqM4KOPHWfHNKfsg6rfczqa9KD
+         sKyg==
+X-Forwarded-Encrypted: i=1; AJvYcCUg2uVEU+k7QhAtUirlSxFcM8P4zXKt6PZUPzbZq4Upztu7oIVENWzX+G7oA7K+79p4Lgy2DD52gmYSV5bA9JQrs7INplPPHhj6mQ==
+X-Gm-Message-State: AOJu0Yy6Gioek5ZuopCbWiNQUlcMMwjdGaaC2Uiu0xRWAeN14NrGptWe
+	I+ITz0xeGNAaynrHiTVjvQrErSZ/mXz4Buak2MYRXOtSg5/DbN/3tIgH2PPyTyM=
+X-Google-Smtp-Source: AGHT+IGhKbZArLVZK7s0XrRO/PDXj8uz7pOfozYwmD5XCpo9DhwrJC58mJArQBT8UBVtGv5CvjtxIw==
+X-Received: by 2002:a05:651c:10a1:b0:2d2:d6a0:6f3e with SMTP id k1-20020a05651c10a100b002d2d6a06f3emr5837047ljn.13.1709537777893;
+        Sun, 03 Mar 2024 23:36:17 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id e2-20020a05600c218200b004125f34fd7csm16569261wme.31.2024.03.03.23.31.42
+        by smtp.gmail.com with ESMTPSA id c26-20020a2e9d9a000000b002d29e1845c9sm1615609ljj.58.2024.03.03.23.36.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Mar 2024 23:31:43 -0800 (PST)
-Message-ID: <d377f0ea-2df2-4d4e-b1bc-8a4ca55eec15@linaro.org>
-Date: Mon, 4 Mar 2024 08:31:41 +0100
+        Sun, 03 Mar 2024 23:36:17 -0800 (PST)
+Message-ID: <ce1c5ba1-4f6a-4d20-8a12-fbae9003657a@linaro.org>
+Date: Mon, 4 Mar 2024 08:36:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,26 +76,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/3] dt-bindings: fpga: xlnx,fpga-selectmap: add DT
- schema
+Subject: Re: [PATCH v2] dt-bindings: display: atmel,lcdc: convert to dtschema
 Content-Language: en-US
+To: Dharma Balasubiramani <dharma.b@microchip.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ Claudiu Beznea <claudiu.beznea@tuxon.dev>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240304-lcdc-fb-v2-1-a14b463c157a@microchip.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Charles Perry <charles.perry@savoirfairelinux.com>,
- Rob Herring <robh+dt@kernel.org>, yilun xu <yilun.xu@intel.com>
-Cc: mdf <mdf@kernel.org>, Allen VANDIVER <avandiver@markem-imaje.com>,
- Brian CODY <bcody@markem-imaje.com>, hao wu <hao.wu@intel.com>,
- Tom Rix <trix@redhat.com>,
- krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Michal Simek <michal.simek@amd.com>,
- linux-fpga <linux-fpga@vger.kernel.org>,
- devicetree <devicetree@vger.kernel.org>,
- linux-kernel <linux-kernel@vger.kernel.org>,
- linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20240221195058.1281973-1-charles.perry@savoirfairelinux.com>
- <20240221195058.1281973-3-charles.perry@savoirfairelinux.com>
- <4a9f0eef-590b-45df-92bc-b63ad9282e18@linaro.org>
- <1012793477.1508198.1709486517581.JavaMail.zimbra@savoirfairelinux.com>
- <cb51aadd-c350-42e2-9684-ac4f7dbf864c@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -141,122 +136,77 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <cb51aadd-c350-42e2-9684-ac4f7dbf864c@linaro.org>
+In-Reply-To: <20240304-lcdc-fb-v2-1-a14b463c157a@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 04/03/2024 08:30, Krzysztof Kozlowski wrote:
-> On 03/03/2024 18:21, Charles Perry wrote:
->> On Feb 27, 2024, at 3:10 AM, Krzysztof Kozlowski krzysztof.kozlowski@linaro.org wrote:
->>
->>> On 21/02/2024 20:50, Charles Perry wrote:
->>>> Document the SelectMAP interface of Xilinx 7 series FPGA.
->>>>
->>>> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
->>>> ---
->>>>  .../bindings/fpga/xlnx,fpga-selectmap.yaml    | 86 +++++++++++++++++++
->>>>  1 file changed, 86 insertions(+)
->>>>  create mode 100644
->>>>  Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
->>>> b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
->>>> new file mode 100644
->>>> index 0000000000000..08a5e92781657
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
->>>> @@ -0,0 +1,86 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/fpga/xlnx,fpga-selectmap.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Xilinx SelectMAP FPGA interface
->>>> +
->>>> +maintainers:
->>>> +  - Charles Perry <charles.perry@savoirfairelinux.com>
->>>> +
->>>> +description: |
->>>> +  Xilinx 7 Series FPGAs support a method of loading the bitstream over a
->>>> +  parallel port named the SelectMAP interface in the documentation. Only
->>>> +  the x8 mode is supported where data is loaded at one byte per rising edge of
->>>> +  the clock, with the MSB of each byte presented to the D0 pin.
->>>> +
->>>> +  Datasheets:
->>>> +
->>>> https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf
->>>> +
->>>> +allOf:
->>>> +  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - xlnx,fpga-xc7s-selectmap
->>>> +      - xlnx,fpga-xc7a-selectmap
->>>> +      - xlnx,fpga-xc7k-selectmap
->>>> +      - xlnx,fpga-xc7v-selectmap
->>>> +
->>>> +  reg:
->>>> +    description:
->>>> +      At least 1 byte of memory mapped IO
->>>> +    maxItems: 1
->>>> +
->>>> +  prog_b-gpios:
->>>
->>> I commented on this and still see underscore. Nothing in commit msg
->>> explains why this should have underscore. Changelog is also vague -
->>> describes that you brought back underscores, instead of explaining why
->>> you did it.
->>>
->>> So the same comments as usual:
->>>
->>> No underscores in names.
->>>
->>> Best regards,
->>> Krzysztof
->>
->> Hello Krzysztof,
->>
->> Yes, I've gone full circle on that issue. Here's what I tried so far:
+On 04/03/2024 06:36, Dharma Balasubiramani wrote:
+> Convert the atmel,lcdc bindings to DT schema.
+> Changes during conversion: add missing clocks and clock-names properties.
 > 
-> And what part of the commit description allows me to understand this?
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+> ---
+> This patch converts the existing lcdc display text binding to JSON schema.
+> The binding is split into two namely
+> lcdc.yaml
+> - Holds the frame buffer properties
+> lcdc-display.yaml
+> - Holds the display panel properties which is a phandle to the display
+> property in lcdc fb node.
 > 
->>
->>  1) Reuse the same gpio names: Duplicates errors of the past, Krzysztof
->>     doesn't like it.
->>  2) Different gpio names for new driver only: Makes the driver code
->>     overly complicated, Yilun doesn't like it.
+> These bindings are tested against the existing at91 dts files using
+> dtbs_check.
+> ---
+> Changes in v2:
+> - Run checkpatch and remove whitespace errors.
+> - Add the standard interrupt flags.
+> - Split the binding into two, namely lcdc.yaml and lcdc-display.yaml.
+> - Link to v1: https://lore.kernel.org/r/20240223-lcdc-fb-v1-1-4c64cb6277df@microchip.com
+> ---
+>  .../bindings/display/atmel,lcdc-display.yaml       | 98 ++++++++++++++++++++++
+>  .../devicetree/bindings/display/atmel,lcdc.txt     | 87 -------------------
+>  .../devicetree/bindings/display/atmel,lcdc.yaml    | 70 ++++++++++++++++
+>  3 files changed, 168 insertions(+), 87 deletions(-)
 > 
-> That's a new driver, right? So what is complicated here? You have new
-> code and you take prog-b or prog_b?
-> 
->>  3) Change gpio names for both drivers, deprecate the old names: Makes
->>     the DT binding and the driver code overly complicated, Rob doesn't
->>     like it.
-> 
-> I don't think I proposed changing existing bindings.
-> 
->>
->> I think that while the driver code shouldn't be the driving force for
->> the DT spec, it can be a good indication that the spec is unpractical to
->> implement.
-> 
-> What is impractical in implementing this? You just pass either A or B to
-> function requesting GPIO. Just choose proper name.
-> 
->>
->> In this case, there are two interfaces on a chip that uses the same GPIO
->> protocol, it would only make sense that they use the same names, this
->> discards solution #2.
-> 
-> I don't understand this. You have devm_gpiod_get() in your new code. Why
-> is it difficult to use different name?
+> diff --git a/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml b/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml
+> new file mode 100644
+> index 000000000000..ea4fd34b9e2c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml
+> @@ -0,0 +1,98 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/atmel,lcdc-display.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip's LCDC Display
+> +
+> +maintainers:
+> +  - Nicolas Ferre <nicolas.ferre@microchip.com>
+> +  - Dharma Balasubiramani <dharma.b@microchip.com>
+> +
+> +description:
+> +  The LCD Controller (LCDC) consists of logic for transferring LCD image data
+> +  from an external display buffer to a TFT LCD panel. The LCDC has one display
+> +  input buffer per layer that fetches pixels through the single bus host
+> +  interface and a look-up table to allow palletized display configurations. The
+> +  LCDC is programmable on a per layer basis, and supports different LCD
+> +  resolutions, window sizes, image formats and pixel depths.
+> +
+> +# We need a select here since this schema is applicable only for nodes with the
+> +# following properties
+> +
+> +select:
+> +  anyOf:
+> +    - required: [ 'atmel,dmacon' ]
+> +    - required: [ 'atmel,lcdcon2' ]
+> +    - required: [ 'atmel,guard-time' ]
+> +    - required: [ bits-per-pixel ]
 
-And I forgot to emphasize: none of these is mentioned in commit msg, so
-for v5 you will get exactly the same complains. And for every other
-patch which repeats the same and does not clarify caveats or exceptions.
+Why quotes in other places? bits-per-pixel is generic property, so you
+are now selecting other bindings. Read carefully what Rob wrote.
+
 
 Best regards,
 Krzysztof
