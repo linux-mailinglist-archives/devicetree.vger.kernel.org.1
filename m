@@ -1,62 +1,63 @@
-Return-Path: <devicetree+bounces-48220-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48221-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 172DB870C10
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 22:05:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7987D870C24
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 22:06:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 126941C20B7F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:05:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AB8711C20CE1
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:06:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D59B10A2B;
-	Mon,  4 Mar 2024 21:04:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 355E53B795;
+	Mon,  4 Mar 2024 21:06:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="Y9XH6vec"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="NsaDB7PP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-210.mail.qq.com (out162-62-57-210.mail.qq.com [162.62.57.210])
+Received: from out162-62-57-252.mail.qq.com (out162-62-57-252.mail.qq.com [162.62.57.252])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 04DAF1C6AD
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 21:04:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.210
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBED21C687
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 21:06:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.252
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709586283; cv=none; b=O9d0XJPx85l+UHq9WjhuFzwBhF5mPQh5WZKqsygVjAGkb8NnSWAq2ymtEwUBy4vKoo20+/bjaiROVWw57n4P/BG6bXfdYgkgdH3EWwpNVqhzTjc5+REndmlfCpVNuzeMny/cvyV4QoitICf3lto74hU16saVP3lvSp9h7QgD1Ic=
+	t=1709586395; cv=none; b=GzVguy9t8hElY7uqTYDG8p4JRAlZicNbD8FwPFL/gjqwffX/1juHT0wzpL/yt9I31DqlvKt3+dZ74rK7dwpIT9dyGMqsDyicf2LXPOvpdcrwQzTzSzfh9gHKAcKAD7uDwJdrJ67cHqslIma4/VI1eqAckQP00hG5JM4fBFyEd8g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709586283; c=relaxed/simple;
-	bh=Tw6Vginuy7S095bACk50UnmKKPupKBfXrXjYBWULZyE=;
-	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=KqIdNsKHpZmIq9ww627oZkfM5pGNuQnmusM3MXBAzgjn9riA4rsTzObMtyEHoSBCeiv3hF+grkUv7vcwFe/ahV4fW5INYzARU+Bpo+ew7b9PdKY23iquhLimnvWvJxl6rZgsvVzoYZ9fEmH1oagpPjTXDL3gj4ozTNJqG2leX50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=Y9XH6vec; arc=none smtp.client-ip=162.62.57.210
+	s=arc-20240116; t=1709586395; c=relaxed/simple;
+	bh=iIg1m/HJGO+YBecXFqvZUlmsxmUTnWYkXWH5ivM16oA=;
+	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
+	 MIME-Version; b=kIXXHLpHUO4AB1kSFQ/RhXoiKK78d7LwNxrZSjYzIiokVouLt2maH/siDnLWkaGv+FGm15DMQj7Sqck7hvkgYOQUGRUkSjNSCHXy+bpJK/LhP2A3rZsWqPUSeJNfTDU2j5PVAKOBDHsjM7W9BrlNsjcdbqvglMwt2RcMtEU/Z40=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=NsaDB7PP; arc=none smtp.client-ip=162.62.57.252
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
 Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1709586276; bh=GFMJlJjTlI/YnjqaRDuRJEvR/O/AOIAkbGZdzMRZ1v0=;
-	h=From:To:Cc:Subject:Date;
-	b=Y9XH6vec7VecGyC+qUpR5WS7gAphXv1mDq3MeWyze30OlEeSV8lRbv/FJXi7aeghm
-	 LJf+8yHAkIe2DkLhFUdPiqWfYZRP7wPbFi++duJj8Gf/9esBp0Bz5s2+HUJ6O4JEuY
-	 KpbueOpbM9pEB81kn7QrNGNXrVRjepSGsaqA9reo=
+	t=1709586388; bh=s7QEg+O5WzM5yI1q1lQPoUf0e90dpB5qxk5MpOdViLo=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=NsaDB7PPAxypurlm6rlAl+cL5nLuE8Ls1vqlARtzQI6ah5iy0jAyNZWDmkGGHmspq
+	 SqnPbEpgG8Onklrc+C+P2YXL8mKnR4FHA0tlXMrJzN+h5zfUfcikO7abwhOWORD9X9
+	 4TDjZ9VrhrhxHK5t6SZ188hbQk8VAHKsgPsz1rME=
 Received: from cyy-pc.lan ([240e:379:2240:e500:994d:62ab:74a6:932b])
-	by newxmesmtplogicsvrszb6-0.qq.com (NewEsmtp) with SMTP
-	id 11F9664F; Tue, 05 Mar 2024 05:04:31 +0800
-X-QQ-mid: xmsmtpt1709586271t3nxb2zjd
-Message-ID: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
-X-QQ-XMAILINFO: OOnbKU/qCQQlTfJAqINLSh0d4KoIoE+5EG42uJPeTXDuDxpVHH4R5nzqxk1Ct5
-	 NW7LDGxcpXuOVjHMhG8ahYOt/uaDlZzhmWYtv+/b2580LFjJJ9xS4+lr6KmiiYri0Bke+VWzYxhy
-	 sPqdPDEcfzc341a9H4kUVehG5L0/ociq/P2j+GnN8gkPhcxzkbpQgbo7NxDP2kGPLeAwA8bPWwVV
-	 p6fJVOv1KFwUc7WukryBd07MbPSMEwNrTEGbvLr07Z1CQjk5aJZ7Gri89VxKv0X2jxXJJpZA3kV/
-	 s54fnlvwjfare/3qqfxBkGS4oRU+yekg3anKR8VdvdE5S+A7y/GX+AXDvLwB9TpsKZ9zg8uHQ/QW
-	 /Ii7c6QOKtY03P+NoPalujMCajnQsLk9PermHgKU+F6WiY3U+aeyt09OST52VALFAGXLnZfinU3a
-	 z1w8wh5pk6ZFQyqEIt0qI8n6PWpTNj+JZVYyi74e8rL/G2GcWeeZO4bAJekU9m+K22E94hDKbNDZ
-	 v4KwIiiMfHmFhn0uggiLcnMvv4aY2a/9ScF3K7PI6AkyQJaunwaUjX33EQAgvTOipfgw5dU8rKCP
-	 v+ox8MaJnn5eguzT+ikx7RbczyZxXdvIOsmX4o33pke+xFK0PF4hv/7VXvA43t1wHp+gHFtBioro
-	 LawTYZXJeGy3qcef21pbQVQBqHBL/XaDoAa/6XFw9lDi2Ejw1pOjuBS8kA9eRVlJoeCQUo2lE0/7
-	 w2xsFCzoyvB0YRmk+leqY29Fw7UQFkAtiQrSsLJeJduZqkvvztOCk295T+SGpDROGFrVHjxKf2Bx
-	 4gtlcVpwz1fnPEKnAHhSVMatX3MSMHF0Q80Py6nhArxU3B1fynNJkMUx9pCgHs0eKP71Bhfij/p4
-	 ODic4vcVBJyH2IEnrtVudlPX4TzFPiz4g9A5gNU/f84w2kWws5JkLc5hcFG4d1rZ9jSJ8Lcp5WsG
-	 U0BewuP0ZT/Jvl0LzYg+byRNH6ZF5NL31PjksCgaY7pLEPyJLrbtSuFUAPpAQh20oGvGu0U2/cWW
-	 zF1OhNdhXalt1jbpHt
-X-QQ-XMRINFO: Mp0Kj//9VHAxr69bL5MkOOs=
+	by newxmesmtplogicsvrszc5-0.qq.com (NewEsmtp) with SMTP
+	id 1953A8D2; Tue, 05 Mar 2024 05:06:21 +0800
+X-QQ-mid: xmsmtpt1709586381tcdoc9q8g
+Message-ID: <tencent_2C7B0851631A9F9AA0A4F6A9E30EAE5F0C06@qq.com>
+X-QQ-XMAILINFO: M1rD3f8svNznRKnYlSRS18X9ZwJFLn74xBtXc+wY0Wb28ataBnC1sYFWy81Njd
+	 ejrXyDqdB5c3TUxeogi9GQtQzV9z680J2JVlXFSQ/wi/808PVqbg7m/SaWAQDwb6hyhB5ld1zeYk
+	 9rxb8WbosrUYxu+cpzUIDoSfoXqWW37zqzkU+25WvLuoKUkMdrAq5lQg5CViq0xSAc7fonMSerF/
+	 Efx0w/0juW6BmjGDbxTzeZjpULgAqjwyWyK/fkGKNkyzNdMOZBMIwaj3UxXfQpd8LUQoHrUvxkdN
+	 qQqh3CJaxT9F317ztLKIy2XeTPQnX9lsfFmqRIrwt8a21ESzHeYbGRdByvZ3mlVlfMQXf65CRADd
+	 GCQKMGBazhJ4r2qGNHG0IqTLrWkyZZ5Bu/wAZ7v7wg3v2IIE6sdpXsjC4OW0Gg2RgspucXF+V2Cx
+	 Tq5GOCN3tH7qtocIRbddcfw86PP8AXx28CQ/Z3TiiNkqolXM7CCBaFvgVevmBmjJhL5TUb7h+NRv
+	 /j7SpEgPwU8+nst/yJ0Ztw5fzP7v4gXmFp9eO6DQg2g0fHSoIbdijGWho2qEogGtck1G/m8gNsi/
+	 XuhpJ5aU0NuSIyGD/NHELLBpkr7SBVPIQ81uuch02bxGAM/SXmuw/1naezn1a8EY6Ucgq3PSRk1S
+	 NoQ+XPssbXVmF1stDDheEbnsqFxu7gn+tbR/yv/v4l+g/BOgUBQxBTQhSk+7ZujbAUbMo8Ws31fj
+	 F72evz97+jszst9CFrPyU/zMRAUpmFBEUJEO84h1v+J9+Wgn+XF4PrFcDkG6WUFYdkhTqwMezSwN
+	 E01xJNBvL8DbBazA6iEWyMwVyGeZsdDjcxH395RWiOf2bNM/ZeqF2CSpCBHATmBy5eeBwdYVOhLE
+	 a1oCSm+N1rHG3lOc4CDFdPIMnSBoocHB5UxBa6R+ZpmasFYxwEC7V7NmxNH9pfGZnfTVyCHXLLLA
+	 x+5tdgR+lMCdJZGz8LxytPWe1KQkjGBwwnBpmMibKPKlTbCfOtspbVKykbN7pzOwrYxTOzrEOmE4
+	 gDgr8qagHCG8SD4yJGclpX5SBtV+g=
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
 From: Yangyu Chen <cyy@cyyself.name>
 To: linux-riscv@lists.infradead.org
 Cc: Conor Dooley <conor@kernel.org>,
@@ -69,11 +70,14 @@ Cc: Conor Dooley <conor@kernel.org>,
 	Guo Ren <guoren@kernel.org>,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: [PATCH v3 0/7] riscv: add initial support for Canaan Kendryte K230
-Date: Tue,  5 Mar 2024 05:03:21 +0800
-X-OQ-MSGID: <20240304210321.777296-1-cyy@cyyself.name>
+	Yangyu Chen <cyy@cyyself.name>,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3 1/7] dt-bindings: riscv: Add T-HEAD C908 compatible
+Date: Tue,  5 Mar 2024 05:05:55 +0800
+X-OQ-MSGID: <20240304210601.777883-1-cyy@cyyself.name>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
+References: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -82,62 +86,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-K230 is an ideal chip for RISC-V Vector 1.0 evaluation now. Add initial
-support for it to allow more people to participate in building drivers
-to mainline for it.
+The thead,c908 is a RISC-V CPU core from T-HEAD Semiconductor which used
+in Canaan Kendryte K230 SoC.
 
-This kernel has been tested upon factory SDK [1] with
-k230_evb_only_linux_defconfig and patched mainline opensbi [2] to skip
-locked pmp and successfully booted to busybox on initrd with this log [3].
+Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+---
+ Documentation/devicetree/bindings/riscv/cpus.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-[1] https://github.com/kendryte/k230_sdk
-[2] https://github.com/cyyself/opensbi/tree/k230
-[3] https://gist.github.com/cyyself/b9445f38cc3ba1094924bd41c9086176
-
-Changes since v2:
-- Add MIT License to dts file
-- Sort dt-binding stings in alphanumerical order
-- Sort filename in dts Makefile in alphanumerical order
-- Rename canmv-k230.dts to k230-canmv.dts
-
-v2: https://lore.kernel.org/linux-riscv/tencent_64A9B4B31C2D70D5633042461AC9F80C0509@qq.com/
-
-Changes since v1:
-- Patch dt-bindings in clint and plic
-- Use enum in K230 compatible dt bindings
-- Fix dts to pass `make dtbs_check`
-- Add more details in commit message
-
-v1: https://lore.kernel.org/linux-riscv/tencent_E15F8FE0B6769E6338AE690C7F4844A31706@qq.com/
-
-Yangyu Chen (7):
-  dt-bindings: riscv: Add T-HEAD C908 compatible
-  dt-bindings: add Canaan K230 boards compatible strings
-  dt-bindings: timer: Add Canaan K230 CLINT
-  dt-bindings: interrupt-controller: Add Canaan K230 PLIC
-  riscv: Kconfig.socs: Allow SOC_CANAAN with MMU for K230
-  riscv: dts: add initial canmv-k230 and k230-evb dts
-  riscv: config: enable SOC_CANAAN in defconfig
-
- .../sifive,plic-1.0.0.yaml                    |   1 +
- .../devicetree/bindings/riscv/canaan.yaml     |   8 +-
- .../devicetree/bindings/riscv/cpus.yaml       |   1 +
- .../bindings/timer/sifive,clint.yaml          |   1 +
- arch/riscv/Kconfig.socs                       |   5 +-
- arch/riscv/boot/dts/canaan/Makefile           |   2 +
- arch/riscv/boot/dts/canaan/k230-canmv.dts     |  24 +++
- arch/riscv/boot/dts/canaan/k230-evb.dts       |  24 +++
- arch/riscv/boot/dts/canaan/k230.dtsi          | 140 ++++++++++++++++++
- arch/riscv/configs/defconfig                  |   1 +
- 10 files changed, 203 insertions(+), 4 deletions(-)
- create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv.dts
- create mode 100644 arch/riscv/boot/dts/canaan/k230-evb.dts
- create mode 100644 arch/riscv/boot/dts/canaan/k230.dtsi
-
-base-commit: 45e0b0fd6dc574101825ac2738b890da024e4cda
-prerequisite-patch-id: 2374c56c0032e616e45854d2bc2bb1073996313d
-
-Dependencies: https://lore.kernel.org/linux-riscv/tencent_88FEE0A2C5E0852436A2F1A1087E6803380A@qq.com/
+diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+index 9d8670c00e3b..e853a7fcee8a 100644
+--- a/Documentation/devicetree/bindings/riscv/cpus.yaml
++++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+@@ -47,6 +47,7 @@ properties:
+               - sifive,u74
+               - sifive,u74-mc
+               - thead,c906
++              - thead,c908
+               - thead,c910
+               - thead,c920
+           - const: riscv
 -- 
 2.43.0
 
