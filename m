@@ -1,132 +1,147 @@
-Return-Path: <devicetree+bounces-48168-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48169-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C27178707C1
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:56:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F2AFA8707F6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 18:05:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7C2CD28269D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:56:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22EE81C208E6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:05:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8D8B5CDDD;
-	Mon,  4 Mar 2024 16:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E05545D73A;
+	Mon,  4 Mar 2024 17:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F+h3DOW9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SbwyWtuK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A6E92A20;
-	Mon,  4 Mar 2024 16:56:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B80FB4642A;
+	Mon,  4 Mar 2024 17:05:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709571397; cv=none; b=uw1fLOFs5DeZqyt4qLBpkPULvLxn9NqWFa6XQE3QE8fqDusvYr+4NVE2+ZeaT8mP0OuMsLRhQVnUGPpf2hzEjraLKWd9L00Z2sQXm2jEeAvWNG3uDHetJz82kX1c5Xx7VGaVxHgLuMqVrsCstGY7o8VbMK2rJOJ3QhYFu99Euv0=
+	t=1709571937; cv=none; b=dXDbkAt8xr7h9m99ck57lruSFVxgaQxVLsSFKFU1zoOXFSUdPc2VtpjnhazLa5DeMJfKQGwOPkz05nprCucjbhzRB7esTp/I7/yTyMEN/BlmtfJuPSepWeiUIKoDKHKbD8TSt3W4DSgAxDTl4Z3iahrBcX82Q0sa6UmDcxN5q6w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709571397; c=relaxed/simple;
-	bh=xVMa7i8oPGdLj8iX76oU3OuSEEgYdE3cXj3g2JVHqYA=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FK6ZTCqd8vTUuYMnuhdz1e4rK/2ljC9WqvUz2QCE3qq29CdnwnEG7vscsLav6qXDXuUvQSr0LCYroR9d7csFOyFTfNNazepoft210c5lsTJEEaLw/1AiNLD4diUqyZB1B6TU2KKVYVwVNfSVOEHzbx0+XNxNMNPqmFjdE5dkaro=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F+h3DOW9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43584C433F1;
-	Mon,  4 Mar 2024 16:56:37 +0000 (UTC)
+	s=arc-20240116; t=1709571937; c=relaxed/simple;
+	bh=zD/c78WU8bA5wQQx/rSC8cu3BgvCF8zH72PFnPryMV4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ty2Fuo2jnexM+nb/wiSYyNBF5CHE9HZ5i0hyBdqw3PbK6Tn5yyRGu5Q0jhEuawyzWX8x0LwAll+pA4SM2rmFfktNPfI/+q6ODedpsq7leDjUQ9GY97J5Y5IpW5OVi7/1maBNsJBHBSpcNYZPVM+gLmXkLTE2CMhq7mtScHsJQ+8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SbwyWtuK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6BB05C433F1;
+	Mon,  4 Mar 2024 17:05:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709571397;
-	bh=xVMa7i8oPGdLj8iX76oU3OuSEEgYdE3cXj3g2JVHqYA=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F+h3DOW9ORlN/9HF9TaxmR/fYvUag0uSF8Hc9e/12dJNoz+71goZo2H8TackF4ndY
-	 NfVYqGj/6OFDRiDCsry5FDGozEtGEBurPUvzd9yu6rOK0cbMv8vDpUXzA1HT0Z0/sA
-	 qujKdTO7/OeWMSBL96U+8G+buwL9ScaI1Mid9Lcybrym8Th/7y5NAPq1JqK70JXxKQ
-	 WvLrG00pt/H1qdoz+81PJJ5YiS22nvmqncYZfgaMLdXthBsu3rxy5UE35nXH9gpq8q
-	 KeiaEoMNsjjEdzpngrMHC/ZI1eja3L9D7ZMCGBt+YMsACvSIS2ioHguEOpdgDRyZDa
-	 YZKTSWcYAv91A==
-Date: Mon, 4 Mar 2024 10:56:35 -0600
-From: Rob Herring <robh@kernel.org>
-To: Sam Protsenko <semen.protsenko@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	andi.shyti@kernel.org, conor+dt@kernel.org,
-	linux-spi@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	andre.draszik@linaro.org, peter.griffin@linaro.org,
-	willmcvicker@google.com, kernel-team@android.com
-Subject: Re: [PATCH] spi: dt-bindings: samsung: make dma properties not
- required
-Message-ID: <20240304165635.GA739022-robh@kernel.org>
-References: <20240301115546.2266676-1-tudor.ambarus@linaro.org>
- <CAPLW+4=6oYcs0NPXo4ffLiCvtNQ-tY1s_isaxTX8dcPkV56xMw@mail.gmail.com>
- <cb426fb0-2f27-4c9b-89f5-7139354ea425@sirena.org.uk>
- <f06328e4-b283-4302-b9c1-6473aa3cfa25@linaro.org>
- <CAPLW+4kjXK=EWx__h0bX0rJMrL33E=t4YDzSOfObmvtG9aS+jg@mail.gmail.com>
+	s=k20201202; t=1709571937;
+	bh=zD/c78WU8bA5wQQx/rSC8cu3BgvCF8zH72PFnPryMV4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=SbwyWtuK6Rx2U+B0kvWk5iyMuOMeQI5LTV9i1o+wsg9u6IgWRj8IdS3bp18lLU+ba
+	 dYlNm9VRoClfUQRYeqnVXTzunuNhbDdN6aJowp6W2opIPxDF3d8j/ccBAN1NCxwbTo
+	 0ctZiAFaike4Vqkxce3WTT3+b+0Iq6OiVKcsXu4ElZmCs4jpERA56BuDk61LPGV95B
+	 4t2HRl5q3aYFPO8qsJMerOOITjwgbmkbfhQk0HvbvemAZTrtj5KYTswLRmWbcAtkoe
+	 S8rKdizzTP6rhozbgC8929PXnrl7p2lkjnoWaG8wwBPvFBp/SG+hb1XrzG5Ya8MY9O
+	 t0osBkJ4gTOBg==
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d382a78c38so22718911fa.1;
+        Mon, 04 Mar 2024 09:05:37 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCX/CT9qWhdRZ/ZAql39wWgjVqSSFK4l+YHR+uiJksXfs70iQ0BcSeyqswtrgnm0azL/6CHWvI7+kPY1AWGo5p7RWtTx8DOxsoY/eMHw
+X-Gm-Message-State: AOJu0YwqcJ7kg0ZKtS/i0D0MbM+xPdfJW6nF+FEZGR9made4xcNjjbLk
+	S9Ab8Zw+0RFaHtdYcrlB0lKmOeXzYob//6qgXp0a76V0EfZUg89q6Ep8jwQ+qH2TP/Lb6TbSmVR
+	Ab5yA3i4WMOs4zGUvvbEzY0mnBA==
+X-Google-Smtp-Source: AGHT+IEG/k9XM1uX3m8yp7kREFJTf/frvjwwPIpybcwq84QP9Bm88kROlZOHDg9QRJu54OsPp4uTFKgsgcB0L908Yi0=
+X-Received: by 2002:a2e:a4c4:0:b0:2d2:a2f5:596e with SMTP id
+ p4-20020a2ea4c4000000b002d2a2f5596emr6113226ljm.38.1709571935590; Mon, 04 Mar
+ 2024 09:05:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAPLW+4kjXK=EWx__h0bX0rJMrL33E=t4YDzSOfObmvtG9aS+jg@mail.gmail.com>
+References: <CAL_JsqKNGjKq3vcUPFiPa9JNq-8=oP=uBSD=tyKaPMH3cvAkww@mail.gmail.com>
+ <20240304150227.166053-1-skseofh@gmail.com>
+In-Reply-To: <20240304150227.166053-1-skseofh@gmail.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Mon, 4 Mar 2024 11:05:22 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKaZ4KcvfNZmn2gj+yXa8eLgzMpdhJJ=+OmMJPvzm-1Qg@mail.gmail.com>
+Message-ID: <CAL_JsqKaZ4KcvfNZmn2gj+yXa8eLgzMpdhJJ=+OmMJPvzm-1Qg@mail.gmail.com>
+Subject: Re: [PATCH] of: fdt: modify small size memory check
+To: skseofh@gmail.com
+Cc: devicetree@vger.kernel.org, frowand.list@gmail.com, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Mar 02, 2024 at 10:23:16AM -0600, Sam Protsenko wrote:
-> On Sat, Mar 2, 2024 at 3:36 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+On Mon, Mar 4, 2024 at 9:03=E2=80=AFAM <skseofh@gmail.com> wrote:
+>
+>
+> >>
+> >> From: Daero Lee <skseofh@gmail.com>
+> >>
+> >> After page aligning, the size may become zero. So I added exception
+> >> handling code for size 0.
 > >
+> >That may be true, but when would anyone only have memory regions of
+> >less than 2 pages. In any case memblock_add will just do nothing. What
+> >is the actual problem you are having?
 > >
-> >
-> > On 01.03.2024 22:42, Mark Brown wrote:
-> > > On Fri, Mar 01, 2024 at 01:28:35PM -0600, Sam Protsenko wrote:
-> > >> On Fri, Mar 1, 2024 at 5:55 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
-> > >
-> > >>> Since the addition of the driver in 2009, the driver selects between DMA
-> > >>> and polling mode depending on the transfer length - DMA mode for
-> > >>> transfers bigger than the FIFO depth, polling mode otherwise. All
-> > >>> versions of the IP support polling mode, make the dma properties not
-> > >>> required.
-> > >
-> > >> AFAIU, the device tree has nothing to do with drivers, it's about
-> > >> hardware description. Does making DMA properties not required here
-> >
-> > correct
-> >
-> > >> mean that there are some HW out there which doesn't integrate DMA in
-> >
-> > no, to me it means that the IP can work without DMA, only in PIO mode,
-> > regardless if DMA is integrated or not. Not required means that the
-> > property is not mandatory, which is what I'm trying to achieve here.
-> >
-> > >> SPI blocks? Even if this change is ok (I'm not sure), the
-> > >> argumentation doesn't look sound to me.
-> >
-> > switching to PIO mode in the driver for sizes smaller than FIFO depths
-> > in the driver guarantees that all existing compatibles support PIO mode.
-> >
-> > Are you saying that if there is a physical line between an IP and DMA
-> > controller, then the DMA properties must always be specified in dt? I
-> > thought they can be marked as optional in this case, and that's what I
-> > did with this patch.
-> >
-> 
-> No, I would wait for maintainers to clarify on that bit. Change itself
-> can be ok. But the commit message shouldn't mention the driver,
-> because the driver uses (depends on) device tree, not vice versa. The
-> device tree can be used in other projects as well (like U-Boot and
-> OP-TEE), so it should be designed to be universal and not depend on
-> kernel drivers. The commit message should be based on particular HW
-> layout features and how the patch makes the bindings describe that HW
-> better. It shouldn't rely on driver implementations.
+> >Rob
+>
+> Ignore the previous mail.
+> I modified the patch to clear this size check routine. Please check
 
-If the controller is DMA capable then it should have dma properties. The 
-compatible should be enough to tell if it is a case of 'can only work 
-with DMA'. Otherwise, it is going to be up to a specific user. Even 
-within Linux, you may have a serial port that doesn't use DMA for the 
-console, but uses it for the tty or serdev.
+You still haven't answered my questions above.
 
-Of course, if a new device is added without DMA properties and they 
-are added later on, then they are going to be optional even though the 
-DMA support is always there. I can't fully understand everyone's h/w. 
+Though the patch below is a bit more readable than what we currently have..=
+.
 
-Rob
+>
+> -------------------------------------------------------------------------
+> From 2135d37c37f8c369033f79102b17ddf5bb3ff838 Mon Sep 17 00:00:00 2001
+> From: Daero Lee <skseofh@gmail.com>
+> Date: Mon, 4 Mar 2024 23:21:14 +0900
+> Subject: [PATCH] of: fdt: modify small size memory check
+>
+> Small size memory which is less than 1 PAGE_SIZE after page align
+> should not be added to memblock.
+>
+> In this patch, the size check was modified to make it clear.
+>
+> Signed-off-by: Daero Lee <skseofh@gmail.com>
+> ---
+>  drivers/of/fdt.c | 10 ++++------
+>  1 file changed, 4 insertions(+), 6 deletions(-)
+>
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index bf502ba8da95..9cf844e664b0 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1220,18 +1220,16 @@ int __init early_init_dt_scan_chosen(char *cmdlin=
+e)
+>  void __init __weak early_init_dt_add_memory_arch(u64 base, u64 size)
+>  {
+>         const u64 phys_offset =3D MIN_MEMBLOCK_ADDR;
+> +       u64 abase =3D PAGE_ALIGN(base), aend =3D PAGE_ALIGN_DOWN(base + s=
+ize);
+>
+> -       if (size < PAGE_SIZE - (base & ~PAGE_MASK)) {
+> +       if((aend - abase) < PAGE_SIZE) {
+>                 pr_warn("Ignoring memory block 0x%llx - 0x%llx\n",
+>                         base, base + size);
+>                 return;
+>         }
+>
+> -       if (!PAGE_ALIGNED(base)) {
+> -               size -=3D PAGE_SIZE - (base & ~PAGE_MASK);
+> -               base =3D PAGE_ALIGN(base);
+> -       }
+> -       size &=3D PAGE_MASK;
+> +       base =3D abase;
+> +       size =3D (aend - abase) & PAGE_MASK;
+>
+>         if (base > MAX_MEMBLOCK_ADDR) {
+>                 pr_warn("Ignoring memory block 0x%llx - 0x%llx\n",
+> --
+> 2.25.1
+>
+>
 
