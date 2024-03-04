@@ -1,670 +1,419 @@
-Return-Path: <devicetree+bounces-48188-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48189-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C8158709DE
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:50:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F5A8709D3
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:49:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98639B234A7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 18:43:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 803072855AA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 18:49:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB8957869A;
-	Mon,  4 Mar 2024 18:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E3C478B42;
+	Mon,  4 Mar 2024 18:49:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="f8lPk11s"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Z2AZW5xm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f176.google.com (mail-pg1-f176.google.com [209.85.215.176])
+Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B50A178696
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 18:42:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1479762147;
+	Mon,  4 Mar 2024 18:49:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709577775; cv=none; b=myeV5twJqFUVfztl5g1CB/eM3F6IFcCHsCDmvR7jYoGxk0Cf1xcnFyVBHDNX4tiA9v57QUlUFiMKFx11hvRFOisnp8nXJ1MaE/tfC+Zv9xkbWKX3C7OC86kJygCHky9D5JajOUnXKMKsVInau/DiyHtB/i9EJEWC04v9NO3ioVc=
+	t=1709578144; cv=none; b=g280BvRvqgUHzW1PV10VHG6gPHMzk9CyRSfji3A3cnTBTLJq5sQHrOgLl3tXRSd9elqmHlqlR8BCbBbowWBOoQuR+CSplQdE3huWWTE5trEcc28gw8xkIdtnJ1ZKL3al+QZLiIQKHbOLQGlSn0uAea9NtCOrUcQg/VCMTKf8XK8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709577775; c=relaxed/simple;
-	bh=sy7J/3Uf9hlt3onS7yftJYHxlZc1w3pRFJcvG+xnVO4=;
+	s=arc-20240116; t=1709578144; c=relaxed/simple;
+	bh=wCeMmjOVaelKD8oogKosv57Mla3F7vrvDFGNe7ukOGg=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HkDhasRzeB+Go91v8R5I8lAM+2bFNKzP80AKPcWk6zPETJ+GYy42vy71BuAQat+q9egVByVf7I5M5eQPvvmF4OCi9Kojb7F/jROTa2MB8s6OzlACGy77lv+/Eh0Y/PLfXvY33FprYsg90dZFC2E+ojFDuquqhK0xPe1PI8P2ZsI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=f8lPk11s; arc=none smtp.client-ip=209.85.215.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f176.google.com with SMTP id 41be03b00d2f7-5cddc5455aeso4003015a12.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 10:42:53 -0800 (PST)
+	 Content-Type:Content-Disposition:In-Reply-To; b=P+gAqvBcdjXeGUgKcyCvBbHjPHPmnkKJLdgMA2jg83Uz7C1Q7Lw5tpyMXgEbEKe6otN9wt+VNPSMNgW0mxXlrbN8INEYPOR8QNwx9PGnGBy4+QLHh3khkYShGab5jxs3vJ858KfpNymu7VvSg25JN3r4eHRvkwivbsZlkCCSjfs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Z2AZW5xm; arc=none smtp.client-ip=209.85.208.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d228a132acso63633881fa.0;
+        Mon, 04 Mar 2024 10:49:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709577773; x=1710182573; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=SM5uZvE85G8+vG8XJqLb9PlkllYek7aYYZFNBNAQhyM=;
-        b=f8lPk11sKHvp2UXi4Ed5Xttbt3psq1w/897NREspKllzxpXAwcZ8Po+iM6QBv1WhzX
-         CjHT+g+Yvmg0oL1Err5uorhuFknSJBsQSOG64ptbTJv/fTwiSJAPC4CWkdWJ8NkmmiTs
-         UZG60Z688IkFs+vkmbQgTm6N32fFAlkQDDYL/+3oBxnX5AxqbQmeA7HIkXis4f8zpuoA
-         GDhPYHMcp85fspXS0Kn+KyQHmraN8aDbyytTo38f+qxrCB46KjChQH1Bs+Yk8hQVVDr1
-         VXq/7OzjXnfc1QpGcSkndO2aO5YKdJ+u/XOAVknlWiRdGjhBejLl+VixQtvW1S9uyeYQ
-         xp4A==
+        d=gmail.com; s=20230601; t=1709578140; x=1710182940; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=wWoJrpZOS87hlJNbNLhOaG5cqW5NwVFhPcdY4O3k/7I=;
+        b=Z2AZW5xmabxQtOMwi1WgIC8LYDJ/v4OJKOW9ww/i9/CSnNVFknEbv7tNRAc0z7WImh
+         9MRCq1lNcuEoMoPFCqaqEpNpPVfrUi8vuhwDJXJd0MWm0BAEnnbTiaDZamgZr96HPgbl
+         q15VmyOzLgpS3IZAxPBRTJ1WPEN5wi/t6P49tyhp38jkebPvYsH97AwQMFj+Ppx8A6QU
+         nPJesJDGsVZGmqUWd4vpXvv//zXl0MuQAXxJo8rH8UqmMIalxXg/ArmAyijGkxxA7S8Y
+         3cnzCHdiuAQRDDeOUWFo2ls2Eyf21hBXmb9oDpQJ63UJDVKsNs9qNByk44RYAn28Yzcj
+         KwDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709577773; x=1710182573;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SM5uZvE85G8+vG8XJqLb9PlkllYek7aYYZFNBNAQhyM=;
-        b=SyAL5mkgZTXIlB6nxJhccWjEQB4u35nTbH5Jy+Xod0D3akZNth/jfZfaXcoyOfZNk0
-         w9itySYKp7UgVwyeuoQfOgQ6G1O2FO79TlD7s8kEuKUt1oQMVzEyaCkoZeoTcaEyya4R
-         GSQCcm/7az/pwSKfpCcb0CXKXcOWETHs/yTrKuolFcLqetmlTC0XpMtMyDSxevdOSJIT
-         bF6c3k3kfy2u/x68KfE600c/DV7yr8Q3mWxPaS+oyVsO987t7ZygGshP//AMx2IsFTdk
-         w6yInFx5WKK1LZVVVnvh/RL86kL62Nede13BEBrpcpmXG1zoHrUXPnr0vWpvfGEfWGQ6
-         KlLg==
-X-Forwarded-Encrypted: i=1; AJvYcCW7grw0cJG8H5vBfoEw0VQmKiFdXtRZZBtCwXAqBQPS5Yyo43lwm6zQZQ+jqdxbVFA2RHBoPZdFdUVME46e2jHisxbEM+27gWe/2Q==
-X-Gm-Message-State: AOJu0Yzphx1lVeUpUG/cuvTad7JNiXvsVeEQRSbveMpYAzYl/yYOs5Bx
-	UqNflSQa4jrodQOHJ+zdWegr0whRHeXJf0almoLplZC/QtdDI0yG8+jdCLRNxhg=
-X-Google-Smtp-Source: AGHT+IECPDyDlAAakzo/VocZLl6Yj1VZB5Pjl5VCZCb2Do4EUEpl0tXD7//C4+5lGM7gVUCFptSxCA==
-X-Received: by 2002:a17:90a:8d86:b0:29a:f005:9ad2 with SMTP id d6-20020a17090a8d8600b0029af0059ad2mr6928434pjo.42.1709577772850;
-        Mon, 04 Mar 2024 10:42:52 -0800 (PST)
-Received: from p14s ([2604:3d09:148c:c800:164d:f5c6:5814:1e78])
-        by smtp.gmail.com with ESMTPSA id qn12-20020a17090b3d4c00b00299bf19e872sm10368258pjb.44.2024.03.04.10.42.51
+        d=1e100.net; s=20230601; t=1709578140; x=1710182940;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=wWoJrpZOS87hlJNbNLhOaG5cqW5NwVFhPcdY4O3k/7I=;
+        b=rwjzshWhU9vj9NS3+OWVDSVFgtUDhngLgGc4Xvksxr0oEw7jL2VQF2CnAHYG7uWZqK
+         4EwvLOLUaYxdaOfyHhQesvBRJRmWtv6l5ce+R4oSTFYVbKZ9p3nawYPwfLlPmF6ZBzwZ
+         pLmx0OIIiT8D3PGLysTeXIhTEqHMKfGoTRdgl2whcSPLwMyVab9WkvAvvqvgwjbkWODW
+         to61vbHyePiib5Xt5RpLGQuQv2zJd91C2fWNNt4U3uioWKgz0DaMZfwM+9myt5eRWfac
+         53XdM2IlxPrjSJpvczngs3Xy8zWRRvkj7Eg7RXfgR16997vOruzgoGqqkLNF239JHoKC
+         IZtw==
+X-Forwarded-Encrypted: i=1; AJvYcCWfAzEuEs00Zhpx/rBUyBGLLLPv8jP/jG5Oai2KpbN3v5T+ySu/KRvk10pcEsEHDU6IzDuW1Ba7S183L/AKSvYLuyD2jEV5+SMVtduzzzLIVgj1Vt1TbUaI394rQGFxZhU+/IP6YqOv5Elzj2DZoiUq4+yzHePT9ul/GuQwGWX3mH4pSg==
+X-Gm-Message-State: AOJu0Yw0Js0RSjoARgm4kUucTjgY75CTBoPiVuDRBQsqGby5FQTp+rkS
+	DdsGu6Ag0GgK+MGWMzlbu2iGjRXCC9HmWv4ccS3j8r7MZWK/hjk4M/hZD6le
+X-Google-Smtp-Source: AGHT+IE1xMAXUtFeWgPIAWFRo1Vl3Spqn6vhYkTizrLe8m+VQjFdgpfNvg8BUjW+dZPJVm/Oud5cbw==
+X-Received: by 2002:a05:6512:308b:b0:513:2011:3d2f with SMTP id z11-20020a056512308b00b0051320113d2fmr7761213lfd.9.1709578139832;
+        Mon, 04 Mar 2024 10:48:59 -0800 (PST)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id t5-20020a056512208500b00512e263d246sm1840674lfr.296.2024.03.04.10.48.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Mar 2024 10:42:52 -0800 (PST)
-Date: Mon, 4 Mar 2024 11:42:49 -0700
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-To: abdellatif.elkhlifi@arm.com
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
-	Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 1/3] remoteproc: Add Arm remoteproc driver
-Message-ID: <ZeYWKVpeFm1+4mlT@p14s>
-References: <20240301164227.339208-1-abdellatif.elkhlifi@arm.com>
- <20240301164227.339208-2-abdellatif.elkhlifi@arm.com>
+        Mon, 04 Mar 2024 10:48:59 -0800 (PST)
+Date: Mon, 4 Mar 2024 21:48:56 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Frank Li <Frank.li@nxp.com>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, Bjorn Helgaas <bhelgaas@google.com>, 
+	Jingoo Han <jingoohan1@gmail.com>, Gustavo Pimentel <gustavo.pimentel@synopsys.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, imx@lists.linux.dev, 
+	linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 5/6] dt-bindings: PCI: dwc: Add 'msg' register region
+Message-ID: <3nu77xnuaq7pb7lmct76n37n7g5snwhcghgodqd5q6paihdxbp@4imk4w2qfrlx>
+References: <ZcK2/tmLG9O7CBEH@lizhi-Precision-Tower-5810>
+ <luk5hswq4wnk5p7axml73qih35hio3y3pfnklctbn6rwres62s@mumnvygjh5ch>
+ <ZcOpehO3rzCfAwXf@lizhi-Precision-Tower-5810>
+ <gl7zmzkezr6k4txrrgqyikspfah3vmgwwz2e3j5kwb2iarpkxv@3ofwrhtxl2sz>
+ <20240214061412.GB4618@thinkpad>
+ <20240228160346.GA4069607-robh@kernel.org>
+ <Zd9eDgxx5BiFWYD8@lizhi-Precision-Tower-5810>
+ <CAL_Jsq+tfDHM7T1xVm5dcn62A8Sd3GTtDRmxVUQpYtJtGg=pKA@mail.gmail.com>
+ <fvre5zsj3a2dkvctbamuisomlq2lav7mqmugq2oasx7hibelsm@czz4ypnrqboj>
+ <20240301160816.GA2221899-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20240301164227.339208-2-abdellatif.elkhlifi@arm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240301160816.GA2221899-robh@kernel.org>
 
-Good day Abdellatif,
-
-On Fri, Mar 01, 2024 at 04:42:25PM +0000, abdellatif.elkhlifi@arm.com wrote:
-> From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+On Fri, Mar 01, 2024 at 10:08:16AM -0600, Rob Herring wrote:
+> On Thu, Feb 29, 2024 at 02:26:34PM +0300, Serge Semin wrote:
+> > On Wed, Feb 28, 2024 at 06:39:36PM -0600, Rob Herring wrote:
+> > > On Wed, Feb 28, 2024 at 10:23 AM Frank Li <Frank.li@nxp.com> wrote:
+> > > >
+> > > > On Wed, Feb 28, 2024 at 10:03:46AM -0600, Rob Herring wrote:
+> > > > > On Wed, Feb 14, 2024 at 11:44:12AM +0530, Manivannan Sadhasivam wrote:
+> > > > > > On Fri, Feb 09, 2024 at 12:52:52PM +0300, Serge Semin wrote:
+> > > > > > > On Wed, Feb 07, 2024 at 11:02:02AM -0500, Frank Li wrote:
+> > > > > > > > On Wed, Feb 07, 2024 at 03:37:30PM +0300, Serge Semin wrote:
+> > > > > > > > > On Tue, Feb 06, 2024 at 05:47:26PM -0500, Frank Li wrote:
+> > > > > > > > > > On Mon, Feb 05, 2024 at 02:13:37PM -0500, Frank Li wrote:
+> > > > > > > > > > > On Mon, Feb 05, 2024 at 06:30:48PM +0000, Rob Herring wrote:
+> > > > > > > > > > > > On Sat, Feb 03, 2024 at 01:44:31AM +0300, Serge Semin wrote:
+> > > > > > > > > > > > > On Fri, Feb 02, 2024 at 10:11:27AM -0500, Frank Li wrote:
+> > > > > > > > > > > > > > Add an outbound iATU-capable memory-region which will be used to send PCIe
+> > > > > > > > > > > > > > message (such as PME_Turn_Off) to peripheral. So all platforms can use
+> > > > > > > > > > > > > > common method to send out PME_Turn_Off message by using one outbound iATU.
+> > > > > > > > > > > > > >
+> > > > > > > > > > > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > > > > > > > > > > ---
+> > > > > > > > > > > > > >  Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml | 4 ++++
+> > > > > > > > > > > > > >  1 file changed, 4 insertions(+)
+> > > > > > > > > > > > > >
+> > > > > > > > > > > > > > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> > > > > > > > > > > > > > index 022055edbf9e6..25a5420a9ce1e 100644
+> > > > > > > > > > > > > > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> > > > > > > > > > > > > > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
+> > > > > > > > > > > > > > @@ -101,6 +101,10 @@ properties:
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > >              Outbound iATU-capable memory-region which will be used to access
+> > > > > > > > > > > > > >              the peripheral PCIe devices configuration space.
+> > > > > > > > > > > > > >            const: config
+> > > > > > > > > > > > > > +        - description:
+> > > > > > > > > > > > > > +            Outbound iATU-capable memory-region which will be used to send
+> > > > > > > > > > > > > > +            PCIe message (such as PME_Turn_Off) to peripheral.
+> > > > > > > > > > > > > > +          const: msg
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > Note there is a good chance Rob won't like this change. AFAIR he
+> > > > > > > > > > > > > already expressed a concern regarding having the "config" reg-name
+> > > > > > > > > > > > > describing a memory space within the outbound iATU memory which is
+> > > > > > > > > > > > > normally defined by the "ranges" property. Adding a new reg-entry with
+> > > > > > > > > > > > > similar semantics I guess won't receive warm welcome.
+> > > > > > > > > > > >
+> > > > > > > > > > > > I do think it is a bit questionable. Ideally, the driver could
+> > > > > > > > > > > > just configure this on its own. However, since we don't describe all of
+> > > > > > > > > > > > the CPU address space (that's input to the iATU) already, that's not
+> > > > > > > > > > > > going to be possible. I suppose we could fix that, but then config space
+> > > > > > > > > > > > would have to be handled differently too.
+> > > > > > > > > > >
+> > > > > > > > > > > Sorry, I have not understand what your means. Do you means, you want
+> > > > > > > > > > > a "cpu-space", for example, 0x8000000 - 0x9000000 for all ATU.
+> > > > > > > > > > >
+> > > > > > > > > > > Then allocated some space to 'config', 'io', 'memory' and this 'msg'.
+> > > > > > > > > >
+> > > > > > > > > > @rob:
+> > > > > > > > > >
+> > > > > > > > > >     So far, I think "msg" is feasilbe solution. Or give me some little
+> > > > > > > > > > detail direction?
+> > > > > > > > >
+> > > > > > > > > Found the Rob' note about the iATU-space chunks utilized in the reg
+> > > > > > > > > property:
+> > > > > > > > > https://lore.kernel.org/linux-pci/CAL_JsqLp7QVgxrAZkW=z38iB7SV5VeWH1O6s+DVCm9p338Czdw@mail.gmail.com/
+> > > > > > > > >
+> > > > > > > > > So basically Rob meant back then that
+> > > > > > > > > either originally we should have defined a new reg-name like "atu-out"
+> > > > > > > > > with the entire outbound iATU CPU-space specified and unpin the
+> > > > > > > > > regions like "config"/"ecam"/"msg"/etc from there in the driver
+> > > > > > > > > or, well, stick to the chunking further. The later path was chosen
+> > > > > > > > > after the patch with the "ecam" reg-name was accepted (see the link
+> > > > > > > > > above).
+> > > > > > > > >
+> > > > > > > > > Really ECAM/config space access, custom TLP messages, legacy interrupt
+> > > > > > > > > TLPs, etc are all application-specific features. Each of them is
+> > > > > > > > > implemented based on a bit specific but basically the same outbound
+> > > > > > > > > iATU engine setup. Thus from the "DT is a hardware description" point
+> > > > > > > > > of view it would have been enough to describe the entire outbound iATU
+> > > > > > > > > CPU address space and then let the software do the space
+> > > > > > > > > reconfiguration in runtime based on it' application needs.
+> > > > > > > >
+> > > > > > > > There are "addr_space" in EP mode, which useful map out outbound iatu
+> > > > > > > > region. We can reuse this name.
+> > > > > > > >
+> > > > > > > > To keep compatiblity, cut hole from 'config' and 'ranges'. If there are
+> > > > > > > > not 'config', we can alloc a 1M(default) from top for 'config', then, 4K
+> > > > > > > > (default) for msg, 64K( for IO if not IO region in 'ranges'), left is
+> > > > > > > > mem region. We can config each region size by module parameter or drvdata.
+> > > > > > > >
+> > > > > > > > So we can deprecate 'config', even 'ranges'
+> > > > > > >
+> > > > > > > Not sure I fully understand what you mean. In anyway the "config" reg
+> > > > > > > name is highly utilized by the DW PCIe IP-core instances. We can't
+> > > > > > > deprecate it that easily. At least the backwards compatibility must be
+> > > > > > > preserved. Moreover "addr_space" is also just a single value reg which
+> > > > > > > won't solve a problem with the disjoint DW PCIe outbound iATU memory
+> > > > > > > regions.
+> > > > > > >
+> > > > > > > The "ranges" property is a part of the DT specification.  The
+> > > > > > > PCI-specific way of the property-based mapping is de-facto a standard
+> > > > > > > too. So this can't be deprecated.
+> > > > > > >
+> > > > > > > >
+> > > > > > > > >
+> > > > > > > > > * Rob, correct me if am wrong.
+> > > > > > > > >
+> > > > > > > > > On the other hand it's possible to have more than one disjoint CPU
+> > > > > > > > > address region handled by the outbound iATU (especially if there is no
+> > > > > > > > > AXI-bridge enabled, see XALI - application transmit client interfaces
+> > > > > > > > > in HW manual). Thus having a single reg-property might get to be
+> > > > > > > > > inapplicable in some cases. Thinking about that got me to an idea.
+> > > > > > > > > What about just extending the PCIe "ranges" property flags
+> > > > > > > > > (IORESOURCE_TYPE_BITS) with the new ones in this case indicating the
+> > > > > > > > > TLP Msg mapping? Thus we can avoid creating app-specific reg-names and
+> > > > > > > > > use the flag to define a custom memory range for the TLP messages
+> > > > > > > > > generation. At some point it can be also utilized for the config-space
+> > > > > > > > > mapping. What do you think?
+> > > > > > > >
+> > > > > > >
+> > > > > > > > IORESOURCE_TYPE_BITS is 1f, Only 5bit. If extend IORESOURCE_TYPE_BITS,
+> > > > > > > > all IORESOURCE_* bit need move. And it is actual MEMORY regain.
+> > > > > > >
+> > > > > > > No. The lowest four bits aren't flags but the actual value. They are
+> > > > > > > retrieved from the PCI-specific memory ranges mapping:
+> > > > > > > https://elinux.org/Device_Tree_Usage#PCI_Address_Translation
+> > > > > > > https://elixir.bootlin.com/linux/latest/source/arch/sparc/kernel/of_device_64.c#L141
+> > > > > > > https://elixir.bootlin.com/linux/latest/source/arch/sparc/kernel/of_device_32.c#L78
+> > > > > > > Currently only first four out of _sixteen_ values have been defined so
+> > > > > > > far. So we can freely use some of the free values for custom TLPs,
+> > > > > > > etc. Note the config-space is already defined by the ranges property
+> > > > > > > having the 0x0 space code (see the first link above), but it isn't
+> > > > > > > currently supported by the PCI subsystem. So at least that option can
+> > > > > > > be considered as a ready-to-implement replacement for the "config"
+> > > > > > > reg-name.
+> > > > > > >
+> > > > > >
+> > > > > > Agree. But still, the driver has to support both options: "config" reg name and
+> > > > > > "ranges", since ammending the binding would be an ABI break.
+> > > > > >
+> > > > > > > >
+> > > > > > > > Or we can use IORESOURCE_BITS (0xff)
+> > > > > > > >
+> > > > > > > > /* PCI ROM control bits (IORESOURCE_BITS) */
+> > > > > > > > #define IORESOURCE_ROM_ENABLE           (1<<0)  /* ROM is enabled, same as PCI_ROM_ADDRESS_ENABLE */
+> > > > > > > > #define IORESOURCE_ROM_SHADOW           (1<<1)  /* Use RAM image, not ROM BAR */
+> > > > > > > >
+> > > > > > > > /* PCI control bits.  Shares IORESOURCE_BITS with above PCI ROM.  */
+> > > > > > > > #define IORESOURCE_PCI_FIXED            (1<<4)  /* Do not move resource */
+> > > > > > > > #define IORESOURCE_PCI_EA_BEI           (1<<5)  /* BAR Equivalent Indicator */
+> > > > > > > >
+> > > > > > > > we can add
+> > > > > > > >
+> > > > > > > > IORESOURCE_PRIV_WINDOWS                 (1<<6)
+> > > > > > > >
+> > > > > > > > I think previous method was more extendable. How do you think?
+> > > > > > >
+> > > > > > > IMO extending the PCIe "ranges" property semantics looks more
+> > > > > > > promising, more flexible and more portable across various PCIe
+> > > > > > > controllers. But the most importantly is what Rob and Bjorn think
+> > > > > > > about that, not me.
+> > > > > > >
+> > > > > >
+> > > > > > IMO, using the "ranges" property to allocate arbitrary memory region should be
+> > > > > > the way forward, since it has almost all the info needed by the drivers to
+> > > > > > allocate the memory regions.
+> > > > > >
+> > > > > > But for the sake of DT backwards compatiblity, we have to keep supporting the
+> > > > > > existing reg entries (addr_space, et al.), because "ranges" is not a required
+> > > > > > property for EP controllers.
+> > > > >
+> > > > > I don't know that its worth the effort to carry both. Maybe if it is
+> > > > > useful on more than just DW host.
+> > > > >
+> > > > > I believe we had config space in ranges at some point on some
+> > > > > binding and moved away from that. I forget the reasoning.
+> > > >
+> > > > I can alloc a 64k windows from IORESOURCE_MEM windows to do 'msg' windows
+> > > > in dwc host driver in v4.
+> > > >
+> > > > But I think it is wonthful to discuss if we can extend of_map bits, add
+> > > > more type beside CONFIG/IO/MEM/MEM64.
+> > > >
+> > > > https://elinux.org/Device_Tree_Usage#PCI_Address_Translation
+> > > >
+> > > > phys.hi cell: npt000ss bbbbbbbb dddddfff rrrrrrrr
+> > > >
+> > 
+> > > > There are '000' before 'ss'.  If we use it as dwc private resource.
+> > 
+> > Frank, why do you mis-inform about the idea? The point was to use the
+> > ranges property for:
+> > 1. PCIe Config-space mapping.
+> > 2. PCIe TLP messages region.
+> > There is _nothing_ DWC-specific in the original suggestion. Case 1 has
+> > already implicitly defined by the DT standard, see the link above (but
+> > for some reason hasn't been implemented in the PCIe subsystem). Case 2
+> > hasn't been determined, but could be seeing there are three unused
+> > bits in the ss-code of the phys.hi cell. All of that can be used by
+> > _any_ PCIe RC/EP device.
+> > 
+> > > 
+> > > DWC (or any host controller) specific things? No!
+> > 
+> > Rob, could you please dive deeper in this thread? The idea is to use
+> > the "ranges" property for the "config" (PCIe config space) and the
+> > custom PCIe TLP messages regions.
 > 
-> introduce remoteproc support for Arm remote processors
+
+> I did in my prior response. Here, I was just making it clear that 
+> something host controller specific is a non-starter as you did.
+
+Not sure what exactly you meant by "host controller specific". Did you
+mean a particular host-controller or all the host-controllers? I meant
+that the "msg" range could be used by _any_ host-controller, but the
+usage would be platform-specific indeed because the message-type depends on
+the peripheral devices.
+
 > 
-> The supported remote processors are those that come with a reset
-> control register and a reset status register. The driver allows to
-> switch on or off the remote processor.
+> For config, we had some bindings that did this and we moved away from 
+> it. I don't remember the details. Unless it's ECAM region, I don't think 
+> using ranges makes any sense as how to use the region will still be host 
+> specific.
+
+Could you please elaborate why exactly the config-region would still
+be host-specific? Strictly speaking the normal MEM or IO region is
+also host-specific because what lays behind depends on the attached
+device and the enumeration procedure. IMO the reason of not using the
+'ranges' for the config/ECAM space would be in opposite to what you
+said.  Unlike the CPU-to-MEM/IO mapping the ECAM/config-space is a
+pre-determined _linear_ space with in most of the case no need in
+special space remapping (unless we would wish to map particular
+peripheral device config-space). So normal "reg" is enough especially
+seeing the config-space is a set of registers. (Please correct me if I
+was wrong.)
+
 > 
-> The current use case is Corstone-1000 External System (Cortex-M3).
+> For TLP messages, do we have other hosts that could use ranges for them? 
+
+AFAICS the next controllers might also be able to generate the
+messages via the outbound AT-memory:
+Rockchip PCIe controller (see pcie-rockchip.h AXI_WRAPPER_* macros)
+Cadence PCIe controller (see pcie-cadence.h CDNS_PCIE_AT_OB_REGION_DESC0_TYPE_* macros)
+Mediatek PCIe Gen3 controller (see pcie-mediatek-gen3.c PCIE_ATR_TLP_TYPE() macro)
+...
+although I am not absolutely sure.
+
+> Is there something in the PCIe spec that defines TLP as an address 
+> space and what that address space looks like? IIRC, some hosts (Altera?) 
+> just have a message sending interface and that includes config space 
+> accesses.
+
+I already sited it in the message to Frank here:
+https://lore.kernel.org/linux-pci/pprkba3ygxwv4lzieu5spqamcn2gzdcviv4kb2kzkzam4fbhit@6uqtmevzm5uj/
+Here is an excerpt from there:
+
+< Note paragraph 2.1.1. of for instance the PCIe-4.0 spec:
+< 
+< 2.1.1  Address Spaces, Transaction Types, and Usage
+< "Transactions form the basis for information transfer between a
+< Requester and Completer. Four _address spaces_ are defined, and
+< different Transaction types are defined, each with its own unique
+< intended usage, as shown in Table 2-12."
+< 
+< Address Space     | Transaction Types    |  Basic Usage
+< -------------------------------------------------------------------------
+< Memory            | Read/Write           | Transfer data to/from a
+<                   |                      | memory-mapped location
+< I/O               | Read/Write           | Transfer data to/from an
+<                   |                      | I/O-mapped location
+< Configuration     | Read/Write           | Device Function config/setup
+< _Message_         | Baseline (including  | From event signaling mechanism
+<                   | Vendor–Defined)      | to general purpose messaging
+< 
+< So basically the PCIe-spec defines four _address spaces_. The
+< _message_ space is one of them. Seeing the "ranges" DT-property is
+< about the space-to-space mapping IMO there is nothing wrong with using
+< it for the _message_ space mapping.
+
+As you can see the MEM, IO, config and Message are defined as address
+space. Looking at the message request description in the spec, there
+can be various types of the messages. All of them are listed in "2.2.8
+Message Request Rules". Some of them can be routed by _address_ or
+_ID_ (BDF), but some of them can lack of any address/ID field. In
+accordance with the "Table 2-17: Message Routing" footnote there is no
+message requests defined at the moment with the Address-based routing.
+In the meantime for the address-less messages there is no address
+translation needs to be performed, thus having the ranges-based
+mapping would be just pointless for them. But if we had a message
+request defined with the address-based routing then it might have
+required a mapping similar to the MEM and IO ones.
+
+Anyway giving to all of that a second thought, I more-and-more getting
+further away from my original idea of having the config and message
+region mapped over the "ranges" property. There is no actual address
+translation performed at least in the second cases. So using the "ranges"
+property for it would be pointless indeed... ( But originally the idea
+seemed very attractive seeing the PCIe-specific "ranges" property has
+unused mapping type flags and permitted special address format...
+
+
+Let's get back to the Frank work then. What would you suggest as a
+good solution? There are two options at the moment:
+1. Define DWC-specific "msg" reg-name with a peace of the outbound
+iATU space which would be used to generate the messages. (thus
+implementing the same approach as being utilized for the config-space
+mapping).
+2. Manually, in the driver, reserve a peace of the CPU-to-PCIe-MEM
+"ranges" region and have it utilized for the message request TLPs
+(implemented in this patch).
+
+The later one seems less safe since the entire outbound iATU range
+could be dedicated for some platform-specific means. So reserving
+a peace of it will cause problems in those platforms.
+
+-Serge(y)
+
 > 
-> The driver can be extended to support other remote processors
-> controlled with a reset control and a reset status registers.
-> 
-> The driver also supports control of multiple remote processors at the
-> same time.
-> 
-> Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-> ---
->  MAINTAINERS                    |   6 +
->  drivers/remoteproc/Kconfig     |  18 ++
->  drivers/remoteproc/Makefile    |   1 +
->  drivers/remoteproc/arm_rproc.c | 395 +++++++++++++++++++++++++++++++++
->  4 files changed, 420 insertions(+)
->  create mode 100644 drivers/remoteproc/arm_rproc.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 8d1052fa6a69..54d6a40feea5 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -1764,6 +1764,12 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/interrupt-controller/arm,vic.yaml
->  F:	drivers/irqchip/irq-vic.c
->  
-> +ARM REMOTEPROC DRIVER
-> +M:	Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-> +L:	linux-remoteproc@vger.kernel.org
-> +S:	Maintained
-> +F:	drivers/remoteproc/arm_rproc.c
-> +
-
-Humm... I'm not sure this is needed for now.  You'll be CC'ed in future postings
-anyway if someone changes this drivers.
-
->  ARM SMC WATCHDOG DRIVER
->  M:	Julius Werner <jwerner@chromium.org>
->  R:	Evan Benn <evanbenn@chromium.org>
-> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
-> index 48845dc8fa85..57fbac454a5d 100644
-> --- a/drivers/remoteproc/Kconfig
-> +++ b/drivers/remoteproc/Kconfig
-> @@ -365,6 +365,24 @@ config XLNX_R5_REMOTEPROC
->  
->  	  It's safe to say N if not interested in using RPU r5f cores.
->  
-> +config ARM_REMOTEPROC
-> +	tristate "Arm remoteproc support"
-> +	depends on HAS_IOMEM && ARM64
-> +	default n
-> +	help
-> +	  Say y here to support Arm remote processors via the remote
-> +	  processor framework.
-> +
-> +	  The supported processors are those that come with a reset control register
-> +	  and a reset status register. The design can be extended to support different
-> +	  processors meeting these requirements.
-> +	  The driver also supports control of multiple remote cores at the same time.
-> +
-> +	  Supported remote cores:
-> +	      Corstone-1000 External System (Cortex-M3)
-> +
-
-Please remove.  The descrition in the Kconfig file should be related to a family
-of device and the specific model number found in the driver.  
-
-> +	  It's safe to say N here.
-> +
->  endif # REMOTEPROC
->  
->  endmenu
-> diff --git a/drivers/remoteproc/Makefile b/drivers/remoteproc/Makefile
-> index 91314a9b43ce..73126310835b 100644
-> --- a/drivers/remoteproc/Makefile
-> +++ b/drivers/remoteproc/Makefile
-> @@ -39,3 +39,4 @@ obj-$(CONFIG_STM32_RPROC)		+= stm32_rproc.o
->  obj-$(CONFIG_TI_K3_DSP_REMOTEPROC)	+= ti_k3_dsp_remoteproc.o
->  obj-$(CONFIG_TI_K3_R5_REMOTEPROC)	+= ti_k3_r5_remoteproc.o
->  obj-$(CONFIG_XLNX_R5_REMOTEPROC)	+= xlnx_r5_remoteproc.o
-> +obj-$(CONFIG_ARM_REMOTEPROC)		+= arm_rproc.o
-> diff --git a/drivers/remoteproc/arm_rproc.c b/drivers/remoteproc/arm_rproc.c
-> new file mode 100644
-> index 000000000000..6afa78ae7ad3
-> --- /dev/null
-> +++ b/drivers/remoteproc/arm_rproc.c
-> @@ -0,0 +1,395 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright 2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
-> + *
-> + * Authors:
-> + *   Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-> + */
-> +
-> +#include <linux/delay.h>
-> +#include <linux/err.h>
-> +#include <linux/firmware.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/remoteproc.h>
-> +
-> +#include "remoteproc_internal.h"
-> +
-> +/**
-> + * struct arm_rproc_reset_cfg - remote processor reset configuration
-> + * @ctrl_reg: address of the control register
-> + * @state_reg: address of the reset status register
-> + */
-> +struct arm_rproc_reset_cfg {
-> +	void __iomem *ctrl_reg;
-> +	void __iomem *state_reg;
-> +};
-> +
-> +struct arm_rproc;
-> +
-
-This is useless, please remove.
-
-> +/**
-> + * struct arm_rproc_dcfg - Arm remote processor configuration
-
-Configuration?  This looks more like operations to me.  Please consider
-renaming.
-
-> + * @stop: stop callback function
-> + * @start: start callback function
-> + */
-> +struct arm_rproc_dcfg {
-> +	int (*stop)(struct rproc *rproc);
-> +	int (*start)(struct rproc *rproc);
-> +};
-> +
-> +/**
-> + * struct arm_rproc - Arm remote processor instance
-> + * @rproc: rproc handler
-> + * @core_dcfg: device configuration pointer
-> + * @reset_cfg: reset configuration registers
-> + */
-> +struct arm_rproc {
-> +	struct rproc				*rproc;
-> +	const struct arm_rproc_dcfg		*core_dcfg;
-> +	struct arm_rproc_reset_cfg		reset_cfg;
-> +};
-> +
-> +/* Definitions for Arm Corstone-1000 External System */
-> +
-> +#define EXTSYS_RST_CTRL_CPUWAIT			BIT(0)
-> +#define EXTSYS_RST_CTRL_RST_REQ			BIT(1)
-> +
-> +#define EXTSYS_RST_ACK_MASK				GENMASK(2, 1)
-> +#define EXTSYS_RST_ST_RST_ACK(x)			\
-> +				((u8)(FIELD_GET(EXTSYS_RST_ACK_MASK, (x))))
-> +
-> +#define EXTSYS_RST_ACK_NO_RESET_REQ			(0x0)
-> +#define EXTSYS_RST_ACK_NOT_COMPLETE			(0x1)
-> +#define EXTSYS_RST_ACK_COMPLETE			(0x2)
-> +#define EXTSYS_RST_ACK_RESERVED			(0x3)
-> +
-> +#define EXTSYS_RST_ACK_POLL_TRIES			(3)
-> +#define EXTSYS_RST_ACK_POLL_TIMEOUT			(1000)
-
-On my side most of the values above came out misaligned.
-
-> +
-> +/**
-> + * arm_rproc_start_cs1000_extsys() - custom start function
-> + * @rproc: pointer to the remote processor object
-> + *
-> + * Start function for Corstone-1000 External System.
-> + * Allow the External System core start execute instructions.
-> + *
-> + * Return:
-> + *
-> + * 0 on success. Otherwise, failure
-> + */
-> +static int arm_rproc_start_cs1000_extsys(struct rproc *rproc)
-> +{
-> +	struct arm_rproc *priv = rproc->priv;
-> +	u32 ctrl_reg;
-> +
-> +	/* CPUWAIT signal of the External System is de-asserted */
-> +	ctrl_reg = readl(priv->reset_cfg.ctrl_reg);
-> +	ctrl_reg &= ~EXTSYS_RST_CTRL_CPUWAIT;
-> +	writel(ctrl_reg, priv->reset_cfg.ctrl_reg);
-> +
-> +	return 0;
-> +}
-> +
-> +/**
-> + * arm_rproc_cs1000_extsys_poll_rst_ack() - poll RST_ACK bits
-> + * @rproc: pointer to the remote processor object
-> + * @exp_ack: expected bits value
-> + * @rst_ack: bits value read
-> + *
-> + * Tries to read RST_ACK bits until the timeout expires.
-> + * EXTSYS_RST_ACK_POLL_TRIES tries are made,
-> + * every EXTSYS_RST_ACK_POLL_TIMEOUT milliseconds.
-> + *
-> + * Return:
-> + *
-> + * 0 on success. Otherwise, failure
-> + */
-> +static int arm_rproc_cs1000_extsys_poll_rst_ack(struct rproc *rproc,
-> +						u8 exp_ack, u8 *rst_ack)
-> +{
-> +	struct arm_rproc *priv = rproc->priv;
-> +	struct device *dev = rproc->dev.parent;
-> +	u32 state_reg;
-> +	int tries = EXTSYS_RST_ACK_POLL_TRIES;
-> +	unsigned long timeout;
-> +
-        struct device *dev = rproc->dev.parent;
-	struct arm_rproc *priv = rproc->priv;
-	int tries = EXTSYS_RST_ACK_POLL_TRIES;
-	unsigned long timeout;
-	u32 state_reg;
-
-> +	do {
-> +		state_reg = readl(priv->reset_cfg.state_reg);
-> +		*rst_ack = EXTSYS_RST_ST_RST_ACK(state_reg);
-> +
-> +		if (*rst_ack == EXTSYS_RST_ACK_RESERVED) {
-> +			dev_err(dev, "unexpected RST_ACK value: 0x%x\n",
-> +				*rst_ack);
-> +			return -EINVAL;
-> +		}
-> +
-> +		/* expected ACK value read */
-> +		if ((*rst_ack & exp_ack) || (*rst_ack == exp_ack))
-
-I'm not sure why the second condition in this if() statement is needed.  As far
-as I can tell the first condition will trigger and the second one won't be
-reached.
-
-> +			return 0;
-> +
-> +		timeout = msleep_interruptible(EXTSYS_RST_ACK_POLL_TIMEOUT);
-> +
-> +		if (timeout) {
-> +			dev_err(dev, "polling RST_ACK  aborted\n");
-> +			return -ECONNABORTED;
-> +		}
-> +	} while (--tries);
-> +
-> +	dev_err(dev, "polling RST_ACK timed out\n");
-> +
-> +	return -ETIMEDOUT;
-> +}
-> +
-> +/**
-> + * arm_rproc_stop_cs1000_extsys() - custom stop function
-> + * @rproc: pointer to the remote processor object
-> + *
-> + * Reset all logic within the External System, the core will be in a halt state.
-> + *
-> + * Return:
-> + *
-> + * 0 on success. Otherwise, failure
-> + */
-> +static int arm_rproc_stop_cs1000_extsys(struct rproc *rproc)
-> +{
-> +	struct arm_rproc *priv = rproc->priv;
-> +	struct device *dev = rproc->dev.parent;
-> +	u32 ctrl_reg;
-> +	u8 rst_ack, req_status;
-> +	int ret;
-> +
-
-	struct device *dev = rproc->dev.parent;
-	struct arm_rproc *priv = rproc->priv;
-	u8 rst_ack, req_status;
-	u32 ctrl_reg;
-	int ret;
-
-> +	ctrl_reg = readl(priv->reset_cfg.ctrl_reg);
-> +	ctrl_reg |= EXTSYS_RST_CTRL_RST_REQ;
-> +	writel(ctrl_reg, priv->reset_cfg.ctrl_reg);
-> +
-> +	ret = arm_rproc_cs1000_extsys_poll_rst_ack(rproc,
-> +						   EXTSYS_RST_ACK_COMPLETE |
-> +						   EXTSYS_RST_ACK_NOT_COMPLETE,
-> +						   &rst_ack);
-> +	if (ret)
-> +		return ret;
-> +
-> +	req_status = rst_ack;
-> +
-> +	ctrl_reg = readl(priv->reset_cfg.ctrl_reg);
-> +	ctrl_reg &= ~EXTSYS_RST_CTRL_RST_REQ;
-> +	writel(ctrl_reg, priv->reset_cfg.ctrl_reg);
-> +
-> +	ret = arm_rproc_cs1000_extsys_poll_rst_ack(rproc, 0, &rst_ack);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (req_status == EXTSYS_RST_ACK_COMPLETE) {
-> +		dev_dbg(dev, "the requested reset has been accepted\n");
-
-Please remove
-
-> +		return 0;
-> +	}
-> +
-> +	dev_err(dev, "the requested reset has been denied\n");
-
-There is enough error reporting in arm_rproc_cs1000_extsys_poll_rst_ack(),
-please remove.
-
-> +	return -EACCES;
-> +}
-> +
-> +static const struct arm_rproc_dcfg arm_rproc_cfg_corstone1000_extsys = {
-> +	.stop          = arm_rproc_stop_cs1000_extsys,
-> +	.start         = arm_rproc_start_cs1000_extsys,
-> +};
-> +
-> +/**
-> + * arm_rproc_stop() - Stop function for rproc_ops
-> + * @rproc: pointer to the remote processor object
-> + *
-> + * Calls the stop() callback of the remote core
-> + *
-> + * Return:
-> + *
-> + * 0 on success. Otherwise, failure
-> + */
-> +static int arm_rproc_stop(struct rproc *rproc)
-> +{
-> +	struct arm_rproc *priv = rproc->priv;
-> +
-> +	return priv->core_dcfg->stop(rproc);
-> +}
-> +
-> +/**
-> + * arm_rproc_start() - Start function for rproc_ops
-> + * @rproc: pointer to the remote processor object
-> + *
-> + * Calls the start() callback of the remote core
-> + *
-> + * Return:
-> + *
-> + * 0 on success. Otherwise, failure
-> + */
-> +static int arm_rproc_start(struct rproc *rproc)
-> +{
-> +	struct arm_rproc *priv = rproc->priv;
-> +
-> +	return priv->core_dcfg->start(rproc);
-> +}
-> +
-> +/**
-> + * arm_rproc_parse_fw() - Parse firmware function for rproc_ops
-> + * @rproc: pointer to the remote processor object
-> + * @fw: pointer to the firmware
-> + *
-> + * Does nothing currently.
-> + *
-> + * Return:
-> + *
-> + * 0 for success.
-> + */
-> +static int arm_rproc_parse_fw(struct rproc *rproc, const struct firmware *fw)
-> +{
-> +	return 0;
-> +}
-> +
-> +/**
-> + * arm_rproc_load() - Load firmware to memory function for rproc_ops
-> + * @rproc: pointer to the remote processor object
-> + * @fw: pointer to the firmware
-> + *
-> + * Does nothing currently.
-> + *
-> + * Return:
-> + *
-> + * 0 for success.
-> + */
-> +static int arm_rproc_load(struct rproc *rproc, const struct firmware *fw)
-> +{
-
-What is the point of doing rproc_of_parse_firmware() if the firmware image is
-not loaded to memory?  Does the remote processor have some kind of default ROM
-image to run if it doesn't find anything in memory?
-
-> +	return 0;
-> +}
-> +
-> +static const struct rproc_ops arm_rproc_ops = {
-> +	.start		= arm_rproc_start,
-> +	.stop		= arm_rproc_stop,
-> +	.load		= arm_rproc_load,
-> +	.parse_fw	= arm_rproc_parse_fw,
-> +};
-> +
-> +/**
-> + * arm_rproc_probe() - the platform device probe
-> + * @pdev: the platform device
-> + *
-> + * Read from the device tree the properties needed to setup
-> + * the reset and comms for the remote processor.
-> + * Also, allocate a rproc device and register it with the remoteproc subsystem.
-> + *
-> + * Return:
-> + *
-> + * 0 on success. Otherwise, failure
-> + */
-> +static int arm_rproc_probe(struct platform_device *pdev)
-> +{
-> +	const struct arm_rproc_dcfg *core_dcfg;
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	struct arm_rproc *priv;
-> +	struct rproc *rproc;
-> +	const char *fw_name;
-> +	int ret;
-> +	struct resource *res;
-> +
-> +	core_dcfg = of_device_get_match_data(dev);
-> +	if (!core_dcfg)
-> +		return -ENODEV;
-> +
-> +	ret = rproc_of_parse_firmware(dev, 0, &fw_name);
-> +	if (ret) {
-> +		dev_err(dev,
-> +			"can't parse firmware-name from device tree (%pe)\n",
-> +			ERR_PTR(ret));
-> +		return ret;
-
-Please replace with dev_err_probe().
-
-> +	}
-> +
-> +	dev_dbg(dev, "firmware-name: %s\n", fw_name);
-> +
-> +	rproc = rproc_alloc(dev, np->name, &arm_rproc_ops, fw_name,
-> +			    sizeof(*priv));
-
-Using devm_rproc_alloc() would make this driver even more simple.
-
-> +	if (!rproc)
-> +		return -ENOMEM;
-> +
-> +	priv = rproc->priv;
-> +	priv->rproc = rproc;
-> +	priv->core_dcfg = core_dcfg;
-> +
-> +	res = platform_get_resource_byname(pdev,
-> +					   IORESOURCE_MEM, "reset-control");
-> +	priv->reset_cfg.ctrl_reg = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(priv->reset_cfg.ctrl_reg)) {
-> +		ret = PTR_ERR(priv->reset_cfg.ctrl_reg);
-> +		dev_err(dev,
-> +			"can't map the reset-control register (%pe)\n",
-> +			ERR_PTR((unsigned long)priv->reset_cfg.ctrl_reg));
-
-dev_err_probe()
-
-> +		goto err_free_rproc;
-
-This isn't needed after moving to devm_rproc_alloc().
-
-> +	} else {
-> +		dev_dbg(dev, "reset-control: %p\n", priv->reset_cfg.ctrl_reg);
-> +	}
-> +
-> +	res = platform_get_resource_byname(pdev,
-> +					   IORESOURCE_MEM, "reset-status");
-> +	priv->reset_cfg.state_reg = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(priv->reset_cfg.state_reg)) {
-> +		ret = PTR_ERR(priv->reset_cfg.state_reg);
-> +		dev_err(dev,
-> +			"can't map the reset-status register (%pe)\n",
-> +			ERR_PTR((unsigned long)priv->reset_cfg.state_reg));
-> +		goto err_free_rproc;
-
-Same comments as above.
-
-> +	} else {
-> +		dev_dbg(dev, "reset-status: %p\n",
-> +			priv->reset_cfg.state_reg);
-
-This isn't adding anything valuable, please remove.
-
-> +	}
-> +
-> +	platform_set_drvdata(pdev, rproc);
-> +
-> +	ret = rproc_add(rproc);
-
-devm_rproc_add()
-
-> +	if (ret) {
-> +		dev_err(dev, "can't add remote processor (%pe)\n",
-> +			ERR_PTR(ret));
-> +		goto err_free_rproc;
-> +	} else {
-> +		dev_dbg(dev, "remote processor added\n");
-
-Please remove.
-
-> +	}
-> +
-> +	return 0;
-> +
-> +err_free_rproc:
-> +	rproc_free(rproc);
-> +
-> +	return ret;
-> +}
-> +
-> +/**
-> + * arm_rproc_remove() - the platform device remove
-> + * @pdev: the platform device
-> + *
-> + * Delete and free the resources used.
-> + */
-> +static void arm_rproc_remove(struct platform_device *pdev)
-> +{
-> +	struct rproc *rproc = platform_get_drvdata(pdev);
-> +
-> +	rproc_del(rproc);
-> +	rproc_free(rproc);
-> +}
-
-This shouldn't be needed anymore after using devm_rproc_alloc() and
-devm_rproc_add().
-
-> +
-> +static const struct of_device_id arm_rproc_of_match[] = {
-> +	{ .compatible = "arm,corstone1000-extsys", .data = &arm_rproc_cfg_corstone1000_extsys },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, arm_rproc_of_match);
-> +
-> +static struct platform_driver arm_rproc_driver = {
-> +	.probe = arm_rproc_probe,
-> +	.remove_new = arm_rproc_remove,
-> +	.driver = {
-> +		.name = "arm-rproc",
-> +		.of_match_table = arm_rproc_of_match,
-> +	},
-> +};
-> +module_platform_driver(arm_rproc_driver);
-> +
-
-I am echoing Krzysztof view about how generic this driver name is.  This has to
-be related to a family of processors or be made less generic in some way.  Have
-a look at what TI did for their K3 lineup [1] - I would like to see the same
-thing done here.
-
-Thanks,
-Mathieu
-
-[1]. https://elixir.bootlin.com/linux/latest/source/drivers/remoteproc/ti_k3_dsp_remoteproc.c#L898
-
-
-> +MODULE_LICENSE("GPL");
-> +MODULE_DESCRIPTION("Arm Remote Processor Control Driver");
-> +MODULE_AUTHOR("Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>");
-> -- 
-> 2.25.1
-> 
+> Rob
 
