@@ -1,121 +1,219 @@
-Return-Path: <devicetree+bounces-48001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23A5986FA84
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:12:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BA2DE86FAA7
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:23:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 54F2E1C20E42
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 07:12:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 076F2B20CD0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 07:23:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1422E134A3;
-	Mon,  4 Mar 2024 07:12:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842FF13AD8;
+	Mon,  4 Mar 2024 07:23:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="J5QUBIbs"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qHkPhrNt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f181.google.com (mail-pf1-f181.google.com [209.85.210.181])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8744053A6
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 07:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6BC134A3
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 07:23:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709536347; cv=none; b=h9EC49OX6d/Rx2dW7xAysolUwsf9hz4MayhExocqRvhk5KT1kGnPNoZzVmMk4aeluh7TgQFSwrQdYfMobqlDkBRqICCRmDOef1ZpeCIEIr8upyapSYZbPAZ22ViurZxrsqwG8AaNEYKMSQnDGNH+x3B0+HuHkaTnIW6qnIanDew=
+	t=1709537006; cv=none; b=Ql/Gbl9lFaAXooQp+b06aWi8jGejyXJ/5sfBtJygH2usog704GFr74n84q4/wDmEwHgFmaUx2UZWePXHHaPnL7hsJKtHWwJH03o67hrWp9cWA4847dPbva55jwB4pNv62cwdN5p+JLbW6DFR6kTII0eKXhN34kqBdwR1X/yo2Xw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709536347; c=relaxed/simple;
-	bh=TtMszT60sJFiCKPawS7iBjv7Fz74IxMlNkB/u4C38Ck=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=BCXMKajaZsIwh7aE7X9/saT1oAJOW3llH1KkG7M7UYcJg4bxZYbaqxkS+HQ1D03TemZuqFPXbM3n1crdXAOWE9m1yvYMWH7oWyiNE51Li0mAVUpnpFZCOQed2HWPSpzE7cV+VgFUMACnbO1OIwcEl6GRA+gKK8IpwNGLWkgE1RQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=J5QUBIbs; arc=none smtp.client-ip=209.85.210.181
+	s=arc-20240116; t=1709537006; c=relaxed/simple;
+	bh=M03hxy49tZj3JEHn2dTWKxfoGsKeX4oy3shfwcKmMIU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MpE7F+V/icroZa/HEL24WMdVlGxsGTf/p/LC4ZHWlDlj1W9qSEgqH3CGhRnR5UtOpxFPOHbnKeBekcD4h53C26O7Hz6Y/i/kvhjDO6wiiH3tKZUY0ySDaUMUHpt2VzUc2YhaWou0ghsGLvYMH3RlgdhnB+/g+XD7mggXt89OcMs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qHkPhrNt; arc=none smtp.client-ip=209.85.221.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pf1-f181.google.com with SMTP id d2e1a72fcca58-6e5a232fe80so2398346b3a.0
-        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 23:12:25 -0800 (PST)
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-33d2b354c72so3142328f8f.1
+        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 23:23:24 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709536345; x=1710141145; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=rDcki6wWn44JwR9ywq+CgLT/BHDzHDzpseujJ9jCJpo=;
-        b=J5QUBIbsPGjkqYN55GvlFrmdvqCslluBTbSnJNmLcc/HE8+VCiHvUtjl4jrI4zfg//
-         CKvCMB9f9qODaGh9Q9TB6XjRkgF3vHPE2bGFfzIZKx1+kXGu4wJWE+//ByxDSroWmFhj
-         Mf/IQixkUmSlklnelnTwHI97pgYIpKSseGRbCIRCF11syrK33K5LZdNqcMTTlfLLPtvx
-         j1o+cf8w2d1SUfTqUv7tmAw2+66JYlSuVltzI1N4wBX1y3PmaDcqwK8EZKdnufjZM+nD
-         fNz5mIY9ZHHnWywEJUkJwwiBOZDFhLlvs4YdxsHPWZmWUxxC1nCvX5ZFvToEUM/yg3fZ
-         ntOw==
+        d=linaro.org; s=google; t=1709537003; x=1710141803; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zvv2RvqAKR32wfF6dMhJCec7pDLoBXFhK3YVJX0dABw=;
+        b=qHkPhrNtzRyFswmUGV+qgKpThNuzH4z8aCB9miC28TGgwuJ1XQktR8CXmk66dZ2mCy
+         ujRTt4fZVCFZeYergXIICvbUBtqczeNM6LyLA78HLIlKAcQu2et8hYRbSvzkwO8MHXA0
+         v14SMkaQNBMLNFrAYgByePaCffEgB8kubd6ZkAesoi40dpkdI6yD92LbhA//lyCzgxN+
+         GQRMq5wQYwIQHhd0WWn+HjYtDLvFVRO8nYUMS74Vg0oilukE8fv8AH8KTudrlcbAl/C5
+         582nXfOL49/nHcxbR1cQt1erteRedrtgU8JO6Tzqyk8ECnr2fYGaLRk/PnxqT/mKhs7E
+         Qspg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709536345; x=1710141145;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20230601; t=1709537003; x=1710141803;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rDcki6wWn44JwR9ywq+CgLT/BHDzHDzpseujJ9jCJpo=;
-        b=A3qYCuMAvzrro6NgVR8Sej6K4h/JJcrIrnwCBsYPfJ7At0HPsr3aZ9bQJqh2Uh10I4
-         PnMt1I80f162ooJXWpLYXKLqLLpke7QUbPvQZErIjXikvIwvB7dceud81OZDRI+nYjK8
-         TE/DC/sg0a1es88RC1SITZWT/WppxKElZwdx6560/wXxtwRZBnoXLmt08MRhaiWwHteZ
-         fVWPYGEMzYS1mKCQ1YuP8JjcOpkQ7/I8iBAAiR3ZBo99zjUceKPfFKiR0mkOvYlUdRuU
-         sMn92Yxl3CQipuTlRYSFqILKh21kcZFtbS+KOr+2Si9Jzj+qmt3zPekLClOcrPvQaHtf
-         oblg==
-X-Forwarded-Encrypted: i=1; AJvYcCWq5KblzvqxSXIdayYZN6lbB0hdNQ9jjbsexlBDabeXlnlYipQx0Tobt5BRXufz9YpeQAeaEH4/rEv7JCqudpC2NlwH6DPjbq5RyA==
-X-Gm-Message-State: AOJu0Yz0kziIOsC7Ee+dPZYs7CsT1QZCl/PzkT5okmow8V2pkJIu8VH/
-	h8bGtnip3jxmIef6kUnjCDMCFn+3l2fF8IaW4zIm5qhmWgvIz7ErnXH0IBZa9sc=
-X-Google-Smtp-Source: AGHT+IGRGLtypkqvltDU7f+SWiJXwZCuN3YSRC97dF/QpzFqcFscjmL/DzIb/6HX7bsAuMTqJl3d7g==
-X-Received: by 2002:a05:6a00:22d5:b0:6e4:c102:8065 with SMTP id f21-20020a056a0022d500b006e4c1028065mr11204883pfj.5.1709536344783;
-        Sun, 03 Mar 2024 23:12:24 -0800 (PST)
-Received: from localhost ([122.172.85.206])
-        by smtp.gmail.com with ESMTPSA id x23-20020a056a000bd700b006e04553a4c5sm6604551pfu.52.2024.03.03.23.12.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 03 Mar 2024 23:12:24 -0800 (PST)
-Date: Mon, 4 Mar 2024 12:42:22 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH 3/3] cpufreq: qcom-nvmem: add support for IPQ5321
-Message-ID: <20240304071222.cx3s37mphddk23bv@vireshk-i7>
-References: <20240228-ipq5321-sku-support-v1-0-14e4d4715f4b@quicinc.com>
- <20240228-ipq5321-sku-support-v1-3-14e4d4715f4b@quicinc.com>
+        bh=Zvv2RvqAKR32wfF6dMhJCec7pDLoBXFhK3YVJX0dABw=;
+        b=NjKVTbGbj3PrU4wa6lYZMVE6qwdlWiwBZ7MIFhspIFISZnTraRujkJhQ/aMUHFapJA
+         cRAkjdllj5hWYhrbwIm7+CQ6tbR5zIuGDEur6GjpIyAhLLGTefKRfjsL4ERvqA3iGpJC
+         Kwy+52vIj4Oh+lYTIO3GY/sjXNupriCKNh6DPBnP9UWCAQIN6nT+ftw33lxbKf+XuKrH
+         zeAne4S2lQ4xDNXmWoruqqbkaUOXbcBsdQAgvkKQ5XxJAon+GZEegrPRwtbAcAWFlloq
+         +ohz7pSPTaZE7iSj32ZrsbKv1QtOzUhMIhCVIWiE2xlkek5GURQIko2lgGv0z3L8VkPd
+         +qiA==
+X-Forwarded-Encrypted: i=1; AJvYcCVilDGAWnO/7A8jDd3zywjfYQRc2avLuYHYskL2csSLQv+j2G7M26eCSGRtBTSFl1cvOpukLSivipU9K36q2xzmKcSEIGl/QYw36w==
+X-Gm-Message-State: AOJu0YzntX7qXA7yzZ6RjnzOWZNTCsGPwQ5dbbei4hhn8bFWHNVOGgAe
+	InqFiwSSnc4qj/Be+lniuFEt7gtaYAul5FhYhDGi/1AEdwHXw4Puyoup6i3ZV68=
+X-Google-Smtp-Source: AGHT+IE7ALsJqhDpVZxE7usDUH7HTanZGu45qUCRfZCLZQ3L36mu/z7mahNw7Pce9HumilUFcN9K2A==
+X-Received: by 2002:adf:e643:0:b0:33d:c5c7:4182 with SMTP id b3-20020adfe643000000b0033dc5c74182mr5737767wrn.7.1709537002828;
+        Sun, 03 Mar 2024 23:23:22 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id h8-20020a056000000800b0033d2ae84fafsm8098930wrx.52.2024.03.03.23.23.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 03 Mar 2024 23:23:22 -0800 (PST)
+Message-ID: <9c1f74b9-468b-4243-a21e-fd18183aa4b1@linaro.org>
+Date: Mon, 4 Mar 2024 08:23:20 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240228-ipq5321-sku-support-v1-3-14e4d4715f4b@quicinc.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dt-bindings: dma: fsl-edma: allow 'power-domains'
+ property
+To: Frank Li <Frank.li@nxp.com>
+Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
+ dmaengine@vger.kernel.org, imx@lists.linux.dev,
+ krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+ peng.fan@nxp.com, robh@kernel.org, vkoul@kernel.org
+References: <20240301214536.958869-1-Frank.Li@nxp.com>
+ <20240301214536.958869-2-Frank.Li@nxp.com>
+ <885501b5-0364-48bd-bc1d-3bc486d1b4c6@linaro.org>
+ <ZeNI1nG1dmbwOqbb@lizhi-Precision-Tower-5810>
+ <31e62acf-d605-4786-80a1-df52c8490913@linaro.org>
+ <ZeNWXxzFBzNj0gM1@lizhi-Precision-Tower-5810>
+ <e1d0aafe-e54f-4331-8505-135b9a8f9bff@linaro.org>
+ <ZeNYG1IUfniWkhcp@lizhi-Precision-Tower-5810>
+ <32d4a6c9-1cc3-4e9a-81a6-744a33bc6bee@linaro.org>
+ <ZeU/UQVPj/q4kD3p@lizhi-Precision-Tower-5810>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ZeU/UQVPj/q4kD3p@lizhi-Precision-Tower-5810>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On 28-02-24, 20:21, Kathiravan Thirumoorthy wrote:
-> Like all other SoCs in IPQ5332 family, cpufreq for IPQ5321 is also
-> determined by the eFuse, with the maximum limit of 1.1GHz. Add support
-> for the same.
+On 04/03/2024 04:26, Frank Li wrote:
+> On Sun, Mar 03, 2024 at 08:55:10AM +0100, Krzysztof Kozlowski wrote:
+>> On 02/03/2024 17:47, Frank Li wrote:
+>>> On Sat, Mar 02, 2024 at 05:43:01PM +0100, Krzysztof Kozlowski wrote:
+>>>> On 02/03/2024 17:39, Frank Li wrote:
+>>>>> On Sat, Mar 02, 2024 at 05:20:42PM +0100, Krzysztof Kozlowski wrote:
+>>>>>> On 02/03/2024 16:42, Frank Li wrote:
+>>>>>>> On Sat, Mar 02, 2024 at 02:59:39PM +0100, Krzysztof Kozlowski wrote:
+>>>>>>>> On 01/03/2024 22:45, Frank Li wrote:
+>>>>>>>>> Allow 'power-domains' property because i.MX8DXL i.MX8QM and i.MX8QXP need
+>>>>>>>>> it.
+>>>>>>>>>
+>>>>>>>>> Fixed below DTB_CHECK warning:
+>>>>>>>>>   dma-controller@599f0000: Unevaluated properties are not allowed ('power-domains' was unexpected)
+>>>>>>>>>
+>>>>>>>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>>>>>>>>> ---
+>>>>>>>>>
+>>>>>>>>> Notes:
+>>>>>>>>>     Change from v1 to v2
+>>>>>>>>>     - using maxitem: 64. Each channel have one power domain. Max 64 dmachannel.
+>>>>>>>>>     - add power-domains to 'required' when compatible string is fsl,imx8qm-adma
+>>>>>>>>>     or fsl,imx8qm-edma
+>>>>>>>>>
+>>>>>>>>>  .../devicetree/bindings/dma/fsl,edma.yaml         | 15 +++++++++++++++
+>>>>>>>>>  1 file changed, 15 insertions(+)
+>>>>>>>>>
+>>>>>>>>> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>>>>>>>> index cf0aa8e6b9ec3..76c1716b8b95c 100644
+>>>>>>>>> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>>>>>>>> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
+>>>>>>>>> @@ -59,6 +59,10 @@ properties:
+>>>>>>>>>      minItems: 1
+>>>>>>>>>      maxItems: 2
+>>>>>>>>>  
+>>>>>>>>> +  power-domains:
+>>>>>>>>> +    minItems: 1
+>>>>>>>>> +    maxItems: 64
+>>>>>>>>
+>>>>>>>> Hm, this is odd. Blocks do not belong to almost infinite number of power
+>>>>>>>> domains.
+>>>>>>>
+>>>>>>> Sorry, what's your means? 'power-domains' belong to 'properties'. 
+>>>>>>> 'maxItems' belong to 'power-domains'.It is similar with 'clocks'. what's
+>>>>>>> wrong? 
+>>>>>>
+>>>>>> That one device belong to 64 power domains. That's just random code...
+>>>>>
+>>>>> Yes, each dma channel have one power domain. Total 64 dma channel. So
+>>>>> there are 64 power-domains.
+>>>>
+>>>> OK, then how about extending the example to be complete?
+>>>
+>>> Let's add 8qxp example at next version.
+>>
+>> You have already enough of examples there and your change here claims
+>> they user power domains, so why this cannot be added to existing examples?
 > 
-> Signed-off-by: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-> ---
->  drivers/cpufreq/qcom-cpufreq-nvmem.c | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> index ea05d9d67490..0a46b5d49d32 100644
-> --- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> +++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
-> @@ -191,6 +191,7 @@ static int qcom_cpufreq_kryo_name_version(struct device *cpu_dev,
->  	case QCOM_ID_IPQ5312:
->  	case QCOM_ID_IPQ5302:
->  	case QCOM_ID_IPQ5300:
-> +	case QCOM_ID_IPQ5321:
->  	case QCOM_ID_IPQ9514:
->  	case QCOM_ID_IPQ9550:
->  	case QCOM_ID_IPQ9554:
+> Only imx8qxp/8qm need power-domains now. The example in yaml is vf610, 7ulp
 
-Applied. Thanks.
+Need? Hardware is either part of power domain or not. It's not dual-state.
 
--- 
-viresh
+> and imx93. If add power-domains at existed example, it will mislead reader.
+
+Then please disallow the domains for other variants. You can convert
+imx93 to imx95 example, because it's no different than other one. There
+is little point in putting so many same examples in the binding. You are
+just duplicating DTS.
+
+Best regards,
+Krzysztof
+
 
