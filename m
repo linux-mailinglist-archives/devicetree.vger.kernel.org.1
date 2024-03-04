@@ -1,219 +1,177 @@
-Return-Path: <devicetree+bounces-48002-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48003-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA2DE86FAA7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:23:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0879F86FAC2
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 08:30:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 076F2B20CD0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 07:23:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 399B41C20DE6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 07:30:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 842FF13AD8;
-	Mon,  4 Mar 2024 07:23:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CC75134D1;
+	Mon,  4 Mar 2024 07:30:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qHkPhrNt"
+	dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b="GMJy/Frx"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D6BC134A3
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 07:23:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93F8A134AE;
+	Mon,  4 Mar 2024 07:30:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=80.241.56.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709537006; cv=none; b=Ql/Gbl9lFaAXooQp+b06aWi8jGejyXJ/5sfBtJygH2usog704GFr74n84q4/wDmEwHgFmaUx2UZWePXHHaPnL7hsJKtHWwJH03o67hrWp9cWA4847dPbva55jwB4pNv62cwdN5p+JLbW6DFR6kTII0eKXhN34kqBdwR1X/yo2Xw=
+	t=1709537413; cv=none; b=R5VOj/81ahYlC6IdedJxL4SKdz6T5xf4mVoieRWHv3ZRKnA6s6OVPrhTdXf98MXGLfCPGCwWYcjQMhAYm2DC/ZfcV9qz79w+gEZvmJwhtyqEjm9xrVwJeaLm7bPciifPBpazN5X1k3oI9dLuEYTyFFDc+1xamCjRXQMz0UnYy0s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709537006; c=relaxed/simple;
-	bh=M03hxy49tZj3JEHn2dTWKxfoGsKeX4oy3shfwcKmMIU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MpE7F+V/icroZa/HEL24WMdVlGxsGTf/p/LC4ZHWlDlj1W9qSEgqH3CGhRnR5UtOpxFPOHbnKeBekcD4h53C26O7Hz6Y/i/kvhjDO6wiiH3tKZUY0ySDaUMUHpt2VzUc2YhaWou0ghsGLvYMH3RlgdhnB+/g+XD7mggXt89OcMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qHkPhrNt; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-33d2b354c72so3142328f8f.1
-        for <devicetree@vger.kernel.org>; Sun, 03 Mar 2024 23:23:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709537003; x=1710141803; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zvv2RvqAKR32wfF6dMhJCec7pDLoBXFhK3YVJX0dABw=;
-        b=qHkPhrNtzRyFswmUGV+qgKpThNuzH4z8aCB9miC28TGgwuJ1XQktR8CXmk66dZ2mCy
-         ujRTt4fZVCFZeYergXIICvbUBtqczeNM6LyLA78HLIlKAcQu2et8hYRbSvzkwO8MHXA0
-         v14SMkaQNBMLNFrAYgByePaCffEgB8kubd6ZkAesoi40dpkdI6yD92LbhA//lyCzgxN+
-         GQRMq5wQYwIQHhd0WWn+HjYtDLvFVRO8nYUMS74Vg0oilukE8fv8AH8KTudrlcbAl/C5
-         582nXfOL49/nHcxbR1cQt1erteRedrtgU8JO6Tzqyk8ECnr2fYGaLRk/PnxqT/mKhs7E
-         Qspg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709537003; x=1710141803;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Zvv2RvqAKR32wfF6dMhJCec7pDLoBXFhK3YVJX0dABw=;
-        b=NjKVTbGbj3PrU4wa6lYZMVE6qwdlWiwBZ7MIFhspIFISZnTraRujkJhQ/aMUHFapJA
-         cRAkjdllj5hWYhrbwIm7+CQ6tbR5zIuGDEur6GjpIyAhLLGTefKRfjsL4ERvqA3iGpJC
-         Kwy+52vIj4Oh+lYTIO3GY/sjXNupriCKNh6DPBnP9UWCAQIN6nT+ftw33lxbKf+XuKrH
-         zeAne4S2lQ4xDNXmWoruqqbkaUOXbcBsdQAgvkKQ5XxJAon+GZEegrPRwtbAcAWFlloq
-         +ohz7pSPTaZE7iSj32ZrsbKv1QtOzUhMIhCVIWiE2xlkek5GURQIko2lgGv0z3L8VkPd
-         +qiA==
-X-Forwarded-Encrypted: i=1; AJvYcCVilDGAWnO/7A8jDd3zywjfYQRc2avLuYHYskL2csSLQv+j2G7M26eCSGRtBTSFl1cvOpukLSivipU9K36q2xzmKcSEIGl/QYw36w==
-X-Gm-Message-State: AOJu0YzntX7qXA7yzZ6RjnzOWZNTCsGPwQ5dbbei4hhn8bFWHNVOGgAe
-	InqFiwSSnc4qj/Be+lniuFEt7gtaYAul5FhYhDGi/1AEdwHXw4Puyoup6i3ZV68=
-X-Google-Smtp-Source: AGHT+IE7ALsJqhDpVZxE7usDUH7HTanZGu45qUCRfZCLZQ3L36mu/z7mahNw7Pce9HumilUFcN9K2A==
-X-Received: by 2002:adf:e643:0:b0:33d:c5c7:4182 with SMTP id b3-20020adfe643000000b0033dc5c74182mr5737767wrn.7.1709537002828;
-        Sun, 03 Mar 2024 23:23:22 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id h8-20020a056000000800b0033d2ae84fafsm8098930wrx.52.2024.03.03.23.23.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 03 Mar 2024 23:23:22 -0800 (PST)
-Message-ID: <9c1f74b9-468b-4243-a21e-fd18183aa4b1@linaro.org>
-Date: Mon, 4 Mar 2024 08:23:20 +0100
+	s=arc-20240116; t=1709537413; c=relaxed/simple;
+	bh=Gjmx1LoCeFmH3HZQN2zSbyKOB5bSkpnKc14O2QudTyc=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=XUUGDBpM2vD3OLD7YgfLBojEZKLWqeAYqtEbcOlMLSBkMp+zXcQl3+iXMOlntsL+c0JWgMOqAdICQKbx6TCOe/FSv2xjABpVTvY2tsBE4tQbw6crsSR2nu4GsC07h61QmjDwjgJkTE0hCazK1lLOu4eYBztqTJkCZcJtb3W1yDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev; spf=pass smtp.mailfrom=oltmanns.dev; dkim=pass (2048-bit key) header.d=oltmanns.dev header.i=@oltmanns.dev header.b=GMJy/Frx; arc=none smtp.client-ip=80.241.56.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=oltmanns.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=oltmanns.dev
+Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4Tp9MD5Wltz9sp7;
+	Mon,  4 Mar 2024 08:30:00 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oltmanns.dev;
+	s=MBO0001; t=1709537400;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=NoCsY0uVPieE3Bki0yClO1kq6+DglOQe3SGQtQLnjtI=;
+	b=GMJy/FrxoUhe66dmuSip7yLhn85T8/o5Pw4MZOhYaDRt4ckcRkuULKweChYZaDXWdhgr6I
+	4O4PnCij30/5YG9dfZOrjrM0fRaJcwH8MzZQOStZtmUi5+p8V/Q6Ej94Gzg3cEVOw7HD43
+	NrTBoWAVzbFhXlOm9EiElTj9Jyilj9WqnhImvbYxcRxTiRWlBbekJ3xdknOio5IvDB1Ugb
+	61WmDNptyR0lsWVIQuLDEnpHHPjSNd4OToqrfY2m4Plg2z6wRVzH66HE54qps5JNCE3xkk
+	O10pyaI3h4yANsmY7yeqrFcQEzBnnwnMUIo9965KXqmUr10WxIE8qFKtsAbdbQ==
+From: Frank Oltmanns <frank@oltmanns.dev>
+Subject: [PATCH v3 0/5] Pinephone video out fixes (flipping between two
+ frames)
+Date: Mon, 04 Mar 2024 08:29:16 +0100
+Message-Id: <20240304-pinephone-pll-fixes-v3-0-94ab828f269a@oltmanns.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: dma: fsl-edma: allow 'power-domains'
- property
-To: Frank Li <Frank.li@nxp.com>
-Cc: conor+dt@kernel.org, devicetree@vger.kernel.org,
- dmaengine@vger.kernel.org, imx@lists.linux.dev,
- krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
- peng.fan@nxp.com, robh@kernel.org, vkoul@kernel.org
-References: <20240301214536.958869-1-Frank.Li@nxp.com>
- <20240301214536.958869-2-Frank.Li@nxp.com>
- <885501b5-0364-48bd-bc1d-3bc486d1b4c6@linaro.org>
- <ZeNI1nG1dmbwOqbb@lizhi-Precision-Tower-5810>
- <31e62acf-d605-4786-80a1-df52c8490913@linaro.org>
- <ZeNWXxzFBzNj0gM1@lizhi-Precision-Tower-5810>
- <e1d0aafe-e54f-4331-8505-135b9a8f9bff@linaro.org>
- <ZeNYG1IUfniWkhcp@lizhi-Precision-Tower-5810>
- <32d4a6c9-1cc3-4e9a-81a6-744a33bc6bee@linaro.org>
- <ZeU/UQVPj/q4kD3p@lizhi-Precision-Tower-5810>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <ZeU/UQVPj/q4kD3p@lizhi-Precision-Tower-5810>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEx45WUC/33NQQ7CIBAF0Ks0rMXAULHtynsYFxSmlqQCgYZom
+ t5d2sSNMS7/n/w3C0kYLSbSVQuJmG2y3pUgDhXRo3J3pNaUTICB4MAbGqzDMHqHNEwTHewTE2V
+ am8EgnAXWpCxDxP1QhtdbyaNNs4+v/UnmW/vfy5wyiiCaXqKRRvOLn+aHci4dDWaykRk+TM2An
+ X4zUJhWqloqMI1u+y9mXdc3KDivswABAAA=
+To: Michael Turquette <mturquette@baylibre.com>, 
+ Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Samuel Holland <samuel@sholland.org>, 
+ =?utf-8?q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>, 
+ Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ Frank Oltmanns <frank@oltmanns.dev>, stable@vger.kernel.org, 
+ Diego Roversi <diegor@tiscali.it>
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3360; i=frank@oltmanns.dev;
+ h=from:subject:message-id; bh=Gjmx1LoCeFmH3HZQN2zSbyKOB5bSkpnKc14O2QudTyc=;
+ b=owEB7QES/pANAwAIAZppogiUStPHAcsmYgBl5XhwsffaJUTjKesrQMFXm9SL0rmYfvGrVtp+e
+ o8WbpVFG1iJAbMEAAEIAB0WIQQC/SV7f5DmuaVET5aaaaIIlErTxwUCZeV4cAAKCRCaaaIIlErT
+ xw1JC/4s83wVFPqgCyLwlwxOrDIhPUUecHpIS8lGXewEMxp/h32L7wyzeW+UxwBCskTIPbbSgZk
+ PYfNUZpk7IOalDYXZMfQeR1HW0oMPQBTS7/YbjMmwz5NB1KpK/WMQ/FJRBI/Xpts4eLjCtPFWAm
+ IyaKjK3f+niwlnuRdV5pVlgkxg+jhj+TueaP1b+DAJOYFWdMzIk+V/hKwPi680FEqLvIwdK9+Ut
+ ByYnzM1BZlYBgy2jUc8b44dTZ5/OvVkRwX1ZAQGBLZwLwPCTjR3tejhmmNBtx8XxioAAVzBU4b2
+ 9xbRYfAyPxfqToJx0nshopXEPRsotlDyVJxORuZE1fJkT/wTvKk8JlOWZhnmeAqBxBw4Dh6id3P
+ vmIQAGU95RWoj6PUm5IcZcMQp70f9RZSMD35KLwXRtpG/y4jWWzQqaRHzsRXvSwJwKp7c9k+EjJ
+ W5CwokuXlcyh+nHidpUSJK9Sck0/D8Rji7HxtSXhDkQ3RkQDPwJn+CaEjgqqchZP5qaTI=
+X-Developer-Key: i=frank@oltmanns.dev; a=openpgp;
+ fpr=02FD257B7F90E6B9A5444F969A69A208944AD3C7
 
-On 04/03/2024 04:26, Frank Li wrote:
-> On Sun, Mar 03, 2024 at 08:55:10AM +0100, Krzysztof Kozlowski wrote:
->> On 02/03/2024 17:47, Frank Li wrote:
->>> On Sat, Mar 02, 2024 at 05:43:01PM +0100, Krzysztof Kozlowski wrote:
->>>> On 02/03/2024 17:39, Frank Li wrote:
->>>>> On Sat, Mar 02, 2024 at 05:20:42PM +0100, Krzysztof Kozlowski wrote:
->>>>>> On 02/03/2024 16:42, Frank Li wrote:
->>>>>>> On Sat, Mar 02, 2024 at 02:59:39PM +0100, Krzysztof Kozlowski wrote:
->>>>>>>> On 01/03/2024 22:45, Frank Li wrote:
->>>>>>>>> Allow 'power-domains' property because i.MX8DXL i.MX8QM and i.MX8QXP need
->>>>>>>>> it.
->>>>>>>>>
->>>>>>>>> Fixed below DTB_CHECK warning:
->>>>>>>>>   dma-controller@599f0000: Unevaluated properties are not allowed ('power-domains' was unexpected)
->>>>>>>>>
->>>>>>>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
->>>>>>>>> ---
->>>>>>>>>
->>>>>>>>> Notes:
->>>>>>>>>     Change from v1 to v2
->>>>>>>>>     - using maxitem: 64. Each channel have one power domain. Max 64 dmachannel.
->>>>>>>>>     - add power-domains to 'required' when compatible string is fsl,imx8qm-adma
->>>>>>>>>     or fsl,imx8qm-edma
->>>>>>>>>
->>>>>>>>>  .../devicetree/bindings/dma/fsl,edma.yaml         | 15 +++++++++++++++
->>>>>>>>>  1 file changed, 15 insertions(+)
->>>>>>>>>
->>>>>>>>> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>>>>>>>> index cf0aa8e6b9ec3..76c1716b8b95c 100644
->>>>>>>>> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>>>>>>>> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
->>>>>>>>> @@ -59,6 +59,10 @@ properties:
->>>>>>>>>      minItems: 1
->>>>>>>>>      maxItems: 2
->>>>>>>>>  
->>>>>>>>> +  power-domains:
->>>>>>>>> +    minItems: 1
->>>>>>>>> +    maxItems: 64
->>>>>>>>
->>>>>>>> Hm, this is odd. Blocks do not belong to almost infinite number of power
->>>>>>>> domains.
->>>>>>>
->>>>>>> Sorry, what's your means? 'power-domains' belong to 'properties'. 
->>>>>>> 'maxItems' belong to 'power-domains'.It is similar with 'clocks'. what's
->>>>>>> wrong? 
->>>>>>
->>>>>> That one device belong to 64 power domains. That's just random code...
->>>>>
->>>>> Yes, each dma channel have one power domain. Total 64 dma channel. So
->>>>> there are 64 power-domains.
->>>>
->>>> OK, then how about extending the example to be complete?
->>>
->>> Let's add 8qxp example at next version.
->>
->> You have already enough of examples there and your change here claims
->> they user power domains, so why this cannot be added to existing examples?
-> 
-> Only imx8qxp/8qm need power-domains now. The example in yaml is vf610, 7ulp
+On some pinephones the video output sometimes freezes (flips between two
+frames) [1]. It seems to be that the reason for this behaviour is that
+PLL-MIPI is outside its limits, and the GPU is not running at a fixed
+rate.
 
-Need? Hardware is either part of power domain or not. It's not dual-state.
+In this patch series I propose the following changes:
+  1. sunxi-ng: Adhere to the following constraints given in the
+     Allwinner A64 Manual regarding PLL-MIPI:
+      * M/N <= 3
+      * (PLL_VIDEO0)/M >= 24MHz
+      * 500MHz <= clockrate <= 1400MHz
 
-> and imx93. If add power-domains at existed example, it will mislead reader.
+  2. Remove two operating points from the A64 DTS OPPs, so that the GPU
+     runs at a fixed rate of 432 MHz.
 
-Then please disallow the domains for other variants. You can convert
-imx93 to imx95 example, because it's no different than other one. There
-is little point in putting so many same examples in the binding. You are
-just duplicating DTS.
+Note, that when pinning the GPU to 432 MHz the issue [1] completely
+disappears for me. I've searched the BSP and could not find any
+indication that supports the idea of having the three OPPs. The only
+frequency I found in the BPSs for A64 is 432 MHz, which has also proven
+stable for me.
+
+Another bigger change compared to the previous version is that I've
+removed the patch to adapt the XBD599 panel's timings to Allwinner A64's
+PLL-MIPI new constraints from this series. Mainly, because I'm currently
+evaluationg other options that may or may not work. (It may work at
+least until HDMI support is upstreamed.) I'll probably resend the patch
+at a later point in time.
+
+I very much appreciate your feedback!
+
+[1] https://gitlab.com/postmarketOS/pmaports/-/issues/805
+
+Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+---
+Changes in v3:
+- dts: Pin GPU to 432 MHz.
+- nkm and a64: Move minimum and maximum rate handling to the common part
+  of the sunxi-ng driver.
+- Removed st7703 patch from series.
+- Link to v2: https://lore.kernel.org/r/20240205-pinephone-pll-fixes-v2-0-96a46a2d8c9b@oltmanns.dev
+
+Changes in v2:
+- dts: Increase minimum GPU frequency to 192 MHz.
+- nkm and a64: Add minimum and maximum rate for PLL-MIPI.
+- nkm: Use the same approach for skipping invalid rates in
+  ccu_nkm_find_best() as in ccu_nkm_find_best_with_parent_adj().
+- nkm: Improve names for ratio struct members and hence get rid of
+  describing comments.
+- nkm and a64: Correct description in the commit messages: M/N <= 3
+- Remove patches for nm as they were not needed.
+- st7703: Rework the commit message to cover more background for the
+  change.
+- Link to v1: https://lore.kernel.org/r/20231218-pinephone-pll-fixes-v1-0-e238b6ed6dc1@oltmanns.dev
+
+---
+Frank Oltmanns (5):
+      clk: sunxi-ng: common: Support minimum and maximum rate
+      clk: sunxi-ng: a64: Set minimum and maximum rate for PLL-MIPI
+      clk: sunxi-ng: nkm: Support constraints on m/n ratio and parent rate
+      clk: sunxi-ng: a64: Add constraints on PLL-MIPI's n/m ratio and parent rate
+      arm64: dts: allwinner: a64: Run GPU at 432 MHz
+
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  8 --------
+ drivers/clk/sunxi-ng/ccu-sun50i-a64.c         | 14 +++++++++-----
+ drivers/clk/sunxi-ng/ccu_common.c             | 15 +++++++++++++++
+ drivers/clk/sunxi-ng/ccu_common.h             |  3 +++
+ drivers/clk/sunxi-ng/ccu_nkm.c                | 21 +++++++++++++++++++++
+ drivers/clk/sunxi-ng/ccu_nkm.h                |  2 ++
+ 6 files changed, 50 insertions(+), 13 deletions(-)
+---
+base-commit: 216c1282dde38ca87ebdf1ccacee5a0682901574
+change-id: 20231218-pinephone-pll-fixes-0ccdfde273e4
 
 Best regards,
-Krzysztof
+-- 
+Frank Oltmanns <frank@oltmanns.dev>
 
 
