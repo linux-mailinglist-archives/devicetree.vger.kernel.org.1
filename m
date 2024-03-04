@@ -1,48 +1,48 @@
-Return-Path: <devicetree+bounces-48246-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48247-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DD7E87114C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 00:46:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B7BF871154
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 00:50:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DF0131F21B08
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 23:46:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AAC101C20C68
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 23:50:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E83377D09A;
-	Mon,  4 Mar 2024 23:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB02B7D3E7;
+	Mon,  4 Mar 2024 23:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nIjIbBWf"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TV8VBHum"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD98F7D06E;
-	Mon,  4 Mar 2024 23:46:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1DD47CF2B;
+	Mon,  4 Mar 2024 23:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709595993; cv=none; b=gH1Lz7TUfa3vq7RHMDCE04I7ZIiUSJuO67XEtoaGoI39VXriG8i/1NUf6XcbwlyumKWTzbdAjLGH6ENc5Y7uWmLiM2t+K7muu9+oB5jm51kGORR/jpif1RweLVueRyQsKau5maRseiyB1rR636wFrTdpR5Vziy6BrIxMvxYmKrM=
+	t=1709596234; cv=none; b=Xrc8hDgPqQyTGPbeCyDH8z4OCYS0zxeOsXwzpOUG5s6DXP8o1tcp+R13IQFsjiHufNoaV4FaW+HLo3q4g0chX+kCjzQ2YJmuPH9sIzi2AQllp8zAWvFzXK3p6zhIeCg/5m1UGhEtpKYvQacTfTJL5n208Pb9NaN6JWo1y9HWJO0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709595993; c=relaxed/simple;
-	bh=7WNSrD/gX6pibCjhneUKu3M0LMXGqqIQ3WUVG/m73CI=;
+	s=arc-20240116; t=1709596234; c=relaxed/simple;
+	bh=FUqV7V3jF4155KU2wYQ2VpqDEN8BLRgff07ULcK6dDo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CgPkx9uOdDO04Z9Z7XG+ykB5S3hwrmOHYklfQo9FNn9tdn5SpbTwofhvxsmdvN7BhsGZCJDUgEMyQ37NbybuXllupxqlkQvs0KB/Uz0eem2qJXpjpxkpcAJSrmgIu1zlKYrq9LWNq2A3yGTwgIUFaOxe5VreO0NtSF4UH0jRE1s=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nIjIbBWf; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65789C433F1;
-	Mon,  4 Mar 2024 23:46:30 +0000 (UTC)
+	 In-Reply-To:Content-Type; b=UpIw2MQT4ZbZne3p9XWzzv9BhtQZWhiCPiqOaNBb706SMg71gxd9FobsDEfM9GUIPLjuJseHkJzQCVQ4pAo/cRBsW6y66V0zJ76kZ9G+3VwmgKl3+iXWFGmh5BvFIMBc7K2FJ6nAaCNM+QmQHxNSszZSQf4Ifm+qwG6CkgYLISg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TV8VBHum; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 98B69C433F1;
+	Mon,  4 Mar 2024 23:50:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709595993;
-	bh=7WNSrD/gX6pibCjhneUKu3M0LMXGqqIQ3WUVG/m73CI=;
+	s=k20201202; t=1709596234;
+	bh=FUqV7V3jF4155KU2wYQ2VpqDEN8BLRgff07ULcK6dDo=;
 	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=nIjIbBWftHai18rNn9jTJowhR3eCHntl3VdVe+YCqfo+/Aw8Ogr3jceQj2XoJG6vn
-	 OR35iMW+pnXfkgwM9cxbv2g1a0rEzNBpeCRdo4SPH/AXH+LcP1Y2ovA187cJ/Ul04C
-	 jbkmWH/HKPwkqlzQpGOqxLGHTqF0rEH9FRbboVRrziiTdnCLVLPlR9c2cqj+2iSDZy
-	 lZ8l2wyalfWn80EzB7dar6xRtYfPIdE5Z57oMwafPjzlV2ks1Q+oei4WZL5B35qp+o
-	 UezBaw+B49MQ3T0kGoZgCOZPoJPdl9+r7bga9PIH+zFY6w0mzoIxsoJVtVNB24kyVm
-	 OE3cVtk6QxuPg==
-Message-ID: <ef8df22f-dac8-4652-bf17-d10254e6abfb@kernel.org>
-Date: Tue, 5 Mar 2024 08:46:26 +0900
+	b=TV8VBHum6DhMa9heo77mkcgh5EBnsNaX7tquiD7C18YX4iQEgSqwDrOXJcKqWKyDQ
+	 xA2/V+2wisq0K2kay3/O1WyD74yhX6ITb6oVQnUEUouULKCluzUMqEuD/9iPC75fEO
+	 7nY4DCfKezJgEqYAoYisyEbqtRPwy6L7yQOLB4q+ooziskwwYQBgPBLd51R7DkbWKA
+	 0zlVreg1ZmTWPewFZSq3y/0xV8YPYlmA39gahM2hlMsHYzbE9eHxKDQt1KCnRYl0Z2
+	 yfK/aj1itIUE+WpsSPw9CPjfui40ZRp5CGrlD6BkBWjxwBedhicj5nnMbNhRwyX4/W
+	 Gc+21lWvvFW1w==
+Message-ID: <2a206c9b-b570-4081-b4e4-d177343482f3@kernel.org>
+Date: Tue, 5 Mar 2024 08:50:29 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -50,8 +50,7 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 5/7] riscv: Kconfig.socs: Allow SOC_CANAAN with MMU for
- K230
+Subject: Re: [PATCH v3 7/7] riscv: config: enable SOC_CANAAN in defconfig
 Content-Language: en-US
 To: Yangyu Chen <cyy@cyyself.name>, linux-riscv@lists.infradead.org
 Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -61,49 +60,40 @@ Cc: Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
 References: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
- <tencent_0432DA968E39B81431F921F38D747C008208@qq.com>
+ <tencent_E2812086B695A334EE5E8C70C85CA3171F06@qq.com>
 From: Damien Le Moal <dlemoal@kernel.org>
 Organization: Western Digital Research
-In-Reply-To: <tencent_0432DA968E39B81431F921F38D747C008208@qq.com>
+In-Reply-To: <tencent_E2812086B695A334EE5E8C70C85CA3171F06@qq.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 3/5/24 06:05, Yangyu Chen wrote:
-> Since K230 was released, SOC_CANAAN is no longer only referred to the K210.
-> Remove it depends on !MMU will allow building dts for K230 and remove the
-> K210 string from the help message.
+On 3/5/24 06:06, Yangyu Chen wrote:
+> Since K230 has been supported, allow SOC_CANAAN to be selected to build dt
+> and drivers for it in defconfig.
 > 
 > Signed-off-by: Yangyu Chen <cyy@cyyself.name>
 > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  arch/riscv/Kconfig.socs | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
+>  arch/riscv/configs/defconfig | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-> index 623de5f8a208..b4e9b7f75510 100644
-> --- a/arch/riscv/Kconfig.socs
-> +++ b/arch/riscv/Kconfig.socs
-> @@ -75,13 +75,12 @@ config ARCH_CANAAN
->  	def_bool SOC_CANAAN
->  
->  config SOC_CANAAN
-> -	bool "Canaan Kendryte K210 SoC"
-> -	depends on !MMU
+> diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
+> index 89a009a580fe..20b557ec28df 100644
+> --- a/arch/riscv/configs/defconfig
+> +++ b/arch/riscv/configs/defconfig
+> @@ -33,6 +33,7 @@ CONFIG_SOC_STARFIVE=y
+>  CONFIG_ARCH_SUNXI=y
+>  CONFIG_ARCH_THEAD=y
+>  CONFIG_SOC_VIRT=y
+> +CONFIG_SOC_CANAAN=y
 
-This seems wrong to me. The k210 support does require no-mmu. So why remove
-this ? Does the k230 have MMU support ? If yes, then I do not think these 2 can
-fall under the same SOC_CANAAN.
+Given that the k210 need !MMU, including it like this in the defconfig is
+odd... I do not even see how that could work. But that depends on patch 5,
+which does not seem OK to me.
 
-> +	bool "Canaan Kendryte SoC"
->  	select CLINT_TIMER if RISCV_M_MODE
->  	select ARCH_HAS_RESET_CONTROLLER
->  	select PINCTRL
->  	select COMMON_CLK
->  	help
-> -	  This enables support for Canaan Kendryte K210 SoC platform hardware.
-> +	  This enables support for Canaan Kendryte SoC platform hardware.
->  
->  endmenu # "SoC selection"
+>  CONFIG_SMP=y
+>  CONFIG_HOTPLUG_CPU=y
+>  CONFIG_PM=y
 
 -- 
 Damien Le Moal
