@@ -1,265 +1,218 @@
-Return-Path: <devicetree+bounces-48241-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48242-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 111FD87110D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 00:31:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15135871121
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 00:38:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 432FC1C223AC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 23:31:36 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39AD91C21A17
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 23:38:25 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB1BE7CF1F;
-	Mon,  4 Mar 2024 23:31:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7F57CF29;
+	Mon,  4 Mar 2024 23:38:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="djzluZWf"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YgBG4vkN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR01-VE1-obe.outbound.protection.outlook.com (mail-ve1eur01on2084.outbound.protection.outlook.com [40.107.14.84])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CEC4E7C6DB;
-	Mon,  4 Mar 2024 23:31:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.14.84
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709595093; cv=fail; b=me0iPeo+tcHUoGXNMJzoejG81FgUauCoRBYocm7MwCysy32x3ArpRSowBTca6z/EjKqj1wKjQXGFMz7bnmlIiKZERFXY+2k4jj+fa871k+gE/yfOECI0hkK2WhexGtHHpkWbHVCOt+VwqQ/2PyTIZonwogX41kQUtmFCDTU40QI=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709595093; c=relaxed/simple;
-	bh=DbK8Efts4UwblN93q49P8xVX8BTB1VnQnlPd4Aht52Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=pUv94BBKqSEtkJAfXrVj5bQ846wimA5doMFdrZA5DTQ+lENU1vI0cBpFMBln6qpg3M6SEL7A2EYuTlQoVBKF/lR5GKgPB6p+CimjXOD27h/d8iEDhjTG68Uwo9Jx/hDuMGcrJxtuRigkTLSs7bAr5so3BffSoZFj/jAR2fQUlqY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=djzluZWf; arc=fail smtp.client-ip=40.107.14.84
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gNSBCfpfHoXZEdAUVq7ylcV5WRDPT299XxVaq+f+uuvzPYYZ16XJKd4HUZOsMcvspGQ8jmebS5ybXzbpiHdIcrBs1rC2qZRf2DHBEv/DmNMSsKUncizglT7hDX3koitNTeDahihUkh1x+0U11YHPeBmAUDS2TYw4BBEF5WVVruogtF6Ai6UK61sd45i1I9ga0gK2Svq8xT69zirmI6sA9yEh9ZfqaCr40TjtyaE6sgX8voR+fwe9pD7sNQv07TYZ/rwi2zaojPU6fzzPcjXDqP9hsaVec0sNS4KetvNaKuFUoJUIemkMv0+xN0Zsxlm/QhfWUifpiOEWf+y+nLfC7w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Z6kwgEU0eUz9a6KTOvfnNyA2CsHtkRgtOce3ACTxS9s=;
- b=LePeIjdy7jSmSkvH7m5VFkH/uyw0032xtfaBQwqOE5Bzyug8hS+5OtFmWDhYQ+RGKJMYguNZFua4bXRQoJHoopanmY225QHxldn+qy+n5w/D0zkV9AFvPSBgrP6zvVznTni5PYrkRnJcEg1qD4Ir/enY6teZX+cGWeCWFxO/yTB/sY3IDO4t79GdkCjRPm5ZN/NvDgd4aL8eZFdZHtC41GvczMPbDsFFj/FfCBXDPDcmPbW2M5nyGmELHXSjZXnapjEVDewr6BROnMw//8FTTC34mN+yqEDPMMHoJ30t012I6LUrQ92C9eBKz7LkPIt0xi3uqu6I9XibgPvGKWs8gA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z6kwgEU0eUz9a6KTOvfnNyA2CsHtkRgtOce3ACTxS9s=;
- b=djzluZWfLyEzmWW2lxU+ykjiOMgz18sDRMnk43yMtGXzDRHkax3uefRdMNPU/BDm4ogU/z9JqlNV6ALKae/XyqPUcPkmX64i7xZ3QozuJCtaywef8vVSPW0FEgSipXB7Vexm+jgTc+oNRbM8we44TFwYCrBo9piDPWTsV8USxnY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by DB9PR04MB8091.eurprd04.prod.outlook.com (2603:10a6:10:245::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.39; Mon, 4 Mar
- 2024 23:31:28 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7339.033; Mon, 4 Mar 2024
- 23:31:28 +0000
-Date: Mon, 4 Mar 2024 18:31:21 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Vinod Koul <vkoul@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-	imx@lists.linux.dev, dmaengine@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Joy Zou <joy.zou@nxp.com>
-Subject: Re: [PATCH v2 4/5] dt-bindings: dma: fsl-edma: add fsl,imx8ulp-edma
- compatible string
-Message-ID: <ZeZZyTU8FWACW9aj@lizhi-Precision-Tower-5810>
-References: <20240229-8ulp_edma-v2-0-9d12f883c8f7@nxp.com>
- <20240229-8ulp_edma-v2-4-9d12f883c8f7@nxp.com>
- <20240304164423.GA626742-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240304164423.GA626742-robh@kernel.org>
-X-ClientProxiedBy: SJ0PR03CA0163.namprd03.prod.outlook.com
- (2603:10b6:a03:338::18) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7FF97CF1F;
+	Mon,  4 Mar 2024 23:38:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709595501; cv=none; b=Ri8zFkdXQyzjM3GnP5RQFTZPXhirT7DC+w7PNPQGamNeaDRAx3edWNo5SaL2N9IlbSYbCms5fzSBLZWuiesFpQ5E9H6HaoNMvOv3L3s1GguofS8IIs/AWv+emwySa4k4RbYbvEDLQneUPzKsHehR5+Yno5AJE2r6dp0fumwAXpw=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709595501; c=relaxed/simple;
+	bh=bjapdOzSpG6/EEi9GeF2HdEhMLKu2TdtZOkHv8LOaro=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Esumc27XnIH2X4MOD/cvrSx4wImrdN0QAscpSa14LkvXgI+LXGkOWbhzTMlAUn6yOE3KIgnwXYifYQe4omj0GEg7uqxL6sEJvpdtDWeJodWCX3YI8oyHhW/4i/TKHxFncYP1uQ0yI422AHQmKuMDlBQC36VTc9O1pX5UU7YapNM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YgBG4vkN; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 424NSdCb005853;
+	Mon, 4 Mar 2024 23:37:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=uKjDd80FGy/SXXVWkcCr2
+	CwjDneS2/5OgR/fSz8cyMA=; b=YgBG4vkN7z+ndBrQN2oDjS0orZ/i3gPbP8Weu
+	nrwmrnVhXZumPT8H7vablWKclm+7KXfO9eIUBhMYjQiUmM1Y/2QOGR0tmz65hFns
+	w5QxnW+Gaz8vSIqjO5r+OsnyHpjecgr3n2CChPrAJPs9zqCqAfU00O1vFkYieTrK
+	A6u+JJ+IjLQc/5RxSGnuAS9MzDpAOlAYklXN/fHj1WqJgCKUGuUiZIywL4OorbnJ
+	/z8dKn416B+iZisK6J/sAcM+MC2ejJrsZiUcjVrewGKciKIrvIIcoLuWn5bZ9Wao
+	tgkxaTlmhR/9U5iLUwt3/CCWmGHuvv41uNwSImj+FGtQnKybw==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wnjtbgr6q-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 04 Mar 2024 23:37:52 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 424NbhGk018095
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 4 Mar 2024 23:37:43 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 4 Mar 2024 15:37:42 -0800
+Date: Mon, 4 Mar 2024 15:37:41 -0800
+From: Elliot Berman <quic_eberman@quicinc.com>
+To: Quentin Perret <qperret@google.com>
+CC: Christoph Hellwig <hch@infradead.org>, Will Deacon <will@kernel.org>,
+        Chris Goldsworthy <quic_cgoldswo@quicinc.com>,
+        Android KVM
+	<android-kvm@google.com>,
+        Patrick Daly <quic_pdaly@quicinc.com>, Alex Elder
+	<elder@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Murali Nalajal <quic_mnalajal@quicinc.com>,
+        Trilok Soni
+	<quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Philip Derrin
+	<quic_pderrin@quicinc.com>,
+        Prakruthi Deepak Heragu
+	<quic_pheragu@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        "Dmitry
+ Baryshkov" <dmitry.baryshkov@linaro.org>,
+        Fuad Tabba <tabba@google.com>,
+        "Sean Christopherson" <seanjc@google.com>,
+        Andrew Morton
+	<akpm@linux-foundation.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
+Subject: Re: Re: Re: [PATCH v17 19/35] arch/mm: Export direct {un,}map
+ functions
+Message-ID: <20240304094828133-0800.eberman@hu-eberman-lv.qualcomm.com>
+Mail-Followup-To: Quentin Perret <qperret@google.com>, 
+	Christoph Hellwig <hch@infradead.org>, Will Deacon <will@kernel.org>, 
+	Chris Goldsworthy <quic_cgoldswo@quicinc.com>, Android KVM <android-kvm@google.com>, 
+	Patrick Daly <quic_pdaly@quicinc.com>, Alex Elder <elder@linaro.org>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Murali Nalajal <quic_mnalajal@quicinc.com>, 
+	Trilok Soni <quic_tsoni@quicinc.com>, Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>, 
+	Carl van Schaik <quic_cvanscha@quicinc.com>, Philip Derrin <quic_pderrin@quicinc.com>, 
+	Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Fuad Tabba <tabba@google.com>, 
+	Sean Christopherson <seanjc@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
+	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
+References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
+ <20240222-gunyah-v17-19-1e9da6763d38@quicinc.com>
+ <ZdhEtH7xzbzdhS2j@infradead.org>
+ <20240223071006483-0800.eberman@hu-eberman-lv.qualcomm.com>
+ <ZeXIWBLVWzVycm0r@google.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|DB9PR04MB8091:EE_
-X-MS-Office365-Filtering-Correlation-Id: 70dae424-a6bf-4c06-b4dc-08dc3ca3373d
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	UkGdVO6rV3J+SWjdHn8DU+Lhxe3QkE0gNh12unyQZ6bi9w3//K6B7C7M4tA+GKefaHwqj09+5Aq2jHTRidN0iy8RRoNNCagBqacKX+Fr8PrgPPsNytpj86DaGpbYgwq5Pi1dbhslwmafFXI8Jwbn2EostkHrBvsmqwm4z1Cnb3cGvhQt4j1pcsfI7XsQBaAE4Ymd5gMAfN8AnMoGKeIx+51vL01YSOQhJ1UhjGG5aAuS2PRufJ/RNlR5b3lo2AYD0cD+1AU5oRGwFatvgfYPyl+GXLUHneBd5yu/bPElzx8ukeSrfmWIdRNcMu6S6bCXwvi+JI/7xZxER1Ah9VW4FazGRq7teBpXx2xteNx3Zgo7TjBs40pen35WU50I7Rs2D8NI1WHjUZzZUBiWTMKfoFUko46GhW5O44qYIL3kbSgQ/X0pxR1gKxbTQuKDImW8bGTa6Z740c1/YctcrumJHTvjhGkHWTstqM5/vXlGfFMejSKtnyjo1XSqat6vGAAOHnZjtVPN0Qp8zsbvSIze4otSd1CMvT2rqnrx4TQ2KsKT7Tko0GeI8rXatQRG+CQbjIqva8kS3/qgBrE290qqDtGZsUnJ7i3N/Hfb2JRgM3Mzg6fpMIHQc3l1LGHj2k1Sro1Df6r81fx82mIueKOPAP4QYe7ToO4NSnqzSinnBvcd4ZDUE7mWktsV9952kHAEz4x616M2AXC+ZxEkYMRQlLKCzHzeO2VwOFmluS6fdAc=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?lDY1aHMFE9aJYgwl10SbeaJQ5c2LkJeUEtHR6vRuUfrQD0tI6XpNitEL0TpV?=
- =?us-ascii?Q?8qzPS3EZpwmCvpVAlReTYb4999rXbic0gmepejJ594XwykP761mV45pjVGrh?=
- =?us-ascii?Q?7sTshTgkjkkjn6n1SU4NutI8SRPlj9fYCzfQX3YSRCsrrfPrBjpZhb0Msf1o?=
- =?us-ascii?Q?TNcOUQdeuhwtWhVf4EG/PFTxtfKNMjJNm6ZqRURDUFJbmvmbe8fIrt1Pr02r?=
- =?us-ascii?Q?HY4Ms5lFhmKs/hx0w8EiWKs/xyNz4W38jIUih7QWvLKMOeVf2CrqDygk0U+1?=
- =?us-ascii?Q?NNsfQ+GuK4dv6/7p3dccyMDF7EuAA3n3xuAwe+heAuoWkVIqYW7ivN70y/d9?=
- =?us-ascii?Q?pCVFI0nIvcXMe8Im/i3svQYSaARaezFbndGNyQpqZEP3oZ9Qfbezj/0aAHqB?=
- =?us-ascii?Q?29RYbEmzzsn5GLDR2Tpo8GycESbpPCmU+Z5OvwpvqllIuOAtFaXmMllvZvhv?=
- =?us-ascii?Q?MFpFXDuCXuMx8RSr3MoKM67vdxAfll4JYupH9OHJKzX8/yyAOpuVERR/FY3s?=
- =?us-ascii?Q?+E/hhrvUwaClj/rSu6VKifFgNrpSxlQmNWy7xAPBIjr55jDp1yFNRCjty/wi?=
- =?us-ascii?Q?OfEs5pEPb4J9XP2L22rsMJa6ecMpbdYBl1V65+YXxnqlIFM89c18K26EMD6d?=
- =?us-ascii?Q?5Xf5fq4vKI5TmvLv/SYZv5g4Ojn9/r6oWBckU6iC4WFFKREg3Uf4A2JCw20f?=
- =?us-ascii?Q?FRO+Or7lXvXC5ZLhihVs4qK4tt4fu3hQoQgmlLwWjfUQ/8dVQ7xZyryHwK6W?=
- =?us-ascii?Q?67ZJLjBhL7VXPn0Ehn7HXvAHuORgOrDvP9cl56qQgu/m0NWro17JoeOEiStJ?=
- =?us-ascii?Q?7mAmhu9w4wCani0ryesYmd67XkyzOYB+cDrspsqB9HWjRHqTUefKqYREE4Xy?=
- =?us-ascii?Q?u7rdOTmuHcZKgnpszpFPt1HEWlAo3eQOMPhD1FkzkFjKvR1nDV1GDTN47rRD?=
- =?us-ascii?Q?G0xYVYUJ0xC+qajSYogVMqUHJHq0lDsCEz+KHPMy4Fdgy3Sn1EBwJGA+l7kr?=
- =?us-ascii?Q?7N1mxDVMXXvp2d5BovEOWkz245TVYshUAbU/gt3k3ayZlmykia7cZrQUYMWZ?=
- =?us-ascii?Q?WwfmcWIRUs+Pzebvr/S0xGnUdguswnAKxDK69SDqt2pPthwK6nyuS/1uAtIm?=
- =?us-ascii?Q?1B0isBk6z4iAfENi2YBjRnUrep1vK2g73mYuOjU0hwljaxGtmtdZVc+81x+f?=
- =?us-ascii?Q?LepnkLD6corNrOI6jZqwSOopZdQQdaoDoAFrPklvVlWH1l9bRvtc5A+AHCqy?=
- =?us-ascii?Q?ynbxbwfzWJPCN/KKYvyX631mk6f1dRISltUR1TZuGkq2Tn/vp+alXpfv7YRt?=
- =?us-ascii?Q?WatH8Nc15g745anxj4UbhIn3WR6/W4YyEMj7hHljN2Sg8+xD8XpZT5x1B6R6?=
- =?us-ascii?Q?O+9g9XlPf9rTKTfajN5Hzew324t8y6693jXAO1GX9ZV7GeN1uHqMvgqlvvqB?=
- =?us-ascii?Q?UYTk5AbwoEeT8rjljFLzg+yIILNUGlQZbZNbU7gmhHVQY0lSWP2VWHgQkk3a?=
- =?us-ascii?Q?ohLTOg3rKZFremwJQGjiGGPUcrWwI6anJQdiD9A29EFcFoOrEGnG+z28laTZ?=
- =?us-ascii?Q?6Hb3m6jp9CPln9wXNRw=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 70dae424-a6bf-4c06-b4dc-08dc3ca3373d
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2024 23:31:28.6624
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: sQHfQe5spmSs5n2U5QMvFaHjyozxJtQ7u3Z3Ry32rI0sMPhLJnErsT0vQ5aBEJ9A5K4fDTNizsBy6ga+biR4dw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB8091
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ZeXIWBLVWzVycm0r@google.com>
+X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: sjPu5sIWWRGDh-oe0xUU5hU_E0NcZLdz
+X-Proofpoint-ORIG-GUID: sjPu5sIWWRGDh-oe0xUU5hU_E0NcZLdz
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-04_18,2024-03-04_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ priorityscore=1501 mlxscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0
+ suspectscore=0 malwarescore=0 phishscore=0 adultscore=0 mlxlogscore=999
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403040182
 
-On Mon, Mar 04, 2024 at 10:44:23AM -0600, Rob Herring wrote:
-> On Thu, Feb 29, 2024 at 03:58:10PM -0500, Frank Li wrote:
-> > From: Joy Zou <joy.zou@nxp.com>
+On Mon, Mar 04, 2024 at 01:10:48PM +0000, Quentin Perret wrote:
+> On Friday 23 Feb 2024 at 16:37:23 (-0800), Elliot Berman wrote:
+> > On Thu, Feb 22, 2024 at 11:09:40PM -0800, Christoph Hellwig wrote:
+> > > On Thu, Feb 22, 2024 at 03:16:42PM -0800, Elliot Berman wrote:
+> > > > Firmware and hypervisor drivers can donate system heap memory to their
+> > > > respective firmware/hypervisor entities. Those drivers should unmap the
+> > > > pages from the kernel's logical map before doing so.
+> > > > 
+> > > > Export can_set_direct_map, set_direct_map_invalid_noflush, and
+> > > > set_direct_map_default_noflush.
+> > > 
+> > > Err, not they should not.  And not using such super low-level interfaces
+> > > from modular code.
 > > 
-> > Introduce the compatible string 'fsl,imx8ulp-edma' to enable support for
-> > the i.MX8ULP's eDMA, alongside adjusting the clock numbering. The i.MX8ULP
-> > eDMA architecture features one clock for each DMA channel and an additional
-> > clock for the core controller. Given a maximum of 32 DMA channels, the
-> > maximum clock number consequently increases to 33.
-> > 
-> > Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  .../devicetree/bindings/dma/fsl,edma.yaml          | 26 ++++++++++++++++++++--
-> >  1 file changed, 24 insertions(+), 2 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> > index aa51d278cb67b..55cce79c759f8 100644
-> > --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> > +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> > @@ -23,6 +23,7 @@ properties:
-> >            - fsl,imx7ulp-edma
-> >            - fsl,imx8qm-adma
-> >            - fsl,imx8qm-edma
-> > +          - fsl,imx8ulp-edma
-> >            - fsl,imx93-edma3
-> >            - fsl,imx93-edma4
-> >            - fsl,imx95-edma5
-> > @@ -53,11 +54,11 @@ properties:
+> > Hi Cristoph,
 > >  
-> >    clocks:
-> >      minItems: 1
-> > -    maxItems: 2
-> > +    maxItems: 33
+> > We've observed a few times that Linux can unintentionally access a page
+> > we've unmapped from host's stage 2 page table via an unaligned load from
+> > an adjacent page. The stage 2 is managed by Gunyah. There are few
+> > scenarios where even though we allocate and own a page from buddy,
+> > someone else could try to access the page without going through the
+> > hypervisor driver. One such instance we know about is
+> > load_unaligned_zeropad() via pathlookup_at() [1].
 > >  
-> >    clock-names:
-> >      minItems: 1
-> > -    maxItems: 2
-> > +    maxItems: 33
+> > load_unaligned_zeropad() could be called near the end of a page. If the
+> > next page isn't mapped by the kernel in the stage one page tables, then
+> > the access from to the unmapped page from load_unaligned_zeropad() will
+> > land in __do_kernel_fault(), call fixup_exception(), and fill the
+> > remainder of the load with zeroes. If the page in question is mapped in
+> > stage 1 but was unmapped from stage 2, then the access lands back in
+> > Linux in do_sea(), leading to a panic().
 > >  
-> >    big-endian:
-> >      description: |
-> > @@ -108,6 +109,7 @@ allOf:
-> >        properties:
-> >          clocks:
-> >            minItems: 2
-> > +          maxItems: 2
-> >          clock-names:
-> >            items:
-> >              - const: dmamux0
-> > @@ -136,6 +138,7 @@ allOf:
-> >        properties:
-> >          clock:
-> >            minItems: 2
-> > +          maxItems: 2
-> >          clock-names:
-> >            items:
-> >              - const: dma
-> > @@ -151,6 +154,25 @@ allOf:
-> >          dma-channels:
-> >            const: 32
+> > Our preference would be to add fixup_exception() to S2 PTW errors for
+> > two reasons:
+> > 1. It's cheaper to do performance wise: we've already manipulated S2
+> >    page table and prevent intentional access to the page because
+> >    pKVM/Gunyah drivers know that access to the page has been lost.
+> > 2. Page-granular S1 mappings only happen on arm64 with rodata=full.
 > >  
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: fsl,imx8ulp-edma
-> > +    then:
-> > +      properties:
-> > +        clock:
+> > In an off-list discussion with the Android pkvm folks, their preference
+> > was to have the pages unmapped from stage 1. I've gone with that
+> > approach to get started but welcome discussion on the best approach.
+> >  
+> > The Android (downstream) implementation of arm64 pkvm is currently
+> > implementing a hack where s2 ptw faults are given back to the host as s1
+> > ptw faults (i.e. __do_kernel_fault() gets called and not do_sea()) --
+> > allowing the kernel to fixup the exception.
+> >  
+> > arm64 pKVM will also face this issue when implementing guest_memfd or
+> > when donating more memory to the hyp for s2 page tables, etc. As far as
+> > I can tell, this isn't an issue for arm64 pKVM today because memory
+> > isn't being dynamically donated to the hypervisor.
 > 
-> clocks
+> FWIW pKVM already donates memory dynamically to the hypervisor, to store
+> e.g. guest VM metadata and page-tables, and we've never seen that
+> problem as far as I can recall.
 > 
-> > +          maxItems: 33
+> A key difference is that pKVM injects a data abort back into the kernel
+> in case of a stage-2 fault, so the whole EXTABLE trick/hack in
+> load_unaligned_zeropad() should work fine out of the box.
 > 
-> That is already the max. I think you want 'minItems: 33' here.
-> 
-> > +        clock-names:
-> > +          items:
-> > +            - const: dma
-> > +            - pattern: "^CH[0-31]-clk$"
-> 
-> '-clk' is redundant. [0-31] is not how you do a range of numbers with 
-> regex. 
-> 
-> This doesn't cover clocks 3-33. Not a great way to express in 
-> json-schema, but this should do it:
-> 
-> allOf:
->   - items:
->       - const: dma
->   - items:
->       oneOf:
->         - const: dma
->         - pattern: "^ch([0-9]|[1-2][0-9]|[3[01])$"
+> As discussed offline, Gunyah injecting an SEA into the kernel is
+> questionable, but I understand that the architecture is a bit lacking in
+> this department, and that's probably the next best thing.
+>
+> Could the Gunyah driver allocate from a CMA region instead? That would
+> surely simplify unmapping from EL1 stage-1 (similar to how drivers
+> usually donate memory to TZ).
 
-I understand pattern is wrong. But I don't understand why need 'allOf'.
-8ulp need clock 'dma" and "ch*". I think 
+In my opinion, CMA is overly restrictive because we'd have to define the
+region up front and we don't know how much memory the virtual machines
+the user will want to launch.
 
-items:
-    - const: dma 
-    - pattern: "^CH[0-31]-clk$"
+Thanks,
+Elliot
 
-should be enough.
-
-If you means put on top allOf, other platform use clock name such as
-'dmamux0'.
-
-Frank
-
-> 
-> That doesn't enforce the order of 'chN' entries though. Probably good 
-> enough.
-> 
-> 
-> > +        interrupt-names: false
-> > +        interrupts:
-> > +          maxItems: 32
-> 
-> minItems
-> 
-> > +        "#dma-cells":
-> > +          const: 3
-> 
-> Is what is in each cell defined somewhere? If not, you need a 
-> description with those details.
-> 
-> Rob
 
