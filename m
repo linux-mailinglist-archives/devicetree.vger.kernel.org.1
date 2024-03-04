@@ -1,199 +1,183 @@
-Return-Path: <devicetree+bounces-48110-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48113-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E51418703AE
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:08:54 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5FAE8703F4
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:24:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 254FBB26AF7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:08:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 115FE1C21C9B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:24:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F623FB19;
-	Mon,  4 Mar 2024 14:08:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D25574086B;
+	Mon,  4 Mar 2024 14:23:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QKhwZti5"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="eH4AwPmQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A1573FB0D;
-	Mon,  4 Mar 2024 14:08:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C2B0405F8;
+	Mon,  4 Mar 2024 14:23:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709561321; cv=none; b=dsqXffidY5YY9E1ToJ02qnvTxFubhmXD2bmN0rP9YnZdPBzd+nES0qpRpqXprfzh4cfi/fX1AnjOf6yxBead030d1rR9I+9hxa0lkaN/ze3GvhKWgcNVEUqaPFK1fkdyVJcH2ksFZoMgehlRv/Yviwl2C24+0INxa5u1DwZ81Do=
+	t=1709562239; cv=none; b=V6B5grBMlkOnGL+sGT5IFmyxCi12IZiE0cRv1T2RgINV9FHzylUaHiNrNKKSSLkYJhnI6fiKXCVYEgdTZ00IjnzS9c9enQ+0di7rode0QhXidJDXXcmOA+bxRKBlgifXF6m1DO4XZLD1IvmbXdEFz9TgTSEQg2bjj7NwRBtw6Jg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709561321; c=relaxed/simple;
-	bh=mGavApi6w7ofRRdajIRCPCMtvgMiEtdIO9FBAOcKrK0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JWe9o+DqDU6bpsRIYDjHgd+tVI17X5xFsuOZbLFYluxwlOmN2GTO/wc5tY+4ocxZWWdq+TPro1Rv66it9HA5YrMym3ptGNHHXnymFOM9e713knZDAuYLInLxnqAbVKXQE0X+OEgAqqcosOQ1wCCjULpmWP9Q/ZD4GXDLRXeZVEk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QKhwZti5; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 63D70C43390;
-	Mon,  4 Mar 2024 14:08:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709561321;
-	bh=mGavApi6w7ofRRdajIRCPCMtvgMiEtdIO9FBAOcKrK0=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=QKhwZti5qxer0MQBIkoAhnJwwnxBdoHzXNIrtkspZueeH6FpLx3XTPV1NhCPPLz29
-	 BULfYRkejdIO2Pop70eNvGR76v3kQj3XY/B0xCkYz6zu6HsB/lMO1CpYKpQQG+yRSD
-	 6eBIYcL9JDBIu4nPI3o9gNIidBt8NkQk42Jw+xuPRTFYIuruzVMRNytiyVrOWaopBp
-	 poiJO9tsmy9OzxJrWUR38CrzBu1dwevCTH3pwORypoOnQmlBYBhEigR4VwKrpOU6zN
-	 w0EG2NbthUoGWVqpGdPO6L1zbAVxYc3Fhg+5OvspiJf802zwQpfVrb0wtEmam37HSm
-	 vapr3O4W8lMqw==
-Date: Mon, 4 Mar 2024 15:08:37 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
-	Gregory Clement <gregory.clement@bootlin.com>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>, 
-	Andi Shyti <andi.shyti@kernel.org>
-Subject: Re: [PATCH v2 09/11] i2c: nomadik: support Mobileye EyeQ5 I2C
- controller
-Message-ID: <yqyhu3qsrfyj52sraeo76jnpbgq6wi4o66hfqepxwwwupaggoa@7t5bah3qqcwb>
-References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
- <20240229-mbly-i2c-v2-9-b32ed18c098c@bootlin.com>
+	s=arc-20240116; t=1709562239; c=relaxed/simple;
+	bh=/Af1OqvaKj+Y/we0Ts7Sbh6sS0efeCNow+1SafjuFO4=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=B60+an3X6k8uA83v8vLjSTWYUqiMQUEAWExTPmHdDcIAfi+XMli0yDOAF1C9XWslqVKp/c5iqtW/ei85n8yzcel7XVd62jfedQOQO2rLSB6hXnwh2TLCAAF+QO9/c+AMrp6VQzz5BcoYe9Fl/Q6xk9tVKeItdLbAY5YCR2BE3nM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=eH4AwPmQ; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-33d568fbf62so2364227f8f.3;
+        Mon, 04 Mar 2024 06:23:57 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709562236; x=1710167036; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=apaBpVQtA1STXfsjN2l+EhbnfJdRR6DZH9EsOTj0lX4=;
+        b=eH4AwPmQ3u+g/XndhdwZI8V7XWRMXhZNEHCh0ApkgeEaJ4e1xSq1a6Z2AeUSYmHKb8
+         KF28hAfNlg4tF2BkFg2od08mnYYW3Y4J5XqXxe3Dw/ytVBNraXNHyMNilmbO72TkoZGS
+         vBn6Xe4+ehDXM1jWfZaaEq8PqpCOIqkljpHlmWbZACWzUJYjMGd5NF03g75ECbHmlzu5
+         EwPKTo/n02iA87AyWQTbgVfuE1QbKilm43XWAA+WtYSvk1tYFhuieLXK6XQg8/ZuZkX2
+         FY/zJkWTbGDLIPpK2IsrzAA1b0JMfd5nvHqM7kUswN8NDyGSPKJdcetnuWWMoR4RxfzV
+         6Srw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709562236; x=1710167036;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=apaBpVQtA1STXfsjN2l+EhbnfJdRR6DZH9EsOTj0lX4=;
+        b=HhDZfIJWjXMRsywSDLwzZzIUyVp+C3irZcwgy2agzXMkrh0iV/5M3f25+Y2mhuoqEP
+         EHZfpVS78dq6GwXmFjoQZpt2Vs/Am3VxKvtisVyD6H2/hzWxFHJboOcUNtWCVg9+bf9i
+         qKrRGL0j/fww1ZtP3PjqRSAFLH63YDK3oSg95R7GQtFyRYb87vceXNQwZ6nsMDO7Ze7w
+         irXqWj7+p3R/rb7W2vKqecFocZmaTgeKNAs+6IDUOiqQjbUlNRu0k0Wkm2c1rR6+xL8C
+         jKrZokXLM6zJjS2IfqP4127RhXZuiKIuynrZ/jrND3i0kqDXUUmk4X0yJILbClpf1Zb/
+         P78w==
+X-Forwarded-Encrypted: i=1; AJvYcCXGbMFDW2mgGN8/LyGeTz2hOnG0DcAWXzIQOufMcxeUCDv2o5KM/cbx4oGHqUHegZwUiDfJNVv5Ym7FcjuL0uv6UarJC4SiQGMpWi3/bMSN1p8THNG/HWKDEb01xLkuzdkyFQOOWRETDA==
+X-Gm-Message-State: AOJu0YzFmdYjgINUmS1Hv2HTyVXcyRCk4tq00yAulR+JByugmp1z2gky
+	usU7VUzs0evlP4njtwWSxaYD7KOs1xa9VLXr3o1b220ujS7aKtS7
+X-Google-Smtp-Source: AGHT+IGg2MH7GT1C+UoWFBUBjsuKghbrFQ0VkykOdak4bcjOJxYr/eYANQGF+LIh5pxi2hOHce8Bmw==
+X-Received: by 2002:a05:6000:1249:b0:33d:2226:a28b with SMTP id j9-20020a056000124900b0033d2226a28bmr6152789wrx.37.1709562236222;
+        Mon, 04 Mar 2024 06:23:56 -0800 (PST)
+Received: from tuxserver.lan ([79.116.0.170])
+        by smtp.googlemail.com with ESMTPSA id bs19-20020a056000071300b0033daaef7afcsm12636594wrb.83.2024.03.04.06.23.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Mar 2024 06:23:55 -0800 (PST)
+From: =?UTF-8?q?Javier=20Garc=C3=ADa?= <javier.gar.tab@gmail.com>
+To: 
+Cc: javier.gar.tab@gmail.com,
+	daniel.baluta@nxp.com,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Jack Yu <jack.yu@realtek.com>,
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: rt1015: Convert to dtschema
+Date: Mon,  4 Mar 2024 15:23:07 +0100
+Message-ID: <20240304142315.14522-1-javier.gar.tab@gmail.com>
+X-Mailer: git-send-email 2.41.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240229-mbly-i2c-v2-9-b32ed18c098c@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Theo,
+Convert the RT1015 Mono Class D Audio Amplifier to DT schema.
 
-...
+Signed-off-by: Javier García <javier.gar.tab@gmail.com>
+---
+ .../bindings/sound/realtek,rt1015.yaml        | 41 +++++++++++++++++++
+ .../devicetree/bindings/sound/rt1015.txt      | 23 -----------
+ 2 files changed, 41 insertions(+), 23 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt1015.yaml
+ delete mode 100644 Documentation/devicetree/bindings/sound/rt1015.txt
 
-> +#include <linux/amba/bus.h>
->  #include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
->  #include <linux/init.h>
-> -#include <linux/module.h>
-> -#include <linux/amba/bus.h>
-> -#include <linux/slab.h>
->  #include <linux/interrupt.h>
-> -#include <linux/i2c.h>
-> -#include <linux/err.h>
-> -#include <linux/clk.h>
->  #include <linux/io.h>
-> -#include <linux/pm_runtime.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/module.h>
->  #include <linux/of.h>
->  #include <linux/pinctrl/consumer.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
+diff --git a/Documentation/devicetree/bindings/sound/realtek,rt1015.yaml b/Documentation/devicetree/bindings/sound/realtek,rt1015.yaml
+new file mode 100644
+index 000000000000..880196081a60
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/realtek,rt1015.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/realtek,rt1015.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: RT1015 Mono Class D Audio Amplifier
++
++maintainers:
++  - Jack Yu <jack.yu@realtek.com>
++
++properties:
++  compatible:
++    enum:
++      - realtek,rt1015
++
++  reg:
++    maxItems: 1
++
++  realtek,power-up-delay-ms:
++    description: Set a delay time for flush work to be completed,
++      this vlaue is adjustable depending on platform.
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@28 {
++            compatible = "realtek,rt1015";
++            reg = <0x28>;
++            realtek,power-up-delay-ms = <50>;
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/sound/rt1015.txt b/Documentation/devicetree/bindings/sound/rt1015.txt
+deleted file mode 100644
+index e498966d436f..000000000000
+--- a/Documentation/devicetree/bindings/sound/rt1015.txt
++++ /dev/null
+@@ -1,23 +0,0 @@
+-RT1015 Mono Class D Audio Amplifier
+-
+-This device supports I2C only.
+-
+-Required properties:
+-
+-- compatible : "realtek,rt1015".
+-
+-- reg : The I2C address of the device.
+-
+-Optional properties:
+-
+-- realtek,power-up-delay-ms
+-  Set a delay time for flush work to be completed,
+-  this value is adjustable depending on platform.
+-
+-Example:
+-
+-rt1015: codec@28 {
+-	compatible = "realtek,rt1015";
+-	reg = <0x28>;
+-	realtek,power-up-delay-ms = <50>;
+-};
+-- 
+2.41.0
 
-Please reorder the headers in a different patch.
-
->  #define DRIVER_NAME "nmk-i2c"
->  
-
-...
-
-> +static inline u8 nmk_i2c_readb(const struct nmk_i2c_dev *priv,
-> +			       unsigned long reg)
-> +{
-> +	if (priv->has_32b_bus)
-> +		return readl(priv->virtbase + reg);
-> +	else
-> +		return readb(priv->virtbase + reg);
-
-nit: no need for the else (your choice though, if you want to
-have ti coherent with the write counterpart).
-
-> +}
-> +
-> +static inline void nmk_i2c_writeb(const struct nmk_i2c_dev *priv, u32 val,
-> +				unsigned long reg)
-> +{
-> +	if (priv->has_32b_bus)
-> +		writel(val, priv->virtbase + reg);
-> +	else
-> +		writeb(val, priv->virtbase + reg);
-> +}
-
-...
-
-> +static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev *priv)
-> +{
-> +	struct device *dev = &priv->adev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	unsigned int shift, speed_mode;
-> +	struct regmap *olb;
-> +	unsigned int id;
-> +
-> +	priv->has_32b_bus = true;
-> +
-> +	olb = syscon_regmap_lookup_by_phandle_args(np, "mobileye,olb", 1, &id);
-> +	if (IS_ERR_OR_NULL(olb)) {
-> +		if (!olb)
-> +			olb = ERR_PTR(-ENOENT);
-> +		return dev_err_probe(dev, PTR_ERR(olb),
-> +				     "failed OLB lookup: %lu\n", PTR_ERR(olb));
-
-just return PTR_ERR(olb) and use dev_err_probe() in the upper
-layer probe.
-
-> +	}
-> +
-> +	if (priv->clk_freq <= 400000)
-> +		speed_mode = 0b00;
-> +	else if (priv->clk_freq <= 1000000)
-> +		speed_mode = 0b01;
-> +	else
-> +		speed_mode = 0b10;
-
-would be nice to have these as defines.
-
-> +
-> +	shift = NMK_I2C_EYEQ5_OLB_IOCR2_SHIFT(id);
-> +	regmap_update_bits(olb, NMK_I2C_EYEQ5_OLB_IOCR2,
-> +			   0b11 << shift, speed_mode << shift);
-
-please define these values and for hexadecimals use 0x...
-
-> +	return 0;
-> +}
-> +
->  static int nmk_i2c_probe(struct amba_device *adev, const struct amba_id *id)
->  {
->  	int ret = 0;
-> @@ -1001,8 +1065,17 @@ static int nmk_i2c_probe(struct amba_device *adev, const struct amba_id *id)
->  
->  	priv->vendor = vendor;
->  	priv->adev = adev;
-> +	priv->has_32b_bus = false;
->  	nmk_i2c_of_probe(np, priv);
->  
-> +	if (of_device_is_compatible(np, "mobileye,eyeq5-i2c")) {
-> +		ret = nmk_i2c_eyeq5_probe(priv);
-> +		if (ret) {
-> +			dev_info(dev, "%s: %d: %d\n", __func__, __LINE__, ret);
-> +			return ret;
-> +		}
-
-as said above, use dev_err_probe here.
-
-Andi
-
-> +	}
-> +
->  	if (priv->tft > max_fifo_threshold) {
->  		dev_warn(dev, "requested TX FIFO threshold %u, adjusted down to %u\n",
->  			 priv->tft, max_fifo_threshold);
-> 
-> -- 
-> 2.44.0
-> 
 
