@@ -1,213 +1,550 @@
-Return-Path: <devicetree+bounces-48144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48145-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D22A1870599
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:34:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B8F3870603
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:43:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B90B1F25DD0
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:34:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5CF1284A9A
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:43:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97E1C4D9F5;
-	Mon,  4 Mar 2024 15:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="IwV6aY0S"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B0E35B677;
+	Mon,  4 Mar 2024 15:37:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0CE44D134;
-	Mon,  4 Mar 2024 15:32:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08B6E4C622
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 15:37:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709566375; cv=none; b=QxtWonXixoUtumE8D4fGUmiIEQYa+V8lZkTj8xOPotrUSCc4NB65upGYQdb3UMq+Fqznea/+mt8PhxNr+gwlvu6ugYusnsagj/XJfN9JdDrBlhIyRlKcCar6HpUFq+vsFV5HkepkEhERoL0nBoJLIjzmBIjM29imt9xoy4SjTFE=
+	t=1709566637; cv=none; b=H5F17Q9WQmjXDTrJG33HZZmE2CfpW8iQa9DHFGwpuR6js571TNjuGnqjyt8vpb0Uwqzi1LhrA0e7J1ckGgdB7iaHPr/7NnHulBfILinRtAnH/cRTXROy9XIdmect02BzuJGFovN5V75exzKUr6RO74rzobcqEXSZgI5WHw2SdFo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709566375; c=relaxed/simple;
-	bh=3EAj3xv1au4Q4TJ50vvjHAcAy5htc0pMEaTTLlfhjOQ=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=c98cGUrQvBOvqo7XGLOaGpPfH5Won6BS+xUeMfapek2/QjEAMNXeBY5Vq7e2x/HlVuBAgQy/I0KInGee8cimDa2ni52CWdxPZOuIH9yVHBG07mvIJsqqHn0FGCUPrdm0JkzMLhAq61UN0HDRPWGHLZdSBUHJysBrklaxldk8xwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=IwV6aY0S; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a441d7c6125so562907966b.2;
-        Mon, 04 Mar 2024 07:32:53 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709566372; x=1710171172; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=bWvYOuCuRfEcVskjhEHNCFWud68WSGUgd2zUqGEpjT0=;
-        b=IwV6aY0Szpjtuexl28y/Bg5Dzx2rQ3Mf07TlyJbpZIvjp+rsxbH/TBcFmb4ZIDH/fz
-         Gj87MHiS5CIqUjlHg8SEBaMMrXu4nHnEHsj6kZGPGnp6CIMWlmPR97PGY6BovE2mzbGG
-         HyJ11E2ZFMD1YATGRNl6lrQi7QAZQoP7L9HIlOgeB5NWRYYbNq/TG7AgPACg86Gf/ciG
-         Ic+hQcmpI5eeI1Fce64wUA6uYMneuP93ybU/sTzgH5CF4kdvmTyOOC/4G5WKbdRKHEl6
-         vRke1BbVd8aj8lC6PPu+nNnElTg4CNe88THHmoWnchVq9k1d3B6oXIajB0uziDlLcOd1
-         EhSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709566372; x=1710171172;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bWvYOuCuRfEcVskjhEHNCFWud68WSGUgd2zUqGEpjT0=;
-        b=lOZ7VcF6w+F2OkX6kTWcdf+ENp9qJtfuNFPtOgkRKvIZPYfsLljPfXVwNFyp5jnRwE
-         RAFmh7+BB+FxgsPkU60dlkVKPVx4h6CHMGEYyRnhTsYRE5dFV3W6mmxIZDnYDhy3+nxX
-         xHJNXhVLoJnjGKh+alVsxac6NYT9zHHf2sUY0lQ+bPyveHNCGLAXAqza3b2O7ERTc54S
-         VxzUhuGrU14BA+Zsjk5SusMRQzNtzrEfBUdIKv1jIIb/yq12/Szblq1c9KR21nPVYyYb
-         +0andbAxj5BI70dx9npG5GYmGnza2UwZvcICdJCAvMhucF5yMNt+Wyzm3IfPdAlOMPlQ
-         PHtg==
-X-Forwarded-Encrypted: i=1; AJvYcCWicphpRxCFdQB7ED0O3QBs3me51CHiGYNrpcFetXiooWpUSMcwLWlIYavv2zAIQxTjAN77ni2HeDqLiyvh8/LFdjpF0OnHl4ZFIYDidotF0/WmVdrSrKOkKUACzemj+f2QPk9rFHv0/EOtjYGwmco9vMkMpodfc6cW4n3dK/mhrg==
-X-Gm-Message-State: AOJu0YwvpwXMwv+fcjpluJv9wL4nohcO6ez0MeMeBM//WvO71hHkihHD
-	OY6EjwgoLD6FmRp4lAYZbndUgNcHShtxXz8wTemmPtxsf5V7ic/v
-X-Google-Smtp-Source: AGHT+IHKE7kIPPNrF2w6yyuuVMCu9i3ZIMUD02F9duWP7L1huDB65YHByUXUVOOjQ3Ls99sC0F1W4g==
-X-Received: by 2002:a17:906:f35b:b0:a43:fd9e:2d69 with SMTP id hg27-20020a170906f35b00b00a43fd9e2d69mr7096029ejb.6.1709566371768;
-        Mon, 04 Mar 2024 07:32:51 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id wp1-20020a170907060100b00a44ce0671b1sm2937118ejb.108.2024.03.04.07.32.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Mar 2024 07:32:51 -0800 (PST)
-Message-ID: <93d0adf0ee6f3737af4d482dc206fe152f762482.camel@gmail.com>
-Subject: Re: [PATCH v3 2/2] of: overlay: Synchronize of_overlay_remove()
- with the devlink removals
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Herve Codina <herve.codina@bootlin.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
- Frank Rowand <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max
- Zhen <max.zhen@amd.com>,  Sonal Santan <sonal.santan@amd.com>, Stefano
- Stabellini <stefano.stabellini@xilinx.com>, Jonathan Cameron
- <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org, 
- devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
- Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
-Date: Mon, 04 Mar 2024 16:36:15 +0100
-In-Reply-To: <20240304152202.GA222088-robh@kernel.org>
-References: <20240229105204.720717-1-herve.codina@bootlin.com>
-	 <20240229105204.720717-3-herve.codina@bootlin.com>
-	 <acb69aa8c1a4c4e9849123ef538b9646a71507a0.camel@gmail.com>
-	 <20240304152202.GA222088-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 
+	s=arc-20240116; t=1709566637; c=relaxed/simple;
+	bh=8Jji8fhjuv00R2qCqZspfzn61+o4LUKlDD1rpqTfhPQ=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CMIRvGmkVCL+9gHTlh2xRWkr4/44xMpms2vHgKPYMI9n/I1AQNKgl7fee0fzAKXhckWITUVs6x5XncY6v3XI/IduEEZkLCTE23FipapSFoTJdF1/rT8s2T7WnIWmQcLwBgyoMwFUvgKnzWdt/FogW+oNA+ku0rqqHX2x/CFElDQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rhANF-0002ed-2i; Mon, 04 Mar 2024 16:37:05 +0100
+Received: from [2a0a:edc0:0:900:1d::77] (helo=ptz.office.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rhANC-004Nhh-HD; Mon, 04 Mar 2024 16:37:02 +0100
+Received: from ukl by ptz.office.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <ukl@pengutronix.de>)
+	id 1rhANC-00Gqsh-1O;
+	Mon, 04 Mar 2024 16:37:02 +0100
+Date: Mon, 4 Mar 2024 16:37:02 +0100
+From: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
+	aou@eecs.berkeley.edu, linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, dlan@gentoo.org, 
+	inochiama@outlook.com
+Subject: Re: [PATCH v4 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
+Message-ID: <twzx4abuhduos5s32txeugqr2yyca6ey7adcontsnapthwqaxa@dscea3ybrlym>
+References: <20240304085933.1246964-1-qiujingbao.dlmu@gmail.com>
+ <20240304090248.1247215-1-qiujingbao.dlmu@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="e7bcxw3shvpcg4m6"
+Content-Disposition: inline
+In-Reply-To: <20240304090248.1247215-1-qiujingbao.dlmu@gmail.com>
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On Mon, 2024-03-04 at 09:22 -0600, Rob Herring wrote:
-> On Thu, Feb 29, 2024 at 12:18:49PM +0100, Nuno S=C3=A1 wrote:
-> > On Thu, 2024-02-29 at 11:52 +0100, Herve Codina wrote:
-> > > In the following sequence:
-> > > =C2=A0 1) of_platform_depopulate()
-> > > =C2=A0 2) of_overlay_remove()
-> > >=20
-> > > During the step 1, devices are destroyed and devlinks are removed.
-> > > During the step 2, OF nodes are destroyed but
-> > > __of_changeset_entry_destroy() can raise warnings related to missing
-> > > of_node_put():
-> > > =C2=A0 ERROR: memory leak, expected refcount 1 instead of 2 ...
-> > >=20
-> > > Indeed, during the devlink removals performed at step 1, the removal
-> > > itself releasing the device (and the attached of_node) is done by a j=
-ob
-> > > queued in a workqueue and so, it is done asynchronously with respect =
-to
-> > > function calls.
-> > > When the warning is present, of_node_put() will be called but wrongly
-> > > too late from the workqueue job.
-> > >=20
-> > > In order to be sure that any ongoing devlink removals are done before
-> > > the of_node destruction, synchronize the of_overlay_remove() with the
-> > > devlink removals.
-> > >=20
-> > > Fixes: 80dd33cf72d1 ("drivers: base: Fix device link removal")
-> > > Cc: stable@vger.kernel.org
-> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > > ---
-> > > =C2=A0drivers/of/overlay.c | 10 +++++++++-
-> > > =C2=A01 file changed, 9 insertions(+), 1 deletion(-)
-> > >=20
-> > > diff --git a/drivers/of/overlay.c b/drivers/of/overlay.c
-> > > index 2ae7e9d24a64..7a010a62b9d8 100644
-> > > --- a/drivers/of/overlay.c
-> > > +++ b/drivers/of/overlay.c
-> > > @@ -8,6 +8,7 @@
-> > > =C2=A0
-> > > =C2=A0#define pr_fmt(fmt)	"OF: overlay: " fmt
-> > > =C2=A0
-> > > +#include <linux/device.h>
-> >=20
-> > This is clearly up to the DT maintainers to decide but, IMHO, I would v=
-ery
-> > much
-> > prefer to see fwnode.h included in here rather than directly device.h (=
-so
-> > yeah,
-> > renaming the function to fwnode_*).
->=20
-> IMO, the DT code should know almost nothing about fwnode because that's=
-=20
-> the layer above it. But then overlay stuff is kind of a layer above the=
-=20
-> core DT code too.
 
-Yeah, my reasoning is just that it may be better than knowing about device.=
-h
-code... But maybe I'm wrong :)
+--e7bcxw3shvpcg4m6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->=20
-> > But yeah, I might be biased by own series :)
-> >=20
-> > > =C2=A0#include <linux/kernel.h>
-> > > =C2=A0#include <linux/module.h>
-> > > =C2=A0#include <linux/of.h>
-> > > @@ -853,6 +854,14 @@ static void free_overlay_changeset(struct
-> > > overlay_changeset *ovcs)
-> > > =C2=A0{
-> > > =C2=A0	int i;
-> > > =C2=A0
-> > > +	/*
-> > > +	 * Wait for any ongoing device link removals before removing some
-> > > of
-> > > +	 * nodes. Drop the global lock while waiting
-> > > +	 */
-> > > +	mutex_unlock(&of_mutex);
-> > > +	device_link_wait_removal();
-> > > +	mutex_lock(&of_mutex);
-> >=20
-> > I'm still not convinced we need to drop the lock. What happens if someo=
-ne
-> > else
-> > grabs the lock while we are in device_link_wait_removal()? Can we guara=
-ntee
-> > that
-> > we can't screw things badly?
->=20
-> It is also just ugly because it's the callers of=20
-> free_overlay_changeset() that hold the lock and now we're releasing it=
-=20
-> behind their back.
->=20
-> As device_link_wait_removal() is called before we touch anything, can't=
-=20
-> it be called before we take the lock? And do we need to call it if=20
-> applying the overlay fails?
->=20
+Hello,
 
-My natural feeling was to put it right before checking the node refcount...=
- and
-I would like to still see proof that there's any potential deadlock. I did =
-not
-checked the code but the issue with calling it before we take the lock is t=
-hat
-likely the device links wont be removed because the overlay removal path (w=
-hich
-unbinds devices from drivers) needs to run under the lock?
+thanks for your patch.
 
-- Nuno S=C3=A1
+On Mon, Mar 04, 2024 at 05:02:48PM +0800, Jingbao Qiu wrote:
+> Implement the PWM driver for CV1800.
+>=20
+> Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> ---
+>  drivers/pwm/Kconfig      |  10 ++
+>  drivers/pwm/Makefile     |   1 +
+>  drivers/pwm/pwm-cv1800.c | 314 +++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 325 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-cv1800.c
+>=20
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 4b956d661755..455f07af94f7 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -186,6 +186,16 @@ config PWM_CROS_EC
+>  	  PWM driver for exposing a PWM attached to the ChromeOS Embedded
+>  	  Controller.
+> =20
+> +config PWM_CV1800
+> +	tristate "Sophgo CV1800 PWM driver"
+> +	depends on ARCH_SOPHGO || COMPILE_TEST
+> +	help
+> +	  Generic PWM framework driver for the Sophgo CV1800 series
+> +	  SoCs.
+> +
+> +	  To compile this driver as a module, build the dependecies
+> +	  as modules, this will be called pwm-cv1800.
+> +
+>  config PWM_DWC_CORE
+>  	tristate
+>  	depends on HAS_IOMEM
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index c5ec9e168ee7..6c3c4a07a316 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -15,6 +15,7 @@ obj-$(CONFIG_PWM_CLK)		+=3D pwm-clk.o
+>  obj-$(CONFIG_PWM_CLPS711X)	+=3D pwm-clps711x.o
+>  obj-$(CONFIG_PWM_CRC)		+=3D pwm-crc.o
+>  obj-$(CONFIG_PWM_CROS_EC)	+=3D pwm-cros-ec.o
+> +obj-$(CONFIG_PWM_CV1800)	+=3D pwm-cv1800.o
+>  obj-$(CONFIG_PWM_DWC_CORE)	+=3D pwm-dwc-core.o
+>  obj-$(CONFIG_PWM_DWC)		+=3D pwm-dwc.o
+>  obj-$(CONFIG_PWM_EP93XX)	+=3D pwm-ep93xx.o
+> diff --git a/drivers/pwm/pwm-cv1800.c b/drivers/pwm/pwm-cv1800.c
+> new file mode 100644
+> index 000000000000..d5b31a2b7787
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-cv1800.c
+> @@ -0,0 +1,314 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * pwm-cv1800.c: PWM driver for Sophgo cv1800
+
+Mentioning the filename in the file isn't very helpful. It's obvious
+information.
+
+> + * Author: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> + *
+> + * Limitations:
+> + * - It output low when PWM channel disabled.
+> + * - This pwm device supports dynamic loading of PWM parameters. When PW=
+MSTART
+> + *   is written from 0 to 1, the register value (HLPERIODn, PERIODn) wil=
+l be
+> + *   temporarily stored inside the PWM. If you want to dynamically chang=
+e the
+> + *   waveform during PWM output, after writing the new value to HLPERIOD=
+n and
+> + *   PERIODn, write 1 and then 0 to PWMUPDATE[n] to make the new value e=
+ffective.
+> + * - Supports up to Rate/2 output, and the lowest is about Rate/(2^30-1).
+> + * - By setting HLPERIODn to 0, can produce 100% duty cycle.
+> + * - This hardware could support inverted polarity. By default, the valu=
+e of the
+> + *   POLARITY register is 0x0. This means that HLPERIOD represents the n=
+umber
+> + *   of low level beats.
+> + * - This hardware supports input mode and output mode, implemented thro=
+ugh the
+> + *   Output-Enable/OE register. However, this driver has not yet impleme=
+nted
+> + *   capture callback.
+> + */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/regmap.h>
+> +
+> +#define PWM_CV1800_HLPERIOD_BASE     0x00
+> +#define PWM_CV1800_PERIOD_BASE       0x04
+> +#define PWM_CV1800_POLARITY          0x40
+> +#define PWM_CV1800_START             0x44
+> +#define PWM_CV1800_DONE              0x48
+> +#define PWM_CV1800_UPDATE            0x4c
+> +#define PWM_CV1800_OE                0xd0
+> +
+> +#define PWM_CV1800_HLPERIOD(n)       (PWM_CV1800_HLPERIOD_BASE + ((n) * =
+0x08))
+> +#define PWM_CV1800_PERIOD(n)         (PWM_CV1800_PERIOD_BASE + ((n) * 0x=
+08))
+> +
+> +#define PWM_CV1800_UPDATE_MASK(n)    (BIT(0) << (n))
+> +#define PWM_CV1800_OE_MASK(n)        (BIT(0) << (n))
+> +#define PWM_CV1800_START_MASK(n)     (BIT(0) << (n))
+> +#define PWM_CV1800_POLARITY_MASK(n)  (BIT(0) << (n))
+> +
+> +#define PWM_CV1800_OE_INPUT          0x00U
+> +#define PWM_CV1800_OE_OUTPUT(n)      (BIT(0) << (n))
+> +#define PWM_CV1800_MAXPERIOD         (BIT(30) - 1)
+> +#define PWM_CV1800_MINPERIOD         BIT(1)
+
+These are minimal and maximal values. I'd do
+
+#define PWM_CV1800_MAXPERIOD         0x3fffffff
+#define PWM_CV1800_MINPERIOD         2
+
+> +#define PWM_CV1800_PERIOD_RESET      BIT(1)
+> +#define PWM_CV1800_HLPERIOD_RESET    BIT(0)
+> +#define PWM_CV1800_REG_DISABLE       0x00U
+> +#define PWM_CV1800_REG_ENABLE(n)     (BIT(0) << (n))
+> +#define PWM_CV1800_CHANNELS          4
+> +
+> +struct cv1800_pwm {
+> +	struct regmap *map;
+> +	struct clk *clk;
+> +	unsigned long clk_rate;
+> +};
+> +
+> +static inline struct cv1800_pwm *to_cv1800_pwm_dev(struct pwm_chip *chip)
+> +{
+> +	return pwmchip_get_drvdata(chip);
+> +}
+> +
+> +static const struct regmap_config cv1800_pwm_regmap_config =3D {
+> +	.reg_bits =3D 32,
+> +	.val_bits =3D 32,
+> +	.reg_stride =3D 4,
+> +};
+> +
+> +static int cv1800_pwm_enable(struct pwm_chip *chip, struct pwm_device *p=
+wm,
+> +			     bool enable)
+> +{
+> +	struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
+> +	u32 pwm_enable;
+> +
+> +	regmap_read(priv->map, PWM_CV1800_START, &pwm_enable);
+> +	pwm_enable &=3D PWM_CV1800_START_MASK(pwm->hwpwm);
+> +
+> +	/*
+> +	 * If the parameters are changed during runtime, Register needs
+> +	 * to be updated to take effect.
+> +	 */
+> +	if (pwm_enable && enable) {
+> +		regmap_update_bits(priv->map, PWM_CV1800_UPDATE,
+> +				   PWM_CV1800_UPDATE_MASK(pwm->hwpwm),
+> +				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
+> +		regmap_update_bits(priv->map, PWM_CV1800_UPDATE,
+> +				   PWM_CV1800_UPDATE_MASK(pwm->hwpwm),
+> +				   PWM_CV1800_REG_DISABLE);
+> +	} else if (!pwm_enable && enable) {
+> +		regmap_update_bits(priv->map, PWM_CV1800_START,
+> +				   PWM_CV1800_START_MASK(pwm->hwpwm),
+> +				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
+> +	} else if (pwm_enable && !enable) {
+> +		regmap_update_bits(priv->map, PWM_CV1800_START,
+> +				   PWM_CV1800_START_MASK(pwm->hwpwm),
+> +				   PWM_CV1800_REG_DISABLE);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void cv1800_pwm_set_polarity(struct pwm_chip *chip,
+> +				    struct pwm_device *pwm,
+> +				    enum pwm_polarity polarity)
+> +{
+> +	struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
+> +
+> +	if (pwm->state.enabled)
+> +		cv1800_pwm_enable(chip, pwm, !pwm->state.enabled);
+> +
+> +	if (polarity =3D=3D PWM_POLARITY_INVERSED)
+> +		regmap_update_bits(priv->map, PWM_CV1800_POLARITY,
+> +				   PWM_CV1800_POLARITY_MASK(pwm->hwpwm),
+> +				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
+> +	else
+> +		regmap_update_bits(priv->map, PWM_CV1800_POLARITY,
+> +				   PWM_CV1800_POLARITY_MASK(pwm->hwpwm),
+> +				   PWM_CV1800_REG_DISABLE);
+
+Wouldn't it be more natural to make this read:
+
+	if (polarity =3D=3D PWM_POLARITY_INVERSED)
+		regmap_update_bits(priv->map, PWM_CV1800_POLARITY,
+				   PWM_CV1800_POLARITY_MASK(pwm->hwpwm),
+				   PWM_CV1800_POLARITY_MASK(pwm->hwpwm));
+	else
+		regmap_update_bits(priv->map, PWM_CV1800_POLARITY,
+				   PWM_CV1800_POLARITY_MASK(pwm->hwpwm),
+				   0);
+
+or even:
+
+	u32 polarity =3D 0;
+
+	if (polarity =3D=3D PWM_POLARITY_INVERSED)
+		polarity =3D PWM_CV1800_POLARITY_MASK(pwm->hwpwm);
+
+	regmap_update_bits(priv->map, PWM_CV1800_POLARITY,
+			   PWM_CV1800_POLARITY_MASK(pwm->hwpwm),
+			   polarity);
+
+?
+
+> +}
+> +
+> +static void cv1800_pwm_set_oe(struct pwm_chip *chip, struct pwm_device *=
+pwm,
+> +			      u32 mode)
+> +{
+> +	struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
+> +	u32 state;
+> +
+> +	regmap_read(priv->map, PWM_CV1800_OE, &state);
+> +	state &=3D PWM_CV1800_OE_MASK(pwm->hwpwm);
+> +
+> +	if (state =3D=3D mode)
+> +		return;
+> +
+> +	cv1800_pwm_enable(chip, pwm, false);
+> +
+> +	if (mode =3D=3D PWM_CV1800_OE_INPUT)
+> +		regmap_update_bits(priv->map, PWM_CV1800_OE,
+> +				   PWM_CV1800_OE_MASK(pwm->hwpwm),
+> +				   PWM_CV1800_REG_DISABLE);
+> +	else if (mode =3D=3D PWM_CV1800_OE_OUTPUT(pwm->hwpwm))
+> +		regmap_update_bits(priv->map, PWM_CV1800_OE,
+> +				   PWM_CV1800_OE_MASK(pwm->hwpwm),
+> +				   PWM_CV1800_REG_ENABLE(pwm->hwpwm));
+> +}
+
+What does this function do? A comment describing that would be good. I
+wonder about it being called unconditionally in .apply() below.
+
+> +
+> +static int cv1800_pwm_apply(struct pwm_chip *chip, struct pwm_device *pw=
+m,
+> +			    const struct pwm_state *state)
+> +{
+> +	struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
+> +	u32 period_val, hlperiod_val;
+> +	u64 tem;
+> +
+> +	cv1800_pwm_set_oe(chip, pwm, PWM_CV1800_OE_OUTPUT(pwm->hwpwm));
+> +
+> +	if (state->polarity !=3D pwm->state.polarity)
+> +		cv1800_pwm_set_polarity(chip, pwm, state->polarity);
+> +
+> +	/*
+> +	 * This hardware use PERIOD and HLPERIOD registers to represent PWM wav=
+es.
+> +	 *
+> +	 * The meaning of PERIOD is how many clock cycles (from the clock sourc=
+e)
+> +	 * are used to represent PWM waves.
+> +	 * PERIOD =3D rate(MHz) / target(MHz)
+> +	 * PERIOD =3D period(ns) * rate(Hz) / NSEC_PER_SEC
+> +	 */
+> +	tem =3D mul_u64_u64_div_u64(state->period, priv->clk_rate, NSEC_PER_SEC=
+);
+
+What does "tem" stand for? Maybe "ticks" is a better name?
+
+> +	if (tem < PWM_CV1800_MINPERIOD)
+> +		return -EINVAL;
+> +
+> +	if (tem > PWM_CV1800_MAXPERIOD)
+> +		tem =3D PWM_CV1800_MAXPERIOD;
+> +
+> +	period_val =3D (u32)tem;
+> +
+> +	/*
+> +	 * The meaning of HLPERIOD is the number of beats in the low or high le=
+vel
+> +	 * of the PERIOD. When the value of the POLARITY register is 0, HLPERIOD
+> +	 * represents a low level.
+> +	 * HLPERIOD =3D period_val - rate(MHz) / duty(MHz)
+> +	 * HLPERIOD =3D period_val - duty(ns) * rate(Hz) / NSEC_PER_SEC
+
+So HLPERIOD defines the second part of each period, right? This isn't
+considered in .get_state().
+
+> +	 */
+> +	tem =3D mul_u64_u64_div_u64(state->duty_cycle, priv->clk_rate,
+> +				  NSEC_PER_SEC);
+> +	if (tem > period_val)
+> +		return -EINVAL;
+
+if (tem > period_val)
+	tem =3D period_val;
+
+> +	hlperiod_val =3D period_val - (u32)tem;
+
+Wrong rounding I think. Did you test your driver with PWM_DEBUG enabled?
+
+> +	regmap_write(priv->map, PWM_CV1800_PERIOD(pwm->hwpwm), period_val);
+> +	regmap_write(priv->map, PWM_CV1800_HLPERIOD(pwm->hwpwm), hlperiod_val);
+> +
+> +	cv1800_pwm_enable(chip, pwm, state->enabled);
+> +
+> +	return 0;
+> +}
+> +
+> +static int cv1800_pwm_get_state(struct pwm_chip *chip, struct pwm_device=
+ *pwm,
+> +				struct pwm_state *state)
+> +{
+> +	struct cv1800_pwm *priv =3D to_cv1800_pwm_dev(chip);
+> +	u32 period_val, hlperiod_val;
+> +	u64 period_ns =3D 0;
+> +	u64 duty_ns =3D 0;
+> +	u32 enable =3D 0;
+> +	u32 polarity =3D 0;
+> +
+> +	regmap_read(priv->map, PWM_CV1800_PERIOD(pwm->hwpwm), &period_val);
+> +	regmap_read(priv->map, PWM_CV1800_HLPERIOD(pwm->hwpwm), &hlperiod_val);
+> +
+> +	if (period_val !=3D PWM_CV1800_PERIOD_RESET ||
+> +	    hlperiod_val !=3D PWM_CV1800_HLPERIOD_RESET) {
+> +		period_ns =3D DIV_ROUND_UP_ULL(period_val * NSEC_PER_SEC,
+> +					     priv->clk_rate);
+> +		duty_ns =3D DIV_ROUND_UP_ULL(hlperiod_val * period_ns, period_val);
+> +
+> +		regmap_read(priv->map, PWM_CV1800_START, &enable);
+> +		enable &=3D PWM_CV1800_START_MASK(pwm->hwpwm);
+> +
+> +		regmap_read(priv->map, PWM_CV1800_POLARITY, &polarity);
+> +		polarity &=3D PWM_CV1800_POLARITY_MASK(pwm->hwpwm);
+> +	}
+> +
+> +	state->period =3D period_ns;
+> +	state->duty_cycle =3D duty_ns;
+> +	state->enabled =3D enable;
+> +	state->polarity =3D polarity ? PWM_POLARITY_INVERSED : PWM_POLARITY_NOR=
+MAL;
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops cv1800_pwm_ops =3D {
+> +	.apply =3D cv1800_pwm_apply,
+> +	.get_state =3D cv1800_pwm_get_state,
+> +};
+> +
+> +static void devm_clk_rate_exclusive_put(void *data)
+> +{
+> +	struct clk *clk =3D data;
+> +
+> +	clk_rate_exclusive_put(clk);
+> +}
+> +
+> +static int cv1800_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct cv1800_pwm *priv;
+> +	struct pwm_chip *chip;
+> +	void __iomem *base;
+> +	int ret;
+> +
+> +	chip =3D devm_pwmchip_alloc(dev, PWM_CV1800_CHANNELS, sizeof(*priv));
+> +	if (!chip)
+> +		return PTR_ERR(chip);
+> +	priv =3D to_cv1800_pwm_dev(chip);
+> +
+> +	base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	priv->map =3D devm_regmap_init_mmio(&pdev->dev, base,
+> +					  &cv1800_pwm_regmap_config);
+> +	if (IS_ERR(priv->map))
+> +		return PTR_ERR(priv->map);
+> +
+> +	priv->clk =3D devm_clk_get_enabled(&pdev->dev, NULL);
+> +	if (IS_ERR(priv->clk))
+> +		return dev_err_probe(&pdev->dev, PTR_ERR(priv->clk),
+> +				     "clk not found\n");
+> +
+> +	ret =3D clk_rate_exclusive_get(priv->clk);
+
+There is a devm_clk_rate_exclusive_get() in next. Please make use of it.
+(See commit b0cde62e4c54)
+
+> +	if (ret)
+> +		return dev_err_probe(&pdev->dev, ret,
+> +				     "failed to get exclusive rate\n");
+> +
+> +	ret =3D devm_add_action_or_reset(&pdev->dev, devm_clk_rate_exclusive_pu=
+t,
+> +				       priv->clk);
+> +	if (ret) {
+> +		clk_rate_exclusive_put(priv->clk);
+> +		return ret;
+> +	}
+> +
+> +	priv->clk_rate =3D clk_get_rate(priv->clk);
+> +	if (!priv->clk_rate)
+> +		return dev_err_probe(&pdev->dev, -EINVAL,
+> +				     "Invalid clock rate: %lu\n",
+> +				     priv->clk_rate);
+> +
+> +	chip->ops =3D &cv1800_pwm_ops;
+> +
+> +	return devm_pwmchip_add(dev, chip);
+
+Error message if devm_pwmchip_add() fails, please.
+
+> +}
+> +
+> +static const struct of_device_id cv1800_pwm_dt_ids[] =3D {
+> +	{ .compatible =3D "sophgo,cv1800-pwm" },
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(of, cv1800_pwm_dt_ids);
+> +
+> +static struct platform_driver cv1800_pwm_driver =3D {
+> +	.probe =3D cv1800_pwm_probe,
+> +	.driver	=3D {
+> +		.name =3D "cv1800-pwm",
+> +		.of_match_table =3D cv1800_pwm_dt_ids,
+> +	},
+> +};
+> +module_platform_driver(cv1800_pwm_driver);
+> +
+> +MODULE_AUTHOR("Jingbao Qiu");
+> +MODULE_DESCRIPTION("Sophgo cv1800 PWM Driver");
+> +MODULE_LICENSE("GPL");
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--e7bcxw3shvpcg4m6
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEP4GsaTp6HlmJrf7Tj4D7WH0S/k4FAmXl6p0ACgkQj4D7WH0S
+/k4xAwf/VFdbutVVhfqu7Q8bKKV0Zz9fBPfLtiSSilpxZ37vIowyBOyg6KgIuQ6a
+gculAIj10VSUAPQAZ9w5juInsuKL5BOijigRILQM8VG8Y0ufo46L2p+TJT1bGyKc
+TfZyJI4Wff06jdhYXYwIDIq5yGFjrKlBrHWGIBXMv3GKalMiIyG1uLxiSCryGrFx
+EwMBMmZk+dieX3S0F5QOQr8Mb2m3EPOyvlAPgf3pHKDuwU4jGXpRoPuxBqtoN4O8
+zJoVb8vM1ONrkebkHNy/Xi9s9tpkU6f1QYyllPPwIMRpnXVbkns/QPzYa7iZEGC7
+wU7HoQkjbubSqaWeZ6Tc1ShvrfsyVg==
+=z3hh
+-----END PGP SIGNATURE-----
+
+--e7bcxw3shvpcg4m6--
 
