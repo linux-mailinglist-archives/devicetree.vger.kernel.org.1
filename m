@@ -1,218 +1,207 @@
-Return-Path: <devicetree+bounces-48242-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48243-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15135871121
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 00:38:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CFCD87113F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 00:42:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39AD91C21A17
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 23:38:25 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 788041F21529
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 23:42:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F7F57CF29;
-	Mon,  4 Mar 2024 23:38:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FEFC7CF29;
+	Mon,  4 Mar 2024 23:41:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="YgBG4vkN"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="zPBKWWgE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A7FF97CF1F;
-	Mon,  4 Mar 2024 23:38:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 17F491E4A2
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 23:41:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709595501; cv=none; b=Ri8zFkdXQyzjM3GnP5RQFTZPXhirT7DC+w7PNPQGamNeaDRAx3edWNo5SaL2N9IlbSYbCms5fzSBLZWuiesFpQ5E9H6HaoNMvOv3L3s1GguofS8IIs/AWv+emwySa4k4RbYbvEDLQneUPzKsHehR5+Yno5AJE2r6dp0fumwAXpw=
+	t=1709595716; cv=none; b=FRJfknCIuT+toeYBbkkWV1dHHc3WOJEA+UrUc5KSc4nVnKj3zi0I0CSNj+2dn2x/2tHYkSNL4bwpl/dHgQjnQhOY0J4L1Srq+YCY1eoCkhDzeguUSR/hw5l4SQyiLAHTB7Pwj52suWkWq/eBbNWCx6lIHe7QqU0b0L8RaaTe0+g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709595501; c=relaxed/simple;
-	bh=bjapdOzSpG6/EEi9GeF2HdEhMLKu2TdtZOkHv8LOaro=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Esumc27XnIH2X4MOD/cvrSx4wImrdN0QAscpSa14LkvXgI+LXGkOWbhzTMlAUn6yOE3KIgnwXYifYQe4omj0GEg7uqxL6sEJvpdtDWeJodWCX3YI8oyHhW/4i/TKHxFncYP1uQ0yI422AHQmKuMDlBQC36VTc9O1pX5UU7YapNM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=YgBG4vkN; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 424NSdCb005853;
-	Mon, 4 Mar 2024 23:37:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=uKjDd80FGy/SXXVWkcCr2
-	CwjDneS2/5OgR/fSz8cyMA=; b=YgBG4vkN7z+ndBrQN2oDjS0orZ/i3gPbP8Weu
-	nrwmrnVhXZumPT8H7vablWKclm+7KXfO9eIUBhMYjQiUmM1Y/2QOGR0tmz65hFns
-	w5QxnW+Gaz8vSIqjO5r+OsnyHpjecgr3n2CChPrAJPs9zqCqAfU00O1vFkYieTrK
-	A6u+JJ+IjLQc/5RxSGnuAS9MzDpAOlAYklXN/fHj1WqJgCKUGuUiZIywL4OorbnJ
-	/z8dKn416B+iZisK6J/sAcM+MC2ejJrsZiUcjVrewGKciKIrvIIcoLuWn5bZ9Wao
-	tgkxaTlmhR/9U5iLUwt3/CCWmGHuvv41uNwSImj+FGtQnKybw==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wnjtbgr6q-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 04 Mar 2024 23:37:52 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 424NbhGk018095
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 4 Mar 2024 23:37:43 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Mon, 4 Mar 2024 15:37:42 -0800
-Date: Mon, 4 Mar 2024 15:37:41 -0800
-From: Elliot Berman <quic_eberman@quicinc.com>
-To: Quentin Perret <qperret@google.com>
-CC: Christoph Hellwig <hch@infradead.org>, Will Deacon <will@kernel.org>,
-        Chris Goldsworthy <quic_cgoldswo@quicinc.com>,
-        Android KVM
-	<android-kvm@google.com>,
-        Patrick Daly <quic_pdaly@quicinc.com>, Alex Elder
-	<elder@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Murali Nalajal <quic_mnalajal@quicinc.com>,
-        Trilok Soni
-	<quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Philip Derrin
-	<quic_pderrin@quicinc.com>,
-        Prakruthi Deepak Heragu
-	<quic_pheragu@quicinc.com>,
-        Jonathan Corbet <corbet@lwn.net>, Rob Herring
-	<robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        "Dmitry
- Baryshkov" <dmitry.baryshkov@linaro.org>,
-        Fuad Tabba <tabba@google.com>,
-        "Sean Christopherson" <seanjc@google.com>,
-        Andrew Morton
-	<akpm@linux-foundation.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
-Subject: Re: Re: Re: [PATCH v17 19/35] arch/mm: Export direct {un,}map
- functions
-Message-ID: <20240304094828133-0800.eberman@hu-eberman-lv.qualcomm.com>
-Mail-Followup-To: Quentin Perret <qperret@google.com>, 
-	Christoph Hellwig <hch@infradead.org>, Will Deacon <will@kernel.org>, 
-	Chris Goldsworthy <quic_cgoldswo@quicinc.com>, Android KVM <android-kvm@google.com>, 
-	Patrick Daly <quic_pdaly@quicinc.com>, Alex Elder <elder@linaro.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Murali Nalajal <quic_mnalajal@quicinc.com>, 
-	Trilok Soni <quic_tsoni@quicinc.com>, Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>, 
-	Carl van Schaik <quic_cvanscha@quicinc.com>, Philip Derrin <quic_pderrin@quicinc.com>, 
-	Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Fuad Tabba <tabba@google.com>, 
-	Sean Christopherson <seanjc@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
-	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
-References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
- <20240222-gunyah-v17-19-1e9da6763d38@quicinc.com>
- <ZdhEtH7xzbzdhS2j@infradead.org>
- <20240223071006483-0800.eberman@hu-eberman-lv.qualcomm.com>
- <ZeXIWBLVWzVycm0r@google.com>
+	s=arc-20240116; t=1709595716; c=relaxed/simple;
+	bh=FGZ+g+yXX9FmR+4kqmKBbdGYp2zMsZDXvh3fmdGkWoo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CmnfxptcGOq9qJSgHk4jXksux6CLZqOIV88SbgBRoFyswH9D871IjgOgAg3qgOZE86FzHlhGxq+PEJP8257a8RbGhRhkUmocjWVIol8eq7lgd9Q7iPbYMFAksPUCD66Es3iauTL+RC/nEAv+g9hKfNM1wY8vYRvEdDS6iAfJz/k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=zPBKWWgE; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2d28387db09so60460911fa.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 15:41:53 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1709595712; x=1710200512; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZRtU7QBjY6IrxkqEXmlmGht4UQnYlyXEwuo3a/wm+0Q=;
+        b=zPBKWWgEtL3JmyI54pwj6icCFqRSR7sAKKqDwyvvsPHfwKpUEaNithGmD6QpeNR5JC
+         Wd5hc1UNJJUwMSWBj1zcM+jklWroVyDZaXuJbV3y8ro9nrKc4B4oQLpjXK7fD2d8MYNu
+         6OOm80C9oOB3LKcCf+O0DvMpsMhO0qDjMRDzPlVU+EHgwE/LliEfzLUa+4QIieDYI8IU
+         LewIkfxdD7t+sOoLegEmiTbXZCazicDIXy53+iCBvxzTEMetu6BXI0j2oZo5wAZYjZSL
+         2wxjJO1ba0Tv1f2idMlTQ6oeLegGfNVKJpHIQcDritSEoCzV+7fHOtt1wUcZjvkZK7/a
+         TPsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709595712; x=1710200512;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZRtU7QBjY6IrxkqEXmlmGht4UQnYlyXEwuo3a/wm+0Q=;
+        b=Q4fVPVqJuYYWS2rW3y4EDCb6DYtlbS1c2IhJfdf4VewAeyAZct+MOwPcg2l9LA3e1n
+         Ls0dQrBDShQWyrOhIJxryrAZ4sXtYC+408xroidaBZhjfwSuNUWpnp0sRiUPUyZcJ4KV
+         r126N5+oCbgyMmeD2CFYGVRJhDK/2S28omB3K74mVy/GB/qUSTrsYU9TTK2boHjI7CJM
+         Hfxa3XnCesFbK88tckWIjmNFvHbOBcf1eaRbiM04Q+sKM30TfXMK9HJJMX2B2vlF0I2/
+         +HKCgYAhmluO0DGfhaTXIP0+BQduqlFx/ERNl1ccnZmIcWXBlk0gAXh6n4JlUw6+bd1F
+         wSXg==
+X-Forwarded-Encrypted: i=1; AJvYcCUem02LTA/wUjwqqs8oUbt7bZ+7o4As+s0uAnf1k/mLjnb7ZxRk2ih0YuqFOrdP2YNuYRb5teqMKhaGb01kDN3YQt/6/X5OQ8Y5yw==
+X-Gm-Message-State: AOJu0Ywt6NT1AGJzazH0f+MBPFJsuIGvM96EEp5jW87R6Lcb6/AA68Ee
+	Ugh6vSdcMct/z+LpLqgXsFPxYKYZpCNkKRWOWOLVQmntvNrp4F73FvD0a1ij5RHURR7KkpZ6iqx
+	e0mMdA6AR7UHra12ctRXXyqRbIrTg2uTdwXy+tA==
+X-Google-Smtp-Source: AGHT+IHbgTcVRkhv95GNhZscBR+wc6v5CNSfkAWE/obIKtZtUa64MtgWKnO9J1IQL79XEwZISRGlEn3MxtpGiP4Ke90=
+X-Received: by 2002:a2e:99d5:0:b0:2d3:f095:ff2a with SMTP id
+ l21-20020a2e99d5000000b002d3f095ff2amr86839ljj.47.1709595712294; Mon, 04 Mar
+ 2024 15:41:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ZeXIWBLVWzVycm0r@google.com>
-X-ClientProxiedBy: nalasex01c.na.qualcomm.com (10.47.97.35) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: sjPu5sIWWRGDh-oe0xUU5hU_E0NcZLdz
-X-Proofpoint-ORIG-GUID: sjPu5sIWWRGDh-oe0xUU5hU_E0NcZLdz
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-04_18,2024-03-04_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- priorityscore=1501 mlxscore=0 lowpriorityscore=0 spamscore=0 bulkscore=0
- suspectscore=0 malwarescore=0 phishscore=0 adultscore=0 mlxlogscore=999
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403040182
+References: <20240228135532.30761-1-mitrutzceclan@gmail.com> <20240228135532.30761-2-mitrutzceclan@gmail.com>
+In-Reply-To: <20240228135532.30761-2-mitrutzceclan@gmail.com>
+From: David Lechner <dlechner@baylibre.com>
+Date: Mon, 4 Mar 2024 17:41:40 -0600
+Message-ID: <CAMknhBE1dO921gCudJMiH=HhMpgNsORwaejw7z-O2gCbLbrdCg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: adc: ad7173: add support for
+ additional models
+To: Dumitru Ceclan <mitrutzceclan@gmail.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Ceclan Dumitru <dumitru.ceclan@analog.com>, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 04, 2024 at 01:10:48PM +0000, Quentin Perret wrote:
-> On Friday 23 Feb 2024 at 16:37:23 (-0800), Elliot Berman wrote:
-> > On Thu, Feb 22, 2024 at 11:09:40PM -0800, Christoph Hellwig wrote:
-> > > On Thu, Feb 22, 2024 at 03:16:42PM -0800, Elliot Berman wrote:
-> > > > Firmware and hypervisor drivers can donate system heap memory to their
-> > > > respective firmware/hypervisor entities. Those drivers should unmap the
-> > > > pages from the kernel's logical map before doing so.
-> > > > 
-> > > > Export can_set_direct_map, set_direct_map_invalid_noflush, and
-> > > > set_direct_map_default_noflush.
-> > > 
-> > > Err, not they should not.  And not using such super low-level interfaces
-> > > from modular code.
-> > 
-> > Hi Cristoph,
-> >  
-> > We've observed a few times that Linux can unintentionally access a page
-> > we've unmapped from host's stage 2 page table via an unaligned load from
-> > an adjacent page. The stage 2 is managed by Gunyah. There are few
-> > scenarios where even though we allocate and own a page from buddy,
-> > someone else could try to access the page without going through the
-> > hypervisor driver. One such instance we know about is
-> > load_unaligned_zeropad() via pathlookup_at() [1].
-> >  
-> > load_unaligned_zeropad() could be called near the end of a page. If the
-> > next page isn't mapped by the kernel in the stage one page tables, then
-> > the access from to the unmapped page from load_unaligned_zeropad() will
-> > land in __do_kernel_fault(), call fixup_exception(), and fill the
-> > remainder of the load with zeroes. If the page in question is mapped in
-> > stage 1 but was unmapped from stage 2, then the access lands back in
-> > Linux in do_sea(), leading to a panic().
-> >  
-> > Our preference would be to add fixup_exception() to S2 PTW errors for
-> > two reasons:
-> > 1. It's cheaper to do performance wise: we've already manipulated S2
-> >    page table and prevent intentional access to the page because
-> >    pKVM/Gunyah drivers know that access to the page has been lost.
-> > 2. Page-granular S1 mappings only happen on arm64 with rodata=full.
-> >  
-> > In an off-list discussion with the Android pkvm folks, their preference
-> > was to have the pages unmapped from stage 1. I've gone with that
-> > approach to get started but welcome discussion on the best approach.
-> >  
-> > The Android (downstream) implementation of arm64 pkvm is currently
-> > implementing a hack where s2 ptw faults are given back to the host as s1
-> > ptw faults (i.e. __do_kernel_fault() gets called and not do_sea()) --
-> > allowing the kernel to fixup the exception.
-> >  
-> > arm64 pKVM will also face this issue when implementing guest_memfd or
-> > when donating more memory to the hyp for s2 page tables, etc. As far as
-> > I can tell, this isn't an issue for arm64 pKVM today because memory
-> > isn't being dynamically donated to the hypervisor.
-> 
-> FWIW pKVM already donates memory dynamically to the hypervisor, to store
-> e.g. guest VM metadata and page-tables, and we've never seen that
-> problem as far as I can recall.
-> 
-> A key difference is that pKVM injects a data abort back into the kernel
-> in case of a stage-2 fault, so the whole EXTABLE trick/hack in
-> load_unaligned_zeropad() should work fine out of the box.
-> 
-> As discussed offline, Gunyah injecting an SEA into the kernel is
-> questionable, but I understand that the architecture is a bit lacking in
-> this department, and that's probably the next best thing.
+On Wed, Feb 28, 2024 at 7:55=E2=80=AFAM Dumitru Ceclan <mitrutzceclan@gmail=
+.com> wrote:
 >
-> Could the Gunyah driver allocate from a CMA region instead? That would
-> surely simplify unmapping from EL1 stage-1 (similar to how drivers
-> usually donate memory to TZ).
+> Add support for: AD7172-2, AD7175-8, AD7177-2.
+> AD7172-4 does not feature an internal reference, check for external
+>  reference presence.
+>
+> Signed-off-by: Dumitru Ceclan <mitrutzceclan@gmail.com>
+> ---
+>  .../bindings/iio/adc/adi,ad7173.yaml          | 39 +++++++++++++++++--
+>  1 file changed, 36 insertions(+), 3 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml b/=
+Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+> index 36f16a325bc5..7b5bb839fc3e 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7173.yaml
+> @@ -21,17 +21,23 @@ description: |
+>
+>    Datasheets for supported chips:
+>      https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7172-2.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7172-4.pdf
+>      https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7173-8.pdf
+>      https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7175-2.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7175-8.pdf
+>      https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7176-2.pdf
+> +    https://www.analog.com/media/en/technical-documentation/data-sheets/=
+AD7177-2.pdf
+>
+>  properties:
+>    compatible:
+>      enum:
+>        - adi,ad7172-2
+> +      - adi,ad7172-4
+>        - adi,ad7173-8
+>        - adi,ad7175-2
+> +      - adi,ad7175-8
+>        - adi,ad7176-2
+> +      - adi,ad7177-2
+>
+>    reg:
+>      maxItems: 1
+> @@ -136,8 +142,10 @@ patternProperties:
+>            refout-avss: REFOUT/AVSS (Internal reference)
+>            avdd       : AVDD  /AVSS
+>
+> -          External reference ref2 only available on ad7173-8.
+> -          If not specified, internal reference used.
+> +          External reference ref2 only available on ad7173-8 and ad7172-=
+4.
+> +          Internal reference refout-avss not available on ad7172-4.
+> +
+> +          If not specified, internal reference used (if available).
+>          $ref: /schemas/types.yaml#/definitions/string
+>          enum:
+>            - vref
+> @@ -157,12 +165,15 @@ required:
+>  allOf:
+>    - $ref: /schemas/spi/spi-peripheral-props.yaml#
+>
+> +  # Only ad7172-4 and ad7173-8 support vref2
+>    - if:
+>        properties:
+>          compatible:
+>            not:
+>              contains:
+> -              const: adi,ad7173-8
+> +              anyOf:
+> +                - const: adi,ad7172-4
+> +                - const: adi,ad7173-8
 
-In my opinion, CMA is overly restrictive because we'd have to define the
-region up front and we don't know how much memory the virtual machines
-the user will want to launch.
+According to the datasheets, it looks like adi,ad7175-8 should be
+included here too.
 
-Thanks,
-Elliot
+>      then:
+>        properties:
+>          vref2-supply: false
+> @@ -177,6 +188,28 @@ allOf:
+>              reg:
+>                maximum: 3
+>
+> +  # Model ad7172-4 does not support internal reference
+> +  #  mandatory to have an external reference
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: adi,ad7172-4
+> +    then:
+> +      patternProperties:
+> +        "^channel@[0-9a-f]$":
+> +          properties:
+> +            adi,reference-select:
+> +              enum:
+> +                - vref
+> +                - vref2
+> +                - avdd
+> +          required:
+> +            - adi,reference-select
+> +      oneOf:
+> +        - required: [vref2-supply]
+> +        - required: [vref-supply]
 
+Do these actually need to be required since avdd is also a possibility?
+
+> +
+>    - if:
+>        anyOf:
+>          - required: [clock-names]
+> --
+> 2.43.0
+>
 
