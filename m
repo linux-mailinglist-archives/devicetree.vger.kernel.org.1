@@ -1,130 +1,258 @@
-Return-Path: <devicetree+bounces-48192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34E6A870A04
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 20:02:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F55B870A18
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 20:09:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E363D2812EC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:02:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 46AD3280ED6
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:09:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B9F378B53;
-	Mon,  4 Mar 2024 19:02:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A968378B50;
+	Mon,  4 Mar 2024 19:08:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="ouLbdISb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2066.outbound.protection.outlook.com [40.107.20.66])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8591B48CC7;
-	Mon,  4 Mar 2024 19:02:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.169
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709578931; cv=none; b=GpaL1iWpUxj11eCMdjpM6HdcqxwNyy5KIeXIyoSkkVhmCgmm8iqhlYqpWgHhzpPh+TJkXH0/CArykiofmtIIxWzbgLbBdvFSfKf1IayslKBIJvUVmB87vRbZzQpH/cG0mdvKU8krhdRBDZ9sj8jdLWB1lFMvLaG1ZX8iJLqeTPE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709578931; c=relaxed/simple;
-	bh=jz+YaBY6pOhcQeRXB2G4cm+3RZ3GXD8LU3XyAlsEUug=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=KaYTCdkYe8G+sJqgxMPQLPTyvUJ2HgISgrwkbQlvODe3rpDRqoe0fGOb7c7wFfwPyHw4naoDIkET/mvmsObbtykBc615SuAW7g+QUsEgZjZmtxc3aSosC3qGtoFTo+cJTRl/aViw5tHLkaLcUHcxl8iiXSTLNfFpjapGXLRP9GM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-dc74435c428so5312289276.2;
-        Mon, 04 Mar 2024 11:02:09 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709578928; x=1710183728;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=LYl1mIRYbr8vmVU4jA2oiSVVNLp+IoIPd1/D/iVf0OQ=;
-        b=mA21OxOmYlV1KRDI06BXJ01zNFPGfQ6O9hL+lWVx0o8bTvc7ixGQWn4euJuCTlHG44
-         tbRr2wsG0XNx/5QoW8bQLYcsrwptZB4qXsPaA9RfYAcWiwZotsTSLhfsH+ffHy84dwKR
-         xvJsS70P4hJeY26gG2ceUTnVtShU5t0DVfsD9h04FigcjhVl5BrBxLcXu0E1AGcr2dFx
-         Z9NbwCa2JWOTIpRiv4soVVbfPmEBlYbo9DIQt3PgxhRJ3k6PqtjPYCvBlHMBuDq6tAjn
-         J+1v6geIQdtjZ8VbhDyYrdX/CwbaF+3aiP6zLHRDFJ/9knbc0UMjLea/QAz3I+H1vHeL
-         GVww==
-X-Forwarded-Encrypted: i=1; AJvYcCVxI6GfRbDYIRHuiJLgWCPne7e7Q6iZgXLJUOWSl3Ms5zhAnuzye4n4ZrcWYscEPe7h0HCKw/PClpbKkIKjpQXM2nM+GE/6Dqn608z0Q2vpOYsedUMML7N/Kkt4YdYC38b+ENA9BdLQkegg372XbsExdmipJwNOUHRgAceO2RIkG8rYUfk=
-X-Gm-Message-State: AOJu0YxnMbX9xKF3tYUpPJcEc/plutMvZEpUpaXEh8yM8ywilrAyEMc9
-	DfuuFGiF0sVdHpH70A75bBaUNpxkrI+NqSEasFIMco0BpReJMkKLYPZ8HB9AHus=
-X-Google-Smtp-Source: AGHT+IHcGnKBnMT8d7rh2gKo/LhCbodyr0HL6t21lbnSOzsIBsDg9Jhv8uRbsuCx21k7kmdGmJTR+Q==
-X-Received: by 2002:a25:c546:0:b0:dc6:ff66:87a8 with SMTP id v67-20020a25c546000000b00dc6ff6687a8mr6990780ybe.51.1709578928022;
-        Mon, 04 Mar 2024 11:02:08 -0800 (PST)
-Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
-        by smtp.gmail.com with ESMTPSA id x3-20020a258583000000b00dcc234241c4sm2269850ybk.55.2024.03.04.11.02.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Mar 2024 11:02:07 -0800 (PST)
-Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-60925d20af0so48776787b3.2;
-        Mon, 04 Mar 2024 11:02:07 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXjRVp8g/Ijxu1BPEJDwJQ3cbUB3aYLsyV9MxLOI9BmmctTfDKF9ZmqKoiE0OMh6aeQ3a6huXZzdnfyO/rHXyM8U+oWPSi99eP733TcFHVv9Q3TJM119cgSXqOeq90csZWMyOCCeFlCNkja+/mQc8FfZbiLr20FRYuwescsv8gbO7k0+Ps=
-X-Received: by 2002:a0d:d4c6:0:b0:609:3250:865 with SMTP id
- w189-20020a0dd4c6000000b0060932500865mr10236091ywd.7.1709578927167; Mon, 04
- Mar 2024 11:02:07 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4185D78B5C;
+	Mon,  4 Mar 2024 19:08:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.66
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709579334; cv=fail; b=Ez295xbYofGVZ2/5beCg6nE58cQOIamO1E556P/PNKFPzrt68dzo4SpDZ2tkFUsWNW2lKfBYgLIss8YiawhDx4ZeEylB2hvH0wXBpE2jH/x4tM81dmodaJHV6toyfBAQTsALrPJVBrhJ9eLq4qAET6+QScnX2r0DHk6jRy7GA2Y=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709579334; c=relaxed/simple;
+	bh=z1eeRwchmhltHx5m2zh9+9Xvu3zYIzbGKlhL6KXNgAc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=nto+ZgduWYp33Ew5KLqF1BTaoLwtxRMTFqAfFYbljrMYqus0tw50i1Yq9w9m6qpqdBoiaPr4Vadda1hbQyM0qyLvVDSLfKw19OW4afztbye/g1y1oyD+263KiE6YyyJwMblQNZBc2QXSLX/VY+sM02CQkbrOfLtIBoyIPAzB4dE=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=ouLbdISb; arc=fail smtp.client-ip=40.107.20.66
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=V1Qmv3F7LKlahMRHiM4VgzMmS7xaBp9Nhsnhn/cz2hdqrhqEC2o57NuiZzs4poiOxHgBTXqu1UC2AliWXXNma8dJFF10GrXv8nbxaW5BzRiNbYf2gz7rimZAm0LZGOe9JzX0SPnxZaH75xbVCuhak2pfvA4hnkqi8fu6abGsErb4Vk1Bl6fw/L+sx+jpg79ycuX2YicK1zmvOsZJ8qeH2YumT6XhSX7E61f+jl9JL88L7Hsp3T1RZ0fsFPK2SIH/U7mV4fDGqpltaJ68ceMnDCvW+SNcNpPpV/lVU5tDOPBYfe5G9YIof2bDQo17ZRZ7flwCFpWC8r8hxMtQ+1QnXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=gn47uum3Yi+6Vsz6ZdsjDMTT5dJEZ4BHF6+SAmGblrg=;
+ b=SfNv72VWTKUYVwet0Np+q4Zpfx3yZ+bJQIldm6LiXpZHTMJAy7EbUUQH5aI//L7J9ivf5ep4h6QtZCZ9mqfnO0Wk2bwQuFV1bFvruvsh6boejKjYgztYb8/gmAh5mTMZxell3rPxeAYlS7Bt2XOOL8Tg/qjkqkl1Ybp9k6TLUyq5EXSDNslGn/V5F3WENVMs2Dmjo05APPXaHzj0SGvA596eiiLnMq1d8V4AJGnEZ0KDAYmj/HzU00tH4EyPjibfUXVuD929XSk/S4cRbrN12Aw5gPcAEGriBQt5ChcuRGYMWiMpvosK8wX0EH6GeTasLntyb3cDHgTOfR3ucp2b4A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=gn47uum3Yi+6Vsz6ZdsjDMTT5dJEZ4BHF6+SAmGblrg=;
+ b=ouLbdISbvnpRSAlJwFTCNRAWMvdNjavWrLl/RnXNXIhorSAecJn+0O93Xs40HcdaigGhrpfYBxY3ihajpIMZ14qGoxxjB7LiU6j1sRvaByeA92lg0f3+jPoyqTdr2Of3tKlFq/tc0JiI2W3DC4vQ4LYmert+EK3NTLAFSn3hYjs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by GVXPR04MB10149.eurprd04.prod.outlook.com (2603:10a6:150:1c2::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.38; Mon, 4 Mar
+ 2024 19:08:49 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7339.033; Mon, 4 Mar 2024
+ 19:08:49 +0000
+Date: Mon, 4 Mar 2024 14:08:41 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Rob Herring <robh@kernel.org>
+Cc: conor@kernel.org, bhelgaas@google.com, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, helgaas@kernel.org, imx@lists.linux.dev,
+	krzysztof.kozlowski+dt@linaro.org, kw@linux.com,
+	linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
+	lpieralisi@kernel.org
+Subject: Re: [PATCH v6 3/3] dt-bindings: pci: layerscape-pci-ep: Add
+ snps,dw-pcie-ep.yaml reference
+Message-ID: <ZeYcOUAb7NWjTh9m@lizhi-Precision-Tower-5810>
+References: <20240301162741.765524-1-Frank.Li@nxp.com>
+ <20240301162741.765524-4-Frank.Li@nxp.com>
+ <20240304182049.GA851904-robh@kernel.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240304182049.GA851904-robh@kernel.org>
+X-ClientProxiedBy: SJ0PR03CA0289.namprd03.prod.outlook.com
+ (2603:10b6:a03:39e::24) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240301014203.2033844-1-chris.packham@alliedtelesis.co.nz>
- <20240301014203.2033844-5-chris.packham@alliedtelesis.co.nz>
- <ZeIdXIx5zYjKQiSO@smile.fi.intel.com> <CAMuHMdVJiWtB4MSGHXXz=OAEvu-+b9Xp-jQ_NXWck+hwKGK4TQ@mail.gmail.com>
- <CAHp75VesLCo72ftQ2BNEKSXwF9A2pe0Vbnuves2-L3ist_twNQ@mail.gmail.com>
- <CAMuHMdXjqVQeQF6TFr1nQmUCLrEbY1gq5OdCcz6T60W33QO2-Q@mail.gmail.com> <CAHp75Vfh_pv50Pk84JGz6qT=K9m3w=0_HDGX2WvqEN4Nm8fFDw@mail.gmail.com>
-In-Reply-To: <CAHp75Vfh_pv50Pk84JGz6qT=K9m3w=0_HDGX2WvqEN4Nm8fFDw@mail.gmail.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 4 Mar 2024 20:01:58 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVuiYdjV46aS2fqPsFdW-vGK7zm_sY-LbWGYg4U0Ar5yQ@mail.gmail.com>
-Message-ID: <CAMuHMdVuiYdjV46aS2fqPsFdW-vGK7zm_sY-LbWGYg4U0Ar5yQ@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] ARM: dts: marvell: Indicate USB activity on x530
-To: Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc: Andy Shevchenko <andy@kernel.org>, Chris Packham <chris.packham@alliedtelesis.co.nz>, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	andrew@lunn.ch, gregory.clement@bootlin.com, sebastian.hesselbarth@gmail.com, 
-	pavel@ucw.cz, lee@kernel.org, linux-leds@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|GVXPR04MB10149:EE_
+X-MS-Office365-Filtering-Correlation-Id: 99d1ecac-b10a-4504-3402-08dc3c7e85b8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	TRsAjY6HvqgzddTJ72SOwDKb5lyd2pQN5oAkyOrRNI2Xibfnc9Od6UgUFXUSQCeF8xBugPjSN8thyHZtMU+bzn+SQBsIIh5o+1EwjMXnhCA38vMlpboJSHfNeyNI7YmAOk6Cj/0fBCRzbPEe2MeiKFdBy7EaxhuDd7dgd7cC96nMb+sMVw3/5086AEG+xgs3w7XqVlirn+kP8SOG31m4ARQEDrF6UvWS85T802COw3vU/nlbNLy0/+2Fy2/1buJMSayQQMkXZtivEhFVU+5z8pMoXWljvQLBxKF+rubaWhlLix6/HUIRChqTFwivsPxhvlOkgc4WFNtWcA19n6bIMvcv6Ic5HEYfR1MIMF35wXVud5qdASbEMVqKiIpaKkGTsR6Or/SOOBuB/guD59t8ov/vexu/iM1L0GveJTR4/LNelI/2B2Thb//IIQX2PWzAXtJmqystEt8Wcfco+MNHzVWwNDmQwwkM4H82L5k8YQePLbYGGy7qh2x7teRuoPrOXNEY/siJL/faGnbMeJCsA426TdWWk1ceMjIdUkAkQqMpfcrrvDC8bJx8uYUrPwE8E3YVyueR9BNrglnnf7r1MwkoX9Q9EaLqf7Bjpvv52lrskkYZWTsjW1tDvcYNhOnbd4N4foo5kaHgDTMlB+a3LEvj1cpvyoQv7ky5f7NhJkA=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?eTQwnEpeo5lL+VxHySdrX8Z06eaLc20xjnXqoaKPiZxsVJxrOocjBEU7+Pic?=
+ =?us-ascii?Q?/r4ipp/NERZVLOw8tMgrgrTwlZMdlsULyx75RaRG+st2nhLbkZ4jNvzcHTnW?=
+ =?us-ascii?Q?tZmyQADXJJhLT6lzNVgfVLYsQo+krSGLBPBVzb2On+OqRwVlFjQjB6us02HU?=
+ =?us-ascii?Q?XRSeDqImbEK8Ecn1/boRebGyxqY7b4ZyN1gMyhartkAxufLVGoUPku+gisgb?=
+ =?us-ascii?Q?aH7Y4eaQnemqTq8A4Cftx3KLV6m7+Rp7OhWXI3XWIC1N3EQabT62oul3Xhlt?=
+ =?us-ascii?Q?RcrvvJkHUrueLtUNrvlfIKBUmNx+2ppQUQXyHVV2WIzTCkxS8E3WAP07rLtp?=
+ =?us-ascii?Q?AO+xCEr/8NuJ7L0UJEa+lXWjKfP+jRvPHVwmk0uKKj9RO53MAgRphppFTRDP?=
+ =?us-ascii?Q?gwTs4bK8LuWz9DRZ2UpmpYDTpbpoQ3W/EgxHarYmfWWYSWDM/Ke9roIkrIyU?=
+ =?us-ascii?Q?zGANVdWeLHvCqXHdTsEnwhNa03HWbK8TMspkvrWE1SDKYUaq1hPwZKUMgHqT?=
+ =?us-ascii?Q?Mx/9Nrc88vUh7ygByXANca2jUccFZLamx188UtZGdD8DlJiGtz84b/Cw+Gk3?=
+ =?us-ascii?Q?7PuxTw3SjqFlWz/EiDqodexBGVpfqEbgS+bVCWWPsT28zBS2D7hB7UqEYYiV?=
+ =?us-ascii?Q?2zM4C2d7Wsc6MUyTRrzdm/ZqHTPhjUFcLwAom5FVR7hg1XthxYCSb8kj/HSO?=
+ =?us-ascii?Q?V2cKH7xKjCFQ0Gqgm4BhaD1Wpk77cqgFXfSKKiXQMX2pw4HgQy7KnZhEBwsl?=
+ =?us-ascii?Q?X1Wou9RIbHjQHWszSTIMo6ltOaHZMdOXS0upSvwzYAPf0ojn4yp2lQoDwppV?=
+ =?us-ascii?Q?LxmfoOphFKpD6JwzMxszXlaeVoAeOKS//tzRsFa+txlzkactyjFSrKgY5hSz?=
+ =?us-ascii?Q?EDsYpoMYSqOp5FFA7H8g5e51geaSVjh9Vdzx90WrVC6v2YFlu5/sIfcrW1Ag?=
+ =?us-ascii?Q?7ZgRqc7CiOzlv3AslGni/XjJqDBUENU6a2fuu38TGPAjgnWAnXUoG8JhnC/v?=
+ =?us-ascii?Q?5u7/kZaVlgQBQ/XKky8fjNOGPt7m2OADu5Gtwsgme/T5zj5IfnSKY0r3Ud3a?=
+ =?us-ascii?Q?5rwqDKZNcHrYnU7q9N+0luKgyU3YrM7N/ad9gyRw0ab7Nzh6dIp0CvIonJxx?=
+ =?us-ascii?Q?AjL0GImdFgL1OqbuYqkTb4CrGW7ukpDLCuC4J4tGKYEk+XUuoHt+qVU/MDEs?=
+ =?us-ascii?Q?MARiVL18W7LpL0ESGjoL6XDPCo0ephGaZtmk9N5PBbQowL1lZEK3/vwy8cz5?=
+ =?us-ascii?Q?5GVUsOZ1whWCQImgQf1Xuzd3YT4Bs1EkY7HqnzaMHjYUxuoelAifl+i/0ZcB?=
+ =?us-ascii?Q?hv/wqquFUBLCFR3WAgBVirCBhic6DJ0j28/cbBAFhjJ+co3aETlbDllqpQ3c?=
+ =?us-ascii?Q?BQKCHW+CoV5k0+oRxQbG8kO48bEz9dqfwOTzwdnxn3Fbm1QufP1b4J3fQGc+?=
+ =?us-ascii?Q?d4ttvDE1nRsC8LbE/8IxtJQL6W9no/JVwfmT88Cz6Z88Yua+UZex405CU1Px?=
+ =?us-ascii?Q?sG86hi2XY3/S5wV6LnQNR9XsCOfei424bwnr9NypNYCcHV+Bxl5r5lZf7Fmr?=
+ =?us-ascii?Q?k7vCd3hdEVXRs65bwY0=3D?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 99d1ecac-b10a-4504-3402-08dc3c7e85b8
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2024 19:08:48.8995
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: GpGr2v6M2hLBgCGWmTpd13Z2hI932OSmlTTv0T6HVfwDx/XdQmOhZHiCmS5NbSMbG+ujo8PWpZSEvyRJ9AP3fQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: GVXPR04MB10149
 
-Hi Andy,
+On Mon, Mar 04, 2024 at 12:20:49PM -0600, Rob Herring wrote:
+> On Fri, Mar 01, 2024 at 11:27:41AM -0500, Frank Li wrote:
+> > Add snps,dw-pcie-ep.yaml.
+> > 
+> > Remove context that exist in snps,dw-pcie-ep.yaml.
+> > 
+> > Add an example for pcie-ep.
+> > 
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >  .../bindings/pci/fsl,layerscape-pcie-ep.yaml  | 54 ++++++++++---------
+> >  1 file changed, 29 insertions(+), 25 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
+> > index cf517e4e46a33..07965683beece 100644
+> > --- a/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
+> > +++ b/Documentation/devicetree/bindings/pci/fsl,layerscape-pcie-ep.yaml
+> > @@ -10,8 +10,7 @@ maintainers:
+> >    - Frank Li <Frank.Li@nxp.com>
+> >  
+> >  description:
+> > -  This PCIe RC controller is based on the Synopsys DesignWare PCIe IP
+> > -  and thus inherits all the common properties defined in snps,dw-pcie.yaml.
+> > +  This PCIe RC controller is based on the Synopsys DesignWare PCIe IP.
+> >  
+> >    This controller derives its clocks from the Reset Configuration Word (RCW)
+> >    which is used to describe the PLL settings at the time of chip-reset.
+> > @@ -35,31 +34,18 @@ properties:
+> >        - const: fsl,ls-pcie-ep
+> >  
+> >    reg:
+> > -    description: base addresses and lengths of the PCIe controller register blocks.
+> > +    maxItems: 2
+> > +
+> > +  reg-names:
+> > +    maxItems: 2
+> >  
+> >    interrupts:
+> > -    description: A list of interrupt outputs of the controller. Must contain an
+> > -      entry for each entry in the interrupt-names property.
+> > +    minItems: 1
+> > +    maxItems: 3
+> >  
+> >    interrupt-names:
+> >      minItems: 1
+> >      maxItems: 3
+> > -    description: It could include the following entries.
+> > -    items:
+> > -      oneOf:
+> > -        - description:
+> > -            Used for interrupt line which reports AER events when
+> > -            non MSI/MSI-X/INTx mode is used.
+> > -          const: aer
+> > -        - description:
+> > -            Used for interrupt line which reports PME events when
+> > -            non MSI/MSI-X/INTx mode is used.
+> > -          const: pme
+> > -        - description:
+> > -            Used for SoCs(like ls2080a, lx2160a, ls2080a, ls2088a, ls1088a)
+> > -            which has a single interrupt line for miscellaneous controller
+> > -            events(could include AER and PME events).
+> > -          const: intr
+> >  
+> >    fsl,pcie-scfg:
+> >      $ref: /schemas/types.yaml#/definitions/phandle
+> > @@ -68,10 +54,7 @@ properties:
+> >        The second entry is the physical PCIe controller index starting from '0'.
+> >        This is used to get SCFG PEXN registers
+> >  
+> > -  dma-coherent:
+> > -    description: Indicates that the hardware IP block can ensure the coherency
+> > -      of the data transferred from/to the IP block. This can avoid the software
+> > -      cache flush/invalid actions, and improve the performance significantly
+> > +  dma-coherent: true
+> >  
+> >    big-endian:
+> >      $ref: /schemas/types.yaml#/definitions/flag
+> > @@ -85,3 +68,24 @@ required:
+> >    - reg
+> >    - interrupt-names
+> >  
+> > +allOf:
+> > +  - $ref: /schemas/pci/snps,dw-pcie-ep.yaml#
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    soc {
+> > +      #address-cells = <2>;
+> > +      #size-cells = <2>;
+> > +
+> > +      pcie-ep@3400000 {
+> > +        compatible = "fsl,ls1028a-pcie-ep", "fsl,ls-pcie-ep";
+> > +        reg = <0x00 0x03400000 0x0 0x00100000
+> > +              0x80 0x00000000 0x8 0x00000000>;
+> > +        reg-names = "dbi", "addr_space";
+> > +        interrupts = <GIC_SPI 108 IRQ_TYPE_LEVEL_HIGH>; /* PME interrupt */
+> 
+> PME or...
+> 
+> > +        interrupt-names = "app";
+> 
+> app? You seem to just be changing the names to make the example happy. 
+> What do the dts files have? You need to make those pass.
 
-On Mon, Mar 4, 2024 at 7:17=E2=80=AFPM Andy Shevchenko
-<andy.shevchenko@gmail.com> wrote:
-> On Mon, Mar 4, 2024 at 11:57=E2=80=AFAM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> > On Sun, Mar 3, 2024 at 9:43=E2=80=AFPM Andy Shevchenko
-> > <andy.shevchenko@gmail.com> wrote:
->
-> ...
->
-> > So IMHO it would be a bad idea to make the DP mandatory.
->
-> But I'm not talking about making it mandatory, I'm talking about the
+It's on my plan.
 
-OK.
+First need change 'regs' to 'dbi'. 
 
-> DP to be used as DP when it _is_ present and wired. If current
-> platform wants to use DP for something else, I'm pretty much worried
-> that this is the right thing to do.
+https://lore.kernel.org/linux-pci/20240229194559.709182-1-Frank.Li@nxp.com/
 
-There is not much we can do about that. People can already model
-such displays as individual LEDs, too.
-And in some sense, the auxdisplay/linedisp driver for
-"generic-gpio-7seg" imposes a policy, too.
-What if people want to e.g. use 4 7-seg displays to show a continuously
-running snake?
+After that, I can update all dts.
 
-Gr{oetje,eeting}s,
+The second step:
 
-                        Geert
+Change EP side interrupt-names. 
 
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+Frank
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+> 
+> Rob
 
