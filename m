@@ -1,114 +1,125 @@
-Return-Path: <devicetree+bounces-48226-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48231-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9DA2A870C31
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 22:08:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9835F870C6D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 22:25:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D05EB1C23328
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:08:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52331286288
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:25:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF1BD1CAA3;
-	Mon,  4 Mar 2024 21:06:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05911F92C;
+	Mon,  4 Mar 2024 21:24:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="nzGyLKnP"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZDNv2tss"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-210.mail.qq.com (out162-62-57-210.mail.qq.com [162.62.57.210])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8CCB97D083
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 21:06:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.210
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B8A1F5FD;
+	Mon,  4 Mar 2024 21:24:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709586414; cv=none; b=uy8253cP2LmtVBDdUQ3n5iZdzz0kSc9l3HOydkD7FD1WjtoqJAALOLdRDrAMezkv9zMSBxAph39P5QiiAEVdCjYZ0dyZbvmYpybGqm/2Lj9shUs+F0djZv/aqwiB849enwXSz/M6UkphvTBdcFQIWcUbCcMZpmVQIv0iIbjVhJE=
+	t=1709587493; cv=none; b=QxAK6OGo4w1bBIdOv0fWwoG+CgRlkaTx0DAQLreDKob6OMsjRm3Lz0UjvgRNDlKpCzBl6CrhRSTRnVxwg+hYUlzl+r/tJIzkhAxUuJSaw6Oua8xPM9Aodyo+E9niOpgmb9VuE3Gw9OGK98W3QDSi/vLXdiYFQM1+z3LHPGfXlfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709586414; c=relaxed/simple;
-	bh=P8jNX7CJX28JnzDnoqwlE54sj83Ai0UkkAgdRX77wpA=;
-	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version; b=W2gILlICN1nW88WKaRBwQKF2XWTzoi7pImQbSp0m1YInkSHFnD5xCTy+819pMF2Fjqqib16Eyt+MCtRO1u/zQjMJcgg2FqD/Jjl+y3GNEjEZkGUwUkBWQxf8g6yFtRLFQ8Vx13jJJ9ijvI7wzooXTGtWCtrB9b68qWdBPzbDduk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=nzGyLKnP; arc=none smtp.client-ip=162.62.57.210
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1709586398; bh=ZIJLq3BiSFnxhdHDEf99zRwFrDLRKM6iSM1wB2EtUew=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=nzGyLKnPoGwBIxlwfAUkuIQaPJA9KVS2EVwhIN+BOpCesuCz0Torj02Xss3nbkPkN
-	 KWd69ANDZl307XhIZylOq5CSU0Hz1gAZUEteiBbMBSTqcoOtehKwF1xTZSMrGN9yM+
-	 GrVImA5ab/6WEg6pJoSoWl0+Ge8K2nBmcEEM2hMI=
-Received: from cyy-pc.lan ([240e:379:2240:e500:994d:62ab:74a6:932b])
-	by newxmesmtplogicsvrszc5-0.qq.com (NewEsmtp) with SMTP
-	id 1953A8D2; Tue, 05 Mar 2024 05:06:21 +0800
-X-QQ-mid: xmsmtpt1709586396tlqjaady1
-Message-ID: <tencent_E2812086B695A334EE5E8C70C85CA3171F06@qq.com>
-X-QQ-XMAILINFO: OOPJ7pYMv25tJaZk7lZP4Q8/mDJpXDiT5T4zZuM22dEU2c/Gy7TSuOPa/AA6bu
-	 CpJhKfQjQJeyJPTNUNGRG2pPp6A2yctjqvUlxBJeAR5MVOUPMLUyufmP5Xl2lsP8bMG26G8oHdoy
-	 bWNkiPHu9SK6l5PYmClXHLRkHYRSxMeHn6ic6toVKBXjVUQkWhTCnDx8yofLUVXv3BMk9mAPxMt/
-	 ardIAzSS/Bxv6LPxdswI/Xq5er/yWIxI8iNiC3bX42yEpNRABbNbOlM2X01nR0i0peEpV9VCidWG
-	 SmRfDuSENS7VykPyUNhLUpL+w1YHbalNtuiVt/RqpO2OgPLEN+IQ5a1vLUd+igd8tHaNz2+QJ6L4
-	 ZXCySTc+oe/MSNMBW/1g0KiJAvDcQWs9cYwCU7QrdgW4VId7FnLcfIv6QqDUw7oNcyLWS/UqK9JW
-	 W9XyGDpbQzF6d2nL8FV/P58/6IbQMh3aIgkl6GaT1CcW+ccfHxl95/uEg9XA/nsXF862Q3ExJmW5
-	 6fVVWWkOoOKHLb3dJB0P3q0lGkCwALjBzGl2QUgBFR3HxdB7kweRDhoiRcpL8tpbOgdZVxu2zYRq
-	 WjoV4jvBFBCGB1CkRi9tQgT2RErH5mtk69d8yYcNC/a4QUObCIQo0W7n3rWf9uXJi7qkK6eUVSKt
-	 WvRxwEzmbHn266f4AS5slz29IDA9ElFbKIO6kUWNFLK41//9a4Qf44bG7qNUgkNM0MnrlYUR3eZh
-	 E1HzGvnKgM4cgfxCROws6zzowP+OouIYRKwqh6JMw/46RK2fXwAezH/S0UyyE61R/uD7ry1ckW8H
-	 f3YJPg+lHw8hRbNeBSqaTYIypSTS6xB4lBl7Z/QnMAaVURaC8pn2Gmty6X9fEQOkIanniTuCgw8p
-	 HHSNzNHwQKb6F1tTdl25fiMRzzwT5bUAOzedonNPjYyzVe9KHUa3+hvLiyO8bs6grusXlvS3ZAVx
-	 WX/AaIZD6SRoQWqhKFiiOuGY7TdUWiPL1quwVLV9PugG9+cf++uink06Z28C0eKdufxYybiEyH+A
-	 vC3+rb/94l24P7q9OyoNhrQ18Y2uRKKRewkX1alGFpxdjvvBTNy7IGyJ8UgwlxfdaQ7Ckw9RP/0B
-	 57rk/F
-X-QQ-XMRINFO: NI4Ajvh11aEj8Xl/2s1/T8w=
-From: Yangyu Chen <cyy@cyyself.name>
-To: linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1709587493; c=relaxed/simple;
+	bh=GCATK6oSIl6USFFqC/CxN7o9XWA+S9y2ORbBrX3q6D4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Wmz0jALnhae9X9FR3OvKW8e3kOhX/aIUkSSu0Lrn3mCIXdiFWdOBdVduTrdDdf9x6Ply1DQsacF0BVH67uqxjB5wfr+zb8eLpfyXqwAXgQKC0v8uf3qF3PyBUAfHe28y3yH3/RvM0dBqNcmK92d+FnpsK9GYufGOuFEmns7XfRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZDNv2tss; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A8EBC433F1;
+	Mon,  4 Mar 2024 21:24:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709587493;
+	bh=GCATK6oSIl6USFFqC/CxN7o9XWA+S9y2ORbBrX3q6D4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ZDNv2tssnLutTbFa6WyGdwustA4QBnMEu+28wfPUMo8UNbH7x/MrrHWTsx7jUSH5Z
+	 V4CJ06PkqW0wuMHZ8pqttIE/qrZ/x44WPTlFEJwiVG8dOO24EMkqPvYD+IKV4GZVie
+	 Roo7g86uMFOT1N9XHiL4cYPEFT6Kuwj+ZQ1vBnpLkDWaU63Mvz6Jhl68f/CpCqlc6r
+	 ZyLqOSTH84Yure/F/MqxK///OW/RM+98OcmotAdR990IgQ7biJM64boHyCEtNU0wJX
+	 AgoK8A5P3tEtDHg4OjgwsniRYohrj8FID/DHQ4H1y8hJ+NBIFa4C4WQebR7K6hO/rH
+	 ZXjuy84CFAd1Q==
+Date: Mon, 4 Mar 2024 15:24:51 -0600
+From: Rob Herring <robh@kernel.org>
+To: Conor Dooley <conor@kernel.org>
+Cc: =?iso-8859-1?Q?J=E9r=E9mie?= Dautheribes <jeremie.dautheribes@bootlin.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Guo Ren <guoren@kernel.org>,
-	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	Yangyu Chen <cyy@cyyself.name>,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: [PATCH v3 7/7] riscv: config: enable SOC_CANAAN in defconfig
-Date: Tue,  5 Mar 2024 05:06:01 +0800
-X-OQ-MSGID: <20240304210601.777883-7-cyy@cyyself.name>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
-References: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Yen-Mei Goh <yen-mei.goh@keysight.com>
+Subject: Re: [PATCH v2 0/3] panel-simple: add support for Crystal Clear
+ CMT430B19N00
+Message-ID: <20240304212451.GA1056406-robh@kernel.org>
+References: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
+ <20240304-drivable-property-feaeba782880@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240304-drivable-property-feaeba782880@spud>
 
-Since K230 has been supported, allow SOC_CANAAN to be selected to build dt
-and drivers for it in defconfig.
+On Mon, Mar 04, 2024 at 07:29:04PM +0000, Conor Dooley wrote:
+> On Mon, Mar 04, 2024 at 05:04:51PM +0100, Jérémie Dautheribes wrote:
+> > Hello everyone,
+> > 
+> > This patch series add support for the Crystal Clear Technology
+> > CMT430B19N00 4.3" 480x272 TFT-LCD panel.
+> > It also adds Crystal Clear Technology to vendor-prefixes.yaml.
+> > 
+> > Please note that unfortunately there is no public datasheet available
+> > for this panel.
+> > 
+> > Changes in v2:
+> >   - add link to the Crystal Clear Technology website in commit message, as
+> >   suggested by Conor Dooley and Neil Armstrong.
+> 
+> You forgot however to add the acks that I gave you for the two
+> dt-binding patches.
 
-Signed-off-by: Yangyu Chen <cyy@cyyself.name>
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+I was wondering why my scripts said this was already reviewed with that 
+missing. Turns out b4 will now check prior versions and add the tags as 
+long as the patch-id matches. Neat, but the submitter really has to 
+grasp how that all works (knowing if the patch-id changed) as well as 
+the maintainer has to use b4, so we can't really rely on it.
 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index 89a009a580fe..20b557ec28df 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -33,6 +33,7 @@ CONFIG_SOC_STARFIVE=y
- CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_THEAD=y
- CONFIG_SOC_VIRT=y
-+CONFIG_SOC_CANAAN=y
- CONFIG_SMP=y
- CONFIG_HOTPLUG_CPU=y
- CONFIG_PM=y
--- 
-2.43.0
+Here's b4 debug log:
 
+  new message: 20240223-subtotal-aground-268d135adeff@spud                                                                     
+Running git --no-pager patch-id --stable                                                                                       
+  found matching patch-id for Re: [PATCH 2/3] dt-bindings: display: simple: add support for Crystal Clear CMT430B19N00         
+  new message: 20240229-woven-lively-1d90687b2d03@spud                                                                         
+  skipping reply without trailers: 20240229-woven-lively-1d90687b2d03@spud
+  new message: 20240223134517.728568-2-jeremie.dautheribes@bootlin.com                                                         
+  skipping non-reply: 20240223134517.728568-2-jeremie.dautheribes@bootlin.com                                                  
+Analyzing follow-up: Re: [PATCH v2 0/3] panel-simple: add support for Crystal Clear CMT430B19N00 (conor@kernel.org)            
+  no trailers found, skipping                                                                                                  
+Analyzing follow-up: Re: [PATCH v2 3/3] drm/panel: simple: add CMT430B19N00 LCD panel support (mripard@kernel.org)             
+  no trailers found, skipping                                                                                                  
+    adding "Acked-by: Conor Dooley <conor.dooley@microchip.com>" from trailer_map to: [PATCH v2 1/3] dt-bindings: Add Crystal C
+lear Technology vendor prefix                                                                                                  
+    adding "Link: http://www.cct.com.my/" from trailer_map to: [PATCH v2 1/3] dt-bindings: Add Crystal Clear Technology vendor 
+prefix                                                                                                                         
+    adding "Acked-by: Conor Dooley <conor.dooley@microchip.com>" from trailer_map to: [PATCH v2 2/3] dt-bindings: display: simp
+le: add support for Crystal Clear CMT430B19N00                                                                                 
+    adding "Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>" from trailer_map to: [PATCH v2 3/3] drm/panel: simple: add
+ CMT430B19N00 LCD panel support                                                                                                
+    adding "Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>" from trailer_map to: [PATCH v2 3/3] drm/panel: simple: add 
+CMT430B19N00 LCD panel support                                                                                                 
 
