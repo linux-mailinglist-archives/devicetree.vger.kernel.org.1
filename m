@@ -1,156 +1,209 @@
-Return-Path: <devicetree+bounces-48239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D2B758710D3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 00:02:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB3358710FF
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 00:21:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6DCFFB20EDD
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 23:02:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 827E1282EC9
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 23:21:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 359C37C0A9;
-	Mon,  4 Mar 2024 23:02:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE3457CF26;
+	Mon,  4 Mar 2024 23:21:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hLSrZ2S0"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="S6ylp9g9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A0067B3FA;
-	Mon,  4 Mar 2024 23:02:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B9457C6E9
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 23:21:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709593347; cv=none; b=Eh0FXVnFNDd/DIjenZyRuX0Rw3VFoJ/qtIrQx4SvpA4/hWqkbXHQ4rlSi0p3uwZ/vglHJu6KTxORYwfvJB17LGDxiAe1QAAWqC7aMl01kK6HPAFLciu49Wo75ueOdTrWrdbshvAXC26fTsAP2tKn70Ry2D8TC5AbnTRO7FcnTEI=
+	t=1709594496; cv=none; b=WdbPTGFFF7QhnELJLbQUp7dkfF0NJhe6yYyVRZydabcAB22SQrYCnf2KR9ljt1sB9RF8kyf5xpVAjMZ21FcaHD98sR0NQfajheYM4RhwE3qQ+xUU0m7aWl11PNS/hXnAtwzaa9Y9Ezd+Uyah5vZ9UWJWpdebOKzBOQNlf8Yicao=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709593347; c=relaxed/simple;
-	bh=8s3rhoaVWDD9dh7rGLfJ4Uu5zG4qUAoq6ZECch3DUvY=;
+	s=arc-20240116; t=1709594496; c=relaxed/simple;
+	bh=lh1j9mkwmpI2gqFb91geb6fvk73hJ96VT9uC2utdnFE=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=JBValmE4McWEgbbAuH82T0CZC6UuqvGEc9o+881KdnWOLXf2NIZGF5Td3VbgKY5HQ0/ISzYL8RjEcZkyrFGypAQNxKmnGUXtiLaWPwMJHON+HMva3Ncf+Kiyt93v9Vl+A2vTYPdBtlSh0uAlr8UmiBxUZu4b/MNFh0T6oq+5JPY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hLSrZ2S0; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6837BC43399;
-	Mon,  4 Mar 2024 23:02:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709593346;
-	bh=8s3rhoaVWDD9dh7rGLfJ4Uu5zG4qUAoq6ZECch3DUvY=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=hLSrZ2S0xAeiE5BctUD/BCMiUxrw+aDhuOJsvU6FCjANj2UsfXb+q7sVM/UTGqdI0
-	 vhcyRBXkrJ9o2aN3O7A2f0SLL8DBNtDtsuckJv52k3X7My/4/89VrXWuKK/koyadnX
-	 0a6lcKCR/q/R4YD3GYIMB1otp/H8DuQai16mloeTq3QLwiM84T2/4EOrjp3/jyB+Xa
-	 p6neNqLafrOfXcdh3fjprp+jXdC12utL7xDYKeYnAl05y2oGQJfkgz1eeLPH7V0p3X
-	 PQ1FyNi7AInReSBwWAit3J/u8GzOtH9A8pTsmgYk5OvbSHc1ob8w6F1FcW6dUofjsK
-	 Nvn/Vh3o4DS1w==
-Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d275e63590so72111741fa.2;
-        Mon, 04 Mar 2024 15:02:26 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCXJ6QcLS7HemLOLjvTMKDRZ2aVS1ju8VJ2Wo4G//K79d8MLF6IUpYnV3DagPPoqu/fOnPfK80+Z5mp8fmrjkeUXLWoFNOYhprXvv786UqfWpWmQFKGbp+qcxTFsXzUd+j1sVs1Ge7/cP+R5tsOKginCI8797ADQrWdIaoFda50Gu8aU
-X-Gm-Message-State: AOJu0Yz7ZAJKzKMwHiDH31x5MMQfxIPsLDn9HAcjl2JbVeU3NfJOTakl
-	IMZx/NZMQlbuDYc0BXc422OlbtUxDIlHnGGie3nkuazH7Q5E1KppU8EPf40/NpqYmdrtotsLnJv
-	2PIuFwXmYhyXpxdx0MTKadO+Uxg==
-X-Google-Smtp-Source: AGHT+IHajaW7ao8oszFfzNUf6WEtIArJcqWeT/LVDUm4oHEI1OMP9txP4fYJa9ko2AQVpY1RT8JCfUQCyX+YOBErgQY=
-X-Received: by 2002:a2e:81c8:0:b0:2d3:4b84:9176 with SMTP id
- s8-20020a2e81c8000000b002d34b849176mr157840ljg.19.1709593344541; Mon, 04 Mar
- 2024 15:02:24 -0800 (PST)
+	 To:Cc:Content-Type; b=OrcdFAETHcwdaSl9F7TDZi7X26c73ZfibYGTzLXpfljLPdDM0ANuZsMLO/IGt6t+JSze1oa4ump+iLbwRCRhqjCccocRD50kAiBH3MPFciuwdzeEMKHK3Ta1jo1nIEyt8AqIuAUFCWUBxm+8mPE3e82DSaes6kUkBNY7Jawb4Ho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=S6ylp9g9; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2d2991e8c12so49255931fa.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 15:21:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1709594492; x=1710199292; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=N3ZG5nlSne7db2l1bcwU+jExqpiSpjwO/TmBdJh8VJg=;
+        b=S6ylp9g982cS6wb4uZ7VPArITV9OTV2DCi/ZCnteBYB7FAczdV0rdgJUhbEuFYFUil
+         H/3188cYn++7aCbwWwq2+I0Hzdigeb/t+dFy42VcbMaQQ2Y8pW8mciHZ23VKo9OGCeaC
+         F9QMvnf5MfgEkq6XfRq5A7553+nHjvSBkh9I2SEVQ+nAE4mo6hRcdoBT9TkJpApNrJE+
+         XbdBT3huYLU2VKAhAj+6CKMdBmLl60y0d+adKiuatm/wrqjtqvGn/MfJ8INZlFlaE47K
+         BDcyITVblRBcLvYzWpHvHuMQDlSw1UOYBeQZb6g733BLGNBJk8o/CZxYSibIjb1ZnvHW
+         d3Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709594492; x=1710199292;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=N3ZG5nlSne7db2l1bcwU+jExqpiSpjwO/TmBdJh8VJg=;
+        b=WJxZofU+H0uWNA6UJEUTRLRfm5GKpvBvpcC5tITMDxhHwDe4s46g5L2idYleqOdrod
+         wfMELGiZdxpS2BwqJqpk2CY665HLhyb1+VY7cnppzAll0px0kT/ZG9KwcHLELlF71JfT
+         FT8dTB3ZUhOFrkkq0PCwPi83FO0Bvs8HFTo5kzYd5pDdr+CkDgJujEPSKiKBDDqmpIr1
+         NsVFWwf13WMFuUhiLa1oXV0Ot8zQ3yYTDYZp+MqkfMNs6M4YtwRrmhyRzu6kUs7pzRrC
+         gdNQ4GCJ1/96GmhyM2Bus/akBylNf5QUfTsDAwe3I0q1FFWMg9Oy6XuIXn+HvbI6V3QC
+         Y9nQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVfQ0Grz8GoSMBtizlXq5oMXIlxRQmEyseJcc1DSiJqNHP5Ppi8ACvr8gqmD+r0v42ZOnNSkdILTeporlCKGPMDrcLxrQXVeg6nPg==
+X-Gm-Message-State: AOJu0Yzg99hWuWfxT1BMU0/LjEB8tcaom23xgN5mFiKUg8LBcJVWVwmc
+	Z8DMue2zodEXTaE77FSPxwtXkFimqpMG3J8jmWSUFtUQLPujadmg55pKfbSQ/tu4H9a0ak2EOF1
+	709dI1m88DqNIAaP1XkOO7Dfg3/DCxPs7jRm3Bg==
+X-Google-Smtp-Source: AGHT+IHhkmAMXuI+MFs08V2iullSSxJpLZi8jtE64M56Q68Qh2gmKRxSf52O1/PncRjgbQAB/LiVw+q9XDtozfckFb4=
+X-Received: by 2002:a2e:80ca:0:b0:2d2:2c74:ff02 with SMTP id
+ r10-20020a2e80ca000000b002d22c74ff02mr87597ljg.9.1709594492412; Mon, 04 Mar
+ 2024 15:21:32 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20231229191038.247258-1-david@ixit.cz> <2c9e91c7-8588-4260-8f5d-22c822019f62@linaro.org>
- <20240102235815.GA3700567-robh@kernel.org> <20240130170625.GA1847581-robh@kernel.org>
- <eb21360c-9a08-4cb7-a25d-83679aa87ead@ixit.cz>
-In-Reply-To: <eb21360c-9a08-4cb7-a25d-83679aa87ead@ixit.cz>
-From: Rob Herring <robh@kernel.org>
-Date: Mon, 4 Mar 2024 17:02:11 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL41h=BceT=eqNiFs+aQtZmiAXR5p-D0sL_jLFEiMpKDA@mail.gmail.com>
-Message-ID: <CAL_JsqL41h=BceT=eqNiFs+aQtZmiAXR5p-D0sL_jLFEiMpKDA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: opp: switch inner and outer min/maxItems
- rules for opp-hz
-To: David Heidelberg <david@ixit.cz>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Viresh Kumar <vireshk@kernel.org>, 
-	Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>, 
+References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
+ <20240109-axi-spi-engine-series-3-v1-1-e42c6a986580@baylibre.com> <2c74aad9-3cb9-4222-8072-e72120c2658e@sirena.org.uk>
+In-Reply-To: <2c74aad9-3cb9-4222-8072-e72120c2658e@sirena.org.uk>
+From: David Lechner <dlechner@baylibre.com>
+Date: Mon, 4 Mar 2024 17:21:21 -0600
+Message-ID: <CAMknhBHP+x4e0kTmNTn6JNKv=VCosZhBWce1MjjFW4MZ+K2Hcg@mail.gmail.com>
+Subject: Re: [PATCH 01/13] spi: add core support for controllers with offload capabilities
+To: Mark Brown <broonie@kernel.org>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Manivannan Sadhasivam <mani@kernel.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Viresh Kumar <viresh.kumar@linaro.org>, linux-pm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+	Michael Hennerich <michael.hennerich@analog.com>, =?UTF-8?B?TnVubyBTw6E=?= <nuno.sa@analog.com>, 
+	Frank Rowand <frowand.list@gmail.com>, Thierry Reding <thierry.reding@gmail.com>, 
+	=?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>, 
+	Jonathan Corbet <corbet@lwn.net>, linux-spi@vger.kernel.org, linux-iio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	David Jander <david@protonic.nl>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 4, 2024 at 2:34=E2=80=AFPM David Heidelberg <david@ixit.cz> wro=
+On Wed, Jan 10, 2024 at 3:36=E2=80=AFPM Mark Brown <broonie@kernel.org> wro=
 te:
 >
-> On 30/01/2024 18:06, Rob Herring wrote:
-> > On Tue, Jan 02, 2024 at 04:58:15PM -0700, Rob Herring wrote:
-> >> On Sat, Dec 30, 2023 at 03:17:21PM +0100, Krzysztof Kozlowski wrote:
-> >>> On 29/12/2023 20:10, David Heidelberg wrote:
-> >>>> Fixes issue as:
-> >>>> ```
-> >>> Drop, it's not RST, but commit msg.
-> >>>
-> >>>> arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb: opp-table: op=
-p-200000000:opp-hz:0: [200000000, 0, 0, 150000000, 0, 0, 0, 0, 300000000] i=
-s too long
-> >>>> ```
-> >>>>
-> >>>> Fixes: 3cb16ad69bef ("dt-bindings: opp: accept array of frequencies"=
-)
-> >>>>
-> >>>> Signed-off-by: David Heidelberg <david@ixit.cz>
-> >>>> ---
-> >>>>   Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 5 ++---
-> >>>>   1 file changed, 2 insertions(+), 3 deletions(-)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml =
-b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> >>>> index e2f8f7af3cf4..86d3aa0eb435 100644
-> >>>> --- a/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/opp/opp-v2-base.yaml
-> >>>> @@ -55,10 +55,9 @@ patternProperties:
-> >>>>             to relate the values to their clocks or the order in whi=
-ch the clocks
-> >>>>             need to be configured and that is left for the implement=
-ation
-> >>>>             specific binding.
-> >>>> -        minItems: 1
-> >>>> -        maxItems: 32
-> >>>>           items:
-> >>>> -          maxItems: 1
-> >>>> +          minItems: 1
-> >>>> +          maxItems: 32
-> >>> This does not look like correct fix. The original code looked fine -
-> >>> only one item is allowed in each sub-element (array).
-> >> This one is special being 64-bit values so we have an exception in
-> >> property-units.yaml. The constraints here don't get used in decoding t=
-he
-> >> dtb and the default way of 1 outer element is used.
-> >>
-> >> It doesn't look like opp-hz needs to be a matrix as it is really just =
-an
-> >> array. Perhaps it should just be changed to an array type.
-> >> Alternatively, adding 'items: { maxItems: 1 }' to the definition in
-> >> property-units.yaml fixes the issue as well.
-> >>
-> >> Though we can fix this, I'm looking into if we have other cases where =
-we
-> >> need this to work as-is. There's probably some room for improvement in
-> >> how matrix dimensions are handled.
-> > I've made some improvements on matrix dimensions, but this one is still
-> > an issue. Can you respin this dropping 'items: {maxItems: 1}'. I'm goin=
-g
-> > to change the definition in property-units.yaml to uint64-array.
+> On Wed, Jan 10, 2024 at 01:49:42PM -0600, David Lechner wrote:
+> > This adds a feature for specialized SPI controllers that can record
+> > a series of SPI transfers, including tx data, cs assertions, delays,
+> > etc. and then play them back using a hardware trigger without CPU
+> > intervention.
 >
-> Keeping the rest of my changes still generates warnings (today dt-schema
-> git) even with `maxItems` dropped.
+> > The intended use case for this is with the AXI SPI Engine to capture
+> > data from ADCs at high rates (MSPS) with a stable sample period.
 >
-> The only working scenario is when I do only the dropping of `items:
-> {maxItems: 1}` from the original code.
+> > Most of the implementation is controller-specific and will be handled b=
+y
+> > drivers that implement the offload_ops callbacks. The API follows a
+> > prepare/enable pattern that should be familiar to users of the clk
+> > subsystem.
 >
-> Is it the standalone change of just dropping this what did you desired?
-> If yes, I have the patch prepared.
+> This is a lot to do in one go, and I think it's a bit too off on the
+> side and unintegrated with the core.  There's two very high level bits
+> here, there's the pre-cooking a message for offloading to be executed by
+> a hardware engine and there's the bit where that's triggered by some
+> hardwar event rather than by software.
+>
 
-Yes. I still need to look at changing the type, but that shouldn't
-hold up the kernel change.
+...
 
-Rob
+>
+> The bit where messages are initiated by hardware is a step beyond that,
+> I think we need a bit more API for connecting up the triggers and we
+> also need to have something handling what happens with normal operation
+> of the device while these triggers are enabled.  I think it could be
+> useful to split this bit out since there's a lot more to work out there
+> in terms of interfaces.
+
+Now that we have addressed the pre-cooking messages bit [1] I'm coming
+back to the hardware trigger bit. Since the hardware trigger part
+hasn't been discussed in the past, it's not so clear to me what is
+being requested here (also see specific questions below).
+
+[1]: https://lore.kernel.org/linux-spi/20240219-mainline-spi-precook-messag=
+e-v2-0-4a762c6701b9@baylibre.com/T/#t
+
+>
+> > +/**
+> > + * SPI_OFFLOAD_RX - placeholder for indicating read transfers for offl=
+oads
+> > + *
+> > + * Assign xfer->rx_buf to this value for any read transfer passed to
+> > + * spi_offload_prepare(). This will act as a flag to indicate to the o=
+ffload
+> > + * that it should do something with the data read during this transfer=
+. What
+> > + * that something can be is determined by the specific hardware, e.g. =
+it could
+> > + * be piped to DMA or a DSP, etc.
+> > + */
+> > +#define SPI_OFFLOAD_RX_SENTINEL ((void *)1)
+>
+> This feels like something where there are likely to be multiple options
+> and we need configurability.  I'd also expect to see a similar transmit
+> option.
+
+Having something similar for TX makes sense. What other sorts of
+options are you envisioning here?
+
+>
+> > +int spi_offload_prepare(struct spi_offload *offload, struct spi_device=
+ *spi,
+> > +                       struct spi_transfer *xfers, unsigned int num_xf=
+ers)
+>
+> I would expect us to just generically prepare a message, then pass a
+> prepared message into the API that enables a trigger.  We would need
+> something that handles the difference between potentially offloading for
+> better performance and having a hardware trigger, I think that might be
+> a case of just not exposing the engine's prepare to client drivers and
+> then having the core track if it needs to do that when enabling a
+> hardware trigger.
+
+Not exposing the offload prepare to client drivers sounds reasonable.
+I'm not sure I understand the potential need for an offload without a
+hardware trigger though.
+
+>
+> > +     /**
+> > +      * @enable: Callback to enable the offload.
+> > +      */
+> > +     int (*enable)(struct spi_offload *offload);
+> > +     /**
+> > +      * @disable: Callback to disable the offload.
+> > +      */
+> > +     void (*disable)(struct spi_offload *offload);
+>
+> I'm not seeing anything in this API that provides a mechanism for
+> configuring what triggers things to start, even in the case where things
+> are triggered by hardware rather than initiated by software I'd expect
+> to see hardware with runtime configurability.  The binding is a bit
+> unclear but it seems to be expecting this to be statically configured in
+> hardware and that there will be a 1:1 mapping between triggers and
+> scripts that can be configured, if nothing else I would expect that
+> there will be hardware with more possible triggers than scripts.
+
+For the use case of ADCs/DACs we would want a periodic trigger where
+the period of the trigger is runtime configurable (via sysfs). Is this
+the sort of thing you had in mind here? What other sorts of triggers
+do you have in mind?
+
+>
+> I'd also expect some treatement of what happens with the standard SPI
+> API while something is enabled.
+
+I suppose it makes sense to return -EBUSY from
+spi_sync()/spi_async()/spi_bus_lock() when a hardware trigger is
+enabled.
 
