@@ -1,246 +1,166 @@
-Return-Path: <devicetree+bounces-48120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5CDC870490
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:54:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EBAF887049B
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 15:56:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2ACAA1F23C30
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:54:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8B0B31F21DAA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:56:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C1CC41C76;
-	Mon,  4 Mar 2024 14:53:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE1FE45BE7;
+	Mon,  4 Mar 2024 14:56:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="InYb+2E1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WDnGKJt3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44CF7168A8;
-	Mon,  4 Mar 2024 14:53:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 777E43FB02;
+	Mon,  4 Mar 2024 14:56:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709564039; cv=none; b=NjDIZcye0jiTe6iqvf0uebzE5HtUj4VyyDlq6DzIsgdnLM3qFnXlGzS8ArmTPweVNlL3ikZgupkLhZCBFkb0knoQNbcrpgj/5QbAr9FlmA9tb0h5rIFiZixgxFsS630nkvQ/2xN5DENVzoITd3l+ZmhhDK6VkCe63F0uYAMT32Y=
+	t=1709564201; cv=none; b=IUE1ZHIs2+KfEpi1Dr0589KKdjyhQisceWqxvlv3Cajc8eoCqIHihjnk5GuZbtyxxdEAqDcONjikd6f/IX+/njVV1RHevnM6bY8e1syue4rDV7jHHBDJzXnBbN3bM35y1MnGHjDgR3HR7D/X1slUrFXwOXTs7HdQkfYZRXKB6S8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709564039; c=relaxed/simple;
-	bh=877LLuKe2NbaQT+sN5vEnqY5OtwPmsoasNubm8CyC9A=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=Mf1BzDmdUA1EfSAxtNYxLtsOciTEq3UGZTXELJRY/JzwFJw/UhC3g7D7BvThhJJcLHHgsOt/IRIrC3cuNOhCOy4tQo8yJcC2zg0ZMdSSHL1TL/hnu6+dlf51nxUNll/Ag4NBjjblFt+S8mTM9SaF+fmnjA9qSx0A/8b9ArTxuRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=InYb+2E1; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8010FE0009;
-	Mon,  4 Mar 2024 14:53:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709564034;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Y2mZgoKXYTO1ujBY2Bxuy+zGS8qyMDZgJ2hp2iONc9U=;
-	b=InYb+2E1syN3tbl5sbWUUNtuoCgNn3nrekFusBtyA5lFrKKfL8Nsc6B97SJH6WJlxYOpIT
-	2OJBK8FDkBy35AJInmol9dDEWp2doHu6ygimpZrNsMIdWCROjksOvL3jhE1EH7Nsh7quFj
-	rUqdwwz5PCzfk+BWIW1s37+JuX4xmQBla6MXBaTtbQQyDEkbFOAsV+ChmeiQKqytouP//U
-	8l/g/BCidGQzdEOBsfcwgbz+5cXyKkJXrZNxxQ+dVeyYqXg9RgcDk1Pfz1A8a5CKJd9FaF
-	gHLvkJwRyo7L3E4IAJbqF6Og5WsA6laxnq5EhVDoIPvwGmdSX1hXg5DjfKDz1g==
+	s=arc-20240116; t=1709564201; c=relaxed/simple;
+	bh=N/D0uIgUoOHQbPkMuf10uhOf+id1XoY9SIa7oMOVSmY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=flmm2xBEHfLl8fc+xPgWfoZgVWOQVjgIWPBl4jtS2oISAUGp2pvET0LJjOAKhfNKQSHUcM6aVlfYapLLlYdLy8tpNbYzYY2ddUvSJuAf2sY9wnYDWAZ5pbDQY/BUMOA9erf9dqMJFrnaW/9LyC5PYlFo5zKmIsTDWoMOqpBpgi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WDnGKJt3; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7440C433F1;
+	Mon,  4 Mar 2024 14:56:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709564201;
+	bh=N/D0uIgUoOHQbPkMuf10uhOf+id1XoY9SIa7oMOVSmY=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=WDnGKJt3xItxvEa0PiLVh12+82cJgVgXwveOA+wnpP/PEZKamKXXshOplx+gs3WlF
+	 DXTCsYzfyYWjb2Rgope+1O1VMf8p0uYrekDXoxXQhJyhKG7yYtNTgUySEJYbLfTkW3
+	 IOiMLdJuo/L02ua0vafERU8mNq8Q/gc4gxWld7cPQclmiqSKGQyxQdfo/ysJGgAI9N
+	 qICBP06ZaYxf+YPshrIBxy9dOeFW/y8bWgoXlQhMtkRygtEJai6R4/N9MvUL0HJfdk
+	 qfGrJm3LiazTIiov9vb/UiJaZ8AIXGFhuYXE2marQamhb7tcN87bxSoYETAk1hsbAM
+	 jjlWOv3U5cEdQ==
+Date: Mon, 4 Mar 2024 08:56:38 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] ASoC: dt-bindings: fsl,imx-asrc: update max
+ interrupt numbers
+Message-ID: <20240304145638.GA198680-robh@kernel.org>
+References: <20240228-asrc_8qxp-v3-0-d4d5935fd3aa@nxp.com>
+ <20240228-asrc_8qxp-v3-2-d4d5935fd3aa@nxp.com>
+ <3460ecc8-d7d7-4d1c-ad0c-b32efc3b9049@linaro.org>
+ <ZeFTqM8o/eozl+MS@lizhi-Precision-Tower-5810>
+ <a1861d70-80e2-4f42-b99a-f2b8c8efe042@linaro.org>
+ <ZeH2v9WJsX9sLvXb@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 04 Mar 2024 15:53:52 +0100
-Message-Id: <CZL1VED24SZ0.7ETRO4YZ70CF@bootlin.com>
-Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, "Gregory Clement"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Andi Shyti" <andi.shyti@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v2 09/11] i2c: nomadik: support Mobileye EyeQ5 I2C
- controller
-X-Mailer: aerc 0.15.2
-References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
- <20240229-mbly-i2c-v2-9-b32ed18c098c@bootlin.com>
- <yqyhu3qsrfyj52sraeo76jnpbgq6wi4o66hfqepxwwwupaggoa@7t5bah3qqcwb>
-In-Reply-To: <yqyhu3qsrfyj52sraeo76jnpbgq6wi4o66hfqepxwwwupaggoa@7t5bah3qqcwb>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZeH2v9WJsX9sLvXb@lizhi-Precision-Tower-5810>
 
-Hello,
+On Fri, Mar 01, 2024 at 10:39:43AM -0500, Frank Li wrote:
+> On Fri, Mar 01, 2024 at 07:30:45AM +0100, Krzysztof Kozlowski wrote:
+> > On 01/03/2024 05:03, Frank Li wrote:
+> > > On Thu, Feb 29, 2024 at 10:44:42AM +0100, Krzysztof Kozlowski wrote:
+> > >> On 28/02/2024 20:14, Frank Li wrote:
+> > >>> fsl,imx8qxp-spdif and fsl,imx8qm-spdif have 2 interrupts. Other platforms
+> > >>> have 1 interrupt.
+> > >>>
+> > >>> Increase max interrupt number to 2 and add restriction for platforms except
+> > >>> i.MX8QXP and i.MX8QM.
+> > >>>
+> > >>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > >>> ---
+> > >>>  .../devicetree/bindings/sound/fsl,spdif.yaml         | 20 +++++++++++++++++++-
+> > >>>  1 file changed, 19 insertions(+), 1 deletion(-)
+> > >>>
+> > >>> diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+> > >>> index 82430f1d5e5a2..785f7997eea82 100644
+> > >>> --- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+> > >>> +++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+> > >>> @@ -31,7 +31,8 @@ properties:
+> > >>>      maxItems: 1
+> > >>>  
+> > >>>    interrupts:
+> > >>> -    maxItems: 1
+> > >>> +    minItems: 1
+> > >>> +    maxItems: 2
+> > >>>  
+> > >>>    dmas:
+> > >>>      items:
+> > >>> @@ -100,6 +101,23 @@ required:
+> > >>>  
+> > >>>  additionalProperties: false
+> > >>>  
+> > >>> +allOf:
+> > >>> +  - if:
+> > >>> +      properties:
+> > >>> +        compatible:
+> > >>> +          enum:
+> > >>> +            - fsl,imx35-spdif
+> > >>> +            - fsl,vf610-spdif
+> > >>> +            - fsl,imx6sx-spdif
+> > >>> +            - fsl,imx8mq-spdif
+> > >>> +            - fsl,imx8mm-spdif
+> > >>> +            - fsl,imx8mn-spdif
+> > >>> +            - fsl,imx8ulp-spdif
+> > >>> +    then:
+> > >>> +      properties:
+> > >>> +        interrupts:
+> > >>> +          maxItems: 1
+> > >>
+> > >> else:
+> > >> minItems: 2
+> > > 
+> > > I think needn't 'else' here. Top have set to maxItems is 2. 
+> > 
+> > So explain why one item is correct here.
+> 
+> Top interrupt: maxItems: 2. That's means all compatible string (include
+> imx8qxp, and imx8qm) required interrrupt number less than 2.
 
-On Mon Mar 4, 2024 at 3:08 PM CET, Andi Shyti wrote:
-> Hi Theo,
->
-> ...
->
-> > +#include <linux/amba/bus.h>
-> >  #include <linux/bitfield.h>
-> > +#include <linux/clk.h>
-> > +#include <linux/err.h>
-> > +#include <linux/i2c.h>
-> >  #include <linux/init.h>
-> > -#include <linux/module.h>
-> > -#include <linux/amba/bus.h>
-> > -#include <linux/slab.h>
-> >  #include <linux/interrupt.h>
-> > -#include <linux/i2c.h>
-> > -#include <linux/err.h>
-> > -#include <linux/clk.h>
-> >  #include <linux/io.h>
-> > -#include <linux/pm_runtime.h>
-> > +#include <linux/mfd/syscon.h>
-> > +#include <linux/module.h>
-> >  #include <linux/of.h>
-> >  #include <linux/pinctrl/consumer.h>
-> > +#include <linux/pm_runtime.h>
-> > +#include <linux/regmap.h>
-> > +#include <linux/slab.h>
->
-> Please reorder the headers in a different patch.
+You said: "fsl,imx8qxp-spdif and fsl,imx8qm-spdif have 2 interrupts"
 
-Will do.
+That means they have *exactly* 2 interrupts, not <= 2 interrupts. The 
+top level says you have 1 or 2. Somewhere you have to say it's always 2 
+interrupts which is what Krzysztof provided.
 
->
-> >  #define DRIVER_NAME "nmk-i2c"
-> > =20
->
-> ...
->
-> > +static inline u8 nmk_i2c_readb(const struct nmk_i2c_dev *priv,
-> > +			       unsigned long reg)
-> > +{
-> > +	if (priv->has_32b_bus)
-> > +		return readl(priv->virtbase + reg);
-> > +	else
-> > +		return readb(priv->virtbase + reg);
->
-> nit: no need for the else (your choice though, if you want to
-> have ti coherent with the write counterpart).
+Or you need to explain why the 2nd interrupt is optional for 
+fsl,imx8qxp-spdif and fsl,imx8qm-spdif.
 
-Indeed, the useless else block can be removed. Will do.
+Actually, I'd reverse the if/then to have shorter list:
 
-> > +}
-> > +
-> > +static inline void nmk_i2c_writeb(const struct nmk_i2c_dev *priv, u32 =
-val,
-> > +				unsigned long reg)
-> > +{
-> > +	if (priv->has_32b_bus)
-> > +		writel(val, priv->virtbase + reg);
-> > +	else
-> > +		writeb(val, priv->virtbase + reg);
-> > +}
->
-> ...
->
-> > +static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev *priv)
-> > +{
-> > +	struct device *dev =3D &priv->adev->dev;
-> > +	struct device_node *np =3D dev->of_node;
-> > +	unsigned int shift, speed_mode;
-> > +	struct regmap *olb;
-> > +	unsigned int id;
-> > +
-> > +	priv->has_32b_bus =3D true;
-> > +
-> > +	olb =3D syscon_regmap_lookup_by_phandle_args(np, "mobileye,olb", 1, &=
-id);
-> > +	if (IS_ERR_OR_NULL(olb)) {
-> > +		if (!olb)
-> > +			olb =3D ERR_PTR(-ENOENT);
-> > +		return dev_err_probe(dev, PTR_ERR(olb),
-> > +				     "failed OLB lookup: %lu\n", PTR_ERR(olb));
->
-> just return PTR_ERR(olb) and use dev_err_probe() in the upper
-> layer probe.
-
-Good catch. In previous revisions nmk_i2c_eyeq5_probe() had multiple
-error cases so it had to be the one doing the logging. Now that there
-is a single possible error parent can do it. It should simplify code.
-
->
-> > +	}
-> > +
-> > +	if (priv->clk_freq <=3D 400000)
-> > +		speed_mode =3D 0b00;
-> > +	else if (priv->clk_freq <=3D 1000000)
-> > +		speed_mode =3D 0b01;
-> > +	else
-> > +		speed_mode =3D 0b10;
->
-> would be nice to have these as defines.
-
-Agreed. Will be named based on I2C mode names, eg standard, fast, high
-speed, fast plus.
-
->
-> > +
-> > +	shift =3D NMK_I2C_EYEQ5_OLB_IOCR2_SHIFT(id);
-> > +	regmap_update_bits(olb, NMK_I2C_EYEQ5_OLB_IOCR2,
-> > +			   0b11 << shift, speed_mode << shift);
->
-> please define these values and for hexadecimals use 0x...
-
-0b11 is a two-bit mask. What do you mean by "these values"? Something
-like:
+if:
+  properties:
+    compatible:
+      enum:
+        - fsl,imx8qm-spdif
+        - fsl,imx8qxp-spdif
+then:
+  properties:
+    interrupts:
+      minItems: 2
+else:
+  properties:
+    interrupts:
+      maxItems: 1
 
 
-
-#define NMK_I2C_EYEQ5_SPEED_MODE_FAST		0b00
-#define NMK_I2C_EYEQ5_SPEED_MODE_FAST_PLUS	0b01
-#define NMK_I2C_EYEQ5_SPEED_MODE_HIGH_SPEED	0b10
-
-static const u8 nmk_i2c_eyeq5_masks[] =3D {
-	[0] =3D 0x0030,
-	[1] =3D 0x00C0,
-	[2] =3D 0x0300,
-	[3] =3D 0x0C00,
-	[4] =3D 0x3000,
-};
-
-static int nmk_i2c_eyeq5_probe(struct nmk_i2c_dev *priv)
-{
-	// ...
-	unsigned int id, mask, speed_mode;
-
-	priv->has_32b_bus =3D true;
-
-	olb =3D syscon_regmap_lookup_by_phandle_args(np, "mobileye,olb", 1, &id);
-	// TODO: olb error checking
-	// TODO: check id is valid
-
-	if (priv->clk_freq <=3D 400000)
-		speed_mode =3D NMK_I2C_EYEQ5_SPEED_MODE_FAST;
-	else if (priv->clk_freq <=3D 1000000)
-		speed_mode =3D NMK_I2C_EYEQ5_SPEED_MODE_FAST_PLUS;
-	else
-		speed_mode =3D NMK_I2C_EYEQ5_SPEED_MODE_HIGH_SPEED;
-
-	mask =3D nmk_i2c_eyeq5_masks[id];
-	regmap_update_bits(olb, NMK_I2C_EYEQ5_OLB_IOCR2,
-			   mask, speed_mode << __fls(mask));
-	return 0;
-}
-
-Else I do not see what you are suggesting by "please define these
-values".
-
-Have a nice day,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Rob
 
