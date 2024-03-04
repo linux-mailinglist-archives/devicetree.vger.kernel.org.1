@@ -1,60 +1,61 @@
-Return-Path: <devicetree+bounces-48229-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48230-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10D6E870D14
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 22:31:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 377AB870C68
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 22:24:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 34C521F27267
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:24:08 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 657321C24325
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:24:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C99E5B1FE;
-	Mon,  4 Mar 2024 21:23:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 82D6D7BB1E;
+	Mon,  4 Mar 2024 21:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oPCfcJOX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C8LzTQ2F"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9B9E4CE04;
-	Mon,  4 Mar 2024 21:23:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 566147BB14;
+	Mon,  4 Mar 2024 21:23:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709587432; cv=none; b=q8YwzIOO4QXbCTjQwt1vw4vXSX3J5UNjsG+QSwtN1VxSNEarvLXuzpr2TylBgiCBQ0EVKuawsZwY1osqKux2i3x7QbZtXRf1QeYRZNUdUM/qyw97YaQnStz8wBwo3wiOrfUPBN5SPDDCpWlX6C47SMK67kS8qSc0MtKkvEi5AhU=
+	t=1709587434; cv=none; b=uAv3XBygUo9Y8ZAMCNEV8TRMpp4U+7LuVYnbmSvdYhokR2i3xaUwR1CMrXjk+qLjz9YOrVSwEqZw6hps8x6JkPmAmhCifsZ+UJNdpUzLJYYIut+CImMwo7Jiz/gLednvwoW95QRkK7AVEoNl8qPAMZYopd+npZbD+B4TkCXQQxo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709587432; c=relaxed/simple;
-	bh=oHG8INmOw2dZnUZ4IgJMy+5PKtU4MlAGQvFPT7lyBrA=;
+	s=arc-20240116; t=1709587434; c=relaxed/simple;
+	bh=fmnxBmvQENBK6rJ7r2zTJLLEyQqWQmRXJ4nyyN6Mkf4=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=YFXDs0HxXJauch6oBHVrdIgTOhbWyP7mInXSGiphsn4AcFCmi1QaYBqO/fCkPLukukG1ic48+zhKjFpQb00OVV0kEfh9kbwBQeOLN9o3SK1iy2kHnQ7TVzZaGVpBrZXIW0n7ZW5gMhQZTvGcardkzkiZezD55q+OT1oeBceD0Zc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oPCfcJOX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DCB1C433F1;
-	Mon,  4 Mar 2024 21:23:51 +0000 (UTC)
+	 MIME-Version:Content-Type; b=ESLwfVAaupNvPa/0aeHihJYEFEL8zHYx8iSRzID71ayOKMPSAQvG/p8/fz0682p1d4iuLIi3jVD5cbQ1REx+91IsVLi+lFQbQ+OpnCnQLajlundkSoqnm8n5V/+p45LLxLggotGGI05hjICFYsPGnHxxaupAMW6HaNIZpq15e4Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C8LzTQ2F; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91C55C43394;
+	Mon,  4 Mar 2024 21:23:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709587431;
-	bh=oHG8INmOw2dZnUZ4IgJMy+5PKtU4MlAGQvFPT7lyBrA=;
+	s=k20201202; t=1709587434;
+	bh=fmnxBmvQENBK6rJ7r2zTJLLEyQqWQmRXJ4nyyN6Mkf4=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=oPCfcJOXfoiijcd30ibk5W9bR1oYw1sWoydB4wnCmyP87kswUgpvWeMMeKeXmEBRS
-	 8lc1+Ft8Hq7ytQN0ufGhmQbhfHF5GB2gFKKXeR+rUHe9Hnbi1kiRaKIhKPReO97/Wz
-	 cgcrJNE47a6ElRD7XyxKIJ92eBe36Q43JdkLPNc72eyxbGs6QHwgszkxkOAd5VeLy/
-	 ZIjK53zf909VdfVpnHH7MZ+9ISGt88CszMY8k331RFrlxnT7OXT+2x98pM/eVHvchv
-	 rjH/RqnVRy4Bqe08eSz4iZK+9N0s+J9Xs40izwnRsgHephOlGZKDn2FAhvHAh2ASBk
-	 P/f4zndgu08xw==
+	b=C8LzTQ2F3oyNq3fWKaqxucSF5jEKo7Kjgb5w3s1bjwVejRaHXG8uzwysOCUIZQFlb
+	 IV2Ofh09fy1VwgyEx1mOYyEBy3Auj4GAVp9gTqAireX4JHvqKIpEFmdtzcwNs+mke9
+	 eXDS2EPkJPuxjOkLhgtvlGrXu9SCVRWDhwdm/uxVUfzpHAf/UjxW3irq+nDVFlIN2d
+	 8jzhH+s35k0bnEBrL5lMEAcZrBbRUD5CJfNQFXXFPvT/KXwXdZmoDUaJiiMleFcZKj
+	 P1FC0FvTgOE4DXjARwGg0P52O4PCCEd1igidOrqmMEm7SUb+ZPD1lpS5zi+px9yfGL
+	 KbFVU6Jvr/96g==
 From: Bjorn Andersson <andersson@kernel.org>
 To: Konrad Dybcio <konrad.dybcio@linaro.org>,
 	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+	Jianhua Lu <lujianhua000@gmail.com>
 Cc: linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH] Revert "arm64: dts: qcom: msm8996: Hook up MPM"
-Date: Mon,  4 Mar 2024 13:28:40 -0800
-Message-ID: <170958768033.1828118.14643732925847174246.b4-ty@kernel.org>
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8250-xiaomi-elish: set rotation
+Date: Mon,  4 Mar 2024 13:28:43 -0800
+Message-ID: <170958768041.1828118.8042574606703966284.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240221-msm8996-revert-mpm-v1-1-cdca9e30c9b4@linaro.org>
-References: <20240221-msm8996-revert-mpm-v1-1-cdca9e30c9b4@linaro.org>
+In-Reply-To: <20240227121744.10918-1-lujianhua000@gmail.com>
+References: <20240227121744.10918-1-lujianhua000@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,20 +66,16 @@ Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
 
 
-On Wed, 21 Feb 2024 01:07:21 +0200, Dmitry Baryshkov wrote:
-> Commit 09896da07315 ("arm64: dts: qcom: msm8996: Hook up MPM") has
-> hooked up the MPM irq chip on the MSM8996 platform. However this causes
-> my Dragonboard 820c crash during bootup (usually when probing IOMMUs).
-> Revert the offending commit for now. Quick debug shows that making
-> tlmm's wakeup-parent point to the MPM is enough to trigger the crash.
+On Tue, 27 Feb 2024 20:17:44 +0800, Jianhua Lu wrote:
+> Xiaomi Pad 5 Pro has a 2560x1600 portrait screen, set RIGHT_UP rotation
+> to make it look like a landscape screen.
 > 
 > 
-> [...]
 
 Applied, thanks!
 
-[1/1] Revert "arm64: dts: qcom: msm8996: Hook up MPM"
-      commit: 4f423c4cbe26d79d8974936eb01e0d6574c5d2ac
+[1/1] arm64: dts: qcom: sm8250-xiaomi-elish: set rotation
+      commit: 2219626708d7300402a46c31e2347d40db7c4971
 
 Best regards,
 -- 
