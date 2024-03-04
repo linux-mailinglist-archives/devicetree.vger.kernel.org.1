@@ -1,100 +1,184 @@
-Return-Path: <devicetree+bounces-48094-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48095-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46D0587024B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:10:47 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96DEE87025D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:12:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 00ACD288A82
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 13:10:46 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 259A91F21A41
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 13:12:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DA4C3D575;
-	Mon,  4 Mar 2024 13:09:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562D13D578;
+	Mon,  4 Mar 2024 13:10:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="dcx6p8Dt"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="LJgRO+Hb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AEB53D967
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 13:08:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54C363D547
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 13:10:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709557740; cv=none; b=U42UlbXhuJMRf4CEoHk1zINUFZwzOLdqrSzct+QEhoHUes0l/bhhKKrfWlHp2hmxpxrFAo2fxz01987xEdtiPErHJzl1X1nzFdCs7ie3PwtonUdlhVVFQ3oI/4UK/pQWCQbcyx7eEIg6p/SOm5Tn3rjnYomJM1I6xLLOvYKywMQ=
+	t=1709557856; cv=none; b=LRtyJhgF+83ikmjMbbxlIyh1c+GyJ857ws9/bJWgc3r3L+Qoj94xcUxPPmSQx3GTiuxPW+vCEuBfFWRvOq3ExLlnCRa9Z+od0Jc3qNXqpERHbJuvZm3m8HZ+jAvwal75pMwVAcbq4UFuaLaCZEnPAMRpT9dpQyQoqoCIlTIuU0g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709557740; c=relaxed/simple;
-	bh=MQzXyrp30ayzNFr9b8t21q7K9Qj8xp3ki4sTIxcnAcY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UdXWPEmtoACqR/6XkII21N+aa49F3aK0a77/Jbwh8Pbknw56qgqh9hXWlxR4xSHIvetXpOPQra6AKh2kQqnqNK0vOLMoKmKve6xSF0XpzKVfCiXwSOadrOlbUEibJPG7Vquj/ElIIRn2irujVOkcqrfHpQVwH+DecSn16mVKpJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=dcx6p8Dt; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-	Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-	Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-	In-Reply-To:References; bh=ntM3uHxRjzQ+a85JmcdPhuNDbTOvT+BdKRtXjZ66nIU=; b=dc
-	x6p8Dt/mT5e3kYST+11OqrzZTXyJv76VQ4AJHhbmoZrPDhnYBnhipz4IkorDaymU247CExHN0TmSx
-	IYYbgJ+90XYrBWPiEZWx47L4TCjwVT3+7BAhCE/EKQQ+2d2v6dij4RkNtW8grqMNo8n+YZZXD+bUt
-	8hW56F2SGHBGyfk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rh84B-009K8q-DH; Mon, 04 Mar 2024 14:09:15 +0100
-Date: Mon, 4 Mar 2024 14:09:15 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Chen-Yu Tsai <wens@kernel.org>
-Cc: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <ukleinek@debian.org>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1709557856; c=relaxed/simple;
+	bh=edMqvmg6y2VKb4yfnj4dW1OskK2vzKd7zQJdJKQMyrs=;
+	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=OCRp6mQoDgRDZn4rWQEPDi9O7XtEf01s5e5FBg4hrB7etpNWitsSdqBh2vfzMnudgnahR5fP49un8Q+rhWsDxMq5PihmUCwOmMMGoveAsv87ogUJyNNWvNctmWvHPfhyzTh7ocZkSwDueLJB0H4y5wZwljd16X+wmn3SN03jDMM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=LJgRO+Hb; arc=none smtp.client-ip=209.85.218.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a4499ef8b5aso287836966b.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 05:10:54 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1709557853; x=1710162653; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=z3m7OivOxzJeGdkMzIGOv6kRagQeqCuoThPb8xlNbgo=;
+        b=LJgRO+HbeUy+EAApm7gnwP1G5T1RzxP/43RuN159JitjmB+tqdik+WseMa7ppc0Lsw
+         zFJ/Qi4F2nmvJIcG0J3r6XAbWwoibIB/l1J8L0LBqT9cfVHrFCP2fSuj53GXHlK2MgTN
+         KOf4NIk6XpxoKoJopFvDojC8rQWS3tpNWkF60XOnb7NXm0Lmo8pL0YaDTLyRvX8bLHFx
+         a6kbFFniAVqz0C8/pXNe+MUMsm03pMjJFqyu0ozGtPkTCqoCZER98AHfi/8SUIdOYHEL
+         SvLwOaZvfecGr7W8VQxZHVJqAJUUAuCNp9lon7ghkhiS3+vIlx0DPSIQplF9fjXXF24I
+         Arwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709557853; x=1710162653;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=z3m7OivOxzJeGdkMzIGOv6kRagQeqCuoThPb8xlNbgo=;
+        b=OALhqQrSAU1gg0FRct2qbl7b3uVPrNZNjCCH7/OCH8vKck6XdJ/txKKgFJijngNhx8
+         e173CyfhBLa+WctPjaYC5VSfn9AocRsaW15D2n5n00GN3qA9oz2Z64RPidrk3lUL9q93
+         8QHv3SIr/ZoCPylmE1fz+IUHZqQv6kZYCLtLJTxaXTL3SyW0KO+VPKeF4P42FkYF7D9O
+         gImmHIvpn03nKa4eL5FW68eo0I8ZZ5fhCjzqmtYg/n88JLy0HI/uESpWhf9ckuIIp+2H
+         uFD0oOgRtIrNyFqICP1FxZretgwEznogSV/a3V/yhPm/FlZDlYEcubkYUDM3SQOgWL9l
+         ex+Q==
+X-Forwarded-Encrypted: i=1; AJvYcCViqnm9HVnNjl5/IH1bp+nQCyB8U/50D8lgcjq5Euei3oz0OEmC/kyCys5hDijJXX6VQGRj0iNEDawNP4ql6Wvg4wy3MPVEroKwnQ==
+X-Gm-Message-State: AOJu0YxJVqYFMZXJuxojhSixNXfnGDkAssCVsopR8kQOdQVl24XYvH26
+	vOzpFgHbDzscKYAlW3/ei7fZSffZjnpY+wuNyzdvg/uWU1vQ2Wz+gBVPj2BPjg==
+X-Google-Smtp-Source: AGHT+IGrvXADFoe0PTlXPw7y7hmD/cJqKu6+s04vNFfdc9+9OA1wUWqNlu47ZlZ+Fh8V1+pbnqa8SA==
+X-Received: by 2002:a17:906:4f09:b0:a45:70b9:252b with SMTP id t9-20020a1709064f0900b00a4570b9252bmr965095eju.57.1709557852486;
+        Mon, 04 Mar 2024 05:10:52 -0800 (PST)
+Received: from google.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
+        by smtp.gmail.com with ESMTPSA id r18-20020a1709067fd200b00a4589f3392esm98523ejs.207.2024.03.04.05.10.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Mar 2024 05:10:51 -0800 (PST)
+Date: Mon, 4 Mar 2024 13:10:48 +0000
+From: Quentin Perret <qperret@google.com>
+To: Christoph Hellwig <hch@infradead.org>, Will Deacon <will@kernel.org>,
+	Chris Goldsworthy <quic_cgoldswo@quicinc.com>,
+	Android KVM <android-kvm@google.com>,
+	Patrick Daly <quic_pdaly@quicinc.com>,
+	Alex Elder <elder@linaro.org>,
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Murali Nalajal <quic_mnalajal@quicinc.com>,
+	Trilok Soni <quic_tsoni@quicinc.com>,
+	Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+	Carl van Schaik <quic_cvanscha@quicinc.com>,
+	Philip Derrin <quic_pderrin@quicinc.com>,
+	Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH] arm64: dts: rockchip: qnap-ts433: Simplify network PHY
- connection
-Message-ID: <0ed81fbf-cc25-4582-899e-4270932e897c@lunn.ch>
-References: <20240304084612.711678-2-ukleinek@debian.org>
- <CAGb2v67xA0z3KWBo=ierkK9qxBAnaLuVkta05qEaFmMciB1-ng@mail.gmail.com>
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Fuad Tabba <tabba@google.com>,
+	Sean Christopherson <seanjc@google.com>,
+	Andrew Morton <akpm@linux-foundation.org>,
+	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
+Subject: Re: Re: [PATCH v17 19/35] arch/mm: Export direct {un,}map functions
+Message-ID: <ZeXIWBLVWzVycm0r@google.com>
+References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
+ <20240222-gunyah-v17-19-1e9da6763d38@quicinc.com>
+ <ZdhEtH7xzbzdhS2j@infradead.org>
+ <20240223071006483-0800.eberman@hu-eberman-lv.qualcomm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGb2v67xA0z3KWBo=ierkK9qxBAnaLuVkta05qEaFmMciB1-ng@mail.gmail.com>
+In-Reply-To: <20240223071006483-0800.eberman@hu-eberman-lv.qualcomm.com>
 
-On Mon, Mar 04, 2024 at 06:07:54PM +0800, Chen-Yu Tsai wrote:
-> On Mon, Mar 4, 2024 at 4:47 PM Uwe Kleine-König <ukleinek@debian.org> wrote:
-> >
-> > While it requires to have the right phy driver loaded (i.e. motorcomm)
-> > to make the phy asserting the right delays, this is generally the
-> > preferred way to define the MAC <-> PHY connection.
-> >
-> > Signed-off-by: Uwe Kleine-König <ukleinek@debian.org>
-> > ---
-> > Hello,
-> >
-> > Andrew already pointed out when I posted the patch introducing the gmac0 node
-> > that rgmii-id would be the preferred way to setup things. Back then this didn't
-> > happen because this change broke reception of network packets. However this
-> > only happend because I didn't have the right phy driver loaded.
+On Friday 23 Feb 2024 at 16:37:23 (-0800), Elliot Berman wrote:
+> On Thu, Feb 22, 2024 at 11:09:40PM -0800, Christoph Hellwig wrote:
+> > On Thu, Feb 22, 2024 at 03:16:42PM -0800, Elliot Berman wrote:
+> > > Firmware and hypervisor drivers can donate system heap memory to their
+> > > respective firmware/hypervisor entities. Those drivers should unmap the
+> > > pages from the kernel's logical map before doing so.
+> > > 
+> > > Export can_set_direct_map, set_direct_map_invalid_noflush, and
+> > > set_direct_map_default_noflush.
+> > 
+> > Err, not they should not.  And not using such super low-level interfaces
+> > from modular code.
 > 
-> It could be that the PHY is strapped to not use its internal RX delay.
-> And the PHY has some weird default TX delay, so having the driver
-> put some sensible values in is probably better.
+> Hi Cristoph,
+>  
+> We've observed a few times that Linux can unintentionally access a page
+> we've unmapped from host's stage 2 page table via an unaligned load from
+> an adjacent page. The stage 2 is managed by Gunyah. There are few
+> scenarios where even though we allocate and own a page from buddy,
+> someone else could try to access the page without going through the
+> hypervisor driver. One such instance we know about is
+> load_unaligned_zeropad() via pathlookup_at() [1].
+>  
+> load_unaligned_zeropad() could be called near the end of a page. If the
+> next page isn't mapped by the kernel in the stage one page tables, then
+> the access from to the unmapped page from load_unaligned_zeropad() will
+> land in __do_kernel_fault(), call fixup_exception(), and fill the
+> remainder of the load with zeroes. If the page in question is mapped in
+> stage 1 but was unmapped from stage 2, then the access lands back in
+> Linux in do_sea(), leading to a panic().
+>  
+> Our preference would be to add fixup_exception() to S2 PTW errors for
+> two reasons:
+> 1. It's cheaper to do performance wise: we've already manipulated S2
+>    page table and prevent intentional access to the page because
+>    pKVM/Gunyah drivers know that access to the page has been lost.
+> 2. Page-granular S1 mappings only happen on arm64 with rodata=full.
+>  
+> In an off-list discussion with the Android pkvm folks, their preference
+> was to have the pages unmapped from stage 1. I've gone with that
+> approach to get started but welcome discussion on the best approach.
+>  
+> The Android (downstream) implementation of arm64 pkvm is currently
+> implementing a hack where s2 ptw faults are given back to the host as s1
+> ptw faults (i.e. __do_kernel_fault() gets called and not do_sea()) --
+> allowing the kernel to fixup the exception.
+>  
+> arm64 pKVM will also face this issue when implementing guest_memfd or
+> when donating more memory to the hyp for s2 page tables, etc. As far as
+> I can tell, this isn't an issue for arm64 pKVM today because memory
+> isn't being dynamically donated to the hypervisor.
 
-It could also be the bootloader putting odd values into the PHY.
+FWIW pKVM already donates memory dynamically to the hypervisor, to store
+e.g. guest VM metadata and page-tables, and we've never seen that
+problem as far as I can recall.
 
-Anyway, it will work better with the correct PHY, and enable WoL
-support.
+A key difference is that pKVM injects a data abort back into the kernel
+in case of a stage-2 fault, so the whole EXTABLE trick/hack in
+load_unaligned_zeropad() should work fine out of the box.
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+As discussed offline, Gunyah injecting an SEA into the kernel is
+questionable, but I understand that the architecture is a bit lacking in
+this department, and that's probably the next best thing.
 
-    Andrew
+Could the Gunyah driver allocate from a CMA region instead? That would
+surely simplify unmapping from EL1 stage-1 (similar to how drivers
+usually donate memory to TZ).
+
+Thanks,
+Quentin
+
+
 
