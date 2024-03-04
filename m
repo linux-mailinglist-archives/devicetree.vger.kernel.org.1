@@ -1,166 +1,122 @@
-Return-Path: <devicetree+bounces-48204-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48205-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 684E6870B16
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 20:59:34 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3338F870B1F
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:03:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1283FB212EB
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:59:31 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 352BB1C22193
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 20:03:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CF8079DD8;
-	Mon,  4 Mar 2024 19:59:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C447B7A12E;
+	Mon,  4 Mar 2024 20:03:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CbEZiD2/"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="o5HHxq2L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 77D8D79DD2
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 19:59:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B63B7A14D
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 20:02:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709582367; cv=none; b=ekOv/ZiUgZUvtZzTQp4UT4GvGLJukpOGEblbI8btLI3Z8gY/CJCuZg6P6OmeidbphSQbyccf7b8lmOmQqjFP5B4DJxqVTyME+z05oNsf/evtGjBTCrBYfheuGYTuXOFsClgIRuGbFkWsnJSJz0QF/vsHtil8jhSFMVRW1xDVW74=
+	t=1709582580; cv=none; b=qwh/EZ3xadDOFWpnhBQ4aXlKPmeLpj2R+X2lU8o0n6AFGSb6F1lgdekB49yAs6tEVtObx3m8rMQrhK47nOwnMojDGK9zpOpFDEnqSYQbI5IUUK86s+Cika2yBYr/i3pDYti9TwZpiEym0G0EK6ShhlJTJLheEh1GQ4rz81gzdxg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709582367; c=relaxed/simple;
-	bh=GOoHfdkWRmHMiN8XDpnYIj0wPLSEn6LKn+e1lredcxk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=a4JQI/JL3R52wjaaSBylOfBSWG06rF6VSs7T6ErpN4UNyAHqGnA7eZ2WPcxX9iQ9hsTB0ZmJhR7w1xOaR8RLNUhluTboutqkBHVUaYytodZcZ3TL7unsweW7Hb8C0O+OQZJm07cESgYQIO2SicFVodW5RadZvvO9Svce+lS+BSE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CbEZiD2/; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-db3a09e96daso4319230276.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 11:59:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709582364; x=1710187164; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=O7ApIryQlDH5kdwqHRhQLsTZp2nthteXM5vapyQjPNI=;
-        b=CbEZiD2/XCY2kgN1a+REFqx2nAsaf4RG+ACMpbPNXALJwTy7vZGR5vx1oAW2TUqWYD
-         RFcCUAaiHIElzYgYtyppSVfGKJi++TXSJRW4AmeCatohfun9l+vJlBvny5zrV949ENDM
-         xZyAIBz3tE7oQNy3TYeSohYPb6izSNIBrM5fkSagipHm4/e5u4kL+QtNLsFr6u0zRDPU
-         wYro7IguyZWxS0+1aesgD4ptMyiLcIHHmL5lVqkkMtlh61C5wJaCA8LLyye7OHeiWfeH
-         WYDvc01i7+kCgxCEl7WhAGqdKP5ZrS2DnfLj+RZTJjGKiiCSS/Y9G6Z2rxzPe3LQEGAO
-         Sg4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709582364; x=1710187164;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=O7ApIryQlDH5kdwqHRhQLsTZp2nthteXM5vapyQjPNI=;
-        b=inMxzx1Jj/SpiTZ5MMdPr84BnBFyACmydpfVVd+XySQSZXTsWdlrLOG+tpR8MXIfTD
-         s4/J6n9ShZonvoJ+aCrQTnF/g68YfgMmEOVUtuYgfhmCHKzo/QQ4GU7S28IBQEOm9oFK
-         KKhn8Xql0bGgGyoOvvheVXt5i4lP/il6LZOuHflKa3UMH2p9+GxIfMvDGaJ9jCycczWS
-         bMzEyEx0+YWDNMfkf33NKQ7/AspJUXUb+JCKvwiXyN5snFquDiZvRfFZ8worsNdoMG4f
-         ztCFsAwj51K/NVCT7OAosObRSyVvaaPahLNUpGjY/XZ1CMfdu0voZCeafI66HEWVfIQw
-         hh8A==
-X-Forwarded-Encrypted: i=1; AJvYcCUbayuUSI0RRvcoQYDoHIn861Fkb+lqlbZ2/u6b6KvWe7VP4TlkH8J5ggAzTPxYprf1Suz9EauAWH7k+P+WSWmCQsrcNme8KFDN1Q==
-X-Gm-Message-State: AOJu0Yx87blVVCeVNLAODlqWRb1OETfthQXAmTGVXndtugeIX7eiair/
-	7ZzZKjdND0q6G7eqJWqd3RvBWXrzJ9zh02YnSxVEO5QCMLEPuZFr2Yp2J7oxHt7hLu253AAgUjK
-	zcvaQGYXzmrRzZsqec4OHNfImpd/evV7KHXVcEw==
-X-Google-Smtp-Source: AGHT+IFnQw6N1M8E9h2cK2eBp9EVBI/pDE+40vH46B3fNHuxcXlR4tfux0fKhMgrMwCn2qTbqbQZ+zbrI98PG/Y2Aek=
-X-Received: by 2002:a25:4b05:0:b0:dcc:7b05:4cbb with SMTP id
- y5-20020a254b05000000b00dcc7b054cbbmr7295644yba.31.1709582364453; Mon, 04 Mar
- 2024 11:59:24 -0800 (PST)
+	s=arc-20240116; t=1709582580; c=relaxed/simple;
+	bh=/LPidozw5UkwarCYzfBbkrQKWhhCq9LVcOP9y9lSJIM=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=A5Kgig6NnxeHnTmmjrpA+28MyRTW5tOSQGRqfVechHb48QBMLvuaKItUdRY12+4FKs83ZAbFQ2s8+g8yGwYSV/GFiBAyzW6fnuqDjyZXlYsUl0Ny1AsY5a2U5d9VNP6ZVbSXfhYX0h6bPbU1UZs4YjKAU2aB+5P4Kd0tC9Ary2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=o5HHxq2L; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 9A7412C04C9;
+	Tue,  5 Mar 2024 09:02:48 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1709582568;
+	bh=/LPidozw5UkwarCYzfBbkrQKWhhCq9LVcOP9y9lSJIM=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=o5HHxq2LjuPmSQ3VhN1oHwqVoNUEAxD/8C3ahWW2Qs5AKe6lhe4l/KO/oTaIx81YQ
+	 mSml93DIEV5XPAOYZ2m84f3fTRZ+OFPxh+sRC3E4cqcBbVap9eLdlr6EvS/cWywc0E
+	 zmB7nAnfTL8SyEvVInifrNqRjt6vI5bWNdDqU1M+qUb0i05Vr4QRsbxwjGdNZOvU9Y
+	 +qhcGIZuEIYGHteguox2wT8RJQBf5lYD9hmLVbvwcjgb1KYImGg5Kom0k5zw9vHepB
+	 BOLGEGk9GDqujoCcequf3eVGmNb5LMsZW79BCEtUKg+dlXeIPgsH5rJkgcqkv7ihCc
+	 +6rMwso6lAC4w==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B65e628e80001>; Tue, 05 Mar 2024 09:02:48 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 5 Mar 2024 09:02:48 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1118.040; Tue, 5 Mar 2024 09:02:48 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Andi Shyti <andi.shyti@kernel.org>, Wolfram Sang
+	<wsa+renesas@sang-engineering.com>
+CC: "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH RFT 1/3] dt-bindings: i2c: mpc: use proper binding for
+ transfer timeouts
+Thread-Topic: [PATCH RFT 1/3] dt-bindings: i2c: mpc: use proper binding for
+ transfer timeouts
+Thread-Index: AQHaav5GS1M8pxP1xEubQWdLBIKzKrEm3eAAgABQEQA=
+Date: Mon, 4 Mar 2024 20:02:48 +0000
+Message-ID: <89335a8e-4963-4992-a519-b88b15e3ff69@alliedtelesis.co.nz>
+References: <20240229105810.29220-5-wsa+renesas@sang-engineering.com>
+ <20240229105810.29220-6-wsa+renesas@sang-engineering.com>
+ <r3tho2bh3l23f5xkjc3ovq4xdehpsb3nz4ukbkremxvzq6shpe@kdsxfz4brskb>
+In-Reply-To: <r3tho2bh3l23f5xkjc3ovq4xdehpsb3nz4ukbkremxvzq6shpe@kdsxfz4brskb>
+Accept-Language: en-NZ, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <4E6D7DA30971DF4BA5FC17CF8E09617F@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
- <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
- <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
- <20240229-ageless-primal-7a0544420949@spud> <68a49964-7c05-4575-a4f3-35848c08fefc@freebox.fr>
- <20240304-component-animator-e2ee0ab7574a@spud> <CAA8EJpq5HQaO2E2Pd7yqUTsWyQ_pLDdyoWng8QmWTzYn5fv3PQ@mail.gmail.com>
- <20240304-superior-vicinity-3dc6ca88141a@spud>
-In-Reply-To: <20240304-superior-vicinity-3dc6ca88141a@spud>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Mon, 4 Mar 2024 21:59:13 +0200
-Message-ID: <CAA8EJprMG=fY-G-X03bm7MMhcua9axjw5ULZz0efgHxwzgrdVg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-To: Conor Dooley <conor@kernel.org>
-Cc: Marc Gonzalez <mgonzalez@freebox.fr>, Kalle Valo <kvalo@kernel.org>, 
-	Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k <ath10k@lists.infradead.org>, 
-	wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Pierre-Hugues Husson <phhusson@freebox.fr>, Jami Kettunen <jamipkettunen@gmail.com>, 
-	Jeffrey Hugo <quic_jhugo@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65e628e8 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=K6JAEmCyrfEA:10 a=LDBv8-xUAAAA:8 a=wMjMLsQrkjzMquoGyIgA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=TIyoBwpO-cKII9bNTSam:22 a=DZeXCJrVpAJBw65Qk4Ds:22
+X-SEG-SpamProfiler-Score: 0
 
-On Mon, 4 Mar 2024 at 21:46, Conor Dooley <conor@kernel.org> wrote:
->
-> On Mon, Mar 04, 2024 at 09:37:00PM +0200, Dmitry Baryshkov wrote:
-> > On Mon, 4 Mar 2024 at 21:34, Conor Dooley <conor@kernel.org> wrote:
-> > >
-> > > On Mon, Mar 04, 2024 at 05:21:37PM +0100, Marc Gonzalez wrote:
-> > > > On 29/02/2024 19:40, Conor Dooley wrote:
-> > > >
-> > > > > On Wed, Feb 28, 2024 at 06:37:08PM +0200, Kalle Valo wrote:
-> > > > >
-> > > > >> Marc Gonzalez wrote:
-> > > > >>
-> > > > >>> As mentioned in my other reply, there are several msm8998-based
-> > > > >>> devices affected by this issue. Is it not appropriate to consider
-> > > > >>> a kernel-based work-around?
-> > > > >>
-> > > > >> Sorry, not following you here. But I'll try to answer anyway:
-> > > > >>
-> > > > >> I have understood that Device Tree is supposed to describe hardware, not
-> > > > >> software. This is why having this property in DT does not look right
-> > > > >> place for this. For example, if the ath10k firmware is fixed then DT
-> > > > >> would have to be changed even though nothing changed in hardware. But of
-> > > > >> course DT maintainers have the final say.
-> > > > >
-> > > > > I dunno, if the firmware affects the functionality of the hardware in a
-> > > > > way that cannot be detected from the operating system at runtime how
-> > > > > else is it supposed to deal with that?
-> > > > > The devicetree is supposed to describe hardware, yes, but at a certain
-> > > > > point the line between firmware and hardware is invisible :)
-> > > > > Not describing software is mostly about not using it to determine
-> > > > > software policy in the operating system.
-> > > >
-> > > > Recording here what was discussed a few days ago on IRC:
-> > > >
-> > > > If all msm8998 boards are affected, then it /might/ make sense
-> > > > to work around the issue for ALL msm8998 boards:
-> > > >
-> > > > diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
-> > > > index 0776e79b25f3a..9da06da518fb6 100644
-> > > > --- a/drivers/net/wireless/ath/ath10k/qmi.c
-> > > > +++ b/drivers/net/wireless/ath/ath10k/qmi.c
-> > > > @@ -1076,6 +1076,9 @@ int ath10k_qmi_init(struct ath10k *ar, u32 msa_size)
-> > > >       qmi->ar = ar;
-> > > >       ar_snoc->qmi = qmi;
-> > > >
-> > > > +     if (of_device_is_compatible(of_root, "qcom,msm8998")
-> > > > +             qmi->no_point_in_waiting_for_msa_ready_indicator = true;
-> > > > +
-> > > >       if (of_property_read_bool(dev->of_node, "qcom,msa-fixed-perm"))
-> > > >               qmi->msa_fixed_perm = true;
-> > > >
-> > > >
-> > > > Thus, anyone porting an msm8998 board to mainline would automatically
-> > > > get the work-around, without having to hunt down the feature bit,
-> > > > and tweak the FW files.
-> > >
-> > > How come the root node comes into this, don't you have a soc-specific
-> > > compatible for the integration on this SoC?
-> >
-> > No. Ath10k uses WiFi SoC as an SoC designator rather than the main SoC.
->
-> Suitability of either fix aside, can you explain this to me? Is the "WiFi
-> SoC" accessible from the "main SoC" at a regular MMIO address? The
-> "ath10k" compatible says it is SDIO-based & the other two compatibles
-> seem to be MMIO.
-
-Yes, this is correct. MSM8996 uses PCI to access WiFi chip, MSM8998 uses MMIO.
-
--- 
-With best wishes
-Dmitry
+SGkgQW5kaSwNCg0KT24gNS8wMy8yNCAwNDoxNiwgQW5kaSBTaHl0aSB3cm90ZToNCj4gSGksDQo+
+DQo+IE9uIFRodSwgRmViIDI5LCAyMDI0IGF0IDExOjU4OjExQU0gKzAxMDAsIFdvbGZyYW0gU2Fu
+ZyB3cm90ZToNCj4+ICJpMmMtc2NsLWNsay1sb3ctdGltZW91dC11cyIgaGFzIGZsYXdzIGluIGl0
+c2VsZiBhbmQgdGhlIHVzYWdlIGhlcmUgaXMNCj4+IGFsbCB3cm9uZy4gVGhlIGRyaXZlciBkb2Vz
+bid0IHVzZSBpdCBhcyBhIG1heGltdW0gdGltZSBmb3IgY2xvY2sNCj4+IHN0cmV0Y2hpbmcgYnV0
+IHRoZSBtYXhpbXVtIHRpbWUgZm9yIGEgdG90YWwgdHJhbnNmZXIuIFdlIGFscmVhZHkgaGF2ZQ0K
+Pj4gYSBiaW5kaW5nIGZvciB0aGUgbGF0dGVyLiBDb252ZXJ0IHRoZSB3cm9uZyBiaW5kaW5nIGZy
+b20gZXhhbXBsZXMuDQo+Pg0KPj4gU2lnbmVkLW9mZi1ieTogV29sZnJhbSBTYW5nIDx3c2ErcmVu
+ZXNhc0BzYW5nLWVuZ2luZWVyaW5nLmNvbT4NCj4+IC0tLQ0KPj4gICBEb2N1bWVudGF0aW9uL2Rl
+dmljZXRyZWUvYmluZGluZ3MvaTJjL2kyYy1tcGMueWFtbCB8IDIgKy0NCj4+ICAgMSBmaWxlIGNo
+YW5nZWQsIDEgaW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQo+Pg0KPj4gZGlmZiAtLWdpdCBh
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9pMmMvaTJjLW1wYy55YW1sIGIvRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9pMmMtbXBjLnlhbWwNCj4+IGluZGV4
+IDcwZmI2OWI5MjNjNC4uYjFkN2QxNGMwYmU0IDEwMDY0NA0KPj4gLS0tIGEvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2kyYy9pMmMtbXBjLnlhbWwNCj4+ICsrKyBiL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9pMmMvaTJjLW1wYy55YW1sDQo+PiBAQCAtOTYsNiAr
+OTYsNiBAQCBleGFtcGxlczoNCj4+ICAgICAgICAgICBpbnRlcnJ1cHRzID0gPDQzIDI+Ow0KPj4g
+ICAgICAgICAgIGludGVycnVwdC1wYXJlbnQgPSA8Jm1waWM+Ow0KPj4gICAgICAgICAgIGNsb2Nr
+LWZyZXF1ZW5jeSA9IDw0MDAwMDA+Ow0KPj4gLSAgICAgICAgaTJjLXNjbC1jbGstbG93LXRpbWVv
+dXQtdXMgPSA8MTAwMDA+Ow0KPj4gKyAgICAgICAgaTJjLXRyYW5zZmVyLXRpbWVvdXQtdXMgPSA8
+MTAwMDA+Ow0KPiBDaHJpcywgY2FuIHlvdSBwbGVhc2UgZ2l2ZSBpdCBhbiBhY2s/DQo+DQo+IFRo
+ZSB3aG9sZSBzZXJpZXMgaXMgY29oZXJlbnQgdG8gdGhpcyBjaGFuZ2UuDQoNCkxvb2tzIGxpa2Ug
+eW91IHdlcmVuJ3Qgb24gdGhlIFRvOiBsaXN0IGZvciB0aGUgY292ZXIgbGV0dGVyIHdoaWNoIEkg
+DQpyZXBsaWVkIHRvLg0KDQpGb3IgdGhlIHNlcmllcw0KDQpSZXZpZXdlZC1ieTogQ2hyaXMgUGFj
+a2hhbSA8Y2hyaXMucGFja2hhbUBhbGxpZWR0ZWxlc2lzLmNvLm56Pg0KDQphbmQgb24gYSBQMjA0
+MVJEQg0KDQpUZXN0ZWQtYnk6IENocmlzIFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVs
+ZXNpcy5jby5uej4NCg==
 
