@@ -1,69 +1,58 @@
-Return-Path: <devicetree+bounces-48231-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48232-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9835F870C6D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 22:25:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB8E4870C83
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 22:26:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 52331286288
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:25:18 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A72DF287F09
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:26:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F05911F92C;
-	Mon,  4 Mar 2024 21:24:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8310D47F79;
+	Mon,  4 Mar 2024 21:26:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZDNv2tss"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R3IviibI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C8B8A1F5FD;
-	Mon,  4 Mar 2024 21:24:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5C33E1F5FD;
+	Mon,  4 Mar 2024 21:26:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709587493; cv=none; b=QxAK6OGo4w1bBIdOv0fWwoG+CgRlkaTx0DAQLreDKob6OMsjRm3Lz0UjvgRNDlKpCzBl6CrhRSTRnVxwg+hYUlzl+r/tJIzkhAxUuJSaw6Oua8xPM9Aodyo+E9niOpgmb9VuE3Gw9OGK98W3QDSi/vLXdiYFQM1+z3LHPGfXlfo=
+	t=1709587590; cv=none; b=YBNZcefiO/RxkpSwqhf3p15yK1ptLA7OnSArBc/RDcZuAiUAnljq0ItXgGCuTmdtJPPgUa5fzDgF+HIxN1ODin4f7nAMV+k7MRVJWHN0dxyLbqvB3RkYlP3j65h2I0f/XKT6TUQ1xL9yRPjCS4tuHkpoMuqnGz3u2Eeu/lr3Wvc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709587493; c=relaxed/simple;
-	bh=GCATK6oSIl6USFFqC/CxN7o9XWA+S9y2ORbBrX3q6D4=;
+	s=arc-20240116; t=1709587590; c=relaxed/simple;
+	bh=CzbbppJj4URu/ZwENXc/SuZfwfRp3h53NmuSsst2lhU=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Wmz0jALnhae9X9FR3OvKW8e3kOhX/aIUkSSu0Lrn3mCIXdiFWdOBdVduTrdDdf9x6Ply1DQsacF0BVH67uqxjB5wfr+zb8eLpfyXqwAXgQKC0v8uf3qF3PyBUAfHe28y3yH3/RvM0dBqNcmK92d+FnpsK9GYufGOuFEmns7XfRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZDNv2tss; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A8EBC433F1;
-	Mon,  4 Mar 2024 21:24:53 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=qng4tSQkd5O4WHmrSkY4b2wKUsFXJOxWZQaVBM1YVVZ3mfHf9juECA7Y1JOmSLJuYQf8LeS7MkHcX/4NAlEiQSaXVPhkUFO25QS3xJVJ2Ez0LqEOAsukJ8glAuA11OYN8gubch0AL/SdhrQOOcxw/6p8OQ6t44LHPgeYVkti/FA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R3IviibI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EE1DBC433F1;
+	Mon,  4 Mar 2024 21:26:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709587493;
-	bh=GCATK6oSIl6USFFqC/CxN7o9XWA+S9y2ORbBrX3q6D4=;
+	s=k20201202; t=1709587590;
+	bh=CzbbppJj4URu/ZwENXc/SuZfwfRp3h53NmuSsst2lhU=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZDNv2tssnLutTbFa6WyGdwustA4QBnMEu+28wfPUMo8UNbH7x/MrrHWTsx7jUSH5Z
-	 V4CJ06PkqW0wuMHZ8pqttIE/qrZ/x44WPTlFEJwiVG8dOO24EMkqPvYD+IKV4GZVie
-	 Roo7g86uMFOT1N9XHiL4cYPEFT6Kuwj+ZQ1vBnpLkDWaU63Mvz6Jhl68f/CpCqlc6r
-	 ZyLqOSTH84Yure/F/MqxK///OW/RM+98OcmotAdR990IgQ7biJM64boHyCEtNU0wJX
-	 AgoK8A5P3tEtDHg4OjgwsniRYohrj8FID/DHQ4H1y8hJ+NBIFa4C4WQebR7K6hO/rH
-	 ZXjuy84CFAd1Q==
-Date: Mon, 4 Mar 2024 15:24:51 -0600
+	b=R3IviibIpF8P/rEwyPHUlxmjM4bm7oKTCJ2hG5lucAODpyCpDjyIJ1rfH+Xeztw0F
+	 7vgs5XFLVSC5mmLBT5k3NYBL6tMv7CPDcaEnJlRxaa4BjqXGSfLkcnGXNtRMrfiePF
+	 pA/wbX6pMCvdWKePcmF5JNOVKd9TEcROjV6BWOoQCmqcthpPKTzk50ENyRWOnl4QNw
+	 exoCyPJ5B6IynansJAnBc+eVZ0lTGHFB03AX6Hl5hYS9ZtOhQqdfGdrtTD26VNAPQZ
+	 Cem1whi4fO4PwuON9cUh3xhN09Flhn12xqOhXyKe1nvX4zMqzDALyPIwDyXQM4hPJ3
+	 blDe15l9V0YhQ==
+Date: Mon, 4 Mar 2024 15:26:27 -0600
 From: Rob Herring <robh@kernel.org>
-To: Conor Dooley <conor@kernel.org>
-Cc: =?iso-8859-1?Q?J=E9r=E9mie?= Dautheribes <jeremie.dautheribes@bootlin.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+To: Javier =?iso-8859-1?Q?Garc=EDa?= <javier.gar.tab@gmail.com>
+Cc: Jack Yu <jack.yu@realtek.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Yen-Mei Goh <yen-mei.goh@keysight.com>
-Subject: Re: [PATCH v2 0/3] panel-simple: add support for Crystal Clear
- CMT430B19N00
-Message-ID: <20240304212451.GA1056406-robh@kernel.org>
-References: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
- <20240304-drivable-property-feaeba782880@spud>
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Rob Herring <robh+dt@kernel.org>, daniel.baluta@nxp.com,
+	alsa-devel@alsa-project.org, Mark Brown <broonie@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: rt1015: Convert to dtschema
+Message-ID: <170958758740.1075337.15453587624816097337.robh@kernel.org>
+References: <20240304142315.14522-1-javier.gar.tab@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,53 +62,21 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240304-drivable-property-feaeba782880@spud>
+In-Reply-To: <20240304142315.14522-1-javier.gar.tab@gmail.com>
 
-On Mon, Mar 04, 2024 at 07:29:04PM +0000, Conor Dooley wrote:
-> On Mon, Mar 04, 2024 at 05:04:51PM +0100, Jérémie Dautheribes wrote:
-> > Hello everyone,
-> > 
-> > This patch series add support for the Crystal Clear Technology
-> > CMT430B19N00 4.3" 480x272 TFT-LCD panel.
-> > It also adds Crystal Clear Technology to vendor-prefixes.yaml.
-> > 
-> > Please note that unfortunately there is no public datasheet available
-> > for this panel.
-> > 
-> > Changes in v2:
-> >   - add link to the Crystal Clear Technology website in commit message, as
-> >   suggested by Conor Dooley and Neil Armstrong.
+
+On Mon, 04 Mar 2024 15:23:07 +0100, Javier García wrote:
+> Convert the RT1015 Mono Class D Audio Amplifier to DT schema.
 > 
-> You forgot however to add the acks that I gave you for the two
-> dt-binding patches.
+> Signed-off-by: Javier García <javier.gar.tab@gmail.com>
+> ---
+>  .../bindings/sound/realtek,rt1015.yaml        | 41 +++++++++++++++++++
+>  .../devicetree/bindings/sound/rt1015.txt      | 23 -----------
+>  2 files changed, 41 insertions(+), 23 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/sound/realtek,rt1015.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/sound/rt1015.txt
+> 
 
-I was wondering why my scripts said this was already reviewed with that 
-missing. Turns out b4 will now check prior versions and add the tags as 
-long as the patch-id matches. Neat, but the submitter really has to 
-grasp how that all works (knowing if the patch-id changed) as well as 
-the maintainer has to use b4, so we can't really rely on it.
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Here's b4 debug log:
-
-  new message: 20240223-subtotal-aground-268d135adeff@spud                                                                     
-Running git --no-pager patch-id --stable                                                                                       
-  found matching patch-id for Re: [PATCH 2/3] dt-bindings: display: simple: add support for Crystal Clear CMT430B19N00         
-  new message: 20240229-woven-lively-1d90687b2d03@spud                                                                         
-  skipping reply without trailers: 20240229-woven-lively-1d90687b2d03@spud
-  new message: 20240223134517.728568-2-jeremie.dautheribes@bootlin.com                                                         
-  skipping non-reply: 20240223134517.728568-2-jeremie.dautheribes@bootlin.com                                                  
-Analyzing follow-up: Re: [PATCH v2 0/3] panel-simple: add support for Crystal Clear CMT430B19N00 (conor@kernel.org)            
-  no trailers found, skipping                                                                                                  
-Analyzing follow-up: Re: [PATCH v2 3/3] drm/panel: simple: add CMT430B19N00 LCD panel support (mripard@kernel.org)             
-  no trailers found, skipping                                                                                                  
-    adding "Acked-by: Conor Dooley <conor.dooley@microchip.com>" from trailer_map to: [PATCH v2 1/3] dt-bindings: Add Crystal C
-lear Technology vendor prefix                                                                                                  
-    adding "Link: http://www.cct.com.my/" from trailer_map to: [PATCH v2 1/3] dt-bindings: Add Crystal Clear Technology vendor 
-prefix                                                                                                                         
-    adding "Acked-by: Conor Dooley <conor.dooley@microchip.com>" from trailer_map to: [PATCH v2 2/3] dt-bindings: display: simp
-le: add support for Crystal Clear CMT430B19N00                                                                                 
-    adding "Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>" from trailer_map to: [PATCH v2 3/3] drm/panel: simple: add
- CMT430B19N00 LCD panel support                                                                                                
-    adding "Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>" from trailer_map to: [PATCH v2 3/3] drm/panel: simple: add 
-CMT430B19N00 LCD panel support                                                                                                 
 
