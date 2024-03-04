@@ -1,212 +1,179 @@
-Return-Path: <devicetree+bounces-48180-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48181-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 373ED87091B
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:08:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FDBE87094D
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:15:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5B3661C23A90
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 18:08:25 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 855E8B226D9
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 18:15:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB27D6214D;
-	Mon,  4 Mar 2024 18:08:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 323FD62157;
+	Mon,  4 Mar 2024 18:15:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b="e5cWzcyq"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="giHlgTOS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF1B362140
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 18:08:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A6EC62140
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 18:15:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709575695; cv=none; b=Qme7LcVojYo80GoH/NkUdyJ5/1+6IzmzT4xXoV7MTda8eosqqFr8RyXG2UXkFqhZlwY9XF7hNSgISqy3RHihzEUmGlE1nsC1Ul+Jio+XcCD24V2JQQtmtGP37mJL6dS5MvA4yFQ5Kzw/Kd/YvSvA/lsY2HwQxlQVyYf3FbVVgBM=
+	t=1709576146; cv=none; b=XTIi4wXZBKaLNVoz4gLmNB4a8HntziubY5+66bIzkGngaQpBx/0gCLKX3mFGUX35JlR0Y8LOvLut/jM7qnV9jatfXXuoqSh37cy2LMPHVwdLP88Kc7e8LRuseCvJelDQfmUaO21k73f/lZv3PjQnfwuwVtJheoyJAKzwvF4v730=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709575695; c=relaxed/simple;
-	bh=SCCU9dbfZqUMw7g1ftHwe7lhiBrDP1IoW13xbyD472Q=;
-	h=Date:Subject:In-Reply-To:CC:From:To:Message-ID:Mime-Version:
-	 Content-Type; b=B1eHHamxtuuGlZmhXhDXwKSjvrj3UTUUhesuXTZVoq7Tcd0LgJmLDzsS0IcdhF0aYljN+ioaEk0rRnztygpCheQQv0a+KaBl2y+llDc/vOKu0FJCrcdZvgK3SFD0IYtQKOhve3dnp/kXZhtlaHTsu4i2j8y2sdI1Utzm49kcQ/0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com; spf=pass smtp.mailfrom=dabbelt.com; dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b=e5cWzcyq; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dabbelt.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-5d8ddbac4fbso4623172a12.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 10:08:13 -0800 (PST)
+	s=arc-20240116; t=1709576146; c=relaxed/simple;
+	bh=VauSxUeKDlLS0XJnXJZoJkn64Xnlj2KotCEvFkmd1CM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ACKt9IGE76r36BXsNWRgL/qAzkBYsOsXeYoj024Wl13Tvqk7t9sFdUyXbwmB5OEI7jzQRyvN8zVWWCIoxvtAO+H4hHngr021xQ/voyStTcTYHjJbMWGTNNr28PqXtTpNhlfW94vL6r63rBI1qdUfqPyoF2xa228MrZ4tIQQlUE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=giHlgTOS; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-412dda84216so13713215e9.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 10:15:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1709575693; x=1710180493; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=aizblNvc9Cf2btttMWelCC6kMijS1p5vy42920jDwTY=;
-        b=e5cWzcyqyDy+69v+oaErXiT4T6SwOmNPAowtEemMkU4mmWJ4T5hfleUs4acVf8v4PO
-         FFiRsFy6LVb6QRv6ydgK1vY59/vytWvEL7lbZt1jjc35GaEqJYxN0XXkKDdN8J0p91ey
-         lSbzRoCalAND2OhVnq0e36pM1NdKhfA6mzVtIMgDbaLGhdYMHK+2K+mQUTkIEvR08hmX
-         0NLOjA0lvjzFXETVgGw30WodRrfz3g567iEVDAYvaPW4tMpv+42fIaq9c/V638m/2FFV
-         F2c/zzjj+yXliFZgtk+UBRi+WaDH6sm/cTE36niNyTsbh+u7Vqiqo8YWi2gC4CUjyEjD
-         yYqg==
+        d=linaro.org; s=google; t=1709576143; x=1710180943; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aQwEQKxahRfy1UUMYJ9k49LKptzc1VSVKXuBad2xfbI=;
+        b=giHlgTOSMvkDMXM9IyCrVGaDCfjBaMJAoyL1F/KeJob1GmvRprtAPAVlvoLINkRH1E
+         Tok4xu3GvvAAqEzx994pnEAx3HqzuE089NMI6tPZzaUZfC/reNJL9a2JNF3DctxvNGYK
+         4hqIIWCyLD6AfVuAO9KdBoOhoo7xN8ObZeMgkWxcyyZn2Ryb8dBk8i+GbIs8dfd5vLTd
+         l2tgEIfGFd4kP//tzDBpTJWXf98WRgqYu34mRcl3S0YPqn5p64P8UXDf8wwQImTm8gCA
+         3p9gFgSHaH2Dpq8TnINIpPud9sUUn91eqvRTVSOpFw88X1FWbAAPyi6QujbgrEVSnlbv
+         oPAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709575693; x=1710180493;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aizblNvc9Cf2btttMWelCC6kMijS1p5vy42920jDwTY=;
-        b=UtsfWZU8dBZ0pwaUTBOVfu1uX2YqS+DhNxUR+nah0JGGED+u5E/tx45F6TaeJ4x5ak
-         AeqrooYTfnmhnV//axr66vM2eH/KNz9UQUshcSTJZsctPW2n/CxHExJmdpMtcAq+Pn6F
-         6QexMvrEwJR+JCmpY6RFMQKmsP7mLZOQNzt2iOeiQKBWX00gZk9Aj/QbkALdzv8VJQJP
-         g1qelYykpW+iibi0QOEao4PFSXmRuGGXW8fcAhK2IqYIHFmtpoPBtPIQJafwewF8RRby
-         Aca856j+ZxDDO/kooHOjrn7N2UMyoXS2IXcxUQQ8H3CqGP2nW5wUhVqZ5s0hRCblXIoo
-         2AyA==
-X-Forwarded-Encrypted: i=1; AJvYcCW2b2Nz7Hmt+s52wQD3q2iUwVm0x2mVbC5Sb8RmnC14Rx4j3r1VxeIRbhLiSEl14IDIo8n3WjjcL1khW/vvpKi59jG+bX64dkV7ig==
-X-Gm-Message-State: AOJu0YwwHuWsL+ZknEdyk1HcKDeN2s2jEarozFgDrrOt7uJ/AC/1yo4S
-	srvq208o72kqU5XIfEDbiTL8rDORcWJ0dnADFOj2YT5eAQPYLLyxi5kaHYa5Wbw=
-X-Google-Smtp-Source: AGHT+IFhlrCJ7z/RMUFxQQf2zMzCvbw2MLdNLsKVNf46b6Rg0IEtkQiqwfm6zGkZbeAOroe6+Tng3g==
-X-Received: by 2002:a17:90a:8a0e:b0:29a:a08d:4809 with SMTP id w14-20020a17090a8a0e00b0029aa08d4809mr7511710pjn.2.1709575693052;
-        Mon, 04 Mar 2024 10:08:13 -0800 (PST)
-Received: from localhost ([192.184.165.199])
-        by smtp.gmail.com with ESMTPSA id l3-20020a17090ac58300b0029b2e00359esm5161382pjt.36.2024.03.04.10.08.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Mar 2024 10:08:06 -0800 (PST)
-Date: Mon, 04 Mar 2024 10:08:06 -0800 (PST)
-X-Google-Original-Date: Mon, 04 Mar 2024 10:08:04 PST (-0800)
-Subject:     Re: [PATCH v15,RESEND 22/23] PCI: starfive: Offload the NVMe timeout workaround to host drivers.
-In-Reply-To: <ZeCd+xqE6x2ZFtJN@lpieralisi>
-CC: minda.chen@starfivetech.com, Conor Dooley <conor@kernel.org>, kw@linux.com,
-  robh+dt@kernel.org, bhelgaas@google.com, tglx@linutronix.de, daire.mcnamara@microchip.com,
-  emil.renner.berthing@canonical.com, krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-  linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, linux-pci@vger.kernel.org,
-  Paul Walmsley <paul.walmsley@sifive.com>, aou@eecs.berkeley.edu, p.zabel@pengutronix.de, mason.huo@starfivetech.com,
-  leyfoon.tan@starfivetech.com, kevin.xie@starfivetech.com
-From: Palmer Dabbelt <palmer@dabbelt.com>
-To: lpieralisi@kernel.org
-Message-ID: <mhng-87e7ef5a-d60b-4057-960d-41bc901b6c7f@palmer-ri-x1c9>
+        d=1e100.net; s=20230601; t=1709576143; x=1710180943;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aQwEQKxahRfy1UUMYJ9k49LKptzc1VSVKXuBad2xfbI=;
+        b=Vqpy9cD2QtHFryrgdjwqSdiBBenuij//5dSYLsB8AnegENl85Cj0VVbt7ABCcg9Tfn
+         iMYUqGQqTddcj2j25CW937dJexhJlEFKIAGd6cpDO+9KUOHYGoRj+GZov4bOMyDCUFAW
+         qFHY7+QCHPXt02p7TW0JpPJ5X5Guxc4/onOF3SbsT8YSikT8E8z61l7f0fSmhigeBfEx
+         4yyz6ei/hUFya+u2qvVNebrqQyu+VOWq5+9ftA9dqlXjVsJ0gWobpwWukx2Rm9AcQb53
+         1mJEJZBqe8TOhcELNP1ZhH8phbQyYbpcIXfNeeG8U8cDrHZ4GPqWLswsXNHJj7fwgnfZ
+         hswA==
+X-Forwarded-Encrypted: i=1; AJvYcCWWzGD0UbnWCE8ioRtakdBAHdabA3pr24UX2shK0l9rXtCGn2pfnfVut4rFoTHPyLRklReUhkDPMPRK2bANnYYIBI2QP0kTUVhEDQ==
+X-Gm-Message-State: AOJu0YxZqPfYi6rjc/oOnNSb1i/NJgfbCB8zDrwLsPQBW8G353BxDl/X
+	Gu0rJ3lTm8cXXvpHOQP4JFUQ6mhk0K9EeLIkudmZtw/q4jtAOTbu6TGp0ayHo7s=
+X-Google-Smtp-Source: AGHT+IHS8mH5ep3olTYKjEqY60XC9rt4PJOU0PV0d/ZJCfSs+EsqO0ZGvDc2uljxo9I10eGxI2VHig==
+X-Received: by 2002:a05:600c:1d8d:b0:412:e7e2:b134 with SMTP id p13-20020a05600c1d8d00b00412e7e2b134mr1415090wms.36.1709576142191;
+        Mon, 04 Mar 2024 10:15:42 -0800 (PST)
+Received: from [192.168.2.107] ([79.115.63.35])
+        by smtp.gmail.com with ESMTPSA id i6-20020adfb646000000b0033e033898c5sm12820159wre.20.2024.03.04.10.15.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 04 Mar 2024 10:15:41 -0800 (PST)
+Message-ID: <0852a6bc-315c-49e2-84fe-7dadca71df3d@linaro.org>
+Date: Mon, 4 Mar 2024 18:15:38 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] spi: dt-bindings: samsung: make dma properties not
+ required
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>, Sam Protsenko <semen.protsenko@linaro.org>
+Cc: Mark Brown <broonie@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ andi.shyti@kernel.org, conor+dt@kernel.org, linux-spi@vger.kernel.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, andre.draszik@linaro.org,
+ peter.griffin@linaro.org, willmcvicker@google.com, kernel-team@android.com
+References: <20240301115546.2266676-1-tudor.ambarus@linaro.org>
+ <CAPLW+4=6oYcs0NPXo4ffLiCvtNQ-tY1s_isaxTX8dcPkV56xMw@mail.gmail.com>
+ <cb426fb0-2f27-4c9b-89f5-7139354ea425@sirena.org.uk>
+ <f06328e4-b283-4302-b9c1-6473aa3cfa25@linaro.org>
+ <CAPLW+4kjXK=EWx__h0bX0rJMrL33E=t4YDzSOfObmvtG9aS+jg@mail.gmail.com>
+ <20240304165635.GA739022-robh@kernel.org>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20240304165635.GA739022-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On Thu, 29 Feb 2024 07:08:43 PST (-0800), lpieralisi@kernel.org wrote:
-> On Tue, Feb 27, 2024 at 06:35:21PM +0800, Minda Chen wrote:
->> From: Kevin Xie <kevin.xie@starfivetech.com>
->>
->> As the Starfive JH7110 hardware can't keep two inbound post write in
->> order all the time, such as MSI messages and NVMe completions. If the
->> NVMe completion update later than the MSI, an NVMe IRQ handle will miss.
->
-> Please explain what the problem is and what "NVMe completions" means
-> given that you are talking about posted writes.
->
-> If you have a link to an erratum write-up it would certainly help.
+Hi, Rob,
 
-I think we really need to see that errata document.  Our formal memory 
-model doesn't account for device interactions so it's possible there's 
-just some arch fence we can make stronger in order to get things ordered 
-again -- we've had similar problems with some other RISC-V chips, and 
-while it ends up being slow at least it's correct.
+On 3/4/24 16:56, Rob Herring wrote:
+> On Sat, Mar 02, 2024 at 10:23:16AM -0600, Sam Protsenko wrote:
+>> On Sat, Mar 2, 2024 at 3:36 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>>>
+>>>
+>>>
+>>> On 01.03.2024 22:42, Mark Brown wrote:
+>>>> On Fri, Mar 01, 2024 at 01:28:35PM -0600, Sam Protsenko wrote:
+>>>>> On Fri, Mar 1, 2024 at 5:55 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>>>>
+>>>>>> Since the addition of the driver in 2009, the driver selects between DMA
+>>>>>> and polling mode depending on the transfer length - DMA mode for
+>>>>>> transfers bigger than the FIFO depth, polling mode otherwise. All
+>>>>>> versions of the IP support polling mode, make the dma properties not
+>>>>>> required.
+>>>>
+>>>>> AFAIU, the device tree has nothing to do with drivers, it's about
+>>>>> hardware description. Does making DMA properties not required here
+>>>
+>>> correct
+>>>
+>>>>> mean that there are some HW out there which doesn't integrate DMA in
+>>>
+>>> no, to me it means that the IP can work without DMA, only in PIO mode,
+>>> regardless if DMA is integrated or not. Not required means that the
+>>> property is not mandatory, which is what I'm trying to achieve here.
+>>>
+>>>>> SPI blocks? Even if this change is ok (I'm not sure), the
+>>>>> argumentation doesn't look sound to me.
+>>>
+>>> switching to PIO mode in the driver for sizes smaller than FIFO depths
+>>> in the driver guarantees that all existing compatibles support PIO mode.
+>>>
+>>> Are you saying that if there is a physical line between an IP and DMA
+>>> controller, then the DMA properties must always be specified in dt? I
+>>> thought they can be marked as optional in this case, and that's what I
+>>> did with this patch.
+>>>
+>>
+>> No, I would wait for maintainers to clarify on that bit. Change itself
+>> can be ok. But the commit message shouldn't mention the driver,
+>> because the driver uses (depends on) device tree, not vice versa. The
+>> device tree can be used in other projects as well (like U-Boot and
+>> OP-TEE), so it should be designed to be universal and not depend on
+>> kernel drivers. The commit message should be based on particular HW
+>> layout features and how the patch makes the bindings describe that HW
+>> better. It shouldn't rely on driver implementations.
+> 
+> If the controller is DMA capable then it should have dma properties. The 
 
-> This looks completely broken to me, if the controller can't guarantee
-> PCIe transactions ordering it is toast, there is not even a point
-> considering mainline merging.
+should have as in required/mandatory?
 
-I wouldn't be at all surprised if that's the case.  Without some 
-concrete ISA mechanisms here we're sort of just stuck hoping the SOC 
-vendors do the right thing, which is always terrifying.
+> compatible should be enough to tell if it is a case of 'can only work 
 
-I'm not really a PCIe person so this is all a bit vague, but IIRC we had 
-a bunch of possible PCIe ordering violations in the SiFive memory system 
-back when I was there and we never really got a scheme for making sure 
-things were correct.
+yes, I agree
 
-So I think we really do need to see that errata document to know what's 
-possible here.  Folks have been able to come up with clever solutions to 
-these problems before, maybe we'll get lucky again.
+> with DMA'. Otherwise, it is going to be up to a specific user. Even 
+> within Linux, you may have a serial port that doesn't use DMA for the 
+> console, but uses it for the tty or serdev.
+> 
+> Of course, if a new device is added without DMA properties and they 
+> are added later on, then they are going to be optional even though the 
+> DMA support is always there. I can't fully understand everyone's h/w. 
+> 
 
->> As a workaround, we will wait a while before going to the generic
->> handle here.
->>
->> Verified with NVMe SSD, USB SSD, R8169 NIC.
->> The performance are stable and even higher after this patch.
->
-> I assume this is a joke even though it does not make me laugh.
+The SPI controller that I'm working with has a dedicated channel to the
+DMA controller. It can work without DMA too, just by polling registers
+or by interrupts.
 
-So you're new to RISC-V, then?  It gets way worse than this ;)
+I can't get the DMA controller to work correctly yet, and since the SPI
+controller can work without DMA, I thought that I can mark the DMA
+properties as optional, add the SPI node in dt without DMA, and add the
+DMA properties later on, after I have the DMA controller working
+correctly. Is this approach wrong?
 
-> Thanks,
-> Lorenzo
->
->>
->> Signed-off-by: Kevin Xie <kevin.xie@starfivetech.com>
->> Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
->> ---
->>  drivers/pci/controller/plda/pcie-plda-host.c | 12 ++++++++++++
->>  drivers/pci/controller/plda/pcie-plda.h      |  1 +
->>  drivers/pci/controller/plda/pcie-starfive.c  |  1 +
->>  3 files changed, 14 insertions(+)
->>
->> diff --git a/drivers/pci/controller/plda/pcie-plda-host.c b/drivers/pci/controller/plda/pcie-plda-host.c
->> index a18923d7cea6..9e077ddf45c0 100644
->> --- a/drivers/pci/controller/plda/pcie-plda-host.c
->> +++ b/drivers/pci/controller/plda/pcie-plda-host.c
->> @@ -13,6 +13,7 @@
->>  #include <linux/msi.h>
->>  #include <linux/pci_regs.h>
->>  #include <linux/pci-ecam.h>
->> +#include <linux/delay.h>
->>
->>  #include "pcie-plda.h"
->>
->> @@ -44,6 +45,17 @@ static void plda_handle_msi(struct irq_desc *desc)
->>  			       bridge_base_addr + ISTATUS_LOCAL);
->>  		status = readl_relaxed(bridge_base_addr + ISTATUS_MSI);
->>  		for_each_set_bit(bit, &status, msi->num_vectors) {
->> +			/*
->> +			 * As the Starfive JH7110 hardware can't keep two
->> +			 * inbound post write in order all the time, such as
->> +			 * MSI messages and NVMe completions.
->> +			 * If the NVMe completion update later than the MSI,
->> +			 * an NVMe IRQ handle will miss.
->> +			 * As a workaround, we will wait a while before
->> +			 * going to the generic handle here.
->> +			 */
->> +			if (port->msi_quirk_delay_us)
->> +				udelay(port->msi_quirk_delay_us);
->>  			ret = generic_handle_domain_irq(msi->dev_domain, bit);
->>  			if (ret)
->>  				dev_err_ratelimited(dev, "bad MSI IRQ %d\n",
->> diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
->> index 04e385758a2f..feccf285dfe8 100644
->> --- a/drivers/pci/controller/plda/pcie-plda.h
->> +++ b/drivers/pci/controller/plda/pcie-plda.h
->> @@ -186,6 +186,7 @@ struct plda_pcie_rp {
->>  	int msi_irq;
->>  	int intx_irq;
->>  	int num_events;
->> +	u16 msi_quirk_delay_us;
->>  };
->>
->>  struct plda_event {
->> diff --git a/drivers/pci/controller/plda/pcie-starfive.c b/drivers/pci/controller/plda/pcie-starfive.c
->> index 9bb9f0e29565..5cfc30572b7f 100644
->> --- a/drivers/pci/controller/plda/pcie-starfive.c
->> +++ b/drivers/pci/controller/plda/pcie-starfive.c
->> @@ -391,6 +391,7 @@ static int starfive_pcie_probe(struct platform_device *pdev)
->>
->>  	plda->host_ops = &sf_host_ops;
->>  	plda->num_events = PLDA_MAX_EVENT_NUM;
->> +	plda->msi_quirk_delay_us = 1;
->>  	/* mask doorbell event */
->>  	plda->events_bitmap = GENMASK(PLDA_INT_EVENT_NUM - 1, 0)
->>  			     & ~BIT(PLDA_AXI_DOORBELL)
->> --
->> 2.17.1
->>
->>
->> _______________________________________________
->> linux-riscv mailing list
->> linux-riscv@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-riscv
+Thanks,
+ta
 
