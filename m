@@ -1,68 +1,69 @@
-Return-Path: <devicetree+bounces-48197-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48198-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B32A870AAC
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 20:29:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 70B07870AC5
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 20:34:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8932E1C20F53
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:29:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2533C1F22D51
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 19:34:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E310F79935;
-	Mon,  4 Mar 2024 19:29:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4145379948;
+	Mon,  4 Mar 2024 19:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LvYNXVFR"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="P/6bN++K"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BABB77869E;
-	Mon,  4 Mar 2024 19:29:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 161DE79941;
+	Mon,  4 Mar 2024 19:34:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709580550; cv=none; b=gI9ahKJuyR4W3o22TpYoj4DyCNNJ8Ug7zrrm+lDxjGvTAtuxmFULO1BO6GXBsH0xPCJPdvCPZmZxNZFpO6YZWS0TXl5Sk+vF07zezlwosXH49Uj68NxrDKxH8ncZq0CzISw2EGUByZitiyKcolabGwrYjSid/cPivM9uUoJfEWw=
+	t=1709580870; cv=none; b=MHP28EQB3sjpmpRL5AWt79GF7chSc+p1eEasf68XI+Pas+8b4BjOTfpfJkFrQkM4To+p9coe1cH9u2PwX1HZihb8DbfgGlbVC2D+EVbJ8ciGtmyk1f0T41ky876L0xMS+dFsK1T4lk25bEiKACRTFopmeKFjf0lWMuhXPQ87d4U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709580550; c=relaxed/simple;
-	bh=V8gmN+cucgc/503pO37ENBKhzWyVzgTTUpxzw+uscCc=;
+	s=arc-20240116; t=1709580870; c=relaxed/simple;
+	bh=hfPu6EysdEbjriYSDjgUpEYkvags1PNmUGb2z5pWclw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ags2AcpBk03Ddi2bkONM4RX3Yq78LeBhGP0CxLqBTUcCXJkHhER83a1gtKit12kys5sVKX0ai2rmifLfuZJi1PwnKTlrXtZjZ13rBHmn5z2uKvQf99xn5pqSPeDA1jbG3n7w54DXpUnUdH+XmxCxTokUTDDkSiJoCc3k7t3ox+8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LvYNXVFR; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ABF2CC433C7;
-	Mon,  4 Mar 2024 19:29:06 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=B2qn2gTl05NqeXoUoUMYW7MkclSj0ygzWMaMqKH/q95QGIA9OoxvKJkKpPxtCElu69PdYL/TPC+x3OIP69YZtCPIF9JJYjBo2riZx9JThXWj7NcV9i9XGUOB87f/b34k3x2eYhR+uXqXWPq4/UYiYH8ikzqIJCTZ0Zt6B5HkR9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=P/6bN++K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 06443C433F1;
+	Mon,  4 Mar 2024 19:34:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709580550;
-	bh=V8gmN+cucgc/503pO37ENBKhzWyVzgTTUpxzw+uscCc=;
+	s=k20201202; t=1709580869;
+	bh=hfPu6EysdEbjriYSDjgUpEYkvags1PNmUGb2z5pWclw=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=LvYNXVFRMh4C/CW9oQo7AnwCsurlRlFLoO3zdy8DQqw+gA/tTAU8+Hj3CAXE9kqE2
-	 0kDm4U3+4fQNf5PMRJuQdxVQWwkqjMxbDWXg6MOpuTgmkUbYMGDXQ0aFEvF0sLQrr6
-	 idA/WDl3GfUewLIDCNhnjjXns2Jd6Lg7ylYgCa+/DbunU2ExrE3pq0G8RwmYbjDqTt
-	 mq8/I3WRbuDmkLnEEqCTqtw3x5SjEVnlTlTHEg1SiqdHZrTOAjddYiv3W2ktfUt/Ku
-	 x6DNCc+y5658KPyzjutARzwEZIsZ2B8ci7e/ImBtYazayHt1u64lI67/lXAYOJhFDI
-	 L3rZy45BO7kkg==
-Date: Mon, 4 Mar 2024 19:29:04 +0000
+	b=P/6bN++KlvhxwGzW8fk9o6qDNjmeFkSZIuwI+dSb0H8FKkH/2Gk+XknF5dHn8clxI
+	 v9Vo2AdMK9uu5/Juq87GzpxCFlUhTLjJvn6Ql9HY3YhQ6/xclXTPPSKhHR6yhCR/bV
+	 kSN4tD5uWhSqqLJhs2+GwF+IoVavhPYOafTiVFMPxH7W7Um7TZNH3e01UWVbdH5Q4T
+	 GkLwoIybbltYihMGQa7Gmfqap08PwBWJlgGyQuOUe4+ppvPzUjfjDjzShTDXVMz4E4
+	 p2Zco/h4/LTDXalQ1nnrAiQ0FQ9fDqk8UuBPpZ6ak74mLYUxnTaTF/N99GXYUKZpmp
+	 rcV/h1uJQ9Pmw==
+Date: Mon, 4 Mar 2024 19:34:24 +0000
 From: Conor Dooley <conor@kernel.org>
-To: =?iso-8859-1?Q?J=E9r=E9mie?= Dautheribes <jeremie.dautheribes@bootlin.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-	Rob Herring <robh+dt@kernel.org>,
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
+	ath10k <ath10k@lists.infradead.org>,
+	wireless <linux-wireless@vger.kernel.org>,
+	DT <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Yen-Mei Goh <yen-mei.goh@keysight.com>
-Subject: Re: [PATCH v2 0/3] panel-simple: add support for Crystal Clear
- CMT430B19N00
-Message-ID: <20240304-drivable-property-feaeba782880@spud>
-References: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
+	Pierre-Hugues Husson <phhusson@freebox.fr>,
+	Jami Kettunen <jamipkettunen@gmail.com>,
+	Jeffrey Hugo <quic_jhugo@quicinc.com>,
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+Message-ID: <20240304-component-animator-e2ee0ab7574a@spud>
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+ <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
+ <871q8wk7o3.fsf@kernel.org>
+ <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr>
+ <87wmqoilzf.fsf@kernel.org>
+ <20240229-ageless-primal-7a0544420949@spud>
+ <68a49964-7c05-4575-a4f3-35848c08fefc@freebox.fr>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,43 +71,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="rI073bo/OhsyVdFq"
+	protocol="application/pgp-signature"; boundary="bhDdbVFfGqGZqHQo"
 Content-Disposition: inline
-In-Reply-To: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
+In-Reply-To: <68a49964-7c05-4575-a4f3-35848c08fefc@freebox.fr>
 
 
---rI073bo/OhsyVdFq
-Content-Type: text/plain; charset=iso-8859-1
+--bhDdbVFfGqGZqHQo
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Mar 04, 2024 at 05:04:51PM +0100, J=E9r=E9mie Dautheribes wrote:
-> Hello everyone,
+On Mon, Mar 04, 2024 at 05:21:37PM +0100, Marc Gonzalez wrote:
+> On 29/02/2024 19:40, Conor Dooley wrote:
 >=20
-> This patch series add support for the Crystal Clear Technology
-> CMT430B19N00 4.3" 480x272 TFT-LCD panel.
-> It also adds Crystal Clear Technology to vendor-prefixes.yaml.
+> > On Wed, Feb 28, 2024 at 06:37:08PM +0200, Kalle Valo wrote:
+> >
+> >> Marc Gonzalez wrote:
+> >>=20
+> >>> As mentioned in my other reply, there are several msm8998-based
+> >>> devices affected by this issue. Is it not appropriate to consider
+> >>> a kernel-based work-around?
+> >>
+> >> Sorry, not following you here. But I'll try to answer anyway:
+> >>
+> >> I have understood that Device Tree is supposed to describe hardware, n=
+ot
+> >> software. This is why having this property in DT does not look right
+> >> place for this. For example, if the ath10k firmware is fixed then DT
+> >> would have to be changed even though nothing changed in hardware. But =
+of
+> >> course DT maintainers have the final say.
+> >=20
+> > I dunno, if the firmware affects the functionality of the hardware in a
+> > way that cannot be detected from the operating system at runtime how
+> > else is it supposed to deal with that?
+> > The devicetree is supposed to describe hardware, yes, but at a certain
+> > point the line between firmware and hardware is invisible :)
+> > Not describing software is mostly about not using it to determine
+> > software policy in the operating system.
 >=20
-> Please note that unfortunately there is no public datasheet available
-> for this panel.
+> Recording here what was discussed a few days ago on IRC:
 >=20
-> Changes in v2:
->   - add link to the Crystal Clear Technology website in commit message, as
->   suggested by Conor Dooley and Neil Armstrong.
+> If all msm8998 boards are affected, then it /might/ make sense
+> to work around the issue for ALL msm8998 boards:
+>=20
+> diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless=
+/ath/ath10k/qmi.c
+> index 0776e79b25f3a..9da06da518fb6 100644
+> --- a/drivers/net/wireless/ath/ath10k/qmi.c
+> +++ b/drivers/net/wireless/ath/ath10k/qmi.c
+> @@ -1076,6 +1076,9 @@ int ath10k_qmi_init(struct ath10k *ar, u32 msa_size)
+>  	qmi->ar =3D ar;
+>  	ar_snoc->qmi =3D qmi;
+> =20
+> +	if (of_device_is_compatible(of_root, "qcom,msm8998")
+> +		qmi->no_point_in_waiting_for_msa_ready_indicator =3D true;
+> +
+>  	if (of_property_read_bool(dev->of_node, "qcom,msa-fixed-perm"))
+>  		qmi->msa_fixed_perm =3D true;
+> =20
+>=20
+> Thus, anyone porting an msm8998 board to mainline would automatically
+> get the work-around, without having to hunt down the feature bit,
+> and tweak the FW files.
 
-You forgot however to add the acks that I gave you for the two
-dt-binding patches.
+How come the root node comes into this, don't you have a soc-specific
+compatible for the integration on this SoC?
+(I am assuming that this is not the SDIO variant, given then it'd not be
+fixed to this particular implementation)
 
---rI073bo/OhsyVdFq
+--bhDdbVFfGqGZqHQo
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeYhAAAKCRB4tDGHoIJi
-0nAcAQCc3o01bI3Ifa5xoNkCxhVQ62sJgXDVhXy3VZlzzE4KmgD8D61G2EON3aLG
-RtxPHF0vPEGYsIXGqwyz/wkAwB4j3w4=
-=fyIn
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeYiQAAKCRB4tDGHoIJi
+0gLiAP9ae+USWPlOTK3qJiAXdwckG5buGi5gBreOCjcOL9NtDQD/Uvk0cIeTq05/
+61GvL37kjGGBqpiFoPi5PQwgR+EUHAE=
+=rob9
 -----END PGP SIGNATURE-----
 
---rI073bo/OhsyVdFq--
+--bhDdbVFfGqGZqHQo--
 
