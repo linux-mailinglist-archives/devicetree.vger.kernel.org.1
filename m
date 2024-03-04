@@ -1,184 +1,236 @@
-Return-Path: <devicetree+bounces-48095-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48096-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 96DEE87025D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:12:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id CE7AB870262
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 14:12:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 259A91F21A41
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 13:12:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F2B6C1C21B05
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 13:12:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 562D13D578;
-	Mon,  4 Mar 2024 13:10:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5773C3D0C8;
+	Mon,  4 Mar 2024 13:12:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="LJgRO+Hb"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="loPKmt0/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54C363D547
-	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 13:10:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03FAF3D565
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 13:12:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709557856; cv=none; b=LRtyJhgF+83ikmjMbbxlIyh1c+GyJ857ws9/bJWgc3r3L+Qoj94xcUxPPmSQx3GTiuxPW+vCEuBfFWRvOq3ExLlnCRa9Z+od0Jc3qNXqpERHbJuvZm3m8HZ+jAvwal75pMwVAcbq4UFuaLaCZEnPAMRpT9dpQyQoqoCIlTIuU0g=
+	t=1709557927; cv=none; b=cA1AuBLn2yoEvm/rA9RXrM3d0IJiQpodT1BwYeGcGRVS8d05WQYt8mHISrjbN5hfPoShIO63FbR/z18TDOsBpZ3OObJfcGg8U6CuR1Z5Vsgfe0EVM2x3Yjv3R6FuHpuo47bQpPHxuKqELkaWKvRZd9QyHe6llJHL715X8K8u0R8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709557856; c=relaxed/simple;
-	bh=edMqvmg6y2VKb4yfnj4dW1OskK2vzKd7zQJdJKQMyrs=;
-	h=Date:From:To:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=OCRp6mQoDgRDZn4rWQEPDi9O7XtEf01s5e5FBg4hrB7etpNWitsSdqBh2vfzMnudgnahR5fP49un8Q+rhWsDxMq5PihmUCwOmMMGoveAsv87ogUJyNNWvNctmWvHPfhyzTh7ocZkSwDueLJB0H4y5wZwljd16X+wmn3SN03jDMM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=LJgRO+Hb; arc=none smtp.client-ip=209.85.218.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a4499ef8b5aso287836966b.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 05:10:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1709557853; x=1710162653; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=z3m7OivOxzJeGdkMzIGOv6kRagQeqCuoThPb8xlNbgo=;
-        b=LJgRO+HbeUy+EAApm7gnwP1G5T1RzxP/43RuN159JitjmB+tqdik+WseMa7ppc0Lsw
-         zFJ/Qi4F2nmvJIcG0J3r6XAbWwoibIB/l1J8L0LBqT9cfVHrFCP2fSuj53GXHlK2MgTN
-         KOf4NIk6XpxoKoJopFvDojC8rQWS3tpNWkF60XOnb7NXm0Lmo8pL0YaDTLyRvX8bLHFx
-         a6kbFFniAVqz0C8/pXNe+MUMsm03pMjJFqyu0ozGtPkTCqoCZER98AHfi/8SUIdOYHEL
-         SvLwOaZvfecGr7W8VQxZHVJqAJUUAuCNp9lon7ghkhiS3+vIlx0DPSIQplF9fjXXF24I
-         Arwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709557853; x=1710162653;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=z3m7OivOxzJeGdkMzIGOv6kRagQeqCuoThPb8xlNbgo=;
-        b=OALhqQrSAU1gg0FRct2qbl7b3uVPrNZNjCCH7/OCH8vKck6XdJ/txKKgFJijngNhx8
-         e173CyfhBLa+WctPjaYC5VSfn9AocRsaW15D2n5n00GN3qA9oz2Z64RPidrk3lUL9q93
-         8QHv3SIr/ZoCPylmE1fz+IUHZqQv6kZYCLtLJTxaXTL3SyW0KO+VPKeF4P42FkYF7D9O
-         gImmHIvpn03nKa4eL5FW68eo0I8ZZ5fhCjzqmtYg/n88JLy0HI/uESpWhf9ckuIIp+2H
-         uFD0oOgRtIrNyFqICP1FxZretgwEznogSV/a3V/yhPm/FlZDlYEcubkYUDM3SQOgWL9l
-         ex+Q==
-X-Forwarded-Encrypted: i=1; AJvYcCViqnm9HVnNjl5/IH1bp+nQCyB8U/50D8lgcjq5Euei3oz0OEmC/kyCys5hDijJXX6VQGRj0iNEDawNP4ql6Wvg4wy3MPVEroKwnQ==
-X-Gm-Message-State: AOJu0YxJVqYFMZXJuxojhSixNXfnGDkAssCVsopR8kQOdQVl24XYvH26
-	vOzpFgHbDzscKYAlW3/ei7fZSffZjnpY+wuNyzdvg/uWU1vQ2Wz+gBVPj2BPjg==
-X-Google-Smtp-Source: AGHT+IGrvXADFoe0PTlXPw7y7hmD/cJqKu6+s04vNFfdc9+9OA1wUWqNlu47ZlZ+Fh8V1+pbnqa8SA==
-X-Received: by 2002:a17:906:4f09:b0:a45:70b9:252b with SMTP id t9-20020a1709064f0900b00a4570b9252bmr965095eju.57.1709557852486;
-        Mon, 04 Mar 2024 05:10:52 -0800 (PST)
-Received: from google.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
-        by smtp.gmail.com with ESMTPSA id r18-20020a1709067fd200b00a4589f3392esm98523ejs.207.2024.03.04.05.10.51
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Mar 2024 05:10:51 -0800 (PST)
-Date: Mon, 4 Mar 2024 13:10:48 +0000
-From: Quentin Perret <qperret@google.com>
-To: Christoph Hellwig <hch@infradead.org>, Will Deacon <will@kernel.org>,
-	Chris Goldsworthy <quic_cgoldswo@quicinc.com>,
-	Android KVM <android-kvm@google.com>,
-	Patrick Daly <quic_pdaly@quicinc.com>,
-	Alex Elder <elder@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Murali Nalajal <quic_mnalajal@quicinc.com>,
-	Trilok Soni <quic_tsoni@quicinc.com>,
-	Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-	Carl van Schaik <quic_cvanscha@quicinc.com>,
-	Philip Derrin <quic_pderrin@quicinc.com>,
-	Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-	Jonathan Corbet <corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-	Fuad Tabba <tabba@google.com>,
-	Sean Christopherson <seanjc@google.com>,
-	Andrew Morton <akpm@linux-foundation.org>,
-	linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-mm@kvack.org
-Subject: Re: Re: [PATCH v17 19/35] arch/mm: Export direct {un,}map functions
-Message-ID: <ZeXIWBLVWzVycm0r@google.com>
-References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
- <20240222-gunyah-v17-19-1e9da6763d38@quicinc.com>
- <ZdhEtH7xzbzdhS2j@infradead.org>
- <20240223071006483-0800.eberman@hu-eberman-lv.qualcomm.com>
+	s=arc-20240116; t=1709557927; c=relaxed/simple;
+	bh=F3FUKp938SVxyDEse2B9IjtQiWZzPxBcVNnCQV83H9s=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=Ri6gG9pyZF1uojW7LSmyEwRrcSiJPJCjv2f8P7G5OBuVTOU/idGkPmjEOfzlGuvUwoxOzzRrk+SHdnYgjoWVi5Mzm2pNC5/uX7XrWlHiTDgrzT3VT7pMljowI3WfraUWro7qVFZ+VcMesuDFJX/AKrWXsMnJVBjHc/VK/8XDNkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=loPKmt0/; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240223071006483-0800.eberman@hu-eberman-lv.qualcomm.com>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709557921;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=9cpsE+L2azdJH3agdL084pTpCyY9lSCsXj9FgOAjtRc=;
+	b=loPKmt0/Vm2InjIYdY4wvQYlnkX2PFAO7E91agZe8raoFpIGnEXNkrFTOoN+4H2HrcaF3J
+	FbvEyLiQox17HVBS8xiFKpU3gVfzFwmrmqkPXlLkdphfEMasmf8pBYRDCaZKV32dIEfJSh
+	jxyxXFMAbiczz1ulQ3tOMkp+GpMd6XjkIzkZlH9cBqtQsrMK+tSwNBXz2SKFsmdhpA9dqP
+	XP2nCAxBoUEnyYhr/hAhDOw13XmIXBQYkNX9KWW66+6OahchnStHv6Y7WqM+21RZPDz2/k
+	b4uymx7ebzjBTa4CzBWl/gqyLQp3hYM1nW7y+oEBRYZcWD/2t0nPWi+hRNJ4Ww==
+Date: Mon, 04 Mar 2024 14:12:00 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Anand Moon <linux.amoon@gmail.com>
+Cc: linux-rockchip@lists.infradead.org, heiko@sntech.de,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: Add cache information to the SoC
+ dtsi for RK356x
+In-Reply-To: <CANAwSgTnsPWypWSoqzFfJBMLEdN=UdSz0n0vhDBD0QCsvXPYdA@mail.gmail.com>
+References: <2285ee41e165813011220f9469e28697923aa6e0.1709491108.git.dsimic@manjaro.org>
+ <CANAwSgTnsPWypWSoqzFfJBMLEdN=UdSz0n0vhDBD0QCsvXPYdA@mail.gmail.com>
+Message-ID: <9100ca3393b415b369d2c5d63322e1a2@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Friday 23 Feb 2024 at 16:37:23 (-0800), Elliot Berman wrote:
-> On Thu, Feb 22, 2024 at 11:09:40PM -0800, Christoph Hellwig wrote:
-> > On Thu, Feb 22, 2024 at 03:16:42PM -0800, Elliot Berman wrote:
-> > > Firmware and hypervisor drivers can donate system heap memory to their
-> > > respective firmware/hypervisor entities. Those drivers should unmap the
-> > > pages from the kernel's logical map before doing so.
-> > > 
-> > > Export can_set_direct_map, set_direct_map_invalid_noflush, and
-> > > set_direct_map_default_noflush.
-> > 
-> > Err, not they should not.  And not using such super low-level interfaces
-> > from modular code.
+Hello Anand,
+
+On 2024-03-04 10:21, Anand Moon wrote:
+> On Mon, 4 Mar 2024 at 00:35, Dragan Simic <dsimic@manjaro.org> wrote:
+>> 
+>> Add missing cache information to the Rockchip RK356x SoC dtsi, to 
+>> allow
+>> the userspace, which includes /proc/cpuinfo and lscpu(1), to present 
+>> proper
+>> RK3566 and RK3568 cache information.  Also, it gets rid of the 
+>> following
+>> error in the kernel log:
+>> 
+>>   cacheinfo: Unable to detect cache hierarchy for CPU 0
+>> 
+>> The cache parameters for the RK356x dtsi were obtained and partially 
+>> derived
+>> by hand from the cache size and layout specifications found in the 
+>> following
+>> datasheets and technical reference manuals:
+>> 
+>>   - Rockchip RK3566 datasheet, version 1.1
+>>   - Rockchip RK3568 datasheet, version 1.3
+>>   - ARM Cortex-A55 revision r1p0 TRM, version 0100-00
+>>   - ARM DynamIQ Shared Unit revision r4p0 TRM, version 0400-02
+>> 
+>> For future reference, here's a rather detailed summary of the 
+>> documentation,
+>> which applies to both Rockchip RK3566 and RK3568 SoCs:
+>> 
+>>   - All caches employ the 64-byte cache line length
+>>   - Each Cortex-A55 core has 32 KB of L1 4-way, set-associative 
+>> instruction
+>>     cache and 32 KB of L1 4-way, set-associative data cache
+>>   - There are no L2 caches, which are per-core and private in 
+>> Cortex-A55,
+>>     because it belongs to the ARM DynamIQ IP core lineup
+>>   - The entire SoC has 512 KB of unified L3 16-way, set-associative 
+>> cache,
+>>     which is shared among all four Cortex-A55 CPU cores
+>>   - Cortex-A55 cores can be configured without private per-core L2 
+>> caches,
+>>     in which case the shared L3 cache appears to them as an L2 cache;  
+>> this
+>>     is the case for the RK356x SoCs, so let's use "cache-level = <2>" 
+>> to
+>>     prevent the "huh, no L2 caches, but an L3 cache?" confusion among 
+>> the
+>>     users viewing the data presented to the userspace;  another option 
+>> could
+>>     be to have additional 0 KB L2 caches defined, which may be 
+>> technically
+>>     correct, but would probably be even more confusing
+>> 
+>> Helped-by: Anand Moon <linux.amoon@gmail.com>
+>> Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+>> ---
 > 
-> Hi Cristoph,
->  
-> We've observed a few times that Linux can unintentionally access a page
-> we've unmapped from host's stage 2 page table via an unaligned load from
-> an adjacent page. The stage 2 is managed by Gunyah. There are few
-> scenarios where even though we allocate and own a page from buddy,
-> someone else could try to access the page without going through the
-> hypervisor driver. One such instance we know about is
-> load_unaligned_zeropad() via pathlookup_at() [1].
->  
-> load_unaligned_zeropad() could be called near the end of a page. If the
-> next page isn't mapped by the kernel in the stage one page tables, then
-> the access from to the unmapped page from load_unaligned_zeropad() will
-> land in __do_kernel_fault(), call fixup_exception(), and fill the
-> remainder of the load with zeroes. If the page in question is mapped in
-> stage 1 but was unmapped from stage 2, then the access lands back in
-> Linux in do_sea(), leading to a panic().
->  
-> Our preference would be to add fixup_exception() to S2 PTW errors for
-> two reasons:
-> 1. It's cheaper to do performance wise: we've already manipulated S2
->    page table and prevent intentional access to the page because
->    pKVM/Gunyah drivers know that access to the page has been lost.
-> 2. Page-granular S1 mappings only happen on arm64 with rodata=full.
->  
-> In an off-list discussion with the Android pkvm folks, their preference
-> was to have the pages unmapped from stage 1. I've gone with that
-> approach to get started but welcome discussion on the best approach.
->  
-> The Android (downstream) implementation of arm64 pkvm is currently
-> implementing a hack where s2 ptw faults are given back to the host as s1
-> ptw faults (i.e. __do_kernel_fault() gets called and not do_sea()) --
-> allowing the kernel to fixup the exception.
->  
-> arm64 pKVM will also face this issue when implementing guest_memfd or
-> when donating more memory to the hyp for s2 page tables, etc. As far as
-> I can tell, this isn't an issue for arm64 pKVM today because memory
-> isn't being dynamically donated to the hypervisor.
+> Thanks, Please add my
+> Reviewed-by: Anand Moon <linux.amoon@gmail.com>
 
-FWIW pKVM already donates memory dynamically to the hypervisor, to store
-e.g. guest VM metadata and page-tables, and we've never seen that
-problem as far as I can recall.
+Thank you for your review.
 
-A key difference is that pKVM injects a data abort back into the kernel
-in case of a stage-2 fault, so the whole EXTABLE trick/hack in
-load_unaligned_zeropad() should work fine out of the box.
-
-As discussed offline, Gunyah injecting an SEA into the kernel is
-questionable, but I understand that the architecture is a bit lacking in
-this department, and that's probably the next best thing.
-
-Could the Gunyah driver allocate from a CMA region instead? That would
-surely simplify unmapping from EL1 stage-1 (similar to how drivers
-usually donate memory to TZ).
-
-Thanks,
-Quentin
-
-
+>> Notes:
+>>     As already agreed upon with Anand Moon, this patch replaces the 
+>> submission
+>>     of a similar, albeit a bit incorrect patch [1] that appeared a bit 
+>> earlier
+>>     on the linux-rockchip mailing list.
+>> 
+>>     [1] 
+>> https://lore.kernel.org/linux-rockchip/20240226182310.4032-1-linux.amoon@gmail.com/T/#u
+>> 
+>>  arch/arm64/boot/dts/rockchip/rk356x.dtsi | 41 
+>> ++++++++++++++++++++++++
+>>  1 file changed, 41 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi 
+>> b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> index c19c0f1b3778..6dfb2d47d3d0 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> +++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
+>> @@ -57,36 +57,77 @@ cpu0: cpu@0 {
+>>                         #cooling-cells = <2>;
+>>                         enable-method = "psci";
+>>                         operating-points-v2 = <&cpu0_opp_table>;
+>> +                       i-cache-size = <0x8000>;
+>> +                       i-cache-line-size = <64>;
+>> +                       i-cache-sets = <128>;
+>> +                       d-cache-size = <0x8000>;
+>> +                       d-cache-line-size = <64>;
+>> +                       d-cache-sets = <128>;
+>> +                       next-level-cache = <&l3_cache>;
+>>                 };
+>> 
+>>                 cpu1: cpu@100 {
+>>                         device_type = "cpu";
+>>                         compatible = "arm,cortex-a55";
+>>                         reg = <0x0 0x100>;
+>>                         #cooling-cells = <2>;
+>>                         enable-method = "psci";
+>>                         operating-points-v2 = <&cpu0_opp_table>;
+>> +                       i-cache-size = <0x8000>;
+>> +                       i-cache-line-size = <64>;
+>> +                       i-cache-sets = <128>;
+>> +                       d-cache-size = <0x8000>;
+>> +                       d-cache-line-size = <64>;
+>> +                       d-cache-sets = <128>;
+>> +                       next-level-cache = <&l3_cache>;
+>>                 };
+>> 
+>>                 cpu2: cpu@200 {
+>>                         device_type = "cpu";
+>>                         compatible = "arm,cortex-a55";
+>>                         reg = <0x0 0x200>;
+>>                         #cooling-cells = <2>;
+>>                         enable-method = "psci";
+>>                         operating-points-v2 = <&cpu0_opp_table>;
+>> +                       i-cache-size = <0x8000>;
+>> +                       i-cache-line-size = <64>;
+>> +                       i-cache-sets = <128>;
+>> +                       d-cache-size = <0x8000>;
+>> +                       d-cache-line-size = <64>;
+>> +                       d-cache-sets = <128>;
+>> +                       next-level-cache = <&l3_cache>;
+>>                 };
+>> 
+>>                 cpu3: cpu@300 {
+>>                         device_type = "cpu";
+>>                         compatible = "arm,cortex-a55";
+>>                         reg = <0x0 0x300>;
+>>                         #cooling-cells = <2>;
+>>                         enable-method = "psci";
+>>                         operating-points-v2 = <&cpu0_opp_table>;
+>> +                       i-cache-size = <0x8000>;
+>> +                       i-cache-line-size = <64>;
+>> +                       i-cache-sets = <128>;
+>> +                       d-cache-size = <0x8000>;
+>> +                       d-cache-line-size = <64>;
+>> +                       d-cache-sets = <128>;
+>> +                       next-level-cache = <&l3_cache>;
+>>                 };
+>>         };
+>> 
+>> +       /*
+>> +        * There are no private per-core L2 caches, but only the
+>> +        * L3 cache that appears to the CPU cores as L2 caches
+>> +        */
+>> +       l3_cache: l3-cache {
+>> +               compatible = "cache";
+>> +               cache-level = <2>;
+>> +               cache-unified;
+>> +               cache-size = <0x80000>;
+>> +               cache-line-size = <64>;
+>> +               cache-sets = <512>;
+>> +       };
+>> +
+>>         cpu0_opp_table: opp-table-0 {
+>>                 compatible = "operating-points-v2";
+>>                 opp-shared;
+> 
+> _______________________________________________
+> Linux-rockchip mailing list
+> Linux-rockchip@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-rockchip
 
