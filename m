@@ -1,71 +1,72 @@
-Return-Path: <devicetree+bounces-48206-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD7C9870B3F
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:13:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96B68870B59
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 21:17:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 88264284641
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 20:13:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 43060B2553E
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 20:17:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20E497A156;
-	Mon,  4 Mar 2024 20:13:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60F0D7AE72;
+	Mon,  4 Mar 2024 20:17:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k85dEHj8"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BX8BTR4D"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E693962171;
-	Mon,  4 Mar 2024 20:13:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3A1257BAE3;
+	Mon,  4 Mar 2024 20:17:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709583193; cv=none; b=SElJdsKfK5Jc8KI9giwMScnQzM1fPAMJ6B2Om3iBbGzDNyFQfT0gdwXKuzw/B+eNkIke9+fHTx+tQqy7w9d0FAAy7YPGw79o2OB53okR5Uj9HPalmO6YZ4G+sBkVOLXiKG9wx7vqTiS4WV8DKwLjzfJZAI4e9z9QAfneFDMUHQE=
+	t=1709583443; cv=none; b=Jpr5j9yobvmWg/cMxJnSym8M31dMO6wpSU8rW/Y1M/OrhdnNO6Lxqjl3b3eH7g1bFiAOf59c7mB+A0YEAUDuaa+FozojVqpmmOMeka+H8K38Mqj8lv5XRUDHGJfLTfDyb883b9rkzT87Wtq7CC/8Jthu2NGishFzfGEmThz8LRs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709583193; c=relaxed/simple;
-	bh=Jarf+3xgm31a5ItvIpY/7IPTj0Vs8zmgBoIbgY65ZsU=;
+	s=arc-20240116; t=1709583443; c=relaxed/simple;
+	bh=fdQuLhIT4gZ28jBk89LIuL/6A6yLLiL4IFmPPmPPgy8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=S20gJAshz2YikDTv17kjrr7UPCxho2F52f6k77wdzK70ZoyLxx9qyy/OenGAeyKa2f6jiOAlPs7g9HRPdkuNY2OnsT5B9iTUH+G9aHtyAIVERudF8br+F5ZPVAWY5n7wwQeeImc0ib3Nkxi3v3rc3TEBaixK3NYHceHLbYaX384=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k85dEHj8; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 424EFC433F1;
-	Mon,  4 Mar 2024 20:13:09 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=fACqBh8z75BB5RUzSrebLYl3CjUmkp3bdnmR6q++qoO984Rk8OopARdKHfYVtG3YlsmUhvYumOR2cMFbRtb/zZD4Dly0Awg3SQ0d17KI+YKJBPa/G4IsjfyCLar5ylcuV87SK7aJXCYjfJzcudbEu08Ywon2D1Cc1/wOgnE7qnc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BX8BTR4D; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8EBCC43142;
+	Mon,  4 Mar 2024 20:17:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709583192;
-	bh=Jarf+3xgm31a5ItvIpY/7IPTj0Vs8zmgBoIbgY65ZsU=;
+	s=k20201202; t=1709583442;
+	bh=fdQuLhIT4gZ28jBk89LIuL/6A6yLLiL4IFmPPmPPgy8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=k85dEHj8+jTdrQGFPCxKUTyZPYtvSW8yVrZPUefH7fCrOBySUGu/XDD0+cXAil+Ro
-	 UVIh278q4HvcZPCDWkfAm4xmc/qbitRfQFj6C2AO35cx8ZwNppPqtPdSbIssr18miG
-	 mBKplj0BBKFKN2LuTbpAa3rG2oO3bzCGESDE9m1/W4DiOolIFHAanor8J+OVwLuoyu
-	 KJ0G2b7tczan5XxTPfVhF/GjEPvSX+n7eKt9dYVbqYVe720b62X1DvKsyIgy4isBAm
-	 h8CpL64c69YnJoq4LiRG7iYPrnTmRjiImLi4cYEFrzKKrL1hR6NY1HLfAK2a8CjSHt
-	 gxEdL2IZSXYHQ==
-Date: Mon, 4 Mar 2024 20:13:06 +0000
+	b=BX8BTR4DTDsIT9JEqzQ3a8nVPh9qHEAtk9n88T6ONvZp2rL3oR3SP+bZfgZ+wXC5J
+	 AJX9ROfocBSqp1GQHXXjVq017arP5uRHkI9eQbouzmUWzms+0qVWEGhJbJgmca3n7S
+	 Hgls2ricKb7Dk2B/GsREoeW9vuNJ30xUY6kUQR5FrVErvuHSqO6Of60nFAVZP8fL8t
+	 C6tOLtGPXrPgogYREoW+2ACsXRRpKfKuITRe2my24xAs2lihTXGf1ciaeGTgYHtr5H
+	 qBaPxPh5cuKimX2xb5gcFAlBFrmiWHxAWK7yJuwTdyMRfAH4yqG9p1Sd3UjexfOtM3
+	 PKNietLUb60bQ==
+Date: Mon, 4 Mar 2024 20:17:17 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Marc Gonzalez <mgonzalez@freebox.fr>, Kalle Valo <kvalo@kernel.org>,
+	Jeff Johnson <quic_jjohnson@quicinc.com>,
+	ath10k <ath10k@lists.infradead.org>,
+	wireless <linux-wireless@vger.kernel.org>,
+	DT <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/4] ASoC: dt-bindings: fsl-sai: allow only one
- dma-names
-Message-ID: <20240304-cape-saloon-80f241bfd6df@spud>
-References: <20240227-asrc_8qxp-v2-0-521bcc7eb1c0@nxp.com>
- <20240227-asrc_8qxp-v2-3-521bcc7eb1c0@nxp.com>
- <20240229-husband-penalty-8c1ab0f57f55@spud>
- <20240229-rundown-isotope-954ba9ea4c57@spud>
- <ZeDdMJlxBL4SGkws@lizhi-Precision-Tower-5810>
- <20240301-crudeness-resale-3c0a1228850d@spud>
- <ZeIGXEJ3l4tgjmxT@lizhi-Precision-Tower-5810>
- <20240301-deluxe-tiptoeing-741af7d620b9@spud>
- <ZeIPmGG7+5cKZkO3@lizhi-Precision-Tower-5810>
+	Conor Dooley <conor+dt@kernel.org>,
+	Pierre-Hugues Husson <phhusson@freebox.fr>,
+	Jami Kettunen <jamipkettunen@gmail.com>,
+	Jeffrey Hugo <quic_jhugo@quicinc.com>
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+Message-ID: <20240304-privacy-registrar-93c48ab1b9c5@spud>
+References: <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
+ <871q8wk7o3.fsf@kernel.org>
+ <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr>
+ <87wmqoilzf.fsf@kernel.org>
+ <20240229-ageless-primal-7a0544420949@spud>
+ <68a49964-7c05-4575-a4f3-35848c08fefc@freebox.fr>
+ <20240304-component-animator-e2ee0ab7574a@spud>
+ <CAA8EJpq5HQaO2E2Pd7yqUTsWyQ_pLDdyoWng8QmWTzYn5fv3PQ@mail.gmail.com>
+ <20240304-superior-vicinity-3dc6ca88141a@spud>
+ <CAA8EJprMG=fY-G-X03bm7MMhcua9axjw5ULZz0efgHxwzgrdVg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -73,92 +74,60 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="G/bhWJ7YMFFq+jSj"
+	protocol="application/pgp-signature"; boundary="j2/bmFVB0jn7K/1X"
 Content-Disposition: inline
-In-Reply-To: <ZeIPmGG7+5cKZkO3@lizhi-Precision-Tower-5810>
+In-Reply-To: <CAA8EJprMG=fY-G-X03bm7MMhcua9axjw5ULZz0efgHxwzgrdVg@mail.gmail.com>
 
 
---G/bhWJ7YMFFq+jSj
+--j2/bmFVB0jn7K/1X
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 01, 2024 at 12:25:44PM -0500, Frank Li wrote:
-> On Fri, Mar 01, 2024 at 05:07:07PM +0000, Conor Dooley wrote:
-> > On Fri, Mar 01, 2024 at 11:46:20AM -0500, Frank Li wrote:
-> > > On Fri, Mar 01, 2024 at 04:05:25PM +0000, Conor Dooley wrote:
-> > > > On Thu, Feb 29, 2024 at 02:38:24PM -0500, Frank Li wrote:
-> > > > > On Thu, Feb 29, 2024 at 06:57:29PM +0000, Conor Dooley wrote:
-> > > > > > On Thu, Feb 29, 2024 at 06:55:58PM +0000, Conor Dooley wrote:
-> > > > > > > On Tue, Feb 27, 2024 at 03:54:11PM -0500, Frank Li wrote:
-> > > > > > > > Some sai only connect one direction. So allow only "rx" or =
-"tx" for
-> > > > > > > > dma-names.
-> > > > > > >=20
-> > > > > > > Which sai? Can you restrict this per compatible please, so th=
-at someone
-> > > > > > > cannot add 2 dmas for ones where only the tx is supported.
-> > > > > > >=20
-> > > > > > > |  dmas:
-> > > > > > > |    minItems: 1
-> > > > > > > |    items:
-> > > > > > > |      - description: DMA controller phandle and request line=
- for RX
-> > > > > > > |      - description: DMA controller phandle and request line=
- for TX
-> > > > > > >=20
-> > > > > > > The binding already allows only one, but it documents that th=
-e first dma
-> > > > > > > is always the RX dma, and that doesn't change with this patch=
-=2E.
-> > > > > >=20
-> > > > > > I said "doesn't change" - but I don't think you can change this
-> > > > > > trivially, as something could rely on the first dma being the r=
-x one.
-> > > > > > You'd have to check that there is nothing using these using ind=
-ices
-> > > > > > rather than names before making any changes here.
-> > > > >=20
-> > > > > Linux driver and dts with tx only work well. Only issue is dtb_ch=
-eck will
-> > > > > report error. I want to eliminate these DTB_CHECK warning.
-> > > >=20
-> > > > Linux is not the only user of these bindings, citing linux as your
-> > > > evidence here is only sufficient if no other users exist. Do they?
-> > >=20
-> > > But, 'dmas' should be common property for all these bindings? I don't=
- think
-> > > they use 'descriptions:' property, which should guide dts writer to w=
-rite
-> > > dts file. actually words 'DMA controller phandle and request line' ju=
-st
-> > > nonsense words. let 'regs', it'd better descript at 'reg-names' inste=
-ad
-> > > of 'regs' if reg-names exist. Only meansful words is "RX" and "TX", w=
-hich
-> > > already show at "dma-names".
-> >=20
-> > None of this matters. If there's a documented order for these, which
-> > there is, software is not obligated to use the names and can rely on the
-> > order alone. You need to check that there are no other users which will
-> > be broken by your proposed change.
+On Mon, Mar 04, 2024 at 09:59:13PM +0200, Dmitry Baryshkov wrote:
+> On Mon, 4 Mar 2024 at 21:46, Conor Dooley <conor@kernel.org> wrote:
+> > On Mon, Mar 04, 2024 at 09:37:00PM +0200, Dmitry Baryshkov wrote:
+> > > On Mon, 4 Mar 2024 at 21:34, Conor Dooley <conor@kernel.org> wrote:
+> > > > On Mon, Mar 04, 2024 at 05:21:37PM +0100, Marc Gonzalez wrote:
+
+> > > > > Thus, anyone porting an msm8998 board to mainline would automatic=
+ally
+> > > > > get the work-around, without having to hunt down the feature bit,
+> > > > > and tweak the FW files.
+> > > >
+> > > > How come the root node comes into this, don't you have a soc-specif=
+ic
+> > > > compatible for the integration on this SoC?
+> > >
+> > > No. Ath10k uses WiFi SoC as an SoC designator rather than the main So=
+C.
+> >
+> > Suitability of either fix aside, can you explain this to me? Is the "Wi=
+Fi
+> > SoC" accessible from the "main SoC" at a regular MMIO address? The
+> > "ath10k" compatible says it is SDIO-based & the other two compatibles
+> > seem to be MMIO.
 >=20
-> As my best knowledge, only linux use this binding.
+> Yes, this is correct. MSM8996 uses PCI to access WiFi chip, MSM8998 uses =
+MMIO.
 
-If you've checked and there are no users, that's fine. Please mention
-in the commit message that there are no users that will be affected as
-justification for the ABI change.
+Thanks.
 
---G/bhWJ7YMFFq+jSj
+A SoC-specific compatible sounds like it would be suitable in that case
+then, to deal with integration quirks for that specific SoC? I usually
+leave the ins and outs of these qcom SoCs to Krzysztof, but I can't help
+but wanna know what the justification is here for not using one.
+
+--j2/bmFVB0jn7K/1X
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeYrUgAKCRB4tDGHoIJi
-0kXGAP0ZXQDdSBHtYgiW6KEtRSeHnNW+Qzp4Xi6aG6/WngSB7wEAkXcAGBBLZxUQ
-3gj8XZWrnoAYzbHNua6AJZOzWa0FEQY=
-=OdYx
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeYsTQAKCRB4tDGHoIJi
+0iDsAQD8SiNyQlk9LJ1lpYenpBT32QnTIsXZ1iSWp5Vcc3GxugEAsv/DhNE2Uf80
+4McH9vMHXRTxAwf9McX9vAtmpyNc1QM=
+=c99j
 -----END PGP SIGNATURE-----
 
---G/bhWJ7YMFFq+jSj--
+--j2/bmFVB0jn7K/1X--
 
