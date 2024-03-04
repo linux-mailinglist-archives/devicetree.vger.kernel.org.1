@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-48091-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48092-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 923AB8701B3
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 13:38:46 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F7F28701D0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 13:48:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B55CE1C2140D
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 12:38:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EF251287AAA
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 12:48:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 75ABA3C68A;
-	Mon,  4 Mar 2024 12:38:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6755B3D3BE;
+	Mon,  4 Mar 2024 12:48:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="frSrwHqN"
+	dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b="YiCUiQbS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
+Received: from mail-pj1-f54.google.com (mail-pj1-f54.google.com [209.85.216.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C368C24B26;
-	Mon,  4 Mar 2024 12:38:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D85F63D39A
+	for <devicetree@vger.kernel.org>; Mon,  4 Mar 2024 12:48:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709555923; cv=none; b=IgFM9Dj5T8zdLT9/KE4fMYS0t7R3+zJTigBDD9DPAyIiRJpGh5vEkkqQD+UfyIHburXjScxJ4FnvE8YqPDPF4Y5wi5+Z9CPUJYErGzvzmGo64K24BwhgHRkq/28WxENqwHTzIAr+b4KH60+vZcFl4hAHFCXeikfux6e2enrrn8A=
+	t=1709556526; cv=none; b=sTLQ/kswR5XHaknGhge0Tz7vd4NKRHbiHKWeXu+mg8wfzNq2cwiHeidB8JakTuhU5H7dIaK5ap6X7qIs8swEAnLXdiNW5Zz2cnan2Kxq2+Md6uotysQ7Joeru4oiTjPPEXvrejGjsPmK2ae00xFp/gMC53VkmzWyv0j7mPwrM0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709555923; c=relaxed/simple;
-	bh=OfcgTuK8wjlhzTFHyDLwrNZexW73nuPYROheqJqaYhQ=;
+	s=arc-20240116; t=1709556526; c=relaxed/simple;
+	bh=qeMNh6+hQ10FErwN27/1B80XyAwFDxlKIVyARvTdGT8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iwdJ80rds01zaz7GyWxSQNWPXtH3woOzM1NsR1po0S9odTtkh/Tqnq8dNC16bKu6c8HcuQWa5Bu9UTafqyLc3JH0xoG3Vdc44EqJbXrnFBtxzxUCFXmJAzVmiACEyyORyb3EmDormPQVH9JrjER2XpWY9EaFaU8l8jR603FM4QE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=frSrwHqN; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d208be133bso58530241fa.2;
-        Mon, 04 Mar 2024 04:38:41 -0800 (PST)
+	 In-Reply-To:Content-Type; b=C86HGrAqEIfX5beopDAwqpw1ZNFv40CPpTz5zXDuOPASfH988ARsNH1MKdOjvlhTv8wo4AVTs0iAYz/bjx4Rm1jU5+pB/Ob1T6ZSAs3dh16UfTvCBL9xZM0memkJFG1opTXtHcEdBUW+HX3Y7X4j+mlrJETEgW0mNj2LSJwXZY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com; spf=pass smtp.mailfrom=tweaklogic.com; dkim=pass (2048-bit key) header.d=tweaklogic.com header.i=@tweaklogic.com header.b=YiCUiQbS; arc=none smtp.client-ip=209.85.216.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tweaklogic.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tweaklogic.com
+Received: by mail-pj1-f54.google.com with SMTP id 98e67ed59e1d1-29a7951c6faso2774622a91.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 04:48:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709555920; x=1710160720; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=tweaklogic.com; s=google; t=1709556523; x=1710161323; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=aHZ28VB1pnjr1brdf6bxrBLD1jC1sXFuZOWsuCT2EIQ=;
-        b=frSrwHqNemiMstn6cNi7OTQf/I0FYbgITyjMLdkm/Smd8Cjak5nQ5W07uxmWBx7Ew7
-         fVT4flPPFF2rqpO6Xutk4mBTqXSJWwDnaMrxa7b70SsU6YPHiTyFGpe0M+uXwSdP0y/v
-         UpTnzR1tCtD+sAH1GZaJZgPjaJh8sxK1OjbEILq5zr+G5Vfg4tVUrAuSL9GCJ0/ZlQow
-         IUgUgYwSGPe0ZaOIX452YdkrHcrkTAn1VzjVT3Y3lGN9JuCCxKGpxMge5AylUqAmzwh8
-         eUnePfb2MthNKUv20+AIG2zr8A8YnOC0cfi8gg8QKrs/SlHt7RFnuawjqci/XhPyVH6U
-         GPYA==
+        bh=MwL13hTu++GpFTu+3ER2Sxrj84hZsqHSKZBvqhwLmtc=;
+        b=YiCUiQbS/NvVbNYUT7g6sj4TUq7BWTUhFsJgwtbWK6HoZMFLhikB+i3SgVlByJAdPj
+         /HR3aewb3eGY65Qn069+h9eJJdwh8zMqjiCqEHr8+llCJSHQXGzlCkQQrx4E3BRtlyNQ
+         icheP8vw7h4q/gmHtsJeEvZ/KOpeVzPkIW1+xvPybbJBXh2LiWqDqgRss8Bf6LTn/1p8
+         mhZK318++5ECukGbfr8j0pa72Ms740RpcLOm3GIKXRclRu46nO0Xm76WOPT9ZaOm5hZV
+         GWmIr8k5AZUXE1Z2Md7NNTvV4v7T5iH5Q63D2iDGum/g5vogAtJnLa6FDxJdF/9NMa1X
+         /fQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709555920; x=1710160720;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1709556523; x=1710161323;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=aHZ28VB1pnjr1brdf6bxrBLD1jC1sXFuZOWsuCT2EIQ=;
-        b=aVVJfDBwNQLF/QuAjnXp1VJZbV26dKohZE08cAnubUZE1XGnu9FZOj/2oBWYrZMD7j
-         aRueRpkbQul0jkRVFOVAx1PU8UCEX6ZreIvF0E4Rgj/wEWJpqJT9RmEgoAbFIaUZoxF7
-         QNyt2KHLwgcVsFdHG9okc+yEhLKPCBAska9zbY63AIVLvD79uoR0xhzkDmveGaoqtE3q
-         HJsDd5xQUNWCBy0+30l2A1B5Dzb6Ky8KQy+EfG2aqsga0Y4zXqM/HNoF1QNWVTWq4YZa
-         T6c4Ag50/k2MVezujb08oUPoemv+cwTUUePVZRMurek0TxgX3Vj5XHqB9/piU7/Yjock
-         L3sw==
-X-Forwarded-Encrypted: i=1; AJvYcCXPGpKj7gtc0C84gbBWk0pFmwkEeQwzkmVyki5yz6Ug5rTSLBdx28zAV6oHK936TzaiHSGqyGZLxu3lkoNK4pmaCT3lLxYBvFAe8b9niDG9RbZ6UhcjCRFhV2XqHm7bLBJxRG8R3Ak5gw==
-X-Gm-Message-State: AOJu0Yxr/bm7ZFTpH83RsNecttqMIsfRfRp6zpkcVABEcuIlFioLuAn7
-	CrDuY5n93kgrAja3Gej6vggF24wpPpOvStcM228aN1iyIpwHUxyLoYc95Vvx
-X-Google-Smtp-Source: AGHT+IFLvZrjl3Z3hS4Ijzcg0R1qz44gn4YmTel54s1D1roYPGabTdjG2C0SqnbDtLDh8zqbfCafTg==
-X-Received: by 2002:a2e:9d03:0:b0:2d2:50bc:99d6 with SMTP id t3-20020a2e9d03000000b002d250bc99d6mr5872383lji.35.1709555919681;
-        Mon, 04 Mar 2024 04:38:39 -0800 (PST)
-Received: from ?IPV6:2001:14ba:7426:df00::5? (drtxq0yyyyyyyyyyyyyct-3.rev.dnainternet.fi. [2001:14ba:7426:df00::5])
-        by smtp.gmail.com with ESMTPSA id p21-20020a2e8055000000b002d2b28a77f3sm1021060ljg.108.2024.03.04.04.38.39
+        bh=MwL13hTu++GpFTu+3ER2Sxrj84hZsqHSKZBvqhwLmtc=;
+        b=HS2dwhTu9eJXdH5UswfcQs5g5cNsWv52LWmovhnGfoiknOROq1coofHtR7LlGT91Rc
+         lS8gPysP0D30mbqIRsAbT1lx213UhxKG+fw6ZJEfvVYin40XFPiHko9sQkkj+Wz+vCZ2
+         LLNJE3BEmugpGAOY19AFsjlGcWuZLP9VhBPDcI7mJNgLtk3SJ9JqwTv4Fipj5N0UMFIi
+         hvotgxs7nAQ/ghZHiHUswdh1J6pguDxsKNxy42Rq7kRGaY2YqrgpR2UjbMYVlLnFEyHS
+         jqqME3cw8HasJAQgktW1fmY6Rcid3lHqcm6wrS9A5gcqufWxxYpWbobWcyyi2eoYVQIH
+         wndQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWT8+FLN93rCZXTQhuFxA9nRk7VLD6ZHOvmheg5UTgpg8d80jumVrOb0zHPsAvNl8w5itLgJpvrGgNOsbnmqVE44KaezXi2zk86Nw==
+X-Gm-Message-State: AOJu0Yyons8gyZ3OowHj9WB1EF77iVH8rvoYSU53NbUO11XsVFLqaIp0
+	/G/KwnEo5tozDuOm86WkF1tTSiZXjxH7zPz98dhhgItYt0CJRVuDBTIAIRbYAeQ=
+X-Google-Smtp-Source: AGHT+IGf2v7mix4IqahGn8jGygdD9TiXeeZWDQNMvnX8ZorfSugMvA8SvRMIH4REH3sa5W/iYxmbCA==
+X-Received: by 2002:a17:90a:4203:b0:29a:dc6e:c12e with SMTP id o3-20020a17090a420300b0029adc6ec12emr5601720pjg.24.1709556522992;
+        Mon, 04 Mar 2024 04:48:42 -0800 (PST)
+Received: from [192.168.20.11] ([180.150.112.31])
+        by smtp.gmail.com with ESMTPSA id e12-20020a170902ed8c00b001dc05537e10sm8422107plj.236.2024.03.04.04.48.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Mar 2024 04:38:39 -0800 (PST)
-Message-ID: <ff8d6d14-6b48-4347-8525-e05eeb9721ff@gmail.com>
-Date: Mon, 4 Mar 2024 14:38:38 +0200
+        Mon, 04 Mar 2024 04:48:42 -0800 (PST)
+Message-ID: <113e077c-b8ab-4d81-acbd-0f7aa7538c04@tweaklogic.com>
+Date: Mon, 4 Mar 2024 23:18:34 +1030
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,98 +76,191 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 0/5] Support ROHM BU27034 ALS sensor
-Content-Language: en-US, en-GB
-To: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-Cc: linux-iio@vger.kernel.org, Shreeya Patel <shreeya.patel@collabora.com>,
+Subject: Re: [PATCH v8 5/5] iio: light: Add support for APDS9306 Light Sensor
+To: Jonathan Cameron <jic23@kernel.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Jonathan Cameron <jic23@kernel.org>, devicetree@vger.kernel.org,
- Lars-Peter Clausen <lars@metafoo.de>, Paul Gazzillo <paul@pgazz.com>,
- Rob Herring <robh+dt@kernel.org>,
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- linux-kernel@vger.kernel.org,
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-References: <cover.1680263956.git.mazziesaccount@gmail.com>
-From: Matti Vaittinen <mazziesaccount@gmail.com>
-In-Reply-To: <cover.1680263956.git.mazziesaccount@gmail.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Matti Vaittinen <mazziesaccount@gmail.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
+ Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Matt Ranostay <matt@ranostay.sg>,
+ Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+ linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240228122408.18619-1-subhajit.ghosh@tweaklogic.com>
+ <20240228122408.18619-6-subhajit.ghosh@tweaklogic.com>
+ <20240303151422.5fc3c2f2@jic23-huawei>
+Content-Language: en-US
+From: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+In-Reply-To: <20240303151422.5fc3c2f2@jic23-huawei>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-Hi deee Ho peeps!
-
-On 3/31/23 15:40, Matti Vaittinen wrote:
-> Support ROHM BU27034 ALS sensor
+On 4/3/24 01:44, Jonathan Cameron wrote:
+> On Wed, 28 Feb 2024 22:54:08 +1030
+> Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
 > 
-> This series adds support for ROHM BU27034 Ambient Light Sensor.
+>> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
+>> It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
+>> channel approximates the response of the human-eye providing direct
+>> read out where the output count is proportional to ambient light levels.
+>> It is internally temperature compensated and rejects 50Hz and 60Hz flicker
+>> caused by artificial light sources. Hardware interrupt configuration is
+>> optional. It is a low power device with 20 bit resolution and has
+>> configurable adaptive interrupt mode and interrupt persistence mode.
+>> The device also features inbuilt hardware gain, multiple integration time
+>> selection options and sampling frequency selection options.
+>>
+>> This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for
+>> Scales, Gains and Integration time implementation.
+>>
+>> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+>> ---
+>> v7 -> v8:
+>>   - Renamed APDS9306_INT_CH_CLEAR to APDS9306_INT_SRC_CLEAR macro for higher
+>>     readability
+>>   - Removed APDS9306_CHANNEL macro for higher readability
+>>   - Updated iio_push_event() functions with correct type of events (Light or Intensity)
+> 
+> Partly right.  Need to push the modified part for the intensity channel.
+> The event should match the channel description.
+> 
+> I also noted some missing elements in the event specs (sorry missed those
+> before!).  Whilst what you have will work, that's just because the error checking
+> is relaxed in the IIO core and we don't complain if they aren't fully specified.
+> What you have creates the correct attributes, but that's a side effect of how
+> we use the data, not what data should be provided.
+> 
+> Thanks,
+> 
+> Jonathan
+> 
+>>   - Updated variable name "event_ch_is_light" to "int_src" and change as per
+>>     review to fix compiler warning
+>>   - Used scope for guard() functions
+>>   - Other fixes as per reviews
+>>     https://lore.kernel.org/all/20240224151340.3f2f51e8@jic23-huawei/
+>>     https://lore.kernel.org/all/ZdycR6nr3rtrnuth@smile.fi.intel.com/
+>>
+> 
+>> diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
+>> index 2e5fdb33e0e9..a30f906e91ba 100644
+>> --- a/drivers/iio/light/Makefile
+>> +++ b/drivers/iio/light/Makefile
+>> @@ -10,6 +10,7 @@ obj-$(CONFIG_ADUX1020)		+= adux1020.o
+> ...
+> 
+>> +	GAIN_SCALE_ITIME_US(3125, APDS9306_MEAS_MODE_3125US, BIT(0)),
+>> +};
+>> +
+>> +static struct iio_event_spec apds9306_event_spec_als[] = {
+>> +	{
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.dir = IIO_EV_DIR_RISING,
+>> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
+>> +	}, {
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.dir = IIO_EV_DIR_FALLING,
+>> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE),
+>> +	}, {
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.dir = IIO_EV_DIR_EITHER,
+>> +		.mask_shared_by_all = BIT(IIO_EV_INFO_PERIOD),
+>> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
+>> +	}, {
+>> +		.type = IIO_EV_TYPE_THRESH_ADAPTIVE,
+>> +		.mask_shared_by_all = BIT(IIO_EV_INFO_VALUE) |
+>> +			BIT(IIO_EV_INFO_ENABLE),
+>> +	},
+>> +};
+>> +
+>> +static struct iio_event_spec apds9306_event_spec_clear[] = {
+>> +	{
+>> +		.type = IIO_EV_TYPE_THRESH,
+>> +		.dir = IIO_EV_DIR_EITHER,
+>> +		.mask_separate = BIT(IIO_EV_INFO_ENABLE),
+> 
+> Can't configure the threshold for this channel?
+Same threshold regs for both als and clear channels.
+> 
+> Whilst the IIO core doesn't check these for missing entries in
+> shared attributes, you driver should replicate the parts that
+> are in mask_shared_by_all above.  The code that builds the attributes
+> expects duplication of entries so they are here to provide an easy
+> place for us to visually check what is supported.
+I understand this approach now.
+> 
+> I think that means this event spec will be identical to that for the
+> als channel. So reuse that.
+Yes, correct.
+I tried using struct iio_event_spec apds9306_event_spec_als[] for both light
+and clear channels and the ABI is identical to the previous version.
+> 
+> Let us know if you copied this pattern from another driver as we
+> should fix any that have gotten through review doing this.
+Initially I referenced many drivers but after so many iterations it
+does not resemble anything that I have looked at previously.
 
-I have one word for all of you who worked to get the ROHM BU27034NUC 
-driver working in upstream.
+Thank you for reviewing.
 
-Meh.
+Regards,
+Subhajit Ghosh
 
-I just found out that the BU27034 sensor which was developed when I 
-wrote this driver had some "manufacturing issues"... The full model 
-number was BU27034NUC. The has been cancelled, and, as far as I know, no 
-significant number of those were manufactured.
+> 
+>> +	},
+>> +};
+>> +
+>> +static struct iio_chan_spec apds9306_channels_with_events[] = {
+>> +	{
+>> +		.type = IIO_LIGHT,
+>> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
+>> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
+>> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+>> +				      BIT(IIO_CHAN_INFO_SCALE),
+>> +		.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),
+>> +		.event_spec = apds9306_event_spec_als,
+>> +		.num_event_specs = ARRAY_SIZE(apds9306_event_spec_als),
+>> +	}, {
+>> +		.type = IIO_INTENSITY,
+>> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
+>> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
+>> +		.channel2 = IIO_MOD_LIGHT_CLEAR,
+>> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+>> +		.modified = 1,
+>> +		.event_spec = apds9306_event_spec_clear,
+>> +		.num_event_specs = ARRAY_SIZE(apds9306_event_spec_clear),
+>> +	},
+>> +};
+>> +
+>> +static struct iio_chan_spec apds9306_channels_without_events[] = {
+>> +	{
+>> +		.type = IIO_LIGHT,
+>> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
+>> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
+>> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
+>> +				      BIT(IIO_CHAN_INFO_SCALE),
+>> +		.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),
+>> +	}, {
+>> +		.type = IIO_INTENSITY,
+>> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
+>> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
+>> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
+>> +		.channel2 = IIO_MOD_LIGHT_CLEAR,
+>> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
+>> +		.modified = 1,
+>> +	},
+>> +};
+> 
+> 
 
-The issues of BU27034NUC were solved, and new model BU27034ANUC was 
-developed and is available in the ROHM catalog.
-
-I did also learn that this new model BU27034ANUC is _not_ functionally 
-equivalent to the BU27034NUC. I am currently clarifying all the 
-differences, and I have requested the HQ to send me a sample for driver 
-development and verification work.
-
-This far I've come to know at least following differences:
-
-- The DATA2 (IR) channel is removed. So is the gain setting for it. This
-   should very much simplify the gain logic.
-- Some of the gains were removed.
-- The 5ms integration time was removed. (The support of 5ms was severely
-   limited on original BU27034NUC too so driver did not support that
-   anyways).
-- The light sensitivity curves had changed so the lux calculation will
-   be changed.
-
-One thing that has _not_ changed though is the part-id :rolleyes:
-
-My preferred approach would be to convert the in-tree bu27034 driver to 
-support this new variant. I think it makes sense because:
-- (I expect) the amount of code to review will be much smaller this way
-   than it would be if current driver was completely removed, and new one
-   submitted.
-- This change will not break existing users as there should not be such
-   (judging the statement that the original BU27034NUC was cancelled
-   before it was sold "en masse").
-
-It sure is possible to drop the existing driver and submit a new one 
-too, but I think it will be quite a bit more work with no strong benefits.
-
-I expect the rest of the information to be shared to me during the next 
-couple of days, and I hope I can start testing the driver immediately 
-when I get the HW.
-
-My question is, do you prefer the changes to be sent as one "support 
-BU27034ANUC patch, of would you rather see changes splitted to pieces 
-like: "adapt lux calculation to support BU27034ANUC", "remove obsolete 
-DATA2 channel", "remove unsupported gains"...? Furthermore, the DT 
-compatible was just rohm,bu27034 and did not include the ending "nuc". 
-Should that compatible be removed and a new one with "anuc"-suffix be 
-added to denote the new sensor?
-
-I am truly sorry for all the unnecessary reviewing and maintenance work 
-you guys did. I can assure you I didn't go through it for fun either - 
-even if the coding was fun :) I guess even the "upstream early" process 
-has it's weaknesses...
-
-Yours,
-	-- Matti
-
--- 
-Matti Vaittinen
-Linux kernel developer at ROHM Semiconductor
-Oulu Finland
-
-~~ When things go utterly wrong vim users can always type :help! ~~
 
 
