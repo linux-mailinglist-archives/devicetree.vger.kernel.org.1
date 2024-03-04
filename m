@@ -1,132 +1,101 @@
-Return-Path: <devicetree+bounces-48159-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48160-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 860338706F7
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:25:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6D4A8706FD
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 17:28:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41D2C280D81
-	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:25:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 63C1D281DE0
+	for <lists+devicetree@lfdr.de>; Mon,  4 Mar 2024 16:28:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA98948CD4;
-	Mon,  4 Mar 2024 16:25:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F094E4C62E;
+	Mon,  4 Mar 2024 16:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JQ6acpC/"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KB4RHpau"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8004A481DE;
-	Mon,  4 Mar 2024 16:25:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C5544482EF;
+	Mon,  4 Mar 2024 16:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709569553; cv=none; b=DQKBAIiOmtUHchNHJHE30XM/DfN6Qf5D3FKG1zrae9m0y8s/R3pTsY7rsHvSLNd8EGeIwBPpPbKH7bKzuQ3XyFDzOSq7+Q6aebxTn8KWmj2zuEgjIVEe58adeDBwLtvGIIdcnTHTpzLBJbzQbxiX9Zu74w4eZFxbZbhiX9okHzc=
+	t=1709569693; cv=none; b=EWFuCpv+QDsa5XdFHBH41b3CIrIpSMhw/YXMTcQcaPd1H76pjehYTwcMwxCEfhjLLt9swPD0uiKLtOlxAT62EKhq9wj2zAvR7Q/Al+FOX8B+FcjKA3dBJzyMzkfWAaATDkDLgW7UqDzfAI+EB9jgeDvUC6NBKUwzo+cZV/eforQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709569553; c=relaxed/simple;
-	bh=2UZ7Ps4m/EJvpDzbZaPfX5VjodQWkCgg4RS6EPjKsCw=;
+	s=arc-20240116; t=1709569693; c=relaxed/simple;
+	bh=L0jLtyPZbItn8KbijN41lcA/FmtrSMyJCLKJ1HIJGi0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=o2++6kKii34sXucLz4YjjuzxngYauBOAsDKj1+Z8QI4ApYEpW7MPEF65scWyWU1+2nx738JRy3YXja6Sq97D4IStJOe0cD/vOYYn0b+2460Xq73aisZJ+KrUBW6EIUrSdcVHs46xXmmDKyEPFYgjplw8WX9L8YcLWvGdGu3iW/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JQ6acpC/; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71BAFC433C7;
-	Mon,  4 Mar 2024 16:25:52 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pM2erjv9UfBQcaDgas/mc+4foBtoWZfm/NFOXHIq+AYgNeqOf3GQhVCzAidYgS7C9cOabpbkCvgHIJmVbz4kf/f/Riv8n/rxXUzTGfcCoLZ7rMImttSwR68/GcjfN8rgnxN81Clsh3znpg3WL29+Zppivqzcb9d9/0d5gdRu3wY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KB4RHpau; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1E761C433C7;
+	Mon,  4 Mar 2024 16:28:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709569553;
-	bh=2UZ7Ps4m/EJvpDzbZaPfX5VjodQWkCgg4RS6EPjKsCw=;
+	s=k20201202; t=1709569693;
+	bh=L0jLtyPZbItn8KbijN41lcA/FmtrSMyJCLKJ1HIJGi0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=JQ6acpC/cFa9wdBLb7Sws2VuYfCl+hY90Qsl+KTeVLG1ffOFpQKNDx0fFGYbFZOcr
-	 nR29qYIooowgh1Sp6FJsKpuMAWsXW5yYy3ze1RH7GdUK53xeMuSp5NP85GmbwxiSk8
-	 CUnNb+SYbDWqv7CrMlEufk1xc5AKLHuEtqNZi7KzdNtjNQ86fECtyyiQVUFqH7Ej6F
-	 5MTFFGi+yp5VI3QyGpxCq6yq1CGljfnu8gCDNbPwiMDKtoe+MTTavDBP/xd/XeU9SU
-	 IiDvMPKidoV5Sp9xjQMVrzjlWpl1TXNmtxF4+sD747PBYYvG1MRh0vKDpFUJB1UlWk
-	 uKH4RhpeQPzHg==
-Date: Mon, 4 Mar 2024 17:25:50 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: =?utf-8?B?SsOpcsOpbWll?= Dautheribes <jeremie.dautheribes@bootlin.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Yen-Mei Goh <yen-mei.goh@keysight.com>
-Subject: Re: [PATCH v2 3/3] drm/panel: simple: add CMT430B19N00 LCD panel
- support
-Message-ID: <20240304-inquisitive-kickass-pronghorn-c641ff@houat>
-References: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
- <20240304160454.96977-4-jeremie.dautheribes@bootlin.com>
+	b=KB4RHpauAvX0OazxS1wZX4PwHWd0afUdhxmvohYXv0W1NAqqcMtSErNc1mpc6MWX8
+	 K4VuUYLkgACJUEwKXNtPU//BlRmW9eak8pFhH73XC933gNfei7QpwEOs1BLgw4xaDQ
+	 oGF4gWn7Jq1+8b3SAlZ5sMcwLkfmTNqGwKuXYIhxjYxiT1Y4j8qJ0chSltG0f3wL9F
+	 nYOSySqcXYDIyAvwWMNyNt5YjMZJjLsicViSEPA8P0O6aop1lnAuX8xGEyODJyASZr
+	 xWw3y+7PXFzC2JakT8CVThdu2a3Zz+Y7nCA+chm9BQ54ezB5Fyzfk1Q2ahkj7fBuJ0
+	 TMIDkvk2FXAgQ==
+Date: Mon, 4 Mar 2024 10:28:11 -0600
+From: Rob Herring <robh@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: linux-iio@vger.kernel.org,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Jonathan Cameron <jic23@kernel.org>,
+	Michael Hennerich <Michael.Hennerich@analog.com>,
+	Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+	Mark Brown <broonie@kernel.org>
+Subject: Re: [PATCH v4 1/2] dt-bindings: iio: adc: add ad7944 ADCs
+Message-ID: <170956969031.622753.9168069143401175386.robh@kernel.org>
+References: <20240229-ad7944-mainline-v4-0-f88b5ec4baed@baylibre.com>
+ <20240229-ad7944-mainline-v4-1-f88b5ec4baed@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="mv2k3vttsq537qh6"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240304160454.96977-4-jeremie.dautheribes@bootlin.com>
+In-Reply-To: <20240229-ad7944-mainline-v4-1-f88b5ec4baed@baylibre.com>
 
 
---mv2k3vttsq537qh6
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Mon, Mar 04, 2024 at 05:04:54PM +0100, J=E9r=E9mie Dautheribes wrote:
-> Add support for Crystal Clear Technology CMT430B19N00 4.3" 480x272
-> TFT-LCD panel.
->=20
-> Signed-off-by: J=E9r=E9mie Dautheribes <jeremie.dautheribes@bootlin.com>
+On Thu, 29 Feb 2024 10:25:50 -0600, David Lechner wrote:
+> This adds a new binding for the Analog Devices, Inc. AD7944, AD7985, and
+> AD7986 ADCs.
+> 
+> Signed-off-by: David Lechner <dlechner@baylibre.com>
+> 
 > ---
->  drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
->=20
-> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel=
-/panel-simple.c
-> index 20e3df1c59d4..b940220f56e2 100644
-> --- a/drivers/gpu/drm/panel/panel-simple.c
-> +++ b/drivers/gpu/drm/panel/panel-simple.c
-> @@ -1457,6 +1457,32 @@ static const struct panel_desc boe_hv070wsa =3D {
->  	.connector_type =3D DRM_MODE_CONNECTOR_LVDS,
->  };
-> =20
-> +static const struct drm_display_mode cct_cmt430b19n00_mode =3D {
-> +	.clock =3D 9000,
-> +	.hdisplay =3D 480,
-> +	.hsync_start =3D 480 + 43,
-> +	.hsync_end =3D 480 + 43 + 8,
-> +	.htotal =3D 480 + 43 + 8 + 4,
-> +	.vdisplay =3D 272,
-> +	.vsync_start =3D 272 + 12,
-> +	.vsync_end =3D 272 + 12 + 8,
-> +	.vtotal =3D 272 + 12 + 8 + 4,
-> +	.flags =3D DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-> +};
+> v4 changes:
+> - Fixed broken patch due to misplaced changelog
+> 
+> v3 changes:
+> - Removed default 'multi' value from adi,spi-mode property. This simplifies
+>   things a bit by not having to check for two possible conditions (absence of
+>   property or explicit default value). Now, only absence of property is valid to
+>   indicate the default mode. Constraints that depend on this property are
+>   updated accordingly.
+> - Fixed spelling of 'conventional'.
+> - Expanded description to call out potential confusion of '3-wire' mode being
+>   unrelated to the standard spi-3wire property.
+> - Added standard '#daisy-chained-devices' property for chain mode.
+> - Relaxed requirement of cnv-gpios since it was determined that an active high
+>   CS could actually be used in chain mode.
+> ---
+>  .../devicetree/bindings/iio/adc/adi,ad7944.yaml    | 213 +++++++++++++++++++++
+>  MAINTAINERS                                        |   8 +
+>  2 files changed, 221 insertions(+)
+> 
 
-Your pixel clock doesn't really match the rest of the timings:
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-(480 + 43 + 8 + 4) * (272 + 12 + 8 + 4) * 60 =3D 9501600
-
-So a ~6% deviation.
-
-What does the datasheet say?
-
-Maxime
-
---mv2k3vttsq537qh6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZeX2DQAKCRDj7w1vZxhR
-xS9xAQCDGCVsUNv+1hMk/N0uYSfwBKeI3lP8qwJyPKdVGR6VrQEA7qRTva593Qgh
-GgGlSkFFwUHITKwZL7fG0K4ESfAOrAY=
-=MRSp
------END PGP SIGNATURE-----
-
---mv2k3vttsq537qh6--
 
