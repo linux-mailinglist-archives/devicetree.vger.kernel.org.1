@@ -1,70 +1,59 @@
-Return-Path: <devicetree+bounces-48466-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48467-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A52687227B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:14:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D06B87228F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:22:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D487A1F2397A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:14:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4F311F250C7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:22:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 295F0126F11;
-	Tue,  5 Mar 2024 15:14:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C78281272DE;
+	Tue,  5 Mar 2024 15:21:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=osasysteme.de header.i=@osasysteme.de header.b="YKwE2vlv"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Ut2PNkBk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from secondary.pambor.com (secondary.pambor.com [46.38.233.203])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 666DD1272A0;
-	Tue,  5 Mar 2024 15:14:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.38.233.203
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 922D01272A2;
+	Tue,  5 Mar 2024 15:21:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709651689; cv=none; b=OO8FAzJ2gosK47WkgDSPC/BfUOT6nTrb8jWTAgap+ZzIgV0GXMiwNDVW3RfAw6upGEL0cbKeOHWzI1kuxUaJvRoI/z0w7QFxSMvRNIHItK0UlGMsIROHCX0nijBzuRucVWzdu2LkGyMUluZ7TsDNQ1K9wwLV+JfWzhbl6EfC/Ho=
+	t=1709652106; cv=none; b=Japy7pDEgaFsYIDv56HhPSOH0srbsee2j0L/DThO7wAGlv1567/Pob+lfkNZ6v/ZN1rLRdkcp6I+A2KXO+kIgwyswh5vOqhUJWkGBw44ItyaHaeSQ/1pC6feLLEvM4ZX6ilA+pVH4d7dJnNTXRzkfsUscqfCEX4l3SSLen2/b+M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709651689; c=relaxed/simple;
-	bh=VOYq/MFTo0yEAHpbuYHcwnTD5HvVjidlBhWkaXa2qP8=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=f052fS0W4Rej+TocanB+uLAhR0+iDZDX6k9AIi2xx23Lbvhz8Ev6s4FoQZrXd/d7y5PivMKk6QTTgrxhjJXTuuwh3z/xAZXv0vhzD+ReUc/OkdTi0glAaDzPuc25nKL/6E6WnggbNkGEf516K2OggqjDxRdOfwg80q0jCyAq6XE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=osasysteme.de; spf=pass smtp.mailfrom=osasysteme.de; dkim=pass (2048-bit key) header.d=osasysteme.de header.i=@osasysteme.de header.b=YKwE2vlv; arc=none smtp.client-ip=46.38.233.203
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=osasysteme.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=osasysteme.de
-Received: from localhost (localhost [127.0.0.1])
-	by secondary.pambor.com (Postfix) with ESMTP id 5A24E6F03B4;
-	Tue,  5 Mar 2024 16:14:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=osasysteme.de;
-	s=19022017; t=1709651682;
-	bh=VOYq/MFTo0yEAHpbuYHcwnTD5HvVjidlBhWkaXa2qP8=;
+	s=arc-20240116; t=1709652106; c=relaxed/simple;
+	bh=H5a6Zjeh7JVn3ZqUuQlhd5EvWGSBzuJ+rvKeiaAiIpI=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=V53XEZ6DX3c/7+JFSOFZbqeMuZGTJ2vX62cjMcF6Rsy0iCOGC08v7qiaKmZsFPKtmonosBPLR1fW83NBf4YH3IHWE/mN5ME6bFxov0s+QyJOqOsvQFOhCBskIZ6fNvF/eOXPbaZpM7VuB27bzeKCl2sEtrkQEfQn/vvjcBdMUZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Ut2PNkBk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D501DC433F1;
+	Tue,  5 Mar 2024 15:21:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709652106;
+	bh=H5a6Zjeh7JVn3ZqUuQlhd5EvWGSBzuJ+rvKeiaAiIpI=;
 	h=From:To:Cc:Subject:Date:From;
-	b=YKwE2vlvRdJoqi6l+wjPZe/8ZFrPXzXlssXOhHNFBFJ/Fu0OgEWmeXQg2u9BUr4gl
-	 Lu/6ROceiY85q6HQaBHEapUe39htU+nilNP53HixffXqhjIJEKtU/NSjEklWx5DG1h
-	 JQShK0YX3E1GajudwFGkc8rZ9A8dJi+lDU3D7ZbJD99GzijGnm4DWXvOGgdk/4fFjB
-	 fXiBi+XXphofSQ9qDrFNmbDmZ5xZSzzqPyS1ovNSrw+yvFVqjbDrjXOgc1Hyj4qrvm
-	 YCW+lLTr+zVFZDdZZxG+50uQcIu9BNjNsyShdJwXnPEgmAnC9fe7SQFTAY2yI22hh3
-	 FiY25YXR4dE3g==
-X-Virus-Scanned: Debian amavisd-new at secondary.pambor.com
-Received: from secondary.pambor.com ([127.0.0.1])
-	by localhost (secondary.pambor.com [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id upWvgw96FKnx; Tue,  5 Mar 2024 16:14:40 +0100 (CET)
-Received: from chromebook.fritz.box (dynamic-2a02-3100-5dd1-2001-a8cd-25c2-d6af-d5f4.310.pool.telefonica.de [IPv6:2a02:3100:5dd1:2001:a8cd:25c2:d6af:d5f4])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.osasysteme.de (Postfix) with ESMTPSA id 1E9796F03A5;
-	Tue,  5 Mar 2024 16:14:40 +0100 (CET)
-From: Tim Pambor <tp@osasysteme.de>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Magnus Damm <magnus.damm@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	b=Ut2PNkBkdWERAv+dE4+39HeeJ/DJWbkGASbz6s5E1C3NxIdhVOppjdwDbocccD1wG
+	 N3lb0NVWTchEUqKT7zkdd3K4+4+Rhfy9ONZ0tvVzkoYDhD7cmLaM/mdNlW6aui4sz2
+	 mRWAYcSS24E4sETlcEupwqbpVhJ5BL+HzQCZfcSFy5rY8Fm1SKxvUiCINT4eMtkg6d
+	 9HWdAagR3UcWoxZSe6zuU8trB1xm+Re57w3b031wJNDdUNDL4tXHZtLBGV6/mpVp2I
+	 HS9dRs+kHRWTxs7HySQxHohVoLsbKRiFTfQ3dujM+cEByxql5oyMp5x0hzfialr/c7
+	 9Znx5Euowlnog==
+From: Rob Herring <robh@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Jonathan Hunter <jonathanh@nvidia.com>
+Cc: linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Tim Pambor <tp@osasysteme.de>
-Subject: [PATCH] arm64: dts: r9a07g044: Add complete CPU cache information
-Date: Tue,  5 Mar 2024 16:13:36 +0100
-Message-ID: <20240305151336.144707-1-tp@osasysteme.de>
+	linux-tegra@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] ASoC: dt-bindings: nvidia: Fix 'lge' vendor prefix
+Date: Tue,  5 Mar 2024 09:21:31 -0600
+Message-ID: <20240305152131.3424326-1-robh@kernel.org>
 X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -74,61 +63,27 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Based on ARM Cortex-A55 TRM and RZG2/L user's manual, each Cortex-A55 has
-- 32 KB of L1 4-way, set-associative instruction cache
-- 32 KB of L1 4-way, set-associative data cache
+The documented vendor prefix for LG Electronics is 'lg' not 'lge'. Just
+change the example to 'lg' as there doesn't appear to be any dependency
+on the existing compatible string.
 
-Each cache has a cache line length of 64B and therefore there are
-32768B/(4 * 64B)=128 sets for each cache.
-
-RZG2/L are not configured with the optional per-core L2 cache but only
-have a L3 cache shared among all cores. In this case, the L3 cache appears
-as a L2 cache to the system. Therefore, specify "cache-level = <2>" for
-the L3 cache.
-
-Signed-off-by: Tim Pambor <tp@osasysteme.de>
+Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+ .../devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml  | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 9f00b75d2bd0..6379c850526a 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -89,6 +89,12 @@ cpu0: cpu@0 {
- 			reg = <0>;
- 			device_type = "cpu";
- 			#cooling-cells = <2>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
- 			next-level-cache = <&L3_CA55>;
- 			enable-method = "psci";
- 			clocks = <&cpg CPG_CORE R9A07G044_CLK_I>;
-@@ -99,6 +105,12 @@ cpu1: cpu@100 {
- 			compatible = "arm,cortex-a55";
- 			reg = <0x100>;
- 			device_type = "cpu";
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
- 			next-level-cache = <&L3_CA55>;
- 			enable-method = "psci";
- 			clocks = <&cpg CPG_CORE R9A07G044_CLK_I>;
-@@ -109,7 +121,7 @@ L3_CA55: cache-controller-0 {
- 			compatible = "cache";
- 			cache-unified;
- 			cache-size = <0x40000>;
--			cache-level = <3>;
-+			cache-level = <2>;
- 		};
- 	};
+diff --git a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml
+index c29d7942915c..241d20f3aad0 100644
+--- a/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml
++++ b/Documentation/devicetree/bindings/sound/nvidia,tegra-audio-max9808x.yaml
+@@ -64,7 +64,7 @@ examples:
+     #include <dt-bindings/clock/tegra30-car.h>
+     #include <dt-bindings/soc/tegra-pmc.h>
+     sound {
+-        compatible = "lge,tegra-audio-max98089-p895",
++        compatible = "lg,tegra-audio-max98089-p895",
+                      "nvidia,tegra-audio-max98089";
+         nvidia,model = "LG Optimus Vu MAX98089";
  
 -- 
 2.43.0
