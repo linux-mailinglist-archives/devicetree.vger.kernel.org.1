@@ -1,168 +1,163 @@
-Return-Path: <devicetree+bounces-48513-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48514-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EB2487256C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:13:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F0E487257E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:16:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 03B99282E5D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:13:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33D762815D1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:16:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A0D014003;
-	Tue,  5 Mar 2024 17:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE9B114A9F;
+	Tue,  5 Mar 2024 17:16:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="chBpdGSr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q2X4Rd5e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41F5117BD4
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 17:12:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E02F5256;
+	Tue,  5 Mar 2024 17:16:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709658745; cv=none; b=lAPeMI21I/ZDIcsNBytPJTVi1crdmSF+VA1FMbVHEaWAKMUTg41bfMXWqH52hCM59XgQj4dnLWzjceyzNeipO4E4GJubvXoubWQM9e8gM9E3JPbgzBnOBdyf+YGZ49cbPjWgw3rl6BXgYcLNYBFutxkNUoErYRR3ROnar/MLLKs=
+	t=1709659005; cv=none; b=Ay1YtC1vKM/LRSJL4Mo6WIfSPmlLjC/6sq7TkaFBA5ik9iyz3H4NvR52DxT8StfiyjiLJSk7oBc2mpEWPSlWz/vUzhATjz1NSEAlMLSpQmw//leVFNXxdgtFgvmFVyaw3NWT36QjrDGkGKGNf0OBSv4t1HkUgIcA+SfCcRxwT0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709658745; c=relaxed/simple;
-	bh=2Tpkmbdi9N07LzhU26UHK7jF7P9BtsRTxn63iH6J6qE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=ooNXcI8Q7rCN5Cj3XxL+gW6PoX8OrKJNd9bu2Ev7ZwmiyNaB9xJgkFCNdghVy7EG5m8Ji1ohZIdCU3/D1ycLo5co5Zn3aMxYQ3AeEjotVz+qSc/kmLTQ27v1oEFjr0KrXM6QY66xxmBzLfpU7i0ipCrHqq6ix4FcJdrXIul18cY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=chBpdGSr; arc=none smtp.client-ip=209.85.218.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a293f2280c7so1025850966b.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 09:12:23 -0800 (PST)
+	s=arc-20240116; t=1709659005; c=relaxed/simple;
+	bh=CxNH8DsP5Yqy2n7slCYu0v+Vqw+IlqWMS0GJ4rMV2nc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oJjA6NbhgjkPiDZJyDdHzkQss+fIMceEHQLc6wa+xXUOYSwVtnJLsgCP+m189dWO/Cy5pkyrYMwefAEdd7QMPUzjEVpqO4c633qAI1q6Y3z+8uMiZ0msNiQRGVzBPdbgngwE87U6HY1ty5nEFB+aSkpRioMrLw6YycT5YOkhHcI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q2X4Rd5e; arc=none smtp.client-ip=209.85.221.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-33d2b354c72so4467195f8f.1;
+        Tue, 05 Mar 2024 09:16:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709658741; x=1710263541; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tw5qY/yrG8Cl06TuYqfyN+gfIP9rYoMHvnA9fsjGPpE=;
-        b=chBpdGSrFk52MqjJNT9+kQaRPRrh/olb3vYD64rMBVYL11TBNZgI+xtK3oTdovj+Ef
-         M5DDrqOrg7SI/hZ4uv7VjUgckXdOI8HXwwyD86R/+maE/zqaqiBe0GkEsdHZy6WdDFHl
-         v8dssaUSOo/vcaNoTgr7r3wESz9kWo51OcUDZHABBkQiY7j9OvjYxHs55uXD0Sxwc6Fo
-         5uBjH22QWMPnUtYamipnlOGFKdipGKbSk1gbuTaQv5mfmFPhfn3m5/hPyWbN1HtQfWkG
-         SB+AuzvihWpgzWtS3YsluvyGPDaYQcAyaA50uhCOGQW5WcrVxmHw3kdX4I4LOriSCLnW
-         6wug==
+        d=gmail.com; s=20230601; t=1709659002; x=1710263802; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=PKbxpo3p1gqabtKHicX9j5Bzb5Ge571GvOAKw++fIX8=;
+        b=Q2X4Rd5eDpMFLUSQYNIc6ds26PauSkFXTVlggxPcmcGpoFdHUgnEDoJVaRyV8+BeHi
+         v1jiiwPU5zc5rrkMh7HOQJFOqX6gBnvPNYN+Pi4KmIqwzEf1OZ7v6ErEeY6kw54OZ4x4
+         KRwmEQs7orfnZKbDjMMqVLbK76bOM/axnEDi+89B38Fpulg5LyZxVgKY5nSEFANQ5IB9
+         Cy7ZP+CznK+qpSi8ZNdXxLpzl16uFpfZo1jpyvSQ6c+wgh+g0q7XxUKFs+RUezTcg3a3
+         exIF/S49Z9OF4J2hiQ5dbfDkTaZaRWTtr1rik8RKcbJdQ/iv/kAjAmVxm2ltecMJvE57
+         rfyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709658741; x=1710263541;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tw5qY/yrG8Cl06TuYqfyN+gfIP9rYoMHvnA9fsjGPpE=;
-        b=wgGPOgcTSrtjfSkqHBcTdg09WIZW/zNlcjW6biVrPiMSL5J61Itvan9bbskwjgOLvv
-         /SGTbG/BCgC3SsqQwKG+IjnHb0fJbJpU1mb1WQKEAUUFoi7SoykdaHUky+Fuk1c1cfyY
-         Wicn9SJ7Psq5x7wQHRBlhURYUOMsZykQ1zK8Ui5zPNCM94+FcydUj3YAlbrDOPq7OfHH
-         JeK91kHPR/laRLAKtWGykx5872FWmAWeN+IGjJtfUvf12MHgHIQnFWmeO6m1VJ2+6VUV
-         lG8wZq8zxbOdNspufXZuNYG/jqBNAsF6MOisKia7ousK9IKQOPmrMeIh7/a4rHSPMsvs
-         5aHw==
-X-Forwarded-Encrypted: i=1; AJvYcCVgBK8AjipGxKiYwAZlA0rVgXLTbCuXA5PuKActD4Z7Gu8/R9aGTn/rxLGMfTve5w+BGE5ZDXcNvfIxefDLgdhIzXKT50L99NUPBg==
-X-Gm-Message-State: AOJu0YxQpOA/EfHVQdnZ+KWgKiOVXCiPB5krVmMPgjsd521XFtzLypFF
-	8hLlI9Tbf2osaj611xx8CRSor/7HuelA4LEXKhfZnp6lGO8SnNui0rV7KO53QKQ=
-X-Google-Smtp-Source: AGHT+IGBRWKPpgiOPv81nwRPgePQqNj1yMSlZJA2kwknURX1IDOqsusbtKktkwBfxEs4zczyJJPAhA==
-X-Received: by 2002:a17:906:1d5a:b0:a44:48c5:85f6 with SMTP id o26-20020a1709061d5a00b00a4448c585f6mr9000357ejh.43.1709658741636;
-        Tue, 05 Mar 2024 09:12:21 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id d14-20020a170906040e00b00a4138c3f065sm6192107eja.56.2024.03.05.09.12.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Mar 2024 09:12:21 -0800 (PST)
-Message-ID: <4d2501a7-d56d-4736-95d7-41556166859b@linaro.org>
-Date: Tue, 5 Mar 2024 18:12:18 +0100
+        d=1e100.net; s=20230601; t=1709659002; x=1710263802;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PKbxpo3p1gqabtKHicX9j5Bzb5Ge571GvOAKw++fIX8=;
+        b=jDfnM0y41B6aefpjTfy5GmY8fe1oSlQOt8brXwrw/kRToFca29ZDKlXU6Bqm9vfXuX
+         K3Rj02AvOI9aKzXhg3KKvT0+kB05tB2kVJuvEeute+8GusnGCmluX1usDZouVX6k7GIR
+         vsQ8K4nUeS7zKVKVfQUkIQPtqn6M/3QGvUy9lPg/lWfWjivlSGcBCWYSotWPnwISItFl
+         OBKFJUc0lcuBq+n51yrPeDsNfe8mJ4lHKPUTz1FW1L2AcmHvQtJOum2wTz3++k+fZvFA
+         Ck/K8fAkG/CEaVQYNXAdxTSPx6inlAXslD/qdy7shLTLIbtaJy00EAdvlWYpejuEOzv+
+         ayfg==
+X-Forwarded-Encrypted: i=1; AJvYcCU8EJSol6XdLwLxG6mXOy0DZPbTF3Wtu0e7pIFgSOqZZK4tdKIx8Nt4WpjomTTR3MSSqe69WM3O5jrZ+rGCObzK0B+5a5DJNhte4yXgKnMLNM0soA9Zs1wBe89QuyqfzZxEzf2QjcqSFPxrRRyh1Cv1U54EV4l57Or+0XQAOcH+rYipccGciJgBFIMI
+X-Gm-Message-State: AOJu0YyoSSy6JCtuLyH8Abwj2Trx6zL6fx/x3EkoJLMLWhpypOsF3yo6
+	7rBHlK2V16yC1clAOnZZT0oj+HHhOwdCjOJjUTH44pYRy4oynERX
+X-Google-Smtp-Source: AGHT+IHIBCVUp/teBNt+MD+eC5T5ObcOSa11pOm8x4zOw8GdB041i2c+71Mg3Wqb6mYmgalSHgDcyQ==
+X-Received: by 2002:a5d:4ec5:0:b0:33e:1b2a:bd6e with SMTP id s5-20020a5d4ec5000000b0033e1b2abd6emr8516158wrv.33.1709659002332;
+        Tue, 05 Mar 2024 09:16:42 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2500:a01:6479:f309:81e3:3373])
+        by smtp.gmail.com with ESMTPSA id bw1-20020a0560001f8100b0033d6bc17d0esm15831640wrb.74.2024.03.05.09.16.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Mar 2024 09:16:41 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] dt-bindings: serial: renesas,scif: Document R9A09G057 support
+Date: Tue,  5 Mar 2024 17:16:00 +0000
+Message-Id: <20240305171600.328699-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 0/3] Enable firmware-managed USB resources on Qcom targets
-Content-Language: en-US
-To: Sriram Dash <quic_sriramd@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, vkoul@kernel.org, kishon@kernel.org,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- gregkh@linuxfoundation.org, quic_wcheng@quicinc.com,
- Thinh.Nguyen@synopsys.com, p.zabel@pengutronix.de,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, quic_psodagud@quicinc.com,
- quic_nkela@quicinc.com, manivannan.sadhasivam@linaro.org,
- ulf.hansson@linaro.org, sudeep.holla@arm.com, quic_shazhuss@quicinc.com
-References: <1709657858-8563-1-git-send-email-quic_sriramd@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1709657858-8563-1-git-send-email-quic_sriramd@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 05/03/2024 17:57, Sriram Dash wrote:
-> Some target systems allow multiple resources to be managed by firmware.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Which? Why this is so vague...
+Document support for the Serial Communication Interface with FIFO (SCIF)
+available in the Renesas RZ/V2H(P) (R9A09G057) SoC. The SCIF interface in
+the Renesas RZ/V2H(P) is similar to that available in the RZ/G2L
+(R9A07G044) SoC, with the only difference being that the RZ/V2H(P) SoC has
+three additional interrupts: one for Tx end/Rx ready and the other two for
+Rx and Tx buffer full, which are edge-triggered.
 
-> On these targets, tasks related to clocks, regulators, resets, and
-> interconnects can be delegated to the firmware, while the remaining
-> responsibilities are handled by Linux.
-> 
-> To support the management of partial resources in Linux and leave the rest
-> to firmware, multiple power domains are introduced. Each power domain can
-> manage one or more resources, depending on the specific use case.
-> 
-> These power domains handle SCMI calls to the firmware, enabling the
-> activation and deactivation of firmware-managed resources.
-> 
-> The driver is responsible for managing multiple power domains and
-> linking them to consumers as needed. Incase there is only single
-> power domain, it is considered to be a standard GDSC hooked on to
-> the qcom dt node which is read and assigned to device structure
-> (by genpd framework) before the driver probe even begins.
+No driver changes are required as generic compatible string
+"renesas,scif-r9a07g044" will be used as a fallback on RZ/V2H(P) SoC.
 
-This will break the ABI. Sorry, come with an ABI stable solution.
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+---
+ .../bindings/serial/renesas,scif.yaml         | 21 +++++++++++++++++++
+ 1 file changed, 21 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+index 4610a5bd580c..b2c2305e352c 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+@@ -80,6 +80,7 @@ properties:
+               - renesas,scif-r9a07g043      # RZ/G2UL and RZ/Five
+               - renesas,scif-r9a07g054      # RZ/V2L
+               - renesas,scif-r9a08g045      # RZ/G3S
++              - renesas,scif-r9a09g057      # RZ/V2H(P)
+           - const: renesas,scif-r9a07g044   # RZ/G2{L,LC} fallback
+ 
+   reg:
+@@ -101,6 +102,16 @@ properties:
+           - description: Break interrupt
+           - description: Data Ready interrupt
+           - description: Transmit End interrupt
++      - items:
++          - description: Error interrupt
++          - description: Receive buffer full interrupt
++          - description: Transmit buffer empty interrupt
++          - description: Break interrupt
++          - description: Data Ready interrupt
++          - description: Transmit End interrupt
++          - description: Transmit End/Data Ready interrupt
++          - description: Receive buffer full interrupt (EDGE trigger)
++          - description: Transmit buffer empty interrupt (EDGE trigger)
+ 
+   interrupt-names:
+     oneOf:
+@@ -116,6 +127,16 @@ properties:
+           - const: bri
+           - const: dri
+           - const: tei
++      - items:
++          - const: eri
++          - const: rxi
++          - const: txi
++          - const: bri
++          - const: dri
++          - const: tei
++          - const: teidri
++          - const: rxi-edge
++          - const: txi-edge
+ 
+   clocks:
+     minItems: 1
+-- 
+2.34.1
 
 
