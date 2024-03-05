@@ -1,74 +1,48 @@
-Return-Path: <devicetree+bounces-48367-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48368-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF6DB871856
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:39:31 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id D92BF871879
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:43:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A93D28218D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:39:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88D341F22EE5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:43:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D39744CB2E;
-	Tue,  5 Mar 2024 08:39:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 605294DA0C;
+	Tue,  5 Mar 2024 08:43:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RTg1KDcu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mXtfW3zO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B1D2E40B;
-	Tue,  5 Mar 2024 08:39:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 385014DA08;
+	Tue,  5 Mar 2024 08:43:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709627966; cv=none; b=Y4j2Aum7jdbZFcsbkkXNovdpOYhZmIVbpWv8o3wEYt92S3QNdzA4+OJrH6MBxCIdP47ai/cakWv70hIEh5vhAJ2beuvvgIuZkx9zlbmq18GMS92ES3OvB4CPfrWU8a8ffIm5LJ09K3Q4GRjzE/HQhN10or2WCljol8SsIg+WeXY=
+	t=1709628194; cv=none; b=JbkMOBeQeKPyTTv+wG896XNKe4AWmKlw3RK2Wqn11vb1wL70o3QHHQ7RTHqVoy8TLPj/zcpkI2vrmJzjhqTH7zDIMzjnRKmxJyEkICd+JX/DqQnK+nTdH/muMaq8G5qH7XGT5rLHRITHISKkGcfBwM+3QLjDGiZF10dOhn3o/X0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709627966; c=relaxed/simple;
-	bh=ae9g2zG4V0WPNaPZPaB1ZQcqzF10SrO8I9NMmT5TJwk=;
+	s=arc-20240116; t=1709628194; c=relaxed/simple;
+	bh=YoRGIhBI/uVoHBDeB10elS2x0rLV4TT1npUgzbACoQE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BAJBDL9xnTQpxXtXdZZYqwM1Vzhs5h9p/ZBrIcJR2Y3Ea4d6PiYyOK6PYCPmpj/24utHvuD1VsJHILCgY+zWGYs4/nsKANq/XnRQVtJJVLZ1ihBtfZpkY00TTu9jV3N9I0SJyCBMgI3OXALXsAPEW5EypoAKoxkdsKsZenCT2Bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RTg1KDcu; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5645960cd56so439679a12.1;
-        Tue, 05 Mar 2024 00:39:24 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709627963; x=1710232763; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=DhbsAtULiyOJSylOkxYo7fP2Od8sQLqI7F7lk7BwLe0=;
-        b=RTg1KDcudRBqA0AnHhteJQZebucpZCj3z4CpT2YP/zdYbKTryjtnI2ZS27ftoNurpu
-         7hdLOYXRVcwzWsZSXIdkUHDc+axzV+lcwOUM+qt0kuNsu+2KU+s9hKl+8WDtKdRjrwHJ
-         2ohntRQnBlLptvAAXrk4n55tXHshw4Rq2k47wEsSAc3dRHXmbumF9/AuEvZpSVX6jybV
-         jfZ4CXjesmNU7X9CPaIBHMC+PedUvl8RVDypxVMLC80AhJKn8d4cBu4lXzIerKW6eaob
-         1O0ojz3XI+e4OP9Ppk7dgOWak+DBQuFiplqIf59fYszUcLHESnC3iT0E5ESyJm3SDjxG
-         nu8A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709627963; x=1710232763;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=DhbsAtULiyOJSylOkxYo7fP2Od8sQLqI7F7lk7BwLe0=;
-        b=g/suMmpXxOyzyFbu2VynC5Z4Hc5aitpP8QO+YgB9ohFuuxbEoe/YQd3XiqTfGvXww2
-         obdbzmGPEq9WenMJMABWF3RULSCjXMxiR4ZXK1XQjDDtHPJ3pHq4pgBuEx/T9HhZMPkE
-         RNUzabiUSOKXCiRn/SrB5rzm43OFWmiv9IFTDMj6GQUP8CCIFx0g3z1ZRY+UMLOIWgeB
-         hYRSSruucZTUVU9nqBgjdEgySB2CVfVXh4D15uqMd90MmmosA2N9QnTjgfuNczEZ3CR7
-         PVKRFs7eKk4IEW4tki6p8mT8aR5DWN+9ilJ5jWQI7WH+jRprXFPKNy+4Hulr9SMxqJVa
-         nG7w==
-X-Forwarded-Encrypted: i=1; AJvYcCWoWs8CQJ7HlsOSR5bbODDsEuBnE63VtaMl1Im67IsLMr4mTQr3WQqaGnY77I8C+swSI1bmpF6GbCmThl7CDGdnXCHXoKuBBQ8HmmDgLvXUTmBEKcnHNLxpmGFjqArgGd8kVw==
-X-Gm-Message-State: AOJu0Yzpu45AhVm7QXJoV2cRJhM17nslMhcL3mZ2AKrZv+kIFY2VPsVQ
-	DPFPGQzAl6+nqTO/Pe+mlXemuFqXe3gCOltjRq9yG5UM/D8DnYXR
-X-Google-Smtp-Source: AGHT+IHWWDGiPtYmviwwvBUosV+VegjUi/c0iWDc64GJAwydpSl/cD7WYyqC8qT7YOUVViKAKjZYHw==
-X-Received: by 2002:a17:906:a454:b0:a45:7f60:a724 with SMTP id cb20-20020a170906a45400b00a457f60a724mr2196977ejb.72.1709627963473;
-        Tue, 05 Mar 2024 00:39:23 -0800 (PST)
-Received: from ?IPV6:2001:1c00:20d:1300:1b1c:4449:176a:89ea? (2001-1c00-020d-1300-1b1c-4449-176a-89ea.cable.dynamic.v6.ziggo.nl. [2001:1c00:20d:1300:1b1c:4449:176a:89ea])
-        by smtp.gmail.com with ESMTPSA id t15-20020a1709063e4f00b00a42f6d17123sm5702878eji.46.2024.03.05.00.39.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Mar 2024 00:39:23 -0800 (PST)
-Message-ID: <fb6c2253-18a3-40ed-a204-5c8bf0959efb@gmail.com>
-Date: Tue, 5 Mar 2024 09:39:21 +0100
+	 In-Reply-To:Content-Type; b=OsI2nLb4qn2kL5dE4ffvHIRG9HNQYJPJuBEfBK7M4BnOkPJmAFkKiL8Aw70QrWy6QuiBsTypzrsonhqZBEm602RtJWiU9N6bt+ZQzSk9cUb2zokSjszeUeoogInAjn//K7AtCW5yE+W2JW5Vql6qF9exgoPHiJRXbdxMQ43Mdj0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mXtfW3zO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A450DC433C7;
+	Tue,  5 Mar 2024 08:43:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709628193;
+	bh=YoRGIhBI/uVoHBDeB10elS2x0rLV4TT1npUgzbACoQE=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=mXtfW3zOLWyJIufHuEHOeuKIYo4rdCAezj47ir0F/N6IfTV51b3YuOwlT7s7ygVMA
+	 MHBenP+5Lp+MZX0m6Dn3gPhXUxdccbwHxGM3iej0/ts12442jIY6XoS9NFnIJY38zW
+	 AEPvwrhPS/zKqKalGmiSt2Q1Z6lg9Zv8ckgYpZ1SOdSPbYlNVAj3njhWm10oFVpU1B
+	 /axJSIsa57FIHU0kwh3XNWdpGuLfzvA15Pbi3pw0uay+LqeTaPVbUpDHwsLCfJ7Svg
+	 WNkrY6iLogv2YMhKy1UeB2/vWwbHR5vjzEiaXUguWB6VIv98ApAEzYcZkr33zhoqYE
+	 NaOkzu53+Sqsg==
+Message-ID: <a4188e72-533c-4e1e-9733-e0e8afc03526@kernel.org>
+Date: Tue, 5 Mar 2024 10:43:07 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,41 +50,126 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
- EN8811H PHY driver
+Subject: Re: [PATCH] arm: dts: ti: beagleplay: Fix Ethernet PHY RESET GPIOs
 Content-Language: en-US
-To: Simon Horman <horms@kernel.org>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+To: Vignesh Raghavendra <vigneshr@ti.com>, Nishanth Menon <nm@ti.com>,
+ Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King
- <linux@armlinux.org.uk>, Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Frank Wunderlich <frank-w@public-files.de>,
- Daniel Golle <daniel@makrotopia.org>, Lucien Jheng
- <lucien.jheng@airoha.com>, Zhi-Jun You <hujy652@protonmail.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240302183835.136036-1-ericwouds@gmail.com>
- <20240302183835.136036-3-ericwouds@gmail.com>
- <20240304180523.GR403078@kernel.org>
-From: Eric Woudstra <ericwouds@gmail.com>
-In-Reply-To: <20240304180523.GR403078@kernel.org>
+ Conor Dooley <conor+dt@kernel.org>
+Cc: srk@ti.com, s-vadapalli@ti.com, r-gunasekaran@ti.com,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240229-b4-for-v6-9-am65-beagleplay-ethernet-reset-v1-1-b3e4b33378bd@kernel.org>
+ <bfd9b146-061b-4f82-a703-3bd32ffc09b7@kernel.org>
+ <c75d35c1-13f8-4f79-bf96-9a73e88d1b19@kernel.org>
+ <392def9d-5e02-4ca6-8838-c4252ccd4c54@ti.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <392def9d-5e02-4ca6-8838-c4252ccd4c54@ti.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 
-Hi Simon,
 
-> I think val needs to be initialised before it is used below.
+On 04/03/2024 06:24, Vignesh Raghavendra wrote:
+> Hi Roger,
 > 
-> Flagged by clang-17 W=1 build.
-Thanks. I had changed building to using W=1 after the last message from
-robot. But now it seems I've lost these warnings. I definitely will look
-into this.
+> On 02/03/24 02:59, Roger Quadros wrote:
+>>
+>>
+>> On 01/03/2024 22:58, Roger Quadros wrote:
+>>>
+>>>
+>>> On 29/02/2024 18:25, Roger Quadros wrote:
+>>>> The RESET GPIO pinmux should be part of MDIO bus node
+>>>> so that they can be in the right state before the PHY
+>>>> can be probed via MDIO bus scan.
+>>>>
+>>>> Add GPIO reset for the Gigabit Ethernet PHY. As per
+>>>> RTL8211F datasheet, reset assert width is 10ms and
+>>>> PHY registers can be access accessed after 50ms of
+>>>> reset deassert.
+>>>>
+>>>> Signed-off-by: Roger Quadros <rogerq@kernel.org>
+>>>> ---
+>>>>  arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 8 ++++++--
+>>>>  1 file changed, 6 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+>>>> index a34e0df2ab86..77240cf3ae4d 100644
+>>>> --- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+>>>> +++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
+>>>> @@ -292,6 +292,8 @@ mdio0_pins_default: mdio0-default-pins {
+>>>>  		pinctrl-single,pins = <
+>>>>  			AM62X_IOPAD(0x0160, PIN_OUTPUT, 0) /* (AD24) MDIO0_MDC */
+>>>>  			AM62X_IOPAD(0x015c, PIN_INPUT, 0) /* (AB22) MDIO0_MDIO */
+>>>> +			AM62X_IOPAD(0x003c, PIN_INPUT, 7) /* (M25) GPMC0_AD0.GPIO0_15 */
+>>>
+>>> This should be PIN_OUTPUT.
+>>> Will fix in next spin.
+>>
+>> Actually PIN_INPUT is correct else we won't be able to read the correct GPIO pin status
+>> on gpio read.
+>> I observe this issue on u-boot at least.
+>>
+>>>
+>>>> +			AM62X_IOPAD(0x018c, PIN_OUTPUT, 7) /* (AC21) RGMII2_RD2.GPIO1_5 */
+>>
+>> This one needs to be fixed to PIN_INPUT.
+> 
+> While at it, please fix the $subject prefix:
+> 
+> arm64: dts: ti: beagleplay: ...
 
-Best regards,
+Right.
 
-Eric Woudstra
+> 
+> Do we need a Fixes: Tag too?
+
+Sure, I'll add.
+
+> 
+>>
+>>>>  		>;
+>>>>  	};
+>>>>  
+>>>> @@ -383,7 +385,6 @@ AM62X_IOPAD(0x017c, PIN_INPUT, 1) /* (AD22) RGMII2_RX_CTL.RMII2_RX_ER */
+>>>>  			AM62X_IOPAD(0x016c, PIN_INPUT, 1) /* (Y18) RGMII2_TD0.RMII2_TXD0 */
+>>>>  			AM62X_IOPAD(0x0170, PIN_INPUT, 1) /* (AA18) RGMII2_TD1.RMII2_TXD1 */
+>>>>  			AM62X_IOPAD(0x0164, PIN_INPUT, 1) /* (AA19) RGMII2_TX_CTL.RMII2_TX_EN */
+>>>> -			AM62X_IOPAD(0x018c, PIN_OUTPUT, 7) /* (AC21) RGMII2_RD2.GPIO1_5 */
+>>>>  			AM62X_IOPAD(0x0190, PIN_INPUT, 7) /* (AE22) RGMII2_RD3.GPIO1_6 */
+>>>>  			AM62X_IOPAD(0x01f0, PIN_OUTPUT, 5) /* (A18) EXT_REFCLK1.CLKOUT0 */
+>>>>  		>;
+>>>> @@ -597,6 +598,9 @@ &cpsw3g_mdio {
+>>>>  
+>>>>  	cpsw3g_phy0: ethernet-phy@0 {
+>>>>  		reg = <0>;
+>>>> +		reset-gpios = <&main_gpio0 15 GPIO_ACTIVE_LOW>;
+>>>> +		reset-assert-us = <10000>;
+>>>> +		reset-deassert-us = <50000>;
+>>>>  	};
+>>>>  
+>>>>  	cpsw3g_phy1: ethernet-phy@1 {
+>>>> @@ -615,7 +619,7 @@ &main_gpio0 {
+>>>>  		"USR0", "USR1", "USR2", "USR3", "", "", "USR4",	/* 3-9 */
+>>>>  		"EEPROM_WP",					/* 10 */
+>>>>  		"CSI2_CAMERA_GPIO1", "CSI2_CAMERA_GPIO2",	/* 11-12 */
+>>>> -		"CC1352P7_BOOT", "CC1352P7_RSTN", "", "", "",	/* 13-17 */
+>>>> +		"CC1352P7_BOOT", "CC1352P7_RSTN", "GBE_RSTN", "", "",	/* 13-17 */
+>>>>  		"USR_BUTTON", "", "", "", "", "", "", "", "",	/* 18-26 */
+>>>>  		"", "", "", "", "", "", "", "", "", "HDMI_INT",	/* 27-36 */
+>>>>  		"", "VDD_WLAN_EN", "", "", "WL_IRQ", "GBE_INTN",/* 37-42 */
+>>>>
+>>>> ---
+>>>> base-commit: bbef42084cc170cbfc035bf784f2ff055c939d7e
+>>>> change-id: 20240229-b4-for-v6-9-am65-beagleplay-ethernet-reset-098f274fbf15
+>>>>
+>>>> Best regards,
+>>>
+>>
+> 
+
+-- 
+cheers,
+-roger
 
