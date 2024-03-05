@@ -1,64 +1,61 @@
-Return-Path: <devicetree+bounces-48256-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48257-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BDCE8711E2
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 01:42:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 880F28711EC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 01:45:07 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B6B542833CE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 00:42:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 159511F23A14
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 00:45:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBB084C96;
-	Tue,  5 Mar 2024 00:42:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 334DF5382;
+	Tue,  5 Mar 2024 00:45:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="ePlwsm6k"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="JFng331P"
 X-Original-To: devicetree@vger.kernel.org
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 120B046B5
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 00:42:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71E403210;
+	Tue,  5 Mar 2024 00:45:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709599352; cv=none; b=S9xCwlAVUHhF6cwZU8VjdvzCLYSUthd4Bl2UZQTSgg+Hm/yf06OJPnqAtJi3DQ55AA3480SJcFST0Q+7HsKgpw28Wr/kFuOl1zOSmLBhBcMOanKK5UyPmUKqpuwjdLcwCDtKdCWA19/5UvUGeSmuJCa9+O83wPS6WJWLuxAZRs0=
+	t=1709599503; cv=none; b=qZuI97yI0ihFSaZPDkRjq9XCo099M4gACOTvKStUC67uCXrbiujYdTiyKkNHGeVeicVt8ru+TNFW7nUDPMSF96QurH26VznZAlLzkUUu5ZNPBYUqtFs30hSrJgxgShvZ4/x2/jBSMMmR6djqx6JyBdKv0bevGXL1lG00iSLrymQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709599352; c=relaxed/simple;
-	bh=wVXIGbNIzcQQwvvYo0cYgV8D+lPD9fTSdJwHuN2XbGE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=jQiLY8hENQ4Dc0/QoZJRuLTn7xY7sy0zTVM43GYXfBVw6XifRbhXrUGG3ONwPLBc29TZV3xLDUVQIdOx4fdsKjgZiVvzXbvbX9HMuFdtn2HOh0vY4mFNmE+Qzuj22kEYHPQi9nMDIutRuxYY72mZcYPmgxeIk19+gymYZKHMJKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=ePlwsm6k; arc=none smtp.client-ip=213.167.242.64
+	s=arc-20240116; t=1709599503; c=relaxed/simple;
+	bh=lZ5vao9xYIdqGmSJRUUOL9tDIh8ugUuo7YBf+G+llQg=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=HDeW7/ez8WHfVGY+YKf3fUqEdR/lya9TSC0uI1d2/suru9SkBDWeCSydqSyqhVBCYIhcjqEDgCejlsZ6UInO6JrCy4pCHYqZn9AxljUPWpVWcfB3rk7XfEWAp/i4mOzKUvGIPZro0KaOksTuFR7hxF0IukNH6hm6lX2OGvJy8nU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=JFng331P; arc=none smtp.client-ip=213.167.242.64
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
 Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id C01763370;
-	Tue,  5 Mar 2024 01:42:10 +0100 (CET)
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5DB3E1225;
+	Tue,  5 Mar 2024 01:44:43 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1709599331;
-	bh=wVXIGbNIzcQQwvvYo0cYgV8D+lPD9fTSdJwHuN2XbGE=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ePlwsm6kgPBNJqfiIIBXgLM9Y+gnCyWNPO4UgA8eKb4EaOVhTffw0D3fztc28eans
-	 zv7T7zcqaeVP8tbONo9gF+s9b0UFPZUcDLF3/tmUkt+MI6LHBa4q4VzBkLIfPZSHYH
-	 YT5/eMTcgiwh9083hNbMMi+/fEa+eah8wMK+bgco=
+	s=mail; t=1709599483;
+	bh=lZ5vao9xYIdqGmSJRUUOL9tDIh8ugUuo7YBf+G+llQg=;
+	h=From:To:Cc:Subject:Date:From;
+	b=JFng331PkXHW+kDyDOtxLrxh7ARnLybQeAy/TNP7I04+596ut6P9QmKHhtvsjCR8Y
+	 yPXRIn2qszDWTUwS2dqY3z+UMjNzcGJqG7zl5q18ylbIF6oqCr7sADEcjEibnQdLqu
+	 jzLDSYIpLld9pS/KXMAMTS4j74D/4IuaU/36PBUw=
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To: devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: Valentin Raevsky <valentin@compulab.co.il>,
+	linux-leds@vger.kernel.org
+Cc: Pavel Machek <pavel@ucw.cz>,
+	Lee Jones <lee@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>
-Subject: [PATCH 4/4] arm64: dts: freescale: Add device tree for Compulab SB-UCM-iMX8MPLUS
-Date: Tue,  5 Mar 2024 02:42:21 +0200
-Message-ID: <20240305004222.622-5-laurent.pinchart@ideasonboard.com>
+	Anders Darander <anders@chargestorm.se>,
+	Matt Ranostay <mranostay@gmail.com>,
+	Peter Meerwald <pmeerw@pmeerw.net>,
+	Ricardo Ribalda <ribalda@kernel.org>
+Subject: [PATCH] dt-bindings: leds: pca963x: Convert text bindings to YAML
+Date: Tue,  5 Mar 2024 02:45:01 +0200
+Message-ID: <20240305004501.849-1-laurent.pinchart@ideasonboard.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240305004222.622-1-laurent.pinchart@ideasonboard.com>
-References: <20240305004222.622-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,326 +64,225 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The Compulab SB-UCM-iMX8MPLUS is a carrier board designed as an
-evaluation board for the UCM-iMX8M-Plus SoM. It integrates support for
-ethernet, USB, display (HDMI, DSI and LVDS), cameras (CSI-2 and GMSL),
-audio and various other peripherals. Add a .dts that models the SB-UCM.
-
-Not all peripherals present on the board are enabled yet, as I couldn't
-test them all. Missing features include PCIe, audio, camera (CSI-2 and
-GMSL), display (DSI and LVDS, I have tested HDMI), SIM and CAN. The I2C,
-SPI and other buses routed to extensions connectors have also not been
-tested. They can be added to the device tree at a later time.
+Convert the pca963x DT bindings to YAML schema. The existing properties
+are kept without modification, but the example is adapted to the latest
+common bindings for LEDs.
 
 Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 ---
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/imx8mp-sb-ucm.dts      | 284 ++++++++++++++++++
- 2 files changed, 285 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts
+If someone wants to volunteer as a maintainer, by all means, please
+replace me :-)
+---
+ .../devicetree/bindings/leds/nxp,pca963x.yaml | 140 ++++++++++++++++++
+ .../devicetree/bindings/leds/pca963x.txt      |  52 -------
+ 2 files changed, 140 insertions(+), 52 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
+ delete mode 100644 Documentation/devicetree/bindings/leds/pca963x.txt
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 2cb0212b63c6..02efa97fc464 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -164,6 +164,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-icore-mx8mp-edimm2.2.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-msc-sm2s-ep1.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-phyboard-pollux-rdk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mp-sb-ucm.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-hdmi.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-lt6.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-skov-revb-mi1010ait-1cp1.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts b/arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts
+diff --git a/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml b/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
 new file mode 100644
-index 000000000000..eba851f77263
+index 000000000000..938d0e48fe51
 --- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts
-@@ -0,0 +1,284 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2021 CompuLab
-+ * Copyright 2024 Ideas on Board Oy
-+ */
++++ b/Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
+@@ -0,0 +1,140 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/nxp,pca963x.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+/dts-v1/;
++title: NXP PCA963x LED controllers
 +
-+#include <dt-bindings/clock/imx8mp-clock.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/usb/pd.h>
++maintainers:
++  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 +
-+#include "imx8mp-pinfunc.h"
-+#include "imx8mp-ucm.dtsi"
++description: |
++  The NXP PCA963x are I2C-controlled LED drivers optimized for
++  Red/Green/Blue/Amber (RGBA) color mixing applications. Each LED is
++  individually controllable and has its own PWM controller.
 +
-+/ {
-+	model = "CompuLab SB-UCM-iMX8MPLUS";
-+	compatible = "compulab,sb-ucm-imx8mp", "compulab,ucm-imx8mp", "fsl,imx8mp";
++  Datasheets are available at
 +
-+	chosen {
-+		stdout-path = &uart2;
-+	};
++  - https://www.nxp.com/docs/en/data-sheet/PCA9632.pdf
++  - https://www.nxp.com/docs/en/data-sheet/PCA9633.pdf
++  - https://www.nxp.com/docs/en/data-sheet/PCA9634.pdf
++  - https://www.nxp.com/docs/en/data-sheet/PCA9635.pdf
 +
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		label = "hdmi";
-+		type = "a";
++properties:
++  compatible:
++    enum:
++      - nxp,pca9632
++      - nxp,pca9633
++      - nxp,pca9634
++      - nxp,pca9635
 +
-+		port {
-+			hdmi_connector_in: endpoint {
-+				remote-endpoint = <&hdmi_tx_out>;
-+			};
-+		};
-+	};
++  reg:
++    maxItems: 1
 +
-+	usb-connector {
-+		compatible = "usb-c-connector";
-+		label = "USB-C";
-+		data-role = "dual";
++  "#address-cells":
++    const: 1
 +
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
++  "#size-cells":
++    const: 0
 +
-+			port@0 {
-+				reg = <0>;
++  nxp,hw-blink:
++    type: boolean
++    description:
++      Use hardware blinking instead of software blinking
 +
-+				hs_ep: endpoint {
-+					remote-endpoint = <&usb3_hs_ep>;
-+				};
-+			};
-+			port@1 {
-+				reg = <1>;
++  nxp,inverted-out:
++    type: boolean
++    description:
++      Invert the polarity of the generated PWM.
 +
-+				ss_ep: endpoint {
-+					remote-endpoint = <&hd3ss3220_in_ep>;
-+				};
-+			};
-+		};
-+	};
-+};
++  nxp,period-scale:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description:
++      In some configurations, the chip blinks faster than expected. This
++      parameter provides a scaling ratio (fixed point, decimal divided by 1000)
++      to compensate, e.g. 1300=1.3x and 750=0.75x.
 +
-+&eqos {
-+	status = "okay";
-+};
++  nxp,totem-pole:
++    type: boolean
++    description:
++      Use totem pole (push-pull) instead of open-drain (pca9632 defaults to
++      open-drain, newer chips to totem pole).
 +
-+&hdmi_pvi {
-+	status = "okay";
-+};
++patternProperties:
++  "^led@[0-9a-f]+$":
++    type: object
++    $ref: common.yaml#
++    unevaluatedProperties: false
 +
-+&hdmi_tx {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_hdmi>;
-+	status = "okay";
++    properties:
++      reg:
++        minimum: 0
 +
-+	ports {
-+		port@1 {
-+			hdmi_tx_out: endpoint {
-+				remote-endpoint = <&hdmi_connector_in>;
-+			};
-+		};
-+	};
-+};
++    required:
++      - reg
 +
-+&hdmi_tx_phy {
-+	status = "okay";
-+};
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            enum:
++              - nxp,pca9632
++              - nxp,pca9633
++    then:
++      patternProperties:
++        "^led@[0-9a-f]+$":
++          properties:
++            reg:
++              maximum: 3
++    else:
++      patternProperties:
++        "^led@[0-9a-f]+$":
++          properties:
++            reg:
++              maximum: 7
 +
-+&i2c2 {
-+	pca9555: gpio@20 {
-+		compatible = "nxp,pca9555";
-+		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+	};
++additionalProperties: false
 +
-+	usb-typec@47 {
-+		compatible = "ti,hd3ss3220";
-+		reg = <0x47>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_typec>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <19 IRQ_TYPE_LEVEL_LOW>;
++examples:
++  - |
++    #include <dt-bindings/leds/common.h>
 +
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
 +
-+			port@0 {
-+				reg = <0>;
++        led-controller@62 {
++            compatible = "nxp,pca9632";
++            reg = <0x62>;
++            #address-cells = <1>;
++            #size-cells = <0>;
 +
-+				hd3ss3220_in_ep: endpoint {
-+					remote-endpoint = <&ss_ep>;
-+				};
-+			};
++            led@0 {
++                    reg = <0>;
++                    color = <LED_COLOR_ID_RED>;
++                    function = LED_FUNCTION_STATUS;
++            };
 +
-+			port@1 {
-+				reg = <1>;
++            led@1 {
++                    reg = <1>;
++                    color = <LED_COLOR_ID_GREEN>;
++                    function = LED_FUNCTION_STATUS;
++            };
 +
-+				hd3ss3220_out_ep: endpoint {
-+					remote-endpoint = <&usb3_role_switch>;
-+				};
-+			};
-+		};
-+	};
++            led@2 {
++                    reg = <2>;
++                    color = <LED_COLOR_ID_BLUE>;
++                    function = LED_FUNCTION_STATUS;
++            };
 +
-+	eeprom@54 {
-+		compatible = "catalyst,24c08", "atmel,24c08";
-+		reg = <0x54>;
-+		pagesize = <16>;
-+	};
-+};
++            led@3 {
++                    reg = <3>;
++                    color = <LED_COLOR_ID_WHITE>;
++                    function = LED_FUNCTION_STATUS;
++            };
++        };
++    };
 +
-+&iomuxc {
-+	pinctrl_hdmi: hdmigrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_HDMI_DDC_SCL__HDMIMIX_HDMI_SCL	0x1c2
-+			MX8MP_IOMUXC_HDMI_DDC_SDA__HDMIMIX_HDMI_SDA	0x1c2
-+			MX8MP_IOMUXC_HDMI_HPD__HDMIMIX_HDMI_HPD		0x0
-+			MX8MP_IOMUXC_HDMI_CEC__HDMIMIX_HDMI_CEC		0x0
-+		>;
-+	};
-+
-+	pinctrl_typec: typec1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SAI1_TXD7__GPIO4_IO19		0x1c4
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART1_RXD__UART1_DCE_RX		0x140
-+			MX8MP_IOMUXC_UART1_TXD__UART1_DCE_TX		0x140
-+		>;
-+	};
-+
-+	pinctrl_uart2: uart2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_UART2_RXD__UART2_DCE_RX		0x140
-+			MX8MP_IOMUXC_UART2_TXD__UART2_DCE_TX		0x140
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2-gpiogrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CD_B__GPIO2_IO12		0x1c4
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x190
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d0
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d0
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d0
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d0
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d0
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2-100mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x194
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d4
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d4
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d4
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d4
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d4
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2-200mhzgrp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK		0x196
-+			MX8MP_IOMUXC_SD2_CMD__USDHC2_CMD		0x1d6
-+			MX8MP_IOMUXC_SD2_DATA0__USDHC2_DATA0		0x1d6
-+			MX8MP_IOMUXC_SD2_DATA1__USDHC2_DATA1		0x1d6
-+			MX8MP_IOMUXC_SD2_DATA2__USDHC2_DATA2		0x1d6
-+			MX8MP_IOMUXC_SD2_DATA3__USDHC2_DATA3		0x1d6
-+			MX8MP_IOMUXC_GPIO1_IO04__USDHC2_VSELECT		0xc0
-+		>;
-+	};
-+};
-+
-+&lcdif3 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+/* Serial debug console */
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart2>;
-+	status = "okay";
-+};
-+
-+&usb3_0 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3_0 {
-+	dr_mode = "otg";
-+	hnp-disable;
-+	srp-disable;
-+	adp-disable;
-+	usb-role-switch;
-+	status = "okay";
-+
-+	ports {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+			usb3_hs_ep: endpoint {
-+				remote-endpoint = <&hs_ep>;
-+			};
-+		};
-+		port@1 {
-+			reg = <1>;
-+			usb3_role_switch: endpoint {
-+				remote-endpoint = <&hd3ss3220_out_ep>;
-+			};
-+		};
-+	};
-+};
-+
-+&usb3_phy0 {
-+	status = "okay";
-+};
-+
-+&usb3_1 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3_1 {
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
-+&usb3_phy1 {
-+	status = "okay";
-+};
-+
-+/* Micro-SD socket */
-+&usdhc2 {
-+	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
-+	assigned-clock-rates = <400000000>;
-+	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-+	bus-width = <4>;
-+	status = "okay";
-+};
++...
+diff --git a/Documentation/devicetree/bindings/leds/pca963x.txt b/Documentation/devicetree/bindings/leds/pca963x.txt
+deleted file mode 100644
+index 4eee41482041..000000000000
+--- a/Documentation/devicetree/bindings/leds/pca963x.txt
++++ /dev/null
+@@ -1,52 +0,0 @@
+-LEDs connected to pca9632, pca9633 or pca9634
+-
+-Required properties:
+-- compatible : should be : "nxp,pca9632", "nxp,pca9633", "nxp,pca9634" or "nxp,pca9635"
+-
+-Optional properties:
+-- nxp,totem-pole : use totem pole (push-pull) instead of open-drain (pca9632 defaults
+-  to open-drain, newer chips to totem pole)
+-- nxp,hw-blink : use hardware blinking instead of software blinking
+-- nxp,period-scale : In some configurations, the chip blinks faster than expected.
+-		     This parameter provides a scaling ratio (fixed point, decimal divided
+-		     by 1000) to compensate, e.g. 1300=1.3x and 750=0.75x.
+-- nxp,inverted-out: invert the polarity of the generated PWM
+-
+-Each led is represented as a sub-node of the nxp,pca963x device.
+-
+-LED sub-node properties:
+-- label : (optional) see Documentation/devicetree/bindings/leds/common.txt
+-- reg : number of LED line (could be from 0 to 3 in pca9632 or pca9633,
+-		0 to 7 in pca9634, or 0 to 15 in pca9635)
+-- linux,default-trigger : (optional)
+-   see Documentation/devicetree/bindings/leds/common.txt
+-
+-Examples:
+-
+-pca9632: pca9632 {
+-	compatible = "nxp,pca9632";
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-	reg = <0x62>;
+-
+-	red@0 {
+-		label = "red";
+-		reg = <0>;
+-		linux,default-trigger = "none";
+-	};
+-	green@1 {
+-		label = "green";
+-		reg = <1>;
+-		linux,default-trigger = "none";
+-	};
+-	blue@2 {
+-		label = "blue";
+-		reg = <2>;
+-		linux,default-trigger = "none";
+-	};
+-	unused@3 {
+-		label = "unused";
+-		reg = <3>;
+-		linux,default-trigger = "none";
+-	};
+-};
 -- 
 Regards,
 
