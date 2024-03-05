@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-48343-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48344-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E466871772
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:55:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9687187178D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:05:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9D899B243DE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 07:55:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 192A7B20995
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:05:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3EF848005A;
-	Tue,  5 Mar 2024 07:53:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA5F37EEF8;
+	Tue,  5 Mar 2024 08:04:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vUqNvcUo"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yX9x5Av2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com [209.85.167.45])
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67E6E80052
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 07:53:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.45
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D8997EEED
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 08:04:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709625224; cv=none; b=m+hYAEKqvl1UXQsBa0IeYr+no8L6U2LpZkIvnsnpHSbrNiOBJ7LV294lOP5Efq5OPKeHqlSFebWYmlNsIPUf9mKRoKrUr90FZ662/wQI44CyMupdzCKafi0d6cPEmLSxlf5aybtVmuW9VQXrd6dPkLDqId5Y61DrYLAx/bJmfvw=
+	t=1709625898; cv=none; b=S3yvegQMuNkY4wIYhG4Jw7MINYmCf5AfQ7NacxcVqYCuZQ+o4HO+9eXTO0b7yyZYCr3LnUabNWbORRRhR5Yk7ehXi04s/d+trWw9rGk2xJxpVKvAs+wqdr+gXAtkBFhOQgU7R7jf+1iGzSfmZG94mrI+ab0ecQ0+nteyppiE9E8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709625224; c=relaxed/simple;
-	bh=8Dd+1025BPSDP1w0Yg2tLvCllyBOmx4/3Ers4B9UpQs=;
+	s=arc-20240116; t=1709625898; c=relaxed/simple;
+	bh=8XsLYUrP2htFSti77UN9KCuakQBBAP/QjFIhg07svrQ=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ljMtksgLeIEy66/sQSmkdYvT8OqN3pbkDbPSC5xFMyr4fXSI0xg7omlPQ+ZiowdvkZDGJHqgFRykNIfciz+6mQQtPYI09IVK56tHRSSw/zSJ7RBZOOEK/HuffnANMBQaSpupo98497SFb1+b3dzek3EIM+0lB0wXqWNfCqnm1JE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vUqNvcUo; arc=none smtp.client-ip=209.85.167.45
+	 In-Reply-To:Content-Type; b=F7WerYulGB8Tpmd1k4lfbPLOTu0it8R09ywUhoNR7usw6gFhQvvjo7aMpst7V6NbBbTe3Tt0be/YE3z6ZIDMQcL4Z1k19WavLp/Au2wBg94wX4cQincpqdq364jqL9m1gbLhDxhHVof+1iDXC9bqdDiodpTCyCtaqnCrFOPv9tg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yX9x5Av2; arc=none smtp.client-ip=209.85.218.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f45.google.com with SMTP id 2adb3069b0e04-5135486cfccso380974e87.0
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 23:53:42 -0800 (PST)
+Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a44cdb2d3a6so396823066b.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 00:04:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709625220; x=1710230020; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709625895; x=1710230695; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=B4SPQAzElDyq14vPvLj+BILESqGYT5m1eVTz0qWhhJM=;
-        b=vUqNvcUoysV85jtNYUKTmSmrygpz9p+nafMEeH+PamJQgXg6GxD9aBcxTSqJlok+6C
-         CbibBJE0Ef3HPPLPi5JS/CL9ByeyiDSpB+LbMjcxM8cnlX2HfdMTnDdOI7v7rbfXP3cE
-         5EgvlLfn5JR7lYDivsGwMrs9MTZXktHTp6mfvp9wD2kC0f6zb6ms4evewYrUU4qdafGz
-         aiHC0FSYYqd5q3Gkan2RKx3wg1qq5SSDcPuUVw0k+zIxv/wb7c/Eb1OrrBB9+JLwOeyn
-         5FeRQioo4ChcWG1yQ52bME9Apvyr4Lf0cwR5F+Ba5bmufUTOIzw4FsQgidSk5eTeztAg
-         9nyA==
+        bh=z321qTKWtk15yH3t9Ej/fGlBYVjhkASl76YshRID/ZE=;
+        b=yX9x5Av2Ox4HYhnfUeYC9osJP2kX9SgUo22fS6VOgqfu9rwfiW2axVQU9/lK9MbfPN
+         zlYAG/royXBHWrONBi2iqUXztZ+YuIU0LGIjgcmSguRqkfDIowyp+n1HKobjB/LJqqDe
+         HO8KazqNl5FbFf4noXGNY7n7ykfNV1QfY+1GgPzdDk8+s9+qVMcMwe2tBJIgKR0Og9dj
+         n7hFFKTgPTncDR7uhE3IQSf3tSuKfsptqSfgeuZVtY+XuDL/S5uitRipLVvSn5RHNbVa
+         M+ManUCxFli2/+0H/tFuAMLHnPqRmhQnsfNpB5MCy0WRghzkTWSQCGQBABNZS9njpeeI
+         QlJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709625220; x=1710230020;
+        d=1e100.net; s=20230601; t=1709625895; x=1710230695;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=B4SPQAzElDyq14vPvLj+BILESqGYT5m1eVTz0qWhhJM=;
-        b=m4tJ2T79Y+YqQ0CKgiSCKpleWOMULIKqXAQ6RT7o1+/J6sZRTyP9sK3aw3ZAnZmY9V
-         MDbZueIMRsPKe2FI6EaKBBjVhtOgst6lsTSJSUz8NkDjmORXc00kvDJI0QTI4KTCyX0j
-         OUfLrLUnN5ww9FNEgk5F4mAX5xfhG4zFgdFquQQEbW6z800g5WsghEQDoW1c9ljALwIz
-         nIWHvOl0SW+j41CX2+7b91eXaZTnTS4i8pk2wJqbM2uiQuQwe1M1SvBRsXZh+Q5MbAg2
-         reFodt1mN7Q3/w18jVAh2M+htPsphoYUsLXaq/rF8NDz/vcXguPIx7hFtn/3/bsOHaIm
-         RfxQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX0RQF2M61Rx89jV8QW3s78o+dDd+18YQSf0MvmeRFb7SMWgHgg6tfNdiWH5YNgd7U8jAXUYrOOajc8OUNhu+pRJQrUzADrGnjptw==
-X-Gm-Message-State: AOJu0YxHgfFSILaAU8GTRvYx4vsnxLoRBUpvDoASghDo1uT6f7hllnfs
-	uW6p1SL/zAIS+gpQyT2O8eE13u38ewuQYKc70jHot2v8kLtDKSJz8llWogMr3qU=
-X-Google-Smtp-Source: AGHT+IFeNSisyBNvSpi9O8TxVaLR/w4lX20QLwTGhN64glgx6zi3ujE3VfhVBZhTMyzCdySNTk3fKg==
-X-Received: by 2002:a05:6512:2c99:b0:513:3fa6:efe3 with SMTP id dw25-20020a0565122c9900b005133fa6efe3mr899103lfb.8.1709625220477;
-        Mon, 04 Mar 2024 23:53:40 -0800 (PST)
+        bh=z321qTKWtk15yH3t9Ej/fGlBYVjhkASl76YshRID/ZE=;
+        b=MVnc8UChpmn2XUDSpOqTH0Y78XMYdw295GBEJvQW9qszy54fWmBdk6+M3R5NLXKgjP
+         8kHPXgP6w0lj61uJmZfMy/hlFD7ASoecaFi7A5xC9Bvfsde42dQimjJHtshyacj4eKUr
+         MbFBIVPObF6jbcWlgyvhHwGdfsMyNMEVtfL0E5WV5jngUTAQh7UAQ0hyje4/Q5JLwAzb
+         YCjkSPCdPYZJaYtYJ8QL8GnXrRoqgj+ZWl9JeK7bi0OwqP473ErclLiauCCYMwKeNBzn
+         95A2FXT09xZKJkpkjTZF5c23xRiRRz6ovyTN6lnYax0RCeOvZ3pPXpnH2zQqsV2id4aQ
+         DGCA==
+X-Forwarded-Encrypted: i=1; AJvYcCXqZSwgLUqwX6D8OJMuAhbpMgP7ZJv5flNEa6YvAS4j8ZbIMi7w9/XiuDV/L7CVKb3WnV3Mf1EtVINDQMCveF1+LONAfixQz5I4/g==
+X-Gm-Message-State: AOJu0YxaNErCtP9geXfeVMqmEg0Lv2uO/pQptNvJcmv4tk4umcg4++Ez
+	exf1Q5iviO1OGfmVg/MAQ7fCLksE1lZQoVJr9l611kFkJAMCEFXfi9Rhf/iGM3I=
+X-Google-Smtp-Source: AGHT+IEJoL4rNXit1Wc4e/+msPDAwWm73giIGlMLyDcfuCOmEdIZnp7eAMTy35qiUMPZ+j61jG1zOw==
+X-Received: by 2002:a17:907:7677:b0:a44:7bbe:d770 with SMTP id kk23-20020a170907767700b00a447bbed770mr9366046ejc.7.1709625895391;
+        Tue, 05 Mar 2024 00:04:55 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id tj10-20020a170907c24a00b00a4452ed413asm5538593ejc.16.2024.03.04.23.53.38
+        by smtp.gmail.com with ESMTPSA id ld13-20020a170906f94d00b00a451ab833c5sm2635117ejb.21.2024.03.05.00.04.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Mar 2024 23:53:39 -0800 (PST)
-Message-ID: <6642af07-27ee-4364-92d2-89aab0014b01@linaro.org>
-Date: Tue, 5 Mar 2024 08:53:37 +0100
+        Tue, 05 Mar 2024 00:04:54 -0800 (PST)
+Message-ID: <f2c02ebe-47a5-4035-9bd5-c4c1f13e27a5@linaro.org>
+Date: Tue, 5 Mar 2024 09:04:52 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,24 +76,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/3] dt-bindings: display: simple: add support for
- Crystal Clear CMT430B19N00
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
 Content-Language: en-US
-To: =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?=
- <jeremie.dautheribes@bootlin.com>, Neil Armstrong
- <neil.armstrong@linaro.org>, Jessica Zhang <quic_jesszhan@quicinc.com>,
- Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+ Conor Dooley <conor@kernel.org>
+Cc: Marc Gonzalez <mgonzalez@freebox.fr>, Kalle Valo <kvalo@kernel.org>,
+ Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k
+ <ath10k@lists.infradead.org>, wireless <linux-wireless@vger.kernel.org>,
+ DT <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Yen-Mei Goh <yen-mei.goh@keysight.com>
-References: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
- <20240304160454.96977-3-jeremie.dautheribes@bootlin.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Pierre-Hugues Husson <phhusson@freebox.fr>,
+ Jami Kettunen <jamipkettunen@gmail.com>,
+ Jeffrey Hugo <quic_jhugo@quicinc.com>
+References: <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
+ <871q8wk7o3.fsf@kernel.org> <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr>
+ <87wmqoilzf.fsf@kernel.org> <20240229-ageless-primal-7a0544420949@spud>
+ <68a49964-7c05-4575-a4f3-35848c08fefc@freebox.fr>
+ <20240304-component-animator-e2ee0ab7574a@spud>
+ <CAA8EJpq5HQaO2E2Pd7yqUTsWyQ_pLDdyoWng8QmWTzYn5fv3PQ@mail.gmail.com>
+ <20240304-superior-vicinity-3dc6ca88141a@spud>
+ <CAA8EJprMG=fY-G-X03bm7MMhcua9axjw5ULZz0efgHxwzgrdVg@mail.gmail.com>
+ <20240304-privacy-registrar-93c48ab1b9c5@spud>
+ <CAA8EJppoc9Mu7s8bzXjW_NJDQ5go2+MvoFG_JCnwP-6hC1SRow@mail.gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -139,20 +145,52 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240304160454.96977-3-jeremie.dautheribes@bootlin.com>
+In-Reply-To: <CAA8EJppoc9Mu7s8bzXjW_NJDQ5go2+MvoFG_JCnwP-6hC1SRow@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 04/03/2024 17:04, Jérémie Dautheribes wrote:
-> Add Crystal Clear Technology CMT430B19N00 4.3" 480x272 TFT-LCD panel
-> compatible string.
+On 04/03/2024 21:21, Dmitry Baryshkov wrote:
+> On Mon, 4 Mar 2024 at 22:17, Conor Dooley <conor@kernel.org> wrote:
+>>
+>> On Mon, Mar 04, 2024 at 09:59:13PM +0200, Dmitry Baryshkov wrote:
+>>> On Mon, 4 Mar 2024 at 21:46, Conor Dooley <conor@kernel.org> wrote:
+>>>> On Mon, Mar 04, 2024 at 09:37:00PM +0200, Dmitry Baryshkov wrote:
+>>>>> On Mon, 4 Mar 2024 at 21:34, Conor Dooley <conor@kernel.org> wrote:
+>>>>>> On Mon, Mar 04, 2024 at 05:21:37PM +0100, Marc Gonzalez wrote:
+>>
+>>>>>>> Thus, anyone porting an msm8998 board to mainline would automatically
+>>>>>>> get the work-around, without having to hunt down the feature bit,
+>>>>>>> and tweak the FW files.
+>>>>>>
+>>>>>> How come the root node comes into this, don't you have a soc-specific
+>>>>>> compatible for the integration on this SoC?
+>>>>>
+>>>>> No. Ath10k uses WiFi SoC as an SoC designator rather than the main SoC.
+>>>>
+>>>> Suitability of either fix aside, can you explain this to me? Is the "WiFi
+>>>> SoC" accessible from the "main SoC" at a regular MMIO address? The
+>>>> "ath10k" compatible says it is SDIO-based & the other two compatibles
+>>>> seem to be MMIO.
+>>>
+>>> Yes, this is correct. MSM8996 uses PCI to access WiFi chip, MSM8998 uses MMIO.
+>>
+>> Thanks.
+>>
+>> A SoC-specific compatible sounds like it would be suitable in that case
+>> then, to deal with integration quirks for that specific SoC? I usually
+>> leave the ins and outs of these qcom SoCs to Krzysztof, but I can't help
+>> but wanna know what the justification is here for not using one.
 > 
-> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
-> ---
->  .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
->  1 file changed, 2 insertions(+)
+> We can probably start with "historically established" here. From the
+> hardware point of view msm8998, sdm845 and several other chipsets use
+> a variant of the same wcn3990 WiFi+BT chip. The actual issue is in the
+> DSP firmware, so it can be handled via the firmware-related means.
+> 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+The WiFi+BT chips are separate products, so they are not usually
+considered part of the SoC, even though they can be integrated into the
+SoC like here. I guess correct approach would be to add SoC-specific
+compatible for them.
 
 Best regards,
 Krzysztof
