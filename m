@@ -1,57 +1,61 @@
-Return-Path: <devicetree+bounces-48461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F95E87224B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:01:51 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DEEE872250
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:02:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF61F2833EF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:01:49 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C266DB23480
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:02:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BEBE786AD4;
-	Tue,  5 Mar 2024 15:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4F4126F14;
+	Tue,  5 Mar 2024 15:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mKUQi8RM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pn9a+Qkl"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 97E8D1DFF8;
-	Tue,  5 Mar 2024 15:01:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DE251DFF8;
+	Tue,  5 Mar 2024 15:02:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709650907; cv=none; b=r1Hn/xkmLg0DJ9Z6RLBKaECW6np075TBGx/q1JyogdYV5LQ4AZLjkwRAr85KBlilyCj0wN9bDZ15iLgf8MLEPdH3k/s1KpBLYZhDDOgErsyScrviUGu7uHG9r/knns6Xfcpit+W+k7PaZxrpTxggU727DLj/Wmim3DBI8N2ZpUQ=
+	t=1709650921; cv=none; b=Wzuhu9rBOzNqmkZpFRkBUaVo0ha6pmgFYi0R3sLTEm2k7LeHtZRrdCaVDe147bOHC6rL2o+md3mTo7y9y0Ob/zFMZdGf8oHemIi1NwOFYC4b+IZKZ+Z6Jyx66M5NXEO6wiPM+YjNNBJ9mFOhD+lSxONJREZOb4e3yWVLtd3wjC4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709650907; c=relaxed/simple;
-	bh=e87NwRJGWy0SVGjs+bNh2DbVpGF51XuuFEqWeG9BeKo=;
+	s=arc-20240116; t=1709650921; c=relaxed/simple;
+	bh=EOcdUGttj2pgJNSAtD+H2tt3Qg/SJJYakNmgC0yArb0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=KdOV/+qHVnmp3HIyIvDH8g8BdynoNYjG2qB2chR0BRZffR2L25TJSVoSdkPUwPtNRnINeNNPVlHxoKYAgTFDmJJfJgW2bwJxgFwEcK3J3dxPa2wZEwVkiRGOe8sVNLJ4c7ED4NvECQ5ntJLr4+yuut2lqx6FMw6VT5rjg1PUFtE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mKUQi8RM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 09597C433F1;
-	Tue,  5 Mar 2024 15:01:46 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ba5h+NMNrb8hGiR/oftmiM/3iuc+yBR7yz0As9r0x8CQocdavkIcj8KoenBjpb9t5qQjQkFecyIevu5U1PWz15RWbRHeTPMwTGYGDoClQxV1SjDiP4fChnh7QiMSR2xA5PBX6aocX70UwUpC2TOfj8ErlD3gdjEj3uTiVhs7jTA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pn9a+Qkl; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE193C433F1;
+	Tue,  5 Mar 2024 15:02:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709650907;
-	bh=e87NwRJGWy0SVGjs+bNh2DbVpGF51XuuFEqWeG9BeKo=;
+	s=k20201202; t=1709650920;
+	bh=EOcdUGttj2pgJNSAtD+H2tt3Qg/SJJYakNmgC0yArb0=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mKUQi8RMxreckjl7MgMe54nOuDMdTJZGV7nvBwxAGQG18udU8CVCbM0nMauXmaLnN
-	 4JGkuxxyUGlsZjmzAHXK6jxyVSVflj1VZDT3mv/9qGCaEMUeCzJUrexa/fS0CZk2uW
-	 rNCXVftE5SXJ1zkbrc+q+ajQSg4xBBuQZrM1mLfpb0C60Jn6yE/Obe0m5STq83DkVr
-	 k4x82jSgo4fNjbd3txnP5esqQFRLm0dHo2GaJQ1MmGVR8C/6HrBUQs9oJDun4S1mTv
-	 o1ydWPDMIXS08/VIILQpT3914RMxVtr0SNqYS9o7Qvypka535DAdnI+gtgmudjJkQL
-	 3IrkPaxqzzimw==
-Date: Tue, 5 Mar 2024 09:01:45 -0600
+	b=pn9a+Qkl5P1TvXEHFckUSQdDz7QYx0j2N3jzMrZomlUrXn5AsHBt85zRUTRYJVZdj
+	 EO4TgOzvtmGztZrvL0XRtuUjqqFtbsvJO4smPnGu8GtIsCwsIUR3q8SiW9/dGiOADI
+	 /np9F3t8kHYTSVJrJIOHGTFsYM7EiKagUgFCQJUk3ULiY/LJXbqKjmt1+ymXjv37Mj
+	 9/aQCL5TK98jSJ71T+Ck+A60v6BqO0yOpUdXmoG01xU9aInEMU2+rso/m/ESA330b+
+	 IIJbzWdodclTqKKwRIde5GFpeiO65p+5xs39wt4r/h7d+z0kboA1m7ztOJxIXOkLAQ
+	 OzZFEADT8awbw==
+Date: Tue, 5 Mar 2024 09:01:58 -0600
 From: Rob Herring <robh@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-rtc@vger.kernel.org,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH] dt-bindings: rtc: abx80x: Improve checks on trickle
- charger constraints
-Message-ID: <170965090456.3350146.17689695719804122950.robh@kernel.org>
-References: <20240305080944.17991-1-laurent.pinchart@ideasonboard.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
+	Sergey Shtylyov <s.shtylyov@omp.ru>,
+	Eric Dumazet <edumazet@google.com>,
+	linux-renesas-soc@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor+dt@kernel.org>,
+	Thanh Quan <thanh.quan.xn@renesas.com>, devicetree@vger.kernel.org,
+	Sergei Shtylyov <sergei.shtylyov@gmail.com>
+Subject: Re: [PATCH net-next] dt-bindings: net: renesas,etheravb: Add support
+ for R-Car V4M
+Message-ID: <170965091827.3351332.2111894188384464471.robh@kernel.org>
+References: <0212b57ba1005bb9b5a922f8f25cc67a7bc15f30.1709631152.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -60,24 +64,22 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240305080944.17991-1-laurent.pinchart@ideasonboard.com>
+In-Reply-To: <0212b57ba1005bb9b5a922f8f25cc67a7bc15f30.1709631152.git.geert+renesas@glider.be>
 
 
-On Tue, 05 Mar 2024 10:09:44 +0200, Laurent Pinchart wrote:
-> The abracon,tc-diode and abracon,tc-resistor DT properties are only
-> valid for the ABx0804 and ABx0805. Furthermore, they must both be
-> present, or neither of them must be specified. Add rules to check this.
+On Tue, 05 Mar 2024 10:37:18 +0100, Geert Uytterhoeven wrote:
+> From: Thanh Quan <thanh.quan.xn@renesas.com>
 > 
-> The generic abracon,abx08x compatible string doesn't indicate which chip
-> variant is used, but performs auto-detection at runtime. It must this
-> also allow the two above properties.
+> Document support for the Renesas Ethernet AVB (EtherAVB-IF) block in the
+> Renesas R-Car V4M (R8A779H0) SoC.
 > 
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Thanh Quan <thanh.quan.xn@renesas.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  .../bindings/rtc/abracon,abx80x.yaml          | 25 ++++++++++++++++---
->  1 file changed, 22 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
 
