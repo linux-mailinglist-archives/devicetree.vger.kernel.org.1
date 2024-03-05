@@ -1,198 +1,233 @@
-Return-Path: <devicetree+bounces-48344-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48345-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9687187178D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:05:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20177871792
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:07:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 192A7B20995
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:05:04 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 945BCB211FF
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:07:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA5F37EEF8;
-	Tue,  5 Mar 2024 08:04:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52F4F7EEE5;
+	Tue,  5 Mar 2024 08:07:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="yX9x5Av2"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="BgPtNp5r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+Received: from mail-ej1-f53.google.com (mail-ej1-f53.google.com [209.85.218.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D8997EEED
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 08:04:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 649A86025A;
+	Tue,  5 Mar 2024 08:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709625898; cv=none; b=S3yvegQMuNkY4wIYhG4Jw7MINYmCf5AfQ7NacxcVqYCuZQ+o4HO+9eXTO0b7yyZYCr3LnUabNWbORRRhR5Yk7ehXi04s/d+trWw9rGk2xJxpVKvAs+wqdr+gXAtkBFhOQgU7R7jf+1iGzSfmZG94mrI+ab0ecQ0+nteyppiE9E8=
+	t=1709626024; cv=none; b=bxWvYt9fdADChza5odBqUh3T8bma7C8ifVhrTfBgOwiFLCIWqnz946JyLVjcHtCxNs2LTEMA9xI/4ebv7nC/BFB52k9D64AB4ji7BhSDqqZSpc3loHglpk/ndYUogvmsMOFNAALKdKD5ZKlyhRH++svAXcHbP9J92P0cf7MgNMg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709625898; c=relaxed/simple;
-	bh=8XsLYUrP2htFSti77UN9KCuakQBBAP/QjFIhg07svrQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=F7WerYulGB8Tpmd1k4lfbPLOTu0it8R09ywUhoNR7usw6gFhQvvjo7aMpst7V6NbBbTe3Tt0be/YE3z6ZIDMQcL4Z1k19WavLp/Au2wBg94wX4cQincpqdq364jqL9m1gbLhDxhHVof+1iDXC9bqdDiodpTCyCtaqnCrFOPv9tg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=yX9x5Av2; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a44cdb2d3a6so396823066b.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 00:04:56 -0800 (PST)
+	s=arc-20240116; t=1709626024; c=relaxed/simple;
+	bh=DYtaxA9zcAmNi+liq/6oCQmZryeCBKRANOVUcsNQUp8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CO8JHahdO8fjy2AaEAGH8rWZp2yh5U32YbaJpl18VBpoBbjUfvE2omeakWpeXCtdYRBLfG8hezGoLe2BtG3dgvniHA1vnSYS8K1snFUNP7QGbSQ9Efeedgk3Aj5Ahd/pO6zfJJgx014es1OST8PxW1UY2Z3+MgcKVzxXws22fi0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=BgPtNp5r; arc=none smtp.client-ip=209.85.218.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f53.google.com with SMTP id a640c23a62f3a-a4515f8e13cso250172866b.3;
+        Tue, 05 Mar 2024 00:07:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709625895; x=1710230695; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z321qTKWtk15yH3t9Ej/fGlBYVjhkASl76YshRID/ZE=;
-        b=yX9x5Av2Ox4HYhnfUeYC9osJP2kX9SgUo22fS6VOgqfu9rwfiW2axVQU9/lK9MbfPN
-         zlYAG/royXBHWrONBi2iqUXztZ+YuIU0LGIjgcmSguRqkfDIowyp+n1HKobjB/LJqqDe
-         HO8KazqNl5FbFf4noXGNY7n7ykfNV1QfY+1GgPzdDk8+s9+qVMcMwe2tBJIgKR0Og9dj
-         n7hFFKTgPTncDR7uhE3IQSf3tSuKfsptqSfgeuZVtY+XuDL/S5uitRipLVvSn5RHNbVa
-         M+ManUCxFli2/+0H/tFuAMLHnPqRmhQnsfNpB5MCy0WRghzkTWSQCGQBABNZS9njpeeI
-         QlJQ==
+        d=gmail.com; s=20230601; t=1709626021; x=1710230821; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0FjEV1yFnENl5ezsytX07FAriwjPDghCBMypC8n+cEQ=;
+        b=BgPtNp5r8AAhvYlwYnU1JRENWIWt97y0o9s1ZtFE/eBplSmlZpxVbH5xhs9cUwD4sr
+         FWKYqd0xx2j3p7dZ06mM7Mld9cGmRhL+KrpLNHzpciGoh2SVN6ulUmRSFbtJ3He4Tya9
+         p5pS1yyIFWxfH0kGbjuU1dhGsThDNehJOfGLz4/OKaMO7bpVx2nyvz48/vutw0GDIy2o
+         zmA+ZEMKyZ7FM3Z34ALrH07vHm4vpZ/ho81NAGkIQLMmPmG+OpNde9FwvZ6TTSmq0GZV
+         gaWUpb4lTAxV9Pbnr7kd4C9PjGtfkM6k0/CSKRoKNOBu5f4eISAQ23Llz5IUocxvVQgZ
+         Hy2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709625895; x=1710230695;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z321qTKWtk15yH3t9Ej/fGlBYVjhkASl76YshRID/ZE=;
-        b=MVnc8UChpmn2XUDSpOqTH0Y78XMYdw295GBEJvQW9qszy54fWmBdk6+M3R5NLXKgjP
-         8kHPXgP6w0lj61uJmZfMy/hlFD7ASoecaFi7A5xC9Bvfsde42dQimjJHtshyacj4eKUr
-         MbFBIVPObF6jbcWlgyvhHwGdfsMyNMEVtfL0E5WV5jngUTAQh7UAQ0hyje4/Q5JLwAzb
-         YCjkSPCdPYZJaYtYJ8QL8GnXrRoqgj+ZWl9JeK7bi0OwqP473ErclLiauCCYMwKeNBzn
-         95A2FXT09xZKJkpkjTZF5c23xRiRRz6ovyTN6lnYax0RCeOvZ3pPXpnH2zQqsV2id4aQ
-         DGCA==
-X-Forwarded-Encrypted: i=1; AJvYcCXqZSwgLUqwX6D8OJMuAhbpMgP7ZJv5flNEa6YvAS4j8ZbIMi7w9/XiuDV/L7CVKb3WnV3Mf1EtVINDQMCveF1+LONAfixQz5I4/g==
-X-Gm-Message-State: AOJu0YxaNErCtP9geXfeVMqmEg0Lv2uO/pQptNvJcmv4tk4umcg4++Ez
-	exf1Q5iviO1OGfmVg/MAQ7fCLksE1lZQoVJr9l611kFkJAMCEFXfi9Rhf/iGM3I=
-X-Google-Smtp-Source: AGHT+IEJoL4rNXit1Wc4e/+msPDAwWm73giIGlMLyDcfuCOmEdIZnp7eAMTy35qiUMPZ+j61jG1zOw==
-X-Received: by 2002:a17:907:7677:b0:a44:7bbe:d770 with SMTP id kk23-20020a170907767700b00a447bbed770mr9366046ejc.7.1709625895391;
-        Tue, 05 Mar 2024 00:04:55 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id ld13-20020a170906f94d00b00a451ab833c5sm2635117ejb.21.2024.03.05.00.04.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Mar 2024 00:04:54 -0800 (PST)
-Message-ID: <f2c02ebe-47a5-4035-9bd5-c4c1f13e27a5@linaro.org>
-Date: Tue, 5 Mar 2024 09:04:52 +0100
+        d=1e100.net; s=20230601; t=1709626021; x=1710230821;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0FjEV1yFnENl5ezsytX07FAriwjPDghCBMypC8n+cEQ=;
+        b=DDkTyb3NAK6e93wmTt0ssMfSaYI1Q/BGxHdDWDwAXVe9P6RpX8L5/Z7vtimPxq0NDD
+         w4PcgDgS/gcOIY6eDxf9Ps/LDBkvyJeR79V34TVgZIWWU8zQkB8DffmDQqZyZ97XTAHE
+         QAoLRdGcenu1TQm/+s22YgqXnn2GzElv6xvKKCclZr1bsjuNY430t2E/nf9DoCoJjB8E
+         T59NYfbG13m7ZuSzrgqygtRpQI2bUqpKOJvzuuAzVMvcAkK9beVTpORUlPJu2RaEPzgX
+         1OHSefUdq+wjOGCd3Tmq6P+mEu4gMuhfos7SKCDlIQQl/Dmyx5DOF77qj1rzXveyllju
+         O0Nw==
+X-Forwarded-Encrypted: i=1; AJvYcCUqZvrMyQxs0cGRnvDOEBvEqkIX6R2vAuRDktP7FfA4CqMIpS9vXintmNAvENPP3EvgS8a8F3tDVFTt+3/rqrV7u9Xj38Bk1OxlYJMfS3Ad7QWF8xBxYfND7IuTO7r/0OAh3pfw8J5jjA==
+X-Gm-Message-State: AOJu0Yw1H01Q9alO5DRVw0CVIifY4lT90l9g7+uS4l5pBkBruwBqO429
+	Y5MqePCKFmc1LUKPzT4RT6wpOigG9Sh1hV554b7eJkYtA+NOWnwqj24F05p4NcCpmwQgfojNQma
+	5VqTYAFmMYM2EVO3EFbVl9sRgJCsnhcJYwmgDWQ==
+X-Google-Smtp-Source: AGHT+IGTD6AeTYnUSeTe7bxreiZpx7VX0g0xxZ5iFIGWUxPZP19fJcj1qLRa19PUeup6SLu0Wz3dPcjRvDf5R5OcatE=
+X-Received: by 2002:a17:906:cc93:b0:a43:d473:685 with SMTP id
+ oq19-20020a170906cc9300b00a43d4730685mr7793868ejb.38.1709626020356; Tue, 05
+ Mar 2024 00:07:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Conor Dooley <conor@kernel.org>
-Cc: Marc Gonzalez <mgonzalez@freebox.fr>, Kalle Valo <kvalo@kernel.org>,
- Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k
- <ath10k@lists.infradead.org>, wireless <linux-wireless@vger.kernel.org>,
- DT <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>
-References: <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
- <871q8wk7o3.fsf@kernel.org> <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr>
- <87wmqoilzf.fsf@kernel.org> <20240229-ageless-primal-7a0544420949@spud>
- <68a49964-7c05-4575-a4f3-35848c08fefc@freebox.fr>
- <20240304-component-animator-e2ee0ab7574a@spud>
- <CAA8EJpq5HQaO2E2Pd7yqUTsWyQ_pLDdyoWng8QmWTzYn5fv3PQ@mail.gmail.com>
- <20240304-superior-vicinity-3dc6ca88141a@spud>
- <CAA8EJprMG=fY-G-X03bm7MMhcua9axjw5ULZz0efgHxwzgrdVg@mail.gmail.com>
- <20240304-privacy-registrar-93c48ab1b9c5@spud>
- <CAA8EJppoc9Mu7s8bzXjW_NJDQ5go2+MvoFG_JCnwP-6hC1SRow@mail.gmail.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAA8EJppoc9Mu7s8bzXjW_NJDQ5go2+MvoFG_JCnwP-6hC1SRow@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com> <j3krazypdc7gsvnp4kcocaftxsbjrfhj6nr2kf2cieo4bjxbv7@bqdfbirk5tei>
+In-Reply-To: <j3krazypdc7gsvnp4kcocaftxsbjrfhj6nr2kf2cieo4bjxbv7@bqdfbirk5tei>
+From: Alexey Charkov <alchark@gmail.com>
+Date: Tue, 5 Mar 2024 12:06:48 +0400
+Message-ID: <CABjd4Yxs9b0XDXYfdnmT08BQnsJLonRy4X-g73J67yeGw3xL+w@mail.gmail.com>
+Subject: Re: [PATCH v3 0/5] RK3588 and Rock 5B dts additions: thermal, OPP and fan
+To: Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc: Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano <daniel.lezcano@linaro.org>, 
+	Dragan Simic <dsimic@manjaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, 
+	Chen-Yu Tsai <wens@kernel.org>, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+	linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 04/03/2024 21:21, Dmitry Baryshkov wrote:
-> On Mon, 4 Mar 2024 at 22:17, Conor Dooley <conor@kernel.org> wrote:
->>
->> On Mon, Mar 04, 2024 at 09:59:13PM +0200, Dmitry Baryshkov wrote:
->>> On Mon, 4 Mar 2024 at 21:46, Conor Dooley <conor@kernel.org> wrote:
->>>> On Mon, Mar 04, 2024 at 09:37:00PM +0200, Dmitry Baryshkov wrote:
->>>>> On Mon, 4 Mar 2024 at 21:34, Conor Dooley <conor@kernel.org> wrote:
->>>>>> On Mon, Mar 04, 2024 at 05:21:37PM +0100, Marc Gonzalez wrote:
->>
->>>>>>> Thus, anyone porting an msm8998 board to mainline would automatically
->>>>>>> get the work-around, without having to hunt down the feature bit,
->>>>>>> and tweak the FW files.
->>>>>>
->>>>>> How come the root node comes into this, don't you have a soc-specific
->>>>>> compatible for the integration on this SoC?
->>>>>
->>>>> No. Ath10k uses WiFi SoC as an SoC designator rather than the main SoC.
->>>>
->>>> Suitability of either fix aside, can you explain this to me? Is the "WiFi
->>>> SoC" accessible from the "main SoC" at a regular MMIO address? The
->>>> "ath10k" compatible says it is SDIO-based & the other two compatibles
->>>> seem to be MMIO.
->>>
->>> Yes, this is correct. MSM8996 uses PCI to access WiFi chip, MSM8998 uses MMIO.
->>
->> Thanks.
->>
->> A SoC-specific compatible sounds like it would be suitable in that case
->> then, to deal with integration quirks for that specific SoC? I usually
->> leave the ins and outs of these qcom SoCs to Krzysztof, but I can't help
->> but wanna know what the justification is here for not using one.
-> 
-> We can probably start with "historically established" here. From the
-> hardware point of view msm8998, sdm845 and several other chipsets use
-> a variant of the same wcn3990 WiFi+BT chip. The actual issue is in the
-> DSP firmware, so it can be handled via the firmware-related means.
-> 
+Hi Sebastian!
 
-The WiFi+BT chips are separate products, so they are not usually
-considered part of the SoC, even though they can be integrated into the
-SoC like here. I guess correct approach would be to add SoC-specific
-compatible for them.
+On Mon, Mar 4, 2024 at 9:51=E2=80=AFPM Sebastian Reichel
+<sebastian.reichel@collabora.com> wrote:
+>
+> Hi,
+>
+> On Thu, Feb 29, 2024 at 11:26:31PM +0400, Alexey Charkov wrote:
+> > This enables thermal monitoring and CPU DVFS on RK3588(s), as well as
+> > active cooling on Radxa Rock 5B via the provided PWM fan.
+> >
+> > Some RK3588 boards use separate regulators to supply CPUs and their
+> > respective memory interfaces, so this is handled by coupling those
+> > regulators in affected boards' device trees to ensure that their
+> > voltage is adjusted in step.
+> >
+> > In this revision of the series I chose to enable TSADC for all boards
+> > at .dtsi level, because:
+> >  - The defaults already in .dtsi should work for all users, given that
+> >    the CRU based resets don't need any out-of-chip components, and
+> >    the CRU vs. PMIC reset is pretty much the only thing a board might
+> >    have to configure / override there
+> >  - The boards that have TSADC_SHUT signal wired to the PMIC reset line
+> >    can still choose to override the reset logic in their .dts. Or stay
+> >    with CRU based resets, as downstream kernels do anyway
+> >  - The on-by-default approach helps ensure thermal protections are in
+> >    place (emergency reset and throttling) for any board even with a
+> >    rudimentary .dts, and thus lets us introduce CPU DVFS with better
+> >    peace of mind
+> >
+> > Fan control on Rock 5B has been split into two intervals: let it spin
+> > at the minimum cooling state between 55C and 65C, and then accelerate
+> > if the system crosses the 65C mark - thanks to Dragan for suggesting.
+> > This lets some cooling setups with beefier heatsinks and/or larger
+> > fan fins to stay in the quietest non-zero fan state while still
+> > gaining potential benefits from the airflow it generates, and
+> > possibly avoiding noisy speeds altogether for some workloads.
+> >
+> > OPPs help actually scale CPU frequencies up and down for both cooling
+> > and performance - tested on Rock 5B under varied loads. I've split
+> > the patch into two parts: the first containing those OPPs that seem
+> > to be no-regret with general consensus during v1 review [2], while
+> > the second contains OPPs that cause frequency reductions without
+> > accompanying decrease in CPU voltage. There seems to be a slight
+> > performance gain in some workload scenarios when using these, but
+> > previous discussion was inconclusive as to whether they should be
+> > included or not. Having them as separate patches enables easier
+> > comparison and partial reversion if people want to test it under
+> > their workloads, and also enables the first 'no-regret' part to be
+> > merged to -next while the jury is still out on the second one.
+> >
+> > [1] https://lore.kernel.org/linux-rockchip/1824717.EqSB1tO5pr@bagend/T/=
+#ma2ab949da2235a8e759eab22155fb2bc397d8aea
+> > [2] https://lore.kernel.org/linux-rockchip/CABjd4YxqarUCbZ-a2XLe3TWJ-qj=
+phGkyq=3DwDnctnEhdoSdPPpw@mail.gmail.com/T/#m49d2b94e773f5b532a0bb5d3d76647=
+99ff28cc2c
+> >
+> > Signed-off-by: Alexey Charkov <alchark@gmail.com>
+> > ---
+> > Changes in v3:
+> > - Added regulator coupling for EVB1 and QuartzPro64
+> > - Enabled the TSADC for all boards in .dtsi, not just Rock 5B (thanks C=
+henYu)
+> > - Added comments regarding two passive cooling trips in each zone (than=
+ks Dragan)
+> > - Fixed active cooling map numbering for Radxa Rock 5B (thanks Dragan)
+> > - Dropped Daniel's Acked-by tag from the Rock 5B fan patch, as there's =
+been quite some
+> >   churn there since the version he acknowledged
+> > - Link to v2: https://lore.kernel.org/r/20240130-rk-dts-additions-v2-0-=
+c6222c4c78df@gmail.com
+> >
+> > Changes in v2:
+> > - Dropped the rfkill patch which Heiko has already applied
+> > - Set higher 'polling-delay-passive' (100 instead of 20)
+> > - Name all cooling maps starting from map0 in each respective zone
+> > - Drop 'contribution' properties from passive cooling maps
+> > - Link to v1: https://lore.kernel.org/r/20240125-rk-dts-additions-v1-0-=
+5879275db36f@gmail.com
+> >
+> > ---
+> > Alexey Charkov (5):
+> >       arm64: dts: rockchip: enable built-in thermal monitoring on RK358=
+8
+> >       arm64: dts: rockchip: enable automatic active cooling on Rock 5B
+> >       arm64: dts: rockchip: Add CPU/memory regulator coupling for RK358=
+8
+> >       arm64: dts: rockchip: Add OPP data for CPU cores on RK3588
+> >       arm64: dts: rockchip: Add further granularity in RK3588 CPU OPPs
+> >
+> >  arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts   |  12 +
+> >  .../arm64/boot/dts/rockchip/rk3588-quartzpro64.dts |  12 +
+> >  arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts    |  30 +-
+> >  arch/arm64/boot/dts/rockchip/rk3588s.dtsi          | 385 +++++++++++++=
++++++++-
+> >  4 files changed, 437 insertions(+), 2 deletions(-)
+>
+> I'm too busy to have a detailed review of this series right now, but
+> I pushed it to our CI and it results in a board reset at boot time:
+>
+> https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/jo=
+bs/300950
+>
+> I also pushed just the first three patches (i.e. without OPP /
+> cpufreq) and that boots fine:
+>
+> https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/jo=
+bs/300953
+
+Thank you for testing these! I've noticed in the boot log that the CI
+machine uses some u-boot 2023.07 - is that a downstream one? Any
+chance to compare it to 2023.11 or 2024.01 from your (Collabora)
+integration tree?
+
+I use 2023.11 from your integration tree, with a binary bl31, and I'm
+not getting those resets even under prolonged heavy load (I rebuild
+Chromium with 8 concurrent compilation jobs as the stress test -
+that's 14 hours of heavy CPU, memory and IO use). Would be interesting
+to understand if it's just a 'lucky' SoC specimen on my side, or if
+there is some dark magic happening differently on my machine vs. your
+CI machine.
+
+Thinking that maybe if your CI machine uses a downstream u-boot it
+might be leaving some extra hardware running (PVTM?) which might do
+weird stuff when TSADC/clocks/voltages get readjusted by the generic
+cpufreq driver?..
+
+> Note, that OPP / cpufreq works on the same boards in the CI when
+> using the ugly-and-not-for-upstream cpufreq driver:
+>
+> https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/co=
+mmit/9c90c5032743a0419bf3fd2f914a24fd53101acd
+>
+> My best guess right now is, that this is related to the generic
+> driver obviously not updating the GRF read margin registers.
+
+If it was about memory read margins I believe I would have been
+unlikely to get my machine to work reliably under heavy load with the
+default ones, but who knows...
 
 Best regards,
-Krzysztof
-
+Alexey
 
