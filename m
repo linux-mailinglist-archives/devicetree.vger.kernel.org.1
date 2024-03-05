@@ -1,168 +1,220 @@
-Return-Path: <devicetree+bounces-48273-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48274-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C501E8713F0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 03:54:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C04A5871400
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 03:58:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 024111C20B80
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 02:54:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 77212286B4B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 02:58:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B2528E0D;
-	Tue,  5 Mar 2024 02:54:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D7B2E2943D;
+	Tue,  5 Mar 2024 02:58:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fMfuIuLh"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="jav/B1Mr"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01olkn2101.outbound.protection.outlook.com [40.92.107.101])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC3F618032;
-	Tue,  5 Mar 2024 02:54:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709607258; cv=none; b=qVG5ccqlwtpKDjf/apauX5knK5zHcNyoMud0m7owZYvUcdNqloGNzRMmxRhZKcNwxltVXzDiavHNKsDsr6mFUIX8khI4ZQrnA+qi80S+DVFRyx+ASfoyImETExTHbVamqHSP/NtP/XLhB1qupYQnIiyhsZ9KeqNruAXhtbJna7Q=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709607258; c=relaxed/simple;
-	bh=0l3i+ZuBx54RtUp/u+8hZA58rzz9NPlBcK/F0+rS7GE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=H2aPUEpgR9RH3J/OdauBROEzdM3JEB+IjiYkFIku4vh7E64iGhfg/QxW3g668vfEzN+DangAK7oTnW9y+vkFoKVqLer+xl2ktqvCXqakWteJb20PpeheoLRx2xbH9iaQMi7a9spdQUWA43U8CeffgasZncZrlY12+O3eoTJ/v+c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fMfuIuLh; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4251LteJ002196;
-	Tue, 5 Mar 2024 02:54:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
-	from:to:cc:subject:date:message-id:mime-version
-	:content-transfer-encoding; s=qcppdkim1; bh=js4Iwy77gk0F5mH6zVca
-	mbeIogD/xjaYBtWsOnDftLM=; b=fMfuIuLhntGLFAZYg4uIuOv9htteY4D2+EB+
-	4dcEa1+JKNiCf3Bg3O6b+/5Z56d9oaBvbhHHM0BMC60buAtiLf0R0F7fg17Pe/KP
-	+9QFNl7IpUb923Dm/z9dngQmtigIjxRG9aFE97Gid4Ri0MPZGTGeKHnTCo4ojVvm
-	VjDetCJgRcmWxS/jI7Qa3VPlpA89qIIzDGi9BowEGH9FfquJ/1KIqP3YdOUd2ykM
-	9N+Qnvmw2+bCrpkPZnUmO+w5UBPU2IdF4MJda0PmA0FduQZ6GsJyNCv6I2AZIElG
-	z6jidGJ/l5nr1+ICdJzG9HMyotR4uP5RVF7Dsd9ApEh5ZSCi7g==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wnqwhra0p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 05 Mar 2024 02:54:12 +0000 (GMT)
-Received: from pps.filterd (NALASPPMTA05.qualcomm.com [127.0.0.1])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 4252lWqf006692;
-	Tue, 5 Mar 2024 02:54:10 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by NALASPPMTA05.qualcomm.com (PPS) with ESMTPS id 3wnmt32c8e-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 05 Mar 2024 02:54:10 +0000
-Received: from NALASPPMTA05.qualcomm.com (NALASPPMTA05.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4252sAos013875;
-	Tue, 5 Mar 2024 02:54:10 GMT
-Received: from hu-devc-lv-u22-c.qualcomm.com (hu-qianyu-lv.qualcomm.com [10.81.25.114])
-	by NALASPPMTA05.qualcomm.com (PPS) with ESMTPS id 4252sAGc013874
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 05 Mar 2024 02:54:10 +0000
-Received: by hu-devc-lv-u22-c.qualcomm.com (Postfix, from userid 4098150)
-	id 4E6975CA; Mon,  4 Mar 2024 18:54:10 -0800 (PST)
-From: Qiang Yu <qianyu@qti.qualcomm.com>
-To: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, quic_cang@quicinc.com,
-        quic_mrana@quicinc.com, quic_qianyu@quicinc.com
-Subject: [PATCH v3] arm64: dts: qcom: sm8550: Increase supported MSI interrupts
-Date: Mon,  4 Mar 2024 18:54:08 -0800
-Message-Id: <20240305025408.3380561-1-qianyu@qti.qualcomm.com>
-X-Mailer: git-send-email 2.34.1
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E184238FB2;
+	Tue,  5 Mar 2024 02:58:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.107.101
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709607519; cv=fail; b=m9DD0jigFV/i0FlPlyVoZDG1HYhVxiawjk7Z0QXTeqTob1Uj5O+NORwGMa2hg+w6pAFdfnmBx5Y9How6LHArW9BCBsKPWgcJECmai5w2SVUhhYjtAQN8HYr6YBdXsXWr64FBV8qJhXunPdsDXV5McZJ+bMOE5YKI9/A/QIqWuT0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709607519; c=relaxed/simple;
+	bh=cyP5mt7XUx0g4jkYiXkiW0J6QTPiZyKUS0Kz2lR+wZs=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=pvBc91McdZwAbLRzyJ18VHmBKCWoXt8iJgH22cGhN9feS3IsSgTLZWu8RPFpz2ExQnsDHCFdnvK7qoR79BcL46fUmAK9aeO3IZ4mPz/8PZ6fOGbEduTbfF//s3aQvJ8UeipRQ1+7jQCFGK/O/Djh2j7rJz67rsesPOkjLNG+QJY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=jav/B1Mr; arc=fail smtp.client-ip=40.92.107.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KkbPs8VUiZQNlnxFdKVgX2pCZClrsrEDRd87KppOjsEBao2bW4KUN5FMFRMViOrDeN1zxvcU6FOIhJRr63dDssDFs/H16O3gYX6l1eKQVhcAmMnfBeEeu7nkH0aKJtfIUeTXCqsYOzXiCwMvZbygb0SMPSTvHge7XkgDs9zHkCzvKWjvCZBHnF2rsaV8gs3WovHBsaYcWVCvxY1IEmb44HwZix9dL+a/Zm49j+emih6wYceKB3S92i6d7jjQW4LJmGyWy7dP6NViLhC9dXLDuSShNfagZ+V4XKFxc/ZvHlnEg0rtaWoxmwh80u+DLE7CCykBJWGdCzVKLfuPi0XIdw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=OHoVZ8OqvY42DuUarf6SVfurmoTdjFUVZbpc4lPB/UM=;
+ b=DIPQjs1ODP9/MhCTTwBXRXLc7gD/Arcm7Bk76z32eDo+90l31CyuYn19RR6kKP42cDhXYqn8IFgBQCWxx9qCLWs7g+UW4W0uSJTqKh7USYPqzaqzodVBAwBE5cphxuj9zJ3DIwajMarqbi6LW3dAjsS5wHmcZtYzXch1qUdNSCyuGwfIrt93v2tm1/yIRmUkN46gh2ephYD6nKaNFdshF4n/8OBH6243HUp4cWWSdDhUMqs/V5HwUiTaEeT/pgubXgnoFGvYhZVM2zZkJDtvmVr3HoYbakOAGHuxpUEpsNVeJ9VkN8NYzzz+Ujzs9pZnbJJpAUoDRHmbQSKip7m90w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OHoVZ8OqvY42DuUarf6SVfurmoTdjFUVZbpc4lPB/UM=;
+ b=jav/B1Mrm4wi8azt6wCXHm/DkOxEwGoOrrhkF3+kKwnVQ6QkUa+oD5tk3YOj0SKn2G0Nq0L3Qy9YANVJcIyIotiEmcKzy7z6cg9NjO2nQ5fk/xRVBu2nUegrAwao280rsq044/gNSiRd9fZiBNaYYtwJcDynvcT75USH59dFJrsSRPPRSrFVBhvF8VqCsPoPiInQkn2S8vvPqEllEBiy/+xmc9f4gfjz6I3rFpsZHRxj1dVb+Jwd8Iu0Cx2gmVzNI9AI5bx7Us/FOEa/Fu7O5E6csIpssF8rMQ8BFTJJuAevljp41ejJ6mIeDyI9PjVbmG06NPEO2DzFt6nnBr8c8A==
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
+ by KL1PR06MB6297.apcprd06.prod.outlook.com (2603:1096:820:ee::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.39; Tue, 5 Mar
+ 2024 02:58:31 +0000
+Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::aced:cbb9:4616:96d8]) by SEZPR06MB6959.apcprd06.prod.outlook.com
+ ([fe80::aced:cbb9:4616:96d8%2]) with mapi id 15.20.7339.035; Tue, 5 Mar 2024
+ 02:58:31 +0000
+Message-ID:
+ <SEZPR06MB6959B927591D5FE1F4B4D1D196222@SEZPR06MB6959.apcprd06.prod.outlook.com>
+Date: Tue, 5 Mar 2024 10:58:24 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v7 4/9] dt-bindings: net: convert hisi-femac.txt
+ to YAML
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
+ <salil.mehta@huawei.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240301-net-v7-0-45823597d4d4@outlook.com>
+ <20240301-net-v7-4-45823597d4d4@outlook.com>
+ <2c90731b-709a-4baa-963a-fbd35372fb3b@linaro.org>
+Content-Language: en-US
+From: Yang Xiwen <forbidden405@outlook.com>
+In-Reply-To: <2c90731b-709a-4baa-963a-fbd35372fb3b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-TMN: [Zk1lNi57convhlo+U0pymia2VchqE4GplQOKOBiSymlbSdC4a3cHO9IdEbsoNZ3s]
+X-ClientProxiedBy: SI2PR02CA0051.apcprd02.prod.outlook.com
+ (2603:1096:4:196::10) To SEZPR06MB6959.apcprd06.prod.outlook.com
+ (2603:1096:101:1ed::14)
+X-Microsoft-Original-Message-ID:
+ <05746022-8c27-4eec-9171-2d9f6391520f@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: UGIzq7y562vGyiiy7KTruY7yUMqAi6e8
-X-Proofpoint-ORIG-GUID: UGIzq7y562vGyiiy7KTruY7yUMqAi6e8
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-04_20,2024-03-04_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 phishscore=0
- clxscore=1011 lowpriorityscore=0 adultscore=1 malwarescore=0
- priorityscore=1501 bulkscore=0 impostorscore=0 mlxlogscore=553
- suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403050020
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|KL1PR06MB6297:EE_
+X-MS-Office365-Filtering-Correlation-Id: f57df1af-6cf2-413a-b1fe-08dc3cc02372
+X-MS-Exchange-SLBlob-MailProps:
+	iS5pQZgsAQB4/iWMavP5S7Uvsl9sZ9PpF0iTAE611Fp0Fj/gSmBiDrQ6FQNfcR++t/9AR/7hWg7SuFFu3iN0H6nb0uUSmxMTuP7ufw7AcFE+uxAKz+PwDXX0fAAyVPrLE925jppWMKtrxVnhs9i45wfdUSiv0OBela9vfap/pC8qJId7vUYxsLd0U+P51gVC8p8OYzkC9gHidvE2DAMNXozRVCHmyt9XT+cFT+1WWrIK5ZUeJIP+7DwlzyJWYT7ZtqFVKbg4G8PgZ4HBjnUEgMLTilwNosl20dLeYsxAqoZQ/EMCrjJcgEL1fPC7KKn2nAVSvFsN/tVei94d/HSEPSg+y6NwK4wy6Do/yQJLyLYlGkceGvF6+a0J/4zkF9ClBE9ZpzgJ/HymfaS9xwSnOy3YeIlX7L4RISBU7kEIZ3/+1wXAXZ/n2wLfyBoLLqF5X/a2gXW4CgQwO8sXkTqTHLn+Wm2Wgw4qygwF+x3ZUWzUrx6EXq2GCOIpMTBzHX+GY8MHCPMgjUs+93EhJLSiqt4oIxkpoPo5nweAxyyUBY1EgHYig/8XnqKBKqbB4gog7HPB9qdtwvaKzLqdsH2okiWJVpJFbRsgU7V2anbcckF1WtEu36VPhyLlEnQLvDko5xSi5KsfwLfSQ8yDkmVNyG0Spf56K+gJNIHBPhUM0yTbNNtd3E5B/3mxtcAHgJoxW8hx5/2dcPqgjiDoghRzEnvul8D8Uzv9b0R6rRakytUkUlwIEpJKeGz1jkUvCge9lBJYlgZoDOUQN1eYBmEK2Q97bOkXjcfCp24H6lsvQWS0azHHOjZE56fqGnQ+YIxK
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	Ww6jUnIlCSHk2H68W/+ouHP1NdqDlq1zMuNdVKuSDQaUKadooxFtjb9pvEZJaVKCTEdgUyZOFOeWZp9FQ5ecfXOCc/HQzOXHX9X1T00T3v+pKPtjbdNbgydcBCmOimHuJhY0UZLQP8vHa9EYym1KOcADH/Zy1ulRNqhNkaN9j6RDLC11mLog4dV6nOaSN7+jvIjSBNheinf3n5bom07NxNTjvRcsZMMk4uPO59xvZUgNICSHLGpEPCjnwEg6aBpSsc/ekAd4YUf/tHEkSiTCEs49iggQekRNe+TXbdql0bSUfUGGbp3chcl7jjLAJ6h9d1J3czlYSEmNR3TRBslQhyZXA+c0gNkLKM7miQtSuO2iFos4X7UtM+vpaQpQ6N11PbgcZtDRCVJysowrSRPhtTmqgOK6KxhKRZmLCPBZ14mqw2JEy78qHpjyycOv0sWivMF8CXGczvBH1Qo5xF0JEg+SPlkoD+X6Wp4HHGREDa50BLFhUcfZ5gk1Aj4zH37wV5m+BpGgLJFltX9QOXBzmtLdgvSa0ron1rouNtN9PYkReKwHT8LjOxAsT9sG5bIfnO2im9seBkgrBSK8GIkURMxgL9OJ23SsPaeG0t7qrh5EoaP04VW7eM37CgJteQINxUwOmXpSbqL31yMmF5o4zWkZzcAbkMLt1TdRDo6f/rQ=
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?UWRKTm9yZ0ZGQlYra0R1c2VXN0RhbHJuYU9FVkNOUkRDd1ZRTVZRN2t1Vy9H?=
+ =?utf-8?B?VUFZTUVIR2hzWDJkcTY0SXI3TFNRZ3hJUnBDZ0tZcFdRcG9EeU1VWW9VaEN6?=
+ =?utf-8?B?eGVCLzNnZ0FuMXB2N094V1ArdGt6U1B4RUJOUFlTaTdod3NlK1FDMzBlVFlr?=
+ =?utf-8?B?SWljcmpwRzB0YVQ1Ky9LQTJzdDk0OHVhRjJ4MjlCOXo1VmViQ0JLbnNISjFN?=
+ =?utf-8?B?YTVRR0gxbEFOYmZtQTBJaGFjUUx1TEpvNzhTVE5aM3g5aUlleVBzVjBsVGpC?=
+ =?utf-8?B?N2xQRm0xMER1c0lJbTZUNFdPVUFBRlNYMWdMeXRONEt0NFNiZ0FYSFRGM2Fk?=
+ =?utf-8?B?bHpra3hDRU5ZK3hNQVhvNVc2aG81MHhNOURoL2hSRU1mOFdlZUFkY3NFV0Y2?=
+ =?utf-8?B?eFpObkFnbVh1TWJQQkE5NU9yTy80SFBIdThnbHl5cGhORXBPUVVsVmJnSU1G?=
+ =?utf-8?B?Ti9YaFVyUVhtcjNmVFlRaWhoWU5WaFRkNm1DdTc3L0dNYWs0aGNEMlZCeXhx?=
+ =?utf-8?B?ejRnSmdxM1NoWWd1b1RtRnRKdWlVOVJwWlRESkF2QzhxRExzT2p0Y3pMWjVw?=
+ =?utf-8?B?TThndUdEQlZjb0VrNUU4N1h4SFlsVE1MMFJrdS9YNXo4NXhoMXMxaTJRc3I2?=
+ =?utf-8?B?TThDcHozTzNuMklOdlpLMk1CNVdLTytOS2x4cDYveHNYMkhrZ01BRHcwT0w2?=
+ =?utf-8?B?OFRqNFhzTys4aWhDMUhhM2V0a1RuZ2FMOWFIaVNUTTNhRTJHcEFvY1FGUkdt?=
+ =?utf-8?B?UmNBVXJDTndLWHRmaDdKemswQ1VVWUhKZUNyME9PRVZ6aExFSHNaYmNkM1ZT?=
+ =?utf-8?B?Z3pJYTl4bXpKMlplb1pZYzFUYjRDK0llYmM4ZHN5a1NTTFV5SGtmaElRcDlY?=
+ =?utf-8?B?MllPZ1hBaCtrb1ZOMDR1UWxWM2JwQTlzRDBRUC9lVVNSN3RjKzI2akhFakdo?=
+ =?utf-8?B?dCtobUVuZzVRM1hZUXdBdjhxRmFtWVg1NHkwRUZFUzdoMzlIbXFzTnBvWmJx?=
+ =?utf-8?B?dHBpUS9WbDVxcWIxTDNFa1FlcUwxQmU3alFrc3lTYWhsVnZNakRZQXRraEow?=
+ =?utf-8?B?RTViazdyK3RrM3NicG9BaFdSMWlJcXptWVNaQlJJLy9lalpGbkdicXczaytt?=
+ =?utf-8?B?MEttRDVGL0FVK0xUd2FiQmNteGJjcGlXbjhIaDc5anFMdkp2NzF5cVJEcUw2?=
+ =?utf-8?B?T1BrcTVraHdzTEFsMWh2R08rQ0FHbWJSRXM1bjN1MmdwV0NNMTRuRER1MzA3?=
+ =?utf-8?B?bWxUZGVhcWhXZ1I1U2t2eUpERU5ScGZ3UU9nV29YZFl2TGNTMENXcVZRQTRS?=
+ =?utf-8?B?c2pmdjVpSE4vdUdiQ0YySkd4UHNOUVlnblpJMzBudWlSQmZsRjhrZjJldFF5?=
+ =?utf-8?B?UW12SXgwY0c3c00rdkdJVyttTlRlTjF1WUhuQ1Jjb0JsVU9tbUl1N3ZITjIy?=
+ =?utf-8?B?MmFLNDRqbmt6QUhWRVpwOFU4NFQ1aHlOMUVPY0FGdmpIc0lhSmVYOHFvOTdK?=
+ =?utf-8?B?ME00TkNxNituejZyN1pzd2NydUdKcStZb2VOSWhKalpsUWtDYk4weG96Y1Yz?=
+ =?utf-8?B?QURnelZ4a05XV2tmYUpoUnoyaVVJaHorUXNkdGorSWhmSE1BNE1kTmRhWFc0?=
+ =?utf-8?B?bElldG9LOTdrQnB5MmVjWG1hdVdBdnR0VklVaHNUUlhPeWVQZzhqTkRhMkFO?=
+ =?utf-8?B?QXZwd0xPaVpER1B2R2dXRHVKeDRCYXBiTXpNcmFTNE5VKzFEUDIwTXBGclBN?=
+ =?utf-8?Q?R5mCk3P201cqJmO1jtzt9WpcUug3FCZ058BhAMU?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f57df1af-6cf2-413a-b1fe-08dc3cc02372
+X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Mar 2024 02:58:30.8871
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR06MB6297
 
-From: Qiang Yu <quic_qianyu@quicinc.com>
+On 3/1/2024 2:49 PM, Krzysztof Kozlowski wrote:
+> On 01/03/2024 04:35, Yang Xiwen via B4 Relay wrote:
+>> From: Yang Xiwen <forbidden405@outlook.com>
+>>
+>> Convert the old text binding to new YAML.
+>>
+>> While at it, make some changes to the binding:
+>> - The version numbers are not documented publicly. The version also does
+>> not change programming interface. Remove it until it's really needed.
+>> - A few clocks are missing in old binding file. Add them to match the real
+>> hardware.
+>>
+>> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+>> ---
+>>   .../bindings/net/hisilicon,hisi-femac.yaml         | 89 ++++++++++++++++++++++
+>>   .../devicetree/bindings/net/hisilicon-femac.txt    | 41 ----------
+>>   2 files changed, 89 insertions(+), 41 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
+>> new file mode 100644
+>> index 000000000000..ba207f2c9ae4
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
+>> @@ -0,0 +1,89 @@
+>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/hisilicon,hisi-femac.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Hisilicon Fast Ethernet MAC controller
+>> +
+>> +maintainers:
+>> +  - Yang Xiwen <forbidden405@foxmail.com>
+>> +
+>> +allOf:
+>> +  - $ref: ethernet-controller.yaml
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - hisilicon,hi3516cv300-femac
+>> +      - const: hisilicon,hisi-femac
+>
+> This is a friendly reminder during the review process.
+>
+> It seems my or other reviewer's previous comments were not fully
+> addressed. Maybe the feedback got lost between the quotes, maybe you
+> just forgot to apply it. Please go back to the previous discussion and
+> either implement all requested changes or keep discussing them.
 
-On sm8550, synopsys MSI controller supports 256 MSI interrupts. Hence,
-enable all GIC interrupts required by MSI controller for PCIe0 and PCIe1.
 
-Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
-v1->v2: make interrupt-names one per line
-v2->v3: delete dot in the end of subject
+Could you please tell me which one did i miss? I have read all replies 
+to v1-v7 once again and fails to find one.
 
- arch/arm64/boot/dts/qcom/sm8550.dtsi | 36 ++++++++++++++++++++++++----
- 1 file changed, 32 insertions(+), 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-index ee1ba5a8c8fc..3f413cba2428 100644
---- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
-@@ -1713,8 +1713,22 @@ pcie0: pcie@1c00000 {
- 			linux,pci-domain = <0>;
- 			num-lanes = <2>;
- 
--			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "msi";
-+			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi0",
-+					  "msi1",
-+					  "msi2",
-+					  "msi3",
-+					  "msi4",
-+					  "msi5",
-+					  "msi6",
-+					  "msi7";
- 
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
-@@ -1804,8 +1818,22 @@ pcie1: pcie@1c08000 {
- 			linux,pci-domain = <1>;
- 			num-lanes = <2>;
- 
--			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names = "msi";
-+			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
-+				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "msi0",
-+					  "msi1",
-+					  "msi2",
-+					  "msi3",
-+					  "msi4",
-+					  "msi5",
-+					  "msi6",
-+					  "msi7";
- 
- 			#interrupt-cells = <1>;
- 			interrupt-map-mask = <0 0 0 0x7>;
+Do you mean the discussion about "phy-mode" and "phy-connection-type"? 
+I've decided to drop that commit and stick to "phy-mode", in this patch set.
+
+
+>
+> Thank you.
+>
+>
+>
+> Best regards,
+> Krzysztof
+>
+
 -- 
-2.34.1
+Regards,
+Yang Xiwen
 
 
