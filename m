@@ -1,128 +1,177 @@
-Return-Path: <devicetree+bounces-48424-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48425-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CAE0D87211A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:07:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DF84872122
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:10:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8819E2831C6
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:07:45 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F2C771F22B7D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:10:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F11986655;
-	Tue,  5 Mar 2024 14:07:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AAE88614D;
+	Tue,  5 Mar 2024 14:10:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="mKJ/As3N"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tlcGZRPG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9C90E8663E;
-	Tue,  5 Mar 2024 14:07:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 210935102B;
+	Tue,  5 Mar 2024 14:10:22 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709647644; cv=none; b=NacoEkipkNaQorFsWzTC0kk+bPwgKofL5PMzHxk017DLNoIo3OtIOD1e6NXg7RcN8UbgT2BNruD/MW5RTRdoA58HjBhvaQZhMIDLPJScb0WwMECGmSl1ryqL4CYgaDNUt0fXsxI4hQFiJq1zdZY5HGedJqNz15po1zJl1Iajazo=
+	t=1709647823; cv=none; b=Qa2MzxvRBeMQQtrGpWGG+0CA1S1+FktrHHtfWkBrz/LLq4Z8kPJGg+AdihYgRy1/tBYex5txDUSBKD8rxybvz6zy5Qitlu0H81FZfo82hmQ7ncDsrxS5ILU+b0h1nsI5IdwGwHueeCPZwJuVh5W4Ql4ANCOGJjUUPA0ktWji4z0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709647644; c=relaxed/simple;
-	bh=OCWByTDlSAOYwh/VIzepEs26ct4znatcq/z2wwX8uS8=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=jcm2GEe1AnLUxKfUk+L+0uSbJDRzSF2M9tmz5249FUnREJKsj3dTWLkXR66pBVzLUMLITDvEOZPWGYAoD3DiOK9sT78idQLHxekXVFfzrkDskopG5oYXCLAXeH1+Hz8sAziwdqaRRuyeUqVOmQLZ8w/Kw7R+xjrWKuIrog01MMo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=mKJ/As3N; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 974621BF20A;
-	Tue,  5 Mar 2024 14:07:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709647639;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=mlSdtS9gPl3MStQDE6pU+wB4e620UH09fdWfMjz3JdY=;
-	b=mKJ/As3NrkbIh4PqASWy22hOM4m+EZHgPI+zhZQrt886iDFGwkdhs8cK5LSEZHlRUbVD7J
-	c7gx2HJ7SrSF1AXWtqe70ZWhjiOFzpE6or4k+k7JaHKoojt9TQzfREwGwIu3Zmm9Tk9p4X
-	84q8AGfD9BW+fuoqymLP5MswVra4Wa44dcIWDJASp6/tMbEfUurr0NqwX5/Kacul2npFcU
-	gfJndI9ZTkBq924ykcXEhGAoaI1U3t5rdSpaN0U8+aKBa9m1aGxeTuf/pxA4DwRAS+m+sJ
-	1bkxO0ZxdojAXtO+RHCjuqZIMygma3rFAfi2SyNMjO2uuy5+jEpbdcXkTl4PZg==
-Date: Tue, 5 Mar 2024 15:07:16 +0100
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Philipp Zabel <p.zabel@pengutronix.de>
-Cc: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>, Liam Girdwood
- <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
- <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Heiko Stuebner
- <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-rockchip@lists.infradead.org, linux-sound@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 4/7] ASoC: codecs: Add RK3308 internal audio codec
- driver
-Message-ID: <20240305150716.0fca0e33@booty>
-In-Reply-To: <09c275d0f0a1bf85f37635d9570514e8fc631e72.camel@pengutronix.de>
-References: <20240221-rk3308-audio-codec-v3-0-dfa34abfcef6@bootlin.com>
-	<20240221-rk3308-audio-codec-v3-4-dfa34abfcef6@bootlin.com>
-	<09c275d0f0a1bf85f37635d9570514e8fc631e72.camel@pengutronix.de>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1709647823; c=relaxed/simple;
+	bh=yligJ8IXn0rMPUgLLCLFsqkXEZzbgJx9pASoGxdfXR4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FFXLlkfbN8mOlmwhn+yaxysdzKbxIufVFDjZ/nslE4Wsdr/b3i39EjFBcMhMT/NuJiC6y79CSQIvLd1wjEL/9hcr/S4iBZW1zYYevDwCB8k7spmZkL1Nle4N/VFi8t1AYEqEL6gwXmWdTUd/dErd5jjFQc6Z3pJahAgGNKlk3Rc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tlcGZRPG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61E72C433C7;
+	Tue,  5 Mar 2024 14:10:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709647822;
+	bh=yligJ8IXn0rMPUgLLCLFsqkXEZzbgJx9pASoGxdfXR4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tlcGZRPGR3iQ3Rz6cSl+sC1Cd46r5Ye33DMAn5FrLL36CXD9BZQNfPcP+eD5kHU8P
+	 erNmTTXjdJzUzz6MpO4rPA74t7oPJs/J1h3bl8qVKDCyB/V3PA/wAqnsBHoUGg8mlK
+	 K/c8410PacOzLJ7pz2EhJ4+/OG0LzlthgNRgJds7EbXVB41PWzf0lKPtNbVRVIu0ps
+	 1+8c8Nb1LLq4IVbq2OnGm6GOAE2JQSoZVVxA4ath12jYeOaeiDSH/3Ksisngcs6gVG
+	 mMwYTdkTa0hLLZ7wMrGWN6Hh/FZvIbmSGo5qbKIt4LktOPc8uvkNwpxmtQd1K9araP
+	 yTgfP0En4Nimw==
+Date: Tue, 5 Mar 2024 08:10:20 -0600
+From: Rob Herring <robh@kernel.org>
+To: Vidya Sagar <vidyas@nvidia.com>
+Cc: bhelgaas@google.com, rafael@kernel.org, lenb@kernel.org,
+	will@kernel.org, lpieralisi@kernel.org, kw@linux.com,
+	frowand.list@gmail.com, linux-pci@vger.kernel.org,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	treding@nvidia.com, jonathanh@nvidia.com, kthota@nvidia.com,
+	mmaddireddy@nvidia.com, sagar.tv@gmail.com
+Subject: Re: [PATCH V4] PCI: Add support for preserving boot configuration
+Message-ID: <20240305141020.GA3259724-robh@kernel.org>
+References: <20240222124110.2681455-1-vidyas@nvidia.com>
+ <20240223080021.1692996-1-vidyas@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240223080021.1692996-1-vidyas@nvidia.com>
 
-Hello Philipp,
-
-On Wed, 21 Feb 2024 14:21:23 +0100
-Philipp Zabel <p.zabel@pengutronix.de> wrote:
-
-> On Mi, 2024-02-21 at 11:22 +0100, Luca Ceresoli wrote:
-> > Add driver for the internal audio codec of the Rockchip RK3308 SoC.
-> > 
-> > Initially based on the vendor kernel driver [0], with lots of cleanups,
-> > fixes, improvements, conversion to DAPM and removal of some features.
-> > 
-> > [0] https://github.com/rockchip-linux/kernel/blob/develop-4.19/sound/soc/codecs/rk3308_codec.c
-> > 
-> > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> >  
-> [...]
-> > diff --git a/sound/soc/codecs/rk3308_codec.c b/sound/soc/codecs/rk3308_codec.c
-> > new file mode 100644
-> > index 000000000000..61bfb75f92a3
-> > --- /dev/null
-> > +++ b/sound/soc/codecs/rk3308_codec.c
-> > @@ -0,0 +1,993 @@  
-> [...]
-> > +static int rk3308_codec_platform_probe(struct platform_device *pdev)
-> > +{  
-> [...]
-> > +	rk3308->reset = devm_reset_control_get(&pdev->dev, "codec");
-> > +	if (IS_ERR(rk3308->reset)) {
-> > +		err = PTR_ERR(rk3308->reset);
-> > +		if (err != -ENOENT)
-> > +			return err;
-> > +
-> > +		dev_dbg(&pdev->dev, "No reset control found\n");
-> > +		rk3308->reset = NULL;
-> > +	}  
+On Fri, Feb 23, 2024 at 01:30:21PM +0530, Vidya Sagar wrote:
+> Add support for preserving the boot configuration done by the
+> platform firmware per host bridge basis, based on the presence of
+> 'linux,pci-probe-only' property in the respective PCI host bridge
+> device-tree node. It also unifies the ACPI and DT based boot flows
+> in this regard.
 > 
-> Please use devm_reset_control_get_optional_exclusive(). That already
-> returns NULL instead of -ENOENT if the reset control is not specified
-> in the device tree. Then dev_err_probe() can be used to report errors.
+> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> ---
+> V4:
+> * Addressed Bjorn's review comments
+> 
+> V3:
+> * Unified ACPI and DT flows as part of addressing Bjorn's review comments
+> 
+> V2:
+> * Addressed issues reported by kernel test robot <lkp@intel.com>
+> 
+>  drivers/acpi/pci_root.c                  | 12 -------
+>  drivers/pci/controller/pci-host-common.c |  4 ---
+>  drivers/pci/of.c                         | 21 +++++++++++
+>  drivers/pci/probe.c                      | 46 ++++++++++++++++++------
+>  include/linux/of_pci.h                   |  6 ++++
+>  5 files changed, 62 insertions(+), 27 deletions(-)
+> 
+> diff --git a/drivers/acpi/pci_root.c b/drivers/acpi/pci_root.c
+> index 84030804a763..ddc2b3e89111 100644
+> --- a/drivers/acpi/pci_root.c
+> +++ b/drivers/acpi/pci_root.c
+> @@ -1008,7 +1008,6 @@ struct pci_bus *acpi_pci_root_create(struct acpi_pci_root *root,
+>  	int node = acpi_get_node(device->handle);
+>  	struct pci_bus *bus;
+>  	struct pci_host_bridge *host_bridge;
+> -	union acpi_object *obj;
+>  
+>  	info->root = root;
+>  	info->bridge = device;
+> @@ -1050,17 +1049,6 @@ struct pci_bus *acpi_pci_root_create(struct acpi_pci_root *root,
+>  	if (!(root->osc_ext_control_set & OSC_CXL_ERROR_REPORTING_CONTROL))
+>  		host_bridge->native_cxl_error = 0;
+>  
+> -	/*
+> -	 * Evaluate the "PCI Boot Configuration" _DSM Function.  If it
+> -	 * exists and returns 0, we must preserve any PCI resource
+> -	 * assignments made by firmware for this host bridge.
+> -	 */
+> -	obj = acpi_evaluate_dsm(ACPI_HANDLE(bus->bridge), &pci_acpi_dsm_guid, 1,
+> -				DSM_PCI_PRESERVE_BOOT_CONFIG, NULL);
+> -	if (obj && obj->type == ACPI_TYPE_INTEGER && obj->integer.value == 0)
+> -		host_bridge->preserve_config = 1;
+> -	ACPI_FREE(obj);
+> -
+>  	acpi_dev_power_up_children_with_adr(device);
+>  
+>  	pci_scan_child_bus(bus);
+> diff --git a/drivers/pci/controller/pci-host-common.c b/drivers/pci/controller/pci-host-common.c
+> index 6be3266cd7b5..e2602e38ae45 100644
+> --- a/drivers/pci/controller/pci-host-common.c
+> +++ b/drivers/pci/controller/pci-host-common.c
+> @@ -73,10 +73,6 @@ int pci_host_common_probe(struct platform_device *pdev)
+>  	if (IS_ERR(cfg))
+>  		return PTR_ERR(cfg);
+>  
+> -	/* Do not reassign resources if probe only */
+> -	if (!pci_has_flag(PCI_PROBE_ONLY))
+> -		pci_add_flags(PCI_REASSIGN_ALL_BUS);
+> -
+>  	bridge->sysdata = cfg;
+>  	bridge->ops = (struct pci_ops *)&ops->pci_ops;
+>  	bridge->msi_domain = true;
+> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
+> index 51e3dd0ea5ab..f0f1156040a5 100644
+> --- a/drivers/pci/of.c
+> +++ b/drivers/pci/of.c
+> @@ -258,6 +258,27 @@ void of_pci_check_probe_only(void)
+>  }
+>  EXPORT_SYMBOL_GPL(of_pci_check_probe_only);
+>  
+> +/**
+> + * of_pci_bridge_preserve_resources - Return true if the boot configuration
+> + *                                    needs to be preserved
+> + * @node: Device tree node with the domain information.
+> + *
+> + * This function looks for "linux,pci-probe-only" property for a given
+> + * PCI controller's node and returns true if found. Having this property
+> + * for a PCI controller ensures that the kernel doesn't reconfigure the
+> + * BARs and bridge windows that are already done by the platform firmware.
+> + * NOTE: The scope of "linux,pci-probe-only" defined within a PCI bridge device
+> + *       is limited to the hierarchy under that particular bridge device. whereas
+> + *       the scope of "linux,pci-probe-only" defined within chosen node is
+> + *       system wide.
+> + *
+> + * Return: true if the property exists false otherwise.
+> + */
+> +bool of_pci_bridge_preserve_resources(struct device_node *node)
+> +{
+> +	return of_property_read_bool(node, "linux,pci-probe-only");
 
-Good point, thanks. Queued for v4.
+This is the wrong type. The existing "linux,pci-probe-only" is a u32 and 
+non-zero value means probe-only. This would return true for 
+'linux,pci-probe-only = <0>'.
 
-Best regards,
-Luca
+Also, this should also check chosen. If you make this work accepting 
+NULL for node, then of_pci_check_probe_only() can be re-implemented to 
+use it.
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+
+
+Rob
 
