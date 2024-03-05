@@ -1,88 +1,118 @@
-Return-Path: <devicetree+bounces-48407-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48408-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2E20872019
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:27:26 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DBA69872030
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:31:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 833AEB2638F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 13:27:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B9B3B266FA
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 13:31:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8140186646;
-	Tue,  5 Mar 2024 13:26:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 884B285C62;
+	Tue,  5 Mar 2024 13:31:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="LvHJImQB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5CA785C44
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 13:26:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAEE285C51;
+	Tue,  5 Mar 2024 13:31:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.198
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709645203; cv=none; b=IyzWwccWsRxG2G71Sm5MtUPlgiSIwqYjd6FAXig4h+gvciPNucWe0g87gVCkt1ol67kIyDxndzs/GuFpbjzXe9TLork2iQ9LI5+u2CbVm4q5uBb4vyWr6D642l1a49Vb1asiyvoOSlOj5s9MuYb0kgvLxcAlXQe4UXW9pbZwxqM=
+	t=1709645510; cv=none; b=XaXSYMNrdw1pyg9yGugEIBH3AzUFiXuMvkiFcEtOHgjJEIGiu71ofJ/mvExQHHYwATbImUnxFega3Me3czETqS/ruiRQQ1mo07WvYYLp/DtjpyMtl1qs8yCOkkXSpDKEYbfqy5Kbf7iy3lyUqkQ6bfCA2DZISamzC2CdqGuuQYw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709645203; c=relaxed/simple;
-	bh=HzC6DUDdU3tCRfgE5FEHRWz8EqIwGRE0wTGjdVqSu4w=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=irJkagcEpwZTNfSDa8qFdtaiPW2yA6CfPYtErmnbhs9PqyqBe51giCpmsM9NEEvX9rPQKn0PimUSXpOdICt94uJB3Jw91dr+6lfJxu/J0X08v1kj29j2P7bcWGB4I5a91me1pYw5jDPquMrmI89a8Vub3SDI17Rdi2ybi8+sasA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rhUoI-0004zr-7l; Tue, 05 Mar 2024 14:26:22 +0100
-Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rhUoG-004YsK-CV; Tue, 05 Mar 2024 14:26:20 +0100
-Received: from pza by lupine with local (Exim 4.96)
-	(envelope-from <p.zabel@pengutronix.de>)
-	id 1rhUoG-000C5R-11;
-	Tue, 05 Mar 2024 14:26:20 +0100
-Message-ID: <f19eb5bb48898e0c843e936711c2fd3d4c2ee908.camel@pengutronix.de>
-Subject: Re: [PATCH v4 5/5] phy: hisilicon: hisi-inno-phy: add support for
- Hi3798MV200 INNO PHY
-From: Philipp Zabel <p.zabel@pengutronix.de>
-To: forbidden405@outlook.com, Vinod Koul <vkoul@kernel.org>, Kishon Vijay
- Abraham I <kishon@kernel.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>,  Jiancheng Xue <xuejiancheng@hisilicon.com>, Shawn
- Guo <shawn.guo@linaro.org>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>, David
- Yang <mmyangfl@gmail.com>
-Date: Tue, 05 Mar 2024 14:26:20 +0100
-In-Reply-To: <20240305-inno-phy-v4-5-a03204c9cf1c@outlook.com>
-References: <20240305-inno-phy-v4-0-a03204c9cf1c@outlook.com>
-	 <20240305-inno-phy-v4-5-a03204c9cf1c@outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.4-2 
+	s=arc-20240116; t=1709645510; c=relaxed/simple;
+	bh=znYBTbuKJHdE510kzvyLEyOv9seUryxMrJpA8/nW37w=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=HPbC6ZFTMKgfAo9ss0Zhrbwpmf1Q6K5sqlgoSMYf6faBQhe4bMCbY9nVDhoJ61lRmepcpmdiSq8scHl/SA752FyQuSif3yZNvFs3UCFos4V+Ibm6aIy5M5ANOOiYa0dv1Jztft4zkXL7Wb064DO4Zts2gm+P5xyYgutGpkQSCbk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=LvHJImQB; arc=none smtp.client-ip=217.70.183.198
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 94378C0002;
+	Tue,  5 Mar 2024 13:31:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709645505;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=q7U+cWhleujOwN6xyJzC8kzJR7mFMa0ZCOTO3ajZttI=;
+	b=LvHJImQBj1dOnQHrVx4gsvwytfe1chPKE00JMa1qWKwH9KU7x+ThgBOKsOVm1q2wPGruEB
+	FXDNMLs1nLO8ijiGeXS8cA60aS9lL8VZ+LSz5nhqI2UWLHQivC5F285AakL/bFBN6dyGfs
+	IA2KRcmIcsAiX4djfsas/x0QR6BKSKhUqyhNcyQGc66zNZMjXNE1N3i92qj5k6dkF99M1M
+	3n0j8KPIx7h1j8zjzZMmUEYauBaclStTDmgQFar+drmWOfkFkQ2qM5W6RXxLOeGlajNLgM
+	S2E1hMmzSktB2keSzRTX4/mcMJVixDA/lJIlcWG+qhvWcMr1FoQ3gkLBnudgXQ==
+From: =?UTF-8?q?J=C3=A9r=C3=A9mie=20Dautheribes?= <jeremie.dautheribes@bootlin.com>
+To: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Andrew Davis <afd@ti.com>,
+	Andrew Lunn <andrew@lunn.ch>
+Cc: netdev@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Yen-Mei Goh <yen-mei.goh@keysight.com>,
+	=?UTF-8?q?Miqu=C3=A8l=20Raynal?= <miquel.raynal@bootlin.com>,
+	=?UTF-8?q?J=C3=A9r=C3=A9mie=20Dautheribes?= <jeremie.dautheribes@bootlin.com>
+Subject: [PATCH 1/1] dt-bindings: net: dp83822: change ti,rmii-mode description
+Date: Tue,  5 Mar 2024 14:31:37 +0100
+Message-Id: <20240305133137.125020-1-jeremie.dautheribes@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: jeremie.dautheribes@bootlin.com
 
-On Di, 2024-03-05 at 10:19 +0800, Yang Xiwen via B4 Relay wrote:
-> From: Yang Xiwen <forbidden405@outlook.com>
->=20
-> Direct MMIO resgiter access is used by Hi3798MV200. For other models,
+Drop reference to the 25MHz clock as it has nothing to do with connecting
+the PHY and the MAC.
+Add info about the reference clock direction between the PHY and the MAC
+as it depends on the selected rmii mode.
 
-See
+Suggested-by: Andrew Lunn <andrew@lunn.ch>
+Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
+---
+This patch follows on from my previous patch series [1] which has already been 
+merged into the net-next tree and which added the "ti,rmii-mode" property.
+As suggested by Andrew Lunn, this patch updates the description of this 
+property to make it more consistent with the master/slave relationship it 
+conveys.
 
-https://lore.kernel.org/all/4bf4146749abb1500f8a412deb4d61ab0f3c80e6.camel@=
-pengutronix.de/
+[1] https://lore.kernel.org/all/20240222103117.526955-1-jeremie.dautheribes@bootlin.com/
 
-regards
-Philipp
+ Documentation/devicetree/bindings/net/ti,dp83822.yaml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/net/ti,dp83822.yaml b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+index 8f23254c0458..784866ea392b 100644
+--- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
++++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
+@@ -84,10 +84,10 @@ properties:
+     description: |
+        If present, select the RMII operation mode. Two modes are
+        available:
+-         - RMII master, where the PHY operates from a 25MHz clock reference,
+-         provided by a crystal or a CMOS-level oscillator
+-         - RMII slave, where the PHY operates from a 50MHz clock reference,
+-         provided by a CMOS-level oscillator
++         - RMII master, where the PHY outputs a 50MHz reference clock which can
++         be connected to the MAC.
++         - RMII slave, where the PHY expects a 50MHz reference clock input
++         shared with the MAC.
+        The RMII operation mode can also be configured by its straps.
+        If the strap pin is not set correctly or not set at all, then this can be
+        used to configure it.
+-- 
+2.34.1
+
 
