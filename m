@@ -1,132 +1,141 @@
-Return-Path: <devicetree+bounces-48265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48268-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18CAE871358
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 03:10:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7838C871383
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 03:20:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 913D6B265EF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 02:10:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE2E71C22F9A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 02:20:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05EA2182D8;
-	Tue,  5 Mar 2024 02:05:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E4DB1804F;
+	Tue,  5 Mar 2024 02:19:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Rnizyw7p"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h12Cf+4K"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f50.google.com (mail-io1-f50.google.com [209.85.166.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8712D17C9E;
-	Tue,  5 Mar 2024 02:05:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D835018036;
+	Tue,  5 Mar 2024 02:19:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709604317; cv=none; b=rfA8cVLiCzE1qSLwpe6AwzW8y16m1hHId+XU+C2vqBTB35k3Mqzp+Q2jx8/oG5KnW3fwGGW1HkI4Bn4lk6AeLjnIuIAhYxSGybsD8nsPL923IFVmtvWVjbuJ7JvjqqQ2xW+4P0+mqv47v0kMzQY4gX1Kv35rmpQT6BNMBpGNZZ4=
+	t=1709605196; cv=none; b=TAzBSTga3MsStMBG/ZAb/amVDHQ6mHO4TT4i7V4UtUfiViSIRwS38KioX9YbI0ZybBVr2fTo0YemXOGvk6lyADqB4SWQa/q9gMyRAtL1hIB3holVXf/uOA2iPVByb/4OeUbSeDQtUOgumt5n76F27YHDbYcFhz/1sTsa9cYJfkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709604317; c=relaxed/simple;
-	bh=mQfMQLmAIBV2TnuZl3ZY6h75I3PfxUcRIRutX3ur6xw=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=XJnAeet6sN0UzEhLy1ANulSrrvzW2I9f1NuUo2fD9Ducb+Kgn1brULFRIfNk2A8zpzfd3iQnzXONsB9YtD+abuiZsWIMdOQy63ko9Q0djQu1zoCn4F4QIlsuK2At/a0wMrIRo+8wDwWExdDh3NeSzPNZt8CO033jPKHreWWw/vw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Rnizyw7p; arc=none smtp.client-ip=209.85.166.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f50.google.com with SMTP id ca18e2360f4ac-7bb5fda069bso334889539f.0;
-        Mon, 04 Mar 2024 18:05:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709604314; x=1710209114; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=dJuCH373LezeptXjAUVUX17sgHTpn3EnPm8FEMA/ybs=;
-        b=Rnizyw7pEsitMnzu/BLBKD/snZarhe4ApKFK1e/jSUAaEBxXtqHBRIaxKjedv0/jwJ
-         zIKPk1pexeEp8wBtmeH4y4c42nQEjcXckTb64ZLvWr4pBeNYYNGBDOdQgo35e/Bbz9et
-         5YzywQ1kEPbegEtIpkz90ZDl9s1T4YyotEHpn46T1uMztjBz0WUQToX6uRFRkxqbCcKX
-         fcnNbhzunXaWWI/R8zZ+/bMLwhsLECXTUs/kJItU2/KhbnSPOyAb5Cf/I1XsYRzbAOOj
-         AMOzJKHI8Sg5W54COEoldumDpa0z7YC3n66ObQDRevjVo9nE7XQ4s250ot/tXR0/5IZU
-         N2bA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709604314; x=1710209114;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dJuCH373LezeptXjAUVUX17sgHTpn3EnPm8FEMA/ybs=;
-        b=sVZUsp++U6c+N6SeSZdkwM6CzU6YQJ9SQebf6P/tnXwSjBdLq5UARbDpZyowkbQ/ek
-         KAj0+DztHDDrT14TVy9CQjz/bFKftN5CmDE2HxHqcALc8fyMbo7Ivbil1C5I66V5xFIY
-         mL39z/Ygc8w9JIO3tDkdrDBIpQ72ub11ORj3AVfppX4wieSxzo9a4VjYiTkU6mBVXFPD
-         1XRXXHfukhfWsKbnzoL/gihptKPlG2aTn15n6HAea9qy9qNjOj4mzNd/a6aqXZtJHqVz
-         FdF4vHRKOidaOqCd1goN++lYKbgolVEtfhAzrbMUDRTrrizIH+x7T02TeVizWoILSEaL
-         1ozQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWrS343ncmU1iX/imXH93EPxqfGfskWgvKPr53JTME4+d1nAz1KjHr3m7Alh8A51DSd+egwIoURjv4zGcg9Sl6kbMdFAtrjd2boSOqGY/bZKJGvvTHIY3yD52iXbD2a+x5C6GuUrhHK6A==
-X-Gm-Message-State: AOJu0YwiMfXLL68E4axWtqMUzT2JJmTFj1/yg1n/0Xv8RVjOwSZQSLOV
-	XG7P//FMzMknNcHk/twD42Gg6svC3fyRyFBeLH5neFnKGZfhRSgS
-X-Google-Smtp-Source: AGHT+IEAIhjfu9DwkDH1PlpTwYvXtDbjW4w0IaT9LIlexPIlg93AQjn3hVh6QqttEk1LXdSnSY9ZkQ==
-X-Received: by 2002:a5d:9502:0:b0:7c8:5ab2:6313 with SMTP id d2-20020a5d9502000000b007c85ab26313mr3171143iom.8.1709604314546;
-        Mon, 04 Mar 2024 18:05:14 -0800 (PST)
-Received: from aford-System-Version.lan ([2601:447:d002:5be:5872:22b6:b680:a683])
-        by smtp.gmail.com with ESMTPSA id g16-20020a056638061000b0047483de6cd5sm2590708jar.112.2024.03.04.18.05.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Mar 2024 18:05:14 -0800 (PST)
-From: Adam Ford <aford173@gmail.com>
-To: linux-arm-kernel@lists.infradead.org
-Cc: aford@beaconembedded.com,
-	Adam Ford <aford173@gmail.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	devicetree@vger.kernel.org,
-	imx@lists.linux.dev,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: imx8mp-beacon-kit: Fix errors found from CHECK_DTBS
-Date: Mon,  4 Mar 2024 20:05:08 -0600
-Message-ID: <20240305020508.6379-1-aford173@gmail.com>
-X-Mailer: git-send-email 2.43.0
+	s=arc-20240116; t=1709605196; c=relaxed/simple;
+	bh=OjEyTLXhFc+NhOgfRwXQxvPYuk8lc7ZeewXgBolvWEE=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=pZk/SLZa7xBcr34S4uZSqEeGdEGOOlU2bs49zbmtmbxRL1lbNe+wYRSMH5DiGuOwc33lWayqh4PMKJXb0cWdN4Ko1fWDckgIGQtlxFsIk4x2Nd/55ARfkQLAJ307he9YT+wIhYpZk568QF8wu7bQSSefsLnN+xZkccgQW7d4+uk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h12Cf+4K; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 71496C433F1;
+	Tue,  5 Mar 2024 02:19:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709605196;
+	bh=OjEyTLXhFc+NhOgfRwXQxvPYuk8lc7ZeewXgBolvWEE=;
+	h=From:Subject:Date:To:Cc:Reply-To:From;
+	b=h12Cf+4K1QuvB721uPks71ZEUTDhNNR6OOZx4fsENXc7SRu2KyISRoyRk8xdfwgZ4
+	 aN13SMM9dfxhM+grVAQbboVZscB+jIhSLtGfveqb51pyO4C6Wzz575d340FvaP7Gsb
+	 DkaFPXos9nkthKrjj1vqR1jGOI44fULA+X02QkF2rvbs4JFr3NuxRDwFNC31zkAQ97
+	 G5tDWW1sGe+xCdwzvsxBGibbDC4/XJII+rY1NurYYMH5Ft+kwukjanIaPTBkaGi0N+
+	 AXCQVs75fAY8Nnmx9I0CJYXaW1FN3oMG4xgvAGMF4OUTPSQPfCZuXrE5fcJAEmZ3Mo
+	 jaYQaqvAgbdIw==
+Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by smtp.lore.kernel.org (Postfix) with ESMTP id 5909BC48BF6;
+	Tue,  5 Mar 2024 02:19:56 +0000 (UTC)
+From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
+Subject: [PATCH v4 0/5] phy: hisi-inno-phy: add support for
+ hi3798mv200-usb2-phy
+Date: Tue, 05 Mar 2024 10:19:45 +0800
+Message-Id: <20240305-inno-phy-v4-0-a03204c9cf1c@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAEGB5mUC/23MQQ7CIBCF4asY1mJgwEJdeQ/jorRgiQoNVGLT9
+ O7SrjC6fJP5/hlFHayO6LSbUdDJRutdHny/Q23fuJvGtssbAQFOgFbYOufx0E+4gU4KMJUSXKH
+ 8PgRt7HtLXa559zaOPkxbOdH1+ieSKCaYNqqmYMiRMXP2r/Hh/f3Q+idaMwlKKgoKmTJlhJZCE
+ V3rX8oKCqSgLFNZs7YzsmJM8W+6LMsHym4NAxgBAAA=
+To: Vinod Koul <vkoul@kernel.org>, 
+ Kishon Vijay Abraham I <kishon@kernel.org>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Jiancheng Xue <xuejiancheng@hisilicon.com>, 
+ Shawn Guo <shawn.guo@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>
+Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>, 
+ David Yang <mmyangfl@gmail.com>, Yang Xiwen <forbidden405@outlook.com>
+X-Mailer: b4 0.12.4
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1709605195; l=2411;
+ i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
+ bh=OjEyTLXhFc+NhOgfRwXQxvPYuk8lc7ZeewXgBolvWEE=;
+ b=L1PzroKfL3Lrklu5Bbd5wFX9r9Oln+xKJJB9OLCWiUKOMVvyE0zmNJHRM880u54UfyPSXfw/0
+ gioCHDnUnmLB1gSXXwhLXVh7SeaFDmgy08Ixh93KJY/Uuos2SWCHwPh
+X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
+ pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
+X-Endpoint-Received:
+ by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
+X-Original-From: Yang Xiwen <forbidden405@outlook.com>
+Reply-To: <forbidden405@outlook.com>
 
-The adv7535 has some extra reg-name which can be removed since
-the defaults that are used when these are not assigned work
-just fine.  Removing them and adding some required regulators
-make the errors detected from CHECK_DTBS go away.
+This should be considered a hack. The proper solution would be
+extracting write_reg logic to a separate regmap driver. Leaving only
+"write BIT(2) to address 0x6" to the PHY driver.
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+A proper fix should be implemented later.
+
+Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 ---
-Requires: https://patchwork.kernel.org/project/linux-arm-kernel/patch/20240305004859.201085-2-aford173@gmail.com/
+Changes in v4:
+- remove reference to histb-clock.h
+- remove fallback compatible as it has no use.
+- remove phy_type (belongs to host controller)
+- fix bot error (Rob Herring)
+- split YAML convertion into two commits, the other add mv100 compatible (Krzysztof Kozlowski)
+- Link to v3: https://lore.kernel.org/r/20240220-inno-phy-v3-0-893cdf8633b4@outlook.com
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-index fba8fd04398d..b1cd0f0b9c13 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-beacon-kit.dts
-@@ -302,12 +302,19 @@ pca6416_3: gpio@20 {
- 
- 	adv_bridge: hdmi@3d {
- 		compatible = "adi,adv7535";
--		reg = <0x3d>, <0x3c>, <0x3e>, <0x3f>;
--		reg-names = "main", "cec", "edid", "packet";
-+		reg = <0x3d>;
-+		reg-names = "main";
- 		interrupt-parent = <&gpio4>;
- 		interrupts = <27 IRQ_TYPE_EDGE_FALLING>;
- 		adi,dsi-lanes = <4>;
- 		#sound-dai-cells = <0>;
-+		avdd-supply = <&buck5>;
-+		dvdd-supply = <&buck5>;
-+		pvdd-supply = <&buck5>;
-+		a2vdd-supply = <&buck5>;
-+		v1p2-supply = <&buck5>;
-+		v3p3-supply = <&buck4>;
-+
- 
- 		ports {
- 			#address-cells = <1>;
+Changes in v3:
+- address a few binding issue mistakenly missing in v2 (Krzysztof Kozlowski)
+  - add msg about hi3798mv100 being added to compatible list
+  - remove minItems for compatible
+  - remove | for reg:
+- fix existing dts (hi3798cv200.dtsi) due to binding change.
+- Link to v2: https://lore.kernel.org/r/20240217-inno-phy-v2-0-3bf7e87b0e9e@outlook.com
+
+Changes in v2:
+- rewrite commit msg to show why hisilicon,hi3798mv100-usb2-phy is added during YAML convertion.
+- split required: to multiple line
+- add allOf to wrap if:
+- remove perictrl wrapper and the second phy in the example
+- tested the binding both for mv200 and cv200 dts. fix some silly errors.
+- remove Pengcheng Li from To:
+Above all are suggested by Krzysztof
+- use reset_control_array_* APIs to ensure all resets are controlled
+- Link to v1: https://lore.kernel.org/r/20240216-inno-phy-v1-0-1ab912f0533f@outlook.com
+
+---
+Yang Xiwen (5):
+      phy: hisilicon: hisi-inno-phy: enable clocks for every ports
+      dt-bindings: phy: hisi-inno-usb2: convert to YAML
+      dt-bindings: phy: hisilicon,inno-usb2-phy: add support for Hi3798MV100 INNO PHY
+      dt-bindings: phy: hisi-inno-usb2: add compatible of hisilicon,hi3798mv200-usb2-phy
+      phy: hisilicon: hisi-inno-phy: add support for Hi3798MV200 INNO PHY
+
+ .../bindings/phy/hisilicon,inno-usb2-phy.yaml      | 119 +++++++++++++++++++++
+ .../devicetree/bindings/phy/phy-hisi-inno-usb2.txt |  71 ------------
+ drivers/phy/hisilicon/phy-hisi-inno-usb2.c         |  70 +++++++-----
+ 3 files changed, 162 insertions(+), 98 deletions(-)
+---
+base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
+change-id: 20240216-inno-phy-a2d872f6b74b
+
+Best regards,
 -- 
-2.43.0
+Yang Xiwen <forbidden405@outlook.com>
 
 
