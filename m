@@ -1,174 +1,190 @@
-Return-Path: <devicetree+bounces-48529-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48530-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45D508725E8
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:48:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2726D8725FD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:51:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6A4171C216C4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:48:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D154F28AD12
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:51:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E9A2B17565;
-	Tue,  5 Mar 2024 17:47:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14EF4182BD;
+	Tue,  5 Mar 2024 17:50:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="Ye/Kkrf+"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="svBNJ8o3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f180.google.com (mail-vk1-f180.google.com [209.85.221.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out203-205-221-191.mail.qq.com (out203-205-221-191.mail.qq.com [203.205.221.191])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4402117583
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 17:47:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 173A117BD5
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 17:50:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.191
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709660879; cv=none; b=nM5HdjrSTr9F5ZgG2B+S7CRWeH0WdUup6ZtJKFgrxCOQM4Mm7MmF1ViSItHmpVpMUyISWs7EAl8dSGAuw5NN/pEYnKsssLyaJ7gl6W2tlFdvItLXHdlIwT+e8ReYGAwUf9kKFympLsbth+rh9AJnkNXbGc05kJ9up38Yjl6ug7M=
+	t=1709661054; cv=none; b=ZB8BPkoB6OVZqXFXHFd93eJCbQl5fSA6soDRoEHamh0hWfMhBDK4vEBlmHpnKrffsB1kC6aueNCgmar5namZkjQ+RoRqTcdumHEmQPVFXURfuQwmIjx2U84snBLWPLqdVC1Gfg8gAA8+XJCsoWnenzm9wVH9AtovHV4YPTf/MF8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709660879; c=relaxed/simple;
-	bh=lqrkc9GF0vxyq5fO5Gre7dxe8G4AxGzKWxssXtWhTsg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=aR+ShcaHiXZfXwb7Qv8xPboO2Lbd+T9qdqC0PWK5/jLHryYZbTO888HqJhaTTCXf3xMQ383wDyhEB87l2Z5LsuKGo5p6sZyA+bcfJX/9vLLlH/HE5ZzegoYP4AVI2RYY4L+Jb5LkVX6GlzV3CbDNOngB2Uwo4LNXVpUPE87BFlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=Ye/Kkrf+; arc=none smtp.client-ip=209.85.221.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-vk1-f180.google.com with SMTP id 71dfb90a1353d-4d33d049cbaso17729e0c.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 09:47:57 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1709660877; x=1710265677; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=wDQM6QfXt4EJ1gFRectW8NUgDjZxP3g8A+hX/it5GaQ=;
-        b=Ye/Kkrf+73LdLomFGBPUbr50Ct3a58lFOYaHalIIuAKcywBHPxqwUCemykgu1JKdMV
-         1M9U5xui+/V3GnHrGv9ZvfroNgCk50cev/1Toj1fSgt/2xAHbP9T9RMvottoHuQfXw4e
-         em/ccHJTQyIdNoP1lkyWxhSolD2/jK4PiFkEr+aQkoeoCpRiHX1KLkPZvT0H0255AfB0
-         PuHSsf96U8EH9gkKg2VRfgndTj9Zf3U15iQDnLJ+O94lKQDk1PSWBO4DkFj2eacSpTRd
-         ayTgoPGovvYJNPQmyYYdNDsdm30K9qoVyGHqlstnQj5VkOK0+DNa+NIehD1RV/+5owNk
-         5M6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709660877; x=1710265677;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=wDQM6QfXt4EJ1gFRectW8NUgDjZxP3g8A+hX/it5GaQ=;
-        b=Z4OosFyvYRxINztF4nF12BgrOjEG2J3npmSQmBEeQcabFAu+4VjFIjJ4Kh/SGSbtfz
-         VAtyUp6v6DzDjZid2wbYs5i1fSEJ5QTtsrCSoXhSJNCXDn90+9ZE1p6Rox5rhnzyWCWh
-         pnkVH9905UoBHm07+Lbqf0B5QarzaqvMIGi745C9P6bA01kaKEAI9Xxikh6V1hPYsD38
-         FVN0OdzLMjQsAOErshegVK6OnXeK4QY9iFSYA6JlDjswD+o2cveCZnmzOFqSoVHE4eBh
-         DLdPgKQcg+6neV+MGKDbstMM+QGCEnJKlTHFPT3vs4/F+Qv+aYWgImCR1zOzHyKtn6tD
-         tacQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVsSVeBZjfqV8cxpVnVRl4Kd/h2dpW3IcWjETGodcJol7ML8r+HvbtNGEHv+JqSi4WvnvNQLIyLnFuowptgBuq/+czpanrzJIGTxA==
-X-Gm-Message-State: AOJu0YyvhhtlF0ehp4jo0U3hh/+Ipnzanl58g4EiFyAfkzNdaujPNP3L
-	AMh0sA7577Xov3ZvjJKlaU35r8Q5FeVvNcmKl+62RsR6lNXfRy0JMt2lAugR9AHh6qG1J+PAMj+
-	syPm6uU9lYHnbNvWGf++XAwdohGgFW3WNhd51BA==
-X-Google-Smtp-Source: AGHT+IEqLUxIJ4Znb8yoA8Q79Hj8R5LcveXzhu7gKuBQojWjEd1T/Kf7lufFee6lPAtgNFzX1Do816FIQFwzSHWJABc=
-X-Received: by 2002:ac5:c953:0:b0:4c0:2bdc:250f with SMTP id
- s19-20020ac5c953000000b004c02bdc250fmr2188459vkm.7.1709660877099; Tue, 05 Mar
- 2024 09:47:57 -0800 (PST)
+	s=arc-20240116; t=1709661054; c=relaxed/simple;
+	bh=gaD5NGVa0EnCxj9c3TXhPd/2JfBhznddbAsKW3/SWM0=;
+	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
+	 Date:Cc:References:To; b=Zm2Czxr3CVMsTTp4pssQKzEGP2OueO9ywRXHOTBa1DiezDomjvxPLsMneLkQypRscUe/kMYtdt3ZLCTDdcNoo8qjV1kd7CS69sdv3uGH277/Q0NdHdDSYSF9fIgVBGQXwJYHLJIj/ht8mtthOZdqbg5LgTI6WANYdPrhGPzTbbc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=svBNJ8o3; arc=none smtp.client-ip=203.205.221.191
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1709661039; bh=g0VikDDZHRPX1F+raT86tLLC0uFSiNwgf0RrjwgjTDQ=;
+	h=Subject:From:In-Reply-To:Date:Cc:References:To;
+	b=svBNJ8o3d+bbf8B6s3jzYt92tvyGNr3k04oMMXGszHCWhcV+grLEu4nIgLYysgT1m
+	 4bT04oOtinym5ew8wMgfe+kkOWpwX0Qx+qEqvIauzoEQqrPO1iYGcdmVt1d5QmVY/G
+	 lE8j9LfoPP1EIEYBVhWFPKVh57ccO55VQ+TfLeRo=
+Received: from smtpclient.apple ([2001:da8:c800:d084:84f7:c158:bab8:8899])
+	by newxmesmtplogicsvrsza1-0.qq.com (NewEsmtp) with SMTP
+	id CA3A6E33; Wed, 06 Mar 2024 01:50:35 +0800
+X-QQ-mid: xmsmtpt1709661035tuur2m1ml
+Message-ID: <tencent_AA20462764AFF185EF405043DBC99119F705@qq.com>
+X-QQ-XMAILINFO: MqG4KXyEKpQye6Sjmokj1B8vEqsYsqQnANZBIE4uyKBM4b5RwTTrbxPOnZHCQE
+	 KRRrkBsbf1ueRLgIJ7T5wutix5QYmVTMCSqaXaljN8cql0RcxLes6XLihiYdbzps4oDNvTZOA9Fu
+	 CBVavCNUSqx4vcYwRBtCCOt8vAEyJVyMJqQRhzR7R4gNR8oe3og50qFzGCntxAVPNiLcFXoT2cXA
+	 Vn5HAln+26uVyyXY4hX0dRRtat24JWwKnOiNsZehzXslBakYPNM/Mp5D38c1ip/6wEaHzai5L3Sj
+	 04VHEi6a/wWDyyt+Fes1wM1KauEkaAQMB/BwRNb2b5P9gR5lkSpVUSJbnGM28EyaQl5X9IcmquE9
+	 8rRifQolFDLvNi3aVyVvZ9I5j5ggoSS9yvRORyBtCQddSVeCK52fHn0Af9XO0JLWs5D8YOcD6kzI
+	 ppY2rTiLFnrn9Ylq4pAo0m0PaOckv1FzTlfRBguih3tze5JTyOAme/kfXFbymLmiWp07GCSxi6bs
+	 8ZmIQy4mlbUJphJW8vpuCW8xnLeKPAnJLRAaNBn/1vXYvsy+pNZopKsMeb0/HoIYHhKmsCHbnbBX
+	 u31zi24Hj3Pz4pp9D+eVPixgXHDowZRB/NtpXp0qykbDFZ/l5A/EzK9dUezWAxr3hMZFCWbUMEeu
+	 LQp7e4K2R9/lYf1Ue49cAD2ICig/OIS26EFTFo9wHdpvQZwCz/rOuJXh9CfV9FIaQtkN8K80nPKK
+	 /45G5FmwHjkGMGXXHDs2b2HnqfSNFT4YTDcNoNT0IJ10Q4bbFvCYUwWQ+/muBk9TBhQbhs6NSaWD
+	 QyfqrAloAxFlSwQuLKZMHkdr2Zd6ulYYW+yLgsH9gDDsdgPtu2kYw+MLKMgnT4UsDpUtUHubxrhs
+	 WBvPuW16BnOPtUWzPiUy45TLXrxu6clqdu1x/sBdZDqGdvYIXboSCuzgh3zTd6k3u2gf7qEKJA/b
+	 p1JkaQyAAMprbAZFxFm17RoryXI97zMfGZYu59RkCeLC6Hre2FlUaCpWZA0MzE71teFaVsELU=
+X-QQ-XMRINFO: NyFYKkN4Ny6FSmKK/uo/jdU=
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240303104853.31511-1-brgl@bgdev.pl> <CAMuHMdXWdKZjjZc39iXfa6Nohtn+Xm9YvcF+YoRpNzCgeWD8tA@mail.gmail.com>
-In-Reply-To: <CAMuHMdXWdKZjjZc39iXfa6Nohtn+Xm9YvcF+YoRpNzCgeWD8tA@mail.gmail.com>
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-Date: Tue, 5 Mar 2024 18:47:46 +0100
-Message-ID: <CAMRc=MehZVdbYpGLH76YE_fJA2q=Wojg5zOV2obkn8M6EBXiYQ@mail.gmail.com>
-Subject: Re: [PATCH] of: make for_each_property_of_node() available to to !OF
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
+Subject: Resend: Re: [PATCH v3 5/7] riscv: Kconfig.socs: Allow SOC_CANAAN with
+ MMU for K230
+From: Yangyu Chen <cyy@cyyself.name>
+In-Reply-To: <20240305-fascism-enrich-06483ddeb149@spud>
+Date: Wed, 6 Mar 2024 01:50:25 +0800
+Cc: Damien Le Moal <dlemoal@kernel.org>,
+ linux-riscv@lists.infradead.org,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Guo Ren <guoren@kernel.org>,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>
 Content-Transfer-Encoding: quoted-printable
+X-OQ-MSGID: <066CA89A-31BD-47DF-B540-D1D5844B8597@cyyself.name>
+References: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
+ <tencent_0432DA968E39B81431F921F38D747C008208@qq.com>
+ <ef8df22f-dac8-4652-bf17-d10254e6abfb@kernel.org>
+ <tencent_E56A833916E00EC7B4840C34FAF1250ADE0A@qq.com>
+ <20240305-fascism-enrich-06483ddeb149@spud>
+To: Conor Dooley <conor@kernel.org>
+X-Mailer: Apple Mail (2.3774.400.31)
 
-On Tue, Mar 5, 2024 at 9:32=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
->
-> Hi Bartosz,
->
-> On Sun, Mar 3, 2024 at 11:49=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.p=
-l> wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> >
-> > for_each_property_of_node() is a macro and so doesn't have a stub inlin=
-e
-> > function for !OF. Move it out of the relevant #ifdef to make it availab=
-le
-> > to all users.
->
-> Thanks for your patch, which is now commit ad8ee969d7e34dd3 ("of: make
-> for_each_property_of_node() available to to !OF") in dt-rh/for-next
->
-> > Fixes: 611cad720148 ("dt: add of_alias_scan and of_alias_get_id")
->
-> How is this related?
->
+The last email was not received in the list due to I didn=E2=80=99t =
+change the mode
+to plaintext. Sorry for that. This is a resend email.
 
-This commit added that macro in the wrong place. Back then it was
-called differently, it got later renamed but this is the original
-commit that provided it.
+> On Mar 6, 2024, at 01:20, Conor Dooley <conor@kernel.org> wrote:
+>=20
+> On Tue, Mar 05, 2024 at 03:47:15PM +0800, Yangyu Chen wrote:
+>> On 2024/3/5 07:46, Damien Le Moal wrote:
+>>> On 3/5/24 06:05, Yangyu Chen wrote:
+>>>> Since K230 was released, SOC_CANAAN is no longer only referred to =
+the K210.
+>>>> Remove it depends on !MMU will allow building dts for K230 and =
+remove the
+>>>> K210 string from the help message.
+>>>>=20
+>>>> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+>>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>>>> ---
+>>>>  arch/riscv/Kconfig.socs | 5 ++---
+>>>>  1 file changed, 2 insertions(+), 3 deletions(-)
+>>>>=20
+>>>> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+>>>> index 623de5f8a208..b4e9b7f75510 100644
+>>>> --- a/arch/riscv/Kconfig.socs
+>>>> +++ b/arch/riscv/Kconfig.socs
+>>>> @@ -75,13 +75,12 @@ config ARCH_CANAAN
+>>>>   def_bool SOC_CANAAN
+>>>>  config SOC_CANAAN
+>>>> - bool "Canaan Kendryte K210 SoC"
+>>>> - depends on !MMU
+>>>=20
+>>> This seems wrong to me. The k210 support does require no-mmu. So why =
+remove
+>>> this ?
+>>=20
+>> It just allows SOC_CANAAN to be selected when MMU=3Dy. With this =
+patch,
+>> nommu_k210_defconfig still works.
+>=20
+> I think the concern here is that this would allow people to build a
+> kernel for the k120 with the MMU enabled, not that the existing nommu
+> build will be affected.
+>=20
 
-> > Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > ---
-> > I have an upcoming driver that will use this but which can also be buil=
-t
-> > on non-DT systems. I'd like to get that in as a fix to avoid inter-tree
-> > dependencies later.
->
-> Do you have a link?
->
+Aha. I don't think is there anyone will try a build with MMU on
+K210. It only has 6MB of memory available to the CPU. For rv64 if
+the S-Mode software starts at 2MB, it will only have 4MB for S-Mode
+Linux. It's hard to trim the kernel and fit in 4MB and even preserve
+some memory for userspace.
 
-Sure, it's here: https://github.com/brgl/linux/tree/topic/gpio-virtual-cons=
-umer
+I also tried to make nommu_k210_defconfig on gcc 13.2.0, it produced a
+1.6M kernel in arch/riscv/boot/Image. But if I use nconfig to set
+CONFIG_MMU=3Dy and rebuild, the kernel file will increase to 11M.
 
-> > --- a/include/linux/of.h
-> > +++ b/include/linux/of.h
-> > @@ -362,9 +362,6 @@ extern struct device_node *of_get_cpu_state_node(st=
-ruct device_node *cpu_node,
-> >                                                  int index);
-> >  extern u64 of_get_cpu_hwid(struct device_node *cpun, unsigned int thre=
-ad);
-> >
-> > -#define for_each_property_of_node(dn, pp) \
-> > -       for (pp =3D dn->properties; pp !=3D NULL; pp =3D pp->next)
-> > -
-> >  extern int of_n_addr_cells(struct device_node *np);
-> >  extern int of_n_size_cells(struct device_node *np);
-> >  extern const struct of_device_id *of_match_node(
-> > @@ -892,6 +889,9 @@ static inline int of_prop_val_eq(struct property *p=
-1, struct property *p2)
-> >                !memcmp(p1->value, p2->value, (size_t)p1->length);
-> >  }
-> >
-> > +#define for_each_property_of_node(dn, pp) \
-> > +       for (pp =3D dn->properties; pp !=3D NULL; pp =3D pp->next)
->
-> Is this safe if !OF? Can dn be NULL?
->
+> Maybe you could squash in something like the following?
+>=20
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> index b4e9b7f75510..75d55059163f 100644
+> --- a/arch/riscv/Kconfig.socs
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -72,15 +72,19 @@ config SOC_VIRT
+>   This enables support for QEMU Virt Machine.
+>=20
+> config ARCH_CANAAN
+> - def_bool SOC_CANAAN
+> + bool "Canaan Kendryte SoCs"
+> + help
+> +   This enables support for Canaan Kendryte SoC platform hardware.
+>=20
+> config SOC_CANAAN
+> - bool "Canaan Kendryte SoC"
+> + bool "Canaan Kendryte K210 SoC"
+> + depends on !MMU
+> + depends on ARCH_CANAAN
+> select CLINT_TIMER if RISCV_M_MODE
+> select ARCH_HAS_RESET_CONTROLLER
+> select PINCTRL
+> select COMMON_CLK
+> help
+> -   This enables support for Canaan Kendryte SoC platform hardware.
+> +   This enables support for Canaan Kendryte K210 SoC platform =
+hardware.
+>=20
+> endmenu # "SoC selection"
+>=20
+> (Which reminds me, I really need to go and finish sorting out the =
+ARCH_
+> stuff)
 
-The way I use it[1], it's safe but it's a good point, I'll send a follow-up=
-.
+Seems like an idea if we want this consideration. But I don't think we =
+need
+this as the opinions shown above.
 
-Thanks,
-Bart
+If it should be, I think SOC_CANAAN should be renamed to SOC_K210 or
+SOC_CANAAN_K210.
 
-> Gr{oetje,eeting}s,
->
->                         Geert
->
-> --
-> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
-8k.org
->
-> In personal conversations with technical people, I call myself a hacker. =
-But
-> when I'm talking to journalists I just say "programmer" or something like=
- that.
->                                 -- Linus Torvalds
-
-[1] https://github.com/brgl/linux/blob/topic/gpio-virtual-consumer/drivers/=
-gpio/gpio-virtuser.c#L878
 
