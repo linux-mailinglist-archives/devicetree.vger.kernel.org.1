@@ -1,62 +1,60 @@
-Return-Path: <devicetree+bounces-48452-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48453-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 721E28721F3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:50:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DAF348721FF
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:52:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2E8B628185C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:50:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1805F1C20FBC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:52:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE16A126F02;
-	Tue,  5 Mar 2024 14:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 452368595C;
+	Tue,  5 Mar 2024 14:52:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aroaaLoX"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="PdV9JVb5"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2ADB86ACB;
-	Tue,  5 Mar 2024 14:50:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15E116127;
+	Tue,  5 Mar 2024 14:52:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709650238; cv=none; b=Ym0HVoDo73he6keRDVfZLYGfx8RuMxepDC7HZbyvEVxdD/p0yJrDhhwKGv58PJZ/DwqrJ0MR1zaIZe8KUxKO06i4NTC+d4k1KuBUG0asYCNeiwc5WtDefu7yzbi4MerrpWb+3KNYXt35NYw2IYw/tfEJuetN//ePbpP+FJxkSMg=
+	t=1709650374; cv=none; b=cZWe0tBrC2XKNh3L0H3m/uffQgYA33qjqt6Y95D5US6t2KFPJ1p3Yf3Yz6v8ajxOYB/FoywhvTEJvqObX/jnZuWM+kMCHB8lZhQu/+DS187uEdBXXPO+JFx+2KaenXViUtea9cX0okN7kc6z30cxzi0B2txLUs571cUCooVMtBU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709650238; c=relaxed/simple;
-	bh=VXWAauPjX6FDLOS5GEMcjByztQdG+D2U02KicMz1li0=;
+	s=arc-20240116; t=1709650374; c=relaxed/simple;
+	bh=nBqnTHfOl1CIZ0Th9P7dzJT1Db+T9rYlxuWK4sXXDec=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QnRMB61nUmdpKo+BM6rdfS6M4elWFfQYzOXai7inDSDUMLONNyTHtEGlCVE2sxmRNh26RBYAMGSsRBihP4dCfzZUAPNTw2hzcEeFA8uCQ2FRpiBufuruNWETQSXH4qHVQ4ixMgdTArEZZi7D4spQuoHoAY8hkC1oLJRVewrGC4A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aroaaLoX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EEC40C433F1;
-	Tue,  5 Mar 2024 14:50:37 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=FLIvQN1rhMThui0utLMPRpWTtphbRJ+GxJoCc4mEpdeev6UTIF2f+rTg+oBTmAxkd9Rr2V7XdHkMpZEe1IPV0i/udQaQqhxcwpzybCk/1/axXmkcOc3HQPQf7dTavAONrJQmDTmp1dNc13endljNnxKhsD0ojq2CCrnITgBuYW4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=PdV9JVb5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FED2C433F1;
+	Tue,  5 Mar 2024 14:52:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709650238;
-	bh=VXWAauPjX6FDLOS5GEMcjByztQdG+D2U02KicMz1li0=;
+	s=k20201202; t=1709650373;
+	bh=nBqnTHfOl1CIZ0Th9P7dzJT1Db+T9rYlxuWK4sXXDec=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aroaaLoXlsoirx9FFY8ogRP7Q7XTLn/uH+JxdK6t/5yhLYKoRFZg8/J1VqSyDN9Ap
-	 3ZtVk+2EufojdutiFWwBzH5etqr05XbkzKTkSX/DbRHW4VwFEvOCLSjVp0ziZv/hyL
-	 Zw8Xhd+RnK1lTj8hrd6ZGYCbq5D5iQTLdkqLJo0P+bMh68p8knppuXSZaK0uyp4Dxm
-	 m5ptUVVJYmVZinsZiODsWmN4YT2qVCkBnnSkpBXiBp/EXJE+M7n6lexqKrmdwoHszS
-	 rZExK6O8qtNvqh++NWqFI5pw6WD7k2JHeKT2BdghRVFHP3Ku/psAsrqsU1EQrpq0zj
-	 QGhdxX8eMIyvg==
-Date: Tue, 5 Mar 2024 08:50:36 -0600
+	b=PdV9JVb5LDuJ/1PeYUCh1neM/UlOJKteVQ1O75nz94rIkmcW7mAFot6JneOF4gK4t
+	 gX+kw1/SSW8X/sRDfUQObVMzEL0fH+QY2fJoLKkM7QA0wymlGu+7x8/dV9Swc+itFq
+	 jqOuylW6M0QJZoEoFch1F8tcRlWX6N8s1KZu1GRidvM4PQelRg4BkE2+Cd/PpjS+w2
+	 DbrMOxIYOZ57I+QAJERZCpFIvd6hqFtTEtk8NEw9AAU8HcNhrmNQlTb6P4LKEGaya9
+	 B59Tmnm+CxPshjTpJAaKaJ6c0qAKXm2pdgAnRGKTjZidAn0+NCw/ML9izNhtMb/hkZ
+	 e/tUgwid1Lrhg==
+Date: Tue, 5 Mar 2024 08:52:51 -0600
 From: Rob Herring <robh@kernel.org>
-To: David Heidelberg <david@ixit.cz>
-Cc: Stephen Boyd <sboyd@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	devicetree@vger.kernel.org,
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Matt Ranostay <mranostay@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+	devicetree@vger.kernel.org, Peter Meerwald <pmeerw@pmeerw.net>,
+	linux-leds@vger.kernel.org,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
-	linux-kernel@vger.kernel.org, Viresh Kumar <vireshk@kernel.org>,
-	linux-pm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-	Nishanth Menon <nm@ti.com>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>
-Subject: Re: [PATCH] dt-bindings: opp: drop maxItems from inner items
-Message-ID: <170965023541.3333583.1849336475733290366.robh@kernel.org>
-References: <20240304234328.382467-1-david@ixit.cz>
+	Ricardo Ribalda <ribalda@kernel.org>,
+	Anders Darander <anders@chargestorm.se>
+Subject: Re: [PATCH] dt-bindings: leds: pca963x: Convert text bindings to YAML
+Message-ID: <170965037070.3336464.11666013116412320889.robh@kernel.org>
+References: <20240305004501.849-1-laurent.pinchart@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,26 +63,26 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240304234328.382467-1-david@ixit.cz>
+In-Reply-To: <20240305004501.849-1-laurent.pinchart@ideasonboard.com>
 
 
-On Tue, 05 Mar 2024 00:43:06 +0100, David Heidelberg wrote:
-> With recent changes within matrix dimensions calculation,
-> dropping maxItems: 1 provides a warning-free run.
+On Tue, 05 Mar 2024 02:45:01 +0200, Laurent Pinchart wrote:
+> Convert the pca963x DT bindings to YAML schema. The existing properties
+> are kept without modification, but the example is adapted to the latest
+> common bindings for LEDs.
 > 
-> Fixes warning such as:
-> arch/arm64/boot/dts/qcom/sdm845-oneplus-enchilada.dtb: opp-table: opp-200000000:opp-hz:0: [200000000, 0, 0, 150000000, 0, 0, 0, 0, 300000000] is too long
-> 
-> Fixes: 3cb16ad69bef ("dt-bindings: opp: accept array of frequencies")
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: David Heidelberg <david@ixit.cz>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
->  follow-up of https://lore.kernel.org/lkml/20231229191038.247258-1-david@ixit.cz/T/
-> 
->  Documentation/devicetree/bindings/opp/opp-v2-base.yaml | 2 --
->  1 file changed, 2 deletions(-)
+> If someone wants to volunteer as a maintainer, by all means, please
+> replace me :-)
+> ---
+>  .../devicetree/bindings/leds/nxp,pca963x.yaml | 140 ++++++++++++++++++
+>  .../devicetree/bindings/leds/pca963x.txt      |  52 -------
+>  2 files changed, 140 insertions(+), 52 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/leds/nxp,pca963x.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/leds/pca963x.txt
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
