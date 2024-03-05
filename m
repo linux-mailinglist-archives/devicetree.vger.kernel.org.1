@@ -1,174 +1,146 @@
-Return-Path: <devicetree+bounces-48567-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D110C87287A
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 21:21:24 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B59C872887
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 21:24:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 72D2E1F2BCBF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 20:21:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 07546294A1C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 20:24:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C5466129A9A;
-	Tue,  5 Mar 2024 20:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eae9cINa"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D58412881F;
+	Tue,  5 Mar 2024 20:24:05 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BCAE127B7D;
-	Tue,  5 Mar 2024 20:21:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 713381272CC;
+	Tue,  5 Mar 2024 20:24:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709670068; cv=none; b=HgQKRMbAj9rt3SSHnbgSJuKbhMha8ex/EIKxYHbwLF8OG+bEuBVOHAw63J3SkTWQ7rXdtVNwPmj5ffxnyQ9bNH5dDDNDPqvmc8xoD1/ei4r0BBTRSWYj2JFHKZBbdGyhGYF0uv9ch8EOzlZdEUakB65AHMY+iyT0ODdbQR5E+a4=
+	t=1709670244; cv=none; b=MH8kBei/SGd/7zUQhhdaLrNiPo9GDPlmrXx8kOuAsEfR0D7RT87MohBQ1OfYrOkV/huXxYXU/nrfZpsT8Tmt1fqN33R36iKDAaUdI67qUNeJ5GBZvNgFq9sSomuNLhK72jX60L0HQVHW+tiVtUPuv4PN1BB+BI/3zR+Iw9x3NnA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709670068; c=relaxed/simple;
-	bh=AXyShP/NTJJSrB72bu/9CciENtNrPzhZ1jR+kfnI4Tc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=D0O5y5iFi52LAiRXgCoet6LliUiMPc6pKucchnkXSsDlUsL2YapwBAMTF826H7uKmHIgNlrolP7cBqo6OFI4hoQkgcGow+7mgyo2q+AFYkQGuV2THzpvA+wR594br2T0m+Ni4P8qvD5d4YHt5Re/MSBB+9mE2O+ojRfYvpJZCAs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eae9cINa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id ADEBFC433F1;
-	Tue,  5 Mar 2024 20:21:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709670068;
-	bh=AXyShP/NTJJSrB72bu/9CciENtNrPzhZ1jR+kfnI4Tc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=eae9cINa7YeSHc90dybZTtnvbc8RCKKccaLxsj2iP1Bfrbcqf9EnwYHoPi2pxci9C
-	 BdiVs25FlWaqDE3lOPcsjMXp1GkTC1v+boM79AUvdtIOdA5TqeuYg02QtNVBvt3DMh
-	 UjhiwDXN3t63IT5rPb8H6JLi6MythNFsC4aQYbGRKsMZmJXGJ3jyl59XwEXXz1dXHu
-	 XAjCz4PGTDIvycS2FquRqRXQwkQzg35WIa+ZjLIjiqbOU/2G5uiEeJUfnn8dnPt4t8
-	 SKlquNqYbeYVSItpq8kfn1rME+Hpbrpifq+jdU24P9YuZOFrBC84+7ETAyRLARGDmV
-	 0mEiH5E4ioSbg==
-Date: Tue, 5 Mar 2024 20:21:02 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Rob Herring <robh@kernel.org>
-Cc: =?iso-8859-1?Q?J=E9r=E9mie?= Dautheribes <jeremie.dautheribes@bootlin.com>,
-	Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	s=arc-20240116; t=1709670244; c=relaxed/simple;
+	bh=2Xnx+UxJNe1jbb9epdvb8xlWEdXQg0apHljlHnmwwvY=;
+	h=Date:From:To:Cc:Subject:Message-ID:MIME-Version:Content-Type:
+	 Content-Disposition; b=AlTbf7m84sbw0hzBNhWiVcVW9qHO4+kLt6cw4F0Q9mZWR4gaZQQu4sKOFXe+9J8ti+fnGBFeUjTfcvqdUFPw9x2TxaT2CGWHsZsq7lSwf+NwA+B/gczJfNwpoHla7YgdE/mOOvgHQNg+gUTYNIUQG0yvB/tP5lMl4nClbeGTLmg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rhbJf-0001Ly-1n;
+	Tue, 05 Mar 2024 20:23:11 +0000
+Date: Tue, 5 Mar 2024 20:23:07 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>,
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Yen-Mei Goh <yen-mei.goh@keysight.com>
-Subject: Re: [PATCH v2 0/3] panel-simple: add support for Crystal Clear
- CMT430B19N00
-Message-ID: <20240305-carport-fading-77429ca205c0@spud>
-References: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
- <20240304-drivable-property-feaeba782880@spud>
- <20240304212451.GA1056406-robh@kernel.org>
+	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Christian Brauner <brauner@kernel.org>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Damien Le Moal <dlemoal@kernel.org>, Min Li <min15.li@samsung.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Hannes Reinecke <hare@suse.de>,
+	Christian Loehle <CLoehle@hyperstone.com>,
+	Avri Altman <avri.altman@wdc.com>, Bean Huo <beanhuo@micron.com>,
+	Yeqi Fu <asuk4.q@gmail.com>,
+	Victor Shih <victor.shih@genesyslogic.com.tw>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	"Ricardo B. Marliere" <ricardo@marliere.net>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org
+Cc: Diping Zhang <diping.zhang@gl-inet.com>,
+	Jianhui Zhao <zhaojh329@gmail.com>,
+	Jieying Zeng <jieying.zeng@gl-inet.com>,
+	Chad Monroe <chad.monroe@adtran.com>,
+	Adam Fox <adam.fox@adtran.com>, John Crispin <john@phrozen.org>
+Subject: [RFC PATCH v2 0/8] nvmem: add block device NVMEM provider
+Message-ID: <cover.1709667858.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="n5QTRknG5hYaMZ5k"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240304212451.GA1056406-robh@kernel.org>
 
+On embedded devices using an eMMC it is common that one or more (hw/sw)
+partitions on the eMMC are used to store MAC addresses and Wi-Fi
+calibration EEPROM data.
 
---n5QTRknG5hYaMZ5k
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Implement an NVMEM provider backed by block devices as typically the
+NVMEM framework is used to have kernel drivers read and use binary data
+from EEPROMs, efuses, flash memory (MTD), ...
 
-On Mon, Mar 04, 2024 at 03:24:51PM -0600, Rob Herring wrote:
-> On Mon, Mar 04, 2024 at 07:29:04PM +0000, Conor Dooley wrote:
-> > On Mon, Mar 04, 2024 at 05:04:51PM +0100, J=E9r=E9mie Dautheribes wrote:
-> > > Hello everyone,
-> > >=20
-> > > This patch series add support for the Crystal Clear Technology
-> > > CMT430B19N00 4.3" 480x272 TFT-LCD panel.
-> > > It also adds Crystal Clear Technology to vendor-prefixes.yaml.
-> > >=20
-> > > Please note that unfortunately there is no public datasheet available
-> > > for this panel.
-> > >=20
-> > > Changes in v2:
-> > >   - add link to the Crystal Clear Technology website in commit messag=
-e, as
-> > >   suggested by Conor Dooley and Neil Armstrong.
-> >=20
-> > You forgot however to add the acks that I gave you for the two
-> > dt-binding patches.
->=20
-> I was wondering why my scripts said this was already reviewed with that=
-=20
-> missing. Turns out b4 will now check prior versions and add the tags as=
-=20
-> long as the patch-id matches. Neat, but the submitter really has to=20
-> grasp how that all works (knowing if the patch-id changed) as well as=20
-> the maintainer has to use b4, so we can't really rely on it.
->=20
-> Here's b4 debug log:
->=20
->   new message: 20240223-subtotal-aground-268d135adeff@spud               =
-                                                     =20
-> Running git --no-pager patch-id --stable                                 =
-                                                     =20
->   found matching patch-id for Re: [PATCH 2/3] dt-bindings: display: simpl=
-e: add support for Crystal Clear CMT430B19N00        =20
->   new message: 20240229-woven-lively-1d90687b2d03@spud                   =
-                                                     =20
->   skipping reply without trailers: 20240229-woven-lively-1d90687b2d03@spud
->   new message: 20240223134517.728568-2-jeremie.dautheribes@bootlin.com   =
-                                                     =20
->   skipping non-reply: 20240223134517.728568-2-jeremie.dautheribes@bootlin=
-=2Ecom                                                 =20
-> Analyzing follow-up: Re: [PATCH v2 0/3] panel-simple: add support for Cry=
-stal Clear CMT430B19N00 (conor@kernel.org)           =20
->   no trailers found, skipping                                            =
-                                                     =20
-> Analyzing follow-up: Re: [PATCH v2 3/3] drm/panel: simple: add CMT430B19N=
-00 LCD panel support (mripard@kernel.org)            =20
->   no trailers found, skipping                                            =
-                                                     =20
->     adding "Acked-by: Conor Dooley <conor.dooley@microchip.com>" from tra=
-iler_map to: [PATCH v2 1/3] dt-bindings: Add Crystal C
-> lear Technology vendor prefix                                            =
-                                                     =20
+In order to be able to reference hardware partitions on an eMMC, add code
+to bind each hardware partition to a specific firmware subnode.
 
->     adding "Link: http://www.cct.com.my/" from trailer_map to: [PATCH v2 =
-1/3] dt-bindings: Add Crystal Clear Technology vendor=20
-> prefix                                                                   =
-                                                     =20
+This series is meant to open the discussion on how exactly the device
+tree schema for block devices and partitions may look like, and even
+if using the block layer to back the NVMEM device is at all the way to
+go -- to me it seemed to be a good solution because it will be reuable
+e.g. for (normal, software GPT or MBR) partitions of an NVMe SSD.
 
-This is the other nice thing that b4 does, pick up "non review"
-trailers too.
+This series has previously been submitted on July 19th 2023[1] and most of
+the basic idea did not change since.
 
->     adding "Acked-by: Conor Dooley <conor.dooley@microchip.com>" from tra=
-iler_map to: [PATCH v2 2/3] dt-bindings: display: simp
-> le: add support for Crystal Clear CMT430B19N00                           =
-                                                     =20
->     adding "Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>" from=
- trailer_map to: [PATCH v2 3/3] drm/panel: simple: add
->  CMT430B19N00 LCD panel support                                          =
-                                                     =20
->     adding "Reviewed-by: Jessica Zhang <quic_jesszhan@quicinc.com>" from =
-trailer_map to: [PATCH v2 3/3] drm/panel: simple: add=20
-> CMT430B19N00 LCD panel support                                           =
-                                                     =20
+However, the recent introduction of bdev_file_open_by_dev() allow to
+get rid of most use of block layer internals which supposedly was the
+main objection raised by Christoph Hellwig back then.
 
---n5QTRknG5hYaMZ5k
-Content-Type: application/pgp-signature; name="signature.asc"
+Most of the other comments received for in the first RFC have also
+been addressed, however, what remains is the use of class_interface
+(lacking an alternative way to get notifications about addition or
+removal of block devices from the system). As this has been criticized
+in the past I'm specifically interested in suggestions on how to solve
+this in another way -- ideally without having to implement a whole new
+way for in-kernel notifications of appearing or disappearing block
+devices...
 
------BEGIN PGP SIGNATURE-----
+And, in a way just like in case of MTD and UBI, I believe acting as an
+NVMEM provider *is* a functionality which belongs to the block layer
+itself and, other than e.g. filesystems, is inconvenient to implement
+elsewhere.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZed+rgAKCRB4tDGHoIJi
-0uUxAP9C/NeKWKiGpmRvjlC+xsYuQywbIx6OSRgaqNwsu5T1TwD/V6AU8yXJAsUR
-qJI2ABxmjqFpp1fw/6PAxjAVfm7XVQ8=
-=m7ML
------END PGP SIGNATURE-----
+[1]: https://patchwork.kernel.org/project/linux-block/list/?series=767565
 
---n5QTRknG5hYaMZ5k--
+Daniel Golle (8):
+  dt-bindings: block: add basic bindings for block devices
+  block: partitions: populate fwnode
+  block: add new genhd flag GENHD_FL_NVMEM
+  block: implement NVMEM provider
+  dt-bindings: mmc: mmc-card: add block device nodes
+  mmc: core: set card fwnode_handle
+  mmc: block: set fwnode of disk devices
+  mmc: block: set GENHD_FL_NVMEM
+
+ .../bindings/block/block-device.yaml          |  22 +++
+ .../devicetree/bindings/block/partition.yaml  |  51 +++++
+ .../devicetree/bindings/block/partitions.yaml |  20 ++
+ .../devicetree/bindings/mmc/mmc-card.yaml     |  45 +++++
+ block/Kconfig                                 |   9 +
+ block/Makefile                                |   1 +
+ block/blk-nvmem.c                             | 175 ++++++++++++++++++
+ block/partitions/core.c                       |  41 ++++
+ drivers/mmc/core/block.c                      |   8 +
+ drivers/mmc/core/bus.c                        |   2 +
+ include/linux/blkdev.h                        |   2 +
+ 11 files changed, 376 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/block/block-device.yaml
+ create mode 100644 Documentation/devicetree/bindings/block/partition.yaml
+ create mode 100644 Documentation/devicetree/bindings/block/partitions.yaml
+ create mode 100644 block/blk-nvmem.c
+
+-- 
+2.44.0
 
