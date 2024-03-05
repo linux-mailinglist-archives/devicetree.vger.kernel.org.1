@@ -1,108 +1,182 @@
-Return-Path: <devicetree+bounces-48431-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48433-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 53861872162
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:24:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id B0DDD87217A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:31:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0A591F21D7D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:24:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6D545287E3A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:31:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B3F86636;
-	Tue,  5 Mar 2024 14:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F5C41C6B;
+	Tue,  5 Mar 2024 14:31:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L0uUn/6V"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JNnkJcVI"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C352386122;
-	Tue,  5 Mar 2024 14:24:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D1AFF6127;
+	Tue,  5 Mar 2024 14:31:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709648669; cv=none; b=UGz4S5cPyPaTbGJNUsKzfj4MenvZVThA3YVIr/sUDM9zMgIiKOt4gRK+jJWAt234GEROr3kVIiF8JOYBukrW6waU1vGrK6zyNuqay9ZCjGCfFgdgcZtAsumqkipW8ZPwp83uJlR4lgPxxWjGILc4lzmgGU1qq4ueRyttKLJB+7o=
+	t=1709649112; cv=none; b=UMwMrp5cUvkWZmAjT/ykRJDDnHRsBdnNL/syH/99WAdLkwTlkXHlLXjuYr2b8jPiGRos4ATfCtKSVbHNQKSlApsS5TL+iX7WfgzTz1A/Bt1WbvY1RFNC0CNv/WjEmCWyweOldJCi3xP/gTCgovGFyzZIQt8S6J/D1Vg+sDt+1Jo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709648669; c=relaxed/simple;
-	bh=zan+ZoeDXxzZ7Py3Ib0gvt0twgnpqQJYfL+M/dbapaM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HfHKHYeOoK9tqH/bJBOusVaDBxtCBJxyl6dVCLBbV6WgqtFCjqpY1AmCF2kX/OCxg7jpLZisDGLablq/ZWPVGaw8mW1JFlAcCuNUxQnzI+PBbzRiyUz3d/NA5/AldjziK0qYmI1CuHauXpecgcD8OQ5u0zxRKMAME9q/RXvcrEE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L0uUn/6V; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15069C43390;
-	Tue,  5 Mar 2024 14:24:28 +0000 (UTC)
+	s=arc-20240116; t=1709649112; c=relaxed/simple;
+	bh=uOxgMc0UNvjtNX9ROLkNkPMff+sYOIbHJ/9I4Ez7edI=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=S0SENSqBnqwjBlZPVa8CsfcXr+VqYThxdD+/hczZhs1DSpx5ANKO9JVf0D1cHWS59R0qQRssM57FfF4pbGvcHgKMzh7qtHaOfNP2CZqUfjPQYMskYOYwfIBOgx9VfFpb84KkGYjbKhLtMnN+M3Yd4F7F9hG2g/iYZswxSNzYcdw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JNnkJcVI; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0E6ABC433C7;
+	Tue,  5 Mar 2024 14:31:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709648669;
-	bh=zan+ZoeDXxzZ7Py3Ib0gvt0twgnpqQJYfL+M/dbapaM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=L0uUn/6VWsIRpBj0MI8Cs9Zlz68UfqVVESRLH41lV8Jnh0qjwNa2FKGJJv0OrELOB
-	 sJFJUk0V1+sBQNKd+WToPNFo0HYwal0psvcVrmwZoAeord/9WQCA3XapUZp//xTdj/
-	 O64EsudmuwyatGTs5ewvhP7aPebIcRtvi1SkoC6nfW6yFO6S/PG4jF/jPfFqdTmyUf
-	 DIxyBjGbaq/o3OMndkl5rvNOMBoNwbBXcRGfmsD5yKAsWpkdjcRvF5fC3iUXG+OkhB
-	 UXdXwYoZwzwVoOqfJ9AFCRHLn4lg2xpaJKc3n9eWlituqTr46U1alWxIdTIrrI5rnM
-	 JCmTfpUrrootQ==
-Date: Tue, 5 Mar 2024 08:24:26 -0600
-From: Rob Herring <robh@kernel.org>
-To: Vidya Sagar <vidyas@nvidia.com>
-Cc: bhelgaas@google.com, rafael@kernel.org, lenb@kernel.org,
-	will@kernel.org, lpieralisi@kernel.org, kw@linux.com,
-	frowand.list@gmail.com, linux-pci@vger.kernel.org,
-	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	treding@nvidia.com, jonathanh@nvidia.com, kthota@nvidia.com,
-	mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V4] PCI: Add support for preserving boot configuration
-Message-ID: <20240305142426.GB3259724-robh@kernel.org>
-References: <20240222124110.2681455-1-vidyas@nvidia.com>
- <20240223080021.1692996-1-vidyas@nvidia.com>
+	s=k20201202; t=1709649112;
+	bh=uOxgMc0UNvjtNX9ROLkNkPMff+sYOIbHJ/9I4Ez7edI=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=JNnkJcVI9mzU2udfx3sPMtgCMMnYFmPluM3YhTE1EhgQ8hEveJMT/P7/kN2WF1f9s
+	 EACth0vLiBRE/2UtztynZhuECgr72fj3O1pTFP0s+1rClteUIaqcYGk2ojnBoPwNHd
+	 whYBxWjo+wL4I3D5lcWdO2Ev1e2D8PcPVeIG5PfQo+7LZIxzF77IgUQP09qWx9plt0
+	 XgUYSssRsdnibH28jDfIzVGaBni/jxYDzWBZC2iunsqyeom/qOhcNoB9da3C5NY2mg
+	 p4N5yXXlFKTzvmCPns60RwSOHl/id+BbzeczU3fGk9CxMx2l9AYSM2NjcRY57sddrQ
+	 VmAr5FoCrnJ+Q==
+From: Kalle Valo <kvalo@kernel.org>
+To: Marc Gonzalez <mgonzalez@freebox.fr>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  ath10k
+ <ath10k@lists.infradead.org>,  wireless <linux-wireless@vger.kernel.org>,
+  DT <devicetree@vger.kernel.org>,  Rob Herring <robh+dt@kernel.org>,
+  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
+ <conor+dt@kernel.org>,  Pierre-Hugues Husson <phhusson@freebox.fr>,  Jami
+ Kettunen <jamipkettunen@gmail.com>,  Jeffrey Hugo
+ <quic_jhugo@quicinc.com>,  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
+ qcom,no-msa-ready-indicator prop
+References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
+	<b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
+	<871q8wk7o3.fsf@kernel.org>
+	<3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr>
+	<87wmqoilzf.fsf@kernel.org>
+	<c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr>
+	<87cyse8j9m.fsf@kernel.org>
+	<6d4b1381-c121-4cda-a8c9-9ccac56bd447@freebox.fr>
+Date: Tue, 05 Mar 2024 16:31:47 +0200
+In-Reply-To: <6d4b1381-c121-4cda-a8c9-9ccac56bd447@freebox.fr> (Marc
+	Gonzalez's message of "Mon, 4 Mar 2024 16:51:37 +0100")
+Message-ID: <87plw87nsc.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240223080021.1692996-1-vidyas@nvidia.com>
+Content-Type: text/plain
 
-On Fri, Feb 23, 2024 at 01:30:21PM +0530, Vidya Sagar wrote:
-> Add support for preserving the boot configuration done by the
-> platform firmware per host bridge basis, based on the presence of
-> 'linux,pci-probe-only' property in the respective PCI host bridge
-> device-tree node. It also unifies the ACPI and DT based boot flows
-> in this regard.
-> 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> ---
-> V4:
-> * Addressed Bjorn's review comments
-> 
-> V3:
-> * Unified ACPI and DT flows as part of addressing Bjorn's review comments
-> 
-> V2:
-> * Addressed issues reported by kernel test robot <lkp@intel.com>
-> 
->  drivers/acpi/pci_root.c                  | 12 -------
->  drivers/pci/controller/pci-host-common.c |  4 ---
->  drivers/pci/of.c                         | 21 +++++++++++
->  drivers/pci/probe.c                      | 46 ++++++++++++++++++------
->  include/linux/of_pci.h                   |  6 ++++
->  5 files changed, 62 insertions(+), 27 deletions(-)
+Marc Gonzalez <mgonzalez@freebox.fr> writes:
 
-One more thing.
+> On 01/03/2024 09:10, Kalle Valo wrote:
+>
+>> Marc Gonzalez wrote:
+>> 
+>>> Kalle Valo wrote:
+>>> 
+>>>> Here's one example where in ath10k we use a feature bit as a workaround:
+>>>>
+>>>> 	/* Don't trust error code from otp.bin */
+>>>> 	ATH10K_FW_FEATURE_IGNORE_OTP_RESULT = 7,
+>>>>
+>>>>         ....
+>>>>
+>>>> 	if (!(skip_otp || test_bit(ATH10K_FW_FEATURE_IGNORE_OTP_RESULT,
+>>>> 				   ar->running_fw->fw_file.fw_features)) &&
+>>>> 	    result != 0) {
+>>>> 		ath10k_err(ar, "otp calibration failed: %d", result);
+>>>> 		return -EINVAL;
+>>>> 	}
+>>>>
+>>>> BTW for modifying firmware-N.bin files we have a script here:
+>>>>
+>>>> https://github.com/qca/qca-swiss-army-knife/blob/master/tools/scripts/ath10k/ath10k-fwencoder
+>>>
+>>> If I understand correctly, you are saying that there is
+>>> (maybe... probably) a bug in the FW, so it makes sense to
+>>> tag that specific FW file with a special bit which the kernel
+>>> will interpret as "this FW is broken in a specific way;
+>>> and here's how to work around the issue."
+>>>
+>>> So this bit would serve the same purpose as my proposed
+>>> "qcom,no-msa-ready-indicator" bit (that bit existed instead
+>>> in my board's device tree).
+>>>
+>>> The problem I see is that the firmware files are signed.
+>>> Thus, changing a single bit breaks the verification...
+>>> UNLESS the FW format allows for a signed section ALONG-SIDE
+>>> an unsigned section?
+>> 
+>> firmware-N.bin is ath10k specific container file format and we (the
+>> Linux community) have full access to it using ath10k-fwencoder, there's
+>> no signing or anything like that. One of the major reasons why it was
+>> designed was to handle differences between firmware branches, just like
+>> in this case.
+>> 
+>> Of course plan A should be to fix the firmware but if that doesn't work
+>> out then plan B could be using the feature bit in firmware-N.bin.
+>> 
+>> BTW related to this Dmitry is extending firmware-N.bin handling for
+>> WCN3990, you will most likely need to use that:
+>> 
+>> https://patchwork.kernel.org/project/linux-wireless/cover/20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org/
+>
+>
+> If I understand correctly (happy to have anyone correct any
+> misunderstandings), if the FW cannot be fixed (for any reason),
+> then we would have to do something like this:
 
-> @@ -3080,20 +3106,18 @@ int pci_host_probe(struct pci_host_bridge *bridge)
+Thanks, this is exactly what I'm proposing.
+
+> diff --git a/drivers/net/wireless/ath/ath10k/core.c b/drivers/net/wireless/ath/ath10k/core.c
+> index 0032f8aa892ff..c8778ebe922af 100644
+> --- a/drivers/net/wireless/ath/ath10k/core.c
+> +++ b/drivers/net/wireless/ath/ath10k/core.c
+> @@ -769,6 +769,7 @@ static const char *const ath10k_core_fw_feature_str[] = {
+>  	[ATH10K_FW_FEATURE_SINGLE_CHAN_INFO_PER_CHANNEL] = "single-chan-info-per-channel",
+>  	[ATH10K_FW_FEATURE_PEER_FIXED_RATE] = "peer-fixed-rate",
+>  	[ATH10K_FW_FEATURE_IRAM_RECOVERY] = "iram-recovery",
+> +	[ATH10K_FW_FEATURE_NO_MSA_READY] = "no-msa-ready-indicator",
+
+For consistency I would have just "no-msa-ready".
+
+> @@ -1151,6 +1154,9 @@ struct ath10k {
+>  	u8 cfg_tx_chainmask;
+>  	u8 cfg_rx_chainmask;
 >  
->  	bus = bridge->bus;
+> +	/* FW does not send MSA_READY indicator. Fake it */
+> +	bool fake_msa_ready; /* bool or u8? or s8? or bitfield? */
+
+Hopefully not needed, see below.
+
+>  	struct completion install_key_done;
 >  
-> +	/* If we must preserve the resource configuration, claim now */
-> +	if (pci_has_flag(PCI_PROBE_ONLY) || bridge->preserve_config)
-> +		pci_bus_claim_resources(bus);
+>  	int last_wmi_vdev_start_status;
+> diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
+> index 38e939f572a9e..0776e79b25f3a 100644
+> --- a/drivers/net/wireless/ath/ath10k/qmi.c
+> +++ b/drivers/net/wireless/ath/ath10k/qmi.c
+> @@ -1040,6 +1040,8 @@ static void ath10k_qmi_driver_event_work(struct work_struct *work)
+>  		switch (event->type) {
+>  		case ATH10K_QMI_EVENT_SERVER_ARRIVE:
+>  			ath10k_qmi_event_server_arrive(qmi);
+> +			if (ar->fake_msa_ready)
+> +				ath10k_qmi_event_msa_ready(qmi);
 
-No reason to check PCI_PROBE_ONLY if you set preserve_config based on 
-/chosen as well. IOW, we should deprecate PCI_PROBE_ONLY flag in favor 
-of the per host bridge setting.
+Unless I'm missing something I would use here test_bit() directly:
 
-Rob
+if (test_bit(ATH10K_FW_FEATURE_NO_MSA_READY, ar->running_fw->fw_file.fw_features))
+        ath10k_qmi_event_msa_ready(qmi);
+
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
+
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
