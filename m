@@ -1,204 +1,288 @@
-Return-Path: <devicetree+bounces-48487-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48489-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4D8C87234F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:57:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADE48872369
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:59:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8BA2928367C
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:57:11 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6324F2823CB
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:59:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5442128824;
-	Tue,  5 Mar 2024 15:56:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF4E212836E;
+	Tue,  5 Mar 2024 15:59:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E9iaecWr"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hkkXvzQL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A47538664C;
-	Tue,  5 Mar 2024 15:56:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3382B127B67;
+	Tue,  5 Mar 2024 15:59:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709654183; cv=none; b=K7QoJ2Q3USUHIGLITG6pisNt8jmvFESii1TcKBTYA0ZI2e8lWCvOIV7S+UqRY4vS+Mb7K9Qfd3yJ2ZREsXJdjjvOBO6eBCnfTIdduCgkpmfD8uAG7MQ6edCR+IFdHt850vkLBPyLF/au1Kexks9OEY+cdJdrCJxhVkmjjz9Xi5I=
+	t=1709654379; cv=none; b=rnbrPFE0ZmeroAOu9fKTaYknOaKaN2Fx4lvWm9ViV9En2/VefAgcMQ1HpLmxmV/Sbb9bDUKX5pq3KL+5+JSXcmJahs0PCl88bHEfUNRGZntUHwr+z6qQlPp2xDnQmizMrgzD8RzVG7r/sPSAQEPtw7AGSt2KInlcBogGLhXdqi4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709654183; c=relaxed/simple;
-	bh=TClW89l6zuf+ZEEfzpNJwf1HXErewjgkilp5hBFVwlQ=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MzWIhXow5EqxYDNyzCSQ/fxf0dxgSKssTQhMHh5qQ4fFvWwVpOiFLmf5rV6ad8283c9bOQNVQ3hXFKK2pD9iARzAsnoyuTq0ZEObytI78iEWCmiaH17noCDeuN/YS0f0hL7KhKCNwNr1oqWGwZKZQAiivlRNAnMUA7hBxe+lS5Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E9iaecWr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99030C43390;
-	Tue,  5 Mar 2024 15:56:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709654183;
-	bh=TClW89l6zuf+ZEEfzpNJwf1HXErewjgkilp5hBFVwlQ=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E9iaecWrG8888Xa6QliXWQjI4gzxwVPpEAUnQhxTiv+xeOcytlVxOSoajWtyZWipD
-	 QbxgXwkV7craMvxf7+XJ5kdd3G8qTiQJuSrQ3Z52Dd7e2SfqUSHXtTB3WF+fmBVx4R
-	 wyfK+8EWGYtI5ap1nhnQRkw35qjSeeuHSKgIW6SQPr9UOeB2bhmYCrIFOYOkyVBtv/
-	 UkHYOBPIm7ICY0r2lI7wiCbM+CW1qM6NLEz2QAs8f2CS+WlhvOcLhP4UxWRJZ0wznh
-	 +hTkEcKJFF+QdrfQmFNYNWX0+ZV1067JuFO0ERu82mVm/GyaCIpwUaeouHownGR4B3
-	 SSvo60hm6yllQ==
-Date: Tue, 5 Mar 2024 16:56:15 +0100
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Palmer Dabbelt <palmer@dabbelt.com>
-Cc: minda.chen@starfivetech.com, Conor Dooley <conor@kernel.org>,
-	kw@linux.com, robh+dt@kernel.org, bhelgaas@google.com,
-	tglx@linutronix.de, daire.mcnamara@microchip.com,
-	emil.renner.berthing@canonical.com,
-	krzysztof.kozlowski+dt@linaro.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-	linux-pci@vger.kernel.org, Paul Walmsley <paul.walmsley@sifive.com>,
-	aou@eecs.berkeley.edu, p.zabel@pengutronix.de,
-	mason.huo@starfivetech.com, leyfoon.tan@starfivetech.com,
-	kevin.xie@starfivetech.com
-Subject: Re: [PATCH v15,RESEND 22/23] PCI: starfive: Offload the NVMe timeout
- workaround to host drivers.
-Message-ID: <ZedAn8IC+Mpm4Sqz@lpieralisi>
-References: <ZeCd+xqE6x2ZFtJN@lpieralisi>
- <mhng-87e7ef5a-d60b-4057-960d-41bc901b6c7f@palmer-ri-x1c9>
+	s=arc-20240116; t=1709654379; c=relaxed/simple;
+	bh=pMaYClOL1f2fCEBdpO9yV9QnHfTCoTbrFgJXNloevEM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ighxWR0jG8K8SAyFoXzTXmwZTauNENCgr/MomFurscUD/VgedMmp+N42JgvXdqicKgWZw200RpVGUYzC7gL4MEjRrOw3khS0IOC5OwyltUDCyKq3d0QYm8UBjyju/cC/pMxHttLJPyXpId/Kwzhzq+875VwE8fwopzYc82Wk5q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hkkXvzQL; arc=none smtp.client-ip=209.85.219.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dc745927098so5119808276.3;
+        Tue, 05 Mar 2024 07:59:37 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709654377; x=1710259177; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=FCOuK42WVPhy1j4uSU/uGoBgIzJdOLgBH9p1sEa2EVw=;
+        b=hkkXvzQLXfsYnMrbGt7Rbhdcq+S4oh9HSHUh/QxHofhghWFHUbryaBaBjUYAR1Vdm3
+         iS6o41xL28Yj1CD3lvNWWTdF1O8T40l9MdbVeUcJTFb4cw8lladBCbwzts6ThnhwHhtU
+         Ulyt4Tx+0mLFXF0gpzaYaenMzWCmYRjVme7oxzUFKFpYb7BNVqEYmIJIo4H1bF7NHdFx
+         +A5Y1Pw3BFWYMezAjrqxvCfTtOJOeLgj6PkcS86l8lrINaf32DS3Ft/b2lcHrkJJJGrG
+         o9UdyDwNFE2A659IugDKkYDodz83m44UimLLGf2iUo3OaqVwaD4sJKalfWIy+JL3u/KS
+         ad4w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709654377; x=1710259177;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FCOuK42WVPhy1j4uSU/uGoBgIzJdOLgBH9p1sEa2EVw=;
+        b=aLLHdQSjFYmFIXHpiQAp8gFIK77zFt9IHkkeBFGZeFxMuJM6l4BoDliG2ziWIXK7K/
+         yIoZGQlEi42ImOGNaLarGgyu7vIYKxMb5K6JjJwoNbh0FFwYpDfNZgeRg2YOcdqOKajo
+         bdv+hm9qZFo0V2lRcltCWyGfC9MgQTr5+BsSpdHcEIVFozWRz+7fURZduggy5yFqivsD
+         KPwjpCFLQqkdFig5KaycyK4mKeoIE2pGLqvnkiK3mtqQwEHRSEtJI42Id5FyXopEbR9f
+         Ck1/edA2U7gIRNDkDazFCly8u8uqM9dwmilY1diXNc33KS/EkxMyEq70sWazhVgcoYA4
+         9WNw==
+X-Forwarded-Encrypted: i=1; AJvYcCUc3xgCyVm0+2oIJT4NLRQ51kyHlYs1i9wIipPo2zOq6RbO9qNd2BzAp2hJqwlH1I8s6V+P/sWSc0F3JycVNGnOWeDdLoaoN3zQjMr1zRa1FzVWhI93yaEo5KzNnYcZubAX1ah/4664vGzMtXSAOWxWqQGdsCGFHcubd3UQGddvNN4snQ==
+X-Gm-Message-State: AOJu0YydcN+rieAliLOrg7FjoqGBBAbuUZEru1NPfaJzOIAwmfo0sovm
+	LCwZ8Q4l7MM0FG5zTANrVbiMfJ67OWsa1TNvCEIH4cKxoIjTluU7mRs1/HJQWFntGTMYKSKnU3u
+	BxdQA/tDJT7fDY6GCXEd+gkbCNP8=
+X-Google-Smtp-Source: AGHT+IGRKsPs+Rmg+G7IRByyGlLAIbv/gh2rXO2CsKTyMg8RVV0haXKjJswP3onDQp/fvGC2DQYEq3EkJUOgNJqf33E=
+X-Received: by 2002:a25:aa8a:0:b0:dce:2e9:a637 with SMTP id
+ t10-20020a25aa8a000000b00dce02e9a637mr11131475ybi.20.1709654377024; Tue, 05
+ Mar 2024 07:59:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <mhng-87e7ef5a-d60b-4057-960d-41bc901b6c7f@palmer-ri-x1c9>
+References: <20240131182653.2673554-1-tmaimon77@gmail.com> <20240131182653.2673554-4-tmaimon77@gmail.com>
+ <74e003c6d80611ddd826ac21f48b4b3a.sboyd@kernel.org> <CAP6Zq1g5gwXvYzO5fnHxG-6__gSCpNBY7VeEPyr4Qtijya6EfQ@mail.gmail.com>
+ <8acf846e767884978f3bb98646433551.sboyd@kernel.org> <CAP6Zq1htKQ5v0tH9HGRejnKwJ5ZauUWG_CzYUKegkVL4Ek8UxA@mail.gmail.com>
+In-Reply-To: <CAP6Zq1htKQ5v0tH9HGRejnKwJ5ZauUWG_CzYUKegkVL4Ek8UxA@mail.gmail.com>
+From: Tomer Maimon <tmaimon77@gmail.com>
+Date: Tue, 5 Mar 2024 17:59:26 +0200
+Message-ID: <CAP6Zq1g4ksdLSVTm+PLqa5dSEidvHdpGZb=J9wKEftaH-Mg+bw@mail.gmail.com>
+Subject: Re: [PATCH v23 3/3] clk: npcm8xx: add clock controller
+To: Stephen Boyd <sboyd@kernel.org>
+Cc: benjaminfair@google.com, joel@jms.id.au, krzysztof.kozlowski+dt@linaro.org, 
+	mturquette@baylibre.com, robh+dt@kernel.org, tali.perry1@gmail.com, 
+	venture@google.com, yuenn@google.com, openbmc@lists.ozlabs.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On Mon, Mar 04, 2024 at 10:08:06AM -0800, Palmer Dabbelt wrote:
-> On Thu, 29 Feb 2024 07:08:43 PST (-0800), lpieralisi@kernel.org wrote:
-> > On Tue, Feb 27, 2024 at 06:35:21PM +0800, Minda Chen wrote:
-> > > From: Kevin Xie <kevin.xie@starfivetech.com>
-> > > 
-> > > As the Starfive JH7110 hardware can't keep two inbound post write in
-> > > order all the time, such as MSI messages and NVMe completions. If the
-> > > NVMe completion update later than the MSI, an NVMe IRQ handle will miss.
-> > 
-> > Please explain what the problem is and what "NVMe completions" means
-> > given that you are talking about posted writes.
-> > 
-> > If you have a link to an erratum write-up it would certainly help.
-> 
-> I think we really need to see that errata document.  Our formal memory model
-> doesn't account for device interactions so it's possible there's just some
-> arch fence we can make stronger in order to get things ordered again --
-> we've had similar problems with some other RISC-V chips, and while it ends
-> up being slow at least it's correct.
-> 
-> > This looks completely broken to me, if the controller can't guarantee
-> > PCIe transactions ordering it is toast, there is not even a point
-> > considering mainline merging.
-> 
-> I wouldn't be at all surprised if that's the case.  Without some concrete
-> ISA mechanisms here we're sort of just stuck hoping the SOC vendors do the
-> right thing, which is always terrifying.
-> 
-> I'm not really a PCIe person so this is all a bit vague, but IIRC we had a
-> bunch of possible PCIe ordering violations in the SiFive memory system back
-> when I was there and we never really got a scheme for making sure things
-> were correct.
-> 
-> So I think we really do need to see that errata document to know what's
-> possible here.  Folks have been able to come up with clever solutions to
-> these problems before, maybe we'll get lucky again.
-> 
-> > > As a workaround, we will wait a while before going to the generic
-> > > handle here.
-> > > 
-> > > Verified with NVMe SSD, USB SSD, R8169 NIC.
-> > > The performance are stable and even higher after this patch.
-> > 
-> > I assume this is a joke even though it does not make me laugh.
-> 
-> So you're new to RISC-V, then?  It gets way worse than this ;)
+Hi Stephen,
 
-To me this is just a PCI controller driver, arch does not matter.
-
-What annoyed me is that we really can't state that this patch improves
-performance, sorry, the patch itself is not acceptable, let's try
-not to rub it in :)
-
-Please post an erratum write-up and we shall see what can be done.
+Appreciate it if you could reply to my email afew days ago, It is
+really important to us to move this driver to upstream.
 
 Thanks,
-Lorenzo
 
-> > Thanks,
-> > Lorenzo
-> > 
-> > > 
-> > > Signed-off-by: Kevin Xie <kevin.xie@starfivetech.com>
-> > > Signed-off-by: Minda Chen <minda.chen@starfivetech.com>
-> > > ---
-> > >  drivers/pci/controller/plda/pcie-plda-host.c | 12 ++++++++++++
-> > >  drivers/pci/controller/plda/pcie-plda.h      |  1 +
-> > >  drivers/pci/controller/plda/pcie-starfive.c  |  1 +
-> > >  3 files changed, 14 insertions(+)
-> > > 
-> > > diff --git a/drivers/pci/controller/plda/pcie-plda-host.c b/drivers/pci/controller/plda/pcie-plda-host.c
-> > > index a18923d7cea6..9e077ddf45c0 100644
-> > > --- a/drivers/pci/controller/plda/pcie-plda-host.c
-> > > +++ b/drivers/pci/controller/plda/pcie-plda-host.c
-> > > @@ -13,6 +13,7 @@
-> > >  #include <linux/msi.h>
-> > >  #include <linux/pci_regs.h>
-> > >  #include <linux/pci-ecam.h>
-> > > +#include <linux/delay.h>
-> > > 
-> > >  #include "pcie-plda.h"
-> > > 
-> > > @@ -44,6 +45,17 @@ static void plda_handle_msi(struct irq_desc *desc)
-> > >  			       bridge_base_addr + ISTATUS_LOCAL);
-> > >  		status = readl_relaxed(bridge_base_addr + ISTATUS_MSI);
-> > >  		for_each_set_bit(bit, &status, msi->num_vectors) {
-> > > +			/*
-> > > +			 * As the Starfive JH7110 hardware can't keep two
-> > > +			 * inbound post write in order all the time, such as
-> > > +			 * MSI messages and NVMe completions.
-> > > +			 * If the NVMe completion update later than the MSI,
-> > > +			 * an NVMe IRQ handle will miss.
-> > > +			 * As a workaround, we will wait a while before
-> > > +			 * going to the generic handle here.
-> > > +			 */
-> > > +			if (port->msi_quirk_delay_us)
-> > > +				udelay(port->msi_quirk_delay_us);
-> > >  			ret = generic_handle_domain_irq(msi->dev_domain, bit);
-> > >  			if (ret)
-> > >  				dev_err_ratelimited(dev, "bad MSI IRQ %d\n",
-> > > diff --git a/drivers/pci/controller/plda/pcie-plda.h b/drivers/pci/controller/plda/pcie-plda.h
-> > > index 04e385758a2f..feccf285dfe8 100644
-> > > --- a/drivers/pci/controller/plda/pcie-plda.h
-> > > +++ b/drivers/pci/controller/plda/pcie-plda.h
-> > > @@ -186,6 +186,7 @@ struct plda_pcie_rp {
-> > >  	int msi_irq;
-> > >  	int intx_irq;
-> > >  	int num_events;
-> > > +	u16 msi_quirk_delay_us;
-> > >  };
-> > > 
-> > >  struct plda_event {
-> > > diff --git a/drivers/pci/controller/plda/pcie-starfive.c b/drivers/pci/controller/plda/pcie-starfive.c
-> > > index 9bb9f0e29565..5cfc30572b7f 100644
-> > > --- a/drivers/pci/controller/plda/pcie-starfive.c
-> > > +++ b/drivers/pci/controller/plda/pcie-starfive.c
-> > > @@ -391,6 +391,7 @@ static int starfive_pcie_probe(struct platform_device *pdev)
-> > > 
-> > >  	plda->host_ops = &sf_host_ops;
-> > >  	plda->num_events = PLDA_MAX_EVENT_NUM;
-> > > +	plda->msi_quirk_delay_us = 1;
-> > >  	/* mask doorbell event */
-> > >  	plda->events_bitmap = GENMASK(PLDA_INT_EVENT_NUM - 1, 0)
-> > >  			     & ~BIT(PLDA_AXI_DOORBELL)
-> > > --
-> > > 2.17.1
-> > > 
-> > > 
-> > > _______________________________________________
-> > > linux-riscv mailing list
-> > > linux-riscv@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-riscv
+Tomer
+
+On Thu, 29 Feb 2024 at 23:29, Tomer Maimon <tmaimon77@gmail.com> wrote:
+>
+> Hi Stephen,
+>
+> Thanks for your reply.
+>
+> On Thu, 29 Feb 2024 at 00:48, Stephen Boyd <sboyd@kernel.org> wrote:
+> >
+> > Quoting Tomer Maimon (2024-02-25 10:00:35)
+> > > Hi Stephen,
+> > >
+> > > On Thu, 22 Feb 2024 at 07:58, Stephen Boyd <sboyd@kernel.org> wrote:
+> > > >
+> > > > Quoting Tomer Maimon (2024-01-31 10:26:53)
+> > > > > diff --git a/drivers/clk/clk-npcm8xx.c b/drivers/clk/clk-npcm8xx.c
+> > > > > new file mode 100644
+> > > > > index 000000000000..eacb579d30af
+> > > > > --- /dev/null
+> > > > > +++ b/drivers/clk/clk-npcm8xx.c
+> > > > > @@ -0,0 +1,509 @@
+> > > > > +// SPDX-License-Identifier: GPL-2.0
+> > > > > +/*
+> > > > > + * Nuvoton NPCM8xx Clock Generator
+> > > > > + * All the clocks are initialized by the bootloader, so this driver allows only
+> > > > [...]
+> > > > > +
+> > > > > +/* external clock definition */
+> > > > > +#define NPCM8XX_CLK_S_REFCLK   "refclk"
+> > > > > +
+> > > > > +/* pll definition */
+> > > > > +#define NPCM8XX_CLK_S_PLL0     "pll0"
+> > > > > +#define NPCM8XX_CLK_S_PLL1     "pll1"
+> > > > > +#define NPCM8XX_CLK_S_PLL2     "pll2"
+> > > > > +#define NPCM8XX_CLK_S_PLL_GFX  "pll_gfx"
+> > > > > +
+> > > > > +/* early divider definition */
+> > > > > +#define NPCM8XX_CLK_S_PLL2_DIV2                "pll2_div2"
+> > > > > +#define NPCM8XX_CLK_S_PLL_GFX_DIV2     "pll_gfx_div2"
+> > > > > +#define NPCM8XX_CLK_S_PLL1_DIV2                "pll1_div2"
+> > > > > +
+> > > > > +/* mux definition */
+> > > > > +#define NPCM8XX_CLK_S_CPU_MUX     "cpu_mux"
+> > > > > +
+> > > > > +/* div definition */
+> > > > > +#define NPCM8XX_CLK_S_TH          "th"
+> > > > > +#define NPCM8XX_CLK_S_AXI         "axi"
+> > > >
+> > > > Please inline all these string #defines to the place they're used.
+> > > The version V21 you mention using define only when the definition is
+> > > used more than once
+> > > https://www.spinics.net/lists/kernel/msg5045826.html
+> > > Should I remove all the string definitions and add the string to the array?
+> >
+> > If it's a clk name for a clk registered in this file it should be
+> > inlined. Is that the case for everything besides refclk? And even refclk
+> > could be inlined so that we don't have to jump to the definition of a
+> > string.
+> I will add the string in the clock arrays and remove all the string definitions.
+> >
+> > > > > +
+> > > > > +static unsigned long npcm8xx_clk_div_get_parent(struct clk_hw *hw,
+> > > > > +                                               unsigned long parent_rate)
+> > > > > +{
+> > > > > +       struct npcm8xx_clk *div = to_npcm8xx_clk(hw);
+> > > > > +       unsigned int val;
+> > > > > +
+> > > > > +       regmap_read(div->clk_regmap, div->offset, &val);
+> > > > > +       val = val >> div->shift;
+> > > > > +       val &= clk_div_mask(div->width);
+> > > > > +
+> > > > > +       return divider_recalc_rate(hw, parent_rate, val, NULL, div->flags,
+> > > > > +                                  div->width);
+> > > > > +}
+> > > > > +
+> > > > > +static const struct clk_ops npcm8xx_clk_div_ops = {
+> > > > > +       .recalc_rate = npcm8xx_clk_div_get_parent,
+> > > > > +};
+> > > > > +
+> > > > > +static int npcm8xx_clk_probe(struct platform_device *pdev)
+> > > > > +{
+> > > > > +       struct device_node *parent_np = of_get_parent(pdev->dev.of_node);
+> > > >
+> > > > The parent of this device is not a syscon.
+> > > Once I have registered the map that handles both reset and the clock
+> > > in general is syscon, this is why we will modify the DTS so the clock
+> > > and the reset will be under syscon father node
+> > >                 sysctrl: system-controller@f0801000 {
+> > >                         compatible = "syscon", "simple-mfd";
+> > >                         reg = <0x0 0xf0801000 0x0 0x1000>;
+> > >
+> > >                         rstc: reset-controller {
+> > >                                 compatible = "nuvoton,npcm845-reset";
+> > >                                 reg = <0x0 0xf0801000 0x0 0xC4>;
+> > >                                 #reset-cells = <2>;
+> > >                                 nuvoton,sysgcr = <&gcr>;
+> > >                         };
+> > >
+> > >                         clk: clock-controller {
+> > >                                 compatible = "nuvoton,npcm845-clk";
+> > >                                 #clock-cells = <1>;
+> > >                                 clocks = <&refclk>;
+> > >                                 clock-names = "refclk";
+> > >                         };
+> > >                 };
+> > > You can see other drivers that using the same method like
+> > > https://elixir.bootlin.com/linux/v6.8-rc5/source/Documentation/devicetree/bindings/clock/socionext,uniphier-clock.yaml
+> >
+> > You will need a similar file like
+> > Documentation/devicetree/bindings/soc/socionext/socionext,uniphier-perictrl.yaml
+> > then to describe the child nodes.
+> I can do it.
+> >
+> > Socionext may not be the best example to follow. I generally try to
+> > avoid syscon and simply put #reset-cells and #clock-cells in the node
+> If I remove syscon I can't use syscon_node_to_regmap function, What
+> should I use If I remove syscon? auxiliary bus? something else?
+> > for the device. You can use the auxiliary bus to register drivers for
+> > clk and reset and put them into the resepective driver directories.
+> I little bit confused, what is an auxiliary bus to register drivers,
+> can you provide me an example?
+> > Avoid syscon means random drivers can't reach into the device with a
+> > regmap handle and read/write registers that they're not supposed to.
+> Indeed, but the drivers could use the reset and clock memory map only
+> if the module is also a child node.
+>
+> Please let me know what is your preferred way to handle it:
+> 1. stick with syscon and upstream-defined documentation for the rst clk syscon.
+> 2. avoid syscon and use an auxiliary bus, appreciate if you could give
+> me an example of how it should be done.
+> 3. Avoid sycon and handle it differently.
+> >
+> > > >
+> > > > > +       struct clk_hw_onecell_data *npcm8xx_clk_data;
+> > > > > +       struct device *dev = &pdev->dev;
+> > > > > +       struct regmap *clk_regmap;
+> > > > > +       struct clk_hw *hw;
+> > > > > +       unsigned int i;
+> > > > > +
+> > > > > +       npcm8xx_clk_data = devm_kzalloc(dev, struct_size(npcm8xx_clk_data, hws,
+> > > > > +                                                        NPCM8XX_NUM_CLOCKS),
+> > > > > +                                       GFP_KERNEL);
+> > > > > +       if (!npcm8xx_clk_data)
+> > > > > +               return -ENOMEM;
+> > > > > +
+> > > > > +       clk_regmap = syscon_node_to_regmap(parent_np);
+> > > > > +       of_node_put(parent_np);
+> > > >
+> > > > Is there another binding update that is going to move this node to be a
+> > > > child of the syscon?
+> > > >
+> > > >                 gcr: system-controller@f0800000 {
+> > > >                         compatible = "nuvoton,npcm845-gcr", "syscon";
+> > > >                         reg = <0x0 0xf0800000 0x0 0x1000>;
+> > > >                 };
+> > > No, sorry but I'm not going to use the GCR node the handle the clock
+> > > and reset modules, the GCR has different memory space.
+> > > the clock driver will have the following device tree
+> >
+> > What does the reset driver use the CGR node for? The driver looks like
+> > it's using it to control USB phy resets.
+> Yes, the USB PHY reset is handled through the GCR registers.
+> >
+> > >                sysctrl: system-controller@f0801000 {
+> > >                         compatible = "syscon", "simple-mfd";
+> > >                         reg = <0x0 0xf0801000 0x0 0x1000>;
+> > >
+> > >                         rstc: reset-controller {
+> > >                                 compatible = "nuvoton,npcm845-reset";
+> > >                                 reg = <0x0 0xf0801000 0x0 0xC4>;
+> >
+> > This isn't a valid reg property for a child node like this.
+> O.K.
+> >
+> > >                                 #reset-cells = <2>;
+> > >                                 nuvoton,sysgcr = <&gcr>;
+> > >                         };
+> > >
+> > >                         clk: clock-controller {
+> > >                                 compatible = "nuvoton,npcm845-clk";
+> > >                                 #clock-cells = <1>;
+> > >                                 clocks = <&refclk>;
+> > >                                 clock-names = "refclk";
+> > >                         };
+> > >                 };
+>
+> Appreciate your guidance!
+>
+> Thanks,
+>
+> Tomer
 
