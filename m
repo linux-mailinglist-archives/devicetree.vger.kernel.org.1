@@ -1,111 +1,138 @@
-Return-Path: <devicetree+bounces-48552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48554-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 633FE8727BE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 20:40:27 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D7EC8727D2
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 20:41:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 953C61C27081
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:40:26 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE01328F641
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:41:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 21FD21292D4;
-	Tue,  5 Mar 2024 19:39:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 095445C619;
+	Tue,  5 Mar 2024 19:41:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="L5iOEki0"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IkxCNDdW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-210.mail.qq.com (out162-62-57-210.mail.qq.com [162.62.57.210])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD07F12AAD9
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 19:39:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.210
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CFB365C601;
+	Tue,  5 Mar 2024 19:41:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709667562; cv=none; b=IeUjezpHROjjrbwf+JI2fYPnsbuOze7NEt94GHRh0EyWJUrZZ0rDqaqmvnWOq5o/YHC9B3ulOt6OEO9wdR7gVtuVAwKs3/FxCDZee42kWo+9Z8pwOrqduaYretBYnzcL3WdLtysgibxOkc4JmzdWE5HE61LN4HTD1BOebQvmG7I=
+	t=1709667704; cv=none; b=YB6qvGElzLsaxJrwaLxDM5WkwBrtHp2AIivwWtUi7VwdTZW4X81RB8bqfdB62DyeX4ChtwoDOVImxQ1Rs30t8DfA7DkWpxWQ/huvhDLotAkt99bw65iaTLwb724dyL3i2puVwr0Pfhg2AveYFzWbqzKUilHSFGPclYS5GtSYd4s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709667562; c=relaxed/simple;
-	bh=zbLGPCosxyiyPvcOeTiYkPlr94hbstxP2Hhj63j/SKE=;
-	h=Message-ID:From:To:Cc:Subject:Date:In-Reply-To:References:
-	 MIME-Version; b=svbeolF1OzWMgOjyAraWPajyxtNciQ4PEwUTUOc8glThHs8OZIn0OayDMDTf44IRftaPwZXyH36CGzw3t//VA4IUZ4c6/vZ/pLXu1Dy0oY5JOXuHP6zQevxdvhnwOvk+BrXIVbwNj5IOvncF2hcG8gtUiyW4C1T6+Y1Z+lQ8lK4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=L5iOEki0; arc=none smtp.client-ip=162.62.57.210
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1709667550; bh=vpfgwixO8WjqhB/6stnV1JiUyPCqfxYij9zHMp1QwAM=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References;
-	b=L5iOEki0/Vw7zzMQskadGa90kyC3VahLZNwWk9SCknaaAKHMJxBtoRh6ceJh2uHii
-	 7run6rXbGwm7KRk+1PLSIgG6x7fU7VJX8qulWfOW9iBtDVQV5rt3OTaAfzgdL86M4K
-	 TKVnTZFju0aUDm+EoAOpvSZGlpl5fF8lr8NjBuyk=
-Received: from cyy-pc.lan ([240e:379:2267:e200:bd8:e8f9:fb59:de48])
-	by newxmesmtplogicsvrszc5-1.qq.com (NewEsmtp) with SMTP
-	id 9B6B9246; Wed, 06 Mar 2024 03:38:54 +0800
-X-QQ-mid: xmsmtpt1709667548tsn8fl733
-Message-ID: <tencent_45B4891DF371D3632042AA1BC5F8B6042509@qq.com>
-X-QQ-XMAILINFO: Nq1uWKlIb9DMHn+IEp+nCFc4tIpsAONPQpmFByy0wSlIjTin+PQGW/T5EUAqaD
-	 gBM+WEyXHZVL35R+I7Ms64Jqt5JB9ANcQKLf85RT6ffCXq4dN8qRsuw/N/HOrnaHlpaZRBWRxxgJ
-	 H3cd55o1H2QlGRnhO+rwHusMM2myNLF381LQMWPiRpeY7J0AhD/ZuUPntQirN+RlfY2+51HKojjE
-	 B7U2ztdR7NhnxHNEspzD5GSDrlJDgLF97hG0MsGgKh92YyHEA5SvORUqBR+/hFjqPlq1+CKpGqKG
-	 Zsm7Ao8Mr/mB1rLc3gS23IMQrjf4zoYiUarKzJ2uBbejS7j5H+5OI8whWfBJagxl/LVGIG4LIaFZ
-	 RMiBdZ4rD9kmeMIupjASOiebkNEE2f0xvqn6hOmZPqHNNrbNE72Ykoqzo2di9Po7TVOUlMmPF9TC
-	 4DRJMx5so6Qn4ZhW8d3vjRidjm3Qz2eW9v5UMr/MhtzgSNZmib+s8j1Lm7xXatTV3Jxsu+IZJLDk
-	 MCfNHK4mq0hMoWWTkH1QXIYsA3DgWtARIZtENaCMPAWOUdpB7Tcy+U0ntXbgwI9zeioC7InIL8fM
-	 Ynk+7Cf5q4JD+bmNAdKAkad4FyhocZWcSeEu8EOOVlSEmQyOvOQH/JcitqF9gS0+sIplxtLTrX5l
-	 4CVAhrW8xr6t25tYz16Voogx2+OejjGDCnbXVBNit/OYCJL+DpgJxAtSGaW8/dEkeWIGFBDvvtD4
-	 UnvuvCj/YdknlIbOZWduBsx3+4fG9fEg/xakFypS++Nqnx5+s00jW1EvOHhQX+ULc5im3ZVgdcPm
-	 TNPsXCIZKZyDc8Qa4fuUO4X60a/ElEAZh66jE6Z0Iba2RvT+G+XLKJOx7QaVl3StQFeFHsi69Cxw
-	 RO7A7f4sFdn0dDwi6F4CS8NnX2qDTAgapMk2HmLHcpa7zujRDKVXPcPekCkiQ3P0PMtbIoF2L/TA
-	 8gGjD0Lxap01JlHmQMTsa2jhullt3GJJG3qc42lq6G1oJs/UJ7wOlUOrKKq/O8RbquEp2iwLW/8v
-	 Tco09Mg2PP3M0bwNmBLOzQxOjWYWns/wJFxxXCQ5VS/pC1pcJO
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-From: Yangyu Chen <cyy@cyyself.name>
-To: linux-riscv@lists.infradead.org
-Cc: Conor Dooley <conor@kernel.org>,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Guo Ren <guoren@kernel.org>,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Yangyu Chen <cyy@cyyself.name>
-Subject: [PATCH v4 7/7] riscv: config: enable ARCH_CANAAN in defconfig
-Date: Wed,  6 Mar 2024 03:38:31 +0800
-X-OQ-MSGID: <20240305193831.1084556-7-cyy@cyyself.name>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <tencent_587730262984A011834F42D0563BC6B10405@qq.com>
-References: <tencent_587730262984A011834F42D0563BC6B10405@qq.com>
+	s=arc-20240116; t=1709667704; c=relaxed/simple;
+	bh=wx1vWKZbAWVZSBpFlLvwCrtdSU8zvPw7WcOO3aQorXU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pgHTnUgoOUTAWz9W/yGd0gi84yVe5jK6Iwb5w7US8DG5NhxnxtNeLmiYq12i+V1VDVFiXaN3faYApMnEtiZECrULhaNruMK1btU+utGI3PFimWlS+oPdkygI82Frb4tlEEuFqzUTy32n6VxReR2jyFrLwsqNw1Rk88aLRjTL9OE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IkxCNDdW; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6429DC433C7;
+	Tue,  5 Mar 2024 19:41:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709667704;
+	bh=wx1vWKZbAWVZSBpFlLvwCrtdSU8zvPw7WcOO3aQorXU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IkxCNDdWaI8fYdtiueCuY22sD6XWNp7UAhWO4qb0KMMbbj+ZtysXrjTvEvH75LftA
+	 /aDgMERyiV7U8cfIcRKbs3nkdFQyVi+3+5w2fMrxzdBRDQuACmS4wfKFRviKpPqRpY
+	 fvTJ5HT/tkPt1714aoPBXCNSa7roZA6GDeeTIDc2t+cv7z5NdVmEcIee7WulB9ftIG
+	 MAx0iZv9/KDOcUvDqhMRwzcCWm2OXvn0Umnx4pxLkMedzNRlmh9M+rVDj+HEuuxkGs
+	 KpUq8vi+oOoDLrEeoqovutliIwVxs/FBLihbPfnQL5E/hZhH/qr3bJN+2zKb/g6qdL
+	 jROjWWlBUTCaw==
+Date: Tue, 5 Mar 2024 19:41:39 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Shengyu Qu <wiagn233@outlook.com>
+Cc: ganboing@gmail.com, kernel@esmil.dk, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
+	palmer@dabbelt.com, aou@eecs.berkeley.edu, lee@kernel.org,
+	andre.przywara@arm.com, jernej.skrabec@gmail.com,
+	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v1] riscv: dts: starfive: Remove PMIC interrupt info for
+ Visionfive 2 board
+Message-ID: <20240305-macarena-fiber-f2460d371150@spud>
+References: <TY3P286MB2611C5F5833F3E3E1AE838CA98222@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="iNSctF24dp3Ivm4K"
+Content-Disposition: inline
+In-Reply-To: <TY3P286MB2611C5F5833F3E3E1AE838CA98222@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
 
-Since K230 has been supported, allow ARCH_CANAAN to be selected to build dt
-and drivers for it in defconfig.
 
-Signed-off-by: Yangyu Chen <cyy@cyyself.name>
----
- arch/riscv/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+--iNSctF24dp3Ivm4K
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/riscv/configs/defconfig b/arch/riscv/configs/defconfig
-index 89a009a580fe..f89df7ddb543 100644
---- a/arch/riscv/configs/defconfig
-+++ b/arch/riscv/configs/defconfig
-@@ -33,6 +33,7 @@ CONFIG_SOC_STARFIVE=y
- CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_THEAD=y
- CONFIG_SOC_VIRT=y
-+CONFIG_ARCH_CANAAN=y
- CONFIG_SMP=y
- CONFIG_HOTPLUG_CPU=y
- CONFIG_PM=y
--- 
-2.43.0
+On Wed, Mar 06, 2024 at 01:11:50AM +0800, Shengyu Qu wrote:
+> Since commit b2cb2ae22278f1918f7526b89760ee00b4a81393 ("mfd: axp20x:
+> Generalise handling without interrupt"), interrupt info part for the
+> AXP15060 PMIC is not needed anymore for Statfive Visionfive 2 board.
+> And this would cause kernel to try to enable interrupt line 0, which is
+> not expected. So delete this part from device tree.
 
+interrupt-controller/#interrupt-cells are required properties, you can't
+delete them. If you ran dtbs_check you'd see that it complains about
+this patch.
+
+If you just remove the interrupts property, what happens?
+
+> Cc: stable@vger.kernel.org
+> Fixes: b2cb2ae22278 ("mfd: axp20x: Generalise handling without interrupt")
+
+This Fixes tag cannot be right, a dts patch cannot fix a driver. The dts
+patch that incorrectly said this used interrupt 0 is what should be in the
+Fixes tag.
+
+Thanks,
+Conor.
+
+> Reported-by: Bo Gan <ganboing@gmail.com>
+
+Closes: https://lore.kernel.org/linux-riscv/c8b6e960-2459-130f-e4e4-7c9c2eb=
+aa6d3@gmail.com/
+
+> Signed-off-by: Shengyu Qu <wiagn233@outlook.com>
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 3 ---
+>  1 file changed, 3 deletions(-)
+>=20
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dt=
+si b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index b89e9791efa7..6bebabe3fa37 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -189,9 +189,6 @@ &i2c5 {
+>  	axp15060: pmic@36 {
+>  		compatible =3D "x-powers,axp15060";
+>  		reg =3D <0x36>;
+> -		interrupts =3D <0>;
+> -		interrupt-controller;
+> -		#interrupt-cells =3D <1>;
+> =20
+>  		regulators {
+>  			vcc_3v3: dcdc1 {
+> --=20
+> 2.39.2
+>=20
+
+--iNSctF24dp3Ivm4K
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZed1cgAKCRB4tDGHoIJi
+0ldpAQDM6/MJ6AW3Mku853cAfxzI/uGgUrvTKPGEQmOoeYSTLgEA/Ze1f6KSz1ll
+cylgQrIF7PnaEETKgv8q78LqOM8sbAs=
+=02ei
+-----END PGP SIGNATURE-----
+
+--iNSctF24dp3Ivm4K--
 
