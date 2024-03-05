@@ -1,184 +1,160 @@
-Return-Path: <devicetree+bounces-48516-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48515-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 630E3872592
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:24:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC05B87258B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:21:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 819201C21279
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:24:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4592B1F22C6C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:21:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9911429F;
-	Tue,  5 Mar 2024 17:24:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B2D2514F64;
+	Tue,  5 Mar 2024 17:21:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="wCu/hpme"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jLh68MSA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out203-205-251-36.mail.qq.com (out203-205-251-36.mail.qq.com [203.205.251.36])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472D1944F
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 17:24:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.251.36
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AD6914AA8;
+	Tue,  5 Mar 2024 17:21:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709659444; cv=none; b=Md/jRT/hSQd7UHSWc0PsXb834JoVR3pGnlcQEPbu7Wpk8hGleoREzTXj3/AJg5Jyhkml/FY9g0pg37zQqPNpWDIuiUDfQP7m7IMVYmvFzgVPFnkRxr16cf70Rsxt+xJE1CjKNhiLrOmX9LeCWJ/JKaYxmsPE3r+pr0t7SLxHJAE=
+	t=1709659263; cv=none; b=N7lkYFVFXTUC45ibFCz/Tj/AvY5f8tsMDTvWBNo3ZVHa38Bmn0mLsL8No/+7D3YOg0JkBLinbSr6x3uxGMAL28fxqKowkyVNZ4a/13aORzcC66uBsVIJ0UeaVQO9/expmN2wiU/GsQNH92pcgtQG9NLHfohXRGhEDUjE3JqXWVY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709659444; c=relaxed/simple;
-	bh=aTcTcwCsojcYgR2q6qRJNGp5j8F3+tgkYmGHqLDcQQE=;
-	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
-	 Date:Cc:References:To; b=h25hRKhZcne3dBYpO1vLioX9leB5imEH/rnbggPX4Dno8VPqgcoXKG7AeMz/V78Cds/p/fh4MqztmhAcBiNETMX+M/ZHuKsxgH5slNvwVf05RN/GmQUD8Pd6ZxCPvU5KrzdPI3Vx3G4imBAxh/1i8vA+wnA0k2u0z6jkgbssJw0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=wCu/hpme; arc=none smtp.client-ip=203.205.251.36
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1709659438; bh=h1LTH6JlAYoOApJUnNVPyf95mfcxBxOkhaNODYU3s9k=;
-	h=Subject:From:In-Reply-To:Date:Cc:References:To;
-	b=wCu/hpmeqdzeFIcDia0CNAAeGf637mywDpWv8P3YNB5L9tdViCGEmn3ehJOmUA0Tj
-	 oFhq4NcqHhixfKXvH+Uo+zuZAMZ/EhTT+IYDcqsMwi864dkw1GwWgSGs76LxJjRMpC
-	 C1d9XMfjj15gOm2Xq0W2yjEZANvsN2+RpsF3aOMw=
-Received: from smtpclient.apple ([2001:da8:c800:d084:84f7:c158:bab8:8899])
-	by newxmesmtplogicsvrszb9-1.qq.com (NewEsmtp) with SMTP
-	id 467314A0; Wed, 06 Mar 2024 01:17:39 +0800
-X-QQ-mid: xmsmtpt1709659059trsahnpa9
-Message-ID: <tencent_3638D6E106C784859837E6F3C10BDA688F0A@qq.com>
-X-QQ-XMAILINFO: NJZTpFGUMYNFt/STRSnmNanLRlv+mPJcdXyrQHRC4MjkD977hfF0dHwRU2EIfN
-	 XYxgfzvRrE1brWIIjF9OhanlPDr/oV/0DRHZbKq0zvC5CElI6a/9pcvvC7DHhU5hCOxNzIX+/53r
-	 ZC7wqApkEdQFmPMO6NVOdxLzHr8fSuZJZwBIWn09pu7QF0Wn9gMD1VZHp7z3aejWh+5b1Yc1Qrur
-	 zph6NdrWlPwC/CfyjHzPCF/74IxvIBYIaQcBNGtqT7LV+tg6smhRg/zHfzJKzx8ANPo5XwR/x1+Q
-	 /j67DOdbeDSKFQQxVsBIeUWK6XhgHdqi6TiUVf5FbEX2jrXRa5UdcvIgUb7yYwtv8YsUgMxJBSx3
-	 ESAhAQ1L2qpHT9tangOTIRFCxkwfVIuVxtFnWNqD6xmdtlU5f5F4bW/6cOoBrGWhtsdwr3SjvdcC
-	 +rcBicfEKa7ikuzs5fY/zcP7uDtbkCR1CjSyQUaOCqNXvHM+hsFHAFfRWc5AUmEmDv2vkYxAHo1R
-	 SYnNQjVo5/6CafYVSsJ6XHquDhCia4psSafXx/2BWIAWx6E2Aio9laQviGiAu3LK17iSmxs/9fSA
-	 3EOf16UtX6eewIUvAVi2cwVMnZnz8A9m1PpBtfBaMVMDCnvNHhRlF2e72AQfH2fizfvNZ1yvtnhB
-	 vBdBiwwHBPSr2yC5YHD7hBwOZWpiBCP3ZcmxUx8TAcdFBUebftxRc35BxBPZW6pjfEhH8gRk4tuA
-	 lrIRHSQOLNFJRZQm44/DqAFgxty2jWM3No1kbCnZ2WLIkfkaxdnaYh8mCE+ObvKd8LVgbXAyznrb
-	 KJuyr/UZ0T5BHVP+gOKS2IdTXam4tMQtRAfQ/MqRFW+rr/kKdM5L0ZMsV4hY1dXBE3Qxco+GruWs
-	 ACUqKmA00dv8/UAuyFb4sVAjqFHV+EIZnEP36LZboNpHbAAcO4zrPGexYIiHTCRhiUui7xlGmA6j
-	 I+JE8+cN52VXFCb4EbN/qLTcBeRU88cKXK5SbzohC6ntp5x3VjM2OvasBe5lq/yLV1lQ2nSkLIPc
-	 S8r8djg6HeLjADlWd6
-X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
-Content-Type: text/plain;
-	charset=us-ascii
+	s=arc-20240116; t=1709659263; c=relaxed/simple;
+	bh=u/5agPX/lDQGtNbFvNrArovCNgzjSoaqePko/71LzPA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QlDP2swwrhFqGC6HoU1xbzr+4jKHOjfi8yLQwf6gYNsbo7UiwQNa+DOxK3UDc36Ao92jb0O+GQbDRxcQVDjTfsS8Wc47UeVoMAYo6r8A2ax9k/0w87JWpiMlXPBYvReaf+VDWZDTy555N5lIvGgTD60mNNHy4GAjk4hln9vC2j8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jLh68MSA; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AADEAC43390;
+	Tue,  5 Mar 2024 17:21:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709659263;
+	bh=u/5agPX/lDQGtNbFvNrArovCNgzjSoaqePko/71LzPA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=jLh68MSAY+lVY1J2FtZLY48K1b81meFAuTM98dQCDx/YN8N8VdfVtxT1fwI6ZEBTH
+	 kmXVOwXzXuoC/fKP+poyLcgqsH1MVL0JExkC5jZdgoGEV94kG7Whw2oGB9Sb0/va/i
+	 sPom6z6JzJENMaaZMWFNlmXkbwY9oSCWEjrEUnu0jDtgd7WNgq36ld5OLZRXf1h+Vs
+	 +uVjvKqF+1Z0nRHxf0cZgLMVagOXc6c74/+dPJeYsgJO6ObDWXVsB/dpH6/wfw0V0q
+	 eqm5suN4eKt4cFETc6ZVGggx+JROVMqGCEN0NO/d6TqX6RGKv6bgdQGJn9SVEmskHw
+	 BiJv3YSN0VM5A==
+Date: Tue, 5 Mar 2024 17:20:58 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Yangyu Chen <cyy@cyyself.name>
+Cc: Damien Le Moal <dlemoal@kernel.org>, linux-riscv@lists.infradead.org,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v3 5/7] riscv: Kconfig.socs: Allow SOC_CANAAN with MMU
+ for K230
+Message-ID: <20240305-fascism-enrich-06483ddeb149@spud>
+References: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
+ <tencent_0432DA968E39B81431F921F38D747C008208@qq.com>
+ <ef8df22f-dac8-4652-bf17-d10254e6abfb@kernel.org>
+ <tencent_E56A833916E00EC7B4840C34FAF1250ADE0A@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
-Subject: Re: [PATCH v3 6/7] riscv: dts: add initial canmv-k230 and k230-evb
- dts
-From: Yangyu Chen <cyy@cyyself.name>
-In-Reply-To: <20240305-shorten-disallow-eae65fdc8fdb@spud>
-Date: Wed, 6 Mar 2024 01:17:29 +0800
-Cc: Palmer Dabbelt <palmer@dabbelt.com>,
- linux-riscv@lists.infradead.org,
- Damien Le Moal <dlemoal@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- krzysztof.kozlowski+dt@linaro.org,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- guoren@kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="kCqjEWLK9A+dep2C"
+Content-Disposition: inline
+In-Reply-To: <tencent_E56A833916E00EC7B4840C34FAF1250ADE0A@qq.com>
+
+
+--kCqjEWLK9A+dep2C
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-X-OQ-MSGID: <C39896C7-3E16-48AF-8368-84BB10671CD4@cyyself.name>
-References: <mhng-f1aa91d4-211f-4eb4-a94d-a9d88b0d3f6a@palmer-ri-x1c9>
- <7A86D933-B85F-4B29-8D6D-AB414A42AC06@cyyself.name>
- <tencent_B2C1146D4947315C8018AE90EDC64F3E6207@qq.com>
- <20240305-shorten-disallow-eae65fdc8fdb@spud>
-To: Conor Dooley <conor@kernel.org>
-X-Mailer: Apple Mail (2.3774.400.31)
 
+On Tue, Mar 05, 2024 at 03:47:15PM +0800, Yangyu Chen wrote:
+> On 2024/3/5 07:46, Damien Le Moal wrote:
+> > On 3/5/24 06:05, Yangyu Chen wrote:
+> > > Since K230 was released, SOC_CANAAN is no longer only referred to the=
+ K210.
+> > > Remove it depends on !MMU will allow building dts for K230 and remove=
+ the
+> > > K210 string from the help message.
+> > >=20
+> > > Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> > > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> > > ---
+> > >   arch/riscv/Kconfig.socs | 5 ++---
+> > >   1 file changed, 2 insertions(+), 3 deletions(-)
+> > >=20
+> > > diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> > > index 623de5f8a208..b4e9b7f75510 100644
+> > > --- a/arch/riscv/Kconfig.socs
+> > > +++ b/arch/riscv/Kconfig.socs
+> > > @@ -75,13 +75,12 @@ config ARCH_CANAAN
+> > >   	def_bool SOC_CANAAN
+> > >   config SOC_CANAAN
+> > > -	bool "Canaan Kendryte K210 SoC"
+> > > -	depends on !MMU
+> >=20
+> > This seems wrong to me. The k210 support does require no-mmu. So why re=
+move
+> > this ?
+>=20
+> It just allows SOC_CANAAN to be selected when MMU=3Dy. With this patch,
+> nommu_k210_defconfig still works.
 
+I think the concern here is that this would allow people to build a
+kernel for the k120 with the MMU enabled, not that the existing nommu
+build will be affected.
 
-> On Mar 6, 2024, at 01:01, Conor Dooley <conor@kernel.org> wrote:
->=20
-> Hey,
->=20
-> Just chiming so that things don't get misinterpreted.
->=20
-> On Wed, Mar 06, 2024 at 12:37:16AM +0800, Yangyu Chen wrote:
->>> On Mar 6, 2024, at 00:22, Yangyu Chen <cyy@cyyself.name> wrote:
->>>> On Mar 5, 2024, at 23:54, Palmer Dabbelt <palmer@dabbelt.com> =
-wrote:
->>>> On Mon, 04 Mar 2024 13:06:00 PST (-0800), cyy@cyyself.name wrote:
->>>>> - Svpbmt and T-Head MAEE both supported
->>>>>=20
->>>>> T-Head C908 does support both Svpbmt and T-Head MAEE for =
-page-based memory
->>>>> attributes and is controlled by csr.mxstatus. If the kernel wants =
-to use
->>>>> svpbmt, the m-mode software should set BIT(21) of csr.mxstatus to =
-zero
->>>>> before entering the s-mode kernel. Otherwise, the kernel will not =
-boot as 0
->>>>> on T-Head MAEE represent to NonCachable Memory and it will lose =
-dirty cache
->>>>> lines modification that haven't been written back to the memory.
->>>>=20
->>>> So I guess we need the bootloader to just be accurate here?  ie: =
-whatever
->>>> extension it tells S-mode kernels is enabled is how S-mode behaves, =
-and
->>>> then this should just work itself out.
->=20
-> Correct, the bootloader/firmware "just" needs to write this bit to =
-match
-> what it passes to onwards in the devicetree.
->=20
->>> Yes. Currently, I have patched OpenSBI to disable MAEE. Conor Dooley =
-said
->>> from a public irc group that he wants to control the enable of =
-T-Head
->=20
-> (#riscv on libera, the usual location)
->=20
-> I also suggested that that, given we can use the standard extensions,
-> we should use them instead of the custom extensions/errata.
->=20
->>> variation of zicbom and svpbmt from dts, in addition to mimplid or
->>> something now.
->=20
-> Correct. I'm find with the impid =3D=3D archid =3D=3D 0 condition, =
-given that's
-> what we need to keep to avoid regressions, but if any future T-Head =
-CPUs
-> want to enable MAEE (ERRATA_THEAD_PBMT) or the custom CMOs
-> (ERRATA_THEAD_CMO) these should be enabled from DT. Particularly when
-> these CPUs can be configured to either use the T-Head versions or the
-> standard extensions.
->=20
->>> I think that will be a better way for the bootloader to tell
->>> the kernel whether the T-Head MAEE should be enabled.
->=20
-> You've got three options I guess. You could patch the DT in the =
-bootloader,
-> or use a fixed DT that matches the bootloader, or you could use the DT
-> passed to the bootloader and parse the extensions to decide whether or =
-not
-> to enable MAEE or Svpbmt. Seems you're going for option 2.
->=20
+Maybe you could squash in something like the following?
 
-The patched opensbi is only for work around now as the factory-provided
-M-Mode uboot will enable MAEE. I would like option 1 to let the =
-bootloader
-choose what to use and patch the DT to tell the linux whether should use
-T-Head MAEE as T-Head is likely to use this feature on TEE
-(Trusted Execution Environment), so it might never be removed.
+diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+index b4e9b7f75510..75d55059163f 100644
+--- a/arch/riscv/Kconfig.socs
++++ b/arch/riscv/Kconfig.socs
+@@ -72,15 +72,19 @@ config SOC_VIRT
+ 	  This enables support for QEMU Virt Machine.
+=20
+ config ARCH_CANAAN
+-	def_bool SOC_CANAAN
++	bool "Canaan Kendryte SoCs"
++	help
++	  This enables support for Canaan Kendryte SoC platform hardware.
+=20
+ config SOC_CANAAN
+-	bool "Canaan Kendryte SoC"
++	bool "Canaan Kendryte K210 SoC"
++	depends on !MMU
++	depends on ARCH_CANAAN
+ 	select CLINT_TIMER if RISCV_M_MODE
+ 	select ARCH_HAS_RESET_CONTROLLER
+ 	select PINCTRL
+ 	select COMMON_CLK
+ 	help
+-	  This enables support for Canaan Kendryte SoC platform hardware.
++	  This enables support for Canaan Kendryte K210 SoC platform hardware.
+=20
+ endmenu # "SoC selection"
 
->>> Link: =
-https://github.com/cyyself/opensbi/commit/b113c1c01d700314a4a696297ec09031=
-a9399354
->>>=20
->>> Furthermore, I wonder whether a CPU node like this would be =
-acceptable.
->>> I don't have any other details of how another CPU from K230 SoC =
-works on
->>> Linux.
->=20
-> A CPU node like what? It is not clear to me.
+(Which reminds me, I really need to go and finish sorting out the ARCH_
+stuff)
 
-It in the k230.dtsi file. Only has big core there.
+--kCqjEWLK9A+dep2C
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZedUegAKCRB4tDGHoIJi
+0mvGAP46YoIzshNQyc4YEgagEXQXzIwdeALQV+PKRlM2tCe2FQEAvnZO3VGbXelI
+c9WuUEV6/uQa3XYyXDrSIxQdWFWinQo=
+=oH7D
+-----END PGP SIGNATURE-----
+
+--kCqjEWLK9A+dep2C--
 
