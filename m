@@ -1,362 +1,233 @@
-Return-Path: <devicetree+bounces-48544-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48545-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E60587273D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 20:03:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DEEED872743
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 20:05:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B7C2128CF50
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:03:53 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 58F901F22791
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:05:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AFB8A22EF3;
-	Tue,  5 Mar 2024 19:03:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L676/Vmm"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2A3BA22EF3;
+	Tue,  5 Mar 2024 19:05:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C6D2A1BF3C
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 19:03:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D8E4DA11;
+	Tue,  5 Mar 2024 19:05:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709665430; cv=none; b=dzLXbfLpCEntoH6Q5jBndaPYFRgR4DuyL8btqTPytfQNoZ6r8GbbJa0fcdW4NvWoPHhEz2nviuH/fDum/Kmp+EoOlwa0mTV2rSWkkcEcN/31QChaeznLFhkbylbc9xiffJTrGPvxDbwFXy/B7pfKenVzo0YmxWFP2p/VLFYc6Qo=
+	t=1709665508; cv=none; b=jPogaTfD68hn0tI2WwmWC0MYes3wIIcYTvdbnOHUZHkyjbgrbNVdV7d/GLBIjfyNW0eVvQ5ccpaU+9bLV/GNGLlq1sbShfGcdgO43g0tjdTao74+YWdAPXu3tnfsJbQjpV5c2XRzA4wd10dpE4tm4D6QRLpqRBgZr4q3uLutOBo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709665430; c=relaxed/simple;
-	bh=nFR4TtmFsAlAIreWQ4YESZrHvsrp/UDDXLgsdNPfX+0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=TxUVGNxAaCLf1Qg9bRNTAD2sm77kwn7buM2r+k/wMLrjSvDKlRv+mynr42DdjebXSGDDyv0/qXZIMiiYkBmt+mkAqpX5RR2PGtrwCw1jdhRmO8mvochrGi9omHbNbOJyqZUMb3/V7ZB3EPEoEPC+rwNYXvmDgRM3B/wB3NCg/BE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L676/Vmm; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6096ab005c0so56113737b3.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 11:03:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709665428; x=1710270228; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=tj9v4Vuf7/2y1AftgKzFRQDegcxDIOospQ+FfL86Eno=;
-        b=L676/VmmmLy70P35DZW6kuet8lJt/ZSxZG/i/F+v8O0gPfJDf89y7wuvazA0/IJPlL
-         SmD/XhVwvqRCo4VoEmgdiJMlghCB+p+aLctJo/eIAvvnsUXKV0g684qx1+8Uk92eiCQ1
-         FdNXPVu1z0vrRuq3r46rRBwdsH/avm0IMtSogW4tiXP765Fq0GBwGBjoDkkr+je708am
-         Pd3zHP6hKipnSNgn79Y04wfhh8akFh+3x0GCgbqCbUujs0mt4sKO3e2TCtTS4xwKzlyH
-         TZuMdJrnQ87f/EYbUQTaNyIbjUHKV5DNh9sz3cYsfjuF61nOn7kbeeEbyRsYSV2vfJd0
-         BP9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709665428; x=1710270228;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tj9v4Vuf7/2y1AftgKzFRQDegcxDIOospQ+FfL86Eno=;
-        b=xJZu2etaLL9GBbKdzyP13T3zlay0RpXPDDkayohWdOvxec1h1K30wNLzt1dE93B0Kn
-         r4UQadPDjxSYGGbGk6g6K50L5ld1hkFFDn2IbcH6VBvCPZJHju6tuoUpLG13QdfwYb43
-         QG+tzGYK40HO507ZPKFUk7gGWkMKqBX8+6Eql5QPLCahrlwcCdHyOBjRdR22QDLkgZkZ
-         RRvqyOg5dR+8LYOiJ8/bCz7xSefM6mUyA8z2GfdMAwlVkOSjwC0quCJmKyGCls2stp7w
-         xaLZpCuNJYNdzfhQLIYYqoSXPyfLjoUZK13deEhriAKkKMFNQnOwfQ1ccEBp0eEzzLD6
-         H1qQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWF4B4wVP7okpSJmWtT8SHssEGFKhDvFD2jars67NNRsGF8oYr15RuQVmNAifw0U6b0r4e1OCcpL05PfDpE2zaQnagAOrV/QlWCKQ==
-X-Gm-Message-State: AOJu0YxIoZhs57x7RNBfGqUChx8JV7DaeRy2FVDztfEcofNrlWkPxswE
-	tcDDkhDXIZUeSorx3VJ8ggRrCVqOBLGxeQ7jF1rJY+81qAKNkGquUyR2OwULcpup8qK11E4o9fH
-	XIVfP2Es4nHRJuYJ7Ycv/jw0NhC7pAuLCTftsNA==
-X-Google-Smtp-Source: AGHT+IGKTqAbWKDABfsvILiDuIbYZg+R6nM3PamcUphV0IunTEH42BYl3u2kfBq9aXyR4Rztu5fz84oLGcZHxGyJ0GY=
-X-Received: by 2002:a0d:e24c:0:b0:607:6ad3:8746 with SMTP id
- l73-20020a0de24c000000b006076ad38746mr12668467ywe.46.1709665427665; Tue, 05
- Mar 2024 11:03:47 -0800 (PST)
+	s=arc-20240116; t=1709665508; c=relaxed/simple;
+	bh=H1Qiv31s9Oe+qmeR5ZSKcolby0D5p691hIDNCYdTa8w=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=KAaKy9UgSLF+AkHW70l1eM/Zf9OsSvseIwQnS/cvCSl75q6mMbeRI/XhoPj5ksPoV8rRoMF27WjytdLuFI+keN+gzuZz7wxh+5WyeG+NnrjL5xIhBWeBbYLqAMw4nhj39juJIamMptbbHw3tG6tp3ceKUPe3Fu7gHp0t+dbxFsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Received: from harlem.collaboradmins.com (harlem.collaboradmins.com [IPv6:2a01:4f8:1c0c:5936::1])
+	by madrid.collaboradmins.com (Postfix) with ESMTP id 7262F378201D;
+	Tue,  5 Mar 2024 19:05:02 +0000 (UTC)
+From: "Shreeya Patel" <shreeya.patel@collabora.com>
+In-Reply-To: <7657358.31r3eYUQgx@diego>
+Content-Type: text/plain; charset="utf-8"
+X-Forward: 127.0.0.1
+References: <20240305123648.8847-1-shreeya.patel@collabora.com>
+ <20240305123648.8847-5-shreeya.patel@collabora.com> <7657358.31r3eYUQgx@diego>
+Date: Tue, 05 Mar 2024 19:05:02 +0000
+Cc: mchehab@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com, dmitry.osipenko@collabora.com, sebastian.reichel@collabora.com, shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com, hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl, kernel@collabora.com, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org, linux-arm@lists.infradead.org
+To: =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1709657858-8563-1-git-send-email-quic_sriramd@quicinc.com> <1709657858-8563-2-git-send-email-quic_sriramd@quicinc.com>
-In-Reply-To: <1709657858-8563-2-git-send-email-quic_sriramd@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 5 Mar 2024 21:03:36 +0200
-Message-ID: <CAA8EJpph+R2oJjABvNQYwp=pZLxQPzzs41Hhw4feOdQ3eU-6UA@mail.gmail.com>
-Subject: Re: [RFC 1/3] dt-bindings: usb: qcom,dwc3: Add support for multiple power-domains
-To: Sriram Dash <quic_sriramd@quicinc.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org, 
-	kishon@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, gregkh@linuxfoundation.org, quic_wcheng@quicinc.com, 
-	Thinh.Nguyen@synopsys.com, p.zabel@pengutronix.de, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, quic_psodagud@quicinc.com, quic_nkela@quicinc.com, 
-	manivannan.sadhasivam@linaro.org, ulf.hansson@linaro.org, 
-	sudeep.holla@arm.com, quic_shazhuss@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <45138-65e76d00-9-580ee380@232156106>
+Subject: =?utf-8?q?Re=3A?= [PATCH v2 4/6] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= Add device tree support for HDMI RX Controller
+User-Agent: SOGoMail 5.10.0
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 5 Mar 2024 at 18:58, Sriram Dash <quic_sriramd@quicinc.com> wrote:
->
-> Some target systems allow multiple resources to be managed by firmware.
-> On these targets, tasks related to clocks, regulators, resets, and
-> interconnects can be delegated to the firmware, while the remaining
-> responsibilities are handled by Linux.
->
-> To support the management of partial resources in Linux and leave the rest
-> to firmware, multiple power domains are introduced. Each power domain can
-> manage one or more resources, depending on the specific use case.
->
-> These power domains handle SCMI calls to the firmware, enabling the
-> activation and deactivation of firmware-managed resources.
->
-> Signed-off-by: Sriram Dash <quic_sriramd@quicinc.com>
-> ---
->  .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        | 74 ++++++++++++++++------
->  .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 49 ++++++++++++--
->  .../devicetree/bindings/usb/qcom,dwc3.yaml         | 37 ++++++++++-
->  3 files changed, 130 insertions(+), 30 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> index 1e2d4dd..53b9ba9 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> @@ -44,7 +44,32 @@ properties:
->      maxItems: 5
->
->    power-domains:
-> -    maxItems: 1
-> +    description: specifies a phandle to PM domain provider node
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  power-domain-names:
-> +    description:
-> +      A list of power domain name strings sorted in the same order as the
-> +      power-domains property.
-> +
-> +      For platforms where some resource are firmware managed, the name
-> +      corresponding to the index of an SCMI domain provider can be
-> +      "usb_core" or "usb_transfer".
-> +    items:
-> +      - const: usb_core
-> +      - const: usb_transfer
-> +
-> +  qmp,fw-managed:
-> +    description:
-> +      Some targets allow multiple resources to be managed by firmware.
-> +      On these targets, tasks related to clocks, regulators, resets, and
-> +      interconnects can be delegated to the firmware, while the remaining
-> +      responsibilities are handled by Linux.
-> +
-> +      Decide if the target resources will be managed by firmware or High level
-> +      OS.
-> +    type: boolean
->
->    resets:
->      maxItems: 2
-> @@ -70,14 +95,6 @@ properties:
->  required:
->    - compatible
->    - reg
-> -  - clocks
-> -  - clock-names
-> -  - resets
-> -  - reset-names
-> -  - vdda-phy-supply
-> -  - vdda-pll-supply
-> -  - "#clock-cells"
-> -  - clock-output-names
->    - "#phy-cells"
->
->  allOf:
-> @@ -86,6 +103,33 @@ allOf:
->          compatible:
->            contains:
->              enum:
-> +              - qcom,sa8775p-qmp-usb3-uni-phy
-> +              - qcom,sc8280xp-qmp-usb3-uni-phy
-> +              - qcom,x1e80100-qmp-usb3-uni-phy
-> +    then:
-> +      required:
-> +        - power-domains
-> +
-> +  - if:
-> +      not:
-> +        required:
-> +          - qmp,fw-managed
-> +    then:
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +        - resets
-> +        - reset-names
-> +        - vdda-phy-supply
-> +        - vdda-pll-supply
-> +        - clock-output-names
-> +        - "#clock-cells"
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
->                - qcom,ipq6018-qmp-usb3-phy
->                - qcom,ipq8074-qmp-usb3-phy
->                - qcom,ipq9574-qmp-usb3-phy
-> @@ -144,18 +188,6 @@ allOf:
->              - const: com_aux
->              - const: pipe
->
-> -  - if:
-> -      properties:
-> -        compatible:
-> -          contains:
-> -            enum:
-> -              - qcom,sa8775p-qmp-usb3-uni-phy
-> -              - qcom,sc8280xp-qmp-usb3-uni-phy
-> -              - qcom,x1e80100-qmp-usb3-uni-phy
-> -    then:
-> -      required:
-> -        - power-domains
-> -
->  additionalProperties: false
->
->  examples:
-> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> index 0f200e3..ad2f08f 100644
-> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> @@ -49,6 +49,34 @@ properties:
->      items:
->        - const: ref
->
-> +  power-domains:
-> +    description: specifies a phandle to PM domain provider node
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  power-domain-names:
-> +    description:
-> +      A list of power domain name strings sorted in the same order as the
-> +      power-domains property.
-> +
-> +      For platforms where some resource are firmware managed, the name
-> +      corresponding to the index of an SCMI domain provider can be
-> +      "usb_core" or "usb_transfer".
-> +    items:
-> +      - const: usb_core
-> +      - const: usb_transfer
-> +
-> +  hsphy,fw-managed:
-> +    description:
-> +      Some targets allow multiple resources to be managed by firmware.
-> +      On these targets, tasks related to clocks, regulators, resets, and
-> +      interconnects can be delegated to the firmware, while the remaining
-> +      responsibilities are handled by Linux.
-> +
-> +      Decide if the target resources will be managed by firmware or High level
-> +      OS.
-> +    type: boolean
-> +
->    resets:
->      items:
->        - description: PHY core reset
-> @@ -154,12 +182,21 @@ required:
->    - compatible
->    - reg
->    - "#phy-cells"
-> -  - clocks
-> -  - clock-names
-> -  - resets
-> -  - vdda-pll-supply
-> -  - vdda18-supply
-> -  - vdda33-supply
-> +
-> +
-> +allOf:
-> +  - if:
-> +      not:
-> +        required:
-> +          - hsphy,fw-managed
-> +    then:
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +        - resets
-> +        - vdda-pll-supply
-> +        - vdda18-supply
-> +        - vdda33-supply
->
->  additionalProperties: false
->
-> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> index 63d150b..5bf3a29 100644
-> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> @@ -64,7 +64,31 @@ properties:
->
->    power-domains:
->      description: specifies a phandle to PM domain provider node
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  power-domain-names:
-> +    description:
-> +      A list of power domain name strings sorted in the same order as the
-> +      power-domains property.
-> +
-> +      For platforms where some resource are firmware managed, the name
-> +      corresponding to the index of an SCMI domain provider can be
-> +      "usb_core" or "usb_transfer".
-> +    items:
-> +      - const: usb_core
-> +      - const: usb_transfer
-> +
-> +  qcom,fw-managed:
-> +    description:
-> +      Some targets allow multiple resources to be managed by firmware.
-> +      On these targets, tasks related to clocks, regulators, resets, and
-> +      interconnects can be delegated to the firmware, while the remaining
-> +      responsibilities are handled by Linux.
-> +
-> +      Decide if the target resources will be managed by firmware or High level
-> +      OS.
-> +    type: boolean
+On Tuesday, March 05, 2024 19:41 IST, Heiko St=C3=BCbner <heiko@sntech.=
+de> wrote:
 
-I think this is an overkill. You know that SA8775 is going to use
-SCMI-based clocks / PD management. Thus I'd suggest adding new
-bindings file targeting qcom,sa8775-dwc3. Also you can drop the
-qcom,fw-managed property at all, let the driver decide basing on the
-compat string.
+> Hi,
+>=20
+
+Hi Heiko,
+
+>=20
+> Am Dienstag, 5. M=C3=A4rz 2024, 13:36:46 CET schrieb Shreeya Patel:
+> > Add device tree support for Synopsys DesignWare HDMI RX
+> > Controller.
+> >=20
+> > Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> > Tested-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> > Co-developed-by: Dingxian Wen <shawn.wen@rock-chips.com>
+> > Signed-off-by: Dingxian Wen <shawn.wen@rock-chips.com>
+> > Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+> > ---
+> > Changes in v2 :-
+> >   - Fix some of the checkpatch errors and warnings
+> >   - Rename resets, vo1-grf and HPD
+> >   - Move hdmirx=5Fcma node to the rk3588.dtsi file
+> >=20
+> >  .../boot/dts/rockchip/rk3588-pinctrl.dtsi     | 41 ++++++++++++++
+> >  arch/arm64/boot/dts/rockchip/rk3588.dtsi      | 55 +++++++++++++++=
+++++
+> >  2 files changed, 96 insertions(+)
+>=20
+> > diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/arm64/=
+boot/dts/rockchip/rk3588.dtsi
+> > index 5519c1430cb7..8adb98b99701 100644
+> > --- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> > +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> > @@ -7,6 +7,24 @@
+> >  #include "rk3588-pinctrl.dtsi"
+> > =20
+> >  / {
+> > +	reserved-memory {
+> > +		#address-cells =3D <2>;
+> > +		#size-cells =3D <2>;
+> > +		ranges;
+>=20
+> add blank line here
+>=20
+> > +		/*
+> > +		 * The 4k HDMI capture controller works only with 32bit
+> > +		 * phys addresses and doesn't support IOMMU. HDMI RX CMA
+> > +		 * must be reserved below 4GB.
+> > +		 */
+> > +		hdmirx=5Fcma: hdmirx=5Fcma {
+>=20
+> phandles use "=5F", but node-names "-"
+>=20
+> > +			compatible =3D "shared-dma-pool";
+> > +			alloc-ranges =3D <0x0 0x0 0x0 0xffffffff>;
+> > +			size =3D <0x0 (160 * 0x100000)>; /* 160MiB */
+>=20
+> The comment above that node, could elaborate where the value of 160MB
+> originates from. I assume it is to hold n-times of 4K frames or whate=
+ver,
+> but it would be helpful for people to be able to read that.
+>=20
+
+right, we did the following calculation to come up with this value :-
+3840 * 2160 * 4 (bytes/pix) * 2 (frames/buffer) / 1000 / 1000 =3D 66M
+and then we do the 2x times of this value to be on the safer side
+and support all practical use-cases.
+
+I'll add some more details to the comment in v3.
+
+>=20
+> > +			no-map;
+> > +			status =3D "disabled";
+> > +		};
+> > +	};
+> > +
+> >  	pcie30=5Fphy=5Fgrf: syscon@fd5b8000 {
+> >  		compatible =3D "rockchip,rk3588-pcie3-phy-grf", "syscon";
+> >  		reg =3D <0x0 0xfd5b8000 0x0 0x10000>;
+> > @@ -85,6 +103,38 @@ i2s10=5F8ch: i2s@fde00000 {
+> >  		status =3D "disabled";
+> >  	};
+> > =20
+> > +	hdmi=5Freceiver: hdmi-receiver@fdee0000 {
+>=20
+> Maybe rename the label to "hdmirx:" ... that way in a board enabling =
+the
+> cma region, both nodes would stay close to each other?
+>=20
+
+Umm we already have receiver in the name so I am not sure if adding rx =
+will be
+a good idea. I was trying to keep it consistent with the names used in =
+other device tree files.
+In case you still feel otherwise then do let me know, I'll make the cha=
+nge.
+
+>=20
+> > +		compatible =3D "rockchip,rk3588-hdmirx-ctrler", "snps,dw-hdmi-rx=
+";
+> > +		reg =3D <0x0 0xfdee0000 0x0 0x6000>;
+> > +		power-domains =3D <&power RK3588=5FPD=5FVO1>;
+> > +		rockchip,grf =3D <&sys=5Fgrf>;
+> > +		rockchip,vo1-grf =3D <&vo1=5Fgrf>;
+> > +		interrupts =3D <GIC=5FSPI 177 IRQ=5FTYPE=5FLEVEL=5FHIGH 0>,
+> > +			     <GIC=5FSPI 436 IRQ=5FTYPE=5FLEVEL=5FHIGH 0>,
+> > +			     <GIC=5FSPI 179 IRQ=5FTYPE=5FLEVEL=5FHIGH 0>;
+> > +		interrupt-names =3D "cec", "hdmi", "dma";
+> > +		clocks =3D <&cru ACLK=5FHDMIRX>,
+> > +			 <&cru CLK=5FHDMIRX=5FAUD>,
+> > +			 <&cru CLK=5FCR=5FPARA>,
+> > +			 <&cru PCLK=5FHDMIRX>,
+> > +			 <&cru CLK=5FHDMIRX=5FREF>,
+> > +			 <&cru PCLK=5FS=5FHDMIRX>,
+> > +			 <&cru HCLK=5FVO1>;
+> > +		clock-names =3D "aclk",
+> > +			      "audio",
+> > +			      "cr=5Fpara",
+> > +			      "pclk",
+> > +			      "ref",
+> > +			      "hclk=5Fs=5Fhdmirx",
+> > +			      "hclk=5Fvo1";
+>=20
+> the driver uses of=5Freserved=5Fmem=5Fdevice=5Finit(), so doesn't thi=
+s node need
+> a "memory-region =3D <&hdmirx=5Fcma>; or similar?
+>=20
+
+yes, we should have the memory-region property here. My bad, I'll corre=
+ct this in v3.
+
+>=20
+> > +		resets =3D <&cru SRST=5FA=5FHDMIRX>, <&cru SRST=5FP=5FHDMIRX>,
+> > +			 <&cru SRST=5FHDMIRX=5FREF>, <&cru SRST=5FA=5FHDMIRX=5FBIU>;
+> > +		reset-names =3D "axi", "apb", "ref", "biu";
+> > +		pinctrl-0 =3D <&hdmim1=5Frx>;
+> > +		pinctrl-names =3D "default";
+> > +		status =3D "disabled";
+> > +	};
+> > +
+> >  	pcie3x4: pcie@fe150000 {
+> >  		compatible =3D "rockchip,rk3588-pcie", "rockchip,rk3568-pcie";
+> >  		#address-cells =3D <3>;
+> > @@ -339,3 +389,8 @@ pcie30phy: phy@fee80000 {
+> >  		status =3D "disabled";
+> >  	};
+> >  };
+> > +
+> > +&hdmirx=5Fcma {
+> > +	status =3D "okay";
+> > +};
+>=20
+> I'd assume a board that enables &hdmi=5Freceiver would also enable hd=
+mirx=5Fcma
+> and not the soc dtsi for =5Fall=5F boards?
+>=20
+
+Actually this node should be in the rock-5b.dts file instead of here.
+v1 had it correct but I made a mistake in v2 :(
+Thanks for pointing this out, I'll fix this and send a v3 soon.
 
 
->
->    required-opps:
->      maxItems: 1
-> @@ -148,13 +172,20 @@ required:
->    - "#address-cells"
->    - "#size-cells"
->    - ranges
-> -  - clocks
-> -  - clock-names
->    - interrupts
->    - interrupt-names
->
->  allOf:
->    - if:
-> +      not:
-> +        required:
-> +          - qcom,fw-managed
-> +    then:
-> +      required:
-> +        - clocks
-> +        - clock-names
-> +
-> +  - if:
->        properties:
->          compatible:
->            contains:
-> --
-> 2.7.4
->
->
+Thanks,
+Shreeya Patel
 
+>=20
+> Thanks
+> Heiko
+>=20
+>=20
+> =5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=
+=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F=5F
+> Kernel mailing list -- kernel@mailman.collabora.com
+> To unsubscribe send an email to kernel-leave@mailman.collabora.com
+> This list is managed by https://mailman.collabora.com
 
---
-With best wishes
-Dmitry
 
