@@ -1,84 +1,60 @@
-Return-Path: <devicetree+bounces-48432-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48431-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1D82872166
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:24:55 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 53861872162
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:24:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C9622802BC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:24:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0A591F21D7D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:24:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBACF86639;
-	Tue,  5 Mar 2024 14:24:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F1B3F86636;
+	Tue,  5 Mar 2024 14:24:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="HI2trvi5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L0uUn/6V"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE6E986122;
-	Tue,  5 Mar 2024 14:24:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C352386122;
+	Tue,  5 Mar 2024 14:24:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709648691; cv=none; b=O+LpnM6GdxMvS863UfWRckA8x1PAD5A6D9EngsA1UY8ppQtKAp2dngE5VSZcHPn9B91rmBu+R93V6i6sEFoOfI30BjPbOrGgkt+CcK13ttGRKPP+EAHPkAIARu5QSi/ePn8GDpSgdNKVch34c9sHOsiOzTkUsGQq7ZxCiLa7IpE=
+	t=1709648669; cv=none; b=UGz4S5cPyPaTbGJNUsKzfj4MenvZVThA3YVIr/sUDM9zMgIiKOt4gRK+jJWAt234GEROr3kVIiF8JOYBukrW6waU1vGrK6zyNuqay9ZCjGCfFgdgcZtAsumqkipW8ZPwp83uJlR4lgPxxWjGILc4lzmgGU1qq4ueRyttKLJB+7o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709648691; c=relaxed/simple;
-	bh=rby9JLSGTuoBcffipBf7GVYQGkuEynZiB9jSo67ZdOo=;
+	s=arc-20240116; t=1709648669; c=relaxed/simple;
+	bh=zan+ZoeDXxzZ7Py3Ib0gvt0twgnpqQJYfL+M/dbapaM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=FEpORZPFBvaQ/7a0aTmg/owZTiuBmSMDqL6tvCfk1Iz2nAZYdSejSJqXvGhOWH0W1WRBLk7gcrS5meIoyTHNuEuvdOCKHtAy7TaKpttlqGVO9e9Jipl3F7lIxWhulAInZEJPXlaCluYycZwoWjo/SxSVGyo0UJJmbeRvj2nU0x0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=HI2trvi5; arc=none smtp.client-ip=78.32.30.218
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
-	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-	bh=y3qXUxkn6l40Cq+JpjQmhgzABt2ICxynEDg3FWDSFiE=; b=HI2trvi5YJDYdp7rbWYsNTKIEd
-	Fjjchumq/iplIylqDntUbdiA54UtAqwAA8B1KzW0BZIOzp7aLCKv9zujlB6Cms/IgwOlIOOXUdqpm
-	7oVP9SjTiOIr/USfxZb+6doIxIrFUcyA/wpUk8JfIoVEUksbizeHhvU7nTx1RKKnKnYgLaR1WU7s4
-	tO+J2hBKvHtnxlGb13jXVoJg2Fir5GzdeTJn45QRjqClf6gcWrtRtBOT6Q2z7qkfTTSTVZIv87w1f
-	csm0G+z4yyw7AJI6lbIBrwV8/1AmDEPveUm9oEfZVm9RY0We7sHdxE0/tq0lyHYETzn6GJKYhUC5d
-	4v2JM9fA==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46290)
-	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.96)
-	(envelope-from <linux@armlinux.org.uk>)
-	id 1rhVia-0007F7-1z;
-	Tue, 05 Mar 2024 14:24:32 +0000
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
-	(envelope-from <linux@shell.armlinux.org.uk>)
-	id 1rhViT-0005TU-7H; Tue, 05 Mar 2024 14:24:25 +0000
-Date: Tue, 5 Mar 2024 14:24:25 +0000
-From: "Russell King (Oracle)" <linux@armlinux.org.uk>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Eric Woudstra <ericwouds@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	Daniel Golle <daniel@makrotopia.org>,
-	Lucien Jheng <lucien.jheng@airoha.com>,
-	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
- EN8811H PHY driver
-Message-ID: <ZecrGTsBZ9VgsGZ+@shell.armlinux.org.uk>
-References: <20240302183835.136036-1-ericwouds@gmail.com>
- <20240302183835.136036-3-ericwouds@gmail.com>
- <e056b4ac-fffb-41d9-a357-898e35e6d451@lunn.ch>
- <aeb9f17c-ea94-4362-aeda-7d94c5845462@gmail.com>
- <Zebf5UvqWjVyunFU@shell.armlinux.org.uk>
- <0184291e-a3c7-4e54-8c75-5b8654d582b4@lunn.ch>
+	 Content-Type:Content-Disposition:In-Reply-To; b=HfHKHYeOoK9tqH/bJBOusVaDBxtCBJxyl6dVCLBbV6WgqtFCjqpY1AmCF2kX/OCxg7jpLZisDGLablq/ZWPVGaw8mW1JFlAcCuNUxQnzI+PBbzRiyUz3d/NA5/AldjziK0qYmI1CuHauXpecgcD8OQ5u0zxRKMAME9q/RXvcrEE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L0uUn/6V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 15069C43390;
+	Tue,  5 Mar 2024 14:24:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709648669;
+	bh=zan+ZoeDXxzZ7Py3Ib0gvt0twgnpqQJYfL+M/dbapaM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L0uUn/6VWsIRpBj0MI8Cs9Zlz68UfqVVESRLH41lV8Jnh0qjwNa2FKGJJv0OrELOB
+	 sJFJUk0V1+sBQNKd+WToPNFo0HYwal0psvcVrmwZoAeord/9WQCA3XapUZp//xTdj/
+	 O64EsudmuwyatGTs5ewvhP7aPebIcRtvi1SkoC6nfW6yFO6S/PG4jF/jPfFqdTmyUf
+	 DIxyBjGbaq/o3OMndkl5rvNOMBoNwbBXcRGfmsD5yKAsWpkdjcRvF5fC3iUXG+OkhB
+	 UXdXwYoZwzwVoOqfJ9AFCRHLn4lg2xpaJKc3n9eWlituqTr46U1alWxIdTIrrI5rnM
+	 JCmTfpUrrootQ==
+Date: Tue, 5 Mar 2024 08:24:26 -0600
+From: Rob Herring <robh@kernel.org>
+To: Vidya Sagar <vidyas@nvidia.com>
+Cc: bhelgaas@google.com, rafael@kernel.org, lenb@kernel.org,
+	will@kernel.org, lpieralisi@kernel.org, kw@linux.com,
+	frowand.list@gmail.com, linux-pci@vger.kernel.org,
+	linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	treding@nvidia.com, jonathanh@nvidia.com, kthota@nvidia.com,
+	mmaddireddy@nvidia.com, sagar.tv@gmail.com
+Subject: Re: [PATCH V4] PCI: Add support for preserving boot configuration
+Message-ID: <20240305142426.GB3259724-robh@kernel.org>
+References: <20240222124110.2681455-1-vidyas@nvidia.com>
+ <20240223080021.1692996-1-vidyas@nvidia.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,42 +63,46 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0184291e-a3c7-4e54-8c75-5b8654d582b4@lunn.ch>
-Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+In-Reply-To: <20240223080021.1692996-1-vidyas@nvidia.com>
 
-On Tue, Mar 05, 2024 at 03:06:45PM +0100, Andrew Lunn wrote:
-> > The only way I can see around this problem would be to look up the
-> > PHY in order to get a pointer to the struct phy_device in the network
-> > device's probe function, and attach the PHY there _before_ you register
-> > the network device. You can then return EPROBE_DEFER and, because you
-> > are returning it in a .probe function, the probe will be retried once
-> > other probes in the system (such as your PHY driver) have finished.
-> > This also means that userspace doesn't see the appearance of the
-> > non-functional network device until it's ready, and thus can use
-> > normal hotplug mechanisms to notice the network device.
+On Fri, Feb 23, 2024 at 01:30:21PM +0530, Vidya Sagar wrote:
+> Add support for preserving the boot configuration done by the
+> platform firmware per host bridge basis, based on the presence of
+> 'linux,pci-probe-only' property in the respective PCI host bridge
+> device-tree node. It also unifies the ACPI and DT based boot flows
+> in this regard.
 > 
-> What i'm thinking is we add another op to phy_driver dedicated to
-> firmware download. We let probe run as is, so the PHY is registered
-> and available. But if the firmware op is set, we start a thread and
-> call the op in it. Once the op exits, we signal a completion event.
-> phy_attach_direct() would then wait on the completion.
+> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
+> ---
+> V4:
+> * Addressed Bjorn's review comments
+> 
+> V3:
+> * Unified ACPI and DT flows as part of addressing Bjorn's review comments
+> 
+> V2:
+> * Addressed issues reported by kernel test robot <lkp@intel.com>
+> 
+>  drivers/acpi/pci_root.c                  | 12 -------
+>  drivers/pci/controller/pci-host-common.c |  4 ---
+>  drivers/pci/of.c                         | 21 +++++++++++
+>  drivers/pci/probe.c                      | 46 ++++++++++++++++++------
+>  include/linux/of_pci.h                   |  6 ++++
+>  5 files changed, 62 insertions(+), 27 deletions(-)
 
-That's really not good, because phy_attach_direct() can be called
-from .ndo_open, which will result in the rtnl lock being held while
-we wait - so this is not much better than having the firmware load
-in .config_init.
+One more thing.
 
-If we drop the lock, then we need to audit what the effect of that
-would be - for example, if the nic is being opened, it may mean
-that another attempt to open the nic could be started. Or it may
-mean that an attempt to configure the nic down could be started.
-Then the original open proceeds and state is now messed up.
+> @@ -3080,20 +3106,18 @@ int pci_host_probe(struct pci_host_bridge *bridge)
+>  
+>  	bus = bridge->bus;
+>  
+> +	/* If we must preserve the resource configuration, claim now */
+> +	if (pci_has_flag(PCI_PROBE_ONLY) || bridge->preserve_config)
+> +		pci_bus_claim_resources(bus);
 
-I do get the feeling that trying to work around "I don't want the
-firmware in the initramfs" is creating more problems and pain than
-it's worth.
+No reason to check PCI_PROBE_ONLY if you set preserve_config based on 
+/chosen as well. IOW, we should deprecate PCI_PROBE_ONLY flag in favor 
+of the per host bridge setting.
 
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
+Rob
 
