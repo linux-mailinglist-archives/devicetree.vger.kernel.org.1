@@ -1,218 +1,131 @@
-Return-Path: <devicetree+bounces-48347-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48348-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 591CE8717CC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:15:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CA6118717CE
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:15:40 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DD3DF1F222CF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:15:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8586C281086
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:15:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 575A67FBCF;
-	Tue,  5 Mar 2024 08:13:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="cKtS0+7/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 088847F47A;
+	Tue,  5 Mar 2024 08:14:18 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81D887EEFD;
-	Tue,  5 Mar 2024 08:13:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E6C7EEFD;
+	Tue,  5 Mar 2024 08:14:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709626427; cv=none; b=dURqNYOIEVCHwExC8duyjO8TLL3QP7rgx2VHyQ8ytvuWEVZSJ7QleLp19L/xnipT7Y3rB/88U2+iMFTn7vjjcHL0XnXnwVA1dmAKSgX4ekrtswihg3z5cm2d2wrMU9IfNbjlKDM3pr/VELz3fSOjQS3Xvhmcq+AnoJFwcBIcT2g=
+	t=1709626457; cv=none; b=Rxs85vaZN0Oh/M32++kRYCQiDIfIhKhpVnNf216tG7V0ihK3H5iThGpjEgEynkf/fT0OaBfoWm5uLVjaIAJcvvoLBEclHEzolzB0CmccMRuIRWobpz+JHY+77YWUEQ3vmsPqqvU6PpFJa9TZPwHE30Jj10T0GXbvMJWetG5iyqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709626427; c=relaxed/simple;
-	bh=M6R1j90M3k32rYmOsNRz+DEBTgw+1FZH15C/3hoRI2U=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=M4PflkT1SKRJ8UODiJCqvG98atyLqF/+VcKtKS71HK33de03/mURkH8kYr8hnuxY4ZNHrRrPVT2KGw24YK3z/K0zXwMjqvfYRyHTahqHLAabtQDxst+QS4FS3gaIKiThkZ1yu1RpY+WPwcxrE0dGkbqM6Xh2SWQZ58GZZnM1GuM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=cKtS0+7/; arc=none smtp.client-ip=209.85.208.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1709626457; c=relaxed/simple;
+	bh=sdkbL0j1WDTfzOeFdax57xNB3etUtS+GxE2k2CRgZs4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=GDwZ2KQkpq3L0DuIYxhEoHmTTfy7zNi+/5gFw78vh2fw0vKbgz2U3vagMxcFDPodSWFVIQNFMR1itYZYfVEyB9YnqTcPE0+9XR6rcyeTmJdxRoPahaZIybpkJ//fVAdysU/lnFqLpGYwVSVkCNGzqYWc2aNkXxIOUVqHTaWEZkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-563bb51c36eso6968222a12.2;
-        Tue, 05 Mar 2024 00:13:45 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709626424; x=1710231224; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=U6Gt+EZBI4V/HhWzGjeVEQZx0KOM59T/cCWxCZH0Fog=;
-        b=cKtS0+7/91yDwgpdHP49UZQbu3bqiqD6q6Pa7I9xuX44SSHBrr7/IWqAtv3V1x6i0o
-         xSbBlHqhVan4/sLtdyJo9W11OpX7br8aApatndLFnBUznhTNWH62oZ7sshHlPVUrhEnQ
-         iBM0ZcaKt7DlpnpMkRlVGI6+Ym7N1WfowOTtpf6SwzRMdKPxXAD+ZhZhRRh+cS20+mPP
-         yTn8xn3TDLnTE/7QzEy5YPnCW6IR8Nt4ShE2kd3XEVGuzV78+qG8HyGzcOvlmCp7EO84
-         ABXuQyi/y7ADH+5vOuNCQdz0AhaO/s2A8wsg55ci7qOMDMZ9U9xAgcdEruk+jIp9D48u
-         us4g==
+Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6098bf69909so30344937b3.1;
+        Tue, 05 Mar 2024 00:14:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709626424; x=1710231224;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=U6Gt+EZBI4V/HhWzGjeVEQZx0KOM59T/cCWxCZH0Fog=;
-        b=emYYEb6I8djEvmIj4sW+GyZUbe1tgn+DcLov2apYC4ieYIm1MQyuN2HvQeshszfaHJ
-         KdovCFLfHVdjIga2VxVKJQX7c5iDpJ1WBXJoPreMqxjTjReHdRyD7P5hrQJ/O2jZv7j7
-         mzcWUbG6IDqoojo3QchRPPjl5IbTN84FDpkIl7OsmeemMUqSudzGKwJlMUwZYACdzDFl
-         Q4eoieJgLS4B5VPRV9N8tbNxpl3wJvb4BaKol1W56qD+BhOZhGPppAAAJpPrXdi0P8ln
-         SlN9jnaEWrOAXQti+0gxvT3zfeu8/2b3GMhIp99DOt8EH9vLVSNis39CUb/bsh+makuZ
-         Y+8g==
-X-Forwarded-Encrypted: i=1; AJvYcCUBuTiKDeMQ/fRW/Im0wi/ufmRJsCg4ZybH15FO0ztUWaOUpOQuNMX1/zNbHBTYd5cNRIMpaepxGxbftsP/sh6cTbHX5J/7NyV8T489BYVp8ptSNmEBr2CcLjcrffiWFHFrpA==
-X-Gm-Message-State: AOJu0YzgHHE6z61s24f6QwpVSYAJt7MHSl69bXCDt9hIL/5kb7+fShq2
-	vsTyj8UJh/K8WuCxWInWBfBTfN345TQI9yo1lq/NENLOikee8C9t
-X-Google-Smtp-Source: AGHT+IFSXka5QRTVVh7RGlRx/C7VXpNGAUtA3mjCM/q3IE3fFiyxdf6wfIL/yk22A7KPke2zfIQJew==
-X-Received: by 2002:a17:906:e0d6:b0:a45:5328:8432 with SMTP id gl22-20020a170906e0d600b00a4553288432mr3327229ejb.50.1709626423540;
-        Tue, 05 Mar 2024 00:13:43 -0800 (PST)
-Received: from ?IPV6:2001:1c00:20d:1300:1b1c:4449:176a:89ea? (2001-1c00-020d-1300-1b1c-4449-176a-89ea.cable.dynamic.v6.ziggo.nl. [2001:1c00:20d:1300:1b1c:4449:176a:89ea])
-        by smtp.gmail.com with ESMTPSA id tk3-20020a170907c28300b00a3f20a8d2f6sm5733793ejc.112.2024.03.05.00.13.42
+        d=1e100.net; s=20230601; t=1709626454; x=1710231254;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=C/PGxtgAIaNlRumVOAqmpGsRhzvUMbZ5jyQA7IZ7SLc=;
+        b=ismwGYkxuWSJcLLu4/7t30aAh8HyCBPRoJ3E4XKy7qYlDjwEkXs06EMkuYgcex1svG
+         AKg9r/8ENgH0WrWsRJOMUJoG5NG3P2VRT1Vy1bQf7Nos4kCcm0dCb58uSppdCd30/SB+
+         sYB2Rp1MIVUrKpcoSoruLHT9+eQd0GjeG78lh3Gl46ZQz+jB8TCcKOGa5Cu26tOvpO+L
+         yfFKt6u1Eg/BlXFnh0BLZq4z7EEuIrJEIwFDpWA39XXNug/hpbK701gt0FNjJXb2oIcY
+         GsZc16jz1VxE0cmQqiEEYjCBbYUWoPJKbaivE3mfyaJhE13Ms5A3gWftQZuQXhVD4GEH
+         jtjQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUTmwD6gSADtWpvKDbgLGvRCRVyzqR1TpureCv7GWNCe1BRa64EIwAmV7ZqgVYZVqfQMm5MR6YdJ9+RRY96yHsxCkG4D5UoRSewoweJa84qYeaNOuJEstABF+Z1xu5mAYzmnJVnfs5AGqKH6/I0uPuUC/9WCMitnA+4C+o1HTDvmrR32/E=
+X-Gm-Message-State: AOJu0Yy7GArQ1bPkt7vhSUKYyvL3WK5Xq8bvkGAASQEh+C9rBUXF+y0E
+	7886buCzvNDz9iFVj/sJ9rb5b9bpElT8pV6PAoWQl8XhnVa1+WWjSOEC8oiWEes=
+X-Google-Smtp-Source: AGHT+IEPMjVoeyDtKFnxJjQxc3RlnLtRTMv8Uy1TA+pBy3lUFDY8++Si8Wgu0iT6vUYDqjYyWZbqgw==
+X-Received: by 2002:a0d:cac9:0:b0:609:892e:b944 with SMTP id m192-20020a0dcac9000000b00609892eb944mr1388875ywd.4.1709626454054;
+        Tue, 05 Mar 2024 00:14:14 -0800 (PST)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id r12-20020a81e40c000000b00607c3904416sm2977288ywl.40.2024.03.05.00.14.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Mar 2024 00:13:43 -0800 (PST)
-Message-ID: <b27e44db-d9c5-49f0-8b81-2f55cfaacb4d@gmail.com>
-Date: Tue, 5 Mar 2024 09:13:41 +0100
+        Tue, 05 Mar 2024 00:14:12 -0800 (PST)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dc25e12cc63so6051907276.0;
+        Tue, 05 Mar 2024 00:14:12 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVgK8caQANrK8oebiAEEtj597THcsbm+hLRHX/kpokKHmZAzzJPA0eaucpoWoBWAfF+Cm5FU2N6kDgu4iOpFHZb4HpNZEPuPJHlNdCZZoBg7paQmn7wP0fgO8sNDz/KZ85sTgBILk8ULOKplZC2OUtk3sL3BpwGhIpIb0cJ4yb/bI3NjQo=
+X-Received: by 2002:a05:6902:248f:b0:dc2:271a:3799 with SMTP id
+ ds15-20020a056902248f00b00dc2271a3799mr1604789ybb.23.1709626452674; Tue, 05
+ Mar 2024 00:14:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
- EN8811H PHY driver
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Heiner Kallweit <hkallweit1@gmail.com>,
- Russell King <linux@armlinux.org.uk>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Frank Wunderlich <frank-w@public-files.de>,
- Daniel Golle <daniel@makrotopia.org>, Lucien Jheng
- <lucien.jheng@airoha.com>, Zhi-Jun You <hujy652@protonmail.com>,
- netdev@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240302183835.136036-1-ericwouds@gmail.com>
- <20240302183835.136036-3-ericwouds@gmail.com>
- <89f237e0-75d4-4690-9d43-903e087e4f46@lunn.ch>
-Content-Language: en-US
-From: Eric Woudstra <ericwouds@gmail.com>
-In-Reply-To: <89f237e0-75d4-4690-9d43-903e087e4f46@lunn.ch>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240305035853.916430-1-chris.packham@alliedtelesis.co.nz> <20240305035853.916430-2-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20240305035853.916430-2-chris.packham@alliedtelesis.co.nz>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Tue, 5 Mar 2024 09:14:01 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUYuucVQDor3na-iT+Jmsktr+vCVjQXGUA6vXd6-mXxmA@mail.gmail.com>
+Message-ID: <CAMuHMdUYuucVQDor3na-iT+Jmsktr+vCVjQXGUA6vXd6-mXxmA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] auxdisplay: Add 7-segment LED display driver
+To: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Cc: andy@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com, 
+	sebastian.hesselbarth@gmail.com, lee@kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-leds@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Chris,
 
-Hi Andrew,
+On Tue, Mar 5, 2024 at 4:59=E2=80=AFAM Chris Packham
+<chris.packham@alliedtelesis.co.nz> wrote:
+> Add a driver for a 7-segment LED display. At the moment only one
+> character is supported but it should be possible to expand this to
+> support more characters and/or 14-segment displays in the future.
+>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> ---
+>
+> Notes:
+>     Changes in v4:
+>     - Fix one more usage of 7 segment
+>     - Move ASCII art diagram to DT binding
+>     - Include map_to_7segment.h for map_to_seg7()
+>     - Use initialiser for values in seg_led_update
 
-First of all, thanks for taking the time to look at the code so
-extensively.
+Thanks for the update!
 
-On 3/3/24 18:29, Andrew Lunn wrote:
->> +enum {
->> +	AIR_PHY_LED_DUR_BLINK_32M,
->> +	AIR_PHY_LED_DUR_BLINK_64M,
->> +	AIR_PHY_LED_DUR_BLINK_128M,
->> +	AIR_PHY_LED_DUR_BLINK_256M,
->> +	AIR_PHY_LED_DUR_BLINK_512M,
->> +	AIR_PHY_LED_DUR_BLINK_1024M,
-> 
-> DUR meaning duration? It has a blinks on for a little over a
-> kilometre? So a wave length of a little over 2 kilometres, or a
-> frequency of around 0.0005Hz :-)
+> --- a/drivers/auxdisplay/Kconfig
+> +++ b/drivers/auxdisplay/Kconfig
+> @@ -211,6 +211,16 @@ config ARM_CHARLCD
+>           line and the Linux version on the second line, but that's
+>           still useful.
+>
+> +config SEG_LED_GPIO
+> +       tristate "Generic 7-segment LED display"
 
-It is the M for milliseconds. I can add a comment to clarify this.
-If you set to 1024M, it will blink with a period of a roughly 1 second.
+"depends on GPIOLIB || COMPILE_TEST"?
 
->> +static int __air_buckpbus_reg_write(struct phy_device *phydev,
->> +				    u32 pbus_address, u32 pbus_data,
->> +				    bool set_mode)
->> +{
->> +	int ret;
->> +
->> +	if (set_mode) {
->> +		ret = __phy_write(phydev, AIR_BPBUS_MODE,
->> +				  AIR_BPBUS_MODE_ADDR_FIXED);
->> +		if (ret < 0)
->> +			return ret;
->> +	}
-> 
-> What does set_mode mean?
+The rest LGTM, so
+Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
 
-I use this boolean to prevent writing the same value twice to the
-AIR_BPBUS_MODE register, when doing an atomic modify operation. The
-AIR_BPBUS_MODE is already set in the read operation, so it does not
-need to be set again to the same value at the write operation.
-Sadly, the address registers for read and write are different, so
-I could not optimize the modify operation any more.
+Gr{oetje,eeting}s,
 
->> +static int en8811h_load_firmware(struct phy_device *phydev)
->> +{
->> +	struct device *dev = &phydev->mdio.dev;
->> +	const struct firmware *fw1, *fw2;
->> +	int ret;
->> +
->> +	ret = request_firmware_direct(&fw1, EN8811H_MD32_DM, dev);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	ret = request_firmware_direct(&fw2, EN8811H_MD32_DSP, dev);
->> +	if (ret < 0)
->> +		goto en8811h_load_firmware_rel1;
->> +
-> 
-> How big are these firmwares? This will map the entire contents into
-> memory. There is an alternative interface which allows you to get the
-> firmware in chunks. I the firmware is big, just getting 4K at a time
-> might be better, especially if this is an OpenWRT class device.
+                        Geert
 
-The file sizes are 131072 and 16384 bytes. If you think this is too big,
-I could look into using the alternative interface.
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
->> +static int en8811h_restart_host(struct phy_device *phydev)
->> +{
->> +	int ret;
->> +
->> +	ret = air_buckpbus_reg_write(phydev, EN8811H_FW_CTRL_1,
->> +				     EN8811H_FW_CTRL_1_START);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	return air_buckpbus_reg_write(phydev, EN8811H_FW_CTRL_1,
->> +				     EN8811H_FW_CTRL_1_FINISH);
->> +}
-> 
-> What is host in this context?
-
-This is the EN8811H internal host to the PHY.
-
-> Vendors do like making LED control unique. I've not seen any other MAC
-> or PHY where you can blink for activity at a given speed. You cannot
-> have 10 and 100 at the same time, so why are there different bits for
-> them?
-> 
-> I _think_ this can be simplified
-> ...
-> Does this work?
-
-I started out with that, but the hardware can do more. It allows
-for a setup as described:
-
- 100M link up triggers led0, only led0 blinking on traffic
-1000M link up triggers led1, only led1 blinking on traffic
-2500M link up triggers led0 and led1, both blinking on traffic
-
-#define AIR_DEFAULT_TRIGGER_LED0 (BIT(TRIGGER_NETDEV_LINK_2500) | \
-				 BIT(TRIGGER_NETDEV_LINK_100)  | \
-				 BIT(TRIGGER_NETDEV_RX)        | \
-				 BIT(TRIGGER_NETDEV_TX))
-#define AIR_DEFAULT_TRIGGER_LED1 (BIT(TRIGGER_NETDEV_LINK_2500) | \
-				 BIT(TRIGGER_NETDEV_LINK_1000) | \
-				 BIT(TRIGGER_NETDEV_RX)        | \
-				 BIT(TRIGGER_NETDEV_TX))
-
-With the simpler code and just the slightest traffic, both leds
-are blinking and no way to read the speed anymore from the leds.
-
-So I modified it to make the most use of the possibilities of the
-EN881H hardware. The EN8811H can then be used with a standard 2-led
-rj45 socket.
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
