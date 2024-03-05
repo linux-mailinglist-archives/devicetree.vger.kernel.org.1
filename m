@@ -1,120 +1,225 @@
-Return-Path: <devicetree+bounces-48418-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48419-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 409E3872081
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:41:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C14E8720BA
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:47:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E58B3286450
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 13:41:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 175ABB23305
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 13:47:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 303F385C6C;
-	Tue,  5 Mar 2024 13:41:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCE0785C79;
+	Tue,  5 Mar 2024 13:47:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DOCvtJWD"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="mew/wGtc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9594984A48;
-	Tue,  5 Mar 2024 13:41:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A8108593E;
+	Tue,  5 Mar 2024 13:47:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709646101; cv=none; b=blZk2CXhQ4m2u6NRUA/u9TjZ3+8JnpeXeGLgjuis8F9wAnVYZFbFeEuMiD9TidtxOlzxA/ljiVC/5oLjAkyh9EbL2nGteH2LfFJKGfHtczB9i54fJ5PturfdpvboVq+eF65KdvtIIXPHz+7UKyG5Pq74aU7wag3klUEx8DyuAP8=
+	t=1709646471; cv=none; b=aKCW+eudsMqLWrU/lcGRBmaGOOSKzYRScb+UorgPV+i0TzviljT1BY66RTSRFDl+a7p3cKyqrsFTBeege8t1wMaaZBiTQA1D3mZK7UeqQWID75xpZ2nuSRnbu5KVmaTGCqmmggfWacIxCiI7l7M5/S9bMuu7Yw7q0mighZFlfe0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709646101; c=relaxed/simple;
-	bh=W+2nNfu/SH120fh3upXQutRAF4cFUOE0j3C5s8jvs54=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DY6Wrirn568kV0CpbgFT53TBhG+a+Qd0GZSa1Ycj+Ux0ajpyoRSy6FLut5Y1clIOu3jAauaKiXwdTh58CTfBswgFWpBrQES8ABFi0KqW5G8EvHwKh81ga1IS8yhejXxd3Gcp4MpCadfLoX4JXPgIq2xZKuayEoLSGv4VIKx/3ck=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DOCvtJWD; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 136191BF20B;
-	Tue,  5 Mar 2024 13:41:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709646091;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=DZDyctNRQfxHIrXGUPl9xyE+ahVMXlpoMQhkMhBvw8w=;
-	b=DOCvtJWDLZSm2JIeQ9Omeu4d1Hzx3R3n13mnOKJCS0QzLpxZ+i7VVBJsa00u2c3FzBbsZr
-	TmtD2SjBYbmETmRwp/+3T5y3zzza3j1KOfQ1xoW2OUELvxf4NQMhBDz6e3XWjVquzKlEJC
-	x+dgTmKckoL+noQtiQMSS547dTOKuynN+8mmywNWdhm87b8lE8dgTk45OOlyiPZvJeeGiO
-	sNI13I1pKmRGBOTt5JmHC9Bfhf5+aR8uhvo7caHoYM7kl+4HZ7orI3kIkQCB6w2oB2q9Ld
-	LuRUyZ8zDKFaO1V3pkg+qhqKCUBUnC7667dPZPzCnsziw+PqKqwchkGgI+CMBA==
-Message-ID: <85da1b70-d3fe-4117-a87c-53559b299867@bootlin.com>
-Date: Tue, 5 Mar 2024 14:41:29 +0100
+	s=arc-20240116; t=1709646471; c=relaxed/simple;
+	bh=PSQDKOjTYlxyNhw+5gg0aHr6AbyCsuy0sLTOZ2AjNf0=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=WgavJDu0foTNTKV6izsrRx8Pa4gXOE3uEUcLS1Mt61YqR/b+bK+gAe5Cfsj9pvMXbTBwVob9/XnOifC5rptkvj5usMmaQhh5s1N5vUwGBeSSDWdU1tLmqQV3ytm4dAL7ohdcnsjAq9DlocsNH4YmNil/98mfM9rZLvOlHy4iC3Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=mew/wGtc; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 4492B10000D;
+	Tue,  5 Mar 2024 16:47:38 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 4492B10000D
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1709646458;
+	bh=fcKXA9lISEMg682+/DBPrSA2kktQOMdU0ud7akHaBpk=;
+	h=From:To:Subject:Date:Message-ID:Content-Type:MIME-Version:From;
+	b=mew/wGtcPW1yjR9vUouwfuKRMUg+JtvkzC4/2j5wsnQXzRLPwZmgrl0cUEQ3k/xE/
+	 CozZw8m7QSBItRa1G3ZgTkzGy0Ymcq81Ea023w2lx9UqH4dxLk23oTRC/BNp/wrPmO
+	 BaHRuPzJJ7Iuyn6pZ2pZmLBSwLZRh2wvUgf3Wgi0M03ffVAP2+o78/QzEpQ2gyoNo+
+	 JQl3fvzl0FSBJg+xKM7fOT6RpYd5JCf+G9dvXAgqX8G2Zg3yr8TCUYyAiD+IzHATW2
+	 3dpkEnPIJ0Lp6Q9NxSAlTGuAIuxC8iVvsQHQkSkAeE1DeXzH7mDD1pGYvOzcFSaBcU
+	 jUIyLIdAXPBrQ==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Tue,  5 Mar 2024 16:47:38 +0300 (MSK)
+Received: from p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 5 Mar 2024 16:47:37 +0300
+Received: from p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1]) by
+ p-i-exch-sc-m01.sberdevices.ru ([fe80::6d41:e8f1:b95e:ba1%7]) with mapi id
+ 15.02.1118.040; Tue, 5 Mar 2024 16:47:37 +0300
+From: Alexey Romanov <avromanov@salutedevices.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+CC: "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
+	"clabbe@baylibre.com" <clabbe@baylibre.com>, "herbert@gondor.apana.org.au"
+	<herbert@gondor.apana.org.au>, "davem@davemloft.net" <davem@davemloft.net>,
+	"robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "khilman@baylibre.com"
+	<khilman@baylibre.com>, "martin.blumenstingl@googlemail.com"
+	<martin.blumenstingl@googlemail.com>, "vadim.fedorenko@linux.dev"
+	<vadim.fedorenko@linux.dev>, "linux-crypto@vger.kernel.org"
+	<linux-crypto@vger.kernel.org>, "linux-amlogic@lists.infradead.org"
+	<linux-amlogic@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, kernel <kernel@sberdevices.ru>
+Subject: Re: [PATCH v5 03/21] drivers: crypto: meson: make CLK controller
+ optional
+Thread-Topic: [PATCH v5 03/21] drivers: crypto: meson: make CLK controller
+ optional
+Thread-Index: AQHaa9yRWJ/V2yQniEGD1LRIiVhVdrEizjUAgASdYgCAAZG9AA==
+Date: Tue, 5 Mar 2024 13:47:37 +0000
+Message-ID: <20240305134732.z6eyo4nppj7oc2su@cab-wsm-0029881.sigma.sbrf.ru>
+References: <20240301132936.621238-1-avromanov@salutedevices.com>
+ <20240301132936.621238-4-avromanov@salutedevices.com>
+ <1jwmqmrmva.fsf@starbuckisacylon.baylibre.com>
+ <20240304134923.hk5xp5rs3itgw3pk@cab-wsm-0029881.sigma.sbrf.ru>
+In-Reply-To: <20240304134923.hk5xp5rs3itgw3pk@cab-wsm-0029881.sigma.sbrf.ru>
+Accept-Language: ru-RU, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <591DBD4D237CE74D9FE5610D447E944D@sberdevices.ru>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] dt-bindings: net: dp83822: change ti,rmii-mode
- description
-Content-Language: en-US
-To: "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Davis <afd@ti.com>,
- Andrew Lunn <andrew@lunn.ch>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, Yen-Mei Goh <yen-mei.goh@keysight.com>,
- =?UTF-8?Q?Miqu=C3=A8l_Raynal?= <miquel.raynal@bootlin.com>
-References: <20240305133137.125020-1-jeremie.dautheribes@bootlin.com>
-From: =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?=
- <jeremie.dautheribes@bootlin.com>
-In-Reply-To: <20240305133137.125020-1-jeremie.dautheribes@bootlin.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: jeremie.dautheribes@bootlin.com
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183875 [Feb 29 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: avromanov@salutedevices.com
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: s
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Sorry I forgot to include the "net-next" entry in the subject, I'm 
-sending this patch again with the correct subject.
+On Mon, Mar 04, 2024 at 01:49:46PM +0000, Alexey Romanov wrote:
+> Hello Jerome,
+>=20
+> On Fri, Mar 01, 2024 at 04:21:20PM +0100, Jerome Brunet wrote:
+> >=20
+> > On Fri 01 Mar 2024 at 16:29, Alexey Romanov <avromanov@salutedevices.co=
+m> wrote:
+> >=20
+> > > Amlogic crypto IP doesn't take a clock input on some
+> > > SoCs: AXG / A1 / S4 / G12. So make it optional.
+> > >
+> >=20
+> > I commented this patch on v2 and the comment keep on being un-addressed=
+.
+> >=20
+> > The SoC either:
+> > * has a clock that is required for the IP to work
+> > * Or does not
+> >=20
+> > It is not something you are free to provide or not.
+> >=20
+> > For the record, I find very hard believe that some SoC would have clock=
+,
+> > and other would not, for the same HW.
+> >=20
+> > Isn't it more likely that the clock just happens to be left enabled by
+> > the bootloader on some SoC and it conviently allows to ignore it ?
+>=20
+>=20
+> S905X and newer SoC's uses DMA engine for crypto HW and they
+> don't required clock input to work. Clock input is needed for
+> blkmv engine.
+>=20
+> Therefore, I'm not sure that it is needed for GXL too (and the second
+> interrupt line). I tested it on vim1 board witouht them and everything
+> works correctly.
 
-On 05/03/2024 14:31, Jérémie Dautheribes wrote:
-> Drop reference to the 25MHz clock as it has nothing to do with connecting
-> the PHY and the MAC.
-> Add info about the reference clock direction between the PHY and the MAC
-> as it depends on the selected rmii mode.
-> 
-> Suggested-by: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
-> ---
-> This patch follows on from my previous patch series [1] which has already been
-> merged into the net-next tree and which added the "ti,rmii-mode" property.
-> As suggested by Andrew Lunn, this patch updates the description of this
-> property to make it more consistent with the master/slave relationship it
-> conveys.
-> 
-> [1] https://lore.kernel.org/all/20240222103117.526955-1-jeremie.dautheribes@bootlin.com/
-> 
->   Documentation/devicetree/bindings/net/ti,dp83822.yaml | 8 ++++----
->   1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/ti,dp83822.yaml b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
-> index 8f23254c0458..784866ea392b 100644
-> --- a/Documentation/devicetree/bindings/net/ti,dp83822.yaml
-> +++ b/Documentation/devicetree/bindings/net/ti,dp83822.yaml
-> @@ -84,10 +84,10 @@ properties:
->       description: |
->          If present, select the RMII operation mode. Two modes are
->          available:
-> -         - RMII master, where the PHY operates from a 25MHz clock reference,
-> -         provided by a crystal or a CMOS-level oscillator
-> -         - RMII slave, where the PHY operates from a 50MHz clock reference,
-> -         provided by a CMOS-level oscillator
-> +         - RMII master, where the PHY outputs a 50MHz reference clock which can
-> +         be connected to the MAC.
-> +         - RMII slave, where the PHY expects a 50MHz reference clock input
-> +         shared with the MAC.
->          The RMII operation mode can also be configured by its straps.
->          If the strap pin is not set correctly or not set at all, then this can be
->          used to configure it.
+Amlogic says that the crypto HW based on DMA engine doesn't require
+a clock input. GXL uses DMA engine, so, I think we have to remove
+whole clock controller calls in the next series from driver/dts/bindings.
+And the second interrupt line from crypto node in meson-gxl.dtsi too.
+
+>=20
+> >=20
+> > > Signed-off-by: Alexey Romanov <avromanov@salutedevices.com>
+> > > ---
+> > >  drivers/crypto/amlogic/amlogic-gxl-core.c | 14 +++-----------
+> > >  1 file changed, 3 insertions(+), 11 deletions(-)
+> > >
+> > > diff --git a/drivers/crypto/amlogic/amlogic-gxl-core.c b/drivers/cryp=
+to/amlogic/amlogic-gxl-core.c
+> > > index e9e733ed98e0..a3a69a59f476 100644
+> > > --- a/drivers/crypto/amlogic/amlogic-gxl-core.c
+> > > +++ b/drivers/crypto/amlogic/amlogic-gxl-core.c
+> > > @@ -269,16 +269,11 @@ static int meson_crypto_probe(struct platform_d=
+evice *pdev)
+> > >  		dev_err(&pdev->dev, "Cannot request MMIO err=3D%d\n", err);
+> > >  		return err;
+> > >  	}
+> > > -	mc->busclk =3D devm_clk_get(&pdev->dev, "blkmv");
+> > > +
+> > > +	mc->busclk =3D devm_clk_get_optional_enabled(&pdev->dev, "blkmv");
+> > >  	if (IS_ERR(mc->busclk)) {
+> > >  		err =3D PTR_ERR(mc->busclk);
+> > > -		dev_err(&pdev->dev, "Cannot get core clock err=3D%d\n", err);
+> > > -		return err;
+> > > -	}
+> > > -
+> > > -	err =3D clk_prepare_enable(mc->busclk);
+> > > -	if (err !=3D 0) {
+> > > -		dev_err(&pdev->dev, "Cannot prepare_enable busclk\n");
+> > > +		dev_err(&pdev->dev, "Cannot get and enable core clock err=3D%d\n",=
+ err);
+> > >  		return err;
+> > >  	}
+> > > =20
+> > > @@ -306,7 +301,6 @@ static int meson_crypto_probe(struct platform_dev=
+ice *pdev)
+> > >  	meson_unregister_algs(mc);
+> > >  error_flow:
+> > >  	meson_free_chanlist(mc, mc->flow_cnt - 1);
+> > > -	clk_disable_unprepare(mc->busclk);
+> > >  	return err;
+> > >  }
+> > > =20
+> > > @@ -321,8 +315,6 @@ static void meson_crypto_remove(struct platform_d=
+evice *pdev)
+> > >  	meson_unregister_algs(mc);
+> > > =20
+> > >  	meson_free_chanlist(mc, mc->flow_cnt - 1);
+> > > -
+> > > -	clk_disable_unprepare(mc->busclk);
+> > >  }
+> > > =20
+> > >  static const struct meson_pdata meson_gxl_pdata =3D {
+> >=20
+> >=20
+> > --=20
+> > Jerome
+>=20
+> --=20
+> Thank you,
+> Alexey
+
+--=20
+Thank you,
+Alexey=
 
