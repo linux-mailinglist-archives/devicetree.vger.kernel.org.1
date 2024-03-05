@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-48325-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48326-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C7858716EE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:33:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 13CFF8716E1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:32:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 806A51C22268
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 07:33:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66C68B2221D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 07:31:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 654528173B;
-	Tue,  5 Mar 2024 07:29:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3686E7E787;
+	Tue,  5 Mar 2024 07:30:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FFjN4vf4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KOVC2Ee/"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490DE80C11
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 07:29:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A027E59A
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 07:30:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709623780; cv=none; b=manPfKfeG9rjOFcFwZ2kp05vAbHqlOtCEnfWYTNPSVNMl4bZClaXbapsHyFlzTSg+QIk6EMsEhBSx7qARko7/Q2Q1Zlq05eY8ImX79GMpEAjWI8T9d+VSPVd0N3EhRDK4ZCb8mgwO+OZWMDEADVL7Ls6CFhE+5KXtWyaN8l4wlw=
+	t=1709623836; cv=none; b=nDSUl3f/YF8YZjK6ITwGUiXfFBUzZ0zwBkvNyHBuVhck58suucrBIRPVIQr2Zh8O+jGEuyGtrzIhQ6Ot2gbFBwXVXebJkpDO7ANi5UB8/tLF1fKlCzHmbNztq+2ImcV6CK2Uok2TTBYW+hhM6SihqdURyAvBWEID9koBujrGK04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709623780; c=relaxed/simple;
-	bh=yNDh4vlQJrOCs90yy+i3TAWHJSSEQIQTqIjnjyp4ZKI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=CxXXxD3LbqRSpar+MJLNXnTCxnXT2vYhI4rG4y7pTd9Qa3K6yC9x4/KFuLD2upoQn1C/nTOy1xxnsxqVK/BYxaeybkmQberIQ0x8LzsC5W+LpKcao/a8bGmptVDy4Zm7QGPfESi1cVCX2SwY7mnwKRyHLn4w5adSpjey+1oOX38=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FFjN4vf4; arc=none smtp.client-ip=209.85.208.46
+	s=arc-20240116; t=1709623836; c=relaxed/simple;
+	bh=6DVkHf9aV/yId4Lmu6rejZkjFcnUgp8btzQ/SNMEhu8=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=r+s+PzqgB5BGYyr6KCDN+xv5XP4tal0JkGg7QGEnsvIWLKipiQ1B4J3UrPADIg9++cS8CPWAkY2ouiTEgY5EErCW4rCn65wtTEy4iMm6e66S7Q/PlvVfyEQH69pSNu4cYOzZlZ0760ZD+ROEWywSAjlsEWLYLrvr5hJWyeCpyHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KOVC2Ee/; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-565d1656c12so9407598a12.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 23:29:38 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-565a3910f86so7896305a12.3
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 23:30:34 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709623776; x=1710228576; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=W+dHl/4KVm6SPBFckq1kLzufBDh+PEgz0H/48hnpP3Y=;
-        b=FFjN4vf4RLZda/YmQae+5n+KtLkrmk1FkUmLAjkNqJG5jET5dOJdEIyAbb49fb5BZc
-         ilHdJzTCDlDXNAOvSrkwUuWMOsMiKDKyqDL/zP6k6/WTM0Sv6mQ1sfcmyvQJLbaJN5ZJ
-         Ueq1zrprsiwUUfT+f3qo97zEJvlflYlML+qXMjOHAiQcRhEMtHbJKh0UK8JZw70WIINw
-         0lV6Q1XnUR/5ckzxYyXxisiXQbeAqXc//FLz+GY3qVY0LsjJqJ3Li7uWam6zkGleeuh1
-         dB9YropYZaSFKbAfRs0MvlRx3uv+0r4HoNny8IPovLqy+mQXh27V6T1rrRjRXZrmdSen
-         BuLg==
+        d=linaro.org; s=google; t=1709623833; x=1710228633; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=4wPuXdt26uV3nWuiUz2nQdPuj/Zl3n+dEVTtr/ygvVI=;
+        b=KOVC2Ee/T2Vg7kvn2SXDv6HODnReP6p6Dbyg5TqZ/8be5jXR3FwPsY1VEgVTJk9nia
+         CjmA3TYvPInEefaQH2fYE9zztcRU8Jufe6/RdExP7qKRiL/pdHWCyvf8ftOQ3s+Iuj4n
+         CZi6V392A4CZh+KhoRtjitEplN4DgkCFrd0DziQ4k3dx53npppIhMCT6rYXQtNJvRumW
+         dkgloAQvDmVsfW+zqDevGP5M6Qk0W1cWeya89y8x6g9vXEntbhmIV4PkuQOjbKp/PI2K
+         I11qiY69DMBZpl5HZj0ExbVtvdRIGtCkKB7/Fk9Lf43MXBS+mvJEdMZQYtgzLQfnmt6b
+         iHPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709623776; x=1710228576;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W+dHl/4KVm6SPBFckq1kLzufBDh+PEgz0H/48hnpP3Y=;
-        b=sENeXFeZRZdHakx6mehfH/TEeDAgNLOBQBgrJMQ3rpu3GMal4HkWRiuciQgB3+CJtJ
-         Af0/xoO+VqxnE7S/hq6HNExIV305AhhieIx4oRgAmttw4Z5n/rnLhYz7LsHKWIN6Qu2j
-         FF2sFuJT2Aop7yFoWJxDnAZIN9pVMPexZCvEjpOsaXw3bZrY6qNsZUIvLygp26e1Hf4f
-         Po3vmSRb6iOfYj8hZbcSD6inQzumcVJLn/cRCRbPpxcM+JrrHmoupdrtTda+RqPZibvv
-         zvt9atTm71hFFymbCHU3IBWgmUybr8TlQznIHRqavfZYWufLQJ0u+YL3SRk39CkoXfba
-         9tRw==
-X-Forwarded-Encrypted: i=1; AJvYcCUkwQCOZmGAlFvXEC3Z+7lYN/wbSdzgH6JLH+BDn65VKftNEa/lKyFnVPAauHMY48o7B+p/8ImwA24UOgJRZXjNla7HtLiPAsZahw==
-X-Gm-Message-State: AOJu0YxzYhv0FOFLDhmBvndjk3o57hJyz9sQNmC6UyBzpzHysYVk4Jbj
-	Pumfb6vP0nkPTG5+s1WLq9YuxUibSqgJOQJdd58eR+Ugk1V5EEJRftCTsQ/SpzE=
-X-Google-Smtp-Source: AGHT+IEKrjUtKThBu8Bx1DWPnu7yNlRT6ABbjdaeX+K6Bf5eCDc5o7Vwqanz8U8BZgq5RpD4syie0w==
-X-Received: by 2002:aa7:d955:0:b0:566:59f5:26db with SMTP id l21-20020aa7d955000000b0056659f526dbmr2145259eds.11.1709623776570;
-        Mon, 04 Mar 2024 23:29:36 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709623833; x=1710228633;
+        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
+         :from:content-language:subject:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=4wPuXdt26uV3nWuiUz2nQdPuj/Zl3n+dEVTtr/ygvVI=;
+        b=JP4dmQizMEPzfI5k8gDF1F6QO8HuBcUzcX0tpvEFVeSN1LzyKwWmhiQe8jtbrTB8aK
+         6pa/l+QRfXdgYqktDHqeLO1dfzw/QqzmAPeRJw/Seq68nMbbcjR8uihDP75aI0WZOzHt
+         a4vaADEq0muk++IbDsWrdf6RUa1QJP2uNc54tRjgvpJZBvKnrdYIkaj4Z+R5IP+QnszS
+         15EJvq3FzMwzbNK4pzets/J1JEeTmqoUo/e3hMU1kufk0tbP84K3p4ZtXbAoEOejYycU
+         /7dnwa9+CB3+cA7DBIW/BG8r1ujdm+uzCPHDFOnjH10C8n8suJmf3D9jA54EKveKv9Aw
+         7rmw==
+X-Forwarded-Encrypted: i=1; AJvYcCUu+BAX9MyuKMhPM+mKavx29XXWLG0dVMZ96lNNkZRyjJKPzcPAKM4Geshwq0m5BwZP0pUwPar17zwcMCHAOnZFEM69Q6Uxi0acxA==
+X-Gm-Message-State: AOJu0YwBcGMx78fAUiKEumGv2BeFeFaLBLbwVJYQ5seMdyvedA9v/pBo
+	tb392ixKiJM+BHWJ/vWn2iQcMD4TNxxkJfohO18JWLjHxGkOXPIKaCfIRH7UTCc=
+X-Google-Smtp-Source: AGHT+IHiVogKZl3USP3i/JeeOeTjoVjdXnPeQNrUn2JsCxmrpiq71MOn1lYyswLgrH8QF/253iaF3g==
+X-Received: by 2002:aa7:cf06:0:b0:565:a562:9fc3 with SMTP id a6-20020aa7cf06000000b00565a5629fc3mr7041999edy.38.1709623832591;
+        Mon, 04 Mar 2024 23:30:32 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id g26-20020a056402321a00b0055fba4996d9sm5517875eda.71.2024.03.04.23.29.34
+        by smtp.gmail.com with ESMTPSA id g26-20020a056402321a00b0055fba4996d9sm5517875eda.71.2024.03.04.23.30.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Mar 2024 23:29:36 -0800 (PST)
-Message-ID: <4731e688-4d2e-4b94-9ed1-32cbc823079f@linaro.org>
-Date: Tue, 5 Mar 2024 08:29:33 +0100
+        Mon, 04 Mar 2024 23:30:32 -0800 (PST)
+Message-ID: <714cc51c-0d54-4475-b4bf-96b59d499097@linaro.org>
+Date: Tue, 5 Mar 2024 08:30:30 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -79,6 +80,7 @@ User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v3 1/2] dt-bindindgs: clock: support NXP i.MX95 BLK CTL
  module
 Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To: Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>,
  "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
 Cc: Abel Vesa <abelvesa@kernel.org>,
@@ -100,7 +102,7 @@ References: <20240228-imx95-blk-ctl-v3-0-40ceba01a211@nxp.com>
  <DU0PR04MB941740A36E953A0E1AD690EC88222@DU0PR04MB9417.eurprd04.prod.outlook.com>
  <58cdfa7c-5483-4193-a5de-bb5fa72de637@linaro.org>
  <DU0PR04MB9417551618EB1C723EF3FA9088222@DU0PR04MB9417.eurprd04.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+ <4731e688-4d2e-4b94-9ed1-32cbc823079f@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
  cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
@@ -145,58 +147,62 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <DU0PR04MB9417551618EB1C723EF3FA9088222@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <4731e688-4d2e-4b94-9ed1-32cbc823079f@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/03/2024 08:18, Peng Fan wrote:
->> Subject: Re: [PATCH v3 1/2] dt-bindindgs: clock: support NXP i.MX95 BLK CTL
->> module
->>
->> On 05/03/2024 05:13, Peng Fan wrote:
->>>>> +
->>>>> +examples:
->>>>> +  # Clock Control Module node:
->>>>> +  - |
->>>>> +    #include <dt-bindings/clock/nxp,imx95-clock.h>
->>>>> +
->>>>> +    syscon@4c410000 {
->>>>
->>>> clock-controller@...
+On 05/03/2024 08:29, Krzysztof Kozlowski wrote:
+> On 05/03/2024 08:18, Peng Fan wrote:
+>>> Subject: Re: [PATCH v3 1/2] dt-bindindgs: clock: support NXP i.MX95 BLK CTL
+>>> module
 >>>
->>> But this is a syscon, using clock-controller will trigger dt check
->>> warning.
->>
->> Which warning?
-> 
-> I just recalled that node with syscon in compatible string needs
-> has syscon as node, I maybe wrong.
-
-Just paste the warning, so we can think about it.
-
-> 
->>
+>>> On 05/03/2024 05:13, Peng Fan wrote:
+>>>>>> +
+>>>>>> +examples:
+>>>>>> +  # Clock Control Module node:
+>>>>>> +  - |
+>>>>>> +    #include <dt-bindings/clock/nxp,imx95-clock.h>
+>>>>>> +
+>>>>>> +    syscon@4c410000 {
+>>>>>
+>>>>> clock-controller@...
 >>>>
->>>> As that is the main feature/function.
->>>>
->>>>> +      compatible = "nxp,imx95-vpumix-csr", "syscon";
->>>>> +      reg = <0x4c410000 0x10000>;
->>>>> +      #clock-cells = <1>;
->>>>
->>>> Please make the example as full as possible. For example, add
->>>> mux-controller node. Do some of the blocks not have mux ctrl?
+>>>> But this is a syscon, using clock-controller will trigger dt check
+>>>> warning.
 >>>
->>> Yes. The blk ctrl is not just for clock, some registers has mux ctrl,
->>> such as Pixel_link_sel.
+>>> Which warning?
 >>
->> Then mux-controller should not be allowed for them.
+>> I just recalled that node with syscon in compatible string needs
+>> has syscon as node, I maybe wrong.
 > 
-> You mean I should not add mux-controller under the blk ctrl node?
+> Just paste the warning, so we can think about it.
+> 
+>>
+>>>
+>>>>>
+>>>>> As that is the main feature/function.
+>>>>>
+>>>>>> +      compatible = "nxp,imx95-vpumix-csr", "syscon";
+>>>>>> +      reg = <0x4c410000 0x10000>;
+>>>>>> +      #clock-cells = <1>;
+>>>>>
+>>>>> Please make the example as full as possible. For example, add
+>>>>> mux-controller node. Do some of the blocks not have mux ctrl?
+>>>>
+>>>> Yes. The blk ctrl is not just for clock, some registers has mux ctrl,
+>>>> such as Pixel_link_sel.
+>>>
+>>> Then mux-controller should not be allowed for them.
+>>
+>> You mean I should not add mux-controller under the blk ctrl node?
+> 
+> mux-controller is already there, isn't it? I am saying your binding is
+> not precise. Your binding implies that ALL OF THEM have mux controller.
+> You told me it is not true, so you have change the meaning of binding
+> and disallow the mux-controller for the cases it is not applicable.
+> 
 
-mux-controller is already there, isn't it? I am saying your binding is
-not precise. Your binding implies that ALL OF THEM have mux controller.
-You told me it is not true, so you have change the meaning of binding
-and disallow the mux-controller for the cases it is not applicable.
+... or create separate binding/schema for the variants with mux-controller.
 
 Best regards,
 Krzysztof
