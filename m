@@ -1,156 +1,200 @@
-Return-Path: <devicetree+bounces-48306-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48307-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC5EC8715F5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 07:41:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B171A8715FE
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 07:47:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 790E0B239FF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 06:41:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BC2161C20AAF
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 06:47:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 193DF41775;
-	Tue,  5 Mar 2024 06:41:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BA7742056;
+	Tue,  5 Mar 2024 06:47:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cmTAEMHn"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ONVtEDtZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C790286A2
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 06:41:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 953DA8833
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 06:47:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709620894; cv=none; b=WCVmgk3fb4QSu2yDBpbqGs/F1yIrdNt+XymqQQCnZZtuVUPbdH1/FUsquw2kgbvN/LbRVCV713EKBnf9189uk25nVW9ZbeC1XS4JjkWx8cNdnblCT0qkdgkTz12GjoLt+XFJO6ypqGjleq1kuBsAIRkBGjzhspvYID7nr3F8k24=
+	t=1709621270; cv=none; b=P8g7zuMiMAPH4y3p/Leq+t8GofS/1L+9jjSp8OTk3sV3crQblVJGNVTwd+EolCPjh4TDWVVcpgV/D3OgfzzszitwPLX/YyhPvtsv+9f0DqhCxo00d6PePCTkJqnzwDG+Xj2ZrAXDfQ6CdUKDdZqAr2LwH3Xjm88eJOir4Km3Sic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709620894; c=relaxed/simple;
-	bh=Ps/VJqEyp7guXeJPu2FrOwduSl73CHpkzvjzkVsVtTU=;
+	s=arc-20240116; t=1709621270; c=relaxed/simple;
+	bh=O4yVRud/9+8a7tAKirWeQ09Db+zegMJkuUhSNXLZlLs=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CZmWY+9CFsYYj3mOJwqY8EAEj5uIHJ/Exx4t+88VJvOH8FqNHjYNmygVbKWpJqtXqBlqhpVR03wSR9jAeSllJtKnG9/gGNDdy5PYZJBvKwlCJnr5zdKbR9IO1u49JEseSJIVvK4f8dpLA2N18m71g0edKcMCBL8dy9NVRwJPUlk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cmTAEMHn; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-608e0b87594so54811147b3.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 22:41:32 -0800 (PST)
+	 To:Cc:Content-Type; b=p1tqYNUKaIgE6MZL4TvlRw24lM4lZBhYFJym3FJt1wzqdJma9JVru3YNfKBE//kMX0E0nn4QLvBjXcxuAC7MjkU0Dn8YYZl8/D4ufH32mG5suG0FfN+k3Gr/6j1F0Cudyjbw279YO+8J3ynB+G3DB+G4+oDnAQ8ldqWmYZ1S5g8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ONVtEDtZ; arc=none smtp.client-ip=209.85.160.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-42f024b809cso56481cf.0
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 22:47:48 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709620891; x=1710225691; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ccg/Lc70kvp90dYd+ZbmISgOfdv3HBJZ65KNlm+3N78=;
-        b=cmTAEMHnM+IvXsUZliiWRWExCL3kxOKkN5wLTtToV09GgSRz2VwJnHzzkpVzgNW/h8
-         hWJ5qvyeir3KPc9B9jtkbqfjxtvqHk1noXwdg9HV0M+Orld8w3bSE89IsQyot1AHQ1Un
-         d9GOHfzoowjdsis8t1L5ROH+xQ5bUAziO93pMUziLnuKTJ6uU5KeVoIDnYVzWykEzYtN
-         FFQsrGNLkNtX9VGYdigky1g/5mv/nDBDTP0WGq0HQBdj2NlwlRNCkEwrRFtqQK2cEW8M
-         28saLrbaWtv0goWzopKOp/9lN78g/HWU2GJWbJ7VLApQwtotb0+J0X3nTquWatMHewGo
-         6sYA==
+        d=google.com; s=20230601; t=1709621267; x=1710226067; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2isqh14d05L6zoJqPkxhn5o+6H4cX5aRd/OEiiiX0AM=;
+        b=ONVtEDtZdzGnMJI+zo6Oxb19tlK2LZZG1OtKEJjSDJAbbkfK8OghKuvZmaFYcvu/aw
+         00nQIKJ0STugS5NGNpDi52ueOHzrs0jBU6LCJZnjeg0F7K0+0hojasrLKyBPdrzICwgb
+         a7CQp8m9NJelj/uwWRMVpwDOVjY/erQQLQTrJH84wDptjLL3dF7q19YffDMjCh+T19bI
+         EvCnvg71oWAhY/fcuW69km/FZ0iiWilN4rGQACnmQHkDKyYdodgWzEgOjV+132sCYSlc
+         HmvoSu6vEIhJCXZeWKPcRT680jedt7PLqjL8biSxsTx3nLognxntH+qptoTxnKN8WKzF
+         bMrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709620891; x=1710225691;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ccg/Lc70kvp90dYd+ZbmISgOfdv3HBJZ65KNlm+3N78=;
-        b=TX7LnPHhcyljqBZ3wceejAEaA2XXySYCY6siQ4doHv3zjil2nlHal80kObVG4ZD2uM
-         l0qVaMCMageV1mH2GKmo50i5n2M5K5NoZrrWlmTWOLD0u7S36GKiDhCZR/wkhrFqFa+G
-         fDn6ynRYpy+nvu/I0C9mPxG9g+52Fg3lqcPepOOo1IP/NSXQkjLQdaBrMJ68+P9kqBFH
-         0Tg2iu5S/zTH70T6y1G7kJfQQFCym2sCLrcZ0OxpqMxn9pOyNZ7sBUEh47acVT02L0Ko
-         k83Kqs8JyHfLZk0hGyGfFK+Z+YE2u2JHuquDV0+tqKAOosLiUAIZBx/fQthLdSPPuYht
-         wKfw==
-X-Forwarded-Encrypted: i=1; AJvYcCXv1mXo8cfSQUbEkD+RoJOEAhB5mke8GebkXB5uTxJhQzZvX/mz5OsoEt+HENj2s12MNFjeTnggFPsMqwUev/kKJotn11XiS4oXyQ==
-X-Gm-Message-State: AOJu0YwfHx6YoiBvYFM6T83J6KSBonnCGJTM0dlGjTbObpQRKnUlRiEf
-	BG+0gcL0Go4r+NPeo7KnP/J6kp6d7gy7C9NHfz9dkf58H2+a8dp4vFWQuLoI7Ko61NNdBmEe25j
-	RysaSBENZx5lHmnvaVeGwj4cqI2hJAVY2iwfsfg==
-X-Google-Smtp-Source: AGHT+IGRNcWGc+ovIvoeKHsS2bsRGRrdE1GgYvwR+P/OeZcykFPfCL7rKLURH+3X2nQAEd3t1oe4qRWeuBF8ZkkOBug=
-X-Received: by 2002:a05:6902:305:b0:dcf:bc57:cd61 with SMTP id
- b5-20020a056902030500b00dcfbc57cd61mr8363686ybs.50.1709620891239; Mon, 04 Mar
- 2024 22:41:31 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709621267; x=1710226067;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2isqh14d05L6zoJqPkxhn5o+6H4cX5aRd/OEiiiX0AM=;
+        b=rcPJ/wfm8quN67pDBECWNpHdr6fGN1jU9VR6fs6V5cNADA3jsPEC+lSkBkRTNlEoso
+         DgJTpLE4CzzkL5ReqIbhU0fk4B/tACeMctcGB+/COETFOW0Qo1ATuTNCoftp/4vxhkus
+         0s4bBwfdWkQqOtsSJFiSpYVw1w3rKBTpCSsCU2wtTJL/CqfQ1IuZdRxVuE63rZKsgduQ
+         xys9nQtklrLZ5RIVsGA1ew/R3nYQe1eL9yPbi7iNk1wLVA+tSOL6ftLxgtcCeJWcGpwv
+         uB9JcK90iwNFu9w1JX65aNXvwvTGpHpMo3YefgVBvezPBap4DdwcNMgH0YlNBFttaOmk
+         lVcQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVR/GwC3yZvbZBr/v+yhOHmTtBTBw8m20pa9LI5Mii/Ue34DXCCN/b/YUwKAFLcz28Zl10G/McOJL45ucl0ItWTC6AuGTBH3TF0AA==
+X-Gm-Message-State: AOJu0Yz0+ZYEMHreQ+/7olx+O490X/6kQBiT28DoLog9xzNqMkBp28Dq
+	y480M5iZXPje2WDrzu4ddvsmUXojsOR02OA69Qhia+3BldpeQsnDwkaa4P4Sbeyw/xxe1JYgmKw
+	lVU8iWirFmnmUb+t/4tLw+bTrngFcOwO7O+KN
+X-Google-Smtp-Source: AGHT+IEpTpDOEFpl781QIzwL1OSIgfOz8xQaKP1fzK3tIs7/SmlB6dYuX3/oXifYUhhn/nzwkSXVJ6GySFAH0BOpg+s=
+X-Received: by 2002:a05:622a:1985:b0:42e:e0da:343d with SMTP id
+ u5-20020a05622a198500b0042ee0da343dmr123630qtc.10.1709621267471; Mon, 04 Mar
+ 2024 22:47:47 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240122-ipq5332-nsscc-v4-0-19fa30019770@quicinc.com>
- <20240122-ipq5332-nsscc-v4-2-19fa30019770@quicinc.com> <7a69a68d-44c2-4589-b286-466d2f2a0809@lunn.ch>
- <11fda059-3d8d-4030-922a-8fef16349a65@quicinc.com> <17e2400e-6881-4e9e-90c2-9c4f77a0d41d@lunn.ch>
- <8c9ee34c-a97b-4acf-a093-9ac2afc28d0e@quicinc.com> <CAA8EJppe6aNf2WJ5BvaX8SPTbuaEwzRm74F8QKyFtbmnGQt=1w@mail.gmail.com>
- <74f585c2-d220-4324-96eb-1a945fef9608@quicinc.com> <CAA8EJppuNRB9fhjimg4SUR2PydX7-KLWSb9H-nC-oSMYVOME-Q@mail.gmail.com>
- <d518dbc1-41aa-46f9-b549-c95a33b06ee0@quicinc.com> <CAA8EJppP_bAPRH7Upnq8dO7__xQPOJ6F_Lc-fpRAcutKKzk0eA@mail.gmail.com>
- <3a6d301d-16f6-4a11-8be5-6bbb6eb501f4@quicinc.com>
-In-Reply-To: <3a6d301d-16f6-4a11-8be5-6bbb6eb501f4@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Tue, 5 Mar 2024 08:41:19 +0200
-Message-ID: <CAA8EJpq2x-1mbBApGH5CiGZqCVhdP97pveZupdJyGQGo3MT8-Q@mail.gmail.com>
-Subject: Re: [PATCH v4 2/8] clk: qcom: ipq5332: enable few nssnoc clocks in
- driver probe
-To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-Cc: Andrew Lunn <andrew@lunn.ch>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Richard Cochran <richardcochran@gmail.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, 
-	netdev@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240229105204.720717-1-herve.codina@bootlin.com>
+ <20240229105204.720717-3-herve.codina@bootlin.com> <acb69aa8c1a4c4e9849123ef538b9646a71507a0.camel@gmail.com>
+ <20240304152202.GA222088-robh@kernel.org> <20240304174933.7ad023f9@bootlin.com>
+In-Reply-To: <20240304174933.7ad023f9@bootlin.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Mon, 4 Mar 2024 22:47:09 -0800
+Message-ID: <CAGETcx-tmyJA30GtdU_dO9tWFoK+rO5tm-On4tPR7oQotnMkqQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] of: overlay: Synchronize of_overlay_remove() with
+ the devlink removals
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, 
+	Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
+	Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	stable@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, 23 Feb 2024 at 12:18, Kathiravan Thirumoorthy
-<quic_kathirav@quicinc.com> wrote:
+On Mon, Mar 4, 2024 at 8:49=E2=80=AFAM Herve Codina <herve.codina@bootlin.c=
+om> wrote:
 >
+> Hi Rob,
 >
+> On Mon, 4 Mar 2024 09:22:02 -0600
+> Rob Herring <robh@kernel.org> wrote:
 >
-> On 2/19/2024 3:53 PM, Dmitry Baryshkov wrote:
-> > On Sun, 18 Feb 2024 at 06:29, Kathiravan Thirumoorthy
-> > <quic_kathirav@quicinc.com> wrote:
-> >>
-> >>
-> >>
-> >> On 2/17/2024 10:15 PM, Dmitry Baryshkov wrote:
-> >>> On Sat, 17 Feb 2024 at 17:45, Kathiravan Thirumoorthy
-> >>> <quic_kathirav@quicinc.com> wrote:
-> >>>>
-> >>>>
-> >>>> <snip>
-> >>>>
-> >>>>>> Reason being, to access the NSSCC clocks, these GCC clocks
-> >>>>>> (gcc_snoc_nssnoc_clk, gcc_snoc_nssnoc_1_clk, gcc_nssnoc_nsscc_clk)
-> >>>>>> should be turned ON. But CCF disables these clocks as well due to the
-> >>>>>> lack of consumer.
-> >>>>>
-> >>>>> This means that NSSCC is also a consumer of those clocks. Please fix
-> >>>>> both DT and nsscc driver to handle NSSNOC clocks.
-> >>>>
-> >>>>
-> >>>> Thanks Dmitry. I shall include these clocks in the NSSCC DT node and
-> >>>> enable the same in the NSSCC driver probe.
-> >>>
-> >>> Or use them through pm_clk. This might be better, as the system
-> >>> doesn't need these clocks if NSSCC is suspended.
-> >>
-> >>
-> >> IPQ53XX SoC doesn't support the PM(suspend / resume) functionality, so
-> >> that, can I enable these clocks in NSSCC driver probe itself?
+> ...
+>
+> > > > @@ -853,6 +854,14 @@ static void free_overlay_changeset(struct
+> > > > overlay_changeset *ovcs)
+> > > >  {
+> > > >   int i;
+> > > >
+> > > > + /*
+> > > > +  * Wait for any ongoing device link removals before removing some=
+ of
+> > > > +  * nodes. Drop the global lock while waiting
+> > > > +  */
+> > > > + mutex_unlock(&of_mutex);
+> > > > + device_link_wait_removal();
+> > > > + mutex_lock(&of_mutex);
+> > >
+> > > I'm still not convinced we need to drop the lock. What happens if som=
+eone else
+> > > grabs the lock while we are in device_link_wait_removal()? Can we gua=
+rantee that
+> > > we can't screw things badly?
 > >
-> > There is a difference between PM (suspend/resume) and runtime PM.
+> > It is also just ugly because it's the callers of
+> > free_overlay_changeset() that hold the lock and now we're releasing it
+> > behind their back.
 > >
+> > As device_link_wait_removal() is called before we touch anything, can't
+> > it be called before we take the lock? And do we need to call it if
+> > applying the overlay fails?
+
+Rob,
+
+This[1] scenario Luca reported seems like a reason for the
+device_link_wait_removal() to be where Herve put it. That example
+seems reasonable.
+
+[1] - https://lore.kernel.org/all/20231220181627.341e8789@booty/
+
 > >
 >
-> Thanks Dmitry. IIUC your question correctly, runtime PM for the
-> peripherals are not supported (except CPU cores which supports DVFS).
-> Since these are router based products, once system is powered on, all
-> the peripherals are configured to the required frequency and it will be
-> never go into low power modes.
+> Indeed, having device_link_wait_removal() is not needed when applying the
+> overlay fails.
 >
-> Please let me know if this answers your questions.
+> I can call device_link_wait_removal() from the caller of_overlay_remove()
+> but not before the lock is taken.
+> We need to call it between __of_changeset_revert_notify() and
+> free_overlay_changeset() and so, the lock is taken.
+>
+> This lead to the following sequence:
+> --- 8< ---
+> int of_overlay_remove(int *ovcs_id)
+> {
+>         ...
+>         mutex_lock(&of_mutex);
+>         ...
+>
+>         ret =3D __of_changeset_revert_notify(&ovcs->cset);
+>         ...
+>
+>         ret_tmp =3D overlay_notify(ovcs, OF_OVERLAY_POST_REMOVE);
+>         ...
+>
+>         mutex_unlock(&of_mutex);
+>         device_link_wait_removal();
+>         mutex_lock(&of_mutex);
+>
+>         free_overlay_changeset(ovcs);
+>         ...
+>         mutex_unlock(&of_mutex);
+>         ...
+> }
+> --- 8< ---
+>
+> In this sequence, the question is:
+> Do we need to release the mutex lock while device_link_wait_removal() is
+> called ?
 
-It seems there is a misunderstanding somewhere. Runtime PM allows the
-Linux kernel to disable temporary unused devices at runtime. E.g. if
-the NSS is switched off, the kernel can switch NSSCC off too, cutting
-the power. It has nothing to do with the frequency of the device /
-clock or with the product being a router or a mobile device.
+In general I hate these kinds of sequences that release a lock and
+then grab it again quickly. It's not always a bug, but my personal
+take on that is 90% of these introduce a bug.
+
+Drop the unlock/lock and we'll deal a deadlock if we actually hit one.
+I'm also fairly certain that device_link_wait_removal() can't trigger
+something else that can cause an OF overlay change while we are in the
+middle of one. And like Rob said, I'm not sure this unlock/lock is a
+good solution for that anyway.
+
+Please CC me on the next series. And I'm glad folks convinced you to
+use flush_workqueue(). As I said in the older series, I think
+drain_workqueue() will actually break device links.
+
+-Saravana
 
 
--- 
-With best wishes
-Dmitry
+-Saravana
 
