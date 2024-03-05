@@ -1,210 +1,243 @@
-Return-Path: <devicetree+bounces-48326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13CFF8716E1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:32:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C4428716FD
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:35:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 66C68B2221D
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 07:31:58 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F2142B233F5
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 07:35:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3686E7E787;
-	Tue,  5 Mar 2024 07:30:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65A2B7FBAC;
+	Tue,  5 Mar 2024 07:33:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KOVC2Ee/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OvHocoeL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 55A027E59A
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 07:30:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 673327FBC4;
+	Tue,  5 Mar 2024 07:33:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709623836; cv=none; b=nDSUl3f/YF8YZjK6ITwGUiXfFBUzZ0zwBkvNyHBuVhck58suucrBIRPVIQr2Zh8O+jGEuyGtrzIhQ6Ot2gbFBwXVXebJkpDO7ANi5UB8/tLF1fKlCzHmbNztq+2ImcV6CK2Uok2TTBYW+hhM6SihqdURyAvBWEID9koBujrGK04=
+	t=1709624005; cv=none; b=cFQ0enIUrzSWMWRXRTyG8r3P/7Y+aHWbOMjCWyrBk4x3NUZbnxdI4HDp/rWfSykLFinL/eWWVPxNuKsIKGke2bG0tC6eu2QLYPU4Z2cVjEa5q9IA7gjxuC91uNsZ+XmD+gK+SXe/9HmUDEWOEXyM/y/E6XaAQKt1a6ZPnpvyqB0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709623836; c=relaxed/simple;
-	bh=6DVkHf9aV/yId4Lmu6rejZkjFcnUgp8btzQ/SNMEhu8=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
-	 In-Reply-To:Content-Type; b=r+s+PzqgB5BGYyr6KCDN+xv5XP4tal0JkGg7QGEnsvIWLKipiQ1B4J3UrPADIg9++cS8CPWAkY2ouiTEgY5EErCW4rCn65wtTEy4iMm6e66S7Q/PlvVfyEQH69pSNu4cYOzZlZ0760ZD+ROEWywSAjlsEWLYLrvr5hJWyeCpyHQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KOVC2Ee/; arc=none smtp.client-ip=209.85.208.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-565a3910f86so7896305a12.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 23:30:34 -0800 (PST)
+	s=arc-20240116; t=1709624005; c=relaxed/simple;
+	bh=YGTFf+aFcxTPkfOtBdEs9262UzHkIoYVYZfRjmj18Zs=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=tOGxqgsDc+IfngWmzNaySQbX/fdQRMSX4myBk3uP58jFwFWb8vN4vqq/Zam9MZU20v/8YDhYiNJGZ5rixjHHSaFYkMQiNO3XDmp1nkDF09a+WbSmLI5Qve++eCNcWHTvcEFExl0rhIUEz99lhmbeKle3CSCMKw/R0RKMarS8dro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OvHocoeL; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56698eb5e1dso6933988a12.2;
+        Mon, 04 Mar 2024 23:33:23 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709623833; x=1710228633; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=4wPuXdt26uV3nWuiUz2nQdPuj/Zl3n+dEVTtr/ygvVI=;
-        b=KOVC2Ee/T2Vg7kvn2SXDv6HODnReP6p6Dbyg5TqZ/8be5jXR3FwPsY1VEgVTJk9nia
-         CjmA3TYvPInEefaQH2fYE9zztcRU8Jufe6/RdExP7qKRiL/pdHWCyvf8ftOQ3s+Iuj4n
-         CZi6V392A4CZh+KhoRtjitEplN4DgkCFrd0DziQ4k3dx53npppIhMCT6rYXQtNJvRumW
-         dkgloAQvDmVsfW+zqDevGP5M6Qk0W1cWeya89y8x6g9vXEntbhmIV4PkuQOjbKp/PI2K
-         I11qiY69DMBZpl5HZj0ExbVtvdRIGtCkKB7/Fk9Lf43MXBS+mvJEdMZQYtgzLQfnmt6b
-         iHPA==
+        d=gmail.com; s=20230601; t=1709624002; x=1710228802; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Gx7QPTKJai6jSFkj9+TJZzVP3EDqUm9KDYf3uq99HxA=;
+        b=OvHocoeLnu7NNeIOgtC+6nhcTERVmhmXLuwguQg923YZsLWykgjbuEj/06nHMN/ndz
+         8SIslbj6D72Sp4HYhH7slzZii8MXbZFbGqSY28AQS5L4qpKAFoa9u2y0m85LaXSSoiD2
+         1sX8xF6AM6mm+b/ghL75ZWS5hTOnjYZwLs6tdLo4UCJi1+3e/jfBracxkx4AfDPx7KPZ
+         VrCup5eec9TXLSNMPO0IXMhQjsD5gIOD8QzIEhhdn55TCVMbAKk0Rnib/PUbOIq2a2Nz
+         eOC6q/yDsBefuISs2rmmcFJLogpzn7Q2NDW+6ekdCcjX589o7UopyMs/cDKqAm72iqBz
+         Avsg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709623833; x=1710228633;
-        h=content-transfer-encoding:in-reply-to:autocrypt:references:cc:to
-         :from:content-language:subject:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=4wPuXdt26uV3nWuiUz2nQdPuj/Zl3n+dEVTtr/ygvVI=;
-        b=JP4dmQizMEPzfI5k8gDF1F6QO8HuBcUzcX0tpvEFVeSN1LzyKwWmhiQe8jtbrTB8aK
-         6pa/l+QRfXdgYqktDHqeLO1dfzw/QqzmAPeRJw/Seq68nMbbcjR8uihDP75aI0WZOzHt
-         a4vaADEq0muk++IbDsWrdf6RUa1QJP2uNc54tRjgvpJZBvKnrdYIkaj4Z+R5IP+QnszS
-         15EJvq3FzMwzbNK4pzets/J1JEeTmqoUo/e3hMU1kufk0tbP84K3p4ZtXbAoEOejYycU
-         /7dnwa9+CB3+cA7DBIW/BG8r1ujdm+uzCPHDFOnjH10C8n8suJmf3D9jA54EKveKv9Aw
-         7rmw==
-X-Forwarded-Encrypted: i=1; AJvYcCUu+BAX9MyuKMhPM+mKavx29XXWLG0dVMZ96lNNkZRyjJKPzcPAKM4Geshwq0m5BwZP0pUwPar17zwcMCHAOnZFEM69Q6Uxi0acxA==
-X-Gm-Message-State: AOJu0YwBcGMx78fAUiKEumGv2BeFeFaLBLbwVJYQ5seMdyvedA9v/pBo
-	tb392ixKiJM+BHWJ/vWn2iQcMD4TNxxkJfohO18JWLjHxGkOXPIKaCfIRH7UTCc=
-X-Google-Smtp-Source: AGHT+IHiVogKZl3USP3i/JeeOeTjoVjdXnPeQNrUn2JsCxmrpiq71MOn1lYyswLgrH8QF/253iaF3g==
-X-Received: by 2002:aa7:cf06:0:b0:565:a562:9fc3 with SMTP id a6-20020aa7cf06000000b00565a5629fc3mr7041999edy.38.1709623832591;
-        Mon, 04 Mar 2024 23:30:32 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id g26-20020a056402321a00b0055fba4996d9sm5517875eda.71.2024.03.04.23.30.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Mar 2024 23:30:32 -0800 (PST)
-Message-ID: <714cc51c-0d54-4475-b4bf-96b59d499097@linaro.org>
-Date: Tue, 5 Mar 2024 08:30:30 +0100
+        d=1e100.net; s=20230601; t=1709624002; x=1710228802;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gx7QPTKJai6jSFkj9+TJZzVP3EDqUm9KDYf3uq99HxA=;
+        b=M0VTJ+IeJfiC90rt+lNgPOLaHZYalgADoSykDHu3+YCO2lTBfVJaK18/J429+Nqbil
+         Q0RvuNdwyeDQegdVWvKWAtokKFLT5FxmN4qV536Arzlt5SA7MTJLH8Dc+7m/hho7edTC
+         wgj8SQ0ktqQA60WRUu5z/XM6YFCisJVYM1AXRlH/f0es0yGsuq6KY4WDLQlDmOxW/ATx
+         BZaEbGNOFS8d/ykJodKPwuAi4ix/5UXQJdzAmtGAS88uXLOLUcmA2d5Jr+NAvkrXhJd2
+         QYTQUA9lhXuKa6iIGEel1S5UOuejD9dZ0e3BwixBnKofN5XNRN6/xe+0eddDX7r+ASQo
+         PdOg==
+X-Forwarded-Encrypted: i=1; AJvYcCVozzgaDL3iwUxVKAS8Ki98F1mQ6vrmqtdu94UuosMcdnbg+hzBjRDg7HeRIwjPR6MP/OChLHn5JUA7wcw6jIoR18Z0P3LTg0eB2MPhVYHT9jMbTmSJQAxf9k5esniHVQG4lP3TogS5zIfZpBOKTtVJSxWDiKwqrvzSywCztQYQ/w==
+X-Gm-Message-State: AOJu0YxbiqIphfTthVxlLoR0DUggeh3LrhKBIAVMw85nVBdfWoSNdWWn
+	/xrZ8Ppb7F9JWbZqQxV+SrB+hWKjDEFXw4hltcaAz4bvLJFr7KPw
+X-Google-Smtp-Source: AGHT+IHPvQtZwLezKjsSpiunSzo1ozz5dPp4RlMChtiuv+1LJpDBG7d+OgVW72CZXGBZnTesbmAcZQ==
+X-Received: by 2002:a50:fa83:0:b0:566:51fa:3647 with SMTP id w3-20020a50fa83000000b0056651fa3647mr6914461edr.10.1709624001492;
+        Mon, 04 Mar 2024 23:33:21 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
+        by smtp.gmail.com with ESMTPSA id f16-20020aa7d850000000b00563f3ee5003sm5443887eds.91.2024.03.04.23.33.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 04 Mar 2024 23:33:21 -0800 (PST)
+Message-ID: <2f497783da939f13d8c8faeab931cac0ef9c98eb.camel@gmail.com>
+Subject: Re: [PATCH v3 2/2] of: overlay: Synchronize of_overlay_remove()
+ with the devlink removals
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Saravana Kannan <saravanak@google.com>, Herve Codina
+	 <herve.codina@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman
+ <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>,
+ Frank Rowand <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max
+ Zhen <max.zhen@amd.com>,  Sonal Santan <sonal.santan@amd.com>, Stefano
+ Stabellini <stefano.stabellini@xilinx.com>, Jonathan Cameron
+ <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org, 
+ devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
+ Horatiu Vultur <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
+Date: Tue, 05 Mar 2024 08:36:45 +0100
+In-Reply-To: <CAGETcx-tmyJA30GtdU_dO9tWFoK+rO5tm-On4tPR7oQotnMkqQ@mail.gmail.com>
+References: <20240229105204.720717-1-herve.codina@bootlin.com>
+	 <20240229105204.720717-3-herve.codina@bootlin.com>
+	 <acb69aa8c1a4c4e9849123ef538b9646a71507a0.camel@gmail.com>
+	 <20240304152202.GA222088-robh@kernel.org>
+	 <20240304174933.7ad023f9@bootlin.com>
+	 <CAGETcx-tmyJA30GtdU_dO9tWFoK+rO5tm-On4tPR7oQotnMkqQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindindgs: clock: support NXP i.MX95 BLK CTL
- module
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>,
- "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Abel Vesa <abelvesa@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>,
- Pengutronix Kernel Team <kernel@pengutronix.de>,
- Fabio Estevam <festevam@gmail.com>,
- "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20240228-imx95-blk-ctl-v3-0-40ceba01a211@nxp.com>
- <20240228-imx95-blk-ctl-v3-1-40ceba01a211@nxp.com>
- <20240304143916.GA181628-robh@kernel.org>
- <DU0PR04MB941740A36E953A0E1AD690EC88222@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <58cdfa7c-5483-4193-a5de-bb5fa72de637@linaro.org>
- <DU0PR04MB9417551618EB1C723EF3FA9088222@DU0PR04MB9417.eurprd04.prod.outlook.com>
- <4731e688-4d2e-4b94-9ed1-32cbc823079f@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <4731e688-4d2e-4b94-9ed1-32cbc823079f@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
 
-On 05/03/2024 08:29, Krzysztof Kozlowski wrote:
-> On 05/03/2024 08:18, Peng Fan wrote:
->>> Subject: Re: [PATCH v3 1/2] dt-bindindgs: clock: support NXP i.MX95 BLK CTL
->>> module
->>>
->>> On 05/03/2024 05:13, Peng Fan wrote:
->>>>>> +
->>>>>> +examples:
->>>>>> +  # Clock Control Module node:
->>>>>> +  - |
->>>>>> +    #include <dt-bindings/clock/nxp,imx95-clock.h>
->>>>>> +
->>>>>> +    syscon@4c410000 {
->>>>>
->>>>> clock-controller@...
->>>>
->>>> But this is a syscon, using clock-controller will trigger dt check
->>>> warning.
->>>
->>> Which warning?
->>
->> I just recalled that node with syscon in compatible string needs
->> has syscon as node, I maybe wrong.
-> 
-> Just paste the warning, so we can think about it.
-> 
->>
->>>
->>>>>
->>>>> As that is the main feature/function.
->>>>>
->>>>>> +      compatible = "nxp,imx95-vpumix-csr", "syscon";
->>>>>> +      reg = <0x4c410000 0x10000>;
->>>>>> +      #clock-cells = <1>;
->>>>>
->>>>> Please make the example as full as possible. For example, add
->>>>> mux-controller node. Do some of the blocks not have mux ctrl?
->>>>
->>>> Yes. The blk ctrl is not just for clock, some registers has mux ctrl,
->>>> such as Pixel_link_sel.
->>>
->>> Then mux-controller should not be allowed for them.
->>
->> You mean I should not add mux-controller under the blk ctrl node?
-> 
-> mux-controller is already there, isn't it? I am saying your binding is
-> not precise. Your binding implies that ALL OF THEM have mux controller.
-> You told me it is not true, so you have change the meaning of binding
-> and disallow the mux-controller for the cases it is not applicable.
-> 
+On Mon, 2024-03-04 at 22:47 -0800, Saravana Kannan wrote:
+> On Mon, Mar 4, 2024 at 8:49=E2=80=AFAM Herve Codina <herve.codina@bootlin=
+.com> wrote:
+> >=20
+> > Hi Rob,
+> >=20
+> > On Mon, 4 Mar 2024 09:22:02 -0600
+> > Rob Herring <robh@kernel.org> wrote:
+> >=20
+> > ...
+> >=20
+> > > > > @@ -853,6 +854,14 @@ static void free_overlay_changeset(struct
+> > > > > overlay_changeset *ovcs)
+> > > > > =C2=A0{
+> > > > > =C2=A0 int i;
+> > > > >=20
+> > > > > + /*
+> > > > > +=C2=A0 * Wait for any ongoing device link removals before removi=
+ng some of
+> > > > > +=C2=A0 * nodes. Drop the global lock while waiting
+> > > > > +=C2=A0 */
+> > > > > + mutex_unlock(&of_mutex);
+> > > > > + device_link_wait_removal();
+> > > > > + mutex_lock(&of_mutex);
+> > > >=20
+> > > > I'm still not convinced we need to drop the lock. What happens if
+> > > > someone else
+> > > > grabs the lock while we are in device_link_wait_removal()? Can we
+> > > > guarantee that
+> > > > we can't screw things badly?
+> > >=20
+> > > It is also just ugly because it's the callers of
+> > > free_overlay_changeset() that hold the lock and now we're releasing i=
+t
+> > > behind their back.
+> > >=20
+> > > As device_link_wait_removal() is called before we touch anything, can=
+'t
+> > > it be called before we take the lock? And do we need to call it if
+> > > applying the overlay fails?
+>=20
+> Rob,
+>=20
+> This[1] scenario Luca reported seems like a reason for the
+> device_link_wait_removal() to be where Herve put it. That example
+> seems reasonable.
+>=20
+> [1] - https://lore.kernel.org/all/20231220181627.341e8789@booty/
+>=20
 
-... or create separate binding/schema for the variants with mux-controller.
+I'm still not totally convinced about that. Why not putting the check right
+before checking the kref in __of_changeset_entry_destroy(). I'll contradict
+myself a bit because this is just theory but if we look at pci_stop_dev(), =
+which
+AFAIU, could be reached from a sysfs write(), we have:
 
-Best regards,
-Krzysztof
+device_release_driver(&dev->dev);
+...
+of_pci_remove_node(dev);
+	of_changeset_revert(np->data);
+	of_changeset_destroy(np->data);
+
+So looking at the above we would hit the same issue if we flush the queue i=
+n
+free_overlay_changeset() - as the queue won't be flushed at all and we coul=
+d
+have devlink removal due to device_release_driver(). Right?
+
+Again, completely theoretical but seems like a reasonable one plus I'm not
+understanding the push against having the flush in
+__of_changeset_entry_destroy(). Conceptually, it looks the best place to me=
+ but
+I may be missing some issue in doing it there?
+
+> > >=20
+> >=20
+> > Indeed, having device_link_wait_removal() is not needed when applying t=
+he
+> > overlay fails.
+> >=20
+> > I can call device_link_wait_removal() from the caller of_overlay_remove=
+()
+> > but not before the lock is taken.
+> > We need to call it between __of_changeset_revert_notify() and
+> > free_overlay_changeset() and so, the lock is taken.
+> >=20
+> > This lead to the following sequence:
+> > --- 8< ---
+> > int of_overlay_remove(int *ovcs_id)
+> > {
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ...
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_lock(&of_mutex);
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ...
+> >=20
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret =3D __of_changeset_rever=
+t_notify(&ovcs->cset);
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ...
+> >=20
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ret_tmp =3D overlay_notify(o=
+vcs, OF_OVERLAY_POST_REMOVE);
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ...
+> >=20
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&of_mutex);
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 device_link_wait_removal();
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_lock(&of_mutex);
+> >=20
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 free_overlay_changeset(ovcs)=
+;
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ...
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 mutex_unlock(&of_mutex);
+> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ...
+> > }
+> > --- 8< ---
+> >=20
+> > In this sequence, the question is:
+> > Do we need to release the mutex lock while device_link_wait_removal() i=
+s
+> > called ?
+>=20
+> In general I hate these kinds of sequences that release a lock and
+> then grab it again quickly. It's not always a bug, but my personal
+> take on that is 90% of these introduce a bug.
+>=20
+> Drop the unlock/lock and we'll deal a deadlock if we actually hit one.
+> I'm also fairly certain that device_link_wait_removal() can't trigger
+> something else that can cause an OF overlay change while we are in the
+> middle of one. And like Rob said, I'm not sure this unlock/lock is a
+> good solution for that anyway.
+
+Totally agree. Unless we really see a deadlock this is a very bad idea (IMH=
+O).
+Even on the PCI code, it seems to me that we're never destroying a changese=
+t
+from a device/kobj_type release callback. That would be super weird right?
+
+- Nuno S=C3=A1
+>=20
 
 
