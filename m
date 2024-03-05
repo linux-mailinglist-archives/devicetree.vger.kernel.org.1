@@ -1,175 +1,245 @@
-Return-Path: <devicetree+bounces-48292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7B21871521
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 06:06:09 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4313187152A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 06:08:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDA32283C44
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 05:06:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 668B51C21951
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 05:08:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C500C7E116;
-	Tue,  5 Mar 2024 05:05:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A9F345C06;
+	Tue,  5 Mar 2024 05:08:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="y1FpB/Jy"
+	dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b="S3pAkncL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f202.google.com (mail-yw1-f202.google.com [209.85.128.202])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailout3.samsung.com (mailout3.samsung.com [203.254.224.33])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2338F7D411
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 05:05:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.202
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F42545BF6
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 05:08:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.254.224.33
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709615114; cv=none; b=LpKRo3N+xYqDLD7z4EmL9I9HTVNJ4xre+r5dpsjVDBpNnGfKpmRDC5HBTZla1kEyZB68NXflmlhuCG55DyMlbtH8WvUu+agMcYsZs7Xvj+2P8OZcrQ795kZng+H4yrPTw8je6cPHMqfhp1WhmarK+WNoAkw9An4fE/IBI7NqXVU=
+	t=1709615320; cv=none; b=qZD2aQqsP7lQg5WpnOvPAFjstkOTzl2y26p9x2M8FmNdMDo0T35gnQm9OScNbw5o56K/iujOF1266jJAGXeXoT6NnNYmgVO4BrgTp4piEDeDyGdJe/7CQQkExz/oZY4mnHQb53tGDxWeSdglYeX9hYq4Pl6+unwAkMfE+g9XYdo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709615114; c=relaxed/simple;
-	bh=FgXbHdYbzu0zV1Fn+0Sm3Z2N29NaUTHdcJVRWQiFOe4=;
-	h=Date:In-Reply-To:Message-Id:Mime-Version:References:Subject:From:
-	 To:Cc:Content-Type; b=QrGZUzsD8WO9p6YMtnKI2n0W0zr2Vux/WoppcnsIlnTaTUuJrH7SoC6MCoFoIv6PyVvVwdtMK1vJf9S3eGGaNqgc4ai6CzsZMSR0LK9StvmL9Z8NDSn60sWMiMdImv6WOrqAuKKlc/QNAWZLKE0K+MP1VjxoGsIuvg+oGIr5sv4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=y1FpB/Jy; arc=none smtp.client-ip=209.85.128.202
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=flex--saravanak.bounces.google.com
-Received: by mail-yw1-f202.google.com with SMTP id 00721157ae682-60966f363c1so77482507b3.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 21:05:12 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1709615112; x=1710219912; darn=vger.kernel.org;
-        h=cc:to:from:subject:references:mime-version:message-id:in-reply-to
-         :date:from:to:cc:subject:date:message-id:reply-to;
-        bh=2AK1RvhjBdB4hDhmPTNWoUxZx2sr2tNAM1/EjrC2JoM=;
-        b=y1FpB/Jyx5C6fSs1Ap3r6/w8H9k3Y60pZNpsSMYvIHhyejogBqCcddbXL+JrFXK4jr
-         LVGPWpQfaA9gk8QavlnbBmNOLdMXd4LKwFa+pdSqStD85Si0Y50hXqrLMdhAL5RG1K92
-         jUFHm95otGHqlWABF6YAX33/2QUJQfafQwseyAXK9xZWiYYzZ666Gut3dTBvV/pcQEdg
-         QclDAB1zTRRbNCO/YzoHmyzYndCM+/wVLt/MgEMBoF/4GhWn3gbxXo3upofhlctmnmzK
-         XfzdoWMyKEcjnnePfb6EOeXBpW5LsWbH1PGEFxin35vVIt/L1P/NaQrMxqkrDkCz4l95
-         hcoA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709615112; x=1710219912;
-        h=cc:to:from:subject:references:mime-version:message-id:in-reply-to
-         :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2AK1RvhjBdB4hDhmPTNWoUxZx2sr2tNAM1/EjrC2JoM=;
-        b=M5TYYA3u6GTerJak2AsES54Krf40XGDzyEbPZoRaZyKJGfRIGAqw9eMp3Lyz5xVUHc
-         Tv8JaNV7fej1Bw5YSyThPIVyMVnryHa5ALk8zjt882zTsk7tM+2xUF0l37vbuD6yZbDn
-         8JLw2rODD5ce7GcaA1nk1G16xT6kNItbXwdd6ufGz6rMiuFfhxwxAP+IsoRy0KJyXrbO
-         uRIe2T31bOzURi8M1+A6i8xTYWbpMa8u99R4huu1cdgVVJXe+s+R8v+yxBr+0Q2mtQD4
-         H4QnyBktlCfsChRe2kxNQntfjLaZoo5SXP9B4NUtdrmZ39AucarwYu/gzf9FZ04qU5bm
-         cMwA==
-X-Forwarded-Encrypted: i=1; AJvYcCUREC+iI+9gVEVdMEUi9UHLYh2MyGXfDoZSRl7t1tyimRI6tGq/YrDx1hH727pvcV5R/xUqPRwFLe36AIV1Z3mLaWHpOtfYaP6rwA==
-X-Gm-Message-State: AOJu0YwhtkwRIeb5JaiRL8kGuoWWWJOeAAvbwlnudj9qxHaNsBfzuLsu
-	8iHU9VhzSyNtuZ66j2XIGaUzvqGSg19qyQFN+c5QRtt2rPhSrr2pJmCkYX0mBApwsYCkAdxHeK3
-	drjGMJvQlv7QMkw==
-X-Google-Smtp-Source: AGHT+IH2KzRd8ijTXs0JYOCur+G/X47aFWeD6zQZ4dffImANFZRDeEhSxZMnhoOcs3UOxIj6Er5VZdNgNg1tQNM=
-X-Received: from saravanak.san.corp.google.com ([2620:15c:2d:3:d64:6ee3:55a9:46e6])
- (user=saravanak job=sendgmr) by 2002:a05:690c:c9d:b0:607:cd11:5464 with SMTP
- id cm29-20020a05690c0c9d00b00607cd115464mr3058844ywb.9.1709615112162; Mon, 04
- Mar 2024 21:05:12 -0800 (PST)
-Date: Mon,  4 Mar 2024 21:04:56 -0800
-In-Reply-To: <20240305050458.1400667-1-saravanak@google.com>
-Message-Id: <20240305050458.1400667-4-saravanak@google.com>
+	s=arc-20240116; t=1709615320; c=relaxed/simple;
+	bh=ismEow/yzrkwwhiLcdfA0vL6WXF7q6z+dwtQGVXyiYs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:From:In-Reply-To:
+	 Content-Type:References; b=hvNRVcdzsnsrdpgdpqupcxSLZ7T0d5A0WLUkgSgvBHCIugEoZAfsuob/JQd1WY4lXTDOcFxkaIlFUcWXhwOX64v9cAmX1LgC0Nxcw4sc/fFvSAYonVkGZldCm4d05G2L8vi4Q47Y1Hfk5OU9x48F1nT+2adM+k+8Zj2lWFYgRC4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com; spf=pass smtp.mailfrom=samsung.com; dkim=pass (1024-bit key) header.d=samsung.com header.i=@samsung.com header.b=S3pAkncL; arc=none smtp.client-ip=203.254.224.33
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=samsung.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=samsung.com
+Received: from epcas2p4.samsung.com (unknown [182.195.41.56])
+	by mailout3.samsung.com (KnoxPortal) with ESMTP id 20240305050828epoutp030c5f0e8be4b1de772c2f50cdbc7c4808~5xhC5ZaYm2735027350epoutp03R
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 05:08:28 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20240305050828epoutp030c5f0e8be4b1de772c2f50cdbc7c4808~5xhC5ZaYm2735027350epoutp03R
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+	s=mail20170921; t=1709615308;
+	bh=7wgZcV4LIo7eZvvgGuVKjwfreOjSKEa/3J0B5NMANQ8=;
+	h=Date:Subject:To:Cc:From:In-Reply-To:References:From;
+	b=S3pAkncLzX8LUhzUr3/Ce5YgzG802THvtWHLxyz+IsFYmbGpgfP3dPjohdUZMmz0A
+	 ZXXM8GxgQvDgG7KKXBs/EgH/o79FnmhPLeF9Xf8Y06nDwpgVER9pXI2nl0eKk3BSPc
+	 gOOnoiSAonyOJLmhmNfkuwGBZmcmU25fQu5faxo8=
+Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
+	epcas2p2.samsung.com (KnoxPortal) with ESMTP id
+	20240305050828epcas2p2ac3a6297d2e062a8bea5d14784543827~5xhCgb0An2205322053epcas2p2L;
+	Tue,  5 Mar 2024 05:08:28 +0000 (GMT)
+Received: from epsmgec2p1.samsung.com (unknown [182.195.36.100]) by
+	epsnrtp4.localdomain (Postfix) with ESMTP id 4Tpk9R3vhrz4x9QD; Tue,  5 Mar
+	2024 05:08:27 +0000 (GMT)
+Received: from epcas2p4.samsung.com ( [182.195.41.56]) by
+	epsmgec2p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+	D3.A2.08648.BC8A6E56; Tue,  5 Mar 2024 14:08:27 +0900 (KST)
+Received: from epsmtrp1.samsung.com (unknown [182.195.40.13]) by
+	epcas2p3.samsung.com (KnoxPortal) with ESMTPA id
+	20240305050826epcas2p31f42fc40cecab0edc574ed7f57828e61~5xhBQLOAu0243002430epcas2p3_;
+	Tue,  5 Mar 2024 05:08:26 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+	epsmtrp1.samsung.com (KnoxPortal) with ESMTP id
+	20240305050826epsmtrp118557d5f7c0a2ef9936664afb357e53c~5xhBPRF_C0656106561epsmtrp1e;
+	Tue,  5 Mar 2024 05:08:26 +0000 (GMT)
+X-AuditID: b6c32a43-721fd700000021c8-2f-65e6a8cb384c
+Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
+	epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+	60.74.08817.AC8A6E56; Tue,  5 Mar 2024 14:08:26 +0900 (KST)
+Received: from [10.229.8.168] (unknown [10.229.8.168]) by
+	epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
+	20240305050826epsmtip2bf1362dc7ebf93b71fea7ea1c5b9979e~5xhA6dbvN1460914609epsmtip2v;
+	Tue,  5 Mar 2024 05:08:26 +0000 (GMT)
+Message-ID: <cbbeec8c-45c7-0f62-8947-90511fdc1f25@samsung.com>
+Date: Tue, 5 Mar 2024 14:08:19 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-References: <20240305050458.1400667-1-saravanak@google.com>
-X-Mailer: git-send-email 2.44.0.278.ge034bb2e1d-goog
-Subject: [PATCH v5 3/3] of: property: fw_devlink: Add support for
- "post-init-providers" property
-From: Saravana Kannan <saravanak@google.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Ard Biesheuvel <ardb@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Frank Rowand <frowand.list@gmail.com>, 
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Daniel Scally <djrscally@gmail.com>, 
-	Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
-	Sakari Ailus <sakari.ailus@linux.intel.com>, Len Brown <lenb@kernel.org>
-Cc: Saravana Kannan <saravanak@google.com>, kernel-team@android.com, 
-	linux-kernel@vger.kernel.org, linux-efi@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-acpi@vger.kernel.org, 
-	Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+	Thunderbird/102.11.0
+Subject: Re: [PATCH] spi: dt-bindings: samsung: make dma properties not
+ required
+To: Tudor Ambarus <tudor.ambarus@linaro.org>, Rob Herring <robh@kernel.org>,
+	Sam Protsenko <semen.protsenko@linaro.org>
+Cc: Mark Brown <broonie@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, andi.shyti@kernel.org,
+	conor+dt@kernel.org, linux-spi@vger.kernel.org,
+	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, andre.draszik@linaro.org,
+	peter.griffin@linaro.org, willmcvicker@google.com, kernel-team@android.com
+Content-Language: en-US
+From: Jaewon Kim <jaewon02.kim@samsung.com>
+In-Reply-To: <0852a6bc-315c-49e2-84fe-7dadca71df3d@linaro.org>
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrJJsWRmVeSWpSXmKPExsWy7bCmhe7pFc9SDb5OELe4/7WD0WLLq80s
+	FlMfPmGzWLP3HJPF/CPnWC12bBex6HvxkNni8q45bBYzzu9jsmj8eJPdYsOMfywW//fsYLd4
+	3gcU+3QrzmLVp/+MDvwe23ZvY/VYsKnUY9OqTjaPO9f2sHl83iQXwBqVbZORmpiSWqSQmpec
+	n5KZl26r5B0c7xxvamZgqGtoaWGupJCXmJtqq+TiE6DrlpkDdKuSQlliTilQKCCxuFhJ386m
+	KL+0JFUhI7+4xFYptSAlp8C8QK84Mbe4NC9dLy+1xMrQwMDIFKgwITvjy4STjAX7FCqePP3P
+	3MD4RbKLkZNDQsBE4tK7RexdjFwcQgI7GCX+LF3JBpIQEvjEKLFraj6E/Y1RYsO0ZJiGiZPO
+	QTXsZZToffMbynnNKLG4cRYLSBWvgJ1E26QnTCA2i4CKxKafn9gg4oISJ2c+AasRFYiWaF12
+	HyjOwSEsECTx6agRSFhEoFJiwcftYDOZBT4wSey5vZIVJMEsIC5x68l8sJlsAtoS39cvBotz
+	Au06cucOG0SNvETz1tnMIM0SAkc4JCY0XANbICHgItH5yxXiA2GJV8e3sEPYUhIv+9ug7HyJ
+	titnoOwaiY0LLjFC2PYSi878ZAcZwyygKbF+lz7ERGWJI7dYILbySXQc/ssOEeaV6GgTgmhU
+	k7g/9RwbhC0jMenISiYI20Ni+YO77BMYFWchhcksJD/OQvLLLIS9CxhZVjGKpRYU56anJhsV
+	GMJjOjk/dxMjOA1rOe9gvDL/n94hRiYOxkOMEhzMSiK8Nb+epArxpiRWVqUW5ccXleakFh9i
+	NAXGzERmKdHkfGAmyCuJNzSxNDAxMzM0NzI1MFcS573XOjdFSCA9sSQ1OzW1ILUIpo+Jg1Oq
+	gSnkz9sKCYur+/cmVr1YvvahcmOa26Ib25oXNdw7n74pWXbWlFAF5XVxLR+c34UHrVP4pyWp
+	9z9uXqfWCjY3wXVyS5Yn+PBOuMXY5qM0nXehxrMtS7sMzadb7VpvuEnb2zyc8UqDxdWwS1te
+	hS6xuiW7Q/U9V/uyysWJ/IueBBZzWgf8q+fIUF10x5dB27K/v9ZuWp/ZDZmNs+zWS7skvmPk
+	yNcQ/3JQ4aQ+z5enycp58xYkTbbvenqVR+V85Qa+BXKCt07xbK8Qnrhu0757r5Ma6wOyOxb/
+	CFg238Mwy5hp15JJBo4rbGZ8PpDsWWMRKnpj/r+ba29OqHy8dJay5uGZZ1/0iM1+eEL4mQvv
+	gTtKLMUZiYZazEXFiQDNrvY+TAQAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprNIsWRmVeSWpSXmKPExsWy7bCSvO6pFc9SDV6dMrK4/7WD0WLLq80s
+	FlMfPmGzWLP3HJPF/CPnWC12bBex6HvxkNni8q45bBYzzu9jsmj8eJPdYsOMfywW//fsYLd4
+	3gcU+3QrzmLVp/+MDvwe23ZvY/VYsKnUY9OqTjaPO9f2sHl83iQXwBrFZZOSmpNZllqkb5fA
+	lfFlwknGgn0KFU+e/mduYPwi2cXIySEhYCIxcdI5dhBbSGA3o0TbugyIuIzE8md9bBC2sMT9
+	liOsEDUvGSX61+SB2LwCdhJtk54wgdgsAioSm35+YoOIC0qcnPmEBcQWFYiWWP35AlAvB4ew
+	QJDEp6NGIGERgUqJrTM3ArVycTALfGCSOHJtPQuIIyTwhlli5dP7YMuYBcQlbj2ZD7aATUBb
+	4vv6xWBxTqDFR+7cYYOoMZPo2trFCGHLSzRvnc08gVFoFpI7ZiEZNQtJyywkLQsYWVYxSqYW
+	FOem5xYbFhjlpZbrFSfmFpfmpesl5+duYgTHn5bWDsY9qz7oHWJk4mA8xCjBwawkwlvz60mq
+	EG9KYmVValF+fFFpTmrxIUZpDhYlcd5vr3tThATSE0tSs1NTC1KLYLJMHJxSDUwp88PThGfK
+	33/k21avV199v/LfLqcHV3euyxFbf1ZStfa0qvsjm/23Pxg+NHzGo9RvGKhx+8XpOQLdbRuO
+	NrCmLjqVuW7S2otcS2/1d0reqEwN2DTT5s8F0ah1z/bzbPrNPZGJY16X1W6nfTZTGxZWXFj9
+	ruLp1c47kQzrr3n+Slu/99Xeb3LneuWTb05Q8a2ziymYELdPPZBld45OokfRwxjzNZasH/9O
+	LO40mVJsL8SsfEokUIXFdUrh0VxhZRHRCZu8ZgXtYX4Yk+a9Q3Z6rN7Z0OmBS3UvPexYebJf
+	/L+QX7FF+4PrCXMWmve3nPb5/1ZSclHm1O+3J92MP78+0SMywUZyd9OvrIvXH3kqsRRnJBpq
+	MRcVJwIARxyr/y4DAAA=
+X-CMS-MailID: 20240305050826epcas2p31f42fc40cecab0edc574ed7f57828e61
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: AUTO_CONFIDENTIAL
+CMS-TYPE: 102P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20240304181554epcas2p19ce81f9801d4704862e76f785980213e
+References: <20240301115546.2266676-1-tudor.ambarus@linaro.org>
+	<CAPLW+4=6oYcs0NPXo4ffLiCvtNQ-tY1s_isaxTX8dcPkV56xMw@mail.gmail.com>
+	<cb426fb0-2f27-4c9b-89f5-7139354ea425@sirena.org.uk>
+	<f06328e4-b283-4302-b9c1-6473aa3cfa25@linaro.org>
+	<CAPLW+4kjXK=EWx__h0bX0rJMrL33E=t4YDzSOfObmvtG9aS+jg@mail.gmail.com>
+	<20240304165635.GA739022-robh@kernel.org>
+	<CGME20240304181554epcas2p19ce81f9801d4704862e76f785980213e@epcas2p1.samsung.com>
+	<0852a6bc-315c-49e2-84fe-7dadca71df3d@linaro.org>
 
-Add support for this property so that dependency cycles can be broken and
-fw_devlink can do better probe/suspend/resume ordering between devices in a
-dependency cycle.
+Hello all,
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
-Acked-by: Rafael J. Wysocki <rafael@kernel.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- drivers/of/property.c | 15 ++++++++++++---
- 1 file changed, 12 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/of/property.c b/drivers/of/property.c
-index bce849f21ae2..b517a92dabca 100644
---- a/drivers/of/property.c
-+++ b/drivers/of/property.c
-@@ -1066,7 +1066,8 @@ of_fwnode_device_get_match_data(const struct fwnode_handle *fwnode,
- }
- 
- static void of_link_to_phandle(struct device_node *con_np,
--			      struct device_node *sup_np)
-+			      struct device_node *sup_np,
-+			      u8 flags)
- {
- 	struct device_node *tmp_np = of_node_get(sup_np);
- 
-@@ -1085,7 +1086,7 @@ static void of_link_to_phandle(struct device_node *con_np,
- 		tmp_np = of_get_next_parent(tmp_np);
- 	}
- 
--	fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_np), 0);
-+	fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(sup_np), flags);
- }
- 
- /**
-@@ -1198,6 +1199,8 @@ static struct device_node *parse_##fname(struct device_node *np,	     \
-  *		 to a struct device, implement this ops so fw_devlink can use it
-  *		 to find the true consumer.
-  * @optional: Describes whether a supplier is mandatory or not
-+ * @fwlink_flags: Optional fwnode link flags to use when creating a fwnode link
-+ *		  for this property.
-  *
-  * Returns:
-  * parse_prop() return values are
-@@ -1210,6 +1213,7 @@ struct supplier_bindings {
- 					  const char *prop_name, int index);
- 	struct device_node *(*get_con_dev)(struct device_node *np);
- 	bool optional;
-+	u8 fwlink_flags;
- };
- 
- DEFINE_SIMPLE_PROP(clocks, "clocks", "#clock-cells")
-@@ -1240,6 +1244,7 @@ DEFINE_SIMPLE_PROP(leds, "leds", NULL)
- DEFINE_SIMPLE_PROP(backlight, "backlight", NULL)
- DEFINE_SIMPLE_PROP(panel, "panel", NULL)
- DEFINE_SIMPLE_PROP(msi_parent, "msi-parent", "#msi-cells")
-+DEFINE_SIMPLE_PROP(post_init_providers, "post-init-providers", NULL)
- DEFINE_SUFFIX_PROP(regulators, "-supply", NULL)
- DEFINE_SUFFIX_PROP(gpio, "-gpio", "#gpio-cells")
- 
-@@ -1349,6 +1354,10 @@ static const struct supplier_bindings of_supplier_bindings[] = {
- 	{ .parse_prop = parse_regulators, },
- 	{ .parse_prop = parse_gpio, },
- 	{ .parse_prop = parse_gpios, },
-+	{
-+		.parse_prop = parse_post_init_providers,
-+		.fwlink_flags = FWLINK_FLAG_IGNORE,
-+	},
- 	{}
- };
- 
-@@ -1393,7 +1402,7 @@ static int of_link_property(struct device_node *con_np, const char *prop_name)
- 					: of_node_get(con_np);
- 			matched = true;
- 			i++;
--			of_link_to_phandle(con_dev_np, phandle);
-+			of_link_to_phandle(con_dev_np, phandle, s->fwlink_flags);
- 			of_node_put(phandle);
- 			of_node_put(con_dev_np);
- 		}
--- 
-2.44.0.278.ge034bb2e1d-goog
+On 24. 3. 5. 03:15, Tudor Ambarus wrote:
+> Hi, Rob,
+>
+> On 3/4/24 16:56, Rob Herring wrote:
+>> On Sat, Mar 02, 2024 at 10:23:16AM -0600, Sam Protsenko wrote:
+>>> On Sat, Mar 2, 2024 at 3:36 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>>>>
+>>>>
+>>>> On 01.03.2024 22:42, Mark Brown wrote:
+>>>>> On Fri, Mar 01, 2024 at 01:28:35PM -0600, Sam Protsenko wrote:
+>>>>>> On Fri, Mar 1, 2024 at 5:55 AM Tudor Ambarus <tudor.ambarus@linaro.org> wrote:
+>>>>>>> Since the addition of the driver in 2009, the driver selects between DMA
+>>>>>>> and polling mode depending on the transfer length - DMA mode for
+>>>>>>> transfers bigger than the FIFO depth, polling mode otherwise. All
+>>>>>>> versions of the IP support polling mode, make the dma properties not
+>>>>>>> required.
+>>>>>> AFAIU, the device tree has nothing to do with drivers, it's about
+>>>>>> hardware description. Does making DMA properties not required here
+>>>> correct
+>>>>
+>>>>>> mean that there are some HW out there which doesn't integrate DMA in
+>>>> no, to me it means that the IP can work without DMA, only in PIO mode,
+>>>> regardless if DMA is integrated or not. Not required means that the
+>>>> property is not mandatory, which is what I'm trying to achieve here.
+>>>>
+>>>>>> SPI blocks? Even if this change is ok (I'm not sure), the
+>>>>>> argumentation doesn't look sound to me.
+>>>> switching to PIO mode in the driver for sizes smaller than FIFO depths
+>>>> in the driver guarantees that all existing compatibles support PIO mode.
+>>>>
+>>>> Are you saying that if there is a physical line between an IP and DMA
+>>>> controller, then the DMA properties must always be specified in dt? I
+>>>> thought they can be marked as optional in this case, and that's what I
+>>>> did with this patch.
+>>>>
+>>> No, I would wait for maintainers to clarify on that bit. Change itself
+>>> can be ok. But the commit message shouldn't mention the driver,
+>>> because the driver uses (depends on) device tree, not vice versa. The
+>>> device tree can be used in other projects as well (like U-Boot and
+>>> OP-TEE), so it should be designed to be universal and not depend on
+>>> kernel drivers. The commit message should be based on particular HW
+>>> layout features and how the patch makes the bindings describe that HW
+>>> better. It shouldn't rely on driver implementations.
+>> If the controller is DMA capable then it should have dma properties. The
+> should have as in required/mandatory?
+>
+>> compatible should be enough to tell if it is a case of 'can only work
+> yes, I agree
+>
+>> with DMA'. Otherwise, it is going to be up to a specific user. Even
+>> within Linux, you may have a serial port that doesn't use DMA for the
+>> console, but uses it for the tty or serdev.
+>>
+>> Of course, if a new device is added without DMA properties and they
+>> are added later on, then they are going to be optional even though the
+>> DMA support is always there. I can't fully understand everyone's h/w.
+>>
+> The SPI controller that I'm working with has a dedicated channel to the
+> DMA controller. It can work without DMA too, just by polling registers
+> or by interrupts.
+>
+> I can't get the DMA controller to work correctly yet, and since the SPI
+> controller can work without DMA, I thought that I can mark the DMA
+> properties as optional, add the SPI node in dt without DMA, and add the
+> DMA properties later on, after I have the DMA controller working
+> correctly. Is this approach wrong?
+>
+> Thanks,
+> ta
+>
+>
+
+I agree with this patch.
+
+I don`t think DMA property needs to be "required" because it can operate 
+well without DMA property.
+
+
+Last year, I put a patch that makes dma property optional.
+
+  - d1a7718ee8db (spi: s3c64xx: change polling mode to optional)
+
+- https://lore.kernel.org/r/20230502062813.112434-2-jaewon02.kim@samsung.com
+
+
+In the past, there was SoC without DMA, so it was a quirk that used 
+polling mode.
+
+Now, I want to change this to be optional to support cases where DMA is 
+not available according to OS environment(Virtual Machine).
+
+
+Thanks
+
+Jaewon Kim
 
 
