@@ -1,112 +1,186 @@
-Return-Path: <devicetree+bounces-48501-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48502-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B98F8724CD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:49:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 726938724F1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:56:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AF91B1F218D3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:49:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26AA728AD55
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:56:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1139A14003;
-	Tue,  5 Mar 2024 16:49:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646EECA6F;
+	Tue,  5 Mar 2024 16:56:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="F7hYIsR9"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="MIYQIVo/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from out162-62-57-210.mail.qq.com (out162-62-57-210.mail.qq.com [162.62.57.210])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6FF00134A0;
-	Tue,  5 Mar 2024 16:49:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562BA13FF9
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 16:56:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.210
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709657343; cv=none; b=oVMs5un8dPaIDSv0DZY2JSkwpntH00EHUSlG7qN/5K/VjrfuyPr6UIg89MyLQjVGgorvJjzZeDmd47aeVRNH+wZWcXKEfYfCzkdgwMSjtwDD8jQlI47QRirMFVjMOR6/crTSz+dv3khHETmCeHy1hXccwQFO7xV1yf/a0/eP/bw=
+	t=1709657783; cv=none; b=HKjCM+bQALsjg7Ji+jpTusuj51JLmL9t8nT0E/VVjoiBR+kjVHMwstTJN3E8SX/AK+EdQDLs6JGMEzx9qdia9t22YJWtKDVYdrfSDNbkRy/+ykoVze7pKBsePBK7wy/5TSGGNJAfo8UlxgHbs08y8cVzrgIbjFdVwNbjr5WFLbw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709657343; c=relaxed/simple;
-	bh=gbLbdGMoTNTqVqknzM65+7kXV/hnMkAElBKa/cPFeaA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=e32FI4kWruvI6t+uVVAhXHpbrjjnZReBczYZ8tqWyUbiD08vcNLKuGVhTm2LzsZyYRCScL+8hYSlXa8Y99rucIczUWqyehB8VL/Vl8jvSZJDPxJhuxh1txzl491VDJpsRdC7PQvr7mMEvHN6F2mgA3mt3rMZCy15YXlyitlaipc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=F7hYIsR9; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from mail.ideasonboard.com (cpc141996-chfd3-2-0-cust928.12-3.cable.virginm.net [86.13.91.161])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 31AD915B5;
-	Tue,  5 Mar 2024 17:48:37 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1709657318;
-	bh=gbLbdGMoTNTqVqknzM65+7kXV/hnMkAElBKa/cPFeaA=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=F7hYIsR9ySsm43okHcnb7KZBryXKiwDq0dM+reFzxKsSE3jeLDaKomod0w+a/aqil
-	 zS71IIzGhxhTasDUaG1Z05DTjuJRIiFqB2oML/stQpGX6FmYaRpa64RdPm+g6zCJ+3
-	 eLHzXXo1wcUTOW+bSQDKqZrEUPBsloVC92tEmFLE=
-From: Daniel Scally <dan.scally@ideasonboard.com>
-To: linux-media@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Cc: jacopo.mondi@ideasonboard.com,
-	nayden.kanchev@arm.com,
-	robh+dt@kernel.org,
-	mchehab@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	jerome.forissier@linaro.org,
-	kieran.bingham@ideasonboard.com,
-	laurent.pinchart@ideasonboard.com,
-	Daniel Scally <dan.scally@ideasonboard.com>
-Subject: [PATCH v3 5/5] MAINTAINERS: Add entry for mali-c55 driver
-Date: Tue,  5 Mar 2024 16:48:32 +0000
-Message-Id: <20240305164832.2055437-6-dan.scally@ideasonboard.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240305164832.2055437-1-dan.scally@ideasonboard.com>
-References: <20240305164832.2055437-1-dan.scally@ideasonboard.com>
+	s=arc-20240116; t=1709657783; c=relaxed/simple;
+	bh=yByqG0yOrml+y/TQeDgQ4aQadtVY6yvukbinSORigW0=;
+	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
+	 Date:Cc:References:To; b=ib4t5Pm5GFTT93xX6gyvosirHWYlrOf1kL1YXGEzwsOgrBDNaZaUPC6ZlIfT+vwv4/NoxHX5LvozaICkG3nCdnn4ihOKYp2HnZt3oUCpXfitI4xCQUZ21HcItNine+epVEj+e3LRPhnx4PBfwo1/mHFHhd8ktZXpG2blPI42ifk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=MIYQIVo/; arc=none smtp.client-ip=162.62.57.210
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1709657766; bh=qBC2AcX0mTtuXWYOBTP2x46Bkvdu0LNhIGH61FR39Gk=;
+	h=Subject:From:In-Reply-To:Date:Cc:References:To;
+	b=MIYQIVo/5RJr57Cdrc2jPb/DOeHLzBDfGGc/T9zOmQ6T+rkvtMTQcorNqy58WGZqp
+	 2sxWYgRCXoAmGmN9AgU03lgUioqKW3l+oucEcGGttQi4DFS17T89J87bsmrc/QAaqA
+	 I0iEZZdCq55RwWUonSTp+TpzTzvj1Cb3Q/168nnQ=
+Received: from smtpclient.apple ([2001:da8:c800:d084:84f7:c158:bab8:8899])
+	by newxmesmtplogicsvrsza1-0.qq.com (NewEsmtp) with SMTP
+	id E0297E41; Wed, 06 Mar 2024 00:56:02 +0800
+X-QQ-mid: xmsmtpt1709657762tosh5bdf9
+Message-ID: <tencent_E7385EE2AEC4B486DC343AF1A108DE68370A@qq.com>
+X-QQ-XMAILINFO: MZtEYADUG4Ag7e/E7T3snRGQVxKSEkcuqqMQynq/q/5fu+wxuD5INq9X5LMOD/
+	 iOisb1ByHIywnJVC+Kd0b1r0O3TmDy5XAKC1hxXJpkev9Hz0/9xvjw/fa5MvsyTwUdosdMvgD8Pk
+	 H8CaGnw3HKWsFBBNyPVBsWhGhLtsUwm/y3MNvJTDgRhSpCQ4iA8oZcOHKLydxbvZn0m2nDuZlLG7
+	 +ybxh4PLRTt65ZmIEschfVgPGHS+AXlfRQTURLoHjyYFrNJBaG6UvCnTfhMtvuSnQ5oxlrpl/Fkh
+	 kEZgOUhIkRtx5OskbW+gS0PaEoqu57r/ATPdmXvH9wvwJVpFCvg/hmEZxil1ZLE7yOioE482yQJR
+	 0Fl03kFshp9mdC3+3HTxHF1CJzIJ30E1I8lMqSRqCRzoOXGv8OrKBmEEEKI8E7Acy6KGro6FCiRU
+	 +o8h8NXAxoxD0syf5//co/SaR57WTem2tpL+XbFemL3vmnMS/bQN2Dvr568ttoUfJPHOrzdLFDfS
+	 tDGA680R1dhH2tcgFHCLzOhdT8MJCQeXfChh8U1woQDhtRMWi7zCqSSrimxa8hcmVyQnwdOFp3Ac
+	 ocn1XwUbxidrKz7KUQPIzKLD3l7Zh9XPjXwrNxoO+xDfjwsV7zU/o8p1Ue+GWlrLtF9eA0/HXpDJ
+	 e43NQ2FI1nCqAhYrcKkrN+/4G5+ocQ/WzbIV6qawCSOMBA/T3DIwscg3wtLSCCTs826onoRK4Q/m
+	 d15E53lYgJSbzkGif/+uUeN6C47MA3U52YTZjbr29q1iouLNv04nDl/HwZhx5LvQVUTARPDIECjC
+	 +FepNu2qUmpPLT3/oJO0IT6P0fxvpvBBeCDRl8Cy3ViFoBcCbK8sqHmqmaBReJYv+lhk+d7zlgoC
+	 armUzv3XqR2zLgEFK/2QoQuGwHpI3MwUdcYUELLNXN9dffza8+zcPp3x5uFt9p328goYhjzsjS+p
+	 d46b8vVzAHdIH5yAMHlpfY32k/OGrJ/9CzkcuIRoGl3IK5l/gqx5I32+labTqX5uLPGXiCZFVAKN
+	 Cc4za/kQ==
+X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
+Subject: Re: [PATCH v3 7/7] riscv: config: enable SOC_CANAAN in defconfig
+From: Yangyu Chen <cyy@cyyself.name>
+In-Reply-To: <2a206c9b-b570-4081-b4e4-d177343482f3@kernel.org>
+Date: Wed, 6 Mar 2024 00:55:52 +0800
+Cc: linux-riscv@lists.infradead.org,
+ Conor Dooley <conor@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Guo Ren <guoren@kernel.org>,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>
+Content-Transfer-Encoding: quoted-printable
+X-OQ-MSGID: <0350242B-6F2F-4741-A936-5E578F86924B@cyyself.name>
+References: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
+ <tencent_E2812086B695A334EE5E8C70C85CA3171F06@qq.com>
+ <2a206c9b-b570-4081-b4e4-d177343482f3@kernel.org>
+To: Damien Le Moal <dlemoal@kernel.org>
+X-Mailer: Apple Mail (2.3774.400.31)
 
-Add a MAINTAINERS entry for the mali-c55 driver and its associated
-documentation.
 
-Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
----
-Changes in v3:
 
-	- none
+> On Mar 5, 2024, at 07:50, Damien Le Moal <dlemoal@kernel.org> wrote:
+>=20
+> On 3/5/24 06:06, Yangyu Chen wrote:
+>> Since K230 has been supported, allow SOC_CANAAN to be selected to =
+build dt
+>> and drivers for it in defconfig.
+>>=20
+>> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>> ---
+>> arch/riscv/configs/defconfig | 1 +
+>> 1 file changed, 1 insertion(+)
+>>=20
+>> diff --git a/arch/riscv/configs/defconfig =
+b/arch/riscv/configs/defconfig
+>> index 89a009a580fe..20b557ec28df 100644
+>> --- a/arch/riscv/configs/defconfig
+>> +++ b/arch/riscv/configs/defconfig
+>> @@ -33,6 +33,7 @@ CONFIG_SOC_STARFIVE=3Dy
+>> CONFIG_ARCH_SUNXI=3Dy
+>> CONFIG_ARCH_THEAD=3Dy
+>> CONFIG_SOC_VIRT=3Dy
+>> +CONFIG_SOC_CANAAN=3Dy
+>=20
+> Given that the k210 need !MMU, including it like this in the defconfig =
+is
+> odd... I do not even see how that could work. But that depends on =
+patch 5,
+> which does not seem OK to me.
+>=20
 
-Changes in v2:
+I don=E2=80=99t know why =E2=80=9Cnot seem OK=E2=80=9D here.
 
-	- none
+I will show the console to tell you what changes in defconfig:
 
- MAINTAINERS | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+```console
+$  linux git:(rv_builtin_dtb_v3) make ARCH=3Driscv =
+CROSS_COMPILE=3Driscv64-linux-gnu- defconfig
+*** Default configuration is based on 'defconfig'
+#
+# configuration written to .config
+#
+$  linux git:(rv_builtin_dtb_v3) cp .config .config.bak
+$  linux git:(rv_builtin_dtb_v3) git checkout k230_dt_initial_v3
+Switched to branch 'k230_dt_initial_v3'
+$  linux git:(k230_dt_initial_v3) make ARCH=3Driscv =
+CROSS_COMPILE=3Driscv64-linux-gnu- defconfig
+*** Default configuration is based on 'defconfig'
+#
+# configuration written to .config
+#
+$  linux git:(k230_dt_initial_v3) diff .config .config.bak
+301,302d300
+< CONFIG_ARCH_CANAAN=3Dy
+< CONFIG_SOC_CANAAN=3Dy
+2678d2675
+< CONFIG_PINCTRL_K210=3Dy
+4621d4617
+< CONFIG_COMMON_CLK_K210=3Dy
+4<
+706,4707d4701
+< CONFIG_SOC_K210_SYSCTL=3Dy
+5334d5327
+< CONFIG_ARCH_HAS_RESET_CONTROLLER=3Dy
+5336d5328
+< CONFIG_RESET_K210=3Dy
+$  linux git:(k230_dt_initial_v3) grep -r =
+"CONFIG_ARCH_HAS_RESET_CONTROLLER"
+kernel/config_data:CONFIG_ARCH_HAS_RESET_CONTROLLER=3Dy
+include/config/auto.conf:CONFIG_ARCH_HAS_RESET_CONTROLLER=3Dy
+include/generated/autoconf.h:#define CONFIG_ARCH_HAS_RESET_CONTROLLER 1
+include/generated/rustc_cfg:--cfg=3DCONFIG_ARCH_HAS_RESET_CONTROLLER
+include/generated/rustc_cfg:--cfg=3DCONFIG_ARCH_HAS_RESET_CONTROLLER=3D"y"=
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 1a89e0d2ac61..76472b7568c1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1668,6 +1668,16 @@ F:	Documentation/gpu/panfrost.rst
- F:	drivers/gpu/drm/panfrost/
- F:	include/uapi/drm/panfrost_drm.h
- 
-+ARM MALI-C55 ISP DRIVER
-+M:	Daniel Scally <dan.scally@ideasonboard.com>
-+M:	Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+T:	git git://linuxtv.org/media_tree.git
-+F:	Documentation/admin-guide/media/mali-c55.rst
-+F:	Documentation/devicetree/bindings/media/arm,mali-c55.yaml
-+F:	drivers/media/platform/arm/mali-c55/
-+
- ARM MALI-DP DRM DRIVER
- M:	Liviu Dudau <liviu.dudau@arm.com>
- S:	Supported
--- 
-2.34.1
+.config:CONFIG_ARCH_HAS_RESET_CONTROLLER=3Dy
+$  linux git:(k230_dt_initial_v3)
+```
+
+As you can see, we only have some drivers enabled for K210 and
+CONFIG_ARCH_HAS_RESET_CONTROLLER being enabled. The next grep -r shows =
+it
+does not change the kernel behavior.
+
+>> CONFIG_SMP=3Dy
+>> CONFIG_HOTPLUG_CPU=3Dy
+>> CONFIG_PM=3Dy
+>=20
+> --=20
+> Damien Le Moal
+> Western Digital Research
+
 
 
