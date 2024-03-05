@@ -1,110 +1,273 @@
-Return-Path: <devicetree+bounces-48584-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48585-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE6E9872924
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 22:09:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D5374872956
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 22:22:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73FA8285327
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 21:09:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D67D9B2B1F6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 21:16:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CFFD12AAE2;
-	Tue,  5 Mar 2024 21:09:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A0A112B168;
+	Tue,  5 Mar 2024 21:15:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zV7ArLKA"
+	dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b="s56OoF7+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+Received: from mail-pl1-f177.google.com (mail-pl1-f177.google.com [209.85.214.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA7BE5491F
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 21:09:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BE14129A99
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 21:15:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709672963; cv=none; b=CTS789+9r6dKqJdMZvu/lF7Qp7YA1pBIB0/0JwVW7lsuzGpNa8XdjAnq/SRVIsI8oNu0/ffHAG7X0WOmnXRJJkCkyJRdZ5l3n1kFxO91+9a8p2XHd/GUvQCwYBso1wF3W+ByrLlH9D/TPpFIpJrBg7mAQ+0QwF5K9VZLR5Y84HM=
+	t=1709673358; cv=none; b=o2qm2cbnw+y6j/PfyRyraFTgsZANTf9NFfn/kYmoLmanpCKTwzkQm4/2uBKEPy79S7cskImEdLSoZMYENdbc2U0A/3GQTthKtyiwQnhPNK7OiksxNYZZQLST+fvAbh5KnBswcbS89PV3/+pROFPaP9voahILKww9YY2PgXgwknI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709672963; c=relaxed/simple;
-	bh=jJZTR3ZQLE6TxtB1On0qTLLClIpP1eKZkTdZYogVliU=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=SNTJHwvfcCWZqVKxiGxEvSKDXW4RW5SKAqHx1RV9u0QV65hN6a1NTKwqyYLqACNGU3M04/ZyLjRIMUhKNvNokuGGynKh58WBoGyy4nwV8WdKVRW4ZQ+epbrkhDPcP05K4obrKq2vZLG2UZ/Li3FW4aMaTYmPJb00x/Rw9ZHhWfg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zV7ArLKA; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-513181719easo4351682e87.3
-        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 13:09:21 -0800 (PST)
+	s=arc-20240116; t=1709673358; c=relaxed/simple;
+	bh=ZuScJ0/saHnBjH4miHUWT5lm4D1ofxQSgaGoXeYoHnU=;
+	h=Date:Subject:In-Reply-To:CC:From:To:Message-ID:Mime-Version:
+	 Content-Type; b=ACwdAiibRYKtru8HAhfjc6HKqjyKeu541tmv2daySdZfVe+irT6P/00w2BRlMez7v85VXeah/AlqHDN3GKA9cY6I6w2kEy+wlp+HTeEjpPrKuZrCINmYUOiZv3pHbhXsDPa+Rqfu+NCK2FgCrjakOI//naiAxqq73P1DlVNaeVY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com; spf=pass smtp.mailfrom=dabbelt.com; dkim=pass (2048-bit key) header.d=dabbelt-com.20230601.gappssmtp.com header.i=@dabbelt-com.20230601.gappssmtp.com header.b=s56OoF7+; arc=none smtp.client-ip=209.85.214.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=dabbelt.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dabbelt.com
+Received: by mail-pl1-f177.google.com with SMTP id d9443c01a7336-1dc49afb495so2307005ad.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 13:15:56 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709672960; x=1710277760; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=jJZTR3ZQLE6TxtB1On0qTLLClIpP1eKZkTdZYogVliU=;
-        b=zV7ArLKAoCh5MB0KLgHepIpJFsdn8mIHnoOQ40I7AzejVd4ym49pD9XQ7Fc3mHqGOS
-         +1wzK+OqvCGQiioY4RvV9Je5IZkKD2dxV6F+8RPKrE/PiEX4fad5OZ/OBAaL0KW6e/Ob
-         o5xXo4lRrdNc5vEvXYK/242jcqiM3A3C6pK/mItwibqcy/L1OcCgtLU/pBUKiXKLGxdB
-         KMqoE7Mwo+Gl2mvKuVz1J2no/McpmM+Y70BvqBtJnjfOKgFCOSJaQfybA7XbZyT8PdFD
-         /xy0/3/6C9H7NzVReln8j//BTeNXjfp32pXRsetvZ+9Sfz+9AN/SWfLwvTJqe8yeTi0a
-         3Kdg==
+        d=dabbelt-com.20230601.gappssmtp.com; s=20230601; t=1709673355; x=1710278155; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fiBn8FM4g6SLp0BGLWgmHRyv4STvpdqrSJ1Zy2Fii/A=;
+        b=s56OoF7+hQxbDFF7KPE56L55q3UoHNnPxcZp96qNe1c/l3hflUx0mLQXDE/xaak58J
+         jCacJXenYpVkSjnAYffoLs5/lw5JRXJNj5nwGv95rr9rUf/RURf7zlKfvVzwOXxKqWcb
+         QiW6sOQiPWvmoNGdzEE29zkvZELHh147yRGZ1rHICx55Gi+GvcGKm2XoyBqNmsI8R4Yl
+         hUE2k5vrtXpTlxLD4M18KP4Sdj4V00otq0zOrkyhOd0KcatcbGjCAH0q1sAomcbXHp4t
+         +FSdbxRmZj8y16L/hwCmEL37u2hYiCneEjnxUv+DYQoXWwGhwPwqKJmMKSjAWxPNvJCM
+         7p5g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709672960; x=1710277760;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=jJZTR3ZQLE6TxtB1On0qTLLClIpP1eKZkTdZYogVliU=;
-        b=uTgU16KxWW9uAw5txcXCTCU1QIlfnriLsvs1xYbCmLJCme5N7rHQ7T/65Ln2CkmCtn
-         GAr9+pf+6N9Uyr4XkDXbj0C1KlaPW6Qd5eJ4H3WD8j+JfbtAJUDL9r6jZfr7XceXmRpb
-         k9tI3Ch6OxEDiR+siAQkywccAJkbaKav/fwqcjNHSzwIqxaGf8aVjZVMsQviCaexpn4U
-         IvURPX2eAD6PcWmAt4Zgu+8xmPuV2ZPZXsPKJod08kWEYVjwVtQzyVbrZP98RkUIL8NE
-         Whp632//ggWLh6kOyhsC27Towg9TlrymHiVbERdP9LRBEYSN/lxRo7l6w8m6RMGorRPR
-         BhOg==
-X-Forwarded-Encrypted: i=1; AJvYcCWE4Pl0h0L7L5KGFLfRS67N54ZyaM51gZE/D7jdbyx/hJqlNt/aTw4hn/2SsKKaxwbzVG1rqzszib4qQrn4aL7C7kl1xo832KsBiA==
-X-Gm-Message-State: AOJu0Ywu+aRRKL+DunA2+h8ERNU1iT7oENZg8tp1Qf+Z6UWWULocDtQC
-	0CSoCvet0ErG/mG66dZrp3pTsPhtCZIP/HPrpwk59oEkTsjJbJPZXCM0C5xOLsk=
-X-Google-Smtp-Source: AGHT+IE8CGigUxA1HCYfZiHbYBgeAldb7dQWGONv4ACnT65GTfW31N+bM8GawaFuCe4uzmmOQ4YDwg==
-X-Received: by 2002:a19:f803:0:b0:513:3fa4:3f22 with SMTP id a3-20020a19f803000000b005133fa43f22mr2145235lff.35.1709672959846;
-        Tue, 05 Mar 2024 13:09:19 -0800 (PST)
-Received: from [172.30.204.154] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id g13-20020ac24d8d000000b0051316ccc5besm2300433lfe.269.2024.03.05.13.09.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Mar 2024 13:09:19 -0800 (PST)
-Message-ID: <1697b03c-56ab-4e8b-a268-f9ceeed91c31@linaro.org>
-Date: Tue, 5 Mar 2024 22:09:18 +0100
+        d=1e100.net; s=20230601; t=1709673355; x=1710278155;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fiBn8FM4g6SLp0BGLWgmHRyv4STvpdqrSJ1Zy2Fii/A=;
+        b=Xn+lg4+MdpEzovC2/IYe1EEgoJLQO7L5KJsUTN7VXeD7eTg88rMoK6DM5W/VRoQow/
+         VWa0NOItV7UlcirOJH6GFBlJ8pZJIm0vae/q94BVtjuIps6Wvx1idCo1IR/bdmxU9tSP
+         +lf9Ir74q66jKq0Y6OAHILryNKNhN76ngSCyH9zRlRaxK9zbBWJRVC+w6p7CtKl9zNnI
+         9ij1fgX1xzQsjWXkigA5A1TKczsCLKyexNmKoNJ0qXRcznSus2DUgU6FuUXW2CyN+t16
+         AiskHZI0v0ry4XW0Kp82y3O2BeGahehePGAwOCBIzIQ4ALf+g2dR3gH5oA7vKUFNKsJp
+         OsvQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXVZFTNbhuosLLjCeG6witGIOscJVg7v+JMP+q3LkN1tqkTn5416ua7bkLBGetxST3oZic2n6MbPk4m3XVDFCvO6/9pB6Orunv7oA==
+X-Gm-Message-State: AOJu0Yx7HO5EF6FxE+C3hzWOgkO9YVe3qNGZaLoaaX2NbYdWGeiOfmb2
+	RR1IN0NGw7d8t70zpG5/5RxteqCEqct14VmPHl3Bd9Us6C3urDEus195rb26ack=
+X-Google-Smtp-Source: AGHT+IHh5G0L+3SfyyNdkveVZXtvX8KU042f9OgNbdPuwmamHBWHlAkygbRToiaIR/tqbjsFPbVIXA==
+X-Received: by 2002:a17:902:ecd2:b0:1db:f696:b09 with SMTP id a18-20020a170902ecd200b001dbf6960b09mr3603069plh.14.1709673355319;
+        Tue, 05 Mar 2024 13:15:55 -0800 (PST)
+Received: from localhost ([50.213.54.97])
+        by smtp.gmail.com with ESMTPSA id y5-20020a170902ed4500b001dbb06b6133sm11021831plb.127.2024.03.05.13.15.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Mar 2024 13:15:54 -0800 (PST)
+Date: Tue, 05 Mar 2024 13:15:54 -0800 (PST)
+X-Google-Original-Date: Tue, 05 Mar 2024 13:15:53 PST (-0800)
+Subject:     Re: [PATCH v3] riscv: dts: Move BUILTIN_DTB_SOURCE to common Kconfig
+In-Reply-To: <tencent_88FEE0A2C5E0852436A2F1A1087E6803380A@qq.com>
+CC: linux-riscv@lists.infradead.org, Paul Walmsley <paul.walmsley@sifive.com>,
+  aou@eecs.berkeley.edu, Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org,
+  masahiroy@kernel.org, alex@ghiti.fr, robh+dt@kernel.org, devicetree@vger.kernel.org,
+  cyy@cyyself.name, Conor Dooley <conor.dooley@microchip.com>
+From: Palmer Dabbelt <palmer@dabbelt.com>
+To: cyy@cyyself.name
+Message-ID: <mhng-5b86ee53-13eb-45b0-9b41-641224de3f3b@palmer-ri-x1c9a>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 0/3] Enable firmware-managed USB resources on Qcom targets
-Content-Language: en-US
-To: Sriram Dash <quic_sriramd@quicinc.com>, andersson@kernel.org,
- vkoul@kernel.org, kishon@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- gregkh@linuxfoundation.org, quic_wcheng@quicinc.com,
- Thinh.Nguyen@synopsys.com, p.zabel@pengutronix.de,
- linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, quic_psodagud@quicinc.com,
- quic_nkela@quicinc.com, manivannan.sadhasivam@linaro.org,
- ulf.hansson@linaro.org, sudeep.holla@arm.com, quic_shazhuss@quicinc.com
-References: <1709657858-8563-1-git-send-email-quic_sriramd@quicinc.com>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1709657858-8563-1-git-send-email-quic_sriramd@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
+On Wed, 28 Feb 2024 00:52:54 PST (-0800), cyy@cyyself.name wrote:
+> The BUILTIN_DTB_SOURCE was only configured for K210 before. Since
+> SOC_BUILTIN_DTB_DECLARE was removed at commit d5805af9fe9f ("riscv: Fix
+> builtin DTB handling") from patch [1], the kernel cannot choose one of the
+> dtbs from then on and always take the first one dtb to use. Then, another
+> commit 0ddd7eaffa64 ("riscv: Fix BUILTIN_DTB for sifive and microchip soc")
+> from patch [2] supports BUILTIN_DTB_SOURCE for other SoCs. However, this
+> feature will only work if the Kconfig we use links the dtb we expected in
+> the first place as mentioned in the thread [3]. Thus, a config
+> BUILTIN_DTB_SOURCE is needed for all SoCs to choose one dtb to use.
+>
+> For some considerations, this patch also removes default y if XIP_KERNEL
+> for BUILTIN_DTB, as this requires setting a proper dtb to use on the
+> BUILTIN_DTB_SOURCE, else the kernel with XIP but does not set
+> BUILTIN_DTB_SOURCE or unselect BUILTIN_DTB will not boot.
+>
+> Also, this patch removes the default dtb string for k210 from Kconfig to
+> nommu_k210_defconfig and nommu_k210_sdcard_defconfig to avoid complex
+> Kconfig settings for other SoCs in the future.
+>
+> [1] https://lore.kernel.org/linux-riscv/20201208073355.40828-5-damien.lemoal@wdc.com/
+> [2] https://lore.kernel.org/linux-riscv/20210604120639.1447869-1-alex@ghiti.fr/
+> [3] https://lore.kernel.org/linux-riscv/CAK7LNATt_56mO2Le4v4EnPnAfd3gC8S_Sm5-GCsfa=qXy=8Lrg@mail.gmail.com/
+>
+> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
-On 3/5/24 17:57, Sriram Dash wrote:
-> Some target systems allow multiple resources to be managed by firmware.
-> On these targets, tasks related to clocks, regulators, resets, and
-> interconnects can be delegated to the firmware, while the remaining
-> responsibilities are handled by Linux.
-
-Aside from the comments you already got from others, please change
-[RFC m/n] to [PATCH RFC m/n] so that your series isn't filtered out
-out maintainers' inboxes due to the missing PATCH keyword..
-
-Konrad
+> ---
+> Changes since v2:
+> - some fixes on format and grammar
+> - v2: https://lore.kernel.org/linux-riscv/tencent_61DFA8E0B13696A3256E538C4BC856633406@qq.com/
+>
+> Changes since v1:
+> - remove default y for BULTIN_DTB in any cases
+> - remove default DTB_SOURCE for k210 and moved to its defconfig file
+> - remove building dtb object file for other SoCs
+> - reword help message to say N if unsure for BUILTIN_DTB_SOURCE
+> - reword commit message
+> - v1: https://lore.kernel.org/linux-riscv/tencent_AB625442CC1BCFF86E04D7B5891C43719109@qq.com/
+>
+> ---
+>  arch/riscv/Kconfig                            | 14 +++++++-
+>  arch/riscv/Kconfig.socs                       | 32 -------------------
+>  arch/riscv/boot/dts/Makefile                  |  2 +-
+>  arch/riscv/boot/dts/canaan/Makefile           |  2 --
+>  arch/riscv/boot/dts/microchip/Makefile        |  1 -
+>  arch/riscv/boot/dts/sifive/Makefile           |  1 -
+>  arch/riscv/configs/nommu_k210_defconfig       |  2 ++
+>  .../riscv/configs/nommu_k210_sdcard_defconfig |  2 ++
+>  8 files changed, 18 insertions(+), 38 deletions(-)
+>
+> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> index 85c899d0133a..3d6d93d71257 100644
+> --- a/arch/riscv/Kconfig
+> +++ b/arch/riscv/Kconfig
+> @@ -1000,7 +1000,19 @@ config RISCV_ISA_FALLBACK
+>  config BUILTIN_DTB
+>  	bool "Built-in device tree"
+>  	depends on OF && NONPORTABLE
+> -	default y if XIP_KERNEL
+> +	help
+> +	  Build a device tree into the Linux image.
+> +	  This option should be selected if no bootloader is being used.
+> +	  If unsure, say N.
+> +
+> +
+> +config BUILTIN_DTB_SOURCE
+> +	string "Built-in device tree source"
+> +	depends on BUILTIN_DTB
+> +	help
+> +	  DTS file path (without suffix, relative to arch/riscv/boot/dts)
+> +	  for the DTS file that will be used to produce the DTB linked into the
+> +	  kernel.
+>
+>  endmenu # "Boot options"
+>
+> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+> index e08e91c49abe..623de5f8a208 100644
+> --- a/arch/riscv/Kconfig.socs
+> +++ b/arch/riscv/Kconfig.socs
+> @@ -84,36 +84,4 @@ config SOC_CANAAN
+>  	help
+>  	  This enables support for Canaan Kendryte K210 SoC platform hardware.
+>
+> -if ARCH_CANAAN
+> -
+> -config ARCH_CANAAN_K210_DTB_BUILTIN
+> -	def_bool SOC_CANAAN_K210_DTB_BUILTIN
+> -
+> -config SOC_CANAAN_K210_DTB_BUILTIN
+> -	bool "Builtin device tree for the Canaan Kendryte K210"
+> -	depends on ARCH_CANAAN
+> -	default y
+> -	select OF
+> -	select BUILTIN_DTB
+> -	help
+> -	  Build a device tree for the Kendryte K210 into the Linux image.
+> -	  This option should be selected if no bootloader is being used.
+> -	  If unsure, say Y.
+> -
+> -config ARCH_CANAAN_K210_DTB_SOURCE
+> -	string
+> -	default SOC_CANAAN_K210_DTB_SOURCE
+> -
+> -config SOC_CANAAN_K210_DTB_SOURCE
+> -	string "Source file for the Canaan Kendryte K210 builtin DTB"
+> -	depends on ARCH_CANAAN
+> -	depends on ARCH_CANAAN_K210_DTB_BUILTIN
+> -	default "k210_generic"
+> -	help
+> -	  Base name (without suffix, relative to arch/riscv/boot/dts/canaan)
+> -	  for the DTS file that will be used to produce the DTB linked into the
+> -	  kernel.
+> -
+> -endif # ARCH_CANAAN
+> -
+>  endmenu # "SoC selection"
+> diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
+> index 72030fd727af..fdae05bbf556 100644
+> --- a/arch/riscv/boot/dts/Makefile
+> +++ b/arch/riscv/boot/dts/Makefile
+> @@ -8,4 +8,4 @@ subdir-y += sophgo
+>  subdir-y += starfive
+>  subdir-y += thead
+>
+> -obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix /, $(subdir-y))
+> +obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_SOURCE))
+> diff --git a/arch/riscv/boot/dts/canaan/Makefile b/arch/riscv/boot/dts/canaan/Makefile
+> index 520623264c87..987d1f0c41f0 100644
+> --- a/arch/riscv/boot/dts/canaan/Makefile
+> +++ b/arch/riscv/boot/dts/canaan/Makefile
+> @@ -5,5 +5,3 @@ dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_bit.dtb
+>  dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_dock.dtb
+>  dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maix_go.dtb
+>  dtb-$(CONFIG_ARCH_CANAAN) += sipeed_maixduino.dtb
+> -
+> -obj-$(CONFIG_ARCH_CANAAN_K210_DTB_BUILTIN) += $(addsuffix .dtb.o, $(CONFIG_ARCH_CANAAN_K210_DTB_SOURCE))
+> diff --git a/arch/riscv/boot/dts/microchip/Makefile b/arch/riscv/boot/dts/microchip/Makefile
+> index 45adc4926e79..e177815bf1a2 100644
+> --- a/arch/riscv/boot/dts/microchip/Makefile
+> +++ b/arch/riscv/boot/dts/microchip/Makefile
+> @@ -4,4 +4,3 @@ dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-m100pfsevp.dtb
+>  dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-polarberry.dtb
+>  dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-sev-kit.dtb
+>  dtb-$(CONFIG_ARCH_MICROCHIP_POLARFIRE) += mpfs-tysom-m.dtb
+> -obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
+> diff --git a/arch/riscv/boot/dts/sifive/Makefile b/arch/riscv/boot/dts/sifive/Makefile
+> index 6a5fbd4ed96a..495bf760a909 100644
+> --- a/arch/riscv/boot/dts/sifive/Makefile
+> +++ b/arch/riscv/boot/dts/sifive/Makefile
+> @@ -1,4 +1,3 @@
+>  # SPDX-License-Identifier: GPL-2.0
+>  dtb-$(CONFIG_ARCH_SIFIVE) += hifive-unleashed-a00.dtb \
+>  			     hifive-unmatched-a00.dtb
+> -obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
+> diff --git a/arch/riscv/configs/nommu_k210_defconfig b/arch/riscv/configs/nommu_k210_defconfig
+> index 146c46d0525b..7e75200543f4 100644
+> --- a/arch/riscv/configs/nommu_k210_defconfig
+> +++ b/arch/riscv/configs/nommu_k210_defconfig
+> @@ -33,6 +33,8 @@ CONFIG_SMP=y
+>  CONFIG_NR_CPUS=2
+>  CONFIG_CMDLINE="earlycon console=ttySIF0"
+>  CONFIG_CMDLINE_FORCE=y
+> +CONFIG_BUILTIN_DTB=y
+> +CONFIG_BUILTIN_DTB_SOURCE="canaan/k210_generic"
+>  # CONFIG_SECCOMP is not set
+>  # CONFIG_STACKPROTECTOR is not set
+>  # CONFIG_GCC_PLUGINS is not set
+> diff --git a/arch/riscv/configs/nommu_k210_sdcard_defconfig b/arch/riscv/configs/nommu_k210_sdcard_defconfig
+> index 95d8d1808f19..0ba353e9ca71 100644
+> --- a/arch/riscv/configs/nommu_k210_sdcard_defconfig
+> +++ b/arch/riscv/configs/nommu_k210_sdcard_defconfig
+> @@ -25,6 +25,8 @@ CONFIG_SMP=y
+>  CONFIG_NR_CPUS=2
+>  CONFIG_CMDLINE="earlycon console=ttySIF0 root=/dev/mmcblk0p1 rootwait ro"
+>  CONFIG_CMDLINE_FORCE=y
+> +CONFIG_BUILTIN_DTB=y
+> +CONFIG_BUILTIN_DTB_SOURCE="canaan/k210_generic"
+>  # CONFIG_SECCOMP is not set
+>  # CONFIG_STACKPROTECTOR is not set
+>  # CONFIG_GCC_PLUGINS is not set
 
