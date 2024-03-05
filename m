@@ -1,113 +1,191 @@
-Return-Path: <devicetree+bounces-48546-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48547-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E8E7B872771
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 20:21:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B3121872773
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 20:22:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 878F71F25328
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:21:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40D351F25E6B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:22:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBD9024B29;
-	Tue,  5 Mar 2024 19:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F342CCD3;
+	Tue,  5 Mar 2024 19:22:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kmbEN/Qd"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aX8Y8+Zd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B491E1B809;
-	Tue,  5 Mar 2024 19:21:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A01250FE;
+	Tue,  5 Mar 2024 19:22:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709666461; cv=none; b=UP3PLwFq5ByUDQNlZjkwKVulE7BBs3J0YVnQWbAttTLdlwhCiEbR8z7XphGh4KMhf0tfsCu7YagttN73OTKoMBHAjgsm6kOH3YxbExzX2Cx03Kx7eugJVGLamn9YAGa1nKzSwXDjc5IF8vOsDmCrQsi2RKsruQVXiRhUgx7xmt4=
+	t=1709666533; cv=none; b=HxJu1y8ReJ75ph0ra31vHdeWQ2/zmHaMspaXf5LTAJltcILgWunegNnqaZakl2YabBEyqIEpB9J5HiEtgJZnFtY4pFPNedFYQrscSL+/fGxm5ifHm+9ipzC6uvyoGALMJ5s3IGRTM0lAZwGk0IIVpbVXixFbQZHQa38Es72w8SU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709666461; c=relaxed/simple;
-	bh=jG8PjPDjHjrzDu50mfZQbgkQ+cDwgQ7Iq6c6nCmgzwY=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=gmJsKvQwwhVwZXmlA9wZ5oxbNpnFRun+YGEB4N0Lhw+kShhmZuUYkc2IXWNM0OIKFEAtD3tevdmgWg4Aiq2UBcWPTWYLgQhPo32DOJJranmvZ4X1Pg9cKrgMEWj13Exy1L5sliuggq3UC4JrbT+ktwaEBZWomZO8ZjW1/WOwyWA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kmbEN/Qd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 03ED8C433C7;
-	Tue,  5 Mar 2024 19:20:58 +0000 (UTC)
+	s=arc-20240116; t=1709666533; c=relaxed/simple;
+	bh=WK1G/NaCYvxTxQ/E6MRFLMHXXETCzVWrlTphyKmWH/s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q2fFRpoDMQ/NKkqOvkEh/UB0/LcS9m4jCsUuOTIomrlACWzG/qooyiIGbJEzMftsRIctsoQ70N90U68C0iabCBK/Lkq6+CZV8mxCBIVGKb82pAohwh7XTjaqvDqG341j6/pDMcdOAP4SQHuNIAMCmdIQfn9L6c495bchnzn4Jvs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aX8Y8+Zd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B45EC433C7;
+	Tue,  5 Mar 2024 19:22:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709666461;
-	bh=jG8PjPDjHjrzDu50mfZQbgkQ+cDwgQ7Iq6c6nCmgzwY=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=kmbEN/QdufeshqadsHgjXE85SU3L0z8KHYggPny+2OevlwR1rTVgV4izDZkSg7jDy
-	 AvLvND/kK6D2n7r8ZKDdUfPmZeZQSZUId0sIvZmHnUMHtklpj+b71cwtdL8Ao0IpWN
-	 1lSEmghmvIMKt3osl/fCUkBO3UYwlY1Jo/yVJHIMJgr8xoFQWXH7pQVc6lK/Pj2sFK
-	 WhsHrSEa01JM59SjumY/bwDWuhNggOdhwGQZdLpGtSBSC9MgdBG/c0FEs599QjWb1b
-	 5hJifFFcfbXErF3xU4fwoHxjy0OHuqjEYjrLxlM7YVM9MX+AO1HOi33rP8XAjW+8bg
-	 iyZfVC9hXj6Qg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  ath10k
- <ath10k@lists.infradead.org>,  wireless <linux-wireless@vger.kernel.org>,
-  DT <devicetree@vger.kernel.org>,  Rob Herring <robh+dt@kernel.org>,
-  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley
- <conor+dt@kernel.org>,  Pierre-Hugues Husson <phhusson@freebox.fr>,  Jami
- Kettunen <jamipkettunen@gmail.com>,  Jeffrey Hugo
- <quic_jhugo@quicinc.com>,  Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
-	<b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr>
-	<871q8wk7o3.fsf@kernel.org>
-	<3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr>
-	<87wmqoilzf.fsf@kernel.org>
-	<c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr>
-	<87cyse8j9m.fsf@kernel.org>
-	<6d4b1381-c121-4cda-a8c9-9ccac56bd447@freebox.fr>
-	<87plw87nsc.fsf@kernel.org>
-	<0816f7bb-3c97-4b90-8e19-191552ea6e26@freebox.fr>
-Date: Tue, 05 Mar 2024 21:20:57 +0200
-In-Reply-To: <0816f7bb-3c97-4b90-8e19-191552ea6e26@freebox.fr> (Marc
-	Gonzalez's message of "Tue, 5 Mar 2024 18:32:20 +0100")
-Message-ID: <87h6hk7aee.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=k20201202; t=1709666533;
+	bh=WK1G/NaCYvxTxQ/E6MRFLMHXXETCzVWrlTphyKmWH/s=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=aX8Y8+Zdk66foHU/vgrLhRefbVfoikrZmF/gHYbKS8iwxqGuKMao8AKX2dUTTPLZE
+	 PPxBFJmD30zUO1nCZDHPHHT+OZaih4sHfTFhtPUHQ5w9WRu6MK+nx1GImp19ggsEcQ
+	 Nh5nbkHh6rAUaJsRiOuulf/KSZsrYE+czREyXeiEGhGDTnzzwssBu6lIidtAZNxaxI
+	 ezPNglsH/T3IB1JRycxGEq996pd55valJ8I+djh8U9C4lbdLXAxMgYX9tR9OdQAWv2
+	 opbvye3lD/s9F+4xQ5sSjKXB9aHxIzsWtkrplp+GdYMd32CvC6PHWOZM0m9C0ZjXXj
+	 fxGHEoE90EXJQ==
+Date: Tue, 5 Mar 2024 13:22:09 -0600
+From: Bjorn Andersson <andersson@kernel.org>
+To: Sriram Dash <quic_sriramd@quicinc.com>
+Cc: konrad.dybcio@linaro.org, vkoul@kernel.org, kishon@kernel.org, 
+	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	gregkh@linuxfoundation.org, quic_wcheng@quicinc.com, Thinh.Nguyen@synopsys.com, 
+	p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+	quic_psodagud@quicinc.com, quic_nkela@quicinc.com, manivannan.sadhasivam@linaro.org, 
+	ulf.hansson@linaro.org, sudeep.holla@arm.com, quic_shazhuss@quicinc.com
+Subject: Re: [RFC 2/3] USB: dwc3: qcom: Add support for firmware managed
+ resources
+Message-ID: <ltjrdqxvupzjdqa22fvpzndeh7pc7zfmi5ybqxu2izjnnxjon7@jojqkltzukvv>
+References: <1709657858-8563-1-git-send-email-quic_sriramd@quicinc.com>
+ <1709657858-8563-3-git-send-email-quic_sriramd@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1709657858-8563-3-git-send-email-quic_sriramd@quicinc.com>
 
-Marc Gonzalez <mgonzalez@freebox.fr> writes:
+On Tue, Mar 05, 2024 at 10:27:37PM +0530, Sriram Dash wrote:
+> Some target systems allow multiple resources to be managed by firmware.
+> On these targets, tasks related to clocks, regulators, resets, and
+> interconnects can be delegated to the firmware, while the remaining
+> responsibilities are handled by Linux.
+> 
+> The driver is responsible for managing multiple power domains and
+> linking them to consumers as needed. Incase there is only single
+> power domain, it is considered to be a standard GDSC hooked on to
+> the qcom dt node which is read and assigned to device structure
+> (by genpd framework) before the driver probe even begins.
+> 
+> This differentiation logic allows the driver to determine whether
+> device resources are managed by Linux or firmware, ensuring
+> backward compatibility.
+> 
+> Furthermore, minor cleanup is performed for the private data of
 
-> On 05/03/2024 15:31, Kalle Valo wrote:
->
->> Thanks, this is exactly what I'm proposing.
->
-> With your suggestions, the patch becomes much simpler:
+No "futhermore"s please, separate matters should be proposed as separate
+patches. Perhaps these can be sent separately and merged immediately?
 
-Nice, looks good to me.
+> the SNPS Femto PHY. However, ACPI handling is omitted due to the
+> absence of clients on the ACPI side.
+> 
+> Signed-off-by: Sriram Dash <quic_sriramd@quicinc.com>
+> ---
+>  drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 290 ++++++++++++++++++++------
+>  drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c | 213 +++++++++++++++----
+>  drivers/usb/dwc3/dwc3-qcom.c                  | 259 +++++++++++++++++------
 
-> I need to build a kernel + rootfs + FW to test the proposed solution,
-> then I can spin a formal submission.
+You're making independent changes across three different drivers across
+two different subsystems, with different maintainers, this is not
+acceptable as a single patch.
 
-Yeah, please do test this to make sure we are not missing anything :)
+>  3 files changed, 594 insertions(+), 168 deletions(-)
+> 
+> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
+> index 8525393..1ac1b50 100644
+> --- a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
+> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
+> @@ -21,6 +21,9 @@
+>  
+>  #include "phy-qcom-qmp-common.h"
+>  
+> +#include <linux/pm_opp.h>
+> +#include <linux/pm_domain.h>
 
-> (I didn't understand why this patch requires Dmitry's series?)
+Why are these includes alone here? Integrate your changes with the
+driver properly.
 
-Dmitry's patchset is needed so that we can have board specific
-firmware-N.bin files. At the moment there can be only one firmware-N.bin
-(ath10k/WCN3990/hw1.0/firmware-5.bin) for all boards with WCN3990.
+> +
+>  #include "phy-qcom-qmp.h"
+>  #include "phy-qcom-qmp-pcs-misc-v3.h"
+>  #include "phy-qcom-qmp-pcs-misc-v4.h"
+> @@ -1212,6 +1215,9 @@ struct qmp_phy_cfg {
+>  	unsigned int pcs_usb_offset;
+>  };
+>  
+> +#define DOMAIN_GENPD_TRANSFER			0
+> +#define DOMAIN_GENPD_CORE			1
 
-Your patch can be applied to ath.git independently from Dmitry's
-patchset but we need Dmitry's patchset applied before updating
-linux-firmware.git.
+Does this really represent the hardware? What hardware constructs does
+"transfer" and "core" maps to?
 
-> Do I need to submit a symmetric patch to linux-firmware to define bit 23?
-> And also a patch to add the bit to some firmwares? (All msm8998 FWs?)
+> +
+>  struct qmp_usb {
+>  	struct device *dev;
+>  
+> @@ -1236,6 +1242,19 @@ struct qmp_usb {
+>  	struct phy *phy;
+>  
+>  	struct clk_fixed_rate pipe_clk_fixed;
+> +
+> +	struct dev_pm_domain_list *pd_list;
+> +	struct device *genpd_core;
+> +	struct device *genpd_transfer;
+> +
+> +	bool fw_managed;
+> +	/* separate resource management for fw_managed vs locally managed devices */
+> +	struct qmp_usb_device_ops {
+> +		int (*bus_resume_resource)(struct qmp_usb *qmp);
 
-Me and Jeff can handle linux-firmware.git submission. We will also add
-the new bit to ath10k-fwencoder.
+Not only does these function pointers make the drivers much harder to
+follow, your naming of these seems chosen to maximize the confusion.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+In your managed case this doesn't seem to relate to any "bus", in the
+"local" case, this doesn't relate to a "bus", and these callbacks are
+decoupled from the actual runtime resume and suspend cycle of the QMP
+device itself...
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+> +		int (*runtime_resume_resource)(struct qmp_usb *qmp);
+> +		int (*bus_suspend_resource)(struct qmp_usb *qmp);
+> +		int (*runtime_suspend_resource)(struct qmp_usb *qmp);
+> +	} qmp_usb_device_ops;
+>  };
+>  
+>  static inline void qphy_setbits(void __iomem *base, u32 offset, u32 val)
+> @@ -1598,6 +1617,41 @@ static const struct qmp_phy_cfg x1e80100_usb3_uniphy_cfg = {
+>  	.regs			= qmp_v7_usb3phy_regs_layout,
+>  };
+>  
+> +static void qmp_fw_managed_domain_remove(struct qmp_usb *qmp)
+> +{
+> +	dev_pm_domain_detach_list(qmp->pd_list);
+> +}
+> +
+> +static int qmp_fw_managed_domain_init(struct qmp_usb *qmp)
+> +{
+> +	struct device *dev = qmp->dev;
+> +	struct dev_pm_domain_attach_data pd_data = {
+> +		.pd_flags	= PD_FLAG_NO_DEV_LINK,
+
+Iiuc, you attach the two power-domains with NO_DEV_LINK, such that the
+pm runtime state of the device itself won't reflect on the power
+domains, and then you hand-code all the involved logic yourself?
+
+Why can't you integrate with the device and use its runtime state?
+Please clearly explain why you're doing it like this in your commit
+messages.
+
+Regards,
+Bjorn
 
