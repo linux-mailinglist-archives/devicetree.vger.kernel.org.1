@@ -1,96 +1,134 @@
-Return-Path: <devicetree+bounces-48373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3BDB8719C7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 10:42:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 32C528719DC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 10:47:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 287791C21074
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:42:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8A42B21363
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:47:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1AB2854770;
-	Tue,  5 Mar 2024 09:41:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4FF535DC;
+	Tue,  5 Mar 2024 09:47:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UuViqyXH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [195.130.137.89])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4069A535BF
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 09:41:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.130.137.89
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342A9535AB;
+	Tue,  5 Mar 2024 09:46:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709631716; cv=none; b=Cob5BCtftpE5brXsUZC7B11NuVSsuG0+nSt3H9tSao/GZYO6L75iR7x5+KFcG9bC2ItZLAeSfyQO/6Bs4XG44jb+gfFLjQ2fhKySuEXNI6fMnPic9K7kronijOdr/7X4nagxLGkaJa/NGJvDLhfkbTevcf5WNys48Ch6gPV0Yvc=
+	t=1709632022; cv=none; b=qWFkpEeNFDE9tkBGyf2XSItsqJBdyZdYuQ8styf0j9XJwrURdphxtIsVfZ8clqaOJklbZ9fgbk96gJokI1zpas/DaW5FHLSKJvpHBKzvyMeK4rqxYf3IgjjOEa1Zxv//YjLcby6+qkb2C8HcpLHWfwGS6iBH1wQnkXsPo1kjoZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709631716; c=relaxed/simple;
-	bh=dMwgmbNGxOjzag43qzzaR5zBokKVeTOGOhp5Q6wizmE=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bncmPtDV8if05r/lB8if3z5NlqN8mRM2+OcaiMtx8vafbAtmpov4ILM7b2TZfqZYwoR+iHpsh6HhnJi68RxeDiYJTTtGk0nW47rrMPm2MLwACbfJGgwmU7IOSDdmclD2aCnwZaNW9cBDOADhQHjuwyi6JkNwGJDWwpf7/0I1puo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be; spf=none smtp.mailfrom=linux-m68k.org; arc=none smtp.client-ip=195.130.137.89
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=glider.be
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux-m68k.org
-Received: from ramsan.of.borg ([84.195.187.55])
-	by laurent.telenet-ops.be with bizsmtp
-	id uxhm2B00G1C8whw01xhmG6; Tue, 05 Mar 2024 10:41:51 +0100
-Received: from rox.of.borg ([192.168.97.57])
-	by ramsan.of.borg with esmtp (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1rhREV-002PPO-Tg;
-	Tue, 05 Mar 2024 10:37:24 +0100
-Received: from geert by rox.of.borg with local (Exim 4.95)
-	(envelope-from <geert@linux-m68k.org>)
-	id 1rhREi-00BUN7-Ih;
-	Tue, 05 Mar 2024 10:37:24 +0100
-From: Geert Uytterhoeven <geert+renesas@glider.be>
-To: Sergey Shtylyov <s.shtylyov@omp.ru>,
-	"David S . Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Cc: netdev@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Thanh Quan <thanh.quan.xn@renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>
-Subject: [PATCH net-next] dt-bindings: net: renesas,etheravb: Add support for R-Car V4M
-Date: Tue,  5 Mar 2024 10:37:18 +0100
-Message-Id: <0212b57ba1005bb9b5a922f8f25cc67a7bc15f30.1709631152.git.geert+renesas@glider.be>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1709632022; c=relaxed/simple;
+	bh=SdVFrDX1tE7NitSkdJ8XNvewUL8AuhZd2lfMdZfjpSk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LHN7YfyMpDM1IJMWp5qbJdSQnH/sNSLnvDxcG6sHCysVvFkj6pzNv4c1PKnyP20VaxBRLZQ7jaTfbiYKX6cauhago9+V2K5KEUhMOiSQ786YyFyaGT8j/I59k+XgAGr+Q0lqo94paRT+QVgB3oXIUgMkweiheJIcjwvk0ijtW20=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UuViqyXH; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E88A91BF207;
+	Tue,  5 Mar 2024 09:46:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709632018;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=x3jvJ31UW5g1AteAWnKjkA5Ea0CCYOiyYufsygt7PXM=;
+	b=UuViqyXHpmyiPp4V/tHhbWt98t7steNc2d9YJ3j1pxEYOmcx0JzXo0aCcKu16ynreqimG0
+	SM81f8iJQHQrzdFsbMSRaNj1TMi9jjniMcy1hLgzPYUa6x8gYm1lLaRsEnNmQcjuolmB9I
+	VX041rAp1I6nuvhAXHji/rdEQB/OQOQLa0/cZHm8yLjFpZdJhdGbcoT0TqqihFmnh5w34J
+	ZVCxqGGsAjwMHerVXfQs3QfvzieGjuPn0dzp8+66ds5WU9juv15sUrU7bod87gx2rft2ax
+	L96KGP6+qgepjgKlh84xNAiOg6qpuftAcbe9vfqgjJX66YD/ceD4PWJu+pXWfQ==
+Message-ID: <ee36a60d-5b65-4eb8-ac41-e4b6be1cf81f@bootlin.com>
+Date: Tue, 5 Mar 2024 10:46:55 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] drm/panel: simple: add CMT430B19N00 LCD panel
+ support
+Content-Language: en-US
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Thierry Reding
+ <thierry.reding@gmail.com>, dri-devel@lists.freedesktop.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Yen-Mei Goh <yen-mei.goh@keysight.com>
+References: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
+ <20240304160454.96977-4-jeremie.dautheribes@bootlin.com>
+ <20240304-inquisitive-kickass-pronghorn-c641ff@houat>
+From: =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?=
+ <jeremie.dautheribes@bootlin.com>
+In-Reply-To: <20240304-inquisitive-kickass-pronghorn-c641ff@houat>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: jeremie.dautheribes@bootlin.com
 
-From: Thanh Quan <thanh.quan.xn@renesas.com>
+Hi Maxime,
 
-Document support for the Renesas Ethernet AVB (EtherAVB-IF) block in the
-Renesas R-Car V4M (R8A779H0) SoC.
+On 04/03/2024 17:25, Maxime Ripard wrote:
+> Hi,
+> 
+> On Mon, Mar 04, 2024 at 05:04:54PM +0100, Jérémie Dautheribes wrote:
+>> Add support for Crystal Clear Technology CMT430B19N00 4.3" 480x272
+>> TFT-LCD panel.
+>>
+>> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
+>> ---
+>>   drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
+>>   1 file changed, 29 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+>> index 20e3df1c59d4..b940220f56e2 100644
+>> --- a/drivers/gpu/drm/panel/panel-simple.c
+>> +++ b/drivers/gpu/drm/panel/panel-simple.c
+>> @@ -1457,6 +1457,32 @@ static const struct panel_desc boe_hv070wsa = {
+>>   	.connector_type = DRM_MODE_CONNECTOR_LVDS,
+>>   };
+>>   
+>> +static const struct drm_display_mode cct_cmt430b19n00_mode = {
+>> +	.clock = 9000,
+>> +	.hdisplay = 480,
+>> +	.hsync_start = 480 + 43,
+>> +	.hsync_end = 480 + 43 + 8,
+>> +	.htotal = 480 + 43 + 8 + 4,
+>> +	.vdisplay = 272,
+>> +	.vsync_start = 272 + 12,
+>> +	.vsync_end = 272 + 12 + 8,
+>> +	.vtotal = 272 + 12 + 8 + 4,
+>> +	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+>> +};
+> 
+> Your pixel clock doesn't really match the rest of the timings:
+> 
+> (480 + 43 + 8 + 4) * (272 + 12 + 8 + 4) * 60 = 9501600
+> 
+> So a ~6% deviation.
+> 
+> What does the datasheet say?
 
-Signed-off-by: Thanh Quan <thanh.quan.xn@renesas.com>
-Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
----
- Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Indeed it does not exactly match but the datasheet indicates that the 
+typical clock frequency is 9MHz and when this frequency is used, the 
+typical values of the other parameters are those we have defined in the 
+drm_display_mode structure. I don't see any information about the 
+accepted deviation either.
 
-diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-index 890f7858d0dc4c79..de7ba7f345a93778 100644
---- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-+++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
-@@ -46,6 +46,7 @@ properties:
-           - enum:
-               - renesas,etheravb-r8a779a0     # R-Car V3U
-               - renesas,etheravb-r8a779g0     # R-Car V4H
-+              - renesas,etheravb-r8a779h0     # R-Car V4M
-           - const: renesas,etheravb-rcar-gen4 # R-Car Gen4
- 
-       - items:
--- 
-2.34.1
+Best regards,
 
+Jérémie
 
