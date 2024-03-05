@@ -1,154 +1,297 @@
-Return-Path: <devicetree+bounces-48508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88ECD872510
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:01:45 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 307B287251D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:04:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 28D7D1F27883
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:01:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53F861C25801
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:04:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6048EDDCB;
-	Tue,  5 Mar 2024 17:01:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D947DDDA;
+	Tue,  5 Mar 2024 17:04:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fU42HUNX"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="IlIPOAQF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2B5AFDDAD;
-	Tue,  5 Mar 2024 17:01:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C249D271;
+	Tue,  5 Mar 2024 17:04:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709658099; cv=none; b=RJu+jwE+swOfo6mdu8WfvQVYj28m9PpcvPqT6YklfdREKTzuMf+vBci22pveYS/22g9dA++iw9tGPNPURmDcBHjoNOco+3U1UcztC5iaGu0ygJF4W63Z43vbtsNJgX8AaK7U0BXhiKJSOZxR7Z0HoBq0INwpweaSVws3xHjMI88=
+	t=1709658292; cv=none; b=mBPogMP85A7/E/4UJeMuckPkrhYH//Q7Q11WTcyvC+C5tcoixLzRa3+/MSWkAtsyS9/OQbLIhd+yUHDDo51M0+w4MffDbsHtiNnKw3z5oGm8dkU78SKQSDkjcYe6o2uauBXQrJMxClczRKR80e07zEKnPttQf//6/qgWFyC7PXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709658099; c=relaxed/simple;
-	bh=4qZMQUT97qziMrbEkR0c+mNUfDn+AAkaDuZWbsUSINQ=;
+	s=arc-20240116; t=1709658292; c=relaxed/simple;
+	bh=IwoYy/YsKXcmbkczGcUCaH+S7FckDi0X6t8xOM9z8H8=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=b5C5JDGT5JzyROyx0VTFliLoW2ob8859BWdpgPMWnVSDwiRsU7NiV83rGVw1iZDQy5DKB5pr38/P1voOwRLYO7/1+JHmo4+iu0jixXaak/M4lAXVZh0zswjRnx7+aIR/x8emDHVIAJRodd8ITwa7Xcu6auddBWDuA3TmgQ3iOZY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fU42HUNX; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F502C433F1;
-	Tue,  5 Mar 2024 17:01:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709658098;
-	bh=4qZMQUT97qziMrbEkR0c+mNUfDn+AAkaDuZWbsUSINQ=;
+	 Content-Type:Content-Disposition:In-Reply-To; b=LqTh88o5pcZc1iVrpsPvfBthHz4a6YDZMh85DCiQRsqOqJIeApkHh+gbdN2ZBoMaGGdgFoCKu7fcbSkhia4hrU4gR1yvRrUbARO7L1mQrTR0cq2FEN5UxrI/rG07unrIczKmrRCZ+8BhWU3tUQ5ceJH08pxCQHW1IKooxqDcT08=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=IlIPOAQF; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from ideasonboard.com (unknown [IPv6:2001:b07:5d2e:52c9:cc1e:e404:491f:e6ea])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 8276E8D0;
+	Tue,  5 Mar 2024 18:04:31 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1709658271;
+	bh=IwoYy/YsKXcmbkczGcUCaH+S7FckDi0X6t8xOM9z8H8=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=fU42HUNXNJ2YEmsFtU0BPLIyXXoSJjZmBlfqPyEq1dHLm9X3835jn+VMyfHVT+/1y
-	 A0ZCzfbXW9Se2xrf/Kn+gVNWPzxaENVbUSrIl2Bz64IKKGOaPa6u7gsTItt5XgOoPa
-	 s5nyJ69oQhhZZazxcFpA6TGBUPhoUHusXjf+cD3thL+qWodMJ/YKtkckTvzMxhYarg
-	 34zbBKhN1NBLTr0JU0x6hKmr7ktJeSDPSpAc9lZwSJk/UN7WgOxzktJKk1YVM5hJG2
-	 GlOZgjF3qnO7l4Y7fgj+mk0hFBhLQrhhbFBQANDh9gaA1zuRbGZ1GhryE0Drl3k+a7
-	 RL9pB9EDhaZ7A==
-Date: Tue, 5 Mar 2024 17:01:34 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Yangyu Chen <cyy@cyyself.name>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, linux-riscv@lists.infradead.org,
-	dlemoal@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Albert Ou <aou@eecs.berkeley.edu>, guoren@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 6/7] riscv: dts: add initial canmv-k230 and k230-evb
- dts
-Message-ID: <20240305-shorten-disallow-eae65fdc8fdb@spud>
-References: <mhng-f1aa91d4-211f-4eb4-a94d-a9d88b0d3f6a@palmer-ri-x1c9>
- <7A86D933-B85F-4B29-8D6D-AB414A42AC06@cyyself.name>
- <tencent_B2C1146D4947315C8018AE90EDC64F3E6207@qq.com>
+	b=IlIPOAQFJss0FW45DzM/Bgg9EQ9vNhCgefPYMF5SZqJGgsPmYhYZmgxQrEpSmQ0mx
+	 KoBnCogoM822laEtb+Nzt/09HlWLsXOxGsgxx3RSW0IBmQ1r6zP9aQxtft7bhCy8VY
+	 /6DMD6Poxx2m34FOWJ22t3uSyodzBB1SnjSVQe1w=
+Date: Tue, 5 Mar 2024 18:04:46 +0100
+From: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>
+Cc: linux-media@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com, 
+	robh+dt@kernel.org, mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, jerome.forissier@linaro.org, kieran.bingham@ideasonboard.com, 
+	laurent.pinchart@ideasonboard.com
+Subject: Re: [PATCH v3 1/5] media: uapi: Add MEDIA_BUS_FMT_RGB202020_1X60
+ format code
+Message-ID: <t4c3gxmyi5rc6ojgpsgi77e7yt4ihpcp6j5k7l7hpnadz3iunu@vtmozmvo6rip>
+References: <20240305164832.2055437-1-dan.scally@ideasonboard.com>
+ <20240305164832.2055437-2-dan.scally@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="7/iNqzShui/y+tHK"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <tencent_B2C1146D4947315C8018AE90EDC64F3E6207@qq.com>
+In-Reply-To: <20240305164832.2055437-2-dan.scally@ideasonboard.com>
 
+Hi Dan
 
---7/iNqzShui/y+tHK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, Mar 05, 2024 at 04:48:28PM +0000, Daniel Scally wrote:
+> The Mali-C55 ISP by ARM requires 20-bits per colour channel input on
+> the bus. Add a new media bus format code to represent it.
+>
+> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
 
-Hey,
+Reviewed-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
 
-Just chiming so that things don't get misinterpreted.
+Thanks
+   j
 
-On Wed, Mar 06, 2024 at 12:37:16AM +0800, Yangyu Chen wrote:
-> > On Mar 6, 2024, at 00:22, Yangyu Chen <cyy@cyyself.name> wrote:
-> >> On Mar 5, 2024, at 23:54, Palmer Dabbelt <palmer@dabbelt.com> wrote:
-> >> On Mon, 04 Mar 2024 13:06:00 PST (-0800), cyy@cyyself.name wrote:
-> >>> - Svpbmt and T-Head MAEE both supported
-> >>>=20
-> >>> T-Head C908 does support both Svpbmt and T-Head MAEE for page-based m=
-emory
-> >>> attributes and is controlled by csr.mxstatus. If the kernel wants to =
-use
-> >>> svpbmt, the m-mode software should set BIT(21) of csr.mxstatus to zero
-> >>> before entering the s-mode kernel. Otherwise, the kernel will not boo=
-t as 0
-> >>> on T-Head MAEE represent to NonCachable Memory and it will lose dirty=
- cache
-> >>> lines modification that haven't been written back to the memory.
-> >>=20
-> >> So I guess we need the bootloader to just be accurate here?  ie: whate=
-ver
-> >> extension it tells S-mode kernels is enabled is how S-mode behaves, and
-> >> then this should just work itself out.
-
-Correct, the bootloader/firmware "just" needs to write this bit to match
-what it passes to onwards in the devicetree.
-
-> > Yes. Currently, I have patched OpenSBI to disable MAEE. Conor Dooley sa=
-id
-> > from a public irc group that he wants to control the enable of T-Head
-
-(#riscv on libera, the usual location)
-
-I also suggested that that, given we can use the standard extensions,
-we should use them instead of the custom extensions/errata.
-
-> > variation of zicbom and svpbmt from dts, in addition to mimplid or
-> > something now.
-
-Correct. I'm find with the impid =3D=3D archid =3D=3D 0 condition, given th=
-at's
-what we need to keep to avoid regressions, but if any future T-Head CPUs
-want to enable MAEE (ERRATA_THEAD_PBMT) or the custom CMOs
-(ERRATA_THEAD_CMO) these should be enabled from DT. Particularly when
-these CPUs can be configured to either use the T-Head versions or the
-standard extensions.
-
-> > I think that will be a better way for the bootloader to tell
-> > the kernel whether the T-Head MAEE should be enabled.
-
-You've got three options I guess. You could patch the DT in the bootloader,
-or use a fixed DT that matches the bootloader, or you could use the DT
-passed to the bootloader and parse the extensions to decide whether or not
-to enable MAEE or Svpbmt. Seems you're going for option 2.
-
-> > Link: https://github.com/cyyself/opensbi/commit/b113c1c01d700314a4a6962=
-97ec09031a9399354
-> >=20
-> > Furthermore, I wonder whether a CPU node like this would be acceptable.
-> > I don't have any other details of how another CPU from K230 SoC works on
-> > Linux.
-
-A CPU node like what? It is not clear to me.
-
---7/iNqzShui/y+tHK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZedP7gAKCRB4tDGHoIJi
-0vlUAQDOzEPBUwFNFekPyZA1wxs/XJG2IBFzn18OERTkISZkDQEArky2FzLuZ9b1
-IyeQgq4Qy6fuiT9qN796R8RzZPoXDwg=
-=mHae
------END PGP SIGNATURE-----
-
---7/iNqzShui/y+tHK--
+> ---
+> Changes in v3:
+>
+> 	- None
+>
+> Changes in v2:
+>
+> 	- none
+>
+>  .../media/v4l/subdev-formats.rst              | 168 ++++++++++++++++++
+>  include/uapi/linux/media-bus-format.h         |   3 +-
+>  2 files changed, 170 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/userspace-api/media/v4l/subdev-formats.rst b/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> index eb3cd20b0cf2..269b61926855 100644
+> --- a/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> +++ b/Documentation/userspace-api/media/v4l/subdev-formats.rst
+> @@ -2223,6 +2223,174 @@ The following table list existing packed 48bit wide RGB formats.
+>
+>      \endgroup
+>
+> +The following table list existing packed 60bit wide RGB formats.
+> +
+> +.. tabularcolumns:: |p{4.0cm}|p{0.7cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|p{0.22cm}|
+> +
+> +.. _v4l2-mbus-pixelcode-rgb-60:
+> +
+> +.. raw:: latex
+> +
+> +    \begingroup
+> +    \tiny
+> +    \setlength{\tabcolsep}{2pt}
+> +
+> +.. flat-table:: 60bit RGB formats
+> +    :header-rows:  3
+> +    :stub-columns: 0
+> +    :widths: 36 7 3 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+> +
+> +    * - Identifier
+> +      - Code
+> +      -
+> +      - :cspan:`31` Data organization
+> +    * -
+> +      -
+> +      - Bit
+> +      -
+> +      -
+> +      -
+> +      -
+> +      - 59
+> +      - 58
+> +      - 57
+> +      - 56
+> +      - 55
+> +      - 54
+> +      - 53
+> +      - 52
+> +      - 51
+> +      - 50
+> +      - 49
+> +      - 48
+> +      - 47
+> +      - 46
+> +      - 45
+> +      - 44
+> +      - 43
+> +      - 42
+> +      - 41
+> +      - 40
+> +      - 39
+> +      - 38
+> +      - 37
+> +      - 36
+> +      - 35
+> +      - 34
+> +      - 33
+> +      - 32
+> +    * -
+> +      -
+> +      -
+> +      - 31
+> +      - 30
+> +      - 29
+> +      - 28
+> +      - 27
+> +      - 26
+> +      - 25
+> +      - 24
+> +      - 23
+> +      - 22
+> +      - 21
+> +      - 20
+> +      - 19
+> +      - 18
+> +      - 17
+> +      - 16
+> +      - 15
+> +      - 14
+> +      - 13
+> +      - 12
+> +      - 11
+> +      - 10
+> +      - 9
+> +      - 8
+> +      - 7
+> +      - 6
+> +      - 5
+> +      - 4
+> +      - 3
+> +      - 2
+> +      - 1
+> +      - 0
+> +    * .. _MEDIA-BUS-FMT-RGB202020-1X60:
+> +
+> +      - MEDIA_BUS_FMT_RGB202020_1X60
+> +      - 0x1026
+> +      -
+> +      -
+> +      -
+> +      -
+> +      -
+> +      - r\ :sub:`19`
+> +      - r\ :sub:`18`
+> +      - r\ :sub:`17`
+> +      - r\ :sub:`16`
+> +      - r\ :sub:`15`
+> +      - r\ :sub:`14`
+> +      - r\ :sub:`13`
+> +      - r\ :sub:`12`
+> +      - r\ :sub:`11`
+> +      - r\ :sub:`10`
+> +      - r\ :sub:`8`
+> +      - r\ :sub:`8`
+> +      - r\ :sub:`7`
+> +      - r\ :sub:`6`
+> +      - r\ :sub:`5`
+> +      - r\ :sub:`4`
+> +      - r\ :sub:`3`
+> +      - r\ :sub:`2`
+> +      - r\ :sub:`1`
+> +      - r\ :sub:`0`
+> +      - g\ :sub:`19`
+> +      - g\ :sub:`18`
+> +      - g\ :sub:`17`
+> +      - g\ :sub:`16`
+> +      - g\ :sub:`15`
+> +      - g\ :sub:`14`
+> +      - g\ :sub:`13`
+> +      - g\ :sub:`12`
+> +    * -
+> +      -
+> +      -
+> +      - g\ :sub:`11`
+> +      - g\ :sub:`10`
+> +      - g\ :sub:`9`
+> +      - g\ :sub:`8`
+> +      - g\ :sub:`7`
+> +      - g\ :sub:`6`
+> +      - g\ :sub:`5`
+> +      - g\ :sub:`4`
+> +      - g\ :sub:`3`
+> +      - g\ :sub:`2`
+> +      - g\ :sub:`1`
+> +      - g\ :sub:`0`
+> +      - b\ :sub:`19`
+> +      - b\ :sub:`18`
+> +      - b\ :sub:`17`
+> +      - b\ :sub:`16`
+> +      - b\ :sub:`15`
+> +      - b\ :sub:`14`
+> +      - b\ :sub:`13`
+> +      - b\ :sub:`12`
+> +      - b\ :sub:`11`
+> +      - b\ :sub:`10`
+> +      - b\ :sub:`9`
+> +      - b\ :sub:`8`
+> +      - b\ :sub:`7`
+> +      - b\ :sub:`6`
+> +      - b\ :sub:`5`
+> +      - b\ :sub:`4`
+> +      - b\ :sub:`3`
+> +      - b\ :sub:`2`
+> +      - b\ :sub:`1`
+> +      - b\ :sub:`0`
+> +
+> +.. raw:: latex
+> +
+> +    \endgroup
+> +
+>  On LVDS buses, usually each sample is transferred serialized in seven
+>  time slots per pixel clock, on three (18-bit) or four (24-bit)
+>  differential data pairs at the same time. The remaining bits are used
+> diff --git a/include/uapi/linux/media-bus-format.h b/include/uapi/linux/media-bus-format.h
+> index f05f747e444d..8633818cc33c 100644
+> --- a/include/uapi/linux/media-bus-format.h
+> +++ b/include/uapi/linux/media-bus-format.h
+> @@ -34,7 +34,7 @@
+>
+>  #define MEDIA_BUS_FMT_FIXED			0x0001
+>
+> -/* RGB - next is	0x1026 */
+> +/* RGB - next is	0x1027 */
+>  #define MEDIA_BUS_FMT_RGB444_1X12		0x1016
+>  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_BE	0x1001
+>  #define MEDIA_BUS_FMT_RGB444_2X8_PADHI_LE	0x1002
+> @@ -72,6 +72,7 @@
+>  #define MEDIA_BUS_FMT_RGB888_1X36_CPADLO	0x1021
+>  #define MEDIA_BUS_FMT_RGB121212_1X36		0x1019
+>  #define MEDIA_BUS_FMT_RGB161616_1X48		0x101a
+> +#define MEDIA_BUS_FMT_RGB202020_1X60		0x1026
+>
+>  /* YUV (including grey) - next is	0x202f */
+>  #define MEDIA_BUS_FMT_Y8_1X8			0x2001
+> --
+> 2.34.1
+>
 
