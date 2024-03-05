@@ -1,61 +1,62 @@
-Return-Path: <devicetree+bounces-48449-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48450-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E11058721E0
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:47:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 86E058721E4
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:48:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8DDD81F22189
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:47:56 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 24BC91F243DB
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:48:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5BBE86AE2;
-	Tue,  5 Mar 2024 14:47:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B99EA86AEE;
+	Tue,  5 Mar 2024 14:48:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FOQKa80J"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="JAzSaouw"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE7AA86AD0;
-	Tue,  5 Mar 2024 14:47:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 929125466D;
+	Tue,  5 Mar 2024 14:48:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709650071; cv=none; b=o47tQKXrraWlpThb6nXXBEEx825dm5D/dAonVWCeT0v9Zc8/BIFjT3cUo0pKgSFER3WMsyUxkF8lyXI/72ZZIQSFvVP1A4Ise8dwCHhf5O00xtM2j7jsqHedy5eNCsHzjzUNhAwnh+nSjKssyBf9Jkqx63Q4ivVTUxHk0CXWGog=
+	t=1709650100; cv=none; b=ZwZv4ARtxEWArqcmYWfUgH0o7AZqBgrJg6jB5FhnQxrsVh+DF52Y/rNEsogHOLmU+3iuQV8rB5bMXH5H4VgUytTqgvdHkNeAHKiLMF/j/pcukKaLBigGBnGeYlDjRsXMm5WJ6yD7Kzq0FNC+R9fbBt/la1Q27d9UT5NFQrFTpOg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709650071; c=relaxed/simple;
-	bh=hY0SkX2+Ee1KMf7D9DXccosG2cFlLicJnwjKDfLkTTw=;
+	s=arc-20240116; t=1709650100; c=relaxed/simple;
+	bh=ivZ3608XOjlyfI/jTVtD2Rd9tfXwgE5HJrQajJgh2MA=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XZ8nOPmA4oOw+dfb4nLv1nmf8AFCgX2thC+HXFYHPKEj/E9e7UnE+9pLIhixIQyNok5QIXjcrI8ETsNFW9mWpvHt92vbN3czoFW8jvKsJgwLeUNxaEYmCVXmA+Jd5sODdmyT9sxhkq3lGiYmXOh5gpjzltfsAWzO9WNGKBNobaI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FOQKa80J; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 11990C43394;
-	Tue,  5 Mar 2024 14:47:50 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=BTe61qONli5y6htPGQ4SitedKE3DC/M1HmCl49xj3TbyO8JaVlHUcVJ4hHTC0xLD3CN6gjssHUySNdlRKcbx3k4taOAfmbwb2T20E2zbvuX2ZJeIKYf5R+7E0bAsNUYXYGqMwsEPfTNGqWI3+/sT3by81NuimHn9ZnABIswyNPE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=JAzSaouw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E2E49C433F1;
+	Tue,  5 Mar 2024 14:48:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709650071;
-	bh=hY0SkX2+Ee1KMf7D9DXccosG2cFlLicJnwjKDfLkTTw=;
+	s=k20201202; t=1709650100;
+	bh=ivZ3608XOjlyfI/jTVtD2Rd9tfXwgE5HJrQajJgh2MA=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=FOQKa80J9eJMmAq1Ga1F2gAW2IndGSrbNBTCRwILYXlo2yUf1TYtMfTtBHhq6Odvl
-	 omXdmg4xlxSqA+sCzjU+Swn27Vv3TtP9+1rlLZuD8igI5glHRxQ2v+1lLllGWVEKhu
-	 N0QoYpH/92fYrgM64pC6EJYaOU2Tj6GbzkOXZ3WHkHkaPa9TD4l3FkxnJbUtu6cB+a
-	 7dnVP4io/rQRa8IUGPx4E6N9Mbbz+a3tke9B9m57goEfMVVsNQ3hCmhtp8pKjvK1gd
-	 W7/z1+ZwbnrZsJSV0wkVtkJv78rYc4yA145f/aWIXlixlNTt8kq7OSHgLmr/ZI6vSE
-	 lXje0CQ+70yfg==
-Date: Tue, 5 Mar 2024 08:47:49 -0600
+	b=JAzSaouwcSUTBZt+s6Yv7/P83NDFtlBo4AaFMjL12bVlmPptxiYgrFpko575FcjGW
+	 CGk9IQbqNSsmthc+9Z8gicgvmg8+7pM61RA38a2SGI4ho0deAtn4kRnuASxqYH1Qzu
+	 ro8ovihIOSoHE6Bba4ih7rlC4Kt5rV7qiygejo7aQHEqnFJZEl2c7iExlDz5WihFPl
+	 yoCTO4/McjGTmEh8ShNk2U9uSOE7rlNDXY2H028XvqounaMoD/g2D/KzoBO+Lonc9l
+	 Ird4fCpLofrAV6h8EoFKtbDSCEDArLTDle8WEqd7vgmZYCFqiPu5o+VPmi/H+uBw/V
+	 0es7Y/klS/UXw==
+Date: Tue, 5 Mar 2024 08:48:17 -0600
 From: Rob Herring <robh@kernel.org>
 To: Yangyu Chen <cyy@cyyself.name>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>,
+Cc: Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-riscv@lists.infradead.org,
 	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>, Guo Ren <guoren@kernel.org>,
 	Damien Le Moal <dlemoal@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Guo Ren <guoren@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
-	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v3 3/7] dt-bindings: timer: Add Canaan K230 CLINT
-Message-ID: <170965006812.3329951.14876458857891644182.robh@kernel.org>
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Conor Dooley <conor@kernel.org>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/7] dt-bindings: interrupt-controller: Add Canaan
+ K230 PLIC
+Message-ID: <170965009708.3330690.1601978626699583351.robh@kernel.org>
 References: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
- <tencent_CC6884F036B6F3D50A6269733BEAE226C40A@qq.com>
+ <tencent_1B1643401B7BF8EC04C3B5551D9D703B6209@qq.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,15 +65,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <tencent_CC6884F036B6F3D50A6269733BEAE226C40A@qq.com>
+In-Reply-To: <tencent_1B1643401B7BF8EC04C3B5551D9D703B6209@qq.com>
 
 
-On Tue, 05 Mar 2024 05:05:57 +0800, Yangyu Chen wrote:
-> Add compatible string for Canaan K230 CLINT.
+On Tue, 05 Mar 2024 05:05:58 +0800, Yangyu Chen wrote:
+> Add compatible string for Canaan K230 PLIC.
 > 
 > Signed-off-by: Yangyu Chen <cyy@cyyself.name>
 > ---
->  Documentation/devicetree/bindings/timer/sifive,clint.yaml | 1 +
+>  .../bindings/interrupt-controller/sifive,plic-1.0.0.yaml         | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
