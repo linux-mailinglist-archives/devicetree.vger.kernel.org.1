@@ -1,191 +1,155 @@
-Return-Path: <devicetree+bounces-48547-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48548-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3121872773
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 20:22:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AB0D87279C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 20:37:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 40D351F25E6B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:22:18 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C5E421F26B9A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:37:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3F342CCD3;
-	Tue,  5 Mar 2024 19:22:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EE2841760;
+	Tue,  5 Mar 2024 19:37:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aX8Y8+Zd"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="e9wo2dGS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from out203-205-221-191.mail.qq.com (out203-205-221-191.mail.qq.com [203.205.221.191])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1A01250FE;
-	Tue,  5 Mar 2024 19:22:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC0F2A8D0
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 19:37:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.191
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709666533; cv=none; b=HxJu1y8ReJ75ph0ra31vHdeWQ2/zmHaMspaXf5LTAJltcILgWunegNnqaZakl2YabBEyqIEpB9J5HiEtgJZnFtY4pFPNedFYQrscSL+/fGxm5ifHm+9ipzC6uvyoGALMJ5s3IGRTM0lAZwGk0IIVpbVXixFbQZHQa38Es72w8SU=
+	t=1709667438; cv=none; b=Gz1we86pMcAG38UKQ+zwfW6Kh2pxrCmGXBbVodTgXjYzTil6b1EYQEd3b8UpPPt7KW1uVO4N0DZn7QkupYKxLzYEczeFkcglGz2qCRWz6/B0xUbLOf6+piL1rE/9JX//Er2ZQgHMHbbJegwL2G6tTgYoeQd6qvwppVAXaBzYt70=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709666533; c=relaxed/simple;
-	bh=WK1G/NaCYvxTxQ/E6MRFLMHXXETCzVWrlTphyKmWH/s=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q2fFRpoDMQ/NKkqOvkEh/UB0/LcS9m4jCsUuOTIomrlACWzG/qooyiIGbJEzMftsRIctsoQ70N90U68C0iabCBK/Lkq6+CZV8mxCBIVGKb82pAohwh7XTjaqvDqG341j6/pDMcdOAP4SQHuNIAMCmdIQfn9L6c495bchnzn4Jvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aX8Y8+Zd; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B45EC433C7;
-	Tue,  5 Mar 2024 19:22:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709666533;
-	bh=WK1G/NaCYvxTxQ/E6MRFLMHXXETCzVWrlTphyKmWH/s=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aX8Y8+Zdk66foHU/vgrLhRefbVfoikrZmF/gHYbKS8iwxqGuKMao8AKX2dUTTPLZE
-	 PPxBFJmD30zUO1nCZDHPHHT+OZaih4sHfTFhtPUHQ5w9WRu6MK+nx1GImp19ggsEcQ
-	 Nh5nbkHh6rAUaJsRiOuulf/KSZsrYE+czREyXeiEGhGDTnzzwssBu6lIidtAZNxaxI
-	 ezPNglsH/T3IB1JRycxGEq996pd55valJ8I+djh8U9C4lbdLXAxMgYX9tR9OdQAWv2
-	 opbvye3lD/s9F+4xQ5sSjKXB9aHxIzsWtkrplp+GdYMd32CvC6PHWOZM0m9C0ZjXXj
-	 fxGHEoE90EXJQ==
-Date: Tue, 5 Mar 2024 13:22:09 -0600
-From: Bjorn Andersson <andersson@kernel.org>
-To: Sriram Dash <quic_sriramd@quicinc.com>
-Cc: konrad.dybcio@linaro.org, vkoul@kernel.org, kishon@kernel.org, 
-	robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	gregkh@linuxfoundation.org, quic_wcheng@quicinc.com, Thinh.Nguyen@synopsys.com, 
-	p.zabel@pengutronix.de, linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
-	quic_psodagud@quicinc.com, quic_nkela@quicinc.com, manivannan.sadhasivam@linaro.org, 
-	ulf.hansson@linaro.org, sudeep.holla@arm.com, quic_shazhuss@quicinc.com
-Subject: Re: [RFC 2/3] USB: dwc3: qcom: Add support for firmware managed
- resources
-Message-ID: <ltjrdqxvupzjdqa22fvpzndeh7pc7zfmi5ybqxu2izjnnxjon7@jojqkltzukvv>
-References: <1709657858-8563-1-git-send-email-quic_sriramd@quicinc.com>
- <1709657858-8563-3-git-send-email-quic_sriramd@quicinc.com>
+	s=arc-20240116; t=1709667438; c=relaxed/simple;
+	bh=j/UAfvFMFsXCsS/euRcxy/fyrQnAZE8Q8WRvQCeVmbM=;
+	h=Message-ID:From:To:Cc:Subject:Date:MIME-Version; b=d5D/4Ph9PXR5+vefBpVRn66jW4t7AJNVzIuej1z9DguqlEqZCSKF3M0ObJf9kppnHaH/UEL9e4WsX1rwWUn3lj4y9vfEezmY+ftvlO9rLnuRNE5VJN0iK31q3jbUpKuEdjEePt19A/YDZmm/efXgkJXxfwechGvVqpK8CT08UcE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=e9wo2dGS; arc=none smtp.client-ip=203.205.221.191
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1709667433; bh=xYAKlJMz8tHhX/SyBJ+u8i1ukaT80u/oUuBPwp95/WU=;
+	h=From:To:Cc:Subject:Date;
+	b=e9wo2dGSaNWPUjmsHmAKIZxBMRwMwKo64HlJcexDxQCtgevWlJCvM97413CDu04iS
+	 oOpZ6AZZILPXg3B1UYuEnA1E0bXsajCBXOHI/Y+nFtTCjWHjI1AV6Yj3Na2Qa+SKRv
+	 Sb35t18407gs5YTYP2RfJCex7b1xHLYrhsE7znzE=
+Received: from cyy-pc.lan ([240e:379:2267:e200:bd8:e8f9:fb59:de48])
+	by newxmesmtplogicsvrsza1-0.qq.com (NewEsmtp) with SMTP
+	id 94902851; Wed, 06 Mar 2024 03:37:09 +0800
+X-QQ-mid: xmsmtpt1709667429tgqpk2n0q
+Message-ID: <tencent_587730262984A011834F42D0563BC6B10405@qq.com>
+X-QQ-XMAILINFO: N/WmRbclY25GpsCj3Jk0kjwcDv7v3MKRfVs0UMJTow0ftTa8kEOsfezNzLxNMp
+	 jvWOfRXPWhg8CyVlVBXl4fXZ5SyrLZUnWTNoCPvZ6E0GHTAYqjrMBzB78l5VUSo897LdD6A+Jatg
+	 k+aTUjZXII0ycuflDIRBkCJCaT5GHFeDnSQ+vJjw/Hs9mSK1ZPjPgsrlmsgR0X3JKZXUqmkn4dJn
+	 MvhEVKDC4Vv1eb5DsCX7YgrZnr5Q/XmSzP+tfJ3gMaqNSPOpdWZbRHNmzRNZNl1DyITxtMrLTuDF
+	 nWQCYSWd+FefMoeKYYNwN5zsP6E1JqBIPKQtyIRVS0gdqIpFdk1KDDekw2bGART3loZCAtogIPLJ
+	 gwnBuBFQ0dTtJfjDUd/a6gAfb7VLEWxVSZX2qH8LO3rqS2Vtd/eEA9F6Vz6EEh9d9xCuioxV3a+u
+	 6caUI7bLhqiXz50PBmr2YZ5CHu61T4Kejy17Yj3/yTyOQrN+eupE6RifpNFxu1f7B3fvrdqt45/o
+	 CCGyFgvpaxVa8ebi7RO+slM7+d8MI/KUcgjts7gNyfQdetJv4Hh5PPBHThotd66c1fGSUN7tjG23
+	 EvcLFnbpWhQVc3iytUyuVExBiFfsk0xfd21ov/Zes1mcVWgUXkiTpEOldYigZzCRNnFHXMqTnkSK
+	 vPKqmvF6jx9H5lPZVR0PyVydHXW2+DUevERFMoNE/iD50i3sQOQJOaIzhXIZN164VxSRp0m5L1bb
+	 nZi4xPX9UtqQlxnwQmLo5kLhYy9HZ5ArsNpI4lnLz1Yi57aXUCXtfDoWhPDXFP3+7qGRT3L6Bnys
+	 Q/a+fN0k+xDZ3SyimiPDerzeJYbAHpiJ0Hmeo3uG3UXRjh7fIwS8aRX6r3nH9ZZUKs1NX6CH94DT
+	 OGwIH33RgdUcaxrVZe7J9Duwc7rqHtaoU9j2ozeUi/KRfrl8Wc8/uCsJ792pnrY/a9LGLBbifKEq
+	 JscTYyKot+Ue7vhvNIBU1bzoSdksLPBraurjgYPubpuEB4rgwf4DBl25boXxjXSj1zqnknScTZ4I
+	 IU7Yplol568zFPtL9xMCu5DssHykI=
+X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
+From: Yangyu Chen <cyy@cyyself.name>
+To: linux-riscv@lists.infradead.org
+Cc: Conor Dooley <conor@kernel.org>,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>,
+	Albert Ou <aou@eecs.berkeley.edu>,
+	Guo Ren <guoren@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Yangyu Chen <cyy@cyyself.name>
+Subject: [PATCH v4 0/7] riscv: add initial support for Canaan Kendryte K230
+Date: Wed,  6 Mar 2024 03:36:08 +0800
+X-OQ-MSGID: <20240305193608.1084130-1-cyy@cyyself.name>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1709657858-8563-3-git-send-email-quic_sriramd@quicinc.com>
+Content-Transfer-Encoding: 8bit
 
-On Tue, Mar 05, 2024 at 10:27:37PM +0530, Sriram Dash wrote:
-> Some target systems allow multiple resources to be managed by firmware.
-> On these targets, tasks related to clocks, regulators, resets, and
-> interconnects can be delegated to the firmware, while the remaining
-> responsibilities are handled by Linux.
-> 
-> The driver is responsible for managing multiple power domains and
-> linking them to consumers as needed. Incase there is only single
-> power domain, it is considered to be a standard GDSC hooked on to
-> the qcom dt node which is read and assigned to device structure
-> (by genpd framework) before the driver probe even begins.
-> 
-> This differentiation logic allows the driver to determine whether
-> device resources are managed by Linux or firmware, ensuring
-> backward compatibility.
-> 
-> Furthermore, minor cleanup is performed for the private data of
+K230 is an ideal chip for RISC-V Vector 1.0 evaluation now. Add initial
+support for it to allow more people to participate in building drivers
+to mainline for it.
 
-No "futhermore"s please, separate matters should be proposed as separate
-patches. Perhaps these can be sent separately and merged immediately?
+This kernel has been tested upon factory SDK [1] with
+k230_evb_only_linux_defconfig and patched mainline opensbi [2] to skip
+locked pmp and successfully booted to busybox on initrd with this log [3].
 
-> the SNPS Femto PHY. However, ACPI handling is omitted due to the
-> absence of clients on the ACPI side.
-> 
-> Signed-off-by: Sriram Dash <quic_sriramd@quicinc.com>
-> ---
->  drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 290 ++++++++++++++++++++------
->  drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c | 213 +++++++++++++++----
->  drivers/usb/dwc3/dwc3-qcom.c                  | 259 +++++++++++++++++------
+[1] https://github.com/kendryte/k230_sdk
+[2] https://github.com/cyyself/opensbi/tree/k230
+[3] https://gist.github.com/cyyself/b9445f38cc3ba1094924bd41c9086176
 
-You're making independent changes across three different drivers across
-two different subsystems, with different maintainers, this is not
-acceptable as a single patch.
+Changes since v3:
+- Refactor Kconfig.soc which uses ARCH_CANAAN for regular Canaan SoCs and
+  rename SOC_CANAAN to SOC_CANAAN_K210 for K210 in patch [5/7]
+- Sort dt-binding stings on Cannan SoCs in alphanumerical order
 
->  3 files changed, 594 insertions(+), 168 deletions(-)
-> 
-> diff --git a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> index 8525393..1ac1b50 100644
-> --- a/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> +++ b/drivers/phy/qualcomm/phy-qcom-qmp-usb.c
-> @@ -21,6 +21,9 @@
->  
->  #include "phy-qcom-qmp-common.h"
->  
-> +#include <linux/pm_opp.h>
-> +#include <linux/pm_domain.h>
+v3: https://lore.kernel.org/linux-riscv/tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com/
 
-Why are these includes alone here? Integrate your changes with the
-driver properly.
+Changes since v2:
+- Add MIT License to dts file
+- Sort dt-binding stings in alphanumerical order
+- Sort filename in dts Makefile in alphanumerical order
+- Rename canmv-k230.dts to k230-canmv.dts
 
-> +
->  #include "phy-qcom-qmp.h"
->  #include "phy-qcom-qmp-pcs-misc-v3.h"
->  #include "phy-qcom-qmp-pcs-misc-v4.h"
-> @@ -1212,6 +1215,9 @@ struct qmp_phy_cfg {
->  	unsigned int pcs_usb_offset;
->  };
->  
-> +#define DOMAIN_GENPD_TRANSFER			0
-> +#define DOMAIN_GENPD_CORE			1
+v2: https://lore.kernel.org/linux-riscv/tencent_64A9B4B31C2D70D5633042461AC9F80C0509@qq.com/
 
-Does this really represent the hardware? What hardware constructs does
-"transfer" and "core" maps to?
+Changes since v1:
+- Patch dt-bindings in clint and plic
+- Use enum in K230 compatible dt bindings
+- Fix dts to pass `make dtbs_check`
+- Add more details in commit message
 
-> +
->  struct qmp_usb {
->  	struct device *dev;
->  
-> @@ -1236,6 +1242,19 @@ struct qmp_usb {
->  	struct phy *phy;
->  
->  	struct clk_fixed_rate pipe_clk_fixed;
-> +
-> +	struct dev_pm_domain_list *pd_list;
-> +	struct device *genpd_core;
-> +	struct device *genpd_transfer;
-> +
-> +	bool fw_managed;
-> +	/* separate resource management for fw_managed vs locally managed devices */
-> +	struct qmp_usb_device_ops {
-> +		int (*bus_resume_resource)(struct qmp_usb *qmp);
+v1: https://lore.kernel.org/linux-riscv/tencent_E15F8FE0B6769E6338AE690C7F4844A31706@qq.com/
 
-Not only does these function pointers make the drivers much harder to
-follow, your naming of these seems chosen to maximize the confusion.
+Yangyu Chen (7):
+  dt-bindings: riscv: Add T-HEAD C908 compatible
+  dt-bindings: add Canaan K230 boards compatible strings
+  dt-bindings: timer: Add Canaan K230 CLINT
+  dt-bindings: interrupt-controller: Add Canaan K230 PLIC
+  riscv: Kconfig.socs: Split ARCH_CANAAN and SOC_CANAAN_K210
+  riscv: dts: add initial canmv-k230 and k230-evb dts
+  riscv: config: enable ARCH_CANAAN in defconfig
 
-In your managed case this doesn't seem to relate to any "bus", in the
-"local" case, this doesn't relate to a "bus", and these callbacks are
-decoupled from the actual runtime resume and suspend cycle of the QMP
-device itself...
+ .../sifive,plic-1.0.0.yaml                    |   1 +
+ .../devicetree/bindings/riscv/canaan.yaml     |   8 +-
+ .../devicetree/bindings/riscv/cpus.yaml       |   1 +
+ .../bindings/timer/sifive,clint.yaml          |   1 +
+ arch/riscv/Kconfig.socs                       |   8 +-
+ arch/riscv/Makefile                           |   2 +-
+ arch/riscv/boot/dts/canaan/Makefile           |   2 +
+ arch/riscv/boot/dts/canaan/k230-canmv.dts     |  24 +++
+ arch/riscv/boot/dts/canaan/k230-evb.dts       |  24 +++
+ arch/riscv/boot/dts/canaan/k230.dtsi          | 140 ++++++++++++++++++
+ arch/riscv/configs/defconfig                  |   1 +
+ arch/riscv/configs/nommu_k210_defconfig       |   3 +-
+ .../riscv/configs/nommu_k210_sdcard_defconfig |   3 +-
+ drivers/clk/Kconfig                           |   4 +-
+ drivers/pinctrl/Kconfig                       |   4 +-
+ drivers/reset/Kconfig                         |   4 +-
+ drivers/soc/Makefile                          |   2 +-
+ drivers/soc/canaan/Kconfig                    |   4 +-
+ 18 files changed, 220 insertions(+), 16 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv.dts
+ create mode 100644 arch/riscv/boot/dts/canaan/k230-evb.dts
+ create mode 100644 arch/riscv/boot/dts/canaan/k230.dtsi
 
-> +		int (*runtime_resume_resource)(struct qmp_usb *qmp);
-> +		int (*bus_suspend_resource)(struct qmp_usb *qmp);
-> +		int (*runtime_suspend_resource)(struct qmp_usb *qmp);
-> +	} qmp_usb_device_ops;
->  };
->  
->  static inline void qphy_setbits(void __iomem *base, u32 offset, u32 val)
-> @@ -1598,6 +1617,41 @@ static const struct qmp_phy_cfg x1e80100_usb3_uniphy_cfg = {
->  	.regs			= qmp_v7_usb3phy_regs_layout,
->  };
->  
-> +static void qmp_fw_managed_domain_remove(struct qmp_usb *qmp)
-> +{
-> +	dev_pm_domain_detach_list(qmp->pd_list);
-> +}
-> +
-> +static int qmp_fw_managed_domain_init(struct qmp_usb *qmp)
-> +{
-> +	struct device *dev = qmp->dev;
-> +	struct dev_pm_domain_attach_data pd_data = {
-> +		.pd_flags	= PD_FLAG_NO_DEV_LINK,
+-- 
+2.43.0
 
-Iiuc, you attach the two power-domains with NO_DEV_LINK, such that the
-pm runtime state of the device itself won't reflect on the power
-domains, and then you hand-code all the involved logic yourself?
-
-Why can't you integrate with the device and use its runtime state?
-Please clearly explain why you're doing it like this in your commit
-messages.
-
-Regards,
-Bjorn
 
