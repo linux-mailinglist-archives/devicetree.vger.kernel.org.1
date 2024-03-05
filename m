@@ -1,217 +1,219 @@
-Return-Path: <devicetree+bounces-48422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2784E872116
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:07:24 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57ADD872119
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:07:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id AA5401F21734
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:07:23 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 98697B22A7E
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:07:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA0586140;
-	Tue,  5 Mar 2024 14:07:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 73CFB8664A;
+	Tue,  5 Mar 2024 14:07:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WJo0BDiG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OsdO1B9n"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 939458613A;
-	Tue,  5 Mar 2024 14:07:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 53CAA86637
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 14:07:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709647638; cv=none; b=NFswNjSodoNUWjTEU2Xt0m9JK1ttiWDwnRo4+0PAshOuCDcqh7iiNEnJyEsg4LsRGZ+zl9k0TzEYycLfXaigkhDstyS3GaelDv9Gt87cbeWXhippUAmsmwu9hQdrKFHPCOnWD+pUhURvP1gAqoLkBhad9eU0pipW+LzEk1e/70E=
+	t=1709647643; cv=none; b=dWytI6Fy23jSXxAy3BfYqAWQZKlyyVW4qECL47TNu2NimTLuI92v75tEZdas2In9aQDG5FtCtfacDtKRPzBqe3JcwYpc+ZGSHNsQ5BnVLCmr5az8+fX4nUXNzy6wrfe6RN5I5TTOKCr2Jk/rekn+POmiDRd36y5tgPIwAeuQ4KU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709647638; c=relaxed/simple;
-	bh=SX5to30EhNbAVGigcYLVoaY+solEIJuRba9iTb4VyoI=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=t8udJZAfRQZ7bobgRIn23UyZmMTkmfEam/xB4MVM3+X2Xav4Fd+q4+9eG29UtQsK2sloK+v/s/XNuQmIPkQUyaUC9z7wO1RsBegBluY7dEiOGI9jylTNdQWo/B/xYBFyPwvs6nI3n4SH3BdtVzBmke6NJbibnxwysKHbq5y0zyU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WJo0BDiG; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EBD901BF203;
-	Tue,  5 Mar 2024 14:07:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709647632;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=3FaprjU0HK8RgVI5QhbgK15bFxzuhMnZNXwzBpwlbU4=;
-	b=WJo0BDiGD/G+sF4Dv+i+C8fBUkMXamCRODSXLuTYB82Zv3J/SP5X3GWGiSa7oLX8IvnCkm
-	8MlueCfV2b5TdnrfiTitWiQXld19UIRXw6hoQ4P/ZZT8tduz81JhnfrSL4fsmkUAQ5DGeK
-	9SO24WkSVVEwAMEsoYFHlrCTRth+s4gzzxJwbWAY2NDUaJbWsp6Ry6/pnfgJzVjnVIQiCd
-	zxNfFHODiMpOZnIIXc4uRVVTwjfmN3D7JZ0vyHnK9yJZp7fvfp1Jt1zCKoCciQOgRfZwCy
-	q9eH+LkDRnmQJBjG8DNjss8NqWnwWLfQ8P6hXZVmzyqZ/Th6NYOi9Ow2v+G8lg==
-Date: Tue, 5 Mar 2024 15:07:09 +0100
-From: Luca Ceresoli <luca.ceresoli@bootlin.com>
-To: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Heiko
- Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Thomas
- Petazzoni <thomas.petazzoni@bootlin.com>,
- linux-rockchip@lists.infradead.org, linux-sound@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/7] ASoC: rockchip: i2s-tdm: Fix inaccurate sampling
- rates
-Message-ID: <20240305150709.02cc4a4e@booty>
-In-Reply-To: <2509388.gFrL1EYhQU@archbook>
-References: <20240221-rk3308-audio-codec-v3-0-dfa34abfcef6@bootlin.com>
-	<20240221-rk3308-audio-codec-v3-1-dfa34abfcef6@bootlin.com>
-	<2509388.gFrL1EYhQU@archbook>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1709647643; c=relaxed/simple;
+	bh=WfL4tgYCBNlm88QF2xocX7qBGGscdXgT2nD7lKIGNYg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d8XojDJfEtHwF/8QrpuKifrzGXPRkaEsEoFU0lolb9GstlgMcu9FrEIb5f54zqur1gWqi87B1/f15FVJcx3NRaQzyO2q2QbE1XAeC8EfjaRe6hEsmPYxfx4SLKpa/7vrM44kynLRq5MMfw8wYpBdM4t2bc2TEvnLu1pZWwqtrnU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OsdO1B9n; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5131f3fc695so6074280e87.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 06:07:21 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709647639; x=1710252439; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=SQZ1KwugUIsv31guuZMgo+Gr8p+7fO4HrOSEdoTVaKw=;
+        b=OsdO1B9nBWqYzkdlmlhF8x2LIfCvnEIIqLFijesLmfcllwVB9jCyNcKZsavhje2J+C
+         sLkl2Hp06LQVX8CmG4g7IAHlkam5N6irPyTAtRJfWBZBDJvxXE4vaKPZkLoUy5OG9wxm
+         Q7j7KVvdDhANrOe/i+o0COjFYGgmrKkHb3euExf+bKPSNTopSIeomi2BJH8aRKgGC+Ju
+         qvU94NASvshJGjMXwUuvVu3/UiIuZP92m7T8jJchvba2OnIh8q105fjmKkuK7Ap0T4hG
+         IEQ4R928MKKfKOGwJ/rHqWyn4W+nKRIslx+5iPyoi2i4Rdb5HmaWGeOw+cu3TWka4+nv
+         keRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709647639; x=1710252439;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SQZ1KwugUIsv31guuZMgo+Gr8p+7fO4HrOSEdoTVaKw=;
+        b=baIjZqeSk34QS8Sa37yNjYEkdAMvjzZrauHYsVzBbuTcsoiCTEwEsmxf55Dy3Qn1Ld
+         KBkr1JUrx2RK7y5mmi9L1E17PyoYPdQkn5XExoxrJuVMt0d2bZ9v+ywRCVYaOlMjclH5
+         2pOYAjgsFLCWFN0kjm7WLSmI5juUYL0iQi+iPl7kdlWsAdMWfVVVUKY7lcxfGuXUQIFD
+         OR+zpwKZ9gIJOG4wVheEH+zXMnnoSmb7mu/0ASZ+6BkWJqsvgwBU4oJeTdkJ5AD9Meel
+         17orvYBh2V6KfiGL4aZnyoIBJvzFnPlXSN06PZCnY2v/zuKR2Nc6ZJ17eH0BUTaLLUGX
+         GyNw==
+X-Forwarded-Encrypted: i=1; AJvYcCVaKrEH8jyKV0PVXhVEMJ2qHshFyt3dFXCGNTXihBYSHiFCixQy3uOnWWrfhl4w101KCh3dugycDtF7KzpFfoKbhqafJ/8wsTBYnA==
+X-Gm-Message-State: AOJu0Yyz5vtGuxZWicR8ypIwQ/Z/9rDnr8dtW/noDhYrt4yyR4yMhdsN
+	9yRstJohdEvkB3OzjLr4jFFn0hkIkYOw6OE90DHZewoXXmVQrSx8ClNdtFIm4q8=
+X-Google-Smtp-Source: AGHT+IFvilm/A6uPSq1BSTUUbgdyFwbFGl+2O7ZvO96QaEmcmVY8EsU5EK1HAAChcrJjRk7UgMKlBg==
+X-Received: by 2002:ac2:5629:0:b0:513:2027:27db with SMTP id b9-20020ac25629000000b00513202727dbmr1342797lff.17.1709647639500;
+        Tue, 05 Mar 2024 06:07:19 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id d12-20020a1709067f0c00b00a4495c51f4esm4857730ejr.39.2024.03.05.06.07.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 05 Mar 2024 06:07:19 -0800 (PST)
+Message-ID: <58a62c7b-3348-4252-91be-ec30d5b723b6@linaro.org>
+Date: Tue, 5 Mar 2024 15:07:16 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-GND-Sasl: luca.ceresoli@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [RFC PATCH 1/6] dt-bindings: pinctrl: starfive: add JH8100
+ pinctrl bindings
+To: Yuklin Soo <yuklin.soo@starfivetech.com>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Bartosz Golaszewski <bartosz.golaszewski@linaro.org>,
+ Hal Feng <hal.feng@starfivetech.com>,
+ Leyfoon Tan <leyfoon.tan@starfivetech.com>,
+ Jianlong Huang <jianlong.huang@starfivetech.com>,
+ Emil Renner Berthing <kernel@esmil.dk>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Drew Fustini <drew@beagleboard.org>
+Cc: "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>
+References: <20231221083622.3445726-1-yuklin.soo@starfivetech.com>
+ <20231221083622.3445726-2-yuklin.soo@starfivetech.com>
+ <3b9201e0-e1d9-463c-aa1a-cbbedd1f8907@linaro.org>
+ <ZQ0PR01MB1302FD75082E80DFDDF81E82F645A@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn>
+ <2236948f-bd68-4476-bc2a-814c46c99334@linaro.org>
+ <ZQ0PR01MB130288F0EC3C17147A46E4CDF622A@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <ZQ0PR01MB130288F0EC3C17147A46E4CDF622A@ZQ0PR01MB1302.CHNPR01.prod.partner.outlook.cn>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hello Nicolas,
-
-On Mon, 04 Mar 2024 19:40:52 +0100
-Nicolas Frattaroli <frattaroli.nicolas@gmail.com> wrote:
-
-[...]
-
-> Hello,
+On 05/03/2024 13:00, Yuklin Soo wrote:
 > 
-> thank you for your patch series fixing this driver. Since I am the person
-> currently listed as the maintainer of it and was the person who originally
-> upstreamed it, I think I can provide some insight.
 > 
-> The mclk calculation and reparenting code indeed originates from the
-> downstream driver. As for why that driver did these calculations itself,
-> I do not know, but I do know why I did not remove them and rely on the
-> CCF to do the reparenting and such for me.
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Tuesday, February 20, 2024 4:10 PM
+>> To: Yuklin Soo <yuklin.soo@starfivetech.com>; Linus Walleij
+>> <linus.walleij@linaro.org>; Bartosz Golaszewski
+>> <bartosz.golaszewski@linaro.org>; Hal Feng <hal.feng@starfivetech.com>;
+>> Leyfoon Tan <leyfoon.tan@starfivetech.com>; Jianlong Huang
+>> <jianlong.huang@starfivetech.com>; Emil Renner Berthing
+>> <kernel@esmil.dk>; Rob Herring <robh@kernel.org>; Krzysztof Kozlowski
+>> <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley <conor+dt@kernel.org>;
+>> Drew Fustini <drew@beagleboard.org>
+>> Cc: linux-gpio@vger.kernel.org; linux-kernel@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-riscv@lists.infradead.org; Paul Walmsley
+>> <paul.walmsley@sifive.com>; Palmer Dabbelt <palmer@dabbelt.com>;
+>> Albert Ou <aou@eecs.berkeley.edu>
+>> Subject: Re: [RFC PATCH 1/6] dt-bindings: pinctrl: starfive: add JH8100 pinctrl
+>> bindings
+>>
+>> On 07/02/2024 03:42, Yuklin Soo wrote:
+>>>>
+>>>>> +    type: object
+>>>>> +    additionalProperties: false
+>>>>> +    patternProperties:
+>>>>> +      '-pins$':
+>>>>> +        type: object
+>>>>> +        description: |
+>>>>> +          A pinctrl node should contain at least one subnode representing
+>> the
+>>>>> +          pinctrl groups available in the domain. Each subnode will list the
+>>>>> +          pins it needs, and how they should be configured, with regard to
+>>>>> +          muxer configuration, bias, input enable/disable, input schmitt
+>>>>> +          trigger enable/disable, slew-rate and drive strength.
+>>>>> +        allOf:
+>>>>> +          - $ref: /schemas/pinctrl/pincfg-node.yaml
+>>>>> +          - $ref: /schemas/pinctrl/pinmux-node.yaml
+>>>>> +        additionalProperties: false
+>>>>
+>>>> Why the rest of the properties is not applicable?
+>>>
+>>> The regex “-pins$” make sure all client subnode names end with suffix
+>>> “-pins” (e.g, i2c0-scl-pins, i2c-sda-pins)
+>>
+>> I did not talk about subnodes.
+>>
+>> I asked why the rest of pincfg and pinmux schema properties are not allowed.
 > 
-> For starters, I did not know that the DAI and CCF code have functionality
-> to automatically reparent clocks based on the audio rate. The reason I did
-> not know this is because after looking at the official kernel documentation
-> at [1], I did not see any mention of this.
+> Initially, I wanted to allow all properties in the pincfg and pinmux schema. I misunderstood the meaning of “additionalProperties: false”
+> and I thought it means all additional properties outside the pincfg and pinmux schema are excluded. The “additionalProperties” will be
+> set to “true” to include the rest of the properties in pincfg and pinmux schema and not to be restricted to only the properties defined in
+
+In that case drop all the properties and use unevaluatedProperties: false.
+
+Fix your email setup, to wrap emails properly. This is unreadable.
+
 > 
-> Similarly, the documentation for the CCF at [2] also makes no mention of
-> this feature. In general, guidance for how to properly write a DAI driver
-> in the kernel documentation is sparse, though I am extremely grateful to
-> broonie for his patience in answering some of my questions I had at the
-> time. The input of any of the reviewers at the time, including that of
-> Rockchip's engineer who wrote the downstream driver, made it a lot better
-> than it initially was.
+>>
+>> Best regards,
+>> Krzysztof
 > 
-> Had somebody brought up the existence of this functionality during the
-> reviews of this driver's original submission, I would of course have
-> fixed this. I do not blame the reviewers or maintainers, as they have
-> enough on their plate as-is and don't owe me anything. But I am trying
-> to explain the circumstances here that lead to mclk being slightly broken
-> for this driver.
-> 
-> Naturally, now that I know that this functionality does exist, I can do
-> a web search (since in-tree documentation search was fruitless) for
-> "linux common clock framework reparenting", which as its second result
-> brings up a PDF of the slides of a talk by one of your co-workers.[3] The
-> slides do not contain the string "reparent", though they do tell me that
-> I am able to purchase Linux kernel development training from your
-> employer.
-> 
-> What I'm trying to say here is that I still don't know how the DAI
-> reparenting mclk through the CCF works, and I'd probably need to dig
-> into the implementation to even know that it does this. Furthermore,
-> your employer has an economic incentive to keep this information out
-> of the in-tree documentation.
-
-I am very surprised by your opinion about our contributions, as we are
-trying to do exactly the opposite, being active members of the
-community and giving back in various ways. We are trying to contribute
-documentation and share knowledge as well: we release all of our
-training materials as Creative Commons (source code included), we
-contribute to the Buildroot and Yocto documentation and one of our
-colleagues is the maintainer of the Yocto Project documentation. We
-also wrote and/or maintain "practical working code examples" such as
-the simplest-yocto-setup [1] we recently published and the
-zynqmp-pmufw-builder [2], and published some video tutorials (I
-remember about one on device tree that seems very appreciated).
-
-[1] https://github.com/bootlin/simplest-yocto-setup/
-[2] https://github.com/lucaceresoli/zynqmp-pmufw-builder/
-
-We also contributed to the Documentation directory of the Linux kernel
-tree, as git can show:
-
-git shortlog --no-merges -s \
-  --author=free-electrons.com --author=bootlin.com \
-  -- Documentation/ ':!Documentation/devicetree/bindings/'
-
-Sure, we could do better, but I think we are definitely doing something.
-
-About the CCF specifically, it is surely one of the areas of the kernel
-that has insufficient documentation. As a matter of fact, while some
-areas are very well documented, for others the only real documentation
-is the code. I don't like this fact, some contributions certainly help
-but documenting a complex subsystem written by others is definitely a
-very relevant effort.
-
-However I don't think the sound documentation should describe clock
-reparenting: it is really a CCF feature that is available to any
-in-kernel clock user, i.e. pretty much every subsystem. It should
-definitely be described in the CCF docs, sure.
-
-> I hope that clears up any confusion as to "why such a complex yet
-> incorrect logic is present", and what ultimately lead you to having
-> to write this patch.
-
-Thanks for taking time to explain. This is very useful as there might
-have been reasons I didn't suspect for the code being as it is.
-
-The fact that you based your work on the downstream vendor kernel (as
-I did for the codec driver in this series) is probably the reason. Not
-only because the code quality of vendor kernels is sometimes
-considerably lower than the mainline kernel, but also because that
-driver might have been written when the reparenting logic in the CCF
-was not yet as complete and effective as it is today, so chances are
-the manual reparenting was correct initially.
-
-Also, the incorrect sampling rate is barely noticeable at most sampling
-rates up to 96 kHz, so I'm not blaming anybody for having introduced a
-bug that is not visible in all use cases. The only way to not introduce
-any bugs is not writing any code.
-
-> As for the patch itself, I'll hopefully get around to testing it this
-> week on an RK3566 board, as your cover letter does not list the platforms
-> this was tested for regressions on, so I assume you're just using RK3308.
-
-Your testing would be very useful!
-
-And yes, I developed and tested my patch on RK3308. Good point, added
-now to my commit log so it will appear in v4.
-
-> The RK356x has some linked clock things going on which mainline does not
-> yet model properly as far as I know (which is why some video related clocks
-> are marked as critical, and why things like [4] are needed for MIPI-DSI
-> output to work. So any changes that might fiddle with the parent clocks
-> I'd like to validate.
-
-Right, video clocks are tricky to get right and I've often seen them
-require manual hard-coding in the device tree, unfortunately.
-
-> If I don't get around to it in a timely manner
-> however, I'm fine with this patch as-is.
-
-Cool, thanks.
 
 Best regards,
-Luca
+Krzysztof
 
--- 
-Luca Ceresoli, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
 
