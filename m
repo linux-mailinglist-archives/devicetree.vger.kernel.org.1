@@ -1,295 +1,234 @@
-Return-Path: <devicetree+bounces-48381-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48382-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CC9F871BF4
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 11:46:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0D94871C3D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 11:53:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B5D2CB2360B
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 10:46:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 16DF81C22D1F
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 10:53:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8120B58123;
-	Tue,  5 Mar 2024 10:35:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6FFA15FB9C;
+	Tue,  5 Mar 2024 10:44:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="kv7Br/f7"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="dwF4nEhc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 548FC33D5;
-	Tue,  5 Mar 2024 10:35:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7483C5F85E;
+	Tue,  5 Mar 2024 10:44:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709634922; cv=none; b=R39qzQF3PQvA4j5to7k/MSJbr20HtQ6bSngd0T1vpe/tIHoE9PNdaY7PQY/ezmP3HC1lhxKIDA9yTsIty5ARygUuELGdf8A6MvE4+OC1T59kiCEhcnkReevHK4p4QLLr9Wp4vdxcHHreEg1Mv5X3uru3iySvfPLya5SKNBGqrqs=
+	t=1709635442; cv=none; b=LuaryV6FyXo4urvBGygXmjbO0AkpooTa2VDgfhV6Z+kNWoSPMAv8ecETVgUEF7jpgiSLRED+W6tFrf1tiLSmaTCIQpfsW7F7woRD5nm7F/XY5gDS6zK9jkFYTQCBTOtl45Pi8EEl00SJx2uNFQrub8i8a9IcTGEJnDFZF+BRkr0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709634922; c=relaxed/simple;
-	bh=FbE8QWyceyw6MPgSjjLEwzvEk0fumYCrTj/GDmXXnmI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=URSdtDFnN+Mifx25lFWeksIiDH+O8vxCr3NzUeLeewbdpnGrU2Qsnza9EJUR+y+7qZ23S3ATNAtWr+9L3p4g4OhcVYgMvd1DyWxvZL6lFVpw5XaXL7MWOLdkR8IB0tGqsXsdKq2Hu69QKAoV9ev7Z597qlnQjUQ7SxNJKTOBR2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=kv7Br/f7; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F86EC433F1;
-	Tue,  5 Mar 2024 10:35:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709634921;
-	bh=FbE8QWyceyw6MPgSjjLEwzvEk0fumYCrTj/GDmXXnmI=;
-	h=From:Date:Subject:To:Cc:From;
-	b=kv7Br/f73CNd/pjg8ShjwNXLSjd/MrdxPKpecCEuzxgxbW/wRcLIJwscGP1U11dej
-	 cXtZ6LV9lGgGEd5EwiGBUZ7X06YEGf+swstS7pWhUVjzWWhz8z20UlhoXwheULv1yz
-	 xcbwsUbrUAhnANwh+2Cm5w6prbBeXFp/0Z8V51GFBQ4gBN0DgB+NFgjZPSQW2RgKmt
-	 4HTjqCojL0jZB2HblmLPVN5+HrFsvMdNOYMwwNmht0mK9rNkgvtmbWNgrJ+reVxa4Q
-	 vSvicNz5dcoRB9ML2qPgwTjJC1V/+lkJkJgs96eZu7xq2gyY9psOaHqt6Es40udhE3
-	 cATt7Qr8aRD3w==
-From: Roger Quadros <rogerq@kernel.org>
-Date: Tue, 05 Mar 2024 12:35:11 +0200
-Subject: [PATCH v4] arm64: dts: ti: am642-evm: Add overlay for NAND
- expansion card
+	s=arc-20240116; t=1709635442; c=relaxed/simple;
+	bh=4vNNl7f7W2h0k3Q0Zqs0r02kCg6N1kQ9A0IS6U2AKKc=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=iVPiMDQXu6H2gaRKu7Y2am+kkXZy341M2IUGxoUMsaO41/B3Yrtx8nGhwtQYr/pUfW5Wp21p6agOixDlBCruSo2+alaHGzohkP5RXBW98PHxskwXZAbd6aY+fnoSGGKl5siaJL3U2amLVKcYJp8NUrDWdXakeyMHmHd4DqNl0Lc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=dwF4nEhc; arc=none smtp.client-ip=209.85.167.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-512ed314881so5075888e87.2;
+        Tue, 05 Mar 2024 02:44:00 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709635438; x=1710240238; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=yFIWP6Y3k14brl4GsqcL1DZL+SHGdhktob9S00FRdmc=;
+        b=dwF4nEhc8+bnSdmpOcyMFXM9goIn4mTqt4CwIgMTw66ZY6qdgl22XDZa+yXqW36tWo
+         vqABreAbnaEAPdeVvWtb5lOLFkjUbt8Fks2zz4M9NT2OvAzygGqrj4hPkiFPLl4ivGcy
+         K3atyxt3s7qBQB34uqQeZTw+gUyb/DXqSnChwJJicLrSoR+fEW/pcflcPT1GHHtmpmmf
+         Kmn4KQnRN2mC3jK8lTqJdxcGB8akh576ej6zvRzg1it8Mk/tAcvLTOhrl9SVbVrB0mMD
+         OIxfXaDIil3XrnQjWsUrLP697GbpPuuGFCTS0ywd2m1+wmR1wNRcufjyefWHFvhPlUaI
+         V52g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709635438; x=1710240238;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yFIWP6Y3k14brl4GsqcL1DZL+SHGdhktob9S00FRdmc=;
+        b=dVCaftf9giJzEnaIa23u6yZt+9i1z8UU/GL6Dzo2pwIhcWLNybl7RrNeyX14CQRY39
+         XLkXvR5sZuX6dD3UO5bXv3UeLP1cFTVbRS+SYm39Z4pvXsJthE3XW02UM8MN5jKEONhd
+         F6oCDuGLxiB8AQ2P6PFd873sI1h3TYVJJ2NrosHHpu1fL4MyGcs/YyiH1h3QRsiO5hnt
+         XmNEWbuPMocLes+yJjseu1YfFnqFcKXCGGMZjBeWXmtMWVe6wckocPMMP54EiF062qqs
+         Nye7P3Kh2zk6WM+xoVWY4TYuDiffIRt7ZCFFQM/ZMAhdYVju/Nk6t+OF1ILT98rESEc2
+         6W2A==
+X-Forwarded-Encrypted: i=1; AJvYcCXWOoc9xi/3Dmi0aX/b1Yc1p7QIRUOkgi7udCbX3qwKQBo4oyVf0sUt1g4w3IoSVGeSZrg5vOkiAgtrXXwan67YXB2DUwflHE7lWW1nZjDTwbVz+ZqDPNEJVR+kLB6fR9KFcra/UJrdCXOjPTgL+0sx73yOCA7JHm6j8472c4IGiQ==
+X-Gm-Message-State: AOJu0YydkY5cgVPUCwKeYae5NvRJ/CNOXG2qCO36sY5waYjtKEAR5wVY
+	FM9Dgg3jdX+4OW6IpxAgPdBS2edKCxfU651w/2KHPhnYOiw6yApQ
+X-Google-Smtp-Source: AGHT+IEohCwW1gdUhHQ+HBsjrH8e2X3IGAvkp7NbycEOs16kUhC+glys47qLNrfAVIC+ZfFra+qU8Q==
+X-Received: by 2002:a19:3846:0:b0:513:3e1a:75af with SMTP id d6-20020a193846000000b005133e1a75afmr843373lfj.16.1709635438124;
+        Tue, 05 Mar 2024 02:43:58 -0800 (PST)
+Received: from ?IPv6:2003:f6:ef1b:2000:15d4:fc17:481e:8afe? (p200300f6ef1b200015d4fc17481e8afe.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:15d4:fc17:481e:8afe])
+        by smtp.gmail.com with ESMTPSA id tj10-20020a170907c24a00b00a444526962asm5803196ejc.128.2024.03.05.02.43.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Mar 2024 02:43:57 -0800 (PST)
+Message-ID: <c2be9a4cbbe6946e2f98a69d915c22bc52c9f1d9.camel@gmail.com>
+Subject: Re: [PATCH v3 2/2] of: overlay: Synchronize of_overlay_remove()
+ with the devlink removals
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Herve Codina <herve.codina@bootlin.com>, Saravana Kannan
+	 <saravanak@google.com>, Rob Herring <robh@kernel.org>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Frank Rowand <frowand.list@gmail.com>, Lizhi Hou
+ <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, Sonal Santan
+ <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>,
+  Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Allan Nielsen
+ <allan.nielsen@microchip.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>,  stable@vger.kernel.org
+Date: Tue, 05 Mar 2024 11:47:22 +0100
+In-Reply-To: <20240305112708.56869e4c@bootlin.com>
+References: <20240229105204.720717-1-herve.codina@bootlin.com>
+	 <20240229105204.720717-3-herve.codina@bootlin.com>
+	 <acb69aa8c1a4c4e9849123ef538b9646a71507a0.camel@gmail.com>
+	 <20240304152202.GA222088-robh@kernel.org>
+	 <20240304174933.7ad023f9@bootlin.com>
+	 <CAGETcx-tmyJA30GtdU_dO9tWFoK+rO5tm-On4tPR7oQotnMkqQ@mail.gmail.com>
+	 <2f497783da939f13d8c8faeab931cac0ef9c98eb.camel@gmail.com>
+	 <20240305112708.56869e4c@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240305-for-v6-9-am642-evm-nand-v4-1-641a4e9217a6@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAF715mUC/x3MTQqAIBBA4avErBsws9+rRAvLsWahhYIE4d2Tl
- t/ivRciBaYIc/VCoMSRL1+g6gr2U/uDkE0xSCGVaEWH9gqYepxQu15JpOTQa29wM4M2jR3FSBO
- U+g5k+fnPy5rzB1QAPEdpAAAA
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: afd@ti.com, srk@ti.com, linux-arm-kernel@lists.infradead.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Roger Quadros <rogerq@kernel.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=7396; i=rogerq@kernel.org;
- h=from:subject:message-id; bh=FbE8QWyceyw6MPgSjjLEwzvEk0fumYCrTj/GDmXXnmI=;
- b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBl5vVm4E9hGwiMHqhsiASt9qeKfYBQCxLE1hfTK
- tYzolFnSuaJAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZeb1ZgAKCRDSWmvTvnYw
- kwF0D/0bFbfw+FDQuM/Yj+lyjCI9xpAyXOX15tshQyaV4isZ027Fl5FAC9tvyTHpfMtH/mObmaW
- juSZ0eDZA37/39/20cE6/1X/NpwGpAmh4VdWi0R7im6Ki8cFDXz647W/5hZAmNtY/0U2DL5ssDw
- Ewo5Qo2j+8m1luzjqOw8m2a+ReSJftXPERLW3Gfsh2B5Q0OlGCPU/rz0mKucQieoHCf3+JkeIFG
- Au7YYkxTCFJWfz8XjUpObINrbtlW15/b1VowpJPdbHQlu/zLy/MDjd31bIAgMvak+W1s3rckktI
- mfI2GibtEWdij3Hvvcm4+hFBZV80GhNRyUEcFYJpDtkQCwLbMeEm/D4moasSfVtsBij1D1XTZN0
- CfCrxq4nu2uW7AUgjcVkwUvI2jp4b5bm+Or1p0+khbSR0w6saJXTxCMLmbAqyYmXltw81CGTbr/
- r/zLfdO7SVKLxDH+X6zFzviX1X5qNWYdeT/OlAxMG6oi5zQ9GgLeVMDc9sOCMI3ixvav2fgL4yM
- 7LuMY7elFNIacxann4mOYsc6ySjLCLMnKG62CpG8nWPy2ehKzRYD1m/YmzhBwUc7NRgBbNwQGMp
- y+ZiH4cvu9oOjsWx5BHW3nftWnfqsAJ0b3LmwOiw8ZTLeUyHjrODTBOZxv8FmPCMPC/PPAZwoip
- kDuC7b8nnMAW90Q==
-X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
- fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
 
-The NAND expansion card plugs in over the HSE (High Speed Expansion)
-connector. Add support for it.
+On Tue, 2024-03-05 at 11:27 +0100, Herve Codina wrote:
+> Hi Nuno, Saravana, Rob,
+>=20
+> On Tue, 05 Mar 2024 08:36:45 +0100
+> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
+>=20
+> > On Mon, 2024-03-04 at 22:47 -0800, Saravana Kannan wrote:
+> > > On Mon, Mar 4, 2024 at 8:49=E2=80=AFAM Herve Codina <herve.codina@boo=
+tlin.com>
+> > > wrote:=C2=A0=20
+> > > >=20
+> > > > Hi Rob,
+> > > >=20
+> > > > On Mon, 4 Mar 2024 09:22:02 -0600
+> > > > Rob Herring <robh@kernel.org> wrote:
+> > > >=20
+> > > > ...
+> > > > =C2=A0=20
+> > > > > > > @@ -853,6 +854,14 @@ static void free_overlay_changeset(struc=
+t
+> > > > > > > overlay_changeset *ovcs)
+> > > > > > > =C2=A0{
+> > > > > > > =C2=A0 int i;
+> > > > > > >=20
+> > > > > > > + /*
+> > > > > > > +=C2=A0 * Wait for any ongoing device link removals before re=
+moving
+> > > > > > > some of
+> > > > > > > +=C2=A0 * nodes. Drop the global lock while waiting
+> > > > > > > +=C2=A0 */
+> > > > > > > + mutex_unlock(&of_mutex);
+> > > > > > > + device_link_wait_removal();
+> > > > > > > + mutex_lock(&of_mutex);=C2=A0=20
+> > > > > >=20
+> > > > > > I'm still not convinced we need to drop the lock. What happens =
+if
+> > > > > > someone else
+> > > > > > grabs the lock while we are in device_link_wait_removal()? Can =
+we
+> > > > > > guarantee that
+> > > > > > we can't screw things badly?=C2=A0=20
+> > > > >=20
+> > > > > It is also just ugly because it's the callers of
+> > > > > free_overlay_changeset() that hold the lock and now we're releasi=
+ng it
+> > > > > behind their back.
+> > > > >=20
+> > > > > As device_link_wait_removal() is called before we touch anything,
+> > > > > can't
+> > > > > it be called before we take the lock? And do we need to call it i=
+f
+> > > > > applying the overlay fails?=C2=A0=20
+> > >=20
+> > > Rob,
+> > >=20
+> > > This[1] scenario Luca reported seems like a reason for the
+> > > device_link_wait_removal() to be where Herve put it. That example
+> > > seems reasonable.
+> > >=20
+> > > [1] - https://lore.kernel.org/all/20231220181627.341e8789@booty/
+> > > =C2=A0=20
+> >=20
+> > I'm still not totally convinced about that. Why not putting the check r=
+ight
+> > before checking the kref in __of_changeset_entry_destroy(). I'll contra=
+dict
+> > myself a bit because this is just theory but if we look at pci_stop_dev=
+(),
+> > which
+> > AFAIU, could be reached from a sysfs write(), we have:
+> >=20
+> > device_release_driver(&dev->dev);
+> > ...
+> > of_pci_remove_node(dev);
+> > 	of_changeset_revert(np->data);
+> > 	of_changeset_destroy(np->data);
+> >=20
+> > So looking at the above we would hit the same issue if we flush the que=
+ue in
+> > free_overlay_changeset() - as the queue won't be flushed at all and we =
+could
+> > have devlink removal due to device_release_driver(). Right?
+> >=20
+> > Again, completely theoretical but seems like a reasonable one plus I'm =
+not
+> > understanding the push against having the flush in
+> > __of_changeset_entry_destroy(). Conceptually, it looks the best place t=
+o me
+> > but
+> > I may be missing some issue in doing it there?
+>=20
+> Instead of having the wait called in __of_changeset_entry_destroy() and s=
+o
+> called in a loop. I could move this call in the __of_changeset_entry_dest=
+roy()
+> caller (without any of_mutex lock drop).
+>=20
 
-We add the ranges property to the GPMC node instead of the NAND
-overlay file to prevent below warnings.
+Oh, good catch! At this point all the devlinks removals (related to the
+changeset) should have been queued so yes, we should only need to flush onc=
+e.
+=20
+> So this will look like this:
+> --- 8< ---
+> void of_changeset_destroy(struct of_changeset *ocs)
+> {
+> 	struct of_changeset_entry *ce, *cen;
+>=20
+> 	device_link_wait_removal();
+>=20
+> 	list_for_each_entry_safe_reverse(ce, cen, &ocs->entries, node)
+> 		__of_changeset_entry_destroy(ce);
+> }
+> --- 8< ---
+>=20
+> I already tested on my system and it works correctly with
+> device_link_wait_removal() only called from of_changeset_destroy()
+> as proposed.
+>=20
+> Saravana, Nuno, Rob does it seems ok for you ?
+>=20
 
-/fragment@3/__overlay__: Relying on default #address-cells value
-/fragment@3/__overlay__: Relying on default #size-cells value
+It looks good to me...
 
-As GPMC is dedicated for NAND use on this board, it should be OK.
-
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
-Changelog:
-v4:
-- Rebased on ti-next/ti-k3-dt-for-v6.9
-
-v3:
-https://lore.kernel.org/all/20240123201312.23187-1-rogerq@kernel.org/
-- Fix dtc warning by moving ranges property into the GPMC node
-- update licence to GPL-2.0-only OR MIT and Copyright year to 2024
-- don't drop k3-am642-evm.dtb target from Makefile
-
-v2:
-- Don't leave k3-am642-evm-nand.dtbo as an orphan. Make k3-am642-evm-nand.dtb
-with the overlay applied on the base board.
----
- arch/arm64/boot/dts/ti/Makefile               |   2 +
- arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso | 139 ++++++++++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-am642-evm.dts       |   4 +
- 3 files changed, 145 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 9a722c2473fb..8cceca6d6756 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -47,6 +47,8 @@ dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-icssg1-dualemac.dtbo
- dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-pcie.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-hummingboard-t-usb3.dtb
-+k3-am642-evm-nand-dtbs := k3-am642-evm.dtb k3-am642-evm-nand.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-am642-evm-nand.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-phyboard-electra-rdk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am642-tqma64xxl-mbax4xxl.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
-new file mode 100644
-index 000000000000..3d1c2111ec88
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm-nand.dtso
-@@ -0,0 +1,139 @@
-+// SPDX-License-Identifier: GPL-2.0-only OR MIT
-+/**
-+ * DT overlay for HSE NAND expansion card on AM642 EVM
-+ *
-+ * Copyright (C) 2021-2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include "k3-pinctrl.h"
-+
-+&main_pmx0 {
-+	gpmc0_pins_default: gpmc0-pins-default {
-+		pinctrl-single,pins = <
-+			AM64X_IOPAD(0x0094, PIN_INPUT, 7) /* (T19) GPMC0_BE1n.GPIO0_36 */
-+
-+			AM64X_IOPAD(0x003c, PIN_INPUT, 0) /* (T20) GPMC0_AD0 */
-+			AM64X_IOPAD(0x0040, PIN_INPUT, 0) /* (U21) GPMC0_AD1 */
-+			AM64X_IOPAD(0x0064, PIN_INPUT, 0) /* (R16) GPMC0_AD10 */
-+			AM64X_IOPAD(0x0068, PIN_INPUT, 0) /* (W20) GPMC0_AD11 */
-+			AM64X_IOPAD(0x006c, PIN_INPUT, 0) /* (W21) GPMC0_AD12 */
-+			AM64X_IOPAD(0x0070, PIN_INPUT, 0) /* (V18) GPMC0_AD13 */
-+			AM64X_IOPAD(0x0074, PIN_INPUT, 0) /* (Y21) GPMC0_AD14 */
-+			AM64X_IOPAD(0x0078, PIN_INPUT, 0) /* (Y20) GPMC0_AD15 */
-+			AM64X_IOPAD(0x0044, PIN_INPUT, 0) /* (T18) GPMC0_AD2 */
-+			AM64X_IOPAD(0x0048, PIN_INPUT, 0) /* (U20) GPMC0_AD3 */
-+			AM64X_IOPAD(0x004c, PIN_INPUT, 0) /* (U18) GPMC0_AD4 */
-+			AM64X_IOPAD(0x0050, PIN_INPUT, 0) /* (U19) GPMC0_AD5 */
-+			AM64X_IOPAD(0x0054, PIN_INPUT, 0) /* (V20) GPMC0_AD6 */
-+			AM64X_IOPAD(0x0058, PIN_INPUT, 0) /* (V21) GPMC0_AD7 */
-+			AM64X_IOPAD(0x005c, PIN_INPUT, 0) /* (V19) GPMC0_AD8 */
-+			AM64X_IOPAD(0x0060, PIN_INPUT, 0) /* (T17) GPMC0_AD9 */
-+			AM64X_IOPAD(0x0098, PIN_INPUT_PULLUP, 0) /* (W19) GPMC0_WAIT0 */
-+			AM64X_IOPAD(0x009c, PIN_INPUT_PULLUP, 0) /* (Y18) GPMC0_WAIT1 */
-+			AM64X_IOPAD(0x00a8, PIN_OUTPUT_PULLUP, 0) /* (R19) GPMC0_CSn0 */
-+			AM64X_IOPAD(0x00ac, PIN_OUTPUT_PULLUP, 0) /* (R20) GPMC0_CSn1 */
-+			AM64X_IOPAD(0x00b0, PIN_OUTPUT_PULLUP, 0) /* (P19) GPMC0_CSn2 */
-+			AM64X_IOPAD(0x00b4, PIN_OUTPUT_PULLUP, 0) /* (R21) GPMC0_CSn3 */
-+			AM64X_IOPAD(0x007c, PIN_OUTPUT, 0) /* (R17) GPMC0_CLK */
-+			AM64X_IOPAD(0x0084, PIN_OUTPUT, 0) /* (P16) GPMC0_ADVn_ALE */
-+			AM64X_IOPAD(0x0088, PIN_OUTPUT, 0) /* (R18) GPMC0_OEn_REn */
-+			AM64X_IOPAD(0x008c, PIN_OUTPUT, 0) /* (T21) GPMC0_WEn */
-+			AM64X_IOPAD(0x0090, PIN_OUTPUT, 0) /* (P17) GPMC0_BE0n_CLE */
-+			AM64X_IOPAD(0x00a0, PIN_OUTPUT_PULLUP, 0) /* (N16) GPMC0_WPn */
-+			AM64X_IOPAD(0x00a4, PIN_OUTPUT, 0) /* (N17) GPMC0_DIR */
-+		>;
-+	};
-+};
-+
-+&main_gpio0 {
-+	gpio0-36 {
-+		gpio-hog;
-+		gpios = <36 0>;
-+		input;
-+		line-name = "GPMC0_MUX_DIR";
-+	};
-+};
-+
-+&elm0 {
-+	status = "okay";
-+};
-+
-+&gpmc0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&gpmc0_pins_default>;
-+	#address-cells = <2>;
-+	#size-cells = <1>;
-+
-+	nand@0,0 {
-+		compatible = "ti,am64-nand";
-+		reg = <0 0 64>;		/* device IO registers */
-+		interrupt-parent = <&gpmc0>;
-+		interrupts = <0 IRQ_TYPE_NONE>, /* fifoevent */
-+			     <1 IRQ_TYPE_NONE>;	/* termcount */
-+		rb-gpios = <&gpmc0 0 GPIO_ACTIVE_HIGH>;	/* gpmc_wait0 */
-+		ti,nand-xfer-type = "prefetch-polled";
-+		ti,nand-ecc-opt = "bch8";	/* BCH8: Bootrom limitation */
-+		ti,elm-id = <&elm0>;
-+		nand-bus-width = <8>;
-+		gpmc,device-width = <1>;
-+		gpmc,sync-clk-ps = <0>;
-+		gpmc,cs-on-ns = <0>;
-+		gpmc,cs-rd-off-ns = <40>;
-+		gpmc,cs-wr-off-ns = <40>;
-+		gpmc,adv-on-ns = <0>;
-+		gpmc,adv-rd-off-ns = <25>;
-+		gpmc,adv-wr-off-ns = <25>;
-+		gpmc,we-on-ns = <0>;
-+		gpmc,we-off-ns = <20>;
-+		gpmc,oe-on-ns = <3>;
-+		gpmc,oe-off-ns = <30>;
-+		gpmc,access-ns = <30>;
-+		gpmc,rd-cycle-ns = <40>;
-+		gpmc,wr-cycle-ns = <40>;
-+		gpmc,bus-turnaround-ns = <0>;
-+		gpmc,cycle2cycle-delay-ns = <0>;
-+		gpmc,clk-activation-ns = <0>;
-+		gpmc,wr-access-ns = <40>;
-+		gpmc,wr-data-mux-bus-ns = <0>;
-+
-+		partitions {
-+			compatible = "fixed-partitions";
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+
-+			partition@0 {
-+				label = "NAND.tiboot3";
-+				reg = <0x00000000 0x00200000>;	/* 2M */
-+			};
-+			partition@200000 {
-+				label = "NAND.tispl";
-+				reg = <0x00200000 0x00200000>;	/* 2M */
-+			};
-+			partition@400000 {
-+				label = "NAND.tiboot3.backup";	/* 2M */
-+				reg = <0x00400000 0x00200000>;	/* BootROM looks at 4M */
-+			};
-+			partition@600000 {
-+				label = "NAND.u-boot";
-+				reg = <0x00600000 0x00400000>;	/* 4M */
-+			};
-+			partition@a00000 {
-+				label = "NAND.u-boot-env";
-+				reg = <0x00a00000 0x00040000>;	/* 256K */
-+			};
-+			partition@a40000 {
-+				label = "NAND.u-boot-env.backup";
-+				reg = <0x00a40000 0x00040000>;	/* 256K */
-+			};
-+			partition@a80000 {
-+				label = "NAND.file-system";
-+				reg = <0x00a80000 0x3f580000>;
-+			};
-+		};
-+	};
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-am642-evm.dts b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-index 53fe1d065ddb..44ac324fc7bb 100644
---- a/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am642-evm.dts
-@@ -818,3 +818,7 @@ icssg1_phy1: ethernet-phy@f {
- 		rx-internal-delay-ps = <2000>;
- 	};
- };
-+
-+&gpmc0 {
-+	ranges = <0 0 0x00 0x51000000 0x01000000>; /* CS0 space. Min partition = 16MB */
-+};
-
----
-base-commit: bbef42084cc170cbfc035bf784f2ff055c939d7e
-change-id: 20240305-for-v6-9-am642-evm-nand-bd7ad1f808e9
-
-Best regards,
--- 
-Roger Quadros <rogerq@kernel.org>
+- Nuno S=C3=A1
+>=20
 
 
