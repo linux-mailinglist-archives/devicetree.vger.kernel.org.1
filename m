@@ -1,160 +1,212 @@
-Return-Path: <devicetree+bounces-48537-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48538-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D67DC872682
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:25:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EC2F8726B2
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:38:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 141331C26AA5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:25:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 427BE1C2352B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:38:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2267A18AED;
-	Tue,  5 Mar 2024 18:25:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E830918E14;
+	Tue,  5 Mar 2024 18:38:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pix2Nnie"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="QI+2o1yN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from out203-205-221-202.mail.qq.com (out203-205-221-202.mail.qq.com [203.205.221.202])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7BA4A1AAAE;
-	Tue,  5 Mar 2024 18:25:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 981A614A8D
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 18:38:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.221.202
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709663132; cv=none; b=S0cIfbt8KMJC+0mIJMR0PcaglxAXg76lqL23c5lDo2gvZerQTmpdHI4Ff2cRfoctLqfjZsQ9RqAeDJk7SyeNMz5t5o3m/HIJKSnF2K1EV+2HAqrsmYA4gtK1G9RYvhktfpqER2R2/LOHwQvB6fDVK+ssouhQfeW3m1TjUF9BzEk=
+	t=1709663916; cv=none; b=ePHVPiiD5aSyTXF+KGGAyGXURRqooIc/0rRaRFiv9Zlj4eAhz3kJ3M8tvvouyAD3J4c20l11lqFambg27ohCHi1vRQKQXVsDXIjRA2EED/RwhQyByBoRdafz6eIxTdNdfvTrc71zFe8CpzBkMSJJwZoImU9h5wulE5YUtZYS4oQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709663132; c=relaxed/simple;
-	bh=f5eWXg8q9+04983HKC25i0B2Cij6OAJzv1WgCCfc3eo=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:References:
-	 In-Reply-To:Content-Type; b=HVfjWBm/VjDfUeHaXI5kB21YVbDA00c8vmTg9l0gJh5m8ZPxAEpYADhgZI1RRhFk/Ywwr/MzvhgZzYvEmj4OpYZRt9F+LSGfH0N3pncsSj1hPE8f9I12UVf+gB0P2RwmsIPdw1jRYC+4+AKyvEyYo45HWWCfRItrkqduZR2q3dA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pix2Nnie; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 425Fm2T2030069;
-	Tue, 5 Mar 2024 18:25:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:from:to:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=2kl5tMFEKrj+g3qzJ7Yn8a+ESpyaPJUxELxULpjiqso=; b=pi
-	x2NniezncgxxR80ZzKSp058LQQKAD4JPUS2xx8OeytsP9oRnA3vOLAcFttNHaQfO
-	newmEnUbCBHrZVR3+aCdbeGFXeY9dd+rpuju75EkGWYWRyOGfq5PbuoqQ4Vnp5/l
-	s50wej/d7nt0mOw53pXJkZ/x/wNEZVJbhrKV866EXYlj+QpCzNh1kXlowe1U1U2c
-	zPje5nmBIb2MBftKHDwlOHhgDmJp4cDhBD6oySJHZIp1sgDFkj9LONTEdpWx7K2w
-	oRFwV9UB14ZTtWIx1R55e+qGb0VneRlBqZC9taPwsAlMTSs0hfc732B/AnCVEZEj
-	svPMN2CNW9c4x0KN3L2A==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wp6bv8cps-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 05 Mar 2024 18:25:16 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 425IPFLH009942
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 5 Mar 2024 18:25:15 GMT
-Received: from [10.216.51.173] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 5 Mar
- 2024 10:25:08 -0800
-Message-ID: <a2e863e2-9c8b-47c2-b4d8-5664d954cd49@quicinc.com>
-Date: Tue, 5 Mar 2024 23:55:04 +0530
+	s=arc-20240116; t=1709663916; c=relaxed/simple;
+	bh=ccsmIrPdFMrT28j3xA5dnBLiiglBPka10Yd9UzuHo4w=;
+	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
+	 Date:Cc:References:To; b=ODf7yNHQgxYcCFhgoPXa/BFPUvS9aYXLy/asovx8D07dqZlvf6T6Z2UpksEwW1sMYB9wo3SeSAX206cPJbVBSJIpFr2Pj55RnM7vLH9fU9oRcXiyeSBoA5sqfjsZ5s7kT6DZYmRKiWkLak5xg1i4zzrKPiU0LL7iyP8qTysfCCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=QI+2o1yN; arc=none smtp.client-ip=203.205.221.202
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1709663912; bh=d+kTQqs56hEdA/J+nt265wjTS9zlpPPPEe2AQ1DBrK8=;
+	h=Subject:From:In-Reply-To:Date:Cc:References:To;
+	b=QI+2o1yN6yg75Gn3AnjimVO7B+K/OpTMvS6gdnGuo34NBdWecGCVeTbUYFUIRbSC/
+	 rGmGhT1TPZaHZhebsYrUXIcADhjiNy2NuTluDGUmVPvVRqj20WIIZ3O/KPok9FhA/i
+	 3tVigYFHao8DtNgYtckWrLZLPq+gdBizsd0AGKFo=
+Received: from smtpclient.apple ([2001:da8:c800:d084:84f7:c158:bab8:8899])
+	by newxmesmtplogicsvrszb9-0.qq.com (NewEsmtp) with SMTP
+	id 81283222; Wed, 06 Mar 2024 02:32:18 +0800
+X-QQ-mid: xmsmtpt1709663538tl2ajfv2w
+Message-ID: <tencent_4B189E90E5C66BBE3EC1386D32C715DCF407@qq.com>
+X-QQ-XMAILINFO: NJ/+omVLhVgagmpidtm5HSHBgBqIXOrSOPIHRoXnn6toxcP2mSDvTvhAT4+3eJ
+	 Sa0aDbfx+/GgyXyxqSa/eaVsT/ozJp30wkBBZHgmP6RHaE5PRqQnwLRJEpDCcFkE4FdoHidjzEte
+	 XvEyL5qAeaeZyGTsjtar6rYrLT85pxfca6/Qtnz6dpea+lmdufCPCcvDGqaFPrdwXJiieH9Lg080
+	 6sf9X4nD0a2rXUuCERx+Eptb1pAmDhBjvYZT87nCoAapCau0r7wlKBWr/pEUaeTK06qxLRhGdqWh
+	 +pP/Itxm7tMYSjE/jft0vUSs4/cUve+FHOXjtgFhZdCz8450Tf50tVjcS8GhT85dzU4x7QXdICuo
+	 yIYhtdgFYu7hrpiBUhD8bV+mUvj/kgSfrpp1rYkjYFn6bO54KeohAHD+fO1c+r3kYLL7nhbE41Vp
+	 I6k7HAmovJOZPBt/nEXqHKfdMNXqSEOzLQV60J+saHB9WFnribuH8HtqXdKfKD9hf/eAXA8FSvGc
+	 aJHIlWTKeF0M7v8fAPkPpaB6ePdpU+/p2CbCwmlqA2XFlWutSZr/xl9uyE4otZrPp4u7BtzI4ibv
+	 4wlS93tVGpmgZhI4FtCyLV7QuP42vzIkzCvX9U2Y34UCDoYfJu9NHLMBJrw7t3LIm+bkTCPE56w6
+	 L63LpPBKQIi1NA7HK/PbjU0Z0anfDnWxto9s+GoPDz40v/lOE6nafb1QoUrUfqQssYboo83uufI2
+	 O07JXdwpA0VegJnJS25eISXxPNuosMiqbrJaaZRAHmgVkHhWQRxWwiB5wn/Q/Zb7bwlvh7Lvdgkt
+	 VvWiIVcEHm8xk10ytYjV+BpkCA856C1JVbPkSlPY5d9yHu4/i9//M7oMTpHofRpP/zVlihEKRSBb
+	 lfvs0OUqc/kpb6N8HDTjt7OIfCUHxdpxaMkehK3n0eccsivWS6X56W5ebDVR21Jju0TZK2Rzcfu0
+	 kCexfBUfhoBUJuAw7qOQ9QYEpI3DHM4SlTf4DpktPInYZ0QGOzcmomoAFxHqOXi4/JnEm2FI+fvj
+	 LPcndT/O1/UtG/gBsvF7fWyf9nCNhYgO8Rt7B0hVn8bFJeJ46p
+X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
+Content-Type: text/plain;
+	charset=utf-8
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC 3/3] arm64: dts: qcom: sa8775p-ride: Enable support for
- firmware managed resources
-Content-Language: en-US
-From: Sriram Dash <quic_sriramd@quicinc.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
-        <kishon@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <gregkh@linuxfoundation.org>, <quic_wcheng@quicinc.com>,
-        <Thinh.Nguyen@synopsys.com>, <p.zabel@pengutronix.de>,
-        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <quic_psodagud@quicinc.com>, <quic_nkela@quicinc.com>,
-        <manivannan.sadhasivam@linaro.org>, <ulf.hansson@linaro.org>,
-        <sudeep.holla@arm.com>, <quic_shazhuss@quicinc.com>,
-        <devicetree@vger.kernel.org>
-References: <1709657858-8563-1-git-send-email-quic_sriramd@quicinc.com>
- <1709657858-8563-4-git-send-email-quic_sriramd@quicinc.com>
- <b9142874-0afb-40a6-9008-b33bd8f56840@linaro.org>
- <399555e8-d8fa-46b7-8b15-3d3a4a30809b@quicinc.com>
-In-Reply-To: <399555e8-d8fa-46b7-8b15-3d3a4a30809b@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Fg58HcmEETQqSWqLAm75O0fTg6deT8lC
-X-Proofpoint-ORIG-GUID: Fg58HcmEETQqSWqLAm75O0fTg6deT8lC
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-05_15,2024-03-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- phishscore=0 mlxscore=0 bulkscore=0 suspectscore=0 priorityscore=1501
- adultscore=0 malwarescore=0 mlxlogscore=999 impostorscore=0 clxscore=1015
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403050147
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
+Subject: Re: Resend: Re: [PATCH v3 5/7] riscv: Kconfig.socs: Allow SOC_CANAAN
+ with MMU for K230
+From: Yangyu Chen <cyy@cyyself.name>
+In-Reply-To: <tencent_AA20462764AFF185EF405043DBC99119F705@qq.com>
+Date: Wed, 6 Mar 2024 02:32:08 +0800
+Cc: Damien Le Moal <dlemoal@kernel.org>,
+ linux-riscv@lists.infradead.org,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Palmer Dabbelt <palmer@dabbelt.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ Guo Ren <guoren@kernel.org>,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org,
+ Conor Dooley <conor.dooley@microchip.com>
+Content-Transfer-Encoding: quoted-printable
+X-OQ-MSGID: <444AB6B6-283A-49ED-8CEF-0FE76A4B5DB5@cyyself.name>
+References: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
+ <tencent_0432DA968E39B81431F921F38D747C008208@qq.com>
+ <ef8df22f-dac8-4652-bf17-d10254e6abfb@kernel.org>
+ <tencent_E56A833916E00EC7B4840C34FAF1250ADE0A@qq.com>
+ <20240305-fascism-enrich-06483ddeb149@spud>
+ <tencent_AA20462764AFF185EF405043DBC99119F705@qq.com>
+To: Conor Dooley <conor@kernel.org>
+X-Mailer: Apple Mail (2.3774.400.31)
 
-On 3/5/2024 11:33 PM, Sriram Dash wrote:
-> On 3/5/2024 10:38 PM, Krzysztof Kozlowski wrote:
->> On 05/03/2024 17:57, Sriram Dash wrote:
->>> Establish the channel and domain mapping for the power domains to 
->>> connect
->>> with firmware, enabling the firmware to handle the assigned resources.
->>> Since these delegated resources will remain invisible to the operating
->>> system, ensure that any references to them are removed.
->>>
->>> Signed-off-by: Sriram Dash <quic_sriramd@quicinc.com>
->>> ---
->>>   arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 96 
->>> +++++++++++++++++++++++++------
->>>   1 file changed, 77 insertions(+), 19 deletions(-)
->>
->> Do not mix DTS patches with submissions to netdev or USB.
->>
->> Please put it inside your internal guides, so you will not be repeating
->> this over and over.
->>
-> 
-> Sure. Will take care. Thanks.
-> 
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts 
->>> b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
->>> index 26ad05b..b6c9cac 100644
->>> --- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
->>> +++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
->>> @@ -764,8 +764,18 @@
->>>   };
->>>   &usb_0 {
->>> -    pinctrl-names = "default";
->>> -    pinctrl-0 = <&usb0_en_state>;
->>> +    /delete-property/ clocks;
->>> +    /delete-property/ clock-names;
->>> +    /delete-property/ assigned-clocks;
->>> +    /delete-property/ assigned-clock-rates;
->>> +    /delete-property/ required-opps;
->>> +    /delete-property/ resets;
->>> +    /delete-property/ interconnects;
->>> +    /delete-property/ interconnect-names;
->>> +
->>> +    power-domains = <TODO>, <TODO>;
->>
->> This wasn't even tested.
->>
-> 
-> This is tested with the specific power domains in place
-> of <TODO>. SCMI interface is used for the power domains.
-> 
->> Best regards,
->> Krzysztof
->>
+
+> On Mar 6, 2024, at 01:50, Yangyu Chen <cyy@cyyself.name> wrote:
+>=20
+> The last email was not received in the list due to I didn=E2=80=99t =
+change the mode
+> to plaintext. Sorry for that. This is a resend email.
+>=20
+>> On Mar 6, 2024, at 01:20, Conor Dooley <conor@kernel.org> wrote:
+>>=20
+>> On Tue, Mar 05, 2024 at 03:47:15PM +0800, Yangyu Chen wrote:
+>>> On 2024/3/5 07:46, Damien Le Moal wrote:
+>>>> On 3/5/24 06:05, Yangyu Chen wrote:
+>>>>> Since K230 was released, SOC_CANAAN is no longer only referred to =
+the K210.
+>>>>> Remove it depends on !MMU will allow building dts for K230 and =
+remove the
+>>>>> K210 string from the help message.
+>>>>>=20
+>>>>> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
+>>>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+>>>>> ---
+>>>>> arch/riscv/Kconfig.socs | 5 ++---
+>>>>> 1 file changed, 2 insertions(+), 3 deletions(-)
+>>>>>=20
+>>>>> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+>>>>> index 623de5f8a208..b4e9b7f75510 100644
+>>>>> --- a/arch/riscv/Kconfig.socs
+>>>>> +++ b/arch/riscv/Kconfig.socs
+>>>>> @@ -75,13 +75,12 @@ config ARCH_CANAAN
+>>>>>  def_bool SOC_CANAAN
+>>>>> config SOC_CANAAN
+>>>>> - bool "Canaan Kendryte K210 SoC"
+>>>>> - depends on !MMU
+>>>>=20
+>>>> This seems wrong to me. The k210 support does require no-mmu. So =
+why remove
+>>>> this ?
+>>>=20
+>>> It just allows SOC_CANAAN to be selected when MMU=3Dy. With this =
+patch,
+>>> nommu_k210_defconfig still works.
+>>=20
+>> I think the concern here is that this would allow people to build a
+>> kernel for the k120 with the MMU enabled, not that the existing nommu
+>> build will be affected.
+>>=20
+>=20
+> Aha. I don't think is there anyone will try a build with MMU on
+> K210. It only has 6MB of memory available to the CPU. For rv64 if
+> the S-Mode software starts at 2MB, it will only have 4MB for S-Mode
+> Linux. It's hard to trim the kernel and fit in 4MB and even preserve
+> some memory for userspace.
+>=20
+> I also tried to make nommu_k210_defconfig on gcc 13.2.0, it produced a
+> 1.6M kernel in arch/riscv/boot/Image. But if I use nconfig to set
+> CONFIG_MMU=3Dy and rebuild, the kernel file will increase to 11M.
+>=20
+
+Another interesting finding is that the root cause of the huge kernel is
+because CONFIG_STRICT_KERNEL_RWX. If we turn it off, the size will
+reduced to 1.9M. Not so much for userspace but seems ok to boot.
+
+That is because we defined SECTION_ALIGN to 2MB to fit with one PMD on
+rv64 to reduce the miss of TLB. However, it increased the kernel size.
+
+Link: =
+https://lore.kernel.org/linux-riscv/d78c601d553dde791057b54252064221f96054=
+6e.1586332296.git.zong.li@sifive.com/
+
+I know MMU on K210 is not standard as now.=20
+
+Maybe I should care about that. I will fix this for patch v4.
+
+>> Maybe you could squash in something like the following?
+>>=20
+>> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
+>> index b4e9b7f75510..75d55059163f 100644
+>> --- a/arch/riscv/Kconfig.socs
+>> +++ b/arch/riscv/Kconfig.socs
+>> @@ -72,15 +72,19 @@ config SOC_VIRT
+>>  This enables support for QEMU Virt Machine.
+>>=20
+>> config ARCH_CANAAN
+>> - def_bool SOC_CANAAN
+>> + bool "Canaan Kendryte SoCs"
+>> + help
+>> +   This enables support for Canaan Kendryte SoC platform hardware.
+>>=20
+>> config SOC_CANAAN
+>> - bool "Canaan Kendryte SoC"
+>> + bool "Canaan Kendryte K210 SoC"
+>> + depends on !MMU
+>> + depends on ARCH_CANAAN
+>> select CLINT_TIMER if RISCV_M_MODE
+>> select ARCH_HAS_RESET_CONTROLLER
+>> select PINCTRL
+>> select COMMON_CLK
+>> help
+>> -   This enables support for Canaan Kendryte SoC platform hardware.
+>> +   This enables support for Canaan Kendryte K210 SoC platform =
+hardware.
+>>=20
+>> endmenu # "SoC selection"
+>>=20
+>> (Which reminds me, I really need to go and finish sorting out the =
+ARCH_
+>> stuff)
+>=20
+> Seems like an idea if we want this consideration. But I don't think we =
+need
+> this as the opinions shown above.
+>=20
+> If it should be, I think SOC_CANAAN should be renamed to SOC_K210 or
+> SOC_CANAAN_K210.
+>=20
+
 
