@@ -1,94 +1,85 @@
-Return-Path: <devicetree+bounces-48457-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48458-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6303872224
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:57:42 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 557E287222D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:58:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45F6FB2591E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:57:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 881581C215BE
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:58:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 052D1126F06;
-	Tue,  5 Mar 2024 14:57:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 65EEF1272B2;
+	Tue,  5 Mar 2024 14:58:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="f7WwB6yu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 397B06127;
-	Tue,  5 Mar 2024 14:57:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3E9A91272AC;
+	Tue,  5 Mar 2024 14:58:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709650654; cv=none; b=TrIFRfZmbeU42aLgGKb0g/0R21hkjLqYx4tygEHaol7TPprwXgFjzcsQ1znpiZ88G48kw090Tr4ZqrkWLlUTjGNPXBnhUorEwWlrHSC+LAzdDPnpHF9rctqjtytCjVJOngulgFY4PZL6M/ibVeveIezEHpNj7GZO76JCEWOk3qQ=
+	t=1709650712; cv=none; b=J08hEM/f3pTwdYT9QRtw/k+eAuwyDHQXCwm+pA5fE2AMeXFzHVFJ7gctGWneX6rI1xq6v+rvuW05/uUrl1phRmDCPPFD2ammcvCUrw8c+CXArElM+z5cFCPEn5es+Uu1oTHRMJzq6ELa41AnV30ozN26jjz0oUwmnyk6HxHLSS8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709650654; c=relaxed/simple;
-	bh=TIcbgZnFoOSin4xcvPxLtTGuR+etJMTMZC+5XvU+ehA=;
+	s=arc-20240116; t=1709650712; c=relaxed/simple;
+	bh=h/P3goLMUxLj5fuwUwNyF1B5oRaia4FNBO96222ZKJI=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YgWm0qXFNpF+m8jelDJ27v1joqqNLOHpd3Bp6r19SFIrBupScsV9uPfnPxBckSSvgdtjVZaCzMdYG8J42KHAYaBvPmk8gNWNahQ1cUdJdUw/SHseqKArDYNStSInD7GmquS7EJJd3GvxYuOneYt1SISfGiCyjHOKGGzkNl36Ew8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="29628910"
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="29628910"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2024 06:57:32 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11003"; a="914142298"
-X-IronPort-AV: E=Sophos;i="6.06,205,1705392000"; 
-   d="scan'208";a="914142298"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Mar 2024 06:57:29 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1rhWEQ-0000000A0ft-0JAb;
-	Tue, 05 Mar 2024 16:57:26 +0200
-Date: Tue, 5 Mar 2024 16:57:25 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Chris Packham <chris.packham@alliedtelesis.co.nz>, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	andrew@lunn.ch, gregory.clement@bootlin.com,
-	sebastian.hesselbarth@gmail.com, lee@kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-leds@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] auxdisplay: Add 7-segment LED display driver
-Message-ID: <Zecy1RsSfpmH-cvG@smile.fi.intel.com>
-References: <20240305035853.916430-1-chris.packham@alliedtelesis.co.nz>
- <20240305035853.916430-2-chris.packham@alliedtelesis.co.nz>
- <CAMuHMdXF+12PHa5A7WeyPMfvsGcJN13WaPuCbTmJU52Huq=osA@mail.gmail.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=netJmhuBpIGEaJy0E3cbDnIychtkaicMN6lsn2SY6k/0VtnCeG7Mq+CyI4AbxUmgs+QT9q1gczF6IYuX23C4MIXIg0uEHePc2uBGNBJTXhtiB6/BrGk0pFT+LRAsKEDJyprhY0vVMgqg/v6O5kCRLzagb9t+cpMaAc+J0yFf4aQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=f7WwB6yu; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 914DAC433C7;
+	Tue,  5 Mar 2024 14:58:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709650711;
+	bh=h/P3goLMUxLj5fuwUwNyF1B5oRaia4FNBO96222ZKJI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=f7WwB6yujek5CUa0aO0at5Vo1A/YG6JiylctOK5N3NkPR5U2Dchi5EGBqkcl13tdq
+	 dCGFsOTsFG9UH1XRr4eBWtmN1BVkZfGGil8PX9NSM2zcQ7MeHGLbcGRPpfRhTvMIbV
+	 qqnk/9aGzKnym9o8Bm8lJNVVs8xckLGH6Zr+JN9wOPFmmBt3CqiBRcfPHhXKUlbD8J
+	 uuTzg8MwXuAFjYD1bMFLVvkOj044pXVyuECvc98hOgN5iPSfIVem508KiDQY8bLDVw
+	 OZGTLm/2h5uPsT7dZ4jQk/zhoRvQ+bTAomZvbcvQAytjfGI7LggqOIrIWkVJnBxJjl
+	 BTrBybamIsRZw==
+Date: Tue, 5 Mar 2024 08:58:29 -0600
+From: Rob Herring <robh@kernel.org>
+To: Yang Xiwen <forbidden405@outlook.com>
+Cc: Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawn.guo@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-phy@lists.infradead.org,
+	Jiancheng Xue <xuejiancheng@hisilicon.com>,
+	Vinod Koul <vkoul@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, devicetree@vger.kernel.org,
+	Kishon Vijay Abraham I <kishon@ti.com>,
+	David Yang <mmyangfl@gmail.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/5] dt-bindings: phy: hisilicon,inno-usb2-phy: add
+ support for Hi3798MV100 INNO PHY
+Message-ID: <170965070901.3343660.17802969888046943603.robh@kernel.org>
+References: <20240305-inno-phy-v4-0-a03204c9cf1c@outlook.com>
+ <20240305-inno-phy-v4-3-a03204c9cf1c@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdXF+12PHa5A7WeyPMfvsGcJN13WaPuCbTmJU52Huq=osA@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20240305-inno-phy-v4-3-a03204c9cf1c@outlook.com>
 
-On Tue, Mar 05, 2024 at 09:23:07AM +0100, Geert Uytterhoeven wrote:
-> On Tue, Mar 5, 2024 at 4:59 AM Chris Packham
-> <chris.packham@alliedtelesis.co.nz> wrote:
 
-...
-
-> > +       priv->segment_gpios = devm_gpiod_get_array(dev, "segment", GPIOD_OUT_LOW);
-> > +       if (IS_ERR(priv->segment_gpios))
-> > +               return PTR_ERR(priv->segment_gpios);
+On Tue, 05 Mar 2024 10:19:48 +0800, Yang Xiwen wrote:
+> Hi3798MV100 also has a similar INNO USB2 PHY with slightly different
+> register fields offsets. Document it in the binding.
 > 
-> This needs some validation of priv->segment_gpios->ndescs, else the
-> call to gpiod_set_array_value_cansleep() in seg_led_update() may
-> trigger an out-of-bounds access of the values bitmap.
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+> ---
+>  Documentation/devicetree/bindings/phy/hisilicon,inno-usb2-phy.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Alternatively we can call gpiod_count() beforehand and check its result.
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+Reviewed-by: Rob Herring <robh@kernel.org>
 
 
