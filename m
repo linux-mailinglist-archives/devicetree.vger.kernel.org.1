@@ -1,131 +1,133 @@
-Return-Path: <devicetree+bounces-48348-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48360-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA6118717CE
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:15:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4946887180D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:19:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8586C281086
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:15:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D262A281B0C
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:19:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 088847F47A;
-	Tue,  5 Mar 2024 08:14:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9560B7FBC6;
+	Tue,  5 Mar 2024 08:18:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="Urje1p8L"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f171.google.com (mail-yw1-f171.google.com [209.85.128.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2E6C7EEFD;
-	Tue,  5 Mar 2024 08:14:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 291037FBBF;
+	Tue,  5 Mar 2024 08:18:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709626457; cv=none; b=Rxs85vaZN0Oh/M32++kRYCQiDIfIhKhpVnNf216tG7V0ihK3H5iThGpjEgEynkf/fT0OaBfoWm5uLVjaIAJcvvoLBEclHEzolzB0CmccMRuIRWobpz+JHY+77YWUEQ3vmsPqqvU6PpFJa9TZPwHE30Jj10T0GXbvMJWetG5iyqc=
+	t=1709626699; cv=none; b=KreqF+HZY8HWBKHE4bZSJSNlTZq625+QJAuHssYko4a4uiXqlcEQPhk3amG8joaGQbA7E1Z6QjG0bEIJU7sf2QG0p81sgYp/Youc3nz7AfaVXOy7ohpvf9YwjKJYXNn5BoPiyp1VWEA7DKNkAi+ejyMAoIeZnfNhkTWEUOSsdPY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709626457; c=relaxed/simple;
-	bh=sdkbL0j1WDTfzOeFdax57xNB3etUtS+GxE2k2CRgZs4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=GDwZ2KQkpq3L0DuIYxhEoHmTTfy7zNi+/5gFw78vh2fw0vKbgz2U3vagMxcFDPodSWFVIQNFMR1itYZYfVEyB9YnqTcPE0+9XR6rcyeTmJdxRoPahaZIybpkJ//fVAdysU/lnFqLpGYwVSVkCNGzqYWc2aNkXxIOUVqHTaWEZkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f171.google.com with SMTP id 00721157ae682-6098bf69909so30344937b3.1;
-        Tue, 05 Mar 2024 00:14:15 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709626454; x=1710231254;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=C/PGxtgAIaNlRumVOAqmpGsRhzvUMbZ5jyQA7IZ7SLc=;
-        b=ismwGYkxuWSJcLLu4/7t30aAh8HyCBPRoJ3E4XKy7qYlDjwEkXs06EMkuYgcex1svG
-         AKg9r/8ENgH0WrWsRJOMUJoG5NG3P2VRT1Vy1bQf7Nos4kCcm0dCb58uSppdCd30/SB+
-         sYB2Rp1MIVUrKpcoSoruLHT9+eQd0GjeG78lh3Gl46ZQz+jB8TCcKOGa5Cu26tOvpO+L
-         yfFKt6u1Eg/BlXFnh0BLZq4z7EEuIrJEIwFDpWA39XXNug/hpbK701gt0FNjJXb2oIcY
-         GsZc16jz1VxE0cmQqiEEYjCBbYUWoPJKbaivE3mfyaJhE13Ms5A3gWftQZuQXhVD4GEH
-         jtjQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUTmwD6gSADtWpvKDbgLGvRCRVyzqR1TpureCv7GWNCe1BRa64EIwAmV7ZqgVYZVqfQMm5MR6YdJ9+RRY96yHsxCkG4D5UoRSewoweJa84qYeaNOuJEstABF+Z1xu5mAYzmnJVnfs5AGqKH6/I0uPuUC/9WCMitnA+4C+o1HTDvmrR32/E=
-X-Gm-Message-State: AOJu0Yy7GArQ1bPkt7vhSUKYyvL3WK5Xq8bvkGAASQEh+C9rBUXF+y0E
-	7886buCzvNDz9iFVj/sJ9rb5b9bpElT8pV6PAoWQl8XhnVa1+WWjSOEC8oiWEes=
-X-Google-Smtp-Source: AGHT+IEPMjVoeyDtKFnxJjQxc3RlnLtRTMv8Uy1TA+pBy3lUFDY8++Si8Wgu0iT6vUYDqjYyWZbqgw==
-X-Received: by 2002:a0d:cac9:0:b0:609:892e:b944 with SMTP id m192-20020a0dcac9000000b00609892eb944mr1388875ywd.4.1709626454054;
-        Tue, 05 Mar 2024 00:14:14 -0800 (PST)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id r12-20020a81e40c000000b00607c3904416sm2977288ywl.40.2024.03.05.00.14.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Mar 2024 00:14:12 -0800 (PST)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dc25e12cc63so6051907276.0;
-        Tue, 05 Mar 2024 00:14:12 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVgK8caQANrK8oebiAEEtj597THcsbm+hLRHX/kpokKHmZAzzJPA0eaucpoWoBWAfF+Cm5FU2N6kDgu4iOpFHZb4HpNZEPuPJHlNdCZZoBg7paQmn7wP0fgO8sNDz/KZ85sTgBILk8ULOKplZC2OUtk3sL3BpwGhIpIb0cJ4yb/bI3NjQo=
-X-Received: by 2002:a05:6902:248f:b0:dc2:271a:3799 with SMTP id
- ds15-20020a056902248f00b00dc2271a3799mr1604789ybb.23.1709626452674; Tue, 05
- Mar 2024 00:14:12 -0800 (PST)
+	s=arc-20240116; t=1709626699; c=relaxed/simple;
+	bh=aQlT/8nL6oz1JmEwS10Qg0k/nHJTXACjpqXGIT3caBU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bZ8cp5C1n0t8zFreinY9bQQyLeuQeHF30zRPsFekCsDSPPURj9lVE4T/KlxxAGxAhNuh31Ux72zCFnyDow6Za2ZXppn9DQwzw3KGfgXAhPK9d6GlPSAV+9usJLpCZPZgdQ5clzbp/luC32nCR9b5Sq7GC/Vc++SOsugrUZeyHaE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=Urje1p8L; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 5A953CC8;
+	Tue,  5 Mar 2024 09:17:58 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1709626678;
+	bh=aQlT/8nL6oz1JmEwS10Qg0k/nHJTXACjpqXGIT3caBU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=Urje1p8LiZLNSbDKARBxr0QGiU3RlKppsKJF+hofYjbP14x2FaJ7Y8MvSLps3tpmR
+	 Nbznjt+clMtw1BdjRtNfYoaTCCLxilbA6GMu51xWpXbn9eQDd8VgLdTfPGfha4AYho
+	 r8O2g3CTQKa2BjNe+rKfuV9sS3EKLAb6DGGWuRdk=
+Date: Tue, 5 Mar 2024 10:18:16 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Adam Ford <aford173@gmail.com>
+Cc: dri-devel@lists.freedesktop.org, aford@beaconembedded.com,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Andrzej Hajda <andrzej.hajda@intel.com>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 1/2] drm/bridge: adv7511: Allow IRQ to share GPIO pins
+Message-ID: <20240305081816.GF12503@pendragon.ideasonboard.com>
+References: <20240305004859.201085-1-aford173@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240305035853.916430-1-chris.packham@alliedtelesis.co.nz> <20240305035853.916430-2-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20240305035853.916430-2-chris.packham@alliedtelesis.co.nz>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 5 Mar 2024 09:14:01 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdUYuucVQDor3na-iT+Jmsktr+vCVjQXGUA6vXd6-mXxmA@mail.gmail.com>
-Message-ID: <CAMuHMdUYuucVQDor3na-iT+Jmsktr+vCVjQXGUA6vXd6-mXxmA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] auxdisplay: Add 7-segment LED display driver
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: andy@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, andrew@lunn.ch, gregory.clement@bootlin.com, 
-	sebastian.hesselbarth@gmail.com, lee@kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-leds@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20240305004859.201085-1-aford173@gmail.com>
 
-Hi Chris,
+Hello Adam,
 
-On Tue, Mar 5, 2024 at 4:59=E2=80=AFAM Chris Packham
-<chris.packham@alliedtelesis.co.nz> wrote:
-> Add a driver for a 7-segment LED display. At the moment only one
-> character is supported but it should be possible to expand this to
-> support more characters and/or 14-segment displays in the future.
->
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+Thank you for the patch.
+
+On Mon, Mar 04, 2024 at 06:48:57PM -0600, Adam Ford wrote:
+> The IRQ registration currently assumes that the GPIO is dedicated
+> to it, but that may not necessarily be the case. If the board has
+> another device sharing the GPIO, it won't be registered and the
+> hot-plug detect fails to function.
+> 
+> Currently, the handler reads two registers and blindly
+> assumes one of them caused the interrupt and returns IRQ_HANDLED
+> unless there is an error. In order to properly do this, the IRQ
+> handler needs to check if it needs to handle the IRQ and return
+> IRQ_NONE if there is nothing to handle.  With the check added
+> and the return code properly indicating whether or not it there
+> was an IRQ, the IRQF_SHARED can be set to share a GPIO IRQ.
+> 
+> Signed-off-by: Adam Ford <aford173@gmail.com>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+
 > ---
->
-> Notes:
->     Changes in v4:
->     - Fix one more usage of 7 segment
->     - Move ASCII art diagram to DT binding
->     - Include map_to_7segment.h for map_to_seg7()
->     - Use initialiser for values in seg_led_update
+> V2:  Add check to see if there is IRQ data to handle
+> 
+> diff --git a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+> index b5518ff97165..f3b4616a8fb6 100644
+> --- a/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+> +++ b/drivers/gpu/drm/bridge/adv7511/adv7511_drv.c
+> @@ -477,6 +477,11 @@ static int adv7511_irq_process(struct adv7511 *adv7511, bool process_hpd)
+>  	if (ret < 0)
+>  		return ret;
+>  
+> +	/* If there is no IRQ to handle, exit indicating no IRQ data */
+> +	if (!(irq0 & (ADV7511_INT0_HPD | ADV7511_INT0_EDID_READY)) &&
+> +	    !(irq1 & ADV7511_INT1_DDC_ERROR))
+> +		return -ENODATA;
+> +
+>  	regmap_write(adv7511->regmap, ADV7511_REG_INT(0), irq0);
+>  	regmap_write(adv7511->regmap, ADV7511_REG_INT(1), irq1);
+>  
+> @@ -1318,7 +1323,8 @@ static int adv7511_probe(struct i2c_client *i2c)
+>  
+>  		ret = devm_request_threaded_irq(dev, i2c->irq, NULL,
+>  						adv7511_irq_handler,
+> -						IRQF_ONESHOT, dev_name(dev),
+> +						IRQF_ONESHOT | IRQF_SHARED,
+> +						dev_name(dev),
+>  						adv7511);
+>  		if (ret)
+>  			goto err_unregister_audio;
 
-Thanks for the update!
+-- 
+Regards,
 
-> --- a/drivers/auxdisplay/Kconfig
-> +++ b/drivers/auxdisplay/Kconfig
-> @@ -211,6 +211,16 @@ config ARM_CHARLCD
->           line and the Linux version on the second line, but that's
->           still useful.
->
-> +config SEG_LED_GPIO
-> +       tristate "Generic 7-segment LED display"
-
-"depends on GPIOLIB || COMPILE_TEST"?
-
-The rest LGTM, so
-Reviewed-by: Geert Uytterhoeven <geert@linux-m68k.org>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Laurent Pinchart
 
