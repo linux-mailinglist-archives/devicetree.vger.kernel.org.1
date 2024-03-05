@@ -1,109 +1,192 @@
-Return-Path: <devicetree+bounces-48539-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48540-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 445858726DA
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:46:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CCF18726E9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:50:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC665281EF3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:46:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F038B1F263D3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:50:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 32EEF1B941;
-	Tue,  5 Mar 2024 18:46:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D8831BDC9;
+	Tue,  5 Mar 2024 18:50:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b="0NkO5z9e"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CzEPdCR/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f177.google.com (mail-vk1-f177.google.com [209.85.221.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB43217BCF
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 18:46:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E76941B941;
+	Tue,  5 Mar 2024 18:50:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709664373; cv=none; b=fX5hkKYr3lkrWDYchftMqV4mSA/Xq7TsllLrQ5+M5BhnKsx51/4ODMiW708bye+1lRvtve6Nu570qKgY797VKBYTuxM6BEDSy0wvW1bSByXpm4aCugGInbnN7B5UIYRb1mYcIzNwEs/6K6Ym7szqtd52zQcdV2fJ38/qBfQgCC8=
+	t=1709664612; cv=none; b=EaDg43LeESgqRWcUfGyfV4yey0+ikN+pggcFOpWEy11LvoSOUUJArWMqnMXB1pBLTiQzAt3L3GEww33uUFNDfeH1K5aALeaRjcOWvNpsV8eLCf9nVspmzhUQpR0z5pILx6ZWdtUMz43khsJkB0IzLx8b5Rk4qru9e4tYX6MhsP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709664373; c=relaxed/simple;
-	bh=/LnC5euhEkvi9g1j+7vW5UYkJX4X5vpM3r4mGJPrFEg=;
-	h=From:In-Reply-To:MIME-Version:References:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lvvnIOsGSCozl5ekvcxnCUxPCS9kUbpIg6YwBk+GOd+gKKoggWoz68YGG9kcq/nUsXgqvGYviYkWoaFMAo/lC0i4cqkh9AJuRKVpal00I2avYQhUAB4V/fDAhY2xMShITsQtfjQfwYT5+fWlUvnW4XLCs1ox1asteBrZ3OmEKdw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl; spf=none smtp.mailfrom=bgdev.pl; dkim=pass (2048-bit key) header.d=bgdev-pl.20230601.gappssmtp.com header.i=@bgdev-pl.20230601.gappssmtp.com header.b=0NkO5z9e; arc=none smtp.client-ip=209.85.221.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=bgdev.pl
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=bgdev.pl
-Received: by mail-vk1-f177.google.com with SMTP id 71dfb90a1353d-4d35123b0deso1330110e0c.2
-        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 10:46:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20230601.gappssmtp.com; s=20230601; t=1709664369; x=1710269169; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/LnC5euhEkvi9g1j+7vW5UYkJX4X5vpM3r4mGJPrFEg=;
-        b=0NkO5z9eHBBB8c4HLJt5KzYl8vzSyf036prTFWY//2W3n6vrC1bXcEHP7YUfpVe0j+
-         vKdncZ/RiSFVto+0aObY23X4I0k8/ewTAmgcFCJFx/N5fpupkbLRvt3jaH3ZhT2x6Ayd
-         NsZZrySLSbWcmANsr+eWe0eTlAPLOFHOK9rf0pYulzBjQAEiHJpAGffA0ga128aQqc5k
-         nqDQrMRlJc04UOEM1lgnEyq/Z3jNqoFykAvw7HLNolCvvoxqcPNFzREJlQd6XorX4RN5
-         +ABOC3rSWwtyyPC1wneTbUk0SeTRYcwa/HZVefyCtWK+3+rGCCjrrbFdW1pUtsB95Jhx
-         h3nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709664369; x=1710269169;
-        h=cc:to:subject:message-id:date:references:mime-version:in-reply-to
-         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/LnC5euhEkvi9g1j+7vW5UYkJX4X5vpM3r4mGJPrFEg=;
-        b=Le5kTmam7DQ9wgIEKstO26X3FwDg1SIBXSyf2t2XZl/xgspYoxMLNG3kVuUorZsvXo
-         7rzEuLuuuaPpHd/Cy52CL1MrYhxu/ggCiga+PnOS+xXaMHHBHDhehP61eZAOmwIx4yzS
-         /JRXDtP/9SAiUX5ArPQ4jd2L+isfsYIeM1uwAPNRWZB+tv3FTmfTnQarKmcEejkKx2lv
-         7d7edLAYdGV+gYrRcndnWVNWK9UoQCqTRn5Bgs3QRB55QlUruKWlr3MVxBDoKgo5boJ1
-         wE2KGXJHGb2JCAAZp0iQ2FLaqi1JeTtm+v5XnxsX9Bd8CjGY4Pcwl8VI0YjoBHNuTvoI
-         WtvQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUjFRCCq/zilTI5Hf5WlTtOfjggOFk6Ij9eqk1ZKoI1OIYiQe6xHAky2JR0AOUM+rXCwrstlgQ0TKRQI0p+4kUQeeac8y+jRv1J5w==
-X-Gm-Message-State: AOJu0Yxs9AZ6qfffYMSj1uSJRjqO2OKDZFy+mRzSlnp3C27JkLUs0/Ek
-	IUyuxe37xUJ6oHBkeatDyDebQdFKSgAUchH6Y2HiXLtULMAOm5IB/WFTNvQIJghSDD6YnQm59K0
-	T/bkIUkbAilnfr0ZgHJUjZ9R7GsTT+FHpl97rWA==
-X-Google-Smtp-Source: AGHT+IF5LNAsCj9uKlcwQ0xjZDOIljAtQYkRhUygWidZvqbCJ3ZfBiva71D6xRf4C+MFbeWe6buOKgtt6R5YNX1ju3A=
-X-Received: by 2002:a05:6122:3214:b0:4d3:4aad:22d4 with SMTP id
- ci20-20020a056122321400b004d34aad22d4mr3579962vkb.0.1709664368851; Tue, 05
- Mar 2024 10:46:08 -0800 (PST)
-Received: from 969154062570 named unknown by gmailapi.google.com with
- HTTPREST; Tue, 5 Mar 2024 10:46:08 -0800
-From: Bartosz Golaszewski <brgl@bgdev.pl>
-In-Reply-To: <CAL_JsqJjo1SBcf=ZLi=iunaHiX6Mt5H6wkoPcecnZmiAcAyihw@mail.gmail.com>
+	s=arc-20240116; t=1709664612; c=relaxed/simple;
+	bh=XL5H6KmpvDKvfts2T0NXkQAv47JL4s7T4aIStdM12X4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Gx6pE0dvFzikdSVZnMgJfbI83j6tEfyTaAZa2lAljjWmNR9mBGUovbp7hwEnLGkJ/sZc/yUFHQwlCF3AIbpQhOKYYKEf4bBrYxQIOTO3lfS8yAV1pkUCU72ob7Rvn8qlb6Rqq4VakpK0DnRyd3kXKLo+5wVfoJiss3Aib1xvSnQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CzEPdCR/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA236C433F1;
+	Tue,  5 Mar 2024 18:50:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709664611;
+	bh=XL5H6KmpvDKvfts2T0NXkQAv47JL4s7T4aIStdM12X4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=CzEPdCR/2ZColCwlH9ot/gHtgJJYgLPLTXvoBxwcLk3s39JE/SBZ4WeSoeL1+T2Dm
+	 mSTxIXeB81vAOUvOcyI5eOzf1vji9OtaE8yHmI4qH4rX+9klsjtJVtc4GOPrtxgTma
+	 tT1QCnf1ArnEnjzgXr/M6PLTQK9AFOZo4eN6O18SHpZfndCgR2hRZ7VMTdJj2QFTli
+	 qusJjJBM5/q6A401QwhMo/3jcmBt5lNQ1u6hWyt2YEJ+LJeNWrwtJ3ozF0eKP1ggph
+	 aNLE9OThrlwCFa19P6W7hKr416ZGDDkVL+rbhwCDct1HNS9Yn6xeoMLJkTCE3dnzH2
+	 ZoCPzPEvbGX2A==
+Date: Tue, 5 Mar 2024 18:50:04 +0000
+From: Mark Brown <broonie@kernel.org>
+To: David Lechner <dlechner@baylibre.com>
+Cc: Jonathan Cameron <jic23@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Michael Hennerich <michael.hennerich@analog.com>,
+	Nuno =?iso-8859-1?Q?S=E1?= <nuno.sa@analog.com>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Thierry Reding <thierry.reding@gmail.com>,
+	Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>,
+	Jonathan Corbet <corbet@lwn.net>, linux-spi@vger.kernel.org,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
+	linux-kernel@vger.kernel.org, David Jander <david@protonic.nl>
+Subject: Re: [PATCH 01/13] spi: add core support for controllers with offload
+ capabilities
+Message-ID: <4e59b95c-42c9-4eaa-bbf0-7e8f4b389838@sirena.org.uk>
+References: <20240109-axi-spi-engine-series-3-v1-0-e42c6a986580@baylibre.com>
+ <20240109-axi-spi-engine-series-3-v1-1-e42c6a986580@baylibre.com>
+ <2c74aad9-3cb9-4222-8072-e72120c2658e@sirena.org.uk>
+ <CAMknhBHP+x4e0kTmNTn6JNKv=VCosZhBWce1MjjFW4MZ+K2Hcg@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240303104853.31511-1-brgl@bgdev.pl> <CAMuHMdXWdKZjjZc39iXfa6Nohtn+Xm9YvcF+YoRpNzCgeWD8tA@mail.gmail.com>
- <CAL_JsqJjo1SBcf=ZLi=iunaHiX6Mt5H6wkoPcecnZmiAcAyihw@mail.gmail.com>
-Date: Tue, 5 Mar 2024 10:46:08 -0800
-Message-ID: <CAMRc=McBf8Fbacnxozr+=-7AFQ0EOXbaG+zUhkNEb9g1mihmMw@mail.gmail.com>
-Subject: Re: [PATCH] of: make for_each_property_of_node() available to to !OF
-To: Rob Herring <robh+dt@kernel.org>
-Cc: Bartosz Golaszewski <brgl@bgdev.pl>, Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>, Geert Uytterhoeven <geert@linux-m68k.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="GnTxEOMUVi8UqiSw"
+Content-Disposition: inline
+In-Reply-To: <CAMknhBHP+x4e0kTmNTn6JNKv=VCosZhBWce1MjjFW4MZ+K2Hcg@mail.gmail.com>
+X-Cookie: Ahead warp factor one, Mr. Sulu.
 
-On Tue, 5 Mar 2024 18:56:04 +0100, Rob Herring <robh+dt@kernel.org> said:
->
-> Long term, I want to make struct device_node opaque. So if we really
-> want to fix this, I think we'd want to convert this to use an iterator
-> function. Though I guess any user would be mucking with struct
-> property too, so the whole loop would need to be reworked. So in
-> conclusion, don't use for_each_property_of_node(). :) Shrug.
->
 
-I basically just need to get the list of all properties of a node. Even just
-names. I'm working on a testing driver that needs to request all GPIOs assigned
-to it over DT so it must find all `foo-gpios` properties.
+--GnTxEOMUVi8UqiSw
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-How about:
+On Mon, Mar 04, 2024 at 05:21:21PM -0600, David Lechner wrote:
+> On Wed, Jan 10, 2024 at 3:36=E2=80=AFPM Mark Brown <broonie@kernel.org> w=
+rote:
 
-int of_node_for_each_property(struct device_node *dn, int
-(*func)(struct property *, void *), void *data)
+> > The bit where messages are initiated by hardware is a step beyond that,
+> > I think we need a bit more API for connecting up the triggers and we
+> > also need to have something handling what happens with normal operation
+> > of the device while these triggers are enabled.  I think it could be
+> > useful to split this bit out since there's a lot more to work out there
+> > in terms of interfaces.
 
-as the iterator? You didn't say if you want to make struct property opaque as
-well but even then it can be used with provided interfaces.
+> > > +/**
+> > > + * SPI_OFFLOAD_RX - placeholder for indicating read transfers for of=
+floads
+> > > + *
+> > > + * Assign xfer->rx_buf to this value for any read transfer passed to
+> > > + * spi_offload_prepare(). This will act as a flag to indicate to the=
+ offload
+> > > + * that it should do something with the data read during this transf=
+er. What
+> > > + * that something can be is determined by the specific hardware, e.g=
+=2E it could
+> > > + * be piped to DMA or a DSP, etc.
+> > > + */
+> > > +#define SPI_OFFLOAD_RX_SENTINEL ((void *)1)
 
-Bart
+> > This feels like something where there are likely to be multiple options
+> > and we need configurability.  I'd also expect to see a similar transmit
+> > option.
+
+> Having something similar for TX makes sense. What other sorts of
+> options are you envisioning here?
+
+You list two options for something that could be done with the data
+above - sending it to DMA or a DSP.  My concern here is that a given
+piece of hardware might support more than one option and need to choose
+between them.
+
+> > > +int spi_offload_prepare(struct spi_offload *offload, struct spi_devi=
+ce *spi,
+> > > +                       struct spi_transfer *xfers, unsigned int num_=
+xfers)
+
+> > I would expect us to just generically prepare a message, then pass a
+> > prepared message into the API that enables a trigger.  We would need
+> > something that handles the difference between potentially offloading for
+> > better performance and having a hardware trigger, I think that might be
+> > a case of just not exposing the engine's prepare to client drivers and
+> > then having the core track if it needs to do that when enabling a
+> > hardware trigger.
+
+> Not exposing the offload prepare to client drivers sounds reasonable.
+> I'm not sure I understand the potential need for an offload without a
+> hardware trigger though.
+
+Something like pre-cooking the commands to read the interrupt status
+registers from a device, send a network transfer, or to download
+firmware and settings if you power the device off frequently.  Basically
+anything with more than one operation that you might want to run
+repeatedly and care about the performance of.
+
+> > I'm not seeing anything in this API that provides a mechanism for
+> > configuring what triggers things to start, even in the case where things
+> > are triggered by hardware rather than initiated by software I'd expect
+> > to see hardware with runtime configurability.  The binding is a bit
+> > unclear but it seems to be expecting this to be statically configured in
+> > hardware and that there will be a 1:1 mapping between triggers and
+> > scripts that can be configured, if nothing else I would expect that
+> > there will be hardware with more possible triggers than scripts.
+
+> For the use case of ADCs/DACs we would want a periodic trigger where
+> the period of the trigger is runtime configurable (via sysfs). Is this
+> the sort of thing you had in mind here? What other sorts of triggers
+> do you have in mind?
+
+Well, it could be pretty much any signal - I'd imagine there will be
+things that can trigger off GPIOs for example.  Some sort of timer like
+you mention does sound plausible too.  I think the API needs to be
+general enough to just cope with a very broad range of things in a
+possibly system/device specified manner and not have a short,
+prescriptive list.
+
+> > I'd also expect some treatement of what happens with the standard SPI
+> > API while something is enabled.
+
+> I suppose it makes sense to return -EBUSY from
+> spi_sync()/spi_async()/spi_bus_lock() when a hardware trigger is
+> enabled.
+
+That sounds reasonable.  If something is software triggered then I'd
+expect to integrate with the current queuing mechanism.
+
+--GnTxEOMUVi8UqiSw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXnaVwACgkQJNaLcl1U
+h9CgRAf/XZpBOT1fPXVIMGKoXEqg7MIZ98UQNFClW/aptrHDCFDaASJFmbxDXVko
+oyIVtoaDAGccge+mohtrwd3BEvSuHjMwixWV3knqKsLI9l7rvpttH9FIUa8oI4KV
+mI1dL9CmcpXGMffBu11rx4URnJsabfX/yVV3gPIjJJi8Hd8C25mChVIKEFgCRcFR
+cZf1kAlY6n34kL3WG52o2NHllvyEPczLJ/f6B6C8YcBiGjI//JDWdtk8VV4d/gJ8
+0TG0JlJ6YqVrvILKHbCL4KDG24/ai10eT09wuSNMAbyOmrhkrstNLEq7qVuXaUgb
+lV7D2ruJv9CsRxZJox9v0CC8pyTkIQ==
+=ls36
+-----END PGP SIGNATURE-----
+
+--GnTxEOMUVi8UqiSw--
 
