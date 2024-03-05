@@ -1,186 +1,140 @@
-Return-Path: <devicetree+bounces-48502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 726938724F1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:56:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A75E8724FB
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:58:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 26AA728AD55
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:56:34 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 92B08B287B1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:58:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 646EECA6F;
-	Tue,  5 Mar 2024 16:56:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 625A2D528;
+	Tue,  5 Mar 2024 16:58:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="MIYQIVo/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ldwkflPv"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-210.mail.qq.com (out162-62-57-210.mail.qq.com [162.62.57.210])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 562BA13FF9
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 16:56:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.210
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BBCC6D268;
+	Tue,  5 Mar 2024 16:58:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709657783; cv=none; b=HKjCM+bQALsjg7Ji+jpTusuj51JLmL9t8nT0E/VVjoiBR+kjVHMwstTJN3E8SX/AK+EdQDLs6JGMEzx9qdia9t22YJWtKDVYdrfSDNbkRy/+ykoVze7pKBsePBK7wy/5TSGGNJAfo8UlxgHbs08y8cVzrgIbjFdVwNbjr5WFLbw=
+	t=1709657906; cv=none; b=eaJ6qn3fo8cUSTX6BbaOHsiVeLMgOeozdzp9YrZ3Xh0/DMxGKhsY/qgilgNGhN/0E3j5oPkhjYQAOfWDi6FKeN3FzK6IB8J4VQmJoyHAyTonB3p6JHWa18Hdii3uoCw2YtiD8cVjSCt3r6p59KQxqX3DVtm48ZnWFP2pj9vg2A8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709657783; c=relaxed/simple;
-	bh=yByqG0yOrml+y/TQeDgQ4aQadtVY6yvukbinSORigW0=;
-	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
-	 Date:Cc:References:To; b=ib4t5Pm5GFTT93xX6gyvosirHWYlrOf1kL1YXGEzwsOgrBDNaZaUPC6ZlIfT+vwv4/NoxHX5LvozaICkG3nCdnn4ihOKYp2HnZt3oUCpXfitI4xCQUZ21HcItNine+epVEj+e3LRPhnx4PBfwo1/mHFHhd8ktZXpG2blPI42ifk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=MIYQIVo/; arc=none smtp.client-ip=162.62.57.210
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1709657766; bh=qBC2AcX0mTtuXWYOBTP2x46Bkvdu0LNhIGH61FR39Gk=;
-	h=Subject:From:In-Reply-To:Date:Cc:References:To;
-	b=MIYQIVo/5RJr57Cdrc2jPb/DOeHLzBDfGGc/T9zOmQ6T+rkvtMTQcorNqy58WGZqp
-	 2sxWYgRCXoAmGmN9AgU03lgUioqKW3l+oucEcGGttQi4DFS17T89J87bsmrc/QAaqA
-	 I0iEZZdCq55RwWUonSTp+TpzTzvj1Cb3Q/168nnQ=
-Received: from smtpclient.apple ([2001:da8:c800:d084:84f7:c158:bab8:8899])
-	by newxmesmtplogicsvrsza1-0.qq.com (NewEsmtp) with SMTP
-	id E0297E41; Wed, 06 Mar 2024 00:56:02 +0800
-X-QQ-mid: xmsmtpt1709657762tosh5bdf9
-Message-ID: <tencent_E7385EE2AEC4B486DC343AF1A108DE68370A@qq.com>
-X-QQ-XMAILINFO: MZtEYADUG4Ag7e/E7T3snRGQVxKSEkcuqqMQynq/q/5fu+wxuD5INq9X5LMOD/
-	 iOisb1ByHIywnJVC+Kd0b1r0O3TmDy5XAKC1hxXJpkev9Hz0/9xvjw/fa5MvsyTwUdosdMvgD8Pk
-	 H8CaGnw3HKWsFBBNyPVBsWhGhLtsUwm/y3MNvJTDgRhSpCQ4iA8oZcOHKLydxbvZn0m2nDuZlLG7
-	 +ybxh4PLRTt65ZmIEschfVgPGHS+AXlfRQTURLoHjyYFrNJBaG6UvCnTfhMtvuSnQ5oxlrpl/Fkh
-	 kEZgOUhIkRtx5OskbW+gS0PaEoqu57r/ATPdmXvH9wvwJVpFCvg/hmEZxil1ZLE7yOioE482yQJR
-	 0Fl03kFshp9mdC3+3HTxHF1CJzIJ30E1I8lMqSRqCRzoOXGv8OrKBmEEEKI8E7Acy6KGro6FCiRU
-	 +o8h8NXAxoxD0syf5//co/SaR57WTem2tpL+XbFemL3vmnMS/bQN2Dvr568ttoUfJPHOrzdLFDfS
-	 tDGA680R1dhH2tcgFHCLzOhdT8MJCQeXfChh8U1woQDhtRMWi7zCqSSrimxa8hcmVyQnwdOFp3Ac
-	 ocn1XwUbxidrKz7KUQPIzKLD3l7Zh9XPjXwrNxoO+xDfjwsV7zU/o8p1Ue+GWlrLtF9eA0/HXpDJ
-	 e43NQ2FI1nCqAhYrcKkrN+/4G5+ocQ/WzbIV6qawCSOMBA/T3DIwscg3wtLSCCTs826onoRK4Q/m
-	 d15E53lYgJSbzkGif/+uUeN6C47MA3U52YTZjbr29q1iouLNv04nDl/HwZhx5LvQVUTARPDIECjC
-	 +FepNu2qUmpPLT3/oJO0IT6P0fxvpvBBeCDRl8Cy3ViFoBcCbK8sqHmqmaBReJYv+lhk+d7zlgoC
-	 armUzv3XqR2zLgEFK/2QoQuGwHpI3MwUdcYUELLNXN9dffza8+zcPp3x5uFt9p328goYhjzsjS+p
-	 d46b8vVzAHdIH5yAMHlpfY32k/OGrJ/9CzkcuIRoGl3IK5l/gqx5I32+labTqX5uLPGXiCZFVAKN
-	 Cc4za/kQ==
-X-QQ-XMRINFO: Nq+8W0+stu50PRdwbJxPCL0=
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1709657906; c=relaxed/simple;
+	bh=Dbene+JorLqbq3nZB9Olrm3SKJvTPOQ5KM0W99aqTcw=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type; b=cCmw5uC8+H8nODDVncRvdEgXprce3we1ah9/QfEVST3FhlgNCjI0WGJzw9/ZRWQUtUFklpa/VwyAB+SUWeJnB+3dxmvvXs05BqJkc7w5mUVsdrgR98idmYYls6mee8EHSdnZaeMu4Hx8B3BW0C/oFCXj6pBabV20gfHA5hLYJ6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ldwkflPv; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 425DlDGp015519;
+	Tue, 5 Mar 2024 16:58:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:subject:date:message-id:mime-version:content-type; s=
+	qcppdkim1; bh=kOc4mqW7YqT2IuvMfdIuROMR2Y3JLVuf7pv+QEnyKJA=; b=ld
+	wkflPvMNeMySBy4sXWklzfreoNf63GQosctJsOYWtu6qa1UBB+ylYHjhCGKjuduD
+	FnxymjUfg5Vkn241FPhki3CeVhxA2zuVRsdFCE2xceI9F7RuSN2HBhCgrdkcHMUd
+	w8Ksm5muoeD1UlX9WxlCcXesYU2UsHqvkrGBcGKgwOBDoZPPb2cTT5FnB8DrWhku
+	K2Wuh80OVzliDvzGo8PuMDi/RWz+TyBKxUlmCvN2Ud7i4FA9Z/1VTu/l9U5eLGdz
+	AIxuY6riTmoGVwSUEdwzHG89uDsvGNwkIkhcmEJJZ+WYdQQkLdfPEoJrTrav3klM
+	9v3cull930UUqhl26Dew==
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wp04612rf-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 05 Mar 2024 16:58:06 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 425Gw4hl022108
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 5 Mar 2024 16:58:04 GMT
+Received: from sriramd-linux.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 5 Mar 2024 08:57:57 -0800
+From: Sriram Dash <quic_sriramd@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <quic_wcheng@quicinc.com>,
+        <Thinh.Nguyen@synopsys.com>, <p.zabel@pengutronix.de>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <quic_psodagud@quicinc.com>,
+        <quic_nkela@quicinc.com>, <manivannan.sadhasivam@linaro.org>,
+        <ulf.hansson@linaro.org>, <sudeep.holla@arm.com>,
+        <quic_shazhuss@quicinc.com>
+Subject: [RFC 0/3] Enable firmware-managed USB resources on Qcom targets
+Date: Tue, 5 Mar 2024 22:27:35 +0530
+Message-ID: <1709657858-8563-1-git-send-email-quic_sriramd@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
-Subject: Re: [PATCH v3 7/7] riscv: config: enable SOC_CANAAN in defconfig
-From: Yangyu Chen <cyy@cyyself.name>
-In-Reply-To: <2a206c9b-b570-4081-b4e4-d177343482f3@kernel.org>
-Date: Wed, 6 Mar 2024 00:55:52 +0800
-Cc: linux-riscv@lists.infradead.org,
- Conor Dooley <conor@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- Guo Ren <guoren@kernel.org>,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>
-Content-Transfer-Encoding: quoted-printable
-X-OQ-MSGID: <0350242B-6F2F-4741-A936-5E578F86924B@cyyself.name>
-References: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
- <tencent_E2812086B695A334EE5E8C70C85CA3171F06@qq.com>
- <2a206c9b-b570-4081-b4e4-d177343482f3@kernel.org>
-To: Damien Le Moal <dlemoal@kernel.org>
-X-Mailer: Apple Mail (2.3774.400.31)
+MIME-Version: 1.0
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: f2fMK1kDVeAoNQXzg53S1juzVV-xWszD
+X-Proofpoint-GUID: f2fMK1kDVeAoNQXzg53S1juzVV-xWszD
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-05_14,2024-03-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 malwarescore=0 mlxscore=0 adultscore=0 mlxlogscore=934
+ bulkscore=0 suspectscore=0 clxscore=1011 lowpriorityscore=0
+ impostorscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2402120000 definitions=main-2403050136
 
+Some target systems allow multiple resources to be managed by firmware.
+On these targets, tasks related to clocks, regulators, resets, and
+interconnects can be delegated to the firmware, while the remaining
+responsibilities are handled by Linux.
 
+To support the management of partial resources in Linux and leave the rest
+to firmware, multiple power domains are introduced. Each power domain can
+manage one or more resources, depending on the specific use case.
 
-> On Mar 5, 2024, at 07:50, Damien Le Moal <dlemoal@kernel.org> wrote:
->=20
-> On 3/5/24 06:06, Yangyu Chen wrote:
->> Since K230 has been supported, allow SOC_CANAAN to be selected to =
-build dt
->> and drivers for it in defconfig.
->>=20
->> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
->> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->> ---
->> arch/riscv/configs/defconfig | 1 +
->> 1 file changed, 1 insertion(+)
->>=20
->> diff --git a/arch/riscv/configs/defconfig =
-b/arch/riscv/configs/defconfig
->> index 89a009a580fe..20b557ec28df 100644
->> --- a/arch/riscv/configs/defconfig
->> +++ b/arch/riscv/configs/defconfig
->> @@ -33,6 +33,7 @@ CONFIG_SOC_STARFIVE=3Dy
->> CONFIG_ARCH_SUNXI=3Dy
->> CONFIG_ARCH_THEAD=3Dy
->> CONFIG_SOC_VIRT=3Dy
->> +CONFIG_SOC_CANAAN=3Dy
->=20
-> Given that the k210 need !MMU, including it like this in the defconfig =
-is
-> odd... I do not even see how that could work. But that depends on =
-patch 5,
-> which does not seem OK to me.
->=20
+These power domains handle SCMI calls to the firmware, enabling the
+activation and deactivation of firmware-managed resources.
 
-I don=E2=80=99t know why =E2=80=9Cnot seem OK=E2=80=9D here.
+The driver is responsible for managing multiple power domains and
+linking them to consumers as needed. Incase there is only single
+power domain, it is considered to be a standard GDSC hooked on to
+the qcom dt node which is read and assigned to device structure
+(by genpd framework) before the driver probe even begins.
 
-I will show the console to tell you what changes in defconfig:
+fw-managed dt property allows the driver to determine whether
+device resources are managed by Linux or firmware, ensuring
+backward compatibility.
 
-```console
-$  linux git:(rv_builtin_dtb_v3) make ARCH=3Driscv =
-CROSS_COMPILE=3Driscv64-linux-gnu- defconfig
-*** Default configuration is based on 'defconfig'
-#
-# configuration written to .config
-#
-$  linux git:(rv_builtin_dtb_v3) cp .config .config.bak
-$  linux git:(rv_builtin_dtb_v3) git checkout k230_dt_initial_v3
-Switched to branch 'k230_dt_initial_v3'
-$  linux git:(k230_dt_initial_v3) make ARCH=3Driscv =
-CROSS_COMPILE=3Driscv64-linux-gnu- defconfig
-*** Default configuration is based on 'defconfig'
-#
-# configuration written to .config
-#
-$  linux git:(k230_dt_initial_v3) diff .config .config.bak
-301,302d300
-< CONFIG_ARCH_CANAAN=3Dy
-< CONFIG_SOC_CANAAN=3Dy
-2678d2675
-< CONFIG_PINCTRL_K210=3Dy
-4621d4617
-< CONFIG_COMMON_CLK_K210=3Dy
-4<
-706,4707d4701
-< CONFIG_SOC_K210_SYSCTL=3Dy
-5334d5327
-< CONFIG_ARCH_HAS_RESET_CONTROLLER=3Dy
-5336d5328
-< CONFIG_RESET_K210=3Dy
-$  linux git:(k230_dt_initial_v3) grep -r =
-"CONFIG_ARCH_HAS_RESET_CONTROLLER"
-kernel/config_data:CONFIG_ARCH_HAS_RESET_CONTROLLER=3Dy
-include/config/auto.conf:CONFIG_ARCH_HAS_RESET_CONTROLLER=3Dy
-include/generated/autoconf.h:#define CONFIG_ARCH_HAS_RESET_CONTROLLER 1
-include/generated/rustc_cfg:--cfg=3DCONFIG_ARCH_HAS_RESET_CONTROLLER
-include/generated/rustc_cfg:--cfg=3DCONFIG_ARCH_HAS_RESET_CONTROLLER=3D"y"=
+Establish the channel and domain mapping for the power domains to connect
+with firmware, enabling the firmware to handle the assigned resources.
+Since these delegated resources will remain invisible to the operating
+system, ensure that any references to them are removed.
 
-.config:CONFIG_ARCH_HAS_RESET_CONTROLLER=3Dy
-$  linux git:(k230_dt_initial_v3)
-```
+Sriram Dash (3):
+  dt-bindings: usb: qcom,dwc3: Add support for multiple power-domains
+  USB: dwc3: qcom: Add support for firmware managed resources
+  arm64: dts: qcom: sa8775p-ride: Enable support for firmware managed
+    resources
 
-As you can see, we only have some drivers enabled for K210 and
-CONFIG_ARCH_HAS_RESET_CONTROLLER being enabled. The next grep -r shows =
-it
-does not change the kernel behavior.
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        |  74 ++++--
+ .../bindings/phy/qcom,usb-snps-femto-v2.yaml       |  49 +++-
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |  37 ++-
+ arch/arm64/boot/dts/qcom/sa8775p-ride.dts          |  96 +++++--
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c            | 290 ++++++++++++++++-----
+ drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c      | 213 ++++++++++++---
+ drivers/usb/dwc3/dwc3-qcom.c                       | 259 +++++++++++++-----
+ 7 files changed, 801 insertions(+), 217 deletions(-)
 
->> CONFIG_SMP=3Dy
->> CONFIG_HOTPLUG_CPU=3Dy
->> CONFIG_PM=3Dy
->=20
-> --=20
-> Damien Le Moal
-> Western Digital Research
-
+-- 
+2.7.4
 
 
