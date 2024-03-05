@@ -1,160 +1,128 @@
-Return-Path: <devicetree+bounces-48430-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48432-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDC04872157
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:19:09 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E1D82872166
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:24:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 851BC280EFB
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:19:08 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C9622802BC
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:24:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 002F286122;
-	Tue,  5 Mar 2024 14:19:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CBACF86639;
+	Tue,  5 Mar 2024 14:24:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="MaV2jXya"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="HI2trvi5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 262185915D;
-	Tue,  5 Mar 2024 14:19:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE6E986122;
+	Tue,  5 Mar 2024 14:24:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709648345; cv=none; b=clX/ZgA3BvSyGOH4lNYQhvPH7j+TDRa/kdAQ4mwQLZwp51AtHpe3nd9H553rwum5lvWryU9K0t5i/DEQqTXn+ErmPUJE8htrO4liy5k50tnsuN5oDb6q9XdP86zEn0BUpscvzzDuvh0JJwxAzG8AnR+CzUEiy/hccBZZoFwxD1k=
+	t=1709648691; cv=none; b=O+LpnM6GdxMvS863UfWRckA8x1PAD5A6D9EngsA1UY8ppQtKAp2dngE5VSZcHPn9B91rmBu+R93V6i6sEFoOfI30BjPbOrGgkt+CcK13ttGRKPP+EAHPkAIARu5QSi/ePn8GDpSgdNKVch34c9sHOsiOzTkUsGQq7ZxCiLa7IpE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709648345; c=relaxed/simple;
-	bh=hkLU/18Cgjxnj864xqTHUx7XR5iiSbQ0FdD/WYjDWdY=;
+	s=arc-20240116; t=1709648691; c=relaxed/simple;
+	bh=rby9JLSGTuoBcffipBf7GVYQGkuEynZiB9jSo67ZdOo=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A52yfs3/XNe6m+GJmHjMMpnXVH5X3ycThzNwUKPARHPWDwp/ib3GhqPYS52AM5ujvWZdgSAasV7bJqmVympJX7f3hhzn6C4jr2adSb0Kwv4ibFYhsVKL9Y0maWDM+eIt1EWzeGhu3q7sU0T0nowgkrM+HI5ZhjP2MwlmMJudhG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=MaV2jXya; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (89-27-53-110.bb.dnainternet.fi [89.27.53.110])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id EC152A27;
-	Tue,  5 Mar 2024 15:18:42 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1709648323;
-	bh=hkLU/18Cgjxnj864xqTHUx7XR5iiSbQ0FdD/WYjDWdY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=MaV2jXyaB2KFUGcG+eyfmDRB6RKjwb6u8Gdsp79fIFzH7l4PoRgd9puWs1M5jkn72
-	 ZaJtzVM6Z7y4HB2Sq7q2LAe8F5hwUwDxWjL6nAsfaymb/tXx4fA7WZSoKAPVzZ4cBD
-	 4bzOSWfEJvMlcE3Xdua4sRTI9WYovXfYu4aJV7NQ=
-Date: Tue, 5 Mar 2024 16:19:00 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Rob Herring <robh@kernel.org>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-	NXP Linux Team <linux-imx@nxp.com>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Valentin Raevsky <valentin@compulab.co.il>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Baruch Siach <baruch@tkos.co.il>,
-	Sascha Hauer <s.hauer@pengutronix.de>, linux-rtc@vger.kernel.org,
-	Marek Vasut <marex@denx.de>, Shawn Guo <shawnguo@kernel.org>,
-	Fabio Estevam <festevam@gmail.com>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=FEpORZPFBvaQ/7a0aTmg/owZTiuBmSMDqL6tvCfk1Iz2nAZYdSejSJqXvGhOWH0W1WRBLk7gcrS5meIoyTHNuEuvdOCKHtAy7TaKpttlqGVO9e9Jipl3F7lIxWhulAInZEJPXlaCluYycZwoWjo/SxSVGyo0UJJmbeRvj2nU0x0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=HI2trvi5; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:Content-Type:
+	MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+	Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=y3qXUxkn6l40Cq+JpjQmhgzABt2ICxynEDg3FWDSFiE=; b=HI2trvi5YJDYdp7rbWYsNTKIEd
+	Fjjchumq/iplIylqDntUbdiA54UtAqwAA8B1KzW0BZIOzp7aLCKv9zujlB6Cms/IgwOlIOOXUdqpm
+	7oVP9SjTiOIr/USfxZb+6doIxIrFUcyA/wpUk8JfIoVEUksbizeHhvU7nTx1RKKnKnYgLaR1WU7s4
+	tO+J2hBKvHtnxlGb13jXVoJg2Fir5GzdeTJn45QRjqClf6gcWrtRtBOT6Q2z7qkfTTSTVZIv87w1f
+	csm0G+z4yyw7AJI6lbIBrwV8/1AmDEPveUm9oEfZVm9RY0We7sHdxE0/tq0lyHYETzn6GJKYhUC5d
+	4v2JM9fA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:46290)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rhVia-0007F7-1z;
+	Tue, 05 Mar 2024 14:24:32 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rhViT-0005TU-7H; Tue, 05 Mar 2024 14:24:25 +0000
+Date: Tue, 5 Mar 2024 14:24:25 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Andrew Lunn <andrew@lunn.ch>
+Cc: Eric Woudstra <ericwouds@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Rob Herring <robh+dt@kernel.org>,
-	Alexandre Belloni <alexandre.belloni@bootlin.com>
-Subject: Re: [PATCH 0/4] Add DT bindings and device tree for Compulab
- SB-UCM-iMX8MPLUS
-Message-ID: <20240305141900.GD12482@pendragon.ideasonboard.com>
-References: <20240305004222.622-1-laurent.pinchart@ideasonboard.com>
- <170964448684.3160987.11938853123583954222.robh@kernel.org>
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Daniel Golle <daniel@makrotopia.org>,
+	Lucien Jheng <lucien.jheng@airoha.com>,
+	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
+ EN8811H PHY driver
+Message-ID: <ZecrGTsBZ9VgsGZ+@shell.armlinux.org.uk>
+References: <20240302183835.136036-1-ericwouds@gmail.com>
+ <20240302183835.136036-3-ericwouds@gmail.com>
+ <e056b4ac-fffb-41d9-a357-898e35e6d451@lunn.ch>
+ <aeb9f17c-ea94-4362-aeda-7d94c5845462@gmail.com>
+ <Zebf5UvqWjVyunFU@shell.armlinux.org.uk>
+ <0184291e-a3c7-4e54-8c75-5b8654d582b4@lunn.ch>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <170964448684.3160987.11938853123583954222.robh@kernel.org>
+In-Reply-To: <0184291e-a3c7-4e54-8c75-5b8654d582b4@lunn.ch>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-Hi Rob,
+On Tue, Mar 05, 2024 at 03:06:45PM +0100, Andrew Lunn wrote:
+> > The only way I can see around this problem would be to look up the
+> > PHY in order to get a pointer to the struct phy_device in the network
+> > device's probe function, and attach the PHY there _before_ you register
+> > the network device. You can then return EPROBE_DEFER and, because you
+> > are returning it in a .probe function, the probe will be retried once
+> > other probes in the system (such as your PHY driver) have finished.
+> > This also means that userspace doesn't see the appearance of the
+> > non-functional network device until it's ready, and thus can use
+> > normal hotplug mechanisms to notice the network device.
+> 
+> What i'm thinking is we add another op to phy_driver dedicated to
+> firmware download. We let probe run as is, so the PHY is registered
+> and available. But if the firmware op is set, we start a thread and
+> call the op in it. Once the op exits, we signal a completion event.
+> phy_attach_direct() would then wait on the completion.
 
-On Tue, Mar 05, 2024 at 07:20:21AM -0600, Rob Herring wrote:
-> On Tue, 05 Mar 2024 02:42:17 +0200, Laurent Pinchart wrote:
-> > Hello,
-> > 
-> > This small patch series is a drive-by addition of the Compulab
-> > SB-UCM-iMX8MPLUS to the Linux kernel device tree sources. While porting
-> > the device tree from the Compulab BSP kernel to mainline, I thought I
-> > could as well mainline it, along with related conversion of text DT
-> > bindings to YAML.
-> > 
-> > The SB-UCM-iMX8MPLUS is a carrier board designed as a reference to
-> > evaluate the Compulab UCM-iMX8MPLUS SoM. The SoM integrates the bare
-> > minimal peripherals (DRAM, eMMC, ethernet PHY, EEPROM and RTC), while
-> > the carrier board includes a much wider range of peripherals. I have
-> > only enabled support for the ones I am interested in, or, as a strech
-> > goal, the ones I could easily test.
-> > 
-> > The first patch in the series adds compatible strings for the SoM and
-> > the board to the ARM FSL bindings. The next patch then converts text DT
-> > bindings to a YAML schema for the RTC present on the SoM. Finally, the
-> > last two patches add DT sources for the SoM and the carrier board.
-> > 
-> > Please see individual patches for details.
-> > 
-> > I have checked the validity of the bindings and the device tree sources.
-> > The only warnings in the DT sources are due to issues in imx8mp.dtsi.
-> > 
-> > Laurent Pinchart (4):
-> >   dt-bindings: arm: fsl: Add Compulab SB-UCM-iMX8MPLUS carrier board
-> >   dt-bindings: rtc: abx80x: Convert text bindings to YAML
-> >   arm64: dts: freescale: Add device tree for Compulab UCM-iMX8M-Plus
-> >   arm64: dts: freescale: Add device tree for Compulab SB-UCM-iMX8MPLUS
-> > 
-> >  .../devicetree/bindings/arm/fsl.yaml          |   6 +
-> >  .../bindings/rtc/abracon,abx80x.txt           |  31 --
-> >  .../bindings/rtc/abracon,abx80x.yaml          |  89 +++++
-> >  arch/arm64/boot/dts/freescale/Makefile        |   1 +
-> >  .../boot/dts/freescale/imx8mp-sb-ucm.dts      | 284 ++++++++++++++++
-> >  arch/arm64/boot/dts/freescale/imx8mp-ucm.dtsi | 309 ++++++++++++++++++
-> >  6 files changed, 689 insertions(+), 31 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/rtc/abracon,abx80x.txt
-> >  create mode 100644 Documentation/devicetree/bindings/rtc/abracon,abx80x.yaml
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts
-> >  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-ucm.dtsi
-> 
-> My bot found new DTB warnings on the .dts files added or changed in this
-> series.
-> 
-> Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
-> are fixed by another series. Ultimately, it is up to the platform
-> maintainer whether these warnings are acceptable or not. No need to reply
-> unless the platform maintainer has comments.
-> 
-> If you already ran DT checks and didn't see these error(s), then
-> make sure dt-schema is up to date:
-> 
->   pip3 install dtschema --upgrade
-> 
-> 
-> New warnings running 'make CHECK_DTBS=y freescale/imx8mp-sb-ucm.dtb' for 20240305004222.622-1-laurent.pinchart@ideasonboard.com:
-> 
-> Error: arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts:68.1-10 Label or path hdmi_pvi not found
-> Error: arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts:72.1-9 Label or path hdmi_tx not found
-> Error: arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts:86.1-13 Label or path hdmi_tx_phy not found
-> Error: arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts:208.1-8 Label or path lcdif3 not found
+That's really not good, because phy_attach_direct() can be called
+from .ndo_open, which will result in the rtnl lock being held while
+we wait - so this is not much better than having the firmware load
+in .config_init.
 
-I forgot to mention in the cover letter that this depends on i.MX8MP
-HDMI integration in DT that is currently pending. As it's not in
-linux-next yet, I'll send a v2 that splits HDMI support in a separate
-patch. Depending on when the HDMI integration gets merged, the base
-SB-UCM support can go in by itself or with HDMI support in v6.10.
+If we drop the lock, then we need to audit what the effect of that
+would be - for example, if the nic is being opened, it may mean
+that another attempt to open the nic could be started. Or it may
+mean that an attempt to configure the nic down could be started.
+Then the original open proceeds and state is now messed up.
 
-> FATAL ERROR: Syntax error parsing input tree
-> make[3]: *** [scripts/Makefile.lib:419: arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dtb] Error 1
-> make[2]: *** [scripts/Makefile.build:481: arch/arm64/boot/dts/freescale] Error 2
-> make[2]: Target 'arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dtb' not remade because of errors.
-> make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1385: freescale/imx8mp-sb-ucm.dtb] Error 2
-> make: *** [Makefile:240: __sub-make] Error 2
-> make: Target 'freescale/imx8mp-sb-ucm.dtb' not remade because of errors.
+I do get the feeling that trying to work around "I don't want the
+firmware in the initramfs" is creating more problems and pain than
+it's worth.
 
 -- 
-Regards,
-
-Laurent Pinchart
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
