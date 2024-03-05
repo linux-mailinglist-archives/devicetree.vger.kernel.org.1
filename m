@@ -1,52 +1,52 @@
-Return-Path: <devicetree+bounces-48374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32C528719DC
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 10:47:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E5D198719E9
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 10:49:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B8A42B21363
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:47:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C31F1F20DD3
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:49:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E4FF535DC;
-	Tue,  5 Mar 2024 09:47:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57145535AB;
+	Tue,  5 Mar 2024 09:49:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="UuViqyXH"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lFsPXPEf"
 X-Original-To: devicetree@vger.kernel.org
 Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 342A9535AB;
-	Tue,  5 Mar 2024 09:46:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BDFA5025C;
+	Tue,  5 Mar 2024 09:48:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709632022; cv=none; b=qWFkpEeNFDE9tkBGyf2XSItsqJBdyZdYuQ8styf0j9XJwrURdphxtIsVfZ8clqaOJklbZ9fgbk96gJokI1zpas/DaW5FHLSKJvpHBKzvyMeK4rqxYf3IgjjOEa1Zxv//YjLcby6+qkb2C8HcpLHWfwGS6iBH1wQnkXsPo1kjoZs=
+	t=1709632141; cv=none; b=qWFRzjaNlx0C8LPIbv2V4igeERT1dNoEnqbTz+WOWnofQ6shNiZM3U8OP749OFVya0TO4QuKibsC2siiKqwTq/hD2JKG4OcM3PtNAtrHSFx3PtHzyssWC50WBTMUl40faiKtgjAFoQhKcDedkkGQSo9FnQR71SHB2bJ0qV017w8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709632022; c=relaxed/simple;
-	bh=SdVFrDX1tE7NitSkdJ8XNvewUL8AuhZd2lfMdZfjpSk=;
+	s=arc-20240116; t=1709632141; c=relaxed/simple;
+	bh=urqg0xbTeQw3SaHu2oQpg2NmfCmTqZ8GoiV35udIfjM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=LHN7YfyMpDM1IJMWp5qbJdSQnH/sNSLnvDxcG6sHCysVvFkj6pzNv4c1PKnyP20VaxBRLZQ7jaTfbiYKX6cauhago9+V2K5KEUhMOiSQ786YyFyaGT8j/I59k+XgAGr+Q0lqo94paRT+QVgB3oXIUgMkweiheJIcjwvk0ijtW20=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=UuViqyXH; arc=none smtp.client-ip=217.70.183.201
+	 In-Reply-To:Content-Type; b=INJ+vUy2vyLZrEAoUWQsxGl8+9ww66Ki9WVR4tpFV8Z0qooscUPyypUhoXMbCYWTNgAe/42K/I8rgOKGyeL2R0mmdHyt2Opgp+CJBnKkFTxwZyHNTJNh1k7OlLegFUyr9IgbPqLykutokOqY3l5X475WXvl9mScw06NW6T9j0YE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lFsPXPEf; arc=none smtp.client-ip=217.70.183.201
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E88A91BF207;
-	Tue,  5 Mar 2024 09:46:56 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 472B91BF206;
+	Tue,  5 Mar 2024 09:48:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709632018;
+	t=1709632137;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
 	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=x3jvJ31UW5g1AteAWnKjkA5Ea0CCYOiyYufsygt7PXM=;
-	b=UuViqyXHpmyiPp4V/tHhbWt98t7steNc2d9YJ3j1pxEYOmcx0JzXo0aCcKu16ynreqimG0
-	SM81f8iJQHQrzdFsbMSRaNj1TMi9jjniMcy1hLgzPYUa6x8gYm1lLaRsEnNmQcjuolmB9I
-	VX041rAp1I6nuvhAXHji/rdEQB/OQOQLa0/cZHm8yLjFpZdJhdGbcoT0TqqihFmnh5w34J
-	ZVCxqGGsAjwMHerVXfQs3QfvzieGjuPn0dzp8+66ds5WU9juv15sUrU7bod87gx2rft2ax
-	L96KGP6+qgepjgKlh84xNAiOg6qpuftAcbe9vfqgjJX66YD/ceD4PWJu+pXWfQ==
-Message-ID: <ee36a60d-5b65-4eb8-ac41-e4b6be1cf81f@bootlin.com>
-Date: Tue, 5 Mar 2024 10:46:55 +0100
+	bh=Aw8pUe0MID70y933FGi7D+L6M1sIf5ieS9mZ3leciLE=;
+	b=lFsPXPEfA66AsRtfkm2k0eqMO8n1R78NnQCu16rwl0rxXnz1zd7Ic+aZQlxddbzIuTyf/Z
+	Ievu/+b86nO9T9w2JTRIBH6c5r4NWv9f81PuuHn8L7qIYblvipiPu/xvJ6HcSdpHD4ynLT
+	847BOix813JmNH1STAadsZNqxyNrLOF4IEvjnLvGZcHH5JQi1n5e9wEGQQZYRbF0Z54+Ci
+	iz9i9HwLa8j19Ll+bHlEt0JJ1eRRjLabj5lad2uNs6msYLDYsqNHrBSwWxTlZOl2voOCar
+	igBw08xlhiqKo4lNiZijWksSW9MsrTOmnYq/1+58thF/v47Jm406t0GV90eIPw==
+Message-ID: <5c3acbaa-dc95-4f8a-87cf-c62b6ccc442c@bootlin.com>
+Date: Tue, 5 Mar 2024 10:48:56 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -54,15 +54,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/panel: simple: add CMT430B19N00 LCD panel
- support
+Subject: Re: [PATCH v2 0/3] panel-simple: add support for Crystal Clear
+ CMT430B19N00
 Content-Language: en-US
-To: Maxime Ripard <mripard@kernel.org>
+To: Conor Dooley <conor@kernel.org>
 Cc: Neil Armstrong <neil.armstrong@linaro.org>,
  Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Thierry Reding
  <thierry.reding@gmail.com>, dri-devel@lists.freedesktop.org,
@@ -70,63 +71,36 @@ Cc: Neil Armstrong <neil.armstrong@linaro.org>,
  Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
  Yen-Mei Goh <yen-mei.goh@keysight.com>
 References: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
- <20240304160454.96977-4-jeremie.dautheribes@bootlin.com>
- <20240304-inquisitive-kickass-pronghorn-c641ff@houat>
+ <20240304-drivable-property-feaeba782880@spud>
 From: =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?=
  <jeremie.dautheribes@bootlin.com>
-In-Reply-To: <20240304-inquisitive-kickass-pronghorn-c641ff@houat>
+In-Reply-To: <20240304-drivable-property-feaeba782880@spud>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-GND-Sasl: jeremie.dautheribes@bootlin.com
 
-Hi Maxime,
+Hi Conor,
 
-On 04/03/2024 17:25, Maxime Ripard wrote:
-> Hi,
-> 
-> On Mon, Mar 04, 2024 at 05:04:54PM +0100, Jérémie Dautheribes wrote:
->> Add support for Crystal Clear Technology CMT430B19N00 4.3" 480x272
->> TFT-LCD panel.
+On 04/03/2024 20:29, Conor Dooley wrote:
+> On Mon, Mar 04, 2024 at 05:04:51PM +0100, Jérémie Dautheribes wrote:
+>> Hello everyone,
 >>
->> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
->> ---
->>   drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
->>   1 file changed, 29 insertions(+)
+>> This patch series add support for the Crystal Clear Technology
+>> CMT430B19N00 4.3" 480x272 TFT-LCD panel.
+>> It also adds Crystal Clear Technology to vendor-prefixes.yaml.
 >>
->> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
->> index 20e3df1c59d4..b940220f56e2 100644
->> --- a/drivers/gpu/drm/panel/panel-simple.c
->> +++ b/drivers/gpu/drm/panel/panel-simple.c
->> @@ -1457,6 +1457,32 @@ static const struct panel_desc boe_hv070wsa = {
->>   	.connector_type = DRM_MODE_CONNECTOR_LVDS,
->>   };
->>   
->> +static const struct drm_display_mode cct_cmt430b19n00_mode = {
->> +	.clock = 9000,
->> +	.hdisplay = 480,
->> +	.hsync_start = 480 + 43,
->> +	.hsync_end = 480 + 43 + 8,
->> +	.htotal = 480 + 43 + 8 + 4,
->> +	.vdisplay = 272,
->> +	.vsync_start = 272 + 12,
->> +	.vsync_end = 272 + 12 + 8,
->> +	.vtotal = 272 + 12 + 8 + 4,
->> +	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
->> +};
+>> Please note that unfortunately there is no public datasheet available
+>> for this panel.
+>>
+>> Changes in v2:
+>>    - add link to the Crystal Clear Technology website in commit message, as
+>>    suggested by Conor Dooley and Neil Armstrong.
 > 
-> Your pixel clock doesn't really match the rest of the timings:
-> 
-> (480 + 43 + 8 + 4) * (272 + 12 + 8 + 4) * 60 = 9501600
-> 
-> So a ~6% deviation.
-> 
-> What does the datasheet say?
+> You forgot however to add the acks that I gave you for the two
+> dt-binding patches.
 
-Indeed it does not exactly match but the datasheet indicates that the 
-typical clock frequency is 9MHz and when this frequency is used, the 
-typical values of the other parameters are those we have defined in the 
-drm_display_mode structure. I don't see any information about the 
-accepted deviation either.
+
+Oops you are right, I'm sorry. Should I send a v3 containing these acks?
 
 Best regards,
 
