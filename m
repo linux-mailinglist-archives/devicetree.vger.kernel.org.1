@@ -1,127 +1,132 @@
-Return-Path: <devicetree+bounces-48263-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48264-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CEEAF871254
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 02:26:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E8AA871272
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 02:46:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 630AE28200F
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 01:26:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A821B1C21DB7
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 01:46:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CAE5125CC;
-	Tue,  5 Mar 2024 01:26:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA79317C72;
+	Tue,  5 Mar 2024 01:46:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="cifhY5Eh"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YHytnR/S"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com [209.85.160.42])
+Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 795E3125BA
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 01:26:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4AE695CBD;
+	Tue,  5 Mar 2024 01:46:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709601979; cv=none; b=VmJFYE9qexoED1nJ0VG8jMYQ+hcUKj/QaA5XwMDdLKpIAcjmL0y++mbBlV5dkRnHR/2/IyrRB2f5bf0iDLdCfsm8IEdYIlkCHIGmmKmkLqpGVUPlQM6J1ha5KswIS0zu7jQR0YcNs1XueacGFgCe1tuJIqz+UE5NCFMPWd60NuI=
+	t=1709603205; cv=none; b=qEPSQqJ/LGyPQ7Dx+726zqEer1GgTaYAMx2hHq/KuMrvZMSu7d2eBNTpI18AZecIaWV44ysTj7y6aTWkFFtgLdVkW7h+NWFS1YauEesvy9iwTxjJsW/Ndf+CSzPE0VxZnCk5xtKOsnyc/Z3Xj+JqVg7rHj++8SbEbz4nzI0pMRo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709601979; c=relaxed/simple;
-	bh=v6v9rdi0NaBtdH5uaFls6ao7F7yFXQTD+dGYq5SNjCo=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Jcw9ZCWij4eEko27l8inG30gFZebbowQ81dtIRD9o6QsmBGLOpBmPYhu4Kn0XF898CF1x4uqVXzzfjTU3TF3yJI6gHB8z7yCq/ZhQXkok+k3JGoSBSe4sdVwJcnUe1K3km9kjg7hnr53qEV2X+kPjM3S7eNyCutSK1Fy7GGIE7I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=cifhY5Eh; arc=none smtp.client-ip=209.85.160.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
-Received: by mail-oa1-f42.google.com with SMTP id 586e51a60fabf-22007fe465bso3075826fac.1
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 17:26:17 -0800 (PST)
+	s=arc-20240116; t=1709603205; c=relaxed/simple;
+	bh=1p7Y20rG3es8GL/mNZQxWlYBE8AuqWodXoKq37e4R88=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=moKJhC98KqR0d8s0XBtcNaEgNwS6an88ApMIilDTUJykwt6ovnn64Lx1O0GKszAWDseTvzKg/BThrlcQ4OGE99S/JX36FiZNuG0nW9zAtrU0HjxiJXYS//8Ai+tktOyxxVwFvYG8EQwhmqCO3hUX4WxP3/+A0iR0qAomc7oCgzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YHytnR/S; arc=none smtp.client-ip=209.85.210.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ot1-f45.google.com with SMTP id 46e09a7af769-6e4e9f8539bso599722a34.2;
+        Mon, 04 Mar 2024 17:46:43 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1709601976; x=1710206776; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=FCqXLrmsXLG2D4x9zpckaAUzUAFfK9PrDtc1e9Xqif0=;
-        b=cifhY5EhNytLhBzxgk30+L6CSa5cj7d6FofP+C2wGnPlhaA+AgGbm3kqRkUTQ6fCK5
-         bSoYCv7BIcgbg3fSVatw2sIaB9rf4DmXmz7RDVETD4/QwYDzgPrH0nD5Sqw+ddPaIKPx
-         EeVpfn/GHTimTOCIrnv0A6i6uXV8dJdtwoqj47HW/ixcBwma3ca1H7Y0Wu+KZpP2MEEE
-         boyxMYyRWBfi5VGjkLg5OwOsgLRPsW5Xuucrb6f2wuGj95UcH4KG4ds+yoQWptmWqDGN
-         yVPCdkE/oAHYYwM3ZmBQ8leHLNHB0gM8xxD2sSA/fxdKbGnYD+4QxSYHDZQZ8hDdZ0li
-         VgyA==
+        d=gmail.com; s=20230601; t=1709603203; x=1710208003; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=5q8XfC8X0sSBGJM5X8fKplgHHh/I1jIORCkIdpaZ79U=;
+        b=YHytnR/SATwwbLrCgD+T1w4cdTWUdHimeqTJb0KZVYTLeHfuxw/2kWdmDVn1V3qgDa
+         pRSddGSL7D8t6iRpnTizxTx6TYGDVaOsO6M7WihJ8gsiG6JkvmHdlUYj+s6LRulL4vfL
+         svVwEcaCIwPPTICYyjTaWQdZU/egH7qpd6OZ0SFNk0tEhtRpW6YEEXH1905UHvMkxx5a
+         MHWGzqWWBSDCFpg2BfJ70lMSQZxfjvnNgRvTSOBfsyIPMOKrXeTYhztnB54BcxljvNYt
+         YCaJbctjisuJLwFx9Jgh/SKNv2kcNJ1t64T2nbbptHNsPow8Y1EUoUbUxBniG1MDl9Qx
+         VqBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709601976; x=1710206776;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=FCqXLrmsXLG2D4x9zpckaAUzUAFfK9PrDtc1e9Xqif0=;
-        b=nKvGPULMVxDgeqq6+LFizh9Kb0uIF3OQ1UCB22T6MdO+OjC5rcr3PEFwvgucGpAzYL
-         wkvIQjMp0Ve9zIXLTMPw5nzoK26fonBAOc44H2pBtPIWMF5m7N3HeufMWZ/llkjgxuHy
-         tyCvj+LHwD45PSGUzU7OrpXbPK8FjfRq5dg2H+RPCKnuXUy/CfIuvsxlE+KqBwro/F9U
-         UYr+YACFTnW2aHGuxJ0O8jVE2vFFv2H6PPa4MVTfOHZBBGgv4MTMip5wAOmMFgs4Xr7e
-         3EtNjm2Nl2LrTUdeZ+6+ym8DIdcQLgCIFHW4gC/Kc0vV8tuCWLtxzqcJhymBYy8b0fJF
-         +Dgw==
-X-Forwarded-Encrypted: i=1; AJvYcCU1cRscK4WvVYHZ6YH/t95cNYoUtRNz9POY+pjJ4So3LuE1UQnBEuyO99WGmLSVm/0ifljWZc4BZSdbkr36qeJ+arMm+iifjJ0N1Q==
-X-Gm-Message-State: AOJu0Yzz4VguRWiAlrGzwX82KH5pmyEtCrjrqZ/N5LrFR3QO6mDf0AMy
-	RaYVBeAYmjMBeWtBzjoxFNlHmP2zr3PxjLDM72WPLWDEeTwKRPw33Cx2bMRe/mo=
-X-Google-Smtp-Source: AGHT+IHyQxOyfE25xAVDnFGbiegMVyflG/2eJe8BkB+GsFEu5dvJBtmADvmtxwigO1e3MzoCQL1vWw==
-X-Received: by 2002:a05:6870:6c12:b0:220:c885:b817 with SMTP id na18-20020a0568706c1200b00220c885b817mr495468oab.10.1709601976584;
-        Mon, 04 Mar 2024 17:26:16 -0800 (PST)
-Received: from localhost.localdomain ([116.66.212.162])
-        by smtp.gmail.com with ESMTPSA id ka16-20020a056a00939000b006e559c41679sm94655pfb.2.2024.03.04.17.26.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 04 Mar 2024 17:26:15 -0800 (PST)
-From: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To: sam@ravnborg.org,
-	neil.armstrong@linaro.org,
-	daniel@ffwll.ch,
-	dianders@chromium.org,
-	hsinyi@chromium.org,
-	swboyd@chromium.org,
-	airlied@gmail.com
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Subject: [PATCH V2] drm/panel: boe-tv101wum-nl6: Fine tune Himax83102-j02 panel HFP and HBP (again)
-Date: Tue,  5 Mar 2024 09:26:04 +0800
-Message-Id: <20240305012604.3869593-1-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
+        d=1e100.net; s=20230601; t=1709603203; x=1710208003;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5q8XfC8X0sSBGJM5X8fKplgHHh/I1jIORCkIdpaZ79U=;
+        b=kPjtB8/yR4/oZbD22FBbXkBOz3uWuqUg+E8SjqxekADtg5OTK+h+tV/xFqXRU5mu2H
+         nptkJd8/PDIWre0Ip1ryUkqWJAfgbklkU8rdSSMrAGRW9SZpTW01J49hPGSzoQFR/Lxy
+         W5TXh6JwOpqI2umbyTnXrh4Xt+Xqya6JsCXJAi/EGAxlQpItSi29/ymkcuKAzKU5+Srg
+         m1t7OgbfqW2t1uLM49rpuscq+AA03DVvTvwt5SJp9q3VxMShu+Rpl8T6OicFYQtU9UEm
+         9QPZ+raPFY3NZEgGDaQgDpGgtdKUmsnJIvngdz3Urh7kRG2mlhImPhr34ouaUJd4gHP6
+         Fodg==
+X-Forwarded-Encrypted: i=1; AJvYcCW1lP0/rVwiBGi2+aNzNRKKvGuNQXGFQQTMb5kOx0v7unF0dC76E1Ks7YkNwYz0jK24FFihzC/CAKmDYXpU9XnVTl4qnHavZdJGTdVxBbvZK8c/RvdwxXApKk0zjhwTjE1iLfKI/ZNwsItD7whcVMhEOb8zgpLE0Wt9U0zMTiqjoOHaGQ==
+X-Gm-Message-State: AOJu0Yx+3jANnG/VZmUrQYK6SzzpBLN1bqpB89NKxHgRM91KCyG/68r2
+	wWAcl1ytRUXp9YT99n+0yDJzMjgIu1DtZaiYb55RxF6QO0bK3co3yL4gCAHcSmXgCK9+mFmy/8A
+	EcIMGdjuXn6ENxkPgwDHvZVuwR4U=
+X-Google-Smtp-Source: AGHT+IFTj1MPlCHGWTdjZLDUdn/iWQfX/NaKINyMcQIMj2NwGyAsVchqCPjJu8IIopxsRzD2KEj4wTNPbDXiBH20iu8=
+X-Received: by 2002:a05:6871:5b28:b0:220:a23c:6786 with SMTP id
+ op40-20020a0568715b2800b00220a23c6786mr475843oac.11.1709603203177; Mon, 04
+ Mar 2024 17:46:43 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240304085933.1246964-1-qiujingbao.dlmu@gmail.com>
+ <20240304090248.1247215-1-qiujingbao.dlmu@gmail.com> <91f0a339-ac0e-49df-bd26-dbfe1485308f@linaro.org>
+ <CAJRtX8TPz_jTvPmuBW8t=mC+BR1kWmu=GS9K1k6ys7U9u0ENFw@mail.gmail.com> <0c957a95-9f82-41c2-8e2c-0b5bf4b061a4@linaro.org>
+In-Reply-To: <0c957a95-9f82-41c2-8e2c-0b5bf4b061a4@linaro.org>
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Date: Tue, 5 Mar 2024 09:46:32 +0800
+Message-ID: <CAJRtX8R-j6BfJC6We0Xh1e0sYe6_CyUjbznf7e-kNmcF0=Bcjw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: u.kleine-koenig@pengutronix.de, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	dlan@gentoo.org, inochiama@outlook.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The current measured frame rate is 59.95Hz, which does not meet the
-requirements of touch-stylus and stylus cannot work normally. After
-adjustment, the actual measurement is 60.001Hz. Now this panel looks
-like it's only used by me on the MTK platform, so let's change this
-set of parameters.
+On Mon, Mar 4, 2024 at 11:02=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 04/03/2024 14:40, Jingbao Qiu wrote:
+> > On Mon, Mar 4, 2024 at 6:15=E2=80=AFPM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 04/03/2024 10:02, Jingbao Qiu wrote:
+> >>> Implement the PWM driver for CV1800.
+> >>>
+> >>> Signed-off-by: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+> >>
+> >> ...
+> >>
+> >>> +
+> >>> +     ret =3D devm_add_action_or_reset(&pdev->dev, devm_clk_rate_excl=
+usive_put,
+> >>> +                                    priv->clk);
+> >>> +     if (ret) {
+> >>> +             clk_rate_exclusive_put(priv->clk);
+> >>> +             return ret;
+> >>
+> >> Please test this path - you have double put.
+> >>
+> >
+> > Thank you for your reply. You're right. If the
+> > devm_add_action_or_reset()  function
+> > fails to add an action, it will call the action.
+> >
+> > By the way, if I need to resend the patch, should I wait for the
+> > maintainer to review it, or
+> > should I immediately correct this error and resend it.
+>
+> I recommend one patchset per day.
+>
 
-Fixes: cea7008190ad ("drm/panel: boe-tv101wum-nl6: Fine tune Himax83102-j02 panel HFP and HBP")
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
----
- drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+Thank you for your suggestion.
 
-diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-index bc08814954f9..0ffe8f8c01de 100644
---- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-+++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-@@ -1768,11 +1768,11 @@ static const struct panel_desc starry_qfh032011_53g_desc = {
- };
- 
- static const struct drm_display_mode starry_himax83102_j02_default_mode = {
--	.clock = 162850,
-+	.clock = 162680,
- 	.hdisplay = 1200,
--	.hsync_start = 1200 + 50,
--	.hsync_end = 1200 + 50 + 20,
--	.htotal = 1200 + 50 + 20 + 50,
-+	.hsync_start = 1200 + 60,
-+	.hsync_end = 1200 + 60 + 20,
-+	.htotal = 1200 + 60 + 20 + 40,
- 	.vdisplay = 1920,
- 	.vsync_start = 1920 + 116,
- 	.vsync_end = 1920 + 116 + 8,
--- 
-2.25.1
-
+Best regards,
+Jingbao Qiu
 
