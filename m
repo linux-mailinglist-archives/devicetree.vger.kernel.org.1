@@ -1,101 +1,113 @@
-Return-Path: <devicetree+bounces-48535-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48536-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A3299872638
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:06:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 005C2872672
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 19:22:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F12A283AAF
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:06:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B7E71C26769
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:22:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9424C17BCF;
-	Tue,  5 Mar 2024 18:06:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E64491863C;
+	Tue,  5 Mar 2024 18:22:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oGYA701B"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="lT/B6qj3"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67108175A6;
-	Tue,  5 Mar 2024 18:06:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B46314286;
+	Tue,  5 Mar 2024 18:22:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709661980; cv=none; b=mKHTPzPN3SGcdta2BN8GB/DhFYmR7i2STqUmN+e0gOhO92RtPtTejpUU+pLkHULyTO7TTUC+dqB8dAScSMk7WYOYhOys/GWPM2Ba83TpV3IrhIFWqpF1EE7yZVppeAbDDESS9T/roYL2tNTtWCGyDLxoSZbCvzYiST8mcxpEHF8=
+	t=1709662937; cv=none; b=HI2Zx8rGkfC2oWFeynJAieLATqNzZZJ/S0z5XP16LM9fcMr/Vkp9w3TBvDTjtjz7hmxv8SE72PNv/Lv3mQXXSR5E0woZBbELMRdZKm7lzfAcULpXMPZb07jcBN2wqD86ogApz23SFpR7a40rbOWD4sU9xvAXz6KswwphetDujFU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709661980; c=relaxed/simple;
-	bh=2SDHv/6MK1rRoV3gdSoYW4yOT+A2jIAcePxtHgcL22I=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Content-Type; b=BJXob/mSFifG0HIs5vm6XfFdMde0RcXgJVinEX4blQhZq4BaOP4GobTIrT/z+BNv9tBPrbmnu3k5lZ/w3XurL9eerPKg9Vbmesqg5Pa3KgGDUUC30jsgypP2DRHTjpMWjyVYj0WIC1/qghEItS2x9lUEUqI1J934yQHcbr2gkbA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oGYA701B; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05BE9C433C7;
-	Tue,  5 Mar 2024 18:06:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709661980;
-	bh=2SDHv/6MK1rRoV3gdSoYW4yOT+A2jIAcePxtHgcL22I=;
-	h=References:In-Reply-To:From:Date:Subject:To:From;
-	b=oGYA701BbkeJVy6WDd1Dok6gueir4mrCJgyRmrI5q8V5NAwhAtJ6rKxBonjk+JAi6
-	 H6MgFztln7d1jpo1HqW66ZLUjoBqB5MDG47f2qzn446SLBHl+wAstxzhlW1EcUZS1S
-	 PCFdx93Qx8R4dEIIMzaycGodcz6ZNcOU2PBVG9kv0Z9o/N7yRwsB9uQIXt4bkE2dGB
-	 cS7F0s72tskoUm80++99jaQb2UKaZWzyZt1rS1TxiOtlDCWGLU5xaHBA6dxe+JCg1V
-	 H4vgkZWbvPzYahl3s6XeYAHRp6QMEFDw79V5+pUxlZ6O8lqCFmBs1BWoQffk272cHu
-	 YD+xyZDltUCwg==
-Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2d3ee1c9ea9so15157451fa.3;
-        Tue, 05 Mar 2024 10:06:19 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCW8kWlXwWnMyuP/IW70BKK7c2jgMlsPVRgmvwRAXJc7Y89Bhi62wQl90F67Ntf1Kw9zy3Tm2lcb9+LSf14tSPAlS5L9v9KGNAc9zQ7YryQYhRhKBkf2JseowtrqQbQJy17Desn9oHzfjMcLQvfXxECjANyXdEqPaZGPeVdfWNRjCmZZkQ==
-X-Gm-Message-State: AOJu0YxMq1f/oLQYd6CcO2UYy7RdMx8SEtwithgZJjmTwPShWazgTtMP
-	1OhM4hbuEaFNi8cyINr2NCF1OhIR3/Dkd1o3NcFZsQejSMlLymC6JSBqPJWPXguksvXc9Cfj6Wl
-	lfa9EZOF6l3clbcZN2IkePt0IhQ==
-X-Google-Smtp-Source: AGHT+IEFUbz0C8IzXKCEG0xPmqtSc7rWmrnUWonn1WU+SACvNCJUkl4MMM0KR1729CFmdhBDeKny5et1+AhpsahMuNo=
-X-Received: by 2002:a05:651c:2111:b0:2d3:17e6:3b3f with SMTP id
- a17-20020a05651c211100b002d317e63b3fmr2426564ljq.39.1709661978150; Tue, 05
- Mar 2024 10:06:18 -0800 (PST)
+	s=arc-20240116; t=1709662937; c=relaxed/simple;
+	bh=DunzDSheC1QVauFsaz+y90vKEQ5+YpBFlR3DIbfUBtE=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=Pehjm0+ukvUMLgrIsjGv6kLNNVCBBW0p4wGHg/qLONg63YxjHsoTPDyrecw/TtZvzoIMUuNFCdVMa6lHnReKBoDhomZqxXHsKTM04iJArf3tFiCNJa8pL+ULp/Pi5uQBLGrZKYGsG367aL3j4jng/nCaphLbmFLN0b1krl9xoHY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=lT/B6qj3; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 425HteBo029937;
+	Tue, 5 Mar 2024 18:22:13 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version:content-type; s=
+	qcppdkim1; bh=tg6r9u1YZHJ8zMudPTb3XcQGncnx6dHC0bGI84goXXQ=; b=lT
+	/B6qj3419Edb/JxeM0FPkCmgx5RMdwht/lQrvnqD6TBBY2RHhEUCtSJ9DqZn4O1a
+	EBSBL20Wquyuk6qtrUE0T9pGEc+U07+Z+GF5u3TuAw/r/5WMykmwecoUeVhJlHF/
+	cuG51/XG1LAZK/eIOnhbI3z5NwTUR7leuTGC9i1BBnNyjKbyipisQViWeOPS27eZ
+	+JF5q56vdfktvfyGjTBB2O2sWN6BKHg5wifRKkLX2U5vO4QVvfBzow54qKZ8Z3k9
+	u8ZFWu84FB91a3FXGMEezyPvTpmeb7odZJlgCGN/9SPqxb/tBex3qxi+eGutXWGm
+	72J5yB0z6R5Bh0ZuQhmg==
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wp2bprxrc-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 05 Mar 2024 18:21:44 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 425ILhxv025641
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 5 Mar 2024 18:21:43 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 5 Mar 2024 10:21:40 -0800
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <srinivas.kandagatla@linaro.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Mukesh Ojha <quic_mojha@quicinc.com>
+Subject: [PATCH] dt-bindings: nvmem: Add compatible for sm8450, sm8550 and sm8650
+Date: Tue, 5 Mar 2024 23:51:09 +0530
+Message-ID: <1709662869-10569-1-git-send-email-quic_mojha@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240124190552.1551929-1-robh@kernel.org> <Zb6nBYTkZmXZ0G2X@shikoro>
- <Zdxq4GnRyjC07EH8@shikoro>
-In-Reply-To: <Zdxq4GnRyjC07EH8@shikoro>
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 5 Mar 2024 12:06:05 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLnCzXMsyeAHZUx2_oF5dqvLOWBvoj2Bb_Go6VimCxCoA@mail.gmail.com>
-Message-ID: <CAL_JsqLnCzXMsyeAHZUx2_oF5dqvLOWBvoj2Bb_Go6VimCxCoA@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: mux: i2c-demux-pinctrl: Drop
- i2c-mux.yaml reference
-To: Wolfram Sang <wsa+renesas@sang-engineering.com>, Rob Herring <robh@kernel.org>, 
-	Andi Shyti <andi.shyti@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 3IVtK--I29bI8HitMrHsnjGAnXOlQJLf
+X-Proofpoint-ORIG-GUID: 3IVtK--I29bI8HitMrHsnjGAnXOlQJLf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-05_15,2024-03-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 mlxscore=0 phishscore=0 suspectscore=0 mlxlogscore=836
+ lowpriorityscore=0 clxscore=1015 malwarescore=0 spamscore=0 bulkscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403050147
 
-On Mon, Feb 26, 2024 at 4:48=E2=80=AFAM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
->
-> On Sat, Feb 03, 2024 at 09:50:13PM +0100, Wolfram Sang wrote:
-> > On Wed, Jan 24, 2024 at 01:05:50PM -0600, Rob Herring wrote:
-> > > The I2C de-mux is different than an I2C mux, so i2c-mux.yaml is not
-> > > relevant and shouldn't be referenced.
-> > >
-> > > Signed-off-by: Rob Herring <robh@kernel.org>
-> >
-> > Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
->
-> Andi, can you pick these up?
+Document QFPROM compatible for sm8450, sm8550 and sm8650 SoCs.
 
-I already did since you gave your reviewed-by and they hadn't
-otherwise been picked up.
+Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+---
+ Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-> Or you negotiate with Rob how you want to handle I2C DT patches. I
-> agreed with him that I usually take them. Except for generic cleanups or
-> so.
+diff --git a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+index 8c8f05d9eaf1..aed90aff3593 100644
+--- a/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
++++ b/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+@@ -42,6 +42,9 @@ properties:
+           - qcom,sm6375-qfprom
+           - qcom,sm8150-qfprom
+           - qcom,sm8250-qfprom
++          - qcom,sm8450-qfprom
++          - qcom,sm8550-qfprom
++          - qcom,sm8650-qfprom
+       - const: qcom,qfprom
+ 
+   reg:
+-- 
+2.7.4
 
-Yes, that is my preference. And how most subsystems work for bindings.
-
-Rob
 
