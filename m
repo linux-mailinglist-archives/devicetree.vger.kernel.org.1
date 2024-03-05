@@ -1,235 +1,168 @@
-Return-Path: <devicetree+bounces-48272-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48273-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 706B2871397
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 03:27:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id C501E8713F0
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 03:54:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CFF6281C28
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 02:27:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 024111C20B80
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 02:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 874EC18038;
-	Tue,  5 Mar 2024 02:27:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68B2528E0D;
+	Tue,  5 Mar 2024 02:54:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="GUErl1RZ"
+	dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b="fMfuIuLh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E6F711733;
-	Tue,  5 Mar 2024 02:27:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC3F618032;
+	Tue,  5 Mar 2024 02:54:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709605637; cv=none; b=sFHeVRCMrXkBUU+oguPU5Td6u4BuK/yfJ9au8DriZgCLqMvZk5b8acZ+NkSObJn6Iyv66gCTllf83e03D+rdaieVkZbyHP8emig545GS/3vV2h0Nz8/U4bEI+/Icoi6mq1vnDgIkgNJatqC7xBGZs7CWCv73hKrsuNMz45l/UJA=
+	t=1709607258; cv=none; b=qVG5ccqlwtpKDjf/apauX5knK5zHcNyoMud0m7owZYvUcdNqloGNzRMmxRhZKcNwxltVXzDiavHNKsDsr6mFUIX8khI4ZQrnA+qi80S+DVFRyx+ASfoyImETExTHbVamqHSP/NtP/XLhB1qupYQnIiyhsZ9KeqNruAXhtbJna7Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709605637; c=relaxed/simple;
-	bh=skGJsVcVlkEfIF1lrULSJ5OhJCOw1O581tRjrCeHB1U=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=jNY6t1ejw9LdicBb5YWhYt59tnT5NY54sbXvw8gLREw2k6zUVmCSMRi/7R64H9nk2yAkyNvi9Oqe59ZDxTdLMbCJEDG8YHPvpKkPx97JP/BTrSXViovmLj/UOgcIH4n11RW4LrKaLmGt2bGLHDf8es7nbxf2UIBZzrb6+tJZClc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=GUErl1RZ; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 76D0A9C422B;
-	Mon,  4 Mar 2024 21:27:06 -0500 (EST)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id LGf-g4yRHTxB; Mon,  4 Mar 2024 21:27:05 -0500 (EST)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 0BB709C49D5;
-	Mon,  4 Mar 2024 21:27:05 -0500 (EST)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 0BB709C49D5
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1709605625; bh=RkpXqE9XRyAqX18Vp/lUDrOt5pgpgCQl2D2nYPx3pu4=;
-	h=Date:From:To:Message-ID:MIME-Version;
-	b=GUErl1RZTHwnh1cCXYyrTLnOG7pBh5dYSOokQmPBXjcA/NVfrnrbE+5ZSB7nuK8xH
-	 14D8RdtDRK6SXg1S2fx6LN8DwDJq4+9MlDH12kt2TMMR+wsIuEirC78hHW7CjQZF08
-	 mF7B6CyC8F6pLng4IplU5fdHqn9tBO8/ZM1J403rrFm0eAjWG08NZOgPVsQD+VAJUs
-	 7yRXIIDQLPk1qNWuGmWezon2kJKuEGuTWiNqyGkiquzuxuGUXS3mmMfziC/kSpV1lD
-	 VV5QVAbP0zw80BMaJ/XGsOC4R9mGVtwcj/G78b9IRUPFN8KaE89WBmXsOEu3jWohfV
-	 /5SqLMWVCv7lA==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id LOzQ1csyfsyJ; Mon,  4 Mar 2024 21:27:04 -0500 (EST)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id C232B9C422B;
-	Mon,  4 Mar 2024 21:27:04 -0500 (EST)
-Date: Mon, 4 Mar 2024 21:27:04 -0500 (EST)
-From: Charles Perry <charles.perry@savoirfairelinux.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	yilun xu <yilun.xu@intel.com>
-Cc: Rob Herring <robh+dt@kernel.org>, mdf <mdf@kernel.org>, 
-	Allen VANDIVER <avandiver@markem-imaje.com>, 
-	Brian CODY <bcody@markem-imaje.com>, hao wu <hao.wu@intel.com>, 
-	Tom Rix <trix@redhat.com>, 
-	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	Michal Simek <michal.simek@amd.com>, 
-	linux-fpga <linux-fpga@vger.kernel.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>, 
-	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Message-ID: <23887452.1534761.1709605624728.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <d377f0ea-2df2-4d4e-b1bc-8a4ca55eec15@linaro.org>
-References: <20240221195058.1281973-1-charles.perry@savoirfairelinux.com> <20240221195058.1281973-3-charles.perry@savoirfairelinux.com> <4a9f0eef-590b-45df-92bc-b63ad9282e18@linaro.org> <1012793477.1508198.1709486517581.JavaMail.zimbra@savoirfairelinux.com> <cb51aadd-c350-42e2-9684-ac4f7dbf864c@linaro.org> <d377f0ea-2df2-4d4e-b1bc-8a4ca55eec15@linaro.org>
-Subject: Re: [PATCH v4 2/3] dt-bindings: fpga: xlnx,fpga-selectmap: add DT
- schema
+	s=arc-20240116; t=1709607258; c=relaxed/simple;
+	bh=0l3i+ZuBx54RtUp/u+8hZA58rzz9NPlBcK/F0+rS7GE=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=H2aPUEpgR9RH3J/OdauBROEzdM3JEB+IjiYkFIku4vh7E64iGhfg/QxW3g668vfEzN+DangAK7oTnW9y+vkFoKVqLer+xl2ktqvCXqakWteJb20PpeheoLRx2xbH9iaQMi7a9spdQUWA43U8CeffgasZncZrlY12+O3eoTJ/v+c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=qualcomm.com header.i=@qualcomm.com header.b=fMfuIuLh; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=qti.qualcomm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4251LteJ002196;
+	Tue, 5 Mar 2024 02:54:12 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding; s=qcppdkim1; bh=js4Iwy77gk0F5mH6zVca
+	mbeIogD/xjaYBtWsOnDftLM=; b=fMfuIuLhntGLFAZYg4uIuOv9htteY4D2+EB+
+	4dcEa1+JKNiCf3Bg3O6b+/5Z56d9oaBvbhHHM0BMC60buAtiLf0R0F7fg17Pe/KP
+	+9QFNl7IpUb923Dm/z9dngQmtigIjxRG9aFE97Gid4Ri0MPZGTGeKHnTCo4ojVvm
+	VjDetCJgRcmWxS/jI7Qa3VPlpA89qIIzDGi9BowEGH9FfquJ/1KIqP3YdOUd2ykM
+	9N+Qnvmw2+bCrpkPZnUmO+w5UBPU2IdF4MJda0PmA0FduQZ6GsJyNCv6I2AZIElG
+	z6jidGJ/l5nr1+ICdJzG9HMyotR4uP5RVF7Dsd9ApEh5ZSCi7g==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wnqwhra0p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 05 Mar 2024 02:54:12 +0000 (GMT)
+Received: from pps.filterd (NALASPPMTA05.qualcomm.com [127.0.0.1])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 4252lWqf006692;
+	Tue, 5 Mar 2024 02:54:10 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by NALASPPMTA05.qualcomm.com (PPS) with ESMTPS id 3wnmt32c8e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 05 Mar 2024 02:54:10 +0000
+Received: from NALASPPMTA05.qualcomm.com (NALASPPMTA05.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4252sAos013875;
+	Tue, 5 Mar 2024 02:54:10 GMT
+Received: from hu-devc-lv-u22-c.qualcomm.com (hu-qianyu-lv.qualcomm.com [10.81.25.114])
+	by NALASPPMTA05.qualcomm.com (PPS) with ESMTPS id 4252sAGc013874
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 05 Mar 2024 02:54:10 +0000
+Received: by hu-devc-lv-u22-c.qualcomm.com (Postfix, from userid 4098150)
+	id 4E6975CA; Mon,  4 Mar 2024 18:54:10 -0800 (PST)
+From: Qiang Yu <qianyu@qti.qualcomm.com>
+To: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, quic_cang@quicinc.com,
+        quic_mrana@quicinc.com, quic_qianyu@quicinc.com
+Subject: [PATCH v3] arm64: dts: qcom: sm8550: Increase supported MSI interrupts
+Date: Mon,  4 Mar 2024 18:54:08 -0800
+Message-Id: <20240305025408.3380561-1-qianyu@qti.qualcomm.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - FF123 (Linux)/8.8.15_GA_4581)
-Thread-Topic: dt-bindings: fpga: xlnx,fpga-selectmap: add DT schema
-Thread-Index: rJyWbF4Dp/Vu1Z8peWGRMOSlsVPpnQ==
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: UGIzq7y562vGyiiy7KTruY7yUMqAi6e8
+X-Proofpoint-ORIG-GUID: UGIzq7y562vGyiiy7KTruY7yUMqAi6e8
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-04_20,2024-03-04_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 phishscore=0
+ clxscore=1011 lowpriorityscore=0 adultscore=1 malwarescore=0
+ priorityscore=1501 bulkscore=0 impostorscore=0 mlxlogscore=553
+ suspectscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403050020
 
+From: Qiang Yu <quic_qianyu@quicinc.com>
 
+On sm8550, synopsys MSI controller supports 256 MSI interrupts. Hence,
+enable all GIC interrupts required by MSI controller for PCIe0 and PCIe1.
 
-On Mar 4, 2024, at 12:31 AM, Krzysztof Kozlowski krzysztof.kozlowski@linaro.org wrote:
+Signed-off-by: Qiang Yu <quic_qianyu@quicinc.com>
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+v1->v2: make interrupt-names one per line
+v2->v3: delete dot in the end of subject
 
-> On 04/03/2024 08:30, Krzysztof Kozlowski wrote:
->> On 03/03/2024 18:21, Charles Perry wrote:
->>> On Feb 27, 2024, at 3:10 AM, Krzysztof Kozlowski krzysztof.kozlowski@linaro.org
->>> wrote:
->>>
->>>> On 21/02/2024 20:50, Charles Perry wrote:
->>>>> Document the SelectMAP interface of Xilinx 7 series FPGA.
->>>>>
->>>>> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
->>>>> ---
->>>>>  .../bindings/fpga/xlnx,fpga-selectmap.yaml    | 86 +++++++++++++++++++
->>>>>  1 file changed, 86 insertions(+)
->>>>>  create mode 100644
->>>>>  Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
->>>>> b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
->>>>> new file mode 100644
->>>>> index 0000000000000..08a5e92781657
->>>>> --- /dev/null
->>>>> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
->>>>> @@ -0,0 +1,86 @@
->>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>> +%YAML 1.2
->>>>> +---
->>>>> +$id: http://devicetree.org/schemas/fpga/xlnx,fpga-selectmap.yaml#
->>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>> +
->>>>> +title: Xilinx SelectMAP FPGA interface
->>>>> +
->>>>> +maintainers:
->>>>> +  - Charles Perry <charles.perry@savoirfairelinux.com>
->>>>> +
->>>>> +description: |
->>>>> +  Xilinx 7 Series FPGAs support a method of loading the bitstream over a
->>>>> +  parallel port named the SelectMAP interface in the documentation. Only
->>>>> +  the x8 mode is supported where data is loaded at one byte per rising edge of
->>>>> +  the clock, with the MSB of each byte presented to the D0 pin.
->>>>> +
->>>>> +  Datasheets:
->>>>> +
->>>>> https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf
->>>>> +
->>>>> +allOf:
->>>>> +  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
->>>>> +
->>>>> +properties:
->>>>> +  compatible:
->>>>> +    enum:
->>>>> +      - xlnx,fpga-xc7s-selectmap
->>>>> +      - xlnx,fpga-xc7a-selectmap
->>>>> +      - xlnx,fpga-xc7k-selectmap
->>>>> +      - xlnx,fpga-xc7v-selectmap
->>>>> +
->>>>> +  reg:
->>>>> +    description:
->>>>> +      At least 1 byte of memory mapped IO
->>>>> +    maxItems: 1
->>>>> +
->>>>> +  prog_b-gpios:
->>>>
->>>> I commented on this and still see underscore. Nothing in commit msg
->>>> explains why this should have underscore. Changelog is also vague -
->>>> describes that you brought back underscores, instead of explaining why
->>>> you did it.
->>>>
->>>> So the same comments as usual:
->>>>
->>>> No underscores in names.
->>>>
->>>> Best regards,
->>>> Krzysztof
->>>
->>> Hello Krzysztof,
->>>
->>> Yes, I've gone full circle on that issue. Here's what I tried so far:
->> 
->> And what part of the commit description allows me to understand this?
->> 
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 36 ++++++++++++++++++++++++----
+ 1 file changed, 32 insertions(+), 4 deletions(-)
 
-I have a changelog in the cover letter:
-https://lore.kernel.org/all/20240221195058.1281973-1-charles.perry@savoirfairelinux.com/
-
->>>
->>>  1) Reuse the same gpio names: Duplicates errors of the past, Krzysztof
->>>     doesn't like it.
->>>  2) Different gpio names for new driver only: Makes the driver code
->>>     overly complicated, Yilun doesn't like it.
->> 
->> That's a new driver, right? So what is complicated here? You have new
->> code and you take prog-b or prog_b?
->> 
->>>  3) Change gpio names for both drivers, deprecate the old names: Makes
->>>     the DT binding and the driver code overly complicated, Rob doesn't
->>>     like it.
->> 
->> I don't think I proposed changing existing bindings.
->> 
->>>
->>> I think that while the driver code shouldn't be the driving force for
->>> the DT spec, it can be a good indication that the spec is unpractical to
->>> implement.
->> 
->> What is impractical in implementing this? You just pass either A or B to
->> function requesting GPIO. Just choose proper name.
->>
-
-It's not complicated but it requires more code than if "prog_b" had been
-used. 
+diff --git a/arch/arm64/boot/dts/qcom/sm8550.dtsi b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+index ee1ba5a8c8fc..3f413cba2428 100644
+--- a/arch/arm64/boot/dts/qcom/sm8550.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8550.dtsi
+@@ -1713,8 +1713,22 @@ pcie0: pcie@1c00000 {
+ 			linux,pci-domain = <0>;
+ 			num-lanes = <2>;
  
->>>
->>> In this case, there are two interfaces on a chip that uses the same GPIO
->>> protocol, it would only make sense that they use the same names, this
->>> discards solution #2.
->> 
->> I don't understand this. You have devm_gpiod_get() in your new code. Why
->> is it difficult to use different name?
+-			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "msi";
++			interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 142 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 143 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 144 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 147 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 148 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi0",
++					  "msi1",
++					  "msi2",
++					  "msi3",
++					  "msi4",
++					  "msi5",
++					  "msi6",
++					  "msi7";
+ 
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 0x7>;
+@@ -1804,8 +1818,22 @@ pcie1: pcie@1c08000 {
+ 			linux,pci-domain = <1>;
+ 			num-lanes = <2>;
+ 
+-			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>;
+-			interrupt-names = "msi";
++			interrupts = <GIC_SPI 307 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 308 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 309 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 312 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 313 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 314 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 374 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 375 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "msi0",
++					  "msi1",
++					  "msi2",
++					  "msi3",
++					  "msi4",
++					  "msi5",
++					  "msi6",
++					  "msi7";
+ 
+ 			#interrupt-cells = <1>;
+ 			interrupt-map-mask = <0 0 0 0x7>;
+-- 
+2.34.1
 
-Yilun asked to avoid changing the names between the two drivers.
-First comment in this mail:
-https://lore.kernel.org/all/Zb9GkY6cMtR+4xOX@yilunxu-OptiPlex-7050/
-
-Yilun, let me know if this is something you'd accept as this is a concern
-for the device tree maintainers.
-
-> 
-> And I forgot to emphasize: none of these is mentioned in commit msg, so
-> for v5 you will get exactly the same complains. And for every other
-> patch which repeats the same and does not clarify caveats or exceptions.
-> 
-> Best regards,
-> Krzysztof
-
-Should I keep my changelog in the individual commits? I thought the norm
-was to put this the cover letter.
-
-Regards,
-Charles
 
