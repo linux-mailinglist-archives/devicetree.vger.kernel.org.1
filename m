@@ -1,144 +1,116 @@
-Return-Path: <devicetree+bounces-48366-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48367-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7B4B871840
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:32:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF6DB871856
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:39:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 05BAC1C21346
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:32:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7A93D28218D
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:39:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B536C1EF1A;
-	Tue,  5 Mar 2024 08:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D39744CB2E;
+	Tue,  5 Mar 2024 08:39:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RTg1KDcu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7B76B1EF1D;
-	Tue,  5 Mar 2024 08:32:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 39B1D2E40B;
+	Tue,  5 Mar 2024 08:39:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709627540; cv=none; b=thuTgD23AtRJ4CvR3tvP3POPk3fRcwx3P/0Szg0IW9RKVyyEwaRR1IcmYTBSv+f/Ouz/U/i+AFBZcdsq03iko/dz1OQ/jew8pSBFlCAVQRRFk+v6joBPTcSHy79dmMb3axyDG9oRlISLHraD602F0TNNDkq1QvMAdDGbBuIy6ig=
+	t=1709627966; cv=none; b=Y4j2Aum7jdbZFcsbkkXNovdpOYhZmIVbpWv8o3wEYt92S3QNdzA4+OJrH6MBxCIdP47ai/cakWv70hIEh5vhAJ2beuvvgIuZkx9zlbmq18GMS92ES3OvB4CPfrWU8a8ffIm5LJ09K3Q4GRjzE/HQhN10or2WCljol8SsIg+WeXY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709627540; c=relaxed/simple;
-	bh=JJ/Fi0mAc5MEE2xV0+0fv9UmRbISpTURliEIV4UlhdM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=iqPsNbpEZSeMbkRFXuZY0fuOkOGcycJ1+K3nKIuKmzD8e4VYiQl9WrDd9j5N9p+WDqIbq5/d/JHKhpH0uiicGYGNNNpThj5ZaLEoSXkMyGGogrpRb/XO82vn/C0tSqEtyveQEnIj1/1UxX60HT8Y+IE6Z6KTy7FPGfe6g1ZLKmA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+	s=arc-20240116; t=1709627966; c=relaxed/simple;
+	bh=ae9g2zG4V0WPNaPZPaB1ZQcqzF10SrO8I9NMmT5TJwk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=BAJBDL9xnTQpxXtXdZZYqwM1Vzhs5h9p/ZBrIcJR2Y3Ea4d6PiYyOK6PYCPmpj/24utHvuD1VsJHILCgY+zWGYs4/nsKANq/XnRQVtJJVLZ1ihBtfZpkY00TTu9jV3N9I0SJyCBMgI3OXALXsAPEW5EypoAKoxkdsKsZenCT2Bo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RTg1KDcu; arc=none smtp.client-ip=209.85.208.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-6096ab005c0so49767927b3.1;
-        Tue, 05 Mar 2024 00:32:18 -0800 (PST)
+Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-5645960cd56so439679a12.1;
+        Tue, 05 Mar 2024 00:39:24 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709627963; x=1710232763; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DhbsAtULiyOJSylOkxYo7fP2Od8sQLqI7F7lk7BwLe0=;
+        b=RTg1KDcudRBqA0AnHhteJQZebucpZCj3z4CpT2YP/zdYbKTryjtnI2ZS27ftoNurpu
+         7hdLOYXRVcwzWsZSXIdkUHDc+axzV+lcwOUM+qt0kuNsu+2KU+s9hKl+8WDtKdRjrwHJ
+         2ohntRQnBlLptvAAXrk4n55tXHshw4Rq2k47wEsSAc3dRHXmbumF9/AuEvZpSVX6jybV
+         jfZ4CXjesmNU7X9CPaIBHMC+PedUvl8RVDypxVMLC80AhJKn8d4cBu4lXzIerKW6eaob
+         1O0ojz3XI+e4OP9Ppk7dgOWak+DBQuFiplqIf59fYszUcLHESnC3iT0E5ESyJm3SDjxG
+         nu8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709627536; x=1710232336;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NNx9pLfkP2GkyFmboFzOkAHH6cJF9piyh2NJ3vaihUw=;
-        b=RjC3Q0SNHGI6RY3RqBdN+yphPqziFzpV2F0wSA9WGv20TC4lYSiJVCorKKTsDDRuQx
-         Uw8mLPcej/cl5qTECeP4ZMNOvSzVFhtYqRtSgRncBGDD8M5dnT1mJiLkTUHwKcm8/4x9
-         nF4JolL6qXHNHUCvpMOe6+ucqJjRJKiT3hL2+RmHf5mtv9FO1/x2L3wgk1FInvA2KTKB
-         91FwEuSjqvO6KgqROENuDrlPnTiYGMCBEG/2PBkRpUWm2Mza4SxSnuDkgnDCEgh6jfZS
-         8LeJP+lcTOXJNZ/95lJELs8X7suEvstNgq/80hhcTeJFgyuK2vAUrb63Ghq8EfK5CFsR
-         MG0Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVJmqk1izOYERVRZpvVLm7nHPR0KtkIbjqlpZKZl+eDbceT6Jpb4reTglcYPeXXpAlhZTZXzwqzhguoxHC2/Lsxi8b5HLDYP2hiFhfVTmJmyNnk1GP0rg0rfAVf+PvxIUw59vN+LD2CTQ==
-X-Gm-Message-State: AOJu0Yzsr9WmvC92frtqRLKOjmu9TarJWB9ouX3kgkDhbpsA1ppa4RdP
-	siu3M8qxODhC/xtmu9H71txl8RkuqogfDjdOushWrtB1M44m3vfrpiopssM67qg=
-X-Google-Smtp-Source: AGHT+IHMJ4hEpcVZUEVs0Gwg+oZhbJr1uOY0V0fbH+OIq/3ibM3F7XrkAlBAdkjGH2K+Pzz0EgTm5g==
-X-Received: by 2002:a81:4ac5:0:b0:609:6705:f7bc with SMTP id x188-20020a814ac5000000b006096705f7bcmr11343000ywa.28.1709627536579;
-        Tue, 05 Mar 2024 00:32:16 -0800 (PST)
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com. [209.85.128.172])
-        by smtp.gmail.com with ESMTPSA id r7-20020a814407000000b00609498508acsm3064850ywa.42.2024.03.05.00.32.15
+        d=1e100.net; s=20230601; t=1709627963; x=1710232763;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DhbsAtULiyOJSylOkxYo7fP2Od8sQLqI7F7lk7BwLe0=;
+        b=g/suMmpXxOyzyFbu2VynC5Z4Hc5aitpP8QO+YgB9ohFuuxbEoe/YQd3XiqTfGvXww2
+         obdbzmGPEq9WenMJMABWF3RULSCjXMxiR4ZXK1XQjDDtHPJ3pHq4pgBuEx/T9HhZMPkE
+         RNUzabiUSOKXCiRn/SrB5rzm43OFWmiv9IFTDMj6GQUP8CCIFx0g3z1ZRY+UMLOIWgeB
+         hYRSSruucZTUVU9nqBgjdEgySB2CVfVXh4D15uqMd90MmmosA2N9QnTjgfuNczEZ3CR7
+         PVKRFs7eKk4IEW4tki6p8mT8aR5DWN+9ilJ5jWQI7WH+jRprXFPKNy+4Hulr9SMxqJVa
+         nG7w==
+X-Forwarded-Encrypted: i=1; AJvYcCWoWs8CQJ7HlsOSR5bbODDsEuBnE63VtaMl1Im67IsLMr4mTQr3WQqaGnY77I8C+swSI1bmpF6GbCmThl7CDGdnXCHXoKuBBQ8HmmDgLvXUTmBEKcnHNLxpmGFjqArgGd8kVw==
+X-Gm-Message-State: AOJu0Yzpu45AhVm7QXJoV2cRJhM17nslMhcL3mZ2AKrZv+kIFY2VPsVQ
+	DPFPGQzAl6+nqTO/Pe+mlXemuFqXe3gCOltjRq9yG5UM/D8DnYXR
+X-Google-Smtp-Source: AGHT+IHWWDGiPtYmviwwvBUosV+VegjUi/c0iWDc64GJAwydpSl/cD7WYyqC8qT7YOUVViKAKjZYHw==
+X-Received: by 2002:a17:906:a454:b0:a45:7f60:a724 with SMTP id cb20-20020a170906a45400b00a457f60a724mr2196977ejb.72.1709627963473;
+        Tue, 05 Mar 2024 00:39:23 -0800 (PST)
+Received: from ?IPV6:2001:1c00:20d:1300:1b1c:4449:176a:89ea? (2001-1c00-020d-1300-1b1c-4449-176a-89ea.cable.dynamic.v6.ziggo.nl. [2001:1c00:20d:1300:1b1c:4449:176a:89ea])
+        by smtp.gmail.com with ESMTPSA id t15-20020a1709063e4f00b00a42f6d17123sm5702878eji.46.2024.03.05.00.39.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Mar 2024 00:32:16 -0800 (PST)
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-6098a20ab22so32216557b3.2;
-        Tue, 05 Mar 2024 00:32:15 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCVNWBLvhIvd84WTmjpwy/u3gnWFxFsYJSFGlcPb2apfe3VuwLHl0R8m4Q85zf+Vf0//gdn1aXH77/LS2C8jJ76l3zD2oEnpsBqMHh1PJFuq0KthGD/BK8f6MK0yPp4engPujHz4ZWj8Lw==
-X-Received: by 2002:a25:824a:0:b0:dcc:dbb8:ba73 with SMTP id
- d10-20020a25824a000000b00dccdbb8ba73mr9230998ybn.9.1709627535542; Tue, 05 Mar
- 2024 00:32:15 -0800 (PST)
+        Tue, 05 Mar 2024 00:39:23 -0800 (PST)
+Message-ID: <fb6c2253-18a3-40ed-a204-5c8bf0959efb@gmail.com>
+Date: Tue, 5 Mar 2024 09:39:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240303104853.31511-1-brgl@bgdev.pl>
-In-Reply-To: <20240303104853.31511-1-brgl@bgdev.pl>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 5 Mar 2024 09:32:03 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXWdKZjjZc39iXfa6Nohtn+Xm9YvcF+YoRpNzCgeWD8tA@mail.gmail.com>
-Message-ID: <CAMuHMdXWdKZjjZc39iXfa6Nohtn+Xm9YvcF+YoRpNzCgeWD8tA@mail.gmail.com>
-Subject: Re: [PATCH] of: make for_each_property_of_node() available to to !OF
-To: Bartosz Golaszewski <brgl@bgdev.pl>
-Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
+ EN8811H PHY driver
+Content-Language: en-US
+To: Simon Horman <horms@kernel.org>
+Cc: "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King
+ <linux@armlinux.org.uk>, Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Frank Wunderlich <frank-w@public-files.de>,
+ Daniel Golle <daniel@makrotopia.org>, Lucien Jheng
+ <lucien.jheng@airoha.com>, Zhi-Jun You <hujy652@protonmail.com>,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org
+References: <20240302183835.136036-1-ericwouds@gmail.com>
+ <20240302183835.136036-3-ericwouds@gmail.com>
+ <20240304180523.GR403078@kernel.org>
+From: Eric Woudstra <ericwouds@gmail.com>
+In-Reply-To: <20240304180523.GR403078@kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Bartosz,
 
-On Sun, Mar 3, 2024 at 11:49=E2=80=AFAM Bartosz Golaszewski <brgl@bgdev.pl>=
- wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
->
-> for_each_property_of_node() is a macro and so doesn't have a stub inline
-> function for !OF. Move it out of the relevant #ifdef to make it available
-> to all users.
+Hi Simon,
 
-Thanks for your patch, which is now commit ad8ee969d7e34dd3 ("of: make
-for_each_property_of_node() available to to !OF") in dt-rh/for-next
+> I think val needs to be initialised before it is used below.
+> 
+> Flagged by clang-17 W=1 build.
+Thanks. I had changed building to using W=1 after the last message from
+robot. But now it seems I've lost these warnings. I definitely will look
+into this.
 
-> Fixes: 611cad720148 ("dt: add of_alias_scan and of_alias_get_id")
+Best regards,
 
-How is this related?
-
-> Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> ---
-> I have an upcoming driver that will use this but which can also be built
-> on non-DT systems. I'd like to get that in as a fix to avoid inter-tree
-> dependencies later.
-
-Do you have a link?
-
-> --- a/include/linux/of.h
-> +++ b/include/linux/of.h
-> @@ -362,9 +362,6 @@ extern struct device_node *of_get_cpu_state_node(stru=
-ct device_node *cpu_node,
->                                                  int index);
->  extern u64 of_get_cpu_hwid(struct device_node *cpun, unsigned int thread=
-);
->
-> -#define for_each_property_of_node(dn, pp) \
-> -       for (pp =3D dn->properties; pp !=3D NULL; pp =3D pp->next)
-> -
->  extern int of_n_addr_cells(struct device_node *np);
->  extern int of_n_size_cells(struct device_node *np);
->  extern const struct of_device_id *of_match_node(
-> @@ -892,6 +889,9 @@ static inline int of_prop_val_eq(struct property *p1,=
- struct property *p2)
->                !memcmp(p1->value, p2->value, (size_t)p1->length);
->  }
->
-> +#define for_each_property_of_node(dn, pp) \
-> +       for (pp =3D dn->properties; pp !=3D NULL; pp =3D pp->next)
-
-Is this safe if !OF? Can dn be NULL?
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Eric Woudstra
 
