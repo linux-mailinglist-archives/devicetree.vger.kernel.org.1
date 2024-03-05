@@ -1,250 +1,235 @@
-Return-Path: <devicetree+bounces-48271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FFC4871388
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 03:20:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 706B2871397
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 03:27:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 608641F24269
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 02:20:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1CFF6281C28
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 02:27:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 766F718C36;
-	Tue,  5 Mar 2024 02:19:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 874EC18038;
+	Tue,  5 Mar 2024 02:27:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="QMP7FoPs"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="GUErl1RZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 500E618654;
-	Tue,  5 Mar 2024 02:19:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E6F711733;
+	Tue,  5 Mar 2024 02:27:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709605197; cv=none; b=foVLPbY+APt4NheLiLIU95Nlnuf6lvHzJxpx8A/4FwHOmkBDnpwNOxieR/sY9AbsHC88OkzscfMI0r6WA7vfiT4TZwL6dj3h5iEG8t9vCkiSSq/FRP7ClTBt+cqgUq96rHMoik54ANBOkHhWU5Nx0Cg3kMb9JfcqTgAadrfxtHU=
+	t=1709605637; cv=none; b=sFHeVRCMrXkBUU+oguPU5Td6u4BuK/yfJ9au8DriZgCLqMvZk5b8acZ+NkSObJn6Iyv66gCTllf83e03D+rdaieVkZbyHP8emig545GS/3vV2h0Nz8/U4bEI+/Icoi6mq1vnDgIkgNJatqC7xBGZs7CWCv73hKrsuNMz45l/UJA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709605197; c=relaxed/simple;
-	bh=ZVz6nj4UbEpZbl6tYHxFuKq/qPSaAZ9MpnOjiva0PyY=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=lsfdAI/ZQRpdVAz5sBAS553DT3QP6Q5ARvpns8MS1PuNL1vzyvwthVFq0ZTFGhHw4ebef3AzQ/ALjUbkuAvt7lRxGxHA0SGOhO1h2fh2/XBNLeAv0LbGTX8a23xaN1ncMauObm/EqW0yQCh6ZTlMgoD4RnBASvOIdzzoVomQrMs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=QMP7FoPs; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 9F512C43609;
-	Tue,  5 Mar 2024 02:19:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709605196;
-	bh=ZVz6nj4UbEpZbl6tYHxFuKq/qPSaAZ9MpnOjiva0PyY=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=QMP7FoPsJ74ILNiOd7Tvaw9B9Mhf5P5Ddf0hJN8qCcLMJ6NnBlCCA3uB97pBw6Rj/
-	 MJqrxQs4/2qL1hf/tPorVTigIca8M4XR7zpk9JXfBCrUCsOxry4zqBbb6wn0bbwwdA
-	 NFkW858bPpUYmLqJMxyxqapPE11ZP+jSi9as41EAxguFOw6xzjcQedOPpdXB557Jly
-	 WYXoonrhRAywoi7NCr/3ptmwlTGJhPtQryKiVL0sF9Xx7VIcQCgRWRnoy2+7X7F2aM
-	 0ot3s1EsZsOLzDeB4cn6vpp/eXQWVg/edfWQnVhbtif1j5qkj70NpIYYuvvoBW0Uju
-	 be7YeTtB7m7tQ==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id 8D7CBC54E58;
-	Tue,  5 Mar 2024 02:19:56 +0000 (UTC)
-From: Yang Xiwen via B4 Relay <devnull+forbidden405.outlook.com@kernel.org>
-Date: Tue, 05 Mar 2024 10:19:50 +0800
-Subject: [PATCH v4 5/5] phy: hisilicon: hisi-inno-phy: add support for
- Hi3798MV200 INNO PHY
+	s=arc-20240116; t=1709605637; c=relaxed/simple;
+	bh=skGJsVcVlkEfIF1lrULSJ5OhJCOw1O581tRjrCeHB1U=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=jNY6t1ejw9LdicBb5YWhYt59tnT5NY54sbXvw8gLREw2k6zUVmCSMRi/7R64H9nk2yAkyNvi9Oqe59ZDxTdLMbCJEDG8YHPvpKkPx97JP/BTrSXViovmLj/UOgcIH4n11RW4LrKaLmGt2bGLHDf8es7nbxf2UIBZzrb6+tJZClc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=GUErl1RZ; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 76D0A9C422B;
+	Mon,  4 Mar 2024 21:27:06 -0500 (EST)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id LGf-g4yRHTxB; Mon,  4 Mar 2024 21:27:05 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 0BB709C49D5;
+	Mon,  4 Mar 2024 21:27:05 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 0BB709C49D5
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1709605625; bh=RkpXqE9XRyAqX18Vp/lUDrOt5pgpgCQl2D2nYPx3pu4=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=GUErl1RZTHwnh1cCXYyrTLnOG7pBh5dYSOokQmPBXjcA/NVfrnrbE+5ZSB7nuK8xH
+	 14D8RdtDRK6SXg1S2fx6LN8DwDJq4+9MlDH12kt2TMMR+wsIuEirC78hHW7CjQZF08
+	 mF7B6CyC8F6pLng4IplU5fdHqn9tBO8/ZM1J403rrFm0eAjWG08NZOgPVsQD+VAJUs
+	 7yRXIIDQLPk1qNWuGmWezon2kJKuEGuTWiNqyGkiquzuxuGUXS3mmMfziC/kSpV1lD
+	 VV5QVAbP0zw80BMaJ/XGsOC4R9mGVtwcj/G78b9IRUPFN8KaE89WBmXsOEu3jWohfV
+	 /5SqLMWVCv7lA==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id LOzQ1csyfsyJ; Mon,  4 Mar 2024 21:27:04 -0500 (EST)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id C232B9C422B;
+	Mon,  4 Mar 2024 21:27:04 -0500 (EST)
+Date: Mon, 4 Mar 2024 21:27:04 -0500 (EST)
+From: Charles Perry <charles.perry@savoirfairelinux.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	yilun xu <yilun.xu@intel.com>
+Cc: Rob Herring <robh+dt@kernel.org>, mdf <mdf@kernel.org>, 
+	Allen VANDIVER <avandiver@markem-imaje.com>, 
+	Brian CODY <bcody@markem-imaje.com>, hao wu <hao.wu@intel.com>, 
+	Tom Rix <trix@redhat.com>, 
+	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Michal Simek <michal.simek@amd.com>, 
+	linux-fpga <linux-fpga@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Message-ID: <23887452.1534761.1709605624728.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <d377f0ea-2df2-4d4e-b1bc-8a4ca55eec15@linaro.org>
+References: <20240221195058.1281973-1-charles.perry@savoirfairelinux.com> <20240221195058.1281973-3-charles.perry@savoirfairelinux.com> <4a9f0eef-590b-45df-92bc-b63ad9282e18@linaro.org> <1012793477.1508198.1709486517581.JavaMail.zimbra@savoirfairelinux.com> <cb51aadd-c350-42e2-9684-ac4f7dbf864c@linaro.org> <d377f0ea-2df2-4d4e-b1bc-8a4ca55eec15@linaro.org>
+Subject: Re: [PATCH v4 2/3] dt-bindings: fpga: xlnx,fpga-selectmap: add DT
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240305-inno-phy-v4-5-a03204c9cf1c@outlook.com>
-References: <20240305-inno-phy-v4-0-a03204c9cf1c@outlook.com>
-In-Reply-To: <20240305-inno-phy-v4-0-a03204c9cf1c@outlook.com>
-To: Vinod Koul <vkoul@kernel.org>, 
- Kishon Vijay Abraham I <kishon@kernel.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Jiancheng Xue <xuejiancheng@hisilicon.com>, 
- Shawn Guo <shawn.guo@linaro.org>, Philipp Zabel <p.zabel@pengutronix.de>
-Cc: linux-phy@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Kishon Vijay Abraham I <kishon@ti.com>, 
- David Yang <mmyangfl@gmail.com>, Yang Xiwen <forbidden405@outlook.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1709605195; l=5083;
- i=forbidden405@outlook.com; s=20230724; h=from:subject:message-id;
- bh=hpWZOa3GUm+yktbgJ6FbaHA5gwAHZdlfsvDn+nR5IsE=;
- b=+qlj9H6AzcRViTrVE/rR0YLSUPKB4v0WqydB/LFfz2sNY2E2mZuHuEQ1tqHyI8EN570QJDPdr
- nJtS/tsHjFZBRuQVZ5fywvp+rsmUAyEGSPezBkDg1F1rYdeHjiOK5uP
-X-Developer-Key: i=forbidden405@outlook.com; a=ed25519;
- pk=qOD5jhp891/Xzc+H/PZ8LWVSWE3O/XCQnAg+5vdU2IU=
-X-Endpoint-Received:
- by B4 Relay for forbidden405@outlook.com/20230724 with auth_id=67
-X-Original-From: Yang Xiwen <forbidden405@outlook.com>
-Reply-To: <forbidden405@outlook.com>
+X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - FF123 (Linux)/8.8.15_GA_4581)
+Thread-Topic: dt-bindings: fpga: xlnx,fpga-selectmap: add DT schema
+Thread-Index: rJyWbF4Dp/Vu1Z8peWGRMOSlsVPpnQ==
 
-From: Yang Xiwen <forbidden405@outlook.com>
 
-Direct MMIO resgiter access is used by Hi3798MV200. For other models,
-of_iomap() returns NULL due to insufficient length. So they are
-unaffected.
 
-Also Hi3798MV200 INNO PHY has an extra reset required to be deasserted,
-switch to reset_control_bulk_() APIs for that.
+On Mar 4, 2024, at 12:31 AM, Krzysztof Kozlowski krzysztof.kozlowski@linaro.org wrote:
 
-Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
----
- drivers/phy/hisilicon/phy-hisi-inno-usb2.c | 66 ++++++++++++++++++------------
- 1 file changed, 40 insertions(+), 26 deletions(-)
+> On 04/03/2024 08:30, Krzysztof Kozlowski wrote:
+>> On 03/03/2024 18:21, Charles Perry wrote:
+>>> On Feb 27, 2024, at 3:10 AM, Krzysztof Kozlowski krzysztof.kozlowski@linaro.org
+>>> wrote:
+>>>
+>>>> On 21/02/2024 20:50, Charles Perry wrote:
+>>>>> Document the SelectMAP interface of Xilinx 7 series FPGA.
+>>>>>
+>>>>> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
+>>>>> ---
+>>>>>  .../bindings/fpga/xlnx,fpga-selectmap.yaml    | 86 +++++++++++++++++++
+>>>>>  1 file changed, 86 insertions(+)
+>>>>>  create mode 100644
+>>>>>  Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>>>>> b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>>>>> new file mode 100644
+>>>>> index 0000000000000..08a5e92781657
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>>>>> @@ -0,0 +1,86 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/fpga/xlnx,fpga-selectmap.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title: Xilinx SelectMAP FPGA interface
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Charles Perry <charles.perry@savoirfairelinux.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  Xilinx 7 Series FPGAs support a method of loading the bitstream over a
+>>>>> +  parallel port named the SelectMAP interface in the documentation. Only
+>>>>> +  the x8 mode is supported where data is loaded at one byte per rising edge of
+>>>>> +  the clock, with the MSB of each byte presented to the D0 pin.
+>>>>> +
+>>>>> +  Datasheets:
+>>>>> +
+>>>>> https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf
+>>>>> +
+>>>>> +allOf:
+>>>>> +  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    enum:
+>>>>> +      - xlnx,fpga-xc7s-selectmap
+>>>>> +      - xlnx,fpga-xc7a-selectmap
+>>>>> +      - xlnx,fpga-xc7k-selectmap
+>>>>> +      - xlnx,fpga-xc7v-selectmap
+>>>>> +
+>>>>> +  reg:
+>>>>> +    description:
+>>>>> +      At least 1 byte of memory mapped IO
+>>>>> +    maxItems: 1
+>>>>> +
+>>>>> +  prog_b-gpios:
+>>>>
+>>>> I commented on this and still see underscore. Nothing in commit msg
+>>>> explains why this should have underscore. Changelog is also vague -
+>>>> describes that you brought back underscores, instead of explaining why
+>>>> you did it.
+>>>>
+>>>> So the same comments as usual:
+>>>>
+>>>> No underscores in names.
+>>>>
+>>>> Best regards,
+>>>> Krzysztof
+>>>
+>>> Hello Krzysztof,
+>>>
+>>> Yes, I've gone full circle on that issue. Here's what I tried so far:
+>> 
+>> And what part of the commit description allows me to understand this?
+>> 
 
-diff --git a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c b/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
-index b7e740eb4752..a759823b5b1e 100644
---- a/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
-+++ b/drivers/phy/hisilicon/phy-hisi-inno-usb2.c
-@@ -10,6 +10,7 @@
- #include <linux/io.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/of_address.h>
- #include <linux/phy/phy.h>
- #include <linux/platform_device.h>
- #include <linux/reset.h>
-@@ -24,6 +25,7 @@
- 
- #define PHY_TYPE_0	0
- #define PHY_TYPE_1	1
-+#define PHY_TYPE_MMIO	2
- 
- #define PHY_TEST_DATA		GENMASK(7, 0)
- #define PHY_TEST_ADDR_OFFSET	8
-@@ -43,6 +45,7 @@
- #define PHY_CLK_ENABLE		BIT(2)
- 
- struct hisi_inno_phy_port {
-+	void __iomem *base;
- 	struct reset_control *utmi_rst;
- 	struct hisi_inno_phy_priv *priv;
- };
-@@ -50,7 +53,7 @@ struct hisi_inno_phy_port {
- struct hisi_inno_phy_priv {
- 	void __iomem *mmio;
- 	struct clk *ref_clk;
--	struct reset_control *por_rst;
-+	struct reset_control *rsts;
- 	unsigned int type;
- 	struct hisi_inno_phy_port ports[INNO_PHY_PORT_NUM];
- };
-@@ -62,26 +65,31 @@ static void hisi_inno_phy_write_reg(struct hisi_inno_phy_priv *priv,
- 	u32 val;
- 	u32 value;
- 
--	if (priv->type == PHY_TYPE_0)
--		val = (data & PHY_TEST_DATA) |
--		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
--		      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
--		      PHY0_TEST_WREN | PHY0_TEST_RST;
--	else
--		val = (data & PHY_TEST_DATA) |
--		      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
--		      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
--		      PHY1_TEST_WREN | PHY1_TEST_RST;
--	writel(val, reg);
--
--	value = val;
--	if (priv->type == PHY_TYPE_0)
--		value |= PHY0_TEST_CLK;
--	else
--		value |= PHY1_TEST_CLK;
--	writel(value, reg);
--
--	writel(val, reg);
-+	if (priv->ports[port].base)
-+		/* FIXME: fill stride in priv */
-+		writel(data, (u32 *)priv->ports[port].base + addr);
-+	else {
-+		if (priv->type == PHY_TYPE_0)
-+			val = (data & PHY_TEST_DATA) |
-+			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY0_TEST_ADDR) |
-+			      ((port << PHY0_TEST_PORT_OFFSET) & PHY0_TEST_PORT) |
-+			      PHY0_TEST_WREN | PHY0_TEST_RST;
-+		else
-+			val = (data & PHY_TEST_DATA) |
-+			      ((addr << PHY_TEST_ADDR_OFFSET) & PHY1_TEST_ADDR) |
-+			      ((port << PHY1_TEST_PORT_OFFSET) & PHY1_TEST_PORT) |
-+			      PHY1_TEST_WREN | PHY1_TEST_RST;
-+		writel(val, reg);
-+
-+		value = val;
-+		if (priv->type == PHY_TYPE_0)
-+			value |= PHY0_TEST_CLK;
-+		else
-+			value |= PHY1_TEST_CLK;
-+		writel(value, reg);
-+
-+		writel(val, reg);
-+	}
- }
- 
- static void hisi_inno_phy_setup(struct hisi_inno_phy_priv *priv)
-@@ -104,7 +112,7 @@ static int hisi_inno_phy_init(struct phy *phy)
- 		return ret;
- 	udelay(REF_CLK_STABLE_TIME);
- 
--	reset_control_deassert(priv->por_rst);
-+	reset_control_deassert(priv->rsts);
- 	udelay(POR_RST_COMPLETE_TIME);
- 
- 	/* Set up phy registers */
-@@ -122,7 +130,7 @@ static int hisi_inno_phy_exit(struct phy *phy)
- 	struct hisi_inno_phy_priv *priv = port->priv;
- 
- 	reset_control_assert(port->utmi_rst);
--	reset_control_assert(priv->por_rst);
-+	reset_control_assert(priv->rsts);
- 	clk_disable_unprepare(priv->ref_clk);
- 
- 	return 0;
-@@ -158,15 +166,16 @@ static int hisi_inno_phy_probe(struct platform_device *pdev)
- 	if (IS_ERR(priv->ref_clk))
- 		return PTR_ERR(priv->ref_clk);
- 
--	priv->por_rst = devm_reset_control_get_exclusive(dev, NULL);
--	if (IS_ERR(priv->por_rst))
--		return PTR_ERR(priv->por_rst);
-+	priv->rsts = devm_reset_control_array_get(dev, false, false);
-+	if (IS_ERR(priv->rsts))
-+		return PTR_ERR(priv->rsts);
- 
- 	priv->type = (uintptr_t) of_device_get_match_data(dev);
- 
- 	for_each_child_of_node(np, child) {
- 		struct reset_control *rst;
- 		struct phy *phy;
-+		void __iomem *base;
- 
- 		rst = of_reset_control_get_exclusive(child, NULL);
- 		if (IS_ERR(rst)) {
-@@ -174,7 +183,10 @@ static int hisi_inno_phy_probe(struct platform_device *pdev)
- 			return PTR_ERR(rst);
- 		}
- 
-+		base = of_iomap(child, 0);
-+
- 		priv->ports[i].utmi_rst = rst;
-+		priv->ports[i].base = base;
- 		priv->ports[i].priv = priv;
- 
- 		phy = devm_phy_create(dev, child, &hisi_inno_phy_ops);
-@@ -205,6 +217,8 @@ static const struct of_device_id hisi_inno_phy_of_match[] = {
- 	  .data = (void *) PHY_TYPE_0 },
- 	{ .compatible = "hisilicon,hi3798mv100-usb2-phy",
- 	  .data = (void *) PHY_TYPE_1 },
-+	{ .compatible = "hisilicon,hi3798mv200-usb2-phy",
-+	  .data = (void *) PHY_TYPE_MMIO },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, hisi_inno_phy_of_match);
+I have a changelog in the cover letter:
+https://lore.kernel.org/all/20240221195058.1281973-1-charles.perry@savoirfairelinux.com/
 
--- 
-2.43.0
+>>>
+>>>  1) Reuse the same gpio names: Duplicates errors of the past, Krzysztof
+>>>     doesn't like it.
+>>>  2) Different gpio names for new driver only: Makes the driver code
+>>>     overly complicated, Yilun doesn't like it.
+>> 
+>> That's a new driver, right? So what is complicated here? You have new
+>> code and you take prog-b or prog_b?
+>> 
+>>>  3) Change gpio names for both drivers, deprecate the old names: Makes
+>>>     the DT binding and the driver code overly complicated, Rob doesn't
+>>>     like it.
+>> 
+>> I don't think I proposed changing existing bindings.
+>> 
+>>>
+>>> I think that while the driver code shouldn't be the driving force for
+>>> the DT spec, it can be a good indication that the spec is unpractical to
+>>> implement.
+>> 
+>> What is impractical in implementing this? You just pass either A or B to
+>> function requesting GPIO. Just choose proper name.
+>>
 
+It's not complicated but it requires more code than if "prog_b" had been
+used. 
+ 
+>>>
+>>> In this case, there are two interfaces on a chip that uses the same GPIO
+>>> protocol, it would only make sense that they use the same names, this
+>>> discards solution #2.
+>> 
+>> I don't understand this. You have devm_gpiod_get() in your new code. Why
+>> is it difficult to use different name?
+
+Yilun asked to avoid changing the names between the two drivers.
+First comment in this mail:
+https://lore.kernel.org/all/Zb9GkY6cMtR+4xOX@yilunxu-OptiPlex-7050/
+
+Yilun, let me know if this is something you'd accept as this is a concern
+for the device tree maintainers.
+
+> 
+> And I forgot to emphasize: none of these is mentioned in commit msg, so
+> for v5 you will get exactly the same complains. And for every other
+> patch which repeats the same and does not clarify caveats or exceptions.
+> 
+> Best regards,
+> Krzysztof
+
+Should I keep my changelog in the individual commits? I thought the norm
+was to put this the cover letter.
+
+Regards,
+Charles
 
