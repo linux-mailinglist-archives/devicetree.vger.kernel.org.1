@@ -1,108 +1,137 @@
-Return-Path: <devicetree+bounces-48375-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48376-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5D198719E9
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 10:49:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F09E08719F6
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 10:50:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9C31F1F20DD3
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:49:06 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 773861F21480
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 09:50:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 57145535AB;
-	Tue,  5 Mar 2024 09:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EB3E548E2;
+	Tue,  5 Mar 2024 09:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="lFsPXPEf"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="tN36sE1u"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3BDFA5025C;
-	Tue,  5 Mar 2024 09:48:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A26C15473F
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 09:50:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709632141; cv=none; b=qWFRzjaNlx0C8LPIbv2V4igeERT1dNoEnqbTz+WOWnofQ6shNiZM3U8OP749OFVya0TO4QuKibsC2siiKqwTq/hD2JKG4OcM3PtNAtrHSFx3PtHzyssWC50WBTMUl40faiKtgjAFoQhKcDedkkGQSo9FnQR71SHB2bJ0qV017w8=
+	t=1709632233; cv=none; b=tdBTtZgNgHV+KWxYCBwpE2V4P/U4AH/aH9mSMIGYHBguojhhFx4kg/RZ+GuUns6kHq7RDaeLlXjcxYbmrer/LGs21EvKNC3SqQ6RlL4zxlRhGVh8KqJxN9Ug+vw/TqjUEUKjBTMTzJ7I50jzEWsF7CyAg2fVVtbPNj7r9Za2bpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709632141; c=relaxed/simple;
-	bh=urqg0xbTeQw3SaHu2oQpg2NmfCmTqZ8GoiV35udIfjM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=INJ+vUy2vyLZrEAoUWQsxGl8+9ww66Ki9WVR4tpFV8Z0qooscUPyypUhoXMbCYWTNgAe/42K/I8rgOKGyeL2R0mmdHyt2Opgp+CJBnKkFTxwZyHNTJNh1k7OlLegFUyr9IgbPqLykutokOqY3l5X475WXvl9mScw06NW6T9j0YE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=lFsPXPEf; arc=none smtp.client-ip=217.70.183.201
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 472B91BF206;
-	Tue,  5 Mar 2024 09:48:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709632137;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Aw8pUe0MID70y933FGi7D+L6M1sIf5ieS9mZ3leciLE=;
-	b=lFsPXPEfA66AsRtfkm2k0eqMO8n1R78NnQCu16rwl0rxXnz1zd7Ic+aZQlxddbzIuTyf/Z
-	Ievu/+b86nO9T9w2JTRIBH6c5r4NWv9f81PuuHn8L7qIYblvipiPu/xvJ6HcSdpHD4ynLT
-	847BOix813JmNH1STAadsZNqxyNrLOF4IEvjnLvGZcHH5JQi1n5e9wEGQQZYRbF0Z54+Ci
-	iz9i9HwLa8j19Ll+bHlEt0JJ1eRRjLabj5lad2uNs6msYLDYsqNHrBSwWxTlZOl2voOCar
-	igBw08xlhiqKo4lNiZijWksSW9MsrTOmnYq/1+58thF/v47Jm406t0GV90eIPw==
-Message-ID: <5c3acbaa-dc95-4f8a-87cf-c62b6ccc442c@bootlin.com>
-Date: Tue, 5 Mar 2024 10:48:56 +0100
+	s=arc-20240116; t=1709632233; c=relaxed/simple;
+	bh=2fhwATG4WHPso3XAPD9VO1JFzmBMZgKGhumAvtbQh8M=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U9x8xbttHFNm4SX4YhvwCZOX/RIQhrtdG5lE8hHrt3CnzUNLpuXxD+4hJaFueW7xB11gQHko80QRYc4iGumw++c9PS1kO1HoxMF9uEPJWhcJTexgD4f+8wYtxQYHRKPsqS14w+ebpxOHp6KDqh8/x41t5nTxUrzP4jQvxfdee3c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=tN36sE1u; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-512f3e75391so474661e87.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 01:50:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech.se; s=google; t=1709632227; x=1710237027; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yR9ysqVa4zKnV7VmPq6yjzQWBoW3x0dbDvRJJf/Wmqg=;
+        b=tN36sE1uGIibwW1OwiVoHv15QJpvmRlltFExK6ScjjTA3ZCmgIRTKKiwy47OZi71+H
+         IDv7MMfQD13BUqJ7h3c5dg4DUyHZFlDZsT3TOmNZ6RJxV7xH5bcLOAL/MvLjsAFDKBYP
+         VG2II8vYLKQdPmBMa8bRJR/pUUJRg96htvY/c4IAXUQ/pUCV05V1XF26haGeMPs/BBt/
+         N8T1dStfiOQrYN8g7U1NkuGvN7Bi7SGF3Kxr4ZtcqPM+h8kLP2zCwpfoeU2GgGfBe0Gc
+         75VpwFzEoOrEfJBXprLDcS1QIqVpMky9Yj9tPPekxDnYfEC/SrHzPiTQ0HO+0DJeaszS
+         mB6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709632227; x=1710237027;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yR9ysqVa4zKnV7VmPq6yjzQWBoW3x0dbDvRJJf/Wmqg=;
+        b=InTajo85JM+8LRZXXVthwt5aq/ckAJhr2nsJRULjq0rFdDB4t0XwqvUfYK7U7Bkq0u
+         PaMU6+dhUamrUKYJ+sNAB6Ge4DeWg8XlJsiNfGXhFqnG4pol6tiZu0Kh1UQ8xQFVtKE0
+         6nv/JtqPbI0OiE9vm2uDxqImw6aKuf3ejPpiTUnnUMZi3upKVNyfFSYx/UwunZu0uDE/
+         zCfsg4f5ZfKaTBwTYbJx2X0+KhYFYM+C6A1e8q99qqocWf1R0Hv0afKde+wNZ8IzaD6N
+         PuTeyr4iVpphWylBN9j03uJd/2fdo6OWMtjxxhQLtEsI1LgVOkeS2EI5+jrDsNHF5Wvs
+         XjXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVadYSJqw7VCd3jdUX1uKXaBecOqyNOkrHBrJS/cg7vT/HkteK9/VbdlYowJJtDRX2IbDYnsIDl86xXXXtxhGOv2BTWXkr0hMwBEQ==
+X-Gm-Message-State: AOJu0YxgggnZ2lCfRkfRe9ZDuwmHxxT4Hu15SohbFJgBThqI/WjOCA4w
+	2gx4x3xHgNViAhR9cqihnF+9r88810fuScrSzQ8mWEMMevax++QD5dNWac/ETWw=
+X-Google-Smtp-Source: AGHT+IHmzDWX0iNGQ1bsRL3fssFFcv3Ett/EhCFtb1XJb/4drwplrDvHwpcC5At3KOGR/c77/MRFjg==
+X-Received: by 2002:a05:6512:3e5:b0:512:f2c5:6 with SMTP id n5-20020a05651203e500b00512f2c50006mr824925lfq.6.1709632227301;
+        Tue, 05 Mar 2024 01:50:27 -0800 (PST)
+Received: from localhost (h-46-59-36-113.A463.priv.bahnhof.se. [46.59.36.113])
+        by smtp.gmail.com with ESMTPSA id s12-20020a056512202c00b005131816bbf8sm2122206lfs.87.2024.03.05.01.50.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Mar 2024 01:50:26 -0800 (PST)
+Date: Tue, 5 Mar 2024 10:50:26 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: Sergey Shtylyov <s.shtylyov@omp.ru>,
+	"David S . Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sergei Shtylyov <sergei.shtylyov@gmail.com>, netdev@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+	Thanh Quan <thanh.quan.xn@renesas.com>
+Subject: Re: [PATCH net-next] dt-bindings: net: renesas,etheravb: Add support
+ for R-Car V4M
+Message-ID: <20240305095026.GA2876042@ragnatech.se>
+References: <0212b57ba1005bb9b5a922f8f25cc67a7bc15f30.1709631152.git.geert+renesas@glider.be>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 0/3] panel-simple: add support for Crystal Clear
- CMT430B19N00
-Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Yen-Mei Goh <yen-mei.goh@keysight.com>
-References: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
- <20240304-drivable-property-feaeba782880@spud>
-From: =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?=
- <jeremie.dautheribes@bootlin.com>
-In-Reply-To: <20240304-drivable-property-feaeba782880@spud>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-GND-Sasl: jeremie.dautheribes@bootlin.com
+In-Reply-To: <0212b57ba1005bb9b5a922f8f25cc67a7bc15f30.1709631152.git.geert+renesas@glider.be>
 
-Hi Conor,
+Hi Geert,
 
-On 04/03/2024 20:29, Conor Dooley wrote:
-> On Mon, Mar 04, 2024 at 05:04:51PM +0100, Jérémie Dautheribes wrote:
->> Hello everyone,
->>
->> This patch series add support for the Crystal Clear Technology
->> CMT430B19N00 4.3" 480x272 TFT-LCD panel.
->> It also adds Crystal Clear Technology to vendor-prefixes.yaml.
->>
->> Please note that unfortunately there is no public datasheet available
->> for this panel.
->>
->> Changes in v2:
->>    - add link to the Crystal Clear Technology website in commit message, as
->>    suggested by Conor Dooley and Neil Armstrong.
+Thanks for your work.
+
+On 2024-03-05 10:37:18 +0100, Geert Uytterhoeven wrote:
+> From: Thanh Quan <thanh.quan.xn@renesas.com>
 > 
-> You forgot however to add the acks that I gave you for the two
-> dt-binding patches.
+> Document support for the Renesas Ethernet AVB (EtherAVB-IF) block in the
+> Renesas R-Car V4M (R8A779H0) SoC.
+> 
+> Signed-off-by: Thanh Quan <thanh.quan.xn@renesas.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
 
-Oops you are right, I'm sorry. Should I send a v3 containing these acks?
+> ---
+>  Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+> index 890f7858d0dc4c79..de7ba7f345a93778 100644
+> --- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+> +++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+> @@ -46,6 +46,7 @@ properties:
+>            - enum:
+>                - renesas,etheravb-r8a779a0     # R-Car V3U
+>                - renesas,etheravb-r8a779g0     # R-Car V4H
+> +              - renesas,etheravb-r8a779h0     # R-Car V4M
+>            - const: renesas,etheravb-rcar-gen4 # R-Car Gen4
+>  
+>        - items:
+> -- 
+> 2.34.1
+> 
+> 
 
-Best regards,
-
-Jérémie
+-- 
+Kind Regards,
+Niklas Söderlund
 
