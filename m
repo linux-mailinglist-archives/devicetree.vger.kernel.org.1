@@ -1,262 +1,301 @@
-Return-Path: <devicetree+bounces-48387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1763871D33
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 12:17:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 739D5871D95
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 12:27:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E34B91C21FB7
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 11:17:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F129328724B
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 11:27:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EFC3454909;
-	Tue,  5 Mar 2024 11:17:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3B69B5A119;
+	Tue,  5 Mar 2024 11:20:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="1k3VDPOt"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="TnYwIv7J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC3305789F
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 11:17:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 493FC54BFA;
+	Tue,  5 Mar 2024 11:20:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709637445; cv=none; b=nsnE/TBwQlBpSSXpFGioqVshMO7qtEoNbVGvIjE8nXAosemITpZJGUYCROJoMMCfT0SLHhioehS+uVHiHQX6b+YFkwA2dssx36PMk/4D+cAZrxbbVyMQVlUtbzUQgf8NgUOTgLo7zwU38MUEXtm1bdQmNhbEpolOFnL4w+AdBGA=
+	t=1709637628; cv=none; b=ipIaA2msvDAoOn5YHpVeMgORd9OQuC0pQWvqDy5oqQHEyXb6XV7K2zJORqLIT7GwWvQwz9w3dQmk8DCqeBl/P5agkeDiwGCeQUVzB6RcJaP1IQAO5SJTBDdxoNhsS0hjPixco4a7pdGwyomWhzbAwY/GnlIROqNb6TaVAl2i58g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709637445; c=relaxed/simple;
-	bh=ag16qgtV0b3r73sf9dBSndiHcOqr5fxKPRVdAlFbtIs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=MZbpVRlKOMCINlS83K09BtktdntZZ8zz0sj+BDpuKfEyxhbQDFFhikeg5R6M36m/4B1xjjQJCPD4isl1w1CznBveyzlxoYAGZSvpuNbdsssxnt9kazYN+fk1G7Yv603w2kWvkectr4W2FXGZxr2uOm6IKoUh4fhL+DPtbdupWno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=1k3VDPOt; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-51326436876so5958791e87.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 03:17:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1709637441; x=1710242241; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=j2ULHLhroOyDBrYbmargHZ3lXfCo0OB1feNvDkZhuNg=;
-        b=1k3VDPOtpZ6Qzv9F8C27gggRpsMaNSD62wBNyEKAsf8gw7aVpKzo+gYokaAlBCpDbo
-         5e48kE413hmuZVyQzVUPF0zpCejArn+AI/HJ1fbgmjCpI+qksh8i8/t70qpxezaHScHO
-         MYm5F/f8ULb/0ch0itZC6xXOJXeCcA4pAFcXK8H2UFbkrR7eQliPNERq4FaaF3SPd6X+
-         U3F5HaRgzCcOsRwxtCdzSa0BLriHn04CrbN3RQsfoR4s2s0h1o6K7CbJjxyq7m8x2LNV
-         13LDdD0WG5r2dWj64EiaSjstQoAU56JJ+VpjUtJx7TkwWBe6Y/HQ7sY5mUEekpvDZ1lc
-         yl6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709637441; x=1710242241;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=j2ULHLhroOyDBrYbmargHZ3lXfCo0OB1feNvDkZhuNg=;
-        b=MJuIj0QyW0CkNvlpLvkzGVM17+TvF4O07WWYFmwObodKiL6Jc6a3ocyy9vWG/oE/IB
-         Qr6SdCCh6L2KjCM/V+1+43MkxCxUWRvVL3Xv+20DG5EoP5kg08ycAsHRIIDwYm5hV1C9
-         rKLRCHbbCx6WYxDo2OUDtgRfoWvDyHMVDkslu485DJdXnvLMraf/F7DkqoMQbbCt8AMI
-         yR6Tn27lq7lKXZeQBjFkU7EyxiRSx2iwspwpOP/VnA7L/oVeAyF1OUcnq1eeUpPsqeM3
-         uNYKUSXgmEXX8gH4PvJ1Lt0j0MVuo9mpVSm3hwnEgYfpn1BRxcGUGDf8fS2WZM3lr6I6
-         fElA==
-X-Forwarded-Encrypted: i=1; AJvYcCV1Ou42p7QGPbYryu1s+EHijGAhD3pzC2FlsQ81wCWf41ypFtSX+gcEPvoPpJ74HhWseuPp811+Em37n5qHsLo8McXN9eCJlvjHqA==
-X-Gm-Message-State: AOJu0YyfKYAtaEiJt9+mTlzeAimC02gRICsnQ4Opi9lG/JYIy+Isr4Eq
-	ZaIFR03lc9jsxfn9C1nj7FZdkcUy0JVJEm3daL1pmw3UA6HodAxHfRYZgS9qNEY=
-X-Google-Smtp-Source: AGHT+IHCfdanPuTNNxlu2M0jKSAisxwUOSu72YtEDH8PxdOjlG67vui+HF5ei4BhpYu0Mex9c5cPrg==
-X-Received: by 2002:a05:6512:b8c:b0:513:2102:7afe with SMTP id b12-20020a0565120b8c00b0051321027afemr1333821lfv.7.1709637440593;
-        Tue, 05 Mar 2024 03:17:20 -0800 (PST)
-Received: from blmsp ([2001:4091:a246:821e:6f3b:6b50:4762:8343])
-        by smtp.gmail.com with ESMTPSA id pw20-20020a17090720b400b00a450164cec6sm3223199ejb.194.2024.03.05.03.17.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Mar 2024 03:17:20 -0800 (PST)
-Date: Tue, 5 Mar 2024 12:17:19 +0100
-From: Markus Schneider-Pargmann <msp@baylibre.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Rob Herring <robh@kernel.org>, Nishanth Menon <nm@ti.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Santosh Shilimkar <ssantosh@kernel.org>, 
-	Andrew Davis <afd@ti.com>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] dt-bindings: hwinfo: ti,k3-socinfo: Add nvmem-cells
-Message-ID: <sowpixx2u4d5alj4udzr3qt47zevylukhpwkw3pfwnogqjse5w@xrxcozzvog6v>
-References: <20240206143711.2410135-1-msp@baylibre.com>
- <20240206143711.2410135-3-msp@baylibre.com>
- <20240206184305.GA1875492-robh@kernel.org>
- <z56fiu2jpokp57sjvnrdcbfy7brpq2ag4yxpektqlhtidecx4n@vc7dsurhxorb>
- <cb75c098-521e-4eed-bc3e-7237f8a6498f@linaro.org>
- <ut63wrhsewkpfdgaatd6hqmj5upvyamjhf2rsecju2v2o3hdod@kyi5sezcggl7>
- <48902771-5d3b-448a-8a74-ac18fb4f1a86@linaro.org>
+	s=arc-20240116; t=1709637628; c=relaxed/simple;
+	bh=GXsOiAtv6TjNhMlnQXhWlrYVpj/iqWoURTS8NBhzIFs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OzBof1bd+j5FibgCVrAaVBV60RKQbYGKlFw5jltShdWd/mPihIPjZ8358W0w2Wc400IMfr6DIUjimlXJLO5OLntbKJfwBzFQw9zE+WVS/WCBdpnk0/+K2Gz6xnPG/zxJM2DmYMmGPoQXp3Gg9mt9RnmIow6s7RUiAV7sntPZjdc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=TnYwIv7J; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1709637624;
+	bh=GXsOiAtv6TjNhMlnQXhWlrYVpj/iqWoURTS8NBhzIFs=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=TnYwIv7JyXG+1tKJY1L6QFhBK6hLNXIqXnVmCOWEAOQdyPpnpkH5LPB+kuT2LVCG/
+	 Fj5f7vQbFC94/wLeTSHyQ3BNyuNUJQ8SHB1e5B7Uezm00IVPVQTOJr11SGWf4HqtzB
+	 EYUbJxHjOQgVEGBpkDYQRtw08lcQvjiG8H1BAu5Px3MK3YNUxGvdqwQGUPtac5/l7P
+	 aX9+cqGioGIisgyXez/GeONzviu8jgT1hqL6+wy0j9M3x4lpyfZYoTUlyh49nfc9mj
+	 LkY/NUiCWcQ5e+Ljb4uHWVVR7xNtq1rkq/51wjcy2bq6zTvIahX2HEu+a2BYIIqyzs
+	 /S9Y+DAD6lG+A==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id E69093780029;
+	Tue,  5 Mar 2024 11:20:21 +0000 (UTC)
+Message-ID: <0aa3dc07-67c8-40a4-9e83-f702979765c5@collabora.com>
+Date: Tue, 5 Mar 2024 12:20:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <48902771-5d3b-448a-8a74-ac18fb4f1a86@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 19/22] ASoC: dt-bindings: mt8192: Document audio-routing
+ and dai-link subnode
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: broonie@kernel.org, wenst@chromium.org, lgirdwood@gmail.com,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com,
+ trevor.wu@mediatek.com, maso.huang@mediatek.com,
+ xiazhengqiao@huaqin.corp-partner.google.com, arnd@arndb.de,
+ kuninori.morimoto.gx@renesas.com, shraash@google.com, amergnat@baylibre.com,
+ nicolas.ferre@microchip.com, u.kleine-koenig@pengutronix.de,
+ dianders@chromium.org, frank.li@vivo.com, allen-kh.cheng@mediatek.com,
+ eugen.hristev@collabora.com, claudiu.beznea@tuxon.dev,
+ jarkko.nikula@bitmer.com, jiaxin.yu@mediatek.com, alpernebiyasak@gmail.com,
+ ckeepax@opensource.cirrus.com, zhourui@huaqin.corp-partner.google.com,
+ nfraprado@collabora.com, alsa-devel@alsa-project.org,
+ shane.chien@mediatek.com, linux-sound@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ kernel@collabora.com
+References: <20240227120939.290143-1-angelogioacchino.delregno@collabora.com>
+ <20240227120939.290143-20-angelogioacchino.delregno@collabora.com>
+ <20240304142341.GA156846-robh@kernel.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240304142341.GA156846-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Krzysztof,
+Il 04/03/24 15:23, Rob Herring ha scritto:
+> On Tue, Feb 27, 2024 at 01:09:36PM +0100, AngeloGioacchino Del Regno wrote:
+>> Document the dai-link subnodes and the audio-routing property, allowing
+>> to describe machine specific audio hardware and links in device tree.
+>>
+>> While at it, also deprecate the old properties which were previously
+>> used with the driver's partially hardcoded configuration.
+>>
+>> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>> ---
+>>   .../sound/mt8192-mt6359-rt1015-rt5682.yaml    | 129 ++++++++++++++++--
+>>   1 file changed, 121 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
+>> index 7e50f5d65c8f..78e221003750 100644
+>> --- a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
+>> +++ b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5682.yaml
+>> @@ -20,6 +20,15 @@ properties:
+>>         - mediatek,mt8192_mt6359_rt1015p_rt5682
+>>         - mediatek,mt8192_mt6359_rt1015p_rt5682s
+>>   
+>> +  audio-routing:
+>> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> 
+> Already defined in sound-card-common.yaml. Add a $ref.
+> 
 
-On Tue, Mar 05, 2024 at 08:43:03AM +0100, Krzysztof Kozlowski wrote:
-> On 04/03/2024 11:36, Markus Schneider-Pargmann wrote:
-> > Hi,
-> > 
-> > On Sat, Feb 17, 2024 at 03:25:30PM +0100, Krzysztof Kozlowski wrote:
-> >> On 14/02/2024 10:31, Markus Schneider-Pargmann wrote:
-> >>> Hi Rob,
-> >>>
-> >>> On Tue, Feb 06, 2024 at 06:43:05PM +0000, Rob Herring wrote:
-> >>>> On Tue, Feb 06, 2024 at 03:37:09PM +0100, Markus Schneider-Pargmann wrote:
-> >>>>> The information k3-socinfo requires is stored in an efuse area. This
-> >>>>> area is required by other devices/drivers as well, so using nvmem-cells
-> >>>>> can be a cleaner way to describe which information are used.
-> >>>>>
-> >>>>> If nvmem-cells are supplied, the address range is not required.
-> >>>>> Cells chipvariant, chippartno and chipmanufacturer are introduced to
-> >>>>> cover all required information.
-> >>>>>
-> >>>>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> >>>>> Reviewed-by: Andrew Davis <afd@ti.com>
-> >>>>> ---
-> >>>>>  .../bindings/hwinfo/ti,k3-socinfo.yaml        | 23 ++++++++++++++++++-
-> >>>>>  1 file changed, 22 insertions(+), 1 deletion(-)
-> >>>>>
-> >>>>> diff --git a/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml b/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
-> >>>>> index dada28b47ea0..f085b7275b7d 100644
-> >>>>> --- a/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
-> >>>>> +++ b/Documentation/devicetree/bindings/hwinfo/ti,k3-socinfo.yaml
-> >>>>> @@ -26,9 +26,24 @@ properties:
-> >>>>>    reg:
-> >>>>>      maxItems: 1
-> >>>>>  
-> >>>>> +  nvmem-cells:
-> >>>>> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> >>>>> +
-> >>>>> +  nvmem-cell-names:
-> >>>>> +    items:
-> >>>>> +      - const: chipvariant
-> >>>>> +      - const: chippartno
-> >>>>> +      - const: chipmanufacturer
-> >>>>> +
-> >>>>>  required:
-> >>>>>    - compatible
-> >>>>> -  - reg
-> >>>>> +
-> >>>>> +oneOf:
-> >>>>> +  - required:
-> >>>>> +      - reg
-> >>>>> +  - required:
-> >>>>> +      - nvmem-cells
-> >>>>> +      - nvmem-cell-names
-> >>>>>  
-> >>>>>  additionalProperties: false
-> >>>>>  
-> >>>>> @@ -38,3 +53,9 @@ examples:
-> >>>>>          compatible = "ti,am654-chipid";
-> >>>>>          reg = <0x43000014 0x4>;
-> >>>>>      };
-> >>>>> +  - |
-> >>>>> +    chipid: chipid@14 {
-> >>>>> +        compatible = "ti,am654-chipid";
-> >>>>
-> >>>> This isn't compatible if you have a completely different way to access 
-> >>>> it. 
-> >>>
-> >>> Thanks, it is not entirely clear to me how I could go forward with this?
-> >>> Are you suggesting to use a different compatible? Or is it something
-> >>> else I could do to proceed with this conversion?
-> >>
-> >> What you claim now, is that you have one device with entirely different
-> >> interfaces and programming model. So either this is not the same device
-> >> or you just wrote bindings to whatever you have in driver.
-> >>
-> >> Nothing in commit msg explains this.
-> >>
-> >> What you should do? Depends. If you just write bindings for driver, then
-> >> stop. It's a NAK. Instead write bindings for hardware.
-> >>
-> >> If the first choice, just the hardware is somehow like this, then
-> >> explain in commit msg and device description, how this device can be
-> >> connected over other bus, not MMIO. You can draw some schematics in
-> >> commit msg explaining architecture etc.
-> > 
-> > Sorry the information provided in the commit message is not very clear.
-> > 
-> > The basic access to the registes is still MMIO. nvmem is used to have a
-> > better abstraction and cleaner description of the hardware.
-> > 
-> > Currently most of the data is exported using the parent syscon device.
-> > The relevant data is read-only and contained in a single register with
-> > offset 0x14:
-> >   - Chip variant
-> >   - Chip part number
-> >   - Chip manufacturer
-> > 
-> > There are more read-only registers in this section of address space.
-> > These are relevant to other components as they define the operating
-> > points for example. For the OPP table relevant are chip variant and chip
-> > speed (which is in a different register).
-> > 
-> > Instead of devices refering to this whole register range of 0x20000 in
-> 
-> Whaaaaat?
-> 
-> > size, I would like to introduce this nvmem abstraction in between that
-> > describes the information and can directly be referenced by the devices
-> > that depend on it. In this case the above mentioned register with offset
-> > 0x14 is instead described as nvmem-layout like this:
-> > 
-> > 	nvmem-layout {
-> > 		compatible = "fixed-layout";
-> > 		#address-cells = <1>;
-> > 		#size-cells = <1>;
-> > 
-> > 		chip_manufacturer: jtagidmfg@14 {
-> > 			reg = <0x14 0x2>;
-> > 			bits = <1 11>;
-> > 		};
-> > 
-> > 		chip_partno: jtagidpartno@15 {
-> > 			reg = <0x15 0x3>;
-> > 			bits = <4 16>;
-> > 		};
-> > 
-> > 		chip_variant: jtagidvariant@17 {
-> > 			reg = <0x17 0x1>;
-> > 			bits = <4 4>;
-> > 		};
-> > 
-> > 		chip_speed: jtaguseridspeed@18 {
-> > 			reg = <0x18 0x4>;
-> > 			bits = <6 5>;
-> > 		};
-> > 
-> > The underlying registers are still the same but they are not hidden
-> > by the syscon phandles anymore.
-> > 
-> > The device that consumes this data would now use
-> > 
-> > 	nvmem-cells = <&chip_variant>, <&chip_speed>;
-> > 	nvmem-cell-names = "chipvariant", "chipspeed";
-> > 
-> > instead of
-> > 
-> > 	syscon = <&wkup_conf>;
-> 
-> syscon allows you this as well - via phandle arguments.
-> 
-> nvmem is for non-volatile memory, like OCOTP and eFUSE. This is not for
-> accessing regular MMIO registers of system-controller, regardless
-> whether they are read-only or not (regmap handles this nicely, BTW).
-> Although probably Apple efuses and few others can confuse here. It still
-> looks like you convert regular system-controller block into nvmem,
-> because you prefer that Linux driver abstraction...
+Right. Done for v2.
 
-The above mentioned data is set in the factory. There is other
-non-volatile data, like device feature registers, in the same address
-region, as well as OTP data like MAC and USB IDs. But it is not a pure
-non-volatile memory region. The data is copied into these registers by
-the ROM at boot.
+>> +    description:
+>> +      A list of the connections between audio components. Each entry is a
+>> +      pair of strings, the first being the connection's sink, the second
+>> +      being the connection's source.
+>> +      Valid names could be the input or output widgets of audio components,
+>> +      power supplies, MicBias of codec and the software switch.
+> 
+> Generally the names are defined here.
+> 
 
-Best,
-Markus
+...but those drivers want to support multiple codecs and multiple boards, so
+for each board we would maybe have to add (software defined) names in here
+which don't always correspond to a HW pin name (but that's not really a problem).
+
+Sure a subset of the names can't change but, on the other hand, some others
+can (as in, may be added).
+
+Hence the question:
+
+Is it mandatory to define the names in an enum here, or can that be avoided?
+If it is, I can add them no problem.
+
+>> +
+>>     mediatek,platform:
+>>       $ref: /schemas/types.yaml#/definitions/phandle
+>>       description: The phandle of MT8192 ASoC platform.
+>> @@ -27,10 +36,12 @@ properties:
+>>     mediatek,hdmi-codec:
+>>       $ref: /schemas/types.yaml#/definitions/phandle
+>>       description: The phandle of HDMI codec.
+>> +    deprecated: true
+>>   
+>>     headset-codec:
+>>       type: object
+>>       additionalProperties: false
+>> +    deprecated: true
+>>   
+>>       properties:
+>>         sound-dai:
+>> @@ -41,6 +52,7 @@ properties:
+>>     speaker-codecs:
+>>       type: object
+>>       additionalProperties: false
+>> +    deprecated: true
+>>   
+>>       properties:
+>>         sound-dai:
+>> @@ -51,13 +63,83 @@ properties:
+>>       required:
+>>         - sound-dai
+>>   
+>> +patternProperties:
+>> +  ".*-dai-link$":
+>> +    type: object
+>> +    description:
+>> +      Container for dai-link level properties and CODEC sub-nodes.
+>> +
+>> +    properties:
+>> +      link-name:
+>> +        description: Indicates dai-link name and PCM stream name
+>> +        items:
+>> +          enum:
+>> +            - I2S0
+>> +            - I2S1
+>> +            - I2S2
+>> +            - I2S3
+>> +            - I2S4
+>> +            - I2S5
+>> +            - I2S6
+>> +            - I2S7
+>> +            - I2S8
+>> +            - I2S9
+>> +            - TDM
+>> +
+>> +      codec:
+>> +        description: Holds subnode which indicates codec dai.
+>> +        type: object
+>> +        additionalProperties: false
+>> +        properties:
+>> +          sound-dai:
+>> +            minItems: 1
+>> +            maxItems: 2
+>> +        required:
+>> +          - sound-dai
+>> +
+>> +      dai-format:
+>> +        description: audio format
+>> +        items:
+>> +          enum:
+>> +            - i2s
+>> +            - right_j
+>> +            - left_j
+>> +            - dsp_a
+>> +            - dsp_b
+>> +
+>> +      mediatek,clk-provider:
+>> +        $ref: /schemas/types.yaml#/definitions/string
+>> +        description: Indicates dai-link clock master.
+>> +        items:
+>> +          enum:
+>> +            - cpu
+>> +            - codec
+>> +
+>> +    additionalProperties: false
+> 
+> Move this before properties.
+> 
+
+Done for v2.
+
+>> +
+>> +    required:
+>> +      - link-name
+>> +
+>>   additionalProperties: false
+>>   
+>>   required:
+>>     - compatible
+>>     - mediatek,platform
+>> -  - headset-codec
+>> -  - speaker-codecs
+>> +
+>> +allOf:
+>> +  # Disallow dai-link-xxx nodes if the legacy properties are specified
+> 
+> xxx-dai-link?
+> 
+
+Oh! Yes, thanks for catching this.
+
+That's what I initially wanted to do, but then I opted for xxx-dai-link and
+forgot to update this comment.
+
+Fixed for v2.
+
+>> +  - if:
+>> +      patternProperties:
+>> +        ".*-dai-link$": false
+>> +    then:
+>> +      required:
+>> +        - headset-codec
+>> +        - speaker-codecs
+>> +    else:
+>> +      properties:
+>> +        headset-codec: false
+>> +        speaker-codecs: false
+>> +        mediatek,hdmi-codec: false
+> 
+> Allowing both would preserve compatibility. That's not needed? If so,
+> say why in the commit msg.
+> 
+
+I'm thinking of writing:
+
+"Since describing machine specific audio hardware and links replaces the
+now deprecated old logic doing the same in a driver hardcoded fashion,
+it is not allowed to have both the old and new properties together."
+
+...but in short - both the old and the new can do exactly the same, but
+imo it doesn't make any sense to actually rely on both as:
+  1. It's redundant (and one set of them makes the other useless);
+  2. I want to avoid confusion (as the other set won't be parsed);
+  3. I'm trying to *enforce* consistency as MTK cards have different
+     bindings for .. really, no good reason;
+  4. I want to see custom stuff disappear completely (and/or as much as
+     possible anyway) and use something that is (at least somewhat) common
+     between all MTK and non-MTK or anyway as a start at least consistent
+     between MTK cards.
+
+In theory, though, speaking of the driver side, there's nothing preventing
+you from specifying both audio-routing xxx-dai-link and mediatek,hdmi-codec,
+as the drivers' action will be, in short
+    if (new_bindings)
+      forget_about_old_bindings_use_the_new_ones();
+    else
+      use_old_hardcoded_stuff(); /* and be sad */
+
+
+For that, I really don't want to allow both sets of properties - please, please,
+tell me that I don't *have to* remove this block :-)
+
+Cheers,
+Angelo
+
 
