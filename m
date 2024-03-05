@@ -1,61 +1,66 @@
-Return-Path: <devicetree+bounces-48462-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48463-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DEEE872250
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:02:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EF30872252
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 16:02:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C266DB23480
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:02:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3053B23C0A
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 15:02:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A4F4126F14;
-	Tue,  5 Mar 2024 15:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8F48A126F22;
+	Tue,  5 Mar 2024 15:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pn9a+Qkl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZqacV4E2"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DE251DFF8;
-	Tue,  5 Mar 2024 15:02:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5ED76126F1C;
+	Tue,  5 Mar 2024 15:02:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709650921; cv=none; b=Wzuhu9rBOzNqmkZpFRkBUaVo0ha6pmgFYi0R3sLTEm2k7LeHtZRrdCaVDe147bOHC6rL2o+md3mTo7y9y0Ob/zFMZdGf8oHemIi1NwOFYC4b+IZKZ+Z6Jyx66M5NXEO6wiPM+YjNNBJ9mFOhD+lSxONJREZOb4e3yWVLtd3wjC4=
+	t=1709650935; cv=none; b=eAIiSsbamXfaVJMoae7E1DHDxYCJMBJYTuv9vcF8E8FkBF5cfpC8nmy6N1GQ5MMjpfak/crLPvChiNuXWjEga7bKHrIdqRC6/XiEraSwz/uZkaH/v1KB+KU0E05oBQYj5rXwnKSMlavrJoTOWRaITjVu6h0qViYjdyahuNmih1g=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709650921; c=relaxed/simple;
-	bh=EOcdUGttj2pgJNSAtD+H2tt3Qg/SJJYakNmgC0yArb0=;
+	s=arc-20240116; t=1709650935; c=relaxed/simple;
+	bh=nSWWFkWZffGoNnwURXuRLdlN9U+xWXsWoTFoIqMgRzY=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ba5h+NMNrb8hGiR/oftmiM/3iuc+yBR7yz0As9r0x8CQocdavkIcj8KoenBjpb9t5qQjQkFecyIevu5U1PWz15RWbRHeTPMwTGYGDoClQxV1SjDiP4fChnh7QiMSR2xA5PBX6aocX70UwUpC2TOfj8ErlD3gdjEj3uTiVhs7jTA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pn9a+Qkl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE193C433F1;
-	Tue,  5 Mar 2024 15:02:00 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lAxYUuBVmWQql+L92EdODiva5deKVTwn9fsX72PJmVAtI+1o0b5LWPnQ2Rp+8/swoPlaiP3D/OYA3FlgzON2OXIdcvT3xyR47oyer6tZ3qkAbZZ6CjanYj7garT7OSy3NFfaJ1iencKPtsVgfEvRv46OaTS1SlS5BhAHN8UXtLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZqacV4E2; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4680C433F1;
+	Tue,  5 Mar 2024 15:02:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709650920;
-	bh=EOcdUGttj2pgJNSAtD+H2tt3Qg/SJJYakNmgC0yArb0=;
+	s=k20201202; t=1709650934;
+	bh=nSWWFkWZffGoNnwURXuRLdlN9U+xWXsWoTFoIqMgRzY=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=pn9a+Qkl5P1TvXEHFckUSQdDz7QYx0j2N3jzMrZomlUrXn5AsHBt85zRUTRYJVZdj
-	 EO4TgOzvtmGztZrvL0XRtuUjqqFtbsvJO4smPnGu8GtIsCwsIUR3q8SiW9/dGiOADI
-	 /np9F3t8kHYTSVJrJIOHGTFsYM7EiKagUgFCQJUk3ULiY/LJXbqKjmt1+ymXjv37Mj
-	 9/aQCL5TK98jSJ71T+Ck+A60v6BqO0yOpUdXmoG01xU9aInEMU2+rso/m/ESA330b+
-	 IIJbzWdodclTqKKwRIde5GFpeiO65p+5xs39wt4r/h7d+z0kboA1m7ztOJxIXOkLAQ
-	 OzZFEADT8awbw==
-Date: Tue, 5 Mar 2024 09:01:58 -0600
+	b=ZqacV4E2mAX8m3kka0wAt6DmLzjGVM6T6dyx3YJTi/F6B1PdXEtyvh2xhOdM5hZ+2
+	 NjKyuS5tMldxYOwyzMqTUurifImY7x1ztuV23+TPmycCLZs+RUCCTZMRRpY71TrA41
+	 MHTvmukwB8MI4oerUbbRswcZV/kgsGMhSHeENeny3oR+5y3M9GGF6wofhqrV0HClFU
+	 9wI5H8cn6/nzbjNfSi191lRDVWRv87Dau5c0q4qkgz0BGjsTxu8k1ormRV7GAVR+ld
+	 KUQbiJjaksVsIj6rzdT6/bi/waIC5WVYGICmc4TciR3zzOrLDzXlVpZRFJ9ull2TSF
+	 yZt3Rf0vyGk9A==
+Date: Tue, 5 Mar 2024 09:02:12 -0600
 From: Rob Herring <robh@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: netdev@vger.kernel.org, "David S . Miller" <davem@davemloft.net>,
-	Sergey Shtylyov <s.shtylyov@omp.ru>,
-	Eric Dumazet <edumazet@google.com>,
-	linux-renesas-soc@vger.kernel.org, Jakub Kicinski <kuba@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Paolo Abeni <pabeni@redhat.com>, Conor Dooley <conor+dt@kernel.org>,
-	Thanh Quan <thanh.quan.xn@renesas.com>, devicetree@vger.kernel.org,
-	Sergei Shtylyov <sergei.shtylyov@gmail.com>
-Subject: Re: [PATCH net-next] dt-bindings: net: renesas,etheravb: Add support
- for R-Car V4M
-Message-ID: <170965091827.3351332.2111894188384464471.robh@kernel.org>
-References: <0212b57ba1005bb9b5a922f8f25cc67a7bc15f30.1709631152.git.geert+renesas@glider.be>
+To: Shreeya Patel <shreeya.patel@collabora.com>
+Cc: dmitry.osipenko@collabora.com, heiko@sntech.de,
+	linux-kernel@vger.kernel.org, nelson.costa@synopsys.com,
+	kernel@collabora.com, sboyd@kernel.org, mturquette@baylibre.com,
+	conor+dt@kernel.org, hverkuil@xs4all.nl,
+	linux-arm-kernel@lists.infradead.org,
+	krzysztof.kozlowski+dt@linaro.org, linux-media@vger.kernel.org,
+	p.zabel@pengutronix.de, linux-rockchip@lists.infradead.org,
+	linux-clk@vger.kernel.org, jose.abreu@synopsys.com,
+	devicetree@vger.kernel.org, linux-arm@lists.infradead.org,
+	shawn.wen@rock-chips.com, sebastian.reichel@collabora.com,
+	nicolas.dufresne@collabora.com, mchehab@kernel.org,
+	hverkuil-cisco@xs4all.nl
+Subject: Re: [PATCH v2 1/6] dt-bindings: reset: Define reset id used for HDMI
+ Receiver
+Message-ID: <170965093218.3352342.18143623274015359038.robh@kernel.org>
+References: <20240305123648.8847-1-shreeya.patel@collabora.com>
+ <20240305123648.8847-2-shreeya.patel@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +69,20 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0212b57ba1005bb9b5a922f8f25cc67a7bc15f30.1709631152.git.geert+renesas@glider.be>
+In-Reply-To: <20240305123648.8847-2-shreeya.patel@collabora.com>
 
 
-On Tue, 05 Mar 2024 10:37:18 +0100, Geert Uytterhoeven wrote:
-> From: Thanh Quan <thanh.quan.xn@renesas.com>
+On Tue, 05 Mar 2024 18:06:43 +0530, Shreeya Patel wrote:
+> Add reset id used for HDMI Receiver in RK3588 SoCs
 > 
-> Document support for the Renesas Ethernet AVB (EtherAVB-IF) block in the
-> Renesas R-Car V4M (R8A779H0) SoC.
-> 
-> Signed-off-by: Thanh Quan <thanh.quan.xn@renesas.com>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
 > ---
->  Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> Changes in v2 :-
+>   - Move the dt-binding include file changes in a separate patch
+>   - Improve the subject and commit message description
+> 
+>  include/dt-bindings/reset/rockchip,rk3588-cru.h | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
