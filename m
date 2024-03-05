@@ -1,208 +1,269 @@
-Return-Path: <devicetree+bounces-48318-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48321-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF7AA871672
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:13:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 135CB871681
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 08:15:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5CB511F251FA
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 07:13:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 60B24B23149
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 07:15:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6B52B7D40D;
-	Tue,  5 Mar 2024 07:12:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BAF177E0FB;
+	Tue,  5 Mar 2024 07:14:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eNTMvztD"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="3xnEyCNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73A807CF29
-	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 07:12:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E05967D3E8
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 07:14:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709622730; cv=none; b=KMt9tjKuAoYR1c5pgRc5DqJOCV51PeXE7yu9k46cZDawAN96oA0jZKqolIe54SBLuohL9n0xnH2u/vV9ibXVuXl16xDgmcIYPt3zInkZUYR4Eecs3d8CcQy3FGgIiljnxSlsZ0df2q6ebY/Qh10SGdxmRjnEXDf2F/0MdImGt+I=
+	t=1709622895; cv=none; b=R5UY5dNAGtR6TOwhfGfPLPOffr9SU7NdxjK0ZQg9uXQyJTRyiB2KyY8ES+Fe7IqA3wleG07C66NeR57EqjjyCOYcCFkSTeQ0XQY/UM5k7IADvHuRasYKj+RtO4zXycTNcw/x/5nVymmYxkBnI8hTw4LmXl7kVwTdu2PkCRggGOs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709622730; c=relaxed/simple;
-	bh=9nDrOEq8uUH/PadC1spOb6s3TIZ8zE2pyhQtq0NjJ5I=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=aRriuJU6OXFXCKO8/b4Agc2xE3GuW85RSAV2tok0CR7nJSkEhBhd/4jtyB5JO5VjgUTpPWqpsll0E7PvayelDXj4hMCbDKtLYppLyCv3SPiGZGiegnPwOxCEAD0wh+AiVFwj5oTs+nl9z0z+Okza/4wtEr7kEcDAAVguaMkcxSk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eNTMvztD; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d29aad15a5so66784821fa.3
-        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 23:12:08 -0800 (PST)
+	s=arc-20240116; t=1709622895; c=relaxed/simple;
+	bh=y6zaOZvJ4cIVJ2qepjnDrcV6r6n/r5jEVFp4o5JpDlg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rx6wkrrZOlepq23Gs0yXHbH6d7tve+BceXh4g729RiiR84fRPXBhJo4BKctWp2as2glr/iLpccjjJyuMw0uDQtzBJLsTUrpLiBz+jm/hlHvmMFhwDJu1JrvMg9w3G2i7OgX2Mc7FogPXZI1LbZN/pW7s6aAgpjwsh1/2Lx4YZ5I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=3xnEyCNc; arc=none smtp.client-ip=209.85.160.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-428405a0205so156021cf.1
+        for <devicetree@vger.kernel.org>; Mon, 04 Mar 2024 23:14:53 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709622726; x=1710227526; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Rnu6XMuMOVJz2kVOkfY7rMB2HqMl7o2rDtmatC4pNvw=;
-        b=eNTMvztDei5c75mL0ScoWpSv4JB8deG6I4Ry1ABVpdV+V6++9ktBf+0nbCgmMq1gSQ
-         GX8w725OjQtNSZqRfjks1Oiq2sbGvk9deXc/JLQUdNUMPLunI1pd3ZIvLoSmqJj3oq/p
-         Q/hNPXGlsGm9u8FHbfXtFFAUVsff/c4ZrboV7/q5LkVo75bO3kf+qD47gtAICrt/azT2
-         0SJPkZnA8KHSZYzmPVTTsQEKS5r+wzTr8Qsu+iMCEMtO5Z4ow295wIJMFu6DfIhgil5S
-         hYjr0qfis/h+wIiHGsI0/uZMxMSaMk2Z/B5wEAqmRAZ5snRZWv6OIEVLHZco1hEE7cuY
-         drdg==
+        d=google.com; s=20230601; t=1709622893; x=1710227693; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=gZ6lNE1/SlOo2Yjm5/u+OE6lkumtZM5XSJ/KqzGtJ3Q=;
+        b=3xnEyCNcWJdP9DBGCyKMyXRkWAta2A7CR4YbXMJtqFYtXj4AbHlzTF5Tn8dlgDjT95
+         uVAnjebeVBOiWclGVltKar/0R+bkxlChJt6hUxvLDnZ7EKdS/3UIBSKYMjbzjl05ZB28
+         FwlWiJgLinGOtx3NQPaeIH26RDfZKVLQMAoSUf52Og0PwL/Ztrh7V7lm9hZaly4lADVF
+         rBUdIXvUu7bcGCLu+uL0pun0GspLW0iIjyBEU2vWGZNbQKf8iyc5DZT680JFPYHPIxV+
+         LJODNuGLqJndvM2ChUMy1WqQ3W2DGvRCZZqkKPR12iJzJpPfRxwuFniVlaKtrHcrD2Dt
+         ssfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709622726; x=1710227526;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Rnu6XMuMOVJz2kVOkfY7rMB2HqMl7o2rDtmatC4pNvw=;
-        b=F+LCOXncOv1POxnGFb9g7JhgW70mtRnNtNuEYGAXrF12ZV61Gm5xnr75CEZ8WMdH8y
-         hnKLi1ZG2XiUjyz2EQ4vDAK9i5Vq+owjglGN0nwptc4AFK/Yab+HtvcqzCLrcIkn6iRM
-         /ExutRhPho+mlFnV3mA8xjwoLr6MERswE0U5J1S+bHtUaSG0AJsEyJc8HHQTA8rIdJJa
-         Q21QEP7E61xfss3sbJayA1Uucpiy+kYo2qyq1+N3Q2FsGZt2uI6AYXaoaU6lxDz4skBi
-         SIcn6ZD52S7YYAdahZnUR5zt7IccYZ/A/Pp3uKAYKnZP/sx5nDA7KggWGWTjsMcKblRw
-         F9Wg==
-X-Forwarded-Encrypted: i=1; AJvYcCXbas3k/g8sGJeUYEjczn436+Z6BXv/2iderFrJ4/apB+tACZ/pyolWd4scXOj0xHEHIdS5UWw/MhPUpkW4Wto+bxLXpuyuZbMxuA==
-X-Gm-Message-State: AOJu0YyconhjEaC56VC5iin0mU/96ttXaWe2RbIV/St/vQMH6Xz4Qlsp
-	etftpVNQntr/8Q66zLpX3QurJkHsUcpveezX4smiYoMDgL2LU15wogtIE5OSctY=
-X-Google-Smtp-Source: AGHT+IGIJhZeo0cluzFNGhHnMPB+O6JQ9/ltfMrWYzEUprJTWw+6kPoPIYM12Q5FiUDiM2oeyShSkg==
-X-Received: by 2002:a2e:9f06:0:b0:2d2:6d19:75ff with SMTP id u6-20020a2e9f06000000b002d26d1975ffmr575559ljk.50.1709622726394;
-        Mon, 04 Mar 2024 23:12:06 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id cq16-20020a056402221000b005672a346a8fsm2709475edb.57.2024.03.04.23.12.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 04 Mar 2024 23:12:05 -0800 (PST)
-Message-ID: <1a722d0a-9fd9-40de-84d8-9f7e080ed648@linaro.org>
-Date: Tue, 5 Mar 2024 08:12:03 +0100
+        d=1e100.net; s=20230601; t=1709622893; x=1710227693;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=gZ6lNE1/SlOo2Yjm5/u+OE6lkumtZM5XSJ/KqzGtJ3Q=;
+        b=fKrLAnG8wvxn3nbG0hE6uEdmdt2CwYQiGMQl0JvWVwKowfxEGNHfOBs5B9ZNqvtbKl
+         v6u/L/ryxbY7Ao7NUekGW2Wrlut1gq+JfG6oTGSjh8JN9km6WtmsG6aNji5qC5zoDOM4
+         ioIx5BPpG9Qgxgo0vvV/62DZ3xHNs9/qTlqbKFceTRXJ4KYkUt5412x72lQZo9C1gBRU
+         SiHO8UYKUobgdwbrhH+261U33sGcyo4r60of8ndG1yN4cftIYqbtrDwXsWi9+n6++nn3
+         AHBaLwPVvtsZnxdH1EFbYVQ/NJOWRikUyvUCwEIRaoZA9IfKOyEbWT2j9IP+EKWjr/l8
+         tasA==
+X-Forwarded-Encrypted: i=1; AJvYcCXMLsQ7zFokeCfp1FnZyuFFvrnpR2jnXbbLEE8ivEEmwOjsmVgEevHxzQ+TflS2ZtAFyJJauF4PXjciZ1MTugxuC7WGUKZfh+lImQ==
+X-Gm-Message-State: AOJu0Yw1S1ZRRgDe19vsOGsrLusw3RrYIcqZQ/UQaL8nCIdP26OE0q61
+	avaubfuvNCmYeLZkR1e2jlZQLIlwPt5lAdEn4WCsK+roEKhHSlY9XPfInqeXFNO9wAaFbztSmLV
+	XVae5GFwHSWlf3S3hz+2S5fJvGqeINd/Jhj9Z
+X-Google-Smtp-Source: AGHT+IEFOU5j+ArF55fdfXdcl8hFaVcAq2CRoTSvDHrwXdk+TBzUqq588pPOFFn7BNfYvwZzsxzAIGsV46EFXvApyc0=
+X-Received: by 2002:ac8:5c85:0:b0:42e:fa0e:2592 with SMTP id
+ r5-20020ac85c85000000b0042efa0e2592mr103522qta.12.1709622892609; Mon, 04 Mar
+ 2024 23:14:52 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v7 4/9] dt-bindings: net: convert hisi-femac.txt
- to YAML
-Content-Language: en-US
-To: Yang Xiwen <forbidden405@outlook.com>,
- Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
- <salil.mehta@huawei.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240301-net-v7-0-45823597d4d4@outlook.com>
- <20240301-net-v7-4-45823597d4d4@outlook.com>
- <2c90731b-709a-4baa-963a-fbd35372fb3b@linaro.org>
- <SEZPR06MB6959B927591D5FE1F4B4D1D196222@SEZPR06MB6959.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <SEZPR06MB6959B927591D5FE1F4B4D1D196222@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240220111044.133776-1-herve.codina@bootlin.com>
+ <20240220111044.133776-3-herve.codina@bootlin.com> <CAGETcx_xkVJn1NvCmztAv13N-7ZGqZ+KfkFg-Xn__skEBiYtHw@mail.gmail.com>
+ <20240221095137.616d2aaa@bootlin.com>
+In-Reply-To: <20240221095137.616d2aaa@bootlin.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Mon, 4 Mar 2024 23:14:13 -0800
+Message-ID: <CAGETcx9eFuqwJTSrGz9Or8nfHCN3=kNO5KpXwdUxQ4Z7FxHZug@mail.gmail.com>
+Subject: Re: [PATCH 2/2] of: property: fw_devlink: Fix links to supplier when
+ created from phandles
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	Shawn Guo <shawnguo@kernel.org>, Wolfram Sang <wsa@kernel.org>, Mark Brown <broonie@kernel.org>, 
+	Geert Uytterhoeven <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org, 
+	Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 05/03/2024 03:58, Yang Xiwen wrote:
-> On 3/1/2024 2:49 PM, Krzysztof Kozlowski wrote:
->> On 01/03/2024 04:35, Yang Xiwen via B4 Relay wrote:
->>> From: Yang Xiwen <forbidden405@outlook.com>
->>>
->>> Convert the old text binding to new YAML.
->>>
->>> While at it, make some changes to the binding:
->>> - The version numbers are not documented publicly. The version also does
->>> not change programming interface. Remove it until it's really needed.
->>> - A few clocks are missing in old binding file. Add them to match the real
->>> hardware.
->>>
->>> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
->>> ---
->>>   .../bindings/net/hisilicon,hisi-femac.yaml         | 89 ++++++++++++++++++++++
->>>   .../devicetree/bindings/net/hisilicon-femac.txt    | 41 ----------
->>>   2 files changed, 89 insertions(+), 41 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
->>> new file mode 100644
->>> index 000000000000..ba207f2c9ae4
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
->>> @@ -0,0 +1,89 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/net/hisilicon,hisi-femac.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Hisilicon Fast Ethernet MAC controller
->>> +
->>> +maintainers:
->>> +  - Yang Xiwen <forbidden405@foxmail.com>
->>> +
->>> +allOf:
->>> +  - $ref: ethernet-controller.yaml
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - hisilicon,hi3516cv300-femac
->>> +      - const: hisilicon,hisi-femac
->>
->> This is a friendly reminder during the review process.
->>
->> It seems my or other reviewer's previous comments were not fully
->> addressed. Maybe the feedback got lost between the quotes, maybe you
->> just forgot to apply it. Please go back to the previous discussion and
->> either implement all requested changes or keep discussing them.
-> 
-> 
-> Could you please tell me which one did i miss? I have read all replies 
-> to v1-v7 once again and fails to find one.
-> 
+On Wed, Feb 21, 2024 at 12:51=E2=80=AFAM Herve Codina <herve.codina@bootlin=
+.com> wrote:
+>
+> Hi Saravana,
+>
+> On Tue, 20 Feb 2024 18:40:40 -0800
+> Saravana Kannan <saravanak@google.com> wrote:
+>
+> > On Tue, Feb 20, 2024 at 3:10=E2=80=AFAM Herve Codina <herve.codina@boot=
+lin.com> wrote:
+> > >
+> > > Since commit 1a50d9403fb9 ("treewide: Fix probing of devices in DT
+> > > overlays"), when using device-tree overlays, the FWNODE_FLAG_NOT_DEVI=
+CE
+> > > is set on each overlay nodes. This flag is cleared when a struct devi=
+ce
+> > > is actually created for the DT node.
+> > > Also, when a device is created, the device DT node is parsed for know=
+n
+> > > phandle and devlinks consumer/supplier links are created between the
+> > > device (consumer) and the devices referenced by phandles (suppliers).
+> > > As these supplier device can have a struct device not already created=
+,
+> > > the FWNODE_FLAG_NOT_DEVICE can be set for suppliers and leads the
+> > > devlink supplier point to the device's parent instead of the device
+> > > itself.
+> > >
+> > > Avoid this situation clearing the supplier FWNODE_FLAG_NOT_DEVICE jus=
+t
+> > > before the devlink creation if a device is supposed to be created and
+> > > handled later in the process.
+> > >
+> > > Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overlays=
+")
+> > > Cc: <stable@vger.kernel.org>
+> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > ---
+> > >  drivers/of/property.c | 16 +++++++++++++++-
+> > >  1 file changed, 15 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/of/property.c b/drivers/of/property.c
+> > > index 641a40cf5cf3..ff5cac477dbe 100644
+> > > --- a/drivers/of/property.c
+> > > +++ b/drivers/of/property.c
+> > > @@ -1097,6 +1097,7 @@ static void of_link_to_phandle(struct device_no=
+de *con_np,
+> > >                               struct device_node *sup_np)
+> > >  {
+> > >         struct device_node *tmp_np =3D of_node_get(sup_np);
+> > > +       struct fwnode_handle *sup_fwnode;
+> > >
+> > >         /* Check that sup_np and its ancestors are available. */
+> > >         while (tmp_np) {
+> > > @@ -1113,7 +1114,20 @@ static void of_link_to_phandle(struct device_n=
+ode *con_np,
+> > >                 tmp_np =3D of_get_next_parent(tmp_np);
+> > >         }
+> > >
+> > > -       fwnode_link_add(of_fwnode_handle(con_np), of_fwnode_handle(su=
+p_np));
+> > > +       /*
+> > > +        * In case of overlays, the fwnode are added with FWNODE_FLAG=
+_NOT_DEVICE
+> > > +        * flag set. A node can have a phandle that references an oth=
+er node
+> > > +        * added by the overlay.
+> > > +        * Clear the supplier's FWNODE_FLAG_NOT_DEVICE so that fw_dev=
+link links
+> > > +        * to this supplier instead of linking to its parent.
+> > > +        */
+> > > +       sup_fwnode =3D of_fwnode_handle(sup_np);
+> > > +       if (sup_fwnode->flags & FWNODE_FLAG_NOT_DEVICE) {
+> > > +               if (of_property_present(sup_np, "compatible") &&
+> > > +                   of_device_is_available(sup_np))
+> > > +                       sup_fwnode->flags &=3D ~FWNODE_FLAG_NOT_DEVIC=
+E;
+> > > +       }
+> > > +       fwnode_link_add(of_fwnode_handle(con_np), sup_fwnode);
+> >
+> > Nack.
+> >
+> > of_link_to_phandle() doesn't care about any of the fwnode flags. It
+> > just creates links between the consumer and supplier nodes. Don't add
+> > more intelligence into it please. Also, "compatible" doesn't really
+> > guarantee device creation and you can have devices created out of
+> > nodes with no compatible property. I finally managed to get away from
+> > looking for the "compatible" property. So, let's not add back a
+> > dependency on that property please.
+> >
+> > Can you please give a real example where you are hitting this? I have
+> > some thoughts on solutions, but I want to understand the issue fully
+> > before I make suggestions.
+> >
+>
+> I detected the issue with this overlay:
+> --- 8< ---
+> &{/}
+> {
+>         reg_dock_sys_3v3: regulator-dock-sys-3v3 {
+>                 compatible =3D "regulator-fixed";
+>                 regulator-name =3D "DOCK_SYS_3V3";
+>                 regulator-min-microvolt =3D <3300000>;
+>                 regulator-max-microvolt =3D <3300000>;
+>                 gpios =3D <&tca6424_dock_1 5 GPIO_ACTIVE_HIGH>; // DOCK_S=
+YS3V3_EN
+>                 enable-active-high;
+>                 regulator-always-on;
+>         };
+> };
+>
+> &i2c5 {
+>         tca6424_dock_1: gpio@22 {
+>                 compatible =3D "ti,tca6424";
+>                 reg =3D <0x22>;
+>                 gpio-controller;
+>                 #gpio-cells =3D <2>;
+>                 interrupt-parent =3D <&gpio4>;
+>                 interrupts =3D <1 IRQ_TYPE_EDGE_FALLING>;
+>                 interrupt-controller;
+>                 #interrupt-cells =3D <2>;
+>                 vcc-supply =3D <&reg_dock_ctrl_3v3>;
+>         };
+> };
+> --- 8< ---
+>
+> The regulator uses a gpio.
+> The supplier for the regulator was not the gpio chip (gpio@22) but the i2=
+c bus.
 
-https://lore.kernel.org/all/11d0bf3a-3341-4c7f-9a1a-e7c7bc078725@linaro.org/
+Thanks for the example. Let me think about this a bit on how we could
+fix this and get back to you.
 
-Best regards,
-Krzysztof
+Please do ping me if I don't get back in a week or two.
 
+-Saravana
+
+>
+> I first tried to clear always the flag in of_link_to_phandle() without an=
+y check
+> to a "compatible" string and in that case, I broke pinctrl.
+>
+> All devices were waiting for the pinctrl they used (child of pinctrl devi=
+ce
+> node) even if the pinctrl driver was bound to the device.
+>
+> For pinctrl, the DT structure looks like the following:
+> --- 8< ---
+> {
+>         ...
+>         pinctrl@1234 {
+>                 reg =3D <1234>;
+>                 compatible =3D "vendor,chip";
+>
+>                 pinctrl_some_device: grp {
+>                         fsl,pins =3D < ... >;
+>                 };
+>         };
+>
+>         some_device@4567 {
+>                 compablile =3D "foo,bar";
+>                 reg =3D <4567>;
+>                 pinctrl-names =3D "default";
+>                 pinctrl-0 =3D <&pinctrl_some_device>;
+>                 ...
+>         };
+> };
+> --- 8< ---
+>
+> In that case the link related to pinctrl for some_device needs to be to t=
+he
+> 'pinctrl_some_device' node parent (i.e. the pinctrl@1234 node).
+>
+>
+> Best regards,
+> Herv=C3=A9
 
