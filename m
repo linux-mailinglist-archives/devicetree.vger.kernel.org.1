@@ -1,160 +1,157 @@
-Return-Path: <devicetree+bounces-48405-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48406-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9F770871FD5
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:15:44 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD201871FF1
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 14:20:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D6F01F22FBD
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 13:15:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 47965B25B12
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 13:20:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F2EA885933;
-	Tue,  5 Mar 2024 13:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 442DA85920;
+	Tue,  5 Mar 2024 13:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="VPV8xyeM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R09Gtcjs"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CAAAB8564E;
-	Tue,  5 Mar 2024 13:15:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E0725381E;
+	Tue,  5 Mar 2024 13:20:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709644539; cv=none; b=i97qzP5dtdmk1d9sl0lg2RYC+YOF9Pc8Eixm6L/Ll8pa9ay8fcSL/hx1lWIoAtIOD36ChxWrwWFlP2fDJQm8GYhO4SGeVuTTgN3CRAlxgALbbpGc0u53tM1cRcUuyFw/yQTcj+rluWsa/G4IUrL9QF6QOdnnFo9UJD6RJs47KfU=
+	t=1709644823; cv=none; b=PuA/Gr9UNA4bHeDgxF6ZxHwGzh2DZU7DcD4CzQrJcY/NpBREcBIcAiNRsIxDpY6vx+L+FGz0ktWFWGY2C6Vw7GA4xL+UAdfRG9GA8sRlxkznDptx4kiLLYH0dcLbJT+4bcm5FkdVwcWTkyC2LpIVirmONkLCzK+6PoU4Kekjkj0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709644539; c=relaxed/simple;
-	bh=8tP3wCMPCsdXXn25KkEtrRY7OMIA16TK2ToN5XCATSo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=aNP0e+rd0dFnWVq7cHtddDypZa1gYh4c4+CPo76Lh9Oq9J74siW1mVfl6jiYN1MLtMjo0JVmaNScaazJGx5WQBAZwcJhco+LX/ykKIAafCuLunRwNN+EMdGQafnpCkJiwh9U8sTjKZmaW+Yx8aBxiHFn8VgF3BPuej6g827AMWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=VPV8xyeM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81F97C433C7;
-	Tue,  5 Mar 2024 13:15:36 +0000 (UTC)
+	s=arc-20240116; t=1709644823; c=relaxed/simple;
+	bh=amw3prsqTdCeH8P7lM4vosZ+IdeeJ/3XC5LBt1LUDHk=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=YPYg4xXYZnxiwzL3JLEr41SgblWR52eYce5SdcfmisvZfEqkI2gf4pAqUlQEC9TFbvv8AZv+fF2OvlVT1spL2lbLUo56Y0878t6IcQ796NNuSAeMYxZUWEOKrTY7BiFEiwTxXSc1CxOaBe2P6Pj2ch9Fy4gT0ZdjaONxQ7ff0hg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R09Gtcjs; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6D856C433F1;
+	Tue,  5 Mar 2024 13:20:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709644539;
-	bh=8tP3wCMPCsdXXn25KkEtrRY7OMIA16TK2ToN5XCATSo=;
-	h=From:Date:Subject:To:Cc:From;
-	b=VPV8xyeMLMmIJGduUhWpn0Mjz7d7p2Y9WUfVmCMQ4a5IMCg0lPiWt+CzAZFQFBKpV
-	 oWcznsV5IpOMUOokrRVEd6M0VWyDXHd7ZLzvE81RMx5fqToOvQIty/BbuTA1xWUalc
-	 LatrrogV+LrdWXkF/2FNRfOh4h9NVhw1qhKNdMxhrZWpFEN5NKHrAPIlRHgAkngbjU
-	 ZTYWblkbap5PZGWQchlOJFV87x9OzSUq0As/ChIp8hgQCfSFX2ypBF878Y5w71qIwx
-	 9zqORrlaQ4uQkaf+SMpi7CCHyMEtaXjttAqdjjcFnpmDctaXTqyBcEW9iuyMFERbNz
-	 d7FESp1WvxytA==
-From: Roger Quadros <rogerq@kernel.org>
-Date: Tue, 05 Mar 2024 15:15:32 +0200
-Subject: [PATCH v2] arm64: dts: ti: beagleplay: Fix Ethernet PHY RESET
- GPIOs
+	s=k20201202; t=1709644822;
+	bh=amw3prsqTdCeH8P7lM4vosZ+IdeeJ/3XC5LBt1LUDHk=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=R09GtcjsDif6o5k5W+PVv7pX38m1TpeunrxHT+aB8B5RKmyrIfolRo2YFtu2lUrGC
+	 velJcTSCNekxHqhoek9EdH4ZGBU/zzIu/CXAwMKb0UUgUWeKSPKcTslw8ZbcrbmCK/
+	 0Ct+If5H+Bm91RCRUrt6n1BmcLrwrtQnw95X7LzBtqqAdbebB/S5CT5Rx17jnLWB3o
+	 ysc73dBRIQDYyea873StZZkPQzdTpQpHBndbKnuasEVl/WD30o6km8Nvwvz6pDkvQd
+	 +0N9lfOFaKs5vfO38Do9rFxaaqhjfsWgJod8BW6PETtLRji4xn5xr5hgVfJqG4bytJ
+	 Jz1ipcJH11Vog==
+Date: Tue, 05 Mar 2024 07:20:21 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240305-b4-for-v6-9-am65-beagleplay-ethernet-reset-v2-1-2bf463a7bf13@kernel.org>
-X-B4-Tracking: v=1; b=H4sIAPMa52UC/52NSwqDMBRFtyIZ9xXz8TvqPoqDpL5oqDXyIqEi7
- r3RJXRy4dwL9+wsIDkMrM12RhhdcH5OIG4Ze416HhBcn5iJXKhciAaMAusJYgkN6E9ZgEE9TLh
- MegNcR6QZVyAMKfOmtqJS1lhesHS4EFr3vWTPLvHowuppu9yRn+1fmsiBg5GojJSyqk3/eJ/zd
- Pc0sO44jh8eEEt05QAAAA==
-To: Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, 
- Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+From: Rob Herring <robh@kernel.org>
+To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ NXP Linux Team <linux-imx@nxp.com>, Conor Dooley <conor+dt@kernel.org>, 
+ Pengutronix Kernel Team <kernel@pengutronix.de>, 
+ Valentin Raevsky <valentin@compulab.co.il>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: srk@ti.com, s-vadapalli@ti.com, r-gunasekaran@ti.com, 
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Roger Quadros <rogerq@kernel.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=3114; i=rogerq@kernel.org;
- h=from:subject:message-id; bh=8tP3wCMPCsdXXn25KkEtrRY7OMIA16TK2ToN5XCATSo=;
- b=owEBbQKS/ZANAwAIAdJaa9O+djCTAcsmYgBl5xr4Y1Wf/CKyiKt/McPopCDoLfwA/bR7/olM2
- +1LbVG2fc+JAjMEAAEIAB0WIQRBIWXUTJ9SeA+rEFjSWmvTvnYwkwUCZeca+AAKCRDSWmvTvnYw
- k0jdD/9XyfwFTOU65Lg7qS2xN+1cjifVs6TkQ3yi+Oruu59Zb1BlglUJOYq2iEyShQHQNjJax0j
- EUGW6IyXydOsH+SpkQFY2zTI6npW8z0XLKrDGRmX976iaUV3/6WpBfO4wsGhMIS22kKApeoRn3H
- Zy09tVPOFVMla73kvnDbHbitV3NY1/S4azLaWdxeRorXr91OTP+GBj0j6rJ9xmYu7ywHv37Xbrl
- XEjMPt+AQoWNIV25mOpOY12gTpmZUhn/4WPUS6yfwQWOIjjN772t2Vyi+zU+kz42RGNcc4NfMSA
- TvOxhscyjD4T+KwNfieu6+WDdIxI8bHbdi3TKweDjmgwR8/yDTGZYUaPTRQIwpbAI9jrvC3/otO
- ulBetqJEJlhEETI4rSP6n2EtJBfJcxUg1xqtr+Ksq5gaLU8lYaRob8pgxuh9SF0a9zPnk32OCNa
- JKHhHGHmrlKHFnDQ1bh05DFUx/295HxnDVJcb/gXLPbszdXC/h8nO2M6No9NyzLCOL6TJh0/DdC
- 2St4CCyXMDYkyu0Zz1zEw4kswTQQhOJwYrhL/xk65girmWLSqcig6j1GRlFpCHQs+fcJMx2sbeh
- 80v8nAmkoZ/cmEilX2AlzfY2VJRa6HGSvxxuCcCGnP+32UW7uIkDiG8k+1RdnFP5TbUIE0diTmq
- zOExkrlyZeocAwQ==
-X-Developer-Key: i=rogerq@kernel.org; a=openpgp;
- fpr=412165D44C9F52780FAB1058D25A6BD3BE763093
+ Baruch Siach <baruch@tkos.co.il>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ linux-rtc@vger.kernel.org, Marek Vasut <marex@denx.de>, 
+ Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Alexandre Belloni <alexandre.belloni@bootlin.com>
+In-Reply-To: <20240305004222.622-1-laurent.pinchart@ideasonboard.com>
+References: <20240305004222.622-1-laurent.pinchart@ideasonboard.com>
+Message-Id: <170964448684.3160987.11938853123583954222.robh@kernel.org>
+Subject: Re: [PATCH 0/4] Add DT bindings and device tree for Compulab
+ SB-UCM-iMX8MPLUS
 
-The RESET GPIO pinmux should be part of MDIO bus node
-so that they can be in the right state before the PHY
-can be probed via MDIO bus scan.
 
-The GPIO pin should be setup with PIN_INPUT so that
-input circuitry is enabled in case software wants to
-check pin status. Without this, incorrect status is shown
-in /sys/kernel/debug/gpio.
+On Tue, 05 Mar 2024 02:42:17 +0200, Laurent Pinchart wrote:
+> Hello,
+> 
+> This small patch series is a drive-by addition of the Compulab
+> SB-UCM-iMX8MPLUS to the Linux kernel device tree sources. While porting
+> the device tree from the Compulab BSP kernel to mainline, I thought I
+> could as well mainline it, along with related conversion of text DT
+> bindings to YAML.
+> 
+> The SB-UCM-iMX8MPLUS is a carrier board designed as a reference to
+> evaluate the Compulab UCM-iMX8MPLUS SoM. The SoM integrates the bare
+> minimal peripherals (DRAM, eMMC, ethernet PHY, EEPROM and RTC), while
+> the carrier board includes a much wider range of peripherals. I have
+> only enabled support for the ones I am interested in, or, as a strech
+> goal, the ones I could easily test.
+> 
+> The first patch in the series adds compatible strings for the SoM and
+> the board to the ARM FSL bindings. The next patch then converts text DT
+> bindings to a YAML schema for the RTC present on the SoM. Finally, the
+> last two patches add DT sources for the SoM and the carrier board.
+> 
+> Please see individual patches for details.
+> 
+> I have checked the validity of the bindings and the device tree sources.
+> The only warnings in the DT sources are due to issues in imx8mp.dtsi.
+> 
+> Laurent Pinchart (4):
+>   dt-bindings: arm: fsl: Add Compulab SB-UCM-iMX8MPLUS carrier board
+>   dt-bindings: rtc: abx80x: Convert text bindings to YAML
+>   arm64: dts: freescale: Add device tree for Compulab UCM-iMX8M-Plus
+>   arm64: dts: freescale: Add device tree for Compulab SB-UCM-iMX8MPLUS
+> 
+>  .../devicetree/bindings/arm/fsl.yaml          |   6 +
+>  .../bindings/rtc/abracon,abx80x.txt           |  31 --
+>  .../bindings/rtc/abracon,abx80x.yaml          |  89 +++++
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../boot/dts/freescale/imx8mp-sb-ucm.dts      | 284 ++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8mp-ucm.dtsi | 309 ++++++++++++++++++
+>  6 files changed, 689 insertions(+), 31 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/rtc/abracon,abx80x.txt
+>  create mode 100644 Documentation/devicetree/bindings/rtc/abracon,abx80x.yaml
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/imx8mp-ucm.dtsi
+> 
+> --
+> Regards,
+> 
+> Laurent Pinchart
+> 
+> 
+> 
 
-Add GPIO reset for the Gigabit Ethernet PHY. As per
-RTL8211F datasheet, reset assert width is 10ms and
-PHY registers can be access accessed after 50ms of
-reset deassert.
 
-Fixes: f5a731f0787f ("arm64: dts: ti: Add k3-am625-beagleplay")
-Signed-off-by: Roger Quadros <rogerq@kernel.org>
----
-Changes in v2:
-- Fix Subject to "arm64"
-- Enable PIN_INPUT for SPE_RESET to fix GPIO status.
-- Add Fixes tag.
-- Link to v1: https://lore.kernel.org/r/20240229-b4-for-v6-9-am65-beagleplay-ethernet-reset-v1-1-b3e4b33378bd@kernel.org
----
- arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-index a34e0df2ab86..8ab838f1697c 100644
---- a/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-+++ b/arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts
-@@ -292,6 +292,8 @@ mdio0_pins_default: mdio0-default-pins {
- 		pinctrl-single,pins = <
- 			AM62X_IOPAD(0x0160, PIN_OUTPUT, 0) /* (AD24) MDIO0_MDC */
- 			AM62X_IOPAD(0x015c, PIN_INPUT, 0) /* (AB22) MDIO0_MDIO */
-+			AM62X_IOPAD(0x003c, PIN_INPUT, 7) /* (M25) GPMC0_AD0.GPIO0_15 */
-+			AM62X_IOPAD(0x018c, PIN_INPUT, 7) /* (AC21) RGMII2_RD2.GPIO1_5 */
- 		>;
- 	};
- 
-@@ -383,7 +385,6 @@ AM62X_IOPAD(0x017c, PIN_INPUT, 1) /* (AD22) RGMII2_RX_CTL.RMII2_RX_ER */
- 			AM62X_IOPAD(0x016c, PIN_INPUT, 1) /* (Y18) RGMII2_TD0.RMII2_TXD0 */
- 			AM62X_IOPAD(0x0170, PIN_INPUT, 1) /* (AA18) RGMII2_TD1.RMII2_TXD1 */
- 			AM62X_IOPAD(0x0164, PIN_INPUT, 1) /* (AA19) RGMII2_TX_CTL.RMII2_TX_EN */
--			AM62X_IOPAD(0x018c, PIN_OUTPUT, 7) /* (AC21) RGMII2_RD2.GPIO1_5 */
- 			AM62X_IOPAD(0x0190, PIN_INPUT, 7) /* (AE22) RGMII2_RD3.GPIO1_6 */
- 			AM62X_IOPAD(0x01f0, PIN_OUTPUT, 5) /* (A18) EXT_REFCLK1.CLKOUT0 */
- 		>;
-@@ -597,6 +598,9 @@ &cpsw3g_mdio {
- 
- 	cpsw3g_phy0: ethernet-phy@0 {
- 		reg = <0>;
-+		reset-gpios = <&main_gpio0 15 GPIO_ACTIVE_LOW>;
-+		reset-assert-us = <10000>;
-+		reset-deassert-us = <50000>;
- 	};
- 
- 	cpsw3g_phy1: ethernet-phy@1 {
-@@ -615,7 +619,7 @@ &main_gpio0 {
- 		"USR0", "USR1", "USR2", "USR3", "", "", "USR4",	/* 3-9 */
- 		"EEPROM_WP",					/* 10 */
- 		"CSI2_CAMERA_GPIO1", "CSI2_CAMERA_GPIO2",	/* 11-12 */
--		"CC1352P7_BOOT", "CC1352P7_RSTN", "", "", "",	/* 13-17 */
-+		"CC1352P7_BOOT", "CC1352P7_RSTN", "GBE_RSTN", "", "",	/* 13-17 */
- 		"USR_BUTTON", "", "", "", "", "", "", "", "",	/* 18-26 */
- 		"", "", "", "", "", "", "", "", "", "HDMI_INT",	/* 27-36 */
- 		"", "VDD_WLAN_EN", "", "", "WL_IRQ", "GBE_INTN",/* 37-42 */
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
----
-base-commit: bbef42084cc170cbfc035bf784f2ff055c939d7e
-change-id: 20240229-b4-for-v6-9-am65-beagleplay-ethernet-reset-098f274fbf15
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
 
-Best regards,
--- 
-Roger Quadros <rogerq@kernel.org>
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y freescale/imx8mp-sb-ucm.dtb' for 20240305004222.622-1-laurent.pinchart@ideasonboard.com:
+
+Error: arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts:68.1-10 Label or path hdmi_pvi not found
+Error: arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts:72.1-9 Label or path hdmi_tx not found
+Error: arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts:86.1-13 Label or path hdmi_tx_phy not found
+Error: arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dts:208.1-8 Label or path lcdif3 not found
+FATAL ERROR: Syntax error parsing input tree
+make[3]: *** [scripts/Makefile.lib:419: arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dtb] Error 1
+make[2]: *** [scripts/Makefile.build:481: arch/arm64/boot/dts/freescale] Error 2
+make[2]: Target 'arch/arm64/boot/dts/freescale/imx8mp-sb-ucm.dtb' not remade because of errors.
+make[1]: *** [/home/rob/proj/linux-dt-testing/Makefile:1385: freescale/imx8mp-sb-ucm.dtb] Error 2
+make: *** [Makefile:240: __sub-make] Error 2
+make: Target 'freescale/imx8mp-sb-ucm.dtb' not remade because of errors.
+
+
+
+
 
 
