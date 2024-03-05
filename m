@@ -1,163 +1,184 @@
-Return-Path: <devicetree+bounces-48514-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F0E487257E
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:16:48 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 630E3872592
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 18:24:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 33D762815D1
-	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:16:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 819201C21279
+	for <lists+devicetree@lfdr.de>; Tue,  5 Mar 2024 17:24:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE9B114A9F;
-	Tue,  5 Mar 2024 17:16:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C9911429F;
+	Tue,  5 Mar 2024 17:24:05 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Q2X4Rd5e"
+	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="wCu/hpme"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com [209.85.221.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from out203-205-251-36.mail.qq.com (out203-205-251-36.mail.qq.com [203.205.251.36])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E02F5256;
-	Tue,  5 Mar 2024 17:16:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 472D1944F
+	for <devicetree@vger.kernel.org>; Tue,  5 Mar 2024 17:24:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.251.36
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709659005; cv=none; b=Ay1YtC1vKM/LRSJL4Mo6WIfSPmlLjC/6sq7TkaFBA5ik9iyz3H4NvR52DxT8StfiyjiLJSk7oBc2mpEWPSlWz/vUzhATjz1NSEAlMLSpQmw//leVFNXxdgtFgvmFVyaw3NWT36QjrDGkGKGNf0OBSv4t1HkUgIcA+SfCcRxwT0U=
+	t=1709659444; cv=none; b=Md/jRT/hSQd7UHSWc0PsXb834JoVR3pGnlcQEPbu7Wpk8hGleoREzTXj3/AJg5Jyhkml/FY9g0pg37zQqPNpWDIuiUDfQP7m7IMVYmvFzgVPFnkRxr16cf70Rsxt+xJE1CjKNhiLrOmX9LeCWJ/JKaYxmsPE3r+pr0t7SLxHJAE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709659005; c=relaxed/simple;
-	bh=CxNH8DsP5Yqy2n7slCYu0v+Vqw+IlqWMS0GJ4rMV2nc=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oJjA6NbhgjkPiDZJyDdHzkQss+fIMceEHQLc6wa+xXUOYSwVtnJLsgCP+m189dWO/Cy5pkyrYMwefAEdd7QMPUzjEVpqO4c633qAI1q6Y3z+8uMiZ0msNiQRGVzBPdbgngwE87U6HY1ty5nEFB+aSkpRioMrLw6YycT5YOkhHcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Q2X4Rd5e; arc=none smtp.client-ip=209.85.221.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wr1-f42.google.com with SMTP id ffacd0b85a97d-33d2b354c72so4467195f8f.1;
-        Tue, 05 Mar 2024 09:16:43 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709659002; x=1710263802; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=PKbxpo3p1gqabtKHicX9j5Bzb5Ge571GvOAKw++fIX8=;
-        b=Q2X4Rd5eDpMFLUSQYNIc6ds26PauSkFXTVlggxPcmcGpoFdHUgnEDoJVaRyV8+BeHi
-         v1jiiwPU5zc5rrkMh7HOQJFOqX6gBnvPNYN+Pi4KmIqwzEf1OZ7v6ErEeY6kw54OZ4x4
-         KRwmEQs7orfnZKbDjMMqVLbK76bOM/axnEDi+89B38Fpulg5LyZxVgKY5nSEFANQ5IB9
-         Cy7ZP+CznK+qpSi8ZNdXxLpzl16uFpfZo1jpyvSQ6c+wgh+g0q7XxUKFs+RUezTcg3a3
-         exIF/S49Z9OF4J2hiQ5dbfDkTaZaRWTtr1rik8RKcbJdQ/iv/kAjAmVxm2ltecMJvE57
-         rfyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709659002; x=1710263802;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PKbxpo3p1gqabtKHicX9j5Bzb5Ge571GvOAKw++fIX8=;
-        b=jDfnM0y41B6aefpjTfy5GmY8fe1oSlQOt8brXwrw/kRToFca29ZDKlXU6Bqm9vfXuX
-         K3Rj02AvOI9aKzXhg3KKvT0+kB05tB2kVJuvEeute+8GusnGCmluX1usDZouVX6k7GIR
-         vsQ8K4nUeS7zKVKVfQUkIQPtqn6M/3QGvUy9lPg/lWfWjivlSGcBCWYSotWPnwISItFl
-         OBKFJUc0lcuBq+n51yrPeDsNfe8mJ4lHKPUTz1FW1L2AcmHvQtJOum2wTz3++k+fZvFA
-         Ck/K8fAkG/CEaVQYNXAdxTSPx6inlAXslD/qdy7shLTLIbtaJy00EAdvlWYpejuEOzv+
-         ayfg==
-X-Forwarded-Encrypted: i=1; AJvYcCU8EJSol6XdLwLxG6mXOy0DZPbTF3Wtu0e7pIFgSOqZZK4tdKIx8Nt4WpjomTTR3MSSqe69WM3O5jrZ+rGCObzK0B+5a5DJNhte4yXgKnMLNM0soA9Zs1wBe89QuyqfzZxEzf2QjcqSFPxrRRyh1Cv1U54EV4l57Or+0XQAOcH+rYipccGciJgBFIMI
-X-Gm-Message-State: AOJu0YyoSSy6JCtuLyH8Abwj2Trx6zL6fx/x3EkoJLMLWhpypOsF3yo6
-	7rBHlK2V16yC1clAOnZZT0oj+HHhOwdCjOJjUTH44pYRy4oynERX
-X-Google-Smtp-Source: AGHT+IHIBCVUp/teBNt+MD+eC5T5ObcOSa11pOm8x4zOw8GdB041i2c+71Mg3Wqb6mYmgalSHgDcyQ==
-X-Received: by 2002:a5d:4ec5:0:b0:33e:1b2a:bd6e with SMTP id s5-20020a5d4ec5000000b0033e1b2abd6emr8516158wrv.33.1709659002332;
-        Tue, 05 Mar 2024 09:16:42 -0800 (PST)
-Received: from prasmi.home ([2a00:23c8:2500:a01:6479:f309:81e3:3373])
-        by smtp.gmail.com with ESMTPSA id bw1-20020a0560001f8100b0033d6bc17d0esm15831640wrb.74.2024.03.05.09.16.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 05 Mar 2024 09:16:41 -0800 (PST)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Jiri Slaby <jirislaby@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-kernel@vger.kernel.org,
-	linux-serial@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] dt-bindings: serial: renesas,scif: Document R9A09G057 support
-Date: Tue,  5 Mar 2024 17:16:00 +0000
-Message-Id: <20240305171600.328699-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1709659444; c=relaxed/simple;
+	bh=aTcTcwCsojcYgR2q6qRJNGp5j8F3+tgkYmGHqLDcQQE=;
+	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
+	 Date:Cc:References:To; b=h25hRKhZcne3dBYpO1vLioX9leB5imEH/rnbggPX4Dno8VPqgcoXKG7AeMz/V78Cds/p/fh4MqztmhAcBiNETMX+M/ZHuKsxgH5slNvwVf05RN/GmQUD8Pd6ZxCPvU5KrzdPI3Vx3G4imBAxh/1i8vA+wnA0k2u0z6jkgbssJw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=wCu/hpme; arc=none smtp.client-ip=203.205.251.36
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
+	t=1709659438; bh=h1LTH6JlAYoOApJUnNVPyf95mfcxBxOkhaNODYU3s9k=;
+	h=Subject:From:In-Reply-To:Date:Cc:References:To;
+	b=wCu/hpmeqdzeFIcDia0CNAAeGf637mywDpWv8P3YNB5L9tdViCGEmn3ehJOmUA0Tj
+	 oFhq4NcqHhixfKXvH+Uo+zuZAMZ/EhTT+IYDcqsMwi864dkw1GwWgSGs76LxJjRMpC
+	 C1d9XMfjj15gOm2Xq0W2yjEZANvsN2+RpsF3aOMw=
+Received: from smtpclient.apple ([2001:da8:c800:d084:84f7:c158:bab8:8899])
+	by newxmesmtplogicsvrszb9-1.qq.com (NewEsmtp) with SMTP
+	id 467314A0; Wed, 06 Mar 2024 01:17:39 +0800
+X-QQ-mid: xmsmtpt1709659059trsahnpa9
+Message-ID: <tencent_3638D6E106C784859837E6F3C10BDA688F0A@qq.com>
+X-QQ-XMAILINFO: NJZTpFGUMYNFt/STRSnmNanLRlv+mPJcdXyrQHRC4MjkD977hfF0dHwRU2EIfN
+	 XYxgfzvRrE1brWIIjF9OhanlPDr/oV/0DRHZbKq0zvC5CElI6a/9pcvvC7DHhU5hCOxNzIX+/53r
+	 ZC7wqApkEdQFmPMO6NVOdxLzHr8fSuZJZwBIWn09pu7QF0Wn9gMD1VZHp7z3aejWh+5b1Yc1Qrur
+	 zph6NdrWlPwC/CfyjHzPCF/74IxvIBYIaQcBNGtqT7LV+tg6smhRg/zHfzJKzx8ANPo5XwR/x1+Q
+	 /j67DOdbeDSKFQQxVsBIeUWK6XhgHdqi6TiUVf5FbEX2jrXRa5UdcvIgUb7yYwtv8YsUgMxJBSx3
+	 ESAhAQ1L2qpHT9tangOTIRFCxkwfVIuVxtFnWNqD6xmdtlU5f5F4bW/6cOoBrGWhtsdwr3SjvdcC
+	 +rcBicfEKa7ikuzs5fY/zcP7uDtbkCR1CjSyQUaOCqNXvHM+hsFHAFfRWc5AUmEmDv2vkYxAHo1R
+	 SYnNQjVo5/6CafYVSsJ6XHquDhCia4psSafXx/2BWIAWx6E2Aio9laQviGiAu3LK17iSmxs/9fSA
+	 3EOf16UtX6eewIUvAVi2cwVMnZnz8A9m1PpBtfBaMVMDCnvNHhRlF2e72AQfH2fizfvNZ1yvtnhB
+	 vBdBiwwHBPSr2yC5YHD7hBwOZWpiBCP3ZcmxUx8TAcdFBUebftxRc35BxBPZW6pjfEhH8gRk4tuA
+	 lrIRHSQOLNFJRZQm44/DqAFgxty2jWM3No1kbCnZ2WLIkfkaxdnaYh8mCE+ObvKd8LVgbXAyznrb
+	 KJuyr/UZ0T5BHVP+gOKS2IdTXam4tMQtRAfQ/MqRFW+rr/kKdM5L0ZMsV4hY1dXBE3Qxco+GruWs
+	 ACUqKmA00dv8/UAuyFb4sVAjqFHV+EIZnEP36LZboNpHbAAcO4zrPGexYIiHTCRhiUui7xlGmA6j
+	 I+JE8+cN52VXFCb4EbN/qLTcBeRU88cKXK5SbzohC6ntp5x3VjM2OvasBe5lq/yLV1lQ2nSkLIPc
+	 S8r8djg6HeLjADlWd6
+X-QQ-XMRINFO: OD9hHCdaPRBwq3WW+NvGbIU=
+Content-Type: text/plain;
+	charset=us-ascii
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
+Subject: Re: [PATCH v3 6/7] riscv: dts: add initial canmv-k230 and k230-evb
+ dts
+From: Yangyu Chen <cyy@cyyself.name>
+In-Reply-To: <20240305-shorten-disallow-eae65fdc8fdb@spud>
+Date: Wed, 6 Mar 2024 01:17:29 +0800
+Cc: Palmer Dabbelt <palmer@dabbelt.com>,
+ linux-riscv@lists.infradead.org,
+ Damien Le Moal <dlemoal@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ krzysztof.kozlowski+dt@linaro.org,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Albert Ou <aou@eecs.berkeley.edu>,
+ guoren@kernel.org,
+ devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
+X-OQ-MSGID: <C39896C7-3E16-48AF-8368-84BB10671CD4@cyyself.name>
+References: <mhng-f1aa91d4-211f-4eb4-a94d-a9d88b0d3f6a@palmer-ri-x1c9>
+ <7A86D933-B85F-4B29-8D6D-AB414A42AC06@cyyself.name>
+ <tencent_B2C1146D4947315C8018AE90EDC64F3E6207@qq.com>
+ <20240305-shorten-disallow-eae65fdc8fdb@spud>
+To: Conor Dooley <conor@kernel.org>
+X-Mailer: Apple Mail (2.3774.400.31)
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Document support for the Serial Communication Interface with FIFO (SCIF)
-available in the Renesas RZ/V2H(P) (R9A09G057) SoC. The SCIF interface in
-the Renesas RZ/V2H(P) is similar to that available in the RZ/G2L
-(R9A07G044) SoC, with the only difference being that the RZ/V2H(P) SoC has
-three additional interrupts: one for Tx end/Rx ready and the other two for
-Rx and Tx buffer full, which are edge-triggered.
 
-No driver changes are required as generic compatible string
-"renesas,scif-r9a07g044" will be used as a fallback on RZ/V2H(P) SoC.
+> On Mar 6, 2024, at 01:01, Conor Dooley <conor@kernel.org> wrote:
+>=20
+> Hey,
+>=20
+> Just chiming so that things don't get misinterpreted.
+>=20
+> On Wed, Mar 06, 2024 at 12:37:16AM +0800, Yangyu Chen wrote:
+>>> On Mar 6, 2024, at 00:22, Yangyu Chen <cyy@cyyself.name> wrote:
+>>>> On Mar 5, 2024, at 23:54, Palmer Dabbelt <palmer@dabbelt.com> =
+wrote:
+>>>> On Mon, 04 Mar 2024 13:06:00 PST (-0800), cyy@cyyself.name wrote:
+>>>>> - Svpbmt and T-Head MAEE both supported
+>>>>>=20
+>>>>> T-Head C908 does support both Svpbmt and T-Head MAEE for =
+page-based memory
+>>>>> attributes and is controlled by csr.mxstatus. If the kernel wants =
+to use
+>>>>> svpbmt, the m-mode software should set BIT(21) of csr.mxstatus to =
+zero
+>>>>> before entering the s-mode kernel. Otherwise, the kernel will not =
+boot as 0
+>>>>> on T-Head MAEE represent to NonCachable Memory and it will lose =
+dirty cache
+>>>>> lines modification that haven't been written back to the memory.
+>>>>=20
+>>>> So I guess we need the bootloader to just be accurate here?  ie: =
+whatever
+>>>> extension it tells S-mode kernels is enabled is how S-mode behaves, =
+and
+>>>> then this should just work itself out.
+>=20
+> Correct, the bootloader/firmware "just" needs to write this bit to =
+match
+> what it passes to onwards in the devicetree.
+>=20
+>>> Yes. Currently, I have patched OpenSBI to disable MAEE. Conor Dooley =
+said
+>>> from a public irc group that he wants to control the enable of =
+T-Head
+>=20
+> (#riscv on libera, the usual location)
+>=20
+> I also suggested that that, given we can use the standard extensions,
+> we should use them instead of the custom extensions/errata.
+>=20
+>>> variation of zicbom and svpbmt from dts, in addition to mimplid or
+>>> something now.
+>=20
+> Correct. I'm find with the impid =3D=3D archid =3D=3D 0 condition, =
+given that's
+> what we need to keep to avoid regressions, but if any future T-Head =
+CPUs
+> want to enable MAEE (ERRATA_THEAD_PBMT) or the custom CMOs
+> (ERRATA_THEAD_CMO) these should be enabled from DT. Particularly when
+> these CPUs can be configured to either use the T-Head versions or the
+> standard extensions.
+>=20
+>>> I think that will be a better way for the bootloader to tell
+>>> the kernel whether the T-Head MAEE should be enabled.
+>=20
+> You've got three options I guess. You could patch the DT in the =
+bootloader,
+> or use a fixed DT that matches the bootloader, or you could use the DT
+> passed to the bootloader and parse the extensions to decide whether or =
+not
+> to enable MAEE or Svpbmt. Seems you're going for option 2.
+>=20
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
- .../bindings/serial/renesas,scif.yaml         | 21 +++++++++++++++++++
- 1 file changed, 21 insertions(+)
+The patched opensbi is only for work around now as the factory-provided
+M-Mode uboot will enable MAEE. I would like option 1 to let the =
+bootloader
+choose what to use and patch the DT to tell the linux whether should use
+T-Head MAEE as T-Head is likely to use this feature on TEE
+(Trusted Execution Environment), so it might never be removed.
 
-diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-index 4610a5bd580c..b2c2305e352c 100644
---- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-+++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-@@ -80,6 +80,7 @@ properties:
-               - renesas,scif-r9a07g043      # RZ/G2UL and RZ/Five
-               - renesas,scif-r9a07g054      # RZ/V2L
-               - renesas,scif-r9a08g045      # RZ/G3S
-+              - renesas,scif-r9a09g057      # RZ/V2H(P)
-           - const: renesas,scif-r9a07g044   # RZ/G2{L,LC} fallback
- 
-   reg:
-@@ -101,6 +102,16 @@ properties:
-           - description: Break interrupt
-           - description: Data Ready interrupt
-           - description: Transmit End interrupt
-+      - items:
-+          - description: Error interrupt
-+          - description: Receive buffer full interrupt
-+          - description: Transmit buffer empty interrupt
-+          - description: Break interrupt
-+          - description: Data Ready interrupt
-+          - description: Transmit End interrupt
-+          - description: Transmit End/Data Ready interrupt
-+          - description: Receive buffer full interrupt (EDGE trigger)
-+          - description: Transmit buffer empty interrupt (EDGE trigger)
- 
-   interrupt-names:
-     oneOf:
-@@ -116,6 +127,16 @@ properties:
-           - const: bri
-           - const: dri
-           - const: tei
-+      - items:
-+          - const: eri
-+          - const: rxi
-+          - const: txi
-+          - const: bri
-+          - const: dri
-+          - const: tei
-+          - const: teidri
-+          - const: rxi-edge
-+          - const: txi-edge
- 
-   clocks:
-     minItems: 1
--- 
-2.34.1
+>>> Link: =
+https://github.com/cyyself/opensbi/commit/b113c1c01d700314a4a696297ec09031=
+a9399354
+>>>=20
+>>> Furthermore, I wonder whether a CPU node like this would be =
+acceptable.
+>>> I don't have any other details of how another CPU from K230 SoC =
+works on
+>>> Linux.
+>=20
+> A CPU node like what? It is not clear to me.
+
+It in the k230.dtsi file. Only has big core there.
 
 
