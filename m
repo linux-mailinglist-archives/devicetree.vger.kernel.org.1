@@ -1,133 +1,99 @@
-Return-Path: <devicetree+bounces-48623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48625-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6605B872E8B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:02:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 29B67872E9D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:13:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1A2BE1F23AE3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 06:02:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BA84BB22820
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 06:13:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4FAB1B7FF;
-	Wed,  6 Mar 2024 06:02:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="O37JzgXq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F36EF1BDCD;
+	Wed,  6 Mar 2024 06:12:55 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtpbgsg2.qq.com (smtpbgsg2.qq.com [54.254.200.128])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2E24138C;
-	Wed,  6 Mar 2024 06:02:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B7381BF3A;
+	Wed,  6 Mar 2024 06:12:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=54.254.200.128
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709704956; cv=none; b=s2qV6yFPwu4tis75dlFt+HRp69Lxgap3xiniSHIEoF4dZdWtm/VfWxs7Biwg/p0fGKdvaKHTvOZs9h1MGGEDQwJKOZIhIaSNWzXjNqpXZ6jMY8S2u/K+EfVZK3L/gk/zXUIQePlruDmDFCdTGYtWHwimzVJ7thSyS9Fo1WSPOEs=
+	t=1709705575; cv=none; b=HiXPfBoPRPk0ADcG4zaHI2nrC1wkSq6liHR3I04hE1qSPTUolkxvuDJc4XfrKxEYKm/Nf+lbm876eko8+guaYCzGVlRMGNJICQQSOPVFkqF9khnJdHNPHhYhuW6qT8rwG3zec8EqT/A1wA2/8ZnHqjvSnCz3Z7fvYLxQ3yamkrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709704956; c=relaxed/simple;
-	bh=1pF1YW0n3KuV997EU7Rs5bi6i+K0zbDH0kusoUW33sc=;
-	h=Message-ID:Date:MIME-Version:Subject:From:To:CC:References:
-	 In-Reply-To:Content-Type; b=GFBni0mqigCE8yNvQkVXzIgwdECS7qF5xEn+Nvj/5OcKTUwQowNvouKpFxy+ZrY6RkurGP1iQAXixWMfbBS7sGZgazGxcGnnbi+QTdvNVb9QY0EWT+AZQE8Q23dS3rmYZFdOSxbGbqMqN1gYEar06RQ1097Wl9ckOGUmBXO1nr8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=O37JzgXq; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4264lnL6025042;
-	Wed, 6 Mar 2024 06:02:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:from:to:cc:references
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=1agwj1KEBjXJb1VsQmvvWQDpTBswQ8dZsb3xaybDUfA=; b=O3
-	7JzgXqIAQRBJs2N4xDV3yOhhsX/4023Gwu0vO2d8p0GWbfVvOgxy8wTYlQ7k/uB9
-	8ETK+B5slU2P0V+WA1B1Q92sauFU2DuXmamZ0fHvPT9aSqBNfUOst/ijFi+fHX5L
-	A+ynX8MyU2I/ZYMm3J+oADniWO8VUmF8fy+/Ij+KNOz+FPm5ZrRRNasqht295ObZ
-	gRKhhHXQ715/OYAW3ZN5g/RNPaS5RbaObderlh/vViC8Nxnl90Y0jjHtQ0RgE3+s
-	3PdpUC0myFgfSs+H/vbcraNpRlh+gBNX0VLZwPrLNvYsaW8E98Vr3ALoBKxb7zfT
-	O/3dYh+l7y+LMgMR8MZQ==
-Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wp7ky1dsm-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Mar 2024 06:02:13 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42661skN008895
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 6 Mar 2024 06:01:54 GMT
-Received: from [10.216.3.154] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 5 Mar
- 2024 22:01:47 -0800
-Message-ID: <3e544d37-b1d2-9c58-3130-9e6950430671@quicinc.com>
-Date: Wed, 6 Mar 2024 11:31:43 +0530
+	s=arc-20240116; t=1709705575; c=relaxed/simple;
+	bh=XB/s6LrajRRxZPmS5K2ul+Jpp/Bn57dJki7p95qfCJ0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=G6g7o3Aghqx6KRo0XgY91qfRS8ghOYrwIIHRHBoOrxoh0x9kbtVaIqCaAQ2AdJL7/YvxFs13EhsGIxEJvvGxkoDzFjF4FzWoSBQu8NKSh+xLrW2orUni0Z+oHWH8Uo1LRcQ48lUWtbOtSDDpMSRvpzDXz2WdNwk5T27HaUM9CQ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=shingroup.cn; spf=pass smtp.mailfrom=shingroup.cn; arc=none smtp.client-ip=54.254.200.128
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=shingroup.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=shingroup.cn
+X-QQ-mid: bizesmtp79t1709705530tejr8mq9
+X-QQ-Originating-IP: 33F7Hi8mkHJ/3GMhdDRcEqGpiRerVDDLcrCN+G+D9ek=
+Received: from HX01040022.powercore.com.cn ( [223.112.234.130])
+	by bizesmtp.qq.com (ESMTP) with 
+	id ; Wed, 06 Mar 2024 14:12:08 +0800 (CST)
+X-QQ-SSF: 01400000000000B0B000000A0000000
+X-QQ-FEAT: zT6n3Y95oi0QQ5IUMJfGD5BCp0MrFSEZjYCXXN07Kjl3bKZmTCPMHHTLiXx+0
+	Z1YAJaMJZ45EP04YVC/wcllIeJmmC4MgCfzD6MxN6SF8mCzilEbDF/efn4LJdbpT7dWCGJt
+	B2bPzhoTAwKQrZlC54zr6tUmQXEgeBjo6aXNnX/QoheTguv1CfScumys3U08NydzAK1QalU
+	4VljwBdaiCsS1Vuc6R84+uLE5NyGoiaFlDhNlqcMlXtAB4eRDMoCDrchbrSzUz2+w9y9d2C
+	VrgfXN+2/epHpKPNlNqYh4DEKpf7v+alH4T8D6KsW60yrra6GHCHzSK7WbvKrUQH5Z7qkU0
+	n7CO57tmqjue9pw2vUY3c3aLYOsjYKfMGtguDyvgs0iEmrAGS+bu3GVr8HkJN0rFULU/90Z
+X-QQ-GoodBg: 2
+X-BIZMAIL-ID: 9495034024272623364
+From: "JiaLong.Yang" <jialong.yang@shingroup.cn>
+To: Will Deacon <will@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: shenghui.qu@shingroup.cn,
+	linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: [PATCH v3 0/2] Support uncore NI-700 Performance Monitor
+Date: Wed,  6 Mar 2024 14:16:00 +0800
+Message-Id: <cover.1709694173.git.jialong.yang@shingroup.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.9.1
-Subject: Re: [PATCH 3/5] spi: spi-qpic: Add qpic spi nand driver support
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
-        <broonie@kernel.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <manivannan.sadhasivam@linaro.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>
-CC: <quic_srichara@quicinc.com>, <quic_varada@quicinc.com>
-References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
- <20240215134856.1313239-4-quic_mdalam@quicinc.com>
- <d1c80d3f-3b70-4630-8f7d-b00983b487dd@linaro.org>
- <f5177fad-214f-1b60-46ba-1dc0a4fb059e@quicinc.com>
-Content-Language: en-US
-In-Reply-To: <f5177fad-214f-1b60-46ba-1dc0a4fb059e@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: f8jqsuNHAm51FTD0iqA6FB3d6deFb5aV
-X-Proofpoint-ORIG-GUID: f8jqsuNHAm51FTD0iqA6FB3d6deFb5aV
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-06_03,2024-03-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- phishscore=0 malwarescore=0 bulkscore=0 adultscore=0 clxscore=1011
- mlxlogscore=963 lowpriorityscore=0 suspectscore=0 spamscore=0
- priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403060047
+X-QQ-SENDSIZE: 520
+Feedback-ID: bizesmtp:shingroup.cn:qybglogicsvrgz:qybglogicsvrgz6a-1
 
-Konrad,
+1. 
+The MAINTAINERS file should be in dt-bindings or drivers?
+It's needed by the two subpatchs.
+I place it in dt-bindings. So I receive the warning in driver patch.
 
-On 2/20/2024 5:44 PM, Md Sadre Alam wrote:
->>> +    ecc_cfg->cfg0 = (cwperpage - 1) << CW_PER_PAGE
->>> +                | ecc_cfg->cw_data << UD_SIZE_BYTES
->>> +                | 1 << DISABLE_STATUS_AFTER_WRITE
->>> +                | 3 << NUM_ADDR_CYCLES
->>> +                | ecc_cfg->ecc_bytes_hw << ECC_PARITY_SIZE_BYTES_RS
->>> +                | 0 << STATUS_BFR_READ
->>> +                | 1 << SET_RD_MODE_AFTER_STATUS
->>> +                | ecc_cfg->spare_bytes << SPARE_SIZE_BYTES;
->>
->> Let me introduce you to FIELD_PREP/GET and GENMASK().. Many assignments
->> in this file could use these.
-> 
->   Ok
+2.
+When using the new macro DEFINE_FREE(), we should ended it without ';'.
+So there is one warning asking me to indentation next statement.
 
-While doing the change i realized that it will impact raw nand driver as well.
-Shall I post this change as separate patch. Is this ok? Please let me know.
+3.
+If the file vendor-prefixes.yaml should be submit solely?
 
-Regards,
-Alam.
+JiaLong.Yang (3):
+  dt-bindings: Add HEXIN Technologies Co., Ltd. vendor prefix
+  dt-bindings: perf: Support uncore NI-700 PMU
+  perf/hx_arm_ni: Support uncore NI-700 PMU
 
->>
->> Konrad
-> 
-> Thanks for reviewing, will fix all the comments in next patch.
-> 
-> Regards,
-> Alam.
-> 
+ .../bindings/perf/hexin,c2000-arm-ni.yaml     |   51 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ MAINTAINERS                                   |    6 +
+ drivers/perf/Kconfig                          |   11 +
+ drivers/perf/Makefile                         |    1 +
+ drivers/perf/hx_arm_ni.c                      | 1240 +++++++++++++++++
+ 6 files changed, 1311 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/hexin,
+ c2000-arm-ni.yaml
+ create mode 100644 drivers/perf/hx_arm_ni.c
+
+-- 
+2.25.1
+
 
