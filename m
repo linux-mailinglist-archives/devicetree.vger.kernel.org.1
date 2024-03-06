@@ -1,74 +1,65 @@
-Return-Path: <devicetree+bounces-48841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48842-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B51B7873C4B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 17:31:01 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A616E873C8D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 17:48:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 69AAA1F290A3
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 16:31:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0B109B20C1A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 16:48:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 90D0F5FB95;
-	Wed,  6 Mar 2024 16:30:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CF4131350CC;
+	Wed,  6 Mar 2024 16:47:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IrI6ntUm"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="vIJKhngX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD9152D7B8
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 16:30:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E4CBD534;
+	Wed,  6 Mar 2024 16:47:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.154.123
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709742656; cv=none; b=Mr3uKQwPoLDKoKnOnODxb23CjGit23y/zVneVwUHbZ9fS6uQHzjP+Z3mXBf7Nwv6sB/CSdG+zOst65NBGg1jWQS4l072Hl/k/eY/1TrAknniV1aVJojiLBRBBF1SKU6jtLh4ZnFnxCKRkcFBxL4wZciUqIN5ePqmimDfShCrKW8=
+	t=1709743677; cv=none; b=rsE5+C7GqumhQrFCMsyfLnnA5+qCWwR3xTNXjruAHIvs7/MSbqvTtmyslvIpkqMu+cAAXYgEaR0Kt1omLDiTkHQjbi6WkBpzbDAkXYKEGPrjR60a1Kgmk/RQysacB6416AG5TR+xp36YZbfKdbP88dOj1H6OLH0ZSqX1wn6Bf/s=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709742656; c=relaxed/simple;
-	bh=mEQTa2n/RojLzk55y8oU1DPrlJiA+JXQwKuEQ+Ae18M=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=rqLhszMNo3QkKvgrcQgHQpDONW8+FeqmTJpHPLfNsH+HykdfYaOUeX2UqzN4BObGvaKNsDwh6ulQZdlIldkO/8Fhw6hgLGAU3tCsiVHDfUpDxJ/7qIW3rRDL/BxLhKRMZGIoRRcTxeRF+meolltx1g+NvDi4XdEc25YRTv71Weo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IrI6ntUm; arc=none smtp.client-ip=209.85.167.46
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-512ed314881so6736605e87.2
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 08:30:54 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709742653; x=1710347453; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=VxKIFmdh08s6jzr+qngXZC/NeVk7xZJaEM83kdDNq3g=;
-        b=IrI6ntUmFpgUIwgkibuLJn8qUiOK/Sj8/UiHky0joyJIRsg/0a2Sykizj/gIBRBKWT
-         GfEf4NDfwjINPAutN5CMqlKGb+N0SYTQ0a6uCgWXjlB3N9Ec28flmqPCfz6EMRd7gF2g
-         fEaNBmuAePjMO1AOjekv4yh/qz7LDC1KxVtOIG1aepDYAaSMeYCTG5mseMX1WkAQRsWm
-         W8sWCVNTTKD6ZuTkKeKE6UZ5Vk+Y4YkUBuHLPzknMnpnRtcynXcfZUM4rwQOTf45suwf
-         +71pxJaQvzjV6FBZ7qeujBd81REvwETf5zWYg0r/C52gWcE1U0D/fCGx1I/szLiEDASu
-         YJLg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709742653; x=1710347453;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=VxKIFmdh08s6jzr+qngXZC/NeVk7xZJaEM83kdDNq3g=;
-        b=ZHnVyxoWI/YKh0N3IF2PINRCRuUHgB1OR4JU36XB3Blb3AjcjXr5khI9Sbx1N4aE/s
-         uwm5WdTeAhaJe14299QFl3ShEWvNDicjnPtL/wYTW6WZTmB/yJkd7A7IKKY39QWMDuuU
-         k2vx8JutExcWFPRmPN1uxCwFcHwPJhXpX4ZvTMnU+IpyuwdKvwkA81WImTYBz1X9UXkj
-         +7zUOClycN9pOUkjjGylXdwxVXuFk5OttQM6IsVrIwLImB6voZmGQa+gmxTEurhl+W04
-         vlbUxnNrnpKaMo2VYo8TXoTDWe6tHB0VGE0NrAKrRv2hRg2GSvo1qEyNagR4XatNlRG0
-         4Qcw==
-X-Forwarded-Encrypted: i=1; AJvYcCUNUxQTEkSWYvXa2s8Ary79rtVfnPAkSt5taH+yl+wpFmcAOArJhUSU1qOEvSH6GaqU5MsSI/LE7paR7WfAd9t59ZUIDBqsheUkUQ==
-X-Gm-Message-State: AOJu0Yzpmvwvz6WNU4O/JSU01XbgZZHAng3i2iHXuPPhCILkAxFdvvmr
-	F0+OwqKzPPc0HMJjXgzUkFtXI5wON1CLfLNWw8jHKU1hw7GEQz07hZnAxDFAlVU=
-X-Google-Smtp-Source: AGHT+IF+8CzuRKnFLqJ9jYc+QlJyXa71qUfHZR0qBqm2jmazZU42WLb6NJYLP5GMFvaIKA4KaDJTGg==
-X-Received: by 2002:ac2:5f49:0:b0:513:37a1:ae60 with SMTP id 9-20020ac25f49000000b0051337a1ae60mr3249118lfz.34.1709742652689;
-        Wed, 06 Mar 2024 08:30:52 -0800 (PST)
-Received: from [87.246.221.128] (netpanel-87-246-221-128.pol.akademiki.lublin.pl. [87.246.221.128])
-        by smtp.gmail.com with ESMTPSA id fc9-20020a056512138900b005133c744501sm1903913lfb.42.2024.03.06.08.30.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Mar 2024 08:30:52 -0800 (PST)
-Message-ID: <5440bc2c-f631-4abe-82ae-ba061934e0fd@linaro.org>
-Date: Wed, 6 Mar 2024 17:30:50 +0100
+	s=arc-20240116; t=1709743677; c=relaxed/simple;
+	bh=8W7Dq7YatRAs2b0t73cA2kCx69/JJSpwmIKPnNBRLk4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=APY/YP0wiuty6zTFVeSH+UDccidDxZq0udNXfT/Wa+pmVeaWoIRBtXA8ATOk5mkk6tNY4pKUYbMsTnQfKOwjFDHNl+hXUfdJQjfIe73heCMt3lKoTBuViydAm/EhS54CFdle3EybfZNRYtc+eBjztLxsj4J2dQ1I3uYS+1oXjow=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=vIJKhngX; arc=none smtp.client-ip=68.232.154.123
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1709743675; x=1741279675;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=8W7Dq7YatRAs2b0t73cA2kCx69/JJSpwmIKPnNBRLk4=;
+  b=vIJKhngXsPX8hBVzPBMD2rNIebMa7g55tU1ViL+ZBTr5+qVhy/bEvfJR
+   bC+nUH/q3FpfSgjdi2nkqot4pXc8rpXMCVowstmCW3GQhFFrlkThbqHA6
+   +qxFR9hgEfMlVJWCTzF4HTE6wVcbKMNnVv8aLZcat9kKA/6exEfHAm3JD
+   L09YUvDQ7pq6YHYN4NBEfPQhEukccrhVoQbWG4J6/ov4ID0F8g+F91YeD
+   gGC9f8J5M21IOeQM8yyCoMItOSTv/nu2jkCIKXmVkf2N31Imh826FEewB
+   YJnMURBTKp3HSAyG37oEsC+FKbECGITevuoeLlUYPgZ5HP+tzHfwuB5St
+   A==;
+X-CSE-ConnectionGUID: Utymty8TR7qygpmqy9lhLQ==
+X-CSE-MsgGUID: 4QUS1VrJSxG6Nif7mvyF0g==
+X-IronPort-AV: E=Sophos;i="6.06,208,1705388400"; 
+   d="scan'208";a="17834673"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 06 Mar 2024 09:47:51 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Wed, 6 Mar 2024 09:47:25 -0700
+Received: from [10.180.117.170] (10.10.85.11) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
+ Transport; Wed, 6 Mar 2024 09:47:21 -0700
+Message-ID: <e6537742-d9be-4745-b457-b36e60ccaa9b@microchip.com>
+Date: Wed, 6 Mar 2024 17:46:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,36 +67,118 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] ARM: dts: qcom: msm8974pro-castor: Clean up
- formatting
-Content-Language: en-US
-To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andy Gross <andy.gross@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240306-castor-changes-v1-0-2286eaf85fff@z3ntu.xyz>
- <20240306-castor-changes-v1-1-2286eaf85fff@z3ntu.xyz>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240306-castor-changes-v1-1-2286eaf85fff@z3ntu.xyz>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Subject: Re: [PATCH v3] dt-bindings: display: atmel,lcdc: convert to dtschema
+Content-Language: en-US, fr-FR
+To: Dharma B - I70843 <Dharma.B@microchip.com>, Rob Herring <robh@kernel.org>
+CC: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+	<mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
+	<airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>, Claudiu Beznea
+	<claudiu.beznea@tuxon.dev>, "dri-devel@lists.freedesktop.org"
+	<dri-devel@lists.freedesktop.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+References: <20240304-lcdc-fb-v3-1-8b616fbb0199@microchip.com>
+ <20240304220154.GA1115739-robh@kernel.org>
+ <d3ae3196-4e8a-4e73-bc36-f53541598ab2@microchip.com>
+From: Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <d3ae3196-4e8a-4e73-bc36-f53541598ab2@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
 
+Dharma, all,
 
-
-On 3/6/24 00:18, Luca Weiss wrote:
-> Clean up some easy things do prepare the dts for further changes.
+On 06/03/2024 at 15:35, Dharma B - I70843 wrote:
 > 
-> * Move pinctrl-names below pinctrl-*
-> * Move status as last property
-> * Remove default linux,input-type value
+> On 05/03/24 3:31 am, Rob Herring wrote:
+>> On Mon, Mar 04, 2024 at 08:00:03PM +0530, Dharma Balasubiramani wrote:
+>>> Convert the atmel,lcdc bindings to DT schema.
+>>> Changes during conversion: add missing clocks and clock-names properties.
+>>>
+>>> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
+>>> ---
+>>> This patch converts the existing lcdc display text binding to JSON schema.
+>>> The binding is split into two namely
+>>> lcdc.yaml
+>>> - Holds the frame buffer properties
+>>> lcdc-display.yaml
+>>> - Holds the display panel properties which is a phandle to the display
+>>> property in lcdc fb node.
+>>>
+>>> These bindings are tested using the following command.
+>>> 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+>>> ---
+>>> Changes in v3:
+>>> - Remove the generic property "bits-per-pixel"
+>>> - Link to v2: https://lore.kernel.org/r/20240304-lcdc-fb-v2-1-a14b463c157a@microchip.com
+>>>
+>>> Changes in v2:
+>>> - Run checkpatch and remove whitespace errors.
+>>> - Add the standard interrupt flags.
+>>> - Split the binding into two, namely lcdc.yaml and lcdc-display.yaml.
+>>> - Link to v1: https://lore.kernel.org/r/20240223-lcdc-fb-v1-1-4c64cb6277df@microchip.com
+>>> ---
+>>>    .../bindings/display/atmel,lcdc-display.yaml       | 97 ++++++++++++++++++++++
+>>>    .../devicetree/bindings/display/atmel,lcdc.txt     | 87 -------------------
+>>>    .../devicetree/bindings/display/atmel,lcdc.yaml    | 70 ++++++++++++++++
+>>>    3 files changed, 167 insertions(+), 87 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml b/Documentation/devicetree/bindings/display/atmel,lcdc-display.yaml
+>>> new file mode 100644
+>>> index 000000000000..5e0b706d695d
+
+[..]
+
+>>> +  atmel,lcd-wiring-mode:
+>>> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+>>
+>> Isn't this just a single string rather than an array?
+>>
+>>> +    description: lcd wiring mode "RGB" or "BRG"
+>>
+>> enum:
+>>     - RGB
+>>     - BRG
+>>
+>> No BGR?
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
+> In the current driver implementation, we have interpreted the wiring
+> mode represented by ATMEL_LCDC_WIRING_BGR as 'BRG' in the array
+> atmel_lcdfb_wiring_modes. Considering conventional color representation,
+> would it be appropriate to consider modifying the existing driver to use
+> the 'BGR' string instead of 'BRG' for better alignment with standard
+> naming conventions?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+This "BRG" thing is definitively a typo. We never had such thing as a 
+BRG color wiring but did have BGR wiring mode.
 
-Konrad
+> static const char *atmel_lcdfb_wiring_modes[] = {
+>           [ATMEL_LCDC_WIRING_BGR] = "BRG",
+>           [ATMEL_LCDC_WIRING_RGB] = "RGB",
+
+The thing is that we have one DT using that:
+arch/arm/boot/dts/at91sam9261ek.dts
+
+So, either I would leave it like that: it's only old product using it.
+Or just focus on first character in the string so that it works for both 
+"BRG" or "BGR", and maintains the backward compatibility.
+
+Regards,
+   Nicolas
+
+
+> };
+> 
+> 
+>>
+>> But wait, the example shows the value is '1'. That should fail testing.
+>> It didn't, but I've now fixed that.
+> 
+> It seems correctly configured in our dts files but didn't noticed the
+> same in the bindings example, thanks for letting me know, I will correct
+> it in the next revision.
+
 
