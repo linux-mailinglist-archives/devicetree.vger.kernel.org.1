@@ -1,162 +1,116 @@
-Return-Path: <devicetree+bounces-48809-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48810-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 935F6873A08
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 16:01:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id F1DCC873A1A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 16:05:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4F9FB28BBF7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 15:01:30 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2F4FD1C2405E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 15:05:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88FD51353FF;
-	Wed,  6 Mar 2024 15:01:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 51BCC134CEC;
+	Wed,  6 Mar 2024 15:05:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Diub9Vs8"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="GACM9Jef"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B62313473B;
-	Wed,  6 Mar 2024 15:01:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FAA34DA1B;
+	Wed,  6 Mar 2024 15:05:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709737269; cv=none; b=mkHqAOzMEGbgb/6V4ucK5wjlJVeu9WEhuztTZyDaP4GiiHBwZ7dLtf16m6AisaHmpi6QviV/9DgmVr64OmWdNSgey0emraSjiecw56Ngz0JWUswrO5CuxmRGzr06VhJ2ClLp4LOWpXcaNId3QJwtPELy9mzNclkfpzcizH//090=
+	t=1709737504; cv=none; b=svFjOc3JZPELSsDhsEJ1vhLeqcRn2+7WLbEa6TDCF/PQfYCTVy0bR+jAZALYrLi0FdP2cUg284sbvGQN41GWD9ZoGegiyW8IY6yS3pqtW1cxLrwdm0SxsbczAKs0Gt54J1v82aRuJ0K6v1gvYluCcEehKWLerMZAHh9GjzEYfsA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709737269; c=relaxed/simple;
-	bh=p5Z3Q6RIYQmwH9W/ZIoGnyeT1rKzJM+Geblbu0rvw84=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=qcpoXrPxbB8hhEvpbvDZZHyjzO/Kd6TSpctHPBJz5J+LrE+YSy4X7J5dbpHAQ8AyjHnqcVPryU5QDxXqj9sbVbrZnHUB25MJEg32KUmA/RnLnPH4tzGxD1PAtrcmbXuv8adyBqChjPWhyL3qMKv7CPjSISnzL01Fd5ojiO/575w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Diub9Vs8; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D9FCB24000B;
-	Wed,  6 Mar 2024 15:01:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709737264;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=+foT+JzMpkZ+qs4nuYW7kwD/p65OO/iMpozXg8yy+i0=;
-	b=Diub9Vs89qkCeYZKoSN24ddM/+DA8ul0SaqXYF//ZQRBxJUkRsY3Kl7871YO8yEdagWVST
-	p7u8TCrqmlNdmFC4c2eCRQA0nmeHxG2zYsPOGwziJlr/ZXUZ+ubbArZ1qDbvNzdmJBhB2H
-	QCi1BCN5waghCny5y8+ZXSm+MsOq2cnahQi3FWLjAFrRQPtWRz4ZxiFW8z3548IibJrpAn
-	WApPJLU9Ua5GVTCE8sd3Pzhk4IPynFURL41a2RUdtdTIRy1eh0SWOpBuyC+9XFh2Y6TeLy
-	Df/DPuBQGSek/iHHkHkSFXehm3Z4mmSHrHhYrQ2yoP6rl1oH+tasATU5bHvZ/A==
-Date: Wed, 6 Mar 2024 16:01:01 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
-Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, Frank
- Rowand <frowand.list@gmail.com>, Saravana Kannan <saravanak@google.com>,
- Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, Sonal Santan
- <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
-Subject: Re: [PATCH v4 1/2] driver core: Introduce
- device_link_wait_removal()
-Message-ID: <20240306160101.25b45335@bootlin.com>
-In-Reply-To: <86a0f91675197a00bbd921d6e57d2f3c57796e68.camel@gmail.com>
-References: <20240306085007.169771-1-herve.codina@bootlin.com>
-	<20240306085007.169771-2-herve.codina@bootlin.com>
-	<1fff8742a13c28dd7e1dda47ad2d6fa8e21e421e.camel@gmail.com>
-	<CAJZ5v0gWCo9nDAHkzeD08tTKoE0DE0ocht-Qq4zA7P59y9KeuQ@mail.gmail.com>
-	<ed442b6916016b3a40782dc32538fc517715db6c.camel@gmail.com>
-	<CAJZ5v0iQNEj6e_L1=uBTPaWn7BqV4pnoWxUq7LRPe5iVWsaifw@mail.gmail.com>
-	<ec7705f410bc848e79b8ab878b5fbf7618d9456d.camel@gmail.com>
-	<CAJZ5v0iMUOJmm99H6SgfP9179hBsLdyC+1ixJwBxSP0b18V6XA@mail.gmail.com>
-	<86a0f91675197a00bbd921d6e57d2f3c57796e68.camel@gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1709737504; c=relaxed/simple;
+	bh=43GXM3Q8D5bmb35Ep8tlcjDpUea4lF28uw+na04zbs4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=G0NQQ1Dr79QY6fhVtLqcTEUByxt/u4EZ/xKCG+kl0L+WFrWPDtdu6EiMIZ3opD9zPLjmQf+iEhF9Jabs0OpcesTu1HHUH/+9jxFBAqoghpQwd083yJO5d0TGIGMdHixgyzP5OiuIuMHD33Xwz84l/humotdmoj26pPSPdR61C7w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=GACM9Jef; arc=none smtp.client-ip=209.85.208.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d27fef509eso15026861fa.3;
+        Wed, 06 Mar 2024 07:05:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709737500; x=1710342300; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=43GXM3Q8D5bmb35Ep8tlcjDpUea4lF28uw+na04zbs4=;
+        b=GACM9Jeff0j7GoLB4xVUPVP+86w0aLRcXzamDygWt27SsIl1TzR+xOiEeWxfQeKNmm
+         0jwKEunR8h+uaeVosAhnlve9v1vlBnMxbsg8FeXu1rXlwWrTQmQ7xFfw5C355kqlk5mH
+         ddVQI485gtMYGEDRc7E4fE+0Uv6+X+rEckNk9LfjYnvF8a65d8q6rWHW3U+cFQ2SWUbE
+         BjjQx3o510VzRDiHkYPRJt+h94O6JH3/yQ8SkEtcnLL/FMK8btmYP9Vxcil95ojs+Xfa
+         VDUIk8mfv2YY9ePNVgRjNPbWG4oCbeR6hbRnOleAaY+1gEXfT7Vretr7iOMT9/9HCjEM
+         oVVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709737500; x=1710342300;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=43GXM3Q8D5bmb35Ep8tlcjDpUea4lF28uw+na04zbs4=;
+        b=bJq0m54zMDAMTU+Giw3PxPSjMaPvKAT6pxxxg9IP8Q4JaEPZsev40gbCSkqNFsGP8g
+         Eqtng9Cbfsz86mxXeYooC+8KPFJft2EDCGNSXjn+KUruh5lUpI8Cu0swzeU0rUmkLnp4
+         XVlV/LMjf6kiegYHS0AKXZf8Op8xu0CSODL+di3MPEJwHjwVF/ekr/HT2M4Q8xaDgA0y
+         tg7tqT/QLAw4wkS4pXvUFVBlGl23j6P1QS2xEoEHkslb74ge9NvwgkRXQ4cRAvSdL6Rb
+         qzNHWNck2eW9u0EKKwlioQQQlBvcRyc26V8gwhtzVqxXwS7ll2wAVrF/T1fvZ23o0OHl
+         Ullg==
+X-Forwarded-Encrypted: i=1; AJvYcCUPANWaJgCnPprfA9BM6FUlZ0y9AoR3Q4mlFtyvLKkGt/Iym5O0KpeF/35H8e7mP/onWsPBlTZDAb28Vz/sCSsAA4hLf2cjCcv6FRnlAc2Ticqhequ2LCn2TzyFOeH2a+35QfToWuTewYkFru/edWo2dYkGky9RteVM/5IDFKr/0m/43A==
+X-Gm-Message-State: AOJu0YzN3C74m7h5pwVwjHi0zJrmYfxAKra77fZKTTtjCNQI49B5waNN
+	uaUCbPgOiP0VBcaO8DA/dH1ELRb8mIYBFxLNdZ12utMzpJAjFnxzlkZjkzJ+Spa5G0NofMkqpok
+	7l9N7/oiviYD5D8e4MVD7IARfZvA=
+X-Google-Smtp-Source: AGHT+IEEVeDiNEpHKSHTjKvhESMzneWqkwWwVGe8WoB74soHvGsOkOKPL5fYMktXsrfWue5FRmqbdFaGULj6kEl+Zug=
+X-Received: by 2002:a2e:a99f:0:b0:2d3:87b:7e9e with SMTP id
+ x31-20020a2ea99f000000b002d3087b7e9emr4317395ljq.39.1709737500066; Wed, 06
+ Mar 2024 07:05:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+References: <20240304-pinephone-pll-fixes-v3-0-94ab828f269a@oltmanns.dev> <20240304-pinephone-pll-fixes-v3-5-94ab828f269a@oltmanns.dev>
+In-Reply-To: <20240304-pinephone-pll-fixes-v3-5-94ab828f269a@oltmanns.dev>
+From: Erico Nunes <nunes.erico@gmail.com>
+Date: Wed, 6 Mar 2024 16:04:47 +0100
+Message-ID: <CAK4VdL0zWRg4hzUbuZsnabU53x3DrOiemH0tGnpbK9ECQvM1qg@mail.gmail.com>
+Subject: Re: [PATCH v3 5/5] arm64: dts: allwinner: a64: Run GPU at 432 MHz
+To: Frank Oltmanns <frank@oltmanns.dev>
+Cc: Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, 
+	Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+	Samuel Holland <samuel@sholland.org>, =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>, 
+	Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>, Neil Armstrong <neil.armstrong@linaro.org>, 
+	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+	Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org, 
+	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Nuno,
+On Mon, Mar 4, 2024 at 6:01=E2=80=AFPM Frank Oltmanns <frank@oltmanns.dev> =
+wrote:
+>
+> The Allwinner A64's GPU has currently three operating points. However,
+> the BSP runs the GPU fixed at 432 MHz. In addition, at least one of the
+> devices using that SoC - the pinephone - shows unstabilities (see link)
+> that can be circumvented by running the GPU at a fixed rate.
+>
+> Therefore, remove the other two operating points from the GPU OPP table,
+> so that the GPU runs at a fixed rate of 432 MHz.
 
-On Wed, 06 Mar 2024 15:50:44 +0100
-Nuno Sá <noname.nuno@gmail.com> wrote:
+In addition to all of this, the A64 user manual does say explicitly
+that "dynamic frequency scaling is not supported" on PLL_GPU. So I
+think this is really needed for a reliable GPU experience on A64.
 
-...
-> > > > > 
-> > > > > That makes sense but then the only thing I still don't fully get is why
-> > > > > we
-> > > > > have
-> > > > > a separate devlink_class_init() initcall for registering the devlink
-> > > > > class
-> > > > > (which can also fail)...  
-> > > > 
-> > > > Well, I haven't added it. :-)
-> > > >   
-> > > > > What I take from the above is that we should fail the
-> > > > > driver model if one of it's fundamental components fails so I would say
-> > > > > we
-> > > > > should merge devlink_class_init() with device_init() otherwise it's a
-> > > > > bit
-> > > > > confusing (at least to me) and gives the idea that it's ok for the
-> > > > > driver
-> > > > > model
-> > > > > to exist without the links (unless I'm missing some other reason for the
-> > > > > devlink
-> > > > > init function).  
-> > > > 
-> > > > +1
-> > > > 
-> > > > Feel free to send a patch along these lines, chances are that it will
-> > > > be popular. ;-)  
-> > > 
-> > > I was actually thinking about that but I think I encountered the reason why
-> > > we
-> > > have it like this... devices_init() is called from driver_init() and there
-> > > we
-> > > have:
-> > > 
-> > > ...
-> > > 
-> > > devices_init();
-> > > buses_init();
-> > > classes_init();
-> > > 
-> > > ...
-> > > 
-> > > So classes are initialized after devices which means we can't really do
-> > > class_register(&devlink_class) from devices_init(). Unless, of course, we
-> > > re-
-> > > order things in driver_init() but that would be a questionable change at the
-> > > very least.
-> > > 
-> > > So, while I agree with what you've said, I'm still not sure if mixing
-> > > devlink
-> > > stuff between devices_init() and devlink_class_init() is the best thing to
-> > > do
-> > > given that we already have the case where devlink_class_init() can fail
-> > > while
-> > > the driver model is up.  
-> > 
-> > So why don't you make devlink_class_init() do a BUG() on failure
-> > instead of returning an error?  IMO crashing early is better than
-> > crashing later or otherwise failing in a subtle way due to a missed
-> > dependency.  
-> 
-> Well, I do agree with that... Maybe that's something that Herve can sneak in
-> this patch? Otherwise, I can later (after this one is applied) send a patch for
-> it.
+Acked-by: Erico Nunes <nunes.erico@gmail.com>
 
-Well, I don't thing that this have to be part of this current series.
-It is an other topic and should be handled out of this current series.
+Thanks
 
-Hervé
+Erico
 
