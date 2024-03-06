@@ -1,75 +1,75 @@
-Return-Path: <devicetree+bounces-48673-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48674-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C06B873076
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 09:17:34 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C618B87307B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 09:17:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DE207283B75
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:17:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 82558286960
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:17:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B56795DF00;
-	Wed,  6 Mar 2024 08:16:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0E795DF35;
+	Wed,  6 Mar 2024 08:16:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jrs5i+4R"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="V8Xw7+SB"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EB6755CDF1
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 08:16:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D552B5D8FF
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 08:16:54 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709713015; cv=none; b=L7KDyExwhZZBYQbSZXaw+FAO/fa1ZB4ivUtRrUBVRoKNtfZEVzOYfJKiIWv+k/kytICz0HppqbquHpw5ucATB4sm1wSXMEE3uSsNTec78CMMrYRy2TaLgvp1p2+TKc6oy96Ea/CZON75OmiG50iyrwfRh4mtwj+v8Exf5b0vIS8=
+	t=1709713017; cv=none; b=d1CtD/ljQ+Wej1jnO4R0dTaZSoEw14NdHG/Qvyu/fsYz2MHmgBxtx2Th4RGf05QLliM+KpileYJTHxaOTCWfiZI6zHaE6vzvRJP/zUGKo74/i3z6uJGsgkpOXhnY8wEVMqQKyhaE9DiDY+qg9lq/6srmnPIQ3omB2KT7dND/y14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709713015; c=relaxed/simple;
-	bh=9uiYDBpJ8s46sR33Y+BMEdKtwAlaQcnmoofd3iM8ghU=;
+	s=arc-20240116; t=1709713017; c=relaxed/simple;
+	bh=IO0G01fjeFoKQavHxljn+OxdA/fMRHWzmgJlyEYmCss=;
 	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=uSJpwznDc7rxZ7P/ass8u8nfOzg1yw6KI3gFln5wCPeGxIJr6CCHNhEiJvHSiWpdTx6/avbAgg0uYs0xv5d6xE5ERmCOOWNV8vR1PmNjWEPCQ8vGGoJ2b8Glf7KV/KwXh425damjJrCprUdUoEOJbwxaj7VepUDDNgia+TZTbqM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Jrs5i+4R; arc=none smtp.client-ip=209.85.167.44
+	 In-Reply-To:To:Cc; b=M3u0TP+52CsEcjRJbANdQ5Vy9Y8RHZY4oLF4RIZc7Di8ksq4YC5ajS2P8/mPlZNXGVXGR+h2S6N6dzdYccOx4Szo16flBuUgIrMgBnjKiihXKTmxL+MykT7Xn3aGWRjb1Syt/hXbwzREga0Xwo38T9CjWhfWXOtyDa1muFik0QM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=V8Xw7+SB; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5135540c40dso1774840e87.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 00:16:53 -0800 (PST)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5134d7e16a8so768812e87.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 00:16:54 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709713012; x=1710317812; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709713013; x=1710317813; darn=vger.kernel.org;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=3YkceKDYceYDeQ4XBB8A4mSK+rDJiaduuPabI+Vyi2Q=;
-        b=Jrs5i+4RcW+q4TcOX6HGJyawHLe4Ka0HJX4B09o9y4xYuBWCld9AA1csg28n/kDE34
-         TVsYDbN82C8bdQuRYszI3E+KcF7FLo5kGP8zlq0nkSWAIOufZiCm5c8sWVl0u7tZhvdF
-         vReAZKM0ozrNW6ty6bn2R5GTWUXtpK80tGFxqlbTNax1UAoYPRXiIIXptjY6p2ORrDht
-         W/xCsC4sFgy/IF/js2G8LoMR2Jctv9n0m85aE9s7m9nrrdaMrcmoaO2tHyQ+fECMLUfI
-         uuIQ5zUMG6mXJ+ks5/kMmpTaVmkRCGPVYE3OVSE5gM1r3fYPlJtte9IZyv6r4YGKqu06
-         3S9A==
+        bh=hUMpyp+aBvT4jutLW9xk5zk3hii55n3wtwwHJLBpTrY=;
+        b=V8Xw7+SB23pJyKpCdTZAeRVql212f62nSwBHuLQh3ydXJY7VxfHp2CLmcIBfSjJbrG
+         bzSKA6PouLSg9mYQ1ccNbWABwOlYnvjLeVB2QkStlICts6r61j/ClorgUS764TrFVsN+
+         dgpibjqM47ORFx7AU7auk575kgaWyw79KKoqxoY6+1jB1RmTpgk306ko8ewiQCAnvmO+
+         bt0SMkEhwUbX6zZl2StvyJg+WnOfqGyc5quxq9nV4STDIRmWGy+JCf5kw2sODaOod0nf
+         My9Lf3/4Mh3Rl2nxY3W7WOmqKz5nyp6bbnY8liuNKJ6QjIsJVreaigiT2qyq+IWi8Ey1
+         6trg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709713012; x=1710317812;
+        d=1e100.net; s=20230601; t=1709713013; x=1710317813;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=3YkceKDYceYDeQ4XBB8A4mSK+rDJiaduuPabI+Vyi2Q=;
-        b=I5qASqLvj8fJdsnCO0zuIzuAYNkp8Jc2xH4wXhufHoAX9z/GebHPcTcc/6GFy/sU5z
-         z5D/nxyDK17WSQq8ZzTwGEzw577f1YzCd6xj/jKUpFtYMsrqYcBKcIDA4EaoHTlaFAIQ
-         tkIGGUM/U6DmJJfJ3O268qKqD2shMeCtJ1FMVIbVz8co3n7WVnzo6PRKkALqN0RlyfGW
-         mnoAi52dhzOMOBAr6WmFxuo8+MjGwHQhlOD1z6kFkQFvZx+fzw8jc9TFMJ+86R/BL17r
-         Llo35uNKSjoUD1RG9xHtcdO7okCOBlE0QDdGNio0+4bSUPTlgS2Rc0UOWfa9vChVTeTw
-         qryA==
-X-Forwarded-Encrypted: i=1; AJvYcCUOswC5768UL9lgfT7CXbQREYjxtgVSPOyciQZ11oNAxVvKmM+wTZKGv/xmuiRMrIuYTMbBt10pKG3XGPJDxG7/h95l4x6RAXZvRw==
-X-Gm-Message-State: AOJu0Yy2f7meeVgMG+swhehECd123PJaCpw4YSmhbeDhvL8pomvvNQKG
-	CDd4NBt6hV6d1BIZFnM2Mhpa2chNxU6Fwk5A8O+cgPdgJFnYERVH5Xb2l2Ne/sQ=
-X-Google-Smtp-Source: AGHT+IF+ClwuDShqfVljL8ffyjGyZsSrmz6wYNutDFQ/n+Qm8+lFOu5G4vbxasQpzp/6IC/gQvAotA==
-X-Received: by 2002:a05:6512:48b:b0:513:2047:c9b4 with SMTP id v11-20020a056512048b00b005132047c9b4mr2641290lfq.39.1709713012085;
-        Wed, 06 Mar 2024 00:16:52 -0800 (PST)
+        bh=hUMpyp+aBvT4jutLW9xk5zk3hii55n3wtwwHJLBpTrY=;
+        b=IbHhyo9h/0IXzvntIO0TJ8iav+Dia1AGCSbMturt4jXmcsyV0SwhyFUk/U5DLEWoaV
+         ATIVT/GDG6Mtzxw9Z1olfMm585/HZWgzPf1J/fglYNDg5V5ExhieVUfppbYVD2D1WemV
+         suW+DpwMAoPx/PS83aNffrmPxML2Bc9u6s8CvicnhHyaShIV9Eik1yExlL9H5HYrE28w
+         nWzQCT+KxbeC/9r9lLcZ4Chy0pGG6c4TqpW5AXvicqzsHHAZtqyYG2oTdyvPtOhVd3QD
+         1XedsjnlIlNIHBGj1AuCmED7b7FjFuRDuSHp38OENqwXcBFieaX8UoEjSiNuswbCHQ21
+         0S1w==
+X-Forwarded-Encrypted: i=1; AJvYcCV/AGjx0qttC/sxy44WF6mWFeLCd0ebr1HXR2sL0skWYgHDx9Khv+tSYnVFMOjYO8cRE89zgMVrKT+AwZgD+4zmpGLBRYqgG9LP8g==
+X-Gm-Message-State: AOJu0YyeJXa4QgQqFqOKAl7+6J+pXOUsyj99ql6RZHUumuC4C87ZjkHk
+	/xtZ0xYpkFaLtbf0VR6WUqd53yNqrHdIH+66eauD4wcn3n4reD56H4CaigdKgd8=
+X-Google-Smtp-Source: AGHT+IHbn0SM7E/lVjSCZHRZwzRi0PDead5ffXoCFKJOGbm2VuIzaa+JgNKuc9Hp6zth2I1J6rcUHg==
+X-Received: by 2002:ac2:5e64:0:b0:513:4b90:aeaa with SMTP id a4-20020ac25e64000000b005134b90aeaamr2501286lfr.51.1709713013133;
+        Wed, 06 Mar 2024 00:16:53 -0800 (PST)
 Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id s9-20020ac24649000000b00512dc23bedcsm2162366lfo.99.2024.03.06.00.16.51
+        by smtp.gmail.com with ESMTPSA id s9-20020ac24649000000b00512dc23bedcsm2162366lfo.99.2024.03.06.00.16.52
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Mar 2024 00:16:51 -0800 (PST)
+        Wed, 06 Mar 2024 00:16:52 -0800 (PST)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 06 Mar 2024 10:16:47 +0200
-Subject: [PATCH RFC v2 3/4] arm64: dts: qcom: qrb2210-rb1: add
+Date: Wed, 06 Mar 2024 10:16:48 +0200
+Subject: [PATCH RFC v2 4/4] arm64: dts: qcom: qrb4210-rb1: add
  firmware-name qualifier to WiFi node
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -79,7 +79,7 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240306-wcn3990-firmware-path-v2-3-f89e98e71a57@linaro.org>
+Message-Id: <20240306-wcn3990-firmware-path-v2-4-f89e98e71a57@linaro.org>
 References: <20240306-wcn3990-firmware-path-v2-0-f89e98e71a57@linaro.org>
 In-Reply-To: <20240306-wcn3990-firmware-path-v2-0-f89e98e71a57@linaro.org>
 To: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>, 
@@ -93,16 +93,16 @@ Cc: ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
  netdev@vger.kernel.org, devicetree@vger.kernel.org, 
  linux-arm-msm@vger.kernel.org
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=782;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=788;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=9uiYDBpJ8s46sR33Y+BMEdKtwAlaQcnmoofd3iM8ghU=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBl6CZv+iVyo1wfbrypxaHKx3SnslwDEkjXP9nVJ
- FnW1xP38nWJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZegmbwAKCRCLPIo+Aiko
- 1fZdB/9HYHeIyWpnh+TKnqzHb6FoB5f0awNGnVx6mfHM9PJzzMCvJL7aCczg/cRSASw8TIbpjWi
- BiBX9XdC+nMAuMbPm/xbHXq3PF/wFp+ZLR0OyaQGUG914jPkzI2rfdlSb6y+aG+CqjgqqjnUq9/
- gdcEiwmViO18zRvxlC5tbu2wniHhJmWDHgTdKMhFg6q1EHk50P+jBHboDUcJKgH0lrIz1Kolb/V
- BDbUMIShGQMt2tSyQXqKWZ+/aQ2fDTFzhGIqPUp8stbBrYG1gZH5HF45enNZoSMTOsakdsjI/Dr
- iPQ+PxfGxurrtSPUEJ3j3TE+/BRg+5oNwHEL68LHAlRyDAS8
+ bh=IO0G01fjeFoKQavHxljn+OxdA/fMRHWzmgJlyEYmCss=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBl6CZvOTjBZtoSgh4NQNDNl/WX7IZ1W1x6/faq7
+ hbuBSPc+SqJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZegmbwAKCRCLPIo+Aiko
+ 1Ym/B/9ldUzS41jpPNUz625gZyscZqqwqmBt0uegSJU0zgfAndVYwH6MtJnzQoIibGDzAZm2fIH
+ tpv7wOX+cp/LpxjYrpgSGgzENGZGSpZCqt3mBNpyOP/ViRa6Sr/LtaiyFIw+0HuXRsTSr8BdtPE
+ ZpM613MAZjUpi23Cy+nVIEzjIo7A5i9euFCcr2mYOte34axrup9IpqSR/3L4RRRNhbedY+jQIKA
+ KSjMbF1IWUXXEvrxHCp513J/jI6oUqS+UrPM03AsvSCS0NrteHdt/RslRVRHZtscgW6sbrpWo4n
+ W+ETw/zQGAvUBdCg3FrWC/RSBr+3wHuXUCJRrf7mQMsYG3GT
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
@@ -112,21 +112,21 @@ board-specific lookup directory.
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/qrb2210-rb1.dts | 1 +
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-index 64b2ab286279..338a12f98bfe 100644
---- a/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb2210-rb1.dts
-@@ -540,6 +540,7 @@ &wifi {
- 	vdd-1.3-rfa-supply = <&pm4125_l10>;
- 	vdd-3.3-ch0-supply = <&pm4125_l22>;
- 	qcom,ath10k-calibration-variant = "Thundercomm_RB1";
-+	firmware-name = "qcm2290";
+diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+index 7c19f874fa71..cf1d8d6f1546 100644
+--- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
++++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
+@@ -632,6 +632,7 @@ &wifi {
+ 	vdd-1.3-rfa-supply = <&vreg_l17a_1p3>;
+ 	vdd-3.3-ch0-supply = <&vreg_l23a_3p3>;
+ 	qcom,ath10k-calibration-variant = "Thundercomm_RB2";
++	firmware-name = "qrb4210";
+ 
  	status = "okay";
  };
- 
 
 -- 
 2.39.2
