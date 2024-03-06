@@ -1,167 +1,156 @@
-Return-Path: <devicetree+bounces-48646-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48647-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58305872F82
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:22:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 245FE872F89
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:24:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C49AA1F25827
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:22:58 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 910181F2239F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:24:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12CA35C60F;
-	Wed,  6 Mar 2024 07:22:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="UfBOrtcM"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43CA5C5F9;
+	Wed,  6 Mar 2024 07:23:57 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B0345BAEA
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 07:22:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9824C5C5EB
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 07:23:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709709773; cv=none; b=J7VjfKKLVJuKHz1h/Nezq2YawSAHX4m6ZCP93e2glUyZ1uSGf28KUWrssfzF59CNFMhVt8ScIpDoE+8nW0Hx+fGls/Sl2ZQQIz6Zvbo8R6U5dOQJPpcT/pjhHs2wp7gxb52U9Y5f0TD2ePaMyhAWrQJ1+ZbyG+KCjB30ZbQJNt8=
+	t=1709709837; cv=none; b=KQk/IlNv2Cz59l3+lW9pAz5rW0pGM2cmpn8ICDoQjNQkxcJ3Wu66HaPqWN48nPTWp2PWyHd0DM5UCT4i8N6ze/Ye/7xt5rgmOCfh2S+J4LVqMnJWZekzgFhq/nNjrfdhibulFvScqkUP+SpOEanTu6HGUDmhx9873aarck1LoTU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709709773; c=relaxed/simple;
-	bh=BNawQSYenadVQ3wJw5cVJLNmDPC3u6fmfMYQGZd7weg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VMgaq7sNvdVLMiLXozaSMRbwtz0LFYzP7FqxcFa4TDNp+LdT1lF6fRtRQYsan8jTeWoaDWKXN7i/RwG7PUoAYAOJM2DYs8CX4gsQ7UuTbtkvtfnZNA5xOJIfF2x8XyvCKevZYU32QeWqgvzJPuL1ti/3+lbqEN8KpPTySCYD72Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=UfBOrtcM; arc=none smtp.client-ip=209.85.208.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-55a5e7fa471so9281007a12.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 23:22:50 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709709769; x=1710314569; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lA08Rjqfko7iEZFn5QeJ0rJtCYEJAgfrdf2O814ABAg=;
-        b=UfBOrtcMwYIe+WQ+4hzp6dhHjVsohABP/R/FIxwq+WC7TgMcnZzP0dNSleX0RyB6Uc
-         Cj2nDqWs6fu9vmsw2SIi9h3Yfxwe56LfZEx5iSwqrQoS+/zPofSQPFI700fp5UYqcp+j
-         QxwRQOETxtbK+1aYpsrdEpvfHssZGxV2mr7xN4gAMQ9O46KCxbxc/iI8/wiaq9AnLybe
-         nv+G7NP+aCFbYj9EMPjGJzoi00tIyU3Q68LesEVO2418sbb19nLzR8eKQxmvuTun2Ggj
-         1Ddr5GLH5+Bb9Xot9IvwHEbcAr6bxtbDqp6vDtX+umXfDNmBq3twHz5MKg3JLR8dac0j
-         2y2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709709769; x=1710314569;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lA08Rjqfko7iEZFn5QeJ0rJtCYEJAgfrdf2O814ABAg=;
-        b=WErqmJ+hNV2R/W3rncZjK4jpLG/FEkIQBuZvzdTPG4LogK3c/31099lN550u6ai7HI
-         NvYVrbG0a8W5Yi0qp2kVCfmWGcRsB9mHb1A5mL9jod8skUIlq/kdQBw1CWc854mgjsam
-         xwWAQo/SXcS0uw1p/sRO+Etq/L7HDA29sivmziE0QYt0TfdkS4yggcZ7ofiAjUP8ubxX
-         DJSaciYIpztMC2sRYWHQBpVw7p3aLd24aww40nH4KVmsFK8tETYNuq6zDUSYu5NctWdL
-         u6la8eowldTZ0YIZjnbkBr4koJQQvTpsjBoatlDInZcFE0wKQVbsjtI+4+V5BqeRqjfx
-         9E9A==
-X-Forwarded-Encrypted: i=1; AJvYcCUjJB+Y3x7mZAQPNlp32l7/VzFEChgJuXLRrm63bwiVowPkSH3sBkrmRudluV0z9eAY+9zUM3NpDim+pDvhwabVJf4dKJ9uHVWs/A==
-X-Gm-Message-State: AOJu0YyhW1iazvXTKduM1t2kJRZMUkMWCN+XheELVNg3OwgkcGbyaJ1i
-	dTk62taj73je3d1VxseBq365Ip1HE36hHDEWb7h+8slNJbQ800wurzghftd1CT4=
-X-Google-Smtp-Source: AGHT+IEq4s7yF3TfT1R4kl+SiJgkepnTcKTJTHZndXGyBx2qknsZbGeHN+9yoVsFBJndNNXuP0+GOQ==
-X-Received: by 2002:a50:cb88:0:b0:566:1fbd:22bb with SMTP id k8-20020a50cb88000000b005661fbd22bbmr9902602edi.9.1709709769523;
-        Tue, 05 Mar 2024 23:22:49 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id h7-20020aa7de07000000b005664afd1185sm6611791edv.17.2024.03.05.23.22.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Mar 2024 23:22:49 -0800 (PST)
-Message-ID: <87e0aa08-9176-495d-b799-c2ddb53c8a23@linaro.org>
-Date: Wed, 6 Mar 2024 08:22:47 +0100
+	s=arc-20240116; t=1709709837; c=relaxed/simple;
+	bh=+B0TJc/kRe/wrIincWxLSZ37rVccCTI1iUTwH/ns59w=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=bykdqwv9AwEyJtE2dmpYmNnQj9f8Ed7tmg0AuWfh50BbAVpPq/xloLWEoNkJlP/5TPCS9kajdlCJfWn8Mh5+aGNLrVDAVIMvMFjegV6xKTj0nvc3013nda+LZ6noHOUwbhToWn3b4CzJNdbJKx2vSG/l6rOjC8PkYgI3mEv5wz4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <sha@pengutronix.de>)
+	id 1rhlcM-0006zE-L4; Wed, 06 Mar 2024 08:23:10 +0100
+Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
+	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <sha@pengutronix.de>)
+	id 1rhlcC-004hXC-0n; Wed, 06 Mar 2024 08:23:00 +0100
+Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
+	(envelope-from <sha@pengutronix.de>)
+	id 1rhlcB-004oTB-2t;
+	Wed, 06 Mar 2024 08:22:59 +0100
+Date: Wed, 6 Mar 2024 08:22:59 +0100
+From: Sascha Hauer <s.hauer@pengutronix.de>
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
+	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
+	Thomas =?iso-8859-15?Q?Wei=DFschuh?= <linux@weissschuh.net>,
+	Christian Brauner <brauner@kernel.org>,
+	Li Lingfeng <lilingfeng3@huawei.com>,
+	Damien Le Moal <dlemoal@kernel.org>, Min Li <min15.li@samsung.com>,
+	Adrian Hunter <adrian.hunter@intel.com>,
+	Hannes Reinecke <hare@suse.de>,
+	Christian Loehle <CLoehle@hyperstone.com>,
+	Avri Altman <avri.altman@wdc.com>, Bean Huo <beanhuo@micron.com>,
+	Yeqi Fu <asuk4.q@gmail.com>,
+	Victor Shih <victor.shih@genesyslogic.com.tw>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	"Ricardo B. Marliere" <ricardo@marliere.net>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org,
+	Diping Zhang <diping.zhang@gl-inet.com>,
+	Jianhui Zhao <zhaojh329@gmail.com>,
+	Jieying Zeng <jieying.zeng@gl-inet.com>,
+	Chad Monroe <chad.monroe@adtran.com>,
+	Adam Fox <adam.fox@adtran.com>, John Crispin <john@phrozen.org>
+Subject: Re: [RFC PATCH v2 1/8] dt-bindings: block: add basic bindings for
+ block devices
+Message-ID: <ZegZ0zJ1OT7ikrE8@pengutronix.de>
+References: <cover.1709667858.git.daniel@makrotopia.org>
+ <f70bb480aef6f55228a25ce20ff0e88e670e1b70.1709667858.git.daniel@makrotopia.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/3] cpufreq: qcom-nvmem: add support for IPQ5321
-Content-Language: en-US
-To: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>,
- Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
- "Rafael J. Wysocki" <rafael@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-pm@vger.kernel.org
-References: <20240228-ipq5321-sku-support-v1-0-14e4d4715f4b@quicinc.com>
- <20240228-ipq5321-sku-support-v1-3-14e4d4715f4b@quicinc.com>
- <20240304071222.cx3s37mphddk23bv@vireshk-i7>
- <20240305043503.tgy5ahl243or7lm5@vireshk-i7>
- <c82e4053-4cef-4010-a734-4dc537574201@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <c82e4053-4cef-4010-a734-4dc537574201@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f70bb480aef6f55228a25ce20ff0e88e670e1b70.1709667858.git.daniel@makrotopia.org>
+X-Sent-From: Pengutronix Hildesheim
+X-URL: http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 
-On 06/03/2024 05:40, Kathiravan Thirumoorthy wrote:
->>>
->>> Applied. Thanks.
->>
->> Dropped since the previous commit it required too. Can we get the
->> necessary acks for me to pick those ?
->>
-> 
-> Sorry for not mentioning the dependencies.
-> 
-> patch 1/3 and 2/3 are already has the R-b and A-b tags. But typically 
+Hi Daniel,
 
-From whom? Not from Qualcomm SoC maintainers.
+On Tue, Mar 05, 2024 at 08:23:20PM +0000, Daniel Golle wrote:
+> diff --git a/Documentation/devicetree/bindings/block/partition.yaml b/Documentation/devicetree/bindings/block/partition.yaml
+> new file mode 100644
+> index 0000000000000..df561dd33cbc9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/block/partition.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/block/partition.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Partition on a block device
+> +
+> +description: |
+> +  This binding describes a partition on a block storage device.
+> +  Partitions may be matched by a combination of partition number, name,
+> +  and UUID.
+> +
+> +maintainers:
+> +  - Daniel Golle <daniel@makrotopia.org>
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: '^block-partition-.+$'
+> +
+> +  partnum:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Matches partition by number if present.
+> +
+> +  partname:
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    description:
+> +      Matches partition by PARTNAME if present.
 
-> those patches will go via qcom tree. Do you want to pick it via your 
-> tree? Sorry, I'm not sure on this...
+In the mtd world we originally had the partition nodes directly under
+the hardware device node as well. That was changed to put a
+partitions subnode between the hardware device node and the partitions.
 
-Your cover letter or patch changelog should clearly document
-dependencies, so maintainers could understand what to do with this patch.
+From fe2585e9c29a ("doc: dt: mtd: support partitions in a special
+'partitions' subnode"):
 
-Best regards,
-Krzysztof
+    To avoid conflict with other drivers using subnodes of the mtd device
+    create only one ofpart-specific node rather than any number of
+    arbitrary partition subnodes.
 
+Does it make sense to do the same for block devices?
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
