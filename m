@@ -1,161 +1,156 @@
-Return-Path: <devicetree+bounces-48874-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48875-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D01187400F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 20:01:20 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0C87874014
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 20:05:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 88B671F23397
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:01:19 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 193371C224C0
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:05:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29FA013E7DB;
-	Wed,  6 Mar 2024 19:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8694E13E7E1;
+	Wed,  6 Mar 2024 19:05:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="o6MCOKtM"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nU3fX5Tu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E957513DBB7;
-	Wed,  6 Mar 2024 19:01:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BF6CC13E7C4
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 19:05:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709751673; cv=none; b=hrXPX/8WzmXZ0NM/61A4IE/BR6T8fwbx5miF8YBCEfToDge87SBQxeO9tzNnxs/OD1eXIgLlHsIlFyOkvFy+tOyQFrRrSO+CEMnsBsOaJKdul6LNsSNllYD0dANK1047t8edoVMWUb8sHGVrkQCoYNa5C7ZH/kst98sMxnkAnCA=
+	t=1709751915; cv=none; b=hkwtnWi6VF4K6WrnRey9wsHvyh6oaBrzOSZeO/G0d9T5QPE5rVB6f7cIWRqmGCGPE9SrwTR8mJ/0q5T1tIbJKy91fPfJvxlpjjU2/5ZdL6WkQVC+Dpkvqp94Nvbh/ixP74VjdXbQ6Rw+FTcYC6wDfxRD2MddDBg5ey/64brtF58=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709751673; c=relaxed/simple;
-	bh=3odgSEutskxjlCVQ+GErJHuBC9au4O5jwj/6YLzNhiI=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HhA3tCB7LS31R2UxePs0L8jBuhkYDEUP9tdu3v2LU2kfobQlNKgv8XKtc7GWlScWaCNLHIJOymN/jziNtbBAfIa2CzTCS8qxLFeerToYlEj/b7C5T0T5a3yYqCysfP/iGglC19pHn1k8F2s+t00GHpiJx/ub7vGX7lHnKisc8FM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=o6MCOKtM; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59B85C433F1;
-	Wed,  6 Mar 2024 19:01:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709751672;
-	bh=3odgSEutskxjlCVQ+GErJHuBC9au4O5jwj/6YLzNhiI=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=o6MCOKtMM0vj01yqO81QJq0phuhXPFCPAFMezBGz1AsFH7U5FAwbu1gzQTijn15XP
-	 BAO50kTcUeHjV0F0XgbMjf1kvGULg1h0QYVYXK67LbLMEKHoenO0R8VzZGFWWbcTMR
-	 yE/R+h5ruuUQNG6Y3WqITx0OZGNPL3Y5MFosHDUWBPruBeawpfXELkMS6HhOauir0P
-	 RXqh44tDiD9iABeRYXTof5ZkK+WfeGkIMinICDcTqTG3auv98IXUY5GPWWhkkDISaA
-	 nWHkKWMV+ViZ8JW3GCrbcbCgBAo5EO8f9RCpFmjeZ/WA1ulXQXVeIRUDbzIBU6Lx9M
-	 4bVGYVUMfKgAg==
-Date: Wed, 6 Mar 2024 19:01:05 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Andrew Lunn <andrew@lunn.ch>
-Cc: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>,
-	davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
-	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
-	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v3 12/12] dt-bindings: net: add Microchip's
- LAN865X 10BASE-T1S MACPHY
-Message-ID: <20240306-ripeness-dimple-e360a031ccde@spud>
-References: <20240306085017.21731-1-Parthiban.Veerasooran@microchip.com>
- <20240306085017.21731-13-Parthiban.Veerasooran@microchip.com>
- <20240306-spree-islamist-957acf0ee368@spud>
- <4c5968a3-c043-45fc-8fff-2a9eaa6de341@lunn.ch>
+	s=arc-20240116; t=1709751915; c=relaxed/simple;
+	bh=mHLju7qL93F2u968OifIn91fsuAol3MDudKqWQKxROc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XTjAzv+KWECcZizXeNT5JruRrNHHHnXcfLJCAoz8W0Sl8ttVAl+eIzyIPOsOHB2VdUaC04Yk1UaJm4Rv67R49oeq/VC17XIcC4iXFJtIJwm2TwkHxIgbw/JLL1KUiVVIPG4tayGJUxHVIPn+3aRexkOX8abIL08fG60QdHlpb1I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nU3fX5Tu; arc=none smtp.client-ip=209.85.219.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-dcbf82cdf05so7434666276.2
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 11:05:13 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709751913; x=1710356713; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=q9Dz5IweVp7u5AkiGYK4q5oZtWjMI5V6f9hbtIZbpnw=;
+        b=nU3fX5TuZkYqo628+U2CZ7LTDIXLy8rHpM1hIbJ+Jcn3KYsrFNo+jk2n/Jr63nwUvL
+         3FfZ/ftece8LHjrawKn8SZt/36xHc1rptCpEsbH58BblT9do3JDklWXovvwip4c0nklf
+         F7X71p8Bqgk9vaS/NH7oCd69kaqt7ht/YT6neD4HdGdvNjB6Rl952dUSyCTTZC0pkpIb
+         PRghW0coRbR3+ttZoyX9ORYbsySBJYAvI31g64SkFRksbZKfKjp9mgn6Qu3Bef3W6Lvj
+         Dyt+HnoPDSFA3qGvWZxFwn4CzmOA6csHwEbyoethy+swhSszmRT1lVL+lMVn6JNH72Et
+         MGPQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709751913; x=1710356713;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=q9Dz5IweVp7u5AkiGYK4q5oZtWjMI5V6f9hbtIZbpnw=;
+        b=MSeuqYyM4uj1U67+3SIqwDJZpH5ASkoLQYan2pMqxPpC6gAS95UUVDvV0rFZUf/c4V
+         OEnCqGu8u7EU3KlYNcQucYGpTvltV3kqPxfP1XGORtFlvqmwuHsd2B7AyN72XWqnY3b4
+         r5bwE2c+FyRZbpM+wRiXanqcDBU1QXY5+AVKS/hOwn+E3i2tho4A74Z9NQcfJj2Hc6T4
+         QCBN2mF/TvPHHfr0xw/c/GuPAz7620GuEQ693cI0QI9tCxDbki+h/kOCw2I5FbCS8zd/
+         Pdsbxz2smAjoSm/CAOmxtaPj7w+lh7lefLucw2QSeiIRptBdTT3DC+WBKxuofZ/l97ux
+         Qb5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWGEPTL7fD3tXqCeIUgRJuwmUj1vnnuwFlrfjUU9aS362Pe1g2iubHokg+j9dzNlDwEuobygeoiTJn7FDbAB5vGFyAytqD/yCGyOg==
+X-Gm-Message-State: AOJu0YzDmSPb3fhCFeXaus+QDYem8MMmiEvGfRT+akjVW9Q+apraeIzt
+	H0QoIeq8TGGXmgpdMmVDwHDWafPmeyNs5HhOgDVF/0w14IlbExnp/cUbvIKnuq/7Uu2TgUlHObz
+	V5A2KGlJTFXxRS+uTRslRObCaDvFxOOXR+jZFQg==
+X-Google-Smtp-Source: AGHT+IFC+4YdX9W/XnW+sn+ulzfAedByNbzUijQDRlwBizUg8UJ0PuL6UYp9q1eWBsfhKNGKnuSCWJkwn3BXptbDTO4=
+X-Received: by 2002:a25:df11:0:b0:dcc:245b:690e with SMTP id
+ w17-20020a25df11000000b00dcc245b690emr10217316ybg.40.1709751912731; Wed, 06
+ Mar 2024 11:05:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="mIS2Ako9u5OaxKJQ"
-Content-Disposition: inline
-In-Reply-To: <4c5968a3-c043-45fc-8fff-2a9eaa6de341@lunn.ch>
+References: <1709657858-8563-1-git-send-email-quic_sriramd@quicinc.com>
+ <1709657858-8563-3-git-send-email-quic_sriramd@quicinc.com>
+ <CAA8EJpoi0T-riqxbTzVymHwZmBHg5xO_Rwqy0ck-7cvGy291_A@mail.gmail.com> <935cdd47-ce71-4095-8cb5-e0f03fb30959@quicinc.com>
+In-Reply-To: <935cdd47-ce71-4095-8cb5-e0f03fb30959@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 6 Mar 2024 21:05:01 +0200
+Message-ID: <CAA8EJpp4pYCx5hVwrmb0gs2PaRnxUapHqAhksDocEugBsOECbQ@mail.gmail.com>
+Subject: Re: [RFC 2/3] USB: dwc3: qcom: Add support for firmware managed resources
+To: Sriram Dash <quic_sriramd@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org, 
+	kishon@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, gregkh@linuxfoundation.org, quic_wcheng@quicinc.com, 
+	Thinh.Nguyen@synopsys.com, p.zabel@pengutronix.de, 
+	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-usb@vger.kernel.org, quic_psodagud@quicinc.com, quic_nkela@quicinc.com, 
+	manivannan.sadhasivam@linaro.org, ulf.hansson@linaro.org, 
+	sudeep.holla@arm.com, quic_shazhuss@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
 
+On Wed, 6 Mar 2024 at 18:53, Sriram Dash <quic_sriramd@quicinc.com> wrote:
+>
+> On 3/6/2024 2:15 PM, Dmitry Baryshkov wrote:
+> > On Tue, 5 Mar 2024 at 18:59, Sriram Dash <quic_sriramd@quicinc.com> wrote:
+> >>
+> >> Some target systems allow multiple resources to be managed by firmware.
+> >> On these targets, tasks related to clocks, regulators, resets, and
+> >> interconnects can be delegated to the firmware, while the remaining
+> >> responsibilities are handled by Linux.
+> >>
+> >> The driver is responsible for managing multiple power domains and
+> >> linking them to consumers as needed. Incase there is only single
+> >> power domain, it is considered to be a standard GDSC hooked on to
+> >> the qcom dt node which is read and assigned to device structure
+> >> (by genpd framework) before the driver probe even begins.
+> >>
+> >> This differentiation logic allows the driver to determine whether
+> >> device resources are managed by Linux or firmware, ensuring
+> >> backward compatibility.
+> >>
+> >> Furthermore, minor cleanup is performed for the private data of
+> >> the SNPS Femto PHY. However, ACPI handling is omitted due to the
+> >> absence of clients on the ACPI side.
+> >>
+> >> Signed-off-by: Sriram Dash <quic_sriramd@quicinc.com>
+> >> ---
+> >>   drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 290 ++++++++++++++++++++------
+> >>   drivers/phy/qualcomm/phy-qcom-snps-femto-v2.c | 213 +++++++++++++++----
+> >>   drivers/usb/dwc3/dwc3-qcom.c                  | 259 +++++++++++++++++------
 
---mIS2Ako9u5OaxKJQ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[skipped]
 
-On Wed, Mar 06, 2024 at 07:48:57PM +0100, Andrew Lunn wrote:
-> > > +description:
-> > > +  The LAN8650/1 combines a Media Access Controller (MAC) and an Ethe=
-rnet
-> > > +  PHY to enable 10BASE=E2=80=91T1S networks. The Ethernet Media Acce=
-ss Controller
-> > > +  (MAC) module implements a 10 Mbps half duplex Ethernet MAC, compat=
-ible
-> > > +  with the IEEE 802.3 standard and a 10BASE-T1S physical layer trans=
-ceiver
-> > > +  integrated into the LAN8650/1. The communication between the Host =
-and
-> > > +  the MAC-PHY is specified in the OPEN Alliance 10BASE-T1x MACPHY Se=
-rial
-> > > +  Interface (TC6).
-> > > +
-> > > +allOf:
-> > > +  - $ref: ethernet-controller.yaml#
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: microchip,lan8650
-> > > +          - const: microchip,lan8651
-> >=20
-> > The order here is wrong, lan8561 needs to come before the fallback of
-> > lan8650.
->=20
-> I don't think it is a fallback. There are two devices, and hence two
-> different compatibles. So i suspect the -items: is wrong here?
+> >> @@ -2165,9 +2305,11 @@ static int qmp_usb_probe(struct platform_device *pdev)
+> >>           */
+> >>          pm_runtime_forbid(dev);
+> >>
+> >> -       ret = phy_pipe_clk_register(qmp, np);
+> >> -       if (ret)
+> >> -               goto err_node_put;
+> >> +       if (!qmp->fw_managed) {
+> >> +               ret = phy_pipe_clk_register(qmp, np);
+> >> +               if (ret)
+> >> +                       goto err_node_put;
+> >
+> > pipe_clk is an input to the GCC. If you are not registering it here,
+> > how would GCC get it?
+> >
+>
+> The pipe clk will be managed by the firmware.
 
-It'd just be a two entry enum then, but I did take a quick look at the
-driver earlier and saw:
-+static const struct of_device_id lan865x_dt_ids[] =3D {
-+	{ .compatible =3D "microchip,lan8650" },
-+	{ .compatible =3D "microchip,lan8651" },
-+	{ /* Sentinel */ }
-+};
+Which pipe clk? Coming from the PHY to GCC or from GCC back to the PHY?
 
-That, along with no other of_device_is_compatible() type operations
-made me think that having a fallback actually was suitable.
+Anyway, you can not drop this, this will break the ABI. The rule of
+thumb: existing DTB files MUST continue to work.
 
-You cropped it out, but the patch had:
-> +  compatible:
-> +    oneOf:
-> +      - items:
-> +          - const: microchip,lan8650
-> +          - const: microchip,lan8651
-> +      - enum:
-> +          - microchip,lan8650
+> >> +       }
+> >>
+> >>          qmp->phy = devm_phy_create(dev, np, &qmp_usb_phy_ops);
+> >>          if (IS_ERR(qmp->phy)) {
 
-So it doesn't appear to be an accidental items in place of an enum,
-since the other compatible is in another enum.
-
-I just noticed also that that enum should actually be const, so I'd
-expect this to be:
-  compatible:
-    oneOf:
-      - items:
-          - const: microchip,lan8651
-          - const: microchip,lan8650
-
-      - const: microchip,lan8650
-
---mIS2Ako9u5OaxKJQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZei9cAAKCRB4tDGHoIJi
-0jMxAQD2iy4HggGTwYp8gKBk+89kAsbo3O85mifjZSW0IgAsrgD9ESTpywdH3c9C
-VikUWvKQXuWPhWhgqreZE6CqDcXsbgM=
-=jQ66
------END PGP SIGNATURE-----
-
---mIS2Ako9u5OaxKJQ--
+-- 
+With best wishes
+Dmitry
 
