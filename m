@@ -1,178 +1,213 @@
-Return-Path: <devicetree+bounces-48626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23F78872EA4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:13:49 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0071F872EEC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:33:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D4F11284B13
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 06:13:47 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8FEA41F224C5
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 06:33:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 944A31BDCE;
-	Wed,  6 Mar 2024 06:13:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C0665B5CE;
+	Wed,  6 Mar 2024 06:33:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="O+vTxwX8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from bg1.exmail.qq.com (bg1.exmail.qq.com [114.132.77.159])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 62DC51B7E5;
-	Wed,  6 Mar 2024 06:13:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=114.132.77.159
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A861464A
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 06:33:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709705624; cv=none; b=j8M2xolPMVs14h3XUm3mkGtRKGTy6QH7nU6pjtxetLeNU896qxjiXULCaBkzyTVkuGuQXfoaaP7ilnPXnat8OERSY6oo2P3zF4Ot2LcSurpWABzPBy7etFa81PjX+cOoWzPX+QRnAb5iNgc+oBQJYOc7l5AnsFNoR0ZFr7qAKr0=
+	t=1709706793; cv=none; b=Y/pEx21LU8PRfQEMXj+bFbN+xqbW0S/NjqLYr0/xY3Cs9U2icYyvphRQ1rdYlRMn4C6G0t2AIDpqtnoODHuVr8/55GnPswTUuQXQt3kO0SevJUcI1/tMkvxtH9CbU+bRGQqopYgP1eJ2JJ04UZmaKTSTKHynb3klbJoOVK30Q0Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709705624; c=relaxed/simple;
-	bh=tlq2g2nlfO8hH8i4zeibwVPijfkfMjcm2SA6C4dQypI=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qn+J8DGWq251aRDj55nTmrkoB6nvD/0NDLSwLtYPBlITZ9RMQz/3ML5TunwcRvfDVy3/zEUMPI/lRv0CvkoVFncO+YDKHPX8DFmBgK0T9RxKVsFgne38u8dvBCzynZSgQwpETuVBAt3l3SjG6sECVBfiejeabG/zKlLSBePP2go=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=shingroup.cn; spf=pass smtp.mailfrom=shingroup.cn; arc=none smtp.client-ip=114.132.77.159
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=shingroup.cn
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=shingroup.cn
-X-QQ-mid: bizesmtp79t1709705539t7dq31o3
-X-QQ-Originating-IP: NCw4+/Q9USsflDJBmpT7/46+g+hPwy5cB3WlwgYr7sI=
-Received: from HX01040022.powercore.com.cn ( [223.112.234.130])
-	by bizesmtp.qq.com (ESMTP) with 
-	id ; Wed, 06 Mar 2024 14:12:17 +0800 (CST)
-X-QQ-SSF: 01400000000000B0B000000A0000000
-X-QQ-FEAT: C46Rb8GPIEemHKu/k6HngzPWI4Sro/K2jOZ6+nhYm/itjZ15pS2MBSf9WT4e9
-	mlr6jVRajTCCaJrTk6mFFBVexQeSUTmNuQ83shY+cW57orGqDR+32Hh1BwVkjn4HdY0K89E
-	SuLTWTX/IjLWee5mdFN+7QTiIob62s8kK8OqZjroC+ur2l6NBm7ghXlNVqWInUaI6qR4vNi
-	wTukssOTPrW15glNQGzjr+E0CajIIS02BjBVFUmYOKA8v5zd5wpd7Uu5xDIUozRkn5jZNHP
-	UxBZmdnp6fcRvvlqXJOtasV1zXpAk+zMMX0fbb5DqQMtUdw7rbtcW4pefka4sBC8FwtereT
-	eG/EkLv0NyWx4M1PCxMzF4l0XlKhIAshlk541gwDrfwEuM2VBbPeLa0mNvGB9/HxZkkNv/v
-	5DSkc97eGqhT1WolQksgHhOW3/joQyhM
-X-QQ-GoodBg: 2
-X-BIZMAIL-ID: 5249391986606984289
-From: "JiaLong.Yang" <jialong.yang@shingroup.cn>
-To: Jialong Yang <jialong.yang@shingroup.cn>,
-	Will Deacon <will@kernel.org>,
-	Mark Rutland <mark.rutland@arm.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1709706793; c=relaxed/simple;
+	bh=lnj04D8zBAmypP6j2POjy3y/xNsAC09Cm+3BIi+/VRE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZTx1Ns0sOCposa43DMlS3cLjC4CtikdE9YZa1oihEOMllDJNwjsk44245HGkmQzrlQfR5nGXtBqHim1XRgOlGKCci9snVfiy6g555eL8KyKUZprJrEeyxMvFhY20xY1QwvYmwb0NyDzBHxlEPC6KVdr5W11rbjgd0WKZnbY5TCE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=O+vTxwX8; arc=none smtp.client-ip=209.85.222.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-qk1-f181.google.com with SMTP id af79cd13be357-788303f317eso64376185a.2
+        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 22:33:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709706790; x=1710311590; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=PzzqnLQBHpN+9urj8XiH2dFm2U46R6xFzTYOnXW2Hvs=;
+        b=O+vTxwX8jPbg+fbjLrM2yUfgSznPFlGhGMSzaiwFimqk/+kGzC57CuV4OllfUxr/pk
+         fO15Y3K9PFb7EzF7zfjt/yfE68/yaPvccu06Vu1yyxviXrjtfvlSVeFKNvls9g2qT9Uf
+         bbGGIBbsWbvrDT6tJsPWuJGgcEIcf2XJkJDeqxMYrdubRdRrttik+Li8RnYVPkOYH4Oz
+         Kv0AHQ9oHBiZMPkAsvUOhNFfKRwj70IK/uU8xlgaR7XHcFcch2gEwxxBTxe2iLufIGSX
+         3iJFvXhSwmfAXYIS7hkcrUl8xX57izNy3vsrbNfyxlyjyhUZygV9R7V87HT4VkONPPG5
+         /reA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709706790; x=1710311590;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PzzqnLQBHpN+9urj8XiH2dFm2U46R6xFzTYOnXW2Hvs=;
+        b=xOo57bR1dC0d9fTNTvvg4S8Cdyzpgw5r65kVvLvNcsE1WLj5wGk48sAPgDLT26804O
+         KsgGX9w3dmwpLzY2BNuYuf9hkJy0RxPYwkxl5LqP6VrMsXpgD3X2FBDtenTooG91IpNI
+         3CT4mnxT+oyd8/ejYCJScUY4bYgvYrhz8o3aHKrJH3O2g5miVIxjBCx7FFeGP+mDJbQl
+         qfdxrx2PXXZHM0k04nGoint8IVLyHZVbT1LK7a8hp1LoKhY+zVSPOI1OaSI6rdzZpFgk
+         Y6HjcI2gp5AVCMFDq8bykOOjy7dG5yllt6tfCnGxi0tmDIA9cgR5dgnySrVxlBOQpUVU
+         p1XA==
+X-Forwarded-Encrypted: i=1; AJvYcCVr1HMU3OyZhAi4a5sewb7ik/G5tgzjOcnHmdKSbZZReMz+9gTdoSSxhs6v2r1nXEuKywJY2ZfkPVS5mWy6K+HgMaBvxjTK4JM0dA==
+X-Gm-Message-State: AOJu0YwZe8joTPhg2AVTIHsYrHFWKrPRAyMybp/sogXKUPTP9uz4yHkg
+	qdkgxP7yRz0shUWzZ+eyAKWYHeBiRGYwjHB3lH8htq41kLnlENvCKBR0jc0RpA==
+X-Google-Smtp-Source: AGHT+IFLka1W5sBQpiugLgmQG2wEsLa+Bvr76ZGfB5U9MeSgecbtI+9k8NDXeMjSLd+eRIFfWofSjg==
+X-Received: by 2002:a05:620a:6120:b0:788:3c4e:b84f with SMTP id oq32-20020a05620a612000b007883c4eb84fmr1755223qkn.35.1709706790464;
+        Tue, 05 Mar 2024 22:33:10 -0800 (PST)
+Received: from thinkpad ([117.248.1.99])
+        by smtp.gmail.com with ESMTPSA id p14-20020ae9f30e000000b0078825e2c57dsm3109737qkg.76.2024.03.05.22.33.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 05 Mar 2024 22:33:10 -0800 (PST)
+Date: Wed, 6 Mar 2024 12:03:02 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Johan Hovold <johan+linaro@kernel.org>
+Cc: Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: shenghui.qu@shingroup.cn,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org
-Subject: [PATCH v3 1/2] dt-bindings: perf: Support uncore NI-700 PMU
-Date: Wed,  6 Mar 2024 14:16:02 +0800
-Message-Id: <7f2576291e51043b33296a2cd9e21263d16ca077.1709694173.git.jialong.yang@shingroup.cn>
-In-Reply-To: <f674ec19ce824dfc13258396931256c3d33cd207.1709694173.git.jialong.yang@shingroup.cn>
-References: <cover.1709694173.git.jialong.yang@shingroup.cn> <f674ec19ce824dfc13258396931256c3d33cd207.1709694173.git.jialong.yang@shingroup.cn>
+Subject: Re: [PATCH v3 00/10] arm64: dts: qcom: sc8280xp: PCIe fixes and
+ GICv3 ITS enable
+Message-ID: <20240306063302.GA4129@thinkpad>
+References: <20240305081105.11912-1-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-QQ-SENDSIZE: 520
-Feedback-ID: bizesmtp:shingroup.cn:qybglogicsvrgz:qybglogicsvrgz6a-1
+In-Reply-To: <20240305081105.11912-1-johan+linaro@kernel.org>
 
-Add file corresponding to hx_arm_ni.c introducing ARM NI-700 PMU
-driver for HX.
+On Tue, Mar 05, 2024 at 09:10:55AM +0100, Johan Hovold wrote:
+> This series addresses a few problems with the sc8280xp PCIe
+> implementation.
+> 
+> The DWC PCIe controller can either use its internal MSI controller or an
+> external one such as the GICv3 ITS. Enabling the latter allows for
+> assigning affinity to individual interrupts, but results in a large
+> amount of Correctable Errors being logged on both the Lenovo ThinkPad
+> X13s and the sc8280xp-crd reference design.
+> 
+> It turns out that these errors are always generated, but for some yet to
+> be determined reason, the AER interrupts are never received when using
+> the internal MSI controller, which makes the link errors harder to
+> notice.
+> 
+> On the X13s, there is a large number of errors generated when bringing
+> up the link on boot. This is related to the fact that UEFI firmware has
+> already enabled the Wi-Fi PCIe link at Gen2 speed and restarting the
+> link at Gen3 generates a massive amount of errors until the Wi-Fi
+> firmware is restarted. This has now also been shown to cause the Wi-Fi
+> to sometimes not start at all on boot for some users.
+> 
+> A recent commit enabling ASPM on certain Qualcomm platforms introduced
+> further errors when using the Wi-Fi on the X13s as well as when
+> accessing the NVMe on the CRD. The exact reason for this has not yet
+> been identified, but disabling ASPM L0s makes the errors go away. This
+> could suggest that either the current ASPM implementation is incomplete
+> or that L0s is not supported with these devices.
+> 
+> Note that the X13s and CRD use the same Wi-Fi controller, but the errors
+> are only generated on the X13s. The NVMe controller on my X13s does not
+> support L0s so there are no issues there, unlike on the CRD which uses a
+> different controller. The modem on the CRD does not generate any errors,
+> but both the NVMe and modem keeps bouncing in and out of L0s/L1 also
+> when not used, which could indicate that there are bigger problems with
+> the ASPM implementation. I don't have a modem on my X13s so I have not
+> been able to test whether L0s causes any trouble there.
+> 
+> Enabling AER error reporting on sc8280xp could similarly also reveal
+> existing problems with the related sa8295p and sa8540p platforms as they
+> share the base dtsi.
+> 
+> After discussing this with Bjorn Andersson at Qualcomm we have decided
+> to go ahead and disable L0s for all controllers on the CRD and the
+> X13s.
+> 
 
-Signed-off-by: JiaLong.Yang <jialong.yang@shingroup.cn>
----
-v1 --> v2:
-1. Submit dt-bindings file Seperately.
-2. Do some check:
-   ~ #: make dt_binding_check DT_SCHEMA_FILES=perf
-   LINT    Documentation/devicetree/bindings
-   CHKDT   Documentation/devicetree/bindings/processed-schema.json
-   SCHEMA  Documentation/devicetree/bindings/processed-schema.json
-   DTEX    Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.example.dts
-   DTC_CHK Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.example.dtb
+Just received confirmation from Qcom that L0s is not supported for any of the
+PCIe instances in sc8280xp (and its derivatives). Please move the property to
+SoC dtsi.
 
-v2 --> v3:
-1. Change vendor from hx to hexin.
-2. Submit driver and dt-bindings files together.
-3. Delete pccs-id property. Use alias-id to do this.
-4. There are at least one interrupt line for the hardware and driver
-   for handling counter overflow.
-5. Use 4 spaces for example indentation in yaml file.
+- Mani
 
- .../bindings/perf/hexin,c2000-arm-ni.yaml     | 51 +++++++++++++++++++
- MAINTAINERS                                   |  6 +++
- 2 files changed, 57 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/perf/hexin,c2000-arm-ni.yaml
+> Note that disabling ASPM L0s for the X13s Wi-Fi does not seem to have a
+> significant impact on the power consumption (and there are indications
+> that this applies generally for L0s on these platforms).
+> 
+> ***
+> 
+> As we are now at 6.8-rc7, I've rebased this series on the Qualcomm PCIe
+> binding rework in linux-next so that the whole series can be merged for
+> 6.9 (the 'aspm-no-l0s' support and devicetree fixes are all marked for
+> stable backport anyway).
+> 
+> The DT bindings and PCI patch are expected to go through the PCI tree,
+> while Bjorn A takes the devicetree updates through the Qualcomm tree.
+> 
+> Johan
+> 
+> 
+> Changes in v3
+>  - drop the two wifi link speed patches which have been picked up for
+>    6.8
+>  - rebase on binding rework in linux-next and add the properties also to
+>    the new qcom,pcie-common.yaml
+>    - https://lore.kernel.org/linux-pci/20240126-dt-bindings-pci-qcom-split-v3-0-f23cda4d74c0@linaro.org/
+>  - fix an 'L0s' typo in one commit message
+> 
+> Changes in v2
+>  - drop RFC from ASPM patches and add stable tags
+>  - reorder patches and move ITS patch last
+>  - fix s/GB/MB/ typo in Gen2 speed commit messages
+>  - fix an incorrect Fixes tag
+>  - amend commit message X13 wifi link speed patch after user
+>    confirmation that this fixes the wifi startup issue
+>  - disable L0s also for modem and wifi on CRD
+>  - disable L0s also for nvme and modem on X13s
+> 
+> 
+> Johan Hovold (10):
+>   dt-bindings: PCI: qcom: Allow 'required-opps'
+>   dt-bindings: PCI: qcom: Do not require 'msi-map-mask'
+>   dt-bindings: PCI: qcom: Allow 'aspm-no-l0s'
+>   PCI: qcom: Add support for disabling ASPM L0s in devicetree
+>   arm64: dts: qcom: sc8280xp: add missing PCIe minimum OPP
+>   arm64: dts: qcom: sc8280xp-crd: disable ASPM L0s for NVMe
+>   arm64: dts: qcom: sc8280xp-crd: disable ASPM L0s for modem and Wi-Fi
+>   arm64: dts: qcom: sc8280xp-x13s: disable ASPM L0s for Wi-Fi
+>   arm64: dts: qcom: sc8280xp-x13s: disable ASPM L0s for NVMe and modem
+>   arm64: dts: qcom: sc8280xp: enable GICv3 ITS for PCIe
+> 
+>  .../bindings/pci/qcom,pcie-common.yaml        |  6 +++++-
+>  .../devicetree/bindings/pci/qcom,pcie.yaml    |  6 +++++-
+>  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts     |  5 +++++
+>  .../qcom/sc8280xp-lenovo-thinkpad-x13s.dts    |  5 +++++
+>  arch/arm64/boot/dts/qcom/sc8280xp.dtsi        | 17 +++++++++++++++-
+>  drivers/pci/controller/dwc/pcie-qcom.c        | 20 +++++++++++++++++++
+>  6 files changed, 56 insertions(+), 3 deletions(-)
+> 
+> -- 
+> 2.43.0
+> 
 
-diff --git a/Documentation/devicetree/bindings/perf/hexin,c2000-arm-ni.yaml b/Documentation/devicetree/bindings/perf/hexin,c2000-arm-ni.yaml
-new file mode 100644
-index 000000000000..b2641ee84d60
---- /dev/null
-+++ b/Documentation/devicetree/bindings/perf/hexin,c2000-arm-ni.yaml
-@@ -0,0 +1,51 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/perf/hexin,c2000-arm-ni.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: HX-C2000 NI (Network-on-chip Interconnect) Performance Monitors
-+
-+maintainers:
-+  - Jialong Yang <jialong.yang@shingroup.cn>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - hexin,c2000-arm-ni
-+
-+  reg:
-+    items:
-+      - description: Physical address of the base (PERIPHBASE) and
-+          size of the whole NI configuration address space.
-+
-+  interrupts:
-+    minItems: 1
-+    items:
-+      - description: Overflow interrupt for clock domain 0
-+      - description: Overflow interrupt for clock domain 1
-+      - description: Overflow interrupt for clock domain 2
-+      - description: Generally, one interrupt line for one PMU. But this also
-+          support one interrupt line for a NI if merged.
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    aliases {
-+        ni-pmu0 = &nipmu0;
-+    };
-+
-+    nipmu0: pmu@23ff0000 {
-+        compatible = "hexin,c2000-arm-ni";
-+        reg = <0x2b420000 0x10000>;
-+        interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4f298c4187fb..4b664cec98a7 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18890,6 +18890,12 @@ L:	linux-riscv@lists.infradead.org
- S:	Maintained
- F:	arch/riscv/boot/dts/thead/
- 
-+HX ARM-NI-700 PMU DRIVERS
-+M:	Jialong Yang <jialong.yang@shingroup.cn>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/perf/hexin,c2000-arm-ni.yaml
-+F:	drivers/perf/hx_arm_ni.c
-+
- RNBD BLOCK DRIVERS
- M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
- M:	Jack Wang <jinpu.wang@ionos.com>
 -- 
-2.25.1
-
+மணிவண்ணன் சதாசிவம்
 
