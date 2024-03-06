@@ -1,198 +1,208 @@
-Return-Path: <devicetree+bounces-48877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E240587405A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 20:26:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15FCB87405F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 20:28:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1123C1C21126
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:26:09 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3A30F1C213BD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:28:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8F6513F011;
-	Wed,  6 Mar 2024 19:26:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Ifd6HLm9"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D92A613F01A;
+	Wed,  6 Mar 2024 19:28:30 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2083.outbound.protection.outlook.com [40.107.22.83])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2237692E6;
-	Wed,  6 Mar 2024 19:26:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.83
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709753165; cv=fail; b=Yztm7bJo7IKKIan5kDvR9BGSpqbRxlsbYlzX5YGb3skfUxoRf67xxYemJ25FYsJvHKgT6/7Ky2wOdi+9oYGNkoNCAx3/mXrOYpdNM9NZfrFUZcRuEBSVCNJZutylh28rJxPTgzboiOi8wbl5zOSKXkyZe7Wtpylz7KhO5o3lQ0M=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709753165; c=relaxed/simple;
-	bh=3A4jTdHYdTCXYKvaVwJKbLuKfhxJT3wm1G9aNI0uaJs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=GjPF5L1sKfHsgR3UODuXmEZBh7DioqcwJ3597B0iZfpHWyL9aA+byFGIYGlNod/l3qy+oTgnpVcC089XjrOegyWuZrJcd7cHhvXN9rZFBY16VwK8FAobNFFIzT3g5m6jVPyuQ3J7DLjhb/lGhJUC2ZZZXz/HbuL7ptcJC/BG3K8=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=Ifd6HLm9; arc=fail smtp.client-ip=40.107.22.83
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EoNGheSTazq+hrtVvuzqi0cOIOUwlk4EYnTfJjc5fl9syiM0lK3t5zB/qd3afcWPDf5Qwoh8WfAjXbN4UgNSEzgT8rQbqgm995kTjo8FRZdZ8B4FNrEUpGUtOo8DwbiOM2r1yncCGfF9Nhz6bsUrNCYlfgpmgakVXISOeQkxEFjU1mebtzgcJddvgHjnhSuV8+GkApxvHAJiu1KdYzoHz28ZYPktuZIJhcSzvNQ9pR9Ru3QPalgA1RHk1r9J5gYiwnCfy2+BG8E+2HRy9Sb1eKaAVsvTR2bhnwe3lUUJISFPckjQtIpLpInmM31DkeZ7XVaVO5isF3hipt8YQSoV6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LHNgAGco2M3qzJ0D9W8b7Xjzw3txKePlzD3e0kMuKrw=;
- b=jft2NcFDmoJgKKC6V1EM6K95x8aINfaGwi3OFuufZHoJONxHney0E3hlhW0r7J7qMBCYwBENICN7J+dEzdqhAQ0cBc5dVUrI5xwLU+xUtqJ5KdvBZKgIseu/SImewltlXljQVgk+joaw+R2nI2DbXvJeAXBqNpneIkm8b4fdSNNDXoUA8HuD/w8SW65AaULfLamaCJhvkeDveya8p5JtEg6IxlTBHwWRMxAnZb6iWyIJ6h1RhRQ5qm7+0fYdC5U71bs5c0lbEjlml3nIyFgDRpxrudCZLnO//RpCwrjT5C33pmJkZas5VyXOx75b/sRkzgp3n7RXedKkHIBguZxVFA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LHNgAGco2M3qzJ0D9W8b7Xjzw3txKePlzD3e0kMuKrw=;
- b=Ifd6HLm9VoroxUAQIvy52xrMpVcpJ69O3vYrXnLpi7+lTiUu8zdHKH747ZZtwTOzBHXP8nfF2J+vPVFVoTUJUxcgMSn9hByTJunjLS5y0+1/0ZApMnWV8hRUBuTlMvZ+MQyeMa+ED4waNtRqDND1wJI0JbUFcXc/AG3wUxj+Yv4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PA4PR04MB7951.eurprd04.prod.outlook.com (2603:10a6:102:ca::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.24; Wed, 6 Mar
- 2024 19:26:01 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7339.035; Wed, 6 Mar 2024
- 19:26:01 +0000
-Date: Wed, 6 Mar 2024 14:25:53 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Conor Dooley <conor@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] ASoC: dt-bindings: fsl-sai: allow only one
- dma-names
-Message-ID: <ZejDQddMp17RD6Yk@lizhi-Precision-Tower-5810>
-References: <20240305-asrc_8qxp-v4-0-c61b98046591@nxp.com>
- <20240305-asrc_8qxp-v4-3-c61b98046591@nxp.com>
- <20240306-pebble-grope-88fdaa95a87c@spud>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240306-pebble-grope-88fdaa95a87c@spud>
-X-ClientProxiedBy: SJ2PR07CA0018.namprd07.prod.outlook.com
- (2603:10b6:a03:505::22) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1342D692E6;
+	Wed,  6 Mar 2024 19:28:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709753310; cv=none; b=LXC09vLRyXFAxC8sV2TTKedzNUsAmZ6ecRIOcdkAbig7MjOxCXc9iEevIM7rhn7BwlaZS5mYCr7Ammm2ADlYmcw7VGyNWMiXd9NV8f7658foL+RtAH4T/+tpJNWFR3j3F988RuHEsKkKosGvp5uDgxMqWsIrkl9KNos/vcapjf4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709753310; c=relaxed/simple;
+	bh=CDUCX+fLbgrh7BbmfBBqG2J+zTPmFsBzl3wcitwg1ZI=;
+	h=From:In-Reply-To:Content-Type:References:Date:Cc:To:MIME-Version:
+	 Message-ID:Subject; b=Fsuf9ZSu6QAa4T/msAaS9/4HfHOutl0Uc6oK34EZ+0oXsjGasDsY36IBlgTvOrfCj6cLuKUydgX5AqlHc7bc7TXa4h8dNhpzkvi4UnUPj+n8ZUZ40/cMY2NNUtTk2uRGbJeAHIX9byIq8lOw9Xf01sXbjvBLILiRUnqRaJqf/6k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+Received: from harlem.collaboradmins.com (harlem.collaboradmins.com [IPv6:2a01:4f8:1c0c:5936::1])
+	by madrid.collaboradmins.com (Postfix) with ESMTP id 4A61337820DA;
+	Wed,  6 Mar 2024 19:28:25 +0000 (UTC)
+From: "Shreeya Patel" <shreeya.patel@collabora.com>
+In-Reply-To: <6040170.44csPzL39Z@diego>
+Content-Type: text/plain; charset="utf-8"
+X-Forward: 127.0.0.1
+References: <20240305123648.8847-1-shreeya.patel@collabora.com>
+ <7657358.31r3eYUQgx@diego> <45138-65e76d00-9-580ee380@232156106> <6040170.44csPzL39Z@diego>
+Date: Wed, 06 Mar 2024 19:28:24 +0000
+Cc: mchehab@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, mturquette@baylibre.com, sboyd@kernel.org, p.zabel@pengutronix.de, jose.abreu@synopsys.com, nelson.costa@synopsys.com, dmitry.osipenko@collabora.com, sebastian.reichel@collabora.com, shawn.wen@rock-chips.com, nicolas.dufresne@collabora.com, hverkuil@xs4all.nl, hverkuil-cisco@xs4all.nl, kernel@collabora.com, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, linux-clk@vger.kernel.org, linux-arm@lists.infradead.org
+To: =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PA4PR04MB7951:EE_
-X-MS-Office365-Filtering-Correlation-Id: 870aba6c-2cc7-464e-6258-08dc3e1341d3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	hswYL59acMhf6PRODZNnfXdZWVpWCgeU2O31n0LjWe2Lqr2IibSz9Drw/X6aCD3C7E0+jSprf4OOZLHZtY2kJ7jQLh80ryK5OyGEsdLJdqBGE9b82zRsrGc8C06crdlelxYjbaCMhvc4QHH/LyXGcLdurSXV20o36rNYzVvtqlpri9+dKZi1Moxc4Y/9WPY4FyXHDVQK9FwiRduFT9k4IE/osgrtN8Ae5+lhbsQa0uLt7P980oOekzjGLLRBpzDhiGD4Jf1YZHfVcIHKbMGdRZ7qseHv0pmjLcEn9+R0JAwXjSDti+gew0lwK5pdF3TR57Y15v1H59gdLXxwehP4PILPSyVhyIaAuurl+e8CI+wWvXa2r8Ozfz8OpreV45f+OSUGxdtfY3BfgpDOBXnUuX/F8h1okgTKFXIbPh8+mQAUM1524Ibl33o3QNUgVS8WEf3RKjh5E4bXzTJ3eYid/+OSSkd0zdmOYMVb0nZDSkQ97lqLD/l5TrUOfaRqSiWhqh+bZk9ZGy0j2nDJkge0FF9jC1X7ABtsuq2jpMQvExm29QdPAkfKHosyyJ46uPEP9gbM0GWIcU4iQ8Ry6y+JClrfCZpGlN9hz+ceWJg0c5UvtGLu+JqNuEO6eDrvsdRoxyn0BYXTAeSTKHM4or1s/po++RSwMkenFckBkJoDuqsGejLIytD0BDLr3Xln6jPCribJbguNZpHhkjeUwB20jg==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?HgShbDSfLbH8nrAqS1IiDELfJDWpT5H3gCvH5kHrIFoowrePcsJ9Z0Hi3LFg?=
- =?us-ascii?Q?EqbmdyhiUCTdrSe7OEg+egM5K92nIina7jg10BN7GEsnMrqsXvJfw9Sl4sqT?=
- =?us-ascii?Q?I9wrG3O5PzNb5Kd/fXUrK9mEoDUrlGHkKYplEwucu7P7t4tfXbYVGASTLInL?=
- =?us-ascii?Q?hRVUSPN+cvRwskyPVNL+jQv7ZduW5e8Ef4udQZrAjMEVR91+JTKuG7cSlXhX?=
- =?us-ascii?Q?Py2hXlAEGQOGl2E2GTAoKmraeIp5kvwGnnC5fJSx2OK4WQyJRmSwk6MnrnAQ?=
- =?us-ascii?Q?/ECgJNMNQl52M8lST6Ic+LUeqjc5x5Y0Zqmo+BD1d7BmSIaJGkGgtq2k7l/n?=
- =?us-ascii?Q?dR8KmP5XvmmtoMK+fiMFYOo02208ghcH/1wpUdxC9M7M9SZo8oaqvCTSEmIE?=
- =?us-ascii?Q?K/cKysHZ0XY0dO6kfo9jWRkcPrKEPto1WrBHTuYi1wlnChc3MY2dYVlDhNto?=
- =?us-ascii?Q?T2nOdZ5uxRaFr6VLIkn7kz1JfIUt0ma1qUpsaVE0h7VUZp3AJaYSQCkO6bfS?=
- =?us-ascii?Q?MPVOMCrKnk0lpsqX4pmJvOQ++dCfVSc76VNC0VCKHkeG8zDCy73B+EO52yoC?=
- =?us-ascii?Q?uGfa6VJ9WUm9QME7Hj6rsN2FNA4W/RcnXKf+9dbczY67wSQSQQU4knlvHT8h?=
- =?us-ascii?Q?GgoiN9uc0gZzhx7vvSxIyHGIm19IcGWmCxs1ISaDKMTzL39cw6i7wYifSpSS?=
- =?us-ascii?Q?UJ1rrgC6rEq0l7SlHthe703dtFOcAwQMa0rDEDSbo/qbyQjba/tXspucY1y1?=
- =?us-ascii?Q?rWr5VlFnDWFC+KqVfCTluJFO0vt8PvQUwfdTTTjjF9b9JNbKwkHrt5oiy3Kf?=
- =?us-ascii?Q?InWRWMPjlJyYgTR/TIzmVvjVLMFLR34rLSzTOq7rpEpVDIbmF42S1+AVNb5R?=
- =?us-ascii?Q?C/i9YUgB+3Kb6mb4KDL0KOr4EesMnFxf+OCDGlk1P6U7xVU3CB5dN2r0cn1P?=
- =?us-ascii?Q?6ttO6VtmT2MKY6AqoopYJe6gp8fs9oP8lJ2NSrRgUIdkt9vzH88gf6ZVmHs5?=
- =?us-ascii?Q?Kg7beQaScSP7JLObKD/zxqJj6/S/NKxYJW08xZvn0r6dNo3Zc+7aSNSrnMEO?=
- =?us-ascii?Q?5iiqlRfl1khqwHpPgD4vLXDudRj+yLu/wQ6SdjQqLrEWSKTsKNauUBD1o2Zw?=
- =?us-ascii?Q?73BDBOFNDxv6KEWPL5ull/BBV6kQLxa7BlrJeaiiXhNeS3Hpy4kjhdvKUTMc?=
- =?us-ascii?Q?8ie0HHbPskMeOahhPAUGQcWImJj4XJuu5hgOqvhSJFmDzDtxsbF2tZeLecYR?=
- =?us-ascii?Q?w7d0n5qhdfxp+bEX/Nldd5wlVGARb0kjD+YAHJoVe5a/iYpsmNAUJmWK0QyV?=
- =?us-ascii?Q?ms8jlicumSgzPpTmzoBH+dNQXN6jb8+SXqfRdT30fK22E3FLy0J/8gSW1KWL?=
- =?us-ascii?Q?88V4mO/RWikTUbyg4UpWioOVKbdzKzMcdthiwGClAl8TisEmEDZCY5xz3dIs?=
- =?us-ascii?Q?btXbg0fEOg2aGG/NTRTldfnI13B06YMNFvJYyF8nJzvv9V86H0C/c4h53eN5?=
- =?us-ascii?Q?+4PJ8BileVLyynaBVVnO4IWJxNlZ4NqYg6g4v576Wm9M3UUhAAbAsUTIoZZY?=
- =?us-ascii?Q?58HWd/NTw0oVNdFHzZe53R1MWJ786yaCNTJ59i5K?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 870aba6c-2cc7-464e-6258-08dc3e1341d3
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2024 19:26:01.0922
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tp/CnZAW+DSi7M7TMJYLgTqXECFDjPOD9PcdNkZFBFvF3T64pKF7PwfkDSkqWmkSDd+EbN4PCPOVKzVNdgMFSg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7951
+Message-ID: <ca099-65e8c400-33-2b230d40@237921438>
+Subject: =?utf-8?q?Re=3A?= [PATCH v2 4/6] =?utf-8?q?arm64=3A?==?utf-8?q?_dts=3A?=
+ =?utf-8?q?_rockchip=3A?= Add device tree support for HDMI RX Controller
+User-Agent: SOGoMail 5.10.0
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 06, 2024 at 06:45:13PM +0000, Conor Dooley wrote:
-> On Tue, Mar 05, 2024 at 12:33:04PM -0500, Frank Li wrote:
-> > Some sai only connect one direction dma (rx/tx) in SOC. For example:
-> > imx8qxp sai5 only connect tx dma channel. So allow only one "rx" or "tx"
-> > for dma-names.
-> > 
-> > Remove description under dmas because no user use index to get dma channel.
-> > All user use 'dma-names' to get correct dma channel. dma-names already in
-> > 'required' list.
-> 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > ---
-> >  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 13 ++++++-------
-> >  1 file changed, 6 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > index 2456d958adeef..6f551c68d33db 100644
-> > --- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > @@ -81,15 +81,14 @@ properties:
-> >  
-> >    dmas:
-> >      minItems: 1
-> > -    items:
-> > -      - description: DMA controller phandle and request line for RX
-> > -      - description: DMA controller phandle and request line for TX
-> > +    maxItems: 2
-> >  
-> >    dma-names:
-> > -    minItems: 1
-> > -    items:
-> > -      - const: rx
-> > -      - const: tx
-> > +    oneOf:
-> > +      - items:
-> > +          - const: rx
-> > +          - const: tx
-> > +      - enum: [ rx, tx ]
-> 
-> I'm not entirely sure if this was Rob's suggestion, I got the impression
-> he was suggesting that in the two items case we'd not care about the
-> order. But while I think this is different to that suggestion it's also
-> not wrong.
+On Wednesday, March 06, 2024 01:50 IST, Heiko St=C3=BCbner <heiko@sntec=
+h.de> wrote:
 
-I log this at cover-letter. b4 can't support write change log at every
-patch yet. Rob's suggest was not work. dt-binding check complain too long
-if there are two dma-names = "rx", "tx". 
+> Hi again :-)
+>=20
+> Am Dienstag, 5. M=C3=A4rz 2024, 20:05:02 CET schrieb Shreeya Patel:
+> > On Tuesday, March 05, 2024 19:41 IST, Heiko St=C3=BCbner <heiko@snt=
+ech.de> wrote:
+> > > Am Dienstag, 5. M=C3=A4rz 2024, 13:36:46 CET schrieb Shreeya Pate=
+l:
+> > > > Add device tree support for Synopsys DesignWare HDMI RX
+> > > > Controller.
+> > > >=20
+> > > > Reviewed-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> > > > Tested-by: Dmitry Osipenko <dmitry.osipenko@collabora.com>
+> > > > Co-developed-by: Dingxian Wen <shawn.wen@rock-chips.com>
+> > > > Signed-off-by: Dingxian Wen <shawn.wen@rock-chips.com>
+> > > > Signed-off-by: Shreeya Patel <shreeya.patel@collabora.com>
+> > > > ---
+> > > > Changes in v2 :-
+> > > >   - Fix some of the checkpatch errors and warnings
+> > > >   - Rename resets, vo1-grf and HPD
+> > > >   - Move hdmirx=5Fcma node to the rk3588.dtsi file
+> > > >=20
+> > > >  .../boot/dts/rockchip/rk3588-pinctrl.dtsi     | 41 +++++++++++=
++++
+> > > >  arch/arm64/boot/dts/rockchip/rk3588.dtsi      | 55 +++++++++++=
+++++++++
+> > > >  2 files changed, 96 insertions(+)
+> > >=20
+> > > > diff --git a/arch/arm64/boot/dts/rockchip/rk3588.dtsi b/arch/ar=
+m64/boot/dts/rockchip/rk3588.dtsi
+> > > > index 5519c1430cb7..8adb98b99701 100644
+> > > > --- a/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> > > > +++ b/arch/arm64/boot/dts/rockchip/rk3588.dtsi
+> > > > @@ -7,6 +7,24 @@
+> > > >  #include "rk3588-pinctrl.dtsi"
+> > > > =20
+> > > >  / {
+> > > > +	reserved-memory {
+> > > > +		#address-cells =3D <2>;
+> > > > +		#size-cells =3D <2>;
+> > > > +		ranges;
+> > >=20
+> > > add blank line here
+> > >=20
+> > > > +		/*
+> > > > +		 * The 4k HDMI capture controller works only with 32bit
+> > > > +		 * phys addresses and doesn't support IOMMU. HDMI RX CMA
+> > > > +		 * must be reserved below 4GB.
+> > > > +		 */
+> > > > +		hdmirx=5Fcma: hdmirx=5Fcma {
+> > >=20
+> > > phandles use "=5F", but node-names "-"
+> > >=20
+> > > > +			compatible =3D "shared-dma-pool";
+> > > > +			alloc-ranges =3D <0x0 0x0 0x0 0xffffffff>;
+> > > > +			size =3D <0x0 (160 * 0x100000)>; /* 160MiB */
+> > >=20
+> > > The comment above that node, could elaborate where the value of 1=
+60MB
+> > > originates from. I assume it is to hold n-times of 4K frames or w=
+hatever,
+> > > but it would be helpful for people to be able to read that.
+> > >=20
+> >=20
+> > right, we did the following calculation to come up with this value =
+:-
+> > 3840 * 2160 * 4 (bytes/pix) * 2 (frames/buffer) / 1000 / 1000 =3D 6=
+6M
+> > and then we do the 2x times of this value to be on the safer side
+> > and support all practical use-cases.
+> >=20
+> > I'll add some more details to the comment in v3.
+>=20
+> thanks, that will be helpful for me and everybody reading the dts lat=
+er on
+>=20
+> >=20
+> > >=20
+> > > > +			no-map;
+> > > > +			status =3D "disabled";
+> > > > +		};
+> > > > +	};
+> > > > +
+> > > >  	pcie30=5Fphy=5Fgrf: syscon@fd5b8000 {
+> > > >  		compatible =3D "rockchip,rk3588-pcie3-phy-grf", "syscon";
+> > > >  		reg =3D <0x0 0xfd5b8000 0x0 0x10000>;
+> > > > @@ -85,6 +103,38 @@ i2s10=5F8ch: i2s@fde00000 {
+> > > >  		status =3D "disabled";
+> > > >  	};
+> > > > =20
+> > > > +	hdmi=5Freceiver: hdmi-receiver@fdee0000 {
+> > >=20
+> > > Maybe rename the label to "hdmirx:" ... that way in a board enabl=
+ing the
+> > > cma region, both nodes would stay close to each other?
+> > >=20
+> >=20
+> > Umm we already have receiver in the name so I am not sure if adding=
+ rx will be
+> > a good idea. I was trying to keep it consistent with the names used=
+ in other device tree files.
+> > In case you still feel otherwise then do let me know, I'll make the=
+ change.
+>=20
+> I'm somewhat partial to the actual name, I was more getting at simila=
+r
+> names to keep things together.
+>=20
+> General sorting rules are that &foo phandles are sorted alphabeticall=
+y
+> in board devicetrees.
+>=20
+> So having
+>=20
+> &hdmirx {
+> 	status =3D "okay";
+> };
+>=20
+> &hdmirx=5Fcma {
+> 	status =3D "okay";
+> };
+>=20
+> in the board dt, makes them stay together automatically ;-)
+>=20
+> So if it's hdmirx + hdmirx=5Fcma or hdmi=5Freceiver + hdmi=5Freceiver=
+=5Fcma
+> doesn't matter that much, just that they share a common basename.
+>=20
+>=20
+> I really want to stay away from allowing special rules for things as =
+much
+> as possible, because that becomes a neverending story, so it's
+> alphabetical sorting.
+>=20
+> But nothing prevents us from naming phandles in an intelligent way ;-=
+) .
+>=20
 
-Frank
+Makes sense to me, I'll use hdmi=5Freceiver + hdmi=5Freceiver=5Fcma com=
+bination
+to keep it consistent.
 
-> 
-> Thanks,
-> Conor.
+Thanks,
+Shreeya Patel
 
+>=20
+> Thanks
+> Heiko
+>
 
 
