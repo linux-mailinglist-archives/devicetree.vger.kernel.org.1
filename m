@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-48839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8B28A873C2E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 17:25:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 303D7873C37
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 17:27:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F198F1F22A54
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 16:25:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7EC21F27F5B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 16:27:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D0BD137926;
-	Wed,  6 Mar 2024 16:25:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C3BF1361D3;
+	Wed,  6 Mar 2024 16:27:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dvlTffuN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jj1RDJb9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27915135A47
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 16:25:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D915612EBF3
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 16:27:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709742338; cv=none; b=br958WhN4WJZpOuwVm8EPLK1GXYbqZCoL8k7KuD5Suw8qML20BatrFOYE0rowYvaxwus1LNs2qLcSuFhfUFmwqHrL3HfvbNS37xRLZf7xj5Yeq6K2YWBEOeMSs2JBO/EY5Al52PGrpOXmRG4eOMxwnd3OQEqsqaRZ19s/kqX694=
+	t=1709742464; cv=none; b=JuUFu+6ANbrnvitnEBk91VIxQQLfYUI1pzSpSBKL7puGRSF0xo4IutnC6VJfROXjGuR3lM8b9hLxJo83SkOXwO7vW+fcF+RjNXxtC/VMyffkZ22DCDqLfHPAYN/BLv+Ja551ymnzcuwc4FLoTZ2JwuEUhJuPVrD+Vg6I2OPMnLo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709742338; c=relaxed/simple;
-	bh=xXWdLc5ycH+yuvPLxfdFChS+CKGdFWAwKl45XDmxjyk=;
+	s=arc-20240116; t=1709742464; c=relaxed/simple;
+	bh=yEXFKs84hTr0UyD4ojePo0Svlb29UBTd8UFd7uJjn1k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=d0RRTC7J0TLhYHoif9yEovHsLkaHhanhty2ikfSypVYjULN13CDbl5aCgEV4IkHPhMiB9Can8uNmjVV2NJacDk9tPloJZBXwMPY/H6MdrvIztbE/xVVLaHqQ6tHJFEenTPUK7M2GpTDXirrSBkP8c4QzGSAlRpnacxL/mgklev4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dvlTffuN; arc=none smtp.client-ip=209.85.167.53
+	 In-Reply-To:Content-Type; b=aENqXYz1fHoe3F3JuIflWcygNGF9sJgDOJSix/3dIua5+DE+lqevwBzJAiRO3mVdlPzb3mHr2WiU7bzjLbpj03fLulgwZ44q339VRy5WGtabjsnb/DzQePFeFOKJQZywxc5VRp55uE6zY4sTtIb8ZFTZdikWYI2IMsG3TWXZU/Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Jj1RDJb9; arc=none smtp.client-ip=209.85.167.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5131316693cso9224465e87.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 08:25:34 -0800 (PST)
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-5131bec457eso831211e87.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 08:27:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709742333; x=1710347133; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709742461; x=1710347261; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GC4h3Ht3vNoae6gXTCtlzCHjHZn8NZlxWQ90uE72zuU=;
-        b=dvlTffuNikK9knUGo54uMuk9FbiDe7aVE3MgEUsPWE1RzIn1+gCWxxzB57y/vlIbAP
-         oOxdGEWoU8gj7E37fBKu9EIdMpJnfh2Q/9IcpXtcH9rJBAb4K/fe8TkHGXFQcOv7tZ+E
-         i5+zc0WRJuaPK2IMHA3a2BbSPMIsLKmIiKfc6OAcONjQmt5cl3TbL4c6CgdoCYS6/VBB
-         JlEhGZcDh6MeXbX3eAWPQnwqCsWDfGmsCtNgX9Jd5gXPn+aBHIl+ea7FVW5B5nNVEWR3
-         CZUVl6NVoOHmOT/Q8Df/wXYDxKm+vvBJLr1C1DJhB6i7Cko3wjh3CnbLR53LCYIFqD3x
-         77vQ==
+        bh=tAZMCH8J07QiijNq8o/NNBXhy5JhnjDlTuZhK1cgvds=;
+        b=Jj1RDJb9ClKBaKQm/HIvqaNeCwKFo1gfELy63XVtFcQYczE46C8WAGHDSpsK/VhBjX
+         YMpCF+O6j8Ytq8AFirexXjIu2d9eA2Xj2id67kkJpsWozTQnifW08oFNQuwOYEHlMVS1
+         WCz5BseurrMKngRZ7i5Q+bpDLztOrkw1Kkguhn//8ZudRuLzq9HYco01y47h/AnwZ2QA
+         uv1LtWmTuHGuxmkV1Ww4xmbL2x7Ny0FWJVZf0H5/mJRBmLGyWyg9UsGTTaqsdOy4utdT
+         W5w31ctIEQgIlrvjEiSXnpKdvtkYMTR1acepcPKXAD5lyRexJriosAf6mpN4kr5NeBBV
+         5DDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709742333; x=1710347133;
+        d=1e100.net; s=20230601; t=1709742461; x=1710347261;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GC4h3Ht3vNoae6gXTCtlzCHjHZn8NZlxWQ90uE72zuU=;
-        b=iyIPAdndHR122S0L/eWOtNlWZvwTwWMFps/MVLqv9V9f1PYQ8TpHEG38TI2a9QHya5
-         M4KG/8RZ9NNXjYfdLfT+spjTniZvefD3lwrdzu8wFzB3Rc7PI64l/dqhdywN8tPPS3iW
-         yDHzINQlHq43N/imY7GKfcGX0L3TwIIpDIBfwqvRVy+WJlVq19ghQIu+8isdah8mkxgr
-         1s5EeMuQgzwW4QNY/E8pgOEWwqPdBnfE47FDMe6An+ucg/pffkaYghp6cJdhkz8xVcMe
-         O/hDKBYwGIlDsJ+PO9Vz8BUU3mUI/8r4PUgrJ/EXhBHh8alEF8bGq4iFiaW68K/GatW3
-         bWEA==
-X-Forwarded-Encrypted: i=1; AJvYcCVImYJqJdIZ4IMMxcFpd1pCORxE4TssNEmWB9XaLRhmF9LdNwJ0jo1CzyIMZIKyhcld7Q74cFsTduPUfzkWs1J3pMUjGqRv6PXtBQ==
-X-Gm-Message-State: AOJu0YxPhqQZfhDONmAJEmtmPYwKI/zRjPlodc3KWf1814oxBE7vXmy1
-	o9bD3Xipwv8AUM2C6TDX905zhuwmLdnXfJxjIz3+rDTuvynrVhCjBg5USJaL59c=
-X-Google-Smtp-Source: AGHT+IFgy9N9FS/+ol1bEmTGLgjs/Aqz0S9idsbDAFmzV83opyYYygqCUkKwwKWJ2gnki+iP9QqwmA==
-X-Received: by 2002:ac2:430c:0:b0:513:6bbc:e6fc with SMTP id l12-20020ac2430c000000b005136bbce6fcmr803184lfh.8.1709742333240;
-        Wed, 06 Mar 2024 08:25:33 -0800 (PST)
+        bh=tAZMCH8J07QiijNq8o/NNBXhy5JhnjDlTuZhK1cgvds=;
+        b=a7+jfmaYWKvJxCkotIH2lx4AjkVgaqHSBUYmT6hGLS3J6QUkrnBYEVwUo5+IKMmLOn
+         9gKuCJmv1nRwGp9KaOotQDz9zlfZ32jPN4Za5AN2tkQKLQCB+lwgR2CTDW7yVeA6v5WW
+         q7HX3lGcIPyfmrrTaol4oXUwt99/rlteKvO2k7Khwc5TITiAezfWzxYUz1mUl8wohejR
+         MKjPkGhca3fP030hRTjdvZA7aVYTzYqIRahQJ36ruIxf/kNBygdKuxAXzZ2lEFk1ZfBz
+         gMtcV8FwAGnqy1y7in4cUaBZGrnOv8cfcxf2apudVEC7BzNRnccLSiNBQesomBjfpl8n
+         8L/g==
+X-Forwarded-Encrypted: i=1; AJvYcCWC57cNyGTEJotvnPlAgXpNJ2xlsmDCAR1hFpt+5KR3SLIf4Vjgv0t1GleA404fTD2AuQvmmaERAYRjZptZUvzUYfD+r99PYq3uHg==
+X-Gm-Message-State: AOJu0Yxmh7a9USVZvfZ0GIaRNmsinbTIrfp3ALgStLtYRqbyPXGAB1P3
+	PDP4LUcWzus/V/7EIij7lO8EvMV0Y79rv6+Aoho+2qR8Y9PcNpoErAz5fggk8yI=
+X-Google-Smtp-Source: AGHT+IHFSt5jWo2bCyn5EXHjWo85KHHEtu2g3w+sAhUaXX7yL60kB98Uk0rzf0XF8spju2KcgjvxlQ==
+X-Received: by 2002:a05:6512:ba5:b0:513:5bbe:7b29 with SMTP id b37-20020a0565120ba500b005135bbe7b29mr1708191lfv.1.1709742461054;
+        Wed, 06 Mar 2024 08:27:41 -0800 (PST)
 Received: from [87.246.221.128] (netpanel-87-246-221-128.pol.akademiki.lublin.pl. [87.246.221.128])
-        by smtp.gmail.com with ESMTPSA id u14-20020ac258ce000000b00512b7948baesm2674557lfo.41.2024.03.06.08.25.32
+        by smtp.gmail.com with ESMTPSA id u25-20020a196a19000000b00513588ac414sm561395lfu.161.2024.03.06.08.27.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Mar 2024 08:25:32 -0800 (PST)
-Message-ID: <3bace619-46fc-4f9f-bfb3-4c55cb4d8408@linaro.org>
-Date: Wed, 6 Mar 2024 17:25:31 +0100
+        Wed, 06 Mar 2024 08:27:40 -0800 (PST)
+Message-ID: <19176685-898b-4aeb-b819-fec54a126233@linaro.org>
+Date: Wed, 6 Mar 2024 17:27:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,75 +76,50 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/4] interconnect: qcom: sc7280: enable QoS programming
+Subject: Re: [PATCH 3/5] spi: spi-qpic: Add qpic spi nand driver support
 Content-Language: en-US
-To: Odelu Kukatla <quic_okukatla@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>, Georgi Djakov <djakov@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Kees Cook <keescook@chromium.org>, cros-qcom-dts-watchers@chromium.org,
- "Gustavo A . R . Silva" <gustavoars@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+To: Md Sadre Alam <quic_mdalam@quicinc.com>, andersson@kernel.org,
+ broonie@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
+ vigneshr@ti.com, manivannan.sadhasivam@linaro.org,
+ linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, quic_rlaggysh@quicinc.com,
- quic_mdtipton@quicinc.com
-References: <20240306073016.2163-1-quic_okukatla@quicinc.com>
- <20240306073016.2163-3-quic_okukatla@quicinc.com>
+ linux-mtd@lists.infradead.org
+Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com
+References: <20240215134856.1313239-1-quic_mdalam@quicinc.com>
+ <20240215134856.1313239-4-quic_mdalam@quicinc.com>
+ <d1c80d3f-3b70-4630-8f7d-b00983b487dd@linaro.org>
+ <f5177fad-214f-1b60-46ba-1dc0a4fb059e@quicinc.com>
+ <3e544d37-b1d2-9c58-3130-9e6950430671@quicinc.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240306073016.2163-3-quic_okukatla@quicinc.com>
+In-Reply-To: <3e544d37-b1d2-9c58-3130-9e6950430671@quicinc.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
 
 
-On 3/6/24 08:30, Odelu Kukatla wrote:
-> Enable QoS for the master ports with predefined values
-> for priority and urgency.
+On 3/6/24 07:01, Md Sadre Alam wrote:
+> Konrad,
 > 
-> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
-> ---
->   drivers/interconnect/qcom/sc7280.c | 332 +++++++++++++++++++++++++++++
->   1 file changed, 332 insertions(+)
+> On 2/20/2024 5:44 PM, Md Sadre Alam wrote:
+>>>> +    ecc_cfg->cfg0 = (cwperpage - 1) << CW_PER_PAGE
+>>>> +                | ecc_cfg->cw_data << UD_SIZE_BYTES
+>>>> +                | 1 << DISABLE_STATUS_AFTER_WRITE
+>>>> +                | 3 << NUM_ADDR_CYCLES
+>>>> +                | ecc_cfg->ecc_bytes_hw << ECC_PARITY_SIZE_BYTES_RS
+>>>> +                | 0 << STATUS_BFR_READ
+>>>> +                | 1 << SET_RD_MODE_AFTER_STATUS
+>>>> +                | ecc_cfg->spare_bytes << SPARE_SIZE_BYTES;
+>>>
+>>> Let me introduce you to FIELD_PREP/GET and GENMASK().. Many assignments
+>>> in this file could use these.
+>>
+>>   Ok
 > 
-> diff --git a/drivers/interconnect/qcom/sc7280.c b/drivers/interconnect/qcom/sc7280.c
-> index 7d33694368e8..1e1002c4d3d8 100644
-> --- a/drivers/interconnect/qcom/sc7280.c
-> +++ b/drivers/interconnect/qcom/sc7280.c
-> @@ -1,6 +1,7 @@
->   // SPDX-License-Identifier: GPL-2.0
->   /*
->    * Copyright (c) 2021, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
->    *
->    */
->   
-> @@ -16,29 +17,53 @@
->   #include "icc-rpmh.h"
->   #include "sc7280.h"
->   
-> +static const struct qcom_icc_qosbox qhm_qspi_qos = {
-> +	.num_ports = 1,
-> +	.port_offsets = { 0x7000 },
-> +	.prio = 2,
-> +	.urg_fwd = 0,
-> +};
-> +
->   static struct qcom_icc_node qhm_qspi = {
->   	.name = "qhm_qspi",
->   	.id = SC7280_MASTER_QSPI_0,
->   	.channels = 1,
->   	.buswidth = 4,
-> +	.qosbox = &qhm_qspi_qos,
+> While doing the change i realized that it will impact raw nand driver as well.
+> Shall I post this change as separate patch. Is this ok? Please let me know.
 
-	.qosbox = &(const struct qcom_icc_qosbox) {
-		.num_ports = 1,
-		...
-	},
-
-
-
-Looks sensible otherwise
+One patch per file/topic, yes, please
 
 Konrad
 
