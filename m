@@ -1,155 +1,103 @@
-Return-Path: <devicetree+bounces-48885-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48886-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A74D8740B6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 20:45:42 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id B01A68740C7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 20:50:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BB631C21AB6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:45:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6576C1F23255
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7003B14037F;
-	Wed,  6 Mar 2024 19:45:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81EBB140E30;
+	Wed,  6 Mar 2024 19:50:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DEETAeIJ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Z4bYcwU8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4080913F00A;
-	Wed,  6 Mar 2024 19:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EEFA613F430
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 19:50:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709754340; cv=none; b=P2C4CjvkAC/piWvIemx2Qb5qnybROSUIn4+rdrTwwzvG1hhTHux6o1flsKmixJqHcnX1pfoq5PQ8wrw+aAn2zrTKk4tcmYsBK78Cdo5dA9Uv1XxjQyDEfHpt1xutmG9AGQOipBv7veyggCrqjBjIv30dPQzgeVGCEiKWH3m51yk=
+	t=1709754637; cv=none; b=qebrIcC65zFEVCGtYvcemdPiFxQ2MS0sHgTKUsxRUCbBlmEVnHVKWhrIUYb28E41batLDwTHKkRHUPEY/AUtfF4UlBhkeaEleB7CRIB7eWa6hV3d2fQlXD04rQZdX8t7ioR2vWFsZAXg2LajfaE1dJzz8vPbCNt+L+bns6WoI9w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709754340; c=relaxed/simple;
-	bh=5G1J0BhLc6CdOxwigI/ctXSY559sZ3EGEXyuCpYSgf4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GAPKo8INt50ZGKglurPjWLo6ZfOP8pd4wszfalPDpOG1Wnraz48Dbz4qFIpj5AIhcENaJ83BW1Hxm5o9GhsXaoJZOjtdChAxMVRIK7cs5oih3633kPAlJvzgm2rYuRL79bGTj/bhx0CX6ZjPkdluTn6JZCkWRycaZ4DgIY5LFqY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DEETAeIJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0CC3C433C7;
-	Wed,  6 Mar 2024 19:45:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709754340;
-	bh=5G1J0BhLc6CdOxwigI/ctXSY559sZ3EGEXyuCpYSgf4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DEETAeIJJSkUQUzPDySpQ9hhYT2x0WxKI6ArF+euMpwJjwUqo2ESLn0WA22TE5j7K
-	 R36pHhm1XakM0l0MMl8oJg+XQV/ZMguoi4lKGDzUDb3GGj3HVakhMYnTO3NC6iGvGr
-	 5Uua+soh+cdMV1VIPtwOX1TIf6lXef/7TWhr8/6D9qmif+9JMIEbZ2eZ5m+AprvbOc
-	 vCaQjDrZ8L+ZelJA9gr/DIso2OwLiSH1SoPWKvBWeX7FIqhM7uOaVUm2UxjAPQEDqq
-	 h7PxMikDG1u9yjzzjHrkOGmf47FsEmNCbxf3ItXW7YBIG87bp1fgOqUgFVzQBlFcBp
-	 rcG8N5FNlw1vw==
-Date: Wed, 6 Mar 2024 19:45:34 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] ASoC: dt-bindings: fsl-sai: allow only one
- dma-names
-Message-ID: <20240306-petticoat-womb-a61cad7d788d@spud>
-References: <20240305-asrc_8qxp-v4-0-c61b98046591@nxp.com>
- <20240305-asrc_8qxp-v4-3-c61b98046591@nxp.com>
- <20240306-pebble-grope-88fdaa95a87c@spud>
- <ZejDQddMp17RD6Yk@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1709754637; c=relaxed/simple;
+	bh=J/J/WYR0a/jfL/L8CmcqoJd0/LkmdHVXKLnGZM35uAM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=KPq+k2w/ClygkhwQosFUbCKDYVq8pnUBEdgN/pyyJ2zNsfFKlhioAwaJcW1GsX98c+0OuHOw7ysGmXKf6OJAsP0j012uoxniAZkrpPXc6p4Ot3Za9WCC6ck2hFYUvw73fZ2EpyCN8rA6thzmz4zdDC3zZTZKBahmL1VjxcjO5CI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Z4bYcwU8; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-dc238cb1b17so63439276.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 11:50:34 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709754634; x=1710359434; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=XYqVqYpwYt6rNIG76DtvSNsSsOOOlu66e5YGMr8JNM4=;
+        b=Z4bYcwU86sOwtH6K6/+Sbkt+PgwbvwKMzcHZsWI7M6tYKURQr3oQ22WCNfWdb9j5B3
+         4D+nwNP87Xs9lOHg1NXBCMf3sSj7PEXQxp31pPjS1IA5gHBSepO7qsYfJMSUUIxcNYQe
+         TSltAQp6FD0E5zGO7MadSNwCCbqeDmuWUtLml8VN6agw89Oy7Lyi6sEfvwZ2NMF6BiZ6
+         q9wh1YLySyhb1vYiUFXGmuyxFE98GxmOlAHXXHXoP/FVGKLedUsne+UHRP0qk0GQJy1y
+         xxrXDCnpmK2wTWng74G9AidBXpwqpKti4O29edVXxDh4WdTveghboA4ugaMz21Tk6U+B
+         dwaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709754634; x=1710359434;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XYqVqYpwYt6rNIG76DtvSNsSsOOOlu66e5YGMr8JNM4=;
+        b=kIYTv8WiAKCvDuTSxNqOlSmTJin+t0j5/kz/89IfCxBSAGosglI/xCiQXbbNoNaRuP
+         bH7sb7p14oTmlsu3VspEN8nI/Rqn1is03aYjsO0N5iU3mpZ3hT/zAfEAut0PRosmb+xG
+         wL1m7jcMoh5hPzmbfEPnkLtEijk1/IJ9909aUdTpBC2UoE5uMcGAVdsEhN7BO90v0Slb
+         yyc2KWTL9/U5lOzTH0tshzJp67YOhZS8wtjDCooEjvjfRQGkpbZtqGlE/UgBsbXEYqRX
+         QFgVOdn/5gbX8pudzMcQ8XSTJE+Nh364DijDfkLvfxQCdilwPtGyo6XeIp+HHAWWcCqC
+         8i3g==
+X-Forwarded-Encrypted: i=1; AJvYcCXqWvmeg9sV7by4S8tVUlQjBR6fxjr10/SJx0sE20hxxbh+hlPY+Pd4ZP10Jkmsz4lKDzkBkU7vtPbV94dDmhx6aGxXoa9EUg10+w==
+X-Gm-Message-State: AOJu0Yw9Pf4aF9K6e/Z9/IzSzuUz0w0d5g/+ZtQirlATNLBQDgiQVtZJ
+	nLvpqZvFgOCdDjENt0RqULtt9kvrDLoHDh0Z+vlVtHTKE463Cg5f42evvsEQ1SR1PKcG5IACdHo
+	kH4U71CSf2A3lshlnlAa0S84zugWT0pOK0ddxyg==
+X-Google-Smtp-Source: AGHT+IFCY6UXVEeXo4Ge0RRKwR7IuVdrQnxEw4oe3yP+Y7OxURs32fyQY0uegRM9q9PXK/Gxa7fam/d+oeVVOvQQAJs=
+X-Received: by 2002:a25:aea7:0:b0:dcf:477e:c82e with SMTP id
+ b39-20020a25aea7000000b00dcf477ec82emr14974521ybj.50.1709754634018; Wed, 06
+ Mar 2024 11:50:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="trxU1T+09Y67XLwE"
-Content-Disposition: inline
-In-Reply-To: <ZejDQddMp17RD6Yk@lizhi-Precision-Tower-5810>
+References: <20240306172710.59780-1-danila@jiaxyga.com> <20240306172710.59780-3-danila@jiaxyga.com>
+In-Reply-To: <20240306172710.59780-3-danila@jiaxyga.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Wed, 6 Mar 2024 21:50:23 +0200
+Message-ID: <CAA8EJpo22Pk-6zPWEhVjD+HbYWbmsYNm-ZuurOQ2KVw4=0dC3Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: qcom: pm6150l: add Light Pulse Generator
+ device node
+To: Danila Tikhonov <danila@jiaxyga.com>
+Cc: pavel@ucw.cz, lee@kernel.org, robh@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andersson@kernel.org, 
+	konrad.dybcio@linaro.org, linux-leds@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-msm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
+On Wed, 6 Mar 2024 at 19:49, Danila Tikhonov <danila@jiaxyga.com> wrote:
+>
+> Add device node defining LPG/PWM block on PM6150L PMIC chip.
+>
+> Signed-off-by: Danila Tikhonov <danila@jiaxyga.com>
+> ---
+>  arch/arm64/boot/dts/qcom/pm6150l.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
+>
 
---trxU1T+09Y67XLwE
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-On Wed, Mar 06, 2024 at 02:25:53PM -0500, Frank Li wrote:
-> On Wed, Mar 06, 2024 at 06:45:13PM +0000, Conor Dooley wrote:
-> > On Tue, Mar 05, 2024 at 12:33:04PM -0500, Frank Li wrote:
-> > > Some sai only connect one direction dma (rx/tx) in SOC. For example:
-> > > imx8qxp sai5 only connect tx dma channel. So allow only one "rx" or "=
-tx"
-> > > for dma-names.
-> > >=20
-> > > Remove description under dmas because no user use index to get dma ch=
-annel.
-> > > All user use 'dma-names' to get correct dma channel. dma-names alread=
-y in
-> > > 'required' list.
-> >=20
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> >=20
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 13 ++++++----=
----
-> > >  1 file changed, 6 insertions(+), 7 deletions(-)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/D=
-ocumentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > index 2456d958adeef..6f551c68d33db 100644
-> > > --- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > @@ -81,15 +81,14 @@ properties:
-> > > =20
-> > >    dmas:
-> > >      minItems: 1
-> > > -    items:
-> > > -      - description: DMA controller phandle and request line for RX
-> > > -      - description: DMA controller phandle and request line for TX
-> > > +    maxItems: 2
-> > > =20
-> > >    dma-names:
-> > > -    minItems: 1
-> > > -    items:
-> > > -      - const: rx
-> > > -      - const: tx
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: rx
-> > > +          - const: tx
-> > > +      - enum: [ rx, tx ]
-> >=20
-> > I'm not entirely sure if this was Rob's suggestion, I got the impression
-> > he was suggesting that in the two items case we'd not care about the
-> > order. But while I think this is different to that suggestion it's also
-> > not wrong.
->=20
-> I log this at cover-letter. b4 can't support write change log at every
-> patch yet. Rob's suggest was not work. dt-binding check complain too long
-> if there are two dma-names =3D "rx", "tx".=20
-
-Yeh, that is what happens if you just have
-dma-names:
-  enum: [ rx, tx ]
-since that only allows one entry. Take a look at st,stm32-uart.yaml
-instead, for example.
-
---trxU1T+09Y67XLwE
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZejH3gAKCRB4tDGHoIJi
-0o5ZAQC0bEJLk2rMmNg1h6oK0puBl8tnJqZX4qRtU8t6hz4KlAEAmuy73tHPP4vO
-iIc7yezGXRzST2Kg4QHm/imuO9iUSAs=
-=u4Ht
------END PGP SIGNATURE-----
-
---trxU1T+09Y67XLwE--
+-- 
+With best wishes
+Dmitry
 
