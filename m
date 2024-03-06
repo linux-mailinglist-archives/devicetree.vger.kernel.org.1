@@ -1,144 +1,117 @@
-Return-Path: <devicetree+bounces-48911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E63C87435C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 00:01:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DEFF2874385
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 00:11:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E1C701F23BFB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 23:01:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7C5301F21F0F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 23:11:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AE9301C6B8;
-	Wed,  6 Mar 2024 23:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 100181C6AE;
+	Wed,  6 Mar 2024 23:11:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="FzGykI5t"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V/P+eTMf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 81C0F1C6B7;
-	Wed,  6 Mar 2024 23:01:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CDAF1C686;
+	Wed,  6 Mar 2024 23:11:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709766073; cv=none; b=qKntluW54J/S1L/iyxgaOlPfMbysz4EIuweWAcjbwmfjdiAH8EfX9G+3cmimgWN3kwgdgTw4ytDr5UE9YYjl3StpxFOQn4GtRZmKeK6pXmT9P+PiWzWxgCne7Qj5MwCvy96KoykwC3FutgdzPeAW63c5JJfgEtbRtLnvV/meX8Q=
+	t=1709766679; cv=none; b=mbZely/bmyoFXispRtFFeaLl4rYXMeO03jOZH71vXIY8I2AKXo1fX+ue5ztmyIXGZJsrNgiV8bQU+OB0tWx2ypDVuNlgL0PIP09DCeQi+AQGpzXYiDQlY4Tpow+marHyE+8X84ujPTV/oCInk23oqyq8F1UH91qtlG8fblxMKfo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709766073; c=relaxed/simple;
-	bh=1foeIlAL02HQ/9fWETjo+VPeQRpGEBkjUsRFchJX7d4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=f7s0X0KyGwm9aOcW0Y2JfdRZA3TCIJWg4NEAugeZy/xEpHxi0N5ovzeWEwvW5An/bFX6oIm6YddOdFQkg2z6ZkzqU8EOXM4rsfdJr6GD2Za8sV5jH/+vGGJzFQhjVZc7BNC+KfzyPZMf6WzS9IhCzjfr/Thlf4Blbp7uTBOMTZ4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=FzGykI5t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61598C433A6;
-	Wed,  6 Mar 2024 23:01:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709766073;
-	bh=1foeIlAL02HQ/9fWETjo+VPeQRpGEBkjUsRFchJX7d4=;
-	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-	b=FzGykI5t1KZcrcNh3uIkXsI4mhxdAVRhHvFVRqEEeCR8jYOZBf7sIsQYsEmuoj7Cp
-	 VJ6XN/kVz/j7ISNU6iJKQDCYUJmit3KyAdc//QwJiR2o5MN2ihF+ss0bY2FRwXOw8Y
-	 16xCLbhfe6SOMgclhR+g9ttqkRAacHzIx+G26l4lFwWlcxDagL7vq1NClMiqfMZrLF
-	 V3aL0pc75FJc0Fhi9frO5zcqRZAwskdM87VYHPQH+CUDT3xk8JSontUBbFSweZ3oS8
-	 JNJxUi6okj8ACN6TKTIWyhVqSRg7/4sSKO41qB7DO6R3zCyv4rLzMKCu0wHoRzla0L
-	 09TQtdiq5BF3Q==
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-51331634948so1430963e87.0;
-        Wed, 06 Mar 2024 15:01:13 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCX55ddvTi+1PL8+Fw8hmol8Drzqhd1Jk4Iq9GjqI+BYY0AmhJEFpErttfEiBIkfbKrYEMcKIt7EGNelZ/lqaeVFJtLLNDlshDu2GUgibRCkAwVp2UHe78wuRnpKsLW7v4hr6kRSp/wAmeENopzOhY+o+iZ4ZTVfzkNhGRO5SYwUUZmM51nv
-X-Gm-Message-State: AOJu0YzPyrXfz5fPXnB28hWBbo6+R1725ikxRac/d3dnEffvkuxDZupO
-	6lsE+Juz3dP08WI19IL6iuL83p/CaQsEUMUitlHRA252jpf5wcdIn769nTVP0Zrwm5EZW6jgofs
-	LJdS2yXLWaFMiozW4ukwRzUWbKw==
-X-Google-Smtp-Source: AGHT+IEe7ONAG3lrAgIWy+05ru/C7vwOPDlzVeORdLHPWUfWrnU47WOhZwb4SSMXu5BC5lZaDn1RllTR5GSnhrsxEUU=
-X-Received: by 2002:ac2:5a0b:0:b0:513:3b3e:c361 with SMTP id
- q11-20020ac25a0b000000b005133b3ec361mr70664lfn.2.1709766071504; Wed, 06 Mar
- 2024 15:01:11 -0800 (PST)
+	s=arc-20240116; t=1709766679; c=relaxed/simple;
+	bh=EBrriInW3JbtArIhXHglPAvOuHM/fEGrMu3uHu2Klgs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=ZZY+oTLAutHVQo+2zuXHv4YY19NDonCZCkuriG+1lIM4K0YmW4CU5fJGitv8HdzUeBubRAnCsGjiPLaxG6GuxotF89NdAoNT7qqlRJBPSxoDhopk/FQboIfiWO7UHsNrFeYM/KtnTt3uAulB7EOwYljmBuciQVlbs1z9SGc7pr4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V/P+eTMf; arc=none smtp.client-ip=209.85.128.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-412f692be21so2789455e9.2;
+        Wed, 06 Mar 2024 15:11:17 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709766676; x=1710371476; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ed13jYHQ8Lp5ithwU/UjoL1/F5W01I7K/zlGRfPgDr8=;
+        b=V/P+eTMfv1nELp+12dSu++7ka00Ht3HBcxQtBanqGFvx1Pblu/hsHaKHoPpYSUBzSZ
+         stPIlkgidx01+6Ke4/djt0kg7IzmWY1oh4HFjtWA6qqTKHV8QQOGss1mFdDcTwtw5nmi
+         07PT47nv3onGPHi/v7+Gt70fu84WBwTDXNyRR4SqmideQeIA1MfmpTpFp4WRWqG1NQ6q
+         jhNP1eWOhOg8DoxBXCeaTLPdLO7iWJTuUvT+G8NUxOr8V98KSJ7pGEJZJncy6/e8KbYO
+         uE9IYxgFtCtnAyD+xvvpNjR4h8dzNPtXqVf1DXiE/Je/T4L534MmWRGHd/Bb+U5ox7+T
+         tIKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709766676; x=1710371476;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ed13jYHQ8Lp5ithwU/UjoL1/F5W01I7K/zlGRfPgDr8=;
+        b=VHKYsAUTyrl0pSy4K0Pwd1DriVmZGRwM4bli+mL8Fu6DFh7iEbqVQyxSrIc4G0HKnq
+         K4aCifH3gLnwzsRkLxaeQdbIM2aRHLu//HJesR+yv1aY9pXIBJwi84DFNiDurst56L2u
+         K8117ncgzaVp1FiUhJgynv9kXhmXfg3Z1MnTpukEMr4zI4ib7e9fp4VH6/ReilQVDAA9
+         Dv5LfJJYx7zh2DUyoPU7UEYyPuosebbAUZwzfHGBljGYxpt4qQChpffhTdDWfEYO8j8L
+         yh4cBZIrzRs5uDLAroNDdiYryzC15fzh/geLFM6MgAHhhypOIX+Qe++shogW1IJpbk12
+         Crew==
+X-Forwarded-Encrypted: i=1; AJvYcCW5YskdAz8rqlzYbBf2cvqjs4yA+aR5hy60B0eXTZg0H5ndclrVdNgzj5TnA5HlaDE2QIYlny+8dSnTmGDJlW4eQqvEi0tejGpqQmAv3NbG52DGTwhj6an5gYdGdEpb+6Jh8MMhJD/jqx39aZHXfGfiiNw/ZNA3d701wE97O99/HrIv234JTeC9vTgy
+X-Gm-Message-State: AOJu0YwMCBl8HZhwkUcMK0EztiT8oFosGwrQNpBSFtDDG76xsng1p2fm
+	sM5Ds1dXzrjohrf6yqkEN7mxLt6EiAGz3nZMhW8mrmQ126iE7zHV
+X-Google-Smtp-Source: AGHT+IHTudt7kiYcNJSDPSJ98mAV2G/a5wBaZS03otEV7K9fUUgCt4uLpoJnm459eeVLI8D38BP8TQ==
+X-Received: by 2002:a05:600c:cc5:b0:412:df1b:4875 with SMTP id fk5-20020a05600c0cc500b00412df1b4875mr8149679wmb.30.1709766675506;
+        Wed, 06 Mar 2024 15:11:15 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2500:a01:fef2:3c1d:a816:65f7])
+        by smtp.gmail.com with ESMTPSA id h8-20020a056000000800b0033d2ae84fafsm15328996wrx.52.2024.03.06.15.11.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Mar 2024 15:11:14 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/2] dt-bindings: serial: renesas,scif: Validate 'interrupts' and 'interrupt-names'
+Date: Wed,  6 Mar 2024 23:10:05 +0000
+Message-Id: <20240306231007.13622-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240305-asrc_8qxp-v4-0-c61b98046591@nxp.com> <20240305-asrc_8qxp-v4-2-c61b98046591@nxp.com>
- <20240306202537.GA587561-robh@kernel.org> <ZejX0/FA/z4wa7cY@lizhi-Precision-Tower-5810>
-In-Reply-To: <ZejX0/FA/z4wa7cY@lizhi-Precision-Tower-5810>
-From: Rob Herring <robh@kernel.org>
-Date: Wed, 6 Mar 2024 17:00:59 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ6U2-EGeJgTuxBooEy=OEJ08wDNshWnfKooryAr6=QNg@mail.gmail.com>
-Message-ID: <CAL_JsqJ6U2-EGeJgTuxBooEy=OEJ08wDNshWnfKooryAr6=QNg@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] ASoC: dt-bindings: fsl,imx-asrc: update max
- interrupt numbers
-To: Frank Li <Frank.li@nxp.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org, 
-	devicetree@vger.kernel.org, imx@lists.linux.dev, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 
-On Wed, Mar 6, 2024 at 2:53=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
->
-> On Wed, Mar 06, 2024 at 02:25:37PM -0600, Rob Herring wrote:
-> > On Tue, Mar 05, 2024 at 12:33:03PM -0500, Frank Li wrote:
-> > > fsl,imx8qxp-spdif and fsl,imx8qm-spdif have 2 interrupts. Other platf=
-orms
-> > > have 1 interrupt.
-> > >
-> > > Increase max interrupt number to 2 and add restriction for platforms =
-except
-> > > i.MX8QXP and i.MX8QM.
-> > >
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/sound/fsl,spdif.yaml | 18 ++++++++=
-+++++++++-
-> > >  1 file changed, 17 insertions(+), 1 deletion(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b=
-/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-> > > index 56f8c0c8afdea..7f6590708e1ec 100644
-> > > --- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-> > > +++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-> > > @@ -31,7 +31,8 @@ properties:
-> > >      maxItems: 1
-> > >
-> > >    interrupts:
-> > > -    maxItems: 1
-> > > +    minItems: 1
-> > > +    maxItems: 2
-> > >
-> > >    dmas:
-> > >      items:
-> > > @@ -101,6 +102,21 @@ required:
-> > >  additionalProperties: false
-> > >
-> > >  allOf:
-> > > +  - if:
-> > > +      properties:
-> > > +        compatible:
-> > > +          enum:
-> > > +            - fsl,imx8qm-spdif
-> > > +            - fsl,imx8qxp-spdif
-> > > +    then:
-> > > +      properties:
-> > > +        interrupts:
-> > > +          minItems: 2
-> >
-> > Nowhere is it explained what the 2 interrupts are or what the order of
-> > them is. Is the first interrupt the same as before, and there is a new
-> > interrupt for something else? Or it's the same interrupts, but they've
-> > just split up into 2?
->
-> It is same one and split to tx and rx. Order doesn't matter.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Make that clear in the schema. Order does matter and you have to
-define the order in the schema.
+Hi All,
 
-> They uses one
-> irq handle.
+This patch series updates renesas,scif.yaml to validate the 'interrupts'
+and 'interrupt-names' properties for every supported SoC.
 
-What does that mean?
+Cheers,
+Prabhakar
 
-Rob
+Lad Prabhakar (2):
+  dt-bindings: serial: renesas,scif: Move ref for serial.yaml at the end
+  dt-bindings: serial: renesas,scif: Validate 'interrupts' and
+    'interrupt-names'
+
+ .../bindings/serial/renesas,scif.yaml         | 147 ++++++++++++------
+ 1 file changed, 100 insertions(+), 47 deletions(-)
+
+-- 
+2.34.1
+
 
