@@ -1,136 +1,118 @@
-Return-Path: <devicetree+bounces-48820-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48822-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24CBF873B32
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 16:52:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7087873B41
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 16:54:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC03AB2247C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 15:52:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6BA43B220CB
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 15:54:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2FF6913541B;
-	Wed,  6 Mar 2024 15:52:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF214135A47;
+	Wed,  6 Mar 2024 15:54:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YiaraTxC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="x2baU5L+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 056FB131742;
-	Wed,  6 Mar 2024 15:52:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 054821350EF
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 15:54:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709740323; cv=none; b=teX7I/1Q5p4pgAq1DETFknudWq2A/6J2mQDAd0ZXEF5bpNuwf4TyyIBrtyU4ysbQaaMOE9oAOw+xwXhPm97DTCcUOmP82Z5rwfQvmibiRQwzVbp1FmsoQqgUNpkPpZkndkIkFb4gop55xb5n8hx2jU9OlAMFdzv5xfW3IJdjfC0=
+	t=1709740474; cv=none; b=JeOhWwtFAaV0K8SwRFmFsjLs0Bi/hnrCOPR59XNlq4GZAP6p7iNGyp/Tl/lZi+ZyoseXXeDcuLXn3c6t7GhrHWiKVYRrhHnG5teNAk1Qo+030E9bFz2DA8QrtekqJbyBMI0EA27NhNRlQ6fC3jwq/w5Qn5rzjak8hFI2PzGGR1M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709740323; c=relaxed/simple;
-	bh=jZtqjcc68teaxGW7BSP8LVZ6Tdy5taDJ5nwTMZlZ+/Q=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=WP7BgK+qkaTEATqdv76raNN/cyMXMiyOik8ysyscBhUKrYAVdCQLPjIEnBIJw2g7gIwKPCGCFau/DvAiBGs+8cYkAcjNCJm7F9jZ2RPX7h8xObQvjVya8AlmsZCqccdyEJ9TCyXnGUzyDLsF5XXB3GQk6M8l1AveVqZ+AIIpjvc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YiaraTxC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1DF2C43394;
-	Wed,  6 Mar 2024 15:52:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709740322;
-	bh=jZtqjcc68teaxGW7BSP8LVZ6Tdy5taDJ5nwTMZlZ+/Q=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=YiaraTxCYX+sh145ycLJRCrfAXHa6UY5RzGXxeOI2u4pNbnKN3EXM2agofesj++8p
-	 9A5BxVuBz+tX6RKj9ZzXZez63QQV5zX3qVef6cVDps63BmqndBBoBWN5MQQMYAFhfl
-	 BvyydWoIt27qJE3CH2suIykw+jMx2pPk/cpIUZLrbE0z+j05MSIXhz8drVO+K+Wca9
-	 c4sDa+B+tOzEaCMJr5k/BpNbE7HdxrlD3BTFznFAWXNZ/in6zjfr+7VYyr2lVjaKVJ
-	 cRFJuK/7HHfHZbgyCTLsX8ZZRRBWln1cqdlx+Y1ghlC+rlKvIwU27JWnnOUugX6vCF
-	 yUXWQde6Y6YDw==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
- <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Thomas
- Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
-Cc: Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org,
- Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>,
- Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org, Atish
- Patra <atishp@atishpatra.org>, linux-riscv@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, Andrew Jones
- <ajones@ventanamicro.com>
-Subject: Re: [PATCH v15 08/10] irqchip/riscv-aplic: Add support for MSI-mode
-In-Reply-To: <20240226040746.1396416-9-apatel@ventanamicro.com>
-References: <20240226040746.1396416-1-apatel@ventanamicro.com>
- <20240226040746.1396416-9-apatel@ventanamicro.com>
-Date: Wed, 06 Mar 2024 16:51:56 +0100
-Message-ID: <87y1avbboj.fsf@all.your.base.are.belong.to.us>
+	s=arc-20240116; t=1709740474; c=relaxed/simple;
+	bh=OS4UIwv4AL3sypbFaD0xokWuXPgBJI3QxCTyuY5K3Iw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oKASd/kfS8gFZYyBb9IqaG6X0ivvfjtgJZoBYTXrxdS8aGE83NP107W8o3VarVtcoEH3VlSrXQ3PcEYoNc/KZ7m/UCeB+hVN2jYQul/0oxmVVeGBDlPAFzO8nPdMsbU9n51y7yhoiyq8XKw49UyPoN5uB5bGYVjBHf6xgcUFjxI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=x2baU5L+; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-512f54fc2dbso6221481e87.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 07:54:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709740471; x=1710345271; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=9linAkATm+FdXXzIu/Ohj8OonJxlZ75KvqbpWO2tghk=;
+        b=x2baU5L+Gwo0EGToMF8EaEl862My1ciND5H7ROuhzdAsdGU5jcJbBoHPxEvz5B6a9D
+         k8IjYTUVFOd0XeEi+vxxqpolmT6bZRcWq6YdPvqXlqMEEtp+mr7dY2lIKSyPFUTznX/8
+         ET9PIFDzy+DLZh6ZstjjFeqaMT4siWlJwzWC60sUSVTmj7RAJRzHIYL3KNSOhUElq8sK
+         5LMDNqR5aDwDMgJpVzQfIf17XvgRP2/op7E7VSRtIATi+RrUOJe1yPXygzLebdL6iIO1
+         h7yboIAQwwPpo5/BwzdvqpP5IkydMRwBM5aNbaecFVuBuhtjZecgxektZOwCnIBhqqu0
+         OueA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709740471; x=1710345271;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=9linAkATm+FdXXzIu/Ohj8OonJxlZ75KvqbpWO2tghk=;
+        b=J4rKWatfCKsvfuLoqh/bx0BQMvCyW5qbSMrSEG7JKM7pWn8edYNEPueOr4+yECOh3F
+         az7L7XMreKXQ/rd2SRP2nZHTNToqTQt8PR+UGKFk/Mptmo7YouG9Mo4L17xKFPeMU7Pa
+         onm3vP7S1gkZiwXYJTvSy1tpb9N0BgcVUT3wM9PuasGkbxN/fCce+VWPl5O2AtQsJK8K
+         s+IVmuCoWVjKe9+9+ckXkfJPYOd64rDKeIwo+uHaHRPAE0Bs7q6kCYNReCMrfPIw+CE/
+         hHm2+9c7NTV2fgHi6Bclh1fUCeNvzQGjUPBRrD6KYFS4k9ik11kYI551nE7lE9BJsBxo
+         HrNw==
+X-Forwarded-Encrypted: i=1; AJvYcCXzTZSnHHJlThBHeo5lpe3aqK1vI1+FJ9SepwNExUFaLVyCyKYk9jur8I8i6LkzNOPfSsDnK9/pHkszkvJQgqKEqX1i6+W9F+ffaw==
+X-Gm-Message-State: AOJu0Yxv4liSAc0IrYQaUI0HNUc8m48XugjMN5x7ZYC9eDbXVpgiHfMP
+	vPvQIjll4cuYxnVRjC9KlFo/DWmuZ3260BxG0shm+sWqYWRGCxI2zYZUT3vYxR0=
+X-Google-Smtp-Source: AGHT+IGjqv8MP18VepWF6CGkD7N8gFHHZ1sLfgowPepDZ+cRvkPjnTPPwAZ1S7cPVN+C634ZqkCqWA==
+X-Received: by 2002:a19:5e51:0:b0:513:4b49:e1d2 with SMTP id z17-20020a195e51000000b005134b49e1d2mr3124056lfi.52.1709740470844;
+        Wed, 06 Mar 2024 07:54:30 -0800 (PST)
+Received: from [87.246.221.128] ([87.246.221.128])
+        by smtp.gmail.com with ESMTPSA id u12-20020ac258cc000000b005131941f7e9sm2661074lfo.5.2024.03.06.07.54.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Mar 2024 07:54:30 -0800 (PST)
+Message-ID: <45fcf8fb-9d9b-4e6a-a7c5-9bfb96875e64@linaro.org>
+Date: Wed, 6 Mar 2024 16:54:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-Anup Patel <apatel@ventanamicro.com> writes:
-
-> diff --git a/drivers/irqchip/irq-riscv-aplic-msi.c b/drivers/irqchip/irq-=
-riscv-aplic-msi.c
-> new file mode 100644
-> index 000000000000..b2a25e011bb2
-> --- /dev/null
-> +++ b/drivers/irqchip/irq-riscv-aplic-msi.c
-> +static void aplic_msi_write_msg(struct irq_data *d, struct msi_msg *msg)
-> +{
-> +	unsigned int group_index, hart_index, guest_index, val;
-> +	struct aplic_priv *priv =3D irq_data_get_irq_chip_data(d);
-> +	struct aplic_msicfg *mc =3D &priv->msicfg;
-> +	phys_addr_t tppn, tbppn, msg_addr;
-> +	void __iomem *target;
-> +
-> +	/* For zeroed MSI, simply write zero into the target register */
-> +	if (!msg->address_hi && !msg->address_lo && !msg->data) {
-> +		target =3D priv->regs + APLIC_TARGET_BASE;
-> +		target +=3D (d->hwirq - 1) * sizeof(u32);
-> +		writel(0, target);
-
-Is the fence needed here (writel_relaxed())...
-
-> +		return;
-> +	}
-> +
-> +	/* Sanity check on message data */
-> +	WARN_ON(msg->data > APLIC_TARGET_EIID_MASK);
-> +
-> +	/* Compute target MSI address */
-> +	msg_addr =3D (((u64)msg->address_hi) << 32) | msg->address_lo;
-> +	tppn =3D msg_addr >> APLIC_xMSICFGADDR_PPN_SHIFT;
-> +
-> +	/* Compute target HART Base PPN */
-> +	tbppn =3D tppn;
-> +	tbppn &=3D ~APLIC_xMSICFGADDR_PPN_HART(mc->lhxs);
-> +	tbppn &=3D ~APLIC_xMSICFGADDR_PPN_LHX(mc->lhxw, mc->lhxs);
-> +	tbppn &=3D ~APLIC_xMSICFGADDR_PPN_HHX(mc->hhxw, mc->hhxs);
-> +	WARN_ON(tbppn !=3D mc->base_ppn);
-> +
-> +	/* Compute target group and hart indexes */
-> +	group_index =3D (tppn >> APLIC_xMSICFGADDR_PPN_HHX_SHIFT(mc->hhxs)) &
-> +		     APLIC_xMSICFGADDR_PPN_HHX_MASK(mc->hhxw);
-> +	hart_index =3D (tppn >> APLIC_xMSICFGADDR_PPN_LHX_SHIFT(mc->lhxs)) &
-> +		     APLIC_xMSICFGADDR_PPN_LHX_MASK(mc->lhxw);
-> +	hart_index |=3D (group_index << mc->lhxw);
-> +	WARN_ON(hart_index > APLIC_TARGET_HART_IDX_MASK);
-> +
-> +	/* Compute target guest index */
-> +	guest_index =3D tppn & APLIC_xMSICFGADDR_PPN_HART(mc->lhxs);
-> +	WARN_ON(guest_index > APLIC_TARGET_GUEST_IDX_MASK);
-> +
-> +	/* Update IRQ TARGET register */
-> +	target =3D priv->regs + APLIC_TARGET_BASE;
-> +	target +=3D (d->hwirq - 1) * sizeof(u32);
-> +	val =3D FIELD_PREP(APLIC_TARGET_HART_IDX, hart_index);
-> +	val |=3D FIELD_PREP(APLIC_TARGET_GUEST_IDX, guest_index);
-> +	val |=3D FIELD_PREP(APLIC_TARGET_EIID, msg->data);
-> +	writel(val, target);
-
-...and here?
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8450: Add qfprom node
+To: Mukesh Ojha <quic_mojha@quicinc.com>, andersson@kernel.org,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <1709727995-19821-1-git-send-email-quic_mojha@quicinc.com>
+ <1709727995-19821-2-git-send-email-quic_mojha@quicinc.com>
+Content-Language: en-US
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <1709727995-19821-2-git-send-email-quic_mojha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
-Bj=C3=B6rn
+
+On 3/6/24 13:26, Mukesh Ojha wrote:
+> Add the qfprom node for sm8450 SoC.
+> 
+> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 7 +++++++
+>   1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> index b86be34a912b..02089a388d03 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+> @@ -4575,6 +4575,13 @@
+>   			};
+>   		};
+>   
+> +		qfprom: efuse@221c8000 {
+> +			compatible = "qcom,sm8450-qfprom", "qcom,qfprom";
+> +			reg = <0 0x221c8000 0 0x1000>;
+
+Is is really only 0x1000-long? Also, is the base you put
+here the ECC-corrected part (if that still exists)?
+
+Konrad
 
