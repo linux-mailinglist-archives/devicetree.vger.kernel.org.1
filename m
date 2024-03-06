@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-48656-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48657-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B739872FC0
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:35:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 34082872FCA
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:36:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7ED401C210FC
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:34:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 9FDA71F21826
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:36:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCF0B5C8EB;
-	Wed,  6 Mar 2024 07:34:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8E47217BCC;
+	Wed,  6 Mar 2024 07:36:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fmSP5Cmd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ooteZS8J"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0A9F4171BB
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 07:34:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7863DDA8
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 07:36:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709710496; cv=none; b=Oqw7yGAturvmFsz8LhdvqQAPHtliMU4YliCKj2MuOgufdRfwoFBkGik9tEccZ63wIJ43fQWWQgFsUsd9nxcHruyQOKQOAe1E6eXhHR0XWLmSNVd9xmEgV2lPsOb/WoH35vUD25B0vNFLmc9OVBMfoWbHRULC1f/FyfZDqoyPEbE=
+	t=1709710579; cv=none; b=ShycGKhSCZX/ElajCTgRK9Ksru3obGyuTPtprSjjuwDRUu4fr6cU2SlBAQmsZVRKBdA74qnRVoX2dTi8mnjwUI740iZO74Hfleuhnrmt9ZF5sLQwrIiSNRW9q2sefrXpk+6+ce/+7C2xsh1WNjr/2hVT4ZhMsxb4BfpAngmRdHc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709710496; c=relaxed/simple;
-	bh=I0f6+eX1s+HWRJYTub/vdh5mp7asa2hhcNPoDkt+6Ds=;
+	s=arc-20240116; t=1709710579; c=relaxed/simple;
+	bh=/4FjtLJG53wYg4p2abswLcRMve6HOEJlmDwdRGOjO+M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=s1nqlAJCdvtuOdBc5x893dHJqKuwsfstcJLqPaxkSPTYAjDnXJQpMrKrPVZZtpKuSGm6sD2VvDjdemEyNeID3OrK97SCVJY26KQUlzN/recq5fGRSB1NJl0X56v1WbfVDr33InAHIK3bcNMkTmTZD4FihIptHZontFAJ7YAO4ak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fmSP5Cmd; arc=none smtp.client-ip=209.85.218.49
+	 In-Reply-To:Content-Type; b=bnbV0qtdQM8ZfY9tKAqYG+qJVo5KuuMrL4lwQyiijuQ2+GJOY0aZuA9Mq3k7Po9z4xfDHzN7G4gOoApoaVL4R15sqSkTD+qzg1b/xS/GskZt68FwVzWdIELJQmBQ4SegftsG76aH+bJ4awDPaXyeHRJTk13vbiQBh7nVtPspPao=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ooteZS8J; arc=none smtp.client-ip=209.85.218.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f49.google.com with SMTP id a640c23a62f3a-a44628725e3so832865566b.0
-        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 23:34:54 -0800 (PST)
+Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a3ed9cae56fso93713266b.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 23:36:17 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709710493; x=1710315293; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709710576; x=1710315376; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Roy/GFA4LhSJfy4U8CC0PZ8QNN0oJiic2IZNVSrgRig=;
-        b=fmSP5CmdvO6xmX5VUx1/lUSfVBkxvTBm/2LEHYBB5x5gOuqAx+9hglgOe3waLY9SYE
-         dYeEfyp73pGsr4L8EjaMKiEoKAPkT4EWAfiogoqOiiCi0nPW4uvFkdAEHbI31BYqGbgw
-         tZfYuqg8en5qndN+eVbIRaE5IVkB2Ovd6IlRZvGBVX45mUndQB+tr8ETZSKt3L8d/kt+
-         X0IFC5CHgEsdGLCk1Xtz1p46hmTH2M8k6sE5pStf8pcnmPAUQ3krt5H0SiXPGdkJtu+k
-         pgNIsx4dDr38ydDEfTLOiNz31GewEoPyeaYhEkaYFx/YBxYRe2V/mK30QxvQTRWYhAgq
-         vGOA==
+        bh=C9Ayz5TaxZN5GTuq2TZZyUEucZQ7+vMm9uqaP73/QbE=;
+        b=ooteZS8JS0axnnjnqoMtkNfgHg+xuqIyMsiCpoWqF/lBveLBRpY6AuLqsNz8NaT64S
+         iTO10SSCDP3HahgMMkwBTqDufsWDwj2ZLYG1syHBlaqpvHf3NTzDCFgZM8mGxT8RryvA
+         bcXHXnRHWcbX7TJ+4gBA3vUlnU+8XHn2BL4jt0R2ulZ891gYg0JVw/9JgKmt6jw9NNND
+         ZtxWFqReL8vTa1azbuuoF8V3WIW7wJGSBGmo5di6fGM+Nifk11GVTfysXANe5SI74ukQ
+         WZ6qve9iu/czCB3PxQtwSUDbbtQ0DG8gNofmXA2o1WkhJcpS1o0FhZRUvx/agtye/7Zt
+         Ac3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709710493; x=1710315293;
+        d=1e100.net; s=20230601; t=1709710576; x=1710315376;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Roy/GFA4LhSJfy4U8CC0PZ8QNN0oJiic2IZNVSrgRig=;
-        b=J6yg3zgJzQlh1W8wTFi1cmGO/yaeh4uQiLuDtjkLBeHCXz5aG/mAXdxdcaz/UgvYQd
-         02buuWzCq3VL+48xcoJoyqsOvdZSDVPnK6+Yf+6XyblW2DVs0avzFOd8hIlTRfGbpnWG
-         Ms9mvItgKpT9pnImAGWa6KHtH2bf5DZsY4RgV5lLDIoAXElc8/1CfpCibUDEKv9HG9rW
-         QhveSPgk1kh9qOac6jlYujZU+l1IOaTbOpBaWL/PSrZ5GcCecxzcl6SD4V+y3gX6DL/5
-         vy/n7z+JYQ0FU20O+hrnXUQ/9Z9UY+segk0icjRLQV8gCwpKcTSkU/xajY1gnejABoKb
-         IZuw==
-X-Forwarded-Encrypted: i=1; AJvYcCWAlhvmXKXlAn5ur9FR0xio0SPCrh2givcrFjSVjg2ng6vAMEsI6neLHDKKoT/bHxkis5c3ipA7GBCFwleEA4KvPlR28vnLtrW0sw==
-X-Gm-Message-State: AOJu0YxonAMkg0mdaXIC7vqcCiOzgHdJcgWdhp6uczhlma5+hmiTLyuY
-	hCYehzm7UEEyH+gKrXBNQ62sMwwf4LYHx3t/bw1cmSGdDMxk6OILBPgygjPbdHQ=
-X-Google-Smtp-Source: AGHT+IEGmrfLrmuZnuwk9MDReu8TUpEtAmMBhhU/WEy5PR3SDazmyLPhrfnKGf4nlk3vxgBgjKr5Zw==
-X-Received: by 2002:a17:906:714f:b0:a3f:20b9:2b68 with SMTP id z15-20020a170906714f00b00a3f20b92b68mr9826117ejj.10.1709710493125;
-        Tue, 05 Mar 2024 23:34:53 -0800 (PST)
+        bh=C9Ayz5TaxZN5GTuq2TZZyUEucZQ7+vMm9uqaP73/QbE=;
+        b=nL/a2nsG3HnMff9n+cWtQa+e75ylXT6KYtjesS/CaAEn7zDzRpbanD6wWfEXoSEuXK
+         C5B/IqYLeaHS5k56Sf5+jaRsFCYHmgzcoCjFwW0cyst/TI99aqagCfzDAJkCnZdqDeyN
+         H+53LVD60Ur9PDDa9sgVmBJTDCdPNambkVMWnyVUdlsl4zV9dHQ5aXPKGxsHMUn6lXWQ
+         McXGkhhf+4AetSViPfVllWXQ8P2SXjAI6WADylHtwZSLFHracaOAbVvIJoy4XLtI/5c5
+         zQAptPnnpMgc23tntBcUiuPTgHC7kvncEuWXAPdvhKQ749hKpjG/tB8P5GtEv63r8EZG
+         30lw==
+X-Forwarded-Encrypted: i=1; AJvYcCXWRmoYF497c+ezGpxPO0+73fR3V6T4HE6af9RFcccJuCpynmE4kJVaLcGH+8gJpfdRG2k2JQ80mZASZnj+4mzGJvi2z3mguscfpg==
+X-Gm-Message-State: AOJu0YzGkJVrQ+K/RZov9ePGsoF/mEzrfVWYLNAME88q+YoL+gIg/WnC
+	ZdfrUsMu8EAHDnd0pRy64YYdOeZKjyWYY6LQhHFJVzHcPzfu3fphdxdllNsKGvA=
+X-Google-Smtp-Source: AGHT+IH1dyMdg/JbQ0AKLE/7ih53j4wQzhtHkBO/spEeYmXk191crqkru4CqbRHizARcyPS/pCcyyw==
+X-Received: by 2002:a17:906:2b49:b0:a45:b616:29fc with SMTP id b9-20020a1709062b4900b00a45b61629fcmr1502412ejg.0.1709710576184;
+        Tue, 05 Mar 2024 23:36:16 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id x11-20020a170906710b00b00a4434e9938asm6793728ejj.84.2024.03.05.23.34.51
+        by smtp.gmail.com with ESMTPSA id x11-20020a170906710b00b00a4434e9938asm6793728ejj.84.2024.03.05.23.36.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Mar 2024 23:34:52 -0800 (PST)
-Message-ID: <848fd700-e450-4dfd-b415-5d4fa5f6af9a@linaro.org>
-Date: Wed, 6 Mar 2024 08:34:51 +0100
+        Tue, 05 Mar 2024 23:36:15 -0800 (PST)
+Message-ID: <e9a7b038-dd5d-43a3-9042-6c956032ce2a@linaro.org>
+Date: Wed, 6 Mar 2024 08:36:14 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +76,16 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: serial: renesas,scif: Document R9A09G057
- support
+Subject: Re: [PATCH v3 2/5] dt-bindings: media: Add bindings for ARM mali-c55
 Content-Language: en-US
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240305171600.328699-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Daniel Scally <dan.scally@ideasonboard.com>, linux-media@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc: jacopo.mondi@ideasonboard.com, nayden.kanchev@arm.com,
+ robh+dt@kernel.org, mchehab@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+ conor+dt@kernel.org, jerome.forissier@linaro.org,
+ kieran.bingham@ideasonboard.com, laurent.pinchart@ideasonboard.com
+References: <20240305164832.2055437-1-dan.scally@ideasonboard.com>
+ <20240305164832.2055437-3-dan.scally@ideasonboard.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,58 +131,34 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240305171600.328699-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240305164832.2055437-3-dan.scally@ideasonboard.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 05/03/2024 18:16, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+On 05/03/2024 17:48, Daniel Scally wrote:
+> Add the yaml binding for ARM's Mali-C55 Image Signal Processor.
 > 
-> Document support for the Serial Communication Interface with FIFO (SCIF)
-> available in the Renesas RZ/V2H(P) (R9A09G057) SoC. The SCIF interface in
-> the Renesas RZ/V2H(P) is similar to that available in the RZ/G2L
-> (R9A07G044) SoC, with the only difference being that the RZ/V2H(P) SoC has
-> three additional interrupts: one for Tx end/Rx ready and the other two for
-> Rx and Tx buffer full, which are edge-triggered.
-> 
-> No driver changes are required as generic compatible string
-> "renesas,scif-r9a07g044" will be used as a fallback on RZ/V2H(P) SoC.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Acked-by: Nayden Kanchev <nayden.kanchev@arm.com>
+> Signed-off-by: Daniel Scally <dan.scally@ideasonboard.com>
 > ---
->  .../bindings/serial/renesas,scif.yaml         | 21 +++++++++++++++++++
->  1 file changed, 21 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> index 4610a5bd580c..b2c2305e352c 100644
-> --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> @@ -80,6 +80,7 @@ properties:
->                - renesas,scif-r9a07g043      # RZ/G2UL and RZ/Five
->                - renesas,scif-r9a07g054      # RZ/V2L
->                - renesas,scif-r9a08g045      # RZ/G3S
-> +              - renesas,scif-r9a09g057      # RZ/V2H(P)
->            - const: renesas,scif-r9a07g044   # RZ/G2{L,LC} fallback
->  
->    reg:
-> @@ -101,6 +102,16 @@ properties:
->            - description: Break interrupt
->            - description: Data Ready interrupt
->            - description: Transmit End interrupt
-> +      - items:
-> +          - description: Error interrupt
-> +          - description: Receive buffer full interrupt
-> +          - description: Transmit buffer empty interrupt
-> +          - description: Break interrupt
-> +          - description: Data Ready interrupt
-> +          - description: Transmit End interrupt
-> +          - description: Transmit End/Data Ready interrupt
-> +          - description: Receive buffer full interrupt (EDGE trigger)
-> +          - description: Transmit buffer empty interrupt (EDGE trigger)
 
-You should narrow the choice per variant. Your patch is now saying that
-all devices could have 9 interrupts.
+...
+
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: Input parallel video bus
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: /schemas/graph.yaml#/properties/endpoint
+
+How many ports do you have here? If only one, why this isn't just a
+'port' instead of 'ports'?
 
 Best regards,
 Krzysztof
