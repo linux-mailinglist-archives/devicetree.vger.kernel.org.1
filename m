@@ -1,147 +1,238 @@
-Return-Path: <devicetree+bounces-48754-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 979EC873574
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 12:15:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D4FB8735B4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 12:43:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 513E128438B
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 11:15:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D67EC28233E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 11:43:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCEDD60B86;
-	Wed,  6 Mar 2024 11:15:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 499D07F7F6;
+	Wed,  6 Mar 2024 11:43:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="vMmObzNl"
+	dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="Nk+ahPnP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA3A3605B4;
-	Wed,  6 Mar 2024 11:15:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50DC05FDD4
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 11:43:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709723724; cv=none; b=hCtQ6QBl1FdgmYxD+XC/iE0smx1264tkWH/6WIRT8XSqixW5T2mZZm2jU6L8yQJrTRlHJ+Qs8Mv2kCa7mmZRIUWDUXYkQhFu9IHq5CRe+IWABKA6qhw0+rdaEGXK+C58rolARWsvaO9B+KVF/BiJdxDxqktEhzAsoPTwiqRU9UU=
+	t=1709725412; cv=none; b=ExhffKJqPgJt9TKxjlw3T3uma2oHggiisIEI4Ns192wOyJOkat/H1f64LToKX2jhiIvvTf+R0f9WfVqTAa91WPE+27xCAnw73kTIAuUPZrUmV67c9ZeYebTmvxSO6CDUg6Cfsw6fr76cabO5y7+J/U4cU3a7MZNhBmkda27ShRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709723724; c=relaxed/simple;
-	bh=YC1JZzUSGm90LAa8typocXvGi3dcuKhnwtfIEXMfegA=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=d/wZwqSry1aorr4MqKBU/boJ6BtOrGaowugjDpXeUNSLtNi744pjDv59RloXJkGrG+HKD9+Je/Xp3URdaiNCzIp2wwMSV9DhotxHKjT6S1QAdrthOJX56tY+KGoQQKwbfDnYoBvHwhv4h2/R/iIOZfHAX2ZnH2OMdSMoR2yKYIw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=vMmObzNl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 02C5FC433C7;
-	Wed,  6 Mar 2024 11:15:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709723724;
-	bh=YC1JZzUSGm90LAa8typocXvGi3dcuKhnwtfIEXMfegA=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=vMmObzNlM9Tbn7pDK2KR94nuzJA+dkX/WTBV9JAHY7Zq6pgtm9EWAr8uauJqUg2Fw
-	 PQ2GNr12JQkL2VIlIu1gaL6rQsr1KJkhS/0Wau+AeicDKCWf8B4cpfRHDWaYzRdz9/
-	 jQWAkUJO+clPilmjGVk/JO8AKzdjmdVS1tQJb1DrLIyfr9VJgamMaI9kGkb/BcQWUC
-	 DNeXHgiEEikyZZBU1BOPHyjpN5gVdP2eeLh97OQyDR+CC/G3gJVqFIxNWjPgGpEEGq
-	 c8yYEAOZCz1kNUNwB7pD3+QUES9AnH4qu1uUyQoMAW7hhBHBkirC6CRXsFDinpVcKG
-	 S/KcJa5KFduBg==
-From: Kalle Valo <kvalo@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  "David S. Miller"
- <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub
- Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
- <robh+dt@kernel.org>,  Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Bjorn Andersson <andersson@kernel.org>,  Konrad Dybcio
- <konrad.dybcio@linaro.org>,  ath10k@lists.infradead.org,
-  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-arm-msm@vger.kernel.org,  Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RFC v2 0/4] wifi: ath10k: support board-specific
- firmware overrides
-References: <20240306-wcn3990-firmware-path-v2-0-f89e98e71a57@linaro.org>
-	<87plw7hgt4.fsf@kernel.org>
-	<CAA8EJpr6fRfY5pNz6cXVTaNashqffy5_qLv9c35nkgjaDuSgyQ@mail.gmail.com>
-Date: Wed, 06 Mar 2024 13:15:18 +0200
-In-Reply-To: <CAA8EJpr6fRfY5pNz6cXVTaNashqffy5_qLv9c35nkgjaDuSgyQ@mail.gmail.com>
-	(Dmitry Baryshkov's message of "Wed, 6 Mar 2024 11:23:21 +0200")
-Message-ID: <87cys7hard.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1709725412; c=relaxed/simple;
+	bh=YX5KNi9JoOZfojze0pjQys77KFZBO6i19SqjE/MREoU=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=tl96gofX9R0yiupvjnHuAS2E88UOuF7cuI2mjXZF9bIw/biaQpnjjxxE5iG7O+9UotsWeZXWZazHSS/u0QOcZuXrkbHVCFvVpMMmDpjJTvnwzsnVsucmpsfVWq68U9t2+Jgc0ZTReY2Ex6nzZXtV379eYo75fXEzKF8WWXPC9Vg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com; spf=pass smtp.mailfrom=raspberrypi.com; dkim=pass (2048-bit key) header.d=raspberrypi.com header.i=@raspberrypi.com header.b=Nk+ahPnP; arc=none smtp.client-ip=209.85.208.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=raspberrypi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=raspberrypi.com
+Received: by mail-ed1-f52.google.com with SMTP id 4fb4d7f45d1cf-563c595f968so9931934a12.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 03:43:30 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=raspberrypi.com; s=google; t=1709725409; x=1710330209; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=yZZ4mVEuzjiXR5CF3CJkyChtg0w5lyqbPeRfi90uImI=;
+        b=Nk+ahPnPQaRhFhOua0kKqvBimAnQV4qNv6Q19l2QeQ9PaWwubcPQNRC3AW+IBSNJnG
+         5iegVHWRR+xymHk7dp/vjsLme03Q1C3z3I8TSxrnIDhNgNY5whMF9nzQKGc3ixBaOrUO
+         llv0VPYm/cqBhSlhPgXg5Er9aY3PiIUaak8/RoaXqQx2gS/wsxpJcPeuchw0a3Yu4IGQ
+         I8a5gTKqyeq3TMaUXx0Heg0DnC/u+yoK3xcJbmE/dINXgaXa4ajXlOWm78LgH71twM5w
+         ng3rzlwy4oHR0pj2dlg/hgbW7znMHifMiblExu9rHh6pYCMhfltPVU6eCopa2a5IbeJl
+         nOiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709725409; x=1710330209;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yZZ4mVEuzjiXR5CF3CJkyChtg0w5lyqbPeRfi90uImI=;
+        b=P18B+apdchsz0qc5hj9PSK6eu45DCqfPxeVIeDIGCdfaPLXvG2kC1GI2XpUqloiHOf
+         6IvzaFmW/9QRQHsv5Ura5dFPjKlypptHZYWbtrxt0rk16U29yvzyOQYaPZZ/ME05Ti7Q
+         Q/hvABaorv0fQvEKnnBJrBE8d+Nay14bSG80w7gfy0/ah4uLZPuN5B4nK5ZBcsc8uUP0
+         n3nwwqdQFlXZH81pQ5LKhipuJU4+GhlBzV3GXO0ZO3/BvMwDahnOWe5UtaixTZEZR0gG
+         0GK5YEAFT73ZBWP+KKCxQPiNuxSTTXeWdsINmdj83QcPN7Clhouu+dVNVS9RizTu3KZv
+         obrQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUji82JDktu0Q7v1s92YvQgujbEa6Hlis5BYXq6INoodxOTpLdMUu4qFzhSFRMCWcUBdyHshggJ25A3n8OU0k1OJZpgjuAW8YpZhg==
+X-Gm-Message-State: AOJu0YxMAjCioTyI/sLwQwaebVQllbXAMeD/V9Bq9XP6gOLYU6O5Brpi
+	zo95fvyMHQZNlsthwMeSKqIkPH4cynNKAVuYmtCwC6tMbQjtEFXymuUj3QdDUSX7ObbQpUnVoE9
+	pNfYShV4CKzvHuYfWjuZq7zHiRaIi1C2Zq1x4tg==
+X-Google-Smtp-Source: AGHT+IF3vAORKz02jVRpKImBVSKHtpIn3gxGmIfBMByYrMdcNWR+mujAPqHxYSvjSSOWngMTQqSdDU0aWilEsyj6NG0=
+X-Received: by 2002:a05:6402:230f:b0:565:bd4d:8a89 with SMTP id
+ l15-20020a056402230f00b00565bd4d8a89mr11282951eda.31.1709725408688; Wed, 06
+ Mar 2024 03:43:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20240223163012.300763-1-jacopo.mondi@ideasonboard.com>
+ <20240223163012.300763-8-jacopo.mondi@ideasonboard.com> <20240301215857.GO30889@pendragon.ideasonboard.com>
+ <zxx7o4zssgerlfhoczbledpmjvr5q2qfzogoytqxc353bulemq@ceo2gwinda3l>
+In-Reply-To: <zxx7o4zssgerlfhoczbledpmjvr5q2qfzogoytqxc353bulemq@ceo2gwinda3l>
+From: Naushir Patuck <naush@raspberrypi.com>
+Date: Wed, 6 Mar 2024 11:42:51 +0000
+Message-ID: <CAEmqJPpopGbDJsRkOsd-ph41_Ac6H50DvcwoE0i6hWyVBr=Kkw@mail.gmail.com>
+Subject: Re: [PATCH v2 7/9] media: dt-bindings: Add bindings for Raspberry Pi
+ PiSP Back End
+To: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+	Linux Media Mailing List <linux-media@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	David Plowman <david.plowman@raspberrypi.com>, 
+	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>, 
+	Dave Stevenson <dave.stevenson@raspberrypi.com>, 
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
+	Kieran Bingham <kieran.bingham@ideasonboard.com>, Sakari Ailus <sakari.ailus@iki.fi>, 
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
+	devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
+Hi Laurent and Jacopo,
 
-> On Wed, 6 Mar 2024 at 11:04, Kalle Valo <kvalo@kernel.org> wrote:
+On Tue, 5 Mar 2024 at 15:25, Jacopo Mondi <jacopo.mondi@ideasonboard.com> wrote:
 >
->>
->> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
->>
->> > On WCN3990 platforms actual firmware, wlanmdsp.mbn, is sideloaded to the
->> > modem DSP via the TQFTPserv. These MBN files are signed by the device
->> > vendor, can only be used with the particular SoC or device.
->> >
->> > Unfortunately different firmware versions come with different features.
->> > For example firmware for SDM845 doesn't use single-chan-info-per-channel
->> > feature, while firmware for QRB2210 / QRB4210 requires that feature.
->> >
->> > Allow board DT files to override the subdir of the fw dir used to lookup
->> > the firmware-N.bin file decribing corresponding WiFi firmware.
->> > For example, adding firmware-name = "qrb4210" property will make the
->> > driver look for the firmware-N.bin first in ath10k/WCN3990/hw1.0/qrb4210
->> > directory and then fallback to the default ath10k/WCN3990/hw1.0 dir.
->> >
->> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> > ---
->> > Changes in v2:
->> > - Fixed the comment about the default board name being NULL (Kalle)
->> > - Expanded commit message to provide examples for firmware paths (Kalle)
->> > - Added a note regarding board-2.bin to the commit message (Kalle)
->> > - Link to v1:
->> > https://lore.kernel.org/r/20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org
->>
->> From my point of view this looks good now but let's see what others say.
->> Is there a specific reason why you marked this as RFC still?
+> Hi Laurent
 >
-> No, I just forgot to remove it from the series settings, so you can
-> consider it as final.
+> On Fri, Mar 01, 2024 at 11:58:57PM +0200, Laurent Pinchart wrote:
+> > Hi Jacopo,
+> >
+> > Thank you for the patch.
+> >
+> > On Fri, Feb 23, 2024 at 05:30:09PM +0100, Jacopo Mondi wrote:
+> > > Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
+> > > signal processor.
+> > >
+> > > Datasheet:
+> > > https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
+> > >
+> > > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > > ---
+> > >  .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
+> > >  1 file changed, 63 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+> > > new file mode 100644
+> > > index 000000000000..d7839f32eabf
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+> > > @@ -0,0 +1,63 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/raspberrypi,pispbe.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Raspberry Pi PiSP Image Signal Processor (ISP) Back End
+> > > +
+> > > +maintainers:
+> > > +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+> > > +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > > +
+> > > +description: |
+> > > +  The Raspberry Pi PiSP Image Signal Processor (ISP) Back End is an image
+> > > +  processor that fetches images in Bayer or Grayscale format from DRAM memory
+> > > +  in tiles and produces images consumable by application.
+> >
+> > s/application/applications/
+> >
+> > > +
+> > > +  The full ISP documentation is available at:
+> >
+> > s/:$//
+> >
+> > > +  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - enum:
+> > > +          - brcm,bcm2712-pispbe
+> > > +      - const: raspberrypi,pispbe
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> >
+> > As this is a SoC IP with only memory and register interfaces, I would
+> > expect two clocks to be present, one for the register interface (AHB ?
+> > AXI4-Lite ?) and one for the memory interfaces (AXI4 ?). While the
+> > register interface clock is likely always enabled (in all cases that
+> > matter in practice) in the BCM2712, I'm not sure this can be guaranteed
+> > for future integration in different SoCs. Should we plan for this, and
+> > either define two clocks already (with one of them being optional), or
+> > name the single clock ?
+> >
+> > I know v1 named this clock "isp_be", and the name was dropped upon
+> > Krzysztof's request, but I think naming the single clock "axi" or "aclk"
+> > (assuming that one of them would be the right name) would be fine for
+> > the reason explained above.
+> >
+>
+> The PiSP datasheet does not offer many information on the IP
+> integration, only a small graph with the memory interfacing, but no
+> clocks.
+>
+> However your reasoning makes sense, and unless someone from RPi
+> suggests the contrary, I'll do so
 
-Good, so let's ignore the RFC label for this v2.
+There is only a single clock that clocks the whole BE block, so does
+the clock need to be explicitly named?  If it does, perhaps we can
+just use "clk" as this is not explicitly an AXI or APB clock?
 
-> I had one minor question in my head (but that's mostly for patches 3
-> and 4): in linux-firmware we will have ath10k/WCN3990/hw1.0/qcm2290
-> and make qrb4210 as a symlink to it. Is that fine from your POV? 
+Naush
 
-Yes, I think using a symlink is a good idea.
-
-> Or should we use sensible device names (e.g. qcom-rb1)?
-
-I guess 'qcom-rb1' refers to 'Qualcomm Robotics RB1' board? In other
-words, the question is that should we use chipset specific names like
-'qcm2290' or product based names like 'qcom-rb1'?
-
-That's a good question for which I don't have a good answer :) I'm not
-very familiar with WCN3990 hardware and SoCs to have a full picture of
-all this, especially how the firmware images are signed or what
-different firmware branches there are etc.
-
-To be on the safe side using 'qcom-rb1' makes sense but on the other
-hand that means we need to update linux-firmware (basically add a new
-symlink) everytime a new product is added. But are there going to be
-that many new ath10k based products?
-
-Using 'qcm2290' is easier because for a new product then there only
-needs to be a change in DTS and no need to change anything
-linux-firmware. But here the risk is that if there's actually two
-different ath10k firmware branches for 'qcm2290'. If that ever happens
-(I hope not) I guess we could solve that by adding new 'qcm2290-foo'
-directory?
-
-But I don't really know, thoughts?
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+>
+> > > +
+> > > +  iommus:
+> > > +    maxItems: 1
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - clocks
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > +
+> > > +    soc {
+> > > +        #address-cells = <2>;
+> > > +        #size-cells = <2>;
+> > > +
+> > > +        isp@880000  {
+> > > +             compatible = "brcm,bcm2712-pispbe", "raspberrypi,pispbe";
+> > > +             reg = <0x10 0x00880000  0x0 0x4000>;
+> >
+> > Double space, I don't know if that's on purpose.
+> >
+>
+> Ofc it was not.
+>
+> Thanks
+>    j
+>
+> > > +             interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+> > > +             clocks = <&firmware_clocks 7>;
+> > > +             iommus = <&iommu2>;
+> > > +        };
+> > > +    };
+> >
+> > --
+> > Regards,
+> >
+> > Laurent Pinchart
 
