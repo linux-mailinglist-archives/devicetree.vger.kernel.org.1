@@ -1,117 +1,145 @@
-Return-Path: <devicetree+bounces-48713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E757F873298
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 10:34:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF9DF8732AF
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 10:39:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3559285957
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 09:34:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9BD8C28564A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 09:39:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 913FF5E085;
-	Wed,  6 Mar 2024 09:34:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBCA45DF26;
+	Wed,  6 Mar 2024 09:39:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="flWszAUC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="L6prxrGX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B94645EE96;
-	Wed,  6 Mar 2024 09:34:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5D18A5D904
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 09:39:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709717654; cv=none; b=a9SGI9mZKM0b4E4KocEjcHFpMTC+6bfucJLzWcTEXFFFQm6YoMghYVb14s+SAg8JegX4fmZu6zQP5e6uTJm5WYngrAZGyfz9OMYs0ZtacjC1fRlSw490t84UA8PMyIteo2qulc7QqdN3U4M0xnoniRy6BtSlt5O/XsOp+V/bJbM=
+	t=1709717946; cv=none; b=LNy/JOTC88hqlswPhmhPvO7bwbJn6ERpoDA1ZKZNK/Zp2s1u3N60hGSRjUJRrWxZuH64MgzHZ/XiwT6iShPWu5v5Bj1YaYFu9wxKh8mOZ4NXjgALL9zgmbCOPMuvFh6H0Z9ny2sKc3Ly7YnF4uE/3qsoYFDt3/RrsqQ2vjbrYcE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709717654; c=relaxed/simple;
-	bh=JinEX41/j7Pb/bWxW54bGmffaAtTNcThK8gdOptLKmY=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Subject:Cc:To:From:
-	 References:In-Reply-To; b=eF882WGEhiB5jRMSmh9kej6ISIvjqXudnfN1oQJNI0OIQL6cUh27R0qkBfSrcKwhZdUHDMt95q4od46vpDjKr4mB24Jq1VQajIl9DBbRC0WZju9RSO7Ue1wJson3YScNT72vByHxbjGPN20ZGVT5vp67a6fB6oue6Kc1wz41R2c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=flWszAUC; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 5B95DFF80A;
-	Wed,  6 Mar 2024 09:34:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709717649;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=od4s/GMAsr52sikJcFgvSYexwtnWDcy7Z22NE3GsHO0=;
-	b=flWszAUCdRYte0IftesUvM5oIovUSfZcoWTw88vViiC3zzugdD6VABdpg/qSMIoiriNvEa
-	HwQ6CavPBKPEtMWhjiB1Jcx/h+8QmodvIi2fHXR+EHqw0knNc60bHgC9MB/4YwpsxQsc9L
-	C3Ay7A2aKHeZTAduHirmc4l7SsHzn9CiWUQXkpVsM9JP3ePCdLebbkVivyjkYGv4zw1ke8
-	+hHh9DdtCmExe4sk3tryFL2xap6DbZSDNF4cuFMZclKyl9eZQ22Nqi0Oh6HZzGGIAZmlNG
-	JH9RAXidbdI6QKlNno1AjYAmVwYjQr9rrE4mEiX+dQ682P+Hxli1IYdpqvIboA==
+	s=arc-20240116; t=1709717946; c=relaxed/simple;
+	bh=tZqOWl/U+Elbnt1R7UGa8ygGo0JWMb8haTOc9kpg6ZA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JTCbskXpZDXgxHvDU/Tk2j2wMQE0kuG8jRhFYi0JAoIC/9NUgw4sytjYVx/Jnn61TBSouO3BBNbU6iyyvrs+/qj46h4q3WDaOMeiJH5AG8OjVGaGNdaM5g1wrla2zmBbDhndbxdUpsmjQTinsGjRDIDjfCv4/y5sYyfc0xAlV4A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=L6prxrGX; arc=none smtp.client-ip=209.85.215.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-5d42e7ab8a9so4645452a12.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 01:39:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709717945; x=1710322745; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=B9/QgTMyt6fHk74mMOMoiAquWcsGjb450gZKkLexk1U=;
+        b=L6prxrGXTA52RVYVPuhlpSGRlK7POfhoePJeok+mqUHFwsHncqxj5XtbELkyfy7RJP
+         ZDvVz50pKFpzHk0V2jea7EJdQiacSjRRgH8ypAggOndXlDHamMY2oYTie+cBlLfhdPhb
+         Xwv0Im/OXk2p8Y4UQHsepXuwWMMBOgdKre6cu8QpowzdjtD9R7x37IDHJ4iQttgXNWHW
+         MwWS6h7/5lLa1+gpFEBAbRqoA3xBAHU3OE4osAuut7jtBH2kKZ/kccKquBDI2ZabX7uV
+         2f5rsf83Av5HCGVVW4jmFYSyUh+vNHWTuhNYE02Y29jrpZ1+DMT25jT4NcOxz7QIEvZc
+         c9nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709717945; x=1710322745;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B9/QgTMyt6fHk74mMOMoiAquWcsGjb450gZKkLexk1U=;
+        b=dTMNI8JMa5rwFp9M6W0j+tmnYITX2sYhoawbSCvHnWusEr2UHGTdBQJ3Ho318PvINP
+         ADGK8lEaHsfGIbeQlzhZOpQ0BrIuXBbGhPau53qDvX6icMXYYkuEpWPrF3qWiG6yc/Zy
+         JiO9qLYUrpVs8mnmegxnOU0pgFl3mc2uzSMmQkjIPD1CdsytGZSWcCKV3aEIo6TM5yYf
+         dMCYSvPvTvbuj/78NimkMP5XdJ5zSrrmJyyQa/6mDN208UaigtRozsIm+OQor23hoTbN
+         A4lWWwjBc+5+xHpvqkg+3NFLLzEZ8+2mm66EqEnQwE/HdgY+FPrAelrJjYZkvjiJEZQ2
+         u2gg==
+X-Forwarded-Encrypted: i=1; AJvYcCWfAPE41xGj0UN4DZ8RyYpKrpSgxVtzEbO4CB1vrWu81dFCBKJblv8FOJrgs8M+s3txN+fg6x5/+r8FWBKaCMCD26pb6fkpfsKglw==
+X-Gm-Message-State: AOJu0YxlrSNn2nJ6Cxherm/QSIJ0NtUu1vrBzSCN6dRLkpYSEQJdRcAG
+	zNxwf0vUOCBzJuOPqT+yaVOO/Oqn0deMmeeI0blG14npplsudWk7l02Jr9dSVg==
+X-Google-Smtp-Source: AGHT+IHbO1CHuqg+60eRdVkKVCxleqZt9OqbjKUuy5Fd7mfWIapm625mEDrgXo2J1vMHZLAWyc1MHQ==
+X-Received: by 2002:a17:90a:688c:b0:29a:bdbe:5859 with SMTP id a12-20020a17090a688c00b0029abdbe5859mr10903212pjd.7.1709717944519;
+        Wed, 06 Mar 2024 01:39:04 -0800 (PST)
+Received: from thinkpad ([117.248.1.194])
+        by smtp.gmail.com with ESMTPSA id oj13-20020a17090b4d8d00b0029b13f233f6sm10337019pjb.11.2024.03.06.01.39.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 06 Mar 2024 01:39:04 -0800 (PST)
+Date: Wed, 6 Mar 2024 15:08:57 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Johan Hovold <johan@kernel.org>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+	Johan Hovold <johan+linaro@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 00/10] arm64: dts: qcom: sc8280xp: PCIe fixes and
+ GICv3 ITS enable
+Message-ID: <20240306093857.GC4129@thinkpad>
+References: <20240305081105.11912-1-johan+linaro@kernel.org>
+ <20240306063302.GA4129@thinkpad>
+ <ZegZMNWxCnLbHDxP@hovoldconsulting.com>
+ <20240306083925.GB4129@thinkpad>
+ <CAA8EJppsbX=YXf1Z6Ud+YMnp2XnutN1hcb1T0KdAAWXFREVxXg@mail.gmail.com>
+ <Zegzf_QKbr8yA6Vw@hovoldconsulting.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Wed, 06 Mar 2024 10:34:08 +0100
-Message-Id: <CZMKBOH0BBTH.MZH1OTAZC7HH@bootlin.com>
-Subject: Re: [PATCH v2 00/11] Add Mobileye EyeQ5 support to the Nomadik I2C
- controller & use hrtimers for timeouts
-Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, "Gregory Clement"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, "Jean Delvare" <jdelvare@suse.com>, "Guenter
- Roeck" <linux@roeck-us.net>, <linux-hwmon@vger.kernel.org>
-To: "Andi Shyti" <andi.shyti@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-X-Mailer: aerc 0.15.2
-References: <20240229-mbly-i2c-v2-0-b32ed18c098c@bootlin.com>
- <bhiubxf3vuxfnz4rh75isgy5z5cexa6dnlw733box5ly3h7r5f@yqvzs75d3ykb>
-In-Reply-To: <bhiubxf3vuxfnz4rh75isgy5z5cexa6dnlw733box5ly3h7r5f@yqvzs75d3ykb>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <Zegzf_QKbr8yA6Vw@hovoldconsulting.com>
 
-Hello Andi,
+On Wed, Mar 06, 2024 at 10:12:31AM +0100, Johan Hovold wrote:
+> On Wed, Mar 06, 2024 at 10:48:30AM +0200, Dmitry Baryshkov wrote:
+> > On Wed, 6 Mar 2024 at 10:39, Manivannan Sadhasivam
+> > <manivannan.sadhasivam@linaro.org> wrote:
+> > > On Wed, Mar 06, 2024 at 08:20:16AM +0100, Johan Hovold wrote:
+> > > > On Wed, Mar 06, 2024 at 12:03:02PM +0530, Manivannan Sadhasivam wrote:
+> 
+> > > > > Just received confirmation from Qcom that L0s is not supported for any of the
+> > > > > PCIe instances in sc8280xp (and its derivatives). Please move the property to
+> > > > > SoC dtsi.
+> 
+> > > > Ok, thanks for confirming. But then the devicetree property is not the
+> > > > right way to handle this, and we should disable L0s based on the
+> > > > compatible string instead.
+> 
+> > > Hmm. I checked further and got the info that there is no change in the IP, but
+> > > the PHY sequence is not tuned correctly for L0s (as I suspected earlier). So
+> > > there will be AERs when L0s is enabled on any controller instance. And there
+> > > will be no updated PHY sequence in the future also for this chipset.
+> > 
+> > Why? If it is a bug in the PHY driver, it should be fixed there
+> > instead of adding workarounds.
+> 
+> ASPM L0s is currently broken on these platforms and, as far as I
+> understand, both under Windows and Linux. Since Qualcomm hasn't been
+> able to come up with the necessary PHY init sequences for these
+> platforms yet, I doubt they will suddenly appear in the near future.
+> 
+> So we need to disable L0s for now. If an updated PHY init sequence later
+> appears, we can always enable it again.
+> 
 
-On Wed Mar 6, 2024 at 2:49 AM CET, Andi Shyti wrote:
-> > Th=C3=A9o Lebrun (11):
-> >       dt-bindings: i2c: nomadik: add mobileye,eyeq5-i2c bindings and ex=
-ample
-> >       dt-bindings: hwmon: lm75: use common hwmon schema
-> >       i2c: nomadik: rename private struct pointers from dev to priv
-> >       i2c: nomadik: simplify IRQ masking logic
-> >       i2c: nomadik: use bitops helpers
-> >       i2c: nomadik: support short xfer timeouts using waitqueue & hrtim=
-er
-> >       i2c: nomadik: replace jiffies by ktime for FIFO flushing timeout
-> >       i2c: nomadik: fetch i2c-transfer-timeout-us property from devicet=
-ree
-> >       i2c: nomadik: support Mobileye EyeQ5 I2C controller
-> >       MIPS: mobileye: eyeq5: add 5 I2C controller nodes
-> >       MIPS: mobileye: eyeq5: add evaluation board I2C temp sensor
->
-> what's your plan for this series? If you extract into a separate
-> series the refactoring patches that are not dependent on the
-> bindings I could queue them up for the merge window.
+It could be the same case for all 'non-mobile' chipsets (automotive, compute,
+modem). So instead of using the compatible, please add a flag and set that for
+all non-mobile SoCs. Like the ones starting with SAxxx, SCxxx, SDxxx.
 
-V3 is ready and will be sent today. I think we can get trailers from
-dt-bindings maintainers as the discussion has been caried out on this
-revision.
+- Mani
 
-Am I being too optimistic of seeing this series queued before the merge
-window?
-
-Thanks Andi,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
