@@ -1,143 +1,155 @@
-Return-Path: <devicetree+bounces-48884-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48885-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D27B8740B1
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 20:44:27 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1A74D8740B6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 20:45:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E94981F22D46
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:44:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4BB631C21AB6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:45:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BFB9140E37;
-	Wed,  6 Mar 2024 19:44:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7003B14037F;
+	Wed,  6 Mar 2024 19:45:40 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aVjqSzD5"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DEETAeIJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f173.google.com (mail-yb1-f173.google.com [209.85.219.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7A45140E29
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 19:44:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4080913F00A;
+	Wed,  6 Mar 2024 19:45:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709754248; cv=none; b=TJHLH5S6dcziF+O7YvA0Sush5ejB9wcHBTrzzqWllAnwkq5B7sHk8oynfPllbEJYSjSQan30unq8m1qrYxzvGEiCkWFyTOCSxloN7OVDnozGi7H6CFP7HNLkR2OPz+ZLsRwEzMvt5+1iwgazNbqlXxW3/b4TnS4xHum9WiP/c1w=
+	t=1709754340; cv=none; b=P2C4CjvkAC/piWvIemx2Qb5qnybROSUIn4+rdrTwwzvG1hhTHux6o1flsKmixJqHcnX1pfoq5PQ8wrw+aAn2zrTKk4tcmYsBK78Cdo5dA9Uv1XxjQyDEfHpt1xutmG9AGQOipBv7veyggCrqjBjIv30dPQzgeVGCEiKWH3m51yk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709754248; c=relaxed/simple;
-	bh=U+62DFfvTUd9cVF7bW1OVpX/9biRZ2d6eaC3T0WRuuE=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=CybE6V4UA7ldGYnxa2DSwaNfaOkzDiQC+3c5BABQ8L2RE34EOFMAzLVkQogB1UuVa9vmtztgxMJ/BJiPdsJwNk5kfO9jg5YJTCJ/faNTEzT/jVvIY5QPOueYwjXEM91S7Dh9DPFoUMuOjonrktqi5z/7zPSKyK8su517aq3hiFw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aVjqSzD5; arc=none smtp.client-ip=209.85.219.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f173.google.com with SMTP id 3f1490d57ef6-dcc6fc978ddso168968276.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 11:44:06 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709754246; x=1710359046; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mJrG65AeFbyOONi7SjWLiuAQnFw+0U6EBjiSUZknhFc=;
-        b=aVjqSzD55hjFDWc00bne2HbCTabOgQrKY2se06qTLHS4FcBShacJ2F5zeyw9904EGb
-         5+4nUhCkBGcliBxUlUT6Yt2+wBaYNmGeOPOx2X3HM80SJ41H/5p13SixuQ52HhMr8xYd
-         TArJS7MVvnuJHtmsWioSS3LpInDOBw832YOzMSNXtIQSvKxIJAJtRmf53FrpsfeTQV4t
-         20n0ciNf02aJx2upgEO2Gf3rDTA70oyJgfPMgmCNsW7M1rg2bOdi9T/a2U7rW4zHxI/d
-         CRjFhWCThofDL0uxnPDfuItXnkJwQGTCcnC9KV+k29B+D6Fes5oaryvc+i01OKPaeSjQ
-         uLWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709754246; x=1710359046;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mJrG65AeFbyOONi7SjWLiuAQnFw+0U6EBjiSUZknhFc=;
-        b=JVhYE96TczSm/C4PUhIC6TseXGT601oP+ESfKuDsgsghqyTCvHKzQfOjdzKsQfib3W
-         zWWJXcCSyP1Qo9CTqsZvLeWIJE6osJ4JDTLzZ0Y3A4N4yK4UrqG8D71iCZirZ2tGsvHG
-         pWoZDNVd9WnUNuYGwPX2ffcsn8QT3YemlIlsalTRaSe5fEskB0zXwUBK72UrELCz0rDl
-         Ryni5rkzK+ALPev6unflZ345H9ujBIkVQ5sOS50FHE3+WzEmO43JPb/r3UbXi1R++4Sa
-         366LB/z5SXPTA1iO+WEOS8+bVGNYIkU3pNPFH/2teT+/Ri7Hz08iU6IvGOnJbL8al0TK
-         Fevw==
-X-Forwarded-Encrypted: i=1; AJvYcCVLgy2uZkZWrwzYW6h8zA5tjiRQP75WFR/VMViSsNHLdzpjtimLiGsOUcovv4l+Ukrfp2Cr6NQEc/aofp6X0FqPMzW8vEQTQy4K0g==
-X-Gm-Message-State: AOJu0Yw8tij7z4iyP5fug0K6sxt5dQct2sDLrrqqYrQKdodxuIanj57U
-	2aTqk8kYuqmIgHvHjOicu6cdp2zJ0UKiYr+T855zJ9KIQpGHCnKLlhYaRmvq9M9mOoI04/9yGf3
-	Z111kJkQYrEQK8UfccuyZGvpn+gTEatkkd3//nA==
-X-Google-Smtp-Source: AGHT+IHV00hGxbwLNrRno0/EaPbba2Q0tqVKw89IXjITfrFjO9PtwLCLi8BInz+o5+AXsuIZ4okJKCw3DV2MFKFZRNA=
-X-Received: by 2002:a25:ed01:0:b0:dc6:de93:7929 with SMTP id
- k1-20020a25ed01000000b00dc6de937929mr4891662ybh.26.1709754245936; Wed, 06 Mar
- 2024 11:44:05 -0800 (PST)
+	s=arc-20240116; t=1709754340; c=relaxed/simple;
+	bh=5G1J0BhLc6CdOxwigI/ctXSY559sZ3EGEXyuCpYSgf4=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=GAPKo8INt50ZGKglurPjWLo6ZfOP8pd4wszfalPDpOG1Wnraz48Dbz4qFIpj5AIhcENaJ83BW1Hxm5o9GhsXaoJZOjtdChAxMVRIK7cs5oih3633kPAlJvzgm2rYuRL79bGTj/bhx0CX6ZjPkdluTn6JZCkWRycaZ4DgIY5LFqY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DEETAeIJ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F0CC3C433C7;
+	Wed,  6 Mar 2024 19:45:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709754340;
+	bh=5G1J0BhLc6CdOxwigI/ctXSY559sZ3EGEXyuCpYSgf4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=DEETAeIJJSkUQUzPDySpQ9hhYT2x0WxKI6ArF+euMpwJjwUqo2ESLn0WA22TE5j7K
+	 R36pHhm1XakM0l0MMl8oJg+XQV/ZMguoi4lKGDzUDb3GGj3HVakhMYnTO3NC6iGvGr
+	 5Uua+soh+cdMV1VIPtwOX1TIf6lXef/7TWhr8/6D9qmif+9JMIEbZ2eZ5m+AprvbOc
+	 vCaQjDrZ8L+ZelJA9gr/DIso2OwLiSH1SoPWKvBWeX7FIqhM7uOaVUm2UxjAPQEDqq
+	 h7PxMikDG1u9yjzzjHrkOGmf47FsEmNCbxf3ItXW7YBIG87bp1fgOqUgFVzQBlFcBp
+	 rcG8N5FNlw1vw==
+Date: Wed, 6 Mar 2024 19:45:34 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/4] ASoC: dt-bindings: fsl-sai: allow only one
+ dma-names
+Message-ID: <20240306-petticoat-womb-a61cad7d788d@spud>
+References: <20240305-asrc_8qxp-v4-0-c61b98046591@nxp.com>
+ <20240305-asrc_8qxp-v4-3-c61b98046591@nxp.com>
+ <20240306-pebble-grope-88fdaa95a87c@spud>
+ <ZejDQddMp17RD6Yk@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240306123006.724934-1-amadeus@jmu.edu.cn> <20240306123006.724934-2-amadeus@jmu.edu.cn>
-In-Reply-To: <20240306123006.724934-2-amadeus@jmu.edu.cn>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 6 Mar 2024 21:43:54 +0200
-Message-ID: <CAA8EJpqYjutM1Kh6QxysB6XNAmXywtOtRJ7KP0LbY5E36kCPvA@mail.gmail.com>
-Subject: Re: [PATCH v5 1/1] arm64: dts: qcom: ipq6018: add sdhci node
-To: Chukun Pan <amadeus@jmu.edu.cn>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-
-On Wed, 6 Mar 2024 at 14:31, Chukun Pan <amadeus@jmu.edu.cn> wrote:
->
-> Add node to support mmc controller inside of IPQ6018.
-> This controller supports both eMMC and SD cards.
->
-> Tested with:
->   eMMC (HS200)
->   SD Card (SDR50/SDR104)
->
-> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
-> ---
->  arch/arm64/boot/dts/qcom/ipq6018.dtsi | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> index 322eced0b876..420c192bccd9 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-> @@ -441,6 +441,25 @@ dwc_1: usb@7000000 {
->                         };
->                 };
->
-> +               sdhc: mmc@7804000 {
-> +                       compatible = "qcom,ipq6018-sdhci", "qcom,sdhci-msm-v5";
-> +                       reg = <0x0 0x07804000 0x0 0x1000>,
-> +                             <0x0 0x07805000 0x0 0x1000>;
-> +                       reg-names = "hc", "cqhci";
-> +
-> +                       interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
-> +                                    <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-> +                       interrupt-names = "hc_irq", "pwr_irq";
-> +
-> +                       clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-> +                                <&gcc GCC_SDCC1_APPS_CLK>,
-> +                                <&xo>;
-> +                       clock-names = "iface", "core", "xo";
-> +                       resets = <&gcc GCC_SDCC1_BCR>;
-> +                       max-frequency = <192000000>;
-
-If I understand correctly, GCC_SDCC1_APPS_CLK support frequencies up
-to 384 MHz, but here you are limiting it to 192 MHz. Why is it so?
-
-> +                       status = "disabled";
-> +               };
-> +
->                 blsp_dma: dma-controller@7884000 {
->                         compatible = "qcom,bam-v1.7.0";
->                         reg = <0x0 0x07884000 0x0 0x2b000>;
-> --
-> 2.25.1
->
->
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="trxU1T+09Y67XLwE"
+Content-Disposition: inline
+In-Reply-To: <ZejDQddMp17RD6Yk@lizhi-Precision-Tower-5810>
 
 
--- 
-With best wishes
-Dmitry
+--trxU1T+09Y67XLwE
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Mar 06, 2024 at 02:25:53PM -0500, Frank Li wrote:
+> On Wed, Mar 06, 2024 at 06:45:13PM +0000, Conor Dooley wrote:
+> > On Tue, Mar 05, 2024 at 12:33:04PM -0500, Frank Li wrote:
+> > > Some sai only connect one direction dma (rx/tx) in SOC. For example:
+> > > imx8qxp sai5 only connect tx dma channel. So allow only one "rx" or "=
+tx"
+> > > for dma-names.
+> > >=20
+> > > Remove description under dmas because no user use index to get dma ch=
+annel.
+> > > All user use 'dma-names' to get correct dma channel. dma-names alread=
+y in
+> > > 'required' list.
+> >=20
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> >=20
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 13 ++++++----=
+---
+> > >  1 file changed, 6 insertions(+), 7 deletions(-)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/D=
+ocumentation/devicetree/bindings/sound/fsl,sai.yaml
+> > > index 2456d958adeef..6f551c68d33db 100644
+> > > --- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> > > +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> > > @@ -81,15 +81,14 @@ properties:
+> > > =20
+> > >    dmas:
+> > >      minItems: 1
+> > > -    items:
+> > > -      - description: DMA controller phandle and request line for RX
+> > > -      - description: DMA controller phandle and request line for TX
+> > > +    maxItems: 2
+> > > =20
+> > >    dma-names:
+> > > -    minItems: 1
+> > > -    items:
+> > > -      - const: rx
+> > > -      - const: tx
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - const: rx
+> > > +          - const: tx
+> > > +      - enum: [ rx, tx ]
+> >=20
+> > I'm not entirely sure if this was Rob's suggestion, I got the impression
+> > he was suggesting that in the two items case we'd not care about the
+> > order. But while I think this is different to that suggestion it's also
+> > not wrong.
+>=20
+> I log this at cover-letter. b4 can't support write change log at every
+> patch yet. Rob's suggest was not work. dt-binding check complain too long
+> if there are two dma-names =3D "rx", "tx".=20
+
+Yeh, that is what happens if you just have
+dma-names:
+  enum: [ rx, tx ]
+since that only allows one entry. Take a look at st,stm32-uart.yaml
+instead, for example.
+
+--trxU1T+09Y67XLwE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZejH3gAKCRB4tDGHoIJi
+0o5ZAQC0bEJLk2rMmNg1h6oK0puBl8tnJqZX4qRtU8t6hz4KlAEAmuy73tHPP4vO
+iIc7yezGXRzST2Kg4QHm/imuO9iUSAs=
+=u4Ht
+-----END PGP SIGNATURE-----
+
+--trxU1T+09Y67XLwE--
 
