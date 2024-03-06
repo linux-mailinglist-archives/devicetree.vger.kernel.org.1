@@ -1,149 +1,106 @@
-Return-Path: <devicetree+bounces-48761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 777FD873626
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 13:19:20 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id D3779873641
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 13:26:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F26FD1F24D6D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 12:19:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8ACC728A978
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 12:26:55 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD7C80021;
-	Wed,  6 Mar 2024 12:19:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B9A3A80026;
+	Wed,  6 Mar 2024 12:26:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="oTwT5u+6"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="OLVWpRZ9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DD9B605DC;
-	Wed,  6 Mar 2024 12:19:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1DC67605DC;
+	Wed,  6 Mar 2024 12:26:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709727555; cv=none; b=TTemu4IzKfKHmX1S56DnmFh85AgcVkSiOC6ol9Ccbre1+aqfh20GyHJ4jmHVdfxQDscZ56XNiai3q9KkoPDgJnykrrpxNByxnaeUSwV4l6mpf69NhuLSFL8BWv5oTaV519Ejvh+LJkG++vqIFXOjkAY2YhbpTvAFzPhgGcvAd3E=
+	t=1709728012; cv=none; b=WaVROVr6HVds/P4/clWAfwO1FpPj32ua8h19z56Jsqx9HwYUPAaxXxkkHq+dxj6XzRR/jabjHe2WStf6dN3TOateLiXUD+49Msa4+LbYn4Cg2N++tzC0RH+CZH+ODeVfjNyZyvD+a2SOLdPlBLzZpl0C5P0L1UxW2rkmuzVuDQs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709727555; c=relaxed/simple;
-	bh=MVqqKIZCSnIGxvz4YPGoem4kx9gkpPGdW6QTNhBVmyk=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uObw3VJQzaLNfhs9qrWFUbUyNmH/Goq12LqpdAgqSp83ifh9ExZfLaT1Z1IVUUy7e+RCjBfSUOEU8oZbOVBeJrEKUiRV1sGzxXwZ7AjjF7P93susC6OaldjnSye6bjF2A6eCCea6xdPJMl5kCq+FPMYKR2eKiHdxgk3WFnFMzO8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=oTwT5u+6; arc=none smtp.client-ip=210.61.82.184
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: b9c01e2edbb311ee935d6952f98a51a9-20240306
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=IImJC9e9Da9C3lUM5dgN5QOlSp2BnbxeAklEtHNsfVk=;
-	b=oTwT5u+6ceKN91WgfQKlYtpYIJPanP9fILphVFtsNGhyK9SmADO36Jm5vfQ6nLHcMoXR+jOj28chXZPyU9wWkQl0W2ZKCMA8RUZSgGN7wlWu3yZIX5WSJQaVGpEjmchRPfB1ONT9gbYsjlIMoSPVOixdZ2YWAHodDPQSnhSkfAA=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.37,REQID:74bc076d-1554-4d47-9129-7b77c9e01a20,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:6f543d0,CLOUDID:36991690-e2c0-40b0-a8fe-7c7e47299109,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
-	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
-X-UUID: b9c01e2edbb311ee935d6952f98a51a9-20240306
-Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
-	(envelope-from <yunfei.dong@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 515065125; Wed, 06 Mar 2024 20:19:05 +0800
-Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+	s=arc-20240116; t=1709728012; c=relaxed/simple;
+	bh=c86ZEGbT6ZU6Z39dOgBxdZmzp3F1p3SoRnmfSFzl24Q=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ZdxiLu+Ivws2yiTam2JlNw2UPfy1WWkh5K2KDFJ4dxc3wa3Ov6XKx19nN4a+Xx7aFNdYZx09iOxEMGtwrqI28iAYScG71Ks1Bpv/nt7eJPZmGkLmINl+MWyxTvdyiLEXNe+RB7AxMVnbehyklQLgUxrZYBuUVUUa18YFANiHwMk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=OLVWpRZ9; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4266TGuc015150;
+	Wed, 6 Mar 2024 12:26:47 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version:content-type; s=
+	qcppdkim1; bh=WlzpenKnUYk6IrrhvbBlI0xOgW/za7on8QxUC8/k9pE=; b=OL
+	VWpRZ9oE0OBXwlfltr8NQGD/gtMKNjMeoWmZ8W+luqScNX6lEH1iqpOuFU0TigyC
+	lLKraj7WsAFyxrZetBYv1A5aTVbzjnMHoihy78w2GMYh4S/Vtgo3Tdy2b6146CjP
+	RgzM1tEsbpEhPPDjKaYEITa8KdHYPNHEHlWa6zKDmHekrbhugnQZCYV/fALNIjG9
+	ixMh+0CQSRhOoLfv7lXkHGCStrzdD2qOoevmCWVLO8EzGD+mAWbr98k3NjKMccHr
+	fkkR1a/M/1x5bFJDA4NggPql5krUEBR+bP4IIzD30alXB+eCVxeY+dUvUZzS5x/Z
+	12VNNYLBLlAlppffrcFA==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wpbav1m5c-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Mar 2024 12:26:46 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 426CQj7b014748
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 6 Mar 2024 12:26:45 GMT
+Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
+ nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Wed, 6 Mar 2024 20:19:04 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Wed, 6 Mar 2024 20:19:03 +0800
-From: Yunfei Dong <yunfei.dong@mediatek.com>
-To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil
-	<hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>
-CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, "Yunfei
- Dong" <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH v2] media: mediatek: vcodec: support 36 bits physical address
-Date: Wed, 6 Mar 2024 20:19:02 +0800
-Message-ID: <20240306121902.25069-1-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+ 15.2.1118.40; Wed, 6 Mar 2024 04:26:43 -0800
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, Mukesh Ojha <quic_mojha@quicinc.com>
+Subject: [PATCH 0/3] Add eFuse region for Qualcomm SoCs
+Date: Wed, 6 Mar 2024 17:56:32 +0530
+Message-ID: <1709727995-19821-1-git-send-email-quic_mojha@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--9.625700-8.000000
-X-TMASE-MatchedRID: Fdt1IHAXXPKHTNZBcJlnyHQIOMndeKgETJDl9FKHbrk1LB46LFAAkktH
-	ojrK13E49ypTh0ieeunHCCukuCUtoobqZZp5NyFKXpVEIlJTuP2d2Wz0X3OaLZsoi2XrUn/Jn6K
-	dMrRsL14qtq5d3cxkNWCFMTTr110l3BTbPvva4/GNYa/SjhM7l0EM1EKZ9uM8WvxqZnJiH0w=
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--9.625700-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: 7DE4977BDE382AA717543D2C2D293FFF5A7F45942B469FFE79BB5F9992F8F79F2000:8
-X-MTK: N
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: R0hc1XmWrZXJu2hflbxz1WkfdsVob4DB
+X-Proofpoint-ORIG-GUID: R0hc1XmWrZXJu2hflbxz1WkfdsVob4DB
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-06_07,2024-03-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=399 impostorscore=0 adultscore=0 bulkscore=0 mlxscore=0
+ phishscore=0 clxscore=1015 priorityscore=1501 spamscore=0 malwarescore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403060099
 
-The physical address on the MT8188 platform is larger than 32 bits,
-change the type from unsigned int to dma_addr_t to be able to access
-the high bits of the address.
+This series is dependent on [1] for binding.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
-compare with v1:
-- change address type from unsigned long to dma_addr_t
-- change vp8 address type
----
- .../media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c | 2 +-
- .../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c        | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
+[1]
+https://lore.kernel.org/lkml/1709662869-10569-1-git-send-email-quic_mojha@quicinc.com/
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
-index 19407f9bc773..987b3d71b662 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
-@@ -449,7 +449,7 @@ static int vdec_vp8_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
- 		       inst->frm_cnt, y_fb_dma, c_fb_dma, fb);
- 
- 	inst->cur_fb = fb;
--	dec->bs_dma = (unsigned long)bs->dma_addr;
-+	dec->bs_dma = (uint64_t)bs->dma_addr;
- 	dec->bs_sz = bs->size;
- 	dec->cur_y_fb_dma = y_fb_dma;
- 	dec->cur_c_fb_dma = c_fb_dma;
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-index cf48d09b78d7..eea709d93820 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
-@@ -1074,7 +1074,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
- 	unsigned int mi_row;
- 	unsigned int mi_col;
- 	unsigned int offset;
--	unsigned int pa;
-+	dma_addr_t pa;
- 	unsigned int size;
- 	struct vdec_vp9_slice_tiles *tiles;
- 	unsigned char *pos;
-@@ -1109,7 +1109,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
- 	pos = va + offset;
- 	end = va + bs->size;
- 	/* truncated */
--	pa = (unsigned int)bs->dma_addr + offset;
-+	pa = bs->dma_addr + offset;
- 	tb = instance->tile.va;
- 	for (i = 0; i < rows; i++) {
- 		for (j = 0; j < cols; j++) {
+Mukesh Ojha (3):
+  arm64: dts: qcom: sm8450: Add qfprom node
+  arm64: dts: qcom: sm8550: Add qfprom node
+  arm64: dts: qcom: sm8650: Add qfprom node
+
+ arch/arm64/boot/dts/qcom/sm8450.dtsi | 7 +++++++
+ arch/arm64/boot/dts/qcom/sm8550.dtsi | 7 +++++++
+ arch/arm64/boot/dts/qcom/sm8650.dtsi | 7 +++++++
+ 3 files changed, 21 insertions(+)
+
 -- 
-2.18.0
+2.7.4
 
 
