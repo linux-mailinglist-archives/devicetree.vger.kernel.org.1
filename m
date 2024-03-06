@@ -1,384 +1,186 @@
-Return-Path: <devicetree+bounces-48888-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DE978740D8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 20:52:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5E73F87429D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 23:21:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 986CAB22649
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:51:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8B9921C2100B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 22:21:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F89D140E55;
-	Wed,  6 Mar 2024 19:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 999701BC22;
+	Wed,  6 Mar 2024 22:21:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LMXfY/Au"
+	dkim=pass (2048-bit key) header.d=epam.com header.i=@epam.com header.b="EqpTCoIt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0039f301.pphosted.com (mx0b-0039f301.pphosted.com [148.163.137.242])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9837A13E7F4
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 19:51:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709754712; cv=none; b=u2lYHIuAq1OwOwNZyd2kILUTIRlEPRs1uMZFACJiEDLjMaA+ymmHcdEb99qqYGw3Zo2IBUcTzEJ7183YKv9pr4apqxcUxenQCIPfRDesInww9B6I239fX3DIHMK3LHsDrS2u3+DeV9yq6hs7zjokUuKmk+yETASKtqOopmtsalQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709754712; c=relaxed/simple;
-	bh=8KEWij+gl+7zn2oRsJs9LcPzeFKd6OBGDhdWHXk/MPQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=fR4nfEgPnFkgJ3EbDYg5gry+s0PFK9OmUwCzyFxgiO53XlUEIAwtWq8EFC+8D9wIT3RHypHLBSqn+lNZgD3ibMmKmT+XMoEgl1au1PT97hamDbEi+l3YcLoqElVFnbCUgAL58+lhdS7GhSA88VchFKgGwYP18IJC/Wkunp+rIVs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LMXfY/Au; arc=none smtp.client-ip=209.85.128.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-609eb87a9e3so830177b3.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 11:51:49 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709754708; x=1710359508; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=csEvl+YiH8Y/jo/itPX56IxrecdL7iIEtegQQM4ZWU0=;
-        b=LMXfY/Au+r7XjvrbwsSXiuhX0E/O4K3S6jQ68i1bXaXkV6A2YJt65dMiq2aotU13XK
-         zRCtM8tw7E94hdraV6uAscZqBu01zX7dg2O4IA0Gla8p/SSRdOPykY62SYhzoCgcQtWT
-         2yl8EZWWjEjViybi3He+AEZ+Nu9a/jMJ5w4WwUt7luZOxn/AEXWqW69A06M+S1G8/Q5o
-         57AgJsttIyfneGGUX+fAlfNJyIt2/cG+bVTT2tEkrt51z9XuKGOuKEANUX8ZJL2GhqIv
-         OkrWJdAaItu7G6L/QzzF3jQcy1r5armEirwmgA5olOIymHeOF7pJDskg3Tr2YAFnNW8j
-         GvEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709754708; x=1710359508;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=csEvl+YiH8Y/jo/itPX56IxrecdL7iIEtegQQM4ZWU0=;
-        b=SsIH9PkI7Ue1Qxp5W4898gIVBXoCKM+i9yMRwgPGgjf2Xlf9SNdF7fB2/pM/vJx+D+
-         bAcOFHi4/885SPUM+vKW8etlprDMNjpLLg24SWPaF0yFhlHIFyBtj611suUuws8X1M9U
-         FdB1wRLvePa9ZBq+UAZwTRpCppTZWaqUKu/9ntMw4v+WceEkZqmMG+2bG4t7KOTFzvh6
-         S6YBY/3Sa3JwSJDawZas7T6JzItWhiFTmh1eC+YteOfIpRpd5M2FKY41wYnp3/RJOvVT
-         mY6vUdGIO4HfXyXtBJSF8p7VXgS4c32LMRlvDY3LFNj5AvCX1X0HB/2ksgB4SWpp1m/a
-         9Agw==
-X-Forwarded-Encrypted: i=1; AJvYcCX9rTSIx/Mb3xR6JBtC/GLCzhC6WMaKFMyv2xTV+QMKlKvqMLXDOnADbPGE9x6i95e7X6c3orosQ82CC1BO/Kmf11OqffEsT97hAg==
-X-Gm-Message-State: AOJu0Yz+NSMb1iPCJqGC/IYWnkeNgLwJVuapU8pfHmYPbpux4YmNOCsg
-	lgbf/s1P/Bs2muaeAfIpFWqnViM88Of2RLApctRtsyupG82qSijv7NyywueFZ7oCdzDusZLwoPm
-	jxyK60fqEsUCU4gCQvaJY3pv5jBSii5PUUpjG2w==
-X-Google-Smtp-Source: AGHT+IF/kGBb7idc3d2AEARbAxJnyUoIwtHxSDN0QDfLSSyf1XNAK8n+uv/CjDuD5p83nbhiV0hFcMEqsE4zIHZ8H1M=
-X-Received: by 2002:a25:9b05:0:b0:dc7:4645:83ab with SMTP id
- y5-20020a259b05000000b00dc7464583abmr838347ybn.0.1709754708627; Wed, 06 Mar
- 2024 11:51:48 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 90F0718EAB;
+	Wed,  6 Mar 2024 22:21:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=148.163.137.242
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709763713; cv=fail; b=t6/Dc3GPdJJX+xD1Ag87cEDEG2+EXHXQ1P+G19Olw8TRZutNLfY4H2rATIzD6kHPHlf6k9qiZBtzeaj/6f8wufcpV32+USnBNpW//oozDAnKgrgb4uFwRSC74knPFPvlRQP07bz/gjDz5idKI+2MiyJ7LEIKvOZSueBAsPF27qU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709763713; c=relaxed/simple;
+	bh=ikDbV0OdMoxaOZkplE/+ZpRYlecrZofcRD3ZLNOdn3w=;
+	h=From:CC:Subject:Date:Message-ID:Content-Type:MIME-Version; b=dneziFzYnN+Z04uhcbEkB7+ELSPMisGZ5039LKd7UIo1E+Zw7zzYJQdLzUGSZiedZtdpavpY8sTSmZIkwgMI50pto9mtKAiUu/C+dnkNK5/OuTilBh7URrrPcF+L1wqcnm89PK04QxJXKdzXH9i+cuNl7xmt1jzIpiMDixMfNJc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=epam.com; spf=pass smtp.mailfrom=epam.com; dkim=pass (2048-bit key) header.d=epam.com header.i=@epam.com header.b=EqpTCoIt; arc=fail smtp.client-ip=148.163.137.242
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=epam.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=epam.com
+Received: from pps.filterd (m0174680.ppops.net [127.0.0.1])
+	by mx0b-0039f301.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 426JmPdK013085;
+	Wed, 6 Mar 2024 20:09:25 GMT
+Received: from eur04-vi1-obe.outbound.protection.outlook.com (mail-vi1eur04lp2050.outbound.protection.outlook.com [104.47.14.50])
+	by mx0b-0039f301.pphosted.com (PPS) with ESMTPS id 3wpg1wk94d-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Mar 2024 20:09:24 +0000 (GMT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=J97Q8qAx6RW27fCWnO8BS5jIMzWYmdyO3zlHB+/grKXqqSMkfGFxUtGrHpVxmN5JURk7P0kMjum47AKnVxwnIZ88b8MAE4lSnx2yo+mBiFF4sbWCEaQ6Hj1w7N0Sw3S9S3M29GS5nLRM4m72xWlt/lbjtgILtxaXfSwTOM8TekbnHle5sjbKnSHfIPN7DAcCl3MS0aEGxy6UqlO+SM5rfkMLsR2ACTUNWyPSexhJ5Tw9o8N1p8FBDJaCoQFcrpUaoS2D52Pb828Nko31K5MuCG+0EB36IYQhT+neSycR4hFqkz00l55DHKd4DtLscecMumFP5kuAGSZt/pTAcFD7Ww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9q2UimSOsgGg2OzdsJUGNxFsddrAQ63FCu8kWjIBEhw=;
+ b=EnvHuM4sWkRIG/nKcyu2wyUevDJ4rhP47hjSvu9pWGjcJa6biV7s8ZFLhlA31furfNO+aMIh398lmHE+J3sDpwuq/D3QWrcB684DoAYd/38u8sxIEvNxQYKyB1g/zuMiKVdrH+wTOwvoUspQOd1SVjnKxEqMcFFGa21avBeuuqUHRK5KvCqT+ficuxDMUebDnrRg1oiMLrynWPB3mnSVnH4GFm3wxjuQBwmGnKIo481ZwXLXVrd5mkDU7nfg3Huka+vFmXvhRME3C5lSDBIvcUay/AkgAPGtziaNJfJ8loSPo9UZ5Hd2L3t3VzQh1XndfdUQBPCPb/OOvaa9EhzMew==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=epam.com; dmarc=pass action=none header.from=epam.com;
+ dkim=pass header.d=epam.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=epam.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9q2UimSOsgGg2OzdsJUGNxFsddrAQ63FCu8kWjIBEhw=;
+ b=EqpTCoItQkQnIYccxqzOQqsz17kld0zr+66SzYjojwB1g8VqD0sUgxyzbY8lIQw9psPvfOx77IYt3CgWFUr2Rv/Aa375yG7R1y41YGK9FUvo4Ul13P99z7cFrDw4WtRoD7wB39pswiVYc9diSeDTgpC4YMbhhpdF+UZZNtfWwCiwS1i2wMtzh0zMHBXxwcnhEQsQiNKQ+qrjPYMLFtbEuwL48s4xn1nqi+RGFowmR/m4sWoSDnCvLCdUNc2jXyn8amWiNikF6NfWJc6yMcmDShZoqFRpo8d7o6cdjBPlb8jF6Ttk1P5ApQlvSLsube9zi2RfgdfHPsRAFbvFmH2AXQ==
+Received: from GV1PR03MB10456.eurprd03.prod.outlook.com
+ (2603:10a6:150:16a::21) by PAWPR03MB9763.eurprd03.prod.outlook.com
+ (2603:10a6:102:2f2::10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.39; Wed, 6 Mar
+ 2024 20:09:22 +0000
+Received: from GV1PR03MB10456.eurprd03.prod.outlook.com
+ ([fe80::bfa8:3549:ac92:d0d8]) by GV1PR03MB10456.eurprd03.prod.outlook.com
+ ([fe80::bfa8:3549:ac92:d0d8%4]) with mapi id 15.20.7362.024; Wed, 6 Mar 2024
+ 20:09:21 +0000
+From: Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>
+CC: Sumit Garg <sumit.garg@linaro.org>,
+        Volodymyr Babchuk
+	<Volodymyr_Babchuk@epam.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad
+ Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        "linux-arm-msm@vger.kernel.org"
+	<linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>
+Subject: [PATCH] arm64: dts: qcom: sm8150: add reset name for ethernet node
+Thread-Topic: [PATCH] arm64: dts: qcom: sm8150: add reset name for ethernet
+ node
+Thread-Index: AQHacAItveF3myb2TEeE2+qqsjF4PA==
+Date: Wed, 6 Mar 2024 20:09:21 +0000
+Message-ID: <20240306200910.2732835-1-volodymyr_babchuk@epam.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-mailer: git-send-email 2.43.0
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: GV1PR03MB10456:EE_|PAWPR03MB9763:EE_
+x-ms-office365-filtering-correlation-id: f33e0bf8-ec41-4424-4d01-08dc3e19501d
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 
+ q34SOTIXYsOBIO5YSGhvYccQct2ksSWQeSNLs9oLoDQGDSiWKz8oraK0wTJup2HoTNte8KDUfnDuKCdmQZSNa3y8ZjpsQWjZPfiTglz8p3SGEHbUFUVZFi/tl8RiImEDaq/g7JSACCzHl+TASO1yPBg7JHzUDflTfIzD1azoItouly4y61JSdTd4j4GqZCe4knJWnIE9cp5ae7GwMBnbLhcoibW/RswoHX4Lu1PGWyMXQTdzB4LmodmuF8uH1gmh4L6akFXCn9Hh/69cmg7sIh4HPhI4b3Ma5A3DtUQ65Bq4YIo4oEnr+NgvQEwwXm0075sXFgqullKA2RsRXU+iOqWZKCm1Fm2hgV1cE84RAoX9HfCjupQjgP4XEEbHWsynWD32xsMZjpK1AGoWiIkmVJQHcy0N1hNBkpclbPHoV5devNP1XXAes6ms7ld3Eb+To4LEZ8tjN2tRBL12fhpGKRcmTctujmozjDxprNVTG4H/r98ikEJTysY4U/xZHOMG8wUnY7tWaip3eO/g+G0Ey8JFtvoxvfVzzwFbIFWNcbYw4eAdPdQNF/r9Eh+Okm4ZPlRR6SiGbc4HqMz8sTXcwMLqpPnjwxUIfJ6n7mgZUKP/JGrjhulfcxVNOl6mawAPpD/Q0UEi4un6aqydUohKmQ/z0yxQ6cQyKCy+aSVym2Oetpy1Upkc249M6OQh9b+eOSEyQgpLdaxvS/5ryKXBoP48H5UBPP30Tk0fT7NuoNo=
+x-forefront-antispam-report: 
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:GV1PR03MB10456.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(38070700009);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: 
+ =?iso-8859-1?Q?sb3yPmw49Mv/CrOS8366t7KRihGzKv3XoHRvSlbMltggH5XvkG24Rh5Tn1?=
+ =?iso-8859-1?Q?dR8q2aCAnwbHF+H02W5UM2VxVTxE1aPnfgGCbuC3qjs4VF4yeFmY03bJ8b?=
+ =?iso-8859-1?Q?blyKzg11tnY1JA3JvrCGVNIstaowEhUIQR5ljReWBSLC7Dk05v90VG3gD5?=
+ =?iso-8859-1?Q?bVzW29JJQEJMeXhXvgRlB8JU9jw/B5M72nASN5BbMIws2sDUE83AOFm/5O?=
+ =?iso-8859-1?Q?qt5TFfKycuzLQVQy3zw8fhtRyJgMLogHm7PkTCtb3cAuDOF125afmjnsp8?=
+ =?iso-8859-1?Q?eu/nhFwAfvvDlN818UNymNzlA9rogxpMa202nMpYdsWR/Jw/AiAbxwvvkz?=
+ =?iso-8859-1?Q?jl166zn1CM8f2A+MqCakmyIjcVhM8mzSJUInEmyYKn5N8PFH/B9vDARjiA?=
+ =?iso-8859-1?Q?D7G574+6jk3AnOEXsY7lI8/0ard3/e2PTL45aA944vpmM8C2LDIaXSyKk1?=
+ =?iso-8859-1?Q?QTvrKN31ISLixU+wA+51EkquGw7TvFnF5gCEMmsfwY/7w0oPGvG8MGtLhW?=
+ =?iso-8859-1?Q?2BM5j1MzSMXYEbDgPExCLWFGlzMCihK4/EwJU6o3c4Go2n2ZPOfqS4DEos?=
+ =?iso-8859-1?Q?1+UGuxNF56jBIAnNZB2M4TdAjBAjnkxLtR9Kr8erU7hCfY4y2fmH/nnvpT?=
+ =?iso-8859-1?Q?Ese1UggAdm8i0MyMlQDQ6zhD8cj8Yh4EQNGzNu4lLFmlT1wQ32sQUJ6Mrz?=
+ =?iso-8859-1?Q?mKSFOiUGFyRunEBiy06UjDHbCanwsjk9A1S8v2bBb2eDQKZ29Vc/g/xOVg?=
+ =?iso-8859-1?Q?LSBlZMS73d+Q0XDRGu77f/uSzzBVc4peGin3H4vcl9wwr3zT4gf1bm1dIU?=
+ =?iso-8859-1?Q?SGJ3cXIjpeasEQ+CU+SbGo+hk9XlFRItuVVfnzysjekkUjdDrseSzQIOLB?=
+ =?iso-8859-1?Q?Ae2YfbMmmajrrz34eRkCWitKmekL0CjgO9nMQJAXLLDi1xswNuL3tziAj8?=
+ =?iso-8859-1?Q?20Y832b664Bk4MOtw4vot0Wa/y6OHHNbqNQzI0NMv8zkmGGC3VJ69Etk3B?=
+ =?iso-8859-1?Q?McOjfZmKDG90rClzIIrTxDWlttkgdpoAg7WloP5XHkgQ/Hylqco2Y9TVes?=
+ =?iso-8859-1?Q?wdKZCLZFgV2W5tXXvlQNCuCmnoDJ9Q0ooLOq+JPeFVR3caeJO+Tv/F9oKe?=
+ =?iso-8859-1?Q?7sLgXBbbuCVVIZwI5m5AdBnYXLWGl5nn010g8eNmE+IRiAnojjz2s2nUkc?=
+ =?iso-8859-1?Q?qR8XHnn4cgMX9GGF5NGNKyT88cIqXIXnaK2heE78sEc5jkuGq3kWQ9oDoy?=
+ =?iso-8859-1?Q?s2PfV36rdS8lr3Kw4dg2pSXfvt7cD5A/kBqxr8IrVLXMjDBXWQ9saLe7zm?=
+ =?iso-8859-1?Q?UozNMBvEV3MQ1eIokMcDKrOT8zzmcpe0mh1bcBM23Gsd7LzPlDiI0iu81M?=
+ =?iso-8859-1?Q?bYEAOQbl1u0PA87je0wsFIKPR7XrIRpOtHETeBf+hq0gBW3YKoMtjWT/RV?=
+ =?iso-8859-1?Q?+2T4z3BxNF6CCyGxSzWe8rlP4o8GpvxiapXc4DTlh7Cx2ucNeM59XrwQpo?=
+ =?iso-8859-1?Q?56/ArEkwXwdP9YPD3dXn/a+ajQSVZX+EtgZSJQ+2SX01Pv+4ZdTDuUokLG?=
+ =?iso-8859-1?Q?+i0LxbK18uIGceeWfN2nILqJR2YgUunTpmFIXD8H0KZFrRXIfp5PHefFl4?=
+ =?iso-8859-1?Q?hR+J/yqL6ZdwS/YPJ4/elwnoJLEd1WRUoDcZf73BpIW9EVYphvY4h/pw?=
+ =?iso-8859-1?Q?=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <1709657858-8563-1-git-send-email-quic_sriramd@quicinc.com>
- <1709657858-8563-2-git-send-email-quic_sriramd@quicinc.com>
- <CAA8EJpph+R2oJjABvNQYwp=pZLxQPzzs41Hhw4feOdQ3eU-6UA@mail.gmail.com> <4f1e4e66-e728-472e-92f4-17c295548a14@quicinc.com>
-In-Reply-To: <4f1e4e66-e728-472e-92f4-17c295548a14@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 6 Mar 2024 21:51:37 +0200
-Message-ID: <CAA8EJpoRToOH-SvOf=iMqsuXkcSO-J74HsVF9pWVDde-72oaHQ@mail.gmail.com>
-Subject: Re: [RFC 1/3] dt-bindings: usb: qcom,dwc3: Add support for multiple power-domains
-To: Sriram Dash <quic_sriramd@quicinc.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, vkoul@kernel.org, 
-	kishon@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
-	conor+dt@kernel.org, gregkh@linuxfoundation.org, quic_wcheng@quicinc.com, 
-	Thinh.Nguyen@synopsys.com, p.zabel@pengutronix.de, 
-	linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-usb@vger.kernel.org, quic_psodagud@quicinc.com, quic_nkela@quicinc.com, 
-	manivannan.sadhasivam@linaro.org, ulf.hansson@linaro.org, 
-	sudeep.holla@arm.com, quic_shazhuss@quicinc.com
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: epam.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: GV1PR03MB10456.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f33e0bf8-ec41-4424-4d01-08dc3e19501d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Mar 2024 20:09:21.8554
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b41b72d0-4e9f-4c26-8a69-f949f367c91d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6KfB5I49DPIF6qytnfvzdbM+cQElC3UANp1cSDLBVdwyrxkWKtFBaEomAKRl1cZvb7x/2TH8NR+pRnxsxVCt86PnfhiNoh/0AuH758W0apU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAWPR03MB9763
+X-Proofpoint-ORIG-GUID: 9MFX-_cifhWMuO8sJPBnqK_nTnisUBec
+X-Proofpoint-GUID: 9MFX-_cifhWMuO8sJPBnqK_nTnisUBec
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-06_12,2024-03-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=999
+ adultscore=0 spamscore=0 impostorscore=0 clxscore=1011 malwarescore=0
+ phishscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2402120000 definitions=main-2403060162
 
-On Wed, 6 Mar 2024 at 17:52, Sriram Dash <quic_sriramd@quicinc.com> wrote:
->
-> On 3/6/2024 12:33 AM, Dmitry Baryshkov wrote:
-> > On Tue, 5 Mar 2024 at 18:58, Sriram Dash <quic_sriramd@quicinc.com> wrote:
-> >>
-> >> Some target systems allow multiple resources to be managed by firmware.
-> >> On these targets, tasks related to clocks, regulators, resets, and
-> >> interconnects can be delegated to the firmware, while the remaining
-> >> responsibilities are handled by Linux.
-> >>
-> >> To support the management of partial resources in Linux and leave the rest
-> >> to firmware, multiple power domains are introduced. Each power domain can
-> >> manage one or more resources, depending on the specific use case.
-> >>
-> >> These power domains handle SCMI calls to the firmware, enabling the
-> >> activation and deactivation of firmware-managed resources.
-> >>
-> >> Signed-off-by: Sriram Dash <quic_sriramd@quicinc.com>
-> >> ---
-> >>   .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml        | 74 ++++++++++++++++------
-> >>   .../bindings/phy/qcom,usb-snps-femto-v2.yaml       | 49 ++++++++++++--
-> >>   .../devicetree/bindings/usb/qcom,dwc3.yaml         | 37 ++++++++++-
-> >>   3 files changed, 130 insertions(+), 30 deletions(-)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> >> index 1e2d4dd..53b9ba9 100644
-> >> --- a/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> >> +++ b/Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml
-> >> @@ -44,7 +44,32 @@ properties:
-> >>       maxItems: 5
-> >>
-> >>     power-domains:
-> >> -    maxItems: 1
-> >> +    description: specifies a phandle to PM domain provider node
-> >> +    minItems: 1
-> >> +    maxItems: 2
-> >> +
-> >> +  power-domain-names:
-> >> +    description:
-> >> +      A list of power domain name strings sorted in the same order as the
-> >> +      power-domains property.
-> >> +
-> >> +      For platforms where some resource are firmware managed, the name
-> >> +      corresponding to the index of an SCMI domain provider can be
-> >> +      "usb_core" or "usb_transfer".
-> >> +    items:
-> >> +      - const: usb_core
-> >> +      - const: usb_transfer
-> >> +
-> >> +  qmp,fw-managed:
-> >> +    description:
-> >> +      Some targets allow multiple resources to be managed by firmware.
-> >> +      On these targets, tasks related to clocks, regulators, resets, and
-> >> +      interconnects can be delegated to the firmware, while the remaining
-> >> +      responsibilities are handled by Linux.
-> >> +
-> >> +      Decide if the target resources will be managed by firmware or High level
-> >> +      OS.
-> >> +    type: boolean
-> >>
-> >>     resets:
-> >>       maxItems: 2
-> >> @@ -70,14 +95,6 @@ properties:
-> >>   required:
-> >>     - compatible
-> >>     - reg
-> >> -  - clocks
-> >> -  - clock-names
-> >> -  - resets
-> >> -  - reset-names
-> >> -  - vdda-phy-supply
-> >> -  - vdda-pll-supply
-> >> -  - "#clock-cells"
-> >> -  - clock-output-names
-> >>     - "#phy-cells"
-> >>
-> >>   allOf:
-> >> @@ -86,6 +103,33 @@ allOf:
-> >>           compatible:
-> >>             contains:
-> >>               enum:
-> >> +              - qcom,sa8775p-qmp-usb3-uni-phy
-> >> +              - qcom,sc8280xp-qmp-usb3-uni-phy
-> >> +              - qcom,x1e80100-qmp-usb3-uni-phy
-> >> +    then:
-> >> +      required:
-> >> +        - power-domains
-> >> +
-> >> +  - if:
-> >> +      not:
-> >> +        required:
-> >> +          - qmp,fw-managed
-> >> +    then:
-> >> +      required:
-> >> +        - clocks
-> >> +        - clock-names
-> >> +        - resets
-> >> +        - reset-names
-> >> +        - vdda-phy-supply
-> >> +        - vdda-pll-supply
-> >> +        - clock-output-names
-> >> +        - "#clock-cells"
-> >> +
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            enum:
-> >>                 - qcom,ipq6018-qmp-usb3-phy
-> >>                 - qcom,ipq8074-qmp-usb3-phy
-> >>                 - qcom,ipq9574-qmp-usb3-phy
-> >> @@ -144,18 +188,6 @@ allOf:
-> >>               - const: com_aux
-> >>               - const: pipe
-> >>
-> >> -  - if:
-> >> -      properties:
-> >> -        compatible:
-> >> -          contains:
-> >> -            enum:
-> >> -              - qcom,sa8775p-qmp-usb3-uni-phy
-> >> -              - qcom,sc8280xp-qmp-usb3-uni-phy
-> >> -              - qcom,x1e80100-qmp-usb3-uni-phy
-> >> -    then:
-> >> -      required:
-> >> -        - power-domains
-> >> -
-> >>   additionalProperties: false
-> >>
-> >>   examples:
-> >> diff --git a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> >> index 0f200e3..ad2f08f 100644
-> >> --- a/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> >> +++ b/Documentation/devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml
-> >> @@ -49,6 +49,34 @@ properties:
-> >>       items:
-> >>         - const: ref
-> >>
-> >> +  power-domains:
-> >> +    description: specifies a phandle to PM domain provider node
-> >> +    minItems: 1
-> >> +    maxItems: 2
-> >> +
-> >> +  power-domain-names:
-> >> +    description:
-> >> +      A list of power domain name strings sorted in the same order as the
-> >> +      power-domains property.
-> >> +
-> >> +      For platforms where some resource are firmware managed, the name
-> >> +      corresponding to the index of an SCMI domain provider can be
-> >> +      "usb_core" or "usb_transfer".
-> >> +    items:
-> >> +      - const: usb_core
-> >> +      - const: usb_transfer
-> >> +
-> >> +  hsphy,fw-managed:
-> >> +    description:
-> >> +      Some targets allow multiple resources to be managed by firmware.
-> >> +      On these targets, tasks related to clocks, regulators, resets, and
-> >> +      interconnects can be delegated to the firmware, while the remaining
-> >> +      responsibilities are handled by Linux.
-> >> +
-> >> +      Decide if the target resources will be managed by firmware or High level
-> >> +      OS.
-> >> +    type: boolean
-> >> +
-> >>     resets:
-> >>       items:
-> >>         - description: PHY core reset
-> >> @@ -154,12 +182,21 @@ required:
-> >>     - compatible
-> >>     - reg
-> >>     - "#phy-cells"
-> >> -  - clocks
-> >> -  - clock-names
-> >> -  - resets
-> >> -  - vdda-pll-supply
-> >> -  - vdda18-supply
-> >> -  - vdda33-supply
-> >> +
-> >> +
-> >> +allOf:
-> >> +  - if:
-> >> +      not:
-> >> +        required:
-> >> +          - hsphy,fw-managed
-> >> +    then:
-> >> +      required:
-> >> +        - clocks
-> >> +        - clock-names
-> >> +        - resets
-> >> +        - vdda-pll-supply
-> >> +        - vdda18-supply
-> >> +        - vdda33-supply
-> >>
-> >>   additionalProperties: false
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> >> index 63d150b..5bf3a29 100644
-> >> --- a/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> >> +++ b/Documentation/devicetree/bindings/usb/qcom,dwc3.yaml
-> >> @@ -64,7 +64,31 @@ properties:
-> >>
-> >>     power-domains:
-> >>       description: specifies a phandle to PM domain provider node
-> >> -    maxItems: 1
-> >> +    minItems: 1
-> >> +    maxItems: 2
-> >> +
-> >> +  power-domain-names:
-> >> +    description:
-> >> +      A list of power domain name strings sorted in the same order as the
-> >> +      power-domains property.
-> >> +
-> >> +      For platforms where some resource are firmware managed, the name
-> >> +      corresponding to the index of an SCMI domain provider can be
-> >> +      "usb_core" or "usb_transfer".
-> >> +    items:
-> >> +      - const: usb_core
-> >> +      - const: usb_transfer
-> >> +
-> >> +  qcom,fw-managed:
-> >> +    description:
-> >> +      Some targets allow multiple resources to be managed by firmware.
-> >> +      On these targets, tasks related to clocks, regulators, resets, and
-> >> +      interconnects can be delegated to the firmware, while the remaining
-> >> +      responsibilities are handled by Linux.
-> >> +
-> >> +      Decide if the target resources will be managed by firmware or High level
-> >> +      OS.
-> >> +    type: boolean
-> >
-> > I think this is an overkill. You know that SA8775 is going to use
-> > SCMI-based clocks / PD management. Thus I'd suggest adding new
-> > bindings file targeting qcom,sa8775-dwc3. Also you can drop the
-> > qcom,fw-managed property at all, let the driver decide basing on the
-> > compat string.
-> >
-> >
->
-> Thank you for the suggestion Dmitry. I will include
-> new compat string for SA8775 which will decide whether
-> to use scmi based clock/ PD.
+Add reset-names property to the ethernet@20000 node. This patch does
+not change behavior on Linux, but it is needed for U-Boot, as it tries
+to find the reset by name, not by index.
 
-As a reminder:
-- same hardware = same compatible string
-- existing DT better to continue to work. Or ask for explicit
-permission from Bjorn to break the ABI.
+Signed-off-by: Volodymyr Babchuk <volodymyr_babchuk@epam.com>
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
->
-> >>
-> >>     required-opps:
-> >>       maxItems: 1
-> >> @@ -148,13 +172,20 @@ required:
-> >>     - "#address-cells"
-> >>     - "#size-cells"
-> >>     - ranges
-> >> -  - clocks
-> >> -  - clock-names
-> >>     - interrupts
-> >>     - interrupt-names
-> >>
-> >>   allOf:
-> >>     - if:
-> >> +      not:
-> >> +        required:
-> >> +          - qcom,fw-managed
-> >> +    then:
-> >> +      required:
-> >> +        - clocks
-> >> +        - clock-names
-> >> +
-> >> +  - if:
-> >>         properties:
-> >>           compatible:
-> >>             contains:
-> >> --
-> >> 2.7.4
-> >>
-> >>
-> >
-> >
-> > --
-> > With best wishes
-> > Dmitry
-
-
-
--- 
-With best wishes
-Dmitry
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qco=
+m/sm8150.dtsi
+index 761a6757dc26f..c2e65d6a2ac62 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -951,6 +951,7 @@ ethernet: ethernet@20000 {
+=20
+ 			power-domains =3D <&gcc EMAC_GDSC>;
+ 			resets =3D <&gcc GCC_EMAC_BCR>;
++			resets-names =3D "emac";
+=20
+ 			iommus =3D <&apps_smmu 0x3c0 0x0>;
+=20
+--=20
+2.43.0
 
