@@ -1,121 +1,124 @@
-Return-Path: <devicetree+bounces-48718-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48719-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D50E087330D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 10:50:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C56F873315
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 10:53:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F86B1F2529C
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 09:50:22 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5E73288C6A
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 09:53:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D75CF5E3A5;
-	Wed,  6 Mar 2024 09:50:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b="bXPN6EEK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A9B0C5F463;
+	Wed,  6 Mar 2024 09:53:17 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DD725DF29
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 09:50:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A04F5DF0B;
+	Wed,  6 Mar 2024 09:53:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709718616; cv=none; b=chjZVGvTvJNxijqBAAMryNvKIzlrHmHs1jfJv+JZbmXTug7E733WGyos4hLwcBTOmZkgZK/WtaA5IMvtBHC1fzpMmBhUWy+fqjTpuWMT8QrENnaeZjOpPduHXFEkmrTNLFbfo4EVu43GDti2t1Jy1SFEvEp6VtD5XwMYye579hY=
+	t=1709718797; cv=none; b=EtaASY37rzo5l92+wgzL4ko/3AYwmkAEl3QDkTXd5c2lfVG+SpoZfiNzde0e7pW/ACeDpXHtnNsG0QrXZdLV5WBLyxcmeAnN891wWOP6gKGyAJ7cUr8BLWSR5UzdvC4sRI1XbXpOyMavBqew5gTrG/gx7cBv2coXfak5Z4dPnfw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709718616; c=relaxed/simple;
-	bh=5wTDv8Pow3ls0hAeMHjkJghWq0FXCqANDCJJgNSwvho=;
+	s=arc-20240116; t=1709718797; c=relaxed/simple;
+	bh=gjzjavJboeMXFVPXyAg/kK09uy05JnfW2++qiIN90U0=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ceANhjdDOjCdFAmlHkLewrXLlO88TEk28DGKWqlJo3yaV7dv0VKXJGk+sBvV9IxtVFrXhChJywiCxjNxddFIwVPsHhnnAgqwgTbgUbaWTLp5v5yPpFPeFHi4pOJFGifK68OLPdFX9MlaF9vw7x/gzvNQ7lLlKh/2769URlipoT0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com; spf=pass smtp.mailfrom=9elements.com; dkim=pass (2048-bit key) header.d=9elements.com header.i=@9elements.com header.b=bXPN6EEK; arc=none smtp.client-ip=209.85.215.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=9elements.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=9elements.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-5d8ddbac4fbso569084a12.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 01:50:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1709718614; x=1710323414; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5wTDv8Pow3ls0hAeMHjkJghWq0FXCqANDCJJgNSwvho=;
-        b=bXPN6EEK8ROtqPXnYOisP9OZv3wXjLA9VoezLbW3CpaUU1dDVxypTELbSobzh3ISeO
-         xeeF+K748SPIMCXb59dhOMK8AOcrwAYrBhvPq0myPnega+hV0+Ig/sQcg8N030py06sk
-         uE049MOvk3W3SPtXR4IO/0+Hj631mWd8R1z3r/9ZfaUaNRgiXWbf+jjzAi09jCuQSX9k
-         4fIyoX1knONzgrM09k7oeU+5dvnWApdAWQjeiDOfqEOPsM2ZwZXs4XiEcPdbj0TeJn+i
-         fGZguCMDj+GG181gxMU3Sznje5Qmiz/t4XbK975eZUMhtA8ATFIqV/rRnjsGnaLNvqPQ
-         db2w==
+	 To:Cc:Content-Type; b=FJg+sS+9gBlDfB+z2VZ+fBSLlzUz9zMEPq6MKn/sudG/HY+q3oSmufdTSYGow0d2WKW9hrxdXIbFRv/SBHdy2E/JNDFjozBJjlZ8Z9W3CwvSB5sRZqCkaJMIrAidpHlfzjp+Rfdm3SI8nIIRgNE4vTopQTxRjtzEoFC38gFe3wY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-609d9ce5bdeso5105977b3.2;
+        Wed, 06 Mar 2024 01:53:15 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709718614; x=1710323414;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5wTDv8Pow3ls0hAeMHjkJghWq0FXCqANDCJJgNSwvho=;
-        b=mcIdrvd6BX4miXTXFSNSmw6vwogdTe12Acbx8bpPwNaGrYwavAcQhENoSQDFmG7XKj
-         jCnx5jVg1kEQLt0zvDPMFO+9oFFyxQfOJ0Xea6vq1KiZfaXFfe6BTUv4tigf6endaWry
-         GBhahUkhTfuPIiZJO2YHmNxfPVSF7XZ4JCGlAZMU7d8+B2L+0di28rWg5N2GJxcBNbSD
-         TRSEZBvrvpNbh5tba59hkAAZIPJPwTuT/k65vXzZDtunX7fWAey/d/7fk3GLwekjprvv
-         RkX/uPB/iFKDqy+dO16EMDU2dqdOhBfF+jhgygSQtRcv6ZIGL/kamrKTp0u0seWi6Pr7
-         iBCA==
-X-Forwarded-Encrypted: i=1; AJvYcCU/1noltG5V0bulBkbJwiDbD/nsXCSmY/wDOZSSm1EnXDgu3RAt/JYRo6Id/tOjkfXi9uE+dm8yj0yzt0alcVvgYrmUNIrYf1dzdQ==
-X-Gm-Message-State: AOJu0YyzUbVuOWwKvgMsDU1u1KWcV2gmr9GFtkQN35V4j+den7DF9gMY
-	6QPy5s5y0BcbcoFRIT0p5Lj4UDtNH5tJop4/fzIJxUdV3fTxyZdHrnY9yqQHx4kX+lZsVZ19+RV
-	4XirvkuRzpQxYJmU+UIMPUi8bIGtyg5EG1NnEqFlUv69xaVHim0m4sg==
-X-Google-Smtp-Source: AGHT+IEe5ARYEUNZCsr+iHrFPzLLIKN3FTqKMUPA5r/pRjcydibLKmQbYN0Ni7yeDM2vxSQwE6cGRdoCFy2gruuS/H0=
-X-Received: by 2002:a17:90a:f490:b0:29a:6b5c:33ba with SMTP id
- bx16-20020a17090af49000b0029a6b5c33bamr12644943pjb.5.1709718614426; Wed, 06
- Mar 2024 01:50:14 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709718794; x=1710323594;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eaSwI4jn/JlLsHT0t8KerNyLmYzVbK+4rtbctCdIEa4=;
+        b=eYPEpW7j3gdXnko/uAvNEbaSLDzARipWuAw3OgMLSiMmzickGA/D9QwB9WciP7+bvX
+         cB9sESruBmHsraNevr6yRvJgQJOEKXcrOcuQ22fmC64EK0AP2Eq+qOIS4IL3s0Yc1VaI
+         Vrj9OpMJ+rTGeT6wp/gCJxleEETjvtw8BNUBM/6XOauXilrGJmKp5X5WfcLWnYNafPTP
+         exwG/YZCZmdvIXit0Ki2gfktUDhSLNJjmHe6z4E8agGK8s57IHMG2FfuGSxu0LGTaOCL
+         dcsjrh9YbxS9U+VaKM/3M3ou71PlRCeYaTdQQdkKNzT8sKS+O2SSrWBlmS3+Q8QiKmKy
+         piOg==
+X-Forwarded-Encrypted: i=1; AJvYcCVls4GnJV/fXEHrW921VS1mGTxpICZmYTRWzXn6cbe6fRKVA9BhD92Wk4909W7WDfg0bIIusfA87PMRbbbQ/vJ/8DEd4hIKUQVfypKUGb+P5ZioW0hEgzsHRUpCE8YqCd6KtVsQCDVwqplJ+cioI4EXGQqwNY8TYs0FaEGNO8Je12K8yG8bYY/5b1MOOU9B8aPxaptgZvYwOhv3t8b5pmZQdR5/BntgsNI4
+X-Gm-Message-State: AOJu0YwIWa0me748s6HZHIKzRcdNaXo+B8UKM2tPXOkzb143Im1MHIcd
+	Z7emXpLoatjfOsVGpvBNzojSKNj13kwsOPLiZUPMNWzRWVvNWW84ZE3wYMXeEtk=
+X-Google-Smtp-Source: AGHT+IHOYIagqpdLy26kN9vXUIkoboZglFCp7Qa60nWyFJcxHi4OhGcYB4+ixnZjJxvPiRoRauIp0g==
+X-Received: by 2002:a81:9e4c:0:b0:608:e62b:d89e with SMTP id n12-20020a819e4c000000b00608e62bd89emr15019701ywj.33.1709718793895;
+        Wed, 06 Mar 2024 01:53:13 -0800 (PST)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id y1-20020a81ca41000000b00607bc220c5esm923412ywk.102.2024.03.06.01.53.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Mar 2024 01:53:13 -0800 (PST)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-dc238cb1b17so7100411276.0;
+        Wed, 06 Mar 2024 01:53:13 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUxx/00za0bz4ZObTic17Kq9FGwauFEXVaVW4+bWFAc/lOMmatd95TJG2/XHbLy52bQ5f31CBRQc1xsZJXnDLEmQQpauJyCpCBuSNcTw9Qdv0a6pK9eOKHbQK0XJ0wutMAyQcHBnly3S8paUI9vrcLWEKq/eb3Wut7ew02p+bkuiic/katSEDYmBOsS3d4wpj0zYnQz0QjlUEX39qaXGOeO+kb3P9xjoz5f
+X-Received: by 2002:a5b:2c7:0:b0:dcd:1f17:aaea with SMTP id
+ h7-20020a5b02c7000000b00dcd1f17aaeamr12332456ybp.26.1709718792806; Wed, 06
+ Mar 2024 01:53:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240305210747.1377506-1-naresh.solanki@9elements.com> <a32a2655-7561-4339-8521-bc2558e0bdb1@linaro.org>
-In-Reply-To: <a32a2655-7561-4339-8521-bc2558e0bdb1@linaro.org>
-From: Naresh Solanki <naresh.solanki@9elements.com>
-Date: Wed, 6 Mar 2024 15:20:02 +0530
-Message-ID: <CABqG17hYK8MFMPVNXxZ6JT4TW00PPt48q1qZBzS=gJrpC--iTg@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: hwmon: tda38640: Add interrupt &
- regulator properties
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Jean Delvare <jdelvare@suse.com>, Guenter Roeck <linux@roeck-us.net>, 
+References: <20240305171600.328699-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20240305171600.328699-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Wed, 6 Mar 2024 10:53:00 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdW0MxqxRwULhLsRtnYXYK8NYxq-uU7E2BscbvPh3axYFg@mail.gmail.com>
+Message-ID: <CAMuHMdW0MxqxRwULhLsRtnYXYK8NYxq-uU7E2BscbvPh3axYFg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: serial: renesas,scif: Document R9A09G057 support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
 	Rob Herring <robh+dt@kernel.org>, 
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	mazziesaccount@gmail.com, linux-hwmon@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Krzysztof,
+Hi Prabhakar,
 
+Thanks for your patch!
 
-On Wed, 6 Mar 2024 at 12:44, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
+On Tue, Mar 5, 2024 at 6:16=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.co=
+m> wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 >
-> On 05/03/2024 22:07, Naresh Solanki wrote:
-> > Add properties for interrupt & regulator.
-> > Also update example.
+> Document support for the Serial Communication Interface with FIFO (SCIF)
+> available in the Renesas RZ/V2H(P) (R9A09G057) SoC. The SCIF interface in
+> the Renesas RZ/V2H(P) is similar to that available in the RZ/G2L
+> (R9A07G044) SoC, with the only difference being that the RZ/V2H(P) SoC ha=
+s
+> three additional interrupts: one for Tx end/Rx ready and the other two fo=
+r
+> Rx and Tx buffer full, which are edge-triggered.
 >
-> Nothing improved.
-Yes, Just aligned the regulator node name in this revision.
-I missed aligning the commit message.
+> No driver changes are required as generic compatible string
+> "renesas,scif-r9a07g044" will be used as a fallback on RZ/V2H(P) SoC.
 
-I'll fix in next revision & update commit message as:
+If you declare SCIF on RZ/V2H compatible with SCIF on RZ/G2L, you
+state that the current driver works fine (but perhaps suboptimal),
+without adding support for the extra 3 interrupts?
 
-tda38640 has a single regulator output along with
-CAT_FAULT# pin to report internal events.
-Hence add properties for regulator & interrupt.
+Gr{oetje,eeting}s,
 
-Let me know if any others changes needed.
+                        Geert
 
-Regards,
-Naresh
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
->
-> Broken record. You got the same comment 3rd or 4th time!
->
-> NAK
->
-> Best regards,
-> Krzysztof
->
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
