@@ -1,63 +1,66 @@
-Return-Path: <devicetree+bounces-48867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 98D9C873E4E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:14:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FB21873E54
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:16:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AD650B20E79
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 18:14:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6E74F1C21802
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 18:16:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E55C13D31D;
-	Wed,  6 Mar 2024 18:12:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FF5213DB99;
+	Wed,  6 Mar 2024 18:16:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="U7y99w7c"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="On481HuE"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 525A513D309;
-	Wed,  6 Mar 2024 18:12:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D03513BAF5;
+	Wed,  6 Mar 2024 18:16:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709748779; cv=none; b=u8itYV7IK3SwwP63/hS8EIEe8DAOohLMlzN/0CyN/zHvwVt4SYslUrTe238NasNwwebavRc8Lq7LbIM8fDd8gIIW4NG+rbtNgJk5Z6Kc3CaXDBusmZh4u7GP0+HtFa99QVqY5B8XZpwh+6TIf68nopXY5pmoyqXEgcgQMyfDPeM=
+	t=1709748994; cv=none; b=GFXu/HnPdaOtclbM/eK4aLYmQCdRxJXwIRyjZtOiCfstEeG7XXS2vGTSUiuaZ4v+2v7PfSNMcLWrtNgmqfVjvtY9Tat/gXT3FrOV9ySNTkBfth8v/d4jn0ZG4N0bW7WBP4OqQnnIJNo+GvjrrqsuOrE3v9LNM5CmeWpcxW8T004=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709748779; c=relaxed/simple;
-	bh=oDl9i8wVopENg8HbcqfcwU5Qsqz8CfV8yBnuXQyY7cU=;
+	s=arc-20240116; t=1709748994; c=relaxed/simple;
+	bh=tbBRCaVo+InwOYa4J6KLxUWcsfoWs0IB2yezyi2bp08=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=djjFT8AYhRwJkXvAm8p/R2vyF/zyyZie6W5GcY0TxqaXFvPhrRVW/RvKyNS71FbbjsbygTyzbvRwl5mH3AbtBq1JQOYL8EbnDTJ5DyVrkPnE/xxLFYKd7vR4H449ylopwGpCFVeXAXL67Lq8JqwCCJzB8ZR8jeicPPKXcRm6UX8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=U7y99w7c; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 39FADC433C7;
-	Wed,  6 Mar 2024 18:12:56 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=mQvyskSyJtuJck+aca5BenBsDjycND1bp5j0VXI4cRsa35+CCAkwgPh1A8MeTNYAh0vuqOWELv3+lXV7Dl3UUo+7g2grlCiNSUL4dBhTywa3blSW78m16lDz6HfWO0LQ8HMvN2mx84VV9w2mFMsXWToQMQtdm+wwjMP2uoTmXbA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=On481HuE; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4889C433F1;
+	Wed,  6 Mar 2024 18:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709748778;
-	bh=oDl9i8wVopENg8HbcqfcwU5Qsqz8CfV8yBnuXQyY7cU=;
+	s=k20201202; t=1709748993;
+	bh=tbBRCaVo+InwOYa4J6KLxUWcsfoWs0IB2yezyi2bp08=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=U7y99w7cc7rbC2VCe02xdhPhernanjr5yhjHnseoyF/dhziSp3uG1eyhZL+qr0dKd
-	 M5/BiuOIqv5fgRssDLurOQQLyr0aZjUAFof6Wn1tRf4mHb6+uISC4N9TAFQn0JtkMv
-	 UP4CqsMBDvJYkU7jHkaY5A+leEqisiCqwbrpG1A1n4CrYmFRkl358dAu9/KWxb4was
-	 VJyodc8l/xwSA2qw4kBIplFevpjYoE0270EEhodtqLVvcogVEwnOKaCPrDFmZvbuYB
-	 CXE5LFgD/vPqR6Uk+2Hj9Ho9MB+VwMSKP82xDzfEX0/eaMeaVQneJfKFgb1imeV1Iv
-	 GNMfkgW3FXViQ==
-Date: Wed, 6 Mar 2024 18:12:53 +0000
+	b=On481HuEnTCVzcRBpoCcsH7kUp/WqPowKz8ggMRH22YjUOKgSOc/s8AypODCtNPfT
+	 Id6Ny3910rp52Ys3aivv+4DQZIq8DLzkscMIeP/rOcsyGqArNYAOtj9HCFs++2Dydw
+	 AD3nzHHiCNVduLGzzvJlymj4hH7dmiXnZ2vffDe1KRP2Ydu0qPjdYGSnFqtN/kFX09
+	 JdnZVpbZg5VvFQkV84I0dOWTRx9OfcNFHei8gqHYtAe9zEYTv83UfXa1o7GokKCdtQ
+	 i5H2i0qm+/kSgsBrqRWNeOu15gxCMKgl0EXuT/ykdjldXL90hH0r5spPRGQYgIHf4Q
+	 14TWzzyUTOMkg==
+Date: Wed, 6 Mar 2024 18:16:26 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: Niklas =?iso-8859-1?Q?S=F6derlund?= <niklas.soderlund@ragnatech.se>,
-	"Rafael J . Wysocki" <rafael@kernel.org>,
-	Daniel Lezcano <daniel.lezcano@linaro.org>,
-	Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	linux-renesas-soc@vger.kernel.org, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, Duy Nguyen <duy.nguyen.rh@renesas.com>
-Subject: Re: [PATCH 1/2] dt-bindings: thermal: rcar-gen3-thermal: Add
- r8a779h0 support
-Message-ID: <20240306-discover-outshoot-2e0716d5d3ce@spud>
-References: <cover.1709722342.git.geert+renesas@glider.be>
- <b3d135f8b63b9fe2d0f0aa2e48c8a2211b2e947e.1709722342.git.geert+renesas@glider.be>
+To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
+	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, andrew@lunn.ch, corbet@lwn.net,
+	linux-doc@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
+	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
+	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
+	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
+	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
+	benjamin.bigler@bernformulastudent.ch
+Subject: Re: [PATCH net-next v3 12/12] dt-bindings: net: add Microchip's
+ LAN865X 10BASE-T1S MACPHY
+Message-ID: <20240306-spree-islamist-957acf0ee368@spud>
+References: <20240306085017.21731-1-Parthiban.Veerasooran@microchip.com>
+ <20240306085017.21731-13-Parthiban.Veerasooran@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,42 +68,108 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="42iu+UqCSUQQDnvJ"
+	protocol="application/pgp-signature"; boundary="mTPtQiM3l9AbfMu+"
 Content-Disposition: inline
-In-Reply-To: <b3d135f8b63b9fe2d0f0aa2e48c8a2211b2e947e.1709722342.git.geert+renesas@glider.be>
+In-Reply-To: <20240306085017.21731-13-Parthiban.Veerasooran@microchip.com>
 
 
---42iu+UqCSUQQDnvJ
-Content-Type: text/plain; charset=us-ascii
+--mTPtQiM3l9AbfMu+
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 06, 2024 at 11:56:02AM +0100, Geert Uytterhoeven wrote:
-> From: Duy Nguyen <duy.nguyen.rh@renesas.com>
+On Wed, Mar 06, 2024 at 02:20:17PM +0530, Parthiban Veerasooran wrote:
+> The LAN8650/1 combines a Media Access Controller (MAC) and an Ethernet
+> PHY to enable 10BASE-T1S networks. The Ethernet Media Access Controller
+> (MAC) module implements a 10 Mbps half duplex Ethernet MAC, compatible
+> with the IEEE 802.3 standard and a 10BASE-T1S physical layer transceiver
+> integrated into the LAN8650/1. The communication between the Host and the
+> MAC-PHY is specified in the OPEN Alliance 10BASE-T1x MACPHY Serial
+> Interface (TC6).
 >=20
-> Document support for the Thermal Sensor/Chip Internal Voltage
-> Monitor/Core Voltage Monitor (THS/CIVM/CVM) on the Renesas R-Car V4M
-> (R8A779H0) SoC.
+> Signed-off-by: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
+> ---
+>  .../bindings/net/microchip,lan865x.yaml       | 80 +++++++++++++++++++
+>  MAINTAINERS                                   |  1 +
+>  2 files changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/microchip,lan86=
+5x.yaml
 >=20
-> Just like on other R-Car Gen4 SoCs, interrupts are not routed to the
-> INTC-AP (GIC) but to the Error Control Module (ECM).
->=20
-> Signed-off-by: Duy Nguyen <duy.nguyen.rh@renesas.com>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> diff --git a/Documentation/devicetree/bindings/net/microchip,lan865x.yaml=
+ b/Documentation/devicetree/bindings/net/microchip,lan865x.yaml
+> new file mode 100644
+> index 000000000000..ee52f9d8e93c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/microchip,lan865x.yaml
+> @@ -0,0 +1,80 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/microchip,lan865x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Microchip LAN8650/1 10BASE-T1S MACPHY Ethernet Controllers
+> +
+> +maintainers:
+> +  - Parthiban Veerasooran <parthiban.veerasooran@microchip.com>
+> +
+> +description:
+> +  The LAN8650/1 combines a Media Access Controller (MAC) and an Ethernet
+> +  PHY to enable 10BASE=E2=80=91T1S networks. The Ethernet Media Access C=
+ontroller
+> +  (MAC) module implements a 10 Mbps half duplex Ethernet MAC, compatible
+> +  with the IEEE 802.3 standard and a 10BASE-T1S physical layer transceiv=
+er
+> +  integrated into the LAN8650/1. The communication between the Host and
+> +  the MAC-PHY is specified in the OPEN Alliance 10BASE-T1x MACPHY Serial
+> +  Interface (TC6).
+> +
+> +allOf:
+> +  - $ref: ethernet-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - const: microchip,lan8650
+> +          - const: microchip,lan8651
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+The order here is wrong, lan8561 needs to come before the fallback of
+lan8650.
 
+> +      - enum:
+> +          - microchip,lan8650
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      Interrupt from MAC-PHY asserted in the event of Receive Chunks
+> +      Available, Transmit Chunk Credits Available and Extended Status
+> +      Event.
+> +    maxItems: 1
+> +
+> +  spi-max-frequency:
+> +    minimum: 15000000
+> +    maximum: 25000000
 
---42iu+UqCSUQQDnvJ
+You're missing a reference to spi-peripheral-props where this property
+is defined.
+
+Thanks,
+Conor.
+
+--mTPtQiM3l9AbfMu+
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeiyJQAKCRB4tDGHoIJi
-0pBaAP4jB17YQumW0L2miIINAAmjpdyZcV+hNwFRGq9Tj2fZrwEA0yoGS1zRmMgA
-Nh50LHjtU4c/tX4ZJ8fJKLAiFa9PNAA=
-=AuLQ
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeiy+gAKCRB4tDGHoIJi
+0sEyAP9vKKL7S6v67sm8LpUGgEB1xcFQscjGQHYHiNpCJc91nQEAuiL8Ui5nA319
+6/NDoP4DozSDQSxF+xuFFl8A5bOsIA4=
+=TG4y
 -----END PGP SIGNATURE-----
 
---42iu+UqCSUQQDnvJ--
+--mTPtQiM3l9AbfMu+--
 
