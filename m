@@ -1,128 +1,124 @@
-Return-Path: <devicetree+bounces-48747-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48748-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9EA45873535
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 11:59:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 99E73873550
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 12:07:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 545651F23A4F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 10:59:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C89D11C21BE7
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 11:07:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9FA612D0;
-	Wed,  6 Mar 2024 10:59:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0099A608F1;
+	Wed,  6 Mar 2024 11:07:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OLNoQeRd"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="bwroREav"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 904DE6089A;
-	Wed,  6 Mar 2024 10:59:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DE3896CDCD;
+	Wed,  6 Mar 2024 11:07:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709722744; cv=none; b=c3R6CYVT+/WlUndbwYRpuM5v6/1QIt6XWbTY0axOgQkz8OrLrtWe4rTGd5ls+InLu3mtRNUzrTdqKCdAH51649ZyDN0h+ROl7lNrJj9/dRejIGPjyjWsj/9o/MgnpTCn6oHNdJc4h/fsgnBuH9TyODr51sWnScbajenFXQmFGvA=
+	t=1709723240; cv=none; b=FVqw/itcLsc8QHtHaPY6hByQt+7vSuLLPSu+ry/NGqerepL1jB4iIY5LQ6Nvhimn61dnsKm9Ler07HvtD1xagMqi1M2GzEaBZx+8htmYhzuQ7ERDaq4PGxz7KpOdvCfdOrwRDCTFhvuHa9HV/7Umca1z7+zqnXVZKKehxnPsqjc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709722744; c=relaxed/simple;
-	bh=9irRIG0KFERmL3sNKB1GcQ9JLqgiQH8nptVh6vPu5mg=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=VliGbM4R5bT6kmJCKDGBFN9zRmNdu1Yqhqk6Nx9aBLG9QJDlYT32/zn14V/HzNvDuBbpZlgo3t4wK68eSAr+aRXI6kCAcKf8AbzrBAuTxMU2zhIzrCKOwe0EH3zHqYNSNhXvXCn7FYI1Uujh9By4j1sgRjnZ42Yx04rB7KQtKno=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OLNoQeRd; arc=none smtp.client-ip=209.85.218.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a45c006ab82so48093266b.3;
-        Wed, 06 Mar 2024 02:59:02 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709722741; x=1710327541; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=e5Z0N03v/ohpTjWPfQRgP/mEBY6xf/mkdG3hCpH/bMQ=;
-        b=OLNoQeRdmYFCi95vmYODy9EeMtLhKh0hrbhqiLnsRjh2hLjXjak/QSF719cR1lKRdk
-         tsSHBcKiLOjjpxLB6ZzNfEA8mzVvDsjojSW5/qb6LiUgwxrXR8zubekDPJH3k97hxlGi
-         i1d2l1p+u9h+8ydVAxPPWM2lSGXmKUxmeYOXI+PcmhqR75HeC55qSV4wfjDKqIVRu/9L
-         e/ISVoOd8Jq9J60xa+XUHAS0LXD/2ZVXdcJCxwtXltt4oFGUUeE2YR1WcqOPSEkZfLrs
-         L6H8zEMkP32OrKmTe10FlO896R/9TVPD6Mkx8grxndR13SXpOV/AsDerLtEhksXQvmzo
-         aEng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709722741; x=1710327541;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=e5Z0N03v/ohpTjWPfQRgP/mEBY6xf/mkdG3hCpH/bMQ=;
-        b=nEF++5i84TkhByeDUxp7jJyyp+Ustq+bp7bNoIDGIaugWvsATdv5DEyVr5QzKNyzAP
-         X+wH3uFxBheeYjYKSFmp0iTgCfUt9e8YXNyp50J1W4pp4+4AHfW2cO1GjTfNc+4hRJt6
-         whnzM/n/czQZaqrkrDhJWdaWPPz+n7U0+yegBmelQbbQElyo6Ni2BzxENI1jfeNS/T0t
-         5I/TlN07MxaT44CKHP1w7K3dkmYscGtygaOGcQYmhDyKo2FwWWeC55TI3lNl6+Bgbz/l
-         Ans4aHOnXylX4svykQc1lxgURSdqqx9GxI4YPq+W8IhrPjO+EGuMLyROLGaiaubYjQEp
-         08/g==
-X-Forwarded-Encrypted: i=1; AJvYcCWF4rqL9eNRaFhc75g9Wke9kSkA+l65bvtCy1FhCfNjjcJ6P5zzLXNIlfBesmdS4//BVGZ7wwTXFHnibu3sFKBcoYjFkl2l1uAaGBdVDWPS6OBcywWFLLzFwKh3tpGS0pKJg77nQDO1rHz9rk2w9kLl3X4Fbo1EfSO2R1Bwz9fRxd0NlQQ=
-X-Gm-Message-State: AOJu0YxI6P/JbQCHcGd6CnDBetaZu2d0Aq4UGmJJHotAK9pUPo5PPtX4
-	ujM6m93VlIRf5hlyomoHXLmQQQR4ODygn9gOUfGRhKGu7wqTvzycmZD3yicGZe3sJW8sguqLTNm
-	odM0LjDSIoIZM4oRxvEh35TPGZyo=
-X-Google-Smtp-Source: AGHT+IFR/RKGlCn3Fh34/aH2tzfQC9FgfHtJe362qDydqHz8e5ZEJGTvks01Qy+NFLTjVu8vZdi1vIdnJoYGzqQGu6I=
-X-Received: by 2002:a17:907:20b9:b0:a43:6cd2:7a27 with SMTP id
- pw25-20020a17090720b900b00a436cd27a27mr9255436ejb.19.1709722740894; Wed, 06
- Mar 2024 02:59:00 -0800 (PST)
+	s=arc-20240116; t=1709723240; c=relaxed/simple;
+	bh=TeypHYztStanyeG63312ZYZhlqpeV7uIu2AEyXDDxv4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=IX4DPwwbc9OSN2pF0M2pKPA28hrG8gWPIjkaY+N5XibBMq2x6puQsRAUQekF8NlUAr5fqKb42D/EIZv730yUbIKN2G0kHC8gppoXKRMk0Jw/XsAXQCCum79FyChisvUUf4IePPoXl+rSsoK9btMxbBf8q7pP18s/xpQSclTcG+Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=bwroREav; arc=none smtp.client-ip=217.70.183.201
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 56A6F1BF208;
+	Wed,  6 Mar 2024 11:07:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709723236;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=ZIfGVlbA1FFow5uYZDJCt17nXjkwv9ja0Xnzy8zYKwg=;
+	b=bwroREavWNoesHITsTtxo5nGKtTkiEl3iUl3Cgs62Z7ke4ai6/wPmPA1ZB3KJL3PJbRZKN
+	dvHRenJRQkqLszi4TQfOpR9kdW1jIVnwuQtR0ha5IkfBwdA++v1/mOTq5I+hj6QhfhCFSm
+	Y1HSZuwqLSRSHlqaqYZx3IsAhhyKpJ2EYUinnXulj/t3KLPikY0FyNx1uiDxCJ0L043opQ
+	M+EwRgyF2V9ZQ0CBkRe/U3Z2V+N+uqcf7swidw+dAx2Nrh9b7SHnAgO7ZccdEnEOY98KhH
+	wNmwLz3go2zkv8/PvQ5j63ftEWzVUIwDo63qIGBCqPqHfdcsnLDYXhvoebp6zQ==
+Date: Wed, 6 Mar 2024 12:07:13 +0100
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Saravana Kannan <saravanak@google.com>, Lizhi Hou
+ <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, Sonal Santan
+ <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>,
+ Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Allan Nielsen
+ <allan.nielsen@microchip.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Nuno Sa <nuno.sa@analog.com>, Thomas
+ Petazzoni <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
+Subject: Re: [PATCH v4 1/2] driver core: Introduce
+ device_link_wait_removal()
+Message-ID: <20240306120713.6d7b9344@booty>
+In-Reply-To: <20240306085007.169771-2-herve.codina@bootlin.com>
+References: <20240306085007.169771-1-herve.codina@bootlin.com>
+	<20240306085007.169771-2-herve.codina@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240305035853.916430-1-chris.packham@alliedtelesis.co.nz>
- <20240305035853.916430-2-chris.packham@alliedtelesis.co.nz>
- <CAMuHMdXF+12PHa5A7WeyPMfvsGcJN13WaPuCbTmJU52Huq=osA@mail.gmail.com>
- <Zecy1RsSfpmH-cvG@smile.fi.intel.com> <216eb75d-5384-4654-9e86-4a9856494ad0@alliedtelesis.co.nz>
-In-Reply-To: <216eb75d-5384-4654-9e86-4a9856494ad0@alliedtelesis.co.nz>
-From: Andy Shevchenko <andy.shevchenko@gmail.com>
-Date: Wed, 6 Mar 2024 12:58:24 +0200
-Message-ID: <CAHp75Vdi8K2mf2JSCG=e4vX+18CuNyaH-U5Q8-NGvihhyrJBJg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] auxdisplay: Add 7-segment LED display driver
-To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-Cc: Andy Shevchenko <andy@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>, 
-	"robh+dt@kernel.org" <robh+dt@kernel.org>, 
-	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
-	"conor+dt@kernel.org" <conor+dt@kernel.org>, "andrew@lunn.ch" <andrew@lunn.ch>, 
-	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>, 
-	"sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>, "lee@kernel.org" <lee@kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-On Wed, Mar 6, 2024 at 12:34=E2=80=AFAM Chris Packham
-<Chris.Packham@alliedtelesis.co.nz> wrote:
-> On 6/03/24 03:57, Andy Shevchenko wrote:
-> > On Tue, Mar 05, 2024 at 09:23:07AM +0100, Geert Uytterhoeven wrote:
-> >> On Tue, Mar 5, 2024 at 4:59=E2=80=AFAM Chris Packham
-> >> <chris.packham@alliedtelesis.co.nz> wrote:
+On Wed,  6 Mar 2024 09:50:02 +0100
+Herve Codina <herve.codina@bootlin.com> wrote:
 
-...
+> The commit 80dd33cf72d1 ("drivers: base: Fix device link removal")
+> introduces a workqueue to release the consumer and supplier devices used
+> in the devlink.
+> In the job queued, devices are release and in turn, when all the
+> references to these devices are dropped, the release function of the
+> device itself is called.
+> 
+> Nothing is present to provide some synchronisation with this workqueue
+> in order to ensure that all ongoing releasing operations are done and
+> so, some other operations can be started safely.
+> 
+> For instance, in the following sequence:
+>   1) of_platform_depopulate()
+>   2) of_overlay_remove()
+> 
+> During the step 1, devices are released and related devlinks are removed
+> (jobs pushed in the workqueue).
+> During the step 2, OF nodes are destroyed but, without any
+> synchronisation with devlink removal jobs, of_overlay_remove() can raise
+> warnings related to missing of_node_put():
+>   ERROR: memory leak, expected refcount 1 instead of 2
+> 
+> Indeed, the missing of_node_put() call is going to be done, too late,
+> from the workqueue job execution.
+> 
+> Introduce device_link_wait_removal() to offer a way to synchronize
+> operations waiting for the end of devlink removals (i.e. end of
+> workqueue jobs).
+> Also, as a flushing operation is done on the workqueue, the workqueue
+> used is moved from a system-wide workqueue to a local one.
+> 
+> Fixes: 80dd33cf72d1 ("drivers: base: Fix device link removal")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-> >>> +       priv->segment_gpios =3D devm_gpiod_get_array(dev, "segment", =
-GPIOD_OUT_LOW);
-> >>> +       if (IS_ERR(priv->segment_gpios))
-> >>> +               return PTR_ERR(priv->segment_gpios);
-> >> This needs some validation of priv->segment_gpios->ndescs, else the
-> >> call to gpiod_set_array_value_cansleep() in seg_led_update() may
-> >> trigger an out-of-bounds access of the values bitmap.
-> > Alternatively we can call gpiod_count() beforehand and check its result=
-.
-> Unless there are any objections I think I'll go with the ndescs check as
-> it'll be easier to update to the subnode style in the future.
+Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
 
-Either works for me.
-
-> It does
-> mean there will be some extra allocations/frees (handled via the devm_
-> APIs) in the error case.
-
-
---=20
-With Best Regards,
-Andy Shevchenko
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
