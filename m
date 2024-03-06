@@ -1,119 +1,134 @@
-Return-Path: <devicetree+bounces-48757-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48758-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C0F58735F8
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 13:00:32 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D9F03873600
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 13:03:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DBB4CB256BA
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 12:00:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FD57B25EB3
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 12:02:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E5C787FBAF;
-	Wed,  6 Mar 2024 12:00:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=marliere.net header.i=@marliere.net header.b="FXBPB4TJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B26057FBB4;
+	Wed,  6 Mar 2024 12:02:53 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E1774C6E;
-	Wed,  6 Mar 2024 12:00:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0122A78B43;
+	Wed,  6 Mar 2024 12:02:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709726424; cv=none; b=TpF2l0jIgs5707BtbUxK/jmiJLm1uIESoYtnKUz3IXz6BFzlnBf7RGtda22MmCtPEW0DbuDMjeVVzdk/joGuDC7nKbL/ek5Gu79RzDOO6CoN8wtORdYTbRQiChhyRP3JjLPfXvgr3lOTserdeh+DVQUWfvSVf18c4WgKrHMB7eg=
+	t=1709726573; cv=none; b=ABDxJ24d7A1zNz2d8RVHP//ydVcsNc2F0BcLeoaAcLoxFHCEha4FTE69Nm+1KvpL8yA+9ibNZAKJd6v6+IUlUcs6qOSC/+t787pgw/JDwFOcENR+74aO3K+Of5k28I2hcUsNlXTo2Rh+53BOtpPfIxrvucydNA9sv82YWVV7GjQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709726424; c=relaxed/simple;
-	bh=rll++81RHnPmXCpMgw5gtpQoU4SBkDZyM2rirVvZ/08=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CMSfV5ItK2d6jAI5jPsMG0MdsyGyXIbmTGSvKZ2CcV7jcXV6dzafJZZjYJTCEoqsbVFWtEDtEoOHKzvn0brscSw4E2z4S89HuP+z3TDPwQeGgV54pdRbjtQa/yHt1VMvn4i1Lla9C+vinXk7M/EQKdv5bgKvvM2AR6vsrw8ZXfA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=marliere.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=marliere.net header.i=@marliere.net header.b=FXBPB4TJ; arc=none smtp.client-ip=209.85.161.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=marliere.net
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5a1a0550015so25911eaf.0;
-        Wed, 06 Mar 2024 04:00:22 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709726422; x=1710331222;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:dkim-signature:date:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=NCSfg79XSg8gxcqeq6qiMLqlWj175rfDfcVyginmxjA=;
-        b=t4tN1K2M3OROq9xDaVMqmdX9z0wagDU+zQhYSMm5j8VVXkluU61GbkJnpj+QEj9S2/
-         KRTmwAZ9mqZx4Jos4KS1wqIfVlXPnYH2hFhEIpZY06OAttZnJibwYoTiHu/o34ChS9qe
-         bmS0y81OVLOzdHerRRvOFMkLjWZg8lbHNf+w5uPNUV6aJ6+TgZbyFP2vd6+6fr35Bya2
-         lRtqP5cGcxD2aZ4lcA+bgA7I3T4zjUxKpTTdNb0Nii6Cc9cR69pPDs4/IxwL29TZFbCi
-         u7x/0yy/BmepCz737qqKmgHnAeYnBI1a0N1iPo+QerrnPa9LyuWlSZXtJ1eQEJFnHjbY
-         GL4A==
-X-Forwarded-Encrypted: i=1; AJvYcCWSMjqY9LGshAQwnNZyhECWnxBo1lRthra7QExr9TVtLDHkNQ+oUld4JGorEdgrjlsV5BLdtLm2UIdk1ka9aB7jB6KRvB3uGCOhtNsflDIoxoSM+M238/Iv196tSsXAQsW19vCM09zzAx2cquNuyNQQywhOUnIfOMSRGG/aTyzNqmfiiLy+eaSKjAsK9MnWFjpT0crFmt7H0r+9P1mbX/YI
-X-Gm-Message-State: AOJu0Yw7tfHGwOucApQD2iK2vMcGR1E7T89+r3HGUB6LdImhLr6h84M/
-	YTzck+TzY0kq68dln4Fxgxa91+s85clds8yaLsLS7rmseLweFKyF
-X-Google-Smtp-Source: AGHT+IEQ00k2DZVL5LGzpnrYPcbL6NwbJtSjRk3MkAoox6RlfPwTN9DHzGp7XV1L0dSoMfJn7Oy2+A==
-X-Received: by 2002:a05:6870:458e:b0:21f:f8a9:e892 with SMTP id y14-20020a056870458e00b0021ff8a9e892mr5089973oao.53.1709726422067;
-        Wed, 06 Mar 2024 04:00:22 -0800 (PST)
-Received: from mail.marliere.net ([24.199.118.162])
-        by smtp.gmail.com with ESMTPSA id w3-20020aa79a03000000b006e54f344e14sm10661253pfj.22.2024.03.06.04.00.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Mar 2024 04:00:21 -0800 (PST)
-Date: Wed, 6 Mar 2024 09:00:12 -0300
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=marliere.net;
-	s=2024; t=1709726420;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=NCSfg79XSg8gxcqeq6qiMLqlWj175rfDfcVyginmxjA=;
-	b=FXBPB4TJRJV0G7bT2ecrH06o/RrcdzzhrudVqUO+CsIODDh+1wGZMQH9a48CN76l6m74Pr
-	1WryduNUxVTTZoXakdH7219RsWARB5p4pyaZGlpkdv3h8oiu8atxqqB+gLzezexp24y7v4
-	T1Ks4RAOlVkQLIYFE/+0Jxl3tarNj9NUhtseqh0y+0hhPqkDYIXWE48sUhIW0RiHtMr4Wd
-	v3CgT9eg9wSYmz9zQnRedvJpNNBOCHIcdqRt7RUfM/LWaAdZSLbRMpgRqEvghyEPkomEyC
-	aJ8FY0YNCKp6mYlaEgWVgdOkQ9h17yKETLpAHTyLjNkVEeBB12ZUmab0a+/cOg==
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=ricardo@marliere.net smtp.mailfrom=ricardo@marliere.net
-From: "Ricardo B. Marliere" <ricardo@marliere.net>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>, Dave Chinner <dchinner@redhat.com>, 
-	Jan Kara <jack@suse.cz>, Thomas =?utf-8?Q?Wei=C3=9Fschuh?= <linux@weissschuh.net>, 
-	Christian Brauner <brauner@kernel.org>, Li Lingfeng <lilingfeng3@huawei.com>, 
-	Damien Le Moal <dlemoal@kernel.org>, Min Li <min15.li@samsung.com>, 
-	Adrian Hunter <adrian.hunter@intel.com>, Hannes Reinecke <hare@suse.de>, 
-	Christian Loehle <CLoehle@hyperstone.com>, Avri Altman <avri.altman@wdc.com>, Bean Huo <beanhuo@micron.com>, 
-	Yeqi Fu <asuk4.q@gmail.com>, Victor Shih <victor.shih@genesyslogic.com.tw>, 
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org, 
-	linux-block@vger.kernel.org, Diping Zhang <diping.zhang@gl-inet.com>, 
-	Jianhui Zhao <zhaojh329@gmail.com>, Jieying Zeng <jieying.zeng@gl-inet.com>, 
-	Chad Monroe <chad.monroe@adtran.com>, Adam Fox <adam.fox@adtran.com>, John Crispin <john@phrozen.org>
-Subject: Re: [RFC PATCH v2 4/8] block: implement NVMEM provider
-Message-ID: <palxzjqvvteqajsajrdgdvncq3eka65pq7de4jnwyhpfs3xrac@c34xcdxctbcq>
-References: <cover.1709667858.git.daniel@makrotopia.org>
- <6061aa4201030b9bb2f8d03ef32a564fdb786ed1.1709667858.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1709726573; c=relaxed/simple;
+	bh=yF6gwCEWbGF3pPVi8P+IIvtLpYFThZkXLvepHc0U0MA=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=XC9ZLbHXV/y+n/oYYkxPNAVYr2VPuPTCYMhwJZbr8a1rsm2Bp83uiuT0dxcLMOxWIxlmqwte8XffIU8Dbhv6in6GtJdHm/BXLy4m0p/GasqYsnhhIvSduPXlfWelQcf/688/Ts+eEwObc93A7HK476pyuJcjNyM7OmsOMTv+XPQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 552571FB;
+	Wed,  6 Mar 2024 04:03:27 -0800 (PST)
+Received: from [10.57.67.126] (unknown [10.57.67.126])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1AF433F738;
+	Wed,  6 Mar 2024 04:02:41 -0800 (PST)
+Message-ID: <6af5e7da-08ba-4fc7-8e57-863377182142@arm.com>
+Date: Wed, 6 Mar 2024 12:02:41 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6061aa4201030b9bb2f8d03ef32a564fdb786ed1.1709667858.git.daniel@makrotopia.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 0/7] dma-mapping: Simplify arch_setup_dma_ops()
+Content-Language: en-GB
+From: Robin Murphy <robin.murphy@arm.com>
+To: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>
+Cc: Vineet Gupta <vgupta@kernel.org>, Russell King <linux@armlinux.org.uk>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Huacai Chen <chenhuacai@kernel.org>, WANG Xuerui <kernel@xen0n.name>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>, Hanjun Guo
+ <guohanjun@huawei.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ "K. Y. Srinivasan" <kys@microsoft.com>,
+ Haiyang Zhang <haiyangz@microsoft.com>, Wei Liu <wei.liu@kernel.org>,
+ Dexuan Cui <decui@microsoft.com>,
+ Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
+ David Woodhouse <dwmw2@infradead.org>, Lu Baolu <baolu.lu@linux.intel.com>,
+ Niklas Schnelle <schnelle@linux.ibm.com>,
+ Matthew Rosato <mjrosato@linux.ibm.com>,
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+ Jean-Philippe Brucker <jean-philippe@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>,
+ Marek Szyprowski <m.szyprowski@samsung.com>, Jason Gunthorpe <jgg@ziepe.ca>,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-acpi@vger.kernel.org, iommu@lists.linux.dev, devicetree@vger.kernel.org
+References: <cover.1707493264.git.robin.murphy@arm.com>
+In-Reply-To: <cover.1707493264.git.robin.murphy@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-Hi Daniel,
+Hi Joerg, Christoph,
 
-On  5 Mar 20:23, Daniel Golle wrote:
-> static int __init blk_nvmem_init(void)
-> {
-> 	int ret;
->  
-> 	ret = class_interface_register(&blk_nvmem_bus_interface);
-> 	if (ret)
-> 		return ret;
->  
-> 	return 0;
+On 2024-02-09 4:49 pm, Robin Murphy wrote:
+> v2: https://lore.kernel.org/linux-iommu/cover.1702486837.git.robin.murphy@arm.com/
+> 
+> Hi all,
+> 
+> Here's v3, rebased and fixing the thinko from v2, so unless anything
+> else has changed behind my back I hope it's good to go (via the IOMMU
+> tree, as mentioned before).
 
-Just an idea, why not just:
+Are either of you happy to pick this series up now that we have Hanjun's 
+acks for the IORT parts? As it stands it still applies cleanly to both 
+iommu/next and dma/for-next. I do have some followup IOMMU patches 
+prepared already (continuing to delete more code, yay!), but I don't 
+want to get too far ahead of myself.
 
-return class_interface_register(&blk_nvmem_bus_interface);
+Cheers,
+Robin.
 
+> 
+> Thanks,
+> Robin.
+> 
+> 
+> Robin Murphy (7):
+>    OF: Retire dma-ranges mask workaround
+>    OF: Simplify DMA range ca1lculations
+>    ACPI/IORT: Handle memory address size limits as limits
+>    dma-mapping: Add helpers for dma_range_map bounds
+>    iommu/dma: Make limit checks self-contained
+>    iommu/dma: Centralise iommu_setup_dma_ops()
+>    dma-mapping: Simplify arch_setup_dma_ops()
+> 
+>   arch/arc/mm/dma.c               |  3 +--
+>   arch/arm/mm/dma-mapping-nommu.c |  3 +--
+>   arch/arm/mm/dma-mapping.c       | 16 +++++++------
+>   arch/arm64/mm/dma-mapping.c     |  5 +---
+>   arch/loongarch/kernel/dma.c     |  9 ++-----
+>   arch/mips/mm/dma-noncoherent.c  |  3 +--
+>   arch/riscv/mm/dma-noncoherent.c |  3 +--
+>   drivers/acpi/arm64/dma.c        | 17 ++++---------
+>   drivers/acpi/arm64/iort.c       | 20 ++++++++--------
+>   drivers/acpi/scan.c             |  7 +-----
+>   drivers/hv/hv_common.c          |  6 +----
+>   drivers/iommu/amd/iommu.c       |  8 -------
+>   drivers/iommu/dma-iommu.c       | 39 ++++++++++++------------------
+>   drivers/iommu/dma-iommu.h       | 14 +++++------
+>   drivers/iommu/intel/iommu.c     |  7 ------
+>   drivers/iommu/iommu.c           | 20 ++++++----------
+>   drivers/iommu/s390-iommu.c      |  6 -----
+>   drivers/iommu/virtio-iommu.c    | 10 --------
+>   drivers/of/device.c             | 42 ++++++---------------------------
+>   include/linux/acpi_iort.h       |  4 ++--
+>   include/linux/dma-direct.h      | 18 ++++++++++++++
+>   include/linux/dma-map-ops.h     |  6 ++---
+>   include/linux/iommu.h           |  7 ------
+>   23 files changed, 89 insertions(+), 184 deletions(-)
+> 
 
