@@ -1,156 +1,126 @@
-Return-Path: <devicetree+bounces-48647-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48648-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 245FE872F89
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:24:02 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C5A872F9D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:30:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 910181F2239F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:24:01 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D5A41B215B9
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A43CA5C5F9;
-	Wed,  6 Mar 2024 07:23:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C4A85C8E7;
+	Wed,  6 Mar 2024 07:30:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="TnIrw/2H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from metis.whiteo.stw.pengutronix.de (metis.whiteo.stw.pengutronix.de [185.203.201.7])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9824C5C5EB
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 07:23:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.203.201.7
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1284F179BF;
+	Wed,  6 Mar 2024 07:30:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709709837; cv=none; b=KQk/IlNv2Cz59l3+lW9pAz5rW0pGM2cmpn8ICDoQjNQkxcJ3Wu66HaPqWN48nPTWp2PWyHd0DM5UCT4i8N6ze/Ye/7xt5rgmOCfh2S+J4LVqMnJWZekzgFhq/nNjrfdhibulFvScqkUP+SpOEanTu6HGUDmhx9873aarck1LoTU=
+	t=1709710246; cv=none; b=tevZK5tv65e/YaPa8zNL5867RGxEcFBbgZo5bG0TI4soeyqTWbc/2qktsQUbAD7UVBCey91DrzZhobwiUE2txYiZnZLyZGVvEGGrjK4xTnmuR2eA34KaOAi7VgobF77tco4rMGH4QeLS/yBcDCUXuisn6Al3ig1Q3cEcX5kBxU8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709709837; c=relaxed/simple;
-	bh=+B0TJc/kRe/wrIincWxLSZ37rVccCTI1iUTwH/ns59w=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=bykdqwv9AwEyJtE2dmpYmNnQj9f8Ed7tmg0AuWfh50BbAVpPq/xloLWEoNkJlP/5TPCS9kajdlCJfWn8Mh5+aGNLrVDAVIMvMFjegV6xKTj0nvc3013nda+LZ6noHOUwbhToWn3b4CzJNdbJKx2vSG/l6rOjC8PkYgI3mEv5wz4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de; spf=pass smtp.mailfrom=pengutronix.de; arc=none smtp.client-ip=185.203.201.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=pengutronix.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=pengutronix.de
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-	by metis.whiteo.stw.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <sha@pengutronix.de>)
-	id 1rhlcM-0006zE-L4; Wed, 06 Mar 2024 08:23:10 +0100
-Received: from [2a0a:edc0:2:b01:1d::c5] (helo=pty.whiteo.stw.pengutronix.de)
-	by drehscheibe.grey.stw.pengutronix.de with esmtps  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <sha@pengutronix.de>)
-	id 1rhlcC-004hXC-0n; Wed, 06 Mar 2024 08:23:00 +0100
-Received: from sha by pty.whiteo.stw.pengutronix.de with local (Exim 4.96)
-	(envelope-from <sha@pengutronix.de>)
-	id 1rhlcB-004oTB-2t;
-	Wed, 06 Mar 2024 08:22:59 +0100
-Date: Wed, 6 Mar 2024 08:22:59 +0100
-From: Sascha Hauer <s.hauer@pengutronix.de>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
-	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
-	Thomas =?iso-8859-15?Q?Wei=DFschuh?= <linux@weissschuh.net>,
-	Christian Brauner <brauner@kernel.org>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Damien Le Moal <dlemoal@kernel.org>, Min Li <min15.li@samsung.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Hannes Reinecke <hare@suse.de>,
-	Christian Loehle <CLoehle@hyperstone.com>,
-	Avri Altman <avri.altman@wdc.com>, Bean Huo <beanhuo@micron.com>,
-	Yeqi Fu <asuk4.q@gmail.com>,
-	Victor Shih <victor.shih@genesyslogic.com.tw>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	"Ricardo B. Marliere" <ricardo@marliere.net>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org,
-	Diping Zhang <diping.zhang@gl-inet.com>,
-	Jianhui Zhao <zhaojh329@gmail.com>,
-	Jieying Zeng <jieying.zeng@gl-inet.com>,
-	Chad Monroe <chad.monroe@adtran.com>,
-	Adam Fox <adam.fox@adtran.com>, John Crispin <john@phrozen.org>
-Subject: Re: [RFC PATCH v2 1/8] dt-bindings: block: add basic bindings for
- block devices
-Message-ID: <ZegZ0zJ1OT7ikrE8@pengutronix.de>
-References: <cover.1709667858.git.daniel@makrotopia.org>
- <f70bb480aef6f55228a25ce20ff0e88e670e1b70.1709667858.git.daniel@makrotopia.org>
+	s=arc-20240116; t=1709710246; c=relaxed/simple;
+	bh=6q5uA0GAwycbAH8Lnrl1xYpzxrxn3OajUQval+uTsoc=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dCW3WgFhQcIE3ci+xUHcn4zSSRQZol7zM4CR0oJywgLtoZln/6jYUdR/YGHRatieriA7hj8kS7yEgd/CL0napvtcIgR4E5/pbVOVqQMii05WrtsF7ueuE5fjv0NIZ8DLC1lBCtJC1lqQGnjyIGgUECv7GAHYKej+ahBcWFtwSpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=TnIrw/2H; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4266Cswc026368;
+	Wed, 6 Mar 2024 07:30:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version:content-type; s=
+	qcppdkim1; bh=6jE+7DI4Z/+mUo2eFwCdooyjM8NPLVjM8BsLoV6q+lQ=; b=Tn
+	Irw/2HphdgD5+4FTGg5UB3nS4wFgaku6Wlt6gvf3c2ywEJ8Woyh8sjqS5ax9w4pQ
+	ordJH5jl2sFlJ0bp1hRHmjL3SXludfqe3CSknjNY9L+ysz+6AuL3XKqAOKpL9lqB
+	WukjEpdMB0jSIz6+E/XRSfdmmoeStoIOKrN57agJEsSlfkvTVFjils/60w4tbp9u
+	e15R5k0Qzl0NX0FLV9b48q97mEDyj4SCJBcr6BrkhQxLRfmzlPQHjBmzZTATjuLZ
+	I0nFUIlxGSY/Tk+2VSPl70VFB9Ve71VF5jBPLxi+TJFjXvuC9iYGw+ztJ5YsTD76
+	4VID0U08PKHkJAfRV1wQ==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wp2bptc7n-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Mar 2024 07:30:40 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4267Ud1i003736
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 6 Mar 2024 07:30:39 GMT
+Received: from hu-okukatla-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 5 Mar 2024 23:30:34 -0800
+From: Odelu Kukatla <quic_okukatla@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Georgi Djakov <djakov@kernel.org>, Rob Herring
+	<robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC: Kees Cook <keescook@chromium.org>, <cros-qcom-dts-watchers@chromium.org>,
+        "Gustavo A . R . Silva" <gustavoars@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-hardening@vger.kernel.org>, <quic_rlaggysh@quicinc.com>,
+        <quic_mdtipton@quicinc.com>
+Subject: [PATCH v3 0/4] Add support for QoS configuration
+Date: Wed, 6 Mar 2024 13:00:12 +0530
+Message-ID: <20240306073016.2163-1-quic_okukatla@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <f70bb480aef6f55228a25ce20ff0e88e670e1b70.1709667858.git.daniel@makrotopia.org>
-X-Sent-From: Pengutronix Hildesheim
-X-URL: http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.whiteo.stw.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: aaNk1uEvHlCnHBztBJlXLYPtecOwAze1
+X-Proofpoint-ORIG-GUID: aaNk1uEvHlCnHBztBJlXLYPtecOwAze1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-06_04,2024-03-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ impostorscore=0 mlxscore=0 phishscore=0 suspectscore=0 mlxlogscore=883
+ lowpriorityscore=0 clxscore=1011 malwarescore=0 spamscore=0 bulkscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403060058
 
-Hi Daniel,
+This series adds QoS support for QNOC type device which can be found on
+SC7280 platform. It adds support for programming priority,
+priority forward disable and urgency forwarding. This helps in
+priortizing the traffic originating from different interconnect masters
+at NOC(Network On Chip).
 
-On Tue, Mar 05, 2024 at 08:23:20PM +0000, Daniel Golle wrote:
-> diff --git a/Documentation/devicetree/bindings/block/partition.yaml b/Documentation/devicetree/bindings/block/partition.yaml
-> new file mode 100644
-> index 0000000000000..df561dd33cbc9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/block/partition.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/block/partition.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Partition on a block device
-> +
-> +description: |
-> +  This binding describes a partition on a block storage device.
-> +  Partitions may be matched by a combination of partition number, name,
-> +  and UUID.
-> +
-> +maintainers:
-> +  - Daniel Golle <daniel@makrotopia.org>
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: '^block-partition-.+$'
-> +
-> +  partnum:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Matches partition by number if present.
-> +
-> +  partname:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description:
-> +      Matches partition by PARTNAME if present.
+Changes in v3:
+ - Skip QoS programming incase regmap failse and continue with probe.
+ - Defined all the qos structures as const.
+ - Fixed compilation issue occurring with arm-linux-gnueabi- toolchain.
+ - Removed enable_qos_deps() and disable_qos_deps() as no explicit
+   voting is needed for BCM before sync_state.
 
-In the mtd world we originally had the partition nodes directly under
-the hardware device node as well. That was changed to put a
-partitions subnode between the hardware device node and the partitions.
+Odelu Kukatla (4):
+  interconnect: qcom: icc-rpmh: Add QoS configuration support
+  interconnect: qcom: sc7280: enable QoS programming
+  dt-bindings: interconnect: add clock property to enable QOS on SC7280
+  arm64: dts: qcom: sc7280: Add clocks for QOS configuration
 
-From fe2585e9c29a ("doc: dt: mtd: support partitions in a special
-'partitions' subnode"):
-
-    To avoid conflict with other drivers using subnodes of the mtd device
-    create only one ofpart-specific node rather than any number of
-    arbitrary partition subnodes.
-
-Does it make sense to do the same for block devices?
-
-Sascha
+ .../interconnect/qcom,sc7280-rpmh.yaml        |  49 +++
+ arch/arm64/boot/dts/qcom/sc7280.dtsi          |   3 +
+ drivers/interconnect/qcom/icc-rpmh.c          | 105 ++++++
+ drivers/interconnect/qcom/icc-rpmh.h          |  32 ++
+ drivers/interconnect/qcom/sc7280.c            | 332 ++++++++++++++++++
+ 5 files changed, 521 insertions(+)
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.17.1
+
 
