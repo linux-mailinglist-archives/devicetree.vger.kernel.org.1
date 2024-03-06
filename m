@@ -1,173 +1,178 @@
-Return-Path: <devicetree+bounces-48833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73409873BCE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 17:14:21 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id E60B9873BF1
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 17:18:59 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 25630283932
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 16:14:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4EB7A1F2636F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 16:18:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A252D135A67;
-	Wed,  6 Mar 2024 16:14:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 56525137907;
+	Wed,  6 Mar 2024 16:18:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="dQoI+oX2"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IV4t6jld"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D16D3135401
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 16:14:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5DC371369BE
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 16:18:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709741657; cv=none; b=NCQjBBXJo75DLSoYfcbqSliAInfCBrcK0tvYDcHVGYPPnMGhSAvG94L9VZNX+2I7Xd2B3nmyl+wcEVsKqB6QDLP5rQkwBo5IiRwrimfXFXBebeA09vIvXBnZ6WJazgnhtT9cMPiU81obT0vkqpUuCpLQRYekInerOKeqjCmJyao=
+	t=1709741931; cv=none; b=GEuH5FboNS8yW4UQya2PBe/0sX0p1HKxHQ8HF4wZFmyJbWT1aCl4KD3Bj9D064wfDixZujC6uRX+R4NW0BoeGV+SKj7SwXGur3dNsw1yEYCBsPLNWyRLtmRReO6Fw/FuN0VkKHC4FmXuu72XtjzcBkXEsDN2rpEPDZMH+3AD++4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709741657; c=relaxed/simple;
-	bh=FAmUSAr/tUjgOJFJPsKagQNrdFZY+PTJrBMOjrEUAwM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=d+YiIuFG0lplL6YymQMwaXDHeFIO7jqRgkjkOL3mM5c2wMPnJr5Gn1yvyZe3FJ+KDnHgVxCLp78mbsZtfUn5RNJlZ5ZDwI2VboNR+hyEDXSQbSiVaGeOD85+jFOSg94Q3arQXL4U6UVn1+wLSAWmXXMLK6C59lTtiUX6DLnNmL8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=dQoI+oX2; arc=none smtp.client-ip=209.85.167.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5131316693cso9207691e87.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 08:14:15 -0800 (PST)
+	s=arc-20240116; t=1709741931; c=relaxed/simple;
+	bh=4VWeBYARvXlXtxRM3ztD5oedY7YP+mKI+ej/UlpRijk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=P8mOHJ1MKDISPymayzg+p6yP96COriPDhm/WuT7xxJyN/QINBG1stbdeX2zho2OPUV+U8ip61YQPIzs8GjUEph3UCBgkncL2kEX4lXut0OUVavhUXVoiKGUecFJ09g05Ahs6uNOKUgQ0egeyAgT3aWR2etqZ8NJh3yESEKGM2ks=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IV4t6jld; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-512bde3d197so1137455e87.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 08:18:49 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1709741654; x=1710346454; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GTnAQDpq/xXZDrrZFKVdG9h0DRt+PLoYidl8F6FoQRM=;
-        b=dQoI+oX2FYrb9jcpiQm1eIHUrS3tYVHX4xOe2M/qG8xeak7Tzr6g4i7C0mUDYAEaR2
-         JjOYCwD0xM3a6/XHDOX6GkmTLa6NXWxyBslPQ4G8d0Ygrtq0B1621eLxepHfJ4hqnJdC
-         U0g9W0YXuj0GJthNJW+DTOBoE6eIbcyXEXuvb9nK0Fq93qkFAp1u4/aja4tb8Pq4J6qT
-         i/V5cME3EQr7H17vxmekDnn4rtngDi74UPxRjkHNk3DErz7F95qj4t3HAsg1cTyLKEzJ
-         jYEhZA9Q74toUwx5TpLaqg5b/DIjKiwP6qnBgLei9v82wUg32l4cCpZ6g+uI2lISx1ah
-         F3AQ==
+        d=linaro.org; s=google; t=1709741927; x=1710346727; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Hrydq/RdJikRIfc87umFKTutUZLP8jNuTQIOBJnDlns=;
+        b=IV4t6jldN0Yf3RpFUBlzaFdtPsz6tMrLHX57u0bj4Zs60faOWEnJBjVnFP6mGsgkE+
+         Z5a9FWChfJUbrIo7QMnXJzKUd14ypd8mc38Bv+WeA+1lUVCmj0m9hkkU9yNF+WfaxQN0
+         qJ3Kv0UIRrK14JK4yQjFkpZIViKTqDkJrUptQed8I6ikz/dI2e60AZGqdnavs0smlraN
+         6PF+O0SG3eRFakAUVK2sxCm66kAcCs+v99pANbzCr/EJgIUFcUa42nO2jcH9XMBN8Hy/
+         Fxy5eZDOrMFX2aL0q10HlYZCDVRcX3hc1DMHCrOoBgI2nf48xiQTur36AbFOWBcE3exi
+         GoIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709741654; x=1710346454;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GTnAQDpq/xXZDrrZFKVdG9h0DRt+PLoYidl8F6FoQRM=;
-        b=ItG6BmUKtl1JDwMjrRSeva6APdtSAoJPSfSodkF0y2hBYy6aOrXyn9f3/Bxtwod94W
-         v56usGVecEh4wmT+uLz80GMCTKwOvRiImpce6wPvfXPisWpGbREu1Ag6EbBwTRwCHPgi
-         kVArERaGLcg52go8xDTAlAXx6LCfcFD90lb73N+eC4A8gMup2SC18rQZeu/9uYIVivUk
-         7AaDkj3QdaFwgP6k1BiuTC/v6pGQLcfHugR4g3olptcJIiEf33JaHUsVpNqqlJ6Ii+0n
-         peCLW6XMkbMhky0NDRc4QdyzkiUje5J7TYBz8vT3QaD5mtFjQMLNYixOU/dAeeZGEBGd
-         v3bA==
-X-Forwarded-Encrypted: i=1; AJvYcCWIjtXe2T+95lndZ6klOB8kvPfCj/YvNXkDSZMrvR8D2z2jphkxajQ/sE/Kr7bAh/yrSWIoypRD8hN/SEzG5m/txQQw5iD7b5QFIg==
-X-Gm-Message-State: AOJu0Yz5+qKm4wB7T5yLMwp97A6mqvs0LHig4ilZio0ASWrXyAsGNic/
-	F6WpX9a1vSI73mZ8NArMKdLQ01D+9sy6zQhDvnP4rGx7CXgfVg7LPTGGDTcX1+ql76FrOJPMI67
-	8AaGxMboudjwSrcsByGdBucRIiDNcAHks44x/yg==
-X-Google-Smtp-Source: AGHT+IELUwkYn/nZDGmR9FqLyW9RWybu2772azYRtKpDnvK+Il12l2oNP+rIy5t2jdacBPwh32NxT8ptyeHUgLVAp1Y=
-X-Received: by 2002:a05:6512:402a:b0:513:6f0c:e075 with SMTP id
- br42-20020a056512402a00b005136f0ce075mr694446lfb.24.1709741653768; Wed, 06
- Mar 2024 08:14:13 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709741927; x=1710346727;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Hrydq/RdJikRIfc87umFKTutUZLP8jNuTQIOBJnDlns=;
+        b=UoHcAlzXnjUWm0Hk05ipdShECrY3KhtUbf1MJ3vfojKxhaw6QmE9slftEUGXtRaNjL
+         t4tUmO451mmKIxFsjmgDVamwMnv7n6PQ6LU6Xu1kExsOSxvi+z/ftVkNQXF/aKZE01el
+         Jb5C/6sESvZfiVr9JicH5Q8k3voK+ecfGar9wo7dbDrRIMyHP4gl/UxnXHQU8+wxcEV1
+         fUQbXYjo9jJa8BWoRUapq4fIu2c6oEKPHz7eICeTI+qBkdAxUgSSUAwc+RrJCG0GMMfn
+         mhnXg1dqgda0+imJhU70XwrZ+SPkn7IpzjGsCAYVCzoK3XTmM8yea1Ye5URoqu77T2or
+         DoKw==
+X-Forwarded-Encrypted: i=1; AJvYcCWYpbUg43TYtM4MwDwayReiyGhbqDgq+uG4b8Dp9KFLLhclaWlbzpUVdN9nswwJVA2s4M/Ya6WMJYH+1m7y8I8hZbSoCq44F9YBbA==
+X-Gm-Message-State: AOJu0Ywf5FiciD2UcvP4LQ/XjzuczR5sE/fMQdkVQ4/fQY4ovY7/2glk
+	be3pf3qgn1wLvpvxKORBpRj3e6/7qcvf29LnrmYW8CQWHExAf7opinLA2i9u9Ts=
+X-Google-Smtp-Source: AGHT+IGKdJ4IIIOuKLJDe+yk/Iutux3iHWYuZ2nSTLmqZtFgNnLz9ofothAzyQzmMciLDmY7KjCTUA==
+X-Received: by 2002:a19:e006:0:b0:513:25b9:6cf8 with SMTP id x6-20020a19e006000000b0051325b96cf8mr3681484lfg.19.1709741927501;
+        Wed, 06 Mar 2024 08:18:47 -0800 (PST)
+Received: from [87.246.221.128] (netpanel-87-246-221-128.pol.akademiki.lublin.pl. [87.246.221.128])
+        by smtp.gmail.com with ESMTPSA id u12-20020ac258cc000000b005131941f7e9sm2668396lfo.5.2024.03.06.08.18.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Mar 2024 08:18:47 -0800 (PST)
+Message-ID: <b5ade82e-3a7e-427f-907f-bafe1d203d45@linaro.org>
+Date: Wed, 6 Mar 2024 17:18:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240226040746.1396416-1-apatel@ventanamicro.com>
- <20240226040746.1396416-9-apatel@ventanamicro.com> <87y1avbboj.fsf@all.your.base.are.belong.to.us>
-In-Reply-To: <87y1avbboj.fsf@all.your.base.are.belong.to.us>
-From: Anup Patel <apatel@ventanamicro.com>
-Date: Wed, 6 Mar 2024 21:44:01 +0530
-Message-ID: <CAK9=C2Ud+CJzWfY0Lp97OMt9QvJBFX=hHJidn_90XY5cEB9LHw@mail.gmail.com>
-Subject: Re: [PATCH v15 08/10] irqchip/riscv-aplic: Add support for MSI-mode
-To: =?UTF-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, 
-	Thomas Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org, 
-	Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>, Anup Patel <anup@brainfault.org>, 
-	linux-kernel@vger.kernel.org, Atish Patra <atishp@atishpatra.org>, 
-	linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
-	Andrew Jones <ajones@ventanamicro.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/4] interconnect: qcom: icc-rpmh: Add QoS
+ configuration support
+Content-Language: en-US
+To: Odelu Kukatla <quic_okukatla@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>, Georgi Djakov <djakov@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Kees Cook <keescook@chromium.org>, cros-qcom-dts-watchers@chromium.org,
+ "Gustavo A . R . Silva" <gustavoars@kernel.org>,
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-hardening@vger.kernel.org, quic_rlaggysh@quicinc.com,
+ quic_mdtipton@quicinc.com
+References: <20240306073016.2163-1-quic_okukatla@quicinc.com>
+ <20240306073016.2163-2-quic_okukatla@quicinc.com>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240306073016.2163-2-quic_okukatla@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, Mar 6, 2024 at 9:22=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kernel.=
-org> wrote:
->
-> Anup Patel <apatel@ventanamicro.com> writes:
->
-> > diff --git a/drivers/irqchip/irq-riscv-aplic-msi.c b/drivers/irqchip/ir=
-q-riscv-aplic-msi.c
-> > new file mode 100644
-> > index 000000000000..b2a25e011bb2
-> > --- /dev/null
-> > +++ b/drivers/irqchip/irq-riscv-aplic-msi.c
-> > +static void aplic_msi_write_msg(struct irq_data *d, struct msi_msg *ms=
-g)
-> > +{
-> > +     unsigned int group_index, hart_index, guest_index, val;
-> > +     struct aplic_priv *priv =3D irq_data_get_irq_chip_data(d);
-> > +     struct aplic_msicfg *mc =3D &priv->msicfg;
-> > +     phys_addr_t tppn, tbppn, msg_addr;
-> > +     void __iomem *target;
-> > +
-> > +     /* For zeroed MSI, simply write zero into the target register */
-> > +     if (!msg->address_hi && !msg->address_lo && !msg->data) {
-> > +             target =3D priv->regs + APLIC_TARGET_BASE;
-> > +             target +=3D (d->hwirq - 1) * sizeof(u32);
-> > +             writel(0, target);
->
-> Is the fence needed here (writel_relaxed())...
 
-The pci_write_msg_msix() (called via pci_msi_domain_write_msg())
-uses writel() hence taking inspiration from that we use writel() over here
-as well.
 
-If that's wrong then pci_write_msg_msix() must be fixed as well.
+On 3/6/24 08:30, Odelu Kukatla wrote:
+> It adds QoS support for QNOC device and includes support for
+> configuring priority, priority forward disable, urgency forwarding.
+> This helps in priortizing the traffic originating from different
+> interconnect masters at NoC(Network On Chip).
+> 
+> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
+> ---
+>   drivers/interconnect/qcom/icc-rpmh.c | 105 +++++++++++++++++++++++++++
+>   drivers/interconnect/qcom/icc-rpmh.h |  32 ++++++++
+>   2 files changed, 137 insertions(+)
+> 
+> diff --git a/drivers/interconnect/qcom/icc-rpmh.c b/drivers/interconnect/qcom/icc-rpmh.c
+> index c1aa265c1f4e..b4681849df80 100644
+> --- a/drivers/interconnect/qcom/icc-rpmh.c
+> +++ b/drivers/interconnect/qcom/icc-rpmh.c
+> @@ -1,19 +1,57 @@
+>   // SPDX-License-Identifier: GPL-2.0
+>   /*
+>    * Copyright (c) 2020, The Linux Foundation. All rights reserved.
+> + * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+>    */
+>   
+> +#include <linux/clk.h>
+>   #include <linux/interconnect.h>
+>   #include <linux/interconnect-provider.h>
+>   #include <linux/module.h>
+>   #include <linux/of.h>
+>   #include <linux/of_platform.h>
+>   #include <linux/slab.h>
+> +#include <linux/bitfield.h>
 
->
-> > +             return;
-> > +     }
-> > +
-> > +     /* Sanity check on message data */
-> > +     WARN_ON(msg->data > APLIC_TARGET_EIID_MASK);
-> > +
-> > +     /* Compute target MSI address */
-> > +     msg_addr =3D (((u64)msg->address_hi) << 32) | msg->address_lo;
-> > +     tppn =3D msg_addr >> APLIC_xMSICFGADDR_PPN_SHIFT;
-> > +
-> > +     /* Compute target HART Base PPN */
-> > +     tbppn =3D tppn;
-> > +     tbppn &=3D ~APLIC_xMSICFGADDR_PPN_HART(mc->lhxs);
-> > +     tbppn &=3D ~APLIC_xMSICFGADDR_PPN_LHX(mc->lhxw, mc->lhxs);
-> > +     tbppn &=3D ~APLIC_xMSICFGADDR_PPN_HHX(mc->hhxw, mc->hhxs);
-> > +     WARN_ON(tbppn !=3D mc->base_ppn);
-> > +
-> > +     /* Compute target group and hart indexes */
-> > +     group_index =3D (tppn >> APLIC_xMSICFGADDR_PPN_HHX_SHIFT(mc->hhxs=
-)) &
-> > +                  APLIC_xMSICFGADDR_PPN_HHX_MASK(mc->hhxw);
-> > +     hart_index =3D (tppn >> APLIC_xMSICFGADDR_PPN_LHX_SHIFT(mc->lhxs)=
-) &
-> > +                  APLIC_xMSICFGADDR_PPN_LHX_MASK(mc->lhxw);
-> > +     hart_index |=3D (group_index << mc->lhxw);
-> > +     WARN_ON(hart_index > APLIC_TARGET_HART_IDX_MASK);
-> > +
-> > +     /* Compute target guest index */
-> > +     guest_index =3D tppn & APLIC_xMSICFGADDR_PPN_HART(mc->lhxs);
-> > +     WARN_ON(guest_index > APLIC_TARGET_GUEST_IDX_MASK);
-> > +
-> > +     /* Update IRQ TARGET register */
-> > +     target =3D priv->regs + APLIC_TARGET_BASE;
-> > +     target +=3D (d->hwirq - 1) * sizeof(u32);
-> > +     val =3D FIELD_PREP(APLIC_TARGET_HART_IDX, hart_index);
-> > +     val |=3D FIELD_PREP(APLIC_TARGET_GUEST_IDX, guest_index);
-> > +     val |=3D FIELD_PREP(APLIC_TARGET_EIID, msg->data);
-> > +     writel(val, target);
->
-> ...and here?
+Please keep the alphabetical order
 
-Same as above.
+>   
+>   #include "bcm-voter.h"
+>   #include "icc-common.h"
+>   #include "icc-rpmh.h"
+>   
+> +/* QNOC QoS */
+> +#define QOSGEN_MAINCTL_LO(p, qp)	(0x8 + (p->port_offsets[qp]))
+> +#define QOS_SLV_URG_MSG_EN_MASK		BIT_MASK(3)
 
-Regards,
-Anup
+Mixing BIT_MASK and GENMASK is very confusing..
+
+> +#define QOS_DFLT_PRIO_MASK		GENMASK(6, 4)
+> +#define QOS_DISABLE_MASK		BIT_MASK(24)
+> +
+> +/**
+> + * qcom_icc_set_qos - initialize static QoS configurations
+> + * @qp: qcom icc provider to which @node belongs
+> + * @node: qcom icc node to operate on
+> + */
+> +static void qcom_icc_set_qos(struct qcom_icc_provider *qp,
+> +				struct qcom_icc_node *node)
+> +{
+> +	const struct qcom_icc_qosbox *qos = node->qosbox;
+> +	int port;
+> +
+> +	if (!qp->regmap || !qos)
+> +		return;
+
+This is not possible if you follow the code flow, I think..
+
+[...]
+
+> + * @prio: priority value assigned to requests on the node
+> + * @urg_fwd: whether to forward the urgency promotion issued by master(endpoint), or discard
+
+space before the opening brace, please also wrap to 80 lines
+
+> + * @prio_fwd_disable: whether to forward the priority driven by mster, or override by @prio
+
+typo: mster, please also wrap it
+
+Konrad
 
