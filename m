@@ -1,242 +1,369 @@
-Return-Path: <devicetree+bounces-48900-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48901-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B1AA8741D7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 22:19:31 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8AAE38741F6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 22:26:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D60631F2159D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 21:19:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01A9EB21A71
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 21:26:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B36541A28C;
-	Wed,  6 Mar 2024 21:19:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B79061B59A;
+	Wed,  6 Mar 2024 21:26:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="V3lv0eo9"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="besBXsyB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2057.outbound.protection.outlook.com [40.107.22.57])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FB7418EB8;
-	Wed,  6 Mar 2024 21:19:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.22.57
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709759964; cv=fail; b=kAipt27ZGaFO6eY7tUMWPiJccUW8yHvdcTOYlBnd1BMQv5Ud4APRYLGKUJtV8/iVL9rg6IqHSzXGLW1sr0H2P5n2JfZJdMCLpf6Y4e7O4NiYCf/HKzkiw92anMmj7kh/ZpDAUIJQqo2Jwx5kyfHcUqkCKX48THmTCFREMJPSedw=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709759964; c=relaxed/simple;
-	bh=CACSeuYacIg66GedaknJNyISIN1RqvdICudp4u+r5ek=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=l7YLid1YhYO1M/NJC2s6mWjNqrVVc8o17pEfi2Oi64ab6qla5UMI+aJMlLJ746BY/iJI3tr73h4Hv0dHrtn/nCZU2fWWGo/UjwUrAV9aY4nZ8k1y3fy530rkGue5TQ7qXAPM+BQumWPczg9jkEqyWifNK/92q7T/7Lk72cMWiVg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=V3lv0eo9; arc=fail smtp.client-ip=40.107.22.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N/xClcBu2sOFmUqovp9lb5f+GYbnbKBmA1VE4/2b16AwX0ZjPvTSPuOIeiCdH+4J2ARGrtJ7X4Wk02i9IFBvirU21Io+eF20ITWP52rKsvcPx+cxJ4SRUpZdXTswrObd8cU5LVeDoep1BdQtuzmypkQK/USkm/9RTZMLm4O3Gz3GsoLu0Ca1rgmWe9Z1l/cUxvyGNbNb6XTU7TFsEkUlxg6twqSi5rRCGM4cU3LQo7phiW739cmiHxsmJyPqVlqCSecBXnVMibGDQgmHCx2TZJDSnHczNbxryQfLQ25ChKf81TW49JzckQhC84pU+J/V6f9QQpGbQZmAPukXW+yclA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Q2h3J3wL87ALsq8w2HZ0qrtvVc8Tn9zv+G8YnWa9XV4=;
- b=IpxC7yEngOkiOkS/5aqOxgaEtXWOUq/oCeEeaHjykuffo7P/pn9cQqNzh//I9Xsn5l8KNPKvCy8aBuzTVqePOy/6Wm8Ljm8vClzDQX97r/9eRmi+a7yydxU/vY2yDPokBmcEUB6CSLTh/aewjZ6rb6+ey4TAqCWDiY+HkZ34jDpZbrgF4WAyDpdmlybWzstFNXfjl7gUyT5vgEjhU10ztbkO1qpb8mjx1/+sWEe/FdzsXIUYw2480rQPZbrVSU6bmGNnbfaN7xW4KfpfB/PPFnEdSY3Kj7wOwpNmpdOWsZ9Rduf1ERIBa0HeaGtvuJcSVbE7wBidJB2eMUbcbTQtyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Q2h3J3wL87ALsq8w2HZ0qrtvVc8Tn9zv+G8YnWa9XV4=;
- b=V3lv0eo9sTyjQLb9Kt08yk+QHA9m4l7hJu290GiamvYCNLujU2IQUTEE4YC9FUW9A6a3opfuJaqGKYYWt/zWDcA/x571Fc/gaz6ZUmlu8uZ6REWDAoteyR0t/0afSxEDMfuYKIyHKfIGzK+0TbjUd1Loc+UmyktsHPvFC/+OZlU=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
- by PAXPR04MB8288.eurprd04.prod.outlook.com (2603:10a6:102:1bc::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7339.39; Wed, 6 Mar
- 2024 21:19:19 +0000
-Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
- ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7339.035; Wed, 6 Mar 2024
- 21:19:19 +0000
-Date: Wed, 6 Mar 2024 16:19:11 -0500
-From: Frank Li <Frank.li@nxp.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Conor Dooley <conor@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] ASoC: dt-bindings: fsl-sai: allow only one
- dma-names
-Message-ID: <Zejdz0BKwSlsio9S@lizhi-Precision-Tower-5810>
-References: <20240305-asrc_8qxp-v4-0-c61b98046591@nxp.com>
- <20240305-asrc_8qxp-v4-3-c61b98046591@nxp.com>
- <20240306-pebble-grope-88fdaa95a87c@spud>
- <ZejDQddMp17RD6Yk@lizhi-Precision-Tower-5810>
- <20240306205524.GB587561-robh@kernel.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240306205524.GB587561-robh@kernel.org>
-X-ClientProxiedBy: SJ0PR03CA0335.namprd03.prod.outlook.com
- (2603:10b6:a03:39c::10) To PAXPR04MB9642.eurprd04.prod.outlook.com
- (2603:10a6:102:240::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D51D81B279
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 21:26:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709760411; cv=none; b=Q2LllAzm1H1tR6ezIQmIvvbCLnRhmePHiWrWwf0iNH3e86Q1Fouf5Y+097qPGibsiyQwACg4uQmlV/ZSUKlaCML5SyxTm/18oNsGGyGFufwUny0KdaF6fpRHopSYzGiDpcID8ZCY3dCBoK0OX7SvwK/XzTMMeiD24mcZRte562I=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709760411; c=relaxed/simple;
+	bh=mzwfTi6zd7r9LqxFJaZNt/rUdm12xPXdVwOFQ7hS61Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=rSlzKqHu4YP4HPNFgwB4FtQwLK0W4pNM7VvZzpVPtWebEL2c6ieHbI0JLRFUyU0IEjpfv8u/A8vckTx6Pb1d5vTUuXyH/QCJUA5jViNKwts9on9kPtfum1Lm0nUUcIkBqjYox7mhvV3qbO4dXrM06c3QbaRYlQMGZKSx/yXclyk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=besBXsyB; arc=none smtp.client-ip=209.85.160.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-42ef8193ae6so12951cf.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 13:26:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1709760409; x=1710365209; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6FZuCGcMvxhZgTJoD8ceUikqqJlCEjQzCIvOMDFgMow=;
+        b=besBXsyBKQyuJX0ykolBvanUDHXwp23RaQdADo17WrsP3HZO98IOHshc5BkB4FEkxg
+         5bSi4kPpQPBr1scJDfi9Wq9h5Pk8eAXQxK0jBW3G+R+W/A1NB3sZmuaFcGn/M/asSbc0
+         J0q4yBcAe/tVK8ApfmtmPatKRz2//JST4VJldrXGDkRkjMlqRLbIklZow1YXlT2rsHUD
+         hndOe4PnH45ORvNPjBVc6rUTtdms404TDd/kZIxP+v5pfwh5Sm6fRMlnY1XJPSIEQKO/
+         cAba24bhTbG4l+1oUtzRE+oZuzTyibqraOytbFGL6GeLZaXZhIbwtKse1rZmj9PNLwge
+         QLHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709760409; x=1710365209;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=6FZuCGcMvxhZgTJoD8ceUikqqJlCEjQzCIvOMDFgMow=;
+        b=Ah8l3RV78q7sJaHhZErfQs9lbNt6O0qObaBJ2p0BFcfNwmPemv2kZ0xFUcB6AezwTB
+         yaLlTf++M7PmvjC5VnGb+zicAtZ0OnwJ6YpXcjVBD1NAHvuWKWgktXIA6eUijnBLhuOO
+         swJg2FY5MpL7+cPyUcLEF23Gs5540kS9n71xG5THPG/pG4DMHrwiQClhF01c176NelF0
+         T+i2bEuc9RHJN1qt/8z0pF6LifoC78l8AFaIN+QVvn6qOWK9qVuXzFEv1o3mt+NIBSHM
+         CH1R03rSUS0NvTIecHcMBHfvfN3vc6ksqClC9CFOp0/Ysy1CRhQUCRocqszX/xT50plc
+         1Npw==
+X-Forwarded-Encrypted: i=1; AJvYcCXsqMV+7C7g1TqQSjDWUNgZjxRMQvgSJpnR2nWXOm+9P+HZTqKZRQ67HODzpZpBKGWRGI+Iz4PbP+yt2onJU6O+SiYVBMZ2bQ5+vA==
+X-Gm-Message-State: AOJu0YzQVa1i81N4i9ijrGKdQp0kgtMbsrm3YSB2jp28OrHfTxnqNfEg
+	eDqbvMK0tMjAv4F1+dLCakOtm41SI0IMUHszodqOdC6EZwSAznqkiIukktuOZ57VKSDOwxCEEBp
+	6WtAI8KFXCI0L0cC94KXismPMEaO1v8lVH9qF
+X-Google-Smtp-Source: AGHT+IGFctRgTBcRCjPb80TkapZLv/rVBPcsBN5h6OElKH7bsTSniY6hCCQWMyYS+P/29db0lgO0vfA6VxutKw7SE64=
+X-Received: by 2002:a05:622a:148a:b0:42e:f45c:6761 with SMTP id
+ t10-20020a05622a148a00b0042ef45c6761mr98953qtx.22.1709760408460; Wed, 06 Mar
+ 2024 13:26:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|PAXPR04MB8288:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7fe46367-cedc-44a0-f028-08dc3e2315f3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	oiDYbt+fjLk5OlXNvKnU1QsAMdJxILCkKKhgDBPFz2yRWAOCtmNmfsH+N6m/7VE5Uf4Xw9nBZhnho/n0dERiJgJgsFkJIQRo/9VSOvR3RjYhCT6fP8DEUkEUk7GVPNWyt54UKinAqKcpZ4P9IGYHFcYTcHtId7ZC466LFw5vpUFJMW7ZIlv3fKS/qECyolvX2zT0R+A8vm5SUNJTK6s+QB9Idn/3jOXzog9iqoPCXmmhgjceClXoFNmyjCWYsl4smhDRoIZ63JvTJOynooLsXPPuNgl0mHcgcXz0ZAm5vZp13WZRcPmhDBQykZr/JXNL3Pk3d+SxGImMNreLXN98NW0zIYzAiidhT+bUirFlLkiYXe6Y51UhqCQdLjRQXCEm84O4b8vrbqcri9pvmZaceK/lueIUpJPH47ESuIseb63Ab/pLeKr7kDkxu0tcg331YfMH++GZ0AnHdjCi8aBYmIWzhxZutY2jrWEAcK6iNQFpk6LlNd9hy3ToTXPgpBt6Yg/mifvT3zLebhVlj9fU73Xlf44cdVOU1/Iy902LDX04g0HZNdDFIKsbdMK/ATxPb3zk2QF/LpoJDnEUtAKJZXJq/wi9IcxqHz0iBQZcP9dAlWy5Fh8KwuNbkbQ3lwdJ/1H6bS+XTEhySyIiWGuHkEOfcvPFXpO0yiaNOIUxSuFt+ahkCNUHmLJ/r72VHLrPJeKssj5etbfZNOgl8z1AQA==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?zC+rAsZ9hrvEv9wLvb9SPvPNDQi3i//bjOf0nOeghCIa8QxHzY+vPiigIGy1?=
- =?us-ascii?Q?BJFMImyQrXntWHXfmrirL2YF3mVx5OLjuTbNCFEs/50lejT/yqn7gxHWEflQ?=
- =?us-ascii?Q?RyuY/dvk65BUgzr61IcHmU63DFzVWY2t3TawmWR0RUVDk6wV2nhf79C3tHXK?=
- =?us-ascii?Q?FP2EcSktjxh8o01WjFDl70lZs8mdVLrJQp498hfH387F+/0Q0de1s7F+K+FJ?=
- =?us-ascii?Q?kCAsjboKiUjew2Rbw6wjtzXB57ikFt58Wj+mq/HNmip2KtD5qAESDDf4MArU?=
- =?us-ascii?Q?b69S6HhzJcTHsyZ6TCbWCFSDDqRda1vpmxIIn1Qd8YLI4tVLC6N9x1ke46dm?=
- =?us-ascii?Q?M6a8qr95F9F0yfivezM5PqvyWQehfelKD3fJ4bkLJ2bElUsAlDj0IqpihJyg?=
- =?us-ascii?Q?LbZFK5wCWbUNwv0bWPHOIE1mpXiuSfFhYzhMR8xcVTV8j5ukbH01hJpc/As0?=
- =?us-ascii?Q?VRABtTxpiXm0NMP4D/mCTqERzHEXg3DcmKoknCLRTQwqveDmux838FWAHEPJ?=
- =?us-ascii?Q?wR4K14FozdZfVfWRDMiD5b0szvLetSvkh12Pbvfv4Iwxq2mI9cDOsytc7kjF?=
- =?us-ascii?Q?fRFRTKD/iuNGR4en3hHl0cYGE0/U9jT9g58Dcj5BEnXwIDIPr94m8KbDbg/l?=
- =?us-ascii?Q?75fQI7CXIXT5nC5bfRtdqaBBAUkScEun6QqWrt2ClzSENJpjJYUEx8DTWAlx?=
- =?us-ascii?Q?G7o+fBXjG/UO8ONzApFNIOXlGovYmY1/h9j0yje4+W6cY5kQjOiMuVbD6bmL?=
- =?us-ascii?Q?qzkVpJOfKhj7UyQ6MJpmDlS7n+sEYscsH17l2blWxA7iD64xPT12c+KQXM4z?=
- =?us-ascii?Q?qAfX1Deww5gN7Jq1ZkFrbMBAoQ5zy3BUmTBFWse1G5be59UhPA8J2ZXMSr/e?=
- =?us-ascii?Q?D6ogpPOt0fIrnTwVtKjxhy0UYalbIVQwge8X4IUa+ftihADzvhqz4acfMy9s?=
- =?us-ascii?Q?O6ePZbKLyTNEzbPJ7CB5VZuzbruGk1MBphaL0lQRA+Pehog6UlqXLVrAs0ll?=
- =?us-ascii?Q?BnzsDgdpco8YijJJOIDH2vm+z/nPiBVgWJIFe1ODPyC32J02QPngdWjlHete?=
- =?us-ascii?Q?SNwlY6sfsTvoEs+SiGx42tPZsDff66w6id495kdBHl1BWMlUDA8jN/knOtMN?=
- =?us-ascii?Q?9blFcctV02ckfLZcsULFS7ex+fiI3Lsy5SpCBkGypzC9Cs8X+cMX+COc5FAW?=
- =?us-ascii?Q?lLM0TC1qo+5NjOeVLXob2V8OGqhfXHBJEyGdq/jRgNChEMa1CRZT7CNB3FA3?=
- =?us-ascii?Q?lB4nuBgGUfpgzACHfl8zrm6z3Yq0quD9TF1jgw2eGYeOARwVc3Sz7KWLnwnU?=
- =?us-ascii?Q?jhxfFcUv+zehId6gx+RkIVMXTKeaUDATUHhBTATMj/MwCUYmquzpSjbqpssm?=
- =?us-ascii?Q?kp8ftlyA141+XDraXpogxtWoAePXp1yqr+qRTh5hFEROoNQU4uyGSIF4R78j?=
- =?us-ascii?Q?9ygIX75wn7SHH1NrNrp+Ll/jO5qn/OhW/rfCkwdJdv8gTapAE1L5WPvgsAkq?=
- =?us-ascii?Q?X228GPyyiPmYqymxUrW5GuZj1h3UH4HII1t6f+D9uZebM0hn1ChttrGRmNKl?=
- =?us-ascii?Q?ao4lR555bU6Df1kRQjbElBoo+2/M4uIycj+r/znw?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7fe46367-cedc-44a0-f028-08dc3e2315f3
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2024 21:19:19.4121
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: EeJjPHlanpqvjjiJAOfwFKr+qnn8YrI6ICIgSRXpLqju84ehW2A5eDs9bQs8fQFdFMzopIodlrsXmEWua6FeVg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8288
+References: <20240306085007.169771-1-herve.codina@bootlin.com>
+ <20240306085007.169771-2-herve.codina@bootlin.com> <1fff8742a13c28dd7e1dda47ad2d6fa8e21e421e.camel@gmail.com>
+ <CAJZ5v0gWCo9nDAHkzeD08tTKoE0DE0ocht-Qq4zA7P59y9KeuQ@mail.gmail.com>
+ <ed442b6916016b3a40782dc32538fc517715db6c.camel@gmail.com>
+ <CAJZ5v0iQNEj6e_L1=uBTPaWn7BqV4pnoWxUq7LRPe5iVWsaifw@mail.gmail.com>
+ <ec7705f410bc848e79b8ab878b5fbf7618d9456d.camel@gmail.com>
+ <CAJZ5v0iMUOJmm99H6SgfP9179hBsLdyC+1ixJwBxSP0b18V6XA@mail.gmail.com> <86a0f91675197a00bbd921d6e57d2f3c57796e68.camel@gmail.com>
+In-Reply-To: <86a0f91675197a00bbd921d6e57d2f3c57796e68.camel@gmail.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Wed, 6 Mar 2024 13:26:09 -0800
+Message-ID: <CAGETcx_gNWOTsSZMaZu+XU1-5Z60WEcMhw08t4Sn_-YgkCCUmA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] driver core: Introduce device_link_wait_removal()
+To: =?UTF-8?B?TnVubyBTw6E=?= <noname.nuno@gmail.com>
+Cc: "Rafael J. Wysocki" <rafael@kernel.org>, Herve Codina <herve.codina@bootlin.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, 
+	Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
+	Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 06, 2024 at 02:55:24PM -0600, Rob Herring wrote:
-> On Wed, Mar 06, 2024 at 02:25:53PM -0500, Frank Li wrote:
-> > On Wed, Mar 06, 2024 at 06:45:13PM +0000, Conor Dooley wrote:
-> > > On Tue, Mar 05, 2024 at 12:33:04PM -0500, Frank Li wrote:
-> > > > Some sai only connect one direction dma (rx/tx) in SOC. For example:
-> > > > imx8qxp sai5 only connect tx dma channel. So allow only one "rx" or "tx"
-> > > > for dma-names.
-> > > > 
-> > > > Remove description under dmas because no user use index to get dma channel.
-> > > > All user use 'dma-names' to get correct dma channel. dma-names already in
-> > > > 'required' list.
-> > > 
-> > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > 
-> > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 13 ++++++-------
-> > > >  1 file changed, 6 insertions(+), 7 deletions(-)
-> > > > 
-> > > > diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > > index 2456d958adeef..6f551c68d33db 100644
-> > > > --- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > > +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > > @@ -81,15 +81,14 @@ properties:
-> > > >  
-> > > >    dmas:
-> > > >      minItems: 1
-> > > > -    items:
-> > > > -      - description: DMA controller phandle and request line for RX
-> > > > -      - description: DMA controller phandle and request line for TX
-> > > > +    maxItems: 2
-> > > >  
-> > > >    dma-names:
-> > > > -    minItems: 1
-> > > > -    items:
-> > > > -      - const: rx
-> > > > -      - const: tx
-> > > > +    oneOf:
-> > > > +      - items:
-> > > > +          - const: rx
-> > > > +          - const: tx
-> > > > +      - enum: [ rx, tx ]
-> > > 
-> > > I'm not entirely sure if this was Rob's suggestion, I got the impression
-> > > he was suggesting that in the two items case we'd not care about the
-> > > order. But while I think this is different to that suggestion it's also
-> > > not wrong.
-> > 
-> > I log this at cover-letter. b4 can't support write change log at every
-> > patch yet.
-> 
-> It never will (probably). That's because it doesn't need to. You can 
-> just do it with git. When you edit the commit message, then after the 
-> tags, Add '---' and put whatever you want after. That works as long as 
-> the commit is applied from a patch as 'git am' will drop it. 
+On Wed, Mar 6, 2024 at 6:47=E2=80=AFAM Nuno S=C3=A1 <noname.nuno@gmail.com>=
+ wrote:
+>
+> On Wed, 2024-03-06 at 15:37 +0100, Rafael J. Wysocki wrote:
+> > On Wed, Mar 6, 2024 at 3:08=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.=
+com> wrote:
+> > >
+> > > On Wed, 2024-03-06 at 14:05 +0100, Rafael J. Wysocki wrote:
+> > > > On Wed, Mar 6, 2024 at 2:01=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gm=
+ail.com> wrote:
+> > > > >
+> > > > > On Wed, 2024-03-06 at 13:43 +0100, Rafael J. Wysocki wrote:
+> > > > > > On Wed, Mar 6, 2024 at 10:17=E2=80=AFAM Nuno S=C3=A1 <noname.nu=
+no@gmail.com> wrote:
+> > > > > > >
+> > > > > > > On Wed, 2024-03-06 at 09:50 +0100, Herve Codina wrote:
+> > > > > > > > The commit 80dd33cf72d1 ("drivers: base: Fix device link re=
+moval")
+> > > > > > > > introduces a workqueue to release the consumer and supplier
+> > > > > > > > devices
+> > > > > > > > used
+> > > > > > > > in the devlink.
+> > > > > > > > In the job queued, devices are release and in turn, when al=
+l the
+> > > > > > > > references to these devices are dropped, the release functi=
+on of
+> > > > > > > > the
+> > > > > > > > device itself is called.
+> > > > > > > >
+> > > > > > > > Nothing is present to provide some synchronisation with thi=
+s
+> > > > > > > > workqueue
+> > > > > > > > in order to ensure that all ongoing releasing operations ar=
+e done
+> > > > > > > > and
+> > > > > > > > so, some other operations can be started safely.
+> > > > > > > >
+> > > > > > > > For instance, in the following sequence:
+> > > > > > > >   1) of_platform_depopulate()
+> > > > > > > >   2) of_overlay_remove()
+> > > > > > > >
+> > > > > > > > During the step 1, devices are released and related devlink=
+s are
+> > > > > > > > removed
+> > > > > > > > (jobs pushed in the workqueue).
+> > > > > > > > During the step 2, OF nodes are destroyed but, without any
+> > > > > > > > synchronisation with devlink removal jobs, of_overlay_remov=
+e() can
+> > > > > > > > raise
+> > > > > > > > warnings related to missing of_node_put():
+> > > > > > > >   ERROR: memory leak, expected refcount 1 instead of 2
+> > > > > > > >
+> > > > > > > > Indeed, the missing of_node_put() call is going to be done,=
+ too
+> > > > > > > > late,
+> > > > > > > > from the workqueue job execution.
+> > > > > > > >
+> > > > > > > > Introduce device_link_wait_removal() to offer a way to sync=
+hronize
+> > > > > > > > operations waiting for the end of devlink removals (i.e. en=
+d of
+> > > > > > > > workqueue jobs).
+> > > > > > > > Also, as a flushing operation is done on the workqueue, the
+> > > > > > > > workqueue
+> > > > > > > > used is moved from a system-wide workqueue to a local one.
+> > > > > > > >
+> > > > > > > > Fixes: 80dd33cf72d1 ("drivers: base: Fix device link remova=
+l")
+> > > > > > > > Cc: stable@vger.kernel.org
+> > > > > > > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > > > > > > > ---
+> > > > > > >
+> > > > > > > With the below addressed:
+> > > > > > >
+> > > > > > > Reviewed-by: Nuno Sa <nuno.sa@analog.com>
+> > > > > > >
+> > > > > > > >  drivers/base/core.c    | 26 +++++++++++++++++++++++---
+> > > > > > > >  include/linux/device.h |  1 +
+> > > > > > > >  2 files changed, 24 insertions(+), 3 deletions(-)
+> > > > > > > >
+> > > > > > > > diff --git a/drivers/base/core.c b/drivers/base/core.c
+> > > > > > > > index d5f4e4aac09b..48b28c59c592 100644
+> > > > > > > > --- a/drivers/base/core.c
+> > > > > > > > +++ b/drivers/base/core.c
+> > > > > > > > @@ -44,6 +44,7 @@ static bool fw_devlink_is_permissive(void=
+);
+> > > > > > > >  static void __fw_devlink_link_to_consumers(struct device *=
+dev);
+> > > > > > > >  static bool fw_devlink_drv_reg_done;
+> > > > > > > >  static bool fw_devlink_best_effort;
+> > > > > > > > +static struct workqueue_struct *device_link_wq;
+> > > > > > > >
+> > > > > > > >  /**
+> > > > > > > >   * __fwnode_link_add - Create a link between two fwnode_ha=
+ndles.
+> > > > > > > > @@ -532,12 +533,26 @@ static void devlink_dev_release(struc=
+t
+> > > > > > > > device
+> > > > > > > > *dev)
+> > > > > > > >       /*
+> > > > > > > >        * It may take a while to complete this work because =
+of the
+> > > > > > > > SRCU
+> > > > > > > >        * synchronization in device_link_release_fn() and if=
+ the
+> > > > > > > > consumer
+> > > > > > > > or
+> > > > > > > > -      * supplier devices get deleted when it runs, so put =
+it into
+> > > > > > > > the
+> > > > > > > > "long"
+> > > > > > > > -      * workqueue.
+> > > > > > > > +      * supplier devices get deleted when it runs, so put =
+it into
+> > > > > > > > the
+> > > > > > > > +      * dedicated workqueue.
+> > > > > > > >        */
+> > > > > > > > -     queue_work(system_long_wq, &link->rm_work);
+> > > > > > > > +     queue_work(device_link_wq, &link->rm_work);
+> > > > > > > >  }
+> > > > > > > >
+> > > > > > > > +/**
+> > > > > > > > + * device_link_wait_removal - Wait for ongoing devlink rem=
+oval
+> > > > > > > > jobs
+> > > > > > > > to
+> > > > > > > > terminate
+> > > > > > > > + */
+> > > > > > > > +void device_link_wait_removal(void)
+> > > > > > > > +{
+> > > > > > > > +     /*
+> > > > > > > > +      * devlink removal jobs are queued in the dedicated w=
+ork
+> > > > > > > > queue.
+> > > > > > > > +      * To be sure that all removal jobs are terminated, e=
+nsure
+> > > > > > > > that
+> > > > > > > > any
+> > > > > > > > +      * scheduled work has run to completion.
+> > > > > > > > +      */
+> > > > > > > > +     flush_workqueue(device_link_wq);
+> > > > > > > > +}
+> > > > > > > > +EXPORT_SYMBOL_GPL(device_link_wait_removal);
+> > > > > > > > +
+> > > > > > > >  static struct class devlink_class =3D {
+> > > > > > > >       .name =3D "devlink",
+> > > > > > > >       .dev_groups =3D devlink_groups,
+> > > > > > > > @@ -4099,9 +4114,14 @@ int __init devices_init(void)
+> > > > > > > >       sysfs_dev_char_kobj =3D kobject_create_and_add("char"=
+,
+> > > > > > > > dev_kobj);
+> > > > > > > >       if (!sysfs_dev_char_kobj)
+> > > > > > > >               goto char_kobj_err;
+> > > > > > > > +     device_link_wq =3D alloc_workqueue("device_link_wq", =
+0, 0);
+> > > > > > > > +     if (!device_link_wq)
+> > > > > > > > +             goto wq_err;
+> > > > > > > >
+> > > > > > >
+> > > > > > > I can't still agree with this. Why not doing it in
+> > > > > > > devlink_class_init()?
+> > > > > > > This is
+> > > > > > > devlink specific so it makes complete sense to me.
+> > > > > >
+> > > > > > If you do that in devlink_class_init() and it fails, you essent=
+ially
+> > > > > > cause the creation of every device link to fail.  IOW, you try =
+to live
+> > > > > > without device links and pretend that it is all OK.  That won't=
+ get
+> > > > > > you very far, especially on systems where DT is used.
+> > > > > >
+> > > > > > Doing it here, if it fails, you prevent the driver model from w=
+orking
+> > > > > > at all (because one of its necessary components is unavailable)=
+, which
+> > > > > > arguably is a better choice.
+> > > > >
+> > > > > That makes sense but then the only thing I still don't fully get =
+is why
+> > > > > we
+> > > > > have
+> > > > > a separate devlink_class_init() initcall for registering the devl=
+ink
+> > > > > class
+> > > > > (which can also fail)...
+> > > >
+> > > > Well, I haven't added it. :-)
+> > > >
+> > > > > What I take from the above is that we should fail the
+> > > > > driver model if one of it's fundamental components fails so I wou=
+ld say
+> > > > > we
+> > > > > should merge devlink_class_init() with device_init() otherwise it=
+'s a
+> > > > > bit
+> > > > > confusing (at least to me) and gives the idea that it's ok for th=
+e
+> > > > > driver
+> > > > > model
+> > > > > to exist without the links (unless I'm missing some other reason =
+for the
+> > > > > devlink
+> > > > > init function).
+> > > >
+> > > > +1
+> > > >
+> > > > Feel free to send a patch along these lines, chances are that it wi=
+ll
+> > > > be popular. ;-)
+> > >
+> > > I was actually thinking about that but I think I encountered the reas=
+on why
+> > > we
+> > > have it like this... devices_init() is called from driver_init() and =
+there
+> > > we
+> > > have:
+> > >
+> > > ...
+> > >
+> > > devices_init();
+> > > buses_init();
+> > > classes_init();
+> > >
+> > > ...
+> > >
+> > > So classes are initialized after devices which means we can't really =
+do
+> > > class_register(&devlink_class) from devices_init(). Unless, of course=
+, we
+> > > re-
+> > > order things in driver_init() but that would be a questionable change=
+ at the
+> > > very least.
+> > >
+> > > So, while I agree with what you've said, I'm still not sure if mixing
+> > > devlink
+> > > stuff between devices_init() and devlink_class_init() is the best thi=
+ng to
+> > > do
+> > > given that we already have the case where devlink_class_init() can fa=
+il
+> > > while
+> > > the driver model is up.
+> >
+> > So why don't you make devlink_class_init() do a BUG() on failure
+> > instead of returning an error?  IMO crashing early is better than
+> > crashing later or otherwise failing in a subtle way due to a missed
+> > dependency.
+>
+> Well, I do agree with that... Maybe that's something that Herve can sneak=
+ in
+> this patch? Otherwise, I can later (after this one is applied) send a pat=
+ch for
+> it.
 
-The key problem is that I don't want to lost notes when respin patches. It
-is easy to make mistake when I copy old serise change logs.
+I'll happily Ack the patch if you want to add a BUG(), but the way
+it's written is still pedantically better than putting it in
+devices_init(). All errors from devices_init() are ignored and not
+even logged by the caller. At least any error from
+devlink_class_init() would be logged if initcall_debug is enabled :-)
 
-Previously I use git notes + git-rebase, it work fine. Notes can be kept
-when I do rebase and git commit --amend. But one thing is not good. 
-git send-email --to-cmd=./script/get_maintainer.sh *.patch. It can't
-combine all patches's maitainer to a list. It looks like difference patch
-will be difference --to list.
+Oh, btw, I wrote devlink_class_init() as a separate initcall because
+it's just another class like any other class that's being registered.
 
-b4 can help some case. But can't keep git-notes information when rebase.
-It should be git bugs or feature missed.
+All that said, I think this whole discussion is a pedantic waste of time.
 
-> 
-> > Rob's suggest was not work. dt-binding check complain too long
-> > if there are two dma-names = "rx", "tx". 
-> 
-> So I'm wrong or you didn't have it correct? No way to tell with your 
-> explanation. Let me give you the exact schema:
-> 
-> dma-names:
->   minItems: 1
->   items:
->     - enum: [ rx, tx ]
->     - const: tx
-> 
-> This says we can have 1 or 2 entries. The first entry can be either rx 
-> or tx. The 2nd entry must be tx. That's what you want. However, '"tx", 
-> "tx"' is allowed with the above, but we enforce items to be unique 
-> elsewhere. Or I thought we did, but we relaxed '.*-names$' at some 
-> point. I'm going to fix that now.
-
-Conor find out my problem. The below code works. I missed maxItems.
-
-  dma-names:
-     minItems: 1
-     maxItems: 2
-     items
-       enum: [ rx, tx ]
-
-Frank
-
-> 
-> Rob
+-Saravana
 
