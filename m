@@ -1,454 +1,79 @@
-Return-Path: <devicetree+bounces-48609-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48610-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 18036872BCE
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 01:33:22 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 020A1872C3E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 02:35:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3C9A91C22D50
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 00:33:21 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 40E68283E1C
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 01:35:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7952C173;
-	Wed,  6 Mar 2024 00:33:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="xjmzR3L/"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE901139D;
+	Wed,  6 Mar 2024 01:35:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from out203-205-251-59.mail.qq.com (out203-205-251-59.mail.qq.com [203.205.251.59])
+Received: from mail78-37.sinamail.sina.com.cn (mail78-37.sinamail.sina.com.cn [219.142.78.37])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF9952F32
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 00:33:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=203.205.251.59
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 20B9F6FAF
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 01:34:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.37
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709685200; cv=none; b=Cg8GZvMuGwqnBd/5WUhTFCUbP/zOCmbjEwFPuZO+MVsEqoHCQ3VRereIB5SnVk8kOBopjmCziyOJfSKVrz4XMi2epzDHrkOM6ARsFhZ2VFGIanPTy0gyNyLCNnzqCqOflPWZqIYBqdZN89li5yd0sKH5FmU6QdnWAVnlQhML5hY=
+	t=1709688901; cv=none; b=DxGkTBw29pCrHVzBUtWjcOFY5BjLk8u18FaXTsRkJ9iZ/NtjogEFPlqGu3mKtuYiUv+xEEnwLzhfT5GDts5yzHt24Omgvoxas5aUCf+tOeTUu9fPwlVVUNinjZCjPxYI/XKbbPuoRFNHow+b4ALbfn55F+NkbVjDXdmjjyYZiks=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709685200; c=relaxed/simple;
-	bh=CSFXV2L5fXt997UjPiPcy7wlrK2/a6AmHhunEEDQRpY=;
-	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
-	 Date:Cc:References:To; b=sL914ypqKScZLLu3qiXdLddjU6rvJYADETl7nPOI8B5hfUM0FOnVv7r7vDuGwoNSRcrGPg1cD7dShBHI+wnNMzCC343RKPncRp01vADOV4vCs6/gy5VRKi8Kpj0wC5jfgVmF+xEyyu+I3lVDDVwwA02Jre0fox5fDBW03n9y/No=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=xjmzR3L/; arc=none smtp.client-ip=203.205.251.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1709685190; bh=x4EPX/unzZFoeIl3jLbRWqFEmfzubh3lbLQvLYdUtMI=;
-	h=Subject:From:In-Reply-To:Date:Cc:References:To;
-	b=xjmzR3L/KGMSra4ZhBFok4Te+XU5gIikZRhTHGopT6CQAKPe8YaaGMfj8C2e6UmcF
-	 l1JwARyj7qhNIu6uolbmzR8yDHJ6GkzyDrodyKTk7luEMyRuU5VnwJvQV9PtzcTh1k
-	 V4ZaQGrKe3M81U199V+nIfMa6GU223aJZClgWB2M=
-Received: from smtpclient.apple ([2001:da8:c800:d084:c97e:f65d:9c20:e57a])
-	by newxmesmtplogicsvrszc5-0.qq.com (NewEsmtp) with SMTP
-	id 7EE87496; Wed, 06 Mar 2024 08:31:46 +0800
-X-QQ-mid: xmsmtpt1709685106t34dcha83
-Message-ID: <tencent_67A3156E708C4B8856E3399F8F6085B69206@qq.com>
-X-QQ-XMAILINFO: M1rD3f8svNznan3rGAt6euGEVlBzkTGlrfqYMs8WFHKyxzZmsi8tf/64e+h9TJ
-	 E9xMhj6GKYByjkfdNB4+0Hq5lt31dBQYwGYuuqVhQ3oMInKPdY8h2JIKKXaA8THohCitLllO1UDs
-	 1LoRpJ9Yt6ONuZEQ3WeiT8hVOizIGamP3d+dfNdm+Pz+8HJrUpNrLMjzBjMkRmuYiNgXwPBbnenp
-	 4Erki+B6MQGyJ77VoZ3a2XOFoLNdXhxg/sTyXr84P7AlZPrl+SVLDUkiJrj6yTqOH+gDMaYD19ax
-	 KO8hboLElvOCRDczDTZ+iYJI9O13XpHxZAx4fhyTtlINEsbQ7yKy7f9tqCMeqiPO1KG7tKeXrb7K
-	 lwtpgMFhQ5UDvZrjdTiFwr2ebbDBPJXpntq5LIQwaJW4mRAdwG+ZTnYyO6Wp3B8lYInpe4g/Og2G
-	 E5Vz3z73LWDqCeDYqKWdNWwuv9Iie6nTiKyZTmsI295lg2D5HGftc3QCmeI9bVDoie5Z08C+W47p
-	 rU1gcPwAV2eTbKSs7nv53T4W8O+mS+5Zw08sWLMTEBtN6BEU6lZxN7DJA58PPZ/47glAaA+nvz7v
-	 tpFWFr7q5gp+6rR1KdEzmAf42QNmUZI1cvF++erHQQRQZASG93cHmQF0lAKlt6xO/1pQ7IaWXgRI
-	 BY/cRzpaBmbM2J8HTQXgVZRDFJpxpI0kiCqfC/w3f/OCiW/S7mL6/6Dr3pmrMbxwTe3NehLSeHtk
-	 cwM5dLWXEoGjdZccRk52HAj2rJ/LdBpdkijyVqMCsefA6jdg0tXVY6q3ILMZJDKIrqGP+nWnql3U
-	 8H1TXf9hUfJK7x7oysVoAIIwghOw+D1euz+Kne1KSF3bgB6GN4zT6icGEas2Q9AsTdwB46lIoQ2F
-	 p/QZqaRXrOSVet7rLw33Ztenk3sXFRr0rn0BAyNvH7T4mdfHB2fOROT8gI2rMvdkEQ9fvWbHXT05
-	 isXA8MEhTbpzgqJD3fSCW+rKSg2Zm5iEIOVsqdf5xHaudWlx+DJXi9WUyShwh8uRWV0U0uz8MasO
-	 3cgoeLFg==
-X-QQ-XMRINFO: NS+P29fieYNw95Bth2bWPxk=
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1709688901; c=relaxed/simple;
+	bh=pJzzRLw0ld6ieyqr7fhe5DRfgd38ERsz5SID14arAVY=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=VDeaCj6VbgLuvQXchD6aTx2zbEvVzbpvHuHh3uUT5VfuhbRSjpto29E1F9bUUy+qLVMltGbXfipFh/1GFSqjtm3S6ZXsDsi39WB6Imn01stPwnpWRl/cpJ8dG/nw/KWxfZazN1oxZy9C7cCIXdfp0d7RaxRt0m06jGVaZ31NK1c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.37
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
+Received: from unknown (HELO zy-virtual-machine.localdomain)([116.232.53.71])
+	by sina.net (10.75.30.235) with ESMTP
+	id 65E7C81800003DE4; Wed, 6 Mar 2024 09:34:17 +0800 (CST)
+X-Sender: zhangyi@everest-semi.com
+X-Auth-ID: zhangyi@everest-semi.com
+Authentication-Results: sina.net;
+	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
+	 dkim=none header.i=none;
+	 dmarc=none action=none header.from=zhangyi@everest-semi.com
+X-SMAIL-MID: 4BE93CC2C17E4254B72E6993CDEE0D62
+X-SMAIL-UIID: 4BE93CC2C17E4254B72E6993CDEE0D62-20240306-093417
+From: Zhang Yi <zhangyi@everest-semi.com>
+To: alsa-devel@alsa-project.org,
+	broonie@kernel.org,
+	devicetree@vger.kernel.org
+Cc: tiwai@suse.com,
+	amadeuszx.slawinski@linux.intel.com,
+	yangxiaohua@everest-semi.com,
+	zhuning@everest-semi.com,
+	zhangyi@everest-semi.com
+Subject: [PATCH v1 0/2] ASoC: codecs: ES8326: change members of private structure
+Date: Wed,  6 Mar 2024 09:34:12 +0800
+Message-Id: <20240306013414.18708-1-zhangyi@everest-semi.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
-Subject: Re: [PATCH v4 6/7] riscv: dts: add initial canmv-k230 and k230-evb
- dts
-From: Yangyu Chen <cyy@cyyself.name>
-In-Reply-To: <CAJF2gTSWZ8j19jSXsNH=b+_dS3o8yVBYHMg_xP6BDVPduYiifg@mail.gmail.com>
-Date: Wed, 6 Mar 2024 08:31:35 +0800
-Cc: linux-riscv@lists.infradead.org,
- Conor Dooley <conor@kernel.org>,
- Damien Le Moal <dlemoal@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Content-Transfer-Encoding: quoted-printable
-X-OQ-MSGID: <7A3C1ADE-7FA8-47D2-8C99-98701D2DCB7F@cyyself.name>
-References: <tencent_587730262984A011834F42D0563BC6B10405@qq.com>
- <tencent_4AA6C678842835E2F069095268533A76E20A@qq.com>
- <CAJF2gTSWZ8j19jSXsNH=b+_dS3o8yVBYHMg_xP6BDVPduYiifg@mail.gmail.com>
-To: Guo Ren <guoren@kernel.org>
-X-Mailer: Apple Mail (2.3774.400.31)
 
+We found that using 0x45 as the default value for interrupt-clk 
+would cause a headset detection error.So we took 0x00 as the default 
+value for interrupt-clk and passed the test.
+We removed mic1-src and mic2-src, which were not used.
 
+*** BLURB HERE ***
 
-> On Mar 6, 2024, at 07:55, Guo Ren <guoren@kernel.org> wrote:
->=20
-> On Wed, Mar 6, 2024 at 3:39=E2=80=AFAM Yangyu Chen <cyy@cyyself.name> =
-wrote:
->>=20
->> Add initial dts for CanMV-K230 and K230-EVB powered by Canaan =
-Kendryte
->> K230 SoC [1].
->>=20
->> Some key consideration:
->> - Only place BigCore which is 1.6GHz RV64GCBV
->>=20
->> The existence of cache coherence between the two cores remains =
-unknown
->> since they have dedicated L2 caches. And the factory SDK uses it for
->> other OS by default. I don't know whether the two CPUs on K230 SoC
->> can be used in one system. So only place BigCore here.
->>=20
->> Meanwhile, although docs from Canaan said 1.6GHz Core with Vector is
->> CPU1, the csr.mhartid of this core is 0.
->>=20
->> - Support for "zba" "zbb" "zbc" "zbs" are tested by hand
->>=20
->> The user manual of C908 from T-Head does not document it =
-specifically.
->> It just said it supports B extension V1.0-rc1. [2]
->>=20
->> I have tested it by using this [3] which attempts to execute =
-"add.uw",
->> "andn", "clmulr", "bclr" and they doesn't traps on K230. But on =
-JH7110,
->> "clmulr" and "bclr" will trap.
->>=20
->> - Support for "zicbom" is tested by hand
->>=20
->> Have tested with some out-of-tree drivers from [4] that need DMA and =
-they
->> do not come to the dts currently.
->>=20
->> - Cache parameters are inferred from T-Head docs [2] and Canaan docs =
-[1]
->>=20
->> L1i: 32KB, VIPT 4-Way set-associative, 64B Cacheline
-> L1i: VIPT non-aliasing
+Zhang Yi (2):
+  ASoC: codecs: ES8326: Changing members of private structure
+  ASoC: codecs: ES8326: change support for ES8326
 
-Just wonder how 4-Way can be non-aliasing. If it is 32KB, each way =
-should
-have 8KB which is larger than the minimum page size.
+ .../bindings/sound/everest,es8326.yaml        | 22 ++-----------------
+ sound/soc/codecs/es8326.c                     | 18 +--------------
+ 2 files changed, 3 insertions(+), 37 deletions(-)
 
->> L1d: 32KB, VIPT 4-Way set-associative, 64B Cacheline
-> L1d is PIPT
-
-The document says L1d is VIPT. Even on the Chinese version released on
-20240218. I think that should be fixed.
-
-Link: =
-https://occ-oss-prod.oss-cn-hangzhou.aliyuncs.com/resource//1708231018770/=
-%E7%8E%84%E9%93%81C908R1S0%EF%BC%88xrvm%EF%BC%89%E7%94%A8%E6%88%B7%E6%89%8=
-B%E5%86%8C_20240218.pdf
-
->> L2: 256KB, PIPT 16-way set-associative, 64B Cacheline
->>=20
->> The numbers of cache sets are calculated from these parameters.
->>=20
->> - MMU only supports Sv39
->>=20
->> Since T-Head docs [2] say C908 should support Sv48. However, it will =
-fail
->> during the kernel probe when running Linux on K230. I also tested it =
-by
->> hand on M-Mode software, writing Sv48 to satp.mode will not trap but =
-will
->> leave the csr unchanged. While writing Sv39 it will take effect. It =
-shows
->> that this CPU does not support Sv48.
->>=20
->> - Svpbmt and T-Head MAEE both supported
->>=20
->> T-Head C908 does support both Svpbmt and T-Head MAEE for page-based =
-memory
->> attributes and is controlled by csr.mxstatus. If the kernel wants to =
-use
->> svpbmt, the m-mode software should set BIT(21) of csr.mxstatus to =
-zero
->> before entering the s-mode kernel. Otherwise, the kernel will not =
-boot as 0
->> on T-Head MAEE represent to NonCachable Memory and it will lose dirty =
-cache
->> lines modification that haven't been written back to the memory.
->>=20
->> [1] =
-https://developer.canaan-creative.com/k230/dev/zh/00_hardware/K230_datashe=
-et.html#chapter-1-introduction
->> [2] =
-https://occ-intl-prod.oss-ap-southeast-1.aliyuncs.com/resource//1699268369=
-347/XuanTie-C908-UserManual.pdf
->> [3] https://github.com/cyyself/rvb_test
->> [4] https://github.com/cyyself/linux/tree/k230-mainline
->>=20
->> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
->> ---
->> arch/riscv/boot/dts/canaan/Makefile       |   2 +
->> arch/riscv/boot/dts/canaan/k230-canmv.dts |  24 ++++
->> arch/riscv/boot/dts/canaan/k230-evb.dts   |  24 ++++
->> arch/riscv/boot/dts/canaan/k230.dtsi      | 140 =
-++++++++++++++++++++++
->> 4 files changed, 190 insertions(+)
->> create mode 100644 arch/riscv/boot/dts/canaan/k230-canmv.dts
->> create mode 100644 arch/riscv/boot/dts/canaan/k230-evb.dts
->> create mode 100644 arch/riscv/boot/dts/canaan/k230.dtsi
->>=20
->> diff --git a/arch/riscv/boot/dts/canaan/Makefile =
-b/arch/riscv/boot/dts/canaan/Makefile
->> index 987d1f0c41f0..7d54ea5c6f3d 100644
->> --- a/arch/riscv/boot/dts/canaan/Makefile
->> +++ b/arch/riscv/boot/dts/canaan/Makefile
->> @@ -1,6 +1,8 @@
->> # SPDX-License-Identifier: GPL-2.0
->> dtb-$(CONFIG_ARCH_CANAAN) +=3D canaan_kd233.dtb
->> dtb-$(CONFIG_ARCH_CANAAN) +=3D k210_generic.dtb
->> +dtb-$(CONFIG_ARCH_CANAAN) +=3D k230-canmv.dtb
->> +dtb-$(CONFIG_ARCH_CANAAN) +=3D k230-evb.dtb
->> dtb-$(CONFIG_ARCH_CANAAN) +=3D sipeed_maix_bit.dtb
->> dtb-$(CONFIG_ARCH_CANAAN) +=3D sipeed_maix_dock.dtb
->> dtb-$(CONFIG_ARCH_CANAAN) +=3D sipeed_maix_go.dtb
->> diff --git a/arch/riscv/boot/dts/canaan/k230-canmv.dts =
-b/arch/riscv/boot/dts/canaan/k230-canmv.dts
->> new file mode 100644
->> index 000000000000..3ab5c8de11a8
->> --- /dev/null
->> +++ b/arch/riscv/boot/dts/canaan/k230-canmv.dts
->> @@ -0,0 +1,24 @@
->> +// SPDX-License-Identifier: GPL-2.0 OR MIT
->> +/*
->> + * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
->> + */
->> +
->> +#include "k230.dtsi"
->> +
->> +/ {
->> +       model =3D "Canaan CanMV-K230";
->> +       compatible =3D "canaan,canmv-k230", "canaan,kendryte-k230";
->> +
->> +       chosen {
->> +               stdout-path =3D "serial0:115200n8";
->> +       };
->> +
->> +       ddr: memory@0 {
->> +               device_type =3D "memory";
->> +               reg =3D <0x0 0x0 0x0 0x1fdff000>;
->> +       };
->> +};
->> +
->> +&uart0 {
->> +       status =3D "okay";
->> +};
->> diff --git a/arch/riscv/boot/dts/canaan/k230-evb.dts =
-b/arch/riscv/boot/dts/canaan/k230-evb.dts
->> new file mode 100644
->> index 000000000000..42720113c566
->> --- /dev/null
->> +++ b/arch/riscv/boot/dts/canaan/k230-evb.dts
->> @@ -0,0 +1,24 @@
->> +// SPDX-License-Identifier: GPL-2.0 OR MIT
->> +/*
->> + * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
->> + */
->> +
->> +#include "k230.dtsi"
->> +
->> +/ {
->> +       model =3D "Kendryte K230 EVB";
->> +       compatible =3D "canaan,k230-usip-lp3-evb", =
-"canaan,kendryte-k230";
->> +
->> +       chosen {
->> +               stdout-path =3D "serial0:115200n8";
->> +       };
->> +
->> +       ddr: memory@0 {
->> +               device_type =3D "memory";
->> +               reg =3D <0x0 0x0 0x0 0x1fdff000>;
->> +       };
->> +};
->> +
->> +&uart0 {
->> +       status =3D "okay";
->> +};
->> diff --git a/arch/riscv/boot/dts/canaan/k230.dtsi =
-b/arch/riscv/boot/dts/canaan/k230.dtsi
->> new file mode 100644
->> index 000000000000..0bcff67b78a8
->> --- /dev/null
->> +++ b/arch/riscv/boot/dts/canaan/k230.dtsi
->> @@ -0,0 +1,140 @@
->> +// SPDX-License-Identifier: GPL-2.0 OR MIT
->> +/*
->> + * Copyright (C) 2024 Yangyu Chen <cyy@cyyself.name>
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +
->> +/dts-v1/;
->> +/ {
->> +       #address-cells =3D <2>;
->> +       #size-cells =3D <2>;
->> +       compatible =3D "canaan,kendryte-k230";
->> +
->> +       aliases {
->> +               serial0 =3D &uart0;
->> +       };
->> +
->> +       cpus {
->> +               #address-cells =3D <1>;
->> +               #size-cells =3D <0>;
->> +               timebase-frequency =3D <27000000>;
->> +
->> +               cpu@0 {
->> +                       compatible =3D "thead,c908", "riscv";
->> +                       device_type =3D "cpu";
->> +                       reg =3D <0>;
->> +                       riscv,isa =3D =
-"rv64imafdcv_zba_zbb_zbc_zbs_zicbom_svpbmt";
->> +                       riscv,isa-base =3D "rv64i";
->> +                       riscv,isa-extensions =3D "i", "m", "a", "f", =
-"d", "c", "v", "zba", "zbb",
->> +                                              "zbc", "zbs", =
-"zicbom", "zicntr", "zicsr",
->> +                                              "zifencei", "zihpm", =
-"svpbmt";
-> If we use "isa-base + isa-extensions," why shall we keep riscv,isa?
-> It's a little bit of a duplicate.
->=20
-
-The mainline OpenSBI can not parse riscv,isa-extensions now. So keep it
-for better compatibility.
-
->> +                       riscv,cbom-block-size =3D <64>;
->> +                       d-cache-block-size =3D <64>;
->> +                       d-cache-sets =3D <128>;
->> +                       d-cache-size =3D <32768>;
->> +                       i-cache-block-size =3D <64>;
->> +                       i-cache-sets =3D <128>;
->> +                       i-cache-size =3D <32768>;
->> +                       next-level-cache =3D <&l2_cache>;
->> +                       mmu-type =3D "riscv,sv39";
->> +
->> +                       cpu0_intc: interrupt-controller {
->> +                               compatible =3D "riscv,cpu-intc";
->> +                               interrupt-controller;
->> +                               #interrupt-cells =3D <1>;
->> +                       };
->> +               };
->> +
->> +               l2_cache: l2-cache {
->> +                       compatible =3D "cache";
->> +                       cache-block-size =3D <64>;
->> +                       cache-level =3D <2>;
->> +                       cache-size =3D <262144>;
->> +                       cache-sets =3D <256>;
->> +                       cache-unified;
->> +               };
->> +       };
->> +
->> +       apb_clk: apb-clk-clock {
->> +               compatible =3D "fixed-clock";
->> +               clock-frequency =3D <50000000>;
->> +               clock-output-names =3D "apb_clk";
->> +               #clock-cells =3D <0>;
->> +       };
->> +
->> +       soc {
->> +               compatible =3D "simple-bus";
->> +               interrupt-parent =3D <&plic>;
->> +               #address-cells =3D <2>;
->> +               #size-cells =3D <2>;
->> +               dma-noncoherent;
->> +               ranges;
->> +
->> +               plic: interrupt-controller@f00000000 {
->> +                       compatible =3D "canaan,k230-plic" =
-,"thead,c900-plic";
->> +                       reg =3D <0xf 0x00000000 0x0 0x04000000>;
->> +                       interrupts-extended =3D <&cpu0_intc 11>, =
-<&cpu0_intc 9>;
->> +                       interrupt-controller;
->> +                       #address-cells =3D <0>;
->> +                       #interrupt-cells =3D <2>;
->> +                       riscv,ndev =3D <208>;
->> +               };
->> +
->> +               clint: timer@f04000000 {
->> +                       compatible =3D "canaan,k230-clint", =
-"thead,c900-clint";
->> +                       reg =3D <0xf 0x04000000 0x0 0x04000000>;
->> +                       interrupts-extended =3D <&cpu0_intc 3>, =
-<&cpu0_intc 7>;
->> +               };
->> +
->> +               uart0: serial@91400000 {
->> +                       compatible =3D "snps,dw-apb-uart";
->> +                       reg =3D <0x0 0x91400000 0x0 0x1000>;
->> +                       clocks =3D <&apb_clk>;
->> +                       interrupts =3D <16 IRQ_TYPE_LEVEL_HIGH>;
->> +                       reg-io-width =3D <4>;
->> +                       reg-shift =3D <2>;
->> +                       status =3D "disabled";
->> +               };
->> +
->> +               uart1: serial@91401000 {
->> +                       compatible =3D "snps,dw-apb-uart";
->> +                       reg =3D <0x0 0x91401000 0x0 0x1000>;
->> +                       clocks =3D <&apb_clk>;
->> +                       interrupts =3D <17 IRQ_TYPE_LEVEL_HIGH>;
->> +                       reg-io-width =3D <4>;
->> +                       reg-shift =3D <2>;
->> +                       status =3D "disabled";
->> +               };
->> +
->> +               uart2: serial@91402000 {
->> +                       compatible =3D "snps,dw-apb-uart";
->> +                       reg =3D <0x0 0x91402000 0x0 0x1000>;
->> +                       clocks =3D <&apb_clk>;
->> +                       interrupts =3D <18 IRQ_TYPE_LEVEL_HIGH>;
->> +                       reg-io-width =3D <4>;
->> +                       reg-shift =3D <2>;
->> +                       status =3D "disabled";
->> +               };
->> +
->> +               uart3: serial@91403000 {
->> +                       compatible =3D "snps,dw-apb-uart";
->> +                       reg =3D <0x0 0x91403000 0x0 0x1000>;
->> +                       clocks =3D <&apb_clk>;
->> +                       interrupts =3D <19 IRQ_TYPE_LEVEL_HIGH>;
->> +                       reg-io-width =3D <4>;
->> +                       reg-shift =3D <2>;
->> +                       status =3D "disabled";
->> +               };
->> +
->> +               uart4: serial@91404000 {
->> +                       compatible =3D "snps,dw-apb-uart";
->> +                       reg =3D <0x0 0x91404000 0x0 0x1000>;
->> +                       clocks =3D <&apb_clk>;
->> +                       interrupts =3D <20 IRQ_TYPE_LEVEL_HIGH>;
->> +                       reg-io-width =3D <4>;
->> +                       reg-shift =3D <2>;
->> +                       status =3D "disabled";
->> +               };
->> +       };
->> +};
->> --
->> 2.43.0
->>=20
->=20
->=20
-> --=20
-> Best Regards
-> Guo Ren
-
+-- 
+2.17.1
 
 
