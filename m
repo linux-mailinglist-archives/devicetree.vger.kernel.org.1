@@ -1,114 +1,160 @@
-Return-Path: <devicetree+bounces-48706-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48707-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20A18873239
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 10:14:29 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 660D1873280
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 10:25:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CA70F1F2505F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 09:14:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 80125B21599
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 09:16:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E11135D916;
-	Wed,  6 Mar 2024 09:12:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 062E55D8FB;
+	Wed,  6 Mar 2024 09:16:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="CrOgL34i"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ck41kwDq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f174.google.com (mail-vk1-f174.google.com [209.85.221.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AE30B5D8FA;
-	Wed,  6 Mar 2024 09:12:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 541E45CDF1;
+	Wed,  6 Mar 2024 09:16:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709716345; cv=none; b=FS1+wbbFBYL3hzM5AE3SNEd8ALD/OMOssEjMMuYaJfVckQx6tmvwVhY6aU/6TYF4TX6SWEBEQAP85qEo4HCeaXIegmHXoa0quVM70av7SK9YYYiLPG30ImuwiOOflDhCiALU+I1fujIDA2GHp+dCrr0rOw0G/3W4aj+tuClT+kM=
+	t=1709716566; cv=none; b=SHaoIqKRrL8Y8pV9hCunykHWQEw/4Ieohf2BwgQUjY6T/PLzvGWuSRZWDxRuJjVt4Jz8KtXhI02oDO2oIYh3YlSVVMfoM2PDeDOUimOahTjG4OQrMWC8tBDx88h+8DgoqnZF6D4drWX/rRjJdgT0sPZOcsmSYAfmbUjlNSJ0EN0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709716345; c=relaxed/simple;
-	bh=e/HA3/Wu6r00AM+Hcn0703vmIttHljfM3nHEyflR5DY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=H49t1wCyDZrwHy8qZjCwN3Ah4eB820KHA2LFC2Q0VQaZlDPMI8qLony6GetoXVQUhs666CtoyW/UHB7atEp4IJvOIuryM96Ek7n97MykEJ3n4x92JF7ol801aPObHhu0itjP/OV1gS3v+OGcmA6jN2AWNTBnEGtfSw2k/+c0HJU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=CrOgL34i; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 19225C433C7;
-	Wed,  6 Mar 2024 09:12:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709716345;
-	bh=e/HA3/Wu6r00AM+Hcn0703vmIttHljfM3nHEyflR5DY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=CrOgL34i8C9TMoIflZBCmnMRQNCK7UwMEqK8eS7KWQRgfDrlYUZ3ZHnkLyxeLxSZ8
-	 hcvhIvdFxhiY+wOjKtO7GkIv/+iF1a/Y68Ek9DIbj2gfpaekgeRFmKg1WsQx4Ro3se
-	 Y2Dty1mvJm7+Tc2gk7yTfHJ+4qOUKE8+XoMjN8PYywVkM6wu30RKvKhv4UrXmxJ8WV
-	 8oMu52r2nEjjhCb4fcNAzqdDTDkGHJ/0OBFwDfVZNV8IsHD433pGC+XcfOSWH7bAcR
-	 oYtbkTVfnlUhMB49f58Cbz1RhvTat7xgm0mdlOThUdlhiR4k7Xy7c7f79+upTdD1EP
-	 sz7CG4PEerjmw==
-Received: from johan by xi.lan with local (Exim 4.97.1)
-	(envelope-from <johan@kernel.org>)
-	id 1rhnKB-000000008RC-0EJv;
-	Wed, 06 Mar 2024 10:12:31 +0100
-Date: Wed, 6 Mar 2024 10:12:31 +0100
-From: Johan Hovold <johan@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Johan Hovold <johan+linaro@kernel.org>,
-	Bjorn Helgaas <bhelgaas@google.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/10] arm64: dts: qcom: sc8280xp: PCIe fixes and
- GICv3 ITS enable
-Message-ID: <Zegzf_QKbr8yA6Vw@hovoldconsulting.com>
-References: <20240305081105.11912-1-johan+linaro@kernel.org>
- <20240306063302.GA4129@thinkpad>
- <ZegZMNWxCnLbHDxP@hovoldconsulting.com>
- <20240306083925.GB4129@thinkpad>
- <CAA8EJppsbX=YXf1Z6Ud+YMnp2XnutN1hcb1T0KdAAWXFREVxXg@mail.gmail.com>
+	s=arc-20240116; t=1709716566; c=relaxed/simple;
+	bh=Afza3G96rvueqqldxOLE9fHOgfFij3BHFC7sFTPyV7M=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=U4+cSjXWUaSMdB8aXhqRwz8kIQpc4NQptjZN+ZvX/dUhbyYuwyt5R2r9SjTJB4uwWUxzJ9zy7Acuh+RslLmlYclCBWEuioDTLD7uXJ08uYtKlmK33Vvk5LwvlsTUT6auam90L56j0fkbTqTphQXGO10exQJN9AkGu8+uZP1+iSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ck41kwDq; arc=none smtp.client-ip=209.85.221.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f174.google.com with SMTP id 71dfb90a1353d-4d3424f38b5so1764990e0c.0;
+        Wed, 06 Mar 2024 01:16:05 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709716564; x=1710321364; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j8c17elHoeY0W8pfQrG4cpebAjJH3+7IcEliNL+ZDnI=;
+        b=ck41kwDqqm7D4VGUfaO/DRuqQaJlmxwGBP8xD44lJiq499xaIyUlr7T1jCcHf2Ttnb
+         upht9D+6KWZ8W8sX1Fad71ZMB25N1T821JhlVwNzJmEqNzaBJTJpKazxsrXDGSqU0FwO
+         VHsW9GRqvUJeEZLjlsFoFN4l0l0ZSXnFgD5Fr4p+OemCV6KLFLRO//cy5RoZb6M200ef
+         Etlg/scdN5l+/zG3hEZvyeLUf1THNdW35FpShT0pG26Jp283THITo3IrwGzvrkHHxMv4
+         G3qQ1Dp8HpQhoJYvsyFKjOO5wacqPOTL8qON2ZgpJdTrwYXreJv/b+mXQ2mmGAd+wxqn
+         cYqA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709716564; x=1710321364;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=j8c17elHoeY0W8pfQrG4cpebAjJH3+7IcEliNL+ZDnI=;
+        b=eNaWyyqP0odhDXOAs2Piv/dqlMKNkh91XTEb62wkBOq/rhTgIj8rPe0TWkBdrFEqTv
+         JtYQAxGlDR4lAn4NUk/l/BI+5JZUvsCrLlcaq0LYSY7rd6htgOrcQWYpOjLpR6IEzj1G
+         i3OJrwwg/a9gSCuMpHeB+Jle1fCjdzaah7MJAQNdWKLBS3iDbbePdwgGR772teO6bgtn
+         21o1gfwmk6FFPcV2HrqxwVxrTytXYWIA3pJtjkYmaR5c+xY7xRwApFpP6Lwbzo0pPV3n
+         gv/2Gvm9GrdTcfNjWfolmnSS2uym7rC/Bkn489EQ918zTwxbV2yW/99Dj5lS5MHutiZf
+         7a5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCVbJ8LIWoduQxBrvGBqce5MMkY16XvUXL/Fy5Fj2hvZndoeWFCypfGethjk60eKN/ZtmEoGgd2z6kpnA75IqYm8lvr8T6VGRgrU94SHfcUrzCMftMCHagLPX6hH6kk6eJjAHZKD4hvgWzXkGk/Qt76GxaPFkZArofWzKc+r2NwHbndx8AVywTGtDJqBu+q8rYqf0wtBZVuHao50nBRlBcIuRhd+J11SQ65Z
+X-Gm-Message-State: AOJu0YxXuixCbCPPRB6CEU2ru/CL548QZabIsaMD2Epkwlwd+uDOaPTl
+	T0BHSmVlbz2PAbKkMZ9JQ19ZuE0S/CYX9mjOWMGMW5aMwEA1ihjhrszroUQMios5TnOO71ynTln
+	8Gt+jFV55DN6gtbo699ftjCRXZ/Y=
+X-Google-Smtp-Source: AGHT+IFuK/51BJqUYoB42MUMrISvOIeVyYaUchc7QMDGxS6x8Bql/dMQbht5zzz9C0fpczIbwgJPTKwI59pWcgp0XlU=
+X-Received: by 2002:ac5:c381:0:b0:4cc:29cf:a1fa with SMTP id
+ s1-20020ac5c381000000b004cc29cfa1famr3757155vkk.4.1709716564065; Wed, 06 Mar
+ 2024 01:16:04 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAA8EJppsbX=YXf1Z6Ud+YMnp2XnutN1hcb1T0KdAAWXFREVxXg@mail.gmail.com>
+References: <20240305171600.328699-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <848fd700-e450-4dfd-b415-5d4fa5f6af9a@linaro.org>
+In-Reply-To: <848fd700-e450-4dfd-b415-5d4fa5f6af9a@linaro.org>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 6 Mar 2024 09:15:38 +0000
+Message-ID: <CA+V-a8tX8F=hhEBTUE2o1Ds=r8duZGWt3i4ottTC6vjsMm2PCw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: serial: renesas,scif: Document R9A09G057 support
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
+	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-renesas-soc@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 06, 2024 at 10:48:30AM +0200, Dmitry Baryshkov wrote:
-> On Wed, 6 Mar 2024 at 10:39, Manivannan Sadhasivam
-> <manivannan.sadhasivam@linaro.org> wrote:
-> > On Wed, Mar 06, 2024 at 08:20:16AM +0100, Johan Hovold wrote:
-> > > On Wed, Mar 06, 2024 at 12:03:02PM +0530, Manivannan Sadhasivam wrote:
+Hi Krzysztof,
 
-> > > > Just received confirmation from Qcom that L0s is not supported for any of the
-> > > > PCIe instances in sc8280xp (and its derivatives). Please move the property to
-> > > > SoC dtsi.
+Thank you for the review.
 
-> > > Ok, thanks for confirming. But then the devicetree property is not the
-> > > right way to handle this, and we should disable L0s based on the
-> > > compatible string instead.
+On Wed, Mar 6, 2024 at 7:34=E2=80=AFAM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 05/03/2024 18:16, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Document support for the Serial Communication Interface with FIFO (SCIF=
+)
+> > available in the Renesas RZ/V2H(P) (R9A09G057) SoC. The SCIF interface =
+in
+> > the Renesas RZ/V2H(P) is similar to that available in the RZ/G2L
+> > (R9A07G044) SoC, with the only difference being that the RZ/V2H(P) SoC =
+has
+> > three additional interrupts: one for Tx end/Rx ready and the other two =
+for
+> > Rx and Tx buffer full, which are edge-triggered.
+> >
+> > No driver changes are required as generic compatible string
+> > "renesas,scif-r9a07g044" will be used as a fallback on RZ/V2H(P) SoC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > ---
+> >  .../bindings/serial/renesas,scif.yaml         | 21 +++++++++++++++++++
+> >  1 file changed, 21 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml=
+ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> > index 4610a5bd580c..b2c2305e352c 100644
+> > --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+> > @@ -80,6 +80,7 @@ properties:
+> >                - renesas,scif-r9a07g043      # RZ/G2UL and RZ/Five
+> >                - renesas,scif-r9a07g054      # RZ/V2L
+> >                - renesas,scif-r9a08g045      # RZ/G3S
+> > +              - renesas,scif-r9a09g057      # RZ/V2H(P)
+> >            - const: renesas,scif-r9a07g044   # RZ/G2{L,LC} fallback
+> >
+> >    reg:
+> > @@ -101,6 +102,16 @@ properties:
+> >            - description: Break interrupt
+> >            - description: Data Ready interrupt
+> >            - description: Transmit End interrupt
+> > +      - items:
+> > +          - description: Error interrupt
+> > +          - description: Receive buffer full interrupt
+> > +          - description: Transmit buffer empty interrupt
+> > +          - description: Break interrupt
+> > +          - description: Data Ready interrupt
+> > +          - description: Transmit End interrupt
+> > +          - description: Transmit End/Data Ready interrupt
+> > +          - description: Receive buffer full interrupt (EDGE trigger)
+> > +          - description: Transmit buffer empty interrupt (EDGE trigger=
+)
+>
+> You should narrow the choice per variant. Your patch is now saying that
+> all devices could have 9 interrupts.
+>
+Ok I will fix the existing binding first and then add support for RZ/V2H So=
+C.
 
-> > Hmm. I checked further and got the info that there is no change in the IP, but
-> > the PHY sequence is not tuned correctly for L0s (as I suspected earlier). So
-> > there will be AERs when L0s is enabled on any controller instance. And there
-> > will be no updated PHY sequence in the future also for this chipset.
-> 
-> Why? If it is a bug in the PHY driver, it should be fixed there
-> instead of adding workarounds.
-
-ASPM L0s is currently broken on these platforms and, as far as I
-understand, both under Windows and Linux. Since Qualcomm hasn't been
-able to come up with the necessary PHY init sequences for these
-platforms yet, I doubt they will suddenly appear in the near future.
-
-So we need to disable L0s for now. If an updated PHY init sequence later
-appears, we can always enable it again.
-
-> > So yeah, let's disable it in the driver instead.
-
-Johan
+Cheers,
+Prabhakar
 
