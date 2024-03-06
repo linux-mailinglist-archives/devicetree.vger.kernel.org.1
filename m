@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-48638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6AAB872F3F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:10:32 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0752B872F47
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:12:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E76971C208FF
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:10:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B1282284207
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 07:12:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A52DD5BAF8;
-	Wed,  6 Mar 2024 07:10:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F6615C5F0;
+	Wed,  6 Mar 2024 07:12:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KKFO3nSk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="KhWp52Zg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCDC0171BB
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 07:10:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67DB35BAEA
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 07:12:30 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709709026; cv=none; b=P/4ha0ouAcET1tnEKUqMChL3hH92CYUMHerPwNOhdFIqpGLk9RwM+6jOXHJTVAHhzub/gpu296R+kpsSkx9I/ws/l6Y4ndXErUHDgYIU0lSyXCVj+NYfb1YGhdtpiFuwKwWY9qQUGkp57ui0Y4t8+ZKfREWfUmCInB5zG72IAGY=
+	t=1709709153; cv=none; b=ojs5dHLZ6g57e+NbfxomFsVrd3oKTSaHpsgLwjW+lfHZMXnK0vfAfp9QzKBTFvV/1mOJda9DnVUe5U+kxNxzvWa5Q5qpdP00RlGwmhHwTO4c6raZsO8w8b4QZYPC4VN9vZsjY/QEY4IqWxNlufHnp/bjZjnxgCGPGiFtlVFsj+8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709709026; c=relaxed/simple;
-	bh=2oGH+pHCSLSGyNiEFWfxDSSylQn62idxl4CVzvAOR1c=;
+	s=arc-20240116; t=1709709153; c=relaxed/simple;
+	bh=OJy+Fbn5+hB3oI4BdZob93g0SRQmy5FHhDVMOYgqTjo=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=JO8rQ3PDmzrTevfOrTTOrbTf34lw6xucxQ4el3ruWdnYyWgkHDJayXZgRuA4eSlq2pL/INFznrsifJGsQW73HmIMV0SqmNac/YtMkR5OSRziWYuMR/RH8asYR5cPGYTFbdYdy3PPDKUXKDAZaL2HGfEMgirKY8mhoKSKiEfVWn0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KKFO3nSk; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:Content-Type; b=iJMhH8pSXY8PBM9YZLs+tHTCNU1KZkpw59Gvy8iZmw5lehSPF44rUCrlRVDNw2BzG0w1FPrrAfx4AnF5i0jh8SC7IrbJ3qUz2uZM5tflIUofoutLPPJr1etHuCXG88q6YIdOk3luUKTP+qbIsYssy1ohqO1nvS0TBl8za3CmRIQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=KhWp52Zg; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a446b5a08f0so95843366b.1
-        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 23:10:24 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-565c6cf4819so889038a12.1
+        for <devicetree@vger.kernel.org>; Tue, 05 Mar 2024 23:12:30 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709709023; x=1710313823; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709709149; x=1710313949; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=+7sHPBpdrJDf2Gc17VKoGqLaSwAYgcISgsRt0u8Sj24=;
-        b=KKFO3nSkY7HTsXOdoBDqe6nEyItt6IjfU3eZpF5/GeycM/TojpMK4l5XGqpN+kfRlp
-         NqcKn28o9XZ40QhYSLzS0KvrrihNy/UqDQKRs9shz2PX+BGzHUT9KMJ/wHhmnI4XcUK/
-         zIFS7oPNTCD8hWUDPEhHomcCmLih6qoAairjJgTtrljUbm+R5x3ZaaVDEvzgQIQTmsMF
-         m9pnrESamACEReEavBhwoPPvoxQWYX7kvRdG7z7Lu8dLS9lTNcsHcT1DBJs+0G7Av0d8
-         LKFYiiJ9lUAo2ngyE8UHNR6rhyClbvvBkBEL6uilXsjP5I3qpIlIsbadqX/KOCEE9QyW
-         piVQ==
+        bh=im7eqXJrsxkgVFwNBr16ZKH6YthsVgCDuph85s91Et0=;
+        b=KhWp52Zgmdndsg51pU8+9cerv4E6qoNILM4AsUe/gi4QiFMSyOyuX2WyMmOH7MTX/T
+         gx0Jy9JOMJBrCHTVZsXNoNXzuxUfFK7lhLva+zlYiho/prXSAGufSfwLYEoqOMstQQNg
+         etzNZLDYH3xevXewaJ0xz4j/OixrkggePnfrEHYQHX0CYoHp0kHh0DtcSpqxubu80Q1W
+         LR0EL/+LidDaKiSHicU0r1feWHx8FZilVa5G06W+x/DmkChylPb7DamgZLFJMhLW2HOl
+         Y3kM5x5xuDqjYwp1x/UEJSFUtvxcKVVDl9uCirFXdga18J89+DzsyxEiJ+lYNM4U9Dnw
+         IGNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709709023; x=1710313823;
+        d=1e100.net; s=20230601; t=1709709149; x=1710313949;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=+7sHPBpdrJDf2Gc17VKoGqLaSwAYgcISgsRt0u8Sj24=;
-        b=Sm6lb8ZuZtfKCHL7CUkDh82Bs5zdPbqumXf1SHx/9KjbNC6bi1pR44MB9iqRWQd2XJ
-         BJzE7U85z+lfM915IVdB8RaDZerESddBt/VW4RfeG/2Yx1Iy+OJE8JUataB3m4P82cS3
-         q04x2JAEhRHapcquOJw45UyYAQjykJeJr+tRyb7U3uEr5PUIq5nP02nRCw5R71anqn3B
-         /d4oKcPDvt1moy0g67jzAYCzeHFB3J+GEfXRTVmOa8vZkiH+BXOVTnWlZCdY9YqDu1xc
-         ZmzhQ4b4bEWzAzWQnqGO4wJa94YaPncy7L+nHfywtDRPTFv98EJF+wYrGwj8QcTvf70w
-         SmJw==
-X-Forwarded-Encrypted: i=1; AJvYcCUCFx5V8Azsek77TlbQO+OeY0f1TgLDGVwxK3JH5NhJ8rLvFbMkiQ8VNGWN796qtSdomaRHi4c3vODS3AD24z8iTERChw+Z0wwkrA==
-X-Gm-Message-State: AOJu0YxtjiqpKAYXrhl0abpjBWPlBF0yCxbQrICw14IIbpHV4s7PRNhj
-	K83KIIBINaw+YzeJpcRRJ1Zl93ADUjM8pNzMm43uvmqUxhRA5YXz2VaBTssViD4=
-X-Google-Smtp-Source: AGHT+IE5YW6eQJl5g2nzEYPOoiZfVvqEc1aWd4ItlJscwo94R8AypB7f8YfkYCZ8yRpoQjMy5p0CpQ==
-X-Received: by 2002:a17:906:4ac1:b0:a44:405b:1e17 with SMTP id u1-20020a1709064ac100b00a44405b1e17mr4501459ejt.34.1709709023068;
-        Tue, 05 Mar 2024 23:10:23 -0800 (PST)
+        bh=im7eqXJrsxkgVFwNBr16ZKH6YthsVgCDuph85s91Et0=;
+        b=u5bJBZdsiZoJfxPlE6ahIvgCPhg93yxNZh44LyHjpIaNjRehN4jyI+JfgBZ5cOQxr8
+         9wmii46mJqKMwJgiKpdsDLZCp4mX4Vm9rsgdK9hiSkGZFu48btkuZHuNwj+dgFklvZy/
+         C8tU1WIrYtzkjQzPztvAAVJn1ViDufRQ2qUZw6PeAchNfAAbkJYw0+2J4X1mzU6uvSkR
+         J9GKZgtMAXCDuhLKQkoZLRZJDsdMbiH4A48umjwTEk8LlTYPUzhLVQWiB6gO5nCWMGwQ
+         ycKAjjjoebsinfgWAXRLPvyW5OUXrxvp971IRf/bTXNaQjvCCDBRdNmzAYy5BEWr/RVd
+         5XlA==
+X-Forwarded-Encrypted: i=1; AJvYcCWBY9AFLj2IqvNhtkQyig41iYZA4CFzOZ/Nw4T7ec3DSJ+px3lQDcFJAAYDG4giMGhhtQyu/XSj/Uw9nURdE+FFAhb7OrjTOTc7cg==
+X-Gm-Message-State: AOJu0YxxDk/k6GtYE1tSyr9QK+HaEmjwwbzcFzDgLoB1WaZPDDO7vG0T
+	o+nx195Q7hzElkoM/k6/ENfoaAhkTMloa9jWr+3XB0qfr8RW1OInREUoAINw3pU=
+X-Google-Smtp-Source: AGHT+IFvU0v3OSkxmYhF4G4jr8vB4pAIkTgWqIUKwZTEILQq+lAMvG8YUAoxDxV0eawJsL5UsircVQ==
+X-Received: by 2002:a17:906:eb12:b0:a3f:c3f0:69bf with SMTP id mb18-20020a170906eb1200b00a3fc3f069bfmr5277043ejb.13.1709709149055;
+        Tue, 05 Mar 2024 23:12:29 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id s7-20020a170906a18700b00a44ba5557c1sm5172681ejy.131.2024.03.05.23.10.21
+        by smtp.gmail.com with ESMTPSA id gt25-20020a170906f21900b00a3ec216ec6csm6732868ejb.45.2024.03.05.23.12.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 05 Mar 2024 23:10:22 -0800 (PST)
-Message-ID: <74debf9c-d83a-4e97-93c3-3a1322f1b5fe@linaro.org>
-Date: Wed, 6 Mar 2024 08:10:20 +0100
+        Tue, 05 Mar 2024 23:12:28 -0800 (PST)
+Message-ID: <4c1e237b-d72a-4e3f-b6be-1434849ddd2a@linaro.org>
+Date: Wed, 6 Mar 2024 08:12:26 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,17 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/2] dt-bindings: Add HEXIN Technologies Co., Ltd.
- vendor prefix
+Subject: Re: [PATCH v4] arm64: dts: qcom: qcm6490-idp: enable PMIC Volume and
+ Power buttons
 Content-Language: en-US
-To: "JiaLong.Yang" <jialong.yang@shingroup.cn>,
- Rob Herring <robh+dt@kernel.org>,
+To: hui liu <quic_huliu@quicinc.com>, Konrad Dybcio
+ <konrad.dybcio@linaro.org>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>
-Cc: shenghui.qu@shingroup.cn, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <cover.1709694173.git.jialong.yang@shingroup.cn>
- <f674ec19ce824dfc13258396931256c3d33cd207.1709694173.git.jialong.yang@shingroup.cn>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240304-gpio-keys-v4-1-03604d778c86@quicinc.com>
+ <f09dc3a4-ed5e-40b7-ae71-7c6cfd79da1b@linaro.org>
+ <02a2e93b-f0f1-4506-9e17-444cfd1a208f@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,33 +134,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <f674ec19ce824dfc13258396931256c3d33cd207.1709694173.git.jialong.yang@shingroup.cn>
+In-Reply-To: <02a2e93b-f0f1-4506-9e17-444cfd1a208f@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On 06/03/2024 07:16, JiaLong.Yang wrote:
-> Update file vendor-prefixes.yaml to include hexin as a vendor prefix
-> for "HEXIN Technologies Co., Ltd.".
+On 06/03/2024 04:02, hui liu wrote:
 > 
-> Signed-off-by: JiaLong.Yang <jialong.yang@shingroup.cn>
-> ---
-> v1 --> v2: Not changes this file and give warning.
-> v2 --> v3: Add this patch to fix the warning.
 > 
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> On 3/6/2024 5:20 AM, Konrad Dybcio wrote:
+>>
+>>
+>> On 3/4/24 08:09, Hui Liu via B4 Relay wrote:
+>>> From: Hui Liu <quic_huliu@quicinc.com>
+>>>
+>>> The Volume Down & Power buttons are controlled by the PMIC via
+>>> the PON hardware, and the Volume Up is connected to a PMIC gpio.
+>>>
+>>> Enable the necessary hardware and setup the GPIO state for the
+>>> Volume Up gpio key.
+>>>
+>>> Signed-off-by: Hui Liu <quic_huliu@quicinc.com>
+>>> ---
+>>
+>> [...]
+>>
+>>
+>>> +&pmk8350_pon {
+>>> +    status = "okay";
+>>> +};
+>>
+>> This device is already enabled
+> Hi Konrad,
 > 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 1a0dc04f1db4..3a82104ac8a7 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -619,6 +619,8 @@ patternProperties:
->      description: HwaCom Systems Inc.
->    "^hxt,.*":
->      description: HXT Semiconductor
-> +  "^hexin,.*":
+> The status is not set in pmk8350.dtsi, so I thought we should set it for 
+> "okay" manually. Do you think so?
 
-Please fix order of entries.
+No.
 
 Best regards,
 Krzysztof
