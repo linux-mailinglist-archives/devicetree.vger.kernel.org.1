@@ -1,175 +1,187 @@
-Return-Path: <devicetree+bounces-48903-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48904-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99B9A874214
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 22:36:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 65EF8874228
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 22:46:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BD0241C22432
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 21:36:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD76E1F24ACC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 21:46:20 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E280C1B286;
-	Wed,  6 Mar 2024 21:36:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 449671B59C;
+	Wed,  6 Mar 2024 21:46:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="zCzyRXE1"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IPylgsJD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 34A431B7F6
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 21:36:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1AE1763C8;
+	Wed,  6 Mar 2024 21:46:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709760973; cv=none; b=O9A1aTre5is+WP2MrxVBhokk7VtD7FLcQFUpwwCHacqNWKa/NSRVIDTTY+NuCs6ttR7Agb4l3MpSGPxawislK/UanKNmQb7hoho+1wzOXCgClgYwbgI35S7R35BWYUmY9twdz2d33WyW7uW1jATSXvv3D7xAKXXo0VIpZ0KhCVU=
+	t=1709761576; cv=none; b=RulGdYGpv+CMOlCGF5w2Wf9ZloaMiqUnXebgReSccXWn61JGcM07TbJkfVY3mxj6SKuLEQH5JsxAO4Vm48ysUDzEuY9s6x5hScLVGq11VF+n8wnYFkfUIrFcb2Dlzrc0Vuq7LMCe0adbClKcjrupdxsI8ML9tX8CJUAteXSDh68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709760973; c=relaxed/simple;
-	bh=YlaGW5DIfQikcv1Ey1OaeroVdJnLORWMXlwJte/PfRc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=E0n/ZwbXQY+6jjCQ+vYH1BzW1pQo/GWdM3U5dLzkZh00TX5bUXjgQc1EuvHTmG9HAC6VjBbKtGQ14N++HHgdDe3d5o0XwOgNZR4JlqJ+NUdKikAv8nQkHkiCyOlUOBZyCiyJFM43odpOUpb2GKX6XHIX8U5jY3do+H5Se+r2PlQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=zCzyRXE1; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-428405a0205so16641cf.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 13:36:11 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1709760971; x=1710365771; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=PuRty+lhYaNXcOtehTNWQ8+EoEDd7pkrwovTsDUb2fg=;
-        b=zCzyRXE1Zr7e75wrVh48ChI+p1UJOMsk9luj9Tyz+QO/gUDqTZfG0an1k0tQw3ntgI
-         xj/Fj/1VpxCFslkqhmUY521Xs1CeslrMW51VNH3JuJju3saRWa+iArhICPb8PO13FTe8
-         KM4VENUeaG2kaS49iB4yH4yY3OySGQs/3mA8sNnURBMTS7SqNnvf+dhEvl4cNJ5Fduqy
-         XN4VdWB3/WiyN3I4D4Hd+3pSX6BsW9Wtva35sk76483Yob2ekAEbPV6MvFPs3js2Jwul
-         8wODDKlThoDfOckOxB+l0h/3VVZw7QktB9CNhSRL6byZyb2KyBf/YTZdEmllJdZQufGp
-         XeBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709760971; x=1710365771;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=PuRty+lhYaNXcOtehTNWQ8+EoEDd7pkrwovTsDUb2fg=;
-        b=OJE22evfhhSS0/ETUiYhwm5gsQX7ehpY38QFK+3Hfve2xbSvoLD1/1K85xq0fcyHH0
-         lGbAFUJy/f0C0SkpmDCN0nZA3p/6R2PspdbjJJ69XePOQopeaUo98UbP4PGBu5K9GvgT
-         KWG95vtQ3vHkn0a3vpB+AyiBqIxVyh85+cE78+ObfuLBqk5lVD0tFQHefV/2uxD2OTYo
-         NBTGrw2dffxQNJuFx7tpW7DpgNPb+Ay8fe+smSOcUxTGIxKGP14dP21VsxKmHcmDqNK1
-         19NeRu/Bq+aChnFWTRuJW2Tpe/TtJ/ssxyiEJy9bEuIcr3rYPaAFIMFivn1rxYVimcSR
-         uavA==
-X-Forwarded-Encrypted: i=1; AJvYcCUaxW208HNR+jpNMsa9+jXjJaaQuDjEMdsnxW2b8jzufNfncNLo0W2c6tkzVBKabPxurrobQ35+r/lv96O1I0y2bF9jReWKZczDOw==
-X-Gm-Message-State: AOJu0YwL9AVtB7RPNiTBaZu/2sRHQiestCTtm/0TdVY++VwC/lRbwO+f
-	/5g+6J2PhZtD9l7mLGeitOOtpzW9UTAgbdbfGk0KQYd6XCgxW+Pwxpfs21joAMohvRGvzhZ4DEe
-	AWYUkbn1OM7Z15O8G6F1Y8eIkV4yI4ZNu5a7l
-X-Google-Smtp-Source: AGHT+IHlc4s/s/55ElUaUz3cVLVdAQgf0cVgD2Lgnr2hgoE30sFPrSs46+Kf7Q5rU7kI/xgLWqRerx7iktLxcbQX/no=
-X-Received: by 2002:ac8:5f4c:0:b0:42f:a3c:2d51 with SMTP id
- y12-20020ac85f4c000000b0042f0a3c2d51mr132826qta.18.1709760970984; Wed, 06 Mar
- 2024 13:36:10 -0800 (PST)
+	s=arc-20240116; t=1709761576; c=relaxed/simple;
+	bh=4MyjM4R7gGubu4ceSP37ZkH/7N5C3TSIAZ8zo4h/0Sc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QDpHfOEmZ3CAIT+1gOD3GyKliOtPjLCrxLeMLs1a0f+Z522GvTgY/Z0kzaQ7U0hRIf8b7s5mnyqH10m4d064FCuxbJCr69CnfwT9QoQP4pz60zXbqjwSH907rP7QkQKHA0iyq+BIZrxvQBA429AXYC9CiVwkmJIYmA2iSQibpQQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IPylgsJD; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64B47C433F1;
+	Wed,  6 Mar 2024 21:46:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709761575;
+	bh=4MyjM4R7gGubu4ceSP37ZkH/7N5C3TSIAZ8zo4h/0Sc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=IPylgsJDAzIegkEEAyd+DFggB7J4gMWakaazASs3Dz2VBnyF5rhZ9Sv52yVxGKrDO
+	 URQTLq+bBIb5RijGuDnFuDLCcufQ0uYnbZrAzyj603LNsLE/07gKyW1l0xvKbO3L2x
+	 AND8Uz2EwiiLB99eAf+ccDhsVHl8cObFRU1Y3T4S/n1ZEkOfBp4/d14R3XOozE0J56
+	 zaGXQ32AJ6YJOT7mM9bVMuRjxRUx8YIKgxkFudZBC2Zqa6M6PcxGZGHbzbS6dcoDeM
+	 9MyeWKKyaBkusY+xReT3ELXYSWjLzkOgdukKnYMxGtvJgsecLB+p1MF3KeFZFbuvK3
+	 H2D5UzRqdHi9A==
+Date: Wed, 6 Mar 2024 15:46:13 -0600
+From: Rob Herring <robh@kernel.org>
+To: "JiaLong.Yang" <jialong.yang@shingroup.cn>
+Cc: Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, shenghui.qu@shingroup.cn,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: perf: Support uncore NI-700 PMU
+Message-ID: <20240306214613.GA716904-robh@kernel.org>
+References: <cover.1709694173.git.jialong.yang@shingroup.cn>
+ <f674ec19ce824dfc13258396931256c3d33cd207.1709694173.git.jialong.yang@shingroup.cn>
+ <7f2576291e51043b33296a2cd9e21263d16ca077.1709694173.git.jialong.yang@shingroup.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240306085007.169771-1-herve.codina@bootlin.com> <20240306085007.169771-3-herve.codina@bootlin.com>
-In-Reply-To: <20240306085007.169771-3-herve.codina@bootlin.com>
-From: Saravana Kannan <saravanak@google.com>
-Date: Wed, 6 Mar 2024 13:35:31 -0800
-Message-ID: <CAGETcx9RFS7Z61FeCYXMxRSDXnMYhg_y96dgtbHp-3t_9x8+SA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] of: dynamic: Synchronize of_changeset_destroy()
- with the devlink removals
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
-	Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, 
-	Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>, 
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org, 
-	devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
-	Horatiu Vultur <horatiu.vultur@microchip.com>, 
-	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
-	Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
-	stable@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7f2576291e51043b33296a2cd9e21263d16ca077.1709694173.git.jialong.yang@shingroup.cn>
 
-On Wed, Mar 6, 2024 at 12:51=E2=80=AFAM Herve Codina <herve.codina@bootlin.=
-com> wrote:
->
-> In the following sequence:
->   1) of_platform_depopulate()
->   2) of_overlay_remove()
->
-> During the step 1, devices are destroyed and devlinks are removed.
-> During the step 2, OF nodes are destroyed but
-> __of_changeset_entry_destroy() can raise warnings related to missing
-> of_node_put():
->   ERROR: memory leak, expected refcount 1 instead of 2 ...
->
-> Indeed, during the devlink removals performed at step 1, the removal
-> itself releasing the device (and the attached of_node) is done by a job
-> queued in a workqueue and so, it is done asynchronously with respect to
-> function calls.
-> When the warning is present, of_node_put() will be called but wrongly
-> too late from the workqueue job.
->
-> In order to be sure that any ongoing devlink removals are done before
-> the of_node destruction, synchronize the of_changeset_destroy() with the
-> devlink removals.
->
-> Fixes: 80dd33cf72d1 ("drivers: base: Fix device link removal")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+On Wed, Mar 06, 2024 at 02:16:02PM +0800, JiaLong.Yang wrote:
+> Add file corresponding to hx_arm_ni.c introducing ARM NI-700 PMU
+> driver for HX.
+> 
+> Signed-off-by: JiaLong.Yang <jialong.yang@shingroup.cn>
 > ---
->  drivers/of/dynamic.c | 7 +++++++
->  1 file changed, 7 insertions(+)
->
-> diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-> index 3bf27052832f..169e2a9ae22f 100644
-> --- a/drivers/of/dynamic.c
-> +++ b/drivers/of/dynamic.c
-> @@ -9,6 +9,7 @@
->
->  #define pr_fmt(fmt)    "OF: " fmt
->
-> +#include <linux/device.h>
->  #include <linux/of.h>
->  #include <linux/spinlock.h>
->  #include <linux/slab.h>
-> @@ -667,6 +668,12 @@ void of_changeset_destroy(struct of_changeset *ocs)
->  {
->         struct of_changeset_entry *ce, *cen;
->
-> +       /*
-> +        * Wait for any ongoing device link removals before destroying so=
-me of
-> +        * nodes.
-> +        */
-
-Not going to ask you to revise this patch just for this, but this
-comment isn't very useful. It's telling what you are doing. Not why.
-And the function name is already clear on what you are doing.
-
-Maybe something like this would be better at describing the "why"?
-Free free to reword it.
-
-When a device is deleted, the device links to/from it are also queued
-for deletion. Until these device links are freed, the devices
-themselves aren't freed. If the device being deleted is due to an
-overlay change, this device might be holding a reference to a device
-node that will be freed. So, wait until all already pending device
-links are deleted before freeing a device node. This ensures we don't
-free any device node that has a non-zero reference count.
-
-Reviewed-by: Saravana Kannan <saravanak@google.com>
-
--Saravana
-
-> +       device_link_wait_removal();
+> v1 --> v2:
+> 1. Submit dt-bindings file Seperately.
+> 2. Do some check:
+>    ~ #: make dt_binding_check DT_SCHEMA_FILES=perf
+>    LINT    Documentation/devicetree/bindings
+>    CHKDT   Documentation/devicetree/bindings/processed-schema.json
+>    SCHEMA  Documentation/devicetree/bindings/processed-schema.json
+>    DTEX    Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.example.dts
+>    DTC_CHK Documentation/devicetree/bindings/perf/hx,c2000-arm-ni.example.dtb
+> 
+> v2 --> v3:
+> 1. Change vendor from hx to hexin.
+> 2. Submit driver and dt-bindings files together.
+> 3. Delete pccs-id property. Use alias-id to do this.
+> 4. There are at least one interrupt line for the hardware and driver
+>    for handling counter overflow.
+> 5. Use 4 spaces for example indentation in yaml file.
+> 
+>  .../bindings/perf/hexin,c2000-arm-ni.yaml     | 51 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/hexin,c2000-arm-ni.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/perf/hexin,c2000-arm-ni.yaml b/Documentation/devicetree/bindings/perf/hexin,c2000-arm-ni.yaml
+> new file mode 100644
+> index 000000000000..b2641ee84d60
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/perf/hexin,c2000-arm-ni.yaml
+> @@ -0,0 +1,51 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/perf/hexin,c2000-arm-ni.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->         list_for_each_entry_safe_reverse(ce, cen, &ocs->entries, node)
->                 __of_changeset_entry_destroy(ce);
->  }
-> --
-> 2.43.0
->
+> +title: HX-C2000 NI (Network-on-chip Interconnect) Performance Monitors
+> +
+> +maintainers:
+> +  - Jialong Yang <jialong.yang@shingroup.cn>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - hexin,c2000-arm-ni
+
+As this seems to be Arm IP, I'd expect arm,ni-700-pmu or something.
+
+Are there Hexin modifications to it?
+
+> +
+> +  reg:
+> +    items:
+> +      - description: Physical address of the base (PERIPHBASE) and
+> +          size of the whole NI configuration address space.
+
+Just 'maxItems: 1' if there is only 1 entry.
+
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    items:
+> +      - description: Overflow interrupt for clock domain 0
+> +      - description: Overflow interrupt for clock domain 1
+> +      - description: Overflow interrupt for clock domain 2
+> +      - description: Generally, one interrupt line for one PMU. But this also
+> +          support one interrupt line for a NI if merged.
+
+I don't understand this last entry.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    aliases {
+> +        ni-pmu0 = &nipmu0;
+
+Drop. Please don't make up your own alias names.
+
+> +    };
+> +
+> +    nipmu0: pmu@23ff0000 {
+> +        compatible = "hexin,c2000-arm-ni";
+> +        reg = <0x2b420000 0x10000>;
+> +        interrupts = <GIC_SPI 80 IRQ_TYPE_LEVEL_HIGH>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 4f298c4187fb..4b664cec98a7 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -18890,6 +18890,12 @@ L:	linux-riscv@lists.infradead.org
+>  S:	Maintained
+>  F:	arch/riscv/boot/dts/thead/
+>  
+> +HX ARM-NI-700 PMU DRIVERS
+> +M:	Jialong Yang <jialong.yang@shingroup.cn>
+> +S:	Supported
+> +F:	Documentation/devicetree/bindings/perf/hexin,c2000-arm-ni.yaml
+> +F:	drivers/perf/hx_arm_ni.c
+> +
+>  RNBD BLOCK DRIVERS
+>  M:	Md. Haris Iqbal <haris.iqbal@ionos.com>
+>  M:	Jack Wang <jinpu.wang@ionos.com>
+> -- 
+> 2.25.1
+> 
 
