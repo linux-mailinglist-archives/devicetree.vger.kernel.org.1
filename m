@@ -1,126 +1,102 @@
-Return-Path: <devicetree+bounces-48780-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48781-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41BC87376F
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 14:12:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 021F7873782
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 14:14:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B3DF1F2685E
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 13:12:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B0C1E281AA1
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 13:14:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0F06F131E38;
-	Wed,  6 Mar 2024 13:11:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 173D9131E3C;
+	Wed,  6 Mar 2024 13:13:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="oFPhXD72"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qrab2BIH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 71A8113174A;
-	Wed,  6 Mar 2024 13:11:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0A97130AEE;
+	Wed,  6 Mar 2024 13:13:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709730693; cv=none; b=uPcdJFrcS88sa1/Z75cdU0GRaiSMoTlkihbu/v/c9y8oIjgG/B5XsN1aLizwvCLm+g/56b8gKLCl6QRrPK2CEi05DdcOKQHE2FZXI5dLOFN01SdBwwTE+iWJSYCd3xdaMeNk4gW+zxzRMrSc/4zQL/gocdr4qFnLdabzuqJLVEU=
+	t=1709730791; cv=none; b=Qu1sb8RyuWPkLCqawJGil3bquXVfjHdVMENRqcu92Ya1cn/gNb8LJhbkXbH22Nhb4/SmAPIPJwH16xH8C5Rsf131TcVnvnXweoWgKemWUfbedWAeyZwedhkC/JKWn0xiiFLZlKnkQugIkeGn1ZaMAjf8p0Z52caIcBqSJ5nMoFs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709730693; c=relaxed/simple;
-	bh=fSqn3Zbgadl02jfzTwI8nibflBV6IWMiictSJSckEj4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=Mi/HF8uOvHq92zyXwKaPGyRz42smWMmuwPKZR4SJclqRuANbk/40S1+NePSkuT/4WBy4lnybEBYo3s4AZ/Q6fFiY4LkgZ3aVn28nucgg7BY09g/ijRZXsDnUA2ILbVxdNMMNiz4OUd49mqOwBHlkX3r9sudqaBUMzRJYoc6MIWo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=oFPhXD72; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 426CDPr1011302;
-	Wed, 6 Mar 2024 13:11:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references; s=
-	qcppdkim1; bh=qEYDXRFpLK5+POddrnkz67UY0S8hVFcQkA/yuqMVZxI=; b=oF
-	PhXD72eGeEFflD7bRFzdDt1PYHtx3nMONs7WpmAyY5KI71QxtCtwUt5E0ncWgEBq
-	UxCW+BFn2XY2UwOBRgWwHZhBl71RgT2XoGUAA3e4Jgu7IBGmawime1FVe4RG+ZtK
-	4EMZaib6EFnDLueNOpqEDejonBrC9umRxJ5SyupTnIpLYaHuua/5Vs32Xln4dn9R
-	KNwBxaPs4zayKqPKdAe1YGCHUCmAvBY9y3eyDDysJU0j0LKJOQwAYkRi0sK3IXPQ
-	yIBiBEHuVQpB8IS004UoyFbsc3S2cDRVD8hspH5ASyLVQFBA8wwI61yrAjo7L8/7
-	rzSsEjaxvGt5qJSEzoSQ==
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wpbav1pvr-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Mar 2024 13:11:24 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 426DBIrt019094;
-	Wed, 6 Mar 2024 13:11:21 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3wp0608qm3-1;
-	Wed, 06 Mar 2024 13:11:21 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 426DBLQE019123;
-	Wed, 6 Mar 2024 13:11:21 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-msarkar-hyd.qualcomm.com [10.213.111.194])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 426DBLi8019116;
-	Wed, 06 Mar 2024 13:11:21 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3891782)
-	id 0F9583A6E; Wed,  6 Mar 2024 18:41:20 +0530 (+0530)
-From: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-To: andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, konrad.dybcio@linaro.org,
-        manivannan.sadhasivam@linaro.org, robh@kernel.org
-Cc: quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-        quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-        quic_schintav@quicinc.com, Mrinmay Sarkar <quic_msarkar@quicinc.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org
-Subject: [PATCH v6 3/3] arm64: dts: qcom: sa8775p: Mark PCIe EP controller as cache coherent
-Date: Wed,  6 Mar 2024 18:41:12 +0530
-Message-Id: <1709730673-6699-4-git-send-email-quic_msarkar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1709730673-6699-1-git-send-email-quic_msarkar@quicinc.com>
-References: <1709730673-6699-1-git-send-email-quic_msarkar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: fCMkkEUdJvlisMZJIKbAVBiNsaTMEuPq
-X-Proofpoint-ORIG-GUID: fCMkkEUdJvlisMZJIKbAVBiNsaTMEuPq
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-06_08,2024-03-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- mlxlogscore=999 impostorscore=0 adultscore=0 bulkscore=0 mlxscore=0
- phishscore=0 clxscore=1015 priorityscore=1501 spamscore=0 malwarescore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403060105
+	s=arc-20240116; t=1709730791; c=relaxed/simple;
+	bh=yOhwaGsC/lWPIb3ztljvxktWVaALdLmAgQMWRiXDiVQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
+	 MIME-Version:Content-Type; b=WvTBVvWhYq0O5t3ldbR1EmXmIq6KHbTh01xUILo6fmpqlAv8Y/YEYlq6wUVy9sa8PzeKoleikBi78z9mqg7GQCsUuxE34paLz2Gzz36oUn4AwIAIWaebrmoV2IZh4o9oH72NM3CIZx9G6iCxPATwIuyH7rGvEPRODEz33w52mTc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qrab2BIH; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3036EC433C7;
+	Wed,  6 Mar 2024 13:13:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709730790;
+	bh=yOhwaGsC/lWPIb3ztljvxktWVaALdLmAgQMWRiXDiVQ=;
+	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+	b=qrab2BIH9agsK+zgozbu3so/KURHltrGzdqamvDwIvpJFy9Kj66mFnj045iQn0Pnv
+	 j5qnOiZ303sw3Wb+Wl4Vl1v7J0mqXG775UQd+YC9o3UJxZ6qatn9Q/lCNRzIzv0925
+	 ERJZhAgT04FA8cAHXCobdkHRRHG+RdZJHefe4/U6QLQRhw6CqLYP90hs9CHCFh3yLG
+	 /t20d3l/aiYHPbSLDB2GfHkJEWTZwsQ60z3jM69ISr3Bls559DNlGU7dBTZQQyHKZJ
+	 7HPSRfDpdiEgM3orDT3zluaCrEtmEqdubVbrI/kIYbxUQtNrUAuYReGmHfiOChKzqG
+	 IBHcDI/tX146w==
+From: Mark Brown <broonie@kernel.org>
+To: Liam Girdwood <lgirdwood@gmail.com>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thierry Reding <thierry.reding@gmail.com>, 
+ Jonathan Hunter <jonathanh@nvidia.com>, Rob Herring <robh@kernel.org>
+Cc: linux-sound@vger.kernel.org, devicetree@vger.kernel.org, 
+ linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20240305152131.3424326-1-robh@kernel.org>
+References: <20240305152131.3424326-1-robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: nvidia: Fix 'lge' vendor prefix
+Message-Id: <170973078551.143235.16133167101955701655.b4-ty@kernel.org>
+Date: Wed, 06 Mar 2024 13:13:05 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-a684c
 
-The PCIe EP controller on SA8775P supports cache coherency, hence add
-the "dma-coherent" property to mark it as such.
+On Tue, 05 Mar 2024 09:21:31 -0600, Rob Herring wrote:
+> The documented vendor prefix for LG Electronics is 'lg' not 'lge'. Just
+> change the example to 'lg' as there doesn't appear to be any dependency
+> on the existing compatible string.
+> 
+> 
 
-Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Applied to
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p.dtsi b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-index d9802027..53c31c7 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sa8775p.dtsi
-@@ -3713,6 +3713,7 @@
- 				<&gem_noc MASTER_APPSS_PROC 0 &config_noc SLAVE_PCIE_0 0>;
- 		interconnect-names = "pcie-mem", "cpu-pcie";
- 
-+		dma-coherent;
- 		iommus = <&pcie_smmu 0x0000 0x7f>;
- 		resets = <&gcc GCC_PCIE_0_BCR>;
- 		reset-names = "core";
--- 
-2.7.4
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/1] ASoC: dt-bindings: nvidia: Fix 'lge' vendor prefix
+      commit: 482c9f3d42ba58a2ae1f69cbfbf3a9f3e251527d
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
 
