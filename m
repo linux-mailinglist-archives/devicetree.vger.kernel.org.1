@@ -1,59 +1,59 @@
-Return-Path: <devicetree+bounces-48918-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48920-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E45A8744B8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 00:50:46 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E21378744BC
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 00:50:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9116A1C2143D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 23:50:45 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64A78B230DD
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 23:50:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 195F01CD35;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A0581CFAD;
 	Wed,  6 Mar 2024 23:50:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="DoWDtmk1"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="pKRsTPww"
 X-Original-To: devicetree@vger.kernel.org
 Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED8581CA8D
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED71C1C6A3
 	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 23:50:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709769037; cv=none; b=dt5vru2bWWtcUMo9z0Rp/AO5s4beXoPYk7nUEik3EHC9oLA+sjWUjc4PL94qFmrOYv/14SKn0VtwPPAWvDetKyjpFnnb9IrALWlLDhlcYcZ+H5RjVJlhyvqYMnUnrSJt/t6kE7JTZKHBI/TeBmQ8qLyhVOnemoVsjI0H+ni2JO4=
+	t=1709769037; cv=none; b=Rp/hVNsBMq7vI/yOgDiYJsWavMrL+OXzBECgdlkSP+YLKLqEtuVwUWJRcgawPzpCTsQvSFPt3tW6ISL5g6eacxvh/XshJv4GdBUIVmkumSGRmcHCPOPmjfUmlK55jeBeU5aniDGyfrcMLuQUT4fjAmAMQQiN7qIvRWYvnOARbI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1709769037; c=relaxed/simple;
-	bh=MQNR+RdbcoHH2xLxURMJFOw23dXCONRZwd+z9rq4X28=;
+	bh=U+D/K8p4oppEdsGsoshGKHE1AK3NIrOT3Q8TDbUIqts=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=KFmfLlpvlVTEsm9a8t105aRiybKq0vVxVoNYdpSdAwDQ+3u56Itkrsq9OkR9//RHgHI2e/kcm9yGXXTdqQVeQHm4Ge13/1cJvWrOUrdbLDnLoIEqm14c6GeeGGnwspv1Qxia1v2Vhq0C0kt2xMICbBqVBswIGhFM5BbrdEwQ/BU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=DoWDtmk1; arc=none smtp.client-ip=202.36.163.20
+	 MIME-Version; b=X4M4yEM5kThAReJNsqq6q7jPjr43NswcFrkzh7O/bC7GDfY0s6n7DqDlzd5pqQf0h6+79IPtwpeNIbVl2UPzV1hf+vm2INQK0CME4MWyuUFztX7UqQ2ZN108MMOtjt6Nsxd/8sXuKlU7Xnqx8gPbgrznDwM4aGdLyNWrcqqp9N8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=pKRsTPww; arc=none smtp.client-ip=202.36.163.20
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
 Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
 	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
 	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
 	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 015D42C060F;
-	Thu,  7 Mar 2024 12:50:26 +1300 (NZDT)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D3EEB2C02A7;
+	Thu,  7 Mar 2024 12:50:25 +1300 (NZDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1709769026;
-	bh=mSKrn6FPRCgdiWPNWxQ7az8pVvhQbllKmGMYWxYbLNs=;
+	s=mail181024; t=1709769025;
+	bh=hEo6KY4W7nBtXqY6R2q5MzGe77wJMePNpigq9T0aJNo=;
 	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=DoWDtmk1qMuYiBYuV2ZQ6VzsSglT1m3ioIsFH2/0fvB7qaHalQn8cf0T2Tp4KA0ez
-	 AJ+leOzksnXT7n2lyjnFR7JdZId1SMiSb3q/sn6xxdBZA9b7kRjjh3/Ak7YNY0NXwQ
-	 xrx2lBoFVFFwmDEWZPXAPaYAT9/Od/Q/mBbfcQL0m6XYYo54EOzkBNQtXRoe7CDWQS
-	 9pkbvE87AqR1ibvJmkcQh7Y0qCcMLHTIJVxmo8U0xVTPkSm7MzvXjxRSrL7RP3J3f5
-	 +71l0IFDEGM1oUdVjgEndv6h5FIZZYr7k4mfTptuLN2CIQhV7ACtv8toEBBiRLVPR6
-	 Qpqu0Vlzw25Xg==
+	b=pKRsTPww1ig7X3A3xybGBb8ThKNywhmJG3Id8AYlCo1RI48WusHqiPauBUWy9k4hQ
+	 dnKukgmXlQUApW6+O0cma2s0bFG0wAByeu8PgJajcpmVJT+N5GS2GLn4FY1LBMz4cI
+	 QrLL6W2jH5THvt+x0sKGxHn4bo0iLEIXOLWbbng8Gx7AKB1EYQB48Ky9TAGoE/klwj
+	 BXcuwSpVL9e059w+7w6rZmaJGV81uCTCXLwdVtCrupF/qUcBYHWtX5NMNA4+ckrIFp
+	 J1plG3bhFaAQHuURmI6nzrs0jOBgZPdDQgGtzT7nH2pgpQRWKpLc9/S8OTXLu0ZoN8
+	 A0KV/ere64gLQ==
 Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65e901410001>; Thu, 07 Mar 2024 12:50:25 +1300
+	id <B65e901410003>; Thu, 07 Mar 2024 12:50:25 +1300
 Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 851C413EE85;
+	by pat.atlnz.lc (Postfix) with ESMTP id 8A33513EE8E;
 	Thu,  7 Mar 2024 12:50:25 +1300 (NZDT)
 Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 8154B280D72; Thu,  7 Mar 2024 12:50:25 +1300 (NZDT)
+	id 873F1280B6D; Thu,  7 Mar 2024 12:50:25 +1300 (NZDT)
 From: Chris Packham <chris.packham@alliedtelesis.co.nz>
 To: andy@kernel.org,
 	geert@linux-m68k.org,
@@ -69,9 +69,9 @@ Cc: linux-leds@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v5 2/3] dt-bindings: auxdisplay: Add bindings for generic 7-segment LED
-Date: Thu,  7 Mar 2024 12:50:20 +1300
-Message-ID: <20240306235021.976083-3-chris.packham@alliedtelesis.co.nz>
+Subject: [PATCH v5 3/3] ARM: dts: marvell: Add 7-segment LED display on x530
+Date: Thu,  7 Mar 2024 12:50:21 +1300
+Message-ID: <20240306235021.976083-4-chris.packham@alliedtelesis.co.nz>
 X-Mailer: git-send-email 2.43.2
 In-Reply-To: <20240306235021.976083-1-chris.packham@alliedtelesis.co.nz>
 References: <20240306235021.976083-1-chris.packham@alliedtelesis.co.nz>
@@ -82,98 +82,62 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65e90141 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=K6JAEmCyrfEA:10 a=gEfo2CItAAAA:8 a=UL8_YvhhsuCliVb0JXoA:9 a=3ZKOabzyN94A:10 a=sptkURWiP4Gy88Gu7hUp:22
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65e90141 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=K6JAEmCyrfEA:10 a=Eze4_Z_RUzIZFoL9sA8A:9 a=3ZKOabzyN94A:10
 X-SEG-SpamProfiler-Score: 0
 x-atlnz-ls: pat
 
-Add bindings for a generic 7-segment LED display using GPIOs.
+The Allied Telesis x530 products have a 7-segment LED display which is
+used for node identification when the devices are stacked. Represent
+this as a gpio-7-segment device.
 
 Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 ---
 
 Notes:
     Changes in v5:
-    - Preserve formatting, maxItems set to 8, group GPIO specifiers
-      as suggested by Geert
+    - group GPIO specifiers
     Changes in v4:
-    - Add ASCII art diagram showing arrangement of segments
+    - Use correct compatible name in commit message
     Changes in v3:
-    - Set maxItems: 7
-    - Expand description of segment-gpios property.
     - Use compatible =3D "gpio-7-segment" as suggested by Rob
     Changes in v2:
     - Use compatible =3D "generic-gpio-7seg" to keep checkpatch.pl happy
 
- .../bindings/auxdisplay/gpio-7-segment.yaml   | 55 +++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/auxdisplay/gpio-7-s=
-egment.yaml
+ arch/arm/boot/dts/marvell/armada-385-atl-x530.dts | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/auxdisplay/gpio-7-segment.=
-yaml b/Documentation/devicetree/bindings/auxdisplay/gpio-7-segment.yaml
-new file mode 100644
-index 000000000000..328954893c64
---- /dev/null
-+++ b/Documentation/devicetree/bindings/auxdisplay/gpio-7-segment.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/auxdisplay/gpio-7-segment.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts b/arch/arm=
+/boot/dts/marvell/armada-385-atl-x530.dts
+index 5a9ab8410b7b..2fb7304039be 100644
+--- a/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
++++ b/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
+@@ -43,6 +43,17 @@ uart0: serial@12000 {
+ 			};
+ 		};
+ 	};
 +
-+title: GPIO based LED segment display
-+
-+maintainers:
-+  - Chris Packham <chris.packham@alliedtelesis.co.nz>
-+
-+properties:
-+  compatible:
-+    const: gpio-7-segment
-+
-+  segment-gpios:
-+    description: |
-+      An array of GPIOs one per segment. The first GPIO corresponds to t=
-he A
-+      segment, the seventh GPIO corresponds to the G segment. Some LED b=
-locks
-+      also have a decimal point which can be specified as an optional ei=
-ghth
-+      segment.
-+
-+               -a-
-+              |   |
-+              f   b
-+              |   |
-+               -g-
-+              |   |
-+              e   c
-+              |   |
-+               -d-  dp
-+
-+    minItems: 7
-+    maxItems: 8
-+
-+required:
-+  - segment-gpios
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    led-7seg {
-+        compatible =3D "gpio-7-segment";
-+        segment-gpios =3D <&gpio 0 GPIO_ACTIVE_LOW>,
-+                        <&gpio 1 GPIO_ACTIVE_LOW>,
-+                        <&gpio 2 GPIO_ACTIVE_LOW>,
-+                        <&gpio 3 GPIO_ACTIVE_LOW>,
-+                        <&gpio 4 GPIO_ACTIVE_LOW>,
-+                        <&gpio 5 GPIO_ACTIVE_LOW>,
-+                        <&gpio 6 GPIO_ACTIVE_LOW>;
-+    };
++	led-7seg {
++		compatible =3D "gpio-7-segment";
++		segment-gpios =3D <&led_7seg_gpio 0 GPIO_ACTIVE_LOW>,
++				<&led_7seg_gpio 1 GPIO_ACTIVE_LOW>,
++				<&led_7seg_gpio 2 GPIO_ACTIVE_LOW>,
++				<&led_7seg_gpio 3 GPIO_ACTIVE_LOW>,
++				<&led_7seg_gpio 4 GPIO_ACTIVE_LOW>,
++				<&led_7seg_gpio 5 GPIO_ACTIVE_LOW>,
++				<&led_7seg_gpio 6 GPIO_ACTIVE_LOW>;
++	};
+ };
+=20
+ &pciec {
+@@ -149,7 +160,7 @@ i2c@3 {
+ 			#size-cells =3D <0>;
+ 			reg =3D <3>;
+=20
+-			gpio@20 {
++			led_7seg_gpio: gpio@20 {
+ 				compatible =3D "nxp,pca9554";
+ 				gpio-controller;
+ 				#gpio-cells =3D <2>;
 --=20
 2.43.2
 
