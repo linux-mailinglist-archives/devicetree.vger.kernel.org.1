@@ -1,361 +1,216 @@
-Return-Path: <devicetree+bounces-48802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48808-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A4BF8739AC
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 15:47:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D35EA8739D6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 15:54:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DB3551F2243A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 14:47:29 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 631A51F24D79
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 14:54:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0E15D133402;
-	Wed,  6 Mar 2024 14:47:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 22449133981;
+	Wed,  6 Mar 2024 14:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FpzXnhii"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="TnSU1zDu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6991130E3F;
-	Wed,  6 Mar 2024 14:47:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 277BE13440D;
+	Wed,  6 Mar 2024 14:54:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709736443; cv=none; b=GJywSGW0w2L01NiKGo/TNBI24BNCpEKn35qijUB/KPedwRyJBc+CNMFhv+ZJCmcA/wI/7KiPfreWtNvBVNaELMvuRc4H7SwKfbw2TT8mhDT4nAMd5jjsJD9EPOCaMOdMJp/700aE+3JGKs7YbJNavkmhyCddw/xJZ+MbAL8t/7Q=
+	t=1709736856; cv=none; b=iqXjcNJFZQC5u20dD/Dq6aBls5+GCYZYhPaHRvq4Lb3zpuBabzn3GyT1KSORn5kZclogCORCdS/c4HP+Gb36+zGqbam+fUJnWjMAEjDd1MWWaNzh+MEH2jk86e9XLlC2XUhx76MdGOEAZnY84yhausyXIH8rP37lSO6XcLPLGZk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709736443; c=relaxed/simple;
-	bh=8IWxzcon7ZLnqHGJwaHZCtPJ1y34lrDolQpndiRroaw=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=fO3SKQF69clSAOrW3gqc1EcCxxK2z3PU/Mj4vz1qVeSjhsmIrPaHJHZeMDqHSbKKvsel9RelLAuI6brJPaP5d3faT4NpNlEGaDfuT+XqiAQm2sBz5xbuZ4IGW2dZpc0ggtJOPDvul32ABqSbHM39LMfGX6hDMNq2IY+lmTpDLJg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FpzXnhii; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-512e39226efso7021542e87.0;
-        Wed, 06 Mar 2024 06:47:21 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709736440; x=1710341240; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=8IWxzcon7ZLnqHGJwaHZCtPJ1y34lrDolQpndiRroaw=;
-        b=FpzXnhiiaEpIypFptvnhtVoUa70mwHFbab20fWTj4wq/iPgmHuYqhqsj/MaiwnJO14
-         pZ5myGDKJHis9jRERJk6hcss7qB2V47JsDm09v3y34z9Tol3pw3bmxgp3xwv3Q/GPrxt
-         KhaePP9sZewNxrj/yK2UDjh9GgD4jsNQmgxgGGSUyWqbK40qIH20qZMrO38pcHzr/If3
-         RhqzkX7SHv9y4MBj5w+STvrM0rjy7jgiZWHu6Pjs/hsjXcP79XjM3v6IHa0vuPfkAxbr
-         3gNZG5Ykxe0DXrNZMFaw6CLgPYyY3Cl576Zx9tEmi2U4HCKnfA+y7rLb+ZkqBlhtl+xl
-         eNzA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709736440; x=1710341240;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8IWxzcon7ZLnqHGJwaHZCtPJ1y34lrDolQpndiRroaw=;
-        b=xQzZgJPRAILjy8Vaa2RV9NWsLFp6SR/k7485xnAhw85D2GCrG3f7VJ88arcgYCAsBG
-         /YWaGkqQK4b3MP0GUq1anrT8MBV3Bx1cY3rEEsXU8N/f+PvUZbB0je/ZvfKOykciR+Y9
-         7HyiSSm56mhaj8X3iGDkA5Yn9EvXzSj8pHU2gp+ldR77oaHjgy7pFDMKvYZHsrPPlCiv
-         DAFUx4ML4B1AZiSnLf1kLnB4jMw3TXAzEiQR8SqWwOR1HaP4q4VGfIRz5bh25H3iU444
-         MdZBWHG+gluijexBGVHKzwh29z2KIuCifxoMeng9eKd1rUMgrgJt3zaNowYDUZ6p5QIQ
-         2ozw==
-X-Forwarded-Encrypted: i=1; AJvYcCVr+/dtkn/A+dr/xKgmNnW7D6w2PDrIRLatuK35c9q3BCDQgaXczWsQozGsvI8OLAhUkJuidBRgSw/YgYHJcaEY3oCj2ivRb5idGUIb59leNCGa7Jdl5o0qDM9LmVU+la9wmqJnCw3SDmD4uoLzYPsJTFWPjwtBCeIgU2AHc7xTMw==
-X-Gm-Message-State: AOJu0Yyhie6ue3eqrcS+3okAhMMSmaGe9RVY3lHM6Tr9FPlXmcyRYGhQ
-	UFBhJncP6UKRJAei5LwPmbUzV5x9jN/jkS4DvlX6DrJ1nmhyVRF6
-X-Google-Smtp-Source: AGHT+IF8ySziMft1gXf9sjEul/cXm88GkXaidWXFRg4tBpn2f4KEQdMbytqx0WQYJG4ReYZYy9JQsg==
-X-Received: by 2002:ac2:43c9:0:b0:511:a4c9:a010 with SMTP id u9-20020ac243c9000000b00511a4c9a010mr3161979lfl.38.1709736439557;
-        Wed, 06 Mar 2024 06:47:19 -0800 (PST)
-Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
-        by smtp.gmail.com with ESMTPSA id am19-20020a170906569300b00a44cb0bf11bsm5258138ejc.79.2024.03.06.06.47.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Mar 2024 06:47:19 -0800 (PST)
-Message-ID: <86a0f91675197a00bbd921d6e57d2f3c57796e68.camel@gmail.com>
-Subject: Re: [PATCH v4 1/2] driver core: Introduce device_link_wait_removal()
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: "Rafael J. Wysocki" <rafael@kernel.org>
-Cc: Herve Codina <herve.codina@bootlin.com>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, Frank
- Rowand <frowand.list@gmail.com>, Saravana Kannan <saravanak@google.com>,
- Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, Sonal Santan
- <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>,
-  Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>,  stable@vger.kernel.org
-Date: Wed, 06 Mar 2024 15:50:44 +0100
-In-Reply-To: <CAJZ5v0iMUOJmm99H6SgfP9179hBsLdyC+1ixJwBxSP0b18V6XA@mail.gmail.com>
-References: <20240306085007.169771-1-herve.codina@bootlin.com>
-	 <20240306085007.169771-2-herve.codina@bootlin.com>
-	 <1fff8742a13c28dd7e1dda47ad2d6fa8e21e421e.camel@gmail.com>
-	 <CAJZ5v0gWCo9nDAHkzeD08tTKoE0DE0ocht-Qq4zA7P59y9KeuQ@mail.gmail.com>
-	 <ed442b6916016b3a40782dc32538fc517715db6c.camel@gmail.com>
-	 <CAJZ5v0iQNEj6e_L1=uBTPaWn7BqV4pnoWxUq7LRPe5iVWsaifw@mail.gmail.com>
-	 <ec7705f410bc848e79b8ab878b5fbf7618d9456d.camel@gmail.com>
-	 <CAJZ5v0iMUOJmm99H6SgfP9179hBsLdyC+1ixJwBxSP0b18V6XA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 
+	s=arc-20240116; t=1709736856; c=relaxed/simple;
+	bh=96054vt0RIF8FrPah2L/xxgnSuYxMgqAI0Q+ZetCRX0=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=EiX36p1nvI5D5EGnBTP4Rq3w360Dyd4EqhCbcglFekTK8Iybpm7DGVvhs0X6JpIEYi8YKDLOVyFfFGxslGqKoNwu2Uhpka/VxZldJ+3D9VLwjFHnS8AFnTITk75Lp/HREKOavvuLAqa6TyJrDu2kSvRvuyXxJJpznKoH4OggMwE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=TnSU1zDu; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709736849;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=H2lJKxoSRgpljXG36rHJ6kJtSm+0/59EDB5to3fB+oQ=;
+	b=TnSU1zDusf5T/c53MxwSN6xIpjDRNDKnurr+17PoFbB5sdtWiZB0JdVkx477Gme5fGGZkB
+	AJF59d5e4aL9ftyUBeoJCcGS5YT62/trfhyNlpMqq8g/ntPHfpezzd+6aFjCU4mgmsOlH7
+	92bJR/q63hdhlVvXtQsM1XnlAIzSJJORSRYkzfFc0SAHjgJP28V7Lp+Tk1Q+H4gMKm3nUb
+	IKItpvxIuCknX3+ehpR5gJZS6MnNIhbAXmmSfUbeULpQV8Lf4mXD7xYmtXZwO3IjhO4XJy
+	F8+YHYK8olbqyhvHbkBsXSAJ7rJ+vHsZqu6R/r7jjx7FpboRowKKUELKCJ4qGQ==
+Date: Wed, 06 Mar 2024 15:54:07 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Tim Pambor <tp@osasysteme.de>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, AnandMoon <linux.amoon@gmail.com>, Magnus Damm
+ <magnus.damm@gmail.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
+ <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: r9a07g044: Add complete CPU cache information
+In-Reply-To: <db77fa78e75b9712ebba1dfd7e4340603cae4fe3.camel@osasysteme.de>
+References: <20240305151336.144707-1-tp@osasysteme.de>
+ <TYCPR01MB112696A947F31C31FE3A3AFF586212@TYCPR01MB11269.jpnprd01.prod.outlook.com>
+ <db77fa78e75b9712ebba1dfd7e4340603cae4fe3.camel@osasysteme.de>
+Message-ID: <8d9ec337e794cb2ecc69a961c7e47e3f@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Wed, 2024-03-06 at 15:37 +0100, Rafael J. Wysocki wrote:
-> On Wed, Mar 6, 2024 at 3:08=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmail.co=
-m> wrote:
-> >=20
-> > On Wed, 2024-03-06 at 14:05 +0100, Rafael J. Wysocki wrote:
-> > > On Wed, Mar 6, 2024 at 2:01=E2=80=AFPM Nuno S=C3=A1 <noname.nuno@gmai=
-l.com> wrote:
-> > > >=20
-> > > > On Wed, 2024-03-06 at 13:43 +0100, Rafael J. Wysocki wrote:
-> > > > > On Wed, Mar 6, 2024 at 10:17=E2=80=AFAM Nuno S=C3=A1 <noname.nuno=
-@gmail.com> wrote:
-> > > > > >=20
-> > > > > > On Wed, 2024-03-06 at 09:50 +0100, Herve Codina wrote:
-> > > > > > > The commit 80dd33cf72d1 ("drivers: base: Fix device link remo=
-val")
-> > > > > > > introduces a workqueue to release the consumer and supplier
-> > > > > > > devices
-> > > > > > > used
-> > > > > > > in the devlink.
-> > > > > > > In the job queued, devices are release and in turn, when all =
-the
-> > > > > > > references to these devices are dropped, the release function=
- of
-> > > > > > > the
-> > > > > > > device itself is called.
-> > > > > > >=20
-> > > > > > > Nothing is present to provide some synchronisation with this
-> > > > > > > workqueue
-> > > > > > > in order to ensure that all ongoing releasing operations are =
-done
-> > > > > > > and
-> > > > > > > so, some other operations can be started safely.
-> > > > > > >=20
-> > > > > > > For instance, in the following sequence:
-> > > > > > > =C2=A0 1) of_platform_depopulate()
-> > > > > > > =C2=A0 2) of_overlay_remove()
-> > > > > > >=20
-> > > > > > > During the step 1, devices are released and related devlinks =
-are
-> > > > > > > removed
-> > > > > > > (jobs pushed in the workqueue).
-> > > > > > > During the step 2, OF nodes are destroyed but, without any
-> > > > > > > synchronisation with devlink removal jobs, of_overlay_remove(=
-) can
-> > > > > > > raise
-> > > > > > > warnings related to missing of_node_put():
-> > > > > > > =C2=A0 ERROR: memory leak, expected refcount 1 instead of 2
-> > > > > > >=20
-> > > > > > > Indeed, the missing of_node_put() call is going to be done, t=
-oo
-> > > > > > > late,
-> > > > > > > from the workqueue job execution.
-> > > > > > >=20
-> > > > > > > Introduce device_link_wait_removal() to offer a way to synchr=
-onize
-> > > > > > > operations waiting for the end of devlink removals (i.e. end =
-of
-> > > > > > > workqueue jobs).
-> > > > > > > Also, as a flushing operation is done on the workqueue, the
-> > > > > > > workqueue
-> > > > > > > used is moved from a system-wide workqueue to a local one.
-> > > > > > >=20
-> > > > > > > Fixes: 80dd33cf72d1 ("drivers: base: Fix device link removal"=
-)
-> > > > > > > Cc: stable@vger.kernel.org
-> > > > > > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > > > > > > ---
-> > > > > >=20
-> > > > > > With the below addressed:
-> > > > > >=20
-> > > > > > Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-> > > > > >=20
-> > > > > > > =C2=A0drivers/base/core.c=C2=A0=C2=A0=C2=A0 | 26 ++++++++++++=
-+++++++++++---
-> > > > > > > =C2=A0include/linux/device.h |=C2=A0 1 +
-> > > > > > > =C2=A02 files changed, 24 insertions(+), 3 deletions(-)
-> > > > > > >=20
-> > > > > > > diff --git a/drivers/base/core.c b/drivers/base/core.c
-> > > > > > > index d5f4e4aac09b..48b28c59c592 100644
-> > > > > > > --- a/drivers/base/core.c
-> > > > > > > +++ b/drivers/base/core.c
-> > > > > > > @@ -44,6 +44,7 @@ static bool fw_devlink_is_permissive(void);
-> > > > > > > =C2=A0static void __fw_devlink_link_to_consumers(struct devic=
-e *dev);
-> > > > > > > =C2=A0static bool fw_devlink_drv_reg_done;
-> > > > > > > =C2=A0static bool fw_devlink_best_effort;
-> > > > > > > +static struct workqueue_struct *device_link_wq;
-> > > > > > >=20
-> > > > > > > =C2=A0/**
-> > > > > > > =C2=A0 * __fwnode_link_add - Create a link between two fwnode=
-_handles.
-> > > > > > > @@ -532,12 +533,26 @@ static void devlink_dev_release(struct
-> > > > > > > device
-> > > > > > > *dev)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /*
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * It may take a while to=
- complete this work because of the
-> > > > > > > SRCU
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * synchronization in dev=
-ice_link_release_fn() and if the
-> > > > > > > consumer
-> > > > > > > or
-> > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * supplier devices get delete=
-d when it runs, so put it into
-> > > > > > > the
-> > > > > > > "long"
-> > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * workqueue.
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * supplier devices get delete=
-d when it runs, so put it into
-> > > > > > > the
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * dedicated workqueue.
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
-> > > > > > > -=C2=A0=C2=A0=C2=A0=C2=A0 queue_work(system_long_wq, &link->r=
-m_work);
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0 queue_work(device_link_wq, &link->r=
-m_work);
-> > > > > > > =C2=A0}
-> > > > > > >=20
-> > > > > > > +/**
-> > > > > > > + * device_link_wait_removal - Wait for ongoing devlink remov=
-al
-> > > > > > > jobs
-> > > > > > > to
-> > > > > > > terminate
-> > > > > > > + */
-> > > > > > > +void device_link_wait_removal(void)
-> > > > > > > +{
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0 /*
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * devlink removal jobs are qu=
-eued in the dedicated work
-> > > > > > > queue.
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * To be sure that all removal=
- jobs are terminated, ensure
-> > > > > > > that
-> > > > > > > any
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 * scheduled work has run to c=
-ompletion.
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 */
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0 flush_workqueue(device_link_wq);
-> > > > > > > +}
-> > > > > > > +EXPORT_SYMBOL_GPL(device_link_wait_removal);
-> > > > > > > +
-> > > > > > > =C2=A0static struct class devlink_class =3D {
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .name =3D "devlink",
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .dev_groups =3D devlink_groups=
-,
-> > > > > > > @@ -4099,9 +4114,14 @@ int __init devices_init(void)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 sysfs_dev_char_kobj =3D kobjec=
-t_create_and_add("char",
-> > > > > > > dev_kobj);
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!sysfs_dev_char_kobj)
-> > > > > > > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 goto char_kobj_err;
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0 device_link_wq =3D alloc_workqueue(=
-"device_link_wq", 0, 0);
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0 if (!device_link_wq)
-> > > > > > > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0 goto wq_err;
-> > > > > > >=20
-> > > > > >=20
-> > > > > > I can't still agree with this. Why not doing it in
-> > > > > > devlink_class_init()?
-> > > > > > This is
-> > > > > > devlink specific so it makes complete sense to me.
-> > > > >=20
-> > > > > If you do that in devlink_class_init() and it fails, you essentia=
-lly
-> > > > > cause the creation of every device link to fail.=C2=A0 IOW, you t=
-ry to live
-> > > > > without device links and pretend that it is all OK.=C2=A0 That wo=
-n't get
-> > > > > you very far, especially on systems where DT is used.
-> > > > >=20
-> > > > > Doing it here, if it fails, you prevent the driver model from wor=
-king
-> > > > > at all (because one of its necessary components is unavailable), =
-which
-> > > > > arguably is a better choice.
-> > > >=20
-> > > > That makes sense but then the only thing I still don't fully get is=
- why
-> > > > we
-> > > > have
-> > > > a separate devlink_class_init() initcall for registering the devlin=
-k
-> > > > class
-> > > > (which can also fail)...
-> > >=20
-> > > Well, I haven't added it. :-)
-> > >=20
-> > > > What I take from the above is that we should fail the
-> > > > driver model if one of it's fundamental components fails so I would=
- say
-> > > > we
-> > > > should merge devlink_class_init() with device_init() otherwise it's=
- a
-> > > > bit
-> > > > confusing (at least to me) and gives the idea that it's ok for the
-> > > > driver
-> > > > model
-> > > > to exist without the links (unless I'm missing some other reason fo=
-r the
-> > > > devlink
-> > > > init function).
-> > >=20
-> > > +1
-> > >=20
-> > > Feel free to send a patch along these lines, chances are that it will
-> > > be popular. ;-)
-> >=20
-> > I was actually thinking about that but I think I encountered the reason=
- why
-> > we
-> > have it like this... devices_init() is called from driver_init() and th=
-ere
-> > we
-> > have:
-> >=20
-> > ...
-> >=20
-> > devices_init();
-> > buses_init();
-> > classes_init();
-> >=20
-> > ...
-> >=20
-> > So classes are initialized after devices which means we can't really do
-> > class_register(&devlink_class) from devices_init(). Unless, of course, =
-we
-> > re-
-> > order things in driver_init() but that would be a questionable change a=
-t the
-> > very least.
-> >=20
-> > So, while I agree with what you've said, I'm still not sure if mixing
-> > devlink
-> > stuff between devices_init() and devlink_class_init() is the best thing=
- to
-> > do
-> > given that we already have the case where devlink_class_init() can fail
-> > while
-> > the driver model is up.
->=20
-> So why don't you make devlink_class_init() do a BUG() on failure
-> instead of returning an error?=C2=A0 IMO crashing early is better than
-> crashing later or otherwise failing in a subtle way due to a missed
-> dependency.
+Hello Tim and Biju,
 
-Well, I do agree with that... Maybe that's something that Herve can sneak i=
-n
-this patch? Otherwise, I can later (after this one is applied) send a patch=
- for
-it.
+On 2024-03-06 11:10, Tim Pambor wrote:
+> thanks for the review.
+> 
+>> Thanks for the patch.
+>> 
+>> > -----Original Message-----
+>> > From: Tim Pambor <tp@osasysteme.de>
+>> > Sent: Tuesday, March 5, 2024 3:14 PM
+>> > Subject: [PATCH] arm64: dts: r9a07g044: Add complete CPU cache
+>> > information
+>> >
+>> > Based on ARM Cortex-A55 TRM and RZG2/L user's manual, each Cortex-
+>> > A55 has
+>> 
+>> RZ/G2L
+>> 
+>> > - 32 KB of L1 4-way, set-associative instruction cache
+>> > - 32 KB of L1 4-way, set-associative data cache
 
-- Nuno S=C3=A1
+Just a small suggestion, moving "L1" after "set-associative" would make
+these two lines a bit more readable.
+
+>> > Each cache has a cache line length of 64B and therefore there are
+>> > 32768B/(4 * 64B)=128 sets for each cache.
+>> >
+>> > RZG2/L are not configured with the optional per-core L2 cache but
+>> > only have a L3 cache shared among all
+>> RZ/G2L
+>> > cores. In this case, the L3 cache appears as a L2 cache to the
+>> > system. Therefore, specify "cache-level
+>> > = <2>" for the L3 cache.
+> 
+> I will send a v2 with the commit message corrected.
+> 
+>> You mean for L3 Cache, cache-level = <2> if there is no L2 Cache on
+>> the system? Does it need any update
+>> on dt-bindings to make this clear?
+> 
+> I followed the approach chosen for the Rockchip RK356x, which also has
+> a Cortex-A55 with an L3 cache but no L2 cache [1]. I can add a comment
+> to the device tree explaining that there is no L2 cache and that
+> therefore the L3 cache appears as a L2 cache to the system. Do you
+> consider that sufficient?
+
+As I noted in the description of the Rockchip RK356x patch linked above,
+the documentation from ARM states that the CPU cores see the shared L3
+cache as their L2 caches, when there are no private, per-code L2 caches
+in a particular SoC that employs the DynamIQ architecture.
+
+Thus, it's the best to follow the same approach in the kernel and 
+present
+the same logical cache hierarchy to the userspace, to avoid the 
+confusion
+among the users, which would almost surely wonder why there are no L2
+caches, but there is an L3 cache.  It should also avoid unexpected 
+behavior
+and bugs such as the one visible below, because having an L3 cache with 
+no
+L2 caches isn't very common.
+
+> Currently, having cache-level = <3> also causes a out-of-bounds access
+> in populate_cache_leaves.
+> 
+> [    0.066217]
+> ==================================================================
+> [    0.066369] BUG: KASAN: slab-out-of-bounds in
+> populate_cache_leaves+0x25c/0x2d0
+> [    0.066495] Write of size 4 at addr ffff0000082370dc by task 
+> swapper/0/1
+> [    0.066580]
+> [    0.066619] CPU: 0 PID: 1 Comm: swapper/0 Not tainted
+> 6.8.0-rc2-00016-g30d5a685c65d #6
+> [    0.066719] Hardware name: MYC-YG2LX (DT)
+> [    0.066793] Call trace:
+> [    0.066836]  dump_backtrace+0x98/0x118
+> [    0.066900]  show_stack+0x18/0x24
+> [    0.066959]  dump_stack_lvl+0x60/0xac
+> [    0.067029]  print_report+0xf8/0x5d8
+> [    0.067096]  kasan_report+0xc0/0x100
+> [    0.067159]  __asan_report_store4_noabort+0x20/0x2c
+> [    0.067235]  populate_cache_leaves+0x25c/0x2d0
+> [    0.067308]  detect_cache_attributes+0x34c/0x1998
+> [    0.067384]  update_siblings_masks+0x30/0x554
+> [    0.067460]  store_cpu_topology+0xe8/0x188
+> [    0.067528]  smp_prepare_cpus+0x5c/0x238
+> [    0.067602]  kernel_init_freeable+0x258/0xb18
+> [    0.067673]  kernel_init+0x30/0x208
+> [    0.067736]  ret_from_fork+0x10/0x20
+> [    0.067802]
+> [    0.067835] Allocated by task 1:
+> [    0.067889]  kasan_save_stack+0x3c/0x64
+> [    0.067956]  kasan_save_track+0x20/0x3c
+> [    0.068020]  kasan_save_alloc_info+0x68/0x78
+> [    0.068090]  __kasan_kmalloc+0xd4/0xd8
+> [    0.068154]  __kmalloc+0x1c0/0x430
+> [    0.068215]  allocate_cache_info+0xa8/0x204
+> [    0.068284]  fetch_cache_info+0xc4/0x200
+> [    0.068349]  init_cpu_topology+0x348/0x45c
+> [    0.068423]  smp_prepare_cpus+0x1c/0x238
+> [    0.068492]  kernel_init_freeable+0x258/0xb18
+> [    0.068561]  kernel_init+0x30/0x208
+> [    0.068622]  ret_from_fork+0x10/0x20
+> [    0.068685]
+> [    0.068719] The buggy address belongs to the object at 
+> ffff000008237000
+> [    0.068719]  which belongs to the cache kmalloc-256 of size 256
+> [    0.068849] The buggy address is located 4 bytes to the right of
+> [    0.068849]  allocated 216-byte region [ffff000008237000, 
+> ffff0000082370d8)
+> [    0.068984]
+> [    0.069018] The buggy address belongs to the physical page:
+> [    0.069089] page:(____ptrval____) refcount:1 mapcount:0
+> mapping:0000000000000000 index:0x0 pfn:0x48236
+> [    0.069201] head:(____ptrval____) order:1 entire_mapcount:0
+> nr_pages_mapped:0 pincount:0
+> [    0.069297] flags: 0x840(slab|head|zone=0)
+> [    0.069366] page_type: 0xffffffff()
+> [    0.069430] raw: 0000000000000840 ffff000008001b40 dead000000000122
+> 0000000000000000
+> [    0.069526] raw: 0000000000000000 0000000080100010 00000001ffffffff
+> 0000000000000000
+> [    0.069616] page dumped because: kasan: bad access detected
+> [    0.069684]
+> [    0.069717] Memory state around the buggy address:
+> [    0.069781]  ffff000008236f80: fc fc fc fc fc fc fc fc fc fc fc fc
+> fc fc fc fc
+> [    0.069870]  ffff000008237000: 00 00 00 00 00 00 00 00 00 00 00 00
+> 00 00 00 00
+> [    0.069958] >ffff000008237080: 00 00 00 00 00 00 00 00 00 00 00 fc
+> fc fc fc fc
+> [    0.070042]                                                     ^
+> [    0.070116]  ffff000008237100: fc fc fc fc fc fc fc fc fc fc fc fc
+> fc fc fc fc
+> [    0.070204]  ffff000008237180: fc fc fc fc fc fc fc fc fc fc fc fc
+> fc fc fc fc
+> [    0.070290]
+> ==================================================================
+> 
+> [1] 
+> https://lore.kernel.org/linux-rockchip/2285ee41e165813011220f9469e28697923aa6e0.1709491108.git.dsimic@manjaro.org/
 
