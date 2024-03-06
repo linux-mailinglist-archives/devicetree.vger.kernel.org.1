@@ -1,148 +1,205 @@
-Return-Path: <devicetree+bounces-48898-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48899-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52516874193
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 21:55:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8F998741CC
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 22:18:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AC2EEB2103D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 20:55:31 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1FEB0B2382B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 21:18:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81DFA17559;
-	Wed,  6 Mar 2024 20:55:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4014A1B94B;
+	Wed,  6 Mar 2024 21:15:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mXF5lxxx"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="Mw1Vet8G"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4D8F2CA4E;
-	Wed,  6 Mar 2024 20:55:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9396F18B1B
+	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 21:15:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709758527; cv=none; b=irlIoZrAiADSY1xmm7xOGiW0Q5u2kOgGmdSYXROWQYev7F0yIOqV6YAmRtv9oOUMb1Jw9jxERvJ6jC27mYNflLTJTrkqpPjxVfLtpjSnlJu74Nk70rew8rZkg17Ui+lJjdRqTEdKBjSUzPfgZ4zNCtpsLG919AEppA4PlXIDFnY=
+	t=1709759737; cv=none; b=dT5WHC2rW6cw65E12gOFVnxU/av6ZD9YoXLgI694gBAVDU77A1OhVX471Ez+Fz5I5JCtBqwU3UQ3e8oH2ZVb9v3/r8gwg4hOGfL6T/ACQyRFFIA/MH5wfSntOzz+RE3Yi3w69n7d0UOQHaMMb9AY5dExeaRC1SZkxQKEyxJLfIA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709758527; c=relaxed/simple;
-	bh=8wpIf1u7ZRpALOfHZ4AX6o9s1PVu3WXuDX1nZ0s4XSc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kVkjC148brJfJ2RSHsKVr7SalvW2/OjuQFQ7cUsmSd4nHICeK2FM6N4cz8ufufQYLBCgB6BPsIBf2Tqe6vtfhvOg621qifrLNl3DJF058Kp6n+GaJIQJLm++BSOGL6w3zv6YhxR0e/jwJsHYHMoWo7MqRv9iOyNxpGLn5schycE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mXF5lxxx; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9114C433F1;
-	Wed,  6 Mar 2024 20:55:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709758526;
-	bh=8wpIf1u7ZRpALOfHZ4AX6o9s1PVu3WXuDX1nZ0s4XSc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mXF5lxxx+5t7+86g9lXRI/nNc8B4ygRS3Pb/kEY2lndTQUNMt4NdY7rUvEMCXmXQl
-	 vxmyt4AOGSH2J4BP3G5owS+NwYYzYVNAi7VZYYC94rGw+DYdQFHddWlgmPeVdHI8e5
-	 TO7VYXRFl7FeITijsC6W/rxrVtrmpB3/n7h3O0uJGKcoF7CRFZnbC5m2BZD+1zwpuh
-	 zt5ZPUwn/ak239yElwk+gNSlGGsBVgGtYpsdxO76K4qrOOJlgOJrZVidGFIn2F+MVm
-	 w0zqPA++4MN6nCQbqOK5WuxVp7d/V16f5iYor8Lvr8kR2Chbaj4VvihYTvX3vsDAx6
-	 hUYzM5k4d/n0Q==
-Date: Wed, 6 Mar 2024 14:55:24 -0600
-From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Conor Dooley <conor@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] ASoC: dt-bindings: fsl-sai: allow only one
- dma-names
-Message-ID: <20240306205524.GB587561-robh@kernel.org>
-References: <20240305-asrc_8qxp-v4-0-c61b98046591@nxp.com>
- <20240305-asrc_8qxp-v4-3-c61b98046591@nxp.com>
- <20240306-pebble-grope-88fdaa95a87c@spud>
- <ZejDQddMp17RD6Yk@lizhi-Precision-Tower-5810>
+	s=arc-20240116; t=1709759737; c=relaxed/simple;
+	bh=+l8m3POtAaDtB80yHDgkTD7KG7R8IqP1r+IYUdBueyY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=WOwqSXkh4on1nDwZt7dMJPxYFhUroqqRSVGqS/cPcP5EiMQIHrDg0n7BMcvOU/Gd7TbtrT+po3Yfq3Ow0TqH1Xycs1DpI/XD6JwwCd8ZYFpiQMC3M3kX54OHB0lrgnsD11jMPjVInVY685TQQmkvCIFTV0PyceRjKOlh821DGcQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=Mw1Vet8G; arc=none smtp.client-ip=209.85.160.177
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-42ee0c326e8so83771cf.0
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 13:15:35 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1709759734; x=1710364534; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XzC+C2S5Etcf2Z/JbeuSZgXqxgIWaVv4J2sVk7ZKEIU=;
+        b=Mw1Vet8GaEjAR37NCCWU79/XvpjY61JEVlsYVuM0bBxoWhcr7p3KI3TwYELi1G3AmH
+         hUHx5EVmveFcA+PMrW0VKHzDfqdxEURqfonmPAdETQHm6DDvuIT+Kk6xYggmAsm9f2AM
+         BQA7u7eCSAsKZcXJ3fKLkOVs8Y2dyEQKoxECKYmMnVGvhjTWCO4H19p/6xGYF3cUF/5O
+         TQ1aj+zuY4EkbTjdBz75gLuHsI5GzqisOwCfUaI+PUkA9kMmlr+z4QiCwZkymMAi7iS4
+         hHJQV27bPht0Bk1ekYjQ19CIHeP4FMgPMc3rvaGdJAK41mwUy0Om7DOyLPnlJLlEWd0b
+         /0/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709759734; x=1710364534;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XzC+C2S5Etcf2Z/JbeuSZgXqxgIWaVv4J2sVk7ZKEIU=;
+        b=hQJkPqdaNfJelzUtSWgTRq9kzbxYADfErM8BqgPl7ZcviNN51gVxXhFuR/YSQb5aDm
+         Lvp1PhSZM1F1mP9EpUCRkZnFiriIb6Rc+niFBOuFUQ8wKIl0EjMOIYdZD7+spzJC8NVb
+         a5mleGdvOlVz6vA8v8uZI2mDkGa5z2UHhHmxjGW/u2KFojZCecHuWhRB58/NKDLqGZ64
+         KPORl8aiKPwncV4/YZ5lin5v4Y607sCXm3iSHkgOoE4t5cn44u/2Q3XiUZHIyL53G4s/
+         9/Ss0c+qslTwEWleayan2hXQ3Jsviv7Yxc9n5KntggXoESnaaql2Kgj/ot3nnEVb4RLz
+         BMRg==
+X-Forwarded-Encrypted: i=1; AJvYcCUZK69fH8PKv2v4IqZrCb0Id4aWnvuiDzspq2SdJrpcd0FisEt6SBglANCaUt/wBnKfaUw7PSXk+tVTjBUhI7aXL9cS77HlQPoCng==
+X-Gm-Message-State: AOJu0YwBupD+yBMiyDPvyxn+W3yapk1wvUWZFXvJtHTrfFWORkrQjOwU
+	+mG+FbRQ7s8U5blqZictH4i2nKP+0t5lJQY0OfHAh0sXE/pv4Xp80j/clck2Cl5CRTt21iolydN
+	YIWHYWUcB5hS3koowneV1a9Nnc6a1ytUyb6KB
+X-Google-Smtp-Source: AGHT+IEkdwDQ65xQJC4KiGNeJrl9lSmewlEJY+cm2QqzmQ3s0lzsNIKMMTqzMAl/OTMEg2JkcSDB6qm9XpzdcPTbpho=
+X-Received: by 2002:ac8:5e0b:0:b0:42e:b7b2:2e99 with SMTP id
+ h11-20020ac85e0b000000b0042eb7b22e99mr123586qtx.2.1709759734197; Wed, 06 Mar
+ 2024 13:15:34 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZejDQddMp17RD6Yk@lizhi-Precision-Tower-5810>
+References: <20240306085007.169771-1-herve.codina@bootlin.com>
+ <20240306085007.169771-2-herve.codina@bootlin.com> <CAJZ5v0gENrBFfJ3FDJ=m0-veFbue_Bw168+k2cs7v2u9MtCT8Q@mail.gmail.com>
+ <20240306162447.2a843a11@bootlin.com> <CAJZ5v0hYxhoLEEJ=MXPNFWpp7bidx_832RdOAgzx4m=aM0YzXg@mail.gmail.com>
+In-Reply-To: <CAJZ5v0hYxhoLEEJ=MXPNFWpp7bidx_832RdOAgzx4m=aM0YzXg@mail.gmail.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Wed, 6 Mar 2024 13:14:55 -0800
+Message-ID: <CAGETcx9Oo3F8oAOOS9e9RTCdWHvigx5On0phXrVfJqap2VcN2g@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] driver core: Introduce device_link_wait_removal()
+To: "Rafael J. Wysocki" <rafael@kernel.org>
+Cc: Herve Codina <herve.codina@bootlin.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, 
+	Frank Rowand <frowand.list@gmail.com>, Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, 
+	Sonal Santan <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>, 
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Allan Nielsen <allan.nielsen@microchip.com>, 
+	Horatiu Vultur <horatiu.vultur@microchip.com>, 
+	Steen Hegelund <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>, 
+	Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
+	stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 06, 2024 at 02:25:53PM -0500, Frank Li wrote:
-> On Wed, Mar 06, 2024 at 06:45:13PM +0000, Conor Dooley wrote:
-> > On Tue, Mar 05, 2024 at 12:33:04PM -0500, Frank Li wrote:
-> > > Some sai only connect one direction dma (rx/tx) in SOC. For example:
-> > > imx8qxp sai5 only connect tx dma channel. So allow only one "rx" or "tx"
-> > > for dma-names.
-> > > 
-> > > Remove description under dmas because no user use index to get dma channel.
-> > > All user use 'dma-names' to get correct dma channel. dma-names already in
-> > > 'required' list.
-> > 
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > 
-> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 13 ++++++-------
-> > >  1 file changed, 6 insertions(+), 7 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > index 2456d958adeef..6f551c68d33db 100644
-> > > --- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > @@ -81,15 +81,14 @@ properties:
-> > >  
-> > >    dmas:
-> > >      minItems: 1
-> > > -    items:
-> > > -      - description: DMA controller phandle and request line for RX
-> > > -      - description: DMA controller phandle and request line for TX
-> > > +    maxItems: 2
-> > >  
-> > >    dma-names:
-> > > -    minItems: 1
-> > > -    items:
-> > > -      - const: rx
-> > > -      - const: tx
-> > > +    oneOf:
-> > > +      - items:
-> > > +          - const: rx
-> > > +          - const: tx
-> > > +      - enum: [ rx, tx ]
-> > 
-> > I'm not entirely sure if this was Rob's suggestion, I got the impression
-> > he was suggesting that in the two items case we'd not care about the
-> > order. But while I think this is different to that suggestion it's also
-> > not wrong.
-> 
-> I log this at cover-letter. b4 can't support write change log at every
-> patch yet.
+On Wed, Mar 6, 2024 at 7:56=E2=80=AFAM Rafael J. Wysocki <rafael@kernel.org=
+> wrote:
+>
+> On Wed, Mar 6, 2024 at 4:24=E2=80=AFPM Herve Codina <herve.codina@bootlin=
+.com> wrote:
+> >
+> > Hi Rafael,
+> >
+> > On Wed, 6 Mar 2024 13:48:37 +0100
+> > "Rafael J. Wysocki" <rafael@kernel.org> wrote:
+> >
+> > > On Wed, Mar 6, 2024 at 9:51=E2=80=AFAM Herve Codina <herve.codina@boo=
+tlin.com> wrote:
+> > > >
+> > > > The commit 80dd33cf72d1 ("drivers: base: Fix device link removal")
+> > > > introduces a workqueue to release the consumer and supplier devices=
+ used
+> > > > in the devlink.
+> > > > In the job queued, devices are release and in turn, when all the
+> > > > references to these devices are dropped, the release function of th=
+e
+> > > > device itself is called.
+> > > >
+> > > > Nothing is present to provide some synchronisation with this workqu=
+eue
+> > > > in order to ensure that all ongoing releasing operations are done a=
+nd
+> > > > so, some other operations can be started safely.
+> > > >
+> > > > For instance, in the following sequence:
+> > > >   1) of_platform_depopulate()
+> > > >   2) of_overlay_remove()
+> > > >
+> > > > During the step 1, devices are released and related devlinks are re=
+moved
+> > > > (jobs pushed in the workqueue).
+> > > > During the step 2, OF nodes are destroyed but, without any
+> > > > synchronisation with devlink removal jobs, of_overlay_remove() can =
+raise
+> > > > warnings related to missing of_node_put():
+> > > >   ERROR: memory leak, expected refcount 1 instead of 2
+> > > >
+> > > > Indeed, the missing of_node_put() call is going to be done, too lat=
+e,
+> > > > from the workqueue job execution.
+> > > >
+> > > > Introduce device_link_wait_removal() to offer a way to synchronize
+> > > > operations waiting for the end of devlink removals (i.e. end of
+> > > > workqueue jobs).
+> > > > Also, as a flushing operation is done on the workqueue, the workque=
+ue
+> > > > used is moved from a system-wide workqueue to a local one.
+> > > >
+> > > > Fixes: 80dd33cf72d1 ("drivers: base: Fix device link removal")
+> > >
+> > > No, it is not fixed by this patch.
+> >
+> > Was explicitly asked by Saravana on v1 review:
+> > https://lore.kernel.org/linux-kernel/CAGETcx9uP86EHyKJNifBMd23oCsA+KpMa=
++e36wJEEnHDve+Avg@mail.gmail.com/
+>
+> Well, I don't think this is a valid request, sorry.
+>
+> > The commit 80dd33cf72d1 introduces the workqueue and so some asynchrono=
+us tasks
+> > on removal.
+> > This patch and the next one allows to re-sync execution waiting for job=
+s in
+> > the workqueue when it is needed.
+>
+> I get this, but still, this particular individual patch by itself
+> doesn't fix anything.  Do you agree with this?
+>
+> If somebody applies this patch without the next one in the series,
+> they will not get any change in behavior, so the tag is at least
+> misleading.
+>
+> You can claim that the next patch on top of this one fixes things, so
+> adding a Fixes tag to the other patch would be fine.
+>
+> There is an explicit dependency between them (the second patch is not
+> even applicable without the first one, or if it is, the resulting code
+> won't compile anyway), but you can make a note to the maintainer that
+> they need to go to -stable together.
+>
+> > >
+> > > In fact, the only possibly observable effect of this patch is the
+> > > failure when the allocation of device_link_wq fails AFAICS.
+> > >
+> > > > Cc: stable@vger.kernel.org
+> > >
+> > > So why?
+> >
+> > Cc:stable is needed as this patch is a prerequisite of patch 2 (needed
+> > to fix the asynchronous workqueue task issue).
+>
+> Dependencies like this can be expressed in "Cc: stable" tags.
+> Personally, I'd do it like this:
+>
+> Cc: stable@vger.kernel.org # 5.13: Depends on the first patch in the seri=
+es
 
-It never will (probably). That's because it doesn't need to. You can 
-just do it with git. When you edit the commit message, then after the 
-tags, Add '---' and put whatever you want after. That works as long as 
-the commit is applied from a patch as 'git am' will drop it. 
+I'm okay with this too. I personally think it's better to list "Fixes:
+xyz" in all the patches that are needed to fix xyz (especially when
+there's no compile time dependency on earlier patches), but it's not a
+hill I'll die on. And if Rafael's suggestion is the expected norm,
+then I'll remember to follow that in the future.
 
-> Rob's suggest was not work. dt-binding check complain too long
-> if there are two dma-names = "rx", "tx". 
-
-So I'm wrong or you didn't have it correct? No way to tell with your 
-explanation. Let me give you the exact schema:
-
-dma-names:
-  minItems: 1
-  items:
-    - enum: [ rx, tx ]
-    - const: tx
-
-This says we can have 1 or 2 entries. The first entry can be either rx 
-or tx. The 2nd entry must be tx. That's what you want. However, '"tx", 
-"tx"' is allowed with the above, but we enforce items to be unique 
-elsewhere. Or I thought we did, but we relaxed '.*-names$' at some 
-point. I'm going to fix that now.
-
-Rob
+-Saravana
 
