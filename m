@@ -1,129 +1,210 @@
-Return-Path: <devicetree+bounces-48908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 738B38742B7
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 23:25:31 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 07CAD8742C6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 23:29:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 36A3E281963
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 22:25:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5F31286300
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 22:29:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F4E21B947;
-	Wed,  6 Mar 2024 22:25:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFBBF1BC39;
+	Wed,  6 Mar 2024 22:29:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="jay5a9Rf"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="F9yWS9FK"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 741CC1BF40;
-	Wed,  6 Mar 2024 22:25:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A63D1B947;
+	Wed,  6 Mar 2024 22:29:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709763927; cv=none; b=BODybQnNJT/NT2uhrOkn2whuoIrwofoEYJoTiw1vnOv6bGUHjyweE8358/zF2YPgxbm5DMEFv0kDXKs22wd5w6XskOMhLvf74Vb5jr2smB9WTA8aO1+l0hEIHGbaRLVNpAFFpaJf9WhuzKdLb26a40Yse77hfuipSMn+K7s+JtU=
+	t=1709764188; cv=none; b=bpraJOsPZLjORrP/AzG0SwT+2MTS6mVSESRN0pa77XE7NC/vR3EArcE7QpwiR/qFSlCnfycSnl/s2aKosOj6qJAwe9KFPUt/oq4+SEw2WYyp+47XamLC1RN6sYVQj5b8/F7WzaI/LwQ5r4Me+e11IkUeg84Io9g2tRAKw+xO3EY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709763927; c=relaxed/simple;
-	bh=q8tNCPbzCWi+B6Z5twqI6NjUPM2+8unGp6l5/zPPxh0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=lMEPy1F0qQaxFC58cJsiIZsjcn6gWST2bEZJVX15uUQIzEcxMAao8U8Rb1kkc2hpUiUE9A/GoR0sM+TtRWPVKiA5OWla2AAUt8sWNS2BY4C+pjSpAF5oTMrpZhZgfwXz+0K72aIoVw6I+66bUPzfZ9RYoahH2SCFu/48jue5Sew=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=jay5a9Rf; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 426LxtHT031815;
-	Wed, 6 Mar 2024 22:25:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=q8tNCPbzCWi+B6Z5twqI6NjUPM2+8unGp6l5/zPPxh0=; b=ja
-	y5a9RfeRivotbNGX9yUq3AbZW/pYWZ8UI8enkQif/FyCT5SBP2zNwTAV/i4bp1zF
-	CjxUnjnB8Je5LiGqgK1DvpmB+XBrjan0ZNy7EMQeHaYu/WN/zARW9+ih2iHdko8L
-	yC07eVFAa++UIdxt5fcBKpo+/IJ7VpJCxhgEsv3FBaI4lZvbMkU6bj8av6gZxPQW
-	KUZYLE61TpL5sx58vbkXtAxIrI5DtDR1KIeHLV9pNkKmLjb2kOaQe1wDe3DUHDrZ
-	o3bgHfX6t7s/bF6Zmsv0FsieeimcCqpsFGqYxormZ3HeFdY+aYP4IRgUVwYIiOxH
-	wX5Wam2RehUM4hwoBbcw==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wpjqf23vj-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 06 Mar 2024 22:25:14 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 426MPDaU021468
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 6 Mar 2024 22:25:13 GMT
-Received: from [10.110.86.150] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 6 Mar
- 2024 14:25:11 -0800
-Message-ID: <baa7a017-ee4b-4e8f-9bb8-1e3857e18855@quicinc.com>
-Date: Wed, 6 Mar 2024 14:25:11 -0800
+	s=arc-20240116; t=1709764188; c=relaxed/simple;
+	bh=SIExaGqBB9kZ6UJuSpJW7ZRFchpGQhlPFKL2lD+j7SE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=n4TwgGIrWLamr98Utd+U6jJ0JfzEhqXgslp35mtlZpQiOJvntJXut0+g+GmHCx9kLUyBezRe+lH4HOygrVP5uy29e1TBTlWrn/6tGXv1UtnQENyglCO2Z0B/zyNGynZb8OZ47CxCK5Uh5v9024rUy46ete9jtQMliQin+VeukBI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=F9yWS9FK; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from pendragon.ideasonboard.com (bl13-23-38.dsl.telepac.pt [85.246.23.38])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DF729524;
+	Wed,  6 Mar 2024 23:29:25 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1709764166;
+	bh=SIExaGqBB9kZ6UJuSpJW7ZRFchpGQhlPFKL2lD+j7SE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=F9yWS9FKV0sqQp1zgmz34WkokZpOuIvJ2x9cTvjOf76tkMb7fRssCrf8Jnf3kFi9E
+	 w2fUk0vS1vuIB11r1c8IdFnCqGsRAoW3Bg/5hTDuYiZ+29MFitwW2jlxHxoeJpxhBr
+	 JKvBu0V+xEfrdf7V8GbQPvetGF3fAnX3Y7iIibeE=
+Date: Thu, 7 Mar 2024 00:29:44 +0200
+From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To: Naushir Patuck <naush@raspberrypi.com>
+Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+	Linux Media Mailing List <linux-media@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	David Plowman <david.plowman@raspberrypi.com>,
+	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
+	Dave Stevenson <dave.stevenson@raspberrypi.com>,
+	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Sakari Ailus <sakari.ailus@iki.fi>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 7/9] media: dt-bindings: Add bindings for Raspberry Pi
+ PiSP Back End
+Message-ID: <20240306222944.GA17754@pendragon.ideasonboard.com>
+References: <20240223163012.300763-1-jacopo.mondi@ideasonboard.com>
+ <20240223163012.300763-8-jacopo.mondi@ideasonboard.com>
+ <20240301215857.GO30889@pendragon.ideasonboard.com>
+ <zxx7o4zssgerlfhoczbledpmjvr5q2qfzogoytqxc353bulemq@ceo2gwinda3l>
+ <CAEmqJPpopGbDJsRkOsd-ph41_Ac6H50DvcwoE0i6hWyVBr=Kkw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH RFC v2 0/4] wifi: ath10k: support board-specific firmware
- overrides
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Kalle Valo
-	<kvalo@kernel.org>
-CC: "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet
-	<edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni
-	<pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio
-	<konrad.dybcio@linaro.org>,
-        <ath10k@lists.infradead.org>, <linux-wireless@vger.kernel.org>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240306-wcn3990-firmware-path-v2-0-f89e98e71a57@linaro.org>
- <87plw7hgt4.fsf@kernel.org>
- <CAA8EJpr6fRfY5pNz6cXVTaNashqffy5_qLv9c35nkgjaDuSgyQ@mail.gmail.com>
- <87cys7hard.fsf@kernel.org>
- <CAA8EJpowyEEbXQ4YK-GQ63wZSkJDy04qJsC2uuYCXt+aJ1HSOQ@mail.gmail.com>
-From: Jeff Johnson <quic_jjohnson@quicinc.com>
-In-Reply-To: <CAA8EJpowyEEbXQ4YK-GQ63wZSkJDy04qJsC2uuYCXt+aJ1HSOQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _QXoaAqIf_VKqQDKLy0jgYj5bG4nTmdp
-X-Proofpoint-ORIG-GUID: _QXoaAqIf_VKqQDKLy0jgYj5bG4nTmdp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-06_12,2024-03-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 mlxscore=0
- clxscore=1015 phishscore=0 malwarescore=0 bulkscore=0 impostorscore=0
- mlxlogscore=999 priorityscore=1501 lowpriorityscore=0 adultscore=0
- spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403060181
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAEmqJPpopGbDJsRkOsd-ph41_Ac6H50DvcwoE0i6hWyVBr=Kkw@mail.gmail.com>
 
-On 3/6/2024 6:23 AM, Dmitry Baryshkov wrote:
-> After some thought, I'd suggest to follow approach taken by the rest
-> of qcom firmware:
-> put a default (accepted by non-secured hardware) firmware to SoC dir
-> and then put a vendor-specific firmware into subdir. If any of such
-> vendors appear, we might even implement structural fallback: first
-> look into sdm845/Google/blueline, then in sdm845/Google, sdm845/ and
-> finally just under hw1.0.
+On Wed, Mar 06, 2024 at 11:42:51AM +0000, Naushir Patuck wrote:
+> On Tue, 5 Mar 2024 at 15:25, Jacopo Mondi wrote:
+> > On Fri, Mar 01, 2024 at 11:58:57PM +0200, Laurent Pinchart wrote:
+> > > On Fri, Feb 23, 2024 at 05:30:09PM +0100, Jacopo Mondi wrote:
+> > > > Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
+> > > > signal processor.
+> > > >
+> > > > Datasheet:
+> > > > https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
+> > > >
+> > > > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > > > ---
+> > > >  .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
+> > > >  1 file changed, 63 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..d7839f32eabf
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+> > > > @@ -0,0 +1,63 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > > +%YAML 1.2
+> > > > +---
+> > > > +$id: http://devicetree.org/schemas/media/raspberrypi,pispbe.yaml#
+> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > > +
+> > > > +title: Raspberry Pi PiSP Image Signal Processor (ISP) Back End
+> > > > +
+> > > > +maintainers:
+> > > > +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
+> > > > +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
+> > > > +
+> > > > +description: |
+> > > > +  The Raspberry Pi PiSP Image Signal Processor (ISP) Back End is an image
+> > > > +  processor that fetches images in Bayer or Grayscale format from DRAM memory
+> > > > +  in tiles and produces images consumable by application.
+> > >
+> > > s/application/applications/
+> > >
+> > > > +
+> > > > +  The full ISP documentation is available at:
+> > >
+> > > s/:$//
+> > >
+> > > > +  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
+> > > > +
+> > > > +properties:
+> > > > +  compatible:
+> > > > +    items:
+> > > > +      - enum:
+> > > > +          - brcm,bcm2712-pispbe
+> > > > +      - const: raspberrypi,pispbe
+> > > > +
+> > > > +  reg:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  interrupts:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +  clocks:
+> > > > +    maxItems: 1
+> > >
+> > > As this is a SoC IP with only memory and register interfaces, I would
+> > > expect two clocks to be present, one for the register interface (AHB ?
+> > > AXI4-Lite ?) and one for the memory interfaces (AXI4 ?). While the
+> > > register interface clock is likely always enabled (in all cases that
+> > > matter in practice) in the BCM2712, I'm not sure this can be guaranteed
+> > > for future integration in different SoCs. Should we plan for this, and
+> > > either define two clocks already (with one of them being optional), or
+> > > name the single clock ?
+> > >
+> > > I know v1 named this clock "isp_be", and the name was dropped upon
+> > > Krzysztof's request, but I think naming the single clock "axi" or "aclk"
+> > > (assuming that one of them would be the right name) would be fine for
+> > > the reason explained above.
+> >
+> > The PiSP datasheet does not offer many information on the IP
+> > integration, only a small graph with the memory interfacing, but no
+> > clocks.
+> >
+> > However your reasoning makes sense, and unless someone from RPi
+> > suggests the contrary, I'll do so
+> 
+> There is only a single clock that clocks the whole BE block, so does
+> the clock need to be explicitly named?  If it does, perhaps we can
+> just use "clk" as this is not explicitly an AXI or APB clock?
 
-are there existing examples in linux-firmware?
+If there's really a single clock then I don't think it needs to be
+named. I was expecting there would be a clock for the register
+interface, separate from the processing clock.
 
-or is the whole point being only the default firmware is in
-linux-firmware and vendors would follow this pattern if they add their
-own firmware?
+> > > > +
+> > > > +  iommus:
+> > > > +    maxItems: 1
+> > > > +
+> > > > +required:
+> > > > +  - compatible
+> > > > +  - reg
+> > > > +  - interrupts
+> > > > +  - clocks
+> > > > +
+> > > > +additionalProperties: false
+> > > > +
+> > > > +examples:
+> > > > +  - |
+> > > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > > > +
+> > > > +    soc {
+> > > > +        #address-cells = <2>;
+> > > > +        #size-cells = <2>;
+> > > > +
+> > > > +        isp@880000  {
+> > > > +             compatible = "brcm,bcm2712-pispbe", "raspberrypi,pispbe";
+> > > > +             reg = <0x10 0x00880000  0x0 0x4000>;
+> > >
+> > > Double space, I don't know if that's on purpose.
+> >
+> > Ofc it was not.
+> >
+> > > > +             interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
+> > > > +             clocks = <&firmware_clocks 7>;
+> > > > +             iommus = <&iommu2>;
+> > > > +        };
+> > > > +    };
 
+-- 
+Regards,
+
+Laurent Pinchart
 
