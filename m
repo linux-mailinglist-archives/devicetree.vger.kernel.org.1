@@ -1,207 +1,226 @@
-Return-Path: <devicetree+bounces-48679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF108730AB
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 09:26:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 343198730C4
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 09:32:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2A16B27964
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:26:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8EC9FB2141F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 08:32:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C686B5D48F;
-	Wed,  6 Mar 2024 08:26:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5EEBA5D48E;
+	Wed,  6 Mar 2024 08:31:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qu7BE/xn"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dPhwLhU0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com [209.85.208.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F20035D903
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 08:26:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 86E802374A;
+	Wed,  6 Mar 2024 08:31:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709713587; cv=none; b=feBOARdoJCpHzoVVhOtm9i8lFFO74BpIKDDIGbujMYYO6pmPPNslMJoDciMgsQTfGa3vwCCJ8XDRNkQOlcNNKKqPXxqQx3s1qTwaXlT8XLxJCB6Kh1gVn1H+Ss3QOOBTlSPTw96vFSccVuesssWcVdsbqMD+bnyrWZe8kH4+8EM=
+	t=1709713919; cv=none; b=p0WqknyWE438g3yzBuFiNu3ytK2rdcbTNHHSye5VwKbOhEM4WfjIb/nSb/ZkG6P5hINk7ZGtCIo12C2fk4qu+A0EJ0eLeTIt8qR+xHRLNNdi013Ex/Iy0SucyHraDuqxi/C4eHNuvb01NrEK/rlted3kf9os4H7d7qnFjCaZ7QQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709713587; c=relaxed/simple;
-	bh=gsH3n3yI/lxO762lTjchDuIQex0GoxjaEG9Gr77frzE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OFcdooJZktKKM2uBKsGrzhXRJ3XRSYoIpTamo6aYP/vv7n1HaHJzq6MHAEkXnMbvCWWVML8dPyMNR8hDOvwXYs9myjthnoXc0eEA+fJbEuCIjxYbo0p4HtkKkc0Q1dFYijwFToJs08uR2icGs3NFcxe3u7nq/6a2LqOrQBPLt10=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qu7BE/xn; arc=none smtp.client-ip=209.85.208.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f44.google.com with SMTP id 4fb4d7f45d1cf-567bac94719so1304687a12.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 00:26:25 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709713584; x=1710318384; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=j79lhBhLMZSftn69gDeo1JAX+y8LL7g1e7xSUjqQrRM=;
-        b=qu7BE/xn4Vd727iT82nKb5kOASOBZ9GDzS9DgEWB1mtJAPqOWjmI+K6go9KAahd7DE
-         7i86ilPghRmui9pCbfEG68nKieQxQUYdpXpHGxuHoeudgLX7dB9Jh+vu/TLXrZ29SVPt
-         cWx2uAsylMm5XQi0pshwzstDCfKd2sVJsDA54mJcRO5RiNxQlhdkGDJrCxMhDZpVpddj
-         v67ohasAjJkflyr/dUmktU8geSJh+8DvKarG28H02sRCtwSE6BA3gNcpwpPVz9GuVtCO
-         PZFw++pjN4z8vvCjBtd46OoIem6AmFMdWECFrfyWfXBOQXiNT2I/IoB7d2Tq60CFpH0V
-         OL7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709713584; x=1710318384;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=j79lhBhLMZSftn69gDeo1JAX+y8LL7g1e7xSUjqQrRM=;
-        b=gAp67ASXQLbm5AxH/HKIPkw6vHirvFDyQFY95EPNMO0AF6+LEpLe9Q3pgHew7PJexw
-         I7Llus/fow5EKc7930vH0NQT8odt+ED3KFLSRWGfcih9wN2duLHN6L0XmDJ8C6afnfTp
-         XqpLCSshwc+GxI1cAk8nBh2o3ons1qYU0cdyZlS+wOPSD0iAWsI9K28NHXjMTDpW+UrS
-         STL6lzE6Lx9OMwP/leWLwgq/bpZxIkqkmhz8ktJHNeVtklDY+PSdmMYyTt8PsxVxaHOG
-         5ObbKv54DolPfWl+3g4SR0gIylHwn7uUjATr+XN+qD2E5LOH1gW9WnY1+qQhHkj+skIu
-         8BXA==
-X-Forwarded-Encrypted: i=1; AJvYcCUH5oQkkp8WYZlLBUjuqu+hPcG2kWuufG0ZOtfNmv9VjU6/6EbB7FNPDE09lt/ZsXsi/4G2W3IbskVmFoUg9yVe4CbBz5NOxNzkYQ==
-X-Gm-Message-State: AOJu0YzS4WgxhbuNBPzPG6MKAfFVRkW/2PMASuCOaZZpFXGuxowchIuo
-	W0vh+dTob7Mk0heND8wIBUs43Hdr/uJjEdVUIbUs1YXmC2dMvRyvTyS35/SetDk=
-X-Google-Smtp-Source: AGHT+IEBWCBfvpLswYzaOHQNYLxu87yZ8Cwo61Trhy8hcJ21FIa7c8z+gp9vg7AcU4hU6x5M4a8rNw==
-X-Received: by 2002:a17:906:4148:b0:a44:f89:a04e with SMTP id l8-20020a170906414800b00a440f89a04emr10833488ejk.35.1709713584264;
-        Wed, 06 Mar 2024 00:26:24 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id an3-20020a17090656c300b00a451ef20743sm3693089ejc.197.2024.03.06.00.26.22
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Mar 2024 00:26:23 -0800 (PST)
-Message-ID: <7ccb838b-f548-4ca4-9859-051689935eb7@linaro.org>
-Date: Wed, 6 Mar 2024 09:26:21 +0100
+	s=arc-20240116; t=1709713919; c=relaxed/simple;
+	bh=vTXlzKfVuR7thkMypOhy/ZsOpYaW4JBviEC5G7CKrTw=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=JqyzJvJXfJHFmQxIDkUo+Qw+23FmJW1GsMUsmefw2+lRWbmByKW3DY5ENV5PcuMBsU6/05N55niPwf+hpzcWQ8PhxvNwUNR+nlX6vS+5t7XJnieoN7b9q9CiVYcASFP/ROwnlT5KIUl9t1KW6mZArXliGMG2nvdI8x3cD+g+154=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dPhwLhU0; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4265xoNr020249;
+	Wed, 6 Mar 2024 08:31:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=q86A9onL0rmqEe1iKRvRqZ3S28SROOVGnLJLR6S1sK8=; b=dP
+	hwLhU0DBVyiGKqk04VPPE3RpjYgMykQp1nBuELT+S39/R73q0nIH/igEsvThZiSO
+	75C4Mxr3MajWXQ/bmUYgAGTHkN+esMTKFLrzEp3w0ym+7y72zwkSM65fm6hchiSg
+	e2pOVMioIX1Ak+XlEEPIareL1RyLu8py6MoQ01AbalBFVF6IereriEUcUU583Bmo
+	wNc4o4sBM0R2gYi1NF9eelPoi0QmvuOy3YXOnemh9crMlyJVp0t+U3a4V8nG2Qiv
+	/5W3KyoPcxgx6XOREDD4eLbqS4GpAH9H9KlA0m/Bk9VjggbhZe2MtY00YpXpXb/Q
+	Rnjud3N7N3H7J9xb3yEQ==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wpgdsrhht-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 06 Mar 2024 08:31:20 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 4268VJIl012146
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 6 Mar 2024 08:31:19 GMT
+Received: from [10.218.19.46] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 6 Mar
+ 2024 00:31:13 -0800
+Message-ID: <83fd1995-a06e-b76a-d91b-de1c1a6ab0ea@quicinc.com>
+Date: Wed, 6 Mar 2024 14:00:56 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/4] dt-bindings: interconnect: add clock property to
- enable QOS on SC7280
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 4/5] clk: qcom: Add camera clock controller driver for
+ SM8150
 Content-Language: en-US
-To: Odelu Kukatla <quic_okukatla@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Georgi Djakov <djakov@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Kees Cook <keescook@chromium.org>, cros-qcom-dts-watchers@chromium.org,
- "Gustavo A . R . Silva" <gustavoars@kernel.org>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-hardening@vger.kernel.org, quic_rlaggysh@quicinc.com,
- quic_mdtipton@quicinc.com
-References: <20240306073016.2163-1-quic_okukatla@quicinc.com>
- <20240306073016.2163-4-quic_okukatla@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240306073016.2163-4-quic_okukatla@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Michael
+ Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: Stephen Boyd <sboyd@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
+        "Imran
+ Shaik" <quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240229-camcc-support-sm8150-v1-0-8c28c6c87990@quicinc.com>
+ <20240229-camcc-support-sm8150-v1-4-8c28c6c87990@quicinc.com>
+ <18567989-fb60-49ae-92e6-94e1bc2fa1c7@linaro.org>
+From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+In-Reply-To: <18567989-fb60-49ae-92e6-94e1bc2fa1c7@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 488fqkA63x5DW3xa_wvVr61O3_z7-kd_
+X-Proofpoint-GUID: 488fqkA63x5DW3xa_wvVr61O3_z7-kd_
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-06_04,2024-03-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1011 malwarescore=0
+ lowpriorityscore=0 mlxlogscore=999 impostorscore=0 mlxscore=0 spamscore=0
+ adultscore=0 priorityscore=1501 phishscore=0 suspectscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
+ definitions=main-2403060067
 
-On 06/03/2024 08:30, Odelu Kukatla wrote:
-> Added clock property to enable clocks required for accessing
-> qos registers.
-> 
-> Signed-off-by: Odelu Kukatla <quic_okukatla@quicinc.com>
+
+On 3/2/2024 9:43 PM, Bryan O'Donoghue wrote:
+> On 29/02/2024 5:38 a.m., Satya Priya Kakitapalli wrote:
+>> Add support for the camera clock controller for camera clients
+>> to be able to request for camcc clocks on SM8150 platform.
+>>
+>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+>> ---
+>
+>> +static int cam_cc_sm8150_probe(struct platform_device *pdev)
+>> +{
+>> +    struct regmap *regmap;
+>> +    int ret;
+>> +
+>> +    ret = devm_pm_runtime_enable(&pdev->dev);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    ret = pm_runtime_resume_and_get(&pdev->dev);
+>> +    if (ret)
+>> +        return ret;
+>> +
+>> +    regmap = qcom_cc_map(pdev, &cam_cc_sm8150_desc);
+>> +    if (IS_ERR(regmap)) {
+>> +        pm_runtime_put(&pdev->dev);
+>> +        return PTR_ERR(regmap);
+>> +    }
+>> +
+>> +    clk_trion_pll_configure(&cam_cc_pll0, regmap, &cam_cc_pll0_config);
+>> +    clk_trion_pll_configure(&cam_cc_pll1, regmap, &cam_cc_pll1_config);
+>> +    clk_regera_pll_configure(&cam_cc_pll2, regmap, 
+>> &cam_cc_pll2_config);
+>> +    clk_trion_pll_configure(&cam_cc_pll3, regmap, &cam_cc_pll3_config);
+>> +    clk_trion_pll_configure(&cam_cc_pll4, regmap, &cam_cc_pll4_config);
+>> +
+>> +    /* Keep the critical clock always-on */
+>> +    qcom_branch_set_clk_en(regmap, 0xc1e4); /* cam_cc_gdsc_clk */
+>
+> Does this clock need to be specified this way ?
+>
+
+Yes, we need this clock to be always on.
+
+
+> drivers/clk/qcom/camcc-sc8280xp.c::camcc_gdsc_clk specifies the gdsc 
+> clock as a shared op clock.
+>
+> Actually it looks to be register compatible, please try defining 
+> titan_top_gdsc as per the example in 8280xp.
+>> +
+>> +    ret = qcom_cc_really_probe(pdev, &cam_cc_sm8150_desc, regmap);
+>> +
+>> +    pm_runtime_put(&pdev->dev);
+>> +
+>> +    return ret;
+>> +}
+>
+> So this is a pattern we keep repeating in the clock probe() functions 
+> which I am writing a series to address. There's no need to continue to 
+> replicate the bug in new code though.
+>
+> Only switch on always-on clocks if probe succeeds.
+>
+>     ret = qcom_cc_really_probe(pdev, &cam_cc_sm8150_desc, regmap);
+>     if (ret)
+>         goto probe_err;
+>
+>     qcom_branch_set_clk_en(regmap, 0xc1e4); /* cam_cc_gdsc_clk */
+>
+>     pm_runtime_put(&pdev->dev);
+>
+>     return 0;
+>
+> probe_err:
+>     pm_runtime_put_sync(&pdev->dev);
+>
+> Alternatively switch on the always-on clocks before the really_probe() 
+> but then roll back in a probe_err: goto
+>
+> probe_err:
+>     remap_bits_update(regmap, 0xc1e4, BIT(0), 0);
+>     pm_runtime_put_sync(&pdev->dev);
+>
+> There may be corner cases where always-on has to happen before 
+> really_probe() I suppose but as a general pattern the above should be 
+> how we go.
+>
+> Anyway I suspect the right thing to do is to define a 
+> titan_top_gdsc_clk with shared ops to "park" the GDSC clock to 19.2 
+> MHz instead of turning it off.
+>
+> You can get rid of the hard-coded always-on and indeed represent the 
+> clock in /sysfs - which is preferable IMO to just whacking registers 
+> to keep clocks always-on in probe anyway.
+>
+> Please try to define the titan_top_gdsc_clk as a shared_ops clock 
+> instead of hard coding to always on.
+>
+
+Defining the gdsc clk allows consumers to control it, we do not want 
+this clock to be disabled/controlled from consumers. Hence it is better 
+to not model this clock and just keep it always on from probe.
+
+
+> If that doesn't work for some reason, then please fix your always-on 
+> logic in probe() to only make the clock fixed on, if really_probe() 
+> succeeds.
+>
+
+Sure I'll do this.
+
+
 > ---
->  .../interconnect/qcom,sc7280-rpmh.yaml        | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
-> index b135597d9489..758a6e924037 100644
-> --- a/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
-> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sc7280-rpmh.yaml
-> @@ -53,10 +53,50 @@ allOf:
->        required:
->          - reg
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sc7280-aggre1-noc
-> +    then:
-> +      properties:
-> +        clocks:
-
-All properties must be defined in top-level.
-
-> +          items:
-> +            - description: aggre UFS PHY AXI clock
-> +            - description: aggre USB3 PRIM AXI clock
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sc7280-aggre2-noc
-> +    then:
-> +      properties:
-> +        clocks:
-> +          items:
-> +            - description: RPMH CC IPA clock
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sc7280-aggre1-noc
-> +              - qcom,sc7280-aggre2-noc
-> +    then:
-> +      required:
-> +        - clocks
-
-That's an ABI break without reason. This is a stable and already used
-platform, so clear NAK.
-
-Best regards,
-Krzysztof
-
+> bod
 
