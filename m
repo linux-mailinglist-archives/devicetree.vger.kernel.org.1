@@ -1,208 +1,128 @@
-Return-Path: <devicetree+bounces-48746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11EDF873524
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 11:58:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9EA45873535
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 11:59:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 93AF31F25F2D
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 10:57:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 545651F23A4F
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 10:59:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4D728762C5;
-	Wed,  6 Mar 2024 10:57:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E9FA612D0;
+	Wed,  6 Mar 2024 10:59:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ouDETjdH"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="OLNoQeRd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+Received: from mail-ej1-f51.google.com (mail-ej1-f51.google.com [209.85.218.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FDE476029
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 10:57:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 904DE6089A;
+	Wed,  6 Mar 2024 10:59:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709722636; cv=none; b=lvoUEk1l8fgLRVI/OeVI1zPZ1mLSABlHPaQC1h+B1Xw99qCF/OPlg+CBvp4CpPun8gabBiPgVbAeHe9WEO1CSEdazKobNe+4VBorOMZ7nYGYhg/2JpLcGJ7g/5cvgrmRX6kfg3JUSZdUxeMSR0TDZ+XxVnN6vN4d/6CaTM/s118=
+	t=1709722744; cv=none; b=c3R6CYVT+/WlUndbwYRpuM5v6/1QIt6XWbTY0axOgQkz8OrLrtWe4rTGd5ls+InLu3mtRNUzrTdqKCdAH51649ZyDN0h+ROl7lNrJj9/dRejIGPjyjWsj/9o/MgnpTCn6oHNdJc4h/fsgnBuH9TyODr51sWnScbajenFXQmFGvA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709722636; c=relaxed/simple;
-	bh=PxQkKrOPnjUbGpSomDRnlUhmSSi0mYecg9zRaMFuJAc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=gagmhO6OHxmO7gcIekCW8VRy0iG7Yj/Z0UXdsYYi0d/bDG+XqLhkIiVtKeCWziF7y1D2vDC8iY9ptZfVBrRdEoe8IcTFOrxofuVIGomptgOkio9ptNR8IggelfIzBkBzbbbb9kX2HZkrzwxaeUC5gPK3r83dY09OYsDV6r5m9/I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ouDETjdH; arc=none smtp.client-ip=209.85.221.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-4d35ab44ba9so1252067e0c.1
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 02:57:14 -0800 (PST)
+	s=arc-20240116; t=1709722744; c=relaxed/simple;
+	bh=9irRIG0KFERmL3sNKB1GcQ9JLqgiQH8nptVh6vPu5mg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VliGbM4R5bT6kmJCKDGBFN9zRmNdu1Yqhqk6Nx9aBLG9QJDlYT32/zn14V/HzNvDuBbpZlgo3t4wK68eSAr+aRXI6kCAcKf8AbzrBAuTxMU2zhIzrCKOwe0EH3zHqYNSNhXvXCn7FYI1Uujh9By4j1sgRjnZ42Yx04rB7KQtKno=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=OLNoQeRd; arc=none smtp.client-ip=209.85.218.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ej1-f51.google.com with SMTP id a640c23a62f3a-a45c006ab82so48093266b.3;
+        Wed, 06 Mar 2024 02:59:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709722633; x=1710327433; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=gxUxwGg2SWOaJy7LQ4z09jEYeKP2bAj05h4IqVt59sk=;
-        b=ouDETjdHBqtnsTJCqtwv8E6vrh8r6IeTDMEduzVTtzH+dZplGsXQZuNGPXrMRkagwW
-         66dqY4Z2D8GDGpoYPeYL985Ingvk2Olp8K1+J46kRc0f3iTe5RV45WtgUI8YuwvFh487
-         FSWP1PLwaOkHb4pIb5O3irJDeKVBNJcH8wuV6umyNOFBnhTdme6JnK8N/mNOOD3siiUq
-         OEd2nsT4cwGyeZ01Fg15n+wCW1hXxVCOLP5/QXDnrL/ochDBnVqA+6kNBk7Ig+mfGmUu
-         +jZZuXxv91bNC7/wYCM6mS7QH88BTV+ydtpMdOE/WYQAfyA/Pikd/YCVJ4Zg+50s2N6Z
-         NWZg==
+        d=gmail.com; s=20230601; t=1709722741; x=1710327541; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e5Z0N03v/ohpTjWPfQRgP/mEBY6xf/mkdG3hCpH/bMQ=;
+        b=OLNoQeRdmYFCi95vmYODy9EeMtLhKh0hrbhqiLnsRjh2hLjXjak/QSF719cR1lKRdk
+         tsSHBcKiLOjjpxLB6ZzNfEA8mzVvDsjojSW5/qb6LiUgwxrXR8zubekDPJH3k97hxlGi
+         i1d2l1p+u9h+8ydVAxPPWM2lSGXmKUxmeYOXI+PcmhqR75HeC55qSV4wfjDKqIVRu/9L
+         e/ISVoOd8Jq9J60xa+XUHAS0LXD/2ZVXdcJCxwtXltt4oFGUUeE2YR1WcqOPSEkZfLrs
+         L6H8zEMkP32OrKmTe10FlO896R/9TVPD6Mkx8grxndR13SXpOV/AsDerLtEhksXQvmzo
+         aEng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709722633; x=1710327433;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gxUxwGg2SWOaJy7LQ4z09jEYeKP2bAj05h4IqVt59sk=;
-        b=UzMSWH0bbkrOUWMM7Y3VmcN8IxISh7Ifl3wbdBx7LqvZ9cC0bmYPxWeM/5pWSXyrad
-         V1oyaTOXN3R4p2s0G8SRwtpNCB45NWzZB/a5GJYiJCn1GHATdJ1iAS0CfoAJvSQakFgM
-         xa9L2eZA/+5vGADDymHpv6vuy1H5RGj0ZQN5uFg0j+mClcQy8VVO86PtcrgzE4Ra4eop
-         gJ/pHc5aB6XTURHzR6/Q29xot5eegoBzsZvfCvOLR3AY0zZQMJdE6Sg8FyDLiagS7KM6
-         8phkgckxVu4M8vCwrf2bWptIqIjvUXh25MrYoSLrjOsbcXmkb86jVlumJeThGek8kADs
-         K7KA==
-X-Forwarded-Encrypted: i=1; AJvYcCXx3CbRVRlJsS/b+up6YFiVCKKmNgC/P3eQoZv4TdzMhoSysQB1zYbHp8JYH+pSn+GRs62LmOF5JRu+V7XzQAh5oSFpvd03nrKzFA==
-X-Gm-Message-State: AOJu0YwjXr7MXB42EDExNBthZX+HdSFnoUcQFkKm7a+jZyRZf7WU88Yq
-	gg0JDyK+LAD2SJeT1oZLSNoU55InzawHf9CGfWckaAwzR+xKOSm95FiMgWKjfg==
-X-Google-Smtp-Source: AGHT+IFG00jwW6iyWhCp8D8dFbgwPMCEu6TNuD/BYBbQrLh5jn3bbhGke775gAlxZI9UdiYP+c0xnw==
-X-Received: by 2002:a05:6122:d90:b0:4d3:34b1:7211 with SMTP id bc16-20020a0561220d9000b004d334b17211mr4780807vkb.3.1709722632787;
-        Wed, 06 Mar 2024 02:57:12 -0800 (PST)
-Received: from thinkpad ([117.248.1.194])
-        by smtp.gmail.com with ESMTPSA id l4-20020ac84a84000000b0042ee49dd434sm3619050qtq.29.2024.03.06.02.57.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 06 Mar 2024 02:57:12 -0800 (PST)
-Date: Wed, 6 Mar 2024 16:27:04 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Johan Hovold <johan+linaro@kernel.org>
-Cc: Bjorn Helgaas <bhelgaas@google.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: Re: [PATCH v4 3/5] PCI: qcom: Disable ASPM L0s for sc8280xp, sa8540p
- and sa8295p
-Message-ID: <20240306105704.GE4129@thinkpad>
-References: <20240306095651.4551-1-johan+linaro@kernel.org>
- <20240306095651.4551-4-johan+linaro@kernel.org>
+        d=1e100.net; s=20230601; t=1709722741; x=1710327541;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=e5Z0N03v/ohpTjWPfQRgP/mEBY6xf/mkdG3hCpH/bMQ=;
+        b=nEF++5i84TkhByeDUxp7jJyyp+Ustq+bp7bNoIDGIaugWvsATdv5DEyVr5QzKNyzAP
+         X+wH3uFxBheeYjYKSFmp0iTgCfUt9e8YXNyp50J1W4pp4+4AHfW2cO1GjTfNc+4hRJt6
+         whnzM/n/czQZaqrkrDhJWdaWPPz+n7U0+yegBmelQbbQElyo6Ni2BzxENI1jfeNS/T0t
+         5I/TlN07MxaT44CKHP1w7K3dkmYscGtygaOGcQYmhDyKo2FwWWeC55TI3lNl6+Bgbz/l
+         Ans4aHOnXylX4svykQc1lxgURSdqqx9GxI4YPq+W8IhrPjO+EGuMLyROLGaiaubYjQEp
+         08/g==
+X-Forwarded-Encrypted: i=1; AJvYcCWF4rqL9eNRaFhc75g9Wke9kSkA+l65bvtCy1FhCfNjjcJ6P5zzLXNIlfBesmdS4//BVGZ7wwTXFHnibu3sFKBcoYjFkl2l1uAaGBdVDWPS6OBcywWFLLzFwKh3tpGS0pKJg77nQDO1rHz9rk2w9kLl3X4Fbo1EfSO2R1Bwz9fRxd0NlQQ=
+X-Gm-Message-State: AOJu0YxI6P/JbQCHcGd6CnDBetaZu2d0Aq4UGmJJHotAK9pUPo5PPtX4
+	ujM6m93VlIRf5hlyomoHXLmQQQR4ODygn9gOUfGRhKGu7wqTvzycmZD3yicGZe3sJW8sguqLTNm
+	odM0LjDSIoIZM4oRxvEh35TPGZyo=
+X-Google-Smtp-Source: AGHT+IFR/RKGlCn3Fh34/aH2tzfQC9FgfHtJe362qDydqHz8e5ZEJGTvks01Qy+NFLTjVu8vZdi1vIdnJoYGzqQGu6I=
+X-Received: by 2002:a17:907:20b9:b0:a43:6cd2:7a27 with SMTP id
+ pw25-20020a17090720b900b00a436cd27a27mr9255436ejb.19.1709722740894; Wed, 06
+ Mar 2024 02:59:00 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240306095651.4551-4-johan+linaro@kernel.org>
+References: <20240305035853.916430-1-chris.packham@alliedtelesis.co.nz>
+ <20240305035853.916430-2-chris.packham@alliedtelesis.co.nz>
+ <CAMuHMdXF+12PHa5A7WeyPMfvsGcJN13WaPuCbTmJU52Huq=osA@mail.gmail.com>
+ <Zecy1RsSfpmH-cvG@smile.fi.intel.com> <216eb75d-5384-4654-9e86-4a9856494ad0@alliedtelesis.co.nz>
+In-Reply-To: <216eb75d-5384-4654-9e86-4a9856494ad0@alliedtelesis.co.nz>
+From: Andy Shevchenko <andy.shevchenko@gmail.com>
+Date: Wed, 6 Mar 2024 12:58:24 +0200
+Message-ID: <CAHp75Vdi8K2mf2JSCG=e4vX+18CuNyaH-U5Q8-NGvihhyrJBJg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/3] auxdisplay: Add 7-segment LED display driver
+To: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+Cc: Andy Shevchenko <andy@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>, 
+	"robh+dt@kernel.org" <robh+dt@kernel.org>, 
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>, 
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "andrew@lunn.ch" <andrew@lunn.ch>, 
+	"gregory.clement@bootlin.com" <gregory.clement@bootlin.com>, 
+	"sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>, "lee@kernel.org" <lee@kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>, 
+	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 06, 2024 at 10:56:49AM +0100, Johan Hovold wrote:
-> Commit 9f4f3dfad8cf ("PCI: qcom: Enable ASPM for platforms supporting
-> 1.9.0 ops") started enabling ASPM unconditionally when the hardware
-> claims to support it. This triggers Correctable Errors for some PCIe
-> devices on machines like the Lenovo ThinkPad X13s when L0s is enabled,
-> which could indicate an incomplete driver ASPM implementation or that
-> the hardware does in fact not support L0s.
-> 
-> This has now been confirmed by Qualcomm to be the case for sc8280xp and
-> its derivate platforms (e.g. sa8540p and sa8295p). Specifically, the PHY
-> configuration used on these platforms is not correctly tuned for L0s and
-> there is currently no updated configuration available.
-> 
-> Add a new flag to the driver configuration data and use it to disable
-> ASPM L0s on sc8280xp, sa8540p and sa8295p for now.
-> 
-> Note that only the 1.9.0 ops enable ASPM currently.
-> 
-> Fixes: 9f4f3dfad8cf ("PCI: qcom: Enable ASPM for platforms supporting 1.9.0 ops")
-> Cc: stable@vger.kernel.org      # 6.7
-> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+On Wed, Mar 6, 2024 at 12:34=E2=80=AFAM Chris Packham
+<Chris.Packham@alliedtelesis.co.nz> wrote:
+> On 6/03/24 03:57, Andy Shevchenko wrote:
+> > On Tue, Mar 05, 2024 at 09:23:07AM +0100, Geert Uytterhoeven wrote:
+> >> On Tue, Mar 5, 2024 at 4:59=E2=80=AFAM Chris Packham
+> >> <chris.packham@alliedtelesis.co.nz> wrote:
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+...
 
-- Mani
+> >>> +       priv->segment_gpios =3D devm_gpiod_get_array(dev, "segment", =
+GPIOD_OUT_LOW);
+> >>> +       if (IS_ERR(priv->segment_gpios))
+> >>> +               return PTR_ERR(priv->segment_gpios);
+> >> This needs some validation of priv->segment_gpios->ndescs, else the
+> >> call to gpiod_set_array_value_cansleep() in seg_led_update() may
+> >> trigger an out-of-bounds access of the values bitmap.
+> > Alternatively we can call gpiod_count() beforehand and check its result=
+.
+> Unless there are any objections I think I'll go with the ndescs check as
+> it'll be easier to update to the subnode style in the future.
 
-> ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 31 ++++++++++++++++++++++++--
->  1 file changed, 29 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index 2ce2a3bd932b..9f83a1611a20 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -229,6 +229,7 @@ struct qcom_pcie_ops {
->  
->  struct qcom_pcie_cfg {
->  	const struct qcom_pcie_ops *ops;
-> +	bool no_l0s;
->  };
->  
->  struct qcom_pcie {
-> @@ -272,6 +273,26 @@ static int qcom_pcie_start_link(struct dw_pcie *pci)
->  	return 0;
->  }
->  
-> +static void qcom_pcie_clear_aspm_l0s(struct dw_pcie *pci)
-> +{
-> +	struct qcom_pcie *pcie = to_qcom_pcie(pci);
-> +	u16 offset;
-> +	u32 val;
-> +
-> +	if (!pcie->cfg->no_l0s)
-> +		return;
-> +
-> +	offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> +
-> +	dw_pcie_dbi_ro_wr_en(pci);
-> +
-> +	val = readl(pci->dbi_base + offset + PCI_EXP_LNKCAP);
-> +	val &= ~PCI_EXP_LNKCAP_ASPM_L0S;
-> +	writel(val, pci->dbi_base + offset + PCI_EXP_LNKCAP);
-> +
-> +	dw_pcie_dbi_ro_wr_dis(pci);
-> +}
-> +
->  static void qcom_pcie_clear_hpc(struct dw_pcie *pci)
->  {
->  	u16 offset = dw_pcie_find_capability(pci, PCI_CAP_ID_EXP);
-> @@ -961,6 +982,7 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
->  
->  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
->  {
-> +	qcom_pcie_clear_aspm_l0s(pcie->pci);
->  	qcom_pcie_clear_hpc(pcie->pci);
->  
->  	return 0;
-> @@ -1358,6 +1380,11 @@ static const struct qcom_pcie_cfg cfg_2_9_0 = {
->  	.ops = &ops_2_9_0,
->  };
->  
-> +static const struct qcom_pcie_cfg cfg_sc8280xp = {
-> +	.ops = &ops_1_9_0,
-> +	.no_l0s = true,
-> +};
-> +
->  static const struct dw_pcie_ops dw_pcie_ops = {
->  	.link_up = qcom_pcie_link_up,
->  	.start_link = qcom_pcie_start_link,
-> @@ -1629,11 +1656,11 @@ static const struct of_device_id qcom_pcie_match[] = {
->  	{ .compatible = "qcom,pcie-ipq8074-gen3", .data = &cfg_2_9_0 },
->  	{ .compatible = "qcom,pcie-msm8996", .data = &cfg_2_3_2 },
->  	{ .compatible = "qcom,pcie-qcs404", .data = &cfg_2_4_0 },
-> -	{ .compatible = "qcom,pcie-sa8540p", .data = &cfg_1_9_0 },
-> +	{ .compatible = "qcom,pcie-sa8540p", .data = &cfg_sc8280xp },
->  	{ .compatible = "qcom,pcie-sa8775p", .data = &cfg_1_9_0},
->  	{ .compatible = "qcom,pcie-sc7280", .data = &cfg_1_9_0 },
->  	{ .compatible = "qcom,pcie-sc8180x", .data = &cfg_1_9_0 },
-> -	{ .compatible = "qcom,pcie-sc8280xp", .data = &cfg_1_9_0 },
-> +	{ .compatible = "qcom,pcie-sc8280xp", .data = &cfg_sc8280xp },
->  	{ .compatible = "qcom,pcie-sdm845", .data = &cfg_2_7_0 },
->  	{ .compatible = "qcom,pcie-sdx55", .data = &cfg_1_9_0 },
->  	{ .compatible = "qcom,pcie-sm8150", .data = &cfg_1_9_0 },
-> -- 
-> 2.43.0
-> 
+Either works for me.
 
--- 
-மணிவண்ணன் சதாசிவம்
+> It does
+> mean there will be some extra allocations/frees (handled via the devm_
+> APIs) in the error case.
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
 
