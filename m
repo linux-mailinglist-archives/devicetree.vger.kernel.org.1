@@ -1,63 +1,64 @@
-Return-Path: <devicetree+bounces-48869-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48870-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF3F0873FC4
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:39:47 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 02847873FE6
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 19:45:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 661D01F22D83
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 18:39:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3400C1C2263E
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 18:45:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7D7A13BAE9;
-	Wed,  6 Mar 2024 18:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C671137909;
+	Wed,  6 Mar 2024 18:45:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qeeSyNqI"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WYwSno0V"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A844136647;
-	Wed,  6 Mar 2024 18:38:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5A8D15FDCC;
+	Wed,  6 Mar 2024 18:45:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709750334; cv=none; b=E7lntxn6rVlV2gPbOY0NWt/UMbgjGZiB8hKMFNh5J3UjzCX9DP4VtUBgvbV9q4JX6sAiNBwXtqDqPYqKSBfqqP39Dkl6LcDI6PSqFaKKqjzwmpgTtl8N+GP7qSGuOw+eXSuFsP/WPSCIBZvq1G/RgmitRJAGFIn/XKE1fvpFGRU=
+	t=1709750719; cv=none; b=ZJ5647bJGByT+EmKAzMvYqReq4Q0od+OS6iDQR8mkh2ZNm5+skoGlzZmk1CT+VVXynEV0w08Fw2QHEPNQkQnQgXD2QooQKpv9OFN8lIfx0DfLiBRJe6VT7zWddoj6A1dET8ANGapEuKzQI4HuO9evT64XdWAk7V5Ffv4G0+Zkbs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709750334; c=relaxed/simple;
-	bh=kfD++rq2txCqw0jAqPOlnxNi2nkm6gneXpkvEXoxrAk=;
+	s=arc-20240116; t=1709750719; c=relaxed/simple;
+	bh=7CP+A26tMm7Rg/McJFoxPIsRAv/dhgwhokRlKJJDh7A=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PnNbbcJ/7Rl8lLgRHIkD8NQ2yXps+hA7ns3DbD0WskQos5H/KwwwnqBwmRgDXdwk9b8fz6jxZc0HGms26jdUupZ43yOh5etzEYTQG2A8QJlh1/1ka3UGh4BDrMOUt+AUMN5RtMs8apuaWf1t10sfJgJO/u0ZBMe+pVsHMnY0g9k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qeeSyNqI; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D3D09C433C7;
-	Wed,  6 Mar 2024 18:38:51 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=O2i+KjWodf8WPwfl0HHgbwBH3V6uUPXtmIZ2ymDv7cgBshZJU3wP910r9DpelcnO9L+cYFb2z3B8htgsmL9wlYzuv+lETi1h5YxDDwyHqdFK6V8/V6oO5SWzvREPo8Ta4+gcVVvZx/n0ApeKmb4LqCqstn90b6BjEX24LyoVNLI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WYwSno0V; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CBD37C433F1;
+	Wed,  6 Mar 2024 18:45:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709750334;
-	bh=kfD++rq2txCqw0jAqPOlnxNi2nkm6gneXpkvEXoxrAk=;
+	s=k20201202; t=1709750718;
+	bh=7CP+A26tMm7Rg/McJFoxPIsRAv/dhgwhokRlKJJDh7A=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=qeeSyNqIsZglrPShzoRXGvqrWjYwNXuGG1XNHIihnHSQrAyhxRQifxYQ04SGBjMJ/
-	 JT8vOv/gtDAuOEXIlYAHCWww9liyp9lTK5oB0rRZyfcWAoikCchzzAiVnznaKKptPi
-	 u/WNUiXTeVcTkmif7yMA91ZNU0VSx1s7W+SQrtIgKy9irffjompJHfcgRhvieOAYKX
-	 xfh717jwh3mm7uKEryTx8BZbEaRpWyGC2Bt8VJv2DD0Zt09uzdg9OKjDhePfO4OITw
-	 NT+B9Yo70X+MZmSBHaprCUrw7YkPpmmJ9TzS7CLPkx9wskL8oqFnbbREX6b8Mbv9Un
-	 rrjUEJHKk2Qww==
-Date: Wed, 6 Mar 2024 18:38:49 +0000
+	b=WYwSno0VcyP2eJcPt9fDzb7A1sk+TV/0ju9H33p/7aSBi8RntoPqX68fZvNOHstAr
+	 XfImv0tjdAICPJNdwMKFMoIEN0GfdQPErxzOvyRrpBOYvR6JhN3fWlPqiSbv4OkxAe
+	 9c5dZ3dzsxHOfPQZmtgxqch3xwxrb/8pZZMztKjmM3Y1Xm94fe89qxFaQ6yZenKWIU
+	 1t9k3xhkOkg3YPCgZoUu+JwS6XPT4/CVcHB/r/72RbINrIOUne9+6obnjJSGKEd5rE
+	 OxGaA8FY75l+Mbd//X4M2xXFO1D4wbd+l4bBkl6iNdRhurtL5hSHwfKQf8IxbnJAcV
+	 9Tbqkyjk5V6bw==
+Date: Wed, 6 Mar 2024 18:45:13 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Naresh Solanki <naresh.solanki@9elements.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Jean Delvare <jdelvare@suse.com>,
-	Guenter Roeck <linux@roeck-us.net>,
-	Rob Herring <robh+dt@kernel.org>,
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, mazziesaccount@gmail.com,
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3] dt-bindings: hwmon: tda38640: Add interrupt &
- regulator properties
-Message-ID: <20240306-decay-overbid-9c8ea43a511f@spud>
-References: <20240305210747.1377506-1-naresh.solanki@9elements.com>
- <a32a2655-7561-4339-8521-bc2558e0bdb1@linaro.org>
- <CABqG17hYK8MFMPVNXxZ6JT4TW00PPt48q1qZBzS=gJrpC--iTg@mail.gmail.com>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 3/4] ASoC: dt-bindings: fsl-sai: allow only one
+ dma-names
+Message-ID: <20240306-pebble-grope-88fdaa95a87c@spud>
+References: <20240305-asrc_8qxp-v4-0-c61b98046591@nxp.com>
+ <20240305-asrc_8qxp-v4-3-c61b98046591@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,52 +66,76 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="u0h1zxd+rTjHEzzW"
+	protocol="application/pgp-signature"; boundary="3EPdioiMTrMIrN3t"
 Content-Disposition: inline
-In-Reply-To: <CABqG17hYK8MFMPVNXxZ6JT4TW00PPt48q1qZBzS=gJrpC--iTg@mail.gmail.com>
+In-Reply-To: <20240305-asrc_8qxp-v4-3-c61b98046591@nxp.com>
 
 
---u0h1zxd+rTjHEzzW
+--3EPdioiMTrMIrN3t
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 06, 2024 at 03:20:02PM +0530, Naresh Solanki wrote:
-> Hi Krzysztof,
+On Tue, Mar 05, 2024 at 12:33:04PM -0500, Frank Li wrote:
+> Some sai only connect one direction dma (rx/tx) in SOC. For example:
+> imx8qxp sai5 only connect tx dma channel. So allow only one "rx" or "tx"
+> for dma-names.
 >=20
->=20
-> On Wed, 6 Mar 2024 at 12:44, Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> >
-> > On 05/03/2024 22:07, Naresh Solanki wrote:
-> > > Add properties for interrupt & regulator.
-> > > Also update example.
-> >
-> > Nothing improved.
-> Yes, Just aligned the regulator node name in this revision.
-> I missed aligning the commit message.
->=20
-> I'll fix in next revision & update commit message as:
->=20
-> tda38640 has a single regulator output along with
-> CAT_FAULT# pin to report internal events.
-> Hence add properties for regulator & interrupt.
->=20
-> Let me know if any others changes needed.
+> Remove description under dmas because no user use index to get dma channe=
+l.
+> All user use 'dma-names' to get correct dma channel. dma-names already in
+> 'required' list.
 
-That should be fine - but your line wrapping is really odd, you can make
-use of 72 characters but you are wrapping at ~50.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
---u0h1zxd+rTjHEzzW
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 13 ++++++-------
+>  1 file changed, 6 insertions(+), 7 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Docum=
+entation/devicetree/bindings/sound/fsl,sai.yaml
+> index 2456d958adeef..6f551c68d33db 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> @@ -81,15 +81,14 @@ properties:
+> =20
+>    dmas:
+>      minItems: 1
+> -    items:
+> -      - description: DMA controller phandle and request line for RX
+> -      - description: DMA controller phandle and request line for TX
+> +    maxItems: 2
+> =20
+>    dma-names:
+> -    minItems: 1
+> -    items:
+> -      - const: rx
+> -      - const: tx
+> +    oneOf:
+> +      - items:
+> +          - const: rx
+> +          - const: tx
+> +      - enum: [ rx, tx ]
+
+I'm not entirely sure if this was Rob's suggestion, I got the impression
+he was suggesting that in the two items case we'd not care about the
+order. But while I think this is different to that suggestion it's also
+not wrong.
+
+Thanks,
+Conor.
+
+--3EPdioiMTrMIrN3t
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZei4OQAKCRB4tDGHoIJi
-0n7jAPwKvQrBfrsUxvl2QTr+YD0ug4izORhvnuT6N4E35d1oSgEA/er1Kl9fPvAI
-sOVclw+5IBXV2BxhdiWTX9cqMzrM2gY=
-=F0UV
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZei5uQAKCRB4tDGHoIJi
+0oGVAQC0WUWgje4xSZZqPzRwX4PZpsGdXdHoL3D6DvpnrN9/GgD/UgvXhmOyhVOO
+woy4Ab0tIG63oNAMuHs9RTTQly9j3gI=
+=3qdj
 -----END PGP SIGNATURE-----
 
---u0h1zxd+rTjHEzzW--
+--3EPdioiMTrMIrN3t--
 
