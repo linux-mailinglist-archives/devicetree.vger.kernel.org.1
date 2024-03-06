@@ -1,91 +1,149 @@
-Return-Path: <devicetree+bounces-48760-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48761-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 816BF873615
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 13:11:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 777FD873626
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 13:19:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id ACB401C213E6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 12:11:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id F26FD1F24D6D
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 12:19:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8EE537FBDB;
-	Wed,  6 Mar 2024 12:11:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DD7C80021;
+	Wed,  6 Mar 2024 12:19:15 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="oTwT5u+6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from verein.lst.de (verein.lst.de [213.95.11.211])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB02278682;
-	Wed,  6 Mar 2024 12:11:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.95.11.211
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2DD9B605DC;
+	Wed,  6 Mar 2024 12:19:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709727064; cv=none; b=NaNK5e45TXa5npheTPX1H/ZZ0lap6TEyrzh9bBtUbqRn2KSufuuSt5vKsRG8ybpCGO2RFe8rNJfJA2wdRydJfNPMY5FN4knwm0c2ct9doZ02YO+kZwgZg5lAp+0OJET86OcUISw4JgnRD1qDFwVZcLKnmrxE35ED2To5n5u+a70=
+	t=1709727555; cv=none; b=TTemu4IzKfKHmX1S56DnmFh85AgcVkSiOC6ol9Ccbre1+aqfh20GyHJ4jmHVdfxQDscZ56XNiai3q9KkoPDgJnykrrpxNByxnaeUSwV4l6mpf69NhuLSFL8BWv5oTaV519Ejvh+LJkG++vqIFXOjkAY2YhbpTvAFzPhgGcvAd3E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709727064; c=relaxed/simple;
-	bh=7j6dt+UHhsO4ubeQd/eukm+188h+1cgVkv+vI6q0w1U=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=us3XkymbegQ9TwFAKu3eMEX8gnSzu5J2yrxXC4TJUhqHa9cujxJ/wQixzdeD9k8ukoHe48OUKsiXG+UwQUz/56d2LlZ8tOwBq3kvxVoKC55yOf5LkKCP59QO027baoWh7KeuqcNz/n7aJ3uQL5JdnwPIHMWBqSdyoZo+MwLQEB0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de; spf=pass smtp.mailfrom=lst.de; arc=none smtp.client-ip=213.95.11.211
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=lst.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lst.de
-Received: by verein.lst.de (Postfix, from userid 2407)
-	id 772C368C4E; Wed,  6 Mar 2024 13:10:50 +0100 (CET)
-Date: Wed, 6 Mar 2024 13:10:50 +0100
-From: Christoph Hellwig <hch@lst.de>
-To: Robin Murphy <robin.murphy@arm.com>
-Cc: Joerg Roedel <joro@8bytes.org>, Christoph Hellwig <hch@lst.de>,
-	Vineet Gupta <vgupta@kernel.org>,
-	Russell King <linux@armlinux.org.uk>,
-	Catalin Marinas <catalin.marinas@arm.com>,
-	Will Deacon <will@kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
-	WANG Xuerui <kernel@xen0n.name>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Palmer Dabbelt <palmer@dabbelt.com>,
-	Albert Ou <aou@eecs.berkeley.edu>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Hanjun Guo <guohanjun@huawei.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	"K. Y. Srinivasan" <kys@microsoft.com>,
-	Haiyang Zhang <haiyangz@microsoft.com>,
-	Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
-	Suravee Suthikulpanit <suravee.suthikulpanit@amd.com>,
-	David Woodhouse <dwmw2@infradead.org>,
-	Lu Baolu <baolu.lu@linux.intel.com>,
-	Niklas Schnelle <schnelle@linux.ibm.com>,
-	Matthew Rosato <mjrosato@linux.ibm.com>,
-	Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
-	Jean-Philippe Brucker <jean-philippe@linaro.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Marek Szyprowski <m.szyprowski@samsung.com>,
-	Jason Gunthorpe <jgg@ziepe.ca>, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-acpi@vger.kernel.org,
-	iommu@lists.linux.dev, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 0/7] dma-mapping: Simplify arch_setup_dma_ops()
-Message-ID: <20240306121050.GA8863@lst.de>
-References: <cover.1707493264.git.robin.murphy@arm.com> <6af5e7da-08ba-4fc7-8e57-863377182142@arm.com>
+	s=arc-20240116; t=1709727555; c=relaxed/simple;
+	bh=MVqqKIZCSnIGxvz4YPGoem4kx9gkpPGdW6QTNhBVmyk=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=uObw3VJQzaLNfhs9qrWFUbUyNmH/Goq12LqpdAgqSp83ifh9ExZfLaT1Z1IVUUy7e+RCjBfSUOEU8oZbOVBeJrEKUiRV1sGzxXwZ7AjjF7P93susC6OaldjnSye6bjF2A6eCCea6xdPJMl5kCq+FPMYKR2eKiHdxgk3WFnFMzO8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=oTwT5u+6; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: b9c01e2edbb311ee935d6952f98a51a9-20240306
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=IImJC9e9Da9C3lUM5dgN5QOlSp2BnbxeAklEtHNsfVk=;
+	b=oTwT5u+6ceKN91WgfQKlYtpYIJPanP9fILphVFtsNGhyK9SmADO36Jm5vfQ6nLHcMoXR+jOj28chXZPyU9wWkQl0W2ZKCMA8RUZSgGN7wlWu3yZIX5WSJQaVGpEjmchRPfB1ONT9gbYsjlIMoSPVOixdZ2YWAHodDPQSnhSkfAA=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.37,REQID:74bc076d-1554-4d47-9129-7b77c9e01a20,IP:0,U
+	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
+	N:release,TS:-25
+X-CID-META: VersionHash:6f543d0,CLOUDID:36991690-e2c0-40b0-a8fe-7c7e47299109,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:11|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES
+	:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: b9c01e2edbb311ee935d6952f98a51a9-20240306
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+	(envelope-from <yunfei.dong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 515065125; Wed, 06 Mar 2024 20:19:05 +0800
+Received: from mtkmbs13n2.mediatek.inc (172.21.101.108) by
+ mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Wed, 6 Mar 2024 20:19:04 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Wed, 6 Mar 2024 20:19:03 +0800
+From: Yunfei Dong <yunfei.dong@mediatek.com>
+To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Sebastian Fricke <sebastian.fricke@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>, Hans Verkuil
+	<hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>
+CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, "Yunfei
+ Dong" <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v2] media: mediatek: vcodec: support 36 bits physical address
+Date: Wed, 6 Mar 2024 20:19:02 +0800
+Message-ID: <20240306121902.25069-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <6af5e7da-08ba-4fc7-8e57-863377182142@arm.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-AS-Result: No-10--9.625700-8.000000
+X-TMASE-MatchedRID: Fdt1IHAXXPKHTNZBcJlnyHQIOMndeKgETJDl9FKHbrk1LB46LFAAkktH
+	ojrK13E49ypTh0ieeunHCCukuCUtoobqZZp5NyFKXpVEIlJTuP2d2Wz0X3OaLZsoi2XrUn/Jn6K
+	dMrRsL14qtq5d3cxkNWCFMTTr110l3BTbPvva4/GNYa/SjhM7l0EM1EKZ9uM8WvxqZnJiH0w=
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--9.625700-8.000000
+X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
+X-TM-SNTS-SMTP: 7DE4977BDE382AA717543D2C2D293FFF5A7F45942B469FFE79BB5F9992F8F79F2000:8
+X-MTK: N
 
-On Wed, Mar 06, 2024 at 12:02:41PM +0000, Robin Murphy wrote:
-> Are either of you happy to pick this series up now that we have Hanjun's 
-> acks for the IORT parts? As it stands it still applies cleanly to both 
-> iommu/next and dma/for-next. I do have some followup IOMMU patches prepared 
-> already (continuing to delete more code, yay!), but I don't want to get too 
-> far ahead of myself.
+The physical address on the MT8188 platform is larger than 32 bits,
+change the type from unsigned int to dma_addr_t to be able to access
+the high bits of the address.
 
-I expected this to go in through the iommu tree.  But if Joerg want
-the series (or part of it) to go through the dma-mapping tree I'd
-be happy to pick it up ASAP.
+Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+---
+compare with v1:
+- change address type from unsigned long to dma_addr_t
+- change vp8 address type
+---
+ .../media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c | 2 +-
+ .../mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c        | 4 ++--
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
+index 19407f9bc773..987b3d71b662 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp8_if.c
+@@ -449,7 +449,7 @@ static int vdec_vp8_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 		       inst->frm_cnt, y_fb_dma, c_fb_dma, fb);
+ 
+ 	inst->cur_fb = fb;
+-	dec->bs_dma = (unsigned long)bs->dma_addr;
++	dec->bs_dma = (uint64_t)bs->dma_addr;
+ 	dec->bs_sz = bs->size;
+ 	dec->cur_y_fb_dma = y_fb_dma;
+ 	dec->cur_c_fb_dma = c_fb_dma;
+diff --git a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+index cf48d09b78d7..eea709d93820 100644
+--- a/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
++++ b/drivers/media/platform/mediatek/vcodec/decoder/vdec/vdec_vp9_req_lat_if.c
+@@ -1074,7 +1074,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
+ 	unsigned int mi_row;
+ 	unsigned int mi_col;
+ 	unsigned int offset;
+-	unsigned int pa;
++	dma_addr_t pa;
+ 	unsigned int size;
+ 	struct vdec_vp9_slice_tiles *tiles;
+ 	unsigned char *pos;
+@@ -1109,7 +1109,7 @@ static int vdec_vp9_slice_setup_tile_buffer(struct vdec_vp9_slice_instance *inst
+ 	pos = va + offset;
+ 	end = va + bs->size;
+ 	/* truncated */
+-	pa = (unsigned int)bs->dma_addr + offset;
++	pa = bs->dma_addr + offset;
+ 	tb = instance->tile.va;
+ 	for (i = 0; i < rows; i++) {
+ 		for (j = 0; j < cols; j++) {
+-- 
+2.18.0
 
 
