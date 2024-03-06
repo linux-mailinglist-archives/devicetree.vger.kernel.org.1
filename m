@@ -1,185 +1,270 @@
-Return-Path: <devicetree+bounces-48795-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48796-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AD3E8738ED
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 15:24:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DCD9687391B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 15:29:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5E6891C2135A
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 14:24:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3FC36B22676
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 14:29:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E616133993;
-	Wed,  6 Mar 2024 14:24:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E085131759;
+	Wed,  6 Mar 2024 14:29:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rnGXafhB"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="k//9SzX+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 382391332A6
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 14:24:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7873E130E40;
+	Wed,  6 Mar 2024 14:29:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709735049; cv=none; b=Vadz54s4bwtM9wf24bGyXf1/mAAztZ0h8tB2CxGWpA1d1HQORqdSr5D/zTv0/s7JCFofJ7jgxRp97vMqh+4AENo9HuvkhbbooX9dvtq+UHUDEBChXNev5VYERatr/s0CNKvCX0cM/tyM2E9GIDpuqqiCy0GkvAVPbewMFNtqJWM=
+	t=1709735375; cv=none; b=rIydPHIVvGWNJVIgQv4sWbPoCSFLlrjzdWrKNtgeT8T6x0049YCidg1i6HUw2GBTtpIGgfonHGkJ16Vp+bRo3SjTK9w8AqNa0RpVeTgIeZkGH9Rlz0kMKym/qHnaxJCth1L/il+48wgPlpGUGUCbQ2hOaVeLuRksTOH2Umry4fA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709735049; c=relaxed/simple;
-	bh=eZpMPKa6e7jU2jBVyiXD1uP0V9gbgVlt9tlhzywS1d0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Eiraw4aO0oNxCpiTl5/1Sbla8/wHq9a7dPiHT0dFyOyWQdPCWUAUFRaRYbaqHKSPVfvOi323vxDhuvV4yjDLXTPCoqWIYuimNizgyt7Pwp+O9RukY9BOaRs7/AE1ChMe1oiZX/aPbByw7tpFmwCdd2Lz4VPfTVq2fBVxe+QVHCk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rnGXafhB; arc=none smtp.client-ip=209.85.128.169
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-609241c2696so11262497b3.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 06:24:07 -0800 (PST)
+	s=arc-20240116; t=1709735375; c=relaxed/simple;
+	bh=iUoXceyOBV/ws1djDAITsDI/ZqYvM1zbY4UGkVGQJC8=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=ewafGUwyA8mlR+RNM1JdttL/YD6Pr0XNQ9mMPiCP3nSJtFTF4sZEEboIwVQarx8hNmoUHr6OeVlquSP7eRRhw2wIYvT5sRFpUOQquD2fP7I3nazO0g4V3FwkW+IeN5XE6Yb77RpSDmGAIgKvvqbhnk8QSI2bGNFvctDq7X7wHvk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=k//9SzX+; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 27B669C2B79;
+	Wed,  6 Mar 2024 09:29:24 -0500 (EST)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id sHKIN4qoKvzI; Wed,  6 Mar 2024 09:29:22 -0500 (EST)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 386199C3E18;
+	Wed,  6 Mar 2024 09:29:22 -0500 (EST)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 386199C3E18
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709735046; x=1710339846; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=eZpMPKa6e7jU2jBVyiXD1uP0V9gbgVlt9tlhzywS1d0=;
-        b=rnGXafhBwgZ3X2A7OmLQqrx5w0KJmp1jM8ggJm/FkaIdToXtbz2JqG8vXRnDnliy+b
-         4GUyy4fx2rXA5B9TDVbC4GMKv90EFetLO4Q7//m9Nbd/sS6UmB3ERiuF0sWRJeOKC3FN
-         fZKZ9NF6V25uga2MmVAv9YxnyHy6yI5JtT7f5/1MwsZnwAA7PLgT8cMkNXOzqXQNaLfx
-         nbkK9FxfEpi7ELYEluRBprSi+HwBwExs/+kq3UbPSHzXuHclY040y3rhuwH0vvXrd8LG
-         c7fAUFPAFRyT3Rk46cpVA8u7ehx46UPn/vgbVDPKrbcEoS86/dL9c6hUbBLXp4/wCSgI
-         nmEQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709735046; x=1710339846;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eZpMPKa6e7jU2jBVyiXD1uP0V9gbgVlt9tlhzywS1d0=;
-        b=qXKbW6lg3WamjDuXbvuWbDWYi+gOUhRtC3SXZDH3+LE3lSvefP++gEgHAFjNDB8OjT
-         UVqjBjXTVPtZ3CZe9MLZ1CUxG3PLO53+95NGIBCBOPP34c9kmuJwSs/1pqjMG2Ih/EZX
-         KQzNSqLmnjMoyOdJQendBsb9+9zhGr8ftysnyFPuC0S2EjK7JEc3m+YWRWDLdE8p1OlL
-         Fn7WpTjmM244oDN1TgUfUPE5bo4tDKvpEgtJKGztQ9eOudI7e62QNm0c4GaLzKHm8Y9D
-         8mPVK3EC8idAe5XGnfxzaOLwwSMUe1rM6GcRIWvJyB7Pg0kSgR1Byw3lD7uyu1sxPVQe
-         gptA==
-X-Forwarded-Encrypted: i=1; AJvYcCXb0ODyujetHPv+XjNL2Tw9q2/tEWwrB7YT5oq99oXm0COtzrhWa06eKvm885YE9j/OrwaOoY0+2uokYPl08/Q1+gPf21g3k/7d2g==
-X-Gm-Message-State: AOJu0Yw60Mpp0OfaRTDKyRhodTJ5cmraxzM4N/gdBbdu7X76Z1bg0//S
-	sYCg1JMI4byB4AxYC6uGJ+Qm5HPMIJoFCOydn0XTJ58NLB3NMt7lr6+JxddWJTaZ9Ff6DSLKOz3
-	sUKvIGYWSDAShO/3FbOyRYP44VQNl4FK9za2kag==
-X-Google-Smtp-Source: AGHT+IFtPw7iiv+byEAcjoYdyvfBnMJrrGDYSOvTrCZtLuKlzx6HBrSrHHu558ENUxjrcYdwWnuD1V710Dta5mIdRvM=
-X-Received: by 2002:a81:85c5:0:b0:609:9171:130d with SMTP id
- v188-20020a8185c5000000b006099171130dmr10635779ywf.19.1709735046114; Wed, 06
- Mar 2024 06:24:06 -0800 (PST)
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1709735362; bh=IUKuimCQWhxaM2GiQyc2C+Bt5el/PCO2HoKbdWeZ4MA=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=k//9SzX+/1bm3+fQrQam+kxjFWcBs2rftK3gTyAATPGDRqZufHssFZAdPBaymnuQt
+	 ySVm/cveu1EX/ztnx4PVBljDsbJ0PJdpQSJv7+GTydVDs9AMd3NslJVgT1HlCJCV7S
+	 K8VcI7arJOJlubRYbgMxUqhpFYIvoRKG5deMNmIg+Z+Z9dYd5NcMe5Q1uK4gL2gowN
+	 MBr2dUhxTaRDUDJcvQc8zib6qFbXkyZDMS1XHKDlL2/1qt8METOdSf8wdBResA1P4Q
+	 TetqnxPwFI2kCV5JEpMZaPcPulRVQW/p7F9IsLp7kSBbv1Ewx1bkBp8GBPkb+CRwYw
+	 ezj833i0+QEbw==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id xc-8fRViBrWV; Wed,  6 Mar 2024 09:29:22 -0500 (EST)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id E93BD9C2B79;
+	Wed,  6 Mar 2024 09:29:21 -0500 (EST)
+Date: Wed, 6 Mar 2024 09:29:21 -0500 (EST)
+From: Charles Perry <charles.perry@savoirfairelinux.com>
+To: Xu Yilun <yilun.xu@linux.intel.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	yilun xu <yilun.xu@intel.com>, Rob Herring <robh+dt@kernel.org>, 
+	mdf <mdf@kernel.org>, Allen VANDIVER <avandiver@markem-imaje.com>, 
+	Brian CODY <bcody@markem-imaje.com>, hao wu <hao.wu@intel.com>, 
+	Tom Rix <trix@redhat.com>, 
+	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Michal Simek <michal.simek@amd.com>, 
+	linux-fpga <linux-fpga@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Message-ID: <1394848790.1570451.1709735361852.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <ZegW2QpgO0Kk1Iip@yilunxu-OptiPlex-7050>
+References: <20240221195058.1281973-1-charles.perry@savoirfairelinux.com> <20240221195058.1281973-3-charles.perry@savoirfairelinux.com> <4a9f0eef-590b-45df-92bc-b63ad9282e18@linaro.org> <1012793477.1508198.1709486517581.JavaMail.zimbra@savoirfairelinux.com> <cb51aadd-c350-42e2-9684-ac4f7dbf864c@linaro.org> <d377f0ea-2df2-4d4e-b1bc-8a4ca55eec15@linaro.org> <23887452.1534761.1709605624728.JavaMail.zimbra@savoirfairelinux.com> <ZegW2QpgO0Kk1Iip@yilunxu-OptiPlex-7050>
+Subject: Re: [PATCH v4 2/3] dt-bindings: fpga: xlnx,fpga-selectmap: add DT
+ schema
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240306-wcn3990-firmware-path-v2-0-f89e98e71a57@linaro.org>
- <87plw7hgt4.fsf@kernel.org> <CAA8EJpr6fRfY5pNz6cXVTaNashqffy5_qLv9c35nkgjaDuSgyQ@mail.gmail.com>
- <87cys7hard.fsf@kernel.org>
-In-Reply-To: <87cys7hard.fsf@kernel.org>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 6 Mar 2024 16:23:55 +0200
-Message-ID: <CAA8EJpowyEEbXQ4YK-GQ63wZSkJDy04qJsC2uuYCXt+aJ1HSOQ@mail.gmail.com>
-Subject: Re: [PATCH RFC v2 0/4] wifi: ath10k: support board-specific firmware overrides
-To: Kalle Valo <kvalo@kernel.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	ath10k@lists.infradead.org, linux-wireless@vger.kernel.org, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-msm@vger.kernel.org, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-
-On Wed, 6 Mar 2024 at 13:15, Kalle Valo <kvalo@kernel.org> wrote:
->
-> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
->
-> > On Wed, 6 Mar 2024 at 11:04, Kalle Valo <kvalo@kernel.org> wrote:
-> >
-> >>
-> >> Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
-> >>
-> >> > On WCN3990 platforms actual firmware, wlanmdsp.mbn, is sideloaded to the
-> >> > modem DSP via the TQFTPserv. These MBN files are signed by the device
-> >> > vendor, can only be used with the particular SoC or device.
-> >> >
-> >> > Unfortunately different firmware versions come with different features.
-> >> > For example firmware for SDM845 doesn't use single-chan-info-per-channel
-> >> > feature, while firmware for QRB2210 / QRB4210 requires that feature.
-> >> >
-> >> > Allow board DT files to override the subdir of the fw dir used to lookup
-> >> > the firmware-N.bin file decribing corresponding WiFi firmware.
-> >> > For example, adding firmware-name = "qrb4210" property will make the
-> >> > driver look for the firmware-N.bin first in ath10k/WCN3990/hw1.0/qrb4210
-> >> > directory and then fallback to the default ath10k/WCN3990/hw1.0 dir.
-> >> >
-> >> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >> > ---
-> >> > Changes in v2:
-> >> > - Fixed the comment about the default board name being NULL (Kalle)
-> >> > - Expanded commit message to provide examples for firmware paths (Kalle)
-> >> > - Added a note regarding board-2.bin to the commit message (Kalle)
-> >> > - Link to v1:
-> >> > https://lore.kernel.org/r/20240130-wcn3990-firmware-path-v1-0-826b93202964@linaro.org
-> >>
-> >> From my point of view this looks good now but let's see what others say.
-> >> Is there a specific reason why you marked this as RFC still?
-> >
-> > No, I just forgot to remove it from the series settings, so you can
-> > consider it as final.
->
-> Good, so let's ignore the RFC label for this v2.
->
-> > I had one minor question in my head (but that's mostly for patches 3
-> > and 4): in linux-firmware we will have ath10k/WCN3990/hw1.0/qcm2290
-> > and make qrb4210 as a symlink to it. Is that fine from your POV?
->
-> Yes, I think using a symlink is a good idea.
->
-> > Or should we use sensible device names (e.g. qcom-rb1)?
->
-> I guess 'qcom-rb1' refers to 'Qualcomm Robotics RB1' board? In other
-> words, the question is that should we use chipset specific names like
-> 'qcm2290' or product based names like 'qcom-rb1'?
->
-> That's a good question for which I don't have a good answer :) I'm not
-> very familiar with WCN3990 hardware and SoCs to have a full picture of
-> all this, especially how the firmware images are signed or what
-> different firmware branches there are etc.
-
-I checked Pixel-3 data, it has wlanmdsp.mbn signed by Google.
-
->
-> To be on the safe side using 'qcom-rb1' makes sense but on the other
-> hand that means we need to update linux-firmware (basically add a new
-> symlink) everytime a new product is added. But are there going to be
-> that many new ath10k based products?
->
-> Using 'qcm2290' is easier because for a new product then there only
-> needs to be a change in DTS and no need to change anything
-> linux-firmware. But here the risk is that if there's actually two
-> different ath10k firmware branches for 'qcm2290'. If that ever happens
-> (I hope not) I guess we could solve that by adding new 'qcm2290-foo'
-> directory?
->
-> But I don't really know, thoughts?
-
-After some thought, I'd suggest to follow approach taken by the rest
-of qcom firmware:
-put a default (accepted by non-secured hardware) firmware to SoC dir
-and then put a vendor-specific firmware into subdir. If any of such
-vendors appear, we might even implement structural fallback: first
-look into sdm845/Google/blueline, then in sdm845/Google, sdm845/ and
-finally just under hw1.0.
-
->
-> --
-> https://patchwork.kernel.org/project/linux-wireless/list/
->
-> https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - FF123 (Linux)/8.8.15_GA_4581)
+Thread-Topic: dt-bindings: fpga: xlnx,fpga-selectmap: add DT schema
+Thread-Index: KNMsqjL9L9auFXvtX747YpLdEB0org==
 
 
---
-With best wishes
-Dmitry
+
+----- On Mar 6, 2024, at 12:10 AM, Xu Yilun yilun.xu@linux.intel.com wrote:
+
+> On Mon, Mar 04, 2024 at 09:27:04PM -0500, Charles Perry wrote:
+>> 
+>> 
+>> On Mar 4, 2024, at 12:31 AM, Krzysztof Kozlowski krzysztof.kozlowski@linaro.org
+>> wrote:
+>> 
+>> > On 04/03/2024 08:30, Krzysztof Kozlowski wrote:
+>> >> On 03/03/2024 18:21, Charles Perry wrote:
+>> >>> On Feb 27, 2024, at 3:10 AM, Krzysztof Kozlowski krzysztof.kozlowski@linaro.org
+>> >>> wrote:
+>> >>>
+>> >>>> On 21/02/2024 20:50, Charles Perry wrote:
+>> >>>>> Document the SelectMAP interface of Xilinx 7 series FPGA.
+>> >>>>>
+>> >>>>> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
+>> >>>>> ---
+>> >>>>>  .../bindings/fpga/xlnx,fpga-selectmap.yaml    | 86 +++++++++++++++++++
+>> >>>>>  1 file changed, 86 insertions(+)
+>> >>>>>  create mode 100644
+>> >>>>>  Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>> >>>>>
+>> >>>>> diff --git a/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>> >>>>> b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>> >>>>> new file mode 100644
+>> >>>>> index 0000000000000..08a5e92781657
+>> >>>>> --- /dev/null
+>> >>>>> +++ b/Documentation/devicetree/bindings/fpga/xlnx,fpga-selectmap.yaml
+>> >>>>> @@ -0,0 +1,86 @@
+>> >>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> >>>>> +%YAML 1.2
+>> >>>>> +---
+>> >>>>> +$id: http://devicetree.org/schemas/fpga/xlnx,fpga-selectmap.yaml#
+>> >>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> >>>>> +
+>> >>>>> +title: Xilinx SelectMAP FPGA interface
+>> >>>>> +
+>> >>>>> +maintainers:
+>> >>>>> +  - Charles Perry <charles.perry@savoirfairelinux.com>
+>> >>>>> +
+>> >>>>> +description: |
+>> >>>>> +  Xilinx 7 Series FPGAs support a method of loading the bitstream over a
+>> >>>>> +  parallel port named the SelectMAP interface in the documentation. Only
+>> >>>>> +  the x8 mode is supported where data is loaded at one byte per rising edge of
+>> >>>>> +  the clock, with the MSB of each byte presented to the D0 pin.
+>> >>>>> +
+>> >>>>> +  Datasheets:
+>> >>>>> +
+>> >>>>> https://www.xilinx.com/support/documentation/user_guides/ug470_7Series_Config.pdf
+>> >>>>> +
+>> >>>>> +allOf:
+>> >>>>> +  - $ref: /schemas/memory-controllers/mc-peripheral-props.yaml#
+>> >>>>> +
+>> >>>>> +properties:
+>> >>>>> +  compatible:
+>> >>>>> +    enum:
+>> >>>>> +      - xlnx,fpga-xc7s-selectmap
+>> >>>>> +      - xlnx,fpga-xc7a-selectmap
+>> >>>>> +      - xlnx,fpga-xc7k-selectmap
+>> >>>>> +      - xlnx,fpga-xc7v-selectmap
+>> >>>>> +
+>> >>>>> +  reg:
+>> >>>>> +    description:
+>> >>>>> +      At least 1 byte of memory mapped IO
+>> >>>>> +    maxItems: 1
+>> >>>>> +
+>> >>>>> +  prog_b-gpios:
+>> >>>>
+>> >>>> I commented on this and still see underscore. Nothing in commit msg
+>> >>>> explains why this should have underscore. Changelog is also vague -
+>> >>>> describes that you brought back underscores, instead of explaining why
+>> >>>> you did it.
+>> >>>>
+>> >>>> So the same comments as usual:
+>> >>>>
+>> >>>> No underscores in names.
+>> >>>>
+>> >>>> Best regards,
+>> >>>> Krzysztof
+>> >>>
+>> >>> Hello Krzysztof,
+>> >>>
+>> >>> Yes, I've gone full circle on that issue. Here's what I tried so far:
+>> >> 
+>> >> And what part of the commit description allows me to understand this?
+>> >> 
+>> 
+>> I have a changelog in the cover letter:
+>> https://lore.kernel.org/all/20240221195058.1281973-1-charles.perry@savoirfairelinux.com/
+>> 
+>> >>>
+>> >>>  1) Reuse the same gpio names: Duplicates errors of the past, Krzysztof
+>> >>>     doesn't like it.
+>> >>>  2) Different gpio names for new driver only: Makes the driver code
+>> >>>     overly complicated, Yilun doesn't like it.
+>> >> 
+>> >> That's a new driver, right? So what is complicated here? You have new
+>> >> code and you take prog-b or prog_b?
+>> >> 
+>> >>>  3) Change gpio names for both drivers, deprecate the old names: Makes
+>> >>>     the DT binding and the driver code overly complicated, Rob doesn't
+>> >>>     like it.
+>> >> 
+>> >> I don't think I proposed changing existing bindings.
+>> >> 
+>> >>>
+>> >>> I think that while the driver code shouldn't be the driving force for
+>> >>> the DT spec, it can be a good indication that the spec is unpractical to
+>> >>> implement.
+>> >> 
+>> >> What is impractical in implementing this? You just pass either A or B to
+>> >> function requesting GPIO. Just choose proper name.
+>> >>
+>> 
+>> It's not complicated but it requires more code than if "prog_b" had been
+>> used.
+>>  
+>> >>>
+>> >>> In this case, there are two interfaces on a chip that uses the same GPIO
+>> >>> protocol, it would only make sense that they use the same names, this
+>> >>> discards solution #2.
+>> >> 
+>> >> I don't understand this. You have devm_gpiod_get() in your new code. Why
+>> >> is it difficult to use different name?
+>> 
+>> Yilun asked to avoid changing the names between the two drivers.
+>> First comment in this mail:
+>> https://lore.kernel.org/all/Zb9GkY6cMtR+4xOX@yilunxu-OptiPlex-7050/
+>> 
+>> Yilun, let me know if this is something you'd accept as this is a concern
+>> for the device tree maintainers.
+> 
+> I agree that deprecated names should not be used for new DT bindings, while
+> keeping backward compatibility to exsiting ones, unless there is other
+> DT side concern.
+> 
+> I'm also good that the driver adapts to the DT binding change.
+> 
+> What I'm concerned is the driver API:
+> 
+>  int xilinx_core_probe(struct xilinx_fpga_core *core, struct device *dev,
+>		      xilinx_write_func write,
+>  -		      xilinx_write_one_dummy_byte_func write_one_dummy_byte)
+>  +		      xilinx_write_one_dummy_byte_func write_one_dummy_byte,
+>  +		      const char *prog_con_id, const char *init_con_id)
+> 
+> You don't have to make every bus driver input the gpio names.  The core
+> falls back to use old gpio names only for existing devices
+> (.compatible = "xlnx,fpga-slave-serial").  Then the issue could be
+> solved?
+> 
+> Thanks,
+> Yilun
+> 
+
+Ok, thank you for the guidance.
+
+Regards,
+Charles
+
+>> 
+>> > 
+>> > And I forgot to emphasize: none of these is mentioned in commit msg, so
+>> > for v5 you will get exactly the same complains. And for every other
+>> > patch which repeats the same and does not clarify caveats or exceptions.
+>> > 
+>> > Best regards,
+>> > Krzysztof
+>> 
+>> Should I keep my changelog in the individual commits? I thought the norm
+>> was to put this the cover letter.
+>> 
+>> Regards,
+>> Charles
 
