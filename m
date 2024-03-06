@@ -1,210 +1,204 @@
-Return-Path: <devicetree+bounces-48909-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48910-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07CAD8742C6
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 23:29:56 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A10D87430B
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 23:58:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5F31286300
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 22:29:54 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7B96CB20B40
+	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 22:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFBBF1BC39;
-	Wed,  6 Mar 2024 22:29:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 986571C2A0;
+	Wed,  6 Mar 2024 22:58:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="F9yWS9FK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="h1cIKGlO"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6A63D1B947;
-	Wed,  6 Mar 2024 22:29:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B4C01BC56;
+	Wed,  6 Mar 2024 22:58:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709764188; cv=none; b=bpraJOsPZLjORrP/AzG0SwT+2MTS6mVSESRN0pa77XE7NC/vR3EArcE7QpwiR/qFSlCnfycSnl/s2aKosOj6qJAwe9KFPUt/oq4+SEw2WYyp+47XamLC1RN6sYVQj5b8/F7WzaI/LwQ5r4Me+e11IkUeg84Io9g2tRAKw+xO3EY=
+	t=1709765918; cv=none; b=jKHjwIwVgX1ub/mRVyTjUlAya+ptALkP+Dex3ymgUtwynn5PxXzpSVgzZ77vVIXl0PssJeIw1FbUzwywlGOqxyIgupmf6zsVBeCt8ykHzabsXR2/6qzvJajMlFbuyS4sW21aHO6zNRR/Jl18/GEYBe4jlluX9sLMq2wXUuFk0HA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709764188; c=relaxed/simple;
-	bh=SIExaGqBB9kZ6UJuSpJW7ZRFchpGQhlPFKL2lD+j7SE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n4TwgGIrWLamr98Utd+U6jJ0JfzEhqXgslp35mtlZpQiOJvntJXut0+g+GmHCx9kLUyBezRe+lH4HOygrVP5uy29e1TBTlWrn/6tGXv1UtnQENyglCO2Z0B/zyNGynZb8OZ47CxCK5Uh5v9024rUy46ete9jtQMliQin+VeukBI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=F9yWS9FK; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (bl13-23-38.dsl.telepac.pt [85.246.23.38])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id DF729524;
-	Wed,  6 Mar 2024 23:29:25 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1709764166;
-	bh=SIExaGqBB9kZ6UJuSpJW7ZRFchpGQhlPFKL2lD+j7SE=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F9yWS9FKV0sqQp1zgmz34WkokZpOuIvJ2x9cTvjOf76tkMb7fRssCrf8Jnf3kFi9E
-	 w2fUk0vS1vuIB11r1c8IdFnCqGsRAoW3Bg/5hTDuYiZ+29MFitwW2jlxHxoeJpxhBr
-	 JKvBu0V+xEfrdf7V8GbQPvetGF3fAnX3Y7iIibeE=
-Date: Thu, 7 Mar 2024 00:29:44 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Naushir Patuck <naush@raspberrypi.com>
-Cc: Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
-	Linux Media Mailing List <linux-media@vger.kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	David Plowman <david.plowman@raspberrypi.com>,
-	Nick Hollinghurst <nick.hollinghurst@raspberrypi.org>,
-	Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	Sakari Ailus <sakari.ailus@iki.fi>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 7/9] media: dt-bindings: Add bindings for Raspberry Pi
- PiSP Back End
-Message-ID: <20240306222944.GA17754@pendragon.ideasonboard.com>
-References: <20240223163012.300763-1-jacopo.mondi@ideasonboard.com>
- <20240223163012.300763-8-jacopo.mondi@ideasonboard.com>
- <20240301215857.GO30889@pendragon.ideasonboard.com>
- <zxx7o4zssgerlfhoczbledpmjvr5q2qfzogoytqxc353bulemq@ceo2gwinda3l>
- <CAEmqJPpopGbDJsRkOsd-ph41_Ac6H50DvcwoE0i6hWyVBr=Kkw@mail.gmail.com>
+	s=arc-20240116; t=1709765918; c=relaxed/simple;
+	bh=zmqQrFwoEDSQz2SwnjEGFE81FIyebYKtaD+xjmng/wg=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=cutSPDm8JAoYpng9I/4opdt17jK4n207zLgQ9/45lwOB7LcWHaP8cwvtPylxJzrX8tmEVXahxacVrCnmuY7ADX0NKEviZFPdWiI/XbMRAAqE7Uls3NNc1K1vO2XIg9sOIl6R6oehf6kL3LBCUyl9LwahNKzd5Ox9xEyAMVb3uV4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=h1cIKGlO; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 079D1C43399;
+	Wed,  6 Mar 2024 22:58:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709765918;
+	bh=zmqQrFwoEDSQz2SwnjEGFE81FIyebYKtaD+xjmng/wg=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=h1cIKGlO4ISsx49R/HjszbjkUuwHYfMwq5ZWRUjEcLCUgF1rz1asG2lCCSBfAnOQL
+	 9LvfHdCt1nnFoWHobs0rPoxjihVQzHz1EyLtWU4Y1+d0iHxinlapeKQ9e/5fajtPhl
+	 FJK57fvoqgrezIc1+TBQpzd53chplBoN3PaQZGM0Ykckrr0/JHrzJKKsh/tH7Ou5fo
+	 ndLtqoChgyvY64Otmt5pGMmfamyu6Acik+mSzaGN7i5EEHx9W8hn71VszlNIy9ewBh
+	 4Wx7Wo7ZZK5Ej8RhC63r9I6XZ+s84owdwK8UUpE/9W3dfhgc8fBoCM/igfkBiotliS
+	 5cylcgR1xkkoA==
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-513298d6859so238375e87.3;
+        Wed, 06 Mar 2024 14:58:37 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCXJs+U5UolVewGsWDyLsK/HnuuveTZX1uZnu6BAgZ8DPqkx8/YeHKFSwSWM0KLMyDV6vFyhY941DPbk4+lWsQZwaSxS2dCWZocyXp+7Sb08mbEWuMVOzv/SvIZ5+xZBSUJ2vqZIbim/JPohK4aqhJ7F1Tf0sXpLD/2j+O5KMTltwQWwIKlt
+X-Gm-Message-State: AOJu0YwFnCJOnCxXQUeTaTN/78POECNXrgD28Yw116kTb4c+NH+zlJCM
+	Oche0bwJ8t9UYeI0bPiGXTyIi3++1cJDsAjT6SWBEYD+RMAkASfTLjN1pbfAfxq1wa5HZlyK0K4
+	7wxgMaq6YGihsJl89kiqJxuguVQ==
+X-Google-Smtp-Source: AGHT+IGzBx6mSFthVJlSrV24EBZpfXDKIuIdnv6rYK52jj9+48g85h39FbbcvGD42fLRIuZkJRPSBhKn31q6q7gzoDc=
+X-Received: by 2002:a19:2d4f:0:b0:513:2b35:2520 with SMTP id
+ t15-20020a192d4f000000b005132b352520mr274982lft.58.1709765915961; Wed, 06 Mar
+ 2024 14:58:35 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAEmqJPpopGbDJsRkOsd-ph41_Ac6H50DvcwoE0i6hWyVBr=Kkw@mail.gmail.com>
+References: <20240305-asrc_8qxp-v4-0-c61b98046591@nxp.com> <20240305-asrc_8qxp-v4-3-c61b98046591@nxp.com>
+ <20240306-pebble-grope-88fdaa95a87c@spud> <ZejDQddMp17RD6Yk@lizhi-Precision-Tower-5810>
+ <20240306205524.GB587561-robh@kernel.org> <Zejdz0BKwSlsio9S@lizhi-Precision-Tower-5810>
+In-Reply-To: <Zejdz0BKwSlsio9S@lizhi-Precision-Tower-5810>
+From: Rob Herring <robh@kernel.org>
+Date: Wed, 6 Mar 2024 16:58:22 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJw5W7a9Pz9gRPuP717onHdSwRvwGJ=v+QDSe+4ORvTaA@mail.gmail.com>
+Message-ID: <CAL_JsqJw5W7a9Pz9gRPuP717onHdSwRvwGJ=v+QDSe+4ORvTaA@mail.gmail.com>
+Subject: Re: [PATCH v4 3/4] ASoC: dt-bindings: fsl-sai: allow only one dma-names
+To: Frank Li <Frank.li@nxp.com>
+Cc: Conor Dooley <conor@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>, 
+	Mark Brown <broonie@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, imx@lists.linux.dev, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 06, 2024 at 11:42:51AM +0000, Naushir Patuck wrote:
-> On Tue, 5 Mar 2024 at 15:25, Jacopo Mondi wrote:
-> > On Fri, Mar 01, 2024 at 11:58:57PM +0200, Laurent Pinchart wrote:
-> > > On Fri, Feb 23, 2024 at 05:30:09PM +0100, Jacopo Mondi wrote:
-> > > > Add bindings for the Raspberry Pi PiSP Back End memory-to-memory image
-> > > > signal processor.
+On Wed, Mar 6, 2024 at 3:19=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrote:
+>
+> On Wed, Mar 06, 2024 at 02:55:24PM -0600, Rob Herring wrote:
+> > On Wed, Mar 06, 2024 at 02:25:53PM -0500, Frank Li wrote:
+> > > On Wed, Mar 06, 2024 at 06:45:13PM +0000, Conor Dooley wrote:
+> > > > On Tue, Mar 05, 2024 at 12:33:04PM -0500, Frank Li wrote:
+> > > > > Some sai only connect one direction dma (rx/tx) in SOC. For examp=
+le:
+> > > > > imx8qxp sai5 only connect tx dma channel. So allow only one "rx" =
+or "tx"
+> > > > > for dma-names.
+> > > > >
+> > > > > Remove description under dmas because no user use index to get dm=
+a channel.
+> > > > > All user use 'dma-names' to get correct dma channel. dma-names al=
+ready in
+> > > > > 'required' list.
 > > > >
-> > > > Datasheet:
-> > > > https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
+> > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > > > >
-> > > > Signed-off-by: Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> > > > ---
-> > > >  .../bindings/media/raspberrypi,pispbe.yaml    | 63 +++++++++++++++++++
-> > > >  1 file changed, 63 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
+> > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > > > ---
+> > > > >  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 13 ++++++=
+-------
+> > > > >  1 file changed, 6 insertions(+), 7 deletions(-)
+> > > > >
+> > > > > diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml=
+ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> > > > > index 2456d958adeef..6f551c68d33db 100644
+> > > > > --- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> > > > > @@ -81,15 +81,14 @@ properties:
+> > > > >
+> > > > >    dmas:
+> > > > >      minItems: 1
+> > > > > -    items:
+> > > > > -      - description: DMA controller phandle and request line for=
+ RX
+> > > > > -      - description: DMA controller phandle and request line for=
+ TX
+> > > > > +    maxItems: 2
+> > > > >
+> > > > >    dma-names:
+> > > > > -    minItems: 1
+> > > > > -    items:
+> > > > > -      - const: rx
+> > > > > -      - const: tx
+> > > > > +    oneOf:
+> > > > > +      - items:
+> > > > > +          - const: rx
+> > > > > +          - const: tx
+> > > > > +      - enum: [ rx, tx ]
 > > > >
-> > > > diff --git a/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..d7839f32eabf
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/media/raspberrypi,pispbe.yaml
-> > > > @@ -0,0 +1,63 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/media/raspberrypi,pispbe.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: Raspberry Pi PiSP Image Signal Processor (ISP) Back End
-> > > > +
-> > > > +maintainers:
-> > > > +  - Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-> > > > +  - Jacopo Mondi <jacopo.mondi@ideasonboard.com>
-> > > > +
-> > > > +description: |
-> > > > +  The Raspberry Pi PiSP Image Signal Processor (ISP) Back End is an image
-> > > > +  processor that fetches images in Bayer or Grayscale format from DRAM memory
-> > > > +  in tiles and produces images consumable by application.
+> > > > I'm not entirely sure if this was Rob's suggestion, I got the impre=
+ssion
+> > > > he was suggesting that in the two items case we'd not care about th=
+e
+> > > > order. But while I think this is different to that suggestion it's =
+also
+> > > > not wrong.
 > > >
-> > > s/application/applications/
-> > >
-> > > > +
-> > > > +  The full ISP documentation is available at:
-> > >
-> > > s/:$//
-> > >
-> > > > +  https://datasheets.raspberrypi.com/camera/raspberry-pi-image-signal-processor-specification.pdf
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    items:
-> > > > +      - enum:
-> > > > +          - brcm,bcm2712-pispbe
-> > > > +      - const: raspberrypi,pispbe
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  interrupts:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clocks:
-> > > > +    maxItems: 1
-> > >
-> > > As this is a SoC IP with only memory and register interfaces, I would
-> > > expect two clocks to be present, one for the register interface (AHB ?
-> > > AXI4-Lite ?) and one for the memory interfaces (AXI4 ?). While the
-> > > register interface clock is likely always enabled (in all cases that
-> > > matter in practice) in the BCM2712, I'm not sure this can be guaranteed
-> > > for future integration in different SoCs. Should we plan for this, and
-> > > either define two clocks already (with one of them being optional), or
-> > > name the single clock ?
-> > >
-> > > I know v1 named this clock "isp_be", and the name was dropped upon
-> > > Krzysztof's request, but I think naming the single clock "axi" or "aclk"
-> > > (assuming that one of them would be the right name) would be fine for
-> > > the reason explained above.
+> > > I log this at cover-letter. b4 can't support write change log at ever=
+y
+> > > patch yet.
 > >
-> > The PiSP datasheet does not offer many information on the IP
-> > integration, only a small graph with the memory interfacing, but no
-> > clocks.
+> > It never will (probably). That's because it doesn't need to. You can
+> > just do it with git. When you edit the commit message, then after the
+> > tags, Add '---' and put whatever you want after. That works as long as
+> > the commit is applied from a patch as 'git am' will drop it.
+>
+> The key problem is that I don't want to lost notes when respin patches. I=
+t
+> is easy to make mistake when I copy old serise change logs.
+
+You don't. It is all saved in the commit. When you rebase for the next
+version, you just add to the changes history.
+
+> Previously I use git notes + git-rebase, it work fine. Notes can be kept
+> when I do rebase and git commit --amend. But one thing is not good.
+> git send-email --to-cmd=3D./script/get_maintainer.sh *.patch. It can't
+> combine all patches's maitainer to a list. It looks like difference patch
+> will be difference --to list.
+>
+> b4 can help some case. But can't keep git-notes information when rebase.
+> It should be git bugs or feature missed.
+
+git-notes always seemed clunky and to be extra work to me. Just having
+the changelog in the commit msg is a lot easier.
+
+> > > Rob's suggest was not work. dt-binding check complain too long
+> > > if there are two dma-names =3D "rx", "tx".
 > >
-> > However your reasoning makes sense, and unless someone from RPi
-> > suggests the contrary, I'll do so
-> 
-> There is only a single clock that clocks the whole BE block, so does
-> the clock need to be explicitly named?  If it does, perhaps we can
-> just use "clk" as this is not explicitly an AXI or APB clock?
-
-If there's really a single clock then I don't think it needs to be
-named. I was expecting there would be a clock for the register
-interface, separate from the processing clock.
-
-> > > > +
-> > > > +  iommus:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - interrupts
-> > > > +  - clocks
-> > > > +
-> > > > +additionalProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > > +
-> > > > +    soc {
-> > > > +        #address-cells = <2>;
-> > > > +        #size-cells = <2>;
-> > > > +
-> > > > +        isp@880000  {
-> > > > +             compatible = "brcm,bcm2712-pispbe", "raspberrypi,pispbe";
-> > > > +             reg = <0x10 0x00880000  0x0 0x4000>;
-> > >
-> > > Double space, I don't know if that's on purpose.
+> > So I'm wrong or you didn't have it correct? No way to tell with your
+> > explanation. Let me give you the exact schema:
 > >
-> > Ofc it was not.
+> > dma-names:
+> >   minItems: 1
+> >   items:
+> >     - enum: [ rx, tx ]
+> >     - const: tx
 > >
-> > > > +             interrupts = <GIC_SPI 72 IRQ_TYPE_LEVEL_HIGH>;
-> > > > +             clocks = <&firmware_clocks 7>;
-> > > > +             iommus = <&iommu2>;
-> > > > +        };
-> > > > +    };
+> > This says we can have 1 or 2 entries. The first entry can be either rx
+> > or tx. The 2nd entry must be tx. That's what you want. However, '"tx",
+> > "tx"' is allowed with the above, but we enforce items to be unique
+> > elsewhere. Or I thought we did, but we relaxed '.*-names$' at some
+> > point. I'm going to fix that now.
+>
+> Conor find out my problem. The below code works. I missed maxItems.
+>
+>   dma-names:
+>      minItems: 1
+>      maxItems: 2
+>      items
 
--- 
-Regards,
+Missing ':'
 
-Laurent Pinchart
+>        enum: [ rx, tx ]
+
+That is not my suggestion. This would be my 3rd choice after what I
+proposed or what you had already. Please plug in exactly what I told
+you and report back what doesn't work.
+
+Rob
 
