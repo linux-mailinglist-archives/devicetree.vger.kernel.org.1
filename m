@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-48998-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48999-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0F03874900
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:46:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AEDB87490F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:49:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 735281F220FE
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 07:46:42 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95FF6B21555
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 07:49:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61BA633F9;
-	Thu,  7 Mar 2024 07:46:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 530C4633FE;
+	Thu,  7 Mar 2024 07:48:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YdZN+/Sg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D8MgwQsk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB217633E8
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 07:46:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D72A6312B
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 07:48:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709797578; cv=none; b=d7/UcLc4kHHhNFhSIElRkC2cI9pK1yXYMCQfRkKpuOOzm7rWxdUvhGg11ZJRm/GMlkqnviblUpKgfR9zVte0phSf36PGgBkzyYcVbqE7Uxfn8TfimK4adGQxU1pCo+lK7BSfCbjgqFWeSblNCfK1KsRyor+ucjjmBSgSD9+T5O0=
+	t=1709797727; cv=none; b=ZvH+fkihWQ+SxFeWF6Ei9u4Oay27UlJPMNuUbv/1a1Yp0NsCRljDPiIM643TghNo3mOh4v4VrC4GwoGZCMuk2lyusHD8WFleGdeSvvUsSiWokn9VnbXjeOSgsN/qLzEC8JJBP9YBhGCiG3yZlRpRRtOctTUeC6L7rXX+sGcbpxs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709797578; c=relaxed/simple;
-	bh=K4UuCTqbtVUs+hCPRMX+6oAiv0iEWBzeHyg7GI4cknA=;
+	s=arc-20240116; t=1709797727; c=relaxed/simple;
+	bh=jFQDXvGLp7p9vbgk3JL45+aqTnlwztWMeH8uOV/OvQw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NVFedOl9F/WUjPBK4VjL4OPlOhEGs43/xIJct6JtzBRWOB2hILRVlyeKrgIYSX4Sb0yQmwqtiiYSXAJZrEcwEhb4fmw1HvDWso0vnsvBnLS8mL3lJWUVXHW7CW3HjbClDYcM2mZfSHB7AracIR+olHP2Krhdt8a51qsZJp06wsg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YdZN+/Sg; arc=none smtp.client-ip=209.85.208.47
+	 In-Reply-To:Content-Type; b=DKqOQTRL30ETUH/S1usHjSPS9o/wFkDXHMmHJf5VlYJG4RehHwS9Wf7Ujuq16O8Z6EKiriU5HYFsDYWGVm7QJbqNLCg9ROn5dXQnJXzuN3VpYE1cxx0dfTHQxSMTxW9wdn+HEScoCgEjbab+7OXsqNqC9hq9L7l/Ad4v+fpguLQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D8MgwQsk; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-565b434f90aso677580a12.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 23:46:16 -0800 (PST)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a44ad785a44so67716966b.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 23:48:44 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709797575; x=1710402375; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709797723; x=1710402523; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2vEFocjxe/C7G6zRYMMM39IplkNHkFI1xgU3DzRRjSU=;
-        b=YdZN+/SgNH/Vdlq8IlKEOIXy09qQZVsa4c7yADuu/Ygj+cy2Pm+EG9iKX5AXBDatfG
-         9Xdbhw/z+Xo/ExUwLuOXzTSyz5TDTTU1sBGVWIoDaTTweZh5lToM53AERDIoFZUA3gAM
-         RKWJuuScGJj9B/mpgFZYZZCdz4ZyMhXDQBSoMWh6c05urNCjzzU1CFKbe0U1wnhbymFt
-         pBuumrRousQOixwWHY38oV+Ha4sZDURrPfe09ohfvHURFLF7x5UE9rjrUKw3jdHSYGpx
-         LORROZO5rJ2VEEL0KHof4MFT970iQrAiykDMvZ1JHwJuB9Rd4EunkJOrtNEwGxdeujjT
-         Hd2g==
+        bh=E5FrdVWeE9Ji8keRga1zHmD6NeczS9crX8d/3FFqO1E=;
+        b=D8MgwQskx5ZmQjkhTseCn501SB6oEjRQTBMOyluRbzA2QvHmvyI+NGVQLMkxkymgg8
+         1QJR+mB57pjf0aXGuEdGND9G3Ud9js4RsiTUbbtMDOJjVIXiK9qq0zic+xxcmCA8spbG
+         Or1GIqOrE2bFWi6/vnPoVGx+3BOqqzYuq6oBPJgxPEXT7UjgPiwBSmiKSjhXJfswGu6f
+         mGM0mLToV2SwOdLjXx1cKT89Bk+UnBe5MrdctNvCY3RAq7sRXpmQcw3LlG27b822mO+N
+         oaStRezgdlZ6NvN3p/FDBRfJT5Y7OrZxHGzt3GjCIfsrqqFgfgbJ/fvXOC5Ph3p//NI1
+         QQ5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709797575; x=1710402375;
+        d=1e100.net; s=20230601; t=1709797723; x=1710402523;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2vEFocjxe/C7G6zRYMMM39IplkNHkFI1xgU3DzRRjSU=;
-        b=ZIVXvVUYIv4f9Jo3sA52SmRb1Mfz4mQGaPCyqdQj4DCklIfy6bYNmMoL0mYh+JHeet
-         LxgsTQ7y8UXmht5KeHYD9P2hNC8n33Byy499Ri/oN8KtF0gzKOjz32afuVn0Paa5M9t5
-         uMZxXmvVAs/cJ4jfG0/K1bVI2P+visLuraYyVO1FtlpSVGEHxfkiElMzmuRy9xTrdoIy
-         Umnd2jFgMQmEMGn8nIazrB8FDnU47Sr2Xh/bwYutJu3FBpetYyIpN2uGc/tkFWzwSeE2
-         oYOc8smxP5aARBJ7j1pQ/BNJc7shvug9Zl2Wnxf4ePHd7jhaK1HdxmRlPfPaxKXU+mr0
-         LUYA==
-X-Forwarded-Encrypted: i=1; AJvYcCXqC9vpoOM2uRJcVwGEaR2aMxiV55JkAPvpi2iqRSZocawC1LQTGQi9Bb15qTculgZJrZlIp/h9IckhIvasCrZ/Ypp83Gp7z4+zkA==
-X-Gm-Message-State: AOJu0Yz3gusfEvLMfhLLS3I0DgilKtGmMVMtFb71ZiwbDMQ6q5MSmTg1
-	P/je4haqPvHA/RiMcvac4+8VSyIjw/ADL0cXI8NjqigaJ0GURWStinLxlXbKN+I=
-X-Google-Smtp-Source: AGHT+IFpl4af52prw6dvxD6VpZHr8XiDzYEFEVnS7NoLGOSu1hUyybkH3c+zyzSjt/Clbzqqa8vELA==
-X-Received: by 2002:a17:906:f6d1:b0:a45:d712:7b3e with SMTP id jo17-20020a170906f6d100b00a45d7127b3emr372989ejb.52.1709797575088;
-        Wed, 06 Mar 2024 23:46:15 -0800 (PST)
+        bh=E5FrdVWeE9Ji8keRga1zHmD6NeczS9crX8d/3FFqO1E=;
+        b=nDfX6f8JuIwYAcTAA50Vu8ykakWPZvS2AgeEPWQZITl6K5tJYfGfNQIiMgo0XYlFse
+         TfKvTIU9WqZiQR7+x4ApZkZLc1ZSTbmH7viKnqDQj0yrcFotA/iZ9kLgcRrzfr2DZGJN
+         LGSpDBHOBTJd7jvrmSo+VZptM+Ob8YI+2Ek/Mg57sJixOSE0wn33o+jR4MHx2nCgHezp
+         PWJ6DrvEkDl+ztqgsuW8Bri67NvUvGU8Gz4ivM7LUgSy8EpqAfl18XdV+0LlBKeQ+ubH
+         2JUcAwjukj7TiWcKrZXoSWXM9r/z0AioXefad8MFNxcHgFJX035Mldp6DaAFjbE4Oe8c
+         afcw==
+X-Forwarded-Encrypted: i=1; AJvYcCXwPVkdevvkmV/k3IFlqu+S8kYADoClhqAkgN2WIvatusqGhb36/AKDxFAxDeW6rL6cj6dhppImG8soWx12KIURjL0yWcks0EEJzg==
+X-Gm-Message-State: AOJu0YxFc2qBA5dBGuge59k36ZmB85S9r01yvzgdM4PRyO838Cm+MNAv
+	ZvrWHnLi9CRPWZct8ga/ZGMHcRbnuoJ5UePZ6+Sm6uosnUMALSvcMsoI1l4KrbI=
+X-Google-Smtp-Source: AGHT+IFPaVLeT7/HA8AHTsJEb61jX7OAF91GsQxpDYTjXrFZIvYX0U2Xry9PQ1zs9dOnPWI1zfHLZQ==
+X-Received: by 2002:a17:906:a2cf:b0:a3f:33b2:5ce2 with SMTP id by15-20020a170906a2cf00b00a3f33b25ce2mr12791329ejb.35.1709797722846;
+        Wed, 06 Mar 2024 23:48:42 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id tj7-20020a170907c24700b00a413d1eda4bsm7959287ejc.87.2024.03.06.23.46.12
+        by smtp.gmail.com with ESMTPSA id ju22-20020a170906e91600b00a45c18345e0sm1181462ejb.163.2024.03.06.23.48.41
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Mar 2024 23:46:14 -0800 (PST)
-Message-ID: <19d3c024-38aa-4526-b6c1-d9543b41fa2b@linaro.org>
-Date: Thu, 7 Mar 2024 08:46:12 +0100
+        Wed, 06 Mar 2024 23:48:42 -0800 (PST)
+Message-ID: <66f578b4-5e1b-4cc3-b39c-3b61797cacd3@linaro.org>
+Date: Thu, 7 Mar 2024 08:48:40 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,19 +76,23 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/5] spi: dt-bindings: add binding doc for
- spi-qpic-snand
+Subject: Re: [PATCH net-next v8 4/9] dt-bindings: net: convert hisi-femac.txt
+ to YAML
 Content-Language: en-US
-To: Md Sadre Alam <quic_mdalam@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, broonie@kernel.org, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
- manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
- linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
-Cc: quic_varada@quicinc.com, quic_srichara@quicinc.com
-References: <20240307041726.1648829-1-quic_mdalam@quicinc.com>
- <20240307041726.1648829-2-quic_mdalam@quicinc.com>
+To: Yang Xiwen <forbidden405@outlook.com>,
+ Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
+ <salil.mehta@huawei.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+ Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
+Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+References: <20240305-net-v8-0-166aaeea2107@outlook.com>
+ <20240305-net-v8-4-166aaeea2107@outlook.com>
+ <66cf4c42-5b8e-41b8-bbdb-7fb2c6bb9e66@linaro.org>
+ <SEZPR06MB69594BB6F24CF86E859D698196212@SEZPR06MB6959.apcprd06.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,126 +138,67 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240307041726.1648829-2-quic_mdalam@quicinc.com>
+In-Reply-To: <SEZPR06MB69594BB6F24CF86E859D698196212@SEZPR06MB6959.apcprd06.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/03/2024 05:17, Md Sadre Alam wrote:
-
-There is no commit msg.
-
-Subject did not improve. This is a friendly reminder during the review
-process.
-
-It seems my or other reviewer's previous comments were not fully
-addressed. Maybe the feedback got lost between the quotes, maybe you
-just forgot to apply it. Please go back to the previous discussion and
-either implement all requested changes or keep discussing them.
-
-Thank you.
-
-
-> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
-> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
-> ---
-> Change in [v3]
+On 06/03/2024 10:28, Yang Xiwen wrote:
+> On 3/6/2024 3:39 PM, Krzysztof Kozlowski wrote:
+>> On 05/03/2024 08:51, Yang Xiwen via B4 Relay wrote:
+>>> From: Yang Xiwen <forbidden405@outlook.com>
+>>>
+>>> Convert the old text binding to new YAML.
+>>>
+>>> While at it, make some changes to the binding:
+>>> - The version numbers are not documented publicly. The version also does
+>>> not change programming interface. Remove it until it's really needed.
+>>> - A few clocks are missing in old binding file. Add them to match the real
+>>> hardware.
+>>>
+>>> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
+>>> ---
+>>>   .../bindings/net/hisilicon,hisi-femac.yaml         | 89 ++++++++++++++++++++++
+>>>   .../devicetree/bindings/net/hisilicon-femac.txt    | 41 ----------
+>>>   2 files changed, 89 insertions(+), 41 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
+>>> new file mode 100644
+>>> index 000000000000..ba207f2c9ae4
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
+>>> @@ -0,0 +1,89 @@
+>>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/net/hisilicon,hisi-femac.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Hisilicon Fast Ethernet MAC controller
+>>> +
+>>> +maintainers:
+>>> +  - Yang Xiwen <forbidden405@foxmail.com>
+>>> +
+>>> +allOf:
+>>> +  - $ref: ethernet-controller.yaml
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - hisilicon,hi3516cv300-femac
+>>> +      - const: hisilicon,hisi-femac
+>> Drop this fallback, your later driver change does not use it, so neither
+>> should have binding. Explain in commit msg, that old binding was
+>> incorrect (we discussed it a lot) thus you are making such change during
+>> conversion.
 > 
-> * Updated commit message, removed "dt-bindings" from commit
->   message
 > 
-> * Updated compatible name as file name
-> 
-> * Added hardware description
-> 
-> * Documented clock-name
-> 
-> * Moved dma-names property to top
-> 
-> * Droped unused label "qpic_nand"
-> 
-> * Fixed indentation in example dt node
-> 
-> Change in [v2]
-> 
-> * Added initial support for dt-bindings
-> 
-> Change in [v1]
-> 
-> * This patch was not included in [v1]
->  
->  .../bindings/spi/qcom,spi-qpic-snand.yaml     | 83 +++++++++++++++++++
->  1 file changed, 83 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
-> new file mode 100644
-> index 000000000000..3d20a4bc567f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/spi/qcom,spi-qpic-snand.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Qualcomm QPIC NAND controller
-> +
-> +maintainers:
-> +  - Md sadre Alam <quic_mdalam@quicinc.com>
-> +
-> +description: |
+> What about deprecating "hisilicon,hisi-femac-vn" compatibles and 
+> introduce a new generic compatible "hisilicon,hisi-femac" instead? This 
+> way, We can keep backward compatibility.
 
-Do not need '|' unless you need to preserve formatting.
-
-> +  The QCOM QPI-SPI-NAND flash controller is an extended version of
-> +  the QCOM QPIC NAND flash controller. It can work both in serial
-> +  and parallel mode. It supports typical SPI-NAND page cache
-> +  operations in single, dual or quad IO mode with pipelined ECC
-> +  encoding/decoding using the QPIC ECC HW engine.
-> +
-> +allOf:
-> +  - $ref: /schemas/spi/spi-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - qcom,spi-qpic-snand
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 3
-
-Drop
-
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: core
-> +      - const: aon
-> +      - const: iom
-
-Missing blank line
-
-> +  dmas:
-> +    items:
-> +      - description: tx DMA channel
-> +      - description: rx DMA channel
-> +      - description: cmd DMA channel
-> +
-> +  dma-names:
-> +    items:
-> +      - const: tx
-> +      - const: rx
-> +      - const: cmd
-> +
-
+What backward compatibility? Didn't you say bindings and driver are
+broken and you are going to break ABI to fix them up?
 
 Best regards,
 Krzysztof
