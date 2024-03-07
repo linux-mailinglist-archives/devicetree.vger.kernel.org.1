@@ -1,173 +1,200 @@
-Return-Path: <devicetree+bounces-49115-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49116-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD437874EB1
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:14:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 38A25874EC2
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:16:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A60E1C21794
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 12:14:28 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 9FA96B24D41
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 12:16:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8849D129A7C;
-	Thu,  7 Mar 2024 12:14:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 739E612AACA;
+	Thu,  7 Mar 2024 12:16:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="jVys6ewv"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="WDWhx17d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63FCA3233
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 12:14:25 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 00D4C129A77;
+	Thu,  7 Mar 2024 12:16:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709813665; cv=none; b=nK+bq9j4+Tj3En3uzhz8S1SeA0CrmnSLQ5f+m9Q4fbf2rc06exv1ZjaKoa8huKY4cj2xvOjJSqQvBa5yMV1LyJGizUSkLPbKHoSNlF1XA9dAYBCKgjP38Lfh0bMcHKOjj9QT1aGssjvsTni7QdsauYmkH6JoeKMUfTXSNJHvT40=
+	t=1709813799; cv=none; b=IYVQShlJVOTpTb+DkOXd/PUtj+MmMwbBZzk9Sxl6jG7Njegs59RzKNz3qADM55QqeknsvjyKOekEV3f9cjVraLcEba2kTaollSOXHXvs0fGYSStJDz79QrDE01BdNqm/z6fT/TRcJN4AbyzblpRWfSB5rMmOwx28t71gxN8L/G8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709813665; c=relaxed/simple;
-	bh=pIS/CiY1Hsk0Zz/H+YnIJOLVvW1rgO+094zHpaQCSZU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=owS3Zta/e2SxjoydbLCZhwckl7Gie8lA2u1IXgCvesuJntpVpiF4ooeWeuf6BSvKltxYdsNWh3X/LtMEvSTEN1DxsuZ4/HkYzokLIwxbJyzKPFpdrAy+dchDy/9UpSDeT3LoxD7EEs5IJnIAXS4pZASgCg1WNR758cKGxccaN7k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=jVys6ewv; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6C5BDC433C7;
-	Thu,  7 Mar 2024 12:14:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709813664;
-	bh=pIS/CiY1Hsk0Zz/H+YnIJOLVvW1rgO+094zHpaQCSZU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=jVys6ewv8vokZXdRKI15KU14krJQhiDSu9kpzjPX/blMTVqhnJYQvnYA2F4f/aIIC
-	 vPGpOe1rtBPUebpwIIY8COVaSaLbfsPVTpKJJuCIuTPvCUXPr3Z/Lik4LZjYNbbgGi
-	 LISoAa1dVNbplpr57PGCg6gwPPSCBDekB9erUMoZPM/Io/Gp8TEZoLqEVM+xmnfyFu
-	 kD1Pg8uso5iFv0qRp1i8pmI/ZhORM4bEctu2kCfPtreOKp63igNgrXgBIrRxDasyem
-	 JO7z5uHVp6cvKYbHPHuTyNBuGpdarEEo0ze+h1s9MiDLIJrGGEj8F6h/GXa+Bt9cnc
-	 j4f2WZoxj/m4Q==
-Date: Thu, 7 Mar 2024 13:14:21 +0100
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	nbd@nbd.name, john@phrozen.org, devicetree@vger.kernel.org,
-	dd@embedd.com, catalin.marinas@arm.com, will@kernel.org,
-	upstream@airoha.com, lorenzo.bianconi83@gmail.com
-Subject: Re: [PATCH v3 3/4] arm64: add Airoha EN7581 platform
-Message-ID: <ZemvnYjbHHIVqvU3@lore-desk>
-References: <cover.1709768157.git.lorenzo@kernel.org>
- <b50faa94923389d435ac37c3094c269a46bddaea.1709768157.git.lorenzo@kernel.org>
- <6ff8ed9a-f70c-4ef5-97a7-37ddba4db7f6@collabora.com>
+	s=arc-20240116; t=1709813799; c=relaxed/simple;
+	bh=KWgfXMPIGtA9jZVnBTSIrLNOsC7THayA4/vdwyZmhkE=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=q0mBQ6VKAw9nl0wMIUDbnxE9WvuC7LzjsGw9HqeDCHwW46qEh5qG2MQq42ikjyY/Vh49KIms7cnf2vgFdun1k1b2pXfT2T4U/5MpbYv8PA2rn0jkV61Xq8+odhpqbWUj/weTz4YyVd7cva4cYLlf/Jzq5zvSAisgvTnJ93OdZf4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=WDWhx17d; arc=none smtp.client-ip=217.70.183.193
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 16F7A240009;
+	Thu,  7 Mar 2024 12:16:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709813787;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=NqBrgQVQ9FvM/GqR9CCaRL1K+LM764H8ixcND3N3l0o=;
+	b=WDWhx17dIRtElrHicmsg00kmcnRh5bBcWVMSPwcJUru0HdeHjZXqMsYzvjTChDa/yhvtdk
+	X+htnSu9lJmEDRVpSaFmGVWEBpLmElgQkJJqrTJ5To8j3eiau/pb8LYKo6IxI4r1au8T6o
+	LVhY2K9htiDEDzZqoVEW1mmQvaH99Y8fFHEfzvDP1712f07iTfslRXOBxPDR9TdxUMd3VA
+	94Obpy4t78knc4GoNkNI4SoDpyuCMW4TcrcJ3D/PJUJ1Fz1fONgwwzwiWCGR52TVafim+q
+	0N4vWgA+pS9LjOI33KISC8jLoFzMN/fA4JcE9FguGkhW9nS1Y2mDwPjrK+REeg==
+Date: Thu, 7 Mar 2024 13:16:23 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Nuno =?UTF-8?B?U8Oh?= <noname.nuno@gmail.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Saravana Kannan <saravanak@google.com>, Lizhi Hou
+ <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, Sonal Santan
+ <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>,
+ Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Allan Nielsen
+ <allan.nielsen@microchip.com>, Horatiu Vultur
+ <horatiu.vultur@microchip.com>, Steen Hegelund
+ <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] driver core: Introduce
+ device_link_wait_removal()
+Message-ID: <20240307131623.467e1def@bootlin.com>
+In-Reply-To: <94997e8720bc0a68afa85be3ef521c8844d0f0a0.camel@gmail.com>
+References: <20240307111036.225007-1-herve.codina@bootlin.com>
+	<20240307111036.225007-2-herve.codina@bootlin.com>
+	<94997e8720bc0a68afa85be3ef521c8844d0f0a0.camel@gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="A2pA6n7WRNQvthXs"
-Content-Disposition: inline
-In-Reply-To: <6ff8ed9a-f70c-4ef5-97a7-37ddba4db7f6@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Nuno,
 
---A2pA6n7WRNQvthXs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, 07 Mar 2024 12:50:52 +0100
+Nuno Sá <noname.nuno@gmail.com> wrote:
 
-> Il 07/03/24 01:11, Lorenzo Bianconi ha scritto:
-> > From: Daniel Danzberger <dd@embedd.com>
-> >=20
-> > Introduce the Kconfig entry for the Airoha EN7581 multicore architecture
-> > available in the Airoha EN7581 evaluation board.
-> >=20
-> > Signed-off-by: Daniel Danzberger <dd@embedd.com>
-> > Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
+> Hi Herve,
+> 
+> 
+> On Thu, 2024-03-07 at 12:10 +0100, Herve Codina wrote:
+> > The commit 80dd33cf72d1 ("drivers: base: Fix device link removal")
+> > introduces a workqueue to release the consumer and supplier devices used
+> > in the devlink.
+> > In the job queued, devices are release and in turn, when all the
+> > references to these devices are dropped, the release function of the
+> > device itself is called.
+> > 
+> > Nothing is present to provide some synchronisation with this workqueue
+> > in order to ensure that all ongoing releasing operations are done and
+> > so, some other operations can be started safely.
+> > 
+> > For instance, in the following sequence:
+> >   1) of_platform_depopulate()
+> >   2) of_overlay_remove()
+> > 
+> > During the step 1, devices are released and related devlinks are removed
+> > (jobs pushed in the workqueue).
+> > During the step 2, OF nodes are destroyed but, without any
+> > synchronisation with devlink removal jobs, of_overlay_remove() can raise
+> > warnings related to missing of_node_put():
+> >   ERROR: memory leak, expected refcount 1 instead of 2
+> > 
+> > Indeed, the missing of_node_put() call is going to be done, too late,
+> > from the workqueue job execution.
+> > 
+> > Introduce device_link_wait_removal() to offer a way to synchronize
+> > operations waiting for the end of devlink removals (i.e. end of
+> > workqueue jobs).
+> > Also, as a flushing operation is done on the workqueue, the workqueue
+> > used is moved from a system-wide workqueue to a local one.
+> > 
+> > Cc: stable@vger.kernel.org
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > Reviewed-by: Nuno Sa <nuno.sa@analog.com>
 > > ---
-> >   arch/arm64/Kconfig.platforms | 13 +++++++++++++
-> >   1 file changed, 13 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/Kconfig.platforms b/arch/arm64/Kconfig.platforms
-> > index 24335565bad5..bbe61e233034 100644
-> > --- a/arch/arm64/Kconfig.platforms
-> > +++ b/arch/arm64/Kconfig.platforms
-> > @@ -8,6 +8,19 @@ config ARCH_ACTIONS
-> >   	help
-> >   	  This enables support for the Actions Semiconductor S900 SoC family.
-> > +config ARCH_AIROHA
-> > +	bool "Airoha SoC Support"
-> > +	select ARM_AMBA
->=20
-> ARM_AMBA is selected by ARM64 already, you don't need that one here.
+> >  drivers/base/core.c    | 26 +++++++++++++++++++++++---
+> >  include/linux/device.h |  1 +
+> >  2 files changed, 24 insertions(+), 3 deletions(-)
+> > 
+> > diff --git a/drivers/base/core.c b/drivers/base/core.c
+> > index d5f4e4aac09b..48b28c59c592 100644
+> > --- a/drivers/base/core.c
+> > +++ b/drivers/base/core.c
+> > @@ -44,6 +44,7 @@ static bool fw_devlink_is_permissive(void);
+> >  static void __fw_devlink_link_to_consumers(struct device *dev);
+> >  static bool fw_devlink_drv_reg_done;
+> >  static bool fw_devlink_best_effort;
+> > +static struct workqueue_struct *device_link_wq;
+> >  
+> >  /**
+> >   * __fwnode_link_add - Create a link between two fwnode_handles.
+> > @@ -532,12 +533,26 @@ static void devlink_dev_release(struct device *dev)
+> >  	/*
+> >  	 * It may take a while to complete this work because of the SRCU
+> >  	 * synchronization in device_link_release_fn() and if the consumer or
+> > -	 * supplier devices get deleted when it runs, so put it into the "long"
+> > -	 * workqueue.
+> > +	 * supplier devices get deleted when it runs, so put it into the
+> > +	 * dedicated workqueue.
+> >  	 */
+> > -	queue_work(system_long_wq, &link->rm_work);
+> > +	queue_work(device_link_wq, &link->rm_work);
+> >  }
+> >  
+> > +/**
+> > + * device_link_wait_removal - Wait for ongoing devlink removal jobs to terminate
+> > + */
+> > +void device_link_wait_removal(void)
+> > +{
+> > +	/*
+> > +	 * devlink removal jobs are queued in the dedicated work queue.
+> > +	 * To be sure that all removal jobs are terminated, ensure that any
+> > +	 * scheduled work has run to completion.
+> > +	 */
+> > +	flush_workqueue(device_link_wq);
+> > +}
+> > +EXPORT_SYMBOL_GPL(device_link_wait_removal);
+> > +
+> >  static struct class devlink_class = {
+> >  	.name = "devlink",
+> >  	.dev_groups = devlink_groups,
+> > @@ -4099,9 +4114,14 @@ int __init devices_init(void)
+> >  	sysfs_dev_char_kobj = kobject_create_and_add("char", dev_kobj);
+> >  	if (!sysfs_dev_char_kobj)
+> >  		goto char_kobj_err;
+> > +	device_link_wq = alloc_workqueue("device_link_wq", 0, 0);  
+> 
+> My rb tag was with the assumption this is moved into devlink_class_init(). IIUC,
+> Saravana also agreed with that [1]. But it looks like he missed that we are
+> allocating the queue in devices_init() and not in devlink_class_init().
+> 
+> I'm also not sure if this is in line with what Rafael wanted for ccing stable. How do
+> we know the next patch depends on this one?
+> 
+> [1]: https://lore.kernel.org/lkml/CAGETcx_gNWOTsSZMaZu+XU1-5Z60WEcMhw08t4Sn_-YgkCCUmA@mail.gmail.com/
+> 
 
-ack, I will fix it in v4.
+We discussed that point and I understood that you were ok to do that on your
+side:
+  https://lore.kernel.org/linux-kernel/f42ceee61ddb8b50c347589649d4131476ab5d81.camel@gmail.com/
 
->=20
-> > +	select ARM_GIC
-> > +	select ARM_GIC_V3
->=20
-> ARM_GIC and ARM_GIC_v3 are also selected by ARM64
+Sorry if I misunderstood.
 
-ack, I will fix it in v4.
+I am going to wait for other comments on this current series before re-sending
+with our 'Reviewed-by' removed if needed. Let me know.
 
->=20
-> > +	select ARM_PSCI
->=20
-> ARM64 selects ARM_PSCI_FW (which should select ARM_PSCI, please verify)
-
-ARM64 selects ARM_PSCI_FW but ARM_PSCI_FW does not seem to select ARM_PSCI.
-Am I missing something?
-
->=20
-> > +	select HAVE_ARM_ARCH_TIMER
-> > +	select COMMON_CLK
->=20
-> ARM64 selects COMMON_CLK already.
-
-ack, I will fix it in v4.
-
->=20
-> > +	help
-> > +	  This enables support for Airoha EN7581 multicore architecture
-> > +	  available on the following SoCs:
-> > +	   - Airoha EN7581 Evaluation Board
->=20
-> You're not going to add one ARCH entry for each MTK Airoha platform, are =
-you?
->=20
-> (if you are, that's wrong)
->=20
-> ....so the help text must be refactored; you could say something like
-> "This enables support for the ARM64 based Airoha SoCs"
-
-ack, I will fix it in v4.
-
->=20
-> ...also, I'm undecided whether MTK should be mentioned or not, here, as t=
-hose
-> SoCs are (...at least the 7581 seems to be) really based on MediaTek rout=
-er
-> chips, in many instances, sharing the same IPs.
-
-Right, EN7581 is similar to mtk router but I do not know if this will be al=
-ways
-true (maybe?? :))
-
-Regards,
-Lorenzo
-
->=20
->=20
-> Cheers,
-> Angelo
->=20
-
---A2pA6n7WRNQvthXs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCZemvnQAKCRA6cBh0uS2t
-rAlXAP9AstKWP0eq0wlbxxySeYYNJxKE/QCZj7BYOwOq63naDgEA018Ied0OKyzd
-tKkt2QxvsiYR/iXSkokIEUa1FVupoA0=
-=SzIU
------END PGP SIGNATURE-----
-
---A2pA6n7WRNQvthXs--
+Best regards,
+Hervé
 
