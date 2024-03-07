@@ -1,238 +1,261 @@
-Return-Path: <devicetree+bounces-48997-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48998-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DD278748ED
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:42:08 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0F03874900
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:46:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43F0A282020
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 07:42:07 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 735281F220FE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 07:46:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BBC8C62A1E;
-	Thu,  7 Mar 2024 07:42:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61BA633F9;
+	Thu,  7 Mar 2024 07:46:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="LTzJOf8s"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="YdZN+/Sg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+Received: from mail-ed1-f47.google.com (mail-ed1-f47.google.com [209.85.208.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EA8F63105;
-	Thu,  7 Mar 2024 07:42:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.166.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB217633E8
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 07:46:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709797324; cv=none; b=RuMrO8f1VVvmMhP63acMtAvMX3K/oFT1Imk37e7im+tQozp60VAPKf/kAXLrGDID4OJ1iSY18LFgDkqNuLEBLi/6+K5dI0Hii5LY4pi23Rm6bOv0Dw9efPgGaW/nkS9m1L0ec3tqWZTGAHn/vTcur4rcOSWSwThFU6tM0wn0rEY=
+	t=1709797578; cv=none; b=d7/UcLc4kHHhNFhSIElRkC2cI9pK1yXYMCQfRkKpuOOzm7rWxdUvhGg11ZJRm/GMlkqnviblUpKgfR9zVte0phSf36PGgBkzyYcVbqE7Uxfn8TfimK4adGQxU1pCo+lK7BSfCbjgqFWeSblNCfK1KsRyor+ucjjmBSgSD9+T5O0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709797324; c=relaxed/simple;
-	bh=8zkoTHrhHGCWjkGdamTPQWEi1mXkY2fTJs3Wy3G48yU=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=OisakHqxR1FZP774z0dCoJ3O9Swf7jJcw2jU9LpptM9MM6A77mXg4n1SKSxNOlGu3WcN/MtLw2/f07HG+f1FBBzPI/fI2SdGjHApDsMZ+VHy/tGZZDX1cg5+fyNmaxR4Sc8G+Dd0ibsWRWJalBfcG9kbjxilpVSo9j92PVZhAbk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=LTzJOf8s; arc=none smtp.client-ip=209.85.166.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-7c872002187so21154839f.2;
-        Wed, 06 Mar 2024 23:42:02 -0800 (PST)
+	s=arc-20240116; t=1709797578; c=relaxed/simple;
+	bh=K4UuCTqbtVUs+hCPRMX+6oAiv0iEWBzeHyg7GI4cknA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NVFedOl9F/WUjPBK4VjL4OPlOhEGs43/xIJct6JtzBRWOB2hILRVlyeKrgIYSX4Sb0yQmwqtiiYSXAJZrEcwEhb4fmw1HvDWso0vnsvBnLS8mL3lJWUVXHW7CW3HjbClDYcM2mZfSHB7AracIR+olHP2Krhdt8a51qsZJp06wsg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=YdZN+/Sg; arc=none smtp.client-ip=209.85.208.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f47.google.com with SMTP id 4fb4d7f45d1cf-565b434f90aso677580a12.3
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 23:46:16 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709797322; x=1710402122; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=B5+2SLHKHSCrTFwVgpGe2p6pLgJMincwPJKbEHmHkEw=;
-        b=LTzJOf8sQDv63ZaORfJfmgipNJpyCs4RcebQDY6KFnky51sDvrHSeNI327ZAQC/0OT
-         RTh4gqQaAReSsSLCXnFEHJ5cg7XhFBpLfHb45GCC6/6H4tsc7k2/oFDbSKingCiyEM9P
-         5j6Oo8SxB83I+kijOK7JjmBB7ICRfG3E2pBBwGZ+ti6ZXvUmT7oO3wjv7kStotDnE58T
-         gcvi0gx5kHI0V5XSbKgmZo/aelSJ1msVcyCF6XnCSU/Spp6Bd5RvV/2xvTU2mujat1a5
-         Ego13ka47YvpJ0Ea8Li9yT4602+wUnfgLF3edGfUuAvZJ6XWXnsfVk8u+Unm253qVaSa
-         dylQ==
+        d=linaro.org; s=google; t=1709797575; x=1710402375; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2vEFocjxe/C7G6zRYMMM39IplkNHkFI1xgU3DzRRjSU=;
+        b=YdZN+/SgNH/Vdlq8IlKEOIXy09qQZVsa4c7yADuu/Ygj+cy2Pm+EG9iKX5AXBDatfG
+         9Xdbhw/z+Xo/ExUwLuOXzTSyz5TDTTU1sBGVWIoDaTTweZh5lToM53AERDIoFZUA3gAM
+         RKWJuuScGJj9B/mpgFZYZZCdz4ZyMhXDQBSoMWh6c05urNCjzzU1CFKbe0U1wnhbymFt
+         pBuumrRousQOixwWHY38oV+Ha4sZDURrPfe09ohfvHURFLF7x5UE9rjrUKw3jdHSYGpx
+         LORROZO5rJ2VEEL0KHof4MFT970iQrAiykDMvZ1JHwJuB9Rd4EunkJOrtNEwGxdeujjT
+         Hd2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709797322; x=1710402122;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=B5+2SLHKHSCrTFwVgpGe2p6pLgJMincwPJKbEHmHkEw=;
-        b=MwIeAb7KLL1uMyJCwU/k3yHHaF4CBk8DA0Q4gObbYc0Seh/v9L670/xv0OJN5JW7J+
-         X0T+XJPZFIvWQ8aqhCHriV3xMguppU3JK549OPlaOOeRjQ5e9hBDuDcUbCjcqlH+G732
-         GJzaLLtPMEQE4tzjxEAVKori5emAck6SH5w0sf5BFlP4DlAETaVM/tv1yIv5WWqVdulA
-         yvgGUzeza7FZ/Bm0ufuu6bVCy/tDu+FBa/2gNyX47paFHHZAvj0Kob16W+8Ce6uLtOjc
-         7DNTJNLFL9veUDBsfvtZPCOCZI/ytK4YR3ME8B3DngJm1ohRa5qiwnqgoMjtWGxQT4Tr
-         s04g==
-X-Forwarded-Encrypted: i=1; AJvYcCUchEW+Xqq2iXJ/iBtXfb5Vecf/BZ/i7Ej7d4mxN8jvmqryEnqeMUc/pnsLXOYiutwiyKI7liJQ11UrFc4WI2AyF8/ESFTgqDsDzY5iK5rSdSfQyKdt2TSc9/AKgN364HO5Qeb0goIhi90zLBtl36KjR3rpfhWiqMH+/AIeaQVYMlU5Fb0fueSGJ1iCuCOz2NVCgPGZKFhpP8Lz9joRBlr2
-X-Gm-Message-State: AOJu0YztYxw2acHSGFSYi8GV1kLuHEyfU+AR5Qtx/6jzjCliv1T4GKxU
-	ss1ZRZIixoKhv/4WhYaqdHGouFelMV19qBt7+Uqzf78oYFg4eF9++qvVzcdsOKv1f11y7WIhUE/
-	mSzPTMj7Tdp8nShhBBIjhrGCKg2I=
-X-Google-Smtp-Source: AGHT+IEeBR2EPDEPGv0wdG0jF+0ybHRLIfCHqc8xs55MboJMGn1dQvKiGrjW/JtCbl+vnDXrSMS9zxUAZJEr7pMVv/c=
-X-Received: by 2002:a6b:dc0d:0:b0:7c8:63dc:e9cd with SMTP id
- s13-20020a6bdc0d000000b007c863dce9cdmr9211980ioc.19.1709797322307; Wed, 06
- Mar 2024 23:42:02 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709797575; x=1710402375;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2vEFocjxe/C7G6zRYMMM39IplkNHkFI1xgU3DzRRjSU=;
+        b=ZIVXvVUYIv4f9Jo3sA52SmRb1Mfz4mQGaPCyqdQj4DCklIfy6bYNmMoL0mYh+JHeet
+         LxgsTQ7y8UXmht5KeHYD9P2hNC8n33Byy499Ri/oN8KtF0gzKOjz32afuVn0Paa5M9t5
+         uMZxXmvVAs/cJ4jfG0/K1bVI2P+visLuraYyVO1FtlpSVGEHxfkiElMzmuRy9xTrdoIy
+         Umnd2jFgMQmEMGn8nIazrB8FDnU47Sr2Xh/bwYutJu3FBpetYyIpN2uGc/tkFWzwSeE2
+         oYOc8smxP5aARBJ7j1pQ/BNJc7shvug9Zl2Wnxf4ePHd7jhaK1HdxmRlPfPaxKXU+mr0
+         LUYA==
+X-Forwarded-Encrypted: i=1; AJvYcCXqC9vpoOM2uRJcVwGEaR2aMxiV55JkAPvpi2iqRSZocawC1LQTGQi9Bb15qTculgZJrZlIp/h9IckhIvasCrZ/Ypp83Gp7z4+zkA==
+X-Gm-Message-State: AOJu0Yz3gusfEvLMfhLLS3I0DgilKtGmMVMtFb71ZiwbDMQ6q5MSmTg1
+	P/je4haqPvHA/RiMcvac4+8VSyIjw/ADL0cXI8NjqigaJ0GURWStinLxlXbKN+I=
+X-Google-Smtp-Source: AGHT+IFpl4af52prw6dvxD6VpZHr8XiDzYEFEVnS7NoLGOSu1hUyybkH3c+zyzSjt/Clbzqqa8vELA==
+X-Received: by 2002:a17:906:f6d1:b0:a45:d712:7b3e with SMTP id jo17-20020a170906f6d100b00a45d7127b3emr372989ejb.52.1709797575088;
+        Wed, 06 Mar 2024 23:46:15 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id tj7-20020a170907c24700b00a413d1eda4bsm7959287ejc.87.2024.03.06.23.46.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 06 Mar 2024 23:46:14 -0800 (PST)
+Message-ID: <19d3c024-38aa-4526-b6c1-d9543b41fa2b@linaro.org>
+Date: Thu, 7 Mar 2024 08:46:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240227005606.1107203-1-kcfeng0@nuvoton.com> <20240227005606.1107203-2-kcfeng0@nuvoton.com>
- <1cf69d3e-a8b4-49f6-ac4d-550b525e45e2@hatter.bewilderbeest.net>
-In-Reply-To: <1cf69d3e-a8b4-49f6-ac4d-550b525e45e2@hatter.bewilderbeest.net>
-From: Ban Feng <baneric926@gmail.com>
-Date: Thu, 7 Mar 2024 15:41:51 +0800
-Message-ID: <CALz278b_bbFB77TsVZLMKaK7kwqjjS1PzBbsB==r08R1Zkju8A@mail.gmail.com>
-Subject: Re: [PATCH v4 1/3] dt-bindings: hwmon: fan: Add fan binding to schema
-To: Zev Weiss <zev@bewilderbeest.net>
-Cc: jdelvare@suse.com, linux@roeck-us.net, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, corbet@lwn.net, 
-	linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org, kcfeng0@nuvoton.com, 
-	kwliu@nuvoton.com, openbmc@lists.ozlabs.org, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, DELPHINE_CHIU@wiwynn.com, 
-	naresh.solanki@9elements.com, billy_tsai@aspeedtech.com, 
-	Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/5] spi: dt-bindings: add binding doc for
+ spi-qpic-snand
+Content-Language: en-US
+To: Md Sadre Alam <quic_mdalam@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, broonie@kernel.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+ manivannan.sadhasivam@linaro.org, linux-arm-msm@vger.kernel.org,
+ linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
+Cc: quic_varada@quicinc.com, quic_srichara@quicinc.com
+References: <20240307041726.1648829-1-quic_mdalam@quicinc.com>
+ <20240307041726.1648829-2-quic_mdalam@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240307041726.1648829-2-quic_mdalam@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hi Zev,
+On 07/03/2024 05:17, Md Sadre Alam wrote:
 
-This patch was suggested by reviewer and I cherry-pick from below link:
-https://patchwork.kernel.org/project/linux-hwmon/patch/20240221104025.13062=
-27-2-billy_tsai@aspeedtech.com/
+There is no commit msg.
 
-Because I don't know the rule about the patch with cherry-pick, maybe
-we should discuss it there?
+Subject did not improve. This is a friendly reminder during the review
+process.
 
-Thanks,
-Ban
+It seems my or other reviewer's previous comments were not fully
+addressed. Maybe the feedback got lost between the quotes, maybe you
+just forgot to apply it. Please go back to the previous discussion and
+either implement all requested changes or keep discussing them.
 
-On Tue, Mar 5, 2024 at 8:22=E2=80=AFAM Zev Weiss <zev@bewilderbeest.net> wr=
-ote:
->
-> On Mon, Feb 26, 2024 at 04:56:04PM PST, baneric926@gmail.com wrote:
-> >From: Naresh Solanki <naresh.solanki@9elements.com>
-> >
-> >Add common fan properties bindings to a schema.
-> >
-> >Bindings for fan controllers can reference the common schema for the
-> >fan
-> >
-> >child nodes:
-> >
-> >  patternProperties:
-> >    "^fan@[0-2]":
-> >      type: object
-> >      $ref: fan-common.yaml#
-> >      unevaluatedProperties: false
-> >
-> >Reviewed-by: Rob Herring <robh@kernel.org>
-> >Signed-off-by: Naresh Solanki <naresh.solanki@9elements.com>
-> >Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> >Signed-off-by: Ban Feng <kcfeng0@nuvoton.com>
-> >---
-> > .../devicetree/bindings/hwmon/fan-common.yaml | 78 +++++++++++++++++++
-> > 1 file changed, 78 insertions(+)
-> > create mode 100644 Documentation/devicetree/bindings/hwmon/fan-common.y=
-aml
-> >
-> >diff --git a/Documentation/devicetree/bindings/hwmon/fan-common.yaml b/D=
-ocumentation/devicetree/bindings/hwmon/fan-common.yaml
-> >new file mode 100644
-> >index 000000000000..15c591c74545
-> >--- /dev/null
-> >+++ b/Documentation/devicetree/bindings/hwmon/fan-common.yaml
-> >@@ -0,0 +1,78 @@
-> >+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> >+%YAML 1.2
-> >+---
-> >+$id: http://devicetree.org/schemas/hwmon/fan-common.yaml#
-> >+$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >+
-> >+title: Common Fan Properties
-> >+
-> >+maintainers:
-> >+  - Naresh Solanki <naresh.solanki@9elements.com>
-> >+  - Billy Tsai <billy_tsai@aspeedtech.com>
-> >+
-> >+properties:
-> >+  max-rpm:
-> >+    description:
-> >+      Max RPM supported by fan.
-> >+    $ref: /schemas/types.yaml#/definitions/uint32
-> >+    maximum: 100000
-> >+
-> >+  min-rpm:
-> >+    description:
-> >+      Min RPM supported by fan.
-> >+    $ref: /schemas/types.yaml#/definitions/uint32
-> >+    maximum: 1000
->
-> I can't say with certainty that it's not, but are we sure 1000 is low
-> enough?  Looking at just what I've got on hand, an 80mm fan I have will
-> run steadily at about 1500RPM, and I'd assume larger ones (e.g. 120mm)
-> could potentially go significantly lower...
->
-> >+
-> >+  pulses-per-revolution:
-> >+    description:
-> >+      The number of pulse from fan sensor per revolution.
-> >+    $ref: /schemas/types.yaml#/definitions/uint32
-> >+    maximum: 4
->
-> Might we want 'default: 2' here?
->
-> >+
-> >+  tach-div:
-> >+    description:
-> >+      Divisor for the tach sampling clock, which determines the sensiti=
-vity of the tach pin.
-> >+    $ref: /schemas/types.yaml#/definitions/uint32
-> >+
-> >+  target-rpm:
-> >+    description:
-> >+      The default desired fan speed in RPM.
-> >+    $ref: /schemas/types.yaml#/definitions/uint32
-> >+
-> >+  fan-driving-mode:
-> >+    description:
-> >+      Select the driving mode of the fan.(DC, PWM and so on)
->
-> Nit: could use a space before the parenthetical.
->
-> >+    $ref: /schemas/types.yaml#/definitions/string
-> >+    enum: [ dc, pwm ]
-> >+
-> >+  pwms:
-> >+    description:
-> >+      PWM provider.
-> >+    maxItems: 1
-> >+
-> >+  "#cooling-cells":
-> >+    const: 2
-> >+
-> >+  cooling-levels:
-> >+    description:
-> >+      The control value which correspond to thermal cooling states.
-> >+    $ref: /schemas/types.yaml#/definitions/uint32-array
-> >+
-> >+  tach-ch:
-> >+    description:
-> >+      The tach channel used for the fan.
-> >+    $ref: /schemas/types.yaml#/definitions/uint8-array
->
-> Nit: s/channel/channels/ given that it's an array?
->
-> >+
-> >+  label:
-> >+    description:
-> >+      Optional fan label
-> >+
-> >+  fan-supply:
-> >+    description:
-> >+      Power supply for fan.
-> >+
-> >+  reg:
-> >+    maxItems: 1
-> >+
-> >+additionalProperties: true
-> >+
-> >--
-> >2.34.1
-> >
-> >
+Thank you.
+
+
+> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+> ---
+> Change in [v3]
+> 
+> * Updated commit message, removed "dt-bindings" from commit
+>   message
+> 
+> * Updated compatible name as file name
+> 
+> * Added hardware description
+> 
+> * Documented clock-name
+> 
+> * Moved dma-names property to top
+> 
+> * Droped unused label "qpic_nand"
+> 
+> * Fixed indentation in example dt node
+> 
+> Change in [v2]
+> 
+> * Added initial support for dt-bindings
+> 
+> Change in [v1]
+> 
+> * This patch was not included in [v1]
+>  
+>  .../bindings/spi/qcom,spi-qpic-snand.yaml     | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+> new file mode 100644
+> index 000000000000..3d20a4bc567f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/spi/qcom,spi-qpic-snand.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm QPIC NAND controller
+> +
+> +maintainers:
+> +  - Md sadre Alam <quic_mdalam@quicinc.com>
+> +
+> +description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +  The QCOM QPI-SPI-NAND flash controller is an extended version of
+> +  the QCOM QPIC NAND flash controller. It can work both in serial
+> +  and parallel mode. It supports typical SPI-NAND page cache
+> +  operations in single, dual or quad IO mode with pipelined ECC
+> +  encoding/decoding using the QPIC ECC HW engine.
+> +
+> +allOf:
+> +  - $ref: /schemas/spi/spi-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - qcom,spi-qpic-snand
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 3
+
+Drop
+
+> +    maxItems: 3
+> +
+> +  clock-names:
+> +    items:
+> +      - const: core
+> +      - const: aon
+> +      - const: iom
+
+Missing blank line
+
+> +  dmas:
+> +    items:
+> +      - description: tx DMA channel
+> +      - description: rx DMA channel
+> +      - description: cmd DMA channel
+> +
+> +  dma-names:
+> +    items:
+> +      - const: tx
+> +      - const: rx
+> +      - const: cmd
+> +
+
+
+Best regards,
+Krzysztof
+
 
