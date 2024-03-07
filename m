@@ -1,256 +1,248 @@
-Return-Path: <devicetree+bounces-49120-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49121-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4882D874F08
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:29:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5070C874F15
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:32:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B51CE1F2442B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 12:29:37 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BC4C01F23B57
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 12:32:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A092E12AAF8;
-	Thu,  7 Mar 2024 12:29:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C5085279;
+	Thu,  7 Mar 2024 12:31:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="FeaVX8Pz"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Bzb1l7Zf"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C624B12AAE5;
-	Thu,  7 Mar 2024 12:29:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA05741A94;
+	Thu,  7 Mar 2024 12:31:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709814564; cv=none; b=BKgLETGatcfaBI6FMMER5iQAoCRT5aCib29DMlJFlqdCGpskyb7Tx9fxfnuauX/uwh5qJO/DZKM/sbl3G8A42lLv24/f7ZZaCTak8NuqinOEJKGjIMaIXB5kzOTW4o4S6haKhVN3p6fInJV9df0iK9KBYd/7CZC5P9IYl4ryyOU=
+	t=1709814718; cv=none; b=YfnKAe+9LGSc0KP3VnL+b8LQ6VcEOkFuz6nGPSa6w/k3+XTQ8t3WXrqpNhUyNHTkHe1Uxugw6Fu7NGgztWS8qm2TYQGI/xy+V/yP3Nf2CNorIpePJiSMjolr8xf3839XkyTZBWoRXf4n0i5tWncalZl/W+ZpUheFJ7t3rWi2lPw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709814564; c=relaxed/simple;
-	bh=TXEiZlFrI3O3jEy5Fg8AeV6L0c2a37TvABNwO3/ujww=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=NSvqJ4L5IhlPg/DnngGLgm7LACPGqOz2b4IaASKGGlNQfzJZ6SZ5qYmsiiDQvGUZ5/dezUdCsBb4y2ZYdcvGRrrRLUBzCcku7MHCKAUJfhO5dw6K/A0mZm6QOoxvrq1D/ZCCC0CZfTgnGVp+YLt+XXokfiG+7HiLV+bRNVP10qM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=FeaVX8Pz; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-512b3b04995so608215e87.3;
-        Thu, 07 Mar 2024 04:29:22 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709814561; x=1710419361; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=i63ZUY7XKpQyXAHueT3y2cbAVNLsMRCCki1KAQkz850=;
-        b=FeaVX8Pz2z86Zd8UN4Yk9VOBSa/if4g0MSQf7eaD6o/VOSjOOXC0TwVRGw91GkERsr
-         Cd+hdo10vB8JQ5+lVDI1VKhC99uHqqzRJK3iFQLD2KNRJ2CD0fgEjCrtSpNoREFIJ3rb
-         Ku83GZxlEphqNHAvn/vsJfsJwhI1PZCqd1HPjOsx/g4L4Flb+ZYlBHdRB0xFsoAI9stp
-         6BQze9SSWch2iSIkO/Ff2j+RPNKqwmSY69O7lyCH41hchTHfzge92niYarpjS0qIApR1
-         pfGnK5oF7TQONZWxXo6EqGQYe/6UYY+YpV10lkcY8iE95jTR5eFwhXPWlC7mDOG34k82
-         sO2w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709814561; x=1710419361;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=i63ZUY7XKpQyXAHueT3y2cbAVNLsMRCCki1KAQkz850=;
-        b=UyKny6NVnIkhNtYU2DJRUU820tgmXAjoaYBVW6aVH4YDxW5JSHp0Y7Y4sMW+wtTXvU
-         IHDifZ2LLRIXCQhAXLeOdc1NCa1kGqJ7jFW6rg4C5UmAv5Vm/kNapfmT6s4fydFYnmzz
-         Q/BStMnNzMMU3X7+4LjtFPCVXWjM98XZ0/pO84KLEN7NgfDy1pvrblLVJfHPMXxrrPOz
-         u51bHsFtSTUWDCC/ItX0QnD+NI2wtAbjFFeTCJVzK/T3DnIUSOJfvEPpbr+q0w8VSvlo
-         u0qWj1htXc/haKlF+pFnvY4d9jjvLOWnfMZ7OCWh3KmJmCP8RuQHwxeyM8lA3SxTBBzd
-         CN5g==
-X-Forwarded-Encrypted: i=1; AJvYcCVddjhySDUqtRyVqzRXuGS1mLIQD/pYxUQ9InnNpd1AR/lxFEF8xmTOBj+YTQWMtPWIlDow5xrt60TTpR7Cqf9D2E8vYkOnjQ/b5UrmSd0v+NRRPRq70QsiX/S9i/2GIsw2FwQuSh/VNkhz6QiTJE0LJzb3wHB8krauEw9PMcBhtA==
-X-Gm-Message-State: AOJu0Yy2Pb0kIkMhamoCvQR4OoEDYlnpSmCLuxm87XcuznW1c5ZnIQmc
-	PV45iyMdayTzbbvpRPAzHlEu8rMwTuPaQsuAWNQshUa01YBczuBp
-X-Google-Smtp-Source: AGHT+IHelcR5ZOyVmkbwCwQ8QjJfDVtAw8aDRRZ7Hsnxo1rdcGIXHa1CI9IXIdmB4PvykPUvOGmiQA==
-X-Received: by 2002:a05:6512:484e:b0:513:5eb5:625f with SMTP id ep14-20020a056512484e00b005135eb5625fmr1204005lfb.31.1709814560578;
-        Thu, 07 Mar 2024 04:29:20 -0800 (PST)
-Received: from ?IPv6:2001:a61:343e:8301:d737:22b0:7431:8d01? ([2001:a61:343e:8301:d737:22b0:7431:8d01])
-        by smtp.gmail.com with ESMTPSA id lo2-20020a170906fa0200b00a45a687b52asm2925721ejb.213.2024.03.07.04.29.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Mar 2024 04:29:20 -0800 (PST)
-Message-ID: <c0f7ea40a2b1abc22242a892e162e4511a7c99f1.camel@gmail.com>
-Subject: Re: [PATCH v5 1/2] driver core: Introduce device_link_wait_removal()
-From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
- <frowand.list@gmail.com>, Saravana Kannan <saravanak@google.com>, Lizhi Hou
- <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>, Sonal Santan
- <sonal.santan@amd.com>, Stefano Stabellini <stefano.stabellini@xilinx.com>,
-  Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Allan Nielsen
- <allan.nielsen@microchip.com>, Horatiu Vultur
- <horatiu.vultur@microchip.com>, Steen Hegelund
- <steen.hegelund@microchip.com>, Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Nuno Sa <nuno.sa@analog.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>,  stable@vger.kernel.org
-Date: Thu, 07 Mar 2024 13:29:19 +0100
-In-Reply-To: <20240307131623.467e1def@bootlin.com>
-References: <20240307111036.225007-1-herve.codina@bootlin.com>
-	 <20240307111036.225007-2-herve.codina@bootlin.com>
-	 <94997e8720bc0a68afa85be3ef521c8844d0f0a0.camel@gmail.com>
-	 <20240307131623.467e1def@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.4 (3.50.4-1.fc39) 
+	s=arc-20240116; t=1709814718; c=relaxed/simple;
+	bh=xeHxrSQbO4a/rV3efFhMHDrWz7mv30QQMuGrfJCirxg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hqAz0ueHJyCvAWv3HTRQz4ygo9dRg3dTKzVjZj/jHVgggMRd9C9m6g4ydA5Ri9rAgnb8NZRjUV4/pgKo7Z/9YcNh8HKH/yE5vwsK1I7jYWtM3B4cVJqbggmhv9SopSMT2lB3yCRRsX7ZA/lCR5fhkh2fR7o/LP2TGLxaQpXUvGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Bzb1l7Zf; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 659A6C433F1;
+	Thu,  7 Mar 2024 12:31:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709814718;
+	bh=xeHxrSQbO4a/rV3efFhMHDrWz7mv30QQMuGrfJCirxg=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=Bzb1l7ZfrRZ03Pxp/q8/QA+XKV/1P654+rwlFvzSTAU+8Kv3O50Ldl89F5z2bM+fg
+	 9jEc78VtH74Abb1rbfisiEmy5JEdhjKraoAAsm7oEPOqteqZXRyGYoLgIcDiuPmd1B
+	 7HrV1gppyJvIUZqgiRwaxA+xsukIjmMN9eUmRwdphtVFEOlKqWkt4rlNx/n6ZV3RgF
+	 fMwvy9lPzrExXCt2KbjtVhL9g49id+HmQv3+1+5hHM3PdA1kYTbr8Jb6gcWT8tuEiV
+	 QEfjnxEviQEVkQpiOuSLj3k67OK0Fg8owup5ILmPuVKs7KbY3Y+hcg0FvPblY26xkt
+	 wlpeoFFl53PCQ==
+Message-ID: <d1ca5d29-8ef4-4d7f-b1c8-bcb361e6c351@kernel.org>
+Date: Thu, 7 Mar 2024 14:31:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 3/9] usb: cdns3-ti: move reg writes from probe into
+ ->runtime_resume()
+Content-Language: en-US
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Peter Chen <peter.chen@kernel.org>,
+ Pawel Laszczak <pawell@cadence.com>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ =?UTF-8?Q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>,
+ Kevin Hilman <khilman@kernel.org>, Alan Stern <stern@rowland.harvard.edu>,
+ linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20240307-j7200-usb-suspend-v4-0-5ec7615431f3@bootlin.com>
+ <20240307-j7200-usb-suspend-v4-3-5ec7615431f3@bootlin.com>
+From: Roger Quadros <rogerq@kernel.org>
+In-Reply-To: <20240307-j7200-usb-suspend-v4-3-5ec7615431f3@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-On Thu, 2024-03-07 at 13:16 +0100, Herve Codina wrote:
-> Hi Nuno,
->=20
-> On Thu, 07 Mar 2024 12:50:52 +0100
-> Nuno S=C3=A1 <noname.nuno@gmail.com> wrote:
->=20
-> > Hi Herve,
-> >=20
-> >=20
-> > On Thu, 2024-03-07 at 12:10 +0100, Herve Codina wrote:
-> > > The commit 80dd33cf72d1 ("drivers: base: Fix device link removal")
-> > > introduces a workqueue to release the consumer and supplier devices u=
-sed
-> > > in the devlink.
-> > > In the job queued, devices are release and in turn, when all the
-> > > references to these devices are dropped, the release function of the
-> > > device itself is called.
-> > >=20
-> > > Nothing is present to provide some synchronisation with this workqueu=
-e
-> > > in order to ensure that all ongoing releasing operations are done and
-> > > so, some other operations can be started safely.
-> > >=20
-> > > For instance, in the following sequence:
-> > > =C2=A0 1) of_platform_depopulate()
-> > > =C2=A0 2) of_overlay_remove()
-> > >=20
-> > > During the step 1, devices are released and related devlinks are remo=
-ved
-> > > (jobs pushed in the workqueue).
-> > > During the step 2, OF nodes are destroyed but, without any
-> > > synchronisation with devlink removal jobs, of_overlay_remove() can ra=
-ise
-> > > warnings related to missing of_node_put():
-> > > =C2=A0 ERROR: memory leak, expected refcount 1 instead of 2
-> > >=20
-> > > Indeed, the missing of_node_put() call is going to be done, too late,
-> > > from the workqueue job execution.
-> > >=20
-> > > Introduce device_link_wait_removal() to offer a way to synchronize
-> > > operations waiting for the end of devlink removals (i.e. end of
-> > > workqueue jobs).
-> > > Also, as a flushing operation is done on the workqueue, the workqueue
-> > > used is moved from a system-wide workqueue to a local one.
-> > >=20
-> > > Cc: stable@vger.kernel.org
-> > > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > > Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-> > > Reviewed-by: Nuno Sa <nuno.sa@analog.com>
-> > > ---
-> > > =C2=A0drivers/base/core.c=C2=A0=C2=A0=C2=A0 | 26 ++++++++++++++++++++=
-+++---
-> > > =C2=A0include/linux/device.h |=C2=A0 1 +
-> > > =C2=A02 files changed, 24 insertions(+), 3 deletions(-)
-> > >=20
-> > > diff --git a/drivers/base/core.c b/drivers/base/core.c
-> > > index d5f4e4aac09b..48b28c59c592 100644
-> > > --- a/drivers/base/core.c
-> > > +++ b/drivers/base/core.c
-> > > @@ -44,6 +44,7 @@ static bool fw_devlink_is_permissive(void);
-> > > =C2=A0static void __fw_devlink_link_to_consumers(struct device *dev);
-> > > =C2=A0static bool fw_devlink_drv_reg_done;
-> > > =C2=A0static bool fw_devlink_best_effort;
-> > > +static struct workqueue_struct *device_link_wq;
-> > > =C2=A0
-> > > =C2=A0/**
-> > > =C2=A0 * __fwnode_link_add - Create a link between two fwnode_handles=
-.
-> > > @@ -532,12 +533,26 @@ static void devlink_dev_release(struct device *=
-dev)
-> > > =C2=A0	/*
-> > > =C2=A0	 * It may take a while to complete this work because of the SR=
-CU
-> > > =C2=A0	 * synchronization in device_link_release_fn() and if the cons=
-umer or
-> > > -	 * supplier devices get deleted when it runs, so put it into the
-> > > "long"
-> > > -	 * workqueue.
-> > > +	 * supplier devices get deleted when it runs, so put it into the
-> > > +	 * dedicated workqueue.
-> > > =C2=A0	 */
-> > > -	queue_work(system_long_wq, &link->rm_work);
-> > > +	queue_work(device_link_wq, &link->rm_work);
-> > > =C2=A0}
-> > > =C2=A0
-> > > +/**
-> > > + * device_link_wait_removal - Wait for ongoing devlink removal jobs =
-to
-> > > terminate
-> > > + */
-> > > +void device_link_wait_removal(void)
-> > > +{
-> > > +	/*
-> > > +	 * devlink removal jobs are queued in the dedicated work queue.
-> > > +	 * To be sure that all removal jobs are terminated, ensure that any
-> > > +	 * scheduled work has run to completion.
-> > > +	 */
-> > > +	flush_workqueue(device_link_wq);
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(device_link_wait_removal);
-> > > +
-> > > =C2=A0static struct class devlink_class =3D {
-> > > =C2=A0	.name =3D "devlink",
-> > > =C2=A0	.dev_groups =3D devlink_groups,
-> > > @@ -4099,9 +4114,14 @@ int __init devices_init(void)
-> > > =C2=A0	sysfs_dev_char_kobj =3D kobject_create_and_add("char", dev_kob=
-j);
-> > > =C2=A0	if (!sysfs_dev_char_kobj)
-> > > =C2=A0		goto char_kobj_err;
-> > > +	device_link_wq =3D alloc_workqueue("device_link_wq", 0, 0);=C2=A0=
-=20
-> >=20
-> > My rb tag was with the assumption this is moved into devlink_class_init=
-(). IIUC,
-> > Saravana also agreed with that [1]. But it looks like he missed that we=
- are
-> > allocating the queue in devices_init() and not in devlink_class_init().
-> >=20
-> > I'm also not sure if this is in line with what Rafael wanted for ccing =
-stable.
-> > How do
-> > we know the next patch depends on this one?
-> >=20
-> > [1]:
-> > https://lore.kernel.org/lkml/CAGETcx_gNWOTsSZMaZu+XU1-5Z60WEcMhw08t4Sn_=
--YgkCCUmA@mail.gmail.com/
-> >=20
->=20
-> We discussed that point and I understood that you were ok to do that on y=
-our
-> side:
-> =C2=A0
-> https://lore.kernel.org/linux-kernel/f42ceee61ddb8b50c347589649d4131476ab=
-5d81.camel@gmail.com/
->=20
-> Sorry if I misunderstood.
+Hi,
 
-Oh, yeah, I can do that. But given Saravana reply I thought the expectation=
- is to
-have the queue already allocated in devlink_class_init().
+On 07/03/2024 11:55, Théo Lebrun wrote:
+> The hardware initialisation register write sequence is only used at
+> probe. Move it from being done at explicitely at probe to being done
+> implicitely by pm_runtime_get_sync() that calls ->runtime_resume().
 
->=20
-> I am going to wait for other comments on this current series before re-se=
-nding
-> with our 'Reviewed-by' removed if needed. Let me know.
->=20
+explicitly / implicitly
 
-Anyways, if your expectation was for me to do it later, fine. No need to re=
-move the
-tag. Sorry for the noise.
+> 
+> Keep devicetree parsing in probe and add a new field in the private
+> struct to remember the USB2 refclk rate code computation result.
+> 
+> This opens the door to having the init sequence being executed later
+> down the road, at system-wide resume for example. This is NOT currently
+> happening because runtime PM is disabled at suspend without the
+> refcount being affected.
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  drivers/usb/cdns3/cdns3-ti.c | 90 +++++++++++++++++++++++++-------------------
+>  1 file changed, 52 insertions(+), 38 deletions(-)
+> 
+> diff --git a/drivers/usb/cdns3/cdns3-ti.c b/drivers/usb/cdns3/cdns3-ti.c
+> index 5945c4b1e11f..4c8a557e6a6f 100644
+> --- a/drivers/usb/cdns3/cdns3-ti.c
+> +++ b/drivers/usb/cdns3/cdns3-ti.c
+> @@ -57,6 +57,7 @@ struct cdns_ti {
+>  	unsigned vbus_divider:1;
+>  	struct clk *usb2_refclk;
+>  	struct clk *lpm_clk;
+> +	int usb2_refclk_rate_code;
+>  };
+>  
+>  static const int cdns_ti_rate_table[] = {	/* in KHZ */
+> @@ -90,10 +91,8 @@ static int cdns_ti_probe(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  	struct device_node *node = pdev->dev.of_node;
+>  	struct cdns_ti *data;
+> -	int error;
+> -	u32 reg;
+> -	int rate_code, i;
+>  	unsigned long rate;
+> +	int error, i;
+>  
+>  	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+>  	if (!data)
+> @@ -133,7 +132,9 @@ static int cdns_ti_probe(struct platform_device *pdev)
+>  		return -EINVAL;
+>  	}
+>  
+> -	rate_code = i;
+> +	data->usb2_refclk_rate_code = i;
+> +	data->vbus_divider = device_property_read_bool(dev, "ti,vbus-divider");
+> +	data->usb2_only = device_property_read_bool(dev, "ti,usb2-only");
+>  
+>  	pm_runtime_enable(dev);
+>  	error = pm_runtime_get_sync(dev);
+> @@ -142,40 +143,6 @@ static int cdns_ti_probe(struct platform_device *pdev)
+>  		goto err;
+>  	}
+>  
+> -	/* assert RESET */
+> -	reg = cdns_ti_readl(data, USBSS_W1);
+> -	reg &= ~USBSS_W1_PWRUP_RST;
+> -	cdns_ti_writel(data, USBSS_W1, reg);
+> -
+> -	/* set static config */
+> -	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> -	reg &= ~USBSS1_STATIC_PLL_REF_SEL_MASK;
+> -	reg |= rate_code << USBSS1_STATIC_PLL_REF_SEL_SHIFT;
+> -
+> -	reg &= ~USBSS1_STATIC_VBUS_SEL_MASK;
+> -	data->vbus_divider = device_property_read_bool(dev, "ti,vbus-divider");
+> -	if (data->vbus_divider)
+> -		reg |= 1 << USBSS1_STATIC_VBUS_SEL_SHIFT;
+> -
+> -	cdns_ti_writel(data, USBSS_STATIC_CONFIG, reg);
+> -	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> -
+> -	/* set USB2_ONLY mode if requested */
+> -	reg = cdns_ti_readl(data, USBSS_W1);
+> -	data->usb2_only = device_property_read_bool(dev, "ti,usb2-only");
+> -	if (data->usb2_only)
+> -		reg |= USBSS_W1_USB2_ONLY;
+> -
+> -	/* set default modestrap */
+> -	reg |= USBSS_W1_MODESTRAP_SEL;
+> -	reg &= ~USBSS_W1_MODESTRAP_MASK;
+> -	reg |= USBSS_MODESTRAP_MODE_NONE << USBSS_W1_MODESTRAP_SHIFT;
+> -	cdns_ti_writel(data, USBSS_W1, reg);
+> -
+> -	/* de-assert RESET */
+> -	reg |= USBSS_W1_PWRUP_RST;
+> -	cdns_ti_writel(data, USBSS_W1, reg);
+> -
+>  	error = of_platform_populate(node, NULL, NULL, dev);
+>  	if (error) {
+>  		dev_err(dev, "failed to create children: %d\n", error);
+> @@ -211,6 +178,52 @@ static void cdns_ti_remove(struct platform_device *pdev)
+>  	platform_set_drvdata(pdev, NULL);
+>  }
+>  
+> +static int cdns_ti_runtime_resume(struct device *dev)
+> +{
+> +	struct cdns_ti *data = dev_get_drvdata(dev);
+> +	u32 reg;
+> +
+> +	/* assert RESET */
+> +	reg = cdns_ti_readl(data, USBSS_W1);
+> +	reg &= ~USBSS_W1_PWRUP_RST;
+> +	cdns_ti_writel(data, USBSS_W1, reg);
+> +
+> +	/* set static config */
+> +	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> +	reg &= ~USBSS1_STATIC_PLL_REF_SEL_MASK;
+> +	reg |= data->usb2_refclk_rate_code << USBSS1_STATIC_PLL_REF_SEL_SHIFT;
+> +
+> +	reg &= ~USBSS1_STATIC_VBUS_SEL_MASK;
+> +
+> +	if (data->vbus_divider)
+> +		reg |= 1 << USBSS1_STATIC_VBUS_SEL_SHIFT;
+> +
+> +	cdns_ti_writel(data, USBSS_STATIC_CONFIG, reg);
+> +	reg = cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> +
+> +	/* set USB2_ONLY mode if requested */
+> +	reg = cdns_ti_readl(data, USBSS_W1);
+> +
+> +	if (data->usb2_only)
+> +		reg |= USBSS_W1_USB2_ONLY;
+> +
+> +	/* set default modestrap */
+> +	reg |= USBSS_W1_MODESTRAP_SEL;
+> +	reg &= ~USBSS_W1_MODESTRAP_MASK;
+> +	reg |= USBSS_MODESTRAP_MODE_NONE << USBSS_W1_MODESTRAP_SHIFT;
+> +	cdns_ti_writel(data, USBSS_W1, reg);
+> +
+> +	/* de-assert RESET */
+> +	reg |= USBSS_W1_PWRUP_RST;
+> +	cdns_ti_writel(data, USBSS_W1, reg);
 
-- Nuno S=C3=A1
->=20
+I don't think USB controller requires a reset and re-init between runtime suspend/resume.
 
+What you need is reset/re-init during system Resume on certain platforms.
+So you should move this part of code into a helper function and call it
+from .probe() and .system_resume()
+
+
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct dev_pm_ops cdns_ti_pm_ops = {
+> +	RUNTIME_PM_OPS(NULL, cdns_ti_runtime_resume, NULL)
+> +};
+> +
+>  static const struct of_device_id cdns_ti_of_match[] = {
+>  	{ .compatible = "ti,j721e-usb", },
+>  	{ .compatible = "ti,am64-usb", },
+> @@ -224,6 +237,7 @@ static struct platform_driver cdns_ti_driver = {
+>  	.driver		= {
+>  		.name	= "cdns3-ti",
+>  		.of_match_table	= cdns_ti_of_match,
+> +		.pm	= pm_ptr(&cdns_ti_pm_ops),
+>  	},
+>  };
+>  
+> 
+
+-- 
+cheers,
+-roger
 
