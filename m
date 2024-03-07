@@ -1,98 +1,90 @@
-Return-Path: <devicetree+bounces-49107-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49108-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3332874E29
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 12:51:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 45C3E874E3A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 12:52:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 10B5F282321
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 11:51:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 691291C217D7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 11:52:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 81947130AD7;
-	Thu,  7 Mar 2024 11:45:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D01F712BF30;
+	Thu,  7 Mar 2024 11:48:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="KeT64IIE"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Fo+YjDCQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2BA312FF99;
-	Thu,  7 Mar 2024 11:45:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05EF1129A7A;
+	Thu,  7 Mar 2024 11:48:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709811948; cv=none; b=RTJ+/y66JsMTUCZPj514cuFkExPMxpvr06cvwB4uyj5Hj7QkPwLSh5EE7JkvdlGL6Cpz7AQSG/rrmeZlOHPeifnjZU4fol5dtBSQB1/CJwyqu410GE8/ULciX13eMyOMM1uhyeD8TfZe66NaZr3ABvvAplFVm1I8nWoBivK5MQM=
+	t=1709812098; cv=none; b=Ld5FY5YTw5/ieKLmtMDKA3CY/nTIYnpfXCiGpnKF0PIl6S7aeud6efYysotbrcEcsYVtxBLYq/dlqf2gdwbNz8sTlRxWkhnyQ7htpe4Zfy0n0drFAbE2ZXcS3jPRpjAYlQCLnf9N8TB6LmHkpLr/emr2d7eOhMpQGJ0LCAwFdQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709811948; c=relaxed/simple;
-	bh=8bxWkdHWjuivwKz8TBybuK02NLszyCe4cZF3c/Vh6Zg=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=NETX2DVWnnI81EPRAiatYybJztVPFa5DUPyaLEL5y+TF1zj8Guth0Vt/b42Afqr0jP+kirsorE9HsY8z67B26pugkKz2aKyXMza9f/d/B2BymgWzSnGvMG24nP1XyyhtVXnj0ECydvMtzf+wOetk6W7hS5GbjLf8S08ieKuuhZk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=KeT64IIE; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1709811945;
-	bh=8bxWkdHWjuivwKz8TBybuK02NLszyCe4cZF3c/Vh6Zg=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=KeT64IIEUmDtx6ONnrK70cAlu1NnYKqwBoVDZemg5fugfpHTO5lxbn3aaOd/IHMI/
-	 QIBd2Mp3tUQWpPsZ47yKYRRbd8tU2r1FaOiEDUNI1c/OIFZzZvRIsV4x/B0k01w8QS
-	 3WZu0WQdNHM5flp8LFloIgZMfJt0zcBqawOXVzIJ/2YqrlyIqWgN5JPRyeGUrhhQz8
-	 LNWx4t2ybOXZud75GNZaWxyhv2U4WIFf5LJmu2oDm8E7ESmio2Y6Bj9C2E5CUQDx/W
-	 zrfYNqBS9r5uVhawrolCsZjcLfQz9xPTJ9WPDNvRk9ji2Gu0A9G/CV9/F1RYC2Lgj7
-	 d2tKTVLMbzOqg==
-Received: from IcarusMOD.eternityproject.eu (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 2E3E237820F9;
-	Thu,  7 Mar 2024 11:45:43 +0000 (UTC)
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-To: broonie@kernel.org
-Cc: wenst@chromium.org,
-	lgirdwood@gmail.com,
-	robh@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	matthias.bgg@gmail.com,
-	perex@perex.cz,
-	tiwai@suse.com,
-	trevor.wu@mediatek.com,
-	maso.huang@mediatek.com,
-	xiazhengqiao@huaqin.corp-partner.google.com,
-	arnd@arndb.de,
-	kuninori.morimoto.gx@renesas.com,
-	shraash@google.com,
-	amergnat@baylibre.com,
-	nicolas.ferre@microchip.com,
-	u.kleine-koenig@pengutronix.de,
-	dianders@chromium.org,
-	frank.li@vivo.com,
-	allen-kh.cheng@mediatek.com,
-	eugen.hristev@collabora.com,
-	claudiu.beznea@tuxon.dev,
-	jarkko.nikula@bitmer.com,
-	jiaxin.yu@mediatek.com,
-	alpernebiyasak@gmail.com,
-	ckeepax@opensource.cirrus.com,
-	zhourui@huaqin.corp-partner.google.com,
-	nfraprado@collabora.com,
-	alsa-devel@alsa-project.org,
-	shane.chien@mediatek.com,
-	linux-sound@vger.kernel.org,
+	s=arc-20240116; t=1709812098; c=relaxed/simple;
+	bh=p1e4tJNMl2RFCMrte2AszGEoRzNHGeM0TnyX8cSFV2M=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=I3luVUeXgTysX4ofa+nCgOtEmZ90910ly9FvltLgsjpHx1nkqucmz4NLQ+QLNYEqdYkvFBYC5tAxzNUiwS8FgTRmpSzLqIkgd/iPTbr8Z50doCtug0k/PhXGuNUZq4s7QU4refu8qlJDG1zWoDe7nU+Eq5K2ck6zyn+rAwlHB+A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Fo+YjDCQ; arc=none smtp.client-ip=209.85.128.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-412fe981ef1so4696975e9.1;
+        Thu, 07 Mar 2024 03:48:16 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709812095; x=1710416895; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HdCRMTKRhqynPJO0vr+KIPrYHrZQvMYn+jwShMV7v90=;
+        b=Fo+YjDCQPclstjGrOSppSZvjV9iIVogbbN+yo84E520nvQh44YUC3YnirTwXJHMYdT
+         EC1ipNba7h8nMP1R/0P+By2ti0sEe+Ehs/jFX1CRb7dOEzdbNcUDuDifllO0bLeJigU0
+         HfflVm+p7syr5tx++fwRmIANLLRbJivy4QsPBN7JNxnOGDWITQyALMNZiGg7dO8aZPPy
+         tlB0GpGHCHr+3Ij20uK4nfLaTHxQ03ayMFy7B3fNT99j8xEXcnuCidmex1XV7lJ0JYGg
+         sPtuiEF7kVuozdfUKjWu9X9U81gW32XYLJ2TneFVsuN6RXMT2sQ0hcsB9uDkywSoqVXc
+         wtuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709812095; x=1710416895;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HdCRMTKRhqynPJO0vr+KIPrYHrZQvMYn+jwShMV7v90=;
+        b=p3jXY5aXK8W15Dtkz1drY6BAaIwX2HK7bCy+clSzgKZBxf3qdxER4NGCEpLnIrKDyS
+         9rXYZVsdr+19W5ILYClUu4jcuKzdXWc7qVnn5gt0zJ9A9CtTGHmh7TiZJekui9fpl9ro
+         wIHD5dw0nDG9S/MGOMknULxUKmTPXrCvOkJE7Hj98vcjqpzwqkbDzO6D9tiIpwN7o1Ja
+         0+PYK3dYYSlC0THPeGGLnb2i5PVzOFFlw8B3K7AWUMpXOeu6hTUEVzzG+WlfpFnvnGeK
+         CvmFdPJrQ08eC7KwEuUndXCIcvkBtOqF8QT2Xe+9mDI7RVESKWzFBZZHGulpkckamLIK
+         kVpg==
+X-Forwarded-Encrypted: i=1; AJvYcCVxQRpgIj2ZziMYiwjwY5ZJ5xIHb6vIMhrsDSCWFQmV+fnMcJbcTqnEwiTlCpTRwTCfeFSK3bQ9qhoaPO4dKcgu0Lpaiaml+O5TUp3pVXS9JRRISYNyyvDNr4dOAF6G/kzh3F09GeraQpJt5koRYNgzBAsjLxyRVP31yHcGY4E5ndFuxEFCgWhMsO5N
+X-Gm-Message-State: AOJu0YzTHxoKSYzmHoPPuDYDEDPmj5MN0LD7Ed6OgGffjm2+r8GAkMp7
+	ZX/PkEKMPG85Ml8IWGylIWNS5QUVmorRHVltz6ELqj1LINRT1how
+X-Google-Smtp-Source: AGHT+IFHgnbyzOxpiE/NPYUNciYRrQC8bvPnKwv7h8vdfmxZdkKUBxJdS+wQAto8IoYEvVYfaahYzw==
+X-Received: by 2002:a05:600c:4f91:b0:413:119:33e2 with SMTP id n17-20020a05600c4f9100b00413011933e2mr1328074wmq.14.1709812094868;
+        Thu, 07 Mar 2024 03:48:14 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2500:a01:fef2:3c1d:a816:65f7])
+        by smtp.gmail.com with ESMTPSA id fc20-20020a05600c525400b00412ae4b45b3sm2401616wmb.30.2024.03.07.03.48.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Mar 2024 03:48:14 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Jiri Slaby <jirislaby@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>
+Cc: linux-kernel@vger.kernel.org,
+	linux-serial@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	kernel@collabora.com,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Subject: [PATCH v2 22/22] arm64: dts: mediatek: mt8186-corsola: Specify sound DAI links and routing
-Date: Thu,  7 Mar 2024 12:44:45 +0100
-Message-ID: <20240307114445.196981-23-angelogioacchino.delregno@collabora.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240307114445.196981-1-angelogioacchino.delregno@collabora.com>
-References: <20240307114445.196981-1-angelogioacchino.delregno@collabora.com>
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2] dt-bindings: serial: renesas,scif: Document R9A09G057 support
+Date: Thu,  7 Mar 2024 11:47:31 +0000
+Message-Id: <20240307114731.34953-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,78 +93,100 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-The drivers and bindings acquired support for specifying audio hardware
-and links in device tree: describe and link the sound related HW of this
-machine.
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Document support for the Serial Communication Interface with FIFO (SCIF)
+available in the Renesas RZ/V2H(P) (R9A09G057) SoC. The SCIF interface in
+the Renesas RZ/V2H(P) is similar to that available in the RZ/G2L
+(R9A07G044) SoC, with the only difference being that the RZ/V2H(P) SoC has
+three additional interrupts: one for Tx end/Rx ready and the other two for
+Rx and Tx buffer full, which are edge-triggered.
+
+No driver changes are required as generic compatible string
+"renesas,scif-r9a07g044" will be used as a fallback on RZ/V2H(P) SoC.
+
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 ---
- .../boot/dts/mediatek/mt8186-corsola.dtsi     | 42 ++++++++++++++++---
- 1 file changed, 37 insertions(+), 5 deletions(-)
+v1->v2
+* Added validation to check interrupts and interrupt-names count
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-index 3dea28f1d806..0bdb83c3e560 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-@@ -42,7 +42,7 @@ backlight_lcd0: backlight-lcd0 {
- 		default-brightness-level = <576>;
- 	};
+Note, this patch applies on top of series [0].
+
+[0] https://patchwork.ozlabs.org/project/devicetree-bindings/cover/20240307114217.34784-1-prabhakar.mahadev-lad.rj@bp.renesas.com/
+---
+ .../bindings/serial/renesas,scif.yaml         | 31 ++++++++++++++++---
+ 1 file changed, 27 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+index 6ba6b6d52208..a9c60334d702 100644
+--- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
++++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
+@@ -77,6 +77,7 @@ properties:
+               - renesas,scif-r9a07g043      # RZ/G2UL and RZ/Five
+               - renesas,scif-r9a07g054      # RZ/V2L
+               - renesas,scif-r9a08g045      # RZ/G3S
++              - renesas,scif-r9a09g057      # RZ/V2H(P)
+           - const: renesas,scif-r9a07g044   # RZ/G2{L,LC} fallback
  
--	bt-sco-codec {
-+	bt-sco {
- 		compatible = "linux,bt-sco";
- 		#sound-dai-cells = <0>;
- 	};
-@@ -223,12 +223,44 @@ sound: sound {
- 		mediatek,adsp = <&adsp>;
- 		mediatek,platform = <&afe>;
+   reg:
+@@ -91,6 +92,9 @@ properties:
+       - description: Break interrupt
+       - description: Data Ready interrupt
+       - description: Transmit End interrupt
++      - description: Transmit End/Data Ready interrupt
++      - description: Receive buffer full interrupt (EDGE trigger)
++      - description: Transmit buffer empty interrupt (EDGE trigger)
  
--		playback-codecs {
--			sound-dai = <&it6505dptx>, <&rt1019p>;
-+		audio-routing =
-+			"Headphone", "HPOL",
-+			"Headphone", "HPOR",
-+			"IN1P", "Headset Mic",
-+			"Speakers", "Speaker",
-+			"HDMI1", "TX";
-+
-+		hs-playback-dai-link {
-+			link-name = "I2S0";
-+			dai-format = "i2s";
-+			mediatek,clk-provider = "cpu";
-+			codec {
-+				sound-dai = <&rt5682s 0>;
-+			};
-+		};
-+
-+		hs-capture-dai-link {
-+			link-name = "I2S1";
-+			dai-format = "i2s";
-+			mediatek,clk-provider = "cpu";
-+			codec {
-+				sound-dai = <&rt5682s 0>;
-+			};
- 		};
+   interrupt-names:
+     minItems: 4
+@@ -101,6 +105,9 @@ properties:
+       - const: bri
+       - const: dri
+       - const: tei
++      - const: teidri
++      - const: rxi-edge
++      - const: txi-edge
  
--		headset-codec {
--			sound-dai = <&rt5682s 0>;
-+		spk-share-dai-link {
-+			link-name = "I2S2";
-+			mediatek,clk-provider = "cpu";
-+		};
+   clocks:
+     minItems: 1
+@@ -197,15 +204,31 @@ allOf:
+         compatible:
+           contains:
+             enum:
+-              - renesas,scif-r7s9210
+-              - renesas,scif-r9a07g044
++              - renesas,scif-r9a09g057
+     then:
+       properties:
+         interrupts:
+-          minItems: 6
++          minItems: 9
+ 
+         interrupt-names:
+-          minItems: 6
++          minItems: 9
++    else:
++      if:
++        properties:
++          compatible:
++            contains:
++              enum:
++                - renesas,scif-r7s9210
++                - renesas,scif-r9a07g044
++      then:
++        properties:
++          interrupts:
++            minItems: 6
++            maxItems: 6
 +
-+		spk-hdmi-playback-dai-link {
-+			link-name = "I2S3";
-+			dai-format = "i2s";
-+			mediatek,clk-provider = "cpu";
-+			/* RT1019P and IT6505 connected to the same I2S line */
-+			codec {
-+				sound-dai = <&it6505dptx>, <&rt1019p>;
-+			};
- 		};
- 	};
++          interrupt-names:
++            minItems: 6
++            maxItems: 6
+ 
+ unevaluatedProperties: false
  
 -- 
-2.44.0
+2.34.1
 
 
