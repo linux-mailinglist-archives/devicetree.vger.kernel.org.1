@@ -1,121 +1,96 @@
-Return-Path: <devicetree+bounces-49185-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49186-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 479B5875290
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 16:01:18 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39253875298
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 16:02:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 754471C22B1D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:01:17 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6B2DF1C22ADD
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:02:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5E21712D765;
-	Thu,  7 Mar 2024 15:01:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6756F12F581;
+	Thu,  7 Mar 2024 15:01:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="uUxYiWnE"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cV/oQb4+"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 350981EB2B;
-	Thu,  7 Mar 2024 15:01:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D92312F39A;
+	Thu,  7 Mar 2024 15:01:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709823674; cv=none; b=GM2F+R0OJYdNcxUd3pkL64m1I/EgQ2Y/7V6Ht2I2L0QgeQ+54+1gnzpYfHIywuNS67BJL5gW6a7fH9Zits6+CgU6iJE5HbWc2pZPua0Pk3SzKBLuHKG2kT/AEZ0USP9k2FB0JEN5wy8jZSd8WkzUDNA1M7w3cxUApCm3JAHK7yE=
+	t=1709823707; cv=none; b=dTOTn+t6Sb+V4436psHgvOjzK0L+X4TWF+3NBPBcAbjF7VliDKk0s0ZReWFQD7LxtISLxFcVRoLne9zMc3dHGhZE8S4UEa2BMM0jKpsqTypw8fe8YSVNk82wa7kSGz7lr3m0ctorSSXfZodAans1w11cdfLj8j8Wv2X8Sg6ojUc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709823674; c=relaxed/simple;
-	bh=pQOSBvGr2PdFDDcAF4v1xGbCwkIdtH4hpyIk5PVZU7g=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=TSy/C+wEpqHPhx7ZRFm0jErwRzcHhZU3+/JNERRX5lTAnw2Uro2vnY3886h+GnsVAu2qaLZxkAdOZNsCg2wGHfBFzXTwoUuAVH/B9owMAh5TLTb93qrdHOvhvGMnpZWQIplW7M4XPyMtz3n2Ih60jcT64qZx9FpzSAQGwLBGmlE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=uUxYiWnE; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00BC8C433F1;
-	Thu,  7 Mar 2024 15:01:12 +0000 (UTC)
+	s=arc-20240116; t=1709823707; c=relaxed/simple;
+	bh=kFqwvVTOMTddqJpNVYpl581weLmfL4KpzIunFD5G2tA=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AiEwYCB36WtNzxlluAey6yPtYXABtX0a/TGagKPMtgpQAimvmfGk1ibFxgFxZ5CvX6zq2BEjL2xi3XFMtAeHrozFyRCMJaz9lYIwxVNxONP+Q7r3T/Knjbj5MrRkTD6C1+ADLxs+c5N9NLlwHosd9/Pv/8BUyap2AxLtnEdXwj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cV/oQb4+; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9942AC433C7;
+	Thu,  7 Mar 2024 15:01:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709823673;
-	bh=pQOSBvGr2PdFDDcAF4v1xGbCwkIdtH4hpyIk5PVZU7g=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-	b=uUxYiWnEqKVWLcW0IYvhhO3XJxsl7pxYgIiOF+omyTeO5SHAB42GvaEVHrOoaYYid
-	 +wfamRpY9Mr6uApWQtRsatDqM5l8+PXB9JJ1/ZKpSXYHrWOdoTS2OSM8+QmIAJ9xVL
-	 UkCVhYw9I45iHVOLFJ25RS/tfKw1XfxhftVbDPe7lm+IF8PO8tDl1xhid5GFtZlYKA
-	 sLm91iv2OEkV6ZOGRv4wxmUAwy96yueck46fIhF0DmGkKs2HmHJ6BQ4DC4bX6WvdOH
-	 MHCGvJmkaCJXuyVkVS296MbkWwqSwxmf8pMecOByqUTI53At6eW0lTr0/unP3HXKrx
-	 76GZYQ84e70jQ==
-From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
-To: Anup Patel <apatel@ventanamicro.com>
-Cc: Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley
- <paul.walmsley@sifive.com>, Thomas Gleixner <tglx@linutronix.de>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
- <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>,
- devicetree@vger.kernel.org, Saravana Kannan <saravanak@google.com>, Marc
- Zyngier <maz@kernel.org>, Anup Patel <anup@brainfault.org>,
- linux-kernel@vger.kernel.org, Atish Patra <atishp@atishpatra.org>,
- linux-riscv@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Andrew Jones <ajones@ventanamicro.com>
-Subject: Re: [PATCH v15 08/10] irqchip/riscv-aplic: Add support for MSI-mode
-In-Reply-To: <CAK9=C2Ud+CJzWfY0Lp97OMt9QvJBFX=hHJidn_90XY5cEB9LHw@mail.gmail.com>
-References: <20240226040746.1396416-1-apatel@ventanamicro.com>
- <20240226040746.1396416-9-apatel@ventanamicro.com>
- <87y1avbboj.fsf@all.your.base.are.belong.to.us>
- <CAK9=C2Ud+CJzWfY0Lp97OMt9QvJBFX=hHJidn_90XY5cEB9LHw@mail.gmail.com>
-Date: Thu, 07 Mar 2024 16:01:09 +0100
-Message-ID: <871q8mdr2i.fsf@all.your.base.are.belong.to.us>
+	s=k20201202; t=1709823705;
+	bh=kFqwvVTOMTddqJpNVYpl581weLmfL4KpzIunFD5G2tA=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=cV/oQb4+7eegleUHG8zBIY8Iw8OQDCdYeNU9OPzTap0clCg6T0REN9AgbUgF8xoYz
+	 ZxPdBZrIFtJjXyXPQtWHf0Is7BxkHGqckdVo7szCRpVDlOLyw1bJzULdliOv77QBDA
+	 75Ux1TTwL8a1KS/tkC8oUbYowBdaZSMNeBCZjfzNKQREJ+ChV/iDVD94K5w2JL1jtd
+	 owuCu0vHWnNwuJKUvFkf8h8zd9fOl2wNpPFvY8BtPRGihrOoLGZoje/5LDYBZMhPwy
+	 /N1el+L/vusnR2hjc6MJySbZ6VKMcBqn4kxXOeGo+rKpQIQHDChP4Bd5sIou6A2GNS
+	 hDYruaO2zQY0Q==
+Date: Thu, 7 Mar 2024 09:01:43 -0600
+From: Rob Herring <robh@kernel.org>
+To: Michal Simek <michal.simek@amd.com>
+Cc: "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" <linux-rtc@vger.kernel.org>,
+	Rob Herring <robh+dt@kernel.org>, git@xilinx.com, monstr@monstr.eu,
+	linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
+	michal.simek@xilinx.com,
+	"moderated list:ARM/ZYNQ ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
+	Alexandre Belloni <alexandre.belloni@bootlin.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Subject: Re: [PATCH v3] dt-bindings: rtc: zynqmp: Add support for
+ Versal/Versal NET SoCs
+Message-ID: <170982370249.2592194.17824798576485392440.robh@kernel.org>
+References: <5ecd775e6083f86aa744c4e9dfb7f6a13082c78a.1709804617.git.michal.simek@amd.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-
-Anup Patel <apatel@ventanamicro.com> writes:
-
-> On Wed, Mar 6, 2024 at 9:22=E2=80=AFPM Bj=C3=B6rn T=C3=B6pel <bjorn@kerne=
-l.org> wrote:
->>
->> Anup Patel <apatel@ventanamicro.com> writes:
->>
->> > diff --git a/drivers/irqchip/irq-riscv-aplic-msi.c b/drivers/irqchip/i=
-rq-riscv-aplic-msi.c
->> > new file mode 100644
->> > index 000000000000..b2a25e011bb2
->> > --- /dev/null
->> > +++ b/drivers/irqchip/irq-riscv-aplic-msi.c
->> > +static void aplic_msi_write_msg(struct irq_data *d, struct msi_msg *m=
-sg)
->> > +{
->> > +     unsigned int group_index, hart_index, guest_index, val;
->> > +     struct aplic_priv *priv =3D irq_data_get_irq_chip_data(d);
->> > +     struct aplic_msicfg *mc =3D &priv->msicfg;
->> > +     phys_addr_t tppn, tbppn, msg_addr;
->> > +     void __iomem *target;
->> > +
->> > +     /* For zeroed MSI, simply write zero into the target register */
->> > +     if (!msg->address_hi && !msg->address_lo && !msg->data) {
->> > +             target =3D priv->regs + APLIC_TARGET_BASE;
->> > +             target +=3D (d->hwirq - 1) * sizeof(u32);
->> > +             writel(0, target);
->>
->> Is the fence needed here (writel_relaxed())...
->
-> The pci_write_msg_msix() (called via pci_msi_domain_write_msg())
-> uses writel() hence taking inspiration from that we use writel() over here
-> as well.
->
-> If that's wrong then pci_write_msg_msix() must be fixed as well.
-
-Huh? The writel()s in pci_write_msg_msix() are because there's an
-ordering constraint, and code would be broken w/o it. My question was
-"what are the ordering constraints for this piece of code", because it
-looks like this is a single I/O write without any ordering constraints.
-
-I'm not a fan of sprinkling fences around "to be safe", but I don't want
-to delay the v16 because of it. It can be fixed later, if it's not
-needed.
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <5ecd775e6083f86aa744c4e9dfb7f6a13082c78a.1709804617.git.michal.simek@amd.com>
 
 
-Cheers, and thanks for your hard work!
-Bj=C3=B6rn
+On Thu, 07 Mar 2024 10:43:46 +0100, Michal Simek wrote:
+> Add support for Versal and Versal NET SoCs. Both of them should use the
+> same IP core but differences can be in integration part that's why create
+> separate compatible strings.
+> 
+> Also describe optional power-domains property. It is optional because power
+> domain doesn't need to be onwed by non secure firmware hence no access to
+> control it via any driver.
+> 
+> Signed-off-by: Michal Simek <michal.simek@amd.com>
+> ---
+> 
+> Changes in v3:
+> - make versal/versal-net fallback to zynqmp
+> 
+> Changes in v2:
+> - Change subject
+> - Add compatible string for versal and versal NET
+> - Update commit message to reflect why power domain is optional.
+> 
+>  .../devicetree/bindings/rtc/xlnx,zynqmp-rtc.yaml      | 11 ++++++++++-
+>  1 file changed, 10 insertions(+), 1 deletion(-)
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
 
