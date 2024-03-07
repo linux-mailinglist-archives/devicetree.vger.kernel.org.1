@@ -1,451 +1,350 @@
-Return-Path: <devicetree+bounces-49155-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49151-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id D72BF875149
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:06:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 19984875141
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:05:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50CFC1F22110
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:06:52 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6F10F1F25C26
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:05:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E7C6130AD7;
-	Thu,  7 Mar 2024 14:04:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF39612FB0A;
+	Thu,  7 Mar 2024 14:03:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="oa7rb7I6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ILYfLqv6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f180.google.com (mail-pl1-f180.google.com [209.85.214.180])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 638D012EBEA
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 14:04:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.180
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDACE12FB00;
+	Thu,  7 Mar 2024 14:03:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709820243; cv=none; b=mQYyl/eazz4LUZQr5+oQ8SOw7ay6AoNpcKQbquiGicL2LO3LJd6CW12XxUoXiWu1nOaSHFab5IvgjBZ9q+9trCujoUPN0jKnJwPa3Szb8tjC4Af4hcXsg8VJJde5Nz9EASqzDn+YeOzPaBRO4b6lklgB8P72W026sRF38Ca5DlU=
+	t=1709820222; cv=none; b=DVdMgUETPJ6UuUG8L4uTLhaQZcNp39k+Lc2wWUtF/wI2tuYmW5zikrAWe/UP/FvUZ2hIPFum8F89gK1szeeLM0rKU66dSjTTB8Hx7WDu9nvVsxQo2Z04rNQ/LiCSkZOIeA373jIZS+fzOOOFJgt5t8FQeOj3v1lGWYJ2xmGvOtk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709820243; c=relaxed/simple;
-	bh=PXt3kYXt5KdBIdNb+UGpe3b7pUwRuPDHDhgjgmr856s=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=kbdyTu+WJslovgeWBgiU55h/ps7S+CTRDZHrbo/bemMHuV9mE1BvsqYr8e2Y79VCj8al+ZuZ2QJ+XJS0ewrqHgdnAWUwVXNmdWm0Jj5ylx4uD/aNQFhw0/q7NtfMRCsG+tAyYPRLD1NJUlCPZLvI2drGBtvAlFu5BBAiB3KE0og=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=oa7rb7I6; arc=none smtp.client-ip=209.85.214.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pl1-f180.google.com with SMTP id d9443c01a7336-1dca3951ad9so7081485ad.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 06:04:01 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1709820241; x=1710425041; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IU5X/vDZdCsMdXFx74d7p2R3oQsiUAYZn8cBdmneE/s=;
-        b=oa7rb7I6Lhv+UyyjFjHf2MbheMWU1s3KoThLDOv1PCpYIr+ofVugqgMourLgqerfiI
-         FYDXtI3XDz5kPt/3pFVakz5ONDRv1G0BVp2fgkh3HmeNhyA5e3l8j9rJGJh7a9EgjME7
-         f2h9AgVBJ9DkDS1N4tueQmdalUHqOPGsR3rtfdYZhSBAgL2PH4vTOuYU9VbQ/HQ3cCfY
-         621UDAWOPQBdQ+JbpUprceSpdSkSre5DZblOKOXPUffY/u8wZd0Mw+28AO7p05sh3edt
-         TSCFeipAOQ3/sStt34Pp9tguoz24mIIsdUeRJJqRNUymY+hAzbgpN8WjJ4MMRewAAeQi
-         Tj8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709820241; x=1710425041;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=IU5X/vDZdCsMdXFx74d7p2R3oQsiUAYZn8cBdmneE/s=;
-        b=t524l9zYC2XS5yuP3273nI5CqC1ZnDSdn3RhtWDBXvg8Imej+A/lKJ/x8qXrpDx77s
-         EgcJeJe8oSX1ty7kOBO8Hxyx+Tx5ssruqr1doDDpfc3ckrGP4Achi7pSKfdPIHbSv376
-         kLkQz4hCOoBLffPfm8xhZ0TVqZcSgiC+vkHejm7qtQpRKoSVjxU5eC9qr33MPR9a2QJ8
-         TPcE6HytX63Z9g0w22m03qBfh7ttCaSeF6GTsWnO8bm0raNRsdelxf1hVHMm/AUIb+rE
-         tg3Hfvdh1zO4wlbj3s6rbPcf2kAojOCoMUmahuNaSLTrKgnY1nVRdn80kByYUtPrsw7Z
-         ktaA==
-X-Forwarded-Encrypted: i=1; AJvYcCVhzZLQNJJUTA1SgWTcnIVtHFFOpaisir0n4ROMs4p7/g2CcGH1zuKOjTmkBetm1hPnPin+a8eN7TzFbz/ZncO40IYCik3+MYlk0w==
-X-Gm-Message-State: AOJu0YylvewzP5o1LEhuzsC4aqR24+w88gOFlDLF43KvV1YiOGv0Aiqo
-	B8GAjys5Cu4Tb0KyGDHakuuLtwV8N65cDRN+xAjGLNaqYVWp8ar1ZMGxTkMLehg=
-X-Google-Smtp-Source: AGHT+IEDHhy5F9q3HIeeCvmWM4N9C05SjNYCoLQ3BTZ+w2tiUr0UbDe9h+xoizgbjRpYRV0/Edxagg==
-X-Received: by 2002:a17:902:c402:b0:1db:28bd:2949 with SMTP id k2-20020a170902c40200b001db28bd2949mr9529127plk.0.1709820240435;
-        Thu, 07 Mar 2024 06:04:00 -0800 (PST)
-Received: from anup-ubuntu-vm.localdomain ([171.76.84.79])
-        by smtp.gmail.com with ESMTPSA id w1-20020a1709026f0100b001dd6174c651sm386228plk.149.2024.03.07.06.03.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Mar 2024 06:03:59 -0800 (PST)
-From: Anup Patel <apatel@ventanamicro.com>
-To: Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>,
-	=?UTF-8?q?Bj=C3=B6rn=20T=C3=B6pel?= <bjorn@kernel.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Anup Patel <anup@brainfault.org>,
-	linux-riscv@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v16 7/9] irqchip/riscv-aplic: Add support for MSI-mode
-Date: Thu,  7 Mar 2024 19:33:05 +0530
-Message-Id: <20240307140307.646078-8-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240307140307.646078-1-apatel@ventanamicro.com>
-References: <20240307140307.646078-1-apatel@ventanamicro.com>
+	s=arc-20240116; t=1709820222; c=relaxed/simple;
+	bh=BT6wZ8BkYsfqnC5k7BF68W2twgRaf3YZsPmPjxc0vlo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=N/WCJxMfVHQd2O2D+YEh4bx0Bb57C+78mzMqrpiPwQ9z4+eb+b59MqiyOEcCQYyHGtWBmKfrcM3XUy4cGSh/iZqNSGCSLFtqXCrR/foUr7hTjlyvBdTvusCTEntD1YRmQpI/kFNAqSyojKHvIeVxCUveZPhZXfIeQe8YLLSKxgI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ILYfLqv6; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57DF3C433F1;
+	Thu,  7 Mar 2024 14:03:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709820222;
+	bh=BT6wZ8BkYsfqnC5k7BF68W2twgRaf3YZsPmPjxc0vlo=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=ILYfLqv6AdPmF8HKRsSyjdF8gEF+6ZbG9ncnMQ9J9FOqXbT3wrHjj8dBiJbShKWya
+	 YMtlJMOChfzz+ZW2bZYBbKzfo0aF3tlK4nMr2hHltakqhddL/ci7yH175k4DFaYfOd
+	 zJ1CfuuzJlEQfuJy1iOWsErkhdJbm3eEP2KZ9DGtoXWULXpjGu2+aIQybusyNZvwcC
+	 gtDLmQ1hB5/0faXfl/eg2uiFZUvYywt/JtCQBR73nG4iAmMkZ1z7V4ncUiOtKKCYZu
+	 N3bwr/oC7GVd7z4VqW6VazSZYvpP0lQzx6On7bPAwcoak+SPNwHIcJlOh/5hDEggm6
+	 GH7I5icGHgGiA==
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-2d311081954so9855671fa.2;
+        Thu, 07 Mar 2024 06:03:42 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUDCEPZz/aggmYdmQl2ULu4cU8PcASfjYtkqYG254+anOKnOnRW+ry4YBBz3aV9Tu23FVeKR6wu0N/E2OLth5uNDuEsB6LmI+yF2aeNxdZjI5dpogj/EYeK4oM4dbKv+tHpSPPtRHzZuPp30XDeCHuFo16vATZFv1xaxg8SL/SaYU31joD3
+X-Gm-Message-State: AOJu0Yz/csrow9xvWjMccxI4t0Nf6g4aTYIzFSf0jc3jM7+56SFYEMA8
+	KEzgpSpra7mzXoR17F3YkiXYxzL10OfdxdF5I+ijql2cyKpTGWmqI2ZLPx5VjkkSxtuv6Sv3gSP
+	5oU2WvNZNOvX0jqCc9Uz/n5JPuw==
+X-Google-Smtp-Source: AGHT+IF5Dc5jk0XZHS0IhbnbHN0DQ1ZhYnHDMr7Hbwtb+vashJF0QYaWL7v2IywW1l6pNzIj3tTpk4NskZfQ4ky22lQ=
+X-Received: by 2002:a05:6512:1094:b0:513:30fb:d64 with SMTP id
+ j20-20020a056512109400b0051330fb0d64mr1862716lfg.44.1709820199915; Thu, 07
+ Mar 2024 06:03:19 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240227120939.290143-1-angelogioacchino.delregno@collabora.com>
+ <20240227120939.290143-20-angelogioacchino.delregno@collabora.com>
+ <20240304142341.GA156846-robh@kernel.org> <0aa3dc07-67c8-40a4-9e83-f702979765c5@collabora.com>
+In-Reply-To: <0aa3dc07-67c8-40a4-9e83-f702979765c5@collabora.com>
+From: Rob Herring <robh@kernel.org>
+Date: Thu, 7 Mar 2024 08:03:06 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLNsS_Rx5z5F1vrYbr2g+5-wGYOq6mhtfUd7Db11F0W+Q@mail.gmail.com>
+Message-ID: <CAL_JsqLNsS_Rx5z5F1vrYbr2g+5-wGYOq6mhtfUd7Db11F0W+Q@mail.gmail.com>
+Subject: Re: [PATCH 19/22] ASoC: dt-bindings: mt8192: Document audio-routing
+ and dai-link subnode
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: broonie@kernel.org, wenst@chromium.org, lgirdwood@gmail.com, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	matthias.bgg@gmail.com, perex@perex.cz, tiwai@suse.com, 
+	trevor.wu@mediatek.com, maso.huang@mediatek.com, 
+	xiazhengqiao@huaqin.corp-partner.google.com, arnd@arndb.de, 
+	kuninori.morimoto.gx@renesas.com, shraash@google.com, amergnat@baylibre.com, 
+	nicolas.ferre@microchip.com, u.kleine-koenig@pengutronix.de, 
+	dianders@chromium.org, frank.li@vivo.com, allen-kh.cheng@mediatek.com, 
+	eugen.hristev@collabora.com, claudiu.beznea@tuxon.dev, 
+	jarkko.nikula@bitmer.com, jiaxin.yu@mediatek.com, alpernebiyasak@gmail.com, 
+	ckeepax@opensource.cirrus.com, zhourui@huaqin.corp-partner.google.com, 
+	nfraprado@collabora.com, alsa-devel@alsa-project.org, 
+	shane.chien@mediatek.com, linux-sound@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org, 
+	kernel@collabora.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The RISC-V advanced platform-level interrupt controller (APLIC) has
-two modes of operation: 1) Direct mode and 2) MSI mode.
-(For more details, refer https://github.com/riscv/riscv-aia)
+On Tue, Mar 5, 2024 at 5:20=E2=80=AFAM AngeloGioacchino Del Regno
+<angelogioacchino.delregno@collabora.com> wrote:
+>
+> Il 04/03/24 15:23, Rob Herring ha scritto:
+> > On Tue, Feb 27, 2024 at 01:09:36PM +0100, AngeloGioacchino Del Regno wr=
+ote:
+> >> Document the dai-link subnodes and the audio-routing property, allowin=
+g
+> >> to describe machine specific audio hardware and links in device tree.
+> >>
+> >> While at it, also deprecate the old properties which were previously
+> >> used with the driver's partially hardcoded configuration.
+> >>
+> >> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@c=
+ollabora.com>
+> >> ---
+> >>   .../sound/mt8192-mt6359-rt1015-rt5682.yaml    | 129 ++++++++++++++++=
+--
+> >>   1 file changed, 121 insertions(+), 8 deletions(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1=
+015-rt5682.yaml b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1=
+015-rt5682.yaml
+> >> index 7e50f5d65c8f..78e221003750 100644
+> >> --- a/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5=
+682.yaml
+> >> +++ b/Documentation/devicetree/bindings/sound/mt8192-mt6359-rt1015-rt5=
+682.yaml
+> >> @@ -20,6 +20,15 @@ properties:
+> >>         - mediatek,mt8192_mt6359_rt1015p_rt5682
+> >>         - mediatek,mt8192_mt6359_rt1015p_rt5682s
+> >>
+> >> +  audio-routing:
+> >> +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> >
+> > Already defined in sound-card-common.yaml. Add a $ref.
+> >
+>
+> Right. Done for v2.
+>
+> >> +    description:
+> >> +      A list of the connections between audio components. Each entry =
+is a
+> >> +      pair of strings, the first being the connection's sink, the sec=
+ond
+> >> +      being the connection's source.
+> >> +      Valid names could be the input or output widgets of audio compo=
+nents,
+> >> +      power supplies, MicBias of codec and the software switch.
+> >
+> > Generally the names are defined here.
+> >
+>
+> ...but those drivers want to support multiple codecs and multiple boards,=
+ so
+> for each board we would maybe have to add (software defined) names in her=
+e
+> which don't always correspond to a HW pin name (but that's not really a p=
+roblem).
+>
+> Sure a subset of the names can't change but, on the other hand, some othe=
+rs
+> can (as in, may be added).
+>
+> Hence the question:
+>
+> Is it mandatory to define the names in an enum here, or can that be avoid=
+ed?
+> If it is, I can add them no problem.
 
-In APLIC MSI-mode, wired interrupts are forwared as message signaled
-interrupts (MSIs) to CPUs via IMSIC.
+Does the OS depend on what the names are? As-in if a name was "bar"
+and it changed to "baz" in either the DT or the kernel, would that
+break things? If yes, then yes, you need them defined here.
 
-Extend the existing APLIC irqchip driver to support MSI-mode for
-RISC-V platforms having both wired interrupts and MSIs.
+>
+> >> +
+> >>     mediatek,platform:
+> >>       $ref: /schemas/types.yaml#/definitions/phandle
+> >>       description: The phandle of MT8192 ASoC platform.
+> >> @@ -27,10 +36,12 @@ properties:
+> >>     mediatek,hdmi-codec:
+> >>       $ref: /schemas/types.yaml#/definitions/phandle
+> >>       description: The phandle of HDMI codec.
+> >> +    deprecated: true
+> >>
+> >>     headset-codec:
+> >>       type: object
+> >>       additionalProperties: false
+> >> +    deprecated: true
+> >>
+> >>       properties:
+> >>         sound-dai:
+> >> @@ -41,6 +52,7 @@ properties:
+> >>     speaker-codecs:
+> >>       type: object
+> >>       additionalProperties: false
+> >> +    deprecated: true
+> >>
+> >>       properties:
+> >>         sound-dai:
+> >> @@ -51,13 +63,83 @@ properties:
+> >>       required:
+> >>         - sound-dai
+> >>
+> >> +patternProperties:
+> >> +  ".*-dai-link$":
+> >> +    type: object
+> >> +    description:
+> >> +      Container for dai-link level properties and CODEC sub-nodes.
+> >> +
+> >> +    properties:
+> >> +      link-name:
+> >> +        description: Indicates dai-link name and PCM stream name
+> >> +        items:
+> >> +          enum:
+> >> +            - I2S0
+> >> +            - I2S1
+> >> +            - I2S2
+> >> +            - I2S3
+> >> +            - I2S4
+> >> +            - I2S5
+> >> +            - I2S6
+> >> +            - I2S7
+> >> +            - I2S8
+> >> +            - I2S9
+> >> +            - TDM
+> >> +
+> >> +      codec:
+> >> +        description: Holds subnode which indicates codec dai.
+> >> +        type: object
+> >> +        additionalProperties: false
+> >> +        properties:
+> >> +          sound-dai:
+> >> +            minItems: 1
+> >> +            maxItems: 2
+> >> +        required:
+> >> +          - sound-dai
+> >> +
+> >> +      dai-format:
+> >> +        description: audio format
+> >> +        items:
+> >> +          enum:
+> >> +            - i2s
+> >> +            - right_j
+> >> +            - left_j
+> >> +            - dsp_a
+> >> +            - dsp_b
+> >> +
+> >> +      mediatek,clk-provider:
+> >> +        $ref: /schemas/types.yaml#/definitions/string
+> >> +        description: Indicates dai-link clock master.
+> >> +        items:
+> >> +          enum:
+> >> +            - cpu
+> >> +            - codec
+> >> +
+> >> +    additionalProperties: false
+> >
+> > Move this before properties.
+> >
+>
+> Done for v2.
+>
+> >> +
+> >> +    required:
+> >> +      - link-name
+> >> +
+> >>   additionalProperties: false
+> >>
+> >>   required:
+> >>     - compatible
+> >>     - mediatek,platform
+> >> -  - headset-codec
+> >> -  - speaker-codecs
+> >> +
+> >> +allOf:
+> >> +  # Disallow dai-link-xxx nodes if the legacy properties are specifie=
+d
+> >
+> > xxx-dai-link?
+> >
+>
+> Oh! Yes, thanks for catching this.
+>
+> That's what I initially wanted to do, but then I opted for xxx-dai-link a=
+nd
+> forgot to update this comment.
+>
+> Fixed for v2.
+>
+> >> +  - if:
+> >> +      patternProperties:
+> >> +        ".*-dai-link$": false
+> >> +    then:
+> >> +      required:
+> >> +        - headset-codec
+> >> +        - speaker-codecs
+> >> +    else:
+> >> +      properties:
+> >> +        headset-codec: false
+> >> +        speaker-codecs: false
+> >> +        mediatek,hdmi-codec: false
+> >
+> > Allowing both would preserve compatibility. That's not needed? If so,
+> > say why in the commit msg.
+> >
+>
+> I'm thinking of writing:
+>
+> "Since describing machine specific audio hardware and links replaces the
+> now deprecated old logic doing the same in a driver hardcoded fashion,
+> it is not allowed to have both the old and new properties together."
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
----
- drivers/irqchip/Kconfig                |   6 +
- drivers/irqchip/Makefile               |   1 +
- drivers/irqchip/irq-riscv-aplic-main.c |   2 +-
- drivers/irqchip/irq-riscv-aplic-main.h |   8 +
- drivers/irqchip/irq-riscv-aplic-msi.c  | 257 +++++++++++++++++++++++++
- 5 files changed, 273 insertions(+), 1 deletion(-)
- create mode 100644 drivers/irqchip/irq-riscv-aplic-msi.c
+What happened to that. Instead you just sent a new version with
+nothing about this.
 
-diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-index dbc8811d3764..806b5fccb3e8 100644
---- a/drivers/irqchip/Kconfig
-+++ b/drivers/irqchip/Kconfig
-@@ -551,6 +551,12 @@ config RISCV_APLIC
- 	depends on RISCV
- 	select IRQ_DOMAIN_HIERARCHY
- 
-+config RISCV_APLIC_MSI
-+	bool
-+	depends on RISCV_APLIC
-+	select GENERIC_MSI_IRQ
-+	default RISCV_APLIC
-+
- config RISCV_IMSIC
- 	bool
- 	depends on RISCV
-diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
-index 7f8289790ed8..47995fdb2c60 100644
---- a/drivers/irqchip/Makefile
-+++ b/drivers/irqchip/Makefile
-@@ -96,6 +96,7 @@ obj-$(CONFIG_CSKY_MPINTC)		+= irq-csky-mpintc.o
- obj-$(CONFIG_CSKY_APB_INTC)		+= irq-csky-apb-intc.o
- obj-$(CONFIG_RISCV_INTC)		+= irq-riscv-intc.o
- obj-$(CONFIG_RISCV_APLIC)		+= irq-riscv-aplic-main.o irq-riscv-aplic-direct.o
-+obj-$(CONFIG_RISCV_APLIC_MSI)		+= irq-riscv-aplic-msi.o
- obj-$(CONFIG_RISCV_IMSIC)		+= irq-riscv-imsic-state.o irq-riscv-imsic-early.o irq-riscv-imsic-platform.o
- obj-$(CONFIG_SIFIVE_PLIC)		+= irq-sifive-plic.o
- obj-$(CONFIG_IMX_IRQSTEER)		+= irq-imx-irqsteer.o
-diff --git a/drivers/irqchip/irq-riscv-aplic-main.c b/drivers/irqchip/irq-riscv-aplic-main.c
-index 160ff99d6979..774a0c97fdab 100644
---- a/drivers/irqchip/irq-riscv-aplic-main.c
-+++ b/drivers/irqchip/irq-riscv-aplic-main.c
-@@ -187,7 +187,7 @@ static int aplic_probe(struct platform_device *pdev)
- 	if (is_of_node(dev->fwnode))
- 		msi_mode = of_property_present(to_of_node(dev->fwnode), "msi-parent");
- 	if (msi_mode)
--		rc = -ENODEV;
-+		rc = aplic_msi_setup(dev, regs);
- 	else
- 		rc = aplic_direct_setup(dev, regs);
- 	if (rc)
-diff --git a/drivers/irqchip/irq-riscv-aplic-main.h b/drivers/irqchip/irq-riscv-aplic-main.h
-index 4cfbadf37ddc..4393927d8c80 100644
---- a/drivers/irqchip/irq-riscv-aplic-main.h
-+++ b/drivers/irqchip/irq-riscv-aplic-main.h
-@@ -40,5 +40,13 @@ int aplic_irqdomain_translate(struct irq_fwspec *fwspec, u32 gsi_base,
- void aplic_init_hw_global(struct aplic_priv *priv, bool msi_mode);
- int aplic_setup_priv(struct aplic_priv *priv, struct device *dev, void __iomem *regs);
- int aplic_direct_setup(struct device *dev, void __iomem *regs);
-+#ifdef CONFIG_RISCV_APLIC_MSI
-+int aplic_msi_setup(struct device *dev, void __iomem *regs);
-+#else
-+static inline int aplic_msi_setup(struct device *dev, void __iomem *regs)
-+{
-+	return -ENODEV;
-+}
-+#endif
- 
- #endif
-diff --git a/drivers/irqchip/irq-riscv-aplic-msi.c b/drivers/irqchip/irq-riscv-aplic-msi.c
-new file mode 100644
-index 000000000000..36cd04a5057b
---- /dev/null
-+++ b/drivers/irqchip/irq-riscv-aplic-msi.c
-@@ -0,0 +1,257 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2021 Western Digital Corporation or its affiliates.
-+ * Copyright (C) 2022 Ventana Micro Systems Inc.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/bitops.h>
-+#include <linux/cpu.h>
-+#include <linux/interrupt.h>
-+#include <linux/irqchip.h>
-+#include <linux/irqchip/riscv-aplic.h>
-+#include <linux/irqchip/riscv-imsic.h>
-+#include <linux/module.h>
-+#include <linux/msi.h>
-+#include <linux/of_irq.h>
-+#include <linux/platform_device.h>
-+#include <linux/printk.h>
-+#include <linux/smp.h>
-+
-+#include "irq-riscv-aplic-main.h"
-+
-+static void aplic_msi_irq_mask(struct irq_data *d)
-+{
-+	aplic_irq_mask(d);
-+	irq_chip_mask_parent(d);
-+}
-+
-+static void aplic_msi_irq_unmask(struct irq_data *d)
-+{
-+	irq_chip_unmask_parent(d);
-+	aplic_irq_unmask(d);
-+}
-+
-+static void aplic_msi_irq_eoi(struct irq_data *d)
-+{
-+	struct aplic_priv *priv = irq_data_get_irq_chip_data(d);
-+
-+	/*
-+	 * EOI handling is required only for level-triggered interrupts
-+	 * when APLIC is in MSI mode.
-+	 */
-+
-+	switch (irqd_get_trigger_type(d)) {
-+	case IRQ_TYPE_LEVEL_LOW:
-+	case IRQ_TYPE_LEVEL_HIGH:
-+		/*
-+		 * The section "4.9.2 Special consideration for level-sensitive interrupt
-+		 * sources" of the RISC-V AIA specification says:
-+		 *
-+		 * A second option is for the interrupt service routine to write the
-+		 * APLIC’s source identity number for the interrupt to the domain’s
-+		 * setipnum register just before exiting. This will cause the interrupt’s
-+		 * pending bit to be set to one again if the source is still asserting
-+		 * an interrupt, but not if the source is not asserting an interrupt.
-+		 */
-+		writel(d->hwirq, priv->regs + APLIC_SETIPNUM_LE);
-+		break;
-+	}
-+}
-+
-+static void aplic_msi_write_msg(struct irq_data *d, struct msi_msg *msg)
-+{
-+	unsigned int group_index, hart_index, guest_index, val;
-+	struct aplic_priv *priv = irq_data_get_irq_chip_data(d);
-+	struct aplic_msicfg *mc = &priv->msicfg;
-+	phys_addr_t tppn, tbppn, msg_addr;
-+	void __iomem *target;
-+
-+	/* For zeroed MSI, simply write zero into the target register */
-+	if (!msg->address_hi && !msg->address_lo && !msg->data) {
-+		target = priv->regs + APLIC_TARGET_BASE;
-+		target += (d->hwirq - 1) * sizeof(u32);
-+		writel(0, target);
-+		return;
-+	}
-+
-+	/* Sanity check on message data */
-+	WARN_ON(msg->data > APLIC_TARGET_EIID_MASK);
-+
-+	/* Compute target MSI address */
-+	msg_addr = (((u64)msg->address_hi) << 32) | msg->address_lo;
-+	tppn = msg_addr >> APLIC_xMSICFGADDR_PPN_SHIFT;
-+
-+	/* Compute target HART Base PPN */
-+	tbppn = tppn;
-+	tbppn &= ~APLIC_xMSICFGADDR_PPN_HART(mc->lhxs);
-+	tbppn &= ~APLIC_xMSICFGADDR_PPN_LHX(mc->lhxw, mc->lhxs);
-+	tbppn &= ~APLIC_xMSICFGADDR_PPN_HHX(mc->hhxw, mc->hhxs);
-+	WARN_ON(tbppn != mc->base_ppn);
-+
-+	/* Compute target group and hart indexes */
-+	group_index = (tppn >> APLIC_xMSICFGADDR_PPN_HHX_SHIFT(mc->hhxs)) &
-+		     APLIC_xMSICFGADDR_PPN_HHX_MASK(mc->hhxw);
-+	hart_index = (tppn >> APLIC_xMSICFGADDR_PPN_LHX_SHIFT(mc->lhxs)) &
-+		     APLIC_xMSICFGADDR_PPN_LHX_MASK(mc->lhxw);
-+	hart_index |= (group_index << mc->lhxw);
-+	WARN_ON(hart_index > APLIC_TARGET_HART_IDX_MASK);
-+
-+	/* Compute target guest index */
-+	guest_index = tppn & APLIC_xMSICFGADDR_PPN_HART(mc->lhxs);
-+	WARN_ON(guest_index > APLIC_TARGET_GUEST_IDX_MASK);
-+
-+	/* Update IRQ TARGET register */
-+	target = priv->regs + APLIC_TARGET_BASE;
-+	target += (d->hwirq - 1) * sizeof(u32);
-+	val = FIELD_PREP(APLIC_TARGET_HART_IDX, hart_index);
-+	val |= FIELD_PREP(APLIC_TARGET_GUEST_IDX, guest_index);
-+	val |= FIELD_PREP(APLIC_TARGET_EIID, msg->data);
-+	writel(val, target);
-+}
-+
-+static void aplic_msi_set_desc(msi_alloc_info_t *arg, struct msi_desc *desc)
-+{
-+	arg->desc = desc;
-+	arg->hwirq = (u32)desc->data.icookie.value;
-+}
-+
-+static int aplic_msi_translate(struct irq_domain *d, struct irq_fwspec *fwspec,
-+			       unsigned long *hwirq, unsigned int *type)
-+{
-+	struct msi_domain_info *info = d->host_data;
-+	struct aplic_priv *priv = info->data;
-+
-+	return aplic_irqdomain_translate(fwspec, priv->gsi_base, hwirq, type);
-+}
-+
-+static const struct msi_domain_template aplic_msi_template = {
-+	.chip = {
-+		.name			= "APLIC-MSI",
-+		.irq_mask		= aplic_msi_irq_mask,
-+		.irq_unmask		= aplic_msi_irq_unmask,
-+		.irq_set_type		= aplic_irq_set_type,
-+		.irq_eoi		= aplic_msi_irq_eoi,
-+#ifdef CONFIG_SMP
-+		.irq_set_affinity	= irq_chip_set_affinity_parent,
-+#endif
-+		.irq_write_msi_msg	= aplic_msi_write_msg,
-+		.flags			= IRQCHIP_SET_TYPE_MASKED |
-+					  IRQCHIP_SKIP_SET_WAKE |
-+					  IRQCHIP_MASK_ON_SUSPEND,
-+	},
-+
-+	.ops = {
-+		.set_desc		= aplic_msi_set_desc,
-+		.msi_translate		= aplic_msi_translate,
-+	},
-+
-+	.info = {
-+		.bus_token		= DOMAIN_BUS_WIRED_TO_MSI,
-+		.flags			= MSI_FLAG_USE_DEV_FWNODE,
-+		.handler		= handle_fasteoi_irq,
-+		.handler_name		= "fasteoi",
-+	},
-+};
-+
-+int aplic_msi_setup(struct device *dev, void __iomem *regs)
-+{
-+	const struct imsic_global_config *imsic_global;
-+	struct aplic_priv *priv;
-+	struct aplic_msicfg *mc;
-+	phys_addr_t pa;
-+	int rc;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	rc = aplic_setup_priv(priv, dev, regs);
-+	if (rc) {
-+		dev_err(dev, "failed to create APLIC context\n");
-+		return rc;
-+	}
-+	mc = &priv->msicfg;
-+
-+	/*
-+	 * The APLIC outgoing MSI config registers assume target MSI
-+	 * controller to be RISC-V AIA IMSIC controller.
-+	 */
-+	imsic_global = imsic_get_global_config();
-+	if (!imsic_global) {
-+		dev_err(dev, "IMSIC global config not found\n");
-+		return -ENODEV;
-+	}
-+
-+	/* Find number of guest index bits (LHXS) */
-+	mc->lhxs = imsic_global->guest_index_bits;
-+	if (APLIC_xMSICFGADDRH_LHXS_MASK < mc->lhxs) {
-+		dev_err(dev, "IMSIC guest index bits big for APLIC LHXS\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Find number of HART index bits (LHXW) */
-+	mc->lhxw = imsic_global->hart_index_bits;
-+	if (APLIC_xMSICFGADDRH_LHXW_MASK < mc->lhxw) {
-+		dev_err(dev, "IMSIC hart index bits big for APLIC LHXW\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Find number of group index bits (HHXW) */
-+	mc->hhxw = imsic_global->group_index_bits;
-+	if (APLIC_xMSICFGADDRH_HHXW_MASK < mc->hhxw) {
-+		dev_err(dev, "IMSIC group index bits big for APLIC HHXW\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Find first bit position of group index (HHXS) */
-+	mc->hhxs = imsic_global->group_index_shift;
-+	if (mc->hhxs < (2 * APLIC_xMSICFGADDR_PPN_SHIFT)) {
-+		dev_err(dev, "IMSIC group index shift should be >= %d\n",
-+			(2 * APLIC_xMSICFGADDR_PPN_SHIFT));
-+		return -EINVAL;
-+	}
-+	mc->hhxs -= (2 * APLIC_xMSICFGADDR_PPN_SHIFT);
-+	if (APLIC_xMSICFGADDRH_HHXS_MASK < mc->hhxs) {
-+		dev_err(dev, "IMSIC group index shift big for APLIC HHXS\n");
-+		return -EINVAL;
-+	}
-+
-+	/* Compute PPN base */
-+	mc->base_ppn = imsic_global->base_addr >> APLIC_xMSICFGADDR_PPN_SHIFT;
-+	mc->base_ppn &= ~APLIC_xMSICFGADDR_PPN_HART(mc->lhxs);
-+	mc->base_ppn &= ~APLIC_xMSICFGADDR_PPN_LHX(mc->lhxw, mc->lhxs);
-+	mc->base_ppn &= ~APLIC_xMSICFGADDR_PPN_HHX(mc->hhxw, mc->hhxs);
-+
-+	/* Setup global config and interrupt delivery */
-+	aplic_init_hw_global(priv, true);
-+
-+	/* Set the APLIC device MSI domain if not available */
-+	if (!dev_get_msi_domain(dev)) {
-+		/*
-+		 * The device MSI domain for OF devices is only set at the
-+		 * time of populating/creating OF device. If the device MSI
-+		 * domain is discovered later after the OF device is created
-+		 * then we need to set it explicitly before using any platform
-+		 * MSI functions.
-+		 *
-+		 * In case of APLIC device, the parent MSI domain is always
-+		 * IMSIC and the IMSIC MSI domains are created later through
-+		 * the platform driver probing so we set it explicitly here.
-+		 */
-+		if (is_of_node(dev->fwnode))
-+			of_msi_configure(dev, to_of_node(dev->fwnode));
-+	}
-+
-+	if (!msi_create_device_irq_domain(dev, MSI_DEFAULT_DOMAIN, &aplic_msi_template,
-+					  priv->nr_irqs + 1, priv, priv)) {
-+		dev_err(dev, "failed to create MSI irq domain\n");
-+		return -ENOMEM;
-+	}
-+
-+	/* Advertise the interrupt controller */
-+	pa = priv->msicfg.base_ppn << APLIC_xMSICFGADDR_PPN_SHIFT;
-+	dev_info(dev, "%d interrupts forwared to MSI base %pa\n", priv->nr_irqs, &pa);
-+
-+	return 0;
-+}
--- 
-2.34.1
+> ...but in short - both the old and the new can do exactly the same, but
+> imo it doesn't make any sense to actually rely on both as:
+>   1. It's redundant (and one set of them makes the other useless);
+>   2. I want to avoid confusion (as the other set won't be parsed);
+>   3. I'm trying to *enforce* consistency as MTK cards have different
+>      bindings for .. really, no good reason;
+>   4. I want to see custom stuff disappear completely (and/or as much as
+>      possible anyway) and use something that is (at least somewhat) commo=
+n
+>      between all MTK and non-MTK or anyway as a start at least consistent
+>      between MTK cards.
+>
+> In theory, though, speaking of the driver side, there's nothing preventin=
+g
+> you from specifying both audio-routing xxx-dai-link and mediatek,hdmi-cod=
+ec,
+> as the drivers' action will be, in short
+>     if (new_bindings)
+>       forget_about_old_bindings_use_the_new_ones();
+>     else
+>       use_old_hardcoded_stuff(); /* and be sad */
 
+That works for newer kernels with this change, but existing kernels
+will only have:
+
+use_old_hardcoded_stuff(); /* and not know it's sad */
+
+If you want to support a new DT and old kernel, you need to populate
+both properties.
+
+> For that, I really don't want to allow both sets of properties - please, =
+please,
+> tell me that I don't *have to* remove this block :-)
+
+Ultimately it is your decision as Mediatek maintainer, not mine. My
+only requirement is the commit message explain why the above
+combination is not important for these platforms.
+
+You could leave it, but keep both in the dts files for some time
+period. That will cause warnings, but what's a few more. The ABI
+doesn't have to be a forever thing. Things evolve and there will be
+other reasons to upgrade.
+
+Rob
 
