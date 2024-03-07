@@ -1,300 +1,330 @@
-Return-Path: <devicetree+bounces-49113-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49112-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0B1874E90
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:05:42 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A192C874E8C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:05:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 610981C23FAA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 12:05:41 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F39E9B2314F
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 12:05:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0711E129A72;
-	Thu,  7 Mar 2024 12:05:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 741881292F3;
+	Thu,  7 Mar 2024 12:05:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b="QrJuxX1m";
-	dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b="jkdfk571"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="b04+cBfa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx08-00376f01.pphosted.com (mx08-00376f01.pphosted.com [91.207.212.86])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4B5B1292CA;
-	Thu,  7 Mar 2024 12:05:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=91.207.212.86
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709813136; cv=fail; b=nk3po3hnxiM6C/J/Ojrxty+tRMMqCjqQRCWdnyfkFu+0zFjVfJhYV9bEJQ8YIGrQkuxn1+m9SlsX89/Pcv6HdSxf6STkcrSb1KPm39rpgUmvZ0XRIvdKpnBB4u9Jx/3/dbG8UbzybBvKEb1t0uKbLxdEXEf4EFyiLFqXpRsdTus=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709813136; c=relaxed/simple;
-	bh=W/dBLOg4bDmJCyY3rQVuW3tplQoFLU6LHuylGJR3N+8=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=NJSlA6ekCRU8jAVMO6ZcPqjDjgZDNoL3oS4fAp9k4HcvroLeD3HDOVxFOfpBYTllORNAg9y+yegobylNMcGInBSG/u49LX1GU7gTya1cSvQu+HW/BMizr1+u8XbB2Y8jqGyx+Grze8o1HaEaDj/NyJawqvIle0gArXQArRtHkqg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com; spf=pass smtp.mailfrom=imgtec.com; dkim=pass (2048-bit key) header.d=imgtec.com header.i=@imgtec.com header.b=QrJuxX1m; dkim=pass (1024-bit key) header.d=IMGTecCRM.onmicrosoft.com header.i=@IMGTecCRM.onmicrosoft.com header.b=jkdfk571; arc=fail smtp.client-ip=91.207.212.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=imgtec.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=imgtec.com
-Received: from pps.filterd (m0168888.ppops.net [127.0.0.1])
-	by mx08-00376f01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4278A66D017177;
-	Thu, 7 Mar 2024 12:01:52 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=imgtec.com; h=
-	from:to:cc:subject:date:message-id:references:in-reply-to
-	:content-type:content-id:content-transfer-encoding:mime-version;
-	 s=dk201812; bh=W/dBLOg4bDmJCyY3rQVuW3tplQoFLU6LHuylGJR3N+8=; b=
-	QrJuxX1mRrpe65ciKjKetYP7kJRL5ttosY1wR+oGgfRv+CW4y6i6ruErsajc11qZ
-	hp/CgsfjpVUutQHfcqdIRj6nWNaPcG/miE1MdT2wcgbyh9TJK9T0+pYFdcA9/Z6N
-	GwTYNtMgDW8zLKcJNfK8PDrW10smCxs/pHkZHLmKrDxtP1ro2ND490/1cR20c2Nw
-	aywHNlrd0J5ajzGjYX9x+s2hoVEshAIx5wUx89gVkZjEto6BRkUwkHq3oCgM+5Qf
-	/DBYHyjMZ4H30h0JqiDWRawONtHr6By3IVJO/0zMBDmxHhHvd2bgjGnPH8n7PxRR
-	FWttFqQSv1nNI6KEUwBENg==
-Received: from hhmail04.hh.imgtec.org ([217.156.249.195])
-	by mx08-00376f01.pphosted.com (PPS) with ESMTPS id 3wku8sym54-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-	Thu, 07 Mar 2024 12:01:52 +0000 (GMT)
-Received: from HHMAIL04.hh.imgtec.org (10.100.10.119) by
- HHMAIL04.hh.imgtec.org (10.100.10.119) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.35; Thu, 7 Mar 2024 12:01:51 +0000
-Received: from GBR01-CWX-obe.outbound.protection.outlook.com (104.47.85.41) by
- email.imgtec.com (10.100.10.121) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
- Transport; Thu, 7 Mar 2024 12:01:51 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZzY73qHbR/vWRHRJjhRTdz50iULYeeRMBU5Y1x13qMqxF9RlPCqPGDv/Rvd8cAW8xv8VGdIWiTEPSznQW42rojLD6vUfYBuXUxZsauEXQz+1+V8kgTWZfvBzAqLmkPu+yndwzc3RUNakdF/If+prAM2Y4GZJ8cp2tO5HFQyvusAVZClL9sVWEo7mG/YAF8Rh+dIbq0IUdpxga6+0SmppQQbDkECi9n4NbUK4rXvzeJ+1vmUCFy0E/rgPFAZW+sse9w7hhawvYX1DSobOedTldyYsojfbjUvYlbD6HeTyoysfiDSsncIrNSCKSBi/wGqVQwTcKDIM4YVAYiuqxN3wWg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=W/dBLOg4bDmJCyY3rQVuW3tplQoFLU6LHuylGJR3N+8=;
- b=WOgJNd6ehwav/2k7Km3A/C1rz/7gA/eL8yR2GXKUutVZ23z1mKSvOR1tFVPJSMsRVsn6Zallm5joS4s81RXlUMDjjeqzqEUJJUZtsK5Qf00cTkco6TQeG/G/Q0eZtjhhOnRN8v7oGEO+09TjV4j9Hs7sf603HjwAu5d7gkS7ThuBLxeJra7inzl/ErTPQbYoNpcXHCegs/hmdlU53cRUFZfhFXpIstuXQFIfCxN4xCXRI/FxSL/7Xgs6099pLjeR/JVNdz2OS1oHvYqjg3uXlAcM4sUK+VYgS36fpGLPweXuqSNf2owA2X0PUqxO76OiZWE2RpDCDVBMZDR+/TcGaw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=imgtec.com; dmarc=pass action=none header.from=imgtec.com;
- dkim=pass header.d=imgtec.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=IMGTecCRM.onmicrosoft.com; s=selector2-IMGTecCRM-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W/dBLOg4bDmJCyY3rQVuW3tplQoFLU6LHuylGJR3N+8=;
- b=jkdfk571st7tL2/5cNXIDidHbjLPhR0et5SgzWg6hwKbAgTGlrm3qhZgSSEkCZ3wDvjHIjgTGdQ8vqPXFzmczUjCBSLyxcaGP1RrppKf5rTJydS8WjbFPAMwVLmM8bDS7EavlKlLkT7VGuTDeecVRPH8ZQRrijIDz+5i+5TnRn0=
-Received: from LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:2a5::14)
- by LO4P265MB6187.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:279::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.24; Thu, 7 Mar
- 2024 12:01:49 +0000
-Received: from LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM
- ([fe80::870c:5e6e:be56:c732]) by LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM
- ([fe80::870c:5e6e:be56:c732%4]) with mapi id 15.20.7362.024; Thu, 7 Mar 2024
- 12:01:49 +0000
-From: Frank Binns <Frank.Binns@imgtec.com>
-To: Matt Coster <Matt.Coster@imgtec.com>,
-        "geert@linux-m68k.org"
-	<geert@linux-m68k.org>
-CC: "robh@kernel.org" <robh@kernel.org>,
-        "aford@beaconembedded.com"
-	<aford@beaconembedded.com>,
-        "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>,
-        "tzimmermann@suse.de"
-	<tzimmermann@suse.de>,
-        "mripard@kernel.org" <mripard@kernel.org>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "linux-kernel@vger.kernel.org"
-	<linux-kernel@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org"
-	<dri-devel@lists.freedesktop.org>,
-        "conor+dt@kernel.org"
-	<conor+dt@kernel.org>,
-        "aford173@gmail.com" <aford173@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
-        "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
-        "geert+renesas@glider.be" <geert+renesas@glider.be>,
-        "magnus.damm@gmail.com"
-	<magnus.damm@gmail.com>,
-        "airlied@gmail.com" <airlied@gmail.com>
-Subject: Re: [PATCH 2/6] arm64: dts: renesas: r8a774a1: Enable GPU
-Thread-Topic: [PATCH 2/6] arm64: dts: renesas: r8a774a1: Enable GPU
-Thread-Index: AQHacIc8pvVr4axcM0KRhQuvK3UiIg==
-Date: Thu, 7 Mar 2024 12:01:49 +0000
-Message-ID: <2cdbd8b216a37727c1996440f88229be05ee7efc.camel@imgtec.com>
-References: <20240227034539.193573-1-aford173@gmail.com>
-	 <20240227034539.193573-3-aford173@gmail.com>
-	 <39aead3b-b809-4c9c-8a5d-c0be2b36ea47@imgtec.com>
-	 <CAMuHMdW5vWg=tpB9PCRXmdBmLtt0wNN9dOEN1Lp_N7R68jz0tA@mail.gmail.com>
-In-Reply-To: <CAMuHMdW5vWg=tpB9PCRXmdBmLtt0wNN9dOEN1Lp_N7R68jz0tA@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.36.5-0ubuntu1 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: LO6P265MB6032:EE_|LO4P265MB6187:EE_
-x-ms-office365-filtering-correlation-id: acb35a49-4535-4073-3304-08dc3e9e5ecc
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Spr+TfTOTrG37IxLQw7JQMHSH+JsB+CZhfrPJi4DnT5tQMotUV5JBVM66x/gZKwK4+6ZsiwhPN6gKZ7CaRx0JCERW4dei6iz+kFr4MeqRUIuUrSPeg8Ugbh31AkYuO+lLh1fKGz2wlhPOBq9Q5chSnNUfRC7Yp3cxoMSYGptGBgcwlj3wY05PmmGEK/iz65jwRL0iE6ill3dXtBhZJfHf/EIyeyqmk4wgdRxXOBbiKbrIwUX3UNgQTjJZDXj8w9N4rT2ezIKctf62KPxEWEJ/yxwoPyD59CPKOOG1uJvzp0jS7uYTWqHouQPzTeVin1cSqU7guawYmwQxJ3+BaZkMgYh7C3zgOUuXnXhDD/gNosRynJWD1DASipw3ktoHPgjPd1GeuJX7JbS6iq/GE5yxiUixnH/6A2kUYWrbsAseDHg4q7OzPGblDdWAXHKHTJsBxG7Obz8W+I92NcSuAxEvZDEFQAWagH10FgxOZX/LWbmfEFo0z2IK6yTARyukKTHcJm9fAAhzl1r9qPVDIrk2rW7r1oqQdK3qvZHNPaXI3Yty+uJkyT/48eud4dZx0I1ac9hkcx9uS5TRY0sRBEj7eytCBjoIAgRn3xNTcagUACY7FEbhfPOVVrk1B1M6iUZYKq61PlSjpZ6RKhcs2+SD8VQSHXMacvO8KKkKWIjfUU=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230031)(376005)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Zjhya0gyT3J6SHhtdTRQdXVsQzkxTGVtWWVXeXoxVlZsdVV0M0txV2lVTzBQ?=
- =?utf-8?B?Q2VsdmdyUTNkUDNRdVBtdTlEQzQvdERyOXZCZXBiMXE0U3NHWkMxTXd2TzlQ?=
- =?utf-8?B?YzRPQ3d3NlBVeGQzaWc0RCt0NUpLOVhoa2JWNEd4S01Wc2tFdG1oa2lXUnNy?=
- =?utf-8?B?TlNZamRLWjlSU1k1ZDJRSHBkNU5zZ2lzVTh2T3N2aEhKUnJZU1g1aXZQYWZF?=
- =?utf-8?B?K0Q5V0FtN2JCbTl2NmkvWEtoYkp0MEViKythdDkvaWNIaTVwLzFBNHI0bjlO?=
- =?utf-8?B?OHhwK2t0Rjh1UlYxRWZnMjFieWkyTm1WWVo3NlNEVzBadzk4NG5jOEJ0a2RB?=
- =?utf-8?B?R1Z6cHFGbGJEQWtrVlZJZ1ZRTHBpK0dhLzlBaUZOZ3hWeCtPdFVrZkpyTW1h?=
- =?utf-8?B?WEJlYU41MEIzZzNPelJ3SExjVUw5Zm84ajBJcTZkeFg2bnJYdy9UUW9NSllX?=
- =?utf-8?B?TDc3NGhmRU9WRmVvNUozcGhPT2c1djJOY0plZVNJeFd3SkxPdkYrVUN4VmIr?=
- =?utf-8?B?ZUM3WU9BNUw1Z1Ayb3lDaEVnZzJIdlc2Q05Ea0VLNWtiOW1JVTlBaFZPNmRx?=
- =?utf-8?B?Yks0Z2MxRTZQNWt1Mlg5UUQ3bXNQN1F4a3ZUcnREOWsxY25WOTcxZ2I2Tmkw?=
- =?utf-8?B?TTVTYm83TFRwSTlxZU5NNFlxQnJDMytXK0s0VVF0SEw4emM0OFZiVmNaWXBV?=
- =?utf-8?B?TzhZY2Ura1oyZ2R6MXdGR2FCUVJneldWWjhySzBsYTY1TThSM1FvMy9oUnd6?=
- =?utf-8?B?aGx0TEYvZUZoUGhIa3owY08yYS9MKzlMZ3lvZlliRWF1dTRjLytrU2NMNTc4?=
- =?utf-8?B?SCs3bGF0S3M2amlFWGRrWkYxUnFsOHNiYlI5YTJsSFFSTHVOVU1KSkt5M2Zo?=
- =?utf-8?B?UHJUMUlEUGlYS0tQbGpqVVZmQ1NIQkFFbnFLbFc3Z09XaGxneXJ3NWhqaXFj?=
- =?utf-8?B?cExuSHNpUXBtVllOb2dMcnB2UnpzdXo0cERsTFJRdGI5VSt3Y2pNK3pjSTJi?=
- =?utf-8?B?WU9yZTlvYVdyeHZEVXhlb0Vhd1c4SEVzOERmUHNkaVlHWFRDZWxKVkJIOS8w?=
- =?utf-8?B?aXlrZlFFSEEzS0M2eGIweTQ4THQwQzJ3ZDZYMGE3MlI3YUJ2U3c0YWxvVzZ1?=
- =?utf-8?B?d290bWxNdE1CcnRwZlFTaHhsZUxTRlBuS3ovN1RhcCtEM0Z1TmRZcTEyVXRT?=
- =?utf-8?B?MXIwYjVEd3UxcjNzeXgyVjNFejdLTmpHdDYweXlkVW9Oc3lYSE9OaUZRazNS?=
- =?utf-8?B?MlZHQjcxMlFFa2ZVa000YlRZMjNFRUFHVmE4dE1QTnBFL1lJempHVWFPK3Vx?=
- =?utf-8?B?SlVROTkzWUtJZVZIcGlyb29BQXozb3NhZWxQZnBiMDVtYm5DTHAyYjdJRXVt?=
- =?utf-8?B?d3hXVng3ZUpMOFZsaklPNE0vOFE3V2h0TXBMSUd4RC9FNVoraE9Td0w2bC9G?=
- =?utf-8?B?aGFtUCt5aGc0MGtxOUh0K0s5eFM3RU1oY05OcnhoQlFMbG43K3VQM2QwTHZa?=
- =?utf-8?B?aHMrMzQyeU1ldHFNODNJMGV5TXNjQTdiYWJ0NUZweWpWVnNDQ25BQXpOclg0?=
- =?utf-8?B?VHpGbSsvTklRcE04WFNWckhRTVdvUi9YVUw0SW9jRnhDYVZBQzJDUkx6OVBu?=
- =?utf-8?B?S2pSaGIreDJkOVhOOFl6SnBjQXBBOFYxRnF2YXhRc3lUQmRRUytQR3VieTBD?=
- =?utf-8?B?TFNwMjI5MHc4dEtGQk1EOFc1WEttcnF5WnEyK0U0MGp4a1BvYTFRQXdHV2ov?=
- =?utf-8?B?eHdkUW9oalJLaGhIYjlpTkl5d01ZUTZTM1BGbC84RmZVWUQzTG40SHBjVHM3?=
- =?utf-8?B?cm9Damw4OEVoOHBMdG5veDgwczlFUEFDZnVJdlhyNlNrY1ZuSDZLVjBZUCti?=
- =?utf-8?B?M0hBQjdLZUVGS3UyWTBzUGI3YitPaFMwMUM2Z0p0MlNFRXE0SStGL0R6SnRv?=
- =?utf-8?B?N3A0dlptbUNXYTg1MElVUktvVDFTemFqeGFzdWMzQWIrM2JkZW1DM0lLMktt?=
- =?utf-8?B?MkJ3QUxUZG85UHNaa1FuWG1WMVdla2dpNndOOC9QNnZTYkkzUUNZVnVhTTJ6?=
- =?utf-8?B?NEhvYzJkVzNrZEM5OTFhelZKakJCK0x5U05ncmRCd0tjQVhDRTZPY29nVW9o?=
- =?utf-8?B?R0N1dzZCeFc2SUxpWHZ1UzlncmQ0RjMxTmJENGhoYk1DcDA5ZWd1L1NFeEZu?=
- =?utf-8?B?RHc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <0268ED04CDAE2A4CB6B18730425771AA@GBRP265.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E6B01292CA;
+	Thu,  7 Mar 2024 12:05:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709813110; cv=none; b=PS8PmbOCwml+hGsX/b9vb9drsUCUAf8RYh/LJsaqtgtU/bfYAN9Arc3HKl4XFQ9+5jmGFFJ+ShXyM8Z5NcBYmi1CkDVCO2azEt30m91hyH01p66zw1HIXsy5SqDSBubwGya1S+JPNKb+MpqZQjTwlDlW2g/P1+ipNkgp0jUhYjE=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709813110; c=relaxed/simple;
+	bh=kj4HQyfT3WFQLLlxTNmlTRhaXCYFdnAPE/4QIQ+oOtw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=k/R6QBu2kguH8QLonwJAIjxD08ik3KbZUfiFFEg2W0LMJ84CppANB0O69JUa1M3o5ZKXIR3HXHpZiDIjbgb9tnt0Q0CnMmCLaQSnzoww+1BrXegzNhfR4Cc2aiBX2TKxbZ8GyNcupweVsOmktUMR3PFC4Q41NeIOr9dMzI6nhjs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=b04+cBfa; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1709813106;
+	bh=kj4HQyfT3WFQLLlxTNmlTRhaXCYFdnAPE/4QIQ+oOtw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=b04+cBfavTyfpg+DMzBYKNqZO2+p4GDPcOrXeiS/Wx5pttAnWzDEExTD+f4ZVVoA+
+	 5YbC/pyM/voOC1yhmWeKuTqaqMToJavcLcW4ER/1r96EfCYalUCv+bL4s9nlpTTGzE
+	 g59zD7ccM1YdltjA+bgnPx2f916/d7pMzY7pa2p8Arzx61s/DOGIkdpLZBeQzT1P5Y
+	 KdWddg6PBCDfnuEPCJ6lxy2nX8/yJbKJup7wHAJ3ERlMcEEP6WoqRaIny3QPcD8808
+	 1aYr08zIhVz462yLOoz4WhZYYWlGxykAsUKZEAw3PB56F7vL50u4c1Upvq1zNqZIOL
+	 9CF3g2ZW9HoOg==
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sebastianfricke)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 604AA378148F;
+	Thu,  7 Mar 2024 12:05:06 +0000 (UTC)
+Date: Thu, 7 Mar 2024 13:05:05 +0100
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Devarsh Thakkar <devarsht@ti.com>
+Cc: mchehab@kernel.org, robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, hverkuil-cisco@xs4all.nl,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, benjamin.gaignard@collabora.com,
+	laurent.pinchart@ideasonboard.com, praneeth@ti.com, nm@ti.com,
+	vigneshr@ti.com, a-bhatia1@ti.com, j-luthra@ti.com, b-brnich@ti.com,
+	detheridge@ti.com, p-mantena@ti.com, vijayp@ti.com,
+	andrzej.p@collabora.com, nicolas@ndufresne.ca, afd@ti.com,
+	milkfafa@gmail.com
+Subject: Re: [PATCH v6 1/3] media: dt-bindings: Add Imagination E5010 JPEG
+ Encoder
+Message-ID: <20240307120505.kkliw7qejzfjhqkg@basti-XPS-13-9310>
+References: <20240228141140.3530612-1-devarsht@ti.com>
+ <20240228141140.3530612-2-devarsht@ti.com>
+ <20240229102623.ihwhbba4qwzvxzzq@basti-XPS-13-9310>
+ <7a83fe91-5afa-6aee-a8a4-44f6e3d713c2@ti.com>
+ <20240229133046.64h2f4n27emvdhnq@basti-XPS-13-9310>
+ <eff7080b-42e9-19ae-6022-bfbcc337b4a0@ti.com>
+ <20240301170611.tknj7ncwvgqjwkx5@basti-XPS-13-9310>
+ <9b4c9321-bc3a-95a2-fe9b-f739b5d12598@ti.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: LO6P265MB6032.GBRP265.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: acb35a49-4535-4073-3304-08dc3e9e5ecc
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Mar 2024 12:01:49.5287
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 0d5fd8bb-e8c2-4e0a-8dd5-2c264f7140fe
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6OIxj4z+BW3m6DIXXG4EH48UT6ElEWfHXpC6N2YWIuzyaDuAuXRJ3APkQ4DlJVFFofM+skuV8leQvz1G7UXGFA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LO4P265MB6187
-X-OriginatorOrg: imgtec.com
-X-EXCLAIMER-MD-CONFIG: 15a78312-3e47-46eb-9010-2e54d84a9631
-X-Proofpoint-GUID: co7iiM8In7b-1-rsf-eHqLwX_w5X_4xP
-X-Proofpoint-ORIG-GUID: co7iiM8In7b-1-rsf-eHqLwX_w5X_4xP
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9b4c9321-bc3a-95a2-fe9b-f739b5d12598@ti.com>
 
-SGkgR2VlcnQsDQoNCk9uIFR1ZSwgMjAyNC0wMi0yNyBhdCAxMjowNCArMDEwMCwgR2VlcnQgVXl0
-dGVyaG9ldmVuIHdyb3RlOg0KPiBIaSBNYXR0LA0KPiANCj4gT24gVHVlLCBGZWIgMjcsIDIwMjQg
-YXQgMTA6MzHigK9BTSBNYXR0IENvc3RlciA8TWF0dC5Db3N0ZXJAaW1ndGVjLmNvbT4gd3JvdGU6
-DQo+ID4gSGkgQWRhbSwNCj4gPiANCj4gPiBUaGFua3MgZm9yIHRoZXNlIHBhdGNoZXMhIEknbGwg
-anVzdCByZXBseSB0byB0aGlzIG9uZSBwYXRjaCwgYnV0IG15DQo+ID4gY29tbWVudHMgYXBwbHkg
-dG8gdGhlbSBhbGwuDQo+ID4gDQo+ID4gT24gMjcvMDIvMjAyNCAwMzo0NSwgQWRhbSBGb3JkIHdy
-b3RlOg0KPiA+ID4gVGhlIEdQVSBvbiB0aGUgUlovRzJNIGlzIGEgUm9ndWUgR1g2MjUwIHdoaWNo
-IHVzZXMgZmlybXdhcmUNCj4gPiA+IHJvZ3VlXzQuNDUuMi41OF92MS5mdyBhdmFpbGFibGUgZnJv
-bSBJbWFnaW5hdGlvbi4NCj4gPiA+IA0KPiA+ID4gV2hlbiBlbnVtZXJhdGVkLCBpdCBhcHBlYXJz
-IGFzOg0KPiA+ID4gICBwb3dlcnZyIGZkMDAwMDAwLmdwdTogW2RybV0gbG9hZGVkIGZpcm13YXJl
-IHBvd2VydnIvcm9ndWVfNC40NS4yLjU4X3YxLmZ3DQo+ID4gPiAgIHBvd2VydnIgZmQwMDAwMDAu
-Z3B1OiBbZHJtXSBGVyB2ZXJzaW9uIHYxLjAgKGJ1aWxkIDY1MTMzMzYgT1MpDQo+ID4gDQo+ID4g
-VGhlc2UgbWVzc2FnZXMgYXJlIHByaW50ZWQgYWZ0ZXIgdmVyaWZ5aW5nIHRoZSBmaXJtd2FyZSBi
-bG9i4oCZcyBoZWFkZXJzLA0KPiA+ICpiZWZvcmUqIGF0dGVtcHRpbmcgdG8gdXBsb2FkIGl0IHRv
-IHRoZSBkZXZpY2UuIEp1c3QgYmVjYXVzZSB0aGV5IGFwcGVhcg0KPiA+IGluIGRtZXNnIGRvZXMg
-Km5vdCogaW1wbHkgdGhlIGRldmljZSBpcyBmdW5jdGlvbmFsIGJleW9uZCB0aGUgaGFuZGZ1bCBv
-Zg0KPiA+IHJlZ2lzdGVyIHJlYWRzIGluIHB2cl9sb2FkX2dwdV9pZCgpLg0KPiA+IA0KPiA+IFNp
-bmNlIE1lc2EgZG9lcyBub3QgeWV0IGhhdmUgc3VwcG9ydCBmb3IgdGhpcyBHUFUsIHRoZXJl4oCZ
-cyBub3QgYSBsb3QNCj4gPiB0aGF0IGNhbiBiZSBkb25lIHRvIGFjdHVhbGx5IHRlc3QgdGhlc2Ug
-YmluZGluZ3MuDQo+IA0KPiBPSy4NCj4gDQo+ID4gV2hlbiB3ZSBhZGRlZCB1cHN0cmVhbSBzdXBw
-b3J0IGZvciB0aGUgZmlyc3QgR1BVICh0aGUgQVhFIGNvcmUgaW4gVEnigJlzDQo+ID4gQU02Miks
-IHdlIG9wdGVkIHRvIHdhaXQgdW50aWwgdXNlcnNwYWNlIHdhcyBzdWZmaWNpZW50bHkgcHJvZ3Jl
-c3NlZCB0bw0KPiA+IHRoZSBwb2ludCBpdCBjb3VsZCBiZSB1c2VkIGZvciB0ZXN0aW5nLiBUaGlz
-IHRob3VnaHQgcHJvY2VzcyBzdGlsbA0KPiA+IGFwcGxpZXMgd2hlbiBhZGRpbmcgbmV3IEdQVXMu
-DQo+ID4gDQo+ID4gT3VyIG1haW4gY29uY2VybiBpcyB0aGF0IGFkZGluZyBiaW5kaW5ncyBmb3Ig
-R1BVcyBpbXBsaWVzIGEgbGV2ZWwgb2YNCj4gPiBzdXBwb3J0IHRoYXQgY2Fubm90IGJlIHRlc3Rl
-ZC4gVGhhdCBpbiB0dXJuIG1heSBtYWtlIGl0IGNoYWxsZW5naW5nIHRvDQo+ID4ganVzdGlmeSBV
-QVBJIGNoYW5nZXMgaWYvd2hlbiB0aGV54oCZcmUgbmVlZGVkIHRvIGFjdHVhbGx5IG1ha2UgdGhl
-c2UgR1BVcw0KPiA+IGZ1bmN0aW9uYWwuDQo+IA0KPiBJIGd1ZXNzIHRoYXQgYXBwbGllcyB0byAi
-W1BBVENIIDAwLzExXSBEZXZpY2UgdHJlZSBzdXBwb3J0IGZvcg0KPiBJbWFnaW5hdGlvbiBTZXJp
-ZXM1IEdQVSIsIHRvbywgd2hpY2ggaGFzIGJlZW4gaW4gbGludXgtbmV4dCBmb3IgYWJvdXQNCj4g
-YSBtb250aD8NCj4gaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzIwMjQwMTA5MTcxOTUwLjMx
-MDEwLTEtYWZkQHRpLmNvbS8NCj4gDQoNClRoZSBjb25jZXJuIE1hdHQgaGFzIGV4cHJlc3NlZCBp
-cyBtb3N0bHkgcmlnaHQuIEhvd2V2ZXIsIGFkZGluZyBEVCBiaW5kaW5ncw0KZG9lc24ndCBwcmV2
-ZW50IHVzIGZyb20gbWFraW5nIFVBUEkgY2hhbmdlcy4gVGhlIHRoaW5nIHRoYXQgd291bGQgcHJl
-dmVudCB0aGlzDQppcyBhZGRpbmcgdGhlIGNvbXBhdGlibGUocykgdG8gdGhlIGRyaXZlcidzIGBz
-dHJ1Y3Qgb2ZfZGV2aWNlX2lkYCB0YWJsZSwgc28gdGhpcw0KaXMgd2hhdCB3ZSBuZWVkIHRvIGF2
-b2lkIGRvaW5nIHVudGlsIHN1ZmZpY2llbnQgdGVzdGluZyBoYXMgYmVlbiBkb25lLg0KDQo+ID4g
-PiBTaWduZWQtb2ZmLWJ5OiBBZGFtIEZvcmQgPGFmb3JkMTczQGdtYWlsLmNvbT4NCj4gPiA+IA0K
-PiA+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvcmVuZXNhcy9yOGE3NzRhMS5k
-dHNpIGIvYXJjaC9hcm02NC9ib290L2R0cy9yZW5lc2FzL3I4YTc3NGExLmR0c2kNCj4gPiA+IGlu
-ZGV4IGE4YTQ0ZmU1ZTgzYi4uODkyM2Q5NjI0YjM5IDEwMDY0NA0KPiA+ID4gLS0tIGEvYXJjaC9h
-cm02NC9ib290L2R0cy9yZW5lc2FzL3I4YTc3NGExLmR0c2kNCj4gPiA+ICsrKyBiL2FyY2gvYXJt
-NjQvYm9vdC9kdHMvcmVuZXNhcy9yOGE3NzRhMS5kdHNpDQo+ID4gPiBAQCAtMjM1Miw2ICsyMzUy
-LDE2IEBAIGdpYzogaW50ZXJydXB0LWNvbnRyb2xsZXJAZjEwMTAwMDAgew0KPiA+ID4gICAgICAg
-ICAgICAgICAgICAgICAgIHJlc2V0cyA9IDwmY3BnIDQwOD47DQo+ID4gPiAgICAgICAgICAgICAg
-IH07DQo+ID4gPiANCj4gPiA+ICsgICAgICAgICAgICAgZ3B1OiBncHVAZmQwMDAwMDAgew0KPiA+
-ID4gKyAgICAgICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAicmVuZXNhcyxyOGE3NzRhMS1n
-cHUiLCAiaW1nLGltZy1heGUiOw0KPiA+IA0KPiA+IFRoZSBHWDYyNTAgaXMgKm5vdCogYW4gQVhF
-IGNvcmUgLSBpdCBzaG91bGRu4oCZdCBiZSBsaXN0ZWQgYXMgY29tcGF0aWJsZQ0KPiA+IHdpdGgg
-b25lLiBGb3IgcHJpb3IgYXJ0LCBzZWUgWzFdIHdoZXJlIHdlIGFkZGVkIHN1cHBvcnQgZm9yIHRo
-ZSBNVDgxNzMNCj4gPiBmb3VuZCBpbiBFbG0gQ2hyb21lYm9va3MgUjEzIChhbHNvIGEgU2VyaWVz
-NlhUIEdQVSkuDQo+IA0KPiBJQy4gQW5kIHRoZSBiaW5kaW5ncyBpbiBbMl0uDQo+IA0KPiA+ID4g
-KyAgICAgICAgICAgICAgICAgICAgIHJlZyA9IDwwIDB4ZmQwMDAwMDAgMCAweDIwMDAwPjsNCj4g
-PiA+ICsgICAgICAgICAgICAgICAgICAgICBjbG9ja3MgPSA8JmNwZyBDUEdfTU9EIDExMj47DQo+
-ID4gPiArICAgICAgICAgICAgICAgICAgICAgY2xvY2stbmFtZXMgPSAiY29yZSI7DQo+ID4gDQo+
-ID4gU2VyaWVzNlhUIGNvcmVzIGhhdmUgdGhyZWUgY2xvY2tzIChzZWUgWzFdIGFnYWluKS4gSSBk
-b27igJl0IGhhdmUgYQ0KPiA+IFJlbmVzYXMgVFJNIHRvIGhhbmQg4oCTIGRvIHlvdSBrbm93IGlm
-IHRoZWlyIGRvY3MgZ28gaW50byBkZXRhaWwgb24gdGhlDQo+ID4gR1BVIGludGVncmF0aW9uPw0K
-PiANCj4gTm90IHJlYWxseS4gVGhlIGRpYWdyYW0gaW4gdGhlIEhhcmR3YXJlIFVzZXIncyBNYW51
-YWwganVzdCBzaG93cyB0aGUNCj4gZm9sbG93aW5nIGNsb2NrIGlucHV0czoNCj4gICAtIENsb2Nr
-IChaR8+VKSBmcm9tIENQRywNCj4gICAtIENsb2NrIChTM0Qxz5UpIGZyb20gQ1BHLA0KPiAgIC0g
-TVNUUCAoU1QxMTIpIGZyb20gQ1BHLg0KPiANCj4gWkcgaXMgdGhlIG1haW4gKHByb2dyYW1tYWJs
-ZSkgM0RHRSBjbG9jaywgcnVubmluZyBhdCB1cCB0byA2MDAgTUh6Lg0KPiBTM0QxIGlzIHRoZSBm
-aXhlZCAyNjYgTUh6IEFYSSBidXMgY2xvY2suDQo+IE1TVFAxMTIgaXMgdGhlIGdhdGVhYmxlIG1v
-ZHVsZSBjbG9jayAocGFydCBvZiB0aGUgU1lTQy9DUEcgY2xvY2sNCj4gZG9tYWluKSwgYW5kIGl0
-cyBwYXJlbnQgaXMgWkcuDQo+IA0KPiBBY2NvcmRpbmcgdG8gdGhlIHNvdXJjZXM6DQo+ICAgLSAi
-Y29yZSIgaXMgdGhlIHByaW1hcnkgY2xvY2sgdXNlZCBieSB0aGUgZW50aXJlIEdQVSBjb3JlLCBz
-byB3ZSB1c2UNCj4gICAgIE1TVFAxMTIgZm9yIHRoYXQuDQo+ICAgLSAic3lzIiBpcyB0aGUgb3B0
-aW9uYWwgc3lzdGVtIGJ1cyBjbG9jaywgc28gdGhhdCBjb3VsZCBiZSBTM0QxLA0KPiAgIC0gIm1l
-bSIgaXMgdGhlIG9wdGlvbmFsIG1lbW9yeSBjbG9jaywgbm8gaWRlYSB3aGF0IHRoYXQgd291bGQg
-bWFwIHRvLg0KPiANCg0KVGhlIHN5cyBhbmQgbWVtIGNsb2NrcyBhcmUgb3B0aW9uYWwgaW4gdGhl
-IGRyaXZlciBhcyBBWEUgY2FuIGJlIGNvbmZpZ3VyZWQgYXQNCmludGVncmF0aW9uIHRpbWUgdG8g
-b3BlcmF0ZSB3aXRoIGEgc2luZ2xlIGNsb2NrICgiY29yZSIpIG9yIHRocmVlIGNsb2Nrcw0KKCJj
-b3JlIiwgInN5cyIgYW5kICJtZW0pLiBTZXJpZXM2WFQgZG9lc24ndCBoYXZlIHRoaXMgY29uZmln
-dXJhYmlsaXR5IGFuZA0KZXhwZWN0cyBhbGwgdGhyZWUgY2xvY2tzLg0KDQo+IEJ1dCBJTUhPIHRo
-ZSB0d28gb3B0aW9uYWwgY2xvY2tzIGRvIG5vdCBtYXR0ZXIgYXQgYWxsICh0aGUgZHJpdmVyDQo+
-IGRvZXNuJ3QgY2FyZSBhYm91dCB0aGVpciByYXRlcywgYW5kIGp1c3QgZW5hYmxlcyB0aGVtIHRv
-Z2V0aGVyIHdpdGgNCj4gdGhlIGNvcmUgY2xvY2spLCBhbmQgUzNEMSBpcyBhbHdheXMtb24sIHNv
-IEknZCBqdXN0IGxpbWl0IGNsb2NrcyB0bw0KPiBhIHNpbmdsZSBpdGVtLg0KPiANCg0KVGhleSBt
-YXR0ZXIgaW4gdGhhdCwgaWYgcHJlc2VudCwgd2UgbWF5IGJlIGFibGUgdG8gbWFrZSBhZGRpdGlv
-bmFsIHBvd2VyDQpzYXZpbmdzLiBUaGUgZHJpdmVyIGRvZXNuJ3QgYXR0ZW1wdCB0byB0YWtlIGFk
-dmFudGFnZSBvZiB0aGlzIGF0IHByZXNlbnQgKGFuZA0KY2FuJ3QgZm9yIEFNNjJ4IGFueXdheSks
-IGJ1dCB0aGlzIHNob3VsZG4ndCBpbmZsdWVuY2UgdGhlIERUIGJpbmRpbmdzLg0KDQo+IEp1c3Qg
-d29uZGVyaW5nOiBpcyB0aGUgYXZhaWxhYmlsaXR5IG9mIDEgY2xvY2sgc3BlY2lmaWMgdG8gQVhF
-LCBvciB0bw0KPiB0aGUgQVhFIGludGVncmF0aW9uIG9uIEFNNjJ4Pw0KPiANCg0KVGhpcyBpcyBz
-b21ldGhpbmcgVEkgaGF2ZSBjb25maWd1cmVkIGFzIHBhcnQgb2YgdGhlaXIgaW50ZWdyYXRpb24g
-Zm9yIEFNNjJ4Lg0KDQpUaGFua3MNCkZyYW5rDQoNCj4gPiArICAgICAgICAgICAgICAgICAgICAg
-aW50ZXJydXB0cyA9IDxHSUNfU1BJIDExOSBJUlFfVFlQRV9MRVZFTF9ISUdIPjsNCj4gPiArICAg
-ICAgICAgICAgICAgICAgICAgcG93ZXItZG9tYWlucyA9IDwmc3lzYyBSOEE3NzRBMV9QRF8zREdf
-Qj47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIHJlc2V0cyA9IDwmY3BnIDExMj47DQo+ID4g
-KyAgICAgICAgICAgICB9Ow0KPiA+IFsxXTogaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3Jn
-L2ltYWdpbmF0aW9uL2xpbnV4Ly0vYmxvYi9iMzUwNmI4YmM0NWVkNmQ0MDA1ZWIzMmE5OTRkZjBl
-MzNkNjYxM2YxL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTczLmR0c2kjTDk5My0x
-MDA2DQo+IA0KPiBbMl0gaHR0cHM6Ly9naXRsYWIuZnJlZWRlc2t0b3Aub3JnL2ltYWdpbmF0aW9u
-L2xpbnV4Ly0vYmxvYi9iMzUwNmI4YmM0NWVkNmQ0MDA1ZWIzMmE5OTRkZjBlMzNkNjYxM2YxL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ncHUvaW1nLHBvd2VydnIueWFtbA0KPiAN
-Cj4gDQo+IEdye29ldGplLGVldGluZ31zLA0KPiANCj4gICAgICAgICAgICAgICAgICAgICAgICAg
-R2VlcnQNCj4gDQo+IC0tDQo+IEdlZXJ0IFV5dHRlcmhvZXZlbiAtLSBUaGVyZSdzIGxvdHMgb2Yg
-TGludXggYmV5b25kIGlhMzIgLS0gZ2VlcnRAbGludXgtbTY4ay5vcmcNCj4gDQo+IEluIHBlcnNv
-bmFsIGNvbnZlcnNhdGlvbnMgd2l0aCB0ZWNobmljYWwgcGVvcGxlLCBJIGNhbGwgbXlzZWxmIGEg
-aGFja2VyLiBCdXQNCj4gd2hlbiBJJ20gdGFsa2luZyB0byBqb3VybmFsaXN0cyBJIGp1c3Qgc2F5
-ICJwcm9ncmFtbWVyIiBvciBzb21ldGhpbmcgbGlrZSB0aGF0Lg0KPiAgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgIC0tIExpbnVzIFRvcnZhbGRzDQo=
+Hey Devarsh,
+
+On 06.03.2024 21:27, Devarsh Thakkar wrote:
+>Hi Sebastian,
+>
+>On 01/03/24 22:36, Sebastian Fricke wrote:
+>> Hey Devarsh,
+>>
+>> On 01.03.2024 22:02, Devarsh Thakkar wrote:
+>>> Hi Sebastian,
+>>>
+>>> On 29/02/24 19:00, Sebastian Fricke wrote:
+>>>> Hey Devarsh,
+>>>>
+>>>> On 29.02.2024 16:50, Devarsh Thakkar wrote:
+>>>>> Hi Sebastian,
+>>>>>
+>>>>> Thanks for the review.
+>>>>>
+>>>>> On 29/02/24 15:56, Sebastian Fricke wrote:
+>>>>>> Hey Devarsh,
+>>>>>>
+>>>>>> On 28.02.2024 19:41, Devarsh Thakkar wrote:
+>>>>>>> Add dt-bindings for Imagination E5010 JPEG Encoder [1] which is implemented
+>>>>>>> as stateful V4L2 M2M driver.
+>>>>>>>
+>>>>>>> The device supports baseline encoding with two different quantization
+>>>>>>> tables and compression ratio as demanded.
+>>>>>>>
+>>>>>>> Minimum resolution supported is 64x64 and Maximum resolution supported is
+>>>>>>> 8192x8192.
+>>>>>>>
+>>>>>>> [1]:  AM62A TRM (Section 7.6 is for JPEG Encoder)
+>>>>>>> Link: https://www.ti.com/lit/pdf/spruj16
+>>>>>>>
+>>>>>>> Co-developed-by: David Huang <d-huang@ti.com>
+>>>>>>> Signed-off-by: David Huang <d-huang@ti.com>
+>>>>>>> Signed-off-by: Devarsh Thakkar <devarsht@ti.com>
+>>>>>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>>>>>
+>>>>>> hmmm when did Rob give his reviewed by on this patch? (As this is not a
+>>>>>> DT binding I find that odd)
+>>>>>
+>>>>> [PATCH v6 1/3] media: dt-bindings: Add Imagination E5010 JPEG Encoder : This
+>>>>> is indeed the dt-binding patch. Also As shared in version history it is at V4
+>>>>> where Rob Herring added a Reviewed-By as seen here [0]
+>>>>>
+>>>>>> And where is the Reviewed by tag from Benjamin that he provided on V5?
+>>>>>>
+>>>>>
+>>>>> As captured in patch version history here [1] I thought to remove the
+>>>>> Reviewed-By since the Reviewed-By tag was on V5 and with V6 the driver got
+>>>>> updated with some changes to handle reported sparse warnings and so I have
+>>>>> asked Benjamin to check the range-diff and help with a quick review again if
+>>>>> possible.
+>>>>>
+>>>>> Kindly let me know if I missed something or anything needs to be done from
+>>>>> my end.
+>>>>
+>>>> Yes thanks I was a bit too swift to write here, sorry for the noise.
+>>>> We'll have a look.
+>>>>
+>>>
+>>> Sorry for the back and forth, but on the hindsight and re-looking at the
+>>> kernel patch guidelines [0] they suggest that Reviewed-By tag should only be
+>>> removed if substantial changes were made in further revisions.
+>>>
+>>> So looks to me in-fact it was a mistake on my part to remove the Reviewed-by
+>>> considering the change made in the following patch series was not a
+>>> substantial one as seen in the range-diff [1].
+>>>
+>>> Considering this, just wanted to check with you if it's possible for you to
+>>> consider the Reviewed-by tag :
+>>> `Reviewed-by: Benjamin Gaignard <benjamin.gaignard@collabora.com`
+>>> if it helps consolidate things faster to get this series in given we are close
+>>> to final RC's ?
+>>
+>> Yup I think we can keep it as the changes are very minor. Otherwise the
+>> series is pretty much good to go, I'll prepare the PR asap.
+>>
+>
+>Thanks, so I assume this could still make it to 6.9 merge window if it gets
+>pulled in before 6.8 rc8 ? Also do you think it would be possible to pull in
+>https://lore.kernel.org/all/20240305160529.4152865-1-devarsht@ti.com/ as here
+>too nothing much has changed w.r.t initial posting apart from commit message.
+
+Yes I'd assume so but I sadly got sick this week, I'll get to this as
+soon as I can.
+
+>
+>Regards
+>Devarsh
+
+Greetings,
+Sebastian
+
+>
+>> Greetings,
+>> Sebastian
+>>
+>>>
+>>> [0]:
+>>> https://docs.kernel.org/process/submitting-patches.html#using-reported-by-tested-by-reviewed-by-suggested-by-and-fixes:~:text=changed%20substantially
+>>>
+>>> [1]: https://gist.github.com/devarsht/c89180ac2b0d2814614f2b59d0705c19
+>>>
+>>> Regards
+>>> Devarsh
+>>>
+>>>>
+>>>> Greetings,
+>>>> Sebastian
+>>>>
+>>>>>
+>>>>> [0] :
+>>>>> https://lore.kernel.org/all/170716378412.295212.11603162949482063011.robh@kernel.org/
+>>>>> [1] : https://lore.kernel.org/all/20240228141140.3530612-4-devarsht@ti.com/
+>>>>>
+>>>>>
+>>>>> Regards
+>>>>> Devarsh
+>>>>>>> ---
+>>>>>>> V2: No change
+>>>>>>> V3:
+>>>>>>> - Add vendor specific compatible
+>>>>>>> - Update reg names
+>>>>>>> - Update clocks to 1
+>>>>>>> - Fix dts example with proper naming
+>>>>>>> V4:
+>>>>>>> - Use ti-specific compatible ti,am62a-jpeg-enc as secondary one
+>>>>>>> - Update commit message and title
+>>>>>>> - Remove clock-names as only single clock
+>>>>>>> V5:
+>>>>>>> - Add Reviewed-By tag
+>>>>>>> V6:
+>>>>>>> - No change
+>>>>>>>
+>>>>>>> .../bindings/media/img,e5010-jpeg-enc.yaml    | 75 +++++++++++++++++++
+>>>>>>> MAINTAINERS                                   |  5 ++
+>>>>>>> 2 files changed, 80 insertions(+)
+>>>>>>> create mode 100644
+>>>>>>> Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>>>>>>>
+>>>>>>> diff --git
+>>>>>>> a/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>>>>>>> b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>>>>>>> new file mode 100644
+>>>>>>> index 000000000000..085020cb9e61
+>>>>>>> --- /dev/null
+>>>>>>> +++ b/Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>>>>>>> @@ -0,0 +1,75 @@
+>>>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>>>>> +%YAML 1.2
+>>>>>>> +---
+>>>>>>> +$id: http://devicetree.org/schemas/media/img,e5010-jpeg-enc.yaml#
+>>>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>>>> +
+>>>>>>> +title: Imagination E5010 JPEG Encoder
+>>>>>>> +
+>>>>>>> +maintainers:
+>>>>>>> +  - Devarsh Thakkar <devarsht@ti.com>
+>>>>>>> +
+>>>>>>> +description: |
+>>>>>>> +  The E5010 is a JPEG encoder from Imagination Technologies implemented on
+>>>>>>> +  TI's AM62A SoC. It is capable of real time encoding of YUV420 and YUV422
+>>>>>>> +  inputs to JPEG and M-JPEG. It supports baseline JPEG Encoding up to
+>>>>>>> +  8Kx8K resolution.
+>>>>>>> +
+>>>>>>> +properties:
+>>>>>>> +  compatible:
+>>>>>>> +    oneOf:
+>>>>>>> +      - items:
+>>>>>>> +          - const: ti,am62a-jpeg-enc
+>>>>>>> +          - const: img,e5010-jpeg-enc
+>>>>>>> +      - const: img,e5010-jpeg-enc
+>>>>>>> +
+>>>>>>> +  reg:
+>>>>>>> +    items:
+>>>>>>> +      - description: The E5010 core register region
+>>>>>>> +      - description: The E5010 mmu register region
+>>>>>>> +
+>>>>>>> +  reg-names:
+>>>>>>> +    items:
+>>>>>>> +      - const: core
+>>>>>>> +      - const: mmu
+>>>>>>> +
+>>>>>>> +  power-domains:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  resets:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  clocks:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +  interrupts:
+>>>>>>> +    maxItems: 1
+>>>>>>> +
+>>>>>>> +required:
+>>>>>>> +  - compatible
+>>>>>>> +  - reg
+>>>>>>> +  - reg-names
+>>>>>>> +  - interrupts
+>>>>>>> +  - clocks
+>>>>>>> +
+>>>>>>> +additionalProperties: false
+>>>>>>> +
+>>>>>>> +examples:
+>>>>>>> +  - |
+>>>>>>> +    #include <dt-bindings/soc/ti,sci_pm_domain.h>
+>>>>>>> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+>>>>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>>>>> +
+>>>>>>> +    soc {
+>>>>>>> +      #address-cells = <2>;
+>>>>>>> +      #size-cells = <2>;
+>>>>>>> +      jpeg-encoder@fd20000 {
+>>>>>>> +          compatible = "img,e5010-jpeg-enc";
+>>>>>>> +          reg = <0x00 0xfd20000 0x00 0x100>,
+>>>>>>> +                <0x00 0xfd20200 0x00 0x200>;
+>>>>>>> +          reg-names = "core", "mmu";
+>>>>>>> +          clocks = <&k3_clks 201 0>;
+>>>>>>> +          power-domains = <&k3_pds 201 TI_SCI_PD_EXCLUSIVE>;
+>>>>>>> +          interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+>>>>>>> +      };
+>>>>>>> +    };
+>>>>>>> diff --git a/MAINTAINERS b/MAINTAINERS
+>>>>>>> index e1475ca38ff2..6b34ee8d92b5 100644
+>>>>>>> --- a/MAINTAINERS
+>>>>>>> +++ b/MAINTAINERS
+>>>>>>> @@ -10572,6 +10572,11 @@ S:    Maintained
+>>>>>>> F:    Documentation/devicetree/bindings/auxdisplay/img,ascii-lcd.yaml
+>>>>>>> F:    drivers/auxdisplay/img-ascii-lcd.c
+>>>>>>>
+>>>>>>> +IMGTEC JPEG ENCODER DRIVER
+>>>>>>> +M:    Devarsh Thakkar <devarsht@ti.com>
+>>>>>>> +S:    Supported
+>>>>>>> +F:    Documentation/devicetree/bindings/media/img,e5010-jpeg-enc.yaml
+>>>>>>> +
+>>>>>>> IMGTEC IR DECODER DRIVER
+>>>>>>> S:    Orphan
+>>>>>>> F:    drivers/media/rc/img-ir/
+>>>>>>> -- 
+>>>>>>> 2.39.1
+>>>>>>>
 
