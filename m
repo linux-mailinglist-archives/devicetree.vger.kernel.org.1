@@ -1,44 +1,44 @@
-Return-Path: <devicetree+bounces-48967-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48968-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C1F487478B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 06:12:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 218CA87478C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 06:12:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C6E241F231A9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 05:12:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id CC2631F2327D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 05:12:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4125B1B7E4;
-	Thu,  7 Mar 2024 05:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 661AD1B950;
+	Thu,  7 Mar 2024 05:12:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail78-66.sinamail.sina.com.cn (mail78-66.sinamail.sina.com.cn [219.142.78.66])
+Received: from mail78-63.sinamail.sina.com.cn (mail78-63.sinamail.sina.com.cn [219.142.78.63])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D0E817BAB
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 05:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.66
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 691E15672
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 05:12:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.63
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709788355; cv=none; b=ESvi9HmKgAfcI+gtYngaPEWTHYniYFarDvBz/2ihcIN3Jlau2heLd8KM5mIwynongjKRHsgpmArj5jGTsoOfrj/OWFZN15Ho9NtEtYDWgQHBp1LXUMFFjeu+LfZu8WX3JNCxKTNFYWtPQCU9KNyAD8N4yLjL2qYupuQYB1SLlKU=
+	t=1709788357; cv=none; b=CQUQ3LlUA4mD6diQYNJPbwVNMF1Ns5Hx32rv+EwoniU6GgBHaoPhDKWwSGH1RLB2PJWrrzfOu4BsO20SpziaFto2y/2S5T2d9EoajamRarqQKLhxAqJWinv6ZOL4Xryp7j3re9xd7cMDr/EfnDE6rDv2SuY1mJ4SrrbQQA0yzR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709788355; c=relaxed/simple;
-	bh=o7h8D68XuKpUbWhzQ5giwG7GjdYbrQMBGY5wZ3X+bbk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=W/9uLQJBOXbSf5OgfJ4OgSAL0bpNUp314afGJxaxmJ7unYCD9lQ0ZBAk7uYd91MKHgM7kDAGmiw1ZRHjMbQFmq9ikeSWAPG3OV/2sy2PxQsmeJlCvg/ygrv2cK00UcYVHyzOlnmBOHs6vKRW1Ex4HAvJw0s6qCwgbZuagNat3a8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.66
+	s=arc-20240116; t=1709788357; c=relaxed/simple;
+	bh=+Ls2GaZ7tW9/6t4tjWCZZFeROOO7dXrvnOWF30JJuM0=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; b=i/lSq6xF5DAtTo3nfDKAbqVnSKzkWgVcf/PvmZqgNrfObWdodDgV4k/MSYkEc6JPfM+Em5wBi6ovmvnaF2ZY2EHZpJFO7LC6e6jcLPBQpnJxJFxtqKpcNJbbpTa0Q7VOUJ4v/ui36vxEjGweaTrKewDwcJKusbP3K/1Jsf4rDP4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.63
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
 Received: from unknown (HELO zy-virtual-machine.localdomain)([116.232.53.71])
 	by sina.net (10.75.30.239) with ESMTP
-	id 65E94CB900013490; Thu, 7 Mar 2024 13:12:28 +0800 (CST)
+	id 65E94CB900013490; Thu, 7 Mar 2024 13:12:30 +0800 (CST)
 X-Sender: zhangyi@everest-semi.com
 X-Auth-ID: zhangyi@everest-semi.com
 Authentication-Results: sina.net;
 	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
 	 dkim=none header.i=none;
 	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: 924257DA11B742E8838AD976B829C33B
-X-SMAIL-UIID: 924257DA11B742E8838AD976B829C33B-20240307-131228
+X-SMAIL-MID: 99FA4E22C18D478DA74CC1A355ADB65C
+X-SMAIL-UIID: 99FA4E22C18D478DA74CC1A355ADB65C-20240307-131230
 From: Zhang Yi <zhangyi@everest-semi.com>
 To: alsa-devel@alsa-project.org,
 	broonie@kernel.org,
@@ -48,9 +48,9 @@ Cc: tiwai@suse.com,
 	yangxiaohua@everest-semi.com,
 	zhuning@everest-semi.com,
 	zhangyi@everest-semi.com
-Subject: [PATCH v2 1/2] ASoC: codecs: ES8326: Changing members of private structure
-Date: Thu,  7 Mar 2024 13:12:21 +0800
-Message-Id: <20240307051222.24010-2-zhangyi@everest-semi.com>
+Subject: [PATCH v2 2/2] ASoC: codecs: ES8326: change support for ES8326
+Date: Thu,  7 Mar 2024 13:12:22 +0800
+Message-Id: <20240307051222.24010-3-zhangyi@everest-semi.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20240307051222.24010-1-zhangyi@everest-semi.com>
 References: <20240307051222.24010-1-zhangyi@everest-semi.com>
@@ -60,57 +60,55 @@ List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 
-We don't use mic1_src and mic2_src.so we delete these two members.
-We changed the default value of interrupt-clk for headphone detection
+Removed mic1-src and mic2-src. and changed default value
+of interrupt-clk
 
 Signed-off-by: Zhang Yi <zhangyi@everest-semi.com>
 ---
- sound/soc/codecs/es8326.c | 18 +-----------------
- 1 file changed, 1 insertion(+), 17 deletions(-)
+ .../devicetree/bindings/sound/everest,es8326.yaml         | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/sound/soc/codecs/es8326.c b/sound/soc/codecs/es8326.c
-index 608862aebd71..15289dadafea 100755
---- a/sound/soc/codecs/es8326.c
-+++ b/sound/soc/codecs/es8326.c
-@@ -31,8 +31,6 @@ struct es8326_priv {
- 	 * while enabling or disabling or during an irq.
- 	 */
- 	struct mutex lock;
--	u8 mic1_src;
--	u8 mic2_src;
- 	u8 jack_pol;
- 	u8 interrupt_src;
- 	u8 interrupt_clk;
-@@ -1092,20 +1090,6 @@ static int es8326_probe(struct snd_soc_component *component)
- 	es8326->jd_inverted = device_property_read_bool(component->dev,
- 							"everest,jack-detect-inverted");
+diff --git a/Documentation/devicetree/bindings/sound/everest,es8326.yaml b/Documentation/devicetree/bindings/sound/everest,es8326.yaml
+index 07781408e788..8c82d47375ec 100644
+--- a/Documentation/devicetree/bindings/sound/everest,es8326.yaml
++++ b/Documentation/devicetree/bindings/sound/everest,es8326.yaml
+@@ -38,6 +38,7 @@ properties:
+     default: 0x0f
  
--	ret = device_property_read_u8(component->dev, "everest,mic1-src", &es8326->mic1_src);
--	if (ret != 0) {
--		dev_dbg(component->dev, "mic1-src return %d", ret);
--		es8326->mic1_src = ES8326_ADC_AMIC;
--	}
--	dev_dbg(component->dev, "mic1-src %x", es8326->mic1_src);
--
--	ret = device_property_read_u8(component->dev, "everest,mic2-src", &es8326->mic2_src);
--	if (ret != 0) {
--		dev_dbg(component->dev, "mic2-src return %d", ret);
--		es8326->mic2_src = ES8326_ADC_DMIC;
--	}
--	dev_dbg(component->dev, "mic2-src %x", es8326->mic2_src);
--
- 	ret = device_property_read_u8(component->dev, "everest,jack-pol", &es8326->jack_pol);
- 	if (ret != 0) {
- 		dev_dbg(component->dev, "jack-pol return %d", ret);
-@@ -1125,7 +1109,7 @@ static int es8326_probe(struct snd_soc_component *component)
- 				      &es8326->interrupt_clk);
- 	if (ret != 0) {
- 		dev_dbg(component->dev, "interrupt-clk return %d", ret);
--		es8326->interrupt_clk = 0x45;
-+		es8326->interrupt_clk = 0x00;
- 	}
- 	dev_dbg(component->dev, "interrupt-clk %x", es8326->interrupt_clk);
+   everest,mic1-src:
++    deprecated: true
+     $ref: /schemas/types.yaml#/definitions/uint8
+     description:
+       the value of reg 2A when headset plugged.
+@@ -46,6 +47,7 @@ properties:
+     default: 0x22
  
+   everest,mic2-src:
++    deprecated: true
+     $ref: /schemas/types.yaml#/definitions/uint8
+     description:
+       the value of reg 2A when headset unplugged.
+@@ -87,7 +89,7 @@ properties:
+        0 means the chip detect jack type again after button released.
+     minimum: 0
+     maximum: 0x7f
+-    default: 0x45
++    default: 0x00
+ 
+ required:
+   - compatible
+@@ -107,10 +109,8 @@ examples:
+         clocks = <&clks 10>;
+         clock-names = "mclk";
+         #sound-dai-cells = <0>;
+-        everest,mic1-src = [22];
+-        everest,mic2-src = [44];
+         everest,jack-pol = [0e];
+         everest,interrupt-src = [08];
+-        everest,interrupt-clk = [45];
++        everest,interrupt-clk = [00];
+       };
+     };
 -- 
 2.17.1
 
