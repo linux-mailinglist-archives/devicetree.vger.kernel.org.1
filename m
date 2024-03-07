@@ -1,184 +1,224 @@
-Return-Path: <devicetree+bounces-49199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49200-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F3E4875442
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 17:37:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D26FD875458
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 17:41:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 53E701C22F6E
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 16:37:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1467EB24990
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 16:41:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 810E812F59D;
-	Thu,  7 Mar 2024 16:37:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB5C612F5AD;
+	Thu,  7 Mar 2024 16:41:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="fJ80NUNi"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SUnav6ZE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC0811DA27;
-	Thu,  7 Mar 2024 16:37:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBABE1BDDB;
+	Thu,  7 Mar 2024 16:41:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709829426; cv=none; b=gz4S7HRZK0OgIC/ZSZ3d+VREBuzuNlRBuvE5OCoZIPinFp343q0/LGExwQzT7Ad0F5sYUXXlHp2wc3J7qjMrOrMb3xdoUNJuFV76iq3zYWXSk+xPOSR0s1HeoJN6L6tzPSJVfepEQ7KbxabS6Fc68i2z+LaHpoJQsjvYiUvuEWg=
+	t=1709829702; cv=none; b=jpejH92KV4ej8TL3qMdnhtRFEeG2MPYODip4zSncw76yhzmJBirAbrpxCRVh5yajKcBc7bFllisVCYF7a/qUC/lVFVLxUznl+beeHstOuf2IRfepd36rwhsLOCIAg9D+SIbHOJryW5/wwPSL+00w5wM3t9EX0nXbWtZkKebhioM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709829426; c=relaxed/simple;
-	bh=R7uLcewIPcCbOUA5r2domMq49Hm7h9Eduw6Ebo4E+5A=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=lBaxzLUE7RElLcvNl0J8In+usCyQPXaFjbVWG/s777WllOJBomAFHTJLJby5Aqb6vcsNXBcWgGthOb31YSCcXElKpGRd8iXAM0vmnwzqWM5xCBBGpChy+L9mZrRDtKaruNDVWT5a9YrA8Ws8qBCl7tMO1kfi7CTIDhGai3nNV1A=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=fJ80NUNi; arc=none smtp.client-ip=209.85.210.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-ot1-f44.google.com with SMTP id 46e09a7af769-6e445b4f80bso537673a34.0;
-        Thu, 07 Mar 2024 08:37:04 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709829424; x=1710434224; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DRR3aMrPNTHPyKTnpZBfnYrcMUQU7aCizh88lK2tEOw=;
-        b=fJ80NUNiUmKnSTARnjTsPNUA+JlWDmHIon6TBUJytnwrGpb3Ho8LnEcSKZBuMjS8pZ
-         kkK7dYyY6q0A6TJCJScBkUSANhR0HDzmyxo7ByneSsMPF1zKcD33g7zeNd2QkcNJk4hE
-         rCFOu0JrLrD2MzxwU8V5Tr2N1jk0QLHl71RRFDGbfvkrh8XEwApKOrBAaVpqEMnU3cKL
-         xCeCyQRMiXQoSgfnayXRrygUd5Gpm9jxlm3jvCUGCSpIkslkR7zZEwlEvGJ/Vb0efp3M
-         CXL221ajBI+YbmNUXNAmErdmkTm8vT3fFZ8l34aJLfS+rZTruxBplMNw5NWsOxNQMsPd
-         de0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709829424; x=1710434224;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DRR3aMrPNTHPyKTnpZBfnYrcMUQU7aCizh88lK2tEOw=;
-        b=q4x/t3VelqAANEIZEu8tsY58Mk7gePb8sMshdYARdlcLlBVK4t1gtiPOonQcSSzihx
-         OmpLmy/Y+9WvH2fTg8f1Z2xzww7qb1ZUHzANZ+SDuNpXxQMfkx2DsG+u/dLX3EcYqi8s
-         l15j0rdF1xEwxwkbBRFAd0ReS2W/Xt3SmlWz9E6wfbu6N+LjLepoSCbiHbPBeNM8Gt2H
-         ToP7sLzVt8zQP+tzbMXr2C6AfQLwmsofIWkLInsoaV9rDxVomIdosIUq5aBxlbEJzgXK
-         IxqTC0KwT8wUNyKoCG+emBKITP5t8EOq3Dkva2ZzHGFEfkLQXRyfg8kl81LK0GIK9/U7
-         bu9Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWq8/uoQgSNSqhGH5YrjXF98LYVxv3OG+rU/+Qd4hAGz1dVsWbkoPhwWoSv/9Xfp70lKBYg1Db+kHfTO19daLgVF6B8UrGYBzrZlS/sHvGGbmhlND4GU2pIqx7IKzmlH0Ql+1ika9fPI2LiObdPJgVsW5AYt9nkyzFRJu8aT2zNaoyudQ8=
-X-Gm-Message-State: AOJu0YwYoVnuI5NTQSYOddKuIrNmIuWXqKUYfUzx3wHcgnK/94RCjNgh
-	eopK9LETkx9IxLj9bv2UDOyqr5y4aJnZ+KtqXW1Axvoaf9X8iBPw+3J1nz6cEqQ0FZPXX5FEIAw
-	A1sImKMut1/cprNwrTPYFRS/MCsg=
-X-Google-Smtp-Source: AGHT+IFJQktXHafepx7m2ZI9QAsBmwKMITqcJJIw//kIMZ1qNUrVo2cXeWwX3DelxvQp+xNWB9FVPEmJ0rR4dSgR1Bg=
-X-Received: by 2002:a05:6871:782:b0:21e:e5db:7964 with SMTP id
- o2-20020a056871078200b0021ee5db7964mr370234oap.23.1709829423970; Thu, 07 Mar
- 2024 08:37:03 -0800 (PST)
+	s=arc-20240116; t=1709829702; c=relaxed/simple;
+	bh=/1yv2voYazdhfYiCba0+H2ZUZDL9rA+8uY9mleYG4cw=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CKUlin+NxqXNM2HrOMwQj7QYI6nagz1VvYcddR1/RkOA21RaIJG31rLAJs0fOvKnGcSt6VztaBKU8mmfYgY1f/qjXyNR5VJZFODduYmt0TRwCOf4mPVXmiBBi3WbNWl0+7aD4swVazwrr4YAY2AtwxelSvmRkMA/7uhmmT2CRE8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SUnav6ZE; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 427BrCPO009368;
+	Thu, 7 Mar 2024 16:41:20 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:references:mime-version
+	:content-type:in-reply-to; s=qcppdkim1; bh=IhCM9GWGGCh+z/XvnkdtX
+	dFWqYJpK598AUrSkFnXIWc=; b=SUnav6ZEvKO+0hU8fPqiO+h7HIIcnW36ev51o
+	UMXjUxg6jwvYKHiD464eS+HgPtJPuVQ8W4DtyRLPC9VGyA8vSOhOHXgK5eBBndH8
+	aFA4Bs8jC22Biq7i9PRP8uBJ7434r5UcuRfho+dpX0O+j27kpEQfumffg2m3ywTs
+	bFYHWe4j1L+tHsZkqqMAgjzmdz8v4L5XMJPRv13a0DdmQAZkjPkQD0pnHZp+kvVC
+	BFlYVRT4Z9/VNiuIYhAJY7H9rg1nfv6sMvHL3Hwuc0tYFkDX1w2xu4daMLYyP3AY
+	K2c429Gza+Xtj6KaQUqnot0p+tcGfOpoIatqoEl7pkkczIowQ==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wqd3d18vp-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 07 Mar 2024 16:41:17 +0000 (GMT)
+Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 427GfGZW010824
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 7 Mar 2024 16:41:16 GMT
+Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
+ nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Thu, 7 Mar 2024 08:41:14 -0800
+Date: Thu, 7 Mar 2024 08:41:14 -0800
+From: Elliot Berman <quic_eberman@quicinc.com>
+To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+CC: Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>,
+        Murali Nalajal <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Carl van Schaik
+	<quic_cvanscha@quicinc.com>,
+        Philip Derrin <quic_pderrin@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet
+	<corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "Fuad
+ Tabba" <tabba@google.com>,
+        Sean Christopherson <seanjc@google.com>,
+        "Andrew
+ Morton" <akpm@linux-foundation.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
+Subject: Re: Re: [PATCH v17 07/35] gunyah: rsc_mgr: Add resource manager RPC
+ core
+Message-ID: <20240307083827092-0800.eberman@hu-eberman-lv.qualcomm.com>
+Mail-Followup-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>, 
+	Alex Elder <elder@linaro.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
+	Murali Nalajal <quic_mnalajal@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
+	Carl van Schaik <quic_cvanscha@quicinc.com>, Philip Derrin <quic_pderrin@quicinc.com>, 
+	Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>, Jonathan Corbet <corbet@lwn.net>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
+	Will Deacon <will@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Bjorn Andersson <andersson@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+	Fuad Tabba <tabba@google.com>, Sean Christopherson <seanjc@google.com>, 
+	Andrew Morton <akpm@linux-foundation.org>, linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+	linux-mm@kvack.org
+References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
+ <20240222-gunyah-v17-7-1e9da6763d38@quicinc.com>
+ <20240307153843.GC1695516@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240306201045.1475-1-justin.swartz@risingedge.co.za>
- <20240306201045.1475-2-justin.swartz@risingedge.co.za> <CAMhs-H9WyQZsvEvCfUcZ0_eU8--EzxEmaxR50wdRFDGP3E64ZQ@mail.gmail.com>
- <13e3063facfea3407dba23b74b0a56db@risingedge.co.za>
-In-Reply-To: <13e3063facfea3407dba23b74b0a56db@risingedge.co.za>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Thu, 7 Mar 2024 17:36:51 +0100
-Message-ID: <CAMhs-H_eUKm7C40oCzuKwwEMZAcOJ-g4MghAfkGAmxRM0AXPUw@mail.gmail.com>
-Subject: Re: [PATCH 2/2] mips: dts: ralink: mt7621: add serial1 and serial2 nodes
-To: Justin Swartz <justin.swartz@risingedge.co.za>
-Cc: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-mips@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20240307153843.GC1695516@quicinc.com>
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nasanex01b.na.qualcomm.com (10.46.141.250)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 0-XBk_3tQgGP4ZavfFBD2TJdDBfBlRCf
+X-Proofpoint-GUID: 0-XBk_3tQgGP4ZavfFBD2TJdDBfBlRCf
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-07_13,2024-03-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
+ mlxscore=0 malwarescore=0 phishscore=0 bulkscore=0 spamscore=0
+ impostorscore=0 lowpriorityscore=0 mlxlogscore=999 classifier=spam
+ adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
+ definitions=main-2403070114
 
-Hi Justin,
+On Thu, Mar 07, 2024 at 09:08:43PM +0530, Srivatsa Vaddagiri wrote:
+> * Elliot Berman <quic_eberman@quicinc.com> [2024-02-22 15:16:30]:
+> 
+> > The resource manager is a special virtual machine which is always
+> > running on a Gunyah system. It provides APIs for creating and destroying
+> > VMs, secure memory management, sharing/lending of memory between VMs,
+> > and setup of inter-VM communication. Calls to the resource manager are
+> > made via message queues.
+> > 
+> > This patch implements the basic probing and RPC mechanism to make those
+> > API calls. Request/response calls can be made with gh_rm_call.
+> > Drivers can also register to notifications pushed by RM via
+> > gh_rm_register_notifier
+> > 
+> > Specific API calls that resource manager supports will be implemented in
+> > subsequent patches.
+> > 
+> > Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> 
+> Left a minor comment below. LGTM otherwise.
+> 
+> Reviewed-by: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+> 
+> > +static irqreturn_t gunyah_rm_rx(int irq, void *data)
+> > +{
+> > +	enum gunyah_error gunyah_error;
+> > +	struct gunyah_rm_rpc_hdr *hdr;
+> > +	struct gunyah_rm *rm = data;
+> > +	void *msg = &rm->recv_msg[0];
+> > +	size_t len;
+> > +	bool ready;
+> > +
+> > +	do {
+> > +		gunyah_error = gunyah_hypercall_msgq_recv(rm->rx_ghrsc.capid,
+> > +							  msg,
+> > +							  sizeof(rm->recv_msg),
+> > +							  &len, &ready);
+> > +		if (gunyah_error != GUNYAH_ERROR_OK) {
+> > +			if (gunyah_error != GUNYAH_ERROR_MSGQUEUE_EMPTY)
+> > +				dev_warn(rm->dev,
+> > +					 "Failed to receive data: %d\n",
+> > +					 gunyah_error);
+> > +			return IRQ_HANDLED;
+> > +		}
+> > +
+> > +		if (len < sizeof(*hdr)) {
+> > +			dev_err_ratelimited(
+> > +				rm->dev,
+> > +				"Too small message received. size=%ld\n", len);
+> > +			continue;
+> 
+> In practice we should never hit this condition, in case we do encounter, do you
+> see a reason why continue is preferred over simply breaking the loop?
+> 
 
-On Thu, Mar 7, 2024 at 4:15=E2=80=AFPM Justin Swartz
-<justin.swartz@risingedge.co.za> wrote:
->
-> Hi Sergio
->
-> On 2024-03-07 12:04, Sergio Paracuellos wrote:
-> > Hi Justin,
-> >
-> > On Wed, Mar 6, 2024 at 9:11=E2=80=AFPM Justin Swartz
-> > <justin.swartz@risingedge.co.za> wrote:
-> >>
-> >> Add serial1 and serial2 nodes to define the existence of
-> >> UART1 and UART2.
-> >>
-> >> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
-> >> ---
-> >>  arch/mips/boot/dts/ralink/mt7621.dtsi | 38
-> >> +++++++++++++++++++++++++++
-> >>  1 file changed, 38 insertions(+)
-> >>
-> >> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi
-> >> b/arch/mips/boot/dts/ralink/mt7621.dtsi
-> >> index dca415fdd..2069249c8 100644
-> >> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
-> >> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
-> >> @@ -128,6 +128,44 @@ serial0: serial@c00 {
-> >>                         pinctrl-0 =3D <&uart1_pins>;
-> >>                 };
-> >>
-> >> +               serial1: serial@d00 {
-> >> +                       status =3D "disabled";
-> >> +
-> >> +                       compatible =3D "ns16550a";
-> >> +                       reg =3D <0xd00 0x100>;
-> >> +
-> >> +                       clocks =3D <&sysc MT7621_CLK_UART2>;
-> >> +
-> >> +                       interrupt-parent =3D <&gic>;
-> >> +                       interrupts =3D <GIC_SHARED 27
-> >> IRQ_TYPE_LEVEL_HIGH>;
-> >> +
-> >> +                       reg-shift =3D <2>;
-> >> +                       reg-io-width =3D <4>;
-> >> +                       no-loopback-test;
-> >> +
-> >> +                       pinctrl-names =3D "default";
-> >> +                       pinctrl-0 =3D <&uart2_pins>;
-> >> +               };
-> >> +
-> >> +               serial2: serial@e00 {
-> >> +                       status =3D "disabled";
-> >> +
-> >> +                       compatible =3D "ns16550a";
-> >> +                       reg =3D <0xe00 0x100>;
-> >> +
-> >> +                       clocks =3D <&sysc MT7621_CLK_UART3>;
-> >> +
-> >> +                       interrupt-parent =3D <&gic>;
-> >> +                       interrupts =3D <GIC_SHARED 28
-> >> IRQ_TYPE_LEVEL_HIGH>;
-> >> +
-> >> +                       reg-shift =3D <2>;
-> >> +                       reg-io-width =3D <4>;
-> >> +                       no-loopback-test;
-> >> +
-> >> +                       pinctrl-names =3D "default";
-> >> +                       pinctrl-0 =3D <&uart3_pins>;
-> >> +               };
-> >> +
-> >
-> > Please follow the preferred order for properties described in dts
-> > coding style [0]. I know that there is some mess around the properties
-> > order in some nodes with the current dtsi file but we did not have
-> > coding style before and now we have it, so I think we should follow it
-> > at least for new additions.
->
-> No problem. I see you've already "Acked-by" patch 1 (adding pinctrl
-> properties to serial0) of this set, so would it be a better move to
-> submit a new patch set that would look something like:
->
->   1. add pinctrl-name and pinctrl-0 to serial0 [no changes from what I
-> sent]
->   2. reorder serial0 properties according to the DTS style guidelines
->   3. add serial1 and serial2 with the correct property order
+There might be more messages to read, which we would not otherwise read.
+Since those messages might be parseable, I'd rather try to recover than
+break communication with RM.
 
-This would be ok, thank you.
+As you mention, we should never encounter this condition. The guard is
+to avoid reading garbage values.
 
-Best regards,
-    Sergio Paracuellos
+> > +		}
+> > +
+> > +		hdr = msg;
+> > +		if (hdr->api != RM_RPC_API) {
+> > +			dev_err(rm->dev, "Unknown RM RPC API version: %x\n",
+> > +				hdr->api);
+> > +			return IRQ_HANDLED;
+> > +		}
+> > +
+> > +		switch (FIELD_GET(RM_RPC_TYPE_MASK, hdr->type)) {
+> > +		case RM_RPC_TYPE_NOTIF:
+> > +			gunyah_rm_process_notif(rm, msg, len);
+> > +			break;
+> > +		case RM_RPC_TYPE_REPLY:
+> > +			gunyah_rm_process_reply(rm, msg, len);
+> > +			break;
+> > +		case RM_RPC_TYPE_CONTINUATION:
+> > +			gunyah_rm_process_cont(rm, rm->active_rx_message, msg,
+> > +					       len);
+> > +			break;
+> > +		default:
+> > +			dev_err(rm->dev,
+> > +				"Invalid message type (%lu) received\n",
+> > +				FIELD_GET(RM_RPC_TYPE_MASK, hdr->type));
+> > +			return IRQ_HANDLED;
+> > +		}
+> > +	} while (ready);
+> > +
+> > +	return IRQ_HANDLED;
+> > +}
 
