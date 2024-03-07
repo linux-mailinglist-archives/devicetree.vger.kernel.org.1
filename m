@@ -1,85 +1,50 @@
-Return-Path: <devicetree+bounces-48962-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48965-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1FEE87472A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 05:18:16 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BFAFE874764
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 05:40:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 527B41F23D3C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 04:18:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1292B2301C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 04:40:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFB6E1BF27;
-	Thu,  7 Mar 2024 04:17:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF85B1BC40;
+	Thu,  7 Mar 2024 04:40:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="E2xlxmhx"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eSyFmpNc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBAC17BB3;
-	Thu,  7 Mar 2024 04:17:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7AD14F7F;
+	Thu,  7 Mar 2024 04:40:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709785071; cv=none; b=dJQ+Qw9haYb15eqHJkon6mLJZJK1IdEHhMTsAgO5nXg4PL8bZAE7N9Oh2V+ACvmVouM+SnScJYBPFh4ucaXPY+ZunGH6BQNn7b8iPkmtAezUp6bZH6v6aqxeu98JPn60mbvGGDUVF/W1WM3I54x3qDctgG9ODGCfuWDZ9Z2x1xU=
+	t=1709786431; cv=none; b=XTjPsQA4XJbr8/FFlFSs/znC8d1mN3/KWjkDbpnVLv5uWGqRDuCHQ/fMvAHPN6FG7czT6SS7F7AfP4PSr7a4xY3eGoPNtGvbChAAefDCYJAzh96XSuHEj812VlgTwgGv4zGnsyTOueXjPHM+Cxqf44fIACfrGeEgX/S4z93VFro=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709785071; c=relaxed/simple;
-	bh=2s7GsjGu62nJvW790T7SfAsA30sZh4LQX74GY6K0iLk=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=BvLIwuWAFEjYUCuY4ade3Gf2tdP3CADXor/dATT6792GQ0A3zvcjZxbCIAhs/5kVqHGVss+GrCI/uWD7rsRFqljGjqABwd+co5bf9f9Ocwua1p1llO8GX52jRxr+4t7gu8AACG3HqmJhpyZrZVo4BPvLhaVNUP2rmE2HlKrv3qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=E2xlxmhx; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 427425H7019773;
-	Thu, 7 Mar 2024 04:17:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-transfer-encoding; s=qcppdkim1; bh=reh0rLS
-	A+SGYleShxgMlDj8R+YJ0WdCYCClT6BO7FwM=; b=E2xlxmhxl5u0gNwih8TKn3N
-	ytAfy8NVsQFZ6SaCS3ppB4pmB4MFPbiBecNY7OsYKzn/BOZ3rSwKIkB9eL7gSOys
-	1A3HK4MSVrm/OsXGGantzrnOPI5OPXIjWzTXj62NehDZzejZzXpV+Kpga2TAB6lL
-	UBhmpgGZVgdefMrPChbC0EWFKQbe1Wu0ioMypQO6b4dfT/Pw4yXSUiSfh2PrImNT
-	bys1ptG5BOoZZnbpDvkC3aW/wT/n0ptGOHVlsmFQgok89+mGiebdOEwYkZf9mHtH
-	pq0Zq6m9CsOBHHtnuIzfQiOlnzP/nuQ/dEn0zM67wb+hn457CDAn3G1g5G1HjwQ=
-	=
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wq01urna5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Mar 2024 04:17:34 +0000 (GMT)
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 4274HU8e009281;
-	Thu, 7 Mar 2024 04:17:30 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 3wp060d47k-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Mar 2024 04:17:30 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4274HUND009276;
-	Thu, 7 Mar 2024 04:17:30 GMT
-Received: from hu-devc-blr-u22-a.qualcomm.com (hu-mdalam-blr.qualcomm.com [10.131.36.157])
-	by APBLRPPMTA01.qualcomm.com (PPS) with ESMTPS id 4274HUuu009275
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Mar 2024 04:17:30 +0000
-Received: by hu-devc-blr-u22-a.qualcomm.com (Postfix, from userid 466583)
-	id E63A341612; Thu,  7 Mar 2024 09:47:28 +0530 (+0530)
-From: Md Sadre Alam <quic_mdalam@quicinc.com>
-To: andersson@kernel.org, konrad.dybcio@linaro.org, broonie@kernel.org,
-        robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
-        vigneshr@ti.com, manivannan.sadhasivam@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org
-Cc: quic_mdalam@quicinc.com, quic_varada@quicinc.com,
-        quic_srichara@quicinc.com
-Subject: [PATCH v3 5/5] arm64: dts: qcom: ipq9574: Disable eMMC node
-Date: Thu,  7 Mar 2024 09:47:26 +0530
-Message-Id: <20240307041726.1648829-6-quic_mdalam@quicinc.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240307041726.1648829-1-quic_mdalam@quicinc.com>
-References: <20240307041726.1648829-1-quic_mdalam@quicinc.com>
+	s=arc-20240116; t=1709786431; c=relaxed/simple;
+	bh=EEYqOx9Zfjrv+CfUDIOl3n6VMgScQyeeuqGf9tFXIos=;
+	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
+	 In-Reply-To:To:Cc; b=n++Qw7KSbcai2B2Fnh//gLXeNb5excgzHutzxhHsLFZkga4pOmOyUTm44tCFc9tkNWD0oDEekPUTVmzmgFOju+MsaxOtbA4EgSQWKZ0ASbGFNH/fOd42Oc8xA2kVsGxBrceka389zxZnp7vraDndgX9xnb/XwGyaLy5JZM6QFEw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eSyFmpNc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 31E19C32780;
+	Thu,  7 Mar 2024 04:40:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709786431;
+	bh=EEYqOx9Zfjrv+CfUDIOl3n6VMgScQyeeuqGf9tFXIos=;
+	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+	b=eSyFmpNcc8y0vx7LR+IVHns8tM9OaMrMmX0mw63chzsTbTQs1xmHVnoagr5zcQPfi
+	 lRWsWwuvRnPf0OTiqq78/C9+SkudN/9eWmY7nNXgCt2rbLf+BZTshJ0dI0uPIOYFU+
+	 RJwECIuJfVR6znnDDWUwVUEnGvRiwAl0XgWBI0v+HKBhk+uYaH0A7K2CfMrnjAnn40
+	 Tz7LduaEnCPvH4BJ1lcCTsu11HDjiYA2oI+nBSU2OESLiHTyQX/afF9yS2mtOc1zc+
+	 bu2gEQpEtiMFYQgg2fQVKOlqgGnjuuqcLXL4JzlbCHzW1OF7UK8/mopD22dbRMHiNe
+	 S8gkHlL7tijew==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 0C3AFD9A4BB;
+	Thu,  7 Mar 2024 04:40:31 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -87,54 +52,46 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: yeOabl_kpnJBTQaBjwUYwmh-qViKHiE6
-X-Proofpoint-ORIG-GUID: yeOabl_kpnJBTQaBjwUYwmh-qViKHiE6
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-06_14,2024-03-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- lowpriorityscore=0 spamscore=0 clxscore=1015 mlxscore=0 malwarescore=0
- phishscore=0 adultscore=0 mlxlogscore=827 priorityscore=1501 bulkscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403070027
+Subject: Re: [PATCH net-next] dt-bindings: net: renesas,etheravb: Add support for
+ R-Car V4M
+From: patchwork-bot+netdevbpf@kernel.org
+Message-Id: 
+ <170978643104.7855.7910521326706587697.git-patchwork-notify@kernel.org>
+Date: Thu, 07 Mar 2024 04:40:31 +0000
+References: <0212b57ba1005bb9b5a922f8f25cc67a7bc15f30.1709631152.git.geert+renesas@glider.be>
+In-Reply-To: <0212b57ba1005bb9b5a922f8f25cc67a7bc15f30.1709631152.git.geert+renesas@glider.be>
+To: Geert Uytterhoeven <geert+renesas@glider.be>
+Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
+ kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ sergei.shtylyov@gmail.com, netdev@vger.kernel.org,
+ linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ thanh.quan.xn@renesas.com
 
-Disable eMMC node
+Hello:
 
-Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
----
-Change in [v3]
+This patch was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
 
-* Removed co-developed by 
+On Tue,  5 Mar 2024 10:37:18 +0100 you wrote:
+> From: Thanh Quan <thanh.quan.xn@renesas.com>
+> 
+> Document support for the Renesas Ethernet AVB (EtherAVB-IF) block in the
+> Renesas R-Car V4M (R8A779H0) SoC.
+> 
+> Signed-off-by: Thanh Quan <thanh.quan.xn@renesas.com>
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> 
+> [...]
 
-Change in [v2]
+Here is the summary with links:
+  - [net-next] dt-bindings: net: renesas,etheravb: Add support for R-Car V4M
+    https://git.kernel.org/netdev/net-next/c/d66206296176
 
-* Posted as initial eMMC disable patch
-
-Change in [v1]
-
-* This patch was not included in v1
-
- arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-index 1bb8d96c9a82..e33e7fafd695 100644
---- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-+++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-@@ -24,7 +24,7 @@ &sdhc_1 {
- 	mmc-hs400-enhanced-strobe;
- 	max-frequency = <384000000>;
- 	bus-width = <8>;
--	status = "okay";
-+	status = "disabled";
- };
- 
- &tlmm {
+You are awesome, thank you!
 -- 
-2.34.1
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
 
