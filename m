@@ -1,124 +1,470 @@
-Return-Path: <devicetree+bounces-48985-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48987-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94B6687487B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:10:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BEA5874896
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:22:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3D0201F25F61
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 07:10:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BF23E1C2177C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 07:22:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFAF1CFBC;
-	Thu,  7 Mar 2024 07:10:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06F6D1CFB6;
+	Thu,  7 Mar 2024 07:22:36 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="i+Det6AR"
+	dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b="k0IRUW3Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f170.google.com (mail-yb1-f170.google.com [209.85.219.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DC841CD20
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 07:10:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.170
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8BCD1D530;
+	Thu,  7 Mar 2024 07:22:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=93.104.207.81
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709795415; cv=none; b=jJ/2TFBZAiIZF86Kul198EFspReX/VmwST5CtL+UQ4ZcZyB9IKmhdrFzoBfZluvOFWe7/02nhnhmsijr98SxiEtOOSQfHWZb8cVvlSZTx+O20RmV3JMVIuc/54cWR9gQskRd0c9IuoVcr9mx4HdGyS9SsIb4fLpUGEXuBMF4/BI=
+	t=1709796155; cv=none; b=sw6u2MCBI+IYU4jok82VduDvGbnZW/yOjrNEjSZ8b+KbthShaNsFNw7JJQDx70a5kyOQGsXETlk0uO3BucjH2Ix7zxpYQV9mQRnAQbbPHoMgy0C1sLcZmSIq2g6UOVDqdz0O2qTK3Gy+tsaKKY0oDO33HPf/wHYulZAxZpTbg2Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709795415; c=relaxed/simple;
-	bh=iIsL1hIIzLVdo3EvdubyzEYAlNqiTp0Fva8OC/K/Yqw=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=uYl/okuOKrwoaU85M9h0cPKm77lry9EjiwsMxAAlBpPCtqk5p1ZE1fan9Up9Psz74MLv1/oFqbEuv7sl9mSNyd+YKwp3WysQvEZ+SRLRgynhqaa7kdX0OBdB65SRjVNYNeGuexP/Tg2zncT5FaK4gp5N9DjYnKZ6Fs9qeJ2YMzg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=i+Det6AR; arc=none smtp.client-ip=209.85.219.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f170.google.com with SMTP id 3f1490d57ef6-dcc80d6006aso617269276.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 23:10:13 -0800 (PST)
+	s=arc-20240116; t=1709796155; c=relaxed/simple;
+	bh=XzSNS6u2HPOAIDHK4q1VObZ/WEOrGkZIizRIVvf9tcU=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=DYn8aq6r7/QwnB9jaiOMOSQIf4OkFXnRr6S7dkrZupnGTf+erGzsBbPW/YhXaNf24Q7Y9+b5ylKJgP4/GjUXJrT6ZmqwCkWgLyWrQytUZKDa/438EPLeEABLq1KGWbkKFsqFb749PIqv4EZPhXLwPvsO5vYbMzipgoUb3DNrnO4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com; spf=pass smtp.mailfrom=ew.tq-group.com; dkim=pass (2048-bit key) header.d=tq-group.com header.i=@tq-group.com header.b=k0IRUW3Y; arc=none smtp.client-ip=93.104.207.81
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ew.tq-group.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ew.tq-group.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709795412; x=1710400212; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZOdlYANg5yyzhtxokbCF8iHDui5YEf/eOMq75HXldJA=;
-        b=i+Det6ARNLnAM6ktc3qcK+DIUgRa7Q30VuypoKp4Kd8qWyLTfStV4VaNg2jKlnm6+e
-         OTH/wM9SnfnUwVSt7BCvQUnwgckbKSbUzFnQ6h1vKaCnxAHGw9JaEmhoWeCBcXVvLg7e
-         imznUf7DYTxSVB5uIId31uER/Y4EgNLjwwl1g5M9ykoM2beNFo8Fip/2YrFTq5uy0SVD
-         jJRkVZZpuqO+3o90DgyAvLTmnJtLH/NxfezgqdlfplXJKFtv0epZX3JHRMGV8G/LXpBs
-         L5J5b3rrSQ0dbMbUjvGZR/+r5iScSR9BiOiMLM5xA4WzOGHvAg/MKSfL2jHfv1la9/m8
-         la0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709795412; x=1710400212;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ZOdlYANg5yyzhtxokbCF8iHDui5YEf/eOMq75HXldJA=;
-        b=SpyVC9/elseFBlIQ5h7EGS0nCl+d/+GQbJgqn3XBvMn2onYXOKtbamOsTgwC7hZ1j1
-         d8rUUdTB9fwXDdkrCHLyB63/1lU5gRxIxz+cDwruz7Z0pQFWwS8f+gdWH1PWpG6PAVnM
-         ZGjGyCep8f7GBdTPib/fTh3lA4vJGZnm9mjdE+OwURCBzCWUIBmYmy3TnS7bUxbtjfLL
-         6XhG8Lw4pcAaq51Eyt80cbW4R7QzqbjY9p7hJN1rWFjDvuaSxGW7aWhPdXvlYul9EcR8
-         NGgmmzlt+7hKg4uCU2ErUbJh5zkYWb2UurpwTXSnPckzRzGRkMVnci93DgMToYO8nbLa
-         3xiA==
-X-Forwarded-Encrypted: i=1; AJvYcCUFXTkgUVKbEJ+OE1wxHbtdNgLRcxa6/YN8jCZKxm8Yo6E8z4NkSRCcgj9X7fJghaPgoqFHy8scRkUT9jqOlfRUAqs9BFyKW0h0TQ==
-X-Gm-Message-State: AOJu0YxJz1/6FsAQJSQga6aVPsHTxUfXDaW2fCogFd0gxNUmj8b03GgH
-	ZkOncUg+kL6e/vNinjepfao7yGqUDrR2Zdomq7JAo8d4XtrxDxhhT3XFkQGWZw+Teg6c41GSTEG
-	Tz8CpomZxd6YUdD/vLikz8xZs8D4+HpWaTDbBDg==
-X-Google-Smtp-Source: AGHT+IGjs8z8efzkSOnSu/4bex0a0C192QBYugOC8sniWFtQg1nZ29rrlYvDNPFiEoAWJtXZjuAwEXr0RgUZ3ERb8QA=
-X-Received: by 2002:a25:2e0c:0:b0:dcc:58ed:6ecc with SMTP id
- u12-20020a252e0c000000b00dcc58ed6eccmr13789547ybu.41.1709795412301; Wed, 06
- Mar 2024 23:10:12 -0800 (PST)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1709796152; x=1741332152;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=AxE3uErFTedD6+UeONgdddLhPAaujenW0IvRh9D31mU=;
+  b=k0IRUW3YY18G5pzQR5IOLwkFrEDWK/V1XY3EYdVjg8jYDNZPuN4xLhMU
+   MYmkJJVLpjoTG/mdJ63+Elo2vXEM24f2LL9sYN5sH7z7GsZLX7PS8cq34
+   ggb2Q0LQTeP2YtD4tuV4VmLL/5jFC0mg7OJc9T3K0+iYaAJC+bsWdHsLq
+   pEzFXxYra5dC1ZVFIIv4PKD+VUFP+prpoPOV7iWGLTQ7DE4277fV049bN
+   ydwrHC+rxVFm9rscT+B3EcJDLHUP94e6jDRmoQ+GOY/20V94pXaPsWcSM
+   lSZLU+GBZMPcbR5+cAGHjCIac4hU7+47Yfe+7BXWzG8o4VhezP8Uale9M
+   w==;
+X-IronPort-AV: E=Sophos;i="6.06,210,1705359600"; 
+   d="scan'208";a="35778208"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Mar 2024 08:22:23 +0100
+Received: from steina-w.localnet (steina-w.tq-net.de [10.123.53.25])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 88A3728007C;
+	Thu,  7 Mar 2024 08:22:23 +0100 (CET)
+From: Alexander Stein <alexander.stein@ew.tq-group.com>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, Shengjiu Wang <shengjiu.wang@nxp.com>, linux-arm-kernel@lists.infradead.org, linux-sound@vger.kernel.org, devicetree@vger.kernel.org, imx@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 4/4] arm64: dts: imx8qxp: add asrc[0, 1], esai0, spdif[0, 1] and sai[4, 5]
+Date: Thu, 07 Mar 2024 08:22:25 +0100
+Message-ID: <1961523.PYKUYFuaPT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <ZeiJdoTqWd8h0Q5I@lizhi-Precision-Tower-5810>
+References: <20240305-asrc_8qxp-v4-0-c61b98046591@nxp.com> <2177674.irdbgypaU6@steina-w> <ZeiJdoTqWd8h0Q5I@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240306200910.2732835-1-volodymyr_babchuk@epam.com>
-In-Reply-To: <20240306200910.2732835-1-volodymyr_babchuk@epam.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Thu, 7 Mar 2024 09:10:01 +0200
-Message-ID: <CAA8EJppNopEF0DmgjCAJyxe8HRebD26Q8heKKLKbPstdfBOv6A@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8150: add reset name for ethernet node
-To: Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>
-Cc: Sumit Garg <sumit.garg@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
 
-On Thu, 7 Mar 2024 at 00:22, Volodymyr Babchuk
-<Volodymyr_Babchuk@epam.com> wrote:
->
-> Add reset-names property to the ethernet@20000 node. This patch does
-> not change behavior on Linux, but it is needed for U-Boot, as it tries
-> to find the reset by name, not by index.
->
-> Signed-off-by: Volodymyr Babchuk <volodymyr_babchuk@epam.com>
-> ---
->  arch/arm64/boot/dts/qcom/sm8150.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> index 761a6757dc26f..c2e65d6a2ac62 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> @@ -951,6 +951,7 @@ ethernet: ethernet@20000 {
->
->                         power-domains = <&gcc EMAC_GDSC>;
->                         resets = <&gcc GCC_EMAC_BCR>;
-> +                       resets-names = "emac";
+Hi Frank,
 
-According to the snps,dwmac.yaml schema the "emac" is invalid here.
-Only "stmmaceth" and / or "ahb" are permitted here.
+Am Mittwoch, 6. M=E4rz 2024, 16:19:18 CET schrieb Frank Li:
+> On Wed, Mar 06, 2024 at 08:20:00AM +0100, Alexander Stein wrote:
+> > Hi Frank,
+> >=20
+> > thanks for the patch.
+> >=20
+> > Am Dienstag, 5. M=E4rz 2024, 18:33:05 CET schrieb Frank Li:
+> > > Add asrc[0,1], esai0, spdif[0,1], sai[4,5] and related lpcg node for
+> > > imx8 audio subsystem.
+> > >=20
+> > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > ---
+> > >  arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi | 304 +++++++++++++=
+++++++++++
+> > >  1 file changed, 304 insertions(+)
+> > >=20
+> > > diff --git a/arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi b/arch/=
+arm64/boot/dts/freescale/imx8-ss-audio.dtsi
+> > > index 07afeb78ed564..78305559f15c9 100644
+> > > --- a/arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi
+> > > +++ b/arch/arm64/boot/dts/freescale/imx8-ss-audio.dtsi
+> > > @@ -6,6 +6,7 @@
+> > > =20
+> > >  #include <dt-bindings/clock/imx8-clock.h>
+> > >  #include <dt-bindings/clock/imx8-lpcg.h>
+> > > +#include <dt-bindings/dma/fsl-edma.h>
+> > >  #include <dt-bindings/firmware/imx/rsrc.h>
+> > > =20
+> > >  audio_ipg_clk: clock-audio-ipg {
+> > > @@ -481,4 +482,307 @@ acm: acm@59e00000 {
+> > >  			      "sai3_rx_bclk",
+> > >  			      "sai4_rx_bclk";
+> > >  	};
+> > > +
+> > > +	asrc0: asrc@59000000 {
+> >=20
+> > Please insert nodes sorted by address. ASRC0 is the very first node.
+> >=20
+> > > +		compatible =3D "fsl,imx8qm-asrc";
+> > > +		reg =3D <0x59000000 0x10000>;
+> > > +		interrupts =3D <GIC_SPI 372 IRQ_TYPE_LEVEL_HIGH>;
+> > > +		clocks =3D <&asrc0_lpcg 0>,
+> > > +			 <&asrc0_lpcg 0>,
+> > > +			 <&aud_pll_div0_lpcg 0>,
+> > > +			 <&aud_pll_div1_lpcg 0>,
+> > > +			 <&acm IMX_ADMA_ACM_AUD_CLK0_SEL>,
+> > > +			 <&acm IMX_ADMA_ACM_AUD_CLK1_SEL>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>;
+> > > +		clock-names =3D "mem", "ipg",
+> > > +			      "asrck_0", "asrck_1", "asrck_2", "asrck_3",
+> > > +			      "asrck_4", "asrck_5", "asrck_6", "asrck_7",
+> > > +			      "asrck_8", "asrck_9", "asrck_a", "asrck_b",
+> > > +			      "asrck_c", "asrck_d", "asrck_e", "asrck_f",
+> > > +			      "spba";
+> > > +		dmas =3D <&edma0 0 0 0>,
+> > > +		       <&edma0 1 0 0>,
+> > > +		       <&edma0 2 0 0>,
+> > > +		       <&edma0 3 0 FSL_EDMA_RX>,
+> > > +		       <&edma0 4 0 FSL_EDMA_RX>,
+> > > +		       <&edma0 5 0 FSL_EDMA_RX>;
+> > > +		/* tx* is output channel of asrc, it is rx channel for eDMA */
+> > > +		dma-names =3D "rxa", "rxb", "rxc", "txa", "txb", "txc";
+> > > +		fsl,asrc-rate  =3D <8000>;
+> > > +		fsl,asrc-width =3D <16>;
+> > > +		fsl,asrc-clk-map =3D <0>;
+> > > +		power-domains =3D <&pd IMX_SC_R_ASRC_0>;
+> > > +		status =3D "disabled";
+> > > +	};
+> > > +
+> > > +	esai0: esai@59010000 {
+> > > +		compatible =3D "fsl,imx8qm-esai", "fsl,imx6ull-esai";
+> > > +		reg =3D <0x59010000 0x10000>;
+> > > +		interrupts =3D <GIC_SPI 409 IRQ_TYPE_LEVEL_HIGH>;
+> > > +		clocks =3D <&esai0_lpcg 1>, <&esai0_lpcg 0>, <&esai0_lpcg 1>, <&cl=
+k_dummy>;
+> > > +		clock-names =3D "core", "extal", "fsys", "spba";
+> > > +		dmas =3D <&edma0 6 0 FSL_EDMA_RX>, <&edma0 7 0 0>;
+> > > +		dma-names =3D "rx", "tx";
+> > > +		power-domains =3D <&pd IMX_SC_R_ESAI_0>;
+> > > +		status =3D "disabled";
+> > > +	};
+> > > +
+> > > +	spdif0: spdif@59020000 {
+> > > +		compatible =3D "fsl,imx8qm-spdif";
+> > > +		reg =3D <0x59020000 0x10000>;
+> > > +		interrupts =3D  <GIC_SPI 456 IRQ_TYPE_LEVEL_HIGH>, /* rx */
+> > > +			      <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>; /* tx */
+> > > +		clocks =3D <&spdif0_lpcg 1>,	/* core */
+> > > +			 <&clk_dummy>,		/* rxtx0 */
+> > > +			 <&spdif0_lpcg 0>,	/* rxtx1 */
+> > > +			 <&clk_dummy>,		/* rxtx2 */
+> > > +			 <&clk_dummy>,		/* rxtx3 */
+> > > +			 <&clk_dummy>,		/* rxtx4 */
+> > > +			 <&audio_ipg_clk>,	/* rxtx5 */
+> > > +			 <&clk_dummy>,		/* rxtx6 */
+> > > +			 <&clk_dummy>,		/* rxtx7 */
+> > > +			 <&clk_dummy>;		/* spba */
+> > > +		clock-names =3D "core", "rxtx0", "rxtx1", "rxtx2", "rxtx3", "rxtx4=
+",
+> > > +			      "rxtx5", "rxtx6", "rxtx7", "spba";
+> > > +		dmas =3D <&edma0 8 0 (FSL_EDMA_MULTI_FIFO | FSL_EDMA_RX)>,
+> > > +		       <&edma0 9 0 FSL_EDMA_MULTI_FIFO>;
+> > > +		dma-names =3D "rx", "tx";
+> > > +		power-domains =3D <&pd IMX_SC_R_SPDIF_0>;
+> > > +		status =3D "disabled";
+> > > +	};
+> > > +
+> > > +	spdif1: spdif@59030000 {
+> >=20
+> > That's imx8qm only, no?
+>=20
+> I am not sure what means. why do you think it is imx8qm only? It is for
+> imx8qm, imx8qxp, imx8dxl.
 
->
->                         iommus = <&apps_smmu 0x3c0 0x0>;
->
-> --
-> 2.43.0
->
+According to Table- 2-6 (Audio DMA memory Map) in i.MX8X RM Rev. 0 05/2020,
+the lasted one available on the webpage, address 0x59030000 is reserved.
+I read that as there is no periphery available. This matches the feature li=
+st
+in 1.1.2 Features, where "1x SPDIF" is stated.
+
+So spdif1 is only for imx8qm (no idea about imx8dxl though) and should be
+listed in a file called imx8qm-ss-audio.dtsi which is only included in
+imx8qm.dtsi.
+
+Thanks and best regards
+Alexander
+
+>=20
+> Frank
+>=20
+> >=20
+> > > +		compatible =3D "fsl,imx8qm-spdif";
+> > > +		reg =3D <0x59030000 0x10000>;
+> > > +		interrupts =3D  <GIC_SPI 460 IRQ_TYPE_LEVEL_HIGH>, /* rx */
+> > > +			      <GIC_SPI 462 IRQ_TYPE_LEVEL_HIGH>; /* tx */
+> > > +		clocks =3D <&spdif1_lpcg 1>,	/* core */
+> > > +			 <&clk_dummy>,		/* rxtx0 */
+> > > +			 <&spdif1_lpcg 0>,	/* rxtx1 */
+> > > +			 <&clk_dummy>,		/* rxtx2 */
+> > > +			 <&clk_dummy>,		/* rxtx3 */
+> > > +			 <&clk_dummy>,		/* rxtx4 */
+> > > +			 <&audio_ipg_clk>,	/* rxtx5 */
+> > > +			 <&clk_dummy>,		/* rxtx6 */
+> > > +			 <&clk_dummy>,		/* rxtx7 */
+> > > +			 <&clk_dummy>;		/* spba */
+> > > +		clock-names =3D "core", "rxtx0", "rxtx1", "rxtx2", "rxtx3", "rxtx4=
+",
+> > > +			      "rxtx5", "rxtx6", "rxtx7", "spba";
+> > > +		dmas =3D <&edma0 10 0 (FSL_EDMA_MULTI_FIFO | FSL_EDMA_RX)>,
+> > > +		       <&edma0 11 0 FSL_EDMA_MULTI_FIFO>;
+> > > +		dma-names =3D "rx", "tx";
+> > > +		power-domains =3D <&pd IMX_SC_R_SPDIF_1>;
+> > > +		status =3D "disabled";
+> > > +	};
+> > > +
+> > > +	asrc1: asrc@59800000 {
+> >=20
+> > Insert this between dsp and edma1, sorted by address.
+> >=20
+> > > +		compatible =3D "fsl,imx8qm-asrc";
+> > > +		reg =3D <0x59800000 0x10000>;
+> > > +		interrupts =3D <GIC_SPI 380 IRQ_TYPE_LEVEL_HIGH>;
+> > > +		clocks =3D <&asrc1_lpcg 0>,
+> > > +			 <&asrc1_lpcg 0>,
+> > > +			 <&aud_pll_div0_lpcg 0>,
+> > > +			 <&aud_pll_div1_lpcg 0>,
+> > > +			 <&acm IMX_ADMA_ACM_AUD_CLK0_SEL>,
+> > > +			 <&acm IMX_ADMA_ACM_AUD_CLK1_SEL>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>;
+> > > +		clock-names =3D "mem", "ipg",
+> > > +			      "asrck_0", "asrck_1", "asrck_2", "asrck_3",
+> > > +			      "asrck_4", "asrck_5", "asrck_6", "asrck_7",
+> > > +			      "asrck_8", "asrck_9", "asrck_a", "asrck_b",
+> > > +			      "asrck_c", "asrck_d", "asrck_e", "asrck_f",
+> > > +			      "spba";
+> > > +		dmas =3D <&edma1 0 0 0>,
+> > > +		       <&edma1 1 0 0>,
+> > > +		       <&edma1 2 0 0>,
+> > > +		       <&edma1 3 0 FSL_EDMA_RX>,
+> > > +		       <&edma1 4 0 FSL_EDMA_RX>,
+> > > +		       <&edma1 5 0 FSL_EDMA_RX>;
+> > > +		/* tx* is output channel of asrc, it is rx channel for eDMA */
+> > > +		dma-names =3D "rxa", "rxb", "rxc", "txa", "txb", "txc";
+> > > +		fsl,asrc-rate  =3D <8000>;
+> > > +		fsl,asrc-width =3D <16>;
+> > > +		fsl,asrc-clk-map =3D <1>;
+> > > +		power-domains =3D <&pd IMX_SC_R_ASRC_1>;
+> > > +		status =3D "disabled";
+> > > +	};
+> > > +
+> > > +	sai4: sai@59820000 {
+> > > +		compatible =3D "fsl,imx8qm-sai";
+> > > +		reg =3D <0x59820000 0x10000>;
+> > > +		interrupts =3D <GIC_SPI 329 IRQ_TYPE_LEVEL_HIGH>;
+> > > +		clocks =3D <&sai4_lpcg 1>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&sai4_lpcg 0>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>;
+> > > +		clock-names =3D "bus", "mclk0", "mclk1", "mclk2", "mclk3";
+> > > +		dmas =3D <&edma1 8 0 FSL_EDMA_RX>, <&edma1 9 0 0>;
+> > > +		dma-names =3D "rx", "tx";
+> > > +		power-domains =3D <&pd IMX_SC_R_SAI_4>;
+> > > +		status =3D "disabled";
+> > > +	};
+> > > +
+> > > +	sai5: sai@59830000 {
+> > > +		compatible =3D "fsl,imx8qm-sai";
+> > > +		reg =3D <0x59830000 0x10000>;
+> > > +		interrupts =3D <GIC_SPI 331 IRQ_TYPE_LEVEL_HIGH>;
+> > > +		clocks =3D <&sai5_lpcg 1>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&sai5_lpcg 0>,
+> > > +			 <&clk_dummy>,
+> > > +			 <&clk_dummy>;
+> > > +		clock-names =3D "bus", "mclk0", "mclk1", "mclk2", "mclk3";
+> > > +		dmas =3D <&edma1 10 0 0>;
+> > > +		dma-names =3D "tx";
+> > > +		power-domains =3D <&pd IMX_SC_R_SAI_5>;
+> > > +		status =3D "disabled";
+> > > +	};
+> > > +
+> > > +	amix: amix@59840000 {
+> > > +		compatible =3D "fsl,imx8qm-audmix";
+> > > +		reg =3D <0x59840000 0x10000>;
+> > > +		clocks =3D <&amix_lpcg 0>;
+> > > +		clock-names =3D "ipg";
+> > > +		power-domains =3D <&pd IMX_SC_R_AMIX>;
+> > > +		dais =3D <&sai4>, <&sai5>;
+> > > +		status =3D "disabled";
+> > > +	};
+> > > +
+> > > +	mqs: mqs@59850000 {
+> > > +		compatible =3D "fsl,imx8qm-mqs";
+> > > +		reg =3D <0x59850000 0x10000>;
+> > > +		clocks =3D <&mqs0_lpcg 0>,
+> > > +			<&mqs0_lpcg 1>;
+> > > +		clock-names =3D "mclk", "core";
+> > > +		power-domains =3D <&pd IMX_SC_R_MQS_0>;
+> > > +		status =3D "disabled";
+> > > +	};
+> > > +
+> > > +	asrc0_lpcg: clock-controller@59400000 {
+> >=20
+> > Please insert he lpcg nodes according to their address.
+> >=20
+> > > +		compatible =3D "fsl,imx8qxp-lpcg";
+> > > +		reg =3D <0x59400000 0x10000>;
+> > > +		#clock-cells =3D <1>;
+> > > +		clocks =3D <&audio_ipg_clk>;
+> > > +		clock-indices =3D <IMX_LPCG_CLK_4>;
+> > > +		clock-output-names =3D "asrc0_lpcg_ipg_clk";
+> > > +		power-domains =3D <&pd IMX_SC_R_ASRC_0>;
+> > > +	};
+> > > +
+> > > +	esai0_lpcg: clock-controller@59410000 {
+> > > +		compatible =3D "fsl,imx8qxp-lpcg";
+> > > +		reg =3D <0x59410000 0x10000>;
+> > > +		#clock-cells =3D <1>;
+> > > +		clocks =3D <&acm IMX_ADMA_ACM_ESAI0_MCLK_SEL>,
+> > > +			 <&audio_ipg_clk>;
+> > > +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> > > +		clock-output-names =3D "esai0_lpcg_extal_clk",
+> > > +				     "esai0_lpcg_ipg_clk";
+> > > +		power-domains =3D <&pd IMX_SC_R_ESAI_0>;
+> > > +	};
+> > > +
+> > > +	spdif0_lpcg: clock-controller@59420000 {
+> > > +		compatible =3D "fsl,imx8qxp-lpcg";
+> > > +		reg =3D <0x59420000 0x10000>;
+> > > +		#clock-cells =3D <1>;
+> > > +		clocks =3D <&acm IMX_ADMA_ACM_SPDIF0_TX_CLK_SEL>,
+> > > +			 <&audio_ipg_clk>;
+> > > +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> > > +		clock-output-names =3D "spdif0_lpcg_tx_clk",
+> > > +				     "spdif0_lpcg_gclkw";
+> > > +		power-domains =3D <&pd IMX_SC_R_SPDIF_0>;
+> > > +	};
+> > > +
+> > > +	spdif1_lpcg: clock-controller@59430000 {
+> >=20
+> > That's imx8qm only as well, no?
+> >=20
+> > Thanks and best regards,
+> > Alexander
+> >=20
+> > > +		compatible =3D "fsl,imx8qxp-lpcg";
+> > > +		reg =3D <0x59430000 0x10000>;
+> > > +		#clock-cells =3D <1>;
+> > > +		clocks =3D <&acm IMX_ADMA_ACM_SPDIF1_TX_CLK_SEL>,
+> > > +			 <&audio_ipg_clk>;
+> > > +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> > > +		clock-output-names =3D "spdif1_lpcg_tx_clk",
+> > > +				     "spdif1_lpcg_gclkw";
+> > > +		power-domains =3D <&pd IMX_SC_R_SPDIF_1>;
+> > > +		status =3D "disabled";
+> > > +	};
+> > > +
+> > > +	asrc1_lpcg: clock-controller@59c00000 {
+> > > +		compatible =3D "fsl,imx8qxp-lpcg";
+> > > +		reg =3D <0x59c00000 0x10000>;
+> > > +		#clock-cells =3D <1>;
+> > > +		clocks =3D <&audio_ipg_clk>;
+> > > +		clock-indices =3D <IMX_LPCG_CLK_4>;
+> > > +		clock-output-names =3D "asrc1_lpcg_ipg_clk";
+> > > +		power-domains =3D <&pd IMX_SC_R_ASRC_1>;
+> > > +	};
+> > > +
+> > > +	sai4_lpcg: clock-controller@59c20000 {
+> > > +		compatible =3D "fsl,imx8qxp-lpcg";
+> > > +		reg =3D <0x59c20000 0x10000>;
+> > > +		#clock-cells =3D <1>;
+> > > +		clocks =3D <&acm IMX_ADMA_ACM_SAI4_MCLK_SEL>,
+> > > +			 <&audio_ipg_clk>;
+> > > +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> > > +		clock-output-names =3D "sai4_lpcg_mclk",
+> > > +				     "sai4_lpcg_ipg_clk";
+> > > +		power-domains =3D <&pd IMX_SC_R_SAI_4>;
+> > > +	};
+> > > +
+> > > +	sai5_lpcg: clock-controller@59c30000 {
+> > > +		compatible =3D "fsl,imx8qxp-lpcg";
+> > > +		reg =3D <0x59c30000 0x10000>;
+> > > +		#clock-cells =3D <1>;
+> > > +		clocks =3D <&acm IMX_ADMA_ACM_SAI5_MCLK_SEL>,
+> > > +			 <&audio_ipg_clk>;
+> > > +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> > > +		clock-output-names =3D "sai5_lpcg_mclk",
+> > > +				     "sai5_lpcg_ipg_clk";
+> > > +		power-domains =3D <&pd IMX_SC_R_SAI_5>;
+> > > +	};
+> > > +
+> > > +	amix_lpcg: clock-controller@59c40000 {
+> > > +		compatible =3D "fsl,imx8qxp-lpcg";
+> > > +		reg =3D <0x59c40000 0x10000>;
+> > > +		#clock-cells =3D <1>;
+> > > +		clocks =3D <&audio_ipg_clk>;
+> > > +		clock-indices =3D <IMX_LPCG_CLK_0>;
+> > > +		clock-output-names =3D "amix_lpcg_ipg_clk";
+> > > +		power-domains =3D <&pd IMX_SC_R_AMIX>;
+> > > +	};
+> > > +
+> > > +	mqs0_lpcg: clock-controller@59c50000 {
+> > > +		compatible =3D "fsl,imx8qxp-lpcg";
+> > > +		reg =3D <0x59c50000 0x10000>;
+> > > +		#clock-cells =3D <1>;
+> > > +		clocks =3D <&acm IMX_ADMA_ACM_MQS_TX_CLK_SEL>,
+> > > +			 <&audio_ipg_clk>;
+> > > +		clock-indices =3D <IMX_LPCG_CLK_0>, <IMX_LPCG_CLK_4>;
+> > > +		clock-output-names =3D "mqs0_lpcg_mclk",
+> > > +				     "mqs0_lpcg_ipg_clk";
+> > > +		power-domains =3D <&pd IMX_SC_R_MQS_0>;
+> > > +	};
+> > >  };
+> > >=20
+> > >=20
+> >=20
+> >=20
+>=20
+>=20
 
 
--- 
-With best wishes
-Dmitry
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
 
