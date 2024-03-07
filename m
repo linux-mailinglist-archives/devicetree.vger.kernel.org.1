@@ -1,206 +1,136 @@
-Return-Path: <devicetree+bounces-49222-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49223-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E299B875677
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 19:56:42 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C6F287568E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 20:05:22 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 59A7FB20C42
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 18:56:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A1B3281C73
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 19:05:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8A4713540B;
-	Thu,  7 Mar 2024 18:56:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F4AF135A61;
+	Thu,  7 Mar 2024 19:05:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hbbV86UP"
+	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="RUnSDqyl"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from outgoing1.flk.host-h.net (outgoing1.flk.host-h.net [188.40.0.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4F6091EF13;
-	Thu,  7 Mar 2024 18:56:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2FAEC84A2B;
+	Thu,  7 Mar 2024 19:05:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709837794; cv=none; b=qEcXcta0hokXijMAl1n0OdY7cKCge/6RGDtSF3KoEn+loW2PGeOhaqG2Jva3JDMuiSETm/c+nXelqIJuaxhkBJuOYWVgkhxPNOeSkWw12IbWrKqH3YQwKW5RlJ/qoEO0CrVnHZGU9jpHG/LII1nFQG/L/wRT5AJFnnVqHpb3GPc=
+	t=1709838318; cv=none; b=G3XQx/O3oSuXQCQFFuYEffOCV+jC4vg6nxsE8rHIXMVZlxi1q+xlJuo3/ozWldRHMnAKnhmgwPVvMHfNQNcADhIOAoiJg6ZJSUT9DpuEIXx5P3IhS1Vu0t7Qz6ouSMFxhGaVTWlBntLGeZfm4Th6H0Pswhw9kk8UQxIbEsTOLYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709837794; c=relaxed/simple;
-	bh=UV0sY6h4DN51/nvSU5fsXkmxOfhwJjNehBRV4+DLeao=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=oj5xgdqVOpuVyWySFGt5QC3q87/4Bpw3G+3lIkzPva54343d9vzVyHqpg0pnK/7GXvCM/LN5ToKgX78D6+o8RGCT1QszzsRGClw/1ZXzrJwsRZqeEscSfBo8Qy1BblsVmcyfXiLg3iBwwLyYChiviW9y9xD1ueFLqFfbPy3fvps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hbbV86UP; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96EDAC433C7;
-	Thu,  7 Mar 2024 18:56:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709837793;
-	bh=UV0sY6h4DN51/nvSU5fsXkmxOfhwJjNehBRV4+DLeao=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hbbV86UP6pH8ipawLp8zXWN0pywWlB75UXWU9TDaDlEa+1dOwSKN/TpdNaBdEiTMg
-	 9Aey8CwYWmk+QGK5RXwfVM8ujORjBVhr0nMTerKnAOVedKY/CCikIplfVF6hhQJ4ob
-	 xPUSeFFcwAZFfVQCQwT/nLDn5cnwK3TCDQF+I7J6ZJm1428odTpnDCibn6xw+jtEVN
-	 pPZFHAZ1JFfOylLbNONip02c7KTCFEdaZnqPhp3FBCwsfnYFKcAg723X/7x7FcHfCU
-	 j/gLbBa3e5ZADLyWKkky1i1BsrhclxrJQjAZCAwDhZ7P0aAqIZQV5GQReJQodgdayi
-	 iY9V1jzbgn/0g==
-Date: Thu, 7 Mar 2024 18:56:28 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.li@nxp.com>
-Cc: Rob Herring <robh@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
+	s=arc-20240116; t=1709838318; c=relaxed/simple;
+	bh=o/INtSf7uMcj8vPennDZ0N+2MzVAu0gQN1w02VcOF4c=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=HsZ6b3Uwq+iOV6ALxP+ndci9LA6KImYWJRxyiUid6m0SP0k+igKbRwA+KeAY0m4hME+1hYWTLK9fQsz9WzhcMROLJs8I7EXiP9N3MKy8721Zlv82llmI0FdL6Ce9hq++ibymoNKIw7jKfvjGb50wIRjGV6NGkiv7jZEsV2DYvf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=RUnSDqyl; arc=none smtp.client-ip=188.40.0.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=risingedge.co.za; s=xneelo; h=Content-Transfer-Encoding:MIME-Version:
+	References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:reply-to:sender:bcc
+	:content-type; bh=uNgnMVsULIy7vFE3ILTyIURmP3dMNjG/ZGbjuQtikzw=; b=RUnSDqyl7+r
+	qakUnibDug6JA7EsMfSwcvkkpgmHhWUHr9yNIdu987R1ReBgjLL4tdzpuJkdGUGo1pfaWyex2A4yr
+	j7SC/uUXVyEWA+U3OSCw2g5Br69PWQy7IhE2XGmaJtxIhENJy/C71PeMUXUtr5YWgY2JYDbLwm1+z
+	a5GGpyPLH6GKrXtS95c37/KrwWlsiFOP3vSqoOaMpu0cf4gXzjAQvYuRefq9ed1duoInA7DMlnW2F
+	9RJNOm8AJoYVo/Zm/3E2v7Un8fWXrQzX31vHA8WhsxTkJgNC3kcEjfYlFkrFIxe7IwrVbaprAxRhI
+	pjpg4VuHeeFR8EAYQGmqtiQ==;
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+	by antispam3-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <justin.swartz@risingedge.co.za>)
+	id 1riJ37-00Cs1y-CW; Thu, 07 Mar 2024 21:05:06 +0200
+Received: from [41.144.0.96] (helo=localhost.localdomain)
+	by www31.flk1.host-h.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <justin.swartz@risingedge.co.za>)
+	id 1riJ35-0007Za-Ju; Thu, 07 Mar 2024 21:05:00 +0200
+From: Justin Swartz <justin.swartz@risingedge.co.za>
+To: =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
+	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 3/4] ASoC: dt-bindings: fsl-sai: allow only one
- dma-names
-Message-ID: <20240307-agnostic-dyslexia-6f1da244ec58@spud>
-References: <20240305-asrc_8qxp-v4-0-c61b98046591@nxp.com>
- <20240305-asrc_8qxp-v4-3-c61b98046591@nxp.com>
- <20240306-pebble-grope-88fdaa95a87c@spud>
- <ZejDQddMp17RD6Yk@lizhi-Precision-Tower-5810>
- <20240306205524.GB587561-robh@kernel.org>
- <Zejdz0BKwSlsio9S@lizhi-Precision-Tower-5810>
- <CAL_JsqJw5W7a9Pz9gRPuP717onHdSwRvwGJ=v+QDSe+4ORvTaA@mail.gmail.com>
- <ZekgPg2nsLIQpvY/@lizhi-Precision-Tower-5810>
+	Conor Dooley <conor+dt@kernel.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Justin Swartz <justin.swartz@risingedge.co.za>,
+	linux-mips@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 1/3] mips: dts: ralink: mt7621: associate uart1_pins with serial0
+Date: Thu,  7 Mar 2024 21:04:05 +0200
+Message-Id: <20240307190408.23443-1-justin.swartz@risingedge.co.za>
+In-Reply-To: <CAMhs-H_eUKm7C40oCzuKwwEMZAcOJ-g4MghAfkGAmxRM0AXPUw@mail.gmail.com>
+References: <CAMhs-H_eUKm7C40oCzuKwwEMZAcOJ-g4MghAfkGAmxRM0AXPUw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="PgOaAGG3OrEgcB2K"
-Content-Disposition: inline
-In-Reply-To: <ZekgPg2nsLIQpvY/@lizhi-Precision-Tower-5810>
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.02)
+X-Recommended-Action: accept
+X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT+2dkIiVgdeIwrfJZUlzfSoPUtbdvnXkggZ
+ 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wCPRB8bAzJcv2cv+UqiTTc2+CpNcmBnO4XM3Sck4bwNogU
+ WCl1nkLBzZX0KuJ9bXiS85Z42w/+2OBolTNFbPomXFWCX8oNdggW7HE9XDTdSejrkEpbuUvwMvHx
+ 3T+KSG//gbuP7hnUK8NQdLwsVWKIFDZRrTGv3rxiw9tFrqFSCFNiLZt/QXQnOBRD+jq1HsKsDh/6
+ Srgk2K3gr1VBfJbChkYH6fbrypLNrde+UooQVNLReLErukdelEOHUIpaBbp5GdnsN8+UvimwMinK
+ 0+Txhz2u9qvrL2PODYgMZQApJXOjDLkqunZ9NcY2bHZn7CfFscMZZf3sCkN20I5vMh4akiObI7Kj
+ vK7X04QEin24qbfMFd8eGjnYW8aSH5qj4ujh/13psIvqSqJFa1CcANErDW/w69saM9prk3jNnHtn
+ nuEt/J9wDZeQfiNOYsLDFBdwYt2XtlLzy7G7T4kla0JNnAWQx3FS11bhwUa9HCIwKB+TroNcRY33
+ oNmH4nRQzHQazgY7lmveanvOdQzf6IMJ3345q/s6ySNrGnXycmhg3DrczAD1WVolgcSeHb4aFR6o
+ naNQbqJUPRwZtKOTN8gOLtBcNrQxKZYuPe8bdCyw79zlPbqLQkZr26Lcxdvj8cqI+CogZdOhX7v3
+ ClXzrmMENhJLl6MBfhzHVBR0wHQZxzIUka7Uq615Mik1qzcz30+tdk6yIuh9K7v+Nq0Cm3JVhle6
+ F/kpBdN+oWjoATjEFDwcaiz0R34rhTN+GTbl4uS+pZovX9cex7Ac4fawcerGI7TrGXpM/B/M0BZd
+ PfIU1BX7pZc1sE3vsz58auH/srM2fgZ9JmgLbj7sqoEiwv7LCxIiAE5ODMnmwjvj2589zjbyZCiM
+ WpBpW8YvoIIqmZcWhL/r/eFjMjJnMHeiAPOVAT1rE1/vP68Bb4z3v3h3gCdXrv2+9GnNX30LKqXb
+ fwFKgm/rnYBl+Mj5KqOl6Jzub/f3QhLRbOgisvi5VU9eNBtgo6zjiatjNO/pnMCjuIvXs/AyV/Ns
+ URB/R+FlEHyAzksgfaRvdgw0WK34QWnzHHMcN6qoXPjenLhIOF1oeRYbjF1Hp647mOWoQlc3hL3c
+ dBMSQgQtiTUcJp5roVy0aUu4QpSck7G+GMKyAf/5Ohx4u/m4iBmYb1/LCV4/EuVHup06w3Vwxf9C
+ F7D6LKKRTfdjzQ6YC7Heg3Xf7O1TOd6RcY/MXB8eEq3bCN2QohZvyS03iBmgsz450Kmjd3fGV1W8
+ G8QuHm3zVXLA16qJoSUoBquXd20U5QRJeq08E+NlIbtf63VNbf0lrvssY+k7AHGi1NevGWTo2+h8
+ Lhk4HCeZR7ymlGVRtthBJ2y8A5arx6JItKpFaUNPGMMlvbMX0nyK1NiAJ0y2Qvvn6ds6mor35w4f
+ SfHzQbABJfgy21HclcZkPRq7NhoxyMwqi8Q23Rgadfh5T5n5D4OHHpbEIgsllZKWnzc5M5WlNtVJ
+ qo05MS+4ayUpOtEhdxekWDmK9g==
+X-Report-Abuse-To: spam@antispamquarantine.host-h.net
 
+Add missing pinctrl-name and pinctrl-0 properties to declare
+that the uart1_pins group is associated with serial0.
 
---PgOaAGG3OrEgcB2K
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+---
+ arch/mips/boot/dts/ralink/mt7621.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-On Wed, Mar 06, 2024 at 09:02:38PM -0500, Frank Li wrote:
-> On Wed, Mar 06, 2024 at 04:58:22PM -0600, Rob Herring wrote:
-> > On Wed, Mar 6, 2024 at 3:19=E2=80=AFPM Frank Li <Frank.li@nxp.com> wrot=
-e:
-> > >
-> > > On Wed, Mar 06, 2024 at 02:55:24PM -0600, Rob Herring wrote:
-> > > > On Wed, Mar 06, 2024 at 02:25:53PM -0500, Frank Li wrote:
-> > > > > On Wed, Mar 06, 2024 at 06:45:13PM +0000, Conor Dooley wrote:
-> > > > > > On Tue, Mar 05, 2024 at 12:33:04PM -0500, Frank Li wrote:
-> > > > > > > Some sai only connect one direction dma (rx/tx) in SOC. For e=
-xample:
-> > > > > > > imx8qxp sai5 only connect tx dma channel. So allow only one "=
-rx" or "tx"
-> > > > > > > for dma-names.
-> > > > > > >
-> > > > > > > Remove description under dmas because no user use index to ge=
-t dma channel.
-> > > > > > > All user use 'dma-names' to get correct dma channel. dma-name=
-s already in
-> > > > > > > 'required' list.
-> > > > > >
-> > > > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> > > > > >
-> > > > > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> > > > > > > ---
-> > > > > > >  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 13 ++=
-++++-------
-> > > > > > >  1 file changed, 6 insertions(+), 7 deletions(-)
-> > > > > > >
-> > > > > > > diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.=
-yaml b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > > > > > index 2456d958adeef..6f551c68d33db 100644
-> > > > > > > --- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > > > > > +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> > > > > > > @@ -81,15 +81,14 @@ properties:
-> > > > > > >
-> > > > > > >    dmas:
-> > > > > > >      minItems: 1
-> > > > > > > -    items:
-> > > > > > > -      - description: DMA controller phandle and request line=
- for RX
-> > > > > > > -      - description: DMA controller phandle and request line=
- for TX
-> > > > > > > +    maxItems: 2
-> > > > > > >
-> > > > > > >    dma-names:
-> > > > > > > -    minItems: 1
-> > > > > > > -    items:
-> > > > > > > -      - const: rx
-> > > > > > > -      - const: tx
-> > > > > > > +    oneOf:
-> > > > > > > +      - items:
-> > > > > > > +          - const: rx
-> > > > > > > +          - const: tx
-> > > > > > > +      - enum: [ rx, tx ]
-> > > > > >
-> > > > > > I'm not entirely sure if this was Rob's suggestion, I got the i=
-mpression
-> > > > > > he was suggesting that in the two items case we'd not care abou=
-t the
-> > > > > > order. But while I think this is different to that suggestion i=
-t's also
-> > > > > > not wrong.
+diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
+index 35a10258f..dca415fdd 100644
+--- a/arch/mips/boot/dts/ralink/mt7621.dtsi
++++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
+@@ -123,6 +123,9 @@ serial0: serial@c00 {
+ 			reg-shift = <2>;
+ 			reg-io-width = <4>;
+ 			no-loopback-test;
++
++			pinctrl-names = "default";
++			pinctrl-0 = <&uart1_pins>;
+ 		};
+ 
+ 		spi0: spi@b00 {
+-- 
 
-> > > > > Rob's suggest was not work. dt-binding check complain too long
-> > > > > if there are two dma-names =3D "rx", "tx".
-> > > >
-> > > > So I'm wrong or you didn't have it correct? No way to tell with your
-> > > > explanation. Let me give you the exact schema:
-> > > >
-> > > > dma-names:
-> > > >   minItems: 1
-> > > >   items:
-> > > >     - enum: [ rx, tx ]
-> > > >     - const: tx
-> > > >
-> > > > This says we can have 1 or 2 entries. The first entry can be either=
- rx
-> > > > or tx. The 2nd entry must be tx. That's what you want. However, '"t=
-x",
-> > > > "tx"' is allowed with the above, but we enforce items to be unique
-> > > > elsewhere. Or I thought we did, but we relaxed '.*-names$' at some
-> > > > point. I'm going to fix that now.
-> > >
-> > > Conor find out my problem. The below code works. I missed maxItems.
-> > >
-> > >   dma-names:
-> > >      minItems: 1
-> > >      maxItems: 2
-> > >      items
-> >=20
-> > Missing ':'
-> >=20
-> > >        enum: [ rx, tx ]
-> >=20
-> > That is not my suggestion. This would be my 3rd choice after what I
-> > proposed or what you had already. Please plug in exactly what I told
-> > you and report back what doesn't work.
->=20
-> It also works. look likes conor's method is a little bit easy to be
-> understood.
-
-What I suggested is different, it is more permissive than what you have
-or what Rob suggested. Your original one allows
-"rx", "tx" OR "rx" OR "tx"
-Rob's allows the same but with a nicer syntax. What that stm binding I
-mentioned allows is
-"rx", "tx" OR "tx", "rx" OR "rx" OR "tx"
-
---PgOaAGG3OrEgcB2K
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeoN3AAKCRB4tDGHoIJi
-0nd3AQCWltdW9osVlgRPEJE0ihSrSm9KZdQvqgiz22Um6H8xQQEAiKTPyYqzkfIt
-B4P5sXRr4dR2MsnwyKa6AX2uGt0DZQs=
-=CRIZ
------END PGP SIGNATURE-----
-
---PgOaAGG3OrEgcB2K--
 
