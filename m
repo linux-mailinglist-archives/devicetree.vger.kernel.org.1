@@ -1,75 +1,90 @@
-Return-Path: <devicetree+bounces-49218-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49219-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6695A875650
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 19:47:59 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 25707875662
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 19:51:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 07952B2366D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 18:47:57 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0F7E1F221B7
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 18:51:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60AA8134CFC;
-	Thu,  7 Mar 2024 18:47:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD1C81353EC;
+	Thu,  7 Mar 2024 18:51:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="QgArt0a/"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hH7DJt4U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 666A61332AA;
-	Thu,  7 Mar 2024 18:47:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352411CABF;
+	Thu,  7 Mar 2024 18:51:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709837275; cv=none; b=Q3vvb3l/YaWIDrXXkwlR7rTe7WcE46oG5edsey7iVpZje8UckQp/R2s4bPVYkOE8jPhdRZPLKv+UVCdyYNR2UNWlqc2nrcmo9Wlvj3le7/5V58Fjx6A81zpQfo7+q4iuGJxgym/wOz/hfiH8n9y1/s+739miWkjEuEzhwsd2pFA=
+	t=1709837512; cv=none; b=U0vYmHtiSSBcN+qPKzulj9B+lU9WV3Hvd7XgpZmvLQdO0EoSgA1Bw2YBtb0o3rbl0pYuPQHXVCfBwGPbJk1xlCri5+83RMnLRDJ7UM3NTuezjZxCgWEozcrocMR7KoKjYQV9Ttt3y+HJwGh5ctnnERMtrHmdpQXq5IOOUBmi+V0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709837275; c=relaxed/simple;
-	bh=2yTk4g8eRLfVAwCV2yoGYOLXIl+/IN6DOIjhwdFiC5E=;
+	s=arc-20240116; t=1709837512; c=relaxed/simple;
+	bh=N/1LTd3Vcx75JdIJEOJGneBncdExkJ/dSla/9DpX4Bw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=n9OFC4zCqZ8TrMdM4VwZsQkCnx1oS/mXTtFfwAonMUWPJN1+GNVxpx4J1+ksZH6NvgCGIuBIxSYPTZJRqorh/Qc4bzxy37v5P4UK7Hfi2jIGZYkCnQ27EeMMRce3cFDuwY67q90brpVm+vp7a4VQ0n9QIhJbffCnfbilAGiYowA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=QgArt0a/; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=5BupWcwfKnG1ptOMxMq4ELMjK/fS1Lj61MqffJweP2Y=; b=QgArt0a/X7mUfaO4eTf0hOnqak
-	QLKBytPQv1YOu9SODCXv+IoCXbbFjC7bX0F1UzhdyPIbO1uaN/a+WNVJ4qDSAPSb80Pwtxmns576r
-	N0LJPfeJzMJ++4Rn8puST4aAZOge965zk4PmdKbl9j/oXyltnXa9iOn6csJMr5kXtfzo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1riIma-009btP-Of; Thu, 07 Mar 2024 19:47:56 +0100
-Date: Thu, 7 Mar 2024 19:47:56 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Eric Woudstra <ericwouds@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Heiner Kallweit <hkallweit1@gmail.com>,
-	Russell King <linux@armlinux.org.uk>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Frank Wunderlich <frank-w@public-files.de>,
-	Lucien Jheng <lucien.jheng@airoha.com>,
-	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
- EN8811H PHY driver
-Message-ID: <4d6dfb91-93bc-49a1-bbfb-675ce9e3673c@lunn.ch>
-References: <20240302183835.136036-1-ericwouds@gmail.com>
- <20240302183835.136036-3-ericwouds@gmail.com>
- <89f237e0-75d4-4690-9d43-903e087e4f46@lunn.ch>
- <b27e44db-d9c5-49f0-8b81-2f55cfaacb4d@gmail.com>
- <99541533-625e-4ffb-b980-b2bcd016cfeb@lunn.ch>
- <6e6e408d-3dbb-4e80-ae27-d3aaafb34b06@gmail.com>
- <Zen7-M2uAaXH8ucj@makrotopia.org>
+	 Content-Type:Content-Disposition:In-Reply-To; b=IUFThnsKOgAzBwWTiYqJbCuHi1LreEPXmW6CwQHjgBXBSxcFhAePXS1b5i9qMnfwJXG4DbYD2cVu+bVNrie965bSEP/+ExOQUgdkOEgcnmfIvJngh90yq0s1HANFImo/N6obbA/mvLKGqNJmuTeHf5FTtm0UZNetYf38EuVNlBU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hH7DJt4U; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6e55731af5cso41735b3a.0;
+        Thu, 07 Mar 2024 10:51:50 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709837510; x=1710442310; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=jUyNKrc+lz+/7kEV9cViNqymoVTf2ZJi7Os2/FxH13U=;
+        b=hH7DJt4UnUoUoi7bQFTYZSZpi+v9hUZtqy1Js1qg5YI2pipnv89zuWCoUg55Ko3p4b
+         JbV7ZM1jkk6CTYsru7Wx8Ul1xmVKzQcFsu1aMXvH4DAunRl12sZhSi0fXvPSmRCfnLuJ
+         8Rzh+NE4jClhSzxqEmRksPrQCYGzS6t1lg6D6mztYwZlKYztdJfcCJkM+m/L0PaBKbNz
+         b1Tad9qJusoYtCNWXyJ89avzp8p6mcEIgLhBXpAVY5K9E9gmA5nTHlGveJsmjqJ5eLGO
+         KPmgRmTderPNsNBoN7ziahiHHDazbW/TTLzrriZEKyL1L40u07ViEETGE0/+j1fVoq+n
+         TOqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709837510; x=1710442310;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=jUyNKrc+lz+/7kEV9cViNqymoVTf2ZJi7Os2/FxH13U=;
+        b=tmdpGWrE9fJ8QFhWIAnt3bACvZu7t9tEdsfzTvi/B9O+x6jMo4RLuOcATZhdxNBPUk
+         Rp61W9j2Mz4KZEpw+oJ4n+kzE36zTRJQAyfj1OOk9hTiPxMvRskZbyejSgwTB2uZbs0Q
+         92+LzXooGxZQL4mmUnYLdLqVCNCwCS/v5W9r4oqq+mPXB/sbh0MJ2/DLD5Mm8nTj6F24
+         JlSMfCgGpgKHYqtyvhNKf4Cn/xnQiaeVC7+Yp6vGwG3+3CeIZBFxQ4QLSuPcdQV56pxG
+         paeqD1MM7pCsUC3iZtx+NVXCA3rEoOaq7PnpNMJ8CXp1zofr7cRjMXOCQejKgUPRJA5n
+         1VWA==
+X-Forwarded-Encrypted: i=1; AJvYcCW9zpSlVBdpWSaNh+HD/a6cb24eeZEMlNEhH/w9mANrpPkrdNJEVcTeD5VPt2n1c/7SVvr1Dk6FNJReiFgFhmreswwPlPBLnxs/2rjjNzsNIO0xoQekknwBoaX/buZKU10cb5hzRxaXQ+yI2IfxKNYRfxp0hGB7o6b7uQa5c+Xh/pTuW7rVkydvTUlxMowioEQrGsH9MTKzOke5DKrmp5wy1ywtQKxvc0SuZn+ua/TdoaTBGry6PIma+3+T
+X-Gm-Message-State: AOJu0YynhRBrNWq/RkUHmSUr3ik87Ywjv0e1FRMbgOFWopmtDai6+3ty
+	ZFdJSU7N0nO7ARz6snF1qI1+ToduW73+jeU3i2KuHW7jFmU6eVN+KjOcQpAM
+X-Google-Smtp-Source: AGHT+IEvg54j22LNv7F28r4VAgw0h+HzFUEmPHt76C0lDF58wlsi+HlDriKXzvLhKX2N54XOqkpkDg==
+X-Received: by 2002:a05:6a00:39a6:b0:6e5:8fad:6f75 with SMTP id fi38-20020a056a0039a600b006e58fad6f75mr19634198pfb.19.1709837510258;
+        Thu, 07 Mar 2024 10:51:50 -0800 (PST)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id l6-20020a635706000000b005dc98d9114bsm13225403pgb.43.2024.03.07.10.51.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Mar 2024 10:51:49 -0800 (PST)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 7 Mar 2024 10:51:48 -0800
+From: Guenter Roeck <linux@roeck-us.net>
+To: Billy Tsai <billy_tsai@aspeedtech.com>
+Cc: jdelvare@suse.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	joel@jms.id.au, andrew@codeconstruct.com.au, corbet@lwn.net,
+	u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
+	naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
+	BMC-SW@aspeedtech.com, patrick@stwcx.xyz
+Subject: Re: [PATCH v14 3/3] hwmon: (aspeed-g6-pwm-tacho): Support for ASPEED
+ g6 PWM/Fan tach
+Message-ID: <771b185f-98ee-475d-8075-86399b3dfe09@roeck-us.net>
+References: <20240221104025.1306227-1-billy_tsai@aspeedtech.com>
+ <20240221104025.1306227-4-billy_tsai@aspeedtech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,17 +93,33 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <Zen7-M2uAaXH8ucj@makrotopia.org>
+In-Reply-To: <20240221104025.1306227-4-billy_tsai@aspeedtech.com>
 
-> > So far, I only know of the BananaPi-R3mini, which I am using. It has 2GB
-> > of ram. It should be ok.
+On Wed, Feb 21, 2024 at 06:40:25PM +0800, Billy Tsai wrote:
+> The driver support two functions: PWM and Tachometer. The PWM feature can
+> handle up to 16 output ports, while the Tachometer can monitor to up to 16
+> input ports as well. This driver implements them by exposing two kernel
+> subsystems: PWM and HWMON. The PWM subsystem can be utilized alongside
+> existing drivers for controlling elements such as fans (pwm-fan.c),
+> beepers (pwm-beeper.c) and so on. Through the HWMON subsystem, the driver
+> provides sysfs interfaces for fan.
 > 
-> Most normal consumer devices don't have 2 GiB like the R3 mini.
-> However, it's safe to assume that boards which come with EN8811H will
-> also come with 256 MiB of RAM or more, and keeping 144kiB in RAM
-> doesn't hurt too much imho.
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
 
-Agreed.
+Applied to hwmon-next. There was an outstanding suggestion:
 
-	Andrew
+> > +static int aspeed_pwm_tach_remove(struct platform_device *pdev)
+> > +{
+> > +	struct aspeed_pwm_tach_data *priv = platform_get_drvdata(pdev);
+> > +
+> > +	reset_control_assert(priv->reset);
+> 
+> This is already done by aspeed_pwm_tach_reset_assert(), looks like
+> aspeed_pwm_tach_remove() can be removed. With that, priv->reset can
+> become a local variable in aspeed_pwm_tach_probe().
+
+I'll be happy to apply a follow-up patch making this change.
+
+Thanks,
+Guenter
 
