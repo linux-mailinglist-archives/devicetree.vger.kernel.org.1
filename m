@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-49004-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49005-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C707987492A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:59:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 61243874931
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 09:01:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3EB751F213EA
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 07:59:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 851451C23047
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:01:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 68E8363126;
-	Thu,  7 Mar 2024 07:59:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8652563401;
+	Thu,  7 Mar 2024 08:01:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iGzsl/Kw"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Fq4UID1e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 771001BF2B
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 07:59:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A809D633F1
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 08:01:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709798377; cv=none; b=AaLdHy0rMbV4Q3euisMkWGzJKW8/CmVsOjlvkEOL7isyEgQSi8Ij7lo4EjXcnXTqbV+gqro/c+2tXbpdvoNFqnLZtc4Mi5ynYUroRhA89C9vV0YAkeYC5W/CmC/Y14PNoFcagQh5ZSnztnGG4/2u9PYNkDs+XmBt8Twqp1XPutM=
+	t=1709798490; cv=none; b=PWNKiMTGMX/fZrSQC0r2tF8DF5XC5vMrWO3Zc81t30kjZMMIJhcr2kv0WGSr3/jcN6WoZrEeFdJrn34gWFJdEKopxQxMutOlaRygRa8D958JrKnXr0P4FOF/wuxyKSWh5DS74MKuCGS8HttB5uoUnDIYsgTgSlzwSiTk/2fqFzk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709798377; c=relaxed/simple;
-	bh=oJYwvebPSxy6YxXO/DvKCCgPQHIT9wOAIrN7jlew0mM=;
+	s=arc-20240116; t=1709798490; c=relaxed/simple;
+	bh=Qjl8jWyFsp4ns5J2zTtHjk4U8w3JefHamD34ZZiHrcs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=BiEYfTyaeYykKiL/BwYJ4euerzh3MXH9Qw4Zvm7vzKaBnX1/5dLQo2ybJPTmlBSf2rDmmVvCYqmVvtSqc4cMzWR/AtkwfB4dBSpgvEIaIlh7PVXgIrJO5Zkoqj4Qr+o9HShpdMBqcMx/9+zXtqOSB+cia9rY41N96rvt2H81xpQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iGzsl/Kw; arc=none smtp.client-ip=209.85.218.54
+	 In-Reply-To:Content-Type; b=RpLRNfShPkLTK7YyTJPLSo1EqKM9ZtqFWo8cmCaoFpGO21OgB3lGQyOS50iy32UjGnKdJfSVORekvUY6GKddYbwiu0JFH9ib7zGLrkvvzSM0/+wO7ss6pmQ9nfb6jtxOYi6QA0HuOHLRxcUQ8M6kMtMp5+7jN8DAQP+s+W7QFOM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Fq4UID1e; arc=none smtp.client-ip=209.85.208.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f54.google.com with SMTP id a640c23a62f3a-a45bb2a9c20so74812366b.0
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 23:59:35 -0800 (PST)
+Received: by mail-ed1-f46.google.com with SMTP id 4fb4d7f45d1cf-567fbbd723cso610848a12.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 00:01:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709798374; x=1710403174; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709798487; x=1710403287; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=msrSbyxYEEwE738VHVTMGn05YADYFgEKkR5Gx/mGJkQ=;
-        b=iGzsl/KwRfxZLamxH4mYUEhwPA3gPGvJTu2r+n4dFIV+vNh36kyADzTU7bsElvJMK4
-         VyzYTU5RZmschd7x3HXNixQzXTF1WCd/YDnQepFAcw0x/C2r5N+TGwI4PM0U4I3F6jxD
-         1qGyRgz2/1ouIj3qXCexl/q7LB+89u4rCr4Kldd0mnJCxI8wpEr27qH+VoJRVk29+q9G
-         OiG3V/jzK9EIkHWb5JXSHnRSyLQ5cxUAidbDSGley7p8LXppb5JJoWnznXA0uBubXIba
-         KII2lUWcJMDUtpBbllFyprAn10wpj34DZKF81iActtWu1CUxkMwpJA6xa/5aWzqx1nie
-         WNdQ==
+        bh=PLICRt9GCJHCS3DI2MlqTXOZAkPRxSOAwmw8BMYEFig=;
+        b=Fq4UID1eeOPVGiL0fjAJQnYqMi98O5diwlFtXmEIPq8vGnt9zk1x+cznyrFIi3Y/C7
+         od3FsxHRi5ijjDDYxnfcDBwfDLXrSSXK91NOtl1OGxqgN9Xu0FUiG1G/0Uw3WQ2scwjf
+         q12ovP4akyspTQguub1wjTmtfMCYj+LBwDZglR9egaC1xsPP4UU7ECZ4sOC93AZmIj4q
+         zujVTm70tVhB9urf/EAqotxpGgWhJSF1omumnNtxDf4xX38iLO3h60XzAUK+UJWmDxMP
+         Xmka4nO027QciIt1pFV616r2NDmRPBe4y99UdX84+2PFlJtA5sCQSBIpi6FQ9s6Z44FT
+         /z1A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709798374; x=1710403174;
+        d=1e100.net; s=20230601; t=1709798487; x=1710403287;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=msrSbyxYEEwE738VHVTMGn05YADYFgEKkR5Gx/mGJkQ=;
-        b=iwtGZJ7DBdvhKsJO9/jT0+giaXjEpLBKoG0hM+xzROZ8XBLNI/L50FnBi5U1jadB/J
-         7cVGnR558hdtIamO2yS1fmA2iz7dXlBDv/Kb6VtrQOLf26jQcjFsp276yC8mW+t0Gk4U
-         mKX14SjKDN+I3j+r+9Oue0onnuWaBvfeLEcKdu9nvKohYV6Il6TMvH5Lez80sX1jletx
-         a4WlyDHmADr5Kyln+owxhaE/AYF64L61mtYoXDRJHZvB5dTrtqMQjDru5AWJobJMRZME
-         uyXiupIbr+V93lRPyp66DuDdYKANllHMC3e5M+oSTDc/zmV2to1qVhjRvfg3svwsdC+G
-         2aig==
-X-Forwarded-Encrypted: i=1; AJvYcCWHWUwgN4WCN2Dcgtat663wjFsu9C3IFodURME2sutukDnA+ofX8zkNAD64N5yY1+j+2FIx/k/Sgo+jLj5vLp0GpqTKOmW5gHj5zA==
-X-Gm-Message-State: AOJu0Yy1bykpvGjv7WurZbX40fOd307oRfSUjASNBTtweZinyzQjX4pF
-	syrJfjUvb1NNTwSAjQyB+gaCSJZ/bD8ZbrTDybVcyKHzn1PSMxpbl38qAFcS1IY=
-X-Google-Smtp-Source: AGHT+IHmAuMmL8+JDhVaYmwIN0yPYo2zccHsl0AqXOJzba3Y+FejC+8+XdTU05lulAfln4DYxlD4ww==
-X-Received: by 2002:a17:906:a3cf:b0:a45:16af:bda1 with SMTP id ca15-20020a170906a3cf00b00a4516afbda1mr8310947ejb.12.1709798373914;
-        Wed, 06 Mar 2024 23:59:33 -0800 (PST)
+        bh=PLICRt9GCJHCS3DI2MlqTXOZAkPRxSOAwmw8BMYEFig=;
+        b=WzoMsi/zuHajQAWCrnHHMWNGx/TwEuwY3w8NlvtG70tZCW24Vr/J+1n3IDoXdgSRku
+         M7WtaGW+m4aINQTApzVsIiSA5Ky452c7Z9zZYeqqF7wu3iucVfXTnyAk0yzsU4W3oV7V
+         gdn/q7WivYUyVQ3M/+ncMh3byxlJ0yQjuxjUm4Px8nu1MZVGnBW/Cr+lN3MU1pJZgj12
+         IG1byoZxQ+EUS6ads2GlijdMFwrerryk91yneSFGT0ifvDbNTZJkPP3yYZOqkvUc4Ure
+         Z6Vw87CneDHww3CL+XmmQ7hqjXI73JuTXVPjvy/7kYVnAkHZEWdOd3podwiXX9pgp4ll
+         l+mA==
+X-Forwarded-Encrypted: i=1; AJvYcCWyL7+K8xQ5eq9kDT+xCkUI/ZetUaAWFExtbf8ayQBG0/A1PPWefwP/4YnYIpETTmHjmrFdzzijDOg7SaTqvaGjYUZNMEeYw+AIBw==
+X-Gm-Message-State: AOJu0YwFqxw6QK72rWAlhh3LdDOdO1CT+ZSGZlAYb8VVjBPcHLDLEawT
+	bEJr5Gq8+/55ijmHhN890IQp63DcQGrnjPrDHQMprTTFg9jjU1yKZ/R3N2wKbks=
+X-Google-Smtp-Source: AGHT+IGT2JV4TDS649+Vxblbkn5aso4fvOG/svjgAVgBOSUaPOqfhCNWY3t4WpRju5WLafM5hj2p2Q==
+X-Received: by 2002:a05:6402:1b0f:b0:567:e78a:4444 with SMTP id by15-20020a0564021b0f00b00567e78a4444mr2761514edb.39.1709798487058;
+        Thu, 07 Mar 2024 00:01:27 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id j22-20020a170906475600b00a449d6184dasm6663851ejs.6.2024.03.06.23.59.31
+        by smtp.gmail.com with ESMTPSA id c28-20020a50d65c000000b00565a9c11987sm8121750edj.76.2024.03.07.00.01.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Mar 2024 23:59:33 -0800 (PST)
-Message-ID: <0b92700a-cf79-4f1c-986a-d18fe0151bb8@linaro.org>
-Date: Thu, 7 Mar 2024 08:59:31 +0100
+        Thu, 07 Mar 2024 00:01:26 -0800 (PST)
+Message-ID: <73e7a642-d993-485f-9ccc-abe3daf79390@linaro.org>
+Date: Thu, 7 Mar 2024 09:01:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +76,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 1/2] dt-bindings: ASoC: Add PDM controller for the
- StarFive JH8100 SoC
+Subject: Re: [PATCH] mips: dts: ralink: mt7621: add cell count properties to
+ usb0
 Content-Language: en-US
-To: Xingyu Wu <xingyu.wu@starfivetech.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Takashi Iwai <tiwai@suse.com>, Jaroslav Kysela <perex@perex.cz>,
+To: Justin Swartz <justin.swartz@risingedge.co.za>,
+ =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor.dooley@microchip.com>
-Cc: Walker Chen <walker.chen@starfivetech.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
- linux-sound@vger.kernel.org
-References: <20240307033708.139535-1-xingyu.wu@starfivetech.com>
- <20240307033708.139535-2-xingyu.wu@starfivetech.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20240306202131.2009-1-justin.swartz@risingedge.co.za>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,127 +137,43 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240307033708.139535-2-xingyu.wu@starfivetech.com>
+In-Reply-To: <20240306202131.2009-1-justin.swartz@risingedge.co.za>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 07/03/2024 04:37, Xingyu Wu wrote:
-> Add bindings for the PDM controller for the StarFive JH8100 SoC.
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
-
+On 06/03/2024 21:21, Justin Swartz wrote:
+> Add default #address-cells and #size-cells properties to usb0,
+> suitable for hubs and devices without explicitly declared
+> interface nodes, as:
 > 
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>   "#address-cells":
+>     description: should be 1 for hub nodes with device nodes,
+>       should be 2 for device nodes with interface nodes.
+>     enum: [1, 2]
+> 
+>   "#size-cells":
+>     const: 0
+> 
+> -- from Documentation/devicetree/bindings/usb/usb-device.yaml
+> 
+> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
 > ---
->  .../bindings/sound/starfive,jh8100-pdm.yaml   | 84 +++++++++++++++++++
->  1 file changed, 84 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh8100-pdm.yaml
+>  arch/mips/boot/dts/ralink/mt7621.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/starfive,jh8100-pdm.yaml b/Documentation/devicetree/bindings/sound/starfive,jh8100-pdm.yaml
-> new file mode 100644
-> index 000000000000..a91b47d39ad3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/starfive,jh8100-pdm.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/starfive,jh8100-pdm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
+> index 2069249c8..f02965db1 100644
+> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
+> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
+> @@ -309,6 +309,9 @@ usb: usb@1e1c0000 {
+>  
+>  		interrupt-parent = <&gic>;
+>  		interrupts = <GIC_SHARED 22 IRQ_TYPE_LEVEL_HIGH>;
 > +
-> +title: StarFive JH8100 PDM controller
-> +
-> +description: |
-> +  The Pulse Density Modulation (PDM) controller is a digital PDM out
-> +  microphone interface controller and decoder that supports both
-> +  mono/stereo PDM format, and an Inter-IC Sound (I2S) transmitter that
-> +  outputs standard stereo audio data to another device. The I2S transmitter
-> +  can be configured to operate either a master or a slave (default mode).
-> +  The PDM controller includes two PDM modules, each PDM module can drive
-> +  one bitstream sampling clock and two bitstream coming data with sampling
-> +  clock rising and falling edge.
-> +
-> +maintainers:
-> +  - Xingyu Wu <xingyu.wu@starfivetech.com>
-> +  - Walker Chen <walker.chen@starfivetech.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh8100-pdm
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: DMIC output clock
-> +      - description: Main ICG clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: dmic
-> +      - const: icg
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  starfive,syscon:
-> +    $ref: /schemas/types.yaml#/definitions/phandle-array
-> +    items:
-> +      - items:
-> +          - description: phandle to System Register Controller sys_syscon_ne node.
-> +          - description: PDM source enabled control offset of SYS_SYSCON_NE register.
-> +          - description: PDM source enabled control mask
-> +    description:
-> +      The phandle to System Register Controller syscon node and the PDM source
-> +      from I2S enabled control offset and mask of SYS_SYSCON_NE register.
-> +
-> +  starfive,pdm-modulex:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    enum: [0, 1]
-> +    description:
-> +      The module x will be using in PDM controller. Default use module 0.
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
 
-This is an index of the block instance? If so, then it's not allowed.
-Otherwise I don't understand the description.
-
-Anyway, don't repeat constraints in free form text. default: 0, if this
-is going to stay.
-
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - starfive,syscon
-> +
-> +unevaluatedProperties: false
-
-This is wrong without $ref, which points you to missing $ref to dai-common.
-
-> +
-> +examples:
-> +  - |
-> +    pdm@12250000 {
-> +      compatible = "starfive,jh8100-pdm";
-> +      reg = <0x12250000 0x1000>;
-> +      clocks = <&syscrg_ne 142>,
-> +               <&syscrg_ne 171>;
-> +      clock-names = "dmic", "icg";
-> +      resets = <&syscrg_ne 44>;
-> +      starfive,syscon = <&sys_syscon_ne 0xC 0xFF>;
-
-Lowercase hex only.
-
-> +      #sound-dai-cells = <0>;
-> +    };
+Doesn't this bring new W=1 warnings?
 
 Best regards,
 Krzysztof
