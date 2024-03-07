@@ -1,166 +1,132 @@
-Return-Path: <devicetree+bounces-49141-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49142-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D0368750DE
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:51:10 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 592248750F6
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:53:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A85C71F2513B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:51:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DE3CAB26C54
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECDA12D754;
-	Thu,  7 Mar 2024 13:51:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D5DE012DD95;
+	Thu,  7 Mar 2024 13:53:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TIjEvKBy"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ib5cTV4W"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37D912D744
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 13:50:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0998B12D768
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 13:53:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709819462; cv=none; b=qRVJkwWEB55BJpcmU7jDlQ2q4a0e9Uk+kTGfRYh/9eeZ4HArhtBnnuaesRXqub1d6T8x8LZKX36Kx2Xfe7KbAg4OW+MShjBgABsxa36KKT0S+2uB4/41Iv6Y9WhK4A6crIfOfy6TCXCD4OwXcOY7LLG0RXusfh+oAZPuWtzZTwY=
+	t=1709819584; cv=none; b=nwVG9flKjk/Ex5rRQVjZ5BNXK27y7IAclvxHQ/VkUL/+a0J8Rnpfk3ZzOPqNDP2WzDAHu78mqOYQ3YdlmuMQMfrTaU2CuVQ/HNZ3dWAv9KUVwb0loe6WHWPSayBPgJjhdwThkIadkkBWLbs19+WlL9G2GUcdAGVFW0Y6zWbXVnQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709819462; c=relaxed/simple;
-	bh=ZqhZpjRK4pnufBjyLUpagbr75YCJe+evkJ0qNwIsulM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=HdckYFS1d1C1YPdVDgbR+0LRyGcjrTQw8Hh8KXj3POmgwbyX7Vl6d8u7lmmvtwcWuCVLPOd5Pl6lo/bfLd7uRIZygGrOYqhiTltedGXARs69b9FYIJkmhyKnR0pU6NIh/ttgnMsMhfiELJL6pvv89PHVyeB4W8bGgHmatp7LR9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TIjEvKBy; arc=none smtp.client-ip=209.85.222.50
+	s=arc-20240116; t=1709819584; c=relaxed/simple;
+	bh=iS/ZnjaK6TRmcPu9aNMP+C8wqkwmDYhlm+2dQy+Pr3c=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RIj/P13DvzvPAcquCHenacDNqqXmvZUlLbScmaL/5yKn03w2X7FBe0UNtXO3yob84TSwXM1m7GpDbaSk5hEiKf8kcgoBChv8XDBICIpG9xkottfR3GVzNv9foIFftqI/rubaO+jQbtsYGnvv/IKNQHB4Gq4Xgl3Evy14ecgi8LY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ib5cTV4W; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-7cedcea89a0so545238241.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 05:50:59 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-412e96284b9so7451005e9.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 05:53:02 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709819459; x=1710424259; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=9torsYcPw28D62HkEM1CjpX6NkRuhOzElzYeBBfh75g=;
-        b=TIjEvKBy08D4McpK1x2JYbmNHvcrmTfo5caYfBl649fXCl4ZExTqjJWgjxJQweOsJI
-         j8yZ/0vLGo29l99qEN132Gjo81PKguMBFtzd7sPElr4mZKNcRtXUoLhQfWRSrmdNDGQc
-         91KdbFcaaoY5B5NsIQDHVMmiNY+Q1bKK0n9Olr4WQjvWWJjgZh6YtkFKZ+UIJBpTgnS0
-         JkbUV90KWpd4dt+SaEvidt0JTMPkIo2qTA5CxfF+XrycmVEfoZPlN6sqsKq7oWv8xdXB
-         uKKTGMC+xhbcEyM6RLSXMy0xpEIdBW2VHfrsGeRUUF5QAUMa8wmXkQQa5wI8LCngwivi
-         qzgg==
+        d=linaro.org; s=google; t=1709819581; x=1710424381; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=OFRg8xB5AgYKtJRkOv35muuJJ49OzwPBSX7Kgc4LZhI=;
+        b=Ib5cTV4W/J578+YD7JHYv5shZo+gtyE2wHZyMkZDShl1l9YINlBY/kzWgUHTNR1a1h
+         OrZ7tDS3PsWct1gaWTDbPLmY2Hgv3gxaNb+FON3gyPj5dIBfUZUY+9UOH/YTw8vxHjMt
+         leyFHypkkw11gE8T0fJ+aev65nWg/nn03Yk73r3jEUsVjYXq4UuAleIgLylnZ16M0EeU
+         nTTrOXQn4VA/orTFVXLYHfqLjGvQH7roL/RvoXxRdbKcuDb/di62zOfqq64YW9lwokIs
+         VK5hyZJ32cdUDE7A6fmfPJAUNpILn5uEon+ny8lT4NoGWYFUADFeTpN1OT1e6X+fEKdb
+         2F3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709819459; x=1710424259;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20230601; t=1709819581; x=1710424381;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=9torsYcPw28D62HkEM1CjpX6NkRuhOzElzYeBBfh75g=;
-        b=rQHlK2h6QatE6E1XRBWyF+C01WVky20llfQplDPS7tTLbaaRKgSxz8zOhEC5xJlvNd
-         dBHkt7IMjjLPpZAbbFvphy6qWkkkwquUETr0NNtuKfdRJRfYuYhcaXFipWCUEG0NPzfG
-         DTzcAiGTByWHXAue6TXT4wzsnhJARflIkjRM3lNxho+/rNlA/td4DO1YQ5Bc7GzvrE/T
-         ccve6VneNpnf4CE6mTah72Q1vrKZx1sMRcVvzRDAeOFNnLNfz7GpT5hb4GjTwbZ4amXJ
-         mBlE5s3VE3KgLZRCP3LriAipJpT7FAHpajBub1MTzkWjRz9HdOFJnOSXIVB2m1e5zITm
-         Mbog==
-X-Forwarded-Encrypted: i=1; AJvYcCW2mYLXCi0QWwtNh4PnR/4tiU5V1ck6NjId5pOhxaCxzlxobtAv7DGFE/gdy5m6nyyIo4Tl91SCSYcfuPBeButnzzvoBn6zRbL8lA==
-X-Gm-Message-State: AOJu0YzXKLgTFrm756fsz5J4fmdXB3W8PhnE0jocy7ELKfjOTBrddNc4
-	08FfHy/+yb6J+NpmV3AqCBqg07FyE1Gtsrt/Wb+proN0kl9W2wHTIH6ltEBxqxsXbEJKeNIT+8A
-	23cchrzU5ce6FKcumh3gnK5YpdoITBzY0DQ4vLw==
-X-Google-Smtp-Source: AGHT+IF2jZ7wyg1CarUBxtXOtBYgdq/uCacVd62FUUCZun9pIW445yP9fKNJWPLnFKUEAHYOGkp0v4zFhqkAGif0eAI=
-X-Received: by 2002:a67:ee41:0:b0:472:a246:9ba6 with SMTP id
- g1-20020a67ee41000000b00472a2469ba6mr7359586vsp.21.1709819457334; Thu, 07 Mar
- 2024 05:50:57 -0800 (PST)
+        bh=OFRg8xB5AgYKtJRkOv35muuJJ49OzwPBSX7Kgc4LZhI=;
+        b=gF9br5Bu23Z2oulDcPJaSs/EEgWKBG3foc0YxHpHeTgNqUx8Wh3nB1yx1+6Bm9kFCH
+         0yHt13ODZn7n6DJJ7lllV06wjVGOzEUerrbm7Xmb2fjxBKjgHPhHwkKHVItCRoiYyxT7
+         y2TMouesgYggttX1a1mGbKRaeYsQy/0hyyHlcOWF1QSkqPbi7ts54pmlitC/+pEN+6jD
+         zhb1dQuIDZezLznbnig5rAc5ZDjZR1TNiAXUJzFMpQTVipf05tv6x9Ipr+hBDZoaVYyj
+         xFRxGeXPUzreO8yOEM3tfqHlvRKyvLOXHNeyLEpFRuSW2ukV84OR6hqbEoRo0hCyiFhQ
+         l70Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUdRIUgjSFUutGFSHCYQRb6bjoXxwvtuk8snwC1aFeycjPxUhrk7HHVfoZT6Qm90Xj944CrsPRadj89xzuIptwr3ucm3gLBJmp0AA==
+X-Gm-Message-State: AOJu0YxCvp0lsx9nTjR/31FDozuZNDW7ixeTfhELetIBMYtGm1Y57tM0
+	o11VxIKkENcO8QpSWO8C7imUHQetIauQFc9AflCRAbEebyXhgpGMS8qj/JD0QDM=
+X-Google-Smtp-Source: AGHT+IF61AYutPgwA+UreNymAxWtde+Fu4g6cP5ZGMQQlNDE95ba8fYYdanfVRTO7jXImAkq32LYRA==
+X-Received: by 2002:a05:600c:3596:b0:411:a94a:1ee with SMTP id p22-20020a05600c359600b00411a94a01eemr15040054wmq.21.1709819581260;
+        Thu, 07 Mar 2024 05:53:01 -0800 (PST)
+Received: from ta2.c.googlers.com.com (110.121.148.146.bc.googleusercontent.com. [146.148.121.110])
+        by smtp.gmail.com with ESMTPSA id l8-20020a05600c4f0800b0041312cf472fsm1112390wmq.25.2024.03.07.05.53.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Mar 2024 05:53:00 -0800 (PST)
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+To: peter.griffin@linaro.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org
+Cc: alim.akhtar@samsung.com,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	andre.draszik@linaro.org,
+	willmcvicker@google.com,
+	kernel-team@android.com,
+	Tudor Ambarus <tudor.ambarus@linaro.org>
+Subject: [PATCH] arm64: dts: exynos: gs101: move serial_0 pinctrl-0/names to dtsi
+Date: Thu,  7 Mar 2024 13:52:48 +0000
+Message-ID: <20240307135248.162752-1-tudor.ambarus@linaro.org>
+X-Mailer: git-send-email 2.44.0.278.ge034bb2e1d-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240306200910.2732835-1-volodymyr_babchuk@epam.com>
- <CAA8EJppNopEF0DmgjCAJyxe8HRebD26Q8heKKLKbPstdfBOv6A@mail.gmail.com>
- <CAFA6WYMvtNbAMb5bAuH=as01wxACbjs5XcyPrvcSH4YpGGHhpA@mail.gmail.com> <87le6u18xl.fsf@epam.com>
-In-Reply-To: <87le6u18xl.fsf@epam.com>
-From: Sumit Garg <sumit.garg@linaro.org>
-Date: Thu, 7 Mar 2024 19:20:46 +0530
-Message-ID: <CAFA6WYOWeBJ+1aT1mRZE_2mNUCBzGGY0qgc_ZTT0dOTAEseGjQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: qcom: sm8150: add reset name for ethernet node
-To: Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, 
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-On Thu, 7 Mar 2024 at 18:43, Volodymyr Babchuk
-<Volodymyr_Babchuk@epam.com> wrote:
->
->
-> Hello Linux Maintainers, Sumit
->
-> First, I am terribly sorry about this half-assed patch. Generally I am
-> doing all the required checks. But this change seemed so
-> trivial... Anyways, lesson taken, this will not happen anymore.
->
-> Sumit Garg <sumit.garg@linaro.org> writes:
->
-> > On Thu, 7 Mar 2024 at 12:40, Dmitry Baryshkov
-> > <dmitry.baryshkov@linaro.org> wrote:
-> >>
-> >> On Thu, 7 Mar 2024 at 00:22, Volodymyr Babchuk
-> >> <Volodymyr_Babchuk@epam.com> wrote:
-> >> >
-> >> > Add reset-names property to the ethernet@20000 node. This patch does
-> >> > not change behavior on Linux, but it is needed for U-Boot, as it tries
-> >> > to find the reset by name, not by index.
-> >> >
-> >> > Signed-off-by: Volodymyr Babchuk <volodymyr_babchuk@epam.com>
-> >> > ---
-> >> >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 1 +
-> >> >  1 file changed, 1 insertion(+)
-> >> >
-> >> > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> >> > index 761a6757dc26f..c2e65d6a2ac62 100644
-> >> > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> >> > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
-> >> > @@ -951,6 +951,7 @@ ethernet: ethernet@20000 {
-> >> >
-> >> >                         power-domains = <&gcc EMAC_GDSC>;
-> >> >                         resets = <&gcc GCC_EMAC_BCR>;
-> >> > +                       resets-names = "emac";
-> >>
-> >> According to the snps,dwmac.yaml schema the "emac" is invalid here.
-> >> Only "stmmaceth" and / or "ahb" are permitted here.
-> >
-> > Okay, it looks like earlier the Linux kernel on Qcom SoCs always
-> > assumed that the EMAC reset signal is deserted by prior boot stages.
-> > So I suppose we can reuse "stmmaceth" here instead of "emac" with a
-> > corresponding change to U-Boot driver as well.
->
-> Maybe it would be better to access reset in U-Boot by index, in the
-> same way as linux kernel does? I am not sure that "stmmaceth" will be
-> correct from the semantic point of view.
+The pinctrl nodes are coming from the shared gs101-pinctrl.dtsi,
+thus the pinctrl-0/names shall stay in dtsi. Move them.
 
-I can't see the Linux kernel driver accessing reset by index in this
-case (see [1]). It worked for the Qcom case since the reset signal was
-by default deserted. IMO, that's an incorrect assumption (you never
-know what state the bootloader leaves the reset signal in) to start
-with. This should be fixed via explicit MAC reset desertion in the
-kernel driver. IOW, this patch would ideally be a fix for the Linux
-kernel driver rather than replicating what U-Boot does.
+Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+---
+ arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 2 --
+ arch/arm64/boot/dts/exynos/google/gs101.dtsi       | 2 ++
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c#n645
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+index 6ccade2c8cb4..9dc0f47ef646 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
++++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+@@ -103,8 +103,6 @@ key_power: key-power-pins {
+ };
+ 
+ &serial_0 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&uart0_bus>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+index 55e6bcb3689e..ee65ed9d2cfc 100644
+--- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
++++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+@@ -421,6 +421,8 @@ serial_0: serial@10a00000 {
+ 				reg = <0x10a00000 0xc0>;
+ 				interrupts = <GIC_SPI 634
+ 					      IRQ_TYPE_LEVEL_HIGH 0>;
++				pinctrl-names = "default";
++				pinctrl-0 = <&uart0_bus>;
+ 				clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP1_PCLK_0>,
+ 					 <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP1_IPCLK_0>;
+ 				clock-names = "uart", "clk_uart_baud0";
+-- 
+2.44.0.278.ge034bb2e1d-goog
 
->
-> As I understand, "stmmac" name is used due to historical reasons in
-> Linux, as this driver was introduced for STM SoC initially. But the same
-> IP block is being used in many different SoCs made by different vendors
-> and there is nothing STM-specific left in it anymore. Especially taking
-> into account that this IP-block was designed not by STM but by
-> Synopsys/DesignWare.
-
-As DT bindings are the ABI and we have no choice but to live with it.
-"stmmaceth" is already being used for "reg-names" and "clock-names"
-too.
-
--Sumit
-
->
-> --
-> WBR, Volodymyr
 
