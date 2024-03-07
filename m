@@ -1,125 +1,249 @@
-Return-Path: <devicetree+bounces-49219-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49220-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25707875662
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 19:51:58 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 743E687566D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 19:53:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D0F7E1F221B7
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 18:51:57 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 08AABB21959
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 18:53:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD1C81353EC;
-	Thu,  7 Mar 2024 18:51:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 00494136664;
+	Thu,  7 Mar 2024 18:52:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="hH7DJt4U"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="YbEWqatm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 352411CABF;
-	Thu,  7 Mar 2024 18:51:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 63346136650;
+	Thu,  7 Mar 2024 18:52:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709837512; cv=none; b=U0vYmHtiSSBcN+qPKzulj9B+lU9WV3Hvd7XgpZmvLQdO0EoSgA1Bw2YBtb0o3rbl0pYuPQHXVCfBwGPbJk1xlCri5+83RMnLRDJ7UM3NTuezjZxCgWEozcrocMR7KoKjYQV9Ttt3y+HJwGh5ctnnERMtrHmdpQXq5IOOUBmi+V0=
+	t=1709837578; cv=none; b=VGdaOckRsWxhhOWL4LFjvOtLNDBg7qEV/AGNmJW6moJqMwJZWJq/PjTHs8ECj/PYEz+MHJrNGFHIOL0Mnqy2rgtn9IpLDr2YivCGzrUj0hDHBuiHpdpHBcY7WGFYNCJmknx8i+L9iTJl58CMZ5eSeT+l920ON59z5HDIuih2Alk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709837512; c=relaxed/simple;
-	bh=N/1LTd3Vcx75JdIJEOJGneBncdExkJ/dSla/9DpX4Bw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=IUFThnsKOgAzBwWTiYqJbCuHi1LreEPXmW6CwQHjgBXBSxcFhAePXS1b5i9qMnfwJXG4DbYD2cVu+bVNrie965bSEP/+ExOQUgdkOEgcnmfIvJngh90yq0s1HANFImo/N6obbA/mvLKGqNJmuTeHf5FTtm0UZNetYf38EuVNlBU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=hH7DJt4U; arc=none smtp.client-ip=209.85.210.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+	s=arc-20240116; t=1709837578; c=relaxed/simple;
+	bh=n3Kll0juBLOTNi3cn/fisBNxbSwgu3KXTXnol1lKayg=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=fTNK3cd5utwVIcLBOWOOG/nZ4KgH6JtdpUR0YbREeMfF+GE6Y/k8Zyyq7/FyI0n0i25K9t0PN6qs6hknCM93I/4t/8NzzZQH6oi+CdviFf1mrVHMM9uAQfkv8UeRkEQela2xexYlbRBJS3gxZOLK9MAj1RWWkVsGoBgx0ADUJB8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=YbEWqatm; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6e55731af5cso41735b3a.0;
-        Thu, 07 Mar 2024 10:51:50 -0800 (PST)
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1dbae7b8ff2so10529835ad.3;
+        Thu, 07 Mar 2024 10:52:57 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709837510; x=1710442310; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jUyNKrc+lz+/7kEV9cViNqymoVTf2ZJi7Os2/FxH13U=;
-        b=hH7DJt4UnUoUoi7bQFTYZSZpi+v9hUZtqy1Js1qg5YI2pipnv89zuWCoUg55Ko3p4b
-         JbV7ZM1jkk6CTYsru7Wx8Ul1xmVKzQcFsu1aMXvH4DAunRl12sZhSi0fXvPSmRCfnLuJ
-         8Rzh+NE4jClhSzxqEmRksPrQCYGzS6t1lg6D6mztYwZlKYztdJfcCJkM+m/L0PaBKbNz
-         b1Tad9qJusoYtCNWXyJ89avzp8p6mcEIgLhBXpAVY5K9E9gmA5nTHlGveJsmjqJ5eLGO
-         KPmgRmTderPNsNBoN7ziahiHHDazbW/TTLzrriZEKyL1L40u07ViEETGE0/+j1fVoq+n
-         TOqw==
+        d=gmail.com; s=20230601; t=1709837577; x=1710442377; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AQQbLvgd4v+h8o0thODyrb8/bjQo/5KA5hZsJKz+3js=;
+        b=YbEWqatmSLlW2Iy3FwQxBe14wABgzVkIs13PoDaKWegI63ciesGv9/Il9xmQRqDpPQ
+         6xPH7iGJcHJs3CpifxJmVGXjaXuWoP5EH6V7ZNrwRH2VKNGAe95qD6pSt1tIHBvUvfjB
+         CAWhQlp1vqwmhsQIIZ6nlhyowrHj+/LsWgtfqd9MMzt04lBpOoGmCcagOG+LaeDHmxvc
+         oueUqJRdzsCHOTIFnmHKH8zaV/cqES6P9Yen4egeC31oD3uQ1EtVRDAXzvc708nRcJAF
+         Zos54zmz4+iNjHzJJjDij1+38Ga58gYlHl6mfzc+hmjwBYe8aDPF6xFcE0p8s+9WCqn2
+         DdVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709837510; x=1710442310;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=jUyNKrc+lz+/7kEV9cViNqymoVTf2ZJi7Os2/FxH13U=;
-        b=tmdpGWrE9fJ8QFhWIAnt3bACvZu7t9tEdsfzTvi/B9O+x6jMo4RLuOcATZhdxNBPUk
-         Rp61W9j2Mz4KZEpw+oJ4n+kzE36zTRJQAyfj1OOk9hTiPxMvRskZbyejSgwTB2uZbs0Q
-         92+LzXooGxZQL4mmUnYLdLqVCNCwCS/v5W9r4oqq+mPXB/sbh0MJ2/DLD5Mm8nTj6F24
-         JlSMfCgGpgKHYqtyvhNKf4Cn/xnQiaeVC7+Yp6vGwG3+3CeIZBFxQ4QLSuPcdQV56pxG
-         paeqD1MM7pCsUC3iZtx+NVXCA3rEoOaq7PnpNMJ8CXp1zofr7cRjMXOCQejKgUPRJA5n
-         1VWA==
-X-Forwarded-Encrypted: i=1; AJvYcCW9zpSlVBdpWSaNh+HD/a6cb24eeZEMlNEhH/w9mANrpPkrdNJEVcTeD5VPt2n1c/7SVvr1Dk6FNJReiFgFhmreswwPlPBLnxs/2rjjNzsNIO0xoQekknwBoaX/buZKU10cb5hzRxaXQ+yI2IfxKNYRfxp0hGB7o6b7uQa5c+Xh/pTuW7rVkydvTUlxMowioEQrGsH9MTKzOke5DKrmp5wy1ywtQKxvc0SuZn+ua/TdoaTBGry6PIma+3+T
-X-Gm-Message-State: AOJu0YynhRBrNWq/RkUHmSUr3ik87Ywjv0e1FRMbgOFWopmtDai6+3ty
-	ZFdJSU7N0nO7ARz6snF1qI1+ToduW73+jeU3i2KuHW7jFmU6eVN+KjOcQpAM
-X-Google-Smtp-Source: AGHT+IEvg54j22LNv7F28r4VAgw0h+HzFUEmPHt76C0lDF58wlsi+HlDriKXzvLhKX2N54XOqkpkDg==
-X-Received: by 2002:a05:6a00:39a6:b0:6e5:8fad:6f75 with SMTP id fi38-20020a056a0039a600b006e58fad6f75mr19634198pfb.19.1709837510258;
-        Thu, 07 Mar 2024 10:51:50 -0800 (PST)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id l6-20020a635706000000b005dc98d9114bsm13225403pgb.43.2024.03.07.10.51.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Mar 2024 10:51:49 -0800 (PST)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date: Thu, 7 Mar 2024 10:51:48 -0800
-From: Guenter Roeck <linux@roeck-us.net>
-To: Billy Tsai <billy_tsai@aspeedtech.com>
-Cc: jdelvare@suse.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	joel@jms.id.au, andrew@codeconstruct.com.au, corbet@lwn.net,
-	u.kleine-koenig@pengutronix.de, p.zabel@pengutronix.de,
-	naresh.solanki@9elements.com, linux-hwmon@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-	linux-doc@vger.kernel.org, linux-pwm@vger.kernel.org,
-	BMC-SW@aspeedtech.com, patrick@stwcx.xyz
-Subject: Re: [PATCH v14 3/3] hwmon: (aspeed-g6-pwm-tacho): Support for ASPEED
- g6 PWM/Fan tach
-Message-ID: <771b185f-98ee-475d-8075-86399b3dfe09@roeck-us.net>
-References: <20240221104025.1306227-1-billy_tsai@aspeedtech.com>
- <20240221104025.1306227-4-billy_tsai@aspeedtech.com>
+        d=1e100.net; s=20230601; t=1709837577; x=1710442377;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AQQbLvgd4v+h8o0thODyrb8/bjQo/5KA5hZsJKz+3js=;
+        b=jWjcH9G/pb9KNRAmyewLNvELRu2uAvh310mL92B4zfKiJ57EsoqEsaCg85ZCrJ18rG
+         bqEd2Feyck8+V2ZfzCANtLYidoE7qa9ZiTUxKMARWo1xBhcqoVIa0Ko6KqdF09S6n3jO
+         yLIq2bao++0B5jXzGDZcQuUfJPJrVuxD9YJLrUIYjKs/J67g3SLno9TUY30ElZ9PhuIo
+         NhFSK+4ToTkaAmCWAHkVdJbQwiOSjhsODwbpGO1A2gaZpUqpfIDbYtSK9DSvHhcehkL/
+         U2YfpGe1j2lbS5WLx7D6xYoF5kLLbmncQsbxaqF3hc3LuBYk8d1o3eHaL0i+fpzUmrUH
+         wooQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVyr4G/8hcwpxZD9FdcMruyNtgGTsADtqPnZAvS3Dcx/ZdIMhEC0kyz6kL+64uTxqE3OMuxllFvRWrVIF3aKYxiQA2roHLBKY/dX0zjW0omMn08AfV0EcCxXx8uGItMtLWLogY2yFsrHA==
+X-Gm-Message-State: AOJu0YyxIU3Uo7/imOeeBgv0sFR5OoXqKJx0R0+D7l3CR2Tj+RBKfHgQ
+	IGL6NEwmUQVff4oe61Pp0qglwtKHQBrUPglUeq62T9kLM1dZcOHW
+X-Google-Smtp-Source: AGHT+IHilBvCxdXn41263FwRkBDdMvd1VAR4rFaj12NiHdSFgglCEdzYUDfHPeuKZHjeIbrP8grRZQ==
+X-Received: by 2002:a17:902:db05:b0:1dd:46ca:18a1 with SMTP id m5-20020a170902db0500b001dd46ca18a1mr3650307plx.34.1709837576535;
+        Thu, 07 Mar 2024 10:52:56 -0800 (PST)
+Received: from [192.168.1.3] (ip68-4-215-93.oc.oc.cox.net. [68.4.215.93])
+        by smtp.gmail.com with ESMTPSA id v10-20020a170902f0ca00b001dd635551f1sm385706pla.255.2024.03.07.10.52.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Mar 2024 10:52:56 -0800 (PST)
+Message-ID: <a25d4d76-a49a-4423-8916-5d7d9303b87a@gmail.com>
+Date: Thu, 7 Mar 2024 10:52:50 -0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240221104025.1306227-4-billy_tsai@aspeedtech.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next 2/2] net: stmmac: dwmac-imx: add support for PHY
+ WOL
+Content-Language: en-US
+To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
+ <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "conor+dt@kernel.org" <conor+dt@kernel.org>,
+ "shawnguo@kernel.org" <shawnguo@kernel.org>,
+ "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+ "kernel@pengutronix.de" <kernel@pengutronix.de>,
+ "festevam@gmail.com" <festevam@gmail.com>,
+ "xiaoning.wang@nxp.com" <xiaoning.wang@nxp.com>,
+ "linux-imx@nxp.com" <linux-imx@nxp.com>,
+ "alexandre.torgue@foss.st.com" <alexandre.torgue@foss.st.com>,
+ "joabreu@synopsys.com" <joabreu@synopsys.com>,
+ "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>
+Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "imx@lists.linux.dev" <imx@lists.linux.dev>,
+ "linux-arm-kernel@lists.infradead.org"
+ <linux-arm-kernel@lists.infradead.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-stm32@st-md-mailman.stormreply.com"
+ <linux-stm32@st-md-mailman.stormreply.com>,
+ GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
+ "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>
+References: <20240306172409.878928-1-catalin.popescu@leica-geosystems.com>
+ <20240306172409.878928-2-catalin.popescu@leica-geosystems.com>
+ <bbe3e611-a310-41f5-a037-4b7d5e914b94@gmail.com>
+ <ddd2f984-e5e7-4708-a013-bfd668794466@leica-geosystems.com>
+From: Florian Fainelli <f.fainelli@gmail.com>
+Autocrypt: addr=f.fainelli@gmail.com; keydata=
+ xsDiBEjPuBIRBACW9MxSJU9fvEOCTnRNqG/13rAGsj+vJqontvoDSNxRgmafP8d3nesnqPyR
+ xGlkaOSDuu09rxuW+69Y2f1TzjFuGpBk4ysWOR85O2Nx8AJ6fYGCoeTbovrNlGT1M9obSFGQ
+ X3IzRnWoqlfudjTO5TKoqkbOgpYqIo5n1QbEjCCwCwCg3DOH/4ug2AUUlcIT9/l3pGvoRJ0E
+ AICDzi3l7pmC5IWn2n1mvP5247urtHFs/uusE827DDj3K8Upn2vYiOFMBhGsxAk6YKV6IP0d
+ ZdWX6fqkJJlu9cSDvWtO1hXeHIfQIE/xcqvlRH783KrihLcsmnBqOiS6rJDO2x1eAgC8meAX
+ SAgsrBhcgGl2Rl5gh/jkeA5ykwbxA/9u1eEuL70Qzt5APJmqVXR+kWvrqdBVPoUNy/tQ8mYc
+ nzJJ63ng3tHhnwHXZOu8hL4nqwlYHRa9eeglXYhBqja4ZvIvCEqSmEukfivk+DlIgVoOAJbh
+ qIWgvr3SIEuR6ayY3f5j0f2ejUMYlYYnKdiHXFlF9uXm1ELrb0YX4GMHz80nRmxvcmlhbiBG
+ YWluZWxsaSA8Zi5mYWluZWxsaUBnbWFpbC5jb20+wmYEExECACYCGyMGCwkIBwMCBBUCCAME
+ FgIDAQIeAQIXgAUCVF/S8QUJHlwd3wAKCRBhV5kVtWN2DvCVAJ4u4/bPF4P3jxb4qEY8I2gS
+ 6hG0gACffNWlqJ2T4wSSn+3o7CCZNd7SLSDOw00ESM+4EhAQAL/o09boR9D3Vk1Tt7+gpYr3
+ WQ6hgYVON905q2ndEoA2J0dQxJNRw3snabHDDzQBAcqOvdi7YidfBVdKi0wxHhSuRBfuOppu
+ pdXkb7zxuPQuSveCLqqZWRQ+Cc2QgF7SBqgznbe6Ngout5qXY5Dcagk9LqFNGhJQzUGHAsIs
+ hap1f0B1PoUyUNeEInV98D8Xd/edM3mhO9nRpUXRK9Bvt4iEZUXGuVtZLT52nK6Wv2EZ1TiT
+ OiqZlf1P+vxYLBx9eKmabPdm3yjalhY8yr1S1vL0gSA/C6W1o/TowdieF1rWN/MYHlkpyj9c
+ Rpc281gAO0AP3V1G00YzBEdYyi0gaJbCEQnq8Vz1vDXFxHzyhgGz7umBsVKmYwZgA8DrrB0M
+ oaP35wuGR3RJcaG30AnJpEDkBYHznI2apxdcuTPOHZyEilIRrBGzDwGtAhldzlBoBwE3Z3MY
+ 31TOpACu1ZpNOMysZ6xiE35pWkwc0KYm4hJA5GFfmWSN6DniimW3pmdDIiw4Ifcx8b3mFrRO
+ BbDIW13E51j9RjbO/nAaK9ndZ5LRO1B/8Fwat7bLzmsCiEXOJY7NNpIEpkoNoEUfCcZwmLrU
+ +eOTPzaF6drw6ayewEi5yzPg3TAT6FV3oBsNg3xlwU0gPK3v6gYPX5w9+ovPZ1/qqNfOrbsE
+ FRuiSVsZQ5s3AAMFD/9XjlnnVDh9GX/r/6hjmr4U9tEsM+VQXaVXqZuHKaSmojOLUCP/YVQo
+ 7IiYaNssCS4FCPe4yrL4FJJfJAsbeyDykMN7wAnBcOkbZ9BPJPNCbqU6dowLOiy8AuTYQ48m
+ vIyQ4Ijnb6GTrtxIUDQeOBNuQC/gyyx3nbL/lVlHbxr4tb6YkhkO6shjXhQh7nQb33FjGO4P
+ WU11Nr9i/qoV8QCo12MQEo244RRA6VMud06y/E449rWZFSTwGqb0FS0seTcYNvxt8PB2izX+
+ HZA8SL54j479ubxhfuoTu5nXdtFYFj5Lj5x34LKPx7MpgAmj0H7SDhpFWF2FzcC1bjiW9mjW
+ HaKaX23Awt97AqQZXegbfkJwX2Y53ufq8Np3e1542lh3/mpiGSilCsaTahEGrHK+lIusl6mz
+ Joil+u3k01ofvJMK0ZdzGUZ/aPMZ16LofjFA+MNxWrZFrkYmiGdv+LG45zSlZyIvzSiG2lKy
+ kuVag+IijCIom78P9jRtB1q1Q5lwZp2TLAJlz92DmFwBg1hyFzwDADjZ2nrDxKUiybXIgZp9
+ aU2d++ptEGCVJOfEW4qpWCCLPbOT7XBr+g/4H3qWbs3j/cDDq7LuVYIe+wchy/iXEJaQVeTC
+ y5arMQorqTFWlEOgRA8OP47L9knl9i4xuR0euV6DChDrguup2aJVU8JPBBgRAgAPAhsMBQJU
+ X9LxBQkeXB3fAAoJEGFXmRW1Y3YOj4UAn3nrFLPZekMeqX5aD/aq/dsbXSfyAKC45Go0YyxV
+ HGuUuzv+GKZ6nsysJw==
+In-Reply-To: <ddd2f984-e5e7-4708-a013-bfd668794466@leica-geosystems.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-On Wed, Feb 21, 2024 at 06:40:25PM +0800, Billy Tsai wrote:
-> The driver support two functions: PWM and Tachometer. The PWM feature can
-> handle up to 16 output ports, while the Tachometer can monitor to up to 16
-> input ports as well. This driver implements them by exposing two kernel
-> subsystems: PWM and HWMON. The PWM subsystem can be utilized alongside
-> existing drivers for controlling elements such as fans (pwm-fan.c),
-> beepers (pwm-beeper.c) and so on. Through the HWMON subsystem, the driver
-> provides sysfs interfaces for fan.
+
+
+On 3/7/2024 1:13 AM, POPESCU Catalin wrote:
+> On 06.03.24 18:41, Florian Fainelli wrote:
+>> [Some people who received this message don't often get email from
+>> f.fainelli@gmail.com. Learn why this is important at
+>> https://aka.ms/LearnAboutSenderIdentification ]
+>>
+>> This email is not from Hexagon’s Office 365 instance. Please be
+>> careful while clicking links, opening attachments, or replying to this
+>> email.
+>>
+>>
+>> On 3/6/24 09:24, Catalin Popescu wrote:
+>>> Add support for PHY WOL capability into dwmac-imx MAC driver.
+>>> This is required to enable WOL feature on a platform where MAC
+>>> WOL capability is not sufficient and WOL capability built into
+>>> the PHY is actually needed.
+>>>
+>>> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
+>>
+>> Nope, this is not about how to do this. You use a Device Tree property
+>> as a policy rather than properly describe your systems capabilities.
+> I'm not sure what policy means in that context.
+> BTW, dwmac-mediatek does the same with binding "mediatek,mac-wol" which
+> is a commit from 03/2022.
+
+Policy here means you want a certain behavior from the OS that is 
+consuming the Device Tree, and that behavior is encoded via a Device 
+Tree property. This is different from describing how the hardware works 
+which does not make any provisions for getting a behavior out of the OS.
+
+> I understand this way of doing became "unacceptable" since then ??
+
+It was not acceptable then, but there is only a limited reviewer time, 
+and it is easy unfortunately to sneak through reviewers.
+
+>>
+>> What sort of Wake-on-LAN do you want to be done by the PHY exactly? Does
+>> the PHY have packet matching capabilities, or do you want to wake-up
+>> from a PHY event like link up/down/any interrupt?
 > 
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> PHY is TI dp83826 and has secure magic packet capability. For the wakeup
+> we rely on a external MCU which is signaled through a PHY's GPIO which
+> toggles only on magic packet reception.
+> We want to wakeup _only_ on magic packet reception.
 
-Applied to hwmon-next. There was an outstanding suggestion:
+Then you need to represent that wake-up GPIO line in the Device Tree, 
+associate it with the PHY's Device Tree node for starters and add in a 
+'wakeup-source' property in the Device Tree.
 
-> > +static int aspeed_pwm_tach_remove(struct platform_device *pdev)
-> > +{
-> > +	struct aspeed_pwm_tach_data *priv = platform_get_drvdata(pdev);
-> > +
-> > +	reset_control_assert(priv->reset);
+Now the PHY driver can know about the existence of a GPIO and it can 
+know the PHY is a system wake-up source, so the driver can call 
+device_set_wakeup_capable().
+
+In user-space you have to configure the network interface with 
+WAKE_MAGICSECURE which needs to propagate to the PHY driver for adequate 
+configuration. Still in user-space you need to make the PHY device 
+wake-up *enabled* by doing:
+
+echo "enable" > /sys/class/net/ethX/attached_phydev/power/wakeup
+
+If both WAKE_MAGICSECURE is enabled and the PHY device in sysfs reports 
+that it is wake-up enabled would you wake-up from the PHY's GPIO. Your 
+PHY driver ought to be modified to check for both
+
+device_wakeup_enabled() and wolopts being non-zero to call 
+enable_irq_wake() on the GPIO interrupt line.
+
+That's how I would go about doing this, yes it's a tad more complicated 
+than adding an ad-hoc Device Tree property, but it's more flexible and 
+it's transposable to other configurations, too. Whether that sort of 
+encoding needs to be in the individual PHY drivers or somewhere in the 
+PHY library can be decided if we have more than one similar 
+configuration to support.
+
 > 
-> This is already done by aspeed_pwm_tach_reset_assert(), looks like
-> aspeed_pwm_tach_remove() can be removed. With that, priv->reset can
-> become a local variable in aspeed_pwm_tach_probe().
+>>
+>> If the former, then you would need to interrogate the PHY driver via
+>> phy_ethtool_get_wol() to figure out what Wake-on-LAN modes it is capable
+>> of supporting and then make a decision whether to prioritize Wake-on-LAN
+>> from the PHY or the MAC, or maybe only the PHY can actually wake-up the
+>> system in your case.
+>>
+> stmmac already calls phy_ethtool_get_wol/phy_ethtool_set_wol through
+> phylink_ethtool_get_wol/phylink_ethtool_set_wol. But needs flag
+> STMMAC_FLAG_USE_PHY_WOL to be set. Otherwise, it will only work with MAC
+> WOL which we don't want. With the new binding we just allow the MAC
+> driver to call the PHY for the WOL capability. This doesn't force WOL to
+> enabled or disabled, as it is still up to ethtool to configure it.
+>> If the latter, then you need to add support for WAKE_PHY to the stmmac
+>> driver.
+> No, we don't want WAKE_PHY, we want WAKE_MAGIC/WAKE_MAGICSECURE which
+> stmmac driver already supports.
 
-I'll be happy to apply a follow-up patch making this change.
-
-Thanks,
-Guenter
+Does not matter, it should be up to user-space to intersect between what 
+the PHY is capable of waking you from, and what the intent is.
+-- 
+Florian
 
