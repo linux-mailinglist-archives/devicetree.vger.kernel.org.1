@@ -1,90 +1,83 @@
-Return-Path: <devicetree+bounces-48942-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48943-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B739387468A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 04:07:17 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5924487468B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 04:08:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5F3B928139B
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 03:07:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6FFCC1C211E0
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 03:08:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D513863D0;
-	Thu,  7 Mar 2024 03:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 440BBCA6B;
+	Thu,  7 Mar 2024 03:08:22 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail78-63.sinamail.sina.com.cn (mail78-63.sinamail.sina.com.cn [219.142.78.63])
+Received: from mail-m6010.netease.com (mail-m6010.netease.com [210.79.60.10])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EED3F6AD7
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 03:07:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.63
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA73963C7;
+	Thu,  7 Mar 2024 03:08:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.79.60.10
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709780833; cv=none; b=TMqMEUeEGkDZNoZIY1a6axY/771IkANcQH459PFIWjOF292C6DF+QIP+R+YztGF2En/BXtWV7fcCGMk5OATC7dR075Jz0C1tunGcycaG0R7QX7ZUDTk1YVJVGXBR2+OwBT5KtCV4JFK3ose8mVNE+cQKKUni6IamXlAc0Hh/hf8=
+	t=1709780902; cv=none; b=M32Toe6ZTRXW4E6bLgwuMa7/3FsTupfePxvPcwjGRep8oEjGE3PFlAYSCs0VtWxKTQ5onGDbr95rCnyAa9hfktwAJzvd5kAbslunEjeX2JO28joTX8hweMIznqTIGO9CiJizPTL2IydWZ9TBjiK+r8G/Fc0vVHRudAyKweJ2Mm8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709780833; c=relaxed/simple;
-	bh=xp/p94MyRNrAJWB5aG3QgKjRNzeXGBCxFqM4ZS0DcHU=;
-	h=From:To:Cc:Subject:Date:Message-Id; b=o9AQd/KrO5wfPsskks1VvLNI/By4c9lLOO1L8oG9hEglKbq/njFB7zJCz6n/csH+Wa51A0ndC/SVcKCEIzQMP076QpUIqEtOlhx6hHB34txH1aedC06xpc/2USJG7E9jhKwSoct0v99nn6usz4JTWb0YnnEG3xukWUcmayILHjY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
-Received: from unknown (HELO zy-virtual-machine.localdomain)([116.232.53.71])
-	by sina.net (10.75.30.239) with ESMTP
-	id 65E92EC7000245C2; Thu, 7 Mar 2024 11:04:40 +0800 (CST)
-X-Sender: zhangyi@everest-semi.com
-X-Auth-ID: zhangyi@everest-semi.com
-Authentication-Results: sina.net;
-	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
-	 dkim=none header.i=none;
-	 dmarc=none action=none header.from=zhangyi@everest-semi.com
-X-SMAIL-MID: D65A2737F131438A9504E79278B04227
-X-SMAIL-UIID: D65A2737F131438A9504E79278B04227-20240307-110440
-From: Zhang Yi <zhangyi@everest-semi.com>
-To: alsa-devel@alsa-project.org,
-	broonie@kernel.org,
-	devicetree@vger.kernel.org
-Cc: tiwai@suse.com,
-	amadeuszx.slawinski@linux.intel.com,
-	yangxiaohua@everest-semi.com,
-	zhuning@everest-semi.com,
-	zhangyi@everest-semi.com
-Subject: [PATCH v1 2/2] ASoC: codecs: ES8326: change support for ES8326
-Date: Thu,  7 Mar 2024 11:04:38 +0800
-Message-Id: <20240307030438.23228-1-zhangyi@everest-semi.com>
-X-Mailer: git-send-email 2.17.1
+	s=arc-20240116; t=1709780902; c=relaxed/simple;
+	bh=kvj3ANri2yPy3uMgzwhpUyEVGlN5bp99aSZhUob99TU=;
+	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
+	 MIME-Version; b=Y48rrO4sixgi98nTi8eVLgZrPFQXHaZ4/aKKTJS1/zsAg2tlXnXXElS1eqCcZeH0tGTUC71JU2y8cleeKmkAtjjqDOnUZNxzo7+/hzVobOucgDV2gC+L/OhSob06lQRZJ2PDa+Xjlv+fMzGYoRI9vD56JNqzRjj4iK1tr2oFO1g=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn; spf=pass smtp.mailfrom=jmu.edu.cn; arc=none smtp.client-ip=210.79.60.10
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=jmu.edu.cn
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=jmu.edu.cn
+Received: from amadeus-Vostro-3710.lan (unknown [IPV6:240e:3b3:2c01:4970:b7c4:f23e:200b:4ae6])
+	by smtp.qiye.163.com (Hmail) with ESMTPA id 2533E7E012D;
+	Thu,  7 Mar 2024 11:08:04 +0800 (CST)
+From: Chukun Pan <amadeus@jmu.edu.cn>
+To: dmitry.baryshkov@linaro.org
+Cc: amadeus@jmu.edu.cn,
+	andersson@kernel.org,
+	conor+dt@kernel.org,
+	devicetree@vger.kernel.org,
+	konrad.dybcio@linaro.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	linux-arm-msm@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	robh@kernel.org
+Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: ipq6018: add 1.2GHz CPU Frequency
+Date: Thu,  7 Mar 2024 11:08:01 +0800
+Message-Id: <20240307030801.93061-1-amadeus@jmu.edu.cn>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <CAA8EJpojj=3dv+FDm1GwXQ4+DPLncaZ6_6LwWQV2T8JCFpR16g@mail.gmail.com>
+References: <CAA8EJpojj=3dv+FDm1GwXQ4+DPLncaZ6_6LwWQV2T8JCFpR16g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-HM-Spam-Status: e1kfGhgUHx5ZQUpXWQgPGg8OCBgUHx5ZQUlOS1dZFg8aDwILHllBWSg2Ly
+	tZV1koWUFITzdXWS1ZQUlXWQ8JGhUIEh9ZQVlDGUxLVksYSE9JSxoeGBlMSlUTARMWGhIXJBQOD1
+	lXWRgSC1lBWUlPSx5BSBlIQUkYS0pBT0JMS0EZTBhPQR1JSB5BSUtLGUFPGh5NWVdZFhoPEhUdFF
+	lBWU9LSFVKSktDSEhVSktLVUtZBg++
+X-HM-Tid: 0a8e16e1dbaa03a2kunm2533e7e012d
+X-HM-MType: 10
+X-HM-Sender-Digest: e1kMHhlZQR0aFwgeV1kSHx4VD1lBWUc6OiI6Qyo*PzMJIUJOD0hRKRMv
+	EkhPC0hVSlVKTEtCTENLQ0NPQkpKVTMWGhIXVRoWGh8eDgg7ERYOVR4fDlUYFUVZV1kSC1lBWUlP
+	Sx5BSBlIQUkYS0pBT0JMS0EZTBhPQR1JSB5BSUtLGUFPGh5NWVdZCAFZQUpNTUI3Bg++
 
-> > On Wed, Mar 06, 2024 at 09:34:14AM +0800, Zhang Yi wrote:
-> > > Removed mic1-src and mic2-src. and changed default value
-> > > of interrupt-clk
-> >
-> > We could do with a better changelog here.
-> >
-> > > - everest,mic1-src:
-> > > - $ref: /schemas/types.yaml#/definitions/uint8
-> > > - description:
-> > > - the value of reg 2A when headset plugged.
-> > > - minimum: 0x00
-> > > - maximum: 0x77
-> > > - default: 0x22
-> > > -
-> > > - everest,mic2-src:
-> > > - $ref: /schemas/types.yaml#/definitions/uint8
-> > > - description:
-> > > - the value of reg 2A when headset unplugged.
-> > > - minimum: 0x00
-> > > - maximum: 0x77
-> > > - default: 0x44
-> >
-> > This will make any DTs using the properties instantly buggy. I believe
-> > there's a way of marking properties as deprecated, you should use that
-> > instead. Or we could just leave the properties there and ignore them at
-> > runtime.
-> 'deprecated: true' is the way.
+Hi, Dmitry
+> Then the commit message should be changed, because you are enabling
+> 1.5 GHz only for non-IPQ6000 SoCs. This patch has no effect on
+> IPQ6000.
 
-OK.I will modify the properties, thank you for your support
+As I said in another reply, there are some ipq6000 SoCs that will be
+recognized by the driver as ipq6018 and fused 1.5GHz.
+
+Thanks,
+Chukun
+
+-- 
+2.25.1
+
 
