@@ -1,108 +1,262 @@
-Return-Path: <devicetree+bounces-49176-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49177-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E57928751F9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:36:46 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E26A87520E
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:39:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B21C287AFD
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:36:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 401671C2495D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:39:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C2A4312C7F5;
-	Thu,  7 Mar 2024 14:36:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 63C691E867;
+	Thu,  7 Mar 2024 14:39:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="ggwxNMml"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="KUvVw+Y0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 440631DFD1
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 14:36:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 791801B96E;
+	Thu,  7 Mar 2024 14:39:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709822172; cv=none; b=TH/hYJ3ozhpIWHbqZSkK/YfTo4eJ063e+jMl0FAg7+rT5ZybnCWvPM7jVTdIfRysOiL2PlM6Eg7/RgjGVRou7dwnT6PDOlrJXqqjMLFjM+owABvJqRrWEDela8nIsugOu164XQCifTllx4vPTf7DZTG/MCA/Df9rwCIr+Jr9+1E=
+	t=1709822368; cv=none; b=Mp263hkAvLv78rWwUdPze7jM+Njf2sCRsp7JMQOTaoQOE/Ur7N0HHgax+MUZgbw25o1vccN8a1G6e8PaYDGv7CTAUwPMs/oTIY632VSJXzjOMZboWsGXLx7IE54tq+lzjhLpHgOBHOHtLyxaFcvAbCz10rRkwjf53BMA00yuIh8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709822172; c=relaxed/simple;
-	bh=x02DuFFFXqezeMPeX7N/K3LTJ7TADryYv7HqzE4nsfQ=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=WtTL4BT1T7fwS6TukifsvRRVEZYj3haVLhky5WVE06VM0rnbkSEyMxOs3d+ZQFa6RTS8ykWa//C0KtWg755tXfOLkR2KdTfA9vkp4Ua4frazcyvv5uwE4nUOXE17a9xthVEpD3muRao9kjaBPV4ZW7BeZiW+YaAe4Wp94AU1Oj4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=ggwxNMml; arc=none smtp.client-ip=209.85.160.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f171.google.com with SMTP id d75a77b69052e-42ee0c326e8so311521cf.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 06:36:09 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1709822169; x=1710426969; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=t6cjTaPA3JGO0htGi6Pjtb9XftoGgbKI0J0q9NK3+w4=;
-        b=ggwxNMmlVtIUpeUHoktMGiJt6NHEuOQM92GBz/UjBrcqAbPZLSV+lcvUX5vsIDLle4
-         Rpr4J9fD1HtjBPgMylJbxOHmZQVoHVsQqINPQlNrSvHajj/yos4lsrA/vjnvom048meu
-         pG91huk7uC+PjD+3hqOSoGZFxGRDqopuTYDzFLp8alN71qJ9OicVc1eOcD7PfkMtsSm+
-         piukZftKQTn6WFx6U4wQU3oqAWLmMpVIWdGhpRsAnF+v3QdgU+AQuO592Wam7FYcwPr+
-         US2rwNwN9TBdAmIzmggJ/B5KNS0wJ+yo264fpVdQd8Se4FRf9qMvFMTs/hMGpIQZITQK
-         wKIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709822169; x=1710426969;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=t6cjTaPA3JGO0htGi6Pjtb9XftoGgbKI0J0q9NK3+w4=;
-        b=YMnXiiYeoBV2aSPo4R90h0/h4+m3TRCYmVZRtUrOnAKEizrS2zYqqlxQWvpzqi9cBs
-         YfLsJRfmwL2CucU41bU77gDW29CBN5K7Rj8VwJac+AQu1FP0FmB2kGKDrlvrx/rIDCat
-         eRx8+x3593m5Yrsh6gWq1cavXMJ2nqgbkkfYC3d0AbrterFjNOhjn1gXGyEvHqk9BHYe
-         x7/yxUQdmy5hTODVLiX3cyZZyv9VioG7mBUbDb+s1f3K5WXf4sZ3DVNoW26/l9jeoLFi
-         OzXrYFWd3GZAao1TA+Twb9izhw+DSXM+8ZGuThCpjg6CIKA7jVebw4b3I+pST3SaEEhd
-         YlLw==
-X-Forwarded-Encrypted: i=1; AJvYcCXjco4ZeQ9t5po1hiH4uY/o3iRpK9aKEW+m2Sn44aa1j+5DeqfuidAFTV/09pjF/OuCvYDSOR0SvHO/Szp92r1XTrmY6gFG3seR0w==
-X-Gm-Message-State: AOJu0Yz6bzXmEvL3JIwwuQAL8KOT5Bpv6TXzxjrNPFgf6Q3aCo83e/eu
-	949wlUJnUIxZEO20Y13QukLdJsX0GBScEfw0COgujaJsx3wASxcK2x4bdvEmUDfmtSQj3cwcV/O
-	Xlqen97ylc0ylZXaIK0D+g00kL+lIqZiVtzhi
-X-Google-Smtp-Source: AGHT+IFTbUYTdln+HN5bHEZragkgBfryVrLW7yxjMefRnXhcn7EKiTuuupTzwNyjjzX/gNPojrKZtcxTSe69tmWWdIE=
-X-Received: by 2002:a05:622a:1c8:b0:42f:a3c:2d4e with SMTP id
- t8-20020a05622a01c800b0042f0a3c2d4emr266044qtw.15.1709822168971; Thu, 07 Mar
- 2024 06:36:08 -0800 (PST)
+	s=arc-20240116; t=1709822368; c=relaxed/simple;
+	bh=1wda9rVFemYUpjfFp/MVZ9nQg/5x5u0oC4XBV/jPWOA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=i3Kgy7IldpVvEL+PdXmRahd7U8im/McxGJ2wTzfu207IDseQQ+PAw//PrkauBGHI8fq8/3zFeMYM/WMzTjIcIGao2caHO0dVADbwrh7W7UcY0Y2T5NVwfiuqJoddbabkXIf/ZMFUQICybV1zb0OP5qHffKDCYilfG3xkMXqs5BY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=KUvVw+Y0; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id D65D3E000D;
+	Thu,  7 Mar 2024 14:39:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1709822357;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=DyyvLt3PFqGEcHS9MBOofH4aGB4ndkaOSLBfw95+8NY=;
+	b=KUvVw+Y01jMAdb7/WuVobY4KF3yUKmM23k9AgcVjHc/v5OwMpPfYQ4ZgVXW3tRHpjZGuPi
+	938qrKHa+lMcaX+rAnjITZIzrZWJLGP0FI/6LyDu6CZdYfR3Ig9b3SzffXnNEDNyVmVKGi
+	UUuO75aY3JPLLly0cdYMCCxDVzR+LQ8W+CPLo2J96wObP+emCBrFhPMEB/CUpC/zRf7sQ4
+	TSipvoVusU1LiQXGZw+6Et2ykxxFnvj689jZgGU/bsjVSy/iVgJn0Kz2AnXQf3dICGHhEe
+	GtZrD40tK6eSXTpacy4F6dnwfRzpyhDXLI1i7c7AzPI7y0k48UOIbCKJQZA/BA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240307094433.3440431-1-xuxinxiong@huaqin.corp-partner.google.com>
-In-Reply-To: <20240307094433.3440431-1-xuxinxiong@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@google.com>
-Date: Thu, 7 Mar 2024 06:35:53 -0800
-Message-ID: <CAD=FV=U8wdT_5k-yrLVpmh=q4k18LntqujK7Mw88TdweBXCPgg@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel-edp: Add several generic edp panels
-To: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	hsinyi@google.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 07 Mar 2024 15:39:15 +0100
+Message-Id: <CZNLFUH8WWIA.MAUN8E53X7PK@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v4 3/9] usb: cdns3-ti: move reg writes from probe into
+ ->runtime_resume()
+Cc: "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Kevin
+ Hilman" <khilman@kernel.org>, "Alan Stern" <stern@rowland.harvard.edu>,
+ <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
+ <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+To: "Roger Quadros" <rogerq@kernel.org>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Peter Chen" <peter.chen@kernel.org>, "Pawel
+ Laszczak" <pawell@cadence.com>, "Nishanth Menon" <nm@ti.com>, "Vignesh
+ Raghavendra" <vigneshr@ti.com>, "Tero Kristo" <kristo@kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20240307-j7200-usb-suspend-v4-0-5ec7615431f3@bootlin.com>
+ <20240307-j7200-usb-suspend-v4-3-5ec7615431f3@bootlin.com>
+ <d1ca5d29-8ef4-4d7f-b1c8-bcb361e6c351@kernel.org>
+In-Reply-To: <d1ca5d29-8ef4-4d7f-b1c8-bcb361e6c351@kernel.org>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-Hi,
+Hello Roger,
 
-On Thu, Mar 7, 2024 at 1:44=E2=80=AFAM Xuxin Xiong
-<xuxinxiong@huaqin.corp-partner.google.com> wrote:
+On Thu Mar 7, 2024 at 1:31 PM CET, Roger Quadros wrote:
+> Hi,
 >
-> Add support for the following 2 panels:
-> 1. BOE NT116WHM-N44
-> 2. CMN N116BCA-EA1
+> On 07/03/2024 11:55, Th=C3=A9o Lebrun wrote:
+> > The hardware initialisation register write sequence is only used at
+> > probe. Move it from being done at explicitely at probe to being done
+> > implicitely by pm_runtime_get_sync() that calls ->runtime_resume().
 >
-> Signed-off-by: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
-> ---
->  drivers/gpu/drm/panel/panel-edp.c | 2 ++
->  1 file changed, 2 insertions(+)
+> explicitly / implicitly
+>
+> >=20
+> > Keep devicetree parsing in probe and add a new field in the private
+> > struct to remember the USB2 refclk rate code computation result.
+> >=20
+> > This opens the door to having the init sequence being executed later
+> > down the road, at system-wide resume for example. This is NOT currently
+> > happening because runtime PM is disabled at suspend without the
+> > refcount being affected.
+> >=20
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  drivers/usb/cdns3/cdns3-ti.c | 90 +++++++++++++++++++++++++-----------=
+--------
+> >  1 file changed, 52 insertions(+), 38 deletions(-)
+> >=20
+> > diff --git a/drivers/usb/cdns3/cdns3-ti.c b/drivers/usb/cdns3/cdns3-ti.=
+c
+> > index 5945c4b1e11f..4c8a557e6a6f 100644
+> > --- a/drivers/usb/cdns3/cdns3-ti.c
+> > +++ b/drivers/usb/cdns3/cdns3-ti.c
+> > @@ -57,6 +57,7 @@ struct cdns_ti {
+> >  	unsigned vbus_divider:1;
+> >  	struct clk *usb2_refclk;
+> >  	struct clk *lpm_clk;
+> > +	int usb2_refclk_rate_code;
+> >  };
+> > =20
+> >  static const int cdns_ti_rate_table[] =3D {	/* in KHZ */
+> > @@ -90,10 +91,8 @@ static int cdns_ti_probe(struct platform_device *pde=
+v)
+> >  	struct device *dev =3D &pdev->dev;
+> >  	struct device_node *node =3D pdev->dev.of_node;
+> >  	struct cdns_ti *data;
+> > -	int error;
+> > -	u32 reg;
+> > -	int rate_code, i;
+> >  	unsigned long rate;
+> > +	int error, i;
+> > =20
+> >  	data =3D devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> >  	if (!data)
+> > @@ -133,7 +132,9 @@ static int cdns_ti_probe(struct platform_device *pd=
+ev)
+> >  		return -EINVAL;
+> >  	}
+> > =20
+> > -	rate_code =3D i;
+> > +	data->usb2_refclk_rate_code =3D i;
+> > +	data->vbus_divider =3D device_property_read_bool(dev, "ti,vbus-divide=
+r");
+> > +	data->usb2_only =3D device_property_read_bool(dev, "ti,usb2-only");
+> > =20
+> >  	pm_runtime_enable(dev);
+> >  	error =3D pm_runtime_get_sync(dev);
+> > @@ -142,40 +143,6 @@ static int cdns_ti_probe(struct platform_device *p=
+dev)
+> >  		goto err;
+> >  	}
+> > =20
+> > -	/* assert RESET */
+> > -	reg =3D cdns_ti_readl(data, USBSS_W1);
+> > -	reg &=3D ~USBSS_W1_PWRUP_RST;
+> > -	cdns_ti_writel(data, USBSS_W1, reg);
+> > -
+> > -	/* set static config */
+> > -	reg =3D cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> > -	reg &=3D ~USBSS1_STATIC_PLL_REF_SEL_MASK;
+> > -	reg |=3D rate_code << USBSS1_STATIC_PLL_REF_SEL_SHIFT;
+> > -
+> > -	reg &=3D ~USBSS1_STATIC_VBUS_SEL_MASK;
+> > -	data->vbus_divider =3D device_property_read_bool(dev, "ti,vbus-divide=
+r");
+> > -	if (data->vbus_divider)
+> > -		reg |=3D 1 << USBSS1_STATIC_VBUS_SEL_SHIFT;
+> > -
+> > -	cdns_ti_writel(data, USBSS_STATIC_CONFIG, reg);
+> > -	reg =3D cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> > -
+> > -	/* set USB2_ONLY mode if requested */
+> > -	reg =3D cdns_ti_readl(data, USBSS_W1);
+> > -	data->usb2_only =3D device_property_read_bool(dev, "ti,usb2-only");
+> > -	if (data->usb2_only)
+> > -		reg |=3D USBSS_W1_USB2_ONLY;
+> > -
+> > -	/* set default modestrap */
+> > -	reg |=3D USBSS_W1_MODESTRAP_SEL;
+> > -	reg &=3D ~USBSS_W1_MODESTRAP_MASK;
+> > -	reg |=3D USBSS_MODESTRAP_MODE_NONE << USBSS_W1_MODESTRAP_SHIFT;
+> > -	cdns_ti_writel(data, USBSS_W1, reg);
+> > -
+> > -	/* de-assert RESET */
+> > -	reg |=3D USBSS_W1_PWRUP_RST;
+> > -	cdns_ti_writel(data, USBSS_W1, reg);
+> > -
+> >  	error =3D of_platform_populate(node, NULL, NULL, dev);
+> >  	if (error) {
+> >  		dev_err(dev, "failed to create children: %d\n", error);
+> > @@ -211,6 +178,52 @@ static void cdns_ti_remove(struct platform_device =
+*pdev)
+> >  	platform_set_drvdata(pdev, NULL);
+> >  }
+> > =20
+> > +static int cdns_ti_runtime_resume(struct device *dev)
+> > +{
+> > +	struct cdns_ti *data =3D dev_get_drvdata(dev);
+> > +	u32 reg;
+> > +
+> > +	/* assert RESET */
+> > +	reg =3D cdns_ti_readl(data, USBSS_W1);
+> > +	reg &=3D ~USBSS_W1_PWRUP_RST;
+> > +	cdns_ti_writel(data, USBSS_W1, reg);
+> > +
+> > +	/* set static config */
+> > +	reg =3D cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> > +	reg &=3D ~USBSS1_STATIC_PLL_REF_SEL_MASK;
+> > +	reg |=3D data->usb2_refclk_rate_code << USBSS1_STATIC_PLL_REF_SEL_SHI=
+FT;
+> > +
+> > +	reg &=3D ~USBSS1_STATIC_VBUS_SEL_MASK;
+> > +
+> > +	if (data->vbus_divider)
+> > +		reg |=3D 1 << USBSS1_STATIC_VBUS_SEL_SHIFT;
+> > +
+> > +	cdns_ti_writel(data, USBSS_STATIC_CONFIG, reg);
+> > +	reg =3D cdns_ti_readl(data, USBSS_STATIC_CONFIG);
+> > +
+> > +	/* set USB2_ONLY mode if requested */
+> > +	reg =3D cdns_ti_readl(data, USBSS_W1);
+> > +
+> > +	if (data->usb2_only)
+> > +		reg |=3D USBSS_W1_USB2_ONLY;
+> > +
+> > +	/* set default modestrap */
+> > +	reg |=3D USBSS_W1_MODESTRAP_SEL;
+> > +	reg &=3D ~USBSS_W1_MODESTRAP_MASK;
+> > +	reg |=3D USBSS_MODESTRAP_MODE_NONE << USBSS_W1_MODESTRAP_SHIFT;
+> > +	cdns_ti_writel(data, USBSS_W1, reg);
+> > +
+> > +	/* de-assert RESET */
+> > +	reg |=3D USBSS_W1_PWRUP_RST;
+> > +	cdns_ti_writel(data, USBSS_W1, reg);
+>
+> I don't think USB controller requires a reset and re-init between
+> runtime suspend/resume.
+>
+> What you need is reset/re-init during system Resume on certain platforms.
+> So you should move this part of code into a helper function and call it
+> from .probe() and .system_resume()
 
-The patch looks OK, but please resend with a more unique subject. I
-think we've already landed more than one patch with the subject "Add
-several generic edp panels". Since this is just two panels, maybe just
+Runtime resume is being called at probe() and system-wide resume. See
+our runtime_resume() implementation as that helper function you are
+describing.
 
-drm/panel-edp: Add BOE NT116WHM-N44 and CMN N116BCA-EA1
+A previous revision did what you are recommending. We leaned towards the
+current version. See:
+https://lore.kernel.org/lkml/7h34wxfmwn.fsf@baylibre.com/
 
--Doug
+Also, assuming we enable runtime PM, a reset and re-init after runtime
+suspend would be the right thing to do anyways. My reading of
+drivers/pmdomain/core.c tells me that if our device goes to runtime
+suspend, domains will be shut down. Our controller will be reset and
+we'll need to re-init it. The GENPD_FLAG_RPM_ALWAYS_ON flag is of
+interest to avoid the PD to be shut down during runtime PM.
+
+Regards,
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
