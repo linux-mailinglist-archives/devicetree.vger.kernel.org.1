@@ -1,178 +1,114 @@
-Return-Path: <devicetree+bounces-49055-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49056-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12645874C01
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 11:10:44 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B830874C0D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 11:13:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31EF01C2177D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 10:10:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A51DF1F22DEF
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 10:13:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1DFDF85268;
-	Thu,  7 Mar 2024 10:09:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F82D83CAE;
+	Thu,  7 Mar 2024 10:13:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ko0L1xpZ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IiG00BKT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f178.google.com (mail-vk1-f178.google.com [209.85.221.178])
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69E3E42047;
-	Thu,  7 Mar 2024 10:09:51 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8FF8284FA7
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 10:13:13 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709806193; cv=none; b=hX1i7Mf1ls0W+lmzYQLEc1dQbYuOT1AgaJbtUpiLga1XXvgM8MfrlXH5iiCW8leBItZn2kG2DbTr7MvscH7cZaCD30yQ6xBFI3Y9G0t7hgyn+QpCISae1ZMucEvmQnTxdAjeBdAg+SdZvfjyH1W5MfZ3xg5LIl2rdAAfyKUONr0=
+	t=1709806395; cv=none; b=VMMHVqh+kv6yFaH2+mu1+TwK80zY3gaR9UaJtqSuyerSZ1OdKdKwQfmLwNrvnNNJVrJNGgBpCh6yGQjQOKS+fWOGPmZ/4N5rHX2VmXT2mvhBpeJ6tWW4cmql2BIKVfZJJ+aaUzzHq02w14n3M2ZvO2VloTkXpQZ77wmXt7cfbp4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709806193; c=relaxed/simple;
-	bh=Z+XySDX0I1MFB4UakJ/SQ8XJmBT0WkwC0syBLztsRw0=;
+	s=arc-20240116; t=1709806395; c=relaxed/simple;
+	bh=8YdxXpNkuEwyV5gctfJURbHnkvOwyYECpGB8fspck6k=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=qGM9kcVzxQBJ6Rdz5PZdXwfCN9ANbAMIa1qj3MYCkKbb3fNhRDcvYsFk9fJnaCnd18St38nxNFn5wfSAyT+eOJexMRqdVsYvBeOhuBhvWuIWzTt5bIERLrGPZzIh0zm8EaqazX51RqCMezIT9bXZQSp4dKHNZiITG6DVDAbyfy8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ko0L1xpZ; arc=none smtp.client-ip=209.85.221.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f178.google.com with SMTP id 71dfb90a1353d-4d33b077ec9so207880e0c.0;
-        Thu, 07 Mar 2024 02:09:51 -0800 (PST)
+	 To:Cc:Content-Type; b=EnsybNqstF7tZQNpPFMBu3uM94AZbumzyIxgTxXVuegjbjY3EYovxDokbGkO9bhBpBdidVHdNC4eqg4pXRSEqaulBDIfxP5Ay5ZXwqS9Fmk+6MZljqy3JUJBlAYtIGhRZVrMpU1s0VHuU30ybx+FxCVmu7j1H4OmQU6MsZIV/Kc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IiG00BKT; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-609eb2cbeccso6754497b3.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 02:13:13 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709806190; x=1710410990; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QR8Uqmn7JuK/Fgsx24JIz7SwVeJRfKgv1wRP9GFweFE=;
-        b=ko0L1xpZ3s35z78cOVWDo7JNwdY7udMDkNxkhjqHqPdlTN67JKHBlu+5T5aoLLjnPY
-         7fZMFAZ/QYNcLcOS+qPS6/sxCQabbwRolNCquDw9VOuZ4PLEhpDRP6GI8T3CnhykiJqi
-         dLxFVjHx4U05B659XHaJA2zlBCUePL+z94jkx+rZK+ZE+jF9vsudemvHczwf98evxkq5
-         WVeC92cO9xvmLT0WXCboh+R1BOmYigFnZeux3osMjH4j8KZwwbp4OsFR61DFimegQD+N
-         KQEyO0Kifxjb1Lh66i2AcFpQvMgTMkEFfBsym+IYO36Riggp3q6As0Iqf+7pCCX358PM
-         i77A==
+        d=linaro.org; s=google; t=1709806392; x=1710411192; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=o7aOhcZHxTQGvbokl+x//A8IHaimRa07w+fuZLXjuzg=;
+        b=IiG00BKTYqdKru/iPp/SEnlrGj3mAHvBtm+4xOpcTNacs0ZpT3J3djiAIOkZFWyETu
+         DatCWojm13AuDqOmMhpN8KPnVHe73PYpsjrHfAXkHbdSgbp1Uv05r93VtZDIzc7kIHdZ
+         BNJwkny43tMlNHxFz4Hl9Sqh7ni/1TjpVBS1Bs6VeNyVO0GGc7MPHmjnMmYCAXOFQ0Fj
+         r9CfRzekTLXOg2yaz1KExr4Cz7j7tDDgMwPI4dH7k75BpZRBZUolLkyNl13U5lPYvQKo
+         C1Cwhze+mqwI2BKwA6ViLbmlXIwCaGAx6/9S4p4Y1C4P0TF0WcHFIrYO6W17SE84ja7P
+         7LCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709806190; x=1710410990;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QR8Uqmn7JuK/Fgsx24JIz7SwVeJRfKgv1wRP9GFweFE=;
-        b=uhMgKpqwaNdHtyAybnt5944P5WWjpSzFRe1T/IdoR4tJ+DOjwo/xtu4rvYn0pZRsmZ
-         kluFTNTzWUEKzg1irrJQtNmZEDfxMRpAjdgkU7Jl5MsVnOqJDf+rQb6uZytdr6k+N6GX
-         ikt1odITqXmMSbABNW7m4lTknoZuhpchjJYYxEe1pmbEAhiI4WlKcdVlqQBqBicBraUB
-         QRUGKO6GENprSC8F5sXcRlr+2ilc8jlA23ec6rSYjL+jYSP3jSk2ey+Tpy32qCRquuZr
-         24OtMMReXi/6p/Fc+iJDktjduq1WG5vBgIPDe+CK+MAU1N40jnncURBIhJ0Q6zgt2Je3
-         Hm8w==
-X-Forwarded-Encrypted: i=1; AJvYcCULHZ+SJP7HrRe1fiEW41njmb/DI6MDFSt5GgKSIzX+jpU4RXg1HY0Ph0zX7YaT0b3KRg+TMe9zoxD6lOzuHzHxrBOQB4Q858fUv2fNVm4MXOK7sbijxIDETFBWYLqaHfBfVKq55tJ2TvgML7fW0FJqDN36zXB8HLR8oHPD1qJxEJ+eSHarWeBSCpmqyxO7T9sardDWm2e36qeO5f/Kv5Ez5XRA3Gi27vN+
-X-Gm-Message-State: AOJu0Yymz5OxL1rXVW7bVS9tC4237rikxE0j1Te1vaAT37SrhBMhRkyA
-	iKJVoZrhOhDo5vDwltiPINM5ZR18ksEjnYoygPECJNUQ68wGgkMqUciZfkEZc3benXNrA82CAo4
-	zkHWUoa8gt72UnuN3t+DbMaw1Sgs=
-X-Google-Smtp-Source: AGHT+IFQunO5Ddr5/x6qr7CHbsVb3yfVhNAGP4GKq2A+bjpvt6jiw5DKWscr7mb1kQ69tcjliN1BbAY+GJHboIDxVDA=
-X-Received: by 2002:a05:6122:c89:b0:4d3:313b:902a with SMTP id
- ba9-20020a0561220c8900b004d3313b902amr8280826vkb.12.1709806189809; Thu, 07
- Mar 2024 02:09:49 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709806392; x=1710411192;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=o7aOhcZHxTQGvbokl+x//A8IHaimRa07w+fuZLXjuzg=;
+        b=FzCh+CMTrLkeGeDt5guRJ6Nu4Eoum5fH+VgPyG27MSuzohMrO75ZdN2t4C+9qOkDbl
+         K6ykipcpsvMf9zf+15bl5veJFTSGeRxBpShsZM5fdXCfWhV8mOWHi5n/3HOoKe6NjyUZ
+         gW83nCUDDQGOdwwmF9TmEccGlz/Sc7BE0RmtUymhedW5hszvUmAxz44I9peIemAwSMrA
+         8wwbUcosePW7PwNatMwZMxwCsDtLMMfzzRISPV3oxxqSEh3jB2qEHRagFIxLO4HBxGjL
+         J2ab8ySTWfD+iflnldgqRdiRn1x6OyixjNr7BM00Frm8qpH0epOYk+ohIyNF0Gbb0v10
+         ehFg==
+X-Forwarded-Encrypted: i=1; AJvYcCVPxeA3vT48YBy699TGRunmQy4tsYywZ/ZKcRZpOsVGvBtW/BNb+f5937u7y4rGfDWNFMiPjxtuaKicxyhKw5noe58Ls5V36XPxwQ==
+X-Gm-Message-State: AOJu0YzM3eKJMnTUPWdqUwV+55MkBEsvoqqwROIfNf5++ZPC599I+xvT
+	CfkMOkJx100J7agoGhFRekVnreYHS4A/HuHC2zWGVcyfmFcjgSu0iGwuRUWpT499usOVHCLVbpJ
+	JIhC7HptNKSWx09/afwmmPXuOUsqeLD1r4/dP2Q==
+X-Google-Smtp-Source: AGHT+IHl5CeapJNGYmG4jcbrf0/CGta/u9Vx0DjHeSECpyJ/76TzCk8HkHkekirsWc2ykxiPbxF/R8BtaCyvIzxPrNg=
+X-Received: by 2002:a25:3009:0:b0:dc6:ff32:aae2 with SMTP id
+ w9-20020a253009000000b00dc6ff32aae2mr12290559ybw.63.1709806392540; Thu, 07
+ Mar 2024 02:13:12 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240305171600.328699-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdW0MxqxRwULhLsRtnYXYK8NYxq-uU7E2BscbvPh3axYFg@mail.gmail.com>
- <CA+V-a8vKo8ADB_R==vgBhVpSH43DOzdeA_NhZ1BCBdNuam3UmQ@mail.gmail.com>
- <CAMuHMdWX=OZJ3DE0vb4=k=6yH_L5JhusLRpVqJkJ0Xv3oT8_TQ@mail.gmail.com> <CA+V-a8uq=gw0_EVT3_CZD0TO+-DnSqXJtFakFcNWHOfq58g4aA@mail.gmail.com>
-In-Reply-To: <CA+V-a8uq=gw0_EVT3_CZD0TO+-DnSqXJtFakFcNWHOfq58g4aA@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 7 Mar 2024 10:08:43 +0000
-Message-ID: <CA+V-a8vunmsUfGkFO30nwvqFkiks7vceLgG1jo7TcsFajeckmQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: serial: renesas,scif: Document R9A09G057 support
-To: Geert Uytterhoeven <geert@linux-m68k.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <CAA8EJpp++=NLZVv7we3Cwz+G7vL9xFoXqHgsMyQZ8tgdNHKcyQ@mail.gmail.com>
+ <20240307100221.709254-1-amadeus@jmu.edu.cn>
+In-Reply-To: <20240307100221.709254-1-amadeus@jmu.edu.cn>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 7 Mar 2024 12:13:01 +0200
+Message-ID: <CAA8EJprgWiOyAk5rpaobsXET+yE1g=snaRqcW33hXDuu7DPcoQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: ipq6018: add 1.2GHz CPU Frequency
+To: Chukun Pan <amadeus@jmu.edu.cn>
+Cc: andersson@kernel.org, conor+dt@kernel.org, devicetree@vger.kernel.org, 
+	konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org, 
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, robh@kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 
-Hi Geert,
-
-On Wed, Mar 6, 2024 at 10:21=E2=80=AFAM Lad, Prabhakar
-<prabhakar.csengg@gmail.com> wrote:
+On Thu, 7 Mar 2024 at 12:02, Chukun Pan <amadeus@jmu.edu.cn> wrote:
 >
-> Hi Geert,
+> Hi, Dmitry
+> > So... Do you consider this SoC to be IPQ6018 or IPQ6000?
 >
-> On Wed, Mar 6, 2024 at 10:15=E2=80=AFAM Geert Uytterhoeven <geert@linux-m=
-68k.org> wrote:
-> >
-> > Hi Prabhakar,
-> >
-> > On Wed, Mar 6, 2024 at 11:06=E2=80=AFAM Lad, Prabhakar
-> > <prabhakar.csengg@gmail.com> wrote:
-> > > On Wed, Mar 6, 2024 at 9:53=E2=80=AFAM Geert Uytterhoeven <geert@linu=
-x-m68k.org> wrote:
-> > > > On Tue, Mar 5, 2024 at 6:16=E2=80=AFPM Prabhakar <prabhakar.csengg@=
-gmail.com> wrote:
-> > > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > >
-> > > > > Document support for the Serial Communication Interface with FIFO=
- (SCIF)
-> > > > > available in the Renesas RZ/V2H(P) (R9A09G057) SoC. The SCIF inte=
-rface in
-> > > > > the Renesas RZ/V2H(P) is similar to that available in the RZ/G2L
-> > > > > (R9A07G044) SoC, with the only difference being that the RZ/V2H(P=
-) SoC has
-> > > > > three additional interrupts: one for Tx end/Rx ready and the othe=
-r two for
-> > > > > Rx and Tx buffer full, which are edge-triggered.
-> > > > >
-> > > > > No driver changes are required as generic compatible string
-> > > > > "renesas,scif-r9a07g044" will be used as a fallback on RZ/V2H(P) =
-SoC.
-> > > >
-> > > > If you declare SCIF on RZ/V2H compatible with SCIF on RZ/G2L, you
-> > > > state that the current driver works fine (but perhaps suboptimal),
-> > > > without adding support for the extra 3 interrupts?
-> > > >
-> > > Yes the current driver works without using the extra interrupts on th=
-e
-> > > RZ/V2H. The extra interrupts on the RZ/V2H are just sort of duplicate
-> > > ie
-> > > - Transmit End/Data Ready interrupt , for which we we have two
-> > > seperate interrupts already
-> > > - Receive buffer full interrupt (EDGE trigger), for which we already
-> > > have a Level triggered interrupt
-> > > - Transmit buffer empty interrupt (EDGE trigger), for which we alread=
-y
-> > > have a Level triggered interrupt
-> >
-> > Thanks for the confirmation!
-> >
-> > > Are you suggesting to not fallback on RZ/G2L and instead make RZ/V2H
-> > > an explicit one so that in future we handle these 3 extra interrupts?
-> >
-> > In light of the confirmation above, I am _not_ suggesting that.
-> >
-With the introduction of validation checks for interrupts, falling
-back to "renesas,scif-r9a07g044" for RZ/V2H will be difficult for
-validating interrupt count.
+> According to the chip silk screen, this is ipq6000. In addition, I have
+> never seen a board with the SoC chip silk screen printed as ipq6018.
 
-  - if:
-      properties:
-        compatible:
-          contains:
-            enum:
-              - renesas,scif-r7s9210
-              - renesas,scif-r9a07g044
-    then:
-      properties:
-        interrupts:
-          minItems: 6
+Hmm, then what kind of chips do you consider to be ipq6018 if you
+haven't seen it on a silkscreen?
 
-        interrupt-names:
-          minItems: 6
+>
+> > And anyway, this should be explained in the commit message. Otherwise
+> > anybody reading the commit will have the same questions as I do.
+>
+> Sorry, I will explain this in more detail.
+>
+> Thanks,
+> Chukun
+>
+> --
+> 2.25.1
+>
 
-With the above check RZ/V2H fall into this if block,
 
-Is there any way I can specify to match two compat strings?
-
-Cheers,
-Prabhakar
+-- 
+With best wishes
+Dmitry
 
