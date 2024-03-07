@@ -1,295 +1,166 @@
-Return-Path: <devicetree+bounces-49140-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49141-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32EFB8750D8
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:50:49 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0368750DE
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:51:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id A1B751F25199
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:50:48 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A85C71F2513B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:51:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F3DF012D774;
-	Thu,  7 Mar 2024 13:50:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0ECDA12D754;
+	Thu,  7 Mar 2024 13:51:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pZ8Jl/7P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TIjEvKBy"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com [209.85.208.54])
+Received: from mail-ua1-f50.google.com (mail-ua1-f50.google.com [209.85.222.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C754912D750
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 13:50:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F37D912D744
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 13:50:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709819407; cv=none; b=Ae4frJyqe/W8OClwrMnT+Is1MpekKK9MPrOlaCZ1wILxXflYccA+VTMm2coLaHeFxo/jvOOeYgn3LkIxBSFBKcXaBM9JQAe4lNxbabJo952fIz0dfwNuKWX/6g6EzxHh5DvFX0gS27jZXIXMBQd9oedK8EkugW8hNk+/K8NehJg=
+	t=1709819462; cv=none; b=qRVJkwWEB55BJpcmU7jDlQ2q4a0e9Uk+kTGfRYh/9eeZ4HArhtBnnuaesRXqub1d6T8x8LZKX36Kx2Xfe7KbAg4OW+MShjBgABsxa36KKT0S+2uB4/41Iv6Y9WhK4A6crIfOfy6TCXCD4OwXcOY7LLG0RXusfh+oAZPuWtzZTwY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709819407; c=relaxed/simple;
-	bh=vnd4c6cnqj+rJdtFd4bvEIxjpJ0lqw1Ghsmui5MeXx8=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Q5wwzB0/IRklUY1ox7iIg9KVURlaf6MDdo4LQwbki3bCCXY95azhYk1JFM00YO9Az/3nMYv7GUPCSBiWeJZubmfwg8BEGrx/3UITxf4wtJ9QEC5T50jkNZzFptJeTMevq8wgEmBRx/ONgMme9OSulcBQgfOwa32ffvCD72AIfho=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pZ8Jl/7P; arc=none smtp.client-ip=209.85.208.54
+	s=arc-20240116; t=1709819462; c=relaxed/simple;
+	bh=ZqhZpjRK4pnufBjyLUpagbr75YCJe+evkJ0qNwIsulM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HdckYFS1d1C1YPdVDgbR+0LRyGcjrTQw8Hh8KXj3POmgwbyX7Vl6d8u7lmmvtwcWuCVLPOd5Pl6lo/bfLd7uRIZygGrOYqhiTltedGXARs69b9FYIJkmhyKnR0pU6NIh/ttgnMsMhfiELJL6pvv89PHVyeB4W8bGgHmatp7LR9w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TIjEvKBy; arc=none smtp.client-ip=209.85.222.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f54.google.com with SMTP id 4fb4d7f45d1cf-565c6cf4819so3778318a12.1
-        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 05:50:05 -0800 (PST)
+Received: by mail-ua1-f50.google.com with SMTP id a1e0cc1a2514c-7cedcea89a0so545238241.1
+        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 05:50:59 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709819404; x=1710424204; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4zCf/JC5V+iuDVBUGqSJGfNyePUZ8s9c9+9aUy2zAN4=;
-        b=pZ8Jl/7PfgcWr2kZ5NjpNY41PxYzcLt/ckZy4u5a5M5l3rRhigI+JbkOdA7l59JXdu
-         Q114icwjh/Z7wxry/Ujeuq+FlUD1h2Kf3uuobE2Cf/PpST66d1OEF9bEwFJ+zphXCat2
-         3XOTb0VToAa6uQy9CgtX7RQgb9mZ9MUIwfmm58DH7rLSI9aMZNyouZV2OAFl/8hMpoko
-         TWzY87tQp4kXOOUNg93S2p10++oetBCX462HzhT29Wke0C4ovHtutVkh5HOaVGtPzxLu
-         ke7IF0HpDVqFv/2tP1MFmKbEO9/d2E/KT1LMQW2U16KhrmQfF9bt8O/wfOgz0z7AVTHt
-         +nHQ==
+        d=linaro.org; s=google; t=1709819459; x=1710424259; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9torsYcPw28D62HkEM1CjpX6NkRuhOzElzYeBBfh75g=;
+        b=TIjEvKBy08D4McpK1x2JYbmNHvcrmTfo5caYfBl649fXCl4ZExTqjJWgjxJQweOsJI
+         j8yZ/0vLGo29l99qEN132Gjo81PKguMBFtzd7sPElr4mZKNcRtXUoLhQfWRSrmdNDGQc
+         91KdbFcaaoY5B5NsIQDHVMmiNY+Q1bKK0n9Olr4WQjvWWJjgZh6YtkFKZ+UIJBpTgnS0
+         JkbUV90KWpd4dt+SaEvidt0JTMPkIo2qTA5CxfF+XrycmVEfoZPlN6sqsKq7oWv8xdXB
+         uKKTGMC+xhbcEyM6RLSXMy0xpEIdBW2VHfrsGeRUUF5QAUMa8wmXkQQa5wI8LCngwivi
+         qzgg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709819404; x=1710424204;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4zCf/JC5V+iuDVBUGqSJGfNyePUZ8s9c9+9aUy2zAN4=;
-        b=X0uS5hCsiEp4pSx+A4na51f1zTc8W3Y544cImaE3j2GtInYOPBpjd8OiUxn758DQV2
-         FzMY1vlpMlsQSlYEJfb0mOqcEjBLPe5TrG0SelTMLv9gYTJ0jXQLqTmObA0q1XEo5vCu
-         XWCejnbWbmVRtRvGT5tsCWgnVAqJvbIzsGYXR3/q68A9nexaAoZsvrIJbQgHyvZbdA9o
-         EhvdO8sscKJe6Tac3FH2bLMg/wCCquyhlBZD/fJNdml4WD603TD3dUrwGvyjoyQJ8mKw
-         aAVHsousxZQ0BqPCiVgry3+wUYb8jtS/nd7CgpyRmY0A3Yzip0+k+UD8EdPHTa1EHRby
-         3Rfw==
-X-Forwarded-Encrypted: i=1; AJvYcCVRLRsmxfksSUvWOdnZnaSmOIpwwRL02sfmPJyiycKu6fGoPdkmedDBOmwFl3MUAkpJU0uEhH4ch4bCRQJai3WkLQ5ewsitz6lj+Q==
-X-Gm-Message-State: AOJu0YyvLeJfNPs7PFMnuPr7sF4fvcM60jZlWNEiLGpAvP9wP6ruc5bm
-	5tm5br+Ky7+tLyM0phEN51sUUMLGYacYtd5zNrMVIVlw2dC6wHqIPaIvkpgliG0=
-X-Google-Smtp-Source: AGHT+IF+zo83JGuJkj2a1tPxUpbfF7MN1LfaQIo3F6HZMQZ/6daguz3NoayN+RHaVGLtxsJrp410hw==
-X-Received: by 2002:a50:8d55:0:b0:568:145a:4a22 with SMTP id t21-20020a508d55000000b00568145a4a22mr277121edt.4.1709819403918;
-        Thu, 07 Mar 2024 05:50:03 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id fk25-20020a056402399900b00566a461e1ecsm8026076edb.73.2024.03.07.05.50.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Mar 2024 05:50:03 -0800 (PST)
-Message-ID: <4ba7af38-5cc1-428a-afec-75610934fc72@linaro.org>
-Date: Thu, 7 Mar 2024 14:50:01 +0100
+        d=1e100.net; s=20230601; t=1709819459; x=1710424259;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9torsYcPw28D62HkEM1CjpX6NkRuhOzElzYeBBfh75g=;
+        b=rQHlK2h6QatE6E1XRBWyF+C01WVky20llfQplDPS7tTLbaaRKgSxz8zOhEC5xJlvNd
+         dBHkt7IMjjLPpZAbbFvphy6qWkkkwquUETr0NNtuKfdRJRfYuYhcaXFipWCUEG0NPzfG
+         DTzcAiGTByWHXAue6TXT4wzsnhJARflIkjRM3lNxho+/rNlA/td4DO1YQ5Bc7GzvrE/T
+         ccve6VneNpnf4CE6mTah72Q1vrKZx1sMRcVvzRDAeOFNnLNfz7GpT5hb4GjTwbZ4amXJ
+         mBlE5s3VE3KgLZRCP3LriAipJpT7FAHpajBub1MTzkWjRz9HdOFJnOSXIVB2m1e5zITm
+         Mbog==
+X-Forwarded-Encrypted: i=1; AJvYcCW2mYLXCi0QWwtNh4PnR/4tiU5V1ck6NjId5pOhxaCxzlxobtAv7DGFE/gdy5m6nyyIo4Tl91SCSYcfuPBeButnzzvoBn6zRbL8lA==
+X-Gm-Message-State: AOJu0YzXKLgTFrm756fsz5J4fmdXB3W8PhnE0jocy7ELKfjOTBrddNc4
+	08FfHy/+yb6J+NpmV3AqCBqg07FyE1Gtsrt/Wb+proN0kl9W2wHTIH6ltEBxqxsXbEJKeNIT+8A
+	23cchrzU5ce6FKcumh3gnK5YpdoITBzY0DQ4vLw==
+X-Google-Smtp-Source: AGHT+IF2jZ7wyg1CarUBxtXOtBYgdq/uCacVd62FUUCZun9pIW445yP9fKNJWPLnFKUEAHYOGkp0v4zFhqkAGif0eAI=
+X-Received: by 2002:a67:ee41:0:b0:472:a246:9ba6 with SMTP id
+ g1-20020a67ee41000000b00472a2469ba6mr7359586vsp.21.1709819457334; Thu, 07 Mar
+ 2024 05:50:57 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: serial: renesas,scif: Validate
- 'interrupts' and 'interrupt-names'
-Content-Language: en-US
-To: Prabhakar <prabhakar.csengg@gmail.com>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>
-Cc: linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240307114217.34784-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240307114217.34784-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240307114217.34784-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240306200910.2732835-1-volodymyr_babchuk@epam.com>
+ <CAA8EJppNopEF0DmgjCAJyxe8HRebD26Q8heKKLKbPstdfBOv6A@mail.gmail.com>
+ <CAFA6WYMvtNbAMb5bAuH=as01wxACbjs5XcyPrvcSH4YpGGHhpA@mail.gmail.com> <87le6u18xl.fsf@epam.com>
+In-Reply-To: <87le6u18xl.fsf@epam.com>
+From: Sumit Garg <sumit.garg@linaro.org>
+Date: Thu, 7 Mar 2024 19:20:46 +0530
+Message-ID: <CAFA6WYOWeBJ+1aT1mRZE_2mNUCBzGGY0qgc_ZTT0dOTAEseGjQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: qcom: sm8150: add reset name for ethernet node
+To: Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	"linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On 07/03/2024 12:42, Prabhakar wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> 
-> This commit adds support to validate the 'interrupts' and 'interrupt-names'
+On Thu, 7 Mar 2024 at 18:43, Volodymyr Babchuk
+<Volodymyr_Babchuk@epam.com> wrote:
+>
+>
+> Hello Linux Maintainers, Sumit
+>
+> First, I am terribly sorry about this half-assed patch. Generally I am
+> doing all the required checks. But this change seemed so
+> trivial... Anyways, lesson taken, this will not happen anymore.
+>
+> Sumit Garg <sumit.garg@linaro.org> writes:
+>
+> > On Thu, 7 Mar 2024 at 12:40, Dmitry Baryshkov
+> > <dmitry.baryshkov@linaro.org> wrote:
+> >>
+> >> On Thu, 7 Mar 2024 at 00:22, Volodymyr Babchuk
+> >> <Volodymyr_Babchuk@epam.com> wrote:
+> >> >
+> >> > Add reset-names property to the ethernet@20000 node. This patch does
+> >> > not change behavior on Linux, but it is needed for U-Boot, as it tries
+> >> > to find the reset by name, not by index.
+> >> >
+> >> > Signed-off-by: Volodymyr Babchuk <volodymyr_babchuk@epam.com>
+> >> > ---
+> >> >  arch/arm64/boot/dts/qcom/sm8150.dtsi | 1 +
+> >> >  1 file changed, 1 insertion(+)
+> >> >
+> >> > diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> >> > index 761a6757dc26f..c2e65d6a2ac62 100644
+> >> > --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> >> > +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> >> > @@ -951,6 +951,7 @@ ethernet: ethernet@20000 {
+> >> >
+> >> >                         power-domains = <&gcc EMAC_GDSC>;
+> >> >                         resets = <&gcc GCC_EMAC_BCR>;
+> >> > +                       resets-names = "emac";
+> >>
+> >> According to the snps,dwmac.yaml schema the "emac" is invalid here.
+> >> Only "stmmaceth" and / or "ahb" are permitted here.
+> >
+> > Okay, it looks like earlier the Linux kernel on Qcom SoCs always
+> > assumed that the EMAC reset signal is deserted by prior boot stages.
+> > So I suppose we can reuse "stmmaceth" here instead of "emac" with a
+> > corresponding change to U-Boot driver as well.
+>
+> Maybe it would be better to access reset in U-Boot by index, in the
+> same way as linux kernel does? I am not sure that "stmmaceth" will be
+> correct from the semantic point of view.
 
-Please do not use "This commit/patch/change", but imperative mood. See
-longer explanation here:
-https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
+I can't see the Linux kernel driver accessing reset by index in this
+case (see [1]). It worked for the Qcom case since the reset signal was
+by default deserted. IMO, that's an incorrect assumption (you never
+know what state the bootloader leaves the reset signal in) to start
+with. This should be fixed via explicit MAC reset desertion in the
+kernel driver. IOW, this patch would ideally be a fix for the Linux
+kernel driver rather than replicating what U-Boot does.
 
-> properties for every supported SoC. This ensures proper handling and
-> configuration of interrupt-related properties across supported platforms.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2
-> * Defined the properties in top-level block instead of moving into
->   if/else block for each SoC.
-> * Used Gen specific callback strings instead of each SoC variant
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/net/ethernet/stmicro/stmmac/stmmac_platform.c#n645
 
-You are sending quite a lot of patchsets touching the same, all in one
-day. This just adds to the confusion.
+>
+> As I understand, "stmmac" name is used due to historical reasons in
+> Linux, as this driver was introduced for STM SoC initially. But the same
+> IP block is being used in many different SoCs made by different vendors
+> and there is nothing STM-specific left in it anymore. Especially taking
+> into account that this IP-block was designed not by STM but by
+> Synopsys/DesignWare.
 
-> ---
->  .../bindings/serial/renesas,scif.yaml         | 90 +++++++++++++------
->  1 file changed, 62 insertions(+), 28 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> index af72c3420453..6ba6b6d52208 100644
-> --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
-> @@ -83,36 +83,24 @@ properties:
->      maxItems: 1
->  
->    interrupts:
-> -    oneOf:
-> -      - items:
-> -          - description: A combined interrupt
-> -      - items:
-> -          - description: Error interrupt
-> -          - description: Receive buffer full interrupt
-> -          - description: Transmit buffer empty interrupt
-> -          - description: Break interrupt
-> -      - items:
-> -          - description: Error interrupt
-> -          - description: Receive buffer full interrupt
-> -          - description: Transmit buffer empty interrupt
-> -          - description: Break interrupt
-> -          - description: Data Ready interrupt
-> -          - description: Transmit End interrupt
-> +    minItems: 1
-> +    items:
-> +      - description: Error interrupt or single combined interrupt
+As DT bindings are the ABI and we have no choice but to live with it.
+"stmmaceth" is already being used for "reg-names" and "clock-names"
+too.
 
-That's not correct, your first interrupt can be combined.
+-Sumit
 
-> +      - description: Receive buffer full interrupt
-> +      - description: Transmit buffer empty interrupt
-> +      - description: Break interrupt
-> +      - description: Data Ready interrupt
-> +      - description: Transmit End interrupt
->  
->    interrupt-names:
-> -    oneOf:
-> -      - items:
-> -          - const: eri
-> -          - const: rxi
-> -          - const: txi
-> -          - const: bri
-> -      - items:
-> -          - const: eri
-> -          - const: rxi
-> -          - const: txi
-> -          - const: bri
-> -          - const: dri
-> -          - const: tei
-> +    minItems: 4
-> +    items:
-> +      - const: eri
-> +      - const: rxi
-> +      - const: txi
-> +      - const: bri
-> +      - const: dri
-> +      - const: tei
->  
->    clocks:
->      minItems: 1
-> @@ -173,6 +161,52 @@ allOf:
->        required:
->          - resets
->  
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,rcar-gen1-scif
-> +              - renesas,rcar-gen2-scif
-> +              - renesas,rcar-gen3-scif
-> +              - renesas,rcar-gen4-scif
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          maxItems: 1
-
-You need to list the items here.
-
-> +
-> +        interrupt-names: false
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,scif-r7s72100
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 4
-> +          maxItems: 4
-
-List the items
-
-> +
-> +        interrupt-names:
-> +          maxItems: 4
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - renesas,scif-r7s9210
-> +              - renesas,scif-r9a07g044
-> +    then:
-> +      properties:
-> +        interrupts:
-> +          minItems: 6
-
-List the items
-
-> +
-> +        interrupt-names:
-> +          minItems: 6
-> +
->  unevaluatedProperties: false
->  
->  examples:
-
-Best regards,
-Krzysztof
-
+>
+> --
+> WBR, Volodymyr
 
