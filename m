@@ -1,141 +1,306 @@
-Return-Path: <devicetree+bounces-49144-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49147-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0559A87511C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:01:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F721875139
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:04:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D1D91C22E37
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:01:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DEE091F25A6D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:04:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 80F5812D773;
-	Thu,  7 Mar 2024 14:00:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5C52712C7E2;
+	Thu,  7 Mar 2024 14:03:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XcxQMjmz"
+	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="bpSCVYsV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com [209.85.221.43])
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC26B12CD84
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 14:00:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 69A0212E1D3
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 14:03:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709820058; cv=none; b=P2toHqsHOMvEQobMP4RA0kPNIoBHVJA5ldiY6lYUV8fOPheqcbRlj63m3A1ovokp55p7AIr9S4O9/msxPPZQfoTp6s7KwLvg5Ce8HRZ+S1NB5GzJGrYqixJTf2GusuK7ksG1lpWG3Ma664rLWM7d0u/Zod6wQ0Iqw2ukn6YFzbM=
+	t=1709820201; cv=none; b=M/440RrleS5ppEFlOfCrkyyJh9FYzR4eKZKdfxo/B2wv1AdiFbanhOyf0KfFmAd4KQTSQyxpVkoRNMsKb//I8xa3jJ0+5aZ9O5mqramCvHjuwuu1X8PZzMrqb/vIUHLKzTP1A0MGGhr3Ar+tVJJYzfFAq0GVw6CSe7HTi29CDCg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709820058; c=relaxed/simple;
-	bh=Rxopbb4SKL4jMO5ZljEMPIK89TPWRCZlHNnv5JnL/EU=;
-	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=ZqHqWX+hYWN/pxsu7cjlPwGSr7AG1QCl86W5YZ6cknsBmIy52YOwQaUb6Zmwe14XdzS0u8BXHRL8Ln/Gl+pBIa//58aE3qJiO2AwynCG1gb65/qTeQKXvFF1S1SGhK94geTKdh9v52G/uHlh6+yWNRXITyDbCGA3TCSO+BFTIRw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XcxQMjmz; arc=none smtp.client-ip=209.85.221.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f43.google.com with SMTP id ffacd0b85a97d-33e17fc5aceso1234196f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 06:00:56 -0800 (PST)
+	s=arc-20240116; t=1709820201; c=relaxed/simple;
+	bh=tCnopEbL5aNqLkRIOsTaWaQf6WcIDfGbjVw/nYfHA6M=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=QvXPS0r3ueHhQobzQ4PWuWH65sWFNQux3CqmqCXclvWdSOsfkSDPUvKYrabZjCKSqa+HhK3ZVLIsDz8j2Khxb1IxUlQh1DjtUo4OayWuTLqxj/7jGP+JEfN7OGIIPdftfN/I1JHW0igfiSdmEVmro1A84s9AKYSAYZ10gZHQ0Ns=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=bpSCVYsV; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1dc29f1956cso6832295ad.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 06:03:19 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709820055; x=1710424855; darn=vger.kernel.org;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=N+sfvI/pAcUuXIwddArkYjhI/1OGic5sgAQeOfKC660=;
-        b=XcxQMjmzfSw8Frs6t3ULyPySjtLTU3nQdLQYh7fQa/uc+4bceEPUkRd5dw4fvvDM2R
-         Hj5wPWP5485Xk91p93mHAIjsZFpJ+Xtb++d7mLgXhuKUV5CSgtRrcL4IvII7ASQaW8oA
-         HLvo9TxaycevFH2tUQGAQvNb3+LsuKT7gH/nNtFW3IW/m47VTHg1TFUuzQEEl7YWcGtM
-         bnrudsZ/uw80z9RX1xhUMWk3ofnAt+bLqMJ0X7d6KIS9vpqhgsCVXkntjTpI9cOQyxm4
-         sWx4L5ALVNpxVywnx3LwzyKnlI/+GQnXE+C7f/7dEqsepH4zYexDfsbnuEMvg7cAffna
-         +hIQ==
+        d=ventanamicro.com; s=google; t=1709820199; x=1710424999; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=IX2p+Qigk307xirvs6Xg2x/v1iXimPPLp2xeUw2lyCM=;
+        b=bpSCVYsV3diUtMsz8IsN15jg0W5OoWT//5fRRHtaPUiJH9dJWmDX+EzGK5LTUe1shv
+         ZUfXbrPXw+/6wPE4VF+JR6KU3x/Q/w530XqXkjNB03XWVB6U9zzulblNRTdeNzSW+6v7
+         eGPh7g0AF1a7tXi1fkzFI2NTtEJH07BSuR9TXaOjvrMpKxcDORAm19SKCkvegbMZfrNt
+         OjJXR1UdZWFju5Ur3hv32IOFj2ZZsUFn5hbqnujkLK27NVI+d7gM4ZIehwQAP1IJsr36
+         jkQLvQU2QGhV6W0LwxPyb12Qhlit6e9D+woxsTaEkGbOJ0IhHFl709GdmVcnr0fo4qJp
+         Mt0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709820055; x=1710424855;
-        h=mime-version:user-agent:content-transfer-encoding:references
-         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=N+sfvI/pAcUuXIwddArkYjhI/1OGic5sgAQeOfKC660=;
-        b=UobNbi944FgrglX87LeJN62jgYAQSQjZqpzZl5t366S+cDifQUquvJxWyMn78onJ06
-         LGMmdvEhRBReCweob7KkBLyiy/Hh+CLL/Hxc7hVL8Flf+hA4Kx3CwLp98J73hJUnsG4f
-         N8TTmi93wNemIFYW8xxHzs4A0ksPfRpWcwJSffmvy7XA9D31sNhv7poSVN68g/OrDPzq
-         w9eN15dQHwHcaNRLZqFdCx0SlvGPjA/NIBJD6KQECKmKPGDqOATDDmHkDM74F2spU8EO
-         C82k9svgJ+gOngJH37s5nittdNHgmAesa6YW417UdRRQytHA/ShYOdXj13op/KbGVRF5
-         DMXg==
-X-Forwarded-Encrypted: i=1; AJvYcCUGcjKWle6XcQ5KIAp6DfcVSbNB/wmI99YIRL62SJO051eLyrqgkxi3Q34PT1DD7FL1PP4J8RMA5fxNGBYI9SjVmz/szxIOhCUT9g==
-X-Gm-Message-State: AOJu0YzKACe9i62aiYXrM5m2Z/in//I3LgdyKrTmSwBnZwnDD4L4iezT
-	SR85Tlw8mVh0+2mSWevlVoFWpklSWvUCF3GO+og+gL5ONwPPAmwr90cHnMQCOww=
-X-Google-Smtp-Source: AGHT+IFbMd/+zXt7hKs6MPmjNpo1tnBVbCHAEDFPGa6AXwQB/KfB3R2bSepofZI8S+6AVPVsYXaOVA==
-X-Received: by 2002:adf:a3d4:0:b0:33e:6ce4:feb8 with SMTP id m20-20020adfa3d4000000b0033e6ce4feb8mr1042779wrb.12.1709820055073;
-        Thu, 07 Mar 2024 06:00:55 -0800 (PST)
-Received: from draszik.lan ([80.111.64.44])
-        by smtp.gmail.com with ESMTPSA id hn37-20020a05600ca3a500b00412f478a90bsm2704587wmb.48.2024.03.07.06.00.52
+        d=1e100.net; s=20230601; t=1709820199; x=1710424999;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=IX2p+Qigk307xirvs6Xg2x/v1iXimPPLp2xeUw2lyCM=;
+        b=De8LcPWZMt9+m8Uu3cr0jm47FsbOSdtpUofFHb/oko3FisJvHGe+L18g7Us1VNl2Zy
+         cROGi36aK1GJukrrkokBAyju9SltDZyJ8XlI/EqilkM/ihAp2TjCPXtl9anFz3VRXBSY
+         Szj0dwUlcl3QNVFkWa+FMqpi/zJmHkrOntBfTBmJZbRCuPyXao4ASVueuP8pmw5kQ9Y3
+         c+x0ce4pKFW7WR1brEddaEh33BaG2atO6Lj0Cs8BVa2NS+a84zj/TCG/AsVwmOOuV1Tq
+         oPRHKXgcxdFNqGgLcxTUu0AkZr1W1IoFWKtmEXVYE7q2aL66uob7mcsCYzHx7uYYsgR2
+         p7zw==
+X-Forwarded-Encrypted: i=1; AJvYcCXkK3FyWEoQ7GbvCCD5tvMc5k8kvxM2fxkI+e/dxLKj3PlPCtOf9pAejA2ZwMfRY9EFCFyPJfLUmbD0OqlgfeWlyh7pzLJ6Khv9Ew==
+X-Gm-Message-State: AOJu0Yy4jUP2Td2XCIRVq3kj4pWjaqks7O7XS7PaMbmBeszs1hf5XYaE
+	ZetSXr+8c+/DYMyXmy6VAAOQeJLJb9qWucSCmFUhObVi7J2eDF2bFf1XouTIL8Q=
+X-Google-Smtp-Source: AGHT+IGyO+EIw1HjH1Ri5Nd3epuWwE+qGFF/zJKkJADaBt6lOZgWfg2Kwca8/i7VDQ6zq5BBPwVTsA==
+X-Received: by 2002:a17:902:e9d4:b0:1db:e089:7461 with SMTP id 20-20020a170902e9d400b001dbe0897461mr7988515plk.31.1709820198411;
+        Thu, 07 Mar 2024 06:03:18 -0800 (PST)
+Received: from anup-ubuntu-vm.localdomain ([171.76.84.79])
+        by smtp.gmail.com with ESMTPSA id w1-20020a1709026f0100b001dd6174c651sm386228plk.149.2024.03.07.06.03.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Mar 2024 06:00:53 -0800 (PST)
-Message-ID: <3acffe042bde796dc47d4bdcb339f0081a05193c.camel@linaro.org>
-Subject: Re: [PATCH] arm64: dts: exynos: gs101: move serial_0
- pinctrl-0/names to dtsi
-From: =?ISO-8859-1?Q?Andr=E9?= Draszik <andre.draszik@linaro.org>
-To: Tudor Ambarus <tudor.ambarus@linaro.org>, peter.griffin@linaro.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: alim.akhtar@samsung.com, linux-arm-kernel@lists.infradead.org, 
- linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, willmcvicker@google.com,
- kernel-team@android.com
-Date: Thu, 07 Mar 2024 14:00:51 +0000
-In-Reply-To: <20240307135248.162752-1-tudor.ambarus@linaro.org>
-References: <20240307135248.162752-1-tudor.ambarus@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.50.2-1 
+        Thu, 07 Mar 2024 06:03:17 -0800 (PST)
+From: Anup Patel <apatel@ventanamicro.com>
+To: Palmer Dabbelt <palmer@dabbelt.com>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Thomas Gleixner <tglx@linutronix.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Conor Dooley <conor+dt@kernel.org>
+Cc: Marc Zyngier <maz@kernel.org>,
+	=?UTF-8?q?Bj=C3=B6rn=20T=C3=B6pel?= <bjorn@kernel.org>,
+	Atish Patra <atishp@atishpatra.org>,
+	Andrew Jones <ajones@ventanamicro.com>,
+	Sunil V L <sunilvl@ventanamicro.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Anup Patel <anup@brainfault.org>,
+	linux-riscv@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v16 0/9] Linux RISC-V AIA Support
+Date: Thu,  7 Mar 2024 19:32:58 +0530
+Message-Id: <20240307140307.646078-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
-On Thu, 2024-03-07 at 13:52 +0000, Tudor Ambarus wrote:
-> The pinctrl nodes are coming from the shared gs101-pinctrl.dtsi,
-> thus the pinctrl-0/names shall stay in dtsi. Move them.
->=20
-> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-> ---
-> =C2=A0arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 2 --
-> =C2=A0arch/arm64/boot/dts/exynos/google/gs101.dtsi=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 | 2 ++
-> =C2=A02 files changed, 2 insertions(+), 2 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/ar=
-m64/boot/dts/exynos/google/gs101-oriole.dts
-> index 6ccade2c8cb4..9dc0f47ef646 100644
-> --- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-> +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
-> @@ -103,8 +103,6 @@ key_power: key-power-pins {
-> =C2=A0};
-> =C2=A0
-> =C2=A0&serial_0 {
-> -	pinctrl-names =3D "default";
-> -	pinctrl-0 =3D <&uart0_bus>;
-> =C2=A0	status =3D "okay";
-> =C2=A0};
-> =C2=A0
-> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/bo=
-ot/dts/exynos/google/gs101.dtsi
-> index 55e6bcb3689e..ee65ed9d2cfc 100644
-> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> @@ -421,6 +421,8 @@ serial_0: serial@10a00000 {
-> =C2=A0				reg =3D <0x10a00000 0xc0>;
-> =C2=A0				interrupts =3D <GIC_SPI 634
-> =C2=A0					=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 IRQ_TYPE_LEVEL_HIGH 0>;
-> +				pinctrl-names =3D "default";
-> +				pinctrl-0 =3D <&uart0_bus>;
+The RISC-V AIA specification is ratified as-per the RISC-V international
+process. The latest ratified AIA specifcation can be found at:
+https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-interrupts-1.0.pdf
 
-The preferred order for these is pinctrl-0 pinctrl-names (and I thought
-I had sent a patch for all such issues in gs101, but looks like I
-didn't...)
+At a high-level, the AIA specification adds three things:
+1) AIA CSRs
+   - Improved local interrupt support
+2) Incoming Message Signaled Interrupt Controller (IMSIC)
+   - Per-HART MSI controller
+   - Support MSI virtualization
+   - Support IPI along with virtualization
+3) Advanced Platform-Level Interrupt Controller (APLIC)
+   - Wired interrupt controller
+   - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generator)
+   - In Direct-mode, injects external interrupts directly into HARTs
 
-Once addressed:
+For an overview of the AIA specification, refer the AIA virtualization
+talk at KVM Forum 2022:
+https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualization_in_KVM_RISCV_final.pdf
+https://www.youtube.com/watch?v=r071dL8Z0yo
 
-Reviewed-by: Andr=C3=A9 Draszik <andre.draszik@linaro.org>
+To test this series, use QEMU v7.2 (or higher) and OpenSBI v1.2 (or higher).
 
-Cheers,
-Andre'
+This series depends upon per-device MSI domain (and few other) patches merged
+by Thomas (tglx) which are available in irq/msi branch at:
+git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git
+
+These patches can also be found in the riscv_aia_v16 branch at:
+https://github.com/avpatel/linux.git
+
+Changes since v15:
+ - Dropped PATCH1 since it is already merged by Thomas (tglx) and available in
+   his irq/msi branch at git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git
+ - Simplified aplic_msi_irq_eoi() in PATCH7 based on the section "4.9.2 Special
+   consideration for level-sensitive interrupt sources"  of the RISC-V AIA
+   specification and also provided handler name.
+
+Changes since v14:
+ - Dropped 9 patches which are already merged by Thomas (tglx) and available in
+   his irq/msi branch at git://git.kernel.org/pub/scm/linux/kernel/git/tip/tip.git
+ - Added new PATCH1 which adds changes missed out in merging AIA support for
+   RISC-V INTC.
+ - Added a separate cpuhp state for IMSIC driver in PATCH3 which ensures that
+   cpuhp notifiers of IMSIC are called as early as possible.
+ - Removed redundant barriers in PATCH3.
+ - Addressed few other nit comments.
+
+Changes since v13:
+ - Split PATCH1 into six granular patches
+ - Addressed nit comments from Thomas and Bjorn
+
+Changes since v12:
+ - Rebased on Linux-6.8-rc5
+ - Dropped per-device MSI domain patches which are already merged by Thomas (tglx)
+ - Addressed nit comments from Thomas and Clement
+ - Added a new patch2 to fix lock dependency warning
+ - Replaced local sync IPI in the IMSIC driver with per-CPU timer
+ - Simplified locking in the IMSIC driver to avoid lock dependency issues
+ - Added a dirty bitmap in the IMSIC driver to optimize per-CPU local sync loop
+
+Changes since v11:
+ - Rebased on Linux-6.8-rc1
+ - Included kernel/irq related patches from "genirq, irqchip: Convert ARM
+   MSI handling to per device MSI domains" series by Thomas.
+   (PATCH7, PATCH8, PATCH9, PATCH14, PATCH16, PATCH17, PATCH18, PATCH19,
+    PATCH20, PATCH21, PATCH22, PATCH23, and PATCH32 of
+    https://lore.kernel.org/linux-arm-kernel/20221121135653.208611233@linutronix.de/)
+ - Updated APLIC MSI-mode driver to use the new WIRED_TO_MSI mechanism.
+ - Updated IMSIC driver to support per-device MSI domains for PCI and
+   platform devices.
+
+Changes since v10:
+ - Rebased on Linux-6.6-rc7
+ - Dropped PATCH3 of v10 series since this has been merged by MarcZ
+   for Linux-6.6-rc7
+ - Changed the IMSIC ID management strategy from 1-n approach to
+   x86-style 1-1 approach
+
+Changes since v9:
+ - Rebased on Linux-6.6-rc4
+ - Use builtin_platform_driver() in PATCH5, PATCH9, and PATCH12
+
+Changes since v8:
+ - Rebased on Linux-6.6-rc3
+ - Dropped PATCH2 of v8 series since we won't be requiring
+   riscv_get_intc_hartid() based on Marc Z's comments on ACPI AIA support.
+ - Addressed Saravana's comments in PATCH3 of v8 series
+ - Update PATCH9 and PATCH13 of v8 series based on comments from Sunil
+
+Changes since v7:
+ - Rebased on Linux-6.6-rc1
+ - Addressed comments on PATCH1 of v7 series and split it into two PATCHes
+ - Use DEFINE_SIMPLE_PROP() in PATCH2 of v7 series
+
+Changes since v6:
+ - Rebased on Linux-6.5-rc4
+ - Updated PATCH2 to use IS_ENABLED(CONFIG_SPARC) instead of
+   !IS_ENABLED(CONFIG_OF_IRQ)
+ - Added new PATCH4 to fix syscore registration in PLIC driver
+ - Update PATCH5 to convert PLIC driver into full-blown platform driver
+   with a re-written probe function.
+
+Changes since v5:
+ - Rebased on Linux-6.5-rc2
+ - Updated the overall series to ensure that only IPI, timer, and
+   INTC drivers are probed very early whereas rest of the interrupt
+   controllers (such as PLIC, APLIC, and IMISC) are probed as
+   regular platform drivers.
+ - Renamed riscv_fw_parent_hartid() to riscv_get_intc_hartid()
+ - New PATCH1 to add fw_devlink support for msi-parent DT property
+ - New PATCH2 to ensure all INTC suppliers are initialized which in-turn
+   fixes the probing issue for PLIC, APLIC and IMSIC as platform driver
+ - New PATCH3 to use platform driver probing for PLIC
+ - Re-structured the IMSIC driver into two separate drivers: early and
+   platform. The IMSIC early driver (PATCH7) only initialized IMSIC state
+   and provides IPIs whereas the IMSIC platform driver (PATCH8) is probed
+   provides MSI domain for platform devices.
+ - Re-structure the APLIC platform driver into three separe sources: main,
+   direct mode, and MSI mode.
+
+Changes since v4:
+ - Rebased on Linux-6.5-rc1
+ - Added "Dependencies" in the APLIC bindings (PATCH6 in v4)
+ - Dropped the PATCH6 which was changing the IOMMU DMA domain APIs
+ - Dropped use of IOMMU DMA APIs in the IMSIC driver (PATCH4)
+
+Changes since v3:
+ - Rebased on Linux-6.4-rc6
+ - Dropped PATCH2 of v3 series instead we now set FWNODE_FLAG_BEST_EFFORT via
+   IRQCHIP_DECLARE()
+ - Extend riscv_fw_parent_hartid() to support both DT and ACPI in PATCH1
+ - Extend iommu_dma_compose_msi_msg() instead of adding iommu_dma_select_msi()
+   in PATCH6
+ - Addressed Conor's comments in PATCH3
+ - Addressed Conor's and Rob's comments in PATCH7
+
+Changes since v2:
+ - Rebased on Linux-6.4-rc1
+ - Addressed Rob's comments on DT bindings patches 4 and 8.
+ - Addessed Marc's comments on IMSIC driver PATCH5
+ - Replaced use of OF apis in APLIC and IMSIC drivers with FWNODE apis
+   this makes both drivers easily portable for ACPI support. This also
+   removes unnecessary indirection from the APLIC and IMSIC drivers.
+ - PATCH1 is a new patch for portability with ACPI support
+ - PATCH2 is a new patch to fix probing in APLIC drivers for APLIC-only systems.
+ - PATCH7 is a new patch which addresses the IOMMU DMA domain issues pointed
+   out by SiFive
+
+Changes since v1:
+ - Rebased on Linux-6.2-rc2
+ - Addressed comments on IMSIC DT bindings for PATCH4
+ - Use raw_spin_lock_irqsave() on ids_lock for PATCH5
+ - Improved MMIO alignment checks in PATCH5 to allow MMIO regions
+   with holes.
+ - Addressed comments on APLIC DT bindings for PATCH6
+ - Fixed warning splat in aplic_msi_write_msg() caused by
+   zeroed MSI message in PATCH7
+ - Dropped DT property riscv,slow-ipi instead will have module
+   parameter in future.
+
+Anup Patel (9):
+  dt-bindings: interrupt-controller: Add RISC-V incoming MSI controller
+  irqchip: Add RISC-V incoming MSI controller early driver
+  irqchip/riscv-imsic: Add device MSI domain support for platform
+    devices
+  irqchip/riscv-imsic: Add device MSI domain support for PCI devices
+  dt-bindings: interrupt-controller: Add RISC-V advanced PLIC
+  irqchip: Add RISC-V advanced PLIC driver for direct-mode
+  irqchip/riscv-aplic: Add support for MSI-mode
+  RISC-V: Select APLIC and IMSIC drivers
+  MAINTAINERS: Add entry for RISC-V AIA drivers
+
+ .../interrupt-controller/riscv,aplic.yaml     | 172 ++++
+ .../interrupt-controller/riscv,imsics.yaml    | 172 ++++
+ MAINTAINERS                                   |  14 +
+ arch/riscv/Kconfig                            |   2 +
+ drivers/irqchip/Kconfig                       |  25 +
+ drivers/irqchip/Makefile                      |   3 +
+ drivers/irqchip/irq-riscv-aplic-direct.c      | 326 +++++++
+ drivers/irqchip/irq-riscv-aplic-main.c        | 211 +++++
+ drivers/irqchip/irq-riscv-aplic-main.h        |  52 ++
+ drivers/irqchip/irq-riscv-aplic-msi.c         | 257 ++++++
+ drivers/irqchip/irq-riscv-imsic-early.c       | 201 ++++
+ drivers/irqchip/irq-riscv-imsic-platform.c    | 374 ++++++++
+ drivers/irqchip/irq-riscv-imsic-state.c       | 865 ++++++++++++++++++
+ drivers/irqchip/irq-riscv-imsic-state.h       | 108 +++
+ include/linux/cpuhotplug.h                    |   1 +
+ include/linux/irqchip/riscv-aplic.h           | 145 +++
+ include/linux/irqchip/riscv-imsic.h           |  87 ++
+ 17 files changed, 3015 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+ create mode 100644 drivers/irqchip/irq-riscv-aplic-direct.c
+ create mode 100644 drivers/irqchip/irq-riscv-aplic-main.c
+ create mode 100644 drivers/irqchip/irq-riscv-aplic-main.h
+ create mode 100644 drivers/irqchip/irq-riscv-aplic-msi.c
+ create mode 100644 drivers/irqchip/irq-riscv-imsic-early.c
+ create mode 100644 drivers/irqchip/irq-riscv-imsic-platform.c
+ create mode 100644 drivers/irqchip/irq-riscv-imsic-state.c
+ create mode 100644 drivers/irqchip/irq-riscv-imsic-state.h
+ create mode 100644 include/linux/irqchip/riscv-aplic.h
+ create mode 100644 include/linux/irqchip/riscv-imsic.h
+
+-- 
+2.34.1
 
 
