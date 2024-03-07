@@ -1,148 +1,234 @@
-Return-Path: <devicetree+bounces-49065-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49066-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id C3FC4874D17
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 12:11:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A9DC874D61
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 12:28:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id F0C441C230CB
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 11:11:45 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9DF111C203DD
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 11:28:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3BA3512A14B;
-	Thu,  7 Mar 2024 11:10:53 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92867128364;
+	Thu,  7 Mar 2024 11:28:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Vpra+LW8"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="gSmcDYO1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9011129A62;
-	Thu,  7 Mar 2024 11:10:50 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C1669DDC9;
+	Thu,  7 Mar 2024 11:28:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709809853; cv=none; b=cmKb/zner8kTMc0bw5uuzSGZZMjAVaHTBsC/VuNL9sf5DDE+dHKYS54zdfym7I+7kamM9tCSXrlr1+cbduaM+mKc1yaiKlgY9GUv2ICQgKvLyv1a6C5FQgKUc4mqDfZLbDLM1qC95zm5lehouz85LNS5UDfP3YEqG5+imtiX+KQ=
+	t=1709810884; cv=none; b=ZfBk7UxQdltbcjkUwAUiDu9CHs5BeWzhlChz+6MODiAuBdWUNKP0KOkpgV1/5bN9pheRHzTkknNF4MisRKRtnnsbrMAmiA+Z0vbnYcj84JDVQoqWaKy6LFzClyRg8E+RcaZ3K/FdMIaoOR/4ompUNcXgemPnBq+oBubjEMyeZdk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709809853; c=relaxed/simple;
-	bh=hJdvsIf49qX5qYBe3jlnJZHHA33f29octtPbTBvXNM8=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=qasgzkDNkHxPHdstCW0WLMOy2sHdPTpwhLRQYRuWVFRyZTFA2pn4Orn8BhzGM/foOS5SfYMJIRBJdq1dN/KAGWYhipT5yl5v5kDTdtsNfzqvFvmP/3HNDZyBLO0BQq8NK6eRrsSAtk7D0+A23iq0bAcQ/XdoKwv5qBDzN+8pNcI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Vpra+LW8; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 508D460004;
-	Thu,  7 Mar 2024 11:10:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709809849;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=OnOBH7X5Za0alGDnm8qdXNdP8bUSPL0B1vzgu9qjY6M=;
-	b=Vpra+LW8UMKnWODdqEuBvDPXNDNUyvxrf5N2iTXeJ8IN4vJT+iOtUJwcRzodM1ri8oWq1G
-	uQ/nI/+3VVORERnZwRtlq93LJDodjZF0MvqbHg6ODQRp2TKsQ1I+0AfRTHfNkcthzpIIC4
-	DYWZmPk24KCk3Ye1PNOlh7UBUSUHnRGaeiULqbNPegVjFUkWuBbH4Q3R3ezuXRSVwT0n05
-	Zq0U9LxFRchRGFRCqq6a3Yvb9TTthYzfrQJtJdPElklKvNLvfxDQuhc/8oxIyYBFg9Txsq
-	S1TPJ8v/AGGpAK/ens5ycmqUX+5Q/UIZ+IYMbEduXSwWYnqbyM76c2LhR3Bu2g==
-From: Herve Codina <herve.codina@bootlin.com>
-To: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Saravana Kannan <saravanak@google.com>
-Cc: Lizhi Hou <lizhi.hou@amd.com>,
-	Max Zhen <max.zhen@amd.com>,
-	Sonal Santan <sonal.santan@amd.com>,
-	Stefano Stabellini <stefano.stabellini@xilinx.com>,
-	Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-	linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Nuno Sa <nuno.sa@analog.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Herve Codina <herve.codina@bootlin.com>,
-	stable@vger.kernel.org
-Subject: [PATCH v5 2/2] of: dynamic: Synchronize of_changeset_destroy() with the devlink removals
-Date: Thu,  7 Mar 2024 12:10:01 +0100
-Message-ID: <20240307111036.225007-3-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240307111036.225007-1-herve.codina@bootlin.com>
-References: <20240307111036.225007-1-herve.codina@bootlin.com>
+	s=arc-20240116; t=1709810884; c=relaxed/simple;
+	bh=Ldee1A/BcwvgsotCIrd1Xa0TCMAzaq2asXNtE0+sqqY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=EPPGhoJCCfuY/QaxoNzquCqr54b846kMv/r/ZoTkh1BZiaGcE0Q0fmYNOgEm7dBz9BPudi6+B5frtT6vxylpnQzN6EylEFtzmCET+zXvp0oVm/o/LfhvD6NNxgDlTRLPipAL61lDh6uSR9b1BQQwMldmSN5s33FVkYyDNF8RAGg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=gSmcDYO1; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4279Q3r0001475;
+	Thu, 7 Mar 2024 11:27:43 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=IONUL4mEoZ7Z1Sf9VsHmDh80IkV804uMjF1VYdSA8sY=; b=gS
+	mcDYO1wmE2nyv8xEGtsuXLPTdk9gONAKjWVnaRG0lIBfZnbFQREID+kPB3VllAdU
+	F39nPDNFQ1kToMWtiwqjHwSWwdOjc2lAZWb/Y9P53nTSDwzSln7RL4i6ebbvFc8X
+	/cZ/PH95NY3qY8sT3GkihNR6OSrE3bn+dA0QJ+aR+OdRvAZt2jzXKo7jMiXPws4X
+	o/deIvLU8Ee7OIlHO5A9C+4YqdI0ighEb7qwJOmtZ8V5F6WsGEKNNrjS2+DnYxqZ
+	iqXYP97FACuNl2ZhbPmo9pmnfwtVjKx2d7qQW9RWq+QFbiL96oVoOqSetkk3Gg83
+	pUHPAFEoC64zAlOitj/w==
+Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wqaxd0da4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 07 Mar 2024 11:27:42 +0000 (GMT)
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 427BRgA3003248
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 7 Mar 2024 11:27:42 GMT
+Received: from [10.201.3.124] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 7 Mar
+ 2024 03:27:36 -0800
+Message-ID: <2c0e928e-e68c-e859-0e7f-c5a457f58175@quicinc.com>
+Date: Thu, 7 Mar 2024 16:57:32 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.9.1
+Subject: Re: [PATCH v3 1/5] spi: dt-bindings: add binding doc for
+ spi-qpic-snand
+Content-Language: en-US
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <broonie@kernel.org>, <robh@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
+        <manivannan.sadhasivam@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-mtd@lists.infradead.org>
+CC: <quic_varada@quicinc.com>, <quic_srichara@quicinc.com>
+References: <20240307041726.1648829-1-quic_mdalam@quicinc.com>
+ <20240307041726.1648829-2-quic_mdalam@quicinc.com>
+ <19d3c024-38aa-4526-b6c1-d9543b41fa2b@linaro.org>
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+In-Reply-To: <19d3c024-38aa-4526-b6c1-d9543b41fa2b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: ZUUeepn3sA288e4BF4c-IPv7pKV6tn9J
+X-Proofpoint-ORIG-GUID: ZUUeepn3sA288e4BF4c-IPv7pKV6tn9J
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-07_07,2024-03-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 suspectscore=0 adultscore=0 priorityscore=1501
+ lowpriorityscore=0 clxscore=1015 phishscore=0 spamscore=0 mlxlogscore=999
+ mlxscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403070085
 
-In the following sequence:
-  1) of_platform_depopulate()
-  2) of_overlay_remove()
 
-During the step 1, devices are destroyed and devlinks are removed.
-During the step 2, OF nodes are destroyed but
-__of_changeset_entry_destroy() can raise warnings related to missing
-of_node_put():
-  ERROR: memory leak, expected refcount 1 instead of 2 ...
 
-Indeed, during the devlink removals performed at step 1, the removal
-itself releasing the device (and the attached of_node) is done by a job
-queued in a workqueue and so, it is done asynchronously with respect to
-function calls.
-When the warning is present, of_node_put() will be called but wrongly
-too late from the workqueue job.
+On 3/7/2024 1:16 PM, Krzysztof Kozlowski wrote:
+> On 07/03/2024 05:17, Md Sadre Alam wrote:
+> 
+> There is no commit msg.
+Sorry missed it. Will add in next patch
+> 
+> Subject did not improve. This is a friendly reminder during the review
+> process.
+Ok
+> 
+> It seems my or other reviewer's previous comments were not fully
+> addressed. Maybe the feedback got lost between the quotes, maybe you
+> just forgot to apply it. Please go back to the previous discussion and
+> either implement all requested changes or keep discussing them.
+> 
+> Thank you.
 
-In order to be sure that any ongoing devlink removals are done before
-the of_node destruction, synchronize the of_changeset_destroy() with the
-devlink removals.
-
-Fixes: 80dd33cf72d1 ("drivers: base: Fix device link removal")
-Cc: stable@vger.kernel.org
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-Reviewed-by: Saravana Kannan <saravanak@google.com>
-Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
-Reviewed-by: Nuno Sa <nuno.sa@analog.com>
----
- drivers/of/dynamic.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
-
-diff --git a/drivers/of/dynamic.c b/drivers/of/dynamic.c
-index 3bf27052832f..4d57a4e34105 100644
---- a/drivers/of/dynamic.c
-+++ b/drivers/of/dynamic.c
-@@ -9,6 +9,7 @@
- 
- #define pr_fmt(fmt)	"OF: " fmt
- 
-+#include <linux/device.h>
- #include <linux/of.h>
- #include <linux/spinlock.h>
- #include <linux/slab.h>
-@@ -667,6 +668,17 @@ void of_changeset_destroy(struct of_changeset *ocs)
- {
- 	struct of_changeset_entry *ce, *cen;
- 
-+	/*
-+	 * When a device is deleted, the device links to/from it are also queued
-+	 * for deletion. Until these device links are freed, the devices
-+	 * themselves aren't freed. If the device being deleted is due to an
-+	 * overlay change, this device might be holding a reference to a device
-+	 * node that will be freed. So, wait until all already pending device
-+	 * links are deleted before freeing a device node. This ensures we don't
-+	 * free any device node that has a non-zero reference count.
-+	 */
-+	device_link_wait_removal();
-+
- 	list_for_each_entry_safe_reverse(ce, cen, &ocs->entries, node)
- 		__of_changeset_entry_destroy(ce);
- }
--- 
-2.43.0
-
+  Sorry, Will re-check all the previous comment and try to fix in
+  next patch.
+> 
+> 
+>> Co-developed-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+>> Co-developed-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
+>> Signed-off-by: Md Sadre Alam <quic_mdalam@quicinc.com>
+>> ---
+>> Change in [v3]
+>>
+>> * Updated commit message, removed "dt-bindings" from commit
+>>    message
+>>
+>> * Updated compatible name as file name
+>>
+>> * Added hardware description
+>>
+>> * Documented clock-name
+>>
+>> * Moved dma-names property to top
+>>
+>> * Droped unused label "qpic_nand"
+>>
+>> * Fixed indentation in example dt node
+>>
+>> Change in [v2]
+>>
+>> * Added initial support for dt-bindings
+>>
+>> Change in [v1]
+>>
+>> * This patch was not included in [v1]
+>>   
+>>   .../bindings/spi/qcom,spi-qpic-snand.yaml     | 83 +++++++++++++++++++
+>>   1 file changed, 83 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml b/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+>> new file mode 100644
+>> index 000000000000..3d20a4bc567f
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+>> @@ -0,0 +1,83 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/spi/qcom,spi-qpic-snand.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Qualcomm QPIC NAND controller
+>> +
+>> +maintainers:
+>> +  - Md sadre Alam <quic_mdalam@quicinc.com>
+>> +
+>> +description: |
+> 
+> Do not need '|' unless you need to preserve formatting.
+Ok will do in next patch.
+> 
+>> +  The QCOM QPI-SPI-NAND flash controller is an extended version of
+>> +  the QCOM QPIC NAND flash controller. It can work both in serial
+>> +  and parallel mode. It supports typical SPI-NAND page cache
+>> +  operations in single, dual or quad IO mode with pipelined ECC
+>> +  encoding/decoding using the QPIC ECC HW engine.
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/spi/spi-controller.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - qcom,spi-qpic-snand
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  clocks:
+>> +    minItems: 3
+> 
+> Drop
+Ok will do in next patch.
+> 
+>> +    maxItems: 3
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: core
+>> +      - const: aon
+>> +      - const: iom
+> 
+> Missing blank line
+Ok will do in next patch.
+> 
+>> +  dmas:
+>> +    items:
+>> +      - description: tx DMA channel
+>> +      - description: rx DMA channel
+>> +      - description: cmd DMA channel
+>> +
+>> +  dma-names:
+>> +    items:
+>> +      - const: tx
+>> +      - const: rx
+>> +      - const: cmd
+>> +
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
 
