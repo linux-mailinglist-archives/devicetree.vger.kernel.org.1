@@ -1,67 +1,66 @@
-Return-Path: <devicetree+bounces-49207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9F98754D9
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 18:08:47 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DDF1D875560
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 18:42:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 781941C21D1D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 17:08:46 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 936FD2840B8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 17:42:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0194012FF9C;
-	Thu,  7 Mar 2024 17:08:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="KEWhWjVK"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D64A713172E;
+	Thu,  7 Mar 2024 17:40:47 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DDBF612DDBE;
-	Thu,  7 Mar 2024 17:08:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A284413175A;
+	Thu,  7 Mar 2024 17:40:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709831321; cv=none; b=Dftxcn9d8SRIPH+AZFBAa3FMuTG39Wi/+v8KWyu/EMuSN2xcBsS+gmTxJ1VR0T0PhU6JngkQzYJKbf8OCQOwQM9pCNHZJ3Cy23qdDPxoMjd3a59kGErux7uDiW4DJ13UzzHeyMG5GA5OIetrCPy+QfM0d+PdqHHqmCcB6q/fmHc=
+	t=1709833247; cv=none; b=H5OTgoc5Va03rq7wAIZTwfBq9p3HzVMAvXCNhGa4ibuxVkKaAQl14ck2r1YaNHCHYpRq4aX41VRyyo3jllwbM2tYC3DdCKek5XUhfRfBIrIe85kaFu5yhFiZmmdRsHIkOg9yH7jm9xHMqc+pVrBKn3Hb3opBWCv3ht0iMkPDkRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709831321; c=relaxed/simple;
-	bh=JXl2uazT63Iyfp3B6864Ck7/1RQX0rkbSuPryxHAo0Q=;
+	s=arc-20240116; t=1709833247; c=relaxed/simple;
+	bh=pZ2j2s3WtUj49vUlud/FK5nDjMVZQXuPbVSbWNHdK0Y=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=loCZEV8HoQeUjiveMgdc/zVgZOmVfWvQzc1Ek3vV6/WIbl6WL99Ruebk+Rj0uvKtqHNneK7V43E+1WXHEkBQ6t8DV641PSXne9PAdRJQICzPvdGCj49uefx5gUNX4mYuM6WGR9tQVukS1GPWoWPxCEDI8rjTDjm2EfJ+qveDO1Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=KEWhWjVK; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=5k0dUR2rE2fxeaqvwbqJwiFlYYiMm6GdJ7apm0o5Iao=; b=KEWhWjVKEPumuzv+FC9Okoz2rs
-	sFQizONg4p1DYUBmD7SY/D7PHP2LWvDMYhY4s1W381ZZsl7MiX1oJHkBcEe/jjLKYhN7XBgv/tY6N
-	n24mGeuswskJ2SFIpb0Kc3GglnZXQM7ne/YzhuyCW6er60H3yukn3ZevfzRcTKofH2zk=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1riHEi-009bZV-K1; Thu, 07 Mar 2024 18:08:52 +0100
-Date: Thu, 7 Mar 2024 18:08:52 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
-	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
-	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v3 08/12] net: ethernet: oa_tc6: implement
- transmit path to transfer tx ethernet frames
-Message-ID: <208fb61b-4740-46bf-8c70-29ab59cbb965@lunn.ch>
-References: <20240306085017.21731-1-Parthiban.Veerasooran@microchip.com>
- <20240306085017.21731-9-Parthiban.Veerasooran@microchip.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=NrC5rzf1gLumK0spEVf/5JulZBLMv/F53Zkx32Ai2j17ula6YNLsGgl07pMxsWa9LCPhkFs029new+jDiL/c6Y0Y+GMUyoCNMrMv+YJdgW9FK3rri7h5pTuJEn5hohFk3nb4Xi2o/qfhdRlubf8xGvoWtWyHMVb/IlfkfhU54Ws=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1riHj8-0004Mx-0y;
+	Thu, 07 Mar 2024 17:40:18 +0000
+Date: Thu, 7 Mar 2024 17:40:08 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Eric Woudstra <ericwouds@gmail.com>
+Cc: Andrew Lunn <andrew@lunn.ch>, "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Frank Wunderlich <frank-w@public-files.de>,
+	Lucien Jheng <lucien.jheng@airoha.com>,
+	Zhi-Jun You <hujy652@protonmail.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 net-next 2/2] net: phy: air_en8811h: Add the Airoha
+ EN8811H PHY driver
+Message-ID: <Zen7-M2uAaXH8ucj@makrotopia.org>
+References: <20240302183835.136036-1-ericwouds@gmail.com>
+ <20240302183835.136036-3-ericwouds@gmail.com>
+ <89f237e0-75d4-4690-9d43-903e087e4f46@lunn.ch>
+ <b27e44db-d9c5-49f0-8b81-2f55cfaacb4d@gmail.com>
+ <99541533-625e-4ffb-b980-b2bcd016cfeb@lunn.ch>
+ <6e6e408d-3dbb-4e80-ae27-d3aaafb34b06@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,99 +69,195 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240306085017.21731-9-Parthiban.Veerasooran@microchip.com>
+In-Reply-To: <6e6e408d-3dbb-4e80-ae27-d3aaafb34b06@gmail.com>
 
-> @@ -55,6 +77,14 @@
->  						(OA_TC6_CTRL_MAX_REGISTERS *\
->  						OA_TC6_CTRL_REG_VALUE_SIZE) +\
->  						OA_TC6_CTRL_IGNORED_SIZE)
-> +#define OA_TC6_CHUNK_PAYLOAD_SIZE		64
-> +#define OA_TC6_DATA_HEADER_SIZE			4
-> +#define OA_TC6_CHUNK_SIZE			(OA_TC6_DATA_HEADER_SIZE +\
-> +						OA_TC6_CHUNK_PAYLOAD_SIZE)
-> +#define OA_TC6_TX_SKB_QUEUE_SIZE		100
+On Thu, Mar 07, 2024 at 05:48:56PM +0100, Eric Woudstra wrote:
+> 
+> 
+> On 3/5/24 14:54, Andrew Lunn wrote:
+> > On Tue, Mar 05, 2024 at 09:13:41AM +0100, Eric Woudstra wrote:
+> >>
+> >> Hi Andrew,
+> >>
+> >> First of all, thanks for taking the time to look at the code so
+> >> extensively.
+> >>
+> >> On 3/3/24 18:29, Andrew Lunn wrote:
+> >>>> +enum {
+> >>>> +	AIR_PHY_LED_DUR_BLINK_32M,
+> >>>> +	AIR_PHY_LED_DUR_BLINK_64M,
+> >>>> +	AIR_PHY_LED_DUR_BLINK_128M,
+> >>>> +	AIR_PHY_LED_DUR_BLINK_256M,
+> >>>> +	AIR_PHY_LED_DUR_BLINK_512M,
+> >>>> +	AIR_PHY_LED_DUR_BLINK_1024M,
+> >>>
+> >>> DUR meaning duration? It has a blinks on for a little over a
+> >>> kilometre? So a wave length of a little over 2 kilometres, or a
+> >>> frequency of around 0.0005Hz :-)
+> >>
+> >> It is the M for milliseconds. I can add a comment to clarify this.
+> > 
+> > Or just add an S. checkpatch does not like camElcAse. So ms will call
+> > a warning. But from context we know it is not mega seconds.
+> 
+> I'll add it.
+> 
+> >>>> +static int __air_buckpbus_reg_write(struct phy_device *phydev,
+> >>>> +				    u32 pbus_address, u32 pbus_data,
+> >>>> +				    bool set_mode)
+> >>>> +{
+> >>>> +	int ret;
+> >>>> +
+> >>>> +	if (set_mode) {
+> >>>> +		ret = __phy_write(phydev, AIR_BPBUS_MODE,
+> >>>> +				  AIR_BPBUS_MODE_ADDR_FIXED);
+> >>>> +		if (ret < 0)
+> >>>> +			return ret;
+> >>>> +	}
+> >>>
+> >>> What does set_mode mean?
+> >>
+> >> I use this boolean to prevent writing the same value twice to the
+> >> AIR_BPBUS_MODE register, when doing an atomic modify operation. The
+> >> AIR_BPBUS_MODE is already set in the read operation, so it does not
+> >> need to be set again to the same value at the write operation.
+> >> Sadly, the address registers for read and write are different, so
+> >> I could not optimize the modify operation any more.
+> > 
+> > So there is the potential to have set_mode true when not actually
+> > performing a read/modify/write. Maybe have a dedicated modify
+> > function, and don't expose set_mode?
+> 
+> I'll write a dedicated modify function.
+> 
+> 
+> >>>> +static int en8811h_load_firmware(struct phy_device *phydev)
+> >>>> +{
+> >>>> +	struct device *dev = &phydev->mdio.dev;
+> >>>> +	const struct firmware *fw1, *fw2;
+> >>>> +	int ret;
+> >>>> +
+> >>>> +	ret = request_firmware_direct(&fw1, EN8811H_MD32_DM, dev);
+> >>>> +	if (ret < 0)
+> >>>> +		return ret;
+> >>>> +
+> >>>> +	ret = request_firmware_direct(&fw2, EN8811H_MD32_DSP, dev);
+> >>>> +	if (ret < 0)
+> >>>> +		goto en8811h_load_firmware_rel1;
+> >>>> +
+> >>>
+> >>> How big are these firmwares? This will map the entire contents into
+> >>> memory. There is an alternative interface which allows you to get the
+> >>> firmware in chunks. I the firmware is big, just getting 4K at a time
+> >>> might be better, especially if this is an OpenWRT class device.
+> >>
+> >> The file sizes are 131072 and 16384 bytes. If you think this is too big,
+> >> I could look into using the alternative interface.
+> > 
+> > What class of device is this? 128K for a PC is nothing. For an OpenWRT
+> > router with 128M of RAM, it might be worth using the other API.
+> 
+> So far, I only know of the BananaPi-R3mini, which I am using. It has 2GB
+> of ram. It should be ok.
 
-So you keep up to 100 packets in a queue. If use assume typical MTU
-size packets, that is 1,238,400 bits. At 10Mbps, that is 120ms of
-traffic. That is quite a lot of latency when a high priority packet is
-added to the tail of the queue and needs to wait for all the other
-packets to be sent first.
+Most normal consumer devices don't have 2 GiB like the R3 mini.
+However, it's safe to assume that boards which come with EN8811H will
+also come with 256 MiB of RAM or more, and keeping 144kiB in RAM
+doesn't hurt too much imho.
 
-Chunks are 64 bytes. So in practice, you only ever need two
-packets. You need to be able to fill a chunk with the final part of
-one packet, and the beginning of the next. So i would try using a much
-smaller queue size. That will allow Linux queue disciplines to give
-you the high priority packets first which you send with low latency.
+> 
+> >>>> +static int en8811h_restart_host(struct phy_device *phydev)
+> >>>> +{
+> >>>> +	int ret;
+> >>>> +
+> >>>> +	ret = air_buckpbus_reg_write(phydev, EN8811H_FW_CTRL_1,
+> >>>> +				     EN8811H_FW_CTRL_1_START);
+> >>>> +	if (ret < 0)
+> >>>> +		return ret;
+> >>>> +
+> >>>> +	return air_buckpbus_reg_write(phydev, EN8811H_FW_CTRL_1,
+> >>>> +				     EN8811H_FW_CTRL_1_FINISH);
+> >>>> +}
+> >>>
+> >>> What is host in this context?
+> >>
+> >> This is the EN8811H internal host to the PHY.
+> > 
+> > That is a very PHY centric view of the world. I would say the host is
+> > what is running Linux. I assume this is the datahsheets naming? Maybe
+> > cpu, or mcu is a better name?
+> 
+> I'll rename host to mcu.
+> 
+> >>> Vendors do like making LED control unique. I've not seen any other MAC
+> >>> or PHY where you can blink for activity at a given speed. You cannot
+> >>> have 10 and 100 at the same time, so why are there different bits for
+> >>> them?
+> >>>
+> >>> I _think_ this can be simplified
+> >>> ...
+> >>> Does this work?
+> >>
+> >> I started out with that, but the hardware can do more. It allows
+> >> for a setup as described:
+> >>
+> >>  100M link up triggers led0, only led0 blinking on traffic
+> >> 1000M link up triggers led1, only led1 blinking on traffic
+> >> 2500M link up triggers led0 and led1, both blinking on traffic
+> >>
+> >> #define AIR_DEFAULT_TRIGGER_LED0 (BIT(TRIGGER_NETDEV_LINK_2500) | \
+> >> 				 BIT(TRIGGER_NETDEV_LINK_100)  | \
+> >> 				 BIT(TRIGGER_NETDEV_RX)        | \
+> >> 				 BIT(TRIGGER_NETDEV_TX))
+> >> #define AIR_DEFAULT_TRIGGER_LED1 (BIT(TRIGGER_NETDEV_LINK_2500) | \
+> >> 				 BIT(TRIGGER_NETDEV_LINK_1000) | \
+> >> 				 BIT(TRIGGER_NETDEV_RX)        | \
+> >> 				 BIT(TRIGGER_NETDEV_TX))
+> >>
+> >> With the simpler code and just the slightest traffic, both leds
+> >> are blinking and no way to read the speed anymore from the leds.
+> >>
+> >> So I modified it to make the most use of the possibilities of the
+> >> EN881H hardware. The EN8811H can then be used with a standard 2-led
+> >> rj45 socket.
+> > 
+> > The idea is that we first have Linux blink the LEDs in software. This
+> > is controlled via the files in /sys/class/leds/FOO/{link|rx|tx}
+> > etc. If the hardware can do the same blink pattern, it can then be
+> > offloaded to the hardware.
+> > 
+> > If you disable hardware offload, just have set brightness, can you do
+> > the same pattern?
+> > 
+> > As i said, vendors do all sorts of odd things with LEDs. I would
+> > prefer we have a common subset most PHY support, and not try to
+> > support every strange mode.
+> 
+> Then I will keep this part of the code as in
+> mt798x_phy_led_hw_control_set(), only adding 2500Mbps.
+> 
+> >>> +	/* Select mode 1, the only mode supported */
+> > 
+> >> Maybe a comment about what mode 1 actually is?
+> 
+> After consulting Airoha, I can change it to:
+> 
+> +	/* Select mode 1, the only mode supported.
+> +	 * The en8811h configures the SerDes as fixed hsgmii.
 
-> +static void oa_tc6_add_tx_skb_to_spi_buf(struct oa_tc6 *tc6)
-> +{
-> +	enum oa_tc6_data_start_valid_info start_valid = OA_TC6_DATA_START_INVALID;
-> +	enum oa_tc6_data_end_valid_info end_valid = OA_TC6_DATA_END_INVALID;
-> +	__be32 *tx_buf = tc6->spi_data_tx_buf + tc6->spi_data_tx_buf_offset;
-> +	u16 remaining_length = tc6->tx_skb->len - tc6->tx_skb_offset;
-> +	u8 *tx_skb_data = tc6->tx_skb->data + tc6->tx_skb_offset;
-> +	u8 end_byte_offset = 0;
-> +	u16 length_to_copy;
-> +
-> +	/* Set start valid if the current tx chunk contains the start of the tx
-> +	 * ethernet frame.
+They probably mean 2500Base-X when they say HSGMII.
+
+HSGMII is an undefined thing. The name would kinda suggest that it
+would be similar to SGMII semantics, ie. in-band status which covers
+speed and duplex. This is not the case for the EN8811H which just uses
+2500Base-X and pause-frames to adapt for link speeds less than 2500M.
+
+'mode 1' hence probably means '2500Base-X with rate adaptation'.
+
+
 > +	 */
-> +	if (!tc6->tx_skb_offset)
-> +		start_valid = OA_TC6_DATA_START_VALID;
-> +
-> +	/* If the remaining tx skb length is more than the chunk payload size of
-> +	 * 64 bytes then copy only 64 bytes and leave the ongoing tx skb for
-> +	 * next tx chunk.
-> +	 */
-> +	length_to_copy = min_t(u16, remaining_length, OA_TC6_CHUNK_PAYLOAD_SIZE);
-> +
-> +	/* Copy the tx skb data to the tx chunk payload buffer */
-> +	memcpy(tx_buf + 1, tx_skb_data, length_to_copy);
-> +	tc6->tx_skb_offset += length_to_copy;
-
-You probably need a call to skb_linearize() somewhere. You assume the
-packet data is contiguous. It can in fact be split into multiple
-segments. skb_linearize() will convert it to a single buffer.
-
-> +static int oa_tc6_try_spi_transfer(struct oa_tc6 *tc6)
-> +{
-> +	int ret;
-> +
-> +	while (true) {
-> +		u16 spi_length = 0;
-> +
-> +		tc6->spi_data_tx_buf_offset = 0;
-> +
-> +		if (tc6->tx_skb || !skb_queue_empty(&tc6->tx_skb_q))
-> +			spi_length = oa_tc6_prepare_spi_tx_buf_for_tx_skbs(tc6);
-> +
-> +		if (spi_length == 0)
-> +			break;
-> +
-> +		ret = oa_tc6_spi_transfer(tc6, OA_TC6_DATA_HEADER, spi_length);
-> +		if (ret) {
-> +			netdev_err(tc6->netdev,
-> +				   "SPI data transfer failed. Restart the system: %d\n",
-> +				   ret);
-
-What does Restart the system mean?
-
-> +static int oa_tc6_spi_thread_handler(void *data)
-> +{
-> +	struct oa_tc6 *tc6 = data;
-> +	int ret;
-> +
-> +	while (likely(!kthread_should_stop())) {
-> +		/* This kthread will be waken up if there is a tx skb */
-> +		wait_event_interruptible(tc6->spi_wq,
-> +					 !skb_queue_empty(&tc6->tx_skb_q) ||
-> +					 kthread_should_stop());
-> +		ret = oa_tc6_try_spi_transfer(tc6);
-
-Shouldn't you check why you have been woken up? It seems more logical
-to test here for kthread_should_stop() rather than have
-oa_tc6_try_spi_transfer() handle there is not actually a packet to be
-sent.
-
-	Andrew
+> 
+> Best Regards,
+> 
+> Eric Woudstra
 
