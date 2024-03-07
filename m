@@ -1,103 +1,105 @@
-Return-Path: <devicetree+bounces-49008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA1B787494D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 09:16:10 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 169C987495C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 09:16:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 910EA285CB5
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:16:09 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A0B251F242A2
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 659A36313C;
-	Thu,  7 Mar 2024 08:15:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C63F8634FB;
+	Thu,  7 Mar 2024 08:16:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="blvw5orK"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tvYuqc+U"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6090C6313B;
-	Thu,  7 Mar 2024 08:15:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93F70634EB;
+	Thu,  7 Mar 2024 08:16:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709799325; cv=none; b=HGTLjHaqYrmAH9FECmSMnWHzrCtm+7QKVWaYITKbvZ0upTG6Ge77yOJthLjvzU4eYFHTJtvrB1kDfKJJl1c/oYheg657NX2hOEM5Uq65NQPNSbdZhh0nUbLjS5yP2NGa8hwh7YnmTtjg/nSDB6Bqvs/hukRcPmz2I9+SBvSg6dE=
+	t=1709799385; cv=none; b=a+1j0tl98lbNnq6/vrW2ufnpnbrhxIkuJDv+91ETbOLCOLIto+lDfdvpUisPWaN/xfwWOOVD/YSpLvxJoqMbvKGDRUqrvvEMHokic+QPXQRvN8sHfTTRhjfQVgY+y7pJINDqGPLganbyfTR3vvPh1FaMXKRWK48Xnb6SiRPD9yg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709799325; c=relaxed/simple;
-	bh=ZstXiN8BCb6FOQN96D81OboJCXKA33Stl82Xuecf8cg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=vFCeS7Z5L4cQ4E2+Nap7YXaxLSNTaJ8xiZlQdTLpYtxrjdduSv7fmeb5e2bSw0+EvDDRf9Ta4GhmM4Sjumw6Q19/HjPosZRLvc86MbegenSzmYgiPzfLQ8ZFH0kBKEHbbZ11Nzvx6m+e5FxQSq8WRNv70mOz3y1KDVyM/PT5/TY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=blvw5orK; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 432FE240003;
-	Thu,  7 Mar 2024 08:15:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709799320;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=buhNLZyABPkypJJr6jjWYuCWSEEmx3G3WXbzfi/P7uA=;
-	b=blvw5orKpmVdJ/dB539TbEIfgeahPbmYw365thGcbpUH75juP7CDVqDlaI73HRofGBHhjT
-	rSUx+luK9x/JspZBrKcrQA17WCLNSz4AqQFFOhje2kCoIG1I/Rx1rhE0HEvXz1YROKA7R3
-	bTHZpEQstUB92nTHj4zqd7vFh6Dsz6cSXtz2nAIPajHvOeX79alwbXDAoq3SccCYjjl3Vk
-	b1NPOf8100775Jyc5YgySmD4sMdov+G0yHW3czaj/oKWL8PLvoU2QifgzjNWyA/4ft8Z2E
-	+P10YYalHRf5t+cJEhkC8qsHO0EOsNtCdEwB0BVRKyLC/dcV6m7HnKe3183WTg==
+	s=arc-20240116; t=1709799385; c=relaxed/simple;
+	bh=rVFMQEnfrYG4Wgn4S68I3EQLzaLnbMdVngZen2hYYOg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=g91WokQaqHU4kdSKfBy5OBpN2T6RdGkDFqYQZvEzVy3aT29SYLT0JJ4TcUMiqTk0JeRkiJUB7EFjjui6IaVWkEu0xhz7gOiJu3vIll3gIdZpMxcn2lMjpO69PHjmFFbp1/cpD5Tk0I3TPABFqNZqi0/bBU9pXTNnawVVpW+HCYQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tvYuqc+U; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46105C433C7;
+	Thu,  7 Mar 2024 08:16:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709799385;
+	bh=rVFMQEnfrYG4Wgn4S68I3EQLzaLnbMdVngZen2hYYOg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tvYuqc+UTOlU2ALSL6tZwugkxiFcZurvxlhQ50GsLxBZSPch5EtQlJAdGIs3iQlfW
+	 EnTJOn5BkAevPqEBqsfxcojKNVIILbeUsmwz9iqm4qDVgsaDn81/ROgEFgOEv9Ah7p
+	 Bq+OzvhNwV2Z/SqVgY/HTd2ndLJdJf/2R5H4+EIKANHVqqi6mMu0jCGWQtRUQjpxrg
+	 CrAwW1vxOCmc3jRhSx+cUTKsaS+Q+HpQTszMA7pVRIjaMJ+jdYkgHiu/zFzqINzfLX
+	 +j6y77zKrH4bjI90Rkhh+0HHCbAbhxrudX5M5EMs3EdnxG+ObraMmEWEY0+x66De+d
+	 DKYEdnQm3dPfg==
+Date: Thu, 7 Mar 2024 08:16:19 +0000
+From: Lee Jones <lee@kernel.org>
+To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
+Cc: Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [RFC PATCH v3 2/5] mfd: add driver for Marvell 88PM886 PMIC
+Message-ID: <20240307081619.GI86322@google.com>
+References: <20240303101506.4187-1-karelb@gimli.ms.mff.cuni.cz>
+ <20240303101506.4187-3-karelb@gimli.ms.mff.cuni.cz>
+ <20240305114418.GB86322@google.com>
+ <CZM1LPDLQXLP.VVOVCCQPGBOL@gimli.ms.mff.cuni.cz>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Thu, 07 Mar 2024 09:15:18 +0100
-Message-Id: <CZND9VGAGS45.210DYP50RTA9F@bootlin.com>
-Cc: "Vladimir Kondratiev" <vladimir.kondratiev@mobileye.com>,
- <linux-mips@vger.kernel.org>, <linux-clk@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>, "Thomas
- Petazzoni" <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>, <linux-gpio@vger.kernel.org>, "Krzysztof
- Kozlowski" <krzysztof.kozlowski@linaro.org>
-To: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>, "Gregory
- CLEMENT" <gregory.clement@bootlin.com>, "Michael Turquette"
- <mturquette@baylibre.com>, "Stephen Boyd" <sboyd@kernel.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>, "Linus Walleij"
- <linus.walleij@linaro.org>, =?utf-8?q?Rafa=C5=82_Mi=C5=82ecki?=
- <rafal@milecki.pl>, "Philipp Zabel" <p.zabel@pengutronix.de>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v9 0/9] Add support for Mobileye EyeQ5 system controller
-X-Mailer: aerc 0.15.2
-References: <20240301-mbly-clk-v9-0-cbf06eb88708@bootlin.com>
-In-Reply-To: <20240301-mbly-clk-v9-0-cbf06eb88708@bootlin.com>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CZM1LPDLQXLP.VVOVCCQPGBOL@gimli.ms.mff.cuni.cz>
 
-Hello,
+> > > +static int pm886_initialize_subregmaps(struct pm886_chip *chip)
+> > > +{
+> > > +	struct device *dev = &chip->client->dev;
+> > > +	struct i2c_client *page;
+> > > +	struct regmap *regmap;
+> > > +	int err;
+> > > +
+> > > +	/* regulators page */
+> > > +	page = devm_i2c_new_dummy_device(dev, chip->client->adapter,
+> > > +				chip->client->addr + PM886_PAGE_OFFSET_REGULATORS);
+> > > +	if (IS_ERR(page)) {
+> > > +		err = PTR_ERR(page);
+> > > +		dev_err(dev, "Failed to initialize regulators client: %d\n", err);
+> > > +		return err;
+> > > +	}
+> > > +	regmap = devm_regmap_init_i2c(page, &pm886_i2c_regmap);
+> > > +	if (IS_ERR(regmap)) {
+> > > +		err = PTR_ERR(regmap);
+> > > +		dev_err(dev, "Failed to initialize regulators regmap: %d\n", err);
+> > > +		return err;
+> > > +	}
+> > > +	chip->regmaps[PM886_REGMAP_REGULATORS] = regmap;
+> >
+> > Except for the regulator driver, where else is the regulators regmap used?
+> 
+> Nowhere, at least as of now. So you are saying that I should initialize
+> the regmap in the regulator driver?
 
-On Fri Mar 1, 2024 at 5:22 PM CET, Th=C3=A9o Lebrun wrote:
-> Here again for a new revision of the system-controller on Mobileye
-> EyeQ5. It deals with clk, reset and pinctrl. Drivers are meant to be
-> merged in their respective trees. Each already have their dt-bindings
-> in -next.
+I am.
 
-I'd be curious to get the state of mind of the involved maintainers
-about this series?
- - clk, reset, pinctrl: I feel like the three drivers look in good shape
-   now that we've done a few review iterations.
- - MIPS: dt-bindings have been queued in their respective branches so
-   devicetree patches have no reason to change.
-
-Can patches be queued before the upcoming merge window?
-
-Have a nice day,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+-- 
+Lee Jones [李琼斯]
 
