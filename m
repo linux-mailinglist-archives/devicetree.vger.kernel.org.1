@@ -1,119 +1,119 @@
-Return-Path: <devicetree+bounces-49132-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49133-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id ED572874FCF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:20:06 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 20D4F874FDA
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:22:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A936728347F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:20:05 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B02A51F218BC
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 13:22:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A47B12C54A;
-	Thu,  7 Mar 2024 13:20:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2D1ED12C552;
+	Thu,  7 Mar 2024 13:22:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="NS0qDYMY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com [209.85.128.176])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C7F3284FD5;
-	Thu,  7 Mar 2024 13:19:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0509A129A98;
+	Thu,  7 Mar 2024 13:22:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709817601; cv=none; b=P7Df5xrvmytX2CA9hd/wD/4GkYieMRN/c9D+oQ+atwyRqXWo0yZKnIO8jcL/EZfM2ZLOFm52HmI3J4GHwGdQhjy3eW6QmnlgIyuJfsqGPjf1plqPubOx0KtOBJO+9zsk4YQgIcaqQjj9Vef7jZmBw8Kn7JrzANLQOwONytndDZg=
+	t=1709817726; cv=none; b=ndl2XnXnMczd09DEBS2G8zcTXojNIPd4JCMvRaRIDUMPPw/jv0cIrD64gtbMtpkK8fGWE1Gei9mIbDGtWckrqytq1pJekuHM0N721G2BkTsC1z5MH/JxBX7WK4S+LSrIAmYdE6fk8gtBBPWUGvThmMo2aXU9SbC9NWf3LctuH1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709817601; c=relaxed/simple;
-	bh=XdyRbsIb6pG2jeGtOXK+SlTPRnhDtH1vytwJZq+aHgc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ekhNrObNZepMnuSw1LSo06lboi9AbwyFNvN0Ct+FrE1l2Q7NPqp/UCc8+wxCKsmqqUcygLM37hE+4WchAYKhChMvQwvX3ALiBCxW/vauN13BQMw//njshaWkLqGBen6hMa6OKmpmRNvWl2Qrz8/3c5jroKWtfsKizQn/lDMtG8E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-6094a87c4a7so8554177b3.3;
-        Thu, 07 Mar 2024 05:19:59 -0800 (PST)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709817598; x=1710422398;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=3qMsMQn9F0MZ0xZLxTSXRgknQ2DR10UkoNa/fQj/hno=;
-        b=koh6pa5h2jWksdLJZdozqgPBV7EgBwxT5NSTyM5hIMqIK3XLwbGroRgXbJ1Oz5bVIW
-         A4/MQVET/UtXvHBDHwWtJmRZBZxfih3qQG5zjkhEHnLF4Lo/ZMRTHs+9Osuw3gxaDmMs
-         0Bux8y1j2pzkwfJaWfzXc3T/QkTiaQFL4s4n5+eZiGryIaLkPHj7+xers1yBR++jT9Ky
-         wsLlVYguzt1i7K6SF1ajd47RB5QpliSatfIphbI7Fvco8rRA5UHru8bTEXmSL3vq3myD
-         YwQvmjxtwLwWlJM8FlIeKExwWrLf3toUuzFIthheVZRuayd9kKVn5YG6PHxhXzjVhd2w
-         MYtg==
-X-Forwarded-Encrypted: i=1; AJvYcCWzVX2iM4sqEZiH1PjFnYl2LW2qHH3VdnsXfjLz3/COOszYllOvBDXyqYLhWKj7Cl5pM8PnkWVtRsXtnCG6Xzmo5hUE0fnCOzOHosSB6qLl5TEdUhbhYK+IlQ1vYwW6f8z235P4Rg5O1oThzJ8sRqxss+EKYC+f3Q9/oTdCDffuEV+iH46ZPHdK9MRcmlojOdBrAziAkbxKdKwvqAfJnaXyn8onRdQVswMa
-X-Gm-Message-State: AOJu0YyEfewKC6kLMlclL526WkqYyU1Gcgw+4HN9pONUuwcrU2ZixmLA
-	G3StQ4uGf4FEPAnnpT01pDbCOImhavVOjywjaisAXSyNtuuYZtzsI7nxFUlrbyg=
-X-Google-Smtp-Source: AGHT+IEMG0bt+c+X29KGNewoGCkSaXD9GOn7kZtzf0V38QWQr2nXcx4HN85e1KgBtBwxuUfrrjGZKg==
-X-Received: by 2002:a81:4ac2:0:b0:607:850e:7583 with SMTP id x185-20020a814ac2000000b00607850e7583mr16757549ywa.38.1709817598487;
-        Thu, 07 Mar 2024 05:19:58 -0800 (PST)
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com. [209.85.128.178])
-        by smtp.gmail.com with ESMTPSA id s17-20020a819f11000000b006096e718ed2sm4045497ywn.103.2024.03.07.05.19.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Mar 2024 05:19:58 -0800 (PST)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-6094a87c4a7so8553967b3.3;
-        Thu, 07 Mar 2024 05:19:58 -0800 (PST)
-X-Forwarded-Encrypted: i=1; AJvYcCWSsiXc7POa7quMc0Vvp/ryn8dg+tenS9drFt074NVwlfbjjZrC6v1j4aIwj9ew8cw3fsSWmXxBLpnZy2WUhJ5PF9+/m+L3+CVx/FOwiqx44oN5hGnSSAiQD7CWHlunuvbL5BBggO6vmX0jR9/NIJcfLOCOtkyUg43vLQGA0KlyIw2yq5NTgCzqdWqaTEtIEWZ8ao/M7pGIxt0AThYWl98U3Gq/+6Eh735z
-X-Received: by 2002:a0d:d645:0:b0:607:d285:4d7a with SMTP id
- y66-20020a0dd645000000b00607d2854d7amr17511039ywd.52.1709817597978; Thu, 07
- Mar 2024 05:19:57 -0800 (PST)
+	s=arc-20240116; t=1709817726; c=relaxed/simple;
+	bh=w2MkkM7a8PG5sSCI7iTEMgtD4tpClgb1lVwK2p69wa0=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=gRopV+l9UhaFto6Fs+VsjY8tQC+5HMEBatY8l5QzO0Y4lJww0Y2GZ+iktO62VPc9RcFU2rKrPZX4grQtZo5fMGgykyo1WwNhrfw/GFz+cy+7WfhKnjBWRv1iOCjcWhX/W+yUEyDymVk6YL2rOcEMf4/CE2O+xS0oP49a44EjWz8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=NS0qDYMY; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=2adjiSztGzfYM9T4lx+mXU7akcr/eZ53zqRB/d3naCg=; b=NS0qDYMYyfSg/DYyBW0xzZV6ke
+	O5nAjui8RFwzJMoYUkx/9X+X1rylXwKUHbQF1h1POAX8BoZEODQnlVDeKWQo53ajra4vj97Rt7eXD
+	kqB4a0NOvWQdq1Ihs2tuNw9oVYkEBYLlVr9OiOjB7ZAFLQgYqRFd6cPn30NZWNi5m16M=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1riDhR-009aTZ-0R; Thu, 07 Mar 2024 14:22:17 +0100
+Date: Thu, 7 Mar 2024 14:22:16 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Parthiban.Veerasooran@microchip.com
+Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
+	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, corbet@lwn.net,
+	linux-doc@vger.kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	devicetree@vger.kernel.org, Horatiu.Vultur@microchip.com,
+	ruanjinjie@huawei.com, Steen.Hegelund@microchip.com,
+	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
+	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
+	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
+	benjamin.bigler@bernformulastudent.ch
+Subject: Re: [PATCH net-next v3 03/12] net: ethernet: oa_tc6: implement
+ register read operation
+Message-ID: <d2f254b9-7e7a-46ed-a979-00bdf92899ac@lunn.ch>
+References: <20240306085017.21731-1-Parthiban.Veerasooran@microchip.com>
+ <20240306085017.21731-4-Parthiban.Veerasooran@microchip.com>
+ <48b65759-6e69-46ef-a2ed-857d04eadac8@lunn.ch>
+ <83e0b340-521e-4d60-90bb-92d2ca6f5abe@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240307114217.34784-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240307114217.34784-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240307114217.34784-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 7 Mar 2024 14:19:46 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVSYzU6E0cBPmqR+RBk-WFEWQBkyj9KjePJZq-EXJ62og@mail.gmail.com>
-Message-ID: <CAMuHMdVSYzU6E0cBPmqR+RBk-WFEWQBkyj9KjePJZq-EXJ62og@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: serial: renesas,scif: Validate
- 'interrupts' and 'interrupt-names'
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Jiri Slaby <jirislaby@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, linux-kernel@vger.kernel.org, 
-	linux-serial@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <83e0b340-521e-4d60-90bb-92d2ca6f5abe@microchip.com>
 
-On Thu, Mar 7, 2024 at 12:43=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.c=
-om> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> This commit adds support to validate the 'interrupts' and 'interrupt-name=
-s'
-> properties for every supported SoC. This ensures proper handling and
-> configuration of interrupt-related properties across supported platforms.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2
-> * Defined the properties in top-level block instead of moving into
->   if/else block for each SoC.
-> * Used Gen specific callback strings instead of each SoC variant
+On Thu, Mar 07, 2024 at 07:04:20AM +0000, Parthiban.Veerasooran@microchip.com wrote:
+> Hi Andrew,
+> 
+> On 07/03/24 5:49 am, Andrew Lunn wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know the content is safe
+> > 
+> >>   enum oa_tc6_register_op {
+> >> +     OA_TC6_CTRL_REG_READ = 0,
+> >>        OA_TC6_CTRL_REG_WRITE = 1,
+> >>   };
+> > 
+> > I thought it looked a little odd when the enum was added in the
+> > previous patch with the first value of 1, and only one value. Now it
+> > makes more sense.
+> Ok.
+> > 
+> > The actual value appears to not matter? It is always
+> > 
+> >> +     if (reg_op == OA_TC6_CTRL_REG_WRITE)
+> > 
+> > So i would drop the numbering, and leave it to the compiler. The
+> > patches will then look less odd.
+> "drop the numbering", do you refer to this patch alone or previous patch 
+> also? If it is for this patch alone then it makes sense as they are 
+> going to be 0 and 1 anyway. But if we drop the numbering in the previous 
+> patch it will become 0 which will create an issue in the below line as 
+> it needs 1,
+> 
+> FIELD_PREP(OA_TC6_CTRL_HEADER_WRITE, reg_op)
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+That is why i asked: 
 
-Gr{oetje,eeting}s,
+> The actual value appears to not matter? It is always
+> 
+> +     if (reg_op == OA_TC6_CTRL_REG_WRITE)
 
-                        Geert
+So the actual value does matter, so keep it in the previous patch.
+Does the value of OA_TC6_CTRL_REG_READ matter? Is it also used in
+FIELD_PREP etc? If not, taking away the = 0 will emphasise that 
+OA_TC6_CTRL_REG_WRITE has to be 1.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+	Andrew
 
