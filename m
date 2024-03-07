@@ -1,98 +1,89 @@
-Return-Path: <devicetree+bounces-49157-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49158-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB08787514D
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:07:28 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57EDA875155
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:08:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6893B1F22365
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:07:28 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0ECB4286AE8
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:08:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7C4A4130E2C;
-	Thu,  7 Mar 2024 14:04:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 086E512DD9C;
+	Thu,  7 Mar 2024 14:07:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b="l0SAGa+K"
+	dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b="FGb6tuPu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 18DA212F366
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 14:04:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E905B12C52B
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 14:07:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709820254; cv=none; b=aSLNk6Sj2Pwvxy5Egvg172jVrkzg1FgQEW5Z8lz2HbHHUVXjJz6YlemZLDwOIs+RoTyBc9fGVazqExngMDjl7HrybT7NoqMndp5XKVi3quB+lb5gn6XLF6+gKNCJgVCH+n9ZS2jTIu32APEUz2wz4KXbFpl5xvgc+408uNeQpuQ=
+	t=1709820468; cv=none; b=nos1Kt1o7w5t8VO0FwVefrXLkF3XtIWfVKyZvRSAUXabsGT9GP9ih5d1YoIDcGtTeEoa7PPWoHAYus8gQ+rFSQ/G9myZBPsiYXP0YHyM/QPo7R8yib6pmBjYkXGsWBphxpEFGx+3xYZGNNuK1DjOQWM1rd2/IRICd64uSmeF0+E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709820254; c=relaxed/simple;
-	bh=rKzBeXR+4dT60DV6BPmoejLJGwtYaFZERH7vUM6fJO4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=hi+Hk+NjMYN5Hpae2JdeYy10xBdRxuxm590yKLcFr1dloKNFFGjt8EJyOxYT6FyMudEYovYKmC4OJPtncm//oxPjGTWwfnfKPVDrLCFXhILGgmDcdGYYtx9B84WTqWBMFCw2nTlyHuqNedq5NFXeAMQ+zVwBt03BYebFtXJYBfs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com; spf=pass smtp.mailfrom=ventanamicro.com; dkim=pass (2048-bit key) header.d=ventanamicro.com header.i=@ventanamicro.com header.b=l0SAGa+K; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ventanamicro.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ventanamicro.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1dd2dca2007so7050005ad.2
-        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 06:04:12 -0800 (PST)
+	s=arc-20240116; t=1709820468; c=relaxed/simple;
+	bh=X6mr7ss3hBz+KcOkyD+aKlFcN4fw3b05uNnI+q4ZcYM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=XwbB27xLRL1Y8UE+JY97DkFemcHsPiCsCsdCnzWaj3rWqQopoAZPzFOEBEptc/YH26G7jW6RDJ3Db7EQD6H7JrItg8aKT/briR8hGgPdrex8HiXi8Sb0PIwh7KwlBgRLji4HPsxDIG0lrACFzAghP6Lq3rIwuTw15pQVmMIyEGM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev; spf=pass smtp.mailfrom=tuxon.dev; dkim=pass (2048-bit key) header.d=tuxon.dev header.i=@tuxon.dev header.b=FGb6tuPu; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=tuxon.dev
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=tuxon.dev
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a456ab934eeso148610566b.0
+        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 06:07:46 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1709820252; x=1710425052; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rjwrYvBNyQ/qNRs7Txb/BN/1bxuD6Rbun1oh6hMbldU=;
-        b=l0SAGa+KAPCBaYwjNC8heARGc8FKob5mDVxV5kO5azaEThS7M/5adLrfpj5WE1fD57
-         IFCa5ZVi2Jrcm2M4iaPhHlxpInFsKDleVVSaLXTFyQJatICfJj9Brs5AVWycXwIyRrCz
-         NqFZu8Y+H+gCSgI1wtOsroCPkgri2U4laTbtV446L82+2eupfU+U2jXbAczez4nRLR8i
-         NZ7hmi3peb6degP4uLY0AieQj/NcGlx7811bj9k8r822tVnr60p/o1GQBSVr2cRAR6fJ
-         39KQAxovNheJvymVr51YkOcn/ccsmIy1FpQ5EuOvoP/HcM73qRFR7FBWpRph8yTs+u6N
-         FsHQ==
+        d=tuxon.dev; s=google; t=1709820465; x=1710425265; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=7qvoqgbf8BgmpB/WA74qzufv4GkITZwzS6+LGmIQY3Q=;
+        b=FGb6tuPupwuScfJUpsAclHLb6UlcXo5srLgd4RT5EWMttHM0wm2zpc5YYsqYvfi1Nt
+         NS0VZl8Zx6i0FRrmMHp0bpMDa8tEwR1H7h8VjPe8u3dHKQ65z9DM24FzJvL/TDAuxXiT
+         /OkrPt7O63MOz452hviSp9BAQVz65eN5kIuHjlU+/b6LsVBF8KeiAiwpI68sMOWJcGPV
+         2rr4QZsPYIhiZcDlSD+3/NV6gnWnhb7HYsrI7+2efduWYcBFduATMfvBT8ScxLUSPOKW
+         /YxRMxPk3Sa7QMPYDil01STQfwBV3a9z65TYLnCx9ndnIFUhZo5outFmh3xh4GgRCVpr
+         Zx/A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709820252; x=1710425052;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rjwrYvBNyQ/qNRs7Txb/BN/1bxuD6Rbun1oh6hMbldU=;
-        b=bvmsvfq+m+ynE0KV+inZVIsvmbsA4iRskh7zbaP5NQJD42ljHGMEvH3BVtFxNhpr8o
-         DHwT8r50K9OSgLJ3WhGi8h+fAEwg7M3GLoAHQDKRoDE/tOP2gIjRSX8KX3/bfwobZ/hT
-         USl2kqCIMPkJvedS+jEou0Qa4nDdVYwLEuinhAHhAexetnMx3nrB8PZU1vvILd5zO8sR
-         txf7LvlyrvcUcAfrt5lDh/QCZYOwRzBXrDA8adusH2/90y0yboe4HwN+5+v5hR30P019
-         fIiW04urNOr4QC+0Fv/Pd/N9zpQLWHzroq2nuqcOhbPVWfDWv3hkig0JSDm5+7cJAlsr
-         yEqQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWOquB7aZNrwA07mtvg4+0JHDQBMr9BMQsUb5QW5flpsSOr66BSFPzsDjzr+lXOj8fsTfNIN5O8KnksQoAntms8Vv2nvrfQeN5mDQ==
-X-Gm-Message-State: AOJu0YyFDf6Gxpumzbio0YVS6pk/0fYJwsOdsyjozFAeYNdLWf2MWLoY
-	zBspTfsCcVEitoUZlRiUoIhWoyT0bU0GHdRnjC0ohPBlgCLIYSGb7GPcjQVlHkI=
-X-Google-Smtp-Source: AGHT+IH4vsjzsOStS+FThaKG7EnDgUZh+Gtnp0D2Nf7vkFgGFqKrbJUaxP4JwhRT8tXdH9oU6TvuQg==
-X-Received: by 2002:a17:903:94f:b0:1db:edb8:35d8 with SMTP id ma15-20020a170903094f00b001dbedb835d8mr9704187plb.34.1709820252379;
-        Thu, 07 Mar 2024 06:04:12 -0800 (PST)
-Received: from anup-ubuntu-vm.localdomain ([171.76.84.79])
-        by smtp.gmail.com with ESMTPSA id w1-20020a1709026f0100b001dd6174c651sm386228plk.149.2024.03.07.06.04.07
+        d=1e100.net; s=20230601; t=1709820465; x=1710425265;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=7qvoqgbf8BgmpB/WA74qzufv4GkITZwzS6+LGmIQY3Q=;
+        b=oHxpSGuqGMuN6cSgqfDggWZB56x79ymrNzq8O2GuiKCY/ffI2KUfsBm03ANSGqGuN/
+         O0eemLuJ19Kx1U1P2Kzwo17xXJJdk4fjU+0/OL3JKB1FI1SmotaqwtcMeUX0b6HWZC2F
+         YZdPyNCCMcSWxIoqDjKNW2rqooq4S3cfWSaCRpczDeonqnu8JykqXuiGPXjb9L3oGwAV
+         IvY4OfILfdzuGK4UAOT47HyFHj6IfLOw9rRPbBsk28VDB/6VyMgiEXnFUXWJHzmVTiOW
+         WWPz/eYYvFy3vWV7SqRQ68vIl5ot112KVTMDvjLvSQ4ZWeXCvWxhLQOKOJT0RoLIszgz
+         oHbQ==
+X-Forwarded-Encrypted: i=1; AJvYcCU1jduPFYN05YK6XAxHa6y4DaiAYfbU/EVDH7etNESuiEdPcVyW9Jum9uB8JjLBjHYRl2cO6uGUG2X/DXWeGsEcrAFM0mxZylpCUA==
+X-Gm-Message-State: AOJu0YxtoJP5RywfyCQy/n3L5MDVr3rseS7dkE4TgWswphWOiHV1NDLA
+	naaSCkNo0mjycvg63f4CaSgjylO7VviCALHfWtfaoLTUWPbErulXTPRvE+gt/WA=
+X-Google-Smtp-Source: AGHT+IGe9ehohUZqONm1c72a7RNSuywN/LKsDYfSndJQuoACdSv5VuHGXxdcyjhAOzi7I1PAms9HYA==
+X-Received: by 2002:a17:906:138d:b0:a45:abec:cff4 with SMTP id f13-20020a170906138d00b00a45abeccff4mr5234619ejc.32.1709820465129;
+        Thu, 07 Mar 2024 06:07:45 -0800 (PST)
+Received: from claudiu-X670E-Pro-RS.. ([82.78.167.38])
+        by smtp.gmail.com with ESMTPSA id v23-20020a1709067d9700b00a42ee62b634sm8200648ejo.106.2024.03.07.06.07.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 07 Mar 2024 06:04:11 -0800 (PST)
-From: Anup Patel <apatel@ventanamicro.com>
-To: Palmer Dabbelt <palmer@dabbelt.com>,
-	Paul Walmsley <paul.walmsley@sifive.com>,
-	Thomas Gleixner <tglx@linutronix.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Marc Zyngier <maz@kernel.org>,
-	=?UTF-8?q?Bj=C3=B6rn=20T=C3=B6pel?= <bjorn@kernel.org>,
-	Atish Patra <atishp@atishpatra.org>,
-	Andrew Jones <ajones@ventanamicro.com>,
-	Sunil V L <sunilvl@ventanamicro.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Anup Patel <anup@brainfault.org>,
-	linux-riscv@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
+        Thu, 07 Mar 2024 06:07:44 -0800 (PST)
+From: Claudiu <claudiu.beznea@tuxon.dev>
+X-Google-Original-From: Claudiu <claudiu.beznea.uj@bp.renesas.com>
+To: geert+renesas@glider.be,
+	mturquette@baylibre.com,
+	sboyd@kernel.org,
+	robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	magnus.damm@gmail.com
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-clk@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	Anup Patel <apatel@ventanamicro.com>
-Subject: [PATCH v16 9/9] MAINTAINERS: Add entry for RISC-V AIA drivers
-Date: Thu,  7 Mar 2024 19:33:07 +0530
-Message-Id: <20240307140307.646078-10-apatel@ventanamicro.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240307140307.646078-1-apatel@ventanamicro.com>
-References: <20240307140307.646078-1-apatel@ventanamicro.com>
+	linux-kernel@vger.kernel.org,
+	claudiu.beznea@tuxon.dev,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
+Subject: [PATCH v2 00/10] clk: renesas: rzg2l: Add support for power domains
+Date: Thu,  7 Mar 2024 16:07:18 +0200
+Message-Id: <20240307140728.190184-1-claudiu.beznea.uj@bp.renesas.com>
+X-Mailer: git-send-email 2.39.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -101,40 +92,89 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Add myself as maintainer for RISC-V AIA drivers including the
-RISC-V INTC driver which supports both AIA and non-AIA platforms.
+From: Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>
 
-Signed-off-by: Anup Patel <apatel@ventanamicro.com>
----
- MAINTAINERS | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+Hi,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 2ecaaec6a6bf..92efe5bcb3f6 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -18803,6 +18803,20 @@ S:	Maintained
- F:	drivers/mtd/nand/raw/r852.c
- F:	drivers/mtd/nand/raw/r852.h
- 
-+RISC-V AIA DRIVERS
-+M:	Anup Patel <anup@brainfault.org>
-+L:	linux-riscv@lists.infradead.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
-+F:	Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
-+F:	drivers/irqchip/irq-riscv-aplic-*.c
-+F:	drivers/irqchip/irq-riscv-aplic-*.h
-+F:	drivers/irqchip/irq-riscv-imsic-*.c
-+F:	drivers/irqchip/irq-riscv-imsic-*.h
-+F:	drivers/irqchip/irq-riscv-intc.c
-+F:	include/linux/irqchip/riscv-aplic.h
-+F:	include/linux/irqchip/riscv-imsic.h
-+
- RISC-V ARCHITECTURE
- M:	Paul Walmsley <paul.walmsley@sifive.com>
- M:	Palmer Dabbelt <palmer@dabbelt.com>
+Series adds support for power domains on rzg2l driver.
+
+RZ/G2L kind of devices support a functionality called MSTOP (module
+stop/standby). According to hardware manual the module could be switch
+to standby after its clocks are disabled. The reverse order of operation
+should be done when enabling a module (get the module out of standby,
+enable its clocks etc).
+
+In [1] the MSTOP settings were implemented by adding code in driver
+to attach the MSTOP state to the IP clocks. But it has been proposed
+to implement it as power domain. The result is this series.
+
+Along with MSTOP functionality there is also module power down
+functionality (which is currently available only on RZ/G3S). This has
+been also implemented through power domains.
+
+The DT bindings were updated with power domain IDs (plain integers
+that matches the DT with driver data structures). The current DT
+bindings were updated with module IDs for the modules listed in tables
+with name "Registers for Module Standby Mode" (see HW manual) exception
+being RZ/G3S where, due to the power down functionality, the DDR,
+TZCDDR, OTFDE_DDR were also added, to avoid system being blocked due
+to the following lines of code from patch 7/17.
+
++       /* Prepare for power down the BUSes in power down mode. */
++       if (info->pm_domain_pwrdn_mstop)
++               writel(CPG_PWRDN_MSTOP_ENABLE, priv->base + CPG_PWRDN_MSTOP);
+
+Domain IDs were added to all SoC specific bindings.
+
+Thank you,
+Claudiu Beznea 
+
+Changes in v2:
+- addressed review comments
+- dropped:
+    - dt-bindings: clock: r9a09g011-cpg: Add always-on power domain IDs
+    - clk: renesas: r9a07g043: Add initial support for power domains
+    - clk: renesas: r9a07g044: Add initial support for power domains
+    - clk: renesas: r9a09g011: Add initial support for power domains
+    - clk: renesas: r9a09g011: Add initial support for power domains
+    - arm64: dts: renesas: r9a07g043: Update #power-domain-cells = <1>
+    - arm64: dts: renesas: r9a07g044: Update #power-domain-cells = <1>
+    - arm64: dts: renesas: r9a07g054: Update #power-domain-cells = <1>
+    - arm64: dts: renesas: r9a09g011: Update #power-domain-cells = <1>
+  as suggested in the review process
+- dropped "arm64: dts: renesas: rzg3s-smarc-som: Guard the ethernet IRQ
+  GPIOs with proper flags" patch as it was integrated
+- added suspend to RAM support
+- collected tag
+
+[1] https://lore.kernel.org/all/20231120070024.4079344-4-claudiu.beznea.uj@bp.renesas.com/
+
+Claudiu Beznea (10):
+  dt-bindings: clock: r9a07g043-cpg: Add power domain IDs
+  dt-bindings: clock: r9a07g044-cpg: Add power domain IDs
+  dt-bindings: clock: r9a07g054-cpg: Add power domain IDs
+  dt-bindings: clock: r9a08g045-cpg: Add power domain IDs
+  dt-bindings: clock: renesas,rzg2l-cpg: Update #power-domain-cells =
+    <1> for RZ/G3S
+  clk: renesas: rzg2l: Extend power domain support
+  clk: renesas: r9a08g045: Add support for power domains
+  clk: renesas: rzg2l-cpg: Add suspend/resume support for power domains
+  clk: renesas: r9a08g045: Add the RZG2L_PD_F_CONSOLE flag to scif0 PM
+    domain
+  arm64: dts: renesas: r9a08g045: Update #power-domain-cells = <1>
+
+ .../bindings/clock/renesas,rzg2l-cpg.yaml     |  18 +-
+ arch/arm64/boot/dts/renesas/r9a08g045.dtsi    |  20 +-
+ drivers/clk/renesas/r9a08g045-cpg.c           |  61 ++++
+ drivers/clk/renesas/rzg2l-cpg.c               | 267 +++++++++++++++++-
+ drivers/clk/renesas/rzg2l-cpg.h               |  78 +++++
+ include/dt-bindings/clock/r9a07g043-cpg.h     |  52 ++++
+ include/dt-bindings/clock/r9a07g044-cpg.h     |  58 ++++
+ include/dt-bindings/clock/r9a07g054-cpg.h     |  58 ++++
+ include/dt-bindings/clock/r9a08g045-cpg.h     |  70 +++++
+ 9 files changed, 658 insertions(+), 24 deletions(-)
+
 -- 
-2.34.1
+2.39.2
 
 
