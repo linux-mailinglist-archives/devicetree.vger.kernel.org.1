@@ -1,107 +1,136 @@
-Return-Path: <devicetree+bounces-49209-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49210-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5136E87556A
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 18:43:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 408C48755C4
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 19:06:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E5DBE1F256AF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 17:43:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 701311C21438
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 18:06:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 30138130AFF;
-	Thu,  7 Mar 2024 17:43:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 625AB131748;
+	Thu,  7 Mar 2024 18:06:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b3HKh8vJ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="L6gknGiK"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0B5F8130AE1
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 17:43:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2A9A812A15C;
+	Thu,  7 Mar 2024 18:06:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709833389; cv=none; b=a6iKqJvTI7qDPhMLxw+sphwSNwzP3oD1/cirOEBgB9h9jO/foo2nV03XBcQO8kgoc855kIaXvhXGHQB+vdUUOL5qnayaXEErTWRd09kVvPJELvwbM/7tNq8U9sq3LVHoCWMlMi9+d/MIBxEFq3ehS9+2HymJhHR5UAyckIOaEuU=
+	t=1709834779; cv=none; b=RnOXynmqcW8vY4Vs+XMtNWOIrIEl6URbywumtjMw7V6/VI3rukRSOoHOkxiQAGJ35FlcmxZiVMxbhgvsGWMhisxN3N813k69yOVQSLKxNmgTvAbfRrVBmrhP+WTuDze2DbbDG0wNkeXUbRTHp0OHy4IxNxXdunK5G6CEFtyBuhA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709833389; c=relaxed/simple;
-	bh=dRCr4zJi41yXbASQXJZrJDtLGjtady1umh0wbNI3ZAc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Message-Id:Date:
-	 MIME-Version:Content-Type; b=R4GU9IP5ASVgwqgDgYEctOQX9KskOdJdp9fhRpLdloon5Y4rVmZoMAgQlZco9vra5G/H/HjQ2rO3nR5wqngxgf7/lQQRHcC4emFrjd3GnWhTD4xivnMx41Cl6EtPWUekeGxJ+Mhq722HljhlwC6Ac0GAWaSvV6UYPTAd7+KhHb8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b3HKh8vJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CCE4C433F1;
-	Thu,  7 Mar 2024 17:43:07 +0000 (UTC)
+	s=arc-20240116; t=1709834779; c=relaxed/simple;
+	bh=/qMweurkufToMwoadZe649Pm1lLjarPn8VuQ/oC8ncI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=a5Zi6W/OlAtWhK6kLF9PC2n5+5qdsTPwTNaSJrnQELoiINp92tmSnXIk688DT76pDI9nCI9AaxlKqTlODcxwwyG82nb6rKZluZRpj3davsBZ9eDjO0gQhk5vz1CQxgfC8NvFCaqjw7fXtaUYNO1eZS0WjEuVFiyMv/lwSueohjQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=L6gknGiK; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 04474C433C7;
+	Thu,  7 Mar 2024 18:06:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709833388;
-	bh=dRCr4zJi41yXbASQXJZrJDtLGjtady1umh0wbNI3ZAc=;
-	h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-	b=b3HKh8vJ7spuAj9L4sttDawTDv0+XxOOBgPC1Z2Z3Umm5g0d4/FS+79YdLoCjS9t5
-	 kzXP3nqACQJJ+Gt3VKvBzEGlwZLCoaHtd2QG8cY2e2/zV0MPSQbGumrOGcoXwLnioe
-	 8W0hMp4dMYFXOLkAKMQxwwS2GdofNkF6XHXEYRzwrYmbA2VfvzZR4/qGVhOfL5z8fd
-	 VwLLpWUdvyAhzpixwH7Odkvw3l1MnnsoQnv4II8nYHrBrWH2YNyfUn1O58Phr/2Hm6
-	 U+HAR+R1GERBOQbcq6+DZLptLYido2jaoBbnv6qCVvZy6HJ3bZpnx3zjxOk9BGId/X
-	 xI/e4deUxYOMQ==
-From: Mark Brown <broonie@kernel.org>
-To: alsa-devel@alsa-project.org, devicetree@vger.kernel.org, 
- Zhang Yi <zhangyi@everest-semi.com>
-Cc: tiwai@suse.com, amadeuszx.slawinski@linux.intel.com, 
- yangxiaohua@everest-semi.com, zhuning@everest-semi.com
-In-Reply-To: <20240307051222.24010-1-zhangyi@everest-semi.com>
-References: <20240307051222.24010-1-zhangyi@everest-semi.com>
-Subject: Re: [PATCH v2 0/2] ASoC: codecs: ES8326: change members of private
- structure
-Message-Id: <170983338698.97308.6303056838124044344.b4-ty@kernel.org>
-Date: Thu, 07 Mar 2024 17:43:06 +0000
+	s=k20201202; t=1709834778;
+	bh=/qMweurkufToMwoadZe649Pm1lLjarPn8VuQ/oC8ncI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=L6gknGiKUfVSiH36Wno+U/gRqlQxWa4hxGU7U9gID7kxMoztJxP20vaHs1m6jR177
+	 bqMFRJCxHQMgCX5H+x7hyipP0S+W2H0W5bb0PQW9/COve6uqhpK9oETQGc2ZSjk0jT
+	 O9Bfd7uuQaB0IGK6ILJc6EUPAgVacvPz4Ph2rDrmHClaCQZ3uBluNP40UgDvH117KO
+	 UXvXfWKPgAQX8QA2R1RWi46nlhcSwkkMxvihCr5LjyuJmNKooRxTMHtDj80JvCywPs
+	 Fv3q/S33/W7UHE5f9nIGG35UZ3fUIwVLXBTgViIy3njxz21pcdpJsHmG2F+4wWEHAA
+	 mYZiAYeC4sQYw==
+Date: Thu, 7 Mar 2024 18:06:13 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Shengyu Qu <wiagn233@outlook.com>
+Cc: ganboing@gmail.com, kernel@esmil.dk, robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v2] riscv: dts: starfive: Remove PMIC interrupt info for
+ Visionfive 2 board
+Message-ID: <20240307-underpaid-anyplace-9fe1241643d3@spud>
+References: <TY3P286MB26116B828A34D614C09F4E8898202@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-a684c
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="e3+Vcw8nCCVh8dqu"
+Content-Disposition: inline
+In-Reply-To: <TY3P286MB26116B828A34D614C09F4E8898202@TY3P286MB2611.JPNP286.PROD.OUTLOOK.COM>
 
-On Thu, 07 Mar 2024 13:12:20 +0800, Zhang Yi wrote:
-> We found that using 0x45 as the default value for interrupt-clk
-> would cause a headset detection error.So we took 0x00 as the default
-> value for interrupt-clk and passed the test.
-> We removed mic1-src and mic2-src, which were not used.
-> 
-> Zhang Yi (2):
->   ASoC: codecs: ES8326: Changing members of private structure
->   ASoC: codecs: ES8326: change support for ES8326
-> 
-> [...]
 
-Applied to
+--e3+Vcw8nCCVh8dqu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+On Thu, Mar 07, 2024 at 08:21:12PM +0800, Shengyu Qu wrote:
+> Interrupt line number of the AXP15060 PMIC is not a necessary part of
+> its device tree. And this would cause kernel to try to enable interrupt
+> line 0, which is not expected. So delete this part from device tree.
+>=20
+> Cc: stable@vger.kernel.org
+> Reported-by: Bo Gan <ganboing@gmail.com>
+> Link: https://lore.kernel.org/all/c8b6e960-2459-130f-e4e4-7c9c2ebaa6d3@gm=
+ail.com/
+> Signed-off-by: Shengyu Qu <wiagn233@outlook.com>
 
-Thanks!
+Thanks for resending. Just to note that I already sent all 6.8 and 6.9
+material, so since this is only something that manifests with that
+"improved" version of OpenSBI I'm gonna pick this up after the merge
+window.
 
-[1/2] ASoC: codecs: ES8326: Changing members of private structure
-      commit: bb6983847fb4535bb0386a91dd523088ece36450
-[2/2] ASoC: codecs: ES8326: change support for ES8326
-      commit: e87eecdf53228dd2b8bfeab84d409652f96a16d0
+Fixes: 2378341504de ("riscv: dts: starfive: Enable axp15060 pmic for cpufre=
+q")
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+And hopefully I remember to re-write the commit message to mention that
+the board doesn't actually connect the interrupt link to a GPIO etc, so
+the original patch was invalid and a hack.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+I should have rejected it and got the driver fixed at the time to allow
+not having an interrupt, but clearly I didn't register that that zero
+was a plic interrupt, not a GPIO.
 
 Thanks,
-Mark
+Conor.
 
+> ---
+>  arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+>=20
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dt=
+si b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index 45b58b6f3df8..7783d464d529 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -238,7 +238,6 @@ &i2c5 {
+>  	axp15060: pmic@36 {
+>  		compatible =3D "x-powers,axp15060";
+>  		reg =3D <0x36>;
+> -		interrupts =3D <0>;
+>  		interrupt-controller;
+>  		#interrupt-cells =3D <1>;
+> =20
+> --=20
+> 2.39.2
+>=20
+
+--e3+Vcw8nCCVh8dqu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZeoCFQAKCRB4tDGHoIJi
+0ps6AQD2oxPKg4y3LidQr++C4Vz9xtSEzczxjTPFfkTwQdm2fAD9GvuuDnBLY6Zh
+NLzH0HrR9oVi/bBt+4DJIiPqHnKywQY=
+=BFh/
+-----END PGP SIGNATURE-----
+
+--e3+Vcw8nCCVh8dqu--
 
