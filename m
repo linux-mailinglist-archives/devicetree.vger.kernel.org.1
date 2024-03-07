@@ -1,144 +1,104 @@
-Return-Path: <devicetree+bounces-48920-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48921-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E21378744BC
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 00:50:52 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 24BEF874507
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 01:11:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 64A78B230DD
-	for <lists+devicetree@lfdr.de>; Wed,  6 Mar 2024 23:50:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id AB9091F26068
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 00:11:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5A0581CFAD;
-	Wed,  6 Mar 2024 23:50:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 08586360;
+	Thu,  7 Mar 2024 00:11:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="pKRsTPww"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k9gbFrL5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED71C1C6A3
-	for <devicetree@vger.kernel.org>; Wed,  6 Mar 2024 23:50:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D8C0F161
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 00:11:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709769037; cv=none; b=Rp/hVNsBMq7vI/yOgDiYJsWavMrL+OXzBECgdlkSP+YLKLqEtuVwUWJRcgawPzpCTsQvSFPt3tW6ISL5g6eacxvh/XshJv4GdBUIVmkumSGRmcHCPOPmjfUmlK55jeBeU5aniDGyfrcMLuQUT4fjAmAMQQiN7qIvRWYvnOARbI8=
+	t=1709770287; cv=none; b=Pxz1/WMKk0T+trvwvyHnFBGTN/nlYe5kk/F/4uITFDJDRfuDX+QOqDbKJvQlMRj8ErImTq05LJTBWDPW1ZJR5xbof5PAC2TdZJV5aGpyQDQSDIEIIcjkBOhaDOSovf8PqLXkkWij4o4a4COBi5v4ANdWW25meh0zy1U+KnpNh/o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709769037; c=relaxed/simple;
-	bh=U+D/K8p4oppEdsGsoshGKHE1AK3NIrOT3Q8TDbUIqts=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=X4M4yEM5kThAReJNsqq6q7jPjr43NswcFrkzh7O/bC7GDfY0s6n7DqDlzd5pqQf0h6+79IPtwpeNIbVl2UPzV1hf+vm2INQK0CME4MWyuUFztX7UqQ2ZN108MMOtjt6Nsxd/8sXuKlU7Xnqx8gPbgrznDwM4aGdLyNWrcqqp9N8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=pKRsTPww; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D3EEB2C02A7;
-	Thu,  7 Mar 2024 12:50:25 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1709769025;
-	bh=hEo6KY4W7nBtXqY6R2q5MzGe77wJMePNpigq9T0aJNo=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=pKRsTPww1ig7X3A3xybGBb8ThKNywhmJG3Id8AYlCo1RI48WusHqiPauBUWy9k4hQ
-	 dnKukgmXlQUApW6+O0cma2s0bFG0wAByeu8PgJajcpmVJT+N5GS2GLn4FY1LBMz4cI
-	 QrLL6W2jH5THvt+x0sKGxHn4bo0iLEIXOLWbbng8Gx7AKB1EYQB48Ky9TAGoE/klwj
-	 BXcuwSpVL9e059w+7w6rZmaJGV81uCTCXLwdVtCrupF/qUcBYHWtX5NMNA4+ckrIFp
-	 J1plG3bhFaAQHuURmI6nzrs0jOBgZPdDQgGtzT7nH2pgpQRWKpLc9/S8OTXLu0ZoN8
-	 A0KV/ere64gLQ==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65e901410003>; Thu, 07 Mar 2024 12:50:25 +1300
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-	by pat.atlnz.lc (Postfix) with ESMTP id 8A33513EE8E;
-	Thu,  7 Mar 2024 12:50:25 +1300 (NZDT)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-	id 873F1280B6D; Thu,  7 Mar 2024 12:50:25 +1300 (NZDT)
-From: Chris Packham <chris.packham@alliedtelesis.co.nz>
-To: andy@kernel.org,
-	geert@linux-m68k.org,
-	robh+dt@kernel.org,
+	s=arc-20240116; t=1709770287; c=relaxed/simple;
+	bh=9dW+Tg3luROBUa+K0GjsqUgbOVrsoczefpncspQ0sBs=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=RFufByZpGZPZFUU5FM/WMYIO6akGrSK0sPwi5KTXPvQvqPLx6mUZMrJijdyvDwcJndZX48gQ0z2aXw8TsVYa73P08EfF1+ZftHvSHfjTuLZzFaeWrRvMTIUlE5c+76oqyjEPKTF3nz19XLMNbwR+UbM9l6arWhHNY/R3pkB/sso=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k9gbFrL5; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1134BC433F1;
+	Thu,  7 Mar 2024 00:11:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709770287;
+	bh=9dW+Tg3luROBUa+K0GjsqUgbOVrsoczefpncspQ0sBs=;
+	h=From:To:Cc:Subject:Date:From;
+	b=k9gbFrL5oxbRo+bAyRovkOzgliACgP1MOdw06w9Ud+uZDuk36lHh8NF4YkNLsQ50F
+	 6QXllpuVHaoal1HD0Hfo7HMkbNs6p7P6E9+w81SItPetdUudUVIkC3fSUwRz5i5oAb
+	 hyWbZyUjgwpCuuSXoOH39e9vaYdgXRKcy8f/Whg7T77kA+BSnG5xPlJi8JhWFeBE5/
+	 dXEZpJzhkFEWifOGgryx+ozZnDGtmb1qrdSD0KxdQ0Bm6LQXC9E7g07y3yipbexLvH
+	 qZtEpBfA7i19JxITpDRMy5t+vQnqzMDOslVs3XUEZ0fZlyL/akEfMeJo9SjcEE+Z1S
+	 OgIx4jvPF0UeA==
+From: Lorenzo Bianconi <lorenzo@kernel.org>
+To: linux-arm-kernel@lists.infradead.org
+Cc: robh+dt@kernel.org,
 	krzysztof.kozlowski+dt@linaro.org,
 	conor+dt@kernel.org,
-	andrew@lunn.ch,
-	gregory.clement@bootlin.com,
-	sebastian.hesselbarth@gmail.com,
-	lee@kernel.org
-Cc: linux-leds@vger.kernel.org,
+	nbd@nbd.name,
+	john@phrozen.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v5 3/3] ARM: dts: marvell: Add 7-segment LED display on x530
-Date: Thu,  7 Mar 2024 12:50:21 +1300
-Message-ID: <20240306235021.976083-4-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240306235021.976083-1-chris.packham@alliedtelesis.co.nz>
-References: <20240306235021.976083-1-chris.packham@alliedtelesis.co.nz>
+	dd@embedd.com,
+	catalin.marinas@arm.com,
+	will@kernel.org,
+	upstream@airoha.com,
+	lorenzo.bianconi83@gmail.com,
+	angelogioacchino.delregno@collabora.com
+Subject: [PATCH v3 0/4] arm64: Add support for Airoha EN7581 Soc
+Date: Thu,  7 Mar 2024 01:11:09 +0100
+Message-ID: <cover.1709768157.git.lorenzo@kernel.org>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65e90141 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=K6JAEmCyrfEA:10 a=Eze4_Z_RUzIZFoL9sA8A:9 a=3ZKOabzyN94A:10
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Transfer-Encoding: 8bit
 
-The Allied Telesis x530 products have a 7-segment LED display which is
-used for node identification when the devices are stacked. Represent
-this as a gpio-7-segment device.
+Introduce basic support for Airoha EN7581 Soc and EN7581 Evaluation Board.
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+Changes since v2:
+- fix cpu-map definition
+- add more cache info
+- add missing soc node
+- remove unnecessary definitions
 
-Notes:
-    Changes in v5:
-    - group GPIO specifiers
-    Changes in v4:
-    - Use correct compatible name in commit message
-    Changes in v3:
-    - Use compatible =3D "gpio-7-segment" as suggested by Rob
-    Changes in v2:
-    - Use compatible =3D "generic-gpio-7seg" to keep checkpatch.pl happy
+Changes since v1:
+- add missing en7581 entry in airoha binding
+- fix checkpatch errors
 
- arch/arm/boot/dts/marvell/armada-385-atl-x530.dts | 13 ++++++++++++-
- 1 file changed, 12 insertions(+), 1 deletion(-)
+Daniel Danzberger (3):
+  arm64: dts: Add Airoha EN7581 SoC and EN7581 Evaluation Board
+  arm64: add Airoha EN7581 platform
+  arm64: defconfig: enable Airoha platform
 
-diff --git a/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts b/arch/arm=
-/boot/dts/marvell/armada-385-atl-x530.dts
-index 5a9ab8410b7b..2fb7304039be 100644
---- a/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
-+++ b/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
-@@ -43,6 +43,17 @@ uart0: serial@12000 {
- 			};
- 		};
- 	};
-+
-+	led-7seg {
-+		compatible =3D "gpio-7-segment";
-+		segment-gpios =3D <&led_7seg_gpio 0 GPIO_ACTIVE_LOW>,
-+				<&led_7seg_gpio 1 GPIO_ACTIVE_LOW>,
-+				<&led_7seg_gpio 2 GPIO_ACTIVE_LOW>,
-+				<&led_7seg_gpio 3 GPIO_ACTIVE_LOW>,
-+				<&led_7seg_gpio 4 GPIO_ACTIVE_LOW>,
-+				<&led_7seg_gpio 5 GPIO_ACTIVE_LOW>,
-+				<&led_7seg_gpio 6 GPIO_ACTIVE_LOW>;
-+	};
- };
-=20
- &pciec {
-@@ -149,7 +160,7 @@ i2c@3 {
- 			#size-cells =3D <0>;
- 			reg =3D <3>;
-=20
--			gpio@20 {
-+			led_7seg_gpio: gpio@20 {
- 				compatible =3D "nxp,pca9554";
- 				gpio-controller;
- 				#gpio-cells =3D <2>;
---=20
-2.43.2
+Lorenzo Bianconi (1):
+  dt-bindings: arm64: dts: airoha: Add en7581 entry
+
+ .../devicetree/bindings/arm/airoha.yaml       |   4 +
+ arch/arm64/Kconfig.platforms                  |  13 ++
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/airoha/Makefile           |   2 +
+ arch/arm64/boot/dts/airoha/en7581-evb.dts     |  26 +++
+ arch/arm64/boot/dts/airoha/en7581.dtsi        | 154 ++++++++++++++++++
+ arch/arm64/configs/defconfig                  |   1 +
+ 7 files changed, 201 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/airoha/Makefile
+ create mode 100644 arch/arm64/boot/dts/airoha/en7581-evb.dts
+ create mode 100644 arch/arm64/boot/dts/airoha/en7581.dtsi
+
+-- 
+2.44.0
 
 
