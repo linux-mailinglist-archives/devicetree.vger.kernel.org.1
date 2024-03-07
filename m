@@ -1,97 +1,77 @@
-Return-Path: <devicetree+bounces-48965-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-48966-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFAFE874764
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 05:40:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EEEC87478A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 06:12:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B1292B2301C
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 04:40:46 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 71B081C21703
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 05:12:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF85B1BC40;
-	Thu,  7 Mar 2024 04:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="eSyFmpNc"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76A9C17BB5;
+	Thu,  7 Mar 2024 05:12:34 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mail78-63.sinamail.sina.com.cn (mail78-63.sinamail.sina.com.cn [219.142.78.63])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7A7AD14F7F;
-	Thu,  7 Mar 2024 04:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 91DDD13FF5
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 05:12:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=219.142.78.63
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709786431; cv=none; b=XTjPsQA4XJbr8/FFlFSs/znC8d1mN3/KWjkDbpnVLv5uWGqRDuCHQ/fMvAHPN6FG7czT6SS7F7AfP4PSr7a4xY3eGoPNtGvbChAAefDCYJAzh96XSuHEj812VlgTwgGv4zGnsyTOueXjPHM+Cxqf44fIACfrGeEgX/S4z93VFro=
+	t=1709788354; cv=none; b=L5iaNxpLIMTd3XibtoSkiE/I1y8HKCRl1hEYcFham+I1/u7wL7cSilTgklJCSu2phvFBznPK4TQ66keo85WVJScQcZFJWh6KNLAtllTBhJqWGJImKHlNGBgB/yZozorltS5PVPNg37kWA6sYs736NrQ+asNb3P2hmxJW+jDDQiE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709786431; c=relaxed/simple;
-	bh=EEYqOx9Zfjrv+CfUDIOl3n6VMgScQyeeuqGf9tFXIos=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=n++Qw7KSbcai2B2Fnh//gLXeNb5excgzHutzxhHsLFZkga4pOmOyUTm44tCFc9tkNWD0oDEekPUTVmzmgFOju+MsaxOtbA4EgSQWKZ0ASbGFNH/fOd42Oc8xA2kVsGxBrceka389zxZnp7vraDndgX9xnb/XwGyaLy5JZM6QFEw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=eSyFmpNc; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 31E19C32780;
-	Thu,  7 Mar 2024 04:40:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709786431;
-	bh=EEYqOx9Zfjrv+CfUDIOl3n6VMgScQyeeuqGf9tFXIos=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=eSyFmpNcc8y0vx7LR+IVHns8tM9OaMrMmX0mw63chzsTbTQs1xmHVnoagr5zcQPfi
-	 lRWsWwuvRnPf0OTiqq78/C9+SkudN/9eWmY7nNXgCt2rbLf+BZTshJ0dI0uPIOYFU+
-	 RJwECIuJfVR6znnDDWUwVUEnGvRiwAl0XgWBI0v+HKBhk+uYaH0A7K2CfMrnjAnn40
-	 Tz7LduaEnCPvH4BJ1lcCTsu11HDjiYA2oI+nBSU2OESLiHTyQX/afF9yS2mtOc1zc+
-	 bu2gEQpEtiMFYQgg2fQVKOlqgGnjuuqcLXL4JzlbCHzW1OF7UK8/mopD22dbRMHiNe
-	 S8gkHlL7tijew==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 0C3AFD9A4BB;
-	Thu,  7 Mar 2024 04:40:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1709788354; c=relaxed/simple;
+	bh=h/K6J3J6NVa8QNKbOCikSU5cRzzRT4i487NnMKL31hU=;
+	h=From:To:Cc:Subject:Date:Message-Id; b=Fl3cYGXlCrrZNRtGwOL/jCD9pIgZ/lJUM8SOhY1MgwNuvOYVDld7d+FDBhQhtQWwfAs9enh0tVrIUhtxdWM/oTMd7iFCaf+goeELFdtFV7L3e357MJRGaMq1jpsSC5BRvcO+pRnikA4HWnqjB7ERkMOQcYbd1mJ+IwSZWkkSpqI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com; spf=pass smtp.mailfrom=everest-semi.com; arc=none smtp.client-ip=219.142.78.63
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=everest-semi.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=everest-semi.com
+Received: from unknown (HELO zy-virtual-machine.localdomain)([116.232.53.71])
+	by sina.net (10.75.30.239) with ESMTP
+	id 65E94CB900013490; Thu, 7 Mar 2024 13:12:26 +0800 (CST)
+X-Sender: zhangyi@everest-semi.com
+X-Auth-ID: zhangyi@everest-semi.com
+Authentication-Results: sina.net;
+	 spf=none smtp.mailfrom=zhangyi@everest-semi.com;
+	 dkim=none header.i=none;
+	 dmarc=none action=none header.from=zhangyi@everest-semi.com
+X-SMAIL-MID: 6672B29C3930461E99E44569A3BDEAF9
+X-SMAIL-UIID: 6672B29C3930461E99E44569A3BDEAF9-20240307-131226
+From: Zhang Yi <zhangyi@everest-semi.com>
+To: alsa-devel@alsa-project.org,
+	broonie@kernel.org,
+	devicetree@vger.kernel.org
+Cc: tiwai@suse.com,
+	amadeuszx.slawinski@linux.intel.com,
+	yangxiaohua@everest-semi.com,
+	zhuning@everest-semi.com,
+	zhangyi@everest-semi.com
+Subject: [PATCH v2 0/2] ASoC: codecs: ES8326: change members of private structure
+Date: Thu,  7 Mar 2024 13:12:20 +0800
+Message-Id: <20240307051222.24010-1-zhangyi@everest-semi.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] dt-bindings: net: renesas,etheravb: Add support for
- R-Car V4M
-From: patchwork-bot+netdevbpf@kernel.org
-Message-Id: 
- <170978643104.7855.7910521326706587697.git-patchwork-notify@kernel.org>
-Date: Thu, 07 Mar 2024 04:40:31 +0000
-References: <0212b57ba1005bb9b5a922f8f25cc67a7bc15f30.1709631152.git.geert+renesas@glider.be>
-In-Reply-To: <0212b57ba1005bb9b5a922f8f25cc67a7bc15f30.1709631152.git.geert+renesas@glider.be>
-To: Geert Uytterhoeven <geert+renesas@glider.be>
-Cc: s.shtylyov@omp.ru, davem@davemloft.net, edumazet@google.com,
- kuba@kernel.org, pabeni@redhat.com, robh@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- sergei.shtylyov@gmail.com, netdev@vger.kernel.org,
- linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
- thanh.quan.xn@renesas.com
 
-Hello:
+We found that using 0x45 as the default value for interrupt-clk 
+would cause a headset detection error.So we took 0x00 as the default 
+value for interrupt-clk and passed the test.
+We removed mic1-src and mic2-src, which were not used.
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+Zhang Yi (2):
+  ASoC: codecs: ES8326: Changing members of private structure
+  ASoC: codecs: ES8326: change support for ES8326
 
-On Tue,  5 Mar 2024 10:37:18 +0100 you wrote:
-> From: Thanh Quan <thanh.quan.xn@renesas.com>
-> 
-> Document support for the Renesas Ethernet AVB (EtherAVB-IF) block in the
-> Renesas R-Car V4M (R8A779H0) SoC.
-> 
-> Signed-off-by: Thanh Quan <thanh.quan.xn@renesas.com>
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
-> [...]
+ .../bindings/sound/everest,es8326.yaml         |  8 ++++----
+ sound/soc/codecs/es8326.c                      | 18 +-----------------
+ 2 files changed, 5 insertions(+), 21 deletions(-)
 
-Here is the summary with links:
-  - [net-next] dt-bindings: net: renesas,etheravb: Add support for R-Car V4M
-    https://git.kernel.org/netdev/net-next/c/d66206296176
-
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.17.1
 
 
