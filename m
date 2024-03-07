@@ -1,224 +1,228 @@
-Return-Path: <devicetree+bounces-49200-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49201-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D26FD875458
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 17:41:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5DEA8875462
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 17:43:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 1467EB24990
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 16:41:50 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 816991C221EA
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 16:43:05 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB5C612F5AD;
-	Thu,  7 Mar 2024 16:41:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0407C12FF70;
+	Thu,  7 Mar 2024 16:42:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SUnav6ZE"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="AmpQhUt8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2087.outbound.protection.outlook.com [40.107.7.87])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EBABE1BDDB;
-	Thu,  7 Mar 2024 16:41:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709829702; cv=none; b=jpejH92KV4ej8TL3qMdnhtRFEeG2MPYODip4zSncw76yhzmJBirAbrpxCRVh5yajKcBc7bFllisVCYF7a/qUC/lVFVLxUznl+beeHstOuf2IRfepd36rwhsLOCIAg9D+SIbHOJryW5/wwPSL+00w5wM3t9EX0nXbWtZkKebhioM=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709829702; c=relaxed/simple;
-	bh=/1yv2voYazdhfYiCba0+H2ZUZDL9rA+8uY9mleYG4cw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=CKUlin+NxqXNM2HrOMwQj7QYI6nagz1VvYcddR1/RkOA21RaIJG31rLAJs0fOvKnGcSt6VztaBKU8mmfYgY1f/qjXyNR5VJZFODduYmt0TRwCOf4mPVXmiBBi3WbNWl0+7aD4swVazwrr4YAY2AtwxelSvmRkMA/7uhmmT2CRE8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SUnav6ZE; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 427BrCPO009368;
-	Thu, 7 Mar 2024 16:41:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=qcppdkim1; bh=IhCM9GWGGCh+z/XvnkdtX
-	dFWqYJpK598AUrSkFnXIWc=; b=SUnav6ZEvKO+0hU8fPqiO+h7HIIcnW36ev51o
-	UMXjUxg6jwvYKHiD464eS+HgPtJPuVQ8W4DtyRLPC9VGyA8vSOhOHXgK5eBBndH8
-	aFA4Bs8jC22Biq7i9PRP8uBJ7434r5UcuRfho+dpX0O+j27kpEQfumffg2m3ywTs
-	bFYHWe4j1L+tHsZkqqMAgjzmdz8v4L5XMJPRv13a0DdmQAZkjPkQD0pnHZp+kvVC
-	BFlYVRT4Z9/VNiuIYhAJY7H9rg1nfv6sMvHL3Hwuc0tYFkDX1w2xu4daMLYyP3AY
-	K2c429Gza+Xtj6KaQUqnot0p+tcGfOpoIatqoEl7pkkczIowQ==
-Received: from nasanppmta01.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wqd3d18vp-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 07 Mar 2024 16:41:17 +0000 (GMT)
-Received: from nasanex01b.na.qualcomm.com (nasanex01b.na.qualcomm.com [10.46.141.250])
-	by NASANPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 427GfGZW010824
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 7 Mar 2024 16:41:16 GMT
-Received: from hu-eberman-lv.qualcomm.com (10.49.16.6) by
- nasanex01b.na.qualcomm.com (10.46.141.250) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 7 Mar 2024 08:41:14 -0800
-Date: Thu, 7 Mar 2024 08:41:14 -0800
-From: Elliot Berman <quic_eberman@quicinc.com>
-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-CC: Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla
-	<srinivas.kandagatla@linaro.org>,
-        Murali Nalajal <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Carl van Schaik
-	<quic_cvanscha@quicinc.com>,
-        Philip Derrin <quic_pderrin@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Jonathan Corbet
-	<corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "Fuad
- Tabba" <tabba@google.com>,
-        Sean Christopherson <seanjc@google.com>,
-        "Andrew
- Morton" <akpm@linux-foundation.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
-Subject: Re: Re: [PATCH v17 07/35] gunyah: rsc_mgr: Add resource manager RPC
- core
-Message-ID: <20240307083827092-0800.eberman@hu-eberman-lv.qualcomm.com>
-Mail-Followup-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>, 
-	Alex Elder <elder@linaro.org>, Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, 
-	Murali Nalajal <quic_mnalajal@quicinc.com>, Trilok Soni <quic_tsoni@quicinc.com>, 
-	Carl van Schaik <quic_cvanscha@quicinc.com>, Philip Derrin <quic_pderrin@quicinc.com>, 
-	Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>, Jonathan Corbet <corbet@lwn.net>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Bjorn Andersson <andersson@kernel.org>, Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
-	Fuad Tabba <tabba@google.com>, Sean Christopherson <seanjc@google.com>, 
-	Andrew Morton <akpm@linux-foundation.org>, linux-arm-msm@vger.kernel.org, linux-doc@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-mm@kvack.org
-References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
- <20240222-gunyah-v17-7-1e9da6763d38@quicinc.com>
- <20240307153843.GC1695516@quicinc.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0FCB12FB1B;
+	Thu,  7 Mar 2024 16:42:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.87
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709829766; cv=fail; b=ILiZoS92xpM/B8QbNg36Q0mxYRnxJGpjQIkgncddX2rty/0BnUDf7HDQ/Rq//gqFKUapr4SGJ6iCV8XEVw86krjLoyzF+EGvljmpk2lnSvjqZCQ+xuLLVr/LQzwcj4y2tEuq1ACaOQbkQA4/P6K4SfO6IFadatqQms/HOFpcwek=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709829766; c=relaxed/simple;
+	bh=Gc6an6OQxaP9EH3KNDZ3CgeZnXGdeXcxKuJeTBZHrSg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
+	 Content-Disposition:In-Reply-To:MIME-Version; b=oX/nw1j4NstUFbtzlmJAH2TfHSFECNkM80GZ6gCQCb4YHkh8Nza7p6XmaH59om+xJRmNzCbVT4EXoQ45Md6SsqiQ4d4/3tgQWKPHHU4j0s+kaXkmD2g567Kq3FZxXhE6/8H8QVfGVcyYwaSlt1Bw1/mYWrKb29X+GjHBYdwcNgg=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=AmpQhUt8; arc=fail smtp.client-ip=40.107.7.87
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=DTgXZqdns4yDVj0ZSr5YG/IkRflWqvgCfEdiPJXu6sO0oXFdenGU24dcI0M8ZwsZAjxWP2DbKkNeD09aB4Sa7G+bfqefauQmmDqkgClXw8aM+cKZKoJ3mOvMQvBrqfALDzOn2kpaKmVDKX7+wbdi7czc4Dss4BfPy4NJ2ez/2kX17dTCvmBAtu6Brq5WcSr/iSGZI9uiUtz+YzofgsLYXDoV+5ASy/BGszBdu3yb1NfG5icfRVXfKBB6oX4eE380anQtAfgkvMmolMiRvMIU6K8kal4zpOM1eUvm2HVumlL/wn14dNhd18T7L2g562tbyVlC79woyXjNmO2ByfrTKw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=TQT8uxOCAH7XQhJz/sE1knanGGOrZqJOTuvvAvf1ZNs=;
+ b=IfyjvRBSTfKzj/iCcXS5Q6iiWaljRnLbMXcCMGVup+c8tRHRU5VS+cuokty54o2hkRanQBTf/L1RyEjQkIN1pcrq1LIokesbzsESVlKMf3wVbwK8yEgaJNPoAX8RXxU20crxgfDt6dskj0HiQwMJAZ1FE0ktRYUXg7+osf644GLmgSti7xChnlItaKVJhTuEpYW9mxapgcYMdmgMMdWr3n69rroSJOjptrxoG+gwCunTsrVNVzWtmXS4ZX9dxEK8NojwKvphOgzFFMm/8A40j2iLSsV+buWZbAWsqhg+xiU9VH8+9mCKf8rYFynlPdA5f8ZNMn8tZUppRc//UgYBgQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TQT8uxOCAH7XQhJz/sE1knanGGOrZqJOTuvvAvf1ZNs=;
+ b=AmpQhUt8b02JWFCu3bdoBBOOuVN3a3U5iKaDyyB7lDhUhA/0JYz6B/QFMfqG+afYUNbiAvvus5PVIKQMbxBDLZmSI5N5wiakq10EQfR/FheV1bse0XrO5TSYZkBQqtg1GlSOWlTERyOdSITxE6GRsAeElXfNDY7xSqykqKLgD+Q=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com (2603:10a6:102:240::14)
+ by VI1PR04MB6896.eurprd04.prod.outlook.com (2603:10a6:803:12e::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.26; Thu, 7 Mar
+ 2024 16:42:40 +0000
+Received: from PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6]) by PAXPR04MB9642.eurprd04.prod.outlook.com
+ ([fe80::3168:91:27c6:edf6%3]) with mapi id 15.20.7362.024; Thu, 7 Mar 2024
+ 16:42:40 +0000
+Date: Thu, 7 Mar 2024 11:42:28 -0500
+From: Frank Li <Frank.li@nxp.com>
+To: Xu Yang <xu.yang_2@nxp.com>
+Cc: will@kernel.org, mark.rutland@arm.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+	festevam@gmail.com, john.g.garry@oracle.com, jolsa@kernel.org,
+	namhyung@kernel.org, irogers@google.com, mike.leach@linaro.org,
+	peterz@infradead.org, mingo@redhat.com, acme@kernel.org,
+	alexander.shishkin@linux.intel.com, adrian.hunter@intel.com,
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-perf-users@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: Re: [PATCH v6 2/7] perf: imx_perf: add macro definitions for parsing
+ config attr
+Message-ID: <ZenudMDnq9bGzKbI@lizhi-Precision-Tower-5810>
+References: <20240307095730.3792680-1-xu.yang_2@nxp.com>
+ <20240307095730.3792680-2-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240307095730.3792680-2-xu.yang_2@nxp.com>
+X-ClientProxiedBy: SJ0PR13CA0220.namprd13.prod.outlook.com
+ (2603:10b6:a03:2c1::15) To PAXPR04MB9642.eurprd04.prod.outlook.com
+ (2603:10a6:102:240::14)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240307153843.GC1695516@quicinc.com>
-X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
- nasanex01b.na.qualcomm.com (10.46.141.250)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 0-XBk_3tQgGP4ZavfFBD2TJdDBfBlRCf
-X-Proofpoint-GUID: 0-XBk_3tQgGP4ZavfFBD2TJdDBfBlRCf
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-07_13,2024-03-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 adultscore=0
- mlxscore=0 malwarescore=0 phishscore=0 bulkscore=0 spamscore=0
- impostorscore=0 lowpriorityscore=0 mlxlogscore=999 classifier=spam
- adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
- definitions=main-2403070114
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PAXPR04MB9642:EE_|VI1PR04MB6896:EE_
+X-MS-Office365-Filtering-Correlation-Id: bef73d75-9459-4a7d-0daa-08dc3ec59a6c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	myjcAflcTZfsaGFYvQrLbU9u3YF9JksUrhRWy2GE0JiCHnNIfTfBFvFWJESDW0p4GEsl6nJdKQXsK4a/28LR70VyTf+fY0sqKjfpvU7qLYLigVfVkVol7Zr3LefECDnfzWQKyoVDCQsmdE57/dzSWdVUwSnR1ay9h2uYxBZHNkZAkK4VHPLyNprc494LxOAFEZlYZgnTr0liDNkJARk+vvxk176OoMvkeXROL7Rg1enomjeisge6HS7uZNpco4VAiu/liLQKwno9RfF7pFBzc9B/E/RKayOCJILWiYBC0nh+tDCRo1toJpjK9fvoIt8iBqDvs1ZgpiRZInSjLs7IMJYu+3i5L+pmtXgQqWLu9LeUxnKWBtFWvMymVO4BLJC4Y5Eqh7NmehMTE6LrAcv7cfnlDgEGQwOS/SthpQl3F5sjRSwn1bIT6Gy34yInpZVn3iXuRJ7mok47USPuekfS2hjKM1NRsNv4vfP8a0ITfSXHLM8DHMVkwHTAEE5WUycmKVcgZ3hYTgkl4j/GHgi2ER2ZH8OTPlVa6nCUTBd9/uip0oKfMo05QiRvewSlvL9wDDaRIzUgqo2y5v/U8sGK4X5VYcbElZv36i2WlSI4wC5VH3X8UTBqvIIEERaqnKBa5AJGODhdKw3UL10ZUcMxPW7b2sEtoKjBuufahsNTvmPIK37M2elTda0Jmnvif4a0xgOdqyFUMxSeaZ+kjNl4a3ghRbZQ2n3DTaSkvqHb+zY=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9642.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?yJ5OeX1lDQo58fhMyUyJRf8J6Byigj0t1ViVZFcExwFzDrp+6VLmjCDP2BVR?=
+ =?us-ascii?Q?zwvwNeFckTeWlQ1tYcV2WB2nWyC7mYirVu9DlrMm9C3HFeiHURkMzaKl1ei3?=
+ =?us-ascii?Q?1AVOCTi3WA4jvIF8kiEIhJg+uwejYj0yiQX1+84yniXktYlZ2DF0fVPpaEkI?=
+ =?us-ascii?Q?2HEVv2Y0txPsCN0xJ6qzr1hdZstT3tHx7213LTMKxxeYxlaUSsuDs/2v14Bq?=
+ =?us-ascii?Q?haNSl2HYgb9ht+99kIjTwxhdxTq+IcCf0SlR37GkRFTSuxb1rW6etC6tpysU?=
+ =?us-ascii?Q?AtG1bRZNcP+W5eEN8EJi5Lj8iiC5wsKbREH3bwIM3MFQR70PP+KuElrj8I5g?=
+ =?us-ascii?Q?vp0+Umpnd4Q60Ly5aoRoKnVwegUVdgsR+UmQlFNhMs89ssN5hzw4DIxa07v1?=
+ =?us-ascii?Q?FZMR98eAxJwtr4p1n5Hq1fIP1OsITDaKMhrbCDdUwO79sr5NOw7tSfdvHc0A?=
+ =?us-ascii?Q?nKDdcgnUf4qM/sqx6lJ519aa7AYKhBwVi6HDFyw0uCdTiJQNdv0n7oqYmumC?=
+ =?us-ascii?Q?zcalGNgB298eC0WVWg20GuMNH68bZmD6sgYCUwpZ/iaaKnE8vH3ejyq/daYc?=
+ =?us-ascii?Q?2Jm7Cnn366YnVQp4PNDao2AqF5gNn3miy7fURjxJ+JjFjPGHNwwurMPfRKoP?=
+ =?us-ascii?Q?uq1x5P2ixNPrgz0gFwOFBbaxGqVyrVs03U6ofhLbiOKfbuJu6gs/p1gz+yDr?=
+ =?us-ascii?Q?ZDxEtJj/yPSzJsR5T6mIjtEV/B8OcNGh1Xgh6015RanBj7nC8v8C7VBUhgbO?=
+ =?us-ascii?Q?2UEhG5grCUvPMNoEQum2NmmyPXN4m5ZHnp5RHCm0gj+sUzoCLIF7TtCQoY5f?=
+ =?us-ascii?Q?2sw/cBwI0PZEvRJaQ2mNOUAuizkNXq6vnKJ1BGDpcvR3h/5p2VC1QD8fqYMM?=
+ =?us-ascii?Q?jxa8WhhV/WMS8Qk3n6IJiu3bn1swKMgaC4TK4jOXfi5iVtyYNKr/RPWSXXnf?=
+ =?us-ascii?Q?p/boOCoaf/R9NOduPIsrqgLZAL54oum83KBsQE1LW/Ff7TU2bwl8zUHSgriA?=
+ =?us-ascii?Q?yn2LCybQYxeKpCpLGT5xTccIfqhL59DbXXczXSoXe/MYB/4d63O51aqa5NAN?=
+ =?us-ascii?Q?wSXc6+xCqBovlaJQ1MmFy4gWV+W97oqZ+wDMmGaTp761Mhbow1c4cblgi7vl?=
+ =?us-ascii?Q?nEHqZrS9xTgB2dlNNfUs3rKktM5OP6/pSVxn75Plw2y0Jz0xBK3wIxAlSaqV?=
+ =?us-ascii?Q?vi9GEI310I3Ocz0IovoBSVloPkNhTJYpWXJ4SzKTdFB7z4nqmuLd0VhxfUVX?=
+ =?us-ascii?Q?h6LPDcyL0Ip+ck5xJDS1zns6a0bHipRyK7xBBV7fmjm/9355DG3D/wcZa90s?=
+ =?us-ascii?Q?96ZqRpjuKrVE+USzSWK4UIRY1lNapCwKk+xbylSJSZTJdEijB43vM6mwsEns?=
+ =?us-ascii?Q?cw1nv6nBudCeuGqMusGIbfy35qGvsFGAohyE0zLmK0zeCuq/7v37gp2uORMt?=
+ =?us-ascii?Q?rP0TpG4VRC3JFHUeMbrR5+C1AqRXR8yhtUEyr7YNpY6MS6x1ekEb4fBlZUbD?=
+ =?us-ascii?Q?ouBwucPz2/I26CBV56MabvOoDWoWWjcPcTwDix9v9KqdxrPUwI5pbg01SF1x?=
+ =?us-ascii?Q?F9wdZjuJ9iEaZ2n1sfK1WboXQG/GKb1jaGFVIZJJ?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bef73d75-9459-4a7d-0daa-08dc3ec59a6c
+X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9642.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Mar 2024 16:42:40.1301
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: YIG3l6XnmcMy3ffokboNyQpfV8rSQKyZz28du7eKdr+J80Qh6fU+YdQgRaMogAWV89wE7fNqzcY9o5DhcAiopw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6896
 
-On Thu, Mar 07, 2024 at 09:08:43PM +0530, Srivatsa Vaddagiri wrote:
-> * Elliot Berman <quic_eberman@quicinc.com> [2024-02-22 15:16:30]:
+On Thu, Mar 07, 2024 at 05:57:25PM +0800, Xu Yang wrote:
+> The user can set event and counter in cmdline and the driver need to parse
+> it using 'config' attr value. This will add macro definitions to avoid
+> hard-code in driver.
 > 
-> > The resource manager is a special virtual machine which is always
-> > running on a Gunyah system. It provides APIs for creating and destroying
-> > VMs, secure memory management, sharing/lending of memory between VMs,
-> > and setup of inter-VM communication. Calls to the resource manager are
-> > made via message queues.
-> > 
-> > This patch implements the basic probing and RPC mechanism to make those
-> > API calls. Request/response calls can be made with gh_rm_call.
-> > Drivers can also register to notifications pushed by RM via
-> > gh_rm_register_notifier
-> > 
-> > Specific API calls that resource manager supports will be implemented in
-> > subsequent patches.
-> > 
-> > Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > 
-> Left a minor comment below. LGTM otherwise.
+> ---
+> Changes in v4:
+>  - new patch
+> Changes in v5:
+>  - move this patch earlier
+> Changes in v6:
+>  - no changes
+> ---
+>  drivers/perf/fsl_imx9_ddr_perf.c | 15 +++++++++++----
+>  1 file changed, 11 insertions(+), 4 deletions(-)
 > 
-> Reviewed-by: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-> 
-> > +static irqreturn_t gunyah_rm_rx(int irq, void *data)
-> > +{
-> > +	enum gunyah_error gunyah_error;
-> > +	struct gunyah_rm_rpc_hdr *hdr;
-> > +	struct gunyah_rm *rm = data;
-> > +	void *msg = &rm->recv_msg[0];
-> > +	size_t len;
-> > +	bool ready;
-> > +
-> > +	do {
-> > +		gunyah_error = gunyah_hypercall_msgq_recv(rm->rx_ghrsc.capid,
-> > +							  msg,
-> > +							  sizeof(rm->recv_msg),
-> > +							  &len, &ready);
-> > +		if (gunyah_error != GUNYAH_ERROR_OK) {
-> > +			if (gunyah_error != GUNYAH_ERROR_MSGQUEUE_EMPTY)
-> > +				dev_warn(rm->dev,
-> > +					 "Failed to receive data: %d\n",
-> > +					 gunyah_error);
-> > +			return IRQ_HANDLED;
-> > +		}
-> > +
-> > +		if (len < sizeof(*hdr)) {
-> > +			dev_err_ratelimited(
-> > +				rm->dev,
-> > +				"Too small message received. size=%ld\n", len);
-> > +			continue;
-> 
-> In practice we should never hit this condition, in case we do encounter, do you
-> see a reason why continue is preferred over simply breaking the loop?
-> 
+> diff --git a/drivers/perf/fsl_imx9_ddr_perf.c b/drivers/perf/fsl_imx9_ddr_perf.c
+> index 9685645bfe04..d1c566e661d8 100644
+> --- a/drivers/perf/fsl_imx9_ddr_perf.c
+> +++ b/drivers/perf/fsl_imx9_ddr_perf.c
+> @@ -42,6 +42,11 @@
+>  #define NUM_COUNTERS		11
+>  #define CYCLES_COUNTER		0
+>  
+> +#define CONFIG_EVENT_MASK	0x00FF
+> +#define CONFIG_EVENT_OFFSET	0
 
-There might be more messages to read, which we would not otherwise read.
-Since those messages might be parseable, I'd rather try to recover than
-break communication with RM.
+Needn't need OFFSET if use FIELD_*
 
-As you mention, we should never encounter this condition. The guard is
-to avoid reading garbage values.
+> +#define CONFIG_COUNTER_MASK	0xFF00
+> +#define CONFIG_COUNTER_OFFSET	8
 
-> > +		}
-> > +
-> > +		hdr = msg;
-> > +		if (hdr->api != RM_RPC_API) {
-> > +			dev_err(rm->dev, "Unknown RM RPC API version: %x\n",
-> > +				hdr->api);
-> > +			return IRQ_HANDLED;
-> > +		}
-> > +
-> > +		switch (FIELD_GET(RM_RPC_TYPE_MASK, hdr->type)) {
-> > +		case RM_RPC_TYPE_NOTIF:
-> > +			gunyah_rm_process_notif(rm, msg, len);
-> > +			break;
-> > +		case RM_RPC_TYPE_REPLY:
-> > +			gunyah_rm_process_reply(rm, msg, len);
-> > +			break;
-> > +		case RM_RPC_TYPE_CONTINUATION:
-> > +			gunyah_rm_process_cont(rm, rm->active_rx_message, msg,
-> > +					       len);
-> > +			break;
-> > +		default:
-> > +			dev_err(rm->dev,
-> > +				"Invalid message type (%lu) received\n",
-> > +				FIELD_GET(RM_RPC_TYPE_MASK, hdr->type));
-> > +			return IRQ_HANDLED;
-> > +		}
-> > +	} while (ready);
-> > +
-> > +	return IRQ_HANDLED;
-> > +}
+The same
+
+> +
+>  #define to_ddr_pmu(p)		container_of(p, struct ddr_pmu, pmu)
+>  
+>  #define DDR_PERF_DEV_NAME	"imx9_ddr"
+> @@ -339,8 +344,10 @@ static void ddr_perf_counter_local_config(struct ddr_pmu *pmu, int config,
+>  				    int counter, bool enable)
+>  {
+>  	u32 ctrl_a;
+> +	int event;
+>  
+>  	ctrl_a = readl_relaxed(pmu->base + PMLCA(counter));
+> +	event = (config & CONFIG_EVENT_MASK) >> CONFIG_EVENT_OFFSET;
+
+FIELD_GET(CONFIG_EVENT_MASK, config);
+
+same below all code about config.
+
+>  
+>  	if (enable) {
+>  		ctrl_a |= PMLCA_FC;
+> @@ -352,7 +359,7 @@ static void ddr_perf_counter_local_config(struct ddr_pmu *pmu, int config,
+>  		ctrl_a &= ~PMLCA_FC;
+>  		ctrl_a |= PMLCA_CE;
+>  		ctrl_a &= ~FIELD_PREP(PMLCA_EVENT, 0x7F);
+> -		ctrl_a |= FIELD_PREP(PMLCA_EVENT, (config & 0x000000FF));
+> +		ctrl_a |= FIELD_PREP(PMLCA_EVENT, event);
+>  		writel(ctrl_a, pmu->base + PMLCA(counter));
+>  	} else {
+>  		/* Freeze counter. */
+> @@ -366,8 +373,8 @@ static void ddr_perf_monitor_config(struct ddr_pmu *pmu, int cfg, int cfg1, int
+>  	u32 pmcfg1, pmcfg2;
+>  	int event, counter;
+>  
+> -	event = cfg & 0x000000FF;
+> -	counter = (cfg & 0x0000FF00) >> 8;
+> +	event = (cfg & CONFIG_EVENT_MASK) >> CONFIG_EVENT_OFFSET;
+> +	counter = (cfg & CONFIG_COUNTER_MASK) >> CONFIG_COUNTER_OFFSET;
+>  
+>  	pmcfg1 = readl_relaxed(pmu->base + PMCFG1);
+>  
+> @@ -469,7 +476,7 @@ static int ddr_perf_event_add(struct perf_event *event, int flags)
+>  	int cfg2 = event->attr.config2;
+>  	int counter;
+>  
+> -	counter = (cfg & 0x0000FF00) >> 8;
+> +	counter = (cfg & CONFIG_COUNTER_MASK) >> CONFIG_COUNTER_OFFSET;
+>  
+>  	pmu->events[counter] = event;
+>  	pmu->active_events++;
+> -- 
+> 2.34.1
+> 
 
