@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-49001-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49002-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B029874916
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:52:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EE8087491C
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:54:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BF1DB283131
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 07:52:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 155072854D9
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 07:54:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E355663120;
-	Thu,  7 Mar 2024 07:52:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E882D633F5;
+	Thu,  7 Mar 2024 07:53:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="WPQUEE2q"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EBaLRokM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
+Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 227856310D
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 07:52:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E975633EB
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 07:53:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709797941; cv=none; b=TsfMOpffHF4OPKDcVz4GQn/l0uHFBHAPod9ZBFNH2Mgi8EnR4pZpjU8yYGM27OPV0uOjO6w4CYJt2Caj0iWhdIHa+UeOgOTW86L8D76GIHbOWqzg6fQzjI1mnk534AnL8+3aNz4Te44yEPpMZvuYePEAEeK/fR7KFD3owtbRNSg=
+	t=1709798037; cv=none; b=XIlhcJ3ineYMr4cp6DuNxiwqGVKighSBYf4SHhJ06YaZ02+wwXWCk2IiELsTj7/eqxG0UOjzduMdCsF/f1nHGCNIkrHNMrKUnAsuCyM8xbhbIHm1vY5aV5IV3JK5rudQAgBownpAVRu6hG2poXCKJafgIHbhTzqovY8wtrGa8HI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709797941; c=relaxed/simple;
-	bh=WCPi31HjmoTJOZrDmUPR5i+OWn0Y+Pjab+ogTuUEZr0=;
+	s=arc-20240116; t=1709798037; c=relaxed/simple;
+	bh=J3tfXEyQgDuDYGDYMkJtF7DSa5D0nP5cqXmdWRtGFmc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=hvmX/9MyQjqj9hGPHMd3gOb+gaS1WwvSM4kdMIhXQ9J4dkBF2MMKl0yg/GM6AOtuXWO9ia7F0XVIu+KsjDlubaCf8K1/7Xo5t3rxa9Pl77MK3ujQcvCAcDwBoL/iM7HZcMXUE2d2NNR+aN8tZM7loh6scc/Zx/voy22WpWfhvwU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=WPQUEE2q; arc=none smtp.client-ip=209.85.208.177
+	 In-Reply-To:Content-Type; b=emoCYB0sLH3D1BzQ4djBPGbfDwO0klxrLmrQcg9aRPUbBugmluXnhp/ktmmXvI49Yzw0rzI4IT5fvjgKJ9S+cocanDgsIIvzurwdtSITGvoa2B2LsbqRnZfXbCKMlt8vbJhdV8ez4Z+yhW8W0z1yAXw+yOIUrUHhXDn4Wm1FpK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EBaLRokM; arc=none smtp.client-ip=209.85.208.51
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d109e82bd0so6630451fa.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 23:52:19 -0800 (PST)
+Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-565c6cf4819so3173518a12.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 23:53:55 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709797938; x=1710402738; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709798034; x=1710402834; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CbYPVKeaIikPCUbuRtGBOHniOBHDneAcZ7ulpwXWFXY=;
-        b=WPQUEE2qxCysF+7fVrR2DGf9/ViszSTZFStdoLiGruxZJYve4sN+R0Dj6pW2z91M/q
-         AnoZ9W7vpRnjZ7EsvkMYMXXEqyloaAbxHznduGDm4UnIgf4ceVSD6dtfj4AZSX0TyL8s
-         QSfkJYy7GRGs/rvFqFn6Ppu5IMtGc5dHqOTWFsxmgf/vB5FG8D+N9Mb395eyxHHmwMZD
-         ZlFHuOP+zl+0DGYZmitH5vcqykPJJKPWFx1XsQ5qnV9+SuU/hh9nmMOAPG/NzNx4uQ3Q
-         yZvMMNzat6A+nkd6/RrqryFeLiU44e8V7kaOnYDM9FMP4uEOiGCUVw9juIjhivN0+mNr
-         QqlA==
+        bh=HT80H3ZZpOg4fbvSpnNPKvBnPvi5pL+TPSamat71PBY=;
+        b=EBaLRokMwgKROy1Wm648hicO/LVCsTfuDydP46WxlGmlA40uzuQZjy3/sHS6TMfg7R
+         D0cSTQswvHMmk/KmktCiguDkKHq9cLPWgOo3U1ElZ21MLb3LDHyV+Xl9DnnD3T8A07Nt
+         JALFuJoCrNxTJWlylkJv7QoOcLpd3xguTCZeOIQjaMUGUVGYJW5yA7PjJiefFdbJGaS5
+         04CqEROf6nL1+ZOkfn5sEqbRvRmCLlJTEqZA0XrQIPaBhtc7bh081lXCNmwIFWUKLZoZ
+         TfBO5kRbuUK7RA66n98qdDO/KjVYHZFKP29ehjscSCwh4dyRRDWav1cxH+XCBkOu/uk8
+         PjnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709797938; x=1710402738;
+        d=1e100.net; s=20230601; t=1709798034; x=1710402834;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CbYPVKeaIikPCUbuRtGBOHniOBHDneAcZ7ulpwXWFXY=;
-        b=QSiKBz51XAJvPvn69AEHbzfsVoQAk7dS/eEsumFY5PNJQLzwWpF2rCEAolQzV5CLLh
-         JRApu6ttc3RQwmwG8UXbSTAQ+ofyeRhUETvWv+osp8f6rg7MR0NSIynrgLXR5+/hv96H
-         xCDaJ34xBvnmC6+FzF9ZW/YZjs0aNWx3qZ3Nrah02C+5gl/2WNKiurMDzTyJLFn5XXxi
-         m98KA65niexpqNpBC49RfjjYsC3eyKp1hLstjzjfgPHWkQhWC00gqu3syuty/qENPZh9
-         FmxZ5MxrOOflYQcXon578tiuSQWqZMhALkL1fAkztE2M1DV04slEui48T94+OHZm2VmI
-         u2LA==
-X-Forwarded-Encrypted: i=1; AJvYcCXM1SqAaZnrh0HiRox0Ck+fuAP8i/9JvmXBPqEzl0mcZmvMiIlowIVRjtZCHraLF6jqpvz38TXoDtLvpMPIJFGLvnBLVFSyKjy9yQ==
-X-Gm-Message-State: AOJu0YxSZBZZ312+I0u1oesPvzAihl2V6Jhtk+9OJSrJhzwRMNM3o5j3
-	NUBioUk3+yL0WWwAhIiZphV7OXL4RV1AIwq8rxLzUL+IZTdokZGybtCQeqcR51w=
-X-Google-Smtp-Source: AGHT+IHI11C+yIqusXhaLmwy1+iOzNA3oW0q/h92eMJ5vERCt1YWHKoCb13PQFSTRIMHNo6xix9qCA==
-X-Received: by 2002:a2e:2c17:0:b0:2d3:ba52:f87e with SMTP id s23-20020a2e2c17000000b002d3ba52f87emr771681ljs.0.1709797938062;
-        Wed, 06 Mar 2024 23:52:18 -0800 (PST)
+        bh=HT80H3ZZpOg4fbvSpnNPKvBnPvi5pL+TPSamat71PBY=;
+        b=pS+298NcOeDOBlcvf3XEqzn6xdf2o1tBml/ITgAxBVFZc8hVbyaNMfE5SHKy62NY8F
+         sYFzNs82iQi+Mr7YX98nvG0Scxvb239TeCudAwn9ZuSnDCHL5w/DpHAt4B8ICwafuyXt
+         1KXuaRy41H/szxHJHi+OpyTVAVZOeuC4ikrqvDhRFI5eTGU4QgqeC1IPxSKlrmsp9jkG
+         YCdO9uMZ2gJFcKU9tBUVpK8OUz5HF4/JmNh4I0/RlG1A0cpdgcmEvM3gytf5YlrdPek7
+         Wa95xA18s+KbbPg9NqmcBXJ5L4Wd9uYy16a86PU7XJVv1S3ZyjiUqwtNfENid9540veL
+         p/7w==
+X-Forwarded-Encrypted: i=1; AJvYcCUE/WnlC5pd+YmM9v6ItxaDM68z4Ohcd9pWgMbg2Hq5x4Gh5fkqK5GuWnd9ykIHHV35Fq0XcFk/v1bi887HOgeYG5iHyKydbUHFlA==
+X-Gm-Message-State: AOJu0Yx8uvPdJcbM5a1pZsf/Wm2DSicKkeiorCy09OI81SdZZ1hAhKxK
+	XMyoYm05A4XsDwzBgG7eNQwQkVDshQNprDUNvvIxddhCs4LuyZi7z2jWlzVDUS8=
+X-Google-Smtp-Source: AGHT+IH8ZyyUIHLKYdomaJtC1UdB9gLerL27AEW00yFVNkwQaZEnk+B+lKFSSfObTlrMwlSRoDWoeg==
+X-Received: by 2002:a50:ccc2:0:b0:567:e0e:dda5 with SMTP id b2-20020a50ccc2000000b005670e0edda5mr612110edj.17.1709798034412;
+        Wed, 06 Mar 2024 23:53:54 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id ew5-20020a056402538500b005667a11b951sm7746135edb.86.2024.03.06.23.52.16
+        by smtp.gmail.com with ESMTPSA id ew5-20020a056402538500b005667a11b951sm7746135edb.86.2024.03.06.23.53.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Mar 2024 23:52:17 -0800 (PST)
-Message-ID: <2e093b47-27fb-4a5a-9e0a-d29d09185a92@linaro.org>
-Date: Thu, 7 Mar 2024 08:52:15 +0100
+        Wed, 06 Mar 2024 23:53:53 -0800 (PST)
+Message-ID: <342320a5-ddcb-44aa-b153-aa2a1ac2c657@linaro.org>
+Date: Thu, 7 Mar 2024 08:53:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,21 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/5] bindings: clock: qcom: Add "qcom,adsp-skip-pll"
- property
+Subject: Re: [PATCH] arm64: dts: qcom: sm8150: add reset name for ethernet
+ node
 Content-Language: en-US
-To: Taniya Das <quic_tdas@quicinc.com>, Stephen Boyd <sboyd@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+To: Volodymyr Babchuk <Volodymyr_Babchuk@epam.com>
+Cc: Sumit Garg <sumit.garg@linaro.org>, Bjorn Andersson
+ <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240208062836.19767-1-quic_tdas@quicinc.com>
- <20240208062836.19767-2-quic_tdas@quicinc.com>
- <568c26db-45c4-4a62-9504-738d78007802@linaro.org>
- <91741024-b1f1-404a-a1aa-bc1a0d684ba0@quicinc.com>
+ "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20240306200910.2732835-1-volodymyr_babchuk@epam.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,40 +134,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <91741024-b1f1-404a-a1aa-bc1a0d684ba0@quicinc.com>
+In-Reply-To: <20240306200910.2732835-1-volodymyr_babchuk@epam.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 06/03/2024 07:53, Taniya Das wrote:
-> Thanks for your review Krzysztof.
+On 06/03/2024 21:09, Volodymyr Babchuk wrote:
+> Add reset-names property to the ethernet@20000 node. This patch does
+> not change behavior on Linux, but it is needed for U-Boot, as it tries
+> to find the reset by name, not by index.
 > 
-> On 2/8/2024 1:45 PM, Krzysztof Kozlowski wrote:
->> On 08/02/2024 07:28, Taniya Das wrote:
->>> When remoteproc is used to boot the LPASS the ADSP PLL should not be
->>> configured from the high level OS. Thus add support for property to
->>> avoid configuring the LPASS PLL.
->>>
->>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>
->> You nicely bypassed all my filters.
->>
->> Please use subject prefixes matching the subsystem. You can get them for
->> example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
->> your patch is touching.
->>
+> Signed-off-by: Volodymyr Babchuk <volodymyr_babchuk@epam.com>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8150.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> My bad, I will update the commit subject.
-> 
->> Anyway, I don't understand point of this commit. Aren't you now
->> duplicating qcom,adsp-pil-mode?
-> 
-> No, the expectation with pil-mode was still certain level of 
-> configuration from HLOS LPASS clock drivers. But on the QCM6490 boards 
-> these clocks need to be completely reserved except the resets.
+> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> index 761a6757dc26f..c2e65d6a2ac62 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> @@ -951,6 +951,7 @@ ethernet: ethernet@20000 {
+>  
+>  			power-domains = <&gcc EMAC_GDSC>;
+>  			resets = <&gcc GCC_EMAC_BCR>;
+> +			resets-names = "emac";
 
-Sounds like qcom,adsp-pil-mode or qcom,controlled-remotely or one of
-others. Stop inventing 10 properties describing similar case, one for
-each binding.
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check W=1` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
 
 Best regards,
 Krzysztof
