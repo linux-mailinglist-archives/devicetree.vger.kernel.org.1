@@ -1,95 +1,255 @@
-Return-Path: <devicetree+bounces-49182-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49184-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC0ED875255
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:52:15 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id E229B87528A
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:59:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9D9FC1C21F96
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:52:14 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 50ECA1F24D98
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 14:59:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0694B12BEA6;
-	Thu,  7 Mar 2024 14:52:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F64312E1EF;
+	Thu,  7 Mar 2024 14:59:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="DTe6xz+t"
+	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="hylU8K6T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from outgoing1.flk.host-h.net (outgoing1.flk.host-h.net [188.40.0.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D080E127B7C;
-	Thu,  7 Mar 2024 14:52:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 145E412E1D1;
+	Thu,  7 Mar 2024 14:58:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709823133; cv=none; b=MrMuWbN6N3vpNuh+XMd1dMdL5jtF0QorlBk6njtABGEeLQp1lRj6rQsN16906ad6zzqM9wMapXsnXWK8lMtCm7aS0iP7QKoPhKi82FvV+2IMLvzzPDBHFoq5UwMBxFqjFu1Kfxn3SXFLHeJ5Mnosmqk4IGB6J97q0+bM3wLoIPM=
+	t=1709823546; cv=none; b=l17UV7HuEhSeH4vSsGVhiojC6KRzxVg4TdGqsURNeqa1WsD48CXbYkqampTa3PVAfgxNj58nUZQ7xZEpxvEa2S68whquhRKDttC/mFblH4zZN89I46fzVw//cMR9DXX4eFfKFflEpYBSMNGcacvFTtvA54+9MfEFJL1RdKwNx2Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709823133; c=relaxed/simple;
-	bh=ZscmK6I0AMsgAV0JKmQuVIW/MQy3oRvjWEQXFP9oIUc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=XSla3/csaHaPYAeU6awLK0vhVqm1t8pNPFv03dPCqCknJrfhue8Etu1kSF6Kcq6Ra1ajJhmR4qrhkesaHXL62mWb9mkwHp4YAYJeBWxq06N96vWn9tOjIuGF9UH0UrHOqPI0zoBg4cWDoxILkdW65I3Ni2wbsNWrL+TGTIfb1rI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=DTe6xz+t; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 23950C433F1;
-	Thu,  7 Mar 2024 14:52:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709823133;
-	bh=ZscmK6I0AMsgAV0JKmQuVIW/MQy3oRvjWEQXFP9oIUc=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=DTe6xz+t+b2O26zPADjx3LZmWIu3i+nxHPt85N4EBUtDbxfwdqf1ETZvBvOyn2pr7
-	 jONiLY9WKMslE0wlk53Le/GCidLCftZmarVvmDwgjtHQnL+VYjEyhcFkA31ToVI7QM
-	 L6Ms/EldTngBZCHml0oxrbDJN3ABZ+ekxGD6b1xacxx8d3BjLodjmsASDcu1uCboAI
-	 8ZNc9IfCSRED1vgkyox83iP144hbG9FRy4uEmmv7npCLlN8nXvErWI/HJErx5Za0kt
-	 Ir5c185bpz4VCmBBmQHBA0JICOjRlA6ud+Y8xcoDDPRKzedx1M6QcOcsdB8t02cYjA
-	 SP9IiTKeOdKFA==
-Date: Thu, 7 Mar 2024 08:52:11 -0600
-From: Rob Herring <robh@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: linux-kernel@vger.kernel.org, sebastian.hesselbarth@gmail.com,
-	devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	linux-arm-kernel@lists.infradead.org, andy@kernel.org,
-	gregory.clement@bootlin.com, linux-leds@vger.kernel.org,
-	andrew@lunn.ch, geert@linux-m68k.org, conor+dt@kernel.org,
-	robh+dt@kernel.org, lee@kernel.org
-Subject: Re: [PATCH v5 2/3] dt-bindings: auxdisplay: Add bindings for generic
- 7-segment LED
-Message-ID: <170982313063.2579205.11281655136132729632.robh@kernel.org>
-References: <20240306235021.976083-1-chris.packham@alliedtelesis.co.nz>
- <20240306235021.976083-3-chris.packham@alliedtelesis.co.nz>
+	s=arc-20240116; t=1709823546; c=relaxed/simple;
+	bh=Ow23Vq5y+v302qmnpse4mNyyP2IvKIYhwVkgA0H0T4U=;
+	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
+	 References:Message-ID; b=gMgfuyaDpB4sNiRdvKxG0h1CGQpNyOcCl3gnpNvzZBj54JCpDEK1QUBXz2xjejIJgMIdgynBUqhd2xKBATfrr1R3RUxDGHKaIC2K+QrbmbNgJCi9s+kPLU2ExsxXvE0tZODnFF7fOcLWh+DXiBPl8c5StMuCP5LbcLOn7ynJhOU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=hylU8K6T; arc=none smtp.client-ip=188.40.0.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=risingedge.co.za; s=xneelo; h=Message-ID:References:In-Reply-To:Subject:Cc:
+	To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:reply-to:
+	sender:bcc; bh=hN/u91xj7BffnOx3vRSR9HgNfOezdTOAMAhpnSwyelI=; b=hylU8K6TjiFbX2
+	ATG5g/MCa1Vh9pc8P8jMEloPF5WHES66Cafp5SnTupzImw4jfyQNVj7qcyW6h0mtdNR47W6RR1G08
+	MOMj9eiXyE+H7oQS70TtZJe4eZoAeCTV9/YA1+Flp8RJXwgEgTI0kbpayb63bS1XN44JrAsuPw2wB
+	etXD5iBvdL1Ap9JuF7HQn3T3yxrd57+rz04kW2x87z1gC4INGBMMI3n+mS+8wmKKHLPIajg21O8D6
+	3UulxA6sjv/qgHL7KeZKFQJRWpAOziOcYzu/UMuZ2a/FDTn+ws3iWQvjecQ+UKox+4+SxCxvozy88
+	2CwCzUgyR7GIjkzXOrTQ==;
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+	by antispam3-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <justin.swartz@risingedge.co.za>)
+	id 1riFCp-00AwA7-62; Thu, 07 Mar 2024 16:58:49 +0200
+Received: from roundcubeweb1.flk1.host-h.net ([138.201.244.33] helo=webmail9.konsoleh.co.za)
+	by www31.flk1.host-h.net with esmtpa (Exim 4.92)
+	(envelope-from <justin.swartz@risingedge.co.za>)
+	id 1riFCl-00034L-MN; Thu, 07 Mar 2024 16:58:43 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240306235021.976083-3-chris.packham@alliedtelesis.co.nz>
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date: Thu, 07 Mar 2024 16:58:43 +0200
+From: Justin Swartz <justin.swartz@risingedge.co.za>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>, Sergio
+ Paracuellos <sergio.paracuellos@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, linux-mips@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH] mips: dts: ralink: mt7621: add cell count properties to
+ usb0
+In-Reply-To: <73e7a642-d993-485f-9ccc-abe3daf79390@linaro.org>
+References: <20240306202131.2009-1-justin.swartz@risingedge.co.za>
+ <73e7a642-d993-485f-9ccc-abe3daf79390@linaro.org>
+Message-ID: <48fd88f29482fc1b94439727b2d2484f@risingedge.co.za>
+X-Sender: justin.swartz@risingedge.co.za
+User-Agent: Roundcube Webmail/1.3.17
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.03)
+X-Recommended-Action: accept
+X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT+jMdw2bofFoyg6nBiIKW60PUtbdvnXkggZ
+ 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wCPRB8bAzJcv2cv+UqiTTc2+CpNcmBnO4XM3Sck4bwNogU
+ WCl1nkLBzZX0KuJ9bXiS85Z42w/+2OBolTNFbPomXFWCX8oNdggW7HE9XDTdSejrkEpbuUvwMvHx
+ 3T+KSG//gbuP7hnUK8NQdLwsVWKIFDZRrTGv3rxiw9tFrqFSCFNiLZt/QXQnOBRD+jq1HsKsDh/6
+ Srgk2K3gr1VBfJbChkYH6fbrypLNrde+UooQVNLReLErukdelEOHUIpaBbp5GdnsN8+UvimwMinK
+ 0+Txhz2u9qvrL2PODYgMZQApJXOjDLkqunZ9NcY2bHZn7CfFscMZZf3sCkN20I5vMh4akiObI7Kj
+ vK7X04QEin24qbfMFd8eGjnYW8aSH5qj4ujh/13psIvqSqJFa1CcANErDW/w69saM9prk3jNnHtn
+ nuEt/J9wDZeQfiNOYsLDFBdwYt2XtlLzy7G7T4kla0JNnAWQx3FS11bhwUa9HCIwKB+TroNcRY33
+ oNmH4nRQzHQazgY7lmveanvOdQzf6IMJvXeR9sWP3X7B861DTGeXmiBZB5ABM5ibrJKBc41fzX2f
+ c4dPBW7pWChw4uEjGhn8NxWJwjYpP3+Q3/7iG2wtXnUZ0us2LLf9HPH8wHoHg+3go+5B/jmqOvZj
+ iTeRCozF+pjfbFrzHCaFHgNTrYhVbBAqR8ZRvY88PgTw/yJlftBcHX6tS8NW54gm54VAvfk9VDzu
+ 2DWvs648c5Z9erCJvY3rAVkRCEQYQbC3QS5oLY+kBVM18TehOmSn2kZRt3z8CHTZnKdQqcB0QMMU
+ IPF3mL0sZmYqDqSi6Ubx7BN0H0IaZOsZnP36dPZwQWhvr8FGGENbqE9x654AXkUfGHPAHnWD1MEm
+ 8zNnsSuSxjl6RVTXva2Jl4AHe5oTGEWuK7wQuHiJKcf5Sqd6P3zHxU4Ham35bIM7+pzQRR2+p5za
+ 8H1gUaDJZGpg6c2oigrh+YcF3SeOS5epce2vBFQn8BLQG4wdJz5OZPl/85ViK8Ea0fe5iniRDU9a
+ IkFLX1Ne1hGTitUHsPftyxriH1hAvmSO1crrLwiF2BozUnkjKLcelPzx2oqVYjg7pBU6N7n2Xnf9
+ ORWrllgKtBSNx6xUC0rhukb6/HI5FFTbPOoZF9qxZ4tAl1zsvXmdn0dcjkDS25rwYtIS82VMysVJ
+ IbwiF17/r3cXutruHTpS87YkskBoFo6eZ5Uv5yUh4sH+KRvQOJ2675fcuW/3lDmDZZ7XgBhunFdj
+ VYxKH3qWyoySMt2NXQeSeCQL64BFVPTx/kcAi/BxTD536X9tHdQbSeO43htW0OUycBmbGvKlxEqV
+ RjJltGRy2DNwOgV373pfDhBQ21Od8BCsodKtWDQizmRHoSVjKnexcCkQ+p5zWKzxeWKxLCyS8776
+ l4RSwc4z5cqDb97hdiFVwaP90eVaqnDphEW4xEWnj3iKGpP30awjRzKpQ4kPl+3D1YhNMZlGTB68
+ YWMe6VM9RYQVmV8q7nN/oibcn491jt+pt12gBHaGoo19huz2OKHH5lr9xXvSM4nM3avg
+X-Report-Abuse-To: spam@antispamquarantine.host-h.net
+
+Hi Krzysztof
+
+On 2024-03-07 10:01, Krzysztof Kozlowski wrote:
+> On 06/03/2024 21:21, Justin Swartz wrote:
+>> Add default #address-cells and #size-cells properties to usb0,
+>> suitable for hubs and devices without explicitly declared
+>> interface nodes, as:
+>> 
+>>   "#address-cells":
+>>     description: should be 1 for hub nodes with device nodes,
+>>       should be 2 for device nodes with interface nodes.
+>>     enum: [1, 2]
+>> 
+>>   "#size-cells":
+>>     const: 0
+>> 
+>> -- from Documentation/devicetree/bindings/usb/usb-device.yaml
+>> 
+>> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+>> ---
+>>  arch/mips/boot/dts/ralink/mt7621.dtsi | 3 +++
+>>  1 file changed, 3 insertions(+)
+>> 
+>> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi 
+>> b/arch/mips/boot/dts/ralink/mt7621.dtsi
+>> index 2069249c8..f02965db1 100644
+>> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
+>> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
+>> @@ -309,6 +309,9 @@ usb: usb@1e1c0000 {
+>> 
+>>  		interrupt-parent = <&gic>;
+>>  		interrupts = <GIC_SHARED 22 IRQ_TYPE_LEVEL_HIGH>;
+>> +
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+> 
+> Doesn't this bring new W=1 warnings?
+
+For a fresh build (make O=build clean; make O=build W=1): I do not 
+receive any warnings regarding mt7621.dtsi or my board's .dts file. I 
+added these properties to the usb node because I had received warnings 
+about a child node for a permenantly-connected/onboard hub:
+
+--%--
+
+/ {
+	...
+
+	usb_fixed_5v0: regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "usb_vbus";
+		regulator-min-microvolt = <5000000>;
+		regulator-max-microvolt = <5000000>;
+		regulator-boot-on;
+		regulator-always-on;
+	};
+
+	usb_fixed_3v3: regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "usb_vusb33";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-boot-on;
+		regulator-always-on;
+	};
+};
+
+&usb {
+	usb3-lpm-capable;
+
+	vbus-supply = <&usb_fixed_5v0>;
+	vusb33-supply = <&usb_fixed_3v3>;
+
+	hub: hub@0 {
+		compatible = "usb5e3,608";
+		reg = <1>;
+	};
+};
+
+--%--
+
+If the #address-cells and #size-cells properties are removed from the 
+usb node, the following warnings are generated:
+
+$ make O=build W=1 dtbs
+make[1]: Entering directory 
+'/home/user/projects/xfl-mt7621/src/linux/build'
+   GEN     Makefile
+   CALL    ../scripts/checksyscalls.sh
+   DTC     arch/mips/boot/dts/ralink/mt7621-client-product.dtb
+../arch/mips/boot/dts/ralink/mt7621-client-product.dts:276.3-13: Warning 
+(reg_format): /usb@1e1c0000/hub@0:reg: property has invalid length (4 
+bytes) (#address-cells == 2, #size-cells == 1)
+arch/mips/boot/dts/ralink/mt7621-client-product.dtb: Warning 
+(pci_device_reg): Failed prerequisite 'reg_format'
+arch/mips/boot/dts/ralink/mt7621-client-product.dtb: Warning 
+(pci_device_bus_num): Failed prerequisite 'reg_format'
+arch/mips/boot/dts/ralink/mt7621-client-product.dtb: Warning 
+(simple_bus_reg): Failed prerequisite 'reg_format'
+arch/mips/boot/dts/ralink/mt7621-client-product.dtb: Warning 
+(i2c_bus_reg): Failed prerequisite 'reg_format'
+arch/mips/boot/dts/ralink/mt7621-client-product.dtb: Warning 
+(spi_bus_reg): Failed prerequisite 'reg_format'
+../arch/mips/boot/dts/ralink/mt7621-client-product.dts:274.13-277.4: 
+Warning (avoid_default_addr_size): /usb@1e1c0000/hub@0: Relying on 
+default #address-cells value
+../arch/mips/boot/dts/ralink/mt7621-client-product.dts:274.13-277.4: 
+Warning (avoid_default_addr_size): /usb@1e1c0000/hub@0: Relying on 
+default #size-cells value
+arch/mips/boot/dts/ralink/mt7621-client-product.dtb: Warning 
+(avoid_unnecessary_addr_size): Failed prerequisite 
+'avoid_default_addr_size'
+arch/mips/boot/dts/ralink/mt7621-client-product.dtb: Warning 
+(unique_unit_address_if_enabled): Failed prerequisite 
+'avoid_default_addr_size'
+   DTC     arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb
+   DTC     arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dtb
+   DTC     arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dtb
+make[1]: Leaving directory 
+'/home/user/projects/xfl-mt7621/src/linux/build'
 
 
-On Thu, 07 Mar 2024 12:50:20 +1300, Chris Packham wrote:
-> Add bindings for a generic 7-segment LED display using GPIOs.
-> 
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
-> ---
-> 
-> Notes:
->     Changes in v5:
->     - Preserve formatting, maxItems set to 8, group GPIO specifiers
->       as suggested by Geert
->     Changes in v4:
->     - Add ASCII art diagram showing arrangement of segments
->     Changes in v3:
->     - Set maxItems: 7
->     - Expand description of segment-gpios property.
->     - Use compatible = "gpio-7-segment" as suggested by Rob
->     Changes in v2:
->     - Use compatible = "generic-gpio-7seg" to keep checkpatch.pl happy
-> 
->  .../bindings/auxdisplay/gpio-7-segment.yaml   | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/auxdisplay/gpio-7-segment.yaml
-> 
+If I add add them back to the usb node, this is the result:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+$ make O=build W=1 dtbs
+make[1]: Entering directory 
+'/home/user/projects/xfl-mt7621/src/linux/build'
+   GEN     Makefile
+   CALL    ../scripts/checksyscalls.sh
+   DTC     arch/mips/boot/dts/ralink/mt7621-client-product.dtb
+   DTC     arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc1.dtb
+   DTC     arch/mips/boot/dts/ralink/mt7621-gnubee-gb-pc2.dtb
+   DTC     arch/mips/boot/dts/ralink/mt7621-tplink-hc220-g5-v1.dtb
+make[1]: Leaving directory 
+'/home/user/projects/xfl-mt7621/src/linux/build'
 
+
+> Best regards,
+> Krzysztof
+
+Regards
+Justin
 
