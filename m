@@ -1,150 +1,136 @@
-Return-Path: <devicetree+bounces-49191-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49192-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E639875324
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 16:29:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AD654875347
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 16:38:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 174AF2891C2
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:29:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A3F4F1C21869
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 15:38:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658B612F36C;
-	Thu,  7 Mar 2024 15:29:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4A80C12F36C;
+	Thu,  7 Mar 2024 15:38:24 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="ctgMptqN"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="eyN/asCw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D02212F5A0
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 15:29:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 60D9E125D5;
+	Thu,  7 Mar 2024 15:38:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709825372; cv=none; b=KV6ebY+dhBPHyzSkSJWs04QqjPjq9xK4l2QoHL2Eq/Izjj2nJ2N61TffPZm2nyPtmUhBPS3+YxEt+tMggmt5Gg5lOGyoY2DwPYpH04uuD5PwJYLh0XmzR0xbHe8V+cLuFlYaXon+db5wrMUhoKA1EXbaZuNtUG2lJFfTBz4tONk=
+	t=1709825904; cv=none; b=bFhszXZW+WxbcIlTU/ix58g/yk+XK2CyPuhqm76pK4wHqKG326e/9BC72CKgIEGKklNdLBIEbo/ebyHMPb/dsajemnHBzZhgUHGz3hXCH4jAC3m9Cn4RmHMzB7PSjP2qBlxCEb3oSYuFftkUtDK5EiEnSPgTeFSaCFY09WzP9u8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709825372; c=relaxed/simple;
-	bh=/CwM10SLvVd0qeLIDk7fSDRyhLofwyJ6hkYcbEkvGBs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=a2bGHGBnQKZ9A8Wteicu1EF5FdwjC/4nx6mbmAUY5noiSV3LW7N9yP1I+UsEksNvdDRGw/DnslE544f1iVWrWQgGz+ndPxlzLE7hX2FkJHq+LbYiU8x7uUTpbILRNqox214gZfvxvgspLgTcAdhEPjjygtULXE+rfkQg3hrDloE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=ctgMptqN; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-412f62edf25so7649965e9.3
-        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 07:29:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1709825368; x=1710430168; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X4rA7glPrCrKwr981a28u15ca/pzff2LojpS0g84uXI=;
-        b=ctgMptqNcuDfgmlLEsDRLPR12V3i3DxbmO/UcFyVmvKjM1HGMH9MHW2U3HOQpgCnlZ
-         +5ZobBhHtfu2GbxWFq1WR5YWylV1mMNrZoAXdSzOItn4aRbK6jTO4a55xhGgWFHMuI4J
-         kxjicZxKvv48aKdxxSGL2yzsDqszbQP4zOwBXhA4Y3klHEwlFpWWEXIvHUwLE29YVgyt
-         tGaBTw0aqQ182m/6TU+azNIWDY+1NcU3NUdMXl1S7LswcKg5HIOu8YQtJwO8G2yfCWiJ
-         Ysbi2PaAxbKMmOADchHMzzZdQDm2OrzvCYtvisiCrUYN+NwcmNK18rhp8NyWSROR//US
-         uueg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709825368; x=1710430168;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X4rA7glPrCrKwr981a28u15ca/pzff2LojpS0g84uXI=;
-        b=rGnBSvX/gpyyKcL7r2NH0NGOXHfgLaTeobfH/DBXNNP6aFr3+dz5wa7Y2FRE8EFdvt
-         mp5jzQFNVqZEkss/usfVxCAAO/YP5B0RFe4NSPRHUv9VvFdBFS7eBq/8GRxQaamBpevW
-         w4q+gJjMQcGJv4a3guaEYrZCF7U2rjiaSyzWnSSQPKW6VakAIKDhjog26aO1LNEtUN2L
-         CSY56cD97+OF8ofIRB1xijtCf3jdSSMErwFLcdHqDcZEcAs45lfcENSzGr18u0oLV1rw
-         O3jx1I/HNbysdhL0zd2WYbou2Vx0zyeQmtXCmQV4V0Pgk4JhN678bzLW1vPW2zBD/j2M
-         SqZg==
-X-Forwarded-Encrypted: i=1; AJvYcCVLF3cxBq7JSpk0HMhCFtEQ+v7M+D3r0or6XFON+yoMIQ0G4qgDeXvmEdya9gNcKfYKwzihzRqhNNAuUvisLfgL3x+HWXQzKZE9mg==
-X-Gm-Message-State: AOJu0Yy6F5ata1vqkAYh/MR3aT9RLRA/YJJaZd3nz3wYoQFcbE0q9HTe
-	34sZv8rRD3HmO2pd1NwygsOmPRSKWayDzgb8qGuDU+ensPRDOl6Z1xsVC8Gmp2Y=
-X-Google-Smtp-Source: AGHT+IGEMjZrwSX4KlE3+S4Mx14JfUgPt2iuZklnN3V5j7oUm9gfxTUCLTshjWeoxPKz1UsSxB7+iA==
-X-Received: by 2002:a05:600c:450e:b0:413:1013:cc7f with SMTP id t14-20020a05600c450e00b004131013cc7fmr1576665wmo.29.1709825368172;
-        Thu, 07 Mar 2024 07:29:28 -0800 (PST)
-Received: from [192.168.108.81] (freebox.vlq16.iliad.fr. [213.36.7.13])
-        by smtp.gmail.com with ESMTPSA id w14-20020a05600c474e00b004131310a29fsm1366528wmo.15.2024.03.07.07.29.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 07 Mar 2024 07:29:27 -0800 (PST)
-Message-ID: <2f588948-0261-4985-91e8-d5060e673cd9@freebox.fr>
-Date: Thu, 7 Mar 2024 16:29:27 +0100
+	s=arc-20240116; t=1709825904; c=relaxed/simple;
+	bh=7ZE0ScB5HUfAHIymGIixtJSOwrT16z36Q+BWEBSYb5E=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=iIRaN89ymIy20SCyM9BgEMAHYi8QiGkp4Nb3NyGKpHhBBFS9psvoxPz3+yit6+nnN3SUjuiHO5mHbyqNkd1vLE1DJzlzkfn4oRlsr9TlCGsZmzZiiOWN/oZSKLEeHVXKQ9EYzlBXhRVZYf0CJL5z7kpjB68xrA7oBtmQ91yHM7o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=eyN/asCw; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 427AL4iT012314;
+	Thu, 7 Mar 2024 15:37:48 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:reply-to:references
+	:mime-version:content-type:in-reply-to; s=qcppdkim1; bh=AERJNdMQ
+	dUcc77JzPbCxr+bYduc7vK2w7u9SAMJqtFU=; b=eyN/asCwApH3kBf7+opmpRWk
+	VOAm8ii2Qd7Q33UMT6r3MXRcH2BQIpkmMl5eVVlQX525pjg2tGRE86YBF2Du7iTJ
+	eoZNyLc9b9CfgdQBdRyTBR4dqU4OuyYLl+zYAFpOYk5C6SwkAWEZRrCAbQq533Oi
+	dCyEVp07q1yVv1SjxRICqJMG90IdI324wUWiFTjca0QMpUWggTD2mvfN5ojTGAXX
+	3dJnUla8ARfUhrDTRjqn+pxh0BO3o6bZopZtcERtriqwLrPuoZ7ktQBZzi6zSUas
+	d/zAMIraqs9xmJhNJPkNxCHw54np2zrv8IgDsO19KioSCDJA49qhrkYvRjPsPw==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wqbrhsdxq-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 07 Mar 2024 15:37:46 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 427FbhEM030778
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 7 Mar 2024 15:37:43 GMT
+Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 7 Mar
+ 2024 07:37:36 -0800
+Date: Thu, 7 Mar 2024 21:07:32 +0530
+From: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+To: Elliot Berman <quic_eberman@quicinc.com>
+CC: Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>,
+        Murali Nalajal <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Carl van Schaik
+	<quic_cvanscha@quicinc.com>,
+        Philip Derrin <quic_pderrin@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet
+	<corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "Fuad
+ Tabba" <tabba@google.com>,
+        Sean Christopherson <seanjc@google.com>,
+        "Andrew
+ Morton" <akpm@linux-foundation.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
+Subject: Re: [PATCH v17 01/35] docs: gunyah: Introduce Gunyah Hypervisor
+Message-ID: <20240307153732.GA1695516@quicinc.com>
+Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
+ <20240222-gunyah-v17-1-1e9da6763d38@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-Content-Language: en-US
-To: Jeff Johnson <quic_jjohnson@quicinc.com>, Conor Dooley
- <conor@kernel.org>, Kalle Valo <kvalo@kernel.org>
-Cc: ath10k <ath10k@lists.infradead.org>,
- wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Jeffrey Hugo <quic_jhugo@quicinc.com>
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
- <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
- <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
- <20240229-ageless-primal-7a0544420949@spud>
- <c48ead11-0e2a-4066-b324-84f802215c9a@quicinc.com>
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <c48ead11-0e2a-4066-b324-84f802215c9a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+In-Reply-To: <20240222-gunyah-v17-1-1e9da6763d38@quicinc.com>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: EBk-ZkuEYBZiWX12ZYbttDTYzSiR8dEm
+X-Proofpoint-ORIG-GUID: EBk-ZkuEYBZiWX12ZYbttDTYzSiR8dEm
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-07_07,2024-03-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
+ malwarescore=0 bulkscore=0 phishscore=0 suspectscore=0 lowpriorityscore=0
+ spamscore=0 adultscore=0 mlxlogscore=403 classifier=spam adjust=0
+ reason=mlx scancount=1 engine=8.19.0-2402120000
+ definitions=main-2403070084
 
-On 29/02/2024 20:46, Jeff Johnson wrote:
+* Elliot Berman <quic_eberman@quicinc.com> [2024-02-22 15:16:24]:
 
-> On 2/29/2024 10:40 AM, Conor Dooley wrote:
->
->> On Wed, Feb 28, 2024 at 06:37:08PM +0200, Kalle Valo wrote:
->>
->>> Marc Gonzalez writes:
->>
->>>> As mentioned in my other reply, there are several msm8998-based
->>>> devices affected by this issue. Is it not appropriate to consider
->>>> a kernel-based work-around?
->>>
->>> Sorry, not following you here. But I'll try to answer anyway:
->>>
->>> I have understood that Device Tree is supposed to describe hardware, not
->>> software. This is why having this property in DT does not look right
->>> place for this. For example, if the ath10k firmware is fixed then DT
->>> would have to be changed even though nothing changed in hardware. But of
->>> course DT maintainers have the final say.
->>
->> I dunno, if the firmware affects the functionality of the hardware in a
->> way that cannot be detected from the operating system at runtime how
->> else is it supposed to deal with that?
->> The devicetree is supposed to describe hardware, yes, but at a certain
->> point the line between firmware and hardware is invisible :)
->> Not describing software is mostly about not using it to determine
->> software policy in the operating system.
+> Gunyah is an open-source Type-1 hypervisor developed by Qualcomm. It
+> does not depend on any lower-privileged OS/kernel code for its core
+> functionality. This increases its security and can support a smaller
+> trusted computing based when compared to Type-2 hypervisors.
 > 
-> FWIW I've compared ath10k to the out-of-tree Android driver and there
-> are discrepancies in this area. I've asked the development team that
-> supports ath10k to provide a recommendation.
+> Add documentation describing the Gunyah hypervisor and the main
+> components of the Gunyah hypervisor which are of interest to Linux
+> virtualization development.
+> 
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 
-Hello Jeff,
+LGTM.
 
-Have you heard back from the dev team?
+Reviewed-by: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
 
-Do they confirm that an issue involving missing MSA_READY notifications
-was ever noticed?
-
-What devices were affected? (All msm8998? A subset of msm8998?)
-
-Was the issue eventually fixed?
-(Probably fixed, otherwise newer devices would be affected)
-
--- 
-Regards.
-
-
+- vatsa
 
