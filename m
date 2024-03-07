@@ -1,219 +1,223 @@
-Return-Path: <devicetree+bounces-49252-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49253-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59A02875909
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 22:09:12 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A4D587597D
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 22:41:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0F2FE285EEF
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 21:09:11 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 850E4B25288
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 21:41:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6625D13A27C;
-	Thu,  7 Mar 2024 21:09:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D207213B7A6;
+	Thu,  7 Mar 2024 21:41:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b="SGBc9NeA"
+	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="gJXableY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from out162-62-57-252.mail.qq.com (out162-62-57-252.mail.qq.com [162.62.57.252])
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8D56C12BE9A
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 21:09:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=162.62.57.252
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 644C413B78E;
+	Thu,  7 Mar 2024 21:41:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709845748; cv=none; b=uxXlQIyOqXmC9O9mh0Uho+dhBYSo1RyeqHzFNUDgRi22CWdo6COS/ckK8u0JP0tgPC40FyTcCqihoV5oDyzhizkd6E69nK8vKpnwFpv04V034ab6PWMCYgbvLK+7q//jQIxKMG9py172pkRMd+e+BfyqJHAYSeN2hYfTjpn6+ng=
+	t=1709847670; cv=none; b=rSwExA78s7Ka3VnZFHp2PkoXMCXjemy2ZE37y1R4AN1IaEKJD8MInXa+7t+O3VRdzWezOI/BXXXvSeggZe/Ea3YnbDUAuI+qYSDsUxgJh0wBz7vHMV6yI/v81zGPXHKZANnmbRuCSxeMIUV/J26VqlAJ6iz7EALcv9z/Ir31L3U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709845748; c=relaxed/simple;
-	bh=9wdOL1kQY/+guFW4QFw3BDBx6hrBI+VcB9saEGfsngc=;
-	h=Message-ID:Content-Type:Mime-Version:Subject:From:In-Reply-To:
-	 Date:Cc:References:To; b=PNXrmvPBEzfUi96XvFhGBtmCLzAz8LAyX19N9tSTJLv53Rs2+krtE4/XAN0RxlD5ztoE6x42MfxEfroTw2ZluswA3Bi0iIY58uZytvYn+o7Ec+jdoHpmK2vb96NwwmLL399cVpPWa00ZcKSar40S//Y50gKqLA3fJ/dXBdEWEXA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name; spf=none smtp.mailfrom=cyyself.name; dkim=pass (1024-bit key) header.d=qq.com header.i=@qq.com header.b=SGBc9NeA; arc=none smtp.client-ip=162.62.57.252
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=cyyself.name
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=cyyself.name
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qq.com; s=s201512;
-	t=1709845428; bh=ILcslGL5KiBT0UroAuLyiR9xQW1TYfMJ9QBrV7cZqgY=;
-	h=Subject:From:In-Reply-To:Date:Cc:References:To;
-	b=SGBc9NeA2HPEZcVO0j6yRn09+ELJdZSkRXfhUOW6mbf0yFXTGNzPkYbe0kJ1DAQel
-	 o+dRipR8P78DUhEmoZiyYL9/xa0KO6RojiaSTC6023WvWfHBUqEXB+rRE/nUV2YaFO
-	 Iw3T7ireHyYbRJGU2ngu6G/aEf+3vP+JkeL8FJa8=
-Received: from smtpclient.apple ([2001:da8:c800:d084:3ceb:d122:f739:7103])
-	by newxmesmtplogicsvrszb9-1.qq.com (NewEsmtp) with SMTP
-	id ED036EB; Fri, 08 Mar 2024 05:03:45 +0800
-X-QQ-mid: xmsmtpt1709845425tg7r8viig
-Message-ID: <tencent_FF86EF51905CFBDF1102F721663984B2F105@qq.com>
-X-QQ-XMAILINFO: MjZkc9TfnG+XBf4pOjkLwGkiLxvORHG6HQ2COPhjIIZmP046+YvS1B43jWTfLp
-	 MTDp3htXS21B+IxChL+E0RMIj82edeY+voSpKQoIy/x/XmsyY4IXd5/J+kVemx34tVIBLU5qSHjb
-	 dWuNzw/btFbtk2+O7setlKTz1rDUy0et6AQFPsTu874uzNBva0ZJWXGAMvRy7YoQ4Ewi1ElVDACt
-	 AXCU66LW2qxtFHTKWDKsHQbAdAUY/pka7OShqNTyJSNsel6h2kXEwvC+oKyzSlvYJ0g3IqBFPWFv
-	 KNwTn4mU2e24HWUoO0gMdFmOeVcB6c8UF+Ta8xt9HFOVh+X6xBFPks7e4gfXBWpqcavtOg6IAJAz
-	 Csgz80iqZsLiEoSxmJs9+7o9bmp3NlLYpR8Qinackqol9SiF8S1qsjeiaOjhTzyTwcYZWYwFRh7O
-	 2SQyEYu5Y/HkUlu2Z4HNItZbkM14mcaplqD6Vu1MW7b62w93Hm+sIRV8Yizj95dtu7Rp5zMRC75C
-	 JdzA3BYmnb/EzhCM4WhLz2b/liLEHSTtBXNPc6bklshuzWAH9CHSJd1S75O0XIA1TsNOQK++XOKu
-	 CgtHdWHG1uidX5rtmahJuBGrdMO64v/ektei9BVwT5ZQnnG4cUYrUAiCbLielrqxSanXZphQHg6A
-	 71Ff9Wss8MZmawPR1o0di/pKHecYSpfFpjhp21ezNOp6U3pjDd273L63WDyEabIqu4xOXYyEcYGH
-	 m2sV8brOiF7YBK64vE0zbwOhi0DMwpclB1tSDxHXEo8lwbwyaKalBNKHdRa/dCcSiwmtDdyewj0F
-	 lrwcoM7kd6MzyxziwVfPShNhs0N+FdbC274QIdolGZruhzBsKDuOwZiw0bHfza4qSb9gykUCMoiy
-	 TkT9MYx+a6HcOdG/6eFgh8kg7wSkl4WVF3UNPFpOfcVa9Kc9I3PjppyS9iDNB3x7jAMu6ZiKaRQt
-	 CqHup8WKZvrHvdxLvGT4BXK6z9tVRMlbE7ElCs25XAVzLn2RexDTRVGfpgukr9
-X-QQ-XMRINFO: MPJ6Tf5t3I/ycC2BItcBVIA=
-Content-Type: text/plain;
-	charset=us-ascii
+	s=arc-20240116; t=1709847670; c=relaxed/simple;
+	bh=Yu4MN0Ny/lowOoUJbTsSB6h90wxtLg7yAU7NjO1ht1I=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version; b=fRayY4vvj8YhPj3npnf0MO6UAkcdnWTEKlJ2WVE2itfNzMyHSPGmX4+AHNlqv9BtyWMJSqgbiJt21cR0G99ORa03RiqlIyvdI66+2kReayQEtSZuLZ5kf9HXMg0pGyHy+luNiNv/8MLvpVjFRsX0ietT11CYe8tl+HN80/AJ2Ro=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=gJXableY; arc=none smtp.client-ip=213.167.242.64
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
+Received: from umang.jain (unknown [103.251.226.70])
+	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7D0501FB2;
+	Thu,  7 Mar 2024 22:40:41 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+	s=mail; t=1709847647;
+	bh=Yu4MN0Ny/lowOoUJbTsSB6h90wxtLg7yAU7NjO1ht1I=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=gJXableYS+B10zqzWWLmJiU+2zKqBYVg+Ys0iXmPBAAjjyOmms39bTGBRk/hM+JE2
+	 5qo3IBBrZPj0BPQiC7dsjod7afbgxT4UoA0CcPp6sj0JPLseVuXsiC5hL7cIij8xF2
+	 Kai7DqYL1nbnHEajv1cDmQTq2jJZlrDhjcvB7udo=
+From: Umang Jain <umang.jain@ideasonboard.com>
+To: linux-media@vger.kernel.org
+Cc: Sakari Ailus <sakari.ailus@linux.intel.com>,
+	Kieran Bingham <kieran.bingham@ideasonboard.com>,
+	Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+	willl will <will@willwhang.com>,
+	Mauro Carvalho Chehab <mchehab@kernel.org>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	Umang Jain <umang.jain@ideasonboard.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS),
+	linux-arm-kernel@lists.infradead.org (moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE),
+	linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2 1/2] media: dt-bindings: media: Add bindings for IMX283
+Date: Fri,  8 Mar 2024 03:10:42 +0530
+Message-ID: <20240307214048.858318-2-umang.jain@ideasonboard.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20240307214048.858318-1-umang.jain@ideasonboard.com>
+References: <20240307214048.858318-1-umang.jain@ideasonboard.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
-Subject: Re: [PATCH v3 5/7] riscv: Kconfig.socs: Allow SOC_CANAAN with MMU for
- K230
-From: Yangyu Chen <cyy@cyyself.name>
-In-Reply-To: <311bdf17-c16f-41d8-8366-10f9b00adf27@kernel.org>
-Date: Fri, 8 Mar 2024 05:03:34 +0800
-Cc: Conor Dooley <conor@kernel.org>,
- linux-riscv@lists.infradead.org,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Palmer Dabbelt <palmer@dabbelt.com>,
- Albert Ou <aou@eecs.berkeley.edu>,
- Guo Ren <guoren@kernel.org>,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- Conor Dooley <conor.dooley@microchip.com>
-Content-Transfer-Encoding: quoted-printable
-X-OQ-MSGID: <AF27E48D-1DD4-48B6-BD68-7188FFFD87D2@cyyself.name>
-References: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
- <tencent_0432DA968E39B81431F921F38D747C008208@qq.com>
- <ef8df22f-dac8-4652-bf17-d10254e6abfb@kernel.org>
- <tencent_E56A833916E00EC7B4840C34FAF1250ADE0A@qq.com>
- <20240305-fascism-enrich-06483ddeb149@spud>
- <311bdf17-c16f-41d8-8366-10f9b00adf27@kernel.org>
-To: Damien Le Moal <dlemoal@kernel.org>
-X-Mailer: Apple Mail (2.3774.400.31)
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 
+- Add dt-bindings documentation for Sony IMX283 sensor driver
+- Add MAINTAINERS entry for Sony IMX283 binding documentation
 
+Signed-off-by: Umang Jain <umang.jain@ideasonboard.com>
+---
+ .../bindings/media/i2c/sony,imx283.yaml       | 107 ++++++++++++++++++
+ MAINTAINERS                                   |   8 ++
+ 2 files changed, 115 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
 
-> On Mar 6, 2024, at 07:58, Damien Le Moal <dlemoal@kernel.org> wrote:
->=20
-> On 3/6/24 02:20, Conor Dooley wrote:
->> On Tue, Mar 05, 2024 at 03:47:15PM +0800, Yangyu Chen wrote:
->>> On 2024/3/5 07:46, Damien Le Moal wrote:
->>>> On 3/5/24 06:05, Yangyu Chen wrote:
->>>>> Since K230 was released, SOC_CANAAN is no longer only referred to =
-the K210.
->>>>> Remove it depends on !MMU will allow building dts for K230 and =
-remove the
->>>>> K210 string from the help message.
->>>>>=20
->>>>> Signed-off-by: Yangyu Chen <cyy@cyyself.name>
->>>>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->>>>> ---
->>>>>  arch/riscv/Kconfig.socs | 5 ++---
->>>>>  1 file changed, 2 insertions(+), 3 deletions(-)
->>>>>=20
->>>>> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
->>>>> index 623de5f8a208..b4e9b7f75510 100644
->>>>> --- a/arch/riscv/Kconfig.socs
->>>>> +++ b/arch/riscv/Kconfig.socs
->>>>> @@ -75,13 +75,12 @@ config ARCH_CANAAN
->>>>>   def_bool SOC_CANAAN
->>>>>  config SOC_CANAAN
->>>>> - bool "Canaan Kendryte K210 SoC"
->>>>> - depends on !MMU
->>>>=20
->>>> This seems wrong to me. The k210 support does require no-mmu. So =
-why remove
->>>> this ?
->>>=20
->>> It just allows SOC_CANAAN to be selected when MMU=3Dy. With this =
-patch,
->>> nommu_k210_defconfig still works.
->>=20
->> I think the concern here is that this would allow people to build a
->> kernel for the k120 with the MMU enabled, not that the existing nommu
->> build will be affected.
->=20
-> Yes, this is my concern. Apologies for the lack of clarity.
->=20
-
-Hi,
-
-Thanks for the review comments. After thinking about it for a while,
-I think we don't need to change it as we have changed the help
-message which deleted the "K210". And the dts on k210.dtsi shows
-mmu-type is riscv.none, I think if someone noticed this would know
-why it fails to boot on the S-Mode MMU Kernel on K210. The only
-special thing for ARCH_CANAAN is that a loader.bin will be built
-when M-Mode is on arch/riscv/Makefile. However, Canaan has no other
-M-Mode chips except for K210. So I think we don't need to change
-it.
-
-Another reason is that SOC_CANAAN for K210 is somehow hard to change.
-If we continue using SOC_CANAAN for K210 but not for other Canaan
-SoCs such as K230, it will cause some confusion to users. If we
-rename SOC_CANAAN to SOC_CANAAN_K210, it will change many drivers
-in many subsystems like my patch v5 [1]. So I don't think we need
-to fix it.
-
-
-If we don't change it, A concern for this is that some drivers for
-K210 will be built when SOC_CANAAN=3Dy and if we add this to defconfig,
-all riscv builds will also build some K210 drivers even on MMU. But
-I think this will not be a problem just need some memory/storage
-for a slightly bigger kernel. Also, we will enable some new configs
-in defconfig when a new soc gets supported, it's normal for K210
-SoC drivers.
-
-Thus, I think we don't need to change it. If you have some other
-opinions, please let me know.
-
-[1] =
-https://lore.kernel.org/linux-riscv/tencent_6F35FEF31908DE6AEB385AE30AC658=
-863C0A@qq.com/
-
-Thanks,
-Yangyu Chen
-
->>=20
->> Maybe you could squash in something like the following?
->>=20
->> diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
->> index b4e9b7f75510..75d55059163f 100644
->> --- a/arch/riscv/Kconfig.socs
->> +++ b/arch/riscv/Kconfig.socs
->> @@ -72,15 +72,19 @@ config SOC_VIRT
->>   This enables support for QEMU Virt Machine.
->>=20
->> config ARCH_CANAAN
->> - def_bool SOC_CANAAN
->> + bool "Canaan Kendryte SoCs"
->> + help
->> +   This enables support for Canaan Kendryte SoC platform hardware.
->>=20
->> config SOC_CANAAN
->> - bool "Canaan Kendryte SoC"
->> + bool "Canaan Kendryte K210 SoC"
->> + depends on !MMU
->> + depends on ARCH_CANAAN
->> select CLINT_TIMER if RISCV_M_MODE
->> select ARCH_HAS_RESET_CONTROLLER
->> select PINCTRL
->> select COMMON_CLK
->> help
->> -   This enables support for Canaan Kendryte SoC platform hardware.
->> +   This enables support for Canaan Kendryte K210 SoC platform =
-hardware.
->>=20
->> endmenu # "SoC selection"
->>=20
->> (Which reminds me, I really need to go and finish sorting out the =
-ARCH_
->> stuff)
->=20
-> --=20
-> Damien Le Moal
-> Western Digital Research
-
+diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
+new file mode 100644
+index 000000000000..e4f49f1435a5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
+@@ -0,0 +1,107 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2024 Ideas on Board Oy
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/sony,imx283.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sony IMX283 Sensor
++
++maintainers:
++  - Kieran Bingham <kieran.bingham@ideasonboard.com>
++  - Umang Jain <umang.jain@ideasonboard.com>
++
++description:
++  IMX283 sensor is a Sony CMOS active pixel digital image sensor with an active
++  array size of 5472H x 3648V. It is programmable through I2C interface. The
++  I2C client address is fixed to 0x1a as per sensor data sheet. Image data is
++  sent through MIPI CSI-2.
++
++properties:
++  compatible:
++    const: sony,imx283
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    description: Clock frequency from 6 to 24 MHz.
++    maxItems: 1
++
++  vadd-supply:
++    description: Analog power supply (2.9V)
++
++  vdd1-supply:
++    description: Interface power supply (1.8V)
++
++  vdd2-supply:
++    description: Digital power supply (1.2V)
++
++  reset-gpios:
++    description: Sensor reset (XCLR) GPIO
++    maxItems: 1
++
++  port:
++    $ref: /schemas/graph.yaml#/$defs/port-base
++    additionalProperties: false
++
++    properties:
++      endpoint:
++        $ref: /schemas/media/video-interfaces.yaml#
++        unevaluatedProperties: false
++
++        properties:
++          data-lanes:
++            anyOf:
++              - items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++
++          link-frequencies: true
++
++        required:
++          - data-lanes
++          - link-frequencies
++
++    required:
++      - endpoint
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        camera@1a {
++            compatible = "sony,imx283";
++            reg = <0x1a>;
++            clocks = <&imx283_clk>;
++
++            assigned-clocks = <&imx283_clk>;
++            assigned-clock-parents = <&imx283_clk_parent>;
++            assigned-clock-rates = <12000000>;
++
++            vadd-supply = <&camera_vadd_2v9>;
++            vdd1-supply = <&camera_vdd1_1v8>;
++            vdd2-supply = <&camera_vdd2_1v2>;
++
++            port {
++                imx283: endpoint {
++                    remote-endpoint = <&cam>;
++                    data-lanes = <1 2 3 4>;
++                    link-frequencies = /bits/ 64 <360000000>;
++                };
++            };
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 73d898383e51..32f790c3a5f9 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -20368,6 +20368,14 @@ T:	git git://linuxtv.org/media_tree.git
+ F:	Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+ F:	drivers/media/i2c/imx274.c
+ 
++SONY IMX283 SENSOR DRIVER
++M:	Kieran Bingham <kieran.bingham@ideasonboard.com>
++M:	Umang Jain <umang.jain@ideasonboard.com>
++L:	linux-media@vger.kernel.org
++S:	Maintained
++T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
++
+ SONY IMX290 SENSOR DRIVER
+ M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+ L:	linux-media@vger.kernel.org
+-- 
+2.43.0
 
 
