@@ -1,206 +1,181 @@
-Return-Path: <devicetree+bounces-48999-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49000-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AEDB87490F
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:49:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FA38874912
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 08:50:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 95FF6B21555
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 07:49:10 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 7A324B21563
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 07:50:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 530C4633FE;
-	Thu,  7 Mar 2024 07:48:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07CAA6311E;
+	Thu,  7 Mar 2024 07:50:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D8MgwQsk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aPXUc351"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com [209.85.219.180])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D72A6312B
-	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 07:48:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4A59C63113
+	for <devicetree@vger.kernel.org>; Thu,  7 Mar 2024 07:50:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709797727; cv=none; b=ZvH+fkihWQ+SxFeWF6Ei9u4Oay27UlJPMNuUbv/1a1Yp0NsCRljDPiIM643TghNo3mOh4v4VrC4GwoGZCMuk2lyusHD8WFleGdeSvvUsSiWokn9VnbXjeOSgsN/qLzEC8JJBP9YBhGCiG3yZlRpRRtOctTUeC6L7rXX+sGcbpxs=
+	t=1709797830; cv=none; b=H2cBFNwSsE16yHbnbJtTDWa05/4xrxbfvK8DxF4acYXgS+zR2M8cGoTbqzs1oWf683RR86xYx1O0C1wZiad0y2nhJtfJbHOqDPtlQMwOK6OzkSZQsPFQGYVZaUmCC6AsPB+M5+mepMaU6XRDq6liOPam9efK344B9AtFTq1cwFw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709797727; c=relaxed/simple;
-	bh=jFQDXvGLp7p9vbgk3JL45+aqTnlwztWMeH8uOV/OvQw=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=DKqOQTRL30ETUH/S1usHjSPS9o/wFkDXHMmHJf5VlYJG4RehHwS9Wf7Ujuq16O8Z6EKiriU5HYFsDYWGVm7QJbqNLCg9ROn5dXQnJXzuN3VpYE1cxx0dfTHQxSMTxW9wdn+HEScoCgEjbab+7OXsqNqC9hq9L7l/Ad4v+fpguLQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D8MgwQsk; arc=none smtp.client-ip=209.85.218.48
+	s=arc-20240116; t=1709797830; c=relaxed/simple;
+	bh=obiCLTXc9AtSTZAokHiOqHN8TgdotsLfNQ198pkoL7I=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VZIlOSgMsdvMQ391oFIGIvrBUTVtc0/WaPL2+emG8P7UN5E4w497KTWxjPTK98dZhUUrtdvjPXPyCIC9q9Kyvvohlbo4f9qs3xUodVM8VA6s0eUupvCQN9LxOVmDv+WvDa3Qd/5f438coCd4lNd10O7GTTgQz9131gNwpgZ/EyY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aPXUc351; arc=none smtp.client-ip=209.85.219.180
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a44ad785a44so67716966b.3
-        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 23:48:44 -0800 (PST)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-dbed179f0faso1322518276.1
+        for <devicetree@vger.kernel.org>; Wed, 06 Mar 2024 23:50:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709797723; x=1710402523; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E5FrdVWeE9Ji8keRga1zHmD6NeczS9crX8d/3FFqO1E=;
-        b=D8MgwQskx5ZmQjkhTseCn501SB6oEjRQTBMOyluRbzA2QvHmvyI+NGVQLMkxkymgg8
-         1QJR+mB57pjf0aXGuEdGND9G3Ud9js4RsiTUbbtMDOJjVIXiK9qq0zic+xxcmCA8spbG
-         Or1GIqOrE2bFWi6/vnPoVGx+3BOqqzYuq6oBPJgxPEXT7UjgPiwBSmiKSjhXJfswGu6f
-         mGM0mLToV2SwOdLjXx1cKT89Bk+UnBe5MrdctNvCY3RAq7sRXpmQcw3LlG27b822mO+N
-         oaStRezgdlZ6NvN3p/FDBRfJT5Y7OrZxHGzt3GjCIfsrqqFgfgbJ/fvXOC5Ph3p//NI1
-         QQ5w==
+        d=linaro.org; s=google; t=1709797828; x=1710402628; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ah0ukiTsKA1pY9lznY+1jzvEeB+m6H6B1R6XwmhrPB0=;
+        b=aPXUc351/Aoy6e4tGorPE8vtqwU1567VlOfS4cK7aoPyV7Pk8ief4q7LrR9kS01mtg
+         XgnUz7LVT87nVbGZfUWPhlh528KJuQSD0ZLhRMIGvLb4efBqjWg2Bu90sMXtrqLPDTQo
+         e4OX4eqcZXclRsDLJ5rx9FsOAYKrFnUKRo1/EliMTCR+gIOUt2RIHA+yHfrM64AuiiJm
+         Uuh+eAjKkDAENcpnf1aLpIINwC6Q/pKfs9suSXAHWLSzZw5wZn+gL6glNqBehNyJ5y61
+         4yShUAJmLkpI+U62ZFkzYBGKjdRgjh6h05w44SosJ1Wp5gsZANkeo7WbbiVxYLhfPGbx
+         w+KQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709797723; x=1710402523;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E5FrdVWeE9Ji8keRga1zHmD6NeczS9crX8d/3FFqO1E=;
-        b=nDfX6f8JuIwYAcTAA50Vu8ykakWPZvS2AgeEPWQZITl6K5tJYfGfNQIiMgo0XYlFse
-         TfKvTIU9WqZiQR7+x4ApZkZLc1ZSTbmH7viKnqDQj0yrcFotA/iZ9kLgcRrzfr2DZGJN
-         LGSpDBHOBTJd7jvrmSo+VZptM+Ob8YI+2Ek/Mg57sJixOSE0wn33o+jR4MHx2nCgHezp
-         PWJ6DrvEkDl+ztqgsuW8Bri67NvUvGU8Gz4ivM7LUgSy8EpqAfl18XdV+0LlBKeQ+ubH
-         2JUcAwjukj7TiWcKrZXoSWXM9r/z0AioXefad8MFNxcHgFJX035Mldp6DaAFjbE4Oe8c
-         afcw==
-X-Forwarded-Encrypted: i=1; AJvYcCXwPVkdevvkmV/k3IFlqu+S8kYADoClhqAkgN2WIvatusqGhb36/AKDxFAxDeW6rL6cj6dhppImG8soWx12KIURjL0yWcks0EEJzg==
-X-Gm-Message-State: AOJu0YxFc2qBA5dBGuge59k36ZmB85S9r01yvzgdM4PRyO838Cm+MNAv
-	ZvrWHnLi9CRPWZct8ga/ZGMHcRbnuoJ5UePZ6+Sm6uosnUMALSvcMsoI1l4KrbI=
-X-Google-Smtp-Source: AGHT+IFPaVLeT7/HA8AHTsJEb61jX7OAF91GsQxpDYTjXrFZIvYX0U2Xry9PQ1zs9dOnPWI1zfHLZQ==
-X-Received: by 2002:a17:906:a2cf:b0:a3f:33b2:5ce2 with SMTP id by15-20020a170906a2cf00b00a3f33b25ce2mr12791329ejb.35.1709797722846;
-        Wed, 06 Mar 2024 23:48:42 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id ju22-20020a170906e91600b00a45c18345e0sm1181462ejb.163.2024.03.06.23.48.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 06 Mar 2024 23:48:42 -0800 (PST)
-Message-ID: <66f578b4-5e1b-4cc3-b39c-3b61797cacd3@linaro.org>
-Date: Thu, 7 Mar 2024 08:48:40 +0100
+        d=1e100.net; s=20230601; t=1709797828; x=1710402628;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Ah0ukiTsKA1pY9lznY+1jzvEeB+m6H6B1R6XwmhrPB0=;
+        b=EHo4CEcU12dh7zpJPONqRu1qG7abGi0z+z+dW1ILY2nDjareySKULlklkzwXd5tBSb
+         ZCn1r8I32MnsmVwbUdNkAHD/UpVJzGuYmOKRI1s7EAWx+YLWEhe4/OPi7aI5MlIwi30i
+         VLGteOQsIgeypv8P+Qs0XzjwlNOONLjZrWxOvl60Ma91CiGIE19cB5fMCvWHDaNkEGgu
+         nqZyi2jWzQ1Dt4EsxXORGHVF4sOXXF5yqDxadjBf4bpyaqDo8s5hnSWXt4BYPCK02y0j
+         4lNdb3SBIi5nYCqz6e7ugM/S0GboOxsKGf/BxSKNHFTO35Tk6mKROgQEmKjb4nUlTjY9
+         j0Hw==
+X-Forwarded-Encrypted: i=1; AJvYcCUZ70Xe6FwYyHnBWAq2xvL7ouDFqn4KMIRR3n2ntu1u06QZBUs7df9wDAwUdHin5x8LJV5ety6frOe3Iwfda4gC+QjNhqPi6QF12A==
+X-Gm-Message-State: AOJu0Yy30uVVQhyr2bfNlY4h0XRkPCTOwwsc1x7MDPWBHgzCCAk7cqOt
+	RphtHfyddrlCzyDDVE4sX7MxYoArV7YYpdMAoOZR3vHXqTdAVv53+74mT/BaR3a0LdSTTD25WB7
+	yvuBpr4AkIuHVoO3w1lGMkKNLon0d1duUqWWqAg==
+X-Google-Smtp-Source: AGHT+IFa/n55GR6mweEkfWDnqnH5Zm3qCZemeRU4pQouRAgZQOwh4xDQqFnwc99qBUSN19+gM9VcCOj7gor0L/AOjZI=
+X-Received: by 2002:a25:1ed5:0:b0:dcd:9a9b:8d7e with SMTP id
+ e204-20020a251ed5000000b00dcd9a9b8d7emr377200ybe.9.1709797828227; Wed, 06 Mar
+ 2024 23:50:28 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v8 4/9] dt-bindings: net: convert hisi-femac.txt
- to YAML
-Content-Language: en-US
-To: Yang Xiwen <forbidden405@outlook.com>,
- Yisen Zhuang <yisen.zhuang@huawei.com>, Salil Mehta
- <salil.mehta@huawei.com>, "David S. Miller" <davem@davemloft.net>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240305-net-v8-0-166aaeea2107@outlook.com>
- <20240305-net-v8-4-166aaeea2107@outlook.com>
- <66cf4c42-5b8e-41b8-bbdb-7fb2c6bb9e66@linaro.org>
- <SEZPR06MB69594BB6F24CF86E859D698196212@SEZPR06MB6959.apcprd06.prod.outlook.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <SEZPR06MB69594BB6F24CF86E859D698196212@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240306123006.724934-1-amadeus@jmu.edu.cn> <20240306123006.724934-2-amadeus@jmu.edu.cn>
+ <CAA8EJpqYjutM1Kh6QxysB6XNAmXywtOtRJ7KP0LbY5E36kCPvA@mail.gmail.com>
+ <78b1a1a2-a9fa-4b28-9d96-d65bb5517199@gmail.com> <CAA8EJppJBOQh19r4A-igsh5znDE_R6mDNy+ao5ximx7vtsZZvA@mail.gmail.com>
+ <CAOX2RU4W-zV3A8eW0A+1V838Fm=tUkXY=Bs3j4VJ8Jo9mxrOAw@mail.gmail.com>
+In-Reply-To: <CAOX2RU4W-zV3A8eW0A+1V838Fm=tUkXY=Bs3j4VJ8Jo9mxrOAw@mail.gmail.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 7 Mar 2024 09:50:16 +0200
+Message-ID: <CAA8EJpq=-r4XhnFJset0=X=YO5QNUpuw+e1r6DTsPvzNAZCyNw@mail.gmail.com>
+Subject: Re: [PATCH v5 1/1] arm64: dts: qcom: ipq6018: add sdhci node
+To: Robert Marko <robimarko@gmail.com>
+Cc: Chukun Pan <amadeus@jmu.edu.cn>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 06/03/2024 10:28, Yang Xiwen wrote:
-> On 3/6/2024 3:39 PM, Krzysztof Kozlowski wrote:
->> On 05/03/2024 08:51, Yang Xiwen via B4 Relay wrote:
->>> From: Yang Xiwen <forbidden405@outlook.com>
->>>
->>> Convert the old text binding to new YAML.
->>>
->>> While at it, make some changes to the binding:
->>> - The version numbers are not documented publicly. The version also does
->>> not change programming interface. Remove it until it's really needed.
->>> - A few clocks are missing in old binding file. Add them to match the real
->>> hardware.
->>>
->>> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
->>> ---
->>>   .../bindings/net/hisilicon,hisi-femac.yaml         | 89 ++++++++++++++++++++++
->>>   .../devicetree/bindings/net/hisilicon-femac.txt    | 41 ----------
->>>   2 files changed, 89 insertions(+), 41 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
->>> new file mode 100644
->>> index 000000000000..ba207f2c9ae4
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
->>> @@ -0,0 +1,89 @@
->>> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/net/hisilicon,hisi-femac.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Hisilicon Fast Ethernet MAC controller
->>> +
->>> +maintainers:
->>> +  - Yang Xiwen <forbidden405@foxmail.com>
->>> +
->>> +allOf:
->>> +  - $ref: ethernet-controller.yaml
->>> +
->>> +properties:
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +          - hisilicon,hi3516cv300-femac
->>> +      - const: hisilicon,hisi-femac
->> Drop this fallback, your later driver change does not use it, so neither
->> should have binding. Explain in commit msg, that old binding was
->> incorrect (we discussed it a lot) thus you are making such change during
->> conversion.
-> 
-> 
-> What about deprecating "hisilicon,hisi-femac-vn" compatibles and 
-> introduce a new generic compatible "hisilicon,hisi-femac" instead? This 
-> way, We can keep backward compatibility.
+On Thu, 7 Mar 2024 at 09:38, Robert Marko <robimarko@gmail.com> wrote:
+>
+> On Thu, 7 Mar 2024 at 08:28, Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > On Wed, 6 Mar 2024 at 22:35, Robert Marko <robimarko@gmail.com> wrote:
+> > >
+> > >
+> > > On 06. 03. 2024. 20:43, Dmitry Baryshkov wrote:
+> > > > On Wed, 6 Mar 2024 at 14:31, Chukun Pan <amadeus@jmu.edu.cn> wrote:
+> > > >> Add node to support mmc controller inside of IPQ6018.
+> > > >> This controller supports both eMMC and SD cards.
+> > > >>
+> > > >> Tested with:
+> > > >>    eMMC (HS200)
+> > > >>    SD Card (SDR50/SDR104)
+> > > >>
+> > > >> Signed-off-by: Chukun Pan <amadeus@jmu.edu.cn>
+> > > >> ---
+> > > >>   arch/arm64/boot/dts/qcom/ipq6018.dtsi | 19 +++++++++++++++++++
+> > > >>   1 file changed, 19 insertions(+)
+> > > >>
+> > > >> diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > > >> index 322eced0b876..420c192bccd9 100644
+> > > >> --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > > >> +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+> > > >> @@ -441,6 +441,25 @@ dwc_1: usb@7000000 {
+> > > >>                          };
+> > > >>                  };
+> > > >>
+> > > >> +               sdhc: mmc@7804000 {
+> > > >> +                       compatible = "qcom,ipq6018-sdhci", "qcom,sdhci-msm-v5";
+> > > >> +                       reg = <0x0 0x07804000 0x0 0x1000>,
+> > > >> +                             <0x0 0x07805000 0x0 0x1000>;
+> > > >> +                       reg-names = "hc", "cqhci";
+> > > >> +
+> > > >> +                       interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+> > > >> +                                    <GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+> > > >> +                       interrupt-names = "hc_irq", "pwr_irq";
+> > > >> +
+> > > >> +                       clocks = <&gcc GCC_SDCC1_AHB_CLK>,
+> > > >> +                                <&gcc GCC_SDCC1_APPS_CLK>,
+> > > >> +                                <&xo>;
+> > > >> +                       clock-names = "iface", "core", "xo";
+> > > >> +                       resets = <&gcc GCC_SDCC1_BCR>;
+> > > >> +                       max-frequency = <192000000>;
+> > > > If I understand correctly, GCC_SDCC1_APPS_CLK support frequencies up
+> > > > to 384 MHz, but here you are limiting it to 192 MHz. Why is it so?
+> > > >
+> > > > I am not sure that 384MHz is actually supported as IPQ6018 datasheet
+> > > > clearly indicates that HS400 mode is not supported.
+> >
+> > I didn't check the datasheet, I opened the gcc-ipq6018.c
+>
+> I understand that, I just pointed it out, it wouldn't surprise me if
+> the frequency table
+> was just copy/pasted from IPQ8074.
 
-What backward compatibility? Didn't you say bindings and driver are
-broken and you are going to break ABI to fix them up?
+Then it might be fixed instead, making the max-frequency property unnecessary.
 
-Best regards,
-Krzysztof
+>
+> Regards,
+> Robert
+> >
+> > > >
+> > > > Regards,
+> > > > Robert
+> > > >
+> > > >> +                       status = "disabled";
+> > > >> +               };
+> > > >> +
+> > > >>                  blsp_dma: dma-controller@7884000 {
+> > > >>                          compatible = "qcom,bam-v1.7.0";
+> > > >>                          reg = <0x0 0x07884000 0x0 0x2b000>;
+> > > >> --
+> > > >> 2.25.1
+> > > >>
+> > > >>
+> > > >
+> >
+> >
+> >
+> > --
+> > With best wishes
+> > Dmitry
 
+
+
+-- 
+With best wishes
+Dmitry
 
