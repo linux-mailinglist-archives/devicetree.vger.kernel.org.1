@@ -1,64 +1,64 @@
-Return-Path: <devicetree+bounces-49255-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49256-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 293698759E6
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 23:04:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C59F875A05
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 23:12:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE2FE1F22F68
-	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 22:04:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 32A991F2224B
+	for <lists+devicetree@lfdr.de>; Thu,  7 Mar 2024 22:12:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0912913BAD5;
-	Thu,  7 Mar 2024 22:03:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3AD0313DB87;
+	Thu,  7 Mar 2024 22:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="nW8L14UC"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bJPgzA6b"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ACFA0131E3C;
-	Thu,  7 Mar 2024 22:03:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0FEE213BAEF;
+	Thu,  7 Mar 2024 22:11:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709849028; cv=none; b=tvUiO60CqimaQw1hVkf7wCd9bAerbvCIC8o3qshqNsyTh5MKfkny95YowQwFYXGHWTQxJwG/mDgYS0BmitBEOCm590eX/cBu+V/kbD/pgu3UBkKvzWsWATjlteOXjOIQpQ3ue2MeFmGZpcWZ2YfpmVYoYR+gZs5O0rRbPtS8aD0=
+	t=1709849519; cv=none; b=TYJXmu5YgbpgapZeu8ZRWjbi/d0y09KotYkJgSiH9KctacIppOjp8PBY5I1d1KH2GsnvIZfx75BFfJvKWMO5WKFdDDLoB0ef2uBnIaPspMSVQcdL4I2TcEw+jO35/sJmMWId+YzeYMtacEotpJHBJEbC/e0App38/xhEpLEFxzE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709849028; c=relaxed/simple;
-	bh=uXXY5fFvxOrrTcB+iOTkNq6WmKRJCgv3X2iBCtsruYA=;
+	s=arc-20240116; t=1709849519; c=relaxed/simple;
+	bh=+zneG3FdnzfKBUdqPSkS788CmRqblVmKTJwqyQBZWXM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YaWUqAqbDNN9iqmLuku2ug98DqZQmR8BOgyRcQUBwLZSGaG9l8ah1svS4Iqn5L1558HPuqacQ4d5EIRgd7eydbrEZWGyUhcHLdAuqh+VlPnmgG73/gaF4+jszZ6RF50eHa1LScjuZ+qHCZ8qOpaBQp8pt0u14kdxgD9EzSZRLbs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=nW8L14UC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF545C433F1;
-	Thu,  7 Mar 2024 22:03:47 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GbVyzaa0DqNSiiXkGBwE0RIkoKiaCq0jYYBrGjAkO49og2fmhWYeB4n13QAG+qSL6Zt3ZOQVJ5MZhQnYISlwLw2peSKZkX7CRWOcyd2FSPteQkDnGY3aMEObxrr0KIoTRY9bE06tMriVb2B5VV8y9bVnSiMd2lEx1jtnzH/Kx4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bJPgzA6b; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 083FAC433F1;
+	Thu,  7 Mar 2024 22:11:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709849028;
-	bh=uXXY5fFvxOrrTcB+iOTkNq6WmKRJCgv3X2iBCtsruYA=;
+	s=k20201202; t=1709849518;
+	bh=+zneG3FdnzfKBUdqPSkS788CmRqblVmKTJwqyQBZWXM=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=nW8L14UCIz1KhLfGfg1HRdnMqy207TaeZAkS0kmZkbcS65xYqBCSPjouX14eZqdxo
-	 LQcvxpT+SWMBn0kbfbkQetayioo4O1WsMJUuDZCz1r4Kx+wLQXhg484FU/LMVtN4Ey
-	 FJdjpXCYzuJocWjzyBvd8iOhZ+xAFYxoQx4xHZ9zhO394dXvWi2pNvu3muug/06E7p
-	 OiY7ZxsacHNzswLLl44n1xjmPN20YFr1XafsLnbziJ2JWRLY+izdp5fxveufB8EAQb
-	 DOgaN7o/xn+YeDd2A80x5FjQ2tGE+YiVhfLcAQ/kS3kESPXE+6LXo5w3pH0GG9/HNb
-	 CTAhLkDThhtQA==
-Date: Thu, 7 Mar 2024 16:03:44 -0600
+	b=bJPgzA6bfy0LRKBXEx1fGBxpNda0m3pbKJa2Gc/5s1kBIW61PX4+g12a5xuLR+01m
+	 HFRHp+4gmjCJVSVjc4GP6QAvAjQ+mmVXiFNnRAN+ik/qbgqfjp48a8J9UnYkJIpezC
+	 t+aPnQhiE39w2LDTBr1k/ctMq6pSqZF3OcTy5/2MzoON94LwF7YA7CfsgH4vchGNx2
+	 j7XbS2W1NIvOd9i8vlWVoAfUETyZX9Qt4oDcMzwdyuKlVLbHKLGLpBLRIiUO/FgxFd
+	 oYCGLoC+IEyMcuaZ2nIiIsKxX6UrEIr5nKhja4Dqcg7Kd8RcylHWYdWAfTDBueoj9D
+	 Qxc1IkT67hKKg==
+Date: Thu, 7 Mar 2024 16:11:53 -0600
 From: Rob Herring <robh@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+To: Yang Xiwen <forbidden405@outlook.com>
+Cc: Yisen Zhuang <yisen.zhuang@huawei.com>,
+	Salil Mehta <salil.mehta@huawei.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v5 2/4] ASoC: dt-bindings: fsl,imx-asrc: update max
- interrupt numbers
-Message-ID: <20240307220344.GA3133548-robh@kernel.org>
-References: <20240307-asrc_8qxp-v5-0-db363740368d@nxp.com>
- <20240307-asrc_8qxp-v5-2-db363740368d@nxp.com>
+	Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+	Heiner Kallweit <hkallweit1@gmail.com>,
+	Russell King <linux@armlinux.org.uk>, netdev@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next v9 6/9] dt-bindings: net: hisi-femac: add
+ binding for Hi3798MV200 FEMAC core
+Message-ID: <20240307221153.GA3185290-robh@kernel.org>
+References: <20240307-net-v9-0-6e0cf3e6584d@outlook.com>
+ <20240307-net-v9-6-6e0cf3e6584d@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,41 +67,37 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240307-asrc_8qxp-v5-2-db363740368d@nxp.com>
+In-Reply-To: <20240307-net-v9-6-6e0cf3e6584d@outlook.com>
 
-On Thu, Mar 07, 2024 at 02:19:09PM -0500, Frank Li wrote:
-> fsl,imx8qxp-spdif and fsl,imx8qm-spdif have 2 interrupts. Other platforms
-> have 1 interrupt.
+On Thu, Mar 07, 2024 at 07:34:52PM +0800, Yang Xiwen wrote:
+> HiSilicon FEMAC core is also found on Hi3798MV200 SoC. Document it in
+> binding.
 > 
-> Increase max interrupt number to 2 and add restriction for platforms except
-> i.MX8QXP and i.MX8QM.
+> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
 > 
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> # Conflicts:
+> #	Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
+
+Need to drop this.
+
 > ---
->  Documentation/devicetree/bindings/sound/fsl,spdif.yaml | 18 +++++++++++++++++-
->  1 file changed, 17 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-> index 56f8c0c8afdea..7f6590708e1ec 100644
-> --- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-> +++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
-> @@ -31,7 +31,8 @@ properties:
->      maxItems: 1
+> diff --git a/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
+> index 5cd2331668bc..4f8a07864eb4 100644
+> --- a/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
+> +++ b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
+> @@ -16,6 +16,7 @@ properties:
+>    compatible:
+>      enum:
+>        - hisilicon,hi3516cv300-femac
+> +      - hisilicon,hi3798mv200-femac
 >  
->    interrupts:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
-
-I still don't know what the 2 interrupts are (reading this patch). You 
-need something like this:
-
-interrupts:
-  minItems: 1
-  items:
-    - description: Combined or receive interrupt
-    - description: Transmit interrupt
-
-Correct whatever I got wrong in the descriptions...
+>    reg:
+>      items:
+> 
+> -- 
+> 2.43.0
+> 
 
