@@ -1,63 +1,65 @@
-Return-Path: <devicetree+bounces-49464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EBE78768DB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:50:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id DA2138768FB
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:58:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 4A49E1C2149D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:50:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79B7E1F21C94
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:58:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EBE7D1CF81;
-	Fri,  8 Mar 2024 16:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 551ED1BDED;
+	Fri,  8 Mar 2024 16:58:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="hMxSm6nY"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dmrAho/9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BCB381C2BC;
-	Fri,  8 Mar 2024 16:50:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26946568A;
+	Fri,  8 Mar 2024 16:58:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709916621; cv=none; b=L4bVjbdTORCR1ibs+YhlwXRPBzVh4HrYs/2n0P/yqjS7rPA7n/FSJWFWS1qL53urSebD/ys1U0vBneJHDMO+wPbpIG8z7detB46PSqRTnRHFvNynV/8sl0gw5YVsRvcZxaDQhOaqZOA29gIgg3DnNpgWJYSSaT+NJNiM/lp0qxQ=
+	t=1709917102; cv=none; b=AgcagG5mrztG/IctpSWZ+EzMidVrdGcUTKg3e5ygqWf7BffKGdcpFgF2C7yYDhQ3wyte2vonllQhUjrpn56O+i5bUvv9tDzbpqLx2iVk0PeckZAYUZv9j3dLqyyUmrMHq1lzTWpEpZ31cxR3zrI8HCDQ+KH6yDTAzCERSlEZ1wk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709916621; c=relaxed/simple;
-	bh=j8B0Mnr7gZ1c43Rkz5y5HQ2cNt70Z/gVxxFt62Y5pPc=;
+	s=arc-20240116; t=1709917102; c=relaxed/simple;
+	bh=EuVxJD2mHfKnoyQBcowTIaQagWYJL80opZu/yj/GV0M=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=p/V5PqAt7l4jUFmDK+eLXoOfbLRbxu6fcwWLZaASeiAXb6kDLBEVswlC+sx6hClWoL5urj4+goQeuxMEBqJYYcmSl81mV+ElsBn7HayFI/eyDXdNQPXZ14j4J8aHbkHUQsN3Iu4PEIJ8El29pK3S/8Y5af7T8DTiVD9aBx3O3wE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=hMxSm6nY; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3FDF7C433F1;
-	Fri,  8 Mar 2024 16:50:19 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=ZlssJsa6B3DG1YrF3uRraSO8HJzyzWZsAc8lA4hLkWJ2gvZleQyBxI68PjIBu1v+f38Xcf8IYqCQkqh4cQ1TbrVy0G53G2NSAW7Kn/m0Dj9Pwyd2XW/zXYwxxFf8U7RdFl2sAHkle+VrPlFT+utMrA4NHHAF6Uu8MH9122iLIRA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dmrAho/9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AC37C433C7;
+	Fri,  8 Mar 2024 16:58:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709916621;
-	bh=j8B0Mnr7gZ1c43Rkz5y5HQ2cNt70Z/gVxxFt62Y5pPc=;
+	s=k20201202; t=1709917101;
+	bh=EuVxJD2mHfKnoyQBcowTIaQagWYJL80opZu/yj/GV0M=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=hMxSm6nYTHIJuhc+3PaAQjHLvfR3TfRhS67RJxZxok0diPEStJLFqQb0dkq6y87tR
-	 iAjmrwMbJ4/Ja0MWiJnnfAWd+mo5TOZcpDhnxRf9edaw9T/PUU3smEGJfq/PITT1js
-	 E+Ge/3AXwCkNB5XSMRYNz9IvJ0FmEXKkCI4yz2T3qbwLCQZ03dF3c0tXZVUGZn+E/a
-	 /rVBUg9UOifnfcxUsf+t5SxpUi9xdG8TaNfDWoiNucC7vOGoTzMUm03zgqpQYkUlHI
-	 KsjztzI4AuRMP/3feNzx48GPxS84x5hQOk+ezMEUXAubvjIeKDdIbTmkHRfpbbBEfp
-	 RV8wj7Cr9JOag==
-Date: Fri, 8 Mar 2024 16:50:16 +0000
+	b=dmrAho/9nVEkb9cd/5KFFzOsfYCcwASNebcl8zju555mMlRc/37x7VdH/dGNnaESa
+	 6bg1wBfr//iiMHZgy2M/zWxgVnxbv3mjcolGzZBlaPCG2GQIartPxGbAZRRqynkLlJ
+	 1wGCS5+XSBQk5UJ/nSneEG1nfxnFLCxuHmgfyXCbLPEJFUDqVQPgU7lFbl3kELYdsx
+	 Lwne+5FRbKM63dW5Kbb5pEQAOX37B4YQ4c/2WKPVOKcb4+WY0NNJhwprV3lUA5CYUO
+	 BCzoTPyb32rwTGP8fqNfkLFqoI/PNUNqqX/cSGpugqK6+x3uwr2TNl1Y7YUFHdcHLL
+	 O9t7Dc8COFnnw==
+Date: Fri, 8 Mar 2024 16:58:16 +0000
 From: Conor Dooley <conor@kernel.org>
-To: Julien Massot <julien.massot@collabora.com>
-Cc: linux-media@vger.kernel.org, kernel@collabora.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	mchehab@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	sakari.ailus@iki.fi
-Subject: Re: [PATCH v4 2/4] dt-bindings: media: add Maxim MAX96714 GMSL2
- Deserializer
-Message-ID: <20240308-blank-issue-857c16294c17@spud>
-References: <20240305152608.287527-1-julien.massot@collabora.com>
- <20240305152608.287527-3-julien.massot@collabora.com>
- <20240307-retract-aloof-9ff1fde79a82@spud>
- <8f6972a1-e174-4c0e-808e-afece9b529bf@collabora.com>
- <20240308-footnote-landmass-e1efcaf72a6d@spud>
- <7d0197b9-9008-4260-86e9-4b7f7017b3b6@collabora.com>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v6 3/4] ASoC: dt-bindings: fsl-sai: allow only one
+ dma-names
+Message-ID: <20240308-croon-goofball-797d091e981a@spud>
+References: <20240308-asrc_8qxp-v6-0-e08f6d030e09@nxp.com>
+ <20240308-asrc_8qxp-v6-3-e08f6d030e09@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -65,78 +67,85 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="W40v6fOy9DpPu/pY"
+	protocol="application/pgp-signature"; boundary="AtYEuJt27XJncbRZ"
 Content-Disposition: inline
-In-Reply-To: <7d0197b9-9008-4260-86e9-4b7f7017b3b6@collabora.com>
+In-Reply-To: <20240308-asrc_8qxp-v6-3-e08f6d030e09@nxp.com>
 
 
---W40v6fOy9DpPu/pY
+--AtYEuJt27XJncbRZ
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 08, 2024 at 04:48:16PM +0100, Julien Massot wrote:
+On Fri, Mar 08, 2024 at 10:30:52AM -0500, Frank Li wrote:
+> Some sai only connect one direction dma (rx/tx) in SOC. For example:
+> imx8qxp sai5 only connect tx dma channel. So allow only one "rx" or "tx"
+> for dma-names.
 >=20
+> Remove description under dmas because no user use index to get dma channe=
+l.
+> All user use 'dma-names' to get correct dma channel. dma-names already in
+> 'required' list.
 >=20
-> On 3/8/24 16:07, Conor Dooley wrote:
-> > On Fri, Mar 08, 2024 at 03:08:12PM +0100, Julien Massot wrote:
-> > > On 3/7/24 20:21, Conor Dooley wrote:
-> > > > On Tue, Mar 05, 2024 at 04:26:06PM +0100, Julien Massot wrote:
-> > > > > Add DT bindings for Maxim MAX96714 GMSL2 Deserializer.
-> > > > >=20
-> > > > > Signed-off-by: Julien Massot <julien.massot@collabora.com>
-> > > > > ---
-> > > > > Change since v3:
-> > > > >    - Renamed file to maxim,max96714.yaml dropped the 'f' suffix
-> > > >=20
-> > > > Why? The filename should match the compatible, which /does/ have an=
- f.
-> > > All the work has been done on MAX96714F variant of this Maxim GMSL2
-> > > deserializer.
-> > > The driver and the binding remain suitable for all variants of this c=
-hipset,
-> > > since they share the same
-> > > register mapping, similar features etc..
-> > >=20
-> > > MAX96714 exists in different variant: MAX96714 / MAX96714F / MAX96714=
-K that
-> > > will be easy
-> > > to add support for this binding and driver later.
-> >=20
-> > Either document the non-f version if it really is that similar, using
-> > all of the same properties, or name the file after the version you've
-> > actually documented. I don't see why this particular case should be
-> > given an exception to how bindings are named.
-> >=20
-> > What is the actual difference between the f and non f versions? Is it
-> > visible to software?
->=20
-> Yes there are a few differences visible to the software, for example the
-> GMSL
-> link rate since MAX96714 support 6 and 3 Gbps, while MAX96714F only suppo=
-rts
-> 3Gbps.
-> the registers map is the same, but a few values are not possible with the
-> 'f' version.
->=20
-> I will add a compatible for the non 'f' version, and will do the same for
-> the max96717 binding.
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 
-It's not immediately clear if that means that the f version should be a
-fallback for the non-f version, but sounds like it could be if the
-difference is purely that there's a reduced set of link rates or
-similar.
+Please drop my ack from this, this isn't the patch I acked originally
+and we were having a conversation as recently as yesterday on v4 about
+this patch because Rob didn't like this approach. His suggestion is
+better than the one I gave on v4 that you have used here.
 
---W40v6fOy9DpPu/pY
+Please give it a few days between resubmissions, and do not send new
+versions of a series every day. It is very confusing to have different
+conversions on three versions of this patch in my inbox all at the same
+time.
+
+Thanks,
+Conor.
+
+> ---
+>  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 8 +++-----
+>  1 file changed, 3 insertions(+), 5 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Docum=
+entation/devicetree/bindings/sound/fsl,sai.yaml
+> index 2456d958adeef..93e7737a49a7b 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
+> @@ -81,15 +81,13 @@ properties:
+> =20
+>    dmas:
+>      minItems: 1
+> -    items:
+> -      - description: DMA controller phandle and request line for RX
+> -      - description: DMA controller phandle and request line for TX
+> +    maxItems: 2
+> =20
+>    dma-names:
+>      minItems: 1
+> +    maxItems: 2
+>      items:
+> -      - const: rx
+> -      - const: tx
+> +      enum: [ rx, tx ]
+> =20
+>    interrupts:
+>      items:
+>=20
+> --=20
+> 2.34.1
+>=20
+
+--AtYEuJt27XJncbRZ
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZetByAAKCRB4tDGHoIJi
-0htFAQCAGppnh/GHai75MVlT/b9AYRkgXulrdtlLA0WKqO4j8wD8DpKGzCGrayAO
-kmkKQV5kZ2cr4pNpysciMQAsApZZfAA=
-=Mxh+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZetDpwAKCRB4tDGHoIJi
+0p1zAPwOVqZkJw5DaQiuRLY7UuKy72/FOl/NK/YmqCZ4DyG7uQEA+Ki09p+Lossj
+bxiyf19v0Oygl2gWDK2Oq8f11MiHpgA=
+=OJXG
 -----END PGP SIGNATURE-----
 
---W40v6fOy9DpPu/pY--
+--AtYEuJt27XJncbRZ--
 
