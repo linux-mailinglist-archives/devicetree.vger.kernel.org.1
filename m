@@ -1,103 +1,128 @@
-Return-Path: <devicetree+bounces-49393-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49394-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F173D876450
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:29:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F596876461
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:35:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AC7F6281A1B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:29:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60E0A1C218DD
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:35:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78B2A57332;
-	Fri,  8 Mar 2024 12:29:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ABAD1429E;
+	Fri,  8 Mar 2024 12:35:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TYOhrchC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D49E656456;
-	Fri,  8 Mar 2024 12:29:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48BEB81F;
+	Fri,  8 Mar 2024 12:35:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709900949; cv=none; b=Ab0m2mOPit7Lhmzs1O+8R5UaW9W2gqqAEf7tySQm+v/p0RqR92OyXfHL5XBpVrbivfUuTN+z469lDhZD4HtVOP6Qe+kCM3BK2Uj2EOkXZkIW09JpiA5PIDULPWzX8lwT1bsR9z4VD2hbwP9knc0ffpj6kPhQCd1gljIz1PBVuuY=
+	t=1709901329; cv=none; b=p3+PSG8bgqT/il45X0ydPPOzWgwF2xsc2+95lPQyhVfmjR60TNFpK/d2Rpr9hEsdJJRZ/8lLUMpJX/a6LIWae6xUtFukPoxyCeQlLbzZXkTWnXyF4sr0ZgxFsnxNCubKd8iUJs4nO+fdzPCq2VTMH6zGjXtN8ITjf9LZHw65KrI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709900949; c=relaxed/simple;
-	bh=J1WQUOExGT2BUFKbzdvuQXj04tR/Nr0MoFLS79WMU+M=;
+	s=arc-20240116; t=1709901329; c=relaxed/simple;
+	bh=FO/2tbdfopZ0jgXfxeznKBXF2Z6rQryzkEHxQzSdob4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ugFfHJA72BDA8B94uM48OvsXPVOIf1L0JLzjtze3tJ2QHR7SfP5s+CgG17GdbXSe/LUeOmpCgPN57HabGlVUsFhcVbnmrv1YMsWEMhnYYNfSCptxcuKzXSBAZnKMwpfWqhkMmHgXnKpnx1y9mc56FiqpigbhFR56WwM1iybkkSc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 002B0C15;
-	Fri,  8 Mar 2024 04:29:43 -0800 (PST)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0520F3F73F;
-	Fri,  8 Mar 2024 04:29:03 -0800 (PST)
-Date: Fri, 8 Mar 2024 12:29:01 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: abdellatif.elkhlifi@arm.com, Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=eKzllPkBKmAiBX6LiWAxC99GtBE0N+Dx4q1evBCrRCjqp6AXHMrVMOv9E7n7BLwqSUfwFeXX36rSQDs+ATzD5q6TcLpQ+zk8X1912zPMg092RJqehu4EfOBQue8a0NFTvQpok5/r4SiSm2AogJ1PRd7zf+JL6c77RnUkcnGiPjg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TYOhrchC; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A38FC43394;
+	Fri,  8 Mar 2024 12:35:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709901328;
+	bh=FO/2tbdfopZ0jgXfxeznKBXF2Z6rQryzkEHxQzSdob4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=TYOhrchCM5AcfxPJr1oIyABZAaxg9gskQp8WoHXfOeui02f9YDOiUEccLFAfpD2MU
+	 EiUsJt/4PuPnbdyx9XpqQeesIstI/T4Dps8oISJ/y5AUG8qglej8saE4q/j8uFmuQD
+	 MtyJSyWiCJfn8zC3DSxgZZhC3aFuUlWjbwyNJa2caxdbIUR3V6GYfzhBTdUg0iUfYL
+	 7DDTDQ/azQpLSE//PcmZ7EJMqDDLBKsliYdSOxj5Y2ZCkCx0GHh5Gy+4sf/Gaq7XKx
+	 3nO8obKNqOFLq8Y8riZvs/8P5jhDuqveb687JPfbxHzKcjxYU2SzHwk8DBGqK0Cm2J
+	 b7zKSu+WHLzaA==
+Date: Fri, 8 Mar 2024 12:35:23 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Takashi Iwai <tiwai@suse.com>,
+	Jaroslav Kysela <perex@perex.cz>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
-	Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 3/3] dt-bindings: remoteproc: Add Arm remoteproc
-Message-ID: <ZesEjbl4IITA4Yie@bogus>
-References: <20240301164227.339208-4-abdellatif.elkhlifi@arm.com>
- <9fcebf32-a3da-49ab-b3d9-9450fb7e1985@linaro.org>
+	Conor Dooley <conor.dooley@microchip.com>,
+	Walker Chen <walker.chen@starfivetech.com>,
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>
+Subject: Re: =?utf-8?B?5Zue5aSN?= =?utf-8?Q?=3A?= [PATCH v1 2/2] ASoC:
+ starfive: Add PDM controller support
+Message-ID: <330cf044-75e2-4938-b886-ce13003d30e8@sirena.org.uk>
+References: <20240307033708.139535-1-xingyu.wu@starfivetech.com>
+ <20240307033708.139535-3-xingyu.wu@starfivetech.com>
+ <fddca901-273c-4b06-ad59-d156941920d6@sirena.org.uk>
+ <NTZPR01MB0956E2033EDDA3FFE1211ACD9F27A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="PmTquCiKJJKa3CmU"
+Content-Disposition: inline
+In-Reply-To: <NTZPR01MB0956E2033EDDA3FFE1211ACD9F27A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+X-Cookie: Isn't this my STOP?!
+
+
+--PmTquCiKJJKa3CmU
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9fcebf32-a3da-49ab-b3d9-9450fb7e1985@linaro.org>
 
-On Fri, Mar 01, 2024 at 08:30:43PM +0100, Krzysztof Kozlowski wrote:
-> On 01/03/2024 17:42, abdellatif.elkhlifi@arm.com wrote:
-> > From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-> > 
-> > introduce the bindings for Arm remoteproc support.
-> > 
-> > Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-> > ---
-> >  .../bindings/remoteproc/arm,rproc.yaml        | 69 +++++++++++++++++++
-> >  MAINTAINERS                                   |  1 +
-> 
-> Fix order of patches - bindings are always before the user (see
-> submitting bindings doc).
-> 
-> >  2 files changed, 70 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/remoteproc/arm,rproc.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/arm,rproc.yaml b/Documentation/devicetree/bindings/remoteproc/arm,rproc.yaml
-> > new file mode 100644
-> > index 000000000000..322197158059
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/remoteproc/arm,rproc.yaml
-> > @@ -0,0 +1,69 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/remoteproc/arm,rproc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Arm Remoteproc Devices
-> 
-> That's quite generic... does it applied to all ARM designs?
-> 
+On Fri, Mar 08, 2024 at 08:45:45AM +0000, Xingyu Wu wrote:
+> > On Thu, Mar 07, 2024 at 11:37:08AM +0800, Xingyu Wu wrote:
 
-Nope, it is platform specific. It can't just generically be referred as
-Arm Remoteproc for sure.
+> > > +	if (!device_property_read_u8(&pdev->dev, "starfive,pdm-modulex",
+> > &using_modulex))
+> > > +		if (using_modulex == 1)
+> > > +			base += JH8100_PDM_MODULEX_SHIFT; /* Use module 1 */
 
--- 
-Regards,
-Sudeep
+> > This really looks like you've got one hardware block with two devices in it, either
+> > the address ranges registered for the devices in DT should be separate and you
+> > shouldn't need this property or you should have one component registering both
+> > PDM interfaces.
+
+> Yeah, They like two independent device and have different register to
+> configure, but just use the same clocks and resets.  Due to the sample
+> rate depend on the share clocks, they should be registered together as
+> a 4-channel capture device (rarely used), or just one of them can be
+> registered separately as a 2-channel device.  BTW, can I use the
+> 0x12250000 about the property of reg for device 0 or 0x12250010 for
+> device 1 to choose which device to be used in DT?
+
+Ah, so it's actually a small MFD but given that it's two audio blocks
+possibly not worth registering as such.  I'd register two stereo DAIs to
+one component and then use the DAI ID to figure out which registers to
+write to.  Four channel mode might need a property to put everything as
+one DAI and not register the second one, or it might just be OK to let
+the first DAI be 4 channel with runtime error checking.
+
+Please fix your mail client to word wrap within paragraphs at something
+substantially less than 80 columns.  Doing this makes your messages much
+easier to read and reply to.
+
+--PmTquCiKJJKa3CmU
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXrBgoACgkQJNaLcl1U
+h9DEhwf+KgApJjUr4IiU+vvCVeMKJxlSEoO7nfmdqt1/A6QTnqv6jBiCGSwpMIHx
+h+m+KI68xKrBA8J2ufPN/KnCh0prXfy8vOPOccavWBg4UdDm6LHnheeZHXt+xgla
+VRAaPw9XpGmW7mo2lqY4QR6lutgLIQDxIoLjzRepCFoFrTQIH2yaSqUxcakRwaFA
+KfqgAyDhr+NrZSThLLoHuJjGQOVEyA8TOwrjKPnG3GVjhLupXbr6UgR3BZ7I7saf
+k7zYnzW4/HSb3ACbYaHCkwL88RVCFdih43ZpIwNKgxeFpB9/FYa0ow4xk3nGjoPn
+cEbVA3HKOGq0/mGsOzLEYgAc2u4Vdg==
+=kMbj
+-----END PGP SIGNATURE-----
+
+--PmTquCiKJJKa3CmU--
 
