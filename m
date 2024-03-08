@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-49417-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49418-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2150B876684
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 15:44:07 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 95CB987668C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 15:45:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D00F9283ACE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 14:44:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48FF2281745
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 14:45:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A19D1FB3;
-	Fri,  8 Mar 2024 14:44:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3961F15D0;
+	Fri,  8 Mar 2024 14:45:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OMh5J8Vh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qKCHTOIi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f51.google.com (mail-ed1-f51.google.com [209.85.208.51])
+Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D44139B
-	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 14:44:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B2A01852
+	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 14:45:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709909043; cv=none; b=XghaAh6JRu9Petp2srngDn1kv5BP8D/Pxl4Y+jJmxTN8AgniAyIwPowDGjEuyDaeFW+C/uwPNXQz64iK2HH0yV9dGQ0n2hfeIqHtqnDdUwP7x1k/IcqIJ9x0cNcbbUkIZQ0oDGC2VgyFW3r3Wr0/hZxjS8zCwNfSZS/dEVXxVDE=
+	t=1709909146; cv=none; b=nxwDyytllT/EbY8LQb2Fvic2Krf0SurJ7JqWLc3Nm+3ugSH+TniWn1SNlWPXYWNQH05fRR08vf0OQFyt0q6J9D/+K/nu90Ncruk43bWzlUh8AyFOxfjg1LAcHmfbXn17ItUX6B8S0jgJ62liCJAP6pg3a8d85Vkun6INXVblo08=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709909043; c=relaxed/simple;
-	bh=CKLzbE/pCgAjBaBH8r9fQoppaflr1J/KdWPBndCGIQ4=;
+	s=arc-20240116; t=1709909146; c=relaxed/simple;
+	bh=Em1F929Mn1mPrn47t685mqMI8vaGLknlocnaygZx4Hs=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ONghkZpTRaHmj4GB+XeE8dHOwxbYcx1JQGp38xGXuop5hOHO8OAIn9doKxgGELZqHcnZYYPTx2/NJS9+mO8o4R9qucn9QvAiNEvvYzTddVYKnnANDnAjStfvzk4TyT5ECUDoBCLicOBFFT6wz9DiacUWdh8jAY/AYC50GkImyms=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OMh5J8Vh; arc=none smtp.client-ip=209.85.208.51
+	 In-Reply-To:Content-Type; b=NYtCOxgu//04ad0lEOncP/41XUJZcXfrNXBOYzT5iWAvHkqHfGveN4kE9pjPeKUTa12KTUaSYmoV8pj5xPGdJQ85EG/aKfznmndBJMfuQrab+Y57lmPfZq5xDccfFxh2roXInwcGt1/G7y51MC9o/jFqJMZ5vcCJCcK1dBUPnxY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qKCHTOIi; arc=none smtp.client-ip=209.85.208.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f51.google.com with SMTP id 4fb4d7f45d1cf-56759dc7ea6so2794390a12.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 06:44:01 -0800 (PST)
+Received: by mail-ed1-f53.google.com with SMTP id 4fb4d7f45d1cf-5683093ffbbso941501a12.1
+        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 06:45:42 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709909040; x=1710513840; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709909141; x=1710513941; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CKLzbE/pCgAjBaBH8r9fQoppaflr1J/KdWPBndCGIQ4=;
-        b=OMh5J8VhQXwX4DEVk5Qe9Sveqz2jApn/0JS20GfMwCTYio5MU9yHWyLbRcH9a587Pv
-         5fvnCj7TOzLG2eschqEyRmF877V6rZZZlEWbGgtFpNRTH++hc4J3Po0EH5YzliIPA1Gh
-         JZuGZWvqYC8326scCwHJkPMY5i7oiUlFEatALpzD+7kdvuVnpdKRTUxHQhT7vGOcUN9z
-         RKWio3KzvflAHoEtiDENtxca2qTJ/ZI5haZqzOozbdekuH5qcE0102kvDXZWYcAMlLo/
-         RfzSRWyCaGbtb+VWmXt08H00XZzlWxPk76ozsA+CeyYVvbP2FJt2W0Rrrsd5lmwoOV8B
-         R5wQ==
+        bh=zP41Zi/mvVoGN7hu7NP8sEaRzDXJMEZcIHHfHI2Tt3E=;
+        b=qKCHTOIi20QQc7RHat9XMt8Njeo4p0xsM+oKsVQ8FmGpPtV24jLZXqpDyMvfyQOxyy
+         HJQR36rvZYQWSDJeRLql8XQ3ZmslOptcf17uC3XMhC/2hmkc/vdVPhizHhX0v2XdmLzI
+         Wm/ML31Y23EMU7xOyxxJ5fOpff5u3hksCDPjnqd5ZmOIJVZ0IsOd6r1pM/EOgBiBBEzS
+         i4ObaMnaykFrSV6KdV76cokD1aasz+HAg3/BwdvyT0yKRvLG3fkLlb367v0677HbL4ry
+         a6FCiF+Mw2MXHCS9uA3JF76gF6huM8e59kaGKTBag1S9k7MzOZSS3KoLaq4zMFKFipMt
+         2G3A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709909040; x=1710513840;
+        d=1e100.net; s=20230601; t=1709909141; x=1710513941;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CKLzbE/pCgAjBaBH8r9fQoppaflr1J/KdWPBndCGIQ4=;
-        b=RB7t3TES3xDz/HKpyT4mVT1XlPX3QkYv2rNgSkmsHA0JGAQ3eL2Yh+TN786NVZ++Uv
-         qhBh+whHsJHBRVB9oN46yNyz9wHOoXsezsgwBSl4Vw8LKbWhyXKvBdKHqnyymAlxkfg4
-         3XbvO9S1jUZNrhXLzQ2F+L2Jd+98qdClLYIVk65qW0P3QAAb/SQnCjD4ShGUL5+zXf/t
-         qtzU8pD8w45dWM/VbdeUKNiTtZQCb60i649m4cdxYgqATM5l1/bGWYDefdljxlUR68z0
-         ywP0hEStccJqhiMH1QqvcKMpnPAPk111K86CIAqn/0Q+85ktY28r3RQDtzVQr1K95SGw
-         9qVA==
-X-Forwarded-Encrypted: i=1; AJvYcCXlEuBzqNr/rtKTzTNYJ3xmOm/ijETY+W25VY5QDyMGGW5HkEwWbsRf4/mPcHDdFr6hEHP7QQqem/C1HIxz88kdLO8n5EX2ieFs8A==
-X-Gm-Message-State: AOJu0YxtQQuN+c704h3iL51vDQvmp+2yfLc8TAVHsREE+KxvkFRE1jXN
-	kGf3ju/F4Xi+588Ov30PmjEbrz/1f+3pW9pt8qJdiMgb1cR86KKT3/WFpR1/t9o=
-X-Google-Smtp-Source: AGHT+IHmP9xk0vHdR+B/xtFAoLKQ/69Fq7f3LKLq0gIXW+qAtR2/iA/gwg+WVeGlvpIm1QX3As89UA==
-X-Received: by 2002:a17:906:7118:b0:a45:5a30:a3f2 with SMTP id x24-20020a170906711800b00a455a30a3f2mr9511960ejj.52.1709909040294;
-        Fri, 08 Mar 2024 06:44:00 -0800 (PST)
+        bh=zP41Zi/mvVoGN7hu7NP8sEaRzDXJMEZcIHHfHI2Tt3E=;
+        b=TAXsCEyjsTVxe1uSIma3fQLOUdmgvTEgQWe7N9RWWb8XXhZiNi51do+bLX4oqesE2b
+         54xpvyST78V3QEngMpybK/OHmp7gHKibXxzzWE2FF9eSw0l+R5ufXCAGcaUbYKNBO/x0
+         Rl+XUDZaqsIrR8YkgGpbNCxYVQzMHLx5dFpbGfp/mB3iv/LtoQKoEx+GMH2Izc7V8DiR
+         YfEX5SAhrEY05tQu9OBABEk4l7+WMQIaQ0ZspFvhSf40Dl+o8dpzKPXDzx28RLRCGyGj
+         v9l904zEIExy44fMIRkyeQ7eGi0vzkjYpw3k46e6yY7IU04K/lHwgO3kNkT70/lF4/UN
+         TFUA==
+X-Forwarded-Encrypted: i=1; AJvYcCU3+4D9PKkY2TkPQ9c2Rco9uEsuzoBfr7hu55zx1Lm5XhD5mL+IK73xtiXn6uCwQ3QLhTPOxv0h8R1p8H+bRNOLNcTyhQhMInHM3A==
+X-Gm-Message-State: AOJu0YzvaT6+n6IdQZqWiRHS6bwVb92kEDdCAzs2fXfIFBUT2UYUgl19
+	tcwTIRXsezTkW0LIG5wpCy4S1EFtfqoVwHQACZ9FOm5WDhCemQekl12PmyiQWD8=
+X-Google-Smtp-Source: AGHT+IFzr7uIBzprrII6sDcFB9zm6dRvFyrKG7ykYhwxdSAW3eP/ZuRLedW0GrFDNK30PIfI2/mYVQ==
+X-Received: by 2002:a17:906:1cc2:b0:a44:4578:c79d with SMTP id i2-20020a1709061cc200b00a444578c79dmr13044343ejh.4.1709909141616;
+        Fri, 08 Mar 2024 06:45:41 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id me14-20020a170906aece00b00a45c9474442sm2096353ejb.18.2024.03.08.06.43.58
+        by smtp.gmail.com with ESMTPSA id me14-20020a170906aece00b00a45c9474442sm2096353ejb.18.2024.03.08.06.45.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Mar 2024 06:43:59 -0800 (PST)
-Message-ID: <16b79c94-2de7-43fc-8e43-75025120c523@linaro.org>
-Date: Fri, 8 Mar 2024 15:43:57 +0100
+        Fri, 08 Mar 2024 06:45:41 -0800 (PST)
+Message-ID: <72f29fd6-9d83-4a69-957e-bf3630878784@linaro.org>
+Date: Fri, 8 Mar 2024 15:45:39 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,20 +76,19 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v10 0/8] net: hisi-femac: add support for
- Hi3798MV200, remove unmaintained compatibles
+Subject: Re: [PATCH v6 1/4] dt-bindings: arm: qcom: Document QCS8550 SoC and
+ the AIM300 AIoT board
 Content-Language: en-US
-To: forbidden405@outlook.com, Yisen Zhuang <yisen.zhuang@huawei.com>,
- Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240308-net-v10-0-3684df40897e@outlook.com>
+To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ dmitry.baryshkov@linaro.org
+Cc: keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
+ linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org,
+ kernel@quicinc.com
+References: <20240308070432.28195-1-quic_tengfan@quicinc.com>
+ <20240308070432.28195-2-quic_tengfan@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,20 +134,24 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240308-net-v10-0-3684df40897e@outlook.com>
+In-Reply-To: <20240308070432.28195-2-quic_tengfan@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 08/03/2024 09:39, Yang Xiwen via B4 Relay wrote:
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
-> Changes in v10:
-> - binding: make hi3516cv300 the fallback compatible (Krzysztof Kozlowski)
-> - driver: drop mv200 match string (Krzysztof Kozlowski)
-> - commit msg: remove #conflicts
-> - Link to v9: https://lore.kernel.org/r/20240307-net-v9-0-6e0cf3e6584d@outlook.com
+On 08/03/2024 08:04, Tengfei Fan wrote:
+> Document QCS8550 SoC and the AIM300 AIoT board bindings.
+> QCS8550 is derived from SM8550. The difference between SM8550 and
+> QCS8550 is QCS8550 doesn't have modem RF system. QCS8550 is mainly used
+> in IoT scenarios.
+> AIM300 Series is a highly optimized family of modules designed to
+> support AIoT applications. It integrates QCS8550 SoC, UFS and PMIC chip
+> etc.
+> AIM stands for Artificial Intelligence Module. AIoT stands for AI IoT.
+> 
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
 
-You dropped one patch without explanation.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
