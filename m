@@ -1,163 +1,126 @@
-Return-Path: <devicetree+bounces-49373-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49374-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0133876267
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 11:48:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 69E2587627C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 11:56:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6AC701F23BE8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 10:48:17 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 09EAB1F239C8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 10:56:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA96F5576D;
-	Fri,  8 Mar 2024 10:48:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EEC925577A;
+	Fri,  8 Mar 2024 10:56:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="R4IwoUao"
+	dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b="ZKRh7LPs"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C32F654FB2;
-	Fri,  8 Mar 2024 10:48:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13AAF14A82;
+	Fri,  8 Mar 2024 10:56:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709894891; cv=none; b=fTgzjbvUwjXww9A8eXi2LaAMoZlmieaG3H66OYUcwS7l6fgP9ls0eyE7wqjbs/5eQSP19yRO6ikCEDfxBpjc3HApqJxBnx7FzCsVosSx7fSB7JIBDUboDGYMDvXcXBNIKExNLpmOPuM+lseFFMGgV6y3oO06vm/HdMJgnr2hdj8=
+	t=1709895410; cv=none; b=hHhdzmpTqXjbiJVMGsyLec42L6/Re+7mKqZkZb36KtewpA3HcL6Z5istlhs9X8+dM+reZBiJG19aQ3kZKLk307dkQL+OSM3TuQId9loF5NetN4yoc2B3SgeUAjk6KwXqgOa8GhoHE4/if6TBNBb4Rb7ahy6PDfuVlwQFo6vMNcA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709894891; c=relaxed/simple;
-	bh=Oh9+83stTEAWMxwiZmN2wXsRzxzcIcyaMy4cNtT2Vm8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=PV4SOzK8GMOSebRTOQUdAzVkwJ4g25q5rxwR2lOlvgTh+XIsu/WhCRXTYQPk0IMSOOX+lTmmd1Lrdk8+AxyaDADRkh3twhFF35+u9HVUzDCXuPB2Gg53MpcGyrseGFqb6S9NLKhJMy/8pkFTwY9bnZ2xBLHAGtF2Slu8LdJUohA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=R4IwoUao; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35ED0C433F1;
-	Fri,  8 Mar 2024 10:48:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709894890;
-	bh=Oh9+83stTEAWMxwiZmN2wXsRzxzcIcyaMy4cNtT2Vm8=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=R4IwoUaoLjXJA6CTTrAUzh3glAZf2bLgRzsNjadq5egUbe/oPJfLUvSw4aDjzcOf1
-	 T/BYyopXyLoJJ9YgO1cOizZIQEvvJkCesQCowbsIh2/xm1/+Uiv6hVZlo4PH1kv7KP
-	 39TzmqqlkZ74cVfA/WF/xVWlpKCsEA6G39JW5DC5hAEh9u+vfhRFAS6zeM1iRIZRZI
-	 uNKl9faqpCsGunQY1rItPtmXX+rkJ0ZfwC+nWq3WVp99OV+8Qu51vAIA3hbWdTMsdC
-	 ConXosMVMCxWdA1EB89rFIFskhlsJ+rEl9Vkwp+79S9DR4kHdm6UIWOZK8tXznxYwn
-	 wd6iKGVE2nMhQ==
-Date: Fri, 8 Mar 2024 11:48:07 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: =?utf-8?B?SsOpcsOpbWll?= Dautheribes <jeremie.dautheribes@bootlin.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>, 
-	Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>, 
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann <tzimmermann@suse.de>, 
-	David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thierry Reding <thierry.reding@gmail.com>, 
-	dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Yen-Mei Goh <yen-mei.goh@keysight.com>
-Subject: Re: [PATCH v2 3/3] drm/panel: simple: add CMT430B19N00 LCD panel
- support
-Message-ID: <20240308-shiny-meaty-duck-446e8d@houat>
-References: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
- <20240304160454.96977-4-jeremie.dautheribes@bootlin.com>
- <20240304-inquisitive-kickass-pronghorn-c641ff@houat>
- <ee36a60d-5b65-4eb8-ac41-e4b6be1cf81f@bootlin.com>
+	s=arc-20240116; t=1709895410; c=relaxed/simple;
+	bh=eDfcAFfLtMAlFQpX5YR9ldUyPqNu/0sGMCe5kqrcRug=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=kEMvYftsMnNdjfU9aGI8NC1oS6pBypI8BbzVo9lxdQIchtJe2FEYvgNGpVq7RxIlt9lOqxUInonHBHkABRRUi1SFtkr7JzU/1Aaaoycxe7HMoGHlZhEq4eErUgh+C74314QaPPJDc4TZ6aiMylDxz63or5F1vRee3gOIK8qKGdg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com; spf=pass smtp.mailfrom=arinc9.com; dkim=pass (2048-bit key) header.d=arinc9.com header.i=@arinc9.com header.b=ZKRh7LPs; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arinc9.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arinc9.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 56D8260007;
+	Fri,  8 Mar 2024 10:56:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arinc9.com; s=gm1;
+	t=1709895406;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=FAw+Jiw7p+B61UXDy8G+fuIZSzLjdiTqt3xioTIben4=;
+	b=ZKRh7LPs2bNtgyVYQTqeYkjYgvW7RBQ5+YMIvWLIvDz8aufrottZli9Ee2KqTBPg5+EtmB
+	avSkIHL6LDhcQT+DlHLu94zY3CVZgDBM1aT4jEU9NfmKw6208gaTnadJoUBlT5k3khH5Lf
+	PqeH4U/dEaVCVfFsZRAHuP3oxjsfnd0VA58m7y3OXLCFRohw98X1i338I/1u+Ry92C8kRW
+	zvkATcllLMAKFQR5bbca/rJZumSkl5o7XPaEaUgqIVrhf/Vv2uch35TCSOG04KrO6yQ0m6
+	tCLGnVmQXa6oVJa50i63+fIG0UtyK7BaXLIni8YwM/o7m4cAGTm6sIF9/pZVMA==
+Message-ID: <0af41707-9d00-4eec-91b0-352f75a89360@arinc9.com>
+Date: Fri, 8 Mar 2024 13:56:35 +0300
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="vglunjsivqojxdbh"
-Content-Disposition: inline
-In-Reply-To: <ee36a60d-5b65-4eb8-ac41-e4b6be1cf81f@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] mips: dts: ralink: mt7621: add serial1 and serial2
+ nodes
+Content-Language: en-US
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Justin Swartz <justin.swartz@risingedge.co.za>,
+ Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <CAMhs-H_eUKm7C40oCzuKwwEMZAcOJ-g4MghAfkGAmxRM0AXPUw@mail.gmail.com>
+ <20240307190408.23443-1-justin.swartz@risingedge.co.za>
+ <20240307190408.23443-3-justin.swartz@risingedge.co.za>
+ <221bb898-a98f-4a2d-9301-84a3baefbbc7@collabora.com>
+From: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+In-Reply-To: <221bb898-a98f-4a2d-9301-84a3baefbbc7@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Flag: yes
+X-Spam-Level: **************************
+X-GND-Spam-Score: 400
+X-GND-Status: SPAM
+X-GND-Sasl: arinc.unal@arinc9.com
 
+On 8.03.2024 11:44, AngeloGioacchino Del Regno wrote:
+> Il 07/03/24 20:04, Justin Swartz ha scritto:
+>> Add serial1 and serial2 nodes to define the existence of
+>> the MT7621's second and third UARTs.
+>>
+>> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+>> ---
+>>   arch/mips/boot/dts/ralink/mt7621.dtsi | 28 +++++++++++++++++++++++++++
+>>   1 file changed, 28 insertions(+)
+>>
+>> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
+>> index 3ad4e2343..5a89f0b8c 100644
+>> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
+>> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
+>> @@ -124,6 +124,34 @@ serial0: serial@c00 {
+>>               pinctrl-0 = <&uart1_pins>;
+>>           };
+>> +        serial1: serial@d00 {
+>> +            compatible = "ns16550a";
+>> +            reg = <0xd00 0x100>;
+>> +            reg-io-width = <4>;
+>> +            reg-shift = <2>;
+>> +            clocks = <&sysc MT7621_CLK_UART2>;
+>> +            interrupt-parent = <&gic>;
+>> +            interrupts = <GIC_SHARED 27 IRQ_TYPE_LEVEL_HIGH>;
+>> +            no-loopback-test;
+>> +            pinctrl-names = "default";
+>> +            pinctrl-0 = <&uart2_pins>;
+> 
+> As already commented on patch [1/3], pin muxing is board specific. Please remove.
+> 
+> Also, is there any reason why you can't simply use the `interrupts-extended`
+> property instead of interrupt-parent and interrupts?
 
---vglunjsivqojxdbh
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'm looking at the documentation [1], it seems to be useful when multiple
+interrupt parents need to be defined on a node. I'd continue using
+interrupt-parent and interrupts in this case.
 
-On Tue, Mar 05, 2024 at 10:46:55AM +0100, J=E9r=E9mie Dautheribes wrote:
-> Hi Maxime,
->=20
-> On 04/03/2024 17:25, Maxime Ripard wrote:
-> > Hi,
-> >=20
-> > On Mon, Mar 04, 2024 at 05:04:54PM +0100, J=E9r=E9mie Dautheribes wrote:
-> > > Add support for Crystal Clear Technology CMT430B19N00 4.3" 480x272
-> > > TFT-LCD panel.
-> > >=20
-> > > Signed-off-by: J=E9r=E9mie Dautheribes <jeremie.dautheribes@bootlin.c=
-om>
-> > > ---
-> > >   drivers/gpu/drm/panel/panel-simple.c | 29 +++++++++++++++++++++++++=
-+++
-> > >   1 file changed, 29 insertions(+)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/p=
-anel/panel-simple.c
-> > > index 20e3df1c59d4..b940220f56e2 100644
-> > > --- a/drivers/gpu/drm/panel/panel-simple.c
-> > > +++ b/drivers/gpu/drm/panel/panel-simple.c
-> > > @@ -1457,6 +1457,32 @@ static const struct panel_desc boe_hv070wsa =
-=3D {
-> > >   	.connector_type =3D DRM_MODE_CONNECTOR_LVDS,
-> > >   };
-> > > +static const struct drm_display_mode cct_cmt430b19n00_mode =3D {
-> > > +	.clock =3D 9000,
-> > > +	.hdisplay =3D 480,
-> > > +	.hsync_start =3D 480 + 43,
-> > > +	.hsync_end =3D 480 + 43 + 8,
-> > > +	.htotal =3D 480 + 43 + 8 + 4,
-> > > +	.vdisplay =3D 272,
-> > > +	.vsync_start =3D 272 + 12,
-> > > +	.vsync_end =3D 272 + 12 + 8,
-> > > +	.vtotal =3D 272 + 12 + 8 + 4,
-> > > +	.flags =3D DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-> > > +};
-> >=20
-> > Your pixel clock doesn't really match the rest of the timings:
-> >=20
-> > (480 + 43 + 8 + 4) * (272 + 12 + 8 + 4) * 60 =3D 9501600
-> >=20
-> > So a ~6% deviation.
-> >=20
-> > What does the datasheet say?
->=20
-> Indeed it does not exactly match but the datasheet indicates that the
-> typical clock frequency is 9MHz and when this frequency is used, the
-> typical values of the other parameters are those we have defined in
-> the drm_display_mode structure.
+[1] https://www.kernel.org/doc/Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
 
-It seems weird to me that all the typical timings end up in a
-non-typical configuration, but I've seen my fair share of weird
-datasheet, so.. yeah.
-
-I guess the best thing to do if you have access to the min/typ/max
-timings is to actually use the display_timings structure here and define
-all of them.
-
-It at least gives us the opportunity to fix it later on.
-
-> I don't see any information about the accepted deviation either.
-
-It's not only about the panel itself. 6% gives your roughly 56fps when
-you meant 60. This can then trip up some applications too. Like if
-you're playing a 60fps application, it will either play too fast or
-you'll get stutter, depending on how the video playback has been
-implemented exactly.
-
-Maxime
-
---vglunjsivqojxdbh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZers5wAKCRDj7w1vZxhR
-xRi0APwMTxCozvo10NB+M+y2Z3QMtuMjP1GtOoTo/nC52Lx3AgD/dLgDGRrAJ+ex
-3iIbCnd/WsMDVaQyTwOqnJ8OeOQ5ygc=
-=2WQs
------END PGP SIGNATURE-----
-
---vglunjsivqojxdbh--
+Arınç
 
