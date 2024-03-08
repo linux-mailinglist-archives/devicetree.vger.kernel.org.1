@@ -1,144 +1,147 @@
-Return-Path: <devicetree+bounces-49290-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49291-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A855875E9F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 08:36:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CB5FB875EA7
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 08:38:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B0D8B20B1F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 07:36:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8F73628311A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 07:37:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E652A4F1FB;
-	Fri,  8 Mar 2024 07:36:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B0214F5F8;
+	Fri,  8 Mar 2024 07:37:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="DqWmuoxK"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hVenKu+8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 970B74EB49;
-	Fri,  8 Mar 2024 07:36:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 177E14EB49
+	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 07:37:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709883407; cv=none; b=oP+A6Vl+Gd6ReM36ZPkRLyV2AuHqsAcHLPdOitJSPpx/3r+FKIGHLpm3ApDKebTzhR6EaWK/UfLg4OneNV/58YGSGGGE6n/ctD2G2i9aq3kQ0J5RPvgqdK0Tkm2NH5/rBguWpifM9/fPjqFrjbyXdNtoeIae8v3SG4eUGGW1NSY=
+	t=1709883472; cv=none; b=oomFJbOR60p4L4dLSyJilKnH3iCmdhkezLqAR1S+pUmfxr/AJk+y4WfF9HSA4ZCdQ6QlYAMfzmD7cGDCd0GR7oi+gPihc2MX7OZmuJj9vDF5gcwTuedwmmJcZvj9p3ijgl6qkoQ5fPNw2H36I8DGAwU3mSBCzMlvTjmuxNZykSo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709883407; c=relaxed/simple;
-	bh=ZiDn02LUfgV+/6Ykmt+R1wh4EgqPqJ+M2GikjKwMG+4=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=l2p+v2f8kTxz1NFHEnC3aiELsm64SlkuxiUKO/NYAvwT5GmfwRDR1r9Va9vlJ6jNVibrU74ClXLb1faMnrzoH7xhLlA4j4275knL1x44wGZGBRoe1tGYN/MnrLADfG+JMgaVrmVUp5b024zKaQZYX/uDnR1+sUIIwLLMMBfNkNA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=DqWmuoxK; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 07F1920007;
-	Fri,  8 Mar 2024 07:36:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709883401;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 in-reply-to:in-reply-to:references:references;
-	bh=zGSqe7AdSDq/rJELatqXvjh2l9o5p+96qyY9cUtuWlw=;
-	b=DqWmuoxK2s2FgZggo+7Fb+2aCTBDGG26G0JrfQh4B+IpyGom4N8b/iHlAFgV0XvbuXPgS2
-	A/nThYrBp2kX2h3tcTQ3iBXWi1EjXh3f/Quu9oKQGC2EXlptBTaZo3Sg/hPzzxA+K7EH48
-	ZwOgvj/m9z87BaLl2ySAxP45teiKUEbKgBGnojsdEKJw7wofXlUaUbyuNx2Tknv97J02uC
-	XLa421ACTtXtvuCAL9Fa7kuzijn6vGxHhXb9innAJFDOYeyVz8N7V/a79gK7MTgfaq3kKQ
-	p1Z11i73iycAH4WmBFFUhhspQSAfmAW6ryMHpC1F5b+64G3CKFdzJTxSpP5CUA==
-From: Gregory CLEMENT <gregory.clement@bootlin.com>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>, andy@kernel.org,
- geert@linux-m68k.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, andrew@lunn.ch,
- sebastian.hesselbarth@gmail.com, lee@kernel.org
-Cc: linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, Chris
- Packham <chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH v5 3/3] ARM: dts: marvell: Add 7-segment LED display on
- x530
-In-Reply-To: <20240306235021.976083-4-chris.packham@alliedtelesis.co.nz>
-References: <20240306235021.976083-1-chris.packham@alliedtelesis.co.nz>
- <20240306235021.976083-4-chris.packham@alliedtelesis.co.nz>
-Date: Fri, 08 Mar 2024 08:36:40 +0100
-Message-ID: <87edclgoon.fsf@BL-laptop>
+	s=arc-20240116; t=1709883472; c=relaxed/simple;
+	bh=wBiR39uzYKc4tZlVThLdr1KErfH2j2DZYVoFRU26Mew=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=vC+JO9Wdusuf8damKCVsjzFd7p2R5PbdTcnqktd0PQjKOaFF6VWmfE3UxY8y/Ftx35PKrXJi9+T83do0uabZryzb+CTJ4H1IR2YM2vHYNAVwSDwt0v2HLIJWIYba1Up7GS3ysvqCAn2DZ3pEvn+YBoTN37A4n/J5/wMK5+RpR4I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hVenKu+8; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-4130ff11782so3793585e9.2
+        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 23:37:49 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709883468; x=1710488268; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OhiQMXQwl+cGnIcsRqQff0Uowg+nqWN2zmSceUCwYy0=;
+        b=hVenKu+8BkDkhrH/FqyvIr5q7QSMi/FaUjCpHbdjRPz79fq7mcnyEu1m9P3YEHImzF
+         T+ykQC2GTOUhfnYP/fxwbTUHVYt8+2YJUip/SMnpxtL8bX90o4WcXAepvIKMTpdVPsyp
+         8H5E3PqNzAX9l5hXocgp+3LkAxrzJA4bkNIgPU1hoCFMnW0hDXyHOH6jv9Y2t6aVXweX
+         EKRd36QNtX0sY9CE6iE/KUBNPMkugopHv+BP3vychi7JhKjkoqFQzOqOypi8urh8vO+I
+         Am0LI3bPKxNgRjMmk9an93tt6vvr7RIC+kgahqrK2ZVGze0fcMB/zS3zr4bmnl4owB11
+         9fnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709883468; x=1710488268;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OhiQMXQwl+cGnIcsRqQff0Uowg+nqWN2zmSceUCwYy0=;
+        b=LQ1k0Ogr0uiTBKAZYLEOEQOM2aqYsVhpjixK2du7N9fqpjlQos07myE2Wf8VADr1m7
+         1OLv6kZ6TqqHJDV0aOMNmdtueYX0oqCMcwclDNQ2uCXS+pfn4DB5pQI45jb2gn/kK+Br
+         rcgjiQvySRkL+IpIDmJDhEYExhSy5mxPhogeAiydUT+s2ysOynQQ410sCDT2bj7Vbppc
+         fIkJMXuCIT49khKPovaGDKZj0ZcBaqVkI2QUcJzbi1HlwSTwa1cAQs1lNMcbuuKMARuF
+         AmGdxUM5og7DQe9CPfk8g1qCddp27b+vSTrWooEBREWl9bLmaq3ZTxx84eSAEKWvu6b5
+         o9Dw==
+X-Forwarded-Encrypted: i=1; AJvYcCW/IWoMyXHHKUzQay0Q9CJhllBV/W5ty6F0aHppUO5wdry8phFW332DZB20rqTeqi2BUmNGuMTmEEDVymRENI2NPNdHS8KxVVN94A==
+X-Gm-Message-State: AOJu0YwSMSBeKrPEyKXYgzIqw5rF9Oirhnw/zH6rdBv7Jxq2cJDmIGND
+	2Try/AlB6hKA1Xf0i0LMETbgcGYZ6UqTJlrcmYNwOD7AmVva9rxsvpB4jewjBls=
+X-Google-Smtp-Source: AGHT+IHeM3AFJo8jH68+WgOn5Bb5yw3pborl2F1ryp8Z37+rRnPpazNBL9tDmD3xUUjWGzp5w/3qaA==
+X-Received: by 2002:a05:600c:4fd3:b0:412:fa5f:7f85 with SMTP id o19-20020a05600c4fd300b00412fa5f7f85mr4665433wmq.19.1709883468522;
+        Thu, 07 Mar 2024 23:37:48 -0800 (PST)
+Received: from [192.168.2.107] ([79.115.63.35])
+        by smtp.gmail.com with ESMTPSA id b6-20020a05600c4e0600b004131b337c82sm375764wmq.31.2024.03.07.23.37.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 07 Mar 2024 23:37:48 -0800 (PST)
+Message-ID: <4124c401-512e-469c-9080-2f2fa5d548b7@linaro.org>
+Date: Fri, 8 Mar 2024 07:37:46 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-GND-Sasl: gregory.clement@bootlin.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: exynos: gs101: move serial_0 pinctrl-0/names
+ to dtsi
+Content-Language: en-US
+To: =?UTF-8?Q?Andr=C3=A9_Draszik?= <andre.draszik@linaro.org>,
+ peter.griffin@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc: alim.akhtar@samsung.com, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, willmcvicker@google.com,
+ kernel-team@android.com
+References: <20240307135248.162752-1-tudor.ambarus@linaro.org>
+ <3acffe042bde796dc47d4bdcb339f0081a05193c.camel@linaro.org>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <3acffe042bde796dc47d4bdcb339f0081a05193c.camel@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Chris Packham <chris.packham@alliedtelesis.co.nz> writes:
 
-> The Allied Telesis x530 products have a 7-segment LED display which is
-> used for node identification when the devices are stacked. Represent
-> this as a gpio-7-segment device.
->
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 
-Acked-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+On 3/7/24 14:00, André Draszik wrote:
+> On Thu, 2024-03-07 at 13:52 +0000, Tudor Ambarus wrote:
+>> The pinctrl nodes are coming from the shared gs101-pinctrl.dtsi,
+>> thus the pinctrl-0/names shall stay in dtsi. Move them.
+>>
+>> Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+>> ---
+>>  arch/arm64/boot/dts/exynos/google/gs101-oriole.dts | 2 --
+>>  arch/arm64/boot/dts/exynos/google/gs101.dtsi       | 2 ++
+>>  2 files changed, 2 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+>> index 6ccade2c8cb4..9dc0f47ef646 100644
+>> --- a/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+>> +++ b/arch/arm64/boot/dts/exynos/google/gs101-oriole.dts
+>> @@ -103,8 +103,6 @@ key_power: key-power-pins {
+>>  };
+>>  
+>>  &serial_0 {
+>> -	pinctrl-names = "default";
+>> -	pinctrl-0 = <&uart0_bus>;
+>>  	status = "okay";
+>>  };
+>>  
+>> diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+>> index 55e6bcb3689e..ee65ed9d2cfc 100644
+>> --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+>> +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
+>> @@ -421,6 +421,8 @@ serial_0: serial@10a00000 {
+>>  				reg = <0x10a00000 0xc0>;
+>>  				interrupts = <GIC_SPI 634
+>>  					      IRQ_TYPE_LEVEL_HIGH 0>;
+>> +				pinctrl-names = "default";
+>> +				pinctrl-0 = <&uart0_bus>;
+> 
+> The preferred order for these is pinctrl-0 pinctrl-names (and I thought
+> I had sent a patch for all such issues in gs101, but looks like I
+> didn't...)
 
-Normally, this patch should be taken in mvebu and then merged by
-arm-soc. However, I haven't seen any other patch touching this file (so
-no risk of merge conflict) and I think it's too late for me to make a
-new pull request to arm-soc. So I'm not against it being taken with the
-rest of the patches. However, I think it would be a good idea to see
-what Arnd thinks about it.
+Okay, I'll send v2 and change the order in the same patch.
 
-Gregory
-
-> ---
->
-> Notes:
->     Changes in v5:
->     - group GPIO specifiers
->     Changes in v4:
->     - Use correct compatible name in commit message
->     Changes in v3:
->     - Use compatible = "gpio-7-segment" as suggested by Rob
->     Changes in v2:
->     - Use compatible = "generic-gpio-7seg" to keep checkpatch.pl happy
->
->  arch/arm/boot/dts/marvell/armada-385-atl-x530.dts | 13 ++++++++++++-
->  1 file changed, 12 insertions(+), 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts b/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
-> index 5a9ab8410b7b..2fb7304039be 100644
-> --- a/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
-> +++ b/arch/arm/boot/dts/marvell/armada-385-atl-x530.dts
-> @@ -43,6 +43,17 @@ uart0: serial@12000 {
->  			};
->  		};
->  	};
-> +
-> +	led-7seg {
-> +		compatible = "gpio-7-segment";
-> +		segment-gpios = <&led_7seg_gpio 0 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 1 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 2 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 3 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 4 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 5 GPIO_ACTIVE_LOW>,
-> +				<&led_7seg_gpio 6 GPIO_ACTIVE_LOW>;
-> +	};
->  };
->  
->  &pciec {
-> @@ -149,7 +160,7 @@ i2c@3 {
->  			#size-cells = <0>;
->  			reg = <3>;
->  
-> -			gpio@20 {
-> +			led_7seg_gpio: gpio@20 {
->  				compatible = "nxp,pca9554";
->  				gpio-controller;
->  				#gpio-cells = <2>;
-> -- 
-> 2.43.2
->
-
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+> 
+> Once addressed:
+> 
+> Reviewed-by: André Draszik <andre.draszik@linaro.org>
+> 
+> Cheers,
+> Andre'
+> 
 
