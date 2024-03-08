@@ -1,61 +1,56 @@
-Return-Path: <devicetree+bounces-49387-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49388-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id B85A187641F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:15:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1AE4387642F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:21:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45E82B20FB5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:15:06 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C68CF28516D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:21:39 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id F122E56746;
-	Fri,  8 Mar 2024 12:14:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3173856756;
+	Fri,  8 Mar 2024 12:21:37 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3C8D253818;
-	Fri,  8 Mar 2024 12:14:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.7
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 211FF56459;
+	Fri,  8 Mar 2024 12:21:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709900099; cv=none; b=haikQJsIcwzTBbbHEoLaTAPGEF1AFgufd2lWOU4QlEL6zGT6E/smaOdKfLs1ePgzn2OLNlS5+lcb1Dcnb24WnszmDjQdWIpkndeCaWeLGdqu49uJge+tHdLvboyAbYJhZxGYB6DmqXUv0oXaO9A/JFSdlkoRpepsAzbNoHyEF7U=
+	t=1709900497; cv=none; b=B4rnKn9JonfmLKa5MegrxyK1ZL2zehNQMycEPzqcSajeTSHzhbsdLD2fSLjsDItEYaRgTe1mKB6HnfQNNpYtpJrAyWwMTKJcq+bc887DuN3EfFcl2DZxvYFO5AUEU8RGCQCFV5r3hGdeM4DO0ANOQFlB3YLA9OeqPcGEJaDxbWo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709900099; c=relaxed/simple;
-	bh=c4Cwm7ifvWc4RvPOyc1rd7U9MyD/SxSzIcTCM4uUkCk=;
+	s=arc-20240116; t=1709900497; c=relaxed/simple;
+	bh=b9yBLPt4aHoHJIYns7zSseeiClwRXy+lWb/eKwahSKM=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=QwLKA/+jc19x7Z5RqdT7C/iuSRbZjdSfcZizYmt6wd1D4tpBasWvgVg5ZfP/XpVdBvn2SSqIc+pb+1E+tJtb//jt7Bznp+Dlgh0xYXCRy4XRbVu1NYmPpciELbnkijwj/4RSg0PJpHwbpeaVCN8wYAuphdiopftsVMOK0umdhp4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=fail smtp.mailfrom=kernel.org; arc=none smtp.client-ip=192.198.163.7
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=kernel.org
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="30058511"
-X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; 
-   d="scan'208";a="30058511"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2024 04:14:57 -0800
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11006"; a="914245050"
-X-IronPort-AV: E=Sophos;i="6.07,109,1708416000"; 
-   d="scan'208";a="914245050"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Mar 2024 04:14:54 -0800
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andy@kernel.org>)
-	id 1riZ7j-0000000Aprm-2vuP;
-	Fri, 08 Mar 2024 14:14:51 +0200
-Date: Fri, 8 Mar 2024 14:14:51 +0200
-From: Andy Shevchenko <andy@kernel.org>
-To: Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc: geert@linux-m68k.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	andrew@lunn.ch, gregory.clement@bootlin.com,
-	sebastian.hesselbarth@gmail.com, lee@kernel.org,
-	linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 0/3] auxdisplay: 7-segment LED display
-Message-ID: <ZesBO16D21b6sXLe@smile.fi.intel.com>
-References: <20240307195053.1320538-1-chris.packham@alliedtelesis.co.nz>
+	 Content-Type:Content-Disposition:In-Reply-To; b=AuMKQ74KSs87SGnVvYabYl9/gXBL3VcvcNmOifm+J4NB8V41UGhHsOAKwWO1TtUVMH0opX0NKyF2I834+xkL6YLBw/VDbuID+H81M1ZX3XUuqKP+jt7uXUk5q+8O8BvzP+aiMAX7Z4ZKK7Dn10QwfJIpAWwVyK9P9wd7m5RehIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9E8CFC15;
+	Fri,  8 Mar 2024 04:22:09 -0800 (PST)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BFD4B3F73F;
+	Fri,  8 Mar 2024 04:21:30 -0800 (PST)
+Date: Fri, 8 Mar 2024 12:21:28 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: abdellatif.elkhlifi@arm.com
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
+	Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH 2/3] arm64: dts: Add corstone1000 external system device
+ node
+Message-ID: <ZesCyIpRgi1EkixF@bogus>
+References: <20240301164227.339208-1-abdellatif.elkhlifi@arm.com>
+ <20240301164227.339208-3-abdellatif.elkhlifi@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +59,48 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240307195053.1320538-1-chris.packham@alliedtelesis.co.nz>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20240301164227.339208-3-abdellatif.elkhlifi@arm.com>
 
-On Fri, Mar 08, 2024 at 08:50:50AM +1300, Chris Packham wrote:
-> This series adds a driver for a 7-segment LED display.
+On Fri, Mar 01, 2024 at 04:42:26PM +0000, abdellatif.elkhlifi@arm.com wrote:
+> From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+> 
+> add device tree node for the external system core in Corstone-1000
+> 
+> Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+> ---
+>  arch/arm64/boot/dts/arm/corstone1000.dtsi | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/arm/corstone1000.dtsi b/arch/arm64/boot/dts/arm/corstone1000.dtsi
+> index 6ad7829f9e28..67df642363e9 100644
+> --- a/arch/arm64/boot/dts/arm/corstone1000.dtsi
+> +++ b/arch/arm64/boot/dts/arm/corstone1000.dtsi
+> @@ -1,6 +1,6 @@
+>  // SPDX-License-Identifier: GPL-2.0 OR MIT
+>  /*
+> - * Copyright (c) 2022, Arm Limited. All rights reserved.
+> + * Copyright 2022, 2024, Arm Limited and/or its affiliates <open-source-office@arm.com>
+>   * Copyright (c) 2022, Linaro Limited. All rights reserved.
+>   *
+>   */
+> @@ -157,5 +157,13 @@ mhu_seh1: mailbox@1b830000 {
+>  			secure-status = "okay";     /* secure-world-only */
+>  			status = "disabled";
+>  		};
+> +
+> +		extsys0: remoteproc@1a010310 {
+> +			compatible = "arm,corstone1000-extsys";
+> +			reg = <0x1a010310 0x4>,
+> +				<0x1a010314 0X4>;
 
-You were too fast to miss some tags, but they are related to the last patch
-which according to Arnd's suggestion I'm not going to take right now.
 
-So, the first two on their way, thanks!
+As per [1], this is just a few registers within the 64kB block.
+Not sure if it should be represented as a whole on just couple
+of registers like this for reset.
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Regards,
+Sudeep
 
-
+[1] https://developer.arm.com/documentation/101418/0100/Programmers-model/Register-descriptions/Host-Base-System-Control-register-summary
 
