@@ -1,118 +1,86 @@
-Return-Path: <devicetree+bounces-49335-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49336-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A8287606C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 09:57:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93051876087
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 10:01:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7B70E282B55
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 08:57:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C47B11C22829
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 09:00:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3CA39524CA;
-	Fri,  8 Mar 2024 08:57:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 190CC53388;
+	Fri,  8 Mar 2024 09:00:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="fSSGiIhj"
+	dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b="fbIRTiHB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay1-d.mail.gandi.net (relay1-d.mail.gandi.net [217.70.183.193])
+Received: from mail5.25mail.st (mail5.25mail.st [74.50.62.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D2F4DCA78;
-	Fri,  8 Mar 2024 08:57:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.193
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6D18853377;
+	Fri,  8 Mar 2024 09:00:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=74.50.62.9
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709888266; cv=none; b=kHLjeExHCwntr0r21LX/1Rju1gnNEiCwvcAplwvwOik1QarbgFwgzTEKV72bC3yZrn8jqpoQsRsq/9Wy0RxrWrTWdxz7Eg94Ld+RDEWDe6ADSExpA3myzAjM4LqUvylUMOC7hoy3aeutIGOz/9NQs9sCUPmzGNjEoPZvI3WskuA=
+	t=1709888449; cv=none; b=dTAYLKfTjeYv1iZz6DQB5fgZUgN/vggBi/OH4E/ImzhXEZXuUIrgoWu2BOyopofW/gsEIQespNvGksOIANT3FkbVWlZFGFv/pXyhFlabyOEQIq0ArfHbLnylGpxqOtCfwkFKabrJob6qc9ZBS9SbtkaZmnmUUbTquLvnplsVcpU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709888266; c=relaxed/simple;
-	bh=uJ3EyYuTfpSTSeJvokr2q70eVIcyAYGuvsrPShpdwLk=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=AZEHgHB44XTx9/E95N6crSAygnvzRIGRDAx1aYnLluSLKW8Py/r+/8eZf9MdByx86ZVPeC7yCi+oO/yOZ7+SzYuXkC7ivYiJ7sA+jxvW0jxMfOxQqyk6n60zXEdpCmCmZcpuBgnY4SyxnBDi2hYftFk5TPFLIecwvfVA5LCXIWw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=fSSGiIhj; arc=none smtp.client-ip=217.70.183.193
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 261D5240012;
-	Fri,  8 Mar 2024 08:57:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709888260;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=6wpE0Hg9jSaOaaAHVX5lz1UQTKT/gbia9ZxM7ce23zk=;
-	b=fSSGiIhjdhlTXL7ypsCX8Q/rGBtXrmUC+3UmYox8nwCoFM+QtNq05DuKpwfjwAgwjDeQ87
-	+dMbqmsTqmv9bjhkIPw9lxpasMEL+liUQNJiyBxSqUmQPn6N8D3J6H3pRZTYZR16dDW/i3
-	DyzzmTr6FT60wlkCts2xU9tP5muwJW0cJ9ir5wCQzVcqdjmWNdiPt4WFI4frZq99DYk5iL
-	PANweUx4Sw3BBo8Hw9VVbo3IAE+k8kTSxQ99WCJUs1dxkCVHK6oHdkfzh44hEPN2xLxQCi
-	yAonmeerihXrGFRu/4e0+DKdlgKHApehOnlARjjGme2WUhMTfqZzaVO2P1rr5Q==
+	s=arc-20240116; t=1709888449; c=relaxed/simple;
+	bh=4sSenehhaYaQsoE2KHPabtFy95+KqecPE4OZ8yBlm+k=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=RtuFJy1DElaJVvIuc6rJwEgevw0R3X683VZNs3U9BY+GqNrp7H2pqtWznroofjxy+qb4vgWnjEcYgWKXB/BFbFF2sfIKPQNLNsQUKW5Ri3UdYojZa8zH+U+Whwl86mzpOcuiIt5T2H+pE/Xva28GdfO0lWFFx2NOk0LBjRlmVMg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com; spf=fail smtp.mailfrom=atomide.com; dkim=pass (2048-bit key) header.d=atomide.com header.i=@atomide.com header.b=fbIRTiHB; arc=none smtp.client-ip=74.50.62.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=atomide.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=atomide.com
+Received: from localhost (91-158-86-216.elisa-laajakaista.fi [91.158.86.216])
+	by mail5.25mail.st (Postfix) with ESMTPSA id 9EC7060852;
+	Fri,  8 Mar 2024 09:00:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=atomide.com;
+	s=25mailst; t=1709888446;
+	bh=4sSenehhaYaQsoE2KHPabtFy95+KqecPE4OZ8yBlm+k=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=fbIRTiHBqIxu2UsIl/X1cpC0eXHI8mPMSYhy6aUYC66EyFV7d/nhnNufVN+yuv2WF
+	 my9ed/KRh9WJTwkD3hUENH1ET82XYIsbkHWR0fu6J9kBFu/utjl8wHgnqnCgiOtYFy
+	 h0CH1EtZkXD7BCZFQZzN8mDTPVayzHDqfgsM1pUi/qZTLPjdVG9Kg2RYa/X2PfyyUx
+	 1O/nKk1XW1Ddy3LEGurjFpjLFmsOYPvONfmk9E3dVDU1xc9I7ZRhQeoPDCg+1zLD41
+	 6az18mIDfe82tJnICcRQeWu+0DjhUOIq9sbNG+m4NkD/nCXrdtSPeiVJdnKtXqy2k3
+	 SPM4t4I0FZJlw==
+Date: Fri, 8 Mar 2024 11:00:21 +0200
+From: Tony Lindgren <tony@atomide.com>
+To: Andreas Kemnade <andreas@kemnade.info>
+Cc: =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Tero Kristo <kristo@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, linux-omap@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 0/4] Use reg instead of ti,bit-shift for clksel
+Message-ID: <20240308090021.GL52537@atomide.com>
+References: <20240213105730.5287-1-tony@atomide.com>
+ <20240214001140.2abe0d80@aktux>
+ <20240214054044.GK52537@atomide.com>
+ <20240229070626.GH52537@atomide.com>
+ <20240302201813.06fc09d7@aktux>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 08 Mar 2024 09:57:39 +0100
-Message-Id: <CZO8SUELNP4R.230VKX59UIHC8@bootlin.com>
-Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, "Gregory Clement"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Andi Shyti" <andi.shyti@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v3 03/11] i2c: nomadik: simplify IRQ masking logic
-X-Mailer: aerc 0.15.2
-References: <20240306-mbly-i2c-v3-0-605f866aa4ec@bootlin.com>
- <20240306-mbly-i2c-v3-3-605f866aa4ec@bootlin.com>
- <422szb2dtgnq56xznfqsqtqs3dai2jipnntrp6yb2og353whs7@g4ia5ynnmqu6>
-In-Reply-To: <422szb2dtgnq56xznfqsqtqs3dai2jipnntrp6yb2og353whs7@g4ia5ynnmqu6>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240302201813.06fc09d7@aktux>
 
-Hello,
+* Andreas Kemnade <andreas@kemnade.info> [240302 19:18]:
+> Tony Lindgren <tony@atomide.com> wrote:
+> > If you had some good idea in mind for the #address-cells = <2> for the
+> > remaining unconnected composite clocks maybe clarify it a bit.
+> > 
+> I was just wondering whether we could do reg = <register bit> then.
 
-On Fri Mar 8, 2024 at 12:01 AM CET, Andi Shyti wrote:
-> Hi Theo,
->
-> On Wed, Mar 06, 2024 at 06:59:23PM +0100, Th=C3=A9o Lebrun wrote:
-> > IRQ_MASK and I2C_CLEAR_ALL_INTS both mask available interrupts. IRQ_MAS=
-K
-> > removes top options (bits 29-31). I2C_CLEAR_ALL_INTS removes reserved
-> > options including top bits. Keep the latter.
-> >=20
-> > 31  29  27  25  23  21  19  17  15  13  11  09  07  05  03  01
-> >   30  28  26  24  22  20  18  16  14  12  10  08  06  04  02  00
-> > --- IRQ_MASK: --------------------------------------------------
-> >       1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
-> > 0 0 0
-> > --- I2C_CLEAR_ALL_INTS: ----------------------------------------
-> >       1     1 1       1 1 1 1 1                   1 1 1 1 1 1 1
-> > 0 0 0   0 0     0 0 0           0 0 0 0 0 0 0 0 0
-> >=20
-> > Notice I2C_CLEAR_ALL_INTS is more restrictive than IRQ_MASK.
-> >=20
-> > Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
->
-> You did answer my question in v2, thanks, Theo!
+Yeah sure nothing stopping us from doing that too if it helps :)
 
-Oops my mailer syntax is telling me that the lines starting with '---'
-might cause issue as it might mark the end of commit messages. I'll fix
-that in next revision. If it gets applied before that it should be
-checked that part of the message doesn't get lost.
+Regards,
 
-Thanks Andi,
-
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
+Tony
 
