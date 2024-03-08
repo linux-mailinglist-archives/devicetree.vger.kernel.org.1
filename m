@@ -1,106 +1,86 @@
-Return-Path: <devicetree+bounces-49388-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49389-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1AE4387642F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:21:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 66C4C87643E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:25:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C68CF28516D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:21:39 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6492FB22988
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:25:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3173856756;
-	Fri,  8 Mar 2024 12:21:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92CD75676E;
+	Fri,  8 Mar 2024 12:25:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="j2FEtCCw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 211FF56459;
-	Fri,  8 Mar 2024 12:21:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C4E4C84;
+	Fri,  8 Mar 2024 12:25:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709900497; cv=none; b=B4rnKn9JonfmLKa5MegrxyK1ZL2zehNQMycEPzqcSajeTSHzhbsdLD2fSLjsDItEYaRgTe1mKB6HnfQNNpYtpJrAyWwMTKJcq+bc887DuN3EfFcl2DZxvYFO5AUEU8RGCQCFV5r3hGdeM4DO0ANOQFlB3YLA9OeqPcGEJaDxbWo=
+	t=1709900744; cv=none; b=kOoV/tPDFeue748X0I7uk/mN2kns2TdGG6TsQuMHJ3VzroBOsBWFkzQZmvs0DKeDB6Y7vz/bhSlXV0pLwJeCj4j/OmAsleesIidJvMEV1WPEY6JiFUnQl1XykmF5xu7iW/RsyUy165+QKdlRtKEfXM6UiHY6RyB1sPKXW1GcaSQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709900497; c=relaxed/simple;
-	bh=b9yBLPt4aHoHJIYns7zSseeiClwRXy+lWb/eKwahSKM=;
+	s=arc-20240116; t=1709900744; c=relaxed/simple;
+	bh=8D8kuY3yd//sQlXmc6hr/rMSlVVWZ9oszjDcXmuV+T4=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AuMKQ74KSs87SGnVvYabYl9/gXBL3VcvcNmOifm+J4NB8V41UGhHsOAKwWO1TtUVMH0opX0NKyF2I834+xkL6YLBw/VDbuID+H81M1ZX3XUuqKP+jt7uXUk5q+8O8BvzP+aiMAX7Z4ZKK7Dn10QwfJIpAWwVyK9P9wd7m5RehIs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9E8CFC15;
-	Fri,  8 Mar 2024 04:22:09 -0800 (PST)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BFD4B3F73F;
-	Fri,  8 Mar 2024 04:21:30 -0800 (PST)
-Date: Fri, 8 Mar 2024 12:21:28 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: abdellatif.elkhlifi@arm.com
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Mathieu Poirier <mathieu.poirier@linaro.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
-	Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 2/3] arm64: dts: Add corstone1000 external system device
- node
-Message-ID: <ZesCyIpRgi1EkixF@bogus>
-References: <20240301164227.339208-1-abdellatif.elkhlifi@arm.com>
- <20240301164227.339208-3-abdellatif.elkhlifi@arm.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=I1r+tt4cyV1PD2aW5jou5p+qN7rQtFFoO90kF5J2JH3B907CddRfKGMc1keSTpkli4/K0jngL6coQSfLgXAVd7sG8cWFRM1VoT32tJiafQCo5dIVaqvmHWhBlXlyStp1esAMUMa67gDzegRjsmXNabCPXNa0+PhR8ndztB589nA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=j2FEtCCw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 43998C433C7;
+	Fri,  8 Mar 2024 12:25:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709900744;
+	bh=8D8kuY3yd//sQlXmc6hr/rMSlVVWZ9oszjDcXmuV+T4=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=j2FEtCCw6oPjlepHRFrJiI5QTlCAGZEGLwjRu55agGY+tGVExYhS6E1BCzXglpHtV
+	 fW/JUq1CIt6YSAWBVlTicj1mvqDcGgF6nz0ZF1ucYUtO8WKLbWwILyKIkbVFQj6pcI
+	 VzrPy72fKG0ZaCove/oP1yrBQc+wfItD9aifm42tRM6exVmkXYRYb7luGDk07/cizu
+	 YxwCxITSvO5oMukm6S/uV69EmeyZceXqUQMoZELE/suw5irk+3LIRz9tFQ8oFAL2dD
+	 WnOPMF4iQtnqQSr8+hV2LT+J53OZg8HiXAP81Q7lDHcP/r4jIX6SkqJxPcx/eX3cei
+	 xSN9W2NB8K5uw==
+Date: Fri, 8 Mar 2024 13:25:40 +0100
+From: Andi Shyti <andi.shyti@kernel.org>
+To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
+	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
+	Gregory Clement <gregory.clement@bootlin.com>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH v3 10/11] MIPS: mobileye: eyeq5: add 5 I2C controller
+ nodes
+Message-ID: <dizc2zenbfspugjj7g7fdahjjlr4iiltcozzjmnqmjcnvqiotu@ziyqywzlugx6>
+References: <20240306-mbly-i2c-v3-0-605f866aa4ec@bootlin.com>
+ <20240306-mbly-i2c-v3-10-605f866aa4ec@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-15
 Content-Disposition: inline
-In-Reply-To: <20240301164227.339208-3-abdellatif.elkhlifi@arm.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240306-mbly-i2c-v3-10-605f866aa4ec@bootlin.com>
 
-On Fri, Mar 01, 2024 at 04:42:26PM +0000, abdellatif.elkhlifi@arm.com wrote:
-> From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+Hi Theo,
+
+On Wed, Mar 06, 2024 at 06:59:30PM +0100, Théo Lebrun wrote:
+> Add the SoC I2C controller nodes to the platform devicetree. Use a
+> default bus frequency of 400kHz. They are AMBA devices that are matched
+> on PeriphID.
 > 
-> add device tree node for the external system core in Corstone-1000
+> Set transfer timeout to 10ms instead of Linux's default of 200ms.
 > 
-> Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-> ---
->  arch/arm64/boot/dts/arm/corstone1000.dtsi | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/arm/corstone1000.dtsi b/arch/arm64/boot/dts/arm/corstone1000.dtsi
-> index 6ad7829f9e28..67df642363e9 100644
-> --- a/arch/arm64/boot/dts/arm/corstone1000.dtsi
-> +++ b/arch/arm64/boot/dts/arm/corstone1000.dtsi
-> @@ -1,6 +1,6 @@
->  // SPDX-License-Identifier: GPL-2.0 OR MIT
->  /*
-> - * Copyright (c) 2022, Arm Limited. All rights reserved.
-> + * Copyright 2022, 2024, Arm Limited and/or its affiliates <open-source-office@arm.com>
->   * Copyright (c) 2022, Linaro Limited. All rights reserved.
->   *
->   */
-> @@ -157,5 +157,13 @@ mhu_seh1: mailbox@1b830000 {
->  			secure-status = "okay";     /* secure-world-only */
->  			status = "disabled";
->  		};
-> +
-> +		extsys0: remoteproc@1a010310 {
-> +			compatible = "arm,corstone1000-extsys";
-> +			reg = <0x1a010310 0x4>,
-> +				<0x1a010314 0X4>;
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
 
+Acked-by: Andi Shyti <andi.shyti@kernel.org>
 
-As per [1], this is just a few registers within the 64kB block.
-Not sure if it should be represented as a whole on just couple
-of registers like this for reset.
-
--- 
-Regards,
-Sudeep
-
-[1] https://developer.arm.com/documentation/101418/0100/Programmers-model/Register-descriptions/Host-Base-System-Control-register-summary
+Thanks,
+Andi
 
