@@ -1,154 +1,143 @@
-Return-Path: <devicetree+bounces-49524-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49526-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4134876CB7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 23:09:36 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE93E876CF3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 23:16:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 61BBC1F21B7C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 22:09:36 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 385D1B20BCC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 22:16:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2839260888;
-	Fri,  8 Mar 2024 22:08:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456E45FDAD;
+	Fri,  8 Mar 2024 22:16:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xZYiFUk7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pEvl+ZDc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9209F604D3
-	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 22:08:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E51B5FB8B
+	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 22:16:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709935720; cv=none; b=hcAkQx1Xemp/mncTr/ot7l1r66c3q1rE+8NSd1ADUVKiY1gUUgTLOY+Cg3qB6xvyy2mWWTZmPGLZmkWru7sG0c94NfQlXSYL4be5tMKL4FXmDM/kSFaZ0IDJxlN5HthhYpI44QhrXnrSpGIyvrpSFiKKHXPzyGfNXLbmUgYz7xg=
+	t=1709936207; cv=none; b=ad5nQ4d+kReUGhoeVC+8MQQD1ClTrRX+xJcIpdWV58rOLQXgSJkYe0yP2pR0iVSCPdXCZG4bSiluT4bI4yN1CrPUFmYWy+51YIzL4uQU7fKsuI6hht2eY212LGMbEP1Jj2tsL6P4RDiAf3Z2LxS1fk0E8d5ADEy5QmrrgLjLOFg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709935720; c=relaxed/simple;
-	bh=5u9DxCgppmXza0/wpVNVHXJbUVr3KnjNCvIqClA8mBE=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=UMS8qud+0yOt5qVtZZMPvmpWIS1LoDr9LHSE6bsS0NXCgSqgDZnaM1PeJ42rFsTZayH5A8uFQc//yPkOEkcA/0AGtxaT9NSglTOOtEW9vkroi/buFMY1kgRkLm3a8thjseHVG63VI/gDQalKjbyeDjTvJsfAGh+BWMMyTHCemnk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xZYiFUk7; arc=none smtp.client-ip=209.85.167.43
+	s=arc-20240116; t=1709936207; c=relaxed/simple;
+	bh=3WW0T20esXbPOV4mKyfxQZFN7v0CB7rUWIid/qvBbzA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=V/s0eqTWem0lV2iSK0zDjjFLqrxsT1QIMCnqgxyamk5acvYW6vU60XZxBCvwTWUJ3l5Mxyjus8apGlXmB5MPXJ+9n6tVYSbnbapg9VHzHtnuc3Wyz9E8xxAuXzC+Llj8JhTA1wJdV+Om3DUysqQDG5JGwI3ilOAUFgDkp8/rs8Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pEvl+ZDc; arc=none smtp.client-ip=209.85.208.173
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-512f54fc2dbso2413018e87.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 14:08:37 -0800 (PST)
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d288bac3caso16431591fa.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 14:16:45 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709935716; x=1710540516; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=xiv70EIyoAolaEKbYPrfg91si2P2mKJ8bXqLlaDWuLk=;
-        b=xZYiFUk7ESggSMK9Sx+A51BmjSYJAgC+SsP8P5G9WkoXKuCNwtKOOWh5r6u13+M70C
-         jy2oGtMU1FxXVeYs5E4iKxdg28s7qtJleSvxgKpsfJoio3XIKnCIs0Pdz9f/IxZdyGm1
-         YS2h1dDlvatZR7wxeTLltlMqtBs6yiuhkbPcPVfLPq2xGVrF+aGh1imnLPMtu0saOlUT
-         9GJ+nzqrkRR8QeVTKdIJbkjTYe4H1GadJ0iTAronPVZ/yW5/WEB7TlY3RnE2vF1XnO7L
-         u5Z/1SNhKtREVZEV/70NTTbpV9zlCd7lTSlOXgpQnauiEKSaZhIAh1LGuKjllvLwSUqa
-         lRgg==
+        d=linaro.org; s=google; t=1709936203; x=1710541003; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=M6WGaze6LMAlVEXi3gns02EuthFsVIHKV8ef7UH1OcY=;
+        b=pEvl+ZDcfl3XdByzsZ8XmwzPIVGLwyuxM4NTxIyyefgOVfpfyyiavbhExyeaZl4cPt
+         eY8sJSgKKQSg6RXhlS+glClSqouinLjOPx1o8IDqXwMqT63pNYoQUH4iH4JawB5grFfv
+         WQVaRQGGLUi0rKMa7tKZOk1gQXuEmOcMeO7yXoCwnEv4bcMl5DD8DjL3d8VIvBok1m7J
+         L7pK8Un2gpw0/vI4ii4C4nhgc2ol9bwkr/dSvz5dbYmonMPJHImirBXc3zYcZHjxVILb
+         VcUF2CwZVgTlhnB3tVbsoLk6L6WpE4FpqQbbqPCBjisRjB8P0twULjn7wO/FdpjGQd80
+         0TEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709935716; x=1710540516;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=xiv70EIyoAolaEKbYPrfg91si2P2mKJ8bXqLlaDWuLk=;
-        b=iOyA7XAKyOr+Fnce2ZxnfJP/VQnYPt0E4pa9dsV2zNXqgMUerfwBTP5ambgRl07lRd
-         9WGAENmAxMxFsXcCHFmXFSZ2GC5Qiy3EYIbgVK4xzC2d9l4cN6HiJs4+4rQK2aphrWXw
-         iQLjViE5kVNtFHo8TakSjzlqIa2nSpbuyAZD4zWV98qkKUiwMvlWHKHIA/KzqAKCPAHB
-         iBZsUpGDfvsMMWF6EJCvdVAsxUCfvKpJVg418xCHuQ/9yxzrORI1VB1Zp9nvOEODrXT3
-         97R4i8GT6+h6UAq3zucT64+KzLNuKqqGl+/xtnwfZr1wU3oGBim8mVreaC7Nu508a8h3
-         NTPA==
-X-Forwarded-Encrypted: i=1; AJvYcCV5C1yUMQR3lrw7femOy8ALXE0R7LzEchndWpf1emEQNUcXk+KBhkHfMh/oaFiW9zodEpvqQS7IvmZiakYTGCxEPKhcCi44UP1iFQ==
-X-Gm-Message-State: AOJu0YyTZRY/E2IaholT1ptzwDNWznVGFBn6y8QpQJx9Tr89iYc2+c4x
-	boYY3QvMpnTydXF+Ca8m00KYR2R+NDdNfpis+L99+ToE9KPGqkMSCJAJlHwOvxY=
-X-Google-Smtp-Source: AGHT+IFQ+WmVI2GU3PDAyIWW/rk8kRwoJTIYLIYiPVn8TW0QHNcwRGtUVzrQ9MZ2VZqtjgmsCbLLOQ==
-X-Received: by 2002:ac2:54ad:0:b0:513:5eea:2942 with SMTP id w13-20020ac254ad000000b005135eea2942mr199912lfk.37.1709935716060;
-        Fri, 08 Mar 2024 14:08:36 -0800 (PST)
-Received: from [10.167.154.1] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id a14-20020a056512020e00b005130ff68b87sm78241lfo.109.2024.03.08.14.08.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Mar 2024 14:08:35 -0800 (PST)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Fri, 08 Mar 2024 23:08:22 +0100
-Subject: [PATCH 3/3] arm64: dts: qcom: qcm2290: Add LMH node
+        d=1e100.net; s=20230601; t=1709936203; x=1710541003;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=M6WGaze6LMAlVEXi3gns02EuthFsVIHKV8ef7UH1OcY=;
+        b=ZPJ9QJj0yUknaSIVTitTb31AawMx/TRp3tuvmV2UVp8R8tB8UsJKYRnJ35KcR9UpeY
+         hyO4NaXIFQUMrDP1blQaRp8xPhSYWZdClKMWAUE2VCAHziGedJxJN+OnPIRspPN6zZTr
+         A+XpEZbEne/eUAA8koob780vpvd318C8hFaqFfXXw/9al/5mEKFABz4zCmS0lCM9+gL9
+         4e1kBeIw+uKY5/RyoMPZUk7bCq+QGMZzMb35RRYvROEweraqrnWE9hKD5QROCgIliJKM
+         jHHWN5q/BmmjaFCTvS3VYZl8ri8ekMljL4Uq2OKHHu4x1jV2rq2C63LbDJp3E3382qdV
+         wdBA==
+X-Forwarded-Encrypted: i=1; AJvYcCXX6hoIbG5q/52cTP61dzypkU83Ryl8ff9qfsNRVmkXBmjZWC03YJcEytaio3tirub5PyJj+I5pRJB/EhC1ov68RIv+RcGHSgLvhQ==
+X-Gm-Message-State: AOJu0YxnOgyi/xuAC3iwdM2Bm9YO/pqtd3AlP7ljbQ+bvJuI7WA2OL2W
+	6cjbPVtuuMiOa57HsGhEXVcnfUna6wplaQUsb4yXnEcA4lp1LBvOs13XBvwJiWo=
+X-Google-Smtp-Source: AGHT+IG8oIdUaWDUUl+189MyLSxZd0dF1RBIwDfYyW6xHy+HlRtY9C6YLdmMrDpxClx/wBzmhEFyFA==
+X-Received: by 2002:a2e:a383:0:b0:2d4:d50:2358 with SMTP id r3-20020a2ea383000000b002d40d502358mr325274lje.18.1709936203563;
+        Fri, 08 Mar 2024 14:16:43 -0800 (PST)
+Received: from [192.168.16.246] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id a16-20020a2e8610000000b002d2904e959csm73954lji.5.2024.03.08.14.16.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 08 Mar 2024 14:16:43 -0800 (PST)
+Message-ID: <83ab8945-5c57-48a8-9dd3-cc525a92c973@linaro.org>
+Date: Fri, 8 Mar 2024 23:16:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] ARM: dts: qcom: Add support for Samsung Galaxy Tab
+ 4 8.0 Wi-Fi
+Content-Language: en-US
+To: Bryant Mairs <bryant@mai.rs>, Bjorn Andersson <andersson@kernel.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, luca@z3ntu.xyz
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ Linus Walleij <linus.walleij@linaro.org>
+References: <20240219214643.197116-1-bryant@mai.rs>
+ <20240219214643.197116-3-bryant@mai.rs>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
+ 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
+ izWDgYvmBE8=
+In-Reply-To: <20240219214643.197116-3-bryant@mai.rs>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20240308-topic-rb1_lmh-v1-3-50c60ffe1130@linaro.org>
-References: <20240308-topic-rb1_lmh-v1-0-50c60ffe1130@linaro.org>
-In-Reply-To: <20240308-topic-rb1_lmh-v1-0-50c60ffe1130@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thara Gopinath <thara.gopinath@gmail.com>, Amit Kucheria <amitk@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Loic Poulain <loic.poulain@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1709935708; l=1579;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=ghHIdqDBrllaHBUjq5ng+yJ/UVI9wsqAfkk77psz8Gs=;
- b=LUOzr91VCQTW00KvaZATYi/GF/2cy2hmUe9Cq/VCc+E+esGo0fpeEQPT2TldvkzYt3iZYpTp5
- bUqbWUfhqfMBZYK87/ENNWjJ1sk62z2PrRj0ky3lPq9v8f7zY31FG9L
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-From: Loic Poulain <loic.poulain@linaro.org>
+On 19.02.2024 22:43, Bryant Mairs wrote:
+> Add support for this tablet based on the MSM8226 SoC, codenamed
+> "milletwifi".
+> 
+> Acked-by: Linus Walleij <linus.walleij@linaro.org>
+> Reviewed-by: Luca Weiss <luca@z3ntu.xyz>
+> Signed-off-by: Bryant Mairs <bryant@mai.rs>
+> ---
 
-Add a node for the Limits Mangement Hardware to ensure it can be
-configured by the operating system.
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-[Konrad: add commit msg, rebase]
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/qcm2290.dtsi | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-index 89beac833d43..1aacad50e7fc 100644
---- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-@@ -1858,7 +1858,7 @@ cpufreq_hw: cpufreq@f521000 {
- 			compatible = "qcom,qcm2290-cpufreq-hw", "qcom,cpufreq-hw";
- 			reg = <0x0 0x0f521000 0x0 0x1000>;
- 			reg-names = "freq-domain0";
--			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts-extended = <&lmh_cluster 0>;
- 			interrupt-names = "dcvsh-irq-0";
- 			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&gcc GPLL0>;
- 			clock-names = "xo", "alternate";
-@@ -1866,6 +1866,18 @@ cpufreq_hw: cpufreq@f521000 {
- 			#freq-domain-cells = <1>;
- 			#clock-cells = <1>;
- 		};
-+
-+		lmh_cluster: lmh@f550800 {
-+			compatible = "qcom,qcm2290-lmh", "qcom,sm8150-lmh";
-+			reg = <0x0 0x0f550800 0x0 0x400>;
-+			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-+			cpus = <&CPU0>;
-+			qcom,lmh-temp-arm-millicelsius = <65000>;
-+			qcom,lmh-temp-low-millicelsius = <94500>;
-+			qcom,lmh-temp-high-millicelsius = <95000>;
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+		};
- 	};
- 
- 	thermal-zones {
-
--- 
-2.44.0
-
+Konrad
 
