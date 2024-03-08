@@ -1,117 +1,174 @@
-Return-Path: <devicetree+bounces-49508-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49509-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E154E876B77
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 20:57:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9121F876B87
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 21:05:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9A3732835A9
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 19:57:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A774283527
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 20:05:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 845325B21D;
-	Fri,  8 Mar 2024 19:57:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E763B5A7BE;
+	Fri,  8 Mar 2024 20:05:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="F+WNdQe6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E9jKrthm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 510EC50A80;
-	Fri,  8 Mar 2024 19:57:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9862C191;
+	Fri,  8 Mar 2024 20:05:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709927860; cv=none; b=OY7QXsZGKzZXJm/xK6Phz57PiBirGotVzhQXyi0TPwsf7QSooyAFKEMM1e0SZ4ig57Btg7sMeaUUkwLpAg+qIgglAMiS/Z2ZBTMLfTd4/pMtrPzl/NB7FILbD4hbJ8HMCKihfBJB3zasAfjLJsiOwS7Mu5ABABWbJUw3/O+vMvU=
+	t=1709928351; cv=none; b=aXIJfgqxouBDkvycqrjHyL1ggrqFfjv5Wz6J3utaCVLF+nS6lWFWtWslqT37iyNONH7ZLeRnPNUORtS//2rgmWkHB5wtIGuhrqImv3b5C6eIGQ4dyxKrsDNYAqVhdXzKINlg59978AOfhRENc101+PrYesY3D2CFUGBxr9FDepI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709927860; c=relaxed/simple;
-	bh=YiBGrbosKvqE47v3MV2Cv6bc3D4XgmKIS13Wo10TU6g=;
+	s=arc-20240116; t=1709928351; c=relaxed/simple;
+	bh=Fjbr8IfY/JuQgJCrOKUOPWAPqtOc7XVMJSi1kxk8q3g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Nl2Q2MThfrx9YFNNT8RhN7OHCF0FNTj77cZbVj77CP+q4gQlHPN3I4nn8UFl/Rn2ST4MxMZ/muK0NfxIaYbO2IwyNTOhOSBZ310QM6XVyiqLYWYoUTDwkmKCNKX8WsFRiBYeWCTOdDrWF3IUC+ZsnJKE2I9HWaUlpjesu8zGD6o=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=F+WNdQe6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 95DA4C433C7;
-	Fri,  8 Mar 2024 19:57:39 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=lgFC7ZnuQVTLIUWe3H4tooYmnFCqg7zQw90PR5SpySHrfvepvNeea7+o/tch5d8MYv6l29R96AbNlj0HvZY1QrQkxwm3hqP11PXmMHuoaYXuk1ZwhqGAowrcxcijM/ER1XBdEBtwoE9BhX2ycYRSmZonfiqD5olc179yZC5hJNk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E9jKrthm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12EF0C433F1;
+	Fri,  8 Mar 2024 20:05:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709927859;
-	bh=YiBGrbosKvqE47v3MV2Cv6bc3D4XgmKIS13Wo10TU6g=;
+	s=k20201202; t=1709928351;
+	bh=Fjbr8IfY/JuQgJCrOKUOPWAPqtOc7XVMJSi1kxk8q3g=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=F+WNdQe6cbmECo8/n08DihHN9dFt68Jrd2Mhc6uk0wgnjCtbn4KRYxrsFbMOOgy5S
-	 TdjWm08AmK4/GV9LrwJlUpee8jZN8ejdRzJQ+rsmLle0F3w7iYOhR1kd7SjZO+Uoof
-	 hccrogfp6ZHLr9e5RUnk4oMhKFH8S9xqpvP4OLv85YI92U9bc0dkEClOH+L6AqOgQq
-	 LxSvSxQ2nMydUXKe5/rsXzBCD86bOPvS0PZ883GD6hTQqDPj0VHf9/g4L7uo/loXIz
-	 h23C4T+IAl8OlVCFDe4O8GtTg4ZUCP0WKz7mVkD9oB3TLaGIduoG79NghY126KQi/F
-	 LmA2zOOXXmd9g==
-Date: Fri, 8 Mar 2024 13:57:37 -0600
+	b=E9jKrthmWHS+OdgLrwbXboECUrSiykTuI9kCerRbgKkz2bvcXESmeXA80yTdOgpUN
+	 S7o4GOEOpvEsVgO0f7+REU2to6D4AE32EJ5VqGoi4wnC0EUwqdCsNrG7M9j3wXtt8h
+	 Cq5x4r130Hl9f1bnmzjE9SfToCGdbSmiYwNFZBVx1O77K8A5B0p5/5YbYcyLbBHYDZ
+	 t8ygjfbPSI367U8m2GZ4yKyNPfc/P6x0AAXMhGsW4rSfhE2v7HpBbS3xXyOYAV7Dt2
+	 9cUh52J42UfNoelFPa0//kYfpi6xUiVvemlbMMyh8uJ5RNxtl+qZhJdoAl+ekaMEnO
+	 e687xCWQTqDLA==
+Date: Fri, 8 Mar 2024 14:05:48 -0600
 From: Rob Herring <robh@kernel.org>
-To: Stephen Boyd <sboyd@kernel.org>
-Cc: linux-kernel@vger.kernel.org, patches@lists.linux.dev,
-	linux-um@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	kunit-dev@googlegroups.com, linux-kselftest@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 0/7] of: populate of_root node if bootloader doesn't
-Message-ID: <20240308195737.GA1174908-robh@kernel.org>
-References: <20240217010557.2381548-1-sboyd@kernel.org>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Frank Rowand <frowand.list@gmail.com>,
+	Saravana Kannan <saravanak@google.com>,
+	Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>,
+	Sonal Santan <sonal.santan@amd.com>,
+	Stefano Stabellini <stefano.stabellini@xilinx.com>,
+	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	Allan Nielsen <allan.nielsen@microchip.com>,
+	Horatiu Vultur <horatiu.vultur@microchip.com>,
+	Steen Hegelund <steen.hegelund@microchip.com>,
+	Luca Ceresoli <luca.ceresoli@bootlin.com>,
+	Nuno Sa <nuno.sa@analog.com>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 0/2] Synchronize DT overlay removal with devlink
+ removals
+Message-ID: <20240308200548.GA1189199-robh@kernel.org>
+References: <20240307111036.225007-1-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20240217010557.2381548-1-sboyd@kernel.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240307111036.225007-1-herve.codina@bootlin.com>
 
-On Fri, Feb 16, 2024 at 05:05:49PM -0800, Stephen Boyd wrote:
-> Arch maintainers, please ack/review patches.
+On Thu, Mar 07, 2024 at 12:09:59PM +0100, Herve Codina wrote:
+> Hi,
 > 
-> This is a resend of a series from Frank last year[1]. I worked in Rob's
-> review comments to unconditionally call unflatten_device_tree() and
-> fixup/audit calls to of_have_populated_dt() so that behavior doesn't
-> change.
+> In the following sequence:
+>   of_platform_depopulate(); /* Remove devices from a DT overlay node */
+>   of_overlay_remove(); /* Remove the DT overlay node itself */
 > 
-> I need this series so I can add DT based tests in the clk framework.
-> Either I can merge it through the clk tree once everyone is happy, or
-> Rob can merge it through the DT tree and provide some branch so I can
-> base clk patches on it.
+> Some warnings are raised by __of_changeset_entry_destroy() which  was
+> called from of_overlay_remove():
+>   ERROR: memory leak, expected refcount 1 instead of 2 ...
 > 
-> Changes from v3 (https://lore.kernel.org/r/20240202195909.3458162-1-sboyd@kernel.org):
->  * Made OF_UNITTEST depend on OF_EARLY_FLATREE
->  * Made OF_EARLY_FLATREE depend on absence of arches that don't call
->    unflatten_device_tree()
->  * Added of_ prefix to dtb_ prefixed KUnit tests
->  * Picked up tags
+> The issue is that, during the device devlink removals triggered from the
+> of_platform_depopulate(), jobs are put in a workqueue.
+> These jobs drop the reference to the devices. When a device is no more
+> referenced (refcount == 0), it is released and the reference to its
+> of_node is dropped by a call to of_node_put().
+> These operations are fully correct except that, because of the
+> workqueue, they are done asynchronously with respect to function calls.
 > 
-> Changes from v2 (https://lore.kernel.org/r/20240130004508.1700335-1-sboyd@kernel.org):
->  * Reorder patches to have OF changes largely first
->  * No longer modify initial_boot_params if ACPI=y
->  * Put arm64 patch back to v1
+> In the sequence provided, the jobs are run too late, after the call to
+> __of_changeset_entry_destroy() and so a missing of_node_put() call is
+> detected by __of_changeset_entry_destroy().
 > 
-> Changes from v1 (https://lore.kernel.org/r/20240112200750.4062441-1-sboyd@kernel.org):
->  * x86 patch included
->  * arm64 knocks out initial dtb if acpi is in use
->  * keep Kconfig hidden but def_bool enabled otherwise
+> This series fixes this issue introducing device_link_wait_removal() in
+> order to wait for the end of jobs execution (patch 1) and using this
+> function to synchronize the overlay removal with the end of jobs
+> execution (patch 2).
 > 
-> Changes from Frank's series[1]:
->  * Add a DTB loaded kunit test
->  * Make of_have_populated_dt() return false if the DTB isn't from the
->    bootloader
->  * Architecture calls made unconditional so that a root node is always
->    made
+> Compared to the previous iteration:
+>   https://lore.kernel.org/linux-kernel/20240306085007.169771-1-herve.codina@bootlin.com/
+> this v5 series:
+> - Remove a 'Fixes' tag
+> - Update a comment
+> - Add 'Tested-by' and ''Reviewed-by' tags
 > 
-> Frank Rowand (2):
->   of: Create of_root if no dtb provided by firmware
->   of: unittest: treat missing of_root as error instead of fixing up
+> This series handles cases reported by Luca [1] and Nuno [2].
+>   [1]: https://lore.kernel.org/all/20231220181627.341e8789@booty/
+>   [2]: https://lore.kernel.org/all/20240205-fix-device-links-overlays-v2-2-5344f8c79d57@analog.com/
 > 
-> Stephen Boyd (5):
->   of: Always unflatten in unflatten_and_copy_device_tree()
->   um: Unconditionally call unflatten_device_tree()
->   x86/of: Unconditionally call unflatten_and_copy_device_tree()
->   arm64: Unconditionally call unflatten_device_tree()
->   of: Add KUnit test to confirm DTB is loaded
+> Best regards,
+> Hervé
+> 
+> Changes v4 -> v5
+>   - Patch 1
+>     Remove the 'Fixes' tag
+>     Add 'Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>'
+>     Add 'Reviewed-by: Nuno Sa <nuno.sa@analog.com>'
+> 
+>   - Patch 2
+>     Update comment as suggested
+>     Add 'Reviewed-by: Saravana Kannan <saravanak@google.com>'
+>     Add 'Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>'
+>     Add 'Reviewed-by: Nuno Sa <nuno.sa@analog.com>'
+> 
+> Changes v3 -> v4
+>   - Patch 1
+>     Uses flush_workqueue() instead of drain_workqueue().
+> 
+>   - Patch 2
+>     Remove unlock/re-lock when calling device_link_wait_removal()
+>     Move device_link_wait_removal() call to of_changeset_destroy()
+>     Update commit log
+> 
+> Changes v2 -> v3
+>   - Patch 1
+>     No changes
+> 
+>   - Patch 2
+>     Add missing device.h
+> 
+> Changes v1 -> v2
+>   - Patch 1
+>     Rename the workqueue to 'device_link_wq'
+>     Add 'Fixes' tag and Cc stable
+> 
+>   - Patch 2
+>     Add device.h inclusion.
+>     Call device_link_wait_removal() later in the overlay removal
+>     sequence (i.e. in free_overlay_changeset() function).
+>     Drop of_mutex lock while calling device_link_wait_removal().
+>     Add	'Fixes'	tag and Cc stable
+> 
+> Herve Codina (2):
+>   driver core: Introduce device_link_wait_removal()
+>   of: dynamic: Synchronize of_changeset_destroy() with the devlink
+>     removals
+> 
+>  drivers/base/core.c    | 26 +++++++++++++++++++++++---
+>  drivers/of/dynamic.c   | 12 ++++++++++++
+>  include/linux/device.h |  1 +
+>  3 files changed, 36 insertions(+), 3 deletions(-)
 
-I've applied the series minus the arm64 patch. It's only needed if 
-anyone cares about this working on arm64 ACPI systems. That can be delt 
-with separately.
+This looks good to me. I can take this given the user is DT. Looking for 
+a R-by from Saravana and Ack from Greg. A R-by from Rafael would be 
+great too.
 
 Rob
 
