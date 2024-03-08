@@ -1,176 +1,94 @@
-Return-Path: <devicetree+bounces-49395-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49397-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41B987646B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:40:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id E0D1C87648C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:52:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D70681C20BA7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:40:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C06F282528
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:52:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7330C134A9;
-	Fri,  8 Mar 2024 12:40:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="VmyQXsTl"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E20451CD20;
+	Fri,  8 Mar 2024 12:52:26 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from outgoing6.flk.host-h.net (outgoing6.flk.host-h.net [188.40.0.77])
+Received: from smtp-bc08.mail.infomaniak.ch (smtp-bc08.mail.infomaniak.ch [45.157.188.8])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E83C4C84;
-	Fri,  8 Mar 2024 12:40:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0C64B18C3B
+	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 12:52:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.157.188.8
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709901644; cv=none; b=TerFcy8pa0xdml5jNLjZJiHp9OeU1iYTq6bcS0x1LsbO6Ab6DoFP1I2LrqMKcEa2y+E9OAXX89l1TYOZ35mRIagM5GOTETrFtoXhNYtVWtpjBklIT+2tiyU+AqgstO+uTBZ97vUCpYwvUE9PY87e3vsUFJwOSLi+/vr3oXOjTjQ=
+	t=1709902346; cv=none; b=ss3BVSWPlpYk0imGxsuP4e6THeuIbFeFpaE5AXyOSF2GkBTaksBRGC3ric+4+FKmn/e5jSRszj/WL04QdBbXLM3GBr7Le5BTjqebrKa+8Afb/pDIvV+4MPskt/BD4xX+j/p+FcoQOdFisHm7QDuzf2KseBlwsUFNjGTQE7WaZZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709901644; c=relaxed/simple;
-	bh=A1HFQdYy1kr4hkoIGOkvNMhnyCfmTpn0sOOae0Bfeh0=;
-	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
-	 References:Message-ID; b=QSDcL1ID98bruR2aTa8NepudkthfG1jbW4nMHW0z8nSMIcjuDE2gRIeOmtjVzap6tVUddDpCaTfj4XB472WICkyce3eXi87REwhahXBPzT3TZ+KgEzUd2iRgOqj+QhnGxy7azNvKcCmwEy7phlNXkhanA+1njwBNgWNkDy5xB28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=VmyQXsTl; arc=none smtp.client-ip=188.40.0.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=risingedge.co.za; s=xneelo; h=Message-ID:References:In-Reply-To:Subject:Cc:
-	To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:reply-to:
-	sender:bcc; bh=SKP3sYFjtsj0cchtdDG+ZU4/Ri6nxNJaSUgMG/EUeFU=; b=VmyQXsTlLQTaAx
-	e8fU3utV0jh2K1CsoGJxwnMP02Fes54lqeMWKw9OufWGIgaJD54qUqYuQG9WmmNwHEtoXNrn5s1Oh
-	MncmigTGov+74vNSIMhr0/1yliP+83ePLwCCGL7EYSWF8KA3bBhgzP2I81o5QCLANqSJVt+3KBood
-	sla6n2IoJmrSA/PnvlBQZlExH6zmoz7N27iIiVF1Qfjm+M16FtqIHNIQxtutOfxp37ixb4IC9fjOS
-	KxYC9yxYZ9SblNAr3nSiph7PgjDBh1hHtcrXzMlEVOSmeYE2VQMylshkHdRipcSkKZ5LQQdyHEClt
-	RxnTrfgdkD0Ily+/xybQ==;
-Received: from www31.flk1.host-h.net ([188.40.1.173])
-	by antispam2-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1riZWZ-00CVPf-1L; Fri, 08 Mar 2024 14:40:33 +0200
-Received: from roundcubeweb1.flk1.host-h.net ([138.201.244.33] helo=webmail9.konsoleh.co.za)
-	by www31.flk1.host-h.net with esmtpa (Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1riZWX-0004Zw-Rx; Fri, 08 Mar 2024 14:40:29 +0200
+	s=arc-20240116; t=1709902346; c=relaxed/simple;
+	bh=XlOhwNLXVrKct8OH/oxJVQEEYWtbUzLjg60WCqrTM6k=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=g5UriBdbbaWg8ZZqURCbsJetJtkw0B+Xf14YDkY37ybttMsQ1BvAx7G029ML4LIqILk+tD5AKUHaCFB+HS7xnwK5yMKka/RouZgwGzLm4SdQaSF9Gq8xyn1Rb3L/BY33+2aK7zqi7beYnGMVPs8yHWcPJndU8vqei0LmxuPZUF0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net; spf=pass smtp.mailfrom=0leil.net; arc=none smtp.client-ip=45.157.188.8
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=0leil.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=0leil.net
+Received: from smtp-3-0001.mail.infomaniak.ch (unknown [10.4.36.108])
+	by smtp-3-3000.mail.infomaniak.ch (Postfix) with ESMTPS id 4TrmKC4vd3zMqB2L;
+	Fri,  8 Mar 2024 13:52:15 +0100 (CET)
+Received: from unknown by smtp-3-0001.mail.infomaniak.ch (Postfix) with ESMTPA id 4TrmKB62vyzMpnPl;
+	Fri,  8 Mar 2024 13:52:14 +0100 (CET)
+From: Quentin Schulz <foss+kernel@0leil.net>
+Subject: [PATCH 0/3] rockchip: small DTS fixes for RK3399 Puma
+Date: Fri, 08 Mar 2024 13:52:07 +0100
+Message-Id: <20240308-puma-diode-pu-v1-0-2b38457bcdc0@theobroma-systems.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Date: Fri, 08 Mar 2024 14:40:29 +0200
-From: Justin Swartz <justin.swartz@risingedge.co.za>
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>, Sergio
- Paracuellos <sergio.paracuellos@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger
- <matthias.bgg@gmail.com>, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] mips: dts: ralink: mt7621: associate uart1_pins
- with serial0
-In-Reply-To: <ff708cd5-efe1-47e0-8112-ac7a2658cd8d@collabora.com>
-References: <CAMhs-H_eUKm7C40oCzuKwwEMZAcOJ-g4MghAfkGAmxRM0AXPUw@mail.gmail.com>
- <20240307190408.23443-1-justin.swartz@risingedge.co.za>
- <ff708cd5-efe1-47e0-8112-ac7a2658cd8d@collabora.com>
-Message-ID: <9634b4fe726e711bd6bec7e487caab76@risingedge.co.za>
-X-Sender: justin.swartz@risingedge.co.za
-User-Agent: Roundcube Webmail/1.3.17
-X-Authenticated-Sender: justin.swartz@risingedge.co.za
-X-Virus-Scanned: Clear
-X-SpamExperts-Domain: risingedge.co.za
-X-SpamExperts-Username: 
-Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: SB/global_tokens (0.00380610437891)
-X-Recommended-Action: accept
-X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT+wmtT960jbjISQKCfCHZdhPUtbdvnXkggZ
- 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wCPRB8bAzJcv2cv+UqiTTc2+CpNcmBnO4XM3Sck4bwNogU
- WCl1nkLBzZX0KuJ9bXiS85Z42w/+2OBolTNFbPomXFWCX8oNdggW7HE9XDTdSejrkEpbuUvwMvHx
- 3T+KSG//gbuP7hnUK8NQdLwsVWKIFDZRrTGv3rxiw9tFrqFSCFNiLZt/QXQnOBRD+jq1HsKsDh/6
- Srgk2K3gr1VBfJbChkYH6fbrypLNrde+UooQVPit/5p/UppEg0/JwKBg5FMRzYBX9pjfk8XVXtzS
- M3wtVd1VnG8mylYLnooMTA9ChvO6VFs0vX2gELKmaDCsAzWS05LVvQliOjpXTRsE1NclUiAnTpgi
- e3//sbVPjjckBwdlwGs8P76dIjazMPdHjbVa8IFhvS8ktfBv/FnVAz3RioBldMOCUe6W32a/Z3Ud
- cHFsZn+h8ah6heNAolF39ruEJL+xj3lCq/QHicKvqr722vaUI4f+CqAdyuhpbsPsA5dFhrqMzPRa
- pehQIEhjhQfGlRm8CMroDEc+PSVSriE1+zEmCoWmtSSzl75hPZky5CJ+Z16HH97574/r8Tz/vibx
- cwM0aDExi5MlveCS7R16LtBcNrQxKZYuPe8bdCyw79zlPbqLQkZr26Lcxdvj8cqI+CogZdOhX7v3
- ClXzrmMENhJLl6MBfhzHVBR0wHQZxzIUka7Uq615Mik1qzcz30/jNv+A51L2swh0gYW0eVWShle6
- F/kpBdN+oWjoATjEFDwcaiz0R34rhTN+GTbl4uS+pZovX9cex7Ac4fawcerGI7TrGXpM/B/M0BZd
- PfIU1BX7pZc1sE3vsz58auH/srM2fgZ9JmgLbj7sqoEiwv7LCxIiAE5ODMnmwjvj2589zjbyZCiM
- WpBpW8YvoIIqmZcWhL/r/eFjMjJnMHeiAPOVK0T+c9pM0FteOLwuqFxkZtxbXpCgbiKBsA+Ddi6m
- awd1jemntr2PrMOTF1fDnHo5A9JQxMw0XtBqT5kbx7zuprmKeJENT1oiQUtfU17WEZPRHu1+r6ov
- Q/IKaojN7gdb+Glhdb8DP7Iz3Z0Qa+VGiF/lfNRtaK1t4SnssY938wKgOC3c9GkW+OmRHU05XGuW
- g+VcQ3bZb7F7k2CvWvw8dbdRONqsj33t0is+SdoOwsmMdG9QVrFQ8yBgkEseVcqyb5qgpERsDkCX
- BgcGBwKlYailDNhe7w2QIanZ/NegoJ79AXUnIiEEoyCaZXMG8LAkbJoO2tY/Mg5ClXd30oBm8U++
- JlmpaolH3tK93iPfP99cvlYnvoiVFqgm093JBbUEaDQ0rf5lRqYaI2rFfhfWZ3LYM3A6BXfvel8O
- EFDbU51Q2S43vcWL3lM20b9wQESc+PquLiZOpxiedGbqX4nzL9MgCv99rrli2UQdOGeuQqV2IVXB
- o/3R5VqqcOmERbjE+D5FzT0EaduWMjGSdmMR5Ch1HY0a4RW7JP9zvdSGB9tIDxuFtg36jUhUk8/b
- P2/Mw1j9lmNQqiIAMR1SEszVdPY4ocfmWv3Fe9Iziczdq+A=
-X-Report-Abuse-To: spam@antispamquarantine.host-h.net
+X-B4-Tracking: v=1; b=H4sIAPcJ62UC/x2MQQqAIBAAvxJ7TlDTiL4SHaxdaw9ZKEUg/j3pN
+ nOYyZAoMiUYmwyRHk58hiqqbWDdXdhIMFYHLbWRnRzEdR9OIJ9IFYVC7Y21aqEeoTZXJM/v/5v
+ mUj5PnP/3XwAAAA==
+To: Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
+Cc: Klaus Goger <klaus.goger@theobroma-systems.com>, 
+ Quentin Schulz <foss+kernel@0leil.net>, devicetree@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ linux-kernel@vger.kernel.org, 
+ Quentin Schulz <quentin.schulz@theobroma-systems.com>
+X-Mailer: b4 0.13.0
+X-Infomaniak-Routing: alpha
 
-Hi Angelo
+There's a pull-up missing on a pin that is used as GPIO input for PCIe
+which will make the diode/level-shifter not let voltage pass and thus
+not allowing the state of the pin to change.
 
-On 2024-03-08 10:41, AngeloGioacchino Del Regno wrote:
-> Il 07/03/24 20:04, Justin Swartz ha scritto:
->> Add missing pinctrl-name and pinctrl-0 properties to declare
->> that the uart1_pins group is associated with serial0.
->> 
->> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
->> ---
->>   arch/mips/boot/dts/ralink/mt7621.dtsi | 3 +++
->>   1 file changed, 3 insertions(+)
->> 
->> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi 
->> b/arch/mips/boot/dts/ralink/mt7621.dtsi
->> index 35a10258f..dca415fdd 100644
->> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
->> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
->> @@ -123,6 +123,9 @@ serial0: serial@c00 {
->>   			reg-shift = <2>;
->>   			reg-io-width = <4>;
->>   			no-loopback-test;
->> +
->> +			pinctrl-names = "default";
->> +			pinctrl-0 = <&uart1_pins>;
->>   		};
->>     		spi0: spi@b00 {
-> 
-> The pins are muxed and can be either UART, or some other function that
-> is supported by the mux: this means that the pinctrl-xxx properties 
-> shall
-> *not* go into the SoC dtsi file, but in board dts files instead.
-> 
-> Said differently: the usage of the UART pins is board-specific, not 
-> SoC-wide.
+Also add the missing regulators for the PCIe PHY+connector though this
+is purely cosmetic.
 
-Thanks for the explanation. I agree that the pinctrl properties
-would make more sense in a serial node extension in a board's dts,
-but my reason for including them in the SoC's dtsi is due to the
-precedent set with these existing nodes:
+There's also a missing PU on the USB ID pin used as a GPIO input, so
+let's add it for the same reasons as the one used for PCIe listed above.
 
-   i2c
-   spi0
-   mmc
-   ethernet
-   pcie
+Note there's a light dependency on
+https://lore.kernel.org/linux-rockchip/43d84aa9-ce0f-406e-82ac-2a691264ee23@theobroma-systems.com/T/#ma0499cbc5e5c20f1a4c6b8452baa2d296abe2d0d
+to prevent a git conflict for the maintainer(s).
 
-There is also a default function declared for each of the pin
-groups defined under the pinctrl node. These functions co-incide
-with what is intended for each of those device nodes to function
-correctly, rather than in the alternative GPIO-mode.
+Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+---
+Quentin Schulz (3):
+      arm64: dts: rockchip: enable internal pull-up on Q7_USB_ID for RK3399 Puma
+      arm64: dts: rockchip: enable internal pull-up on PCIE_WAKE# for RK3399 Puma
+      arm64: dts: rockchip: add regulators for PCIe on RK3399 Puma Haikou
 
-So I thought that sticking with that existing pattern would get
-the least resistance from the community.
+ .../arm64/boot/dts/rockchip/rk3399-puma-haikou.dts |  2 ++
+ arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi      | 33 +++++++++++++++++++++-
+ 2 files changed, 34 insertions(+), 1 deletion(-)
+---
+base-commit: 370e52abbf8306f09b0022995ad7ccdff3a834bb
+change-id: 20240308-puma-diode-pu-1d2f4551be6d
 
-I can imagine how moving the pinctrl node to the board dts, and
-then moving all of the pinctrl properties associated with device
-nodes to their board dts references could be a better separation
-logically.
+Best regards,
+-- 
+Quentin Schulz <quentin.schulz@theobroma-systems.com>
 
-What do you recommend?
-
-Regards
-Justin
 
