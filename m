@@ -1,115 +1,161 @@
-Return-Path: <devicetree+bounces-49428-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49429-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 265F087674F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:25:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1318A876766
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:30:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 999FDB2117B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 15:25:54 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 442131C21801
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 15:30:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D116C524A;
-	Fri,  8 Mar 2024 15:25:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF2B81DFFD;
+	Fri,  8 Mar 2024 15:30:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="FqDfLKQ/"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="FMRMp4DA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555F51DFC5
-	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 15:25:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6EB8B15C0;
+	Fri,  8 Mar 2024 15:30:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709911549; cv=none; b=rdbyGgYRL4mU5KhL4uOy7j2VL0NMaZTNnd88Vffb/6f1RVg5183eqcw9Ba3bNl26bQiBA01Fw2G51ArDggOw+pOwLtcRlYRbE3e0eX0Kdgv48M2/0cq8NyYsXSYWNtXSyDN5wlpxrsqrWJq437ONDTkWt0G77Rb5mNSo0AX7/H8=
+	t=1709911823; cv=none; b=WnN7JxATaOr8YbUtdsS9lNqunK4FE/Ag1Rg1ZMrhdVOHaJdrqr1d84Qg/2cc8/rg1J0yyVAhTjXC0W6te9yj6KpiGQcK4qelU0Ux8IgavAdKAnoql0K/iBjh+6LM3hrYi0xuBYb3Nlc1yFfyFCRKlLMUV+1Q8YLwHl2Crjc7nx8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709911549; c=relaxed/simple;
-	bh=TFLZXdU3ies1N74nkimz1dUi49Sig9GXkWQrBIaS9r0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=q61zvEbDGih0p8s9efSNGvLKGfg9OzfqqQlMJWQgdKbMnfVWlHiFKPJMxphSMyrUUAsfjp+7s6KRtq/OE2tCOJREslnh3SzEppxAsJhoU3Yl8ElOjS+2f4zal56GLsNNpecYSoxqD34li+qA8KdyaBHZ2dYkEpumBAF4kBr6i0U=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=FqDfLKQ/; arc=none smtp.client-ip=209.85.160.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-42f024b809cso294031cf.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 07:25:48 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1709911547; x=1710516347; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=TFLZXdU3ies1N74nkimz1dUi49Sig9GXkWQrBIaS9r0=;
-        b=FqDfLKQ/fbi6S70lRntmG3wXPNXSvPEHkdf5NFj4Kcsa7KOBkDpL10OS6YEI1Z9ZJK
-         3TJvmK2Sy2TQ/9BykghT1jWCo4Y3s0hNlwKD2ivcGUm10XYDQ1Gq+G8pQWv3M9+JfEqi
-         H31wWdNBuEo7DRRvc7Q+oaY1QwD+5QAckRE2VwS8Ks0MkJn8r55p5lW/YNJw7BlaScgR
-         VOOPVE2A6DwVAjse5IaPV1Bf9bWR44EiWCcXo4CLuCUrcOT+2zPpjDsSktTSBevEm2iy
-         ly0Alhu3XUG6L3Ovw1l/V0mUZh5SiQyl0GMJ0+A+ByEiGyyRp90SQIrRrLyBir2Gk49E
-         pgSQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709911547; x=1710516347;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=TFLZXdU3ies1N74nkimz1dUi49Sig9GXkWQrBIaS9r0=;
-        b=PDUxnc6zUk4fGWUEETixudc2CwaIhZ56Jblnmwa5DxK5q0hSK9nu/qWMMlF6NlZ9KN
-         w5asCil0fvrGj+WeNOQKR8yjyv+ycQZ6OjihQAY1fdBdTW5Py1NQ9zlExUUXteen4X2E
-         NVNEkvzhE4F7QG+einM6MU5Bva6ATsnenjeGFLORm5XbuRzIy2ALBU/39vvizn/wuLzV
-         wFQT1UcBNBfb/uMFcsjRrCdjEdWNYMLE8WeEdXU1KojY27ydll/tPyFyPc+2DMLatcHA
-         wT5nP6s5WkNPdtcjkhTPisS16TwlyxxDMz393B2V5yTSyEKIL5RHAc8Pz+AAXAv/FIHL
-         Dv5A==
-X-Forwarded-Encrypted: i=1; AJvYcCUqHy0QkGgCkV67bG3UNqbMDvbzfBcQJNFgtem2d9KwkOBAfQoz69GWq41Rp6ab/882fPnkU/KLIqCpp4ue6AlV6oG+gVXX7HeIkw==
-X-Gm-Message-State: AOJu0Yz5idOe++1MZQEN6NfgH9tpRaZFhe7xBhY9H1y39sLAEeToa93Y
-	hh/GZsWeIlumj7Dtc9/HHETLP+TSB7VKW7i/flaNKosWSf+EqQA5WcFMlrG8vqtyLMHC0/xzGPU
-	x++VIj0WPSpTQ6+SkdSicBQC9pcQzGMtFmapl
-X-Google-Smtp-Source: AGHT+IGwvRqhH5/5u0dRebXEE93CUmjojhrEOWLQxodoD5XGA8x68lzCwMdItYYAqK5wHkhfsJazt1RD0edt8txgF60=
-X-Received: by 2002:a05:622a:295:b0:42e:b2a8:e239 with SMTP id
- z21-20020a05622a029500b0042eb2a8e239mr627320qtw.21.1709911546958; Fri, 08 Mar
- 2024 07:25:46 -0800 (PST)
+	s=arc-20240116; t=1709911823; c=relaxed/simple;
+	bh=1GElJX1Xw1oAZ5mV/Qo9Ld5EzCaVHoLQ4gdCY21VeAQ=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=BwcYFycRm+P4Fx4FQC0G94yZM7PGIObVjc5lXw3oF238kcRetNiRJv5epIuYeCjjsLEmzesCjQ4+MiBkL8umf5nF0Q+aBb5u3yng4UfK/W4HE7tthcmvFvhIsG+Z5pcAf6KnfmDv9d71Z2zZqxSN1rSMXDZOyGw8hjMCSSXlZvE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=FMRMp4DA; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240308004757.1048284-1-xuxinxiong@huaqin.corp-partner.google.com>
-In-Reply-To: <20240308004757.1048284-1-xuxinxiong@huaqin.corp-partner.google.com>
-From: Doug Anderson <dianders@google.com>
-Date: Fri, 8 Mar 2024 07:25:31 -0800
-Message-ID: <CAD=FV=V7t8vYZLunDLBh7xDPLoennBP+7Gi6b1Y_GKnYOW1cMw@mail.gmail.com>
-Subject: Re: [V2] drm/panel-edp: Add BOE NT116WHM-N44 and CMN N116BCA-EA1
-To: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
-Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
-	hsinyi@google.com, dri-devel@lists.freedesktop.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709911811;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=xg1YcmdTDNEGczDED8tux3NJ6CN5mtOf9f1Wq1pu2YI=;
+	b=FMRMp4DAPDc4xE88bB02SCtuoYaWHG2IANOV/F+lU4IEhdSFnF037DKFGlz63eKC4ISQlH
+	U86kqpqYVrFihcEvIjVcmajELJL1gmbjdqj0aYZXvZpzaxN1iS9wWOXOKTghqLtB55GLFC
+	RzGkUHg2Lr/ASWxIbPrcheZDc5raRG6UxsrtaYCygKVu6K0kTqn7HyuXv/l9xg6dmwvhVD
+	eyDrjMYL83UdY47gyt87Hq0nAgBYS5W+sTpo7CCUwYG6Nap4+x/vhyi/m19yfPlzJv7PaN
+	c1yRzoSEa0BmnSVaOLt0CpsCuHw9DstA+eaTwARoQgft/FEUdhi5Ylg6JD03LQ==
+Date: Fri, 08 Mar 2024 16:30:10 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Quentin Schulz <foss+kernel@0leil.net>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Klaus Goger
+ <klaus.goger@theobroma-systems.com>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Quentin Schulz
+ <quentin.schulz@theobroma-systems.com>
+Subject: Re: [PATCH 3/3] arm64: dts: rockchip: add regulators for PCIe on
+ RK3399 Puma Haikou
+In-Reply-To: <20240308-puma-diode-pu-v1-3-2b38457bcdc0@theobroma-systems.com>
+References: <20240308-puma-diode-pu-v1-0-2b38457bcdc0@theobroma-systems.com>
+ <20240308-puma-diode-pu-v1-3-2b38457bcdc0@theobroma-systems.com>
+Message-ID: <adc58b09d99d62df2c7559657547ca29@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-Hi,
+On 2024-03-08 13:52, Quentin Schulz wrote:
+> From: Quentin Schulz <quentin.schulz@theobroma-systems.com>
+> 
+> The PCIe PHY requires two regulators and are present on the SoM
+> directly, while the PCIe connector also exposes 3V3 and 12V power rails
+> which are available on the baseboard.
+> 
+> Considering that 3/4 regulators are always-on on HW level and that the
+> last one depends on a regulator from the PMIC that is specified as
+> always on, this commit should be purely cosmetic and no change in
+> behavior is expected.
+> 
+> Let's add all regulators for PCIe on RK3399 Puma Haikou.
+> 
+> Signed-off-by: Quentin Schulz <quentin.schulz@theobroma-systems.com>
 
-On Thu, Mar 7, 2024 at 4:48=E2=80=AFPM Xuxin Xiong
-<xuxinxiong@huaqin.corp-partner.google.com> wrote:
->
-> Add support for the following 2 panels:
-> 1. BOE NT116WHM-N44
-> 2. CMN N116BCA-EA1
->
-> Signed-off-by: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Looking good to me, assuming that the regulator naming follows the
+labels used in the schematics.
 
-It's fine this time, but please be careful in the future. I never
-actually gave you my "Reviewed-by" tag for v1, I just said "The patch
-looks OK" [1]. You should only add/carry someone's "Reviewed-by" tag
-if they explicitly give that tag.
+Reviewed-by: Dragan Simic <dsimic@manjaro.org>
 
-I'll also note that the subject of your patch starts with "[V2]". I'd
-normally expect it to start with "[PATCH v2]". Maybe something you can
-fix about your process for next time?
-
-In any case, I've applied to drm-misc-next.
-
-dcb6c8ee6acc drm/panel-edp: Add BOE NT116WHM-N44 and CMN N116BCA-EA1
-
-
-[1] https://lore.kernel.org/r/CAD=3DFV=3DU8wdT_5k-yrLVpmh=3Dq4k18LntqujK7Mw=
-88TdweBXCPgg@mail.gmail.com
+> ---
+>  .../arm64/boot/dts/rockchip/rk3399-puma-haikou.dts |  2 ++
+>  arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi      | 26 
+> ++++++++++++++++++++++
+>  2 files changed, 28 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
+> b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
+> index 18a98c4648eae..66ebb148bbc9a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-puma-haikou.dts
+> @@ -194,6 +194,8 @@ &pcie0 {
+>  	num-lanes = <4>;
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pcie_clkreqn_cpm>;
+> +	vpcie3v3-supply = <&vcc3v3_baseboard>;
+> +	vpcie12v-supply = <&dc_12v>;
+>  	status = "okay";
+>  };
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> index 2484ad2bd86fc..1113f57b09313 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-puma.dtsi
+> @@ -79,6 +79,26 @@ vcc5v0_sys: vcc5v0-sys {
+>  		regulator-max-microvolt = <5000000>;
+>  	};
+> 
+> +	vcca0v9: vcca0v9-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcca0v9";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <900000>;
+> +		regulator-max-microvolt = <900000>;
+> +		vin-supply = <&vcc_1v8>;
+> +	};
+> +
+> +	vcca1v8: vcca1v8-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcca1v8";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <1800000>;
+> +		regulator-max-microvolt = <1800000>;
+> +		vin-supply = <&vcc3v3_sys>;
+> +	};
+> +
+>  	vdd_log: vdd-log {
+>  		compatible = "pwm-regulator";
+>  		pwms = <&pwm2 0 25000 1>;
+> @@ -416,6 +436,12 @@ &io_domains {
+>  	gpio1830-supply = <&vcc_1v8>;
+>  };
+> 
+> +&pcie0 {
+> +	/* PCIe PHY supplies */
+> +	vpcie0v9-supply = <&vcca0v9>;
+> +	vpcie1v8-supply = <&vcca1v8>;
+> +};
+> +
+>  &pcie_clkreqn_cpm {
+>  	rockchip,pins =
+>  		<2 RK_PD2 RK_FUNC_GPIO &pcfg_pull_up>;
 
