@@ -1,225 +1,179 @@
-Return-Path: <devicetree+bounces-49461-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49462-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B42FB87689E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:35:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DFBEC8768B3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:44:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DD9A1F23B91
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:35:39 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8DCCB2867ED
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:44:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A6B98833;
-	Fri,  8 Mar 2024 16:35:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72300FBEA;
+	Fri,  8 Mar 2024 16:44:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GfEMYwq9"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Jl7rqKZQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
+Received: from mail-lj1-f177.google.com (mail-lj1-f177.google.com [209.85.208.177])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 560E86FC2
-	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 16:35:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 828EF79D1
+	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 16:44:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.177
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709915731; cv=none; b=cG0ftqczymR4W/FuVc9EmLXGk0B6k/KwXW31jN4O0rW9O1JI/scdf5KsCLIjwUbADN62P3qa8rouRwBVMHfsUw/4gWnxHu200Z4XpZhFssy0KEuaZgtXAfJfmkEV+b2qU7gPjI1e8ZGadL0l1DEAxhXl1H9COIhfQnIz7NFWePY=
+	t=1709916281; cv=none; b=aaQ0IbyrCDowLOGQdAV4ou+6XLMONhGlFeLTQTHOEvrb5KxL8/DhLTvtXopfntAAm+SCa/JrbA44PUk0FLKOTgfQ6cKdpPoGu2VEf5upQqvD/Z5oC9qyeFTH2S+rnnj9i3fbPhu/m1i6w6MBuKibM/13ha01IjB1c84Ul8ONppE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709915731; c=relaxed/simple;
-	bh=8HyqZabxQYf7AXqMlKh4uAssALJXweqp+r1TIBILEMo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=N/Gs+l7DxCcDQ/8L4BgsDyN+yJpJhdxftUkzO+ti90s+vESY5yGZYZQo5sogAbvCltzoLmGS3OAbLl2qiJMyyUQC1/yL0zKJ3ZCCzM8XSvhEGtCUb1LMilARZggAVedNJdD1PvtEs8pxYKfkohGK1Kl0uZdeQs9xt5iytcNhu3Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GfEMYwq9; arc=none smtp.client-ip=209.85.208.49
+	s=arc-20240116; t=1709916281; c=relaxed/simple;
+	bh=UrEBxQszULiVbIBPuPmBCRY25FgHIkpOHvzckOGcYBM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=u0MS29kT7CqEF3j6/x0mMDHpM77NvmhQVnt/YpeidSikZyj5MB/90MWoGXgRGgiN0oIU32TYS+rkq2INFbjoPcQ5Fooyb1FKfBdz+Oq5eA8HA0J/p7qRt28FyEYsZ8xVU4QYYAig/gsy7zAR36EoE0OvIKp0h7fBjd0oPsG9wAk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Jl7rqKZQ; arc=none smtp.client-ip=209.85.208.177
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-5649c25369aso1336593a12.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 08:35:28 -0800 (PST)
+Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2d41d1bedc9so11657321fa.3
+        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 08:44:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709915727; x=1710520527; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=6nynSl4KKVg6PyZMjd2Anc6ZOa+XqWZVVXmkeUHlSvY=;
-        b=GfEMYwq9RQwj+xl8uo+/WbF4YZvbz4tukKnPRbj8W4pF8TaOnBdKv8eWl+674/zuI1
-         7IvmKP5ZorhIYpHCk+B3vM3JMIQWMUvX6pRbsaODVaSz84QezLI7jnk9h83GimQtL8WP
-         6ZBwWyJKsTmRiea0tOsQ82imIb42mU3oWm71w+VYvsokp5K3UYzzFAsubseOoZ545dDb
-         disZM+hNVR2Rij6Tw2UkqxyqpggRSNKWE5vMO6D7kReHsE2JuNW0HeWnBylAo1XdaJHX
-         CL5/MQRimsnuNPieVF77sF/+947li1M28PmMdlZan78TYscNedgriRml59glWsRHIC5t
-         h1rw==
+        d=linaro.org; s=google; t=1709916278; x=1710521078; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3pb+tQdggieSesTRk+wpBTn9tTjLUrGvHa4LzSreo9I=;
+        b=Jl7rqKZQUbNsEN2TjWILnxe/pkkpYbGnT0rtG+ApWGvXpMkTLvke6WoQ05k3Ey+a70
+         Dv7Txoe8sfQccoo7hvFHwlc07nqTvuWSJCPOKnWHktuC6gC2oqWwWJB8kgMWceN4W/I8
+         0ciSTnee+VUPKpxwNyuiU74Qkz3aRJjlw+wjMtSJaOq7hpJfyD105+ddBAQB74kbMlA+
+         afVFkcSOlhVxYP+zLkUPsQJR6u2L4zpWXhZ5/N6KUHDgRsEDjsmndCZmh33txekWjtQO
+         yFjEmzI9jyUhSns6YNk3PH9akKvBc5wnePEvpDlRo+bdA+rFrOa6xI09tv++WyoMVPXT
+         Sj+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709915727; x=1710520527;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6nynSl4KKVg6PyZMjd2Anc6ZOa+XqWZVVXmkeUHlSvY=;
-        b=PrqFpPuf9Z4l5t6Gsr02HD38/ApJNpISY8Qs2FPgLeest7HhOpD4+8YAI6hr1KmSSq
-         aD1+zUxk8JUuHhkPLwNbK/uQBRbex5ivelPTomd9bL7Y4jqT6+aC9hR7n1ix3hlGnPNK
-         41OCYlaFMlliyXw1Zaf9G6vrjsyxgcIAe5VNSC2NRWOuI7GjPqErIYkZJb19hJRNyPlE
-         aDsOIXyW/PmQrwvPSC5Kbq41LulBH/FqxA0dOQYunGdPj+OmwtMnAlx2rXI+Za/qmOS+
-         ZpgQhjkq/8AOzY+tTKKKVsFTekpGzA+tP34rmf4FrRbmX+9l9vNKfTPx9pXgp6Bh+FM+
-         fvrA==
-X-Forwarded-Encrypted: i=1; AJvYcCU3xrLdBGvoWF3/v8NUNREUtjivEN079mH2XJkcq9G9AQDs+Ri0Yjjj/2XgS72bSoTz7weHq4J3vipcNWZSkvEa7+GFChoeqsk8eQ==
-X-Gm-Message-State: AOJu0YxDiHaiInobgokPbFhmd//CmP+oHiGVgq8VVQWdor/4mbFIOmYC
-	CXw6DuEEIzAJ/Y+CxKXsZHc3t8qhywAJCvE7uZN5N9w1rr1SZm3eGYO6PC1IBGk=
-X-Google-Smtp-Source: AGHT+IHZabur8zMf/rq5QuXHgiZC2wfvFqCl3kkATgoC4AoKvSxhJrgcDyUuaLFSdrIF8GnBZjH5Ng==
-X-Received: by 2002:a50:cd43:0:b0:566:5dcc:1c27 with SMTP id d3-20020a50cd43000000b005665dcc1c27mr2082163edj.41.1709915726684;
-        Fri, 08 Mar 2024 08:35:26 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id h2-20020a0564020e8200b005653439cadcsm9242007eda.25.2024.03.08.08.35.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Mar 2024 08:35:26 -0800 (PST)
-Message-ID: <4a4203b0-0775-45c6-8dd0-51dac41c1dbd@linaro.org>
-Date: Fri, 8 Mar 2024 17:35:24 +0100
+        d=1e100.net; s=20230601; t=1709916278; x=1710521078;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3pb+tQdggieSesTRk+wpBTn9tTjLUrGvHa4LzSreo9I=;
+        b=Ti/sw5p8qLyeCJP8zDGMnMD65HlLyhBHpz9WFoyI/PvfUGcia1AJUfCGnzkf4CGX06
+         LZqY3+tCFMbgbn2/n7rpQceLvKn6UWRkda8prlpoGs/h9C4qdbyJ22Qafi5EvfB8twHq
+         q6xuuNG9cDr2zJxohRS5OQwziNI/DaRNbfvkDGX8E3dRXpZE/9EvL1MT0HFEEtrFs6PL
+         DGSdvSWvMMuTzlEEz/BEyUEZREHCAMvIkqM8ZdKidpXIKb5VwhppfVmNAGPO9vxNjYUZ
+         9jElF9OW9ogtvApZFiSRx+f86U/rpqBTGzdrpQffUQJfeeke69lhiFYEKXF74dfH5Iy8
+         8B/A==
+X-Forwarded-Encrypted: i=1; AJvYcCW7DKRVyIvjBt6CsScrHQnnZ2qiTZ7WRaeHWm8UZ9lvOP0H/4vBo6xbbsxIFn5S7fEL60ECPxP7XgUZEiSIe/EaPtH1CxiFrWosIA==
+X-Gm-Message-State: AOJu0Yx6lNYFYEhxHPbTGs7omOufxkQOAkFWqTFV0pw5Q7w1v8Jm/oSq
+	YmwZBDY2axABsspn6EY7ggwgvsfV8fIr8om7h5s7tZJZhQoyALCu3O8juTcuSL3de71Dj6IJrit
+	MYBAy44JK7CHtg5siXbNzEHOuaeMvY+/jLc6lcW+B2OkC4FEN
+X-Google-Smtp-Source: AGHT+IGSEiadE1M7hzpNQ204ASdBT/8qGfuylY/6QNi4hO5JxEG2URQ276EsCZjORAMhtcwTRiKYB5Z6qnoZK/RfDLE=
+X-Received: by 2002:a2e:a9a2:0:b0:2d3:93dd:c54b with SMTP id
+ x34-20020a2ea9a2000000b002d393ddc54bmr4587311ljq.25.1709916277656; Fri, 08
+ Mar 2024 08:44:37 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: serial: renesas,scif: Validate
- 'interrupts' and 'interrupt-names'
-To: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
- linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240307114217.34784-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240307114217.34784-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <4ba7af38-5cc1-428a-afec-75610934fc72@linaro.org>
- <CA+V-a8txZr8WWxtN-=Ek3WZ3GwLT3m+Tcog-5zAx+A4kZL1=yQ@mail.gmail.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CA+V-a8txZr8WWxtN-=Ek3WZ3GwLT3m+Tcog-5zAx+A4kZL1=yQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20240301164227.339208-1-abdellatif.elkhlifi@arm.com>
+ <20240301164227.339208-2-abdellatif.elkhlifi@arm.com> <ZeYWKVpeFm1+4mlT@p14s> <20240307194026.GA355455@e130802.arm.com>
+In-Reply-To: <20240307194026.GA355455@e130802.arm.com>
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+Date: Fri, 8 Mar 2024 09:44:26 -0700
+Message-ID: <CANLsYkzA20rQdTM6AOvFK=3o28GvcoRbckL=ri8RegHqyHaiCw@mail.gmail.com>
+Subject: Re: [PATCH 1/3] remoteproc: Add Arm remoteproc driver
+To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>, 
+	Lorenzo Pieralisi <lpieralisi@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Drew.Reed@arm.com, Adam.Johnston@arm.com, 
+	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 08/03/2024 11:18, Lad, Prabhakar wrote:
-> Hi Krzysztof,
-> 
-> Thank you for the review.
-> 
-> On Thu, Mar 7, 2024 at 1:50 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 07/03/2024 12:42, Prabhakar wrote:
->>> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->>>
->>> This commit adds support to validate the 'interrupts' and 'interrupt-names'
->>
->> Please do not use "This commit/patch/change", but imperative mood. See
->> longer explanation here:
->> https://elixir.bootlin.com/linux/v5.17.1/source/Documentation/process/submitting-patches.rst#L95
->>
-> Sure, I will update the description.
-> 
->>> properties for every supported SoC. This ensures proper handling and
->>> configuration of interrupt-related properties across supported platforms.
->>>
->>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->>> ---
->>> v1->v2
->>> * Defined the properties in top-level block instead of moving into
->>>   if/else block for each SoC.
->>> * Used Gen specific callback strings instead of each SoC variant
->>
->> You are sending quite a lot of patchsets touching the same, all in one
->> day. This just adds to the confusion.
->>
-> Ok, I'll make it as a single series.
-> 
->>> ---
->>>  .../bindings/serial/renesas,scif.yaml         | 90 +++++++++++++------
->>>  1 file changed, 62 insertions(+), 28 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/serial/renesas,scif.yaml b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
->>> index af72c3420453..6ba6b6d52208 100644
->>> --- a/Documentation/devicetree/bindings/serial/renesas,scif.yaml
->>> +++ b/Documentation/devicetree/bindings/serial/renesas,scif.yaml
->>> @@ -83,36 +83,24 @@ properties:
->>>      maxItems: 1
->>>
->>>    interrupts:
->>> -    oneOf:
->>> -      - items:
->>> -          - description: A combined interrupt
->>> -      - items:
->>> -          - description: Error interrupt
->>> -          - description: Receive buffer full interrupt
->>> -          - description: Transmit buffer empty interrupt
->>> -          - description: Break interrupt
->>> -      - items:
->>> -          - description: Error interrupt
->>> -          - description: Receive buffer full interrupt
->>> -          - description: Transmit buffer empty interrupt
->>> -          - description: Break interrupt
->>> -          - description: Data Ready interrupt
->>> -          - description: Transmit End interrupt
->>> +    minItems: 1
->>> +    items:
->>> +      - description: Error interrupt or single combined interrupt
->>
->> That's not correct, your first interrupt can be combined.
->>
-> In here we are combining and making a single list hence the
-> description is updated as "Error interrupt or single combined
-> interrupt". so that we dont have to list the items in the below
-> if/else checks. Also when the interrupts are combined we dont specify
-> interrupt-names hence in the below check we  set "interrupt-names:
-> false"
+On Thu, 7 Mar 2024 at 12:40, Abdellatif El Khlifi
+<abdellatif.elkhlifi@arm.com> wrote:
+>
+> Hi Mathieu,
+>
+> > > +   do {
+> > > +           state_reg = readl(priv->reset_cfg.state_reg);
+> > > +           *rst_ack = EXTSYS_RST_ST_RST_ACK(state_reg);
+> > > +
+> > > +           if (*rst_ack == EXTSYS_RST_ACK_RESERVED) {
+> > > +                   dev_err(dev, "unexpected RST_ACK value: 0x%x\n",
+> > > +                           *rst_ack);
+> > > +                   return -EINVAL;
+> > > +           }
+> > > +
+> > > +           /* expected ACK value read */
+> > > +           if ((*rst_ack & exp_ack) || (*rst_ack == exp_ack))
+> >
+> > I'm not sure why the second condition in this if() statement is needed.  As far
+> > as I can tell the first condition will trigger and the second one won't be
+> > reached.
+>
+> The second condition takes care of the following: exp_ack and  *rst_ack are both 0.
+> This case happens when RST_REQ bit is cleared (meaning: No reset requested) and
+> we expect the RST_ACK to be 00 afterwards.
+>
 
-I know what you did and my comment stands.
+This is the kind of conditions that definitely deserve documentation.
+Please split the conditions in two different if() statements and add a
+comment to explain what is going on.
 
-Best regards,
-Krzysztof
+> > > +/**
+> > > + * arm_rproc_load() - Load firmware to memory function for rproc_ops
+> > > + * @rproc: pointer to the remote processor object
+> > > + * @fw: pointer to the firmware
+> > > + *
+> > > + * Does nothing currently.
+> > > + *
+> > > + * Return:
+> > > + *
+> > > + * 0 for success.
+> > > + */
+> > > +static int arm_rproc_load(struct rproc *rproc, const struct firmware *fw)
+> > > +{
+> >
+> > What is the point of doing rproc_of_parse_firmware() if the firmware image is
+> > not loaded to memory?  Does the remote processor have some kind of default ROM
+> > image to run if it doesn't find anything in memory?
+>
+> Yes, the remote processor has a default FW image already loaded by default.
+>
 
+That too would have mandated a comment - otherwise people looking at
+the code are left wondering, as I did.
+
+> rproc_boot() [1] and _request_firmware() [2] fail if there is no FW file in the filesystem or a filename
+> provided.
+>
+> Please correct me if I'm wrong.
+
+You are correct, the remoteproc subsystem expects a firmware image to
+be provided _and_ loaded into memory.  Providing a dummy image just to
+get the remote processor booted is a hack, but simply because the
+subsystem isn't tailored to handle this use case.  So I am left
+wondering what the plans are for this driver, i.e is this a real
+scenario that needs to be addressed or just an initial patchset to get
+a foundation for the driver.
+
+In the former case we need to start talking about refactoring the
+subsystem so that it properly handles remote processors that don't
+need a firmware image.  In the latter case I'd rather see a patchset
+where the firmware image is loaded into RAM.
+
+>
+> [1]: https://elixir.bootlin.com/linux/v6.8-rc7/source/drivers/remoteproc/remoteproc_core.c#L1947
+> [2]: https://elixir.bootlin.com/linux/v6.8-rc7/source/drivers/base/firmware_loader/main.c#L863
+>
+> > > +module_platform_driver(arm_rproc_driver);
+> > > +
+> >
+> > I am echoing Krzysztof view about how generic this driver name is.  This has to
+> > be related to a family of processors or be made less generic in some way.  Have
+> > a look at what TI did for their K3 lineup [1] - I would like to see the same
+> > thing done here.
+>
+> Thank you, I'll take care of that and of all the other comments made.
+>
+> Cheers,
+> Abdellatif
 
