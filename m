@@ -1,111 +1,115 @@
-Return-Path: <devicetree+bounces-49427-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49428-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E89C87672F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:19:14 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 265F087674F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:25:57 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FFDA1C214FE
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 15:19:13 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 999FDB2117B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 15:25:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 176EB1D68C;
-	Fri,  8 Mar 2024 15:19:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D116C524A;
+	Fri,  8 Mar 2024 15:25:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e1a/ZMv9"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="FqDfLKQ/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A8E4400;
-	Fri,  8 Mar 2024 15:19:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 555F51DFC5
+	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 15:25:48 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709911151; cv=none; b=QoM5EcXd5+204dKuoiNdFp5S6SdtNEKSKEVc1ol0Ui75SJ0IXirUqzDdeMHSs2zyockH/S+eqcWAfEZwGuWYRb7b7GK69dgreFQ69zSDhzfUQvSo0HaAKti3I4dWUU1NOvF6E49GRE0vdI3f1S8T7rXil0jSruRS+7i3TDv7LWg=
+	t=1709911549; cv=none; b=rdbyGgYRL4mU5KhL4uOy7j2VL0NMaZTNnd88Vffb/6f1RVg5183eqcw9Ba3bNl26bQiBA01Fw2G51ArDggOw+pOwLtcRlYRbE3e0eX0Kdgv48M2/0cq8NyYsXSYWNtXSyDN5wlpxrsqrWJq437ONDTkWt0G77Rb5mNSo0AX7/H8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709911151; c=relaxed/simple;
-	bh=2aEWrJvvukoPuyYJLD9Zn0ge1MPAdinGfbWVtaTvHp4=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
-	 MIME-Version:Content-Type; b=GlDAJt6AW+/jNWisHYnwiOJ21qpi/H5MvbAllD1mw2tIRQnvT+ZFKOyWX9BcXT7yb0ECgGDTx9RWHfKRZLeLjtMAUu8/GQxUG/IjF4eygkOcgzTLl3yieMKtGS4ec/v9masDrw3j/LfUqKGw1NfrW0QkonhH6DFi2kya+CDrAkQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e1a/ZMv9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1DDDC433C7;
-	Fri,  8 Mar 2024 15:19:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709911150;
-	bh=2aEWrJvvukoPuyYJLD9Zn0ge1MPAdinGfbWVtaTvHp4=;
-	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
-	b=e1a/ZMv9W69wCrDHRgkvlZIa4zoUJ8J8Q3ymIbKisGFKt85jmdi8rfigpLWuxyFVV
-	 0NMyFXtGSPpANaWp4n+9q7gax4lJv6/l/ymG2gcd8wjKVcn2OYjQ1nlW0pHBvhwvlu
-	 1WSi0bGr3izdfGytW1OtnQXfBWA/rRrzf3KgYRsKCyT9k2R1DLweSj4xcahwGjiTPS
-	 LCNlE5MKl+CpM8Enh+hZWwiAnV0G67ryNjl5C8rOiWaT6dXdIidkWXKtNY5hduirgp
-	 y/3xoHrWixGF2LDAur5awj7cBiaNBTUXF9V3bqbfjuerY2BtKIJku2z3U6hBDIDv92
-	 lL4q8dkNZ2MbA==
-From: Kalle Valo <kvalo@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  "David S. Miller"
- <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub
- Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
- <robh+dt@kernel.org>,  Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
-  Bjorn Andersson <andersson@kernel.org>,  Konrad Dybcio
- <konrad.dybcio@linaro.org>,  ath10k@lists.infradead.org,
-  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,
-  devicetree@vger.kernel.org,  linux-arm-msm@vger.kernel.org,  Krzysztof
- Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH RFC v2 0/4] wifi: ath10k: support board-specific
- firmware overrides
-References: <20240306-wcn3990-firmware-path-v2-0-f89e98e71a57@linaro.org>
-	<87plw7hgt4.fsf@kernel.org>
-	<CAA8EJpr6fRfY5pNz6cXVTaNashqffy5_qLv9c35nkgjaDuSgyQ@mail.gmail.com>
-	<87cys7hard.fsf@kernel.org>
-	<CAA8EJpowyEEbXQ4YK-GQ63wZSkJDy04qJsC2uuYCXt+aJ1HSOQ@mail.gmail.com>
-Date: Fri, 08 Mar 2024 17:19:05 +0200
-In-Reply-To: <CAA8EJpowyEEbXQ4YK-GQ63wZSkJDy04qJsC2uuYCXt+aJ1HSOQ@mail.gmail.com>
-	(Dmitry Baryshkov's message of "Wed, 6 Mar 2024 16:23:55 +0200")
-Message-ID: <87v85wg39y.fsf@kernel.org>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
+	s=arc-20240116; t=1709911549; c=relaxed/simple;
+	bh=TFLZXdU3ies1N74nkimz1dUi49Sig9GXkWQrBIaS9r0=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=q61zvEbDGih0p8s9efSNGvLKGfg9OzfqqQlMJWQgdKbMnfVWlHiFKPJMxphSMyrUUAsfjp+7s6KRtq/OE2tCOJREslnh3SzEppxAsJhoU3Yl8ElOjS+2f4zal56GLsNNpecYSoxqD34li+qA8KdyaBHZ2dYkEpumBAF4kBr6i0U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=FqDfLKQ/; arc=none smtp.client-ip=209.85.160.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f182.google.com with SMTP id d75a77b69052e-42f024b809cso294031cf.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 07:25:48 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1709911547; x=1710516347; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TFLZXdU3ies1N74nkimz1dUi49Sig9GXkWQrBIaS9r0=;
+        b=FqDfLKQ/fbi6S70lRntmG3wXPNXSvPEHkdf5NFj4Kcsa7KOBkDpL10OS6YEI1Z9ZJK
+         3TJvmK2Sy2TQ/9BykghT1jWCo4Y3s0hNlwKD2ivcGUm10XYDQ1Gq+G8pQWv3M9+JfEqi
+         H31wWdNBuEo7DRRvc7Q+oaY1QwD+5QAckRE2VwS8Ks0MkJn8r55p5lW/YNJw7BlaScgR
+         VOOPVE2A6DwVAjse5IaPV1Bf9bWR44EiWCcXo4CLuCUrcOT+2zPpjDsSktTSBevEm2iy
+         ly0Alhu3XUG6L3Ovw1l/V0mUZh5SiQyl0GMJ0+A+ByEiGyyRp90SQIrRrLyBir2Gk49E
+         pgSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709911547; x=1710516347;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TFLZXdU3ies1N74nkimz1dUi49Sig9GXkWQrBIaS9r0=;
+        b=PDUxnc6zUk4fGWUEETixudc2CwaIhZ56Jblnmwa5DxK5q0hSK9nu/qWMMlF6NlZ9KN
+         w5asCil0fvrGj+WeNOQKR8yjyv+ycQZ6OjihQAY1fdBdTW5Py1NQ9zlExUUXteen4X2E
+         NVNEkvzhE4F7QG+einM6MU5Bva6ATsnenjeGFLORm5XbuRzIy2ALBU/39vvizn/wuLzV
+         wFQT1UcBNBfb/uMFcsjRrCdjEdWNYMLE8WeEdXU1KojY27ydll/tPyFyPc+2DMLatcHA
+         wT5nP6s5WkNPdtcjkhTPisS16TwlyxxDMz393B2V5yTSyEKIL5RHAc8Pz+AAXAv/FIHL
+         Dv5A==
+X-Forwarded-Encrypted: i=1; AJvYcCUqHy0QkGgCkV67bG3UNqbMDvbzfBcQJNFgtem2d9KwkOBAfQoz69GWq41Rp6ab/882fPnkU/KLIqCpp4ue6AlV6oG+gVXX7HeIkw==
+X-Gm-Message-State: AOJu0Yz5idOe++1MZQEN6NfgH9tpRaZFhe7xBhY9H1y39sLAEeToa93Y
+	hh/GZsWeIlumj7Dtc9/HHETLP+TSB7VKW7i/flaNKosWSf+EqQA5WcFMlrG8vqtyLMHC0/xzGPU
+	x++VIj0WPSpTQ6+SkdSicBQC9pcQzGMtFmapl
+X-Google-Smtp-Source: AGHT+IGwvRqhH5/5u0dRebXEE93CUmjojhrEOWLQxodoD5XGA8x68lzCwMdItYYAqK5wHkhfsJazt1RD0edt8txgF60=
+X-Received: by 2002:a05:622a:295:b0:42e:b2a8:e239 with SMTP id
+ z21-20020a05622a029500b0042eb2a8e239mr627320qtw.21.1709911546958; Fri, 08 Mar
+ 2024 07:25:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20240308004757.1048284-1-xuxinxiong@huaqin.corp-partner.google.com>
+In-Reply-To: <20240308004757.1048284-1-xuxinxiong@huaqin.corp-partner.google.com>
+From: Doug Anderson <dianders@google.com>
+Date: Fri, 8 Mar 2024 07:25:31 -0800
+Message-ID: <CAD=FV=V7t8vYZLunDLBh7xDPLoennBP+7Gi6b1Y_GKnYOW1cMw@mail.gmail.com>
+Subject: Re: [V2] drm/panel-edp: Add BOE NT116WHM-N44 and CMN N116BCA-EA1
+To: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
+Cc: sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch, 
+	hsinyi@google.com, dri-devel@lists.freedesktop.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
+Hi,
 
->> To be on the safe side using 'qcom-rb1' makes sense but on the other
->> hand that means we need to update linux-firmware (basically add a new
->> symlink) everytime a new product is added. But are there going to be
->> that many new ath10k based products?
->>
->> Using 'qcm2290' is easier because for a new product then there only
->> needs to be a change in DTS and no need to change anything
->> linux-firmware. But here the risk is that if there's actually two
->> different ath10k firmware branches for 'qcm2290'. If that ever happens
->> (I hope not) I guess we could solve that by adding new 'qcm2290-foo'
->> directory?
->>
->> But I don't really know, thoughts?
+On Thu, Mar 7, 2024 at 4:48=E2=80=AFPM Xuxin Xiong
+<xuxinxiong@huaqin.corp-partner.google.com> wrote:
 >
-> After some thought, I'd suggest to follow approach taken by the rest
-> of qcom firmware:
+> Add support for the following 2 panels:
+> 1. BOE NT116WHM-N44
+> 2. CMN N116BCA-EA1
+>
+> Signed-off-by: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-Can you provide pointers to those cases?
+It's fine this time, but please be careful in the future. I never
+actually gave you my "Reviewed-by" tag for v1, I just said "The patch
+looks OK" [1]. You should only add/carry someone's "Reviewed-by" tag
+if they explicitly give that tag.
 
-> put a default (accepted by non-secured hardware) firmware to SoC dir
-> and then put a vendor-specific firmware into subdir. If any of such
-> vendors appear, we might even implement structural fallback: first
-> look into sdm845/Google/blueline, then in sdm845/Google, sdm845/ and
-> finally just under hw1.0.
+I'll also note that the subject of your patch starts with "[V2]". I'd
+normally expect it to start with "[PATCH v2]". Maybe something you can
+fix about your process for next time?
 
-Honestly that looks quite compilicated compared to having just one
-sub-directory. How will ath10k find the directory names (or I vendor and
-model names) like 'Google' or 'blueline' in this example?
+In any case, I've applied to drm-misc-next.
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/list/
+dcb6c8ee6acc drm/panel-edp: Add BOE NT116WHM-N44 and CMN N116BCA-EA1
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
+
+[1] https://lore.kernel.org/r/CAD=3DFV=3DU8wdT_5k-yrLVpmh=3Dq4k18LntqujK7Mw=
+88TdweBXCPgg@mail.gmail.com
 
