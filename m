@@ -1,151 +1,129 @@
-Return-Path: <devicetree+bounces-49465-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49466-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA2138768FB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:58:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 92296876931
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 18:03:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79B7E1F21C94
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:58:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C3CC41C2260B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:03:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 551ED1BDED;
-	Fri,  8 Mar 2024 16:58:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9A40B250ED;
+	Fri,  8 Mar 2024 17:02:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="dmrAho/9"
+	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="s3msyLbE"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from outgoing1.flk.host-h.net (outgoing1.flk.host-h.net [188.40.0.86])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 26946568A;
-	Fri,  8 Mar 2024 16:58:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6F272421E;
+	Fri,  8 Mar 2024 17:01:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709917102; cv=none; b=AgcagG5mrztG/IctpSWZ+EzMidVrdGcUTKg3e5ygqWf7BffKGdcpFgF2C7yYDhQ3wyte2vonllQhUjrpn56O+i5bUvv9tDzbpqLx2iVk0PeckZAYUZv9j3dLqyyUmrMHq1lzTWpEpZ31cxR3zrI8HCDQ+KH6yDTAzCERSlEZ1wk=
+	t=1709917322; cv=none; b=HOT31gJDPvLicnd0N5YJTmbFR/pNn6N2IcmNYNts8If+L9XdLQtAedV+09wde98yOh1dmrmgev9k/to+I5Dtu97Upgr+buvVMLdXWr2gp7NQiPxhFLYZ2u4vajOZAwSiWGE8SZ6WnRl7cgU86xL5DtY/mgtUNZe4fcD2nEhEPus=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709917102; c=relaxed/simple;
-	bh=EuVxJD2mHfKnoyQBcowTIaQagWYJL80opZu/yj/GV0M=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZlssJsa6B3DG1YrF3uRraSO8HJzyzWZsAc8lA4hLkWJ2gvZleQyBxI68PjIBu1v+f38Xcf8IYqCQkqh4cQ1TbrVy0G53G2NSAW7Kn/m0Dj9Pwyd2XW/zXYwxxFf8U7RdFl2sAHkle+VrPlFT+utMrA4NHHAF6Uu8MH9122iLIRA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=dmrAho/9; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6AC37C433C7;
-	Fri,  8 Mar 2024 16:58:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709917101;
-	bh=EuVxJD2mHfKnoyQBcowTIaQagWYJL80opZu/yj/GV0M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=dmrAho/9nVEkb9cd/5KFFzOsfYCcwASNebcl8zju555mMlRc/37x7VdH/dGNnaESa
-	 6bg1wBfr//iiMHZgy2M/zWxgVnxbv3mjcolGzZBlaPCG2GQIartPxGbAZRRqynkLlJ
-	 1wGCS5+XSBQk5UJ/nSneEG1nfxnFLCxuHmgfyXCbLPEJFUDqVQPgU7lFbl3kELYdsx
-	 Lwne+5FRbKM63dW5Kbb5pEQAOX37B4YQ4c/2WKPVOKcb4+WY0NNJhwprV3lUA5CYUO
-	 BCzoTPyb32rwTGP8fqNfkLFqoI/PNUNqqX/cSGpugqK6+x3uwr2TNl1Y7YUFHdcHLL
-	 O9t7Dc8COFnnw==
-Date: Fri, 8 Mar 2024 16:58:16 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Frank Li <Frank.Li@nxp.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org, imx@lists.linux.dev,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: [PATCH v6 3/4] ASoC: dt-bindings: fsl-sai: allow only one
- dma-names
-Message-ID: <20240308-croon-goofball-797d091e981a@spud>
-References: <20240308-asrc_8qxp-v6-0-e08f6d030e09@nxp.com>
- <20240308-asrc_8qxp-v6-3-e08f6d030e09@nxp.com>
+	s=arc-20240116; t=1709917322; c=relaxed/simple;
+	bh=AccsSPF0jDJvCAdd9RMQg1UL432jF4z2EPF1mFPu/4U=;
+	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
+	 References:Message-ID; b=ENiQfir4XRXRFLLVwYv3RU7O+br5UcFDYWjKaAnjZTUbh/S82nmvOKizlTX2BPhNYiZ1ftCqvgtoc1Yib7QEjrepBihHxzl3YZYneaZN1opVN2Ax7YlNJzEJMuabhZGbwF1PwXYFSZIWlgpNFepeiGpd0BRowvX4DlTut6OUNXs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=s3msyLbE; arc=none smtp.client-ip=188.40.0.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=risingedge.co.za; s=xneelo; h=Message-ID:References:In-Reply-To:Subject:Cc:
+	To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:reply-to:
+	sender:bcc; bh=sRjl7XYl/PGRpGuJTyM07HHols00JQDh+d7SIJ99lF4=; b=s3msyLbEuJDiD1
+	EvIiS5TeOy8LnDzzJMrgZgRlGKJcKbYV2AgR2Y/bu1JpOUYQ++L5Z08crYWeXefo5mALmVz1Lh56p
+	I/cnm3vaL6qCuU9wmTEajKS+/UezYTYsCmAPozFvMhO6E4AvXQhMupgvWykQRI6WdM8oMgi0PHvU7
+	BEptilxZhFeJg1Wtlz21ZnK8vRks+0805gFAxv8/dQ9JaDNZ7JpC+BeaCOl/fl/EPuAh1O2era/+S
+	MMiPzkjZO1ovOdgkrDlQD+tS4Qisrny0YECCPKW6bCrVqzTIbMtxqKmOawvmt26tXoyBM+pguUihr
+	B0+QRQx8JB9pCiEorWSw==;
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+	by antispam3-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <justin.swartz@risingedge.co.za>)
+	id 1ridbU-006Zrv-Gq; Fri, 08 Mar 2024 19:01:54 +0200
+Received: from roundcubeweb1.flk1.host-h.net ([138.201.244.33] helo=webmail9.konsoleh.co.za)
+	by www31.flk1.host-h.net with esmtpa (Exim 4.92)
+	(envelope-from <justin.swartz@risingedge.co.za>)
+	id 1ridbT-0003Fr-KO; Fri, 08 Mar 2024 19:01:51 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="AtYEuJt27XJncbRZ"
-Content-Disposition: inline
-In-Reply-To: <20240308-asrc_8qxp-v6-3-e08f6d030e09@nxp.com>
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date: Fri, 08 Mar 2024 19:01:51 +0200
+From: Justin Swartz <justin.swartz@risingedge.co.za>
+To: =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
+Cc: Sergio Paracuellos <sergio.paracuellos@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, linux-mips@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] mips: dts: ralink: mt7621: associate uart1_pins
+ with serial0
+In-Reply-To: <70822db4-d642-4180-9db8-eb0aa5728ef1@arinc9.com>
+References: <20240308155616.11742-1-justin.swartz@risingedge.co.za>
+ <20240308155616.11742-2-justin.swartz@risingedge.co.za>
+ <70822db4-d642-4180-9db8-eb0aa5728ef1@arinc9.com>
+Message-ID: <bec06da5c4099898d9e531181d0797ca@risingedge.co.za>
+X-Sender: justin.swartz@risingedge.co.za
+User-Agent: Roundcube Webmail/1.3.17
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.03)
+X-Recommended-Action: accept
+X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT+Ii1571bF7nYhcAwAFtCT5PUtbdvnXkggZ
+ 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wCPRB8bAzJcv2cv+UqiTTc2+CpNcmBnO4XM3Sck4bwNogU
+ WCl1nkLBzZX0KuJ9bXiS85Z42w/+2OBolTNFbPomXFWCX8oNdggW7HE9XDTdSejrkEpbuUvwMvHx
+ 3T+KSG//gbuP7hnUK8NQdLwsVWKIFDZRrTGv3rxiw9tFrqFSCFNiLZt/QXQnOBRD+jq1HsKsDh/6
+ Srgk2K3gr1VBfJbChkYH6fbrypLNrde+UooQVNLReLErukdelEOHUIpaBbp5GdnsN8+UvimwMinK
+ 0+Txhz2u9qvrL2PODYgMZQApJXOjDLkqunZ9NcY2bHZn7CfFscMZZf3sCkN20I5vMh4akiObI7Kj
+ vK7X04QEin24qbfMFd8eGjnYW8aSH5qj4ujh/13psIvqSqJFa1CcANErDW/w69saM9prk3jNnHtn
+ nuEt/J9wDZeQfiNOYsLDFBdwYt2XtlLzy7G7T4kla0JNnAWQx3FS11bhwUa9HCIwKB+TroNcRY33
+ oNmH4nRQzHQazgY7lmveanvOdQzf6IMJ3345q/s6ySNrGnXycmhg3NT7e1QHD5IMWQJA50ktgR2o
+ naNQbqJUPRwZtKOTN8gOLtBcNrQxKZYuPe8bdCyw79zlPbqLQkZr26Lcxdvj8cqI+CogZdOhX7v3
+ ClXzrmMENhJLl6MBfhzHVBR0wHQZxzIUka7Uq615Mik1qzcz30+tdk6yIuh9K7v+Nq0Cm3JVhle6
+ F/kpBdN+oWjoATjEFDwcaiz0R34rhTN+GTbl4uS+pZovX9cex7Ac4fawcerGI7TrGXpM/B/M0BZd
+ PfIU1BX7pZc1sE3vsz58auH/srM2fgZ9JmgLbj7sqoEiwv7LCxIiAE5ODMnmwjvj2589zjbyZCiM
+ WpBpW8YvoIIqmZcWhL/r/eFjMjJnMHeiAPOVAT1rE1/vP68Bb4z3v3h3gCdXrv2+9GnNX30LKqXb
+ fwFKgm/rnYBl+Mj5KqOl6Jzub/f3QhLRbOgisvi5VU9eNBtgo6zjiatjNO/pnMCjuIvXs/AyV/Ns
+ URB/R+FlEHyAzksgfaRvdgw0WK34QWnzHHMcN6qoXPjenLhIOF1oeRYbjF1Hp647mOWoQlc3hL3c
+ dBMSQgQtiTUcJp5roVy0aRtSNV8PU3+FWuyIQnbx8eB4u/m4iBmYb1/LCV4/EuVHup06w3Vwxf9C
+ F7D6LKKRTfdjzQ6YC7Heg3Xf7O1TOd6RcY/MXB8eEq3bCN2QohZvyS03iBmgsz450Kmjd3fGV2Jt
+ unc/A+T40yFOxOeH+1yxtZHZOXSNzt6etGjYKTk8Ibtf63VNbf0lrvssY+k7AHGi1NevGWTo2+h8
+ Lhk4HCeZR7ymlGVRtthBJ2y8A5arx6JItKpFaUNPGMMlvbMX0nyK1NiAJ0y2Qvvn6ds6mor35w4f
+ SfHzQbABJfgy21HclcZkPRq7NhoxyMwqi8Q23Rgadfh5T5n5D4OHHpbEIgsllZKWnzc5M5WlNtVJ
+ qo05MS+4ayUpOtEhdxekWDmK9g==
+X-Report-Abuse-To: spam@antispamquarantine.host-h.net
 
+On 2024-03-08 18:14, Arınç ÜNAL wrote:
+> On 08/03/2024 18:56, Justin Swartz wrote:
+>> Add missing pinctrl-name and pinctrl-0 properties to declare
+>> that the uart1_pins group is associated with serial0.
+>> 
+>> Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+>> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+> 
+> Reviewed-by: Arınç ÜNAL <arinc.unal@arinc9.com>
+> 
+> Please add the trailers from previous patch versions from now on.
 
---AtYEuJt27XJncbRZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+What do you mean by trailers?
 
-On Fri, Mar 08, 2024 at 10:30:52AM -0500, Frank Li wrote:
-> Some sai only connect one direction dma (rx/tx) in SOC. For example:
-> imx8qxp sai5 only connect tx dma channel. So allow only one "rx" or "tx"
-> for dma-names.
->=20
-> Remove description under dmas because no user use index to get dma channe=
-l.
-> All user use 'dma-names' to get correct dma channel. dma-names already in
-> 'required' list.
->=20
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-
-Please drop my ack from this, this isn't the patch I acked originally
-and we were having a conversation as recently as yesterday on v4 about
-this patch because Rob didn't like this approach. His suggestion is
-better than the one I gave on v4 that you have used here.
-
-Please give it a few days between resubmissions, and do not send new
-versions of a series every day. It is very confusing to have different
-conversions on three versions of this patch in my inbox all at the same
-time.
-
-Thanks,
-Conor.
-
-> ---
->  Documentation/devicetree/bindings/sound/fsl,sai.yaml | 8 +++-----
->  1 file changed, 3 insertions(+), 5 deletions(-)
->=20
-> diff --git a/Documentation/devicetree/bindings/sound/fsl,sai.yaml b/Docum=
-entation/devicetree/bindings/sound/fsl,sai.yaml
-> index 2456d958adeef..93e7737a49a7b 100644
-> --- a/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> +++ b/Documentation/devicetree/bindings/sound/fsl,sai.yaml
-> @@ -81,15 +81,13 @@ properties:
-> =20
->    dmas:
->      minItems: 1
-> -    items:
-> -      - description: DMA controller phandle and request line for RX
-> -      - description: DMA controller phandle and request line for TX
-> +    maxItems: 2
-> =20
->    dma-names:
->      minItems: 1
-> +    maxItems: 2
->      items:
-> -      - const: rx
-> -      - const: tx
-> +      enum: [ rx, tx ]
-> =20
->    interrupts:
->      items:
->=20
-> --=20
-> 2.34.1
->=20
-
---AtYEuJt27XJncbRZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZetDpwAKCRB4tDGHoIJi
-0p1zAPwOVqZkJw5DaQiuRLY7UuKy72/FOl/NK/YmqCZ4DyG7uQEA+Ki09p+Lossj
-bxiyf19v0Oygl2gWDK2Oq8f11MiHpgA=
-=OJXG
------END PGP SIGNATURE-----
-
---AtYEuJt27XJncbRZ--
+Regards
+Justin
 
