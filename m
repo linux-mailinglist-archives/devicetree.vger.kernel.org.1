@@ -1,136 +1,383 @@
-Return-Path: <devicetree+bounces-49288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60D89875E8C
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 08:31:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5891B875E95
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 08:33:09 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DA446B22AA2
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 07:30:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7CA4F1C2087C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 07:33:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B661F4F1E0;
-	Fri,  8 Mar 2024 07:30:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D6FEA4F1F1;
+	Fri,  8 Mar 2024 07:33:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="ZOuwsWFt"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="MET6RWCg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2067.outbound.protection.outlook.com [40.107.21.67])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 301054EB5B;
-	Fri,  8 Mar 2024 07:30:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.52
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709883049; cv=none; b=narLkniEnN7DBz62tZFKmY1yeuYdZJUAWW1yKNiKyKQCYVhz3qD/tTvtLng6Dj+/ZDUTflpdu+QQRdrWBsThOQ9zBkuQHjCPUSypn/cFDrrtXYD1w3hbtvu9Ujb/DGkBFuVS+Ke25goTA0txG5V8eII9EKk3tXBc5ZA7TlN4wCU=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709883049; c=relaxed/simple;
-	bh=RQBubAAOrzeIJ1AVB3RO/dGryPeC9b+9MwRx7zozfzs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=YbaGcyCKe216MOqFrpx9Tqfe2LiP7OhvFxLivep6UdQvgQP1UHuXJw9QOd6MDtEK1yU5w+jI7JPsxW2Pb52CHdiS0PQmoRnfGrFlgtVV0ydultY8BEdIHpL9NUSVBwIs1vk8kD5BtYRgIlassHoiEIOI4ie96F13jTCQa8bRBt0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=ZOuwsWFt; arc=none smtp.client-ip=209.85.160.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-21f2f813e3bso1279107fac.0;
-        Thu, 07 Mar 2024 23:30:47 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709883047; x=1710487847; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=haniZwft4cKI4inX+PJG9Yqt5S7i74415SjH5HntUuo=;
-        b=ZOuwsWFt2KYkJHppLq3OqhxgIPC6mJ7wYZypBYgyFlAsLtWmvGzJ5RzecM/2PgNp5r
-         MVf0CNwtEJ9FiDtFn444in/HgAyrUqNGAwxtYeTP76zI7MszFT/0jK6NK6GDQWEET8Tl
-         Wwdh3LE8InhwwK3J8ND5cCH+VrO0id6C93ODaJ7tFIJJd7Asq8xVdNYucEiUNJvBvOhY
-         5DTcZf1hE2XkTyeafLtzk+JUK7b3WmIYDY3G9tSe/3E2pNdQIfJq44dis4xliI0cqNdw
-         NObPWrMPjEnfldBmTRcoc/xfEnpOVnUd1Ui84Se5u7ct9Db2TNw6g2vmzAxzzxTknFf6
-         5PNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709883047; x=1710487847;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=haniZwft4cKI4inX+PJG9Yqt5S7i74415SjH5HntUuo=;
-        b=xERimPO4v6Y6yPRuGfCtUttZPp9qQMO2Ni8v69oijGjKikzZuK7GxgB2GaEHqRYPIp
-         0z+yjVdYFmKelyAOhj8KadZrC6TxhyGBF13FJzFeBLukzx0Y+0lYV04jhGuQOesCfAkV
-         HeQTZd2SOv3WNmEM8TOoPGEQUqVc0XMhnmU6P6Dh3wjtnZ6xPddpelBFnr5MTJiPagQf
-         dSm84oVVxd3TnFaea7wrxWThQOVn4pYD/+gVOu0ltkqSa+Iz8EbjWlGClGtqNDF7H0IB
-         aglenFZDn7YSRpbNZMks+BbdIL4qY8oH1WGjc9YFamjCM/m4LS37EJSjYuSACdrBAPBC
-         EZ/A==
-X-Forwarded-Encrypted: i=1; AJvYcCXxDmosrUXEIcRkLazgUkRH0ld4tMHJjGHbhZjec374eM6IakUi7vDTPlp1b3ZRV91zTO5KghDpxWjox71bKVHJX/K9U1Bm+PUaFffwUxkBtte6IRHwqHPULhiRD7/QUNsELPAVEN/Ov2AuDmhktc3OGsFh7B6u4W0cRc3jcfojcslFg3I=
-X-Gm-Message-State: AOJu0YwVA0yCPlYFYiiHLqOM6fOj46gVgfU2oLs1wEuXnOuK2yTX1kr+
-	G3T2rA8z5fSoyaSu+7ps6zYIRjKVvmrNjbbDFVYMU31fOPODVwZaKkODRu46+/s0BFxN34YGAkq
-	smZPuQF0J8cw2mI/B/lPu54D9K40=
-X-Google-Smtp-Source: AGHT+IGZiX9XYKiUBp+8l+Pz8MJ931cWf8obPtigppTRXErCR0+r4FF+RoS1m/WY/W7uarevs4qbHcVRWUViLmQcbVA=
-X-Received: by 2002:a05:6870:a108:b0:221:88a7:d8a5 with SMTP id
- m8-20020a056870a10800b0022188a7d8a5mr1051515oae.7.1709883047312; Thu, 07 Mar
- 2024 23:30:47 -0800 (PST)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D384AE555;
+	Fri,  8 Mar 2024 07:33:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.67
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1709883184; cv=fail; b=JJY+aGRqpz+0fHrqRGzeumfBZCaOW8z3WnVsK/JwSBibvjJd8G9bAer4UCo47JfoDGxNVHrEVqzzT1kEKX2hoocOswibb6BQB51xuSlpDXJVJAOfVENNFbZwZBiX3URCW1xG4N89VRXWZlgC4O7tMyCaTw0oY1gh6zjQ9ACOjXQ=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1709883184; c=relaxed/simple;
+	bh=aJ0iI+Evqdw5xrCyTTk9EzGvsdrY24eEDge1f4Fp8BQ=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=bo8aTFL33iL4a977dTR59H38ESi6w4/0hAK7ffaF0JGzDSfRaZlznwLBq/YQPQpRJvlWmJ5CjOKgHE/NwmigdGPh+fk97TRmvp74eqkgwwqkw9AD1+R3XpVRVE0QUvRAfIeV9GWkEFn/R3uO5QFIAH78H9uGYO8MOS/zuxuU3AI=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=MET6RWCg; arc=fail smtp.client-ip=40.107.21.67
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gxOkwRyCamVYDZE0LySOFwc1QzM1tICDTZ2siw5Zqv0hLtqNICxFgc1+baVuzyk/KSxX85LebEEDKzOP0xYZyyZhx/cZbQovtb9uvxqnOuGgQxxBQjbHuIWzJ1ZFc3tG1X9FkVc+PmNaXQpPG+GTfeKe5b0C5/Cwgq4yiDBR5YXfZZD05WMMkOHWuvZVaFNP5tgusGz6t/Vte6RKwZMXbGyOC215NS9NeTiYx5CAYTHHkcHL8n5sTDikz+HpOF83FwEBcHNRe7wFZe05NL6bLV8Gg3KtwJB/t9IWtWoqaLpuOLzVGnbUFgbFu3b47Oh1RCqmx5IK0GVd9QYFWCDvKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+7EW6KNJGWIyZaHBis5e6e3+6PyJz58M2KGsxp24kSQ=;
+ b=SY017MjSzc6oJ7ChV7HCOO4xVpUwA3HtTYlVfFxVCjk2q21C4RgE1Rimj3soCMOLRcOISwaTs0/f/88puRBXyT1FF0GTKsCn38QKH9BekUYzJTj47IAKZmyRVI5TBHFHoNaMoS/fH7Z062SZyI1pRX9wpMEr4XHwKC+XTujmTQ004WpMUpwfslz3fDXbyhygE/iRMQ77xnbXusKMHqQ0A1XJjlwHD0DHyxvDmse3a6kix04tndXiAfpgc23NUSkulpG6+ZheklSWmB4CqMXuqm+8i+uWwv6Pg04j2XMjqSltKvAIbax44psGpC1FgdlxDlLH5rmVdI+bs4C3/Ynxvw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+7EW6KNJGWIyZaHBis5e6e3+6PyJz58M2KGsxp24kSQ=;
+ b=MET6RWCgZrufsvHO8LLBmsrIKMX3I6Looq2GjWD1gH3RYFcJkZDl0BpfgTwnoUwEnoaQ9DsdfjVROXXZ6XGCmjRW9SP4FDqJYRynHiPCdrtlM9gmXmuimvm1c1L7RQhoDGN3juobcypgxb5nEx5SQhWFFLxLK9dEzFqrI/nJ8TQ=
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
+ by AM7PR04MB6999.eurprd04.prod.outlook.com (2603:10a6:20b:de::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.29; Fri, 8 Mar
+ 2024 07:32:58 +0000
+Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::d45f:4483:c11:68b0]) by DU2PR04MB8822.eurprd04.prod.outlook.com
+ ([fe80::d45f:4483:c11:68b0%7]) with mapi id 15.20.7339.035; Fri, 8 Mar 2024
+ 07:32:57 +0000
+From: Xu Yang <xu.yang_2@nxp.com>
+To: Frank Li <frank.li@nxp.com>
+CC: "will@kernel.org" <will@kernel.org>, "mark.rutland@arm.com"
+	<mark.rutland@arm.com>, "robh+dt@kernel.org" <robh+dt@kernel.org>,
+	"krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+	"conor+dt@kernel.org" <conor+dt@kernel.org>, "shawnguo@kernel.org"
+	<shawnguo@kernel.org>, "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+	"kernel@pengutronix.de" <kernel@pengutronix.de>, "festevam@gmail.com"
+	<festevam@gmail.com>, "john.g.garry@oracle.com" <john.g.garry@oracle.com>,
+	"jolsa@kernel.org" <jolsa@kernel.org>, "namhyung@kernel.org"
+	<namhyung@kernel.org>, "irogers@google.com" <irogers@google.com>,
+	"mike.leach@linaro.org" <mike.leach@linaro.org>, "peterz@infradead.org"
+	<peterz@infradead.org>, "mingo@redhat.com" <mingo@redhat.com>,
+	"acme@kernel.org" <acme@kernel.org>, "alexander.shishkin@linux.intel.com"
+	<alexander.shishkin@linux.intel.com>, "adrian.hunter@intel.com"
+	<adrian.hunter@intel.com>, "linux-arm-kernel@lists.infradead.org"
+	<linux-arm-kernel@lists.infradead.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-kernel@vger.kernel.org"
+	<linux-kernel@vger.kernel.org>, "linux-perf-users@vger.kernel.org"
+	<linux-perf-users@vger.kernel.org>, "imx@lists.linux.dev"
+	<imx@lists.linux.dev>
+Subject: RE: [PATCH v6 4/7] perf: imx_perf: refactor driver for imx93
+Thread-Topic: [PATCH v6 4/7] perf: imx_perf: refactor driver for imx93
+Thread-Index: AQHacHXnJDlhKGFOKEyD8xAIge0Eu7Esf7qAgAD0xrA=
+Date: Fri, 8 Mar 2024 07:32:57 +0000
+Message-ID:
+ <DU2PR04MB88227164FCBEDC50AD42606E8C272@DU2PR04MB8822.eurprd04.prod.outlook.com>
+References: <20240307095730.3792680-1-xu.yang_2@nxp.com>
+ <20240307095730.3792680-4-xu.yang_2@nxp.com>
+ <ZenxnY83dnYIT9dJ@lizhi-Precision-Tower-5810>
+In-Reply-To: <ZenxnY83dnYIT9dJ@lizhi-Precision-Tower-5810>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DU2PR04MB8822:EE_|AM7PR04MB6999:EE_
+x-ms-office365-filtering-correlation-id: 9538b39c-d68e-4fd8-857c-08dc3f41f9c6
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ JqRWMOss45cWfuihLXLVN4JyBg+qzvrO5iVLrVYv940YarbZK5lDH04AXQg3PQWY4vmniJBvR+BTDaqoxmsallllC9uPeLPfGgd9KjOGP+CBx7FKULbk3Vo7K4mAkaVHMdNZVPgh2aG26vjAu45J/LnsiS09KutZI3+RozXWBJ9oQpT31lhZO+35S25TsWq267CJRxTKrlrC2tsfLYFUrJgmILKWqPPS2YYUXYLcXHVJ0cl4pPN+k5lquvSbrlpRZfD50UJnr3h+gVK0if4ggSs4rJQghX7OmLKJ+WwLdlh9/4uCG4LR9RoCun1yflXwmYvlA4bHDjrKQc3rhehl9hQyuZUwza73LHbSRDzb1rKSFRgWFl9OwtMzNJzCBIkQtHkRJgUHL+RaSuXGDUlPRtplKrW9OwyPEj6KDnhG9v+efDtnVkPgOTupwMAU/3dk1sNFA0rw8YV1lj9GALMyqXJ1W7bclZ9vP7RjBh84/01LlSA2qdP/PXCwi0AkKfybqHyJ0ZDMfMUU+ngLZblbPpDHV7LDjwMn42t8U9UjRdZJW8hZQifjwGe5y1UelG56AFU/kMyNMGSt0Hp4XfxOhB/njRt066m3/yrvaOdfm+3lKIuCxsVms60u/8/5TGCHMden2w9UevlzdF1Lydg++hFNtBkCEpIvXSD8MBpFSCN/iPfUK5vU1/leSpbu+yyq0kqRHEbqP7YeruUHg9QmONnz3GRIkp27F6PXqVS46bY=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(376005)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?jx/uaSF5CMt0+ZdYjvnPG95JKsRV5KCDJpPIL77MNrgo6fan3ZObxljhszjQ?=
+ =?us-ascii?Q?LW0uwSm3+3IBclj8GQsuiw61SXPEGoBL7LJ6ylVb4ray3eCCUpf7YWyw13af?=
+ =?us-ascii?Q?i8KCo4V0WaSj12U4mIzcem7S1ZPIASo6ph4/GUQNeKxo4aWJEW92gA7HXFeu?=
+ =?us-ascii?Q?f10vQlj9ptHQFKcMF22PLMvCW8aPQlrdl8g5SvpYZ5AN3wY50CGeyutb3xot?=
+ =?us-ascii?Q?Tp1qjn0N+F3aROn94rSg1TZ3bArBaRrUTp4QG9fTxy6Xigup1GWwSABGTvg1?=
+ =?us-ascii?Q?IRzZzzFkO+EJw+g/o4AL+fkWVR4CaW7Xv7kQaLSpVMPoEH9mYrE102ytNUM/?=
+ =?us-ascii?Q?u/n7HiElYa421AXLzl49Q0RJFfY+cRIIOk9BjUzgdfyOR4/ChxN07txfwuCF?=
+ =?us-ascii?Q?Uz04ZjzQK5wvgFI7ETh2S7rFaMoQIcZ/Q0suxTjgX2doOYFQC9VscyMl9WQH?=
+ =?us-ascii?Q?/tneTr9+8WtfVc+8txEBVBbL76XX67y8Fra6z/uDzwB5aZF9WB0CvYGxB+qC?=
+ =?us-ascii?Q?aI52hIsiTTLgc35Id0bpC9SHQxKwMauRuOaknAnhIrgDAEFPQqU8iHuq0ZRA?=
+ =?us-ascii?Q?xAyTOQaV1iac5GgH5cudnu9Q0ueVV2VO+FHMGLQFrsnpQkAybkFegUuj8Ho8?=
+ =?us-ascii?Q?lffAwnPQZW9JoyIkl30hZ8xvkxOP4W72PYk7x8HES6qNhso4eAQsvHjABvme?=
+ =?us-ascii?Q?tyPRUw+ISwNEWTtF6d4bTmjy8oXcYk/0yVxv9igru7ddVel7gEDCpx8a3MCn?=
+ =?us-ascii?Q?NJB81BHHRodmnYGlcZbrgbwaXqcdI/qxIqeqZyjBOL30e/ti1JNqYT1CAks2?=
+ =?us-ascii?Q?MmdaWmdfY8VIHCJ/GlX3l/EtRiQ5isRvc+Lq990YKBlMDEHnWGCfioEwkoKq?=
+ =?us-ascii?Q?fIt0Ec9PVZjkpG5IS+VxpFJAmHb26vhjBW9EbY36TktKSSofgDGY0Yno2YgZ?=
+ =?us-ascii?Q?5bjQNsfua6QmkqmckiKw3glfXI0mDjaBhTI9Hlj0VRi35RxCYu8OdGWWykEa?=
+ =?us-ascii?Q?ON7nxgt9zZ9dNbLcddxEFHpL909ZdHckN0kzA4jXtINWOGLW3eb+bmReXgQ+?=
+ =?us-ascii?Q?G7n9c9UezhYW3IIuJ70k7JkftT+4hAuuA0qBLeabrQgy071gRmGn8MUM54mV?=
+ =?us-ascii?Q?Iov3HD8Fl/3qOS63/VQg25xi/dRHJjXvdA4qbEuuIEW+CuKZTcTIPPn+ccLK?=
+ =?us-ascii?Q?jfEV6LdR3/RDoStaNOZwvypG4xavltGta4Zov8dpebfh4DuM3W3OjTLzBRz5?=
+ =?us-ascii?Q?5bKCT1Gdyz80apAKk1PbLeRk5hKXkce9/E9V6M/rtAK3lzFePB9LyyDK5a5V?=
+ =?us-ascii?Q?IBonRLqExkiHkoRyc0YAceFLY9XqT9P4O+ZrSEv1F3/K8193VGSrsJ1aj11d?=
+ =?us-ascii?Q?fx+PO47CLYI8FaIxiTS5+5W1qo+JXY5RJT2rUUTMyOEQ7UleIYrIP2vrI+FF?=
+ =?us-ascii?Q?r2BZ4SlZxx5c9nzRjdOwghQVdHggzA4AMI3CjqbynmzQ2kxmCRB6053yVlRP?=
+ =?us-ascii?Q?c7ZM4e4I+17Qu2MpNcrMHLvaSb5fjQXOXz1WcFwN2djKmpaxEYYfDfxhNJeW?=
+ =?us-ascii?Q?U7B8Q8lazQG2uKbnXvw=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <CAMhs-H_eUKm7C40oCzuKwwEMZAcOJ-g4MghAfkGAmxRM0AXPUw@mail.gmail.com>
- <20240307190408.23443-1-justin.swartz@risingedge.co.za> <CAMhs-H-qHGEpjJqMu4J2SxBo1Sq3+yy74v-j=oH=P9sSt-19zg@mail.gmail.com>
-In-Reply-To: <CAMhs-H-qHGEpjJqMu4J2SxBo1Sq3+yy74v-j=oH=P9sSt-19zg@mail.gmail.com>
-From: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date: Fri, 8 Mar 2024 08:30:35 +0100
-Message-ID: <CAMhs-H-S3DSaBbkRWpDEiKB=M2GjJE3xfsRXCJPWsz-YU58uRQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] mips: dts: ralink: mt7621: associate uart1_pins
- with serial0
-To: Justin Swartz <justin.swartz@risingedge.co.za>
-Cc: =?UTF-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger <matthias.bgg@gmail.com>, 
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>, linux-mips@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9538b39c-d68e-4fd8-857c-08dc3f41f9c6
+X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Mar 2024 07:32:57.5489
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: GZ58zPNcpVSb3Jl3/DjEmeJaJP9pUSf/apyxoT79UpVdwl9H/rDlLX6opoCKMUDnvz69vANdFu54aPUKUXYZ7Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6999
 
-On Fri, Mar 8, 2024 at 8:27=E2=80=AFAM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
->
-> On Thu, Mar 7, 2024 at 8:05=E2=80=AFPM Justin Swartz
-> <justin.swartz@risingedge.co.za> wrote:
+
+>=20
+> On Thu, Mar 07, 2024 at 05:57:27PM +0800, Xu Yang wrote:
+> > This driver is initinally used to support imx93 Soc and now it's time t=
+o
+> > add support for imx95 Soc. However, some macro definitions and events a=
+re
+> > different on these two Socs. For preparing imx95 supports, this will
+> > refactor driver for imx93.
 > >
-> > Add missing pinctrl-name and pinctrl-0 properties to declare
-> > that the uart1_pins group is associated with serial0.
+> > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 > >
-> > Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
 > > ---
-> >  arch/mips/boot/dts/ralink/mt7621.dtsi | 3 +++
-> >  1 file changed, 3 insertions(+)
+> > Changes in v4:
+> >  - new patch
+> > Changes in v5:
+> >  - use is_visible to hide unwanted attributes as suggested by Will
+> > Changes in v6:
+> >  - improve imx93_ddr_perf_monitor_config()
+> > ---
+> >  drivers/perf/fsl_imx9_ddr_perf.c | 99 +++++++++++++++++++++-----------
+> >  1 file changed, 66 insertions(+), 33 deletions(-)
 > >
-> > diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts=
-/ralink/mt7621.dtsi
-> > index 35a10258f..dca415fdd 100644
-> > --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
-> > +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
-> > @@ -123,6 +123,9 @@ serial0: serial@c00 {
-> >                         reg-shift =3D <2>;
-> >                         reg-io-width =3D <4>;
-> >                         no-loopback-test;
+> > diff --git a/drivers/perf/fsl_imx9_ddr_perf.c b/drivers/perf/fsl_imx9_d=
+dr_perf.c
+> > index 8d85b4d98544..4e8a3a4349c5 100644
+> > --- a/drivers/perf/fsl_imx9_ddr_perf.c
+> > +++ b/drivers/perf/fsl_imx9_ddr_perf.c
+> > @@ -11,14 +11,14 @@
+> >  #include <linux/perf_event.h>
+> >
+> >  /* Performance monitor configuration */
+> > -#define PMCFG1  			0x00
+> > -#define PMCFG1_RD_TRANS_FILT_EN 	BIT(31)
+> > -#define PMCFG1_WR_TRANS_FILT_EN 	BIT(30)
+> > -#define PMCFG1_RD_BT_FILT_EN 		BIT(29)
+> > -#define PMCFG1_ID_MASK  		GENMASK(17, 0)
+> > +#define PMCFG1				0x00
+> > +#define MX93_PMCFG1_RD_TRANS_FILT_EN	BIT(31)
+> > +#define MX93_PMCFG1_WR_TRANS_FILT_EN	BIT(30)
+> > +#define MX93_PMCFG1_RD_BT_FILT_EN	BIT(29)
+> > +#define MX93_PMCFG1_ID_MASK		GENMASK(17, 0)
+> >
+> > -#define PMCFG2  			0x04
+> > -#define PMCFG2_ID			GENMASK(17, 0)
+> > +#define PMCFG2				0x04
+> > +#define MX93_PMCFG2_ID			GENMASK(17, 0)
+> >
+> >  /* Global control register affects all counters and takes priority ove=
+r local control registers */
+> >  #define PMGC0		0x40
+> > @@ -77,6 +77,11 @@ static const struct imx_ddr_devtype_data imx93_devty=
+pe_data =3D {
+> >  	.identifier =3D "imx93",
+> >  };
+> >
+> > +static inline bool is_imx93(struct ddr_pmu *pmu)
+> > +{
+> > +	return pmu->devtype_data =3D=3D &imx93_devtype_data;
+> > +}
 > > +
-> > +                       pinctrl-names =3D "default";
-> > +                       pinctrl-0 =3D <&uart1_pins>;
-> >                 };
+> >  static const struct of_device_id imx_ddr_pmu_dt_ids[] =3D {
+> >  	{.compatible =3D "fsl,imx93-ddr-pmu", .data =3D &imx93_devtype_data},
+> >  	{ /* sentinel */ }
+> > @@ -186,7 +191,7 @@ static struct attribute *ddr_perf_events_attrs[] =
+=3D {
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_6, ID(2, 70)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_ld_wiq_7, ID(2, 71)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_empty, ID(2, 72)),
+> > -	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_rd_trans_filt, ID(2, 73)),
+> > +	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_rd_trans_filt, ID(2, 73)),	/* imx93=
+ specific*/
 > >
-> >                 spi0: spi@b00 {
-> > --
+> >  	/* counter3 specific events */
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_0, ID(3, 64)),
+> > @@ -198,7 +203,7 @@ static struct attribute *ddr_perf_events_attrs[] =
+=3D {
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_6, ID(3, 70)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_collision_7, ID(3, 71)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_full, ID(3, 72)),
+> > -	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_wr_trans_filt, ID(3, 73)),
+> > +	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_wr_trans_filt, ID(3, 73)),	/* imx93=
+ specific*/
 > >
->
->  Please add Acked-by/Reviewed-by tags when posting new versions.
->
-> Thanks,
->     Sergio Paracuellos
+> >  	/* counter4 specific events */
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_0, ID(4, 64)),
+> > @@ -210,7 +215,7 @@ static struct attribute *ddr_perf_events_attrs[] =
+=3D {
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_6, ID(4, 70)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_row_open_7, ID(4, 71)),
+> >  	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pmon_ld_rdq2_rmw, ID(4, 72)),
+> > -	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_rd_beat_filt, ID(4, 73)),
+> > +	IMX9_DDR_PMU_EVENT_ATTR(eddrtq_pm_rd_beat_filt, ID(4, 73)),	/* imx93 =
+specific*/
+> >
+> >  	/* counter5 specific events */
+> >  	IMX9_DDR_PMU_EVENT_ATTR(ddrc_qx_valid_start_0, ID(5, 64)),
+> > @@ -245,9 +250,26 @@ static struct attribute *ddr_perf_events_attrs[] =
+=3D {
+> >  	NULL,
+> >  };
+> >
+> > +static umode_t
+> > +ddr_perf_events_attrs_is_visible(struct kobject *kobj,
+> > +				       struct attribute *attr, int unused)
+> > +{
+> > +	struct pmu *pmu =3D dev_get_drvdata(kobj_to_dev(kobj));
+> > +	struct ddr_pmu *ddr_pmu =3D to_ddr_pmu(pmu);
+> > +
+> > +	if ((!strcmp(attr->name, "eddrtq_pm_rd_trans_filt") ||
+> > +		!strcmp(attr->name, "eddrtq_pm_wr_trans_filt") ||
+> > +		!strcmp(attr->name, "eddrtq_pm_rd_beat_filt")) &&
+> > +		!is_imx93(ddr_pmu))
+> > +		return 0;
+> > +
+> > +	return attr->mode;
+> > +}
+> > +
+> >  static const struct attribute_group ddr_perf_events_attr_group =3D {
+> >  	.name =3D "events",
+> >  	.attrs =3D ddr_perf_events_attrs,
+> > +	.is_visible =3D ddr_perf_events_attrs_is_visible,
+> >  };
+> >
+> >  PMU_FORMAT_ATTR(event, "config:0-15");
+> > @@ -369,36 +391,47 @@ static void ddr_perf_counter_local_config(struct =
+ddr_pmu *pmu, int config,
+> >  	}
+> >  }
+> >
+> > -static void ddr_perf_monitor_config(struct ddr_pmu *pmu, int event,
+> > -				    int counter, int axi_id, int axi_mask)
+> > +static void imx93_ddr_perf_monitor_config(struct ddr_pmu *pmu, int eve=
+nt,
+> > +					  int counter, int axi_id, int axi_mask)
+> >  {
+> >  	u32 pmcfg1, pmcfg2;
+> >
+> >  	pmcfg1 =3D readl_relaxed(pmu->base + PMCFG1);
+> >
+> > -	if (counter =3D=3D 2 && event =3D=3D 73)
+> > -		pmcfg1 |=3D PMCFG1_RD_TRANS_FILT_EN;
+> > -	else if (counter =3D=3D 2 && event !=3D 73)
+> > -		pmcfg1 &=3D ~PMCFG1_RD_TRANS_FILT_EN;
+> > -
+> > -	if (counter =3D=3D 3 && event =3D=3D 73)
+> > -		pmcfg1 |=3D PMCFG1_WR_TRANS_FILT_EN;
+> > -	else if (counter =3D=3D 3 && event !=3D 73)
+> > -		pmcfg1 &=3D ~PMCFG1_WR_TRANS_FILT_EN;
+> > -
+> > -	if (counter =3D=3D 4 && event =3D=3D 73)
+> > -		pmcfg1 |=3D PMCFG1_RD_BT_FILT_EN;
+> > -	else if (counter =3D=3D 4 && event !=3D 73)
+> > -		pmcfg1 &=3D ~PMCFG1_RD_BT_FILT_EN;
+> > +	if (event =3D=3D 73) {
+> > +		switch (counter) {
+> > +		case 2:
+> > +			pmcfg1 |=3D MX93_PMCFG1_RD_TRANS_FILT_EN;
+> > +			break;
+> > +		case 3:
+> > +			pmcfg1 |=3D MX93_PMCFG1_WR_TRANS_FILT_EN;
+> > +			break;
+> > +		case 4:
+> > +			pmcfg1 |=3D MX93_PMCFG1_RD_BT_FILT_EN;
+> > +			break;
+> > +		}
+> > +	} else {
+> > +		switch (counter) {
+> > +		case 2:
+> > +			pmcfg1 &=3D ~MX93_PMCFG1_RD_TRANS_FILT_EN;
+> > +			break;
+> > +		case 3:
+> > +			pmcfg1 &=3D ~MX93_PMCFG1_WR_TRANS_FILT_EN;
+> > +			break;
+> > +		case 4:
+> > +			pmcfg1 &=3D ~MX93_PMCFG1_RD_BT_FILT_EN;
+> > +			break;
+> > +		}
+> > +	}
+>=20
+> how about
+> 	u32 mask[] =3D { 	MX93_PMCFG1_RD_TRANS_FILT_EN,
+> 			MX93_PMCFG1_WR_TRANS_FILT_EN,
+> 			MX93_PMCFG1_RD_BT_FILT_EN
+> 	      	     };
+>=20
+> 	if (couter >=3D2 && counter <=3D 4)
+> 		event =3D=3D 73 ? pmcfg1 |=3D mask[counter - 2] :
+> 			      pmcfg1 &=3D ~mask[counter - 2];
 
-Anyway:
-
-Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+It seems ok for me. Will try this.
 
 Thanks,
-    Sergio Paracuellos
+Xu Yang
+
+>=20
+>=20
+> Frank
+>=20
+> >
+> > -	pmcfg1 &=3D ~FIELD_PREP(PMCFG1_ID_MASK, 0x3FFFF);
+> > -	pmcfg1 |=3D FIELD_PREP(PMCFG1_ID_MASK, axi_mask);
+> > -	writel(pmcfg1, pmu->base + PMCFG1);
+> > +	pmcfg1 &=3D ~FIELD_PREP(MX93_PMCFG1_ID_MASK, 0x3FFFF);
+> > +	pmcfg1 |=3D FIELD_PREP(MX93_PMCFG1_ID_MASK, axi_mask);
+> > +	writel_relaxed(pmcfg1, pmu->base + PMCFG1);
+> >
+> >  	pmcfg2 =3D readl_relaxed(pmu->base + PMCFG2);
+> > -	pmcfg2 &=3D ~FIELD_PREP(PMCFG2_ID, 0x3FFFF);
+> > -	pmcfg2 |=3D FIELD_PREP(PMCFG2_ID, axi_id);
+> > -	writel(pmcfg2, pmu->base + PMCFG2);
+> > +	pmcfg2 &=3D ~FIELD_PREP(MX93_PMCFG2_ID, 0x3FFFF);
+> > +	pmcfg2 |=3D FIELD_PREP(MX93_PMCFG2_ID, axi_id);
+> > +	writel_relaxed(pmcfg2, pmu->base + PMCFG2);
+> >  }
+> >
+> >  static void ddr_perf_event_update(struct perf_event *event)
+> > @@ -514,7 +547,7 @@ static int ddr_perf_event_add(struct perf_event *ev=
+ent, int flags)
+> >  		ddr_perf_event_start(event, flags);
+> >
+> >  	/* read trans, write trans, read beat */
+> > -	ddr_perf_monitor_config(pmu, event_id, counter, cfg1, cfg2);
+> > +	imx93_ddr_perf_monitor_config(pmu, event_id, counter, cfg1, cfg2);
+> >
+> >  	return 0;
+> >  }
+> > --
+> > 2.34.1
+> >
 
