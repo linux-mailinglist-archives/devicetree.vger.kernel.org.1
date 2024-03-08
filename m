@@ -1,116 +1,156 @@
-Return-Path: <devicetree+bounces-49337-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49338-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C3448760B5
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 10:16:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id E84658760C0
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 10:18:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id BAEBD284871
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 09:16:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3FB328232C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 09:18:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BE3C453376;
-	Fri,  8 Mar 2024 09:16:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E7FF53376;
+	Fri,  8 Mar 2024 09:18:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="dIMn+Hks"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="ihFG3u1b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DA9E052F95;
-	Fri,  8 Mar 2024 09:16:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 920B4210E7;
+	Fri,  8 Mar 2024 09:18:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709889408; cv=none; b=fcxzD3FwMZa4rPev3GTwB8VXPAh4q4vCzwJE86h8VQ9pxg+N8YnaZA5GHyov7KQ9vdCrYofk+U+6yVu6wTKFckKrdtD6grYXcx9+CMfSKvGrrVAZEsiQkqYefLSi2sOf3IwTa95s0HxDQQGl8jG7Nu2C/KdjhLm4lhnvk5kn0sY=
+	t=1709889507; cv=none; b=rZeEsVfM018TYN/IYlkEnRNihUDkAlHqai3rnWCTsDEzRfVe4KfLDpl2CNCyLFwQB1mj7DDCr5MPdpjeEX2yVP5jVkZZVjwN40/dSAvP/BPbQyiuks8/gUfgxSqRbktuArsIT3H85xhCxUM7s/iYqvmiWPXuO5Vdcq74ROOje88=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709889408; c=relaxed/simple;
-	bh=xbVhZnJdLgAXSnZlSiHw/Fm8YwHdcJLQZLzGDlbumec=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:To:From:Subject:
-	 References:In-Reply-To; b=sOkrgOzjKa6ghXeExyM3q/cgWCQrpV+f8jup95Frl7pKjawieMt1vv5Alx0RBy8lBNkICUJyRQ/v1hJ6X313xMBqTJ0TqpLda18O4LYG1FLUBWb8w8sI1QsTAwAUMZvcEmdv27PY5+7jeHw+tSwOPJB9QybTnvU/gLRnQxReCGE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=dIMn+Hks; arc=none smtp.client-ip=217.70.183.200
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id EF36F2000B;
-	Fri,  8 Mar 2024 09:16:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709889403;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=x/eUvvh3JLX5kacQMX2jRA//mYfxfj755OY+r82KgEE=;
-	b=dIMn+Hks7A6pLjEQgAaTNQSMOrYLL1yAQ7Cq7N9THIxDan38wv2QLOt7iLPwLriXl/bhMA
-	f1obrhB1UvqQwpGDnbA52fSBK56DtwxpVreXh0EGatGiDV/mymaWca1s3Njckz4FY583h4
-	WpAJRR9/Rsm/Irt/BVEHCl1WcUy7hVMKz3I40Q0OcOQVecXKKvdMrqOwzQuYWAa4g1UTX3
-	p4r5CLXElTeG2KGd5+fnScBog5l1LkUmnUFhuAsn4QTif+3dubjg8NxxRB5p9cKzS5tGNy
-	O4oCFsor/bG5brACEA35oTPDjxAAOvuGSfk/g5fYkU7Dz3oUiFYihe0/46bn5Q==
+	s=arc-20240116; t=1709889507; c=relaxed/simple;
+	bh=vrxFupsu/lviS3diDAagd1N0DOxOHgaxLyrfrZR/NL0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=TSB6YwNgVvfTv6OoyUMEREtrZP9P9hWP75MEjTq43hUVJ/Uo7kucDDZGhZ0aqMuQjNKIbF9DWZzRRvw2HJq8rpFI6QD2e5kLwkHbRROBc80GmLOUmDFKm13XjZacY6ZYHcQI7NMcRbso9OQDfjwefQ+SxRs6ldZNogKNkX2n78U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=qualcomm.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=ihFG3u1b; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=qualcomm.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 4285heYn026848;
+	Fri, 8 Mar 2024 09:18:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding; s=qcppdkim1; bh=HDziPel+BrFQg/5S2VF+
+	aH3HKwoNshDw0bupI07JG7s=; b=ihFG3u1bjc7echEZRlTUrEhSbzpDJlSc7Grd
+	hCoCoQT4x7oG0V/AYC0LyFq0H3WMX4pSJxy/5D4pPx2amOvRT1Ol9Ph3KAnHGrr3
+	R1OQzrk/NNMaj9KsoLzjZqikpE+4gvrCzkdjsqOL++arvhkH7qbpo66XjtWyBJIK
+	c2mvMksn/aEL4EfJYMLRD4JV5jbqIBBWuzyjwrDPnIY7a3OznmmdtDPW5zkc920W
+	Nl8NSRS4qO3EIdb66kTlHUaDtrubA9MKVtSb5g4T78RHRVvIFXkVjrxqodaP1odr
+	m5aOkmuu6JUJQ8XabN5T0dWZjCbdWbCkCxqC/ROWLF9ARunVyw==
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wqn8m1bn4-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Mar 2024 09:17:59 +0000 (GMT)
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 4289HuOe000776;
+	Fri, 8 Mar 2024 09:17:56 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3wkw6m3h0k-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Mar 2024 09:17:56 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 4289Htco000744;
+	Fri, 8 Mar 2024 09:17:56 GMT
+Received: from hu-devc-blr-u22-a.qualcomm.com (hu-mdalam-blr.qualcomm.com [10.131.36.157])
+	by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 4289Ht8r000737
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Mar 2024 09:17:55 +0000
+Received: by hu-devc-blr-u22-a.qualcomm.com (Postfix, from userid 466583)
+	id E2F274132A; Fri,  8 Mar 2024 14:47:54 +0530 (+0530)
+From: Md Sadre Alam <quic_mdalam@quicinc.com>
+To: andersson@kernel.org, konrad.dybcio@linaro.org, broonie@kernel.org,
+        robh@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
+        vigneshr@ti.com, manivannan.sadhasivam@linaro.org,
+        neil.armstrong@linaro.org, daniel@makrotopia.org, arnd@arndb.de,
+        chris.packham@alliedtelesis.co.nz, christophe.kerello@foss.st.com,
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org
+Cc: quic_srichara@quicinc.com, quic_varada@quicinc.com,
+        quic_mdalam@quicinc.com
+Subject: [PATCH v4 0/5] Add QPIC SPI NAND driver
+Date: Fri,  8 Mar 2024 14:47:47 +0530
+Message-Id: <20240308091752.16136-1-quic_mdalam@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 08 Mar 2024 10:16:42 +0100
-Message-Id: <CZO97FHGERJG.37RVSW2CIYP7R@bootlin.com>
-Cc: "Linus Walleij" <linus.walleij@linaro.org>, "Rob Herring"
- <robh+dt@kernel.org>, "Krzysztof Kozlowski"
- <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley" <conor+dt@kernel.org>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- <linux-arm-kernel@lists.infradead.org>, <linux-i2c@vger.kernel.org>,
- <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
- <linux-mips@vger.kernel.org>, "Gregory Clement"
- <gregory.clement@bootlin.com>, "Vladimir Kondratiev"
- <vladimir.kondratiev@mobileye.com>, "Thomas Petazzoni"
- <thomas.petazzoni@bootlin.com>, "Tawfik Bayouk"
- <tawfik.bayouk@mobileye.com>
-To: "Andi Shyti" <andi.shyti@kernel.org>
-From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v3 08/11] i2c: nomadik: support Mobileye EyeQ5 I2C
- controller
-X-Mailer: aerc 0.15.2
-References: <20240306-mbly-i2c-v3-0-605f866aa4ec@bootlin.com>
- <20240306-mbly-i2c-v3-8-605f866aa4ec@bootlin.com>
- <xy2nxcjxkw6pkprrjx2sol62xvq2nr3ukdwpn4h3wuwpnnu43j@2djyqtkdpcwc>
-In-Reply-To: <xy2nxcjxkw6pkprrjx2sol62xvq2nr3ukdwpn4h3wuwpnnu43j@2djyqtkdpcwc>
-X-GND-Sasl: theo.lebrun@bootlin.com
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: WKfuC7vJmFC507W01c4ePmePgwF7gq1K
+X-Proofpoint-ORIG-GUID: WKfuC7vJmFC507W01c4ePmePgwF7gq1K
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-08_06,2024-03-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
+ malwarescore=0 lowpriorityscore=0 phishscore=0 spamscore=0
+ priorityscore=1501 mlxscore=0 mlxlogscore=543 impostorscore=0 bulkscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403080073
 
-Hello Andi,
+v4:
+ * In this patch series fixes kernel doc for all the cmmon api
+ * Also fixes dm-binding commit message
+ * Fix qpic_common.c compilation based on config
 
-On Fri Mar 8, 2024 at 12:11 AM CET, Andi Shyti wrote:
-> Hi Theo,
->
-> ...
->
-> > +static inline u8 nmk_i2c_readb(const struct nmk_i2c_dev *priv,
-> > +			       unsigned long reg)
-> > +{
-> > +	if (priv->has_32b_bus)
-> > +		return readl(priv->virtbase + reg);
-> > +	else
-> > +		return readb(priv->virtbase + reg);
-> > +}
->
-> you forgot to remove the else... not a problem, it's coherent
-> with its writeb counterpart.
+v3:
+ * In this patch series fixes multiple things like
+   added clock-name, added _alloc_controller api instead
+   of alloc_master, made common apis more generic etc.
 
-Yes I enjoy symmetry. :-)
+ * Addressed all the comment from v2 patch series
 
-[...]
+v2:
+ * https://lore.kernel.org/linux-arm-msm/20240215134856.1313239-1-quic_mdalam@quicinc.com/
+ * In this series of patchs we have added basic working QPIC SPI NAND
+   driver with READ, WRITE, ERASE etc functionality
 
-> Looks good!
->
-> Reviewed-by: Andi Shyti <andi.shyti@kernel.org>
+ * Addressed all the comments given in RFC [v1] patch
 
-Thanks Andi! Any chance of seeing this series queued for v6.9?
+v1:
+ * https://lore.kernel.org/linux-arm-msm/20231031120307.1600689-1-quic_mdalam@quicinc.com/
+ * Initial set of patches for handling QPIC SPI NAND.
 
-Regards,
 
---
-Th=C3=A9o Lebrun, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Md Sadre Alam (5):
+  spi: dt-bindings: Introduce qcom,spi-qpic-snand
+  drivers: mtd: nand: Add qpic_common API file
+  spi: spi-qpic: Add qpic spi nand driver support
+  arm64: dts: qcom: ipq9574: Add SPI nand support
+  arm64: dts: qcom: ipq9574: Disable eMMC node
+
+ .../bindings/spi/qcom,spi-qpic-snand.yaml     |   83 +
+ .../boot/dts/qcom/ipq9574-rdp-common.dtsi     |   43 +
+ arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts   |    2 +-
+ arch/arm64/boot/dts/qcom/ipq9574.dtsi         |   27 +
+ drivers/mtd/nand/Kconfig                      |    7 +
+ drivers/mtd/nand/Makefile                     |    1 +
+ drivers/mtd/nand/qpic_common.c                |  834 ++++++++++
+ drivers/mtd/nand/raw/Kconfig                  |    1 +
+ drivers/mtd/nand/raw/qcom_nandc.c             | 1440 ++---------------
+ drivers/spi/Kconfig                           |    8 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-qpic-snand.c                  | 1041 ++++++++++++
+ include/linux/mtd/nand-qpic-common.h          |  547 +++++++
+ 13 files changed, 2729 insertions(+), 1306 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/spi/qcom,spi-qpic-snand.yaml
+ create mode 100644 drivers/mtd/nand/qpic_common.c
+ create mode 100644 drivers/spi/spi-qpic-snand.c
+ create mode 100644 include/linux/mtd/nand-qpic-common.h
+
+-- 
+2.34.1
 
 
