@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-49376-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49377-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1E8C787628B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 11:59:13 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id BB1D78762A4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:02:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B05F61F23BC7
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 10:59:12 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 50C5EB22DA3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 11:02:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3CF855E6C;
-	Fri,  8 Mar 2024 10:58:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 373ED55E4E;
+	Fri,  8 Mar 2024 10:59:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jiG4NjSa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="M54ZAGHC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f42.google.com (mail-ej1-f42.google.com [209.85.218.42])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5663355E5A
-	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 10:58:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7307F55E4D
+	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 10:59:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709895532; cv=none; b=LA+gcHoOJzqmZPsUP2ofiyHWiRvH1V9m3CoUxCWOi2FxTg5cOS1JM+gj0b6AqMgMrHOQLzlAwCX8lkgznXweg87kJeF4J0xre/BOJNCfiLRggJ7qkyZIwrBFQYBc8L+II9+AqsN6uoQOIKht8RtPsBVZI7XTj5oRCck5cxl6JlY=
+	t=1709895575; cv=none; b=CtS+ByLjKkQVjfuDBWuDc6dlmCvXEZZwyRLuf6QFQJqptNKs3OY7XXqlPPXa1+IJ1O3RvCxUrViAAXdgpQGIUJG5/ssGL+xIg9y7a5sidvvd72Sd4esRSz1UG+xbbjnAxCTmwZ1TFUSBeXxN+AlBD3agksS3ie7rpKVRtJbdP68=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709895532; c=relaxed/simple;
-	bh=j7G07rF5/qvRZWgaArKh9DuTk6kGf7x2mY/Ypg38FPQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=YZQfK8gRhoC9vtpiUV8ghWCcA7NLWkWhPRBf6EC71XIpFS1X81MDYqT0NTsQyTjAbVM8WmJyc3bnvrLZ/VgPCvRrOGj+rqn5v7+JCp+lqdffNNKpCQCUuvvdqM6w7zX953ebC5YNELWfJhT1hE8JvAB0tIdeUd0XOguB6A2cqf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jiG4NjSa; arc=none smtp.client-ip=209.85.218.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ej1-f42.google.com with SMTP id a640c23a62f3a-a3ddc13bbb3so546080766b.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 02:58:49 -0800 (PST)
+	s=arc-20240116; t=1709895575; c=relaxed/simple;
+	bh=gemIrESpguSYN6OepWccmGb17BJE1nCs+Iub7NEFhbc=;
+	h=Message-ID:Date:MIME-Version:Subject:From:To:Cc:References:
+	 In-Reply-To:Content-Type; b=C3XZV58XcSHIY72m7PlWMlPeqA9hcxemRrPIvDQZGMcl2NAqgkfqIswcIdktXGlBqpIBObT3cXZisbixr3rrqs+8dvUie3RA7IZ+cee/vuSImWIoalxmnwo/AxKRGHSRfcbvxqMNL2Cta2ZH7hSn4khYLWuvmTNQ1j7TaDQs2Lk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=M54ZAGHC; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-33e17fc5aceso1744747f8f.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 02:59:33 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1709895528; x=1710500328; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1709895572; x=1710500372; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=o9ZDQ9dYVt/GB3TB7EM7j0NoesZx4c/e+/0wwo1wOtI=;
-        b=jiG4NjSaJME195fX4YTLQd2bh8DISg6w4cxeCoT73uQHBz83G1Y4aDJ/5WQgL+vepj
-         pEs0QqSL9c0wlrHPC/JFDAhHsd0gfc3LNWfqV5BfO2PVXJybyz9To9AA8FrT1tAmDBZ7
-         BHVgOIkM0zoq5GEW+PQHvUGnKAzxOWoSgQFjvMvqVyLAic9NaLoghHwFini7mXL6FZY/
-         M+iJ+nPtNc74PRjQptqwunFU44BA6eUw80aOZLxXYhAPYLSWfTX1KZ7x5K4ovARLS4ui
-         gNFykuro2pptHIuVVr/y5xD3MJ1fd5AdH457IUpYXYC1p5L5rpjixXMMXJ80op4sIU6G
-         Wjsw==
+        bh=aPNyNWRZu1nwETUpCWarY8zMeCye3qN0o1wbR3I/W7Y=;
+        b=M54ZAGHCTytt6+aonD6RL4Zu/GKuOKRvbOMEUcnUYi2QmVbKVp/ASFkcL9W27b67FI
+         GRp0nzlaLmfTu5FUQu6LTOoSmS0ds4v7+tsFTO93YUzKm21q/1Ov8CELsjc9OUkC1EHB
+         HQz4L5doJGiUWvgUC03D8NJi+d3eeFL2eFxS/axLi6X1/+Q43THRuZwXtz+j29yNFb3s
+         0ME0KQoAJBG+Odj8ilL97RUxec4S+RN6CXF6vwczjLnaGHoNOR9cDCR3bL4Z8l9Du3a5
+         pAruBzf/T+aJLiYXNqzDHJ2GXeJ0c9gltvki72dkqyZXqLs6LV3VPvcD/ObEwMzXkJ4a
+         uRZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709895528; x=1710500328;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20230601; t=1709895572; x=1710500372;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=o9ZDQ9dYVt/GB3TB7EM7j0NoesZx4c/e+/0wwo1wOtI=;
-        b=VvgE4jIc1/6Il1n0wN+iBM3VwQWVmk8ahWUXdhig8wiC4sylWV6bP6eQ3G9WWoymdm
-         uLve1n34CiWPk36xu4OoQyyNL/jlI6LL5Nk2ZfPHpENL//92c9T4XnRlbEpMrRO/zx6W
-         ecvORpycSVf7CBvLm/ns3ywjHrIaFNPeEn2KxeRGl5Xwyc7z8DFrSR6VmCxFpME8mVpD
-         q8fPRA2rsjdlBgL7K0AooGdbXxwiMGa/ZKO32FXNs8Hgv9YdD16jfX+cgTnkFLsh7TI1
-         CsfD0fMEeh2U/jqBdp8jZ/0+siWWwOho1ZE94Nh8LT/EFnWclyeryOJNwJ3LXcjN/PLC
-         qVsA==
-X-Forwarded-Encrypted: i=1; AJvYcCUgInQj0OxJ2PYoM3MzeXZ3gspGKMD8P7DvqeBXzBU90O/+S9Me4h4Lwe7eYChnyhtMPhGaNRBunlPS+lEKj9QECgoi/gdqXrVvpw==
-X-Gm-Message-State: AOJu0Yy3azovlt7C1HeGr6am2LUm4CbnInmBjLeQYeGqffePokgzSBfd
-	JMXLCnKmwtuOhNaOEGCgb5Nc3rhyIqqbbeLg/tPo78+mJ1xneG1Uual2K/EP9rI=
-X-Google-Smtp-Source: AGHT+IEuGPCmm1l6Pc17qKl4y/MCqtzZjxctHOZUnHumatu0wq8QD8SWmXsEqSyRxQ9F8cZs/y1oYw==
-X-Received: by 2002:a17:907:1041:b0:a45:a2cc:eb93 with SMTP id oy1-20020a170907104100b00a45a2cceb93mr2537617ejb.4.1709895527485;
-        Fri, 08 Mar 2024 02:58:47 -0800 (PST)
-Received: from [192.168.1.70] ([84.102.31.43])
-        by smtp.gmail.com with ESMTPSA id gy15-20020a170906f24f00b00a45f3cd8c5fsm241704ejb.116.2024.03.08.02.58.45
+        bh=aPNyNWRZu1nwETUpCWarY8zMeCye3qN0o1wbR3I/W7Y=;
+        b=JAuHBTWe/V5sfWIv9L5i+akbESQsHEwiwU6FGWmNUWWiKSIK2pNEGH1YJ1BrSp4MOz
+         twBae4h70+LzB0ukAacgAMxsvtLqzuD/4skQmnXwQaCnZJp6EZR873TR/00BFEYkmBIY
+         Eft4i1xc3l0ReVh7U9vTkZgMht+LkfQCLfZXhQ5dV7LA5sT3CpRWjIWisM2Ga92NXhvN
+         biBTTLov7lPp1XCVpMmhefXtEmvxF+uPZ6f4IBxO6mQ8K/esfNJB4SuDujOm4MdgbQC8
+         U2VNr+MpXJnIbMkaA6f2JAyevL7z5BKxwLHZJY/6oxUD1Y86ZkYG6bF1hjrmmEeKHSSS
+         NJXA==
+X-Forwarded-Encrypted: i=1; AJvYcCWeytDBeebdbRAJEyPMflcMPe2x7gxWMWtDOLOZxagxxxHm49acmLBadzd8jkknTmBWWEWwxuZ0nlL2r2eCAAnnh+mAnhMO9RtMvA==
+X-Gm-Message-State: AOJu0YyBkOS59f3x9ZsvqL7xoqYvRxzNBOqTMhigdUVgamETw6Ldm/jL
+	rQvmr0C3RtuCmHn4VS/mGsSPyVfbyfg67gOrSv6LNJNkPOYePJ+MCBpZEIcgCSI=
+X-Google-Smtp-Source: AGHT+IHZeGISz5BBijJBfDZAHNoLpL5CAxwaU/Dl6mZ/DmniaLPju1ROj/aubPlQlzA2BTZg6QiD8w==
+X-Received: by 2002:a5d:5010:0:b0:33e:6612:dfaf with SMTP id e16-20020a5d5010000000b0033e6612dfafmr3687501wrt.1.1709895571857;
+        Fri, 08 Mar 2024 02:59:31 -0800 (PST)
+Received: from [192.168.0.102] ([176.61.106.68])
+        by smtp.gmail.com with ESMTPSA id by1-20020a056000098100b0033e22341942sm20086822wrb.78.2024.03.08.02.59.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Mar 2024 02:58:47 -0800 (PST)
-Message-ID: <fc2d22a2-0db3-46ea-b283-1de53382d12a@baylibre.com>
-Date: Fri, 8 Mar 2024 11:58:44 +0100
+        Fri, 08 Mar 2024 02:59:31 -0800 (PST)
+Message-ID: <35a7ad40-aaf4-476e-8582-b83bac284881@linaro.org>
+Date: Fri, 8 Mar 2024 10:59:30 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,31 +76,52 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 08/11] misc: tps6594-pfsm: Add TI TPS65224 PMIC PFSM
+Subject: Re: [PATCH 4/5] clk: qcom: Add camera clock controller driver for
+ SM8150
 Content-Language: en-US
-To: Bhargav Raviprakash <bhargav.r@ltts.com>, linux-kernel@vger.kernel.org
-Cc: m.nirmaladevi@ltts.com, lee@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org,
- lgirdwood@gmail.com, broonie@kernel.org, linus.walleij@linaro.org,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, nm@ti.com,
- vigneshr@ti.com, kristo@kernel.org, eblanc@baylibre.com
-References: <20240308103455.242705-1-bhargav.r@ltts.com>
- <20240308103455.242705-9-bhargav.r@ltts.com>
-From: Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <20240308103455.242705-9-bhargav.r@ltts.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+To: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
+ Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240229-camcc-support-sm8150-v1-0-8c28c6c87990@quicinc.com>
+ <20240229-camcc-support-sm8150-v1-4-8c28c6c87990@quicinc.com>
+ <18567989-fb60-49ae-92e6-94e1bc2fa1c7@linaro.org>
+ <83fd1995-a06e-b76a-d91b-de1c1a6ab0ea@quicinc.com>
+ <4817a5b0-5407-4437-b94a-fc8a1bfcd25d@linaro.org>
+ <e2627a99-307f-1e10-abfd-ce688cc2ec03@quicinc.com>
+ <d893e8f8-66a7-4460-9468-0f3a359cece7@linaro.org>
+In-Reply-To: <d893e8f8-66a7-4460-9468-0f3a359cece7@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 3/8/24 11:34, Bhargav Raviprakash wrote:
-> Add support for TPS65224 PFSM in the TPS6594 PFSM driver as they share
-> significant functionality.
->
-> Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
+On 08/03/2024 10:58, Bryan O'Donoghue wrote:
+> On 08/03/2024 10:46, Satya Priya Kakitapalli (Temp) wrote:
+>>>
+>>> Not if you mark it critical
+>>>
+>>
+>> Marking the clock as critical keeps the associated power domain 
+>> always-on which impacts power. For this reason we are not using 
+>> CLK_IS_CRITICAL and instead making them always on from probe.
+> 
+> How does the clock do anything _useful_ if the power-domain gets 
+> switched off ?
+> 
 > ---
->   drivers/misc/tps6594-pfsm.c | 48 +++++++++++++++++++++++++++----------
->   1 file changed, 35 insertions(+), 13 deletions(-)
+> bod
 
-Acked-by: Julien Panis <jpanis@baylibre.com>
+i.e. the clock can't be running "always-on" if it has no power..
 
+---
+bod
 
