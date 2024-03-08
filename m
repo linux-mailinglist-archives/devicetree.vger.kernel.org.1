@@ -1,162 +1,134 @@
-Return-Path: <devicetree+bounces-49515-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49516-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD19F876C34
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 22:02:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id EE847876C47
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 22:13:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 636B91F21D23
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 21:02:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 23F561C20F84
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 21:13:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14DDE5EE96;
-	Fri,  8 Mar 2024 21:01:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 590045F463;
+	Fri,  8 Mar 2024 21:13:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UDi+XCkQ"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="W3k/WFpg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-vk1-f172.google.com (mail-vk1-f172.google.com [209.85.221.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D4D5E073;
-	Fri,  8 Mar 2024 21:01:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2609217745;
+	Fri,  8 Mar 2024 21:13:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709931717; cv=none; b=o9P7wadKAh5MQYt4hDFFZFKASvFt6UUeEnF4J254Fq3YDMAnLuxsoBfiMQVE1tptNqaYV5jB5AcxKjCnX3nQsSFV6iKfNnQbGkQUyRLDkuOnFCJoIqMb6DtzeD3T7mbWMaS5Sc1DB4XALJNEozNiJuukp77mZFy4Jr9OeGHWPI0=
+	t=1709932393; cv=none; b=ucZMAmUSuohPw/60GZudTBM5MpRtNtD4A7xRCdwsBc9JOA5o+MdzNn4695nygOBFc/LbH9AL1t4QL5+SJzZFaZXYoorKk6ITqJ5QvDXrNTEyeT2Mmd+Pu/eeEfoe/VViT2mzUKVMGes0Cn8uYxEbiyZ2xPvUw7bd7GMq7WdjNaA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709931717; c=relaxed/simple;
-	bh=XiN9Fa9QuOna06HjksVQ2Nm0qV0d3fdQcZqGcIcMRc0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=N4lRIQdftEf5N08rYMmW/pejbDyq7sCnSLCg8X0/H9VKtvnUy/32uD0AA0jalqmKoYJEJq/5m+ruKEneTF5CVsnhC6KWXdymUUI1fOXVWZNseTK/xhFgFXqzr93cPjOwFUcuHDnGOO6zjAdMsFXfqnuwY7qKIJWPyn29wR0bS2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UDi+XCkQ; arc=none smtp.client-ip=209.85.221.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-vk1-f172.google.com with SMTP id 71dfb90a1353d-4d34abf66deso282670e0c.1;
-        Fri, 08 Mar 2024 13:01:55 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709931714; x=1710536514; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=RCymEiGpipubs/MqTyZ4nrqmBe9tQmx2x+DjRvTmJuA=;
-        b=UDi+XCkQSCONS4zDom5uZXV3UG1FB48dhCuQthMCEbIM6jTlEehsg3AHMMLzKBl3Lq
-         1zsvjqFEaH+MA+f1406kzOhJXrw3Xk/5gbP8iTvfBaECxnjZou8Rnuo2rT8TqMwbmJQw
-         8qb4TwCHGqCIYBRMLbNv58oWsKS7LvXNVNp8YZQfy/F4uffe4TNjf7XWNiw6dzgwmhMr
-         8dZ7E0TxYFsdREsxkCACDsfuLyPIDy0UWHpui3PJDiXvpr7Lyi3f4njkyjIPxrBUQg3l
-         kl+6+fjmqcuZq9J2kNItj5XS/E68n8Zomb3521MvP48dXeFFBhGBw6gHfispK4lSDXzx
-         u7ig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709931714; x=1710536514;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=RCymEiGpipubs/MqTyZ4nrqmBe9tQmx2x+DjRvTmJuA=;
-        b=amFuqJXaYv0vF7azrqutkLRn28aVs4yRUxj+q8IjsxYqjaJNvbUyw+k9mdXPc6DE3g
-         KsZZ50gQa5NUzOIzXkF3CUe7tEr0eJ+HOAJCe4qFHq0wvLOW2/fS2OpGhRVLSfQVGKyJ
-         TWdmyOYmxCVdG9GrvpnwK0UpKGSc85Y80l8ThvNZGE9Z4ZlOlHeKFJWSeRpJylGLDS/w
-         T8d5OynK8LS8Cr8Py6KXHSJE0VQc12CXZ4XqEVlBPwbP6XRqTgeKXknbzMsl4qNeVq/+
-         FQKnMraYqyKb0nwCSLOVHvizXZ+XoNsRkMtUXvRA73S/pCFzAQ1onY9OD2KiwCgBhia0
-         +tvw==
-X-Forwarded-Encrypted: i=1; AJvYcCWfqN9VVr3nwov6sitTCO8jiov7CkkmNZM7OouUpdENZY79XQxbuxjbC/Taq+aUQnwc5QLyCA3yEThgUL+pHYUmax7npaT0PpkLgSJKfwN0HaRNaRrfKDznSG5t0Uezq2iwMceb8otbwnRs/WRYgvB2R/wSQYKKUg8IzlP4rvpVg693B+baMDU8lK9IXpA1jWSq9pepNaESzrYQHK20b34y4AnQy2hd
-X-Gm-Message-State: AOJu0Yz6g9zabs1A7+uRG67zJBJgYfrODzZ0fJcX0Gpgp2OhB6+xaJ3H
-	uVshgY2DIYgdAGzzceYNP4Fv3Q14e0AtP9bS1G6bFW1O+QjawA8mQzcvW94d1RtBR2ztgb7A8Zt
-	5atWx70Mth3XDnFpmmDR0cwwFeig=
-X-Google-Smtp-Source: AGHT+IGnq51iE4+BqWlMAemT74cR1wABtqmatGGKO31Zy2uvzaKVgj19n72J8jv/Bl7YJRlXBZzTdV/xtxW3w4cCeDs=
-X-Received: by 2002:a05:6122:1c0e:b0:4d3:4aad:22d4 with SMTP id
- et14-20020a0561221c0e00b004d34aad22d4mr555569vkb.0.1709931714135; Fri, 08 Mar
- 2024 13:01:54 -0800 (PST)
+	s=arc-20240116; t=1709932393; c=relaxed/simple;
+	bh=Cl/9Sp/NINGtvBYYiSrwF+QPSh3NMkkxwESwsbvSXak=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BVfymHcQmo9IXXtnIQyAxDZbwlTY5RClnsRBNixmOYNSgojQG63N2eU/Hcn6MMI7V1ky4/LCWSAFl9qtePs+lxLutoZvYFLVr0pwUa9ufUJlR7nX/qwVg1jqHvSRdvIvkpVkk9WVDOxvHWXBGQKroP2Q9hEvbBd+KzbG5JWcqxg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=W3k/WFpg; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65B78C433C7;
+	Fri,  8 Mar 2024 21:13:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709932392;
+	bh=Cl/9Sp/NINGtvBYYiSrwF+QPSh3NMkkxwESwsbvSXak=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=W3k/WFpg5OC+DFozK8WwA9u1toMKDEt7mS4BOsCZBggUwISOFws3qP2Zo3W4At62A
+	 M01+5T1KwTrBO2Wbv6ps0axa0muQKblUlWQimJzXUKeDGi29jp2GhnA+o2mlZsvvN4
+	 9xDY3a9v11lws7MbmYh88KwtZbkAMC5AEuMEYpolYE303RIg3Nx/UDdRdHaclwfJ1Q
+	 kajW1QH04Tt/NfBcG0qC7uWe05M+/M7PV5vyK7rdHl8N4L/4XPclPpRpEixKMfDinD
+	 vpLHwROOhhG8fYdOTkR38MZMhanKrDQjtE8LFVsuqTsoibumL46BbxDu068MiATv/O
+	 3o4uX44uvKFIQ==
+Date: Fri, 8 Mar 2024 15:13:10 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.li@nxp.com>
+Cc: Conor Dooley <conor@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v6 3/4] ASoC: dt-bindings: fsl-sai: allow only one
+ dma-names
+Message-ID: <20240308211310.GA1291632-robh@kernel.org>
+References: <20240308-asrc_8qxp-v6-0-e08f6d030e09@nxp.com>
+ <20240308-asrc_8qxp-v6-3-e08f6d030e09@nxp.com>
+ <20240308-croon-goofball-797d091e981a@spud>
+ <ZethoKhsUZ08HHL0@lizhi-Precision-Tower-5810>
+ <ZetzOu+SqmLQfsOs@lizhi-Precision-Tower-5810>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240308172726.225357-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240308172726.225357-4-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdW56ihcdZE_=y5MgURbmFjuPXkVjnHtA8HZ+BWznrvTXA@mail.gmail.com>
-In-Reply-To: <CAMuHMdW56ihcdZE_=y5MgURbmFjuPXkVjnHtA8HZ+BWznrvTXA@mail.gmail.com>
-From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Fri, 8 Mar 2024 21:00:47 +0000
-Message-ID: <CA+V-a8uHHM3MY+CpGOmTdc_jn++bgngUqkZgVQgyBfF2jOXHXQ@mail.gmail.com>
-Subject: Re: [PATCH 3/5] i2c: riic: Introduce helper functions for I2C
- read/write operations
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Chris Brandt <chris.brandt@renesas.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZetzOu+SqmLQfsOs@lizhi-Precision-Tower-5810>
 
-Hi Geert,
+On Fri, Mar 08, 2024 at 03:21:14PM -0500, Frank Li wrote:
+> On Fri, Mar 08, 2024 at 02:06:08PM -0500, Frank Li wrote:
+> > On Fri, Mar 08, 2024 at 04:58:16PM +0000, Conor Dooley wrote:
+> > > On Fri, Mar 08, 2024 at 10:30:52AM -0500, Frank Li wrote:
+> > > > Some sai only connect one direction dma (rx/tx) in SOC. For example:
+> > > > imx8qxp sai5 only connect tx dma channel. So allow only one "rx" or "tx"
+> > > > for dma-names.
+> > > > 
+> > > > Remove description under dmas because no user use index to get dma channel.
+> > > > All user use 'dma-names' to get correct dma channel. dma-names already in
+> > > > 'required' list.
+> > > > 
+> > > > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> > > > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > > 
+> > > Please drop my ack from this, this isn't the patch I acked originally
+> > > and we were having a conversation as recently as yesterday on v4 about
+> > > this patch because Rob didn't like this approach. His suggestion is
+> > > better than the one I gave on v4 that you have used here.
+> 
+> I paste your comments here
+> 
+> "What I suggested is different, it is more permissive than what you have
+> or what Rob suggested. Your original one allows
+> "rx", "tx" OR "rx" OR "tx"
+> Rob's allows the same but with a nicer syntax. What that stm binding I
+> mentioned allows is
+> "rx", "tx" OR "tx", "rx" OR "rx" OR "tx"
+> "
+> 
+> Actually:
+> 
+> "rx", "tx" OR "tx", "rx" OR "rx" OR "tx" is exactly what we want.
 
-Thank you for the review.
+No, it is not.
 
-On Fri, Mar 8, 2024 at 7:47=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68k=
-.org> wrote:
->
-> Hi Prabhakar,
->
-> On Fri, Mar 8, 2024 at 6:28=E2=80=AFPM Prabhakar <prabhakar.csengg@gmail.=
-com> wrote:
-> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> >
-> > Introduce helper functions for performing I2C read and write operations
-> > in the RIIC driver.
-> >
-> > These helper functions lay the groundwork for adding support for the
-> > RZ/V2H SoC. This is essential because the register offsets for the RZ/V=
-2H
-> > SoC differ from those of the RZ/A SoC. By abstracting the read and writ=
-e
-> > operations, we can seamlessly adapt the driver to support different SoC
-> > variants without extensive modifications.
-> >
-> > This patch is part of the preparation process for integrating support f=
-or
-> > the RZ/V2H SoC into the RIIC driver.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
->
-> Thanks for your patch!
->
-> > --- a/drivers/i2c/busses/i2c-riic.c
-> > +++ b/drivers/i2c/busses/i2c-riic.c
-> > @@ -105,9 +105,19 @@ struct riic_irq_desc {
-> >         char *name;
-> >  };
-> >
-> > +static inline void riic_writeb_reg(u8 val, struct riic_dev *riic, u8 o=
-ffset)
->
-> Having "riic" in the middle is definitely the wrong order of parameters ;=
--)
-> Please make "riic" the first parameter.
->
-Agreed, will do.
+> "rx", "tx" OR "rx" OR "tx" is only feasible, but not perfect. Why need
+> limited "rx" and "tx" order? 
 
-> > +{
-> > +       writeb(val, riic->base + offset);
-> > +}
-> > +
-> > +static inline u8 riic_readb_reg(struct riic_dev *riic, u8 offset)
-> > +{
-> > +       return readb(riic->base + offset);
-> > +}
->
->
-> > -       writeb(0, riic->base + RIIC_ICSR2);
-> > +       riic_writeb_reg(0, riic, RIIC_ICSR2);
->
-> This clearly shows that the new accessors involve more typing work.
-> Why not just call them riic_writeb() and riic_readb()?
->
-Ok, I'll rename them to riic_writeb() and riic_readb().
+First, that's exactly what the binding already had. Why loosen it? 
+Second, defined order is just the DT way. There is less reason to 
+support both ways. It is simpler for a client to read properties if it 
+knows the position of entries.
 
-Cheers,
-Prabhakar
+
+> It just bring us some noise and no actual
+> value to do that.
+> 
+> Frank
+> 
+> 
+> > 
+> > Why do you think Rob don't like this approach? He just said this is 3rd
+> > method. And it is simple enough and match all restriction.
+
+I don't like the approach. Clear enough?
+
+Rob
 
