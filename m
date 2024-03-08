@@ -1,76 +1,76 @@
-Return-Path: <devicetree+bounces-49512-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49513-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A085B876BEB
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 21:37:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 18942876BEF
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 21:37:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53F4A282CC0
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 20:37:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 67DEFB21BD2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 20:37:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CC1F85E072;
-	Fri,  8 Mar 2024 20:37:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A95A25E08E;
+	Fri,  8 Mar 2024 20:37:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="HLshlY0J"
+	dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b="SzrPtdCt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f43.google.com (mail-oo1-f43.google.com [209.85.161.43])
+Received: from mail-oa1-f50.google.com (mail-oa1-f50.google.com [209.85.160.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C918B5E063
-	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 20:37:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AA2E2BD0F
+	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 20:37:39 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709930240; cv=none; b=ahpO53BC+XGHuCGOJfIOJh5tSjNXFVVsNfxCAk9alEXsS+dm/MyvrX9yD7qJ9MwSeHrbPn388mH7re3Gt9pUGUw6yhBIH+MJazEldb9kSvqaLZWjnHWVrxSMPIZEfI5a3DLZsIqzdmfiHJbJAX90IBUoqSsSAFI3+pLZA+3chUc=
+	t=1709930261; cv=none; b=HTZm+SfUblImb9l/J2+X1B1Abqs8Dhj3UV5dLAXWmVWRRF4u+7eNmUwaUmr3dt7E+7d+8DNNPK5CzGQdYrFq8uD7A2xMcVdCfVOwY6NZMws4Ai/p/LIEJCZ6Jmv8uiilmZ5XRyDHymaIv0pNe1RUNn5ynOEpO4ppS5RedLVw2D8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709930240; c=relaxed/simple;
-	bh=Bi3P4E1LMVNI9ICHZizJgPWFi1cAG6MJcwmbCUE+tB0=;
+	s=arc-20240116; t=1709930261; c=relaxed/simple;
+	bh=QVuJYBg7eAXpV6Ijtmm49xelHY48E81cS9xdFZ2y8ww=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=dB4nARsuQ2dt7OS7L3ifEz8YZf3EctJg0A51fMXYpAJMELcm51LfTTzuOuxH+K1P23griY9DgUtz6yXsQAdTRw9xSHcJX3Qvll8fvh6YvXzghPsLQG4736S3bcudpajko3IcztVELiVxZBpFXYtqoP4ANxdYJXHYMYjEFA2eV28=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=HLshlY0J; arc=none smtp.client-ip=209.85.161.43
+	 Content-Type:Content-Disposition:In-Reply-To; b=NwUCFvxNf98rgb+CxfDC7XOD9JaAwmzvgRRPtyyqc9nfT5MnYIet/wMxch99vON5uasbwsNlYP1T8EJQo/0EmBgcPQ9yEipT5zhaBiNqAS5/GPfa43+vlIgNdlH7JKIjy2UW59j0QA6ilvLd2b0G7Os8qMEeqxJHXdu7UxaLchA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca; spf=pass smtp.mailfrom=ziepe.ca; dkim=pass (2048-bit key) header.d=ziepe.ca header.i=@ziepe.ca header.b=SzrPtdCt; arc=none smtp.client-ip=209.85.160.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ziepe.ca
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ziepe.ca
-Received: by mail-oo1-f43.google.com with SMTP id 006d021491bc7-5a1cba5d46fso426622eaf.0
-        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 12:37:17 -0800 (PST)
+Received: by mail-oa1-f50.google.com with SMTP id 586e51a60fabf-221830f6643so1006083fac.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 12:37:39 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ziepe.ca; s=google; t=1709930237; x=1710535037; darn=vger.kernel.org;
+        d=ziepe.ca; s=google; t=1709930258; x=1710535058; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=jjWpdrEe1CBSB6fUsA969odLMNfAGSgF6jvNlFE06WQ=;
-        b=HLshlY0JdEldHta3JUKzPHooseYZMDrj2DHryLYDs5peuYjAuXzdIHxf1El6VBnEzY
-         ksY0Rv2pL6VWtrierriq21rd9UsObnawXA4p4AIgBlizBDnz9aN1Vh/qFXOdoilqfmdl
-         2Msr1y8zrAmn+ef3dwTz7cREbJzefJTqGBtl0lcciyj0SoinX7jsRrdF+1eBzX5YjImP
-         lj65zjhX8XvLydEBSxgTC0EZyrS7BlRIo9qZVM1T2PbyOJ3DUyJDTxQMaUlsRBWWeQGO
-         R4A1v7dzeGxbht847VPfHRQHWbUApaKkCZJcU9B6aNAtLgR36Z1fZ1yNTw+AOPWOkl7S
-         ddug==
+        bh=8AtBhhUJsX7iCjuz60QlnI9oeTh8ox4hiuWAL+2qFxI=;
+        b=SzrPtdCtETYaH+fXoFNcVZ674Y60rUoV24SHjrWWDyPuffz3hHq4no4/0zSaV3YAOd
+         3pITU2krQ+XDZV8KTm8DbbDUxfHgTrcSBp72H+2XuUj2wSERwR6Oq5tIbH84/e8violY
+         XBkz2lEi58aCBxCQXU+EnRkfJyyex8DnTmOfPlrkwUAUEBulOTXwb4wB6svmuAjMCBrv
+         vNqwD49cXpsvWh6R50V+4fN8EusTzt9GcGUyuuTKPnJDEHlTeqpvynw0A/KxKFND/6gd
+         PScL6wYo2bwUE7ZOCdsUUCPHc/JvD2GTo+8RU/G8n2zK0OU/XMH7/nnXo0bRNxpOXj3g
+         mn9g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709930237; x=1710535037;
+        d=1e100.net; s=20230601; t=1709930258; x=1710535058;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=jjWpdrEe1CBSB6fUsA969odLMNfAGSgF6jvNlFE06WQ=;
-        b=F073VwPKauO17eo6xCc9knVtYbAGDStneZ7OoPmOL1BBHR1pUvtHxNp7sSmjubZym7
-         29GRaD2J3SH+QjJvIjCdl/M6cFS8opgMeoBBcru1aT7AmrQieJZQfALcuz53xRKR5lz5
-         AKanccP3XFHqkYrrGYv2psRwIn+XBh/5uJvDTJjIqvGrUJZ04RLao1tvjDmgNp/SOjTz
-         mfDTZb3jMjYL7/pUx/EyGzMII7IG1/aC3S6efSEUexengUfwou5pBgYXXR30avUX1mJw
-         6eu9WAWt3EgS4QY/Gi4Yu5MoIULXgAqvM3EbpuZDrzn32Sz6xDZDUlN2oiHNmIlJml3z
-         EpOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXoISGb+4dmAxN3BJad1wDfkNhLlhfUOWG7t1aVw/a97H86UyO48T9/hDKsIPxOy+Isk/hvqmMzpakLpSFTw6ZXoa5WZDuwkOdN5g==
-X-Gm-Message-State: AOJu0Yw9T4SuA2HYtNEIwZWtMYfRBp8rd7VHx1UIr+dJCPfMbKc6xPph
-	vuCTnvbs3bGlFX2L3szAWD8hy6cosX1tNMxC+AtWKBrDhA9Fqf9it/GF7v1dyGE=
-X-Google-Smtp-Source: AGHT+IEqmZ/bPScFDErmd2Bdge5ElcWmdcXhPkDOr+1siQATWKStEMzgbLHSA9vyfoc0LpJeGpIgyw==
-X-Received: by 2002:a4a:2b11:0:b0:5a1:25fc:7be0 with SMTP id i17-20020a4a2b11000000b005a125fc7be0mr413338ooa.3.1709930236902;
-        Fri, 08 Mar 2024 12:37:16 -0800 (PST)
+        bh=8AtBhhUJsX7iCjuz60QlnI9oeTh8ox4hiuWAL+2qFxI=;
+        b=OKPPpLdBBmzba4QWM+GP6N1sHtqFONTNb90xsEnqdL1Tpjuws7SWPDKsMnqjqPgYel
+         GVXD6HElMx/ZIsr+hvP4GN8b3hsPrOQQ+yKdK+qS2s9Y2K2vqrhs5AL4ssL4oEDHKMyL
+         ip8kSPAHBQU2wIiypP9LzGauCj/mdrNgcyWWRmICAAvrqDZwr6rUpkxFigj1lRC5Qnc9
+         DzDR0fec/N63RksE0HKbudb4J/SkLogQ86zkO8ak0zZOIHK872U3pGc8N4kdi3dWPfgV
+         PZoFuxodlzUZtFo6nfXPQl6hS+Ib3dJafgxz/j8yxaT9ochkAOHNgsg/RbaiGn7c/cQy
+         eHig==
+X-Forwarded-Encrypted: i=1; AJvYcCVRJsHd75khvSJS5NLamq9xS9jC27K8hWAYrsTXZUCMxzcSbaHgLxS2blb8ebaHgCHCM+WdfQKuMV5C7EesIo2Xr/pw1anoLTjazg==
+X-Gm-Message-State: AOJu0YwZ8fAP17lcsSIfYIM7u8p3z3O62z/fSgzQ5NtDiARmc2At9AAl
+	3RYMpjoVXsVT50nhZVcSEYosLzD74er6zuX6P9kAz4C67/CpwyiITy13tNnjjaM=
+X-Google-Smtp-Source: AGHT+IFbgpl0pB6g2XaoyrWZZStUAXJBL7gQEaHjPXP/ruZgANeVKSb/3hxLcl0YhzvyQSM42+vm+A==
+X-Received: by 2002:a05:6870:7a0d:b0:21f:ab17:44c3 with SMTP id hf13-20020a0568707a0d00b0021fab1744c3mr272908oab.24.1709930258434;
+        Fri, 08 Mar 2024 12:37:38 -0800 (PST)
 Received: from ziepe.ca (hlfxns017vw-142-68-80-239.dhcp-dynamic.fibreop.ns.bellaliant.net. [142.68.80.239])
-        by smtp.gmail.com with ESMTPSA id bi3-20020a05682008c300b005a0859a4a01sm19059oob.36.2024.03.08.12.37.16
+        by smtp.gmail.com with ESMTPSA id gu19-20020a056870ab1300b0022154dd4eb0sm47251oab.4.2024.03.08.12.37.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Mar 2024 12:37:16 -0800 (PST)
+        Fri, 08 Mar 2024 12:37:38 -0800 (PST)
 Received: from jgg by wakko with local (Exim 4.95)
 	(envelope-from <jgg@ziepe.ca>)
-	id 1rigxv-007xzf-Er;
-	Fri, 08 Mar 2024 16:37:15 -0400
-Date: Fri, 8 Mar 2024 16:37:15 -0400
+	id 1rigyH-007y3a-Aw;
+	Fri, 08 Mar 2024 16:37:37 -0400
+Date: Fri, 8 Mar 2024 16:37:37 -0400
 From: Jason Gunthorpe <jgg@ziepe.ca>
 To: Robin Murphy <robin.murphy@arm.com>
 Cc: Vineet Gupta <vgupta@kernel.org>, Russell King <linux@armlinux.org.uk>,
@@ -99,11 +99,12 @@ Cc: Vineet Gupta <vgupta@kernel.org>, Russell King <linux@armlinux.org.uk>,
 	Marek Szyprowski <m.szyprowski@samsung.com>,
 	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
 	linux-acpi@vger.kernel.org, iommu@lists.linux.dev,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 6/7] iommu/dma: Centralise iommu_setup_dma_ops()
-Message-ID: <20240308203715.GA9225@ziepe.ca>
+	devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>,
+	Christoph Hellwig <hch@lst.de>
+Subject: Re: [PATCH v3 7/7] dma-mapping: Simplify arch_setup_dma_ops()
+Message-ID: <20240308203737.GB9225@ziepe.ca>
 References: <cover.1707493264.git.robin.murphy@arm.com>
- <202fcca3269201bc9c4a8198253f195433d0c4ff.1707493264.git.robin.murphy@arm.com>
+ <f0ea76846c89a65dfe42933d78d770004bb3de01.1707493264.git.robin.murphy@arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -112,46 +113,30 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <202fcca3269201bc9c4a8198253f195433d0c4ff.1707493264.git.robin.murphy@arm.com>
+In-Reply-To: <f0ea76846c89a65dfe42933d78d770004bb3de01.1707493264.git.robin.murphy@arm.com>
 
-On Fri, Feb 09, 2024 at 04:50:03PM +0000, Robin Murphy wrote:
-> It's somewhat hard to see, but arm64's arch_setup_dma_ops() should only
-> ever call iommu_setup_dma_ops() after a successful iommu_probe_device(),
-> which means there should be no harm in achieving the same order of
-> operations by running it off the back of iommu_probe_device() itself.
-> This then puts it in line with the x86 and s390 .probe_finalize bodges,
-> letting us pull it all into the main flow properly. As a bonus this lets
-> us fold in and de-scope the PCI workaround setup as well.
+On Fri, Feb 09, 2024 at 04:50:04PM +0000, Robin Murphy wrote:
+> The dma_base, size and iommu arguments are only used by ARM, and can
+> now easily be deduced from the device itself, so there's no need to pass
+> them through the callchain as well.
 > 
-> At this point we can also then pull the call up inside the group mutex,
-> and avoid having to think about whether iommu_group_store_type() could
-> theoretically race and free the domain if iommu_setup_dma_ops() ran just
-> *before* iommu_device_use_default_domain() claims it... Furthermore we
-> replace one .probe_finalize call completely, since the only remaining
-> implementations are now one which only needs to run once for the initial
-> boot-time probe, and two which themselves render that path unreachable.
-> 
-> This leaves us a big step closer to realistically being able to unpick
-> the variety of different things that iommu_setup_dma_ops() has been
-> muddling together, and further streamline iommu-dma into core API flows
-> in future.
-> 
+> Acked-by: Rob Herring <robh@kernel.org>
+> Reviewed-by: Christoph Hellwig <hch@lst.de>
 > Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 > ---
-> v2: Shuffle around to make sure the iommu_group_do_probe_finalize() case
->     is covered as well, with bonus side-effects as above.
-> v3: *Really* do that, remembering the other two probe_finalize sites too.
+> v2: Make sure the ARM changes actually build (oops...)
 > ---
->  arch/arm64/mm/dma-mapping.c  |  2 --
->  drivers/iommu/amd/iommu.c    |  8 --------
->  drivers/iommu/dma-iommu.c    | 18 ++++++------------
->  drivers/iommu/dma-iommu.h    | 14 ++++++--------
->  drivers/iommu/intel/iommu.c  |  7 -------
->  drivers/iommu/iommu.c        | 20 +++++++-------------
->  drivers/iommu/s390-iommu.c   |  6 ------
->  drivers/iommu/virtio-iommu.c | 10 ----------
->  include/linux/iommu.h        |  7 -------
->  9 files changed, 19 insertions(+), 73 deletions(-)
+>  arch/arc/mm/dma.c               |  3 +--
+>  arch/arm/mm/dma-mapping-nommu.c |  3 +--
+>  arch/arm/mm/dma-mapping.c       | 16 +++++++++-------
+>  arch/arm64/mm/dma-mapping.c     |  3 +--
+>  arch/mips/mm/dma-noncoherent.c  |  3 +--
+>  arch/riscv/mm/dma-noncoherent.c |  3 +--
+>  drivers/acpi/scan.c             |  7 +------
+>  drivers/hv/hv_common.c          |  6 +-----
+>  drivers/of/device.c             |  4 +---
+>  include/linux/dma-map-ops.h     |  6 ++----
+>  10 files changed, 19 insertions(+), 35 deletions(-)
 
 Reviewed-by: Jason Gunthorpe <jgg@nvidia.com>
 
