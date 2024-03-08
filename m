@@ -1,186 +1,216 @@
-Return-Path: <devicetree+bounces-49352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B968387617B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 11:05:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D73738761BB
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 11:16:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B5B1A1C21546
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 10:05:32 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 4B17E1F2328B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 10:16:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 15A8E5380F;
-	Fri,  8 Mar 2024 10:05:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 36150535DA;
+	Fri,  8 Mar 2024 10:16:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FJBkVXlm"
+	dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b="aerF9VBM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E68C3BB38
-	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 10:05:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E9DFC2CCB3;
+	Fri,  8 Mar 2024 10:16:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=68.232.153.233
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709892329; cv=none; b=UlDOENJAjLbax3bjoNzA7Tg39QtrD1PTxNrq757ESLDoU6zCQDE+Qd3IQlU+sjLOayj2wrwZtrYJsz+VTL9J8ANEDYwMPKl/2jjtnYxoWNOSVAYe7BQUIFRx1VOdJkRCtHBRqiLpdwRItJDr0QfrG73Os87QLgarI+8q0rhjfrQ=
+	t=1709892980; cv=none; b=VUkjZsygmCwVcYde4wm9xWqVj82UFccQTsewiw70BmumG5WDDTLRtAOaor+GFGWe+z9rWKNrcUIBcxZhbwEgrzArBWKT1FH5IUkob2BPteXhThUuBg60gJDrTXpgaHI/nTT0IPvuF37BrIhjA8gda1pTUMgdFT4H122vHbhSzgI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709892329; c=relaxed/simple;
-	bh=0tfAeMQUlpQDr82AXFcKijJXEjPu7V2loQY52vpD+wE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FBzC8Mbtu4HaEJgnGTTNQf3rscxP55cUys0GOogNf6V3gxbPr8y/bsvKwTyC8/QdII7w+Ijdb6S858g3hTrb19TIhR63JDmktpBgMdNxNgOeFUg7JQ/H30Tp5lbEchcLSMARTATtmAknAvvob89TW98d6OJG7KXY06hmtGjrgm4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FJBkVXlm; arc=none smtp.client-ip=209.85.218.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f41.google.com with SMTP id a640c23a62f3a-a44cdb2d3a6so277420866b.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 02:05:27 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709892326; x=1710497126; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=K+4qt/ePIU4s+QXb1RnCcwmRfkb/Bqx14xM83vPg++U=;
-        b=FJBkVXlmoxg6rbMmuHGGqm/Z/xL/nlQJyrFAttwqQwgVC6k3QBg0KgKdJV/Dzz20+e
-         7T6qZOcygCnilIf5bMpL0Y3qcQCAHpPX/KjSXWKEKTPpunXzQO1eoP9jNwKqiNrodIpl
-         OTa8KzgDChoj59s3sefQ7zP/UxrT8c0D8hte9Pu9ls/bexbnxU6nRFURjngXigZj7RA9
-         zQvHriCnAfQ5l0wWLWP5Bp4YvwwKJsOPIqvBYGkZKGSReIDpQYowkRSp04M4hie35N4f
-         uIdASaTsolxJUk/EmDy+lA/9SiL1JeYOCKwGBzuqIgorwDErIbsashL2CKzCrUXeByhB
-         0zkg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709892326; x=1710497126;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K+4qt/ePIU4s+QXb1RnCcwmRfkb/Bqx14xM83vPg++U=;
-        b=fBv+PoKifUktniMtDCBdFiJPtWWBPNjxIny4/qZ0d1AjC9ZM3SUNG5VxjJaHMwy7a/
-         gtOWhu1Q/1+pUaGxsce2evtVg3h6rrr8Ilo06OjYqHPiLjRUG0uBGAc/JpCTuisBw5o2
-         qEBA7zFNat/LSGi2zOCkQ5AS0UD3t/FEl5yZ25Hw1ZU/4yYDDKdy7fzAn/rIYTktJEcw
-         FDA971U6pe1EgLWWBgbFqbdPQydjrtb5UPnGu4uTyb1ir/8K0pKCJYcrbysRHwhm8BGu
-         kKFuD+tYSrLb19tV7BR+pKnu7Ex5zbmLek+oezGApnnzwM+YFDN802+LxuRaw9gu9UYo
-         xP6A==
-X-Forwarded-Encrypted: i=1; AJvYcCWLEtpnGLp/F4uAXHHDmbopovV6PQyjAAddMrjpiNjFjEEZa0X3BEXgnaMjNl9Pewhq8boi8IsdXjuNDK/kAXx+XPOM6oHa7u5Yqg==
-X-Gm-Message-State: AOJu0YwD8ejt9oRdG7TNW0KJdCDfb0rKEZ9zSOssCuXGHUhD6RCQnC/5
-	yeBTIDq0NVyArtKWhOms5LxmXDA4FxJOK0EbnfUaINyszt/W1iaNkZOPmUzykhdQomay7x7qkkJ
-	2
-X-Google-Smtp-Source: AGHT+IEYCnSGtfhIa3FWIcWjIyqFpO9DM77/UrSvtyrpBRz8JUn+xIULHlgqe0hqZ7alF+udXAUNFw==
-X-Received: by 2002:a17:906:3d4:b0:a44:8c1b:8877 with SMTP id c20-20020a17090603d400b00a448c1b8877mr14778671eja.50.1709892325559;
-        Fri, 08 Mar 2024 02:05:25 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id n15-20020a170906088f00b00a44fa8ec421sm6575682eje.205.2024.03.08.02.05.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Mar 2024 02:05:25 -0800 (PST)
-Message-ID: <9307ba55-834a-4aa9-b993-a54e5ab4b3be@linaro.org>
-Date: Fri, 8 Mar 2024 11:05:22 +0100
+	s=arc-20240116; t=1709892980; c=relaxed/simple;
+	bh=Q8cQjBrAEx7ffkcBZwFyj+7ctJtXOoVmf2a9mz1sm6U=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AfmFmcTDFHkgCBEZ644f4Fuxf2kFV4aCsVLQe/JqAdH2tHQ9WX+3foTXPu8BK4xoeqa4hCMOjevgVUWH03W7Hi2AoZEV0omzcj3u2OfTIDHjTK3dfndl7xFxwUXH19Vs/wIYigw0Y41mE79myQLrhpPDAByGGC8r4DyS+Mj/eq0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com; spf=pass smtp.mailfrom=microchip.com; dkim=pass (2048-bit key) header.d=microchip.com header.i=@microchip.com header.b=aerF9VBM; arc=none smtp.client-ip=68.232.153.233
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=microchip.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=microchip.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1709892978; x=1741428978;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Q8cQjBrAEx7ffkcBZwFyj+7ctJtXOoVmf2a9mz1sm6U=;
+  b=aerF9VBMCuHlcJnQ9yrfR1g3Y+jOh49mr9OF+O3HD19dAsrLOJS2lOBH
+   Dw8N6NsO/JBdUvAuHP4AqivSNnCSHzuLA2pFtokuMof7HORWdestW/Qyj
+   OwH42FZ0rJcBxpjd4ON0y78Pyl8LsdSCq1QHlh3C4DGGZ/2b+dDfxa/ve
+   3VSaalp6wlroo84UbNTdE9uCnOWeg2icYSztDhDu5kENVQapxs1Pgm4Z8
+   8fz4I3/vWFwpSinagIGIznLAhig+hW9M7UB8piVjsHABP9QvHc98aaR6f
+   AEPJXlTeyvWTodYVbIEv1VQ8CI/TZDQWwHE1+K/2212YZUlCwYJRaQh1R
+   A==;
+X-CSE-ConnectionGUID: GYN+Phv8SneCqTAifiO+dQ==
+X-CSE-MsgGUID: A8+JuFB9QEC81NKv8EN3gA==
+X-IronPort-AV: E=Sophos;i="6.07,109,1708412400"; 
+   d="asc'?scan'208";a="248162359"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/ECDHE-RSA-AES128-GCM-SHA256; 08 Mar 2024 03:16:10 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.35; Fri, 8 Mar 2024 03:16:05 -0700
+Received: from wendy (10.10.85.11) by chn-vm-ex01.mchp-main.com (10.10.85.143)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35 via Frontend
+ Transport; Fri, 8 Mar 2024 03:16:02 -0700
+Date: Fri, 8 Mar 2024 10:15:18 +0000
+From: Conor Dooley <conor.dooley@microchip.com>
+To: <Varshini.Rajendran@microchip.com>
+CC: <claudiu.beznea@tuxon.dev>, <robh+dt@kernel.org>,
+	<krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+	<tglx@linutronix.de>, <Nicolas.Ferre@microchip.com>,
+	<alexandre.belloni@bootlin.com>, <andre.przywara@arm.com>, <mani@kernel.org>,
+	<shawnguo@kernel.org>, <Durai.ManickamKR@microchip.com>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v4 29/39] irqchip/atmel-aic5: Add support to get nirqs
+ from DT for sam9x60 & sam9x7
+Message-ID: <20240308-reissue-badass-9f8883b4e2e6@wendy>
+References: <20240223171342.669133-1-varshini.rajendran@microchip.com>
+ <20240223172905.673053-1-varshini.rajendran@microchip.com>
+ <f1f9c53f-b11a-4fe1-9541-356ea75e883c@tuxon.dev>
+ <ba7a59ae-d377-4514-89e7-86991420507c@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?B?UmU6IOWbnuWkjTog5Zue5aSNOiBbUEFUQ0ggdjEgMS8yXSBkdC1iaW5k?=
- =?UTF-8?Q?ings=3A_ASoC=3A_Add_PDM_controller_for_the_StarFive_JH8100_SoC?=
-To: Xingyu Wu <xingyu.wu@starfivetech.com>,
- Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Takashi Iwai <tiwai@suse.com>, Jaroslav Kysela <perex@perex.cz>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor.dooley@microchip.com>
-Cc: Walker Chen <walker.chen@starfivetech.com>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
- "linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>
-References: <20240307033708.139535-1-xingyu.wu@starfivetech.com>
- <20240307033708.139535-2-xingyu.wu@starfivetech.com>
- <0b92700a-cf79-4f1c-986a-d18fe0151bb8@linaro.org>
- <NTZPR01MB095618FAFF22BDC301F69A0C9F27A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
- <740b1f29-ab80-488b-b40d-3b8d95bc6c23@linaro.org>
- <NTZPR01MB0956A8DCFEF13E4905D97B479F27A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <NTZPR01MB0956A8DCFEF13E4905D97B479F27A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="/QFzMk5rsZSajjp0"
+Content-Disposition: inline
+In-Reply-To: <ba7a59ae-d377-4514-89e7-86991420507c@microchip.com>
 
-On 08/03/2024 10:19, Xingyu Wu wrote:
->> On 08/03/2024 08:49, Xingyu Wu wrote:
->>>>> +
->>>>> +  starfive,pdm-modulex:
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>> +    enum: [0, 1]
->>>>> +    description:
->>>>> +      The module x will be using in PDM controller. Default use module 0.
->>>>
->>>> This is an index of the block instance? If so, then it's not allowed.
->>>> Otherwise I don't understand the description.
->>>>
->>>
->>> No, this is just one instance. The PDM have two internal and independent
->> modules or called channels.
->>> They can be configured and used separately, and the user can choose which
->> channel to use.
->>>
->>
->> Do the modulex differ? Why different boards would choose one over another?
->>
-> 
-> They are same. The choice between them is base on the match with I2S.
-> The DMA data channel of hardware between them is fixed linked:
-> PDM module 0 --> I2S channel 0,
-> PDM module 1 --> I2S channel 1
-> I2S uses higher-number channels first for capture (like channel 1), so PDM should skips module 0 and uses module 1.
-> Oh, I just thought of a way to fix them that change the priority of I2S channel to use lower-number channels first and PDM need not skip module0.
-> 
+--/QFzMk5rsZSajjp0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hm, then maybe this should be somehow linked with choice of I2C channel?
-Do you have anywhere a link to complete DTS with sound card?
+On Fri, Mar 08, 2024 at 08:50:43AM +0000, Varshini.Rajendran@microchip.com =
+wrote:
+> On 03/03/24 5:51 pm, claudiu beznea wrote:
+> > EXTERNAL EMAIL: Do not click links or open attachments unless you know =
+the content is safe
+> >=20
+> > On 23.02.2024 19:29, Varshini Rajendran wrote:
+> >> Add support to get number of IRQs from the respective DT node for sam9=
+x60
+> >> and sam9x7 devices. Since only this factor differs between the two SoC=
+s,
+> >> this patch adds support for the same. Adapt the sam9x60 dtsi
+> >> accordingly.
+> >>
+> >> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> >> ---
+> >> Changes in v4:
+> >> - Changed the implementation to fetch the NIRQs from DT as per the
+> >>    comment to avoid introducing a new compatible when this is the only
+> >>    difference between the SoCs related to this IP.
+> >> ---
+> >>   arch/arm/boot/dts/microchip/sam9x60.dtsi |  1 +
+> >>   drivers/irqchip/irq-atmel-aic5.c         | 11 ++++++++---
 
-Best regards,
-Krzysztof
+Driver and binding changes should be in different patches. Having them
+in the same patch is usually a red flag for ABI breakage.
 
+> >>   2 files changed, 9 insertions(+), 3 deletions(-)
+> >>
+> >> diff --git a/arch/arm/boot/dts/microchip/sam9x60.dtsi b/arch/arm/boot/=
+dts/microchip/sam9x60.dtsi
+> >> index 73d570a17269..e405f68c9f54 100644
+> >> --- a/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> >> +++ b/arch/arm/boot/dts/microchip/sam9x60.dtsi
+> >> @@ -1201,6 +1201,7 @@ aic: interrupt-controller@fffff100 {
+> >>                                interrupt-controller;
+> >>                                reg =3D <0xfffff100 0x100>;
+> >>                                atmel,external-irqs =3D <31>;
+> >> +                             microchip,nr-irqs =3D <50>;
+> >>                        };
+> >>
+> >>                        dbgu: serial@fffff200 {
+> >> diff --git a/drivers/irqchip/irq-atmel-aic5.c b/drivers/irqchip/irq-at=
+mel-aic5.c
+> >> index 145535bd7560..5d96ad8860d3 100644
+> >> --- a/drivers/irqchip/irq-atmel-aic5.c
+> >> +++ b/drivers/irqchip/irq-atmel-aic5.c
+> >> @@ -398,11 +398,16 @@ static int __init sama5d4_aic5_of_init(struct de=
+vice_node *node,
+> >>   }
+> >>   IRQCHIP_DECLARE(sama5d4_aic5, "atmel,sama5d4-aic", sama5d4_aic5_of_i=
+nit);
+> >>
+> >> -#define NR_SAM9X60_IRQS              50
+> >> -
+> >>   static int __init sam9x60_aic5_of_init(struct device_node *node,
+> >>                                       struct device_node *parent)
+> >>   {
+> >> -     return aic5_of_init(node, parent, NR_SAM9X60_IRQS);
+> >> +     int ret, nr_irqs;
+> >> +
+> >> +     ret =3D of_property_read_u32(node, "microchip,nr-irqs", &nr_irqs=
+);
+> >> +     if (ret) {
+> >> +             pr_err("Not found microchip,nr-irqs property\n");
+> >=20
+> > This breaks the ABI. You should ensure old device trees are still worki=
+ng
+> > with this patch.
+>=20
+> The only older device that uses this API is sam9x60 and the newly added=
+=20
+> sam9x7. This change has been tested to be working fine in both the=20
+> devices.
+
+Does it still work for a sam9x60 that does not have "microchip,nr-irqs"?
+I can't see how it would, because you remove the define and return an
+error. That's a pretty clear ABI breakage to me and I don't think it is
+justified.
+
+> If you still want me to use the macros as a fallback in the=20
+> failure case I can do it. But this change was proposed to avoid adding=20
+> macros in the first place. I can remove the error check just like they=20
+> do while getting other device tree properties. Or if this is just a=20
+> concern of the old devices working with the new change, then sam9x60=20
+> works. Please let me know how to proceed.
+
+I just noticed that this property is not documented in a binding. The
+first thing you would will be asked when trying to add that is "why can
+this not be determined based on the compatible", which means back to
+having a define in the driver.
+That said, having specific $soc_aic5_of_init() functions for each SoC
+seems silly when usually only the number of interrupts changes. The
+number of IRQs could be in the match data and you could use
+aic5_of_init in your IRQCHIP_DECLARE directly.
+
+> >> +             return ret;
+> >> +     }
+> >> +     return aic5_of_init(node, parent, nr_irqs);
+> >>   }
+> >>   IRQCHIP_DECLARE(sam9x60_aic5, "microchip,sam9x60-aic", sam9x60_aic5_=
+of_init);
+>=20
+> --=20
+> Thanks and Regards,
+> Varshini Rajendran.
+>=20
+
+--/QFzMk5rsZSajjp0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZerlKQAKCRB4tDGHoIJi
+0pT9AQD3Y7yDIjab/erLnSk3oz54G8s2/Z1B0YCajxnyEsOP3wEApgIrOU1U1kkV
+5w39xuPTAXOMj04cpNxFVJM+dJ9rowc=
+=stem
+-----END PGP SIGNATURE-----
+
+--/QFzMk5rsZSajjp0--
 
