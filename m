@@ -1,149 +1,90 @@
-Return-Path: <devicetree+bounces-49380-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49381-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21B668762B6
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:07:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F0CCA8762C8
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:11:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 81F13B229BF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 11:07:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2DB6A1C20CC6
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 11:11:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5618B56443;
-	Fri,  8 Mar 2024 11:06:48 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DBDFC55C3E;
+	Fri,  8 Mar 2024 11:11:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="etjcXPoO"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="O/WC80qG"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B414455C07;
-	Fri,  8 Mar 2024 11:06:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.199
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D8C55C20;
+	Fri,  8 Mar 2024 11:11:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709896008; cv=none; b=YIchp+qhrfzyh4smdHKZ2I/31RUFOOKt7/VXhhCNNRfFlwJ3AazH263FbTiVp65RxxEMhVVV6V5U+vlFfIJKAkkFlQdYELwhMY5kuKC5KFKM8AFe0xumnb4W1j+M8X1pgipml139lPAWQlkbvyrha8RgK0aUdGiVq2bVnrY5I4M=
+	t=1709896307; cv=none; b=Ia+4eW5iG+ZqLnP63HyrlLxx1GoYbf7vj7k4ehgr00ELdmdloCHL9Sn+/Cz/QAsx9di+dXlHik/4CgvSVNE97OFNdhRwBNzZWsW52ArEXdjZiwM0ufh2QWaNLCvmfiRxvWs24gEYFQOGeLxnks27kaoPmZqW0I01CklSqoMjhFE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709896008; c=relaxed/simple;
-	bh=oLvt/rPdi86BF82vjpWAcRr8SAf+o021YIyff73q3yE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=ZFuiY7CzM6KGEvfMpXnu0rNga9bYvqXoWjNlZpn+9kYNh4DSLMCYyfB46BdyBrDgI+mmuLL22SeeqKHgw8GXAOsCbNDhA6JzX2KiGXMWsbwzy/3hH64568leqfziyGF7uGBYqVWs/QFIa8fZxb8bk0LX3rRiRR1wjovvnSDNN40=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=etjcXPoO; arc=none smtp.client-ip=217.70.183.199
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 8701FFF809;
-	Fri,  8 Mar 2024 11:06:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1709896004;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=5Ptz6X1Z3D4WKYLLa+T/MWcgejuk++Ip/X28qrRSyW8=;
-	b=etjcXPoOVydHzfrd6N8/ZAGy0gMq4rvt2/2h1b1ECUOdZ/Ehi9TXGT8c4KtkooFIttRasY
-	aPcwa6yekn/tW5kefoSj8v1iKD8R9NI9KqFqUG0d3dQ8uvOCNjLg2ePF61eWfWYdI+VhAE
-	TCeLn64NcG5pWTdfmlr0dw8/A7l0XaRsPPddyh1YGpC43jHQiD0Sfa3d67LykaUPZEZByU
-	oZmXc8Gv2XWq/B4UrGDvkh5tGJw/rPb4Q1bw6Z0+/Ll3S33mlvYf+DHuJR1jHZy9M20CLs
-	T4CcZQ17xzz6XSAm1qxRZp0JWGFAv73kqbUAKDNZ4OoPiSvYgPHbDGvVusrGPg==
-Message-ID: <5cb1e17c-c283-4092-91ce-5ed03d9d3e48@bootlin.com>
-Date: Fri, 8 Mar 2024 12:06:42 +0100
+	s=arc-20240116; t=1709896307; c=relaxed/simple;
+	bh=VObxaL0t5qKtJJ8GQluFyj0qWx/502F8HOOdmlaZLOg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=WPKRkrBe5PLNGb80h5wouuIX8H71Ym5hhgHUmySrOIWXaZ6lK5sJ+Os8cFvdmbF/7DLbWXrQfHHK9Mg+HZ35P2XyocH75nNtQkFxeF8YR79U0RMNtJo1tUBPAnYyEYRYvq6toi6R+q1TRe9s6u2RvG1DqzGj8brU72Gf+qIMZZE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=O/WC80qG; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E4968C433C7;
+	Fri,  8 Mar 2024 11:11:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709896307;
+	bh=VObxaL0t5qKtJJ8GQluFyj0qWx/502F8HOOdmlaZLOg=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=O/WC80qGQcYPK/zi3+6WT1dlOUKe/lBgfWzU6gkZf78kgo2cMet4Z9crddF8q4OXo
+	 CKHOnqrUWNNF3XAO/0zpfcfxLDqrPpZiApNa7b6+jyP8T4MJxkK5BdvuwLDNtsPshG
+	 Xay2Td2slg9EIjXIAL6jVmsRuFHU08LPInXAs8BIMU3PCzKsMWJKCdim0vrKeE6zIu
+	 FC9sHJzcCDRnhVICUyo/FwFwpWcvL85AISByTVzTsfjh0eER1pgBooNNrHQRfI3RJA
+	 clacMvW8NKi3YJIc2pxDT/R03w8a6lgNWXmDX9gmND3HuDYFzw/QpiThl0/AvK0bKv
+	 JgtaeLe6Lzy4A==
+From: =?utf-8?B?QmrDtnJuIFTDtnBlbA==?= <bjorn@kernel.org>
+To: Anup Patel <apatel@ventanamicro.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Thomas
+ Gleixner <tglx@linutronix.de>, Rob Herring <robh+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Frank Rowand
+ <frowand.list@gmail.com>, Conor Dooley <conor+dt@kernel.org>
+Cc: Anup Patel <apatel@ventanamicro.com>, devicetree@vger.kernel.org,
+ Saravana Kannan <saravanak@google.com>, Marc Zyngier <maz@kernel.org>,
+ Anup Patel <anup@brainfault.org>, linux-kernel@vger.kernel.org, Atish
+ Patra <atishp@atishpatra.org>, linux-riscv@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Andrew Jones
+ <ajones@ventanamicro.com>
+Subject: Re: [PATCH v16 0/9] Linux RISC-V AIA Support
+In-Reply-To: <20240307140307.646078-1-apatel@ventanamicro.com>
+References: <20240307140307.646078-1-apatel@ventanamicro.com>
+Date: Fri, 08 Mar 2024 12:11:44 +0100
+Message-ID: <87edclou4v.fsf@all.your.base.are.belong.to.us>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drm/panel: simple: add CMT430B19N00 LCD panel
- support
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
- Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Daniel Vetter <daniel@ffwll.ch>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thierry Reding
- <thierry.reding@gmail.com>, dri-devel@lists.freedesktop.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Yen-Mei Goh <yen-mei.goh@keysight.com>
-References: <20240304160454.96977-1-jeremie.dautheribes@bootlin.com>
- <20240304160454.96977-4-jeremie.dautheribes@bootlin.com>
- <20240304-inquisitive-kickass-pronghorn-c641ff@houat>
- <ee36a60d-5b65-4eb8-ac41-e4b6be1cf81f@bootlin.com>
- <20240308-shiny-meaty-duck-446e8d@houat>
-Content-Language: en-US
-From: =?UTF-8?B?SsOpcsOpbWllIERhdXRoZXJpYmVz?=
- <jeremie.dautheribes@bootlin.com>
-In-Reply-To: <20240308-shiny-meaty-duck-446e8d@houat>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: jeremie.dautheribes@bootlin.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-Hi Maxime,
+Anup Patel <apatel@ventanamicro.com> writes:
 
-On 08/03/2024 11:48, Maxime Ripard wrote:
-> On Tue, Mar 05, 2024 at 10:46:55AM +0100, Jérémie Dautheribes wrote:
->> Hi Maxime,
->>
->> On 04/03/2024 17:25, Maxime Ripard wrote:
->>> Hi,
->>>
->>> On Mon, Mar 04, 2024 at 05:04:54PM +0100, Jérémie Dautheribes wrote:
->>>> Add support for Crystal Clear Technology CMT430B19N00 4.3" 480x272
->>>> TFT-LCD panel.
->>>>
->>>> Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
->>>> ---
->>>>    drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
->>>>    1 file changed, 29 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
->>>> index 20e3df1c59d4..b940220f56e2 100644
->>>> --- a/drivers/gpu/drm/panel/panel-simple.c
->>>> +++ b/drivers/gpu/drm/panel/panel-simple.c
->>>> @@ -1457,6 +1457,32 @@ static const struct panel_desc boe_hv070wsa = {
->>>>    	.connector_type = DRM_MODE_CONNECTOR_LVDS,
->>>>    };
->>>> +static const struct drm_display_mode cct_cmt430b19n00_mode = {
->>>> +	.clock = 9000,
->>>> +	.hdisplay = 480,
->>>> +	.hsync_start = 480 + 43,
->>>> +	.hsync_end = 480 + 43 + 8,
->>>> +	.htotal = 480 + 43 + 8 + 4,
->>>> +	.vdisplay = 272,
->>>> +	.vsync_start = 272 + 12,
->>>> +	.vsync_end = 272 + 12 + 8,
->>>> +	.vtotal = 272 + 12 + 8 + 4,
->>>> +	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
->>>> +};
->>>
->>> Your pixel clock doesn't really match the rest of the timings:
->>>
->>> (480 + 43 + 8 + 4) * (272 + 12 + 8 + 4) * 60 = 9501600
->>>
->>> So a ~6% deviation.
->>>
->>> What does the datasheet say?
->>
->> Indeed it does not exactly match but the datasheet indicates that the
->> typical clock frequency is 9MHz and when this frequency is used, the
->> typical values of the other parameters are those we have defined in
->> the drm_display_mode structure.
-> 
-> It seems weird to me that all the typical timings end up in a
-> non-typical configuration, but I've seen my fair share of weird
-> datasheet, so.. yeah.
-> 
-> I guess the best thing to do if you have access to the min/typ/max
-> timings is to actually use the display_timings structure here and define
-> all of them.
+> The RISC-V AIA specification is ratified as-per the RISC-V international
+> process. The latest ratified AIA specifcation can be found at:
+> https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-interrupts=
+-1.0.pdf
 
-Yes, I do have access to these timings, I'm going to implement the 
-display_timing structure as you suggested, thank you!
+It's been a been a long ride, and I got in late (v10)... Thanks for the
+hard work, Anup!
 
-Regards,
+Note that Alex' text-patching/IPI series [1] needs to go into the RV
+tree at roughly the same time as AIA.
 
-Jérémie
+I've not caught any regressions for kselftests on qemu for this version
+(with Alex' series applied). I have not run it on real hardware.
+
+For the series:
+
+Tested-by: Bj=C3=B6rn T=C3=B6pel <bjorn@rivosinc.com>
+Reviewed-by: Bj=C3=B6rn T=C3=B6pel <bjorn@rivosinc.com>
 
