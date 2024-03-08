@@ -1,88 +1,129 @@
-Return-Path: <devicetree+bounces-49271-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49272-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89B7E875B6E
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 01:14:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 73656875B97
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 01:48:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4B23C282C99
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 00:14:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2F38128253A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 00:48:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 207B7367;
-	Fri,  8 Mar 2024 00:14:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB0C33C30;
+	Fri,  8 Mar 2024 00:48:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="roLdvQKS"
+	dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b="nJEX4FqH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F419163;
-	Fri,  8 Mar 2024 00:14:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3324C6AD9
+	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 00:48:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709856870; cv=none; b=YWwzZ7Uwt9mdyTG6nENdi1hg6Yk0TVN084neXnwYKKkH89FWhsSz65NU8FUEtidAPtLTvBGGhF88ZWzOwuSFHDgKeiEWfxIjqAvTd3hl5saXZRfdXaSZreJE5VXOWxnGZPw4YhG1p83+8BIgRtJRZPsrNs4ReuuVLKET2NVGkRc=
+	t=1709858892; cv=none; b=uBX6CnS5uv1ms/5DpEQKdKZLxBJEXnk4cCjajmY09WM2OdFcMSo9BVCZXS90n4lE9LTWRCtvU6Gp6gyrod9Lmz25fbvCe7Rp9E1MD40AI5svcngCMMETivPBQ6ZuHGOrCZIzKv+zDrT8uuJ4uIgLqCujLENPqlpaa5uKAgmbE0U=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709856870; c=relaxed/simple;
-	bh=ShKAOPsNeFSgfIJeAAMXbVN/XeGuL3Tf/iQlZyZXXPU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Zw0Qu4YuFNAPvmBP52Arx6iwV26vA7VJ5RWfmknSC7cVlBHDWqtDhpLIpIcvr9hFOjItpRf5kWI67qtlzvFpHJhyt8HC9qwHDVxxnfVrIOpx9F1SeF1NBz//NuoKk4NY/Hr8M+EUWUxSjlaJNirQLraG79B6Y4gvDBejSvn2gOE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=roLdvQKS; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=pAdOU+6NWPhS48wWJ2Dtjr5NagG/2OqoNvOJ8IAErUo=; b=roLdvQKShZYIj48y3uP+XHXUvG
-	bvAU7PKYoUMK9TezAuxPqMs440C6Rvv284GSZOgip8UL0C1IiP4QMF6MlTGRpbcXsFsilfm7lerKm
-	7RdkBOKe8ih9a9tFVzovNeisBpd5nTz9DkC1oXqIhthguUh8dlhRtINBdO6V2S1H5Zag=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1riNsf-009fkW-OF; Fri, 08 Mar 2024 01:14:33 +0100
-Date: Fri, 8 Mar 2024 01:14:33 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Parthiban Veerasooran <Parthiban.Veerasooran@microchip.com>
-Cc: davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-	pabeni@redhat.com, horms@kernel.org, saeedm@nvidia.com,
-	anthony.l.nguyen@intel.com, netdev@vger.kernel.org,
-	linux-kernel@vger.kernel.org, corbet@lwn.net,
-	linux-doc@vger.kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	devicetree@vger.kernel.org, horatiu.vultur@microchip.com,
-	ruanjinjie@huawei.com, steen.hegelund@microchip.com,
-	vladimir.oltean@nxp.com, UNGLinuxDriver@microchip.com,
-	Thorsten.Kummermehr@microchip.com, Pier.Beruto@onsemi.com,
-	Selvamani.Rajagopal@onsemi.com, Nicolas.Ferre@microchip.com,
-	benjamin.bigler@bernformulastudent.ch
-Subject: Re: [PATCH net-next v3 09/12] net: ethernet: oa_tc6: implement
- receive path to receive rx ethernet frames
-Message-ID: <49f8b067-4e56-4e8f-97e0-bac314619b82@lunn.ch>
-References: <20240306085017.21731-1-Parthiban.Veerasooran@microchip.com>
- <20240306085017.21731-10-Parthiban.Veerasooran@microchip.com>
+	s=arc-20240116; t=1709858892; c=relaxed/simple;
+	bh=x7i795oc4v+t1eVSTstgC0hgt1XNgHMNLBknwKT8gn0=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=OYKB7Z5zXT8pg5x16bEqfcTDgGp60G8bFbFedta16jCCBmjaC735tx7fP6PnQBival/g+xqtQn+d4Cq1gFfJFAwBulAavsCj84U5pAs2sM8HBGg68LWx+QnJEFzrWJBLzidWwwXyJUdbng+n32joMktyH2EmNb6neezoRtlrH9k=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com; dkim=pass (2048-bit key) header.d=huaqin-corp-partner-google-com.20230601.gappssmtp.com header.i=@huaqin-corp-partner-google-com.20230601.gappssmtp.com header.b=nJEX4FqH; arc=none smtp.client-ip=209.85.214.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=huaqin.corp-partner.google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huaqin.corp-partner.google.com
+Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1dc1ff3ba1aso12590615ad.3
+        for <devicetree@vger.kernel.org>; Thu, 07 Mar 2024 16:48:10 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=huaqin-corp-partner-google-com.20230601.gappssmtp.com; s=20230601; t=1709858890; x=1710463690; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=cRm8D61etT1wEE9ZqTXPR465tYE154OjnBr2zkyvLfY=;
+        b=nJEX4FqHrGjltlxLD73vtmkl0M3EHI+vCIf9xQi9a7zNkf7mMpuncQisYybtaA4M2e
+         liyiPN+1QbaQ5Ujiyd4yhXiRBJZ6sctn9YzG0b53dGGkOqYsyIo3TKdo/SoVzCPAoDCY
+         wQTP5rOeoaPhedpr7HJ3QWNwF2sGtg/tiOD6vuVb50v7KkGX0Oowy6jUcFWfUYikHNVC
+         gjSF6DZD3haaEgGe0gilWykHKhaCI5OmvPG757uas2plUTe+/nUyiiQ7Bt3wTIS8foKj
+         sUP0pHvGWz6pibdG+ABBXzKpn1b9B3+8+XEBoC6/jJD92k8X5kxGWM85dIYJ5el6+XoU
+         ZPAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709858890; x=1710463690;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cRm8D61etT1wEE9ZqTXPR465tYE154OjnBr2zkyvLfY=;
+        b=Y8RhQ57QJiSToygORT/3oET/KIZTPSDB8APrAjLrtIboYm/CI+rZ1OCOWRX2cdnwXG
+         Ko9Nj7arIrud55qkUiT1sLZJntc3HWxvB3slJLtwwtgUwBp2s1ooGLfEpw3jvLpcaAV+
+         jJvywM/iWxjd1KSo6ef67Hm0OoRV6I/edcjkV+lgdA5gDp7Atx7iMgafbHg++fmboRlI
+         XBiN6Z+0KRroO2iwh5AmkfcFU9wuFA2cQ+D3piv1BD3PhvaXrJN0WanaidXJmxxGCriF
+         p6LICzn3bMKNnpieohNpwyjSDbi9YtrBtx/YUH08Rp0JvPPQl+lL1swJluYo4w4ADeFE
+         R2SA==
+X-Forwarded-Encrypted: i=1; AJvYcCWspwtfXjKFqC7CTQIMm5gdfaV5XqlGePoSMA9y+3+LP4YY7vA0jZxgiLdv5dAGwg8b+eV5Q1T5MnobsFJphlsOv4JJD3CCmEfVEw==
+X-Gm-Message-State: AOJu0YwmXMlJccAkSWoKKxFSVxm49hEA5HAFcZmY05p36yzeQ+fJX1Ny
+	9bfGQsDnMMp6j9Bha5vWMqugxS3SnoosgKeB8p5GSm3nDTV1kfjiV5jquWBrnCo=
+X-Google-Smtp-Source: AGHT+IENi1OtAYtCq66iswHj76HX1V9umjMChq2vno/A5VuNp8Xeqzs/a0D0DwP3R6xNOwINfRfFcg==
+X-Received: by 2002:a17:902:f705:b0:1dc:a844:a38b with SMTP id h5-20020a170902f70500b001dca844a38bmr10788072plo.67.1709858890503;
+        Thu, 07 Mar 2024 16:48:10 -0800 (PST)
+Received: from xu.huaqin.com ([116.66.212.162])
+        by smtp.gmail.com with ESMTPSA id g12-20020a170902c38c00b001dc819f157dsm15233055plg.251.2024.03.07.16.48.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 07 Mar 2024 16:48:10 -0800 (PST)
+From: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
+To: sam@ravnborg.org,
+	neil.armstrong@linaro.org,
+	daniel@ffwll.ch,
+	dianders@google.com,
+	hsinyi@google.com
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>,
+	Douglas Anderson <dianders@chromium.org>
+Subject: [V2] drm/panel-edp: Add BOE NT116WHM-N44 and CMN N116BCA-EA1
+Date: Fri,  8 Mar 2024 08:47:57 +0800
+Message-Id: <20240308004757.1048284-1-xuxinxiong@huaqin.corp-partner.google.com>
+X-Mailer: git-send-email 2.40.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240306085017.21731-10-Parthiban.Veerasooran@microchip.com>
+Content-Transfer-Encoding: 8bit
 
-> +static int oa_tc6_allocate_rx_skb(struct oa_tc6 *tc6)
-> +{
-> +	tc6->rx_skb = netdev_alloc_skb(tc6->netdev, tc6->netdev->mtu + ETH_HLEN +
-> +				       ETH_FCS_LEN + NET_IP_ALIGN);
-> +	if (!tc6->rx_skb) {
-> +		tc6->netdev->stats.rx_dropped++;
-> +		netdev_err(tc6->netdev, "Out of memory for rx'd frame");
+Add support for the following 2 panels:
+1. BOE NT116WHM-N44
+2. CMN N116BCA-EA1
 
-If that happens, it is not something which will fix itself quickly. So
-you are likely to spam the logs. The counter on its own is probably
-enough.
+Signed-off-by: Xuxin Xiong <xuxinxiong@huaqin.corp-partner.google.com>
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
 
-	Andrew
+---
+Changes in V2:
+  - Updated the subject of commit message.
+link to V1: https://patchwork.freedesktop.org/patch/msgid/20240307094433.3440431-1-xuxinxiong@huaqin.corp-partner.google.com
+---
+ drivers/gpu/drm/panel/panel-edp.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/gpu/drm/panel/panel-edp.c b/drivers/gpu/drm/panel/panel-edp.c
+index a0b6f69b916f..e21b4bb2bb3c 100644
+--- a/drivers/gpu/drm/panel/panel-edp.c
++++ b/drivers/gpu/drm/panel/panel-edp.c
+@@ -1952,6 +1952,7 @@ static const struct edp_panel_entry edp_panels[] = {
+ 	EDP_PANEL_ENTRY('B', 'O', 'E', 0x0b43, &delay_200_500_e200, "NV140FHM-T09"),
+ 	EDP_PANEL_ENTRY('B', 'O', 'E', 0x0b56, &delay_200_500_e80, "NT140FHM-N47"),
+ 	EDP_PANEL_ENTRY('B', 'O', 'E', 0x0c20, &delay_200_500_e80, "NT140FHM-N47"),
++	EDP_PANEL_ENTRY('B', 'O', 'E', 0x0cb6, &delay_200_500_e200, "NT116WHM-N44"),
+ 
+ 	EDP_PANEL_ENTRY('C', 'M', 'N', 0x1132, &delay_200_500_e80_d50, "N116BGE-EA2"),
+ 	EDP_PANEL_ENTRY('C', 'M', 'N', 0x1138, &innolux_n116bca_ea1.delay, "N116BCA-EA1-RC4"),
+@@ -1963,6 +1964,7 @@ static const struct edp_panel_entry edp_panels[] = {
+ 	EDP_PANEL_ENTRY('C', 'M', 'N', 0x1154, &delay_200_500_e80_d50, "N116BCA-EA2"),
+ 	EDP_PANEL_ENTRY('C', 'M', 'N', 0x1157, &delay_200_500_e80_d50, "N116BGE-EA2"),
+ 	EDP_PANEL_ENTRY('C', 'M', 'N', 0x115b, &delay_200_500_e80_d50, "N116BCN-EB1"),
++	EDP_PANEL_ENTRY('C', 'M', 'N', 0x115e, &delay_200_500_e80_d50, "N116BCA-EA1"),
+ 	EDP_PANEL_ENTRY('C', 'M', 'N', 0x1247, &delay_200_500_e80_d50, "N120ACA-EA1"),
+ 	EDP_PANEL_ENTRY('C', 'M', 'N', 0x142b, &delay_200_500_e80_d50, "N140HCA-EAC"),
+ 	EDP_PANEL_ENTRY('C', 'M', 'N', 0x144f, &delay_200_500_e80_d50, "N140HGA-EA1"),
+-- 
+2.40.1
+
 
