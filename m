@@ -1,177 +1,130 @@
-Return-Path: <devicetree+bounces-49520-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49521-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F5C3876C92
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 22:58:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B7DC876CA7
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 23:08:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 038E81F2211F
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 21:58:33 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1B5581F21C7E
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 22:08:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5FCB65FB8D;
-	Fri,  8 Mar 2024 21:58:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 512AE5FDAD;
+	Fri,  8 Mar 2024 22:08:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W7epss16"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 905805F564
-	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 21:58:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61056249E5
+	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 22:08:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709935109; cv=none; b=F7ppYH/0j2kwlwjuQykzUc8SD6U+rRiePz9DNu7I4Gg4SDrSRFwYW1GsE0PLZNGW/3bT2qOOXbK9oOeDaMrzx0zeCfteTYM83/N1rjh5YfluU1Fvpljz9VhSGqKoXLWVgDjsCpc7a6aCT6EpB4Ww4TCk6Vr4Of7MyAABnbbKIQg=
+	t=1709935714; cv=none; b=FnqfoAP094CZlFfuSzvrCcEgIAlutXlyS6aur1uSe6VD2aKXiAKW5k8RQL8tOwSz7dzx7k2ydy1TTQs5Lx6XwteFgjDMZVhZT7fJvpuVaZ0FpNe499+qqN3EXqZHQ+yty9kEOHfwHPHbV3NIo+cn+JrYqvzVd7Ege+dNt95OyDc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709935109; c=relaxed/simple;
-	bh=jdRp3ycnJ2inLRjB5QbGRF0M5UnIWgjy+M+stLJdElI=;
-	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
-	 MIME-Version:Content-Type; b=IcMXtrrHX6qJOiC2oDF0X4CAzAYW/kZD7TTd3RwmGyBByz8RwB2IQnwIvyppxSE/Khfi8N35D0S/UksHV1dnb/c/RJh49CNkVYKk1qmaf8Io15WE/WFL/Lxy/c4c0au0xr2l4Q23Xuker7cwCbJj+7iCCUmoc1ABtcT6uFUCEts=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org; spf=pass smtp.mailfrom=baylibre.com; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=kernel.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6e5c0be115aso1923024b3a.3
-        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 13:58:27 -0800 (PST)
+	s=arc-20240116; t=1709935714; c=relaxed/simple;
+	bh=6hqLrE2kGzcpPPlaLbbol8vDLZeqtCffaioj6zahxA8=;
+	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=Am/GhVT9gY/sgFGl8A2sDfW61+kkKTLPluQoCwlXcG2H5fdBgTrnq5ClPnRzifH8IMcQluKvZqYkL1Gclys83Y6wI5dlRfDFkPSfP3z4OwxgFkzk3S3Q6CuS1D/+t3Sw91623DFqtzYr44cAg0lM2jZrUyvzXKVyhU47L/T1aw0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W7epss16; arc=none smtp.client-ip=209.85.167.53
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-5132010e5d1so3676352e87.0
+        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 14:08:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709935710; x=1710540510; darn=vger.kernel.org;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=444788bR8YBECKjRiKnANVI+jwd9C5/5ss16HCbJeCs=;
+        b=W7epss16OhMlSxauvCOCN3QjqlDzgzdrYthPdAIi58ucs4cZQd+BHwMgUElrUyB3Hc
+         gExBPBHj05CUly/jPcZ848GB8cM8TOssgswcE0C4h8890xFhJdMl1YScRplnHwMor19b
+         +7lJRHm3ERoLD6lUXaD7WFhiKAj7yUmde8I0seTiz+jCr2YDQXeMnUOQf7bfCt85y4mv
+         il9FK2d4Q36bgpvocxPLrIM8mYETklD+XKU2dR5lGo9ZKmR/rwCf5f0eRhJgpZnhHP4b
+         GPDeQq0HBx7NTVY3/NgLCxyof3XFGhxxAslGIHJR7iQN0a4tLnRH1Hd9iz4YSNkOO6SV
+         Lzag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709935107; x=1710539907;
-        h=content-transfer-encoding:mime-version:message-id:date:references
-         :in-reply-to:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ssskNoWRSgCf0JIsEmdc/9vm6xbNQG/h290+Hjyy4Ms=;
-        b=W6VNiSsySU7gy0HH3+Sh4Gm7C+bs913Zc8UP92XUzIS6dIzVECb5vU3nxttrJi0OSW
-         nSdGukY9nYs9JgV4t4zp5dDp6v8PLImkkfUT8eiFJYsFe44OPzM2d1OG+c7/lS8AUBG4
-         2Ef2/axhJVjybDmzpcrVw1KDrV2ce2UpPb/nojtnmn1spSefL7IF8QT0cZIXMABx5JJi
-         GB3niaFLvO6ni6VwKP4V3FxuKPX7CCxlUH6Wp6gIgcU0/UE5ZXqNft5UU7UwMtFvns48
-         Np7t9jijmzYeO8obnh4Z0u+8/Kd6KWO1Ga7t7M7ClSBpI1Cequuu1zQ6J4l2sg/2whx9
-         ew4g==
-X-Forwarded-Encrypted: i=1; AJvYcCWDa5LGV7191jB6WGFHHJgUIlMd33z/TusFvIoMkcH19fb4IuFgFN/nAAQiaIeSgyFwa60p/hRGsm3owSRD+arc10dsxATIcxstjQ==
-X-Gm-Message-State: AOJu0Yze7radkKFwzAvvlS3Le4W/p/o02dOHhPbqo7AR7WRr1yK1Tux2
-	qljDfdSkdHed+5bymy5wKJKMvyJW0RZZ4dsVpTK2tigrPbcWdU/ptg9q2HYjKgU=
-X-Google-Smtp-Source: AGHT+IFZ/B9Q9BM4+JaRrVPqYSOZwZirEIB9Olp87R9nCLM6pykqEyS178FOw4nQALVX/Vp33qnx1A==
-X-Received: by 2002:a05:6a20:1454:b0:1a0:e944:15b7 with SMTP id a20-20020a056a20145400b001a0e94415b7mr357270pzi.5.1709935106742;
-        Fri, 08 Mar 2024 13:58:26 -0800 (PST)
-Received: from localhost (71-212-63-227.tukw.qwest.net. [71.212.63.227])
-        by smtp.gmail.com with ESMTPSA id g19-20020a631113000000b005cd8044c6fesm167442pgl.23.2024.03.08.13.58.25
+        d=1e100.net; s=20230601; t=1709935710; x=1710540510;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=444788bR8YBECKjRiKnANVI+jwd9C5/5ss16HCbJeCs=;
+        b=Gd0vCkjEifeEzQAOBFP5XQp6TljScDhyfJwJDsoycvK+kVs0qqBVFUeFovVYoyeV3Q
+         H8Jvm6Z7/JtY5evkVTv82Jog7s8JjT2OtT8TgbDDx9WT96O2eAV/+YQQ7LOeX4Qp+N4R
+         geZF6Ii918YL6CgeYaOqt4mderyhHMTMf/QmNZQ08f6Svi1+aHdrtJmadlrdp9eEkDnf
+         M12sbjTrUQqZPx+6xLBQ7I2mkwQB+r/nBtbt5elRsA4yON7btPJUOgFyeUCLIA67sVHI
+         P01ROyT/oIbc1oa+N024c1a2GhJ73APNziQ++VGEZxpOY0r2esB9hNT0tv18yiKcadRp
+         nDKg==
+X-Forwarded-Encrypted: i=1; AJvYcCVEi+qYg6kdzEKd7Lx05ywo1X6UmosJCHVFzkk6YkV3o5O+LsuHSZ6Hgsm6KbsJ8Jq/pbgfH8gpWqn+gJjMi8OCc2sK+OWaykXqQw==
+X-Gm-Message-State: AOJu0YzkQn23v2nimnhSxP+WMMT39iydvh9+P14ySav2aIsTV/A8+ugm
+	OT2a9z6AKawT3PVHjZwWR/qdUS0aXBxAfn+lO0nAN7xZ2iK3H85yzb9zrjH4Elg=
+X-Google-Smtp-Source: AGHT+IGfdV0sn6fso7vz9UOJkRQBSyomE8U61mJRksNWd2WuskneuQ8WFl+tp7BYBYK96WxWaFtgLQ==
+X-Received: by 2002:ac2:5bd0:0:b0:512:d575:4745 with SMTP id u16-20020ac25bd0000000b00512d5754745mr222889lfn.1.1709935710464;
+        Fri, 08 Mar 2024 14:08:30 -0800 (PST)
+Received: from [10.167.154.1] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
+        by smtp.gmail.com with ESMTPSA id a14-20020a056512020e00b005130ff68b87sm78241lfo.109.2024.03.08.14.08.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 08 Mar 2024 13:58:26 -0800 (PST)
-From: Kevin Hilman <khilman@kernel.org>
-To: =?utf-8?Q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>, Greg
- Kroah-Hartman
- <gregkh@linuxfoundation.org>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Roger Quadros <rogerq@kernel.org>, Peter Chen
- <peter.chen@kernel.org>, Pawel Laszczak <pawell@cadence.com>, Nishanth
- Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo
- <kristo@kernel.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, =?utf-8?Q?Gr=C3=A9gor?=
- =?utf-8?Q?y?= Clement
- <gregory.clement@bootlin.com>, Alan Stern <stern@rowland.harvard.edu>,
- linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- =?utf-8?Q?Th=C3=A9o?=
- Lebrun <theo.lebrun@bootlin.com>
-Subject: Re: [PATCH v4 4/9] usb: cdns3-ti: support reset-on-resume behavior
-In-Reply-To: <20240307-j7200-usb-suspend-v4-4-5ec7615431f3@bootlin.com>
-References: <20240307-j7200-usb-suspend-v4-0-5ec7615431f3@bootlin.com>
- <20240307-j7200-usb-suspend-v4-4-5ec7615431f3@bootlin.com>
-Date: Fri, 08 Mar 2024 13:58:25 -0800
-Message-ID: <7h4jdgperi.fsf@baylibre.com>
+        Fri, 08 Mar 2024 14:08:30 -0800 (PST)
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/3] QCM2290 LMH
+Date: Fri, 08 Mar 2024 23:08:19 +0100
+Message-Id: <20240308-topic-rb1_lmh-v1-0-50c60ffe1130@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAFOM62UC/x2N0QrCMAwAf2Xk2UDa9UH9FRFpu8wGajdSFWHs3
+ xd8vIPjNuiswh2uwwbKX+myNAN3GiCX2J6MMhmDJx9opDO+l1UyanKP+iromOYQKI8XH8GaFDt
+ j0thysap9ajW5Ks/y+09u930/AGbD0iJ0AAAA
+To: Bjorn Andersson <andersson@kernel.org>, 
+ "Rafael J. Wysocki" <rafael@kernel.org>, 
+ Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+ Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>, 
+ Thara Gopinath <thara.gopinath@gmail.com>, Amit Kucheria <amitk@kernel.org>
+Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
+ linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
+ Konrad Dybcio <konrad.dybcio@linaro.org>, stable@vger.kernel.org, 
+ Loic Poulain <loic.poulain@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1709935708; l=807;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=6hqLrE2kGzcpPPlaLbbol8vDLZeqtCffaioj6zahxA8=;
+ b=a0axESlwZwu80bUuECyc07XfWyvUNwVbZgVKdTsfIs74EWLuM+j4lhtnGG5ZoJ8T/oa+7Ed8C
+ WEN6GC92xCXDcwyiBqcfRG8tfAjyqhBfZEsuaXPDebvLzxH5pT/XrdR
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 
-Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
+Wire up LMH on QCM2290 and fix a bad bug while at it.
 
-> Add match data support, with one boolean to indicate whether the
-> hardware resets after a system-wide suspend. If hardware resets, we
-> force execute ->runtime_resume() at system-wide resume to run the
-> hardware init sequence.
+P1-2 for thermal, P3 for qcom
 
-Is "whether the hardware resets after a system-wide suspend" really a
-function of the IP itself, or rather whether the IP is in a power domain
-that might power down?
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      dt-bindings: thermal: lmh: Add QCM2290 compatible
+      thermal: qcom: lmh: Check for SCM avaiability at probe
 
-> No compatible exploits this functionality, just yet.
->
-> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
-> ---
->  drivers/usb/cdns3/cdns3-ti.c | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
->
-> diff --git a/drivers/usb/cdns3/cdns3-ti.c b/drivers/usb/cdns3/cdns3-ti.c
-> index 4c8a557e6a6f..f76327566798 100644
-> --- a/drivers/usb/cdns3/cdns3-ti.c
-> +++ b/drivers/usb/cdns3/cdns3-ti.c
-> @@ -57,9 +57,14 @@ struct cdns_ti {
->  	unsigned vbus_divider:1;
->  	struct clk *usb2_refclk;
->  	struct clk *lpm_clk;
-> +	const struct cdns_ti_match_data *match_data;
->  	int usb2_refclk_rate_code;
->  };
->=20=20
-> +struct cdns_ti_match_data {
-> +	bool reset_on_resume;
-> +};
-> +
->  static const int cdns_ti_rate_table[] =3D {	/* in KHZ */
->  	9600,
->  	10000,
-> @@ -101,6 +106,7 @@ static int cdns_ti_probe(struct platform_device *pdev)
->  	platform_set_drvdata(pdev, data);
->=20=20
->  	data->dev =3D dev;
-> +	data->match_data =3D device_get_match_data(dev);
->=20=20
->  	data->usbss =3D devm_platform_ioremap_resource(pdev, 0);
->  	if (IS_ERR(data->usbss)) {
-> @@ -220,8 +226,29 @@ static int cdns_ti_runtime_resume(struct device *dev)
->  	return 0;
->  }
->=20=20
-> +static int cdns_ti_suspend(struct device *dev)
-> +{
-> +	struct cdns_ti *data =3D dev_get_drvdata(dev);
-> +
-> +	if (data->match_data && data->match_data->reset_on_resume)
-> +		return pm_runtime_force_suspend(dev);
-> +	else
-> +		return 0;
-> +}
-> +
-> +static int cdns_ti_resume(struct device *dev)
-> +{
-> +	struct cdns_ti *data =3D dev_get_drvdata(dev);
-> +
-> +	if (data->match_data && data->match_data->reset_on_resume)
-> +		return pm_runtime_force_resume(dev);
-> +	else
-> +		return 0;
-> +}
+Loic Poulain (1):
+      arm64: dts: qcom: qcm2290: Add LMH node
 
-Conditionally forcing runtime suspend/resume based on a property of the
-IP doesn't feel right to me.
+ Documentation/devicetree/bindings/thermal/qcom-lmh.yaml | 13 +++++++++----
+ arch/arm64/boot/dts/qcom/qcm2290.dtsi                   | 14 +++++++++++++-
+ drivers/thermal/qcom/lmh.c                              |  3 +++
+ 3 files changed, 25 insertions(+), 5 deletions(-)
+---
+base-commit: 8ffc8b1bbd505e27e2c8439d326b6059c906c9dd
+change-id: 20240308-topic-rb1_lmh-1e0f440c392a
 
-IMO, the device should always runtime suspend/resume, and in the
-runtime PM hooks is where the conditional logic should be.
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
-And speaking of the conditional logic... let's go back to whether
-"resets_on_resume" is a property of the IP or the enclosing power
-domain.
-
-Instead of having an IP-specific flag, another way of approaching this
-when ->runtime_resume() is called every time is simply for that hook to
-check if a reset has happend.  Sometimes you can tell this simply by
-reading a register that has been previously programmed by the driver but
-has a known reset.  Simply check that regisister and you can tell
-whether context has been lost.
-
-Doing it this way makes the driver "smart" and then you don't have to
-rely on bool flag based on the IP and dependent on the DT compatible.
-
-Kevin
 
