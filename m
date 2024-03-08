@@ -1,143 +1,135 @@
-Return-Path: <devicetree+bounces-49526-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49527-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE93E876CF3
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 23:16:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57278876CF9
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 23:20:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 385D1B20BCC
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 22:16:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 11CB0282F35
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 22:20:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 456E45FDAD;
-	Fri,  8 Mar 2024 22:16:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1B165FDCF;
+	Fri,  8 Mar 2024 22:20:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pEvl+ZDc"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="knv80yvg"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5E51B5FB8B
-	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 22:16:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E758D5FBB9;
+	Fri,  8 Mar 2024 22:20:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709936207; cv=none; b=ad5nQ4d+kReUGhoeVC+8MQQD1ClTrRX+xJcIpdWV58rOLQXgSJkYe0yP2pR0iVSCPdXCZG4bSiluT4bI4yN1CrPUFmYWy+51YIzL4uQU7fKsuI6hht2eY212LGMbEP1Jj2tsL6P4RDiAf3Z2LxS1fk0E8d5ADEy5QmrrgLjLOFg=
+	t=1709936414; cv=none; b=OphKReKatFwjjXt0JDJBuiqwBydyUdBtSD4lOK6xD6TMJCmoj1vKJqGiYMJ4JEZ+LgkUu9LEiuXcp39Qc+Qk/q9Pg0OlTEhUfpjG5n4n+GNa8CRIllHP3F2HoH5iQqLdLXRROg7O0nJ8/v/QPxSN3ddFvqDQtCznsT6Sm4D//qo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709936207; c=relaxed/simple;
-	bh=3WW0T20esXbPOV4mKyfxQZFN7v0CB7rUWIid/qvBbzA=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=V/s0eqTWem0lV2iSK0zDjjFLqrxsT1QIMCnqgxyamk5acvYW6vU60XZxBCvwTWUJ3l5Mxyjus8apGlXmB5MPXJ+9n6tVYSbnbapg9VHzHtnuc3Wyz9E8xxAuXzC+Llj8JhTA1wJdV+Om3DUysqQDG5JGwI3ilOAUFgDkp8/rs8Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pEvl+ZDc; arc=none smtp.client-ip=209.85.208.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d288bac3caso16431591fa.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 14:16:45 -0800 (PST)
+	s=arc-20240116; t=1709936414; c=relaxed/simple;
+	bh=UvaPv/XPHrH2WNEAzYheoSrYhZzFwh6ItrrN3RRyQiE=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q/cyq5tFvl1P7/lCBjphgBsnVrgz6AtdmQ5/L4K/mG2P044EYXHx5gIW9Te5kQJ8W59zGnQSYunPM5B62P8bEKXcB+eMOYOdW8ZGbIlPoZRYLj0s351UV6ekuZPW9zufj2sy1OkL+fqziitt2FxoLAbovt8SkJp0KS27lwFR+FA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=knv80yvg; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4131b27cda2so6810585e9.0;
+        Fri, 08 Mar 2024 14:20:12 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709936203; x=1710541003; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=M6WGaze6LMAlVEXi3gns02EuthFsVIHKV8ef7UH1OcY=;
-        b=pEvl+ZDcfl3XdByzsZ8XmwzPIVGLwyuxM4NTxIyyefgOVfpfyyiavbhExyeaZl4cPt
-         eY8sJSgKKQSg6RXhlS+glClSqouinLjOPx1o8IDqXwMqT63pNYoQUH4iH4JawB5grFfv
-         WQVaRQGGLUi0rKMa7tKZOk1gQXuEmOcMeO7yXoCwnEv4bcMl5DD8DjL3d8VIvBok1m7J
-         L7pK8Un2gpw0/vI4ii4C4nhgc2ol9bwkr/dSvz5dbYmonMPJHImirBXc3zYcZHjxVILb
-         VcUF2CwZVgTlhnB3tVbsoLk6L6WpE4FpqQbbqPCBjisRjB8P0twULjn7wO/FdpjGQd80
-         0TEA==
+        d=gmail.com; s=20230601; t=1709936411; x=1710541211; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=j62oPnIVjNXEkLwc6x1vxDDwPNWZwfNz/IeZcBMO0U4=;
+        b=knv80yvgtBCQpRL2YuxAIGifr8ASeIS/rdaX8xYUeomB6RzgWw2SaFzZBMwtZX56me
+         5Ycw1xgFcc1BOSJtX7BQKORXCJfdenz+vZrGVhMJD0Yet727Jwx/oeBCWAxitvJxjUEE
+         OhREW57TvV/6izeW18WgC1q9vY2JIIg/Eg+SySVvH2gkzoAhesi9J+c0gdc4KBeBU2B3
+         yrtCBki9DQ6izg+tGsQJ7f6GSFkpLkfFUPG49l58kz2GEcQ8qi7aV66oMubnOtURQ/qi
+         2tf7BLQXjQrwMLdyXsYUGWgAnv5bSVSoEK53Z3Gp4NKzvXOGxd+a0KkolVoNhwOqSLZQ
+         SYJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709936203; x=1710541003;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M6WGaze6LMAlVEXi3gns02EuthFsVIHKV8ef7UH1OcY=;
-        b=ZPJ9QJj0yUknaSIVTitTb31AawMx/TRp3tuvmV2UVp8R8tB8UsJKYRnJ35KcR9UpeY
-         hyO4NaXIFQUMrDP1blQaRp8xPhSYWZdClKMWAUE2VCAHziGedJxJN+OnPIRspPN6zZTr
-         A+XpEZbEne/eUAA8koob780vpvd318C8hFaqFfXXw/9al/5mEKFABz4zCmS0lCM9+gL9
-         4e1kBeIw+uKY5/RyoMPZUk7bCq+QGMZzMb35RRYvROEweraqrnWE9hKD5QROCgIliJKM
-         jHHWN5q/BmmjaFCTvS3VYZl8ri8ekMljL4Uq2OKHHu4x1jV2rq2C63LbDJp3E3382qdV
-         wdBA==
-X-Forwarded-Encrypted: i=1; AJvYcCXX6hoIbG5q/52cTP61dzypkU83Ryl8ff9qfsNRVmkXBmjZWC03YJcEytaio3tirub5PyJj+I5pRJB/EhC1ov68RIv+RcGHSgLvhQ==
-X-Gm-Message-State: AOJu0YxnOgyi/xuAC3iwdM2Bm9YO/pqtd3AlP7ljbQ+bvJuI7WA2OL2W
-	6cjbPVtuuMiOa57HsGhEXVcnfUna6wplaQUsb4yXnEcA4lp1LBvOs13XBvwJiWo=
-X-Google-Smtp-Source: AGHT+IG8oIdUaWDUUl+189MyLSxZd0dF1RBIwDfYyW6xHy+HlRtY9C6YLdmMrDpxClx/wBzmhEFyFA==
-X-Received: by 2002:a2e:a383:0:b0:2d4:d50:2358 with SMTP id r3-20020a2ea383000000b002d40d502358mr325274lje.18.1709936203563;
-        Fri, 08 Mar 2024 14:16:43 -0800 (PST)
-Received: from [192.168.16.246] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id a16-20020a2e8610000000b002d2904e959csm73954lji.5.2024.03.08.14.16.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Mar 2024 14:16:43 -0800 (PST)
-Message-ID: <83ab8945-5c57-48a8-9dd3-cc525a92c973@linaro.org>
-Date: Fri, 8 Mar 2024 23:16:41 +0100
+        d=1e100.net; s=20230601; t=1709936411; x=1710541211;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=j62oPnIVjNXEkLwc6x1vxDDwPNWZwfNz/IeZcBMO0U4=;
+        b=XsKQxoDs72k0LZNwAnjywxcs77B9+FbOiwWe/CQ1A1LsmR/HiiNYI4qVwl/QymsZzb
+         NRLwptfGA+RDpmTxlVWYIpQ3xwcNAh5EMsIRgEnT2CnHYsSLMD+cfrz5QA9xjlcr3+bQ
+         Nf+Rh9aXMk6QYitnz9/H6UPziwYy+SteoVldrxD39sjwu8mXSRO56If1RWH5YnjMtX2s
+         LTT+kmnVvDoSrVrCErGSEtNGe/cmtSJWy9UymS/6owHLX9X+EmW/GWfW3s/v4NK9pszC
+         PQEnkuLp8+E+/6Rtw+zYJ/CcGIsRtAdGQrDsyw6ZcZjtN9ikpXf3Ev89B97K5OJgb1cI
+         aUvw==
+X-Forwarded-Encrypted: i=1; AJvYcCUC1ZkLeJJ7L6OEmFVWuRSGSp41e//8OoI+JRe+FvaU1psN/I0BREjRnhGZ6ayJhSQhPv8bIpNgqg8GVEyKIxY0uJCO5G8WSckhDjBgLMRCMVxnCwG0+vCSPFOm7yrohsutyAg/NDmfvjusDa37TUKYQ36rVlpTf2rsmUwE0srHe+dd4d/1+bfp9weXwKTSw38+7M7biE+dQ4G9dSZZXpElYj0=
+X-Gm-Message-State: AOJu0YzSA5NiEEpVz04TU5PjpGldr6ZjdFc/40x8aePM9c/XppGhf8Wx
+	DV9CaqlG5lsELA+bgOikmjB2Jrg1kQalvl2S5IkaolT52AupjuzY
+X-Google-Smtp-Source: AGHT+IE5arD0uaO0cShKSZUbPrmiaI8REwNOOjBGWARkTT+WqsPSIbayV70MjZcasIR3uWjdwQ0JcQ==
+X-Received: by 2002:a05:600c:ccb:b0:413:1438:cbd4 with SMTP id fk11-20020a05600c0ccb00b004131438cbd4mr359744wmb.17.1709936410844;
+        Fri, 08 Mar 2024 14:20:10 -0800 (PST)
+Received: from localhost (cpc1-brnt4-2-0-cust862.4-2.cable.virginm.net. [86.9.131.95])
+        by smtp.gmail.com with ESMTPSA id hg6-20020a05600c538600b00412c8117a34sm608258wmb.47.2024.03.08.14.20.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Mar 2024 14:20:09 -0800 (PST)
+Date: Fri, 8 Mar 2024 22:20:08 +0000
+From: Stafford Horne <shorne@gmail.com>
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+Cc: chenhuacai@kernel.org, jonas@southpole.se,
+	stefan.kristiansson@saunalahti.fi, ysato@users.sourceforge.jp,
+	dalias@libc.org, glaubitz@physik.fu-berlin.de, robh+dt@kernel.org,
+	frowand.list@gmail.com, linux-openrisc@vger.kernel.org,
+	loongarch@lists.linux.dev, linux-sh@vger.kernel.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+	kernel@quicinc.com
+Subject: Re: [PATCH 0/3] Restructure init sequence to set aside reserved
+ memory earlier
+Message-ID: <ZeuPGOzPpOuUFTwF@antec>
+References: <1707524971-146908-1-git-send-email-quic_obabatun@quicinc.com>
+ <467b8479-dfd8-43a4-92eb-d19dc65989cd@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/2] ARM: dts: qcom: Add support for Samsung Galaxy Tab
- 4 8.0 Wi-Fi
-Content-Language: en-US
-To: Bryant Mairs <bryant@mai.rs>, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, luca@z3ntu.xyz
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- Linus Walleij <linus.walleij@linaro.org>
-References: <20240219214643.197116-1-bryant@mai.rs>
- <20240219214643.197116-3-bryant@mai.rs>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240219214643.197116-3-bryant@mai.rs>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <467b8479-dfd8-43a4-92eb-d19dc65989cd@quicinc.com>
 
-On 19.02.2024 22:43, Bryant Mairs wrote:
-> Add support for this tablet based on the MSM8226 SoC, codenamed
-> "milletwifi".
+On Tue, Mar 05, 2024 at 10:59:20AM -0800, Oreoluwa Babatunde wrote:
 > 
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> Reviewed-by: Luca Weiss <luca@z3ntu.xyz>
-> Signed-off-by: Bryant Mairs <bryant@mai.rs>
-> ---
+> On 2/9/2024 4:29 PM, Oreoluwa Babatunde wrote:
+> > The loongarch, openric, and sh architectures allocate memory from
+> > memblock before it gets the chance to set aside reserved memory regions.
+> > This means that there is a possibility for memblock to allocate from
+> > memory regions that are supposed to be reserved.
+> >
+> > This series makes changes to the arch specific setup code to call the
+> > functions responsible for setting aside the reserved memory regions earlier
+> > in the init sequence.
+> > Hence, by the time memblock starts being used to allocate memory, the
+> > reserved memory regions should already be set aside, and it will no
+> > longer be possible for allocations to come from them.
+> >
+> > I am currnetly using an arm64 device, and so I will need assistance from
+> > the relevant arch maintainers to help check if this breaks anything from
+> > compilation to device bootup.
+> >
+> > Oreoluwa Babatunde (3):
+> >   loongarch: Call arch_mem_init() before platform_init() in the init
+> >     sequence
+> >   openrisc: Call setup_memory() earlier in the init sequence
+> >   sh: Call paging_init() earlier in the init sequence
+> >
+> >  arch/loongarch/kernel/setup.c | 2 +-
+> >  arch/openrisc/kernel/setup.c  | 6 +++---
+> >  arch/sh/kernel/setup.c        | 4 ++--
+> >  3 files changed, 6 insertions(+), 6 deletions(-)
+> Hello,
+> 
+> Loongarch patch has already merged for this, but review is still pending
+> from openrisc and sh architectures.
+> Could someone please comment on these?
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Hello,
 
-Konrad
+The OpenRISC patch looks fine to me.  I will test it out.  Sorry, I thought you
+were getting this merged via other means.
+
+-Stafford
 
