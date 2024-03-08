@@ -1,124 +1,111 @@
-Return-Path: <devicetree+bounces-49426-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49427-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEF5F876705
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:07:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E89C87672F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:19:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A378B22B99
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 15:07:14 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5FFDA1C214FE
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 15:19:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E06761BF37;
-	Fri,  8 Mar 2024 15:07:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 176EB1D68C;
+	Fri,  8 Mar 2024 15:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tT9nEdlV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e1a/ZMv9"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC9E4400;
-	Fri,  8 Mar 2024 15:07:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D9A8E4400;
+	Fri,  8 Mar 2024 15:19:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709910427; cv=none; b=ir9XJeNQBMn6AvOIQGadsffvZejZpqdbNujTNnLr9/dTLVWjcFE3kpD/0b/TuL+FQp+9ACxJhXWnEJzKo2M+PM7gifoG/WvMe/wvepT5DIcGjz5Tl8hz182rnLIzis3zWmh/fhP7157EL6SvGF4DALhTYVvcYESRbE+HsKImjhY=
+	t=1709911151; cv=none; b=QoM5EcXd5+204dKuoiNdFp5S6SdtNEKSKEVc1ol0Ui75SJ0IXirUqzDdeMHSs2zyockH/S+eqcWAfEZwGuWYRb7b7GK69dgreFQ69zSDhzfUQvSo0HaAKti3I4dWUU1NOvF6E49GRE0vdI3f1S8T7rXil0jSruRS+7i3TDv7LWg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709910427; c=relaxed/simple;
-	bh=XegtA60T8R+RLnHB84R9oxyR1uF6txi9d6bccoJqnaw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q4RWbzjkqvjwrUCNw92pehoFRbPiGNT0d3uyJ4VFIWBpV4F9WbkpEXtFofVw38kebjMDoo73UkxXIbbtqJ0rd6FLYKW0JS8ZehWKyceb0YSemRJfGMldyv2w/DcbamYl8L9sPNQQdOnG26QGwtBQJG/QPla6EF472NDAcwJ9Ud0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tT9nEdlV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E51BC433F1;
-	Fri,  8 Mar 2024 15:07:05 +0000 (UTC)
+	s=arc-20240116; t=1709911151; c=relaxed/simple;
+	bh=2aEWrJvvukoPuyYJLD9Zn0ge1MPAdinGfbWVtaTvHp4=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:
+	 MIME-Version:Content-Type; b=GlDAJt6AW+/jNWisHYnwiOJ21qpi/H5MvbAllD1mw2tIRQnvT+ZFKOyWX9BcXT7yb0ECgGDTx9RWHfKRZLeLjtMAUu8/GQxUG/IjF4eygkOcgzTLl3yieMKtGS4ec/v9masDrw3j/LfUqKGw1NfrW0QkonhH6DFi2kya+CDrAkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e1a/ZMv9; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1DDDC433C7;
+	Fri,  8 Mar 2024 15:19:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709910427;
-	bh=XegtA60T8R+RLnHB84R9oxyR1uF6txi9d6bccoJqnaw=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=tT9nEdlVawAD9BoXU6dAXfeqUsuIstVdxTmbsmAf1mK+ugPjykm80R8v0EdIBZsfr
-	 Gc6q5ieDauBNL1OUrrNlD40V5MRsxP3fhPBgjzhVu6Hzm3rwIaekGWFEyrVY3j5C5H
-	 O4fB4Jv/C0J9jHm15bvFpphAeuBo10qZOZV0lP5zABUNczHsohJhPDKRkD9QABgQUj
-	 uECUJn1XEdR/ccG/UIdlRQ9/gGfwalTMR9CItc7WfPlmF/3tVhHJ12eXCQ3lBjoLv6
-	 cSpHpO8x2cBdZzsB5dm1665qTsi/X9UPXEJFgvjvxJvO3ds9EYVdH0wgySJBFobl0n
-	 5iYSCmxzqRXSw==
-Date: Fri, 8 Mar 2024 15:07:02 +0000
-From: Conor Dooley <conor@kernel.org>
-To: Julien Massot <julien.massot@collabora.com>
-Cc: linux-media@vger.kernel.org, kernel@collabora.com,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	mchehab@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	sakari.ailus@iki.fi
-Subject: Re: [PATCH v4 2/4] dt-bindings: media: add Maxim MAX96714 GMSL2
- Deserializer
-Message-ID: <20240308-footnote-landmass-e1efcaf72a6d@spud>
-References: <20240305152608.287527-1-julien.massot@collabora.com>
- <20240305152608.287527-3-julien.massot@collabora.com>
- <20240307-retract-aloof-9ff1fde79a82@spud>
- <8f6972a1-e174-4c0e-808e-afece9b529bf@collabora.com>
+	s=k20201202; t=1709911150;
+	bh=2aEWrJvvukoPuyYJLD9Zn0ge1MPAdinGfbWVtaTvHp4=;
+	h=From:To:Cc:Subject:References:Date:In-Reply-To:From;
+	b=e1a/ZMv9W69wCrDHRgkvlZIa4zoUJ8J8Q3ymIbKisGFKt85jmdi8rfigpLWuxyFVV
+	 0NMyFXtGSPpANaWp4n+9q7gax4lJv6/l/ymG2gcd8wjKVcn2OYjQ1nlW0pHBvhwvlu
+	 1WSi0bGr3izdfGytW1OtnQXfBWA/rRrzf3KgYRsKCyT9k2R1DLweSj4xcahwGjiTPS
+	 LCNlE5MKl+CpM8Enh+hZWwiAnV0G67ryNjl5C8rOiWaT6dXdIidkWXKtNY5hduirgp
+	 y/3xoHrWixGF2LDAur5awj7cBiaNBTUXF9V3bqbfjuerY2BtKIJku2z3U6hBDIDv92
+	 lL4q8dkNZ2MbA==
+From: Kalle Valo <kvalo@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: Jeff Johnson <quic_jjohnson@quicinc.com>,  "David S. Miller"
+ <davem@davemloft.net>,  Eric Dumazet <edumazet@google.com>,  Jakub
+ Kicinski <kuba@kernel.org>,  Paolo Abeni <pabeni@redhat.com>,  Rob Herring
+ <robh+dt@kernel.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Bjorn Andersson <andersson@kernel.org>,  Konrad Dybcio
+ <konrad.dybcio@linaro.org>,  ath10k@lists.infradead.org,
+  linux-wireless@vger.kernel.org,  netdev@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-arm-msm@vger.kernel.org,  Krzysztof
+ Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH RFC v2 0/4] wifi: ath10k: support board-specific
+ firmware overrides
+References: <20240306-wcn3990-firmware-path-v2-0-f89e98e71a57@linaro.org>
+	<87plw7hgt4.fsf@kernel.org>
+	<CAA8EJpr6fRfY5pNz6cXVTaNashqffy5_qLv9c35nkgjaDuSgyQ@mail.gmail.com>
+	<87cys7hard.fsf@kernel.org>
+	<CAA8EJpowyEEbXQ4YK-GQ63wZSkJDy04qJsC2uuYCXt+aJ1HSOQ@mail.gmail.com>
+Date: Fri, 08 Mar 2024 17:19:05 +0200
+In-Reply-To: <CAA8EJpowyEEbXQ4YK-GQ63wZSkJDy04qJsC2uuYCXt+aJ1HSOQ@mail.gmail.com>
+	(Dmitry Baryshkov's message of "Wed, 6 Mar 2024 16:23:55 +0200")
+Message-ID: <87v85wg39y.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/28.2 (gnu/linux)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-	protocol="application/pgp-signature"; boundary="Twd3rreSHEktHljN"
-Content-Disposition: inline
-In-Reply-To: <8f6972a1-e174-4c0e-808e-afece9b529bf@collabora.com>
+Content-Type: text/plain
 
+Dmitry Baryshkov <dmitry.baryshkov@linaro.org> writes:
 
---Twd3rreSHEktHljN
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+>> To be on the safe side using 'qcom-rb1' makes sense but on the other
+>> hand that means we need to update linux-firmware (basically add a new
+>> symlink) everytime a new product is added. But are there going to be
+>> that many new ath10k based products?
+>>
+>> Using 'qcm2290' is easier because for a new product then there only
+>> needs to be a change in DTS and no need to change anything
+>> linux-firmware. But here the risk is that if there's actually two
+>> different ath10k firmware branches for 'qcm2290'. If that ever happens
+>> (I hope not) I guess we could solve that by adding new 'qcm2290-foo'
+>> directory?
+>>
+>> But I don't really know, thoughts?
+>
+> After some thought, I'd suggest to follow approach taken by the rest
+> of qcom firmware:
 
-On Fri, Mar 08, 2024 at 03:08:12PM +0100, Julien Massot wrote:
-> On 3/7/24 20:21, Conor Dooley wrote:
-> > On Tue, Mar 05, 2024 at 04:26:06PM +0100, Julien Massot wrote:
-> > > Add DT bindings for Maxim MAX96714 GMSL2 Deserializer.
-> > >=20
-> > > Signed-off-by: Julien Massot <julien.massot@collabora.com>
-> > > ---
-> > > Change since v3:
-> > >   - Renamed file to maxim,max96714.yaml dropped the 'f' suffix
-> >=20
-> > Why? The filename should match the compatible, which /does/ have an f.
-> All the work has been done on MAX96714F variant of this Maxim GMSL2
-> deserializer.
-> The driver and the binding remain suitable for all variants of this chips=
-et,
-> since they share the same
-> register mapping, similar features etc..
->=20
-> MAX96714 exists in different variant: MAX96714 / MAX96714F / MAX96714K th=
-at
-> will be easy
-> to add support for this binding and driver later.
+Can you provide pointers to those cases?
 
-Either document the non-f version if it really is that similar, using
-all of the same properties, or name the file after the version you've
-actually documented. I don't see why this particular case should be
-given an exception to how bindings are named.
+> put a default (accepted by non-secured hardware) firmware to SoC dir
+> and then put a vendor-specific firmware into subdir. If any of such
+> vendors appear, we might even implement structural fallback: first
+> look into sdm845/Google/blueline, then in sdm845/Google, sdm845/ and
+> finally just under hw1.0.
 
-What is the actual difference between the f and non f versions? Is it
-visible to software?
+Honestly that looks quite compilicated compared to having just one
+sub-directory. How will ath10k find the directory names (or I vendor and
+model names) like 'Google' or 'blueline' in this example?
 
-> The MAX96714 name looks the most suitable.
-> Please have a look at this discussion on the V3 version
-> https://lore.kernel.org/lkml/ZdXYpc2csVnhtZH9@valkosipuli.retiisi.eu
+-- 
+https://patchwork.kernel.org/project/linux-wireless/list/
 
-
---Twd3rreSHEktHljN
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZespkwAKCRB4tDGHoIJi
-0qDHAQCSxd1xjjCo/nZv8eEWqflQQ8O36V8Sw0ttdF9jgDLs2wEA30sl7I0RGbXs
-U1XvYdo1uUEMwWHYkc+terFhxnOUug4=
-=desQ
------END PGP SIGNATURE-----
-
---Twd3rreSHEktHljN--
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
