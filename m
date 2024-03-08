@@ -1,128 +1,146 @@
-Return-Path: <devicetree+bounces-49394-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49396-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F596876461
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:35:39 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id DD1D587646F
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:41:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 60E0A1C218DD
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:35:38 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DC5731C21847
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:41:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7ABAD1429E;
-	Fri,  8 Mar 2024 12:35:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B8711429E;
+	Fri,  8 Mar 2024 12:40:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="TYOhrchC"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="BsOhAUd8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48BEB81F;
-	Fri,  8 Mar 2024 12:35:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9ED11401F;
+	Fri,  8 Mar 2024 12:40:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709901329; cv=none; b=p3+PSG8bgqT/il45X0ydPPOzWgwF2xsc2+95lPQyhVfmjR60TNFpK/d2Rpr9hEsdJJRZ/8lLUMpJX/a6LIWae6xUtFukPoxyCeQlLbzZXkTWnXyF4sr0ZgxFsnxNCubKd8iUJs4nO+fdzPCq2VTMH6zGjXtN8ITjf9LZHw65KrI=
+	t=1709901657; cv=none; b=F119plIxYpgOXgYGHBEx12vzl6aZcjOj8EMZkX5NlFDdArn5VwD1bxrXLpS98X1zKcqixBYlkK+XMGrqeCZBTsDVanbOq86/Wj6wGcMvrLXAytj7LJIqP62OHHAGWEpEG4ReHi2ZmhO5IQM963RMNM+G5uAZk3n0TGw9kguu1eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709901329; c=relaxed/simple;
-	bh=FO/2tbdfopZ0jgXfxeznKBXF2Z6rQryzkEHxQzSdob4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=eKzllPkBKmAiBX6LiWAxC99GtBE0N+Dx4q1evBCrRCjqp6AXHMrVMOv9E7n7BLwqSUfwFeXX36rSQDs+ATzD5q6TcLpQ+zk8X1912zPMg092RJqehu4EfOBQue8a0NFTvQpok5/r4SiSm2AogJ1PRd7zf+JL6c77RnUkcnGiPjg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=TYOhrchC; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A38FC43394;
-	Fri,  8 Mar 2024 12:35:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709901328;
-	bh=FO/2tbdfopZ0jgXfxeznKBXF2Z6rQryzkEHxQzSdob4=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=TYOhrchCM5AcfxPJr1oIyABZAaxg9gskQp8WoHXfOeui02f9YDOiUEccLFAfpD2MU
-	 EiUsJt/4PuPnbdyx9XpqQeesIstI/T4Dps8oISJ/y5AUG8qglej8saE4q/j8uFmuQD
-	 MtyJSyWiCJfn8zC3DSxgZZhC3aFuUlWjbwyNJa2caxdbIUR3V6GYfzhBTdUg0iUfYL
-	 7DDTDQ/azQpLSE//PcmZ7EJMqDDLBKsliYdSOxj5Y2ZCkCx0GHh5Gy+4sf/Gaq7XKx
-	 3nO8obKNqOFLq8Y8riZvs/8P5jhDuqveb687JPfbxHzKcjxYU2SzHwk8DBGqK0Cm2J
-	 b7zKSu+WHLzaA==
-Date: Fri, 8 Mar 2024 12:35:23 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Takashi Iwai <tiwai@suse.com>,
-	Jaroslav Kysela <perex@perex.cz>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor.dooley@microchip.com>,
-	Walker Chen <walker.chen@starfivetech.com>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-	"linux-sound@vger.kernel.org" <linux-sound@vger.kernel.org>
-Subject: Re: =?utf-8?B?5Zue5aSN?= =?utf-8?Q?=3A?= [PATCH v1 2/2] ASoC:
- starfive: Add PDM controller support
-Message-ID: <330cf044-75e2-4938-b886-ce13003d30e8@sirena.org.uk>
-References: <20240307033708.139535-1-xingyu.wu@starfivetech.com>
- <20240307033708.139535-3-xingyu.wu@starfivetech.com>
- <fddca901-273c-4b06-ad59-d156941920d6@sirena.org.uk>
- <NTZPR01MB0956E2033EDDA3FFE1211ACD9F27A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
+	s=arc-20240116; t=1709901657; c=relaxed/simple;
+	bh=TXQf43677jxUXlB4nvGLV0dNq6iBGC44IlQLToNFB3E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=WE5g4/uP9Bb4qp8KIh/qSlRdCFl28XXZCZiHkZT3oQervv4jHTt50bfl2ZBY4GnYPDq6ShdeHRXPhTcL2ynygCEHu7qs7leSMXNcMh8Rx1fGNWUZ3ZY60tQL2Zd2TqGKUUClVhKtDYYWAsaOzXL+vBU0UXLC6HLLOP6ZaykR7i0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=BsOhAUd8; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 428CcZ1F014971;
+	Fri, 8 Mar 2024 12:40:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=Sq/Zwrv+WazCGKEBJzRevR1V5zj7d0L8M5WVZMEXUkc=; b=Bs
+	OhAUd8tAczaLhHnCnsNKjPHPfPvmN39vbv2CCVie2Vqd4qHTOjsQcJ+MLUIraCMR
+	jx9DvWzkLp9pavQVVn9XMEytclP6ciWZouSSExTN5pYCUsWhLbr8rLP7fTMBsZaO
+	qdBVWECkm6vwnDXcgVaNWdSq45DdL8/jymbHjA1ocCbqJUVsc9RD+DrpXFt8AF9/
+	dwF5bHB0AAbx8q8tSPVGzkPhAlPI87z4/cjWoNwDVltmzzej6ICqOz/CnF9Aybai
+	pEb8BtnEFrl+pMgul49uY5cE+JI1ZrEIKJWFUx8gg6/EscDT+niPwqNrjJLzfo2E
+	s1VgLt+opQhYYG70WVqQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wr2v28035-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 08 Mar 2024 12:40:23 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 428CeMgG005063
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 8 Mar 2024 12:40:22 GMT
+Received: from [10.216.7.18] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Fri, 8 Mar
+ 2024 04:40:17 -0800
+Message-ID: <c892f773-7716-4736-3499-5c8254e3618e@quicinc.com>
+Date: Fri, 8 Mar 2024 18:10:13 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="PmTquCiKJJKa3CmU"
-Content-Disposition: inline
-In-Reply-To: <NTZPR01MB0956E2033EDDA3FFE1211ACD9F27A@NTZPR01MB0956.CHNPR01.prod.partner.outlook.cn>
-X-Cookie: Isn't this my STOP?!
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 4/5] clk: qcom: Add camera clock controller driver for
+ SM8150
+Content-Language: en-US
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Michael
+ Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>
+CC: Stephen Boyd <sboyd@codeaurora.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>,
+        "Imran
+ Shaik" <quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Jagadeesh Kona <quic_jkona@quicinc.com>
+References: <20240229-camcc-support-sm8150-v1-0-8c28c6c87990@quicinc.com>
+ <20240229-camcc-support-sm8150-v1-4-8c28c6c87990@quicinc.com>
+ <18567989-fb60-49ae-92e6-94e1bc2fa1c7@linaro.org>
+ <83fd1995-a06e-b76a-d91b-de1c1a6ab0ea@quicinc.com>
+ <4817a5b0-5407-4437-b94a-fc8a1bfcd25d@linaro.org>
+ <e2627a99-307f-1e10-abfd-ce688cc2ec03@quicinc.com>
+ <d893e8f8-66a7-4460-9468-0f3a359cece7@linaro.org>
+ <35a7ad40-aaf4-476e-8582-b83bac284881@linaro.org>
+From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+In-Reply-To: <35a7ad40-aaf4-476e-8582-b83bac284881@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: gj0eWI-wLGhCwWHvz_uph5XFsLxreoND
+X-Proofpoint-ORIG-GUID: gj0eWI-wLGhCwWHvz_uph5XFsLxreoND
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-08_08,2024-03-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ suspectscore=0 phishscore=0 adultscore=0 malwarescore=0 mlxscore=0
+ mlxlogscore=856 priorityscore=1501 impostorscore=0 bulkscore=0
+ clxscore=1015 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403080101
 
 
---PmTquCiKJJKa3CmU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 3/8/2024 4:29 PM, Bryan O'Donoghue wrote:
+> On 08/03/2024 10:58, Bryan O'Donoghue wrote:
+>> On 08/03/2024 10:46, Satya Priya Kakitapalli (Temp) wrote:
+>>>>
+>>>> Not if you mark it critical
+>>>>
+>>>
+>>> Marking the clock as critical keeps the associated power domain 
+>>> always-on which impacts power. For this reason we are not using 
+>>> CLK_IS_CRITICAL and instead making them always on from probe.
+>>
+>> How does the clock do anything _useful_ if the power-domain gets 
+>> switched off ?
+>>
+>> ---
+>> bod
+>
+> i.e. the clock can't be running "always-on" if it has no power..
+>
 
-On Fri, Mar 08, 2024 at 08:45:45AM +0000, Xingyu Wu wrote:
-> > On Thu, Mar 07, 2024 at 11:37:08AM +0800, Xingyu Wu wrote:
+If BIT(0) is set from probe, during any active usecase, the clock gets 
+turned ON automatically when the power domain is turned ON.
 
-> > > +	if (!device_property_read_u8(&pdev->dev, "starfive,pdm-modulex",
-> > &using_modulex))
-> > > +		if (using_modulex == 1)
-> > > +			base += JH8100_PDM_MODULEX_SHIFT; /* Use module 1 */
+But when we use CLK_IS_CRITICAL flag, the framework keeps the power 
+domain ON and doesn't let the power domain to turn off even when there 
+is no active usecase.
 
-> > This really looks like you've got one hardware block with two devices in it, either
-> > the address ranges registered for the devices in DT should be separate and you
-> > shouldn't need this property or you should have one component registering both
-> > PDM interfaces.
 
-> Yeah, They like two independent device and have different register to
-> configure, but just use the same clocks and resets.  Due to the sample
-> rate depend on the share clocks, they should be registered together as
-> a 4-channel capture device (rarely used), or just one of them can be
-> registered separately as a 2-channel device.  BTW, can I use the
-> 0x12250000 about the property of reg for device 0 or 0x12250010 for
-> device 1 to choose which device to be used in DT?
-
-Ah, so it's actually a small MFD but given that it's two audio blocks
-possibly not worth registering as such.  I'd register two stereo DAIs to
-one component and then use the DAI ID to figure out which registers to
-write to.  Four channel mode might need a property to put everything as
-one DAI and not register the second one, or it might just be OK to let
-the first DAI be 4 channel with runtime error checking.
-
-Please fix your mail client to word wrap within paragraphs at something
-substantially less than 80 columns.  Doing this makes your messages much
-easier to read and reply to.
-
---PmTquCiKJJKa3CmU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXrBgoACgkQJNaLcl1U
-h9DEhwf+KgApJjUr4IiU+vvCVeMKJxlSEoO7nfmdqt1/A6QTnqv6jBiCGSwpMIHx
-h+m+KI68xKrBA8J2ufPN/KnCh0prXfy8vOPOccavWBg4UdDm6LHnheeZHXt+xgla
-VRAaPw9XpGmW7mo2lqY4QR6lutgLIQDxIoLjzRepCFoFrTQIH2yaSqUxcakRwaFA
-KfqgAyDhr+NrZSThLLoHuJjGQOVEyA8TOwrjKPnG3GVjhLupXbr6UgR3BZ7I7saf
-k7zYnzW4/HSb3ACbYaHCkwL88RVCFdih43ZpIwNKgxeFpB9/FYa0ow4xk3nGjoPn
-cEbVA3HKOGq0/mGsOzLEYgAc2u4Vdg==
-=kMbj
------END PGP SIGNATURE-----
-
---PmTquCiKJJKa3CmU--
 
