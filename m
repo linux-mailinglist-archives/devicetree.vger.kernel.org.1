@@ -1,97 +1,151 @@
-Return-Path: <devicetree+bounces-49445-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49446-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DBEF876818
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:09:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 75A74876827
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:12:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC65C28426D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:09:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A2C71F213CC
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:12:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D338825753;
-	Fri,  8 Mar 2024 16:09:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5B1C32C18F;
+	Fri,  8 Mar 2024 16:12:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SrmBzkAZ"
+	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="MsENRbks"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from outgoing6.flk.host-h.net (outgoing6.flk.host-h.net [188.40.0.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1EAC366;
-	Fri,  8 Mar 2024 16:09:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB1DA208A5;
+	Fri,  8 Mar 2024 16:12:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.77
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709914157; cv=none; b=qIagXEqbN7wFqkoF5S+PewQSE78Vw26p4bT/1Yj8tkM2J0D4fUn/VuJqVhLjB+UbqhXEUG2y0i2aAtr3Vs28Ugo3q+XLVDlwVtjpvBYZTdgDkSvnsCOGoc4F7lpeWvuCNrbxQTf8hkq4nG9Ris6cR+HDNoRBlInkpSqydfCxH2c=
+	t=1709914349; cv=none; b=rBMvUOPTwNcqr0159hDIRr+aHgMQVubzszszKBHaI+CV3oKSdAHRjOlEg72+J3EYbl3fzwDG4vHV5x6xWbJmNGZ9nEcl+6NhA10OISzj/xHmN61YTPyFQQPmCeSb3FVRN88Cx0IlFgvxsY5dJC06Lv8rS9/qENmliNg+UktUvGs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709914157; c=relaxed/simple;
-	bh=ZSBaVvNvf0DteLyJ6qgFq5sexlcun2hzmzZGkgLZegY=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=gLTUF6bfwGs4e7xHDjUn6QtBgHT6nghmJkA3ESKBxT41L6g4XAIBokvWHjfg5QH0rzPvq8ORCxD95J+BqvvapS8bCBV27eF72wpFX+AVINatPEgHZWi6H/4+xCAA/jvtK4AqVy4hCiExmPP4aDTY+oe/Ov6FqOth5d/x1jmi1Cw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SrmBzkAZ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ADCAC433C7;
-	Fri,  8 Mar 2024 16:09:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709914157;
-	bh=ZSBaVvNvf0DteLyJ6qgFq5sexlcun2hzmzZGkgLZegY=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=SrmBzkAZsbSCAfnhSR1X0yXEKr23ym6SvHxkA0cbIEwzzp1FC+RDhliEw3qJhhvhi
-	 g84El0q676S3dSLbCny5Yh2x19A7YQYblDI9C8jQ/D7wej7qkRvZeXBYY7WJaUtA1p
-	 gDsJNgZ++RurRn1si/S/OHh2t3MPOCRqjX7IdOzKG230FZxF9ckSx6QR7/xLesqq3p
-	 6DEezmPc1zufyNd77gmPCFymAEYR+vAAIaTGk5AwdVc+A+D4NgBN1eEwyWc55ZTeEK
-	 4BFvK2IgA8UfQJ2RoKsdab4jOXpcIr/2eH14Cj+Fdm5GQDqLPq/s3RwTpfyRS74eGc
-	 uru1rwmkMF0Mg==
-From: Lorenzo Pieralisi <lpieralisi@kernel.org>
-To: Bjorn Helgaas <bhelgaas@google.com>,
-	Bjorn Andersson <andersson@kernel.org>,
-	Johan Hovold <johan+linaro@kernel.org>
-Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1709914349; c=relaxed/simple;
+	bh=l1uy0PEGHIek7jVc7eiQWos0SS/4aXcXJ1syM6WK/FQ=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kFk7k4s/LVQ3aI0aq3jZq/+35fqBorE0zfkrlK1W+VqTNpiMcZmOF7nwfJzKEIWL0TW57T4LGNbZg/uE89tce7sL1rovmIfeXinY+xZUuJCe2xq9hskJ2GRzWNipDg5hkHPGEjhGq9nfanQxCi7htpHWu49wjj3pfMmNJdOjDLk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=MsENRbks; arc=none smtp.client-ip=188.40.0.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=risingedge.co.za; s=xneelo; h=Content-Transfer-Encoding:MIME-Version:
+	Message-Id:Date:Subject:Cc:To:From:reply-to:sender:bcc:in-reply-to:references
+	:content-type; bh=BxXFYEqJvFhqW9SSUaiDPPtoq6kVWtnkVJ2YiGxISuc=; b=MsENRbks3WK
+	r5s+Y1VVO3AlH541mWPPNL0MA6yoQp0AH6iUOHoTpdB+dgeVT4tyyR+ZgsgsCn1+Qu+aepmZLfTar
+	KYbwvt8rPp1KEw2C6wFm9656v64mUJdmGiVaJmc0pvKCi7YWQ2IvTf7+g+bM+RxorTBiU/vF3TZha
+	jiBiLERqXvlAYahKGgcqKWNtLqlCI71bLWhNBoJR0tq1bkClRsRJ3h51l6L1HQSSIV2c98+vM0LQ8
+	jFCEnCd+c8RBZyNZDDj6Iu6j1DB5lW6Ct+uruMbN1QQP/FfQsrU0UwSZ5b9zIrkwF14ITTMnbN6W1
+	SrbtdWdxk1RLUG3ESn7auIQ==;
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+	by antispam2-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <justin.swartz@risingedge.co.za>)
+	id 1ricpX-00EMx8-Bq; Fri, 08 Mar 2024 18:12:22 +0200
+Received: from [41.144.0.96] (helo=localhost.localdomain)
+	by www31.flk1.host-h.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <justin.swartz@risingedge.co.za>)
+	id 1ricpV-0002Xf-8S; Fri, 08 Mar 2024 18:12:17 +0200
+From: Justin Swartz <justin.swartz@risingedge.co.za>
+To: =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
+	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	linux-arm-msm@vger.kernel.org,
-	linux-pci@vger.kernel.org,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Justin Swartz <justin.swartz@risingedge.co.za>,
+	linux-mips@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: (subset) [PATCH v4 0/5] arm64: dts: qcom: sc8280xp: PCIe fixes and GICv3 ITS enable
-Date: Fri,  8 Mar 2024 17:09:08 +0100
-Message-Id: <170991411487.455768.7609004144728540136.b4-ty@kernel.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20240306095651.4551-1-johan+linaro@kernel.org>
-References: <20240306095651.4551-1-johan+linaro@kernel.org>
+	linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: [PATCH v3] mips: dts: ralink: mt7621: add cell count properties to usb
+Date: Fri,  8 Mar 2024 18:11:30 +0200
+Message-Id: <20240308161130.12228-1-justin.swartz@risingedge.co.za>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.03)
+X-Recommended-Action: accept
+X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT/Bv2atjtCP+kEcM/sq3XV4PUtbdvnXkggZ
+ 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wCPRB8bAzJcv2cv+UqiTTc2+CpNcmBnO4XM3Sck4bwNogU
+ WCl1nkLBzZX0KuJ9bXiS85Z42w/+2OBolTNFbPomXFWCX8oNdggW7HE9XDTdSejrkEpbuUvwMvHx
+ 3T+KSG//gbuP7hnUK8NQdLwsVWKIFDZRrTGv3rxiw9tFrqFSCFNiLZt/QXQnOBRD+jq1HsKsDh/6
+ Srgk2K3gr1VBfJbChkYH6fbrypLNrde+UooQVNLReLErukdelEOHUIpaBbp5GdnsN8+UvimwMinK
+ 0+Txhz2u9qvrL2PODYgMZQApJXOjDLkqunZ9NcY2bHZn7CfFscMZZf3sCkN20I5vMh4akiObI7Kj
+ vK7X04QEin24qbfMFd8eGjnYW8aSH5qj4ujh/13psIvqSqJFa1CcANErDW/w69saM9prk3jNnHtn
+ nuEt/J9wDZeQfiNOYsLDFBdwYt2XtlLzy7G7T4kla0JNnAWQx3FS11bhwUa9HCIwKB+TroNcRY33
+ oNmH4nRQzHQazgY7lmveanvOdQzf6IMJ3345q/s6ySNrGnXycmhg3PwyuuQNpWz3igJmnZgvgKqr
+ AP5R/Cae/ZemygD++WnmLtBcNrQxKZYuPe8bdCyw79zlPbqLQkZr26Lcxdvj8cqI+CogZdOhX7v3
+ ClXzrmMENhJLl6MBfhzHVBR0wHQZxzIUka7Uq615Mik1qzcz30/jNv+A51L2swh0gYW0eVWShle6
+ F/kpBdN+oWjoATjEFDwcaiz0R34rhTN+GTbl4uS+pZovX9cex7Ac4fawcerGI7TrGXpM/B/M0BZd
+ PfIU1BX7pZc1sE3vsz58auH/srM2fgZ9JmgLbj7sqoEiwv7LCxIiAE5ODMnmwjvj2589zjbyZCiM
+ WpBpW8YvoIIqmZcWhL/r/eFjMjJnMHeiAPOVAT1rE1/vP68Bb4z3v3h3gCdXrv2+9GnNX30LKqXb
+ fwFKgm/rnYBl+Mj5KqOl6Jzub/f3QhLRbOgisvi5VU9eNBtgo6zjiatjNO/pnMCjuIvXs/AyV/Ns
+ URB/R+FlEHyAzksgfaRvdgw0WK34QWnzHHMcN6qoXPjenLhIOF1oeRYbjF1Hp647mOWoQlc3hL3c
+ AHYPcQ0eIL+UT9voGXmPywhyoxtdH6zx45qyBdgYAOt4u/m4iBmYb1/LCV4/EuVHup06w3Vwxf9C
+ F7D6LKKRTfdjzQ6YC7Heg3Xf7O1TOd6RcY/MXB8eEq3bCN2QohZvyS03iBmgsz450Kmjd3fGV47D
+ 8B77BPsUis8Ss1WqdTZ/+tbRsZBPs7d4kPZlp9J8Ibtf63VNbf0lrvssY+k7AHGi1NevGWTo2+h8
+ Lhk4HCeZR7ymlGVRtthBJ2y8A5arx6JItKpFaUNPGMMlvbMX0nyK1NiAJ0y2Qvvn6ds6mor35w4f
+ SfHzQbABJfgy21HclcZkPRq7NhoxyMwqi8Q23Rgadfh5T5n5D4OHHpbEIgsllZKWnzc5M5WlNtVJ
+ qo05MS+4ayUpOtEhdxekWDmK9g==
+X-Report-Abuse-To: spam@antispamquarantine.host-h.net
 
-On Wed, 06 Mar 2024 10:56:46 +0100, Johan Hovold wrote:
-> This series addresses a few problems with the sc8280xp PCIe
-> implementation.
-> 
-> The DWC PCIe controller can either use its internal MSI controller or an
-> external one such as the GICv3 ITS. Enabling the latter allows for
-> assigning affinity to individual interrupts, but results in a large
-> amount of Correctable Errors being logged on both the Lenovo ThinkPad
-> X13s and the sc8280xp-crd reference design.
-> 
-> [...]
+Add default #address-cells and #size-cells properties to the
+usb node, which should be suitable for hubs and devices without
+explicitly declared interface nodes, as:
 
-Applied to controller/qcom, thanks!
+   "#address-cells":
+     description: should be 1 for hub nodes with device nodes,
+       should be 2 for device nodes with interface nodes.
+     enum: [1, 2]
 
-[1/5] dt-bindings: PCI: qcom: Allow 'required-opps'
-      https://git.kernel.org/pci/pci/c/c8073025c0e4
-[2/5] dt-bindings: PCI: qcom: Do not require 'msi-map-mask'
-      https://git.kernel.org/pci/pci/c/545e88cb41a6
-[3/5] PCI: qcom: Disable ASPM L0s for sc8280xp, sa8540p and sa8295p
-      https://git.kernel.org/pci/pci/c/d1997c987814
+   "#size-cells":
+     const: 0
 
-Thanks,
-Lorenzo
+-- from Documentation/devicetree/bindings/usb/usb-device.yaml
+
+Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+---
+v2 -> v3: Patch revision commentary removed from commit message
+          as instructed by Sergio Paracuellos.
+
+v1 -> v2: Reorder the properties according to
+          Documentation/devicetree/bindings/dts-coding-style.rst
+
+ arch/mips/boot/dts/ralink/mt7621.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
+index 02e1f2491..6e95e6f19 100644
+--- a/arch/mips/boot/dts/ralink/mt7621.dtsi
++++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
+@@ -307,6 +307,9 @@ usb: usb@1e1c0000 {
+ 		       0x1e1d0700 0x0100>;
+ 		reg-names = "mac", "ippc";
+ 
++		#address-cells = <1>;
++		#size-cells = <0>;
++
+ 		clocks = <&sysc MT7621_CLK_XTAL>;
+ 		clock-names = "sys_ck";
+ 
+-- 
+
 
