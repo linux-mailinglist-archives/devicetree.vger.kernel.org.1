@@ -1,174 +1,97 @@
-Return-Path: <devicetree+bounces-49444-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49445-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id D33D78767DF
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:57:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1DBEF876818
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:09:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 481E71F226AC
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 15:57:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CC65C28426D
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:09:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67F662E3F2;
-	Fri,  8 Mar 2024 15:57:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D338825753;
+	Fri,  8 Mar 2024 16:09:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="ixIfplB3"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="SrmBzkAZ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outgoing1.flk.host-h.net (outgoing1.flk.host-h.net [188.40.0.86])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8351524A1A;
-	Fri,  8 Mar 2024 15:57:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.86
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A1EAC366;
+	Fri,  8 Mar 2024 16:09:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709913458; cv=none; b=rrqv12axNwIIoWw5H2Mmu3ZfQCWFVM8n90wQakqdBEzP0LS9yUXWemibR8nRyAQrmx8ckRLkYxmSV9Vu06tkXzE/ZmFmIRFTRJYwCfoQaowC7Ueo68ZTvFYH4/UxpZOOB2qeoEn3FtsXGcFJF7SZIPwjHUFq789/K1xsEVP5aQo=
+	t=1709914157; cv=none; b=qIagXEqbN7wFqkoF5S+PewQSE78Vw26p4bT/1Yj8tkM2J0D4fUn/VuJqVhLjB+UbqhXEUG2y0i2aAtr3Vs28Ugo3q+XLVDlwVtjpvBYZTdgDkSvnsCOGoc4F7lpeWvuCNrbxQTf8hkq4nG9Ris6cR+HDNoRBlInkpSqydfCxH2c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709913458; c=relaxed/simple;
-	bh=VpfafDNeLDnZU8DbCEHy4Mm5/XRPAsA2ZAQoU8vW100=;
+	s=arc-20240116; t=1709914157; c=relaxed/simple;
+	bh=ZSBaVvNvf0DteLyJ6qgFq5sexlcun2hzmzZGkgLZegY=;
 	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=k4LlrQ8Btv8hK9pmJKDe0xeBBJcU/lyF+e7JoYdhRE24H4f/IupOeOcoOleU5W/ujJ+q4SXiD10km/iWhn2eXjpIgGrjN6xaD3BVuRztSZzrA3PVACouPDboLn4/d8IS02yWBH5owl67jTTiVvdk7I6OX0zgKU7S7D7Wa4VWgJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=ixIfplB3; arc=none smtp.client-ip=188.40.0.86
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=risingedge.co.za; s=xneelo; h=Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:reply-to:sender:bcc
-	:content-type; bh=vBKI8grnOpOHijTaMnyCfeyEYcYRwE/b3k1lM8VLtDY=; b=ixIfplB3iKx
-	EFPsX8PifpasRP0FJ0EQlkLQUcjdOT9cnywlisHPFlFwCCsfC7R3ZQSnewCIVrh75lyAtX2bt1nEW
-	Z7dc/piPTrMH5jc58tLy2lSO1il/b6cwJDpBXLDQK5J0Qd6ghHzpdwHW8eoTmbmANTv9CYcF6TTOg
-	S5ttRDZ3lsqs75Iqt6MW7aYiIPO04Go33BByooLfm2k47IWnH0dhgnPnfaZ5yw2jG+W/N+InLEGSF
-	9t5JCxmtJK45BjNeXOf40mSQ5rID36x1o5XoJrNHk6fKAbmrDvAvuUC5xeBqNArdyJYSJpJKT2ZAB
-	oYBI0Nj2M7hEHUC4qcCczYw==;
-Received: from www31.flk1.host-h.net ([188.40.1.173])
-	by antispam3-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1ricbE-0066Pw-8t; Fri, 08 Mar 2024 17:57:33 +0200
-Received: from [41.144.0.96] (helo=localhost.localdomain)
-	by www31.flk1.host-h.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1ricbD-0007Wk-E0; Fri, 08 Mar 2024 17:57:31 +0200
-From: Justin Swartz <justin.swartz@risingedge.co.za>
-To: =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	 MIME-Version:Content-Type; b=gLTUF6bfwGs4e7xHDjUn6QtBgHT6nghmJkA3ESKBxT41L6g4XAIBokvWHjfg5QH0rzPvq8ORCxD95J+BqvvapS8bCBV27eF72wpFX+AVINatPEgHZWi6H/4+xCAA/jvtK4AqVy4hCiExmPP4aDTY+oe/Ov6FqOth5d/x1jmi1Cw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=SrmBzkAZ; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7ADCAC433C7;
+	Fri,  8 Mar 2024 16:09:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709914157;
+	bh=ZSBaVvNvf0DteLyJ6qgFq5sexlcun2hzmzZGkgLZegY=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+	b=SrmBzkAZsbSCAfnhSR1X0yXEKr23ym6SvHxkA0cbIEwzzp1FC+RDhliEw3qJhhvhi
+	 g84El0q676S3dSLbCny5Yh2x19A7YQYblDI9C8jQ/D7wej7qkRvZeXBYY7WJaUtA1p
+	 gDsJNgZ++RurRn1si/S/OHh2t3MPOCRqjX7IdOzKG230FZxF9ckSx6QR7/xLesqq3p
+	 6DEezmPc1zufyNd77gmPCFymAEYR+vAAIaTGk5AwdVc+A+D4NgBN1eEwyWc55ZTeEK
+	 4BFvK2IgA8UfQJ2RoKsdab4jOXpcIr/2eH14Cj+Fdm5GQDqLPq/s3RwTpfyRS74eGc
+	 uru1rwmkMF0Mg==
+From: Lorenzo Pieralisi <lpieralisi@kernel.org>
+To: Bjorn Helgaas <bhelgaas@google.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Johan Hovold <johan+linaro@kernel.org>
+Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	=?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+	Rob Herring <robh@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mips@vger.kernel.org,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	linux-arm-msm@vger.kernel.org,
+	linux-pci@vger.kernel.org,
 	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Justin Swartz <justin.swartz@risingedge.co.za>
-Subject: [PATCH v3 3/3] mips: dts: ralink: mt7621: add serial1 and serial2 nodes
-Date: Fri,  8 Mar 2024 17:56:16 +0200
-Message-Id: <20240308155616.11742-4-justin.swartz@risingedge.co.za>
-In-Reply-To: <20240308155616.11742-1-justin.swartz@risingedge.co.za>
-References: <20240308155616.11742-1-justin.swartz@risingedge.co.za>
+	linux-kernel@vger.kernel.org
+Subject: Re: (subset) [PATCH v4 0/5] arm64: dts: qcom: sc8280xp: PCIe fixes and GICv3 ITS enable
+Date: Fri,  8 Mar 2024 17:09:08 +0100
+Message-Id: <170991411487.455768.7609004144728540136.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20240306095651.4551-1-johan+linaro@kernel.org>
+References: <20240306095651.4551-1-johan+linaro@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: justin.swartz@risingedge.co.za
-X-Virus-Scanned: Clear
-X-SpamExperts-Domain: risingedge.co.za
-X-SpamExperts-Username: 
-Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: SB/global_tokens (0.00732381222984)
-X-Recommended-Action: accept
-X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT+SH+3mr1KguFjywS8Q24O2PUtbdvnXkggZ
- 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wCPRB8bAzJcv2cv+UqiTTc2+CpNcmBnO4XM3Sck4bwNogU
- WCl1nkLBzZX0KuJ9bXiS85Z42w/+2OBolTNFbPomXFWCX8oNdggW7HE9XDTdSejrkEpbuUvwMvHx
- 3T+KSG//gbuP7hnUK8NQdLwsVWKIFDZRrTGv3rxiw9tFrqFSCFNiLZt/QXQnOBRD+jq1HsKsDh/6
- Srgk2K3gr1VBfJbChkYH6fbrypLNrde+UooQVNLReLErukdelEOHUIpaBbp5GdnsN8+UvimwMinK
- 0+Txhz2u9qvrL2PODYgMZQApJXOjDLkqunZ9NcY2bHZn7CfFscMZZf3sCkN20I5vMh4akiObI7Kj
- vK7X04QEin24qbfMFd8eGjnYW8aSH5qj4ujh/13psIvqSqJFa1CcANErDW/w69saM9prk3jNnHtn
- nuEt/J9wDZeQfiNOYsLDFBdwYt2XtlLzy7G7T4kla0JNnAWQx3FS11bhwUa9HCIwKB+TroNcRY33
- oNmH4nRQzHQazgY7lmveanvOdQzf6IMJ3345q/s6ySNrGnXycmhg3LegpHnla2pOekMkVY3GgX5w
- GYjbvhzWX8Co+5c+eruaLtBcNrQxKZYuPe8bdCyw79zlPbqLQkZr26Lcxdvj8cqI+CogZdOhX7v3
- ClXzrmMENhJLl6MBfhzHVBR0wHQZxzIUka7Uq615Mik1qzcz30+tdk6yIuh9K7v+Nq0Cm3JVhle6
- F/kpBdN+oWjoATjEFDwcaiz0R34rhTN+GTbl4uS+pZovX9cex7Ac4fawcerGI7TrGXpM/B/M0BZd
- PfIU1BX7pZc1sE3vsz58auH/srM2fgZ9JmgLbj7sqoEiwv7LCxIiAE5ODMnmwjvj2589zjbyZCiM
- WpBpW8YvoIIqmZcWhL/r/eFjMjJnMHeiAPOVK0T+c9pM0FteOLwuqFxkZtxbXpCgbiKBsA+Ddi6m
- awd1jemntr2PrMOTF1fDnHo5A9JQxMw0XtBqT5kbx7zuprmKeJENT1oiQUtfU17WEZPRHu1+r6ov
- Q/IKaojN7gdb+Glhdb8DP7Iz3Z0Qa+VGiF/lfNRtaK1t4SnssY938wKgOC3c9GkW+OmRHU05XGuW
- g+VcQ3bZb7F7k2CvWvw8dU3nESJ28XTJU7Gvp0Y54KqrVfxkslDLWpMoYEDRSzMkb5qgpERsDkCX
- BgcGBwKlYailDNhe7w2QIanZ/NegoJ79AXUnIiEEoyCaZXMG8LAkbJoO2tY/Mg5ClXd30oBm8U++
- JlmpaolH3tK93iPfP9/Yw4kOlmVPmT/LKBEbhIqMpZhRMd+q6EplQVIDdLCA03LYM3A6BXfvel8O
- EFDbU51Q2S43vcWL3lM20b9wQESc+PquLiZOpxiedGbqX4nzL9MgCv99rrli2UQdOGeuQqV2IVXB
- o/3R5VqqcOmERbjE+D5FzT0EaduWMjGSdmMR5Ch1HY0a4RW7JP9zvdSGB9tIDxuFtg36jUhUk8/b
- P2/Mw1j9lmNQqiIAMR1SEszVdPY4ocfmWv3Fe9Iziczdq+A=
-X-Report-Abuse-To: spam@antispamquarantine.host-h.net
 
-Add serial1 and serial2 nodes to define the existence of
-the MT7621's second and third UARTs.
+On Wed, 06 Mar 2024 10:56:46 +0100, Johan Hovold wrote:
+> This series addresses a few problems with the sc8280xp PCIe
+> implementation.
+> 
+> The DWC PCIe controller can either use its internal MSI controller or an
+> external one such as the GICv3 ITS. Enabling the latter allows for
+> assigning affinity to individual interrupts, but results in a large
+> amount of Correctable Errors being logged on both the Lenovo ThinkPad
+> X13s and the sc8280xp-crd reference design.
+> 
+> [...]
 
-Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
----
- arch/mips/boot/dts/ralink/mt7621.dtsi | 40 +++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
+Applied to controller/qcom, thanks!
 
-diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
-index 68467fca3..02e1f2491 100644
---- a/arch/mips/boot/dts/ralink/mt7621.dtsi
-+++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
-@@ -129,6 +129,46 @@ serial0: serial@c00 {
- 			pinctrl-0 = <&uart1_pins>;
- 		};
- 
-+		serial1: serial@d00 {
-+			compatible = "ns16550a";
-+			reg = <0xd00 0x100>;
-+
-+			reg-io-width = <4>;
-+			reg-shift = <2>;
-+
-+			clocks = <&sysc MT7621_CLK_UART2>;
-+
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SHARED 27 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			no-loopback-test;
-+
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart2_pins>;
-+
-+			status = "disabled";
-+		};
-+
-+		serial2: serial@e00 {
-+			compatible = "ns16550a";
-+			reg = <0xe00 0x100>;
-+
-+			reg-io-width = <4>;
-+			reg-shift = <2>;
-+
-+			clocks = <&sysc MT7621_CLK_UART3>;
-+
-+			interrupt-parent = <&gic>;
-+			interrupts = <GIC_SHARED 28 IRQ_TYPE_LEVEL_HIGH>;
-+
-+			no-loopback-test;
-+
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&uart3_pins>;
-+
-+			status = "disabled";
-+		};
-+
- 		spi0: spi@b00 {
- 			status = "disabled";
- 
--- 
+[1/5] dt-bindings: PCI: qcom: Allow 'required-opps'
+      https://git.kernel.org/pci/pci/c/c8073025c0e4
+[2/5] dt-bindings: PCI: qcom: Do not require 'msi-map-mask'
+      https://git.kernel.org/pci/pci/c/545e88cb41a6
+[3/5] PCI: qcom: Disable ASPM L0s for sc8280xp, sa8540p and sa8295p
+      https://git.kernel.org/pci/pci/c/d1997c987814
 
+Thanks,
+Lorenzo
 
