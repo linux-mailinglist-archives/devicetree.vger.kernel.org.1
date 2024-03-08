@@ -1,115 +1,109 @@
-Return-Path: <devicetree+bounces-49494-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49495-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id ECC25876A89
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 19:09:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A12C1876A91
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 19:11:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2ADF41C21743
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 18:09:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5C3E42828B2
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 18:11:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7582156459;
-	Fri,  8 Mar 2024 18:09:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AA6C656773;
+	Fri,  8 Mar 2024 18:11:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="edRqX6nh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 813B557335;
-	Fri,  8 Mar 2024 18:09:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D2452C853;
+	Fri,  8 Mar 2024 18:11:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709921385; cv=none; b=DGN9tb4IifRp/aP1CCGAj2eaMHpXxADblwVqNTVZ4bpvGyoDByTOgoLPK/CIKi4qhlUBf05r75wsd0+YTlCCBtycB0botjrfG9spocCtXmM5sn8Uj8z+aOluyA4OqE83/3lJjtvYQa3c5JB2hvWseqBdVrir71b6t44fL6qfqEM=
+	t=1709921465; cv=none; b=A5/m2cxlCaouXnkjfKC16CaOE0/2cicfTweRtHWn5u9/Q1jpHONW1pwFYpXL4p71ABX6hS9IhbOI65TgGOC/vaQ1hzmihcozistdc+QQQ7rDiC3BnErlN1IcMH4l3add8mBkOZzYqLli8q0IUmfw+gKJRQf4b0iV71p/JsLcmYs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709921385; c=relaxed/simple;
-	bh=w8DNTqScbuxt5BYOeXoAr/FGiG1zOfzajt7GULwggaA=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=NkpUX2hi1OIIA0jbrMhZynw3m+LoS4SX7P3EOYGCwAVcGIWCKr6EAD5s4ks1YyddeKcASbwHQbE0FQN4HUtXHAG0CN+HZfshIlExX5On/4AbnvH1eVeClvNXEsuT1H5mz7XZPqhOWLle9+QKwnq1xV1E5D+C2sl8Kg0Em3PJyNY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.07,110,1708354800"; 
-   d="scan'208";a="200889943"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 09 Mar 2024 03:09:43 +0900
-Received: from localhost.localdomain (unknown [10.226.92.24])
-	by relmlir5.idc.renesas.com (Postfix) with ESMTP id 5DADF40138F8;
-	Sat,  9 Mar 2024 03:09:40 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1709921465; c=relaxed/simple;
+	bh=utxrg0pNh6ZbcAIwRjF9wFUYQwIU/V2MSk12njbmDog=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=F5MXvDrbnM44S86BzPlk6SO6EETPNZ8M4C3SwyQMkMPwiwiMmmsQX76wGoEDfozEMQpW8TG9CzIpoPaj3MrTKZENf3ktTcemrRiWz1evzhUjidvHm1bXRn38cPej6MO8N7FY9S8PXtUe7qh1G+NFdnRGIyY2OvziKL0gxK/Pvbg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=edRqX6nh; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 283CBC433C7;
+	Fri,  8 Mar 2024 18:11:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709921465;
+	bh=utxrg0pNh6ZbcAIwRjF9wFUYQwIU/V2MSk12njbmDog=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=edRqX6nhErDnO5DqqLDyUiWB+Xa1bPYu1fOyMldzCNGRkJM7j5uj6Xj0oy7wcEUMl
+	 Pxv1nTFk6Kpd4s0UtQI1Nbex/DZSNKXfmiZq4Tyisy0uqInj4RgfQUwbaRYWS07kQB
+	 BpWEopMIjtLDJw+YJwkCDodi0wyVlGMRBJEXa5YKiabyGtFtluEWgbnJK/81oOAmuV
+	 xfkir0wIkOn7A82imICL0d5w9Qb8ixhaj8wzYtGl0IW4phdRR02J5xD6QlUVQWFble
+	 2DAhglL2rJdMsgNloew200fTRKzzMZEJMggMkJ/qjEt9VdqvQyd1tD3VsO1XnRqYeu
+	 gqWebCNA6Z1Tw==
+Date: Fri, 8 Mar 2024 12:11:03 -0600
+From: Rob Herring <robh@kernel.org>
+To: Frank Li <Frank.Li@nxp.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH 4/4] arm64: dts: renesas: r9a07g0{43,44,54}: Update usbhs family compatible
-Date: Fri,  8 Mar 2024 18:09:19 +0000
-Message-Id: <20240308180919.6603-5-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240308180919.6603-1-biju.das.jz@bp.renesas.com>
-References: <20240308180919.6603-1-biju.das.jz@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	Shengjiu Wang <shengjiu.wang@nxp.com>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, imx@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor.dooley@microchip.com>
+Subject: Re: [PATCH v6 2/4] ASoC: dt-bindings: fsl,imx-asrc: update max
+ interrupt numbers
+Message-ID: <20240308181103.GA855753-robh@kernel.org>
+References: <20240308-asrc_8qxp-v6-0-e08f6d030e09@nxp.com>
+ <20240308-asrc_8qxp-v6-2-e08f6d030e09@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240308-asrc_8qxp-v6-2-e08f6d030e09@nxp.com>
 
-Replace 'renesas,rza2m-usbhs->renesas,rzg2l-usbhs' as family compatible
-for RZ/G2L family SOCs as there is a difference in number of pipe
-buffers compared to RZ/A2M.
+On Fri, Mar 08, 2024 at 10:30:51AM -0500, Frank Li wrote:
+> fsl,imx8qxp-spdif and fsl,imx8qm-spdif have 2 interrupts. Other platforms
+> have 1 interrupt.
+> 
+> Increase max interrupt number to 2 and add restriction for platforms except
+> i.MX8QXP and i.MX8QM.
+> 
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> ---
+>  .../devicetree/bindings/sound/fsl,spdif.yaml        | 21 ++++++++++++++++++++-
+>  1 file changed, 20 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+> index 56f8c0c8afdea..a242f68f99f18 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+> +++ b/Documentation/devicetree/bindings/sound/fsl,spdif.yaml
+> @@ -31,7 +31,11 @@ properties:
+>      maxItems: 1
+>  
+>    interrupts:
+> -    maxItems: 1
+> +    minItems: 1
+> +    maxItems: 2
+> +    items:
+> +      - description: Combined or receive interrupt
+> +      - description: Transmit interrupt
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/r9a07g043.dtsi | 2 +-
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 2 +-
- arch/arm64/boot/dts/renesas/r9a07g054.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Test your patches please because this will have warnings. Or, you can 
+put in *exactly* what I provided because this is not it.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-index 8721f4c9fa0f..766c54b91acc 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-@@ -812,7 +812,7 @@ usb2_phy1: usb-phy@11c70200 {
- 
- 		hsusb: usb@11c60000 {
- 			compatible = "renesas,usbhs-r9a07g043",
--				     "renesas,rza2-usbhs";
-+				     "renesas,rzg2l-usbhs";
- 			reg = <0 0x11c60000 0 0x10000>;
- 			interrupts = <SOC_PERIPHERAL_IRQ(100) IRQ_TYPE_EDGE_RISING>,
- 				     <SOC_PERIPHERAL_IRQ(101) IRQ_TYPE_LEVEL_HIGH>,
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 9f00b75d2bd0..88634ae43287 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -1217,7 +1217,7 @@ usb2_phy1: usb-phy@11c70200 {
- 
- 		hsusb: usb@11c60000 {
- 			compatible = "renesas,usbhs-r9a07g044",
--				     "renesas,rza2-usbhs";
-+				     "renesas,rzg2l-usbhs";
- 			reg = <0 0x11c60000 0 0x10000>;
- 			interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-index 53d8905f367a..e89bfe4085f5 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-@@ -1225,7 +1225,7 @@ usb2_phy1: usb-phy@11c70200 {
- 
- 		hsusb: usb@11c60000 {
- 			compatible = "renesas,usbhs-r9a07g054",
--				     "renesas,rza2-usbhs";
-+				     "renesas,rzg2l-usbhs";
- 			reg = <0 0x11c60000 0 0x10000>;
- 			interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.25.1
+If you continue to just toss crap at us at the rate you are, the DT 
+maintainers will either just start ignoring your patches or require some 
+trusted review by another NXP colleague first (offhand, not sure who 
+that would be which is part of the problem).
 
+Rob
 
