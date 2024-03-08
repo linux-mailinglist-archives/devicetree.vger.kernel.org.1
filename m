@@ -1,228 +1,168 @@
-Return-Path: <devicetree+bounces-49383-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49384-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDC4687633B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:25:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CB3EB8763B3
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 12:54:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C4BD4B21A34
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 11:25:02 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32D1FB21415
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 11:54:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF0E856456;
-	Fri,  8 Mar 2024 11:24:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 328C456477;
+	Fri,  8 Mar 2024 11:54:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="Kh3XUnRY"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wwSm0Wk2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A288255E4F
-	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 11:24:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8181756469
+	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 11:54:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709897087; cv=none; b=bLVwc70y51uq7lllay4EXpuAgwUYMTaMpOOSOyl/BFhVZzkuXbZkuZVnDlBA2zfeeedAXlB4PxE/ydSELis3/DttX0vgcgytgHQ9tiq79kjEDG7ygtwe2+SmqwXW1KFb+3NNR8Aw5KDp9Udty9zu1d3jjZo6M7BbgQI6txP353E=
+	t=1709898856; cv=none; b=U7WdDDOC6j2eO9Z8tJ0pWDBolhM/3zYrLqCzqNMp65ZcyDQPJAo1ZlvBfmI1NgKpDihYk85IutpyuI5gzNzDOUgpv/IP3TjPtr5AnDLhdW81qleKoRn+FQ1a3lyeO5EFPdH0gnQ5h0x0/gmYkLhbhViJ5wTcFA3faqW+L1aFQXM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709897087; c=relaxed/simple;
-	bh=32OmyjYik9xrpjbPpqrSbFDA5zVyxxWLCeHykPUBaPM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SpawMsjcGBbxdxBaAmQEwHoOuBsF3ol9KxMif3kUflizqL7aYDn7rPzQZvAAcysEHloCRc4HT0k2O6h+G1aRhv0plKeW+N6uAFMV2TPXmklTTe7yECKLIqj87O/G3zeOa8kuVSlTLpX7X55S1TsGITaXVtv1h0F1J6VHoQqdqKM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=Kh3XUnRY; arc=none smtp.client-ip=209.85.208.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56829f41f81so943168a12.2
-        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 03:24:44 -0800 (PST)
+	s=arc-20240116; t=1709898856; c=relaxed/simple;
+	bh=/VQiwZdXPfh3lN8CjKQo7Bv5mXhm0CmkWNd807BkdSs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=jj6pzoEw+SlxVB21KMwWUI3w/TyQ2+vVUjAl0tV+dHAhVa+j+t4Ej9o2wEXhlVK6NtTdupFs8q43ojdTD3DsoxXKT/I4hWAjb5eRBL9eMikKFdadw8UIjZYBYUN79wSZ6ieYUVJayRSzrP0wGcuj5QzfDYywv/B7bw/LiyOJBmA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wwSm0Wk2; arc=none smtp.client-ip=209.85.219.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dcbf82cdf05so805550276.2
+        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 03:54:14 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1709897083; x=1710501883; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oAeQj9nX/mCE4SAm/UXcMQjsHuY2Atxy9Nfnai0Y6DQ=;
-        b=Kh3XUnRYgHinumYr+ZDxhYLZdhhPQlzzIqn/+5uEAvivTxTO/clUUHDkBxLJqHlXLq
-         BbZnt+h3Hk9Xo4aoriD8FJhl9yOGLbdkPtzY4yhS9krJT+zVL2eEO+wCsMydMdGCKFHm
-         n28IWEePL5dEyiUO+WlOhSVtAVq3lqooY1jfma95gLmJCY0Pk6xOicW9sG+q+8HSD6o1
-         LtT5sTBVwhl0v1kx/QqRXOCBPkR/pEROFSA9bZ4oAPJJo6syHFlEY6f6BYMAF27zhvuR
-         k6VkmzgT9R+H7QCwHeBX4LJOix/nhLMMqy20I/wkX60OPBkmbWRp4SRKFnlW3ZkDggOh
-         PYxw==
+        d=linaro.org; s=google; t=1709898853; x=1710503653; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=AJqfP1AAZ8opcqsCNeYdbwalcWiPkzV/nLiirCz1Z4g=;
+        b=wwSm0Wk2Xe/XMv8xlVdYUiklz6GJj54etMW6TFGN3GZhBZsVhyTuLmH6KfZF7wXGxq
+         +83fx2rzRf3B8ftEf/dyB0UEf9lrN8L8us12rCwiNghkk6VpJvakoBQRHUYVkHmfme1U
+         dA/qeJ8sprIzxHZDtZVidvNH2R0njkhayVyl3fsDlbf/++J65WiDPuLVdKd447RpwD22
+         EUXdlvDxuckul9IGnVroqCpKpuJlKDLTI1WYAskbD/qP9Z8REJGLt+YGmgX8/NbP6iVi
+         9wh+iGfOtK5jRtgdr1Xqq4BUF0mJqsstP0FAWiDWf4n5m7JIPAVqxIkSVAYAUQcJJNh8
+         n3Sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709897083; x=1710501883;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oAeQj9nX/mCE4SAm/UXcMQjsHuY2Atxy9Nfnai0Y6DQ=;
-        b=vME19XYy7N3eUnnUructKzG6ooN+573kRxWzdUd8exP7Ow/+N3vdzeftny+8L5E9aw
-         plu5E4xipDPXUz273q2Li6GcRKIjPBJtFWWKdFi3rX5kL/WWGtqnuKo78gW9Bk18aaAX
-         8s8jVtAD2G86Qqbs/pQUn4e2Znf8DdA2uk1Z2XXhzh4tmk1I7kHy02OigZFOMB237Zey
-         qlNj1DEUjSOy+W712JKs1uxOasDvFKW1hynp4hehDstN/OX2kpSGRaWErAohLiIvj48w
-         cnywCjau1VGSX8qelG+LjKHKFaDilN6/Jp2A/v7frYdgo89l6bFZ6jLJJd96wmpTR2BB
-         SZvw==
-X-Forwarded-Encrypted: i=1; AJvYcCUqE0VGxs+wLqeLCyh8jqLhMS1t+B3TzmpBKxQOt1zjfIaC3xFgP/wUPm12orxqwtWEXCe8XKhyaKKop9qen9WzRQsi4WyPPI9h3Q==
-X-Gm-Message-State: AOJu0Yyn8AtYUtT1aAkqj6Xl0d+wU+AZhdXJFoKkoMbgJK+dsONdBr29
-	hSBFOnDt5Neaxh45SRPcBBHr18WePwlEd+lmpMJnLqa8/KnM4JiRAuzPqCAGFOc=
-X-Google-Smtp-Source: AGHT+IEvYNFKidP5dUJN9E5a69C7gwcEqHa2YT+x32x0AhHetixroqJyaFVB68JQgbsLBfpod0hk2Q==
-X-Received: by 2002:a17:907:1189:b0:a43:f587:d427 with SMTP id uz9-20020a170907118900b00a43f587d427mr13911312ejb.34.1709897082984;
-        Fri, 08 Mar 2024 03:24:42 -0800 (PST)
-Received: from [192.168.1.70] ([84.102.31.43])
-        by smtp.gmail.com with ESMTPSA id k23-20020a1709063e1700b00a42f6d48c72sm9307224eji.145.2024.03.08.03.24.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Mar 2024 03:24:42 -0800 (PST)
-Message-ID: <44295772-4635-42c2-b7b5-cdc37505715e@baylibre.com>
-Date: Fri, 8 Mar 2024 12:24:40 +0100
+        d=1e100.net; s=20230601; t=1709898853; x=1710503653;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=AJqfP1AAZ8opcqsCNeYdbwalcWiPkzV/nLiirCz1Z4g=;
+        b=C/qcp7T3t7bXoDxr9jnBsLbRNNXCW/nSrKApcmmnadaf9rUsC9sypFxh6PnrrARq0M
+         +lsJcsmi+ojY4jBi1BC+WeAz79wIOcB/xyCuMsBZ2ib29JaGifj71E10D4XAU90FReNA
+         q+934B1fMQAo9Yu/M8ZVdMS/WzoA9EmNYnbYpPfUEMT88eWzzBNP/yWZhmccoANCuYuL
+         YkdjLROv1MNBF9a2vh15R2IJVS9m0lIEtIG+Dnfgw3yC/zelEtiSKhd1dEFsI9MlY+v/
+         yAgq1e1sqX0TA7rAtVxeXhN9WzSIp9UEZHBjlRlYs4PiNgkv3SiTzsii58UBm9I4z78+
+         u90w==
+X-Forwarded-Encrypted: i=1; AJvYcCWnOs8uksnPO/9oWZRjMR0qv3E+DjtJgrNFiV2rcSbZXKkX+t5MQ2CynhvXn0LG4XqE9b2gTm0Ic4rfiamuOUqSiJWaA0PgpdRUwQ==
+X-Gm-Message-State: AOJu0YxfY6m8EzVpCn4lro8kyVjL3aVXFQMZImWHGM2nah4TGLKbRJZe
+	9ZZ7OpCgleoXcVpELMzi1+xssdxi2eY04vcrNvfIdpwuT2Q1yZV45GwRLCyISPY29jwg8GrDSug
+	Dy9/fNEqGuB3U9T+7fDLkDKcSVkhG/qUlDfdiuA==
+X-Google-Smtp-Source: AGHT+IGP2ARwJiuBZcymnXJV+Xt44d1Hys7QasIbFgms8QtGVNvpSeqesp2i1294OGHSHgDc7jaFfgX0Os/hrKIfuf0=
+X-Received: by 2002:a25:8b01:0:b0:dcb:be59:25e1 with SMTP id
+ i1-20020a258b01000000b00dcbbe5925e1mr18074057ybl.30.1709898853391; Fri, 08
+ Mar 2024 03:54:13 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 01/11] mfd: tps6594: Add register definitions for TI
- TPS65224 PMIC
-Content-Language: en-US
-To: Bhargav Raviprakash <bhargav.r@ltts.com>, linux-kernel@vger.kernel.org
-Cc: m.nirmaladevi@ltts.com, lee@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- devicetree@vger.kernel.org, arnd@arndb.de, gregkh@linuxfoundation.org,
- lgirdwood@gmail.com, broonie@kernel.org, linus.walleij@linaro.org,
- linux-gpio@vger.kernel.org, linux-arm-kernel@lists.infradead.org, nm@ti.com,
- vigneshr@ti.com, kristo@kernel.org, eblanc@baylibre.com
-References: <20240308103455.242705-1-bhargav.r@ltts.com>
- <20240308103455.242705-2-bhargav.r@ltts.com>
-From: Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <20240308103455.242705-2-bhargav.r@ltts.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240229-camcc-support-sm8150-v1-0-8c28c6c87990@quicinc.com>
+ <20240229-camcc-support-sm8150-v1-4-8c28c6c87990@quicinc.com>
+ <18567989-fb60-49ae-92e6-94e1bc2fa1c7@linaro.org> <83fd1995-a06e-b76a-d91b-de1c1a6ab0ea@quicinc.com>
+ <4817a5b0-5407-4437-b94a-fc8a1bfcd25d@linaro.org> <e2627a99-307f-1e10-abfd-ce688cc2ec03@quicinc.com>
+In-Reply-To: <e2627a99-307f-1e10-abfd-ce688cc2ec03@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Fri, 8 Mar 2024 13:54:02 +0200
+Message-ID: <CAA8EJpogCOQ4W26hkBm6v_yemZ2F30z2TsO5vLKLUqRKkfYxvg@mail.gmail.com>
+Subject: Re: [PATCH 4/5] clk: qcom: Add camera clock controller driver for SM8150
+To: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+Cc: "Bryan O'Donoghue" <bryan.odonoghue@linaro.org>, Bjorn Andersson <andersson@kernel.org>, 
+	Konrad Dybcio <konrad.dybcio@linaro.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Stephen Boyd <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org, 
+	linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	devicetree@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>, 
+	Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-On 3/8/24 11:34, Bhargav Raviprakash wrote:
-> From: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
+On Fri, 8 Mar 2024 at 12:47, Satya Priya Kakitapalli (Temp)
+<quic_skakitap@quicinc.com> wrote:
 >
-> Extend TPS6594 PMIC register and field definitions to support TPS65224
-> power management IC.
 >
-> TPS65224 is software compatible to TPS6594 and can re-use many of the
-> same definitions, new definitions are added to support additional
-> controls available on TPS65224.
+> On 3/6/2024 7:25 PM, Bryan O'Donoghue wrote:
+> > On 06/03/2024 08:30, Satya Priya Kakitapalli (Temp) wrote:
+> >>>
+> >>> Anyway I suspect the right thing to do is to define a
+> >>> titan_top_gdsc_clk with shared ops to "park" the GDSC clock to 19.2
+> >>> MHz instead of turning it off.
+> >>>
+> >>> You can get rid of the hard-coded always-on and indeed represent the
+> >>> clock in /sysfs - which is preferable IMO to just whacking registers
+> >>> to keep clocks always-on in probe anyway.
+> >>>
+> >>> Please try to define the titan_top_gdsc_clk as a shared_ops clock
+> >>> instead of hard coding to always on.
+> >>>
+> >>
+> >> Defining the gdsc clk allows consumers to control it, we do not want
+> >> this clock to be disabled/controlled from consumers. Hence it is
+> >> better to not model this clock and just keep it always on from probe.
+> >
+> > Not if you mark it critical
+> >
 >
-> Signed-off-by: Nirmala Devi Mal Nadar <m.nirmaladevi@ltts.com>
-> Signed-off-by: Bhargav Raviprakash <bhargav.r@ltts.com>
-> ---
->   include/linux/mfd/tps6594.h | 354 ++++++++++++++++++++++++++++++++++--
->   1 file changed, 342 insertions(+), 12 deletions(-)
+> Marking the clock as critical keeps the associated power domain
+> always-on which impacts power. For this reason we are not using
+> CLK_IS_CRITICAL and instead making them always on from probe.
 
-[...]
+Please consider using pm_clk instead. This is a cleaner solution
+compared to keeping the clocks always on.
 
-> +/* IRQs */
-> +enum tps65224_irqs {
-> +	/* INT_BUCK register */
-> +	TPS65224_IRQ_BUCK1_UVOV,
-> +	TPS65224_IRQ_BUCK2_UVOV,
-> +	TPS65224_IRQ_BUCK3_UVOV,
-> +	TPS65224_IRQ_BUCK4_UVOV,
-> +	/* INT_LDO_VMON register */
-> +	TPS65224_IRQ_LDO1_UVOV,
-> +	TPS65224_IRQ_LDO2_UVOV,
-> +	TPS65224_IRQ_LDO3_UVOV,
-> +	TPS65224_IRQ_VCCA_UVOV,
-> +	TPS65224_IRQ_VMON1_UVOV,
-> +	TPS65224_IRQ_VMON2_UVOV,
-> +	/* INT_GPIO register */
-> +	TPS65224_IRQ_GPIO1,
-> +	TPS65224_IRQ_GPIO2,
-> +	TPS65224_IRQ_GPIO3,
-> +	TPS65224_IRQ_GPIO4,
-> +	TPS65224_IRQ_GPIO5,
-> +	TPS65224_IRQ_GPIO6,
-> +	/* INT_STARTUP register */
-> +	TPS65224_IRQ_VSENSE,
-> +	TPS65224_IRQ_ENABLE,
-> +	TPS65224_IRQ_PB_SHORT,
-> +	TPS65224_IRQ_FSD,
-> +	TPS65224_IRQ_SOFT_REBOOT,
-> +	/* INT_MISC register */
-> +	TPS65224_IRQ_BIST_PASS,
-> +	TPS65224_IRQ_EXT_CLK,
-> +	TPS65224_IRQ_REG_UNLOCK,
-> +	TPS65224_IRQ_TWARN,
-> +	TPS65224_IRQ_PB_LONG,
-> +	TPS65224_IRQ_PB_FALL,
-> +	TPS65224_IRQ_PB_RISE,
-> +	TPS65224_IRQ_ADC_CONV_READY,
-> +	/* INT_MODERATE_ERR register */
-> +	TPS65224_IRQ_TSD_ORD,
-> +	TPS65224_IRQ_BIST_FAIL,
-> +	TPS65224_IRQ_REG_CRC_ERR,
-> +	TPS65224_IRQ_RECOV_CNT,
-> +	/* INT_SEVERE_ERR register */
-> +	TPS65224_IRQ_TSD_IMM,
-> +	TPS65224_IRQ_VCCA_OVP,
-> +	TPS65224_IRQ_PFSM_ERR,
-> +	TPS65224_IRQ_BG_XMON,
-> +	/* INT_FSM_ERR register */
-> +	TPS65224_IRQ_IMM_SHUTDOWN,
-> +	TPS65224_IRQ_ORD_SHUTDOWN,
-> +	TPS65224_IRQ_MCU_PWR_ERR,
-> +	TPS65224_IRQ_SOC_PWR_ERR,
-> +	TPS65224_IRQ_COMM_ERR,
-> +	TPS65224_IRQ_I2C2_ERR,
-> +	/* INT_ESM register */
-> +	TPS65224_IRQ_ESM_MCU_PIN,
-> +	TPS65224_IRQ_ESM_MCU_FAIL,
-> +	TPS65224_IRQ_ESM_MCU_RST,
+> > static struct clk_branch cam_cc_gdsc_clk = {
+> >         .halt_reg = 0xc1e4,
+> >         .halt_check = BRANCH_HALT,
+> >         .clkr = {
+> >                 .enable_reg = 0xc1e4,
+> >                 .enable_mask = BIT(0),
+> >                 .hw.init = &(struct clk_init_data){
+> >                         .name = "cam_cc_gdsc_clk",
+> >                         .parent_hws = (const struct clk_hw*[]){
+> >                                 &cam_cc_xo_clk_src.clkr.hw
+> >                         },
+> >                         .num_parents = 1,
+> >                         .flags = CLK_IS_CRITICAL | CLK_SET_RATE_PARENT,
+> >                         .ops = &clk_branch2_ops,
+> >                 },
+> >         },
+> > };
+> >
+> > and then add this to your camss clocks
+> >
+> > <&clock_camcc CAM_CC_GDSC_CLK>;
+> >
+> > The practice we have of just whacking clocks always-on in the probe()
+> > of the clock driver feels lazy to me, leaving the broken cleanups we
+> > have aside.
+> >
+> > As a user of the system I'd rather see correct/complete data in
+> > /sys/kernel/debug/clk/clk_summary
+> >
+> > Anyway I'm fine with setting the clock always on, I can always send
+> > out a series to address this bug-bear myself.
+> >
+> > So yeah just fix the cleanup and then please feel free to add my
+> >
+> > Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>
 
-You should remove the 3 lines above for ESM_MCU, since there is none
-linux driver for ESM_MCU.
 
-> +};
-> +
-> +#define TPS65224_IRQ_NAME_BUCK1_UVOV		"buck1_uvov"
-> +#define TPS65224_IRQ_NAME_BUCK2_UVOV		"buck2_uvov"
-> +#define TPS65224_IRQ_NAME_BUCK3_UVOV		"buck3_uvov"
-> +#define TPS65224_IRQ_NAME_BUCK4_UVOV		"buck4_uvov"
-> +#define TPS65224_IRQ_NAME_LDO1_UVOV		"ldo1_uvov"
-> +#define TPS65224_IRQ_NAME_LDO2_UVOV		"ldo2_uvov"
-> +#define TPS65224_IRQ_NAME_LDO3_UVOV		"ldo3_uvov"
-> +#define TPS65224_IRQ_NAME_VCCA_UVOV		"vcca_uvov"
-> +#define TPS65224_IRQ_NAME_VMON1_UVOV		"vmon1_uvov"
-> +#define TPS65224_IRQ_NAME_VMON2_UVOV		"vmon2_uvov"
-> +#define TPS65224_IRQ_NAME_GPIO1			"gpio1"
-> +#define TPS65224_IRQ_NAME_GPIO2			"gpio2"
-> +#define TPS65224_IRQ_NAME_GPIO3			"gpio3"
-> +#define TPS65224_IRQ_NAME_GPIO4			"gpio4"
-> +#define TPS65224_IRQ_NAME_GPIO5			"gpio5"
-> +#define TPS65224_IRQ_NAME_GPIO6			"gpio6"
-> +#define TPS65224_IRQ_NAME_VSENSE	        "vsense"
-> +#define TPS65224_IRQ_NAME_ENABLE		"enable"
-> +#define TPS65224_IRQ_NAME_PB_SHORT		"pb_short"
-> +#define TPS65224_IRQ_NAME_FSD			"fsd"
-> +#define TPS65224_IRQ_NAME_SOFT_REBOOT		"soft_reboot"
-> +#define TPS65224_IRQ_NAME_BIST_PASS		"bist_pass"
-> +#define TPS65224_IRQ_NAME_EXT_CLK		"ext_clk"
-> +#define TPS65224_IRQ_NAME_REG_UNLOCK		"reg_unlock"
-> +#define TPS65224_IRQ_NAME_TWARN			"twarn"
-> +#define TPS65224_IRQ_NAME_PB_LONG		"pb_long"
-> +#define TPS65224_IRQ_NAME_PB_FALL		"pb_fall"
-> +#define TPS65224_IRQ_NAME_PB_RISE		"pb_rise"
-> +#define TPS65224_IRQ_NAME_ADC_CONV_READY	"adc_conv_ready"
-> +#define TPS65224_IRQ_NAME_TSD_ORD		"tsd_ord"
-> +#define TPS65224_IRQ_NAME_BIST_FAIL		"bist_fail"
-> +#define TPS65224_IRQ_NAME_REG_CRC_ERR		"reg_crc_err"
-> +#define TPS65224_IRQ_NAME_RECOV_CNT		"recov_cnt"
-> +#define TPS65224_IRQ_NAME_TSD_IMM		"tsd_imm"
-> +#define TPS65224_IRQ_NAME_VCCA_OVP		"vcca_ovp"
-> +#define TPS65224_IRQ_NAME_PFSM_ERR		"pfsm_err"
-> +#define TPS65224_IRQ_NAME_BG_XMON		"bg_xmon"
-> +#define TPS65224_IRQ_NAME_IMM_SHUTDOWN		"imm_shutdown"
-> +#define TPS65224_IRQ_NAME_ORD_SHUTDOWN		"ord_shutdown"
-> +#define TPS65224_IRQ_NAME_MCU_PWR_ERR		"mcu_pwr_err"
-> +#define TPS65224_IRQ_NAME_SOC_PWR_ERR		"soc_pwr_err"
-> +#define TPS65224_IRQ_NAME_COMM_ERR		"comm_err"
-> +#define TPS65224_IRQ_NAME_I2C2_ERR		"i2c2_err"
-> +#define TPS65224_IRQ_NAME_ESM_MCU_PIN		"esm_mcu_pin"
-> +#define TPS65224_IRQ_NAME_ESM_MCU_FAIL		"esm_mcu_fail"
-> +#define TPS65224_IRQ_NAME_ESM_MCU_RST		"esm_mcu_rst"
-
-You should remove the 3 lines above for ESM_MCU.
-
-Julien
-
+-- 
+With best wishes
+Dmitry
 
