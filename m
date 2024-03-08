@@ -1,109 +1,124 @@
-Return-Path: <devicetree+bounces-49425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 582C58766CA
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 15:57:04 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EEF5F876705
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 16:07:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id C20B91F21AA0
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 14:57:03 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 5A378B22B99
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 15:07:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0FCB21DDEB;
-	Fri,  8 Mar 2024 14:56:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E06761BF37;
+	Fri,  8 Mar 2024 15:07:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tT9nEdlV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5216625759;
-	Fri,  8 Mar 2024 14:56:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AEC9E4400;
+	Fri,  8 Mar 2024 15:07:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709909792; cv=none; b=Wg+FdqksQBTKXFRkrXQ0Eh6SmJJE7swi2+vJPeyflOeyAR8g8hl/kzP5HUur2ORfVtYVwAsZm3eKZ9q8Ve72P0olC7vGL+qxyD10MDVslV4ZU3RjdukQU0u2B6kyvz/Q7hHYWwWrjA69R0pzFZc4oBFI9SmWz0C22/r7YZSKEjA=
+	t=1709910427; cv=none; b=ir9XJeNQBMn6AvOIQGadsffvZejZpqdbNujTNnLr9/dTLVWjcFE3kpD/0b/TuL+FQp+9ACxJhXWnEJzKo2M+PM7gifoG/WvMe/wvepT5DIcGjz5Tl8hz182rnLIzis3zWmh/fhP7157EL6SvGF4DALhTYVvcYESRbE+HsKImjhY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709909792; c=relaxed/simple;
-	bh=duHRboSBY4Ddw2Uqw5pOeQO8eFmgv5M1iTXUTHLZn3g=;
+	s=arc-20240116; t=1709910427; c=relaxed/simple;
+	bh=XegtA60T8R+RLnHB84R9oxyR1uF6txi9d6bccoJqnaw=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Bh6k2BL3PHZsbbVv5nyoJgmBzVxG9q2NzqUChFvetpUrOsziZP3QrN3A9QEwEb+Lz3QP7wusi12URLWzNjarqVCwOcqDcM+JMx70OyUYJYnyfPUcHlze8Z6eqpvcKJAsruFW6QxdRPLbLEEPjDgv0nsiMzHruH7gNeYZdcxQH0w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
-Received: from local
-	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
-	 (Exim 4.96.2)
-	(envelope-from <daniel@makrotopia.org>)
-	id 1ribdU-0000Wt-1o;
-	Fri, 08 Mar 2024 14:55:48 +0000
-Date: Fri, 8 Mar 2024 14:55:44 +0000
-From: Daniel Golle <daniel@makrotopia.org>
-To: Avri Altman <Avri.Altman@wdc.com>
-Cc: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe <axboe@kernel.dk>,
-	Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>,
-	Thomas =?iso-8859-1?Q?Wei=DFschuh?= <linux@weissschuh.net>,
-	Christian Brauner <brauner@kernel.org>,
-	Li Lingfeng <lilingfeng3@huawei.com>,
-	Damien Le Moal <dlemoal@kernel.org>, Min Li <min15.li@samsung.com>,
-	Adrian Hunter <adrian.hunter@intel.com>,
-	Hannes Reinecke <hare@suse.de>,
-	Christian Loehle <CLoehle@hyperstone.com>,
-	Bean Huo <beanhuo@micron.com>, Yeqi Fu <asuk4.q@gmail.com>,
-	Victor Shih <victor.shih@genesyslogic.com.tw>,
-	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
-	"Ricardo B. Marliere" <ricardo@marliere.net>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-	"linux-block@vger.kernel.org" <linux-block@vger.kernel.org>,
-	Diping Zhang <diping.zhang@gl-inet.com>,
-	Jianhui Zhao <zhaojh329@gmail.com>,
-	Jieying Zeng <jieying.zeng@gl-inet.com>,
-	Chad Monroe <chad.monroe@adtran.com>,
-	Adam Fox <adam.fox@adtran.com>, John Crispin <john@phrozen.org>
-Subject: Re: [RFC PATCH v2 6/8] mmc: core: set card fwnode_handle
-Message-ID: <Zesm8FhoVrVbvbwe@makrotopia.org>
-References: <cover.1709667858.git.daniel@makrotopia.org>
- <055787bb6085c32907ee1772522a6bfa49d5d2ef.1709667858.git.daniel@makrotopia.org>
- <DM6PR04MB6575C0FB6376681697C97DE8FC272@DM6PR04MB6575.namprd04.prod.outlook.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=Q4RWbzjkqvjwrUCNw92pehoFRbPiGNT0d3uyJ4VFIWBpV4F9WbkpEXtFofVw38kebjMDoo73UkxXIbbtqJ0rd6FLYKW0JS8ZehWKyceb0YSemRJfGMldyv2w/DcbamYl8L9sPNQQdOnG26QGwtBQJG/QPla6EF472NDAcwJ9Ud0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tT9nEdlV; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2E51BC433F1;
+	Fri,  8 Mar 2024 15:07:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709910427;
+	bh=XegtA60T8R+RLnHB84R9oxyR1uF6txi9d6bccoJqnaw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tT9nEdlVawAD9BoXU6dAXfeqUsuIstVdxTmbsmAf1mK+ugPjykm80R8v0EdIBZsfr
+	 Gc6q5ieDauBNL1OUrrNlD40V5MRsxP3fhPBgjzhVu6Hzm3rwIaekGWFEyrVY3j5C5H
+	 O4fB4Jv/C0J9jHm15bvFpphAeuBo10qZOZV0lP5zABUNczHsohJhPDKRkD9QABgQUj
+	 uECUJn1XEdR/ccG/UIdlRQ9/gGfwalTMR9CItc7WfPlmF/3tVhHJ12eXCQ3lBjoLv6
+	 cSpHpO8x2cBdZzsB5dm1665qTsi/X9UPXEJFgvjvxJvO3ds9EYVdH0wgySJBFobl0n
+	 5iYSCmxzqRXSw==
+Date: Fri, 8 Mar 2024 15:07:02 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Julien Massot <julien.massot@collabora.com>
+Cc: linux-media@vger.kernel.org, kernel@collabora.com,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	mchehab@kernel.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	sakari.ailus@iki.fi
+Subject: Re: [PATCH v4 2/4] dt-bindings: media: add Maxim MAX96714 GMSL2
+ Deserializer
+Message-ID: <20240308-footnote-landmass-e1efcaf72a6d@spud>
+References: <20240305152608.287527-1-julien.massot@collabora.com>
+ <20240305152608.287527-3-julien.massot@collabora.com>
+ <20240307-retract-aloof-9ff1fde79a82@spud>
+ <8f6972a1-e174-4c0e-808e-afece9b529bf@collabora.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="Twd3rreSHEktHljN"
+Content-Disposition: inline
+In-Reply-To: <8f6972a1-e174-4c0e-808e-afece9b529bf@collabora.com>
+
+
+--Twd3rreSHEktHljN
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DM6PR04MB6575C0FB6376681697C97DE8FC272@DM6PR04MB6575.namprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 
-On Fri, Mar 08, 2024 at 08:04:54AM +0000, Avri Altman wrote:
->  
-> > Set fwnode in case it isn't set yet and of_node is present.
-> > 
-> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > ---
-> >  drivers/mmc/core/bus.c | 2 ++
-> >  1 file changed, 2 insertions(+)
-> > 
-> > diff --git a/drivers/mmc/core/bus.c b/drivers/mmc/core/bus.c index
-> > 0ddaee0eae54f..e1c5fc1b3ce4b 100644
-> > --- a/drivers/mmc/core/bus.c
-> > +++ b/drivers/mmc/core/bus.c
-> > @@ -364,6 +364,8 @@ int mmc_add_card(struct mmc_card *card)
-> > 
-> >         mmc_add_card_debugfs(card);
-> >         card->dev.of_node = mmc_of_find_child_device(card->host, 0);
-> > +       if (card->dev.of_node && !card->dev.fwnode)
-> > +               card->dev.fwnode = &card->dev.of_node->fwnode;
-> Should this be restricted to eMMC only, or is it fine to be called for SD as well?
+On Fri, Mar 08, 2024 at 03:08:12PM +0100, Julien Massot wrote:
+> On 3/7/24 20:21, Conor Dooley wrote:
+> > On Tue, Mar 05, 2024 at 04:26:06PM +0100, Julien Massot wrote:
+> > > Add DT bindings for Maxim MAX96714 GMSL2 Deserializer.
+> > >=20
+> > > Signed-off-by: Julien Massot <julien.massot@collabora.com>
+> > > ---
+> > > Change since v3:
+> > >   - Renamed file to maxim,max96714.yaml dropped the 'f' suffix
+> >=20
+> > Why? The filename should match the compatible, which /does/ have an f.
+> All the work has been done on MAX96714F variant of this Maxim GMSL2
+> deserializer.
+> The driver and the binding remain suitable for all variants of this chips=
+et,
+> since they share the same
+> register mapping, similar features etc..
+>=20
+> MAX96714 exists in different variant: MAX96714 / MAX96714F / MAX96714K th=
+at
+> will be easy
+> to add support for this binding and driver later.
 
-It's always odd to have of_node set and fwnode unset. And also SD
-cards can be referenced in device tree, resulting in of_node being set
-but fwnode being unpopulated, which is no more or less weird than for
-an eMMC.
+Either document the non-f version if it really is that similar, using
+all of the same properties, or name the file after the version you've
+actually documented. I don't see why this particular case should be
+given an exception to how bindings are named.
 
-So imho it should always be called and shouldn't hurt.
+What is the actual difference between the f and non f versions? Is it
+visible to software?
+
+> The MAX96714 name looks the most suitable.
+> Please have a look at this discussion on the V3 version
+> https://lore.kernel.org/lkml/ZdXYpc2csVnhtZH9@valkosipuli.retiisi.eu
+
+
+--Twd3rreSHEktHljN
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZespkwAKCRB4tDGHoIJi
+0qDHAQCSxd1xjjCo/nZv8eEWqflQQ8O36V8Sw0ttdF9jgDLs2wEA30sl7I0RGbXs
+U1XvYdo1uUEMwWHYkc+terFhxnOUug4=
+=desQ
+-----END PGP SIGNATURE-----
+
+--Twd3rreSHEktHljN--
 
