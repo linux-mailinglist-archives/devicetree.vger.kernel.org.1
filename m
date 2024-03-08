@@ -1,125 +1,181 @@
-Return-Path: <devicetree+bounces-49401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 340BD8764B1
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 14:04:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6012587650C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 14:22:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id DE35E1F227D2
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:04:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E0E731F2271A
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 13:22:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E913B1D545;
-	Fri,  8 Mar 2024 13:04:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58B8C1EEF7;
+	Fri,  8 Mar 2024 13:21:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Web9H/sb"
+	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="Z4ifZzY7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from outgoing1.flk.host-h.net (outgoing1.flk.host-h.net [188.40.0.86])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2746017551
-	for <devicetree@vger.kernel.org>; Fri,  8 Mar 2024 13:04:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4432C1EEE9;
+	Fri,  8 Mar 2024 13:21:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.86
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709903070; cv=none; b=ImkDWYFI5UON2s9ehClypxHomMsBrFWJQHZ2RzSb6NkEgDCLHLCTaTxWYH+m8sr3gzOlS9IhTHo2PG4sLcvowWi0/I8AvrePoy2Fg50juvnreUEznn8+SzaOhq9vBjt1DtQdBRohz977aCL51mtgMGItGZpPWXBhI5GGtmv+bAg=
+	t=1709904118; cv=none; b=qL4oGsnHUVYHX4cUtHUOtP2voqE/AlWZt3J0AMYoxfyS3PAN+Hw/iyFRF3zKENlj4pkwRf6gs7fTGFy/RtRVk71hPa4ulAl13Sht9acSE4dtxt+fC2eOZsrPZ25+4rF2lqHqJB+cLuSkdZ+zvJsxBUTz4drMJ006WbMproKzbPg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709903070; c=relaxed/simple;
-	bh=yRWdVfpQxqHtySeHiXZsB0Tjfqjdc3FOYFaeh5FUKVI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TxFsjC/HMZ6NaG8niAdfFMLO7xEiR8PxcAxVdVxsjmmFFuqKW20af3F66ZJPAFhMrpbQQn9DqJmL6mFTs34cMd/yx8AOTY6+XyBfjPjMz7BKfagws2YT4+Nr8PUCqdVcrkMiSaNuUBdUGPkXiBODb+wTVqOq6boGgemOxGleZWc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Web9H/sb; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33e7ae72312so95930f8f.1
-        for <devicetree@vger.kernel.org>; Fri, 08 Mar 2024 05:04:28 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709903067; x=1710507867; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QQ57E0ArmK/bVUfP0mzi0MhsZFrvk857kv7W7dfFr2Y=;
-        b=Web9H/sbGFVzPeK2q4KjbOJ3YpE5RP1lRrxdMX1V5YQSrhYZpypHYccoZ/5PwoTacg
-         o2kHRszVATHZckNnJLMPCRMvK+9xhIWOh0BYaSzAH/gibpKbNYzsmQTaYM9kFvPW8yVn
-         zjtNOqKb5uv+ynLTEuJJHZ+4C02qAq1GTFQ2QIt5JryBRQAP6yXMp3eXrVcv5FMIZyy4
-         b1SS7+uKp1A79SPzC7V6Kpthy3nWyOI8qy5J8onb/HXS8/D1kb8SG1X2gwJbA0rTrhvI
-         xpI2KpK6FhYosMP5Yx1NW8Ou34Bkp8G3yEpquKoIkiQE1JCSIP7sR4yY1yWVBvFIjKsN
-         cFuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709903067; x=1710507867;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QQ57E0ArmK/bVUfP0mzi0MhsZFrvk857kv7W7dfFr2Y=;
-        b=N9y7E1qEWMvgXfuBv5JeR5pVAFj7ZSxUPd2/F9Ue7MMjljNGJ0I4mfPhBpdeK4aE7H
-         vGQ4rA1Y06e7EjLsjOnA1ulcYpFQs2ANAe4vteoaaR4/qcE4un4vY+XNXHcnda2HhAKQ
-         opqUmN5JiISsbWSw0vL8oEDwBoJ7tQ9x3JI/UU9Wfaooog14N+A1XlZsmOm3dp+X8waG
-         Bpf4BWYbFFmsWMbYhl5vziJCeVaQxuuK7QuthDMWAPLj2dq9dmq31mw/nClKGgW1mZtd
-         SuUPAt+W6wXvdwYeU8A9EbrBTxFhZBuvWKDiXvKFNxFhy4ZtMdbdrujWxd3emgxdSYWy
-         P/Lg==
-X-Forwarded-Encrypted: i=1; AJvYcCU9kbVBqhPnBNsTl73wnofG8whxhuoQo00gguGq9dICaTn4iDVwQEADshqxyKQrQWg256WoIB8vx/B0leFA/wAbUBBH8CIO/nQNEQ==
-X-Gm-Message-State: AOJu0Yw6ZqKTuc57oQXIVoLx8gIMY3ztfrMFuo6FGghOT8DYgre5LYMZ
-	/bmOdjTD//ZJDxiNz1XXbgUZ/zebCESGU3PqjisClzSU6mAABemlt+hzKmvfX2A=
-X-Google-Smtp-Source: AGHT+IHCkwidEwgVLTE4ZqN7hKFvS6AkaL79HDNSUljGLcAHE0kLzs+LBju0bJVMOYhQqVw7bXiGkA==
-X-Received: by 2002:a05:6000:180c:b0:33d:be6f:7dcf with SMTP id m12-20020a056000180c00b0033dbe6f7dcfmr14295647wrh.24.1709903067129;
-        Fri, 08 Mar 2024 05:04:27 -0800 (PST)
-Received: from [192.168.0.102] ([176.61.106.68])
-        by smtp.gmail.com with ESMTPSA id f10-20020a5d58ea000000b0033d4cf751b2sm22772090wrd.33.2024.03.08.05.04.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Mar 2024 05:04:26 -0800 (PST)
-Message-ID: <291279e1-7abb-4614-91f3-af9ede349817@linaro.org>
-Date: Fri, 8 Mar 2024 13:04:25 +0000
+	s=arc-20240116; t=1709904118; c=relaxed/simple;
+	bh=zeUib85jZcQhoa3IiCkBV25TPD8WzpxP7R4+2D41mEo=;
+	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
+	 References:Message-ID; b=GDlGz80/1286vIHxVu29iFAlgneW+JKWJp6K9YeOXYJUGAwNjXncbjTKnzPRep7cg2K57jT82GXVcOEUhViwmYA5ZYMqe57Bz8qEZmfxcJiS0TamRxxp0nvWP+mIUbDb6FL0DbaZe15E4whqNuV9D1pjAsvjSQYtDQY1PSGwbO0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=Z4ifZzY7; arc=none smtp.client-ip=188.40.0.86
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=risingedge.co.za; s=xneelo; h=Message-ID:References:In-Reply-To:Subject:Cc:
+	To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:reply-to:
+	sender:bcc; bh=ObvZZnhqWGMMI4j2NDLft9bUQX4DpsXHSeMG4OORKkw=; b=Z4ifZzY7EFOSBl
+	bfNwVlfUzqlHP03HuxgoOCSCCl48qdE9/Ah2FQxCue3ZJbiJ37e4wOro0gYTKoXY9vk9CISeT1aAY
+	vVC62HCa5+G5FRinzgL/kYqFCKf5TESpoL3Wz80oQ5q3c4X2pEsW+QS4pQICN5rfl8b1BigPAI6D5
+	+k7VO2Ensq0vUZBxlAPKm++oMmnwk8slRia+WEpmMYxsoJUg24MzvFv3kytpz3vw4ROjB3EKebJiR
+	9rfyBbCo1eNf+Lpz7VNqOi8D4PFvjo1FlOijNII1qXfaQAEMjHAUFLZydPVxinWJddty6o4Cf45Q1
+	42HAVyVxPoJy3RiR4/4A==;
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+	by antispam3-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <justin.swartz@risingedge.co.za>)
+	id 1riaAT-004l26-AV; Fri, 08 Mar 2024 15:21:48 +0200
+Received: from roundcubeweb1.flk1.host-h.net ([138.201.244.33] helo=webmail9.konsoleh.co.za)
+	by www31.flk1.host-h.net with esmtpa (Exim 4.92)
+	(envelope-from <justin.swartz@risingedge.co.za>)
+	id 1riaAS-0000N5-92; Fri, 08 Mar 2024 15:21:44 +0200
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/5] clk: qcom: Add camera clock controller driver for
- SM8150
-Content-Language: en-US
-To: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Abhishek Sahu <absahu@codeaurora.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: Stephen Boyd <sboyd@codeaurora.org>, linux-arm-msm@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org, Ajit Pandey <quic_ajipan@quicinc.com>,
- Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
- Jagadeesh Kona <quic_jkona@quicinc.com>
-References: <20240229-camcc-support-sm8150-v1-0-8c28c6c87990@quicinc.com>
- <20240229-camcc-support-sm8150-v1-4-8c28c6c87990@quicinc.com>
- <18567989-fb60-49ae-92e6-94e1bc2fa1c7@linaro.org>
- <83fd1995-a06e-b76a-d91b-de1c1a6ab0ea@quicinc.com>
- <4817a5b0-5407-4437-b94a-fc8a1bfcd25d@linaro.org>
- <e2627a99-307f-1e10-abfd-ce688cc2ec03@quicinc.com>
- <d893e8f8-66a7-4460-9468-0f3a359cece7@linaro.org>
- <35a7ad40-aaf4-476e-8582-b83bac284881@linaro.org>
- <c892f773-7716-4736-3499-5c8254e3618e@quicinc.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <c892f773-7716-4736-3499-5c8254e3618e@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date: Fri, 08 Mar 2024 15:21:44 +0200
+From: Justin Swartz <justin.swartz@risingedge.co.za>
+To: =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
+Cc: Sergio Paracuellos <sergio.paracuellos@gmail.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger
+ <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, linux-mips@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v2] mips: dts: ralink: mt7621: add cell count properties
+ to usb
+In-Reply-To: <c445fd12-f8a8-41df-bee8-8b126b26110b@arinc9.com>
+References: <0001-mips-dts-ralink-mt7621-add-cell-count-properties-to-.patch>
+ <20240307223756.31643-1-justin.swartz@risingedge.co.za>
+ <c445fd12-f8a8-41df-bee8-8b126b26110b@arinc9.com>
+Message-ID: <067071a9d57ffb09f437718cf905b121@risingedge.co.za>
+X-Sender: justin.swartz@risingedge.co.za
+User-Agent: Roundcube Webmail/1.3.17
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: Combined (0.02)
+X-Recommended-Action: accept
+X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT+eZKPMCAkNhsVy7Wze5JuSPUtbdvnXkggZ
+ 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wCPRB8bAzJcv2cv+UqiTTc2+CpNcmBnO4XM3Sck4bwNogU
+ WCl1nkLBzZX0KuJ9bXiS85Z42w/+2OBolTNFbPomXFWCX8oNdggW7HE9XDTdSejrkEpbuUvwMvHx
+ 3T+KSG//gbuP7hnUK8NQdLwsVWKIFDZRrTGv3rxiw9tFrqFSCFNiLZt/QXQnOBRD+jq1HsKsDh/6
+ Srgk2K3gr1VBfJbChkYH6fbrypLNrde+UooQVNLReLErukdelEOHUIpaBbp5GdnsN8+UvimwMinK
+ 0+Txhz2u9qvrL2PODYgMZQApJXOjDLkqunZ9NcY2bHZn7CfFscMZZf3sCkN20I5vMh4akiObI7Kj
+ vK7X04QEin24qbfMFd8eGjnYW8aSH5qj4ujh/13psIvqSqJFa1CcANErDW/w69saM9prk3jNnHtn
+ nuEt/J9wDZeQfiNOYsLDFBdwYt2XtlLzy7G7T4kla0JNnAWQx3FS11bhwUa9HCIwKB+TroNcRY33
+ oNmH4nRQzHQazgY7lmveanvOdQzf6IMJ3345q/s6ySNrGnXycmhg3OV3zLgvFM9V92BlAE9xGCJ0
+ xYCHwzEoZpUBagq+YQPMLtBcNrQxKZYuPe8bdCyw79zlPbqLQkZr26Lcxdvj8cqI+CogZdOhX7v3
+ ClXzrmMENhJLl6MBfhzHVBR0wHQZxzIUka7Uq615Mik1qzcz30+tdk6yIuh9K7v+Nq0Cm3JVhle6
+ F/kpBdN+oWjoATjEFDwcaiz0R34rhTN+GTbl4uS+pZovX9cex7Ac4fawcerGI7TrGXpM/B/M0BZd
+ PfIU1BX7pZc1sE3vsz58auH/srM2fgZ9JmgLbj7sqoEiwv7LCxIiAE5ODMnmwjvj2589zjbyZCiM
+ WpBpW8YvoIIqmZcWhL/r/eFjMjJnMHeiAPOVAT1rE1/vP68Bb4z3v3h3gCdXrv2+9GnNX30LKqXb
+ fwFKgm/rnYBl+Mj5KqOl6Jzub/f3QhLRbOgisvi5VU9eNBtgo6zjiatjNO/pnMCjuIvXs/AyV/Ns
+ URB/R+FlEHyAzksgfaRvdgw0WK34QWnzHHMcN6qoXPjenLhIOF1oeRYbjF1Hp647mOWoQlc3hL3c
+ dBMSQgQtiTUcJp5roVy0aeRaEElbOe2fP+D3ZzQfg594u/m4iBmYb1/LCV4/EuVHup06w3Vwxf9C
+ F7D6LKKRTfdjzQ6YC7Heg3Xf7O1TOd6RcY/MXB8eEq3bCN2QohZvyS03iBmgsz450Kmjd3fGV9di
+ 8pECEDQlq6/G7i+xG+VFX/95gERVFH1TbKdKoLY3Ibtf63VNbf0lrvssY+k7AHGi1NevGWTo2+h8
+ Lhk4HCeZR7ymlGVRtthBJ2y8A5arx6JItKpFaUNPGMMlvbMX0nyK1NiAJ0y2Qvvn6ds6mor35w4f
+ SfHzQbABJfgy21HclcZkPRq7NhoxyMwqi8Q23Rgadfh5T5n5D4OHHpbEIgsllZKWnzc5M5WlNtVJ
+ qo05MS+4ayUpOtEhdxekWDmK9g==
+X-Report-Abuse-To: spam@antispamquarantine.host-h.net
 
-On 08/03/2024 12:40, Satya Priya Kakitapalli (Temp) wrote:
+
+On 2024-03-08 14:01, Arınç ÜNAL wrote:
+> On 8.03.2024 01:37, Justin Swartz wrote:
+>> Add default #address-cells and #size-cells properties to the
+>> usb node, which should be suitable for hubs and devices without
+>> explicitly declared interface nodes, as:
+>> 
+>>    "#address-cells":
+>>      description: should be 1 for hub nodes with device nodes,
+>>        should be 2 for device nodes with interface nodes.
+>>      enum: [1, 2]
+>> 
+>>    "#size-cells":
+>>      const: 0
+>> 
+>> -- Documentation/devicetree/bindings/usb/usb-device.yaml
+>> 
+>> This version of the patch places the properties according to
+>> the order recommended by:
+>> 
+>>     Documentation/devicetree/bindings/dts-coding-style.rst
+>> 
+>> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+>> ---
+>>   arch/mips/boot/dts/ralink/mt7621.dtsi | 4 ++--
+>>   1 file changed, 2 insertions(+), 2 deletions(-)
+>> 
+>> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi 
+>> b/arch/mips/boot/dts/ralink/mt7621.dtsi
+>> index 5a89f0b8c..7532e17dd 100644
+>> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
+>> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
+>> @@ -289,10 +289,10 @@ usb: usb@1e1c0000 {
+>>   		reg = <0x1e1c0000 0x1000
+>>   		       0x1e1d0700 0x0100>;
+>>   		reg-names = "mac", "ippc";
+>> -
+>> +		#address-cells = <1>;
+>> +		#size-cells = <0>;
+>>   		clocks = <&sysc MT7621_CLK_XTAL>;
+>>   		clock-names = "sys_ck";
+>> -
 > 
-> If BIT(0) is set from probe, during any active usecase, the clock gets 
-> turned ON automatically when the power domain is turned ON.
+> Please keep the empty lines. It's easier to read. I don't see anything 
+> on
+> the Devicetree Sources (DTS) Coding Style that would restrict this.
 
-Sounds like a very dirty hack really doesn't it.
+The reason I removed them was due to the SoC DTSI example shown in [1]
+lacking empty lines between properties, but then using them instead as
+visual separation between properties and child nodes, or at least that's
+how I understood it when I looked at it.
 
-Can you point out where ?
+Personally, I prefer the look of the SoC DTSI example - but I don't mind
+recreating the patch set with the empty lines between the properties 
+left
+entact.
 
+As there is a mix of property spacing and ordering styles in mt7621.dtsi
+already - what is the consensus on what a node in this file should look
+like?
 
-> But when we use CLK_IS_CRITICAL flag, the framework keeps the power 
-> domain ON and doesn't let the power domain to turn off even when there 
-> is no active usecase.
+I also don't mind following that pattern and cleaning up the whole dtsi
+according to that if it'll save us all time and energy in future.
 
----
-bod
+Regards
+Justin
+
+[1] https://docs.kernel.org/devicetree/bindings/dts-coding-style.html
 
