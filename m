@@ -1,141 +1,120 @@
-Return-Path: <devicetree+bounces-49480-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49481-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 700A78769B8
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 18:21:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39F008769D4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 18:28:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E9009B23B84
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:21:45 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E5DDA2835C4
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:28:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C03742C699;
-	Fri,  8 Mar 2024 17:19:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 98DE850A9D;
+	Fri,  8 Mar 2024 17:28:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="dBaP8mSR"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="bpfUZI2l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outgoing6.flk.host-h.net (outgoing6.flk.host-h.net [188.40.0.77])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com [209.85.128.42])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D272282E1;
-	Fri,  8 Mar 2024 17:19:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.77
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E2D4240873;
+	Fri,  8 Mar 2024 17:28:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.42
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709918384; cv=none; b=k2LwKnBkhEHE5zjcH5ysM+DqEdZiQ3iH0HiKGTmrVBR+8Hh0//m51V2xHIFzWDbikQoSDmA7vH8udhuf/7py7PjDN+9cV8covmNgPS0MrkiFkxALf9e5M9N3z5iQ5qoEUs3BOYkE21K0ExhzcgbNX6rjV3xJHytyZGHyXeQle2Y=
+	t=1709918893; cv=none; b=PxuwlhqlyEIxpE32MLi0bVtBbcQaLdbCaVxmpc+PSBnHbJ4t5KYm99eS2IejvpZRrMrjN+SKMBU8UzRg0Z3qoM5fDzTINhm4s84PpGJi+zENb7Bov8OVRptJXpHo0GkacduzUnXVrkJISl0tQVDV/s2WP+CAdxJUwCdErGCgv3w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709918384; c=relaxed/simple;
-	bh=pu2djzYCt+PJn5YBXm8TLI2sMKIP9W9f6BUNV602+hI=;
-	h=MIME-Version:Content-Type:Date:From:To:Cc:Subject:In-Reply-To:
-	 References:Message-ID; b=fL8Dv44n/mWRmD25Wci4m4Z0H99NHDtkOGk8I1oecBvXgqUJ1Hzdu6ttE60dv/Q2OM+jWMsFY7sYd5bKRZ71mh4uHnWEX+VS0q/BHYh/vhH4qUHXYi2/Uzh7CjBzgummFxit48MUx2FEZn+lGVIS/FWm+94kQZYsvKMcNx4AJR8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=dBaP8mSR; arc=none smtp.client-ip=188.40.0.77
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=risingedge.co.za; s=xneelo; h=Message-ID:References:In-Reply-To:Subject:Cc:
-	To:From:Date:Content-Transfer-Encoding:Content-Type:MIME-Version:reply-to:
-	sender:bcc; bh=a/vpHfNPzt7TGK8d8dpGB4WwTK9WQCuP3uAyqQISEGU=; b=dBaP8mSRxS4lEh
-	GjSu90TDy9meTMekBLoEETSGJKVQBi0b/AW97xPPf57MxSW3J5rxw9NCeTPn1JaIT2HNHhtsr0KtF
-	Gk6aloHiLLFM6fFHsFS4ztSXtFk6SMBsVQcVoLnPBfDWsT9nUbneatAR/jesh+fdBPtFhereWT17F
-	qdQV4Ot2qVtE+C5bc1ZNbWD+iOrDN60fWpcUpYmFME4ONWJVjiKXJo075hI30XK4NFf8UnkTEi5HC
-	Ynyu3URiYC8wievULGd5b3QG93hU/Nx8WE/RuhnlHOpTrXZTE3oQChFfbdRUDjFuc9H9BRYxMBdKT
-	c8+/MvAjLZWq6NYA0URA==;
-Received: from www31.flk1.host-h.net ([188.40.1.173])
-	by antispam2-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1ridsc-00EpVe-3q; Fri, 08 Mar 2024 19:19:36 +0200
-Received: from roundcubeweb1.flk1.host-h.net ([138.201.244.33] helo=webmail9.konsoleh.co.za)
-	by www31.flk1.host-h.net with esmtpa (Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1ridsa-0007Bk-MV; Fri, 08 Mar 2024 19:19:32 +0200
+	s=arc-20240116; t=1709918893; c=relaxed/simple;
+	bh=4hHUnGXuaiO8AHvEDB9MWiIozPnZ+g3QRXMnBCM2jKs=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=oAJGda1Szp4QiN0joP4g9yg2xAum3VOL0FcpUHjRd0dy10AZ0y1JdG48mwG7AgaGGBxRje2CkspyYsAfEZ4bGhMHuIWYwZ4wdhwX4pfRYA0c5sIMWSNmZNG8zxduMFQtpLUxsOpJzzLK0NDiNcdAJhtjgQjIkqt+5zDNs2ZRemc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=bpfUZI2l; arc=none smtp.client-ip=209.85.128.42
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f42.google.com with SMTP id 5b1f17b1804b1-4131804e695so5515325e9.0;
+        Fri, 08 Mar 2024 09:28:11 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709918890; x=1710523690; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=oSvcLp54V6bd+QfJj8hs/Ha+wibZoBQb6WsMRZIVEYc=;
+        b=bpfUZI2lM1Dzi1wIPbCIvAHq0h3qwACSowIqFkANm7hvdKDC5qbK8ZQh5YYGaPlRVM
+         YRlPq2jyRdNA9QACKyF91J1DLjZyU89SWoA1YOCEIm2LDEtSsXlFsCJwHPi8fOOYglcm
+         FZE1sg5MZyzOccY71HNdg6N+XkpMxW2ucdlqkYL8eOYT5j43C9JctJGjYDwRHbuQWOJz
+         kAHWh7VdXtf8D/HPWSzK2ElRM77TjYj/LYSQ/RYc1+VAXkIC4s5PjpwpZvA97QXRptU1
+         0MuHsbR7wKGcdajojA6NRLY7l9D+/nfCoIabUwPuqEWg6s75uvo5uBiRlGMQVdgrJmUt
+         yUDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709918890; x=1710523690;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=oSvcLp54V6bd+QfJj8hs/Ha+wibZoBQb6WsMRZIVEYc=;
+        b=TrHCjAq8b6C/ZUKHpjqNqdEaM8Lb9VG1OhizLFy6epdhVxSLrNl5lqcE9UW0KX0OkE
+         QZAuzfYRXCtUsdeyK/8S4XvkPSmqDclZBOSibhD8np8jmqS/4FQe/KbOaAYtoNaM37K9
+         MEoX82SvralEeBvaZsxC0sXA9yvsVJFKhNkSbRIoYx+jlNadFWWGHMvcsOTNc/S1YUDA
+         A5gHWN6wOSZ/N9orzJGvTes8u6EfEQR8SqO9FSBpMjRpRhOJYkHWEXo+JkrOPHRBl+ns
+         FMGcNS9kZkNqTQkzgT6mRdDYIGzUPdRxvn5YTkI8e6UTjrqpZFqKIk1LdeAOnsA5Onl3
+         tpDg==
+X-Forwarded-Encrypted: i=1; AJvYcCX5GH/QJVeogbkGPkCev7py4Nixnkr1OVn+j9DDJrYRvl5G1pZi7YO3sAMR8aO55+poEZeNGRT/oQMdGhiUCmUrLrvxYjSMKMTGHL5fuFEU4Z9SGF8a3qOjYBoDXSOfjRgvLKFGUHZ/yr5XwnHIzglY+zPia2e577sSHMFRRMiSMsJyqA==
+X-Gm-Message-State: AOJu0Yz+6G1zlpbLHmu/qgMKV21JNgLYY1LIsrDE4JAVO2FzC7NVzYe4
+	DwIT4xevX6++dB13AwVnxlbtK6lqSfCDlrq5jd6gwA+QCRbZvdRQ
+X-Google-Smtp-Source: AGHT+IFSNu17CNBwJ6aaJDmlYNJicTkFkbIrk0c+zyw0kVHx0fxpdINlt8niAZByIg6naBZlyoe/LQ==
+X-Received: by 2002:a05:600c:1d23:b0:413:74e:a417 with SMTP id l35-20020a05600c1d2300b00413074ea417mr792791wms.17.1709918889894;
+        Fri, 08 Mar 2024 09:28:09 -0800 (PST)
+Received: from prasmi.home ([2a00:23c8:2500:a01:3c2e:cd45:f50f:f083])
+        by smtp.gmail.com with ESMTPSA id jh3-20020a05600ca08300b0041304100fa9sm6445317wmb.45.2024.03.08.09.28.08
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Mar 2024 09:28:09 -0800 (PST)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Chris Brandt <chris.brandt@renesas.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH 0/5] Add RIIC support for Renesas RZ/V2H SoC
+Date: Fri,  8 Mar 2024 17:27:21 +0000
+Message-Id: <20240308172726.225357-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
 Content-Transfer-Encoding: 8bit
-Date: Fri, 08 Mar 2024 19:19:32 +0200
-From: Justin Swartz <justin.swartz@risingedge.co.za>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: =?UTF-8?Q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>, Sergio
- Paracuellos <sergio.paracuellos@gmail.com>, Rob Herring
- <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Matthias Brugger
- <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, linux-mips@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v3 1/3] mips: dts: ralink: mt7621: associate uart1_pins
- with serial0
-In-Reply-To: <eec5be72-e27f-4068-ac7a-566605f3256c@linaro.org>
-References: <20240308155616.11742-1-justin.swartz@risingedge.co.za>
- <20240308155616.11742-2-justin.swartz@risingedge.co.za>
- <70822db4-d642-4180-9db8-eb0aa5728ef1@arinc9.com>
- <bec06da5c4099898d9e531181d0797ca@risingedge.co.za>
- <eec5be72-e27f-4068-ac7a-566605f3256c@linaro.org>
-Message-ID: <0ad4df2896fe0a3db06d3bcacbcf5931@risingedge.co.za>
-X-Sender: justin.swartz@risingedge.co.za
-User-Agent: Roundcube Webmail/1.3.17
-X-Authenticated-Sender: justin.swartz@risingedge.co.za
-X-Virus-Scanned: Clear
-X-SpamExperts-Domain: risingedge.co.za
-X-SpamExperts-Username: 
-Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: Combined (0.06)
-X-Recommended-Action: accept
-X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT8Wv6VWwHFMFDV5KaGg4k2APUtbdvnXkggZ
- 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wCPRB8bAzJcv2cv+UqiTTc2+CpNcmBnO4XM3Sck4bwNogU
- WCl1nkLBzZX0KuJ9bXiS85Z42w/+2OBolTNFbPomXFWCX8oNdggW7HE9XDTdSejrkEpbuUvwMvHx
- 3T+KSG//gbuP7hnUK8NQdLwsVWKIFDZRrTGv3rxiw9tFrqFSCFNiLZt/QXQnOBRD+jq1HsKsDh/6
- Srgk2K3gr1VBfJbChkYH6fbrypLNrde+UooQVNLReLErukdelEOHUIpaBbp5GdnsN8+UvimwMinK
- 0+Txhz2u9qvrL2PODYgMZQApJXOjDLkqunZ9NcY2bHZn7CfFscMZZf3sCkN20I5vMh4akiObI7Kj
- vK7X04QEin24qbfMFd8eGjnYW8aSH5qj4ujh/13psIvqSqJFa1CcANErDW/w69saM9prk3jNnHtn
- nuEt/J9wDZeQfiNOYsLDFBdwYt2XtlLzy7G7T4kla0JNnAWQx3FS11bhwUa9HCIwKB+TroNcRY33
- oNmH4nRQzHQazgY7lmveanvOdQzf6IMJvXeR9sWP3X7B861DTGeXmiBZB5ABM5ibrJKBc41fzX2f
- c4dPBW7pWChw4uEjGhn8NxWJwjYpP3+Q3/7iG2wtXpUcDQ6SyB7RUHhtw6evVjjgo+5B/jmqOvZj
- iTeRCozF+pjfbFrzHCaFHgNTrYhVbBAqR8ZRvY88PgTw/yJlftBcHX6tS8NW54gm54VAvfk9VDzu
- 2DWvs648c5Z9erCJvQs7NHJCRvPPwtX/YZRy1/6kBVM18TehOmSn2kZRt3z8CHTZnKdQqcB0QMMU
- IPF3mL0sZmYqDqSi6Ubx7BN0H0IaZOsZnP36dPZwQWhvr8FGGENbqE9x654AXkUfGHPAHnWD1MEm
- 8zNnsSuSxjl6RVTXva2Jl4AHe5oTGEWuK7wQuHiJKcf5Sqd6P3zHxU4Ham35bIM7+pzQRR2+p5za
- 8H1gUaDJZGpg6c2oigrh+YcF3SeOS5epce2vBFQn8BLQG4wdJz5OZPl/85ViK8Ea0fe5iniRDU9a
- IkFLX1Ne1hGTitUHsPftyxriH1hAvmSO1crrLwiF2BozUnkjKLcelPzx2oqVYjg7pBU6N7n2Xnf9
- ORWrllgKtBSNx6xUC0rhukb6/HI5FFTbPOoZF9qxZ4vf24IFf3S/QstrsvmHry2RQMdJZ93srF2r
- +35mEt2FC3cXutruHTpS87YkskBoFo6eZ5Uv5yUh4sH+KRvQOJ2675fcuW/3lDmDZZ7XgBhunFdj
- VYxKH3qWyoySMt2NXQeSeCQL64BFVPTx/kcAi/BxxCuBHKZE9WCF1zdBVVT8jZUewdfxHtr3FaH+
- eXAry2dy2DNwOgV373pfDhBQ21Od8BCsodKtWDQizmRHoSVjKnexcCkQ+p5zWKzxeWKxLCyS8776
- l4RSwc4z5cqDb97hdiFVwaP90eVaqnDphEW4xEWnj3iKGpP30awjRzKpQ4kPl+3D1YhNMZlGTB68
- YWMe6VM9RYQVmV8q7nN/oibcn491jt+pt12gBHaGoo19huz2OKHH5lr9xXvSM4nM3avg
-X-Report-Abuse-To: spam@antispamquarantine.host-h.net
 
-On 2024-03-08 19:13, Krzysztof Kozlowski wrote:
-> On 08/03/2024 18:01, Justin Swartz wrote:
->> On 2024-03-08 18:14, Arınç ÜNAL wrote:
->>> On 08/03/2024 18:56, Justin Swartz wrote:
->>>> Add missing pinctrl-name and pinctrl-0 properties to declare
->>>> that the uart1_pins group is associated with serial0.
->>>> 
->>>> Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
->>>> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
->>> 
->>> Reviewed-by: Arınç ÜNAL <arinc.unal@arinc9.com>
->>> 
->>> Please add the trailers from previous patch versions from now on.
->> 
->> What do you mean by trailers?
-> 
-> https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Thanks, Krzysztof.
+Hi all,
 
-I thought I had done this with this patchset on all three patches,
-but if I've accidentally left anyone out - sorry about that.
+This patch series aims to add RIIC support for Renesas RZ/V2H SoC.
 
-Regards
-Justin
+Cheers,
+Prabhakar
+
+Lad Prabhakar (5):
+  dt-bindings: i2c: renesas,riic: Update comment for fallback string
+  dt-bindings: i2c: renesas,riic: Document R9A09G057 support
+  i2c: riic: Introduce helper functions for I2C read/write operations
+  i2c: riic: Pass register offsets and chip details as OF data
+  i2c: riic: Add support for R9A09G057 SoC
+
+ .../devicetree/bindings/i2c/renesas,riic.yaml |  21 +--
+ drivers/i2c/busses/i2c-riic.c                 | 132 +++++++++++++-----
+ 2 files changed, 109 insertions(+), 44 deletions(-)
+
+-- 
+2.34.1
+
 
