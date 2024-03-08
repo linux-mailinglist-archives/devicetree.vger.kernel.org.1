@@ -1,174 +1,114 @@
-Return-Path: <devicetree+bounces-49509-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49510-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9121F876B87
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 21:05:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A0C8876B95
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 21:10:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4A774283527
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 20:05:57 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B974A283037
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 20:10:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E763B5A7BE;
-	Fri,  8 Mar 2024 20:05:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 937475B5D9;
+	Fri,  8 Mar 2024 20:10:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="E9jKrthm"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="sD8g9OJb"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE9862C191;
-	Fri,  8 Mar 2024 20:05:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6379B5A4C0;
+	Fri,  8 Mar 2024 20:10:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709928351; cv=none; b=aXIJfgqxouBDkvycqrjHyL1ggrqFfjv5Wz6J3utaCVLF+nS6lWFWtWslqT37iyNONH7ZLeRnPNUORtS//2rgmWkHB5wtIGuhrqImv3b5C6eIGQ4dyxKrsDNYAqVhdXzKINlg59978AOfhRENc101+PrYesY3D2CFUGBxr9FDepI=
+	t=1709928650; cv=none; b=uS/5reTb6WUQPlnT94ylxxZX+/VDGfyrT+fdu06pTgBTK7Aik6XdUqKlg9k4erEnlHrBbnHhfNaVy6LC4RVYpD/G9ssDSU+scA5U1YD65wVfdtKdFKF0eCQwQWsG1HlKpihErJ7/ix9wTIL6br+HH44J9YoYR3fwybQbe5XQOk8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709928351; c=relaxed/simple;
-	bh=Fjbr8IfY/JuQgJCrOKUOPWAPqtOc7XVMJSi1kxk8q3g=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=lgFC7ZnuQVTLIUWe3H4tooYmnFCqg7zQw90PR5SpySHrfvepvNeea7+o/tch5d8MYv6l29R96AbNlj0HvZY1QrQkxwm3hqP11PXmMHuoaYXuk1ZwhqGAowrcxcijM/ER1XBdEBtwoE9BhX2ycYRSmZonfiqD5olc179yZC5hJNk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=E9jKrthm; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12EF0C433F1;
-	Fri,  8 Mar 2024 20:05:50 +0000 (UTC)
+	s=arc-20240116; t=1709928650; c=relaxed/simple;
+	bh=PZVgPEVnPibB3udRRQb2fiWedaeAN/jFnvY74waSR2Y=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=E/Xf/2vsYjfL8P/hrEcH64m8BgYijd4U4WZ461L8a6TBv5ANSRhjdBbxq1m5hYOPbDq4OskjySqn551pbuBE9PgduqIgYTeBmv7Rtv4UsDB/ipvO1JEHqKBDI8l9xYg5By0ffso+0FaU8kPAfVwZgBfcRBej4XUKp/euhyccMJo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=sD8g9OJb; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF3B0C43390;
+	Fri,  8 Mar 2024 20:10:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709928351;
-	bh=Fjbr8IfY/JuQgJCrOKUOPWAPqtOc7XVMJSi1kxk8q3g=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=E9jKrthmWHS+OdgLrwbXboECUrSiykTuI9kCerRbgKkz2bvcXESmeXA80yTdOgpUN
-	 S7o4GOEOpvEsVgO0f7+REU2to6D4AE32EJ5VqGoi4wnC0EUwqdCsNrG7M9j3wXtt8h
-	 Cq5x4r130Hl9f1bnmzjE9SfToCGdbSmiYwNFZBVx1O77K8A5B0p5/5YbYcyLbBHYDZ
-	 t8ygjfbPSI367U8m2GZ4yKyNPfc/P6x0AAXMhGsW4rSfhE2v7HpBbS3xXyOYAV7Dt2
-	 9cUh52J42UfNoelFPa0//kYfpi6xUiVvemlbMMyh8uJ5RNxtl+qZhJdoAl+ekaMEnO
-	 e687xCWQTqDLA==
-Date: Fri, 8 Mar 2024 14:05:48 -0600
-From: Rob Herring <robh@kernel.org>
-To: Herve Codina <herve.codina@bootlin.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Frank Rowand <frowand.list@gmail.com>,
-	Saravana Kannan <saravanak@google.com>,
-	Lizhi Hou <lizhi.hou@amd.com>, Max Zhen <max.zhen@amd.com>,
-	Sonal Santan <sonal.santan@amd.com>,
-	Stefano Stabellini <stefano.stabellini@xilinx.com>,
-	Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-	Allan Nielsen <allan.nielsen@microchip.com>,
-	Horatiu Vultur <horatiu.vultur@microchip.com>,
-	Steen Hegelund <steen.hegelund@microchip.com>,
-	Luca Ceresoli <luca.ceresoli@bootlin.com>,
-	Nuno Sa <nuno.sa@analog.com>,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v5 0/2] Synchronize DT overlay removal with devlink
- removals
-Message-ID: <20240308200548.GA1189199-robh@kernel.org>
-References: <20240307111036.225007-1-herve.codina@bootlin.com>
+	s=k20201202; t=1709928650;
+	bh=PZVgPEVnPibB3udRRQb2fiWedaeAN/jFnvY74waSR2Y=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=sD8g9OJb0uduVzJrCg1WxxYd6iC04lPsfL5u/XzSN/JKjsNkzHo/G+S216e+tPAhW
+	 1PLj1CYPyL0vp1ypTEM7CVmbbwSvTd6jgoW1XVHuovXcU4gUdvrQ5qSqtW2Ebavrfu
+	 F9YFB4SJIbukMj0nffZbQ3GYwy2y+6h6rem32GEEAdw/n/EzHrda51vTfSHvGjybUT
+	 +xHdfMtHBwNd3QZ0LenFd7LaMPyddoEbvcxCaRW7rtM5QHYJJ8Bawn//KVBW57KZ+s
+	 MH3j815yziTuQMLdQj3QIDR90LrJ3U744K+aByvJLVD65M2JmOecU20TRoYCEgLh+i
+	 pf5yB9J13usEQ==
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5132181d54bso3429002e87.3;
+        Fri, 08 Mar 2024 12:10:49 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCUhvUW2kHWpuk/NIWzLI/quvQdbmxtC6fXyPkqVxCi88Jp4sTRY3aSmq/g6ytj1aEJAAl2kLche1FSEAzRySv1PfbOMf4BC+KpIVXSnliRbauay0GRkYCEDFNDtvAq5ZosZwLvOObGaJeByVXXoPFsLjiPH34ey/PzGWA9zYnhhw7dCWKbrziH8gQQYUVBad3fL4MmZjF1exPcP7KceFUnlwR03
+X-Gm-Message-State: AOJu0YxlNtqLsOvVzTZi9qWwIrvO3HXmvw1yiMfz9THVzUDZf05YRLKh
+	OyVcux/CnrYxaMDEfzsDbeNcVYYxbjDbOlXe94ZTa075k8QsOeyDr5wiPMu4KOYT9Kd+PRMI+a3
+	tN5MJo2yWFQK2/SaQOhUvyvYUdw==
+X-Google-Smtp-Source: AGHT+IHAlLu/YgXf9fgnCBXu/eXkitN0v2K3z4NJB2t5YlJpkUAop+Nej7MeSM40gzvNH6KIBfT4WJXOaeBNELitY6o=
+X-Received: by 2002:a05:6512:ba3:b0:513:2114:b70c with SMTP id
+ b35-20020a0565120ba300b005132114b70cmr82452lfv.69.1709928648132; Fri, 08 Mar
+ 2024 12:10:48 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240307111036.225007-1-herve.codina@bootlin.com>
+References: <20240129092512.23602-1-quic_tengfan@quicinc.com>
+ <20240129092512.23602-2-quic_tengfan@quicinc.com> <CAL_JsqJfsWaj9OPkvc34rBvx7W_3v9+1kZqNu6QKDsA=iWAA4w@mail.gmail.com>
+In-Reply-To: <CAL_JsqJfsWaj9OPkvc34rBvx7W_3v9+1kZqNu6QKDsA=iWAA4w@mail.gmail.com>
+From: Rob Herring <robh+dt@kernel.org>
+Date: Fri, 8 Mar 2024 14:10:34 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLbbRFijBXS5CyRm0P4FMY7bR3UUdgXA7xP4Z1oRevnzQ@mail.gmail.com>
+Message-ID: <CAL_JsqLbbRFijBXS5CyRm0P4FMY7bR3UUdgXA7xP4Z1oRevnzQ@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: update compatible name
+ for match with driver
+To: Tengfei Fan <quic_tengfan@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, linus.walleij@linaro.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 07, 2024 at 12:09:59PM +0100, Herve Codina wrote:
-> Hi,
-> 
-> In the following sequence:
->   of_platform_depopulate(); /* Remove devices from a DT overlay node */
->   of_overlay_remove(); /* Remove the DT overlay node itself */
-> 
-> Some warnings are raised by __of_changeset_entry_destroy() which  was
-> called from of_overlay_remove():
->   ERROR: memory leak, expected refcount 1 instead of 2 ...
-> 
-> The issue is that, during the device devlink removals triggered from the
-> of_platform_depopulate(), jobs are put in a workqueue.
-> These jobs drop the reference to the devices. When a device is no more
-> referenced (refcount == 0), it is released and the reference to its
-> of_node is dropped by a call to of_node_put().
-> These operations are fully correct except that, because of the
-> workqueue, they are done asynchronously with respect to function calls.
-> 
-> In the sequence provided, the jobs are run too late, after the call to
-> __of_changeset_entry_destroy() and so a missing of_node_put() call is
-> detected by __of_changeset_entry_destroy().
-> 
-> This series fixes this issue introducing device_link_wait_removal() in
-> order to wait for the end of jobs execution (patch 1) and using this
-> function to synchronize the overlay removal with the end of jobs
-> execution (patch 2).
-> 
-> Compared to the previous iteration:
->   https://lore.kernel.org/linux-kernel/20240306085007.169771-1-herve.codina@bootlin.com/
-> this v5 series:
-> - Remove a 'Fixes' tag
-> - Update a comment
-> - Add 'Tested-by' and ''Reviewed-by' tags
-> 
-> This series handles cases reported by Luca [1] and Nuno [2].
->   [1]: https://lore.kernel.org/all/20231220181627.341e8789@booty/
->   [2]: https://lore.kernel.org/all/20240205-fix-device-links-overlays-v2-2-5344f8c79d57@analog.com/
-> 
-> Best regards,
-> Hervé
-> 
-> Changes v4 -> v5
->   - Patch 1
->     Remove the 'Fixes' tag
->     Add 'Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>'
->     Add 'Reviewed-by: Nuno Sa <nuno.sa@analog.com>'
-> 
->   - Patch 2
->     Update comment as suggested
->     Add 'Reviewed-by: Saravana Kannan <saravanak@google.com>'
->     Add 'Tested-by: Luca Ceresoli <luca.ceresoli@bootlin.com>'
->     Add 'Reviewed-by: Nuno Sa <nuno.sa@analog.com>'
-> 
-> Changes v3 -> v4
->   - Patch 1
->     Uses flush_workqueue() instead of drain_workqueue().
-> 
->   - Patch 2
->     Remove unlock/re-lock when calling device_link_wait_removal()
->     Move device_link_wait_removal() call to of_changeset_destroy()
->     Update commit log
-> 
-> Changes v2 -> v3
->   - Patch 1
->     No changes
-> 
->   - Patch 2
->     Add missing device.h
-> 
-> Changes v1 -> v2
->   - Patch 1
->     Rename the workqueue to 'device_link_wq'
->     Add 'Fixes' tag and Cc stable
-> 
->   - Patch 2
->     Add device.h inclusion.
->     Call device_link_wait_removal() later in the overlay removal
->     sequence (i.e. in free_overlay_changeset() function).
->     Drop of_mutex lock while calling device_link_wait_removal().
->     Add	'Fixes'	tag and Cc stable
-> 
-> Herve Codina (2):
->   driver core: Introduce device_link_wait_removal()
->   of: dynamic: Synchronize of_changeset_destroy() with the devlink
->     removals
-> 
->  drivers/base/core.c    | 26 +++++++++++++++++++++++---
->  drivers/of/dynamic.c   | 12 ++++++++++++
->  include/linux/device.h |  1 +
->  3 files changed, 36 insertions(+), 3 deletions(-)
+On Tue, Feb 27, 2024 at 7:37=E2=80=AFAM Rob Herring <robh+dt@kernel.org> wr=
+ote:
+>
+> On Mon, Jan 29, 2024 at 3:25=E2=80=AFAM Tengfei Fan <quic_tengfan@quicinc=
+.com> wrote:
+> >
+> > Use compatible name "qcom,sm4450-tlmm" instead of "qcom,sm4450-pinctrl"
+> > to match the compatible name in sm4450 pinctrl driver.
+> >
+> > Fixes: 7bf8b78f86db ("dt-bindings: pinctrl: qcom: Add SM4450 pinctrl")
+> > Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> > ---
+> >  Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm=
+.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+> > index bb08ca5a1509..bb675c8ec220 100644
+> > --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+> > +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+> > @@ -17,7 +17,7 @@ allOf:
+> >
+> >  properties:
+> >    compatible:
+> > -    const: qcom,sm4450-pinctrl
+> > +    const: qcom,sm4450-tlmm
+>
+> I think you forgot to update the example:
+>
+> Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.example.dtb:
+> /example-0/pinctrl@f100000: failed to match any schema with
+> compatible: ['qcom,sm4450-tlmm']
 
-This looks good to me. I can take this given the user is DT. Looking for 
-a R-by from Saravana and Ack from Greg. A R-by from Rafael would be 
-great too.
+Still a warning in linux-next. Please send a fix.
 
 Rob
 
