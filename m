@@ -1,256 +1,258 @@
-Return-Path: <devicetree+bounces-49490-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49491-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 533B8876A4D
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 18:56:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 91D8D876A6C
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 19:04:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A2509B20D9B
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 17:56:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BFD3E1C2166B
+	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 18:04:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6583E40861;
-	Fri,  8 Mar 2024 17:56:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E977A4F213;
+	Fri,  8 Mar 2024 18:04:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Co8inQyq"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UP5kSPym"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f181.google.com (mail-pg1-f181.google.com [209.85.215.181])
+Received: from mail-ot1-f41.google.com (mail-ot1-f41.google.com [209.85.210.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B818136D;
-	Fri,  8 Mar 2024 17:56:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4CB3B4085D;
+	Fri,  8 Mar 2024 18:04:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709920605; cv=none; b=ODMlhCd2i97wGpIQcc7SgrGaMg/LNP0XUNI5sS8bYB3qQDqIxfba4duTHcgCMAuJRPuAOg7HvpDuDK4LkQwq/pX99DcGq3LgrfwIjiZhjJPnAbtacyvM11ADUIzkEHxicBYUnbdb1mwOI4GwC9yK+DJInTcFnA6yQvuJy1NC2po=
+	t=1709921088; cv=none; b=VqtgjT2Taf5+7v5PEqoP0Ptd++EtGg4K9WLURhPew3w6GQlXwQSHdXMB70JHUruo1xjQF+swOvVBfHQzxZB5+mHh5VgOoeXPwQ3ibuBK1ta2mHUR1fHJn1t26pJdKO1LevQlfmBw0o8+mMoTKkx1eiuv4id13GSMbLQUQ61e9q4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709920605; c=relaxed/simple;
-	bh=C3/OQ3lvmtWM5Fk2NQ/zYD5f1oUYWVti/SktEx2bsrM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VaGGcj+IlI4da48F3QAQ0EKhba8zonTf0cAjd5QmAogwuZw0k2GReBJMjh8HckJ4w3pnP0xwvz4blI+MGvN+lpT5HMHtWOyLl9wppFQ3S/g63rweC8mFbq/UE0cNb13v/EIbNJJt7yH3+Z3cP2QYFOF8gDE86Jqgk6VP6P8fEf8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Co8inQyq; arc=none smtp.client-ip=209.85.215.181
+	s=arc-20240116; t=1709921088; c=relaxed/simple;
+	bh=DgRla8Vemcg3N2Xu8hP2gOK08LWRmoXvUIZoE1kt93k=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=mN0IxMPV/WdTx2d1X6KiyWsc+bpHlaZS9kg1/sHuNaOD/+xlsQynJODwqfGcDl1m/toM5wppSDKElf6vnGnHBoAVT/dJYkdjxoX2T8CDwvd5RxHNqL7YagQkF2Te0PX9qOnIMcCxMoIAJANRdIYep3J9OePrxM5kN8ctQsM/A8A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UP5kSPym; arc=none smtp.client-ip=209.85.210.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pg1-f181.google.com with SMTP id 41be03b00d2f7-5cddfe0cb64so1599356a12.0;
-        Fri, 08 Mar 2024 09:56:43 -0800 (PST)
+Received: by mail-ot1-f41.google.com with SMTP id 46e09a7af769-6e4eaa4b394so1077536a34.1;
+        Fri, 08 Mar 2024 10:04:47 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709920603; x=1710525403; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OgXSP3d/pfH7TPIm6gVXNmyWtFVxa9g4fw/sbjv/wQ8=;
-        b=Co8inQyqmXSWrH9vIqskfxCxRB2/TjWpJT4W+1s7vq1uEgQJBBlkoG4vJcXhy1OaRr
-         oyprVVFoTivyThl3QtxX2Y7WSvrfT1p7MBrPOdHTBshQMK/m+9rwSz0HGbFRj43+dtGw
-         /GSWQHb6g4AIqPFye3IvKSn0E73EEqClCKxqoIqUtue4bIH02omn27qOmderTnXcm3Ih
-         dyZ/08VE1ErAHVzARtV2E4lagS2mwL9IQH9WzvfPY7tNZDBM26E62/YrB35SeCvl7g3Y
-         W0RkcbvGRotO/xaUMlDQttYw1AUMRFSoLiqbREsqbshU95v+UWxF9dB7X6dS5ZkCDZ6T
-         8tIg==
+        d=gmail.com; s=20230601; t=1709921086; x=1710525886; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Is7K4+wisW8bZSxpqo0nKy4Z8xog4B5RxdNeDQtbIQY=;
+        b=UP5kSPymdqA6qYlr6C7/84VZNPFvAGAPXJ+AaqEYfUWnWgh6JuM9WaE0ykhcxEzo38
+         DF2rwBukUSYWNMAYit99pdgrXLN36t83x7yqVDUJ9Q6h9ndZ+gnuYggG/92vALRHABZx
+         L86PUQWn5C6yzuVMOe/0MgYpVt13EFQ7Wq2ouumaZ2hUnCxugtypnRaWX2MjDNppMK0k
+         hKHfGMSy6dEngOyQzul/D4NrK74HUBZK5xzRY2LXK0wN4WBsoW2I+M4ZU5BC30KxdM+8
+         /nu9cGL2FYPO7IJCjqOE6fvZVN7PDnVcP31SaW/ZaA2YPKiP9CDQscbePFLaLnEV+GPo
+         f4Bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709920603; x=1710525403;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OgXSP3d/pfH7TPIm6gVXNmyWtFVxa9g4fw/sbjv/wQ8=;
-        b=XUNXnJ7WkkMP45iBdTtFxP9JJ6EViCmJo22ka/pTlhiXvyWi0Ww9CZMGHjzMqdAnYt
-         Qw3Z68DrwsePh67hvzGetrA8/ppl3ugRpq0zVeNh9r0rbUJ3jpObWhCvQCl2tFkuszSB
-         Zc3kqLafuqBo6lzoqGL7JXhZjOu6b3XuUhWDUACTYWIAVpSnR13dI3jf0pxMlir5YDcf
-         3CFzxR5hO5B9OlEvGLt7NhTjQVmPAVz5AcI7x3dhvFM5wO/BQ4EW5l7l8C0vElLcq5QJ
-         lP72p8thXlnnxCd3oa7I1EF5Fbry8gN3EWxzOMVzkOgdk4kUAkK1qZ80vO3F5mNJk5GP
-         2Ozw==
-X-Forwarded-Encrypted: i=1; AJvYcCWDn7tF6Nx766qefFsE5Ar1wlR7/rzqZGKMF9vmZScqqj8y4zeMqQuCISA31PKbgfwslraRQRbkbxfVabqM0mNU0vG9J8bLgXzvxOKMkJNo4gBfD6PjBn28lMHNRP7Er35iHV+XwTx2UQ==
-X-Gm-Message-State: AOJu0YxPKeexHdSp1Qtg0fEXTm/2fFardJ3bE4Dt9+ur43p3e4nhxAUp
-	Tbyh2gMRHPdd0DX8rzq/9Pi5w/NHsf+rM8NJfJY+lYAFAENMscc8
-X-Google-Smtp-Source: AGHT+IEjLZQEiki14E+8+WuQTj2DOEDO9pnd9LRofgXc5k2m0gMxe8g0kXRmMDI4Og1HNoFRHiM7HQ==
-X-Received: by 2002:a17:90a:8d85:b0:29b:6da4:277e with SMTP id d5-20020a17090a8d8500b0029b6da4277emr801752pjo.1.1709920602765;
-        Fri, 08 Mar 2024 09:56:42 -0800 (PST)
-Received: from [10.67.48.245] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id cx12-20020a17090afd8c00b0029bc28b8cedsm27722pjb.28.2024.03.08.09.56.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 08 Mar 2024 09:56:42 -0800 (PST)
-Message-ID: <9bb24a9b-4c95-49f9-8afb-2fdeeed64198@gmail.com>
-Date: Fri, 8 Mar 2024 09:56:39 -0800
+        d=1e100.net; s=20230601; t=1709921086; x=1710525886;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Is7K4+wisW8bZSxpqo0nKy4Z8xog4B5RxdNeDQtbIQY=;
+        b=dunow1ZOMZOj5erGGdFtl4XbEPb/6F+1PDivg3o83eWv3FvIxRWvqQqsimHOB96gXV
+         mpDQFjEVdjrLYrbf6tRJvGxRC7YtCeo5LdULNujzWud75Iftn3pTfmhRbIPfmYu8f987
+         pYs0cbsQBVgWgjMI1e+40p9wp0Lt/Pwm+N0BQ4qyjCp6XvYCZQFrdZCEtw/uMFoOIo6g
+         /ieqFWd1GKv5QNNL/x63XDzKRiRZ3YbieDc+WWGRvaKkNgPcawDaeO38F+uSCDVe7nGq
+         O1Sdc3xVziVqdCgJU90Bb6eY7hU14/590JlqAzxrV7exbqLjOK/6Hrmn3xhuITf3YE+i
+         iydQ==
+X-Forwarded-Encrypted: i=1; AJvYcCW8eRXHkPENP7640RTQlkmiyjZZi2JRH5GY9Qv8dkaCp6dMMQYr+S9xezEvuS+ot1PQPDHINoiRWsIA4MHN2y3Ru/Z+0vTjCUnD0y6WodJUM+ybzckcW7Zum+jmPLg9NIL09T4wEudVLXR+Ll+T/nzvkJpIS6f1LWmkU0JnP2rMLc0Vl8fr6NNIQGI4XZEHzCvlSOldYutHMoiAVc2jCxsEk+cna0xk
+X-Gm-Message-State: AOJu0YzeVxq87nGGNOjdP8uGAcBUZFBtjPKmbuC0dZ2HVxLUguWBdidL
+	1xj6WF/h0qKyCErfIsY/OwyFHCndDsmdzodi36Mjb0zd12vPDtjM7+bquWH3yWrjOnHb800wZrf
+	c3OQ5iTNZRo7tBs0izh+oTBP89JtPLcne12Q=
+X-Google-Smtp-Source: AGHT+IGqW7tdNTBPDYxaWB1aenTyJ6JRK/ye4Up6Ni3gBtz31pRs1tUqJe0ojNNBj7nQSkgkXh4tJlPaMz3Utnb2lqo=
+X-Received: by 2002:a9d:7ad6:0:b0:6e4:d6d8:fbaa with SMTP id
+ m22-20020a9d7ad6000000b006e4d6d8fbaamr12247845otn.37.1709921086307; Fri, 08
+ Mar 2024 10:04:46 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next 2/2] net: stmmac: dwmac-imx: add support for PHY
- WOL
-Content-Language: en-US
-To: POPESCU Catalin <catalin.popescu@leica-geosystems.com>,
- "davem@davemloft.net" <davem@davemloft.net>,
- "edumazet@google.com" <edumazet@google.com>,
- "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com"
- <pabeni@redhat.com>, "robh@kernel.org" <robh@kernel.org>,
- "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
- "conor+dt@kernel.org" <conor+dt@kernel.org>,
- "shawnguo@kernel.org" <shawnguo@kernel.org>,
- "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
- "kernel@pengutronix.de" <kernel@pengutronix.de>,
- "festevam@gmail.com" <festevam@gmail.com>,
- "xiaoning.wang@nxp.com" <xiaoning.wang@nxp.com>,
- "linux-imx@nxp.com" <linux-imx@nxp.com>,
- "alexandre.torgue@foss.st.com" <alexandre.torgue@foss.st.com>,
- "joabreu@synopsys.com" <joabreu@synopsys.com>,
- "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>
-Cc: "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
- "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
- "imx@lists.linux.dev" <imx@lists.linux.dev>,
- "linux-arm-kernel@lists.infradead.org"
- <linux-arm-kernel@lists.infradead.org>,
- "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
- "linux-stm32@st-md-mailman.stormreply.com"
- <linux-stm32@st-md-mailman.stormreply.com>,
- GEO-CHHER-bsp-development <bsp-development.geo@leica-geosystems.com>,
- "m.felsch@pengutronix.de" <m.felsch@pengutronix.de>
-References: <20240306172409.878928-1-catalin.popescu@leica-geosystems.com>
- <20240306172409.878928-2-catalin.popescu@leica-geosystems.com>
- <bbe3e611-a310-41f5-a037-4b7d5e914b94@gmail.com>
- <ddd2f984-e5e7-4708-a013-bfd668794466@leica-geosystems.com>
- <a25d4d76-a49a-4423-8916-5d7d9303b87a@gmail.com>
- <917f5cea-69d2-4ce2-a5a3-184332415fe5@leica-geosystems.com>
-From: Florian Fainelli <f.fainelli@gmail.com>
-In-Reply-To: <917f5cea-69d2-4ce2-a5a3-184332415fe5@leica-geosystems.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240308172726.225357-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240308172726.225357-5-prabhakar.mahadev-lad.rj@bp.renesas.com> <OSAPR01MB1587CFE774834B31820E7D5486272@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+In-Reply-To: <OSAPR01MB1587CFE774834B31820E7D5486272@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 8 Mar 2024 18:03:39 +0000
+Message-ID: <CA+V-a8uJO_qz6CaD2zUXC1Kf7tuM+Nzq6W+WHjy09NN2FAn+fA@mail.gmail.com>
+Subject: Re: [PATCH 4/5] i2c: riic: Pass register offsets and chip details as
+ OF data
+To: Biju Das <biju.das.jz@bp.renesas.com>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Chris Brandt <Chris.Brandt@renesas.com>, 
+	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	"linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>, 
+	"linux-i2c@vger.kernel.org" <linux-i2c@vger.kernel.org>, 
+	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>, 
+	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 3/8/24 09:48, POPESCU Catalin wrote:
-> On 07.03.24 19:52, Florian Fainelli wrote:
->> [Some people who received this message don't often get email from
->> f.fainelli@gmail.com. Learn why this is important at
->> https://aka.ms/LearnAboutSenderIdentification ]
->>
->> This email is not from Hexagon’s Office 365 instance. Please be
->> careful while clicking links, opening attachments, or replying to this
->> email.
->>
->>
->> On 3/7/2024 1:13 AM, POPESCU Catalin wrote:
->>> On 06.03.24 18:41, Florian Fainelli wrote:
->>>> [Some people who received this message don't often get email from
->>>> f.fainelli@gmail.com. Learn why this is important at
->>>> https://aka.ms/LearnAboutSenderIdentification ]
->>>>
->>>> This email is not from Hexagon’s Office 365 instance. Please be
->>>> careful while clicking links, opening attachments, or replying to this
->>>> email.
->>>>
->>>>
->>>> On 3/6/24 09:24, Catalin Popescu wrote:
->>>>> Add support for PHY WOL capability into dwmac-imx MAC driver.
->>>>> This is required to enable WOL feature on a platform where MAC
->>>>> WOL capability is not sufficient and WOL capability built into
->>>>> the PHY is actually needed.
->>>>>
->>>>> Signed-off-by: Catalin Popescu <catalin.popescu@leica-geosystems.com>
->>>>
->>>> Nope, this is not about how to do this. You use a Device Tree property
->>>> as a policy rather than properly describe your systems capabilities.
->>> I'm not sure what policy means in that context.
->>> BTW, dwmac-mediatek does the same with binding "mediatek,mac-wol" which
->>> is a commit from 03/2022.
->>
->> Policy here means you want a certain behavior from the OS that is
->> consuming the Device Tree, and that behavior is encoded via a Device
->> Tree property. This is different from describing how the hardware works
->> which does not make any provisions for getting a behavior out of the OS.
->>
->>> I understand this way of doing became "unacceptable" since then ??
->>
->> It was not acceptable then, but there is only a limited reviewer time,
->> and it is easy unfortunately to sneak through reviewers.
->>
->>>>
->>>> What sort of Wake-on-LAN do you want to be done by the PHY exactly?
->>>> Does
->>>> the PHY have packet matching capabilities, or do you want to wake-up
->>>> from a PHY event like link up/down/any interrupt?
->>>
->>> PHY is TI dp83826 and has secure magic packet capability. For the wakeup
->>> we rely on a external MCU which is signaled through a PHY's GPIO which
->>> toggles only on magic packet reception.
->>> We want to wakeup _only_ on magic packet reception.
->>
->> Then you need to represent that wake-up GPIO line in the Device Tree,
->> associate it with the PHY's Device Tree node for starters and add in a
->> 'wakeup-source' property in the Device Tree.
-> The GPIO I was referring to is a PHY GPIO not a SOC GPIO, so there's no
-> way to describe it into the DT.
+Hi Biju,
 
-Well, technically there is, it's just that the PHY is not registered 
-with Linux as a GPIO controller/provider, nothing prevents you from 
-doing that, but it starts raising the bar.
+On Fri, Mar 8, 2024 at 5:36=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.com=
+> wrote:
+>
+> Hi Prabhakar,
+>
+> Thanks for the patch.
+>
+> > -----Original Message-----
+> > From: Prabhakar <prabhakar.csengg@gmail.com>
+> > Sent: Friday, March 8, 2024 5:27 PM
+> > Subject: [PATCH 4/5] i2c: riic: Pass register offsets and chip details =
+as OF data
+> >
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > With an increasing number of SoCs reusing this driver, each with slight=
+ variations in the RIIC IP, it
+> > becomes necessary to support passing these details as OF data. This app=
+roach simplifies the extension
+> > of the driver for other SoCs.
+> >
+> > This patch lays the groundwork for adding support for the Renesas RZ/V2=
+H SoC.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Reviewed-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > ---
+> >  drivers/i2c/busses/i2c-riic.c | 59 ++++++++++++++++++++++++++---------
+> >  1 file changed, 44 insertions(+), 15 deletions(-)
+> >
+> > diff --git a/drivers/i2c/busses/i2c-riic.c b/drivers/i2c/busses/i2c-rii=
+c.c index
+> > 49a12f1ecdf9..3398d639b754 100644
+> > --- a/drivers/i2c/busses/i2c-riic.c
+> > +++ b/drivers/i2c/busses/i2c-riic.c
+> > @@ -46,18 +46,6 @@
+> >  #include <linux/pm_runtime.h>
+> >  #include <linux/reset.h>
+> >
+> > -#define RIIC_ICCR1   0x00
+> > -#define RIIC_ICCR2   0x04
+> > -#define RIIC_ICMR1   0x08
+> > -#define RIIC_ICMR3   0x10
+> > -#define RIIC_ICSER   0x18
+> > -#define RIIC_ICIER   0x1c
+> > -#define RIIC_ICSR2   0x24
+> > -#define RIIC_ICBRL   0x34
+> > -#define RIIC_ICBRH   0x38
+> > -#define RIIC_ICDRT   0x3c
+> > -#define RIIC_ICDRR   0x40
+> > -
+> >  #define ICCR1_ICE    0x80
+> >  #define ICCR1_IICRST 0x40
+> >  #define ICCR1_SOWP   0x10
+> > @@ -87,6 +75,13 @@
+> >
+> >  #define RIIC_INIT_MSG        -1
+> >
+> > +#define RIIC_RZ_A_TYPE       0
+>
+> > +
+> > +struct riic_of_data {
+> > +     u8 family;
+>
+> Do you need family as compatible have this information?
+>
+Yes this is added to future proof it, as the RZ/V2H SoC has some bit
+differences in the slave address register as compared to RZ/A and
+RZ/G2L. Comparing the family outside probe is not always preferred
+hence this is added as part of OF data.
 
-> The PHY is connected on the SOC MDIO bus, so the SOC programs the PHY,
-> but the PHY wakes up the external MCU which in turn wakes up the SOC.
+Cheers,
+Prabhakar
 
-OK, but that still needs to be described somehow, otherwise you are just 
-cutting corners and assuming that the pin from the PHY to the external 
-MCU is only driven when the PHY drives it, how about other wake-up 
-sources to the MCU?
-
-> 
->>
->> Now the PHY driver can know about the existence of a GPIO and it can
->> know the PHY is a system wake-up source, so the driver can call
->> device_set_wakeup_capable().
->>
->> In user-space you have to configure the network interface with
->> WAKE_MAGICSECURE which needs to propagate to the PHY driver for adequate
->> configuration. Still in user-space you need to make the PHY device
->> wake-up *enabled* by doing:
->>
->> echo "enable" > /sys/class/net/ethX/attached_phydev/power/wakeup
->>
->> If both WAKE_MAGICSECURE is enabled and the PHY device in sysfs reports
->> that it is wake-up enabled would you wake-up from the PHY's GPIO. Your
->> PHY driver ought to be modified to check for both
->>
->> device_wakeup_enabled() and wolopts being non-zero to call
->> enable_irq_wake() on the GPIO interrupt line.
->>
->> That's how I would go about doing this, yes it's a tad more complicated
->> than adding an ad-hoc Device Tree property, but it's more flexible and
->> it's transposable to other configurations, too. Whether that sort of
->> encoding needs to be in the individual PHY drivers or somewhere in the
->> PHY library can be decided if we have more than one similar
->> configuration to support.
->>
-> Yes, it's more complicated and it doesn't apply to our platform.
-> But, this doesn't really matter in the end, the problem I'm trying to
-> address here is to allow stmac for IMX to support PHY WOL.
-> Since the binding is not acceptable, I guess the only option here is to
-> remove flag STMMAC_FLAG_USE_PHY_WOL from stmac driver and replace it
-> with a call to phylink_ethtool_get_wol to identify whether the PHY is
-> WOL capable or not.
-> Then, how should we allow the platform to choose b/w MAC WOL and PHY WOL
-> if both are supported ?
-
-We don't have a good way to configure that decision consistently and 
-across *all* device drivers currently, what I can think of as the least 
-bad solution is to intersect between the PHY supported WOL modes, the 
-MAC supported WOL modes, and checking which of those is a wake-up enable 
-device via device_wakeup_enabled() and use that one with a preference 
-for the PHY since that is the closest to the wire. But this might be 
-good for me and you, maybe not for others.
-
-> AFAIK ethtool only knows about MAC WOL capability since it interrogates
-> the MAC interface. ethtool doesn't know anything about the PHY, or does
-> it ??
-
-No we don't, and until Maxime's patches about PHY topology land upstream:
-
-https://lwn.net/Articles/961959/
-
-we do not want to invent many different ways of specifying which of the 
-MAC or the PHY should be used for WOL. FWIW, I have a similar need:
-
-https://www.spinics.net/lists/netdev/msg751196.html
-
-https://lore.kernel.org/all/20231026224509.112353-1-florian.fainelli@broadcom.com/
--- 
-Florian
-
+> > +     u8 regs[];
+> > +};
+> > +
+> >  struct riic_dev {
+> >       void __iomem *base;
+> >       u8 *buf;
+> > @@ -94,6 +89,7 @@ struct riic_dev {
+> >       int bytes_left;
+> >       int err;
+> >       int is_last;
+> > +     const struct riic_of_data *info;
+> >       struct completion msg_done;
+> >       struct i2c_adapter adapter;
+> >       struct clk *clk;
+> > @@ -105,14 +101,28 @@ struct riic_irq_desc {
+> >       char *name;
+> >  };
+> >
+> > +enum riic_reg_list {
+> > +     RIIC_ICCR1 =3D 0,
+> > +     RIIC_ICCR2,
+> > +     RIIC_ICMR1,
+> > +     RIIC_ICMR3,
+> > +     RIIC_ICSER,
+> > +     RIIC_ICIER,
+> > +     RIIC_ICSR2,
+> > +     RIIC_ICBRL,
+> > +     RIIC_ICBRH,
+> > +     RIIC_ICDRT,
+> > +     RIIC_ICDRR,
+> > +};
+> > +
+> >  static inline void riic_writeb_reg(u8 val, struct riic_dev *riic, u8 o=
+ffset)  {
+> > -     writeb(val, riic->base + offset);
+> > +     writeb(val, riic->base + riic->info->regs[offset]);
+> >  }
+> >
+> >  static inline u8 riic_readb_reg(struct riic_dev *riic, u8 offset)  {
+> > -     return readb(riic->base + offset);
+> > +     return readb(riic->base + riic->info->regs[offset]);
+> >  }
+> >
+> >  static inline void riic_clear_set_bit(struct riic_dev *riic, u8 clear,=
+ u8 set, u8 reg) @@ -453,6
+> > +463,8 @@ static int riic_i2c_probe(struct platform_device *pdev)
+> >               }
+> >       }
+> >
+> > +     riic->info =3D of_device_get_match_data(&pdev->dev);
+> > +
+> >       adap =3D &riic->adapter;
+> >       i2c_set_adapdata(adap, riic);
+> >       strscpy(adap->name, "Renesas RIIC adapter", sizeof(adap->name)); =
+@@ -497,8 +509,25 @@ static void
+> > riic_i2c_remove(struct platform_device *pdev)
+> >       pm_runtime_disable(&pdev->dev);
+> >  }
+> >
+> > +static const struct riic_of_data riic_rz_a_info =3D {
+> > +     .family =3D RIIC_RZ_A_TYPE,
+> > +     .regs =3D {
+> > +             [RIIC_ICCR1] =3D 0x00,
+> > +             [RIIC_ICCR2] =3D 0x04,
+> > +             [RIIC_ICMR1] =3D 0x08,
+> > +             [RIIC_ICMR3] =3D 0x10,
+> > +             [RIIC_ICSER] =3D 0x18,
+> > +             [RIIC_ICIER] =3D 0x1c,
+> > +             [RIIC_ICSR2] =3D 0x24,
+> > +             [RIIC_ICBRL] =3D 0x34,
+> > +             [RIIC_ICBRH] =3D 0x38,
+> > +             [RIIC_ICDRT] =3D 0x3c,
+> > +             [RIIC_ICDRR] =3D 0x40,
+> > +     },
+> > +};
+> > +
+> >  static const struct of_device_id riic_i2c_dt_ids[] =3D {
+> > -     { .compatible =3D "renesas,riic-rz", },
+> > +     { .compatible =3D "renesas,riic-rz", .data =3D &riic_rz_a_info },
+> >       { /* Sentinel */ },
+> >  };
+> >
+> > --
+> > 2.34.1
+> >
+>
 
