@@ -1,97 +1,112 @@
-Return-Path: <devicetree+bounces-49568-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49569-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id C785D877018
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 10:32:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB3C487707F
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 11:41:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7E8471F21551
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 09:32:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 66E9F1F21635
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 10:41:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A63B237702;
-	Sat,  9 Mar 2024 09:32:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A3292C853;
+	Sat,  9 Mar 2024 10:41:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="A+Bt/kDD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="T+stfkch"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 792CC37141
-	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 09:32:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B8672C692
+	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 10:41:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.171
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709976775; cv=none; b=mTOKQLyEkiSC61St5Y+6Ic9PQf5k7T/HAT/U+E07NbPMOsinrgiRSEOTOlJTZ+1YF65YhwDwhi4Fi7wnGNBalUnB2ksyN3Wsu5ZtBdnweqBaIFelIgrIPuAGFWgR96CwR2XZ30RuSZQJWB3vxqvYxea4uDByS8C4RmJjbs3R2HM=
+	t=1709980863; cv=none; b=kZXos/hptHR8lFwM/UDa8Z1uZun/kinDxH4t+QmraNOlhkNuwr6DL11dhK4J2s7dTTwWdERg+dxI9/TaPsWiTFWiVnGMG+wm+VDSpYur4yiKI59iA8bnEeCdA1/6M61LF6NGVgQ9VfW/OExMnf+hcdyPgkM6LQ7RhU9xA0o5g4E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709976775; c=relaxed/simple;
-	bh=y2M8JkoMn7TZca4U85J5bTy+l7rxHSAX7foeqXZJaYw=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=BZ3vifwuUCy+EbjVmjf+QeDjGsIADUCPNs9ZM/7FViOr5Oac6z1E7/kPQNfvzaYbxyUtgrLMrFfl09a9H7RqHEOqjwwN7YK8U9ibUVAWmYlDV8Mwxu0x21Ctb9b13gim9OPqoTS+TgDGGKyNvOxJmtLeG/OmLIHqDjXebBcNlnQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=A+Bt/kDD; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 035EDC433C7;
-	Sat,  9 Mar 2024 09:32:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709976775;
-	bh=y2M8JkoMn7TZca4U85J5bTy+l7rxHSAX7foeqXZJaYw=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=A+Bt/kDDCl2gxkQtUoPOW6RU39nSYddFxJ/46XHQsEkkbcf/iMkZRPrB/2ziVh7+A
-	 xf5gsCnG9uUW5BmKBG5KgK4dnsV+oI8vSfG7pNGKKBR/guB4tDpgJPGymAj01CpIPh
-	 EIpF0cRqvNd7gGLFrGeUsqimzAyFMZacQe+JUtUU5MRiOhRZssnMNmkX7QrhYEQNLQ
-	 UT2TRJQfTp4fwcdmYzF+DZrV1ldZzyqDAb8+GdDgPA2v5jSKDVhAsV8+by3xZpcnh9
-	 Fbi0KnZKS09iNMYudHEKuhDFnKYAaDoClim19SV14Lo3wpoaGUp2HNod5kVGDYkAZE
-	 2BN/0ijgDHO3g==
-From: Lorenzo Bianconi <lorenzo@kernel.org>
-To: linux-arm-kernel@lists.infradead.org
-Cc: robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	nbd@nbd.name,
-	john@phrozen.org,
-	devicetree@vger.kernel.org,
-	dd@embedd.com,
-	catalin.marinas@arm.com,
-	will@kernel.org,
-	upstream@airoha.com,
-	lorenzo.bianconi83@gmail.com,
-	angelogioacchino.delregno@collabora.com
-Subject: [PATCH v4 4/4] arm64: defconfig: enable Airoha platform
-Date: Sat,  9 Mar 2024 10:32:17 +0100
-Message-ID: <65737ca5506371ef84c3a055e68d280f314e3b41.1709975956.git.lorenzo@kernel.org>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <cover.1709975956.git.lorenzo@kernel.org>
-References: <cover.1709975956.git.lorenzo@kernel.org>
+	s=arc-20240116; t=1709980863; c=relaxed/simple;
+	bh=Dh9V2PfB348Arae8187yykw+A7d4pAIxQgkMlEODmIY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=aM2ToreXpFSdCBJs/OSLSKKInMrI/XzLfNaAI7yYdxipD4ZgjJQDl8X1z9DgWxWgYVL33JHVc/14EEPWnRchAWVUgDRzH5XneLYNa0ueaBdhUYJwzTApHMfLeNLlXVaDLpSEU4qkhfVnsksLJ8u/T9Ww8pd25se3Kkhb4iy0WCQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=T+stfkch; arc=none smtp.client-ip=209.85.219.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-d9b9adaf291so1581084276.1
+        for <devicetree@vger.kernel.org>; Sat, 09 Mar 2024 02:41:02 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1709980861; x=1710585661; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/zwcDfLfy6H/xwTNg7xVsc+HCBPAWPPDyK8ncs4w+gs=;
+        b=T+stfkchbw3OzdhVTmml7wBSaHenkNjauK1L1qMQKhTAvvGdhPD7hBCiyo5MdNF/pE
+         10bEQswQKQ+p1NQbdguDlUAOYKU19ywyp5araFn/nZJLZoYe7teiKXkl/AatHLWzAdjr
+         kbTwfhptcVhnmySU3No7yrH2gAb1hsaEEuqSYUd4CVTukpXM4CIUkoCrMpkxVVAVdrGY
+         xUDEt6VXUPJOXM+fot8W3bHdCAZ4gjUhzIFBI/rkTy+puCfc46n5qIk32BB07ePWmvs9
+         uzWYwUH0rzHUVO3EdPGceDh9Za/BqBv58TAr4ZUzxMgO+D6JvXp2iqVUFGtSpMu6NGB4
+         JtGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709980861; x=1710585661;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/zwcDfLfy6H/xwTNg7xVsc+HCBPAWPPDyK8ncs4w+gs=;
+        b=T2T+2kSy7Dlpz1Qke+Fcs7QzykMw2EkyRaTj9bRzLvbH8audWAcrwbk90COiAq+Gu6
+         8mUdB9AlWMCcyfNX1zM8KTk9vHDwIRtuhENWjzeYSGzZJGvlkGaWPZtjEyV9I1yIoDHK
+         L4U6VMvTPmXUi1k/9MLzL+vXnAxf12oUR1381/+PvDtMAW2+wa0g6TZNm/8ETCZEs+rw
+         pjpyKsXrXRYASrv880RN8ntyTa/LUef7txhmmK5gzF4ptMB35TrYA7nulQ+p7stOK6aR
+         ggvTlkyqqKQRexF89o/a/xMxdZ8zadyRx96rsNMn/cfulZpZvo3ocE9pSz+RjKAAWEz1
+         t1Jg==
+X-Forwarded-Encrypted: i=1; AJvYcCWtayXmVFR9TbPirpLQTU1msXbFrm/JgDpvFUK9JIA1FS8TXAS7vSFQfg9PlkA0u/llUaXjy1Ce1VhB94AK7HCxChbAxJB+ABOL8g==
+X-Gm-Message-State: AOJu0Yx6R8kr/7mM1zYC6tkswW7LlZW5jst7+RbXiim4bkZI68yhsfj8
+	mFli3ktU+UeIJTz3+/urN3ICV5QgQzrqqodHO5lzZJTRMa8lhp4kfWZNPT1USIJWhjOsB8tLJs6
+	+tKBsQL906hKfY1T65j+YSAl7M73AtgyX8Vwelw==
+X-Google-Smtp-Source: AGHT+IHwQwkSLfesKtrPrMGKJ4Q2PnQLBph1lGKkzbnH0SpIFTbRZI4HlaMD+5FNweFu/bH2N/hGy0XTcTcPw+znj1M=
+X-Received: by 2002:a25:b325:0:b0:dcf:f535:dad6 with SMTP id
+ l37-20020a25b325000000b00dcff535dad6mr667006ybj.56.1709980861366; Sat, 09 Mar
+ 2024 02:41:01 -0800 (PST)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20240308-topic-rb1_lmh-v1-0-50c60ffe1130@linaro.org> <20240308-topic-rb1_lmh-v1-2-50c60ffe1130@linaro.org>
+In-Reply-To: <20240308-topic-rb1_lmh-v1-2-50c60ffe1130@linaro.org>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Sat, 9 Mar 2024 12:40:50 +0200
+Message-ID: <CAA8EJpq9bOkv9Ha5wjOjHGdPT7AqTZWnA2SpLNGB99YXP2OmQw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] thermal: qcom: lmh: Check for SCM avaiability at probe
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>, "Rafael J. Wysocki" <rafael@kernel.org>, 
+	Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
+	Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Thara Gopinath <thara.gopinath@gmail.com>, Amit Kucheria <amitk@kernel.org>, 
+	Marijn Suijten <marijn.suijten@somainline.org>, linux-arm-msm@vger.kernel.org, 
+	linux-pm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-From: Daniel Danzberger <dd@embedd.com>
+On Sat, 9 Mar 2024 at 00:08, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> Up until now, the necessary scm availability check has not been
+> performed, leading to possible null pointer dereferences (which did
+> happen for me on RB1).
+>
+> Fix that.
+>
+> Fixes: 53bca371cdf7 ("thermal/drivers/qcom: Add support for LMh driver")
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  drivers/thermal/qcom/lmh.c | 3 +++
+>  1 file changed, 3 insertions(+)
 
-Enables the ARCH_AIROHA config by default.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-Signed-off-by: Daniel Danzberger <dd@embedd.com>
-Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index e6cf3e5d63c3..aa44791a47e6 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -34,6 +34,7 @@ CONFIG_KEXEC=y
- CONFIG_KEXEC_FILE=y
- CONFIG_CRASH_DUMP=y
- CONFIG_ARCH_ACTIONS=y
-+CONFIG_ARCH_AIROHA=y
- CONFIG_ARCH_SUNXI=y
- CONFIG_ARCH_ALPINE=y
- CONFIG_ARCH_APPLE=y
+
 -- 
-2.44.0
-
+With best wishes
+Dmitry
 
