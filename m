@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-49579-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49580-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB91B8770BD
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 12:41:19 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3436F8770C3
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 12:45:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 854642817EA
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 11:41:18 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6A7C1B20E98
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 11:45:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A559D3771C;
-	Sat,  9 Mar 2024 11:41:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 290BC383A6;
+	Sat,  9 Mar 2024 11:45:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="en6Z7XxN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fKJmqY+j"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E84C65C8B
-	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 11:41:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4020EEDD
+	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 11:45:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709984476; cv=none; b=Y+jf6NvbAA42qE7gfpPv8rI1ZJFlZrGlrpGUi0MG5fCCQ7MSBm+dUQ/vd7+7rCOnM4ZOvFdH3Tf4o2duwOj1dNz1IW3xLzMDlat0Hd0XorjaOMQBUkWZRRd9QPHiIEyJsOqFwhYp0fYzVnXEgaBSQanoyAxBZ7gFHU7980+rMvA=
+	t=1709984713; cv=none; b=AxL7oeq2rQXKzwHRUMrqK7v56ZUuxWzon3mcdh5gR2n/q1cy8QRkEPeCJJVXbr5hhBm0C4JhmO81inagjMJ5t5AwfsgjWzmzVyM5cycSUyOMofpl9jb/dm12DzpGEWjeGsj0R7WJKWbTomnxhZZI3jpJVz6CUAIqmDv+kl07sME=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709984476; c=relaxed/simple;
-	bh=wy5OlKcU9unuJLJcbZN/KD9PkQmJV6zjpu9k+hGVI4o=;
-	h=Message-ID:Date:MIME-Version:Subject:To:References:From:
-	 In-Reply-To:Content-Type; b=H7mMP8zd2H3MsXy7m6w4R0V3+0rL9v+tV75x69TzqJWSQXuO1OSQ2gpGU1dyBYlUK9YfJq5EmU4NgtX4FDBahm8frbSpWaNIsXB5yi1ASGVjA9TWqr0yX3GpKv/4ywO6D4W+A2bvEDGs7/B5LsFBpCwaMvcXNCzFyz5NNMi3jFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=en6Z7XxN; arc=none smtp.client-ip=209.85.128.50
+	s=arc-20240116; t=1709984713; c=relaxed/simple;
+	bh=rkRJnn8JPkKRJPe/iLCb7qyuK17IfXIWqBROEdGQxpM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=mw7Es/OcMBVVsSUA8h0wOF6ZqFViZni1SLS9rUPuakHNpiBvbwEHy4RBk3CPBBVU+16M46pHlQc0+BCwG3qk8H90boiSF8bie4MSVKspGRnOCiXN55Aen0/NNDX0sc5M+9J2W806B1BIKIeNQzL5x/HniCVYj5LctHm3SbemFL0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fKJmqY+j; arc=none smtp.client-ip=209.85.128.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-412ee276dc9so10737015e9.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Mar 2024 03:41:14 -0800 (PST)
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4131b2ff302so8710885e9.3
+        for <devicetree@vger.kernel.org>; Sat, 09 Mar 2024 03:45:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709984473; x=1710589273; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1709984709; x=1710589509; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=oG/iXNbdsjcnfrhuBMQo/qiX6Mk7k8CbA4GIizAZmSc=;
-        b=en6Z7XxNy0lZGbXM+vMv5a+yyMKeSaJQOrCbS4vk5UD3l/D0449buw9tgnKaZLM9Bp
-         vcRBi3R28iJQbRvrupDYpxB0G8zd3XNURVfFGRulH4dPPHDP6bCvQRf+8qe6eO4fih2c
-         4tvzupjwJQedLXiIm0rbt2EV0IOE/XCqltnHEtq+ETzzVnjKiX09zCqNSe+Q9+APwIdu
-         EZPun2yn4FYPxrlKSjh08FX8JrFJ2WgxMqazpTiGbeXK9ZUl8P1A1j+tr1aeYPremJlP
-         N+YzDUmGMlUDsfKfNUOXpHXKd8gdZknhUkTvZn0Z0ftG2qly+FRFcjhdX+ZoUoQ3LZCS
-         B+Qw==
+        bh=+TnlziD6mLj4o3yYL6g8ZPkBVLpbFOusiwDLFHsf1DQ=;
+        b=fKJmqY+jINyJvgZeCAHObwsqIRQV8YpTHH64eAzA25nLfaT8qLIiH3FS163wpAwnAH
+         FnGKA+RchxMoANIKK7hYF3D5dRJmePrTjhahiNthvzl607Os8GDUCnYxg9AvEa3UwWYB
+         D92IRrCkTTYJsPsKqdVq6AJmSC6iJhsA49UqaKKGkGAYj2klVTNLh0pXpPAAYf0WaVOQ
+         j/866cidYhDrrBR8Mqv4TnF0eqXJFuKvq+Slj/XDGrltAap7MqzLF79Q8amikfj5ho3r
+         RPqF+WXLlw1H72x1pvEsmZtevspnbxMXdWziMDMgNbFUgI3rqnzjY7S9Jqk8b7j41zuX
+         8sNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709984473; x=1710589273;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1709984709; x=1710589509;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oG/iXNbdsjcnfrhuBMQo/qiX6Mk7k8CbA4GIizAZmSc=;
-        b=CalU6phM447ucfiE+4w2ImsJooq3umnaUegO0i9YLiX2zyczM4p3b62NRQlQ5DIfWw
-         xsnD1/vljlqaEtBFM3MnZVk45ymhfBdkwB2lIL+5iEV0bg5ImZe1QWWdlrMlwbGQgSQF
-         YPeI0NOIoEiUrVJMlthjCZeuL4k98S4jDWd91TrUrsbU0HTQWhV0mFXvVvalqDjInpSE
-         zaeqV8JPaY1q4A0RPfh3XhuQN69njCehsBEPuaEjHucFglnuMTGeMg5bPwJD6bRyISt2
-         puJEdXO1KVHyLcbz1bpICXK3loRt2JLju1vtrh8bRBqhS5ENKqD4eU7LN8KRW/+tUdqu
-         3zzA==
-X-Forwarded-Encrypted: i=1; AJvYcCWwG/C7BnXhHx/7BmurDwTFcSBLz9rFsHA9yHSDGKAVXIJMwBwNPs9VFAeJQSVr5kahuwDdQkcRNYpaMFXA8eZ3dvweG2Zh7EnHBg==
-X-Gm-Message-State: AOJu0YywirNbbAbCI3sNsqgIvBmguUyiHdtXkOK4enuc1R1HamMSjLcy
-	KUwRvyo/d4ZGmS5KiOX6OQI18HJpBz+sRqm/s8QcdAjkG1C/PEKGBoRQ9hPJXLA=
-X-Google-Smtp-Source: AGHT+IEURNMyAhZzmmxIP/tHFsE7XQAN5Gk+hyJ8x3fTMLAOFn7GDUnoZVwdd4tt4JOAAZglQImjrg==
-X-Received: by 2002:a05:600c:3491:b0:412:8d98:78a with SMTP id a17-20020a05600c349100b004128d98078amr1224275wmq.13.1709984473258;
-        Sat, 09 Mar 2024 03:41:13 -0800 (PST)
+        bh=+TnlziD6mLj4o3yYL6g8ZPkBVLpbFOusiwDLFHsf1DQ=;
+        b=nHyvh+ObWh8sS/c+JXrd4aQukRbRSPpRpcmcyMjnOArCw/dHPYjYqD8PRQ0A7kYMpi
+         oNNplYVbsujOySYA4Ikw8uUsAuo37rb0q+6OnLa+lfJsQ/yJyJ48jdu0N48qHaRO55Gj
+         WoAXQU4eAA5zaifUzmXRI/QVAN0mu/yhChQljQ+J6aXeO4VPxUmRI3ao7HnxZ+RYQ0GZ
+         UEULRuT9hNiMrSDyZqwSY//KIC7ygxAJaGlXPM0CzMwChQx2A2NvkSfsCWegsAr3nlop
+         Wyys9+Vw0RBjQy9uVCs6EM2wCOlEwLjvr0VLvrdg5qcoNFOZJpH0dxmzlyIiODE/f48b
+         Plxg==
+X-Forwarded-Encrypted: i=1; AJvYcCW2mnyW3AoKGatbinUKBcokhsD37Xv0OwqPIj7pK1xDQVYZaiARLl3TTY0EhHOgmN5l/I9wsFvAp/Ahgw6Bg5KH2AwvfSfr3VuAvQ==
+X-Gm-Message-State: AOJu0YwJ9DgU88M8T6zqq/BXzhSTaAElb+BXIEDB8cxTn7rXJXTq+ho3
+	pvBNF0pAu/6GXmTiTSK4EvOKbU+vcTQtAJGpAKnnLJ0q8qCx4WKtdGTl/fwBqas=
+X-Google-Smtp-Source: AGHT+IGm/UNipEUl2Z0zh8bcQfpK2xS3N6sNDfd7iuApChd4h42dv64wT1extiBNn00H5YyniV/tvA==
+X-Received: by 2002:a05:600c:4e02:b0:412:ea32:e7b0 with SMTP id b2-20020a05600c4e0200b00412ea32e7b0mr1020818wmq.40.1709984709547;
+        Sat, 09 Mar 2024 03:45:09 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id jh3-20020a05600ca08300b0041304100fa9sm8702893wmb.45.2024.03.09.03.41.11
+        by smtp.gmail.com with ESMTPSA id f6-20020a05600c154600b004131ae36ac4sm4344631wmg.20.2024.03.09.03.45.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Mar 2024 03:41:12 -0800 (PST)
-Message-ID: <cde6ee0f-31ff-415b-8b77-47936f2a7158@linaro.org>
-Date: Sat, 9 Mar 2024 12:41:11 +0100
+        Sat, 09 Mar 2024 03:45:08 -0800 (PST)
+Message-ID: <1375d840-6e42-4e60-896c-265fe6a21705@linaro.org>
+Date: Sat, 9 Mar 2024 12:45:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,17 +76,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: renesas: white-hawk: ethernet: Describe adv1
- and avb2
+Subject: Re: [PATCH] dt-bindings: net: renesas,etheravb: Add MDIO bus reset
+ properties
 Content-Language: en-US
 To: =?UTF-8?Q?Niklas_S=C3=B6derlund?=
- <niklas.soderlund+renesas@ragnatech.se>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Rob Herring <robh+dt@kernel.org>,
+ <niklas.soderlund+renesas@ragnatech.se>, Sergey Shtylyov
+ <s.shtylyov@omp.ru>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-renesas-soc@vger.kernel.org,
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>, netdev@vger.kernel.org,
  devicetree@vger.kernel.org
-References: <20240309013006.723934-1-niklas.soderlund+renesas@ragnatech.se>
+Cc: linux-renesas-soc@vger.kernel.org
+References: <20240309012538.719518-1-niklas.soderlund+renesas@ragnatech.se>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,23 +135,73 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240309013006.723934-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20240309012538.719518-1-niklas.soderlund+renesas@ragnatech.se>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 09/03/2024 02:30, Niklas Söderlund wrote:
-> +
-> +&pfc {
-> +	avb1_pins: avb1 {
-> +		mux {
-> +			groups = "avb1_link", "avb1_mdio", "avb1_rgmii",
-> +				 "avb1_txcrefclk";
-> +			function = "avb1";
-> +		};
-> +
-> +		pins_mdio {
+On 09/03/2024 02:25, Niklas Söderlund wrote:
+> The bindings for Renesas Ethernet AVB are from 2015 and contain some
+> oddities that are impossible to get right without breaking existing
+> bindings. One such thing is that the MDIO bus properties that should be
+> its own node are mixed with the node for the IP for Ethernet AVB.
+> 
+> Instead of a separate node for the MDIO bus,
+> 
+>     avb: ethernet@e6800000 {
+>             compatible = "renesas,etheravb-r8a7795",
+>                          "renesas,etheravb-rcar-gen3";
+>             reg = <0xe6800000 0x800>, <0xe6a00000 0x10000>;
+> 
+>             ...
+> 
+>             phy-handle = <&phy0>;
+> 
+>             mdio {
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+> 
+>                 phy0: ethernet-phy@0 {
+>                     ...
+>                 };
+>             };
+>     };
+> 
+> The Ethernet AVB mix it in one,
+> 
+>     avb: ethernet@e6800000 {
+>             compatible = "renesas,etheravb-r8a7795",
+>                          "renesas,etheravb-rcar-gen3";
+>             reg = <0xe6800000 0x800>, <0xe6a00000 0x10000>;
+> 
+>             ...
+> 
+>             phy-handle = <&phy0>;
+> 
+>             #address-cells = <1>;
+>             #size-cells = <0>;
+> 
+>             phy0: ethernet-phy@0 {
+>                 ...
+>             };
+>     };
+> 
+> This forces to all MDIO bus properties needed to be described in the
+> Ethernet AVB bindings directly. However not all MDIO bus properties are
+> described as they were not needed. This change adds the MDIO bus
+> properties to reset the MDIO bus in preparation for them being used.
 
-You should not use underscores in node names.
+That is not exactly what you wrote in the binding. Binding suggests you
+have per device GPIO, which in your design is shared but the commit msg
+says it is some sort of bus reset.
+
+These are two different things, because in first case you could have a
+design using two GPIOs, not one. Then your binding is completely wrong.
+
+Plus, where is the user of all this?
+
+I think you should rather correct the binding to use mdio node and add
+appropriate handling in the driver, keeping backward compatibility.
+
 
 Best regards,
 Krzysztof
