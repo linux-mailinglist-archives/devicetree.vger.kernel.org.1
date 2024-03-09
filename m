@@ -1,153 +1,253 @@
-Return-Path: <devicetree+bounces-49610-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49616-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDE72877153
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 14:15:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82140877177
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 14:44:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1B23C1C209E5
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 13:15:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 9B49F1C209EF
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 13:44:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0D98341C73;
-	Sat,  9 Mar 2024 13:15:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CA9A23FB91;
+	Sat,  9 Mar 2024 13:44:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rQyMCZLH"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=paroga.com header.i=@paroga.com header.b="dKZZpPzc";
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=paroga.com header.i=@paroga.com header.b="dKZZpPzc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx201.easyname.com (mx201.easyname.com [217.74.15.4])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 293143FBA8
-	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 13:15:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9BB4B16FF52
+	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 13:44:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.74.15.4
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709990116; cv=none; b=C2ZhHEOdxiuq/5GdxDDNOXyQPCcx+o624CI2WIpWheFMp2DQjKpzLdJdUD6KV3P/e6qZxtkUaVehqkMIK6CrVtFrS246aOtFyrUfBMQ7h+aAKZjwa4OoDCtLjybsK/wLKnKC2PIpui4QX4caxAlkzptf0PKrVZ3VsoQRPw/PzLo=
+	t=1709991867; cv=none; b=gZMs+ha/W+rRkLmyJoeuZyE+/oYlSfivFuoGq6FQR1/oLaUixrQYTucWY8RIP3PHCPqX2kcxuL3jJOvUeKDiKLCTVobXfRV9gDVulnTyOZMZjng74TWILnTv0QCj7PqIET9z8deeAlB1PZEisO7/AKH9DYFFhMCQnC5D69d3Yww=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709990116; c=relaxed/simple;
-	bh=jrOFTMCntFqOIhBMm68qr8H/xgDF3gFVfyHkGoBalZA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=fx6qzGte0hUbiR4rg1PZH2o7TdAxOFZpkadIpjBoqC1VEUrXnk9/9MphrCTMFt+IVwRVXEbsQo7KtW+je75dMZwvUvKWKaL2XAIOAICD0xO1+As4kvi9hn/3iVsScn0VY2fi73OCg5RWR/wwXfeyHEYedle6yIW+Op8vrz+VmOc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rQyMCZLH; arc=none smtp.client-ip=209.85.208.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2d26227d508so40355521fa.2
-        for <devicetree@vger.kernel.org>; Sat, 09 Mar 2024 05:15:14 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709990113; x=1710594913; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=o6Sple/2ZZdRH/Vvx8i+an89/boBf3Gnas4pdauUz+A=;
-        b=rQyMCZLH/0Y8iNXsgiLKozjRB9cTOEPaLEvPfhgVEQg7GSNqBu42fOXQMFb4qfSgdp
-         LEQ3/S5asMFU8m/U1TV0aVEnAbuSnrVBYgP2+AM4X1nJ7WauZDALRxk/FUMm5HSo1V3S
-         Gavj79o3KaVTmE2uUYBBLPqyTZtFHSQI/TkprL4boIRvdtQmYd69NfnryED6IQbXu6zU
-         Dse8A9vGFujqqUO22uI2TPa8E5DFNGe0ABiOTueB5MD8mk1yUfKgfqKhDaCdSfvJmwng
-         grnKf9yDzuQky4FMRaYALZCSoWjc0+R9072/6xPCLeLDij2pm/kCodzvJtUsbEiRfl2A
-         AXDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709990113; x=1710594913;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=o6Sple/2ZZdRH/Vvx8i+an89/boBf3Gnas4pdauUz+A=;
-        b=jGxj6yjy7YgYZ/5SMoobjnktBJoauf9A33T/1J5csARm8jRqTO4Fja87M/xw57WEvD
-         MYSeTpyvTet9W0to4iLHeDSrbC1wg51rgM+7LH83Lt8rS0dOD32q5onx8LFJHqn1E4J8
-         c4R/ikb0TFk7gOwwzKiIQAWFhpVZFSxGYqlgEugpcDtU1ErDHBO7iDhZY5jzVPtqB4mq
-         n0YAXKBTSb+c9DtY8iOQjBa6YSAS9wK9TdM33OYDY57xGbBZFTdkVzHeoXl3iKvvTOtW
-         vAP7Qv5aIEOvJ3aR02tP9YJLoCG0Q1Zv9tFPGXgDaacSvf0bzPwpFU2kODSceeDVOQPJ
-         rHUg==
-X-Forwarded-Encrypted: i=1; AJvYcCXfL+J+gSZhAzNCQsiDzelkozS8BQUbQ0URWrx0EF+JOq5F6cEWgKs/dL+dUfnn2CgJnamlgXLNO7u7/XSbXjcLPz9EybnNbdh2kQ==
-X-Gm-Message-State: AOJu0Ywvu4Z77VBxoAc8o2cFZdozjEvwl2J11/yj+m3M6O7Rvrk6idF6
-	KXD3QTjeXQ+EhvEE6iEgFiyJE8UUJJyg/SEKGDW/bsAehxGj5BRWLvEA7Li/A4I=
-X-Google-Smtp-Source: AGHT+IFJLAytUkHELZ+tKQCNdstE4VZYqgVMmbL7iQAZfoMj7LyG8cr60snwA1EFoIGHOI9j+byTMw==
-X-Received: by 2002:a05:651c:104a:b0:2d2:a3ae:b339 with SMTP id x10-20020a05651c104a00b002d2a3aeb339mr1161270ljm.48.1709990113309;
-        Sat, 09 Mar 2024 05:15:13 -0800 (PST)
-Received: from [10.167.154.1] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id i26-20020a2ea37a000000b002d3e6ce75cesm297596ljn.70.2024.03.09.05.15.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Mar 2024 05:15:13 -0800 (PST)
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Date: Sat, 09 Mar 2024 14:15:04 +0100
-Subject: [PATCH v2 3/3] arm64: dts: qcom: qcm2290: Add LMH node
+	s=arc-20240116; t=1709991867; c=relaxed/simple;
+	bh=8sg+w+nhM9NPCn89fX995Sxd5xcAuRi0pLerpurZY8k=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=W5i+XlUPbYvdh0T1+6U5jFvPPk96lpHvjwsxQS31L/7JoUnAadduZNTByYmP+Gf5+rMMJT1DegSw0sLKs6eLlM/mJzlFbeh9N5G/uKSi76b39gZimaQgVmKVDcq16nGUSXUTs9W7CEyezWoMw/BIgK3ccMrT1hJdcIiSBsLTXfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=paroga.com; spf=pass smtp.mailfrom=paroga.com; dkim=pass (2048-bit key) header.d=paroga.com header.i=@paroga.com header.b=dKZZpPzc; dkim=pass (2048-bit key) header.d=paroga.com header.i=@paroga.com header.b=dKZZpPzc; arc=none smtp.client-ip=217.74.15.4
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=paroga.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=paroga.com
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=paroga.com;
+	 s=easyname; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject
+	:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=HYn6oVROL4EgNKsgpkXuKHwwHnkgeAR9ydCIlfi6hlE=; b=dKZZpPzcjCEGJihZzAWDA8QPQn
+	wrGzguAdeiDlK20Em7CqCJE4FrqAP8uGexR+hC2QLWKAWWOY3zD9+TSUmHCOfpZ2chvRUDbxnWLQi
+	tzQF031xqof3fH2khiyVDAop12UbWQ7uL2mL6Cp9pPcJjcRnUNCgCkLLX/tAjAjZ9gL0M9LBtI3UX
+	ocWBNEkplm58Ezn79bgcW5pXMYWu4zakHV0kRkJiz6tDGPTHgZR0sfhuDkpidor3K66/gIm0nucm7
+	nF1LCi/tVkr8xqrxtRy0zSxXPy/airR1GUPd9HCHBBEcYg3QadrnVi/yLkzXsXuz4BgvNGYfEJuT8
+	CGDNNl7w==;
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=paroga.com;
+	 s=easyname; h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject
+	:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+	Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+	In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+	List-Post:List-Owner:List-Archive;
+	bh=HYn6oVROL4EgNKsgpkXuKHwwHnkgeAR9ydCIlfi6hlE=; b=dKZZpPzcjCEGJihZzAWDA8QPQn
+	wrGzguAdeiDlK20Em7CqCJE4FrqAP8uGexR+hC2QLWKAWWOY3zD9+TSUmHCOfpZ2chvRUDbxnWLQi
+	tzQF031xqof3fH2khiyVDAop12UbWQ7uL2mL6Cp9pPcJjcRnUNCgCkLLX/tAjAjZ9gL0M9LBtI3UX
+	ocWBNEkplm58Ezn79bgcW5pXMYWu4zakHV0kRkJiz6tDGPTHgZR0sfhuDkpidor3K66/gIm0nucm7
+	nF1LCi/tVkr8xqrxtRy0zSxXPy/airR1GUPd9HCHBBEcYg3QadrnVi/yLkzXsXuz4BgvNGYfEJuT8
+	CGDNNl7w==;
+Received: from 84-115-228-205.cable.dynamic.surfer.at ([84.115.228.205] helo=localhost.localdomain)
+	by mx.easyname.com with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+	(Exim 4.92)
+	(envelope-from <paroga@paroga.com>)
+	id 1riwhi-000Dah-TM; Sat, 09 Mar 2024 13:25:39 +0000
+From: Patrick Gansterer <paroga@paroga.com>
+To: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org
+Cc: Lee Jones <lee@kernel.org>,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Patrick Gansterer <paroga@paroga.com>
+Subject: [PATCH v3 1/2] dt-bindings: backlight: Add Texas Instruments LM3509
+Date: Sat,  9 Mar 2024 14:24:55 +0100
+Message-ID: <20240309132521.1290173-1-paroga@paroga.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240308-topic-rb1_lmh-v2-3-bac3914b0fe3@linaro.org>
-References: <20240308-topic-rb1_lmh-v2-0-bac3914b0fe3@linaro.org>
-In-Reply-To: <20240308-topic-rb1_lmh-v2-0-bac3914b0fe3@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, 
- Daniel Lezcano <daniel.lezcano@linaro.org>, Zhang Rui <rui.zhang@intel.com>, 
- Lukasz Luba <lukasz.luba@arm.com>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Thara Gopinath <thara.gopinath@gmail.com>, Amit Kucheria <amitk@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>, 
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Loic Poulain <loic.poulain@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1709990106; l=1580;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=N3iZ4RWL64J9KIrMZcxBsUxhgEKVEWBB91k8Rvp8UdQ=;
- b=KuOaBM5yLNvJjgYyczPohcnrS6i2fHLRlRPwCX3R0BQIBV2vj2vKIxhMZWAu+vnruHDZhgrs5
- YOZmplen22fAPynqjNXj7OfAHvuwjZthpHkHnkOo9kXkDbJucohmPdw
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Content-Transfer-Encoding: 8bit
+X-Easy-Autoreply: EN
 
-From: Loic Poulain <loic.poulain@linaro.org>
+Add Device Tree bindings for Texas Instruments LM3509 - a
+High Efficiency Boost for White LED's and/or OLED Displays
 
-Add a node for the Limits Management Hardware to ensure it can be
-configured by the operating system.
-
-Signed-off-by: Loic Poulain <loic.poulain@linaro.org>
-[Konrad: add commit msg, rebase]
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Patrick Gansterer <paroga@paroga.com>
 ---
- arch/arm64/boot/dts/qcom/qcm2290.dtsi | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+Changes in v3:
+  Improved device tree bindings documentation style
 
-diff --git a/arch/arm64/boot/dts/qcom/qcm2290.dtsi b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-index 89beac833d43..1aacad50e7fc 100644
---- a/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcm2290.dtsi
-@@ -1858,7 +1858,7 @@ cpufreq_hw: cpufreq@f521000 {
- 			compatible = "qcom,qcm2290-cpufreq-hw", "qcom,cpufreq-hw";
- 			reg = <0x0 0x0f521000 0x0 0x1000>;
- 			reg-names = "freq-domain0";
--			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupts-extended = <&lmh_cluster 0>;
- 			interrupt-names = "dcvsh-irq-0";
- 			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>, <&gcc GPLL0>;
- 			clock-names = "xo", "alternate";
-@@ -1866,6 +1866,18 @@ cpufreq_hw: cpufreq@f521000 {
- 			#freq-domain-cells = <1>;
- 			#clock-cells = <1>;
- 		};
+v2: https://lore.kernel.org/all/20240308215617.1729664-1-paroga@paroga.com/
+
+Changes in v2:
+  Add device tree nodes for each output
+  Addressed multiple smaller review comments
+
+v1: https://lore.kernel.org/all/20240302212757.1871164-1-paroga@paroga.com/
+
+ .../bindings/leds/backlight/ti,lm3509.yaml    | 139 ++++++++++++++++++
+ 1 file changed, 139 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/backlight/ti,lm3509.yaml
+
+diff --git a/Documentation/devicetree/bindings/leds/backlight/ti,lm3509.yaml b/Documentation/devicetree/bindings/leds/backlight/ti,lm3509.yaml
+new file mode 100644
+index 000000000000..b67f67648852
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/backlight/ti,lm3509.yaml
+@@ -0,0 +1,139 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/backlight/ti,lm3509.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+		lmh_cluster: lmh@f550800 {
-+			compatible = "qcom,qcm2290-lmh", "qcom,sm8150-lmh";
-+			reg = <0x0 0x0f550800 0x0 0x400>;
-+			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
-+			cpus = <&CPU0>;
-+			qcom,lmh-temp-arm-millicelsius = <65000>;
-+			qcom,lmh-temp-low-millicelsius = <94500>;
-+			qcom,lmh-temp-high-millicelsius = <95000>;
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+		};
- 	};
- 
- 	thermal-zones {
-
++title: TI LM3509 High Efficiency Boost for White LED's and/or OLED Displays
++
++maintainers:
++  - Patrick Gansterer <paroga@paroga.com>
++
++description:
++  The LM3509 current mode boost converter offers two separate outputs.
++  https://www.ti.com/product/LM3509
++
++properties:
++  compatible:
++    const: ti,lm3509
++
++  reg:
++    maxItems: 1
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  reset-gpios:
++    maxItems: 1
++
++  ti,brightness-rate-of-change-us:
++    description: Brightness Rate of Change in microseconds.
++    enum: [51, 13000, 26000, 52000]
++
++  ti,oled-mode:
++    description: Enable OLED mode.
++    type: boolean
++
++patternProperties:
++  "^led@[01]$":
++    type: object
++    description: Properties for a string of connected LEDs.
++
++    allOf:
++      - $ref: common.yaml#
++
++    properties:
++      reg:
++        description:
++          The control register that is used to program the two current sinks.
++          The LM3509 has two registers (BMAIN and BSUB) and are represented
++          as 0 or 1 in this property. The two current sinks can be controlled
++          independently with both registers, or register BMAIN can be
++          configured to control both sinks with the led-sources property.
++        minimum: 0
++        maximum: 1
++
++      label: true
++
++      led-sources:
++        allOf:
++          - minItems: 1
++            maxItems: 2
++            items:
++              minimum: 0
++              maximum: 1
++
++      default-brightness:
++        minimum: 0
++        maximum: 31
++        default: 18
++
++      max-brightness:
++        minimum: 0
++        maximum: 31
++        default: 31
++
++    required:
++      - reg
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        backlight@36 {
++            compatible = "ti,lm3509";
++            reg = <0x36>;
++            reset-gpios = <&gpio2 5 GPIO_ACTIVE_LOW>;
++
++            ti,oled-mode;
++            ti,brightness-rate-of-change-us = <52000>;
++
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            led@0 {
++                reg = <0>;
++                led-sources = <0 1>;
++                label = "lcd-backlight";
++                default-brightness = <12>;
++                max-brightness = <31>;
++            };
++        };
++    };
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        backlight@36 {
++            compatible = "ti,lm3509";
++            reg = <0x36>;
++
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            led@0 {
++                reg = <0>;
++                default-brightness = <12>;
++            };
++
++            led@1 {
++                reg = <1>;
++                default-brightness = <15>;
++            };
++        };
++    };
 -- 
 2.44.0
 
