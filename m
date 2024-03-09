@@ -1,61 +1,84 @@
-Return-Path: <devicetree+bounces-49538-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49539-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E24C7876D57
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 23:54:25 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF26B876E29
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 01:34:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1FA3E1C21883
-	for <lists+devicetree@lfdr.de>; Fri,  8 Mar 2024 22:54:25 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 41CC3283180
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 00:34:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BDFD136B09;
-	Fri,  8 Mar 2024 22:54:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECAC7627;
+	Sat,  9 Mar 2024 00:34:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cNs7LkTJ"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SPug1NqD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pg1-f175.google.com (mail-pg1-f175.google.com [209.85.215.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8EC7A36139;
-	Fri,  8 Mar 2024 22:54:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82DCDA921;
+	Sat,  9 Mar 2024 00:34:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709938459; cv=none; b=k/wrSk3Sc+P6Q/VIwzKfLKo5BCyY4byU3HuPIsIg1kT6AXlVZ4/PXZMvaiExwAgqcTM9QV8FieReMJadthKgUcqFhGbsdYRrcRXV4Tw39yFjijcVqCaiefdN6SOAtqBVHEmtyehvRpKHkKvguS4JADGMHd0CerG1HvTRgqJw/Lo=
+	t=1709944470; cv=none; b=MrDU6JR1McMEpbOUbSF2dAnkr+QfZOTd6a6D/dUkTElC1Z/7N/Juo+1Gmk44gZZHwfakdhMcXrlVhWHtsgm5b9qqsEp6hegz4VqZUlWoazj5FK/ZGHSCyiTt4+KHp0CtXTZi3aZWth9xYvj91ImNgNfwzTb8YvHqf7U+FOPLPTI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709938459; c=relaxed/simple;
-	bh=Vkly+QNlmDqUblUCvbWVxQbK01ihl2TM0nwd62VhE8M=;
+	s=arc-20240116; t=1709944470; c=relaxed/simple;
+	bh=q4z0JBKtHiuuo11OV6hJdZdX8sEzI8QeCNwfqdbmNiQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=DZLndFzVUbs9q+UNh4jX/BBx3TGciRUqWxorje0G/TXnLjbAYsRO0Y0/BADAE7f9zzAMS2Tw1fZi3PzX53k9tCdIZbpTB8TLqT8ICItOWaghV8L/GBxkYblWLWgcwHQGk/YbuifGuyK3F5fOrMTHhHXP5fs8wkXxwIk51727DD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cNs7LkTJ; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CFCDC433C7;
-	Fri,  8 Mar 2024 22:54:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709938459;
-	bh=Vkly+QNlmDqUblUCvbWVxQbK01ihl2TM0nwd62VhE8M=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cNs7LkTJGQyWeQymH9AOr9F5jSqrTMIZVIeP0qR7RHyYnDCjgMRbboFrz/D0oeoIG
-	 b6RTgQ5QkqaXgnn7bUFd+EG30b2Seo+OVreYVKqUGJFV96GcgDLEb0lsfWP17pDjUa
-	 nMyyXXWgO7fpf2VQQQida/YiCRCAkET7owp+46mnt5zCDs8rlPbkvpnHskM0tr1T19
-	 KBHlorv9FYzI1S6eypgZe14YBCjwdVbCuaSWEx99VL9dbw4mr4OTvlLpxZL9NPF1om
-	 IlmhvFkJ7vvyx8YJKslKx//ZVEole8AEh5qysdO5neHo1VJBep+eDeVG9RJ2w4VCK1
-	 cYXKEL6B7nwfQ==
-Date: Fri, 8 Mar 2024 23:54:15 +0100
-From: Andi Shyti <andi.shyti@kernel.org>
-To: =?utf-8?B?VGjDqW8=?= Lebrun <theo.lebrun@bootlin.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	linux-arm-kernel@lists.infradead.org, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org, 
-	Gregory Clement <gregory.clement@bootlin.com>, Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>, 
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Tawfik Bayouk <tawfik.bayouk@mobileye.com>
-Subject: Re: [PATCH v3 08/11] i2c: nomadik: support Mobileye EyeQ5 I2C
- controller
-Message-ID: <yyyhx62wcvro2zrkxmj6g3esg32zh62f4spox7txv4ghc74ewo@lzduga5d4wzi>
-References: <20240306-mbly-i2c-v3-0-605f866aa4ec@bootlin.com>
- <20240306-mbly-i2c-v3-8-605f866aa4ec@bootlin.com>
+	 Content-Type:Content-Disposition:In-Reply-To; b=X1EWVosc0GwycZQsBrI1OSJ5H81cxebBCGIn+0VRz5vpjFwFfBDfa4L6RSeFt7RmDRpj46PM9PAiyZrLRe+bKO35EEPtmnsqDFnSZ5N875Gy43jFBUD3CXhy6ndb8Zw06VyTJ7+iHZx0uFJyT8K+eXbbFIyFMkC7zO1++0IMp+o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SPug1NqD; arc=none smtp.client-ip=209.85.215.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pg1-f175.google.com with SMTP id 41be03b00d2f7-5d8b519e438so2273726a12.1;
+        Fri, 08 Mar 2024 16:34:29 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1709944469; x=1710549269; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gfto3PH7OgXOdEBTnJiQU8idIpmlC2PcZAHMX1LkysE=;
+        b=SPug1NqDQ14J+lKq9d99zmcC7fxwixAb6W98Vk5I8WpGMGc47kIYfZWypoM7Dkbi3w
+         sfph2xFtODbeSiBGVpBslrM7NVHQ0WWxhqQ2dHlOTc5HLQY/d2d1aYLqbONijHsNcruU
+         I+sJW5zaq+0Ql2bknQ4pWQsRKemqbe6zNh6PjfatN/OSD/9eAfR+PUVlFkMcdic9ublT
+         wIDeW5K/iZfrTY3KoW8I+ajd9n8vmtiRHwxDtPdzOy7grwW3fXsgOHSvvrzegZqHBufC
+         q7Ss72jtYARhgzzyH41Y9LEBM22zuycDfogom6E9IGhen/S6Vu2MqQUT1RSqwG/1rtWL
+         Nrng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1709944469; x=1710549269;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Gfto3PH7OgXOdEBTnJiQU8idIpmlC2PcZAHMX1LkysE=;
+        b=bx0qv+pqsS4GtNY1zp9KBRFfb993X5hxKCnAX/lQ0tEMpPbe6nMCqvuXAcKzkeCEh0
+         53W9zyKksRTZMj+IUIZdNYwJpiqCwn+JwAwtAPJaSgg5EaOZ3biAKjquF0f01DpJqbs8
+         4mZr2BCpevkJgc0iooafvwx6lvYj/7G6RHubBx7gDyd9D/E/alZutQEVe5E4cCwDhVo8
+         BJ/xJcMZwFvlQPolmxVtw1B/Hdwjd16m0ON7siiWBGDNp9AMs6ssC4oPVgh3K+j5shsd
+         SnZSaMYYpp6IYlpm+/+G7LPnQzAdmD9QzhFMdePmtBJUptljVOuQCuhEyHUYtQP42qxw
+         mHMg==
+X-Forwarded-Encrypted: i=1; AJvYcCXOrbEe+CO1jJ9lqux/tzdXm63g+tB+6c4nKbkFQgA1/Raz8Q9IEVBisc9OOd7rfLFIm0jNSa8iOBpmK0gSW0FwW67POep1QIiMj3DRGPpD5YNa1cHJX7kGJ3Fr6iVUyq/hUdcst+RMF7v83CENi5gyfAVU/bhnIxLQDEHCME1C1rgoJqsw
+X-Gm-Message-State: AOJu0YwBPCHVe5l3BA8pS+DuU/peZYHXIpFFzaG/y7Hy//4s0V6jEqCg
+	8ukFCZGWglz3WZMzTuv7Mu6Hj+FpvgD3CkZUKXmNSPqIi1hVqIVJ
+X-Google-Smtp-Source: AGHT+IFs3hzvyY4O/JtyWuRJxKBnq5s8GOuRyNAOPC0O14RH8LjLu7ZnxPlIEUzThPXzP9CP0jVtLw==
+X-Received: by 2002:a05:6a21:3a48:b0:1a1:48f7:a621 with SMTP id zu8-20020a056a213a4800b001a148f7a621mr284306pzb.40.1709944468714;
+        Fri, 08 Mar 2024 16:34:28 -0800 (PST)
+Received: from google.com ([2620:15c:9d:2:f556:b889:3e89:5ec3])
+        by smtp.gmail.com with ESMTPSA id ie21-20020a17090b401500b0029b5f69830dsm302858pjb.22.2024.03.08.16.34.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 08 Mar 2024 16:34:28 -0800 (PST)
+Date: Fri, 8 Mar 2024 16:34:25 -0800
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Dharma Balasubiramani <dharma.b@microchip.com>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, nicolas.ferre@microchip.com,
+	alexandre.belloni@bootlin.com, claudiu.beznea@tuxon.dev,
+	linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	hari.prasathge@microchip.com
+Subject: Re: [PATCH v2] dt-bindings: input: atmel,captouch: convert bindings
+ to YAML
+Message-ID: <ZeuukSCMBqYEosNd@google.com>
+References: <20240209064755.47516-1-dharma.b@microchip.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +87,15 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240306-mbly-i2c-v3-8-605f866aa4ec@bootlin.com>
+In-Reply-To: <20240209064755.47516-1-dharma.b@microchip.com>
 
-Hi Theo,
+On Fri, Feb 09, 2024 at 12:17:55PM +0530, Dharma Balasubiramani wrote:
+> Convert the Atmel capacitive touchscreen bindings to YAML format.
+> 
+> Signed-off-by: Dharma Balasubiramani <dharma.b@microchip.com>
 
-> +static inline void nmk_i2c_writeb(const struct nmk_i2c_dev *priv, u32 val,
-> +				unsigned long reg)
+Applied, thank you.
 
-If you don't mind, I fixed this checkpatch warning while
-applying:
-
-CHECK: Alignment should match open parenthesis
-#103: FILE: drivers/i2c/busses/i2c-nomadik.c:247:
-+static inline void nmk_i2c_writeb(const struct nmk_i2c_dev *priv, u32 val,
-+                               unsigned long reg)
-
-Andi
+-- 
+Dmitry
 
