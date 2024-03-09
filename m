@@ -1,211 +1,434 @@
-Return-Path: <devicetree+bounces-49554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16A83876F21
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 05:25:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 93B3D876F46
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 06:21:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1A42281D7A
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 04:25:21 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B7DC41C20B80
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 05:21:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C8EC3612D;
-	Sat,  9 Mar 2024 04:25:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D8DBA2C6AA;
+	Sat,  9 Mar 2024 05:21:37 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="IDh09NdV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="GZx0C8/z"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E37E233070
-	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 04:25:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC279B656;
+	Sat,  9 Mar 2024 05:21:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709958319; cv=none; b=EdWlgsvjdwhTrL6waYvNp5aXqEsZWagSr/NdwFIn/eg1G1a4Fpo+30oV0aH9ddVpwARn2QLhcc5WyMs5EvM+4OpEDWCQiZGH9VSCsoQrjUYfELGsHtcYT2ys1vrM9F/jio8sxA3sXjLmGI67/TTwSiDxuh4fWAR7v0YsEnONJoI=
+	t=1709961697; cv=none; b=j9lTh0CyAz5DYuxH7mG5EvTOGAN1E8l/E0Bf1/Gv3uY19ebYdsl+xELZhUCOn+cWG7etSnBXaLiT3YAQdl7eZnbcRB5SNKJCseQVK+/YE+qUFuObeL05cL+NZ6S+gK/PKRJTI9jWh+UxvjaeopWkZKkYf7OmTuGzsFm1yN3R48E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709958319; c=relaxed/simple;
-	bh=oY61bsjp4snfEI6W0mDyGEPjxIKP293QMk48kddnrGI=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pfsIV2Iw5gYYmAGIwL00PymFg+G5gUMt+lmPZ1IafUemRnAbWajWhIJFlaTNWlO+vcDsVML5GfqZCR+fjOv97kfkbOEv5SXxQEgXnoffENxj5H56sH55HN8KU0DvogORP1961sP9b2TredtwwQTjAFtIMq+57l9Pgfo3s9RZv+I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=IDh09NdV; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
-From: Dragan Simic <dsimic@manjaro.org>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1709958313;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
-	 content-transfer-encoding:content-transfer-encoding;
-	bh=DP1vHZfKN2P6fiPzSQv/OOgly8w00GFCG+FtFMwnKfg=;
-	b=IDh09NdVsUmkN2LCPXgxOkM2SFqIufwR8oyNKqgkR/bClEISteqcVe8zqjDSkJtOMIZuE4
-	ECezUBYdmEIVWczDetAeogDkHSEz0pgkNoDdBIuImj1FVbk/vFV5vTiBAIuAAVZ/i33Z/O
-	dcbqUNsKWc/VGLxhZFNnmMXU8O9ptcD6bEs56PL2j1GfM0e+1ZApM6saDpr1BWQcBopiHe
-	7P9gjmmDMxW4rJNTmmz4j4JqS0crl+u50UZLsXAjw0FP2zdWsNMCt9YyNb/Nza9ZsbfqHI
-	u7TTU3GloSF5a8N0qo/pTXOlXAPWu94TawPQUwbT0gcqBQZdLBd/h2Q1PkeBrA==
-To: linux-rockchip@lists.infradead.org
-Cc: heiko@sntech.de,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	Anand Moon <linux.amoon@gmail.com>,
-	Diederik de Haas <didi.debian@cknow.org>
-Subject: [PATCH v2] arm64: dts: rockchip: Add cache information to the SoC dtsi for RK356x
-Date: Sat,  9 Mar 2024 05:25:06 +0100
-Message-Id: <2dee6dad8460b0c5f3b5da53cf55f735840efef1.1709957777.git.dsimic@manjaro.org>
+	s=arc-20240116; t=1709961697; c=relaxed/simple;
+	bh=tqY4JVDtTjXz4kbJkAYJ+KcUDc570PmGen8k2hpbpBU=;
+	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
+	 Subject:From:Cc:To:Date; b=rsfeeISM9m8Z7VnXuwmUkGHUrIQjPUK1dBfwoOlvwQGwEEVIV+HUVh1EAvjyf4IDglntIN19hO1VZUoWLMRZEF5KvDxuqk0s35vNgCoLB3txC6Wj+gRy1L3oJYRcScngmJtmZl8HRStzODP/fH0UWU9Sk1kZ+9LYq5kKjSzFVPY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=GZx0C8/z; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 14F34C433C7;
+	Sat,  9 Mar 2024 05:21:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1709961697;
+	bh=tqY4JVDtTjXz4kbJkAYJ+KcUDc570PmGen8k2hpbpBU=;
+	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+	b=GZx0C8/zLHn49Fbe/alM0hhq763Bha3aaoB2N6cdez2gYXeDO/sdP/ZFaPqP3+nuV
+	 TFl0tGNmoLp57fFvStiBZ2KqEO6lzOBI2lHFNXOJeb6DLhG7AweD99XR+04NW4OMrm
+	 fLCCAx+wC31Tro+Iw9umL2ObeIIOjjSxtgFk+c0/hin+gkRjL5vtc3U1jImCud2lkk
+	 EGLZeAA+ryX8oTaMW2lYmw7qLOzkPZOtKx3aYlUfpz82gONLC7QNSiOwVKccUmiizc
+	 Mle405ajB6zi0AnP4rpGlqxwSuZ7ASCwFTtyOvrXwnzj1z1mHfhr206Aj4e+J/kG6t
+	 xK6ml6v16AOEw==
+Message-ID: <55a896bcb94af629bb58c304268ac7ec.sboyd@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <IA1PR20MB4953925533ACD65B32D423D9BB4F2@IA1PR20MB4953.namprd20.prod.outlook.com>
+References: <IA1PR20MB4953366482FEBFC5E7F6F34BBB4F2@IA1PR20MB4953.namprd20.prod.outlook.com> <IA1PR20MB4953925533ACD65B32D423D9BB4F2@IA1PR20MB4953.namprd20.prod.outlook.com>
+Subject: Re: [PATCH v8 2/8] clk: sophgo: Add CV1800/SG2000 series clock controller driver skeleton
+From: Stephen Boyd <sboyd@kernel.org>
+Cc: Jisheng Zhang <jszhang@kernel.org>, Liu Gui <kenneth.liu@sophgo.com>, Jingbao Qiu <qiujingbao.dlmu@gmail.com>, dlan@gentoo.org, linux-clk@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+To: Albert Ou <aou@eecs.berkeley.edu>, Chao Wei <chao.wei@sophgo.com>, Chen Wang <unicorn_wang@outlook.com>, Conor Dooley <conor+dt@kernel.org>, Inochi Amaoto <inochiama@outlook.com>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Michael Turquette <mturquette@baylibre.com>, Palmer Dabbelt <palmer@dabbelt.com>, Paul Walmsley <paul.walmsley@sifive.com>, Rob Herring <robh+dt@kernel.org>
+Date: Fri, 08 Mar 2024 21:21:34 -0800
+User-Agent: alot/0.10
 
-Add missing cache information to the Rockchip RK356x SoC dtsi, to allow
-the userspace, which includes lscpu(1) that uses the virtual files provided
-by the kernel under the /sys/devices/system/cpu directory, to display the
-proper RK3566 and RK3568 cache information.
+Quoting Inochi Amaoto (2024-02-13 00:22:34)
+> diff --git a/drivers/clk/sophgo/Kconfig b/drivers/clk/sophgo/Kconfig
+> new file mode 100644
+> index 000000000000..d67009fa749f
+> --- /dev/null
+> +++ b/drivers/clk/sophgo/Kconfig
+> @@ -0,0 +1,12 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +# common clock support for SOPHGO SoC family.
+> +
+> +config CLK_SOPHGO_CV1800
+> +       tristate "Support for the Sophgo CV1800 series SoCs clock control=
+ler"
+> +       default m
 
-Adding the cache information to the RK356x SoC dtsi also makes the following
-warning message in the kernel log go away:
+Please remove any default and set it in the defconfig instead.
 
-  cacheinfo: Unable to detect cache hierarchy for CPU 0
+> +       depends on ARCH_SOPHGO || COMPILE_TEST
+> +       help
+> +         This driver supports clock controller of Sophgo CV18XX series S=
+oC.
+> +         The driver require a 25MHz Oscillator to function generate cloc=
+k.
+> +         It includes PLLs, common clock function and some vendor clock f=
+or
+> +         IPs of CV18XX series SoC
+> diff --git a/drivers/clk/sophgo/clk-cv1800.c b/drivers/clk/sophgo/clk-cv1=
+800.c
+> new file mode 100644
+> index 000000000000..7183e67f20bf
+> --- /dev/null
+> +++ b/drivers/clk/sophgo/clk-cv1800.c
+> @@ -0,0 +1,113 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
+> + */
+> +
+> +#include <linux/module.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/io.h>
+> +#include <linux/spinlock.h>
+> +
+> +#include "clk-cv18xx-common.h"
+> +
+> +struct cv1800_clk_ctrl;
+> +
+> +struct cv1800_clk_desc {
+> +       struct clk_hw_onecell_data      *clks_data;
+> +
+> +       int (*pre_init)(struct device *dev, void __iomem *base,
+> +                       struct cv1800_clk_ctrl *ctrl,
+> +                       const struct cv1800_clk_desc *desc);
+> +};
+> +
+> +struct cv1800_clk_ctrl {
+> +       const struct cv1800_clk_desc    *desc;
+> +       spinlock_t                      lock;
+> +};
+> +
+> +static int cv1800_clk_init_ctrl(struct device *dev, void __iomem *reg,
+> +                               struct cv1800_clk_ctrl *ctrl,
+> +                               const struct cv1800_clk_desc *desc)
+> +{
+> +       int i, ret;
+> +
+> +       ctrl->desc =3D desc;
+> +       spin_lock_init(&ctrl->lock);
+> +
+> +       for (i =3D 0; i < desc->clks_data->num; i++) {
+> +               struct clk_hw *hw =3D desc->clks_data->hws[i];
+> +               struct cv1800_clk_common *common;
+> +               const char *name;
+> +
+> +               if (!hw)
+> +                       continue;
+> +
+> +               name =3D hw->init->name;
+> +
+> +               common =3D hw_to_cv1800_clk_common(hw);
+> +               common->base =3D reg;
+> +               common->lock =3D &ctrl->lock;
+> +
+> +               ret =3D devm_clk_hw_register(dev, hw);
+> +               if (ret) {
+> +                       dev_err(dev, "Couldn't register clock %d - %s\n",
+> +                               i, name);
+> +                       return ret;
+> +               }
+> +       }
+> +
+> +       ret =3D devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
+> +                                         desc->clks_data);
+> +
+> +       return ret;
 
-The cache parameters for the RK356x dtsi were obtained and partially derived
-by hand from the cache size and layout specifications found in the following
-datasheets and technical reference manuals:
+Just return devm...
 
-  - Rockchip RK3566 datasheet, version 1.1
-  - Rockchip RK3568 datasheet, version 1.3
-  - ARM Cortex-A55 revision r1p0 TRM, version 0100-00
-  - ARM DynamIQ Shared Unit revision r4p0 TRM, version 0400-02
+> +}
+> +
+> +static int cv1800_clk_probe(struct platform_device *pdev)
+> +{
+> +       struct device *dev =3D &pdev->dev;
+> +       void __iomem *reg;
+> +       int ret;
+> +       const struct cv1800_clk_desc *desc;
+> +       struct cv1800_clk_ctrl *ctrl;
+> +
+> +       reg =3D devm_platform_ioremap_resource(pdev, 0);
+> +       if (IS_ERR(reg))
+> +               return PTR_ERR(reg);
+> +
+> +       desc =3D device_get_match_data(dev);
+> +       if (!desc) {
+> +               dev_err(dev, "no match data for platform\n");
+> +               return -EINVAL;
+> +       }
+> +
+> +       ctrl =3D devm_kmalloc(dev, sizeof(*ctrl), GFP_KERNEL);
 
-For future reference, here's a rather detailed summary of the documentation,
-which applies to both Rockchip RK3566 and RK3568 SoCs:
+Why not devm_kzalloc?
 
-  - All caches employ the 64-byte cache line length
-  - Each Cortex-A55 core has 32 KB of L1 4-way, set-associative instruction
-    cache and 32 KB of L1 4-way, set-associative data cache
-  - There are no L2 caches, which are per-core and private in Cortex-A55,
-    because it belongs to the ARM DynamIQ IP core lineup
-  - The entire SoC has 512 KB of unified L3 16-way, set-associative cache,
-    which is shared among all four Cortex-A55 CPU cores
-  - Cortex-A55 cores can be configured without private per-core L2 caches,
-    in which case the shared L3 cache appears to them as an L2 cache;  this
-    is the case for the RK356x SoCs, so let's use "cache-level = <2>" to
-    prevent the "huh, no L2 caches, but an L3 cache?" confusion among the
-    users viewing the data presented to the userspace;  another option could
-    be to have additional 0 KB L2 caches defined, which may be technically
-    correct, but would probably be even more confusing
+> +       if (!ctrl)
+> +               return -ENOMEM;
+> +
+> +       if (desc->pre_init) {
+> +               ret =3D desc->pre_init(dev, reg, ctrl, desc);
+> +               if (ret)
+> +                       return ret;
+> +       }
+> +
+> +       ret =3D cv1800_clk_init_ctrl(dev, reg, ctrl, desc);
+> +
+> +       return ret;
 
-Helped-by: Anand Moon <linux.amoon@gmail.com>
-Tested-By: Diederik de Haas <didi.debian@cknow.org>
-Reviewed-by: Anand Moon <linux.amoon@gmail.com>
-Signed-off-by: Dragan Simic <dsimic@manjaro.org>
----
+This is return cv1800_clk_init_ctrl(...
 
-Notes:
-    As already agreed upon with Anand Moon, this patch replaces the submission
-    of a similar, albeit a bit incorrect patch [1] that appeared a bit earlier
-    on the linux-rockchip mailing list.
-    
-    Changes in v2:
-      - Corrected the patch description to more accurately describe the actual
-        effects of the patch to the userspace, as spotted by Diederik de Haas
-        while testing the v1 of this patch [2]
-      - No changes were made to the actual source code patch
-      - Collected a couple of Reviewed-by and Tested-by tags
-      - Link to v1: https://lore.kernel.org/linux-rockchip/2285ee41e165813011220f9469e28697923aa6e0.1709491108.git.dsimic@manjaro.org/T/#u
-    
-    [1] https://lore.kernel.org/linux-rockchip/20240226182310.4032-1-linux.amoon@gmail.com/T/#u
-    [2] https://lore.kernel.org/linux-rockchip/90122541.GozVr7r7Y5@bagend/
+> +}
+> +
+> +static const struct of_device_id cv1800_clk_ids[] =3D {
+> +       { }
 
- arch/arm64/boot/dts/rockchip/rk356x.dtsi | 41 ++++++++++++++++++++++++
- 1 file changed, 41 insertions(+)
+Don't do this. Just send the whole driver as one patch.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk356x.dtsi b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-index c19c0f1b3778..6dfb2d47d3d0 100644
---- a/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk356x.dtsi
-@@ -57,36 +57,77 @@ cpu0: cpu@0 {
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cpu0_opp_table>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l3_cache>;
- 		};
- 
- 		cpu1: cpu@100 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a55";
- 			reg = <0x0 0x100>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cpu0_opp_table>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l3_cache>;
- 		};
- 
- 		cpu2: cpu@200 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a55";
- 			reg = <0x0 0x200>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cpu0_opp_table>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l3_cache>;
- 		};
- 
- 		cpu3: cpu@300 {
- 			device_type = "cpu";
- 			compatible = "arm,cortex-a55";
- 			reg = <0x0 0x300>;
- 			#cooling-cells = <2>;
- 			enable-method = "psci";
- 			operating-points-v2 = <&cpu0_opp_table>;
-+			i-cache-size = <0x8000>;
-+			i-cache-line-size = <64>;
-+			i-cache-sets = <128>;
-+			d-cache-size = <0x8000>;
-+			d-cache-line-size = <64>;
-+			d-cache-sets = <128>;
-+			next-level-cache = <&l3_cache>;
- 		};
- 	};
- 
-+	/*
-+	 * There are no private per-core L2 caches, but only the
-+	 * L3 cache that appears to the CPU cores as L2 caches
-+	 */
-+	l3_cache: l3-cache {
-+		compatible = "cache";
-+		cache-level = <2>;
-+		cache-unified;
-+		cache-size = <0x80000>;
-+		cache-line-size = <64>;
-+		cache-sets = <512>;
-+	};
-+
- 	cpu0_opp_table: opp-table-0 {
- 		compatible = "operating-points-v2";
- 		opp-shared;
+> +};
+> +MODULE_DEVICE_TABLE(of, cv1800_clk_ids);
+> +
+> +static struct platform_driver cv1800_clk_driver =3D {
+> +       .probe  =3D cv1800_clk_probe,
+> +       .driver =3D {
+> +               .name                   =3D "cv1800-clk",
+> +               .suppress_bind_attrs    =3D true,
+> +               .of_match_table         =3D cv1800_clk_ids,
+> +       },
+> +};
+> +module_platform_driver(cv1800_clk_driver);
+> +MODULE_LICENSE("GPL");
+> diff --git a/drivers/clk/sophgo/clk-cv18xx-common.c b/drivers/clk/sophgo/=
+clk-cv18xx-common.c
+> new file mode 100644
+> index 000000000000..cbcdd88f0e23
+> --- /dev/null
+> +++ b/drivers/clk/sophgo/clk-cv18xx-common.c
+> @@ -0,0 +1,66 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
+> + */
+> +
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/bug.h>
+> +
+> +#include "clk-cv18xx-common.h"
+> +
+> +int cv1800_clk_setbit(struct cv1800_clk_common *common,
+> +                     struct cv1800_clk_regbit *field)
+> +{
+> +       u32 mask =3D BIT(field->shift);
+> +       u32 value;
+> +       unsigned long flags;
+> +
+> +       spin_lock_irqsave(common->lock, flags);
+> +
+> +       value =3D readl(common->base + field->reg);
+> +       writel(value | mask, common->base + field->reg);
+> +
+> +       spin_unlock_irqrestore(common->lock, flags);
+> +
+> +       return 0;
+> +}
+> +
+> +int cv1800_clk_clearbit(struct cv1800_clk_common *common,
+> +                       struct cv1800_clk_regbit *field)
+> +{
+> +       u32 mask =3D BIT(field->shift);
+> +       u32 value;
+> +       unsigned long flags;
+> +
+> +       spin_lock_irqsave(common->lock, flags);
+> +
+> +       value =3D readl(common->base + field->reg);
+> +       writel(value & ~mask, common->base + field->reg);
+> +
+> +       spin_unlock_irqrestore(common->lock, flags);
+> +
+> +       return 0;
+> +}
+> +
+> +int cv1800_clk_checkbit(struct cv1800_clk_common *common,
+> +                       struct cv1800_clk_regbit *field)
+> +{
+> +       return readl(common->base + field->reg) & BIT(field->shift);
+> +}
+> +
+> +#define PLL_LOCK_TIMEOUT_US    (200 * 1000)
+> +
+> +void cv1800_clk_wait_for_lock(struct cv1800_clk_common *common,
+> +                             u32 reg, u32 lock)
+> +{
+> +       void __iomem *addr =3D common->base + reg;
+> +       u32 regval;
+> +
+> +       if (!lock)
+> +               return;
+> +
+> +       WARN_ON(readl_relaxed_poll_timeout(addr, regval, regval & lock,
+> +                                          100, PLL_LOCK_TIMEOUT_US));
+> +}
+> diff --git a/drivers/clk/sophgo/clk-cv18xx-common.h b/drivers/clk/sophgo/=
+clk-cv18xx-common.h
+> new file mode 100644
+> index 000000000000..2bfda02b2064
+> --- /dev/null
+> +++ b/drivers/clk/sophgo/clk-cv18xx-common.h
+> @@ -0,0 +1,81 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
+> + */
+> +
+> +#ifndef _CLK_SOPHGO_CV18XX_IP_H_
+> +#define _CLK_SOPHGO_CV18XX_IP_H_
+> +
+> +#include <linux/compiler.h>
+> +#include <linux/clk-provider.h>
+> +#include <linux/bitfield.h>
+> +
+> +struct cv1800_clk_common {
+> +       void __iomem    *base;
+> +       spinlock_t      *lock;
+> +       struct clk_hw   hw;
+> +       unsigned long   features;
+> +};
+> +
+> +#define CV1800_CLK_COMMON(_name, _parents, _op, _flags)                 =
+       \
+> +       {                                                               \
+> +               .hw.init =3D CLK_HW_INIT_PARENTS_DATA(_name, _parents,   =
+ \
+> +                                                   _op, _flags),       \
+> +       }
+> +
+> +static inline struct cv1800_clk_common *
+> +hw_to_cv1800_clk_common(struct clk_hw *hw)
+> +{
+> +       return container_of(hw, struct cv1800_clk_common, hw);
+> +}
+> +
+> +struct cv1800_clk_regbit {
+> +       u16             reg;
+> +       s8              shift;
+> +};
+> +
+> +struct cv1800_clk_regfield {
+> +       u16             reg;
+> +       u8              shift;
+> +       u8              width;
+> +       s16             initval;
+> +       unsigned long   flags;
+> +};
+> +
+> +#define CV1800_CLK_BIT(_reg, _shift)   \
+> +       {                               \
+> +               .reg =3D _reg,            \
+> +               .shift =3D _shift,        \
+> +       }
+> +
+> +#define CV1800_CLK_REG(_reg, _shift, _width, _initval, _flags) \
+> +       {                                                       \
+> +               .reg =3D _reg,                                    \
+> +               .shift =3D _shift,                                \
+> +               .width =3D _width,                                \
+> +               .initval =3D _initval,                            \
+> +               .flags =3D _flags,                                \
+> +       }
+> +
+> +#define cv1800_clk_regfield_genmask(_reg) \
+> +       GENMASK((_reg)->shift + (_reg)->width - 1, (_reg)->shift)
+> +#define cv1800_clk_regfield_get(_val, _reg) \
+> +       (((_val) >> (_reg)->shift) & GENMASK((_reg)->width - 1, 0))
+> +#define cv1800_clk_regfield_set(_val, _new, _reg)    \
+> +       (((_val) & ~cv1800_clk_regfield_genmask((_reg))) | \
+> +        (((_new) & GENMASK((_reg)->width - 1, 0)) << (_reg)->shift))
+> +
+> +#define _CV1800_SET_FIELD(_reg, _val, _field) \
+> +       (((_reg) & ~(_field)) | FIELD_PREP((_field), (_val)))
+> +
+> +int cv1800_clk_setbit(struct cv1800_clk_common *common,
+> +                     struct cv1800_clk_regbit *field);
+> +int cv1800_clk_clearbit(struct cv1800_clk_common *common,
+> +                       struct cv1800_clk_regbit *field);
+> +int cv1800_clk_checkbit(struct cv1800_clk_common *common,
+> +                       struct cv1800_clk_regbit *field);
+> +
+> +void cv1800_clk_wait_for_lock(struct cv1800_clk_common *common,
+> +                             u32 reg, u32 lock);
+> +
+> +#endif // _CLK_SOPHGO_CV18XX_IP_H_
+> diff --git a/drivers/clk/sophgo/clk-cv18xx-ip.c b/drivers/clk/sophgo/clk-=
+cv18xx-ip.c
+> new file mode 100644
+> index 000000000000..cd397d102442
+> --- /dev/null
+> +++ b/drivers/clk/sophgo/clk-cv18xx-ip.c
+> @@ -0,0 +1,98 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (C) 2023 Inochi Amaoto <inochiama@outlook.com>
+> + */
+> +
+> +#include <linux/clk-provider.h>
+> +#include <linux/io.h>
+> +#include <linux/gcd.h>
+> +#include <linux/spinlock.h>
+> +
+> +#include "clk-cv18xx-ip.h"
+> +
+> +/* GATE */
+> +const struct clk_ops cv1800_clk_gate_ops =3D {
+> +       .disable =3D NULL,
+> +       .enable =3D NULL,
+> +       .is_enabled =3D NULL,
+> +
+> +       .recalc_rate =3D NULL,
+> +       .round_rate =3D NULL,
+> +       .set_rate =3D NULL,
+> +};
+
+Everything is NULL. What are you trying to do? Point out what will come
+later? Please squash patches.
+
+> +
+> +/* DIV */
+> +const struct clk_ops cv1800_clk_div_ops =3D {
+> +       .disable =3D NULL,
+> +       .enable =3D NULL,
+> +       .is_enabled =3D NULL,
+> +
+> +       .determine_rate =3D NULL,
+> +       .recalc_rate    =3D NULL,
+> +       .set_rate =3D NULL,
+> +};
+> +
+> +const struct clk_ops cv1800_clk_bypass_div_ops =3D {
+> +       .disable =3D NULL,
+> +       .enable =3D NULL,
+> +       .is_enabled =3D NULL,
+> +
+> +       .determine_rate =3D NULL,
 
