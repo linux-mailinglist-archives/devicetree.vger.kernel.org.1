@@ -1,63 +1,61 @@
-Return-Path: <devicetree+bounces-49638-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49639-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C386877275
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 18:33:55 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CCB0877283
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 18:51:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B51CB21094
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 17:33:52 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3D5D51C214A0
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 17:51:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4AD7322083;
-	Sat,  9 Mar 2024 17:33:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCB7F24A12;
+	Sat,  9 Mar 2024 17:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aKUNIbyV"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="qrMGJaHi"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FD10BA4D;
-	Sat,  9 Mar 2024 17:33:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A9C6F2375B;
+	Sat,  9 Mar 2024 17:51:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710005625; cv=none; b=blWuoa3+76PL/Rj96zkVEqI9dxDeEV+lquFm76WvCKngdjbj8kwWvq71cXT0qLFv/zEm3b0xHwlMSxuYeovcwSOqH2GgcwG4f1rq1s0owT/5sdK6l8lsUbBeqf2IuBbptyf2JXys4V59k7tWZmxdzY21Nh4hLVsH/GsXLULqOZw=
+	t=1710006669; cv=none; b=XRYT2rfavA1ddONIbwerntCF1ycKpocW2PpomdDcigXwLt2qS4UK59JMlwXmxZ0op1Lui6sJ3nTWc7dx3mK+nAIO2tc3E0LrVCINlZNhW0wnwWMoBYsMUqA9WS4CgNwGfmmsPBxyHVltY475HDX8oGBkJhGkuXzydUY5SfKcaSI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710005625; c=relaxed/simple;
-	bh=43+u3G6xDTCsFtxNzsytl8KImGbMHMBkKuAb0LJ0ric=;
+	s=arc-20240116; t=1710006669; c=relaxed/simple;
+	bh=48FuxJYRobyq9zL7gLnlB6u3+I5puPcnQ7hwrjEettQ=;
 	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=cJKkE2zRn7gFyAvYYNrJfJTdjwVlm2pCFEYKGe7D38RXONEXjNNs54bJeyAtM+whztuEO9+1+GniuWIva6vSwPc3fwCZgcAeHF7Yn/peIY0HOwtc834xYdmCdLHfoFEpKa9MtmQncdNuqLBWBYOwECbTgixHV14GWPs+SBZNqeA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aKUNIbyV; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2FA86C433C7;
-	Sat,  9 Mar 2024 17:33:41 +0000 (UTC)
+	 MIME-Version:Content-Type; b=N9qD0ese7uCQQDjTkOqHNSz4fYftjogJkTDvgXl8MnZ88AIWZsIWms19h5gZVlCXI4lhD9imFO7eqv8ECJFpa8USeySkkqaOm8zJLkxqz7HWxYj0lAIfMfbDR8BJIYHW5cYsixKqiFWSWFcHpgb+1R2AJK1ha4DgPOMhqTGPR2o=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=qrMGJaHi; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B252C433C7;
+	Sat,  9 Mar 2024 17:51:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710005624;
-	bh=43+u3G6xDTCsFtxNzsytl8KImGbMHMBkKuAb0LJ0ric=;
+	s=k20201202; t=1710006669;
+	bh=48FuxJYRobyq9zL7gLnlB6u3+I5puPcnQ7hwrjEettQ=;
 	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=aKUNIbyVZDaESr8d9yZ9VQJ1YcROgg+SeTuAWXtzFOk+kJ+251k5A3a5c+Vct/N7M
-	 jWuYIZVhQxEutrLuuWNfJvoo0YKTE/e0bavh8eyqN/YYucQxsUHruuGFa5uF4EZ7gY
-	 A77b+A91MtFx0cjdIuBTbCra0ULRwaXpZ7cwR7e4iCzxa5c/DT3tPMqh1KK2UGmXMr
-	 4ZYx5SFJ4ofAj3p9KMdMNVwU2MwqJ4bUc2mt8AyX+wjuotH509qrCDwcZFm369R3dG
-	 R0eNhdIgFGOvK7KOY3v4d096cqX/P3tz+9RrS/puEO0XZpoT1m2TNzHFskpDoI2Bdp
-	 d2FwX8mtEjomA==
-Date: Sat, 9 Mar 2024 17:33:32 +0000
+	b=qrMGJaHir/TdQZnTw3lW6X9p4veg8SIrGCUoWFR6l2GzgARyzY7EOgLuvcZQs5D4r
+	 rD2rljRiFkrmWi9qA51iS+CabXLW/aUr3DkjzDGZy4NTY6we5WA6A7XtmDnSGZVrsn
+	 8c7CMkthDDPlHitSTh6wXcd8/Sf8G58Fy/Fa36BPtrq/3wtOBN5Ax3dDoEYpY24va5
+	 g0TLf3G9ZVox5rXHvbCr3Shak8YKScDbUBRMqTZflZKzfrDr8Fn8WGM05yv1JoBHAg
+	 bUdYCpYT+T80fCXkIKgs4JKVQMvHry8fQv2ANdWyqBO0ey5RiYvG+52jI/f1mZDCIL
+	 7lHV5UhRbDh1A==
+Date: Sat, 9 Mar 2024 17:50:56 +0000
 From: Jonathan Cameron <jic23@kernel.org>
-To: Rob Herring <robh@kernel.org>, Greg Kroah-Hartman
- <gregkh@linuxfoundation.org>
-Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, Frank Rowand
- <frowand.list@gmail.com>, Julia Lawall <Julia.Lawall@inria.fr>, Peter
- Zijlstra <peterz@infradead.org>, Andy Shevchenko
- <andriy.shevchenko@linux.intel.com>, marek.vasut@gmail.com, Jonathan
- Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [RESEND PATCH v2 0/4] of: automate of_node_put() - new approach
- to loops.
-Message-ID: <20240309173332.277fce7d@jic23-huawei>
-In-Reply-To: <20240303115633.41128a62@jic23-huawei>
-References: <20240225142714.286440-1-jic23@kernel.org>
-	<20240301223942.GA3179769-robh@kernel.org>
-	<20240303115633.41128a62@jic23-huawei>
-Followup-To: linux-kernel@vger.kernel.org
+To: Matti Vaittinen <mazziesaccount@gmail.com>
+Cc: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+ linux-iio@vger.kernel.org, Shreeya Patel <shreeya.patel@collabora.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ devicetree@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>, Paul
+ Gazzillo <paul@pgazz.com>, Rob Herring <robh+dt@kernel.org>, Dmitry
+ Osipenko <dmitry.osipenko@collabora.com>, linux-kernel@vger.kernel.org,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Subject: Re: [PATCH v7 0/5] Support ROHM BU27034 ALS sensor
+Message-ID: <20240309175056.3862630f@jic23-huawei>
+In-Reply-To: <ff8d6d14-6b48-4347-8525-e05eeb9721ff@gmail.com>
+References: <cover.1680263956.git.mazziesaccount@gmail.com>
+	<ff8d6d14-6b48-4347-8525-e05eeb9721ff@gmail.com>
 X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
@@ -68,97 +66,107 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
 
-On Sun, 3 Mar 2024 11:56:33 +0000
-Jonathan Cameron <jic23@kernel.org> wrote:
+On Mon, 4 Mar 2024 14:38:38 +0200
+Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 
-> On Fri, 1 Mar 2024 16:39:42 -0600
-> Rob Herring <robh@kernel.org> wrote:
+> Hi deee Ho peeps!
 > 
-> > On Sun, Feb 25, 2024 at 02:27:10PM +0000, Jonathan Cameron wrote:  
-> > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > 
-> > > Some discussion occured on previous posting.
-> > > https://lore.kernel.org/linux-iio/20240223124432.26443-1-Jonathan.Cameron@huawei.com/
-> > > 
-> > > Summary:
-> > > * fwnode conversions should be considered when applying this
-> > >   infrastructure to a driver. Perhaps better to move directly to
-> > >   the generic FW property handling rather than improve existing
-> > >   of specific code.
-> > > * There are lots of potential places to use this based on detections
-> > >   from Julia's coccinelle scripts linked below.
-> > > 
-> > > The equivalent device_for_each_child_node_scoped() series for
-> > > fwnode will be queued up in IIO for the merge window shortly as
-> > > it has gathered sufficient tags. Hopefully the precdent set there
-> > > for the approach will reassure people that instantiating the
-> > > child variable inside the macro definition is the best approach.
-> > > https://lore.kernel.org/linux-iio/20240217164249.921878-1-jic23@kernel.org/
-> > > 
-> > > v2: Andy suggested most of the original converted set should move to
-> > >     generic fwnode / property.h handling.  Within IIO that was
-> > >     a reasonable observation given we've been trying to move away from
-> > >     firmware specific handling for some time. Patches making that change
-> > >     to appropriate drivers posted.
-> > >     As we discussed there are cases which are not suitable for such
-> > >     conversion and this infrastructure still provides clear benefits
-> > >     for them.
-> > > 
-> > > Ideally it would be good if this introductory series adding the
-> > > infrastructure makes the 6.9 merge window. There are no dependencies
-> > > on work queued in the IIO tree, so this can go via devicetree
-> > > if the maintainers would prefer. I've had some off list messages
-> > > asking when this would be merged, as there is interest in building
-> > > on it next cycle for other parts of the kernel (where conversion to
-> > > fwnode handling may be less appropriate).    
+> On 3/31/23 15:40, Matti Vaittinen wrote:
+> > Support ROHM BU27034 ALS sensor
 > > 
-> > I'll let you take it. For the series:
-> > 
-> > Reviewed-by: Rob Herring <robh@kernel.org>
-> > 
-> > I've got some drivers/of/ conversions too, but they are probably next 
-> > cycle at this point.
-> > 
-> > Rob  
+> > This series adds support for ROHM BU27034 Ambient Light Sensor.  
 > 
-> Thanks Rob,
+> I have one word for all of you who worked to get the ROHM BU27034NUC 
+> driver working in upstream.
 > 
-> Whether this makes it for this cycle is probably dependent on whether
-> Linus does decide to do got to rc8 as hinted at as a possibility
-> + whether Greg feels comfortable taking these through his tree
-> (char-misc is the normal path for IIO).  I know various people
-> are hoping this series makes it, but if doesn't we can do an immutable
-> tree early next cycle (though obviously that may reduce speed of adoption).
+> Meh.
 > 
-> We are discussing the equivalent pull request for the fwnode version here:
-> 
-> https://lore.kernel.org/linux-iio/2024030239-gift-cabdriver-266b@gregkh/T/#m87e7208820ebf6416a77a2973773b65a087b4796
-> 
-> I've optimistically applied this series to my togreg-cleanup branch
-> and merged that into the togreg branch of iio.git for linux-next to pick up.
-> 
+> I just found out that the BU27034 sensor which was developed when I 
+> wrote this driver had some "manufacturing issues"... The full model 
+> number was BU27034NUC. The has been cancelled, and, as far as I know, no 
+> significant number of those were manufactured.
 
-Greg, would you consider a last minute pull request for these, or picking them up
-directly?  It would be helpful for Rob's follow ups and the work Julia is doing
-with coccinelle and automating of locating cases to apply this approach.
+ouch. We all have some cancelled products in our history!
+When that happens I usually go eat cake and moan at anyone standing
+near by. At least this seems like there will be some direct use of
+the work done (sometimes you just have to list the things learnt along
+the way).
 
-If the device_for_each_child_node_scoped() series is fine this is almostly
-exactly the same thing for the device tree specific case. Not sure what your
-plans are for that pull request so I might be jumping the gun.
+> 
+> The issues of BU27034NUC were solved, and new model BU27034ANUC was 
+> developed and is available in the ROHM catalog.
+> 
+> I did also learn that this new model BU27034ANUC is _not_ functionally 
+> equivalent to the BU27034NUC. I am currently clarifying all the 
+> differences, and I have requested the HQ to send me a sample for driver 
+> development and verification work.
+> 
+> This far I've come to know at least following differences:
+> 
+> - The DATA2 (IR) channel is removed. So is the gain setting for it. This
+>    should very much simplify the gain logic.
+> - Some of the gains were removed.
+> - The 5ms integration time was removed. (The support of 5ms was severely
+>    limited on original BU27034NUC too so driver did not support that
+>    anyways).
+> - The light sensitivity curves had changed so the lux calculation will
+>    be changed.
+> 
+> One thing that has _not_ changed though is the part-id :rolleyes:
 
-If not (and assuming the generic property version does make it in) I'll do
-an immutable branch based on rc1 so that others can build on this via that.
-Fiddlier solution for everyone but given how late we are, perhaps the wiser
-one.
+*sigh* Not even a version number?  Even unreleased / prototype parts should have
+different IDs if anything in the interface changed.
 
-FWIW they've been in linux-next a week without issue.
+> 
+> My preferred approach would be to convert the in-tree bu27034 driver to 
+> support this new variant. I think it makes sense because:
+> - (I expect) the amount of code to review will be much smaller this way
+>    than it would be if current driver was completely removed, and new one
+>    submitted.
+> - This change will not break existing users as there should not be such
+>    (judging the statement that the original BU27034NUC was cancelled
+>    before it was sold "en masse").
+> 
+> It sure is possible to drop the existing driver and submit a new one 
+> too, but I think it will be quite a bit more work with no strong benefits.
+
+Agreed, modify the existing driver. Just needs a clear statement in
+patch descriptions that the original part is not expected to be in the wild.
+
+> 
+> I expect the rest of the information to be shared to me during the next 
+> couple of days, and I hope I can start testing the driver immediately 
+> when I get the HW.
+> 
+> My question is, do you prefer the changes to be sent as one "support 
+> BU27034ANUC patch, of would you rather see changes splitted to pieces 
+> like: "adapt lux calculation to support BU27034ANUC", "remove obsolete 
+> DATA2 channel", "remove unsupported gains"...? Furthermore, the DT 
+> compatible was just rohm,bu27034 and did not include the ending "nuc". 
+
+Separate patches preferred for each feature / type of change. Mostly
+they'll hopefully be trivial to review.
+
+> Should that compatible be removed and a new one with "anuc"-suffix be 
+> added to denote the new sensor?
+
+Yes. The binding patch in particular will need a really clear statement
+that we believe there are none in products in the wild.
+
+> 
+> I am truly sorry for all the unnecessary reviewing and maintenance work 
+> you guys did. I can assure you I didn't go through it for fun either - 
+> even if the coding was fun :) I guess even the "upstream early" process 
+> has it's weaknesses...
+
+True enough. It's always 'interesting' to not know if / when a product
+you've upstreamed code for will launch.
 
 Jonathan
 
-
-> Thanks,
 > 
-> Jonathan
+> Yours,
+> 	-- Matti
 > 
 
 
