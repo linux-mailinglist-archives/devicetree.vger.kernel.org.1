@@ -1,84 +1,208 @@
-Return-Path: <devicetree+bounces-49552-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49553-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38CB8876EFA
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 04:36:41 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A4B9876F20
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 05:25:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 317271C20B41
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 03:36:40 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 989D6B20E86
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 04:24:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 912C72E63C;
-	Sat,  9 Mar 2024 03:36:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B8E2533070;
+	Sat,  9 Mar 2024 04:24:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mqaANVVl"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="wJnpVXmh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5854212E5B;
-	Sat,  9 Mar 2024 03:36:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F03E2CCA0
+	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 04:24:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709955395; cv=none; b=PsEltIhGvvX4dBQy3bl60+wA3do3Nk6AminVMg1I2y1Fp/7EzLZgNU3tItizPiZDv6KV+icZtujYVLUsT/3o3qmgVOTUugWlfwXqUQiy+LrNZf1wxfiqUS7REZgsKnw699cEY5jO0a+1PWfhmTtK49OS3b/9HtxxUBaZ7317oig=
+	t=1709958295; cv=none; b=caoMXydsSkzFn31d0kZvRRTZYDYHLe7/5JOazhRCSEJKWlwbKs3974LN6xdeMsyvUC7GeJP0BLbtjvW+FeJy+Cpm9+SCPH29D3BN2F3N+YIiusRnRugEf6PsfCEzr9kmG1085XeN6I7s69eY7tam8kmUERLyol5zXaWrCri+gW4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709955395; c=relaxed/simple;
-	bh=lLn6OOrz7gmP48Oh35CDpxbACMTCrCw+ctxvAb98+Uk=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Nf/ZuyNyGGRd5kexYbPQ53S89M2fIekW9LF+rx0D77BLZDGSCVMv+np5if198jSNTd81LeY2Wn+lCAWsTFDg1T8R7kqM+csxtTETNw1PON6QCCuMSHjCzzaiOdt3KFah4afJvRVAqenvcwkijdSAkjIcepN+Jiv+5tWJcvuP3yk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mqaANVVl; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 08EE0C433F1;
-	Sat,  9 Mar 2024 03:36:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1709955394;
-	bh=lLn6OOrz7gmP48Oh35CDpxbACMTCrCw+ctxvAb98+Uk=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=mqaANVVlKWfUxM9PlxRgsdjRkOrg3Jkc7oPqzWTUbZvx04x/1cYRNF3P+VXIKijag
-	 E4NUmiz3bBjfL9lAizdsXBZSmscGMeEp9h/p/sqyzDUFO9oMI9IlBsgjjTwW8cxUfW
-	 Kw5IEh9OHXAG47izsjv00pXaK1HY6sgvmsqtujqG1soURdCHj/haDoOXMyCoLSl9Cw
-	 VuhPjnL8tjLyINJekqUutnANno5gWdwbSlAnGm/bw5j9PFoctYsCh/24OOL6UTxDxQ
-	 rK88cfYz00RLkCkrLWGLDzl8vk0yvOmSnasKC03uvIkTy7lt6avJ5J+mw00rjFtcAn
-	 y+NveqC5bUT7g==
-Date: Fri, 8 Mar 2024 19:36:32 -0800
-From: Jakub Kicinski <kuba@kernel.org>
-To: Vinod Koul <vkoul@kernel.org>
-Cc: Daniel Golle <daniel@makrotopia.org>, Bc-bocun Chen
- <bc-bocun.chen@mediatek.com>, Steven Liu <steven.liu@mediatek.com>, John
- Crispin <john@phrozen.org>, Chunfeng Yun <chunfeng.yun@mediatek.com>, Vinod
- Koul <vkoul@kernel.org>, Kishon Vijay Abraham I <kishon@kernel.org>, Rob
- Herring <robh@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
- <angelogioacchino.delregno@collabora.com>, Qingfang Deng
- <dqfext@gmail.com>, SkyLake Huang <SkyLake.Huang@mediatek.com>, Philipp
- Zabel <p.zabel@pengutronix.de>, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- netdev@vger.kernel.org
-Subject: Re: [PATCH v3 2/2] phy: add driver for MediaTek XFI T-PHY
-Message-ID: <20240308193632.158b3c42@kernel.org>
-In-Reply-To: <ZevJwSq-A43vqO6k@makrotopia.org>
-References: <745f8b46f676e94c1a396df8c46aefe0e8b4771c.1707530671.git.daniel@makrotopia.org>
-	<3bb95f1d795eede63284dbcb224e06ea6886b421.1707530671.git.daniel@makrotopia.org>
-	<ZevJwSq-A43vqO6k@makrotopia.org>
+	s=arc-20240116; t=1709958295; c=relaxed/simple;
+	bh=xRQG0RBYMRKrbqkfcTEoyKV2Rv1WqcZ3rvsefZiyIoM=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=G5K1lfYFMA+V8m08AxjwjCkm9xwMoFZWXiqzbes9lPS9798CU3Mh614zArHBo4sNYmW8GpacLrZhgn6i/eVDTIqO53Jcp3o5EOlMLXLDGxZJdBECHKeCtwXGc/Oi7vMoJUGF/bmC7hNWQNNQsVGMy8EDvLd+bY537oZUN0cuQjo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=wJnpVXmh; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+From: Dragan Simic <dsimic@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1709958289;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=k95tCp5yd8JoavOvinMV7AsxpFcG60G3M9Ytmyw3wrc=;
+	b=wJnpVXmhNcJ9qA626hwd/17ny5WlO6FK7ALO9z140sfBSZb/mI95fxTSgrtp4LDXc97kUN
+	qPTzU3j/Ctl0Zxq/txGiH8gueVM7Vcf19aCboUB6t3TS+wEt2XeAPsufl1iRzAArTUTQUA
+	f+GAw8vhQ/Y7cUIqvSYGDcHV/VkttVy17F9yqHrSOaybR0SzLQZfhcoawd4LGX1kax+RFc
+	6JMH7x91LeHfEcE3k08XmeNiJA6NpIioJmhnUyo9eP7bzDSwrmSfLq1/xtWAqyenhu/g7Q
+	mIvGoatUUgGDjib/qvsyyzoDIiSO/pl+VmWqQdp+S/DATA3IPALYRLanKYxUTA==
+To: linux-rockchip@lists.infradead.org
+Cc: heiko@sntech.de,
+	linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	didi.debian@cknow.org,
+	Anand Moon <linux.amoon@gmail.com>
+Subject: [PATCH v2] arm64: dts: rockchip: Add cache information to the SoC dtsi for RK3328
+Date: Sat,  9 Mar 2024 05:24:42 +0100
+Message-Id: <a681b3c6dbf7b25b1527b11cea5ae0d6d1733714.1709958234.git.dsimic@manjaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On Sat, 9 Mar 2024 02:30:25 +0000 Daniel Golle wrote:
-> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>  
-> 
-> It's been a month since this patch was posted. Maybe it has somehow
-> slipped under the table (or even under the carpet)?
+Add missing cache information to the Rockchip RK3328 SoC dtsi, to allow
+the userspace, which includes lscpu(1) that uses the virtual files provided
+by the kernel under the /sys/devices/system/cpu directory, to display the
+proper RK3328 cache information.
 
-Lots of people in To:, lets direct the question to Vinod? 
-Most active generic PHY maintainer according to git, Vinod?
+While there, use a more self-descriptive label for the L2 cache node, which
+also makes it more consistent with other SoC dtsi files.
+
+The cache parameters for the RK3328 dtsi were obtained and partially derived
+by hand from the cache size and layout specifications found in the following
+datasheets, official vendor websites, and technical reference manuals:
+
+  - Rockchip RK3328 datasheet, version 1.4
+  - https://opensource.rock-chips.com/wiki_RK3328, accessed on 2024-02-28
+  - ARM Cortex-A53 revision r0p3 TRM, version E
+
+For future reference, here's a brief summary of the documentation:
+
+  - All caches employ the 64-byte cache line length
+  - Each Cortex-A53 core has 32 KB of L1 2-way, set-associative instruction
+    cache and 32 KB of L1 4-way, set-associative data cache
+  - The entire SoC has 256 KB of unified L2 16-way, set-associative cache
+
+The RK3328 SoC dtsi is also used for the single RK3318-based supported board.
+Unfortunately, no datasheet is available for the RK3318, but some unofficial
+sources state that its L2 cache size is the same as RK3328's, so it's perhaps
+safe to assume the same for the L1 instruction and data cache sizes.
+
+Reviewed-by: Anand Moon <linux.amoon@gmail.com>
+Signed-off-by: Dragan Simic <dsimic@manjaro.org>
+---
+
+Notes:
+    Changes in v2:
+      - Corrected the patch description to more accurately describe the actual
+        effects of the patch to the userspace, as spotted by Diederik de Haas
+        while testing a similar patch for the Rockchip RK356x SoC dtsi [1]
+      - No changes were made to the actual source code patch
+      - Collected one Reviewed-by tag
+      - Link to v1: https://lore.kernel.org/linux-rockchip/e61173d87f5f41af80e6f87f8820ce8d06f7c20c.1709491127.git.dsimic@manjaro.org/T/#u
+    
+    [1] https://lore.kernel.org/linux-rockchip/90122541.GozVr7r7Y5@bagend/
+
+ arch/arm64/boot/dts/rockchip/rk3328.dtsi | 37 ++++++++++++++++++++----
+ 1 file changed, 32 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+index 7b4c15c4a9c3..ac2846c33dc9 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
+@@ -46,47 +46,71 @@ cpu0: cpu@0 {
+ 			cpu-idle-states = <&CPU_SLEEP>;
+ 			dynamic-power-coefficient = <120>;
+ 			enable-method = "psci";
+-			next-level-cache = <&l2>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+ 		cpu1: cpu@1 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0 0x1>;
+ 			clocks = <&cru ARMCLK>;
+ 			#cooling-cells = <2>;
+ 			cpu-idle-states = <&CPU_SLEEP>;
+ 			dynamic-power-coefficient = <120>;
+ 			enable-method = "psci";
+-			next-level-cache = <&l2>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+ 		cpu2: cpu@2 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0 0x2>;
+ 			clocks = <&cru ARMCLK>;
+ 			#cooling-cells = <2>;
+ 			cpu-idle-states = <&CPU_SLEEP>;
+ 			dynamic-power-coefficient = <120>;
+ 			enable-method = "psci";
+-			next-level-cache = <&l2>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+ 		cpu3: cpu@3 {
+ 			device_type = "cpu";
+ 			compatible = "arm,cortex-a53";
+ 			reg = <0x0 0x3>;
+ 			clocks = <&cru ARMCLK>;
+ 			#cooling-cells = <2>;
+ 			cpu-idle-states = <&CPU_SLEEP>;
+ 			dynamic-power-coefficient = <120>;
+ 			enable-method = "psci";
+-			next-level-cache = <&l2>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
++			i-cache-size = <0x8000>;
++			i-cache-line-size = <64>;
++			i-cache-sets = <256>;
++			d-cache-size = <0x8000>;
++			d-cache-line-size = <64>;
++			d-cache-sets = <128>;
++			next-level-cache = <&l2_cache>;
+ 		};
+ 
+ 		idle-states {
+@@ -102,10 +126,13 @@ CPU_SLEEP: cpu-sleep {
+ 			};
+ 		};
+ 
+-		l2: l2-cache0 {
++		l2_cache: l2-cache {
+ 			compatible = "cache";
+ 			cache-level = <2>;
+ 			cache-unified;
++			cache-size = <0x40000>;
++			cache-line-size = <64>;
++			cache-sets = <256>;
+ 		};
+ 	};
+ 
 
