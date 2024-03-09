@@ -1,70 +1,72 @@
-Return-Path: <devicetree+bounces-49630-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49631-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38AA5877207
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 16:55:06 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8061187720B
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 16:55:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9941528191B
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 15:55:04 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B2AF51C20A5F
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 15:55:07 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9873045950;
-	Sat,  9 Mar 2024 15:55:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 934974595A;
+	Sat,  9 Mar 2024 15:55:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="qgDt62PG"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="q2g6ZfcN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CBBF4503D
-	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 15:55:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CBA7945940
+	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 15:55:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709999702; cv=none; b=ERjaZ0SNDygW9vpk8rn2ePxILGcfbmHhkpaySdrhZmODpb1bgkNfyzmwhY78S+z0go487E/yUe7NP2bBZ1u+gO5s1MH82zYDhvtnXJ9d6mKBPIgsNWvSFqsmgzgmGNvY8cKFmT+s5VSCttO/1FjjAEVqrm9mcoLEOZpxoBTk+/0=
+	t=1709999703; cv=none; b=lzX788kBQxUqzCNzmcH/Hn9MpH3u6VwhPjBxbEJQQtb/C1Px2q6xP20bGFlbU83AcOfyFe89pMPTslKP3IFkIaNOJCrIezovVjqzroz/rslu1+Q3phXE3YaBqn+pEjihkby7tjdpUq4yPeqzvF+g6t0qOBmQOHS9KlRDCxWpCRI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709999702; c=relaxed/simple;
-	bh=okntOCxHdXfDiSNGp5Q/yJnmIT//bZkGzzyQ8XGTaX4=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=ptqvD69FPePd1Rs4H47neK1CLrdZez71/oEExLUM9Ss1dtb0iQ4jQTMP+OJXU1Eu0ps5zLQrSBgg3NY2vT8BQLEn77b/eXcrE3BQ/AvxLetgBR86N2+Fnnxz46BrmvZaAIURos2lgHq1/54BgHwSS/a/6rqcUNgrn1ozkWh3Fl0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=qgDt62PG; arc=none smtp.client-ip=209.85.218.50
+	s=arc-20240116; t=1709999703; c=relaxed/simple;
+	bh=Yb7xqfxkqIWBKsuccsmy/XJ/urgpuY06bYi+GcfXOxw=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=Iuk8uv/uHjLyAuEwQsP0/DsKos70jjjmIGDB9yvk8GMivQU9dWP9mQVv6bYxkYJcbBSDIuB2WV0L+US+K8oX3Q1rH6vyfdgvGjyqeHfe8XFLRrLVfAQusJ5J3/eivUINRcMxw1l2IEdMgtMZy3JogN4VqfXy2tFeiqWh+jbcpE0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=q2g6ZfcN; arc=none smtp.client-ip=209.85.167.52
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a45c006ab82so376882366b.3
-        for <devicetree@vger.kernel.org>; Sat, 09 Mar 2024 07:55:00 -0800 (PST)
+Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-5132181d54bso4233783e87.3
+        for <devicetree@vger.kernel.org>; Sat, 09 Mar 2024 07:55:01 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech.se; s=google; t=1709999699; x=1710604499; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=TuPstnhPbF0+SqOFtEx4l3f770SiiyBvVtP9fLpE7xM=;
-        b=qgDt62PG92EcX5ByZgywORYj/mtAYFh42in+kzB+UY53NXrfMZzqdB+SM2gTlL1wZT
-         Fw7InVEatjH8sEXicUb6byNZ3f0q4emoQllkRkHiPjeojA7j3VLMFcdBysrCBeFuppqA
-         BA3irOkQL7OvDy/w/NAVCGBy2Oy1xwgk8JsTudKkGdGKNZTfH1ttw+bUkqMk9rbqxTXb
-         GIccof5v2g1afIvEJgR0MJg3VDZH9D+UNYBHQGEMMQocDVMChjfKExjdNAL01wGso+7V
-         LbYqa6hv/Tp4eHSKlbeYyu1vyqYMQcBJlOJpJQuJOkNqaXj+j2AgBE9bxKC0zQSrtuH4
-         gTtQ==
+        d=ragnatech.se; s=google; t=1709999700; x=1710604500; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cHQfOk2RYffRyoIaOuuITCWN0JusXcRRtkVr9gcihOQ=;
+        b=q2g6ZfcNk/A9EET57koxLJahfGpGPqnCbSFeQoZHq8Cr8VOIwAwSQB8EA6KCt0iGAS
+         fPNk+q1bt7TdDiT3CFQhOjaXA4DR9pOL9uCjSKyzSzbPQDlW7olJfxXqxQbsO7v2UR7L
+         U0zVBUrq72Axxpz4POwfifbIBQLSQEGh6uJoWJqo9MrgfYtOnrvlgYbMHvfACkGSAo6W
+         QMY6/YiJ4d23lDFYTVLnnr3X1D5g/r0NWGuqpxu63QlX5PXhzMQLpvhnzcPOGQ1PoQ4x
+         TRvEmB/WnUOvbxpY2iUJJ1EL/BZBJXipwcuOxQM4K+bZgamwbd9RFYM+MC5x+SaBn1Ks
+         HZBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709999699; x=1710604499;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=TuPstnhPbF0+SqOFtEx4l3f770SiiyBvVtP9fLpE7xM=;
-        b=wrW50UZELRE2OLIVkv7erhalufvQQ/1pDGMz5H6yJpRm+pqJtad8TA6W7+pETDEzfP
-         JL6y25xDF08DR2vvAcPHmAQjS/jJ1eyZKeBsz8wVkGXDT6dg0r78YCCo/fUqm/sC7z/T
-         PLk2pxSutpGqeZiOj5Qmlcfp0trpnUBmj76rPLBoxDOF3la9jfyJhk14BN1eLBzV3u4x
-         BaUG/sC8OV24iGuOH1LAUluuZi1d8YL0I2735FPLykXzx0Nct53bS9dhcdUD5Gs1Hwfp
-         q6xGerQPhpbIYzPcXIm6O3V9iJQ1SYLKgsi4I6uOv9KL3EDdzIQNh3Z2d/jYx0c1hq/W
-         0rtA==
-X-Forwarded-Encrypted: i=1; AJvYcCU9eUvQ0HEJnhJVMwJkqXOVyVBcLn3UzYWxjvNkGGDSevn1BZEFczXitNb82w9R/uxZ4Sn1pkAz3UQLnEkhoHw2sKJa2hV9imPnUQ==
-X-Gm-Message-State: AOJu0YzJOBYNzclshOC/exWXmViP1EKjmuKQr76FCovVsTtBK137Gx3m
-	MLfIkfFQjogsBiOwNV2xa040Xw2tGQJ/AcbH1hzip6uONjTUeChk7+w1/85oHBI=
-X-Google-Smtp-Source: AGHT+IGbh6WubsmxB+EyIWgSpXzWgufzyOMSGt456adwbXwfz1//V8NkFP/YttWdi1xXc6jyRIfsHA==
-X-Received: by 2002:a17:906:1d50:b0:a45:f94d:db4b with SMTP id o16-20020a1709061d5000b00a45f94ddb4bmr1215620ejh.35.1709999698940;
-        Sat, 09 Mar 2024 07:54:58 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709999700; x=1710604500;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cHQfOk2RYffRyoIaOuuITCWN0JusXcRRtkVr9gcihOQ=;
+        b=Ia92C5wJqGQlO+ccZVFhPfEoz2z/4RFmN1jlnNIrQvJxsSbPcu4DtUuTvPAkTP5G1o
+         FStCuc4S17SZtN1s7ehIpO9nLIqDXnbQXwfUS31cdiFpzCDYeRCC34zP3k4DbyJOqdtk
+         45ANHXj45rtCkiZ2CZxn7aoHiOoHpI0oDRASWtZTKjLAbU6wsfv7jzFdd0dCFaGenVOA
+         OfXHx0gtXKCbdC3yi0bd9duJOBDCirLy3Vu9gzIz+tCdcgIfwc1/iC2a0EpJb4Chqg+b
+         wsLVKDYiwN3jJD2XS+EXa3gInJ8sYXjq5tUev2cjWSHnA5B7ub/MBtA5ZUtyy42RqZ43
+         EBKg==
+X-Forwarded-Encrypted: i=1; AJvYcCWDfe7uz8RQchZRE2oFzFNKJMf1gCdvRSP/O4a/e10/sMITpCyMOaZCtnn6LI3jhLpY32a3YI2Uy79IMVpp3kkJ3+UsmHubfAUngw==
+X-Gm-Message-State: AOJu0YzINOYnA4SRkE0FnvuL1u3tTYPPtGtt7nj2A8HT0ScaE4I8QNIZ
+	F7xZFShflo5x4ZUv4z0gWq80xj/q3ZjcVkLC8M+BH9WlI0swxGsVhZBWcvPbBIE=
+X-Google-Smtp-Source: AGHT+IEGpwRFUsYP1yOBMH/siZGRb/1f1wruXZpRcTIQkJN98y3teQ0M8v2/iPX79mn198Vd/9PanQ==
+X-Received: by 2002:a05:6512:3b8e:b0:513:9ae1:46f4 with SMTP id g14-20020a0565123b8e00b005139ae146f4mr1877134lfv.49.1709999699910;
+        Sat, 09 Mar 2024 07:54:59 -0800 (PST)
 Received: from sleipner.berto.se (p4fcc8c6a.dip0.t-ipconnect.de. [79.204.140.106])
-        by smtp.googlemail.com with ESMTPSA id kq17-20020a170906abd100b00a40f7ed6cb9sm1005216ejb.4.2024.03.09.07.54.58
+        by smtp.googlemail.com with ESMTPSA id kq17-20020a170906abd100b00a40f7ed6cb9sm1005216ejb.4.2024.03.09.07.54.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Mar 2024 07:54:58 -0800 (PST)
+        Sat, 09 Mar 2024 07:54:59 -0800 (PST)
 From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
 To: Sergey Shtylyov <s.shtylyov@omp.ru>,
 	"David S. Miller" <davem@davemloft.net>,
@@ -82,10 +84,12 @@ To: Sergey Shtylyov <s.shtylyov@omp.ru>,
 	devicetree@vger.kernel.org
 Cc: linux-renesas-soc@vger.kernel.org,
 	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [net-next 0/2] ravb: Support describing the MDIO bus
-Date: Sat,  9 Mar 2024 16:53:32 +0100
-Message-ID: <20240309155334.1310262-1-niklas.soderlund+renesas@ragnatech.se>
+Subject: [net-next 1/2] dt-bindings: net: renesas,etheravb: Add optional MDIO bus node
+Date: Sat,  9 Mar 2024 16:53:33 +0100
+Message-ID: <20240309155334.1310262-2-niklas.soderlund+renesas@ragnatech.se>
 X-Mailer: git-send-email 2.44.0
+In-Reply-To: <20240309155334.1310262-1-niklas.soderlund+renesas@ragnatech.se>
+References: <20240309155334.1310262-1-niklas.soderlund+renesas@ragnatech.se>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -95,32 +99,33 @@ MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Hello,
+The Renesas Ethernet AVB bindings do not allow the MDIO bus to be
+described. This has not been needed as only a single PHY is
+supported and no MDIO bus properties have been needed.
 
-This series adds support to the binding and driver of the Renesas 
-Ethernet AVB to described the MDIO bus. Currently the driver uses the OF 
-node of the device itself when registering the MDIO bus. This forces any 
-MDIO bus properties the MDIO core should react on to be set on the 
-device OF node. This is confusing and non of the MDIO bus properties are 
-described in the Ethernet AVB bindings.
+Add an optional mdio node to the binding which allows the MDIO bus to be
+described and allow bus properties to be set.
 
-Patch 1/2 extends the bindings with an optional mdio child-node to the 
-device that can be used to contain the MDIO bus settings. While patch 
-2/2 changes the driver to use this node (if present) when registering 
-the MDIO bus.
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+---
+ Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-If the new optional mdio child-node is not present the driver fallback
-to the old behavior and uses the device OF node like before. This change 
-is fully backward compatible with existing usage of the bindings.
-
-Niklas Söderlunn (2):
-  dt-bindings: net: renesas,etheravb: Add optional MDIO bus node
-  ravb: Add support for an optional MDIO mode
-
- .../bindings/net/renesas,etheravb.yaml          |  4 ++++
- drivers/net/ethernet/renesas/ravb_main.c        | 17 +++++++++++++++--
- 2 files changed, 19 insertions(+), 2 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+index de7ba7f345a9..5345ad8e1be4 100644
+--- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
++++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+@@ -93,6 +93,10 @@ properties:
+     description: Number of size cells on the MDIO bus.
+     const: 0
+ 
++  mdio:
++    $ref: /schemas/net/mdio.yaml#
++    unevaluatedProperties: false
++
+   renesas,no-ether-link:
+     type: boolean
+     description:
 -- 
 2.44.0
 
