@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-49611-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49612-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA2C187715A
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 14:25:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B9ED877160
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 14:30:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 32E98B20F30
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 13:25:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2FC3C2818FE
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 13:30:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D69D93BBDF;
-	Sat,  9 Mar 2024 13:25:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF7613BBE3;
+	Sat,  9 Mar 2024 13:30:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NZGV/jlr"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="EAStPMOa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD05A3BBCC
-	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 13:25:29 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C48E73BBCC
+	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 13:30:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709990731; cv=none; b=edpBsPYuQirJZEB2W0QiP4AjRCn8KPvMG4lL4Yd1XFBB+69tOeJdDGlDu5yCwxD5Y4fTaEpElsJeInk0eiA8wGz8jWkbzHCLWXYJic7755jxbEWsmTlq+5+ZFqC3xkz9DdYw0p3M1ahETL4h3fiTWTBvKcYSTnRElHx8AdZnMpI=
+	t=1709991030; cv=none; b=mYyO/g8IvoEyKNVcILlgxrxpZFGiveoO8azOYF3/eDj2PBbuu2Ejl07HlUcxP4871RpRDcxzUIBudGRMgiQSMJ/yhXfSQtI3YcrgNJpL/HIFkPE+9aqO85Hf2WMlwPYm8qyyoECkJEtaxqtQVY1d1CH3TJ/XzwXbzAnbi1gnT8o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709990731; c=relaxed/simple;
-	bh=LHB6rFgP2ZQBJqCKzNVyKTDcpYrfFT5IZ++abJMN94M=;
+	s=arc-20240116; t=1709991030; c=relaxed/simple;
+	bh=hpTYtSHVtN/vzLg7QKJi3LIKXnrpHbWK6gwtNIxfpyc=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SiQVUnr/8GARqenD5odpgIzxx5/0irxzmVtL2VfjTotTlBu2C+TP8xnoe+Xce/NsFrExd+Ilgk/gof1q8AiuBzya3WKLLB9sWFnQcVORxdp9wT7QZonRezC9Yuujsk8I06F6931d1mrBo3xNXIwE4qFMiBA/L5r3KB+XwbjPJGM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NZGV/jlr; arc=none smtp.client-ip=209.85.218.44
+	 In-Reply-To:Content-Type; b=X1aXpoaO8gNj4FmIv13m2Tzfh+ufFAc89ovbjCeK9P1CgWM3arjZWj85m3brTg7NBnBkcGuPoH84rLf9LmBmweLeDZPlMQO9E3RP6r/lB9I1Z3y9M+ez20IPelm7O8PMzVTGiWD20RY8Hs2tfq4pqVSGhvPEt9c3pqzMo5QV850=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=EAStPMOa; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a293f2280c7so474759166b.1
-        for <devicetree@vger.kernel.org>; Sat, 09 Mar 2024 05:25:29 -0800 (PST)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-5131c0691feso4013433e87.1
+        for <devicetree@vger.kernel.org>; Sat, 09 Mar 2024 05:30:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1709990728; x=1710595528; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1709991027; x=1710595827; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=yDiQvphz9r/4tswvU3DLnkYQoFIGQ/fVX+Hfug55pYU=;
-        b=NZGV/jlru5r433VqTgFMOiobtVy0QPavoPFuJ73L/uJpTFC3GxjjkzxWtzjLWDTumm
-         VnTLe0WwiUH16wL4/lPzPICJcg4eYVeg+xM5kPgzgigwb/MkOugnqwbrmeakUEI1CY/R
-         /tGAH2s7CVV0vxj/DD6BK1r6KT6nZ9OWaNK700XzePCc3PcZEPaht6wBV8k4IyjZaWbd
-         M9lMwKZIdvx6hQAHRCF7oZDbTkT+/SVZ6ysOGu4cqCPu9sxoyWNPI84vrWyDP/DkunHe
-         NOfW+mYdkeL4VEpc4Ji3pZiyS0/DWKcnmsRHPpdvJ7xAGX1qkytcjTvcK0kKG5xTZw42
-         uZIg==
+        bh=Q7d8tURN7bnHW6ly3WmFNxh7nOEu4El6eZw0a/wSGB4=;
+        b=EAStPMOaoxoyjbltDui9P/DsdO/EUePkkutWqIVnAfs071wgYmDI9Ysv9gxMwwwD1b
+         1stG/hsbDBE0T75HdEg8lisGjMpjxTdz1IevMzmYWQ1xP/FCFADa1dITXqfVWfj1ekoJ
+         3NwuRePpq9EXAlLiUqNWF//cjXf2LZ38uTRDEa7ma8MrNBPgszxLu1sJ1Keeg4xrVr7Q
+         pOMbIrgYogIfarOLm86z0DYKgl3RRc2DBFqnfyIWCf+aFnjV9kyOyo5e18ti2OSHJS/q
+         KW0G48sVp4kC2Yb3VEbf6TsimsZf9dhtenHkp66XlLRA3WqxieW0rHN+yZc0RjKxRqac
+         Jo1Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709990728; x=1710595528;
+        d=1e100.net; s=20230601; t=1709991027; x=1710595827;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yDiQvphz9r/4tswvU3DLnkYQoFIGQ/fVX+Hfug55pYU=;
-        b=PYiWZ2VacSDZedQdRA8J5Za2lNoMkCuI8xpGVNy+YouKk1CbtrQrgIP6dqpDn6/p8J
-         mE2BsWVHjyuNrGDXhLisohwRYjvAUoK9v5b7tHEzrx/Mw5Y/3WYYtt31AbY0tT0SYMSV
-         E0PCIZMfKyVizS5GA5oH956W0kkLBZmxSS2f9hMfVsbB6E9dCnplgUCdscNxKh+N9fui
-         32gki9R6AoEGvBkSty88bP26CYpLRTiS8qoyyld2c4R/6JgJ3les/WmboHjQpbAtZpeQ
-         McvE2aK5zb3EjsyJX6mx2WcRLU+RJQd/Fr8t+4n298kIb2jC+4t9oqPaKqCVyoeAB4OQ
-         UFvg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4gVg0omfy0c3D+RadxrVcD9Pf17w0J2ZNwTVgTIrS28SdtQpoZp9x44fHhURd1vkc6q0krQu+1VcVFVYSXuhHvubJh5e27e2o3g==
-X-Gm-Message-State: AOJu0YwdEGrsMQOyJ5vGEOb1NzKrHByk4ePeeahvUxGrecAoHdmdZmDs
-	pnz0LkZ2i1Pc4CU5+xmGuS/LgPJWm9//bow6nIrVVKXr5xtA6Sp6LT0OR6BOc+B/v8M5K0U+d5+
-	j
-X-Google-Smtp-Source: AGHT+IEqMUeTbIwEJMFFWcxPSCURfWjwaIR3Ho9n40MtX5g6Fu+gZKAk5/hreEtCMYPdV7ZxgdwHUQ==
-X-Received: by 2002:a17:906:f8da:b0:a45:902b:3cb0 with SMTP id lh26-20020a170906f8da00b00a45902b3cb0mr1019082ejb.58.1709990728160;
-        Sat, 09 Mar 2024 05:25:28 -0800 (PST)
+        bh=Q7d8tURN7bnHW6ly3WmFNxh7nOEu4El6eZw0a/wSGB4=;
+        b=wYT+bZH2UflVtILpz++NkDopbZHyM3CgRHdEBDSlEJYem2N69iUlOuxVIzFG3VTBdd
+         wEF1yuKWRh/H/Kwku5+85yfwMwXkrLY9XcdCuw4FIpCj/xgA0OwgUNd//XeZ1jfuBy0W
+         DyPer90AqZQ1nR5qiP0qKM1nfzcIx4pJnUbn4IznlQENRpOerm4+CI8ZEkFlHEWBCByq
+         c6PLKWBr46ZHAqK0nwfJpW4wlpHTCv5NwIUPHRbwIoaU8R1TOVvobyrNa5ZdpPBZJl+t
+         X6Q37OrBLcV1S46uZSAQIFlHQcZ6XC5e+aiWbA+9kja29+hcs8rkOq+mPhwnXRwAHBo5
+         8yXQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXoKFrVL26k7CpRPNo8+c6ksZt0HcIPpxgf5LgLuV0tcef3mBM/G9C9dREYUr8+Io3kHoXobSpptuMjr0dwMrBC25rUu2LsAmslhg==
+X-Gm-Message-State: AOJu0YzQ46x1wv3gOVJ0QXdK28GAo96I4Tt5o/c1klNLArnxbqIWtT6+
+	kDINOC2C4H8Rr6KgB6oNkruvJFwTFlxO9BWnWoUdz8Yb2W+3ttIHEbPTGKMFK9c=
+X-Google-Smtp-Source: AGHT+IEudTtoGW7ofW6Bva2zDxUhoEgeoYTzSiQeHXzpeayRMFjIe4sJ6OCfoqMKI1oT9swpgaGGDg==
+X-Received: by 2002:a05:6512:e83:b0:513:3d4d:b7d4 with SMTP id bi3-20020a0565120e8300b005133d4db7d4mr1294091lfb.11.1709991026987;
+        Sat, 09 Mar 2024 05:30:26 -0800 (PST)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id lr1-20020a170906fb8100b00a442e2940fdsm887802ejb.179.2024.03.09.05.25.26
+        by smtp.gmail.com with ESMTPSA id ko1-20020a170906aa0100b00a450c790080sm874546ejb.156.2024.03.09.05.30.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 09 Mar 2024 05:25:27 -0800 (PST)
-Message-ID: <fb78bdda-2ec7-4fcc-888e-233905a9386c@linaro.org>
-Date: Sat, 9 Mar 2024 14:25:25 +0100
+        Sat, 09 Mar 2024 05:30:26 -0800 (PST)
+Message-ID: <2821f23f-aac1-4b12-ba60-bc60da153d8a@linaro.org>
+Date: Sat, 9 Mar 2024 14:30:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +76,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12 2/4] dt-bindings: remoteproc: add Tightly Coupled
- Memory (TCM) bindings
+Subject: Re: [PATCH 4/4] arm64: dts: renesas: r9a07g0{43,44,54}: Update usbhs
+ family compatible
 Content-Language: en-US
-To: Tanmay Shah <tanmay.shah@amd.com>, andersson@kernel.org,
- mathieu.poirier@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, ben.levinsky@amd.com
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-References: <20240301181638.814215-1-tanmay.shah@amd.com>
- <20240301181638.814215-3-tanmay.shah@amd.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>,
+ Magnus Damm <magnus.damm@gmail.com>,
+ "linux-renesas-soc@vger.kernel.org" <linux-renesas-soc@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ "biju.das.au" <biju.das.au@gmail.com>
+References: <20240308180919.6603-1-biju.das.jz@bp.renesas.com>
+ <20240308180919.6603-5-biju.das.jz@bp.renesas.com>
+ <67819907-4366-483d-b71b-2646ffb076fd@linaro.org>
+ <OSAPR01MB15874E48DD2269C2593DB55A86262@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+ <ff569d52-f68f-410d-9897-9e1102171a1b@linaro.org>
+ <OSAPR01MB15874A9DB0CE13AB0440242186262@OSAPR01MB1587.jpnprd01.prod.outlook.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,172 +139,73 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240301181638.814215-3-tanmay.shah@amd.com>
+In-Reply-To: <OSAPR01MB15874A9DB0CE13AB0440242186262@OSAPR01MB1587.jpnprd01.prod.outlook.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 01/03/2024 19:16, Tanmay Shah wrote:
-> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+On 09/03/2024 13:32, Biju Das wrote:
+> Hi Krzysztof Kozlowski,
 > 
-> Introduce bindings for TCM memory address space on AMD-xilinx Zynq
-> UltraScale+ platform. It will help in defining TCM in device-tree
-> and make it's access platform agnostic and data-driven.
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Saturday, March 9, 2024 12:26 PM
+>> Subject: Re: [PATCH 4/4] arm64: dts: renesas: r9a07g0{43,44,54}: Update usbhs family compatible
+>>
+>> On 09/03/2024 13:14, Biju Das wrote:
+>>> Hi Krzysztof Kozlowski,
+>>>
+>>> Thanks for the feedback.
+>>>
+>>>> -----Original Message-----
+>>>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>> Sent: Saturday, March 9, 2024 12:08 PM
+>>>> Subject: Re: [PATCH 4/4] arm64: dts: renesas: r9a07g0{43,44,54}:
+>>>> Update usbhs family compatible
+>>>>
+>>>> On 08/03/2024 19:09, Biju Das wrote:
+>>>>> Replace 'renesas,rza2m-usbhs->renesas,rzg2l-usbhs' as family
+>>>>> compatible for RZ/G2L family SOCs as there is a difference in number
+>>>>> of pipe buffers compared to RZ/A2M.
+>>>>>
+>>>>> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+>>>>> ---
+>>>>>  arch/arm64/boot/dts/renesas/r9a07g043.dtsi | 2 +-
+>>>>> arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 2 +-
+>>>>> arch/arm64/boot/dts/renesas/r9a07g054.dtsi | 2 +-
+>>>>>  3 files changed, 3 insertions(+), 3 deletions(-)
+>>>>>
+>>>>> diff --git a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+>>>>> b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+>>>>> index 8721f4c9fa0f..766c54b91acc 100644
+>>>>> --- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+>>>>> +++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
+>>>>> @@ -812,7 +812,7 @@ usb2_phy1: usb-phy@11c70200 {
+>>>>>
+>>>>>  		hsusb: usb@11c60000 {
+>>>>>  			compatible = "renesas,usbhs-r9a07g043",
+>>>>> -				     "renesas,rza2-usbhs";
+>>>>> +				     "renesas,rzg2l-usbhs";
+>>>>
+>>>> This looks like ABI break and commit msg is quite vague about it.
+>>>
+>>> OK, Will update the commit message as driver is taking care of the
+>>> backward compatibility.
+>>
+>> Ah, I was not precise here, you should consider the impact this is on DTB used on other kernels. You
+>> guys should really stop using imprecise/incorrect generic fallbacks and, since it is usually tricky to
+>> know which fallback is correct or not, you should stop using them at all.
 > 
-> Tightly-coupled memories(TCMs) are low-latency memory that provides
-> predictable instruction execution and predictable data load/store
-> timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
-> banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
+> There will be driver change to handle SoC specific compatible.
 > 
-> The TCM resources(reg, reg-names and power-domain) are documented for
-> each TCM in the R5 node. The reg and reg-names are made as required
-> properties as we don't want to hardcode TCM addresses for future
-> platforms and for zu+ legacy implementation will ensure that the
-> old dts w/o reg/reg-names works and stable ABI is maintained.
+> So ,
 > 
-> It also extends the examples for TCM split and lockstep modes.
-> 
-> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> ---
-> 
-> Changes in v12:
->   - add "reg", "reg-names" and "power-domains" in pattern properties
->   - add "reg" and "reg-names" in required list
->   - keep "power-domains" in required list as it was before the change
-> 
-> Changes in v11:
->   - Fix yamllint warning and reduce indentation as needed
-> 
->  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 188 ++++++++++++++++--
->  1 file changed, 168 insertions(+), 20 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> index 78aac69f1060..dc6ce308688f 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> @@ -20,9 +20,21 @@ properties:
->    compatible:
->      const: xlnx,zynqmp-r5fss
->  
-> +  "#address-cells":
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    const: 2
-> +
-> +  ranges:
-> +    description: |
-> +      Standard ranges definition providing address translations for
-> +      local R5F TCM address spaces to bus addresses.
-> +
->    xlnx,cluster-mode:
->      $ref: /schemas/types.yaml#/definitions/uint32
->      enum: [0, 1, 2]
-> +    default: 1
->      description: |
->        The RPU MPCore can operate in split mode (Dual-processor performance), Safety
->        lock-step mode(Both RPU cores execute the same code in lock-step,
-> @@ -37,7 +49,7 @@ properties:
->        2: single cpu mode
->  
->  patternProperties:
-> -  "^r5f-[a-f0-9]+$":
-> +  "^r5f@[0-9a-f]+$":
->      type: object
->      description: |
->        The RPU is located in the Low Power Domain of the Processor Subsystem.
-> @@ -54,8 +66,17 @@ patternProperties:
->        compatible:
->          const: xlnx,zynqmp-r5f
->  
-> +      reg:
-> +        minItems: 1
-> +        maxItems: 4
-> +
-> +      reg-names:
-> +        minItems: 1
-> +        maxItems: 4
-> +
->        power-domains:
-> -        maxItems: 1
-> +        minItems: 2
-> +        maxItems: 5
->  
->        mboxes:
->          minItems: 1
-> @@ -101,35 +122,162 @@ patternProperties:
->  
->      required:
->        - compatible
-> +      - reg
-> +      - reg-names
->        - power-domains
->  
-> -    unevaluatedProperties: false
-> -
->  required:
->    - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +  - ranges
-> +
-> +allOf:
-> +  - if:
-> +      properties:
-> +        xlnx,cluster-mode:
-> +          enum:
-> +            - 1
-> +    then:
-> +      patternProperties:
-> +        "^r5f@[0-9a-f]+$":
-> +          type: object
-> +
-> +          properties:
-> +            reg:
-> +              minItems: 1
-> +              items:
-> +                - description: ATCM internal memory
-> +                - description: BTCM internal memory
-> +                - description: extra ATCM memory in lockstep mode
-> +                - description: extra BTCM memory in lockstep mode
-> +
-> +            reg-names:
-> +              minItems: 1
-> +              items:
-> +                - const: atcm0
-> +                - const: btcm0
-> +                - const: atcm1
-> +                - const: btcm1
+> old DTB + old kernel will have 16 pipe buffers
+> old DTB + newer kernel will have 9 pipe buffers.
+> New DTB + new kernel will have 9 pipe buffer.
 
-Why power domains are flexible?
-
-> +
-> +    else:
-> +      patternProperties:
-> +        "^r5f@[0-9a-f]+$":
-> +          type: object
-> +
-> +          properties:
-> +            reg:
-> +              minItems: 1
-> +              items:
-> +                - description: ATCM internal memory
-> +                - description: BTCM internal memory
-> +
-> +            reg-names:
-> +              minItems: 1
-> +              items:
-> +                - const: atcm0
-> +                - const: btcm0
-> +
-> +            power-domains:
-> +              maxItems: 3
-
-Please list power domains.
-
->  
->  additionalProperties: false
-
+You missed new DTB and old kernel. This breaks all users of DTS. That's
+the entire point of your broken generic compatibles which you did not
+address.
 
 Best regards,
 Krzysztof
