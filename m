@@ -1,330 +1,200 @@
-Return-Path: <devicetree+bounces-49603-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49604-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1B0487712C
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 13:30:43 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 856F4877131
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 13:32:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1940B1F212CE
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 12:30:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A8E811C20A44
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 12:32:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 06CA33613D;
-	Sat,  9 Mar 2024 12:30:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC9AB3B797;
+	Sat,  9 Mar 2024 12:32:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="VYwraCh8"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="ten3gqPV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from HK2PR02CU002.outbound.protection.outlook.com (mail-eastasiaazolkn19012004.outbound.protection.outlook.com [52.103.64.4])
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2055.outbound.protection.outlook.com [40.107.114.55])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D95EA16FF52;
-	Sat,  9 Mar 2024 12:30:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.103.64.4
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B9803613D;
+	Sat,  9 Mar 2024 12:32:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.55
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709987438; cv=fail; b=cXx2phvwLftUC1HRraUEH3zV7/GZPDNndkAaRV9ScxwI8nZQURYsOS/L/w2EU0S0lPqa88UYII1pmkO3UPTz9F9vhsRv+WxfU2+iKv43OlW36U4q4Swv7MBBvr6IXQNrYfrCDNyhDb5ealD8klSpOgNF6ol+agjsyXlMSWTdry0=
+	t=1709987527; cv=fail; b=n6nt8CoXjblb5edUJGnZPiUaoRLdQtBSR6vzz7yCPDAnNBoRGiQqykYmYMjyqQGugB46fWbORD31yIqXPOOW7oqDF4ctsJOkmmapTcp8ZK2826A+C0kMaP9Rhyb3ifeTTC6F30/zngE6DLhK2UH1MpQAq0evyo/qqpANYFWClUo=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709987438; c=relaxed/simple;
-	bh=u+VkzISeco/JklhdXmARk8pxL5uvMk8NpbXEg+U7iGA=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=eqYUiT8+MGj1wtetLauHAMFGY+PWUnNZ6h9AEvbKQycD8VBxe+JLDCBKYe8sAU35LVEFs2E3nKUL+yahpODrzPLHmR+bP2Cdae11BWjHqL8T/gqsnKAbcq4JaZX99dlrrKr9pQHAGoMGj8VDOdvk6C9nSnVffodNfwttDkI7bLE=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=VYwraCh8; arc=fail smtp.client-ip=52.103.64.4
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
+	s=arc-20240116; t=1709987527; c=relaxed/simple;
+	bh=TjgD2BirY0FYArXCaRqVymZTVXVLYRQylANtF6Oz8qE=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=MxY7oNJK4ys14FDNduapxgd6KuQjy0yflfkClOiWWEKdDcS43Se99zSNKz5s3MZrrFll7gl/70pXtZxQgBzCYKM0yiAHudKwlHhNwU95HY0HQ6kTn6WDKlljFo8jTfZqcPicTWmrp1EYLMi/dgQZL1OBFOP3njgc+4p2SavTMDY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=ten3gqPV; arc=fail smtp.client-ip=40.107.114.55
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=c8o9p0JWj9h9G6xl4KnaPkiXY4mXItjJ5YRiaMyL6kof6JUlx2PPZvj81E1OK4l2YXlK2il4paH+sm4955DOlK5zCNus3Z/kzNDO7TFNCr3TFqHMr4kcoJOa4FQUExQvmouCm7IAeUt2p2wlBB4Kav4fKTsO69dmG0eXc/H56U/UDy5BcdIT66wn09TGyW3+PJOw6Q+UYJjbj0igd4UBCHEF4gmZMPrckle95efX6XI108Dy7BMX/MeIOUFc2I0MBMPZ+/YtnU7up1tOtfqb7pvTiWFPi/oEukTvChF1IgSv45U/diw2ZGjpthnee32h3SjGusVB4cB/p607E7D70Q==
+ b=fFGtfYENs1No2I6b6k92BxvRR9sMD56JriT1cGhRM3DoxvLOeq69WzqeoBf1TqM6o6rTV1dpneCtqhuioPtx1RfGEKfFO/JT9RT3iKiT7iBWFVFi40q46tnAiVBxW1L77I6henkk/z+eo9O+kA6yOTyKLm9MOv4TrNFrkG5IQGQqtU7phpX/nS3aASQeqq+Ix4sLJdqOunM7Kz/bS7eI4wnul7VoMnAQA/TjlF2DROQvyy88Ixn9vAKsyxUMTUJguEJB7vJd/1C1BGupMWygqrbDWFWablHlI6lA4vJD4BKrPIMjLSbjZUh/FZ4z8R+4QLzUo4AtPxv17BotBMbzHA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=0DrcjjV1xW18My6tmUkNZqzeDH8TqmsdNJPpAje1PJw=;
- b=JfArNQ+4YcMOiCVhuZOKFfXZAfJMfSAg2QzrPv3R6hbDwH83HBjwBDpHOIXj4PamYYPmr67mOkdXx7IUMgmuLPAlAyPiJ/Cnmv7IkRoadQ5OeEzVcYphTGqapVhB492VZkoMNmkYdaUy888pHRvxU5R4eTQUnhnlR6U98QDwdNW28oi//6COnDeZwKmMY/J/4azxnmv9Fpa+4Gu7ZtFRHF8dW80oFmFfFZcELtlE6Er/y2YrHLnsZCuJKp31x9QDsrZOHQ11ETPa8/VlSbosfBmGe1RNlvUygv5cIwWAdRKRxZfIMAFleKs/kGRZo89pK17IaOw1KjHfOLgfEGj3Ag==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
+ bh=TjgD2BirY0FYArXCaRqVymZTVXVLYRQylANtF6Oz8qE=;
+ b=fPTFfju7N6/KTodnAKjJc5P84RV2IXdu0pbsEAz9eT+VJ1x6VXG+DnWAg/aIEaexJefzQVWw6q4TbpY2fnAT2sCsMPty5MgR/Ax65TdKWWXid6d4Quh7irqTpJQMi4HnjUEf/BuS/QXWtFXxlAip9s+5nr5Kg3uWv600T4SibfOycaetRJeEWt4sdNv1dH0Ghm4KMsqBNRXwB2yjkruO2Ud4laU5ev3GfofQtqZL5r/pE63hG/i4rEiwwsAdwmuKQ9oqqjkueXtsDjM6xQ2XKonrkv3yxw4srdjTNYuyu07efes8SP4YnWQXWUCbs+iSPF1+Mzi5PZnQ+CqshP006Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0DrcjjV1xW18My6tmUkNZqzeDH8TqmsdNJPpAje1PJw=;
- b=VYwraCh8fHtTRIkRXMC2PGAoUzjD0NWuLNwMbjQp3nLbv2ZeMW9eLrt/osu+XOiQWxfT4uwr30BL68wX8PGDJp+nL5s8Vtz6YShTieFvjJZF/L0Z9fft1fX9AvVivItxa0aXXOssn1+DTF207lyuHSySHn0X7sFM+ek3eAP7tDzxdnTbrDvGZU9FunwCRwM/DvbAZdDvN7an9shOYkSMBSyQLkIfl29fJIiMaokRc+grngyTRU63JB30C13gGap2O2AQKP6bnNnJ/3HjphLvPsnZTV1wphdjvXC59ZUD59+lNNt4Lb0Ez2pj1jAh1cvMApuyMe6/AFLQre5oOxgQKQ==
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com (2603:1096:101:1ed::14)
- by SI2PR06MB5412.apcprd06.prod.outlook.com (2603:1096:4:1ef::5) with
+ bh=TjgD2BirY0FYArXCaRqVymZTVXVLYRQylANtF6Oz8qE=;
+ b=ten3gqPVcs4rYud9ihgwMSZQK0UhU8uITQhSxrqz4B8/1GtoMCXXifTfCPeahv65W25Y+SoFoY9KitnZhVTVRNBCsXqZGPEJqjj2awuOS9fzZu9ObgYsZ9o0ybi8MyT+fu4R/jU9wq2gml3P3sFqXjsvT/nnVe1lPZr3sYrUSmY=
+Received: from OSAPR01MB1587.jpnprd01.prod.outlook.com (2603:1096:603:2e::16)
+ by TYCPR01MB7965.jpnprd01.prod.outlook.com (2603:1096:400:186::5) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.33; Sat, 9 Mar
- 2024 12:30:30 +0000
-Received: from SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::aced:cbb9:4616:96d8]) by SEZPR06MB6959.apcprd06.prod.outlook.com
- ([fe80::aced:cbb9:4616:96d8%2]) with mapi id 15.20.7362.030; Sat, 9 Mar 2024
- 12:30:30 +0000
+ 2024 12:32:00 +0000
+Received: from OSAPR01MB1587.jpnprd01.prod.outlook.com
+ ([fe80::5ff4:8ba7:96e5:7a5b]) by OSAPR01MB1587.jpnprd01.prod.outlook.com
+ ([fe80::5ff4:8ba7:96e5:7a5b%7]) with mapi id 15.20.7362.024; Sat, 9 Mar 2024
+ 12:32:00 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+CC: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
+	<magnus.damm@gmail.com>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
+	<biju.das.au@gmail.com>
+Subject: RE: [PATCH 4/4] arm64: dts: renesas: r9a07g0{43,44,54}: Update usbhs
+ family compatible
+Thread-Topic: [PATCH 4/4] arm64: dts: renesas: r9a07g0{43,44,54}: Update usbhs
+ family compatible
+Thread-Index: AQHacYPMGWKOfJ8WCEqHUSv4i74FdbEvUfMAgAABIyCAAAOtAIAAADSQ
+Date: Sat, 9 Mar 2024 12:32:00 +0000
 Message-ID:
- <SEZPR06MB6959090F2C45C3E5D6B3F9F496262@SEZPR06MB6959.apcprd06.prod.outlook.com>
-Date: Sat, 9 Mar 2024 20:30:21 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH net-next v11 4/9] dt-bindings: net: convert hisi-femac.txt
- to YAML
+ <OSAPR01MB15874A9DB0CE13AB0440242186262@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+References: <20240308180919.6603-1-biju.das.jz@bp.renesas.com>
+ <20240308180919.6603-5-biju.das.jz@bp.renesas.com>
+ <67819907-4366-483d-b71b-2646ffb076fd@linaro.org>
+ <OSAPR01MB15874E48DD2269C2593DB55A86262@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+ <ff569d52-f68f-410d-9897-9e1102171a1b@linaro.org>
+In-Reply-To: <ff569d52-f68f-410d-9897-9e1102171a1b@linaro.org>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-To: Yisen Zhuang <yisen.zhuang@huawei.com>,
- Salil Mehta <salil.mehta@huawei.com>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
- Heiner Kallweit <hkallweit1@gmail.com>, Russell King <linux@armlinux.org.uk>
-Cc: netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
- devicetree@vger.kernel.org,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240309-net-v11-0-eb99b76e4a21@outlook.com>
- <20240309-net-v11-4-eb99b76e4a21@outlook.com>
-From: Yang Xiwen <forbidden405@outlook.com>
-In-Reply-To: <20240309-net-v11-4-eb99b76e4a21@outlook.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TMN: [KYYlyop0K8RQ7PPqlCYlqaSGjQSMoOV9sD4CUGvwDLAThN1lOh7welnVrUESs2so]
-X-ClientProxiedBy: SG2PR02CA0066.apcprd02.prod.outlook.com
- (2603:1096:4:54::30) To SEZPR06MB6959.apcprd06.prod.outlook.com
- (2603:1096:101:1ed::14)
-X-Microsoft-Original-Message-ID:
- <60b6a593-59e8-4350-9a9f-2b35719d37b9@outlook.com>
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OSAPR01MB1587:EE_|TYCPR01MB7965:EE_
+x-ms-office365-filtering-correlation-id: c0d73cbc-2592-40cc-660b-08dc4034eaf8
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ edfGxV+90dZmzqhTW52kMOFmkauSES0w2sOuTR6nhjfFiliZ5yNeXpFvfZ5XWJPkRaXxEMXGrug0nTyD+X/Gqlq2Hoaor280X0sgDWWFxjor1+5a3epyhn1Chdh+tlkznoBofrZg9F1vEnIjgcW6KsIJuuWBLp3aD1HQxvk3k1VaQG71Q9rL7xmnOVmbI78STDunFw+BCPR9aDLUqDvUxe/sbe+FKhGpwaLQWidIj38Zf8W29CZE5k0cqnZebDXD9RJ7iMR9m+1dPsRwmDcf5G2CZaK2Idx9AkWt8VUoHSiVA5E4T1yD8HgV1w+2Vy2R5kUCGx3OTCkDfRwZrh1XMMDKzChc7sXAN+ES8UAsP0dQJyGa3c2SylDysflVi6VVe+WjEyFlz5pk2IZpMRyk8q4CD764WNwEuhBhbJSzIoZBoBIIKpbouL7g53pMnRVkDl7yu5GN2XxEWjSffA7OnecZIjnesFyZ2z3RHTSXtc+ATx+YK060sldECrDyNQi4bvOdHFnTUXca7242VQNGSyjtAP4VuI2QhIJEo4xox6kygXxeE2ZSWxGeFhjo8ceybxbx5ma5nyJW7aWVtMG5PEDL34qfsOngwmJYKFNzYnEWgh8iSPFi4P5EmIhxAdKMlCPyqUeWOe9U4UAHwtxgYJz/dsrP7KwmT8ZIpBHDr/3aI8JIFh7N3yJSJryTxMcEwG+/o1fZBQq5v3fl0Jk1I3woBkKeQmtGpXdNIkv2EC8=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB1587.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?RjhiWUVPSUVUOXNWdnovZ01hclVKT2VmNmRWdmNVYlhUZTFUQzl5V2FpSHN1?=
+ =?utf-8?B?NERMMFRPZjY3ekFoOUxHM09kdTgrTnNiZHV4eGgzNHljRHhXTWc3cXZtQnZw?=
+ =?utf-8?B?VFduU0R6TVBGeVREK0hTeGJ1VHhULzU1aDBTTWtQN0N3NHRRUlNza0d4OEhX?=
+ =?utf-8?B?dCtoak9BQ1Vyd1dyRXRDdWZLMDNsTTZNQUZETVBiNFRwU0dmSlBlbUtUZ1hz?=
+ =?utf-8?B?WDd0VU44SUpmOW5WVkNVSDFpbFhXbS91cTNFMURHdXRtWjBGQWdkYndxWDFQ?=
+ =?utf-8?B?Q0NpT1E1ajMxOXdPcVBicWtiaFloa0UwNkpDdmlZbk9UZmNlOHhmSFY4L0t0?=
+ =?utf-8?B?VTdWbUVjZ3dpbDJqY1E3YzZiaEIzVHpmR2M1S3JGd1BVOHFFdFdweTFjN0kx?=
+ =?utf-8?B?WWFxMWZjeGhEOFY3Z2F1VkRlUE1hcS94dHFSNFRXc25IRm43emVQWE1jcEJm?=
+ =?utf-8?B?UEw3aGpDYUNONDk5NnE3M2ZObEw2bkttWWp2Z1IrNEFmbGZtUFhoclZuYS9x?=
+ =?utf-8?B?ekg4MmhIckdUdEFVZzVONWpqbjhKdncvRkJ2Vmg3dUk3R1NxNkFjdFFTb3BX?=
+ =?utf-8?B?YU1DUld1UDl6dVQ2b20xRmpuenRVZ05UQTVGNDVmOGVHdXhCcUpHZVJZeG9U?=
+ =?utf-8?B?OGZBUm5hRis0NmRqNlBzYjVXZ0E2NGlVS0dwWmNwYzVhdzZPMm9iVlNmcjdZ?=
+ =?utf-8?B?blBXRWV1K29kM3BmOGNjTnV3VEE5K0dyR3BJT2tMY1I4N2pINFFpMHNZelM3?=
+ =?utf-8?B?UmxITC9OY0tUT1dINm5oQlR3VnpSRUFHdkNNaDA3Y1l1eWg3WERSZlhndlM2?=
+ =?utf-8?B?REFGUllTRWtqZEJ6U04xV3RLT3ZmMmtsSDYwUXpvVSt5UWExOXhHL2ZXQm5q?=
+ =?utf-8?B?Rms5cEgxSmFxUUYvSnIrOFBFYkgrODRjVzVQcnhvbXdraEFQYmxIL0kwajBL?=
+ =?utf-8?B?MXVqVHZUYWJEY1pXN09uWm90aGR0RHVvdTlWeTZINHpUS0pOVUJORDYyWUNV?=
+ =?utf-8?B?YWcwMzkyTUYreFNBWmNsM1BBSUJOdzFuNnNiaTdxRTFMU296aHg0UjFkeXI3?=
+ =?utf-8?B?Z3NER3ZTUjI4T04zZVJzbStlWGFCNlN0eFRIUTI5TkU4RVd3eEhFSStrelhF?=
+ =?utf-8?B?YkNPN3VYczhOeStpaWR4Umdxd3VDYjZpQ242QlZYYVh4TFEvbTh4VkVuUmFx?=
+ =?utf-8?B?Nk5LTldYbEVCeWZKaVBWM3N5SHlacVpjaUhvb0RBdXdOTlI1VGtmMzl2M3BE?=
+ =?utf-8?B?ZUVtK0NwZ0d2R0xVb1diaFY4WElURlNXWm03ZnNBRlZaYkVGMitjU1YwYTFj?=
+ =?utf-8?B?b3p5ZGRqNlZoMDJaRnNZU2hKOFFVdHB2WEVlcHRwNXdyTXhGQlQ3QUVSSHVT?=
+ =?utf-8?B?QnpYeGhJaUtYSm5qamNCQTJhT1pRMlBDb2NFcnN1bFNSeEptSDZTaFpjMXV6?=
+ =?utf-8?B?QnBRQXhNMVFLMEY4VlFVMEdZdEpTV29BS2hpUzRnNHBDUU8xL2tlSWhqYlAr?=
+ =?utf-8?B?dGNYZmlwdTVWK09RWlVYZ1IvTW9nUEhUaloxQndMN08rM1FGNzJoek5LcU1R?=
+ =?utf-8?B?cFJpWnJDSXRTQnJ4VUhhaUVOVHpPODhoMU9hTWdnZDF6SFZ0WWJ5dDFXL05r?=
+ =?utf-8?B?aXdjcnAweWtxdloxRkt1Zmk3R1VHcmg1MmRPdWJ0SDV5V2dqckpZWUdONy90?=
+ =?utf-8?B?K2hSdVN3VG9Hd3ozU3lqejVZa1VaM2JsdnlGdlF0cDdtVGEwR2JxK25jK0NX?=
+ =?utf-8?B?MGVyYTVhTmNjRnRqRllES0VycXAyN3RtQTNkemF4UDVLY1hRWU05NWYvbVQv?=
+ =?utf-8?B?WUZsUXVWRWUrVXRIRVl0YmFuWUk5U1FXb20rTDU2Ymc2cEhhN0NrNXpOUlV4?=
+ =?utf-8?B?UElUaUJlcVB6dlBRVG8zdWFKS2hBL0FpQ0tCdWtIaWZQM3FQNnFtREFXTER3?=
+ =?utf-8?B?QUZjSHVVZjRmQWJxVU1XTXhRTWpTSWhKdXNOZE9KYklLNFFRdUNWa3ZyWUpK?=
+ =?utf-8?B?N1dKN2k4d2oxbHhwNzJMaWJhcVpqUWRJUC9BdTh3dk9ldE51OVk0QUUvam0z?=
+ =?utf-8?B?QTFYc2p2UU9HVjQwS3I5blRwdDB3aXpLTTFPVlQ5V3NCWlJ2MjhMMlJ6Wms3?=
+ =?utf-8?B?RnpWQ0FpV25GQWd6c0luMjFUVXRIeFRqRkFDcXk0dUxHS3NlNzBIQmVmV00w?=
+ =?utf-8?B?YUE9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SEZPR06MB6959:EE_|SI2PR06MB5412:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4a90155d-b5eb-4574-7b10-08dc4034b4e9
-X-MS-Exchange-SLBlob-MailProps:
-	iS5pQZgsAQCMYMcbXXZJy0svpOwpVDjptAEIJfK9UULqWLDcXqyHGuhAwbsdGtHJ/wHoTT1Hxdb2pqFQUOca6fF/IRt9DJgoTkaCFhNV38WUe0WQm7Uo/0cjHci14FwE7Nr4pSkkSOcPhZAyaTtnb39e1kLMAccobv0y3g7DfS3/FwZufscvz9aspCeuCtGrUVpW0CcDZqk+yzxo2P1kZUQHPoRoHAzGWL8olQDzv4B08dSkJ4rmlB0Mz8M53RNyX9Kt4Fwuy4VEMDX/xJNfKnZJFmLz8ypIrBtG3fsa4Z4KQcd8o75OOIblSZ4C51GJBC0rdc3mf+fWPgdSWJIty/mFJTxP2OMQzh9c07+QCS+ysxzPAYur9kEYs+zhPkP760fSdOx1iP5SIDy8uWz/9yCoVgYYqJB3iTnyfWgydL7JPleFj+dWok1kvRldVCJ0L+6tvw9ZJ1MoVyqoDv+iprY46t0YuaJApo8Nr8tAJBCN1VyJGxX7ZNBSJj1RqlfxvDfbtaIQhlCGp35Vdek3bP+Ly/S+S8O9iXCL6XBEzIbHxRQWsRr9QTDOKTVJ9VBV5YnxyAxITHqcNlBP2gwKwW/CSrM3zDIajDLmpJoUpJDZus5G6ahJSZz4YQoc2uKn3OXtjPy4IE/oY2spsyC+PPD24uOY5lbD8HHkDvzWEwuDtlCL8WlqgmZGmgXrEmxmt9G7DOkQtBlZFNQlgEEQCly8A+5/xYBfNO+X7akk85nmvy7dzWv8eYCqSsEQHaYxD+HyFkiqdRHnH6k/v3JWh0mnJOgFlpyVrIBr/fZ2vlKr9tYLmpLuwnyA4Q8tUE+D
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	0In8RTEZdYiBFKpSdLkYcpa6c9lWyiTtpnktzZXz6tmYMH+WKMNHeMwbATzuQszpR8BejMagDK2UIhbWGaQuj98W/2U9cqvOtrMfDKoZaMyD4/kk09iO7fLGHw9RGxXDhlA76CzDOW8weZd1zqoB0uicszaQEJuLsQaNx9EDUgRHNzeg+yt1LdHtqJq7jDn5pANmLix0nH+Y/yqbjdrSvL1AYcX8VhM7JKK6FH3S6jASlLPCt+MTQhScbxhh3KgOzefG1o5JxyYJ9lYIelqYhPX9j/q3EHKSE7x41Ck4dgbFJ1BLuUnFqRGKhXHWPvN0r+k9QtHQp6a9vvp9M6VJR1eXWlKccrEC9ZruZcPfhZYETc462TJR5x/qUtd0KVJ+cU7top/m/TaXkgtF2zhgf+PGuuTzmnQKaPvny0tsCNAFbOo6CiB9+71SresInv1dipkvbvnEsWIBTQznQIViccTRFu6b7z/F8T9ufjSfpkcTOluELTrmYk0fV9+stBPALiC6tN6ZgRKQJ5vC1vih+Y/1N0wjRqTD6nC3kmJwQT6DvErKLnSScsld37iEDO8iBWQI+t5/TlXwS1hZtjYZrgSOJssQyoE/rxMXQTWJbWbLA22Bh86AQR1CGLinv2uu5PVpWEA4MfZiaka+WUHS0/ExpHu7OpUsgJriiKMiYCI=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?S0pVUTFtM0c0elR3eDNLQ2lrMUx6Zy9sbEJrK3NpYm1KYTJicm1nanVjSFVh?=
- =?utf-8?B?alA1aXpwMFhjczVBb2xxekZaMFBYV29jTHY0ZVRHZXRITm5tV3A3cGFCYXYx?=
- =?utf-8?B?ZlNLaExxQTg2bENLS29XWCtzeTdEQmhXRldKdGZGYWpuYXJzRkplWWh5N2x0?=
- =?utf-8?B?dU1EaUVEeDd0QjBUQmxuSlFid2RTOGp0ZXViSTdnQTg2dk1jcVVnSnhGYnNS?=
- =?utf-8?B?MzcyMTFpYXVDUm5LM1Q2ZlVYRkgrUW5zamY4ZHI5a2o1YVVxVisvMFhDVThO?=
- =?utf-8?B?OG1lSXlBR2hWcVMvVlRpWk5FTzFiV3VvS0hDVWxjK2cvNzB1QkFrNjh4aUhY?=
- =?utf-8?B?OXZaU1lreFAxbzdYTmkyVmN0L3BYaXdVSWJjSmJhRlVYSjNnU0VXWkF6ZWJ6?=
- =?utf-8?B?dVpMNDV2UGYwcGJDTWNwM0I2czFSb1djT1RGVEpsbitwTG9XYW4ySXBwL2tk?=
- =?utf-8?B?YXRGUGNCYjhaL0RMRFZxR1czV0kyaGdaZXhPUTVQWGZ2UDNmSUJvVUJxaitI?=
- =?utf-8?B?VXNDVjBkdmx0cGFXWTJ1d29WL1YvQXdQN0NuQmFWK2gvRmZCUk4vbml5T3dx?=
- =?utf-8?B?cytFZ3YrVjNMVEJvbXRoQWNPZWpQZU5sYTRidWg2V0dEWE8zTlMweXEzZFVo?=
- =?utf-8?B?QUtiQnZxdk1MSjg1ME1VcTBXLzNMb3dvQWFxQktpb0xXMHhHUGF0c21VTW9Z?=
- =?utf-8?B?SklqQUx3SHRkTmVmeEpUa2JwN1ZXV2g3NkFkdTBSTnNRQmEwT1QzSjQyMko5?=
- =?utf-8?B?cFByTDdMQW91cTlNK2hoTGhTZDBtL2thVUxqMmFsdHZYUVphQm1Fb3J5dHli?=
- =?utf-8?B?NWVxTWdNMGZ0NkdZWms4MGFkbS9hci9Zd1AwVUpoQ0ZMWWVzaGxUcDBaVXVD?=
- =?utf-8?B?Y0RnVzMvNCtDM3dDZ3l0ejFEa3JmSXRORVZYNXc1a2R2M3ZSNDJoNk1qZk8z?=
- =?utf-8?B?MlFhK0M5UWhnZXNDYzNiaTgvUFNPYTFkWmlGQ2hNK2RMa2cwUHptSnljeE45?=
- =?utf-8?B?bmhXTWZxZzhSV1RYMUxaQWhmU1Q1MUt3ZTk2d1hGUUdiK05yOUhVUzRVdzJn?=
- =?utf-8?B?TnBYZjl2WG01RWlpVENGZkNQS0w3MFl4bStTNC9GZGk2SzhJZVFzTDU5RXhm?=
- =?utf-8?B?aWJ0SmFKUlJ4RGIzREhMV0RZdjVNRGJHa3M1bUpyU3pQeXI5YmVnaElYd2di?=
- =?utf-8?B?dHh2VXQrZGVmZ0Z2Ym1BNGdvb2ZoNEFvVkJ1V1lwd3ZVeFdyM1Q0alplTHFh?=
- =?utf-8?B?TjFNVzNFc0p1amtzWWJvY1JNQ3kySDlQYjJTVlFZTE1aUWFLWWs1bjMyV0pD?=
- =?utf-8?B?ZEMwNUZiRXdGcWw5ZHhjSWhUeWVFNDk2ZUNzYmJwYkRETDhUYjJTS283ZS80?=
- =?utf-8?B?R0I5WGlqT0VqYWVsSEk0YThNL2llK3N5VGJGZjBiU3RHcnNSZmE3eDlRdFBv?=
- =?utf-8?B?ZHdDcnV1cXlVbzFzQkNiN0V2NVFSYzlsYnFPZitNdGdXOXRWeEo0MkdYam9R?=
- =?utf-8?B?VjNTSnRnN25rYlNleEs0WHNrWFM2U0VXRExyRzhBTi95N2ppQlR1K2xOb0dh?=
- =?utf-8?B?WmtFb0Y2Rmc4VjdRSHFRdTBXakxXN1pZTmZ2aGZ6Qi85K0xMMVVJaHhTMGp1?=
- =?utf-8?B?dGZkREIxL1hJSjUvam52aStBQlM3b2VXZm1EVE1JRWJLNFNrcVJvZ1N2UGR0?=
- =?utf-8?B?Z2dwTEsyNlFGcHpuaUFUL2JJaCt4K1ZvL0JNUXBYTGREbExBK2ZFWGw0TUtt?=
- =?utf-8?Q?MOV6Hw9NxaADO66Fyj6kbYCDU+ac7LgBWAlxGao?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a90155d-b5eb-4574-7b10-08dc4034b4e9
-X-MS-Exchange-CrossTenant-AuthSource: SEZPR06MB6959.apcprd06.prod.outlook.com
+X-OriginatorOrg: bp.renesas.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Mar 2024 12:30:30.0661
+X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB1587.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c0d73cbc-2592-40cc-660b-08dc4034eaf8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Mar 2024 12:32:00.4306
  (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR06MB5412
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: /SPfXx6EtsD98hjoHfx5JVRdf7GUbjjnS1sgAXXKS36ReNeoGtH8CDDa4uA6aLfvkvj4Ype9lgc+F3V8ivNX2Pujy06ct7g/20wCB9O0z0E=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB7965
 
-On 3/9/2024 8:26 PM, Yang Xiwen via B4 Relay wrote:
-> From: Yang Xiwen <forbidden405@outlook.com>
->
-> Convert the old text binding to new YAML.
->
-> While at it, make some changes to the binding:
-> - The version numbers are not documented publicly. The version also does
-> not change programming interface. Remove it until it's really needed.
-> - A few clocks are missing in old binding file. Add them to match the real
-> hardware.
->
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
-> ---
->   .../bindings/net/hisilicon,hisi-femac.yaml         | 87 ++++++++++++++++++++++
->   .../devicetree/bindings/net/hisilicon-femac.txt    | 41 ----------
->   2 files changed, 87 insertions(+), 41 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
-> new file mode 100644
-> index 000000000000..3344d3bfefb8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/hisilicon,hisi-femac.yaml
-> @@ -0,0 +1,87 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/hisilicon,hisi-femac.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Hisilicon Fast Ethernet MAC controller
-> +
-> +maintainers:
-> +  - Yang Xiwen <forbidden405@foxmail.com>
-> +
-> +allOf:
-> +  - $ref: ethernet-controller.yaml
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - hisilicon,hi3516cv300-femac
-> +
-> +  reg:
-> +    items:
-> +      - description: The first region is the MAC core register base and size.
-> +      - description: The second region is the global MAC control register.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: MAC main clock
-> +      - description: MAC bus interface clock
-> +      - description: PHY clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: mac
-> +      - const: macif
-> +      - const: phy
-
-
-Still not very correct here. In downstream the core can also have an 
-external PHY. The internal phy is also optional. So maybe this clock 
-should be optional.
-
-
-> +
-> +  resets:
-> +    items:
-> +      - description: MAC reset signal
-> +      - description: PHY reset signal
-
-
-Same here
-
-
-> +
-> +  reset-names:
-> +    items:
-> +      - const: mac
-> +      - const: phy
-> +
-> +  hisilicon,phy-reset-delays-us:
-> +    description: PHY reset timing requirement (in micro seconds).
-> +      The integrated PHY usually have a special reset timing sequence and must
-> +      interact with MAC controller to accomplish the entire reset procedure. So
-> +      these properties belong to MAC controller, not PHY.
-> +    items:
-> +      - description: pre-reset delay for PHY
-> +      - description: reset pulse for PHY
-> +      - description: post-reset delay for PHY
-
-
-And here.
-
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - resets
-> +  - reset-names
-> +  - phy-mode
-> +  - phy-handle
-> +  - hisilicon,phy-reset-delays-us
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    ethernet@10090000 {
-> +        compatible = "hisilicon,hi3516cv300-femac";
-> +        reg = <0x10090000 0x1000>, <0x10091300 0x200>;
-> +        interrupts = <12>;
-> +        clocks = <&clk_femac>, <&clk_femacif>, <&clk_fephy>;
-> +        clock-names = "mac", "macif", "phy";
-> +        resets = <&crg 0xec 0>, <&crg 0xec 3>;
-> +        reset-names = "mac", "phy";
-> +        mac-address = [00 00 00 00 00 00];
-> +        phy-mode = "mii";
-> +        phy-handle = <&fephy>;
-> +        hisilicon,phy-reset-delays-us = <10000 20000 20000>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/net/hisilicon-femac.txt b/Documentation/devicetree/bindings/net/hisilicon-femac.txt
-> deleted file mode 100644
-> index 5f96976f3cea..000000000000
-> --- a/Documentation/devicetree/bindings/net/hisilicon-femac.txt
-> +++ /dev/null
-> @@ -1,41 +0,0 @@
-> -Hisilicon Fast Ethernet MAC controller
-> -
-> -Required properties:
-> -- compatible: should contain one of the following version strings:
-> -	* "hisilicon,hisi-femac-v1"
-> -	* "hisilicon,hisi-femac-v2"
-> -	and the soc string "hisilicon,hi3516cv300-femac".
-> -- reg: specifies base physical address(s) and size of the device registers.
-> -  The first region is the MAC core register base and size.
-> -  The second region is the global MAC control register.
-> -- interrupts: should contain the MAC interrupt.
-> -- clocks: A phandle to the MAC main clock.
-> -- resets: should contain the phandle to the MAC reset signal(required) and
-> -	the PHY reset signal(optional).
-> -- reset-names: should contain the reset signal name "mac"(required)
-> -	and "phy"(optional).
-> -- phy-mode: see ethernet.txt [1].
-> -- phy-handle: see ethernet.txt [1].
-> -- hisilicon,phy-reset-delays-us: triplet of delays if PHY reset signal given.
-> -	The 1st cell is reset pre-delay in micro seconds.
-> -	The 2nd cell is reset pulse in micro seconds.
-> -	The 3rd cell is reset post-delay in micro seconds.
-> -
-> -The MAC address will be determined using the optional properties
-> -defined in ethernet.txt[1].
-> -
-> -[1] Documentation/devicetree/bindings/net/ethernet.txt
-> -
-> -Example:
-> -	hisi_femac: ethernet@10090000 {
-> -		compatible = "hisilicon,hi3516cv300-femac","hisilicon,hisi-femac-v2";
-> -		reg = <0x10090000 0x1000>,<0x10091300 0x200>;
-> -		interrupts = <12>;
-> -		clocks = <&crg HI3518EV200_ETH_CLK>;
-> -		resets = <&crg 0xec 0>,<&crg 0xec 3>;
-> -		reset-names = "mac","phy";
-> -		mac-address = [00 00 00 00 00 00];
-> -		phy-mode = "mii";
-> -		phy-handle = <&phy0>;
-> -		hisilicon,phy-reset-delays-us = <10000 20000 20000>;
-> -	};
->
-
-Currently both binding and driver assume internal PHY is always present. 
-This should be fixed in the future.
-
--- 
-Regards,
-Yang Xiwen
-
+SGkgS3J6eXN6dG9mIEtvemxvd3NraSwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
+PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5v
+cmc+DQo+IFNlbnQ6IFNhdHVyZGF5LCBNYXJjaCA5LCAyMDI0IDEyOjI2IFBNDQo+IFN1YmplY3Q6
+IFJlOiBbUEFUQ0ggNC80XSBhcm02NDogZHRzOiByZW5lc2FzOiByOWEwN2cwezQzLDQ0LDU0fTog
+VXBkYXRlIHVzYmhzIGZhbWlseSBjb21wYXRpYmxlDQo+IA0KPiBPbiAwOS8wMy8yMDI0IDEzOjE0
+LCBCaWp1IERhcyB3cm90ZToNCj4gPiBIaSBLcnp5c3p0b2YgS296bG93c2tpLA0KPiA+DQo+ID4g
+VGhhbmtzIGZvciB0aGUgZmVlZGJhY2suDQo+ID4NCj4gPj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdl
+LS0tLS0NCj4gPj4gRnJvbTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxvd3Nr
+aUBsaW5hcm8ub3JnPg0KPiA+PiBTZW50OiBTYXR1cmRheSwgTWFyY2ggOSwgMjAyNCAxMjowOCBQ
+TQ0KPiA+PiBTdWJqZWN0OiBSZTogW1BBVENIIDQvNF0gYXJtNjQ6IGR0czogcmVuZXNhczogcjlh
+MDdnMHs0Myw0NCw1NH06DQo+ID4+IFVwZGF0ZSB1c2JocyBmYW1pbHkgY29tcGF0aWJsZQ0KPiA+
+Pg0KPiA+PiBPbiAwOC8wMy8yMDI0IDE5OjA5LCBCaWp1IERhcyB3cm90ZToNCj4gPj4+IFJlcGxh
+Y2UgJ3JlbmVzYXMscnphMm0tdXNiaHMtPnJlbmVzYXMscnpnMmwtdXNiaHMnIGFzIGZhbWlseQ0K
+PiA+Pj4gY29tcGF0aWJsZSBmb3IgUlovRzJMIGZhbWlseSBTT0NzIGFzIHRoZXJlIGlzIGEgZGlm
+ZmVyZW5jZSBpbiBudW1iZXINCj4gPj4+IG9mIHBpcGUgYnVmZmVycyBjb21wYXJlZCB0byBSWi9B
+Mk0uDQo+ID4+Pg0KPiA+Pj4gU2lnbmVkLW9mZi1ieTogQmlqdSBEYXMgPGJpanUuZGFzLmp6QGJw
+LnJlbmVzYXMuY29tPg0KPiA+Pj4gLS0tDQo+ID4+PiAgYXJjaC9hcm02NC9ib290L2R0cy9yZW5l
+c2FzL3I5YTA3ZzA0My5kdHNpIHwgMiArLQ0KPiA+Pj4gYXJjaC9hcm02NC9ib290L2R0cy9yZW5l
+c2FzL3I5YTA3ZzA0NC5kdHNpIHwgMiArLQ0KPiA+Pj4gYXJjaC9hcm02NC9ib290L2R0cy9yZW5l
+c2FzL3I5YTA3ZzA1NC5kdHNpIHwgMiArLQ0KPiA+Pj4gIDMgZmlsZXMgY2hhbmdlZCwgMyBpbnNl
+cnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQ0KPiA+Pj4NCj4gPj4+IGRpZmYgLS1naXQgYS9hcmNo
+L2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvcjlhMDdnMDQzLmR0c2kNCj4gPj4+IGIvYXJjaC9hcm02
+NC9ib290L2R0cy9yZW5lc2FzL3I5YTA3ZzA0My5kdHNpDQo+ID4+PiBpbmRleCA4NzIxZjRjOWZh
+MGYuLjc2NmM1NGI5MWFjYyAxMDA2NDQNCj4gPj4+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMv
+cmVuZXNhcy9yOWEwN2cwNDMuZHRzaQ0KPiA+Pj4gKysrIGIvYXJjaC9hcm02NC9ib290L2R0cy9y
+ZW5lc2FzL3I5YTA3ZzA0My5kdHNpDQo+ID4+PiBAQCAtODEyLDcgKzgxMiw3IEBAIHVzYjJfcGh5
+MTogdXNiLXBoeUAxMWM3MDIwMCB7DQo+ID4+Pg0KPiA+Pj4gIAkJaHN1c2I6IHVzYkAxMWM2MDAw
+MCB7DQo+ID4+PiAgCQkJY29tcGF0aWJsZSA9ICJyZW5lc2FzLHVzYmhzLXI5YTA3ZzA0MyIsDQo+
+ID4+PiAtCQkJCSAgICAgInJlbmVzYXMscnphMi11c2JocyI7DQo+ID4+PiArCQkJCSAgICAgInJl
+bmVzYXMscnpnMmwtdXNiaHMiOw0KPiA+Pg0KPiA+PiBUaGlzIGxvb2tzIGxpa2UgQUJJIGJyZWFr
+IGFuZCBjb21taXQgbXNnIGlzIHF1aXRlIHZhZ3VlIGFib3V0IGl0Lg0KPiA+DQo+ID4gT0ssIFdp
+bGwgdXBkYXRlIHRoZSBjb21taXQgbWVzc2FnZSBhcyBkcml2ZXIgaXMgdGFraW5nIGNhcmUgb2Yg
+dGhlDQo+ID4gYmFja3dhcmQgY29tcGF0aWJpbGl0eS4NCj4gDQo+IEFoLCBJIHdhcyBub3QgcHJl
+Y2lzZSBoZXJlLCB5b3Ugc2hvdWxkIGNvbnNpZGVyIHRoZSBpbXBhY3QgdGhpcyBpcyBvbiBEVEIg
+dXNlZCBvbiBvdGhlciBrZXJuZWxzLiBZb3UNCj4gZ3V5cyBzaG91bGQgcmVhbGx5IHN0b3AgdXNp
+bmcgaW1wcmVjaXNlL2luY29ycmVjdCBnZW5lcmljIGZhbGxiYWNrcyBhbmQsIHNpbmNlIGl0IGlz
+IHVzdWFsbHkgdHJpY2t5IHRvDQo+IGtub3cgd2hpY2ggZmFsbGJhY2sgaXMgY29ycmVjdCBvciBu
+b3QsIHlvdSBzaG91bGQgc3RvcCB1c2luZyB0aGVtIGF0IGFsbC4NCg0KVGhlcmUgd2lsbCBiZSBk
+cml2ZXIgY2hhbmdlIHRvIGhhbmRsZSBTb0Mgc3BlY2lmaWMgY29tcGF0aWJsZS4NCg0KU28gLA0K
+DQpvbGQgRFRCICsgb2xkIGtlcm5lbCB3aWxsIGhhdmUgMTYgcGlwZSBidWZmZXJzDQpvbGQgRFRC
+ICsgbmV3ZXIga2VybmVsIHdpbGwgaGF2ZSA5IHBpcGUgYnVmZmVycy4NCk5ldyBEVEIgKyBuZXcg
+a2VybmVsIHdpbGwgaGF2ZSA5IHBpcGUgYnVmZmVyLg0KDQpDaGVlciwNCkJpanUNCg0KDQo=
 
