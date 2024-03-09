@@ -1,185 +1,126 @@
-Return-Path: <devicetree+bounces-49634-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26C3A877222
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 17:08:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id AF838877235
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 17:28:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7683328185C
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 16:08:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6CBE62819A3
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 16:28:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 02C8D44C89;
-	Sat,  9 Mar 2024 16:08:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="V1gbajLT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F564594D;
+	Sat,  9 Mar 2024 16:28:01 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f43.google.com (mail-pj1-f43.google.com [209.85.216.43])
+Received: from mail-pf1-f178.google.com (mail-pf1-f178.google.com [209.85.210.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7883C2030B;
-	Sat,  9 Mar 2024 16:08:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8988E383BE;
+	Sat,  9 Mar 2024 16:27:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710000489; cv=none; b=RktpiGi8jkZLvlCHLlTbl8ujLo+quiduRU3n0tAACQUEDinzSOV3RnNx1r1ySCB46Jc06LaATM3/uMQizO3b57OWO0CRAeJMklMKF4ndlXBnMTikXqFUHgikRf4guYtpEyw6UqlaHuZRGwJnCe8juwawnuSlfSkv1AZzKgiWfNI=
+	t=1710001681; cv=none; b=WZrkiaPOjdHTGdqN0MnbYltiS7o8UDD1O9bakkMbXtzfeclOXAW8cKcUQgZGCrBZdipiWvbg+9ONKfjU6ZRQpEv7LZkoqKNUGa+VLcsjjUu1EKB7QBaus4zSeXnZnVLtwWiMBtLvU7zQhzGsNXJdXfJP5PVunGeJyL4sSl4lbZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710000489; c=relaxed/simple;
-	bh=QGwTGd/TaR77dn4aQ/0D8foMz+86+hImvonQq6+yMls=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=Pa157JUOYbiAewzwZc/b7z22b0idQUn6zXCP4EzvyqU7I8jXJsYMm7HxHMfIAC5f9lyWn6kNbR+E4En5Tn/Tn+rXZACBCGyW3ypOVT4z7WO9ikD0yEkjjnsKQzOzLw2iBrto6+Y0iDPwwmwD4zytV4MgzGuiZn49W+t7cihaqgs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=V1gbajLT; arc=none smtp.client-ip=209.85.216.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+	s=arc-20240116; t=1710001681; c=relaxed/simple;
+	bh=gawdx09fEWv77uFcSaCOqsu/CQ1Zy2ufMmqIGkv3hpY=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=QkpggEMqgHV/Dvb3pHfONm8DVplG7/ctzHQdFtv1cLAKHry8+OzNc4dB4JEvN0GcJ6sda1CtvEBbGgA0e/0Bv1pB1jGKtpP+OwQLZEpvObCi1mnazcBwZxJJIyR8i+H/rJKhVpHeXfthc0Tgy/EpHT1xR0ccI9ng/4Fpi/RQiZo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pj1-f43.google.com with SMTP id 98e67ed59e1d1-29b9f258cd9so1811665a91.3;
-        Sat, 09 Mar 2024 08:08:08 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710000488; x=1710605288; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=GqlhDy46i3V7tyjUGg2eME879GebKkwNCL+NAebQcd8=;
-        b=V1gbajLTL58o30bQKxn7LpknA/dRTcXOaoZLgqpxvjTQaMFb8WkbD/tCaJeKXcIOFr
-         bwcdk3cX4kHb57lfn6nG9g/zuUYToBxnBlobk5SMdf9JUzRFvLURpCPZ0iQCtCz6W86N
-         EoVZaLj1bMN2a2/uq/gb9/KrLh5fGFL63bWUogxqTwCLfX1WpIxPyMfpc/bX2GsepIVD
-         mcUCsMHEmIt9VC4BqbD8us8P8caaQlji14Kqt672JLg6xfHxMtltJSPVLoilTe7x46li
-         i0chNZ4ZquDiOK0Gd9iAThPFv6sbmhTjQXcN5+Bn3OKv8f71joCbHyCrf189lU6RQ5jw
-         WqrA==
+Received: by mail-pf1-f178.google.com with SMTP id d2e1a72fcca58-6e62c65865cso2642848b3a.2;
+        Sat, 09 Mar 2024 08:27:59 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710000488; x=1710605288;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=GqlhDy46i3V7tyjUGg2eME879GebKkwNCL+NAebQcd8=;
-        b=cbIQOUrWRgR49sgdeKsEkxPFOoFlHiLugcAuEG6KLxszH1gmPSkiardSp08+TD6Jpz
-         qLEEDmeenSZkpdkIF0CTovN+H3tITatEaS7PW8+W4MYixwjvxRXLJ32BJWW6pS00NV9t
-         O6X3N1iulP8WMg7Zv1DN+H0Jp0QknWJ1NuIAo4kxCtpJR5V5Iy5aeQPYbTGW7Wi/UUP4
-         Uk84svR7sJjCg1FTk94TqXaIep0jOgoF3CfQPqymavGuxWQ4ViqVDt6neaVA7eGQ1CiP
-         +vOyXwiX8vIA6wzOYhPaZL2DTXzw9oGfZJqjisfVOY1A1Wbw8EmoIkqVrnMhQ2PQLM+i
-         zShQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXaFrSOmt0gDthPT+ZOvH9VQgfX3UdAINKK2CIJsXFsmDxHZXWaCRpfLxIc1QaG/eIH58ZS7b2TtdSYBYSZny/zGLhR9OoMj4eTk9d+UQyFmFfaFRIyAtjNGJ8LZUFxm3t/uUDbot2WmhwELSjR4ZF0JsOZK6oeLUB9Yv1/jPGj4tn/Ww==
-X-Gm-Message-State: AOJu0YyaF2XdaAwLD6odcwtAsBlZTTpn+z2rmlngzXMPtlB1BoXr/PoQ
-	8PsJ2/LLEEAiPeLIFmCKtbH21hm+f3Jgy8IkLI+BLzFEiJNOUJgq
-X-Google-Smtp-Source: AGHT+IEnYggkndkwsXdhE96+Jbwmg9joVTgcGCl0WyEJGjx6BM7+WU9Qf2K31jPLG+hz0JXlD7JtOQ==
-X-Received: by 2002:a17:90a:4607:b0:29b:7244:c4eb with SMTP id w7-20020a17090a460700b0029b7244c4ebmr1435519pjg.42.1710000487659;
-        Sat, 09 Mar 2024 08:08:07 -0800 (PST)
-Received: from fedora.. ([2409:40f4:3a:d8ab:6980:be5b:99c3:fb12])
-        by smtp.gmail.com with ESMTPSA id fu2-20020a17090ad18200b0029abb8b1265sm1392507pjb.49.2024.03.09.08.08.03
+        d=1e100.net; s=20230601; t=1710001679; x=1710606479;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XngN9Yh6PJNjzunlynrOgFFMvdhheJ+fAGDHAv8VoSo=;
+        b=SMZrobtuuF9JlVPAPK+FN3GduyqAiyQ6HoA+tX8YlKbh/VxFuoUQqIUYma8MwX6Afj
+         fY8zdQYIluP3/Wvfr/ANRlMSdyq07RrLRFOqd2gkzZ6VpwyoJ3+D/id01Lr29oWKEQvk
+         oyuhav/qQypnqJ9cBm1X6JoZ5mMrDScwNxmqzkwE8r3IkX1zsnsSfWEuQgm01NGrBqkn
+         1yCE108ukOgNFVjQN//JiYYr1RP/Bbv04WiaqwMhnVpuGTV5ZeRE9NMO8fDuo1wq+npC
+         qHu56d0FMXqmsMzzJ0bLpgkkoZ6B9mSZMs4kH9tig4JOpJ3JGnvhVycThbF5cMRcH4IA
+         T0OQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXoaMrJjePz91t+IzcGDOOm2IvyrTdzHBOx+oqB3YCaNjRbwdwjlRxr2Kfze8kcQBF4uXElwHYMnyQ98Ctr/yD5db+kQrKD7Bg9oupCO5nJDr1WGxVyglKkUb/r4/PIzFGSrnVDPyVUYUSYyU8fFGHz4ckV8AmvhWl3mH5eTGfgAUQdLJCGOgEbEYPiaSHYszQ9/BiWAT7ZcL18zcbtRmZokmg=
+X-Gm-Message-State: AOJu0YxUL6sTLLWewzQmMr4eyS305+zAVlpqBetQC+x1vyA6wFiK0iMu
+	sjsH04l4eHUgmFd/dwujJu6DjWw50IOZXBoAg5bKfWL91u85SGa9
+X-Google-Smtp-Source: AGHT+IEoZjJjChi0ytw88tfb9H2v1HQ/DS+m0c5yt85oP0DWVaiwKZ+/hEH5s3Ge0OK7urWxBkXZRQ==
+X-Received: by 2002:a05:6a20:49af:b0:1a1:7cec:4c37 with SMTP id fs47-20020a056a2049af00b001a17cec4c37mr1751210pzb.52.1710001678747;
+        Sat, 09 Mar 2024 08:27:58 -0800 (PST)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id x18-20020a17090aca1200b00298e11b600dsm1410796pjt.27.2024.03.09.08.27.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Mar 2024 08:08:07 -0800 (PST)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: animeshagarwal28@gmail.com,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
+        Sat, 09 Mar 2024 08:27:58 -0800 (PST)
+Date: Sun, 10 Mar 2024 01:27:56 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Bjorn Helgaas <bhelgaas@google.com>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v3] dt-bindings: imx-pata: Convert to dtschema
-Date: Sat,  9 Mar 2024 21:37:36 +0530
-Message-ID: <20240309160741.54096-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.44.0
+	Manivannan Sadhasivam <mani@kernel.org>,
+	linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	Rob Herring <robh@kernel.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH v3 0/6] dt-bindings: PCI: qcom: move to dedicated schema
+ (part one)
+Message-ID: <20240309162756.GA229940@rocinante>
+References: <20240126-dt-bindings-pci-qcom-split-v3-0-f23cda4d74c0@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240126-dt-bindings-pci-qcom-split-v3-0-f23cda4d74c0@linaro.org>
 
-Convert the imx-pata bindings to DT schema.
+Hello,
 
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
----
-Changes in v3:
-- added fsl,imx51-pata in compatible property
+> Changes in v3:
+> - sm8450: add missing allOf: to common schema, which also fixes issue
+>   reported by Rob's robot.
+> - Link to v2: https://lore.kernel.org/r/20240125-dt-bindings-pci-qcom-split-v2-0-6b58efd91a7a@linaro.org
+> 
+> Changes in v2:
+> - Switch on SM8[123456]50 to 8 MSI interrupts.
+> - Simplify SM8450 clocks.
+> - Add Acks/Rb.
+> - Link to v1: https://lore.kernel.org/r/20240108-dt-bindings-pci-qcom-split-v1-0-d541f05f4de0@linaro.org
+> 
+> DTS fixes for interrupts will be send separately
+> 
+> The qcom,pcie.yaml containing all devices results in huge allOf: section
+> with a lot of if:then: clauses making review and changes quite
+> difficult.
+> 
+> Split common parts into common schema and then move few devices to
+> dedicated files, so that each file will be easier to review.
+> 
+> I did not split/move all devices yet, so if this gets accepted I plan to
+> send more patches.
 
-Changes in v2:
-- fixed style issues
-- compatible property now matches the examples
-- fixed yamllint warnings/errors
----
- .../devicetree/bindings/ata/fsl,imx-pata.yaml | 40 +++++++++++++++++++
- .../devicetree/bindings/ata/imx-pata.txt      | 16 --------
- 2 files changed, 40 insertions(+), 16 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
- delete mode 100644 Documentation/devicetree/bindings/ata/imx-pata.txt
+Applied to qcom, thank you!
 
-diff --git a/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
-new file mode 100644
-index 000000000000..265ea80434e1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
-@@ -0,0 +1,40 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ata/fsl,imx-pata.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale i.MX PATA Controller
-+
-+maintainers:
-+  - Animesh Agarwal <animeshagarwal28@gmail.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - fsl,imx51-pata
-+      - const: fsl,imx27-pata
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: PATA Controller interrupts
-+
-+  clocks:
-+    items:
-+      - description: PATA Controller clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pata: pata@83fe0000 {
-+        compatible = "fsl,imx51-pata", "fsl,imx27-pata";
-+        reg = <0x83fe0000 0x4000>;
-+        interrupts = <70>;
-+        clocks = <&clks 161>;
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/ata/imx-pata.txt b/Documentation/devicetree/bindings/ata/imx-pata.txt
-deleted file mode 100644
-index f1172f00188a..000000000000
---- a/Documentation/devicetree/bindings/ata/imx-pata.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--* Freescale i.MX PATA Controller
--
--Required properties:
--- compatible: "fsl,imx27-pata"
--- reg: Address range of the PATA Controller
--- interrupts: The interrupt of the PATA Controller
--- clocks: the clocks for the PATA Controller
--
--Example:
--
--	pata: pata@83fe0000 {
--		compatible = "fsl,imx51-pata", "fsl,imx27-pata";
--		reg = <0x83fe0000 0x4000>;
--		interrupts = <70>;
--		clocks = <&clks 161>;
--	};
--- 
-2.44.0
+[01/06] dt-bindings: PCI: qcom,pcie-sm8550: Move SM8550 to dedicated schema
+        https://git.kernel.org/pci/pci/c/b8d3404058a6
+[02/06] dt-bindings: PCI: qcom,pcie-sm8450: Move SM8450 to dedicated schema
+        https://git.kernel.org/pci/pci/c/88c9b3af4e31
+[03/06] dt-bindings: PCI: qcom,pcie-sm8250: Move SM8250 to dedicated schema
+        https://git.kernel.org/pci/pci/c/4891b66185c1
+[04/06] dt-bindings: PCI: qcom,pcie-sm8150: Move SM8150 to dedicated schema
+        https://git.kernel.org/pci/pci/c/51bc04d5b49d
+[05/06] dt-bindings: PCI: qcom,pcie-sm8350: Move SM8350 to dedicated schema
+        https://git.kernel.org/pci/pci/c/2278b8b54773
+[06/06] dt-bindings: PCI: qcom,pcie-sc8280xp: Move SC8280XP to dedicated schema
+        https://git.kernel.org/pci/pci/c/c007a5505504
 
+	Krzysztof
 
