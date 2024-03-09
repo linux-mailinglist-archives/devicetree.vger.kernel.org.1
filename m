@@ -1,99 +1,182 @@
-Return-Path: <devicetree+bounces-49623-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49624-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91CC48771B4
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 15:51:30 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 839208771BF
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 16:00:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CBBC4B20CB8
-	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 14:51:27 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 04E4C1F215A3
+	for <lists+devicetree@lfdr.de>; Sat,  9 Mar 2024 15:00:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4ABCF40878;
-	Sat,  9 Mar 2024 14:51:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2BA440870;
+	Sat,  9 Mar 2024 15:00:30 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="TuPmQ3l8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="LM8SEfaR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f181.google.com (mail-pl1-f181.google.com [209.85.214.181])
+Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D049E79DB;
-	Sat,  9 Mar 2024 14:51:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EF52B364D8
+	for <devicetree@vger.kernel.org>; Sat,  9 Mar 2024 15:00:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1709995884; cv=none; b=PiZk0hP9TzuHq4QLFxnzTZvzM4kDNjv5nbVfMeOimt5nuiIzygARe27iAnslHT+eF9GPECR/FyE5m5eRqD425t6z5PG3jpe/9jCO96xEXJDffCptHlp9FUbAsi9fwo9ZiGLgWvtMXwWKF+wOPHIF82Z8XqhCm77VSfwFnZZmKLU=
+	t=1709996430; cv=none; b=IU5ThFdQjEq++uzbacmNqk/TJkkIDGmqDH26KynoxqAhqBtIXDKJT24MGsurrQ1MRJXkTaYmtHpgg1X7Whc9VdghLcgKVUWxvNEoZjuyndPimVlhSRSnUIvGMZbVEAcXVMxxrbIyFohtZXI1SS+vJVEgC+AbpMttLV8HSQs3ag0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1709995884; c=relaxed/simple;
-	bh=D5J5SEP+6OfPVRUu5s1VyefzTSu8eHTF9vyDlwm9kt4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nnZPUzlXxnpRv8jqH3fySQuzUieVxURoxB7LMwS/tmKv7eWWpBqsItZfs2XSX6ijy5hcdYPoNozmBJaJ37WsdYnxu7Hq7N8hFLchA0xxtktRqv0lJosiYgVGeQ9w9HN5EQ953mIRx6a1ZgQVxg3ABMVkG4pulYkLx5/S/aAwpIM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=TuPmQ3l8; arc=none smtp.client-ip=209.85.214.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f181.google.com with SMTP id d9443c01a7336-1dd74a009bdso3874165ad.0;
-        Sat, 09 Mar 2024 06:51:22 -0800 (PST)
+	s=arc-20240116; t=1709996430; c=relaxed/simple;
+	bh=OvfWJNJDU81omg1NmON18Hw3qmdbiI8lTYPpBXiEqVA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=NQXQC+8imq9Pumxe4m/dM+C8D/sBjgprd7/FsSvFHRN6m+zaeKnJ4dsD6QUxkX+RnVT8nQxQ1PKtEAakRliKzqWqil5VTyGg10IyxcqZpNFyf44LpfIVSUKzF+D4UnOr/P1T9wtnVzubeGxMoDlltYrKY3iima7NwDiqVrqWwU4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=LM8SEfaR; arc=none smtp.client-ip=209.85.208.43
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f43.google.com with SMTP id 4fb4d7f45d1cf-56847d9b002so144019a12.1
+        for <devicetree@vger.kernel.org>; Sat, 09 Mar 2024 07:00:28 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1709995882; x=1710600682; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=D5J5SEP+6OfPVRUu5s1VyefzTSu8eHTF9vyDlwm9kt4=;
-        b=TuPmQ3l8KRMKQV3Qm5XXfU39Z28e0NMI+Vhx+9y0XJKfp7oMCIwKOplC7i1GR3vTSx
-         ibtu54gypdNhGmeHTlSX3gyz5A92UA+eCQdEDAQ7oN9MF4tDGEttZsv+9t+/OOphXI0Z
-         nw/7lSK+xqXUetkdvQzYGiM7kxePMpxpOrs321dhrtCg8zuCvmajC2IvhIhJQPRyvc7Q
-         oCF37qRbjBC4TKb2bHZzbIoy+mf3e8nbDtI5YD433aZWaveh7X4ja2yJP0KAZ+59yJBC
-         is62r2Xj7U688G8lPBGFLX4xacHzEtd2I2WNp4qx4MTv93PLYhSebks1L0ZEAYfOCYv3
-         UNAQ==
+        d=linaro.org; s=google; t=1709996427; x=1710601227; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OnfRxqBj01Ms+OYJOxmdm9ZV/lLNiKHxQ8hOUSQ50uI=;
+        b=LM8SEfaRNEFmVBwxfWHayo/SNWL0VgckVZS2TBOr0+PSpGLlwzmB/wcoBwEaGsE924
+         5ELs+XdpzGP2YPqoHyhBACgyshYXIjWpbFm7WXZ22DDPpEYZsL701e9PfwaUfH6SPKml
+         RhoF4eFwoAkpoCbFkqFxP3rFauQlg3Pa66kn3fx8H/atYVV2OpVE2FpzmHu/TGGueTIo
+         InUfH8spCfDw6E8GlDfPquOuo0qt4wg30NjOOKpHx18pplHFsp8jygf8k2sXPFaed82b
+         xDdntyN/QeeKBq1oBbZxYOj9url1QmPKTRI1ER4/dILB0REnzziBQ2fbIgYaulQMdWnk
+         S2fw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1709995882; x=1710600682;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=D5J5SEP+6OfPVRUu5s1VyefzTSu8eHTF9vyDlwm9kt4=;
-        b=xAZuqqr/SaSAkvU+Qkvo1TBBKmAWbhlfTkuRquKbYgq+7liP4+x8c4wTQtwx/0D23M
-         OYLM7CDClAIKfiboLxFLjixzhbX1ugGC40NwAzwyEkwGnOUMWgrcFFrPtW2d3oZfJObY
-         0IF0RqrdG7EcsUlAGk8rz/MgpZaW4OXihb/+9bfxOO58lf/oOaF6Cy7V0aHA/lf3ibrg
-         Vs9sYpqA3ricz9Rsmob8BWlI3x7RSZEwRfLbSLbn8B2OYM4JLeBHzru0zQGfnE1XJ4Bq
-         iq5aGvNsOBvGnGQb/IQ6VMcCfCgtheY8WEEYGqmc7W0rrOO6ZbSuENuwmlY9bqiFxbn/
-         CNGg==
-X-Forwarded-Encrypted: i=1; AJvYcCULpkYW/k/DpOg/RtG+0xRl+jHoGBKM6hDgE0ukHF6BRkklCLOGESUEaQahWP/KFze5bUZxxwUsmC98quRvyDYAFMNhgneRA3aQAWLb3AL1ZafubvlNA5vkuxI5D+pyCHniIDKbfrhSPneJvralnbQYClIpUKKRI7cexVVMKR0BtiJnGg==
-X-Gm-Message-State: AOJu0YzyK+RSBn46LXMHEf6slTjMjxHqA3m7V8GoLQCGeluXcBdR6Kdw
-	//RSKuPfdZRAa5b4w2HNbrZjV11Ec+JJ6HG+PfhEi2FVZlO5dELqST1KenYYMawPu+r0k8ePlHX
-	cEnz4eOa9PTUY3EWLne89Z9S30UI=
-X-Google-Smtp-Source: AGHT+IFQxtlBXHLMRdmxNIjXa7EVDuQgFAeVlY7V5pJP8BZdLTgqtdoQFyopNoe8BJC5z3geiv23qh8UI6MzwDaqh9Y=
-X-Received: by 2002:a17:90a:e64b:b0:29b:780c:bc6f with SMTP id
- ep11-20020a17090ae64b00b0029b780cbc6fmr1614117pjb.0.1709995882225; Sat, 09
- Mar 2024 06:51:22 -0800 (PST)
+        d=1e100.net; s=20230601; t=1709996427; x=1710601227;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OnfRxqBj01Ms+OYJOxmdm9ZV/lLNiKHxQ8hOUSQ50uI=;
+        b=MLoT8BNHDcFagTFTr4HdiQskKD+8+RtT2ECiMjXe1SXPQAQEr8fcUHgCz94uAg5ecb
+         SCjFxwgY2C/B34MVskEyPjVBzAF79Ua5kIJ1plcp/mb6hagwhFLo4MDLBeIJ15XYcuFI
+         3mZysayOBVASKIIhTI52ijgbXnYSW/UsrswqwgrAilOykG9XmumulykrcswO2vJPOejI
+         1Mgskozr80bcQuIluBImOmIQa4bvGjrA2TgOfK6BldlYg+c5fNXO9OC8wi1LEUoL4Bbf
+         CEvH4UKYVcStQalDzl5HvH9uwErSvq0J1g0pYP94kP79WHB2xMFhrA0f4JPHf4qnLnrX
+         1N0Q==
+X-Gm-Message-State: AOJu0YxwbCM8CgFZEIooxtFkHiqo++vL851ZSVrrsvLixtUNLhmom2TM
+	tDRyfpV5ZVyzrpvlUffURxZ9yt5r3R9zcamLDBOL0KxonrJ+eRXgUil2Ceobn28=
+X-Google-Smtp-Source: AGHT+IF0rumUZgQS6BYdusxgGYVlj0twL4YVgze4/SlrihM/xxPBSVwJPAU5SPQ4ApN5FnWFn5wMFw==
+X-Received: by 2002:a17:907:a783:b0:a44:e90d:c091 with SMTP id vx3-20020a170907a78300b00a44e90dc091mr1022435ejc.59.1709996427305;
+        Sat, 09 Mar 2024 07:00:27 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id gq14-20020a170906e24e00b00a3d2d81daafsm973998ejb.172.2024.03.09.07.00.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 09 Mar 2024 07:00:26 -0800 (PST)
+Message-ID: <7856f1b7-e12a-4530-82c5-416ec66e1885@linaro.org>
+Date: Sat, 9 Mar 2024 16:00:24 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <81e42a64-03c5-4372-914d-9f2df517dcf7@linaro.org>
- <20240309134810.352428-1-animeshagarwal28@gmail.com> <CAOMZO5BBWmbKBJQS48R6Lfa4ua=vhdseHd0vSC+t+OOZ3QHHUg@mail.gmail.com>
- <CAE3Oz80xEpdnUq6JkqXgf_LAM5dJP0TbCHkuPW-KzRVUD95FhA@mail.gmail.com>
-In-Reply-To: <CAE3Oz80xEpdnUq6JkqXgf_LAM5dJP0TbCHkuPW-KzRVUD95FhA@mail.gmail.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Sat, 9 Mar 2024 11:51:11 -0300
-Message-ID: <CAOMZO5D_F8enKAyCkvU5hFuET_U+u0gviiWCe=Oq1FhAQzPqjg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: imx-pata: Convert to dtschema
-To: Animesh Agarwal <animeshagarwal28@gmail.com>
-Cc: dlemoal@kernel.org, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, NXP Linux Team <linux-imx@nxp.com>, linux-ide@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
-	linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: trivial-devices with vdd-supply: true
+Content-Language: en-US
+To: Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <1ee8fc6f-5299-4ba5-bb61-14b4351c0708@gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <1ee8fc6f-5299-4ba5-bb61-14b4351c0708@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Sat, Mar 9, 2024 at 11:44=E2=80=AFAM Animesh Agarwal
-<animeshagarwal28@gmail.com> wrote:
->
-> fsl,imx51-pata isn't present in the txt binding as well. Should i add it?
+On 09/03/2024 13:22, Javier Carrasco wrote:
+> Hi,
+> 
+> I am trying to figure out the current policy to add trivial devices
+> (I2C/SPI devices with at most one interrupt) to trivial-devices.yaml or
+> include a dedicated file.
+> 
+> Apparently, bindings for the same sort of devices where "vdd-supply" is
+> provided require their own file, and I wonder why there is no
+> "vdd/supplied/whatever-trivial-devices.yaml".
+> 
+> Instead, files with trivial bindings + "vdd-supply: true" are added on a
+> regular basis. That property is not saying anything specific about the
 
-Yes, you need to add it and make sure to test it with 'make dt_binding_chec=
-k'.
+Anything needing supply is not really trivial anymore, because we want
+the supply name to match more or less what's in datasheet.
+
+Solution is sometimes to allow generic "power-supply", like panels have,
+AFAIR. If you have new device, just add new binding for it or add the
+device to existing binding with very, very similar device.
+
+See also:
+https://lore.kernel.org/all/YUz+psAILnF5L5GH@robh.at.kernel.org/
+https://lore.kernel.org/all/20210921131804.GC1864238@roeck-us.net/
+https://lore.kernel.org/all/CAL_JsqKJgvK8g+zbzLCBxnKbgAioBcdHWNAvqe4Z9BzkNMwPpA@mail.gmail.com/
+
+
+> device beyond that it needs a supply, which is very common. Is that
+> intended and no more generic bindings are desired?
+> 
+> On the other hand, trivial-devices.yaml includes several devices that do
+> require a single supply (e.g. several sensors), but it is not explicitly
+> documented. Did the requirement of providing vdd-supply arise after
+> those devices were added to trivial-devices? I think that some devices
+
+You would need to analyze the history... requirement of providing
+supplies was kind of always. Just like trivial devices were.
+
+> that were added to trivial-devices in the last months could have also
+> had a vdd-supply property, so I am not sure about the rules to choose
+> one way or another.
+
+https://lore.kernel.org/all/20230505204810.GB3506915-robh@kernel.org/
+
+Best regards,
+Krzysztof
+
 
