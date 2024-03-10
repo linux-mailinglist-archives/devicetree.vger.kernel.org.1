@@ -1,155 +1,261 @@
-Return-Path: <devicetree+bounces-49679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D5488775E1
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 09:49:30 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF5B58775F5
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 10:26:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 298521C20B18
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 08:49:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 569222823C8
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 09:26:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC6151DDD6;
-	Sun, 10 Mar 2024 08:49:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2DF1DA3A;
+	Sun, 10 Mar 2024 09:26:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NjsGXYlF"
+	dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="HWl8yCaX";
+	dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="kr87XSiC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mailrelay5-1.pub.mailoutpod2-cph3.one.com (mailrelay5-1.pub.mailoutpod2-cph3.one.com [46.30.211.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E46DD1CAB2
-	for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 08:49:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03FC71DFD2
+	for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 09:26:17 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.30.211.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710060563; cv=none; b=dxW/bZIf1EcvdBnlsaQf8CWS6X7p/sMfHM6Pf2a5jhoIdYMJtmuhM+8SimZYldLftTt1+4NcIZ3siuGv5d/R66Qk+kVoMZ81glgPcCTLb0LnwT8jDkB4I7bW9dlVkp39LhRbx9FtaLpOb6CFe640ICQo/dwQgXOLoY5v46w7ZaY=
+	t=1710062781; cv=none; b=ulchesT3H8D1WwPIg5gQc7qBVmaI3n8I5Ua6N55o66DsR0mYCyfe3GnAA2D8mE3pn13fbY8f/HLEkTZtZ62I7c9gNR7f50HrYxH9lO5tU8+XRfq2e/aYpLZleAYrUEvtko2IEHHsy8RzgQF8lrjDrIxcMjvHDnkgwnSFvrpKvqc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710060563; c=relaxed/simple;
-	bh=9vN/vDzKxSJvJLOCJMypbCpnjsNZN+Q2z4EhfnJoCbM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tIPenMtoob08MkUjnia2PA3hF8Kt0hiyb0xFDEjlupXkhMuMKdMRaykFCFYAbX1JEnpYqPA4mMW56N+1xCCtE0kOrD/HrdhtHWuBGy4AeohtWvx29BLrEUUmddNXk2ms4Rc41A5zDPg3Bzvh3LYaWgOiYnCM/U+rE5RWJNvTJPc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NjsGXYlF; arc=none smtp.client-ip=209.85.208.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f42.google.com with SMTP id 4fb4d7f45d1cf-563c595f968so4152414a12.0
-        for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 00:49:21 -0800 (PST)
+	s=arc-20240116; t=1710062781; c=relaxed/simple;
+	bh=WhsHVvaF1vXL3YSneiKe2MV5hhS81gBwkb8r9J/m+4c=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=A6lqaPwdnjv5t1uBWK8XDX2ax9SpNUWYHZf/V8i8gdYtQpHkUFxDP/6UGU8DhGAqZKDxsj/2grRYM49ug4aYOh+MgIo2xNtEcGd71skihY+Ubq9Vx1K+eRiSvCkhTbZxhXTXuR8jBMwHHYmv/rfTZnpn8Lu24KDcg3YvLFK6Pww=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org; spf=none smtp.mailfrom=ravnborg.org; dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=HWl8yCaX; dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=kr87XSiC; arc=none smtp.client-ip=46.30.211.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ravnborg.org
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710060560; x=1710665360; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=qC1m/B5EefwRBn3dblL5FGtufl80mfsbsEE24yFZlqA=;
-        b=NjsGXYlFIag9Qpl4yelgqdIpdS3Q/BP0Y65tcyyPmdvsHkhl7EqYphGkeVN8sB+Dms
-         GP/ClHIFhc9MUq9tYTZAzsf8tan2aIIa9w4q4AG/zliQRmu1uo6+wyA2jpEvOofdi88G
-         n4pcLe8p3yqOr+FlWz+LzDdWY3uQY8ZUB6wtLW1qjFaAXprQmUqdLth0Jpm3E+b0PNw2
-         nOgCrPCPvFrNbTtGMiPhVbbwguU78jlVHgwfJz0WFIB16Ew1k77rGF9RM3gAxaL1+AbI
-         Bf9699+HgML4xMqPyNniCoo0G9ec6y4ItFiI+Ulzo7sqjyLPmFmvQdcqRn1uJsmIEI4o
-         pB8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710060560; x=1710665360;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qC1m/B5EefwRBn3dblL5FGtufl80mfsbsEE24yFZlqA=;
-        b=KLpOZE9oMCFqA9tvqSYpnE7Ths1hyp84Ekwgirl8oMu6HL5xUFFuIzpfAgXQQjtEBg
-         f45zeQUPEhbauiNCCwvN4QfzYx0izHSBHp788hVAt0GAktT381YwgLWQkcsahaS2c3i+
-         rOjrmMIsH4GGeQ01snD/WkUyFDTLEwQvIRwKRv62R+uh0N3Hn9SXdpH/w1Xaq4WNmmKM
-         XgOzgN9LHF4xCL55Sf0v0A0oAr51CfwVnvELKRfldxhPdiqPuPZdpB7WNHiui9SrBMyU
-         qzavTTqAlffa2OSxEvYBPm+PIlB29S7bFQhu9Zy75wVFgv9UC9R8PWySWgyJnAgidaWn
-         X6Vw==
-X-Forwarded-Encrypted: i=1; AJvYcCXvZ7Jsp/HY3H1S8zyq+2PALS2hDkNDdrwXTBPoRwOUSRS+O+3XZcNdgBCCOroNrSOvF/bSxPRvnioj0x4Q+w2zOwJdpCcaBTf3pg==
-X-Gm-Message-State: AOJu0Yzpq+WL4CZKEt0ZMLaB/vG1xJc4QKKh2WneJKzh0Jow6PjIInq/
-	9ardul9VMwYoDI+XM+JetvL29R+RQPFsnCOd/hnKArtOop7yOkDsISUy9nhXviM=
-X-Google-Smtp-Source: AGHT+IEDZdp2TWFA6By80Ksj7rBjTmWnEW3lhby9mjArnabDjqJmF6NY5AmCJ19cg6X4SdrjyfykUQ==
-X-Received: by 2002:a50:934a:0:b0:568:2fd3:6139 with SMTP id n10-20020a50934a000000b005682fd36139mr2322079eda.38.1710060560265;
-        Sun, 10 Mar 2024 00:49:20 -0800 (PST)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id b2-20020aa7c902000000b00564e489ce9asm1765052edt.12.2024.03.10.00.49.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Mar 2024 00:49:19 -0800 (PST)
-Message-ID: <9d472776-6866-4a26-8264-3919b014a0c2@linaro.org>
-Date: Sun, 10 Mar 2024 09:49:18 +0100
+	d=ravnborg.org; s=rsa2;
+	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+	 from:date:from;
+	bh=+WfJ7IZT4YujSG0MObaMV24x5YmLTfgI703rzFU8kQo=;
+	b=HWl8yCaXGa14chA+vkSRZwH+v91wkd36QtHu8oxkQgGl6eO4UhQRhLTVNbpZycM6MMOESkD6nJBON
+	 FvkVWhug0ViBU2pur4q9LaLhpXqqzdockH4ZDfvm69O/g/7Ie1bU3cyUbjdR/h0nXyagCUGI41jMAH
+	 k0x6600Nd7ASrWwulyXKsOPOAmRRSTmCP9BbXyj4eSJyxvw5qrKMAN8vfZPgamN7f5Mc4OCTJ7vHyn
+	 7OQhiCAo25x5e29I/ibaftk32eQ+ltT/WC0b2BqHQfr0rc7Op/QYXcPaE9dtmmPnemyhfvoMZStRkt
+	 an/HjplwTuuMRrnd/aMTdVcdBRI8lIw==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+	d=ravnborg.org; s=ed2;
+	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
+	 from:date:from;
+	bh=+WfJ7IZT4YujSG0MObaMV24x5YmLTfgI703rzFU8kQo=;
+	b=kr87XSiCoYZ2IS7ijW+9XG72kcSOfIqj7F+9LjcZSOXLu4KwSTSOiuKAJ6eK22kCRFnugbInrmXhv
+	 Lw9Tli3Cw==
+X-HalOne-ID: 1444c15d-dec0-11ee-9c81-657a30c718c6
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+	by mailrelay5.pub.mailoutpod2-cph3.one.com (Halon) with ESMTPSA
+	id 1444c15d-dec0-11ee-9c81-657a30c718c6;
+	Sun, 10 Mar 2024 09:25:07 +0000 (UTC)
+Date: Sun, 10 Mar 2024 10:25:06 +0100
+From: Sam Ravnborg <sam@ravnborg.org>
+To: Patrick Gansterer <paroga@paroga.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+	Lee Jones <lee@kernel.org>,
+	Daniel Thompson <daniel.thompson@linaro.org>,
+	Jingoo Han <jingoohan1@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v3 2/2] backlight: Add new lm3509 backlight driver
+Message-ID: <20240310092506.GA981663@ravnborg.org>
+References: <20240309132521.1290173-1-paroga@paroga.com>
+ <20240309132521.1290173-2-paroga@paroga.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/3] dt-bindings: thermal: lmh: Add QCM2290 compatible
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Daniel Lezcano <daniel.lezcano@linaro.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Thara Gopinath
- <thara.gopinath@gmail.com>, Amit Kucheria <amitk@kernel.org>
-Cc: Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20240308-topic-rb1_lmh-v2-0-bac3914b0fe3@linaro.org>
- <20240308-topic-rb1_lmh-v2-1-bac3914b0fe3@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240308-topic-rb1_lmh-v2-1-bac3914b0fe3@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240309132521.1290173-2-paroga@paroga.com>
 
-On 09/03/2024 14:15, Konrad Dybcio wrote:
-> Document the QCM2290 LMH.
+Hi Patrick,
+
+a few comments in the following.
+
+	Sam
+
+On Sat, Mar 09, 2024 at 02:24:56PM +0100, Patrick Gansterer wrote:
+> This is a general driver for LM3509 backlight chip of TI.
+> LM3509 is High Efficiency Boost for White LEDs and/or OLED Displays with
+> Dual Current Sinks. This driver supports OLED/White LED select, brightness
+> control and sub/main control.
+> The datasheet can be found at http://www.ti.com/product/lm3509.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Patrick Gansterer <paroga@paroga.com>
 > ---
+>  drivers/video/backlight/Kconfig     |   7 +
+>  drivers/video/backlight/Makefile    |   1 +
+>  drivers/video/backlight/lm3509_bl.c | 340 ++++++++++++++++++++++++++++
+>  3 files changed, 348 insertions(+)
+>  create mode 100644 drivers/video/backlight/lm3509_bl.c
+> 
+> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
+> index ea2d0d69bd8c..96ad5dc584b6 100644
+> --- a/drivers/video/backlight/Kconfig
+> +++ b/drivers/video/backlight/Kconfig
+> @@ -366,6 +366,13 @@ config BACKLIGHT_AAT2870
+>  	  If you have a AnalogicTech AAT2870 say Y to enable the
+>  	  backlight driver.
+>  
+> +config BACKLIGHT_LM3509
+> +	tristate "Backlight Driver for LM3509"
+> +	depends on I2C
+> +	select REGMAP_I2C
+> +	help
+> +	  This supports TI LM3509 Backlight Driver
+> +
+>  config BACKLIGHT_LM3630A
+>  	tristate "Backlight Driver for LM3630A"
+>  	depends on I2C && PWM
+> diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
+> index 06966cb20459..51a4ac5d0530 100644
+> --- a/drivers/video/backlight/Makefile
+> +++ b/drivers/video/backlight/Makefile
+> @@ -35,6 +35,7 @@ obj-$(CONFIG_BACKLIGHT_HP700)		+= jornada720_bl.o
+>  obj-$(CONFIG_BACKLIGHT_IPAQ_MICRO)	+= ipaq_micro_bl.o
+>  obj-$(CONFIG_BACKLIGHT_KTD253)		+= ktd253-backlight.o
+>  obj-$(CONFIG_BACKLIGHT_KTZ8866)		+= ktz8866.o
+> +obj-$(CONFIG_BACKLIGHT_LM3509)		+= lm3509_bl.o
+>  obj-$(CONFIG_BACKLIGHT_LM3533)		+= lm3533_bl.o
+>  obj-$(CONFIG_BACKLIGHT_LM3630A)		+= lm3630a_bl.o
+>  obj-$(CONFIG_BACKLIGHT_LM3639)		+= lm3639_bl.o
+> diff --git a/drivers/video/backlight/lm3509_bl.c b/drivers/video/backlight/lm3509_bl.c
+> new file mode 100644
+> index 000000000000..bfad0aaffa0d
+> --- /dev/null
+> +++ b/drivers/video/backlight/lm3509_bl.c
+> @@ -0,0 +1,340 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +#include <linux/backlight.h>
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +
+> +#define LM3509_NAME "lm3509_bl"
+> +
+> +#define LM3509_SINK_MAIN 0
+> +#define LM3509_SINK_SUB 1
+> +#define LM3509_NUM_SINKS 2
+> +
+> +#define LM3509_DEF_BRIGHTNESS 0x12
+> +#define LM3509_MAX_BRIGHTNESS 0x1F
+> +
+> +#define REG_GP 0x10
+> +#define REG_BMAIN 0xA0
+> +#define REG_BSUB 0xB0
+> +#define REG_MAX 0xFF
+> +
+> +enum {
+> +	REG_GP_ENM_BIT = 0,
+> +	REG_GP_ENS_BIT,
+> +	REG_GP_UNI_BIT,
+> +	REG_GP_RMP0_BIT,
+> +	REG_GP_RMP1_BIT,
+> +	REG_GP_OLED_BIT,
+> +};
+> +
+> +struct lm3509_bl {
+> +	struct regmap *regmap;
+> +	struct backlight_device *bl_main;
+> +	struct backlight_device *bl_sub;
+> +	struct gpio_desc *reset_gpio;
+> +};
+> +
+> +struct lm3509_bl_led_pdata {
+> +	const char *label;
+> +	int led_sources;
+> +	u32 brightness;
+> +	u32 max_brightness;
+> +};
+> +
+> +static void lm3509_reset(struct lm3509_bl *data)
+> +{
+> +	if (data->reset_gpio) {
+> +		gpiod_set_value(data->reset_gpio, 1);
+> +		udelay(1);
+> +		gpiod_set_value(data->reset_gpio, 0);
+> +		udelay(10);
+> +	}
+> +}
+> +
+> +static int lm3509_update_status(struct backlight_device *bl,
+> +				unsigned int en_mask, unsigned int br_reg)
+> +{
+> +	struct lm3509_bl *data = bl_get_data(bl);
+> +	int ret;
+> +	bool en;
+> +
+> +	ret = regmap_write(data->regmap, br_reg, bl->props.brightness);
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Here you can use backlight_get_brightness() thus avoiding direct access
+to backlight internal properties.
 
-Best regards,
-Krzysztof
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	en = bl->props.power <= FB_BLANK_NORMAL;
+Use backlight_is_blank() here.
 
+	Sam
+
+
+
+> +	return regmap_update_bits(data->regmap, REG_GP, en_mask,
+> +				  en ? en_mask : 0);
+> +}
+> +
+> +static int lm3509_main_update_status(struct backlight_device *bl)
+> +{
+> +	return lm3509_update_status(bl, BIT(REG_GP_ENM_BIT), REG_BMAIN);
+> +}
+> +
+> +static const struct backlight_ops lm3509_main_ops = {
+> +	.options = BL_CORE_SUSPENDRESUME,
+> +	.update_status = lm3509_main_update_status,
+> +};
+> +
+> +static int lm3509_sub_update_status(struct backlight_device *bl)
+> +{
+> +	return lm3509_update_status(bl, BIT(REG_GP_ENS_BIT), REG_BSUB);
+> +}
+> +
+> +static const struct backlight_ops lm3509_sub_ops = {
+> +	.options = BL_CORE_SUSPENDRESUME,
+> +	.update_status = lm3509_sub_update_status,
+> +};
+> +
+> +static struct backlight_device *
+> +lm3509_backlight_register(struct device *dev, const char *name_suffix,
+> +			  struct lm3509_bl *data,
+> +			  const struct backlight_ops *ops,
+> +			  const struct lm3509_bl_led_pdata *pdata)
+> +
+> +{
+> +	struct backlight_device *bd;
+> +	struct backlight_properties props;
+> +	const char *label = pdata->label;
+> +	char name[64];
+> +
+> +	memset(&props, 0, sizeof(props));
+> +	props.type = BACKLIGHT_RAW;
+> +	props.brightness = pdata->brightness;
+> +	props.max_brightness = pdata->max_brightness;
+> +	props.power = pdata->brightness > 0 ? FB_BLANK_UNBLANK :
+> +					      FB_BLANK_POWERDOWN;
+props.power is not supposed to be set by the user - is is maintained by
+the backlight core.
+
+
+	Sam
 
