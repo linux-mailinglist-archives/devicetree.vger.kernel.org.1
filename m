@@ -1,208 +1,92 @@
-Return-Path: <devicetree+bounces-49719-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49720-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D3BD8777D5
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 18:53:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B43968777DA
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 19:02:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C192B281B44
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 17:53:13 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C82DE1C208AF
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 18:02:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4C5639850;
-	Sun, 10 Mar 2024 17:53:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE7A39AD5;
+	Sun, 10 Mar 2024 18:02:41 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jeO3Gz6E"
+	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="w5FluFU2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com [209.85.214.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 401D11D6BD;
-	Sun, 10 Mar 2024 17:53:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BAFC21115;
+	Sun, 10 Mar 2024 18:02:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710093191; cv=none; b=Vc93tiArdlXlAoRR/bSXADTH3vqh6OAsH1LMsaqXUbP8In8LcOoXm/XI9ah8TEOv/M9Wmbf5h1P8KlcdjPQFoC1ZXrqejaW6Lgg7J6KvPlT1v5eTvHbfkwBOt+O2Zqad/44Qu1auMMNeLXMgOIPh0k/mw1PruUKyKnCoQyVWpfE=
+	t=1710093761; cv=none; b=FjaSLXA5OXCQ3mvBkc5U3CeNptfkFY2R+CRUCl+y+WruEBKcBaN5eHwTlE0PPI42Gw25nhY6PQ/RIAE9mvRs61p8fBwzFpsDcCrFJl49rEd4iAxiIQzP32C5h5QRVLlb859URCj1upVddaPaf5Pi502V0aBek0/sVc5bCyhW0qg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710093191; c=relaxed/simple;
-	bh=PAEPg+/maxDYsnqqpjNNlC7+pfvlYT8sZpuckOLX2Pk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=JEfEmE3348Xyk3+qvvn9AmtiVjpAgE3o60A/SfYxOxdXvbdtURQr/DC9hvzRba7WUIRH0BChPPreznmVvdurOGgMqDnSW2MWifz3SpQAHJ24TYYStjcqGY7AO9YjaUqE2gpdf8uyTMDU1qaZ4v/BPR8rsSRmAA+EoYyQUr/FVO4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jeO3Gz6E; arc=none smtp.client-ip=209.85.214.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f174.google.com with SMTP id d9443c01a7336-1dd10a37d68so30672575ad.2;
-        Sun, 10 Mar 2024 10:53:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710093189; x=1710697989; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=tS9N1ruJVI0BmOAihQAk3F4D+Z/MUY8XwkjThKFRoCU=;
-        b=jeO3Gz6EqrCgTL2c9vylGkQXfCGgm4u3RKIxiG8UwmOS9ziJvXL31VA5htIn2msOpa
-         u64Q1GV5Emc+GYmmiwbxBbQNPZCIZUGN71PGLttvhwQ9z/kbPbuxWO7F4HTh0HyjsUck
-         dDMEAnG2hl8K9HD2rqPPUcLmL+vAWgIg1qSJc+j4r37kAgpd8tbyk63kOiOX+qups4bB
-         Wr6iek/OufdSCNgEfM81Vxz4AccJGZy8OszHBsF5FgSTW7H1XGMd7tgsjlvj9sKa2hAX
-         t7DcJcUZDLRJ5UDGvkHTjeuCR1bp4LQnVoRcwFMeIZeyqn5CJr09bcLh88VBpaq29BBI
-         d6dQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710093189; x=1710697989;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=tS9N1ruJVI0BmOAihQAk3F4D+Z/MUY8XwkjThKFRoCU=;
-        b=r/SQTXli/126AWR+R92U8cdXT9/zwFQGRIvN3/kkyXzb5zPib7DDbIUZ/SDSta6QJJ
-         g/yWQRhRw/RH6ax6Ee+Uj+VWjgskEsvwEa43QeV5aDh18Q0Y727XeoVK/oxkb59U6btS
-         YAej2ZL7J9vJWm7bK4TX62GBEw+WzLxuuv7kxWtqrX+gXPTDky4RTDoy/ZMHQEIkVhbA
-         2kJw+FVF8/YYj7AnhqeDRtrVrEducbMlObYsqfUvl1kR75N1PMpsXwSS5eowreNRidyk
-         ZX2TIiJdjH6fO9eVQWgPRhXZlQNxXMZAEiqbpuNuEp87+Un1K6GlYB20X3Qw5ABZex/D
-         5s2g==
-X-Forwarded-Encrypted: i=1; AJvYcCXLk5uCDEpSjqHT2ft14OPHTgtPFfSqkF0J1pzSl+wWh1gZxPZdQaqC6nvXLYqrjQAUB06b/b7AJnoYYRT2+fauRcXnySLhnxS2/2vob2ThwTBuDngfDrlWSU63pnqTZQ3Yazze4mpMkqYSBVX+tiT8VS9Wb/3ryoeZYSvDXbL+XhUh3A==
-X-Gm-Message-State: AOJu0YyXSmoMkLYhKk4kP0682PdvlfWmEXr+nFi+EFGkwoBIrWIjRAmZ
-	hW8nYnG4kEiAOEooxsiyVKZnVev0RE2N9L0dJUvzcEdScF1N0UyB
-X-Google-Smtp-Source: AGHT+IHHarjmbSJAfp4+wX7aP9GbwqCXzb3OwiyyKq/kCEzWGSJ0ZTZGva24e7VBNgg2V0JnOm1v0w==
-X-Received: by 2002:a17:903:22c5:b0:1d8:f072:ec9f with SMTP id y5-20020a17090322c500b001d8f072ec9fmr5859755plg.28.1710093189412;
-        Sun, 10 Mar 2024 10:53:09 -0700 (PDT)
-Received: from fedora.. ([2409:40f4:12:62d1:ef0e:a60d:25ad:394c])
-        by smtp.gmail.com with ESMTPSA id g22-20020a1709029f9600b001dd61965137sm2902050plq.304.2024.03.10.10.53.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Mar 2024 10:53:09 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: animeshagarwal28@gmail.com,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v6] dt-bindings: imx-pata: Convert to dtschema
-Date: Sun, 10 Mar 2024 23:22:13 +0530
-Message-ID: <20240310175217.20981-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.44.0
+	s=arc-20240116; t=1710093761; c=relaxed/simple;
+	bh=/uti3KhNUWLN2j9QKHNuTsykTW7CeAjkbaGcoIDvAX8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HbQSau2TBA3earAgw5x/46pBDza1lN1SZ25EbgXx93xA+/Mjr6dG/bcHtOu1EazkWj7hyuso80Mme6mYIDYIEuQndDRUxSGGtGsTUNLRsDQenntXLDvIiDTAKYwPcwE/KhyjOMsDvoUPFjgQH1KpAJw0o13UwbDQ7Z3jmkcuWoI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=w5FluFU2; arc=none smtp.client-ip=156.67.10.101
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+	bh=nKRXGf8H98Z9tuuZUNbMP7MGE4PkRR7UCT/L+6ltYAE=; b=w5FluFU27o3T9ZV6+J2q4vNQ9v
+	JIt6svUBCo3ZXxBsiBqliqW1LP2CFfMt31fzXHrLoNAvRwmOKo0OBZe+7t91n9aKrizryfZLHdMZ3
+	ex6+Dya9ByuIBmgxubDerQSfrkxnPNldDnOA7zyAZfjFBgiy+HYMa5BJ5TqRHUHUO03g=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+	(envelope-from <andrew@lunn.ch>)
+	id 1rjNVc-009v1u-Sv; Sun, 10 Mar 2024 19:02:52 +0100
+Date: Sun, 10 Mar 2024 19:02:52 +0100
+From: Andrew Lunn <andrew@lunn.ch>
+To: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>,
+	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
+	Florian Fainelli <f.fainelli@gmail.com>,
+	Vladimir Oltean <olteanv@gmail.com>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: realtek: describe
+ LED usage
+Message-ID: <6705a278-d294-475f-bc4c-b08926c5017d@lunn.ch>
+References: <20240310-realtek-led-v1-0-4d9813ce938e@gmail.com>
+ <20240310-realtek-led-v1-1-4d9813ce938e@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240310-realtek-led-v1-1-4d9813ce938e@gmail.com>
 
-This patchset converts imx-pata bindings to DT schema.
-file name is changed to fsl,imx-pata to follow vendor,device scheme
-imx31-pata and imx51-pata are added in compatible to ensure this node compiles to
-imx31-pata.dtsi or imx51-pata.dtsi
-oneOf is also added to allow the usage of imx27 alone.
-Cleanups are done in patch 6
+On Sun, Mar 10, 2024 at 01:51:58AM -0300, Luiz Angelo Daros de Luca wrote:
+> Each port can have up to 4 LEDs (3 for current rtl8365mb devices). The
+> LED reg property will indicate its LED group.
+> +                properties:
+> +                  reg:
+> +                    description:
+> +                      "reg indicates the LED group for this LED"
+> +                    enum: [0, 1, 2, 3]
 
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+If this identifies the group, what identifies the actual LED? There
+are four of them. How do i say LEDs 0 and 1 are unused, 2 and 3 are
+wired to LEDs?
 
----
-Changes in v6:
-- removed items before const due to single element.
+It would be much more usual for reg to be the LED number for the
+port. And there then be a group property indicating what group the LED
+belongs to. However, i'm wondering, is group fixed? Do we actually
+need it in DT, or can there just be a table in the driver which maps
+port:led to group?
 
-Changes in v5:
-- added oneOf in compatible property to allow the usage of imx27 alone.
-
-Changes in v4:
-- added fsl,imx31-pata in compatible property as enum
-- imx31-pata was not listed in compatible in original txt binding
-- adding imx31-pata in enum ensures the node compiles to imx31.dtsi
-
-Changes in v3:
-- added fsl,imx51-pata in compatible property as enum
-- imx51-pata was not listed in compatible in original txt binding
-- adding imx51-pata in enum ensures the node compiles to imx31.dtsi
-- fsl,imx27-pata is added as a const to ensure it is present always
-
-Changes in v2:
-- fixed style issues
-- compatible property now matches the examples
-- fixed yamllint warnings/errors
----
- .../devicetree/bindings/ata/fsl,imx-pata.yaml | 43 +++++++++++++++++++
- .../devicetree/bindings/ata/imx-pata.txt      | 16 -------
- 2 files changed, 43 insertions(+), 16 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
- delete mode 100644 Documentation/devicetree/bindings/ata/imx-pata.txt
-
-diff --git a/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
-new file mode 100644
-index 000000000000..c108a4b6636a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
-@@ -0,0 +1,43 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ata/fsl,imx-pata.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale i.MX PATA Controller
-+
-+maintainers:
-+  - Animesh Agarwal <animeshagarwal28@gmail.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - fsl,imx31-pata
-+              - fsl,imx51-pata
-+          - const: fsl,imx27-pata
-+      - const: fsl,imx27-pata
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: PATA Controller interrupts
-+
-+  clocks:
-+    items:
-+      - description: PATA Controller clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pata: pata@83fe0000 {
-+        compatible = "fsl,imx51-pata","fsl,imx27-pata";
-+        reg = <0x83fe0000 0x4000>;
-+        interrupts = <70>;
-+        clocks = <&clks 161>;
-+    };
-+
-diff --git a/Documentation/devicetree/bindings/ata/imx-pata.txt b/Documentation/devicetree/bindings/ata/imx-pata.txt
-deleted file mode 100644
-index f1172f00188a..000000000000
---- a/Documentation/devicetree/bindings/ata/imx-pata.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--* Freescale i.MX PATA Controller
--
--Required properties:
--- compatible: "fsl,imx27-pata"
--- reg: Address range of the PATA Controller
--- interrupts: The interrupt of the PATA Controller
--- clocks: the clocks for the PATA Controller
--
--Example:
--
--	pata: pata@83fe0000 {
--		compatible = "fsl,imx51-pata", "fsl,imx27-pata";
--		reg = <0x83fe0000 0x4000>;
--		interrupts = <70>;
--		clocks = <&clks 161>;
--	};
--- 
-2.44.0
-
+	 Andrew
 
