@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-49735-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49736-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C9BE87787B
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 21:33:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96CBD87787F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 21:35:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 509F11C20978
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 20:33:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DA561F2125F
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 20:35:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5DED81EB22;
-	Sun, 10 Mar 2024 20:33:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13ABA39ADB;
+	Sun, 10 Mar 2024 20:35:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="rNmmRBF8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NyJ28+u1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f52.google.com (mail-wm1-f52.google.com [209.85.128.52])
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8A4CC3A8C8
-	for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 20:33:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 285B17F8
+	for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 20:35:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710102826; cv=none; b=TZfrEL063shDQ6/juoUjagUzOssXXZSfkc7mVBTb2FvuC2B/eImYUUhuLN2Vk8/MkmuORYjMrQJCUjH45ST9fceIkLxiLvts+NDZfAcLOizJGUMmbFOPjCz+yA0aJgl8qik63nwOyohwanYXzzEM391sgU8QwjK5I2wOj0XAPDw=
+	t=1710102943; cv=none; b=t6Uy966MJHaaZkVNLgFiYE+2zCCMz3nI9a8dZaIrjyKZyEK2uRU8L9/ZKKq05ZEgoaUexAhC+ccIsKwVsZClV/JZ2etCaEgyw8mk4c7rExoxk+tD3UfTVNUIKZi+8WxvO21JmSNbGwTGWpIrBDGT5vHmrNSpaMkEzUcuthpVQuU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710102826; c=relaxed/simple;
-	bh=PKUNGq1kum7HKG/LBT568tl0S0Jrhl/TsejyHLw5dCg=;
+	s=arc-20240116; t=1710102943; c=relaxed/simple;
+	bh=e70bg/e1BS2jVywk5zKGgumV9mPuOOtP93ieLTvedjE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cVEncogY0BaCbqfcXOUzOwZpuqIrIbfhpgY7nGvn2XnHYxpiQOhjeqZD8a+CyGfVOxexebXodDT1gq6xddP/b1usvOIQpsM13jSTftGFs39PGzEpMz/5DDgAWCIgnq3H7qakz6OCU+Zs6NOSl7dOSF8TLwjf99AUQy+MewjA7ZE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=rNmmRBF8; arc=none smtp.client-ip=209.85.128.52
+	 In-Reply-To:Content-Type; b=RE8dzYO1fdkcz98rHzQeOVuHhYvEAAu6lD/LSsPnFeAsA9NbrTl+DkdfacA9HlZiPTsUReNjYJiNwgl9ZnwgMTX72tM/gx3ZD2iPOttQhSKjYlfDBCP6kqstrJ8Ehts4FEJbRlYo0agtdXorSUyCK8XxD34Y8rYzOUujvjlwSKA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NyJ28+u1; arc=none smtp.client-ip=209.85.128.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f52.google.com with SMTP id 5b1f17b1804b1-4132600824bso3016225e9.2
-        for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 13:33:44 -0700 (PDT)
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-413286f8985so2686415e9.2
+        for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 13:35:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710102823; x=1710707623; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710102939; x=1710707739; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xtzDL4U4B0yroVaG/UzgWOeTRfJUDuQRZRn6xaPKM3E=;
-        b=rNmmRBF8bjVMgqVmoj4FxGXLXWn5haCRq391Bb0gqkzTn21P0MkY/NFARu3cw1xBIw
-         ZDDKZpIJuDL60p6Okjds9WDpd7RyQ5ukvLSxT4QNJ7wRXr/oW/brsSJr+aohJqaJvs9y
-         V+oS4Op8eSVi024ZBLYD7Yq2D8vS/QcD57WrwDYTSUSZItoi19jEwGmelNZ+r+yYjQMG
-         DfcEbmvNG+9Qa1MxcB0y3Bhv51wN40vl5wI4NhE8dIh8GYc7krdi8C9R2lr+SWju0tke
-         Kj63R5tgLyx7D6Qa0OdfvHTBCXSCTbDaDjbeGIAPgjGsnpHDRub06nw3Np82MUedJcd+
-         MILQ==
+        bh=hLuyOAUfakNiTmfRz2436v7ufbiP6S7z3xGi1kKPoaE=;
+        b=NyJ28+u1hNf9hBj//WKMR4yJcD8RcKa+m4q9ggmQuMdBhL37pPpOGLWomdvwifY+rH
+         uPkzbbZGp6Mq2YNj1e7vVhnkvinZlbUO+MMlapZOwgMEGDzZCyMa+sIgbkmYQEBNSQci
+         nBMuoDRnMGZbzl2TNFLsy/OStp5Njy6Z++bAY556itMjAvxITgrDAIsW/x1na4zWzILa
+         Gjoi8YLZOS7hHum56Se2vW91h3kEz/QLyrUayTtWJNRndEZHIxtXhcJ9UaMuac/Q5LJH
+         km9wBamevr804BZCERxonkS0P6plvtF9SMoLTM5rjQE1A1rFJNPnAVUXCiE5L0jYCKE3
+         M33g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710102823; x=1710707623;
+        d=1e100.net; s=20230601; t=1710102939; x=1710707739;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xtzDL4U4B0yroVaG/UzgWOeTRfJUDuQRZRn6xaPKM3E=;
-        b=MFHnNSRPQ3JcIdduXWfH3AGqsOuI2eLvqlG7WV7euI1tkv22+jJw1sJU0eehCPefOw
-         0Ct+nqXWYIkLMxFWJyIGRcIK2SOUh8sRqmOqRJWOgDpJ4AFf4JtAnUKhuv3zqvqAVIng
-         mILPb4yaiKII4nMD1fZXiKsxqH2KcD+j7vEEtrwon1XQ/sprTlTYgXoKvfer4zX/c1+k
-         Ua3r/dieXx/k2pTNdn67jQVQM0PN2dnkruvutdd4l2XL+Ai8At9vokKGqkcnPMbWScKe
-         0i8W/7rvpZoe2Sy3ZlL3XIrL6uI6JeI5r7gEUH6TJtNMVoRGvPMyXmugpoJt3TU+XEBi
-         CIUQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWeYAtSOBY5dM6mppC3mgLpo73j17Xl0K35mRgO3rdWaEHsxA6Dsa7VVONDBqNlicYWzWUGIgvY49FiqVC4cr1AMCw4MakMNdm8Bg==
-X-Gm-Message-State: AOJu0YwkGT7lOX9J1GsdPv5N4gt80dFbGNHvXxY1b0Jhg9IXDPh9LOry
-	UXhv+DPW1JUvfpbnEx/3/EqTmWhyfv2W4ZSMm5pN4D7hZv6X6F2NULB3XF94wVo=
-X-Google-Smtp-Source: AGHT+IFWo7Fb7guCP+x0FS8Qnmuli+QEU84qgNQBqVhLH8/noe+Ly+lAYV6epFDESJhsvKRiEbNYHg==
-X-Received: by 2002:a05:600c:4e45:b0:413:1921:8698 with SMTP id e5-20020a05600c4e4500b0041319218698mr4813706wmq.41.1710102823032;
-        Sun, 10 Mar 2024 13:33:43 -0700 (PDT)
+        bh=hLuyOAUfakNiTmfRz2436v7ufbiP6S7z3xGi1kKPoaE=;
+        b=q2lywUjgelcYrtGvaEZIWySaRuBwjQ21CU3F+rrcBC+SWaGCXKZDcGJP8Pd790GOVn
+         d+D849EJQ7WlWkK+AIuhiDb6r7MNlcSBT9Yh9xTFy9RHCgCKZEDGLbV19n0YZV4U22Az
+         S9DYTsSWDGBg6Hma4hlGtrK4a+sW41Q+DUl1IBIL1r0/xXxAsB4z9BIW5KyUsKYxclNG
+         b4SOmdRBfI/0/DI/WcPK90LKvPENpSYIPeZ3nf5XlKUjkCtUNxHxwilzviJIQDC0VBqC
+         YDBWEQ2b+z4OgR8htTdR40PcY06Yz2nNTcmGo7MOCuTocbPaY6HWMOWivT8Os/rhyxiW
+         1uPw==
+X-Forwarded-Encrypted: i=1; AJvYcCUwdsjgNriOT1Yv7SB/gE7ayi+WHHu6w79G8qRQhFbXs0Z7IN2AYEGnf0F7TfTk4i9R9HpFdEIpWkp/Aqlb97h501rmQg1OfqHQ8Q==
+X-Gm-Message-State: AOJu0YwmteO5hmVT2BmGIXrBpM794ecwZYyNTeLqUWnwZXGWNKoz5hFy
+	sTSeYoD3sK+VIlI1vPN9xi+pSrn2/MwW+1kYpGXKli3P5LQ++mAnbsVctyLeeZY=
+X-Google-Smtp-Source: AGHT+IGwoVzQmaIuC9catL7JO+dbjx4CAeAUQWIHrknNzg8KTrQrmKOMUWfvzyEDcvXpmiYHyfWfMQ==
+X-Received: by 2002:a05:600c:5253:b0:413:166e:ad51 with SMTP id fc19-20020a05600c525300b00413166ead51mr3670556wmb.2.1710102939596;
+        Sun, 10 Mar 2024 13:35:39 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id jg8-20020a05600ca00800b004128f41a13fsm6709350wmb.38.2024.03.10.13.33.41
+        by smtp.gmail.com with ESMTPSA id j20-20020a05600c191400b00412f016a151sm6778963wmq.9.2024.03.10.13.35.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Mar 2024 13:33:42 -0700 (PDT)
-Message-ID: <a387d6d6-e6c9-4fcd-b576-a2cd3348f261@linaro.org>
-Date: Sun, 10 Mar 2024 21:33:41 +0100
+        Sun, 10 Mar 2024 13:35:39 -0700 (PDT)
+Message-ID: <3601a374-4161-40e1-8a80-9bbfdae5bd8a@linaro.org>
+Date: Sun, 10 Mar 2024 21:35:36 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,17 +76,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/3] dt-bindings: arm: qcom: Add Sony Xperia Z3
+Subject: Re: [RFC PATCH v3 4/5] input: add onkey driver for Marvell 88PM886
+ PMIC
 Content-Language: en-US
-To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>,
+ Dmitry Torokhov <dmitry.torokhov@gmail.com>
+Cc: Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240310-shinano-common-v1-0-d64cd322ebca@z3ntu.xyz>
- <20240310-shinano-common-v1-2-d64cd322ebca@z3ntu.xyz>
+ Conor Dooley <conor+dt@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+ =?UTF-8?Q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+ ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20240303101506.4187-1-karelb@gimli.ms.mff.cuni.cz>
+ <20240303101506.4187-5-karelb@gimli.ms.mff.cuni.cz>
+ <ZeTgEmjJc_VhYpLm@google.com>
+ <CZL8ZSZAVEBI.349BV2Y6AKIPN@gimli.ms.mff.cuni.cz>
+ <ZeZxI_spu4vwxrs7@google.com>
+ <CZQ1EP61IDOC.1PPYGMIOINGND@gimli.ms.mff.cuni.cz>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -132,20 +139,78 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240310-shinano-common-v1-2-d64cd322ebca@z3ntu.xyz>
+In-Reply-To: <CZQ1EP61IDOC.1PPYGMIOINGND@gimli.ms.mff.cuni.cz>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 10/03/2024 12:41, Luca Weiss wrote:
-> Add the compatible for this Sony smartphone.
+On 10/03/2024 12:35, Karel Balej wrote:
+> Dmitry Torokhov, 2024-03-04T17:10:59-08:00:
+>> On Mon, Mar 04, 2024 at 09:28:45PM +0100, Karel Balej wrote:
+>>> Dmitry,
+>>>
+>>> Dmitry Torokhov, 2024-03-03T12:39:46-08:00:
+>>>> On Sun, Mar 03, 2024 at 11:04:25AM +0100, Karel Balej wrote:
+>>>>> From: Karel Balej <balejk@matfyz.cz>
+>>>>>
+>>>>> Marvell 88PM886 PMIC provides onkey among other things. Add client
+>>>>> driver to handle it. The driver currently only provides a basic support
+>>>>> omitting additional functions found in the vendor version, such as long
+>>>>> onkey and GPIO integration.
+>>>>>
+>>>>> Signed-off-by: Karel Balej <balejk@matfyz.cz>
+>>>>> ---
+>>>>>
+>>>>> Notes:
+>>>>>     RFC v3:
+>>>>>     - Drop wakeup-source.
+>>>>>     RFC v2:
+>>>>>     - Address Dmitry's feedback:
+>>>>>       - Sort includes alphabetically.
+>>>>>       - Drop onkey->irq.
+>>>>>       - ret -> err in irq_handler and no initialization.
+>>>>>       - Break long lines and other formatting.
+>>>>>       - Do not clobber platform_get_irq error.
+>>>>>       - Do not set device parent manually.
+>>>>>       - Use input_set_capability.
+>>>>>       - Use the wakeup-source DT property.
+>>>>>       - Drop of_match_table.
+>>>>
+>>>> I only said that you should not be using of_match_ptr(), but you still
+>>>> need to have of_match_table set and have MODULE_DEVICE_TABLE() for the
+>>>> proper module loading support.
+>>>
+>>> I removed of_match_table because I no longer need compatible for this --
+>>> there are no device tree properties and the driver is being instantiated
+>>> by the MFD driver.
+>>>
+>>> Is the MODULE_DEVICE_TABLE() entry needed for the driver to probe when
+>>> compiled as module? If that is the case, given what I write above, am I
+>>> correct that MODULE_DEVICE_TABLE(platform,...) would be the right thing
+>>> to use here?
+>>
+>> Yes, if uevent generated for the device is "platform:<name>" then
+>> MODULE_DEVICE_TABLE(platform,...) will suffice. I am not sure how MFD
+>> sets it up (OF modalias or platform), but you should be able to check
+>> the format looking at the "uevent" attribute for your device in sysfs
+>> (/sys/devices/bus/platform/...). 
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
->  Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> The uevent is indeed platform.
 > 
+> But since there is only one device, perhaps having a device table is
+> superfluous and using `MODULE_ALIAS("platform:88pm886-onkey")` is more
+> fitting?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Adding aliases for standard IDs and standard cases is almost never
+correct. If you need module alias, it means your ID table is wrong (or
+missing, which is usually wrong).
+
+> 
+> Although I don't understand why this is even necessary when the driver
+> name is such and the module is registered using
+> `module_platform_driver`...
+
+ID table and MODULE_DEVICE_TABLE() are necessary for modprobe to work.
+Just run `modinfo`.
 
 Best regards,
 Krzysztof
