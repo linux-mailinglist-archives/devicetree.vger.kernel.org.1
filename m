@@ -1,228 +1,236 @@
-Return-Path: <devicetree+bounces-49691-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49692-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 87D608776E3
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 13:57:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F1A98776ED
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 14:07:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id EF3F81F21468
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 12:57:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3655F280FE5
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 13:07:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 72E8928385;
-	Sun, 10 Mar 2024 12:57:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 76BF78485;
+	Sun, 10 Mar 2024 13:07:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ltibB2Nu"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Y8favrYa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
+Received: from mail-ed1-f49.google.com (mail-ed1-f49.google.com [209.85.208.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BDBC724B2F
-	for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 12:57:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 934902628C
+	for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 13:07:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710075431; cv=none; b=ZokwlA1fdeW6oLSRG5VD6OxWcBVrkwpEQ2TB/ZumTtKt9jOwtEjCStdWDEtjvsbwuEntqEkpyE2QRL8bQB/dJs9smlL8mbRxit7+ozpAA/bvmsBmMYiQuxXr1wFrVwGexXvAA50G+NaLVyjLCj0NvVbdhG3xDF3EM6Qa6sGUX/0=
+	t=1710076049; cv=none; b=oFXPmAaLyHt5nTFBCLQ+MGlKVjrLEUHZQHRvJ5012slqK3Rx0ct0JeIH4IqC3SzxlhE4KSLqMfY69MRW+UpH2LWPmgv2bNP5roPBb6rNz7Z++RBEGUT3zPMjZo8p1m+0BFonq8hLIqJTQBNXRd9WRKUoQRQnAJnmqO4xbdJFQ4Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710075431; c=relaxed/simple;
-	bh=EMHaB7kya4ZC3sb4psj74LR+97AWjwtndWgN3WEQLB0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=YxxLrlD8I56kzXDEAGbT+gRV5yoHcPpLlQU9RMETILMTZPXF6VF5rxJVIF2iovavSEAAgZQgQHV7ccJSKob6Vt+e0vkbd/PjTCcDcxFcsVq5MBABq9lBZGSPurQ8Hf9g2wC0r+KmyF2nKW8/dTTruTBEnESrSNW2vRblIv6/ZVQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ltibB2Nu; arc=none smtp.client-ip=209.85.214.172
+	s=arc-20240116; t=1710076049; c=relaxed/simple;
+	bh=1uPlPrEVKUnt7HqYHuTJSJiyIgPybhRS2G7y+bBZzIU=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=LWrXE3cky6fbVwBgmddRuzfVpYRuuTGUpioL5+Vf/vo0IGg363c6jpe2DeYZcGJLPvlYRJ4wVG4dj5Uq1yHaYn/W1eaOrpsKeVpZTdlIShqpZjeE+1LAUsbuVOC9Jh8jDRhN2o3DFBQ4hI1KqskntR1Xpu1Wi+Y3+iRLnSyQA8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Y8favrYa; arc=none smtp.client-ip=209.85.208.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1dd878da011so2930105ad.2
-        for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 05:57:09 -0700 (PDT)
+Received: by mail-ed1-f49.google.com with SMTP id 4fb4d7f45d1cf-56847d9b002so884078a12.1
+        for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 06:07:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710075429; x=1710680229; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=SDEApdbuJJn3rW0aTX84J2O9wswnhpQO0GgGjO9ubd4=;
-        b=ltibB2NuzYrM5Nn8MLZ9201ojY7SZlQtlTEh8WqHIPFXl4X0Eos05uc8NbgtF7U6Vr
-         s9W82k80DcWW/rZtm3gksLTPGtuxxTXKr/4/vYi3b+Rzkbvdv2WgIWKRHfGOSQZjjkg8
-         hZSZeCvIDOVp4MVLtlA6amKBi41GB+sVF9jpf/wWqV7jJUXj8cj4JoxO6vtxtoSTc8pi
-         I/4WMCUAfJFqETW4M82HPD56GV2A2bar0yWqp1UPTohAQ2KoALzNnI/Toi4GnshiwQ4C
-         13pXWzVTx2XMBhPjVeDzverXexCMhCTiSE/49U9NiDLQ26YErzyaItvHT4zGCJsNdOjp
-         3fyA==
+        d=linaro.org; s=google; t=1710076046; x=1710680846; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ABvZnWn9tZjq5i+rgSN4YDv2QcfnVQwhLHVdYpDlTAY=;
+        b=Y8favrYaKBEDTEHyS8jcjlIqL3i9OpAeNMknQCFtRfDvofw1FhfwspBR/6fcui6A4/
+         UH/PuFQQyQ/Up5zb6pVjSJa0BxAQRwc/kWMrv/unRVbpx1VdFYbI13Z6QTIUxF/eY5xa
+         FJFLYUJg/kQTLocr1zfL/WYZ9cEUqkOtfUAXAN1qneiNjMcYcPxe50fvsf4TNyuCv0yu
+         WFwKwFbeJKRYkkv4YFWZX3uNGOsNQ37Z0ZyxG8eW+IL6L4Vq7Z9MGu6zECreloWmsBOM
+         QVkYUSc/+EQHYSENg74fE1NM+Alhq5Ot5tLxjwTeS6v7iDRZ8KxRaUpkpnORzO8JGZtE
+         Xmjg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710075429; x=1710680229;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20230601; t=1710076046; x=1710680846;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SDEApdbuJJn3rW0aTX84J2O9wswnhpQO0GgGjO9ubd4=;
-        b=tpUx1PncNxgjudTqARLfqiwi8PldGQTwQFxXR+RTjXRb3MeYf4G0u+cj/DAF6GKmdR
-         T3lGcDFkYKE6W146e2+apNYiBDh6IT/aZualJAFey9cE7JSC/559JB1tq1DbmwluLY0n
-         WSl3Rs4jVjzqzuIXaJg18o/C00qgeV2rGX5aKRU+1DwuXvPNPD0gbuV/clwjaoufrbj3
-         ZyQ5YfQCkMOReeb5cDWd9ciStMoehPsRsn1vdU+nspdiF+ev165HAvCghhj2QHgDp7rO
-         QUzeF+eWZD6VjJMdz+dmDSYLsmvvejqMx0XrhEHF1J0Bn8YumM6BPOk7zb4STR24NtBV
-         Mncw==
-X-Forwarded-Encrypted: i=1; AJvYcCUI57m21KSbIyz6mvyWC5GIW3J1yj5LuIfO5AknIeSpU/Sg29yonDh8AudG3aMMj9DNya1ju9A9sRDVvWzHoJGfZ5tfBfdiLEbpmw==
-X-Gm-Message-State: AOJu0YzfEKFM1G1f8b7LqzRBcUHZdBXwhQfo/Fcr5I98gj1UmdBRDB3m
-	4dCIJkMFnXkFh6UpQiNsdma3Vfc29oAMHwYauiZm+TDaJkDrUZ5l2lo3kPTTlw==
-X-Google-Smtp-Source: AGHT+IE7tbrdR9qGK2v5knmmRKIn3Ohdwz+WB659BTiT5oKrcB4vLeWqkY1AWO4iub4hNB7pKtCqqw==
-X-Received: by 2002:a17:902:e5cd:b0:1dd:88d5:bf17 with SMTP id u13-20020a170902e5cd00b001dd88d5bf17mr2013611plf.54.1710075428913;
-        Sun, 10 Mar 2024 05:57:08 -0700 (PDT)
-Received: from thinkpad ([120.138.12.86])
-        by smtp.gmail.com with ESMTPSA id jd22-20020a170903261600b001db40866e09sm2644799plb.260.2024.03.10.05.57.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Mar 2024 05:57:08 -0700 (PDT)
-Date: Sun, 10 Mar 2024 18:27:00 +0530
-From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc: andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org,
-	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
-	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
-	quic_schintav@quicinc.com,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-pci@vger.kernel.org
-Subject: Re: [PATCH v6 2/3] PCI: qcom-ep: Override NO_SNOOP attribute for
- SA8775P EP
-Message-ID: <20240310125700.GB3390@thinkpad>
-References: <1709730673-6699-1-git-send-email-quic_msarkar@quicinc.com>
- <1709730673-6699-3-git-send-email-quic_msarkar@quicinc.com>
+        bh=ABvZnWn9tZjq5i+rgSN4YDv2QcfnVQwhLHVdYpDlTAY=;
+        b=wfZA2twBc/PSbSpJl5G8Kyz35fGOp7YNG+3AtUzepCt8bq6KQCtCBGeOtOV2WTFo/h
+         Q2T3hfNEKYJVMZ/UE2ZmNQ1HNxMOPmW+b6mjGG3Q01qlCsf+fokPXppVtRl/jpOzST44
+         S5UnhHp71Nk88I3VCLRl8qflGGvOkxuHNbtx4fS8j3GUmzf4FqhRz1CDl0sIhlgLWeGm
+         RKcTT0lGOSP357Oh9hSJoj4hoY3LHVBzwMxTBQEZ946j/aCXNMEujgGoo4k3Pd36xn39
+         aVX0V6vaCsvY9CoaIyEzDpManHPIHbpQSUS8tXMOpKEpvUrI0NwYKliRtEhdCTfcOi16
+         WZhg==
+X-Forwarded-Encrypted: i=1; AJvYcCWUZvidwMPxb1ixpaWC0Li+eV3cI18+im4q8iCws/i/u0khL/ztxd0lMBOyVQyCwX1k+nEHUyEA0ZLa8I5yFSzeIXaTN34DyVKylA==
+X-Gm-Message-State: AOJu0Yy2qAdYQxwauEAEL437ulPqLZmvXvfmeXZ4vzPEqnh+NaVd66h2
+	4ict6sTlzXcLntYRvKbFsvPQQY4AM9++NYYBmgt+zpnTAjzEMBqC/m6iEVDwLB4=
+X-Google-Smtp-Source: AGHT+IFGUvnLEsnyaaP5/jCzVug8KtRNENCov3Mn/RvvWw50/SLHWr6B1GUyYStvfl+8qZGHe4XTeQ==
+X-Received: by 2002:a50:934a:0:b0:567:ef00:bdbe with SMTP id n10-20020a50934a000000b00567ef00bdbemr2812909eda.33.1710076045775;
+        Sun, 10 Mar 2024 06:07:25 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id b20-20020aa7dc14000000b005684fa1c4dbsm778676edu.52.2024.03.10.06.07.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 Mar 2024 06:07:25 -0700 (PDT)
+Message-ID: <6b065dce-5271-4ea0-b291-a7aae8e71d20@linaro.org>
+Date: Sun, 10 Mar 2024 14:07:23 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] dt-bindings: imx-pata: Convert to dtschema
+Content-Language: en-US
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Damien Le Moal <dlemoal@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240309160741.54096-1-animeshagarwal28@gmail.com>
+ <a26689a4-1c8c-4458-bb82-137cd1ac21d0@linaro.org>
+ <CAE3Oz80TByuu6=U4PTOHO6k1=KjjRKtPPf7ayhSMZareXP8vdw@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAE3Oz80TByuu6=U4PTOHO6k1=KjjRKtPPf7ayhSMZareXP8vdw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1709730673-6699-3-git-send-email-quic_msarkar@quicinc.com>
 
-On Wed, Mar 06, 2024 at 06:41:11PM +0530, Mrinmay Sarkar wrote:
-> Due to some hardware changes, SA8775P has set the NO_SNOOP attribute
-> in its TLP for all the PCIe controllers. NO_SNOOP attribute when set,
-> the requester is indicating that no cache coherency issues exist for
-> the addressed memory on the host i.e., memory is not cached. But in
-> reality, requester cannot assume this unless there is a complete
-> control/visibility over the addressed memory on the host.
+On 10/03/2024 12:52, Animesh Agarwal wrote:
+> Ok noted,
 > 
-> And worst case, if the memory is cached on the host, it may lead to
-> memory corruption issues. It should be noted that the caching of memory
-> on the host is not solely dependent on the NO_SNOOP attribute in TLP.
+> I have now included the explanation.
 > 
-> So to avoid the corruption, this patch overrides the NO_SNOOP attribute
-> by setting the PCIE_PARF_NO_SNOOP_OVERIDE register. This patch is not
-> needed for other upstream supported platforms since they do not set
-> NO_SNOOP attribute by default.
+> Added imx31 in the next patch and tested. Changes of the conversion are now
+> mentioned in the next patch.
+
+Please respond inline, instead of top-posting, because it makes your
+emails hard to follow.
+https://elixir.bootlin.com/linux/v6.8-rc7/source/Documentation/process/submitting-patches.rst#L340
+
+
 > 
-> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-
-Same nit as previous patch. With that addressed,
-
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-
-> ---
->  drivers/pci/controller/dwc/pcie-qcom-ep.c | 20 +++++++++++++++++---
->  1 file changed, 17 insertions(+), 3 deletions(-)
+> On Sat, Mar 9, 2024 at 11:38 PM Krzysztof Kozlowski <
+> krzysztof.kozlowski@linaro.org> wrote:
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom-ep.c b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> index 89d06a3..aa8e979 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom-ep.c
-> @@ -47,6 +47,7 @@
->  #define PARF_DBI_BASE_ADDR_HI			0x354
->  #define PARF_SLV_ADDR_SPACE_SIZE		0x358
->  #define PARF_SLV_ADDR_SPACE_SIZE_HI		0x35c
-> +#define PARF_NO_SNOOP_OVERIDE			0x3d4
->  #define PARF_ATU_BASE_ADDR			0x634
->  #define PARF_ATU_BASE_ADDR_HI			0x638
->  #define PARF_SRIS_MODE				0x644
-> @@ -86,6 +87,10 @@
->  #define PARF_DEBUG_INT_CFG_BUS_MASTER_EN	BIT(2)
->  #define PARF_DEBUG_INT_RADM_PM_TURNOFF		BIT(3)
->  
-> +/* PARF_NO_SNOOP_OVERIDE register fields */
-> +#define WR_NO_SNOOP_OVERIDE_EN                 BIT(1)
-> +#define RD_NO_SNOOP_OVERIDE_EN                 BIT(3)
-> +
->  /* PARF_DEVICE_TYPE register fields */
->  #define PARF_DEVICE_TYPE_EP			0x0
->  
-> @@ -152,9 +157,11 @@ enum qcom_pcie_ep_link_status {
->  /**
->   * struct qcom_pcie_ep_cfg - Per SoC config struct
->   * @hdma_support: HDMA support on this SoC
-> + * @override_no_snoop: Override NO_SNOOP attribute in TLP to enable cache snooping
->   */
->  struct qcom_pcie_ep_cfg {
->  	bool hdma_support;
-> +	bool override_no_snoop;
->  };
->  
->  /**
-> @@ -175,6 +182,7 @@ struct qcom_pcie_ep_cfg {
->   * @num_clks: PCIe clocks count
->   * @perst_en: Flag for PERST enable
->   * @perst_sep_en: Flag for PERST separation enable
-> + * @cfg: PCIe EP config struct
->   * @link_status: PCIe Link status
->   * @global_irq: Qualcomm PCIe specific Global IRQ
->   * @perst_irq: PERST# IRQ
-> @@ -202,6 +210,7 @@ struct qcom_pcie_ep {
->  	u32 perst_en;
->  	u32 perst_sep_en;
->  
-> +	const struct qcom_pcie_ep_cfg *cfg;
->  	enum qcom_pcie_ep_link_status link_status;
->  	int global_irq;
->  	int perst_irq;
-> @@ -497,6 +506,11 @@ static int qcom_pcie_perst_deassert(struct dw_pcie *pci)
->  	val |= BIT(8);
->  	writel_relaxed(val, pcie_ep->parf + PARF_LTSSM);
->  
-> +	/* Override NO_SNOOP attribute in TLP to enable cache snooping */
+>> On 09/03/2024 17:07, Animesh Agarwal wrote:
+>>> Convert the imx-pata bindings to DT schema.
+>>>
+>>> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+>>> ---
+>>> Changes in v3:
+>>> - added fsl,imx51-pata in compatible property
+>>
+>> Please explain the differences done during conversion in the commit msg.
 
-Same comment as previous patch.
+How did you solve this?
 
-- Mani
+>> There was no imx51 compatible in the binding before.
+>>
+>>>
+>>> Changes in v2:
+>>> - fixed style issues
+>>> - compatible property now matches the examples
+>>> - fixed yamllint warnings/errors
+>>> ---
+>>>  .../devicetree/bindings/ata/fsl,imx-pata.yaml | 40 +++++++++++++++++++
+>>>  .../devicetree/bindings/ata/imx-pata.txt      | 16 --------
+>>>  2 files changed, 40 insertions(+), 16 deletions(-)
+>>>  create mode 100644
+>> Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+>>>  delete mode 100644 Documentation/devicetree/bindings/ata/imx-pata.txt
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+>> b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+>>> new file mode 100644
+>>> index 000000000000..265ea80434e1
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+>>> @@ -0,0 +1,40 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/ata/fsl,imx-pata.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Freescale i.MX PATA Controller
+>>> +
+>>> +maintainers:
+>>> +  - Animesh Agarwal <animeshagarwal28@gmail.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - fsl,imx51-pata
+>>> +      - const: fsl,imx27-pata
+>>
+>> This allows only imx51 and disallows imx27 alone, which is not what old
+------------------------------^^^^^^^^^^^^^^^^^^^^^
+How did you solve this?
 
-> +	if (pcie_ep->cfg && pcie_ep->cfg->override_no_snoop)
-> +		writel_relaxed(WR_NO_SNOOP_OVERIDE_EN | RD_NO_SNOOP_OVERIDE_EN,
-> +				pcie_ep->parf + PARF_NO_SNOOP_OVERIDE);
-> +
->  	return 0;
->  
->  err_disable_resources:
-> @@ -811,7 +825,6 @@ static const struct dw_pcie_ep_ops pci_ep_ops = {
->  
->  static int qcom_pcie_ep_probe(struct platform_device *pdev)
->  {
-> -	const struct qcom_pcie_ep_cfg *cfg;
->  	struct device *dev = &pdev->dev;
->  	struct qcom_pcie_ep *pcie_ep;
->  	char *name;
-> @@ -826,8 +839,8 @@ static int qcom_pcie_ep_probe(struct platform_device *pdev)
->  	pcie_ep->pci.ep.ops = &pci_ep_ops;
->  	pcie_ep->pci.edma.nr_irqs = 1;
->  
-> -	cfg = of_device_get_match_data(dev);
-> -	if (cfg && cfg->hdma_support) {
-> +	pcie_ep->cfg = of_device_get_match_data(dev);
-> +	if (pcie_ep->cfg && pcie_ep->cfg->hdma_support) {
->  		pcie_ep->pci.edma.ll_wr_cnt = 8;
->  		pcie_ep->pci.edma.ll_rd_cnt = 8;
->  		pcie_ep->pci.edma.mf = EDMA_MF_HDMA_NATIVE;
-> @@ -893,6 +906,7 @@ static void qcom_pcie_ep_remove(struct platform_device *pdev)
->  
->  static const struct qcom_pcie_ep_cfg cfg_1_34_0 = {
->  	.hdma_support = true,
-> +	.override_no_snoop = true,
->  };
->  
->  static const struct of_device_id qcom_pcie_ep_match[] = {
-> -- 
-> 2.7.4
-> 
+>> bindings were saying.
 
--- 
-மணிவண்ணன் சதாசிவம்
+
+>>
+>> The best if you just test it on DTS. Please run `make dtbs_check W=1`
+>> (see Documentation/devicetree/bindings/writing-schema.rst or
+>>
+>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+>> for instructions).
+>>
+>> You should see two warnings for imx31 and imx51. You need imx31 as well
+>> (and changes against pure conversion should be mentioned in commit msg).
+
+----------------------------------------^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+How did you solve this?
+
+
+Best regards,
+Krzysztof
+
 
