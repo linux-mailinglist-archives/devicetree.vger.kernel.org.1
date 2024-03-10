@@ -1,291 +1,216 @@
-Return-Path: <devicetree+bounces-49689-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49690-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B7A8776A4
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 13:43:00 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 57ECD8776DC
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 13:54:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D9E821F218CB
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 12:42:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7B7671C203E3
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 12:54:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7D9762554B;
-	Sun, 10 Mar 2024 12:42:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 182DC27721;
+	Sun, 10 Mar 2024 12:54:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="k+XH4FTa"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Zkgdkt70"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f178.google.com (mail-pl1-f178.google.com [209.85.214.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50D6E1E888;
-	Sun, 10 Mar 2024 12:42:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 76E032C6AA
+	for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 12:54:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710074575; cv=none; b=crPVkKYG2Uw3c8ymUiwBOwQ+ep9dv6YTfRhBr1HgCpOBGgWdKxySNtslNe62/eQniFTjlAOISuXpFZ79nAj5ehshkWJFMjP9/XrmuqSOyVyXb/73N9hWlfdLX9N+hAU/xxyuHcdNBqjjfMeJoiwnOVLuSnWiZkzA9B78rsdH7ks=
+	t=1710075266; cv=none; b=IMMNtcrkdRALUDE1Xs70rdXzEqPmo1VlR2n9kqbDyCIFx2SHlsDRLvUzPKmQYgOGqXooAjDgZP/8+CD+GESK6koj/bW7MZPR+XUc+xXLgWPTqK8BjW6+cpXOnsSQq+Kpy0kyZayjzThMAZ38Rz2mfRACXJlgWJNaq69q4nybS5k=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710074575; c=relaxed/simple;
-	bh=QeHdsOwwo/yEk6Eb2BPKn25Jxgk0Tu0jugL0q0JzM/w=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=WxWy/HcP3EwSAzWpXG61UC9HLf/oh+ji30s70MiDlDr0/GHyQGu0uRN9vCjPwkcRWtvDBynprX21lKm4ngNqKEzJs/agiUFEqkqNRdBpv2EalhJCWkoLGGUgq21N5Q5/LwvEueW/cogjkXgQmb4zzKXi8aqtS6QIHrj9I0UVS8w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=k+XH4FTa; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB88FC433F1;
-	Sun, 10 Mar 2024 12:42:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710074574;
-	bh=QeHdsOwwo/yEk6Eb2BPKn25Jxgk0Tu0jugL0q0JzM/w=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=k+XH4FTaK+71GqIZzTnxG7lmnA509lRdTRuDySoV77J2NtvCMKnBbIc5+q/QEiUnP
-	 rN28SPf3fLtNczjP+caolNGnfgAY6M4tUHqwTxuw98GjlpcchyPuSZLhypW0Q2Uj/x
-	 xMaKDdBOcfcDeO34IgZ/1dJRDfG2zw1ER58waF/DIkuOIsTbO1aHflB3Xr/Ts+SM4W
-	 Cn3TkZ6ecOV1C80tCq+Sr/4UCjxrZ/4gEZelQAretr0LPw0guEprU7cp1xGzt/RWm0
-	 XTU4wX+uBO83IJ1fpT1lYiXAMEVtbh4K4oFVwXJrPtJtLREDr9yYZxsS9A9+RXMTM4
-	 RMbGL1VFfOnCQ==
-Date: Sun, 10 Mar 2024 12:42:37 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Matti Vaittinen <mazziesaccount@gmail.com>, Andy
- Shevchenko <andriy.shevchenko@linux.intel.com>, Marek Vasut
- <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>, Javier Carrasco
- <javier.carrasco.cruz@gmail.com>, Matt Ranostay <matt@ranostay.sg>, Stefan
- Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
- linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 5/5] iio: light: Add support for APDS9306 Light
- Sensor
-Message-ID: <20240310124237.52fa8a56@jic23-huawei>
-In-Reply-To: <20240309105031.10313-6-subhajit.ghosh@tweaklogic.com>
-References: <20240309105031.10313-1-subhajit.ghosh@tweaklogic.com>
-	<20240309105031.10313-6-subhajit.ghosh@tweaklogic.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1710075266; c=relaxed/simple;
+	bh=KNKrikJqZISr2kYrc5CDd+izWHNtbd02L7Iv6YDOW5Y=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=MvyfRvZn++oAH6lMe+lJrnmTy6K8Lu2LtpyCyABivvUpwp3pNIllLBg9FhFEr+i4bGYk7ujgCDDFiSr5jfg206arT66x8p8HWFvDGzdpdiu6dpwoNTx+SXIC+LRGMXVYsmoeP2HlmoG6PCYdRynFf1UDYzYPiNqVWz6yF0usq/c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Zkgdkt70; arc=none smtp.client-ip=209.85.214.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-pl1-f178.google.com with SMTP id d9443c01a7336-1dd10a37d68so29494185ad.2
+        for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 05:54:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710075263; x=1710680063; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=/OwG24vRkQy9wB5IPBp4dArvNgRlN9XugeDOLt3z9CU=;
+        b=Zkgdkt70k2Ic4Y4+uKsaapy/A/XTSXAYzaD7c0PXEDjcUAij26x3rtqqaWDgWG+cUk
+         WaVcaSk64sqtt8SRm4pIoKfnJYsN+LR9x3+POy0YJRQW8/fgpCBDbMfFfXNo2aYlqciF
+         8YdZhiQBP1RZgqSyNHboL9cuDGvxV0sdwD+Uwj4jbRo2mFiPWdu8sKC5br9Z8E6JPxak
+         EkfWFKBBF8q0GLBsJOrG7Q5szFJR6j5vnIXTT8TeQ3BLV4SgfnrNl//Lx2jfA1BFlG+O
+         tBYjp1D9Qf0vzzTx8XqMyG29jGnJqgR2VVbO64nDTbny/2su224WPd5xttGxwg44VN0J
+         tcHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710075263; x=1710680063;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=/OwG24vRkQy9wB5IPBp4dArvNgRlN9XugeDOLt3z9CU=;
+        b=DQQV5j3Cd2MsYgPBqUzqTzAq/30pt76zAQJUwu8N1SXS+qUBcNRNrKhJbW5+slzM5+
+         hzhrXGCzva2QyPGBtY9CIie+F/ysnJU/LAeaZzb7wMSD+LIRKxLrEkF0LPbUxqa3qvst
+         gKuVnKQ4qVV6Sg7Niv7Fgm5q2uEQXw52kS10nTQARhxndymKmDVIxf/6R0ABGrEVDb0k
+         5U/OXr4fJpQapHQHUS8yYy2SXDHwb9RSp5EaNSKhSv4kmkThO3nT4Q+PEP2Ai5HC9LFZ
+         nD86Lnj6Wjq46ReRmve/Z2tQIk2Z9GpOpgMxNi5mlz/l4zNkN5VaQqYt1jqtjtRlo6se
+         FtJA==
+X-Forwarded-Encrypted: i=1; AJvYcCUQWhy+EkkwLhNV9lnezGNxsVBD8RBjaEB2pHd/gbgmNHty12+5kqkFHUAmV9hsj0wMWOTMYZdyWcHGCrTwJsDVzqaUJHgkhUugrg==
+X-Gm-Message-State: AOJu0Yw2s/1Mo2VH1sgMYBiMHxXtQXJCZfkE5Xo60PnCKTrUOCH1ToQk
+	g1qwI6LNd1I87e6b/si/3CHC+SJpYI4jZ2qUXdWdZ77LHPvw+SybiOSan65L0w==
+X-Google-Smtp-Source: AGHT+IEVQ7GfOqMRCB1dIQ1AspY1rQeQnuOs3JnjOjR2lJDMiLLjo5FyQaHpOpQoHUZqjJU2W/dK5Q==
+X-Received: by 2002:a17:902:e74d:b0:1dc:e58:8ab4 with SMTP id p13-20020a170902e74d00b001dc0e588ab4mr3741393plf.9.1710075262835;
+        Sun, 10 Mar 2024 05:54:22 -0700 (PDT)
+Received: from thinkpad ([120.138.12.86])
+        by smtp.gmail.com with ESMTPSA id i8-20020a170902c94800b001dcf91da5c8sm2642373pla.95.2024.03.10.05.54.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Mar 2024 05:54:22 -0700 (PDT)
+Date: Sun, 10 Mar 2024 18:24:15 +0530
+From: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To: Mrinmay Sarkar <quic_msarkar@quicinc.com>
+Cc: andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, konrad.dybcio@linaro.org, robh@kernel.org,
+	quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+	quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+	quic_krichai@quicinc.com, quic_vbadigan@quicinc.com,
+	quic_schintav@quicinc.com,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+	Bjorn Helgaas <bhelgaas@google.com>, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-pci@vger.kernel.org
+Subject: Re: [PATCH v6 1/3] PCI: qcom: Override NO_SNOOP attribute for
+ SA8775P RC
+Message-ID: <20240310125415.GA3390@thinkpad>
+References: <1709730673-6699-1-git-send-email-quic_msarkar@quicinc.com>
+ <1709730673-6699-2-git-send-email-quic_msarkar@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1709730673-6699-2-git-send-email-quic_msarkar@quicinc.com>
 
-On Sat,  9 Mar 2024 21:20:31 +1030
-Subhajit Ghosh <subhajit.ghosh@tweaklogic.com> wrote:
-
-> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
-> It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
-> channel approximates the response of the human-eye providing direct
-> read out where the output count is proportional to ambient light levels.
-> It is internally temperature compensated and rejects 50Hz and 60Hz flicker
-> caused by artificial light sources. Hardware interrupt configuration is
-> optional. It is a low power device with 20 bit resolution and has
-> configurable adaptive interrupt mode and interrupt persistence mode.
-> The device also features inbuilt hardware gain, multiple integration time
-> selection options and sampling frequency selection options.
+On Wed, Mar 06, 2024 at 06:41:10PM +0530, Mrinmay Sarkar wrote:
+> Due to some hardware changes, SA8775P has set the NO_SNOOP attribute
+> in its TLP for all the PCIe controllers. NO_SNOOP attribute when set,
+> the requester is indicating that no cache coherency issue exist for
+> the addressed memory on the endpoint i.e., memory is not cached. But
+> in reality, requester cannot assume this unless there is a complete
+> control/visibility over the addressed memory on the endpoint.
 > 
-> This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for
-> Scales, Gains and Integration time implementation.
+> And worst case, if the memory is cached on the endpoint, it may lead to
+> memory corruption issues. It should be noted that the caching of memory
+> on the endpoint is not solely dependent on the NO_SNOOP attribute in TLP.
 > 
-> Signed-off-by: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+> So to avoid the corruption, this patch overrides the NO_SNOOP attribute
+> by setting the PCIE_PARF_NO_SNOOP_OVERIDE register. This patch is not
+> needed for other upstream supported platforms since they do not set
+> NO_SNOOP attribute by default.
+> 
+> 8775 has IP version 1.34.0 so introduce a new cfg(cfg_1_34_0) for this
+> platform. Assign override_no_snoop flag into struct qcom_pcie_cfg and
+> set it true in cfg_1_34_0 and enable cache snooping if this particular
+> flag is true.
+> 
+> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
 
-A few things inline, on trivial that I'll tidy up, the other a potential
-suggestion for simplifying the code, but not something I'm going to
-ask for a v10 for.  If you like the suggestion then a follow up patch,
-if not then fair enough - may be a case of "don't let perfect be the enemy
-of good" or maybe you disagree.
+Minor nit below. With that addressed,
 
-Anyhow, series applied to the togreg-normal branch of iio.git and pushed out
-for 0-day to take a look at it.  This is 6.10 material now.
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Thanks,
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 25 ++++++++++++++++++++++++-
+>  1 file changed, 24 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 2ce2a3b..d4c1e69 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -51,6 +51,7 @@
+>  #define PARF_SID_OFFSET				0x234
+>  #define PARF_BDF_TRANSLATE_CFG			0x24c
+>  #define PARF_SLV_ADDR_SPACE_SIZE		0x358
+> +#define PARF_NO_SNOOP_OVERIDE			0x3d4
+>  #define PARF_DEVICE_TYPE			0x1000
+>  #define PARF_BDF_TO_SID_TABLE_N			0x2000
+>  
+> @@ -117,6 +118,10 @@
+>  /* PARF_LTSSM register fields */
+>  #define LTSSM_EN				BIT(8)
+>  
+> +/* PARF_NO_SNOOP_OVERIDE register fields */
+> +#define WR_NO_SNOOP_OVERIDE_EN			BIT(1)
+> +#define RD_NO_SNOOP_OVERIDE_EN			BIT(3)
+> +
+>  /* PARF_DEVICE_TYPE register fields */
+>  #define DEVICE_TYPE_RC				0x4
+>  
+> @@ -227,8 +232,14 @@ struct qcom_pcie_ops {
+>  	int (*config_sid)(struct qcom_pcie *pcie);
+>  };
+>  
+> + /**
+> +  * struct qcom_pcie_cfg - Per SoC config struct
+> +  * @ops: qcom pcie ops structure
+> +  * @override_no_snoop: Override NO_SNOOP attribute in TLP to enable cache snooping
+> +  */
+>  struct qcom_pcie_cfg {
+>  	const struct qcom_pcie_ops *ops;
+> +	bool override_no_snoop;
+>  };
+>  
+>  struct qcom_pcie {
+> @@ -961,6 +972,13 @@ static int qcom_pcie_init_2_7_0(struct qcom_pcie *pcie)
+>  
+>  static int qcom_pcie_post_init_2_7_0(struct qcom_pcie *pcie)
+>  {
+> +	const struct qcom_pcie_cfg *pcie_cfg = pcie->cfg;
+> +
+> +	/* Override NO_SNOOP attribute in TLP to enable cache snooping */
 
-Jonathan
+This comment is now redundant due to Kdoc of override_no_snoop.
 
-> +static const struct iio_chan_spec apds9306_channels_with_events[] = {
-> +	{
-> +		.type = IIO_LIGHT,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> +				      BIT(IIO_CHAN_INFO_SCALE),
-> +		.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),
-> +		.event_spec = apds9306_event_spec,
-> +		.num_event_specs = ARRAY_SIZE(apds9306_event_spec),
-> +	}, {
-> +		.type = IIO_INTENSITY,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.channel2 = IIO_MOD_LIGHT_CLEAR,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-Trivial but odd field order - I'll tidy that up whilst applying.
-> +		.modified = 1,
-> +		.event_spec = apds9306_event_spec,
-> +		.num_event_specs = ARRAY_SIZE(apds9306_event_spec),
-> +	},
+- Mani
+
+> +	if (pcie_cfg->override_no_snoop)
+> +		writel(WR_NO_SNOOP_OVERIDE_EN | RD_NO_SNOOP_OVERIDE_EN,
+> +				pcie->parf + PARF_NO_SNOOP_OVERIDE);
+> +
+>  	qcom_pcie_clear_hpc(pcie->pci);
+>  
+>  	return 0;
+> @@ -1334,6 +1352,11 @@ static const struct qcom_pcie_cfg cfg_1_9_0 = {
+>  	.ops = &ops_1_9_0,
+>  };
+>  
+> +static const struct qcom_pcie_cfg cfg_1_34_0 = {
+> +	.ops = &ops_1_9_0,
+> +	.override_no_snoop = true,
 > +};
 > +
-> +static const struct iio_chan_spec apds9306_channels_without_events[] = {
-> +	{
-> +		.type = IIO_LIGHT,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW) |
-> +				      BIT(IIO_CHAN_INFO_SCALE),
-> +		.info_mask_separate_available = BIT(IIO_CHAN_INFO_SCALE),
-> +	}, {
-> +		.type = IIO_INTENSITY,
-> +		.info_mask_shared_by_all = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +					   BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.info_mask_shared_by_all_available = BIT(IIO_CHAN_INFO_INT_TIME) |
-> +						     BIT(IIO_CHAN_INFO_SAMP_FREQ),
-> +		.channel2 = IIO_MOD_LIGHT_CLEAR,
-> +		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
-> +		.modified = 1,
-> +	},
-> +};
-> +
-> +/* INT_PERSISTENCE available */
-> +static IIO_CONST_ATTR(thresh_either_period_available, "[0 1 15]");
-> +
-> +/* ALS_THRESH_VAR available */
-> +static IIO_CONST_ATTR(thresh_adaptive_either_values_available, "[0 1 7]");
-> +
-> +static struct attribute *apds9306_event_attributes[] = {
-> +	&iio_const_attr_thresh_either_period_available.dev_attr.attr,
-> +	&iio_const_attr_thresh_adaptive_either_values_available.dev_attr.attr,
-> +	NULL
-> +};
+>  static const struct qcom_pcie_cfg cfg_2_1_0 = {
+>  	.ops = &ops_2_1_0,
+>  };
+> @@ -1630,7 +1653,7 @@ static const struct of_device_id qcom_pcie_match[] = {
+>  	{ .compatible = "qcom,pcie-msm8996", .data = &cfg_2_3_2 },
+>  	{ .compatible = "qcom,pcie-qcs404", .data = &cfg_2_4_0 },
+>  	{ .compatible = "qcom,pcie-sa8540p", .data = &cfg_1_9_0 },
+> -	{ .compatible = "qcom,pcie-sa8775p", .data = &cfg_1_9_0},
+> +	{ .compatible = "qcom,pcie-sa8775p", .data = &cfg_1_34_0},
+>  	{ .compatible = "qcom,pcie-sc7280", .data = &cfg_1_9_0 },
+>  	{ .compatible = "qcom,pcie-sc8180x", .data = &cfg_1_9_0 },
+>  	{ .compatible = "qcom,pcie-sc8280xp", .data = &cfg_1_9_0 },
+> -- 
+> 2.7.4
+> 
 
-
-
-> +
-> +static int apds9306_write_event_config(struct iio_dev *indio_dev,
-> +				       const struct iio_chan_spec *chan,
-> +				       enum iio_event_type type,
-> +				       enum iio_event_direction dir,
-> +				       int state)
-> +{
-> +	struct apds9306_data *data = iio_priv(indio_dev);
-> +	struct apds9306_regfields *rf = &data->rf;
-> +	int ret, val;
-> +
-> +	state = !!state;
-> +
-> +	switch (type) {
-> +	case IIO_EV_TYPE_THRESH: {
-> +		guard(mutex)(&data->mutex);
-> +
-> +		/*
-> +		 * If interrupt is enabled, the channel is set before enabling
-> +		 * the interrupt. In case of disable, no need to switch
-> +		 * channels. In case of different channel is selected while
-> +		 * interrupt in on, just change the channel.
-> +		 */
-> +		if (state) {
-> +			if (chan->type == IIO_LIGHT)
-> +				val = 1;
-> +			else if (chan->type == IIO_INTENSITY)
-> +				val = 0;
-> +			else
-> +				return -EINVAL;
-> +
-> +			ret = regmap_field_write(rf->int_src, val);
-> +			if (ret)
-> +				return ret;
-> +		}
-> +
-> +		ret = regmap_field_read(rf->int_en, &val);
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (val == state)
-> +			return 0;
-> +
-> +		ret = regmap_field_write(rf->int_en, state);
-> +		if (ret)
-> +			return ret;
-> +
-> +		if (state)
-> +			return pm_runtime_resume_and_get(data->dev);
-> +
-> +		pm_runtime_mark_last_busy(data->dev);
-> +		pm_runtime_put_autosuspend(data->dev);
-Note this isn't a reason to do a v10, just a possible suggestion for
-what I think is more readable code.
-
-Flow here is complex, maybe we'd have been better with skipping the
-state = !!state, rename val to more explicit enabled
-above and something like..
-
-		ret = regmap_field_read(rf->int_en, &enabled);
-		if (ret)
-			return ret;
-
-		if (state) {
-			if (chan->type == IIO_LIGHT)
-				ret = regmap_field_write(rf->int_src, 1);
-			else if (chan->type == IIO_INTENSITY)
-				ret = regmap_field_write(rf->int_src, 0);
-			else
-				return -EINVAL;
-
-			if (ret)
-				return ret;
-			if (enabled) /* Already enabled */
-				return 0;		
-			
-			ret = regmap_field_write(rf->int_en, 1);
-			if (ret)
-				return ret;
-
-			return pm_runtime_resume_and_get(data->dev);
-		} else {  // Could drop this else but I think it's useful to show the either or flow. 
-			if (!enabled)
-				return 0;		
-
-			ret = regmap_field_write(rf->int_en, 0);
-			if (ret)
-				return ret;
-			pm_runtime_mark_last_busy(data->dev);
-			pm_runtime_put_autosuspend(data->dev);
-
-			return 0;
-		}
-	}	
-> +
-> +		return 0;
-> +	}
-> +	case IIO_EV_TYPE_THRESH_ADAPTIVE:
-> +		return regmap_field_write(rf->int_thresh_var_en, state);
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-
-> +
-> +static void apds9306_powerdown(void *ptr)
-> +{
-> +	struct apds9306_data *data = (struct apds9306_data *)ptr;
-> +	struct apds9306_regfields *rf = &data->rf;
-> +	int ret;
-> +
-> +	ret = regmap_field_write(rf->int_thresh_var_en, 0);
-> +	if (ret)
-> +		return;
-> +
-> +	ret = regmap_field_write(rf->int_en, 0);
-> +	if (ret)
-> +		return;
-> +
-> +	apds9306_power_state(data, false);
-> +}
-
-...
-
+-- 
+மணிவண்ணன் சதாசிவம்
 
