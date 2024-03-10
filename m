@@ -1,108 +1,120 @@
-Return-Path: <devicetree+bounces-49738-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49739-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0B7A877894
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 22:17:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A016C877897
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 22:33:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 4ECABB20E80
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 21:17:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2512F281805
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 21:33:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 88B06364A8;
-	Sun, 10 Mar 2024 21:17:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28943A1DC;
+	Sun, 10 Mar 2024 21:33:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E18wbX16"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 30E233A1DA;
-	Sun, 10 Mar 2024 21:17:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.201.40.130
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B2024219;
+	Sun, 10 Mar 2024 21:33:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710105450; cv=none; b=VgBx6r1/n4uvk8otn+j/WjfkzNmnnEgoFrA+iiI/m28aNzL9b4WZg3/cINxEOz8CMg47PHYprmi396cMm82kJpCytF76jAUW3Icteuc97k8j6dajflG3g1ZmUZIn4/ZUJmcJuAcQeHbr4hy+MzOXQLyarir1CTzjeBu5dxOBkV0=
+	t=1710106412; cv=none; b=Ch7/was5bE91ZVWs4iq+sZs7w4njKcMmrqqxN3k1xBbDv0ZW7E1cHpdsgQ4zPQPnp4HBF4ZMCHkkIy0vPwKvG+gIYGj4CSyPj1uODQ7c2cRaUZj24msYehfNuk9slS6oq92ijPTxaemhXfdnJYlamyrAJHwKiuwEmhG8oLWm4ok=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710105450; c=relaxed/simple;
-	bh=jh0Bg9u2cEU/kuFQ89GZ8ssWpyF6wQ3Yl8hM4/OfJ3Q=;
-	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
-	 MIME-Version:Content-Type; b=JHBuu69L5sEARnnny/LWoMj80fxqmORF4HCBU941KUrqKcIYKXphfOlRdigH+dflr4kECRhFkkZg+r4Fi0us4TLLiEV9hzsDL+c9WLqPWtrXr89uvVeD/G2YT4o09RRCvl3e7XiK1mPGZ/mtp9FogrooCfl+GKD3ILj/Ue4r7nc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at; spf=fail smtp.mailfrom=nod.at; arc=none smtp.client-ip=195.201.40.130
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=nod.at
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=nod.at
-Received: from localhost (localhost [127.0.0.1])
-	by lithops.sigma-star.at (Postfix) with ESMTP id D7A79644CE9B;
-	Sun, 10 Mar 2024 22:17:18 +0100 (CET)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id QPqD6-Gs5_lr; Sun, 10 Mar 2024 22:17:18 +0100 (CET)
-Received: from localhost (localhost [127.0.0.1])
-	by lithops.sigma-star.at (Postfix) with ESMTP id 4B97C644CE9C;
-	Sun, 10 Mar 2024 22:17:18 +0100 (CET)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-	by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id hPYilfTa8vD1; Sun, 10 Mar 2024 22:17:18 +0100 (CET)
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
-	by lithops.sigma-star.at (Postfix) with ESMTP id 0F7A0644CE64;
-	Sun, 10 Mar 2024 22:17:18 +0100 (CET)
-Date: Sun, 10 Mar 2024 22:17:17 +0100 (CET)
-From: Richard Weinberger <richard@nod.at>
-To: Daniel Golle <daniel@makrotopia.org>
-Cc: Miquel Raynal <miquel.raynal@bootlin.com>, 
-	Vignesh Raghavendra <vigneshr@ti.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, 
-	linux-mtd <linux-mtd@lists.infradead.org>, 
-	devicetree <devicetree@vger.kernel.org>, 
-	linux-kernel <linux-kernel@vger.kernel.org>
-Message-ID: <1754825522.38834.1710105437883.JavaMail.zimbra@nod.at>
-In-Reply-To: <ZdvV1KABu_UCSL7B@makrotopia.org>
-References: <cover.1702952891.git.daniel@makrotopia.org> <82ceb13954f7e701bf47c112333e7b15a57fc360.1702952891.git.daniel@makrotopia.org> <20240219120156.383a1427@xps-13> <1209094181.98490.1708899174329.JavaMail.zimbra@nod.at> <ZdvV1KABu_UCSL7B@makrotopia.org>
-Subject: Re: [PATCH v7 7/7] mtd: ubi: provide NVMEM layer over UBI volumes
+	s=arc-20240116; t=1710106412; c=relaxed/simple;
+	bh=ueJS1O/JtHawNgx/FfjRX0euojg6lOc+UX9U4BZ5zWc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=raMW5RlDjd11N/4E1YjtAJXI9aj2oA59hBF+DBT4eAcTepKhSCEprftbmlGKptOj2LvBNr7h22kV/SCWMehm0ushHAGEU1V8wWdiujHG+SwxiTvUEDZJYs5Y4HxNBdIb+MQ/TQtvUEwFeke+HMz/y7LsPynVUERLbauEM8YGWrQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E18wbX16; arc=none smtp.client-ip=209.85.214.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1dd878da011so4181805ad.2;
+        Sun, 10 Mar 2024 14:33:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710106411; x=1710711211; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=yiM66r47Wsopw5rga2V7RmdxX/5jq3ltiDuGeELsiLI=;
+        b=E18wbX16bzIGyi4Y38rcKjLQV+1gtG/BdRDRgd7JuGfNLevRcLmjCtpM45SNw0ZVW5
+         xD+NCSKRdwDn+FnLLN1dBUS1xoJpPa94uWEnXfW9Er7zRmF07ofYDzbrE9iqIieEIZxM
+         OukGw+Ja86NjfKz/zvwPSBDQViSVSd7UBtGTtyqdnR4qaPbQNtHOXy7Dghf0lGdoDPKK
+         WvFN5BtmAn0lF+Kk7ns+7yCxAB6q5VKYyHFGG0hglRebP79czMu3Ht2rpI5t4XC9+0uQ
+         TnJ71NpR4RJeuf9Sje1mZ6PEBYGbkeVz0EdHA5FoWQbBfuTSzfXoDjs0OfGEYlBs75En
+         PXTQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710106411; x=1710711211;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=yiM66r47Wsopw5rga2V7RmdxX/5jq3ltiDuGeELsiLI=;
+        b=PA9sf5e5aDRrvl7fCUph/j6ygpjBAwNWWI5d1k95ykaBAI2yGphzj9poIpzC7DWEMa
+         /wyLpbe5+M8mFuatTNMRzBNCM0evhhjEuwSrFmWoxxajbwWg0UidlEaJi5nrL8Q3Yk6S
+         UpMDq5LxXEMyVPMScTHboVreeNlA46dIV3pVSi/wzsGr56n4Dme+Pd1dNDYIx3g9lTYC
+         FpNheeLiK+/TeEZYqXn+qQQOEFMcCiC3V3jh+Kxqb3/i2MZCoT9KDuta2I/aJBlUJhL0
+         yscWD8SLJ4rxfRfMibVwzfojT5rLxLgk/Hrj95KBKptEvbO5z5yCAqRHpBpWIc7wWHwf
+         wFJg==
+X-Forwarded-Encrypted: i=1; AJvYcCXYYyDlOImpd24YSOqWIhMSW+gySspv2nWZnBlkl+IgBMobjpb7xFLZRoyhScNzc2gRysyr01K9cAv+2FJUkmMxXWnIPuQoopI8yNkU7MSVgSxpW8n3eUoh2XBcMmF7ZG6qYduyXmFXQw==
+X-Gm-Message-State: AOJu0Yx7qsjFGN4EXEDTthVsINnXXmRp7nB+m71GobIdd5zwigqf93SU
+	hzRdjX29ohzdu8V5k1kSiYIkaN1d6B6Ar+qg7zurujCp6JXLu210
+X-Google-Smtp-Source: AGHT+IH5M6lxhoEhQFQUUdquyTdPTSFkTx2ksrOsyIUxOaClOyJLehXU7WD2Ng4K4q5FcK2tceBgxQ==
+X-Received: by 2002:a17:903:18a:b0:1dd:7de5:88fd with SMTP id z10-20020a170903018a00b001dd7de588fdmr4104045plg.66.1710106410660;
+        Sun, 10 Mar 2024 14:33:30 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:fa9b:d52c:840:abd4])
+        by smtp.gmail.com with ESMTPSA id z2-20020a170903018200b001dd7d00f7afsm2874652plg.18.2024.03.10.14.33.30
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Mar 2024 14:33:30 -0700 (PDT)
+Date: Sun, 10 Mar 2024 14:33:28 -0700
+From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To: Sebastian Reichel <sre@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 04/17] dt-bindings: input: touchscreen: fsl,imx6ul-tsc
+ convert to YAML
+Message-ID: <Ze4nKAF1GwgFqcur@google.com>
+References: <20240213010347.1075251-1-sre@kernel.org>
+ <20240213010347.1075251-5-sre@kernel.org>
+ <Ze0OQ0DB1TZEtJ-6@google.com>
+ <7tynuiwqaaskkuhi2vzo5wtxhyoyigym44ieomianfkwvzx7qj@hnelnwsgrfv2>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF97 (Linux)/8.8.12_GA_3809)
-Thread-Topic: provide NVMEM layer over UBI volumes
-Thread-Index: 16y/pO9tIckbepFtGo93wkKFo34z8w==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <7tynuiwqaaskkuhi2vzo5wtxhyoyigym44ieomianfkwvzx7qj@hnelnwsgrfv2>
 
-Daniel,
+On Sun, Mar 10, 2024 at 04:07:06PM +0100, Sebastian Reichel wrote:
+> Hello Dmitry,
+> 
+> On Sat, Mar 09, 2024 at 05:34:59PM -0800, Dmitry Torokhov wrote:
+> > On Tue, Feb 13, 2024 at 02:00:53AM +0100, Sebastian Reichel wrote:
+> > > Convert the i.MX6UL touchscreen DT binding to YAML.
+> > > 
+> > > Signed-off-by: Sebastian Reichel <sre@kernel.org>
+> > 
+> > Applied, thank you.
+> 
+> Rob send a message, that he applied all DT binding patches from this
+> series (incl. this one) at the same time you asked how it should be
+> handled:
+> 
+> Message from Rob (Tue, 5 Mar 2024 11:34:32 -0600)
+> https://lore.kernel.org/all/20240305173432.GA3745196-robh@kernel.org/
+> 
+> Message from You (Tue, 5 Mar 2024 09:30:47 -0800)
+> https://lore.kernel.org/all/ZedWx79qP7QXc3Om@google.com/
+> 
+> I assumed, that you would see Rob's message and thus did not bother
+> to reply. Obviously I was wrong, sorry about that.
 
------ Urspr=C3=BCngliche Mail -----
-> Von: "Daniel Golle" <daniel@makrotopia.org>
->> Finally(!), I had enough time to look.
->> Thanks for addressing all my comments form the previous series.
->> Patches applied.
->=20
-> It's an enourmous coicident that you are writing just now that I found
-> a sizeof(int)-related problem which triggers a compiler warning when
-> building the UBI NVMEM provider on 32-bit platforms. I was just about
-> to prepare an updated series. Literally in this minute.
-> Should I still send the whole updates series or only the final patch
-> (as the necessary change is there) or a follow-up patch fixing the
-> original patch?
+Oh, my bad, I'll drop the patch from my tree. Thank you for pointing
+this out.
 
-I have just merged your fixup patch. So all good.
-
->>=20
->> I have only one tiny request, can you share the lockdep spalt
->> you encountered in ubi_notify_add() regarding mtd_table_mutex
->> and ubi_devices_mutex? The solutions looks okay to me, but
->> if you have more details that would be great.
->=20
-> I will setup a test build to reproduce the original warning and
-> let you know shortly.
-
-Any news on that?
-
-BTW: Is there a nice way to test this with nandsim in qemu?
-I'd love being able to test all ubi attach code paths on my test setup.
-
-Thanks,
-//richard
+-- 
+Dmitry
 
