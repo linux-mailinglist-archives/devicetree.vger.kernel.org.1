@@ -1,83 +1,93 @@
-Return-Path: <devicetree+bounces-49739-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49740-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A016C877897
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 22:33:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 838698778A0
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 22:49:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2512F281805
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 21:33:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3FF628141D
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 21:49:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E28943A1DC;
-	Sun, 10 Mar 2024 21:33:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F4553A1DE;
+	Sun, 10 Mar 2024 21:49:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E18wbX16"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EGQVc6i2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com [209.85.214.179])
+Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 75B2024219;
-	Sun, 10 Mar 2024 21:33:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E354200A6;
+	Sun, 10 Mar 2024 21:48:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710106412; cv=none; b=Ch7/was5bE91ZVWs4iq+sZs7w4njKcMmrqqxN3k1xBbDv0ZW7E1cHpdsgQ4zPQPnp4HBF4ZMCHkkIy0vPwKvG+gIYGj4CSyPj1uODQ7c2cRaUZj24msYehfNuk9slS6oq92ijPTxaemhXfdnJYlamyrAJHwKiuwEmhG8oLWm4ok=
+	t=1710107341; cv=none; b=oDnGNrpkdnEHiv1mRDfKCojnRq/gzf7QkyFo4EyGeEuMPIoE6Twc+AZH42n/fOF2qPhshSlkGrbodMXiGA1U3481lcSYFpzwveL1+8GbLp4DlMFq0mlr4BLgCyd8r4MPCkiwirJ2kE4x4BrIs1REDkl9LDzcw3npB4G8BJHSmZs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710106412; c=relaxed/simple;
-	bh=ueJS1O/JtHawNgx/FfjRX0euojg6lOc+UX9U4BZ5zWc=;
+	s=arc-20240116; t=1710107341; c=relaxed/simple;
+	bh=uiNUIQwX6BYiGbEKIo6u+t0/etIbRR33V5TSPTk94m0=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=raMW5RlDjd11N/4E1YjtAJXI9aj2oA59hBF+DBT4eAcTepKhSCEprftbmlGKptOj2LvBNr7h22kV/SCWMehm0ushHAGEU1V8wWdiujHG+SwxiTvUEDZJYs5Y4HxNBdIb+MQ/TQtvUEwFeke+HMz/y7LsPynVUERLbauEM8YGWrQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E18wbX16; arc=none smtp.client-ip=209.85.214.179
+	 Content-Type:Content-Disposition:In-Reply-To; b=SYKIs5ydFn0rpQMuIsp6Ux3M+sHgfeQwo1asr74tpf4NaM+jsUdFmcG7Jsb/WVkayvpBQM8HVlGdU3IIYeXzA5aO/xS7/Efa5e1JJNiGXBzHG4+G4OvyFbTDTO2YKGhdUCROTRMrw4O80A53TIT0q9z6gO/SP1DnUZmX2vOOpaQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EGQVc6i2; arc=none smtp.client-ip=209.85.214.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f179.google.com with SMTP id d9443c01a7336-1dd878da011so4181805ad.2;
-        Sun, 10 Mar 2024 14:33:31 -0700 (PDT)
+Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1dd68d4cff1so16395875ad.2;
+        Sun, 10 Mar 2024 14:48:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710106411; x=1710711211; darn=vger.kernel.org;
+        d=gmail.com; s=20230601; t=1710107338; x=1710712138; darn=vger.kernel.org;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=yiM66r47Wsopw5rga2V7RmdxX/5jq3ltiDuGeELsiLI=;
-        b=E18wbX16bzIGyi4Y38rcKjLQV+1gtG/BdRDRgd7JuGfNLevRcLmjCtpM45SNw0ZVW5
-         xD+NCSKRdwDn+FnLLN1dBUS1xoJpPa94uWEnXfW9Er7zRmF07ofYDzbrE9iqIieEIZxM
-         OukGw+Ja86NjfKz/zvwPSBDQViSVSd7UBtGTtyqdnR4qaPbQNtHOXy7Dghf0lGdoDPKK
-         WvFN5BtmAn0lF+Kk7ns+7yCxAB6q5VKYyHFGG0hglRebP79czMu3Ht2rpI5t4XC9+0uQ
-         TnJ71NpR4RJeuf9Sje1mZ6PEBYGbkeVz0EdHA5FoWQbBfuTSzfXoDjs0OfGEYlBs75En
-         PXTQ==
+        bh=peiS13bUuIETlTVlJrUnJS9cAypcX9YXgZEjm2ZHlXk=;
+        b=EGQVc6i2U7tItUa2Prnhd0di4K5hx19ZKfAM4A95LRb5bllQziS8Yv5sA6SaDJ+cZB
+         fJCc3O5K4GO1Qc3/SeP79oKt96JKvrqkaNOHUBkADrQYFtcCrVS/E9JKp6npfTcc55Y0
+         m/WuhA6asZpOO2Mc05Uf/5ARtNdH5Oy1rew/JukU98Eaz35W+GA9Zsab8W1aAu+THtJ5
+         DP+/GxSHb9a5vquYivEvwU2iM/oq57sdWSPpi0GteTPPHe2ob0ovffxsKEd5QsYYfSUO
+         zwMJk4Qx5n9sLbF/1qz6avXyIIN+VvBJ0Cv7j/53ya7tpUIq3CRdAVcT+kr3jTzfpyZe
+         6u8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710106411; x=1710711211;
+        d=1e100.net; s=20230601; t=1710107338; x=1710712138;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=yiM66r47Wsopw5rga2V7RmdxX/5jq3ltiDuGeELsiLI=;
-        b=PA9sf5e5aDRrvl7fCUph/j6ygpjBAwNWWI5d1k95ykaBAI2yGphzj9poIpzC7DWEMa
-         /wyLpbe5+M8mFuatTNMRzBNCM0evhhjEuwSrFmWoxxajbwWg0UidlEaJi5nrL8Q3Yk6S
-         UpMDq5LxXEMyVPMScTHboVreeNlA46dIV3pVSi/wzsGr56n4Dme+Pd1dNDYIx3g9lTYC
-         FpNheeLiK+/TeEZYqXn+qQQOEFMcCiC3V3jh+Kxqb3/i2MZCoT9KDuta2I/aJBlUJhL0
-         yscWD8SLJ4rxfRfMibVwzfojT5rLxLgk/Hrj95KBKptEvbO5z5yCAqRHpBpWIc7wWHwf
-         wFJg==
-X-Forwarded-Encrypted: i=1; AJvYcCXYYyDlOImpd24YSOqWIhMSW+gySspv2nWZnBlkl+IgBMobjpb7xFLZRoyhScNzc2gRysyr01K9cAv+2FJUkmMxXWnIPuQoopI8yNkU7MSVgSxpW8n3eUoh2XBcMmF7ZG6qYduyXmFXQw==
-X-Gm-Message-State: AOJu0Yx7qsjFGN4EXEDTthVsINnXXmRp7nB+m71GobIdd5zwigqf93SU
-	hzRdjX29ohzdu8V5k1kSiYIkaN1d6B6Ar+qg7zurujCp6JXLu210
-X-Google-Smtp-Source: AGHT+IH5M6lxhoEhQFQUUdquyTdPTSFkTx2ksrOsyIUxOaClOyJLehXU7WD2Ng4K4q5FcK2tceBgxQ==
-X-Received: by 2002:a17:903:18a:b0:1dd:7de5:88fd with SMTP id z10-20020a170903018a00b001dd7de588fdmr4104045plg.66.1710106410660;
-        Sun, 10 Mar 2024 14:33:30 -0700 (PDT)
+        bh=peiS13bUuIETlTVlJrUnJS9cAypcX9YXgZEjm2ZHlXk=;
+        b=hMJqZYJ+rokbgt02arEW39IiC17ArDzGno2UNWUeqdwl1uss8aQSVr95Wy3o51lhER
+         VETRrkyhBa/6dux+zXIHBW/NkHww7WK/Z8DFerB0stzpD/tcdCnoE5E+J8/q9Vd0ysXd
+         AfZCPiFt4EMo6gNP+jt7Qkwhnc9kZALTET+SEZVQM1Ap4JiZsGybDxKl7ZMCdNlk8tnc
+         RZnYVcGeeIpe4kLaEeUkSvZnw7ZLfVCZRi0GSBmCpAwKc2STZWzEoP4jLZjYg+muGpMl
+         vvC50EWqiCrdh4lHIyPEgvxkiDzxrhuNirdHAwf0Q3MNTZ9LzU0i/AG27sFsBUwyhQry
+         hGAQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVy1e/no/CCS/nnyCa3GSliKamgxdZN4oaNnHXqVpgqMBGhkj+T6XCB3AqzSyky4smZIs4/ymjArE3E1phNjbLGFuPUqPwR2ulLvDgIk4VIUdoN441fahY6w57qKTLCEVhwqtiFeTJ57z46ndviH4A2nHGzabjvvXm/enezBkotq1KCugUAMpYRMlxExZ/rYVRFP9WIEvLBDDKijL8WVzQq9x8=
+X-Gm-Message-State: AOJu0Ywoj0EvC7WuJ4d6x8+/jVPbyAns8T6ZdUyN3+w9OTGkAdFUYdf2
+	yCc7MApmopr377EhrSD3AqNQ+f9M3T0lRSVBn49p2++Kq2MM67enkkghRCeI
+X-Google-Smtp-Source: AGHT+IEWxxer7+GvZpSyC+KpPXhxra7vrWGJ3a2rsApHjdYvzkJ+rmWD+x1uxlAnk84alJSOjVn32w==
+X-Received: by 2002:a17:902:e5ca:b0:1dd:a36e:3204 with SMTP id u10-20020a170902e5ca00b001dda36e3204mr47580plf.67.1710107338535;
+        Sun, 10 Mar 2024 14:48:58 -0700 (PDT)
 Received: from google.com ([2620:15c:9d:2:fa9b:d52c:840:abd4])
-        by smtp.gmail.com with ESMTPSA id z2-20020a170903018200b001dd7d00f7afsm2874652plg.18.2024.03.10.14.33.30
+        by smtp.gmail.com with ESMTPSA id n9-20020a170902e54900b001d949393c50sm3120067plf.187.2024.03.10.14.48.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Mar 2024 14:33:30 -0700 (PDT)
-Date: Sun, 10 Mar 2024 14:33:28 -0700
+        Sun, 10 Mar 2024 14:48:58 -0700 (PDT)
+Date: Sun, 10 Mar 2024 14:48:55 -0700
 From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Sebastian Reichel <sre@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 04/17] dt-bindings: input: touchscreen: fsl,imx6ul-tsc
- convert to YAML
-Message-ID: <Ze4nKAF1GwgFqcur@google.com>
-References: <20240213010347.1075251-1-sre@kernel.org>
- <20240213010347.1075251-5-sre@kernel.org>
- <Ze0OQ0DB1TZEtJ-6@google.com>
- <7tynuiwqaaskkuhi2vzo5wtxhyoyigym44ieomianfkwvzx7qj@hnelnwsgrfv2>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Karel Balej <karelb@gimli.ms.mff.cuni.cz>, Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+Subject: Re: [RFC PATCH v3 4/5] input: add onkey driver for Marvell 88PM886
+ PMIC
+Message-ID: <Ze4qx9KQEPU9U8JN@google.com>
+References: <20240303101506.4187-1-karelb@gimli.ms.mff.cuni.cz>
+ <20240303101506.4187-5-karelb@gimli.ms.mff.cuni.cz>
+ <ZeTgEmjJc_VhYpLm@google.com>
+ <CZL8ZSZAVEBI.349BV2Y6AKIPN@gimli.ms.mff.cuni.cz>
+ <ZeZxI_spu4vwxrs7@google.com>
+ <CZQ1EP61IDOC.1PPYGMIOINGND@gimli.ms.mff.cuni.cz>
+ <3601a374-4161-40e1-8a80-9bbfdae5bd8a@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,34 +96,83 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7tynuiwqaaskkuhi2vzo5wtxhyoyigym44ieomianfkwvzx7qj@hnelnwsgrfv2>
+In-Reply-To: <3601a374-4161-40e1-8a80-9bbfdae5bd8a@linaro.org>
 
-On Sun, Mar 10, 2024 at 04:07:06PM +0100, Sebastian Reichel wrote:
-> Hello Dmitry,
-> 
-> On Sat, Mar 09, 2024 at 05:34:59PM -0800, Dmitry Torokhov wrote:
-> > On Tue, Feb 13, 2024 at 02:00:53AM +0100, Sebastian Reichel wrote:
-> > > Convert the i.MX6UL touchscreen DT binding to YAML.
-> > > 
-> > > Signed-off-by: Sebastian Reichel <sre@kernel.org>
+On Sun, Mar 10, 2024 at 09:35:36PM +0100, Krzysztof Kozlowski wrote:
+> On 10/03/2024 12:35, Karel Balej wrote:
+> > Dmitry Torokhov, 2024-03-04T17:10:59-08:00:
+> >> On Mon, Mar 04, 2024 at 09:28:45PM +0100, Karel Balej wrote:
+> >>> Dmitry,
+> >>>
+> >>> Dmitry Torokhov, 2024-03-03T12:39:46-08:00:
+> >>>> On Sun, Mar 03, 2024 at 11:04:25AM +0100, Karel Balej wrote:
+> >>>>> From: Karel Balej <balejk@matfyz.cz>
+> >>>>>
+> >>>>> Marvell 88PM886 PMIC provides onkey among other things. Add client
+> >>>>> driver to handle it. The driver currently only provides a basic support
+> >>>>> omitting additional functions found in the vendor version, such as long
+> >>>>> onkey and GPIO integration.
+> >>>>>
+> >>>>> Signed-off-by: Karel Balej <balejk@matfyz.cz>
+> >>>>> ---
+> >>>>>
+> >>>>> Notes:
+> >>>>>     RFC v3:
+> >>>>>     - Drop wakeup-source.
+> >>>>>     RFC v2:
+> >>>>>     - Address Dmitry's feedback:
+> >>>>>       - Sort includes alphabetically.
+> >>>>>       - Drop onkey->irq.
+> >>>>>       - ret -> err in irq_handler and no initialization.
+> >>>>>       - Break long lines and other formatting.
+> >>>>>       - Do not clobber platform_get_irq error.
+> >>>>>       - Do not set device parent manually.
+> >>>>>       - Use input_set_capability.
+> >>>>>       - Use the wakeup-source DT property.
+> >>>>>       - Drop of_match_table.
+> >>>>
+> >>>> I only said that you should not be using of_match_ptr(), but you still
+> >>>> need to have of_match_table set and have MODULE_DEVICE_TABLE() for the
+> >>>> proper module loading support.
+> >>>
+> >>> I removed of_match_table because I no longer need compatible for this --
+> >>> there are no device tree properties and the driver is being instantiated
+> >>> by the MFD driver.
+> >>>
+> >>> Is the MODULE_DEVICE_TABLE() entry needed for the driver to probe when
+> >>> compiled as module? If that is the case, given what I write above, am I
+> >>> correct that MODULE_DEVICE_TABLE(platform,...) would be the right thing
+> >>> to use here?
+> >>
+> >> Yes, if uevent generated for the device is "platform:<name>" then
+> >> MODULE_DEVICE_TABLE(platform,...) will suffice. I am not sure how MFD
+> >> sets it up (OF modalias or platform), but you should be able to check
+> >> the format looking at the "uevent" attribute for your device in sysfs
+> >> (/sys/devices/bus/platform/...). 
 > > 
-> > Applied, thank you.
+> > The uevent is indeed platform.
+> > 
+> > But since there is only one device, perhaps having a device table is
+> > superfluous and using `MODULE_ALIAS("platform:88pm886-onkey")` is more
+> > fitting?
 > 
-> Rob send a message, that he applied all DT binding patches from this
-> series (incl. this one) at the same time you asked how it should be
-> handled:
+> Adding aliases for standard IDs and standard cases is almost never
+> correct. If you need module alias, it means your ID table is wrong (or
+> missing, which is usually wrong).
 > 
-> Message from Rob (Tue, 5 Mar 2024 11:34:32 -0600)
-> https://lore.kernel.org/all/20240305173432.GA3745196-robh@kernel.org/
+> > 
+> > Although I don't understand why this is even necessary when the driver
+> > name is such and the module is registered using
+> > `module_platform_driver`...
 > 
-> Message from You (Tue, 5 Mar 2024 09:30:47 -0800)
-> https://lore.kernel.org/all/ZedWx79qP7QXc3Om@google.com/
-> 
-> I assumed, that you would see Rob's message and thus did not bother
-> to reply. Obviously I was wrong, sorry about that.
+> ID table and MODULE_DEVICE_TABLE() are necessary for modprobe to work.
+> Just run `modinfo`.
 
-Oh, my bad, I'll drop the patch from my tree. Thank you for pointing
-this out.
+MODULE_DEVICE_TABLE() and MODULE_ALIAS() reduce to the same thing, but I
+agree that we should not try to be too clever and simply use the ID
+table.
+
+Thanks.
 
 -- 
 Dmitry
