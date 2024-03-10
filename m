@@ -1,64 +1,73 @@
-Return-Path: <devicetree+bounces-49720-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49721-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B43968777DA
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 19:02:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7078777E5
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 19:13:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id C82DE1C208AF
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 18:02:44 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 78DD6280FEB
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 18:13:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AAE7A39AD5;
-	Sun, 10 Mar 2024 18:02:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b="w5FluFU2"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6D6BB39AC4;
+	Sun, 10 Mar 2024 18:13:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2BAFC21115;
-	Sun, 10 Mar 2024 18:02:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=156.67.10.101
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CA49D39863;
+	Sun, 10 Mar 2024 18:13:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710093761; cv=none; b=FjaSLXA5OXCQ3mvBkc5U3CeNptfkFY2R+CRUCl+y+WruEBKcBaN5eHwTlE0PPI42Gw25nhY6PQ/RIAE9mvRs61p8fBwzFpsDcCrFJl49rEd4iAxiIQzP32C5h5QRVLlb859URCj1upVddaPaf5Pi502V0aBek0/sVc5bCyhW0qg=
+	t=1710094388; cv=none; b=KBhaA5QTQC9BhxeQr5DSqRDyIhpVi2PenEysXbnDj0HC5nNgQpY591pJ2X8vt43QzIaEUEOa1Jm4Eikev+iTWVvEGeFaJzl0LvPbMWS9iZZ7HUbO/HjutfoRurf88mX6BJvgbNMbBboVy6M7VLOPhHknfaaurPOcCntSZB6r6mc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710093761; c=relaxed/simple;
-	bh=/uti3KhNUWLN2j9QKHNuTsykTW7CeAjkbaGcoIDvAX8=;
+	s=arc-20240116; t=1710094388; c=relaxed/simple;
+	bh=31NKrnRH5dFaplJw4DbeWRwaNfoKl8qEijx7BroJy5g=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=HbQSau2TBA3earAgw5x/46pBDza1lN1SZ25EbgXx93xA+/Mjr6dG/bcHtOu1EazkWj7hyuso80Mme6mYIDYIEuQndDRUxSGGtGsTUNLRsDQenntXLDvIiDTAKYwPcwE/KhyjOMsDvoUPFjgQH1KpAJw0o13UwbDQ7Z3jmkcuWoI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch; spf=pass smtp.mailfrom=lunn.ch; dkim=pass (1024-bit key) header.d=lunn.ch header.i=@lunn.ch header.b=w5FluFU2; arc=none smtp.client-ip=156.67.10.101
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=lunn.ch
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=lunn.ch
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-	s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-	References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-	Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-	Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-	bh=nKRXGf8H98Z9tuuZUNbMP7MGE4PkRR7UCT/L+6ltYAE=; b=w5FluFU27o3T9ZV6+J2q4vNQ9v
-	JIt6svUBCo3ZXxBsiBqliqW1LP2CFfMt31fzXHrLoNAvRwmOKo0OBZe+7t91n9aKrizryfZLHdMZ3
-	ex6+Dya9ByuIBmgxubDerQSfrkxnPNldDnOA7zyAZfjFBgiy+HYMa5BJ5TqRHUHUO03g=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-	(envelope-from <andrew@lunn.ch>)
-	id 1rjNVc-009v1u-Sv; Sun, 10 Mar 2024 19:02:52 +0100
-Date: Sun, 10 Mar 2024 19:02:52 +0100
-From: Andrew Lunn <andrew@lunn.ch>
-To: Luiz Angelo Daros de Luca <luizluca@gmail.com>
-Cc: Linus Walleij <linus.walleij@linaro.org>,
-	Alvin =?utf-8?Q?=C5=A0ipraga?= <alsi@bang-olufsen.dk>,
-	Florian Fainelli <f.fainelli@gmail.com>,
-	Vladimir Oltean <olteanv@gmail.com>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
-	netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
+	 Content-Type:Content-Disposition:In-Reply-To; b=i8DJwYPSfRbpS90TY31jQEWR4+MkbYHzQA59vG1XqTjLbLN/mkBKdi5up9tF40s7+mNzO+700uJZDj20s6Ye88vpYXKht54bEPNX3H+Y9jkrm8MDd61lAa8YZoI74YS8s68hKtO+AWQLV9D/vOg7haUPw8FQC3CjNupjKcMCeBE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.167.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=none dis=none) header.from=linux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3c1ea5f29a6so1748029b6e.0;
+        Sun, 10 Mar 2024 11:13:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710094386; x=1710699186;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=KBvlVGpVqyqJ+GndspiX4vT90fBq7w+3KkP7LKnDchY=;
+        b=WklrimB6SWA6zTvhh7LlqtmqH8hk84WfTotECaKdg1fNKtooRGKWxdmOhP/FBZiPZ7
+         0HhgvDLWkeGrmvKzgX7mjvAP1WckLVsxbaj7bhT9W4FepoMU1uKbF90kcR98s02oSNrp
+         Vpzf8kZTyRMzjbHlptAsy7zW6EnclMO0eg30TcR+zEE3/deNimKe8psgPyu972ESRVHX
+         ZCb4uHHwU99r0jBPYmoEHG2bycMhd1pQdrfhZLg3ChYTfUGAVC+Ip6IdCBukI2ttnMrD
+         rdzBvyCbCrlBIRelx/RlhasLkYZAPsmtqBnqzAGo5yISGN4918aIcsZXUYDZ2Ys7ikhV
+         NEpQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWKc4M8xX8Fj1xU6g4qJKSTHmzCfDiA3kXPr3nLnLMC8+dvVZkkT9fKQr13FVwK/hxX7PffuhW22Ro5UhW6yJxiUzEWrZuKtd0UzJzpFkWtMvs8TfMYRpXG+L6yAqGxWciB0Lq6wFazr7k4jQix+c/xmFbJmY1Ixrn8rZNXtoT8jZvTi2Ob93txTHvB3vzUSjeEN71nLgG5RPBCB8orLMKuhdI=
+X-Gm-Message-State: AOJu0YweUDa8PvszS4pNaXzl+WayGRIMUd/eAzECv0XxPFQ1UCKaXCah
+	Q9xAyO1wYfsCBb72+qBhsoP/wR3DIesaGPgQyUCtGV2wAaimEY7nvElv9TkkR7Pn6Q==
+X-Google-Smtp-Source: AGHT+IGVAimsnWCDIkv4L5Ym9UHwsmJpuLZx9Xz5cUuDoUCwpDRHYKB+yoIwoIMMuPrE6+aE+XU/3w==
+X-Received: by 2002:a05:6830:d0:b0:6e4:ddb2:29fd with SMTP id x16-20020a05683000d000b006e4ddb229fdmr5341989oto.4.1710094385930;
+        Sun, 10 Mar 2024 11:13:05 -0700 (PDT)
+Received: from localhost (fpd11144dd.ap.nuro.jp. [209.17.68.221])
+        by smtp.gmail.com with ESMTPSA id p1-20020a63c141000000b005dc389409c1sm2740768pgi.93.2024.03.10.11.13.04
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 10 Mar 2024 11:13:05 -0700 (PDT)
+Date: Mon, 11 Mar 2024 03:13:03 +0900
+From: Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To: Abel Vesa <abel.vesa@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-pci@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
 	devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: realtek: describe
- LED usage
-Message-ID: <6705a278-d294-475f-bc4c-b08926c5017d@lunn.ch>
-References: <20240310-realtek-led-v1-0-4d9813ce938e@gmail.com>
- <20240310-realtek-led-v1-1-4d9813ce938e@gmail.com>
+Subject: Re: [PATCH v4 0/2] PCI: qcom: Add PCIe support for X1E80100
+Message-ID: <20240310181303.GB2765217@rocinante>
+References: <20240301-x1e80100-pci-v4-0-7ab7e281d647@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -67,26 +76,18 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240310-realtek-led-v1-1-4d9813ce938e@gmail.com>
+In-Reply-To: <20240301-x1e80100-pci-v4-0-7ab7e281d647@linaro.org>
 
-On Sun, Mar 10, 2024 at 01:51:58AM -0300, Luiz Angelo Daros de Luca wrote:
-> Each port can have up to 4 LEDs (3 for current rtl8365mb devices). The
-> LED reg property will indicate its LED group.
-> +                properties:
-> +                  reg:
-> +                    description:
-> +                      "reg indicates the LED group for this LED"
-> +                    enum: [0, 1, 2, 3]
+Hello,
 
-If this identifies the group, what identifies the actual LED? There
-are four of them. How do i say LEDs 0 and 1 are unused, 2 and 3 are
-wired to LEDs?
+> Add support for PCIe controllers found on X1E80100 platform.
 
-It would be much more usual for reg to be the LED number for the
-port. And there then be a group property indicating what group the LED
-belongs to. However, i'm wondering, is group fixed? Do we actually
-need it in DT, or can there just be a table in the driver which maps
-port:led to group?
+Applied to controller/qcom, thank you!
 
-	 Andrew
+[01/02] dt-bindings: PCI: qcom: Document the X1E80100 PCIe Controller
+        https://git.kernel.org/pci/pci/c/692eadd51698
+[02/02] PCI: qcom: Add X1E80100 PCIe support
+        https://git.kernel.org/pci/pci/c/6d0c39324c5f
+
+	Krzysztof
 
