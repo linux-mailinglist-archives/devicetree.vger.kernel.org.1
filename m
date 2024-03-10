@@ -1,129 +1,103 @@
-Return-Path: <devicetree+bounces-49710-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49711-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E19F4877777
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 16:25:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D80AE877787
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 16:52:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 11C1E1C20929
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 15:25:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F23B3281E5D
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 15:52:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C9F093771E;
-	Sun, 10 Mar 2024 15:24:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900E1381D1;
+	Sun, 10 Mar 2024 15:51:58 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="EAzEJqGU"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iGwjMXeq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98C8836B00;
-	Sun, 10 Mar 2024 15:24:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2FC38384;
+	Sun, 10 Mar 2024 15:51:56 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710084297; cv=none; b=R3rGIK78jUlEy2OEYNv2BAmW7jWGAAr1arCHVD6K9Nd1+i+jn6skmD3c3g0YKfA4fY94SuuMoDXUaIwIUBMizWUMHw30FGYFLwgr/Sg02ujVfd7VaWPG4X0i0F5KRmZyje9DJJHlQk3XKTPv4eigx1sl9xTBzXmDjBhMZ3Y3uM4=
+	t=1710085918; cv=none; b=nwbIyapQ2nX0ka7FReObnMiBNIErLf3PtRJHBfQ6qBbtE7LXAPgCazOEMu0rQ1wgfS5dXZYjdi/8hXZIWAsRkJNxqVXwMbIHHgL14QPpQ1N9Z03HfYM6Ev2VF37rAZfeCRnzS8R1gCj1lDxGed+ksT4DmXp4pSCScUvxgGS1ueE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710084297; c=relaxed/simple;
-	bh=6OIM+bhAgRt4x8cQAnblfO3WazqD7uQhJ07X0yZgtcg=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=Ek5T6krh74reXJNEWs3+Cnb+bXQxpdHjIzyX6tmu3P4cxi+NU9079c1UZy4i1kDEK3MCL8NDo2eBFLIH4zNlsXpvmXs2ouCC2ZzmcM43+v4mKQCzA6zKhxS88RolSTTrL14coIxpLt5ftNfUHKa8fDZQXAoEmsS83xchl/XwX/Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=EAzEJqGU; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F9ADC433F1;
-	Sun, 10 Mar 2024 15:24:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710084297;
-	bh=6OIM+bhAgRt4x8cQAnblfO3WazqD7uQhJ07X0yZgtcg=;
-	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-	b=EAzEJqGUOIG/oauO2Vs+SxEbmbeGv3rZAgmCaXt9BRIqUt4JKoCkGerF/flr/5NmJ
-	 dN72UDRytMtraa8fMK/7SUW/if5YWiTQW7JqFvrrYsx+5k0DvhcVf0wHvnQlKiF9jd
-	 eMkvumo7feiIkITaHJv+OnZUFFiMlS6cQzlrs7/zy3Z7465f9RPyDmLGLg2VO5558F
-	 UKYgfvXuv+Ur+U+HMnNzKo/r+Qy4CjWAZ8iUqkDnmxv15uetbu6kIfSBzgmr9vWrnU
-	 q7UuYLfjDc9liRaciB6ohTX1dmrOkQZpW9eu7EBGrtnkSN5pUl+wm5cD0cyZWuruOC
-	 47M8fREDfAxdQ==
-Date: Sun, 10 Mar 2024 15:24:43 +0000
-From: Jonathan Cameron <jic23@kernel.org>
-To: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Cc: Lars-Peter Clausen <lars@metafoo.de>, Li peiyu <579lpy@gmail.com>, Rob
- Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- Jonathan Cameron <Jonathan.Cameron@huawei.com>,
- linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
- devicetree@vger.kernel.org, Krzysztof Kozlowski
- <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v3 0/3] iio: humidity: hdc3020: add power and reset
- management
-Message-ID: <20240310152443.4cbd7c4e@jic23-huawei>
-In-Reply-To: <20240303-hdc3020-pm-v3-0-48bc02b5241b@gmail.com>
-References: <20240303-hdc3020-pm-v3-0-48bc02b5241b@gmail.com>
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1710085918; c=relaxed/simple;
+	bh=FFd3DcW0VEW9q4PY+3fjis2BdSm7XjuFwi4yhcFrhU4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=XkytQcwVVL/MwiyFwpQ76ShjizoN4dUZXMLbcfD3YOurVgz8fbIkeWBI+8FOhHYZL5qBWUoLHqljCMzh81h5V3MbeORc+tgDtG6wRYm4q3611+3I6yje4w0Fqk6xPh4IfAIdqw3P3vpyLn9uefsswDNq3pteY6I55xnedDivwKY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iGwjMXeq; arc=none smtp.client-ip=209.85.167.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3c19b7d9de7so2458735b6e.2;
+        Sun, 10 Mar 2024 08:51:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710085916; x=1710690716; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FFd3DcW0VEW9q4PY+3fjis2BdSm7XjuFwi4yhcFrhU4=;
+        b=iGwjMXeqR+K2iDCc7ClkRmXvKuOkF2A5SfK68aUgKeGOuTUO1zLrlKUcYGD/yVZoFe
+         16w1aE5XJTLBgxHEVV4OULwCfglx1G/hSRg/bwJGStGBg6+2AdifsJt37hlB2G7OHhoh
+         /9y1H4CfHo+i6cqekfOcIdGmWs6oh4rtVPhE9c6Rbk7FT6KKXLMhT62lUHGa/uG3Yg6e
+         lqhFa5WgQJZUsKKkZhwa4SI76OA786zvtQ7XbUszWkkg4PSaI0PudTXCiwt5rn2vr1XO
+         xXquW4EwfAZbKHaDyPGcKO5W4myseukLX627bzIhySCxa0vTg/yVpRP4EMNzR/TXJlLY
+         SeAg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710085916; x=1710690716;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FFd3DcW0VEW9q4PY+3fjis2BdSm7XjuFwi4yhcFrhU4=;
+        b=a521Sp1PYfSjnib/X10VO/bNU+3C12k2ZPnJBIrsC2J01SFzK3dWneRxLqr/M2z+dr
+         KQrnXwmzlDlVMU24QMWEsGuaI2jsCiGi6u4Bof8DYNQ+vIji+f4LhiZdwia4GO13tlhg
+         anTkp2PzjF5i/OxWcC+eJiLNG+2BfPmBztxSGneodsSXFCgD0bVscO/FEL22lxv0htZS
+         TZRM5HnDS+KUJtY7Fnn1l+wKqvYu2R9JMa6L8ulnS5IRqHdzV/0wiPq56e6fQnS//V4K
+         o4IxA0nyrwbhlEbUB1UfeusStGeeMGaGaIsLo3Dr1w8IosWdAPxJd+Oi6CX500/y75XR
+         lPfg==
+X-Forwarded-Encrypted: i=1; AJvYcCUkh9Hx4hRUPwDLTFIk0dyyeg6y/7KEycNZDnZF+X7aV8wGAjrvWWe//P/aG2cy3YboE5wsDeSctqj6qipJ4vgEfrLFyzXv1s379QUokTeGoMj8RawmZ5zKSVbvY9rbX39vj+aAyjNgSLJzhEvTWRWp8WxSdpSD7dKVQEe7Zgm8c+KsPw==
+X-Gm-Message-State: AOJu0YwrhXKFd1gEyMVDWDer4E7NcdH0sOVviG7p0SQP5mgA/ZJEfcp5
+	QrT49KfkgM4nWI9LUtR9EctP2jNr+7myl5rl3jp/zrJwPinO1Ox1nheHCI7XdDQuseQwX+KIaE6
+	yN9NeMvvzO1vw/bmpQ0jYwagNy0E=
+X-Google-Smtp-Source: AGHT+IH/bPs+BskZRMjgFJT5/0kkUalFAj9DSG+q4hWz4JlMQZH0XKTvdFt9qWH5kpdERAjxBvzgZTImaONF2Unqsmo=
+X-Received: by 2002:a05:6871:5806:b0:21e:7b5c:60fb with SMTP id
+ oj6-20020a056871580600b0021e7b5c60fbmr4348693oac.11.1710085916074; Sun, 10
+ Mar 2024 08:51:56 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20240309160741.54096-1-animeshagarwal28@gmail.com>
+ <a26689a4-1c8c-4458-bb82-137cd1ac21d0@linaro.org> <CAE3Oz80TByuu6=U4PTOHO6k1=KjjRKtPPf7ayhSMZareXP8vdw@mail.gmail.com>
+ <6b065dce-5271-4ea0-b291-a7aae8e71d20@linaro.org> <CAE3Oz83uiCyxV3u1C-5=vmBt6RxnTM+LJCw4KWyJDB2OLn-dRw@mail.gmail.com>
+ <f7d94072-eb4e-4d67-98d6-8090362a01e2@linaro.org>
+In-Reply-To: <f7d94072-eb4e-4d67-98d6-8090362a01e2@linaro.org>
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+Date: Sun, 10 Mar 2024 21:21:44 +0530
+Message-ID: <CAE3Oz81B6uhMu7B0S73Sd1jx-7JNhWoccDkFNn5L_PT+P_-2Rg@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: imx-pata: Convert to dtschema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Damien Le Moal <dlemoal@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
+	NXP Linux Team <linux-imx@nxp.com>, linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, 03 Mar 2024 22:54:19 +0100
-Javier Carrasco <javier.carrasco.cruz@gmail.com> wrote:
+On Sun, Mar 10, 2024 at 8:04=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> I don't see anything about this in commit msg. Commit msg is exactly the
+> same as before. Try yourself - use b4 shazam to apply your patch and see
+> if commit msg contains that information.
 
-> This series adds power management for the hdc3020 humidity and
-> temperature sensor as well as control over the reset signal the device
-> provides.
-> 
-> The hdc3020 carries out measurements automatically, which is not
-> necessary in low-power modes. Furthermore, if the low-power
-> configuration turns off the device, proper initialization is required to
-> account for the setup times and initial status register value.
-> 
-> This device provides an active low reset signal that must be handled if
-> connected. This signal can be used by the driver to keep the device
-> under minimal power consumption during low-power modes if the power
-> supply stays active.
-> 
-> This series uses char-misc-next as basis to include the last additions
-> to the driver to handle events [1] as well as the fix to include the
-> entries in the Makefile and Kconfig files [2].
-> 
-> [1] https://lore.kernel.org/linux-iio/20240214085350.19382-1-dima.fedrau@gmail.com/
-> [2] https://lore.kernel.org/linux-iio/20240121135123.71506-1-jic23@kernel.org/
-> 
-> Signed-off-by: Javier Carrasco <javier.carrasco.cruz@gmail.com>
-Applied to the togreg-normal branch of iio.git and pushed out for 0-day to
-see what it can find.  Note this is now 6.10 material and I'll be rebasing
-on rc1 once available. It won't go into a tree next picks up until after that.
+I will post patch v5 containing the proper explanation in the Change Log.
 
-Thanks,
-
-Jonathan
-
-> ---
-> Changes in v3:
-> - Drop unnecessary casting to void in dev_set_drvdata.
-> - Call devm_add_action_or_reset right after powering on.
-> - Link to v2: https://lore.kernel.org/r/20240226-hdc3020-pm-v2-0-cec6766086e8@gmail.com
-> 
-> Changes in v2:
-> - Trigger power off sequence if the power on sequence fails.
-> - Check return value of hdc3020_power_on() in the probe.
-> - Remove type casting for void pointer.
-> - Link to v1: https://lore.kernel.org/r/20240220-hdc3020-pm-v1-0-d8e60dbe79e9@gmail.com
-> 
-> ---
-> Javier Carrasco (3):
->       iio: humidity: hdc3020: add power management
->       dt-bindings: iio: humidity: hdc3020: add reset-gpios
->       iio: humidity: hdc3020: add reset management
-> 
->  .../bindings/iio/humidity/ti,hdc3020.yaml          |   5 +
->  drivers/iio/humidity/hdc3020.c                     | 111 +++++++++++++++++----
->  2 files changed, 97 insertions(+), 19 deletions(-)
-> ---
-> base-commit: d4551c189d6e6a3fcf7f625bd4b273e770fad35a
-> change-id: 20240217-hdc3020-pm-177983de3cab
-> 
-> Best regards,
-
+> You mean v5? You need oneOf allowing usage of imx27 alone.
+Ok will modify this in patch v5
 
