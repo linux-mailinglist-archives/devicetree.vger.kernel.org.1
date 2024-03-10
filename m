@@ -1,261 +1,215 @@
-Return-Path: <devicetree+bounces-49680-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49681-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF5B58775F5
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 10:26:25 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id B6F64877604
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 10:59:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 569222823C8
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 09:26:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1FD641F22436
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 09:59:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4B2DF1DA3A;
-	Sun, 10 Mar 2024 09:26:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0EB4A1DFEF;
+	Sun, 10 Mar 2024 09:59:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="HWl8yCaX";
-	dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b="kr87XSiC"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="phqv6PD0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailrelay5-1.pub.mailoutpod2-cph3.one.com (mailrelay5-1.pub.mailoutpod2-cph3.one.com [46.30.211.180])
+Received: from OS0P286CU011.outbound.protection.outlook.com (mail-japanwestazon11011009.outbound.protection.outlook.com [52.101.228.9])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03FC71DFD2
-	for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 09:26:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.30.211.180
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710062781; cv=none; b=ulchesT3H8D1WwPIg5gQc7qBVmaI3n8I5Ua6N55o66DsR0mYCyfe3GnAA2D8mE3pn13fbY8f/HLEkTZtZ62I7c9gNR7f50HrYxH9lO5tU8+XRfq2e/aYpLZleAYrUEvtko2IEHHsy8RzgQF8lrjDrIxcMjvHDnkgwnSFvrpKvqc=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710062781; c=relaxed/simple;
-	bh=WhsHVvaF1vXL3YSneiKe2MV5hhS81gBwkb8r9J/m+4c=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=A6lqaPwdnjv5t1uBWK8XDX2ax9SpNUWYHZf/V8i8gdYtQpHkUFxDP/6UGU8DhGAqZKDxsj/2grRYM49ug4aYOh+MgIo2xNtEcGd71skihY+Ubq9Vx1K+eRiSvCkhTbZxhXTXuR8jBMwHHYmv/rfTZnpn8Lu24KDcg3YvLFK6Pww=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org; spf=none smtp.mailfrom=ravnborg.org; dkim=pass (2048-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=HWl8yCaX; dkim=permerror (0-bit key) header.d=ravnborg.org header.i=@ravnborg.org header.b=kr87XSiC; arc=none smtp.client-ip=46.30.211.180
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ravnborg.org
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=ravnborg.org
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=ravnborg.org; s=rsa2;
-	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-	 from:date:from;
-	bh=+WfJ7IZT4YujSG0MObaMV24x5YmLTfgI703rzFU8kQo=;
-	b=HWl8yCaXGa14chA+vkSRZwH+v91wkd36QtHu8oxkQgGl6eO4UhQRhLTVNbpZycM6MMOESkD6nJBON
-	 FvkVWhug0ViBU2pur4q9LaLhpXqqzdockH4ZDfvm69O/g/7Ie1bU3cyUbjdR/h0nXyagCUGI41jMAH
-	 k0x6600Nd7ASrWwulyXKsOPOAmRRSTmCP9BbXyj4eSJyxvw5qrKMAN8vfZPgamN7f5Mc4OCTJ7vHyn
-	 7OQhiCAo25x5e29I/ibaftk32eQ+ltT/WC0b2BqHQfr0rc7Op/QYXcPaE9dtmmPnemyhfvoMZStRkt
-	 an/HjplwTuuMRrnd/aMTdVcdBRI8lIw==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-	d=ravnborg.org; s=ed2;
-	h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-	 from:date:from;
-	bh=+WfJ7IZT4YujSG0MObaMV24x5YmLTfgI703rzFU8kQo=;
-	b=kr87XSiCoYZ2IS7ijW+9XG72kcSOfIqj7F+9LjcZSOXLu4KwSTSOiuKAJ6eK22kCRFnugbInrmXhv
-	 Lw9Tli3Cw==
-X-HalOne-ID: 1444c15d-dec0-11ee-9c81-657a30c718c6
-Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-	by mailrelay5.pub.mailoutpod2-cph3.one.com (Halon) with ESMTPSA
-	id 1444c15d-dec0-11ee-9c81-657a30c718c6;
-	Sun, 10 Mar 2024 09:25:07 +0000 (UTC)
-Date: Sun, 10 Mar 2024 10:25:06 +0100
-From: Sam Ravnborg <sam@ravnborg.org>
-To: Patrick Gansterer <paroga@paroga.com>
-Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-	Lee Jones <lee@kernel.org>,
-	Daniel Thompson <daniel.thompson@linaro.org>,
-	Jingoo Han <jingoohan1@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 773311DDD6;
+	Sun, 10 Mar 2024 09:59:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.228.9
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710064757; cv=fail; b=sULrW2YHIx4pQlC+1VuAuP6L5L8ZJS24DRfH9EfjY3CJLZTTgPzBdbhCzHyGH+6K2iRnIsIHdZoiINMXepcdXa6Sh01R5jKvUfAY/2OsFYSGKJcDYXe+4Hw14I0UsnGra54VqihAsWsNBZ9WKH21V2DhsyGxVykoKp974lHIQo0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710064757; c=relaxed/simple;
+	bh=7BTm6O1NDuHM8+z6cAiq2rtU36JD6tWL8npJtivWq/k=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=mrtCn66GJXaqT9EMpEhrX7RI7499LA0j1zIlReycQI13ULuWH68/IsQoOXyXN+fSHBGwe6F6tZm3t3SGDdBzAasoq1KaqNe+fcwYc3QGA48RzdDyvhEQ7CfiIrN1BMpaviBvAjT61dr7hVFySLsrb6Y5pA3NNvFFvUEbfM3tN8E=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=phqv6PD0; arc=fail smtp.client-ip=52.101.228.9
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fgzI9bcNwNyaRP4lJREq5uzVo5BnUCH5UGO1Cxlm1YiOnYYfJ7b6q+eHuON1AuT3cjqwjeGH7uMe2aLmjhtTDZv5Sh4wCJqCjhpk1cmmGFwI7/gDnJTveDLxRSSF/SvMfNjmdp5zhKKqfgOlfsxlJ0zCSO4v5d4s9NyO+3uO+0QkyDGmmDRJNGjVqgjAJNSUHccmJCV7HhKAnSXdQzgxEZM0BEoxDL0+jRpDq9so9+xJmXpLZDrbOsvXRwvziQEcdIpBGk/G1LH2Xroz+wcUtsQB262Hrm73TGohvKCQTG6JNLkFiiXX/oD6tk6dieMia7SPJXt9RmeOVMZls2VFyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=7BTm6O1NDuHM8+z6cAiq2rtU36JD6tWL8npJtivWq/k=;
+ b=lFYtXdsT3P2yD3mIMd3EdHndsnPmIPOPfZ//jCHyGIz7/BKIsKLNb/6v+iQ03D55Z0c9UoejtAKnXPh0dN0wUFEBjKlqde+fgdUdRZIibNo/U4WCr4WJXL0K9SqAdTkVHs6q1b3YtrEki1581G++OGfcdWlOG4MaTX3zKLGjnJfAfDjyiCN90goTk34UhNlVOturLxICOEx7jeJqpeVWFliGIh2Nx0CerKXxvQPqrfCHqG632P7UFVNO2+NvfHXTEIwzdgVE0uTuA/AwiF5CtyYr9REjQX+bGzH6TgP/MMBRvcqMmtCpqd2F9TWPfmNENrSUwyvX75G1DHp03hKrCQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=7BTm6O1NDuHM8+z6cAiq2rtU36JD6tWL8npJtivWq/k=;
+ b=phqv6PD0FgZg6E7rJNKTQhrBKXiajlVJI6e9N839EENwb37INtaXqPNjx0pBZMjZgOqa6/J2kluz6epayKm9Pn+MwDOZrUm1Xqu98mjIrYzqkvoBnvkcJ5ph01Ho+c3emzTsZog/fqZ6AEAjmgn27qOT9um2fOrHHr5r+A0D+k4=
+Received: from OSAPR01MB1587.jpnprd01.prod.outlook.com (2603:1096:603:2e::16)
+ by TYCPR01MB5999.jpnprd01.prod.outlook.com (2603:1096:400:4a::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.33; Sun, 10 Mar
+ 2024 09:59:10 +0000
+Received: from OSAPR01MB1587.jpnprd01.prod.outlook.com
+ ([fe80::5ff4:8ba7:96e5:7a5b]) by OSAPR01MB1587.jpnprd01.prod.outlook.com
+ ([fe80::5ff4:8ba7:96e5:7a5b%7]) with mapi id 15.20.7362.024; Sun, 10 Mar 2024
+ 09:59:10 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Rob Herring
+	<robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v3 2/2] backlight: Add new lm3509 backlight driver
-Message-ID: <20240310092506.GA981663@ravnborg.org>
-References: <20240309132521.1290173-1-paroga@paroga.com>
- <20240309132521.1290173-2-paroga@paroga.com>
+CC: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
+	<magnus.damm@gmail.com>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, biju.das.au
+	<biju.das.au@gmail.com>
+Subject: RE: [PATCH 4/4] arm64: dts: renesas: r9a07g0{43,44,54}: Update usbhs
+ family compatible
+Thread-Topic: [PATCH 4/4] arm64: dts: renesas: r9a07g0{43,44,54}: Update usbhs
+ family compatible
+Thread-Index:
+ AQHacYPMGWKOfJ8WCEqHUSv4i74FdbEvUfMAgAABIyCAAAOtAIAAADSQgAAR4gCAACQ3AIAAATtQgAENy3CAAASEAIAAANOAgAAIfQCAABNnkA==
+Date: Sun, 10 Mar 2024 09:59:10 +0000
+Message-ID:
+ <OSAPR01MB15877347CFDC7465AAF9D1CE86252@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+References: <20240308180919.6603-1-biju.das.jz@bp.renesas.com>
+ <20240308180919.6603-5-biju.das.jz@bp.renesas.com>
+ <67819907-4366-483d-b71b-2646ffb076fd@linaro.org>
+ <OSAPR01MB15874E48DD2269C2593DB55A86262@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+ <ff569d52-f68f-410d-9897-9e1102171a1b@linaro.org>
+ <OSAPR01MB15874A9DB0CE13AB0440242186262@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+ <2821f23f-aac1-4b12-ba60-bc60da153d8a@linaro.org>
+ <OSAPR01MB1587C505F324B11824AB6AB286262@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+ <OSAPR01MB158700437A1D57805BAF349686262@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+ <OSAPR01MB158719BA384CA9E730D051F786252@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+ <ed77f6a1-70a5-455f-a6d5-34ebfa931279@linaro.org>
+ <OSAPR01MB158788EC4F6CFD47406AB9FA86252@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+ <5d43aaa3-04ff-4936-a752-7bfb29204eec@linaro.org>
+In-Reply-To: <5d43aaa3-04ff-4936-a752-7bfb29204eec@linaro.org>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OSAPR01MB1587:EE_|TYCPR01MB5999:EE_
+x-ms-office365-filtering-correlation-id: 0d31d4d4-02a8-416a-05a9-08dc40e8bbbd
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ FQNKbVsvJHTKIzjM99rZlrYo+plzELcVTHPYwZtcHcyMzqc1kAC09HsyEVkVB4QmAnLPgi8llmAYVYF5HPbFB/X4Z2WCHGwsEluN6mziAJUWPQM43p5z8DhAy2zLyqx10VRf4SNv9JVm6QONQq74sTbcR9T+qOrUAcnIQpqp7g2SjH9WBo2vLDgcqpN1uRHWWmC4BIBk7McadZ8DyZmi2zidv4H5RX/n1HRE42JozlJbdZKkuoh87mqddvq6nmqHH11zBnQ5LnLh2KmZrYxSkATj/1nP4tjvOCLB0Gl4Tgr/o2CqRwZrVbBGZ8LXnKxfBveX5a5u8sOXYyBrIqu9zBkTTeUTxtA6KovN8i95Ngnz4gbIVnN/9RefQQOdB2X90PF4znq884QhQHtSn40eaR1mHJpaY8Vp4wMgE+Yb9434mSGx6pMe+uWlzyPJoosQWjNHHTD4gDOlMlipHwMF/0krVl1ejzO9ORPPXjQSBLBid+Leeia+cf7pfWXxB3tz77T16GDGyMZZk0mSvsYvSWQ3aKaCDlKK+v93bSHr5a4E6p9OYCsSaHzb296OZuBL6Qstsfj4YDr88oS61cm9hB2i/lSq0mUv8ZqVEKBS/o3CvtGJ9RPcgRcztDp/QIiYRc5gFaFKe24TCLjjcxca/TZdQUfoMXxr2V4ZOJXtQkWo/dK1Q8x+VDuO6nWfARaxqoOxkBWz1NjTL4PUdE3z3ncyKBq/DA0J6qwxwmsoi2U=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB1587.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?utf-8?B?aVBYNFYxNzdGZllZYjAwNG44YUVFeVo3TXpiN2haK3k5UlBNdmIvSHUrbk9t?=
+ =?utf-8?B?dml1S2ZPZ2Y1ampLMlU2Z2x5VnFXMmtraFZyM2ViZ0JqUXN0TWc3dzRESDBW?=
+ =?utf-8?B?aUdQdGxKN2Z6WDA3RTN0WmtKMzA3YjExbVFJYnorNnlEUUxHa3hRdEVtZ3c5?=
+ =?utf-8?B?U3N1MXFmd0VaK2FEN3NNUGhISi9pNDlMVU8yS1h0bHZzZ05wM3Z5YVkrSEs2?=
+ =?utf-8?B?bjZoSVRjS1JZcVBML0dFQ01adnFmN1ZCRFRRVVJMZUpRc1JlbGFMOEZpOGN1?=
+ =?utf-8?B?d1VBWVNhN2FyekFJeURZS2NNQVNiYkhKczJDNWZtdUtPeEpOMkVXSDd4MXZE?=
+ =?utf-8?B?MkpxL2tBdXZxT3RxM085U0tCVXlOVHNhWXdvMG9ubU1UbTY1VlZnK0F4ejIy?=
+ =?utf-8?B?NHExeW5KYjVnRTZBTlg3K1hHa0VuWUQvSGNTS0kwbTNpV2hrNXBWRjJTWWJo?=
+ =?utf-8?B?WVNhK2RucDRGZHA5dWRZcWZlZG9VTzQ4UUVGR3UxczdMdms2SGVvNEp1ZUNG?=
+ =?utf-8?B?WVplYVhzeHQwOGllVHd0Sm9QV0JvRk1tZmdGUnVCZ3Z5UjVXeUN6eUhFeFdi?=
+ =?utf-8?B?cHVvbW1FaWdpZlZvYzRYS1dZZU5yN3NLMVZrN3BZWjJIQVhCaHgyODVQbHMr?=
+ =?utf-8?B?ZnJrYXU2WFJvaG54UmEvVGJ2c3dzUDRQblEvSUNKZlFWaFlwNm95VGhSeHZR?=
+ =?utf-8?B?cytXMXA1c2ptbXpQbmtXZlBEY1JSb1JVTkdldUpIVnhURzB6NWpTVCsxSkFY?=
+ =?utf-8?B?VEJRZzF4a0hsNDd6Rmt6R0F3ZE5uTjhSL29DTEhRMno5UFRQa3FDZ2c3R1Jp?=
+ =?utf-8?B?N2dVWDlLZFluQWUzTzN5Z2tkekVtbmxibHRONmwyeWwyRWlKTFlYOXJ6Tnpr?=
+ =?utf-8?B?T2YvVDdLVDlpdHVRZVpLQm1JbVJ5QUhGQ1gvUTJIZjQ1aStMRks1M0JhamlP?=
+ =?utf-8?B?QXFwQWJ3alFiTm9STHdUTnQzdTUrcGJRSVBQTytOU2ZRQzdyZHBMUGl5MnJ5?=
+ =?utf-8?B?dGNTNHYxbGM2Ym12UDJUcUZiVU1xWmxmSFpSY3N2VWtQemNpRHlSM1FWV2VF?=
+ =?utf-8?B?c3RwbisvVnVyMzVqN0NrNzhkNHJYQS9BbWRjUjBsaGdCalRidzV3MjEvN29T?=
+ =?utf-8?B?djhnY1hhYmE1Tll6ZkJHaGF2NStOaU1sbm55a1o2SG1rd1RiS2t3RStWa0Vt?=
+ =?utf-8?B?TnlYbkkwRDVkdGZXS1F1Y3BEY3U1M1RTVVYyNG5TZkRCMWNtNXBGaHBHdWU2?=
+ =?utf-8?B?NUVLWlFsdmRuaHM2ZFhkV3FFK2lINWFLZzNDdHBrQUFEQ0VJZHJNUFZXb1VG?=
+ =?utf-8?B?RXh0SjJnWll3b0xET0tUa0tQU2hxak9ZNjVQblFYQndEQTdINUNTbXU1ek55?=
+ =?utf-8?B?b3JtNmVxNVlLajdZdTMzL2VzVUx1a0RqWTJFTDlJRFFTbVpCU3FpdlV1MTFQ?=
+ =?utf-8?B?bnR6dFF3aFMxYzRmNWtuNnJ4MzIxNnhYYVpwK2YvU1F6NFcyMFRhRnd3UmYy?=
+ =?utf-8?B?bFpsbHRTbndRUktrRGdhRHdnay8vVWd6Rmkzc2hlcmxxM1ZzdlY5dHcyMVhK?=
+ =?utf-8?B?b0JDS2x4TGRaRTdMNjYzNEY4TW1BRXF4L3hlcHBxQ2xhdzErbDNaRHRvMW94?=
+ =?utf-8?B?MmwxTUNGQ1hCamUwK3dFYlVTZzY2SlFKbUVwSEhCNmI4OUxINVhmNXJQNktU?=
+ =?utf-8?B?eXFydjBDTUdQK0cyRkNxRWVSK1ZlTnIwN05CS2lMZEh0OTFoRldxZGhrMWF1?=
+ =?utf-8?B?N1k4d3V0UkRtQ2pFdVU4TVFKWmd1Z2xsbUZUd2FFMGF5OFZqUkh1clpyS3c0?=
+ =?utf-8?B?NExMaG1rYVN4YVRLNTNXLzg3ZUlrL2Z3bGU2THEwd3lKVTFkdkVYUVBRc2Fx?=
+ =?utf-8?B?UkJiMW1Ic2IxU1Y3TDFVYVRmUTU5c08vc3pwMm1NYXpKY0VLd25lT1lEZjNS?=
+ =?utf-8?B?WVFsSnhPa2xjTGQ4QkNRWDJHY0JYUjNFdSs1WVVHK1A4SFlJaG9McjJHSFJC?=
+ =?utf-8?B?QnNtbGhsSGo3blphc1RxL1pmRGk5QUQxd0FYd3ZnRnB3YTF1OVhZUkZyd0hZ?=
+ =?utf-8?B?OXp6cUpDYjZyaUhFRDNCbWZCQnBGZGltQWZpdkhIWURxRGpnQkVjZ2lmaUU0?=
+ =?utf-8?B?UjdKaGRQVFhkSytsc25CbFFpWFQwYitIN01may9BYS9xS3dEVWtrT2p2Mk50?=
+ =?utf-8?B?bWc9PQ==?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240309132521.1290173-2-paroga@paroga.com>
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB1587.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d31d4d4-02a8-416a-05a9-08dc40e8bbbd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Mar 2024 09:59:10.5980
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Ms7CvMvSd1kyAccGp+KU8O2sX3mBx6YI1nGhKJpWQM4r/nM/8Qj2tBPpCgDwAqSzkvdAdWCVIjrWFPjvo2OIjE3HFWZKvCoRpP3L5zbmEfc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB5999
 
-Hi Patrick,
-
-a few comments in the following.
-
-	Sam
-
-On Sat, Mar 09, 2024 at 02:24:56PM +0100, Patrick Gansterer wrote:
-> This is a general driver for LM3509 backlight chip of TI.
-> LM3509 is High Efficiency Boost for White LEDs and/or OLED Displays with
-> Dual Current Sinks. This driver supports OLED/White LED select, brightness
-> control and sub/main control.
-> The datasheet can be found at http://www.ti.com/product/lm3509.
-> 
-> Signed-off-by: Patrick Gansterer <paroga@paroga.com>
-> ---
->  drivers/video/backlight/Kconfig     |   7 +
->  drivers/video/backlight/Makefile    |   1 +
->  drivers/video/backlight/lm3509_bl.c | 340 ++++++++++++++++++++++++++++
->  3 files changed, 348 insertions(+)
->  create mode 100644 drivers/video/backlight/lm3509_bl.c
-> 
-> diff --git a/drivers/video/backlight/Kconfig b/drivers/video/backlight/Kconfig
-> index ea2d0d69bd8c..96ad5dc584b6 100644
-> --- a/drivers/video/backlight/Kconfig
-> +++ b/drivers/video/backlight/Kconfig
-> @@ -366,6 +366,13 @@ config BACKLIGHT_AAT2870
->  	  If you have a AnalogicTech AAT2870 say Y to enable the
->  	  backlight driver.
->  
-> +config BACKLIGHT_LM3509
-> +	tristate "Backlight Driver for LM3509"
-> +	depends on I2C
-> +	select REGMAP_I2C
-> +	help
-> +	  This supports TI LM3509 Backlight Driver
-> +
->  config BACKLIGHT_LM3630A
->  	tristate "Backlight Driver for LM3630A"
->  	depends on I2C && PWM
-> diff --git a/drivers/video/backlight/Makefile b/drivers/video/backlight/Makefile
-> index 06966cb20459..51a4ac5d0530 100644
-> --- a/drivers/video/backlight/Makefile
-> +++ b/drivers/video/backlight/Makefile
-> @@ -35,6 +35,7 @@ obj-$(CONFIG_BACKLIGHT_HP700)		+= jornada720_bl.o
->  obj-$(CONFIG_BACKLIGHT_IPAQ_MICRO)	+= ipaq_micro_bl.o
->  obj-$(CONFIG_BACKLIGHT_KTD253)		+= ktd253-backlight.o
->  obj-$(CONFIG_BACKLIGHT_KTZ8866)		+= ktz8866.o
-> +obj-$(CONFIG_BACKLIGHT_LM3509)		+= lm3509_bl.o
->  obj-$(CONFIG_BACKLIGHT_LM3533)		+= lm3533_bl.o
->  obj-$(CONFIG_BACKLIGHT_LM3630A)		+= lm3630a_bl.o
->  obj-$(CONFIG_BACKLIGHT_LM3639)		+= lm3639_bl.o
-> diff --git a/drivers/video/backlight/lm3509_bl.c b/drivers/video/backlight/lm3509_bl.c
-> new file mode 100644
-> index 000000000000..bfad0aaffa0d
-> --- /dev/null
-> +++ b/drivers/video/backlight/lm3509_bl.c
-> @@ -0,0 +1,340 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +#include <linux/backlight.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/module.h>
-> +#include <linux/regmap.h>
-> +
-> +#define LM3509_NAME "lm3509_bl"
-> +
-> +#define LM3509_SINK_MAIN 0
-> +#define LM3509_SINK_SUB 1
-> +#define LM3509_NUM_SINKS 2
-> +
-> +#define LM3509_DEF_BRIGHTNESS 0x12
-> +#define LM3509_MAX_BRIGHTNESS 0x1F
-> +
-> +#define REG_GP 0x10
-> +#define REG_BMAIN 0xA0
-> +#define REG_BSUB 0xB0
-> +#define REG_MAX 0xFF
-> +
-> +enum {
-> +	REG_GP_ENM_BIT = 0,
-> +	REG_GP_ENS_BIT,
-> +	REG_GP_UNI_BIT,
-> +	REG_GP_RMP0_BIT,
-> +	REG_GP_RMP1_BIT,
-> +	REG_GP_OLED_BIT,
-> +};
-> +
-> +struct lm3509_bl {
-> +	struct regmap *regmap;
-> +	struct backlight_device *bl_main;
-> +	struct backlight_device *bl_sub;
-> +	struct gpio_desc *reset_gpio;
-> +};
-> +
-> +struct lm3509_bl_led_pdata {
-> +	const char *label;
-> +	int led_sources;
-> +	u32 brightness;
-> +	u32 max_brightness;
-> +};
-> +
-> +static void lm3509_reset(struct lm3509_bl *data)
-> +{
-> +	if (data->reset_gpio) {
-> +		gpiod_set_value(data->reset_gpio, 1);
-> +		udelay(1);
-> +		gpiod_set_value(data->reset_gpio, 0);
-> +		udelay(10);
-> +	}
-> +}
-> +
-> +static int lm3509_update_status(struct backlight_device *bl,
-> +				unsigned int en_mask, unsigned int br_reg)
-> +{
-> +	struct lm3509_bl *data = bl_get_data(bl);
-> +	int ret;
-> +	bool en;
-> +
-> +	ret = regmap_write(data->regmap, br_reg, bl->props.brightness);
-
-Here you can use backlight_get_brightness() thus avoiding direct access
-to backlight internal properties.
-
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	en = bl->props.power <= FB_BLANK_NORMAL;
-Use backlight_is_blank() here.
-
-	Sam
-
-
-
-> +	return regmap_update_bits(data->regmap, REG_GP, en_mask,
-> +				  en ? en_mask : 0);
-> +}
-> +
-> +static int lm3509_main_update_status(struct backlight_device *bl)
-> +{
-> +	return lm3509_update_status(bl, BIT(REG_GP_ENM_BIT), REG_BMAIN);
-> +}
-> +
-> +static const struct backlight_ops lm3509_main_ops = {
-> +	.options = BL_CORE_SUSPENDRESUME,
-> +	.update_status = lm3509_main_update_status,
-> +};
-> +
-> +static int lm3509_sub_update_status(struct backlight_device *bl)
-> +{
-> +	return lm3509_update_status(bl, BIT(REG_GP_ENS_BIT), REG_BSUB);
-> +}
-> +
-> +static const struct backlight_ops lm3509_sub_ops = {
-> +	.options = BL_CORE_SUSPENDRESUME,
-> +	.update_status = lm3509_sub_update_status,
-> +};
-> +
-> +static struct backlight_device *
-> +lm3509_backlight_register(struct device *dev, const char *name_suffix,
-> +			  struct lm3509_bl *data,
-> +			  const struct backlight_ops *ops,
-> +			  const struct lm3509_bl_led_pdata *pdata)
-> +
-> +{
-> +	struct backlight_device *bd;
-> +	struct backlight_properties props;
-> +	const char *label = pdata->label;
-> +	char name[64];
-> +
-> +	memset(&props, 0, sizeof(props));
-> +	props.type = BACKLIGHT_RAW;
-> +	props.brightness = pdata->brightness;
-> +	props.max_brightness = pdata->max_brightness;
-> +	props.power = pdata->brightness > 0 ? FB_BLANK_UNBLANK :
-> +					      FB_BLANK_POWERDOWN;
-props.power is not supposed to be set by the user - is is maintained by
-the backlight core.
-
-
-	Sam
+SGkgS3J6eXN6dG9mIEtvemxvd3NraSwNCg0KPiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0K
+PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5v
+cmc+DQo+IFNlbnQ6IFN1bmRheSwgTWFyY2ggMTAsIDIwMjQgODo0MCBBTQ0KPiBTdWJqZWN0OiBS
+ZTogW1BBVENIIDQvNF0gYXJtNjQ6IGR0czogcmVuZXNhczogcjlhMDdnMHs0Myw0NCw1NH06IFVw
+ZGF0ZSB1c2JocyBmYW1pbHkgY29tcGF0aWJsZQ0KPiANCj4gT24gMTAvMDMvMjAyNCAwOToxNiwg
+QmlqdSBEYXMgd3JvdGU6DQo+ID4gSGkgS3J6eXN6dG9mIEtvemxvd3NraSwNCj4gPg0KPiA+PiAt
+LS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiA+PiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tp
+IDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+DQo+ID4+IFNlbnQ6IFN1bmRheSwgTWFy
+Y2ggMTAsIDIwMjQgODowNiBBTQ0KPiA+PiBTdWJqZWN0OiBSZTogW1BBVENIIDQvNF0gYXJtNjQ6
+IGR0czogcmVuZXNhczogcjlhMDdnMHs0Myw0NCw1NH06DQo+ID4+IFVwZGF0ZSB1c2JocyBmYW1p
+bHkgY29tcGF0aWJsZQ0KPiA+Pg0KPiA+PiBPbiAxMC8wMy8yMDI0IDA4OjU3LCBCaWp1IERhcyB3
+cm90ZToNCj4gPj4+Pj4+PiBvbGQgRFRCICsgb2xkIGtlcm5lbCB3aWxsIGhhdmUgMTYgcGlwZSBi
+dWZmZXJzIG9sZCBEVEIgKyBuZXdlcg0KPiA+Pj4+Pj4+IGtlcm5lbCB3aWxsIGhhdmUgOSBwaXBl
+IGJ1ZmZlcnMuDQo+ID4+Pj4+Pj4gTmV3IERUQiArIG5ldyBrZXJuZWwgd2lsbCBoYXZlIDkgcGlw
+ZSBidWZmZXIuDQo+ID4+Pj4+Pg0KPiA+Pj4+Pj4gWW91IG1pc3NlZCBuZXcgRFRCIGFuZCBvbGQg
+a2VybmVsLiBUaGlzIGJyZWFrcyBhbGwgdXNlcnMgb2YgRFRTLg0KPiA+Pj4+Pj4gVGhhdCdzIHRo
+ZSBlbnRpcmUgcG9pbnQgb2YgeW91ciBicm9rZW4gZ2VuZXJpYyBjb21wYXRpYmxlcyB3aGljaCB5
+b3UgZGlkIG5vdCBhZGRyZXNzLg0KPiA+Pj4+Pg0KPiA+Pj4+PiBBcyBwZXIgbXkga25vd2xlZGdl
+LCB0aGVyZSBpcyBubyB1c2VyIGluIFJaL0cyTCBpcyB1c2luZyBuZXcgRFRCIGFuZCBvbGQga2Vy
+bmVsLg0KPiA+Pj4+PiBTbywgaXQgaXMgc2FmZS4NCj4gPj4+Pg0KPiA+Pj4+IElmIHRoZXJlIGlz
+IGEgdXNlciBmb3Igc3VjaCBjaGFuZ2UsIHdlIGNvdWxkIHVzZQ0KPiA+Pj4+DQo+ID4+Pj4gCWNv
+bXBhdGlibGUgPSAicmVuZXNhcyx1c2Jocy1yOWEwN2cwNDMiLA0KPiA+Pj4+IAkgICAgICAgICAg
+ICAgInJlbmVzYXMscnpnMmwtdXNiaHMiLA0KPiA+Pj4+IAkJCSAicmVuZXNhcyxyemEyLXVzYmhz
+IjsNCj4gPj4+Pg0KPiA+Pj4+IE9yDQo+ID4+Pj4NCj4gPj4+PiAJY29tcGF0aWJsZSA9ICJyZW5l
+c2FzLHVzYmhzLXI5YTA3ZzA0MyIsDQo+ID4+Pj4gCQkJICJyZW5lc2FzLHJ6YTItdXNiaHMiOw0K
+PiA+Pj4+DQo+ID4+Pj4NCj4gPj4+PiBUaGUgZm9ybWVyIGNvbnN1bWVzIGxlc3MgbWVtb3J5IGNv
+bXBhcmVkIHRvIHRoZSBsYXRlci4NCj4gPj4+Pg0KPiA+Pj4+IEFzIGxhdGVyIHJlcXVpcmVzLCAz
+IHBsYXRmb3JtIHN0cnVjdHVyZXMgZm9yIHJ6L2cybCwgcnovdjJsIGFuZA0KPiA+Pj4+IHJ6L2d1
+bCB3aGVyZWFzIHRoZSBmb3JtZXIgcmVxdWlyZXMganVzdCAxLg0KPiA+Pj4NCj4gPj4+IEFub3Ro
+ZXIgd2F5IGlzIHVzaW5nIFJaL0cyTCBTb0MgZmFsbGJhY2sgY29tcGF0aWJsZSBmb3IgYm90aCBS
+Wi9WMkwNCj4gPj4+IGFuZCBSWi9GaXZlIHZhcmllbnRzDQo+ID4+Pg0KPiA+Pj4gCWNvbXBhdGli
+bGUgPSAicmVuZXNhcyx1c2Jocy1yOWEwN2cwNDMiLA0KPiA+Pj4gCSAgICAgICAgICAgICAicmVu
+ZXNhcywgdXNiaHMtcjlhMDdnMDQ0IiwNCj4gPj4NCj4gPj4gSG93IGRvZXMgaXQgc29sdmUgYW55
+dGhpbmc/IE5vdGhpbmcgYmluZHMgdG8gdGhpcy4NCj4gPg0KPiA+IFRoaXMgd2lsbCBzb2x2ZSBh
+bGwgdGhlIGlzc3Vlcy4NCj4gDQo+IFRoYXQncyBub3QgcmVhbGx5IHRoZSBhbnN3ZXIsIGJ1dCBJ
+IHNlZSB5b3UgcGxhbiB0byBrZWVwIG9sZCBmYWxsYmFjay4NCg0KWWVzLCBUbyBhdm9pZCB0aGUg
+QUJJIGJyZWFrYWdlIGFzIHBlciB0aGUgdXNlIGNhc2UgeW91IG1lbnRpb25lZCBmb3IgbmV3IGR0
+YiArIG9sZCBrZXJuZWwNCg0KPiBTbyB0aGlzIG1lYW5zIG9sZCBmYWxsYmFjayBpcyBjb3JyZWN0
+IGFuZCBlbnRpcmUgcGF0Y2hzZXQgZG9lcyBub3QgbWFrZSBzZW5zZS4NCj4gDQo+IFRoaXMgaXMg
+Y29uZnVzaW5nLg0KDQpJIG5lZWQgdG8gY29ycmVjdCB0aGUgYmluZGluZy9kcml2ZXIgY29kZSBh
+cyBwZXIgdGhlIGJlbG93IGZvciBhdm9pZGluZyBhbGwgcG9zc2libGUgQUJJIGJyZWFrYWdlDQph
+bmQgYXQgdGhlIHNhbWUgdGltZSBvcHRpbWl6ZSB0aGUgbWVtb3J5IHVzYWdlIGluIGRyaXZlciBh
+cyBhbGwocjlhMDdnMHs0Myw0NCw1NH0gYmVsb25nDQp0byB0aGUgc2FtZSBSWi9HMkwgZmFtaWx5
+IFNvQ3MuDQoNCg0KCWNvbXBhdGlibGUgPSAicmVuZXNhcyx1c2Jocy1yOWEwN2cwNDMiLA0KCSAg
+ICAgICAgICAgICAicmVuZXNhcyx1c2Jocy1yOWEwN2cwNDQiLA0KCQkJICJyZW5lc2FzLHJ6YTIt
+dXNiaHMiOw0KDQpPcg0KDQoJY29tcGF0aWJsZSA9ICJyZW5lc2FzLHVzYmhzLXI5YTA3ZzA0MyIs
+DQoJICAgICAgICAgICAgICJyZW5lc2FzLHJ6ZzJsLXVzYmhzIiwNCgkJCSAicmVuZXNhcyxyemEy
+LXVzYmhzIjsNCg0KDQpDaGVlcnMsDQpCaWp1DQoNCg0KDQo=
 
