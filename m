@@ -1,129 +1,196 @@
-Return-Path: <devicetree+bounces-49663-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49664-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8E7C287756A
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 06:32:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E4658775A6
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 08:51:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BB7161C20D37
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 05:32:24 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C6F03B21F27
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 07:51:45 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F6986AC2;
-	Sun, 10 Mar 2024 05:32:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC0C2171A1;
+	Sun, 10 Mar 2024 07:51:35 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="i/y4et7W"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XUJRpCpP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f175.google.com (mail-pf1-f175.google.com [209.85.210.175])
+Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com [209.85.221.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E5721FC11;
-	Sun, 10 Mar 2024 05:32:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8865816FF48
+	for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 07:51:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710048740; cv=none; b=h/fUpUpnNGQNwN8nYeyrhJWfxYM4D84010Ni6MkURkynGf69Snog6P/lS1l+JDBhbgr/L4vVBoZgHwTc5l76lPSTmWZN+HeK/dat6vWPUEheErv6oe3wZBj9fZf4teHUGnJshk0kwnR5o9n42cYdwZK92DJRH4HFiHWWVvyPW3U=
+	t=1710057095; cv=none; b=ZxmDEBqV6Tmf6P+w+O6jnruhAOqAogcsoFygU42/G7DEfcHG4KMwVWwVLSO8PjBHVn/tbF4GEgTOoDby6h6Rno+kuG66sYs08tOgHTDivGeGsm8V9ucTDtTRygfaZys3KHVAoAnvJKWZl0UmPLibbi3a+/k+IPxhDWyIfpc2uH8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710048740; c=relaxed/simple;
-	bh=zmi2D5cawauZYLgSbivDNleJgobeHKxH/asJarlpOzE=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=pQ7RWER5qZEuXfo5y/sKHbRWV8E/qyImwq4OKi2SE79RbZaYEo/trGTE2HTOhhkJYeScA2Y/VjahYbNkwMBgfJCjnhUsMjVE3BbcdsvvqvxAJHklPCMYoZvTbe0gfZVGFyXD6wnyqOiierRxX5muVH6iKLWuDy0GkQcXzQUEsD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=i/y4et7W; arc=none smtp.client-ip=209.85.210.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f175.google.com with SMTP id d2e1a72fcca58-6e56787e691so2957233b3a.0;
-        Sat, 09 Mar 2024 21:32:18 -0800 (PST)
+	s=arc-20240116; t=1710057095; c=relaxed/simple;
+	bh=w3TVGs4O+3tfbHuJCY7WBmDJj5YrHGDsQ7zq9RM2Wh0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=hkF4S7m7nH07svVgPJVrEBSocFtK7LtLJFtGp7sXfPtWeYg5exw2vXVT47wSiQ1YUNxOrEuEZ/dKWucgvUQrCLfA9aOmxSPU8wdlWgWI3AZXZoD90dq0GxCjJ8xJfLYiiGBWV5DOZXecplMTNVe4puJ6WytoO6w5q2BD2Bbb9Y8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XUJRpCpP; arc=none smtp.client-ip=209.85.221.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f50.google.com with SMTP id ffacd0b85a97d-33e1878e357so2236427f8f.3
+        for <devicetree@vger.kernel.org>; Sat, 09 Mar 2024 23:51:32 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710048738; x=1710653538; darn=vger.kernel.org;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=WIkNRMUcRUKUqluKRZ47NqsfWnL9WVvH9ruTYaADPyU=;
-        b=i/y4et7WYSG/utM5eeFCDhWZYBy4F2sErYbzt7uNGggNyxSL6pcdGvETCJzs5BdoGT
-         wR/LCP55+3L1FJXS5S3eAV/CKsHJTL61VvGuRTljoZwNzYZN7j31O9LQMUPwMiWwfgCR
-         Lij+kM9fGyQSYZ0sWFabzpQHzgypjBdEnMpVhcDgjobtTe1tZTe+J36pkuN6DCNXJh36
-         uTEVH/D/n3A9tZ/1PO0Zep5029vBcDHv9IQEj8+XU4j2FoXY0srLnHLXj6FNMuVQSTKH
-         pbNeX9uT31FPTvunYE2wKveVeJg01fyTtigxUYgBBh9G2SQSQSKg8KcZmJWWWeyIm2Fo
-         7Qcg==
+        d=linaro.org; s=google; t=1710057091; x=1710661891; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=8W33mbdiTYPC2j+P1szavj2IqjGiZrZ00GeDRBGX+is=;
+        b=XUJRpCpPT3SZCkj4xd9Iyv35BKiOgRzkQG7T2a01RJuO/WeCFMe+OZtv+rMAzCowUz
+         ssA7ZdEpXkfqi4LWY2ydUSwGOwycbJbYTe2HXh2/ODITJp9Xb1zgqOdq1qVQn6qEqTvs
+         DITAHqoiZ7nU3RR2rkMzj6Og6si5no3fZF+nOz8yhlcqysnUIhpPbm9NGWLczol6xtG+
+         Ramu+yHUpMBv6aNYwDwAn0kvIk3eTruqVL6lH35n4aa+6hm0RxMU8G3GbDqjfy0Toxhr
+         X4unhHGGaSSijncT8udcUURnF3HRpUP7Cp7jRAOanKvDaUAaV3sT8MmxVVuONCZ6yD0r
+         /aWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710048738; x=1710653538;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WIkNRMUcRUKUqluKRZ47NqsfWnL9WVvH9ruTYaADPyU=;
-        b=tg7fJaFMuA+ZrIDSAR5OVcLGs8yb2Hc5l8nyUTj5YcrHPWWqo6dGS/caK41/PtUyb4
-         Ip4lH4Kcd1M1fYJRmUrXcNMMw/IfvZBW+y2+e18xu0e8ztJgzJU21+4ZAtY9KOzjh/zb
-         VHW+eqjGPCi5mafleNrvqJiDOdtrXF+zXcDR2aNhwFQImuMPTc4Da61n428niTMIwUs6
-         D/sJiPphtuB7ask+z72kwRDSrtQsRTdZgAvD4WlxXbyYs0xceyRqWVNXjKF3oOzGR0lj
-         ksHsj4YXqg/3OMg+/QD7YBKEJWsi0jki1axqYbvB8qu55rVA0UgSp4qTOEHRLdDpzBin
-         0TDg==
-X-Forwarded-Encrypted: i=1; AJvYcCW1Xsdysps0iQOym411cKqmQdZrgK4MS6CB9oW3rFPx5DDvly7N/OQXWJH7ZvvyPzprZXZmRpFL7XwhwNd/aQfXd/u2U64a/qjUrY6emcjSSIDvW8ZyyLGLPTHykbA5uT+s+86GuSEzGpVOj+Q6uz3WjPs8lxMl6Gbo2E0vNj1UXL13Od4CaDOkNzWgN/Lnp9EbDWaC0fnuLY6SZ0e2litBzqA=
-X-Gm-Message-State: AOJu0YzGyX9kUgrFTS5W24lSc4XBB26V8QA5WBXTLgO6RWjvHY9Zueqz
-	EIISoWaUebOTtoIwlXOJ3P8FJj9Yb20kwMeQlAw0T7rw+jVBe6Gy
-X-Google-Smtp-Source: AGHT+IG6RwDREDzdw3AVjCnkI7AYw/YgDcFcnpDQiW9jhdit1cMv90bLpXVl2caK/PHl2lrTkrWPQg==
-X-Received: by 2002:a05:6a20:1454:b0:1a0:8897:85f1 with SMTP id a20-20020a056a20145400b001a0889785f1mr3767726pzi.6.1710048738115;
-        Sat, 09 Mar 2024 21:32:18 -0800 (PST)
-Received: from google.com ([2620:15c:9d:2:5296:fec3:1fa8:a601])
-        by smtp.gmail.com with ESMTPSA id o2-20020a629a02000000b006e5736e9e46sm2106973pfe.42.2024.03.09.21.32.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 09 Mar 2024 21:32:17 -0800 (PST)
-Date: Sat, 9 Mar 2024 21:32:15 -0800
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>
-Cc: Markuss Broks <markuss.broks@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Karel Balej <balejk@matfyz.cz>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] Imagis touch keys and FIELD_GET cleanup
-Message-ID: <Ze1F3wVBFeVYB-AG@google.com>
-References: <20240306-b4-imagis-keys-v3-0-2c429afa8420@skole.hr>
+        d=1e100.net; s=20230601; t=1710057091; x=1710661891;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8W33mbdiTYPC2j+P1szavj2IqjGiZrZ00GeDRBGX+is=;
+        b=B/Xkl5U6g7Umo5sRjrYyTDKA8zObCpS2gGwGuaZ30kGHwN2OHERTmtSF+Xo6oc/7oM
+         gkhYh9kP3JJxX2A3ehxuYrgSLyKwPobCozOEKZEuM1HYxvFlZjXhXW6hUFYTR71IWkBk
+         FnQrHoLPtj1VmiFWi8LDpnQLOWwIAnjjiC9qKEs04nqPZ6SDJccsTu+OgeLvtPeOgPEs
+         EgXyU+3O/ddPpDo58J9W9Qo9SXBHNfyZ9/9k2rBObMtFhbkg8Jj2+luZ+iFYjhOhyTjs
+         pBy7nAZWZG9M7GEeTF9lmJmKKk3KQQHO5gfuwyE8vjAIxAAV0r5gCwdY6KSovyqq/p7y
+         8yOQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXJebX9TXyhX1ILSVpCuKiXJXsOBaOXGouZMQS9bO/urJUnfyJ8X6Afk+i+TR/ZUFIDer4s1SvIZfZ4sOv4+/76gm/snU0l73nnzg==
+X-Gm-Message-State: AOJu0YwrUM1yWwSVf6n3252Y2JnNCOfzeOvCGde5+1BOdo/LhYMUwHVa
+	GHCs2h70xhiubxUZ6cqpIDKoEAjQRH0cBm+Qu7jk/fwYKpA9VIZ913+rPdh73UY=
+X-Google-Smtp-Source: AGHT+IHEuiu03OT9ABhnilYjcbvKL3LinzMZbFYJYEzfv9igKCe2RyewD2QYZErERDM1sOOmht5XsQ==
+X-Received: by 2002:adf:e510:0:b0:33d:26b1:c460 with SMTP id j16-20020adfe510000000b0033d26b1c460mr2581781wrm.39.1710057090808;
+        Sat, 09 Mar 2024 23:51:30 -0800 (PST)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id bw4-20020a0560001f8400b0033e2777f313sm3512812wrb.72.2024.03.09.23.51.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 09 Mar 2024 23:51:30 -0800 (PST)
+Message-ID: <8a822699-aca5-4bcd-9bbf-86104a98f3f8@linaro.org>
+Date: Sun, 10 Mar 2024 08:51:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20240306-b4-imagis-keys-v3-0-2c429afa8420@skole.hr>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] dt-bindings: imx-pata: Convert to dtschema
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Damien Le Moal <dlemoal@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240310051914.153193-1-animeshagarwal28@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240310051914.153193-1-animeshagarwal28@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Wed, Mar 06, 2024 at 03:40:05PM +0100, Duje Mihanović wrote:
-> Tiny series to clean up the field extraction and add touch key support.
-> This version is based on the next branch of Dmitry's input tree.
+On 10/03/2024 06:19, Animesh Agarwal wrote:
+> Convert the imx-pata bindings to DT schema.
 > 
-> Signed-off-by: Duje Mihanović <duje.mihanovic@skole.hr>
+> Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
+> 
 > ---
+> Changes in v4:
+> - added fsl,imx31-pata in compatible property
+> - imx51-pata was not defined as	compatible in txt bindings, adding imx51-pata ensures this node	compiles to imx31.dtsi
 > Changes in v3:
-> - Rebase on input/next
-> - Add changelog to binding patch
-> - Fix binding constraint
-> - Allow changing keycodes in userspace as in 872e57abd171 ("Input:
->   tm2-touchkey - allow changing keycodes from userspace")
-> - Allow up to 5 keycodes (the key status field has 5 bits)
-> - Link to v2: https://lore.kernel.org/r/20240120-b4-imagis-keys-v2-0-d7fc16f2e106@skole.hr
-> 
+> - added fsl,imx51-pata in compatible property
+> - imx51-pata was not defined as compatible in txt bindings, adding imx51-pata ensures this node compiles to imx51.dtsi
 > Changes in v2:
-> - Fix compile error
-> - Add FIELD_GET patch
-> - Allow specifying custom keycodes
-> - Link to v1: https://lore.kernel.org/20231112194124.24916-1-duje.mihanovic@skole.hr
-> 
+> - fixed style issues
+> - compatible property now matches the examples
+> - fixed yamllint warnings/errors
 > ---
-> Duje Mihanović (3):
->       input: touchscreen: imagis: use FIELD_GET where applicable
->       dt-bindings: input: imagis: Document touch keys
->       input: touchscreen: imagis: Add touch key support
+> ---
+>  .../devicetree/bindings/ata/fsl,imx-pata.yaml | 41 +++++++++++++++++++
+>  .../devicetree/bindings/ata/imx-pata.txt      | 16 --------
+>  2 files changed, 41 insertions(+), 16 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/ata/imx-pata.txt
 > 
->  .../input/touchscreen/imagis,ist3038c.yaml         | 19 +++++++--
->  drivers/input/touchscreen/imagis.c                 | 46 ++++++++++++++++------
->  2 files changed, 50 insertions(+), 15 deletions(-)
+> diff --git a/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+> new file mode 100644
+> index 000000000000..aa0174844eb1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/ata/fsl,imx-pata.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale i.MX PATA Controller
+> +
+> +maintainers:
+> +  - Animesh Agarwal <animeshagarwal28@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - fsl,imx31-pata
+> +          - fsl,imx51-pata
+> +      - const: fsl,imx27-pata
+> +
 
-Applied the lot, thank you.
+How did you resolve my comment about imx27?
 
--- 
-Dmitry
+Best regards,
+Krzysztof
+
 
