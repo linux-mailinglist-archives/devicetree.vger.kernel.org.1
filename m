@@ -1,137 +1,165 @@
-Return-Path: <devicetree+bounces-49731-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49732-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB9DF877868
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 21:22:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id CFC18877871
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 21:26:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 30E0B1F21224
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 20:22:22 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 456F01F21238
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 20:26:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AC138383A9;
-	Sun, 10 Mar 2024 20:22:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1BA9B3A1C9;
+	Sun, 10 Mar 2024 20:25:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="xFP4aJVG"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OZLyaMJz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44B073A1BB
-	for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 20:22:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 239B83A1A1
+	for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 20:25:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710102133; cv=none; b=T9Qz/vqlrnxI7Ev1Gt89alJBHMThvjqgHzEubiuqdRgbN+pSz/zR+Jy9TnvKhG1CMjqkQHiZ7s37iQ5NUJJbPAdfBBRmQjwK/n+8B+9l9vGw9SJVYF0uXd7wuem4TCfbdmacYteRwwsd0TrfFJ42k8atG8+OkicGT6YjZmP8Wwo=
+	t=1710102356; cv=none; b=R8scTu7JUKO6mZoz8Sjsa7Hnzxb2eJkWJvhjnKxfp1fLjx8SXN0X7WUJVAwIfC5Y+V2KZfRGHKPwdvRSHccRk3fJM7t57PjvHj0oJ4NLU0CjPUjAXIjHu7APA/PVQGMUSEZdcSuXrlZrnLYshEThSAwZSVokr8ZpvgI6W2Tez10=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710102133; c=relaxed/simple;
-	bh=o9SIpBod496TCXf9hkprvKa/SX2yV9yWsqEpQqjVfcs=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=PB0WnS78gm2DjWKMHX4uBkIoSyvG1NVxOJn0y9maeWgmPorxyCr/yaAWJ4yIeaLb5Ib6FzuCSv6KctduUchfRjWfq4aWY37nLRFGWwplRiZ664YopinfpDJCCUopanvW6eLaD/zm46QCDzUT7pemm4lIVdqyDI4GXbf9Y74RuOs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=xFP4aJVG; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id D84322C04C9;
-	Mon, 11 Mar 2024 09:22:01 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1710102121;
-	bh=o9SIpBod496TCXf9hkprvKa/SX2yV9yWsqEpQqjVfcs=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=xFP4aJVGu+YQtLyGlazQED5LYfQU+4uSS1cNjw776A6gCn3MU2m41DKEI0No7jGo7
-	 AWE5VC0H1xFfRRtUAxM/DXxtMOgw/UobcNNVVbBhpli0tHD5xIu2W7iEFANssD5wqf
-	 91kdWyiZeZZe/Xv1Rj/jHkl8QKYZ9HHNxW1IlTxa+H8zSWqrK83EnR3snG4y3Qu6SC
-	 jMxaj0jLmJ+YrkqWcH18zo0b7DZ6dC9Em3Kx5g15w2BvMUz2w25CYx/MkTFqQ8Wqkd
-	 mS9ltFQlZoSofUyTnypbYorSc8KjbTrqqBI4qACnUvzfXMUKfBWYLfVF21E1mh2VhR
-	 DR+eql2SWE5Dg==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65ee16690001>; Mon, 11 Mar 2024 09:22:01 +1300
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.1118.40; Mon, 11 Mar 2024 09:22:01 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.48; Mon, 11 Mar 2024 09:22:01 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.040; Mon, 11 Mar 2024 09:22:01 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Andy Shevchenko <andy.shevchenko@gmail.com>, Arnd Bergmann
-	<arnd@kernel.org>
-CC: Gregory Clement <gregory.clement@bootlin.com>, Andy Shevchenko
-	<andy@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth
-	<sebastian.hesselbarth@gmail.com>, Lee Jones <lee@kernel.org>,
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v5 3/3] ARM: dts: marvell: Add 7-segment LED display on
- x530
-Thread-Topic: [PATCH v5 3/3] ARM: dts: marvell: Add 7-segment LED display on
- x530
-Thread-Index: AQHacCEP50uDUqyXjk+YznxFpDHUm7EsnIcAgAAm+YCAAAZbAIAABFUAgAPI1gA=
-Date: Sun, 10 Mar 2024 20:22:01 +0000
-Message-ID: <6c3451ed-6346-45e2-940e-851cb99a1b63@alliedtelesis.co.nz>
-References: <20240306235021.976083-1-chris.packham@alliedtelesis.co.nz>
- <20240306235021.976083-4-chris.packham@alliedtelesis.co.nz>
- <87edclgoon.fsf@BL-laptop>
- <CAHp75VfmSWH3FWEHU+bGYDuo-nt1DJhY5Fvs83A-RGrtrsgWTw@mail.gmail.com>
- <8177b94d-82c9-42b6-85eb-728dec762162@app.fastmail.com>
- <CAHp75VfiaWFricM4Or771P0LJVoFoEmQtoJo1hySo=BRS-59DQ@mail.gmail.com>
-In-Reply-To: <CAHp75VfiaWFricM4Or771P0LJVoFoEmQtoJo1hySo=BRS-59DQ@mail.gmail.com>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D2BFEDE75258504288D9C927195E3235@atlnz.lc>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1710102356; c=relaxed/simple;
+	bh=EYjGNNG8efHsMEdoHDZT6FK9wsbSPSnLAW4TfAbv0fA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=KsnRvuO8E6MVjNTjPwU+BtXqXjQ7E8wn3Ik3fdaY1iuDR/qzOmPyZD0uMIQCD/XNPgVGHb7YiFgpC9619Varfer4076cz0HPpsEqDuB6cPHbjQvKMk+5Gp+9kRQvC8c6/i90+bfCMgVi4PhMMEthoz9LH/Kv6OWgZBGqTGXsIOI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OZLyaMJz; arc=none smtp.client-ip=209.85.128.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-4131ad76f05so15504465e9.0
+        for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 13:25:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710102352; x=1710707152; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EYjGNNG8efHsMEdoHDZT6FK9wsbSPSnLAW4TfAbv0fA=;
+        b=OZLyaMJz8QX5LSj+DykDQ5tgRwsKFiSoK2qbzTyB0hlAuKsWIs6dBA9nphuVdtHF9y
+         Gut2wx2yJOQBU4kqj41hu1Woc7alIHLYdn/9L449KRUIZ4mamB9D6IIIf+XGnUog3NSc
+         APQppyQhVbha66s+IQnWUTNAZupEdVb+r/WLpiAlF9eo5U+5/Dhq9ub7c8VIkXOpluQz
+         RUnyRop/FreEkWlblfRJGlWRO3tsyr/NdUWIfBc88E8Cq+tK+1OIiKke29u03GOo9q6U
+         wTUb7/tqsquRujdtd8MfzV6fkxe2G5zk+uqhHxzpPR5oGJJgqvqahxUN+FmwTQmZMxVi
+         sAJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710102352; x=1710707152;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EYjGNNG8efHsMEdoHDZT6FK9wsbSPSnLAW4TfAbv0fA=;
+        b=orh6hK1NnF6NEhDkv1k3t6+irA7uSai6C6I6+DrtLa+pphY3AhN1VNvEMor2r6xU/7
+         bkfefjrAV8Uzm23v4hsfuEstWMd5YM5+Mfhj6Wg8ltRE+8zkfKGoxhEpXFCDkEIuHOHt
+         YfyKRpEJOYnEYP0MuQqNpcwnOrhUn995xqZvsRTtRZ0R1bYPd39kZt9ergpDwhF7XjzQ
+         XdT4admtJZobnSuSMAVNVtIejFUTRNIEGkbnDkZS/G9v7eCJKzNG2WBjhdGKsFLHvBTb
+         FZFdZHLvJzoUewESyUtC3Kou0KHy1ptLaSVxPhWxUEXrGXNkmDKI3ACP1oHaeFOSsNpT
+         kYeg==
+X-Forwarded-Encrypted: i=1; AJvYcCX+JMzQxEf8f0TOigYvHtfuzCnAaPWRE6yAgG5nctbgUJiNs/f65NN6gD8qWOnPnJ0BgKertW3Dl2DXl7OXlX8938PpLNekVpPwnw==
+X-Gm-Message-State: AOJu0YwnS+qTB3rFJXmp2OKxhmou33cqeszakgyXXw1OKnSIwh3wjH3T
+	X403nVRuNSInEUdRCQzqwUqsPxwlQcG5qEEN8PMUC72KZ6AlCpIcwomS/hz7NpA=
+X-Google-Smtp-Source: AGHT+IFGrgq6LscZC8VYgp6hL5B+n1n+xj7P5oW/LKOqa2kOw9GOFPl1TOg/HdruezS77OMunL1OZQ==
+X-Received: by 2002:a05:600c:4515:b0:413:1319:a37 with SMTP id t21-20020a05600c451500b0041313190a37mr4485706wmo.41.1710102352225;
+        Sun, 10 Mar 2024 13:25:52 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id v9-20020a05600c470900b0041312e8ef2bsm6745898wmo.26.2024.03.10.13.25.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 10 Mar 2024 13:25:51 -0700 (PDT)
+Message-ID: <ba834984-d0d7-4b46-81f6-5a2df8e74944@linaro.org>
+Date: Sun, 10 Mar 2024 21:25:49 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65ee1669 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=K6JAEmCyrfEA:10 a=VwQbUJbxAAAA:8 a=P-IC7800AAAA:8 a=sQGCJnOpldAfCmytSDUA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22 a=d3PnA9EDa4IxuAV0gXij:22
-X-SEG-SpamProfiler-Score: 0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5] dt-bindings: imx-pata: Convert to dtschema
+Content-Language: en-US
+To: Animesh Agarwal <animeshagarwal28@gmail.com>
+Cc: Damien Le Moal <dlemoal@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>,
+ linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20240310171958.96388-1-animeshagarwal28@gmail.com>
+ <2b939f61-c8b9-4b41-a319-3bf7be42ba3e@linaro.org>
+ <CAE3Oz82coV5RgcRE=Lj5mm2kjdzh3iFJGpMBBw_OfZppfWAHfg@mail.gmail.com>
+ <d609c172-2bb3-479a-b5f2-841aed455bff@linaro.org>
+ <CAE3Oz80zrnLvpo=YdBA-3PAtJFP8KK4LGHpEpQaMCacFFG13Qg@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAE3Oz80zrnLvpo=YdBA-3PAtJFP8KK4LGHpEpQaMCacFFG13Qg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-DQpPbiA4LzAzLzI0IDIzOjM0LCBBbmR5IFNoZXZjaGVua28gd3JvdGU6DQo+IE9uIEZyaSwgTWFy
-IDgsIDIwMjQgYXQgMTI6MTnigK9QTSBBcm5kIEJlcmdtYW5uIDxhcm5kQGtlcm5lbC5vcmc+IHdy
-b3RlOg0KPj4gT24gRnJpLCBNYXIgOCwgMjAyNCwgYXQgMTA6NTYsIEFuZHkgU2hldmNoZW5rbyB3
-cm90ZToNCj4+PiBPbiBGcmksIE1hciA4LCAyMDI0IGF0IDk6MzbigK9BTSBHcmVnb3J5IENMRU1F
-TlQNCj4+PiA8Z3JlZ29yeS5jbGVtZW50QGJvb3RsaW4uY29tPiB3cm90ZToNCj4+Pj4gQ2hyaXMg
-UGFja2hhbSA8Y2hyaXMucGFja2hhbUBhbGxpZWR0ZWxlc2lzLmNvLm56PiB3cml0ZXM6DQo+Pj4+
-DQo+Pj4+PiBUaGUgQWxsaWVkIFRlbGVzaXMgeDUzMCBwcm9kdWN0cyBoYXZlIGEgNy1zZWdtZW50
-IExFRCBkaXNwbGF5IHdoaWNoIGlzDQo+Pj4+PiB1c2VkIGZvciBub2RlIGlkZW50aWZpY2F0aW9u
-IHdoZW4gdGhlIGRldmljZXMgYXJlIHN0YWNrZWQuIFJlcHJlc2VudA0KPj4+Pj4gdGhpcyBhcyBh
-IGdwaW8tNy1zZWdtZW50IGRldmljZS4NCj4+Pj4+DQo+Pj4+PiBTaWduZWQtb2ZmLWJ5OiBDaHJp
-cyBQYWNraGFtIDxjaHJpcy5wYWNraGFtQGFsbGllZHRlbGVzaXMuY28ubno+DQo+Pj4+IEFja2Vk
-LWJ5OiBHcmVnb3J5IENMRU1FTlQgPGdyZWdvcnkuY2xlbWVudEBib290bGluLmNvbT4NCj4+Pj4N
-Cj4+Pj4gTm9ybWFsbHksIHRoaXMgcGF0Y2ggc2hvdWxkIGJlIHRha2VuIGluIG12ZWJ1IGFuZCB0
-aGVuIG1lcmdlZCBieQ0KPj4+PiBhcm0tc29jLiBIb3dldmVyLCBJIGhhdmVuJ3Qgc2VlbiBhbnkg
-b3RoZXIgcGF0Y2ggdG91Y2hpbmcgdGhpcyBmaWxlIChzbw0KPj4+PiBubyByaXNrIG9mIG1lcmdl
-IGNvbmZsaWN0KSBhbmQgSSB0aGluayBpdCdzIHRvbyBsYXRlIGZvciBtZSB0byBtYWtlIGENCj4+
-Pj4gbmV3IHB1bGwgcmVxdWVzdCB0byBhcm0tc29jLiBTbyBJJ20gbm90IGFnYWluc3QgaXQgYmVp
-bmcgdGFrZW4gd2l0aCB0aGUNCj4+Pj4gcmVzdCBvZiB0aGUgcGF0Y2hlcy4gSG93ZXZlciwgSSB0
-aGluayBpdCB3b3VsZCBiZSBhIGdvb2QgaWRlYSB0byBzZWUNCj4+Pj4gd2hhdCBBcm5kIHRoaW5r
-cyBhYm91dCBpdC4NCj4+PiBBcm5kIHdhc24ndCBDYydlZCwgbm93IEkgYWRkZWQgaGltLg0KPj4g
-SSBhbHJlYWR5IGhhdmUgYSAnbGF0ZScgYnJhbmNoIGZvciBzdHVmZiB0aGF0IGZvciBzb21lIHJl
-YXNvbg0KPj4gd2FzIHRvbyBsYXRlIGJlIHBhcnQgb2YgdGhlIG5vcm1hbCBwdWxsIHJlcXVlc3Rz
-IGJ1dCBzaG91bGQNCj4+IHN0aWxsIG1ha2UgaXQgaW50byA2LjkuIElmIHRoaXMgb25lIGlzIGlt
-cG9ydGFudCwgSSBkb24ndA0KPj4gbWluZCB0YWtpbmcgaXQuDQo+Pg0KPj4gT24gdGhlIG90aGVy
-IGhhbmQsIGZyb20gdGhlIHBhdGNoIGRlc2NyaXB0aW9uIHRoaXMgb25lIGRvZXNuJ3QNCj4+IHNl
-ZW0gdGhhdCB1cmdlbnQsIHNvIEkgZG9uJ3Qgc2VlIG11Y2ggaGFybSBpbiBkZWxheWluZyBpdA0K
-Pj4gdG8gdjYuMTAsIGFuZCB1c2luZyB0aGUgbm9ybWFsIHByb2Nlc3MgZm9yIGl0Lg0KPiBUaGFu
-a3MsIEkgd2lsbCBkZWZlciB0aGlzIG9uZSB0aGVuLg0KPiBDaHJpcywgcGxlYXNlIGhhbmRsZSB0
-aGlzIG9uZSBhZnRlciB2Ni45LXJjMSBpcyBvdXQuIFRoZSBmaXJzdCB0d28gSSdtDQo+IGdvaW5n
-IHRvIHRha2UgdG9kYXkuDQo+DQpObyBwcm9ibGVtLiBJIGNhbiBzZW5kIHRoZSBkdHMgY2hhbmdl
-cyBzZXBhcmF0ZWx5Lg0KDQpGWUkgLi9zY3JpcHRzL2dldF9tYWludGFpbmVyLnBsIC1mIGFyY2gv
-YXJtL2Jvb3QvZHRzL21hcnZlbGwgaXNuJ3QgDQpwaWNraW5nIHVwIEFybmQgc2hvdWxkIGl0Pw0K
+On 10/03/2024 18:51, Animesh Agarwal wrote:
+> On Sun, Mar 10, 2024 at 11:08 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>> I did not say about subject, but about commit message.
+> Ok, I'll add commit message above the change log.
+
+What changelog? Read carefully what I asked you few versions ago:
+
+"Please explain the differences done during conversion in the commit
+msg. There was no imx51 compatible in the binding before."
+
+
+The differences from conversion. There was some binding in TXT and you
+convert to different format. You introduce changes beyond pure
+conversion, so this must be explained. Again: explain what changes are
+you making *to the binding*, which are not pure conversion, and why you
+are making them.
+
+Best regards,
+Krzysztof
+
 
