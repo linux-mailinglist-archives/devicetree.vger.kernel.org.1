@@ -1,103 +1,100 @@
-Return-Path: <devicetree+bounces-49711-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49712-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D80AE877787
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 16:52:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5824E8777A6
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 17:47:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F23B3281E5D
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 15:52:00 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6C67E1C20AA7
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 16:46:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 900E1381D1;
-	Sun, 10 Mar 2024 15:51:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 179CA33CC4;
+	Sun, 10 Mar 2024 16:46:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="iGwjMXeq"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="tynvjpkk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com [209.85.167.173])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1D2FC38384;
-	Sun, 10 Mar 2024 15:51:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.173
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DD8DF2BAE3;
+	Sun, 10 Mar 2024 16:46:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710085918; cv=none; b=nwbIyapQ2nX0ka7FReObnMiBNIErLf3PtRJHBfQ6qBbtE7LXAPgCazOEMu0rQ1wgfS5dXZYjdi/8hXZIWAsRkJNxqVXwMbIHHgL14QPpQ1N9Z03HfYM6Ev2VF37rAZfeCRnzS8R1gCj1lDxGed+ksT4DmXp4pSCScUvxgGS1ueE=
+	t=1710089216; cv=none; b=Rf9lhGq2lUqoO9qnNhsjUdS+6LzQV6dWQwgA37fFpyb6k6W29DQ7g1t70SWp8OhcAEP6NhA+TCZTbVEX8aj9nURbF7M5eT0A4sQXdpji98jqlo+mlMvhYJeFa+JkLi3bCuhqL76xMuqNjx+5AtsSLlv0I24ELQDODyElOyzlszU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710085918; c=relaxed/simple;
-	bh=FFd3DcW0VEW9q4PY+3fjis2BdSm7XjuFwi4yhcFrhU4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=XkytQcwVVL/MwiyFwpQ76ShjizoN4dUZXMLbcfD3YOurVgz8fbIkeWBI+8FOhHYZL5qBWUoLHqljCMzh81h5V3MbeORc+tgDtG6wRYm4q3611+3I6yje4w0Fqk6xPh4IfAIdqw3P3vpyLn9uefsswDNq3pteY6I55xnedDivwKY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=iGwjMXeq; arc=none smtp.client-ip=209.85.167.173
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oi1-f173.google.com with SMTP id 5614622812f47-3c19b7d9de7so2458735b6e.2;
-        Sun, 10 Mar 2024 08:51:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710085916; x=1710690716; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FFd3DcW0VEW9q4PY+3fjis2BdSm7XjuFwi4yhcFrhU4=;
-        b=iGwjMXeqR+K2iDCc7ClkRmXvKuOkF2A5SfK68aUgKeGOuTUO1zLrlKUcYGD/yVZoFe
-         16w1aE5XJTLBgxHEVV4OULwCfglx1G/hSRg/bwJGStGBg6+2AdifsJt37hlB2G7OHhoh
-         /9y1H4CfHo+i6cqekfOcIdGmWs6oh4rtVPhE9c6Rbk7FT6KKXLMhT62lUHGa/uG3Yg6e
-         lqhFa5WgQJZUsKKkZhwa4SI76OA786zvtQ7XbUszWkkg4PSaI0PudTXCiwt5rn2vr1XO
-         xXquW4EwfAZbKHaDyPGcKO5W4myseukLX627bzIhySCxa0vTg/yVpRP4EMNzR/TXJlLY
-         SeAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710085916; x=1710690716;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FFd3DcW0VEW9q4PY+3fjis2BdSm7XjuFwi4yhcFrhU4=;
-        b=a521Sp1PYfSjnib/X10VO/bNU+3C12k2ZPnJBIrsC2J01SFzK3dWneRxLqr/M2z+dr
-         KQrnXwmzlDlVMU24QMWEsGuaI2jsCiGi6u4Bof8DYNQ+vIji+f4LhiZdwia4GO13tlhg
-         anTkp2PzjF5i/OxWcC+eJiLNG+2BfPmBztxSGneodsSXFCgD0bVscO/FEL22lxv0htZS
-         TZRM5HnDS+KUJtY7Fnn1l+wKqvYu2R9JMa6L8ulnS5IRqHdzV/0wiPq56e6fQnS//V4K
-         o4IxA0nyrwbhlEbUB1UfeusStGeeMGaGaIsLo3Dr1w8IosWdAPxJd+Oi6CX500/y75XR
-         lPfg==
-X-Forwarded-Encrypted: i=1; AJvYcCUkh9Hx4hRUPwDLTFIk0dyyeg6y/7KEycNZDnZF+X7aV8wGAjrvWWe//P/aG2cy3YboE5wsDeSctqj6qipJ4vgEfrLFyzXv1s379QUokTeGoMj8RawmZ5zKSVbvY9rbX39vj+aAyjNgSLJzhEvTWRWp8WxSdpSD7dKVQEe7Zgm8c+KsPw==
-X-Gm-Message-State: AOJu0YwrhXKFd1gEyMVDWDer4E7NcdH0sOVviG7p0SQP5mgA/ZJEfcp5
-	QrT49KfkgM4nWI9LUtR9EctP2jNr+7myl5rl3jp/zrJwPinO1Ox1nheHCI7XdDQuseQwX+KIaE6
-	yN9NeMvvzO1vw/bmpQ0jYwagNy0E=
-X-Google-Smtp-Source: AGHT+IH/bPs+BskZRMjgFJT5/0kkUalFAj9DSG+q4hWz4JlMQZH0XKTvdFt9qWH5kpdERAjxBvzgZTImaONF2Unqsmo=
-X-Received: by 2002:a05:6871:5806:b0:21e:7b5c:60fb with SMTP id
- oj6-20020a056871580600b0021e7b5c60fbmr4348693oac.11.1710085916074; Sun, 10
- Mar 2024 08:51:56 -0700 (PDT)
+	s=arc-20240116; t=1710089216; c=relaxed/simple;
+	bh=YgFDGTSx8szIGlu041E7mSyIbrWzlKkD9Qxq+wJrHsw=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Zn9i4qe4ZR3eQLrUTQ93aySzsYnfOiTnIz4cZ1VAbtDmPR6gMhdoojkt34Lym1ItxnoBmKudSnRsopsPPMzQk0psU0oaDcCgAWp+yqe1pBiHkmpGucP4sG3i58mPq1//s6uZ79p46FYHVlYA18JWyL5CpqcdottJVUt6vSYKKfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=tynvjpkk; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E73EC433F1;
+	Sun, 10 Mar 2024 16:46:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710089215;
+	bh=YgFDGTSx8szIGlu041E7mSyIbrWzlKkD9Qxq+wJrHsw=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=tynvjpkkXKbP+NabRGe/Qm/Fy0xX1j8cRv8jvMBTWWOZrQBm6baax/G14ONlRIHyA
+	 gG+ZHJpOXFNMLs+zYzOaqXKRH3T9GOBwDsNl1okjfYicgARxFg9xhBwlsTW3ui2+Ok
+	 ZaKtB0A426aHie0Vka49lmlYiXxaZYZsn/9kd8UMUUGuWo7RC7T8gmkL6rUqdZmYaR
+	 bYk7cvgzA0fLQI5Cwc/ZAaHCKqGu1np7HrzLG+wis5vJA0W1U2dwYm1eXHY3TIu12z
+	 jnluNgec2SEVDrxZM1IS/5sqd7ZnDKOFznwi8pXvSy00UoZykCXm4zRQE+UCHWjptu
+	 rAtmsEb14vyBg==
+Date: Sun, 10 Mar 2024 22:16:51 +0530
+From: Vinod Koul <vkoul@kernel.org>
+To: Jakub Kicinski <kuba@kernel.org>
+Cc: Daniel Golle <daniel@makrotopia.org>,
+	Bc-bocun Chen <bc-bocun.chen@mediatek.com>,
+	Steven Liu <steven.liu@mediatek.com>,
+	John Crispin <john@phrozen.org>,
+	Chunfeng Yun <chunfeng.yun@mediatek.com>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Qingfang Deng <dqfext@gmail.com>,
+	SkyLake Huang <SkyLake.Huang@mediatek.com>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-phy@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	netdev@vger.kernel.org
+Subject: Re: [PATCH v3 2/2] phy: add driver for MediaTek XFI T-PHY
+Message-ID: <Ze3j-7WzbTM52kAs@matsya>
+References: <745f8b46f676e94c1a396df8c46aefe0e8b4771c.1707530671.git.daniel@makrotopia.org>
+ <3bb95f1d795eede63284dbcb224e06ea6886b421.1707530671.git.daniel@makrotopia.org>
+ <ZevJwSq-A43vqO6k@makrotopia.org>
+ <20240308193632.158b3c42@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240309160741.54096-1-animeshagarwal28@gmail.com>
- <a26689a4-1c8c-4458-bb82-137cd1ac21d0@linaro.org> <CAE3Oz80TByuu6=U4PTOHO6k1=KjjRKtPPf7ayhSMZareXP8vdw@mail.gmail.com>
- <6b065dce-5271-4ea0-b291-a7aae8e71d20@linaro.org> <CAE3Oz83uiCyxV3u1C-5=vmBt6RxnTM+LJCw4KWyJDB2OLn-dRw@mail.gmail.com>
- <f7d94072-eb4e-4d67-98d6-8090362a01e2@linaro.org>
-In-Reply-To: <f7d94072-eb4e-4d67-98d6-8090362a01e2@linaro.org>
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-Date: Sun, 10 Mar 2024 21:21:44 +0530
-Message-ID: <CAE3Oz81B6uhMu7B0S73Sd1jx-7JNhWoccDkFNn5L_PT+P_-2Rg@mail.gmail.com>
-Subject: Re: [PATCH v3] dt-bindings: imx-pata: Convert to dtschema
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Damien Le Moal <dlemoal@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
-	Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, 
-	NXP Linux Team <linux-imx@nxp.com>, linux-ide@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240308193632.158b3c42@kernel.org>
 
-On Sun, Mar 10, 2024 at 8:04=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> I don't see anything about this in commit msg. Commit msg is exactly the
-> same as before. Try yourself - use b4 shazam to apply your patch and see
-> if commit msg contains that information.
+On 08-03-24, 19:36, Jakub Kicinski wrote:
+> On Sat, 9 Mar 2024 02:30:25 +0000 Daniel Golle wrote:
+> > > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
+> > > Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>  
+> > 
+> > It's been a month since this patch was posted. Maybe it has somehow
+> > slipped under the table (or even under the carpet)?
 
-I will post patch v5 containing the proper explanation in the Change Log.
+Nope, somehow I dont have this in inbox, i think i have some issues with
+gmail and list server,
 
-> You mean v5? You need oneOf allowing usage of imx27 alone.
-Ok will modify this in patch v5
+> Lots of people in To:, lets direct the question to Vinod? 
+> Most active generic PHY maintainer according to git, Vinod?
+
+thanks for letting me know...
+I will review it in next few days (pulled it from lore using b4)
+
+-- 
+~Vinod
 
