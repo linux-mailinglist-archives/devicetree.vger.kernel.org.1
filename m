@@ -1,179 +1,110 @@
-Return-Path: <devicetree+bounces-49740-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49741-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 838698778A0
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 22:49:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A8752877924
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 00:08:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A3FF628141D
-	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 21:49:03 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D9711F21631
+	for <lists+devicetree@lfdr.de>; Sun, 10 Mar 2024 23:08:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6F4553A1DE;
-	Sun, 10 Mar 2024 21:49:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 62FED3BB22;
+	Sun, 10 Mar 2024 23:08:10 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EGQVc6i2"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="KooS23Bt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f172.google.com (mail-pl1-f172.google.com [209.85.214.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6E354200A6;
-	Sun, 10 Mar 2024 21:48:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3300B2D79D;
+	Sun, 10 Mar 2024 23:08:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710107341; cv=none; b=oDnGNrpkdnEHiv1mRDfKCojnRq/gzf7QkyFo4EyGeEuMPIoE6Twc+AZH42n/fOF2qPhshSlkGrbodMXiGA1U3481lcSYFpzwveL1+8GbLp4DlMFq0mlr4BLgCyd8r4MPCkiwirJ2kE4x4BrIs1REDkl9LDzcw3npB4G8BJHSmZs=
+	t=1710112090; cv=none; b=T/fcwDlZNTBnqu5TzP9GW8kd5rfH4M6asReaSSXVVWMyDvn8D27w4y+qO4d/XRu9gBq+Uk3H+aAMSLzUnM1jy04uBj6zpr/yEb2AA1i4Wd162lHzCPrpy0M+xUqx6TfZjAYkpTxI2RZ0pIPvj3bMQigh5MNHzqmefTUoqFWs6UY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710107341; c=relaxed/simple;
-	bh=uiNUIQwX6BYiGbEKIo6u+t0/etIbRR33V5TSPTk94m0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=SYKIs5ydFn0rpQMuIsp6Ux3M+sHgfeQwo1asr74tpf4NaM+jsUdFmcG7Jsb/WVkayvpBQM8HVlGdU3IIYeXzA5aO/xS7/Efa5e1JJNiGXBzHG4+G4OvyFbTDTO2YKGhdUCROTRMrw4O80A53TIT0q9z6gO/SP1DnUZmX2vOOpaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EGQVc6i2; arc=none smtp.client-ip=209.85.214.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f172.google.com with SMTP id d9443c01a7336-1dd68d4cff1so16395875ad.2;
-        Sun, 10 Mar 2024 14:48:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710107338; x=1710712138; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=peiS13bUuIETlTVlJrUnJS9cAypcX9YXgZEjm2ZHlXk=;
-        b=EGQVc6i2U7tItUa2Prnhd0di4K5hx19ZKfAM4A95LRb5bllQziS8Yv5sA6SaDJ+cZB
-         fJCc3O5K4GO1Qc3/SeP79oKt96JKvrqkaNOHUBkADrQYFtcCrVS/E9JKp6npfTcc55Y0
-         m/WuhA6asZpOO2Mc05Uf/5ARtNdH5Oy1rew/JukU98Eaz35W+GA9Zsab8W1aAu+THtJ5
-         DP+/GxSHb9a5vquYivEvwU2iM/oq57sdWSPpi0GteTPPHe2ob0ovffxsKEd5QsYYfSUO
-         zwMJk4Qx5n9sLbF/1qz6avXyIIN+VvBJ0Cv7j/53ya7tpUIq3CRdAVcT+kr3jTzfpyZe
-         6u8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710107338; x=1710712138;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=peiS13bUuIETlTVlJrUnJS9cAypcX9YXgZEjm2ZHlXk=;
-        b=hMJqZYJ+rokbgt02arEW39IiC17ArDzGno2UNWUeqdwl1uss8aQSVr95Wy3o51lhER
-         VETRrkyhBa/6dux+zXIHBW/NkHww7WK/Z8DFerB0stzpD/tcdCnoE5E+J8/q9Vd0ysXd
-         AfZCPiFt4EMo6gNP+jt7Qkwhnc9kZALTET+SEZVQM1Ap4JiZsGybDxKl7ZMCdNlk8tnc
-         RZnYVcGeeIpe4kLaEeUkSvZnw7ZLfVCZRi0GSBmCpAwKc2STZWzEoP4jLZjYg+muGpMl
-         vvC50EWqiCrdh4lHIyPEgvxkiDzxrhuNirdHAwf0Q3MNTZ9LzU0i/AG27sFsBUwyhQry
-         hGAQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVy1e/no/CCS/nnyCa3GSliKamgxdZN4oaNnHXqVpgqMBGhkj+T6XCB3AqzSyky4smZIs4/ymjArE3E1phNjbLGFuPUqPwR2ulLvDgIk4VIUdoN441fahY6w57qKTLCEVhwqtiFeTJ57z46ndviH4A2nHGzabjvvXm/enezBkotq1KCugUAMpYRMlxExZ/rYVRFP9WIEvLBDDKijL8WVzQq9x8=
-X-Gm-Message-State: AOJu0Ywoj0EvC7WuJ4d6x8+/jVPbyAns8T6ZdUyN3+w9OTGkAdFUYdf2
-	yCc7MApmopr377EhrSD3AqNQ+f9M3T0lRSVBn49p2++Kq2MM67enkkghRCeI
-X-Google-Smtp-Source: AGHT+IEWxxer7+GvZpSyC+KpPXhxra7vrWGJ3a2rsApHjdYvzkJ+rmWD+x1uxlAnk84alJSOjVn32w==
-X-Received: by 2002:a17:902:e5ca:b0:1dd:a36e:3204 with SMTP id u10-20020a170902e5ca00b001dda36e3204mr47580plf.67.1710107338535;
-        Sun, 10 Mar 2024 14:48:58 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:fa9b:d52c:840:abd4])
-        by smtp.gmail.com with ESMTPSA id n9-20020a170902e54900b001d949393c50sm3120067plf.187.2024.03.10.14.48.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 10 Mar 2024 14:48:58 -0700 (PDT)
-Date: Sun, 10 Mar 2024 14:48:55 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Karel Balej <karelb@gimli.ms.mff.cuni.cz>, Lee Jones <lee@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [RFC PATCH v3 4/5] input: add onkey driver for Marvell 88PM886
- PMIC
-Message-ID: <Ze4qx9KQEPU9U8JN@google.com>
-References: <20240303101506.4187-1-karelb@gimli.ms.mff.cuni.cz>
- <20240303101506.4187-5-karelb@gimli.ms.mff.cuni.cz>
- <ZeTgEmjJc_VhYpLm@google.com>
- <CZL8ZSZAVEBI.349BV2Y6AKIPN@gimli.ms.mff.cuni.cz>
- <ZeZxI_spu4vwxrs7@google.com>
- <CZQ1EP61IDOC.1PPYGMIOINGND@gimli.ms.mff.cuni.cz>
- <3601a374-4161-40e1-8a80-9bbfdae5bd8a@linaro.org>
+	s=arc-20240116; t=1710112090; c=relaxed/simple;
+	bh=d05Fp+Mo/IaC9ODFAJs9AlyX2mCgDDPAW1Bffk8Q1ew=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=B9jPrL+sOU1Y0T4gQRV6KqE+E00Rnz4J4ziuN6QzjlB/nohyza/YzBq+oqKJFQaJeStQFjpwLzU1pqx+oXMKevrbvjz4YyisSkj9CCOGTNLvi84aA+5CrvsJeqVqmToCyzSO6sFJRZXnuuRRjIJafS5Oq/WRQrbh2tBk9uXD2JA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=KooS23Bt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48689C433C7;
+	Sun, 10 Mar 2024 23:08:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710112089;
+	bh=d05Fp+Mo/IaC9ODFAJs9AlyX2mCgDDPAW1Bffk8Q1ew=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=KooS23BtfwsQkI+LoKt/DY+PM6e4ICbv06YlI/qpQAWVPkTzfyveU6fSwrqdexrSS
+	 XhGr8SjauYU123WRnmfFMDjSQ8GD/6y7slMsNjadRi7wnlKVRw3GuVLj4VJpDvbHuk
+	 d6sT7oRI9MRzSZRbeYYntTuOnjb18o57wUTsPooaXQanuS8nbGQImWSWYpLwFEl+nv
+	 XSaNvajsBbqdyD/ba5qp6NjSpIYtPpFhxUW+9+Olz/HYUOphVEsnSgBsX31EE3QGph
+	 2BA+LWrxi1H8S4P3oZ6zr8tbHSCy6Jb+LvuqQLI+5ebWVSG1flF7UkLBf/vVwGvWbx
+	 acqRDnsJhf9iw==
+Date: Sun, 10 Mar 2024 17:08:07 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3601a374-4161-40e1-8a80-9bbfdae5bd8a@linaro.org>
+From: Rob Herring <robh@kernel.org>
+To: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+Cc: "David S. Miller" <davem@davemloft.net>, 
+ Paolo Abeni <pabeni@redhat.com>, Eric Dumazet <edumazet@google.com>, 
+ Vladimir Oltean <olteanv@gmail.com>, Andrew Lunn <andrew@lunn.ch>, 
+ Linus Walleij <linus.walleij@linaro.org>, 
+ Florian Fainelli <f.fainelli@gmail.com>, Jakub Kicinski <kuba@kernel.org>, 
+ devicetree@vger.kernel.org, 
+ =?utf-8?q?Alvin_=C5=A0ipraga?= <alsi@bang-olufsen.dk>, 
+ linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+In-Reply-To: <20240310-realtek-led-v1-1-4d9813ce938e@gmail.com>
+References: <20240310-realtek-led-v1-0-4d9813ce938e@gmail.com>
+ <20240310-realtek-led-v1-1-4d9813ce938e@gmail.com>
+Message-Id: <171011208646.4168843.11425236211455218194.robh@kernel.org>
+Subject: Re: [PATCH net-next 1/4] dt-bindings: net: dsa: realtek: describe
+ LED usage
 
-On Sun, Mar 10, 2024 at 09:35:36PM +0100, Krzysztof Kozlowski wrote:
-> On 10/03/2024 12:35, Karel Balej wrote:
-> > Dmitry Torokhov, 2024-03-04T17:10:59-08:00:
-> >> On Mon, Mar 04, 2024 at 09:28:45PM +0100, Karel Balej wrote:
-> >>> Dmitry,
-> >>>
-> >>> Dmitry Torokhov, 2024-03-03T12:39:46-08:00:
-> >>>> On Sun, Mar 03, 2024 at 11:04:25AM +0100, Karel Balej wrote:
-> >>>>> From: Karel Balej <balejk@matfyz.cz>
-> >>>>>
-> >>>>> Marvell 88PM886 PMIC provides onkey among other things. Add client
-> >>>>> driver to handle it. The driver currently only provides a basic support
-> >>>>> omitting additional functions found in the vendor version, such as long
-> >>>>> onkey and GPIO integration.
-> >>>>>
-> >>>>> Signed-off-by: Karel Balej <balejk@matfyz.cz>
-> >>>>> ---
-> >>>>>
-> >>>>> Notes:
-> >>>>>     RFC v3:
-> >>>>>     - Drop wakeup-source.
-> >>>>>     RFC v2:
-> >>>>>     - Address Dmitry's feedback:
-> >>>>>       - Sort includes alphabetically.
-> >>>>>       - Drop onkey->irq.
-> >>>>>       - ret -> err in irq_handler and no initialization.
-> >>>>>       - Break long lines and other formatting.
-> >>>>>       - Do not clobber platform_get_irq error.
-> >>>>>       - Do not set device parent manually.
-> >>>>>       - Use input_set_capability.
-> >>>>>       - Use the wakeup-source DT property.
-> >>>>>       - Drop of_match_table.
-> >>>>
-> >>>> I only said that you should not be using of_match_ptr(), but you still
-> >>>> need to have of_match_table set and have MODULE_DEVICE_TABLE() for the
-> >>>> proper module loading support.
-> >>>
-> >>> I removed of_match_table because I no longer need compatible for this --
-> >>> there are no device tree properties and the driver is being instantiated
-> >>> by the MFD driver.
-> >>>
-> >>> Is the MODULE_DEVICE_TABLE() entry needed for the driver to probe when
-> >>> compiled as module? If that is the case, given what I write above, am I
-> >>> correct that MODULE_DEVICE_TABLE(platform,...) would be the right thing
-> >>> to use here?
-> >>
-> >> Yes, if uevent generated for the device is "platform:<name>" then
-> >> MODULE_DEVICE_TABLE(platform,...) will suffice. I am not sure how MFD
-> >> sets it up (OF modalias or platform), but you should be able to check
-> >> the format looking at the "uevent" attribute for your device in sysfs
-> >> (/sys/devices/bus/platform/...). 
-> > 
-> > The uevent is indeed platform.
-> > 
-> > But since there is only one device, perhaps having a device table is
-> > superfluous and using `MODULE_ALIAS("platform:88pm886-onkey")` is more
-> > fitting?
+
+On Sun, 10 Mar 2024 01:51:58 -0300, Luiz Angelo Daros de Luca wrote:
+> Each port can have up to 4 LEDs (3 for current rtl8365mb devices). The
+> LED reg property will indicate its LED group.
 > 
-> Adding aliases for standard IDs and standard cases is almost never
-> correct. If you need module alias, it means your ID table is wrong (or
-> missing, which is usually wrong).
+> An example of LED usage was included in an existing switch example.
 > 
-> > 
-> > Although I don't understand why this is even necessary when the driver
-> > name is such and the module is registered using
-> > `module_platform_driver`...
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Luiz Angelo Daros de Luca <luizluca@gmail.com>
+> ---
+>  .../devicetree/bindings/net/dsa/realtek.yaml       | 46 ++++++++++++++++++++++
+>  1 file changed, 46 insertions(+)
 > 
-> ID table and MODULE_DEVICE_TABLE() are necessary for modprobe to work.
-> Just run `modinfo`.
 
-MODULE_DEVICE_TABLE() and MODULE_ALIAS() reduce to the same thing, but I
-agree that we should not try to be too clever and simply use the ID
-table.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-Thanks.
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/net/dsa/realtek.yaml:121:15: [error] string value is redundantly quoted with any quotes (quoted-strings)
+./Documentation/devicetree/bindings/net/dsa/realtek.yaml:131:23: [error] string value is redundantly quoted with any quotes (quoted-strings)
 
--- 
-Dmitry
+dtschema/dtc warnings/errors:
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240310-realtek-led-v1-1-4d9813ce938e@gmail.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
 
