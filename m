@@ -1,167 +1,165 @@
-Return-Path: <devicetree+bounces-49783-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49784-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1D30877CC8
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 10:32:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA74F877D21
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 10:43:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7BFE0280F34
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 09:32:55 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 604291F2131C
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 09:43:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C555517577;
-	Mon, 11 Mar 2024 09:32:51 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E085224F2;
+	Mon, 11 Mar 2024 09:43:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UGB3Cmkd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B217B846F;
-	Mon, 11 Mar 2024 09:32:49 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB3F418643;
+	Mon, 11 Mar 2024 09:43:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710149571; cv=none; b=MFrnsOgPwXB/QdCd0Tjsl36zncNS5A4U3EGxR5NJhD+5vDmlPsUnYAc7ZXyBa+ZD4Zie40xYrlsp5KOcvlnESpbQlOZVsLHzMzZHAuIr77fpko+l+0iYBm13Bn5VbJCefkxFYb5OKaC0iO+qUUhTmtU+j81w7A+XgK2S/DCwcNk=
+	t=1710150217; cv=none; b=DviIpv71tQjTn16cyFVhzkbrZVlrSnFtfOkuaKB1TDXyDh14Gy+TH3QIDfl1Hnrn58hgLi/wxnZzvYkfrVEo+akoNHa10hgoQXSw0HGC1YgEt6ktxWrlXMHmVl0QoaUGzzBvp+mYySq635B4wy7d5F4UXVM51Rh2MZ8KJ6aYxo8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710149571; c=relaxed/simple;
-	bh=9L2q8IWV8ciQU7w9cR8aXQ1J7WBFC0RkSMlR3McwBrs=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=sJ/+noiBEfpU69f3D7JAhr6xBjwa1NjKTtjVqiGB3/dFXVAZiUutEG7XXYhl5AYVnrMsaLV+yY7Dl4qI1yDxt4k757HPYKzVdEP+6EQaSNK4HMXDDowudQoFVvViU/wPUqRFReI0YVPlJ47ESordNAWoEwClP4anp96heVjH4Bo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-60a0579a968so25962967b3.3;
-        Mon, 11 Mar 2024 02:32:49 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710149568; x=1710754368;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=bxkLql1J93Mj1S+moTpzlL/UTwnc20Dr8uURDPyQWRY=;
-        b=GQM48t4VJwD98RuStFJcH1/SI6FBRjluhxpVpmceVNxEUE3mrb33aMddlriHi2JVqI
-         fVx9D+LIwKMszpSNhbqEZXPEiRXPTa3PmH0nIardKADo+3cbYdauJkFRsTZdFZGjqdy4
-         2pOLN5xbOdUZLSRcTcs1FJmx3Qjh7cv3pSE3aQ+54A5i8uZRB+df+czICciKL5YpTETp
-         8wrPkaaV+VMbqOmUirm5RjiFxLHleqfyIL7ptj113L20nVMJLlu+ftXyZkeyRaTSG8BW
-         9GKkORpwzAY3vtPVs+TO7lcoLJ1PxavgTz5BGdc/Pe6e3l+i752RJmLkAEWPlp35/XU8
-         ULdg==
-X-Forwarded-Encrypted: i=1; AJvYcCVvryNmtV7ZG5qEGaMUDjbhlgRLGFEZsDUfdBRiJAfETfzVLbAsmVekRNRsacr+dGfzpTy3Qw+BG7qwdoGW53u+9tkTxi3WTv6bugIFmVjhIoEUz8jBEYFavfeYTs7fUEdB1tn2V4DSAQEEjaH3VJ6kbJKUfLqnv5lSS6pUISn8Fj1zmqb6
-X-Gm-Message-State: AOJu0YwKlQ5s5sySVQV78h4o5rJ2NrVR87DAcJZLUtlp8nbM9wUt7JCE
-	YUqbiV8waXvVZDgmdv33G7QFqvQ0IDpMkjX6FaO87IZkoKsKU3GkltSdJyPcTco=
-X-Google-Smtp-Source: AGHT+IGiewMNPKo0jbS3DwptKzblyLhRkes4n5Qt9fCQLcYwDs/NSYoOirsIlf128gpiUHJVYgimlg==
-X-Received: by 2002:a0d:f244:0:b0:609:f353:d2ef with SMTP id b65-20020a0df244000000b00609f353d2efmr6057697ywf.38.1710149567838;
-        Mon, 11 Mar 2024 02:32:47 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id p68-20020a819847000000b00609b391fa12sm1250535ywg.123.2024.03.11.02.32.47
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Mar 2024 02:32:47 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dc6d8bd612dso3958715276.1;
-        Mon, 11 Mar 2024 02:32:47 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCXIryBadGVJ2whXDLdTtMevNR+hNssmG1XAKrrN1l8wmh7xlg6JyTnzopdHWvVNh1AfuIxVuft1sGnucrB201wLOrl8IiAwT8GpqH9DeilS4OCDPeBPEceKqo4CztEfCy4RBAWOAgkZ/RoBovXr8RWtK5bxQFfsXimT4y1K5g4mZuUQenV9
-X-Received: by 2002:a25:8541:0:b0:dd0:6f7:bc3b with SMTP id
- f1-20020a258541000000b00dd006f7bc3bmr3592307ybn.10.1710149567490; Mon, 11 Mar
- 2024 02:32:47 -0700 (PDT)
+	s=arc-20240116; t=1710150217; c=relaxed/simple;
+	bh=yZ/RL5rPhH6GHVbkcDcntpSmzaRjN/cJqLI09syrTFs=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=c6jKjspgJfwfs6YN4NUB9M/Cdjd51bLgfe5NsRb5PsPVqpHoxqAfH+88brs5ag6gYnsppHJ5qK7mkccebKe5VrPDow+iSil8hfkJ51gcsrKX8sbaSQHy5rDCLm3U6BlzHJW/j/7EXV+snR0ATFKlKWuPUb/57SRbeWUiW3Pjts0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UGB3Cmkd; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42B8keQm007298;
+	Mon, 11 Mar 2024 09:43:30 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=SFVtr80gevnNIuE5evsZ9LlEeRl9dJRRHh5XOFnOAVA=; b=UG
+	B3Cmkd8GemGH8u1/A4LYvmozRboChSSGCvXodP4duKtkmhITajfd8yhYgyce7LCW
+	JWAlBVuzUSv0Kv/hDCDs0kU+l1NK+MCz7owSZCZOGzNfbE5CWLtGlYrvcV87JbJl
+	qnNa9pwmlYJ+O5gqY/S3K1fIb5Cdx7aDZ2h+sxiWKaOZOUoA5iPj8JJTjZmFiTjF
+	R/Rhci8ZyQOrWDE8Sn3tKyysRo/ljMfZ8ik7XlkcP23V5Eyj6YNsch9xQirvBcKf
+	9vObSaeBesVwI/gON1/3Az17Cz6EeRudBPnIkC1vINyaGtoRPXhe7pROzk3XR5gB
+	czz2DVYxBBxiRixCaVyQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wsxr1r3pn-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Mar 2024 09:43:30 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42B9hTUb031093
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Mar 2024 09:43:29 GMT
+Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 11 Mar
+ 2024 02:43:24 -0700
+Message-ID: <2b512404-bc56-41b8-89aa-dcbb23d7b2bd@quicinc.com>
+Date: Mon, 11 Mar 2024 17:43:22 +0800
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240309155334.1310262-1-niklas.soderlund+renesas@ragnatech.se> <20240309155334.1310262-3-niklas.soderlund+renesas@ragnatech.se>
-In-Reply-To: <20240309155334.1310262-3-niklas.soderlund+renesas@ragnatech.se>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Mon, 11 Mar 2024 10:32:35 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVRftTVMmnBX9YH50jau-GJEM+Lmq8tVh2ynrCRsZU46g@mail.gmail.com>
-Message-ID: <CAMuHMdVRftTVMmnBX9YH50jau-GJEM+Lmq8tVh2ynrCRsZU46g@mail.gmail.com>
-Subject: Re: [net-next 2/2] ravb: Add support for an optional MDIO mode
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Sergey Shtylyov <s.shtylyov@omp.ru>, "David S. Miller" <davem@davemloft.net>, 
-	Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>, 
-	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>, Biju Das <biju.das.jz@bp.renesas.com>, 
-	netdev@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: update compatible name
+ for match with driver
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Linus Walleij
+	<linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <kernel@quicinc.com>
+References: <20240129092512.23602-1-quic_tengfan@quicinc.com>
+ <20240129092512.23602-2-quic_tengfan@quicinc.com>
+ <CAL_JsqJfsWaj9OPkvc34rBvx7W_3v9+1kZqNu6QKDsA=iWAA4w@mail.gmail.com>
+ <CAL_JsqLbbRFijBXS5CyRm0P4FMY7bR3UUdgXA7xP4Z1oRevnzQ@mail.gmail.com>
+ <CACRpkdZ3uhyTnF7YkMk9sOeJJFZ4UPEna7PwpqPeBpWDdAmayA@mail.gmail.com>
+ <e828b14c-7a09-479a-bf60-0c16571f133f@quicinc.com>
+ <abebde71-ac9f-434b-b48b-6567308a2873@linaro.org>
+From: Tengfei Fan <quic_tengfan@quicinc.com>
+In-Reply-To: <abebde71-ac9f-434b-b48b-6567308a2873@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Cjeu1d7LmgJkYQ-PZ_VARWc6RnxpHCap
+X-Proofpoint-ORIG-GUID: Cjeu1d7LmgJkYQ-PZ_VARWc6RnxpHCap
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-11_06,2024-03-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
+ malwarescore=0 clxscore=1015 adultscore=0 spamscore=0 lowpriorityscore=0
+ mlxlogscore=999 bulkscore=0 phishscore=0 priorityscore=1501 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
+ definitions=main-2403110072
 
-Hi Niklas,
 
-On Sat, Mar 9, 2024 at 4:55=E2=80=AFPM Niklas S=C3=B6derlund
-<niklas.soderlund+renesas@ragnatech.se> wrote:
-> The driver used the OF node of the device itself when registering the
-> MDIO bus. While this works it creates a problem, it forces any MDIO bus
-> properties to also be set on the devices OF node. This mixes the
-> properties of two distinctly different things and is confusing.
->
-> This change adds support for an optional mdio node to be defined as a
-> child to the device OF node. The child node can then be used to describe
-> MDIO bus properties that the MDIO core can act on when registering the
-> bus.
->
-> If no mdio child node is found the driver fallback to the old behavior
-> and register the MDIO bus using the device OF node. This change is
-> backward compatible with old bindings in use.
->
-> Signed-off-by: Niklas S=C3=B6derlund <niklas.soderlund+renesas@ragnatech.=
-se>
 
-Thanks for your patch!
+On 3/11/2024 2:48 PM, Krzysztof Kozlowski wrote:
+> On 11/03/2024 03:27, Tengfei Fan wrote:
+>>
+>>
+>> On 3/10/2024 7:44 AM, Linus Walleij wrote:
+>>> On Fri, Mar 8, 2024 at 9:10 PM Rob Herring <robh+dt@kernel.org> wrote:
+>>>> On Tue, Feb 27, 2024 at 7:37 AM Rob Herring <robh+dt@kernel.org> wrote:
+>>>>> On Mon, Jan 29, 2024 at 3:25 AM Tengfei Fan <quic_tengfan@quicinc.com> wrote:
+>>>>>>
+>>>>>> Use compatible name "qcom,sm4450-tlmm" instead of "qcom,sm4450-pinctrl"
+>>>>>> to match the compatible name in sm4450 pinctrl driver.
+>>>>>>
+>>>>>> Fixes: 7bf8b78f86db ("dt-bindings: pinctrl: qcom: Add SM4450 pinctrl")
+>>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>>>>> ---
+>>>>>>    Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml | 2 +-
+>>>>>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+>>>>>> index bb08ca5a1509..bb675c8ec220 100644
+>>>>>> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
+>>>>>> @@ -17,7 +17,7 @@ allOf:
+>>>>>>
+>>>>>>    properties:
+>>>>>>      compatible:
+>>>>>> -    const: qcom,sm4450-pinctrl
+>>>>>> +    const: qcom,sm4450-tlmm
+>>>>>
+>>>>> I think you forgot to update the example:
+>>>>>
+>>>>> Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.example.dtb:
+>>>>> /example-0/pinctrl@f100000: failed to match any schema with
+>>>>> compatible: ['qcom,sm4450-tlmm']
+>>>>
+>>>> Still a warning in linux-next. Please send a fix.
+>>>
+>>> I understand it as applying 1/2 is the fix so I applied it.
+>>
+>> I will check this warning, and I will fix it.
+> 
+> Now? We were all waiting for you to respond here without any effect, so
+> finally I asked Linus to take the patch. In the future, be responsible
+> for your patches and comments happening to them. The same if your
+> applied commit causes issues in the next.
 
-> --- a/drivers/net/ethernet/renesas/ravb_main.c
-> +++ b/drivers/net/ethernet/renesas/ravb_main.c
-> @@ -2582,8 +2583,20 @@ static int ravb_mdio_init(struct ravb_private *pri=
-v)
->         snprintf(priv->mii_bus->id, MII_BUS_ID_SIZE, "%s-%x",
->                  pdev->name, pdev->id);
->
-> -       /* Register MDIO bus */
-> -       error =3D of_mdiobus_register(priv->mii_bus, dev->of_node);
-> +       /* Register MDIO bus
-> +        *
-> +        * Look for a mdio child node, if it exist use it when registerin=
-g the
-> +        * MDIO bus. If no node is found fallback to old behavior and use=
- the
-> +        * device OF node. This is used to be able to describe MDIO bus
-> +        * properties that are consumed when registering the MDIO bus.
-> +        */
-> +       mdio_node =3D of_get_child_by_name(dev->of_node, "mdio");
-> +       if (mdio_node) {
-> +               error =3D of_mdiobus_register(priv->mii_bus, mdio_node);
-> +               of_node_put(mdio_node);
-> +       } else {
-> +               error =3D of_mdiobus_register(priv->mii_bus, dev->of_node=
-);
-> +       }
->         if (error)
->                 goto out_free_bus;
->
+I will speed up the upstream work of the sm4450.
+Before that, I had been focusing on the work of AIM300.
 
-Perhaps the code should be streamlined for the modern case?
+> 
+> Best regards,
+> Krzysztof
+> 
 
-        mdio_node =3D of_get_child_by_name(dev->of_node, "mdio");
-        if (!mdio_node) {
-                /* backwards compatibility for DT lacking mdio subnode */
-                mdio_node =3D of_node_get(dev->of_node);
-        }
-
-        error =3D of_mdiobus_register(priv->mii_bus, mdio_node);
-        of_node_put(mdio_node);
-
-When deemed necessary, you can easily replace the backwards
-compatibility handling by error handling later.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+-- 
+Thx and BRs,
+Tengfei Fan
 
