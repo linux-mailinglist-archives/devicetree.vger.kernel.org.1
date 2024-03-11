@@ -1,113 +1,391 @@
-Return-Path: <devicetree+bounces-49901-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49902-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C0548786FF
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 19:08:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id A45B2878718
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 19:14:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E3C1F28120A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 18:08:20 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id F3740B20F79
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 18:14:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E8BF52F61;
-	Mon, 11 Mar 2024 18:08:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCA9C535C6;
+	Mon, 11 Mar 2024 18:14:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Uo9vuj8g"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="RkrS8WAq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A157B5675F
-	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 18:08:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9AC973BB29;
+	Mon, 11 Mar 2024 18:14:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710180494; cv=none; b=JaZCoIDBsKM1OvlwLCmT8LrHWL8jnU6LvFXRfCgPdK0/GfaafzUodcH6wtwyGVEdKqH07GVzye/s14ywounGau9SdCp8CvaJ++GVTDlQm3lOKCdolqfrAQe8wewwzav4SriMF9Gw5PcRbn70PNqOR/JGEDRNM7WleztmUAY3ENU=
+	t=1710180884; cv=none; b=Ijeq6SzVz8P87ZABTdxWAw7hwAmrdpgV187Dip+gxGVjR32sSUfLkmRyNBJG0BsbejWFVEqgsPyAXBfprTgwkA6bvXyHGb6Jn1BkwyeBpjf91kedkbEyijNAs5dO3zPJ4VH4FVlW0mGS1mrEkA7ugG5ZXHlSlIQCyTqh0+vAMos=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710180494; c=relaxed/simple;
-	bh=Cmko//sBJYEqC6CF+c84J08C8jz6SB2p1fGLA87CQjs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UVOEUoOmWrl5Sf/seNQA+xDjb+rgzFYLYLgua3kMiP6Iv+wPGHIkzomhoF8ZI0bt9RLll/5s49U1sK+nUSvN+oqN5U6hqBqoEC/rSj7sFYdDfJxzl5eNMjGsA5BgLLC/QJpX/47zzFEPd7QrCcxArsLT27KEvGyIt85u6FLlWSs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Uo9vuj8g; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-51325c38d10so5617803e87.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 11:08:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710180491; x=1710785291; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GdAvpgJ6KgtulG4GgWKU8j8WvSWhLjlXYs9zNUw6VUE=;
-        b=Uo9vuj8gwrHx/bvSppMS/FxpZC+4jLr/WPNPa71Okf6H5teaCrQc1XixnzJgm/LbY9
-         07zyHy14VPNN2zNpgb5m+189VFhfHAgC4zu8n5HFgpnphTGOR9N1LVsnc8acLCPkhSAT
-         LyLY54BBFjMYpvD+eVa3tx6Hah+T38P132/GE5ffg5ZaBNE5OzRFPwdNMpc2PQtQUKrC
-         TkybuDKbDfx3FG8FGImwaniKNUPlBELcrMHY/7eVfAfOWd0LEyGoi0H7sH4cg0hnT1J1
-         i0sBHoAg3uQsACWRCmgmm5s5VmFF/zXsR4AFegH5UZKiNhpChWZAiErW4Ud0CJ3L0QA5
-         8HaQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710180491; x=1710785291;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GdAvpgJ6KgtulG4GgWKU8j8WvSWhLjlXYs9zNUw6VUE=;
-        b=sMHTrfIh1ZYmnClGhiy1K1mYup77tQVTzE9TPgbHl7D7xiamyWFTX+pxcOVU/3num1
-         AbSX0jVwq2ZQMSbuh+ZZLo0aCZI44WTm8QVb9b78OpYRd4aNZAOSXfjpJrNXfDAAW3Hs
-         9/OwyD9IBmxYo7fT0h3om/c/7utjwWCP+g1uaYwgcqiaKZ9vaibSi9NwkRvU9S1EVBmb
-         gXp/wdYHGvoIbItJom+DGUidSyVbDqRW2jOGmuiZS4uwylVZJMR/FhCQIGtculQBu49G
-         wnypjfWadBkZOrSqpwDstEfSWSoweKxc4qgnIyOOP3NJM+2O4oV1JT5e0xJjDIxd0YY4
-         FNZA==
-X-Forwarded-Encrypted: i=1; AJvYcCX9SdvcxC7qWs/O1jxY4LA2zskYoKcvwZ/h3umQKzVRtOduxF9+TdoVDs04TDEycohF+/dJTgD5MpvSMIAzFXbHKgnHs3gfM6iTwQ==
-X-Gm-Message-State: AOJu0YwQ0k0GGRjkaRBhDA+xzfbB+jweONE7K4zlYcraQhmtZ8yIgp/7
-	hvqPjWvrMnV3xY1Na8VnegUC4O+iln4ba4rTdhQ98+2ZQf49M8zxyv0UmVKmzw0=
-X-Google-Smtp-Source: AGHT+IGWxtUfvowwbYHZ81ILlBPneI8LPDnoaGfZGl2zcauoCYrxYCX6xPC0K5XwQynu0RSwe2iq1Q==
-X-Received: by 2002:a05:6512:476:b0:513:9be7:7112 with SMTP id x22-20020a056512047600b005139be77112mr2399808lfd.29.1710180490668;
-        Mon, 11 Mar 2024 11:08:10 -0700 (PDT)
-Received: from [172.30.205.61] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id k22-20020ac24f16000000b00513b61bc392sm11724lfr.2.2024.03.11.11.08.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Mar 2024 11:08:10 -0700 (PDT)
-Message-ID: <e19ca61f-894e-40c8-86b9-dbd42df4aa46@linaro.org>
-Date: Mon, 11 Mar 2024 19:08:06 +0100
+	s=arc-20240116; t=1710180884; c=relaxed/simple;
+	bh=lSb+0tXHRomol4V2KClwntyt4wRb4xhImCPl/rB2eLY=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=BIY0Me3S5f1jPyGyN1TPirz7QQfAbe08eVYWfctC3YHCfa++5UdAQ/tkA+h+lcyJlJ4eUtDMHdOq9G9nMWHMNaABu7wg9t6y1VC2LMs/TzWDiq+Wlg0OEuSpUZBnmw/pTqllcR7CQjPWa/hNvdwglaMV5DIZiVg3mD8N5UHdiZ8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=RkrS8WAq; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F3981C433C7;
+	Mon, 11 Mar 2024 18:14:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710180884;
+	bh=lSb+0tXHRomol4V2KClwntyt4wRb4xhImCPl/rB2eLY=;
+	h=From:To:Cc:Subject:Date:From;
+	b=RkrS8WAqZ1r7vlKZX76iYcSMNFGFY0Ks5GoarLClo3QV0hoJm3lWU1ljpRn+8eZKR
+	 kIZz+z1Y8ietMv3O1Wg8mcdhTAC9rSxJWrH9RBac9LO/g1/PNJTvqMMZhy+jHP1lsq
+	 +YGqOvmrXFDBF8hNn+BkD1v2MjXLMvhodlHq7Hd7/u8A//3QudyV0TpvK21RELAv6u
+	 gOpVQiGXZIzjgmzQw57w3RqfviPxZejdu/m+uKmhQ9cQlIZuQ6bJD9cdsje3lCOKKr
+	 IyWjpPeCX2zR+4NKYulBM8MuVPy+nlihsaDUigiomdneqFNyJCQn02E5f/pbt1OJLv
+	 EDlqGVH5Bb99w==
+From: Rob Herring <robh@kernel.org>
+To: Oreoluwa Babatunde <quic_obabatun@quicinc.com>,
+	Saravana Kannan <saravanak@google.com>
+Cc: devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] of: Move all FDT reserved-memory handling into of_reserved_mem.c
+Date: Mon, 11 Mar 2024 12:13:03 -0600
+Message-ID: <20240311181303.1516514-2-robh@kernel.org>
+X-Mailer: git-send-email 2.43.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] clk: qcom: camcc-x1e80100: Set titan_top_gdsc as the
- parent GDSC of subordinate GDSCs
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Abel Vesa <abel.vesa@linaro.org>, Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240311-linux-next-camcc-fixes-v1-0-d126ae0b9350@linaro.org>
- <20240311-linux-next-camcc-fixes-v1-2-d126ae0b9350@linaro.org>
-Content-Language: en-US
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240311-linux-next-camcc-fixes-v1-2-d126ae0b9350@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
+The split of /reserved-memory handling between fdt.c and
+of_reserved_mem.c makes for reading and restructuring the code
+difficult. As of_reserved_mem.c is only built for
+CONFIG_OF_EARLY_FLATTREE already, move all the code to one spot.
 
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+Oreoluwa, Please rebase your series on top of this.
 
-On 3/11/24 01:33, Bryan O'Donoghue wrote:
-> The Titan TOP GDSC is the parent GDSC for all other GDSCs in the CAMCC
-> block. None of the subordinate blocks will switch on without the parent
-> GDSC switched on.
-> 
-> Fixes: 76126a5129b5 ("clk: qcom: Add camcc clock driver for x1e80100")
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
+ drivers/of/fdt.c             | 123 +---------------------------------
+ drivers/of/of_private.h      |   5 +-
+ drivers/of/of_reserved_mem.c | 125 ++++++++++++++++++++++++++++++++++-
+ 3 files changed, 127 insertions(+), 126 deletions(-)
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index e5a385285149..a8a04f27915b 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -17,7 +17,6 @@
+ #include <linux/mutex.h>
+ #include <linux/of.h>
+ #include <linux/of_fdt.h>
+-#include <linux/of_reserved_mem.h>
+ #include <linux/sizes.h>
+ #include <linux/string.h>
+ #include <linux/errno.h>
+@@ -88,7 +87,7 @@ void __init of_fdt_limit_memory(int limit)
+ 	}
+ }
+ 
+-static bool of_fdt_device_is_available(const void *blob, unsigned long node)
++bool of_fdt_device_is_available(const void *blob, unsigned long node)
+ {
+ 	const char *status = fdt_getprop(blob, node, "status", NULL);
+ 
+@@ -484,126 +483,6 @@ void *initial_boot_params __ro_after_init;
+ 
+ static u32 of_fdt_crc32;
+ 
+-static int __init early_init_dt_reserve_memory(phys_addr_t base,
+-					       phys_addr_t size, bool nomap)
+-{
+-	if (nomap) {
+-		/*
+-		 * If the memory is already reserved (by another region), we
+-		 * should not allow it to be marked nomap, but don't worry
+-		 * if the region isn't memory as it won't be mapped.
+-		 */
+-		if (memblock_overlaps_region(&memblock.memory, base, size) &&
+-		    memblock_is_region_reserved(base, size))
+-			return -EBUSY;
+-
+-		return memblock_mark_nomap(base, size);
+-	}
+-	return memblock_reserve(base, size);
+-}
+-
+-/*
+- * __reserved_mem_reserve_reg() - reserve all memory described in 'reg' property
+- */
+-static int __init __reserved_mem_reserve_reg(unsigned long node,
+-					     const char *uname)
+-{
+-	int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
+-	phys_addr_t base, size;
+-	int len;
+-	const __be32 *prop;
+-	int first = 1;
+-	bool nomap;
+-
+-	prop = of_get_flat_dt_prop(node, "reg", &len);
+-	if (!prop)
+-		return -ENOENT;
+-
+-	if (len && len % t_len != 0) {
+-		pr_err("Reserved memory: invalid reg property in '%s', skipping node.\n",
+-		       uname);
+-		return -EINVAL;
+-	}
+-
+-	nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
+-
+-	while (len >= t_len) {
+-		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
+-		size = dt_mem_next_cell(dt_root_size_cells, &prop);
+-
+-		if (size &&
+-		    early_init_dt_reserve_memory(base, size, nomap) == 0)
+-			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
+-				uname, &base, (unsigned long)(size / SZ_1M));
+-		else
+-			pr_err("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
+-			       uname, &base, (unsigned long)(size / SZ_1M));
+-
+-		len -= t_len;
+-		if (first) {
+-			fdt_reserved_mem_save_node(node, uname, base, size);
+-			first = 0;
+-		}
+-	}
+-	return 0;
+-}
+-
+-/*
+- * __reserved_mem_check_root() - check if #size-cells, #address-cells provided
+- * in /reserved-memory matches the values supported by the current implementation,
+- * also check if ranges property has been provided
+- */
+-static int __init __reserved_mem_check_root(unsigned long node)
+-{
+-	const __be32 *prop;
+-
+-	prop = of_get_flat_dt_prop(node, "#size-cells", NULL);
+-	if (!prop || be32_to_cpup(prop) != dt_root_size_cells)
+-		return -EINVAL;
+-
+-	prop = of_get_flat_dt_prop(node, "#address-cells", NULL);
+-	if (!prop || be32_to_cpup(prop) != dt_root_addr_cells)
+-		return -EINVAL;
+-
+-	prop = of_get_flat_dt_prop(node, "ranges", NULL);
+-	if (!prop)
+-		return -EINVAL;
+-	return 0;
+-}
+-
+-/*
+- * fdt_scan_reserved_mem() - scan a single FDT node for reserved memory
+- */
+-static int __init fdt_scan_reserved_mem(void)
+-{
+-	int node, child;
+-	const void *fdt = initial_boot_params;
+-
+-	node = fdt_path_offset(fdt, "/reserved-memory");
+-	if (node < 0)
+-		return -ENODEV;
+-
+-	if (__reserved_mem_check_root(node) != 0) {
+-		pr_err("Reserved memory: unsupported node format, ignoring\n");
+-		return -EINVAL;
+-	}
+-
+-	fdt_for_each_subnode(child, fdt, node) {
+-		const char *uname;
+-		int err;
+-
+-		if (!of_fdt_device_is_available(fdt, child))
+-			continue;
+-
+-		uname = fdt_get_name(fdt, child, NULL);
+-
+-		err = __reserved_mem_reserve_reg(child, uname);
+-		if (err == -ENOENT && of_get_flat_dt_prop(child, "size", NULL))
+-			fdt_reserved_mem_save_node(child, uname, 0, 0);
+-	}
+-	return 0;
+-}
+-
+ /*
+  * fdt_reserve_elfcorehdr() - reserves memory for elf core header
+  *
+diff --git a/drivers/of/of_private.h b/drivers/of/of_private.h
+index f38397c7b582..485483524b7f 100644
+--- a/drivers/of/of_private.h
++++ b/drivers/of/of_private.h
+@@ -175,8 +175,9 @@ static inline struct device_node *__of_get_dma_parent(const struct device_node *
+ }
+ #endif
+ 
++int fdt_scan_reserved_mem(void);
+ void fdt_init_reserved_mem(void);
+-void fdt_reserved_mem_save_node(unsigned long node, const char *uname,
+-			       phys_addr_t base, phys_addr_t size);
++
++bool of_fdt_device_is_available(const void *blob, unsigned long node);
+ 
+ #endif /* _LINUX_OF_PRIVATE_H */
+diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+index 7ec94cfcbddb..8236ecae2953 100644
+--- a/drivers/of/of_reserved_mem.c
++++ b/drivers/of/of_reserved_mem.c
+@@ -12,6 +12,7 @@
+ #define pr_fmt(fmt)	"OF: reserved mem: " fmt
+ 
+ #include <linux/err.h>
++#include <linux/libfdt.h>
+ #include <linux/of.h>
+ #include <linux/of_fdt.h>
+ #include <linux/of_platform.h>
+@@ -58,8 +59,8 @@ static int __init early_init_dt_alloc_reserved_memory_arch(phys_addr_t size,
+ /*
+  * fdt_reserved_mem_save_node() - save fdt node for second pass initialization
+  */
+-void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
+-				      phys_addr_t base, phys_addr_t size)
++static void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
++					      phys_addr_t base, phys_addr_t size)
+ {
+ 	struct reserved_mem *rmem = &reserved_mem[reserved_mem_count];
+ 
+@@ -77,6 +78,126 @@ void __init fdt_reserved_mem_save_node(unsigned long node, const char *uname,
+ 	return;
+ }
+ 
++static int __init early_init_dt_reserve_memory(phys_addr_t base,
++					       phys_addr_t size, bool nomap)
++{
++	if (nomap) {
++		/*
++		 * If the memory is already reserved (by another region), we
++		 * should not allow it to be marked nomap, but don't worry
++		 * if the region isn't memory as it won't be mapped.
++		 */
++		if (memblock_overlaps_region(&memblock.memory, base, size) &&
++		    memblock_is_region_reserved(base, size))
++			return -EBUSY;
++
++		return memblock_mark_nomap(base, size);
++	}
++	return memblock_reserve(base, size);
++}
++
++/*
++ * __reserved_mem_reserve_reg() - reserve all memory described in 'reg' property
++ */
++static int __init __reserved_mem_reserve_reg(unsigned long node,
++					     const char *uname)
++{
++	int t_len = (dt_root_addr_cells + dt_root_size_cells) * sizeof(__be32);
++	phys_addr_t base, size;
++	int len;
++	const __be32 *prop;
++	int first = 1;
++	bool nomap;
++
++	prop = of_get_flat_dt_prop(node, "reg", &len);
++	if (!prop)
++		return -ENOENT;
++
++	if (len && len % t_len != 0) {
++		pr_err("Reserved memory: invalid reg property in '%s', skipping node.\n",
++		       uname);
++		return -EINVAL;
++	}
++
++	nomap = of_get_flat_dt_prop(node, "no-map", NULL) != NULL;
++
++	while (len >= t_len) {
++		base = dt_mem_next_cell(dt_root_addr_cells, &prop);
++		size = dt_mem_next_cell(dt_root_size_cells, &prop);
++
++		if (size &&
++		    early_init_dt_reserve_memory(base, size, nomap) == 0)
++			pr_debug("Reserved memory: reserved region for node '%s': base %pa, size %lu MiB\n",
++				uname, &base, (unsigned long)(size / SZ_1M));
++		else
++			pr_err("Reserved memory: failed to reserve memory for node '%s': base %pa, size %lu MiB\n",
++			       uname, &base, (unsigned long)(size / SZ_1M));
++
++		len -= t_len;
++		if (first) {
++			fdt_reserved_mem_save_node(node, uname, base, size);
++			first = 0;
++		}
++	}
++	return 0;
++}
++
++/*
++ * __reserved_mem_check_root() - check if #size-cells, #address-cells provided
++ * in /reserved-memory matches the values supported by the current implementation,
++ * also check if ranges property has been provided
++ */
++static int __init __reserved_mem_check_root(unsigned long node)
++{
++	const __be32 *prop;
++
++	prop = of_get_flat_dt_prop(node, "#size-cells", NULL);
++	if (!prop || be32_to_cpup(prop) != dt_root_size_cells)
++		return -EINVAL;
++
++	prop = of_get_flat_dt_prop(node, "#address-cells", NULL);
++	if (!prop || be32_to_cpup(prop) != dt_root_addr_cells)
++		return -EINVAL;
++
++	prop = of_get_flat_dt_prop(node, "ranges", NULL);
++	if (!prop)
++		return -EINVAL;
++	return 0;
++}
++
++/*
++ * fdt_scan_reserved_mem() - scan a single FDT node for reserved memory
++ */
++int __init fdt_scan_reserved_mem(void)
++{
++	int node, child;
++	const void *fdt = initial_boot_params;
++
++	node = fdt_path_offset(fdt, "/reserved-memory");
++	if (node < 0)
++		return -ENODEV;
++
++	if (__reserved_mem_check_root(node) != 0) {
++		pr_err("Reserved memory: unsupported node format, ignoring\n");
++		return -EINVAL;
++	}
++
++	fdt_for_each_subnode(child, fdt, node) {
++		const char *uname;
++		int err;
++
++		if (!of_fdt_device_is_available(fdt, child))
++			continue;
++
++		uname = fdt_get_name(fdt, child, NULL);
++
++		err = __reserved_mem_reserve_reg(child, uname);
++		if (err == -ENOENT && of_get_flat_dt_prop(child, "size", NULL))
++			fdt_reserved_mem_save_node(child, uname, 0, 0);
++	}
++	return 0;
++}
++
+ /*
+  * __reserved_mem_alloc_in_range() - allocate reserved memory described with
+  *	'alloc-ranges'. Choose bottom-up/top-down depending on nearby existing
+-- 
+2.43.0
 
-Konrad
 
