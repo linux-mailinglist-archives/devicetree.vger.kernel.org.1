@@ -1,233 +1,143 @@
-Return-Path: <devicetree+bounces-49839-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49840-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 849B1877FBD
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 13:12:57 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3740B877FC5
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 13:15:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A7CFE1C21595
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 12:12:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 693D91C20AE8
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 12:15:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABB103D566;
-	Mon, 11 Mar 2024 12:12:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4DA073BBF7;
+	Mon, 11 Mar 2024 12:15:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="VtMkRhEH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="D41e5qru"
 X-Original-To: devicetree@vger.kernel.org
-Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com [209.85.128.172])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6BB533D0A3;
-	Mon, 11 Mar 2024 12:12:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.16
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A3C52F519
+	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 12:15:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710159154; cv=none; b=enTuLry7kKOLm45kp6DFo8ZCARYN+fI5iVJsq5OSi5//SLRofIqHKbYfGLq9PVivIGpJyquSFPEgDhv/3uiQVDi2Rvcaj0fcilpSfRZwwV5wDhfBhDoN31g8Sm62oDW9slyI4oYNbRBO+PL3wc4OaRIUpz/omBqd9Y5z6mQlXFU=
+	t=1710159306; cv=none; b=AYTdmjTxcPQLbhndaFizBp+hkL0dRrisg0M9gGAtUtWlgmY1tKtZsQiGj+l5ddWOlBXc18813pD5AS+lxz0fLtvzMt4s1VdaW0lXWyLjjKglPzDX81n8NYWcR5p0gARLylAHXR6v5htuFWfqrJ0HQxdK8b5nK8UoBh2s6psRC0w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710159154; c=relaxed/simple;
-	bh=U3LEf9gcvb9qBbv5Ydgi8wGMo6Un0VZqLowtuSb4FXg=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:To:From:
-	 References:In-Reply-To; b=UzcQFgCAQMxTuS583AJ62K5hWatLc1Ajoj/QN1gTNC596dsEvLkil0gbEUKxMdy674w9Lu6MfmH4ElI0CgnrZjiqHWGA+wrSHZEJd3QNF1C/WG7uCLraeezGK0rjSFrS05fUxZDxf/ySG9ZRliLsKeIfPASZq+fnLEW0cle1R04=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz; dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b=VtMkRhEH; arc=none smtp.client-ip=195.113.20.16
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
-Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
-	(No client certificate requested)
-	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id 306782846EE;
-	Mon, 11 Mar 2024 13:12:22 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
-	s=gen1; t=1710159142;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=f513oSfKIQNBl+NCiBkqWypTWrkqtfFoWPWTNimurcI=;
-	b=VtMkRhEH7lirmCfZ6lq4ZfqNkpmbutYBTmxMKv7B6+8uy+PWmIJVGoz6aUTKckFA49V3Uk
-	xVqZGtc6OGuS8HS+HgMFhiZtlj0iG+MVG56uUx5hgHXDPJI4HrXs9NorCIl7GCXZRkbOf5
-	yrsggvESPQo1v7rVvqmYvy1Ueh/JOsQ=
-Received: from localhost (koleje-wifi-0013.koleje.cuni.cz [78.128.191.13])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	(Authenticated sender: karelb)
-	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 0C223459710;
-	Mon, 11 Mar 2024 13:12:22 +0100 (CET)
+	s=arc-20240116; t=1710159306; c=relaxed/simple;
+	bh=GO3ULI7mQTnxS7jSG4txYsGJozwzQMjf/RmiaZbYSNs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=JZE+3KKlxIaKJFO9XowwqEHvzZqNzy/hoU/eizjGws4yIi1JeDfZwn0RtHIwC0NdvkcJYaakox45R78g0GLTRVMiDPmDlQlRjaRWVqEczM3nRMpqT8db75lAX2HIZ0ZDoOlCiKV1zrzP+4T8SIvq/COr2wfgSAZtqoIS7weW0Rw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=D41e5qru; arc=none smtp.client-ip=209.85.128.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f172.google.com with SMTP id 00721157ae682-609eb87a847so31805657b3.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 05:15:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710159304; x=1710764104; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ztprHDXJluvRreDSSFUYa4qqYh/2UMDCZbLeEgV3a7g=;
+        b=D41e5qruE08HfVMPlt3NvNBCAI3C0+CaXCXDTQdowHGUgFzon6kwWudOlzQow9PFWL
+         VZn7QkXPZ0sSoNc6CfD0dUdARWDKIf5pDN1hRh0URNJF9P2tAb+2dK8RrZoAbtyYx+f9
+         uVq/63x9VLve38VnaGkHqqs5antV+9T231c4v7Ehxnd8DCHzqRh3C8icCCUlLxJAzo5x
+         oPoI+EK8X1Wtav+ygWN04JfIyfiTLcILy253q8ZJzib/D6Pf4EJlhdHmOPSJLwS9MOGv
+         lUvXNVLjA+FlWZ0lokvky63N/dn+h9nGUawjRLGxufBtLiACJ7wJOGadbNz5Kq6ycODa
+         3MaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710159304; x=1710764104;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ztprHDXJluvRreDSSFUYa4qqYh/2UMDCZbLeEgV3a7g=;
+        b=s0tk3YpMjjY38Rm7IRDTjMlvO1TSiwbPaDjwUv6uMw54PS4u08WG8PMxAdLE4WAo74
+         Hn8DrI6p77ugjTUVCntDR5LLssK32IBjl3U4EP3OOYDw1yuXv8xTsk6uFrQkHCk583po
+         XyQTGNKhTOCltMQKou2iEndqKJ1O3p7Tr6paKtbemjsJEtFhOzLLNbcu6WTi861Mvmav
+         LeheT0ARMOmmJmIV8711qNLWRlDfeDIpCFFlCl5PcAnvwzwT3CMQVdpZ8gjC7C2bcWfH
+         Qwziws6QY2wilikVB18hwYn6n8XK/DRSISu8UBUTHBTzhU9ISbwYBB1ffhY3zisRdCCK
+         aJPA==
+X-Forwarded-Encrypted: i=1; AJvYcCUdW280zqbrocQHTEM9CbTVY0lhIJiqglf1ymku1O5gRPnY0aPVKv9d17SeO2RqzH3b8S6L7QLzPd6i4o/1+nT3OuWtFhsftVGU+A==
+X-Gm-Message-State: AOJu0YzGtMt+fwD6Fe62O1viI1g9gXGX9xwVvs/6XzJ7TADTLjYdTE3Q
+	be+VwiZbZlxSCynC6ISX1N2oaUQz2LNouWC1MKKuV8nK5zbzneHjGe5ijb1oVYinUH8TEqbnj7J
+	ZCD/wrhKgmsXJzeXbGjOgolaTZ3+jaiqa26n0Dg==
+X-Google-Smtp-Source: AGHT+IHynY17WGsLOoumjxLnrUnR73bC37OcgOsdC+TFcMmdjQ0BKIKC6gkzEtM9/PBYdXA556baFQ8iNcTay77a0Sg=
+X-Received: by 2002:a0d:f247:0:b0:609:ddf0:9545 with SMTP id
+ b68-20020a0df247000000b00609ddf09545mr3723247ywf.22.1710159303730; Mon, 11
+ Mar 2024 05:15:03 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 11 Mar 2024 13:12:58 +0100
-Message-Id: <CZQWU0R0G7NS.3JP4FRKAPOLIY@gimli.ms.mff.cuni.cz>
-Cc: "Lee Jones" <lee@kernel.org>, "Rob Herring" <robh+dt@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Liam Girdwood" <lgirdwood@gmail.com>, "Mark Brown"
- <broonie@kernel.org>, <devicetree@vger.kernel.org>,
- <linux-kernel@vger.kernel.org>, <linux-input@vger.kernel.org>,
- =?utf-8?q?Duje_Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
- <~postmarketos/upstreaming@lists.sr.ht>, <phone-devel@vger.kernel.org>
-Subject: Re: [RFC PATCH v3 4/5] input: add onkey driver for Marvell 88PM886
- PMIC
-To: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>, "Dmitry
- Torokhov" <dmitry.torokhov@gmail.com>
-From: "Karel Balej" <karelb@gimli.ms.mff.cuni.cz>
-References: <20240303101506.4187-1-karelb@gimli.ms.mff.cuni.cz>
- <20240303101506.4187-5-karelb@gimli.ms.mff.cuni.cz>
- <ZeTgEmjJc_VhYpLm@google.com>
- <CZL8ZSZAVEBI.349BV2Y6AKIPN@gimli.ms.mff.cuni.cz>
- <ZeZxI_spu4vwxrs7@google.com>
- <CZQ1EP61IDOC.1PPYGMIOINGND@gimli.ms.mff.cuni.cz>
- <3601a374-4161-40e1-8a80-9bbfdae5bd8a@linaro.org>
- <CZQUKBQF1GZ9.3RSNW5WQBU9L6@gimli.ms.mff.cuni.cz>
- <ce1cac6f-afb9-4388-b709-bfaee0feb525@linaro.org>
-In-Reply-To: <ce1cac6f-afb9-4388-b709-bfaee0feb525@linaro.org>
+MIME-Version: 1.0
+References: <20240311120859.18489-1-quic_kbajaj@quicinc.com> <20240311120859.18489-3-quic_kbajaj@quicinc.com>
+In-Reply-To: <20240311120859.18489-3-quic_kbajaj@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Mon, 11 Mar 2024 14:14:52 +0200
+Message-ID: <CAA8EJpqMWBWAEUCiJXm0x7zjZYbP8SkRDgu+w+goYjB=8JBN0A@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: qdu1000-idp: enable USB nodes
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, Amrit Anand <quic_amrianan@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
 
-Krzysztof Kozlowski, 2024-03-11T11:41:53+01:00:
-> On 11/03/2024 11:26, Karel Balej wrote:
-> > Krzysztof Kozlowski, 2024-03-10T21:35:36+01:00:
-> >> On 10/03/2024 12:35, Karel Balej wrote:
-> >>> Dmitry Torokhov, 2024-03-04T17:10:59-08:00:
-> >>>> On Mon, Mar 04, 2024 at 09:28:45PM +0100, Karel Balej wrote:
-> >>>>> Dmitry,
-> >>>>>
-> >>>>> Dmitry Torokhov, 2024-03-03T12:39:46-08:00:
-> >>>>>> On Sun, Mar 03, 2024 at 11:04:25AM +0100, Karel Balej wrote:
-> >>>>>>> From: Karel Balej <balejk@matfyz.cz>
-> >>>>>>>
-> >>>>>>> Marvell 88PM886 PMIC provides onkey among other things. Add clien=
-t
-> >>>>>>> driver to handle it. The driver currently only provides a basic s=
-upport
-> >>>>>>> omitting additional functions found in the vendor version, such a=
-s long
-> >>>>>>> onkey and GPIO integration.
-> >>>>>>>
-> >>>>>>> Signed-off-by: Karel Balej <balejk@matfyz.cz>
-> >>>>>>> ---
-> >>>>>>>
-> >>>>>>> Notes:
-> >>>>>>>     RFC v3:
-> >>>>>>>     - Drop wakeup-source.
-> >>>>>>>     RFC v2:
-> >>>>>>>     - Address Dmitry's feedback:
-> >>>>>>>       - Sort includes alphabetically.
-> >>>>>>>       - Drop onkey->irq.
-> >>>>>>>       - ret -> err in irq_handler and no initialization.
-> >>>>>>>       - Break long lines and other formatting.
-> >>>>>>>       - Do not clobber platform_get_irq error.
-> >>>>>>>       - Do not set device parent manually.
-> >>>>>>>       - Use input_set_capability.
-> >>>>>>>       - Use the wakeup-source DT property.
-> >>>>>>>       - Drop of_match_table.
-> >>>>>>
-> >>>>>> I only said that you should not be using of_match_ptr(), but you s=
-till
-> >>>>>> need to have of_match_table set and have MODULE_DEVICE_TABLE() for=
- the
-> >>>>>> proper module loading support.
-> >>>>>
-> >>>>> I removed of_match_table because I no longer need compatible for th=
-is --
-> >>>>> there are no device tree properties and the driver is being instant=
-iated
-> >>>>> by the MFD driver.
-> >>>>>
-> >>>>> Is the MODULE_DEVICE_TABLE() entry needed for the driver to probe w=
-hen
-> >>>>> compiled as module? If that is the case, given what I write above, =
-am I
-> >>>>> correct that MODULE_DEVICE_TABLE(platform,...) would be the right t=
-hing
-> >>>>> to use here?
-> >>>>
-> >>>> Yes, if uevent generated for the device is "platform:<name>" then
-> >>>> MODULE_DEVICE_TABLE(platform,...) will suffice. I am not sure how MF=
-D
-> >>>> sets it up (OF modalias or platform), but you should be able to chec=
-k
-> >>>> the format looking at the "uevent" attribute for your device in sysf=
-s
-> >>>> (/sys/devices/bus/platform/...).=20
-> >>>
-> >>> The uevent is indeed platform.
-> >>>
-> >>> But since there is only one device, perhaps having a device table is
-> >>> superfluous and using `MODULE_ALIAS("platform:88pm886-onkey")` is mor=
-e
-> >>> fitting?
-> >>
-> >> Adding aliases for standard IDs and standard cases is almost never
-> >> correct. If you need module alias, it means your ID table is wrong (or
-> >> missing, which is usually wrong).
-> >>
-> >>>
-> >>> Although I don't understand why this is even necessary when the drive=
-r
-> >>> name is such and the module is registered using
-> >>> `module_platform_driver`...
-> >>
-> >> ID table and MODULE_DEVICE_TABLE() are necessary for modprobe to work.
-> >=20
-> > I think I understand the practical reasons. My point was that I would
-> > expect the alias to be added automatically even in the case that the
-> > device table is absent based solely on the driver name and the
-> > registration method (*module*_*platform*_driver). Why is that not the
-> > case? Obviously the driver name matching the mfd_cell name is sufficien=
-t
+On Mon, 11 Mar 2024 at 14:10, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
 >
-> You mean add it automatically by macro-magic based on presence of
-> id_table and/or of_match_table?
+> Enable both USB controllers and associated hsphy and qmp phy nodes
+> on QDU1000 IDP.
+>
+> Co-developed-by: Amrit Anand <quic_amrianan@quicinc.com>
+> Signed-off-by: Amrit Anand <quic_amrianan@quicinc.com>
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> ---
+>  arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> index 89b84fb0f70a..126bc71afd90 100644
+> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> @@ -500,3 +500,27 @@ &tlmm {
+>  &uart7 {
+>         status = "okay";
+>  };
+> +
+> +&usb_1 {
+> +       status = "okay";
+> +};
+> +
+> +&usb_1_dwc3 {
+> +       dr_mode = "peripheral";
 
-Yes, that plus: if id_table is present, use that for module aliases,
-otherwise use driver name. In fact, I checked the platform core and it
-seems to proceed in exactly this way when determining whether there is a
-match. And while autoloading and probing are two different things, I
-assume that we always want to consider a module for autoloading when we
-know that it will probe because we have a compatible device.
+Are these ports really peripheral-only?
 
-> That's a good question. I cannot find answer why not, except that maybe
-> no one ever wrote it...
+> +       maximum-speed = "high-speed";
+> +};
+> +
+> +&usb_1_hsphy {
+> +       vdda-pll-supply = <&vreg_l8a_0p91>;
+> +       vdda18-supply = <&vreg_l14a_1p8>;
+> +       vdda33-supply = <&vreg_l2a_2p3>;
+> +
+> +       status = "okay";
+> +};
+> +
+> +&usb_1_qmpphy {
+> +       vdda-phy-supply = <&vreg_l8a_0p91>;
+> +       vdda-pll-supply = <&vreg_l3a_1p2>;
+> +
+> +       status = "okay";
+> +};
+> --
+> 2.42.0
 >
 >
-> > for the driver to probe when it is built in so the name does seem to
-> > serve as some identification for the device just as a device table entr=
-y
-> > would.
-> >=20
-> > Furthermore, drivers/input/serio/ioc3kbd.c does not seem to have an ID
-> > table either, nor a MODULE_ALIAS -- is that a mistake? If not, what
-> > mechanism causes the driver to probe when compiled as a module? It seem=
-s
->
-> You are now mixing two different things: probing of driver (so bind) and
-> module auto-loading.
 
-Yes, sorry, I meant autoloading.
 
-> Probing is done also by driver name. Auto-loading,
-> not sure, maybe by name as well?
-
-Well probably not, otherwise it would work here too, no? Unless there
-are some fundamental differences in this between PCI and platform
-drivers. But the input driver is platform too and is required through
-the MFD cell, so I think it should be the same scenario.
-
-> However it is also likely that
-> auto-loading is broken. Several drivers had such issues in the past.
-
-OK, I see, thank you. I think this was the main source of my confusion
-because I looked at other drivers for reference when trying to
-understand which properties (name/device table) are necessary for what
-action (probing/autoloading).
-
-> Best regards,
-> Krzysztof
-
-Thank you again, kind regards,
-K. B.
+-- 
+With best wishes
+Dmitry
 
