@@ -1,139 +1,161 @@
-Return-Path: <devicetree+bounces-49771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49767-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 499A0877BDD
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 09:45:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3618877BC7
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 09:40:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id F26971F219F2
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 08:45:00 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 821B31F21880
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 08:40:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9DD15125B2;
-	Mon, 11 Mar 2024 08:44:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C80BA12B83;
+	Mon, 11 Mar 2024 08:40:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LeZgrurt"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="ZjQNn69y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from EUR04-HE1-obe.outbound.protection.outlook.com (mail-he1eur04on2050.outbound.protection.outlook.com [40.107.7.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 745C711C92;
-	Mon, 11 Mar 2024 08:44:58 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710146698; cv=none; b=UVPneohNXpZiHtM2bHFCg9Yp2BbTIOzymqDV4CVWFJuy01sz2xUZ8YJK49Jo2+MSWtstwTLaazLi0O4zEgfzaEw6BdKVgA0vim7nVPCuhimGtBLtyUNNv47oXuITdILf7buoUJzHswSR6NhVPY1oeTDWh1idlHXguKekMCZyZc0=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710146698; c=relaxed/simple;
-	bh=JZieu3zU1s4uVfTI4Zgzi+WlM1F7Ie9p1d0FIqjXRiM=;
-	h=Content-Type:Date:Message-Id:Subject:Cc:From:To:References:
-	 In-Reply-To; b=AWp6TOPRP58bo71ss8GV3dX1q7wacziAqr/KidaEdYDOVBUuQVbFgxO6msJXKgzPOt6J2aLL2l/cv8MeqSp8wLSwf9P54is818N8CnDstWdWSAoFIicFL50REzJ4vF73KrVYxQeOLsfYvo97U/cVnEaKFokmif+d/f7MAaNVMzI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LeZgrurt; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 75B7BC433F1;
-	Mon, 11 Mar 2024 08:44:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710146697;
-	bh=JZieu3zU1s4uVfTI4Zgzi+WlM1F7Ie9p1d0FIqjXRiM=;
-	h=Date:Subject:Cc:From:To:References:In-Reply-To:From;
-	b=LeZgrurtAo7JrdGrtriPGahn3+EwF9D5tkRERDVUbBZT5H6+Yo8LTDZrNVkhu467U
-	 ykHgsNjHJsPg9lO+YNLDbw2PaWEZeb1S0BqZ94lpcemTbdthHbs1kTktCJTMvBsI/5
-	 dL9mcoKhvN354OKZaoJ46P9sU59p1Jy1+NOsZ8uZtU77mEmKq/tRzcunIri3e7afE5
-	 n2QVReGPsX3a2pbxLbuteTwNFKRTm4EC+YPJLjx0g+yig+OzYbxOR996UISrK9DoS5
-	 RNznzAd+NmQQ0XK9HfF5S7hPgm5NhdgEA4HcmCuypGq3W2BITYLdmJtIPCbOvqeiNy
-	 YBWG5Xj+rMl/Q==
-Content-Type: multipart/signed;
- boundary=86841d8504dafca0128a03728b2bfca24996893b0da9c247055c8de47cf4;
- micalg=pgp-sha256; protocol="application/pgp-signature"
-Date: Mon, 11 Mar 2024 09:44:44 +0100
-Message-Id: <CZQSEKZ288OL.205CBK4EC7G2J@kernel.org>
-Subject: Re: [PATCH v3 2/2] arm64: dts: mediatek: add Kontron 3.5"-SBC-i1200
-Cc: <devicetree@vger.kernel.org>, "Sean Wang" <sean.wang@mediatek.com>,
- <linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
- <linux-mediatek@lists.infradead.org>
-From: "Michael Walle" <mwalle@kernel.org>
-To: "Michael Walle" <mwalle@kernel.org>, "Rob Herring" <robh@kernel.org>,
- "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
- <conor+dt@kernel.org>, "Matthias Brugger" <matthias.bgg@gmail.com>,
- "AngeloGioacchino Del Regno" <angelogioacchino.delregno@collabora.com>
-X-Mailer: aerc 0.16.0
-References: <20240221155905.1217340-1-mwalle@kernel.org>
- <20240221155905.1217340-2-mwalle@kernel.org>
-In-Reply-To: <20240221155905.1217340-2-mwalle@kernel.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4455810A3D;
+	Mon, 11 Mar 2024 08:40:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.7.50
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710146406; cv=fail; b=O/gCOvjuBw+Pd++yMmG8YQsRkt6S/KH5UUnWauLUDFMvgbcvFdOSwbIoXjjYgorbNNCRjdahL9KUcpQwI2LLSX/1J3fPZ+e21iPJihdUN35eeQjXc2uCLQ7b5jJzXqP3NdqhOyLp1T+hBvPR+CetyU23hR+l0zO/3do+5kLdg80=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710146406; c=relaxed/simple;
+	bh=68W2mU3xWkGujtb9GJW2pZh2QaQ5zHO2DcZYaHEOR8w=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=dlepnxekXMxZdgz1ue9zOlThbO4gAiYxrGijkG0MQeOsqxrCy2NursHFZkV2I0sCC4Hqq5LPHgTcw0ItvZUjBBPE7dGR/+0QQWwBJVNQJUQC9e1WmNmLmeFtEwGBHtZb7QOvdacv3c7S/WETq/KQteQ6TK7DX/OltrMIMQzYQXs=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=ZjQNn69y; arc=fail smtp.client-ip=40.107.7.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=G0Jib2jRbjKf8rmE4EZyYgGYgj1cvXxZdzoSo0eeWj5vhrVqskZtwX2dWKbyLlauhelWjPMqxVLqQtkpU1UpdfmIFboPBOWEkwRH/K5kZ43ZeO8qOdTLHn2FvnuqmLNSDfqaqzUDiVNNYy+KP3Kbw4hADdi/3PFdZafipCtp7m9E3BkakjZ4PlRJD/6vbPeGKUVVK5jsdEiTXuYrE/GB2q1NA3oOwKihHreQnY7SAnDAGlBwgCfxUllwoUzNIuAZncIqMRXtdirmDrByAEC+WwdY4lzcuuqun97U5oe3bDpW82JNt6a6xR9xGxZF0V16HqGokAQy6jt/2wO33gr8sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=v7+p+y5VNeTilIPJk5AAzBBMxBHfwXozUav5YwKfsFE=;
+ b=Si4f9wRpJW0X2PVO40oxTOrLS0twmGYQJIyLP5VWWkucckYh6GU781ikUbwTnrk2I1eypz5g00/rdZ6+ztVlF1hxb5UCzYg7AQoEAGBDquzf1awFuMPc719R39cHeQDJ5eX/cQtNi7JZRLjOt6jAV6owu+uOkjg1AKWj0fna+4sXIj9uPTzOzISZVB22yS7CRVhGYUUt4stLaIbQAxK+9+XdB5q+OrBqLQm14IIjQuapRqptJusQ2t2/i4L8S3j/gV2Sy3y1kdlz+O0U+bCSBpP7rXAOJ4W9cmhex1JQvBxV1dX9Mp4ZVyXLg+B1Ov9MB56FfUTAXxMbBH16iaB12A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=v7+p+y5VNeTilIPJk5AAzBBMxBHfwXozUav5YwKfsFE=;
+ b=ZjQNn69yPagy8kZ940hcZK0nsT6HJzpVaJZW0ORwLEIQpzcG/O3hj2zTlu4cE7CWX8b1G+dYv2OQNcv6ZanQOIRpnM7rMZGbwipqzohnRrUTlNji7EWsmg0EZbzlRgIIYGywzBD+Y8DnPYQP5Bcklf0yPD3UBuL8wHodASkuKwY=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9377.eurprd04.prod.outlook.com (2603:10a6:10:36b::13)
+ by AM9PR04MB7602.eurprd04.prod.outlook.com (2603:10a6:20b:2db::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.27; Mon, 11 Mar
+ 2024 08:40:00 +0000
+Received: from DB9PR04MB9377.eurprd04.prod.outlook.com
+ ([fe80::b3d4:17c4:91b7:101d]) by DB9PR04MB9377.eurprd04.prod.outlook.com
+ ([fe80::b3d4:17c4:91b7:101d%5]) with mapi id 15.20.7362.024; Mon, 11 Mar 2024
+ 08:40:00 +0000
+From: Joy Zou <joy.zou@nxp.com>
+To: ping.bai@nxp.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: [PATCH v2 0/3] add pmic pca9451a support
+Date: Mon, 11 Mar 2024 16:47:54 +0800
+Message-Id: <20240311084758.377889-1-joy.zou@nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR01CA0196.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:189::23) To DB9PR04MB9377.eurprd04.prod.outlook.com
+ (2603:10a6:10:36b::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9377:EE_|AM9PR04MB7602:EE_
+X-MS-Office365-Filtering-Correlation-Id: 14fe3f0d-d6bd-41be-5c53-08dc41a6d65a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	C2OWclM9gYM2B32nc9p0nkN/XHdT46C4IHLXXAgsIi4YLmyopV4OAmhnHEE0ZEHOjEfkf2WwC/bFT8ARcEA7G5MnwJ0un6DGMM90iTN+evNOHuR/svWY2qUfkTTb+Q4WBVV7VFaVpaoUWzW3yWStrkOOWNPjnsIOy3itK3sswbRDzHq515GMAwPl+06Eq6yrhGqTEUZMaXztlJ16IiBJ7EQk2d0sI1RLWbGyKyVH/9wwRes4UpMWP//OXdRvRcgLy1ZCRxOyFb6LssPjy0ggbfjUShNN6curgISyEbrL3bzlO25fx6zn9UMqUrq7yVAv+9Wc+r8JTv2lL/C8XfxcpMTl7vS+IERYn85+OnvD88YU3ZNIIIFSB0s9GTN+RcRrfXGxc9OC2LreXhHDbjoAO5x+VlIs7riur1cxdMWzoMSlqURrR3HTgMmvSe7BwzkupbGOG5OV1kfn7OQT4emkAcnzkipeNw1UCll/J7D3hygxTBXKS0et0oQcbUf2VMLB2DjWO7i38SoCWb9uPKIc52fu53HbsU0mRyg7gHmg0hgBohNSH4iWoQEw21q8XofGoBgIjqK6yMmBQdbmvSA3/cNDiASsHkulNKZIOyZAI/msM+9PRhmxm8QYD6n/YxxyEwZYu2fVEDUQGNQ6Ytb9MGEfBrK4PYokoQz/Txk6hlh7ymhV7D6p4Nz7F2Vy8o3eyLYnMvITNlZkwscUTfHui6eSOYTeUx/hBgWk9Xdtw6M=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9377.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(52116005)(376005)(7416005)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?ma36JLwEEex7vX5X132vafaw8SrwJp2c1TsOuM5MhRaDWlCIEbFRDUDT6V+O?=
+ =?us-ascii?Q?x6eg4jaBeZpPdOjASvZN0JVYJbAPWDyDLvT3iywc5OsWSh4oGvLraSYWgRil?=
+ =?us-ascii?Q?23eR5YfBfIckgS3dxeqz0CbsynKmCj7skMhQKV87P66moGfTTRrxhnR6ZTGc?=
+ =?us-ascii?Q?s/SsM4uqZaOmu5fBfrq3eftU/453589M8A96rnUZFSvoydalzGPPvUe/dvE+?=
+ =?us-ascii?Q?XHjua1MfzgoInMDfJegCeP8AVCfpcJC51mbwTpM4nvofw7G20LoN7YuORMW8?=
+ =?us-ascii?Q?KM+B7+v5Nl+qsJIShXn8CYVmQBdRANlVPIAEQ4lfqhuxjINKAtwrABGtK/8S?=
+ =?us-ascii?Q?uS0VXwo26tOP1PyUTdSXqqAQlMqhuWOvZdiwZrl/3poi1owQdFq6rNHPxxAV?=
+ =?us-ascii?Q?EfHWdh24d4/xN7/Mv1Q8g388Q3jE6yu2IVsj6gs33DP4jylyWmEs/suxjAuB?=
+ =?us-ascii?Q?uwtyXSn1Go4yhcSjoyf+Oj6eJ0jGYnfV+mhfOdg9cvua9kpgLjuOWsfuA7Cf?=
+ =?us-ascii?Q?RUGyYGC0yavyZaxkovUymgNSRHKiCLUrBuHN1jEtnYq75Va70SKuYgJhNouV?=
+ =?us-ascii?Q?1tBQNWyiIepMRBZoXzKVVnPDzaodEscTP4+DR1OJ+3gabJ7eb8FoyKylxZS7?=
+ =?us-ascii?Q?PmEGZjV/5nixywcexldFI66ywqgj/bAUpKOor5ejipVpyZSBDmphWTgB3lAi?=
+ =?us-ascii?Q?z8R39UuokJUTYcf25rch+lZrucvAFJa67KEcgpLl8Qlhj9eiTD8Yb4Szgn3Q?=
+ =?us-ascii?Q?Fs4juwDfix46eboKfnm6DJ13jXNZMy1SwAHiRyaupgEFWK3HICeGvBV3ohXg?=
+ =?us-ascii?Q?tdTbGpfurEN/7CPTfE46+rq2yHZUyMHwiMzWH/278IxTrOXygG9NwqUiQsle?=
+ =?us-ascii?Q?Mt+rIdzhAVZEYrnmiJnSK2EPC7MfA5iLkiMpeNwNFyb7IcIJRANp9AUS8GT1?=
+ =?us-ascii?Q?LZ0qfRBYRsbICPnaW7MqyhMI2X5A6tqx1LTDJjZNKc0uiMKJOkyT2lDK2AX5?=
+ =?us-ascii?Q?7TGlzdNpdujPbvv8zEStU+P1p3jM9CUSk90FnMyYTglfNQcxtWF75Dl8BUbD?=
+ =?us-ascii?Q?ZBzjpeyQB/FOQ2g4zuYx1mZLibDPwGmGpf9Lksq/3pncyvdHJ3RyGD+cPhtC?=
+ =?us-ascii?Q?Z/uqU1w11l1M51E1chji48fl3mdTHRBwy0/HTxf9OjdbQ+pliJV9ruISdf2s?=
+ =?us-ascii?Q?oNoBbc/t6SS3z60ojZdDhRoLvRQQgNCdxbQJqLeNcJvdVpdJ+JYzBviSA29t?=
+ =?us-ascii?Q?nktREtmWLsA86HxHyGdTcwX1W57M86t9gJPW/H/aO6ER54B6CsmyOUMZ8Fc5?=
+ =?us-ascii?Q?lf0L35hzr4HcETnVBuAyTiuGCVVzaYO5r+oQ1FOIlVNpKN6t7z5XZ6mSIOTe?=
+ =?us-ascii?Q?Eb7pTGJZcoD5bpG7+4HrEnzcFlV2E0ScPEVUCDpiBzFVnhjL9E+2rTaOLEQq?=
+ =?us-ascii?Q?fgw5a4QT0A+sT93zUJUJIC4fhybt0sPsu26wAinDZeNLSv8e2Z0WfVRvNvG1?=
+ =?us-ascii?Q?G973LkUPQwYH3oWV/2H7yWeCtyVMP67HDD+NQrhS1JlR52QzkA4aX9/V1A5V?=
+ =?us-ascii?Q?z9bo54YAfD9lp9kwhu/3NreKWln+byfuPh4zCJye?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 14fe3f0d-d6bd-41be-5c53-08dc41a6d65a
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9377.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 08:39:59.9685
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nLZ1rd1R2+3iRYakZQdbNf7Hac89VzOKzt77ncLqMCkKyjNnbHs4hm6QXQBLqxhz
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7602
 
---86841d8504dafca0128a03728b2bfca24996893b0da9c247055c8de47cf4
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
+The patchset supports pmic pca9451a.
+For the details, please check the patch commit log.
 
-Hi,
+---
+Changes in v2:
+- drop old part support.
 
-On Wed Feb 21, 2024 at 4:59 PM CET, Michael Walle wrote:
-> Add basic support for the Kontron 3.5" single board computer featuring a
-> Mediatek i1200 SoC (MT8395/MT8195).
->
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
+Joy Zou (3):
+  regulator: dt-bindings: pca9450: add pca9451a support
+  regulator: pca9450: add pca9451a support
+  arm64: dts: imx93-11x11-evk: add pca9451a support
 
-Any feedback on this? Should I repost after the merge window or is
-it fine as it is for now?
+ .../regulator/nxp,pca9450-regulator.yaml      |   1 +
+ .../boot/dts/freescale/imx93-11x11-evk.dts    | 112 ++++++++++
+ drivers/regulator/pca9450-regulator.c         | 197 +++++++++++++++++-
+ include/linux/regulator/pca9450.h             |   1 +
+ 4 files changed, 308 insertions(+), 3 deletions(-)
 
--michael
+-- 
+2.37.1
 
-> ---
-> v3:
-> - add vsys regulator
-> - correct the LDO input of the mt6360 regulator
-> - add missing interrupt-cells
-> - no underscores in node names
-> - dropped regulator-compatible everywhere and use the correc node name
->   instead
-> - reordered mmc0 properties
-> - split mmc1 pinctrl properties, add no-mmc
-> - removed all MTK_DRIVE_8mA
-> - add i2c0 and i2c1
-> - add comments for spi and i2c busses
-> - add firmware-name property for scp (this should probably go into the
->   base dtsi?!)
-> - add missing tpm compatible
-> - renamed thermal zones to something more meaningful
-> - add correct bias-pull-up to (some) i2c busses
-> - moved reset handling into the PHY node, also added a compatible string
->   for the PHY.
->
-> Mh, my memory is hazy, but IIRC I run into the same problem which was
-> discussed on netdev some time ago. That is, the PHY driver cannot be
-> probed unless it is taken out of reset. Which will only happen if you
-> probe it. And the workaround/advise was to use the compatible string in
-> that case, which is unfortunate.
-> Just wanted to point out, that it is *not* the same as snps,reset-*
-> because the latter will work just fine without the compatible. I'll
-> go with the compatible for now.
->
-> I did *not* add the vbus to the USB ports, not even on the front port.
-> That is because of:
->   dependencies:
->     connector: [ usb-role-switch ]
-> and we just have a simple USB3.2 USB-A connector, no dual roles. IMHO
-> that is a bug in the driver, which should handle the vbus supply as
-> optional.
->
-> v2:
-> - none
-
---86841d8504dafca0128a03728b2bfca24996893b0da9c247055c8de47cf4
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iIgEABYIADAWIQQCnWSOYTtih6UXaxvNyh2jtWxG+wUCZe7EfBIcbXdhbGxlQGtl
-cm5lbC5vcmcACgkQzcodo7VsRvuK8QD/UWncUk5POfZLlmd3CHTLcee2U3Na43dg
-L/gT99njMMsA/0NaR+3lRjSoxExN2TN5WFbjChnjUOGtaN5B5CkV2VoL
-=KYjX
------END PGP SIGNATURE-----
-
---86841d8504dafca0128a03728b2bfca24996893b0da9c247055c8de47cf4--
 
