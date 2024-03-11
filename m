@@ -1,151 +1,260 @@
-Return-Path: <devicetree+bounces-49792-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49793-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF290877DF7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 11:18:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9ABDE877E0E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 11:24:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 288E51F2249E
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 10:18:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 24CDA281BFF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 10:24:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4065323770;
-	Mon, 11 Mar 2024 10:18:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA15B22F07;
+	Mon, 11 Mar 2024 10:24:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OXtFdGZo"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="aZcFwatq"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 709092F55
-	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 10:18:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B45129409;
+	Mon, 11 Mar 2024 10:24:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710152290; cv=none; b=Wx2WATcW3mox9N12FbG1+ChL1rHTwAeeNQLDzxeTNkALOWRQryRzcHdJ/3FLlmEK/5sGsWV6ZtI8yW/bLLTi0zdAs65J/u16RsHkneFmOEYr8wO4t6jYwXxEfF9yIL3keETs/XYLnLcfJ/fBFYuFyuIZ3QCgKx2EJpVvEX3ZvM0=
+	t=1710152690; cv=none; b=gKzvYvfLGOt0tD+BBWwGj28+fn1eMiXI3xY8gLWBmA6f/zDgrB7KqQvDB5Y3Yx9E5wbNfHV+TgdE8m+BMVxLWKeK3ZPq1I8VF+7445/PRb8EkY+zOy3oZKu595e+Q8hR9DY4Ej+62YImr1QoQ/z/Di3MmwERRvCcjXZ0Qy65JM8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710152290; c=relaxed/simple;
-	bh=CgLEEXYxdr+/lRqJ2xUbK+mwBgS3fqIC4vqRFb4hrpI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iTgTGr3TixjhCKwYmIcDlk4mBT6E/fNyiuqT+wSF5307q7RS95ULqryITTIc8+X9uxO5OGd0VfD2zE0iKilVX5eJtSzReAI+L9IwuOhmuyx/dWfgxaSiwpwLpFW39Zy6PZkD+KP3TKIy/wL0TWE8B0d3F9oYB2PDmtznj0uEPaE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OXtFdGZo; arc=none smtp.client-ip=209.85.167.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-5139d80f8b6so1815491e87.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 03:18:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710152287; x=1710757087; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=AsP/0qz8QlmA4JVNtkQu7AGls/ZfeI7jmrpsFvcLc28=;
-        b=OXtFdGZob1rgzbKnnH06lTlWoC1Oxv466F2Kk76U/u4Zjxme80ihvvVoRuqE1jwn+G
-         hbq1fbLIV5cu9kpb0qP5QHerNFNNvTGddjE3aybMbywgULTYN9HzuHGHSr1zfke1nYvU
-         OOhd07lxuLS+aHanwi0+ZA1qwKEHA1syCA2R/Q+sSSZ26nsD/T44tt9MhgS4Dpc09d/s
-         XJZWTvu0Nz4nOB0y2o4pc3lkcStsYGVOEKAtYbS1y6+IzyL2Td5LuHFv56pTKSbUKBYn
-         dH2EPbDzpTql+Wlij0yNcCFtwPE3RO56GoXVKEM+/rNxl5u/+xpwNIJu3DLTl0EFPXbh
-         WmZw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710152287; x=1710757087;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AsP/0qz8QlmA4JVNtkQu7AGls/ZfeI7jmrpsFvcLc28=;
-        b=qkUOxlP2Mv9h5DoNgmDKN5YXJvPiZLE3HJDgLn/dOfuRvdmnO0FeH/1YrYms2tJVaF
-         eTAiQ1xs9hAjvjLKgm4XHvujY5ZRD1/vrYLbNMCV/p45wt1cXF0NpPOkQlqZVXInWmAq
-         YOP1KTIj3AlsTTlZL9lphUQodX9+SFm18EvGugBdDpRSHMAHMTP8LPMCBTWXRkIjBKdC
-         UsPFJS3FnY6W9Hh+75O0mF4PcJMDF/Y/TvbCAWpHfeuWMQXENEhxszp3Nuqq7P3tJtP/
-         6Qnr150eWqe1gphYOOTUZJnelaXIBf5iAXdLH+yAxAHsQgzguBFvW0dnKst1kJoMWLis
-         659w==
-X-Forwarded-Encrypted: i=1; AJvYcCXlToIREUWQ4800vDbRTMg1DFjTiLksRMb1M6ndvcSGylNRq0IsRE/fwDCgHceWEbpKZwGLgh9k5kNM9rZ1sr/5hfaobZeVEb4mHg==
-X-Gm-Message-State: AOJu0Yy6jbM0uL6aaSknKwYXDDNa8QVBocpRO7kt/IbkOCoGQ0y4MEG8
-	eUYlybjQQIdIqKpZ6qLqRvsl6bNQQqYFDYrrYb4WGo9BBsLf8bUlbXbIEf3M0vg=
-X-Google-Smtp-Source: AGHT+IEPbwnztzbsrRlV9J9paTgwc4a4ZlvV7sSr+jRNTb6Ycx10ADEmEmgJ63NIgvTmv0iTNLY6cw==
-X-Received: by 2002:a19:ae0c:0:b0:512:f679:665b with SMTP id f12-20020a19ae0c000000b00512f679665bmr3752164lfc.42.1710152286635;
-        Mon, 11 Mar 2024 03:18:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id i20-20020a05600c355400b004131035d28csm14552679wmq.23.2024.03.11.03.18.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Mar 2024 03:18:06 -0700 (PDT)
-Message-ID: <c56407f7-b128-4264-b149-89682cd9500d@linaro.org>
-Date: Mon, 11 Mar 2024 11:18:04 +0100
+	s=arc-20240116; t=1710152690; c=relaxed/simple;
+	bh=JMhvWvgqFrYYTDdwxA2PIAMDKzBl/VjVBe2wTMQ6Odc=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=LsEna0CzVbOo49g15Ob8n4+am4HH6pF/b/TFzOu0vPm5pBEs8u62zn4hxuWJsp4J0nP5v4Htx1ZRG/A2eAcvPoQnPT9JU5Pk2fQ/eO8fQkLU1XM7VGZbC+ET4Mj+nCzXBoMVpauBfn+pqw7wto3D/XPE9ask+PKdLpBMOY14yoo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=aZcFwatq; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: watchdog: sprd,sp9860-wdt: convert to YAML
-Content-Language: en-US
-To: Stanislav Jakubek <stano.jakubek@gmail.com>
-Cc: baolin.wang7@gmail.com, baolin.wang@linux.alibaba.com,
- conor+dt@kernel.org, devicetree@vger.kernel.org,
- krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
- linux-watchdog@vger.kernel.org, linux@roeck-us.net, orsonzhai@gmail.com,
- robh@kernel.org, wim@linux-watchdog.org, zhang.lyra@gmail.com
-References: <Ze7GreWtuUtMh6MK@standask-GA-A55M-S2HP>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <Ze7GreWtuUtMh6MK@standask-GA-A55M-S2HP>
-Content-Type: text/plain; charset=UTF-8
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1710152684;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=Ea2sTiT8afFcKIn8ydC5cAZuUU4HxS2+XT6hhynUCM4=;
+	b=aZcFwatqGccBCoJ9Z6XrEHqnF05ETFlmmhxHizHc5IjaUU++yTBM+Cq2CkQER/44sCsbfF
+	fCaGno+etdltB5vbIF8HH6XohXi/gpJPkbRgHOQI9/9otUX4JsAzjGlqv3vwK56ndiXLVE
+	gXpPp8P2eJB4+AP/eOlByEPurMbGx9kDk3l9ZNqdQ4AIoBtBwImSXa05ez8wvF5zIlQmBa
+	iFiM1+UoVGrYiw/0oL50+wN/tEaobWtdeEXgtvkFH5jhwuDHGaaTTUl1lkHWwKcKE5Dnvo
+	Zqc3iVXSKXomK/2fQr534j02B7cJfOaddyj0yOkWj7eSrJWUzS3qpizu6+Thkw==
+Date: Mon, 11 Mar 2024 11:24:41 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Alexey Charkov <alchark@gmail.com>, Kever Yang
+ <kever.yang@rock-chips.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
+ <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
+ Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/5] arm64: dts: rockchip: Add CPU/memory regulator
+ coupling for RK3588
+In-Reply-To: <7e4379931dc6e35ca79a0ec7d27cf590@manjaro.org>
+References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
+ <20240229-rk-dts-additions-v3-3-6afe8473a631@gmail.com>
+ <7e4379931dc6e35ca79a0ec7d27cf590@manjaro.org>
+Message-ID: <6908d38e68a77fd3a5633484a97e2821@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
-On 11/03/2024 09:54, Stanislav Jakubek wrote:
-> Hi all,
+Hello Kever,
+
+Any chances, please, to have a look at my explanation below, and to
+possibly provide some further insights?  I'd really love to understand
+that better.
+
+
+On 2024-03-01 09:13, Dragan Simic wrote:
+> On 2024-02-29 20:26, Alexey Charkov wrote:
+>> RK3588 chips allow for their CPU cores to be powered by a different
+>> supply vs. their corresponding memory interfaces, and two of the
+>> boards currently upstream do that (EVB1 and QuartzPro64).
 > 
-> I was about to remind people that this patch exists, but apparently it
-> already got applied without notice? Seems like it's in linux-next already.
-
-You are not the first one surprised... I think I could count on fingers
-of one hand the times I received any notification/confirmation from
-watchdog that my patch was applied. That made me waste some time in the
-past for unneeded checks and resends.
-
-Best regards,
-Krzysztof
-
+> The only reasonable explanation, based on the Cortex-A55 and Cortex-A76
+> technical reference manuals (TRMs), and some other documents, including
+> the RK3588 hardware design guide (HDG), is that the 
+> VDD_CPU_BIG0_MEM_S0,
+> VDD_CPU_BIG1_MEM_S0 and VDD_CPU_LIT_MEM_S0 voltages are internally
+> used as the supplies for the SRAM used for the A76's and A55's L1 and
+> L2 caches, which are both per-core and private in the DynamIQ SoC 
+> layout
+> that the RK3588 is based on.
+> 
+> Sure, using "MEM" there is confusing, but actually, the Cortex-A55 and
+> Cortex-A76 refer to the L1 and L2 caches as "memory" in multiple 
+> places.
+> I'd say that's the reason for "MEM" (and "memory", in the RK3588 HDG) 
+> to
+> be used in the board schematics (and in the RK3588 HDG).
+> 
+> The RK3588 HDG specifically allows what the Rock 5B does there, i.e. to
+> basically short the RK3588's individual *_MEM_S0 power inputs to the
+> respective CPU core power supplies, which avoids the need to use 
+> separate
+> voltage regulators for the RK3588's *_MEM_S0 power inputs.
+> 
+> However, I'd really, _really_ love to know why did Rockchip opt to make
+> the power supply voltages separate for the RK3588's L1 and L2 caches,
+> which are, BTW, rated for up to 100 mA for each *_MEM_S0 input, meaning
+> that they present no large loads?  All that under the assumption that
+> my analysis is correct, of course.
+> 
+>> The voltage of the memory interface though has to match that of the
+>> CPU cores that use it, which downstream kernels achieve by the means
+>> of a custom cpufreq driver which adjusts both at the same time.
+>> 
+>> It seems that regulator coupling is a more appropriate generic
+>> interface for it, so this patch introduces coupling to affected
+>> device trees to ensure that memory interface voltage is also updated
+>> whenever cpufreq switches between CPU OPPs.
+> 
+> I'll verify this a bit later and provide a separate response.
+> 
+>> Note that other boards, such as Radxa Rock 5B, define both the CPU
+>> and memory interface regulators as aliases to the same DT node, so
+>> this doesn't apply there.
+> 
+> Yup, they're actually shorted on the Rock 5B, as I described above.
+> 
+>> Signed-off-by: Alexey Charkov <alchark@gmail.com>
+>> ---
+>>  arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts    | 12 ++++++++++++
+>>  arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts | 12 ++++++++++++
+>>  2 files changed, 24 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+>> b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+>> index de30c2632b8e..dfae67f1e9c7 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-evb1-v10.dts
+>> @@ -788,6 +788,8 @@ regulators {
+>>  			vdd_cpu_big1_s0: dcdc-reg1 {
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_big1_mem_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <550000>;
+>>  				regulator-max-microvolt = <1050000>;
+>>  				regulator-ramp-delay = <12500>;
+>> @@ -800,6 +802,8 @@ regulator-state-mem {
+>>  			vdd_cpu_big0_s0: dcdc-reg2 {
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_big0_mem_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <550000>;
+>>  				regulator-max-microvolt = <1050000>;
+>>  				regulator-ramp-delay = <12500>;
+>> @@ -812,6 +816,8 @@ regulator-state-mem {
+>>  			vdd_cpu_lit_s0: dcdc-reg3 {
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_lit_mem_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <550000>;
+>>  				regulator-max-microvolt = <950000>;
+>>  				regulator-ramp-delay = <12500>;
+>> @@ -836,6 +842,8 @@ regulator-state-mem {
+>>  			vdd_cpu_big1_mem_s0: dcdc-reg5 {
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_big1_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <675000>;
+>>  				regulator-max-microvolt = <1050000>;
+>>  				regulator-ramp-delay = <12500>;
+>> @@ -849,6 +857,8 @@ regulator-state-mem {
+>>  			vdd_cpu_big0_mem_s0: dcdc-reg6 {
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_big0_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <675000>;
+>>  				regulator-max-microvolt = <1050000>;
+>>  				regulator-ramp-delay = <12500>;
+>> @@ -873,6 +883,8 @@ regulator-state-mem {
+>>  			vdd_cpu_lit_mem_s0: dcdc-reg8 {
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_lit_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <675000>;
+>>  				regulator-max-microvolt = <950000>;
+>>  				regulator-ramp-delay = <12500>;
+>> diff --git a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+>> b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+>> index 87a0abf95f7d..9c038450cd7c 100644
+>> --- a/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+>> +++ b/arch/arm64/boot/dts/rockchip/rk3588-quartzpro64.dts
+>> @@ -818,6 +818,8 @@ vdd_cpu_big1_s0: dcdc-reg1 {
+>>  				regulator-name = "vdd_cpu_big1_s0";
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_big1_mem_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <550000>;
+>>  				regulator-max-microvolt = <1050000>;
+>>  				regulator-ramp-delay = <12500>;
+>> @@ -831,6 +833,8 @@ vdd_cpu_big0_s0: dcdc-reg2 {
+>>  				regulator-name = "vdd_cpu_big0_s0";
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_big0_mem_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <550000>;
+>>  				regulator-max-microvolt = <1050000>;
+>>  				regulator-ramp-delay = <12500>;
+>> @@ -844,6 +848,8 @@ vdd_cpu_lit_s0: dcdc-reg3 {
+>>  				regulator-name = "vdd_cpu_lit_s0";
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_lit_mem_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <550000>;
+>>  				regulator-max-microvolt = <950000>;
+>>  				regulator-ramp-delay = <12500>;
+>> @@ -870,6 +876,8 @@ vdd_cpu_big1_mem_s0: dcdc-reg5 {
+>>  				regulator-name = "vdd_cpu_big1_mem_s0";
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_big1_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <675000>;
+>>  				regulator-max-microvolt = <1050000>;
+>>  				regulator-ramp-delay = <12500>;
+>> @@ -884,6 +892,8 @@ vdd_cpu_big0_mem_s0: dcdc-reg6 {
+>>  				regulator-name = "vdd_cpu_big0_mem_s0";
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_big0_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <675000>;
+>>  				regulator-max-microvolt = <1050000>;
+>>  				regulator-ramp-delay = <12500>;
+>> @@ -910,6 +920,8 @@ vdd_cpu_lit_mem_s0: dcdc-reg8 {
+>>  				regulator-name = "vdd_cpu_lit_mem_s0";
+>>  				regulator-always-on;
+>>  				regulator-boot-on;
+>> +				regulator-coupled-with = <&vdd_cpu_lit_s0>;
+>> +				regulator-coupled-max-spread = <10000>;
+>>  				regulator-min-microvolt = <675000>;
+>>  				regulator-max-microvolt = <950000>;
+>>  				regulator-ramp-delay = <12500>;
 
