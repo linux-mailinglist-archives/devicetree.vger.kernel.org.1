@@ -1,99 +1,111 @@
-Return-Path: <devicetree+bounces-49841-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49848-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61A7387801C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 13:43:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 017AB8780B3
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 14:34:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1DC43283E51
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 12:43:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 31BC41C213D9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 13:34:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1A9C22075;
-	Mon, 11 Mar 2024 12:43:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="HBCNLZYU"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4CE533D970;
+	Mon, 11 Mar 2024 13:33:54 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f171.google.com (mail-pf1-f171.google.com [209.85.210.171])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11A8E3D54C;
-	Mon, 11 Mar 2024 12:43:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.171
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB3903FB3F;
+	Mon, 11 Mar 2024 13:33:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=193.175.24.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710161025; cv=none; b=Q74byKWNY2c3XJotx+wyrO9tcFXD+y3n7f4sHhU2gI/BRNkQBcfDJs+7HXSvt5Uy0Bkd+rzlYJfP9NPdQs2jo51aNa1+xU4lZ+I4yj5vNj+892vb9QHzdJ6jsZUVRRn38cBgk1Cmw/F1PnMPd5F4nZ6fwcuCuYpQk8wHZ8AVUPA=
+	t=1710164034; cv=none; b=kP8rhnJbDCVeSnAmhY0C9X89bly/fDSjvMxSnnraVDOe9z2uKZ242cAP842PH3ARLz0gR+dnJbo+oPrjkSB9LTzxw2h8K2bK4zHdzNxXefgMl5CalTqklE5/G98GHBjxuvA/FxrfwhPazHGxQALKU2gSNbqH7FgTc7myu6EG7wU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710161025; c=relaxed/simple;
-	bh=7rkxVfWdjgxeUXlDYAl4GqDBKvIzQvzh/NeCtvyEiWc=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Upx8Y6ePfP+T9tpBMQRkPHydJQSDrHyUeW1Yho6yzfkYP6PZZEoIRFWwiNFNMGv0TwmRSEng1Zae4UeUqz71lJZ8GwU0g9lMwlvKh+b83qPWlQwbpz0ibUXyOe7uXnw/EXFhwtA3LI/vO+Wofo7uMFwfcRxj19JRRdYw7SAyAp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=HBCNLZYU; arc=none smtp.client-ip=209.85.210.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pf1-f171.google.com with SMTP id d2e1a72fcca58-6e693adc8a2so88136b3a.1;
-        Mon, 11 Mar 2024 05:43:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710161023; x=1710765823; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=f+eKmG5DRWeq8jWjrfLnT4GR8dOlHkf0y/wIX9CpqgU=;
-        b=HBCNLZYURWn343T5fx62iuxfuYghxyGaangGozMGsyxj+Qz2dN5ynZGMZ5KJbPLWPr
-         Z15RGTZQOTxk1utCJt+whapFB0r1sS5dRKoCjfDJ7bgkuGEpneWfwfSvAdcmTldhgu4R
-         d7lsgp1FwT3oOgNcZBjm6tKjdHLFqz6GZ3QIjHDbFSiPAOMnHSz6L8D+hnbaKYhdSE4c
-         weuHdF4bAls80Z5tp51l+1Gkmdf0HRTiUGSLFNIGzOui141X5VyzuIU6AIyr3/oYTtQv
-         fM2Gy95N+L5FQW6xrpGBKqmKMaUzLjc3jCl08uT/Wi3hnGaMifSTmTtTucuKl47meBTg
-         eRvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710161023; x=1710765823;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=f+eKmG5DRWeq8jWjrfLnT4GR8dOlHkf0y/wIX9CpqgU=;
-        b=h7WIJJI38gfOllqaTFwM5xYFusopllKx+747GXZTQdVjAXSO9ej6KNvWyCIkrpXJzi
-         s0XLfolUxkfHaJDvEPNfX+JFdij9eCv79l/Qv+/aqVvRovB6qXC6FuMPNjRWmcKx3dNQ
-         8NRgP69byipAF+RFV8easfL/9738fzR1UwPk1Oi75JHwBkIU+fH+pdYZLCtBtSKouqoA
-         A1b0A6VVm0fT3pS5dRpF5XMEZSfmBLY4z2oI513dx4KcV/ut7RJY1GKZKFtZBJfkcv7B
-         xHmtXXoI4awk9TgGHNpZgebA/gqAdoVRjEB84q4M8jkR7yfgQorc6BRaqJyW4rc8Bnii
-         QaAg==
-X-Forwarded-Encrypted: i=1; AJvYcCUvho2iSVhxYnCqFfrYxCva0o/NMoKO1rJ0kriVjrZIkl//iOhoEHk9qBYaC2GPIUIy0ScMAKpLYWrzR8SxO6kCdoGYuUgI2KPNScE6XkMRoog7S27LjLlpyJ6+M5EVTgPqofel5WvcWw==
-X-Gm-Message-State: AOJu0YwQ4V7P6n4tDBRz0kybk8MBo7yukLX2wNrf63j7LcGPrf1ZdF3a
-	LQAPK7v8D2t/g6El/8X1y/ENUfvBIzLh7/jEB4Jv1c6tCDRJf3i9gFX+cMk6TPYzPCSeZ0WFH3r
-	9TCPYS/XoppAfoknzDVnd4xyggYc=
-X-Google-Smtp-Source: AGHT+IGELvIZKO/o+82ukdl6Bain1axvAR43a4fG9E+vEyKQOeZMQ2KPK/HHkku1vDElCvf6wbHLc1esaxIl4xs1t2w=
-X-Received: by 2002:a05:6a20:9f04:b0:1a1:42db:9c5a with SMTP id
- mk4-20020a056a209f0400b001a142db9c5amr10364781pzb.6.1710161023346; Mon, 11
- Mar 2024 05:43:43 -0700 (PDT)
+	s=arc-20240116; t=1710164034; c=relaxed/simple;
+	bh=Es3yd8d2cdOCIm/8CB1nM2w+I5Mj+9uunlwN2DPeups=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=FZYtA2zgcbkduZoPLND7C5DKqoUVJjALKiFNpjVhZ2ro0MXrMM9f4+aYYY85iOKVQemukIkoTr9000grR7QIgGuTZTFJ1TEp7gEBo3voaeV6obSysTups42lxwO4OECWDInbk2kx83g5I3I5lmdUSlxeaCaro8KLzHziJ4X8rT8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de; spf=pass smtp.mailfrom=alpha.franken.de; arc=none smtp.client-ip=193.175.24.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=alpha.franken.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alpha.franken.de
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+	id 1rjfO2-0001be-00; Mon, 11 Mar 2024 14:08:14 +0100
+Received: by alpha.franken.de (Postfix, from userid 1000)
+	id 0B6CEC066F; Mon, 11 Mar 2024 14:04:44 +0100 (CET)
+Date: Mon, 11 Mar 2024 14:04:44 +0100
+From: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To: Justin Swartz <justin.swartz@risingedge.co.za>
+Cc: =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>,
+	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3] mips: dts: ralink: mt7621: add cell count properties
+ to usb
+Message-ID: <Ze8BbC5i94jbote1@alpha.franken.de>
+References: <20240308161130.12228-1-justin.swartz@risingedge.co.za>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240311113201.664252-1-joy.zou@nxp.com> <20240311113201.664252-4-joy.zou@nxp.com>
-In-Reply-To: <20240311113201.664252-4-joy.zou@nxp.com>
-From: Fabio Estevam <festevam@gmail.com>
-Date: Mon, 11 Mar 2024 09:43:31 -0300
-Message-ID: <CAOMZO5A_5mUgEL6MvO=D1RS9aT-DFc8eGiF7VDCZqeSkYtGYcQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/3] arm64: dts: imx93-11x11-evk: add pca9451a support
-To: Joy Zou <joy.zou@nxp.com>
-Cc: ping.bai@nxp.com, lgirdwood@gmail.com, broonie@kernel.org, 
-	robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de, 
-	linux-imx@nxp.com, devicetree@vger.kernel.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	imx@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240308161130.12228-1-justin.swartz@risingedge.co.za>
 
-On Mon, Mar 11, 2024 at 8:24=E2=80=AFAM Joy Zou <joy.zou@nxp.com> wrote:
+On Fri, Mar 08, 2024 at 06:11:30PM +0200, Justin Swartz wrote:
+> Add default #address-cells and #size-cells properties to the
+> usb node, which should be suitable for hubs and devices without
+> explicitly declared interface nodes, as:
+> 
+>    "#address-cells":
+>      description: should be 1 for hub nodes with device nodes,
+>        should be 2 for device nodes with interface nodes.
+>      enum: [1, 2]
+> 
+>    "#size-cells":
+>      const: 0
+> 
+> -- from Documentation/devicetree/bindings/usb/usb-device.yaml
+> 
+> Acked-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+> ---
+> v2 -> v3: Patch revision commentary removed from commit message
+>           as instructed by Sergio Paracuellos.
+> 
+> v1 -> v2: Reorder the properties according to
+>           Documentation/devicetree/bindings/dts-coding-style.rst
+> 
+>  arch/mips/boot/dts/ralink/mt7621.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
+> index 02e1f2491..6e95e6f19 100644
+> --- a/arch/mips/boot/dts/ralink/mt7621.dtsi
+> +++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
+> @@ -307,6 +307,9 @@ usb: usb@1e1c0000 {
+>  		       0x1e1d0700 0x0100>;
+>  		reg-names = "mac", "ippc";
+>  
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+>  		clocks = <&sysc MT7621_CLK_XTAL>;
+>  		clock-names = "sys_ck";
+>  
+> -- 
 
->         /* need to config the SION for data and cmd pad, refer to ERR0520=
-21 */
+applied to mips-next.
 
-Please remove this comment. The SION bit is set for I2C pins.
+Thomas.
 
-Also, this erratum affects uSDHC according to:
-https://www.spinics.net/lists/devicetree/msg641846.html
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
 
