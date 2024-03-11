@@ -1,67 +1,60 @@
-Return-Path: <devicetree+bounces-49906-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49907-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8EEAC8787C0
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 19:42:16 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 43D3B8787E4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 19:45:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3A3031F24A23
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 18:42:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5A8401C2146A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 18:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CCDF05E098;
-	Mon, 11 Mar 2024 18:37:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CAFA758107;
+	Mon, 11 Mar 2024 18:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ZH/G0zQT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aYwYmvcX"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A8A856B8F;
-	Mon, 11 Mar 2024 18:37:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9A37154FBE;
+	Mon, 11 Mar 2024 18:38:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710182278; cv=none; b=LG+87U4jUfGnhLBasX8v4mZ6qzWT22YHLn5Zk6BQou5HAFg4zI6abt8JovKawZx8PXpQnY4axvx1yzG2Dwf2q5tKg1REJKfiqo3A9pLgSSWQzQAYixNPuoxVKXqoQjTOK4CWa+LoKSGHRc6mWRNmbtZUChk6DSMf9CRy1KHgdPQ=
+	t=1710182314; cv=none; b=E8rIklwST9naV9XQoyUme4KOfDdDJoTluCnTV9cC1RFBiEF/Jve/yLsnxRfQci5Dj0Y04aAsIvOydbYoJI7he6+bLVqNkUjWmZDB7VbEdb6PseTPE5YzT8j1p0r6YviA4R5BaOH0PjUOseCuK0SuGbdrFZttSg7DydX6hpYc0xU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710182278; c=relaxed/simple;
-	bh=TrTV18yl4VRw9q2qnX3Xx3k96Du1jyisaNz4ZlqRnRU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=uqvR58h1c2K9tvbU/tlO8vTmRtuW9clbCl7g7ttgI5lFMAYRlEx403nFsHGY4sUY11qiU5VJYSdctBJi3kfy7UwBtnEaQYg/JKiDkJsvG9mXFFOzpKmC/pn25up2scpjWKavG4ulsNMxlWuf2Ei6jpwaMbelFpKVEq5KM4PXDFs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ZH/G0zQT; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88F46C433C7;
-	Mon, 11 Mar 2024 18:37:55 +0000 (UTC)
+	s=arc-20240116; t=1710182314; c=relaxed/simple;
+	bh=r4GFyKH0h6Apl50/sMqhWNcLGuTweQQToqAfKdoAC6o=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=VCn+SadXtpaGG2n7knQRhc72KiGnvXmfcaJ0ZM8kwYdimb8zRbzxgiVsQWxQ6XeA/VFtx6L/DiVFqDkANmFY+Jps+EhKkE3EntVcqIMz1LD4g+l7JyRDhQM7nZNCC/Q1TLkiJKVBeBJCX1K2lqiuUlypAm5iwPMLGIiCGxvsmiU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aYwYmvcX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12770C433C7;
+	Mon, 11 Mar 2024 18:38:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710182278;
-	bh=TrTV18yl4VRw9q2qnX3Xx3k96Du1jyisaNz4ZlqRnRU=;
-	h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-	b=ZH/G0zQT0MsCqaG3lXV49awkEYO0f4UJjV3fZfcnZQ1yERVHTIHqFQpOd/5FVo6He
-	 BDs3QHOC/uX+hM0EJAEb2QmgJdJZeZfrFfhh8se+j4KEAq/gaAdAvwDJSATZ9EdKDZ
-	 +u69lHgmpC8MaVDQs4ahgtAiL++QptwbKUbHpKVt3fAQ1rfomQxODDHYa7ZqnQ9IJP
-	 W7Qh5eMfSI4i9KVsrkVgdXYIk1mCre1HSiP+Dn+zxT+WQOO7lLI0Nxe67C9UzdeyFL
-	 iQwcqk02gWNkBbWVEQPV4lU/rbhdhNEdX454uSH5bVEkS9m1PxVMIH7Ju3+XWXM5c9
-	 9ulyA2dsxZ57Q==
+	s=k20201202; t=1710182314;
+	bh=r4GFyKH0h6Apl50/sMqhWNcLGuTweQQToqAfKdoAC6o=;
+	h=From:To:Cc:Subject:Date:From;
+	b=aYwYmvcXzikhhfv+cmQAJenXdLDpKStTCwqTrjUeUx14+8jZ0cN1RZGvv9Ur00ffe
+	 g7NEuytFiFGNIKVVOSrF/sfnGn4dlZ+2Yq8HztZ9O7jtMWRr8d/kOVKodFXxv09kLe
+	 ynt4sEzBPMS0ROpsviuYFm6Kf3tMqTmVnT0kcK9WVAX9fc4vkmIWcgQaQWbi5eX/LP
+	 0PAJ9VE0MD8S3K8alFw/4YzBBd0flK86N8gptAG/iKSxHqA5zYOoRX4wpCr6RXFZvM
+	 lPSLs6eW+0WR+A2oBqNjoWUgxRA0QJiVL8CDzx/gnJIm2BDKIrvLLn3oFkbU4doZoR
+	 +J5CUWNee0OSA==
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
-Cc: Johan Hovold <johan+linaro@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	Bjorn Andersson <andersson@kernel.org>,
+Cc: Thierry Reding <treding@nvidia.com>,
+	Jon Hunter <jonathanh@nvidia.com>,
 	Sasha Levin <sashal@kernel.org>,
-	andy.gross@linaro.org,
-	david.brown@linaro.org,
 	robh+dt@kernel.org,
 	mark.rutland@arm.com,
-	linux-arm-msm@vger.kernel.org,
-	linux-soc@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 6.6 05/12] arm64: dts: qcom: sc8280xp-crd: limit pcie4 link speed
-Date: Mon, 11 Mar 2024 14:37:19 -0400
-Message-ID: <20240311183727.328187-5-sashal@kernel.org>
+	thierry.reding@gmail.com,
+	devicetree@vger.kernel.org,
+	linux-tegra@vger.kernel.org
+Subject: [PATCH AUTOSEL 6.1 1/7] arm64: tegra: Set the correct PHY mode for MGBE
+Date: Mon, 11 Mar 2024 14:38:19 -0400
+Message-ID: <20240311183826.328535-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240311183727.328187-1-sashal@kernel.org>
-References: <20240311183727.328187-1-sashal@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -70,39 +63,36 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.6.21
+X-stable-base: Linux 6.1.81
 Content-Transfer-Encoding: 8bit
 
-From: Johan Hovold <johan+linaro@kernel.org>
+From: Thierry Reding <treding@nvidia.com>
 
-[ Upstream commit db8138845cebcdd0c709570b8217bd052757b8df ]
+[ Upstream commit 4c892121d43bc2b45896ca207b54f39a8fa6b852 ]
 
-Limit the WiFi PCIe link speed to Gen2 speed (500 MB/s), which is the
-speed that Windows uses.
+The PHY is configured in 10GBASE-R, so make sure to reflect that in DT.
 
-Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Link: https://lore.kernel.org/r/20240223152124.20042-7-johan+linaro@kernel.org
-Signed-off-by: Bjorn Andersson <andersson@kernel.org>
+Reviewed-by: Jon Hunter <jonathanh@nvidia.com>
+Tested-by: Jon Hunter <jonathanh@nvidia.com>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-index ffc4406422ae2..41215567b3aed 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-@@ -563,6 +563,8 @@
- };
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+index f094011be9ed9..8099dc04ed2e1 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
+@@ -2024,7 +2024,7 @@
+ 			status = "okay";
  
- &pcie4 {
-+	max-link-speed = <2>;
-+
- 	perst-gpios = <&tlmm 141 GPIO_ACTIVE_LOW>;
- 	wake-gpios = <&tlmm 139 GPIO_ACTIVE_LOW>;
+ 			phy-handle = <&mgbe0_phy>;
+-			phy-mode = "usxgmii";
++			phy-mode = "10gbase-r";
  
+ 			mdio {
+ 				#address-cells = <1>;
 -- 
 2.43.0
 
