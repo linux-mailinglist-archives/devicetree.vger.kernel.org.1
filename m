@@ -1,180 +1,139 @@
-Return-Path: <devicetree+bounces-49758-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49759-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9835877AB3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 06:39:35 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id EA851877ACF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 07:03:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7FB3A280FD7
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 05:39:34 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F99C282542
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 06:03:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB1A19479;
-	Mon, 11 Mar 2024 05:39:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1459C132;
+	Mon, 11 Mar 2024 06:03:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="fEAv3/aM"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fQUBZumc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 507961118B;
-	Mon, 11 Mar 2024 05:39:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C09AB65E;
+	Mon, 11 Mar 2024 06:03:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710135572; cv=none; b=d3N2ttZliWV+45+4xpI5JWIGGx/ycd/HcvEiGfAkol/ORwtvJl0hI8f5G9iB04tifSU5zVCHLbLPw8AXqBDRo34ShGEX5/ZwWnIIUSkhaceiPe+NnarrJPgXYPFzAhdJ5jP7QOCSohTzsj0A69QXR7uFOd+2S4g1h4KvWBSzxHw=
+	t=1710136988; cv=none; b=jr+Cp9tJasHQCAZFAiCNJOdBXT4RRx0dk64PEkZQBwhAz/Ru8YZYL2QKKBaWTZ3cKzySdbp71Lg7WctWcmC5T8IUUanstzO/KlQtmvs7DA+PuUJBjp1h95mk8kA1idPscLVzG9EBgQFRposjAXGAUOmiPJyP9H3a7jdW8xj6Wec=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710135572; c=relaxed/simple;
-	bh=Ka56Z2TcjSC1k5aIslx4wiCYsvuC+7+F9E44sweIR+I=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ChoDw6seYju4CmMTdx+blePUa9epCi5dThZTCqGsTYFrkBA0dhJptD5o68Af/DoZ5SM0uukZzU8pbcYWhc2jZxMWBBkh8s+/oOkljVePhfv61WPZc84WZ//aESwMZUTut6jnmYunvE97DvQ71u+1u+VPfd2fTXvWUB9Lxl2pomc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=fEAv3/aM; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42B4SW71008209;
-	Mon, 11 Mar 2024 05:39:17 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:reply-to:references
-	:mime-version:content-type:in-reply-to; s=qcppdkim1; bh=LmmM6Mle
-	Qg7vLFazyHImNbnBaOz3grFitf91olyQU6M=; b=fEAv3/aMWYtirJq0zXcH6ajx
-	/kugt7oM1cJHlSZFFqb+0tdx3T97wpaXwBbUanXlVd0IgS+grYfEk0Hg+Ky1EHMQ
-	xVWUXnVhXHf+L3uhiYPhxJBVy1fqIhoiqiXJlkZiFD4zGrjCOWFVRtRjTCawtama
-	RaAWyPiyvaGQ0OfbRI4qPMSPg2KVvb2dxYhqEWhK4vyhUzWcOI7ykwqjF5AyfjHe
-	dm007Y6/PMTGVyj903ZYKssWWn3uFOXJ3U7wh91WrOCBW4YyramNz7olKy3cSUUI
-	O0pA+duiisZo+Y4ErjTAoSS7bU0CcLbeZvQc61KEhfYuFiptnRyJd/oOUREaUg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wss1gr81p-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Mar 2024 05:39:17 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42B5dG9l024078
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Mar 2024 05:39:16 GMT
-Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 10 Mar
- 2024 22:39:08 -0700
-Date: Mon, 11 Mar 2024 11:09:05 +0530
-From: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-To: Elliot Berman <quic_eberman@quicinc.com>
-CC: Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla
-	<srinivas.kandagatla@linaro.org>,
-        Murali Nalajal <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Carl van Schaik
-	<quic_cvanscha@quicinc.com>,
-        Philip Derrin <quic_pderrin@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Jonathan Corbet
-	<corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "Fuad
- Tabba" <tabba@google.com>,
-        Sean Christopherson <seanjc@google.com>,
-        "Andrew
- Morton" <akpm@linux-foundation.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
-Subject: Re: [PATCH v17 11/35] virt: gunyah: Translate gh_rm_hyp_resource
- into gunyah_resource
-Message-ID: <20240311053905.GN440762@quicinc.com>
-Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
- <20240222-gunyah-v17-11-1e9da6763d38@quicinc.com>
+	s=arc-20240116; t=1710136988; c=relaxed/simple;
+	bh=rHKHOs/CfioDRsDzlTyobjWIyq8en/YqyDBEXhad4Bs=;
+	h=MIME-Version:Message-Id:In-Reply-To:References:Date:From:To:Cc:
+	 Subject:Content-Type; b=gMJfcRngDL/9qzGHvILD3G3qabrjUbE/Cvt3ckFDRgsh82QgqLlt5mdbMCx2wUWKWXA/0Syit/OYgW5l3NAlhY9XeQv9z92szFFpYGM1majDti4JMqRQeZsEAn6rZqlJgX1uCHqwk477aN/VRwINxPi4/zez2UAGehNkxsPD9u4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fQUBZumc; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62EE4C43394;
+	Mon, 11 Mar 2024 06:03:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710136987;
+	bh=rHKHOs/CfioDRsDzlTyobjWIyq8en/YqyDBEXhad4Bs=;
+	h=In-Reply-To:References:Date:From:To:Cc:Subject:From;
+	b=fQUBZumcdZeGJOZxYogFlDP8CxOy2NzhsptKPGEe9ceUUUZwKS5BSN0XRnqdv+mqK
+	 FabhdP15mjigTh0eXo6u3lylbMuxPlA6gj1nPa/jX3Sc+FF95rkIvFwy1XHDuSt528
+	 8zBU4+PN4cPg2bIq6lSJKN2QXu6ySluw0i64yKJ8N2wKlPA31pjRNPzMNGOn0Wlvm2
+	 hOfPVHDcKXnAawrwqrtTyNEdybuVY3U1JY2h48ck8DOpZAEcoWmhFIEZPKg7ivJIqh
+	 MzsFP34o2ZmjSiwo5Wi+eOfWyF/kUPYVrxZw81VGYwdGXiM+ITzkaWq7Czbdc5AAqu
+	 S5aG3hDHULSkQ==
+Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
+	by mailfauth.nyi.internal (Postfix) with ESMTP id 514311200043;
+	Mon, 11 Mar 2024 02:03:06 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute5.internal (MEProxy); Mon, 11 Mar 2024 02:03:06 -0400
+X-ME-Sender: <xms:mZ7uZTwhUKDoB3VvZpa1UHC5O9fNcVHw4GVHq20D6zOHHoPgk0dvIQ>
+    <xme:mZ7uZbQqQDNYN6vaTIm2yGUB29_sR0kbzHOBjIuvCJv7P7hmtIQ8MdtDsvPf8YzJQ
+    amta3JmMs90PbMTsgw>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvledrjedtgdeludcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvvefutgfgsehtqhertderreejnecuhfhrohhmpedftehr
+    nhguuceuvghrghhmrghnnhdfuceorghrnhgusehkvghrnhgvlhdrohhrgheqnecuggftrf
+    grthhtvghrnhepvddttdffjeefgeeggfelfefggefhheeffefftefggfelgeduveevtefh
+    feejveeknecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
+    eprghrnhguodhmvghsmhhtphgruhhthhhpvghrshhonhgrlhhithihqdduvdekhedujedt
+    vdegqddvkeejtddtvdeigedqrghrnhgupeepkhgvrhhnvghlrdhorhhgsegrrhhnuggsrd
+    guvg
+X-ME-Proxy: <xmx:mZ7uZdU-AObKIuhhe9Uq4vZYd51S8os2D0kXu_POqxBSXouEnPPA-g>
+    <xmx:mZ7uZdiKzQ3RJdJ6KwIQE9y5W0JZuUmZgUHbfBJPHYG1NOvsb1Lf_g>
+    <xmx:mZ7uZVDypRaLIrBcqqlhf0wOaKoJc4pobTimAtyHAFIUHAnX1uF4hQ>
+    <xmx:mp7uZdxl7jTfP9FPqWJRNdwPGicZ32KZg-G6VHqqtLMMTAOBGbP-I9B0xq0>
+Feedback-ID: i36794607:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+	id A32BCB6008D; Mon, 11 Mar 2024 02:03:05 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.11.0-alpha0-251-g8332da0bf6-fm-20240305.001-g8332da0b
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-In-Reply-To: <20240222-gunyah-v17-11-1e9da6763d38@quicinc.com>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: V2xhelRylHxeRMVsunfbTeMlRPUvSRSA
-X-Proofpoint-GUID: V2xhelRylHxeRMVsunfbTeMlRPUvSRSA
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-11_02,2024-03-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 impostorscore=0
- priorityscore=1501 spamscore=0 suspectscore=0 adultscore=0 mlxlogscore=559
- phishscore=0 malwarescore=0 bulkscore=0 lowpriorityscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
- definitions=main-2403110041
+Message-Id: <e90c2e69-17ea-4875-bb36-8a6d846f05e6@app.fastmail.com>
+In-Reply-To: <6c3451ed-6346-45e2-940e-851cb99a1b63@alliedtelesis.co.nz>
+References: <20240306235021.976083-1-chris.packham@alliedtelesis.co.nz>
+ <20240306235021.976083-4-chris.packham@alliedtelesis.co.nz>
+ <87edclgoon.fsf@BL-laptop>
+ <CAHp75VfmSWH3FWEHU+bGYDuo-nt1DJhY5Fvs83A-RGrtrsgWTw@mail.gmail.com>
+ <8177b94d-82c9-42b6-85eb-728dec762162@app.fastmail.com>
+ <CAHp75VfiaWFricM4Or771P0LJVoFoEmQtoJo1hySo=BRS-59DQ@mail.gmail.com>
+ <6c3451ed-6346-45e2-940e-851cb99a1b63@alliedtelesis.co.nz>
+Date: Mon, 11 Mar 2024 07:02:35 +0100
+From: "Arnd Bergmann" <arnd@kernel.org>
+To: "Chris Packham" <Chris.Packham@alliedtelesis.co.nz>,
+ "Andy Shevchenko" <andy.shevchenko@gmail.com>
+Cc: "Gregory Clement" <gregory.clement@bootlin.com>,
+ "Andy Shevchenko" <andy@kernel.org>,
+ "Geert Uytterhoeven" <geert@linux-m68k.org>,
+ "Rob Herring" <robh+dt@kernel.org>,
+ "krzysztof.kozlowski+dt@linaro.org" <krzysztof.kozlowski+dt@linaro.org>,
+ "Conor Dooley" <conor+dt@kernel.org>, "Andrew Lunn" <andrew@lunn.ch>,
+ "Sebastian Hesselbarth" <sebastian.hesselbarth@gmail.com>,
+ "Lee Jones" <lee@kernel.org>,
+ "linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
+ "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v5 3/3] ARM: dts: marvell: Add 7-segment LED display on x530
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-* Elliot Berman <quic_eberman@quicinc.com> [2024-02-22 15:16:34]:
+On Sun, Mar 10, 2024, at 21:22, Chris Packham wrote:
+> On 8/03/24 23:34, Andy Shevchenko wrote:
+>> On Fri, Mar 8, 2024 at 12:19=E2=80=AFPM Arnd Bergmann <arnd@kernel.or=
+g> wrote:
+>>> On Fri, Mar 8, 2024, at 10:56, Andy Shevchenko wrote:
+>>>> On Fri, Mar 8, 2024 at 9:36=E2=80=AFAM Gregory CLEMENT <gregory.cle=
+ment@bootlin.com> wrote:
+>>>>>
+>>>>> Normally, this patch should be taken in mvebu and then merged by
+>>>>> arm-soc. However, I haven't seen any other patch touching this fil=
+e (so
+>>>>> no risk of merge conflict) and I think it's too late for me to mak=
+e a
+>>>>> new pull request to arm-soc. So I'm not against it being taken wit=
+h the
+>>>>> rest of the patches. However, I think it would be a good idea to s=
+ee
+>>>>> what Arnd thinks about it.
+>
+> FYI ./scripts/get_maintainer.pl -f arch/arm/boot/dts/marvell isn't=20
+> picking up Arnd should it?
 
-> When booting a Gunyah virtual machine, the host VM may gain capabilities
-> to interact with resources for the guest virtual machine. Examples of
-> such resources are vCPUs or message queues. To use those resources, we
-> need to translate the RM response into a gunyah_resource structure which
-> are useful to Linux drivers. Presently, Linux drivers need only to know
-> the type of resource, the capability ID, and an interrupt.
-> 
-> On ARM64 systems, the interrupt reported by Gunyah is the GIC interrupt
-> ID number and always a SPI or extended SPI.
-> 
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+No, as Gregory writes, the intended way for platform specific
+patches is to go through the maintainer for that platform,
+in this case him, who then sends pull requests to me.
 
-Minor nit below. LGTM otherwise
+Since it was late in the merge window, he suggested skipping
+this step as an exception, which is something we can always do
+if there is an important reason, just like you skip can all
+maintainers and go directly to Linus if necessary, but the
+maintainers file only documents the normal case.
 
-Reviewed-by: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-
-> +struct gunyah_resource *
-> +gunyah_rm_alloc_resource(struct gunyah_rm *rm,
-> +			 struct gunyah_rm_hyp_resource *hyp_resource)
-> +{
-> +	struct gunyah_resource *ghrsc;
-> +	int ret;
-> +
-> +	ghrsc = kzalloc(sizeof(*ghrsc), GFP_KERNEL);
-> +	if (!ghrsc)
-> +		return NULL;
-> +
-> +	ghrsc->type = hyp_resource->type;
-> +	ghrsc->capid = le64_to_cpu(hyp_resource->cap_id);
-> +	ghrsc->irq = IRQ_NOTCONNECTED;
-> +	ghrsc->rm_label = le32_to_cpu(hyp_resource->resource_label);
-> +	if (hyp_resource->virq) {
-> +		struct irq_fwspec fwspec;
-> +
-> +
-> +		fwspec.fwnode = rm->parent_fwnode;
-> +		ret = arch_gunyah_fill_irq_fwspec_params(le32_to_cpu(hyp_resource->virq), &fwspec);
-> +		if (ret) {
-> +			dev_err(rm->dev,
-> +				"Failed to translate interrupt for resource %d label: %d: %d\n",
-> +				ghrsc->type, ghrsc->rm_label, ret);
-
-Not bailing on error here appears wrong. Can you check?
-
-> +		}
-> +
-> +		ret = irq_create_fwspec_mapping(&fwspec);
-> +		if (ret < 0) {
-> +			dev_err(rm->dev,
-> +				"Failed to allocate interrupt for resource %d label: %d: %d\n",
-> +				ghrsc->type, ghrsc->rm_label, ret);
-> +			kfree(ghrsc);
-> +			return NULL;
-> +		}
-> +		ghrsc->irq = ret;
-> +	}
-> +
-> +	return ghrsc;
-> +}
+     Arnd
 
