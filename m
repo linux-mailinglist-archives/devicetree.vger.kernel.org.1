@@ -1,165 +1,125 @@
-Return-Path: <devicetree+bounces-49784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA74F877D21
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 10:43:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 35D65877D52
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 10:52:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 604291F2131C
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 09:43:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E4EB8281044
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 09:52:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E085224F2;
-	Mon, 11 Mar 2024 09:43:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5392E199AD;
+	Mon, 11 Mar 2024 09:52:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UGB3Cmkd"
+	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="bF5k4Zi7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB3F418643;
-	Mon, 11 Mar 2024 09:43:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8219617561;
+	Mon, 11 Mar 2024 09:52:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.175.65.14
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710150217; cv=none; b=DviIpv71tQjTn16cyFVhzkbrZVlrSnFtfOkuaKB1TDXyDh14Gy+TH3QIDfl1Hnrn58hgLi/wxnZzvYkfrVEo+akoNHa10hgoQXSw0HGC1YgEt6ktxWrlXMHmVl0QoaUGzzBvp+mYySq635B4wy7d5F4UXVM51Rh2MZ8KJ6aYxo8=
+	t=1710150729; cv=none; b=X4t25kHsqTbFW6Z70qzkJ7FznUCcIJfQB95mOT37/1XJ/DjEsKamQN2q6XfI9KOZMGYEK6o3FrhF4uyD8FeX6JcWAFuMIglBwK3mY+/dmkURjERTONLgAIXIIs/uHXdbERZsHqoF/QjMci3eLpjw2hjuY0w8EYQs2Xw8lBvrGQ8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710150217; c=relaxed/simple;
-	bh=yZ/RL5rPhH6GHVbkcDcntpSmzaRjN/cJqLI09syrTFs=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=c6jKjspgJfwfs6YN4NUB9M/Cdjd51bLgfe5NsRb5PsPVqpHoxqAfH+88brs5ag6gYnsppHJ5qK7mkccebKe5VrPDow+iSil8hfkJ51gcsrKX8sbaSQHy5rDCLm3U6BlzHJW/j/7EXV+snR0ATFKlKWuPUb/57SRbeWUiW3Pjts0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UGB3Cmkd; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42B8keQm007298;
-	Mon, 11 Mar 2024 09:43:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=SFVtr80gevnNIuE5evsZ9LlEeRl9dJRRHh5XOFnOAVA=; b=UG
-	B3Cmkd8GemGH8u1/A4LYvmozRboChSSGCvXodP4duKtkmhITajfd8yhYgyce7LCW
-	JWAlBVuzUSv0Kv/hDCDs0kU+l1NK+MCz7owSZCZOGzNfbE5CWLtGlYrvcV87JbJl
-	qnNa9pwmlYJ+O5gqY/S3K1fIb5Cdx7aDZ2h+sxiWKaOZOUoA5iPj8JJTjZmFiTjF
-	R/Rhci8ZyQOrWDE8Sn3tKyysRo/ljMfZ8ik7XlkcP23V5Eyj6YNsch9xQirvBcKf
-	9vObSaeBesVwI/gON1/3Az17Cz6EeRudBPnIkC1vINyaGtoRPXhe7pROzk3XR5gB
-	czz2DVYxBBxiRixCaVyQ==
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wsxr1r3pn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Mar 2024 09:43:30 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42B9hTUb031093
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Mar 2024 09:43:29 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 11 Mar
- 2024 02:43:24 -0700
-Message-ID: <2b512404-bc56-41b8-89aa-dcbb23d7b2bd@quicinc.com>
-Date: Mon, 11 Mar 2024 17:43:22 +0800
+	s=arc-20240116; t=1710150729; c=relaxed/simple;
+	bh=kHqGNEG12eLe3S/obPhPqU/Qc/8vK1W84077+sxQovU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=lTlWQYnur3YpzO8mnQeBbL4dc26mEGAWgguao2pfqbEgVevN4nHVLxcZQQNiOHbRHtYJOlPGNtH0MjoOE9iL+aXkV1OUzlMONTH8m4o3F6AB9l4Kh4osVjsNqSo47ZESBCJZq0jMPL/lpQlNFXob6nno8Q2j5jTYMOLkeZMVLwk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=bF5k4Zi7; arc=none smtp.client-ip=198.175.65.14
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1710150728; x=1741686728;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kHqGNEG12eLe3S/obPhPqU/Qc/8vK1W84077+sxQovU=;
+  b=bF5k4Zi7MyLC0sjzcpebHrvt13p7mYKzLvEYv/FxH2lF2VF2Wd+7eARK
+   fYdLTisO24exmDrXsSwDlUlXP+XdWUFKffrOpjlpyvrI3akpcIRA+LXII
+   FX7J8KLwzwqymNRvFHWmQqwHO2uJ5R9ZilWTD4maAKLwhrkZIi8/fBg93
+   8/RJyJ8U5DiHo06kqGyJKEYh/8ylWLv6eLFTGRN2enxUFOe0rnG7isV79
+   SjDdIo8JhCCEo91ZROoCHqJzLh5IzaveuKdke8UtOO4Fb0rC/kcdaNsFa
+   x0kZW9GcpebXvAtmRkQvxfEFqoJnsu+MkyIic3gI0PDBByB6vV6tFQ0xk
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="8619483"
+X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; 
+   d="scan'208";a="8619483"
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2024 02:52:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,11009"; a="914354296"
+X-IronPort-AV: E=Sophos;i="6.07,116,1708416000"; 
+   d="scan'208";a="914354296"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2024 02:52:03 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.97)
+	(envelope-from <andriy.shevchenko@linux.intel.com>)
+	id 1rjcK8-0000000BaI1-2XGg;
+	Mon, 11 Mar 2024 11:52:00 +0200
+Date: Mon, 11 Mar 2024 11:52:00 +0200
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Subhajit Ghosh <subhajit.ghosh@tweaklogic.com>
+Cc: Jonathan Cameron <jic23@kernel.org>,
+	Lars-Peter Clausen <lars@metafoo.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matti Vaittinen <mazziesaccount@gmail.com>,
+	Marek Vasut <marex@denx.de>, Anshul Dalal <anshulusr@gmail.com>,
+	Javier Carrasco <javier.carrasco.cruz@gmail.com>,
+	Matt Ranostay <matt@ranostay.sg>,
+	Stefan Windfeldt-Prytz <stefan.windfeldt-prytz@axis.com>,
+	linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v9 0/5] Support for Avago APDS9306 Ambient Light Sensor
+Message-ID: <Ze7UQAD4V3n-MKDJ@smile.fi.intel.com>
+References: <20240309105031.10313-1-subhajit.ghosh@tweaklogic.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: update compatible name
- for match with driver
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linus Walleij
-	<linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>
-References: <20240129092512.23602-1-quic_tengfan@quicinc.com>
- <20240129092512.23602-2-quic_tengfan@quicinc.com>
- <CAL_JsqJfsWaj9OPkvc34rBvx7W_3v9+1kZqNu6QKDsA=iWAA4w@mail.gmail.com>
- <CAL_JsqLbbRFijBXS5CyRm0P4FMY7bR3UUdgXA7xP4Z1oRevnzQ@mail.gmail.com>
- <CACRpkdZ3uhyTnF7YkMk9sOeJJFZ4UPEna7PwpqPeBpWDdAmayA@mail.gmail.com>
- <e828b14c-7a09-479a-bf60-0c16571f133f@quicinc.com>
- <abebde71-ac9f-434b-b48b-6567308a2873@linaro.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <abebde71-ac9f-434b-b48b-6567308a2873@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: Cjeu1d7LmgJkYQ-PZ_VARWc6RnxpHCap
-X-Proofpoint-ORIG-GUID: Cjeu1d7LmgJkYQ-PZ_VARWc6RnxpHCap
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-11_06,2024-03-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 mlxscore=0
- malwarescore=0 clxscore=1015 adultscore=0 spamscore=0 lowpriorityscore=0
- mlxlogscore=999 bulkscore=0 phishscore=0 priorityscore=1501 suspectscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
- definitions=main-2403110072
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240309105031.10313-1-subhajit.ghosh@tweaklogic.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 
-
-
-On 3/11/2024 2:48 PM, Krzysztof Kozlowski wrote:
-> On 11/03/2024 03:27, Tengfei Fan wrote:
->>
->>
->> On 3/10/2024 7:44 AM, Linus Walleij wrote:
->>> On Fri, Mar 8, 2024 at 9:10 PM Rob Herring <robh+dt@kernel.org> wrote:
->>>> On Tue, Feb 27, 2024 at 7:37 AM Rob Herring <robh+dt@kernel.org> wrote:
->>>>> On Mon, Jan 29, 2024 at 3:25 AM Tengfei Fan <quic_tengfan@quicinc.com> wrote:
->>>>>>
->>>>>> Use compatible name "qcom,sm4450-tlmm" instead of "qcom,sm4450-pinctrl"
->>>>>> to match the compatible name in sm4450 pinctrl driver.
->>>>>>
->>>>>> Fixes: 7bf8b78f86db ("dt-bindings: pinctrl: qcom: Add SM4450 pinctrl")
->>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->>>>>> ---
->>>>>>    Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml | 2 +-
->>>>>>    1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
->>>>>> index bb08ca5a1509..bb675c8ec220 100644
->>>>>> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
->>>>>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
->>>>>> @@ -17,7 +17,7 @@ allOf:
->>>>>>
->>>>>>    properties:
->>>>>>      compatible:
->>>>>> -    const: qcom,sm4450-pinctrl
->>>>>> +    const: qcom,sm4450-tlmm
->>>>>
->>>>> I think you forgot to update the example:
->>>>>
->>>>> Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.example.dtb:
->>>>> /example-0/pinctrl@f100000: failed to match any schema with
->>>>> compatible: ['qcom,sm4450-tlmm']
->>>>
->>>> Still a warning in linux-next. Please send a fix.
->>>
->>> I understand it as applying 1/2 is the fix so I applied it.
->>
->> I will check this warning, and I will fix it.
+On Sat, Mar 09, 2024 at 09:20:26PM +1030, Subhajit Ghosh wrote:
+> Support for Avago APDS9306 Ambient Light Sensor.
 > 
-> Now? We were all waiting for you to respond here without any effect, so
-> finally I asked Linus to take the patch. In the future, be responsible
-> for your patches and comments happening to them. The same if your
-> applied commit causes issues in the next.
-
-I will speed up the upstream work of the sm4450.
-Before that, I had been focusing on the work of AIM300.
-
+> Driver support for Avago (Broadcom) APDS9306 Ambient Light Sensor.
+> It has two channels - ALS and CLEAR. The ALS (Ambient Light Sensor)
+> channel approximates the response of the human-eye providing direct
+> read out where the output count is proportional to ambient light levels.
+> It is internally temperature compensated and rejects 50Hz and 60Hz flicker
+> caused by artificial light sources. Hardware interrupt configuration is
+> optional. It is a low power device with 20 bit resolution and has 
+> configurable adaptive interrupt mode and interrupt persistence mode.
+> The device also features inbuilt hardware gain, multiple integration time
+> selection options and sampling frequency selection options.
 > 
-> Best regards,
-> Krzysztof
+> This driver also uses the IIO GTS (Gain Time Scale) Helpers Namespace for 
+> Scales, Gains and Integration time implementation.
 > 
+> Link: https://docs.broadcom.com/doc/AV02-4755EN
+
+...
+
+>  - Removed 'ret' from iio_gts_find_new_gain_by_old_gain_time()
+>    as it is not used. The current implementaion of the above
+>    function passes all my tests of changing integration times,
+>    scales and gains from userspace.
+
+This is weird. I believe we have to fix the API first before adding / dropping
+the return value from it. This odd API which makes everybody confused.
 
 -- 
-Thx and BRs,
-Tengfei Fan
+With Best Regards,
+Andy Shevchenko
+
+
 
