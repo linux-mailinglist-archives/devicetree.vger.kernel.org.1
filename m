@@ -1,68 +1,64 @@
-Return-Path: <devicetree+bounces-49890-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49891-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CC81878672
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 18:42:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1675D87867B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 18:43:13 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AE01D1C21141
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 17:42:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C648A2835E4
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 17:43:11 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE4D64E1BE;
-	Mon, 11 Mar 2024 17:42:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1CCEC4D9E8;
+	Mon, 11 Mar 2024 17:43:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="cX9H46js"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="LMGmEjrd"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2C174D9E9;
-	Mon, 11 Mar 2024 17:42:29 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DEA814D9E6;
+	Mon, 11 Mar 2024 17:43:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710178949; cv=none; b=NJlO1L4MKpLnQAuhqtUO9Pr7RvDaUTTR4vNSJedskkTpqflsVfpfKuLmutwRCnz3EBoC2YAuqd3uvE+/IVkbrEiMAMMhHqkddF2zRf5niO13R+N9aW5TwvQr71Sh2r/ooPEYB2s0RtIkIlKQkaGFSJoUaBtd7/IEA/2/YvMEvPg=
+	t=1710178987; cv=none; b=SkaHdHcAlEV3aH2LQCVKYhp2ygwh9rudP9oiBrnD3M/3+aeVtWglNimPSphUnR/xxlFGoGltJHoKtotVsQ3AUddGY+95nBeD1FzgELUTN/4fw25nrPs/XJE34HRya43j1RlPz63qEQxb8ER/No6pDHWVPj/pVMcOMiF9utm5vbU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710178949; c=relaxed/simple;
-	bh=TOmNFqdlEX5eUciRb+hCt2fH1EdaZIZ/19dwpuQ7yR4=;
+	s=arc-20240116; t=1710178987; c=relaxed/simple;
+	bh=AC7VQDeZIiTw1P1gYlvfffANLbxhOLrq5IOI95ib1zs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=ZubsisBR7xBHBD99u7mgTcHC6tY3Hgdos3U/WaWL61Y8aHGUoOqySLBFv7NZqxyoa6jGbedlhZjpraFkUDOLS8bvaoHqiupUgzs1/2xLsAtHwztUah+WKKJ1jxw+zMvFPRtnxw6o5t3dWYzbu+iAMElcoDY9wg1TsYYbQp8w2Qs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=cX9H46js; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EF7E7C433C7;
-	Mon, 11 Mar 2024 17:42:28 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=pOUQB5dVeqZA20GmZSOb/sAaF+SnTysiKnFpqP1kK0Mc3OXLq5U7g1HWwfBsyZ5BsqG5TpfLe32ggd9NyxZ2Jfb5Zb4wqDjFILpvAc33N2HpFcW2kuq0y/5+QMjEQzm264G85qWJ5CGwh+LnfiFAv0jJutOzJ+YbvEA5Gdo/Zu8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=LMGmEjrd; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37958C433C7;
+	Mon, 11 Mar 2024 17:43:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710178949;
-	bh=TOmNFqdlEX5eUciRb+hCt2fH1EdaZIZ/19dwpuQ7yR4=;
+	s=k20201202; t=1710178986;
+	bh=AC7VQDeZIiTw1P1gYlvfffANLbxhOLrq5IOI95ib1zs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=cX9H46jsv/qMGAFYT+F0QsCE2NSRwHon+tUf7M2uQPrMLIr1ogZmBNBonbfniFje7
-	 chpPKgJPAaq3aQmuMhvRgtYN0515QtnDOok+WxryHtWMICoPzIqjL+ILBlBRW21wQV
-	 mPjKZy7aNNeYHMnLI4iGiF7WymKK6dv3UUkCqkgwyM/pTX8BR5ELnD36NvDQa0whsU
-	 tJwkVD3Vy+7uBdtw8rayFoGcIaUhpPg63YASuaE6/5rBzxaL0mPVF91r3PGzhFA0gB
-	 dgRbzk12QhjFmNyXC9ro2zcUpspESpSFfW93AujKPG3P0Lcx7Fqg292uhbX7HOkATP
-	 VLh6sbW3TtXTA==
-Date: Mon, 11 Mar 2024 11:42:26 -0600
+	b=LMGmEjrda82O5DhvnTi42aUZp9ZbYiPnUZhHHhvHKnJlmAwWWd1doKEMX5ukChgM0
+	 6ymzVfsIu34PImHdcGhsZyUBagJxoq/3G6inXS+LgHlcXfJ3zkEq+6aw62NO3k1TH/
+	 fKo68ZmmBEelJreQB30DeJS8gE0l64QjvP1nluzvCOZOhzdCAino3AOPxF3Tm5s66L
+	 N38ckNJaE2b4Xg+REUge34XSU2O1GPv7Jn/OTm/e4acdAid/daOWBBJ41AHF+CMEq9
+	 4cyMKZkg28+c5DaJn3v8Q5jtvWqykJHeR/j9ibLrSSTRpx1koMdmH/xko23rgIZ5dP
+	 P5jGCXFKGZrRg==
+Date: Mon, 11 Mar 2024 11:43:03 -0600
 From: Rob Herring <robh@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Philipp Zabel <p.zabel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	devicetree@vger.kernel.org, David Airlie <airlied@gmail.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
+To: Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	linux-phy@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Conor Dooley <conor+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Chris Healy <cphealy@gmail.com>,
-	linux-arm-kernel@lists.infradead.org, imx@lists.linux.dev,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 02/12] dt-bindings: display: imx/ldb: drop ddc-i2c-bus
- property
-Message-ID: <171017894651.1474788.10522684449729794066.robh@kernel.org>
-References: <20240311-drm-imx-cleanup-v1-0-e104f05caa51@linaro.org>
- <20240311-drm-imx-cleanup-v1-2-e104f05caa51@linaro.org>
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Kishon Vijay Abraham I <kishon@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Bjorn Andersson <andersson@kernel.org>,
+	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+	Wesley Cheng <quic_wcheng@quicinc.com>, linux-usb@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: phy: qcom,usb-snps-femto-v2: Add
+ bindings for QDU1000
+Message-ID: <171017898265.1475540.17259448338325982005.robh@kernel.org>
+References: <20240311120215.16845-1-quic_kbajaj@quicinc.com>
+ <20240311120215.16845-2-quic_kbajaj@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -71,18 +67,17 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240311-drm-imx-cleanup-v1-2-e104f05caa51@linaro.org>
+In-Reply-To: <20240311120215.16845-2-quic_kbajaj@quicinc.com>
 
 
-On Mon, 11 Mar 2024 13:20:10 +0200, Dmitry Baryshkov wrote:
-> The in-kernel DT files do not use ddc-i2c-bus property with the iMX LVDS
-> Display Bridge. If in future a need arises to support such usecase, the
-> panel-simple should be used, which is able to handle the DDC bus.
+On Mon, 11 Mar 2024 17:32:12 +0530, Komal Bajaj wrote:
+> Document the compatible string for USB phy found in Qualcomm
+> QDU/QRU1000 SoC.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
 > ---
->  Documentation/devicetree/bindings/display/imx/ldb.txt | 1 -
->  1 file changed, 1 deletion(-)
+>  .../devicetree/bindings/phy/qcom,usb-snps-femto-v2.yaml          | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
