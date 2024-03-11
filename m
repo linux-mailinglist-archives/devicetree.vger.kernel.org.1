@@ -1,181 +1,126 @@
-Return-Path: <devicetree+bounces-49861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AA528781B6
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 15:35:54 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4ECD0878293
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 15:59:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DDD58B22162
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 14:35:51 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id AEACFB20A89
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 14:59:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6E85140BE4;
-	Mon, 11 Mar 2024 14:35:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E965241C89;
+	Mon, 11 Mar 2024 14:55:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="aH7yr38n"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="C/FdvGT1"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1E7863FBAD
-	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 14:35:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAFB747F48;
+	Mon, 11 Mar 2024 14:55:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710167739; cv=none; b=mowXEhwbF73BBGun4ygPHdKim23a73XmNbUN1DynGqUc6Yv3HJ/BCxY266wl1iZXXgtAb1egL/d7ZiQkkKX5mtzjQuBCkLVhDTSeV5vvBkG73RcecAchqaF5+l9wJFZVA0KnwOaWUbN0FQfhqtgXIfDHi2CVH+Zlik4EE8CZ1qI=
+	t=1710168927; cv=none; b=kpOb0pcL/gMkRIEXM3vCFsb9DjEW4nBUKp6Y6R1JJjkBjaAGf9X2BfRfZUwj4heL2o3DU2MmWXkjCxxj7pwFAze5rVQB9e5EgQizJrCxpSwDNcqudwEo9jPYTfI+vNbhZx439CawwQ3GZG6nwMNqjmC9NpJzm4+lAY99LRYZ1+Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710167739; c=relaxed/simple;
-	bh=45ZfRvUxIddCvTvQrv8f9u/FV8jFaYC8ep2rv/Hz+Kk=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=m9g73wBGz3+yLfdWuYG5zKdp+zz3h6sWwORftL1GNCc4nPva5n7/LtvrW7cz/3Ef0htAxGhh6EJjzcVTWFOVatMMqbr7Nyb74lH7u5/EPREUVwKkTEmzhvo+1amuGMFEK1uxieZ1/5520uIqxi9jJKI8jB/6xPc196vcohMOk3I=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=aH7yr38n; arc=none smtp.client-ip=209.85.218.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
-Received: by mail-ej1-f50.google.com with SMTP id a640c23a62f3a-a4429c556efso346119566b.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 07:35:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech.se; s=google; t=1710167734; x=1710772534; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=j8GA2WqqNZi4sBgOuiFb7TO2wXY4wNFoigcy0Y4xraw=;
-        b=aH7yr38nnRXGYM1xrgU7A8+UUj/euMhhmCDxNvobPDqX13XflR4TnBIlk8zayX/E4J
-         f1iMzFb2X3HV85Tn1xLC6PrnH58aCDOJtdoYIWAmOmau1y6XnCIBFuAeRueQSONKjf14
-         MW7rcoPFlyXRbqVJNQaHyMr0XxrmGofs8MEe3p2EZGv9oKk4HoJOhtCQK34qK/r3zPAS
-         3fCFpqqU4m8rnnqO75D2t8vX1zATBxQgtZBC9qFCQ71RG+IytW0MOKGaSH2bui8AruZN
-         IvT9zbHJ1FTD67TxgZcrzVe7j7q+XnprFtMQc4OD8tr/UlgD1LJc2mK72AnYd+3XRNyP
-         lWFw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710167734; x=1710772534;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=j8GA2WqqNZi4sBgOuiFb7TO2wXY4wNFoigcy0Y4xraw=;
-        b=crmPWrOzdYpwLhlMgnhETCdaefYR+ZQs1ST5YiFk3w5FNwAkZjo8wQBUqBzuqHrzqK
-         3k8gZbhQfKbZdVjF3IdH6rCBt3vif+s4DXR/onAMb+VQgc9dZI2fMTHF88onG4S7IepB
-         3ltSRp8j9ZWx8BaGkT98Iv7ZhPThGUUgxupm2GHZwgfA4U+R/nk6yP4GtyIcrWVjr4sf
-         ldjuZNl9QOZQSPZTcgat4qwyVePP41MvrTrEyUTiiV3FnEnvsgRXYEpM1UHmacgGpodY
-         ALorTMN/1E6NOMiOMMAZa4jCmmMJoaRZN9nvkCY2S0AOarDL41S8gJW8xpCBsc9WvsQ2
-         4B7g==
-X-Forwarded-Encrypted: i=1; AJvYcCWxt6jmmV1Cj1uT9cZ5RHw4lDmzijWpvT4r9FI2XnWPVztDAcySa3BvEf6aJk8bPimjYK8zoYNrncvwVXxS049Z58GiRm90YUuWcQ==
-X-Gm-Message-State: AOJu0Yxj+r2K6ou2i8LiaLfEXuRiVGaDkh5NKx0jP8O2F7GQdu3koAif
-	Xwftauz7xMU2bgS6+b2P/8+v0cSSm5zERAZwKq7ASO8R3lGJZvcATJyRyBXSRyY=
-X-Google-Smtp-Source: AGHT+IHwPP14dXTQIF8gbZBzyF2nx/SmXHUct1fkrDfFPb4anZHyf6OlSbg0UzJLt7rxxYbiZrm46A==
-X-Received: by 2002:a17:907:7847:b0:a44:1fcf:9b97 with SMTP id lb7-20020a170907784700b00a441fcf9b97mr3736842ejc.24.1710167734423;
-        Mon, 11 Mar 2024 07:35:34 -0700 (PDT)
-Received: from sleipner.berto.se (p4fcc8c6a.dip0.t-ipconnect.de. [79.204.140.106])
-        by smtp.googlemail.com with ESMTPSA id w9-20020a17090652c900b00a461543ab87sm2037458ejn.205.2024.03.11.07.35.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Mar 2024 07:35:34 -0700 (PDT)
-From: =?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-To: Sergey Shtylyov <s.shtylyov@omp.ru>,
-	"David S. Miller" <davem@davemloft.net>,
-	Eric Dumazet <edumazet@google.com>,
-	Jakub Kicinski <kuba@kernel.org>,
-	Paolo Abeni <pabeni@redhat.com>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	netdev@vger.kernel.org,
-	devicetree@vger.kernel.org
-Cc: linux-renesas-soc@vger.kernel.org,
-	=?UTF-8?q?Niklas=20S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Subject: [net-next] dt-bindings: net: renesas,ethertsn: Create child-node for MDIO bus
-Date: Mon, 11 Mar 2024 15:35:07 +0100
-Message-ID: <20240311143507.3239566-1-niklas.soderlund+renesas@ragnatech.se>
-X-Mailer: git-send-email 2.44.0
+	s=arc-20240116; t=1710168927; c=relaxed/simple;
+	bh=LvW9nTAyldiPop/Tibv4R+2RE6G1PnecV6XkNaBzfHU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:Message-ID:
+	 MIME-Version:Content-Type; b=HzdOpRnm4x/g4vbcN6dp4o3WisNMW/xLpZ5w+4AE7/r1aiWUnUNf4fd8MLNlGALANgtbX4SuR6v94XKjBwM5TCDckJC0XkywbZAwH1y9NjvwA+ZICYmF9PxoiSrDW9kZm9N1DfnZU1/Z46Lf0Yru3cvK3g731njFG3cCUYmLO2M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=C/FdvGT1; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C3417C433B2;
+	Mon, 11 Mar 2024 14:55:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710168927;
+	bh=LvW9nTAyldiPop/Tibv4R+2RE6G1PnecV6XkNaBzfHU=;
+	h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+	b=C/FdvGT1IhklU0hQgvncDarCtzuZJg/X9/A/KRM2Ok9EyBGOGD9918a269te/L6dJ
+	 PjHJA3rntAnFWHn9/3NsK2F6kTxh6I9FK/1akxCWbSzW8IPdxcUTHkjDgM8AWd6Nxm
+	 ycdRRfkkBdbmksRI6cJwQvY75MnN6I9QzrNBJ8FYOqVkidwteJJSEz50MUJ9wPEObw
+	 Vf8wnp2LhIoaQoHY4lLmhaRItN2s/p4UvKtHxpjiuot0vL/M7Edl/KrzGCT8a1hWDe
+	 Hvj3IicHJ2d1PXu8/XS+UvMgpBtvHjikO4FJizE2CvIDA9LKq9Xb0ea7RjPfbY84un
+	 i0aj9TzbTD7mg==
+From: Pratyush Yadav <pratyush@kernel.org>
+To: Tudor Ambarus <tudor.ambarus@linaro.org>
+Cc: =?utf-8?Q?Th=C3=A9o?= Lebrun <theo.lebrun@bootlin.com>,  Mark Brown
+ <broonie@kernel.org>,
+  Rob Herring <robh+dt@kernel.org>,  Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,  Conor Dooley <conor+dt@kernel.org>,
+  Vaishnav Achath <vaishnav.a@ti.com>,  Thomas Bogendoerfer
+ <tsbogend@alpha.franken.de>,  "linux-mtd@lists.infradead.org"
+ <linux-mtd@lists.infradead.org>,  Pratyush Yadav <pratyush@kernel.org>,
+  Michael Walle <mwalle@kernel.org>,  linux-spi@vger.kernel.org,
+  devicetree@vger.kernel.org,  linux-kernel@vger.kernel.org,
+  linux-mips@vger.kernel.org,  Vladimir Kondratiev
+ <vladimir.kondratiev@mobileye.com>,  Gregory CLEMENT
+ <gregory.clement@bootlin.com>,  Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>,  Tawfik Bayouk
+ <tawfik.bayouk@mobileye.com>
+Subject: Re: [PATCH 11/11] MIPS: mobileye: eyeq5: add octal flash node to
+ eval board DTS
+In-Reply-To: <f6b8d9bc-d95a-4d85-a2bc-820b1206fcaf@linaro.org> (Tudor
+	Ambarus's message of "Mon, 11 Mar 2024 14:06:10 +0000")
+References: <20240308-cdns-qspi-mbly-v1-0-a503856dd205@bootlin.com>
+	<20240308-cdns-qspi-mbly-v1-11-a503856dd205@bootlin.com>
+	<f6b8d9bc-d95a-4d85-a2bc-820b1206fcaf@linaro.org>
+Date: Mon, 11 Mar 2024 15:55:23 +0100
+Message-ID: <mafs0v85s95t0.fsf@kernel.org>
+User-Agent: Gnus/5.13 (Gnus v5.13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 
-The design for this driver followed that of other Renesas Ethernet
-drivers and thus did not force a child-node for the MDIO bus. As there
-are no upstream drivers or users of this binding yet take the
-opportunity to correct this and force the usage of a child-node for the
-MDIO bus.
+On Mon, Mar 11 2024, Tudor Ambarus wrote:
 
-Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
----
-Hello,
+> On 3/8/24 17:18, Th=C3=A9o Lebrun wrote:
+>> Add SPI-NOR octal flash node to evaluation board devicetree.
+>>=20
+>> Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+>> ---
+>>  arch/mips/boot/dts/mobileye/eyeq5-epm5.dts | 15 +++++++++++++++
+>>  1 file changed, 15 insertions(+)
+>>=20
+>> diff --git a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts b/arch/mips/boot=
+/dts/mobileye/eyeq5-epm5.dts
+>> index 6898b2d8267d..0e5fee7b680c 100644
+>> --- a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
+>> +++ b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
+>> @@ -21,3 +21,18 @@ memory@0 {
+>>  		      <0x8 0x02000000 0x0 0x7E000000>;
+>>  	};
+>>  };
+>> +
+>> +&ospi {
+>> +	flash0: flash@0 {
+>> +		compatible =3D "jedec,spi-nor";
+>> +		reg =3D <0>; /* chip select */
+>> +
+>> +		spi-max-frequency =3D <40000000>;
+>> +		spi-rx-bus-width =3D <8>;
+>> +		cdns,read-delay =3D <1>;
+>> +		cdns,tshsl-ns =3D <400>;
+>> +		cdns,tsd2d-ns =3D <400>;
+>> +		cdns,tchsh-ns =3D <125>;
+>> +		cdns,tslch-ns =3D <50>;
+>
+> These cdns properties look bad, they bypass SPI NOR entirely. I'd check
+> if these timings can be determined at SFDP parsing time, then I'd pass
+> them to the SPI controller.
 
-Learn from the mistake made with the Renesas AVB bindings being worked
-on in [1] where no mdio node was used to describe the MDIO bus and the
-PHY was added directly as a child node to the AVB node.
+I agree, but I don't see any table in SFDP that describes these timings.
+So I don't think there is a way to discover them.
 
-The Ethernet TSN driver is still in review and have not been merged and
-no usage of the bindings merged either. So while this breaks the binding
-it effects no one so we can correct this mistake without breaking any
-use-cases before we need to support any backward compatibility.
+>
+> I see these properties are already accepted in the bindings file for few
+> years now. Something to improve later on.
 
-1. https://patchwork.kernel.org/project/netdevbpf/list/?series=834331
----
- .../bindings/net/renesas,ethertsn.yaml        | 33 ++++++++-----------
- 1 file changed, 14 insertions(+), 19 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
-index ea35d19be829..0a88f4acc3f6 100644
---- a/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
-+++ b/Documentation/devicetree/bindings/net/renesas,ethertsn.yaml
-@@ -71,16 +71,8 @@ properties:
-     enum: [0, 2000]
-     default: 0
- 
--  '#address-cells':
--    const: 1
--
--  '#size-cells':
--    const: 0
--
--patternProperties:
--  "^ethernet-phy@[0-9a-f]$":
--    type: object
--    $ref: ethernet-phy.yaml#
-+  mdio:
-+    $ref: /schemas/net/mdio.yaml#
-     unevaluatedProperties: false
- 
- required:
-@@ -94,8 +86,7 @@ required:
-   - resets
-   - phy-mode
-   - phy-handle
--  - '#address-cells'
--  - '#size-cells'
-+  - mdio
- 
- additionalProperties: false
- 
-@@ -122,14 +113,18 @@ examples:
-         tx-internal-delay-ps = <2000>;
-         phy-handle = <&phy3>;
- 
--        #address-cells = <1>;
--        #size-cells = <0>;
-+        mdio {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
- 
--        phy3: ethernet-phy@3 {
--            compatible = "ethernet-phy-ieee802.3-c45";
--            reg = <0>;
--            interrupt-parent = <&gpio4>;
--            interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-             reset-gpios = <&gpio1 23 GPIO_ACTIVE_LOW>;
-+            reset-post-delay-us = <4000>;
-+
-+            phy3: ethernet-phy@3 {
-+                compatible = "ethernet-phy-ieee802.3-c45";
-+                reg = <0>;
-+                interrupt-parent = <&gpio4>;
-+                interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-+            };
-         };
-     };
--- 
-2.44.0
-
+--=20
+Regards,
+Pratyush Yadav
 
