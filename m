@@ -1,175 +1,343 @@
-Return-Path: <devicetree+bounces-49800-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49801-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 328AE877E56
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 11:47:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BE0F877E5F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 11:49:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DAF30280DA2
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 10:47:24 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1B28280DEA
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 10:49:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF9DF36B1B;
-	Mon, 11 Mar 2024 10:47:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB2143219F;
+	Mon, 11 Mar 2024 10:49:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MiwezWWn"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JHFhCL4Y"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qv1-f51.google.com (mail-qv1-f51.google.com [209.85.219.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2894B36AEF
-	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 10:47:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B320B2C69A;
+	Mon, 11 Mar 2024 10:49:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710154040; cv=none; b=F+odLYAQsFhq1821amxwdx+C2ax4EF+68nElBxm/AaQGIwrrJJdOfJwWq7Ru5bwCn3pQbzZx6g62y4fT2LCzcHuQg3AKFJsa35bet0Uln4yezsCaiRwd7qYHSSvj4QLtdxQ3FpdMMMMeg3hWj2PW42NY5SuG2Ean1Wfcj+Fd3rQ=
+	t=1710154184; cv=none; b=J/y/paBQBPG4vcnLLGgl0HFlcFY+CyuPxYa5gite+iOeUIhVpnKLCY5RKNM3Ji1MrAz6U8UmbS3kAppYkzjQsQhu5YgURv34sSGyIgYZ4RXz8K31kg2SkSoyrsCx9mkvwDKU60uXxH8TKScoQ1YVdqHpt2RLFEm5xWll3V6Ud9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710154040; c=relaxed/simple;
-	bh=FCFtKM5ZoK2XTLYGhcLAlAmDD4xwFFMWyjuRlDleGTY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=r8snPozx7sjYyeWHBkulvj5U/Jd2+g3M/Tts6l2t03VsyvDKhRIrlhNaLZg5TgDMbfQug7+4rByK/Vydjbv8hB2bral3NlAy46FLa3tGNbDe11OpcTKHV5GVuoO47iLYywewjmg5qJbCnGBsF46f7N2pLESXVOtQqvXK0/Nex64=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MiwezWWn; arc=none smtp.client-ip=209.85.219.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-qv1-f51.google.com with SMTP id 6a1803df08f44-690b100da62so29809376d6.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 03:47:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710154038; x=1710758838; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=cRIjS+xX+GPm53OcBVvySCiWaptis6C/taxIOwdOm1E=;
-        b=MiwezWWnFKe8CFyXo7GC85OnrSCA/SH8NmsvfAL1uZq01ddhSiHJJLCsi+lVFqQKaC
-         ckozFsZNvPwxFIPsYv5lCgwEmV+ujazm6dJgD7+fBJDC2Z1+SUJfy6cqWu0r3LHmn/Um
-         GtHA/TInxGgHM4+8/gX4csPjGCcv+C5Gx0mgiB8bNl/XQUnUC5MqHeSNRVfzMlaie+1a
-         4TX+DujKjdbLLkHpae2bg43w90OHHiuj1lFdyzPwl6R1oZRhiIeMJjXVi/W+Y89hXIfM
-         wDFsLNeV1099OKwqm28uikkToGNWA55GUGR8/iuY4y4Z21USjcaMJY9Oo9wJtB5gYaz1
-         hUgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710154038; x=1710758838;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cRIjS+xX+GPm53OcBVvySCiWaptis6C/taxIOwdOm1E=;
-        b=Nv3bsEpvhvnvchgviMtswWauBrqrj1dc0HDj5wO3luAI7J9Vgm/YgMH9na3ZMco/n7
-         M+DpRJklxIZ48N9oKZiT7Vwxn26IJqnOCjpSI2vwP0MKExHVYQLG8o3uOEM05U2mm0de
-         Geu9srByy26Rxnqx81Ubk2OXyKZk8gDiw08vabgoMZlLbRYxSoX4gX+6IFhVVRtCGK1s
-         zpOuWVY1ye4gZtqS7Dq0z/B0f5UXqhkDh6mGAtsAN+HBTTWgyDi+i05RA/smlcz4bJEn
-         En3wCY/00CWshzfMCVN6MDR7umOOVqCn/UPX5XLXFW1DgQAAWd9PkPEuhYLXzU5L3mcz
-         Bx5g==
-X-Forwarded-Encrypted: i=1; AJvYcCWonPqV+LnD3b2IHOmZnlBBHDL5dpCeEDOuTLCKIayVgCiFhugGy7/XAuqTxsws3ZolphBm955DMIhgnXeigb1ickN8wzoEcJW0Lg==
-X-Gm-Message-State: AOJu0YwAyl+ty8H6iUTg8DEXY0QveChH8cWBcMJVxzZBLCh7Q6PkLkUs
-	p7nrYoFHWOcwwbq+lEEJYnHaXhkahmM1fRyyzxLkJHTqtUw9ryJVt1y5ovhOX4/9RrQiM4P1X4W
-	o6WGmKVguWdJJdeZ5Hx/faig+po0SVeZqjpF/Dw==
-X-Google-Smtp-Source: AGHT+IGyrPx1d8EcSWfPY0WZ1CYoYrM93ITiWLlRr/ltcc0nW0tGxeB9PQdlmfL0rMLOYoJeiLKm/R9q7ev0Ge3Vbpc=
-X-Received: by 2002:ad4:58c5:0:b0:690:46a8:93f with SMTP id
- dh5-20020ad458c5000000b0069046a8093fmr5235070qvb.44.1710154038009; Mon, 11
- Mar 2024 03:47:18 -0700 (PDT)
+	s=arc-20240116; t=1710154184; c=relaxed/simple;
+	bh=zdumg2HTNXjDkRGH9WQHi7LXj63DIJGejKy1zfiZJiM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=uEECx3zUj3ZXZ2BQcRT9hbU2/1Z16j18U0UwecMgoEwIXn9AUON3wpRcARmdUuDUFJKvJ5tiaaLiuDCKHRtwfbo8arZRdecopkdbfaWq2cHmmYZRbULTEjLgyW0FaM9iNTYIhc4GhTN4SbreLWdTOmTLkGYkd4WTCLpjoE0I/sw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JHFhCL4Y; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42BAn95H109286;
+	Mon, 11 Mar 2024 05:49:09 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1710154149;
+	bh=GCbA1hnNHwTujCBaxSWTiyZacv4uOD7uipAFx1zBfFY=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=JHFhCL4YHUQc+/SPUXonmLe9ov71U5c6i8s4PvDJ8zDgF1mGpDRsQXX3SCmTStG7/
+	 AH7FGQf/0/3/KF4Fh/pVf3aSdP3hCAIG5sQSdwr/YmPieKnjdAqIXjE/nTaqHR+AP4
+	 rO3hCvh8IQWlpdDXOQEis7Je2wkj0bIcCu2vTgys=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42BAn9hJ116567
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Mon, 11 Mar 2024 05:49:09 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
+ Mar 2024 05:49:09 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Mon, 11 Mar 2024 05:49:09 -0500
+Received: from [172.24.227.220] (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42BAn3Dt109815;
+	Mon, 11 Mar 2024 05:49:04 -0500
+Message-ID: <86a067c4-3b28-448d-8c58-c7a9e80d697f@ti.com>
+Date: Mon, 11 Mar 2024 16:19:02 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240307135912.163996-1-tudor.ambarus@linaro.org> <073e5ef5-2a2e-4300-93d6-e25552276e13@linaro.org>
-In-Reply-To: <073e5ef5-2a2e-4300-93d6-e25552276e13@linaro.org>
-From: Peter Griffin <peter.griffin@linaro.org>
-Date: Mon, 11 Mar 2024 10:47:06 +0000
-Message-ID: <CADrjBPojf92=Vvq9rVt9frC-61BQbKeX+5fRa-q8fqr9iGMryA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: exynos: gs101: define all PERIC USI nodes
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Tudor Ambarus <tudor.ambarus@linaro.org>, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	alim.akhtar@samsung.com, linux-arm-kernel@lists.infradead.org, 
-	linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, andre.draszik@linaro.org, 
-	willmcvicker@google.com, kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
-
-Hi Krzysztof & Tudor,
-
-On Fri, 8 Mar 2024 at 16:45, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 07/03/2024 14:59, Tudor Ambarus wrote:
-> > Universal Serial Interface (USI) supports three types of serial
-> > interface such as UART, SPI and I2C. Each protocol works independently.
-> > USI can be configured to work as one of these protocols. Define all the
-> > USI nodes from the PERIC blocks (USI0-14), in all their possible
-> > configurations. These blocks have the TX/RX FIFO depth of 64 bytes.
-> >
-> > Signed-off-by: Tudor Ambarus <tudor.ambarus@linaro.org>
-
-With Krzystof's comments addressed:
-
-Reviewed-by: Peter Griffin <peter.griffin@linaro.org>
-
-> > ---
-> > Please note that:
-> > - google,gs101-spi compatible was queued through the SPI tree:
-> >   https://lore.kernel.org/linux-arm-kernel/170742731537.2266792.3851016361229293846.b4-ty@kernel.org/
-> > - SPI dma properties were marked as not requiered. Queued through the
-> >   SPI tree:
-> >   https://lore.kernel.org/linux-spi/170967132774.228925.1759895846287455970.b4-ty@kernel.org/
-> >
-> >  arch/arm64/boot/dts/exynos/google/gs101.dtsi | 782 +++++++++++++++++++
-> >  1 file changed, 782 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/exynos/google/gs101.dtsi b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> > index ee65ed9d2cfc..d7ecfbc7e440 100644
-> > --- a/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> > +++ b/arch/arm64/boot/dts/exynos/google/gs101.dtsi
-> > @@ -373,6 +373,398 @@ pinctrl_peric0: pinctrl@10840000 {
-> >                       interrupts = <GIC_SPI 625 IRQ_TYPE_LEVEL_HIGH 0>;
-> >               };
-> >
-> > +             usi1: usi@109000c0 {
-> > +                     compatible = "google,gs101-usi",
-> > +                                  "samsung,exynos850-usi";
->
-> This should fit within 81 characters, which is pretty close to 80, so if
-> there is going to be any resend/new version, please join the lines.
->
-> > +                     reg = <0x109000c0 0x20>;
-> > +                     ranges;
-> > +                     #address-cells = <1>;
-> > +                     #size-cells = <1>;
-> > +                     clocks = <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP0_PCLK_0>,
-> > +                              <&cmu_peric0 CLK_GOUT_PERIC0_PERIC0_TOP0_IPCLK_0>;
-> > +                     clock-names = "pclk", "ipclk";
-> > +                     samsung,sysreg = <&sysreg_peric0 0x1000>;
-> > +                     status = "disabled";
-> > +
-> > +                     hsi2c_1: i2c@10900000 {
-> > +                             compatible = "google,gs101-hsi2c",
-> > +                                          "samsung,exynosautov9-hsi2c";
-> > +                             reg = <0x10900000 0xc0>;
-> > +                             interrupts = <GIC_SPI 635 IRQ_TYPE_LEVEL_HIGH 0>;
->
-> I wonder why we use four cells in GIC...
-
-Due to the ppi-partitions defined in the gic for the pmu-(0-2) devices.
-
-regards,
-
-Peter.
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 5/6] arm64: dts: ti: k3-j784s4: Add overlay to enable
+ QSGMII mode with CPSW9G
+Content-Language: en-US
+To: Andrew Davis <afd@ti.com>, Peter Rosin <peda@axentia.se>,
+        Greg
+ Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Tero
+ Kristo <kristo@kernel.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
+ Menon <nm@ti.com>
+CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
+        <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>, <danishanwar@ti.com>
+References: <20240131101441.1362409-1-c-vankar@ti.com>
+ <20240131101441.1362409-6-c-vankar@ti.com>
+ <7960af47-5d6a-4e54-9d58-a145311321f6@ti.com>
+From: Chintan Vankar <c-vankar@ti.com>
+In-Reply-To: <7960af47-5d6a-4e54-9d58-a145311321f6@ti.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
 
 
->
-> > +                             #address-cells = <1>;
-> > +                             #size-cells = <0>;
-> > +                             pinctrl-names = "default";
-> > +                             pinctrl-0 = <&hsi2c1_bus>;
->
-> Please reverse two lines, first pinctrl-0 then pinctrl-names. I know we
-> did not follow this convention till now, but at least new code can be
-> correct. Also clocks should be before pinctrl, so we keep some sort of
-> alphabetical order.
->
-> It is anyway too late in the cycle for me to pick it up, so no need to
-> hurry with resend.
->
-> Best regards,
-> Krzysztof
->
+On 31/01/24 21:20, Andrew Davis wrote:
+> On 1/31/24 4:14 AM, Chintan Vankar wrote:
+>> From: Siddharth Vadapalli <s-vadapalli@ti.com>
+>>
+>> The J7 Quad Port Add-On Ethernet Card for J784S4 EVM supports
+>> QSGMII mode. Use the overlay to configure CPSW9G ports in QSGMII
+>> mode with the Add-On Ethernet Card connected to the ENET Expansion
+>> 1 slot on the EVM.
+>>
+>> Add support to reset the PHY from kernel by using gpio-hog and
+>> gpio-reset.
+>>
+>> Add aliases for CPSW9G ports to enable kernel to fetch MAC Addresses
+>> directly from U-Boot.
+>>
+>> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
+>> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
+>> ---
+>>   arch/arm64/boot/dts/ti/Makefile               |   7 +-
+>>   .../ti/k3-j784s4-evm-quad-port-eth-exp1.dtso  | 147 ++++++++++++++++++
+>>   2 files changed, 153 insertions(+), 1 deletion(-)
+>>   create mode 100644 
+>> arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/Makefile 
+>> b/arch/arm64/boot/dts/ti/Makefile
+>> index 52c1dc910308..836bc197d932 100644
+>> --- a/arch/arm64/boot/dts/ti/Makefile
+>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>> @@ -81,6 +81,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
+>>   # Boards with J784s4 SoC
+>>   dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
+>>   dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
+>> +dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
+>>   # Build time test only, enabled by CONFIG_OF_ALL_DTBS
+>>   k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
+>> @@ -109,6 +110,8 @@ k3-j721e-evm-pcie0-ep-dtbs := 
+>> k3-j721e-common-proc-board.dtb \
+>>       k3-j721e-evm-pcie0-ep.dtbo
+>>   k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
+>>       k3-j721s2-evm-pcie1-ep.dtbo
+>> +k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
+>> +    k3-j784s4-evm-quad-port-eth-exp1.dtbo
+>>   dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+>>       k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
+>>       k3-am625-sk-csi2-imx219.dtb \
+>> @@ -121,7 +124,8 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
+>>       k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
+>>       k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
+>>       k3-j721e-evm-pcie0-ep.dtb \
+>> -    k3-j721s2-evm-pcie1-ep.dtb
+>> +    k3-j721s2-evm-pcie1-ep.dtb \
+>> +    k3-j784s4-evm-quad-port-eth-exp1.dtb
+>>   # Enable support for device-tree overlays
+>>   DTC_FLAGS_k3-am625-beagleplay += -@
+>> @@ -132,3 +136,4 @@ DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
+>>   DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
+>>   DTC_FLAGS_k3-j721e-common-proc-board += -@
+>>   DTC_FLAGS_k3-j721s2-common-proc-board += -@
+>> +DTC_FLAGS_k3-j784s4-evm += -@
+>> diff --git 
+>> a/arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso 
+>> b/arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
+>> new file mode 100644
+>> index 000000000000..0667389b07be
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
+>> @@ -0,0 +1,147 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
+>> +/**
+>> + * DT Overlay for CPSW9G in QSGMII mode using J7 Quad Port ETH EXP 
+>> Add-On Ethernet Card with
+>> + * J784S4 EVM. The Add-On Ethernet Card has to be connected to ENET 
+>> Expansion 1 slot on the
+>> + * board.
+>> + *
+>> + * Product Datasheet: https://www.ti.com/lit/ug/spruj74/spruj74.pdf
+>> + *
+>> + * Link to QSGMII Daughtercard: 
+>> https://www.ti.com/tool/J721EXENETXPANEVM
+>> + *
+>> + * Copyright (C) 2024 Texas Instruments Incorporated - 
+>> https://www.ti.com/
+>> + */
+>> +
+>> +/dts-v1/;
+>> +/plugin/;
+>> +
+>> +#include <dt-bindings/gpio/gpio.h>
+>> +#include <dt-bindings/phy/phy-cadence.h>
+>> +#include <dt-bindings/phy/phy.h>
+>> +
+>> +#include "k3-pinctrl.h"
+>> +#include "k3-serdes.h"
+>> +
+>> +&{/} {
+>> +    aliases {
+>> +        ethernet1 = 
+>> "/bus@100000/ethernet@c000000/ethernet-ports/port@5";
+> 
+> Didn't you already set ethernet1 to be main_cpsw1_port1 in the base, 
+> does this
+> actually behave the way you want?
+
+Yes. It behaves the way it is configured, explanation of how it
+configures MAC addresses is explained at:
+https://lore.kernel.org/all/0512d57f-af22-4bd8-8266-33d943d7eb4a@ti.com/
+
+> 
+> Otherwise looks okay,
+> 
+> Reviewed-by: Andrew Davis <afd@ti.com>
+> 
+>> +        ethernet2 = 
+>> "/bus@100000/ethernet@c000000/ethernet-ports/port@6";
+>> +        ethernet3 = 
+>> "/bus@100000/ethernet@c000000/ethernet-ports/port@7";
+>> +        ethernet4 = 
+>> "/bus@100000/ethernet@c000000/ethernet-ports/port@8";
+>> +        ethernet5 = 
+>> "/bus@100000/ethernet@c200000/ethernet-ports/port@1";
+>> +    };
+>> +};
+>> +
+>> +&main_cpsw0 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&main_cpsw0_port5 {
+>> +    status = "okay";
+>> +    phy-handle = <&cpsw9g_phy1>;
+>> +    phy-mode = "qsgmii";
+>> +    mac-address = [00 00 00 00 00 00];
+>> +    phys = <&cpsw0_phy_gmii_sel 5>, <&serdes2_qsgmii_link>;
+>> +    phy-names = "mac", "serdes";
+>> +};
+>> +
+>> +&main_cpsw0_port6 {
+>> +    status = "okay";
+>> +    phy-handle = <&cpsw9g_phy2>;
+>> +    phy-mode = "qsgmii";
+>> +    mac-address = [00 00 00 00 00 00];
+>> +    phys = <&cpsw0_phy_gmii_sel 6>, <&serdes2_qsgmii_link>;
+>> +    phy-names = "mac", "serdes";
+>> +};
+>> +
+>> +&main_cpsw0_port7 {
+>> +    status = "okay";
+>> +    phy-handle = <&cpsw9g_phy0>;
+>> +    phy-mode = "qsgmii";
+>> +    mac-address = [00 00 00 00 00 00];
+>> +    phys = <&cpsw0_phy_gmii_sel 7>, <&serdes2_qsgmii_link>;
+>> +    phy-names = "mac", "serdes";
+>> +};
+>> +
+>> +&main_cpsw0_port8 {
+>> +    status = "okay";
+>> +    phy-handle = <&cpsw9g_phy3>;
+>> +    phy-mode = "qsgmii";
+>> +    mac-address = [00 00 00 00 00 00];
+>> +    phys = <&cpsw0_phy_gmii_sel 8>, <&serdes2_qsgmii_link>;
+>> +    phy-names = "mac", "serdes";
+>> +};
+>> +
+>> +&main_cpsw0_mdio {
+>> +    status = "okay";
+>> +    pinctrl-names = "default";
+>> +    pinctrl-0 = <&mdio0_default_pins>;
+>> +    bus_freq = <1000000>;
+>> +    reset-gpios = <&exp2 17 GPIO_ACTIVE_LOW>;
+>> +    reset-post-delay-us = <120000>;
+>> +    #address-cells = <1>;
+>> +    #size-cells = <0>;
+>> +
+>> +    cpsw9g_phy0: ethernet-phy@16 {
+>> +        reg = <16>;
+>> +    };
+>> +    cpsw9g_phy1: ethernet-phy@17 {
+>> +        reg = <17>;
+>> +    };
+>> +    cpsw9g_phy2: ethernet-phy@18 {
+>> +        reg = <18>;
+>> +    };
+>> +    cpsw9g_phy3: ethernet-phy@19 {
+>> +        reg = <19>;
+>> +    };
+>> +};
+>> +
+>> +&exp2 {
+>> +    /* Power-up ENET1 EXPANDER PHY. */
+>> +    qsgmii-line-hog {
+>> +        gpio-hog;
+>> +        gpios = <16 GPIO_ACTIVE_HIGH>;
+>> +        output-low;
+>> +    };
+>> +
+>> +    /* Toggle MUX2 for MDIO lines */
+>> +    mux-sel-hog {
+>> +        gpio-hog;
+>> +        gpios = <13 GPIO_ACTIVE_HIGH>, <14 GPIO_ACTIVE_HIGH>, <15 
+>> GPIO_ACTIVE_HIGH>;
+>> +        output-high;
+>> +    };
+>> +};
+>> +
+>> +&main_pmx0 {
+>> +    mdio0_default_pins: mdio0-default-pins {
+>> +        pinctrl-single,pins = <
+>> +            J784S4_IOPAD(0x05c, PIN_INPUT, 4) /* (AC36) 
+>> MCASP2_AXR0.MDIO1_MDIO */
+>> +            J784S4_IOPAD(0x058, PIN_INPUT, 4) /* (AE37) 
+>> MCASP2_AFSX.MDIO1_MDC */
+>> +        >;
+>> +    };
+>> +};
+>> +
+>> +&serdes_ln_ctrl {
+>> +    idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>, 
+>> <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
+>> +              <J784S4_SERDES0_LANE2_IP3_UNUSED>, 
+>> <J784S4_SERDES0_LANE3_USB>,
+>> +              <J784S4_SERDES1_LANE0_PCIE0_LANE0>, 
+>> <J784S4_SERDES1_LANE1_PCIE0_LANE1>,
+>> +              <J784S4_SERDES1_LANE2_PCIE0_LANE2>, 
+>> <J784S4_SERDES1_LANE3_PCIE0_LANE3>,
+>> +              <J784S4_SERDES2_LANE0_QSGMII_LANE5>, 
+>> <J784S4_SERDES2_LANE1_QSGMII_LANE6>,
+>> +              <J784S4_SERDES2_LANE2_QSGMII_LANE7>, 
+>> <J784S4_SERDES2_LANE3_QSGMII_LANE8>;
+>> +};
+>> +
+>> +&serdes_wiz2 {
+>> +    status = "okay";
+>> +};
+>> +
+>> +&serdes2 {
+>> +    status = "okay";
+>> +    #address-cells = <1>;
+>> +    #size-cells = <0>;
+>> +    serdes2_qsgmii_link: phy@0 {
+>> +        reg = <2>;
+>> +        cdns,num-lanes = <1>;
+>> +        #phy-cells = <0>;
+>> +        cdns,phy-type = <PHY_TYPE_QSGMII>;
+>> +        resets = <&serdes_wiz2 3>;
+>> +    };
+>> +};
 
