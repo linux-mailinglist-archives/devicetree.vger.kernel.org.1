@@ -1,330 +1,133 @@
-Return-Path: <devicetree+bounces-49911-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49912-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06176878907
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 20:40:40 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FE75878922
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 20:54:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 73F9D1F2129A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 19:40:39 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50D831C2110B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 19:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B889E54FB7;
-	Mon, 11 Mar 2024 19:40:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E5E55E75;
+	Mon, 11 Mar 2024 19:54:22 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ADTRAN.onmicrosoft.com header.i=@ADTRAN.onmicrosoft.com header.b="hHK5WGeT"
+	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="ouCT6rfu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2100.outbound.protection.outlook.com [40.107.236.100])
+Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6750E3F8F6;
-	Mon, 11 Mar 2024 19:40:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.236.100
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710186034; cv=fail; b=Gw+Edl2dty4+bD2/6SXL8bewRrfBLmehK0hhRWVJM24K4MraWvLEECDBVM7Mfwg7+ujdXWg2AKKYE8oM2Fpirzfdx+B7zRIoBAAb3i6/XP7B2TEBhk3sF7lbDzhjhCdPdYSeps6yKhm8IwGTUjtn42F1vBKT1c22HZSTl4c0Z3g=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710186034; c=relaxed/simple;
-	bh=74uXV+jOyXz4aCydtqQglXHcRFZfXcYLxzedfECyBMU=;
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1327355E4F
+	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 19:54:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710186862; cv=none; b=iy9UDYOk3Mp8M60Ek1pwObvfD17SSSx575PiiezexoitGqdjynbdrjj2eY11qvOG3hnd+QWcAF/jYZiITeCa6j+/XCxQLBv/fzNbbNJAV8alhadHV/83jAcwbIxghK+uS/mbdst9GQvHFGvSff45+yZNFXVmHMxlJ4xs5uDZr3U=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710186862; c=relaxed/simple;
+	bh=I80kmniNaJNpW7w8bqB75g71TWFOq8gFFWvyljKYL0I=;
 	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=sH9h7g1+8fsrBOlXzixkf1ExuVvZjXvfiK8GlMO/z341EYEZ/nk4pbyW2ECQISw8tQzk9bbV8Oukx5VUUL7B34TKuJ2OdjlWPq1dA3WmZqVhcSL8DCVnvRmtdNMfm7eTGVVyr5vhOgHXBrFc5niFKj5A/XEB4ZBYaiDZZBmImOA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=adtran.com; spf=pass smtp.mailfrom=adtran.com; dkim=pass (2048-bit key) header.d=ADTRAN.onmicrosoft.com header.i=@ADTRAN.onmicrosoft.com header.b=hHK5WGeT; arc=fail smtp.client-ip=40.107.236.100
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=adtran.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=adtran.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Mm9aflQ4huODOYKJlW010gaJeoEc1SGn1stKYd1G53HpqvqdldU+MLVxtrI4TlHpkqIt5SnJbcjziWFtQgtjA/pcgiom8bCDMevVH8d0+fbeksHcDCrfrjfHZwbD4WjFVu2ttM4zr6a6nNZhc1q+fFByBp68s2dNJgFlFOIKGXMRe66G2Hkv8hFnjXdZNlX4EjO4+asYul/fdZ6utC5YfhVESLdXtTnD4+hKp7ia38nZ224SfCQ9jWtLacUX74YrDr8QnC17iplTuZazrNICTNqnFaHtn7cbksovEiBpZqGONWQnk4jyyt1v3YQZk9DuFxNBp49wMDOrsfG0/wFD6Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=74uXV+jOyXz4aCydtqQglXHcRFZfXcYLxzedfECyBMU=;
- b=AT/PLYt4WEwzDvA/Fk6D4KH8uCexAzKetavlUwlwgL1cdvcNrd7SnqvTW1Fmf9vL3XzCVLTX8dTsQO+EwHoZYBLwD3xu4d2ZjoXUcHWfel8Xy1oKARUuviYywaAPQwrlbz39vD1Ps51L1wSu/sEnAzKZCnnZ/sjgH4hPZXXO+ZcDKFV/t3R6jWL+tFkR9c7nEL5cpcMV0AcXZpJZwloMVSetoYH3ad/Xeqyx/RI43Sy1tnY4dKu2IZbKpdVDK4XLWYxh7KXuOj9C3sfiHgj7PvcyQgHHILCkCc/ydQnspA7SJh7842HBrLsuZkEMf1s9fXc47mONWlZxryPAyfRWBg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=adtran.com; dmarc=pass action=none header.from=adtran.com;
- dkim=pass header.d=adtran.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ADTRAN.onmicrosoft.com; s=selector2-ADTRAN-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=74uXV+jOyXz4aCydtqQglXHcRFZfXcYLxzedfECyBMU=;
- b=hHK5WGeTxeDvX0QVyj2qulYKMiDPTi5u2b6bUy1hMROnckS1G6ZmYHoadsQrsx/69XA4x8Y8IybAE6lCJrBf/7is6UAcW3DzP3A7tEmSZy4MuKF87KtULJ0/S8h3sygcZd0J+p5aR4EH4OXgg3Z0ogxIw9DAOrugKoi5U/SxQ8PR4kBnlTslsMpLQhIWpaZl4rI/kzx3TjWwWfvWsp7t8WrojIxKmAe65KCqnVKlY7fTKzPQ51E39taRiv7bd226ClS85LLLFD8hBrzniUshtulYq3Uqx+eiXA1jWKHPhI/6Wuzmo77bAe52j0ND/ivtvgarlb97GhfIuhFm3xfASg==
-Received: from PH0PR19MB4844.namprd19.prod.outlook.com (2603:10b6:510:75::5)
- by SA0PR19MB4352.namprd19.prod.outlook.com (2603:10b6:806:8b::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Mon, 11 Mar
- 2024 19:40:24 +0000
-Received: from PH0PR19MB4844.namprd19.prod.outlook.com
- ([fe80::8546:1fe6:2190:6a9e]) by PH0PR19MB4844.namprd19.prod.outlook.com
- ([fe80::8546:1fe6:2190:6a9e%5]) with mapi id 15.20.7362.035; Mon, 11 Mar 2024
- 19:40:24 +0000
-From: Chad Monroe <chad.monroe@adtran.com>
-To: Rob Herring <robh@kernel.org>, Daniel Golle <daniel@makrotopia.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Ulf Hansson <ulf.hansson@linaro.org>, Jens Axboe
-	<axboe@kernel.dk>, Dave Chinner <dchinner@redhat.com>, Jan Kara
-	<jack@suse.cz>, =?iso-8859-1?Q?Thomas_Wei=DFschuh?= <linux@weissschuh.net>,
-	Christian Brauner <brauner@kernel.org>, Li Lingfeng <lilingfeng3@huawei.com>,
-	Damien Le Moal <dlemoal@kernel.org>, Min Li <min15.li@samsung.com>, Adrian
- Hunter <adrian.hunter@intel.com>, Hannes Reinecke <hare@suse.de>, Christian
- Loehle <CLoehle@hyperstone.com>, Avri Altman <avri.altman@wdc.com>, Bean Huo
-	<beanhuo@micron.com>, Yeqi Fu <asuk4.q@gmail.com>, Victor Shih
-	<victor.shih@genesyslogic.com.tw>, Christophe JAILLET
-	<christophe.jaillet@wanadoo.fr>, "Ricardo B. Marliere"
-	<ricardo@marliere.net>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	 Content-Type:MIME-Version; b=ul0QEixjWlOzN54EoQr+ojG/gkJc6piv5ZUk6Tjq9M+Y4xcO1VCOo6k82um48jwQ+T3+mTqrRA1/g5bnkV5vMgWeBCFXnzLSC5AFPCovm16xb/qo4dyieSW399KFN6sF+hgcvQwGr4aJiCiWqtFU/ti7vH8nt8WlXRL5jP3mfeU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=ouCT6rfu; arc=none smtp.client-ip=202.36.163.20
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
+Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 66BD72C0480;
+	Tue, 12 Mar 2024 08:54:17 +1300 (NZDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
+	s=mail181024; t=1710186857;
+	bh=I80kmniNaJNpW7w8bqB75g71TWFOq8gFFWvyljKYL0I=;
+	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+	b=ouCT6rfuhAwy46/GC7cuoDbMuhNBhadJQtzGc0L+Uv5Qt7OmnrbgaD6eFH2LpWvYK
+	 YviBS17oura5382vXkY2/LRpwiOaT7R7oad7PhB/yZuUzPBUc6bIS/U9h6xc7bS85w
+	 FSza3SN0sj7tNNKomJc3nfDsfVcBGG9u3vUW0PqHafyqdD32Zs4ZMwh+R5tpxjHXaD
+	 XdvlIE78oQq+Eb9LvsXThsalXxTtuz7tvJgOCi8SQlfneGo2tqsponyNI388N5nlZa
+	 Vgwhvu5UZ+iSFJPmiCxILuSpaC7MbrkLwZonr/ETt8Nj89OYPYonWcBN4eeCUfng9q
+	 EI2Qo4UvGB7Fg==
+Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
+	id <B65ef61690001>; Tue, 12 Mar 2024 08:54:17 +1300
+Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
+ svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Tue, 12 Mar 2024 08:54:16 +1300
+Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
+ svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
+ 15.02.1118.040; Tue, 12 Mar 2024 08:54:16 +1300
+From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
+To: Arnd Bergmann <arnd@kernel.org>, Andy Shevchenko
+	<andy.shevchenko@gmail.com>
+CC: Gregory Clement <gregory.clement@bootlin.com>, Andy Shevchenko
+	<andy@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring
+	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth
+	<sebastian.hesselbarth@gmail.com>, Lee Jones <lee@kernel.org>,
+	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
 	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
 	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-	"linux-block@vger.kernel.org" <linux-block@vger.kernel.org>, Diping Zhang
-	<diping.zhang@gl-inet.com>, Jianhui Zhao <zhaojh329@gmail.com>, Jieying Zeng
-	<jieying.zeng@gl-inet.com>, Adam Fox <adam.fox@adtran.com>, John Crispin
-	<john@phrozen.org>
-Subject: RE: [EXTERNAL] Re: [RFC PATCH v2 1/8] dt-bindings: block: add basic
- bindings for block devices
-Thread-Topic: [EXTERNAL] Re: [RFC PATCH v2 1/8] dt-bindings: block: add basic
- bindings for block devices
-Thread-Index: AQHacKKp9hC8jPZxIEu5tTtMXn0DXrEy9RtQ
-Date: Mon, 11 Mar 2024 19:40:24 +0000
-Message-ID:
- <PH0PR19MB4844582040B0622565ED11ED8D242@PH0PR19MB4844.namprd19.prod.outlook.com>
-References: <cover.1709667858.git.daniel@makrotopia.org>
- <f70bb480aef6f55228a25ce20ff0e88e670e1b70.1709667858.git.daniel@makrotopia.org>
- <20240307145102.GA2550133-robh@kernel.org>
-In-Reply-To: <20240307145102.GA2550133-robh@kernel.org>
-Accept-Language: en-US
+	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v5 3/3] ARM: dts: marvell: Add 7-segment LED display on
+ x530
+Thread-Topic: [PATCH v5 3/3] ARM: dts: marvell: Add 7-segment LED display on
+ x530
+Thread-Index: AQHacCEP50uDUqyXjk+YznxFpDHUm7EsnIcAgAAm+YCAAAZbAIAABFUAgAPI1gCAAKI2gIAA6F8A
+Date: Mon, 11 Mar 2024 19:54:16 +0000
+Message-ID: <df9e5c40-7b82-4038-93cc-3c454bf75b7a@alliedtelesis.co.nz>
+References: <20240306235021.976083-1-chris.packham@alliedtelesis.co.nz>
+ <20240306235021.976083-4-chris.packham@alliedtelesis.co.nz>
+ <87edclgoon.fsf@BL-laptop>
+ <CAHp75VfmSWH3FWEHU+bGYDuo-nt1DJhY5Fvs83A-RGrtrsgWTw@mail.gmail.com>
+ <8177b94d-82c9-42b6-85eb-728dec762162@app.fastmail.com>
+ <CAHp75VfiaWFricM4Or771P0LJVoFoEmQtoJo1hySo=BRS-59DQ@mail.gmail.com>
+ <6c3451ed-6346-45e2-940e-851cb99a1b63@alliedtelesis.co.nz>
+ <e90c2e69-17ea-4875-bb36-8a6d846f05e6@app.fastmail.com>
+In-Reply-To: <e90c2e69-17ea-4875-bb36-8a6d846f05e6@app.fastmail.com>
+Accept-Language: en-NZ, en-US
 Content-Language: en-US
 X-MS-Has-Attach:
 X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=adtran.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PH0PR19MB4844:EE_|SA0PR19MB4352:EE_
-x-ms-office365-filtering-correlation-id: 57620b99-af3a-4a7f-686c-08dc42031886
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- CLmkSehR7ohLrunxKqC2BTMfB01i6+SKTUvGF7hxmW9Jma/5wS9VsOpvkkWbODr2yVsyz75DmbqCPbZYdAkj+Yd6BWb/uJHHVrzLGgq1uoH4EivVWBve6w2U3d1IQFeJgrmGfNerslBZQ9VYcXyP72YPBZ8GC2LA4EXg3jrxUOr5I9+2zLHjV8SJGsStNrod3lSxpO6+oB0ycoBrhbDmdVUY3C1P/0FxHaHYNdGdZqfFrDhGEIHZjczy4ij5lJumaZloipadqAb0l/b/yMjXR+/qTWUF6OVJq/x/tRTHRNLJjw2acv+Yq5zAN/ltQst8MsveTlIQ2mwlSOFAVy6W3pes8IPAfb8ZApfLB4ZhuxI56ZsGKJojGREexmdXnfVku4o8ndJQ15lYy383cpZ4Ef8CCJ8JsfKFF/jmPYhXTIFjKeSgfANOnJ+tOQw6z/wAgbAoi15pD2Me8W+hMF6+pTqYaA7f1bf5XO3wW5ppL7kYmX5Qo8Kx8kjSlyrGDERhHHOeDT3ObZmIA9eEM+QaNfyPK4+MBUJVWH5aIq8rWGlZ4/1q86Kv54kMw/75AVxRhOtw3Ke9nObSbQpNtAhztxGC3VrvxZzu5LzhJ9IPc8vfazjH+Y3FVy7T22CXgtc2nOYBDW14NrboDPU/E56i2E72+yhWDcNw92xvy9Zy3vc=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH0PR19MB4844.namprd19.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(7416005)(1800799015)(38070700009);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?iso-8859-1?Q?6IPSMAkbJzdgr0qd1+BZdu12uMQbZFZM4r4wVs8xsWYngIVyGTkbphvrS+?=
- =?iso-8859-1?Q?v3k4vAbG0ATWWLYvltGXHlomHG8gQFHnazVBCPtkIzuH1ct/KMRk3oNhYS?=
- =?iso-8859-1?Q?hIqnhSY+ZaACOjgmng0exvQhjK4mcVTH73pAGCXnjc+Ck9Ag/5D9s/1ssc?=
- =?iso-8859-1?Q?Df5SNIYWAyMDPQVmFZ7V1U8zU0X4ZP9FQ+rxbjnQzcQD/UlI+6+7RK1i+q?=
- =?iso-8859-1?Q?PJqoALeysp/P9L4N2To3MmAtjf1ybX3jLJGs+dm14y4wV9kXira9Bct1wN?=
- =?iso-8859-1?Q?ebsJHMq9jeBvmh2fjPe5448fXUEn9wk4k6HAwUtq4hWhOuwjRBo/Y3AQyx?=
- =?iso-8859-1?Q?cJAYOQTiN9AfKspp/eU3y+K+AfHmhDM4Sb4PKICIlVPUFxB7K5SULxMHC4?=
- =?iso-8859-1?Q?NqvN8HNVenn6ZM1lMDjjJqTGBRGWRE+8pSNqicgK+V90xtQ6A7rPshnpSz?=
- =?iso-8859-1?Q?aTZJoQJ7tILHW4L0gDMOVGjFYQ960SRAwoIo5GW5V/oRtBEAsWCeCVzFky?=
- =?iso-8859-1?Q?c2ZZz7QSoCYiyVJPJ8LL4nD42YScyZ4l4qmeQpoG4N8lK8lozA8XD05h/z?=
- =?iso-8859-1?Q?42RkHT4UwtPa9HipGRkTdZweMp/rrPAFIfxNxiHqRGK8g7R0JehxeDlWOb?=
- =?iso-8859-1?Q?pq7lsQsyPfPEdj+PcADLdFelJbtNM0Ido7RgGMfO+gMWfv3KUcouV+bkQA?=
- =?iso-8859-1?Q?ZjpxuVUDOI7wz4tqD52s0ZWE7hQPMmRZf0rwitNLyzp2hkn5DE1dDxQRQq?=
- =?iso-8859-1?Q?nN5AjaUBIuuKs9628NaFWzhQ+1pJvvyd2P9BXniBkMEpRoZOcu7fGv+La3?=
- =?iso-8859-1?Q?/q9hkrZCmQZ8y/tN0YJitB8q/hCLM2MUoH6RChf1IG1PJdyumct6lbSt9B?=
- =?iso-8859-1?Q?Jwj3i3CNUwYaraji9HRc60GTJo3fBjOBi+ykiebySqpGyLVCw9YGM7+1vO?=
- =?iso-8859-1?Q?/IuQjVDA+KW3e40qJbWiH787WvOPIZ8RkvlAwM0PNBBtARJCFErCcdngNO?=
- =?iso-8859-1?Q?4YsmT0SxiYceAS9uJQC80CsNK5oczE7BwwvyFGjP+kjhnI7Ra63Yd8Jv36?=
- =?iso-8859-1?Q?nXn6/IIEyqu8IKm72Y2utK0k+ef2b8xt6YdSo/TTBvxwV9LtW+DFWWu7AT?=
- =?iso-8859-1?Q?FrhsP24MjQBfpDwRzl2sbSfnrKa3gfyh20u0WNjBG5BAFOXaGqkWwiUVhQ?=
- =?iso-8859-1?Q?p7IelNBLavhRgWgWAcqrswS36gIzF9lbyhnkuq8gM5L3Kce9qS84tOxXQq?=
- =?iso-8859-1?Q?GDbOjd1mYniAm+1E1M0G+/Gnj9GpGoVfOw6sY3B66JCDd97GcUeuNv+zu9?=
- =?iso-8859-1?Q?v8elka8Q2TBTpzBDgpa2N+SNE5WMBt+mfUvNjiY7XGGJtRapu2AfcwyIvm?=
- =?iso-8859-1?Q?wEy22mGaAdTD/KGHc2GLgMs+nCMU0EllEkxJ54ipooZZ8cacG1zLR8zfYx?=
- =?iso-8859-1?Q?Ws118Ube9YXZG2Vynj4gt4rEzOyNu5HJ/w13e7R1IQtf4urlVuRhPA2IiT?=
- =?iso-8859-1?Q?ze++QkT+Z11ltkSXgFn76jow1Ux5CR0XR6xgf2qD0oR/toMMrrzO5ohaB1?=
- =?iso-8859-1?Q?86fx/+e8riHJRMFupupH3jGw3rum07NZsd5eusYTJTbbfdpLWvCh/MrLgC?=
- =?iso-8859-1?Q?49t40ae23HYlqbqCpq4ZX7sHdLgXwwgTqt?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <A9ED38D725C7F444854F1D2D79C8E5E0@atlnz.lc>
+Content-Transfer-Encoding: base64
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: adtran.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR19MB4844.namprd19.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 57620b99-af3a-4a7f-686c-08dc42031886
-X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Mar 2024 19:40:24.3033
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 423946e4-28c0-4deb-904c-a4a4b174fb3f
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: C1OtquyqKU/psEGqWY7Xf6z2q7qnYd7+GJn8O4REhi+C+F/oYUoZ/+PEJGw+mAJb2/YPENrpe8v3DDz9K7lUgg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA0PR19MB4352
+X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65ef6169 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=K6JAEmCyrfEA:10 a=VwQbUJbxAAAA:8 a=P-IC7800AAAA:8 a=_VaukpeC9nYuBFLc3MMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22 a=d3PnA9EDa4IxuAV0gXij:22
+X-SEG-SpamProfiler-Score: 0
 
-
-
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Thursday, March 7, 2024 6:51 AM
-> To: Daniel Golle <daniel@makrotopia.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Conor Dooley
-> <conor+dt@kernel.org>; Ulf Hansson <ulf.hansson@linaro.org>; Jens Axboe
-> <axboe@kernel.dk>; Dave Chinner <dchinner@redhat.com>; Jan Kara
-> <jack@suse.cz>; Thomas Wei=DFschuh <linux@weissschuh.net>; Christian Brau=
-ner
-> <brauner@kernel.org>; Li Lingfeng <lilingfeng3@huawei.com>; Damien Le Moa=
-l
-> <dlemoal@kernel.org>; Min Li <min15.li@samsung.com>; Adrian Hunter
-> <adrian.hunter@intel.com>; Hannes Reinecke <hare@suse.de>; Christian Loeh=
-le
-> <CLoehle@hyperstone.com>; Avri Altman <avri.altman@wdc.com>; Bean Huo
-> <beanhuo@micron.com>; Yeqi Fu <asuk4.q@gmail.com>; Victor Shih
-> <victor.shih@genesyslogic.com.tw>; Christophe JAILLET
-> <christophe.jaillet@wanadoo.fr>; Ricardo B. Marliere <ricardo@marliere.ne=
-t>;
-> Greg Kroah-Hartman <gregkh@linuxfoundation.org>; devicetree@vger.kernel.o=
-rg;
-> linux-kernel@vger.kernel.org; linux-mmc@vger.kernel.org; linux-
-> block@vger.kernel.org; Diping Zhang <diping.zhang@gl-inet.com>; Jianhui Z=
-hao
-> <zhaojh329@gmail.com>; Jieying Zeng <jieying.zeng@gl-inet.com>; Chad Monr=
-oe
-> <chad.monroe@adtran.com>; Adam Fox <adam.fox@adtran.com>; John Crispin
-> <john@phrozen.org>
-> Subject: [EXTERNAL] Re: [RFC PATCH v2 1/8] dt-bindings: block: add basic =
-bindings
-> for block devices
->=20
-> On Tue, Mar 05, 2024 at 08:23:20PM +0000, Daniel Golle wrote:
-> > Add bindings for block devices which are used to allow referencing
-> > nvmem bits on them.
-> >
-> > Signed-off-by: Daniel Golle <daniel@makrotopia.org>
-> > ---
-> > .../bindings/block/block-device.yaml | 22 ++++++++
-> > .../devicetree/bindings/block/partition.yaml | 51 +++++++++++++++++++
-> > .../devicetree/bindings/block/partitions.yaml | 20 ++++++++
-> > 3 files changed, 93 insertions(+)
-> > create mode 100644 Documentation/devicetree/bindings/block/block-
-> device.yaml
-> > create mode 100644 Documentation/devicetree/bindings/block/partition.ya=
-ml
-> > create mode 100644 Documentation/devicetree/bindings/block/partitions.y=
-aml
-> >
-> > diff --git a/Documentation/devicetree/bindings/block/block-device.yaml
-> b/Documentation/devicetree/bindings/block/block-device.yaml
-> > new file mode 100644
-> > index 0000000000000..c83ea525650ba
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/block/block-device.yaml
-> > @@ -0,0 +1,22 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/block/block-device.yaml# <https://p=
-rotect-
-> de.mimecast.com/s/gI6FCDqGk9uBM0gMFZVG39?domain=3Ddevicetree.org>
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml# <https://protec=
-t-
-> de.mimecast.com/s/rGEGCEqJR9uWnMRnHZK6FQ?domain=3Ddevicetree.org>
-> > +
-> > +title: block storage device
-> > +
-> > +description: |
-> > + This binding is generic and describes a block-oriented storage device=
-.
-> > +
-> > +maintainers:
-> > + - Daniel Golle <daniel@makrotopia.org>
-> > +
-> > +properties:
-> > + partitions:
-> > + $ref: /schemas/block/partitions.yaml
-> > +
-> > + nvmem-layout:
-> > + $ref: /schemas/nvmem/layouts/nvmem-layout.yaml#
-> > +
-> > +unevaluatedProperties: false
-> > diff --git a/Documentation/devicetree/bindings/block/partition.yaml
-> b/Documentation/devicetree/bindings/block/partition.yaml
-> > new file mode 100644
-> > index 0000000000000..df561dd33cbc9
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/block/partition.yaml
-> > @@ -0,0 +1,51 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/block/partition.yaml# <https://prot=
-ect-
-> de.mimecast.com/s/8Tf9CGRL65UJqGjqu07YGR?domain=3Ddevicetree.org>
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml# <https://protec=
-t-
-> de.mimecast.com/s/rGEGCEqJR9uWnMRnHZK6FQ?domain=3Ddevicetree.org>
-> > +
-> > +title: Partition on a block device
-> > +
-> > +description: |
-> > + This binding describes a partition on a block storage device.
-> > + Partitions may be matched by a combination of partition number, name,
-> > + and UUID.
-> > +
-> > +maintainers:
-> > + - Daniel Golle <daniel@makrotopia.org>
-> > +
-> > +properties:
-> > + $nodename:
-> > + pattern: '^block-partition-.+$'
-> > +
-> > + partnum:
-> > + $ref: /schemas/types.yaml#/definitions/uint32
-> > + description:
-> > + Matches partition by number if present.
-> > +
-> > + partname:
-> > + $ref: /schemas/types.yaml#/definitions/string
-> > + description:
-> > + Matches partition by PARTNAME if present.
->=20
-> Why do we need something new here? The existing fixed-partitions can
-> already define block device partitions. It just matches by
-> address/offset which works whether its MBR or GPT. Also, in DT we always
-> have an address when there is an address.
->=20
-> I'm sure you want to statically define this and have it work even if the
-> partitions move, but sorry...
-
-The partitions which hold this data are typically defined as a MBR or GPT
-partition and referenced by PARTNAME, PARTUUID or PARTNO. The data is
-referenced as an offset within that partition. It's possible for the offset
-of the RF/calibration partition to change if the size of eMMC chip changes
-between builds of the same device for example. Within the RF partition the
-data is always available at the same offsets.
-
-Based on this, we don't always know the offset of the RF partition and
-simply want to use the partition table to point us at the right location.
-
->=20
-> > +
-> > + uuid:
-> > + $ref: /schemas/types.yaml#/definitions/string
-> > + description:
-> > + Matches partition by PARTUUID if present.
->=20
-> If this remains it will need some work in the dtschema tools. The reason
-> is json-schema already has support for UUIDs as a defined 'format' key
-> value and we should use that.
->=20
-> > +
-> > + nvmem-layout:
-> > + $ref: /schemas/nvmem/layouts/nvmem-layout.yaml#
-> > + description:
-> > + This container may reference an NVMEM layout parser.
-> > +
-> > +anyOf:
-> > + - required:
-> > + - partnum
-> > +
-> > + - required:
-> > + - partname
-> > +
-> > + - required:
-> > + - uuid
-> > +
-> > +unevaluatedProperties: false
-
+DQpPbiAxMS8wMy8yNCAxOTowMiwgQXJuZCBCZXJnbWFubiB3cm90ZToNCj4gT24gU3VuLCBNYXIg
+MTAsIDIwMjQsIGF0IDIxOjIyLCBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPj4gT24gOC8wMy8yNCAy
+MzozNCwgQW5keSBTaGV2Y2hlbmtvIHdyb3RlOg0KPj4+IE9uIEZyaSwgTWFyIDgsIDIwMjQgYXQg
+MTI6MTnigK9QTSBBcm5kIEJlcmdtYW5uIDxhcm5kQGtlcm5lbC5vcmc+IHdyb3RlOg0KPj4+PiBP
+biBGcmksIE1hciA4LCAyMDI0LCBhdCAxMDo1NiwgQW5keSBTaGV2Y2hlbmtvIHdyb3RlOg0KPj4+
+Pj4gT24gRnJpLCBNYXIgOCwgMjAyNCBhdCA5OjM24oCvQU0gR3JlZ29yeSBDTEVNRU5UIDxncmVn
+b3J5LmNsZW1lbnRAYm9vdGxpbi5jb20+IHdyb3RlOg0KPj4+Pj4+IE5vcm1hbGx5LCB0aGlzIHBh
+dGNoIHNob3VsZCBiZSB0YWtlbiBpbiBtdmVidSBhbmQgdGhlbiBtZXJnZWQgYnkNCj4+Pj4+PiBh
+cm0tc29jLiBIb3dldmVyLCBJIGhhdmVuJ3Qgc2VlbiBhbnkgb3RoZXIgcGF0Y2ggdG91Y2hpbmcg
+dGhpcyBmaWxlIChzbw0KPj4+Pj4+IG5vIHJpc2sgb2YgbWVyZ2UgY29uZmxpY3QpIGFuZCBJIHRo
+aW5rIGl0J3MgdG9vIGxhdGUgZm9yIG1lIHRvIG1ha2UgYQ0KPj4+Pj4+IG5ldyBwdWxsIHJlcXVl
+c3QgdG8gYXJtLXNvYy4gU28gSSdtIG5vdCBhZ2FpbnN0IGl0IGJlaW5nIHRha2VuIHdpdGggdGhl
+DQo+Pj4+Pj4gcmVzdCBvZiB0aGUgcGF0Y2hlcy4gSG93ZXZlciwgSSB0aGluayBpdCB3b3VsZCBi
+ZSBhIGdvb2QgaWRlYSB0byBzZWUNCj4+Pj4+PiB3aGF0IEFybmQgdGhpbmtzIGFib3V0IGl0Lg0K
+Pj4gRllJIC4vc2NyaXB0cy9nZXRfbWFpbnRhaW5lci5wbCAtZiBhcmNoL2FybS9ib290L2R0cy9t
+YXJ2ZWxsIGlzbid0DQo+PiBwaWNraW5nIHVwIEFybmQgc2hvdWxkIGl0Pw0KPiBObywgYXMgR3Jl
+Z29yeSB3cml0ZXMsIHRoZSBpbnRlbmRlZCB3YXkgZm9yIHBsYXRmb3JtIHNwZWNpZmljDQo+IHBh
+dGNoZXMgaXMgdG8gZ28gdGhyb3VnaCB0aGUgbWFpbnRhaW5lciBmb3IgdGhhdCBwbGF0Zm9ybSwN
+Cj4gaW4gdGhpcyBjYXNlIGhpbSwgd2hvIHRoZW4gc2VuZHMgcHVsbCByZXF1ZXN0cyB0byBtZS4N
+Cj4NCj4gU2luY2UgaXQgd2FzIGxhdGUgaW4gdGhlIG1lcmdlIHdpbmRvdywgaGUgc3VnZ2VzdGVk
+IHNraXBwaW5nDQo+IHRoaXMgc3RlcCBhcyBhbiBleGNlcHRpb24sIHdoaWNoIGlzIHNvbWV0aGlu
+ZyB3ZSBjYW4gYWx3YXlzIGRvDQo+IGlmIHRoZXJlIGlzIGFuIGltcG9ydGFudCByZWFzb24sIGp1
+c3QgbGlrZSB5b3Ugc2tpcCBjYW4gYWxsDQo+IG1haW50YWluZXJzIGFuZCBnbyBkaXJlY3RseSB0
+byBMaW51cyBpZiBuZWNlc3NhcnksIGJ1dCB0aGUNCj4gbWFpbnRhaW5lcnMgZmlsZSBvbmx5IGRv
+Y3VtZW50cyB0aGUgbm9ybWFsIGNhc2UuDQoNCk9LIHRoYW5rcyBmb3IgdGhlIGNsYXJpZmljYXRp
+b24uDQoNCkkgZG9uJ3QgdGhpbmsgdGhlcmUgaXMgYW55IHJlYXNvbiB0byBydXNoIHRoaXMuIEkn
+bGwgc2VuZCBhIG5ldyBzZXJpZXMgDQpmb3IgdGhpcyBEVFMgY2hhbmdlIGFuZCBvbmUgb3RoZXIg
+dGhhdCBJIGhhdmUgZm9yIHRoZSB4NTMwIHZpYSBHcmVnb3J5IA0KYW5kIGl0IGNhbiBjb21lIHRo
+cm91Z2ggZm9yIGVpdGhlciA2Ljkgb3IgNi4xMC4NCg==
 
