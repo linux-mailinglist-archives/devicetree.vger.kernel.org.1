@@ -1,166 +1,119 @@
-Return-Path: <devicetree+bounces-49828-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49831-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94A65877F3A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 12:44:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A076C877F78
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 13:03:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A274281364
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 11:44:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B13C28334E
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 12:03:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117B03BB36;
-	Mon, 11 Mar 2024 11:44:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 550533CF79;
+	Mon, 11 Mar 2024 12:03:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="D1rwrRu7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B2F3B78E;
-	Mon, 11 Mar 2024 11:44:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF2993C064;
+	Mon, 11 Mar 2024 12:03:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710157490; cv=none; b=tYRuGduxdOhOjKJvpXaF61aFpgOHpeB081hz+ePoA0zxxhanSXWOjWUZtmqD7cZPy4EcUEWD6MFgmJ/grqz0X/Wy1kqPfDtWJqKOqkK7I/PXDFma3b5Pnxj77FtC+cJjSCCCeombj4fP8VzQSuS45SBXzXsJFZMFg1T9lW/kvtw=
+	t=1710158603; cv=none; b=guT371itFtXBYomCFXhaMmfRDxj25OFmgIqYOOfWNSdelyZT+Gm7AlouANirjAdhtbwHoLZP+vF2k1BjTrgYwT92wNrSdIhl1xCg5NI3lC0sX4nUAllwsJDoGybM/Gbg2AfrbxeNWAnUt1r3ZqH28i120DwSccXNuwiXEBADiOc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710157490; c=relaxed/simple;
-	bh=ScauDxIHPpzPMivn0k7nmNQRb13dHQ5538K1RuMQE+o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Ul+9LMWgFjaKHli813CeFiL/hAOPGa7e5o0V/Q9tcF/gOhRliDEhFrmXyeX3ZKrCtIFpHF8MROyxKdK7iZIWTJk4Aes2lRW4dB+K92PP3/J3aQt4TKB2NUW/7/dN8Z6cpFsDNz0iuE5DYqWPBZuzDucnL+fsb5svUUVyi6T5wSw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C30691007;
-	Mon, 11 Mar 2024 04:45:23 -0700 (PDT)
-Received: from e130802.arm.com (unknown [10.57.15.44])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D00DA3F64C;
-	Mon, 11 Mar 2024 04:44:43 -0700 (PDT)
-Date: Mon, 11 Mar 2024 11:44:42 +0000
-From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
-To: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Lorenzo Pieralisi <lpieralisi@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
-	Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-remoteproc@vger.kernel.org
-Subject: Re: [PATCH 1/3] remoteproc: Add Arm remoteproc driver
-Message-ID: <20240311114442.GA82865@e130802.arm.com>
-References: <20240301164227.339208-1-abdellatif.elkhlifi@arm.com>
- <20240301164227.339208-2-abdellatif.elkhlifi@arm.com>
- <ZeYWKVpeFm1+4mlT@p14s>
- <20240307194026.GA355455@e130802.arm.com>
- <CANLsYkzA20rQdTM6AOvFK=3o28GvcoRbckL=ri8RegHqyHaiCw@mail.gmail.com>
+	s=arc-20240116; t=1710158603; c=relaxed/simple;
+	bh=TKMT2rdzO+/5ChgLIqApqclXNnkC3VHE5qfko++u4Cs=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=RaIIOtqDnlrLuJyiKN9rRarxWP+amuDcWl5B0ZAKWRrmwVgxwrU9BNKBp4jmh/0Q9hEOLazPFq9OnahyaYPn+XsC+Oi+wvY+ERHS8gsERhB0/Vm/qHgbhYkb/YNZVHXfBJ45Dyn+9x7uhVArhAxg141P1aIuOxyAl8DGB/3Rpho=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=D1rwrRu7; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42B8LItZ018303;
+	Mon, 11 Mar 2024 12:03:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=d99JtsJ
+	ZhHsoZbUbQC6eIvwCP4EmFMN0LTeOQNY2154=; b=D1rwrRu7C/BQnG2TLMCVWw2
+	Oha5UOawSqnKd3YRw7P3c4P0XkqDILZzegxF+2E1ALsjD645GHCsNSoCEvAWS4ll
+	8oUwVZl7DkQzYHf1ADAr4v843y5nLfmfsJ+m3J+s5Qys7r/7FOwYYKnHR4UZvWoZ
+	TeElaxzrIjPH+/kuAUvkx8pUvzAJG5QIiGZYvdxPQhEBZAE5cWF/pSNClqaYtEFD
+	9U2CnAZ/OeF1giDsx3Cn7DlWa1/T/JM+cmVD99ReF+H/vi8bR3XgwBJEG5ls3txX
+	GL5xP9RIt0kL+qyzX9lSvdR54JRUcSsLOWo39W8fidNBI8sq45mMdBjRqbl6e/w=
+	=
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wsxbvgk2b-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Mar 2024 12:03:01 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42BC30q3008886
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Mar 2024 12:03:00 GMT
+Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Mon, 11 Mar 2024 05:02:55 -0700
+From: Komal Bajaj <quic_kbajaj@quicinc.com>
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Kishon Vijay
+ Abraham I" <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>
+CC: <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, Komal Bajaj <quic_kbajaj@quicinc.com>
+Subject: [PATCH 0/4] Add USB Support on Qualcomm's QDU/QRU1000 Platform
+Date: Mon, 11 Mar 2024 17:32:11 +0530
+Message-ID: <20240311120215.16845-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CANLsYkzA20rQdTM6AOvFK=3o28GvcoRbckL=ri8RegHqyHaiCw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: ZCX08ZLZ9iip6Ws4TPoNjUnMzz_vvQgi
+X-Proofpoint-GUID: ZCX08ZLZ9iip6Ws4TPoNjUnMzz_vvQgi
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-11_08,2024-03-06_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ mlxlogscore=675 impostorscore=0 adultscore=0 bulkscore=0 clxscore=1011
+ phishscore=0 spamscore=0 lowpriorityscore=0 malwarescore=0 mlxscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403110091
 
-Hi Mathieu,
+This series adds support of USB3 PHY support for Qualcomm's QDU/QRU1000 Platform.
 
-On Fri, Mar 08, 2024 at 09:44:26AM -0700, Mathieu Poirier wrote:
-> On Thu, 7 Mar 2024 at 12:40, Abdellatif El Khlifi
-> <abdellatif.elkhlifi@arm.com> wrote:
-> >
-> > Hi Mathieu,
-> >
-> > > > +   do {
-> > > > +           state_reg = readl(priv->reset_cfg.state_reg);
-> > > > +           *rst_ack = EXTSYS_RST_ST_RST_ACK(state_reg);
-> > > > +
-> > > > +           if (*rst_ack == EXTSYS_RST_ACK_RESERVED) {
-> > > > +                   dev_err(dev, "unexpected RST_ACK value: 0x%x\n",
-> > > > +                           *rst_ack);
-> > > > +                   return -EINVAL;
-> > > > +           }
-> > > > +
-> > > > +           /* expected ACK value read */
-> > > > +           if ((*rst_ack & exp_ack) || (*rst_ack == exp_ack))
-> > >
-> > > I'm not sure why the second condition in this if() statement is needed.  As far
-> > > as I can tell the first condition will trigger and the second one won't be
-> > > reached.
-> >
-> > The second condition takes care of the following: exp_ack and  *rst_ack are both 0.
-> > This case happens when RST_REQ bit is cleared (meaning: No reset requested) and
-> > we expect the RST_ACK to be 00 afterwards.
-> >
-> 
-> This is the kind of conditions that definitely deserve documentation.
-> Please split the conditions in two different if() statements and add a
-> comment to explain what is going on.
+Komal Bajaj (4):
+  dt-bindings: phy: qcom,usb-snps-femto-v2: Add bindings for QDU1000
+  dt-bindings: phy: qcom,qmp-usb: Add QDU1000 USB3 PHY
+  dt-bindings: usb: dwc3: Add QDU1000 compatible
+  phy: qcpm-qmp-usb: Add support for QDU1000/QRU1000
 
-Thanks, I'll address that.
+ .../phy/qcom,sc8280xp-qmp-usb3-uni-phy.yaml   |  2 +
+ .../bindings/phy/qcom,usb-snps-femto-v2.yaml  |  1 +
+ .../devicetree/bindings/usb/qcom,dwc3.yaml    |  3 ++
+ drivers/phy/qualcomm/phy-qcom-qmp-usb.c       | 52 +++++++++++++++++++
+ 4 files changed, 58 insertions(+)
 
-> 
-> > > > +/**
-> > > > + * arm_rproc_load() - Load firmware to memory function for rproc_ops
-> > > > + * @rproc: pointer to the remote processor object
-> > > > + * @fw: pointer to the firmware
-> > > > + *
-> > > > + * Does nothing currently.
-> > > > + *
-> > > > + * Return:
-> > > > + *
-> > > > + * 0 for success.
-> > > > + */
-> > > > +static int arm_rproc_load(struct rproc *rproc, const struct firmware *fw)
-> > > > +{
-> > >
-> > > What is the point of doing rproc_of_parse_firmware() if the firmware image is
-> > > not loaded to memory?  Does the remote processor have some kind of default ROM
-> > > image to run if it doesn't find anything in memory?
-> >
-> > Yes, the remote processor has a default FW image already loaded by default.
-> >
-> 
-> That too would have mandated a comment - otherwise people looking at
-> the code are left wondering, as I did.
-> 
-> > rproc_boot() [1] and _request_firmware() [2] fail if there is no FW file in the filesystem or a filename
-> > provided.
-> >
-> > Please correct me if I'm wrong.
-> 
-> You are correct, the remoteproc subsystem expects a firmware image to
-> be provided _and_ loaded into memory.  Providing a dummy image just to
-> get the remote processor booted is a hack, but simply because the
-> subsystem isn't tailored to handle this use case.  So I am left
-> wondering what the plans are for this driver, i.e is this a real
-> scenario that needs to be addressed or just an initial patchset to get
-> a foundation for the driver.
-> 
-> In the former case we need to start talking about refactoring the
-> subsystem so that it properly handles remote processors that don't
-> need a firmware image.  In the latter case I'd rather see a patchset
-> where the firmware image is loaded into RAM.
+--
+2.42.0
 
-This is an initial patchset for allowing to turn on and off the remote processor.
-The FW is already loaded before the Corstone-1000 SoC is powered on and this
-is done through the FPGA board bootloader in case of the FPGA target. Or by the Corstone-1000 FVP model
-(emulator).
-
-The plan for the driver is as follows:
-
-Step 1: provide a foundation driver capable of turning the core on/off
-
-Step 2: provide mailbox support for comms
-
-Step 3: provide FW reload capability
-
-Steps 2 & 3 are waiting for a HW update so the Cortex-A35 (running Linux) can share memory with
-the remote core.
-
-I'm happy to provide more explanation in the commit log to reflect this status.
-
-Is it OK that we go with step 1 as a foundation please ?
-
-Cheers
-Abdellatif
 
