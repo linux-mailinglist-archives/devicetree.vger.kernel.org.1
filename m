@@ -1,147 +1,135 @@
-Return-Path: <devicetree+bounces-49746-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49747-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44ADA8779D3
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 03:27:32 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F06CD8779DC
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 03:37:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFF6328123B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 02:27:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8823E1F212E5
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 02:37:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 92F62A3F;
-	Mon, 11 Mar 2024 02:27:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="UE1c0fHq"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6CDF61860;
+	Mon, 11 Mar 2024 02:37:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from pidgin.makrotopia.org (pidgin.makrotopia.org [185.142.180.65])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A2F2DA35;
-	Mon, 11 Mar 2024 02:27:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 61C491841;
+	Mon, 11 Mar 2024 02:37:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.142.180.65
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710124048; cv=none; b=PjU4uwROkq8PqFSBdwKqOkod2WUZDkD02ABEang6vBhKdtKwGpo2KwrpKbcBXEVZ6+IM1Owyze9h2CuJK1OJODzbU7N2GX+fy7R9VUa9B8cY28h1GlVMbVvDtXR01FMp3HLaS0zy2WxdPNgF9syf6KsDgYipNi12u2HPWyl23c4=
+	t=1710124656; cv=none; b=AgWy/Y6ryxstFtLX4bwUFpQl4PZ8rLBI2QJex0IpOQKtUF0mfOky8dFVYpdhIy5FW6JpOCMfZcPC2UrBnUDO49nxsUr9YYQjXYlxixVye1Aioi5j/pTLmb5OttfEep6EPd1rzP++qKmy1ZaRgFtQkMADgDZ5ydTfcBKGOk6ylrM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710124048; c=relaxed/simple;
-	bh=Jz+xpLC/KxTkm53pRouKirdFn0/ISctTYR2AiNW/DwY=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=WUwwMV5GfFXKOXi4s5QC+0qVxfn8x9w9jHIhq1+Gsr5nFbcIeabp9knYNujCARTm9kevX9SMIOwA0F1MKo8lnMiczUTUr5G7/nTEKjG57NZ0MQJtpphuZWEldAjk6ph/i4zQDNVGLZ5JhrVc5bSUlUTlgNvo1PCETS+5Kcx+CCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=UE1c0fHq; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42B1Y3XF005556;
-	Mon, 11 Mar 2024 02:27:18 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=6K7GqWZ1l7QtK62aXuhH4ekYN4CVFpaWJjy+l2Pdimk=; b=UE
-	1c0fHq7CFzAInx9FHFhn5En3gJXbmKsdFieXEcKywP8XYPb2FGi11gq/Y60vvSAI
-	HtuV2yWBnS8f99KTC71SHcRsszn5d10LGOfLeCKNAnKyXWeIaVF3tPFI9i7ZfdrV
-	zGa3nWLWD07oRbs/T/f/8V6Mg6P3BTu0ZSCsppS1yU0MNGoQ/y6cfdGqINR0p68H
-	4lx1G/+t9Rk4WwFtXskPrTTsCMWyWz5G5PN+UYJJaLw05V45F2VnjhwmT5TFd3fE
-	3t3rUP+oYWkeWPfOkAes0PEqqr1aq4WkwXxdi27OgV9PeFwpDWJINzp1acbkES2U
-	3+2+gyYtLdNEATo4RVkQ==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wrfuxtghn-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Mar 2024 02:27:18 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42B2RHaE018244
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Mar 2024 02:27:17 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Sun, 10 Mar
- 2024 19:27:11 -0700
-Message-ID: <e828b14c-7a09-479a-bf60-0c16571f133f@quicinc.com>
-Date: Mon, 11 Mar 2024 10:27:09 +0800
+	s=arc-20240116; t=1710124656; c=relaxed/simple;
+	bh=KkWPgs33qgoq499jSSM0dfHvg5p8RlHA+Lh4J5L3mKo=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=cJUI9zs+C9xpyjSTTEe8HyyZTc1lguZ9uQ9DHRerkNoabkQHVGHoC/0db5UsesbgHX0lTvpr+AxrBHV7JhXTbGHQTHaKudUoYhaNJWtmgI5I5QfE74y41W18NPVSSO2GXEYu9OWzzYmJPekLka4fCv+8Oj08VX7Or0aCpPcgymU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org; spf=pass smtp.mailfrom=makrotopia.org; arc=none smtp.client-ip=185.142.180.65
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=makrotopia.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=makrotopia.org
+Received: from local
+	by pidgin.makrotopia.org with esmtpsa (TLS1.3:TLS_AES_256_GCM_SHA384:256)
+	 (Exim 4.96.2)
+	(envelope-from <daniel@makrotopia.org>)
+	id 1rjVXJ-0005rO-36;
+	Mon, 11 Mar 2024 02:37:10 +0000
+Date: Mon, 11 Mar 2024 02:37:07 +0000
+From: Daniel Golle <daniel@makrotopia.org>
+To: Richard Weinberger <richard@nod.at>
+Cc: Miquel Raynal <miquel.raynal@bootlin.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	linux-mtd <linux-mtd@lists.infradead.org>,
+	devicetree <devicetree@vger.kernel.org>,
+	linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v7 7/7] mtd: ubi: provide NVMEM layer over UBI volumes
+Message-ID: <Ze5uUyUuEDBM3p43@makrotopia.org>
+References: <cover.1702952891.git.daniel@makrotopia.org>
+ <82ceb13954f7e701bf47c112333e7b15a57fc360.1702952891.git.daniel@makrotopia.org>
+ <20240219120156.383a1427@xps-13>
+ <1209094181.98490.1708899174329.JavaMail.zimbra@nod.at>
+ <ZdvV1KABu_UCSL7B@makrotopia.org>
+ <1754825522.38834.1710105437883.JavaMail.zimbra@nod.at>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: update compatible name
- for match with driver
-To: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>
-CC: <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>
-References: <20240129092512.23602-1-quic_tengfan@quicinc.com>
- <20240129092512.23602-2-quic_tengfan@quicinc.com>
- <CAL_JsqJfsWaj9OPkvc34rBvx7W_3v9+1kZqNu6QKDsA=iWAA4w@mail.gmail.com>
- <CAL_JsqLbbRFijBXS5CyRm0P4FMY7bR3UUdgXA7xP4Z1oRevnzQ@mail.gmail.com>
- <CACRpkdZ3uhyTnF7YkMk9sOeJJFZ4UPEna7PwpqPeBpWDdAmayA@mail.gmail.com>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <CACRpkdZ3uhyTnF7YkMk9sOeJJFZ4UPEna7PwpqPeBpWDdAmayA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Xkx0luqQbokh_5i-9W3M3TRlwkqKloRR
-X-Proofpoint-GUID: Xkx0luqQbokh_5i-9W3M3TRlwkqKloRR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-10_16,2024-03-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxlogscore=999
- suspectscore=0 malwarescore=0 mlxscore=0 spamscore=0 bulkscore=0
- adultscore=0 impostorscore=0 priorityscore=1501 clxscore=1011
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403110018
+In-Reply-To: <1754825522.38834.1710105437883.JavaMail.zimbra@nod.at>
 
+Hi Richard,
 
-
-On 3/10/2024 7:44 AM, Linus Walleij wrote:
-> On Fri, Mar 8, 2024 at 9:10 PM Rob Herring <robh+dt@kernel.org> wrote:
->> On Tue, Feb 27, 2024 at 7:37 AM Rob Herring <robh+dt@kernel.org> wrote:
->>> On Mon, Jan 29, 2024 at 3:25 AM Tengfei Fan <quic_tengfan@quicinc.com> wrote:
->>>>
->>>> Use compatible name "qcom,sm4450-tlmm" instead of "qcom,sm4450-pinctrl"
->>>> to match the compatible name in sm4450 pinctrl driver.
->>>>
->>>> Fixes: 7bf8b78f86db ("dt-bindings: pinctrl: qcom: Add SM4450 pinctrl")
->>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->>>> ---
->>>>   Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml | 2 +-
->>>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
->>>> index bb08ca5a1509..bb675c8ec220 100644
->>>> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
->>>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
->>>> @@ -17,7 +17,7 @@ allOf:
->>>>
->>>>   properties:
->>>>     compatible:
->>>> -    const: qcom,sm4450-pinctrl
->>>> +    const: qcom,sm4450-tlmm
->>>
->>> I think you forgot to update the example:
->>>
->>> Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.example.dtb:
->>> /example-0/pinctrl@f100000: failed to match any schema with
->>> compatible: ['qcom,sm4450-tlmm']
->>
->> Still a warning in linux-next. Please send a fix.
+On Sun, Mar 10, 2024 at 10:17:17PM +0100, Richard Weinberger wrote:
+> Daniel,
 > 
-> I understand it as applying 1/2 is the fix so I applied it.
+> ----- Urspr�ngliche Mail -----
+> > Von: "Daniel Golle" <daniel@makrotopia.org>
+> >> Finally(!), I had enough time to look.
+> >> Thanks for addressing all my comments form the previous series.
+> >> Patches applied.
+> > 
+> > It's an enourmous coicident that you are writing just now that I found
+> > a sizeof(int)-related problem which triggers a compiler warning when
+> > building the UBI NVMEM provider on 32-bit platforms. I was just about
+> > to prepare an updated series. Literally in this minute.
+> > Should I still send the whole updates series or only the final patch
+> > (as the necessary change is there) or a follow-up patch fixing the
+> > original patch?
+> 
+> I have just merged your fixup patch. So all good.
 
-I will check this warning, and I will fix it.
+Thank you!
 
 > 
-> Yours,
-> Linus Walleij
+> >> 
+> >> I have only one tiny request, can you share the lockdep spalt
+> >> you encountered in ubi_notify_add() regarding mtd_table_mutex
+> >> and ubi_devices_mutex? The solutions looks okay to me, but
+> >> if you have more details that would be great.
+> > 
+> > I will setup a test build to reproduce the original warning and
+> > let you know shortly.
+> 
+> Any news on that?
 
--- 
-Thx and BRs,
-Tengfei Fan
+I've tried for days now to reproduce this on recent kernels and fail
+to do so. Ie. when using regular mutex_lock() instead of
+mutex_lock_nested() I no longer see any lockdep warning with
+linux-next. It could be that I'm chasing a lockdep ghost...
+
+> BTW: Is there a nice way to test this with nandsim in qemu?
+> I'd love being able to test all ubi attach code paths on my test setup.
+
+From what I can tell 'nandsim' doesn't have a way to be defined in
+Device Tree, making it unsuitable to test the attachment of UBI in
+this way.
+
+However, QEMU does support emulating TI OMAP's OneNAND controller, eg.
+as part of the Nokia N810 hardware supported by qemu-system-arm, see
+
+https://www.qemu.org/docs/master/system/arm/nseries.html
+
+So we could use that and modify the device tree in Linux to have a MTD
+partition for UBI and 'compatible = "linux,ubi";' set therein:
+
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm/boot/dts/ti/omap/omap2420-n8x0-common.dtsi#n84
+
+If you like I can prepare such a test setup.
+
+Is there a repository for MTD/UBI tests to be run on QEMU which I should
+contribute this to?
+
+
+Cheers
+
+
+Daniel
 
