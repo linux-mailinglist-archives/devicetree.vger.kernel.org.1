@@ -1,323 +1,142 @@
-Return-Path: <devicetree+bounces-49908-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49909-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0345878814
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 19:49:29 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id ED98387885B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 19:55:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 101741C218E0
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 18:49:29 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A83FE285761
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 18:55:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 26B9064A94;
-	Mon, 11 Mar 2024 18:39:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id F0EFD56745;
+	Mon, 11 Mar 2024 18:49:51 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="rGH1quAl"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XuG2Pz7H"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04on2063.outbound.protection.outlook.com [40.107.100.63])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 08D1E63511;
-	Mon, 11 Mar 2024 18:39:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.100.63
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710182385; cv=fail; b=cxu5soqvurXCwbVp5qjFGTmJI8Q4dgXaPUpCTAqFuzydzjJLUMFyort2ictPoc5wzqGf/zMU8hbD9VtG4bv55qb7liFvA0ipOsyyhvZpZRAi4ebVtzLrDqiLZoqc/QhcapzdC4kSHyiG8lZGCXn9lwQULPPDglSPUNBXe5/7dh0=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710182385; c=relaxed/simple;
-	bh=QroaU9/FS9tuwn6l+VyME+6I5GOPXhFkEAq5s11nj1Y=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=FVzOlwqieIkriX/ODJaRY9QYROkMF/FhMflMPGEdSKlyeHT0tHshg+ss0nFwSZ3ZQlnRofL4zISXHLVwIODkJfvzj4UvhKu4yWhb4Hq/7lzwKbmyi2nPDjcEZgzcyP1zbrHrZkiAHV6uEeSh//DniTgdonRoDobrPZBdUAC8uTk=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=rGH1quAl; arc=fail smtp.client-ip=40.107.100.63
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=aIqJHP/kurT7dE7tNK8wrNwFSTClHc/3R9h+iy0o1WyPL1mzjD1JKCu0iLuYG0xPhCCXOOHzeZlOguVXOXjycydY5YbcpiZLa6NRmlDYpqRz41FA0FdOisww7ioZzN7AXPJNBHOUffQtrx5BD1lrcZp+YqbLUO6HaiwG5p9h+DhLDn4ESXxjKeIEQtHye7BTIbwla8aU0KZMwkhc0FPNohdSeCF8hGTrURreCIQ0xdLO3L6duV9MtKm9n9QTFcCzDxzaIvHYDqbFfDvybp3NiAibs8vL/mYo5ZsBFiWrTwo4Nshbu5wXD0ReWkJWnHZa3lopqET5gl+VDWDw/JZuoA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=TRJ8q0N2wAwV6p0NnhfRHsBZSgRu39s/eAf0deL7kJ8=;
- b=n6PAnLxBHeiXmzxw2lVxod+Va53xbgaNYhSEpLM3WnViiWDbjIbezpm2Imxbo3QSSaGnOxweAEo1Ui9wnfviDQRg2u0ps3K71NAqp59Q4/mIWwCxBtcsAami5OMTiMVXiwTCFDLOFN3fLOdP+Kc1eVMby6oST+oR5JeuvmBrp6U0TkRyYV1bQyRYI/vdXvajVJSP9IsyoNl/cO94OMhQNRTr8haduzefgnlVKSuMvaViPym5oy9HD9zMnOMKNlOXoPCfUxQeSt6+1YetpAu7HJg0FiQubLRMFf1Vmhsi/3fp4lc4SU/0tit5u0XW3QuFRy/8nesDYBAtbhlpvQwQ2g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=TRJ8q0N2wAwV6p0NnhfRHsBZSgRu39s/eAf0deL7kJ8=;
- b=rGH1quAlLCOrZFrPKAIWKGu30GkS1DglJa7juZPEm7dYdSV1VYmVDhqD5cgIz51BQeFA0uSZhQ/oDAgpHWVma5JMChMJF24bhw4Gerx8RWtV6zmTjdwv5uMArU2cbkOkqyJudJl+ldcnNklBNktsF+kj6uRBNwJ1r0WuNrmDWyA=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
- by PH7PR12MB9173.namprd12.prod.outlook.com (2603:10b6:510:2ee::9) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.24; Mon, 11 Mar
- 2024 18:39:40 +0000
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::8b3e:57e8:d574:309a]) by BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::8b3e:57e8:d574:309a%4]) with mapi id 15.20.7362.035; Mon, 11 Mar 2024
- 18:39:40 +0000
-Message-ID: <17d58a39-7d56-4513-8d5f-7c18809c6cfb@amd.com>
-Date: Mon, 11 Mar 2024 13:39:17 -0500
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v12 2/4] dt-bindings: remoteproc: add Tightly Coupled
- Memory (TCM) bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- andersson@kernel.org, mathieu.poirier@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, ben.levinsky@amd.com
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-References: <20240301181638.814215-1-tanmay.shah@amd.com>
- <20240301181638.814215-3-tanmay.shah@amd.com>
- <fb78bdda-2ec7-4fcc-888e-233905a9386c@linaro.org>
-Content-Language: en-US
-From: Tanmay Shah <tanmay.shah@amd.com>
-In-Reply-To: <fb78bdda-2ec7-4fcc-888e-233905a9386c@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SA9PR11CA0024.namprd11.prod.outlook.com
- (2603:10b6:806:6e::29) To BL1PR12MB5874.namprd12.prod.outlook.com
- (2603:10b6:208:396::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CD6495DF24
+	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 18:49:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710182991; cv=none; b=FZJb/p3uOF5IX+7bjNGTiZEu2dja8YPr9wHwL7ZWZZByMSlS7PO71/cEo2ORZIt6kcT2yU5Z7JqCScST1ras2zDlP+h4hwweea1s8hAljNJ9SuXwT7SMdkhLVC2NasrNRgfeXx4+EX52Ue52UrnfesGzhOnOAfzMo5BrgVozFl4=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710182991; c=relaxed/simple;
+	bh=FAD8J1RUlqaC4G8EsEwHNb448NcJqUS5MI3bQZCirEc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Eq+J//gRCJFt2SMVpW3/SMT0fL9dlKgueZ4JzUZdXS/WyQaOnqFLnZgqtHXbtTJEcLNGT0JT6+unRbnzDaS/CReEYQAt8NL3mlQNdyDnPHYc/ZmYMwwDV5VO6XjoY4bewu85+Dk43vVw6+lsXZjsL0RGGeVl5Yt6MsH5RmdNDFE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XuG2Pz7H; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59482C433F1;
+	Mon, 11 Mar 2024 18:49:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710182991;
+	bh=FAD8J1RUlqaC4G8EsEwHNb448NcJqUS5MI3bQZCirEc=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XuG2Pz7HAXeGCG6GKVk9LY02VzoL32VGGcJe9TE/2XjDIgL0NLROZR8qijW9MXMfL
+	 8eXWBhuRqEBK8ott/66W42CTtuA4yP/n+YVkPsxr4aMhBrJFFJeXjpjZdgoRCLFE8m
+	 x+LPonrmgKNU4kRqZV1IYHEa1+qHb3a4I7bLTh+1kBILAmSZoGfLM4InXNXDnpZP4k
+	 Lp/+HBovl2fNtGMqSULegCChGmRWIKGC3Xch1CEILt+uzV7pVNoM3q5ei+URLkxXKp
+	 8JKGBA4TbdEmmqgE74vxXBZ+qmeFb9QeEuohO4eVS5lsd49E5moswdlR6Yrki4ZHkk
+	 tCOMUJRWoCV2A==
+Date: Mon, 11 Mar 2024 18:49:46 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/5] ASoC: makes CPU/Codec channel connection map more
+ generic
+Message-ID: <e7121fbc-c814-4153-9f17-82ad5de13e64@sirena.org.uk>
+References: <87v8a64f3d.wl-kuninori.morimoto.gx@renesas.com>
+ <87ttpq4f2c.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5874:EE_|PH7PR12MB9173:EE_
-X-MS-Office365-Filtering-Correlation-Id: 457013f7-8c87-4d32-ea98-08dc41fa9c0c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	57PoDzWr9zyGGyBZoaKBjPFMVtwOyZu2ZRsiGTJYxxp7riHDHTI/Qim/4NWBHpAJyhuLEYGpwSOBCKm/ZcKwci8yZwCpS1c/zIKJqHO+IlN45oEVaQ1OLY3kc4S6fWNN7LXohFkZ+ocO7WheGQ83BHxr7Km2DiIAroeLSvrt9kOhmaZQNR4lo7+6qpEMhLWkNwUksoYEk5gLcXcCj08HFE7ghH9wH1EWU+S4Qf6qs+7jsyVN0f6/4eagiqBM/r+EXUw7qHTd26BmQhHeKk4Wary7fk1c+I/2D1e/blBvTo0/3KjqSjpWzJth688eCTF06+uFuWyXlTMl/iarL5+1JtFpzBxrDEgGwOAKB2s3Qo8UUH9c4LgjEqkiHKFrFz5f9oPiNgxdFYS4eRSr4PIPAGwwGPu8VHrzTgTHlRzud7c7BhfsHkTsfjjjVjF5L07uHpvMRIUgvK9LBZ0s+/e/TsDochvAT4iFgOk0X+h3bnHRQd0CzI+y/85dwwFCAcVNjiSL4lJCYnkKPQq1duvDQPvO6SQjjcOLmZpwVR2kGit6h8VwYSZEJhH+H3guBI22UjXHu8M0+pmjVQJM1iIC5ieueGmNGzip0hL19dlJ6FZLsKUAGK2JnDwL33N7JUeIEzHT+uVdo4iYgA2OlqSn+lq72kaUugGjOx+dfcxeYvs=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5874.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(7416005)(376005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?eWd4V1p4dHNIRWRLa1E0S1l6UjFtTGZXMEwrL1RsMnRZaXhtd3gxQUJ0Y1pW?=
- =?utf-8?B?L3JKanJuQ1RZd0V5NEZKajlvVzdvKzdzOHhaVGxBVTFsZnFtWEZQVW00UUZt?=
- =?utf-8?B?NFYvU2duaHpRelBLLzRKUnZvd2FKcS9IdWVIWG9nak53QnZ0VFc2L2JUbnpV?=
- =?utf-8?B?SUFsWVVLMEN6cjloTXpHc0dRNmEySTMxRGVmbW1Ka0RqTjJQL01KL0tFNU9X?=
- =?utf-8?B?YXpFSkpUeThWdURQRkY2SENUOEh3cU9CcGQ1TXliUTlhQW5Sa1hHZndQVG55?=
- =?utf-8?B?d1Z6UlFiaGZOb244emRmMXdET2o0ODZVYVBhZHNNM2tTTWFpcmxnbi95V2cw?=
- =?utf-8?B?WlI4eS9zRG04TFBHR05iakh0UEgxUzI1dG1YZXU1a05JZC9LNUJhaGVMN2dM?=
- =?utf-8?B?STkwSXl6eGJ2bURSMURtQTBNbW0zZkswZDV2QmxzdHJkdjBYV2VQRTBYYlRa?=
- =?utf-8?B?K21DSG1jVzMxa09haXlYTGVGenAzdkYrdlNSWkpwckg5c0U2U2ZUSjFZaEha?=
- =?utf-8?B?SUNNYUVONHRFUU5mVncxa1h0S25PQUlrS1hZTGhqekVpT1N2cyt2T0NzLzBu?=
- =?utf-8?B?bHEzYlVHUWZKeXpNM3RDUloyUGErN0hUTkNiN05GbGgrZm5qYTJWN1NwaGxa?=
- =?utf-8?B?Wjg0a25UanR2OHg4ZkRpVFZFbE9YU2hwWlVLU0FNczMxUkxkc054ZlN2LzBa?=
- =?utf-8?B?TXNLVGlvTEp1aDlJUWxlTHRVU2NGMVZvaGFxN3U5VXI2bnpBampVcWdiTTVv?=
- =?utf-8?B?d09WQVgrVVByZk1PNmlwSVlnWUhmZURwRFd2NldDQ21Mb2N5Y0JVcUJubWt2?=
- =?utf-8?B?Wm9nK2liY1pWMkZKQk9uODFpZllmR3B1WjBURmhtYi9yaExkdk9xNHF2ZVRj?=
- =?utf-8?B?bmpyMW1meURWa3M2U3BsbnFnTlBwQ2w0RW9BdWozQnMwTlB5R1dvamJHKzJT?=
- =?utf-8?B?QUlMbHd1a01MZjJzL3h6WFlJd1JFTFBmTW9PM3c0Sk1sZ0VMYldNWnBVbndB?=
- =?utf-8?B?NVFlZmF1b3NPSnVKZGNlT1NIc2xTR1NMMWhFMm5XNEtBMmdmcXVMSnZvRjBh?=
- =?utf-8?B?NUxaeGZSdVREYk9TbTkrM3h1TkVGRjdPVlBwVzBtRjZGaDJINE5MZDdZbGFs?=
- =?utf-8?B?VTU5dzRieEZUYUJVR1ZDOU1nREVaRGRmSTNsbmx3eGNlNDVmdmx5ckp1ZjZQ?=
- =?utf-8?B?YXAwOUJwZG0vZytVYmZnT2tnelByZ01tTTBObC94ZUNYd3lySGY4WHJ3YmUv?=
- =?utf-8?B?TDB5VGRDWXV6WExLMk50UjNhT2QrVzQ0ODZWVWJRMjJZbmVhK1RKdU5MU0hw?=
- =?utf-8?B?WjBwTFpKNjNwdkNrVGVySmZWc1ZaTzhRUDdBM2hYMHFvaDQvYUFsZDFkLytP?=
- =?utf-8?B?WHBQUFE4U0dBcnZ2aHBiL0cwOGZZUzdFTzZpa2lXbU9HUmtGYUFxZEFjWVRa?=
- =?utf-8?B?emwybHNTVFNITHIrbC9SS1d3RlU5d0dSSXNBcXlBZk93cllMaEpHYkhQaHFz?=
- =?utf-8?B?VVp6cUpEU0Z0UDJJY1FGdE1vSmlFZDZmWStZN3o1Y0ljRmdSU0RMb2lOSFhn?=
- =?utf-8?B?eCszNGczcTF2S1RqZnVqYzNVOGRoNld1WWZEYnhoR2ZZM21Ed21pelJyeG5M?=
- =?utf-8?B?YWlGWDZWS3lMV3hVOXpuVFBGWG5PcDRDWGR2bU9LUFllK2hydWtjTklDdG56?=
- =?utf-8?B?ZDdPTys5Ny93WmFnbGZqMlFhNjdGMU5SNkd6WU1yTFRTcVdVMHRhQXpBR25I?=
- =?utf-8?B?TmQyZFJSTnhzRlZIZ2VRM1VoaFdlcjRHdmFaYnJjMldUcUJoSDRJNW40UTUr?=
- =?utf-8?B?blZsQjJqeXRHazVOaTZyN0dBUHUxZnVuM29oQ1ZTSWFoV29zQlVpNkpQd0t6?=
- =?utf-8?B?T0RsODJ4UnhrZFQ5Yk9jVTg4cGFsVkxmYnROUnVPYUMzNExmeWJTTVorTTVW?=
- =?utf-8?B?cFBLZGR6K2VwMkJ1UmNjQS9QdS9OT0lCdzFhYkRyd2Jna1p3MjArcmROdXRO?=
- =?utf-8?B?elNSaDB5M2wwZ0hyUVJ3TEhkM2pWNDF2SGZwZ0E3NFlNSWZnTHV3WWJ5QnRh?=
- =?utf-8?B?emU4NlVRQzVDU0RvSDFoaGVOaVpYeE45QmdEc1RhNEF3UVdHa25wbGxibER6?=
- =?utf-8?Q?C8YyV/4293SLHLkQf+fFEwNuG?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 457013f7-8c87-4d32-ea98-08dc41fa9c0c
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5874.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 18:39:40.1107
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: PQbHRy9/ys8MF5+S/RjlgXKGX2evCjzMZzOJUIyrRLojX3Me6JGsrOwYkL56W6cG
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB9173
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="eR+iSIT8d181mLfm"
+Content-Disposition: inline
+In-Reply-To: <87ttpq4f2c.wl-kuninori.morimoto.gx@renesas.com>
+X-Cookie: boy, n:
 
 
-On 3/9/24 7:25 AM, Krzysztof Kozlowski wrote:
-> On 01/03/2024 19:16, Tanmay Shah wrote:
-> > From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> > 
-> > Introduce bindings for TCM memory address space on AMD-xilinx Zynq
-> > UltraScale+ platform. It will help in defining TCM in device-tree
-> > and make it's access platform agnostic and data-driven.
-> > 
-> > Tightly-coupled memories(TCMs) are low-latency memory that provides
-> > predictable instruction execution and predictable data load/store
-> > timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
-> > banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
-> > 
-> > The TCM resources(reg, reg-names and power-domain) are documented for
-> > each TCM in the R5 node. The reg and reg-names are made as required
-> > properties as we don't want to hardcode TCM addresses for future
-> > platforms and for zu+ legacy implementation will ensure that the
-> > old dts w/o reg/reg-names works and stable ABI is maintained.
-> > 
-> > It also extends the examples for TCM split and lockstep modes.
-> > 
-> > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> > ---
-> > 
-> > Changes in v12:
-> >   - add "reg", "reg-names" and "power-domains" in pattern properties
-> >   - add "reg" and "reg-names" in required list
-> >   - keep "power-domains" in required list as it was before the change
-> > 
-> > Changes in v11:
-> >   - Fix yamllint warning and reduce indentation as needed
-> > 
-> >  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 188 ++++++++++++++++--
-> >  1 file changed, 168 insertions(+), 20 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> > index 78aac69f1060..dc6ce308688f 100644
-> > --- a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> > +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> > @@ -20,9 +20,21 @@ properties:
-> >    compatible:
-> >      const: xlnx,zynqmp-r5fss
-> >  
-> > +  "#address-cells":
-> > +    const: 2
-> > +
-> > +  "#size-cells":
-> > +    const: 2
-> > +
-> > +  ranges:
-> > +    description: |
-> > +      Standard ranges definition providing address translations for
-> > +      local R5F TCM address spaces to bus addresses.
-> > +
-> >    xlnx,cluster-mode:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> >      enum: [0, 1, 2]
-> > +    default: 1
-> >      description: |
-> >        The RPU MPCore can operate in split mode (Dual-processor performance), Safety
-> >        lock-step mode(Both RPU cores execute the same code in lock-step,
-> > @@ -37,7 +49,7 @@ properties:
-> >        2: single cpu mode
-> >  
-> >  patternProperties:
-> > -  "^r5f-[a-f0-9]+$":
-> > +  "^r5f@[0-9a-f]+$":
-> >      type: object
-> >      description: |
-> >        The RPU is located in the Low Power Domain of the Processor Subsystem.
-> > @@ -54,8 +66,17 @@ patternProperties:
-> >        compatible:
-> >          const: xlnx,zynqmp-r5f
-> >  
-> > +      reg:
-> > +        minItems: 1
-> > +        maxItems: 4
-> > +
-> > +      reg-names:
-> > +        minItems: 1
-> > +        maxItems: 4
-> > +
-> >        power-domains:
-> > -        maxItems: 1
-> > +        minItems: 2
-> > +        maxItems: 5
-> >  
-> >        mboxes:
-> >          minItems: 1
-> > @@ -101,35 +122,162 @@ patternProperties:
-> >  
-> >      required:
-> >        - compatible
-> > +      - reg
-> > +      - reg-names
-> >        - power-domains
-> >  
-> > -    unevaluatedProperties: false
-> > -
-> >  required:
-> >    - compatible
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +  - ranges
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        xlnx,cluster-mode:
-> > +          enum:
-> > +            - 1
-> > +    then:
-> > +      patternProperties:
-> > +        "^r5f@[0-9a-f]+$":
-> > +          type: object
-> > +
-> > +          properties:
-> > +            reg:
-> > +              minItems: 1
-> > +              items:
-> > +                - description: ATCM internal memory
-> > +                - description: BTCM internal memory
-> > +                - description: extra ATCM memory in lockstep mode
-> > +                - description: extra BTCM memory in lockstep mode
-> > +
-> > +            reg-names:
-> > +              minItems: 1
-> > +              items:
-> > +                - const: atcm0
-> > +                - const: btcm0
-> > +                - const: atcm1
-> > +                - const: btcm1
->
-> Why power domains are flexible?
->
-> > +
-> > +    else:
-> > +      patternProperties:
-> > +        "^r5f@[0-9a-f]+$":
-> > +          type: object
-> > +
-> > +          properties:
-> > +            reg:
-> > +              minItems: 1
-> > +              items:
-> > +                - description: ATCM internal memory
-> > +                - description: BTCM internal memory
-> > +
-> > +            reg-names:
-> > +              minItems: 1
-> > +              items:
-> > +                - const: atcm0
-> > +                - const: btcm0
-> > +
-> > +            power-domains:
-> > +              maxItems: 3
->
-> Please list power domains.
+--eR+iSIT8d181mLfm
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hello,
+On Mon, Nov 13, 2023 at 01:28:27AM +0000, Kuninori Morimoto wrote:
+> Current ASoC CPU:Codec =3D N:M connection is using connection mapping ide=
+a,
+> but it is used for N < M case only. We want to use it for any case.
+>=20
+> By this patch, not only N:M connection, but all existing connection
+> (1:1, 1:N, N:N) will use same connection mapping. Then, because it will
+> use default mapping, no conversion patch is needed to exising drivers.
 
-Sent v13 addressing both comments.
+The KernelCI bisection bot has reported that this is breaking boot on
+meson-g12a-u200 in -next with a defconfig+debug configuration:
 
-Thanks.
+<1>[   39.211516][   T39] Unable to handle kernel paging request at virtual=
+ address f999199999999999
+<1>[   39.215123][   T39] KASAN: maybe wild-memory-access in range [0xccccc=
+cccccccccc8-0xcccccccccccccccf]
 
+=2E..
 
-> >  
-> >  additionalProperties: false
->
->
-> Best regards,
-> Krzysztof
->
+<4>[   39.498854][   T39] x5 : 1fffe00001b50887 x4 : 0000000000000001 x3 : =
+ffff000013f44be8
+<4>[   39.506914][   T39] x2 : dfff800000000000 x1 : 1999999999999999 x0 : =
+0000000000000007
+<4>[   39.514975][   T39] Call trace:
+<4>[   39.518356][   T39]  snd_soc_compensate_channel_connection_map+0x210/=
+0x578
+<4>[   39.525461][   T39]  snd_soc_bind_card+0x368/0x1280
+<4>[   39.530575][   T39]  snd_soc_register_card+0x2e8/0x3e0
+<4>[   39.535949][   T39]  devm_snd_soc_register_card+0x58/0xd8
+<4>[   39.541581][   T39]  meson_card_probe+0x25c/0x388 [snd_soc_meson_card=
+_utils]
+<4>[   39.548864][   T39]  platform_probe+0xcc/0x240
+
+Full boot log here:
+
+   https://storage.kernelci.org/mainline/master/v6.8-rc7-250-g137e0ec05aeb/=
+arm64/defconfig+debug/gcc-10/lab-baylibre/baseline-meson-g12a-u200.txt
+
+with the config here:
+
+   https://storage.kernelci.org/mainline/master/v6.8-rc7-250-g137e0ec05aeb/=
+arm64/defconfig+debug/gcc-10/config/
+
+The full bot report is here:
+
+   https://groups.io/g/kernelci-results/message/52435
+
+and everything does look plausible about the failure.
+
+--eR+iSIT8d181mLfm
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXvUkkACgkQJNaLcl1U
+h9CzFwf+IVjulj8rrjAsSl/s8CHiO4oW5oLannZGrPQY3r75RVxMKynf8v07JLRg
+NAHdIM5fr5c/GdwGxRFr9Y/40rtB7hGMtBGPfP569ofLJtKcv8HZUf6q1iBNNq8S
+sGQtSbBL1h+m14sTv6uNNnhZnXq8eoeXg3ompC3kAo8Jk6l2y2twKRQ4RtT39kta
+ge2sIhJYrfNybrQhEWOm0UhI2MNicn3scOfwKYxBwy086ZHyiB5k58qPyn4+Kqyj
+8vvN5MFtQ91V9bbqkU4RdvJoQ/DpYs4owNg7n7zLs86OyoNlQOk6+AbmtzuLSRFB
+Ettbkc78XVTJoFF+7CPiyOTDD+ckEw==
+=gdVL
+-----END PGP SIGNATURE-----
+
+--eR+iSIT8d181mLfm--
 
