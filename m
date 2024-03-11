@@ -1,188 +1,104 @@
-Return-Path: <devicetree+bounces-49844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49846-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EE08878062
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 14:21:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E61308780A1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 14:29:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 40D161C208D2
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 13:21:07 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22C8A1C2166B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 13:29:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6679C3D97A;
-	Mon, 11 Mar 2024 13:20:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A0393F9D2;
+	Mon, 11 Mar 2024 13:28:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="qXwQ89WW"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XPxDyqod"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A45AB3CF7E;
-	Mon, 11 Mar 2024 13:20:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF7033EA9B;
+	Mon, 11 Mar 2024 13:28:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710163259; cv=none; b=kcBTGlmHSyihc2HBSqn/S3REyZ8Nl9y02dssRkhkYgbZAeOywOH8677HJkhDwPyh3kZvHT43XNqjARImiDMBlrLuf48T9fO2yzRrzJ70gQNgRhslUANP0GEWKQK/agiY9lfssRGn3CZQuUW54rOqANHnVs+unBekWFq4or/fLAw=
+	t=1710163712; cv=none; b=sgrDMKnFVzFQDW/VeOxTGPLGfNpTMJZbrmHmTYdymOQXYjLWrCbdoLceNQCZN8yCSGkVIDHqOsmYHyUmbZRrLNGPE8Hed0eKlUzCaQ9Ei/BSUXGUCPSdAuvWHytaaSWvfQNIBGEiS/TpwuO1RPf9dyAQRpSWWAce7PNhtS8Y270=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710163259; c=relaxed/simple;
-	bh=cgS41CqvwZ+ehlK1tNBeiYgzqPwMBSss5h2R6tKQ3mo=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=TvmVo0O91zeIKwS5BxltFZp7g6kvW9jhwJyxDhgH2ddzMPj872VQNMB8/L657oXzHkrP6JvVubc8gLak6Nmr1B7ED8lSSoFDP3VcFrkQ2goVuQ9nv32wQM5gOH0Q29QNKcXAzLREJ6oba7JmLE76x1Vy0dum2BNcbSz/gmL/RaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=qXwQ89WW; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353724.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 42BCXN1N021451;
-	Mon, 11 Mar 2024 13:20:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=9Q+aNdf4aY1ZWQIbQqm5mKOU85sMqxIoieARj6LXs68=;
- b=qXwQ89WW7X+BQKSDUt55gMXYWEyVAP+ocOlgkO7NQ0Hxbvo2FB+08QpTnRaAASUE9nLV
- MqmKh0K4DkopA2FwEU60tkcKAFn687p4qlL3m7stFr1Y3x6X2jcp6938NB/IMUuayaZ2
- 9L6cgXmEdvEaogLbe8c6/kXHO+hvwEtciBVEQdpy7xYAw6br2aG/njxx0Sso7v4tVDZR
- qDmspBR0pS7sbmpX12IdAc8b5NQ/AnNp/j2gb9eGPjSx/iwIcnEcKoTUxa7LM3I5WNuJ
- BerFb5UTO3tMAHmiPBg4mPQUUJaTmOH/9smBXTe1fC17RkeuyshOVWUr55RAlrLwvX9o ZQ== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3wt2290yc8-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Mar 2024 13:20:47 +0000
-Received: from m0353724.ppops.net (m0353724.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 42BCYYDX024875;
-	Mon, 11 Mar 2024 13:20:47 GMT
-Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3wt2290yc1-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Mar 2024 13:20:47 +0000
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma12.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 42BCZ5bl018133;
-	Mon, 11 Mar 2024 13:20:46 GMT
-Received: from smtprelay06.dal12v.mail.ibm.com ([172.16.1.8])
-	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 3ws23t0wdd-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Mar 2024 13:20:46 +0000
-Received: from smtpav05.dal12v.mail.ibm.com (smtpav05.dal12v.mail.ibm.com [10.241.53.104])
-	by smtprelay06.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 42BDKhFi31130030
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Mon, 11 Mar 2024 13:20:46 GMT
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id D47F65806C;
-	Mon, 11 Mar 2024 13:20:43 +0000 (GMT)
-Received: from smtpav05.dal12v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 418DB58056;
-	Mon, 11 Mar 2024 13:20:43 +0000 (GMT)
-Received: from sbct-3.pok.ibm.com (unknown [9.47.158.153])
-	by smtpav05.dal12v.mail.ibm.com (Postfix) with ESMTP;
-	Mon, 11 Mar 2024 13:20:43 +0000 (GMT)
-From: Stefan Berger <stefanb@linux.ibm.com>
-To: mpe@ellerman.id.au, linux-integrity@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org
-Cc: linux-kernel@vger.kernel.org, jarkko@kernel.org, rnsastry@linux.ibm.com,
-        peterhuewe@gmx.de, viparash@in.ibm.com, devicetree@vger.kernel.org,
-        jsnitsel@redhat.com, Stefan Berger <stefanb@linux.ibm.com>
-Subject: [RFC PATCH v2 3/3] tpm: of: If available use linux,sml-log to get the log and its size
-Date: Mon, 11 Mar 2024 09:20:30 -0400
-Message-ID: <20240311132030.1103122-4-stefanb@linux.ibm.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240311132030.1103122-1-stefanb@linux.ibm.com>
-References: <20240311132030.1103122-1-stefanb@linux.ibm.com>
+	s=arc-20240116; t=1710163712; c=relaxed/simple;
+	bh=AFWzF1Lhea4tuERf2x297B9VZ9r3NjTyKmU+LYLRnBg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JLTSajHm+vEuBzNhBIZk1M1El4cCwCrD38SaGv3ZtXsAtCSxVI+oLZwRoq8g5T6W4K227AAenWuY4rnuVtrddc8gtwX/FJMGGJA+J6bYTAvxwHkJ+lshRxUElHX+UHhX5RiOWMB7hbuICPDs4dE/wd62o9YDbdLVBewUWKZ7WHs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XPxDyqod; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F8E8C433F1;
+	Mon, 11 Mar 2024 13:28:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710163711;
+	bh=AFWzF1Lhea4tuERf2x297B9VZ9r3NjTyKmU+LYLRnBg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=XPxDyqodU2lXWD13IHKafN7AXPh4BTw/sVzUEAAjIkecY8zxRB4ScWj5IVQhfAvHc
+	 mKXiFm3PIDRHeb/Gv+X/5pe3Blmc6u3aV4engBMB4UoJdCtw28cTam+hruvh0VUvF8
+	 prrUi71HmFtkayEoj/5VEEW27EfVoJP+s7B0JI/AJYXnM9310774lLfoi5PVJ8Nzl5
+	 Y4564TATSxUX90KxbGew9dKxokZDiX/OJ0IDC8qQAECKoXuaAYNpVocM5ylEGt/yKi
+	 dxgxjJanXwkp4kndACOOedB8F5PWFp5U1DAuMgyGtCG0kAIDXNRAkOdTn7fD8ALqzq
+	 Ji6uHaYNh5Lhg==
+Date: Mon, 11 Mar 2024 13:28:24 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc: ping.bai@nxp.com, lgirdwood@gmail.com, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	shawnguo@kernel.org, s.hauer@pengutronix.de,
+	linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
+	festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
+	Joy Zou <joy.zou@nxp.com>
+Subject: Re: [PATCH v2 2/3] regulator: pca9450: add pca9451a support
+Message-ID: <5b257caf-5a14-4c82-9999-061a0093a831@sirena.org.uk>
+References: <20240311084758.377889-1-joy.zou@nxp.com>
+ <20240311084758.377889-3-joy.zou@nxp.com>
+ <6027895.lOV4Wx5bFT@steina-w>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: vRub7t0aVGig_2UvQXSQrKNVntS_a5Gn
-X-Proofpoint-ORIG-GUID: GJwB-jDVg_6K6X6mXZ_I0GwqJ864FEmR
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-11_08,2024-03-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 clxscore=1015
- lowpriorityscore=0 impostorscore=0 suspectscore=0 bulkscore=0
- mlxlogscore=930 phishscore=0 malwarescore=0 priorityscore=1501 spamscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311290000 definitions=main-2403110100
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="5xEXLheoiK7FmBC0"
+Content-Disposition: inline
+In-Reply-To: <6027895.lOV4Wx5bFT@steina-w>
+X-Cookie: Sorry.  Nice try.
 
-If linux,sml-log is available use it to get the TPM log rather than the
-pointer found in linux,sml-base. This resolves an issue on PowerVM and KVM
-on Power where after a kexec the memory pointed to by linux,sml-base may
-have become inaccessible or corrupted. Also, linux,sml-log has replaced
-linux,sml-base and linux,sml-size on these two platforms.
 
-Keep the handling of linux,sml-base/sml-size for powernv platforms that
-provide the two properties via skiboot.
+--5xEXLheoiK7FmBC0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Fixes: c5df39262dd5 ("drivers/char/tpm: Add securityfs support for event log")
-Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
----
- drivers/char/tpm/eventlog/of.c | 36 +++++++++++-----------------------
- 1 file changed, 11 insertions(+), 25 deletions(-)
+On Mon, Mar 11, 2024 at 10:09:12AM +0100, Alexander Stein wrote:
+> > +			.of_match = of_match_ptr("BUCK1"),
+> > +			.regulators_node = of_match_ptr("regulators"),
+> > +			.id = PCA9450_BUCK1,
+> > +			.ops = &pca9450_dvs_buck_regulator_ops,
+> > +			.type = REGULATOR_VOLTAGE,
 
-diff --git a/drivers/char/tpm/eventlog/of.c b/drivers/char/tpm/eventlog/of.c
-index 930fe43d5daf..dbd837d65264 100644
---- a/drivers/char/tpm/eventlog/of.c
-+++ b/drivers/char/tpm/eventlog/of.c
-@@ -54,8 +54,8 @@ int tpm_read_log_of(struct tpm_chip *chip)
- 	const u32 *sizep;
- 	const u64 *basep;
- 	struct tpm_bios_log *log;
-+	const void *logp;
- 	u32 size;
--	u64 base;
- 
- 	log = &chip->log;
- 	if (chip->dev.parent && chip->dev.parent->of_node)
-@@ -66,37 +66,23 @@ int tpm_read_log_of(struct tpm_chip *chip)
- 	if (of_property_read_bool(np, "powered-while-suspended"))
- 		chip->flags |= TPM_CHIP_FLAG_ALWAYS_POWERED;
- 
--	sizep = of_get_property(np, "linux,sml-size", NULL);
--	basep = of_get_property(np, "linux,sml-base", NULL);
--	if (sizep == NULL && basep == NULL)
--		return tpm_read_log_memory_region(chip);
--	if (sizep == NULL || basep == NULL)
--		return -EIO;
--
--	/*
--	 * For both vtpm/tpm, firmware has log addr and log size in big
--	 * endian format. But in case of vtpm, there is a method called
--	 * sml-handover which is run during kernel init even before
--	 * device tree is setup. This sml-handover function takes care
--	 * of endianness and writes to sml-base and sml-size in little
--	 * endian format. For this reason, vtpm doesn't need conversion
--	 * but physical tpm needs the conversion.
--	 */
--	if (of_property_match_string(np, "compatible", "IBM,vtpm") < 0 &&
--	    of_property_match_string(np, "compatible", "IBM,vtpm20") < 0) {
-+	logp = of_get_property(np, "linux,sml-log", &size);
-+	if (logp == NULL) {
-+		sizep = of_get_property(np, "linux,sml-size", NULL);
-+		basep = of_get_property(np, "linux,sml-base", NULL);
-+		if (sizep == NULL && basep == NULL)
-+			return tpm_read_log_memory_region(chip);
-+		if (sizep == NULL || basep == NULL)
-+			return -EIO;
- 		size = be32_to_cpup((__force __be32 *)sizep);
--		base = be64_to_cpup((__force __be64 *)basep);
--	} else {
--		size = *sizep;
--		base = *basep;
-+		logp = __va(be64_to_cpup((__force __be64 *)basep));
- 	}
--
- 	if (size == 0) {
- 		dev_warn(&chip->dev, "%s: Event log area empty\n", __func__);
- 		return -EIO;
- 	}
- 
--	log->bios_event_log = devm_kmemdup(&chip->dev, __va(base), size, GFP_KERNEL);
-+	log->bios_event_log = devm_kmemdup(&chip->dev, logp, size, GFP_KERNEL);
- 	if (!log->bios_event_log)
- 		return -ENOMEM;
- 
--- 
-2.43.0
+Please delete unneeded context from mails when replying.  Doing this
+makes it much easier to find your reply in the message, helping ensure
+it won't be missed by people scrolling through the irrelevant quoted
+material.
 
+--5xEXLheoiK7FmBC0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEyBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXvBvgACgkQJNaLcl1U
+h9A8/Af4ghJj9p33LNIkf0uGCYW+6YewUairPq/8Q81WYvjKcTtA8dUW1sES/9EA
+GNFWhs2jmCm+HUJZ1xH30dD7jZ1RB1OmpAWkPD4FtCiircG7npzn3MoAH2lF46Mo
+g5zcCDGlTi2qMHKIhqvmj8K+g9u03IFm6cncyTypMkYbmKrbaV7zwfKrSQ6wyt4r
+5vbljMy49ZQ5fue4jKn+4jk6cZvjSsVrskUxdL29EqIyVJ/v4mH4sW9+wKQ6VGnY
+LfHeLgYa65MzSJJx+h43Zr6yhYLX+Ez2C2FnaleA+43CskTwVDK8/mTLjHavwq8Y
+7yUuWWU1SoC6iSwb9GJ/Y0NQpSde
+=lHaH
+-----END PGP SIGNATURE-----
+
+--5xEXLheoiK7FmBC0--
 
