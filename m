@@ -1,99 +1,57 @@
-Return-Path: <devicetree+bounces-49827-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49828-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B322A877F2F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 12:40:52 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 94A65877F3A
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 12:44:54 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA7F61C2147B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 11:40:51 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1A274281364
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 11:44:53 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2253B2BE;
-	Mon, 11 Mar 2024 11:40:48 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="M8LR92PT"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 117B03BB36;
+	Mon, 11 Mar 2024 11:44:50 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CDF3A1CD
-	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 11:40:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B1B2F3B78E;
+	Mon, 11 Mar 2024 11:44:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710157248; cv=none; b=ID9BxfIEG0TLyX5F4td1DQHDrcha3qPFi/nYhlUp6kvp4xBHe1RWJNYruyTKp1iJToKhaEZcyJWz7H6y+MBamw/ISRYQgWvJ1397GsuCTJxIp2JQHszE/IoiA3fYj2CgJTy2wt5JJmPKQlW43KqCh/UylInmf+xzeJedoVbWmis=
+	t=1710157490; cv=none; b=tYRuGduxdOhOjKJvpXaF61aFpgOHpeB081hz+ePoA0zxxhanSXWOjWUZtmqD7cZPy4EcUEWD6MFgmJ/grqz0X/Wy1kqPfDtWJqKOqkK7I/PXDFma3b5Pnxj77FtC+cJjSCCCeombj4fP8VzQSuS45SBXzXsJFZMFg1T9lW/kvtw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710157248; c=relaxed/simple;
-	bh=kiSPAvLuBmKLwnLz0szwtesbk3eIGqsOaJTrvrVAQog=;
+	s=arc-20240116; t=1710157490; c=relaxed/simple;
+	bh=ScauDxIHPpzPMivn0k7nmNQRb13dHQ5538K1RuMQE+o=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=U8+cwAPnEU3YNmXyHAPXrdZCeEViU389A1KbiIiSptrPhvozYXjGxEHSCfE1WmGXuiS2rdj7doZk8RUDQekZ8Ejs/V3gyf9GzpgvET7OaHjISAoeRXLETJze3/jJcA8Q57vV+6Lfh5NGJuNKjaTUv/XbplBD5x0V4x2oBLRPyN4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=M8LR92PT; arc=none smtp.client-ip=209.85.218.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
-Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a45f257b81fso329663866b.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 04:40:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20230601; t=1710157245; x=1710762045; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=SkjzeE4dZ9o2SQlL4u86zxDCBSGbNgJrdX2fu89HmnA=;
-        b=M8LR92PTl1nKoEAFkOa/pPA6Qn6d4AuMXrJ51bSy5FQD5l7nx/YFX7doFHrxEcCotg
-         SC85tsPlYoZwzROsyX3AIW0bm5ySmSuJd8FkFWdkqdXsgm9PEq1a1juxoocnSyzsGWI7
-         Spcti+cYPBdJ7mPtLyqbsoXSHLtH0C8Ij1DJtFuPCBFXpTWh3Ot8be0PhN8tB+zvgrV5
-         Ty7kYE3w31aaAyYaG6E1tHPcML8/Y/tuzKMzRuzR4/x+O/ueiOKtADpAjSnKnY8kbmyv
-         rmc5utuOnx+TqFnARz52yZu9Yb4HhloSYJHOi6Et1NRmMlJ/EFQ84g0DXFYkj/Glu7rO
-         lbig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710157245; x=1710762045;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=SkjzeE4dZ9o2SQlL4u86zxDCBSGbNgJrdX2fu89HmnA=;
-        b=nNfb3J8RYt/Jh4XJcfR0nFJTkr+xXz4kxGaH5xPm0dr2B9b0l+Nkh55vfSmGMtjgyc
-         ucdjgtHRxJCmPnJql3aX9+XlRDcArQTJsVidclYYAdqgVeRYycu2RPtFDeA79AewKlnI
-         c/sTdY2GwlEjC5/UhcdDsH1+DMT0P7Ci9sE1aPPLiTLJeegqWlEWh83sI9TPTTexWv5R
-         Cwk3hy2Ytm8m7YQE8fAzGwtp5gCRyXfoznvDQMJg/bY/OFundHX3cXAT1+0FQ3vKGXxS
-         Zwz+UgIopxIflUG3XYTj0hi3rl64c4/lme69ZUtxHDerHH+tX13kYgE0mc4bJ1pkVsiD
-         CL6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCW0lnbghj5Ugt72lDuMXWEMNSLu1TDLTU8ikuuBS1mdQi6XsXEP6jKImu6Nfpo5X0JJAf6G6oAih3hRqUG20m/2eK+ExujE88xcRg==
-X-Gm-Message-State: AOJu0Yw5tbj2gqRtGE+Zo7gHpVh/i2zr4UqfMqPb4sYRErQYQFsPVm5Q
-	gQL6l3fNrs48qg9lMbEOoA8Xi/YKSSs1DIM7H5b949OqmJBD4LZEtYSjx9u8AA==
-X-Google-Smtp-Source: AGHT+IFvD3eTrXBRLNqxixAkOQniNH0dO7QajxVi2chqo/onElzZKCzE2Xbnm3EEkgu3u6XSOdsOrQ==
-X-Received: by 2002:a17:907:a805:b0:a45:ed7f:266a with SMTP id vo5-20020a170907a80500b00a45ed7f266amr3709882ejc.0.1710157245065;
-        Mon, 11 Mar 2024 04:40:45 -0700 (PDT)
-Received: from google.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
-        by smtp.gmail.com with ESMTPSA id d4-20020a1709064c4400b00a44dca5f9c1sm2770444ejw.100.2024.03.11.04.40.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Mar 2024 04:40:44 -0700 (PDT)
-Date: Mon, 11 Mar 2024 11:40:41 +0000
-From: Quentin Perret <qperret@google.com>
-To: Marc Zyngier <maz@kernel.org>
-Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
-	David Dai <davidai@google.com>,
-	"Rafael J. Wysocki" <rafael@kernel.org>,
-	Viresh Kumar <viresh.kumar@linaro.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=Ul+9LMWgFjaKHli813CeFiL/hAOPGa7e5o0V/Q9tcF/gOhRliDEhFrmXyeX3ZKrCtIFpHF8MROyxKdK7iZIWTJk4Aes2lRW4dB+K92PP3/J3aQt4TKB2NUW/7/dN8Z6cpFsDNz0iuE5DYqWPBZuzDucnL+fsb5svUUVyi6T5wSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C30691007;
+	Mon, 11 Mar 2024 04:45:23 -0700 (PDT)
+Received: from e130802.arm.com (unknown [10.57.15.44])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D00DA3F64C;
+	Mon, 11 Mar 2024 04:44:43 -0700 (PDT)
+Date: Mon, 11 Mar 2024 11:44:42 +0000
+From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+To: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
 	Sudeep Holla <sudeep.holla@arm.com>,
-	Masami Hiramatsu <mhiramat@google.com>,
-	Will Deacon <will@kernel.org>,
-	Peter Zijlstra <peterz@infradead.org>,
-	Vincent Guittot <vincent.guittot@linaro.org>,
-	Oliver Upton <oliver.upton@linux.dev>,
-	Dietmar Eggemann <dietmar.eggemann@arm.com>,
-	Pavan Kondeti <quic_pkondeti@quicinc.com>,
-	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>,
-	kernel-team@android.com, linux-pm@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 1/2] dt-bindings: cpufreq: add virtual cpufreq device
-Message-ID: <Ze7tuWsJJMaBLNcf@google.com>
-References: <20240127004321.1902477-1-davidai@google.com>
- <20240127004321.1902477-2-davidai@google.com>
- <20240131170608.GA1441369-robh@kernel.org>
- <CAGETcx8S0oS67oMZsPKk6_MGAtygoHEf_LN1gbcNDEBqRJ4PPg@mail.gmail.com>
- <20240202155352.GA37864-robh@kernel.org>
- <86a5og7cl7.wl-maz@kernel.org>
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
+	Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH 1/3] remoteproc: Add Arm remoteproc driver
+Message-ID: <20240311114442.GA82865@e130802.arm.com>
+References: <20240301164227.339208-1-abdellatif.elkhlifi@arm.com>
+ <20240301164227.339208-2-abdellatif.elkhlifi@arm.com>
+ <ZeYWKVpeFm1+4mlT@p14s>
+ <20240307194026.GA355455@e130802.arm.com>
+ <CANLsYkzA20rQdTM6AOvFK=3o28GvcoRbckL=ri8RegHqyHaiCw@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -102,62 +60,107 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <86a5og7cl7.wl-maz@kernel.org>
+In-Reply-To: <CANLsYkzA20rQdTM6AOvFK=3o28GvcoRbckL=ri8RegHqyHaiCw@mail.gmail.com>
 
-On Sunday 04 Feb 2024 at 10:23:00 (+0000), Marc Zyngier wrote:
-> Well, I've said it before, and I'll say it again: the use of
-> *frequencies* makes no sense. It is a lie (it doesn't describe any
-> hardware, physical nor virtual), and doesn't reflect the way the
-> emulated cpufreq controller behaves either (since it scales everything
-> back to what the host can potentially do)
+Hi Mathieu,
+
+On Fri, Mar 08, 2024 at 09:44:26AM -0700, Mathieu Poirier wrote:
+> On Thu, 7 Mar 2024 at 12:40, Abdellatif El Khlifi
+> <abdellatif.elkhlifi@arm.com> wrote:
+> >
+> > Hi Mathieu,
+> >
+> > > > +   do {
+> > > > +           state_reg = readl(priv->reset_cfg.state_reg);
+> > > > +           *rst_ack = EXTSYS_RST_ST_RST_ACK(state_reg);
+> > > > +
+> > > > +           if (*rst_ack == EXTSYS_RST_ACK_RESERVED) {
+> > > > +                   dev_err(dev, "unexpected RST_ACK value: 0x%x\n",
+> > > > +                           *rst_ack);
+> > > > +                   return -EINVAL;
+> > > > +           }
+> > > > +
+> > > > +           /* expected ACK value read */
+> > > > +           if ((*rst_ack & exp_ack) || (*rst_ack == exp_ack))
+> > >
+> > > I'm not sure why the second condition in this if() statement is needed.  As far
+> > > as I can tell the first condition will trigger and the second one won't be
+> > > reached.
+> >
+> > The second condition takes care of the following: exp_ack and  *rst_ack are both 0.
+> > This case happens when RST_REQ bit is cleared (meaning: No reset requested) and
+> > we expect the RST_ACK to be 00 afterwards.
+> >
 > 
-> The closest abstraction we have to this is the unit-less capacity. And
-> *that* reflects the way the emulated cpufreq controller works while
-> avoiding lying to the guest about some arbitrary frequency.
+> This is the kind of conditions that definitely deserve documentation.
+> Please split the conditions in two different if() statements and add a
+> comment to explain what is going on.
+
+Thanks, I'll address that.
+
 > 
-> In practice, this changes nothing to either the code or the behaviour.
-> But it changes the binding.
+> > > > +/**
+> > > > + * arm_rproc_load() - Load firmware to memory function for rproc_ops
+> > > > + * @rproc: pointer to the remote processor object
+> > > > + * @fw: pointer to the firmware
+> > > > + *
+> > > > + * Does nothing currently.
+> > > > + *
+> > > > + * Return:
+> > > > + *
+> > > > + * 0 for success.
+> > > > + */
+> > > > +static int arm_rproc_load(struct rproc *rproc, const struct firmware *fw)
+> > > > +{
+> > >
+> > > What is the point of doing rproc_of_parse_firmware() if the firmware image is
+> > > not loaded to memory?  Does the remote processor have some kind of default ROM
+> > > image to run if it doesn't find anything in memory?
+> >
+> > Yes, the remote processor has a default FW image already loaded by default.
+> >
+> 
+> That too would have mandated a comment - otherwise people looking at
+> the code are left wondering, as I did.
+> 
+> > rproc_boot() [1] and _request_firmware() [2] fail if there is no FW file in the filesystem or a filename
+> > provided.
+> >
+> > Please correct me if I'm wrong.
+> 
+> You are correct, the remoteproc subsystem expects a firmware image to
+> be provided _and_ loaded into memory.  Providing a dummy image just to
+> get the remote processor booted is a hack, but simply because the
+> subsystem isn't tailored to handle this use case.  So I am left
+> wondering what the plans are for this driver, i.e is this a real
+> scenario that needs to be addressed or just an initial patchset to get
+> a foundation for the driver.
+> 
+> In the former case we need to start talking about refactoring the
+> subsystem so that it properly handles remote processors that don't
+> need a firmware image.  In the latter case I'd rather see a patchset
+> where the firmware image is loaded into RAM.
 
-Apologies all for jumping late into this, but for what it's worth,
-regardless of the unit of the binding, Linux will shove that into
-cpufreq's 'frequency table' anyway, which as the name suggests is very
-much assuming frequencies :/ -- see how struct cpufreq_frequency_table
-explicitely requires KHz. The worst part is that this even ends up
-being reported to _userspace_ as frequencies in sysfs via cpufreq's
-scaling_available_frequencies file, even when they're really not...
+This is an initial patchset for allowing to turn on and off the remote processor.
+The FW is already loaded before the Corstone-1000 SoC is powered on and this
+is done through the FPGA board bootloader in case of the FPGA target. Or by the Corstone-1000 FVP model
+(emulator).
 
-In the case of SCMI for example, IIRC the firmware can optionally (and
-in practice I think it does for all older implementations of the spec
-least) report unit-less operating points to the driver, which will then
-happily pretend these are KHz values when reporting that into PM_OPP and
-cpufreq -- see how scmi_dvfs_device_opps_add() simply multiplies the
-level's 'perf' member by 1000 when populating PM_OPP (which is then
-propagated to cpufreq's freq_table'). And a small extract from the SCMI
-spec:
+The plan for the driver is as follows:
 
-    "Certain platforms use IMPLEMENTATION DEFINED indices to identify
-     performance levels. Level Indexing Mode is used to describe such
-     platform behavior. The level indices associated with performance
-     levels are neither guaranteed to be contiguous nor required to be
-     on a linear scale."
+Step 1: provide a foundation driver capable of turning the core on/off
 
-Not nice, but unfortunately the core cpufreq framework has way too much
-historical dependencies on things being frequencies to really change it
-now, so we're pretty much stuck with that :(
+Step 2: provide mailbox support for comms
 
-So, while I do agree with the sentiment that this is a non-ideal place
-to be, 'faking' frequencies is how we've addressed this so far in Linux,
-so I'm personally not too fussed about David's usage of a freq-based DT
-binding in this particular instance. On the plus side that allows to
-re-use all of PM_OPP and cpufreq infrastructure as-is, so that's cool.
+Step 3: provide FW reload capability
 
-I guess we could make the argument that Linux's approach to handling
-frequencies shouldn't influence this given that the binding should be OS
-agnostic, but I can easily see how another OS could still make use of
-that binding (and in fact requiring that this other OS can deal with
-unitless frequencies is most likely going to be a bigger problem), so
-I'd be inclined to think this isn't a major problem either.
+Steps 2 & 3 are waiting for a HW update so the Cortex-A35 (running Linux) can share memory with
+the remote core.
 
-Thanks,
-Quentin
+I'm happy to provide more explanation in the commit log to reflect this status.
+
+Is it OK that we go with step 1 as a foundation please ?
+
+Cheers
+Abdellatif
 
