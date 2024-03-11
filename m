@@ -1,343 +1,186 @@
-Return-Path: <devicetree+bounces-49801-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49802-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BE0F877E5F
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 11:49:49 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B940877E93
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 12:03:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D1B28280DEA
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 10:49:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 40C8EB219EE
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 11:03:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB2143219F;
-	Mon, 11 Mar 2024 10:49:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD43A38DEC;
+	Mon, 11 Mar 2024 11:03:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="JHFhCL4Y"
+	dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b="uX8e0chV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B320B2C69A;
-	Mon, 11 Mar 2024 10:49:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3F09381AA
+	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 11:03:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710154184; cv=none; b=J/y/paBQBPG4vcnLLGgl0HFlcFY+CyuPxYa5gite+iOeUIhVpnKLCY5RKNM3Ji1MrAz6U8UmbS3kAppYkzjQsQhu5YgURv34sSGyIgYZ4RXz8K31kg2SkSoyrsCx9mkvwDKU60uXxH8TKScoQ1YVdqHpt2RLFEm5xWll3V6Ud9E=
+	t=1710155005; cv=none; b=iUYDV+g7Pfza7nvmT8PmTGTg1MejV4F2FgscGweJQa6dAp5kBP2f3e0Y7v54Ir4XaFxsVWa+tbjEqhETor125wkPl73BYZ5kItMP4qYWeTvWWXUc88m09ud4G/OweX270HXJrIaWKaLpl9sE/4Z/TJYl2o4q2opccXgrF0y3ppA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710154184; c=relaxed/simple;
-	bh=zdumg2HTNXjDkRGH9WQHi7LXj63DIJGejKy1zfiZJiM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=uEECx3zUj3ZXZ2BQcRT9hbU2/1Z16j18U0UwecMgoEwIXn9AUON3wpRcARmdUuDUFJKvJ5tiaaLiuDCKHRtwfbo8arZRdecopkdbfaWq2cHmmYZRbULTEjLgyW0FaM9iNTYIhc4GhTN4SbreLWdTOmTLkGYkd4WTCLpjoE0I/sw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=JHFhCL4Y; arc=none smtp.client-ip=198.47.23.249
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42BAn95H109286;
-	Mon, 11 Mar 2024 05:49:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1710154149;
-	bh=GCbA1hnNHwTujCBaxSWTiyZacv4uOD7uipAFx1zBfFY=;
-	h=Date:Subject:To:CC:References:From:In-Reply-To;
-	b=JHFhCL4YHUQc+/SPUXonmLe9ov71U5c6i8s4PvDJ8zDgF1mGpDRsQXX3SCmTStG7/
-	 AH7FGQf/0/3/KF4Fh/pVf3aSdP3hCAIG5sQSdwr/YmPieKnjdAqIXjE/nTaqHR+AP4
-	 rO3hCvh8IQWlpdDXOQEis7Je2wkj0bIcCu2vTgys=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42BAn9hJ116567
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Mon, 11 Mar 2024 05:49:09 -0500
-Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Mon, 11
- Mar 2024 05:49:09 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DFLE101.ent.ti.com
- (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Mon, 11 Mar 2024 05:49:09 -0500
-Received: from [172.24.227.220] (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42BAn3Dt109815;
-	Mon, 11 Mar 2024 05:49:04 -0500
-Message-ID: <86a067c4-3b28-448d-8c58-c7a9e80d697f@ti.com>
-Date: Mon, 11 Mar 2024 16:19:02 +0530
+	s=arc-20240116; t=1710155005; c=relaxed/simple;
+	bh=gQkrDPxpS2EqSQo1lFnVAl0v8qesDjjlj8YPz5bYqM8=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Tc6YlmCAZsCkPFAtQwwLLWMHb6Gvsv8QdBYzkf7LRNpWdewHqycOxhrQYbUjGstc8pf57JPVCjKLj0sCTkq+T6e2I7xBug2VL9rRsseQW/9QHRI7nfe6Rs9nfeDGdz95tZ+R+JrbWUiusCbU9rwYy25Ci1kVPnC5hSXWwmkKr/U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se; spf=pass smtp.mailfrom=ragnatech.se; dkim=pass (2048-bit key) header.d=ragnatech.se header.i=@ragnatech.se header.b=uX8e0chV; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ragnatech.se
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ragnatech.se
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-513b022a238so464536e87.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 04:03:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech.se; s=google; t=1710155000; x=1710759800; darn=vger.kernel.org;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=8+eJcaivf1oVvQVDFOxNL/y8v7xDssxtOMnaOKKnTqo=;
+        b=uX8e0chVZg5wXdYofGbhN9Y9D2w1psaR+zO5VF5V8hx3ee5G5xRpJRY53RcVdUpNKq
+         DIfS7I6UTJRAn6BH+vAPi7S/YGFTmZpUttt0TVgQ/hbCYnSzjIgCEfPHM12aa97S75qQ
+         73KaAVo7JojfatlTTxQfHk04xiFp12ueiNgsMhs/kYFhB4dL42H16xP2Ewv0q4midFz1
+         DQEr7vFm0ktsbuNyQRKwUbhh8Jefje1fTeUVonxbORI8voQrOzqlpuQhuCDtmNvIiBLH
+         ElGKTmMJHYjiZnoLdwxTUGqXyyDlzO27SD7qoaCYwb3yZXhBwsXMHM+ViRo04eoAl5F4
+         oPMg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710155000; x=1710759800;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=8+eJcaivf1oVvQVDFOxNL/y8v7xDssxtOMnaOKKnTqo=;
+        b=AjHfeSWxB8OqmEH4iYQBP8zaJO+u93gBuajFcRmmtEOLEkIvRISV6wOQVD1Fu1564f
+         KYR+QY2EcP/A7q2TPbgiBWD83X5g2RxG4IC4JUPm+X3+J45FlLoLE59M/yK6Khc9LiZO
+         1WKkFr7w9BeKTAIdIirmsxWbyUkM7Q7MbJkQrXLLFSq40jztcnOmoQ+QodqWX/DRrydl
+         wgCeXL5J30rzRZNaPFOwUWrDfkribyKHkyeF6GahFeNAYZ1WJvT510ednBhRg5J94I8r
+         saZLKDwW2vSA1IXVYwf5wkAhmbkrN6Jx23JnrMnweXlPwA1+sMaAn0QmWN12Pi2rp5VK
+         cBuA==
+X-Forwarded-Encrypted: i=1; AJvYcCUEpmbWuEbljHjq+v/gZhbAoyIz3Ah0puKhNx3kjfT7fLuI9gaz3SbhZLCM4U2vk+5xiIJZ1b4bOzFrJRU1inxNG1V6EFgbchjo3w==
+X-Gm-Message-State: AOJu0YzhpyLalGrrqHjXVLz55SWlhDv+gblms7Uq6D11I+fG2J+zPy6q
+	6RLNuxkwNhgXB+XA5aOu3MnM9bTAwvyaHhlTVr2C2O1AlKaRaH3wPgR+yM6/Ank=
+X-Google-Smtp-Source: AGHT+IHCeW/KiGNKh5pnO8aDXhMpbBef+uHHSz0cnNkmQDkNzqVeAL6zbpqGWin1+BefNMGf1qyY2g==
+X-Received: by 2002:a05:6512:3e19:b0:513:2b35:2520 with SMTP id i25-20020a0565123e1900b005132b352520mr3581022lfv.58.1710154999925;
+        Mon, 11 Mar 2024 04:03:19 -0700 (PDT)
+Received: from localhost (h-46-59-36-113.A463.priv.bahnhof.se. [46.59.36.113])
+        by smtp.gmail.com with ESMTPSA id h4-20020a056512350400b005139c3c584bsm989738lfs.241.2024.03.11.04.03.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Mar 2024 04:03:19 -0700 (PDT)
+Date: Mon, 11 Mar 2024 12:03:18 +0100
+From: Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Sergey Shtylyov <s.shtylyov@omp.ru>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+	Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+	Biju Das <biju.das.jz@bp.renesas.com>, netdev@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [net-next 2/2] ravb: Add support for an optional MDIO mode
+Message-ID: <20240311110318.GN3735877@ragnatech.se>
+References: <20240309155334.1310262-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240309155334.1310262-3-niklas.soderlund+renesas@ragnatech.se>
+ <CAMuHMdVRftTVMmnBX9YH50jau-GJEM+Lmq8tVh2ynrCRsZU46g@mail.gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 5/6] arm64: dts: ti: k3-j784s4: Add overlay to enable
- QSGMII mode with CPSW9G
-Content-Language: en-US
-To: Andrew Davis <afd@ti.com>, Peter Rosin <peda@axentia.se>,
-        Greg
- Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
- Menon <nm@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <srk@ti.com>,
-        <s-vadapalli@ti.com>, <r-gunasekaran@ti.com>, <danishanwar@ti.com>
-References: <20240131101441.1362409-1-c-vankar@ti.com>
- <20240131101441.1362409-6-c-vankar@ti.com>
- <7960af47-5d6a-4e54-9d58-a145311321f6@ti.com>
-From: Chintan Vankar <c-vankar@ti.com>
-In-Reply-To: <7960af47-5d6a-4e54-9d58-a145311321f6@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <CAMuHMdVRftTVMmnBX9YH50jau-GJEM+Lmq8tVh2ynrCRsZU46g@mail.gmail.com>
 
+Hi Geert,
 
+Thanks for your suggestion.
 
-On 31/01/24 21:20, Andrew Davis wrote:
-> On 1/31/24 4:14 AM, Chintan Vankar wrote:
->> From: Siddharth Vadapalli <s-vadapalli@ti.com>
->>
->> The J7 Quad Port Add-On Ethernet Card for J784S4 EVM supports
->> QSGMII mode. Use the overlay to configure CPSW9G ports in QSGMII
->> mode with the Add-On Ethernet Card connected to the ENET Expansion
->> 1 slot on the EVM.
->>
->> Add support to reset the PHY from kernel by using gpio-hog and
->> gpio-reset.
->>
->> Add aliases for CPSW9G ports to enable kernel to fetch MAC Addresses
->> directly from U-Boot.
->>
->> Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
->> Signed-off-by: Chintan Vankar <c-vankar@ti.com>
->> ---
->>   arch/arm64/boot/dts/ti/Makefile               |   7 +-
->>   .../ti/k3-j784s4-evm-quad-port-eth-exp1.dtso  | 147 ++++++++++++++++++
->>   2 files changed, 153 insertions(+), 1 deletion(-)
->>   create mode 100644 
->> arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
->>
->> diff --git a/arch/arm64/boot/dts/ti/Makefile 
->> b/arch/arm64/boot/dts/ti/Makefile
->> index 52c1dc910308..836bc197d932 100644
->> --- a/arch/arm64/boot/dts/ti/Makefile
->> +++ b/arch/arm64/boot/dts/ti/Makefile
->> @@ -81,6 +81,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j721s2-evm-pcie1-ep.dtbo
->>   # Boards with J784s4 SoC
->>   dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
->>   dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
->> +dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
->>   # Build time test only, enabled by CONFIG_OF_ALL_DTBS
->>   k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
->> @@ -109,6 +110,8 @@ k3-j721e-evm-pcie0-ep-dtbs := 
->> k3-j721e-common-proc-board.dtb \
->>       k3-j721e-evm-pcie0-ep.dtbo
->>   k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
->>       k3-j721s2-evm-pcie1-ep.dtbo
->> +k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
->> +    k3-j784s4-evm-quad-port-eth-exp1.dtbo
->>   dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->>       k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
->>       k3-am625-sk-csi2-imx219.dtb \
->> @@ -121,7 +124,8 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
->>       k3-am642-tqma64xxl-mbax4xxl-sdcard.dtb \
->>       k3-am642-tqma64xxl-mbax4xxl-wlan.dtb \
->>       k3-j721e-evm-pcie0-ep.dtb \
->> -    k3-j721s2-evm-pcie1-ep.dtb
->> +    k3-j721s2-evm-pcie1-ep.dtb \
->> +    k3-j784s4-evm-quad-port-eth-exp1.dtb
->>   # Enable support for device-tree overlays
->>   DTC_FLAGS_k3-am625-beagleplay += -@
->> @@ -132,3 +136,4 @@ DTC_FLAGS_k3-am642-tqma64xxl-mbax4xxl += -@
->>   DTC_FLAGS_k3-am6548-iot2050-advanced-m2 += -@
->>   DTC_FLAGS_k3-j721e-common-proc-board += -@
->>   DTC_FLAGS_k3-j721s2-common-proc-board += -@
->> +DTC_FLAGS_k3-j784s4-evm += -@
->> diff --git 
->> a/arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso 
->> b/arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
->> new file mode 100644
->> index 000000000000..0667389b07be
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm-quad-port-eth-exp1.dtso
->> @@ -0,0 +1,147 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
->> +/**
->> + * DT Overlay for CPSW9G in QSGMII mode using J7 Quad Port ETH EXP 
->> Add-On Ethernet Card with
->> + * J784S4 EVM. The Add-On Ethernet Card has to be connected to ENET 
->> Expansion 1 slot on the
->> + * board.
->> + *
->> + * Product Datasheet: https://www.ti.com/lit/ug/spruj74/spruj74.pdf
->> + *
->> + * Link to QSGMII Daughtercard: 
->> https://www.ti.com/tool/J721EXENETXPANEVM
->> + *
->> + * Copyright (C) 2024 Texas Instruments Incorporated - 
->> https://www.ti.com/
->> + */
->> +
->> +/dts-v1/;
->> +/plugin/;
->> +
->> +#include <dt-bindings/gpio/gpio.h>
->> +#include <dt-bindings/phy/phy-cadence.h>
->> +#include <dt-bindings/phy/phy.h>
->> +
->> +#include "k3-pinctrl.h"
->> +#include "k3-serdes.h"
->> +
->> +&{/} {
->> +    aliases {
->> +        ethernet1 = 
->> "/bus@100000/ethernet@c000000/ethernet-ports/port@5";
+On 2024-03-11 10:32:35 +0100, Geert Uytterhoeven wrote:
+> Hi Niklas,
 > 
-> Didn't you already set ethernet1 to be main_cpsw1_port1 in the base, 
-> does this
-> actually behave the way you want?
+> On Sat, Mar 9, 2024 at 4:55 PM Niklas Söderlund
+> <niklas.soderlund+renesas@ragnatech.se> wrote:
+> > The driver used the OF node of the device itself when registering the
+> > MDIO bus. While this works it creates a problem, it forces any MDIO bus
+> > properties to also be set on the devices OF node. This mixes the
+> > properties of two distinctly different things and is confusing.
+> >
+> > This change adds support for an optional mdio node to be defined as a
+> > child to the device OF node. The child node can then be used to describe
+> > MDIO bus properties that the MDIO core can act on when registering the
+> > bus.
+> >
+> > If no mdio child node is found the driver fallback to the old behavior
+> > and register the MDIO bus using the device OF node. This change is
+> > backward compatible with old bindings in use.
+> >
+> > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> 
+> Thanks for your patch!
+> 
+> > --- a/drivers/net/ethernet/renesas/ravb_main.c
+> > +++ b/drivers/net/ethernet/renesas/ravb_main.c
+> > @@ -2582,8 +2583,20 @@ static int ravb_mdio_init(struct ravb_private *priv)
+> >         snprintf(priv->mii_bus->id, MII_BUS_ID_SIZE, "%s-%x",
+> >                  pdev->name, pdev->id);
+> >
+> > -       /* Register MDIO bus */
+> > -       error = of_mdiobus_register(priv->mii_bus, dev->of_node);
+> > +       /* Register MDIO bus
+> > +        *
+> > +        * Look for a mdio child node, if it exist use it when registering the
+> > +        * MDIO bus. If no node is found fallback to old behavior and use the
+> > +        * device OF node. This is used to be able to describe MDIO bus
+> > +        * properties that are consumed when registering the MDIO bus.
+> > +        */
+> > +       mdio_node = of_get_child_by_name(dev->of_node, "mdio");
+> > +       if (mdio_node) {
+> > +               error = of_mdiobus_register(priv->mii_bus, mdio_node);
+> > +               of_node_put(mdio_node);
+> > +       } else {
+> > +               error = of_mdiobus_register(priv->mii_bus, dev->of_node);
+> > +       }
+> >         if (error)
+> >                 goto out_free_bus;
+> >
+> 
+> Perhaps the code should be streamlined for the modern case?
+> 
+>         mdio_node = of_get_child_by_name(dev->of_node, "mdio");
+>         if (!mdio_node) {
+>                 /* backwards compatibility for DT lacking mdio subnode */
+>                 mdio_node = of_node_get(dev->of_node);
+>         }
+> 
+>         error = of_mdiobus_register(priv->mii_bus, mdio_node);
+>         of_node_put(mdio_node);
+> 
+> When deemed necessary, you can easily replace the backwards
+> compatibility handling by error handling later.
 
-Yes. It behaves the way it is configured, explanation of how it
-configures MAC addresses is explained at:
-https://lore.kernel.org/all/0512d57f-af22-4bd8-8266-33d943d7eb4a@ti.com/
+This looks much better, will do so as well as s/OF/DT/ in the commit 
+message for next version.
 
 > 
-> Otherwise looks okay,
+> Gr{oetje,eeting}s,
 > 
-> Reviewed-by: Andrew Davis <afd@ti.com>
+>                         Geert
 > 
->> +        ethernet2 = 
->> "/bus@100000/ethernet@c000000/ethernet-ports/port@6";
->> +        ethernet3 = 
->> "/bus@100000/ethernet@c000000/ethernet-ports/port@7";
->> +        ethernet4 = 
->> "/bus@100000/ethernet@c000000/ethernet-ports/port@8";
->> +        ethernet5 = 
->> "/bus@100000/ethernet@c200000/ethernet-ports/port@1";
->> +    };
->> +};
->> +
->> +&main_cpsw0 {
->> +    status = "okay";
->> +};
->> +
->> +&main_cpsw0_port5 {
->> +    status = "okay";
->> +    phy-handle = <&cpsw9g_phy1>;
->> +    phy-mode = "qsgmii";
->> +    mac-address = [00 00 00 00 00 00];
->> +    phys = <&cpsw0_phy_gmii_sel 5>, <&serdes2_qsgmii_link>;
->> +    phy-names = "mac", "serdes";
->> +};
->> +
->> +&main_cpsw0_port6 {
->> +    status = "okay";
->> +    phy-handle = <&cpsw9g_phy2>;
->> +    phy-mode = "qsgmii";
->> +    mac-address = [00 00 00 00 00 00];
->> +    phys = <&cpsw0_phy_gmii_sel 6>, <&serdes2_qsgmii_link>;
->> +    phy-names = "mac", "serdes";
->> +};
->> +
->> +&main_cpsw0_port7 {
->> +    status = "okay";
->> +    phy-handle = <&cpsw9g_phy0>;
->> +    phy-mode = "qsgmii";
->> +    mac-address = [00 00 00 00 00 00];
->> +    phys = <&cpsw0_phy_gmii_sel 7>, <&serdes2_qsgmii_link>;
->> +    phy-names = "mac", "serdes";
->> +};
->> +
->> +&main_cpsw0_port8 {
->> +    status = "okay";
->> +    phy-handle = <&cpsw9g_phy3>;
->> +    phy-mode = "qsgmii";
->> +    mac-address = [00 00 00 00 00 00];
->> +    phys = <&cpsw0_phy_gmii_sel 8>, <&serdes2_qsgmii_link>;
->> +    phy-names = "mac", "serdes";
->> +};
->> +
->> +&main_cpsw0_mdio {
->> +    status = "okay";
->> +    pinctrl-names = "default";
->> +    pinctrl-0 = <&mdio0_default_pins>;
->> +    bus_freq = <1000000>;
->> +    reset-gpios = <&exp2 17 GPIO_ACTIVE_LOW>;
->> +    reset-post-delay-us = <120000>;
->> +    #address-cells = <1>;
->> +    #size-cells = <0>;
->> +
->> +    cpsw9g_phy0: ethernet-phy@16 {
->> +        reg = <16>;
->> +    };
->> +    cpsw9g_phy1: ethernet-phy@17 {
->> +        reg = <17>;
->> +    };
->> +    cpsw9g_phy2: ethernet-phy@18 {
->> +        reg = <18>;
->> +    };
->> +    cpsw9g_phy3: ethernet-phy@19 {
->> +        reg = <19>;
->> +    };
->> +};
->> +
->> +&exp2 {
->> +    /* Power-up ENET1 EXPANDER PHY. */
->> +    qsgmii-line-hog {
->> +        gpio-hog;
->> +        gpios = <16 GPIO_ACTIVE_HIGH>;
->> +        output-low;
->> +    };
->> +
->> +    /* Toggle MUX2 for MDIO lines */
->> +    mux-sel-hog {
->> +        gpio-hog;
->> +        gpios = <13 GPIO_ACTIVE_HIGH>, <14 GPIO_ACTIVE_HIGH>, <15 
->> GPIO_ACTIVE_HIGH>;
->> +        output-high;
->> +    };
->> +};
->> +
->> +&main_pmx0 {
->> +    mdio0_default_pins: mdio0-default-pins {
->> +        pinctrl-single,pins = <
->> +            J784S4_IOPAD(0x05c, PIN_INPUT, 4) /* (AC36) 
->> MCASP2_AXR0.MDIO1_MDIO */
->> +            J784S4_IOPAD(0x058, PIN_INPUT, 4) /* (AE37) 
->> MCASP2_AFSX.MDIO1_MDC */
->> +        >;
->> +    };
->> +};
->> +
->> +&serdes_ln_ctrl {
->> +    idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>, 
->> <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
->> +              <J784S4_SERDES0_LANE2_IP3_UNUSED>, 
->> <J784S4_SERDES0_LANE3_USB>,
->> +              <J784S4_SERDES1_LANE0_PCIE0_LANE0>, 
->> <J784S4_SERDES1_LANE1_PCIE0_LANE1>,
->> +              <J784S4_SERDES1_LANE2_PCIE0_LANE2>, 
->> <J784S4_SERDES1_LANE3_PCIE0_LANE3>,
->> +              <J784S4_SERDES2_LANE0_QSGMII_LANE5>, 
->> <J784S4_SERDES2_LANE1_QSGMII_LANE6>,
->> +              <J784S4_SERDES2_LANE2_QSGMII_LANE7>, 
->> <J784S4_SERDES2_LANE3_QSGMII_LANE8>;
->> +};
->> +
->> +&serdes_wiz2 {
->> +    status = "okay";
->> +};
->> +
->> +&serdes2 {
->> +    status = "okay";
->> +    #address-cells = <1>;
->> +    #size-cells = <0>;
->> +    serdes2_qsgmii_link: phy@0 {
->> +        reg = <2>;
->> +        cdns,num-lanes = <1>;
->> +        #phy-cells = <0>;
->> +        cdns,phy-type = <PHY_TYPE_QSGMII>;
->> +        resets = <&serdes_wiz2 3>;
->> +    };
->> +};
+> -- 
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+
+-- 
+Kind Regards,
+Niklas Söderlund
 
