@@ -1,133 +1,91 @@
-Return-Path: <devicetree+bounces-49912-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49913-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FE75878922
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 20:54:28 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4884587895D
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 21:21:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 50D831C2110B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 19:54:27 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CCC50B21375
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 20:21:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6E5E55E75;
-	Mon, 11 Mar 2024 19:54:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 746BC55E75;
+	Mon, 11 Mar 2024 20:21:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b="ouCT6rfu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fRZCIsUw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1327355E4F
-	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 19:54:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=202.36.163.20
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C6A53E2C;
+	Mon, 11 Mar 2024 20:21:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710186862; cv=none; b=iy9UDYOk3Mp8M60Ek1pwObvfD17SSSx575PiiezexoitGqdjynbdrjj2eY11qvOG3hnd+QWcAF/jYZiITeCa6j+/XCxQLBv/fzNbbNJAV8alhadHV/83jAcwbIxghK+uS/mbdst9GQvHFGvSff45+yZNFXVmHMxlJ4xs5uDZr3U=
+	t=1710188503; cv=none; b=NhfWsiOQWN+32ruee9l+uTbzXCXy3p7HBsKIeGYDdh47BRfrfEHOuWP8TBZDzJ1I6oCKRQQxRvXQprGAPGeXBeoqi2buVoe+u5ljGYn4K6ZGTgbYMQM63+AwAGaBpcn/zCuV+8d/+0brx0VliqDN3Zw7EiRQ1Q/RiFFlCcgsYxQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710186862; c=relaxed/simple;
-	bh=I80kmniNaJNpW7w8bqB75g71TWFOq8gFFWvyljKYL0I=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=ul0QEixjWlOzN54EoQr+ojG/gkJc6piv5ZUk6Tjq9M+Y4xcO1VCOo6k82um48jwQ+T3+mTqrRA1/g5bnkV5vMgWeBCFXnzLSC5AFPCovm16xb/qo4dyieSW399KFN6sF+hgcvQwGr4aJiCiWqtFU/ti7vH8nt8WlXRL5jP3mfeU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz; spf=pass smtp.mailfrom=alliedtelesis.co.nz; dkim=pass (2048-bit key) header.d=alliedtelesis.co.nz header.i=@alliedtelesis.co.nz header.b=ouCT6rfu; arc=none smtp.client-ip=202.36.163.20
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=alliedtelesis.co.nz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=alliedtelesis.co.nz
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(Client did not present a certificate)
-	by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 66BD72C0480;
-	Tue, 12 Mar 2024 08:54:17 +1300 (NZDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-	s=mail181024; t=1710186857;
-	bh=I80kmniNaJNpW7w8bqB75g71TWFOq8gFFWvyljKYL0I=;
-	h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-	b=ouCT6rfuhAwy46/GC7cuoDbMuhNBhadJQtzGc0L+Uv5Qt7OmnrbgaD6eFH2LpWvYK
-	 YviBS17oura5382vXkY2/LRpwiOaT7R7oad7PhB/yZuUzPBUc6bIS/U9h6xc7bS85w
-	 FSza3SN0sj7tNNKomJc3nfDsfVcBGG9u3vUW0PqHafyqdD32Zs4ZMwh+R5tpxjHXaD
-	 XdvlIE78oQq+Eb9LvsXThsalXxTtuz7tvJgOCi8SQlfneGo2tqsponyNI388N5nlZa
-	 Vgwhvu5UZ+iSFJPmiCxILuSpaC7MbrkLwZonr/ETt8Nj89OYPYonWcBN4eeCUfng9q
-	 EI2Qo4UvGB7Fg==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-	id <B65ef61690001>; Tue, 12 Mar 2024 08:54:17 +1300
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Tue, 12 Mar 2024 08:54:16 +1300
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.040; Tue, 12 Mar 2024 08:54:16 +1300
-From: Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To: Arnd Bergmann <arnd@kernel.org>, Andy Shevchenko
-	<andy.shevchenko@gmail.com>
-CC: Gregory Clement <gregory.clement@bootlin.com>, Andy Shevchenko
-	<andy@kernel.org>, Geert Uytterhoeven <geert@linux-m68k.org>, Rob Herring
-	<robh+dt@kernel.org>, "krzysztof.kozlowski+dt@linaro.org"
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
-	Andrew Lunn <andrew@lunn.ch>, Sebastian Hesselbarth
-	<sebastian.hesselbarth@gmail.com>, Lee Jones <lee@kernel.org>,
-	"linux-leds@vger.kernel.org" <linux-leds@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v5 3/3] ARM: dts: marvell: Add 7-segment LED display on
- x530
-Thread-Topic: [PATCH v5 3/3] ARM: dts: marvell: Add 7-segment LED display on
- x530
-Thread-Index: AQHacCEP50uDUqyXjk+YznxFpDHUm7EsnIcAgAAm+YCAAAZbAIAABFUAgAPI1gCAAKI2gIAA6F8A
-Date: Mon, 11 Mar 2024 19:54:16 +0000
-Message-ID: <df9e5c40-7b82-4038-93cc-3c454bf75b7a@alliedtelesis.co.nz>
-References: <20240306235021.976083-1-chris.packham@alliedtelesis.co.nz>
- <20240306235021.976083-4-chris.packham@alliedtelesis.co.nz>
- <87edclgoon.fsf@BL-laptop>
- <CAHp75VfmSWH3FWEHU+bGYDuo-nt1DJhY5Fvs83A-RGrtrsgWTw@mail.gmail.com>
- <8177b94d-82c9-42b6-85eb-728dec762162@app.fastmail.com>
- <CAHp75VfiaWFricM4Or771P0LJVoFoEmQtoJo1hySo=BRS-59DQ@mail.gmail.com>
- <6c3451ed-6346-45e2-940e-851cb99a1b63@alliedtelesis.co.nz>
- <e90c2e69-17ea-4875-bb36-8a6d846f05e6@app.fastmail.com>
-In-Reply-To: <e90c2e69-17ea-4875-bb36-8a6d846f05e6@app.fastmail.com>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <A9ED38D725C7F444854F1D2D79C8E5E0@atlnz.lc>
-Content-Transfer-Encoding: base64
+	s=arc-20240116; t=1710188503; c=relaxed/simple;
+	bh=m0g91sXKYJS/kIzIdqTu2G6HaWEmgoKbDue6b3HELzA=;
+	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
+	 References:In-Reply-To; b=D7gD8ONUIFToxXSowm0jMjeuf2N9HcuVwOM73rdWXn6u+RNsbsRTb+l9Cjr/y54glTRlbU888E9qm6/JFBtPUfoANz1EJcQPVwmEJRFkZ8NSy0IW0h+8nXduIfwRAZn90xXowAEF+dhzv8s1z7DfNJzgWMJSG46iOpSp2kEhmak=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fRZCIsUw; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2D49C433C7;
+	Mon, 11 Mar 2024 20:21:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710188502;
+	bh=m0g91sXKYJS/kIzIdqTu2G6HaWEmgoKbDue6b3HELzA=;
+	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
+	b=fRZCIsUw+ltmZpj7Ioa6QyF4bBXq0ClTyx5UbpaGj0BwwmhEKNap0i2kmsFvMTfYH
+	 uAF252gxfBFsafjM9Yuk4LafJYv3Me+15/ThPDqUT/zg6IVy0kX5DdZAEfIwHN5CJa
+	 kaWzEkGHE7xv/n1Re/hQ6Xh2eldHCz0IXefPxRAdP4TN6IF7a3sTG3G7rzjwPKzjFm
+	 9x7SzQmlcJu6w9SEwD1WoiYIV/WJ86JSJ9WMmBIwMVMwH/b8Ox9dwWhkJV1+UUAUt4
+	 SeFUzsKgAL8hqx2FabponQ8JhErgPZBo8wt5HWubHhzrwi+E8LQSEkDhXyw5hd4fY/
+	 Ptdw0KX8aKSVg==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.4 cv=BKkQr0QG c=1 sm=1 tr=0 ts=65ef6169 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=K6JAEmCyrfEA:10 a=VwQbUJbxAAAA:8 a=P-IC7800AAAA:8 a=_VaukpeC9nYuBFLc3MMA:9 a=3ZKOabzyN94A:10 a=QEXdDO2ut3YA:10 a=AjGcO6oz07-iQ99wixmX:22 a=d3PnA9EDa4IxuAV0gXij:22
-X-SEG-SpamProfiler-Score: 0
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Mon, 11 Mar 2024 22:21:38 +0200
+Message-Id: <CZR7866WNY28.3KDPSXW81I82N@kernel.org>
+Cc: <linux-kernel@vger.kernel.org>, <rnsastry@linux.ibm.com>,
+ <peterhuewe@gmx.de>, <viparash@in.ibm.com>, <devicetree@vger.kernel.org>,
+ <jsnitsel@redhat.com>
+Subject: Re: [RFC PATCH v2 1/3] powerpc/prom_init: Replace
+ linux,sml-base/sml-size with linux,sml-log
+From: "Jarkko Sakkinen" <jarkko@kernel.org>
+To: "Stefan Berger" <stefanb@linux.ibm.com>, <mpe@ellerman.id.au>,
+ <linux-integrity@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>
+X-Mailer: aerc 0.17.0
+References: <20240311132030.1103122-1-stefanb@linux.ibm.com>
+ <20240311132030.1103122-2-stefanb@linux.ibm.com>
+In-Reply-To: <20240311132030.1103122-2-stefanb@linux.ibm.com>
 
-DQpPbiAxMS8wMy8yNCAxOTowMiwgQXJuZCBCZXJnbWFubiB3cm90ZToNCj4gT24gU3VuLCBNYXIg
-MTAsIDIwMjQsIGF0IDIxOjIyLCBDaHJpcyBQYWNraGFtIHdyb3RlOg0KPj4gT24gOC8wMy8yNCAy
-MzozNCwgQW5keSBTaGV2Y2hlbmtvIHdyb3RlOg0KPj4+IE9uIEZyaSwgTWFyIDgsIDIwMjQgYXQg
-MTI6MTnigK9QTSBBcm5kIEJlcmdtYW5uIDxhcm5kQGtlcm5lbC5vcmc+IHdyb3RlOg0KPj4+PiBP
-biBGcmksIE1hciA4LCAyMDI0LCBhdCAxMDo1NiwgQW5keSBTaGV2Y2hlbmtvIHdyb3RlOg0KPj4+
-Pj4gT24gRnJpLCBNYXIgOCwgMjAyNCBhdCA5OjM24oCvQU0gR3JlZ29yeSBDTEVNRU5UIDxncmVn
-b3J5LmNsZW1lbnRAYm9vdGxpbi5jb20+IHdyb3RlOg0KPj4+Pj4+IE5vcm1hbGx5LCB0aGlzIHBh
-dGNoIHNob3VsZCBiZSB0YWtlbiBpbiBtdmVidSBhbmQgdGhlbiBtZXJnZWQgYnkNCj4+Pj4+PiBh
-cm0tc29jLiBIb3dldmVyLCBJIGhhdmVuJ3Qgc2VlbiBhbnkgb3RoZXIgcGF0Y2ggdG91Y2hpbmcg
-dGhpcyBmaWxlIChzbw0KPj4+Pj4+IG5vIHJpc2sgb2YgbWVyZ2UgY29uZmxpY3QpIGFuZCBJIHRo
-aW5rIGl0J3MgdG9vIGxhdGUgZm9yIG1lIHRvIG1ha2UgYQ0KPj4+Pj4+IG5ldyBwdWxsIHJlcXVl
-c3QgdG8gYXJtLXNvYy4gU28gSSdtIG5vdCBhZ2FpbnN0IGl0IGJlaW5nIHRha2VuIHdpdGggdGhl
-DQo+Pj4+Pj4gcmVzdCBvZiB0aGUgcGF0Y2hlcy4gSG93ZXZlciwgSSB0aGluayBpdCB3b3VsZCBi
-ZSBhIGdvb2QgaWRlYSB0byBzZWUNCj4+Pj4+PiB3aGF0IEFybmQgdGhpbmtzIGFib3V0IGl0Lg0K
-Pj4gRllJIC4vc2NyaXB0cy9nZXRfbWFpbnRhaW5lci5wbCAtZiBhcmNoL2FybS9ib290L2R0cy9t
-YXJ2ZWxsIGlzbid0DQo+PiBwaWNraW5nIHVwIEFybmQgc2hvdWxkIGl0Pw0KPiBObywgYXMgR3Jl
-Z29yeSB3cml0ZXMsIHRoZSBpbnRlbmRlZCB3YXkgZm9yIHBsYXRmb3JtIHNwZWNpZmljDQo+IHBh
-dGNoZXMgaXMgdG8gZ28gdGhyb3VnaCB0aGUgbWFpbnRhaW5lciBmb3IgdGhhdCBwbGF0Zm9ybSwN
-Cj4gaW4gdGhpcyBjYXNlIGhpbSwgd2hvIHRoZW4gc2VuZHMgcHVsbCByZXF1ZXN0cyB0byBtZS4N
-Cj4NCj4gU2luY2UgaXQgd2FzIGxhdGUgaW4gdGhlIG1lcmdlIHdpbmRvdywgaGUgc3VnZ2VzdGVk
-IHNraXBwaW5nDQo+IHRoaXMgc3RlcCBhcyBhbiBleGNlcHRpb24sIHdoaWNoIGlzIHNvbWV0aGlu
-ZyB3ZSBjYW4gYWx3YXlzIGRvDQo+IGlmIHRoZXJlIGlzIGFuIGltcG9ydGFudCByZWFzb24sIGp1
-c3QgbGlrZSB5b3Ugc2tpcCBjYW4gYWxsDQo+IG1haW50YWluZXJzIGFuZCBnbyBkaXJlY3RseSB0
-byBMaW51cyBpZiBuZWNlc3NhcnksIGJ1dCB0aGUNCj4gbWFpbnRhaW5lcnMgZmlsZSBvbmx5IGRv
-Y3VtZW50cyB0aGUgbm9ybWFsIGNhc2UuDQoNCk9LIHRoYW5rcyBmb3IgdGhlIGNsYXJpZmljYXRp
-b24uDQoNCkkgZG9uJ3QgdGhpbmsgdGhlcmUgaXMgYW55IHJlYXNvbiB0byBydXNoIHRoaXMuIEkn
-bGwgc2VuZCBhIG5ldyBzZXJpZXMgDQpmb3IgdGhpcyBEVFMgY2hhbmdlIGFuZCBvbmUgb3RoZXIg
-dGhhdCBJIGhhdmUgZm9yIHRoZSB4NTMwIHZpYSBHcmVnb3J5IA0KYW5kIGl0IGNhbiBjb21lIHRo
-cm91Z2ggZm9yIGVpdGhlciA2Ljkgb3IgNi4xMC4NCg==
+On Mon Mar 11, 2024 at 3:20 PM EET, Stefan Berger wrote:
+> linux,sml-base holds the address of a buffer with the TPM log. This
+> buffer may become invalid after a kexec. To avoid accessing an invalid
+> address or corrupted buffer, embed the whole TPM log in the device tree
+> property linux,sml-log. This helps to protect the log since it is
+> properly carried across a kexec soft reboot with both of the kexec
+> syscalls.
+
+- Describe the environment where TPM log gets corrupted.
+- Describe why TPM log gets corrupted on kexec.
+
+>
+> Avoid having the firmware ingest the whole TPM log when calling
+> prom_setprop but only create the linux,sml-log property as a place holder=
+.
+> Insert the actual TPM log during the tree flattening phase.
+
+This commit message should shed some light about reasons of the
+corruption in order to conclude that it should be fixed up like
+this. I.e. why the "post-state" is a legit state where can be
+continued despite a log being corrupted. Especially in security
+features this is pretty essential information.
+
+BR, Jarkko
 
