@@ -1,178 +1,145 @@
-Return-Path: <devicetree+bounces-49867-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49868-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5962E8783B4
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 16:32:18 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BAF9387846F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 17:02:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8A2861C2183A
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 15:32:17 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 25E64B21550
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 16:02:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 409D745BED;
-	Mon, 11 Mar 2024 15:22:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C952D4AEDF;
+	Mon, 11 Mar 2024 16:01:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="a4573hfr"
+	dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b="nvO5OOow"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from nikam.ms.mff.cuni.cz (nikam.ms.mff.cuni.cz [195.113.20.16])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 723264207F;
-	Mon, 11 Mar 2024 15:22:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF533487BF;
+	Mon, 11 Mar 2024 16:01:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=195.113.20.16
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710170557; cv=none; b=e/lLUmkWzG08oGtwbEKl+8wA9Diz0YT/xMVo6UJq+rDc7LZk7UxUj5wXpuRTBCiOTSuzs2kHc4Pg0qzcM4FqDkbkOONHSonVq8xMMhXNMgvJzj8JxUjYIJOAs4OBimLIz9R2RBw0vWLpXjYIv46SaWPumX+wi5YsdRF+YPxcLfM=
+	t=1710172913; cv=none; b=Tm9jtOYVvfKOEU2I/yUfAeqDZdyHw2jk0cUeEmB60oLZt/XNcLBltPh0MNZnMvqzdYG2uDWOyOaLf8L8/wxg0RPxdydV1u41A/iNtVdZitxBOjBL+Z1RRVcTvPVrjjBJslv41PBUCLoOGgcIxHj3nB2WbtUNRu7It9nDJiSZ7Co=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710170557; c=relaxed/simple;
-	bh=ycNMrWndtfsrVCrUSdZ5ZjfxpPvfoIpngqepxzHv2ZI=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=VNvejUWVvxBAQLkI8P0gD40Jc0TIoA1VkzcCt/LU2K2gQO2rVHihdVD2V2aS42iPFvBCiXDvrAPXrzOsDv4yIIiKJPohGzHKN5BGiHmLopkL2zRT/Jnzh3RtmvTPI81TKTl6bZH5NXakl1ynoQJeYKNGwDJ7s3TF0gxPNTuwZnw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=a4573hfr; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42B5hO2C019176;
-	Mon, 11 Mar 2024 15:22:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=954ZpQUzthz7b8C7ScGeL2ZgKorjyZOj4WCF0dMw3xw=; b=a4
-	573hfrP6PesZDboj+Bfz+EC1Fjeh3+zCVSxhE4Y6Hov/RWaheF1NewgdeU/jpxA2
-	JjWbM1Sl2JI2Y2l+2LmFtxpF147OaxltfKHxZCDtEmthQoUySpXNdbUFNLv2UguQ
-	FIvuAosTjuHsCE502m/RKoGbZtDRisCJHbpmCkLU8gLt9O1u3tOJWIN62F6fPgGf
-	g67z0H8RnXO06cVIV7qM0NdYNuRky0vfDXB9p1WYQvYG+6167uJHPM4H8QTtW2Ow
-	mpnHA/kRK4NTF/pwe/uk/LsdXS730SaZWpf+FWG3z42C3NsYIQwTAIYQQRSjahx7
-	bFtFE8dEB3uuQUwJIqYQ==
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wssgv9n2f-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Mar 2024 15:22:30 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42BFMTGr016517
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Mon, 11 Mar 2024 15:22:29 GMT
-Received: from [10.50.58.231] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 11 Mar
- 2024 08:22:25 -0700
-Message-ID: <8e9601b1-836e-4aaf-b5ef-2f1cf70a00b9@quicinc.com>
-Date: Mon, 11 Mar 2024 20:52:21 +0530
+	s=arc-20240116; t=1710172913; c=relaxed/simple;
+	bh=GLEeATJ3Svnr6RANz7IL3Uj6iElvRYrDj/cIksBhlrQ=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=t5A2AE8lXkUYoP64IbSz+jHzQAceTfMJqji40MDJbIEe04f1+iPiFoxvS6SDI0jw2TGyWN5cTxHpV5O1/gb2ZughtGCAFcF/Cj3g/egUlfhKFqpzzsGhjf/+UzFP0wKvrJ3h2ZbGF7xWe8xnrpZsmZIgnq6nywPBLfD/rK6XW7I=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz; dkim=pass (1024-bit key) header.d=gimli.ms.mff.cuni.cz header.i=@gimli.ms.mff.cuni.cz header.b=nvO5OOow; arc=none smtp.client-ip=195.113.20.16
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gimli.ms.mff.cuni.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gimli.ms.mff.cuni.cz
+Received: from gimli.ms.mff.cuni.cz (gimli.ms.mff.cuni.cz [195.113.20.176])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits))
+	(No client certificate requested)
+	by nikam.ms.mff.cuni.cz (Postfix) with ESMTPS id 6CFE02846EE;
+	Mon, 11 Mar 2024 17:01:47 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=gimli.ms.mff.cuni.cz;
+	s=gen1; t=1710172907;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=8rja39NWvpfvyO+yfPHNzyL8h9k3zxVbMNChukBVYTA=;
+	b=nvO5OOowaQcCQEfYjlA+ji8TjPP6wc5jt6UjDQ5DRbF0QZCw20/rTU8ObOyv4bq7kyzQcP
+	Bh67qCKeXoWJSV/C+ZKiQFbuUH1AJEn2w+CgSnCA18SlSK3UuokBGjfEVMHhIKa+REQ4Bq
+	Qme3Js91m2jqcFFV4NynEYPsH8NGWmg=
+Received: from localhost (internet5.mraknet.com [185.200.108.250])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(Client did not present a certificate)
+	(Authenticated sender: karelb)
+	by gimli.ms.mff.cuni.cz (Postfix) with ESMTPSA id 49A3445665F;
+	Mon, 11 Mar 2024 17:01:47 +0100 (CET)
+From: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
+To: Karel Balej <balejk@matfyz.cz>,
+	Lee Jones <lee@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-input@vger.kernel.org
+Cc: =?UTF-8?q?Duje=20Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
+	~postmarketos/upstreaming@lists.sr.ht,
+	phone-devel@vger.kernel.org
+Subject: [RFC PATCH v4 0/5] initial support for Marvell 88PM886 PMIC
+Date: Mon, 11 Mar 2024 16:51:52 +0100
+Message-ID: <20240311160110.32185-1-karelb@gimli.ms.mff.cuni.cz>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/2] clk: qcom: camcc-x1e80100: Set titan_top_gdsc as the
- parent GDSC of subordinate GDSCs
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael
- Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Rob
- Herring <robh@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        Abel Vesa
-	<abel.vesa@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20240311-linux-next-camcc-fixes-v1-0-d126ae0b9350@linaro.org>
- <20240311-linux-next-camcc-fixes-v1-2-d126ae0b9350@linaro.org>
-Content-Language: en-US
-From: Rajendra Nayak <quic_rjendra@quicinc.com>
-In-Reply-To: <20240311-linux-next-camcc-fixes-v1-2-d126ae0b9350@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: l0KJQKAR3t0RJglP2F6sINkSJ-gNw2Rv
-X-Proofpoint-ORIG-GUID: l0KJQKAR3t0RJglP2F6sINkSJ-gNw2Rv
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-11_10,2024-03-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 malwarescore=0
- clxscore=1011 mlxlogscore=999 bulkscore=0 lowpriorityscore=0
- impostorscore=0 mlxscore=0 spamscore=0 priorityscore=1501 adultscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403110116
+Content-Transfer-Encoding: 8bit
 
+From: Karel Balej <balejk@matfyz.cz>
 
+Hello,
 
-On 3/11/2024 6:03 AM, Bryan O'Donoghue wrote:
-> The Titan TOP GDSC is the parent GDSC for all other GDSCs in the CAMCC
-> block. None of the subordinate blocks will switch on without the parent
-> GDSC switched on.
-> 
-> Fixes: 76126a5129b5 ("clk: qcom: Add camcc clock driver for x1e80100")
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+the following implements basic support for Marvell's 88PM886 PMIC which
+is found for instance as a component of the samsung,coreprimevelte
+smartphone which inspired this and also serves as a testing platform.
 
-Acked-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+The code for the MFD is based primarily on this old series [1] with the
+addition of poweroff based on the smartphone's downstream kernel tree
+[2]. The onkey and regulators drivers are based on the latter. I am not
+in possesion of the datasheet.
 
-> ---
->   drivers/clk/qcom/camcc-x1e80100.c | 7 +++++++
->   1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/clk/qcom/camcc-x1e80100.c b/drivers/clk/qcom/camcc-x1e80100.c
-> index 46bb225906bff..d421da57697a2 100644
-> --- a/drivers/clk/qcom/camcc-x1e80100.c
-> +++ b/drivers/clk/qcom/camcc-x1e80100.c
-> @@ -2212,6 +2212,8 @@ static struct clk_branch cam_cc_sfe_0_fast_ahb_clk = {
->   	},
->   };
->   
-> +static struct gdsc cam_cc_titan_top_gdsc;
-> +
->   static struct gdsc cam_cc_bps_gdsc = {
->   	.gdscr = 0x10004,
->   	.en_rest_wait_val = 0x2,
-> @@ -2221,6 +2223,7 @@ static struct gdsc cam_cc_bps_gdsc = {
->   		.name = "cam_cc_bps_gdsc",
->   	},
->   	.pwrsts = PWRSTS_OFF_ON,
-> +	.parent = &cam_cc_titan_top_gdsc.pd,
->   	.flags = POLL_CFG_GDSCR | RETAIN_FF_ENABLE,
->   };
->   
-> @@ -2233,6 +2236,7 @@ static struct gdsc cam_cc_ife_0_gdsc = {
->   		.name = "cam_cc_ife_0_gdsc",
->   	},
->   	.pwrsts = PWRSTS_OFF_ON,
-> +	.parent = &cam_cc_titan_top_gdsc.pd,
->   	.flags = POLL_CFG_GDSCR | RETAIN_FF_ENABLE,
->   };
->   
-> @@ -2245,6 +2249,7 @@ static struct gdsc cam_cc_ife_1_gdsc = {
->   		.name = "cam_cc_ife_1_gdsc",
->   	},
->   	.pwrsts = PWRSTS_OFF_ON,
-> +	.parent = &cam_cc_titan_top_gdsc.pd,
->   	.flags = POLL_CFG_GDSCR | RETAIN_FF_ENABLE,
->   };
->   
-> @@ -2257,6 +2262,7 @@ static struct gdsc cam_cc_ipe_0_gdsc = {
->   		.name = "cam_cc_ipe_0_gdsc",
->   	},
->   	.pwrsts = PWRSTS_OFF_ON,
-> +	.parent = &cam_cc_titan_top_gdsc.pd,
->   	.flags = POLL_CFG_GDSCR | RETAIN_FF_ENABLE,
->   };
->   
-> @@ -2269,6 +2275,7 @@ static struct gdsc cam_cc_sfe_0_gdsc = {
->   		.name = "cam_cc_sfe_0_gdsc",
->   	},
->   	.pwrsts = PWRSTS_OFF_ON,
-> +	.parent = &cam_cc_titan_top_gdsc.pd,
->   	.flags = POLL_CFG_GDSCR | RETAIN_FF_ENABLE,
->   };
->   
-> 
+[1] https://lore.kernel.org/all/1434098601-3498-1-git-send-email-yizhang@marvell.com/
+[2] https://github.com/CoderCharmander/g361f-kernel
+
+Thank you and kind regards,
+K. B.
+---
+RFC v4:
+- RFC v3: https://lore.kernel.org/all/20240303101506.4187-1-karelb@gimli.ms.mff.cuni.cz/
+RFC v3:
+- Address Rob's feedback:
+  - Drop onkey bindings patch.
+- Rename PM88X -> PM886 everywhere.
+- RFC v2: https://lore.kernel.org/all/20240211094609.2223-1-karelb@gimli.ms.mff.cuni.cz/
+RFC v2:
+- Merge with the regulators series to have multiple devices and thus
+  justify the use of the MFD framework.
+- Rebase on v6.8-rc3.
+- Reorder patches.
+- MFD RFC v1: https://lore.kernel.org/all/20231217131838.7569-1-karelb@gimli.ms.mff.cuni.cz/
+- regulators RFC v1: https://lore.kernel.org/all/20231228100208.2932-1-karelb@gimli.ms.mff.cuni.cz/
+
+Karel Balej (5):
+  dt-bindings: mfd: add entry for Marvell 88PM886 PMIC
+  mfd: add driver for Marvell 88PM886 PMIC
+  regulator: add regulators driver for Marvell 88PM886 PMIC
+  input: add onkey driver for Marvell 88PM886 PMIC
+  MAINTAINERS: add myself for Marvell 88PM886 PMIC
+
+ .../bindings/mfd/marvell,88pm886-a1.yaml      |  76 +++++++
+ MAINTAINERS                                   |   9 +
+ drivers/input/misc/88pm886-onkey.c            |  99 ++++++++
+ drivers/input/misc/Kconfig                    |   7 +
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/mfd/88pm886.c                         | 149 ++++++++++++
+ drivers/mfd/Kconfig                           |  12 +
+ drivers/mfd/Makefile                          |   1 +
+ drivers/regulator/88pm886-regulator.c         | 215 ++++++++++++++++++
+ drivers/regulator/Kconfig                     |   6 +
+ drivers/regulator/Makefile                    |   1 +
+ include/linux/mfd/88pm886.h                   |  38 ++++
+ 12 files changed, 614 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mfd/marvell,88pm886-a1.yaml
+ create mode 100644 drivers/input/misc/88pm886-onkey.c
+ create mode 100644 drivers/mfd/88pm886.c
+ create mode 100644 drivers/regulator/88pm886-regulator.c
+ create mode 100644 include/linux/mfd/88pm886.h
+
+-- 
+2.44.0
+
 
