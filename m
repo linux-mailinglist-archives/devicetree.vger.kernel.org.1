@@ -1,91 +1,112 @@
-Return-Path: <devicetree+bounces-49913-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49914-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4884587895D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 21:21:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FE74878964
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 21:25:29 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CCC50B21375
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 20:21:47 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5F0E81C209FB
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 20:25:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 746BC55E75;
-	Mon, 11 Mar 2024 20:21:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3F9DD56751;
+	Mon, 11 Mar 2024 20:25:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="fRZCIsUw"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="JHns6zg0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 43C6A53E2C;
-	Mon, 11 Mar 2024 20:21:42 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 819D853E2C;
+	Mon, 11 Mar 2024 20:25:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710188503; cv=none; b=NhfWsiOQWN+32ruee9l+uTbzXCXy3p7HBsKIeGYDdh47BRfrfEHOuWP8TBZDzJ1I6oCKRQQxRvXQprGAPGeXBeoqi2buVoe+u5ljGYn4K6ZGTgbYMQM63+AwAGaBpcn/zCuV+8d/+0brx0VliqDN3Zw7EiRQ1Q/RiFFlCcgsYxQ=
+	t=1710188726; cv=none; b=fu9rzqD4n7PkyS9PuYhaY3l5qpR5gb1ZuqrE2ct06QtwwiHNmaLV0dhOZarFmoIa7rBXQnXMpHRoRcawykCsPcewelWFAXD9FHT8tYKqSuNR9Px7Mb/MgBviklmdM9F8yPzrFnSufz6k189IgrQz220d6xrd2suGce6y8jOphHE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710188503; c=relaxed/simple;
-	bh=m0g91sXKYJS/kIzIdqTu2G6HaWEmgoKbDue6b3HELzA=;
-	h=Mime-Version:Content-Type:Date:Message-Id:Cc:Subject:From:To:
-	 References:In-Reply-To; b=D7gD8ONUIFToxXSowm0jMjeuf2N9HcuVwOM73rdWXn6u+RNsbsRTb+l9Cjr/y54glTRlbU888E9qm6/JFBtPUfoANz1EJcQPVwmEJRFkZ8NSy0IW0h+8nXduIfwRAZn90xXowAEF+dhzv8s1z7DfNJzgWMJSG46iOpSp2kEhmak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=fRZCIsUw; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B2D49C433C7;
-	Mon, 11 Mar 2024 20:21:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710188502;
-	bh=m0g91sXKYJS/kIzIdqTu2G6HaWEmgoKbDue6b3HELzA=;
-	h=Date:Cc:Subject:From:To:References:In-Reply-To:From;
-	b=fRZCIsUw+ltmZpj7Ioa6QyF4bBXq0ClTyx5UbpaGj0BwwmhEKNap0i2kmsFvMTfYH
-	 uAF252gxfBFsafjM9Yuk4LafJYv3Me+15/ThPDqUT/zg6IVy0kX5DdZAEfIwHN5CJa
-	 kaWzEkGHE7xv/n1Re/hQ6Xh2eldHCz0IXefPxRAdP4TN6IF7a3sTG3G7rzjwPKzjFm
-	 9x7SzQmlcJu6w9SEwD1WoiYIV/WJ86JSJ9WMmBIwMVMwH/b8Ox9dwWhkJV1+UUAUt4
-	 SeFUzsKgAL8hqx2FabponQ8JhErgPZBo8wt5HWubHhzrwi+E8LQSEkDhXyw5hd4fY/
-	 Ptdw0KX8aKSVg==
+	s=arc-20240116; t=1710188726; c=relaxed/simple;
+	bh=RbttMjg1t8BnCBFxgoASfbncHtXvw7RIxtm4H3RaysY=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Hq0NMDl548XNRYkF7u/8jS5/22q1NnMEbAI4rKQx8SbgkqGaoOtSbT9MD3DpYCybp02YuFzhciK8ZhC+4lLUkAh6ZqGkAjbverOzhBdXdLtMN6Y7Bk7zSjXw455SMPXjmJGIFrNSdBaFWToZl3lmhuVCp0APlXzvQ6YSNZIx34Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=JHns6zg0; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42BIh59i003636;
+	Mon, 11 Mar 2024 20:25:19 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=xgX5sbGPX/6nBM30K+ygSCYUNLuoYQieQqABdvNGoeY=; b=JH
+	ns6zg03lnhJi+s4CuJ6YxeOM8xZFiIbb+P1QZWoTZUIzoBisINWhGVOxLLi3JhAB
+	lBdbAAkvQrOpHwz0honOxs/X9khusB6Ug9t1YuISzDZ9+mlvOgtn6WxPymBAr0d9
+	akcsg75CP/5fz/Bqz0RbIS+XxTcwxXlkfkLVhPirea7FKGaChFf8Y1u8ICb9egDG
+	QATfhGa666jXX7Al1D4EQGtXNvvUpNm1ijZxY4tQe+n4oC2mqBcxXDxaSh6EqkDy
+	wNNKgqklVkettwUIRA843nhCAxPlHn1UEW4Qqg1QDfd6Qz/mIYva07yxFiQcAZyo
+	L5jOcxyf/D3RC8asNOZg==
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wt1dwhbvt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Mar 2024 20:25:19 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42BKPIZJ032598
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Mon, 11 Mar 2024 20:25:18 GMT
+Received: from [10.110.9.215] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Mon, 11 Mar
+ 2024 13:25:17 -0700
+Message-ID: <05d1f2e6-42b4-4ca5-92ec-838da492d845@quicinc.com>
+Date: Mon, 11 Mar 2024 13:25:03 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 11 Mar 2024 22:21:38 +0200
-Message-Id: <CZR7866WNY28.3KDPSXW81I82N@kernel.org>
-Cc: <linux-kernel@vger.kernel.org>, <rnsastry@linux.ibm.com>,
- <peterhuewe@gmx.de>, <viparash@in.ibm.com>, <devicetree@vger.kernel.org>,
- <jsnitsel@redhat.com>
-Subject: Re: [RFC PATCH v2 1/3] powerpc/prom_init: Replace
- linux,sml-base/sml-size with linux,sml-log
-From: "Jarkko Sakkinen" <jarkko@kernel.org>
-To: "Stefan Berger" <stefanb@linux.ibm.com>, <mpe@ellerman.id.au>,
- <linux-integrity@vger.kernel.org>, <linuxppc-dev@lists.ozlabs.org>
-X-Mailer: aerc 0.17.0
-References: <20240311132030.1103122-1-stefanb@linux.ibm.com>
- <20240311132030.1103122-2-stefanb@linux.ibm.com>
-In-Reply-To: <20240311132030.1103122-2-stefanb@linux.ibm.com>
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] of: Move all FDT reserved-memory handling into
+ of_reserved_mem.c
+To: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>
+CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20240311181303.1516514-2-robh@kernel.org>
+Content-Language: en-US
+From: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
+In-Reply-To: <20240311181303.1516514-2-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: 0vGEOSypj4MgMG8WyGOW-I88YXz1KgiC
+X-Proofpoint-ORIG-GUID: 0vGEOSypj4MgMG8WyGOW-I88YXz1KgiC
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-11_11,2024-03-11_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 phishscore=0 priorityscore=1501 mlxlogscore=689 spamscore=0
+ suspectscore=0 clxscore=1011 mlxscore=0 bulkscore=0 adultscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403110156
 
-On Mon Mar 11, 2024 at 3:20 PM EET, Stefan Berger wrote:
-> linux,sml-base holds the address of a buffer with the TPM log. This
-> buffer may become invalid after a kexec. To avoid accessing an invalid
-> address or corrupted buffer, embed the whole TPM log in the device tree
-> property linux,sml-log. This helps to protect the log since it is
-> properly carried across a kexec soft reboot with both of the kexec
-> syscalls.
 
-- Describe the environment where TPM log gets corrupted.
-- Describe why TPM log gets corrupted on kexec.
-
+On 3/11/2024 11:13 AM, Rob Herring wrote:
+> The split of /reserved-memory handling between fdt.c and
+> of_reserved_mem.c makes for reading and restructuring the code
+> difficult. As of_reserved_mem.c is only built for
+> CONFIG_OF_EARLY_FLATTREE already, move all the code to one spot.
 >
-> Avoid having the firmware ingest the whole TPM log when calling
-> prom_setprop but only create the linux,sml-log property as a place holder=
-.
-> Insert the actual TPM log during the tree flattening phase.
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-This commit message should shed some light about reasons of the
-corruption in order to conclude that it should be fixed up like
-this. I.e. why the "post-state" is a legit state where can be
-continued despite a log being corrupted. Especially in security
-features this is pretty essential information.
+Reviewed-by: Oreoluwa Babatunde <quic_obabatun@quicinc.com>
 
-BR, Jarkko
+> ---
+> Oreoluwa, Please rebase your series on top of this.
+ack
+>
+>  drivers/of/fdt.c             | 123 +---------------------------------
+>  drivers/of/of_private.h      |   5 +-
+>  drivers/of/of_reserved_mem.c | 125 ++++++++++++++++++++++++++++++++++-
+>  3 files changed, 127 insertions(+), 126 deletions(-)
 
