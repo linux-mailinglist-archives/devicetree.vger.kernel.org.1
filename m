@@ -1,334 +1,173 @@
-Return-Path: <devicetree+bounces-49877-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49878-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7DE2878576
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 17:30:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EFEA878584
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 17:33:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DD80281BD1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 16:30:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A4B881F220CF
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 16:33:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816A655792;
-	Mon, 11 Mar 2024 16:27:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B23D238F87;
+	Mon, 11 Mar 2024 16:33:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="QB9ho/uC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="MdKPVX7t"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2078.outbound.protection.outlook.com [40.107.223.78])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f45.google.com (mail-wm1-f45.google.com [209.85.128.45])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5714941C6E;
-	Mon, 11 Mar 2024 16:27:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.78
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710174470; cv=fail; b=AAzvman2dKbp9iquoiFBpydmf+DodL/i55ZpVKKjxp5ebqdJdJW3E45QveMutEXYRoccC4WZ7MGIEXn8zMrP1YiJZz9Ul5/7rBU8BCbzzKmCoYtdBugcr1ctxHsnv8tChDfkmqOLcPWxUV8MJvE3X77HTS8lT3KEDRLGE8cMsrM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710174470; c=relaxed/simple;
-	bh=/YZhbkgADG6xq9I1E6nfEezEjBdxrmE1Wot6MLdJRXM=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=KInGsfEXLz6720lHsa7pDAkw6DGI0SgAyOlkgVDPiOtAPOJGGrQDux38AyRzakMR1FKMV4Zd6VXY8J49CAZTbrg0D7cnyKm4g7bVtllMIdSGFYhKYIxad5pkD1lO3k/OnpIiwfI3BQBGGrk3ef0nrG3xVerqxLGwaYQXuAYqgeU=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=QB9ho/uC; arc=fail smtp.client-ip=40.107.223.78
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RDffvOKopjvSx+Q0w+pUpq9CbWvU8oedHMQZZSk7163hDOsDRLjZ3HcQq3PwrGGHYTT6E00vzixIqbcslByhZQJU0neUEBLTPbyaLIFF562BgRjPG7CK22bQwfBXqjAKwpneA7VkCzoSsc6+w0YVdkNQbbDD/K4Ap7ANCqIvhCPm83dibTbAsCOFTy47szeIw/OUqICPLJPcnt/quxGo/8z3Trllx3sdGgWWWyBbbd1fElPzRQG5XXtgqRTaJcc23elqOCv+vpSG/5/OQ1/v8CzXblJpH2daF3SEfl7lGIcw9/c2ATknENSTJs/ZIyCO09N/lloLAUyp5lt2ZkTo9g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=3MbUMF+W/lFlW6i3qt2RW/tLLwDvTYHSNoCz/loXHBo=;
- b=VEgwsAa6Dz6UR6IZoGjnxyp5Vb3rZQjHLMpzXfJm/GILYM0b4X6NAgI9ckhU7LYTq9mr1UFS7oGjNxJWu/2iYyx0kk2LAjsYfS124YmevgdxwWHDcx5xvEI21fbB9UuwGfII5Xf3rg4agNl7FalmwDv2QUknyQTTO+Jt+u0h7WKsGcEcv9W7jvH5CW7i/yeu/m/8/riWfxuSNtO/l+tCvS+6HVbmFO5toI8idhaQ8yAF83gGRKqNZG/D4FSwXIQgYqdD2+KuBodxDkO5558mBUb4Fd+wR03V6QEKjy1ueXu63Gmd4Vbk7Mjnd6BYLmzp46I6ILUeHzOY5lZPmw+H6g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=3MbUMF+W/lFlW6i3qt2RW/tLLwDvTYHSNoCz/loXHBo=;
- b=QB9ho/uCkKIYOwbokb6YdY2iA3tj1fz45aMrqN1A7v+1hcLDVP/pcaNz0IEosWVIjhjy6Iw26JWAmsFTaA3lehdaLF6K2FGqq5wDXAcSW7sbVWLm71b5AuXFfv3N8BoA7QXXEPo3ceoyxMWPvrCfX7WCls0hN2RUwJ+ebrG0SfE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amd.com;
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
- by DM6PR12MB4267.namprd12.prod.outlook.com (2603:10b6:5:21e::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Mon, 11 Mar
- 2024 16:27:46 +0000
-Received: from BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::8b3e:57e8:d574:309a]) by BL1PR12MB5874.namprd12.prod.outlook.com
- ([fe80::8b3e:57e8:d574:309a%4]) with mapi id 15.20.7362.035; Mon, 11 Mar 2024
- 16:27:45 +0000
-Message-ID: <2c45d7fb-06e4-468d-9415-0eaa48c5250b@amd.com>
-Date: Mon, 11 Mar 2024 11:27:42 -0500
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH v12 2/4] dt-bindings: remoteproc: add Tightly Coupled
- Memory (TCM) bindings
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- andersson@kernel.org, mathieu.poirier@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- michal.simek@amd.com, ben.levinsky@amd.com
-Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-References: <20240301181638.814215-1-tanmay.shah@amd.com>
- <20240301181638.814215-3-tanmay.shah@amd.com>
- <fb78bdda-2ec7-4fcc-888e-233905a9386c@linaro.org>
-Content-Language: en-US
-From: Tanmay Shah <tanmay.shah@amd.com>
-In-Reply-To: <fb78bdda-2ec7-4fcc-888e-233905a9386c@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SN6PR01CA0021.prod.exchangelabs.com (2603:10b6:805:b6::34)
- To BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6E5F1CA9A
+	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 16:33:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.45
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710174783; cv=none; b=iWsndXyYR2kmwovnIasAKWFr5jrPa9VMTZJRCom/iW1K0gsXZ0DMdqRCk+4aVByAuNCdGD+5G3l8eYb7H6SjPZcyHZNXPrTzShLK07t88zU31ziGD0KLf880tXPyWiM0bW8H2F1OkmCpWp0b1l6epn/wBb5TIIahCuW6x+0DW4c=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710174783; c=relaxed/simple;
+	bh=WZLO8M/4WI+CDv5TBdW9BwGlriBycF8dmZtjvyRxhnI=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=WnlJsfmD0oX+67b7eF0eoI4RX+COKw+m+KylJHGFk4vTus3X/2BsorT1LFIwCim5+lCX+zwWzFjqtfJ9ZzacncBkaUFc05QvWqoWU2oEb1ju+CXGCyHIrSOXhvmpIkrueFQF6/ZtgytU+7mR7Kde/E3VWCaTRI2OxCcLWI9Zakk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=MdKPVX7t; arc=none smtp.client-ip=209.85.128.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f45.google.com with SMTP id 5b1f17b1804b1-4132cc37e21so5307725e9.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 09:33:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710174780; x=1710779580; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mS3DWg/0hLk/7gJjH9QuhKXL8RzD1S7CeytVtDEm8eA=;
+        b=MdKPVX7tl8LHv5C3YdO1FJLQtf3GhSGwkWkQVjnEN0NIQsOUgMTSqwvo9HQkhybGK6
+         JcZhQXPscRlA6hWBStean5FcXwxQlR/KDx/ZP8hmvppLvU3/+NOTbW9rHX/CX9Bze2yt
+         KDzsgKk0egvP1JMh7sN6L8Y2Os2sZlowNZl8V7f1fH/BnfCLCYfcZD7dSengooO5KpO3
+         wSCHs45/P1fdW6t7A4mrxlojyCxIpw7W2W2pb+0zFP5oyqh6TU4Et62iw2iu+6lURvco
+         hjkz633vyuG7Tg87pNdOxqG1GkOoeMtjYyVEucYUZ2TRmaDudSpmpmKsjnXrgucOYK4X
+         CrsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710174780; x=1710779580;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mS3DWg/0hLk/7gJjH9QuhKXL8RzD1S7CeytVtDEm8eA=;
+        b=MZLxPDN7qcYvVvtpxWXH6pCZ0NqmG3iod3df82yceo7t8PZnkvdQe9tWunBOJ0R9qg
+         /INmCYct3mVKfvXCBP00XIdQoKYp/fMC5Rth8ufu1J1SSgthYIi8fYKSRd8CIL3wmiA0
+         Rr2uINjgEUhasKhtDS2ZhE1zPzMrqcqO0I01rT1AKXUTtS3B6Yar4CEfHIUwxl0ZvTFv
+         aeq0oQoPs2pqT7pMgQ1krhs7Z6f8JZFqNc/+dDaQ4LGDX5jMLdfm90MBGXQ53l8vgWcc
+         uC9CVGlkzhADAo3eHn9vfYT8n+i005dLQ/2Ae4gxYQxCpXRjbwO+Fk/7LxxUfu+7Zvuk
+         dTsw==
+X-Forwarded-Encrypted: i=1; AJvYcCWpdvMNMo3y+PgWkp1feCYt4cBZVlP+oUtDbW8sQZCO2OjbPKJx882hJ+P5M3kqGBB+t+ln/+uBre0y/JhpPCpGzdq4ct0vEjjYHQ==
+X-Gm-Message-State: AOJu0YwuDgzAD+M+OOj8ZvkhbrVsTFTAip7RZoAMm3ziFJAKTmztZ9v5
+	ogXce7MaEC6ej2yu9wV2KEnrmiVPRV2AMzAphero4cC5WcLcmgS4cDoUGcWhtno=
+X-Google-Smtp-Source: AGHT+IHEFlsphKFKoKSuE0lV/KDuTdtdXcTnvE5N1afX+GQNT93PwQBxSPDbElFKcBCcoBhSICbaCg==
+X-Received: by 2002:a05:600c:19ca:b0:413:1258:82f with SMTP id u10-20020a05600c19ca00b004131258082fmr6005691wmq.1.1710174780248;
+        Mon, 11 Mar 2024 09:33:00 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id n10-20020a05600c500a00b004132f5b44aasm1432236wmr.13.2024.03.11.09.32.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Mar 2024 09:32:59 -0700 (PDT)
+Message-ID: <db09be58-f6e4-40aa-b558-5b2472c94747@linaro.org>
+Date: Mon, 11 Mar 2024 17:32:58 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL1PR12MB5874:EE_|DM6PR12MB4267:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3e64b5a6-73a6-47ca-eeb0-08dc41e82efd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	liV2DI5vGbtL9wVYuPYDn7Xz0jwhZBMWlCLc3zWdP60T7yAP9QWTng3z3EYhMpcwUgXNccl6vnfGeSdqeqxKcB4/IWnvZii3CaDxDgPPLem2+j737H7Fk2frz5qLaeyt/jJJ74kCgG9CDMqrJyA+UNSRgaKxzO0PnRK/EtkQDBsQJq2sZYHlVlFFlb0i0tZejCie8KhPRhPMpOJsAruu4qETEktloQ3Cdd1lcLkztl4SxAd/cpiIdLds9IOlw3eXfjiMKzTAsBytin0v1qu6dMZ4QXk8RQ6gREDCrkox5xncXQ1DG0UqWO2wLVvCOCmlZ0DzPL/4lRhf6Xk1atCyD4pb/L9sfDyIso00fXX0KOoR0iD3RY6zwnIFnD5jNeR/YLvJGEuSUrL53JKH4LwO8nHUlQA0Am2xX+ftFqTNgqKcT9HqS6pLJJMWCA3A+vhaRzALYOMJxCBiRFwLs4KGI9Ks7BprC9fFdMy79vIIPRx8AxTqWXAh+Dd7XNetqaTNIawJ/F90Y7VUAkVcTHukVGmWsP34JRa97k8hoKx8r9tpOhzWzQ4JsXeSfBGjUUWQhOi/7hsfgXVkfRElea6e6g4X6LLvTs2S2UMwTL7xDYk5uVGcK5RFNm346ZHAO7qAcalUqfZKhuou3m1QZJfopDt50oHGEe7r0EFQ0iStujI=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5874.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(7416005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?b3hKNytnc2o0a3NncFpsT2FhQmh0YjlYcy9YdXdKQmpzdXNGbWZTUkxZT2J2?=
- =?utf-8?B?a2xTS2hjSFhBa29UVzVGSTE2ZzJyMlprVUhHT2dRbTJlY3FsZlBkT1RxTWtz?=
- =?utf-8?B?OUdSNXM1UkY0NFowSkh4aGRWYVdkU09aVlFIL2RaRGUwTlExMTZDV1R5RW9U?=
- =?utf-8?B?cHNXbVlJUHlpaEFlTlM0MVBocTl2dHJjaG1taEYzdW8xYkM1Q2FrUkR0aDFC?=
- =?utf-8?B?cTRybDNvcmJRSnJGRUpVTFNSMk9EalBQN3lZMFFaY3ZDNEJkU1JVRXZDUlFT?=
- =?utf-8?B?K0hNNCt6NGxUVFE1S241c0FFOE1YTk9xa3VOdkZHczRoeEJVUlZjNWhFZUJ0?=
- =?utf-8?B?UDVUczVsWWNtU1N1RlhrQ3piUkpIcXRCTUtXZDNueERFZXVmWG83ZWp6VXdm?=
- =?utf-8?B?RTVobU5XUnVEREE1UDBQQ3c4Myt3L1JCZHF0WmtVb1JaVDNVWmY1cUVOT0xX?=
- =?utf-8?B?MjBlZGxsdEpvMktJaU9rTWp6dG9Hbm0xSWdRemZQT3R4RTBmYnBXT1ZhZjR1?=
- =?utf-8?B?SVhWL3lOSXZnbWNWdDUrSVB1ZjBER3poa05rMGljTjE0dllMMjd3dDRJT3hO?=
- =?utf-8?B?VTZMYVVuMU9qSjl6Y1pudjVLNnBydGwrazBkV0lHdXhEc2k2VTlDSGhKVEpT?=
- =?utf-8?B?dTlXNlhoMXdINUZQYUtjb2FhR3dOaHhkUDkxck8vbWtJUG5NaG1XVFA5NzFr?=
- =?utf-8?B?a1ZhNVRsZGJzL1pvM0pZTllkcldvMmlCNHJXUXNpRndwd2pJMys5SS96L25M?=
- =?utf-8?B?aGF3ZlpEbzNwM2NETW0wZXNsUUE2dDYvZGR6RW1kcjUrRzVIZXNmeC9ZRVF3?=
- =?utf-8?B?YUk5R1JUUTE4NkJlN0h2Z281ODgrUmFlM2R3SEtOSmdZbjRSYkgzOFJJWXIw?=
- =?utf-8?B?YjRjdS9XZnV5YmsxbEFLUUtEdVJ6KzNveWJERnFGNkszMVd3Mm1oMExiZEpG?=
- =?utf-8?B?dFJZT3N1bzJjWExZTkpieFVWbzdjVzJBZmozblNlMDNpYnZ3ZCtyVkNHY2Zh?=
- =?utf-8?B?aXlqL0NodEdTWmpaQXFjZm54aC9PbHRXV2UybU5nLytSemFrVmxQWkJGaWwz?=
- =?utf-8?B?Mi9ISGQyYUxGVTJnUG93bnkwQllrdHBkZEZWWmQ5OGNWKzZXcVF3MGU1eVh0?=
- =?utf-8?B?bGI0alJ4a3BYRmdtUWtsU214Smw4VG5mMVVFQk1ybDNidG5JcUtlcFpZdUxQ?=
- =?utf-8?B?UWc5M2dxVGFRN1loMGhLZ3Z1S1VoT05iRkVNMkJUVTZjUEZmNTF4Nm8veTBi?=
- =?utf-8?B?dHIrNUE4dlBHS2JxOFJUOTA2cER0RE1teVg0MC9wUlIyN1o5M2FTRW0rTFRU?=
- =?utf-8?B?YW55dHNkVlR1NjdvTGdOdUlUMlFnbXJIMFgvMHdjUVRwY2c0OElGVXpUWGtZ?=
- =?utf-8?B?SStLZExUa05mQXpadmRSVXJscUlSMlFkUFNrS3g5czhnWDdmZnVNN2h0VGlL?=
- =?utf-8?B?blpFOFluL1ZxczFUK1dXWW1zSEh1TzZSZXB4K2p5Q1FZcmZyMW5MUFdDUXNH?=
- =?utf-8?B?MXFuWkR3cDlPdlFwWUxIU3lsNWJZQVZabmpodkhXeGJuNU8zQS9GakNLTUNH?=
- =?utf-8?B?RGpFekcwbjV3a1F0Y2R6eUpRMFd5alpPeEFqYTI1UGNnMEYwM2VUWlVGQlNB?=
- =?utf-8?B?MlZ2SmlMR1RXRDF5Q3VXWlJVY3hDWTRINmpGT0I5WVgzdWNyMTQwQm9zeHRY?=
- =?utf-8?B?ZkpuTkZNSnJySDlqWUVzOGU1WEZLaE5JdXlCK1BOR09tMnZVRGJkWmhrdDF2?=
- =?utf-8?B?cllwV21JRW1BQS9QTkQyakdlNkR3SVU0S0hCNVBPRUs2ekxCeTJTVDlIV0tp?=
- =?utf-8?B?NHNHUzBOcUlOVjlkT0JnMnd4Q0pQTTREZkV6VmI2RkdIdDR3YnVjdnlvcjdK?=
- =?utf-8?B?cnAvanBxdk1mdkN0ZWdmYlBSckNHZEhRZUFOaWd6YURSK3dKMnNoNC9ZOGxB?=
- =?utf-8?B?aXhTTjhpUVVYVlRzMEUyb2l6clMrVVZRQm52MjltNjhjdGZVYUR3MkdyTDQv?=
- =?utf-8?B?UU5RQ0J5M3g3elV1L3JhRU5TbWpSang3MG9yeVFYa1RSYnhtL1krOGlQdG1q?=
- =?utf-8?B?dld5NmVxZGVuVU1PVjJKcDZjWHlubmxqaUdrem9YQ0ZvZ0ZUV2dQblVROFRW?=
- =?utf-8?Q?Q3OZm9HNKf484r3lNlZ5YnvPR?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3e64b5a6-73a6-47ca-eeb0-08dc41e82efd
-X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5874.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 16:27:45.7937
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: drfKqFHRe3YxkUQl2EdV24BE2bOIiLOIxxr3t0IafaPZItUjLn+MV2ACKXUfhUcL
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4267
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: qdu1000: Add USB3 and PHY support
+Content-Language: en-US
+To: Komal Bajaj <quic_kbajaj@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Amrit Anand <quic_amrianan@quicinc.com>
+References: <20240311120859.18489-1-quic_kbajaj@quicinc.com>
+ <20240311120859.18489-2-quic_kbajaj@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240311120859.18489-2-quic_kbajaj@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello Krzysztof,
+On 11/03/2024 13:08, Komal Bajaj wrote:
+> @@ -6,6 +6,7 @@
+>  #include <dt-bindings/clock/qcom,qdu1000-gcc.h>
+>  #include <dt-bindings/clock/qcom,rpmh.h>
+>  #include <dt-bindings/dma/qcom-gpi.h>
+> +#include <dt-bindings/interconnect/qcom,icc.h>
+>  #include <dt-bindings/interconnect/qcom,qdu1000-rpmh.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/power/qcom-rpmpd.h>
+> @@ -913,6 +914,124 @@ opp-384000000 {
+>  			};
+>  		};
+> 
+> +		usb_1_hsphy: phy@88e3000 {
+> +			compatible = "qcom,qdu1000-usb-hs-phy",
+> +				     "qcom,usb-snps-hs-7nm-phy";
+> +			reg = <0x0 0x088e3000 0x0 0x120>;
+> +			#phy-cells = <0>;
+> +
+> +			clocks =<&gcc GCC_USB2_CLKREF_EN>;
+> +			clock-names = "ref";
+> +
+> +			resets = <&gcc GCC_QUSB2PHY_PRIM_BCR>;
+> +
+> +			status = "disabled";
+> +		};
+> +
+> +		usb_1_qmpphy: phy-wrapper@88e5000 {
 
-Thanks for reviews. Please find my comments below.
+That's a phy, isn't it? So node name "phy".
 
-On 3/9/24 7:25 AM, Krzysztof Kozlowski wrote:
-> On 01/03/2024 19:16, Tanmay Shah wrote:
-> > From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> > 
-> > Introduce bindings for TCM memory address space on AMD-xilinx Zynq
-> > UltraScale+ platform. It will help in defining TCM in device-tree
-> > and make it's access platform agnostic and data-driven.
-> > 
-> > Tightly-coupled memories(TCMs) are low-latency memory that provides
-> > predictable instruction execution and predictable data load/store
-> > timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
-> > banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
-> > 
-> > The TCM resources(reg, reg-names and power-domain) are documented for
-> > each TCM in the R5 node. The reg and reg-names are made as required
-> > properties as we don't want to hardcode TCM addresses for future
-> > platforms and for zu+ legacy implementation will ensure that the
-> > old dts w/o reg/reg-names works and stable ABI is maintained.
-> > 
-> > It also extends the examples for TCM split and lockstep modes.
-> > 
-> > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
-> > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
-> > ---
-> > 
-> > Changes in v12:
-> >   - add "reg", "reg-names" and "power-domains" in pattern properties
-> >   - add "reg" and "reg-names" in required list
-> >   - keep "power-domains" in required list as it was before the change
-> > 
-> > Changes in v11:
-> >   - Fix yamllint warning and reduce indentation as needed
-> > 
-> >  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 188 ++++++++++++++++--
-> >  1 file changed, 168 insertions(+), 20 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> > index 78aac69f1060..dc6ce308688f 100644
-> > --- a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> > +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
-> > @@ -20,9 +20,21 @@ properties:
-> >    compatible:
-> >      const: xlnx,zynqmp-r5fss
-> >  
-> > +  "#address-cells":
-> > +    const: 2
-> > +
-> > +  "#size-cells":
-> > +    const: 2
-> > +
-> > +  ranges:
-> > +    description: |
-> > +      Standard ranges definition providing address translations for
-> > +      local R5F TCM address spaces to bus addresses.
-> > +
-> >    xlnx,cluster-mode:
-> >      $ref: /schemas/types.yaml#/definitions/uint32
-> >      enum: [0, 1, 2]
-> > +    default: 1
-> >      description: |
-> >        The RPU MPCore can operate in split mode (Dual-processor performance), Safety
-> >        lock-step mode(Both RPU cores execute the same code in lock-step,
-> > @@ -37,7 +49,7 @@ properties:
-> >        2: single cpu mode
-> >  
-> >  patternProperties:
-> > -  "^r5f-[a-f0-9]+$":
-> > +  "^r5f@[0-9a-f]+$":
-> >      type: object
-> >      description: |
-> >        The RPU is located in the Low Power Domain of the Processor Subsystem.
-> > @@ -54,8 +66,17 @@ patternProperties:
-> >        compatible:
-> >          const: xlnx,zynqmp-r5f
-> >  
-> > +      reg:
-> > +        minItems: 1
-> > +        maxItems: 4
-> > +
-> > +      reg-names:
-> > +        minItems: 1
-> > +        maxItems: 4
-> > +
-> >        power-domains:
-> > -        maxItems: 1
-> > +        minItems: 2
-> > +        maxItems: 5
-> >  
-> >        mboxes:
-> >          minItems: 1
-> > @@ -101,35 +122,162 @@ patternProperties:
-> >  
-> >      required:
-> >        - compatible
-> > +      - reg
-> > +      - reg-names
-> >        - power-domains
-> >  
-> > -    unevaluatedProperties: false
-> > -
-> >  required:
-> >    - compatible
-> > +  - "#address-cells"
-> > +  - "#size-cells"
-> > +  - ranges
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        xlnx,cluster-mode:
-> > +          enum:
-> > +            - 1
-> > +    then:
-> > +      patternProperties:
-> > +        "^r5f@[0-9a-f]+$":
-> > +          type: object
-> > +
-> > +          properties:
-> > +            reg:
-> > +              minItems: 1
-> > +              items:
-> > +                - description: ATCM internal memory
-> > +                - description: BTCM internal memory
-> > +                - description: extra ATCM memory in lockstep mode
-> > +                - description: extra BTCM memory in lockstep mode
-> > +
-> > +            reg-names:
-> > +              minItems: 1
-> > +              items:
-> > +                - const: atcm0
-> > +                - const: btcm0
-> > +                - const: atcm1
-> > +                - const: btcm1
->
-> Why power domains are flexible?
+Best regards,
+Krzysztof
 
-User may not want to use all the TCMs. For example, if users want to turn-on only TCM-A and rest of them want to keep off, then
-
-they can avoid having power-domains of other TCMs in the device-tree. This helps with less power-consumption when needed.
-
-Hence flexible list of power-domains list.
-
-I can certainly mention "items:" under power-domains property.
-
-
->
-> > +
-> > +    else:
-> > +      patternProperties:
-> > +        "^r5f@[0-9a-f]+$":
-> > +          type: object
-> > +
-> > +          properties:
-> > +            reg:
-> > +              minItems: 1
-> > +              items:
-> > +                - description: ATCM internal memory
-> > +                - description: BTCM internal memory
-> > +
-> > +            reg-names:
-> > +              minItems: 1
-> > +              items:
-> > +                - const: atcm0
-> > +                - const: btcm0
-> > +
-> > +            power-domains:
-> > +              maxItems: 3
->
-> Please list power domains.
-
-Okay. But minItems will be still what's mentioned above i.e. 2.
-
-I hope it's fine.
-
-
->
-> >  
-> >  additionalProperties: false
->
->
-> Best regards,
-> Krzysztof
->
 
