@@ -1,204 +1,140 @@
-Return-Path: <devicetree+bounces-49849-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49850-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 328CB878140
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 15:05:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0849687814B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 15:06:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EDA51F22D47
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 14:05:49 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B20621F22968
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 14:06:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E603FB8C;
-	Mon, 11 Mar 2024 14:05:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A36853FB39;
+	Mon, 11 Mar 2024 14:06:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jCrTGkFW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Rqiaeyx/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D561804C;
-	Mon, 11 Mar 2024 14:05:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BFC793FB2E
+	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 14:06:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710165942; cv=none; b=qYOXeu1LN8KyIFhJ6Sjb61lKmld/hlgY2X4P6puztw5sYHyoP9wex7SHPfrnQXKJnzFkSwwF2gGv9S9OZtij1m7CZfdxFlZOyqTZjIPNmT5nHk8MNKiXeVbnJi9ZBUDjZKzbfTKej2rStMrtJhC6pepKmZXydpHhf5db8JRsUj4=
+	t=1710165976; cv=none; b=Ns8UWB6UtGcZpoMnqOId94mVu9tbGEwC3dV+PVNmEumbEVBBmW/QDSshoJHtKPGS/4F8KKM+O31P+llclmMZgX/4TGiAn1++sHIUPLfCZTSINL8nowtpWS+X6d7KSVzxA7iuQjZi4Bc8n1WZJk+CETSo7OiQIfP7KgoU8CoBzco=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710165942; c=relaxed/simple;
-	bh=JZaWt59UeCeNqcvWv/r5KgGKkLciUCSkM8vrzhZCIq0=;
-	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ELzsttdJDxogdXhc+Zjy365rIEQAeCUjhGe6lQFuKFZE3PpznBSzpnIrF3WsqpP2RQxNZYUkRP3zl8Nc2vpORapZCXDyMpUvmGiqZvukfdk9BfCcNNRqajQBYJVsF+7EmalHDQWC49WnEeb1yNJffcNdDazxofae5cjx+VvmH50=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jCrTGkFW; arc=none smtp.client-ip=209.85.214.176
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1dd916ad172so9048065ad.2;
-        Mon, 11 Mar 2024 07:05:40 -0700 (PDT)
+	s=arc-20240116; t=1710165976; c=relaxed/simple;
+	bh=lgogrjy9kuME3sQy/ONRQafuDu2sN7ANTyoJLy+/q8Q=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=AO7yi1LU+jKhRzLCBKaXixO5lgH9TVE7GBlUVKl2mFFJTDBhBSrbaONy2Cf+Mvwf7ZiZocZckJOpNPArucqfao29BkjRFEyiIv0z3SEpQf+msztuwivEDGLKyIvV/z5c199KWpgsTcvdXJ9TNkR2YZb6yVz5T+1ntnjNBazE4IE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Rqiaeyx/; arc=none smtp.client-ip=209.85.221.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-33e1878e357so2623340f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 07:06:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710165940; x=1710770740; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=HGpBbMBa0HNbveOXPkSVIl+7CcmOX/xDsnjZNZtqj28=;
-        b=jCrTGkFWvmoJky+u63JlySZTvgBBdh+wImW1a724Bpp1sZNOQSkakaElVeU7dVCrd+
-         C+sJFd11tjuoR5+hfC4i57aw/YOkgY2Zhhkk2GO4rcLwH4+GjaQrzCymYsNBqqO+gtbU
-         xc+kui+03kom9IhcItr0uK4qf2uctGbukebEeA2LmkAqwYpMO8jVCG7I3r4+cdXPZTZh
-         w06Rr94/I53TpJ0GYrbhvfTkCjsB61fPUGTvUYVCd6SCAamQAcQlzQOzYUuPiNwi5+Y+
-         xn8HV+TX6N5KnjArrgsjv7ksnzJzhTRR52IGseqNRojAqy5ad28aGwOx+o3wAldEJFVt
-         xnUQ==
+        d=linaro.org; s=google; t=1710165973; x=1710770773; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=oEfxD47P17376HaVN5QCqzhMLDLW1AovPI/CpxbhNnI=;
+        b=Rqiaeyx/toJ2p9H8V5k5s2lZeXjSAfevgDrstKqf93y2dT7tIAs/iGkzz6qP0JZ3pk
+         zf0eLqXAO5sz0lepKscfarucRxQGY9k2TBseTtoAi3hU/MS57cnktaPnelI25RccclxD
+         5wpvJm5HZQR8tH7KkCJzplv1680GxPSHqnP4yMMfy6rG6sJIvRYZ3cAtKmqAWBJDMNov
+         fRB5XkKpQhKFl0D9MTfVyePcnw1ptr6DJzcIRxDKBZrQjOiD98jsn1x4U1AXNyCHMr8K
+         F1dWlUO/8i+xu0bWwPqKe1EGbaTIHlmQTGO8uSBoxRf8SfUj/0Vj+uacunpD4eahTglG
+         IAWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710165940; x=1710770740;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=HGpBbMBa0HNbveOXPkSVIl+7CcmOX/xDsnjZNZtqj28=;
-        b=LdKeCsNwmpYcdpBNyaWLyf/PUZg+7Qsjv7F5ixsKQNBupMjE+Ov2pyqjK6T/BGx6w4
-         h83/bgXTOdC2TaPeYx7iEdZRfOk7GsAxzUZUlmkQjlb/SVGWm31uvTPjf6I6/weL7Is+
-         acXBUdkpsFJg3I0Q5QG9iFi5a35Ob3xtmuJKtdurqB+Rhve6ubVU6r9BAH+yWw1wLsdE
-         uHfXdEOjrBeeqzn50v2Y5sfTnjRl26V+uUbWFd4ITNciV4JvXRoiarNFEDpLU+Dhqqiz
-         a3FUAvnuBbfTJcIwzM94uCPjljU1XscLVczi7zhzUEjkSTJSkNYPqVAVqEUbKlMLVZmM
-         XV1A==
-X-Forwarded-Encrypted: i=1; AJvYcCUKNet28JyRe3Hex3Eoqgbj/kulGNgWskcaKB4Clfty13qLLDROgCYzGsuEjrZExxA8TEvOJxzn4yZqmtJctir36Y/sCCRycfZdxlmrs93snH03G9h3UgzxxeIjHAuo9g4R+2fmoWEkucwmH1fUVyAPHlTLj1Hd1ql65G01UHBVKo9BTQ==
-X-Gm-Message-State: AOJu0YzwGRlP05JgipAn44Lcj9EjbMVijjc2ur9O4ALGrPESyJWt6n1V
-	p6bblj6AU5QVj2CQIiZZ1LFJ/gYfmH0G9CBGR8DyITWeL48FInuQ
-X-Google-Smtp-Source: AGHT+IFrWc8qJis+RyGSwF7nLR4pCsKTP7tEgT5YdzAVXgtdQYPGMOl+PKdKOilW6izN/63zMXQXiA==
-X-Received: by 2002:a17:902:d2c1:b0:1dd:b315:906d with SMTP id n1-20020a170902d2c100b001ddb315906dmr45245plc.8.1710165939915;
-        Mon, 11 Mar 2024 07:05:39 -0700 (PDT)
-Received: from localhost.localdomain ([115.240.194.54])
-        by smtp.gmail.com with ESMTPSA id kt12-20020a170903088c00b001dd566a1f5fsm4744180plb.155.2024.03.11.07.05.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Mar 2024 07:05:39 -0700 (PDT)
-From: Animesh Agarwal <animeshagarwal28@gmail.com>
-To: 
-Cc: animeshagarwal28@gmail.com,
-	Damien Le Moal <dlemoal@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-ide@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v7] dt-bindings: imx-pata: Convert to dtschema
-Date: Mon, 11 Mar 2024 19:34:29 +0530
-Message-ID: <20240311140435.34329-1-animeshagarwal28@gmail.com>
-X-Mailer: git-send-email 2.44.0
+        d=1e100.net; s=20230601; t=1710165973; x=1710770773;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=oEfxD47P17376HaVN5QCqzhMLDLW1AovPI/CpxbhNnI=;
+        b=BiwBMuMjHFR5IYHDpHjRgR27iLXV97BKz3mfJm+k7Kxkx40Cky2MeCAPKS8h5UaBaJ
+         Uf1bNsWjpbHWRb+VIX9oYPhaXF1g+2P7jPCcahheDWb2Kvbj5BYJx9hMdVkz22CKcUQv
+         n5M3P1yPvz9UUpzX+96+k10zoKRlqZBKSLldtkMTirUxumGjsnbH1tEcLIf7H65QaN+6
+         vCowip1JfIWJVDlab5nD14v0bO8yZfGSBT0DTl+OW7KaU8p2Y0Yz+hg8cba8JXvKcYxb
+         8r67ErTkKixnxkvF3ZrG2G53et9a1fAjgDu7QB607Kb/hmxO9lL3BypID4On0TBSS0l1
+         yLew==
+X-Forwarded-Encrypted: i=1; AJvYcCWnRovAM3Kx9kxbFh+v5iETXCSpHq+Do6Dh4nTegs+khAnJFoTVUzEXCuJJmL56nVxo3otiAs/ZFCdpuM6m7UuMnDkE/EK6wzKxbA==
+X-Gm-Message-State: AOJu0YySDp4eMCIC/ItbSb4S86CUFyZThscahmivwMgi9mCkuE4/S0Sn
+	0UTl3Rb7zsW0d2+LMi1JMSjaeOuKj869SW2IQnEWnW64cjbLLeR9uoZ+KEposLA=
+X-Google-Smtp-Source: AGHT+IG/g+fTjxWn4gTCH5rhKjgGvyr7sRc72LxPlTBMSdatMB2C+byQhEO6+eXSpLHPxb527WCirA==
+X-Received: by 2002:adf:f1c8:0:b0:33d:f3c4:6002 with SMTP id z8-20020adff1c8000000b0033df3c46002mr4387671wro.1.1710165972907;
+        Mon, 11 Mar 2024 07:06:12 -0700 (PDT)
+Received: from [192.168.2.107] ([79.115.63.35])
+        by smtp.gmail.com with ESMTPSA id m18-20020adffa12000000b0033d8ce120f2sm6531216wrr.95.2024.03.11.07.06.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 11 Mar 2024 07:06:12 -0700 (PDT)
+Message-ID: <f6b8d9bc-d95a-4d85-a2bc-820b1206fcaf@linaro.org>
+Date: Mon, 11 Mar 2024 14:06:10 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 11/11] MIPS: mobileye: eyeq5: add octal flash node to eval
+ board DTS
+Content-Language: en-US
+To: =?UTF-8?Q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>,
+ Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Vaishnav Achath <vaishnav.a@ti.com>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+ Pratyush Yadav <pratyush@kernel.org>, Michael Walle <mwalle@kernel.org>
+Cc: linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+ Vladimir Kondratiev <vladimir.kondratiev@mobileye.com>,
+ Gregory CLEMENT <gregory.clement@bootlin.com>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Tawfik Bayouk <tawfik.bayouk@mobileye.com>
+References: <20240308-cdns-qspi-mbly-v1-0-a503856dd205@bootlin.com>
+ <20240308-cdns-qspi-mbly-v1-11-a503856dd205@bootlin.com>
+From: Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20240308-cdns-qspi-mbly-v1-11-a503856dd205@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-Convert the imx-pata bindings to DT schema.
-Add missing fsl,imx31-pata and
-fsl,imx51-pata compatibles during conversion,
-because they are already being used in existing DTS.
 
-Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
 
----
-Changes in v7:
-- removed blank space at the end of file.
+On 3/8/24 17:18, Théo Lebrun wrote:
+> Add SPI-NOR octal flash node to evaluation board devicetree.
+> 
+> Signed-off-by: Théo Lebrun <theo.lebrun@bootlin.com>
+> ---
+>  arch/mips/boot/dts/mobileye/eyeq5-epm5.dts | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
+> 
+> diff --git a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
+> index 6898b2d8267d..0e5fee7b680c 100644
+> --- a/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
+> +++ b/arch/mips/boot/dts/mobileye/eyeq5-epm5.dts
+> @@ -21,3 +21,18 @@ memory@0 {
+>  		      <0x8 0x02000000 0x0 0x7E000000>;
+>  	};
+>  };
+> +
+> +&ospi {
+> +	flash0: flash@0 {
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>; /* chip select */
+> +
+> +		spi-max-frequency = <40000000>;
+> +		spi-rx-bus-width = <8>;
+> +		cdns,read-delay = <1>;
+> +		cdns,tshsl-ns = <400>;
+> +		cdns,tsd2d-ns = <400>;
+> +		cdns,tchsh-ns = <125>;
+> +		cdns,tslch-ns = <50>;
 
-Changes in v6:
-- removed items before const due to single element.
+These cdns properties look bad, they bypass SPI NOR entirely. I'd check
+if these timings can be determined at SFDP parsing time, then I'd pass
+them to the SPI controller.
 
-Changes in v5:
-- added oneOf in compatible property to allow the usage of imx27 alone.
-
-Changes in v4:
-- added fsl,imx31-pata in compatible property as enum.
-
-Changes in v3:
-- added fsl,imx51-pata in compatible property as enum
-- fsl,imx27-pata is added as a const to ensure it is present always
-
-Changes in v2:
-- fixed style issues
-- compatible property now matches the examples
-- fixed yamllint warnings/errors
----
- .../devicetree/bindings/ata/fsl,imx-pata.yaml | 42 +++++++++++++++++++
- .../devicetree/bindings/ata/imx-pata.txt      | 16 -------
- 2 files changed, 42 insertions(+), 16 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
- delete mode 100644 Documentation/devicetree/bindings/ata/imx-pata.txt
-
-diff --git a/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
-new file mode 100644
-index 000000000000..27b47e2d32f1
---- /dev/null
-+++ b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
-@@ -0,0 +1,42 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/ata/fsl,imx-pata.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Freescale i.MX PATA Controller
-+
-+maintainers:
-+  - Animesh Agarwal <animeshagarwal28@gmail.com>
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - fsl,imx31-pata
-+              - fsl,imx51-pata
-+          - const: fsl,imx27-pata
-+      - const: fsl,imx27-pata
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    items:
-+      - description: PATA Controller interrupts
-+
-+  clocks:
-+    items:
-+      - description: PATA Controller clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pata: pata@83fe0000 {
-+        compatible = "fsl,imx51-pata","fsl,imx27-pata";
-+        reg = <0x83fe0000 0x4000>;
-+        interrupts = <70>;
-+        clocks = <&clks 161>;
-+    };
-diff --git a/Documentation/devicetree/bindings/ata/imx-pata.txt b/Documentation/devicetree/bindings/ata/imx-pata.txt
-deleted file mode 100644
-index f1172f00188a..000000000000
---- a/Documentation/devicetree/bindings/ata/imx-pata.txt
-+++ /dev/null
-@@ -1,16 +0,0 @@
--* Freescale i.MX PATA Controller
--
--Required properties:
--- compatible: "fsl,imx27-pata"
--- reg: Address range of the PATA Controller
--- interrupts: The interrupt of the PATA Controller
--- clocks: the clocks for the PATA Controller
--
--Example:
--
--	pata: pata@83fe0000 {
--		compatible = "fsl,imx51-pata", "fsl,imx27-pata";
--		reg = <0x83fe0000 0x4000>;
--		interrupts = <70>;
--		clocks = <&clks 161>;
--	};
--- 
-2.44.0
-
+I see these properties are already accepted in the bindings file for few
+years now. Something to improve later on.
 
