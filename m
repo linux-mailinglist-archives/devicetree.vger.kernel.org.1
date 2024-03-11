@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-49763-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49764-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 612C0877B0D
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 07:49:05 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BBB66877B13
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 07:50:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 851801C20E31
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 06:49:04 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 335621F21011
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 06:50:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 441F7F9CC;
-	Mon, 11 Mar 2024 06:48:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F241FBF2;
+	Mon, 11 Mar 2024 06:50:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="eUMXz7Jn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Nh4U4Fe8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4E4D410A22
-	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 06:48:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7F194D516
+	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 06:50:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710139739; cv=none; b=L8bp1vWaGe70kHNE4LNcouGMl7rMa6il/XIQHMv6XD0SolMHciiuklUW5Lls21E1Ah2rmiYgRefJGi1ol4cYEtXKce7/KKsK2WXwKSsoiKGCb0afw7ngmYQZaYI8OPT1kBpjL5nAXYAwyIIJn7O1IicwT8FLW6Lju5p4hN/aaZc=
+	t=1710139828; cv=none; b=j0Rv4AhQEi3j90eGaku7BOmXhIzpmpYv9aiOsVcBORFD9c40OCr4Js3SltNhdczIRZkOcZFjMpI7oh619K6R4CkbLI2YrZxPIjKNTLVl6+t2/VcANZfPWDjW2cgsCufUoeF/oTavt3va5e6yN2lW6ORZsImV8IsF/2AzVhUp8eA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710139739; c=relaxed/simple;
-	bh=ef1ucrmRxImYJi/k/RgFMQzxuIfEGU2EjshfHkpkdf4=;
+	s=arc-20240116; t=1710139828; c=relaxed/simple;
+	bh=kMMHWHsVeMooooSXExdq3OzKqJPtV/KRYk1xvQmfLdw=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=gRJEXnpy/ZZSVI4FeRZ5p9MlOcqCrGIKf5PeQCiaWm+UvfZyY/i1Bw6jYP/lJahPA/f8kPhUqTCg3YCef6BG4kUfCx1LgJVo4WUl+f6fK8NOrf7mgIGFR/+AmXw5x+scayndt6v5/d+cjs4byKOoo/DXhlm0qES8pCQ7iDEThsE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=eUMXz7Jn; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:Content-Type; b=PB0WD3ZBpjRgCVAC8RNlayELgbYvZ+znJLcslprDVD34ifNUpeQQkBUy7Ls2MnavNeCmHzYmnbkq9rpc5O5DUl91NAAtkUeE4nfjJ4H7oAXCduC4MX03CKUcCTU9PDryI0M55NXbj02wcUKWfQBuXusQ5vnHY2A0dbrOc52okDI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Nh4U4Fe8; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a3ddc13bbb3so899561166b.0
-        for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 23:48:57 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d094bc2244so61764041fa.1
+        for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 23:50:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710139736; x=1710744536; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710139825; x=1710744625; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=r1ad8dWnxUViMh9KFUYOIhtKix7ehQ2jSrBRd2b7pag=;
-        b=eUMXz7JnbnY2TOuMGEoiGA1oRakIg4w5xx/PwgQZAJkkJ1cK36KNZOxNIlVTBMfRdu
-         GTknFQCzxw5v/6JNGU+eYOwaJlEM1iwXZXJoMBUDW07vkXNR+EklnxmevCxPFMYYfZI4
-         kpx+eXGytUg037rz4EG82Qgt61vdIN+dG7mKugoKFq1XjmV/ovVSx4mG6xZyJ4+8p1eh
-         6qyavWx8ZxBlqSQPYNOd7lVPx/E8kqqZw6UJXEXr47fVfd7sHyD8DM9hh0oUA25+FApF
-         ykjHO3brLwpEXTVuaa6oKuJLxKWgNhM+I/whfQn67bEZmds/4NfmWMGmaDrpu9/HQNZb
-         sVHQ==
+        bh=GFx82oD96JfZcte/AwcSqFIzsVxyk8Oe1JgVwAOV2zU=;
+        b=Nh4U4Fe88kMcF0Z3uJR8NoXSvhJxiMmKKjhJmBPK6lHDkbJmnbtTnNgza4SbauL7un
+         fF89Z6Wc5a/5dycCvQf0//jFf5kJKQzc6eQvJ9fnbzGimVjJ/StW7Q94CnY41FKXkxkg
+         TbopDwxgXsmJE3Q6ERqdwKHVH1jdG59bo8wEeVSYBE1xHpVHZWChGTA4eG8T4tX2wCMj
+         7lcTVgv1UYjbc8qGMB6nlXikB3tISrfK2NmzGUKyhj5BZwWLqqL2bgnW717OiGesJKkI
+         TsAP+6/CemA1LvKihft3tEqIIlPfnH+Kqsr1aa8m1gb/bF16aik+4JKyYFn/GArjbRC2
+         EhsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710139736; x=1710744536;
+        d=1e100.net; s=20230601; t=1710139825; x=1710744625;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r1ad8dWnxUViMh9KFUYOIhtKix7ehQ2jSrBRd2b7pag=;
-        b=Ntj+n4dvFJM6F6CsUM/dIaxLe3wxJFjz8FUtogyMq1TORKPBbnUERL84i+YFQw7xQu
-         zM01AeJ4YTSpt2dcWKs08kPIYQdqcdk22HYS6SfqRmpSr8C/tO26iGnPHBcUi2gGeUxW
-         nwDsIYLCm8c0AzIIZZ1NcsdFkOoHPd6OiELLF0YoQncUpJdaMdpmPQe8IdRY9ZkTjwLz
-         g4Mzxf0oZD+Ojiwp63Bs3nQ1HG/vTvoKKIFG803JtYZIk/gP1FwJkvAANSOr64tNt1C7
-         4YhQPiS7lO4hKkTbZd0vzi3tZYfKbOFV+J8Y+MLIzS/gnFoxCQRRjFxGRSZviOn/JAhR
-         awlg==
-X-Forwarded-Encrypted: i=1; AJvYcCUkpdMgVAqQEXCmLCcDp6BAQr78nuE1QObrXWHqTpdvedCVXH58gGhNcQY61Sv+DaBYs/KobbdckHv9zBv49KSEhJiOkzm/niuZzQ==
-X-Gm-Message-State: AOJu0YwBlw5woR8rxAPdMJ6X9sXxUvdOWDHHITzhJQ3RDjjpOOZhjdf3
-	GHlAuL6cfxYf3x15u7BJxJouPt113/zyy52yKgs1g+4GhwUai0666t8sUrGQs9A=
-X-Google-Smtp-Source: AGHT+IE1r5QaKAl2dXYpn/SAM5AzV0urpxk8Y6waPKKyvZewNl1isNNYPk0SKL5kYB4B4vuRNPxYxg==
-X-Received: by 2002:a17:906:6a09:b0:a46:5df:ad98 with SMTP id qw9-20020a1709066a0900b00a4605dfad98mr5964383ejc.21.1710139735722;
-        Sun, 10 Mar 2024 23:48:55 -0700 (PDT)
+        bh=GFx82oD96JfZcte/AwcSqFIzsVxyk8Oe1JgVwAOV2zU=;
+        b=kSl2mSalSLRsMvZd8j6oGJs12KVXIJ0b6DjaZbRPF7IzaYM1k2Hzck5UjiAaRhOYyh
+         wMYUJqb56QYEYXWP75U+lEqEAvyWcvyCcS6l5HBWbcrwY4V7x7ewSDI58pjR2CgSucNq
+         5bfGO7IwOgSjvdIRXwIBEqRicdznjRxx7fyNqSh6cP/vnQ3XDsdtCLBn1bCbmw2Vd2CJ
+         LttStuaB6VLTiC4vusA67yZOLsVmUWzbLogZFJRcdaAvSqw9PSil0gCFUwj+X7jjluCp
+         8m9n4tbPG/87pbYcDzYq9DDu8BfwfDjDQ2Z06cmcZ+AjWaKoXWxeT8NaocZ7zfWF1RQT
+         761g==
+X-Forwarded-Encrypted: i=1; AJvYcCWWoDibmqz0uS62xlMrD4vX3nu5RwQJz+CzLAQ80OuW7M2kVxQlsT3pWJTw+CLnhVKVK0QCQbS/BHHkg3Or92jS/xK1451hKVWQ9A==
+X-Gm-Message-State: AOJu0YzIs5MiefwKAkFiZbpSMcGWH08HPBpuazPo0rXGpfaQSL7J/XCx
+	xOZf6u8DhZ9YPTdorDM4g5YwuBSG9KIlUxjsIe8vcU2lTPGDGc5BwdbDtBsRsiw=
+X-Google-Smtp-Source: AGHT+IGO1UwGe9IvtCiUP8qTbZqbE1nTvW/tAmQxde1dAgChlWJ9G5Fe1ECkajHs0KSOQzNAu655Ng==
+X-Received: by 2002:a2e:a37a:0:b0:2d2:acef:6aca with SMTP id i26-20020a2ea37a000000b002d2acef6acamr2936055ljn.41.1710139824642;
+        Sun, 10 Mar 2024 23:50:24 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id et8-20020a056402378800b00566a4dec01fsm2619934edb.11.2024.03.10.23.48.54
+        by smtp.gmail.com with ESMTPSA id et8-20020a056402378800b00566a4dec01fsm2619934edb.11.2024.03.10.23.50.22
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Mar 2024 23:48:55 -0700 (PDT)
-Message-ID: <abebde71-ac9f-434b-b48b-6567308a2873@linaro.org>
-Date: Mon, 11 Mar 2024 07:48:53 +0100
+        Sun, 10 Mar 2024 23:50:24 -0700 (PDT)
+Message-ID: <c7693ae1-b7e4-4960-b447-8373855d86b5@linaro.org>
+Date: Mon, 11 Mar 2024 07:50:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,21 +76,26 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: update compatible name
- for match with driver
+Subject: Re: [PATCH v10 2/4] ARM: dts: wpcm450: Remove clock-output-names from
+ reference clock node
 Content-Language: en-US
-To: Tengfei Fan <quic_tengfan@quicinc.com>,
- Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh+dt@kernel.org>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20240129092512.23602-1-quic_tengfan@quicinc.com>
- <20240129092512.23602-2-quic_tengfan@quicinc.com>
- <CAL_JsqJfsWaj9OPkvc34rBvx7W_3v9+1kZqNu6QKDsA=iWAA4w@mail.gmail.com>
- <CAL_JsqLbbRFijBXS5CyRm0P4FMY7bR3UUdgXA7xP4Z1oRevnzQ@mail.gmail.com>
- <CACRpkdZ3uhyTnF7YkMk9sOeJJFZ4UPEna7PwpqPeBpWDdAmayA@mail.gmail.com>
- <e828b14c-7a09-479a-bf60-0c16571f133f@quicinc.com>
+To: =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+ linux-clk@vger.kernel.org, openbmc@lists.ozlabs.org
+Cc: linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+ devicetree@vger.kernel.org, Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Avi Fishman <avifishman70@gmail.com>, Tomer Maimon <tmaimon77@gmail.com>,
+ Tali Perry <tali.perry1@gmail.com>, Patrick Venture <venture@google.com>,
+ Nancy Yuen <yuenn@google.com>, Benjamin Fair <benjaminfair@google.com>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>, Philipp Zabel
+ <p.zabel@pengutronix.de>, Wim Van Sebroeck <wim@linux-watchdog.org>,
+ Guenter Roeck <linux@roeck-us.net>,
+ Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+ Conor Dooley <conor+dt@kernel.org>
+References: <20240310192108.2747084-1-j.neuschaefer@gmx.net>
+ <20240310192108.2747084-3-j.neuschaefer@gmx.net>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -136,55 +141,16 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <e828b14c-7a09-479a-bf60-0c16571f133f@quicinc.com>
+In-Reply-To: <20240310192108.2747084-3-j.neuschaefer@gmx.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 11/03/2024 03:27, Tengfei Fan wrote:
+On 10/03/2024 20:21, Jonathan Neuschäfer wrote:
+> This is not necessary anymore, because the clk-wpcm450 driver doesn't
+> rely on global clock names anymore.
 > 
-> 
-> On 3/10/2024 7:44 AM, Linus Walleij wrote:
->> On Fri, Mar 8, 2024 at 9:10 PM Rob Herring <robh+dt@kernel.org> wrote:
->>> On Tue, Feb 27, 2024 at 7:37 AM Rob Herring <robh+dt@kernel.org> wrote:
->>>> On Mon, Jan 29, 2024 at 3:25 AM Tengfei Fan <quic_tengfan@quicinc.com> wrote:
->>>>>
->>>>> Use compatible name "qcom,sm4450-tlmm" instead of "qcom,sm4450-pinctrl"
->>>>> to match the compatible name in sm4450 pinctrl driver.
->>>>>
->>>>> Fixes: 7bf8b78f86db ("dt-bindings: pinctrl: qcom: Add SM4450 pinctrl")
->>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
->>>>> ---
->>>>>   Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml | 2 +-
->>>>>   1 file changed, 1 insertion(+), 1 deletion(-)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
->>>>> index bb08ca5a1509..bb675c8ec220 100644
->>>>> --- a/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
->>>>> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml
->>>>> @@ -17,7 +17,7 @@ allOf:
->>>>>
->>>>>   properties:
->>>>>     compatible:
->>>>> -    const: qcom,sm4450-pinctrl
->>>>> +    const: qcom,sm4450-tlmm
->>>>
->>>> I think you forgot to update the example:
->>>>
->>>> Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.example.dtb:
->>>> /example-0/pinctrl@f100000: failed to match any schema with
->>>> compatible: ['qcom,sm4450-tlmm']
->>>
->>> Still a warning in linux-next. Please send a fix.
->>
->> I understand it as applying 1/2 is the fix so I applied it.
-> 
-> I will check this warning, and I will fix it.
 
-Now? We were all waiting for you to respond here without any effect, so
-finally I asked Linus to take the patch. In the future, be responsible
-for your patches and comments happening to them. The same if your
-applied commit causes issues in the next.
+Your commit msg should say: since which commit.
 
 Best regards,
 Krzysztof
