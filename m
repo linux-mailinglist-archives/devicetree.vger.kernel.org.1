@@ -1,166 +1,285 @@
-Return-Path: <devicetree+bounces-49761-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49762-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id B3271877AF9
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 07:31:48 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6880D877B02
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 07:43:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 415B1281CF6
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 06:31:47 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id D18E1B207E9
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 06:43:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C52D4F512;
-	Mon, 11 Mar 2024 06:31:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1E438F4E7;
+	Mon, 11 Mar 2024 06:43:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="cn0UkGuY"
+	dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b="BfV0LQAk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01on2054.outbound.protection.outlook.com [40.107.215.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EC459C132
-	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 06:31:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710138702; cv=none; b=oA6lhttOaGcSWl7APknhbQmf3QwHZPiZ7N5rtiNge8lPQK4lBnD0TlG7u6/Z7LLcphJa08Vi25VPor0RAfoudJZY9yS8qdWX7aP2dpn5z2EmoT0FxcES9QWVWya9Wshjp1wuKWztsQ05mSMl+jTKOtVa87qSfD9x6J1vKGf3RPk=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710138702; c=relaxed/simple;
-	bh=vgQ+pstQbDQqnoScDKRmVdDkLQlZS+hJAtapwA/uhws=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=XNAf9b7BKqEc0z3t3THMr4PgoY1ew+27HfjRiRKdjujeO7YVoxWfh1rWLqDCs/5DL/OYIJm9jdfLWxLGmy5z39tK91knnH/ATVPpd6QqlMCjduB9iYVrSGA/99uhGp3djB2DMcaTNRyytl1krjwsR+NzL7HsTFmuIEe2BogBtq8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=cn0UkGuY; arc=none smtp.client-ip=209.85.208.45
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-5645960cd56so5329123a12.1
-        for <devicetree@vger.kernel.org>; Sun, 10 Mar 2024 23:31:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710138699; x=1710743499; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=YKshMjH9VFEW1rVLZAWxPTmSOr9NaVW5YdYSLjsh6nw=;
-        b=cn0UkGuYJ0a1WEKNXcfKljwIDlD5NaOs3/DpybUMrClZ+4W8qvfLavKz0B3rSGSBA2
-         q9WfI5Ijmh9r2oxESX36isPkjbHPSK1Z78p7W0VKQnhh6IS5tQvtHGbQrfna2j7BKLMo
-         nnVj9fy5LYsiZAWQYFc1oaXAUpkZf09Xoq421l9wfAYSZLS1LckLsbjgYAqNWXNRyRf9
-         F3RCpA80mzOZp/7NgT5jM5fvqmWEZ75gtPZCVVwooaQKJqmbcGuxbrTpUV96xxsGjoEh
-         715oiqcbaYbAF7OH2F1FDHnEXP98+4XTV5OlJXBFlcGGFf2Z5hSIZ7RzVj2NOXAT9QBf
-         H2aQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710138699; x=1710743499;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YKshMjH9VFEW1rVLZAWxPTmSOr9NaVW5YdYSLjsh6nw=;
-        b=UlUEVMYzDIld0jlVq4SH8isCp/uIBlQpI39vWg+xXgrkf70/X/mWmQaQwxxMfCV6fc
-         8R32BFc49L6qLPYsmJg2aMsxSiRO+5surP5BMVlxVpR1ulXj+KIIYGIRtSUTS5hHGtFV
-         u9XZspzpu64bnSANzux5WoK0cJN/FTF0kd8aij8puJWNjVkBiTKMVmsqwfvN6mPDt/nD
-         CftYQWIYuO1dg+4FHXOih3nhis9Miv3H/bYTPigeWiY2cVzn5Sd36U1md0GTV/J3lKMC
-         b2H0VLb7Q0mWchNOLj0xL7s6Arc2yiAayvcFpsz1voCkpn6fbryU4eVkiqVcUYC9FouI
-         N2Tw==
-X-Forwarded-Encrypted: i=1; AJvYcCW/drBEWB1/++sBUQ1GTI2AiQnuTXj9yE6Ypw+JiRJFpzhr8O/kNhLZxiKpu/xPJlRc/Ney378N+P4Nkg1pa21V2432d6Zwp4PQGQ==
-X-Gm-Message-State: AOJu0YyyD0dJ3CzXCMz/hpLBpSn5RXk9qC4lCdy619l82AyqrHlyc6gp
-	Or9t9cuvGpAMJxiYR/M5uON9xkpQPJVpSbpitHUWQtdBokb+lZlvI/3jI+zC+6Q=
-X-Google-Smtp-Source: AGHT+IEQje1kr9GE+QlVoYV8NagghXFhM5Ye2+zNqCpSIidqYQantMlptrrQwir+CuMooq++yFE62A==
-X-Received: by 2002:a17:907:1681:b0:a46:1e17:fbe6 with SMTP id cx1-20020a170907168100b00a461e17fbe6mr2341571ejd.9.1710138699349;
-        Sun, 10 Mar 2024 23:31:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id dx26-20020a170906a85a00b00a44f0406c8bsm2568132ejb.60.2024.03.10.23.31.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 10 Mar 2024 23:31:38 -0700 (PDT)
-Message-ID: <2914e313-1fb1-41f5-9db9-ce44dcd4903c@linaro.org>
-Date: Mon, 11 Mar 2024 07:31:36 +0100
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF16DD516;
+	Mon, 11 Mar 2024 06:43:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.215.54
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710139418; cv=fail; b=UnGiK9z/laiROkJGjwhK7Sy8oZV6TEDozYnNcup92ook3udqnuatPAW9pJvZk0DEILrhfM4PDIHBqJ4sMjniX95mx9xvns7SmtPvJW/x6iYykADfVKFjItBGUaaiuoafpkGaZIX3PS0bQpmUvKLX2SHQw0FHcDZIeEuuEiYM7UY=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710139418; c=relaxed/simple;
+	bh=D4H031LZKQGHpWHQoJ7BzBFN4n7qq/iv2MA/rmHUtAc=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=vDndnDKM+qRV0qRoLM8M1cjSnXer1VfgI+vp3acDW/2Q6LFJJgmkJDWLyhvaPTmYZ/XIi/7a0D5AlIxv7RmG4oOb3pA3y75pUAYifs1UHGucTLgSg7yOYdwfTuX7MVYE9OJnsaRapSJaRMQqi85o6YVgODyyy2vmvqbtA+S6yAk=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nuvoton.com; spf=pass smtp.mailfrom=nuvoton.com; dkim=pass (1024-bit key) header.d=nuvoton.com header.i=@nuvoton.com header.b=BfV0LQAk; arc=fail smtp.client-ip=40.107.215.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=nuvoton.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nuvoton.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Xo346L9LJ5R8aS99WIrxs3rHVUVlDwU+6ENQ5DkaXbolaJeqb/Gj5vA0UW+B06NOhj/5kTK2bdjdpHhco9GLe8ADumQm5XrmjZlV/xGdAxJ/m5gqmTlUz/nvLKSJDNpRm8cyVI3j1zuqF1fWO31W9XpDUBweYloNN7okCvR4t4UNiUeNEhYUwS3wPDFg2xqRUBQKaxJBhuHoikXhU9kSvpg/ia/62fCi9ZyE3uacxRZftmVEv80Q6KexyZDANtB+R9xfYiWeIRlzU6Z+CgoIkUt6nKBNHDKJGMC9J4A34GTQVx5P115noCZN7YnkdZIMJyNBaDsAjUMfBTbRz/gMeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DxYCnF1J/j6rr2oRDR7vsfgEmBwoUr+sk/4c7MxLth8=;
+ b=hFiz+qNmdvOGapV6EpOJdknkg9/5WKr2fUpYg2YQS0gjIaVWlxZBDHEz5n4Vqr+YGQ64SjKUzp6ZKUhuCxSe/psO9e4DWSpjJy/mBXWAq7X8DcunLEYuYhssEMrhvW6I5qZqUlohNSyw+4OV9uAbdLGmD8GcXJqjEFj3/UtuYrPZrM8WMKQEuDs0LyvNWymHh6dCYS6F5qkwsos2kyOZySvJUmn4KeN6+1Px5azT4a4O0U+Z5+0/D/WXKqlqCb/ZtnT1D8hb3TlDVoK4vuHF/r5gO/Ri9zxQfGLdAhF1KGlwVPQIOslSKh7JHV7OdOIWYfUrbwgZxQRJdxJ+FDJWLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nuvoton.com; dmarc=pass action=none header.from=nuvoton.com;
+ dkim=pass header.d=nuvoton.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DxYCnF1J/j6rr2oRDR7vsfgEmBwoUr+sk/4c7MxLth8=;
+ b=BfV0LQAktzyHTjpe04dkFUh5lr/bbQgI/vGTl8l8NahKBaYn/SQKCCKCabnmaVgTn8KqHjy67gQyonv5ffzoeKwkvEwQm58TIZCYh5X6W/CjeGdDn0m8zCscPia4B9sGXTjPzIjiVeJD4kJPOc7KthCBCGjLG/xgn3kEepGyvV8=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nuvoton.com;
+Received: from SEYPR03MB8378.apcprd03.prod.outlook.com (2603:1096:101:1fd::9)
+ by TY0PR03MB6773.apcprd03.prod.outlook.com (2603:1096:400:216::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.31; Mon, 11 Mar
+ 2024 06:43:26 +0000
+Received: from SEYPR03MB8378.apcprd03.prod.outlook.com
+ ([fe80::56e1:5482:dfef:a8a9]) by SEYPR03MB8378.apcprd03.prod.outlook.com
+ ([fe80::56e1:5482:dfef:a8a9%4]) with mapi id 15.20.7362.024; Mon, 11 Mar 2024
+ 06:43:26 +0000
+Message-ID: <0c78b07d-a50e-485b-91eb-6dd167869268@nuvoton.com>
+Date: Mon, 11 Mar 2024 14:43:21 +0800
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] ASoC: dt-bindings: Added schema for
+ "nuvoton,nau8325"
+Content-Language: en-US
+To: Rob Herring <robh@kernel.org>
+Cc: broonie@kernel.org, lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ conor+dt@kernel.org, YHCHuang@nuvoton.com, KCHSU0@nuvoton.com,
+ CTLIN0@nuvoton.com, SJLIN0@nuvoton.com, scott6986@gmail.com,
+ supercraig0719@gmail.com, dardar923@gmail.com
+References: <20240304101523.538989-1-wtli@nuvoton.com>
+ <20240304101523.538989-2-wtli@nuvoton.com>
+ <20240304133731.GA105655-robh@kernel.org>
+From: WTLI <wtli@nuvoton.com>
+In-Reply-To: <20240304133731.GA105655-robh@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
+X-ClientProxiedBy: SG2PR02CA0063.apcprd02.prod.outlook.com
+ (2603:1096:4:54::27) To SEYPR03MB8378.apcprd03.prod.outlook.com
+ (2603:1096:101:1fd::9)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v9 2/5] dt-bindings: input: cirrus,cs40l50: Add initial DT
- binding
-Content-Language: en-US
-To: Jeff LaBundy <jeff@labundy.com>,
- James Ogletree <jogletre@opensource.cirrus.com>
-Cc: dmitry.torokhov@gmail.com, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, lee@kernel.org,
- broonie@kernel.org, patches@opensource.cirrus.com,
- linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
- devicetree@vger.kernel.org
-References: <20240308222421.188858-1-jogletre@opensource.cirrus.com>
- <20240308222421.188858-3-jogletre@opensource.cirrus.com>
- <Ze4KNBEsK5juzpNR@nixie71>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <Ze4KNBEsK5juzpNR@nixie71>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SEYPR03MB8378:EE_|TY0PR03MB6773:EE_
+X-MS-Office365-Filtering-Correlation-Id: 12a8d598-1a87-4bb8-cb26-08dc41968dae
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	F+JgeC4AvDNv+GYyVVo0Qn1jHvJz312q8T/29GZIGlsQ0lYUL7O6+i+J977khHlJkwZq5BCBMIBmN3yJp6zW+5BqRiSP7s9bNfWX/PCeZxUYFTe2DWJdTBKt3gGjUFERcdJxyVBJpFEI02hmxLgmX7hZkM4zxraZGE4i69hI/eZyTp/0HbSpizN0r53ju9OxoBleH+E1YjCxJoOI3OQ9vGxlZJ7gJwXcWPOwgWfrNTNSPOL9KzvtJwqd6dnqT5hdgmKmsjGXGUgfJ2gnRuzi6yf9SX3jUjuiZ/tdBuVYKqzJh9V8fo+8q8jRmgbn9k759PLecnVMPXnXoRSCTNnkJG263OQJzkd1ivbLv1cZHl4uHs/jsGShh/sZ6uacoCobTriajcPEHtjeV3snOLcxeIYThCZw2YxYqK/W5Gd5yTdOjM/QrvZub2Dfy/FACZ82/LQxQ02nq4YouArY/7XIEDshlTfAHPLBrvF7wJJqbxdP1oykEqMlXttDL5R9/v6nVGSkQ9rMJcjjylVp48W+1zbRMsNrJ70xLX3DXuOUnjSsiMM6pJfzjReB0HocevcGo7NynPcZeKMSsX1JrR+eRTPNt6LTMbS8w9TsdIST0ZM=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SEYPR03MB8378.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(7416005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?V0JjWHhqRDRxWlVGNXVGcytCcHFVaUQ4OGU5TFNDNXBnUUtsekZ0U2xoNGhm?=
+ =?utf-8?B?a3htY3UrdzRuTHlIb0VQUlpwenBuZWxTQzVraHVaa1dnc3BZazFoVmU5a2Fq?=
+ =?utf-8?B?b2FPOThVNjh3VXQ5UXQ4a201SlVlcGo0MmdBSXc5R3hDK3dYS2RDalU2VklX?=
+ =?utf-8?B?NGpVZjF0ZllCMU5MSTlNejFTU2xpQTFPVHNCTDNIYWpaUVFselJIK2IvbWcz?=
+ =?utf-8?B?Tm9QRXp6TllwaFVVSEdVaXdPdURxN3l1Qno1Uy9ON2Uvai9HYUh0eTQyMFl1?=
+ =?utf-8?B?NTlrZ2FFbFBVUEsyZm1DS0UvYm9OS0lCTng3dUp2aVlyaGdzY3B3bUU1d25L?=
+ =?utf-8?B?N2NRdE5DZ3BjTWZUQVNKb2xPWktOZGNYMVp5YktsMThzVVcraVR5c21lVnE0?=
+ =?utf-8?B?VExSbUVsaExUOGpsS2FpeG1ONE5FMC80YXdtajc3RkdaMi92VmN3NDNHOUlt?=
+ =?utf-8?B?WDJ3dWxxTTVhM3BuQlRvNFJ2d3RyeGdCYU9xVHo1K2dZaHcwUGxsdzZyNThw?=
+ =?utf-8?B?UXdNZDhVNnVTdHZXVktvSW9BeTlad2RSK0dJbU5NRFgzN2QxVkhhaXZjeisr?=
+ =?utf-8?B?RDBBbVJLd2JGSVZkaWExSUljL0NqYXZLTTFaa2dqUGJSRzZDamlzUklzbFAz?=
+ =?utf-8?B?cTVqSk5EL29QOWE4K2ZVU2lLemFkaDhtSEdUc3hna0FXRWJZcG1WMjVxZUND?=
+ =?utf-8?B?MEN5ZmF1RnlMbUlLMXREY1dPdG1ocUxxOTBNdXRLT1liT2p6RUlJYldMZzFQ?=
+ =?utf-8?B?QlBaSUREN0RmZ0ZvcW5LZUVJQmV0ZE9SRWZzWW84a1pnT1ZsWTJVTGFYSE5Y?=
+ =?utf-8?B?R1ZhK1MvckU1SHUzT01idFkvNXV3a05obFRuUDdHd2FSSW9lWlFabDJUYlBn?=
+ =?utf-8?B?a3J3ZVNxdFZMeE4rVnBDZzUzVC9ZcVNURmZZMmJqOVdHNEE0RGUzbFJFRWho?=
+ =?utf-8?B?VjhWVHUwZ21zR05VWEZRSHJlV2wzSXlPQzdSYS85aE5Kb3NCUlBXS256eEFP?=
+ =?utf-8?B?Z3hQbGVjMDlvaHR6SGN4NGpHTlJnT0hhMnZ2K0hJdFA5T0ExTWVmNmlnZ0Fk?=
+ =?utf-8?B?K0U0ZjRPeDkzWVdpb3lMRVAyMWVKQVVoTjluZDdicXNYSUVvRm5QekZ2Q1ZR?=
+ =?utf-8?B?ZFV1TVBTZmJTSWlkNjRRQi9iWCtQcXdmbHFMazhSUkZKR2hEbkVhMUZGcHVm?=
+ =?utf-8?B?S3pGcGtTOHpvbDV1eVBic202UCt4RHdNdzNkdHJGU0w4dytleTZQc0hadTIz?=
+ =?utf-8?B?SjhlWUhOdG1sQmZFOEwzeE4vMmg3OEpPbzgrSk5JTmdrODA5eTU5MXc4REp6?=
+ =?utf-8?B?amV4NHdYSis4bkFUODNrSFBTNmNhaGxYRHhGellBYWJpN1hrOUVZcE4zcTYv?=
+ =?utf-8?B?emJZQzFtSm41SHF6dWQ0RWxDNm4yMFhEQi9sTkI1SmRWU3ZBblpxWmc2NFZH?=
+ =?utf-8?B?V045aUpaT1pydkd4Mi9vVytsSFpNczJ1cVdmeFZXRFlwVENRVHEweUJqRENt?=
+ =?utf-8?B?OUM5SDJrL09LcEloZTh6Ykx0eXpSWG00U2FwZzRaaWxRYzhqOFgxVGFuSUgy?=
+ =?utf-8?B?WEM4ZTErRCtIRk9aRVlLY3FWcURaZjJna05xZ3BwOFQ4TTdWYXBCYWhDR2Nl?=
+ =?utf-8?B?T0U4dnJHeFZPQ0Mxc29oNnBLWXFHWE1tSHRlUUNwS0MxSlVITGZTdURMZjd1?=
+ =?utf-8?B?d2NtZTJURGU5K2tzd3ZMeUY3b0lsWlFITGpiclUzelJaUFJDVU9QM0o5WVJ5?=
+ =?utf-8?B?VmVTOExQSVhaNDk3MW5LL1VYMDZkM2YyOUx4UEJPZjcvUVVEOG9wN2hmbUM3?=
+ =?utf-8?B?L0F3ckJ1MEs4N0dyUUFQaUJ6a09VSWtHYzNLK2FmWGxpVEV4ZFFSc2RURksv?=
+ =?utf-8?B?WWFNSHR1N0ZEY0Zob1NEOXJMMUVyTHRNQ0RvMVRldVpkOVBPUlFiVTZSb01V?=
+ =?utf-8?B?dmVoQlR4TXc3dDNvbXRGeTI4SHRhRCt2NnFOZ08yc2E4emRFT0d1YkJNSklR?=
+ =?utf-8?B?c29mTEJKNGdDREN0K25DT1AwbUFPR05OUjVIQktMTkl0NUNPdzFLNnFESm1P?=
+ =?utf-8?B?ZTZjWWx3YS9SLzJYVTI3eDBIck5PN3ZpQ0ZYZ2hheGpJZ3hYRFllSFJzMytS?=
+ =?utf-8?Q?EdiRt8LCbRZQiDoqZyU8pAxhi?=
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12a8d598-1a87-4bb8-cb26-08dc41968dae
+X-MS-Exchange-CrossTenant-AuthSource: SEYPR03MB8378.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 06:43:25.9610
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: q8pAL3EUc2lTPi21BbsGlLS+a9URj1RU8+R+zcbZjRS7iv+ZLgVqCcYS3BHaaHk4kfL6lqqXuy2ZBTz6XK2wZQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY0PR03MB6773
 
-On 10/03/2024 20:29, Jeff LaBundy wrote:
-> 
->> +  - vio-supply
+
+Rob Herring =E6=96=BC 3/4/2024 9:37 PM =E5=AF=AB=E9=81=93:
+> CAUTION - External Email: Do not click links or open attachments unless y=
+ou acknowledge the sender and content.
+>
+>
+> On Mon, Mar 04, 2024 at 06:15:22PM +0800, Seven Lee wrote:
+>> Added a DT schema for describing nau8325 audio amplifiers.
+> Present tense: Add a ...
+>
+> Please say more about this device. Features, link to datasheet, etc.
+
+okay. I will.
+
+>
+>> Signed-off-by: Seven Lee <wtli@nuvoton.com>
+>> ---
+>>   .../bindings/sound/nuvoton,nau8325.yaml       | 74 +++++++++++++++++++
+>>   1 file changed, 74 insertions(+)
+>>   create mode 100755 Documentation/devicetree/bindings/sound/nuvoton,nau=
+8325.yaml
+> Schemas aren't executable. checkpatch.pl will tell you this.
+
+okay, I will use the checkpatch.pl.
+
+>
+>> diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8325.yam=
+l b/Documentation/devicetree/bindings/sound/nuvoton,nau8325.yaml
+>> new file mode 100755
+>> index 000000000000..297d29462812
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8325.yaml
+>> @@ -0,0 +1,74 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/sound/nuvoton,nau8325.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +additionalProperties: false
+>> +title: NAU8325 audio Amplifier
+>> +
+>> +maintainers:
+>> +  - Seven Lee <WTLI@nuvoton.com>
+>> +
+>> +allOf:
+>> +  - $ref: dai-common.yaml#
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: nuvoton,nau8325
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  nuvoton,vref-impedance:
+>> +    description:
+>> +      VREF impedance selection.
+>> +    enum: ["Open", "25kOhm", "125kOhm", "2.5kOhm"]
+> Use standard units (-ohms), not strings. For "open", just omit the
+> property.
+
+okay, I will.
+
+>
+>> +
+>> +
+>> +  nuvoton,dac-vref:
+>> +    description: DAC Reference Voltage Setting.
+>> +    enum: ["External VDDA", "1.5V", "1.6V", "1.7V"]
+> Use standard units.
+
+okay, I will use standard units.
+
+>
+>> +
+>> +
+>> +  nuvoton,alc-enable:
+>> +    description:
+>> +      Enable digital automatic level control (ALC) function.
+>> +    type: boolean
+>> +
+>> +  nuvoton,clock-detection-disable:
+>> +    description:
+>> +      When clock detection is enabled, it will detect whether MCLK
+>> +      and FS are within the range. MCLK range is from 2.048MHz to 24.57=
+6MHz.
+>> +      FS range is from 8kHz to 96kHz. And also needs to detect the rati=
+o
+>> +      MCLK_SRC/LRCK of 256, 400 or 500, and needs to detect the BCLK
+>> +      to make sure data is present. There needs to be at least 8 BCLK
+>> +      cycles per Frame Sync.
+>> +    type: boolean
+>> +
+>> +  nuvoton,clock-det-data:
+>> +    description:
+>> +      Request clock detection to require 2048 non-zero samples before e=
+nabling
+>> +      the audio paths. If set then non-zero samples is required, otherw=
+ise it
+>> +      doesn't matter.
+>> +    type: boolean
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +unevaluatedProperties: false
 >> +
 >> +examples:
 >> +  - |
->> +    #include <dt-bindings/gpio/gpio.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +
 >> +    i2c {
->> +      #address-cells = <1>;
->> +      #size-cells = <0>;
-> 
-> Nit: most device trees tend to use 8-column indentation as with kernel code.
-
-If you meant DTS, then kernel coding style applies, which does not use
-spaces. But this is a binding, so please use indentation as defined by
-writing-schema: 2 or 4 spaces.
-
-
-Best regards,
-Krzysztof
-
+>> +        #address-cells =3D <1>;
+>> +        #size-cells =3D <0>;
+>> +        codec@21 {
+>> +            compatible =3D "nuvoton,nau8325";
+>> +            reg =3D <0x21>;
+>> +            nuvoton,vref-impedance =3D "125kOhm";
+>> +            nuvoton,dac-vref =3D "1.6V";
+>> +            nuvoton,alc-enable;
+>> +            nuvoton,clock-det-data;
+>> +        };
+>> +    };
+>> --
+>> 2.25.1
+>>
+________________________________
+________________________________
+ The privileged confidential information contained in this email is intende=
+d for use only by the addressees as indicated by the original sender of thi=
+s email. If you are not the addressee indicated in this email or are not re=
+sponsible for delivery of the email to such a person, please kindly reply t=
+o the sender indicating this fact and delete all copies of it from your com=
+puter and network server immediately. Your cooperation is highly appreciate=
+d. It is advised that any unauthorized use of confidential information of N=
+uvoton is strictly prohibited; and any information in this email irrelevant=
+ to the official business of Nuvoton shall be deemed as neither given nor e=
+ndorsed by Nuvoton.
 
