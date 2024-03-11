@@ -1,286 +1,163 @@
-Return-Path: <devicetree+bounces-49825-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49827-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 014F5877EF6
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 12:25:02 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id B322A877F2F
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 12:40:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 642E21F21BBE
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 11:25:01 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DA7F61C2147B
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 11:40:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C9013B78E;
-	Mon, 11 Mar 2024 11:24:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E2253B2BE;
+	Mon, 11 Mar 2024 11:40:48 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="cZ+SNbAu"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="M8LR92PT"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2061.outbound.protection.outlook.com [40.107.249.61])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f47.google.com (mail-ej1-f47.google.com [209.85.218.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 061D63C08D;
-	Mon, 11 Mar 2024 11:24:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.61
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710156277; cv=fail; b=TA3WOzUo5UbJnPc7NOVNnfUH2jSdQOLtx+Yzb5/VP0qh6aDfgXQZuEivxvmPA0nTYbN4TA7Boolbcm+KVZcQJNWcbmS3GYI62WDW7nyIx1pLof48k4PunKiFOX1hgh8hcofW01euXKVjQiTIUysMQmp6F/ox+2Mz6V72Yb31XHU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710156277; c=relaxed/simple;
-	bh=Q2eLqGtbdtqnDMuL5jU5fgPfd756WXPUeGFWQy6iTCw=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=bWeMzU7GuGnrnyUgyXHMysM4SV8cbM4PB49KxK00JTPdhyUF/DniJZBVRIuBI8CQH6Mds3hcY2GLMJUogGq2lnzWDdIz9WDmu8kVC/nFIrOCmKQqe5c3VpPgMjmuxLLOs29R11UOQtYOMwN2IeJJOTxAafSxwnhLWxAkfEm/ajI=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=cZ+SNbAu; arc=fail smtp.client-ip=40.107.249.61
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=UTHDP4R3mM2rROHUadZlEoaEyG2gRmQipi0u+Id/WCuC7w8oTQBu3ymEkgPMg1eKYfdln+k/DTNI6TIIpvB4Cvs9H913c4bS+dMig4JlcEe8eXr1zoFJ9+ZN0Db1yEGXY3ghk3UkudrU4bjiBie0VrRrrrHBOJu6Cb37HM/+NO6ggkutwwlckqH4PGI3VbrYCQ90ZrAAJHIxEM1TkQ5CGoyRCQcr/oxLmOEbQHjkYE/ijpWTyLSPrlGf5av06ZG0kuOLYMYDL0jWk8MF5AVZFRXDjie7u8aOITtff9EcNV6cHpILemHlGPTb75f4uAD9Y75asz/bUXuIVDF31SP4+w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LdLF19Jws4piMqTerCa0/qywk3QqGuWAVnD/OhUW/Es=;
- b=TzoTTn+KajDLC8muzuIplNUEIlG9sPDnmqcaDurLnc1MJuayhFAEmE98wlZ4OmlR7Y+LrY8qCNtz92bDDVUVHoArc6FQWRN9gqIjmAxglBWPZb2l1iB+cf9j032iztRdvdWVqpmickOg1Ti6b5iBuH6dAd3jbWYNuEqA0JRZDkO5tUgwch75V7qEEkBeZR4TRorPEcT9oSxWWN9q9AOmolP7GLcRnQd22jtiA3KOWxCQFX1XwWUQEXzGNNH1RkmZ3ocRoU7uq8+WkYlVqG6WZ3ao7hW5GdV19jPfeA/SJ+q3G/esnR233f/w4X1btSdK/HpSB9Isv/NtemCml4MXng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LdLF19Jws4piMqTerCa0/qywk3QqGuWAVnD/OhUW/Es=;
- b=cZ+SNbAub/cnV+B9aMX9TP99mKm0dxAM4jzZS4nt2c4XM27EoEecWby7ryDYp4NmZlLohHFvw5K1/cfgR2WpzMI3IuFRyvSVQmmlY7AigtwI2s+V9cpC1kE7TdDqwDsSA1IECJqevhRFp1GY8hDmDzypYWny4nZQXPiU+s2mr7M=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DB9PR04MB9377.eurprd04.prod.outlook.com (2603:10a6:10:36b::13)
- by AS4PR04MB9507.eurprd04.prod.outlook.com (2603:10a6:20b:4ca::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Mon, 11 Mar
- 2024 11:24:29 +0000
-Received: from DB9PR04MB9377.eurprd04.prod.outlook.com
- ([fe80::b3d4:17c4:91b7:101d]) by DB9PR04MB9377.eurprd04.prod.outlook.com
- ([fe80::b3d4:17c4:91b7:101d%5]) with mapi id 15.20.7362.024; Mon, 11 Mar 2024
- 11:24:29 +0000
-From: Joy Zou <joy.zou@nxp.com>
-To: ping.bai@nxp.com,
-	lgirdwood@gmail.com,
-	broonie@kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de
-Cc: kernel@pengutronix.de,
-	festevam@gmail.com,
-	linux-imx@nxp.com,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-kernel@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: [PATCH v3 3/3] arm64: dts: imx93-11x11-evk: add pca9451a support
-Date: Mon, 11 Mar 2024 19:32:01 +0800
-Message-Id: <20240311113201.664252-4-joy.zou@nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20240311113201.664252-1-joy.zou@nxp.com>
-References: <20240311113201.664252-1-joy.zou@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2P153CA0025.APCP153.PROD.OUTLOOK.COM
- (2603:1096:4:190::12) To DB9PR04MB9377.eurprd04.prod.outlook.com
- (2603:10a6:10:36b::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7CDF3A1CD
+	for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 11:40:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710157248; cv=none; b=ID9BxfIEG0TLyX5F4td1DQHDrcha3qPFi/nYhlUp6kvp4xBHe1RWJNYruyTKp1iJToKhaEZcyJWz7H6y+MBamw/ISRYQgWvJ1397GsuCTJxIp2JQHszE/IoiA3fYj2CgJTy2wt5JJmPKQlW43KqCh/UylInmf+xzeJedoVbWmis=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710157248; c=relaxed/simple;
+	bh=kiSPAvLuBmKLwnLz0szwtesbk3eIGqsOaJTrvrVAQog=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=U8+cwAPnEU3YNmXyHAPXrdZCeEViU389A1KbiIiSptrPhvozYXjGxEHSCfE1WmGXuiS2rdj7doZk8RUDQekZ8Ejs/V3gyf9GzpgvET7OaHjISAoeRXLETJze3/jJcA8Q57vV+6Lfh5NGJuNKjaTUv/XbplBD5x0V4x2oBLRPyN4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=M8LR92PT; arc=none smtp.client-ip=209.85.218.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-ej1-f47.google.com with SMTP id a640c23a62f3a-a45f257b81fso329663866b.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 04:40:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20230601; t=1710157245; x=1710762045; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=SkjzeE4dZ9o2SQlL4u86zxDCBSGbNgJrdX2fu89HmnA=;
+        b=M8LR92PTl1nKoEAFkOa/pPA6Qn6d4AuMXrJ51bSy5FQD5l7nx/YFX7doFHrxEcCotg
+         SC85tsPlYoZwzROsyX3AIW0bm5ySmSuJd8FkFWdkqdXsgm9PEq1a1juxoocnSyzsGWI7
+         Spcti+cYPBdJ7mPtLyqbsoXSHLtH0C8Ij1DJtFuPCBFXpTWh3Ot8be0PhN8tB+zvgrV5
+         Ty7kYE3w31aaAyYaG6E1tHPcML8/Y/tuzKMzRuzR4/x+O/ueiOKtADpAjSnKnY8kbmyv
+         rmc5utuOnx+TqFnARz52yZu9Yb4HhloSYJHOi6Et1NRmMlJ/EFQ84g0DXFYkj/Glu7rO
+         lbig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710157245; x=1710762045;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=SkjzeE4dZ9o2SQlL4u86zxDCBSGbNgJrdX2fu89HmnA=;
+        b=nNfb3J8RYt/Jh4XJcfR0nFJTkr+xXz4kxGaH5xPm0dr2B9b0l+Nkh55vfSmGMtjgyc
+         ucdjgtHRxJCmPnJql3aX9+XlRDcArQTJsVidclYYAdqgVeRYycu2RPtFDeA79AewKlnI
+         c/sTdY2GwlEjC5/UhcdDsH1+DMT0P7Ci9sE1aPPLiTLJeegqWlEWh83sI9TPTTexWv5R
+         Cwk3hy2Ytm8m7YQE8fAzGwtp5gCRyXfoznvDQMJg/bY/OFundHX3cXAT1+0FQ3vKGXxS
+         Zwz+UgIopxIflUG3XYTj0hi3rl64c4/lme69ZUtxHDerHH+tX13kYgE0mc4bJ1pkVsiD
+         CL6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCW0lnbghj5Ugt72lDuMXWEMNSLu1TDLTU8ikuuBS1mdQi6XsXEP6jKImu6Nfpo5X0JJAf6G6oAih3hRqUG20m/2eK+ExujE88xcRg==
+X-Gm-Message-State: AOJu0Yw5tbj2gqRtGE+Zo7gHpVh/i2zr4UqfMqPb4sYRErQYQFsPVm5Q
+	gQL6l3fNrs48qg9lMbEOoA8Xi/YKSSs1DIM7H5b949OqmJBD4LZEtYSjx9u8AA==
+X-Google-Smtp-Source: AGHT+IFvD3eTrXBRLNqxixAkOQniNH0dO7QajxVi2chqo/onElzZKCzE2Xbnm3EEkgu3u6XSOdsOrQ==
+X-Received: by 2002:a17:907:a805:b0:a45:ed7f:266a with SMTP id vo5-20020a170907a80500b00a45ed7f266amr3709882ejc.0.1710157245065;
+        Mon, 11 Mar 2024 04:40:45 -0700 (PDT)
+Received: from google.com (64.227.90.34.bc.googleusercontent.com. [34.90.227.64])
+        by smtp.gmail.com with ESMTPSA id d4-20020a1709064c4400b00a44dca5f9c1sm2770444ejw.100.2024.03.11.04.40.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Mar 2024 04:40:44 -0700 (PDT)
+Date: Mon, 11 Mar 2024 11:40:41 +0000
+From: Quentin Perret <qperret@google.com>
+To: Marc Zyngier <maz@kernel.org>
+Cc: Rob Herring <robh@kernel.org>, Saravana Kannan <saravanak@google.com>,
+	David Dai <davidai@google.com>,
+	"Rafael J. Wysocki" <rafael@kernel.org>,
+	Viresh Kumar <viresh.kumar@linaro.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Masami Hiramatsu <mhiramat@google.com>,
+	Will Deacon <will@kernel.org>,
+	Peter Zijlstra <peterz@infradead.org>,
+	Vincent Guittot <vincent.guittot@linaro.org>,
+	Oliver Upton <oliver.upton@linux.dev>,
+	Dietmar Eggemann <dietmar.eggemann@arm.com>,
+	Pavan Kondeti <quic_pkondeti@quicinc.com>,
+	Gupta Pankaj <pankaj.gupta@amd.com>, Mel Gorman <mgorman@suse.de>,
+	kernel-team@android.com, linux-pm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v5 1/2] dt-bindings: cpufreq: add virtual cpufreq device
+Message-ID: <Ze7tuWsJJMaBLNcf@google.com>
+References: <20240127004321.1902477-1-davidai@google.com>
+ <20240127004321.1902477-2-davidai@google.com>
+ <20240131170608.GA1441369-robh@kernel.org>
+ <CAGETcx8S0oS67oMZsPKk6_MGAtygoHEf_LN1gbcNDEBqRJ4PPg@mail.gmail.com>
+ <20240202155352.GA37864-robh@kernel.org>
+ <86a5og7cl7.wl-maz@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DB9PR04MB9377:EE_|AS4PR04MB9507:EE_
-X-MS-Office365-Filtering-Correlation-Id: 61ac28eb-854c-4706-53cd-08dc41bdd12c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	dwvyGBZCvoVN9jRT5tGBdErBKtvYKPiqtTiwWp86vdE7TngvZwKBtReADzXv701dQbYBSG+0cpT2UGtXsGi3sM86Tp2AekGvXVadB/tqCWKvPMliG/seOnlBzDbo4kowsonomjJe36jgm4jJhqt9YGt0wpw4IXB03cUDXuuCUIXrgcpDxva2DHWcq1VZdvkde06GwcMm7ZgtJxT2cPaej//k+sABCcoLsM+mO/QoK9g/qQ8ypPdISuqNEfNSwrKF9vQ5d1WJQ0+2UJ5vJhk6gTtiJCVX3UmzdhYWOE+husq3mSpw2t4TWt96GLKs4D5428zlDMC8ptvmdlQqeUtUbg2NKh6y8M3bmy8aFsCTMa3YwppfcH6HHOncS9xCaZpM+cxb8c+L7pt2sNePBtP8nGrQXBKxEAMWwNYBidHvW1+nPBodcpIAeDR/P+48yEXFcTjWWAZFZKrmYARLwpg8cwoFiEpF7iLFIcLMWrUl1PXYfa99tGEOl86EHMLSJfdHps95w3/5h0dEfLUEZECKOSCssnx84zMo99wfkjybSYR+E/5+ALruXKrEoRsMoCABCX+PGqWC0NQ116xTFVMuC1eRmXtMT49nKl/lA3A5wNdAEZ1hSmP49GApzlwnbUTff4aI/FNNTQtEvj2SBudPYlFML4Y9j0WQ1BS/YCk1CHwnagN5xveM/WgXmEX9WBMzkCvzWTCAqHnq6JuPB4rw3A==
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9377.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(52116005)(1800799015)(7416005)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?qVLRDnLzch0oWj4YyiFn0+x/64K4rcj0UKTAjLlkQ/QD3kxUsulrCS62CrYX?=
- =?us-ascii?Q?2tkY3N554ZX7ANn3VroTYkQ+FYyTq5QXeyFc0j5WdClnSO1EnzxHKHp5YgXo?=
- =?us-ascii?Q?EaRV2NOit5wAJ9aebwTPYt9X9u3B+x9ZfZRXAvT+/ccWpX9sDUkjU2uDw3aL?=
- =?us-ascii?Q?b9ElRFyWzLNfIWUJauYn+xenJqQD2vQE/VFx/GsFKQejhVANATumWO+2Rh8o?=
- =?us-ascii?Q?HPzEOsG6TkA3gZdw+ce/o13eJrhHrn0mspXd8crdA5hqQi5k5jQurKHb4Fj2?=
- =?us-ascii?Q?eu4+4kUas7MRfMPijbb1Zh7SEYbfaHsBPTE7QmcYIxt1qLseNvk/j6+of1oH?=
- =?us-ascii?Q?sKK1x9S7kcTJ1wSfF59sCZZiYT8ysSBMH3c8P/CKmoD1yDTJn1mFKNPdNcU7?=
- =?us-ascii?Q?AnhBgBH+glR8qWHFrkPeE6ciw+NEgKbT0vEc10WanMTcdX+hpMsRp374io3h?=
- =?us-ascii?Q?4LPxJGQYCvQYaw5U8cHda9m6vsLW0YgVX19JGO4EAhb1wj9mV4J+um2TT3uJ?=
- =?us-ascii?Q?Pgr9EqOfu6oKrk7pB4ab7pVk2XFyfibnK35O8YaWWchPTq68ZRxt4WslXe+b?=
- =?us-ascii?Q?0ljjAbV3pqWq+X9A8VRkCvRMfrK2PFhBxKNAFl2vagduLBA99NpYhkRuugjZ?=
- =?us-ascii?Q?FAEeqjZUgASoOKivTYA82ALxEC7YmLTcAwC/5TsCzTtQQ7/kxCFu1StJKwjQ?=
- =?us-ascii?Q?Ym3VFXnKOmV/Ai3chr2w0DppNPCr7K4fAUDIt03ANJeSsEacB0sVW6DNJ0Nm?=
- =?us-ascii?Q?kdzdGGPUvuLjMlsvAe+4ezCe6f+I52ZJWq5+/6isJQry1wZT9ey7Qbt070E9?=
- =?us-ascii?Q?OKTpz772FyEQN7FWDq6ghRVKRH4Uw6gz4K7EkeVfuNLhWoWNWzTgn3sLhHd9?=
- =?us-ascii?Q?LZ8HSVUcSJ5wIN8EVFtHY+dnLugYZheXLYaFELW2fts6WxVkum85CbgisA1X?=
- =?us-ascii?Q?sjb6JHf7uCb3y2jU/zxW14nTrlpSlWdkYuwX9aVSOTo4/eeVQXUNqdrJXAMn?=
- =?us-ascii?Q?5sfxsjF14QKRK5K6wcFBc8947qVzaBCB/OIw/ny7S5w70EPBJymOmEVfM4GW?=
- =?us-ascii?Q?qz3Yu8Wnn53dDIUmJ83WI0ElaRxXh/r/w2SXIy3D792cicpbynB8wnZz+tFr?=
- =?us-ascii?Q?OLJp2RlM89cgqGz6dJpMAonyTyQqQ+Ea0TInUcEOM3IhBA5X2nBBVZ4j+IU0?=
- =?us-ascii?Q?Sfnnve5y8lTPOb8UMtDomKp4xIeYtPxBIJi7lElB5Xk57WUj6oPItGQ2XGfI?=
- =?us-ascii?Q?6YcmyYb2ZpDaYEgXtPbnqtCXTWu5rvXE3AZDBp9cCFQeNVklmPuuA7gpWsgj?=
- =?us-ascii?Q?W+HNsIbg+S2GcRthbd44FO1ngXmphr03Q8ZHkw8GRfZoqzAmanEbMfHum4KE?=
- =?us-ascii?Q?nxSP33MkVa17rlDRTTRO21ozq3Ug9g02Uea9l7yGq4hTgizHdKW1A3m4VfDd?=
- =?us-ascii?Q?JzbWhVbIkptyBs0DeidQICNDhoV2vhPj6B2S28i2c7YyyV23NhSdRTh1A9C+?=
- =?us-ascii?Q?DN0ay9Wjy10LbxYbflqTsXsH271Mi3J1FTuWLE3xfHmZmOzqY7e4MLCLoRi4?=
- =?us-ascii?Q?gMkeV5Ck0H1AY543JaBQ3NKea562B0l4XlBigQEw?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 61ac28eb-854c-4706-53cd-08dc41bdd12c
-X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9377.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 11:24:29.5844
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 9U9emIJS4AKF8Ot3b8tnLkgs/Z/bf8wfcY5Bllu3pGhPz3JRM6rIUYcmE8NdzS+U
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS4PR04MB9507
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <86a5og7cl7.wl-maz@kernel.org>
 
-Support pca9451a on imx93-11x11-evk.
+On Sunday 04 Feb 2024 at 10:23:00 (+0000), Marc Zyngier wrote:
+> Well, I've said it before, and I'll say it again: the use of
+> *frequencies* makes no sense. It is a lie (it doesn't describe any
+> hardware, physical nor virtual), and doesn't reflect the way the
+> emulated cpufreq controller behaves either (since it scales everything
+> back to what the host can potentially do)
+> 
+> The closest abstraction we have to this is the unit-less capacity. And
+> *that* reflects the way the emulated cpufreq controller works while
+> avoiding lying to the guest about some arbitrary frequency.
+> 
+> In practice, this changes nothing to either the code or the behaviour.
+> But it changes the binding.
 
-Signed-off-by: Joy Zou <joy.zou@nxp.com>
----
-Changes in v3:
-1. modify the voltages constraints according to the imx93 datasheet.
----
- .../boot/dts/freescale/imx93-11x11-evk.dts    | 112 ++++++++++++++++++
- 1 file changed, 112 insertions(+)
+Apologies all for jumping late into this, but for what it's worth,
+regardless of the unit of the binding, Linux will shove that into
+cpufreq's 'frequency table' anyway, which as the name suggests is very
+much assuming frequencies :/ -- see how struct cpufreq_frequency_table
+explicitely requires KHz. The worst part is that this even ends up
+being reported to _userspace_ as frequencies in sysfs via cpufreq's
+scaling_available_frequencies file, even when they're really not...
 
-diff --git a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-index 9921ea13ab48..1efaf1ca3504 100644
---- a/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx93-11x11-evk.dts
-@@ -183,6 +183,105 @@ &wdog3 {
- 	status = "okay";
- };
- 
-+&lpi2c2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&pinctrl_lpi2c2>;
-+	pinctrl-1 = <&pinctrl_lpi2c2>;
-+	status = "okay";
-+
-+	pmic@25 {
-+		compatible = "nxp,pca9451a";
-+		reg = <0x25>;
-+		interrupt-parent = <&pcal6524>;
-+		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-+
-+		regulators {
-+			buck1: BUCK1 {
-+				regulator-name = "BUCK1";
-+				regulator-min-microvolt = <610000>;
-+				regulator-max-microvolt = <950000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			buck2: BUCK2 {
-+				regulator-name = "BUCK2";
-+				regulator-min-microvolt = <600000>;
-+				regulator-max-microvolt = <670000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+				regulator-ramp-delay = <3125>;
-+			};
-+
-+			buck4: BUCK4{
-+				regulator-name = "BUCK4";
-+				regulator-min-microvolt = <1620000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck5: BUCK5{
-+				regulator-name = "BUCK5";
-+				regulator-min-microvolt = <1620000>;
-+				regulator-max-microvolt = <3400000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			buck6: BUCK6 {
-+				regulator-name = "BUCK6";
-+				regulator-min-microvolt = <1060000>;
-+				regulator-max-microvolt = <1140000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo1: LDO1 {
-+				regulator-name = "LDO1";
-+				regulator-min-microvolt = <1620000>;
-+				regulator-max-microvolt = <1980000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo4: LDO4 {
-+				regulator-name = "LDO4";
-+				regulator-min-microvolt = <800000>;
-+				regulator-max-microvolt = <840000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+
-+			ldo5: LDO5 {
-+				regulator-name = "LDO5";
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <3300000>;
-+				regulator-boot-on;
-+				regulator-always-on;
-+			};
-+		};
-+	};
-+
-+	pcal6524: gpio@22 {
-+		compatible = "nxp,pcal6524";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pcal6524>;
-+		reg = <0x22>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		interrupt-controller;
-+		#interrupt-cells = <2>;
-+		interrupt-parent = <&gpio3>;
-+		interrupts = <27 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
-+};
-+
- &iomuxc {
- 	pinctrl_eqos: eqosgrp {
- 		fsl,pins = <
-@@ -239,6 +338,19 @@ MX93_PAD_DAP_TCLK_SWCLK__LPUART5_CTS_B		0x31e
- 	};
- 
- 	/* need to config the SION for data and cmd pad, refer to ERR052021 */
-+	pinctrl_lpi2c2: lpi2c2grp {
-+		fsl,pins = <
-+			MX93_PAD_I2C2_SCL__LPI2C2_SCL			0x40000b9e
-+			MX93_PAD_I2C2_SDA__LPI2C2_SDA			0x40000b9e
-+		>;
-+	};
-+
-+	pinctrl_pcal6524: pcal6524grp {
-+		fsl,pins = <
-+			MX93_PAD_CCM_CLKO2__GPIO3_IO27			0x31e
-+		>;
-+	};
-+
- 	pinctrl_usdhc1: usdhc1grp {
- 		fsl,pins = <
- 			MX93_PAD_SD1_CLK__USDHC1_CLK		0x15fe
--- 
-2.37.1
+In the case of SCMI for example, IIRC the firmware can optionally (and
+in practice I think it does for all older implementations of the spec
+least) report unit-less operating points to the driver, which will then
+happily pretend these are KHz values when reporting that into PM_OPP and
+cpufreq -- see how scmi_dvfs_device_opps_add() simply multiplies the
+level's 'perf' member by 1000 when populating PM_OPP (which is then
+propagated to cpufreq's freq_table'). And a small extract from the SCMI
+spec:
 
+    "Certain platforms use IMPLEMENTATION DEFINED indices to identify
+     performance levels. Level Indexing Mode is used to describe such
+     platform behavior. The level indices associated with performance
+     levels are neither guaranteed to be contiguous nor required to be
+     on a linear scale."
+
+Not nice, but unfortunately the core cpufreq framework has way too much
+historical dependencies on things being frequencies to really change it
+now, so we're pretty much stuck with that :(
+
+So, while I do agree with the sentiment that this is a non-ideal place
+to be, 'faking' frequencies is how we've addressed this so far in Linux,
+so I'm personally not too fussed about David's usage of a freq-based DT
+binding in this particular instance. On the plus side that allows to
+re-use all of PM_OPP and cpufreq infrastructure as-is, so that's cool.
+
+I guess we could make the argument that Linux's approach to handling
+frequencies shouldn't influence this given that the binding should be OS
+agnostic, but I can easily see how another OS could still make use of
+that binding (and in fact requiring that this other OS can deal with
+unitless frequencies is most likely going to be a bigger problem), so
+I'd be inclined to think this isn't a major problem either.
+
+Thanks,
+Quentin
 
