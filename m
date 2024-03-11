@@ -1,104 +1,204 @@
-Return-Path: <devicetree+bounces-49846-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49849-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id E61308780A1
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 14:29:01 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 328CB878140
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 15:05:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 22C8A1C2166B
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 13:29:01 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 8EDA51F22D47
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 14:05:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A0393F9D2;
-	Mon, 11 Mar 2024 13:28:32 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E603FB8C;
+	Mon, 11 Mar 2024 14:05:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="XPxDyqod"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jCrTGkFW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pl1-f176.google.com (mail-pl1-f176.google.com [209.85.214.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF7033EA9B;
-	Mon, 11 Mar 2024 13:28:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C9D561804C;
+	Mon, 11 Mar 2024 14:05:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710163712; cv=none; b=sgrDMKnFVzFQDW/VeOxTGPLGfNpTMJZbrmHmTYdymOQXYjLWrCbdoLceNQCZN8yCSGkVIDHqOsmYHyUmbZRrLNGPE8Hed0eKlUzCaQ9Ei/BSUXGUCPSdAuvWHytaaSWvfQNIBGEiS/TpwuO1RPf9dyAQRpSWWAce7PNhtS8Y270=
+	t=1710165942; cv=none; b=qYOXeu1LN8KyIFhJ6Sjb61lKmld/hlgY2X4P6puztw5sYHyoP9wex7SHPfrnQXKJnzFkSwwF2gGv9S9OZtij1m7CZfdxFlZOyqTZjIPNmT5nHk8MNKiXeVbnJi9ZBUDjZKzbfTKej2rStMrtJhC6pepKmZXydpHhf5db8JRsUj4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710163712; c=relaxed/simple;
-	bh=AFWzF1Lhea4tuERf2x297B9VZ9r3NjTyKmU+LYLRnBg=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=JLTSajHm+vEuBzNhBIZk1M1El4cCwCrD38SaGv3ZtXsAtCSxVI+oLZwRoq8g5T6W4K227AAenWuY4rnuVtrddc8gtwX/FJMGGJA+J6bYTAvxwHkJ+lshRxUElHX+UHhX5RiOWMB7hbuICPDs4dE/wd62o9YDbdLVBewUWKZ7WHs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=XPxDyqod; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F8E8C433F1;
-	Mon, 11 Mar 2024 13:28:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710163711;
-	bh=AFWzF1Lhea4tuERf2x297B9VZ9r3NjTyKmU+LYLRnBg=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=XPxDyqodU2lXWD13IHKafN7AXPh4BTw/sVzUEAAjIkecY8zxRB4ScWj5IVQhfAvHc
-	 mKXiFm3PIDRHeb/Gv+X/5pe3Blmc6u3aV4engBMB4UoJdCtw28cTam+hruvh0VUvF8
-	 prrUi71HmFtkayEoj/5VEEW27EfVoJP+s7B0JI/AJYXnM9310774lLfoi5PVJ8Nzl5
-	 Y4564TATSxUX90KxbGew9dKxokZDiX/OJ0IDC8qQAECKoXuaAYNpVocM5ylEGt/yKi
-	 dxgxjJanXwkp4kndACOOedB8F5PWFp5U1DAuMgyGtCG0kAIDXNRAkOdTn7fD8ALqzq
-	 Ji6uHaYNh5Lhg==
-Date: Mon, 11 Mar 2024 13:28:24 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc: ping.bai@nxp.com, lgirdwood@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	shawnguo@kernel.org, s.hauer@pengutronix.de,
-	linux-arm-kernel@lists.infradead.org, kernel@pengutronix.de,
-	festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, imx@lists.linux.dev,
-	Joy Zou <joy.zou@nxp.com>
-Subject: Re: [PATCH v2 2/3] regulator: pca9450: add pca9451a support
-Message-ID: <5b257caf-5a14-4c82-9999-061a0093a831@sirena.org.uk>
-References: <20240311084758.377889-1-joy.zou@nxp.com>
- <20240311084758.377889-3-joy.zou@nxp.com>
- <6027895.lOV4Wx5bFT@steina-w>
+	s=arc-20240116; t=1710165942; c=relaxed/simple;
+	bh=JZaWt59UeCeNqcvWv/r5KgGKkLciUCSkM8vrzhZCIq0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ELzsttdJDxogdXhc+Zjy365rIEQAeCUjhGe6lQFuKFZE3PpznBSzpnIrF3WsqpP2RQxNZYUkRP3zl8Nc2vpORapZCXDyMpUvmGiqZvukfdk9BfCcNNRqajQBYJVsF+7EmalHDQWC49WnEeb1yNJffcNdDazxofae5cjx+VvmH50=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jCrTGkFW; arc=none smtp.client-ip=209.85.214.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pl1-f176.google.com with SMTP id d9443c01a7336-1dd916ad172so9048065ad.2;
+        Mon, 11 Mar 2024 07:05:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710165940; x=1710770740; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=HGpBbMBa0HNbveOXPkSVIl+7CcmOX/xDsnjZNZtqj28=;
+        b=jCrTGkFWvmoJky+u63JlySZTvgBBdh+wImW1a724Bpp1sZNOQSkakaElVeU7dVCrd+
+         C+sJFd11tjuoR5+hfC4i57aw/YOkgY2Zhhkk2GO4rcLwH4+GjaQrzCymYsNBqqO+gtbU
+         xc+kui+03kom9IhcItr0uK4qf2uctGbukebEeA2LmkAqwYpMO8jVCG7I3r4+cdXPZTZh
+         w06Rr94/I53TpJ0GYrbhvfTkCjsB61fPUGTvUYVCd6SCAamQAcQlzQOzYUuPiNwi5+Y+
+         xn8HV+TX6N5KnjArrgsjv7ksnzJzhTRR52IGseqNRojAqy5ad28aGwOx+o3wAldEJFVt
+         xnUQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710165940; x=1710770740;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HGpBbMBa0HNbveOXPkSVIl+7CcmOX/xDsnjZNZtqj28=;
+        b=LdKeCsNwmpYcdpBNyaWLyf/PUZg+7Qsjv7F5ixsKQNBupMjE+Ov2pyqjK6T/BGx6w4
+         h83/bgXTOdC2TaPeYx7iEdZRfOk7GsAxzUZUlmkQjlb/SVGWm31uvTPjf6I6/weL7Is+
+         acXBUdkpsFJg3I0Q5QG9iFi5a35Ob3xtmuJKtdurqB+Rhve6ubVU6r9BAH+yWw1wLsdE
+         uHfXdEOjrBeeqzn50v2Y5sfTnjRl26V+uUbWFd4ITNciV4JvXRoiarNFEDpLU+Dhqqiz
+         a3FUAvnuBbfTJcIwzM94uCPjljU1XscLVczi7zhzUEjkSTJSkNYPqVAVqEUbKlMLVZmM
+         XV1A==
+X-Forwarded-Encrypted: i=1; AJvYcCUKNet28JyRe3Hex3Eoqgbj/kulGNgWskcaKB4Clfty13qLLDROgCYzGsuEjrZExxA8TEvOJxzn4yZqmtJctir36Y/sCCRycfZdxlmrs93snH03G9h3UgzxxeIjHAuo9g4R+2fmoWEkucwmH1fUVyAPHlTLj1Hd1ql65G01UHBVKo9BTQ==
+X-Gm-Message-State: AOJu0YzwGRlP05JgipAn44Lcj9EjbMVijjc2ur9O4ALGrPESyJWt6n1V
+	p6bblj6AU5QVj2CQIiZZ1LFJ/gYfmH0G9CBGR8DyITWeL48FInuQ
+X-Google-Smtp-Source: AGHT+IFrWc8qJis+RyGSwF7nLR4pCsKTP7tEgT5YdzAVXgtdQYPGMOl+PKdKOilW6izN/63zMXQXiA==
+X-Received: by 2002:a17:902:d2c1:b0:1dd:b315:906d with SMTP id n1-20020a170902d2c100b001ddb315906dmr45245plc.8.1710165939915;
+        Mon, 11 Mar 2024 07:05:39 -0700 (PDT)
+Received: from localhost.localdomain ([115.240.194.54])
+        by smtp.gmail.com with ESMTPSA id kt12-20020a170903088c00b001dd566a1f5fsm4744180plb.155.2024.03.11.07.05.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 11 Mar 2024 07:05:39 -0700 (PDT)
+From: Animesh Agarwal <animeshagarwal28@gmail.com>
+To: 
+Cc: animeshagarwal28@gmail.com,
+	Damien Le Moal <dlemoal@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux-ide@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v7] dt-bindings: imx-pata: Convert to dtschema
+Date: Mon, 11 Mar 2024 19:34:29 +0530
+Message-ID: <20240311140435.34329-1-animeshagarwal28@gmail.com>
+X-Mailer: git-send-email 2.44.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="5xEXLheoiK7FmBC0"
-Content-Disposition: inline
-In-Reply-To: <6027895.lOV4Wx5bFT@steina-w>
-X-Cookie: Sorry.  Nice try.
+Content-Transfer-Encoding: 8bit
 
+Convert the imx-pata bindings to DT schema.
+Add missing fsl,imx31-pata and
+fsl,imx51-pata compatibles during conversion,
+because they are already being used in existing DTS.
 
---5xEXLheoiK7FmBC0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Animesh Agarwal <animeshagarwal28@gmail.com>
 
-On Mon, Mar 11, 2024 at 10:09:12AM +0100, Alexander Stein wrote:
-> > +			.of_match = of_match_ptr("BUCK1"),
-> > +			.regulators_node = of_match_ptr("regulators"),
-> > +			.id = PCA9450_BUCK1,
-> > +			.ops = &pca9450_dvs_buck_regulator_ops,
-> > +			.type = REGULATOR_VOLTAGE,
+---
+Changes in v7:
+- removed blank space at the end of file.
 
-Please delete unneeded context from mails when replying.  Doing this
-makes it much easier to find your reply in the message, helping ensure
-it won't be missed by people scrolling through the irrelevant quoted
-material.
+Changes in v6:
+- removed items before const due to single element.
 
---5xEXLheoiK7FmBC0
-Content-Type: application/pgp-signature; name="signature.asc"
+Changes in v5:
+- added oneOf in compatible property to allow the usage of imx27 alone.
 
------BEGIN PGP SIGNATURE-----
+Changes in v4:
+- added fsl,imx31-pata in compatible property as enum.
 
-iQEyBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXvBvgACgkQJNaLcl1U
-h9A8/Af4ghJj9p33LNIkf0uGCYW+6YewUairPq/8Q81WYvjKcTtA8dUW1sES/9EA
-GNFWhs2jmCm+HUJZ1xH30dD7jZ1RB1OmpAWkPD4FtCiircG7npzn3MoAH2lF46Mo
-g5zcCDGlTi2qMHKIhqvmj8K+g9u03IFm6cncyTypMkYbmKrbaV7zwfKrSQ6wyt4r
-5vbljMy49ZQ5fue4jKn+4jk6cZvjSsVrskUxdL29EqIyVJ/v4mH4sW9+wKQ6VGnY
-LfHeLgYa65MzSJJx+h43Zr6yhYLX+Ez2C2FnaleA+43CskTwVDK8/mTLjHavwq8Y
-7yUuWWU1SoC6iSwb9GJ/Y0NQpSde
-=lHaH
------END PGP SIGNATURE-----
+Changes in v3:
+- added fsl,imx51-pata in compatible property as enum
+- fsl,imx27-pata is added as a const to ensure it is present always
 
---5xEXLheoiK7FmBC0--
+Changes in v2:
+- fixed style issues
+- compatible property now matches the examples
+- fixed yamllint warnings/errors
+---
+ .../devicetree/bindings/ata/fsl,imx-pata.yaml | 42 +++++++++++++++++++
+ .../devicetree/bindings/ata/imx-pata.txt      | 16 -------
+ 2 files changed, 42 insertions(+), 16 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+ delete mode 100644 Documentation/devicetree/bindings/ata/imx-pata.txt
+
+diff --git a/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+new file mode 100644
+index 000000000000..27b47e2d32f1
+--- /dev/null
++++ b/Documentation/devicetree/bindings/ata/fsl,imx-pata.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/ata/fsl,imx-pata.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Freescale i.MX PATA Controller
++
++maintainers:
++  - Animesh Agarwal <animeshagarwal28@gmail.com>
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - fsl,imx31-pata
++              - fsl,imx51-pata
++          - const: fsl,imx27-pata
++      - const: fsl,imx27-pata
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: PATA Controller interrupts
++
++  clocks:
++    items:
++      - description: PATA Controller clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    pata: pata@83fe0000 {
++        compatible = "fsl,imx51-pata","fsl,imx27-pata";
++        reg = <0x83fe0000 0x4000>;
++        interrupts = <70>;
++        clocks = <&clks 161>;
++    };
+diff --git a/Documentation/devicetree/bindings/ata/imx-pata.txt b/Documentation/devicetree/bindings/ata/imx-pata.txt
+deleted file mode 100644
+index f1172f00188a..000000000000
+--- a/Documentation/devicetree/bindings/ata/imx-pata.txt
++++ /dev/null
+@@ -1,16 +0,0 @@
+-* Freescale i.MX PATA Controller
+-
+-Required properties:
+-- compatible: "fsl,imx27-pata"
+-- reg: Address range of the PATA Controller
+-- interrupts: The interrupt of the PATA Controller
+-- clocks: the clocks for the PATA Controller
+-
+-Example:
+-
+-	pata: pata@83fe0000 {
+-		compatible = "fsl,imx51-pata", "fsl,imx27-pata";
+-		reg = <0x83fe0000 0x4000>;
+-		interrupts = <70>;
+-		clocks = <&clks 161>;
+-	};
+-- 
+2.44.0
+
 
