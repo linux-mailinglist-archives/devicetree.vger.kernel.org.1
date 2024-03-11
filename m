@@ -1,197 +1,334 @@
-Return-Path: <devicetree+bounces-49876-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49877-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6548C878501
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 17:22:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A7DE2878576
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 17:30:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 881811C20F87
-	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 16:22:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5DD80281BD1
+	for <lists+devicetree@lfdr.de>; Mon, 11 Mar 2024 16:30:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 48954535B7;
-	Mon, 11 Mar 2024 16:18:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 816A655792;
+	Mon, 11 Mar 2024 16:27:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="X1RFx7E1"
+	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="QB9ho/uC"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pl1-f170.google.com (mail-pl1-f170.google.com [209.85.214.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2078.outbound.protection.outlook.com [40.107.223.78])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4ACA52F7A;
-	Mon, 11 Mar 2024 16:18:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.214.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710173900; cv=none; b=kTcUJcSjhUR6k0u8aTsSGf2uwcMwJ3iznY9uLmwbT1Hy/YI9zeF8zVNltPiJ4xovo62ScrNLl0RllxINmHdwCUGrVw7hHMS+Fix6GpcCmb+7YWzxxP2789t6JYsgfyh2mFeEvq8m2BiOL7XAdxqb9Myw6z5l1yxq7v04M6wbQzQ=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710173900; c=relaxed/simple;
-	bh=Z63M2qtRmsoORDDGsiHituFolPHyUqRANRs99zv7Bj4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=O0noNFOgfcu5uALVKRan+Xm/U2plVyfpZ7Zsd/mR6g11MlGm1ZqaUY+6OLaZNRZC0I66akn9XiNY6TXpdogAW3lc8xUUWCCYi/eB5PYyOguBtGmxOo12gkedy+4pUmgcjOYcCPD1l14Q7N1pCPN/jAvokqkwCRBnU+ofa5wBA9g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=X1RFx7E1; arc=none smtp.client-ip=209.85.214.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-pl1-f170.google.com with SMTP id d9443c01a7336-1dc75972f25so31834435ad.1;
-        Mon, 11 Mar 2024 09:18:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710173898; x=1710778698; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=nLrBGhe7wsl5ZpaEorBAyyM3bioG1G+HFT1P3PMx4Ps=;
-        b=X1RFx7E1cdDmMvReL936edOnYONjUGAI2afktyXMmMtiaIIYffdrnYf7qXKVlltB78
-         kAiTu6hmmqy4sKmOB9wJPs/WYw5iBpcmDLZwFi9x29cr9Zi2uJxtJ8GZ06yX8ZwPiYtm
-         V7W9Tnxl3Ne7oXaqtWkhzVpaonhVX0xTfsUYH7FL7xQDE3k6FAXdtKU0bj5Pqi/tJBDP
-         2jaQF5sjd8onUPwn8tc1cf6U5uXPxD+v1KX8+5d0h0yb4/jMv3ssN1kcuML/GKMibYX2
-         z6DhjTyRVwqZdlMlctdbKhobJXqQLoB/H94eIO8zRcD1JkQBPC865o45lXGKndPpngQI
-         xdUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710173898; x=1710778698;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nLrBGhe7wsl5ZpaEorBAyyM3bioG1G+HFT1P3PMx4Ps=;
-        b=l1y2GBZPefCggRpZG5kd3IW0Qie9mOUG8K4Pv99xxB06LjP1Px/nprMFgi/A1cPjNT
-         o0CZxNdan73n74JR9xkClLI/YoUHFZQgFQBgHMBYj4PjmU1azjECeOPvoPemGv7Hvla0
-         JYCPvn5VwIQPvLi6PckiQrOK/L4YBRmfAIr3E7l57q1EGKXQ952Lq6Duykx0j0Z+EH++
-         eOP7ENK5pX6WN7hj2CE34zIk55Ax/KY7y9WcbNNOzffB1rOSrvVL2gtLTq3bQj1W9ZNT
-         5YQk2EFq8cRVujCebwEDxm4BxYzslTmf3tsIIMTcCF2anyhEAsI7B7AjMvhcI31pSf23
-         E2Ew==
-X-Forwarded-Encrypted: i=1; AJvYcCX/AXqircO6cRiQEk3JCBIjRxDS2kIfjxg04yMcVhwTUdY8OWWbS95Q0CNPS3+BiMRUXBRkSBAPtEFT92hDh46XkJN5zSM7O4qfHVcLxsJmzFbvf05vxot2AW8adUvFkphy2Y/2ed8lI/bW1Uyft2AG5PomIgHUVzATC/XCQvdXxru25u/pgKZw5BoBFBVM9ipgDDKW93efC072//RIH9c5ptw=
-X-Gm-Message-State: AOJu0Yw9oYA1uBAnMP09EJ6Cu0iHSYhUKjJBDeJTMiHeOc2Y2nwgcnrX
-	Jel/ODZWH1vy+yhTOiGBTos8qbiHz7n6yXF95n/rYO2mErjuKbyX
-X-Google-Smtp-Source: AGHT+IErPlfMx5poCq+SnT9bISYfhyWkor5ZX2Itne7IbaQhePms5OCJ5PU9oKePxgFanDc4araU4w==
-X-Received: by 2002:a17:903:124c:b0:1db:fc02:f96e with SMTP id u12-20020a170903124c00b001dbfc02f96emr1084198plh.24.1710173897743;
-        Mon, 11 Mar 2024 09:18:17 -0700 (PDT)
-Received: from google.com ([2620:15c:9d:2:fa9b:d52c:840:abd4])
-        by smtp.gmail.com with ESMTPSA id u5-20020a170902e5c500b001db8f7720e2sm4012491plf.288.2024.03.11.09.18.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Mar 2024 09:18:17 -0700 (PDT)
-Date: Mon, 11 Mar 2024 09:18:14 -0700
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To: Karel Balej <karelb@gimli.ms.mff.cuni.cz>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-	Duje =?utf-8?Q?Mihanovi=C4=87?= <duje.mihanovic@skole.hr>,
-	~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-Subject: Re: [RFC PATCH v3 4/5] input: add onkey driver for Marvell 88PM886
- PMIC
-Message-ID: <Ze8uxmKoK3baQ5Ah@google.com>
-References: <20240303101506.4187-1-karelb@gimli.ms.mff.cuni.cz>
- <20240303101506.4187-5-karelb@gimli.ms.mff.cuni.cz>
- <ZeTgEmjJc_VhYpLm@google.com>
- <CZL8ZSZAVEBI.349BV2Y6AKIPN@gimli.ms.mff.cuni.cz>
- <ZeZxI_spu4vwxrs7@google.com>
- <CZQ1EP61IDOC.1PPYGMIOINGND@gimli.ms.mff.cuni.cz>
- <3601a374-4161-40e1-8a80-9bbfdae5bd8a@linaro.org>
- <CZQUKBQF1GZ9.3RSNW5WQBU9L6@gimli.ms.mff.cuni.cz>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5714941C6E;
+	Mon, 11 Mar 2024 16:27:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.223.78
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710174470; cv=fail; b=AAzvman2dKbp9iquoiFBpydmf+DodL/i55ZpVKKjxp5ebqdJdJW3E45QveMutEXYRoccC4WZ7MGIEXn8zMrP1YiJZz9Ul5/7rBU8BCbzzKmCoYtdBugcr1ctxHsnv8tChDfkmqOLcPWxUV8MJvE3X77HTS8lT3KEDRLGE8cMsrM=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710174470; c=relaxed/simple;
+	bh=/YZhbkgADG6xq9I1E6nfEezEjBdxrmE1Wot6MLdJRXM=;
+	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
+	 Content-Type:MIME-Version; b=KInGsfEXLz6720lHsa7pDAkw6DGI0SgAyOlkgVDPiOtAPOJGGrQDux38AyRzakMR1FKMV4Zd6VXY8J49CAZTbrg0D7cnyKm4g7bVtllMIdSGFYhKYIxad5pkD1lO3k/OnpIiwfI3BQBGGrk3ef0nrG3xVerqxLGwaYQXuAYqgeU=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=QB9ho/uC; arc=fail smtp.client-ip=40.107.223.78
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
+Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RDffvOKopjvSx+Q0w+pUpq9CbWvU8oedHMQZZSk7163hDOsDRLjZ3HcQq3PwrGGHYTT6E00vzixIqbcslByhZQJU0neUEBLTPbyaLIFF562BgRjPG7CK22bQwfBXqjAKwpneA7VkCzoSsc6+w0YVdkNQbbDD/K4Ap7ANCqIvhCPm83dibTbAsCOFTy47szeIw/OUqICPLJPcnt/quxGo/8z3Trllx3sdGgWWWyBbbd1fElPzRQG5XXtgqRTaJcc23elqOCv+vpSG/5/OQ1/v8CzXblJpH2daF3SEfl7lGIcw9/c2ATknENSTJs/ZIyCO09N/lloLAUyp5lt2ZkTo9g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3MbUMF+W/lFlW6i3qt2RW/tLLwDvTYHSNoCz/loXHBo=;
+ b=VEgwsAa6Dz6UR6IZoGjnxyp5Vb3rZQjHLMpzXfJm/GILYM0b4X6NAgI9ckhU7LYTq9mr1UFS7oGjNxJWu/2iYyx0kk2LAjsYfS124YmevgdxwWHDcx5xvEI21fbB9UuwGfII5Xf3rg4agNl7FalmwDv2QUknyQTTO+Jt+u0h7WKsGcEcv9W7jvH5CW7i/yeu/m/8/riWfxuSNtO/l+tCvS+6HVbmFO5toI8idhaQ8yAF83gGRKqNZG/D4FSwXIQgYqdD2+KuBodxDkO5558mBUb4Fd+wR03V6QEKjy1ueXu63Gmd4Vbk7Mjnd6BYLmzp46I6ILUeHzOY5lZPmw+H6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3MbUMF+W/lFlW6i3qt2RW/tLLwDvTYHSNoCz/loXHBo=;
+ b=QB9ho/uCkKIYOwbokb6YdY2iA3tj1fz45aMrqN1A7v+1hcLDVP/pcaNz0IEosWVIjhjy6Iw26JWAmsFTaA3lehdaLF6K2FGqq5wDXAcSW7sbVWLm71b5AuXFfv3N8BoA7QXXEPo3ceoyxMWPvrCfX7WCls0hN2RUwJ+ebrG0SfE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
+ by DM6PR12MB4267.namprd12.prod.outlook.com (2603:10b6:5:21e::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Mon, 11 Mar
+ 2024 16:27:46 +0000
+Received: from BL1PR12MB5874.namprd12.prod.outlook.com
+ ([fe80::8b3e:57e8:d574:309a]) by BL1PR12MB5874.namprd12.prod.outlook.com
+ ([fe80::8b3e:57e8:d574:309a%4]) with mapi id 15.20.7362.035; Mon, 11 Mar 2024
+ 16:27:45 +0000
+Message-ID: <2c45d7fb-06e4-468d-9415-0eaa48c5250b@amd.com>
+Date: Mon, 11 Mar 2024 11:27:42 -0500
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH v12 2/4] dt-bindings: remoteproc: add Tightly Coupled
+ Memory (TCM) bindings
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+ andersson@kernel.org, mathieu.poirier@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ michal.simek@amd.com, ben.levinsky@amd.com
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+References: <20240301181638.814215-1-tanmay.shah@amd.com>
+ <20240301181638.814215-3-tanmay.shah@amd.com>
+ <fb78bdda-2ec7-4fcc-888e-233905a9386c@linaro.org>
+Content-Language: en-US
+From: Tanmay Shah <tanmay.shah@amd.com>
+In-Reply-To: <fb78bdda-2ec7-4fcc-888e-233905a9386c@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: SN6PR01CA0021.prod.exchangelabs.com (2603:10b6:805:b6::34)
+ To BL1PR12MB5874.namprd12.prod.outlook.com (2603:10b6:208:396::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CZQUKBQF1GZ9.3RSNW5WQBU9L6@gimli.ms.mff.cuni.cz>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5874:EE_|DM6PR12MB4267:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3e64b5a6-73a6-47ca-eeb0-08dc41e82efd
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	liV2DI5vGbtL9wVYuPYDn7Xz0jwhZBMWlCLc3zWdP60T7yAP9QWTng3z3EYhMpcwUgXNccl6vnfGeSdqeqxKcB4/IWnvZii3CaDxDgPPLem2+j737H7Fk2frz5qLaeyt/jJJ74kCgG9CDMqrJyA+UNSRgaKxzO0PnRK/EtkQDBsQJq2sZYHlVlFFlb0i0tZejCie8KhPRhPMpOJsAruu4qETEktloQ3Cdd1lcLkztl4SxAd/cpiIdLds9IOlw3eXfjiMKzTAsBytin0v1qu6dMZ4QXk8RQ6gREDCrkox5xncXQ1DG0UqWO2wLVvCOCmlZ0DzPL/4lRhf6Xk1atCyD4pb/L9sfDyIso00fXX0KOoR0iD3RY6zwnIFnD5jNeR/YLvJGEuSUrL53JKH4LwO8nHUlQA0Am2xX+ftFqTNgqKcT9HqS6pLJJMWCA3A+vhaRzALYOMJxCBiRFwLs4KGI9Ks7BprC9fFdMy79vIIPRx8AxTqWXAh+Dd7XNetqaTNIawJ/F90Y7VUAkVcTHukVGmWsP34JRa97k8hoKx8r9tpOhzWzQ4JsXeSfBGjUUWQhOi/7hsfgXVkfRElea6e6g4X6LLvTs2S2UMwTL7xDYk5uVGcK5RFNm346ZHAO7qAcalUqfZKhuou3m1QZJfopDt50oHGEe7r0EFQ0iStujI=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR12MB5874.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(7416005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?b3hKNytnc2o0a3NncFpsT2FhQmh0YjlYcy9YdXdKQmpzdXNGbWZTUkxZT2J2?=
+ =?utf-8?B?a2xTS2hjSFhBa29UVzVGSTE2ZzJyMlprVUhHT2dRbTJlY3FsZlBkT1RxTWtz?=
+ =?utf-8?B?OUdSNXM1UkY0NFowSkh4aGRWYVdkU09aVlFIL2RaRGUwTlExMTZDV1R5RW9U?=
+ =?utf-8?B?cHNXbVlJUHlpaEFlTlM0MVBocTl2dHJjaG1taEYzdW8xYkM1Q2FrUkR0aDFC?=
+ =?utf-8?B?cTRybDNvcmJRSnJGRUpVTFNSMk9EalBQN3lZMFFaY3ZDNEJkU1JVRXZDUlFT?=
+ =?utf-8?B?K0hNNCt6NGxUVFE1S241c0FFOE1YTk9xa3VOdkZHczRoeEJVUlZjNWhFZUJ0?=
+ =?utf-8?B?UDVUczVsWWNtU1N1RlhrQ3piUkpIcXRCTUtXZDNueERFZXVmWG83ZWp6VXdm?=
+ =?utf-8?B?RTVobU5XUnVEREE1UDBQQ3c4Myt3L1JCZHF0WmtVb1JaVDNVWmY1cUVOT0xX?=
+ =?utf-8?B?MjBlZGxsdEpvMktJaU9rTWp6dG9Hbm0xSWdRemZQT3R4RTBmYnBXT1ZhZjR1?=
+ =?utf-8?B?SVhWL3lOSXZnbWNWdDUrSVB1ZjBER3poa05rMGljTjE0dllMMjd3dDRJT3hO?=
+ =?utf-8?B?VTZMYVVuMU9qSjl6Y1pudjVLNnBydGwrazBkV0lHdXhEc2k2VTlDSGhKVEpT?=
+ =?utf-8?B?dTlXNlhoMXdINUZQYUtjb2FhR3dOaHhkUDkxck8vbWtJUG5NaG1XVFA5NzFr?=
+ =?utf-8?B?a1ZhNVRsZGJzL1pvM0pZTllkcldvMmlCNHJXUXNpRndwd2pJMys5SS96L25M?=
+ =?utf-8?B?aGF3ZlpEbzNwM2NETW0wZXNsUUE2dDYvZGR6RW1kcjUrRzVIZXNmeC9ZRVF3?=
+ =?utf-8?B?YUk5R1JUUTE4NkJlN0h2Z281ODgrUmFlM2R3SEtOSmdZbjRSYkgzOFJJWXIw?=
+ =?utf-8?B?YjRjdS9XZnV5YmsxbEFLUUtEdVJ6KzNveWJERnFGNkszMVd3Mm1oMExiZEpG?=
+ =?utf-8?B?dFJZT3N1bzJjWExZTkpieFVWbzdjVzJBZmozblNlMDNpYnZ3ZCtyVkNHY2Zh?=
+ =?utf-8?B?aXlqL0NodEdTWmpaQXFjZm54aC9PbHRXV2UybU5nLytSemFrVmxQWkJGaWwz?=
+ =?utf-8?B?Mi9ISGQyYUxGVTJnUG93bnkwQllrdHBkZEZWWmQ5OGNWKzZXcVF3MGU1eVh0?=
+ =?utf-8?B?bGI0alJ4a3BYRmdtUWtsU214Smw4VG5mMVVFQk1ybDNidG5JcUtlcFpZdUxQ?=
+ =?utf-8?B?UWc5M2dxVGFRN1loMGhLZ3Z1S1VoT05iRkVNMkJUVTZjUEZmNTF4Nm8veTBi?=
+ =?utf-8?B?dHIrNUE4dlBHS2JxOFJUOTA2cER0RE1teVg0MC9wUlIyN1o5M2FTRW0rTFRU?=
+ =?utf-8?B?YW55dHNkVlR1NjdvTGdOdUlUMlFnbXJIMFgvMHdjUVRwY2c0OElGVXpUWGtZ?=
+ =?utf-8?B?SStLZExUa05mQXpadmRSVXJscUlSMlFkUFNrS3g5czhnWDdmZnVNN2h0VGlL?=
+ =?utf-8?B?blpFOFluL1ZxczFUK1dXWW1zSEh1TzZSZXB4K2p5Q1FZcmZyMW5MUFdDUXNH?=
+ =?utf-8?B?MXFuWkR3cDlPdlFwWUxIU3lsNWJZQVZabmpodkhXeGJuNU8zQS9GakNLTUNH?=
+ =?utf-8?B?RGpFekcwbjV3a1F0Y2R6eUpRMFd5alpPeEFqYTI1UGNnMEYwM2VUWlVGQlNB?=
+ =?utf-8?B?MlZ2SmlMR1RXRDF5Q3VXWlJVY3hDWTRINmpGT0I5WVgzdWNyMTQwQm9zeHRY?=
+ =?utf-8?B?ZkpuTkZNSnJySDlqWUVzOGU1WEZLaE5JdXlCK1BOR09tMnZVRGJkWmhrdDF2?=
+ =?utf-8?B?cllwV21JRW1BQS9QTkQyakdlNkR3SVU0S0hCNVBPRUs2ekxCeTJTVDlIV0tp?=
+ =?utf-8?B?NHNHUzBOcUlOVjlkT0JnMnd4Q0pQTTREZkV6VmI2RkdIdDR3YnVjdnlvcjdK?=
+ =?utf-8?B?cnAvanBxdk1mdkN0ZWdmYlBSckNHZEhRZUFOaWd6YURSK3dKMnNoNC9ZOGxB?=
+ =?utf-8?B?aXhTTjhpUVVYVlRzMEUyb2l6clMrVVZRQm52MjltNjhjdGZVYUR3MkdyTDQv?=
+ =?utf-8?B?UU5RQ0J5M3g3elV1L3JhRU5TbWpSang3MG9yeVFYa1RSYnhtL1krOGlQdG1q?=
+ =?utf-8?B?dld5NmVxZGVuVU1PVjJKcDZjWHlubmxqaUdrem9YQ0ZvZ0ZUV2dQblVROFRW?=
+ =?utf-8?Q?Q3OZm9HNKf484r3lNlZ5YnvPR?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3e64b5a6-73a6-47ca-eeb0-08dc41e82efd
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5874.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 Mar 2024 16:27:45.7937
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: drfKqFHRe3YxkUQl2EdV24BE2bOIiLOIxxr3t0IafaPZItUjLn+MV2ACKXUfhUcL
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR12MB4267
 
-On Mon, Mar 11, 2024 at 11:26:16AM +0100, Karel Balej wrote:
-> Krzysztof Kozlowski, 2024-03-10T21:35:36+01:00:
-> > On 10/03/2024 12:35, Karel Balej wrote:
-> > > Dmitry Torokhov, 2024-03-04T17:10:59-08:00:
-> > >> On Mon, Mar 04, 2024 at 09:28:45PM +0100, Karel Balej wrote:
-> > >>> Dmitry,
-> > >>>
-> > >>> Dmitry Torokhov, 2024-03-03T12:39:46-08:00:
-> > >>>> On Sun, Mar 03, 2024 at 11:04:25AM +0100, Karel Balej wrote:
-> > >>>>> From: Karel Balej <balejk@matfyz.cz>
-> > >>>>>
-> > >>>>> Marvell 88PM886 PMIC provides onkey among other things. Add client
-> > >>>>> driver to handle it. The driver currently only provides a basic support
-> > >>>>> omitting additional functions found in the vendor version, such as long
-> > >>>>> onkey and GPIO integration.
-> > >>>>>
-> > >>>>> Signed-off-by: Karel Balej <balejk@matfyz.cz>
-> > >>>>> ---
-> > >>>>>
-> > >>>>> Notes:
-> > >>>>>     RFC v3:
-> > >>>>>     - Drop wakeup-source.
-> > >>>>>     RFC v2:
-> > >>>>>     - Address Dmitry's feedback:
-> > >>>>>       - Sort includes alphabetically.
-> > >>>>>       - Drop onkey->irq.
-> > >>>>>       - ret -> err in irq_handler and no initialization.
-> > >>>>>       - Break long lines and other formatting.
-> > >>>>>       - Do not clobber platform_get_irq error.
-> > >>>>>       - Do not set device parent manually.
-> > >>>>>       - Use input_set_capability.
-> > >>>>>       - Use the wakeup-source DT property.
-> > >>>>>       - Drop of_match_table.
-> > >>>>
-> > >>>> I only said that you should not be using of_match_ptr(), but you still
-> > >>>> need to have of_match_table set and have MODULE_DEVICE_TABLE() for the
-> > >>>> proper module loading support.
-> > >>>
-> > >>> I removed of_match_table because I no longer need compatible for this --
-> > >>> there are no device tree properties and the driver is being instantiated
-> > >>> by the MFD driver.
-> > >>>
-> > >>> Is the MODULE_DEVICE_TABLE() entry needed for the driver to probe when
-> > >>> compiled as module? If that is the case, given what I write above, am I
-> > >>> correct that MODULE_DEVICE_TABLE(platform,...) would be the right thing
-> > >>> to use here?
-> > >>
-> > >> Yes, if uevent generated for the device is "platform:<name>" then
-> > >> MODULE_DEVICE_TABLE(platform,...) will suffice. I am not sure how MFD
-> > >> sets it up (OF modalias or platform), but you should be able to check
-> > >> the format looking at the "uevent" attribute for your device in sysfs
-> > >> (/sys/devices/bus/platform/...). 
-> > > 
-> > > The uevent is indeed platform.
-> > > 
-> > > But since there is only one device, perhaps having a device table is
-> > > superfluous and using `MODULE_ALIAS("platform:88pm886-onkey")` is more
-> > > fitting?
-> >
-> > Adding aliases for standard IDs and standard cases is almost never
-> > correct. If you need module alias, it means your ID table is wrong (or
-> > missing, which is usually wrong).
-> >
-> > > 
-> > > Although I don't understand why this is even necessary when the driver
-> > > name is such and the module is registered using
-> > > `module_platform_driver`...
-> >
-> > ID table and MODULE_DEVICE_TABLE() are necessary for modprobe to work.
-> 
-> I think I understand the practical reasons. My point was that I would
-> expect the alias to be added automatically even in the case that the
-> device table is absent based solely on the driver name and the
-> registration method (*module*_*platform*_driver). Why is that not the
-> case? Obviously the driver name matching the mfd_cell name is sufficient
-> for the driver to probe when it is built in so the name does seem to
-> serve as some identification for the device just as a device table entry
-> would.
-> 
-> Furthermore, drivers/input/serio/ioc3kbd.c does not seem to have an ID
-> table either, nor a MODULE_ALIAS -- is that a mistake? If not, what
-> mechanism causes the driver to probe when compiled as a module? It seems
-> to me to effectively be the same setup as with my driver and that does
-> not load automatically (because of the missing alias).
+Hello Krzysztof,
 
-Yes, ioc3kbd is broken as far as module auto-loading goes. It probably
-did not get noticed before because the driver is likely to be built-in
-on the target architecture.
+Thanks for reviews. Please find my comments below.
 
-I'll take patches.
+On 3/9/24 7:25 AM, Krzysztof Kozlowski wrote:
+> On 01/03/2024 19:16, Tanmay Shah wrote:
+> > From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> > 
+> > Introduce bindings for TCM memory address space on AMD-xilinx Zynq
+> > UltraScale+ platform. It will help in defining TCM in device-tree
+> > and make it's access platform agnostic and data-driven.
+> > 
+> > Tightly-coupled memories(TCMs) are low-latency memory that provides
+> > predictable instruction execution and predictable data load/store
+> > timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
+> > banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
+> > 
+> > The TCM resources(reg, reg-names and power-domain) are documented for
+> > each TCM in the R5 node. The reg and reg-names are made as required
+> > properties as we don't want to hardcode TCM addresses for future
+> > platforms and for zu+ legacy implementation will ensure that the
+> > old dts w/o reg/reg-names works and stable ABI is maintained.
+> > 
+> > It also extends the examples for TCM split and lockstep modes.
+> > 
+> > Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+> > Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+> > ---
+> > 
+> > Changes in v12:
+> >   - add "reg", "reg-names" and "power-domains" in pattern properties
+> >   - add "reg" and "reg-names" in required list
+> >   - keep "power-domains" in required list as it was before the change
+> > 
+> > Changes in v11:
+> >   - Fix yamllint warning and reduce indentation as needed
+> > 
+> >  .../remoteproc/xlnx,zynqmp-r5fss.yaml         | 188 ++++++++++++++++--
+> >  1 file changed, 168 insertions(+), 20 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
+> > index 78aac69f1060..dc6ce308688f 100644
+> > --- a/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
+> > +++ b/Documentation/devicetree/bindings/remoteproc/xlnx,zynqmp-r5fss.yaml
+> > @@ -20,9 +20,21 @@ properties:
+> >    compatible:
+> >      const: xlnx,zynqmp-r5fss
+> >  
+> > +  "#address-cells":
+> > +    const: 2
+> > +
+> > +  "#size-cells":
+> > +    const: 2
+> > +
+> > +  ranges:
+> > +    description: |
+> > +      Standard ranges definition providing address translations for
+> > +      local R5F TCM address spaces to bus addresses.
+> > +
+> >    xlnx,cluster-mode:
+> >      $ref: /schemas/types.yaml#/definitions/uint32
+> >      enum: [0, 1, 2]
+> > +    default: 1
+> >      description: |
+> >        The RPU MPCore can operate in split mode (Dual-processor performance), Safety
+> >        lock-step mode(Both RPU cores execute the same code in lock-step,
+> > @@ -37,7 +49,7 @@ properties:
+> >        2: single cpu mode
+> >  
+> >  patternProperties:
+> > -  "^r5f-[a-f0-9]+$":
+> > +  "^r5f@[0-9a-f]+$":
+> >      type: object
+> >      description: |
+> >        The RPU is located in the Low Power Domain of the Processor Subsystem.
+> > @@ -54,8 +66,17 @@ patternProperties:
+> >        compatible:
+> >          const: xlnx,zynqmp-r5f
+> >  
+> > +      reg:
+> > +        minItems: 1
+> > +        maxItems: 4
+> > +
+> > +      reg-names:
+> > +        minItems: 1
+> > +        maxItems: 4
+> > +
+> >        power-domains:
+> > -        maxItems: 1
+> > +        minItems: 2
+> > +        maxItems: 5
+> >  
+> >        mboxes:
+> >          minItems: 1
+> > @@ -101,35 +122,162 @@ patternProperties:
+> >  
+> >      required:
+> >        - compatible
+> > +      - reg
+> > +      - reg-names
+> >        - power-domains
+> >  
+> > -    unevaluatedProperties: false
+> > -
+> >  required:
+> >    - compatible
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +  - ranges
+> > +
+> > +allOf:
+> > +  - if:
+> > +      properties:
+> > +        xlnx,cluster-mode:
+> > +          enum:
+> > +            - 1
+> > +    then:
+> > +      patternProperties:
+> > +        "^r5f@[0-9a-f]+$":
+> > +          type: object
+> > +
+> > +          properties:
+> > +            reg:
+> > +              minItems: 1
+> > +              items:
+> > +                - description: ATCM internal memory
+> > +                - description: BTCM internal memory
+> > +                - description: extra ATCM memory in lockstep mode
+> > +                - description: extra BTCM memory in lockstep mode
+> > +
+> > +            reg-names:
+> > +              minItems: 1
+> > +              items:
+> > +                - const: atcm0
+> > +                - const: btcm0
+> > +                - const: atcm1
+> > +                - const: btcm1
+>
+> Why power domains are flexible?
 
-Thanks.
+User may not want to use all the TCMs. For example, if users want to turn-on only TCM-A and rest of them want to keep off, then
 
--- 
-Dmitry
+they can avoid having power-domains of other TCMs in the device-tree. This helps with less power-consumption when needed.
+
+Hence flexible list of power-domains list.
+
+I can certainly mention "items:" under power-domains property.
+
+
+>
+> > +
+> > +    else:
+> > +      patternProperties:
+> > +        "^r5f@[0-9a-f]+$":
+> > +          type: object
+> > +
+> > +          properties:
+> > +            reg:
+> > +              minItems: 1
+> > +              items:
+> > +                - description: ATCM internal memory
+> > +                - description: BTCM internal memory
+> > +
+> > +            reg-names:
+> > +              minItems: 1
+> > +              items:
+> > +                - const: atcm0
+> > +                - const: btcm0
+> > +
+> > +            power-domains:
+> > +              maxItems: 3
+>
+> Please list power domains.
+
+Okay. But minItems will be still what's mentioned above i.e. 2.
+
+I hope it's fine.
+
+
+>
+> >  
+> >  additionalProperties: false
+>
+>
+> Best regards,
+> Krzysztof
+>
 
