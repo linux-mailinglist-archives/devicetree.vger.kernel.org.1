@@ -1,219 +1,229 @@
-Return-Path: <devicetree+bounces-50060-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50061-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BCC88795A7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:06:40 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7BFCC8795B3
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:10:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D7E9E2837AF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:06:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id E72AEB215AB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:10:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id CE2C17A724;
-	Tue, 12 Mar 2024 14:06:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id BF0F97AE59;
+	Tue, 12 Mar 2024 14:09:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b="QWjwyvsS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-oo1-f51.google.com (mail-oo1-f51.google.com [209.85.161.51])
+Received: from box.trvn.ru (box.trvn.ru [194.87.146.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 751894DA10;
-	Tue, 12 Mar 2024 14:06:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.161.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7D0DC78298;
+	Tue, 12 Mar 2024 14:09:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=194.87.146.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710252395; cv=none; b=MxBH8QLyhk/Yzs5aStfcFu7PC2aRAJRtEIztPrr7eUstaZ3NmLOM+2mkEojD6s20J1Pr8tRsslp8Rgl8a6k5tu77CHqJH4atC1pUjV69NMfxIGl3s7fdxcjrUQTZSrlXPN/ZJBS83IhYN03opm6vS8YnqWcZ9Cb+zEzQfvSkJfo=
+	t=1710252591; cv=none; b=npI5Jv31xthhe0ZwzTZsGKPU3DvpSF4uApRSgCSlPh/fly8Fe/h6XB7zxwqWHP7ehw4MjboUMovC1KlHMNJZNHkWwKwWt2826iqiPV/mhJG7cvVgC/twCkv6wWdqwXYHxC0/lZmMl7bvkgkibBsXfOyyeAsAItfls0SkYbf7iIg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710252395; c=relaxed/simple;
-	bh=CMcT7NFgND7n3RWDv6iIu5xR7PvIHiE7LpCchCOE3AM=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=rYQOBEMJse2XDvSbs4Vz7pPzfcChtBnDUByNflmmAVIB43FTvXPrehQi0uum+7gYUus2zMpNv2vgn/kgy8Ko9z5m20tpW9Jlf1VpkNPDtxCcEwzFPilyo2/YXUYsx6Am+iO3TH3YIu8fdn11Ze78NyF70o9Q+mVRAdPYfdQB7jE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.161.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-oo1-f51.google.com with SMTP id 006d021491bc7-5a1ca29db62so2557188eaf.0;
-        Tue, 12 Mar 2024 07:06:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710252391; x=1710857191;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=kMM3M1Kjys3ldpK+AwrnZJ+C5QFF9zdbpLWE/OA8c6A=;
-        b=gccCedgwmZ4WwYRiZvFXUtgaS//cm+Ub4KFrFv7g6Gx8U+1PZWdmkUsLkynVuLdAVE
-         k3yt53ny37LugzUJ590/gPbqJt/oC6uG22zCACLGbl88M+1YH1sKxOAR47VlOa5gas7s
-         ol/u1u62yiLrd/G1eMAhP3IJdxoSHlXyZ7d7QZCo4juHV0m+dVIXHTYN5o5ohC+eYBQr
-         MJL/XiBIJIqdCWZN+I6Epbvc9HK1T/3tDS/P1OIJRZnWs0okmpXev+paX3pve0PcRwBc
-         yeC9han+cq3Q6/R4V1vLNpCJyYJshKDeq6RhyyomUwxmrPK9HlIZAiY2q3ShFAHFruVj
-         pJ1Q==
-X-Forwarded-Encrypted: i=1; AJvYcCVJLMa9yeiiqSfbkj+a+onWUO72Y2VmDrwmY3OY/BOAEWQvYHkDnUQG2Q9b+Qq8fggAT+x2zANwNJLvcsZjuzMbpmmz5SDfUKN4OZi09PDRK11dV7hdwTrav4HJM1pULXbBhOCwUotoa+QyDucWzET14zALhyNOZ8VFbSpPInVkF+UWImUpVqYU/QTIWCh3aCSqmpCFx7K8ACMAs4SX6B500O+5CzR3
-X-Gm-Message-State: AOJu0YxpcwXT8G5HpEOJQhLYqdUk0RJDcp86NcLHxJVSO+78Dwj6oqCc
-	QZxl5hxnEN4uba9Xz/YB9eq/4vwbIln4SaGD5IZ9/ShTVvMQdHI4wXUHoSTh8Js=
-X-Google-Smtp-Source: AGHT+IF6B1qZXJ3O89Oqai8iMQfbpUTm0RZHHWNOrIB7zEo0rozok8wXZXj7SKZ4Vzr3unD8o1KTZg==
-X-Received: by 2002:a05:6358:7423:b0:17b:c4a8:1417 with SMTP id s35-20020a056358742300b0017bc4a81417mr11434992rwg.1.1710252390449;
-        Tue, 12 Mar 2024 07:06:30 -0700 (PDT)
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
-        by smtp.gmail.com with ESMTPSA id a18-20020a5b0ed2000000b00dcc45635f27sm1671166ybs.18.2024.03.12.07.06.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Mar 2024 07:06:29 -0700 (PDT)
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dcbd1d4904dso5445592276.3;
-        Tue, 12 Mar 2024 07:06:29 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCW7WYXy8KAIuPFvUr8N/cjWi330zNp2NECmM/dfZd2FV2fbQKa5sKl5B7raagv17mp0ErRqskzYaLMotqvVWBd47/6Gz7lkhd4Vo+wU35bnZ15jjtybCzupu7vO8gOv1wIjb8IsSqUcxp9axS0MJKyAMCBAuAPrZKq+E2eA68VBUCx710XTFDrxaHWVRCbsoYa8zFrCWEeFZf3hgqB3dVD9TI8cEYEu
-X-Received: by 2002:a5b:f4e:0:b0:dc7:4f61:5723 with SMTP id
- y14-20020a5b0f4e000000b00dc74f615723mr7341132ybr.39.1710252388801; Tue, 12
- Mar 2024 07:06:28 -0700 (PDT)
+	s=arc-20240116; t=1710252591; c=relaxed/simple;
+	bh=8P9bBzn3Aiha2NlQ/uegJyJ6edLvB2HNcbKt6Yo0QCA=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=rUBmPx4eDz17w4RoUQyClVrAEclT213+SE4frAAYbQmKLljc2T6jvizpJN4heIpEdoVWjz55LpPh9LjdA1Hdk4TZ19DBsVN8yID0jJctlOKX5Aau844AyjlS8GRaa7GvQJcqnbyc+tFnDr5xnaWkuKSA+UxL9wkkgEBCv1pQlX4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru; spf=pass smtp.mailfrom=trvn.ru; dkim=pass (2048-bit key) header.d=trvn.ru header.i=@trvn.ru header.b=QWjwyvsS; arc=none smtp.client-ip=194.87.146.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=trvn.ru
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=trvn.ru
+Received: from authenticated-user (box.trvn.ru [194.87.146.52])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+	(No client certificate requested)
+	by box.trvn.ru (Postfix) with ESMTPSA id ADAF9408C7;
+	Tue, 12 Mar 2024 19:09:42 +0500 (+05)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=trvn.ru; s=mail;
+	t=1710252585; bh=8P9bBzn3Aiha2NlQ/uegJyJ6edLvB2HNcbKt6Yo0QCA=;
+	h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+	b=QWjwyvsS3OHgWeuVCVlmpOLn+PYcSzXv7QExbowRLcra89t3IzEpT3AyZzyNEW8ll
+	 76zOUsAGI5zoV1lMR1e8YKN0hl+4qjyoLPCWMAg90TEeR0I8o6Qw5JfviGREejVU6Z
+	 z6Kr+lDapyusG6nTdDEHK8CehBIiA+jbpJU+tD0p7ZoWltti0F9mkOZHud6kkwEXVt
+	 sUpFqq3qAKzdsX1pBU44Uns57Fa+Sp1KZNJAIvThV33Oib2I26gjTGJdIjXAQE3tuu
+	 lunauIGW3GHVZxhdKkGhVS/KrJLcxHLHQ93ViAts1twx6KVxsKq+hN2bsliZjcl5MH
+	 M1HJFyG9xPVgA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240308172726.225357-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240308172726.225357-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <7082ed3b-d6d0-4228-b7a6-7c0e0e46b8e2@linaro.org> <CA+V-a8tM29h10DULurMJtBZBnLK_ZF7pH_Y0bhZTvWO0O7-G-Q@mail.gmail.com>
- <2974085a-d9b4-4a66-b60f-c02a06a74647@linaro.org> <CAMuHMdVgp_vFnWr5ruzdyc1vNQKoCdM=pLZmgmkDjmUHvQBJJw@mail.gmail.com>
- <b04f9c39-9797-40b8-a25b-8154ad559cd5@linaro.org>
-In-Reply-To: <b04f9c39-9797-40b8-a25b-8154ad559cd5@linaro.org>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Tue, 12 Mar 2024 15:06:16 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdV6yHcTaZKMJxS7sabzhCGKt4i6bjKJiNDaCoHkeZXUvA@mail.gmail.com>
-Message-ID: <CAMuHMdV6yHcTaZKMJxS7sabzhCGKt4i6bjKJiNDaCoHkeZXUvA@mail.gmail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: i2c: renesas,riic: Document R9A09G057 support
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, Chris Brandt <chris.brandt@renesas.com>, 
-	Andi Shyti <andi.shyti@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Date: Tue, 12 Mar 2024 19:09:39 +0500
+From: Nikita Travkin <nikita@trvn.ru>
+To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc: Hans de Goede <hdegoede@redhat.com>, =?UTF-8?Q?Ilpo_J=C3=A4rvinen?=
+ <ilpo.jarvinen@linux.intel.com>, Sebastian Reichel <sre@kernel.org>, Rob
+ Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+ cros-qcom-dts-watchers@chromium.org, Andy Gross <agross@kernel.org>, Bjorn
+ Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+ platform-driver-x86@vger.kernel.org
+Subject: Re: [PATCH v4 3/4] platform: arm64: Add Acer Aspire 1 embedded
+ controller driver
+In-Reply-To: <104ae92c-e9ef-494e-b33e-351210c93846@linaro.org>
+References: <20240312-aspire1-ec-v4-0-bd8e3eea212f@trvn.ru>
+ <20240312-aspire1-ec-v4-3-bd8e3eea212f@trvn.ru>
+ <f62bbc98-12c1-48e1-8ebc-17dd5887026a@linaro.org>
+ <84b4d83f3340402e98fe0e70afd085be@trvn.ru>
+ <104ae92c-e9ef-494e-b33e-351210c93846@linaro.org>
+Message-ID: <a25602fa7e11322800d9430d353172b8@trvn.ru>
+X-Sender: nikita@trvn.ru
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+Bryan O'Donoghue писал(а) 12.03.2024 17:44:
+> On 12/03/2024 12:23, Nikita Travkin wrote:
+>> Bryan O'Donoghue писал(а) 12.03.2024 16:58:
+>>> On 12/03/2024 08:42, Nikita Travkin wrote:
+>>>> Acer Aspire 1 is a Snapdragon 7c based laptop. It uses an embedded
+>>>> controller to perform a set of various functions, such as:
+>>>>
+>>>> - Battery and charger monitoring;
+>>>> - Keyboard layout control (i.e. fn_lock settings);
+>>>> - USB Type-C DP alt mode HPD notifications;
+>>>> - Laptop lid status.
+>>>>
+>>>> Unfortunately, while all this functionality is implemented in ACPI, it's
+>>>> currently not possible to use ACPI to boot Linux on such Qualcomm
+>>>> devices. To allow Linux to still support the features provided by EC,
+>>>> this driver reimplments the relevant ACPI parts. This allows us to boot
+>>>> the laptop with Device Tree and retain all the features.
+>>>>
+>>>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
+>>>> ---
+>>>>    drivers/platform/arm64/Kconfig           |  16 +
+>>>>    drivers/platform/arm64/Makefile          |   2 +
+>>>>    drivers/platform/arm64/acer-aspire1-ec.c | 555 +++++++++++++++++++++++++++++++
+>>>
+>>> You should be listing yourself as a maintainer for a driver you contribute.
+>>
+>> I always believed that being in the AUTHOR() at the bottom of the driver
+>> would guarantee me being in CC for patches, which so far worked great,
+>> thus I was always hesitent adding extra entries in MAINTAINERS.
+> 
+> There's no such rule that I'm aware of there.
+> 
+> scripts/get_maintainer.pl won't list a driver author for the CC list
+> 
+> This is a substantial body of code, you should own it upstream.
+> 
 
-On Tue, Mar 12, 2024 at 12:04=E2=80=AFPM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
-> On 11/03/2024 10:00, Geert Uytterhoeven wrote:
-> >>>>> -          - renesas,riic-r9a07g054  # RZ/V2L
-> >>>>> -      - const: renesas,riic-rz      # generic RIIC compatible
-> >>>>> +    oneOf:
-> >>>>> +      - items:
-> >>>>> +          - enum:
-> >>>>> +              - renesas,riic-r7s72100   # RZ/A1H
-> >>>>> +              - renesas,riic-r7s9210    # RZ/A2M
-> >>>>> +              - renesas,riic-r9a07g043  # RZ/G2UL and RZ/Five
-> >>>>> +              - renesas,riic-r9a07g044  # RZ/G2{L,LC}
-> >>>>> +              - renesas,riic-r9a07g054  # RZ/V2L
-> >>>>> +          - const: renesas,riic-rz      # generic RIIC compatible
-> >>>>> +
-> >>>>> +      - items:
-> >>>>> +          - enum:
-> >>>>> +              - renesas,riic-r9a09g057  # RZ/V2H(P)
-> >>>>
-> >>>> No, that does not look right. If you added generic compatible for al=
-l
-> >>>> RIIC then how can you add a new RIIC compatible which does not follo=
-w
-> >>>> generic one?
-> >>>>
-> >>> The generic compatible above which was added previously was for the
-> >>> RZ/(A) SoCs and not for all the RIICs. The RZ/G2L family was also
-> >>
-> >> No, it said: "generic RIIC compatible". It did not say "RIIC RZ/A". It
-> >> said RIIC RZ
-> >
-> > At the time the original bindings were written, only RZ/A1, RZ/T1,
-> > and RZ/N1 existed, and all RIIC modules present in these SoCs were
-> > identical.  Later, we got RZ/A2, which also included a compatible
-> > RIIC block.
-> >
-> > Somewhere along the timeline, the marketing department became creative,
-> > and we got RZ/G1 (RZ/G1[HMNEC]) and RZ/G2 (RZ/G2[HMNE]), which were
-> > unrelated to earlier RZ series :-(  When marketing started smoking
-> > something different, we got RZ/G2L, which is unrelated to RZ/G2,
-> > but reuses some parts from RZ/A.  Recently, we got RZ/G3S, which is
-> > similar to RZ/G2L...
+Hm, ack, will add an entry in MAINTAINERS for this.
+
+>>>> +	case ASPIRE_EC_EVENT_FG_INF_CHG:
+>>>> +		/* Notify (\_SB.I2C3.BAT1, 0x81) // Information Change */
+>>>
+>>> fallthrough;
+>>>
+>>
+>> Hm I believe this would not warn since it's just two values for the same
+>> code, just with an extra comment inbetween?
+> 
+> True
 >
-> That's fine, but then the comment "generic RIIC compatible" is confusing
-> for anyone not knowing this. Commit msg could also mention why the
-> generic compatible covers actually entirely different hardware. The
-> commit msg so far focused on the differences between these hardwares,
-> thus my questions - why do you create generic compatibles which are not
-> generic?
 
-I agree the comment should be updated when adding a new variant which
-is not compatible with the old generic variant (i.e. in this patch).
+(Adding anyway given Ilpo also thinks it's better than not)
 
-> >> So don't use generic compatibles as fallbacks. That's the point.
-> >
-> > It's indeed difficult to predict the future. So SoC-specific compatible
-> > values are safer.
-> > At the same time, we want to avoid having to add compatible values for
-> > each and every SoC to each driver, so we try to group SoCs per family.
-> > For R-Car that worked out reasonably well, however, for RZ...
+>>>> +	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
+>>>> +		val->intval = le16_to_cpu(ddat.voltage_now) * 1000;
+>>>> +		break;
+>>>> +
+>>>> +	case POWER_SUPPLY_PROP_VOLTAGE_MAX_DESIGN:
+>>>> +		val->intval = le16_to_cpu(sdat.voltage_design) * 1000;
+>>>> +		break;
+>>>> +
+>>>> +	case POWER_SUPPLY_PROP_CHARGE_NOW:
+>>>> +		val->intval = le16_to_cpu(ddat.capacity_now) * 1000;
+>>>> +		break;
+>>>> +
+>>>> +	case POWER_SUPPLY_PROP_CHARGE_FULL:
+>>>> +		val->intval = le16_to_cpu(sdat.capacity_full) * 1000;
+>>>> +		break;
+>>>
+>>> You could stick this "* 1000" stuff in a macro
+>>>
+>>
+>> acpi/battery.c also explicitly sets the multiplier so I think it's the
+>> "common" way to do this.
+> 
+> common != nice
+> 
+> Purely aesthetics but anyway consider decomposing the replication down.
 >
-> I did not propose that. Nothing changes in your driver with my proposal.
-> Use SoC-compatibles only: for fallbacks and for specific(frontbacks?) par=
-ts.
->
-> To give you some sort of guidance for any future submission:
-> 1. Use SoC-like fallback compatible, prepended with SoC-specific compatib=
-le.
-> 2. If you insist on generic fallback compatible, its usage should be
-> limited to the cases where you can guarantee for 99.9% that future
-> devices will be compatible with this. I doubt anyone can guarantee that,
-> thus we keep repeating on mailing lists the same: go to point (1).
 
-Personally, I am not such a big fan of method 1, for several reasons:
+(Adding a macro for this)
 
-  - Support for new SoCs is not always added in chronological SoC
-    release date order.  So you could end up with:
+>>>> +
+>>>> +	case POWER_SUPPLY_PROP_CAPACITY:
+>>>> +		val->intval = le16_to_cpu(ddat.capacity_now) * 100;
+>>>> +		val->intval /= le16_to_cpu(sdat.capacity_full);
+>>>> +		break;
+>>>> +
+>>>> +	case POWER_SUPPLY_PROP_CURRENT_NOW:
+>>>> +		val->intval = (s16)le16_to_cpu(ddat.current_now) * 1000;
+>>>> +		break;
+>>>> +
+>>>> +	case POWER_SUPPLY_PROP_PRESENT:
+>>>> +		val->intval = !!(ddat.flags & ASPIRE_EC_FG_FLAG_PRESENT);
+>>>> +		break;
+>>>> +
+>>>> +	case POWER_SUPPLY_PROP_SCOPE:
+>>>> +		val->intval = POWER_SUPPLY_SCOPE_SYSTEM;
+>>>> +		break;
+>>>> +
+>>>> +	case POWER_SUPPLY_PROP_MODEL_NAME:
+>>>> +		if (sdat.model_id - 1 < ARRAY_SIZE(aspire_ec_bat_psy_battery_model))
+>>>> +			val->strval = aspire_ec_bat_psy_battery_model[sdat.model_id - 1];
+>>>> +		else
+>>>> +			val->strval = "Unknown";
+>>>> +		break;
+>>>> +
+>>>> +	case POWER_SUPPLY_PROP_MANUFACTURER:
+>>>> +		if (sdat.vendor_id - 3 < ARRAY_SIZE(aspire_ec_bat_psy_battery_vendor))
+>>>> +			val->strval = aspire_ec_bat_psy_battery_vendor[sdat.vendor_id - 3];
+>>>
+>>> How does this -3 offset not underflow ?
+>>>
+>>
+>> vendor_id here is unsigned so the if check would actually overflow,
+>> though explaining that I guess it's better to be explicit there and let
+>> the compiler optimize that check away anyway... I will update the if
+>> condition with an extra (id >= 3).
+> 
+> What's the "3" about though, that's what's not jumping out at me here.
+> 
 
-        compatible =3D "vendor,socB-foo", "vendor,socA-foo";
+Ah, well... the 3 comes from a big if/elseif table in the decompiled dsdt
+which starts at 3... I will add a small comment near it.
 
-     with socA being (much) newer than socB.
+>>
+>>> Seems a bit dodgy to me - can you add a comment to the code to explain ? Its not immediately obvious the -3 is OK.
+>>>
+>>> Also could you take an index instead of replicating the -value stepdown each time ?
+>>>
+>>> int myindex = sdat.model_id - 1;
+>>>
+>>> if (myindex < someconstraint)
+>>> 	strval = somearry[myindex];
+>>>
+>>
+>> I decided against adding a dedicated index variable since there is only
+>> one actual use for each, so it's easy to see where it goes.
+> 
+> But you do it twice which is why I'm suggesting take an index and do it once.
+> 
+> Then add
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
 
-  - Worse, adding support for different modules in different SoCs
-    can be unordered, too, leading to
+Ack, given there is also >0, will add str_index variable for the offset
+index.
 
-        compatible =3D "vendor,socB-foo", "vendor,socA-foo";
-
-    but
-
-        compatible =3D "vendor,socA-bar", "vendor,socB-bar";
-
-    Which is inconsistent.  Fortunately we now have "make dtbs_check"
-    to catch mistakes there.
-
-  - When a third SoC arrives, which one do you pick?
-
-        compatible =3D "vendor,socC-foo", "vendor,socA-foo";
-
-    or
-
-        compatible =3D "vendor,socC-foo", "vendor,socB-foo";
-
-    Obviously you pick the former (unless you detected the issues
-    below first ;-)
-
-  - When socA-foo turns out to be slightly different from socB-foo,
-    socC-foo, ... you have to add of_device_id entries for all
-    socX-foo to the driver.  With a family-specific fallback, you'd
-    be limited to one entry for the family-specific callback and
-    a second entry for the misbehaving socA.
-
-So far my 5=E2=82=ACc....
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+Thanks!
+Nikita
 
