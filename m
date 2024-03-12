@@ -1,249 +1,185 @@
-Return-Path: <devicetree+bounces-50118-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50119-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 97C4E879AEC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 19:03:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEBC0879B02
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 19:11:08 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2A23E1F22B09
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 18:03:40 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 79F3D1F22D78
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 18:11:08 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C2AB1386DC;
-	Tue, 12 Mar 2024 18:03:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 95D311386D1;
+	Tue, 12 Mar 2024 18:11:03 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="byB2xwYL"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="IFNV3KHR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5BE031386C5
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 18:03:30 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6C68353BE;
+	Tue, 12 Mar 2024 18:11:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710266613; cv=none; b=aeW9MvwVnIYDhwOXV46bBIHnxU9zmiEI6fitzgrx+nKanQb/XyntMvOO/Xc5aulcqkbzAdMc9DzVLlQdBoreU/Uahi+i1ktM8s0/7maHy2ucHBtdyQN1iZwrRhfqnhHhBPO8No0xiqWa1EYk5UcPcF5A7I/F7xVct2JMB1LgfKA=
+	t=1710267063; cv=none; b=kE/IhMzJW+rvG0dASWoYd4aHdzfXUWfgSkoN2hyN281HVUmmHKlIn7J65i4V/u5cLGZ71MFbsbXssVusqp0FpryYCQnuHSdj2yzPU4WrjSUzCLZKohYlmyfaxcCGddNRLmDzInYfX+/nUsuF2/KrS0fkqcgF27nunF5jUImIXH4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710266613; c=relaxed/simple;
-	bh=tl6GootnZJCViCd3hZwiY8NFba7wM+1REiO8IHBWDPc=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=EgwswdfhXBEZZjCDoYqp/S1nT58BRihV66UvVS+PRsE5K5fPoiAiTm0wWm2U+2qMoh2ZBkIvcgyn98JBzg52dKEAB9qQKXnG5eXEmKP0n/DwKaXwwQef/cR/QYpV85iXtq2Ysn2X5Apt7ui6YWtZSMBk9WYGEWgzSiFkssqa21M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=byB2xwYL; arc=none smtp.client-ip=209.85.167.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513b022a238so2546392e87.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 11:03:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710266608; x=1710871408; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=HREX7H/9qDu7coR15IdnVSKnBY8ogVJjtclSGzuYtSo=;
-        b=byB2xwYL2uMXdT+AGWZk1vADQYsd8X/4BQ9dYHL4IhnYxhJzlS40m1SXxBtQby9Znw
-         CNcMaL0y+sAfR4TgAGobCc2h2Jh6GxS5huXbUOF+XbEZxfMYk4S/5gvlKUQ6P4E3rT+d
-         7LjvNL0fmqtdlJ7t6xquaZOODeA37REKzmWOn+zCrjNLPR2yR/YGJx3B8UMVH7AtWPtA
-         60W5ZtFtRD6Tf5ayYHscZZrP8iHkGaBTr8ow0rUjjFHBLKPqRp8uT93xy5cy34iP6U4+
-         FHRafyBSNGEYymB3M6GcwR4+SqPuEDWS6GvrU3HD8o5jVfzszd1XRUYKg2kgg7Kww7p7
-         h51Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710266608; x=1710871408;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HREX7H/9qDu7coR15IdnVSKnBY8ogVJjtclSGzuYtSo=;
-        b=YXoZlYIw+5mB7CDTzwbbLrYj6Nm4+knrtC9K6KApwqiMx6OTYYjWkCVi1spnmdOwSD
-         LGMG63YcYuGhiiZ7QhVHsa48IcoolaiCYo7RH5uaQbSZqNUtdQm7CZ3cCsg6WtHfF0oI
-         idSZKpuqij0aqTZtwPsi9pYObdLQPixqFQa7E+acoaM8EGTV4Eh1/ePyGBF+WPV79rIq
-         tTnNsqF4tCERytao0QcXJB6N3N2CrlEwa0o0Yc5XdnF5hiAEyxzog8NNMjD64hELjUbW
-         r0ydnDqxKxifU8cDUL//Owp3CS92CA8E3l53z/rKGjeHvAlY8ZaoKCRp81LQtsioYKrU
-         tI9A==
-X-Forwarded-Encrypted: i=1; AJvYcCWCmRyFByKN9Ms4Mcu8Jyn6kOhNcA/O7VISxi70xoFG88WQKD+sCPPw17690ap4Y6e31ePYMfsaMBK4h40NQb8UmibRm1JebTpXSA==
-X-Gm-Message-State: AOJu0YxfAzNPZOuF5tFrZVvY899u1FB7qWglf8fBgYKLiSX9bZCabsyO
-	vqdn/vUaOvgJGo0A0wpDvGAj5lpAlAH0Ke9ftbEcYm6ayB808OcoYpiScQus2eE=
-X-Google-Smtp-Source: AGHT+IH4QkVIYDqyhzAKmOcXC+nBQU3/7sOVXezpH3hXulIwAWJtf0fWxm8Rb21sEMqvyOTNR1ZG+Q==
-X-Received: by 2002:a05:6512:ba4:b0:513:a72c:de7c with SMTP id b36-20020a0565120ba400b00513a72cde7cmr2898449lfv.46.1710266608394;
-        Tue, 12 Mar 2024 11:03:28 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id bq7-20020a5d5a07000000b0033e95794186sm6250688wrb.83.2024.03.12.11.03.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Mar 2024 11:03:27 -0700 (PDT)
-Message-ID: <c441a132-b16b-4244-a712-8971c902d4d7@baylibre.com>
-Date: Tue, 12 Mar 2024 19:03:25 +0100
+	s=arc-20240116; t=1710267063; c=relaxed/simple;
+	bh=iXvp6qLfbM2ZBb4HstqZ7NW7nEQLjt2bZ1lyrtz0h14=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=CcrKESnl9s4orfKmBcexpEkE7whL36c0BzYTDijD6CYBzKWGh31xpKzRKfxu5vDsJrkHWqGDqcvZtDdxSg2OprLyRLBjutRxp1neTpGfWCSlwPMwCLIc5E4lJLCmemz8BqRDXM+X2kZ4BeCTzlZlRZEcGm79c8TCkzjMmg8PaRM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=IFNV3KHR; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id ECF29C433F1;
+	Tue, 12 Mar 2024 18:11:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710267063;
+	bh=iXvp6qLfbM2ZBb4HstqZ7NW7nEQLjt2bZ1lyrtz0h14=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=IFNV3KHRA1kg+FK/m0lc3NwSGSlNtZmVfahkQZv3/dqWUaCV3HiiK6dZzF+r7CJmP
+	 ipRBAcPi1pQ0/ejnMiZGPDpJ/MBRGbNSz61FIi1scGnjz7dZICfmE+66kxIQVcR0Tf
+	 wAx8YL7sUv7CZzopfOA75Lk/BS6eGn7AZlAETv3pZ3fng6hDspq3xCHH2NF2OXIukN
+	 DNV279VgiVgUmVRj3hKWlIcVk/KDNlZWAPJJAvpKymizuuku5QOEIqMNKZQIlldZGv
+	 Q6BIbMcqBD10QUo+aEC6TzN5LyJOCeJkKz8UOEDzXTTsHE0pgSPtoswFeQhnCkdXQb
+	 eYTruViHenG7w==
+Received: by mail-lj1-f180.google.com with SMTP id 38308e7fff4ca-2d4515ec3aaso990801fa.1;
+        Tue, 12 Mar 2024 11:11:02 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXIWBBnD7Nmd1GqvX33JJWSrMoPBtrvAdEFMKFKHEqnNqXNXFlhWWecEi4t80Ok3AtjW7X691R+DY8c1NLljpN5V0OsGzeqKvpT
+X-Gm-Message-State: AOJu0YzHhP26oMv4MWvWUwlygg22sFGoTZHVUjvOTuijf7WUTy+Gujv1
+	0RzaDZ3IVkg4b7RtHrRglz25EukyoF1oW+GZfVdet/3x57aveDZCF1aUEXprjguf5eeTPcqt/J2
+	QO8N2muKMwOgMpu40tZKFsZaZ8w==
+X-Google-Smtp-Source: AGHT+IGFIpWi+XnSEBcTESH0jVN7cI01f0pj25ek64QARYYkargkU/fdKRqPF8fouUcSyN19xJtoBKxhjf1St89RWPw=
+X-Received: by 2002:a2e:92c3:0:b0:2d4:e6d:ab5b with SMTP id
+ k3-20020a2e92c3000000b002d40e6dab5bmr101309ljh.22.1710267061179; Tue, 12 Mar
+ 2024 11:11:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/18] ASoC: codecs: mt6357: add MT6357 codec
-Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- Nicolas Belin <nbelin@baylibre.com>
-References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
- <20240226-audio-i350-v1-12-4fa1cea1667f@baylibre.com>
- <9891855d-2284-42e4-9d3a-35ba406540e8@sirena.org.uk>
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <9891855d-2284-42e4-9d3a-35ba406540e8@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20240225142714.286440-1-jic23@kernel.org> <20240301223942.GA3179769-robh@kernel.org>
+ <20240303115633.41128a62@jic23-huawei> <20240309173332.277fce7d@jic23-huawei>
+In-Reply-To: <20240309173332.277fce7d@jic23-huawei>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 12 Mar 2024 12:10:46 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ5XaxoL9=urL4ReVv5rhkkti5LN+nFGy1btyO2u7qjEw@mail.gmail.com>
+Message-ID: <CAL_JsqJ5XaxoL9=urL4ReVv5rhkkti5LN+nFGy1btyO2u7qjEw@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 0/4] of: automate of_node_put() - new approach
+ to loops.
+To: Jonathan Cameron <jic23@kernel.org>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc: devicetree@vger.kernel.org, linux-iio@vger.kernel.org, 
+	Frank Rowand <frowand.list@gmail.com>, Julia Lawall <Julia.Lawall@inria.fr>, 
+	Peter Zijlstra <peterz@infradead.org>, Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
+	marek.vasut@gmail.com, Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+On Sat, Mar 9, 2024 at 10:33=E2=80=AFAM Jonathan Cameron <jic23@kernel.org>=
+ wrote:
+>
+> On Sun, 3 Mar 2024 11:56:33 +0000
+> Jonathan Cameron <jic23@kernel.org> wrote:
+>
+> > On Fri, 1 Mar 2024 16:39:42 -0600
+> > Rob Herring <robh@kernel.org> wrote:
+> >
+> > > On Sun, Feb 25, 2024 at 02:27:10PM +0000, Jonathan Cameron wrote:
+> > > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > >
+> > > > Some discussion occured on previous posting.
+> > > > https://lore.kernel.org/linux-iio/20240223124432.26443-1-Jonathan.C=
+ameron@huawei.com/
+> > > >
+> > > > Summary:
+> > > > * fwnode conversions should be considered when applying this
+> > > >   infrastructure to a driver. Perhaps better to move directly to
+> > > >   the generic FW property handling rather than improve existing
+> > > >   of specific code.
+> > > > * There are lots of potential places to use this based on detection=
+s
+> > > >   from Julia's coccinelle scripts linked below.
+> > > >
+> > > > The equivalent device_for_each_child_node_scoped() series for
+> > > > fwnode will be queued up in IIO for the merge window shortly as
+> > > > it has gathered sufficient tags. Hopefully the precdent set there
+> > > > for the approach will reassure people that instantiating the
+> > > > child variable inside the macro definition is the best approach.
+> > > > https://lore.kernel.org/linux-iio/20240217164249.921878-1-jic23@ker=
+nel.org/
+> > > >
+> > > > v2: Andy suggested most of the original converted set should move t=
+o
+> > > >     generic fwnode / property.h handling.  Within IIO that was
+> > > >     a reasonable observation given we've been trying to move away f=
+rom
+> > > >     firmware specific handling for some time. Patches making that c=
+hange
+> > > >     to appropriate drivers posted.
+> > > >     As we discussed there are cases which are not suitable for such
+> > > >     conversion and this infrastructure still provides clear benefit=
+s
+> > > >     for them.
+> > > >
+> > > > Ideally it would be good if this introductory series adding the
+> > > > infrastructure makes the 6.9 merge window. There are no dependencie=
+s
+> > > > on work queued in the IIO tree, so this can go via devicetree
+> > > > if the maintainers would prefer. I've had some off list messages
+> > > > asking when this would be merged, as there is interest in building
+> > > > on it next cycle for other parts of the kernel (where conversion to
+> > > > fwnode handling may be less appropriate).
+> > >
+> > > I'll let you take it. For the series:
+> > >
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> > >
+> > > I've got some drivers/of/ conversions too, but they are probably next
+> > > cycle at this point.
+> > >
+> > > Rob
+> >
+> > Thanks Rob,
+> >
+> > Whether this makes it for this cycle is probably dependent on whether
+> > Linus does decide to do got to rc8 as hinted at as a possibility
+> > + whether Greg feels comfortable taking these through his tree
+> > (char-misc is the normal path for IIO).  I know various people
+> > are hoping this series makes it, but if doesn't we can do an immutable
+> > tree early next cycle (though obviously that may reduce speed of adopti=
+on).
+> >
+> > We are discussing the equivalent pull request for the fwnode version he=
+re:
+> >
+> > https://lore.kernel.org/linux-iio/2024030239-gift-cabdriver-266b@gregkh=
+/T/#m87e7208820ebf6416a77a2973773b65a087b4796
+> >
+> > I've optimistically applied this series to my togreg-cleanup branch
+> > and merged that into the togreg branch of iio.git for linux-next to pic=
+k up.
+> >
+>
+> Greg, would you consider a last minute pull request for these, or picking=
+ them up
+> directly?  It would be helpful for Rob's follow ups and the work Julia is=
+ doing
+> with coccinelle and automating of locating cases to apply this approach.
+>
+> If the device_for_each_child_node_scoped() series is fine this is almostl=
+y
+> exactly the same thing for the device tree specific case. Not sure what y=
+our
+> plans are for that pull request so I might be jumping the gun.
+>
+> If not (and assuming the generic property version does make it in) I'll d=
+o
+> an immutable branch based on rc1 so that others can build on this via tha=
+t.
+> Fiddlier solution for everyone but given how late we are, perhaps the wis=
+er
+> one.
 
+I'm happy to pick up the first 3 patches for 6.9 if you want.
 
-On 26/02/2024 17:09, Mark Brown wrote:
-> On Mon, Feb 26, 2024 at 03:01:50PM +0100, amergnat@baylibre.com wrote:
-> 
->> index 000000000000..13e95c227114
->> --- /dev/null
->> +++ b/sound/soc/codecs/mt6357.c
->> @@ -0,0 +1,1805 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * MT6357 ALSA SoC audio codec driver
->> + *
-> 
-> Please use a C++ comment for the whole comment to make it clearer that
-> this is intentional.
-
-ok
-
-> 
->> +static void set_playback_gpio(struct mt6357_priv *priv, bool enable)
->> +{
->> +	if (enable) {
->> +		/* set gpio mosi mode */
->> +		regmap_write(priv->regmap, MT6357_GPIO_MODE2_CLR, GPIO_MODE2_CLEAR_ALL);
->> +		regmap_write(priv->regmap, MT6357_GPIO_MODE2_SET, GPIO8_MODE_SET_AUD_CLK_MOSI |
->> +								  GPIO9_MODE_SET_AUD_DAT_MOSI0 |
->> +								  GPIO10_MODE_SET_AUD_DAT_MOSI1 |
->> +								  GPIO11_MODE_SET_AUD_SYNC_MOSI);
-> 
-> This would be a lot more legible if you worked out the values to set and
-> then had a single set of writes, currently the indentation makes it very
-> hard to read.  Similarly for other similar functions.
-
-ok
-
-> 
->> +static int mt6357_put_volsw(struct snd_kcontrol *kcontrol, struct snd_ctl_elem_value *ucontrol)
->> +{
->> +	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
->> +	struct mt6357_priv *priv = snd_soc_component_get_drvdata(component);
->> +	struct soc_mixer_control *mc = (struct soc_mixer_control *)kcontrol->private_value;
->> +	unsigned int reg;
->> +	int ret;
->> +
->> +	ret = snd_soc_put_volsw(kcontrol, ucontrol);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	switch (mc->reg) {
->> +	case MT6357_ZCD_CON2:
->> +		regmap_read(priv->regmap, MT6357_ZCD_CON2, &reg);
->> +		priv->ana_gain[ANALOG_VOLUME_HPOUTL] =
->> +			(reg & AUD_HPL_GAIN_MASK) >> AUD_HPL_GAIN_SFT;
->> +		priv->ana_gain[ANALOG_VOLUME_HPOUTR] =
->> +			(reg & AUD_HPR_GAIN_MASK) >> AUD_HPR_GAIN_SFT;
->> +		break;
-> 
-> It would probably be less code and would definitely be clearer and
-> simpler to just read the values when we need them rather than constatly
-> keeping a cache separate to the register cache.
-
-Actually you must save the values because the gain selected by the user 
-will be override to do a ramp => volume_ramp(.....):
-- When you switch on the HP, you start from gain=-40db to final_gain 
-(selected by user).
-- When you switch off the HP, you start from final_gain (selected by 
-user) to gain=-40db.
-
-Also, the microphone's gain change when it's enabled/disabled.
-
-So, it can implemented differently but currently it's aligned with the 
-other MTK codecs and I don't see any resource wasted here.
-
-> 
->> +	/* ul channel swap */
->> +	SOC_SINGLE("UL LR Swap", MT6357_AFE_UL_DL_CON0, AFE_UL_LR_SWAP_SFT, 1, 0),
-> 
-> On/off controls should end in Switch.
-
-Sorry, I don't understand your comment. Can you reword it please ?
-
-> 
->> +static const char * const hslo_mux_map[] = {
->> +	"Open", "DACR", "Playback", "Test mode"
->> +};
->> +
->> +static int hslo_mux_map_value[] = {
->> +	0x0, 0x1, 0x2, 0x3,
->> +};
-> 
-> Why not just use a normal mux here, there's no missing values or
-> reordering?  Similarly for other muxes.
-
-I've dug into some other codecs and it's done like that, but I've 
-probably misunderstood something.
-
-The only bad thing I see is enum is missing currently:
-
-enum {
-	PGA_MUX_OPEN = 0,
-	PGA_MUX_DACR,
-	PGA_MUX_PB,
-	PGA_MUX_TM,
-	PGA_MUX_MASK = 0x3,
-};
-
-static const char * const hslo_mux_map[] = {
-	"Open", "DACR", "Playback", "Test mode"
-};
-
-static int hslo_mux_map_value[] = {
-	PGA_MUX_OPEN, PGA_MUX_DACR, PGA_MUX_PB, PGA_MUX_TM,
-};
-
-> 
->> +static unsigned int mt6357_read(struct snd_soc_component *codec, unsigned int reg)
->> +{
->> +	struct mt6357_priv *priv = snd_soc_component_get_drvdata(codec);
->> +	unsigned int val;
->> +
->> +	pr_debug("%s() reg = 0x%x", __func__, reg);
->> +	regmap_read(priv->regmap, reg, &val);
->> +	return val;
->> +}
-> 
-> Remove these, there are vastly more logging facilities as standard in
-> the regmap core.
-
-ok
-
-> 
->> +/* Reg bit defines */
->> +/* MT6357_GPIO_DIR0 */
->> +#define GPIO8_DIR_MASK				BIT(8)
->> +#define GPIO8_DIR_INPUT				0
-> 
-> Please namespace your defines, these look very generic.
-
-ok
-
--- 
-Regards,
-Alexandre
+Rob
 
