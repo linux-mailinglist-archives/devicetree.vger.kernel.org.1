@@ -1,125 +1,96 @@
-Return-Path: <devicetree+bounces-50108-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50109-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F053879A5C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 18:11:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35682879A75
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 18:16:38 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 19EA7285671
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 17:11:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1D0B285C95
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 17:16:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5110137C22;
-	Tue, 12 Mar 2024 17:10:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CB717137C47;
+	Tue, 12 Mar 2024 17:16:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="HDxzL5W6"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WlEAcRjm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8AEE81272A4
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 17:10:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9FB7C137C3A;
+	Tue, 12 Mar 2024 17:16:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710263457; cv=none; b=AQBFXQyfIirZwh4rgweaLqpWM1TD7Zh5Co1oQN51UAy9rXEy7BVck2rjmzQ+Jvodqhys2gYU+YK2G62E/O4orAI708G9iYg/kjyfuKWEjr5pJ5UAFvOKp0t41RR5deGmg9OUB1vDo4vylDtbuoT9X4CFsRr9OaNxmbnC7BrBV4Q=
+	t=1710263791; cv=none; b=ExvxB2RhcgKfkRloXIVh2X5mcx8KmHeKzXmNqBUz7xBYxC+Io5dwNIhRt3VJok5rsz9Vns6TdhiHtwjBfX1OzlPU9V132Q6NIkBA9mgOM3zt3gNgRdm1LbNXIyl3HInMNMHkjtA0nmAzZJCSAJnY1Bs6OjxhQZ392Iw8qlIZKMo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710263457; c=relaxed/simple;
-	bh=b4CGYyV6H0a8CZ9PDg43UgcxxQo7epOIcKkB3Z+8OrQ=;
-	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
-	 MIME-Version:Content-Type; b=OoJoW+Wjx8es/9BgOQEksrhbOdBcqqPvbUHKSpAcu6HOxnyLzbaYxj9WQlvDfODlAwu1w1Jq6984M5mtc4ILncCQ1Dnx4tv8pFqDx7dDfZX1IBp4c5NfGD/JbvaSVxLGg/BvZyQJvkLeJRUKa+SAFw5Z3ZIdDJ7EzDg7ADl5aZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=HDxzL5W6; arc=none smtp.client-ip=209.85.221.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wr1-f51.google.com with SMTP id ffacd0b85a97d-33e92b3b5c9so2935331f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 10:10:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710263453; x=1710868253; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=kedMR37YPDPlsEfMRj5mdnPqWnjFh+suhNRGVJF/T6E=;
-        b=HDxzL5W6LiQ8y1PSj+/cA+582apnAs8EmTVpfxlZGpeKL0gz+GgG5IgvEP3xeDOaw8
-         gQJ0m9lBFDNjrVP5GFLgyU7tDpYpmUbMpulKiwFVVXJoPiNz0bwIOJoVjk9fP043fENY
-         Gb0uFBc/qWFg8BVZ3Co0Czu9p5YWCDOSSe6TTrwl0mpLNcggBLfGLpdtTnRGxcMfcWeo
-         BA4+fzOgSFbUV3odblOFLUw72eo/BsYfF3BNZMnK86j1LYZR4Nqz+Fd/sDhD5+prQsVj
-         3tzlHNeKTWJw6lXmRMnHqe6XJ4mEE6d5VNoA3uKLz2KAF2ex71+QUxhDoA+Uts4ayAqm
-         yr1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710263453; x=1710868253;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=kedMR37YPDPlsEfMRj5mdnPqWnjFh+suhNRGVJF/T6E=;
-        b=DPBrDJJ+LU5VEwh2WUChc99w5RII5aIpw2UKUjs3EEWvTmCHh6AdOcDbeuTk/PzBSv
-         MyYWq+5WdZilHTY46lvDzyDrQ+N1ktlWpv+kFGlFZIkC11aRxxaKlHA0P8B1JcUlk7Bm
-         C3TtE/UvPMvQ/qI8bp05hFSKY8NJquKLVhsp05AZUbrdvvMG71E/oGhlfesX+VcVUSCk
-         nAcUkmjRR0bS81CorZjlFoXG4uqVo8fWOnEQFeshoh1iIHT/CosXvABGZIfKuJ7D9Q3f
-         7PYUrMncF/jGoIkGvCX/AnIUrM2VbaHv/l49/0w84pvhStSps9a8bMy9KhycKycUij4G
-         ZuFg==
-X-Forwarded-Encrypted: i=1; AJvYcCUdVJUCZRee9O0dTBL3Qc0QNxt18GNB/El36Mc2dAfxS6E2aUcCu4c1MzgdIpKxdQT/1lY2+/Pn25s91uR0wlfRZ+xPuM+gk2MMKA==
-X-Gm-Message-State: AOJu0YyfREz90wriP0QvKdjCl0bi6uMBtbtqAx+vHwhiyKxvlEgnt26F
-	R8/fiZNppdIr+yWOUx1zGXnwcQck3g70ykbtpWHlsZUV4+kbDeBXFxZtx4tNd+o=
-X-Google-Smtp-Source: AGHT+IHRsWaKFE7WsFa8j5+Rh+xMT4T6zAID5V3p6aN0dHDcm3x+mt+R2RJMgYs5YTlQcps+fSIZoA==
-X-Received: by 2002:adf:f38a:0:b0:33e:5737:ae63 with SMTP id m10-20020adff38a000000b0033e5737ae63mr45287wro.66.1710263452633;
-        Tue, 12 Mar 2024 10:10:52 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:af7b:cf60:208b:83f4])
-        by smtp.gmail.com with ESMTPSA id bv10-20020a0560001f0a00b0033e033898c5sm9554413wrb.20.2024.03.12.10.10.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Mar 2024 10:10:52 -0700 (PDT)
-References: <87v8a64f3d.wl-kuninori.morimoto.gx@renesas.com>
- <87ttpq4f2c.wl-kuninori.morimoto.gx@renesas.com>
- <e7121fbc-c814-4153-9f17-82ad5de13e64@sirena.org.uk>
- <87a5n46xjk.wl-kuninori.morimoto.gx@renesas.com>
- <7248b107-db87-4409-b93c-f65035d0a6b4@sirena.org.uk>
- <1jo7bje6da.fsf@starbuckisacylon.baylibre.com>
- <b9de4fd1-ef4a-4c30-b3cf-e36931be90f1@sirena.org.uk>
-User-agent: mu4e 1.10.8; emacs 29.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Mark Brown <broonie@kernel.org>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Kuninori Morimoto
- <kuninori.morimoto.gx@renesas.com>, Pierre-Louis Bossart
- <pierre-louis.bossart@linux.intel.com>, Bard Liao
- <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com, Conor Dooley
- <conor+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
- alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 1/5] ASoC: makes CPU/Codec channel connection map
- more generic
-Date: Tue, 12 Mar 2024 18:09:27 +0100
-In-reply-to: <b9de4fd1-ef4a-4c30-b3cf-e36931be90f1@sirena.org.uk>
-Message-ID: <1jjzm7e5pg.fsf@starbuckisacylon.baylibre.com>
+	s=arc-20240116; t=1710263791; c=relaxed/simple;
+	bh=rPV9UAMTT7Ev6dbXP0tzT2Ihl2UZVAIbIAO0GoplBK4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Hvh022jBFsuvXcFs4RKQTOq6Jvgf2dqTDJ1IoAEazFEVc6LZxt1qokccu0abYVHedU6fI6IN0JE56K1uvGfoZBkH1Vd6kXF2P6TMBVQJ7MLzu/HHP2jPk0r9cTNI4ivXi/MkknSfaQMFtRbLE+lrhrENHhCf1AVyCE3OKnqlkzM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WlEAcRjm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3F81AC433C7;
+	Tue, 12 Mar 2024 17:16:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710263791;
+	bh=rPV9UAMTT7Ev6dbXP0tzT2Ihl2UZVAIbIAO0GoplBK4=;
+	h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+	b=WlEAcRjmZxJAju3Lx0UUVcu9+yvCCp0OU4aQ7MWR0By1SqUfnYvtlWE2SEdCdyjjJ
+	 4SoKsYovdKRLwtGoCCOz/xfTWFPt2LR+CHS1onVzpOfF56/gsEryEAV+ffGwqKSUJ5
+	 3+4i2/foO7B/8Spe1XS0mUJz/TmoihO4JkESr/H+1MJuxTp7eQFUArfL8mnRIp5yUN
+	 CUXw+V14biVc/vQPkPluiD8M/QbL8zpB057iRS/yGXef/eLwNZpf1L4iyHf2mQ1XKS
+	 v6j+5IFbJf99aHRS6668uaJD7waQwF82C6pttASwKDcf7yv4vSGaXe3z6xtQNMv1zS
+	 ie7FWiauV3jDA==
+Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-513c53ed3d8so145399e87.3;
+        Tue, 12 Mar 2024 10:16:31 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXjODPyhoIl6lTNVtpMhxbp0bjlAcN2B9py50cW0Tmab+V8zpEgTVIIKGWD7DYiLowjfm5axj6sji2jvZOXCHktSldu89Q2MB0YIBPgk+F4SaU4tbxrKV63dWIaICnCFOAB+fKNwjseDZ9uUYXHbgeosXUBF4Wq43VVRUFNNZ6rE6WctQ==
+X-Gm-Message-State: AOJu0Yy4savlhKJfRMbKaB7cjrUAcBrf4wizjsy+n0Vu/9Qh0ReTlBe8
+	atB/8N/nsuV54bft0QgUnEQbZ94i0fa1Do/ATWSRsasjGm8M0BMmjUSv0A2s20n30zCQw/+Te1K
+	n8qvHEpHkKKNMxAn4Nh0+df9Adw==
+X-Google-Smtp-Source: AGHT+IEXIS/hqNSsPX7LypAcOpNcLKUmXgrpJs3soOu3wkkOFaYnmI/1uJiLAg5A24/EcKhYH7vjPIuj9vbUKQFxQPg=
+X-Received: by 2002:ac2:5f8e:0:b0:513:c625:a6f6 with SMTP id
+ r14-20020ac25f8e000000b00513c625a6f6mr414611lfe.49.1710263789456; Tue, 12 Mar
+ 2024 10:16:29 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20240311222522.1939951-1-robh@kernel.org> <171025134347.2083269.1302794772701834117.robh@kernel.org>
+ <ZfB1s2Vy8lXCSLme@smile.fi.intel.com>
+In-Reply-To: <ZfB1s2Vy8lXCSLme@smile.fi.intel.com>
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 12 Mar 2024 11:16:15 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKJZmMAqZEo6+12FZn6-ALCaYquPHd5EdZSW6u0Z2m+jg@mail.gmail.com>
+Message-ID: <CAL_JsqKJZmMAqZEo6+12FZn6-ALCaYquPHd5EdZSW6u0Z2m+jg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: dma: snps,dma-spear1340: Fix data{-,_}width schema
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Viresh Kumar <vireshk@kernel.org>, 
+	devicetree@vger.kernel.org, Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org, 
+	dmaengine@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-
-On Tue 12 Mar 2024 at 17:06, Mark Brown <broonie@kernel.org> wrote:
-
-> [[PGP Signed Part:Undecided]]
-> On Tue, Mar 12, 2024 at 05:29:25PM +0100, Jerome Brunet wrote:
+On Tue, Mar 12, 2024 at 9:33=E2=80=AFAM Andy Shevchenko
+<andriy.shevchenko@linux.intel.com> wrote:
 >
->> Mark, I suspect the boards you have (like the libretech Alta/Solitude or
->> the kvim3 maybe) will show the same thing.
+> On Tue, Mar 12, 2024 at 07:49:05AM -0600, Rob Herring wrote:
+> > On Mon, 11 Mar 2024 16:25:22 -0600, Rob Herring wrote:
 >
-> I don't have the kvim3 but I can try with the other two (modulo pain
-> with u-boot), it'll be tomorrow now though.
-
-Submitting u-boot mainline support for these is on my TODO list :/
-I'll try to speed this up as well
-
+> ...
 >
->> I can't really test right now, sorry.
->> I can check and test further later this week.
+> > My bot found errors
 >
-> Ack - so long as someone looks into it.
->
-> [[End of PGP Signed Part]]
+> Well done! :-)
 
+Thanks. I was testing locally with some pending dtschema changes while
+the bot uses the current 'main' branch.
 
--- 
-Jerome
+A 'minItems: 1' here should fix this, but I need to look into why the
+current schema doesn't have that problem. I wouldn't expect a
+difference.
+
+Rob
 
