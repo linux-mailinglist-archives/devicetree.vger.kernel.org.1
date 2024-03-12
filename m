@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-50044-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50045-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C6968793C0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 13:08:45 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D008A8793C9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 13:09:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 365D928326C
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:08:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01C11B25500
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:09:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DD67B3F5;
-	Tue, 12 Mar 2024 12:03:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BDE07A705;
+	Tue, 12 Mar 2024 12:08:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mGTxnbab"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JY+ZuTNh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC3BB7A14E
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 12:03:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B027A153
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 12:07:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710245005; cv=none; b=eLvSFJh8LUrlVvFlYN/aZpiPMReN4njebqRkQMeh0MfKMv/v0IsNODUI58gDC9OQ4yRD6g0W+LqLKjQHw9oH6IMh4A/j/iq7YkhrG2yT4XPQS2i/6lQWml9DejdZbaukajNc2PFeZpxWW6cbkisnCoWG+60Tiz+hlLy3zdYqaLI=
+	t=1710245280; cv=none; b=uyCILDIFJBFSbxcmhgWZXqph3sHUDxLCBFbTaAGjj77L/djssF78VaR/VyzFE0QKy9bPvzybbzFYBEnlOL0vBIZ9rtdC1vmqMKJI9OoPXj1kh3dYEGr+6+oLoN6H+i39/iQpMNzatoiiRW747NMkTalXMnZH6et4SQ90BFy/NVs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710245005; c=relaxed/simple;
-	bh=mYDXkLkmO306AaXyIF7M8YDLT22d1ev6IWwdSQV945U=;
+	s=arc-20240116; t=1710245280; c=relaxed/simple;
+	bh=FdXj3NbPr7LIPFPHDC9Uw9gFoYIpHXkckrbFtHnEb+w=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tghmm+ATJLPZUVUZ62kLJQgbsofF1R1HePqltZfx82IJ0npNI6UAidU8+6xEc1PMos8nh56G0o7UKrL7D9WEhmI6TFaK6MgZZHgZG1YL35pLO7tKA0HHLiAk2Vo6Ua+hpYG1fE3rF+H3Hd/15V56KtSLJOaYubuMq7XR5ghSfkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mGTxnbab; arc=none smtp.client-ip=209.85.128.49
+	 In-Reply-To:Content-Type; b=UmP49WWJpPJtTqn8xERG+oB5EHXcexM3+pL89JsqwMlTs1KYdCEqYs3lIk4sF6MlVF5cr/EjOflzfeVRL3hSHmmvTeq6Cm6EgxhTPPbp6rKRLSpKldewNl5+HuLcMZo9ZyLSmRRLl1E6Rgx/JkWjygRU2Ab5AIAH8leoQkHDGkE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JY+ZuTNh; arc=none smtp.client-ip=209.85.167.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-413328344acso5169525e9.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 05:03:23 -0700 (PDT)
+Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-512f892500cso4132972e87.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 05:07:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710245002; x=1710849802; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1710245276; x=1710850076; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nxq7pcJo3LT3VgGTpu291pG7RDcNuTFCrtjHrNFKvcY=;
-        b=mGTxnbabxdYWLGAIXubZY9tyEEuFoDaOFe4Pr+bSTn51TERXsfOZ0eCkpvfteDcBNz
-         LiY0j1O/ND9x5wTWZTaDvD1/ykVdY08OX20NdP0dz6c5YRQarJOw+teUcsfQD5Og1ZgR
-         fqGhAC7AGB5Xouax6vXuUk7FuSr8UpqNWONF6T+/LPR77Kv7qBianqAzLijSaq4aza7t
-         crtjuOI2EJ7TldFwua3VpyHYKqnHg8apWhgOjLhLirr6D7d2WMg2HSnD94jupKLyeWIE
-         9ExEKi0nEHMNzs2hQS3haRBWMEwgD/yoLpbsVjrFtDweLH7ELnmftMcHlRNQbuLHAzhp
-         nrCg==
+        bh=iZTLBLXw0PtBY4+JEvlrcgEHBXz8k2cD2lNLRF2eF88=;
+        b=JY+ZuTNh7NEbuwo1xIAz1BLXjaFKjcqvY4ueO2/2GfssGZYSkKEWTUK3syfoL03KiX
+         FfO6kMqk6ULABZawXwcJEP7CGiXnZA5fN5vSbGdwILP95wi7wklmCycA3Fs2uc3R2jpO
+         gFBqt5lk2RJc10OsK3KfqQpCr8N1yjRg+xcRoTnkhpQHoovSmmp0hc0KP8h7pd+VWcJ7
+         20a7zxA1JYAa4tUwOVLxYAwa04DB4w1OgpJ0UNTCVRvIXuS4zcG6ZDaTlmo2huPXpmsJ
+         ep1+yZbUvKRaWb/SZkw5X58EBNCXYI69grCI+M5PplTuqi4SQizOk7XfWCKzwXlZ2Ef9
+         fZGQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710245002; x=1710849802;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1710245276; x=1710850076;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nxq7pcJo3LT3VgGTpu291pG7RDcNuTFCrtjHrNFKvcY=;
-        b=V5kSvrLYj6v+OseATy/O99xbNAGpMFS97l6y2/6D9Ke0feSnUImOdAWJuHm0HsS6b5
-         wB5Qdg/U1V9huw8kcbeYncS2MoobY4D1dL+ymvAR+Gh6q2mIT8xq9RFtVEYNwJOO5dyP
-         JAeBMEB0hVNG+Brc3B3yGrd4hTVGgz6JkL7Z7DRUmN07Xvr9NnMtHY/2c1+ZRBC6Jdu7
-         HqrIUrSkEKaqlCVQnygo1qPHGqW3Q0XGhO4oFtrTMBJrlDFyJI/UC6o7S63CxnSKrbn0
-         NqgizKCuZIPPjGIaUw/TuhXlb7RPJvs6HG9JkeaMdY3vzoq3EOdD+2g/k5v+5osZojV6
-         UPgw==
-X-Forwarded-Encrypted: i=1; AJvYcCUOOJle9v/w1EwZzp1y9BgZn/AbNmQxePYWLQ2YwiU6rndWw3jOqO6pVhDtyPDGlQYu+nbO1EpHo7mjAGmRoC21vGrKnWLavQozzQ==
-X-Gm-Message-State: AOJu0YwAZnAkCU/A7+Rh46c/tZxJiKewAjYo6e9iONwWSGavX85n51OJ
-	HInfpBqK0eema5bDhJE+kAxQNedD9TDDzo5nxosTsRw7uVus0QzuSOPUrepImfw=
-X-Google-Smtp-Source: AGHT+IFbkRb22ArDTUOGRP1IZHMKrk8HwSfVZan9rWO8EdKfq4QaTVzPNGy+pUgZnDJQpfwohOaG+w==
-X-Received: by 2002:a05:600c:43c4:b0:412:faa7:1398 with SMTP id f4-20020a05600c43c400b00412faa71398mr7505612wmn.21.1710245002001;
-        Tue, 12 Mar 2024 05:03:22 -0700 (PDT)
-Received: from [192.168.0.102] ([176.61.106.68])
-        by smtp.gmail.com with ESMTPSA id fj3-20020a05600c0c8300b004131f5966f5sm11892371wmb.42.2024.03.12.05.03.20
+        bh=iZTLBLXw0PtBY4+JEvlrcgEHBXz8k2cD2lNLRF2eF88=;
+        b=HL03nEUGC+lfSq6hnjdPma3EV8WZE2Pa35o9O7TyR0gULnFbTmmdLMZM8xJ6yMfczL
+         pKVEBGzfq0VKe6IaL1nWCL4fl5gBrufQ8hEf5fZ+HUItllWnUgKTBZHNBARTYUiMdGAD
+         C+xJTjrndPRJnob+zVpIDhk+qEbrfH+UjTp7+vUkuvrcB+reU8ggQOe1E73hcEFAM6Zf
+         su+ix22CDn6+p8EEREp6LHgK8TcYszbvfChBca0UT4TkBIDVbgW7R75EAE/TB5ZCE6Y0
+         FTJDiIMa9ylbuuYZUSan8VATSYFMYVVeSviYmKEl4Tbg/GqaPOSnwSeOM+A7m+XZbqN7
+         dkvA==
+X-Forwarded-Encrypted: i=1; AJvYcCWAN2FMgaYAKB/G/K3Tx2Toy1BNogtC5pBYfGqVbgtCEmjqnvXSM7Agd9Nywy6iBCcoy61NO+WIMmpnizUDPcrag4o5WKLuneKUlw==
+X-Gm-Message-State: AOJu0YybKaCXhDTpCvyhvWCCBad7BMOv2mu2slIDtxLjT9ZJ/HYMWSAE
+	LqaMP1Vrw9N3d7tV/kmAoeriAa2Z8r6ESe25px9hbzEYwUU96PAZLkFCAV+M5jc=
+X-Google-Smtp-Source: AGHT+IGYNeAFx++7ZzyH0xN5jWKQ2JmEo3fxqQM6nAGUk+mEASwkbODLWZr9/PhJAOqOSd0+QfTGqw==
+X-Received: by 2002:a05:6512:4014:b0:513:a6a7:ac88 with SMTP id br20-20020a056512401400b00513a6a7ac88mr5825932lfb.14.1710245276277;
+        Tue, 12 Mar 2024 05:07:56 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id f19-20020a05600c4e9300b004131b2f3958sm12274812wmq.13.2024.03.12.05.07.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Mar 2024 05:03:21 -0700 (PDT)
-Message-ID: <bc402b70-4b68-4768-b976-8fdbdc61d152@linaro.org>
-Date: Tue, 12 Mar 2024 12:03:20 +0000
+        Tue, 12 Mar 2024 05:07:55 -0700 (PDT)
+Message-ID: <f2fdbab6-524c-47b0-b250-37483efc5fdf@linaro.org>
+Date: Tue, 12 Mar 2024 13:07:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,79 +76,146 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/4] platform: Add ARM64 platform directory
+Subject: Re: [net-next 1/2] dt-bindings: net: renesas,etheravb: Add optional
+ MDIO bus node
 Content-Language: en-US
-To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Nikita Travkin <nikita@trvn.ru>
-Cc: Hans de Goede <hdegoede@redhat.com>, Sebastian Reichel <sre@kernel.org>,
+To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
+Cc: Sergey Shtylyov <s.shtylyov@omp.ru>, "David S. Miller"
+ <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
  Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
- linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <20240312-aspire1-ec-v4-0-bd8e3eea212f@trvn.ru>
- <20240312-aspire1-ec-v4-2-bd8e3eea212f@trvn.ru>
- <4b65793d-0196-0118-6304-b078eaacd482@linux.intel.com>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <4b65793d-0196-0118-6304-b078eaacd482@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Conor Dooley <conor+dt@kernel.org>,
+ Geert Uytterhoeven <geert+renesas@glider.be>,
+ Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
+ Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+ Biju Das <biju.das.jz@bp.renesas.com>, netdev@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+References: <20240309155334.1310262-1-niklas.soderlund+renesas@ragnatech.se>
+ <20240309155334.1310262-2-niklas.soderlund+renesas@ragnatech.se>
+ <cb8f85de-c1cd-4742-b8a4-2533482ee3b6@linaro.org>
+ <20240310134638.GK3735877@ragnatech.se>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240310134638.GK3735877@ragnatech.se>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
-On 12/03/2024 11:40, Ilpo Järvinen wrote:
-> On Tue, 12 Mar 2024, Nikita Travkin wrote:
+On 10/03/2024 14:46, Niklas Söderlund wrote:
+> Hi Krzysztof,
 > 
->> Some ARM64 based laptops and computers require vendor/board specific
->> drivers for their embedded controllers. Even though usually the most
->> important functionality of those devices is implemented inside ACPI,
->> unfortunately Linux doesn't currently have great support for ACPI on
->> platforms like Qualcomm Snapdragon that are used in most ARM64 laptops
->> today. Instead Linux relies on Device Tree for Qualcomm based devices
->> and it's significantly easier to reimplement the EC functionality in
->> a dedicated driver than to make use of ACPI code.
+> Thanks for your comments.
+> 
+> On 2024-03-10 09:44:45 +0100, Krzysztof Kozlowski wrote:
+>> On 09/03/2024 16:53, Niklas Söderlund wrote:
+>>> The Renesas Ethernet AVB bindings do not allow the MDIO bus to be
+>>> described. This has not been needed as only a single PHY is
+>>> supported and no MDIO bus properties have been needed.
+>>>
+>>> Add an optional mdio node to the binding which allows the MDIO bus to be
+>>> described and allow bus properties to be set.
+>>>
+>>> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+>>> ---
 >>
->> This commit introduces a new platform/arm64 subdirectory to give a
->> place to such drivers for EC-like devices.
+>> I believe this is v2. Mark your patchsets clearly (git format-patch -v2
+>> or use b4) and provide changelog under --- or in the cover letter.
 >>
->> A new MAINTAINERS entry is added for this directory. Patches to files in
->> this directory will be taken up by the platform-drivers-x86 team (i.e.
->> Hans de Goede and Mark Gross).
+>>
+>>>  Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+>>> index de7ba7f345a9..5345ad8e1be4 100644
+>>> --- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+>>> +++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
+>>> @@ -93,6 +93,10 @@ properties:
+>>>      description: Number of size cells on the MDIO bus.
+>>>      const: 0
+>>>  
+>>> +  mdio:
+>>> +    $ref: /schemas/net/mdio.yaml#
+>>> +    unevaluatedProperties: false
+>>> +
+>>
+>> Please fixup the phy pattern, so it will be obvious it is for
+>> ethernet-phy and probably deprecate it. The phy goes to mdio bus, right?
 > 
-> Mark -> me.
+> Yes the PHY goes on the MDIO bus and the pattern is only needed for 
+> backward compatibility.
 > 
->> +ARM64 PLATFORM DRIVERS
->> +M:	Hans de Goede <hdegoede@redhat.com>
->> +M:	Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
->> +L:	platform-driver-x86@vger.kernel.org
->> +S:	Maintained
->> +Q:	https://patchwork.kernel.org/project/platform-driver-x86/list/
->> +T:	git git://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git
->> +F:	drivers/platform/arm64/
-> 
-> Is some ARM64 person going to pay attention to these patches (you or
-> perhaps somebody else)?
-> 
-> It's perfectly fine to have some ARM64 person(s) listed as an additional
-> maintainer there even if the patches themselves are routed through Hans
-> and me (and pdx86 tree). With Mellanox and Surface platform drivers which
-> are also routed through pdx86 tree, we have Hans + me + 3rd person listed
-> as maintainers.
+> The pattern was specific to ethernet-phy in the past, but Rob removed it 
+> in commit ac8fe40c3628 ("dt-bindings: net: renesas: Drop ethernet-phy 
+> node schema"). Have something changed and I should revert that as part 
+> of this patch?
 
-You can add me as a +R.
-
-Perhaps Dmitry and Konrad would want to be on the list too.
-
-Actually since Dmitry has already done some work on this, I think he 
-should be on the review list for this series.
-
-Adding..
+Ah, indeed. Let it stay as is. I thought there would be conflict with
+mdio, but pattern still looks for unit address, so it's fine to have
+both: existing @[0-9a-f] and mdio.
 
 > 
-> (This is not to force anything on anyone but it could be beneficial if
-> somebody more familiar with ARM64 is in the loop.)
+> I agree it should be listed as deprecated, would this diff work for you?
+> 
+> +# In older bindings there where no mdio child-node to describe the MDIO bus
+> +# and the PHY. To not fail older bindings accept any node with an address. New
+> +# users should describe the PHY inside the mdio child-node.
+>  patternProperties:
+>    "@[0-9a-f]$":
+>      type: object
+> +    deprecated: true
 
----
-bod
+Looks fine.
+
+> 
+> Depending on if Rob's patch should be reverted in whole or in part I 
+> could also try to revert the pattern to "^ethernet-phy@[0-9a-f]$" if you 
+> wish. Please let me know what looks best to you.
+> 
+
+Best regards,
+Krzysztof
+
 
