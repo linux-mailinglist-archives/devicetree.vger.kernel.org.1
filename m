@@ -1,74 +1,81 @@
-Return-Path: <devicetree+bounces-50135-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50136-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9C78879C13
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 20:08:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EED37879C4B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 20:37:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 48346287485
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 19:08:43 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 067501C21951
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 19:37:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5F43E142623;
-	Tue, 12 Mar 2024 19:08:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C4F139580;
+	Tue, 12 Mar 2024 19:37:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Lu4CU3Bn"
+	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="IzMtufyi"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8E2FA139572
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 19:08:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E91A23A6;
+	Tue, 12 Mar 2024 19:37:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710270519; cv=none; b=bKxnWo2WcWNQsAkCnvbREwh3apk/H9T4ewm8JxI27klsDBlhVh+QRKsOsWwb5DjjaamQ8a4jLQjyT90ejKGAuGRjmlAemO9m7YvHECXZKOATON7YVOLv5bb0ZTY4Ncyj9PouAoRgPBXMod6gnfeLFB30FAmJ4G9hsg7QOjdKl4M=
+	t=1710272240; cv=none; b=dedthlQ9sLryjlmMU/ihopITLHxiGMHCu4csFOQhV3btvXpqSGCwXtsfqDeYGo7lYL+Y2nHDoUPCxmXoGj8NZonVOv6miFFr8p54P78Mx0oB/qcAksGOII9rwPPihwH3ZmSac11jFMGsXQ/RYqYnbDHFYakGtfR6EtxrPxNwAO8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710270519; c=relaxed/simple;
-	bh=HOvM1INRucQgbLo4lsnsFEr6TFjoAs5K2HPCyrFjNb8=;
+	s=arc-20240116; t=1710272240; c=relaxed/simple;
+	bh=IYGGfO+zzpOZyYV6oCe1RH59zp5nn/5T//wxPhZKefM=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=NPtXrP3CLd2NTjhUZT0jVcTlSYtMnB3w9JM4eZvDm9O0QH/UF3LnbJH2Eh8YVgxD+AUv1jvRfqu7bs6lGnGnL1L/6iFWHBEL4ThjmJQDlhydJ3n4Lv4+I++mnibi4aysohf34Uj3u8v4aO3I0ixzRbcppi5ym/+Ra2mA8gLANEo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Lu4CU3Bn; arc=none smtp.client-ip=209.85.128.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-41336981b3aso2085735e9.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 12:08:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710270516; x=1710875316; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=16YGdsT3Q2m5RXOX4ZkK+9AENjmmW2MP9xez+9u6hqY=;
-        b=Lu4CU3BnVUtZaUl5lHwUWd9rRlqSAkmhVaKaTpQNHknXRd1dUOynD9vUxrU9LBukMW
-         AV5nlkFlLw9yp7FiTdTBv5gFZXn8vjHAT1z0IaWayiu+IGGzLhqzpnjmDkCcTOzt6yi3
-         jOFZ2pZ40Nt9cnJ6LfV9laaqvzGc+5A/jfzfDyQ2Tdj0J6tkIpGdhd0kMTeuiwud9uVL
-         BF2vku0brV5VDgAnCHLQ7HYGxRNwlmCPFe8F/JbGNEoiqRPDWgc+cHDHIjiLDpYItxoX
-         rSVzQLucqIh4FwnlfQPPR8fVWZGas2035LKMjdivAxBazkvsumikkoImh6YwzBHR6Xq7
-         JCcA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710270516; x=1710875316;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=16YGdsT3Q2m5RXOX4ZkK+9AENjmmW2MP9xez+9u6hqY=;
-        b=lhyxnZASVwR/Niebq7zsvBTSbqnnC8eiumw56hGra8Z//BDx5ITRQcoabi4/jOi5IM
-         bBCm/AIOUvU7UoJcxDiY0CeJmAPqaCDI+FnrLSr6wOIKJDDXo4zRzBep0pbSN5wgN9pi
-         2xqGC0dFq4Y44f+UvhvFV0wX3Yb0y8FVFYo8fY1MSQKh6ol4WO/gL5XHWe6xo3u1Iojd
-         M/v4pryl5GdGh/00Kdk02qrefqA/Eh3FL0lceeUGuEc3tATO+6yqMv10HS309R3Dlv3Q
-         bOyBZbCs3QWPaw17tKIXI2hnGdjIgB/Qs7x/j7WNLJNSdixi8LbviaHVpLH1cC3W+rVm
-         9Z7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCX0v7jJzWIyb+FnBI/Nsh4WWJxVZvHQvX47udRdEHPgBgHltf2nPdGQi6lOaS/xnA3yBNTXGI08QabY84XXQjQsd+Vp9/nk59qgSA==
-X-Gm-Message-State: AOJu0YxH85bjHoA4sO4U0h4XyjpGLf+yoh0SjxzZKRYue7O0YbbWfJEw
-	dJ7YW8j7VoD5wl9AnnOKnF7sCD6MYx2GDTKcVBFMQ6lJeMaxskBFstQhQ2BzYgo=
-X-Google-Smtp-Source: AGHT+IHXlK5FVG9W97jusqM5BnM2BtWdimJZJvNfvTf1XxKIxw2BoowRAjRbqipjQYBQG03wkXctvA==
-X-Received: by 2002:a05:600c:3b07:b0:413:27d0:45f4 with SMTP id m7-20020a05600c3b0700b0041327d045f4mr3657486wms.6.1710270513778;
-        Tue, 12 Mar 2024 12:08:33 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id r11-20020a05600c35cb00b004127057d6b9sm19857777wmq.35.2024.03.12.12.08.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Mar 2024 12:08:33 -0700 (PDT)
-Message-ID: <05a3763c-1855-4028-9f2a-b125c7ed58cc@linaro.org>
-Date: Tue, 12 Mar 2024 20:08:31 +0100
+	 In-Reply-To:Content-Type; b=VSMBMJXiX+kD2Y73u3B16BYUuq2QV+r99abn/gTz643isdm88Z6Yv0ImAaNm5tG3xBDUYcL0HgoajRbsJ9Ggzt1OZWa1quCfyIqUIw5aEZ+9z0lP22NIqzyC7wKuH7qJZlRMrAYi1BXnxg8KniDNYWdzn2F2KFrtnU9BZJ2Avag=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=IzMtufyi; arc=none smtp.client-ip=148.163.156.1
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
+Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 42CIus7Y012523;
+	Tue, 12 Mar 2024 19:37:09 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=pp1;
+ bh=80wPmnITO8gQWN+zUxQmSA2ZI8Fawb2/8IYwf+7K3Eg=;
+ b=IzMtufyiFM/OdIcCkMkaKiA8BgSUs0K1/85+EtVOt7mwUJ3KS8AsWLpSpPJj35cTAcQ2
+ AAtomTwt6pMCSyxcifJwjvXcrEEWlei2AyaAXJTef8ahfGdk/XcNe2pldBIDtreG3Vbl
+ wJckCl5ufl/XCRbSx27kKTkoUaCjDovFkTJpqAKtir2J531YtbipeZ1icqg2DEiMwlel
+ aj4qNov4U2NjlJWRKz3eU2A0T0dmn7415ocCk0+Y7QJnFCjFMgdCktZ+pDgDGASSmwoE
+ 9JKbQLV/kLoU1LeI5BmKyrIVQUyi3ZUmMOlejvZhzE1xwBKFv6GBQ/KpnLRPPoszMDzq mw== 
+Received: from pps.reinject (localhost [127.0.0.1])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3wtvs90hd6-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Mar 2024 19:37:09 +0000
+Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
+	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 42CJRFxI017257;
+	Tue, 12 Mar 2024 19:37:08 GMT
+Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
+	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3wtvs90hcs-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Mar 2024 19:37:08 +0000
+Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
+	by ppma11.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 42CJNleX018581;
+	Tue, 12 Mar 2024 19:37:07 GMT
+Received: from smtprelay03.dal12v.mail.ibm.com ([172.16.1.5])
+	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 3ws4t20pw5-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Mar 2024 19:37:07 +0000
+Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
+	by smtprelay03.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 42CJb4mf47251884
+	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+	Tue, 12 Mar 2024 19:37:06 GMT
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id 8CDB558063;
+	Tue, 12 Mar 2024 19:37:04 +0000 (GMT)
+Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
+	by IMSVA (Postfix) with ESMTP id AA3D35804B;
+	Tue, 12 Mar 2024 19:37:03 +0000 (GMT)
+Received: from [9.47.158.152] (unknown [9.47.158.152])
+	by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
+	Tue, 12 Mar 2024 19:37:03 +0000 (GMT)
+Message-ID: <81cd893e-46c3-4d38-aa93-8ab410a770ea@linux.ibm.com>
+Date: Tue, 12 Mar 2024 15:37:03 -0400
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,88 +83,107 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] dt-bindings: pinctrl: samsung: drop unused header with
- register constants
+Subject: Re: [RFC PATCH v2 3/3] tpm: of: If available use linux,sml-log to get
+ the log and its size
 Content-Language: en-US
-To: Conor Dooley <conor@kernel.org>
-Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240312164428.692552-1-krzysztof.kozlowski@linaro.org>
- <20240312-numbly-starfish-d2ebb32a222d@spud>
- <20240312-disobey-playset-f3d451adf41c@spud>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240312-disobey-playset-f3d451adf41c@spud>
-Content-Type: text/plain; charset=UTF-8
+To: Jarkko Sakkinen <jarkko@kernel.org>, mpe@ellerman.id.au,
+        linux-integrity@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
+Cc: linux-kernel@vger.kernel.org, rnsastry@linux.ibm.com, peterhuewe@gmx.de,
+        viparash@in.ibm.com, devicetree@vger.kernel.org, jsnitsel@redhat.com
+References: <20240311132030.1103122-1-stefanb@linux.ibm.com>
+ <20240311132030.1103122-4-stefanb@linux.ibm.com>
+ <CZR7B45P71XS.53XNZD9FWZSL@kernel.org>
+ <916fb19b-daf8-4c1b-bc25-f071d2b3ae33@linux.ibm.com>
+ <CZRVXE96ZZA8.33VFES8S07YS9@kernel.org>
+From: Stefan Berger <stefanb@linux.ibm.com>
+In-Reply-To: <CZRVXE96ZZA8.33VFES8S07YS9@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-GUID: uYpch5nFxdfwWQwYQw4GeJGEeaWxQcn8
+X-Proofpoint-ORIG-GUID: B-r6TN2dDjIyVKTP_5HXBJqJIT_DYiuG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-12_12,2024-03-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
+ malwarescore=0 spamscore=0 suspectscore=0 priorityscore=1501 phishscore=0
+ mlxlogscore=999 bulkscore=0 impostorscore=0 adultscore=0 clxscore=1015
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
+ definitions=main-2403120150
 
-On 12/03/2024 19:46, Conor Dooley wrote:
-> On Tue, Mar 12, 2024 at 06:44:17PM +0000, Conor Dooley wrote:
->> On Tue, Mar 12, 2024 at 05:44:28PM +0100, Krzysztof Kozlowski wrote:
->>> The bindings header for Samsung pin controller DTS pin values (holding
->>> register values in fact) was deprecated in v6.1 kernel in
->>> commit 9d9292576810 ("dt-bindings: pinctrl: samsung: deprecate header
->>> with register constants").  This was enough of time for users to switch
->>> to in-DTS headers, so drop the bindings header.
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+
+On 3/12/24 11:43, Jarkko Sakkinen wrote:
+> On Mon Mar 11, 2024 at 10:33 PM EET, Stefan Berger wrote:
 >>
->> Have you checked whether U-Boot has also dropped use (or never did use)
->> of this header?
+>>
+>> On 3/11/24 16:25, Jarkko Sakkinen wrote:
+>>> On Mon Mar 11, 2024 at 3:20 PM EET, Stefan Berger wrote:
+>>>> If linux,sml-log is available use it to get the TPM log rather than the
+>>>> pointer found in linux,sml-base. This resolves an issue on PowerVM and KVM
+>>>> on Power where after a kexec the memory pointed to by linux,sml-base may
+>>>> have become inaccessible or corrupted. Also, linux,sml-log has replaced
+>>>> linux,sml-base and linux,sml-size on these two platforms.
+>>>>
+>>>> Keep the handling of linux,sml-base/sml-size for powernv platforms that
+>>>> provide the two properties via skiboot.
+>>>>
+>>>> Fixes: c5df39262dd5 ("drivers/char/tpm: Add securityfs support for event log")
+>>>> Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
+>>>
+>>> I'm worried about not being up to date and instead using "cached" values
+>>> when verifying anything from a security chip. Does this guarantee that
+>>> TPM log is corrupted and will not get updated somehow?
+>>
+>>
+>> What do you mean 'guarantee that TPM log is corrupted'?
 > 
-> nvm, I checked it myself and Caleb's series that moves things to use
-> upstream headers does't seem to use this either.
+> I presume that this is for power architecture but I have no idea what
+
+Yes it is for Power. From commit message above: "This resolves an issue 
+on PowerVM and KVM on Power where after a kexec the memory pointed to by 
+linux,sml-base may have become inaccessible or corrupted."
+
+> leads log being corrupted, and is the scope all of that that arch or
+> some subset of CPUs.
+
+Every CPU will see a corrupted log.
+
 > 
+> The commit message is not very detailed on kexec scenario. It more like
 
-U-Boot did not use it, but even if they did, they had more than one year
-to change. The header had a big-fat warning.
+I guess what is missing in the message that the buffer was not properly 
+protected during the kexec and may have been overwritten for example 
+since it was mistakenly assumed to be free memory?
 
-Best regards,
-Krzysztof
+> assumes that reader knows all the detail beforehand. So probably this
+> will start to make sense once the backing story is improved, that's
+> all.
+> 
+>> The TPM was handed over from the firmware to Linux and the firmware then
+>> freed all memory associated with the log and will then not create a new
+>> log or touch the TPM or do anything that would require an update to the
+>> handed-over log. Linux also does not append to the firmware log. So
+>> whatever we now find in linux,sml-log would be the latest firmware log
+>> and the state of the 'firmware PCRs' computed from it should correspond
+>> to the current state of the 'firmware PCRs'.
+> 
+> So on what CPU this happens and is there any bigger picture for that
+> design choice in the firmware?
 
+The firmware provides a call sml-handover, which hands over the TPM log 
+to the caller and at the same time frees the log. You cannot call the 
+firmware a 2nd time for the log.
+
+> 
+> If it is a firmware bug, this should emit FW_BUG log message. If not,
+> then this commit message should provide the necessary context.
+
+It's not a firmware bug. The issue is that the buffer holding the TPM 
+log is not properly carried across a kexec soft reboot and may for 
+example have been overwritten since it was assumed to be free memory.
+
+> 
+> BR, Jarkko
+> 
 
