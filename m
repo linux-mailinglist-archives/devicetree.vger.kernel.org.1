@@ -1,109 +1,154 @@
-Return-Path: <devicetree+bounces-50043-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50044-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id E032F8793B3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 13:06:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C6968793C0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 13:08:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 807A31F22C6A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:06:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 365D928326C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:08:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F7F07A146;
-	Tue, 12 Mar 2024 12:01:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DD67B3F5;
+	Tue, 12 Mar 2024 12:03:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="mGTxnbab"
 X-Original-To: devicetree@vger.kernel.org
-Received: from szxga07-in.huawei.com (szxga07-in.huawei.com [45.249.212.35])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AFFE57A140;
-	Tue, 12 Mar 2024 12:01:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.35
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC3BB7A14E
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 12:03:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710244865; cv=none; b=aiioAUYvzk6pV1tJtf76Ww6uLCxGkE2EiADHF6rD1ar2kEvuTCIB4kadeyrdMmlnSaG5kJ4CoKQ2fDGNOhlwWdE7WNBX6SZP1lanWmAniElcPQD0QLURB9m5MfR7rnenAtfkgKLK09Czwbd8m3wrXez/yzfsrYdjHg9UXhggVe0=
+	t=1710245005; cv=none; b=eLvSFJh8LUrlVvFlYN/aZpiPMReN4njebqRkQMeh0MfKMv/v0IsNODUI58gDC9OQ4yRD6g0W+LqLKjQHw9oH6IMh4A/j/iq7YkhrG2yT4XPQS2i/6lQWml9DejdZbaukajNc2PFeZpxWW6cbkisnCoWG+60Tiz+hlLy3zdYqaLI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710244865; c=relaxed/simple;
-	bh=ePk5iQwBef/BCg5M8C1xgxE/8EWgCoYElleiuQnLZ3E=;
-	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
-	 In-Reply-To:Content-Type; b=uJyYp5HvAce+nDGjfEHAeuEXewc5ukwRLnm+BkGZ5PRv8lKYjld2qF8m3SkrDxBhvV6gmPA3G2eM+ZbHy2wvJWXxwD6EykCOfyvpIfU81gXKJ/x5nehDXaiXkyO/mhM/krrp25Z0lUILmRmbsavJXGJN10kLUpjdt7eFFFIw8J4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.35
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.19.163.44])
-	by szxga07-in.huawei.com (SkyGuard) with ESMTP id 4TvBxF4bSJz1Z1w9;
-	Tue, 12 Mar 2024 19:58:25 +0800 (CST)
-Received: from kwepemd100008.china.huawei.com (unknown [7.221.188.193])
-	by mail.maildlp.com (Postfix) with ESMTPS id 6591914040F;
-	Tue, 12 Mar 2024 20:00:52 +0800 (CST)
-Received: from [10.67.121.2] (10.67.121.2) by kwepemd100008.china.huawei.com
- (7.221.188.193) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.28; Tue, 12 Mar
- 2024 20:00:51 +0800
-Message-ID: <65F043F3.3040908@hisilicon.com>
-Date: Tue, 12 Mar 2024 20:00:51 +0800
-From: Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+	s=arc-20240116; t=1710245005; c=relaxed/simple;
+	bh=mYDXkLkmO306AaXyIF7M8YDLT22d1ev6IWwdSQV945U=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=tghmm+ATJLPZUVUZ62kLJQgbsofF1R1HePqltZfx82IJ0npNI6UAidU8+6xEc1PMos8nh56G0o7UKrL7D9WEhmI6TFaK6MgZZHgZG1YL35pLO7tKA0HHLiAk2Vo6Ua+hpYG1fE3rF+H3Hd/15V56KtSLJOaYubuMq7XR5ghSfkU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=mGTxnbab; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-413328344acso5169525e9.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 05:03:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710245002; x=1710849802; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=nxq7pcJo3LT3VgGTpu291pG7RDcNuTFCrtjHrNFKvcY=;
+        b=mGTxnbabxdYWLGAIXubZY9tyEEuFoDaOFe4Pr+bSTn51TERXsfOZ0eCkpvfteDcBNz
+         LiY0j1O/ND9x5wTWZTaDvD1/ykVdY08OX20NdP0dz6c5YRQarJOw+teUcsfQD5Og1ZgR
+         fqGhAC7AGB5Xouax6vXuUk7FuSr8UpqNWONF6T+/LPR77Kv7qBianqAzLijSaq4aza7t
+         crtjuOI2EJ7TldFwua3VpyHYKqnHg8apWhgOjLhLirr6D7d2WMg2HSnD94jupKLyeWIE
+         9ExEKi0nEHMNzs2hQS3haRBWMEwgD/yoLpbsVjrFtDweLH7ELnmftMcHlRNQbuLHAzhp
+         nrCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710245002; x=1710849802;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=nxq7pcJo3LT3VgGTpu291pG7RDcNuTFCrtjHrNFKvcY=;
+        b=V5kSvrLYj6v+OseATy/O99xbNAGpMFS97l6y2/6D9Ke0feSnUImOdAWJuHm0HsS6b5
+         wB5Qdg/U1V9huw8kcbeYncS2MoobY4D1dL+ymvAR+Gh6q2mIT8xq9RFtVEYNwJOO5dyP
+         JAeBMEB0hVNG+Brc3B3yGrd4hTVGgz6JkL7Z7DRUmN07Xvr9NnMtHY/2c1+ZRBC6Jdu7
+         HqrIUrSkEKaqlCVQnygo1qPHGqW3Q0XGhO4oFtrTMBJrlDFyJI/UC6o7S63CxnSKrbn0
+         NqgizKCuZIPPjGIaUw/TuhXlb7RPJvs6HG9JkeaMdY3vzoq3EOdD+2g/k5v+5osZojV6
+         UPgw==
+X-Forwarded-Encrypted: i=1; AJvYcCUOOJle9v/w1EwZzp1y9BgZn/AbNmQxePYWLQ2YwiU6rndWw3jOqO6pVhDtyPDGlQYu+nbO1EpHo7mjAGmRoC21vGrKnWLavQozzQ==
+X-Gm-Message-State: AOJu0YwAZnAkCU/A7+Rh46c/tZxJiKewAjYo6e9iONwWSGavX85n51OJ
+	HInfpBqK0eema5bDhJE+kAxQNedD9TDDzo5nxosTsRw7uVus0QzuSOPUrepImfw=
+X-Google-Smtp-Source: AGHT+IFbkRb22ArDTUOGRP1IZHMKrk8HwSfVZan9rWO8EdKfq4QaTVzPNGy+pUgZnDJQpfwohOaG+w==
+X-Received: by 2002:a05:600c:43c4:b0:412:faa7:1398 with SMTP id f4-20020a05600c43c400b00412faa71398mr7505612wmn.21.1710245002001;
+        Tue, 12 Mar 2024 05:03:22 -0700 (PDT)
+Received: from [192.168.0.102] ([176.61.106.68])
+        by smtp.gmail.com with ESMTPSA id fj3-20020a05600c0c8300b004131f5966f5sm11892371wmb.42.2024.03.12.05.03.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Mar 2024 05:03:21 -0700 (PDT)
+Message-ID: <bc402b70-4b68-4768-b976-8fdbdc61d152@linaro.org>
+Date: Tue, 12 Mar 2024 12:03:20 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, Yang Xiwen
-	<forbidden405@outlook.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Jiancheng Xue <xuejiancheng@hisilicon.com>, Alex Elder
-	<elder@linaro.org>, Peter Griffin <peter.griffin@linaro.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
-Subject: Re: [PATCH v3 0/3] arm64: dts: hi3798cv200: fix GICR size, add cache
- info, maintenance irq and GICH, GICV spaces
-References: <20240219-cache-v3-0-a33c57534ae9@outlook.com> <SEZPR06MB695952078B51C4549191F8AB962B2@SEZPR06MB6959.apcprd06.prod.outlook.com> <dbdce27e-f33a-4597-b978-965c395c7169@linaro.org>
-In-Reply-To: <dbdce27e-f33a-4597-b978-965c395c7169@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: dggems702-chm.china.huawei.com (10.3.19.179) To
- kwepemd100008.china.huawei.com (7.221.188.193)
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 2/4] platform: Add ARM64 platform directory
+Content-Language: en-US
+To: =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ Nikita Travkin <nikita@trvn.ru>
+Cc: Hans de Goede <hdegoede@redhat.com>, Sebastian Reichel <sre@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
+ Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
+ linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org,
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+References: <20240312-aspire1-ec-v4-0-bd8e3eea212f@trvn.ru>
+ <20240312-aspire1-ec-v4-2-bd8e3eea212f@trvn.ru>
+ <4b65793d-0196-0118-6304-b078eaacd482@linux.intel.com>
+From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <4b65793d-0196-0118-6304-b078eaacd482@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
-
-On 2024/3/12 19:36, Krzysztof Kozlowski wrote:
-> On 12/03/2024 12:19, Yang Xiwen wrote:
->>> Yang Xiwen (3):
->>>        arm64: dts: hi3798cv200: fix the size of GICR
->>>        arm64: dts: hi3798cv200: add GICH, GICV register space and irq
->>>        arm64: dts: hi3798cv200: add cache info
->>>
->>>   arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 43 +++++++++++++++++++++++++-
->>>   1 file changed, 42 insertions(+), 1 deletion(-)
->>> ---
->>> base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
->>> change-id: 20240218-cache-11c8bf7566c2
->>>
->>> Best regards,
+On 12/03/2024 11:40, Ilpo Järvinen wrote:
+> On Tue, 12 Mar 2024, Nikita Travkin wrote:
+> 
+>> Some ARM64 based laptops and computers require vendor/board specific
+>> drivers for their embedded controllers. Even though usually the most
+>> important functionality of those devices is implemented inside ACPI,
+>> unfortunately Linux doesn't currently have great support for ACPI on
+>> platforms like Qualcomm Snapdragon that are used in most ARM64 laptops
+>> today. Instead Linux relies on Device Tree for Qualcomm based devices
+>> and it's significantly easier to reimplement the EC functionality in
+>> a dedicated driver than to make use of ACPI code.
 >>
->> May someone apply this patchset to their tree so that it can land in 
->> stable at the end? This is a fix, not adding new functionalities. It's 
->> been 2 weeks already.
+>> This commit introduces a new platform/arm64 subdirectory to give a
+>> place to such drivers for EC-like devices.
+>>
+>> A new MAINTAINERS entry is added for this directory. Patches to files in
+>> this directory will be taken up by the platform-drivers-x86 team (i.e.
+>> Hans de Goede and Mark Gross).
 > 
-> It's merge window, what do you expect to happen now? Please observe the
-> process timelines.
+> Mark -> me.
 > 
-> For arm-soc usually the cut-off is around rc6. When did you send it?
-> Week before rc6, so a bit late.
+>> +ARM64 PLATFORM DRIVERS
+>> +M:	Hans de Goede <hdegoede@redhat.com>
+>> +M:	Ilpo Järvinen <ilpo.jarvinen@linux.intel.com>
+>> +L:	platform-driver-x86@vger.kernel.org
+>> +S:	Maintained
+>> +Q:	https://patchwork.kernel.org/project/platform-driver-x86/list/
+>> +T:	git git://git.kernel.org/pub/scm/linux/kernel/git/pdx86/platform-drivers-x86.git
+>> +F:	drivers/platform/arm64/
 > 
-> Anyway, I bookmarked this patchset, so if no one applies within some
-> time after merge window, I'll take it.
+> Is some ARM64 person going to pay attention to these patches (you or
+> perhaps somebody else)?
+> 
+> It's perfectly fine to have some ARM64 person(s) listed as an additional
+> maintainer there even if the patches themselves are routed through Hans
+> and me (and pdx86 tree). With Mellanox and Surface platform drivers which
+> are also routed through pdx86 tree, we have Hans + me + 3rd person listed
+> as maintainers.
 
-Thanks for your explanation and kindness!
+You can add me as a +R.
 
-Best Regards,
-Wei
+Perhaps Dmitry and Konrad would want to be on the list too.
+
+Actually since Dmitry has already done some work on this, I think he 
+should be on the review list for this series.
+
+Adding..
 
 > 
-> Best regards,
-> Krzysztof
-> 
-> .
-> 
+> (This is not to force anything on anyone but it could be beneficial if
+> somebody more familiar with ARM64 is in the loop.)
+
+---
+bod
 
