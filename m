@@ -1,151 +1,189 @@
-Return-Path: <devicetree+bounces-50126-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50127-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29631879B6A
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 19:32:00 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 284BF879B7A
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 19:34:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BD6551F23240
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 18:31:59 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A97B21F20100
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 18:34:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 52E7113D319;
-	Tue, 12 Mar 2024 18:31:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE37A13DB8A;
+	Tue, 12 Mar 2024 18:34:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ci8DnB7L"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HlhZA/4g"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95D8F13D2F0
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 18:31:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22DD741AAC
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 18:34:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710268280; cv=none; b=KPOaU9kp5Z6kBuLmnzshYKm04ECVh1AEpTW2cgiPvBxTqwJyaogjt0ksrJytfTJrpAnNQlzSNf7vrvHfVr3sBqpUSOl/Y0UGULWu1uO2RtQHIEk/PIt40iPG9bFe7cLutbpDZs8o2UOOOo7BlhG0c4GN31+9D4d1TRdWKEVj1e8=
+	t=1710268478; cv=none; b=JZ1www9hcRPnuisxV/zY6dbyxz7ZihftHG0WyKU0ax1JfL1ZzwI08oaLr32BTJU1Ns93jMh+20OFodPa/9ZK7VZPqfiQqp6o85yFIqXqB5hJ1UXsbvoWBjgtCqnP0058wzD3L5DTGanqlYWBC/5C5KDAzLwZP9dp676emnEOfKI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710268280; c=relaxed/simple;
-	bh=jPRItguT0rR1AOyh1nLuIc0iBEuYZWXkQuC/EHQ4T74=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=U+U+uBvGDvXPLppT/BaNiDOLpqlk85arTOYnIKgFsuR3izrj3Dwmi0+nkGCmsMBhhDP0celENI218CCFXSsPpgLIaE65cyNyWqM0vR8uijpeGsGwsb2pB2kHMsOL2ghtPK4TbjmgxBDyEQPUMMLNpP5IKEa2PfI03CucR+ksS8M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ci8DnB7L; arc=none smtp.client-ip=209.85.167.47
+	s=arc-20240116; t=1710268478; c=relaxed/simple;
+	bh=pGuULm/CHXM11bgwq9+j2y5waqyjjkr9xF1BTqDkZJM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=thzm6slu4l81YIssJDXb0DQPPbQ6dwxlDFqBa7YQCxKYg1ol/OJIs2IJ/xzbsUEBLLIdEhZP5AlvTCKJZJPgNNtL7/7SmBRkxRj0UlH8mUUkUf6lYwaGzDQHeF5rmzy0x49RKgg5UKXuucAF13YDyhNU9E6kNTgtxBDrQ0GvDvo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HlhZA/4g; arc=none smtp.client-ip=209.85.128.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-51380c106d9so4990461e87.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 11:31:18 -0700 (PDT)
+Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-4132a348546so16031975e9.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 11:34:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710268277; x=1710873077; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=svwNxagQwUw6dGin/+/wtaDz1N/51/WVJ4l0bjMuiYI=;
-        b=Ci8DnB7LdQ9i4KhW6/SicTb7YrO39XcBcjFoMgPHZ2rdygifsW7TLLikk5UuhUw89J
-         7bmZyotI4oC300OPwV4H7XhOForXKKmZfYRN3oCPo76wdBzCri2cjvy+ooZ5Cdcfqd42
-         kvkTsf4tb6Rjj6bq5VWWQaPosFV018jh/ySMgCxz97rHlUX33FWPlkJnSM/L13c6t76M
-         WlqTp/cMgR7YQ8v7PRAyMx84Y/pRldanJ+lT5Pq+91mkOVYaivmu2yPvx+x9fShoQPzv
-         gdkpDWr9C7m3LoDIZPu1Wn9SXqVVabfBRtt5e5pUfwiFaw8YGMfrIxXGKQAzjoEPoz3q
-         W5Qw==
+        d=linaro.org; s=google; t=1710268475; x=1710873275; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Vv4Sm7UZXVqdBGX8hplEk2uRkZer1n7N2k6G4yb6swM=;
+        b=HlhZA/4grcr0v8d4aNO0PG70QRQAP9VyRhOxnzfwTQOLi0LhBi+AVFW0E/uCRwOd+h
+         Rw4Iqqgn/LNya1MOTJ+nZMtJJyHWRhSULEc8Ivr6vJ0SgnaMH3NHRoJFq4xDXRMKoyGP
+         nEkgQRn9NVRBapMbLB47sBsyOW4UYCyVE9bLRmEcTvrptCHsJLMRdNc97lm7Mxoc/3ye
+         LMFe0LdecAHhEH+ouGZ4OEg76wBrtJY0KVapHeAZOS/y/QI5xlUmJBjWlQSyToYhwlXC
+         JDEi9fvNnfHgwh6bssxHgWBh+gC06/FC3m9GYiiZd2h+pLd86X/Z7Z01bkpTSf+kxNzN
+         +Wkg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710268277; x=1710873077;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=svwNxagQwUw6dGin/+/wtaDz1N/51/WVJ4l0bjMuiYI=;
-        b=vL5H0K6HjSLayQhgtuszDTh8Se+qvZGk4O4N5f0iwZUVMkVvFMqpG8iljVxe6TtEB+
-         jdXlnljSWF0nq7a1IbDDaasYBfXRVHOlKN6ocmrAwrdWuViD5xMy9QoouWZnG1z8cSzj
-         HePcnWMAllt9RgrV8aZNAwRP2UIRzSjOIqilJ5HLVMHWSm8WCz3tsvrGL7nnzx6hA45p
-         VuTghsv//nqa2PLH0kcqI68VUS6FKkT2eVu2vZR7QZOA7KQHMmWM6Y5z6AqbmiwrkEvn
-         HxSS3v5E/4ZjA0if4F14WgKUw6GLEyDJf6bajgeEeLo0kXMu0NKY6dAE9ULsHS5DqUnh
-         KpXg==
-X-Forwarded-Encrypted: i=1; AJvYcCU7bU3SY57HxVUmapqgnWlF9VGvNOQ59tBfDFiWhG6qwdbIh0PTHeRR8OwzpZkU3QhHtXnXJCVKwNhzyCpKGyR+fxt5pIryXLZE7A==
-X-Gm-Message-State: AOJu0Yw1ff27bkuSGRc0IMBOzxiK+6vZfp/ulSX96wTjwgbgsQ1waJzh
-	I0vwSY9ot8v3fmRPzSMEcwTdpLTfKXYgR/GV+nRP2mHK2V+koH1TSJLT1D0kKvg=
-X-Google-Smtp-Source: AGHT+IEF10AZsbMENd7cz4Aw54PnuDNioiumgrU6CGWMx3XlMQJdOVqhqLJjtt+YrwpVYS26zPiP2A==
-X-Received: by 2002:ac2:51b8:0:b0:513:c1e6:3c54 with SMTP id f24-20020ac251b8000000b00513c1e63c54mr723525lfk.11.1710268276944;
-        Tue, 12 Mar 2024 11:31:16 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id b4-20020a056512060400b0051329001f53sm1661012lfe.54.2024.03.12.11.31.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Mar 2024 11:31:16 -0700 (PDT)
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Alim Akhtar <alim.akhtar@samsung.com>,
-	Thomas Abraham <thomas.abraham@linaro.org>,
-	Kukjin Kim <kgene.kim@samsung.com>,
-	Grant Likely <grant.likely@secretlab.ca>,
-	Sachin Kamat <sachin.kamat@linaro.org>,
-	devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org,
-	linux-samsung-soc@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 4/4] ARM: dts: samsung: smdk4412: align keypad node names with dtschema
-Date: Tue, 12 Mar 2024 19:31:05 +0100
-Message-Id: <20240312183105.715735-4-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240312183105.715735-1-krzysztof.kozlowski@linaro.org>
-References: <20240312183105.715735-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20230601; t=1710268475; x=1710873275;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vv4Sm7UZXVqdBGX8hplEk2uRkZer1n7N2k6G4yb6swM=;
+        b=gOFPB01A450t/zVwl04gAbQckHce/6CNN37oXIvKOTxfKxfuiMdsFr6yTS2823BxA9
+         DM/0lrZzCCRgsWsQ+adEWtQq2RkwYUZD19uIKgcofB7XNRPgyWwlL8usvRKpXlExSwKa
+         6NOAKd40DItCDzLNKdJXyLgNIZzTaI3faZFukm12L1OmkynxsSvgWBq7wDd2Sxy2nhhK
+         ptf1haD6FhV1e8QeFdfVKBRhavpYCxGJAhuLIxNvH3uOP6HXBZtA3yMetl13N/j+LsJd
+         G3uRwks7TsMA517OZjb7l+v1rVjok4bD4jtqk4uZ3MUj4XKQxx5hua4c1qL/LwroNvlv
+         QbHQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXaEDmLPoEDwKUdaFP8buP6i9Rcj/dTE7+baGM8UAsOxBAlqsF8RNvNEcCo43hFRktBCpEmLa5yp2wit55IaT9kTrX8q2sqam5csQ==
+X-Gm-Message-State: AOJu0Yy5R4MnEYafCRVFePKRe/xqWNbYq2B5MSyBBnLF8nVQSVsDzxIV
+	07kiMsVBH38O6AcKh6ubp3OzkKgYOJ3Sd9Z00Gtfas2NCW0EPPMPakPYN4SjIOU=
+X-Google-Smtp-Source: AGHT+IHYNgNP421vNaL5nXSlSaT4BZLzBe/yll6vafwoUuA66iFoHfjPfZkvNbfiFEeYo/m5gaX4uA==
+X-Received: by 2002:a05:600c:5385:b0:413:2ab7:4396 with SMTP id hg5-20020a05600c538500b004132ab74396mr4743708wmb.18.1710268475495;
+        Tue, 12 Mar 2024 11:34:35 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id u18-20020a05600c19d200b0041316e91c99sm13277255wmq.1.2024.03.12.11.34.33
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Mar 2024 11:34:35 -0700 (PDT)
+Message-ID: <3d602e0b-a49c-4281-bc51-f8c015c5606f@linaro.org>
+Date: Tue, 12 Mar 2024 19:34:32 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v13 2/4] dt-bindings: remoteproc: add Tightly Coupled
+ Memory (TCM) bindings
+Content-Language: en-US
+To: Tanmay Shah <tanmay.shah@amd.com>, andersson@kernel.org,
+ mathieu.poirier@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ michal.simek@amd.com, ben.levinsky@amd.com
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+References: <20240311175926.1625180-1-tanmay.shah@amd.com>
+ <20240311175926.1625180-3-tanmay.shah@amd.com>
+ <d498d76e-b021-4cf7-adca-63f1cd3e1542@linaro.org>
+ <fdad2198-5d3a-4bce-8249-8b2f9f75f84a@amd.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <fdad2198-5d3a-4bce-8249-8b2f9f75f84a@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-DT schema expects certain node names, as pointed out but dtbs_check:
+On 12/03/2024 18:42, Tanmay Shah wrote:
+> 
+> 
+> On 3/12/24 7:13 AM, Krzysztof Kozlowski wrote:
+>> On 11/03/2024 18:59, Tanmay Shah wrote:
+>>> From: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>>>
+>>> Introduce bindings for TCM memory address space on AMD-xilinx Zynq
+>>> UltraScale+ platform. It will help in defining TCM in device-tree
+>>> and make it's access platform agnostic and data-driven.
+>>>
+>>> Tightly-coupled memories(TCMs) are low-latency memory that provides
+>>> predictable instruction execution and predictable data load/store
+>>> timing. Each Cortex-R5F processor contains two 64-bit wide 64 KB memory
+>>> banks on the ATCM and BTCM ports, for a total of 128 KB of memory.
+>>>
+>>> The TCM resources(reg, reg-names and power-domain) are documented for
+>>> each TCM in the R5 node. The reg and reg-names are made as required
+>>> properties as we don't want to hardcode TCM addresses for future
+>>> platforms and for zu+ legacy implementation will ensure that the
+>>> old dts w/o reg/reg-names works and stable ABI is maintained.
+>>>
+>>> It also extends the examples for TCM split and lockstep modes.
+>>>
+>>> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+>>> Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
+>>> ---
+>>>
+>>> Changes in v13:
+>>>   - Have power-domains property for lockstep case instead of
+>>>     keeping it flexible.
+>>>   - Add "items:" list in power-domains property
+>>
+>>
+>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> Hi Krzysztof,
+> 
+> Thanks for RB. I provided explanation of flexible power-domains in
+> previous patchset. I am happy to send new revision removing
+> minItems if you dis-agree.
 
-  exynos4412-smdk4412.dtb: keypad@100a0000: 'key-A', 'key-B', 'key-C', 'key-D', 'key-E' do not match any of the regexes: '^key-[0-9a-z]+$', 'pinctrl-[0-9]+'
+Thanks for the explanation, it sounds fine, thus patch LGTM.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm/boot/dts/samsung/exynos4412-smdk4412.dts | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm/boot/dts/samsung/exynos4412-smdk4412.dts b/arch/arm/boot/dts/samsung/exynos4412-smdk4412.dts
-index e16df9e75fcb..c83fb250e664 100644
---- a/arch/arm/boot/dts/samsung/exynos4412-smdk4412.dts
-+++ b/arch/arm/boot/dts/samsung/exynos4412-smdk4412.dts
-@@ -105,31 +105,31 @@ key-5 {
- 		linux,code = <6>;
- 	};
- 
--	key-A {
-+	key-a {
- 		keypad,row = <2>;
- 		keypad,column = <6>;
- 		linux,code = <30>;
- 	};
- 
--	key-B {
-+	key-b {
- 		keypad,row = <2>;
- 		keypad,column = <7>;
- 		linux,code = <48>;
- 	};
- 
--	key-C {
-+	key-c {
- 		keypad,row = <0>;
- 		keypad,column = <5>;
- 		linux,code = <46>;
- 	};
- 
--	key-D {
-+	key-d {
- 		keypad,row = <2>;
- 		keypad,column = <5>;
- 		linux,code = <32>;
- 	};
- 
--	key-E {
-+	key-e {
- 		keypad,row = <0>;
- 		keypad,column = <7>;
- 		linux,code = <18>;
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
