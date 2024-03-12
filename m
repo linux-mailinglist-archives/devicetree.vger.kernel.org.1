@@ -1,88 +1,120 @@
-Return-Path: <devicetree+bounces-50088-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50089-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DE508797A7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 16:34:05 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B1148797BD
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 16:37:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E93FF1F211B9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:34:04 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 372B2289C67
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:37:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D457A7D08B;
-	Tue, 12 Mar 2024 15:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A7E387C6E5;
+	Tue, 12 Mar 2024 15:37:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q750xh3l"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="iHbyIwWw"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B507C6C3;
-	Tue, 12 Mar 2024 15:33:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2C5CC7C6D6;
+	Tue, 12 Mar 2024 15:37:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710257607; cv=none; b=Y0CPp9Gd6Ja6Lq2WCX3jwh+vndB3qRbYiiUMM3/wdQFQ/wYN/HDb6lQjDURwY0Ekh41/VABs3mwLO1cuKPzRRCSCCcL+gTJV7sd1twGGy9lzrwNwDEQ8EZ9JqRkxZexwSnPUPnPUSKkGdBGbdskfMV4o/gyDdGzgq7G6Tf4nr5I=
+	t=1710257854; cv=none; b=o5fGAJT1ctFlhqCeyVOeiRVPIyPeNKwQi5qnycAlcxa3DKtE6eHLSwuOWtzK87ozYNqAiFM+6QrIkCVnebj8718QjVXpMVmQ5hggIR4btuwm0236jaA2yeLyqkZpkiv+VONRI6JUuwSdFEahTPtGJxGWTlmvqAr1XZh+uUDbUNQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710257607; c=relaxed/simple;
-	bh=ADO9yJE067s5VOKhJ4KMia+dY6MInz08bU/j0AUbkwo=;
-	h=Content-Type:MIME-Version:Subject:From:In-Reply-To:References:To:
-	 Cc:Message-ID:Date; b=lfjWE3mvlFTmh8g+MMKaRSVRxSdSHA0v4dZyNY7UmAat4n6apn5MbUKPQKjxEbwBoFqmonsg6U/d/19gmvM63PLY/6DVVC02gGUdNQKKhYfONGpZkU11C74pm6IdtxsVCsoFd3rxowk/YBLlWcm0xtui2KBOvuyiRnA3UuS78tQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q750xh3l; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AABAC433C7;
-	Tue, 12 Mar 2024 15:33:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710257607;
-	bh=ADO9yJE067s5VOKhJ4KMia+dY6MInz08bU/j0AUbkwo=;
-	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-	b=Q750xh3lLx/dpGU7uGJmUVsK0VZ9aN5V9cAWXP2G06BpGSvJ3/FTWzwycT5zPLAin
-	 vHkSezewIemB0lMnY1w06wTOkhU7XtOZ7pecz67hXYqKXDzGqyX+OghwbIEe578gH8
-	 F/4olkcOiweXnUAj0H1aZSzlJ5yLgrItqeFRIRyN0rgBVUETipDeiszJqoj3t163EC
-	 +XYawMghRIDZym9B8jWhH6sGuUFw4sPQkDS9Rwi0NowT/nvrq3QGK30r8uofz8jQBz
-	 y1AwhCNKOZFBVSnfT2fzqJALYH5U2hj/NbQZZ+s+HYRz1sid2uXlrQCuHJebPKg0NW
-	 JFLtW5NGGdYkA==
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1710257854; c=relaxed/simple;
+	bh=I48tOnVn02qB/Zp/RWeby1BA/jlWdLW+79eCJThv88A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=PRBB/z50JC2kSwiZfWv0qcQeoplW2cKX+2fsajd0CMQuom2a2ifiqx/FeROEvlm9YLucofrVJdbtNbpDPLVgTb5/Lp0kl6ddRTVAKE1L4+OVgarcSC9pm9dMRtfC1zhW0oLERyN7z66QVQAhlpikZQLtHnTt403xTOSWNEXqsK4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=iHbyIwWw; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42CEH1Ef027463;
+	Tue, 12 Mar 2024 15:37:25 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=YqqhgxdJiNA3UPZi8o10aGus/ikrez1UUAM4omXga9Q=; b=iH
+	byIwWwBqD5Nigp5bQyTBYqOwjsArqbRoxZTEzKs8FZlgMnoLYkmPZWy8eUWSKhvn
+	dC0nRQi60DOPVPwhAxdRLgoPEJ5f80ljg0HS8BQVg2+Ay9OU/BqTrfmIvYHoe+AS
+	Z8SJOQq2ptXaVTh8GTvHh96Q5LxqvjcuSbtADxVTBwVNHjZC+z0Y/EL6LIpyPYd8
+	4tcush7Xkt6WIn6UR3zuzEom8AKMUnhWSsFAiMCL6uufTnxkcjaUUjyJDoMdfwCl
+	z6AEHIlfjdxDd/qIat/m6IBUO4eUtytX05tRs9Y+5zfijToj4gut3MYTuxHWILk0
+	Jd9XDV2G8sRKfC0GGKoQ==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wtmewgt9v-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Mar 2024 15:37:25 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42CFbOUI006255
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Tue, 12 Mar 2024 15:37:24 GMT
+Received: from [10.216.47.72] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Tue, 12 Mar
+ 2024 08:37:20 -0700
+Message-ID: <1a4e09da-b19b-4cf5-8fae-822c74cfe048@quicinc.com>
+Date: Tue, 12 Mar 2024 21:07:17 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: ipq6018: add 1.2GHz CPU
+ Frequency
+To: Chukun Pan <amadeus@jmu.edu.cn>, <dmitry.baryshkov@linaro.org>
+CC: <andersson@kernel.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <konrad.dybcio@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robh@kernel.org>
+References: <CAA8EJpoghqa5r2vc5XXdfVJy1WDBysXs4LdMybgdgqMTcEPDfA@mail.gmail.com>
+ <20240307030219.92701-1-amadeus@jmu.edu.cn>
+Content-Language: en-US
+From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
+In-Reply-To: <20240307030219.92701-1-amadeus@jmu.edu.cn>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH] dt-bindings: net: wireless: brcm,bcm4329-fmac: Add
- CYW43439
- DT binding
-From: Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <20240309031355.269835-1-marex@denx.de>
-References: <20240309031355.269835-1-marex@denx.de>
-To: Marek Vasut <marex@denx.de>
-Cc: linux-wireless@vger.kernel.org, Marek Vasut <marex@denx.de>,
- "David S. Miller" <davem@davemloft.net>, Conor Dooley <conor+dt@kernel.org>,
- Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, netdev@vger.kernel.org,
- van Spriel <arend@broadcom.com>
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
-Message-ID: <171025760240.1969294.1528607875134063664.kvalo@kernel.org>
-Date: Tue, 12 Mar 2024 15:33:24 +0000 (UTC)
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: uxjsAlAlQ4MykNjDMHHHN_No1on_f-RR
+X-Proofpoint-GUID: uxjsAlAlQ4MykNjDMHHHN_No1on_f-RR
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-12_10,2024-03-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ spamscore=0 impostorscore=0 clxscore=1011 priorityscore=1501
+ lowpriorityscore=0 mlxlogscore=834 malwarescore=0 mlxscore=0 phishscore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403120119
 
-Marek Vasut <marex@denx.de> wrote:
 
-> CYW43439 is a Wi-Fi + Bluetooth combo device from Infineon. The
-> WiFi part is capable of 802.11 b/g/n. This chip is present e.g.
-> on muRata 1YN module. Extend the binding with its DT compatible.
+
+On 3/7/2024 8:32 AM, Chukun Pan wrote:
+> Hi, Dmitry
+>> I did before writing the comment. You have the only IPQ6000 case, it
+>> sets  drv->versions = IPQ6000_VERSION = BIT(2) = 0x4. So, as I said,
+>> you are enabling this for all IPQ6000 SoC versions, unless I miss
+>> something.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Sorry, I didn't explain it clearly.
+> In fact, there are some ipq6000 SoCs whose msm_id is QCOM_ID_IPQ6018.
+> But the chip screen printing is ipq6000.
+> OEM boot log: `CPU: IPQ6018, SoC Version: 1.0`
+> For these SOCs, I tested the frequency is up to 1.5GHz.
 
-Patch applied to wireless-next.git, thanks.
 
-086ba26d55dd dt-bindings: net: wireless: brcm,bcm4329-fmac: Add CYW43439 DT binding
+Could you share the OEM bootloader log on both these SoCs?
 
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/20240309031355.269835-1-marex@denx.de/
 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+> 
+> Thanks,
+> Chukun
+> 
 
