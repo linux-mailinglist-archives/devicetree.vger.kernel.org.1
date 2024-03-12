@@ -1,100 +1,88 @@
-Return-Path: <devicetree+bounces-50086-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50088-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC49487979B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 16:33:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DE508797A7
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 16:34:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 63AC71F21808
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:33:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E93FF1F211B9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:34:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B82457C6C3;
-	Tue, 12 Mar 2024 15:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D457A7D08B;
+	Tue, 12 Mar 2024 15:33:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b="XkeTwepu"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Q750xh3l"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E4FC6F4FA;
-	Tue, 12 Mar 2024 15:33:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=192.198.163.18
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A8B507C6C3;
+	Tue, 12 Mar 2024 15:33:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710257594; cv=none; b=cL3dBscErAhRjl8hMwjFFbvKklZJwZWR+tO9Uq8Eryf1zslse+quaVlrtVKCQnBX17t9axfv29Rf2Ffx23ULOPK1s8o5wqLabjp2ZF4ySUvW8p0UrJ9Auav2EMuEkAG/3ztntP+mrt9qttaOjNv2Ll+84uvWF2l4IyWECLaqSNE=
+	t=1710257607; cv=none; b=Y0CPp9Gd6Ja6Lq2WCX3jwh+vndB3qRbYiiUMM3/wdQFQ/wYN/HDb6lQjDURwY0Ekh41/VABs3mwLO1cuKPzRRCSCCcL+gTJV7sd1twGGy9lzrwNwDEQ8EZ9JqRkxZexwSnPUPnPUSKkGdBGbdskfMV4o/gyDdGzgq7G6Tf4nr5I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710257594; c=relaxed/simple;
-	bh=zBldKUeuDZ8cndWCaJ35EMQR5qhLvUmjXhzazIzp9BM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=j9i5s7TxpLlNPi3HKdol2l1jRhJ03oyHfrneOI5fpe8gu9Y9BI2IpcBdWCDSb7wHv3TqWvsISxVq6WERHUiDB4omwVXIAcberZtKVLnxWHHe02z/a6onEeoDeHb3c+rWkE/r4jHmzhPWibCOTfkoHmcGCOz8Kjert2D/KsHFxps=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com; spf=none smtp.mailfrom=linux.intel.com; dkim=pass (2048-bit key) header.d=intel.com header.i=@intel.com header.b=XkeTwepu; arc=none smtp.client-ip=192.198.163.18
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.intel.com
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=linux.intel.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1710257593; x=1741793593;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=zBldKUeuDZ8cndWCaJ35EMQR5qhLvUmjXhzazIzp9BM=;
-  b=XkeTwepuWQ8V5eVKaCZZaa1WfA02q+OhkyXWVgVVwWjoMXirt/LF5HB+
-   0jdnLqvqi0DGHheZajdKmdzXxfAJMZOnorMOS8LtCKcQNDe2Fdu+Ff0XC
-   Qppg55SrwF8IeKiuOfixqi4DefK5P1seevBWDkEVcV7npoN9T6slxJKeo
-   AYSeX1rBUEABAuFdKZpoLxpYORtikAkV5ld4+vq1zh2NDA1/RGcggfIKI
-   +0PUD9tnRgpQwNfXAEVS0ffPeD/c72cdFOahVRk/FUOUiBqI0ORhQgWXF
-   ik+l04Ch7GmmCP8WvlXN5DAdcXDC+2VhO/Wxuahlb1hXTjh2U1TeDPU3w
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="4826244"
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; 
-   d="scan'208";a="4826244"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2024 08:33:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,11011"; a="914399879"
-X-IronPort-AV: E=Sophos;i="6.07,119,1708416000"; 
-   d="scan'208";a="914399879"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 12 Mar 2024 08:33:10 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.97)
-	(envelope-from <andriy.shevchenko@linux.intel.com>)
-	id 1rk47n-0000000Bvm2-2qe4;
-	Tue, 12 Mar 2024 17:33:07 +0200
-Date: Tue, 12 Mar 2024 17:33:07 +0200
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Rob Herring <robh@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
-	Vinod Koul <vkoul@kernel.org>, linux-kernel@vger.kernel.org,
-	dmaengine@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dma: snps,dma-spear1340: Fix data{-,_}width
- schema
-Message-ID: <ZfB1s2Vy8lXCSLme@smile.fi.intel.com>
-References: <20240311222522.1939951-1-robh@kernel.org>
- <171025134347.2083269.1302794772701834117.robh@kernel.org>
+	s=arc-20240116; t=1710257607; c=relaxed/simple;
+	bh=ADO9yJE067s5VOKhJ4KMia+dY6MInz08bU/j0AUbkwo=;
+	h=Content-Type:MIME-Version:Subject:From:In-Reply-To:References:To:
+	 Cc:Message-ID:Date; b=lfjWE3mvlFTmh8g+MMKaRSVRxSdSHA0v4dZyNY7UmAat4n6apn5MbUKPQKjxEbwBoFqmonsg6U/d/19gmvM63PLY/6DVVC02gGUdNQKKhYfONGpZkU11C74pm6IdtxsVCsoFd3rxowk/YBLlWcm0xtui2KBOvuyiRnA3UuS78tQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Q750xh3l; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4AABAC433C7;
+	Tue, 12 Mar 2024 15:33:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710257607;
+	bh=ADO9yJE067s5VOKhJ4KMia+dY6MInz08bU/j0AUbkwo=;
+	h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
+	b=Q750xh3lLx/dpGU7uGJmUVsK0VZ9aN5V9cAWXP2G06BpGSvJ3/FTWzwycT5zPLAin
+	 vHkSezewIemB0lMnY1w06wTOkhU7XtOZ7pecz67hXYqKXDzGqyX+OghwbIEe578gH8
+	 F/4olkcOiweXnUAj0H1aZSzlJ5yLgrItqeFRIRyN0rgBVUETipDeiszJqoj3t163EC
+	 +XYawMghRIDZym9B8jWhH6sGuUFw4sPQkDS9Rwi0NowT/nvrq3QGK30r8uofz8jQBz
+	 y1AwhCNKOZFBVSnfT2fzqJALYH5U2hj/NbQZZ+s+HYRz1sid2uXlrQCuHJebPKg0NW
+	 JFLtW5NGGdYkA==
+Content-Type: text/plain; charset="utf-8"
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <171025134347.2083269.1302794772701834117.robh@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH] dt-bindings: net: wireless: brcm,bcm4329-fmac: Add
+ CYW43439
+ DT binding
+From: Kalle Valo <kvalo@kernel.org>
+In-Reply-To: <20240309031355.269835-1-marex@denx.de>
+References: <20240309031355.269835-1-marex@denx.de>
+To: Marek Vasut <marex@denx.de>
+Cc: linux-wireless@vger.kernel.org, Marek Vasut <marex@denx.de>,
+ "David S. Miller" <davem@davemloft.net>, Conor Dooley <conor+dt@kernel.org>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh@kernel.org>,
+ devicetree@vger.kernel.org, netdev@vger.kernel.org,
+ van Spriel <arend@broadcom.com>
+User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.11.2
+Message-ID: <171025760240.1969294.1528607875134063664.kvalo@kernel.org>
+Date: Tue, 12 Mar 2024 15:33:24 +0000 (UTC)
 
-On Tue, Mar 12, 2024 at 07:49:05AM -0600, Rob Herring wrote:
-> On Mon, 11 Mar 2024 16:25:22 -0600, Rob Herring wrote:
+Marek Vasut <marex@denx.de> wrote:
 
-...
+> CYW43439 is a Wi-Fi + Bluetooth combo device from Infineon. The
+> WiFi part is capable of 802.11 b/g/n. This chip is present e.g.
+> on muRata 1YN module. Extend the binding with its DT compatible.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> My bot found errors
+Patch applied to wireless-next.git, thanks.
 
-Well done! :-)
+086ba26d55dd dt-bindings: net: wireless: brcm,bcm4329-fmac: Add CYW43439 DT binding
 
 -- 
-With Best Regards,
-Andy Shevchenko
+https://patchwork.kernel.org/project/linux-wireless/patch/20240309031355.269835-1-marex@denx.de/
 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
 
 
