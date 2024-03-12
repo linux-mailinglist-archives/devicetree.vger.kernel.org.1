@@ -1,124 +1,169 @@
-Return-Path: <devicetree+bounces-50032-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50035-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1C9AF87930E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:33:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id AA99B879324
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:37:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F10A28328D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 11:33:31 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 645CB284E02
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 11:37:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2F43F79B7B;
-	Tue, 12 Mar 2024 11:33:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2BEB79B80;
+	Tue, 12 Mar 2024 11:37:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="mvy3VH/e"
 X-Original-To: devicetree@vger.kernel.org
-Received: from szxga04-in.huawei.com (szxga04-in.huawei.com [45.249.212.190])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83D6720304;
-	Tue, 12 Mar 2024 11:33:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.249.212.190
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F047569D0A;
+	Tue, 12 Mar 2024 11:37:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710243207; cv=none; b=KEq12A4KH5Eh5gZObD6MHT4f43ss7JQbin/K3OscunAGyJCwu8Su0ontfdanqOjR3/TxOWZnuEXN1/PvH2wspciJTpVirXn3gBt3YOjiBy1BvuGhDWGoiPpKrd0upA3FIArgaonyDa0oBxj6YKwobUcdWtlumvDE50rz49dM2As=
+	t=1710243458; cv=none; b=bmZyPmPl+DejmJjM/W2QOR9VSbKHYDYlEIRdbdKk8WimCBTdzkS8EYN6RZ3qfWbKBZM+9AyEj0naBj5NF9m19Kd9wclsXqCAuzLBqL0tESmyKIrca+0mPuoknt96LVVnK4b2bHJTgAHTiKpDRCBp493OyVny1BdPQgjYBGSG1eo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710243207; c=relaxed/simple;
-	bh=cR7pbgnUEuaLGoCwMBI6KTYXYo4LlhwxbSp3LNaXAqw=;
-	h=Message-ID:Date:From:MIME-Version:To:CC:Subject:References:
-	 In-Reply-To:Content-Type; b=lq0vwMVi1s0QqwF0FcFWFrEMUkOXNpA4ONLvkk8k9gk0me6ATQgb52SudjjpNEB04E79Ye0Q5u+mX09iLAPWMIU3lWtkOdSELIaInzgaA3gmXoxBN3KMdMoV07D2yceO9GdTEOUEP7wQYr7P3zrkJgeFijdSSU8LyqXB1CYhCkU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=45.249.212.190
-Authentication-Results: smtp.subspace.kernel.org; dmarc=fail (p=quarantine dis=none) header.from=hisilicon.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.19.88.214])
-	by szxga04-in.huawei.com (SkyGuard) with ESMTP id 4TvBLC0yzQz1xqhD;
-	Tue, 12 Mar 2024 19:31:31 +0800 (CST)
-Received: from kwepemd100008.china.huawei.com (unknown [7.221.188.193])
-	by mail.maildlp.com (Postfix) with ESMTPS id 5C5EF1A016C;
-	Tue, 12 Mar 2024 19:33:15 +0800 (CST)
-Received: from [10.67.121.2] (10.67.121.2) by kwepemd100008.china.huawei.com
- (7.221.188.193) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1258.28; Tue, 12 Mar
- 2024 19:33:14 +0800
-Message-ID: <65F03D79.2070008@hisilicon.com>
-Date: Tue, 12 Mar 2024 19:33:13 +0800
-From: Wei Xu <xuwei5@hisilicon.com>
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:24.0) Gecko/20100101 Thunderbird/24.2.0
+	s=arc-20240116; t=1710243458; c=relaxed/simple;
+	bh=rtuJJhJjSwhFXk7Mc165YJQ7+x0VBGrwR9b8fPEb5Ok=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=C6EDGkhaxhg86Xc+D1Py30tYonUjtHcgVopxgMOsYPs/YcADnAzOxKpw6mHY3auePiwUAbAOzzWr7IMUr2Nnh+nuNzSS1hHf1ySmkAJSbPos6SZ94B9h2TOHQiECRIvr2vVFyG/93ji/uDJrdcGAjShxZvCIxQ2AMxRaJv0lzWg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=mvy3VH/e; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42CBarAg101235;
+	Tue, 12 Mar 2024 06:36:54 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1710243414;
+	bh=AgcSXIuIsHjzqNhDCxq2Q4wqwn8Izu4O6Ezov89bPYk=;
+	h=Date:Subject:To:CC:References:From:In-Reply-To;
+	b=mvy3VH/eO7/opZUOgyKRE5ZmhdYoYw3xiVbQ7rWps770MChgthluQNvwXoxN+DoTX
+	 h73WPUMnU3dGMT045Isk2Tcdtb7nPF2QjlyOuYsMrPEGOYBZOOzt5P0xkJs8MOhg5k
+	 1KJv21BFL8UFzpRQlsrv+s9OqlfIPn+Dwmyg0YW4=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+	by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42CBar4k022480
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Tue, 12 Mar 2024 06:36:53 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 12
+ Mar 2024 06:36:53 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Tue, 12 Mar 2024 06:36:53 -0500
+Received: from [10.24.69.25] (danish-tpc.dhcp.ti.com [10.24.69.25])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42CBakVX058269;
+	Tue, 12 Mar 2024 06:36:46 -0500
+Message-ID: <6de512c3-5511-4fee-bd38-8200d87eafa9@ti.com>
+Date: Tue, 12 Mar 2024 17:06:45 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-To: Yang Xiwen <forbidden405@outlook.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
-	<conor+dt@kernel.org>, Jiancheng Xue <xuejiancheng@hisilicon.com>, Alex Elder
-	<elder@linaro.org>, Peter Griffin <peter.griffin@linaro.org>
-CC: <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <stable@vger.kernel.org>
-Subject: Re: [PATCH v3 0/3] arm64: dts: hi3798cv200: fix GICR size, add cache
- info, maintenance irq and GICH, GICV spaces
-References: <20240219-cache-v3-0-a33c57534ae9@outlook.com> <SEZPR06MB695952078B51C4549191F8AB962B2@SEZPR06MB6959.apcprd06.prod.outlook.com>
-In-Reply-To: <SEZPR06MB695952078B51C4549191F8AB962B2@SEZPR06MB6959.apcprd06.prod.outlook.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH net-next v4 00/10] Support ICSSG-based Ethernet on AM65x
+ SR1.0 devices
+Content-Language: en-US
+To: Diogo Ivo <diogo.ivo@siemens.com>, <rogerq@kernel.org>,
+        <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
+        <pabeni@redhat.com>, <andrew@lunn.ch>, <dan.carpenter@linaro.org>,
+        <jacob.e.keller@intel.com>, <robh@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <vigneshr@ti.com>, <wsa+renesas@sang-engineering.com>,
+        <hkallweit1@gmail.com>, <arnd@arndb.de>, <vladimir.oltean@nxp.com>,
+        <linux-arm-kernel@lists.infradead.org>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+CC: <jan.kiszka@siemens.com>
+References: <20240305114045.388893-1-diogo.ivo@siemens.com>
+From: MD Danish Anwar <danishanwar@ti.com>
+In-Reply-To: <20240305114045.388893-1-diogo.ivo@siemens.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: dggems703-chm.china.huawei.com (10.3.19.180) To
- kwepemd100008.china.huawei.com (7.221.188.193)
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Hi Yang,
+Hi Diogo,
 
-On 2024/3/12 19:19, Yang Xiwen wrote:
-> On 2/19/2024 11:05 PM, Yang Xiwen via B4 Relay wrote:
->> The patchset fixes some warnings reported by the kernel during boot.
->>
->> The cache size info is from Processor_Datasheet_v2XX.pdf [1], Section
->> 2.2.1 Master Processor.
->>
->> The cache line size and the set-associative info are from Cortex-A53
->> Documentation [2].
->>
->>  From the doc, it can be concluded that L1 i-cache is 4-way assoc, L1
->> d-cache is 2-way assoc and L2 cache is 16-way assoc. Calculate the dts
->> props accordingly.
->>
->> Also, to use KVM's VGIC code, GICH, GICV registers spaces and maintenance
->> IRQ are added to the dts with verification.
->>
->> [1]: https://github.com/96boards/documentation/blob/master/enterprise/poplar/hardware-docs/Processor_Datasheet_v2XX.pdf
->> [2]: https://developer.arm.com/documentation/ddi0500/j/Level-1-Memory-System
->>
->> Signed-off-by: Yang Xiwen <forbidden405@outlook.com>
->> ---
->> Changes in v3:
->> - send patches to stable (Andrew Lunn)
->> - rewrite the commit logs more formally (Andrew Lunn)
->> - rename l2-cache0 to l2-cache (Krzysztof Kozlowski)
->> - Link to v2: https://lore.kernel.org/r/20240218-cache-v2-0-1fd919e2bd3e@outlook.com
->>
->> Changes in v2:
->> - arm64: dts: hi3798cv200: add GICH, GICV register spces and
->>    maintainance IRQ.
->> - Link to v1: https://lore.kernel.org/r/20240218-cache-v1-0-2c0a8a4472e7@outlook.com
->>
->> ---
->> Yang Xiwen (3):
->>        arm64: dts: hi3798cv200: fix the size of GICR
->>        arm64: dts: hi3798cv200: add GICH, GICV register space and irq
->>        arm64: dts: hi3798cv200: add cache info
->>
->>   arch/arm64/boot/dts/hisilicon/hi3798cv200.dtsi | 43 +++++++++++++++++++++++++-
->>   1 file changed, 42 insertions(+), 1 deletion(-)
->> ---
->> base-commit: 8d3dea210042f54b952b481838c1e7dfc4ec751d
->> change-id: 20240218-cache-11c8bf7566c2
->>
->> Best regards,
+On 05/03/24 5:10 pm, Diogo Ivo wrote:
+> Hello,
 > 
-> May someone apply this patchset to their tree so that it can land in stable at the end? This is a fix, not adding new functionalities. It's been 2 weeks already.
+> This series extends the current ICSSG-based Ethernet driver to support
+> AM65x Silicon Revision 1.0 devices.
+> 
+> Notable differences between the Silicon Revisions are that there is
+> no TX core in SR1.0 with this being handled by the firmware, requiring
+> extra DMA channels to manage communication with the firmware (with the
+> firmware being different as well) and in the packet classifier.
+> 
+> The motivation behind it is that a significant number of Siemens
+> devices containing SR1.0 silicon have been deployed in the field
+> and need to be supported and updated to newer kernel versions
+> without losing functionality.
+> 
+> This series is based on TI's 5.10 SDK [1].
+> 
+> The third version of this patch series can be found in [2].
+> 
+> Detailed descriptions of the changes in this series can be found in
+> each commit's message.
+> 
+> However, in its current form the driver has two problems:
+>  - Setting the link to 100Mbit/s and half duplex results in slower than
+>    expected speeds. We have identified that this comes from
+>    icssg_rgmii_get_fullduplex() misreporting a full duplex connection
+>    and thus we send the wrong command to the firmware.
+> 
+>  - When using 3 TX channels we observe a timeout on TX queue 0. We have
+>    made no real progress on this front in identifying the root cause.
+> 
+> For both of these topics help from someone more familiar with the hardware
+> would be greatly appreciated so that we can support these features rather
+> than disable them in the final driver version.
+> 
+> [1]: https://git.ti.com/cgit/ti-linux-kernel/ti-linux-kernel/tree/?h=ti-linux-5.10.y
+> [2]: https://lore.kernel.org/netdev/20240221152421.112324-1-diogo.ivo@siemens.com/
+> 
+> Diogo Ivo (10):
+>   dt-bindings: net: Add support for AM65x SR1.0 in ICSSG
+>   eth: Move IPv4/IPv6 multicast address bases to their own symbols
+>   net: ti: icssg-prueth: Move common functions into a separate file
+>   net: ti: icssg-prueth: Add SR1.0-specific configuration bits
+>   net: ti: icssg-prueth: Add SR1.0-specific description bits
+>   net: ti: icssg-prueth: Adjust IPG configuration for SR1.0
+>   net: ti: icssg-prueth: Adjust the number of TX channels for SR1.0
+>   net: ti: icssg-prueth: Add functions to configure SR1.0 packet
+>     classifier
+>   net: ti: icssg-prueth: Modify common functions for SR1.0
+>   net: ti: icssg-prueth: Add ICSSG Ethernet driver for AM65x SR1.0
+>     platforms
+> 
+>  .../bindings/net/ti,icssg-prueth.yaml         |   35 +-
+>  drivers/net/ethernet/ti/Kconfig               |   15 +
+>  drivers/net/ethernet/ti/Makefile              |    9 +
+>  .../net/ethernet/ti/icssg/icssg_classifier.c  |  113 +-
+>  drivers/net/ethernet/ti/icssg/icssg_common.c  | 1222 +++++++++++++++++
+>  drivers/net/ethernet/ti/icssg/icssg_config.c  |   14 +-
+>  drivers/net/ethernet/ti/icssg/icssg_config.h  |   56 +
+>  drivers/net/ethernet/ti/icssg/icssg_ethtool.c |   10 +
+>  drivers/net/ethernet/ti/icssg/icssg_prueth.c  | 1189 +---------------
+>  drivers/net/ethernet/ti/icssg/icssg_prueth.h  |   79 +-
+>  .../net/ethernet/ti/icssg/icssg_prueth_sr1.c  | 1171 ++++++++++++++++
+>  include/linux/etherdevice.h                   |   12 +-
+>  12 files changed, 2715 insertions(+), 1210 deletions(-)
+>  create mode 100644 drivers/net/ethernet/ti/icssg/icssg_common.c
+>  create mode 100644 drivers/net/ethernet/ti/icssg/icssg_prueth_sr1.c
 > 
 
-Sorry for the delay, I am too busy to catch up with this cycle.
-I will go through this patch set and maybe apply it during the next cycle.
+This series doesn't break any existing functionality of ICSSG driver on
+AM654x SR2.0. The series looks ok to me.
 
-Best Regards,
-Wei
+For this series,
+Reviewed-by: MD Danish Anwar <danishanwar@ti.com>
+
+-- 
+Thanks and Regards,
+Danish
 
