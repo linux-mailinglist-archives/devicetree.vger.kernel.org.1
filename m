@@ -1,117 +1,130 @@
-Return-Path: <devicetree+bounces-50075-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50076-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0C3478796A4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:44:47 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4BD88796D0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:49:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8FF11B2482F
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:44:44 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 28E70B218E9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:49:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D15C17AE6A;
-	Tue, 12 Mar 2024 14:44:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 45CC37B3D2;
+	Tue, 12 Mar 2024 14:48:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="aukJ/eNk"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RtrFKblJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CECD1DFD8;
-	Tue, 12 Mar 2024 14:44:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E4AE7AE7A
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 14:48:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710254666; cv=none; b=Zqg7t7CxhbdV6Z3QkrgZ7qaR+eKaS49T3A/gBuDvumvR8PpbGE91DgaWqzKN0RadjS46a/oK4jFyejs+jmGPeGhcwuII/2k5Xn98ScTvWobrAcN+VxoGzl3yZcgmiiPtsJNlBWWhinkoisIKOQ5E3j8I59KYIcVI850tU0SmlGw=
+	t=1710254939; cv=none; b=Wb2V91J2WCfUV4jqAxZe64qeDopu5hF3vvi9XeA/oGE3Qy1iNvgEKm/nDAQ6kqMTh4sQeLNR77J8l/0p7fXEaOyUilLj7OPnC9Rd76f2fClf/elRU7FcG49uSeucqKAkM/FcUpLLV4kNYSpXEsxLJOhhkVypo62Ha9HyBc95I+I=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710254666; c=relaxed/simple;
-	bh=Dy35dwPt2qxF2qUUrlFwaycsRiwdy9dn4pHsT5ZLSGM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=UIaUPFdeapmKPx6WA4JrRXEXNB++Ndsga5Cu2CqmLHFoG1mx693F15FhyHgp6zyra3ENCM9dJdshIqFpxuAJnKVi6HBBZNFBX8g2EEZ6BegcEqbnoGv98RwmMtk3UpfnYzcea0AB16kLsRSvz/ptav9Hdj5z3woPE+vVN57u710=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=aukJ/eNk; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA9E7C433C7;
-	Tue, 12 Mar 2024 14:44:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710254666;
-	bh=Dy35dwPt2qxF2qUUrlFwaycsRiwdy9dn4pHsT5ZLSGM=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=aukJ/eNkN+YxIpLAdDkVRaOAwmdrbNrNZgs82sjROJOwJ1cRhWzZAp3hKMU0o6by+
-	 ClTlHTyUvbdjvyY4/G74hRToq/cZ9BrgDhaB+HPsKPBThz5V0mnvS4Q4WgBQvcptpR
-	 04z6b6XP7us+6me/XmilaA8rQnRctidem5GuYEJRvHPnybkiiNXO4JEYbRUM4OiaPY
-	 UFJRlCI98zvgAzsZLe3qUDx3DzX1Q/Ugn7gqlwF7kxh6x+dvQaqjTZDbJmQj3umXD3
-	 1PXAX/9vH+gF3+GRdcEgLVCtkdJFbDDShjF9MVbGV0IHrKEFATopahqSygkBb4KvY3
-	 s3KPe9CIlkidg==
-Date: Tue, 12 Mar 2024 14:44:19 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
-	Saurabh Singh Sengar <ssengar@linux.microsoft.com>,
-	Frank Rowand <frowand.list@gmail.com>, linux-kernel@vger.kernel.org,
-	patches@lists.linux.dev, linux-um@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, kunit-dev@googlegroups.com,
-	linux-kselftest@vger.kernel.org, devicetree@vger.kernel.org,
-	"Gabriel L. Somlo" <gsomlo@gmail.com>
-Subject: Re: [PATCH 2/7] of: Create of_root if no dtb provided by firmware
-Message-ID: <e83b606a-e34e-423f-b26b-df745052d06b@sirena.org.uk>
-References: <20240217060843.GA16460@linuxonhyperv3.guj3yctzbm1etfxqx2vob5hsef.xx.internal.cloudapp.net>
- <CAL_Jsq+Feu9NnzTNx=XU5vgHhibGAQXvkuTeWbpu8gJ3rVrzcw@mail.gmail.com>
- <CAMuHMdUKa-KdWfYswEpFvj3RjQPM+ThhU85myfBGVkXxZqbHWw@mail.gmail.com>
+	s=arc-20240116; t=1710254939; c=relaxed/simple;
+	bh=ehkMxhxSjg2XhZ+RvTxPDoX4lka61fp6faUzxorfi84=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CLQvUq7eoJIYdUZzPh0BlFT255okwfB9Ym7n/IfoNqFKmKV8xA8NCQIeixd5DZL4U45/TvQcaDqugnxtScebLi7FF7w06zZkp6ITYeV4VcuRpPV1wT+gH4ykc1j9kpRWViJwXL1pqjAk54wfRwV0ecSl7JiBSmcRAnkdJKZ3fqQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RtrFKblJ; arc=none smtp.client-ip=209.85.167.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-513b16bb739so1700967e87.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 07:48:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710254936; x=1710859736; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vJBqb//ttMSi9W/J8xNh1OgzHq9LQEMmCQTMHoiXJQM=;
+        b=RtrFKblJhTpI3m+rAIBHeKDsKFS4vpc/kMF4iNMEA4GYNZtK19+pv54+1wiqMA4USq
+         bRq5zz7D9jMa3Yov47A7MQfWm3SbXUJ+kjSQ66dVHD2qP/8GTgRshH79D+q33UnlJvp3
+         sZXWqffpzSuatewNEbqMVtPDMYmLaETiU35MmX06nHkOUQ7Jv/JBoKsHULXXU5KjBPsp
+         RSP/gVdb8mDKFFUyWVAKEIAQRFKQPu9O88DkOFNV/nriuVfrs/YG6lTLlqpoeEpIzNtb
+         /M6zrkaemMZjvfnWWDkMUWxZ0fIHbeBTAv/ai7tj/uDK0iuNdKBB5HTRlVUFz4Het1Nr
+         1GKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710254936; x=1710859736;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=vJBqb//ttMSi9W/J8xNh1OgzHq9LQEMmCQTMHoiXJQM=;
+        b=hyN2JLYcQlvr5sTpDws9N2axpM+qlNFfhrPRMcMpjCe9PD8irmeoJP0EVFmVTrINLX
+         NNhyl2/Los5oHKtYwY+ygKIg7UZ0lcEVZwBKePtEYSXuTAzZ79bET+0oodM6I/91Hkeo
+         xuuFPPnja5SZqkQAp0+wvykLT2cmB+Gz4DVjAA28L5XChdfA1W5kIOGoCOhLVJ2YQ2Ub
+         xH/x5Gfmi5vnRvPVGGqlReWrcI/evCW4nRDd5r24LzKJJlQLuhG5XyRfxjEE7IOHJmtJ
+         k24PtquAnvQF2lZlmsYd4TXNBOnC6meki0YqV6qk6QzWCah1Z3GXlPgrli2m60kntip2
+         hPtw==
+X-Forwarded-Encrypted: i=1; AJvYcCXhqpS+n3HGuic6nxpVHJQLVqXEnHRnKDsD6r6bBnrjntIqthuuH9CHbv5g7FmtfIivvIsG3tZwdajt+1uKErJSeQN77yQ+E5uQQw==
+X-Gm-Message-State: AOJu0YwYAqKFbAltxit1Vee7PitO2+eJG0B3qnOO+p6w+xNPh8TyrpcP
+	8nEQiBlxAnrC8LfmUNRq0mudlyBnmfPUYSvnhD7WOmWzZvNZ09s6Sdfy5VJSd7hjN+xnA4vOqBN
+	wqpM=
+X-Google-Smtp-Source: AGHT+IHlExnmfR4kT+GhrIroVdprVrNybDbEQkw70027XzchLm1fcSlfQMkG5CBosKWyjRZqZe0c7g==
+X-Received: by 2002:ac2:599b:0:b0:512:e57d:c9c9 with SMTP id w27-20020ac2599b000000b00512e57dc9c9mr6198989lfn.13.1710254935601;
+        Tue, 12 Mar 2024 07:48:55 -0700 (PDT)
+Received: from [172.30.205.61] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
+        by smtp.gmail.com with ESMTPSA id i26-20020a198c5a000000b00513177e424csm1653978lfj.168.2024.03.12.07.48.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Mar 2024 07:48:55 -0700 (PDT)
+Message-ID: <a8da3a73-11de-4b46-8dfc-f05335c22b08@linaro.org>
+Date: Tue, 12 Mar 2024 15:48:54 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="A8PYQDEZ5U6Pm1op"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdUKa-KdWfYswEpFvj3RjQPM+ThhU85myfBGVkXxZqbHWw@mail.gmail.com>
-X-Cookie: Oh, so there you are!
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8650: add support for the
+ SM8650-HDK board
+Content-Language: en-US
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240223-topic-sm8650-upstream-hdk-v1-0-ccca645cd901@linaro.org>
+ <20240223-topic-sm8650-upstream-hdk-v1-2-ccca645cd901@linaro.org>
+From: Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20240223-topic-sm8650-upstream-hdk-v1-2-ccca645cd901@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
 
---A8PYQDEZ5U6Pm1op
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Mar 12, 2024 at 03:41:32PM +0100, Geert Uytterhoeven wrote:
-> On Wed, Feb 21, 2024 at 3:06=E2=80=AFPM Rob Herring <robh+dt@kernel.org> =
-wrote:
+On 2/23/24 09:52, Neil Armstrong wrote:
+> The SM8650-HDK is an embedded development platforms for the
+> Snapdragon 8 Gen 3 SoC aka SM8650, with the following features:
+> - Qualcomm SM8650 SoC
+> - 16GiB On-board LPDDR5
+> - On-board WiFi 7 + Bluetooth 5.3/BLE
+> - On-board UFS4.0
+> - M.2 Key B+M Gen3x2 PCIe Slot
 
->     static int __init regulator_init_complete(void)
->     {
->             /*
->              * Since DT doesn't provide an idiomatic mechanism for
->              * enabling full constraints and since it's much more natural
->              * with DT to provide them just assume that a DT enabled
->              * system has full constraints.
->              */
->             if (of_have_populated_dt())
->                     has_full_constraints =3D true;
->=20
->             ...
->     }
->     late_initcall_sync(regulator_init_complete);
+finally somebody made the right call..
 
-> (The latter looks a bit futile, as have_full_constraints() already
->  contains a check for of_have_populated_dt()?)
+> - HDMI Output
+> - USB-C Connector with DP Almode & Audio Accessory mode
+> - Micro-SDCard Slot
+> - Audio Jack with Playback and Microphone
+> - 2 On-board Analog microphones
+> - 2 On-board Speakers
+> - 96Boards Compatible Low-Speed and High-Speed connectors [1]
+>    - For Camera, Sensors and external Display cards
+>      - Compatible with the Linaro Debug board [2]
+>      - SIM Slot for Modem
+>      - Debug connectors
+>      - 6x On-Board LEDs
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
 
-Yes, it's duplicated and we should remove it.
+With Vlad's comments addressed:
 
---A8PYQDEZ5U6Pm1op
-Content-Type: application/pgp-signature; name="signature.asc"
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXwakIACgkQJNaLcl1U
-h9A8ewf+MxFaGvrtn8DK977EqCU2BEx8094DvO7eMo0nyAJUm2gxwqKrhgdxDEFY
-I0g6tj4LKJmyrLH4jH1T84U85aVm9il1PX4OUNyIHtHqrTvZuxonx1hbMfHWnq4d
-varya5+YeCMfo3B8heD4RSSmX4ewG6Jgb+IeDl/Jn8On2Pys75Sh1Bk8mbbunG+H
-pOK8gTFj5jOaR6JoX/gsoYsifocZ0s96AqUqmk+i7zxdX6qJhGDaD7azW/qhJAUv
-+E/x/KzOuerVx8mX2drUIR9jk/s1+t3mgTJZKAYoGUDW2PwG9wPb8tqtofX2ghXU
-ZgSshLDLKjTalXEyonUkGEadKnNxmA==
-=/ZcU
------END PGP SIGNATURE-----
-
---A8PYQDEZ5U6Pm1op--
+Konrad
 
