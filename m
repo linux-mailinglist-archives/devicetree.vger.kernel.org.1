@@ -1,233 +1,188 @@
-Return-Path: <devicetree+bounces-50053-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50054-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7296A87945B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 13:44:19 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDDFB8794A6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 13:58:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C1CA4B23212
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:44:16 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E25D01C21967
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:58:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DC17F57873;
-	Tue, 12 Mar 2024 12:44:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 525F279B91;
+	Tue, 12 Mar 2024 12:58:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="j7sR46qW"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ko4JHe0a"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C2FD656457
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 12:44:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6373B58112
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 12:58:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710247447; cv=none; b=RkLNAxSLSkh1PZ5LWzg1WC6JNDi+2wlg/VNRo81+jlJIwcyrtzHCyjOITZsycoyjNHAlkoREPYzM2+uXfb95n8QkN9SnhGQcJJL5GT2htuJ0PEPT4dCOkEYRYBRbmj+zGA2Emlic6eZm9+7Iv8BpYauGKBQ8KvyCVG93fMtIDuo=
+	t=1710248298; cv=none; b=gMW5CkOuV2NwpFD2PLhq1+5rx7Mvd70JjnRUpmXofYY6O3yW1rWRxcir7S4M4vh7IeiBCFWp1x/pvFO/RF+IdaVdJsvTjNclWj5TQLDwzfMyfB2vmvcuYp4TvLEjb1st/+S3gNPYUaTVoB1Ib7l1tS/ek1/u8ggWWsAJtsUuh14=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710247447; c=relaxed/simple;
-	bh=c3wq8KjiBK3iB7Yq7axillLzJackciCs+2P4yMTWUgM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QyHIv50vlNCul8pa2EsHxwJ27pK0oCQxUgkxe+PkvneL1jFlh+sDW0f+gIwjj8SUR6tZZdscVal25Vd6H4SLapy5oBkGEc5hyrDoK88juSjJBwbkgyEmC5mhXZ5vVboK8T476VxRkpROj1JoXmCc0cDCW/dUvgQtW42GwISqQmo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=j7sR46qW; arc=none smtp.client-ip=209.85.128.47
+	s=arc-20240116; t=1710248298; c=relaxed/simple;
+	bh=8jJKj6cc4Y6n79Wnr/+MYO0ufoa4sZZLw3fvdmmgQU4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=uNzFS0ZxtcdHQY4WFajcodUwfrACdnSA5n5fRgBjKFNq5+rSWYYl0CAxoj8niZCZyTCZgNUSXGzEkGt/14z/i1Qhtf9ft5JQvvbNiB9UAmf2XfxsySMYXnTu3i1IfMaMt6ThGbHImjMURFBGJ+3ktRrs+Bu79tptftS6w3vCo5A=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ko4JHe0a; arc=none smtp.client-ip=209.85.219.174
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-4132f37e170so9329225e9.2
-        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 05:44:05 -0700 (PDT)
+Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-dc6d8bd612dso5325348276.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 05:58:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710247444; x=1710852244; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4B3ShZZpHaJXDCdfM6G41q+bchG22d5Wpm6qfWCjnS4=;
-        b=j7sR46qWNXl0Qs6WWrLzU5qTME9eTWRw3od4lxSVXzHNezNBp/9IAdBT7fSTnThTbH
-         P5Q4MRCNQrvA+z3khcbGj0GmFtP0eUPPN1F983EU9IvfpWmv2SC77pD0LS86yjAtPbiY
-         5XGFPb44OhWWB0dnDRfcdq4PvnHn2fSrfepdCjhhbLV9ye0JZg6EEAHT8eEmbVDv6scf
-         DMmJVmZW3NFl9dGiN5KlIh+WRp7jYXJYJzRrt9mWLb+VYUadRa6LWdkAzM1O+D3tTT5a
-         1NkqmWsibzLQA1D4PQxXPQDvcfHmYkc2LHjyoG9WVNd5wi97ZSdDi11nwhfZlInLDf4z
-         0q1w==
+        d=linaro.org; s=google; t=1710248295; x=1710853095; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8jJKj6cc4Y6n79Wnr/+MYO0ufoa4sZZLw3fvdmmgQU4=;
+        b=Ko4JHe0abXk6vELJfOVNeCXW6Psd4MEs2WmNKhQWTYA+ZJn9AxC4t2YoVm1R5RT+65
+         cumAGBxnYu+au92OCNBMcWXtyU1awhPYtmsPbokxKrq+Tu086qJWxybQTsPyVAr/9s7X
+         TRozxxNoUOfuvkiBHppMdAe2SeN/a/p8S16wvW7ne3z0nATjQgKbfA5Ga5nF5KMopi9N
+         BOaE81rZyKYpKOM27Z00HA7T1NBOBgeFsDo99lKr5CWnzcTfAH+dfEZ3N/X0Kw+wuAo8
+         JMtXyxt7slKudV4lr7ClG8W1ja3dAVr/yuw41Nau9uMrDCrXM1gt/RJrG1HZUYPeUBQ1
+         gcXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710247444; x=1710852244;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4B3ShZZpHaJXDCdfM6G41q+bchG22d5Wpm6qfWCjnS4=;
-        b=dHbZMEKwRctVCYK725gWaOTCYFcESNTpXVZSnq9FqXLSqLBskvrpXL9dU7OU8liEfh
-         B2XE7OqR0GbXU/6Mch6iaD4YMTY1pKhgXACCov9j6Mh0izBX/rOksbTusGH9WNht1/ws
-         eX4W6+AAqgZvGm6xggD10+kPVSDNone7gebqAszwbxK9H4onBCdhoJ54UcKGY8xp56yg
-         tgFpysVakhVIq1WyWNHhfoM0lLewJRHkSvtEOCwsEJOGtdAonMF4AcOi78VPEQCa/kS1
-         MLC6vRSb6GyDgPIULUGkLODj+CsPAZ4ZWNI+XTBUbEigU3ey4EMLqEhOgtDKWv4XemKT
-         oE1w==
-X-Forwarded-Encrypted: i=1; AJvYcCW3SQrYi9SqTVkJqai10ze75LfptEBIZguO7OTCa/fH+5EOPQ6PfzX9j6TLXvBTZiuIggD7smdZlAqlJ+TtW9Hq/LJoE6abaHob9Q==
-X-Gm-Message-State: AOJu0YzjTyJ5y+3IxdQNcFkPnwd+H5O9cWg6ukqChI8d108lYWJGM9CR
-	fdflVgjw584VVkqekYL7o5TQbU3Dl/ZbcgvaExWe9n5/Maz92FphM1m71KADMoQ=
-X-Google-Smtp-Source: AGHT+IHzfn3GhVnD60ibpE5ibSDuCPcyyCwmNrhsXVXVRKOxPoc1R0Gqjt4J3WsF0OaqNsTZy4eZ5Q==
-X-Received: by 2002:a05:600c:1912:b0:413:1139:3bec with SMTP id j18-20020a05600c191200b0041311393becmr37941wmq.35.1710247444098;
-        Tue, 12 Mar 2024 05:44:04 -0700 (PDT)
-Received: from [192.168.0.102] ([176.61.106.68])
-        by smtp.gmail.com with ESMTPSA id r13-20020adff10d000000b0033b278cf5fesm8909757wro.102.2024.03.12.05.44.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Mar 2024 05:44:03 -0700 (PDT)
-Message-ID: <104ae92c-e9ef-494e-b33e-351210c93846@linaro.org>
-Date: Tue, 12 Mar 2024 12:44:02 +0000
+        d=1e100.net; s=20230601; t=1710248295; x=1710853095;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8jJKj6cc4Y6n79Wnr/+MYO0ufoa4sZZLw3fvdmmgQU4=;
+        b=IPacBbWQkfNJYCQ4bKMFH03/N0BDn+WlAjZ+RtJib3M1vuWD3wZF83hR8fvagILXMp
+         SMt0YVY7V3BxVJCm3hLJOavw8b7zW8m6fA4N2X0/KhDF02qJqIM61ck0syaQ3EDUQIi6
+         kWhIou8Osccn2own5/e4DKe21KRfF1qrGIBc989n1N5qGZRQcXyAkRnhr0QSLbap3HP7
+         okS1pjRt34iLxpxCmN5Gqt50s61ldM/SB6ZJ9ZRZ9mzJkQXu0eNvI/lLMtQIocfIUYnx
+         DeU5RKWwNhfz9lrzBz5YF8Zgf1QeAFPnoygkjEeOKSMYFcRgjyXR2VrjAk/xNKwAuDDG
+         ZJcw==
+X-Forwarded-Encrypted: i=1; AJvYcCXIRRIk1fqpifvNz7W/udWvC6iXcGGdWCleRWNjIpjpisX3Z4J0zi9/Qh3RJek+EloYP3Q1bDxQ+ds1dRvmtWGipPgxkMlIPkskYQ==
+X-Gm-Message-State: AOJu0YwFXKGib5rDKHWfRU+z6YPKjabuosuaoLAsT+yKCDRfGd9T4FnE
+	Uy27INF6JkIhfrYO1biDE5X2GFsWZmg8HKl4jqSlOOPyRF1AwyIoyskxqGLL4eWhMXj/uwY3yaf
+	dnCcQVD34KuCFI0ITTz/TJ09t4Uxqk8dRLeJCYk4d+XM0fJDR
+X-Google-Smtp-Source: AGHT+IEXjBJ8SkftenAiispF7JkfvuYojibcHcU8qjJpODRNR2jabK5webcKiPm5H6fkVHd0TPiRsUtBdXjK4ZzWbuo=
+X-Received: by 2002:a25:aa91:0:b0:dcb:aa26:50f9 with SMTP id
+ t17-20020a25aa91000000b00dcbaa2650f9mr7296508ybi.46.1710248295348; Tue, 12
+ Mar 2024 05:58:15 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 3/4] platform: arm64: Add Acer Aspire 1 embedded
- controller driver
-Content-Language: en-US
-To: Nikita Travkin <nikita@trvn.ru>,
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc: Hans de Goede <hdegoede@redhat.com>,
- =?UTF-8?Q?Ilpo_J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- Sebastian Reichel <sre@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org,
- Andy Gross <agross@kernel.org>, Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, platform-driver-x86@vger.kernel.org
-References: <20240312-aspire1-ec-v4-0-bd8e3eea212f@trvn.ru>
- <20240312-aspire1-ec-v4-3-bd8e3eea212f@trvn.ru>
- <f62bbc98-12c1-48e1-8ebc-17dd5887026a@linaro.org>
- <84b4d83f3340402e98fe0e70afd085be@trvn.ru>
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <84b4d83f3340402e98fe0e70afd085be@trvn.ru>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <cover.1709667858.git.daniel@makrotopia.org> <CAPDyKFpQfue5Fi0fFSnqHNg2ytCxAYfORVP_Y86ucz2k5HRuDA@mail.gmail.com>
+ <ZfBK5qT_GO_FgtQP@makrotopia.org>
+In-Reply-To: <ZfBK5qT_GO_FgtQP@makrotopia.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Tue, 12 Mar 2024 13:57:39 +0100
+Message-ID: <CAPDyKFr7mMEZE5n=6kxxsj9P3oLjLyVx20O9q0-pmyXzXYk52A@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 0/8] nvmem: add block device NVMEM provider
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jens Axboe <axboe@kernel.dk>, Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>, 
+	=?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>, 
+	Christian Brauner <brauner@kernel.org>, Li Lingfeng <lilingfeng3@huawei.com>, 
+	Damien Le Moal <dlemoal@kernel.org>, Min Li <min15.li@samsung.com>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Hannes Reinecke <hare@suse.de>, 
+	Christian Loehle <CLoehle@hyperstone.com>, Avri Altman <avri.altman@wdc.com>, 
+	Bean Huo <beanhuo@micron.com>, Yeqi Fu <asuk4.q@gmail.com>, 
+	Victor Shih <victor.shih@genesyslogic.com.tw>, 
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
+	"Ricardo B. Marliere" <ricardo@marliere.net>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org, 
+	Diping Zhang <diping.zhang@gl-inet.com>, Jianhui Zhao <zhaojh329@gmail.com>, 
+	Jieying Zeng <jieying.zeng@gl-inet.com>, Chad Monroe <chad.monroe@adtran.com>, 
+	Adam Fox <adam.fox@adtran.com>, John Crispin <john@phrozen.org>
+Content-Type: text/plain; charset="UTF-8"
 
-On 12/03/2024 12:23, Nikita Travkin wrote:
-> Bryan O'Donoghue писал(а) 12.03.2024 16:58:
->> On 12/03/2024 08:42, Nikita Travkin wrote:
->>> Acer Aspire 1 is a Snapdragon 7c based laptop. It uses an embedded
->>> controller to perform a set of various functions, such as:
->>>
->>> - Battery and charger monitoring;
->>> - Keyboard layout control (i.e. fn_lock settings);
->>> - USB Type-C DP alt mode HPD notifications;
->>> - Laptop lid status.
->>>
->>> Unfortunately, while all this functionality is implemented in ACPI, it's
->>> currently not possible to use ACPI to boot Linux on such Qualcomm
->>> devices. To allow Linux to still support the features provided by EC,
->>> this driver reimplments the relevant ACPI parts. This allows us to boot
->>> the laptop with Device Tree and retain all the features.
->>>
->>> Signed-off-by: Nikita Travkin <nikita@trvn.ru>
->>> ---
->>>    drivers/platform/arm64/Kconfig           |  16 +
->>>    drivers/platform/arm64/Makefile          |   2 +
->>>    drivers/platform/arm64/acer-aspire1-ec.c | 555 +++++++++++++++++++++++++++++++
->>
->> You should be listing yourself as a maintainer for a driver you contribute.
-> 
-> I always believed that being in the AUTHOR() at the bottom of the driver
-> would guarantee me being in CC for patches, which so far worked great,
-> thus I was always hesitent adding extra entries in MAINTAINERS.
+On Tue, 12 Mar 2024 at 13:30, Daniel Golle <daniel@makrotopia.org> wrote:
+>
+> Hi Ulf,
+>
+> On Tue, Mar 12, 2024 at 01:22:49PM +0100, Ulf Hansson wrote:
+> > On Tue, 5 Mar 2024 at 21:23, Daniel Golle <daniel@makrotopia.org> wrote:
+> > >
+> > > On embedded devices using an eMMC it is common that one or more (hw/sw)
+> > > partitions on the eMMC are used to store MAC addresses and Wi-Fi
+> > > calibration EEPROM data.
+> > >
+> > > Implement an NVMEM provider backed by block devices as typically the
+> > > NVMEM framework is used to have kernel drivers read and use binary data
+> > > from EEPROMs, efuses, flash memory (MTD), ...
+> > >
+> > > In order to be able to reference hardware partitions on an eMMC, add code
+> > > to bind each hardware partition to a specific firmware subnode.
+> > >
+> > > This series is meant to open the discussion on how exactly the device
+> > > tree schema for block devices and partitions may look like, and even
+> > > if using the block layer to back the NVMEM device is at all the way to
+> > > go -- to me it seemed to be a good solution because it will be reuable
+> > > e.g. for (normal, software GPT or MBR) partitions of an NVMe SSD.
+> > >
+> > > This series has previously been submitted on July 19th 2023[1] and most of
+> > > the basic idea did not change since.
+> > >
+> > > However, the recent introduction of bdev_file_open_by_dev() allow to
+> > > get rid of most use of block layer internals which supposedly was the
+> > > main objection raised by Christoph Hellwig back then.
+> > >
+> > > Most of the other comments received for in the first RFC have also
+> > > been addressed, however, what remains is the use of class_interface
+> > > (lacking an alternative way to get notifications about addition or
+> > > removal of block devices from the system). As this has been criticized
+> > > in the past I'm specifically interested in suggestions on how to solve
+> > > this in another way -- ideally without having to implement a whole new
+> > > way for in-kernel notifications of appearing or disappearing block
+> > > devices...
+> > >
+> > > And, in a way just like in case of MTD and UBI, I believe acting as an
+> > > NVMEM provider *is* a functionality which belongs to the block layer
+> > > itself and, other than e.g. filesystems, is inconvenient to implement
+> > > elsewhere.
+> >
+> > I don't object to the above, however to keep things scalable at the
+> > block device driver level, such as the MMC subsystem, I think we
+> > should avoid having *any* knowledge about the binary format at these
+> > kinds of lower levels.
+> >
+> > Even if most of the NVMEM format is managed elsewhere, the support for
+> > NVMEM partitions seems to be dealt with from the MMC subsystem too.
+>
+> In an earlier iteration of this RFC it was requested to make NVMEM
+> support opt-in (instead of opt-out for mtdblock and ubiblock, which
+> already got their own NVMEM provider implementation).
+> Hence at least a change to opt-in for NVMEM support is required in the
+> MMC subsystem, together with making sure that MMC devices have their
+> fwnode assigned.
 
-There's no such rule that I'm aware of there.
+So, the NVMEM support needs to be turned on (opt-in) for each and
+every block device driver?
 
-scripts/get_maintainer.pl won't list a driver author for the CC list
+It's not a big deal for me - and I would be happy to apply such a
+change. On the other hand, it is just some binary data that is stored
+on the flash, why should MMC have to opt-in or opt-out at all? It
+should be the upper layers who decide what to store on the flash, not
+the MMC subsystem, if you get my point.
 
-This is a substantial body of code, you should own it upstream.
+>
+> > Why can't NVMEM partitions be managed the usual way via the MBR/GPT?
+>
+> Absolutely, maybe my wording was not clear, but that's exactly what
+> I'm suggesting here. There are no added parsers nor any knowledge
+> about binary formats in this patchset.
 
->>> +	case ASPIRE_EC_EVENT_FG_INF_CHG:
->>> +		/* Notify (\_SB.I2C3.BAT1, 0x81) // Information Change */
->>
->> fallthrough;
->>
-> 
-> Hm I believe this would not warn since it's just two values for the same
-> code, just with an extra comment inbetween?
+Right, but there are new DT bindings added in the $subject series that
+allows us to describe NVMEM partitions for an eMMC. Why isn't that
+parsed from the MBR/GPT, etc, rather than encoded in DT?
 
-True
+>
+> Or did I misunderstand your comment?
 
->>> +	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
->>> +		val->intval = le16_to_cpu(ddat.voltage_now) * 1000;
->>> +		break;
->>> +
->>> +	case POWER_SUPPLY_PROP_VOLTAGE_MAX_DESIGN:
->>> +		val->intval = le16_to_cpu(sdat.voltage_design) * 1000;
->>> +		break;
->>> +
->>> +	case POWER_SUPPLY_PROP_CHARGE_NOW:
->>> +		val->intval = le16_to_cpu(ddat.capacity_now) * 1000;
->>> +		break;
->>> +
->>> +	case POWER_SUPPLY_PROP_CHARGE_FULL:
->>> +		val->intval = le16_to_cpu(sdat.capacity_full) * 1000;
->>> +		break;
->>
->> You could stick this "* 1000" stuff in a macro
->>
-> 
-> acpi/battery.c also explicitly sets the multiplier so I think it's the
-> "common" way to do this.
+Maybe. I am just trying to understand this, so apologize if you find
+my questions silly. :-)
 
-common != nice
-
-Purely aesthetics but anyway consider decomposing the replication down.
-
->>> +
->>> +	case POWER_SUPPLY_PROP_CAPACITY:
->>> +		val->intval = le16_to_cpu(ddat.capacity_now) * 100;
->>> +		val->intval /= le16_to_cpu(sdat.capacity_full);
->>> +		break;
->>> +
->>> +	case POWER_SUPPLY_PROP_CURRENT_NOW:
->>> +		val->intval = (s16)le16_to_cpu(ddat.current_now) * 1000;
->>> +		break;
->>> +
->>> +	case POWER_SUPPLY_PROP_PRESENT:
->>> +		val->intval = !!(ddat.flags & ASPIRE_EC_FG_FLAG_PRESENT);
->>> +		break;
->>> +
->>> +	case POWER_SUPPLY_PROP_SCOPE:
->>> +		val->intval = POWER_SUPPLY_SCOPE_SYSTEM;
->>> +		break;
->>> +
->>> +	case POWER_SUPPLY_PROP_MODEL_NAME:
->>> +		if (sdat.model_id - 1 < ARRAY_SIZE(aspire_ec_bat_psy_battery_model))
->>> +			val->strval = aspire_ec_bat_psy_battery_model[sdat.model_id - 1];
->>> +		else
->>> +			val->strval = "Unknown";
->>> +		break;
->>> +
->>> +	case POWER_SUPPLY_PROP_MANUFACTURER:
->>> +		if (sdat.vendor_id - 3 < ARRAY_SIZE(aspire_ec_bat_psy_battery_vendor))
->>> +			val->strval = aspire_ec_bat_psy_battery_vendor[sdat.vendor_id - 3];
->>
->> How does this -3 offset not underflow ?
->>
-> 
-> vendor_id here is unsigned so the if check would actually overflow,
-> though explaining that I guess it's better to be explicit there and let
-> the compiler optimize that check away anyway... I will update the if
-> condition with an extra (id >= 3).
-
-What's the "3" about though, that's what's not jumping out at me here.
-
-> 
->> Seems a bit dodgy to me - can you add a comment to the code to explain ? Its not immediately obvious the -3 is OK.
->>
->> Also could you take an index instead of replicating the -value stepdown each time ?
->>
->> int myindex = sdat.model_id - 1;
->>
->> if (myindex < someconstraint)
->> 	strval = somearry[myindex];
->>
-> 
-> I decided against adding a dedicated index variable since there is only
-> one actual use for each, so it's easy to see where it goes.
-
-But you do it twice which is why I'm suggesting take an index and do it 
-once.
-
-Then add
-
-Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Kind regards
+Uffe
 
