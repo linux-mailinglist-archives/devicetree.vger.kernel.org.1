@@ -1,210 +1,108 @@
-Return-Path: <devicetree+bounces-50063-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50064-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E77D8795E5
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:18:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C7AC8795EA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:19:14 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6079A1C20917
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:18:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52B141C20A9B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:19:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F3A7A730;
-	Tue, 12 Mar 2024 14:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D2F297AE7D;
+	Tue, 12 Mar 2024 14:19:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Xaq2RTZp"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="gwAwZD7d"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A9A58AD4;
-	Tue, 12 Mar 2024 14:18:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A32277AE77;
+	Tue, 12 Mar 2024 14:19:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710253127; cv=none; b=UAgMU33MU9fuWYEHoS5Kt3Ic5w2Z3+TNmV3RmRMx4BnfQJvW3iHTRXjSCwixrIT0IOzy5k1fG3WVgFAVu0Tduew816GQoIB1t3hRP/e9iJmP602wuAUAxqFuSdKAGHsiWbbK6WN4pNHEqbHppFaHZJBJExRPXYm8On6Dryy0IYE=
+	t=1710253142; cv=none; b=syE4IrNWvyiZM3pqpBiHOhIUSEAXp/vbDdzWmGFieC6bLbi1V0izPG5warz33e+r4EXNaIO9aRCurRFr3lwF4FkdDL8KRVZgsnr6DB6VisRIoDotFBqsr5pDd7AUb8y7HZaNifjgqgLfiE5N446R4EsrwNdTTllpQ37JWj20dL0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710253127; c=relaxed/simple;
-	bh=gDhbS5GX3D28N410zYK3NRuThkWmlgG+G66CI56dYd4=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=uKiGuwYxN3OIIvAMUTv4e0MYkjFRZYOyRZNS7F9imIzIqr9JY/D7us5jCvboTfu0G44CWFKJoYTjL6m4QeD0I+ESMDELedU8LYaHytr/+wtbbvB4G1+YH37Z/ygBaJqEYH4LqSPt5PVBTQ2pNRz/43/ZqacB1tqpC1CqkGV9F1Q=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Xaq2RTZp; arc=none smtp.client-ip=217.70.183.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CCE8E1C000E;
-	Tue, 12 Mar 2024 14:18:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1710253116;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=XPax4SruT40V+SoIDKJmZxhUVVshW9nsuUSbxtxxykY=;
-	b=Xaq2RTZpEk12qX0xAg9J2TshWgskMgyfkt3IsIxKrYp3SVGPL3ACwJf9ec2GWpLiJPLLao
-	amQqYtEYOgdo/u/YNPA2ybIsiWnbM/mAJcKRneNthLTi0Mq62g9+ni5in/yV7DHE5vDC7p
-	QSdjUDDW/Ua5/BdqPx5CyCoD/67EerLODzN82BSWxYn5w4uvhU/R3xI6sZD516Ha0NgJxV
-	aAhBM0/v0u0TjPX/XGCAA42gE58QiTtO++W1oGqBzbBtDinUB9G5D1cMH4p+YUvIKRN2tP
-	R1TC4S8grINRK0BuWdjB1MOmQrErNRDBbTBbnsZHrZZNvYKt95O0K9VSENB9+A==
-Date: Tue, 12 Mar 2024 15:18:35 +0100
-From: Herve Codina <herve.codina@bootlin.com>
-To: Saravana Kannan <saravanak@google.com>
-Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
- <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
- <frowand.list@gmail.com>, Shawn Guo <shawnguo@kernel.org>, Wolfram Sang
- <wsa@kernel.org>, Mark Brown <broonie@kernel.org>, Geert Uytterhoeven
- <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
- linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Luca Ceresoli
- <luca.ceresoli@bootlin.com>, Thomas Petazzoni
- <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org, Android Kernel Team
- <kernel-team@android.com>
-Subject: Re: [PATCH 1/2] driver core: Clear FWNODE_FLAG_NOT_DEVICE when a
- device is added
-Message-ID: <20240312151835.29ef62a0@bootlin.com>
-In-Reply-To: <CAGETcx-4RkuvsW5W5zPS4HMjSAGq5Yi9P2O0KPanA8HVJV0bvg@mail.gmail.com>
-References: <20240220111044.133776-1-herve.codina@bootlin.com>
-	<20240220111044.133776-2-herve.codina@bootlin.com>
-	<CAGETcx-4RkuvsW5W5zPS4HMjSAGq5Yi9P2O0KPanA8HVJV0bvg@mail.gmail.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
+	s=arc-20240116; t=1710253142; c=relaxed/simple;
+	bh=qcaliQaI4q5rgkTTGf/tDbUOaWz/QksttALwBTa+RbU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=Xee1LviBUfDBoub6UO5jfMmtMIHk1z+Nc2d6+A0hyYdZXyTGXwwCfiS7HFDq8ynvEAsfPL7VvumWCXzWHDwUGj8d5bue5Urun/LRPybU30wJJdjRNYZnCVhC+f52+p3Oqy/koaUdAXPYfBo88/Ue7I8DuM1I1iHSSUPOdh6P2Gc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=gwAwZD7d; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A3EE2C433F1;
+	Tue, 12 Mar 2024 14:18:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710253142;
+	bh=qcaliQaI4q5rgkTTGf/tDbUOaWz/QksttALwBTa+RbU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=gwAwZD7dikIcEo939lD9jYbaGLEcthcQyDIwId0bhMj8fEjmXx1LZuYbZo6sQrH/n
+	 fOyIervzoPGmXIpfFQxTClPme9qSqUTpy5dRK7wabvazkopPz3MVG7g2RhCBeQKloT
+	 5fH7fJ6GDJYQgR35JZEDm0TuCokOAG5whjWFN336o5h+gn5BoXV8jxh3Nt0sHa2wNY
+	 jOBsZS1bkv15AQOxgKUkPJnffzagwCtWI6WodelT7r0JzAS+4/u930JQLnYwm91A0t
+	 9FqMl5ZBi9GLoCzFQxSzRlkiqd/1GbaKO/mDjz8ltU6+GZlIDJfC8RvXazubfWsq3l
+	 aYM/Rg9zf4nGA==
+Date: Tue, 12 Mar 2024 14:18:56 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Samuel Holland <samuel@sholland.org>
+Cc: Andre Przywara <andre.przywara@arm.com>, devicetree@vger.kernel.org,
+	Jernej Skrabec <jernej.skrabec@gmail.com>,
+	Chris Morgan <macromorgan@hotmail.com>,
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev,
+	Liam Girdwood <lgirdwood@gmail.com>, Chen-Yu Tsai <wens@csie.org>,
+	Lee Jones <lee@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 4/4] regulator: axp20x: add support for the AXP717
+Message-ID: <d9fd331f-90fd-4480-9d96-d15115d5c36d@sirena.org.uk>
+References: <20240310010211.28653-1-andre.przywara@arm.com>
+ <20240310010211.28653-5-andre.przywara@arm.com>
+ <4ae70e42-d345-4914-af40-5dfc9e2b3ef2@sholland.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: herve.codina@bootlin.com
-
-Hi Saravana,
-
-On Tue, 20 Feb 2024 18:41:03 -0800
-Saravana Kannan <saravanak@google.com> wrote:
-
-> On Tue, Feb 20, 2024 at 3:10 AM Herve Codina <herve.codina@bootlin.com> wrote:
-> >
-> > Since commit 1a50d9403fb9 ("treewide: Fix probing of devices in DT
-> > overlays"), when using device-tree overlays, the FWNODE_FLAG_NOT_DEVICE
-> > is set on each overlay nodes.
-> > When an overlay contains a node related to a bus (i2c for instance)
-> > and its children nodes representing i2c devices, the flag is cleared for
-> > the bus node by the OF notifier but the "standard" probe sequence takes
-> > place (the same one is performed without an overlay) for the bus and
-> > children devices are created simply by walking the children DT nodes
-> > without clearing the FWNODE_FLAG_NOT_DEVICE flag for these devices.
-> >
-> > Clear the FWNODE_FLAG_NOT_DEVICE when the device is added, no matter if
-> > an overlay is used or not.
-> >
-> > Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overlays")
-> > Cc: <stable@vger.kernel.org>
-> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
-> > ---
-> >  drivers/base/core.c | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/drivers/base/core.c b/drivers/base/core.c
-> > index 14d46af40f9a..61d09ac57bfb 100644
-> > --- a/drivers/base/core.c
-> > +++ b/drivers/base/core.c
-> > @@ -3619,6 +3619,7 @@ int device_add(struct device *dev)
-> >          */
-> >         if (dev->fwnode && !dev->fwnode->dev) {
-> >                 dev->fwnode->dev = dev;
-> > +               dev->fwnode->flags &= ~FWNODE_FLAG_NOT_DEVICE;
-> >                 fw_devlink_link_device(dev);
-> >         }  
-> 
-> Temporary Nack on this. I think depending on how we address patch 2/2
-> this patch might not be necessary.
-> 
-> Also, I'd ideally prefer this gets cleared before the device is added,
-> but it's a position that I'd be willing to change.
-> 
-
-Some more information about this current patch.
-
-Several month ago, I sent a patch related to a warning raised during driver
-unbinding [1]. This warning was raised by __device_links_no_driver() because
-we unlink a consumer while its supplier links.status is DL_DEV_UNBINDING.
-You suspected an issue with the device removal ordering.
-
-On this system, I applied this current patch clearing FWNODE_FLAG_NOT_DEVICE
-in device_add(). This fixes the warning described in [1].
-
-[1]: https://lore.kernel.org/linux-kernel/CAGETcx-Mp0uKBF_BWFFBUm=eVOp8xhxF3+znFB8vTaFwpJWTnw@mail.gmail.com/
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="33rLmpi8FgeSxTrD"
+Content-Disposition: inline
+In-Reply-To: <4ae70e42-d345-4914-af40-5dfc9e2b3ef2@sholland.org>
+X-Cookie: Oh, so there you are!
 
 
-The use case on that system, involved DT overlays and the fragment applied is the
-following:
---- 8< ---
-   pci-ep-bus@0 {
-	compatible = "simple-bus";
-	#address-cells = <1>;
-	#size-cells = <1>;
+--33rLmpi8FgeSxTrD
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-	/*
-	 * map @0xe2000000 (32MB) to BAR0 (CPU)
-	 * map @0xe0000000 (16MB) to BAR1 (AMBA)
-	 */
-	ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
-	          0xe0000000 0x01 0x00 0x00 0x1000000>;
+On Mon, Mar 11, 2024 at 05:22:41PM -0500, Samuel Holland wrote:
+> On 3/9/24 19:02, Andre Przywara wrote:
 
-	...
+> > The X-Powers AXP717 is a typical PMIC from X-Powers, featuring four
+> > DC/DC converters and 15 LDOs, on the regulator side.
+> >=20
+> > Describe the chip's voltage settings and switch registers, how the
+> > voltages are encoded, and connect this to the MFD device via its
+> > regulator ID.
 
-	flx0: flexcom@e0040000 {
-		compatible = "atmel,sama5d2-flexcom";
-		reg = <0xe0040000 0x100>;
-		clocks = <&clks GCK_ID_FLEXCOM0>;
-		#address-cells = <1>;
-		#size-cells = <1>;
-		ranges = <0x0 0xe0040000 0x800>;
+> This is missing support for the boost regulator.
 
-		atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
+That can always be added incrementally.
 
-		i2c_lan966x: i2c@600 {
-			compatible = "microchip,lan966x-i2c";
-			reg = <0x600 0x200>;
-			interrupt-parent = <&itc>;
-			interrupts = <48>;
-			#address-cells = <1>;
-			#size-cells = <0>;
-			clocks = <&clks GCK_ID_FLEXCOM0>;
-			assigned-clocks = <&clks GCK_ID_FLEXCOM0>;
-			assigned-clock-rates = <20000000>;
-			pinctrl-0 = <&fc0_a_pins>;
-			pinctrl-names = "default";
-			i2c-analog-filter;
-			i2c-digital-filter;
-			i2c-digital-filter-width-ns = <35>;
-		};
-	};
-	...
-   };
---- 8< ---
-This fragment is applied to a PCI device node.
+--33rLmpi8FgeSxTrD
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Without clearing the FWNODE_FLAG_NOT_DEVICE, a link is present between the
-i2c@600 and the PCI device. With the flag cleared, this link is replaced by
-a link between the i2c@600 and the pci-ep-bus. Which looks better.
+-----BEGIN PGP SIGNATURE-----
 
-The flexcom driver is a MFD driver. As a MFD driver, it simply calls
-devm_of_platform_populate(). In this path, devices are created and added but
-nothing cleared the FWNODE_FLAG_NOT_DEVICE.
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXwZE8ACgkQJNaLcl1U
+h9BO9Qf+L6+gXK5RHbVFoR3jorRoBXZraep2c80IwUHNvF6Tk3Z8NEt3CayouFV+
+8+gUXVojszi/4jftrmEanBOxrS1OkoIykPimqKV1H+jBc2y5FdubBjMsPD5dwVls
+UGk1+poTTlnCtUxhT+SY1yVFXT6ELnjg086txX+d16EGWoddHafq+w0wocCCMm4h
+t2MgdK1laTRVT+1U5LqqyaZnV9Oe2tuO2/iE6RZNWctOkWuSdsffr321Ml8eOeg7
+Z6zftvSTMnVbx0Wijf6ZtQKwmXMd7OdY1tkm7Oh3JI+K7U5LUZa7p8dc5qg/Oio/
+uTdcJoU7UYzmPmRpdRYS+CHQQszQdw==
+=zoNJ
+-----END PGP SIGNATURE-----
 
-Based on your remark "I'd ideally prefer this gets cleared before the device
-is added", I have the feeling that all calls to device_add() should clear the
-flag before calling device_add(). So having FWNODE_FLAG_NOT_DEVICE cleared
-in device_add() itself in that case makes sense.
-
-What is your opinion ?
-
-Also, feel free to ask for some more traces and/or logs if needed.
-
-Best regards,
-Hervé
--- 
-Hervé Codina, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+--33rLmpi8FgeSxTrD--
 
