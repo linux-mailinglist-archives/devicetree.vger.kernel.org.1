@@ -1,70 +1,70 @@
-Return-Path: <devicetree+bounces-49974-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49975-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 50E11878EE3
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 07:40:49 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9353F878EEC
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 07:48:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 747051C20BD9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 06:40:48 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47D4D281D99
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 06:48:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 05F79446AF;
-	Tue, 12 Mar 2024 06:40:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7125D69948;
+	Tue, 12 Mar 2024 06:48:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="kKomquaD"
+	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="h0d4ddQN"
 X-Original-To: devicetree@vger.kernel.org
 Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 948924437D
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 06:40:33 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A522CA5
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 06:48:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710225636; cv=none; b=GDzAyhkQcDc5UApIBK1yqZe0QeleCIRIrMeQL6LqA2C+rt3AxKgo3jLk6WNzOOJ/g5n6VnM3Hm7dnYuVBmZJ29HX4Klry63pvvaFinny8WkS9f5T5sBwq8btetSIi1sRXp8BeVvYQeM7obh9SZjqPk1PvVet3MoREIkd1pDKRaM=
+	t=1710226125; cv=none; b=dIkW61C98pIBvD37Tfw/Ienijgsnyj0W1IvvuipJySAmlWHJ9lzX25I074As8Wx2lLOQ4hjDkec4iSqGJ75Qb+kpBQsNGKlwVqfTDlog49XajDmc5zKmmG/WEHmjQc5XF5pN+fzRn830Janch0SlY3zvJYlS36/h4elYVGiD+3c=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710225636; c=relaxed/simple;
-	bh=acd9eQ9b6SiLzZehjpLdXrYCQLVbH7eq8/mAZe3FsOQ=;
+	s=arc-20240116; t=1710226125; c=relaxed/simple;
+	bh=kwy8sM2sAwpEz7pclxqts/+FaSTdDt7wWh1zfEf2s6g=;
 	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=RSp0dMB2uy/G/6SSPSefbVND2aV9sEeoCz3xhKzDl35JsutOhgdRHTXhksumL7iNoeKi/zV8Shfvt4Nztry6ctIi5lPp2e/6tyYo3VJt2oYltm6f7GBpxgMfPts6yyUIf3YQhca1FJFT8p6E8u/xzFzJZCQkBWSvCuiTfy6gbbM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=kKomquaD; arc=none smtp.client-ip=209.85.128.182
+	 To:Cc:Content-Type; b=Or9AFoNkRZjfgBni5kfJuM7lLqRr41nBGJT7lrCQH5gRR3ZUgml9YDS1oRL0AdXa9+8vPlgzVG8eLp9pwsxXo+NG+JNRHK9cjKU3S8B6R0Skgm51HDDABP9L59rfaJ7hQAKI5oHhFGp8PxJ2ryrnk9YG3HUKB1IV84gPoNG3ugA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=h0d4ddQN; arc=none smtp.client-ip=209.85.128.182
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-609fb0450d8so47044027b3.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 23:40:33 -0700 (PDT)
+Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-609fd5fbe50so47862597b3.0
+        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 23:48:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1710225632; x=1710830432; darn=vger.kernel.org;
+        d=sifive.com; s=google; t=1710226122; x=1710830922; darn=vger.kernel.org;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Mib1xt+v7eiFKuFk82ox3G2c2WM33T8wDeEP+aPgnEY=;
-        b=kKomquaDLp6BHb9BSe6oFeseRJho3YydGZD73NwzoAiY6Ttbai264g5kaHMci9vlfo
-         sIrpqYsGAwfnswaD3hYYUQV19Hq8ctFg0n7jCZBkg1L45qdtrF0blY7S5k9oqlTTFO8n
-         0BdVa02PWFzqCa/zvLGrWMYoZdm+uLBMU4d8EeKqMbHNFgRPiMgh+jowN/jhjzxRVZbX
-         ovbsWDJf/3j2dZDJC9VHGzY360rIPVNbr9qkv/R2UOicGBKWl3p8/JeoI9VSomh83+8V
-         VoC+ZoGc+jbbYGAX0X12nam56eL7E5zKtgr9FqZAo0VqWeynYcqFShqrgh/fa7Qg59sT
-         KZIQ==
+        bh=YkQyXBt8cc9gCSbMJduWsjQiEDwVv0KA3piVD2J6QZs=;
+        b=h0d4ddQN/RlfN9jgEtgNtWXZSd0to36fNSbV79f23egMja5bjBfCwRo+2ExEx1sPEe
+         scvq4zCjdflsyiBCxLMQLFl97tWtJNFAc+Ct8kahF2c1vNXMStUZq+fa1r1V51MrATtj
+         GuJ6GR6C38peYwzYHpRBoR3Gpa0QumW4Z5pUyGWrbBjLCW0IGQL8RgcaSeoplAB6unD/
+         ctB3Qda6299VrO2ks/tSy7LcHRbGOIFi5hnnD285KPlS0LxseIL6nb36h903q/J7MUn5
+         LGQcIlWqjqiF/8P5tC2+U2ZA3m1yQBtwUi4COa0otJvpt2qPu/sIRcl7WrmBjXltZtSQ
+         lfkQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710225632; x=1710830432;
+        d=1e100.net; s=20230601; t=1710226122; x=1710830922;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Mib1xt+v7eiFKuFk82ox3G2c2WM33T8wDeEP+aPgnEY=;
-        b=Qk+6zqpB2f/Clltv7obaLTkmi12zqK8UZ3+26QE+8sVAAdeCGfOiz/3V2ZJ68C80UO
-         KpkUW7iqgJWTd+wGybYdqMsctlzr/k0EknNw0CzkSuqGY6HEL2xOTwYNGWqrNK0by+47
-         PRCcOmwAXvJ9vegO65zLpRA6qbwF6kKpBL0VajELXcV6w7FRUJp45DJW/Io6UNx2gNfm
-         Im0ieYi2MxM1TQZM+9k2Ki9DHjeUhqI6VmSnmcVl/JHa1IarUxY2fKRld4qANwnp5B4S
-         3lvc4MXx90D0pRW86yyG85JBku+rbATKrOjOn6xkJmdxtl86ENyWOVXiGd68lm3KU13e
-         mDCA==
-X-Forwarded-Encrypted: i=1; AJvYcCX0sg9f89/LP4HoE0OsWREFSaTpC0te8s7MKnIt4ijDUq+9k9ATF5dROkve5lHCM6Tz29wyv4GJiNxgMqPMWNbTCeQ5d45CqusC9Q==
-X-Gm-Message-State: AOJu0YwlSY2c/qqLZH6ooRlqJ/bn9JEDPQByR7gzBJpkdVSe9rsiBgA2
-	iNj45PqvE6w33rcRtrhJX2ND95w6bPCzLkQBTs3sh+Oz5MHcE5FUSfv1yAIZYG9mgkul1XjOjul
-	QLetmTwue20AartfdQbmbNkNYOM703a8wl93cZw==
-X-Google-Smtp-Source: AGHT+IHbiQrtWLjwG2bwttWyqC5snHDZdcXZiO3RLkmQ0MdJVMi6zl04cbHiQh12269BKPOmXAcs7OMummzUXBHp/Fc=
-X-Received: by 2002:a25:ac24:0:b0:dcc:588f:1523 with SMTP id
- w36-20020a25ac24000000b00dcc588f1523mr6918049ybi.49.1710225632392; Mon, 11
- Mar 2024 23:40:32 -0700 (PDT)
+        bh=YkQyXBt8cc9gCSbMJduWsjQiEDwVv0KA3piVD2J6QZs=;
+        b=baWwP+XxhX4/2pdzTvRH649XGXJEo6jFqqa3mJKVJ2FS1qraREGu1+5y1zkd2tB4LM
+         kk0bkZDg+LYt8s6MTSx3ERaof1TodXzsGl+j/WQBEVFlvf4JNQeFRkEYfOalJKd0e7JM
+         Y74zDnA+3B0BbExYgDAHG0c909MvCQZFIkg7lSwEqQXhXi2mKaFm0SgpEwqBFQKtkcxt
+         1nJjjS1w/a/9fEA7oZRv23X9/1gLdQf79Jhz8RvBS2oM917WJCnWBlHeuvmWrcMJxebl
+         rZu22r3kounSwSLI3i4Bqoyj36w5l7qjhd21owxBU0b2V5B9rhpoIXxzNgPfhQn47yXN
+         LiGA==
+X-Forwarded-Encrypted: i=1; AJvYcCUXAfa3w2mMxVRdus+jdXxo3KvSEboofVAVwb0Ii4joQs2bx2cUCctUbknJcxixuQ12kst7AYmTQPlvXZT2l5PByPeE/+yBCpybSA==
+X-Gm-Message-State: AOJu0YyNsTqefkHWDNezOgQA4ZwL0X5hI76D/g7wjKiLf/zb/vO0JDi4
+	eisXYm2a+CKKL9sMO8IuNsOD8lzLHkzSTRY4XlMHrBxpXkBhggXTfuZX4Di3wOBNCyzCR4Rvfje
+	cOeBb42toD35z+nUmDsXIXbznN66vescPh5UZOQ==
+X-Google-Smtp-Source: AGHT+IHR+U7F2n0c/KGQxjGQRDSMRPibcokXyodYfTK2034eRWrmjzdLKQ9iq2FB4V6igzx+tIs45dHL/NwVzyFxjD4=
+X-Received: by 2002:a81:9e43:0:b0:609:f4d5:2fc5 with SMTP id
+ n3-20020a819e43000000b00609f4d52fc5mr2804732ywj.15.1710226122218; Mon, 11 Mar
+ 2024 23:48:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,11 +77,12 @@ References: <20230316131711.1284451-1-alexghiti@rivosinc.com>
  <CAK9=C2WVOpSqtt8r1U4hnzSZ=cc1PocpukgQjNyahP2XuPhozw@mail.gmail.com>
  <d0087922-4721-ccf1-80bf-9f74099d0948@ghiti.fr> <CAPqJEFr6MgUyARfbWAo7EeQKLVd4xRJz_LOYN68UC-kPD1Hr5A@mail.gmail.com>
  <20240118082346.GB31078@hsinchu15> <CAHVXubiQ5N+ngdy=Fk3j-hS_KkOEg272b++-hB4-oGeSSZKtNQ@mail.gmail.com>
- <CAHh=Yk-WCMbNWg7UCbXtZZzPmOHnh1-pv4fqykwnpJGtwTcc=A@mail.gmail.com> <CAHVXubhE=RmFQ5gGo7J+H-mOEZKZQbCCH6F43UYMOy=Kgw+nug@mail.gmail.com>
-In-Reply-To: <CAHVXubhE=RmFQ5gGo7J+H-mOEZKZQbCCH6F43UYMOy=Kgw+nug@mail.gmail.com>
+ <CAHh=Yk-WCMbNWg7UCbXtZZzPmOHnh1-pv4fqykwnpJGtwTcc=A@mail.gmail.com>
+ <CAHVXubhE=RmFQ5gGo7J+H-mOEZKZQbCCH6F43UYMOy=Kgw+nug@mail.gmail.com> <CAHh=Yk-C--ZGgfckGYceTOoj20V9H6DHQHMZ2z2kisuFbAhaBA@mail.gmail.com>
+In-Reply-To: <CAHh=Yk-C--ZGgfckGYceTOoj20V9H6DHQHMZ2z2kisuFbAhaBA@mail.gmail.com>
 From: Nylon Chen <nylon.chen@sifive.com>
-Date: Tue, 12 Mar 2024 14:40:20 +0800
-Message-ID: <CAHh=Yk-C--ZGgfckGYceTOoj20V9H6DHQHMZ2z2kisuFbAhaBA@mail.gmail.com>
+Date: Tue, 12 Mar 2024 14:48:30 +0800
+Message-ID: <CAHh=Yk8cWiX8q7YT3OuqNBP=kgNdZm3cWZCm01+CfVVQcnPy=Q@mail.gmail.com>
 Subject: Re: Fwd: [PATCH v8 0/4] riscv: Use PUD/P4D/PGD pages for the linear mapping
 To: Alexandre Ghiti <alexghiti@rivosinc.com>
 Cc: alex@ghiti.fr, apatel@ventanamicro.com, catalin.marinas@arm.com, 
@@ -94,344 +95,360 @@ Cc: alex@ghiti.fr, apatel@ventanamicro.com, catalin.marinas@arm.com,
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 
-Alexandre Ghiti <alexghiti@rivosinc.com> =E6=96=BC 2024=E5=B9=B42=E6=9C=885=
-=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=885:32=E5=AF=AB=E9=81=93=EF=BC=
-=9A
+Nylon Chen <nylon.chen@sifive.com> =E6=96=BC 2024=E5=B9=B43=E6=9C=8812=E6=
+=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=882:40=E5=AF=AB=E9=81=93=EF=BC=9A
 >
-> Hi Nylon,
->
-> On Fri, Jan 19, 2024 at 10:27=E2=80=AFAM Nylon Chen <nylon.chen@sifive.co=
-m> wrote:
-> >
-> > Alexandre Ghiti <alexghiti@rivosinc.com> =E6=96=BC 2024=E5=B9=B41=E6=9C=
-=8818=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:01=E5=AF=AB=E9=81=93=
+> Alexandre Ghiti <alexghiti@rivosinc.com> =E6=96=BC 2024=E5=B9=B42=E6=9C=
+=885=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=885:32=E5=AF=AB=E9=81=93=
 =EF=BC=9A
+> >
+> > Hi Nylon,
+> >
+> > On Fri, Jan 19, 2024 at 10:27=E2=80=AFAM Nylon Chen <nylon.chen@sifive.=
+com> wrote:
 > > >
-> > > Hi Nylon,
-> > Hi Alexandre, thanks for your feedback,
-> > >
-> > > On Thu, Jan 18, 2024 at 9:23=E2=80=AFAM Nylon Chen <nylon.chen@sifive=
-.com> wrote:
+> > > Alexandre Ghiti <alexghiti@rivosinc.com> =E6=96=BC 2024=E5=B9=B41=E6=
+=9C=8818=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:01=E5=AF=AB=E9=81=
+=93=EF=BC=9A
 > > > >
-> > > > > On 3/23/23 15:55, Anup Patel wrote:
-> > > > > > On Thu, Mar 23, 2023 at 6:24=E2=80=AFPM Alexandre Ghiti <alexgh=
-iti@rivosinc.com> wrote:
-> > > > > >> Hi Anup,
-> > > > > >>
-> > > > > >> On Thu, Mar 23, 2023 at 1:18=E2=80=AFPM Anup Patel <apatel@ven=
-tanamicro.com> wrote:
-> > > > > >>> Hi Alex,
-> > > > > >>>
-> > > > > >>> On Thu, Mar 16, 2023 at 6:48=E2=80=AFPM Alexandre Ghiti <alex=
+> > > > Hi Nylon,
+> > > Hi Alexandre, thanks for your feedback,
+> > > >
+> > > > On Thu, Jan 18, 2024 at 9:23=E2=80=AFAM Nylon Chen <nylon.chen@sifi=
+ve.com> wrote:
+> > > > >
+> > > > > > On 3/23/23 15:55, Anup Patel wrote:
+> > > > > > > On Thu, Mar 23, 2023 at 6:24=E2=80=AFPM Alexandre Ghiti <alex=
 ghiti@rivosinc.com> wrote:
-> > > > > >>>> This patchset intends to improve tlb utilization by using hu=
-gepages for
-> > > > > >>>> the linear mapping.
-> > > > > >>>>
-> > > > > >>>> As reported by Anup in v6, when STRICT_KERNEL_RWX is enabled=
-, we must
-> > > > > >>>> take care of isolating the kernel text and rodata so that th=
-ey are not
-> > > > > >>>> mapped with a PUD mapping which would then assign wrong perm=
-issions to
-> > > > > >>>> the whole region: it is achieved by introducing a new memblo=
-ck API.
-> > > > > >>>>
-> > > > > >>>> Another patch makes use of this new API in arm64 which used =
-some sort of
-> > > > > >>>> hack to solve this issue: it was built/boot tested successfu=
-lly.
-> > > > > >>>>
-> > > > > >>>> base-commit-tag: v6.3-rc1
-> > > > > >>>>
-> > > > > >>>> v8:
-> > > > > >>>> - Fix rv32, as reported by Anup
-> > > > > >>>> - Do not modify memblock_isolate_range and fixes comment, as=
- suggested by Mike
-> > > > > >>>> - Use the new memblock API for crash kernel too in arm64, as=
- suggested by Andrew
-> > > > > >>>> - Fix arm64 double mapping (which to me did not work in v7),=
- but ends up not
-> > > > > >>>>    being pretty at all, will wait for comments from arm64 re=
-viewers, but
-> > > > > >>>>    this patch can easily be dropped if they do not want it.
-> > > > > >>>>
-> > > > > >>>> v7:
-> > > > > >>>> - Fix Anup bug report by introducing memblock_isolate_memory=
- which
-> > > > > >>>>    allows us to split the memblock mappings and then avoid t=
-o map the
-> > > > > >>>>    the PUD which contains the kernel as read only
-> > > > > >>>> - Add a patch to arm64 to use this newly introduced API
-> > > > > >>>>
-> > > > > >>>> v6:
-> > > > > >>>> - quiet LLVM warning by casting phys_ram_base into an unsign=
-ed long
-> > > > > >>>>
-> > > > > >>>> v5:
-> > > > > >>>> - Fix nommu builds by getting rid of riscv_pfn_base in patch=
- 1, thanks
-> > > > > >>>>    Conor
-> > > > > >>>> - Add RB from Andrew
-> > > > > >>>>
-> > > > > >>>> v4:
-> > > > > >>>> - Rebase on top of v6.2-rc3, as noted by Conor
-> > > > > >>>> - Add Acked-by Rob
-> > > > > >>>>
-> > > > > >>>> v3:
-> > > > > >>>> - Change the comment about initrd_start VA conversion so tha=
-t it fits
-> > > > > >>>>    ARM64 and RISCV64 (and others in the future if needed), a=
-s suggested
-> > > > > >>>>    by Rob
-> > > > > >>>>
-> > > > > >>>> v2:
-> > > > > >>>> - Add a comment on why RISCV64 does not need to set initrd_s=
-tart/end that
-> > > > > >>>>    early in the boot process, as asked by Rob
-> > > > > >>>>
-> > > > > >>>> Alexandre Ghiti (4):
-> > > > > >>>>    riscv: Get rid of riscv_pfn_base variable
-> > > > > >>>>    mm: Introduce memblock_isolate_memory
-> > > > > >>>>    arm64: Make use of memblock_isolate_memory for the linear=
- mapping
-> > > > > >>>>    riscv: Use PUD/P4D/PGD pages for the linear mapping
-> > > > > >>> Kernel boot fine on RV64 but there is a failure which is stil=
-l not
-> > > > > >>> addressed. You can see this failure as following message in
-> > > > > >>> kernel boot log:
-> > > > > >>>      0.000000] Failed to add a System RAM resource at 8020000=
-0
-> > > > > >> Hmmm I don't get that in any of my test configs, would you min=
-d
-> > > > > >> sharing yours and your qemu command line?
-> > > > > > Try alexghiti_test branch at
-> > > > > > https://github.com/avpatel/linux.git
-> > > > > >
-> > > > > > I am building the kernel using defconfig and my rootfs is
-> > > > > > based on busybox.
-> > > > > >
-> > > > > > My QEMU command is:
-> > > > > > qemu-system-riscv64 -M virt -m 512M -nographic -bios
-> > > > > > opensbi/build/platform/generic/firmware/fw_dynamic.bin -kernel
-> > > > > > ./build-riscv64/arch/riscv/boot/Image -append "root=3D/dev/ram =
-rw
-> > > > > > console=3DttyS0 earlycon" -initrd ./rootfs_riscv64.img -smp 4
-> > > > >
-> > > > >
-> > > > > So splitting memblock.memory is the culprit, it "confuses" the re=
-sources
-> > > > > addition and I can only find hacky ways to fix that...
-> > > > Hi Alexandre,
-> > > >
-> > > > We encountered the same error as Anup. After adding your patch
-> > > > (3335068f87217ea59d08f462187dc856652eea15), we will not encounter t=
-he
-> > > > error again.
-> > > >
-> > > > What I have observed so far is
-> > > >
-> > > > - before your patch
-> > > > When merging consecutive memblocks, if the memblock types are diffe=
-rent,
-> > > > they will be merged into reserved
-> > > > - after your patch
-> > > > When consecutive memblocks are merged, if the memblock types are
-> > > > different, they will be merged into memory.
-> > > >
-> > > > Such a result will cause the memory location of OpenSBI to be chang=
-ed
-> > > > from reserved to memory. Will this have any side effects?
-> > >
-> > > I guess it will end up in the memory pool and pages from openSBI
-> > > region will be allocated, so we should see very quickly bad stuff
-> > > happening (either PMP violation or M-mode ecall never
-> > > returning/trapping/etc).
-> > >
-> > > But I don't observe the same thing, I always see the openSBI region
-> > > being reserved:
-> > >
-> > > reserved[0x0] [0x0000000080000000-0x000000008007ffff],
-> > > 0x0000000000080000 bytes flags: 0x0
-> > >
-> > > Can you elaborate a bit more about "When consecutive memblocks are
-> > > merged, if the memblock types are different, they will be merged into
-> > > memory"? Where/when does this merge happen? Can you give me a config
-> > > file and a kernel revision so that I can take a look?
-> > Ok, If you want to reproduce the same results you just need to modify O=
-penSBI
-> >
-> > [ lib/sbi/sbi_domain.c ]
-> > +#define TEST_SIZE 0x200000
-> >
-> > -                                 (scratch->fw_size - scratch->fw_rw_of=
-fset),
-> > +                                 (TEST_SIZE - scratch->fw_rw_offset),
-> >
-> > In addition, you can insert checks in the kernel merged function
-> > [ mm/memblock.c ]
-> > static void __init_memblock memblock_merge_regions(struct memblock_type=
- *type)
-> >         while (i < type->cnt - 1) {
-> >          ...
-> >                 /* move forward from next + 1, index of which is i + 2 =
-*/
-> >                 memmove(next, next + 1, (type->cnt - (i + 2)) * sizeof(=
-*next));
-> >                 type->cnt--;
-> >         }
-> > +       pr_info("Merged memblock_type: cnt =3D %lu, max =3D %lu,
-> > total_size =3D 0x%llx\n",type->cnt, type->max, type->total_size);
-> > +       for (i =3D 0; i < type->cnt; i++) {
-> > +               const char *region_type =3D
-> > memblock_is_memory(type->regions[i].base) ? "memory" : "reserve";
-> > +               pr_info("Region %d: base =3D 0x%llx, size =3D 0x%llx, t=
-ype
-> > =3D %s\n", i, type->regions[i].base, type->regions[i].size,
-> > region_type);
-> > +       }
-> >  }
-> > This is kernel boot log
-> > - before your patch
-> > ...
-> > [    0.000000] OF: fdt: Reserving memory: base =3D 0x80000000, size =3D=
- 0x200000
-> > [    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_size=
- =3D 0x1628501
-> > [    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1600000, type =
-=3D reserve
-> > ...
-> >
-> > - after your patch
-> > ...
-> > [    0.000000] OF: fdt: Reserving memory: base =3D 0x80000000, size =3D=
- 0x200000
-> > [    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_size=
- =3D 0x180c42e
-> > [    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1800000, type =
-=3D memory
->
-Hi Alex, thanks for your feedback.
-> So the openSBI region is marked as memory, and not reserved because
-> this region is now described as nomap, and memblock_mark_nomap() does
-> not move this region into the reserved memblock list, but keep it in
-> the memory list with the nomap flag
-> (https://elixir.bootlin.com/linux/latest/source/drivers/of/fdt.c#L479).
-> But as stated in the description of memblock_mark_nomap()
-> (https://elixir.bootlin.com/linux/latest/source/mm/memblock.c#L969),
-> the pages associated with the region will be marked as PageReserved
-> and the region will not be covered in the linear mapping.
-I traced it via GDB, and indeed, it enters
-early_init_dt_reserve_memory() and calls memblock_reserve to reserve
-this block of memory.
-
-[before your patch]
-[    0.000000] OF: fdt: check nomap Reserving memory: base =3D
-0x80000000, size =3D 0x200000
-[    0.000000] ---  Reserved memory: Base address: 80000000, Size:
-200000---
-[    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_size =3D
-0x1e28501
-[    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1e00000, type =3D
-reserve
-[    0.000000] Region 1: base =3D 0xbfe00000, size =3D 0x6002, type =3D
-memory
-....
-[    0.000000] OF: fdt: Reserved memory: reserved region for node
-'mmode_resv0@80000000': base 0x0000000080000000, size 2 MiB
-[    0.000000] OF: reserved mem:
-0x0000000080000000..0x00000000801fffff (2048 KiB) map non-reusable
-mmode_resv0@80000000
-
-[after your patch]
-[    0.000000] OF: fdt: check nomap Reserving memory: base =3D
-0x80000000, size =3D 0x200000
-[    0.000000] --- Reserved memory: Base address: 80000000, Size: 200000---
-[    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_size =3D=
- 0x1e25501
-[    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1e00000, type =3D =
-memory
-[    0.000000] Region 1: base =3D 0xbfe00000, size =3D 0x6002, type =3D mem=
-ory
-...
-[    0.000000] OF: fdt: Reserved memory: reserved region for node
-'mmode_resv0@80000000': base 0x0000000080000000, size 2 MiB
-[    0.000000] OF: reserved mem:
-0x0000000080000000..0x00000000801fffff (2048 KiB) map non-reusable
-mmode_resv0@80000000
-
-At the moment, it can be confirmed that there is no need to worry
-about this block of memory being used.
-
-But I still have a question I'd like to ask, which is why this
-location is flagged as 'reserve' instead of 'memory' in the memblock
-
-Thanks,
-Nylon
->
-> So to me, this is normal and we are safe. Let me know if I made a mistake=
+> > > > > > >> Hi Anup,
+> > > > > > >>
+> > > > > > >> On Thu, Mar 23, 2023 at 1:18=E2=80=AFPM Anup Patel <apatel@v=
+entanamicro.com> wrote:
+> > > > > > >>> Hi Alex,
+> > > > > > >>>
+> > > > > > >>> On Thu, Mar 16, 2023 at 6:48=E2=80=AFPM Alexandre Ghiti <al=
+exghiti@rivosinc.com> wrote:
+> > > > > > >>>> This patchset intends to improve tlb utilization by using =
+hugepages for
+> > > > > > >>>> the linear mapping.
+> > > > > > >>>>
+> > > > > > >>>> As reported by Anup in v6, when STRICT_KERNEL_RWX is enabl=
+ed, we must
+> > > > > > >>>> take care of isolating the kernel text and rodata so that =
+they are not
+> > > > > > >>>> mapped with a PUD mapping which would then assign wrong pe=
+rmissions to
+> > > > > > >>>> the whole region: it is achieved by introducing a new memb=
+lock API.
+> > > > > > >>>>
+> > > > > > >>>> Another patch makes use of this new API in arm64 which use=
+d some sort of
+> > > > > > >>>> hack to solve this issue: it was built/boot tested success=
+fully.
+> > > > > > >>>>
+> > > > > > >>>> base-commit-tag: v6.3-rc1
+> > > > > > >>>>
+> > > > > > >>>> v8:
+> > > > > > >>>> - Fix rv32, as reported by Anup
+> > > > > > >>>> - Do not modify memblock_isolate_range and fixes comment, =
+as suggested by Mike
+> > > > > > >>>> - Use the new memblock API for crash kernel too in arm64, =
+as suggested by Andrew
+> > > > > > >>>> - Fix arm64 double mapping (which to me did not work in v7=
+), but ends up not
+> > > > > > >>>>    being pretty at all, will wait for comments from arm64 =
+reviewers, but
+> > > > > > >>>>    this patch can easily be dropped if they do not want it=
 .
+> > > > > > >>>>
+> > > > > > >>>> v7:
+> > > > > > >>>> - Fix Anup bug report by introducing memblock_isolate_memo=
+ry which
+> > > > > > >>>>    allows us to split the memblock mappings and then avoid=
+ to map the
+> > > > > > >>>>    the PUD which contains the kernel as read only
+> > > > > > >>>> - Add a patch to arm64 to use this newly introduced API
+> > > > > > >>>>
+> > > > > > >>>> v6:
+> > > > > > >>>> - quiet LLVM warning by casting phys_ram_base into an unsi=
+gned long
+> > > > > > >>>>
+> > > > > > >>>> v5:
+> > > > > > >>>> - Fix nommu builds by getting rid of riscv_pfn_base in pat=
+ch 1, thanks
+> > > > > > >>>>    Conor
+> > > > > > >>>> - Add RB from Andrew
+> > > > > > >>>>
+> > > > > > >>>> v4:
+> > > > > > >>>> - Rebase on top of v6.2-rc3, as noted by Conor
+> > > > > > >>>> - Add Acked-by Rob
+> > > > > > >>>>
+> > > > > > >>>> v3:
+> > > > > > >>>> - Change the comment about initrd_start VA conversion so t=
+hat it fits
+> > > > > > >>>>    ARM64 and RISCV64 (and others in the future if needed),=
+ as suggested
+> > > > > > >>>>    by Rob
+> > > > > > >>>>
+> > > > > > >>>> v2:
+> > > > > > >>>> - Add a comment on why RISCV64 does not need to set initrd=
+_start/end that
+> > > > > > >>>>    early in the boot process, as asked by Rob
+> > > > > > >>>>
+> > > > > > >>>> Alexandre Ghiti (4):
+> > > > > > >>>>    riscv: Get rid of riscv_pfn_base variable
+> > > > > > >>>>    mm: Introduce memblock_isolate_memory
+> > > > > > >>>>    arm64: Make use of memblock_isolate_memory for the line=
+ar mapping
+> > > > > > >>>>    riscv: Use PUD/P4D/PGD pages for the linear mapping
+> > > > > > >>> Kernel boot fine on RV64 but there is a failure which is st=
+ill not
+> > > > > > >>> addressed. You can see this failure as following message in
+> > > > > > >>> kernel boot log:
+> > > > > > >>>      0.000000] Failed to add a System RAM resource at 80200=
+000
+> > > > > > >> Hmmm I don't get that in any of my test configs, would you m=
+ind
+> > > > > > >> sharing yours and your qemu command line?
+> > > > > > > Try alexghiti_test branch at
+> > > > > > > https://github.com/avpatel/linux.git
+> > > > > > >
+> > > > > > > I am building the kernel using defconfig and my rootfs is
+> > > > > > > based on busybox.
+> > > > > > >
+> > > > > > > My QEMU command is:
+> > > > > > > qemu-system-riscv64 -M virt -m 512M -nographic -bios
+> > > > > > > opensbi/build/platform/generic/firmware/fw_dynamic.bin -kerne=
+l
+> > > > > > > ./build-riscv64/arch/riscv/boot/Image -append "root=3D/dev/ra=
+m rw
+> > > > > > > console=3DttyS0 earlycon" -initrd ./rootfs_riscv64.img -smp 4
+> > > > > >
+> > > > > >
+> > > > > > So splitting memblock.memory is the culprit, it "confuses" the =
+resources
+> > > > > > addition and I can only find hacky ways to fix that...
+> > > > > Hi Alexandre,
+> > > > >
+> > > > > We encountered the same error as Anup. After adding your patch
+> > > > > (3335068f87217ea59d08f462187dc856652eea15), we will not encounter=
+ the
+> > > > > error again.
+> > > > >
+> > > > > What I have observed so far is
+> > > > >
+> > > > > - before your patch
+> > > > > When merging consecutive memblocks, if the memblock types are dif=
+ferent,
+> > > > > they will be merged into reserved
+> > > > > - after your patch
+> > > > > When consecutive memblocks are merged, if the memblock types are
+> > > > > different, they will be merged into memory.
+> > > > >
+> > > > > Such a result will cause the memory location of OpenSBI to be cha=
+nged
+> > > > > from reserved to memory. Will this have any side effects?
+> > > >
+> > > > I guess it will end up in the memory pool and pages from openSBI
+> > > > region will be allocated, so we should see very quickly bad stuff
+> > > > happening (either PMP violation or M-mode ecall never
+> > > > returning/trapping/etc).
+> > > >
+> > > > But I don't observe the same thing, I always see the openSBI region
+> > > > being reserved:
+> > > >
+> > > > reserved[0x0] [0x0000000080000000-0x000000008007ffff],
+> > > > 0x0000000000080000 bytes flags: 0x0
+> > > >
+> > > > Can you elaborate a bit more about "When consecutive memblocks are
+> > > > merged, if the memblock types are different, they will be merged in=
+to
+> > > > memory"? Where/when does this merge happen? Can you give me a confi=
+g
+> > > > file and a kernel revision so that I can take a look?
+> > > Ok, If you want to reproduce the same results you just need to modify=
+ OpenSBI
+> > >
+> > > [ lib/sbi/sbi_domain.c ]
+> > > +#define TEST_SIZE 0x200000
+> > >
+> > > -                                 (scratch->fw_size - scratch->fw_rw_=
+offset),
+> > > +                                 (TEST_SIZE - scratch->fw_rw_offset)=
+,
+> > >
+> > > In addition, you can insert checks in the kernel merged function
+> > > [ mm/memblock.c ]
+> > > static void __init_memblock memblock_merge_regions(struct memblock_ty=
+pe *type)
+> > >         while (i < type->cnt - 1) {
+> > >          ...
+> > >                 /* move forward from next + 1, index of which is i + =
+2 */
+> > >                 memmove(next, next + 1, (type->cnt - (i + 2)) * sizeo=
+f(*next));
+> > >                 type->cnt--;
+> > >         }
+> > > +       pr_info("Merged memblock_type: cnt =3D %lu, max =3D %lu,
+> > > total_size =3D 0x%llx\n",type->cnt, type->max, type->total_size);
+> > > +       for (i =3D 0; i < type->cnt; i++) {
+> > > +               const char *region_type =3D
+> > > memblock_is_memory(type->regions[i].base) ? "memory" : "reserve";
+> > > +               pr_info("Region %d: base =3D 0x%llx, size =3D 0x%llx,=
+ type
+> > > =3D %s\n", i, type->regions[i].base, type->regions[i].size,
+> > > region_type);
+> > > +       }
+> > >  }
+> > > This is kernel boot log
+> > > - before your patch
+> > > ...
+> > > [    0.000000] OF: fdt: Reserving memory: base =3D 0x80000000, size =
+=3D 0x200000
+> > > [    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_si=
+ze =3D 0x1628501
+> > > [    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1600000, typ=
+e =3D reserve
+> > > ...
+> > >
+> > > - after your patch
+> > > ...
+> > > [    0.000000] OF: fdt: Reserving memory: base =3D 0x80000000, size =
+=3D 0x200000
+> > > [    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_si=
+ze =3D 0x180c42e
+> > > [    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1800000, typ=
+e =3D memory
+> >
+> Hi Alex, thanks for your feedback.
+> > So the openSBI region is marked as memory, and not reserved because
+> > this region is now described as nomap, and memblock_mark_nomap() does
+> > not move this region into the reserved memblock list, but keep it in
+> > the memory list with the nomap flag
+> > (https://elixir.bootlin.com/linux/latest/source/drivers/of/fdt.c#L479).
+> > But as stated in the description of memblock_mark_nomap()
+> > (https://elixir.bootlin.com/linux/latest/source/mm/memblock.c#L969),
+> > the pages associated with the region will be marked as PageReserved
+> > and the region will not be covered in the linear mapping.
+> I traced it via GDB, and indeed, it enters
+> early_init_dt_reserve_memory() and calls memblock_reserve to reserve
+> this block of memory.
 >
-> And sorry for the long delay, that slipped my mind!
+> [before your patch]
+> [    0.000000] OF: fdt: check nomap Reserving memory: base =3D
+> 0x80000000, size =3D 0x200000
+> [    0.000000] ---  Reserved memory: Base address: 80000000, Size:
+> 200000---
+> [    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_size =
+=3D
+> 0x1e28501
+> [    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1e00000, type =
+=3D
+> reserve
+> [    0.000000] Region 1: base =3D 0xbfe00000, size =3D 0x6002, type =3D
+> memory
+> ....
+> [    0.000000] OF: fdt: Reserved memory: reserved region for node
+> 'mmode_resv0@80000000': base 0x0000000080000000, size 2 MiB
+> [    0.000000] OF: reserved mem:
+> 0x0000000080000000..0x00000000801fffff (2048 KiB) map non-reusable
+> mmode_resv0@80000000
+>
+> [after your patch]
+> [    0.000000] OF: fdt: check nomap Reserving memory: base =3D
+> 0x80000000, size =3D 0x200000
+> [    0.000000] --- Reserved memory: Base address: 80000000, Size: 200000-=
+--
+> [    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_size =
+=3D 0x1e25501
+> [    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1e00000, type =
+=3D memory
+> [    0.000000] Region 1: base =3D 0xbfe00000, size =3D 0x6002, type =3D m=
+emory
+> ...
+> [    0.000000] OF: fdt: Reserved memory: reserved region for node
+> 'mmode_resv0@80000000': base 0x0000000080000000, size 2 MiB
+> [    0.000000] OF: reserved mem:
+> 0x0000000080000000..0x00000000801fffff (2048 KiB) map non-reusable
+> mmode_resv0@80000000
+>
+> At the moment, it can be confirmed that there is no need to worry
+> about this block of memory being used.
+>
+> But I still have a question I'd like to ask, which is why this
+> location is flagged as 'reserve' instead of 'memory' in the memblock
+Sorry, I asked the wrong question.
+
+Why is this location marked as "memory" instead of "reserve" in the membloc=
+k?
 >
 > Thanks,
->
-> Alex
->
-> > ...
-> > [    0.000000] Failed to add a system RAM resource at 80200000
-> > ...
-> > >
-> > > Thanks,
-> > >
-> > > Alex
-> > >
-> > > > >
-> > > > > So given that the arm64 patch with the new API is not pretty and =
-that
-> > > > > the simplest solution is to re-merge the memblock regions afterwa=
-rds
-> > > > > (which is done by memblock_clear_nomap), I'll drop the new API an=
-d the
-> > > > > arm64 patch to use the nomap API like arm64: I'll take advantage =
-of that
-> > > > > to clean setup_vm_final which I have wanted to do for a long time=
-.
-> > > > >
-> > > > > @Mike Thanks for you reviews!
-> > > > >
-> > > > > @Anup Thanks for all your bug reports on this patchset, I have to
-> > > > > improve my test flow (it is in the work :)).
-> > > > >
-> > > > >
-> > > > > > Regards,
-> > > > > > Anup
+> Nylon
+> >
+> > So to me, this is normal and we are safe. Let me know if I made a mista=
+ke.
+> >
+> > And sorry for the long delay, that slipped my mind!
+> >
+> > Thanks,
+> >
+> > Alex
+> >
+> > > ...
+> > > [    0.000000] Failed to add a system RAM resource at 80200000
+> > > ...
+> > > >
+> > > > Thanks,
+> > > >
+> > > > Alex
+> > > >
 > > > > > >
-> > > > > >> Thanks
-> > > > > >>
-> > > > > >>> Regards,
-> > > > > >>> Anup
-> > > > > >>>
-> > > > > >>>>   arch/arm64/mm/mmu.c           | 25 +++++++++++------
-> > > > > >>>>   arch/riscv/include/asm/page.h | 19 +++++++++++--
-> > > > > >>>>   arch/riscv/mm/init.c          | 53 +++++++++++++++++++++++=
-+++++-------
-> > > > > >>>>   arch/riscv/mm/physaddr.c      | 16 +++++++++++
-> > > > > >>>>   drivers/of/fdt.c              | 11 ++++----
-> > > > > >>>>   include/linux/memblock.h      |  1 +
-> > > > > >>>>   mm/memblock.c                 | 20 +++++++++++++
-> > > > > >>>>   7 files changed, 119 insertions(+), 26 deletions(-)
-> > > > > >>>>
-> > > > > >>>> --
-> > > > > >>>> 2.37.2
-> > > > > >>>>
+> > > > > > So given that the arm64 patch with the new API is not pretty an=
+d that
+> > > > > > the simplest solution is to re-merge the memblock regions after=
+wards
+> > > > > > (which is done by memblock_clear_nomap), I'll drop the new API =
+and the
+> > > > > > arm64 patch to use the nomap API like arm64: I'll take advantag=
+e of that
+> > > > > > to clean setup_vm_final which I have wanted to do for a long ti=
+me.
+> > > > > >
+> > > > > > @Mike Thanks for you reviews!
+> > > > > >
+> > > > > > @Anup Thanks for all your bug reports on this patchset, I have =
+to
+> > > > > > improve my test flow (it is in the work :)).
+> > > > > >
+> > > > > >
+> > > > > > > Regards,
+> > > > > > > Anup
+> > > > > > >
+> > > > > > >> Thanks
+> > > > > > >>
+> > > > > > >>> Regards,
+> > > > > > >>> Anup
+> > > > > > >>>
+> > > > > > >>>>   arch/arm64/mm/mmu.c           | 25 +++++++++++------
+> > > > > > >>>>   arch/riscv/include/asm/page.h | 19 +++++++++++--
+> > > > > > >>>>   arch/riscv/mm/init.c          | 53 +++++++++++++++++++++=
++++++++-------
+> > > > > > >>>>   arch/riscv/mm/physaddr.c      | 16 +++++++++++
+> > > > > > >>>>   drivers/of/fdt.c              | 11 ++++----
+> > > > > > >>>>   include/linux/memblock.h      |  1 +
+> > > > > > >>>>   mm/memblock.c                 | 20 +++++++++++++
+> > > > > > >>>>   7 files changed, 119 insertions(+), 26 deletions(-)
+> > > > > > >>>>
+> > > > > > >>>> --
+> > > > > > >>>> 2.37.2
+> > > > > > >>>>
+> > > > > > > _______________________________________________
+> > > > > > > linux-riscv mailing list
+> > > > > > > linux-riscv@lists.infradead.org
+> > > > > > > http://lists.infradead.org/mailman/listinfo/linux-riscv
+> > > > > >
 > > > > > > _______________________________________________
 > > > > > > linux-riscv mailing list
 > > > > > > linux-riscv@lists.infradead.org
 > > > > > > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> > > > >
-> > > > > _______________________________________________
-> > > > > linux-riscv mailing list
-> > > > > linux-riscv@lists.infradead.org
-> > > > > http://lists.infradead.org/mailman/listinfo/linux-riscv
 
