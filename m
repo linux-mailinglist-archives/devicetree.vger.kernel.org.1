@@ -1,222 +1,210 @@
-Return-Path: <devicetree+bounces-50062-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50063-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4F048795CD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:14:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E77D8795E5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:18:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 14C681C218AF
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:14:15 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 6079A1C20917
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:18:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 595EA7AE62;
-	Tue, 12 Mar 2024 14:13:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A5F3A7A730;
+	Tue, 12 Mar 2024 14:18:47 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="VLEM8cLn"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Xaq2RTZp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001b2d01.pphosted.com (mx0b-001b2d01.pphosted.com [148.163.158.5])
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [217.70.183.197])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2D6287AE4E;
-	Tue, 12 Mar 2024 14:13:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.158.5
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 27A9A58AD4;
+	Tue, 12 Mar 2024 14:18:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.197
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710252789; cv=none; b=ZSbl/CKUQMiHOSaJ5FA82IwL5plWiLJmTZTTvoOz3KcSElyrRD3sOePJAhkE31NZfq9JG/XMVgnMMugNxU9+IuENIZm9IgDBVqdwX8B+kBQMyiWo68KnDURlRPvX5IhgV6MkmGLbqFZhQ/TPxOlardxtmSafw4kcf8fcPMo8BR4=
+	t=1710253127; cv=none; b=UAgMU33MU9fuWYEHoS5Kt3Ic5w2Z3+TNmV3RmRMx4BnfQJvW3iHTRXjSCwixrIT0IOzy5k1fG3WVgFAVu0Tduew816GQoIB1t3hRP/e9iJmP602wuAUAxqFuSdKAGHsiWbbK6WN4pNHEqbHppFaHZJBJExRPXYm8On6Dryy0IYE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710252789; c=relaxed/simple;
-	bh=p3Bfd3KPUb2xfSPghKDEQFSWtw3zkwmPyWErXe5BUv4=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=tO5VosfaET+WDG/yNHyMN/P4JhNldAJY8PygoxZqTmS5LGIEr4+mnR5A8T6UFjb8xOhGvt7I197GO0/G3POUsk40Y8vBW/HmcPnlc+TK5YGLlSapxZwDygah+uaSaWJ7P7zPlzP/gnrNLrn3tRElAW07f56iHw1JFA5PdBwhjFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=VLEM8cLn; arc=none smtp.client-ip=148.163.158.5
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353723.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 42CDxwCu013802;
-	Tue, 12 Mar 2024 14:12:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=C/7Wo3Do9rVfY4C0hJPRuEoQ8N6r53SaOQYqtVwZzig=;
- b=VLEM8cLnKe7hSl2BHsW5/6ET7DMGZHe1WlNQnCSs/9y/UMGi7F6LibLPkyTQFZGdi0h/
- ebMEVYj8o1i2M48eR6qdKIeYsOjTCw7YdKvYL4BQpr+iAmEJaKLDODZPlIWuzHx4p6qr
- 4Rkg0nRl373kvJiSMigLb5pHaNSMDcy6x8nTvPBg6/whjtSs1IA9RDCn0WfI+pnq1St4
- JbxJ5XtzKCYmCw6DWHdqqYC5pvCinbmYXOF+JcnNYqqXBdjGsrBnbL0MaR4SIFN79RH+
- 3Xrmd22/2m5tiHK8OOUBhUT4PZW/HQdudV2glipjNNORSRuY58pO6EzazNuEG2pSNWUB nA== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3wtre507sk-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Mar 2024 14:12:47 +0000
-Received: from m0353723.ppops.net (m0353723.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 42CE06Lw014522;
-	Tue, 12 Mar 2024 14:12:47 GMT
-Received: from ppma12.dal12v.mail.ibm.com (dc.9e.1632.ip4.static.sl-reverse.com [50.22.158.220])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3wtre507s3-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Mar 2024 14:12:47 +0000
-Received: from pps.filterd (ppma12.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma12.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 42CBNxhS018128;
-	Tue, 12 Mar 2024 14:12:46 GMT
-Received: from smtprelay03.dal12v.mail.ibm.com ([172.16.1.5])
-	by ppma12.dal12v.mail.ibm.com (PPS) with ESMTPS id 3ws23t7q89-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Mar 2024 14:12:46 +0000
-Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
-	by smtprelay03.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 42CEChpw44433916
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 12 Mar 2024 14:12:45 GMT
-Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 014A65806B;
-	Tue, 12 Mar 2024 14:12:43 +0000 (GMT)
-Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id ECE5F58059;
-	Tue, 12 Mar 2024 14:12:41 +0000 (GMT)
-Received: from [9.47.158.152] (unknown [9.47.158.152])
-	by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Tue, 12 Mar 2024 14:12:41 +0000 (GMT)
-Message-ID: <cbe526b1-b044-48ac-896e-6037a85171ea@linux.ibm.com>
-Date: Tue, 12 Mar 2024 10:12:41 -0400
+	s=arc-20240116; t=1710253127; c=relaxed/simple;
+	bh=gDhbS5GX3D28N410zYK3NRuThkWmlgG+G66CI56dYd4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=uKiGuwYxN3OIIvAMUTv4e0MYkjFRZYOyRZNS7F9imIzIqr9JY/D7us5jCvboTfu0G44CWFKJoYTjL6m4QeD0I+ESMDELedU8LYaHytr/+wtbbvB4G1+YH37Z/ygBaJqEYH4LqSPt5PVBTQ2pNRz/43/ZqacB1tqpC1CqkGV9F1Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Xaq2RTZp; arc=none smtp.client-ip=217.70.183.197
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id CCE8E1C000E;
+	Tue, 12 Mar 2024 14:18:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1710253116;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=XPax4SruT40V+SoIDKJmZxhUVVshW9nsuUSbxtxxykY=;
+	b=Xaq2RTZpEk12qX0xAg9J2TshWgskMgyfkt3IsIxKrYp3SVGPL3ACwJf9ec2GWpLiJPLLao
+	amQqYtEYOgdo/u/YNPA2ybIsiWnbM/mAJcKRneNthLTi0Mq62g9+ni5in/yV7DHE5vDC7p
+	QSdjUDDW/Ua5/BdqPx5CyCoD/67EerLODzN82BSWxYn5w4uvhU/R3xI6sZD516Ha0NgJxV
+	aAhBM0/v0u0TjPX/XGCAA42gE58QiTtO++W1oGqBzbBtDinUB9G5D1cMH4p+YUvIKRN2tP
+	R1TC4S8grINRK0BuWdjB1MOmQrErNRDBbTBbnsZHrZZNvYKt95O0K9VSENB9+A==
+Date: Tue, 12 Mar 2024 15:18:35 +0100
+From: Herve Codina <herve.codina@bootlin.com>
+To: Saravana Kannan <saravanak@google.com>
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, "Rafael J. Wysocki"
+ <rafael@kernel.org>, Rob Herring <robh+dt@kernel.org>, Frank Rowand
+ <frowand.list@gmail.com>, Shawn Guo <shawnguo@kernel.org>, Wolfram Sang
+ <wsa@kernel.org>, Mark Brown <broonie@kernel.org>, Geert Uytterhoeven
+ <geert+renesas@glider.be>, Rob Herring <robh@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, Luca Ceresoli
+ <luca.ceresoli@bootlin.com>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, stable@vger.kernel.org, Android Kernel Team
+ <kernel-team@android.com>
+Subject: Re: [PATCH 1/2] driver core: Clear FWNODE_FLAG_NOT_DEVICE when a
+ device is added
+Message-ID: <20240312151835.29ef62a0@bootlin.com>
+In-Reply-To: <CAGETcx-4RkuvsW5W5zPS4HMjSAGq5Yi9P2O0KPanA8HVJV0bvg@mail.gmail.com>
+References: <20240220111044.133776-1-herve.codina@bootlin.com>
+	<20240220111044.133776-2-herve.codina@bootlin.com>
+	<CAGETcx-4RkuvsW5W5zPS4HMjSAGq5Yi9P2O0KPanA8HVJV0bvg@mail.gmail.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-redhat-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 2/3] dt-bindings: tpm: Add linux,sml-log to
- ibm,vtpm.yaml
-Content-Language: en-US
-To: Lukas Wunner <lukas@wunner.de>
-Cc: mpe@ellerman.id.au, linux-integrity@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        jarkko@kernel.org, rnsastry@linux.ibm.com, peterhuewe@gmx.de,
-        viparash@in.ibm.com, devicetree@vger.kernel.org, jsnitsel@redhat.com,
-        Nayna Jain <nayna@linux.ibm.com>
-References: <20240311132030.1103122-1-stefanb@linux.ibm.com>
- <20240311132030.1103122-3-stefanb@linux.ibm.com> <ZfA4TZspY7oOQ4vz@wunner.de>
-From: Stefan Berger <stefanb@linux.ibm.com>
-In-Reply-To: <ZfA4TZspY7oOQ4vz@wunner.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-ORIG-GUID: Jlo8b5KaqDw2EQmqvwb7imfqs1qNC_2U
-X-Proofpoint-GUID: SlFIL06VJjfnVsAKMoTBGlqmFhgtVArT
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-12_08,2024-03-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999
- priorityscore=1501 mlxscore=0 bulkscore=0 phishscore=0 malwarescore=0
- impostorscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015 spamscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2311290000 definitions=main-2403120108
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: herve.codina@bootlin.com
 
+Hi Saravana,
 
+On Tue, 20 Feb 2024 18:41:03 -0800
+Saravana Kannan <saravanak@google.com> wrote:
 
-On 3/12/24 07:11, Lukas Wunner wrote:
-> On Mon, Mar 11, 2024 at 09:20:29AM -0400, Stefan Berger wrote:
->> Add linux,sml-log, which carries the firmware TPM log in a uint8-array, to
->> the properties. Either this property is required or both linux,sml-base and
->> linux,sml-size are required. Add a test case for verification.
->>
->> Fixes: 82003e0487fb ("Documentation: tpm: add the IBM Virtual TPM device tree binding documentation")
+> On Tue, Feb 20, 2024 at 3:10 AM Herve Codina <herve.codina@bootlin.com> wrote:
+> >
+> > Since commit 1a50d9403fb9 ("treewide: Fix probing of devices in DT
+> > overlays"), when using device-tree overlays, the FWNODE_FLAG_NOT_DEVICE
+> > is set on each overlay nodes.
+> > When an overlay contains a node related to a bus (i2c for instance)
+> > and its children nodes representing i2c devices, the flag is cleared for
+> > the bus node by the OF notifier but the "standard" probe sequence takes
+> > place (the same one is performed without an overlay) for the bus and
+> > children devices are created simply by walking the children DT nodes
+> > without clearing the FWNODE_FLAG_NOT_DEVICE flag for these devices.
+> >
+> > Clear the FWNODE_FLAG_NOT_DEVICE when the device is added, no matter if
+> > an overlay is used or not.
+> >
+> > Fixes: 1a50d9403fb9 ("treewide: Fix probing of devices in DT overlays")
+> > Cc: <stable@vger.kernel.org>
+> > Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> > ---
+> >  drivers/base/core.c | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/drivers/base/core.c b/drivers/base/core.c
+> > index 14d46af40f9a..61d09ac57bfb 100644
+> > --- a/drivers/base/core.c
+> > +++ b/drivers/base/core.c
+> > @@ -3619,6 +3619,7 @@ int device_add(struct device *dev)
+> >          */
+> >         if (dev->fwnode && !dev->fwnode->dev) {
+> >                 dev->fwnode->dev = dev;
+> > +               dev->fwnode->flags &= ~FWNODE_FLAG_NOT_DEVICE;
+> >                 fw_devlink_link_device(dev);
+> >         }  
 > 
-> The Fixes tag is confusing.  The patch won't even apply cleanly to the
-> v4.10 commit referenced here as the conversion to yaml happened only
-> recently with v6.8.
+> Temporary Nack on this. I think depending on how we address patch 2/2
+> this patch might not be necessary.
+> 
+> Also, I'd ideally prefer this gets cleared before the device is added,
+> but it's a position that I'd be willing to change.
+> 
 
-Then that's as far back (6.8) as the series may be applied. I put the 
-Fixes tag on the first appearance of sml-base/sml-size since for kexec 
-this was never correct.
+Some more information about this current patch.
 
-> 
-> Why is the Fixes tag necessary in the first place?  Same question for
-> the other patches in the series.  This looks like feature work rather
-> than a fix.  Not sure whether it satisfies the "obviously correct"
-> rule per Documentation/process/stable-kernel-rules.rst.
+Several month ago, I sent a patch related to a warning raised during driver
+unbinding [1]. This warning was raised by __device_links_no_driver() because
+we unlink a consumer while its supplier links.status is DL_DEV_UNBINDING.
+You suspected an issue with the device removal ordering.
 
+On this system, I applied this current patch clearing FWNODE_FLAG_NOT_DEVICE
+in device_add(). This fixes the warning described in [1].
 
-It is a fix for the interaction of the TPM firmware log with kexec. The 
-sml-base buffer pointer was never protected across a kexec.
-
-> 
-> 
->> --- a/Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml
->> +++ b/Documentation/devicetree/bindings/tpm/ibm,vtpm.yaml
->> @@ -74,8 +74,6 @@ required:
->>     - ibm,my-dma-window
->>     - ibm,my-drc-index
->>     - ibm,loc-code
->> -  - linux,sml-base
->> -  - linux,sml-size
-> 
-> I assume that either these two or the new "linux,sml-log" property
-> are (still) required?  If so, a quick grep through the bindings
-> (e.g. auxdisplay/img,ascii-lcd.yaml) shows that the following
-> might work:
-> 
-> required:
->    - ...
-> 
-> oneOf:
->    - required:
->        - linux,sml-base
->    - required:
->        - linux,sml-log
-> 
-You're right, they need to be here since examples could now omit 
-sml-base or sml-log. I added them. Thanks.
-
-> 
->> --- a/Documentation/devicetree/bindings/tpm/tpm-common.yaml
->> +++ b/Documentation/devicetree/bindings/tpm/tpm-common.yaml
->> @@ -30,6 +30,11 @@ properties:
->>         size of reserved memory allocated for firmware event log
->>       $ref: /schemas/types.yaml#/definitions/uint32
->>   
->> +  linux,sml-log:
->> +    description:
->> +      Content of firmware event log
-> 
-> Please add one or two sentences of context so that readers don't
-> need to use git blame + git log to find out what this is for.
-> (Mention at least that the property may be used to pass the log
-> to a kexec kernel.)
-
-Ok, will do:
-
-Content of firmware event log embedded in device tree to be safely 
-carried across a kexec soft reboot.
+[1]: https://lore.kernel.org/linux-kernel/CAGETcx-Mp0uKBF_BWFFBUm=eVOp8xhxF3+znFB8vTaFwpJWTnw@mail.gmail.com/
 
 
+The use case on that system, involved DT overlays and the fragment applied is the
+following:
+--- 8< ---
+   pci-ep-bus@0 {
+	compatible = "simple-bus";
+	#address-cells = <1>;
+	#size-cells = <1>;
 
-> 
-> 
->> -# must only have either memory-region or linux,sml-base
->> +# must only have either memory-region or linux,sml-base/size or linux,sml-log
->>   # as well as either resets or reset-gpios
->>   dependentSchemas:
->>     memory-region:
->>       properties:
->>         linux,sml-base: false
->> +      linux,sml-log: false
->>     linux,sml-base:
->>       properties:
->>         memory-region: false
->> +      linux,sml-log: false
->> +  linux,sml-log:
->> +    properties:
->> +      memory-region: false
->> +      linux,sml-base: false
->> +      linux,sml-size: false
-> 
-> Could you add "linux,sml-size: false" to "memory-region" as well
-> while at it for consistency?
+	/*
+	 * map @0xe2000000 (32MB) to BAR0 (CPU)
+	 * map @0xe0000000 (16MB) to BAR1 (AMBA)
+	 */
+	ranges = <0xe2000000 0x00 0x00 0x00 0x2000000
+	          0xe0000000 0x01 0x00 0x00 0x1000000>;
 
-Done. Thanks.
+	...
 
-    Stefan
-> 
-> Thanks,
-> 
-> Lukas
+	flx0: flexcom@e0040000 {
+		compatible = "atmel,sama5d2-flexcom";
+		reg = <0xe0040000 0x100>;
+		clocks = <&clks GCK_ID_FLEXCOM0>;
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges = <0x0 0xe0040000 0x800>;
+
+		atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
+
+		i2c_lan966x: i2c@600 {
+			compatible = "microchip,lan966x-i2c";
+			reg = <0x600 0x200>;
+			interrupt-parent = <&itc>;
+			interrupts = <48>;
+			#address-cells = <1>;
+			#size-cells = <0>;
+			clocks = <&clks GCK_ID_FLEXCOM0>;
+			assigned-clocks = <&clks GCK_ID_FLEXCOM0>;
+			assigned-clock-rates = <20000000>;
+			pinctrl-0 = <&fc0_a_pins>;
+			pinctrl-names = "default";
+			i2c-analog-filter;
+			i2c-digital-filter;
+			i2c-digital-filter-width-ns = <35>;
+		};
+	};
+	...
+   };
+--- 8< ---
+This fragment is applied to a PCI device node.
+
+Without clearing the FWNODE_FLAG_NOT_DEVICE, a link is present between the
+i2c@600 and the PCI device. With the flag cleared, this link is replaced by
+a link between the i2c@600 and the pci-ep-bus. Which looks better.
+
+The flexcom driver is a MFD driver. As a MFD driver, it simply calls
+devm_of_platform_populate(). In this path, devices are created and added but
+nothing cleared the FWNODE_FLAG_NOT_DEVICE.
+
+Based on your remark "I'd ideally prefer this gets cleared before the device
+is added", I have the feeling that all calls to device_add() should clear the
+flag before calling device_add(). So having FWNODE_FLAG_NOT_DEVICE cleared
+in device_add() itself in that case makes sense.
+
+What is your opinion ?
+
+Also, feel free to ask for some more traces and/or logs if needed.
+
+Best regards,
+Hervé
+-- 
+Hervé Codina, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
