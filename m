@@ -1,106 +1,189 @@
-Return-Path: <devicetree+bounces-49948-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49950-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09EEE878E65
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 07:04:44 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E96F878E7B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 07:16:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B3388283554
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 06:04:42 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 724421C222C4
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 06:16:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 96DD538DFB;
-	Tue, 12 Mar 2024 06:04:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 706703A1DE;
+	Tue, 12 Mar 2024 06:16:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vh3u5K7u"
+	dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b="vRVN7e2q"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pg1-f170.google.com (mail-pg1-f170.google.com [209.85.215.170])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from HK3PR03CU002.outbound.protection.outlook.com (mail-eastasiaazon11011005.outbound.protection.outlook.com [52.101.128.5])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A4CE51E48C
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 06:04:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.170
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710223474; cv=none; b=mKN6k6UxlGIU8z8M2lBhMUJOgbTB9slZzdCZ4kGqk/n5xjBmR8Gb9kLZqKFN+Viu8uJxMTCK22l5g/4b9m3RKYyvFbgTE6qF9+oNxeadMqCdtufEsjL1KMkJLY19mCUck/e1ZI0/fRUA/RXkS5YdIvikfqEAAc8+BBDupXCKR0g=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710223474; c=relaxed/simple;
-	bh=9jB4t/FMl4MSxLFMoUWxqI02cw1lVYppihYctJKdru8=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=X98ZdctQv+VQWIbyZcHs76KUfmO1Cx5sU+fZ6JmauaGjUjeG1pgqtIC9VuVIESKNcZ8iNbbxbigtnUIhOuNwGvuoQ+lBXfQCep4PWoli72ZrZyakNns2AfhKoUOm1ZwQtj9mi+5+XnSnr/8aBdbRjJibgBzAhUx4sIVFNUU5Eks=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vh3u5K7u; arc=none smtp.client-ip=209.85.215.170
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-pg1-f170.google.com with SMTP id 41be03b00d2f7-5cddc5455aeso3058311a12.1
-        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 23:04:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710223471; x=1710828271; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qi1j9nXbepLSnAZq2xPJYsLpHSLoOTfVPK3ch6zUNmo=;
-        b=vh3u5K7uLi7b0htaFCjydnLKB5SOw+PXWbjDCybcGKpLMeAzm5FkQ9g7Qxt3S5L9Rl
-         guH9NyFkVmwuNYSoFxRDispu7irn9Rd6XVmbHOdOOlHGiIUgFv5mXcEB6E9wjk1ZhIOO
-         T8XPsDkvGasALQDGUk/l2s0Csc8BpJUZsdTGLIZOBKG549rA3DJxtMxdGNT7TnEHuaEo
-         GecEYZYHfkdpUccdL+3u/GO7uaIp5bZx7bZJ957Y7SSnt8xT0NtlwU6Qydh66tzVoew/
-         TpnU/Lb+hrrwdgpUdxtHzSzMYlWLR/Ij5RaAMtbDr9M8gnmTpeiIsqI7bZ6P9v04FYuv
-         0Zxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710223471; x=1710828271;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Qi1j9nXbepLSnAZq2xPJYsLpHSLoOTfVPK3ch6zUNmo=;
-        b=lPYIjATImp+yeA0DoakEob0gxVF+toBs3PRq6z5oIBvlUt1Q6H9vZdZA/Bp9kWZyTM
-         GlwoTz5WKbvIYEj4IDJdxwCRIeMKsmS1+3nIbSYf8a+NVKgGYbWMNwOo+vHZll/zwOZ5
-         0m/QC3eJrQvY32Ka2qq/KK3fRpFerV37qVVK8vJrIjHmVL6nVmFLtayvJKq7urj4tO7E
-         L1B9ZyuE5R55rYNiFXI53b4gaQpSfkrjmZkwRNcLY4Ge/uaYA+fhhzdAqOweBekLy4uw
-         10FkaDPG6a05ZxmE6JFrvPvUEA+yKNBYdZXY2jbl8rEvW/rlv+LD08BOSbDo5SoiPHWj
-         Q4WA==
-X-Forwarded-Encrypted: i=1; AJvYcCWtfvZXfS3cdTjx5u+mrqOT1xLaYDB4dePbplLSkfcPmU3GqC8FrXfB8MciM0cj2FSWHXSDYYUPnVB/h1bG7NNbA3YKzDd1TKmodw==
-X-Gm-Message-State: AOJu0Yz4JWsFOhZC/vA5HsdhovydMEHr204PhPasZ94W52s9zizp12ER
-	T9c0HAXbMGLIQ9hIIEnJqvAEDGVpIBE5w6tQfYxKG353q7N9LVNVAd/A+cIYzJ4=
-X-Google-Smtp-Source: AGHT+IHXsJZxoKfM1XfX/YP/0RviH05W5+ufj1/onjKWZOloDTG2V7hvnC4M3ITEMpJ9QD+Yu+oTTw==
-X-Received: by 2002:a05:6a20:8e14:b0:1a1:3cff:874e with SMTP id y20-20020a056a208e1400b001a13cff874emr7401881pzj.8.1710223470921;
-        Mon, 11 Mar 2024 23:04:30 -0700 (PDT)
-Received: from localhost ([122.172.85.206])
-        by smtp.gmail.com with ESMTPSA id l4-20020a17090a150400b00296a7ac8b5fsm9451769pja.6.2024.03.11.23.04.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 11 Mar 2024 23:04:30 -0700 (PDT)
-Date: Tue, 12 Mar 2024 11:34:27 +0530
-From: Viresh Kumar <viresh.kumar@linaro.org>
-To: Rob Herring <robh@kernel.org>
-Cc: Viresh Kumar <vireshk@kernel.org>,
-	Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-	Vinod Koul <vkoul@kernel.org>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 788042E41C;
+	Tue, 12 Mar 2024 06:16:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.128.5
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710224172; cv=fail; b=Y9yAmnJ4vzJXPpdgrg4ZbZHitU+CkJprdcIN5OtG4t4nSMVIMruogQmxWTy+FbdZbFx58E9h26s3dL1+DoWA0Us5/t7gVohZqikmAJL8ABu9naQ+iwYvPW8Qm1xuqZRgzF95iKF+bAd8OHWdZ0/nkCMTQADHLgUfaNdanpKsgd4=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710224172; c=relaxed/simple;
+	bh=C1sKk/8yEduVRzoUaqH6XRUvtSLCvjWT1dmeOhtCRxg=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=Z0PI9y5h7v4UZU085iEToc2alLPtOYhCJ/HTxV2qjbEKUuqhSHxKIW1qTYxzKlef4fqu4l3aocv7McfJJSJ5zSCMqxhQrYeJCEmc2gVEHgMXduoP4VTpvFi62uBTxmlTtNjEYMJYL4tQQdHrhKt/17i7PmaTb/MVA+vpEWUJLNY=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com; spf=pass smtp.mailfrom=wiwynn.com; dkim=pass (2048-bit key) header.d=wiwynn.com header.i=@wiwynn.com header.b=vRVN7e2q; arc=fail smtp.client-ip=52.101.128.5
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=wiwynn.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=wiwynn.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LgiBZRqoqfNlxgIqzeFkCtzXgyaMiWkueWq42ZHO12IMP1Llyliz894vnuyL6drnfYmG0AhkxURX3KLsDhDJb1tGUek/UkGPZXPQienvSHS4ntoTwyGvvOUEV+g1kmT0kbeW55ySghp4F6kBMPd0qy7nn2p90Hn5I35qevCEaxBMx46dklxWRW/dJ/uYMzrGyuglR1USj4UsKgTIKEnJiHA8ibMyzphhLnnE1MHavbvicSFxsK91e2GrDyBKekms+C3dCakZ5tZYTd1Sl+xnWv0AYpqbyR863ihoT+Bx+1HUYfyjnquf89c36ybw3HPUUAG4h9lV9+WxM0NEACKTeA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3RkquM5/cO3Lq776cKhbTsIE8JytwM6TQi45HAbw8XI=;
+ b=FAi45tAJW/NSyXftDSlj6DkTEJteqq1SRYVA1Wv5d/LrobO1GS9Lzh0S5B8cb3bqC7LwHuM7iHRraDd++qyjhlK3LGX5VsgQHcZi7JwwxZbtbmlqwwekfJ2SyZhGvjV3MGlSVX7RUGRwZ1Ek78WwBPKbTkAtXIJ4pAc+x8ZhzJxv4Fh9a9ly/zS55I8/Gkei8Jz/OLKf2FPyIKRIRD3l790fJA7jcY2ERUvtR9SrFORoDhePBPerUeF42V3Vg1fjTm1wQcbgwwJUjudgUSjXDYqZZgh0IKssXgZKMta4/6Tn52cT7Z/5i1UbMn6TQigfJY7BfdHj/dwGvZnWYRpwxw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=fail (sender ip is
+ 211.20.1.79) smtp.rcpttodomain=stwcx.xyz smtp.mailfrom=wiwynn.com; dmarc=fail
+ (p=quarantine sp=quarantine pct=100) action=quarantine
+ header.from=wiwynn.com; dkim=none (message not signed); arc=none (0)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wiwynn.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3RkquM5/cO3Lq776cKhbTsIE8JytwM6TQi45HAbw8XI=;
+ b=vRVN7e2qYmFipxIr4JQGLrbVYcl84Spjtuw8rudR7kzeGaRpe1w3UvydCsvZTV+L9+TOgtJQXYKZerQl5xs9oEYJu+r7hEA/gUCAiSkutALUeaD2zRbeURZ4+4+XjHexnahudiObzG42F0eR5l9uYPATxZKCeGPdpjhDzvzmHepPXPqReYHWZmlJSCc01C2wITO1rz9bsL8K9JB6tTPhPpwM0okUXSWeSHk9rk1wzsrTkUm1IilyDsrIy0I65omEvjNADmfG7y6OrU3R1zXO8NttqpxBcZsJ+d20SJ1W/E1de6Wftj0EI2MWulRInQw8a99KTKQ1wB5UidIWuND+KQ==
+Received: from PS1PR03CA0024.apcprd03.prod.outlook.com (2603:1096:803:3d::36)
+ by SEYPR04MB6750.apcprd04.prod.outlook.com (2603:1096:101:db::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.34; Tue, 12 Mar
+ 2024 06:16:01 +0000
+Received: from HK3PEPF00000220.apcprd03.prod.outlook.com
+ (2603:1096:803:3d:cafe::85) by PS1PR03CA0024.outlook.office365.com
+ (2603:1096:803:3d::36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.17 via Frontend
+ Transport; Tue, 12 Mar 2024 06:16:00 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 211.20.1.79)
+ smtp.mailfrom=wiwynn.com; dkim=none (message not signed)
+ header.d=none;dmarc=fail action=quarantine header.from=wiwynn.com;
+Received-SPF: Fail (protection.outlook.com: domain of wiwynn.com does not
+ designate 211.20.1.79 as permitted sender) receiver=protection.outlook.com;
+ client-ip=211.20.1.79; helo=localhost.localdomain;
+Received: from localhost.localdomain (211.20.1.79) by
+ HK3PEPF00000220.mail.protection.outlook.com (10.167.8.42) with Microsoft SMTP
+ Server id 15.20.7386.12 via Frontend Transport; Tue, 12 Mar 2024 06:15:59
+ +0000
+From: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>
+To: patrick@stwcx.xyz
+Cc: Delphine CC Chiu <Delphine_CC_Chiu@wiwynn.com>,
+	Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: dma: snps,dma-spear1340: Fix data{-,_}width
- schema
-Message-ID: <20240312060427.jizd3bvsbh4erfrh@vireshk-i7>
-References: <20240311222522.1939951-1-robh@kernel.org>
+	Conor Dooley <conor+dt@kernel.org>,
+	Joel Stanley <joel@jms.id.au>,
+	Andrew Jeffery <andrew@codeconstruct.com.au>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-aspeed@lists.ozlabs.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH v6 00/22] Add i2c-mux and eeprom devices for Meta Yosemite 4
+Date: Tue, 12 Mar 2024 14:15:32 +0800
+Message-Id: <20240312061556.496605-1-Delphine_CC_Chiu@wiwynn.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240311222522.1939951-1-robh@kernel.org>
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: HK3PEPF00000220:EE_|SEYPR04MB6750:EE_
+Content-Type: text/plain
+X-MS-Office365-Filtering-Correlation-Id: 0d1bd067-06e1-477e-94b8-08dc425be2e2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	4B6kJSw3xwCrj/RPSrsJix1JeL2TObdDB29zLrOqY5saGnRqfw3k9DEa93GV/4f2PG1St5pQvYqnIwnu4THzxPuL8MNrDiEb9QznTKi7DbjqJ0DC5a+5FjnCIBLYg3eEB9b5VKsLGdQ8/xpvpsvygsHeHekM+JYI7vkWqtWGKvG/FiwctZfyZOH4YC+AWhuN8Lt70nh+8tgyxVd+h9rQAZCkLrMs8kKJXRTt1WMy/fiYTtFBaTPwdj+dnyPiXlIwNQaf/ft8HN4aRVtoLywffFFy5+dCZhfHQIsuPzkxrJZYoZZ2gWBJj3Ds7mHEh8juDNwAejodAPIn2cbnW8iowHPzJ3i+a6FUzC0He6vcylNoyqGHrEUxOgJ+gARZzf0DR1MVcCsPwaJEV/Scv7SavR/xqpqpO1v5RdPW3MqjXrvCRRZ8uLvz+qDyw1U94NZzHfWaPb6OI9VZdThgajRfXBQQ0k3srj2DRcmjRTnMu/u1QiYhQbVMpcJ9LaVGCcqlGAB05YtAJ78pAp+F+jCfNRbCsUm5SGMlJBxTcLgmp2BbFw6p+S7V4PJyYGdq6qSj6FZqKzG2OPaCSttXCsd1lUi3i4wZonhPJGy2s0tIMddDn4qjqZyAI9KHK/NZRPhJ6rSt3NVxmIxk/0T0enPGbMppfsdb2AjrbGng6zgyHaqYbKfo5kKPFsh32K3llaObC3kb3Ct3kHM9S9lN2D7P5zY17SJkcpdw/lZFf+mr3v2i9k28j02tDRS2nKqHWa2g
+X-Forefront-Antispam-Report:
+	CIP:211.20.1.79;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:localhost.localdomain;PTR:211-20-1-79.hinet-ip.hinet.net;CAT:NONE;SFS:(13230031)(82310400014)(1800799015)(7416005)(36860700004)(376005);DIR:OUT;SFP:1101;
+X-OriginatorOrg: wiwynn.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2024 06:15:59.3537
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d1bd067-06e1-477e-94b8-08dc425be2e2
+X-MS-Exchange-CrossTenant-Id: da6e0628-fc83-4caf-9dd2-73061cbab167
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=da6e0628-fc83-4caf-9dd2-73061cbab167;Ip=[211.20.1.79];Helo=[localhost.localdomain]
+X-MS-Exchange-CrossTenant-AuthSource:
+	HK3PEPF00000220.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEYPR04MB6750
 
-On 11-03-24, 16:25, Rob Herring wrote:
-> 'data-width' and 'data_width' properties are defined as arrays, but the
-> schema is defined as a matrix. That works currently since everything gets
-> decoded in to matrices, but that is internal to dtschema and could change.
-> 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/dma/snps,dma-spear1340.yaml      | 38 +++++++++----------
->  1 file changed, 17 insertions(+), 21 deletions(-)
+Changelog:
+  - v6
+    - Revise i2c duty-cycle for meeting 400khz spec
+  - v5
+    - Support medusa board adc sensors
+    - support NIC eeprom
+  - v4
+    - Re-format gpio linename
+    - Revise i2c device node names
+    - Split patches by logic changes
+  - v3
+    - Correct patch for revising gpio name
+  - v2
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
+  - v1
+    - Add gpio and eeprom behind i2c-mux
+    - Remove redundant idle-state setting for i2c-mux
+    - Enable adc 15, wdt2,spi gpio for yosemite4 use
+    - Revise quad mode to dual mode to avoid WP pin influnece the SPI
+    - Revise power sensor adm1281 for yosemite4 schematic change
+    - Add gpio pca9506 I/O expander for yosemite4 use
+    - remove space for adm1272 compatible
+    - enable interrupt setting for pca9555
+    - add eeprom for yosemite4 medusa board/BSM use
+    - remove temperature sensor for yosemite4 schematic change
+    - add power sensor for power module reading
+    - Revise adc128d818 adc mode for yosemite4 schematic change
+    - Revise ina233 for yosemite4 schematic change
+    - Remove idle state setting for yosemite4 NIC connection
+    - Initialize bmc gpio state
+    - Revise mx31790 fan tach config
+    - Add mctp config for NIC
+    - Support mux to cpld
+    - Revise gpio name
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
+Delphine CC Chiu (22):
+  ARM: dts: aspeed: yosemite4: Revise i2c-mux devices
+  ARM: dts: aspeed: yosemite4: Enable adc15
+  ARM: dts: aspeed: yosemite4: Enable spi-gpio setting
+  ARM: dts: aspeed: yosemite4: Enable watchdog2
+  ARM: dts: aspeed: yosemite4: Revise quad mode to dual mode
+  ARM: dts: aspeed: yosemite4: Revise power sensor adm1281 for schematic
+    change
+  ARM: dts: aspeed: yosemite4: Add gpio pca9506
+  ARM: dts: aspeed: yosemite4: Remove space for adm1272 compatible
+  ARM: dts: aspeed: yosemite4: Enable interrupt setting for pca9555
+  ARM: dts: aspeed: yosemite4: Add power sensor for power module reading
+  ARM: dts: aspeed: yosemite4: Add eeprom for yosemite4 use
+  ARM: dts: aspeed: yosemite4: Remove temperature sensor for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Revise adc128d818 adc mode for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Revise ina233 config for yosemite4
+    schematic change
+  ARM: dts: aspeed: yosemite4: Remove idle state setting for yosemite4
+    NIC connection
+  ARM: dts: aspeed: yosemite4: Initialize bmc gpio state
+  ARM: dts: aspeed: yosemite4: Revise mx31790 fan tach config
+  ARM: dts: aspeed: yosemite4: add mctp config for NIC
+  ARM: dts: aspeed: yosemite4: support mux to cpld
+  ARM: dts: aspeed: yosemite4: support medusa board adc sensors
+  ARM: dts: aspeed: yosemite4: support NIC eeprom
+  ARM: dts: aspeed: yosemite4: Revise i2c duty-cycle
+
+ .../aspeed/aspeed-bmc-facebook-yosemite4.dts  | 1258 +++++++++++++++--
+ 1 file changed, 1151 insertions(+), 107 deletions(-)
 
 -- 
-viresh
+2.25.1
+
 
