@@ -1,123 +1,105 @@
-Return-Path: <devicetree+bounces-50057-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50058-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD79879558
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:49:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D12487955C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:51:21 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A1BD41C2175E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 13:49:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 439A2B21BF9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 13:51:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 20CF97AE40;
-	Tue, 12 Mar 2024 13:49:10 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 072C87A154;
+	Tue, 12 Mar 2024 13:51:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="txqGyP7I"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="swEn7tOm"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E6A597A737;
-	Tue, 12 Mar 2024 13:49:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D7D08A939
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 13:51:14 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710251350; cv=none; b=QnQNysmF9zAKSTCL+/f6zn42bUHfLyuVdwU3N6zkPXcfTmOPLdQqpGpWFgS+Xwu7/wYnJTy615l1oogQYAYgqRTFkD4OnnKJAqIGKn1K7mZBRBg++aHcYAfvY2QPjvxmHqs476XzpfnWp3ydl4CMU0JS8COvRenauf8MZg2iL7M=
+	t=1710251474; cv=none; b=Ag4NSSBVzBhOHW3zo5mdMrmYEuyhclFfttLcAifHvX33z3JKTGWsPAUC9CYApP2HH1YV0oXXHPLxlQRGMtskWNEubFKEUn1PkCcjOUx0tjYwANoOVGcfOutdv+gDOH6LV5AAtVdZlRKAnkDMx7wH3+ILIT0YXffZu74tmy5uW54=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710251350; c=relaxed/simple;
-	bh=gQOndgtic22jBUvA6JtP0OZkfHWdF7w1Uwcr114J8+E=;
-	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
-	 Message-Id:Subject; b=llUUFt4d7uN23gf3VXVUww/MN6fIqi6SYVFszr8nY5EHPQlL/KHGg04OAWIVdDgjxB62NmrnLVuBcxQ8e+FXQ1E8GzFhhGCO/SV8f49GLj1BodbliHTByd/YiliuULioOg9tQCp/t6GaD5DGgAYCQQj2b8Yhn7JU/tOO+b+Cffo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=txqGyP7I; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 47DD5C43390;
-	Tue, 12 Mar 2024 13:49:09 +0000 (UTC)
+	s=arc-20240116; t=1710251474; c=relaxed/simple;
+	bh=nCk4hwkuKSvmkkr+UyO6YecifpNDJMsAfJtK0zzujtg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=HSQwxYMbxdDpuP/V+Dkg88Ik53aAab7pR8Yp1g27SFTpHWehgstrk0ni4byBfbrRyT2TnjDMkTvhbQdlcTRxDWPzWdtUzWQZBgqo7EAFGyAINJ4F+QYC7sXpTUR4vkKABIXFRvDtljqoQ6fGrpMT/fURd74kLtGBhbGXirvYQBA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=swEn7tOm; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2DCC4C433C7;
+	Tue, 12 Mar 2024 13:51:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710251349;
-	bh=gQOndgtic22jBUvA6JtP0OZkfHWdF7w1Uwcr114J8+E=;
-	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-	b=txqGyP7INBJyRGU+aRYSqv1aNw001UvRkMWVoxb5QWnhK2Rv7mvVAVVXuhCfZwjAv
-	 mdLlq2EjEEkchwYFVOxeVzc15RTPXs/703VmeNZmywulSJ8dwCB/MSQasCbHgeQaCm
-	 KqAk6gUvzBMtd1RQq3B/2xdMF2gy0toBQewwFY7SXH5pHgYjJop4RaZ8H5JF+tlJr/
-	 syoDKPub+ddnIWI6wJu2tXaS2UO61sSDsUwqJC861DOOX55Cv32e7qurOpCFilWXkY
-	 GMg1PV+R0sA/bBrkQNHs2TXG2fbGqL2afl1fpCTu81Z2B7uMXL/DPAAR1PTdq0wLrF
-	 jg3UXa20Ks1MQ==
-Date: Tue, 12 Mar 2024 07:49:08 -0600
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+	s=k20201202; t=1710251474;
+	bh=nCk4hwkuKSvmkkr+UyO6YecifpNDJMsAfJtK0zzujtg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=swEn7tOmBPpmF64PHwcL0OfOdhJGZt9mYtTw6QI3UiouWiPV0BGMNjBZrQoRtBI1k
+	 vMGQAJbh1SE7CV4RJhbSgv95GDXYp4ApkmEBpEY71txJzf4gu4DE5rJrDYtiMHWYnx
+	 meWa4H14DfadqxHA3TATcp1l4iDuIJDI7eO0ozFix/u4oeXnY+Zo3kYrsbvPv9lb7a
+	 fWN7Fba6Sm0gzsImIFPB2K2uZk1iD3zRK1n8+ZN04++qQcVUGGDYMsgA9BDvdhaAGf
+	 S5DCruC5Z9VPhnWNZx7/Ma9Fi+X0vDI/Yp/1XmU89FBbITveUJrmyY76H5H/zdLQll
+	 IDvmwcaPGg+Aw==
+Date: Tue, 12 Mar 2024 13:51:08 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc: Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+	Bard Liao <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com,
+	Conor Dooley <conor+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/5] ASoC: makes CPU/Codec channel connection map more
+ generic
+Message-ID: <7248b107-db87-4409-b93c-f65035d0a6b4@sirena.org.uk>
+References: <87v8a64f3d.wl-kuninori.morimoto.gx@renesas.com>
+ <87ttpq4f2c.wl-kuninori.morimoto.gx@renesas.com>
+ <e7121fbc-c814-4153-9f17-82ad5de13e64@sirena.org.uk>
+ <87a5n46xjk.wl-kuninori.morimoto.gx@renesas.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-From: Rob Herring <robh@kernel.org>
-To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, David Airlie <airlied@gmail.com>, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Mark Brown <broonie@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, Takashi Iwai <tiwai@suse.com>, 
- Lars-Peter Clausen <lars@metafoo.de>, 
- =?utf-8?q?P=C3=A9ter_Ujfalusi?= <peter.ujfalusi@gmail.com>, 
- Michal Simek <michal.simek@amd.com>, Maxime Ripard <mripard@kernel.org>, 
- Conor Dooley <conor+dt@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- linux-sound@vger.kernel.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- Jaroslav Kysela <perex@perex.cz>, devicetree@vger.kernel.org, 
- Daniel Vetter <daniel@ffwll.ch>, 
- Anatoliy Klymenko <anatoliy.klymenko@amd.com>, 
- Vishal Sagar <vishal.sagar@amd.com>
-In-Reply-To: <20240312-xilinx-dp-audio-v1-2-696c79facbb9@ideasonboard.com>
-References: <20240312-xilinx-dp-audio-v1-0-696c79facbb9@ideasonboard.com>
- <20240312-xilinx-dp-audio-v1-2-696c79facbb9@ideasonboard.com>
-Message-Id: <171025134476.2083292.14206241408846166502.robh@kernel.org>
-Subject: Re: [PATCH 2/4] dt-bindings: display/xlnx/zynqmp-dpsub: Add audio
- DMAs
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="cJditwpOuVhAT9vy"
+Content-Disposition: inline
+In-Reply-To: <87a5n46xjk.wl-kuninori.morimoto.gx@renesas.com>
+X-Cookie: Oh, so there you are!
 
 
-On Tue, 12 Mar 2024 11:41:03 +0200, Tomi Valkeinen wrote:
-> The DP subsystem for ZynqMP support audio via two channels, and the DP
-> DMA has dma-engines for those channels. For some reason the DT binding
-> has not specified those channels, even if the picture included in
-> xlnx,zynqmp-dpsub.yaml shows "2 x aud" DMAs.
-> 
-> Add the two audio DMAs to the binding.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-> ---
->  .../devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml    | 10 ++++++++--
->  1 file changed, 8 insertions(+), 2 deletions(-)
-> 
+--cJditwpOuVhAT9vy
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+On Tue, Mar 12, 2024 at 01:36:47AM +0000, Kuninori Morimoto wrote:
 
-yamllint warnings/errors:
+> Hmm...
+> does it have un-cleared "dai_link->ch_maps" ?
 
-dtschema/dtc warnings/errors:
-Error: Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.example.dts:54.26-27 syntax error
-FATAL ERROR: Unable to parse input tree
-make[2]: *** [scripts/Makefile.lib:419: Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.example.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-make[1]: *** [/builds/robherring/dt-review-ci/linux/Makefile:1428: dt_binding_check] Error 2
-make: *** [Makefile:240: __sub-make] Error 2
+> Thank you for your help !!
 
-doc reference errors (make refcheckdocs):
+I can't immediately see where ch_maps would get set for this board (it
+looks like Intel is the only user?) but I might be missing something.  I
+don't have the board myself so can't run anything directly - Jerome?
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240312-xilinx-dp-audio-v1-2-696c79facbb9@ideasonboard.com
+--cJditwpOuVhAT9vy
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+-----BEGIN PGP SIGNATURE-----
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXwXcwACgkQJNaLcl1U
+h9BEZQf+OuBgJM2bQLxAKvUeIaP2XA8/r1lKYG9cExXf+F8+q6KRA5ZWImi6C4xF
++WTzFLMqpvmL3167yYCjarp7NTgYkQmD/IL3BavVy1eTIe/RroPTa0kp2y4gHZRn
+EvoBXUGZwJmd/mZEECohLFIWHNsHlYSWteohlvC1Mdvst0DsLQPoMigvFE/6KAfW
+hINtK43MS+b2KqYlTPVQru334TUAFDwXcLEtVzSuVcOT0bStwLQHp4BBC1EPp5o6
+caiITE+AnFa7oWLgUbZOsJbuHu/pntXtq3uKBvv4zDYoUj/KmwD5Eep5E3xTT0ts
+lqOBZdZ0XKRXdthD7u8Tsmh58PcbUg==
+=oE5x
+-----END PGP SIGNATURE-----
 
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--cJditwpOuVhAT9vy--
 
