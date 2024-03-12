@@ -1,74 +1,73 @@
-Return-Path: <devicetree+bounces-50024-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50025-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC2B28792A8
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:04:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id F21E18792AE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:06:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 499441F233F1
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 11:04:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2D2EE1C21D3C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 11:06:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7F93F7993D;
-	Tue, 12 Mar 2024 11:04:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A1A0D7993D;
+	Tue, 12 Mar 2024 11:06:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="TZN0sQzB"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="BoxX9fVH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-wr1-f53.google.com (mail-wr1-f53.google.com [209.85.221.53])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A100F78B46
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 11:04:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E20723AC2B
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 11:06:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.53
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710241459; cv=none; b=njMNGam6458R46UxaIgzhtKoeouy2tpmYeY8m30neEc21v33Zx1O2gTTRyBTg0Nelhu5rQ+7/xBdtE7R/tGfNe0qR86Wtx29Dl5aHMlPK3E1T1igSGS5atj36kfAPSt0U71nuhxn2578bfRQ97fGG+EGQEwaqAglGjizem+LCLo=
+	t=1710241588; cv=none; b=bl2ok6KFLMQJBCGEEO+E4x5jhEaTU/yLlCRN+CrtABSUBHosztKG5IAM6g0eQTA1nYubzgb6cWcazKNpIiY++2qVzQ71GPC9OrK5ddu+3RZz3CI90p+wi/bD4uWYObwAgQLW3Om0RuYzKDO+Oe5qs+Z9Zo7MB9gDZMIFwSix0fs=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710241459; c=relaxed/simple;
-	bh=pLHlfjqZrAjvbkvSlj5qpzs5K5Lppb9UXKcsKcDGhoY=;
+	s=arc-20240116; t=1710241588; c=relaxed/simple;
+	bh=rgQeLMwhv7i1Jd/oKUKLfr6ec+Itfkk/KKG8Fm0Qr7Q=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PxtBaUiLVR3j4LaxOY6iwQTg5hAgYQ359XjJpppijZAA5LHG43AgR+fUUmo4XL+6/XJT0pDR2dX4pNozEqvBfKWn7IJXMg4SjUhgawZyICzjqCJP/gJvFmv3PP6NyHuIJP7a3VuwSqQv4GdEKSyvXZmspQ86r1HSG23waQlxWaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=TZN0sQzB; arc=none smtp.client-ip=209.85.128.48
+	 In-Reply-To:Content-Type; b=EoQl7WpPySRANcxPVwz+aIWZvJwiDEzv1tE9aKCOj+uYfoaXtSk5Bg4ijwwuiy/JbwCa9Z3ydRnPka/b69VZ6jusKSUJ/svQj/l4IzGXOmxbHu7QJxs8G7Wo2mEP/HbLwo7k5/vWFny7jGu/XMctI+HzNiEirkAYussEM6nlvWw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=BoxX9fVH; arc=none smtp.client-ip=209.85.221.53
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4132fbac6faso8987355e9.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 04:04:17 -0700 (PDT)
+Received: by mail-wr1-f53.google.com with SMTP id ffacd0b85a97d-33e94c12cfaso1884219f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 04:06:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710241456; x=1710846256; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710241585; x=1710846385; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZEGWOujdW89Dpl1fCi0Jc9+UKMnXm1pN5XkS4ijg4qg=;
-        b=TZN0sQzBzoFtj3Q4i/XgBUUlWAGyVoDUaqycZIzX4kv6JPyC1bZ0UhzI9PEXEA77It
-         c/SkKaZdNiSzBKZX8thAj/GQECp8+Ycn0+hSnxRESibR/xTg1uIq5itxKXPAeGteQx4x
-         f5OB+dzQmhoiKcqPgna4NXceVEgdNbwiiqFL9kPlfbS16f8/ksBOrYVpSzB53DljQ7wK
-         lpdJqHaUx5nSDEvn/xCHqJ3flacyKMBEzc8g70QPF31QY+DT37VCiSdyUpokCW1joYdT
-         cv5r8NueiSfYDjABCmHEhfLGC+EFjKqEeajmtTSf+b/g3MgQ8+1kJm4yAqxeJkJfMuGm
-         LX0A==
+        bh=6KauGuWRDr9QcpNF+QM+VyCcPkVjk7zHmRo5ncFSE+g=;
+        b=BoxX9fVHsxqtlk1kfoFF8vqSVWKEglr6P1nWekTtg++1GBxBWQJdCD5/LWETTF0wfY
+         KIxvmyP4+U9H/CgA88kqrYFJT/NqlgvJ6L/M5bdHmB0SJHaBA5Nj4l0TUz/tKcp6uzYI
+         5qdmp3mbIsIPa4tv9j8cA/wQm/qGmL+1pQimmGHCtlDwyekWNQLSEX89XqGmy5h+LZG/
+         tB4QrJlfD3ldpO9qxJTx+wzJQXHwDDUciG8s70iGOp1dge1ShAjFjYJae/jm1YMerlcL
+         TPxHA4KgrEVS0ql8K09pVj9a4yjGDMs5PZh+yFXrkATqRrYh0r44hKljjiHr2xIfzIJ5
+         2s6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710241456; x=1710846256;
+        d=1e100.net; s=20230601; t=1710241585; x=1710846385;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZEGWOujdW89Dpl1fCi0Jc9+UKMnXm1pN5XkS4ijg4qg=;
-        b=O4YXWxO+dynALi1qEF/e/OwFk8y9YhrKfQBZ6YDbO72ZtSchlWLhjanP53SlvdZ583
-         blezRVw0G45ziD+hjGjer9vhG5iYABsMSnDVAFb/5MwaKgq1HFIWBNZ004aLI0y+9hJP
-         /9hITsPtHi2LquWJIO75tjWtxRB47Jx/h48n1DYPxjyDHk9Un1QYRE7PSU55IEaunJCx
-         cqWTfjQHNxuE9uPZsFnspcxjq3fbs1UwrFCYJXCDSt+LHdPNd2JPC0Xz2Dua8Ia67045
-         KX0seTqd6YhgHd/nQtwOcf971r38/Ko+s3Sp+zk/tVNtUmUkAEx3URsQsMy6+LlUr8QC
-         opAA==
-X-Forwarded-Encrypted: i=1; AJvYcCUZ7XfLaylyc7tC4YuNeltXtshDQwfKLNJkooaRFQE7ch7A8//FlLL66Fyy8qYc2m5jhAJwXUm6ESTnv04TiJEhGoD/MTZ9Kb5Rhw==
-X-Gm-Message-State: AOJu0YyzaL+uyfXxJh6MFt5K9/zFKw+HkjWM2R8HCIcFXc7hbPAXAYn0
-	gqsIwrEdIZrPmchzXxujcwpMlrcyLrfkXLAGvIQGAlCKL0CjxpCi+cdc/3FzmKA=
-X-Google-Smtp-Source: AGHT+IE/CWZrrlfUgpOEFHEzDDracpQOTZTNmW40XGuZXUWwarlCf4ysh4GTtSMO6ky8704ESTBV4g==
-X-Received: by 2002:a05:600c:4f51:b0:413:2489:d194 with SMTP id m17-20020a05600c4f5100b004132489d194mr5032001wmq.27.1710241455939;
-        Tue, 12 Mar 2024 04:04:15 -0700 (PDT)
+        bh=6KauGuWRDr9QcpNF+QM+VyCcPkVjk7zHmRo5ncFSE+g=;
+        b=gSOuh2AC6phEnHxKmYXbp9qjgKfFdl/NIfHTq9WiotPuT+QfPiZZemWIlK2+k5qZlh
+         Hw56YnV6pToo8whNt+Dqff35kCbbU1TFFIyAdLUnE+q0+EqM7kBfSf5wAv4AddeOk4fE
+         DBicBdcqvR6nkt6CiBeAyZvL8oxfXUHe41GgIvZx+bAKJQaVCegNZGMPTmKDPbQGlWXe
+         iTpn3yvFk7SECBpupErCRKv5evGyNIOQUSBAoQAk3K3gIHgQ4QGXdNd+0md2cz0uM45t
+         ken6nra6VOh55+KbThrj+K1vmZbcEHyp9DsLkx4wweCSB2QLTAuqX+VQ84ysrT/o9XNQ
+         uc8Q==
+X-Gm-Message-State: AOJu0Yy6DTXT8TsicxXC5Hc+osZfJXt0HTM1PpPchrhigyrXCc3cvLs7
+	WjnKczLb7Uhg0PbSSPq+bMb19GNCMMt0vtQ5hQc8afmoVw35UYSHs53CfSdU0q8=
+X-Google-Smtp-Source: AGHT+IF0QpEUAuRMcEHDzoHfxFFlc7TjRLG/fz85D1mIeMp5BHVT3PCjn8lnKhb+zInkxPNjlEg3Xw==
+X-Received: by 2002:a05:6000:cd2:b0:33e:82b9:5cc7 with SMTP id dq18-20020a0560000cd200b0033e82b95cc7mr2100332wrb.6.1710241585263;
+        Tue, 12 Mar 2024 04:06:25 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id r4-20020a05600c35c400b004130c1dc29csm12089953wmq.22.2024.03.12.04.04.14
+        by smtp.gmail.com with ESMTPSA id bs15-20020a056000070f00b0033e9f6997c7sm2800461wrb.66.2024.03.12.04.06.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Mar 2024 04:04:15 -0700 (PDT)
-Message-ID: <b04f9c39-9797-40b8-a25b-8154ad559cd5@linaro.org>
-Date: Tue, 12 Mar 2024 12:04:13 +0100
+        Tue, 12 Mar 2024 04:06:24 -0700 (PDT)
+Message-ID: <ec09e4df-0d9e-4267-8c70-e459a9819c62@linaro.org>
+Date: Tue, 12 Mar 2024 12:06:22 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,26 +75,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: i2c: renesas,riic: Document R9A09G057
- support
+Subject: Re: [PATCH 1/4] dt-bindings: arm: amlogic: add A4 support
 Content-Language: en-US
-To: Geert Uytterhoeven <geert@linux-m68k.org>
-Cc: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
- Chris Brandt <chris.brandt@renesas.com>, Andi Shyti <andi.shyti@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+To: xianwei.zhao@amlogic.com, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Magnus Damm <magnus.damm@gmail.com>,
- Wolfram Sang <wsa+renesas@sang-engineering.com>,
- linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
- Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240308172726.225357-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20240308172726.225357-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <7082ed3b-d6d0-4228-b7a6-7c0e0e46b8e2@linaro.org>
- <CA+V-a8tM29h10DULurMJtBZBnLK_ZF7pH_Y0bhZTvWO0O7-G-Q@mail.gmail.com>
- <2974085a-d9b4-4a66-b60f-c02a06a74647@linaro.org>
- <CAMuHMdVgp_vFnWr5ruzdyc1vNQKoCdM=pLZmgmkDjmUHvQBJJw@mail.gmail.com>
+ Conor Dooley <conor+dt@kernel.org>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com>
+ <20240312-basic_dt-v1-1-7f11df3a0896@amlogic.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -141,87 +132,19 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAMuHMdVgp_vFnWr5ruzdyc1vNQKoCdM=pLZmgmkDjmUHvQBJJw@mail.gmail.com>
+In-Reply-To: <20240312-basic_dt-v1-1-7f11df3a0896@amlogic.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 11/03/2024 10:00, Geert Uytterhoeven wrote:
->>>>> -          - renesas,riic-r9a07g054  # RZ/V2L
->>>>> -      - const: renesas,riic-rz      # generic RIIC compatible
->>>>> +    oneOf:
->>>>> +      - items:
->>>>> +          - enum:
->>>>> +              - renesas,riic-r7s72100   # RZ/A1H
->>>>> +              - renesas,riic-r7s9210    # RZ/A2M
->>>>> +              - renesas,riic-r9a07g043  # RZ/G2UL and RZ/Five
->>>>> +              - renesas,riic-r9a07g044  # RZ/G2{L,LC}
->>>>> +              - renesas,riic-r9a07g054  # RZ/V2L
->>>>> +          - const: renesas,riic-rz      # generic RIIC compatible
->>>>> +
->>>>> +      - items:
->>>>> +          - enum:
->>>>> +              - renesas,riic-r9a09g057  # RZ/V2H(P)
->>>>
->>>> No, that does not look right. If you added generic compatible for all
->>>> RIIC then how can you add a new RIIC compatible which does not follow
->>>> generic one?
->>>>
->>> The generic compatible above which was added previously was for the
->>> RZ/(A) SoCs and not for all the RIICs. The RZ/G2L family was also
->>
->> No, it said: "generic RIIC compatible". It did not say "RIIC RZ/A". It
->> said RIIC RZ
+On 12/03/2024 10:18, Xianwei Zhao via B4 Relay wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
 > 
-> At the time the original bindings were written, only RZ/A1, RZ/T1,
-> and RZ/N1 existed, and all RIIC modules present in these SoCs were
-> identical.  Later, we got RZ/A2, which also included a compatible
-> RIIC block.
+> Document the new A4 SoC/board device tree bindings.
 > 
-> Somewhere along the timeline, the marketing department became creative,
-> and we got RZ/G1 (RZ/G1[HMNEC]) and RZ/G2 (RZ/G2[HMNE]), which were
-> unrelated to earlier RZ series :-(  When marketing started smoking
-> something different, we got RZ/G2L, which is unrelated to RZ/G2,
-> but reuses some parts from RZ/A.  Recently, we got RZ/G3S, which is
-> similar to RZ/G2L...
+> Amlogic A4 is an application processor designed for smart audio
+> and IoT applications.
 
-That's fine, but then the comment "generic RIIC compatible" is confusing
-for anyone not knowing this. Commit msg could also mention why the
-generic compatible covers actually entirely different hardware. The
-commit msg so far focused on the differences between these hardwares,
-thus my questions - why do you create generic compatibles which are not
-generic?
-
-> 
->>> compatible hence they fallback to the generic RZ one.
->>
->> riic-r9a09g057 is also RIIC RZ, isn't it?
-> 
-> Yes, as in "it comes from the division that calls its products
-> RZ/something". But...
-> 
->>>> This shows the ridiculousness of these generic compatibles. They are
->>>> generic till you figure out the truth: oh crap, it's not generic.
->>>>
->>> Sorry I lack skills to predict the future of upcoming IP blocks which
->>> fit in the SoC.
->>
->> So don't use generic compatibles as fallbacks. That's the point.
-> 
-> It's indeed difficult to predict the future. So SoC-specific compatible
-> values are safer.
-> At the same time, we want to avoid having to add compatible values for
-> each and every SoC to each driver, so we try to group SoCs per family.
-> For R-Car that worked out reasonably well, however, for RZ...
-
-I did not propose that. Nothing changes in your driver with my proposal.
-Use SoC-compatibles only: for fallbacks and for specific(frontbacks?) parts.
-
-To give you some sort of guidance for any future submission:
-1. Use SoC-like fallback compatible, prepended with SoC-specific compatible.
-2. If you insist on generic fallback compatible, its usage should be
-limited to the cases where you can guarantee for 99.9% that future
-devices will be compatible with this. I doubt anyone can guarantee that,
-thus we keep repeating on mailing lists the same: go to point (1).
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
