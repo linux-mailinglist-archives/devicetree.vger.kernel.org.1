@@ -1,196 +1,183 @@
-Return-Path: <devicetree+bounces-49981-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49982-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB7DA878F71
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 09:06:14 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2EC55878F79
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 09:07:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0AD901C21755
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 08:06:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id DC991281E6C
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 08:07:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B0D2F6997E;
-	Tue, 12 Mar 2024 08:05:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 126B869979;
+	Tue, 12 Mar 2024 08:07:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="FuodP9dm"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="NvoNlh8b"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 66E506A034
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 08:05:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.42
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 896A742A9D;
+	Tue, 12 Mar 2024 08:07:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710230739; cv=none; b=AzVDbqY5ZhBHxpwO6eMJ8njva6ZYfONwt7djmj/YZsN9+pMwrb/vIs2tOVCuR9B6WLU2fU7ebgdGCiMBPVPJWbBz90TwyoUMJD1H8372WfTxFxeVcw4Ie4BHju1zCMuihM1vMPH4Z5bFgLQi6A68YSAWSOywuqZ3XGHg+dJ7GW8=
+	t=1710230864; cv=none; b=AU7YnoKdbfZWDJsg+R5fIO/er6hax1IkxP00RlDTGbjrqoh68dIEzNJM6MPYm1k23zFyNXUZkzU/llRFmqAWxpBsMi64EYG3DKBMXNvhULsSZfhgWcBPc6IwH7h5Ge/GXpsmKFVR9d67YkKvTn1iYdmqFM6dOKZcLheU5L0CykU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710230739; c=relaxed/simple;
-	bh=br278IECTs6mwg8AYiFME7l+eNV3wXD/c6J7sStxOjI=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=pXIijSyRV3vcNxVuzbgQRm6VbEqK8IGEZBXoqMKJwAn0iIWR0OLUSIhg9hZOofwUMzmuAdPX0326xK+PNaGAhzOjYgoWRe8h2paO9gN7ZlKdnvChJeYz+hRzgCmKxpI9nUdAzD2tBPx77icSxTAbKY4tjULqN71QhfqxoRWG0pc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=FuodP9dm; arc=none smtp.client-ip=209.85.167.42
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f42.google.com with SMTP id 2adb3069b0e04-5131316693cso7075128e87.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 01:05:36 -0700 (PDT)
+	s=arc-20240116; t=1710230864; c=relaxed/simple;
+	bh=PNfBS889iem5S8jWm+B9nUFW1ywCu/6HUug1appnhjs=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TlWbxLNgk5YJZ5r/4qiLFIwJhNH5x8tYMMgwHXJoJ48HtzpMK1jBJpzARFuFgncZgtgJAgn/cjksMSlCF67uPYDVQTV/AtrEkAUWJSNoIgqeG8Rho8yAt3XIlXxW8cGFyFbqzS/O/I9yDrgHyrBDBGZrCkglC9/B0ywgl+xpP78=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=NvoNlh8b; arc=none smtp.client-ip=209.85.167.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-oi1-f170.google.com with SMTP id 5614622812f47-3c19dd9ade5so2441830b6e.3;
+        Tue, 12 Mar 2024 01:07:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710230734; x=1710835534; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=jNhIiSk+Z5h7g58HyZqwQPvyGLzPtdGbAZ8dMYbx7vI=;
-        b=FuodP9dmrZw9YIjG4knejp0NEAy63GqUQ4OT9oqg6+jWFQcIatjCF9r0VCmN2KJ4zS
-         YRUn6B7KYhQOtVerJzpe8JBbxj1wS8OtA81CABQBv43TqiDxi0/SwoW1PouJy/v416qG
-         omAkJwNZcVOfnXduVnPI/F+fNjeyZnoipdrxUNpYLWk1eu229tD32nQewD6ufeJIQ5az
-         E5yMztLvyeCkvCjCCAZekMFNZnwci0dlbwlDKRzC5phqdpwYerU9p+r6/jq1DhWBG0mq
-         AdiRxrFOzeFoURLwFPpN+7lK0q1RX1PLxzw3yDmmULZSWUJzdMBeQus4/tIg9ihBPy0J
-         0OfA==
+        d=gmail.com; s=20230601; t=1710230861; x=1710835661; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=/RIzEOygq7VMUeLQit4zxfFJspu+naDg/n7R0XzC1T4=;
+        b=NvoNlh8bHHJYIlX/dtbefgIiOI5mucLA9eg6NXyLWWt1ZuGjpQ/zqIvRW1+gVrcoTT
+         /A4hdoGclfJAhVTvDH1ooj5evbXYqj/whyC8aQUtTh5s1OX1wYFK4OASVjc9oMyy7owX
+         zI+4w9saV9Q/ojYWLtb2GIeQY4fmeIA4tPDG7nvrkFA7V78HAxfIa7+hjbeF4KX0WCxF
+         CONRCSBnDireNS1dt+/jlwwk2+fgYOei9qORQG/q9f2MTUbImbhd6jeKhtT4IeGYf8vN
+         PPxrANb5kX+J5zimk+ZGWdwRXfCt5I6dQzvxxZo+QfmWQOkDGx7Av05tbZJ6i+FTD7/8
+         botA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710230734; x=1710835534;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=jNhIiSk+Z5h7g58HyZqwQPvyGLzPtdGbAZ8dMYbx7vI=;
-        b=DAtryiH+XSZy4E0Sj7DMXdOeibJPIO7A87SESbz6+Bpimw58fBoNxO6wjN0S8D+OpT
-         QuPIh6aVyhw8xM0QZEGX65opFXKLBdhdZStB2AB/aCrtbjgkpK6nfFvuWfVYEtcp2ASw
-         YXklYg5HH9mKKFA1PampAOLrnH3KmR16NFLaWTmyapotm1cacj3jCMZOxCIp+nQ8d13L
-         IVmOLUa99jOW6KhShPSSE28gjIOWlfI25d3i4CR8gmY/9xbesptTRAU7CWd0taNg2Jqd
-         bSGfMTGJeTR7MhEqVIUD+TDW/ee0sfL+1TVH/UlmCDFS5dybFByAbmQctsLdOHVYiysV
-         tYbA==
-X-Forwarded-Encrypted: i=1; AJvYcCX2Ks1LsuqyEqhnP7IilTRfzRBaaPpWYgl1XTmjkUHRCTA1BDs0rM7UHQYh/krnUSKVbpZIIkIcKosF+kl+dbtJxuE6niAW1YiJ5A==
-X-Gm-Message-State: AOJu0YxZa76TUuJIOrZoevS2pGQSiuBXoodLkh7Y0iU2PikmgBlrUXp2
-	QnrKXPmKAw49t0uXeWZ/Z2s655i/us9Ai2X5az4bV6G6wSbkk4rTW9rDCnF5Ch8=
-X-Google-Smtp-Source: AGHT+IG4QPJ/TiB3jCYWhKuqaIF6uwCpxH4sxUSkpI/eODFRgTCdlGv3wdSZiCSU8jKcNYNuaJYh1A==
-X-Received: by 2002:a05:6512:3b12:b0:513:2329:4308 with SMTP id f18-20020a0565123b1200b0051323294308mr2609363lfv.14.1710230734412;
-        Tue, 12 Mar 2024 01:05:34 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8238:61bd:7273:ad90? ([2a01:e0a:982:cbb0:8238:61bd:7273:ad90])
-        by smtp.gmail.com with ESMTPSA id co11-20020a0560000a0b00b0033e94233284sm5231038wrb.78.2024.03.12.01.05.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Mar 2024 01:05:33 -0700 (PDT)
-Message-ID: <fd983e63-b546-4260-93ec-ebee4d158f21@linaro.org>
-Date: Tue, 12 Mar 2024 09:05:32 +0100
+        d=1e100.net; s=20230601; t=1710230861; x=1710835661;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/RIzEOygq7VMUeLQit4zxfFJspu+naDg/n7R0XzC1T4=;
+        b=nWP1GnRT4QeYaS5ANKCHue/fBd/7ESOp2z5+pnJYoXgQk1JlG0HcN+XiW03i/ACsZP
+         Yeoq3V4UAeKN1LrhbrI9jFZEJN+LQJfoQB/tk09h8GM/3fQmvAhPcV7QLJ1Z+DGEhnJ7
+         Vf+4PG2CjRQzgO1Tm9B2dMzTkSdMRO0rdAGlM9xh+BDlMvdav2sRu5zy8UeXkws4RZFe
+         gMZM32aQiFXpoTYv8ZtYwthh1QEcEmxIWLTmNIrqsxS8TTg7mNh/afTaM6+uTAHu+E+H
+         +4zEQlOokk1AuuZ2L9KDO59CU7P7jLQbLdjDKY1QHsbw7vWmxu1lxwB5sTrAIs8qdOb+
+         NeoA==
+X-Forwarded-Encrypted: i=1; AJvYcCX7bGOxAchhRIAYZkgLfbV12GhyltgT0shrEYDvsgWsB7P0tAVcygJ/0yDCgObAHhyV4ICYChdkGq+FN+UcAnkLYptZo99/Y4jnhBKKDSljeqmgH82SY9Ojia+ukv1+lvC2vLBC+kfvnDMKZ57ioa9yA2u9+0vb+f4PMJbQmk0PFL5YfQ==
+X-Gm-Message-State: AOJu0YwAyAG9aeBdth2gF8MCh03AlmNE6x0p+2c34kmzhz1RS/tXXpTk
+	NLF6JEFdgqUar77RMD857tVfenF8s38ujEzi79LA7E+DSSGIuCk4toNyN+8aDt5TuckshItS7Gz
+	WLfzh4Qe6DmSzUTWc0RfsPAcKigY=
+X-Google-Smtp-Source: AGHT+IEqGDo4+QqrniADKoFq8kmvx9wqjkjFdrGrz+1YEKvO4L30rSVWPQnVMTLEU9xShw0Iryu5luhAJnmK0B+eWoM=
+X-Received: by 2002:a05:6870:854d:b0:220:b713:77c1 with SMTP id
+ w13-20020a056870854d00b00220b71377c1mr7483886oaj.31.1710230861330; Tue, 12
+ Mar 2024 01:07:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 6/7] arm64: dts: qcom: sm8650: add GPU nodes
-Content-Language: en-US, fr
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Clark
- <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- iommu@lists.linux.dev, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240216-topic-sm8650-gpu-v3-0-eb1f4b86d8d3@linaro.org>
- <20240216-topic-sm8650-gpu-v3-6-eb1f4b86d8d3@linaro.org>
- <58d5b209-94f6-43be-89e0-b14f5e30fd8c@linaro.org>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <58d5b209-94f6-43be-89e0-b14f5e30fd8c@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+References: <20240304085933.1246964-1-qiujingbao.dlmu@gmail.com>
+ <20240304090248.1247215-1-qiujingbao.dlmu@gmail.com> <twzx4abuhduos5s32txeugqr2yyca6ey7adcontsnapthwqaxa@dscea3ybrlym>
+ <CAJRtX8T3GD-zu43-+U_rGQugqzGQQ-QbjHATV1NRdEMWevSUGw@mail.gmail.com>
+In-Reply-To: <CAJRtX8T3GD-zu43-+U_rGQugqzGQQ-QbjHATV1NRdEMWevSUGw@mail.gmail.com>
+From: Jingbao Qiu <qiujingbao.dlmu@gmail.com>
+Date: Tue, 12 Mar 2024 16:07:30 +0800
+Message-ID: <CAJRtX8RagduSxqxh-jH2wcoNgzbRdNRYW5Gcka1_uPR-o-Tj7w@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] pwm: sophgo: add pwm support for Sophgo CV1800 SoC
+To: =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+	paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu, 
+	linux-pwm@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	dlan@gentoo.org, inochiama@outlook.com
+Content-Type: text/plain; charset="UTF-8"
 
-On 12/03/2024 01:20, Konrad Dybcio wrote:
-> 
-> 
-> On 2/16/24 12:03, Neil Armstrong wrote:
->> Add GPU nodes for the SM8650 platform.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8650.dtsi | 166 +++++++++++++++++++++++++++++++++++
->>   1 file changed, 166 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> index 62e6ae93a9a8..27dcef27b6ad 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->> @@ -2589,6 +2589,128 @@ tcsr: clock-controller@1fc0000 {
->>               #reset-cells = <1>;
->>           };
->> +        gpu: gpu@3d00000 {
->> +            compatible = "qcom,adreno-43051401", "qcom,adreno";
->> +            reg = <0x0 0x03d00000 0x0 0x40000>,
->> +                  <0x0 0x03d9e000 0x0 0x1000>,
->> +                  <0x0 0x03d61000 0x0 0x800>;
->> +            reg-names = "kgsl_3d0_reg_memory",
->> +                    "cx_mem",
->> +                    "cx_dbgc";
->> +
->> +            interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +            iommus = <&adreno_smmu 0 0x0>,
->> +                 <&adreno_smmu 1 0x0>;
->> +
->> +            operating-points-v2 = <&gpu_opp_table>;
->> +
->> +            qcom,gmu = <&gmu>;
->> +
->> +            status = "disabled";
->> +
->> +            zap-shader {
->> +                memory-region = <&gpu_micro_code_mem>;
->> +            };
->> +
->> +            /* Speedbin needs more work on A740+, keep only lower freqs */
->> +            gpu_opp_table: opp-table {
->> +                compatible = "operating-points-v2";
->> +
->> +                opp-680000000 {
->> +                    opp-hz = /bits/ 64 <680000000>;
->> +                    opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
->> +                };
-> 
-> I got a memo from krzk that we should be sorting OPPs low-to-high,
-> could you please reorder these (and under gmu)?
+Hi Uwe,
 
-Ack, I also add 3 more OPPs that works with all speedbins.
+Gentle ping,
+I'm sorry for wasting your time, and I look forward to your feedback.
 
-Neil
+> > > +     if (tem < PWM_CV1800_MINPERIOD)
+> > > +             return -EINVAL;
+> > > +
+> > > +     if (tem > PWM_CV1800_MAXPERIOD)
+> > > +             tem = PWM_CV1800_MAXPERIOD;
+> > > +
+> > > +     period_val = (u32)tem;
+> > > +
+> > > +     /*
+> > > +      * The meaning of HLPERIOD is the number of beats in the low or high level
+> > > +      * of the PERIOD. When the value of the POLARITY register is 0, HLPERIOD
+> > > +      * represents a low level.
+> > > +      * HLPERIOD = period_val - rate(MHz) / duty(MHz)
+> > > +      * HLPERIOD = period_val - duty(ns) * rate(Hz) / NSEC_PER_SEC
+> >
+> > So HLPERIOD defines the second part of each period, right? This isn't
+> > considered in .get_state().
+>
+> I am so sorry about this. I made a mess of the duty cycle.
+> According to the PWM_DEBUG, it can be inferred that configure the
+> biggest duty_cycle not
+> bigger than the requested value, so in .apply duty_cycle should round down and
+> in .get_state duty_cycle should round up. However, when the polarity is normal,
+> This hardware requires a low-level beat count. So the corrected code
+> is as follows.
+>
+> in .apply()
+>
+> ticks = mul_u64_u64_div_u64(state->duty_cycle , priv->clk_rate,NSEC_PER_SEC);
+> ...
+> hlperiod_val =period_val- (u32)ticks;
+>
+> in .get_state()
+>
+> u32 hlperiod_val=0;
+>
+> period_ns = DIV_ROUND_UP_ULL(period_val * NSEC_PER_SEC,priv->clk_rate);
+> duty_ns = DIV_ROUND_UP_ULL(hlperiod_val * period_ns, period_val);
+> hlperiod_val = period_ns - duty_ns;
+>
+> I tested this code with PWM_DEBUG. no warning output. What do you
+> think about this?
+>
+>
 
-> 
-> Otherwise lgtm
-> 
-> Konrad
+in .apply()
 
+ticks = mul_u64_u64_div_u64(state->duty_cycle, priv->clk_rate,
+NSEC_PER_SEC);
+if (ticks > period_val)
+ticks = period_val;
+
+hlperiod_val = period_val - (u32)ticks;
+...
+regmap_write(priv->map, PWM_CV1800_HLPERIOD(pwm->hwpwm), hlperiod_val);
+
+in .get_state()
+
+u64 hlperiod_ns = 0;
+regmap_read(priv->map, PWM_CV1800_HLPERIOD(pwm->hwpwm), &hlperiod_val);
+...
+period_ns = DIV_ROUND_UP_ULL(period_val * NSEC_PER_SEC,
+priv->clk_rate);
+hlperiod_ns = DIV_ROUND_UP_ULL(hlperiod_val * NSEC_PER_SEC,
+priv->clk_rate);
+
+duty_ns = period_ns - hlperiod_ns;
+
+I tested this code with PWM_DEBUG. no warning output.
+
+> >
+> > > +      */
+> > > +     tem = mul_u64_u64_div_u64(state->duty_cycle, priv->clk_rate,
+> > > +                               NSEC_PER_SEC);
+> > > +     if (tem > period_val)
+> > > +             return -EINVAL;
+> >
+> > if (tem > period_val)
+> >         tem = period_val;
+> >
+> > > +     hlperiod_val = period_val - (u32)tem;
+> >
+> > Wrong rounding I think. Did you test your driver with PWM_DEBUG enabled?
+>
+> ditto.
+>
+
+Best regards
+Jingbao Qiu
 
