@@ -1,454 +1,156 @@
-Return-Path: <devicetree+bounces-49975-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49976-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9353F878EEC
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 07:48:49 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6077A878F20
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 08:41:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 47D4D281D99
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 06:48:48 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 83BEB1C20FFA
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 07:41:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7125D69948;
-	Tue, 12 Mar 2024 06:48:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D0816995F;
+	Tue, 12 Mar 2024 07:41:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b="h0d4ddQN"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Pyy+ZTA+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 57A522CA5
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 06:48:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B47AE69959
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 07:41:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710226125; cv=none; b=dIkW61C98pIBvD37Tfw/Ienijgsnyj0W1IvvuipJySAmlWHJ9lzX25I074As8Wx2lLOQ4hjDkec4iSqGJ75Qb+kpBQsNGKlwVqfTDlog49XajDmc5zKmmG/WEHmjQc5XF5pN+fzRn830Janch0SlY3zvJYlS36/h4elYVGiD+3c=
+	t=1710229287; cv=none; b=ERvSuStYbl3oqZAH6L6Zjkvz2+B+/Kp6qujjbOKXmisQvBV6F/lfjp9PBX5Q9VLmUMPdJRp1stgB3aWKq95dXd8D4rL5odMWSZMZtpXnhE8U3bbLmgx8py2tmXEXs46GUYKIxt7dmIVToq1fIfb7QyWmQv6ZEG+V6OSdf7xk+lg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710226125; c=relaxed/simple;
-	bh=kwy8sM2sAwpEz7pclxqts/+FaSTdDt7wWh1zfEf2s6g=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=Or9AFoNkRZjfgBni5kfJuM7lLqRr41nBGJT7lrCQH5gRR3ZUgml9YDS1oRL0AdXa9+8vPlgzVG8eLp9pwsxXo+NG+JNRHK9cjKU3S8B6R0Skgm51HDDABP9L59rfaJ7hQAKI5oHhFGp8PxJ2ryrnk9YG3HUKB1IV84gPoNG3ugA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com; spf=pass smtp.mailfrom=sifive.com; dkim=pass (2048-bit key) header.d=sifive.com header.i=@sifive.com header.b=h0d4ddQN; arc=none smtp.client-ip=209.85.128.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=sifive.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sifive.com
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-609fd5fbe50so47862597b3.0
-        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 23:48:43 -0700 (PDT)
+	s=arc-20240116; t=1710229287; c=relaxed/simple;
+	bh=RvSPT6Bv6vtEsmD42vrmzXn81zZVIEsyfqALmNQg48I=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=jcqEEX7aPNKeCjfGtxpxP1KwjNZ+VoJrrWxlE2zUpdQpJjsl05tvLQCMNsk9Yt9ci+1NYyX2pujSW025ic1sNYEXQjxZwnHBLz9Z8cf57QieuPgJrLtS/ZpqBcIlgfZHW/IKFg/XkezvOD7Mo7uYNayFiIh6tOoLbLM3jSa0TWU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Pyy+ZTA+; arc=none smtp.client-ip=209.85.221.45
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f45.google.com with SMTP id ffacd0b85a97d-33e92b3b5c9so2331138f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 00:41:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1710226122; x=1710830922; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YkQyXBt8cc9gCSbMJduWsjQiEDwVv0KA3piVD2J6QZs=;
-        b=h0d4ddQN/RlfN9jgEtgNtWXZSd0to36fNSbV79f23egMja5bjBfCwRo+2ExEx1sPEe
-         scvq4zCjdflsyiBCxLMQLFl97tWtJNFAc+Ct8kahF2c1vNXMStUZq+fa1r1V51MrATtj
-         GuJ6GR6C38peYwzYHpRBoR3Gpa0QumW4Z5pUyGWrbBjLCW0IGQL8RgcaSeoplAB6unD/
-         ctB3Qda6299VrO2ks/tSy7LcHRbGOIFi5hnnD285KPlS0LxseIL6nb36h903q/J7MUn5
-         LGQcIlWqjqiF/8P5tC2+U2ZA3m1yQBtwUi4COa0otJvpt2qPu/sIRcl7WrmBjXltZtSQ
-         lfkQ==
+        d=linaro.org; s=google; t=1710229284; x=1710834084; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TgYDdxFq67p/WOX1eeP/vTP5ro009CFfqUvEFFUtHGA=;
+        b=Pyy+ZTA+HbpkQ6rX5LAtbSGSqxoL658nNGqGuMYDvEJCAEeHH1KhpNv+4BoSye/PVT
+         qYnoPdXzOj4iD9gO9N//C9boz7rLrzlRbUXkLsJKEOGsMqNwjZrDYTBSCBagajOVlt8k
+         mCLM18xLPTyMkU+FJwuj9nhBeFOM6EPFz5MOhiLBjOPtiu4UouTYotRxV2hm6HialleH
+         mxN0A1QhORvwzYYpZ/ShiaSVewqGsfPZNyhrS/IHdzomhxKP2rYPjCMYRfzM/Xv8XgGc
+         lkvK7rX1B8iokORIfqsSYakkd+lA1l6NN8tYUfRNRYCKswk8SJm3KY9a94re01Uejyq/
+         vBNA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710226122; x=1710830922;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YkQyXBt8cc9gCSbMJduWsjQiEDwVv0KA3piVD2J6QZs=;
-        b=baWwP+XxhX4/2pdzTvRH649XGXJEo6jFqqa3mJKVJ2FS1qraREGu1+5y1zkd2tB4LM
-         kk0bkZDg+LYt8s6MTSx3ERaof1TodXzsGl+j/WQBEVFlvf4JNQeFRkEYfOalJKd0e7JM
-         Y74zDnA+3B0BbExYgDAHG0c909MvCQZFIkg7lSwEqQXhXi2mKaFm0SgpEwqBFQKtkcxt
-         1nJjjS1w/a/9fEA7oZRv23X9/1gLdQf79Jhz8RvBS2oM917WJCnWBlHeuvmWrcMJxebl
-         rZu22r3kounSwSLI3i4Bqoyj36w5l7qjhd21owxBU0b2V5B9rhpoIXxzNgPfhQn47yXN
-         LiGA==
-X-Forwarded-Encrypted: i=1; AJvYcCUXAfa3w2mMxVRdus+jdXxo3KvSEboofVAVwb0Ii4joQs2bx2cUCctUbknJcxixuQ12kst7AYmTQPlvXZT2l5PByPeE/+yBCpybSA==
-X-Gm-Message-State: AOJu0YyNsTqefkHWDNezOgQA4ZwL0X5hI76D/g7wjKiLf/zb/vO0JDi4
-	eisXYm2a+CKKL9sMO8IuNsOD8lzLHkzSTRY4XlMHrBxpXkBhggXTfuZX4Di3wOBNCyzCR4Rvfje
-	cOeBb42toD35z+nUmDsXIXbznN66vescPh5UZOQ==
-X-Google-Smtp-Source: AGHT+IHR+U7F2n0c/KGQxjGQRDSMRPibcokXyodYfTK2034eRWrmjzdLKQ9iq2FB4V6igzx+tIs45dHL/NwVzyFxjD4=
-X-Received: by 2002:a81:9e43:0:b0:609:f4d5:2fc5 with SMTP id
- n3-20020a819e43000000b00609f4d52fc5mr2804732ywj.15.1710226122218; Mon, 11 Mar
- 2024 23:48:42 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710229284; x=1710834084;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TgYDdxFq67p/WOX1eeP/vTP5ro009CFfqUvEFFUtHGA=;
+        b=PQzcpOg13bl8Zu5Da0yp0fw6zMHN0bg3zqthngn0EDZdg1dYEKhj5iAH6M3rEQKjzz
+         0Oev5z7By7TQLBDhZFqoD5YOO3KbB4n5qAlyO+tF/S/1KJUYzC+HGH/fIdjiT8HBBVJb
+         yhymHssKFipmNX+PkYASPBp17NP8/NzHlBTKCwCY+sU17VZFsEoE1hR7Wx3q0XLI+Jqt
+         ewwmsuSSTsLdiFVEAWe8Wowje8ZhQII8jMTwJtu/zKknGeYuq697oSOeb9nRBjk8e4kD
+         1HID9NgpxmYPVAxLkALv9r49QTrs9JWzMj5GJyGdbmqQVClHtlTNmfEebY6z0NRiYRqZ
+         Azkw==
+X-Forwarded-Encrypted: i=1; AJvYcCXJhRd7s1c966/+hGdJNjnbV7/ptcO6zsGnqnHljZLCnySi6MGLsZ0o4P0UJPu+UUcjuO/iajsbfa0M8NExsEFlqT2FtOdPNbesEQ==
+X-Gm-Message-State: AOJu0YwmRFlC8J4ksLoKxqJ5hFugNANcPYSwyk33yLNeK5BbPhOqj6Yl
+	F9eyXW0UgB2h/sm1x2KDR7cbrbMunyDdYGlB2xOSSc67Tj2K9aGudckQl5TduKY=
+X-Google-Smtp-Source: AGHT+IESMVwiJpASkWfvM7UEJkVOkQJsL9skqKFEAKnIjaDtVoluPz4uvz7gf1Ez+dKNy3FaRgBroQ==
+X-Received: by 2002:adf:fdca:0:b0:33e:7938:9e65 with SMTP id i10-20020adffdca000000b0033e79389e65mr5313783wrs.18.1710229284106;
+        Tue, 12 Mar 2024 00:41:24 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id a11-20020adff7cb000000b0033b48190e5esm8266360wrq.67.2024.03.12.00.41.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Mar 2024 00:41:23 -0700 (PDT)
+Message-ID: <0d768f17-22d9-448e-9253-8498b61bf71e@linaro.org>
+Date: Tue, 12 Mar 2024 08:41:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230316131711.1284451-1-alexghiti@rivosinc.com>
- <CAK9=C2XJtSG2d_nsyDv7kU1v7Jj0chdevqrMc0MpJswukcEABA@mail.gmail.com>
- <CAHVXubhhxpzHDM-n91V_rceY5t_VqLvrwZj3RP_tNL2=F9mqjQ@mail.gmail.com>
- <CAK9=C2WVOpSqtt8r1U4hnzSZ=cc1PocpukgQjNyahP2XuPhozw@mail.gmail.com>
- <d0087922-4721-ccf1-80bf-9f74099d0948@ghiti.fr> <CAPqJEFr6MgUyARfbWAo7EeQKLVd4xRJz_LOYN68UC-kPD1Hr5A@mail.gmail.com>
- <20240118082346.GB31078@hsinchu15> <CAHVXubiQ5N+ngdy=Fk3j-hS_KkOEg272b++-hB4-oGeSSZKtNQ@mail.gmail.com>
- <CAHh=Yk-WCMbNWg7UCbXtZZzPmOHnh1-pv4fqykwnpJGtwTcc=A@mail.gmail.com>
- <CAHVXubhE=RmFQ5gGo7J+H-mOEZKZQbCCH6F43UYMOy=Kgw+nug@mail.gmail.com> <CAHh=Yk-C--ZGgfckGYceTOoj20V9H6DHQHMZ2z2kisuFbAhaBA@mail.gmail.com>
-In-Reply-To: <CAHh=Yk-C--ZGgfckGYceTOoj20V9H6DHQHMZ2z2kisuFbAhaBA@mail.gmail.com>
-From: Nylon Chen <nylon.chen@sifive.com>
-Date: Tue, 12 Mar 2024 14:48:30 +0800
-Message-ID: <CAHh=Yk8cWiX8q7YT3OuqNBP=kgNdZm3cWZCm01+CfVVQcnPy=Q@mail.gmail.com>
-Subject: Re: Fwd: [PATCH v8 0/4] riscv: Use PUD/P4D/PGD pages for the linear mapping
-To: Alexandre Ghiti <alexghiti@rivosinc.com>
-Cc: alex@ghiti.fr, apatel@ventanamicro.com, catalin.marinas@arm.com, 
-	will@kernel.org, paul.walmsley@sifive.com, palmer@dabbelt.com, 
-	aou@eecs.berkeley.edu, robh+dt@kernel.org, frowand.list@gmail.com, 
-	rppt@kernel.org, akpm@linux-foundation.org, anup@brainfault.org, 
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, 
-	linux-riscv@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-mm@kvack.org, zong.li@sifive.com, nylon7717@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: update compatible name
+ for match with driver
+Content-Language: en-US
+To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, linus.walleij@linaro.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ dmitry.baryshkov@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20240312025807.26075-1-quic_tengfan@quicinc.com>
+ <20240312025807.26075-2-quic_tengfan@quicinc.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
+ cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
+ JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
+ gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
+ J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
+ NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
+ BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
+ vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
+ Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
+ TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
+ S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
+ m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
+ HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
+ XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
+ mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
+ v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
+ cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
+ rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
+ qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
+ aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
+ gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
+ dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
+ NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
+ hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
+ oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
+ H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
+ yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
+ 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
+ 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
+ +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
+ FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
+ 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
+ DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
+ oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
+ 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
+ Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
+ qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
+ /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
+ qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
+ EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
+ KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
+ fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240312025807.26075-2-quic_tengfan@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Nylon Chen <nylon.chen@sifive.com> =E6=96=BC 2024=E5=B9=B43=E6=9C=8812=E6=
-=97=A5 =E9=80=B1=E4=BA=8C =E4=B8=8B=E5=8D=882:40=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> Alexandre Ghiti <alexghiti@rivosinc.com> =E6=96=BC 2024=E5=B9=B42=E6=9C=
-=885=E6=97=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=885:32=E5=AF=AB=E9=81=93=
-=EF=BC=9A
-> >
-> > Hi Nylon,
-> >
-> > On Fri, Jan 19, 2024 at 10:27=E2=80=AFAM Nylon Chen <nylon.chen@sifive.=
-com> wrote:
-> > >
-> > > Alexandre Ghiti <alexghiti@rivosinc.com> =E6=96=BC 2024=E5=B9=B41=E6=
-=9C=8818=E6=97=A5 =E9=80=B1=E5=9B=9B =E4=B8=8B=E5=8D=889:01=E5=AF=AB=E9=81=
-=93=EF=BC=9A
-> > > >
-> > > > Hi Nylon,
-> > > Hi Alexandre, thanks for your feedback,
-> > > >
-> > > > On Thu, Jan 18, 2024 at 9:23=E2=80=AFAM Nylon Chen <nylon.chen@sifi=
-ve.com> wrote:
-> > > > >
-> > > > > > On 3/23/23 15:55, Anup Patel wrote:
-> > > > > > > On Thu, Mar 23, 2023 at 6:24=E2=80=AFPM Alexandre Ghiti <alex=
-ghiti@rivosinc.com> wrote:
-> > > > > > >> Hi Anup,
-> > > > > > >>
-> > > > > > >> On Thu, Mar 23, 2023 at 1:18=E2=80=AFPM Anup Patel <apatel@v=
-entanamicro.com> wrote:
-> > > > > > >>> Hi Alex,
-> > > > > > >>>
-> > > > > > >>> On Thu, Mar 16, 2023 at 6:48=E2=80=AFPM Alexandre Ghiti <al=
-exghiti@rivosinc.com> wrote:
-> > > > > > >>>> This patchset intends to improve tlb utilization by using =
-hugepages for
-> > > > > > >>>> the linear mapping.
-> > > > > > >>>>
-> > > > > > >>>> As reported by Anup in v6, when STRICT_KERNEL_RWX is enabl=
-ed, we must
-> > > > > > >>>> take care of isolating the kernel text and rodata so that =
-they are not
-> > > > > > >>>> mapped with a PUD mapping which would then assign wrong pe=
-rmissions to
-> > > > > > >>>> the whole region: it is achieved by introducing a new memb=
-lock API.
-> > > > > > >>>>
-> > > > > > >>>> Another patch makes use of this new API in arm64 which use=
-d some sort of
-> > > > > > >>>> hack to solve this issue: it was built/boot tested success=
-fully.
-> > > > > > >>>>
-> > > > > > >>>> base-commit-tag: v6.3-rc1
-> > > > > > >>>>
-> > > > > > >>>> v8:
-> > > > > > >>>> - Fix rv32, as reported by Anup
-> > > > > > >>>> - Do not modify memblock_isolate_range and fixes comment, =
-as suggested by Mike
-> > > > > > >>>> - Use the new memblock API for crash kernel too in arm64, =
-as suggested by Andrew
-> > > > > > >>>> - Fix arm64 double mapping (which to me did not work in v7=
-), but ends up not
-> > > > > > >>>>    being pretty at all, will wait for comments from arm64 =
-reviewers, but
-> > > > > > >>>>    this patch can easily be dropped if they do not want it=
-.
-> > > > > > >>>>
-> > > > > > >>>> v7:
-> > > > > > >>>> - Fix Anup bug report by introducing memblock_isolate_memo=
-ry which
-> > > > > > >>>>    allows us to split the memblock mappings and then avoid=
- to map the
-> > > > > > >>>>    the PUD which contains the kernel as read only
-> > > > > > >>>> - Add a patch to arm64 to use this newly introduced API
-> > > > > > >>>>
-> > > > > > >>>> v6:
-> > > > > > >>>> - quiet LLVM warning by casting phys_ram_base into an unsi=
-gned long
-> > > > > > >>>>
-> > > > > > >>>> v5:
-> > > > > > >>>> - Fix nommu builds by getting rid of riscv_pfn_base in pat=
-ch 1, thanks
-> > > > > > >>>>    Conor
-> > > > > > >>>> - Add RB from Andrew
-> > > > > > >>>>
-> > > > > > >>>> v4:
-> > > > > > >>>> - Rebase on top of v6.2-rc3, as noted by Conor
-> > > > > > >>>> - Add Acked-by Rob
-> > > > > > >>>>
-> > > > > > >>>> v3:
-> > > > > > >>>> - Change the comment about initrd_start VA conversion so t=
-hat it fits
-> > > > > > >>>>    ARM64 and RISCV64 (and others in the future if needed),=
- as suggested
-> > > > > > >>>>    by Rob
-> > > > > > >>>>
-> > > > > > >>>> v2:
-> > > > > > >>>> - Add a comment on why RISCV64 does not need to set initrd=
-_start/end that
-> > > > > > >>>>    early in the boot process, as asked by Rob
-> > > > > > >>>>
-> > > > > > >>>> Alexandre Ghiti (4):
-> > > > > > >>>>    riscv: Get rid of riscv_pfn_base variable
-> > > > > > >>>>    mm: Introduce memblock_isolate_memory
-> > > > > > >>>>    arm64: Make use of memblock_isolate_memory for the line=
-ar mapping
-> > > > > > >>>>    riscv: Use PUD/P4D/PGD pages for the linear mapping
-> > > > > > >>> Kernel boot fine on RV64 but there is a failure which is st=
-ill not
-> > > > > > >>> addressed. You can see this failure as following message in
-> > > > > > >>> kernel boot log:
-> > > > > > >>>      0.000000] Failed to add a System RAM resource at 80200=
-000
-> > > > > > >> Hmmm I don't get that in any of my test configs, would you m=
-ind
-> > > > > > >> sharing yours and your qemu command line?
-> > > > > > > Try alexghiti_test branch at
-> > > > > > > https://github.com/avpatel/linux.git
-> > > > > > >
-> > > > > > > I am building the kernel using defconfig and my rootfs is
-> > > > > > > based on busybox.
-> > > > > > >
-> > > > > > > My QEMU command is:
-> > > > > > > qemu-system-riscv64 -M virt -m 512M -nographic -bios
-> > > > > > > opensbi/build/platform/generic/firmware/fw_dynamic.bin -kerne=
-l
-> > > > > > > ./build-riscv64/arch/riscv/boot/Image -append "root=3D/dev/ra=
-m rw
-> > > > > > > console=3DttyS0 earlycon" -initrd ./rootfs_riscv64.img -smp 4
-> > > > > >
-> > > > > >
-> > > > > > So splitting memblock.memory is the culprit, it "confuses" the =
-resources
-> > > > > > addition and I can only find hacky ways to fix that...
-> > > > > Hi Alexandre,
-> > > > >
-> > > > > We encountered the same error as Anup. After adding your patch
-> > > > > (3335068f87217ea59d08f462187dc856652eea15), we will not encounter=
- the
-> > > > > error again.
-> > > > >
-> > > > > What I have observed so far is
-> > > > >
-> > > > > - before your patch
-> > > > > When merging consecutive memblocks, if the memblock types are dif=
-ferent,
-> > > > > they will be merged into reserved
-> > > > > - after your patch
-> > > > > When consecutive memblocks are merged, if the memblock types are
-> > > > > different, they will be merged into memory.
-> > > > >
-> > > > > Such a result will cause the memory location of OpenSBI to be cha=
-nged
-> > > > > from reserved to memory. Will this have any side effects?
-> > > >
-> > > > I guess it will end up in the memory pool and pages from openSBI
-> > > > region will be allocated, so we should see very quickly bad stuff
-> > > > happening (either PMP violation or M-mode ecall never
-> > > > returning/trapping/etc).
-> > > >
-> > > > But I don't observe the same thing, I always see the openSBI region
-> > > > being reserved:
-> > > >
-> > > > reserved[0x0] [0x0000000080000000-0x000000008007ffff],
-> > > > 0x0000000000080000 bytes flags: 0x0
-> > > >
-> > > > Can you elaborate a bit more about "When consecutive memblocks are
-> > > > merged, if the memblock types are different, they will be merged in=
-to
-> > > > memory"? Where/when does this merge happen? Can you give me a confi=
-g
-> > > > file and a kernel revision so that I can take a look?
-> > > Ok, If you want to reproduce the same results you just need to modify=
- OpenSBI
-> > >
-> > > [ lib/sbi/sbi_domain.c ]
-> > > +#define TEST_SIZE 0x200000
-> > >
-> > > -                                 (scratch->fw_size - scratch->fw_rw_=
-offset),
-> > > +                                 (TEST_SIZE - scratch->fw_rw_offset)=
-,
-> > >
-> > > In addition, you can insert checks in the kernel merged function
-> > > [ mm/memblock.c ]
-> > > static void __init_memblock memblock_merge_regions(struct memblock_ty=
-pe *type)
-> > >         while (i < type->cnt - 1) {
-> > >          ...
-> > >                 /* move forward from next + 1, index of which is i + =
-2 */
-> > >                 memmove(next, next + 1, (type->cnt - (i + 2)) * sizeo=
-f(*next));
-> > >                 type->cnt--;
-> > >         }
-> > > +       pr_info("Merged memblock_type: cnt =3D %lu, max =3D %lu,
-> > > total_size =3D 0x%llx\n",type->cnt, type->max, type->total_size);
-> > > +       for (i =3D 0; i < type->cnt; i++) {
-> > > +               const char *region_type =3D
-> > > memblock_is_memory(type->regions[i].base) ? "memory" : "reserve";
-> > > +               pr_info("Region %d: base =3D 0x%llx, size =3D 0x%llx,=
- type
-> > > =3D %s\n", i, type->regions[i].base, type->regions[i].size,
-> > > region_type);
-> > > +       }
-> > >  }
-> > > This is kernel boot log
-> > > - before your patch
-> > > ...
-> > > [    0.000000] OF: fdt: Reserving memory: base =3D 0x80000000, size =
-=3D 0x200000
-> > > [    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_si=
-ze =3D 0x1628501
-> > > [    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1600000, typ=
-e =3D reserve
-> > > ...
-> > >
-> > > - after your patch
-> > > ...
-> > > [    0.000000] OF: fdt: Reserving memory: base =3D 0x80000000, size =
-=3D 0x200000
-> > > [    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_si=
-ze =3D 0x180c42e
-> > > [    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1800000, typ=
-e =3D memory
-> >
-> Hi Alex, thanks for your feedback.
-> > So the openSBI region is marked as memory, and not reserved because
-> > this region is now described as nomap, and memblock_mark_nomap() does
-> > not move this region into the reserved memblock list, but keep it in
-> > the memory list with the nomap flag
-> > (https://elixir.bootlin.com/linux/latest/source/drivers/of/fdt.c#L479).
-> > But as stated in the description of memblock_mark_nomap()
-> > (https://elixir.bootlin.com/linux/latest/source/mm/memblock.c#L969),
-> > the pages associated with the region will be marked as PageReserved
-> > and the region will not be covered in the linear mapping.
-> I traced it via GDB, and indeed, it enters
-> early_init_dt_reserve_memory() and calls memblock_reserve to reserve
-> this block of memory.
->
-> [before your patch]
-> [    0.000000] OF: fdt: check nomap Reserving memory: base =3D
-> 0x80000000, size =3D 0x200000
-> [    0.000000] ---  Reserved memory: Base address: 80000000, Size:
-> 200000---
-> [    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_size =
-=3D
-> 0x1e28501
-> [    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1e00000, type =
-=3D
-> reserve
-> [    0.000000] Region 1: base =3D 0xbfe00000, size =3D 0x6002, type =3D
-> memory
-> ....
-> [    0.000000] OF: fdt: Reserved memory: reserved region for node
-> 'mmode_resv0@80000000': base 0x0000000080000000, size 2 MiB
-> [    0.000000] OF: reserved mem:
-> 0x0000000080000000..0x00000000801fffff (2048 KiB) map non-reusable
-> mmode_resv0@80000000
->
-> [after your patch]
-> [    0.000000] OF: fdt: check nomap Reserving memory: base =3D
-> 0x80000000, size =3D 0x200000
-> [    0.000000] --- Reserved memory: Base address: 80000000, Size: 200000-=
---
-> [    0.000000] Merged memblock_type: cnt =3D 4, max =3D 128, total_size =
-=3D 0x1e25501
-> [    0.000000] Region 0: base =3D 0x80000000, size =3D 0x1e00000, type =
-=3D memory
-> [    0.000000] Region 1: base =3D 0xbfe00000, size =3D 0x6002, type =3D m=
-emory
-> ...
-> [    0.000000] OF: fdt: Reserved memory: reserved region for node
-> 'mmode_resv0@80000000': base 0x0000000080000000, size 2 MiB
-> [    0.000000] OF: reserved mem:
-> 0x0000000080000000..0x00000000801fffff (2048 KiB) map non-reusable
-> mmode_resv0@80000000
->
-> At the moment, it can be confirmed that there is no need to worry
-> about this block of memory being used.
->
-> But I still have a question I'd like to ask, which is why this
-> location is flagged as 'reserve' instead of 'memory' in the memblock
-Sorry, I asked the wrong question.
+On 12/03/2024 03:58, Tengfei Fan wrote:
+> Use compatible name "qcom,sm4450-tlmm" instead of "qcom,sm4450-pinctrl"
+> to match the compatible name in sm4450 pinctrl driver.
+> 
+> Fixes: 7bf8b78f86db ("dt-bindings: pinctrl: qcom: Add SM4450 pinctrl")
+> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Why is this location marked as "memory" instead of "reserve" in the membloc=
-k?
->
-> Thanks,
-> Nylon
-> >
-> > So to me, this is normal and we are safe. Let me know if I made a mista=
-ke.
-> >
-> > And sorry for the long delay, that slipped my mind!
-> >
-> > Thanks,
-> >
-> > Alex
-> >
-> > > ...
-> > > [    0.000000] Failed to add a system RAM resource at 80200000
-> > > ...
-> > > >
-> > > > Thanks,
-> > > >
-> > > > Alex
-> > > >
-> > > > > >
-> > > > > > So given that the arm64 patch with the new API is not pretty an=
-d that
-> > > > > > the simplest solution is to re-merge the memblock regions after=
-wards
-> > > > > > (which is done by memblock_clear_nomap), I'll drop the new API =
-and the
-> > > > > > arm64 patch to use the nomap API like arm64: I'll take advantag=
-e of that
-> > > > > > to clean setup_vm_final which I have wanted to do for a long ti=
-me.
-> > > > > >
-> > > > > > @Mike Thanks for you reviews!
-> > > > > >
-> > > > > > @Anup Thanks for all your bug reports on this patchset, I have =
-to
-> > > > > > improve my test flow (it is in the work :)).
-> > > > > >
-> > > > > >
-> > > > > > > Regards,
-> > > > > > > Anup
-> > > > > > >
-> > > > > > >> Thanks
-> > > > > > >>
-> > > > > > >>> Regards,
-> > > > > > >>> Anup
-> > > > > > >>>
-> > > > > > >>>>   arch/arm64/mm/mmu.c           | 25 +++++++++++------
-> > > > > > >>>>   arch/riscv/include/asm/page.h | 19 +++++++++++--
-> > > > > > >>>>   arch/riscv/mm/init.c          | 53 +++++++++++++++++++++=
-+++++++-------
-> > > > > > >>>>   arch/riscv/mm/physaddr.c      | 16 +++++++++++
-> > > > > > >>>>   drivers/of/fdt.c              | 11 ++++----
-> > > > > > >>>>   include/linux/memblock.h      |  1 +
-> > > > > > >>>>   mm/memblock.c                 | 20 +++++++++++++
-> > > > > > >>>>   7 files changed, 119 insertions(+), 26 deletions(-)
-> > > > > > >>>>
-> > > > > > >>>> --
-> > > > > > >>>> 2.37.2
-> > > > > > >>>>
-> > > > > > > _______________________________________________
-> > > > > > > linux-riscv mailing list
-> > > > > > > linux-riscv@lists.infradead.org
-> > > > > > > http://lists.infradead.org/mailman/listinfo/linux-riscv
-> > > > > >
-> > > > > > _______________________________________________
-> > > > > > linux-riscv mailing list
-> > > > > > linux-riscv@lists.infradead.org
-> > > > > > http://lists.infradead.org/mailman/listinfo/linux-riscv
+Wasn't this applied?
+
+Best regards,
+Krzysztof
+
 
