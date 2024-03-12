@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-49930-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-49931-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAE09878BDD
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 01:20:38 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC323878BE9
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 01:24:56 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2B7ECB213C0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 00:20:36 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 638A71F226BB
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 00:24:56 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13DE063C;
-	Tue, 12 Mar 2024 00:20:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8D8A58F5D;
+	Tue, 12 Mar 2024 00:24:49 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XLDSB4Fd"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="OKWwut4k"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 48AB819B
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 00:20:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AC2808F40
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 00:24:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710202830; cv=none; b=kHWXqlEf3QY3YR7aGxusicCqNjoblzuWkYTWc4CfqKLUuWFdtYTeOar4anAZZaexblSR5NjioSDChrcEMX4A6Nb1ksdq3xo4cvu6nsFWz/ormFrQ3xgyI+lLu52a9pXD14GAa2Xd8VYeDcGoXtTqciFFrvhdVCm/WCxB2UyCFtI=
+	t=1710203089; cv=none; b=YnBARek0pnFcMrSL3wQgyEVQBUVPTTybNXAv+wMJKd9M+Myi84czqiP5FwnTyLmr1c69Bp+MljU1Vu3WTkM26wf1uxYbeUmsxDR49BKiQgIoedJixTd5uMhKMnlWSf6hf8/QlKDDXrgvfVwhiTm7sCiTsnJi6dq9kFRC71SFJX4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710202830; c=relaxed/simple;
-	bh=qOWrAr6bPBzvoLLPTAz0C9dXtVXWGeptHGJUKAp80jI=;
+	s=arc-20240116; t=1710203089; c=relaxed/simple;
+	bh=oVopQaOOfzHY3UiFPdcWCjf76IMwbZpTCloyXY+7lDk=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zl1XBMlT5Il8mOfHCyWUJNXP3D0UWPwTqSLpmpbwnlFItkp7oGZbXX9opxJlRhBOBf2WaFf7/cEs5qDt1kpFmMxXUgmwxP19MeWQroT8D8lihzAT43YtzTCuwElcGal4tnvzRj5XNYImkJGZTr8/qofwWOVjcQfN7D4czQNJPLk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XLDSB4Fd; arc=none smtp.client-ip=209.85.167.47
+	 In-Reply-To:Content-Type; b=IY9iVMOixFMIwFaxTkpJTstlj7k9Wwh450z1rtXmJL5YOera5Ol1O6pCMVN+VSFgTCbqDC5rlFejrv5ECOEX8LARPJM/5x0Pi9q82PclR5GKJ6TiMH56RiFypdan1q2afW5wSlsF2nf4u1Lx2Ms7R7KdfkGZz3+SedkEN31msig=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=OKWwut4k; arc=none smtp.client-ip=209.85.167.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-513382f40e9so5899419e87.2
-        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 17:20:27 -0700 (PDT)
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-513b1c69cb8so1198588e87.1
+        for <devicetree@vger.kernel.org>; Mon, 11 Mar 2024 17:24:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710202825; x=1710807625; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710203086; x=1710807886; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Y6Qj+d193V6vAwzUIxkG37xPPAUPTTqW49/CnKjXQd8=;
-        b=XLDSB4FdBk/bUYUOETupj4Y9F7zCzjMPvV3v8EdyrilZD1mNzOzS9XPj+E9ana7BB0
-         wokXsul0lFauejKPy7Px0ZeYW758jQIslw5+GbugZ8M6XtT8Z5AGkw6d4CMaB9i9jIoa
-         C1Y/Ds9ldqCHum1VxLVkvlt5fPFZqfQlAjPHwozHdXviHimKMd3no2Rpz4n2EJ099ZaW
-         4UBCIdbm+O0eWvsC6kXN4hhmDybKeorC0HA20WRUvyygaHPyB34KocfIXiZFxTEalnKc
-         YryT21aUl6tUmoAjiyIEyYrv4VdDbVlxXpcKCCEP6D44ZWruZkomyhjlX1f5Iom676jl
-         wb9g==
+        bh=eWhat7e2j1dWBbmXMTlUYz5GM9qOS0BL4XnLXY/ZEPk=;
+        b=OKWwut4kg3tAwLpbwXY1s0ciHFH2UiyDG3GFFY4CfywxXAigzHTL/4yPAIud8gX7HQ
+         seZFVZIYKPE1NDXgqReBUSNvPJ2pevi7Xn2hHGJiTqipLqkj+2NmlBcOmovHGC2PKM5r
+         lY0JsjoJtmWSOcC71CE86w7ESud8zyfv2/oodyRBdiG4iiPNknaYXJam5KEKnhciAERG
+         TYl1obDqFZ2cNKMoH235tSMSUKeEO2NXzgqe+pAe1by4qvfdyj9IdkBR53x12IYUqNbH
+         naS/CCgTnKqPcp+gKqfZECiLmgwsPh5SrzZMR3kDFMuwnlJvAMRV3/eaihT8qbZ4ih19
+         Rk2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710202825; x=1710807625;
+        d=1e100.net; s=20230601; t=1710203086; x=1710807886;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y6Qj+d193V6vAwzUIxkG37xPPAUPTTqW49/CnKjXQd8=;
-        b=Ot4a08A036+veuqUM0y9iqYKspsKcLosXaM05gxL6Kk/bXp4G4JsvuGoAeMtU/gDtF
-         oCyDGQS+n6QVLdN4eDuzoycPtlPC27gGKnv/hpoB2DhHo5MDGNdnTQNJdSMl5/TJpTfh
-         CLrKMvkEGeuqRWCwInm2DaiPJ+ShIzc7cjPz3/sR+qk/hEQLYSPK53ZSC5C2SwgoaVKU
-         ysD+XvXxj7+wKQssDycEs4mLF/CsUVMD4gENowMVj3N7Nk9VmykarVeh7o+AiAHRnPp5
-         EcC145gDFPozedDc/q+k+BSaVO7BhrFwZ/Smo2RZn3DhFn3FF2QtGK5tKHLa7FUr7tBq
-         voJg==
-X-Forwarded-Encrypted: i=1; AJvYcCWtA8GJcjDJ0BbZNAd0MfdWPty9rNblkn2AL6x3u+uxDlJCmd3IT7lCK79c1ueBuC4eOOIhCMKJo/eet48xdE0kLaEk4tVsw8v9/g==
-X-Gm-Message-State: AOJu0Yw0cHbWCnz6mT+zvA14vM4V/DBFweOZJS+G8ejxTM52maX1DWoB
-	rFVfs9cayICh/PUwcwMMYOEViuR3nRvpnlLZHMShBSAeFUygMZqI8eALzKv7pQo=
-X-Google-Smtp-Source: AGHT+IECykpsirV8o3fAnfpG+ZqnLDETPl8qxRjl1ccJmT0u7F6lmAy4sP57NbpxufW8iWZ12UsN4w==
-X-Received: by 2002:ac2:485c:0:b0:513:c3:1d94 with SMTP id 28-20020ac2485c000000b0051300c31d94mr4909736lfy.52.1710202825462;
-        Mon, 11 Mar 2024 17:20:25 -0700 (PDT)
+        bh=eWhat7e2j1dWBbmXMTlUYz5GM9qOS0BL4XnLXY/ZEPk=;
+        b=KmOgGJYeQy+VFri3UMYyYj40R3YXzc4xjEc1xmoW92oUo/g1ZfY2sZgFbnIeL8KYPK
+         RGee/bzkLKqYbWliqoTJNHrML8tO8g/4Mj/fKCmhnYU+WHjFOIUYmV1HWeAe7DaEMtWR
+         pMg74woV8At7gE6IInVCGPtIZVx1gEPe8H3tc2URJGTU705fEAFewiVsoAhpwtZXA98c
+         prVt0tmjXo/Zj9Hj3eAAJx3+FdEKAyBrDOsHuObdGDE6gBIMT/5DTzJDPD3FOqOQQUYd
+         rjhZuKb4qF6ejh3fxA0F1qSZd6i8LGYTIOCLji6Blu3GvtXNX0cDy0tTcQ+xrPw6fmzE
+         pFeQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVncUf0rGES2brXpNoodDQlowoIVIsCvPHvTs0MkLyHHJVlbGyft6Xt0qF6C22C7ofQAbMvv4ZEMoVX0OSFRprct+Ad9DUOSpwdHw==
+X-Gm-Message-State: AOJu0Ywhl5jwMpJCjWkDGfLfejbY08IK6CVl+afgP2V7fielJi1UFd7g
+	D8m6CHn3mPNV3FT2onLd3YqVOK8taFfmuusy1x8LHvfTVmR+X8P4rPJyZgwzsKs=
+X-Google-Smtp-Source: AGHT+IHm0GQQWslHHZzfBF39V9xf6bEVsajldQARNOhLXmx/EqaE6zH/wfXQL1fl/FeEaOfWwIn/Bg==
+X-Received: by 2002:ac2:46cc:0:b0:512:fce4:327b with SMTP id p12-20020ac246cc000000b00512fce4327bmr5110185lfo.39.1710203085891;
+        Mon, 11 Mar 2024 17:24:45 -0700 (PDT)
 Received: from [172.30.205.61] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id h18-20020a056512221200b0051354f006b9sm1316460lfu.56.2024.03.11.17.20.21
+        by smtp.gmail.com with ESMTPSA id m3-20020a05651202e300b0051327cb3a77sm1308626lfq.247.2024.03.11.17.24.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 11 Mar 2024 17:20:25 -0700 (PDT)
-Message-ID: <58d5b209-94f6-43be-89e0-b14f5e30fd8c@linaro.org>
-Date: Tue, 12 Mar 2024 01:20:21 +0100
+        Mon, 11 Mar 2024 17:24:45 -0700 (PDT)
+Message-ID: <87709bd5-f985-485e-a2f4-9bdf4de5e40d@linaro.org>
+Date: Tue, 12 Mar 2024 01:24:43 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,86 +76,47 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 6/7] arm64: dts: qcom: sm8650: add GPU nodes
+Subject: Re: [PATCH] arm64: dts: qcom: msm8916-samsung-fortuna: Add
+ touchscreen
 Content-Language: en-US
-To: Neil Armstrong <neil.armstrong@linaro.org>,
- Rob Clark <robdclark@gmail.com>, Abhinav Kumar <quic_abhinavk@quicinc.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Rob Herring <robh@kernel.org>,
+To: Raymond Hackley <raymondhackley@protonmail.com>,
+ linux-kernel@vger.kernel.org
+Cc: Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>,
- Bjorn Andersson <andersson@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
- freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- iommu@lists.linux.dev, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20240216-topic-sm8650-gpu-v3-0-eb1f4b86d8d3@linaro.org>
- <20240216-topic-sm8650-gpu-v3-6-eb1f4b86d8d3@linaro.org>
+ Conor Dooley <conor+dt@kernel.org>, Stephan Gerhold <stephan@gerhold.net>,
+ Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht,
+ Joe Mason <buddyjojo06@outlook.com>
+References: <20240219113823.4189-1-raymondhackley@protonmail.com>
 From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240216-topic-sm8650-gpu-v3-6-eb1f4b86d8d3@linaro.org>
+In-Reply-To: <20240219113823.4189-1-raymondhackley@protonmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
 
 
-On 2/16/24 12:03, Neil Armstrong wrote:
-> Add GPU nodes for the SM8650 platform.
+On 2/19/24 12:38, Raymond Hackley wrote:
+> From: Joe Mason <buddyjojo06@outlook.com>
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Like msm8916-samsung-a3u-eur, the Grand Prime uses a Zinitix BT541
+> touchscreen. Add it together with the necessary fixed-regulator to the
+> device tree.
+> 
+> Signed-off-by: Joe Mason <buddyjojo06@outlook.com>
+> [Raymond: Move to fortuna-common. Use interrupts-extended]
+> Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
 > ---
->   arch/arm64/boot/dts/qcom/sm8650.dtsi | 166 +++++++++++++++++++++++++++++++++++
->   1 file changed, 166 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> index 62e6ae93a9a8..27dcef27b6ad 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-> @@ -2589,6 +2589,128 @@ tcsr: clock-controller@1fc0000 {
->   			#reset-cells = <1>;
->   		};
->   
-> +		gpu: gpu@3d00000 {
-> +			compatible = "qcom,adreno-43051401", "qcom,adreno";
-> +			reg = <0x0 0x03d00000 0x0 0x40000>,
-> +			      <0x0 0x03d9e000 0x0 0x1000>,
-> +			      <0x0 0x03d61000 0x0 0x800>;
-> +			reg-names = "kgsl_3d0_reg_memory",
-> +				    "cx_mem",
-> +				    "cx_dbgc";
-> +
-> +			interrupts = <GIC_SPI 300 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +			iommus = <&adreno_smmu 0 0x0>,
-> +				 <&adreno_smmu 1 0x0>;
-> +
-> +			operating-points-v2 = <&gpu_opp_table>;
-> +
-> +			qcom,gmu = <&gmu>;
-> +
-> +			status = "disabled";
-> +
-> +			zap-shader {
-> +				memory-region = <&gpu_micro_code_mem>;
-> +			};
-> +
-> +			/* Speedbin needs more work on A740+, keep only lower freqs */
-> +			gpu_opp_table: opp-table {
-> +				compatible = "operating-points-v2";
-> +
-> +				opp-680000000 {
-> +					opp-hz = /bits/ 64 <680000000>;
-> +					opp-level = <RPMH_REGULATOR_LEVEL_SVS_L1>;
-> +				};
 
-I got a memo from krzk that we should be sorting OPPs low-to-high,
-could you please reorder these (and under gmu)?
+[...]
 
-Otherwise lgtm
+> +&blsp_i2c5 {
+> +	status = "disabled";
+> +
+> +	/* Touchscreen varies depending on model variant */
+> +	/delete-node/ touchscreen@20;
+
+Please delete the node by a &label reference and keep
+the bus enabled (if I2C5 is used on all models)
 
 Konrad
 
