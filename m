@@ -1,198 +1,229 @@
-Return-Path: <devicetree+bounces-50147-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50148-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CEA9879E3D
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 23:13:22 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6310A879EA0
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 23:28:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 06B9F1F22643
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 22:13:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8592C1C2236E
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 22:28:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D268314375F;
-	Tue, 12 Mar 2024 22:13:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 723F71448E6;
+	Tue, 12 Mar 2024 22:25:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=seco.com header.i=@seco.com header.b="ympdziFI";
-	dkim=fail reason="signature verification failed" (2048-bit key) header.d=seco.com header.i=@seco.com header.b="oNAVG5bc"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="KvjyGu41"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2133.outbound.protection.outlook.com [40.107.20.133])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qv1-f47.google.com (mail-qv1-f47.google.com [209.85.219.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D5B6E7A730;
-	Tue, 12 Mar 2024 22:13:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.20.133
-ARC-Seal:i=3; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710281597; cv=fail; b=H9OUC3G4T8ilDIgXPPjGdDbh35k47cbblKOwFodqtgRV95vCswUmvrj/ALM5HORPhak7b3Uo+a607FtICq9tLhxbJURxnMAiyio1e5RK5Hph+M0obw4DIDnfhEy2LE35BVjl12I3px9MENU2o5thUic+2zPbfmMKFK0qVVgbFao=
-ARC-Message-Signature:i=3; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710281597; c=relaxed/simple;
-	bh=kfil70xBlmvfw/3BuyEE4Ey8nT/hA5c6ginjvmDu/xY=;
-	h=Message-ID:Date:Subject:From:To:Cc:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Kl7yOvqC96/tsPgmLhXVv76HzM3mT6AD7Yvn9hPQit9CmSZY94CPwGsarBorJyEf51UxrdmCM/p2sXzweWoVxjjtj1IUg0/gE5hqgYDnsnna7qGJV3zBm9tUNW+2bXL9PV9RH4Vnjc6b16FMdmD5mYG1JJs2EFxTWSD2axQt1Po=
-ARC-Authentication-Results:i=3; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=seco.com; spf=pass smtp.mailfrom=seco.com; dkim=pass (2048-bit key) header.d=seco.com header.i=@seco.com header.b=ympdziFI; dkim=fail (2048-bit key) header.d=seco.com header.i=@seco.com header.b=oNAVG5bc reason="signature verification failed"; arc=fail smtp.client-ip=40.107.20.133
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=seco.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=seco.com
-ARC-Seal: i=2; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=pass;
- b=M1pja1qdvgN0mMbj1mIIBtrCW7XysZVe2/3my/f8ROcKxO1BC6mcWa0hXWMR2AT8mpQI8+pcdEQeUC/G81FMdELIGCPKoMJOlBN1Unl6jJwXaythhkg8vs8qpfMLX7n/hgahZCyw1AGbYvRiOsGOxn1Acz+T3omPcRAbogjpc9646Y+zYYYZJ4xItD4tX/lav193F4TgYabFQGDp2a//kFAN+OyWrFH3/B3G0+AICl6n6ZjM0is9Fd7Mw1R+a2Q7F9cUVSJcP125tA/mBgQMCPYomZSmV3XrSLbPhJc0yCRl67Z83hMNU2/0Z21ZxtbKDzo9BiapUfqQM4E5IECbuw==
-ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kfil70xBlmvfw/3BuyEE4Ey8nT/hA5c6ginjvmDu/xY=;
- b=RDXRvJQ482oIU7q2Kosdr5RC42QmsvhDONKfk65zppvu3/gOvHxjVby4jtI3J2VZGDDYwuvRBvBTxyhyU711yprKRg6v0nS6KVaeK94EEvVP5DzRwBJ0DWgYqu3tzXFUiy4vuDkxBdQZYjWocXYcmsKCXjuT4ANAFDZrrYj3sK+E/uc3aN4KEPzxGm46Ka5+hy8XCBFujoc9ds5b8W1RoUjRMcN9q4J0KjPC1HhZxF889XzO+vbqDB1ww0v7FY37O3MbleBwc0cwdl+EtvPYJHiHjlDOpRS8nWyR5zIlM06liKhMct1zsGPY9+RmdMRuhUkxVV0R9Q5Z/wzM3Tbmpg==
-ARC-Authentication-Results: i=2; mx.microsoft.com 1; spf=pass (sender ip is
- 20.160.56.85) smtp.rcpttodomain=bit42.se smtp.mailfrom=seco.com; dmarc=pass
- (p=reject sp=reject pct=100) action=none header.from=seco.com; dkim=pass
- (signature was verified) header.d=seco.com; arc=pass (0 oda=1 ltdi=1
- spf=[1,1,smtp.mailfrom=seco.com] dkim=[1,1,header.d=seco.com]
- dmarc=[1,1,header.from=seco.com])
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=kfil70xBlmvfw/3BuyEE4Ey8nT/hA5c6ginjvmDu/xY=;
- b=ympdziFIKALj7dpTuoh4eY13KWdtW64uscac4yVPrWuML5s6oxX5xeb6B9gHg0ztFwMteznI65VgZttyBXlWZbWHqD54MDcbeBwI/bdbolYPIQjMerTJwKULplUd1w8+VkgHVTd9zTpVlxvtdmSmySlGtuhxy6D7t5Gm5upMYJaTSg11BqI7JPdL+pGSwx6mQEpWWhGcHXM7hbwWAxIDZxB6rud8E2B91k9KnCs6b09MvAweaShexvXqYNxOIsY3ppfIMe0Ke+t796d3G7/UxEBsSFtgEKbmMBLaC56Bcwvd2HlUSHIPCxgvY8ArOAkUvGC8USxhzmMlzqb52Sm1yQ==
-Received: from AM5PR1001CA0037.EURPRD10.PROD.OUTLOOK.COM
- (2603:10a6:206:15::14) by PA4PR03MB7168.eurprd03.prod.outlook.com
- (2603:10a6:102:109::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36; Tue, 12 Mar
- 2024 22:13:11 +0000
-Received: from AMS0EPF000001A1.eurprd05.prod.outlook.com
- (2603:10a6:206:15:cafe::83) by AM5PR1001CA0037.outlook.office365.com
- (2603:10a6:206:15::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36 via Frontend
- Transport; Tue, 12 Mar 2024 22:13:11 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.160.56.85)
- smtp.mailfrom=seco.com; dkim=pass (signature was verified)
- header.d=seco.com;dmarc=pass action=none header.from=seco.com;
-Received-SPF: Pass (protection.outlook.com: domain of seco.com designates
- 20.160.56.85 as permitted sender) receiver=protection.outlook.com;
- client-ip=20.160.56.85; helo=repost-eu.tmcas.trendmicro.com; pr=C
-Received: from repost-eu.tmcas.trendmicro.com (20.160.56.85) by
- AMS0EPF000001A1.mail.protection.outlook.com (10.167.16.231) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.7386.12 via Frontend Transport; Tue, 12 Mar 2024 22:13:11 +0000
-Received: from outmta (unknown [192.168.82.133])
-	by repost-eu.tmcas.trendmicro.com (Trend Micro CAS) with ESMTP id 012622009538A;
-	Tue, 12 Mar 2024 22:13:11 +0000 (UTC)
-Received: from EUR03-AM7-obe.outbound.protection.outlook.com (unknown [104.47.51.233])
-	by repre.tmcas.trendmicro.com (Trend Micro CAS) with ESMTPS id CA9472008006E;
-	Tue, 12 Mar 2024 22:13:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=MzkYxw+YNy6VWBai0XZv0WTyg0Wc6pBxcSzqdr4BkYkrSoJnDUtYStWCuhdypQ1S4yqE4cNciCVXIgAQ0sSn7hfHp0ezMc+Hweg9jVhGt7XN3mJt1pp84UE9c1v6C8yPiTonhvvtz3tcjgS4T4DX8uibCCpBW3DSBe8YU5oQdHUUjRMVarTIaVy+y4vj3qoTDDm2TeGZp/78bOh4KKNmc2nC8Ax20BYhBJX1mIPWQw9hYD5/3LbrC7qQ90Klo2U7IgeIgYFf5dyl9aKmEkqqUJ5k4kKPps8FInSH+5GaJCInqp/Pd47L/rlH6NA22cl7Oq+Ktogpg2nLXX59Cmfg/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IcZAKM5JZrDETdpafKi/Z69oPj7yVFddkDggeAeBZl8=;
- b=CdBBGM8D4wKxcNHFPdfe5B4rMefSqwvL4Fyx5FY+LjA26GNBX+IlsaPm4QE+SlGO8JQWYphWu1NiZpko9jIQnxhdsxDwm9wBEEi8uyjFScPFgWpB2DGrstMWw77rpbhroAtQv5Q2qq37IqQgl3jahkr9WEzoDGsdunWkzrb6F0Y8+ku7KonF6Y1v+LYZO0UqcafEgz3cOAV/IKRDJRPWhbsMQgik45h5C6AjH1BTh+j4MbrlI83Gc/9cmNPjIT3nWabU5ZnUJUedcxICjQV8p1+TuMNcHgAlAkKQiBQIdlwjv2xe6K6XgNcTtf30ABm09tSIBg8PH7qIEEk8F+Q1Hw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=seco.com; dmarc=pass action=none header.from=seco.com;
- dkim=pass header.d=seco.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seco.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IcZAKM5JZrDETdpafKi/Z69oPj7yVFddkDggeAeBZl8=;
- b=oNAVG5bcfTyRUBq37raHvPX9O3xBIE+Yd47g+yZQlWgL3E0O46LTYptKpAtMIgPl2nua5dY3fibhsdoAvyL16qgL6kU6pNrnPIxGthfpfKtvfR1Py0L8r/VX7/nivq1Dl8Hx68veAUAX/D1tOFWF4F4UJYivkxm4n8xiB8NrqLa/v+oWm95U62xoBNREo4rI0Qm+W/ohGegWWTHDCa8VxXNQ3VIlh98BxeAL1q+ckZxAT0D+Parxj5zWBhdh+oMOjIzA0Fug4XVaTck27DoxfKOVRaFhZMk0SsGvd956KnNQl1ApMEB04CnTylLh6CrACS5zaW/FZxZ2I2LI5QpVvA==
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=seco.com;
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com (2603:10a6:10:3dd::13)
- by DB9PR03MB8145.eurprd03.prod.outlook.com (2603:10a6:10:373::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Tue, 12 Mar
- 2024 22:13:08 +0000
-Received: from DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::84d0:c817:1e20:5554]) by DB9PR03MB8847.eurprd03.prod.outlook.com
- ([fe80::84d0:c817:1e20:5554%7]) with mapi id 15.20.7362.035; Tue, 12 Mar 2024
- 22:13:08 +0000
-Message-ID: <3bfc0393-70bb-4120-abfb-530eaaa88b25@seco.com>
-Date: Tue, 12 Mar 2024 18:13:02 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 2/2] nvmem: add new NXP QorIQ eFuse driver
-Content-Language: en-US
-From: Sean Anderson <sean.anderson@seco.com>
-To: Richard Alpe <richard@bit42.se>, srinivas.kandagatla@linaro.org
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- niklas.soderlund+renesas@ragnatech.se, Michael Walle <michael@walle.cc>
-References: <20230410082051.2948510-1-richard@bit42.se>
- <20230410082051.2948510-2-richard@bit42.se>
- <7fc69bf7-4f89-41c0-a800-6e7d450d8b20@seco.com>
-In-Reply-To: <7fc69bf7-4f89-41c0-a800-6e7d450d8b20@seco.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: SJ0PR03CA0018.namprd03.prod.outlook.com
- (2603:10b6:a03:33a::23) To DB9PR03MB8847.eurprd03.prod.outlook.com
- (2603:10a6:10:3dd::13)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BA181448EE
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 22:25:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.47
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710282357; cv=none; b=stlfgF5V5WFI9ZkedB0cQjY8qVRuB3DRgVjWFbKV6zHOi8iiXKDyBZGNqg1V23qVXfBf0wnxBRFggKnATH95ppFDqrGkyOReWu+8/s2X/TG8DwpfOvpJGD3vSmMzC6IrMdoKx6cOd38MFRgz8etcFKkv94ZcuJqUd9dO1NFrkPU=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710282357; c=relaxed/simple;
+	bh=NLduQ1qqi8G4d7ARUwsnkK5vON8Crq0A2u8yvVgVLio=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=VORpUScplCgidpprrOwUtxq8D4uB5yrbNinsQRgBdV2aKwJzq8Y0vzU1aY20SPhv5ya1pVtfO2urwFWstFB4uqXwldJzdykmGTF/KUPwMh3G7DXaMbFO/Z3pndmUd5wnJ33NWXDOnlCpkv4a45sC3EyXCbe3Z4CSPcNN/9PTE6Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=KvjyGu41; arc=none smtp.client-ip=209.85.219.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qv1-f47.google.com with SMTP id 6a1803df08f44-68ee2c0a237so2492376d6.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 15:25:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1710282354; x=1710887154; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=OzQZAVQefo3mI7JaOv3i9HOffYntNfvUVWBj/1pTaQU=;
+        b=KvjyGu41fyxAaBplH63kSqctY+kOsTiquLwH4ZBvO31IBw7LuQuPPLloV8kQvv5HmA
+         5b6bVFPPs2IfNusicO15hXr6S4vGMPAKtK6FjGh+CZ6T1Rm01opWxu2v9nciP+9LBOjp
+         vrou5mo/njzUEYnN0Xq0MYopSSPbwak5Bw6Sg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710282354; x=1710887154;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=OzQZAVQefo3mI7JaOv3i9HOffYntNfvUVWBj/1pTaQU=;
+        b=MNoDv4Vx4e6xSvwkEdV9GrZRIdgKytfjozfAg1CpzfLqLdcwvtXPxFZqioq4mfhA7k
+         09WsgedvbN/5MrFIAB7p7soQ/LOnjiv36FT1t6HnbSd/qtffsw+uYaIAPuvLeTweOC9G
+         3FD+teGA1f9vnDW000GxgK1U7l9JN8otrdCKs+azMVJvcya6C3CLyrbHQli1meVGsc0f
+         gMMDuAF6k/T1ykUAsfC67oAmXfBAu2qJchs1g6UIORRIkU5d+Vl9lPEWRTJQ4u0v6Tzk
+         C5ga0MQ3waI4suf+29UFs1rxFGXZazzZrz/hZuEiVa0M2ZKYNn9F3VqMROZXhScPRbtx
+         4woA==
+X-Forwarded-Encrypted: i=1; AJvYcCWysmtnnVch2IaM/zp6uXSFezF/K2E1oJPK8hy4nv01JDDl9prZEDiY2IkPMplROxOdrO7QOOePtmKNH+cO/id0OayWfmeT466lGw==
+X-Gm-Message-State: AOJu0YxuiHEoD5/MMchSQrYgA2vkxGEVte2ozFxLqMIYfQZhakVFDD1Q
+	oMQrurVDtA0cvakcbFAuX+pEmTD9FQs6dT6qEnaw0cyWfC8urd1xGLejjDTw6Sp2MOzAnoSiBdO
+	+ChywXPtB0YG/RDvuKlSFaYqfl48mNMrMxhpc
+X-Google-Smtp-Source: AGHT+IGmyFqJ7I5OEdlVeWDP4fniRKop5+ziAYZpGgboPbvZWq7MrHq+rtsBULHzzfs4hoNrK7NjvGlYv1SDUXqSk04=
+X-Received: by 2002:ad4:5c48:0:b0:68f:dde4:fb12 with SMTP id
+ a8-20020ad45c48000000b0068fdde4fb12mr1707180qva.9.1710282354445; Tue, 12 Mar
+ 2024 15:25:54 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic:
-	DB9PR03MB8847:EE_|DB9PR03MB8145:EE_|AMS0EPF000001A1:EE_|PA4PR03MB7168:EE_
-X-MS-Office365-Filtering-Correlation-Id: c44f5d77-f66b-42b0-a20d-08dc42e19ae2
-X-TrendMicro-CAS-OUT-LOOP-IDENTIFIER: 656f966764b7fb185830381c646b41a1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original:
- s1/sRoKZMCFjcB19WOo6DXNALh4ztyPWiNXrAsXjMS3JOQXlXGDYXflWBNzcBsHgwDvkc/JsfV2pgGcbbZ1Qp8fnwdF8Pp2m/o7JAUoLrSRAIcBhbfA9lHAh7bs+bhqxcj5j1QwhuxhhN4xQQyQOk1G1JKdRBev9Z7xHjeklp7TEpZPhZ7hjRmg4drLD1yW4YYeuZFi0tuePtUAIewYBjKvixm/QGUFr5dor8S8hwXoueGDxwDFkK3EpfT7xAkuM9jRs+2Qe+U91qbsOsEJJwAlfHeTxwGBSPI/Ou+tW4Ddwe/aHOn3oCtWpC3Kh4k0Hua29NUvYOxHaNofuMjHfa99WiDL7Ipb6RmDWnEC8KeOjqTpphUcKw/S9xun1TXUS3NzwTa9CMVQ0gCsdeyWswGeR2MF1d1Itq9UQ93/yAuO75k6xG5v/6gPj6df4g+OmTlWDEk/EWFm3ZXabm+Q40tCA9KG755ax+WYE7QacHvsX5PDRiDp3qRRqPg3j/IBEYsTn4reEXLGUVGNNPwg9/0d0oWy7qoWssaq/XWOBC/tXaq/0NQj4ZfOupceY7nQGeg0JYMHmRSGxsmm8BWKPIFgB12x0tUeMqZ0v1D94RvmlLmR+0x/p3rimfEouPQiAwOvytIR8YvekI+jkrsY8fH0jniMoVLIKuTBxWW04Km+CLXCHUMUB6h2OuaNmIstSdX2DaWVUpn/UWwqHOCq0T93sEOCLjgkdxwOQMaYmsrA=
-X-Forefront-Antispam-Report-Untrusted:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR03MB8847.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(1800799015)(376005)(52116005)(38350700005);DIR:OUT;SFP:1102;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR03MB8145
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped:
- AMS0EPF000001A1.eurprd05.prod.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs:
-	2a2119c2-3c2c-435a-7e02-08dc42e198ce
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	BA9NC+5jGLbldb/KcCDTnVF/wzfJwtD74kQdUFZZBGwkyLzi5nAwfj6v/fEnA3LJMyszSFBrCIKAWK1Fbff7iyT7V8P1gvwz5eq9HsV1eNH8c6/YrFxrszpD9Yun6oYl1WloWA/FKQDiPSqYimaqQOeGEDypNkT3FjVCitDpBWE0/Gj4QnRqP/3H/oevoj6Cwt1lmfjfzEL0Dc6zlNTaG1XrC39Jiu9fBGEqbo9T8k6aLhcj38F3kj3ilBSPRskp7WdN+Czi2L9ZBFJQLBtxhVt5NmJSRCFKwSwZp8A0yeByyQmllW9bO7AXnC01uIPj3lsENc2WRdgaEqTAnPQjZRJ2NjbRAqduvLWr/YXxFWaSFn8xgyeoTELCRNfYMs/OxN1JuQXC55UikvJ6rT87ltw4fEwUljhAktkV+tzf+RXkMv8U2Iq5yS/JVxroPGy9ww5S2bz2qZblXt2Ndw87OFn32kSK4WQ/hgeywsO4FUTMSO/Fc8yQM9S3I0PVv8yf/fC1guVdgVJoG9PQoxlp/Fflhh99O9MadU3pxuwDjJUVgt9nj9xC7Z7oWOS7Luo+R9VOkDxpxxl3EQtkbvbrNsgUNF66RJ5T/+ctZ1HfSpT4Mogn/uHshPPHZkUDJUblE0aeaL++sMNccU1cClfW9bNvCbbdCCb3x8kISY1th+vzj4ocj7ooIOzrWokEeJEvqCIR+Z3ffGUeBzVurtFC1dIk3yVEZKPOuLEHR+8l7JndDKVydJKQ9pB1yUB+SBEw
-X-Forefront-Antispam-Report:
-	CIP:20.160.56.85;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:repost-eu.tmcas.trendmicro.com;PTR:repost-eu.tmcas.trendmicro.com;CAT:NONE;SFS:(13230031)(82310400014)(376005)(36860700004)(1800799015);DIR:OUT;SFP:1102;
-X-OriginatorOrg: seco.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2024 22:13:11.2917
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: c44f5d77-f66b-42b0-a20d-08dc42e19ae2
-X-MS-Exchange-CrossTenant-Id: bebe97c3-6438-442e-ade3-ff17aa50e733
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bebe97c3-6438-442e-ade3-ff17aa50e733;Ip=[20.160.56.85];Helo=[repost-eu.tmcas.trendmicro.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	AMS0EPF000001A1.eurprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR03MB7168
+References: <20231116172859.393744-1-sjg@chromium.org> <20231208150042.GA1278773-robh@kernel.org>
+ <CAPnjgZ2i4gvgiUeHPOfHuOdBooV4e=QQEq6iMo0JbDwOS6dCwA@mail.gmail.com>
+ <CAL_Jsq+xMZ8yz4H9D59uCSyX4h5W+4ruGF++=wVA=msXz+Y01A@mail.gmail.com>
+ <CAPnjgZ1uW8T6woXSqFUNm301=W3zBYOrADREkrz=DuwSW87qZg@mail.gmail.com>
+ <20231214172702.GA617226-robh@kernel.org> <CAPnjgZ2oJSGPO91Y_aLbe+v250WFrND4n3T0mOvhERYidVu=eQ@mail.gmail.com>
+ <CAFLszTizRRVbRO6_ygE2X-Lp5dENWSc4uMGL5GPJAFGAbRdCyQ@mail.gmail.com>
+ <CAL_Jsq+j7_KZtQ2ENq9+vsw0LOZF=spu293_G=AxOmBM+m_f-g@mail.gmail.com>
+ <CAFLszTimaFw9sf=JKvQXG4fS6V_2T=2n+pfvYLCiuG1o+7cHPA@mail.gmail.com>
+ <20240205085056.44278f2c@xps-13> <CAFLszTi+8ygXOidnhxj7sdJwc6X5i+++QvnUyfe-kde5eSts_w@mail.gmail.com>
+ <20240205131755.3462084f@xps-13> <CAFLszTh3t6wPz8PFhFzazTAGaLVpObkjY9qv7MtSkQ21zZFzKA@mail.gmail.com>
+ <20240308084212.4aa58761@xps-13>
+In-Reply-To: <20240308084212.4aa58761@xps-13>
+From: Simon Glass <sjg@chromium.org>
+Date: Wed, 13 Mar 2024 11:25:42 +1300
+Message-ID: <CAFLszTi8w4gBoa-6uoKUN-Ng07ieA+DXy3gm2cdxfwgAybrgsQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/3] dt-bindings: mtd: partitions: Add binman compatible
+To: Miquel Raynal <miquel.raynal@bootlin.com>
+Cc: Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, 
+	linux-mtd@lists.infradead.org, Tom Rini <trini@konsulko.com>, 
+	Michael Walle <mwalle@kernel.org>, U-Boot Mailing List <u-boot@lists.denx.de>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Pratyush Yadav <ptyadav@amazon.de>, 
+	=?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>, 
+	Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-On 3/12/24 18:09, Sean Anderson wrote:
-> On 4/10/23 04:20, Richard Alpe wrote:
->> Add SFP (Security Fuse Processor) read support for NXP (Freescale)
->> QorIQ series SOC's.
->>
->> This patch adds support for the T1023 SOC using the SFP offset from
->> the existing T1023 device tree. In theory this should also work for
->> T1024, T1014 and T1013 which uses the same SFP base offset.
->>
->> Signed-off-by: Richard Alpe <richard@bit42.se>
+Hi Miquel,
+
+On Fri, 8 Mar 2024 at 20:42, Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 >
-> This seems like a duplicate of layerscape-sfp.c. The hardware is
-> (presumably) quite similar, with the T1024RM referencing the QorIQ Trust
-> Architecture User Guide version 2.0, and the L1046 (e.g.) referencing
-> version 2.1.
+> Hi Simon,
 >
-> I think this driver should be removed in favor of the older driver.
-> There are some problematic bits: most notably no offset is applied by
-> this driver, so all fuses have an offset of 0x200. So we will need to
-> implement/document this only for the "fsl,t1023-sfp" compatible, which
-> has already made its way into the T1023 devicetree...
-
-Actually, it seems like the driver was added long after the compatible
-was added to t1023si-post.dtsi, so maybe we can just change the semantics
-of the nvmem cell offset.
-
---Sean
-
-> This really should have been caught during review; a quick grep for
-> "SFP" would have revealed the duplication.
+> sjg@chromium.org wrote on Fri, 8 Mar 2024 15:44:25 +1300:
 >
-> --Sean
+> > Hi Miquel,
+> >
+> > On Tue, 6 Feb 2024 at 01:17, Miquel Raynal <miquel.raynal@bootlin.com> wrote:
+> > >
+> > > Hi Simon,
+> > >
+> > > > > > > > > > > > > > > +description: |
+> > > > > > > > > > > > > > > +  The binman node provides a layout for firmware, used when packaging firmware
+> > > > > > > > > > > > > > > +  from multiple projects. It is based on fixed-partitions, with some
+> > > > > > > > > > > > > > > +  extensions, but uses 'compatible' to indicate the contents of the node, to
+> > > > > > > > > > > > > > > +  avoid perturbing or confusing existing installations which use 'label' for a
+> > > > > > > > > > > > > > > +  particular purpose.
+> > > > > > > > > > > > > > > +
+> > > > > > > > > > > > > > > +  Binman supports properties used as inputs to the firmware-packaging process,
+> > > > > > > > > > > > > > > +  such as those which control alignment of partitions. This binding addresses
+> > > > > > > > > > > > > > > +  these 'input' properties. For example, it is common for the 'reg' property
+> > > > > > > > > > > > > > > +  (an 'output' property) to be set by Binman, based on the alignment requested
+> > > > > > > > > > > > > > > +  in the input.
+> > > > > > > > > > > > > > > +
+> > > > > > > > > > > > > > > +  Once processing is complete, input properties have mostly served their
+> > > > > > > > > > > > > > > +  purpose, at least until the firmware is repacked later, e.g. due to a
+> > > > > > > > > > > > > > > +  firmware update. The 'fixed-partitions' binding should provide enough
+> > > > > > > > > > > > > > > +  information to read the firmware at runtime, including decompression if
+> > > > > > > > > > > > > > > +  needed.
+> > > > > > > > > > > > > >
+> > > > > > > > > > > > > > How is this going to work exactly? binman reads these nodes and then
+> > > > > > > > > > > > > > writes out 'fixed-partitions' nodes. But then you've lost the binman
+> > > > > > > > > > > > > > specifc parts needed for repacking.
+> > > > > > > > > > > > >
+> > > > > > > > > > > > > No, they are the same node. I do want the extra information to stick
+> > > > > > > > > > > > > around. So long as it is compatible with fixed-partition as well, this
+> > > > > > > > > > > > > should work OK.
+> > > > > > > > > > > >
+> > > > > > > > > > > > How can it be both? The partitions node compatible can be either
+> > > > > > > > > > > > 'fixed-partitions' or 'binman'.
+> > > > > > > > > > >
+> > > > > > > > > > > Can we not allow it to be both? I have tried to adjust things in
+> > > > > > > > > > > response to feedback but perhaps the feedback was leading me down the
+> > > > > > > > > > > wrong path?
+> > > > > > > > > >
+> > > > > > > > > > Sure, but then the schema has to and that means extending
+> > > > > > > > > > fixed-partitions.
+> > > > > > > > >
+> > > > > > > > > Can we cross that bridge later? There might be resistance to it. I'm
+> > > > > > > > > not sure. For now, perhaps just a binman compatible works well enough
+> > > > > > > > > to make progress.
+> > > > > > > >
+> > > > > > > > Is there any way to make progress on this? I would like to have
+> > > > > > > > software which doesn't understand the binman compatible to at least be
+> > > > > > > > able to understand the fixed-partition compatible. Is that acceptable?
+> > > > > > >
+> > > > > > > There's only 2 ways that it can work. Either binman writes out
+> > > > > > > fixed-partition nodes dropping/replacing anything only defined for
+> > > > > > > binman or fixed-partition is extended to include what binman needs.
+> > > > > >
+> > > > > > OK, then I suppose the best way is to add a new binman compatible, as
+> > > > > > is done with this v6 series. People then need to choose it instead of
+> > > > > > fixed-partition.
+> > > > >
+> > > > > I'm sorry this is not at all what Rob suggested, or did I totally
+> > > > > misunderstand his answer?
+> > > > >
+> > > > > In both cases the solution is to generate a "fixed-partition" node. Now
+> > > > > up to you to decide whether binman should adapt the output to the
+> > > > > current schema, or if the current schema should be extended to
+> > > > > understand all binman's output.
+> > > > >
+> > > > > At least that is my understanding and also what I kind of agree with.
+> > > >
+> > > > I do want to binman schema to include all the features of Binman.
+> > > >
+> > > > So are you saying that there should not be a 'binman'  schema, but I
+> > > > should just add all the binman properties to the fixed-partition
+> > > > schema?
+> > >
+> > > This is my current understanding, yes. But acknowledgment from Rob is
+> > > also welcome.
+> >
+> > I am trying again to wade through all the confusion here.
+> >
+> > There is not actually a 'fixed-partition' node. So are you saying I
+> > should add one? There is already a 'partitions' node. Won't they
+> > conflict?
+>
+> Sorry for the confusion, there is a 'partitions' node indeed. This
+> node shall declare it's "programming model" (let's say), ie. how it
+> should be parsed. What defines this programming model today is the
+> 'fixed-partitions' compatible. I think we (Rob and myself, but again,
+> Rob, please confirm) agree on the fact that we don't want to duplicate
+> the fixed-partitions compatible/logic and thus the binman compatible
+> was rejected.
+>
+> Hence, in order to move forward, I would definitely appreciate an
+> update of the fixed-partitions binding in order to support what binman
+> can generate.
 
+OK, so I think my confusion is that I thought you were referring to a
+'partitions' compatible. But you are just referring to the name of the
+node being 'partitions', with the compatible string being
+'fixed-partitions'.
 
-[Embedded World 2024, SECO SpA]<https://www.messe-ticket.de/Nuernberg/embed=
-dedworld2024/Register/ew24517689>
+I believe I can make this work by adding a new 'binman.yaml' with the
+compatibles that I want to introduce. I cannot change partition.yaml
+since it does not itself specify a compatible.
+
+>
+> We are here talking about the output of binman, not its input. TBH I
+> haven't understood the point in having binman's input parsed by the
+> generic yaml binding. I would advise to focus on binman's output first
+> because it feels more relevant, at a first glance.
+
+Yes that is fine.
+
+>
+> > Would it be possible for you to look at my patches and suggest
+> > something? I think at this point, after so many hours of trying
+> > different things and trying to understand what is needed, I could
+> > really use a little help.
+>
+> I hope the above details will help.
+
+I think so, thank you. I will send another version.
+
+Regards,
+Simon
 
