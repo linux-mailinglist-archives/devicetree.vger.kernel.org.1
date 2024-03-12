@@ -1,189 +1,167 @@
-Return-Path: <devicetree+bounces-50136-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50137-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EED37879C4B
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 20:37:24 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 44A24879C7B
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 20:57:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 067501C21951
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 19:37:24 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id A72D81F25060
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 19:57:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 97C4F139580;
-	Tue, 12 Mar 2024 19:37:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0C2541428E0;
+	Tue, 12 Mar 2024 19:57:17 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b="IzMtufyi"
+	dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b="pu+hlUW2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-001b2d01.pphosted.com (mx0a-001b2d01.pphosted.com [148.163.156.1])
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2122.outbound.protection.outlook.com [40.107.105.122])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7E91A23A6;
-	Tue, 12 Mar 2024 19:37:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=148.163.156.1
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710272240; cv=none; b=dedthlQ9sLryjlmMU/ihopITLHxiGMHCu4csFOQhV3btvXpqSGCwXtsfqDeYGo7lYL+Y2nHDoUPCxmXoGj8NZonVOv6miFFr8p54P78Mx0oB/qcAksGOII9rwPPihwH3ZmSac11jFMGsXQ/RYqYnbDHFYakGtfR6EtxrPxNwAO8=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710272240; c=relaxed/simple;
-	bh=IYGGfO+zzpOZyYV6oCe1RH59zp5nn/5T//wxPhZKefM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=VSMBMJXiX+kD2Y73u3B16BYUuq2QV+r99abn/gTz643isdm88Z6Yv0ImAaNm5tG3xBDUYcL0HgoajRbsJ9Ggzt1OZWa1quCfyIqUIw5aEZ+9z0lP22NIqzyC7wKuH7qJZlRMrAYi1BXnxg8KniDNYWdzn2F2KFrtnU9BZJ2Avag=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com; spf=pass smtp.mailfrom=linux.ibm.com; dkim=pass (2048-bit key) header.d=ibm.com header.i=@ibm.com header.b=IzMtufyi; arc=none smtp.client-ip=148.163.156.1
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linux.ibm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linux.ibm.com
-Received: from pps.filterd (m0353729.ppops.net [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 42CIus7Y012523;
-	Tue, 12 Mar 2024 19:37:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=80wPmnITO8gQWN+zUxQmSA2ZI8Fawb2/8IYwf+7K3Eg=;
- b=IzMtufyiFM/OdIcCkMkaKiA8BgSUs0K1/85+EtVOt7mwUJ3KS8AsWLpSpPJj35cTAcQ2
- AAtomTwt6pMCSyxcifJwjvXcrEEWlei2AyaAXJTef8ahfGdk/XcNe2pldBIDtreG3Vbl
- wJckCl5ufl/XCRbSx27kKTkoUaCjDovFkTJpqAKtir2J531YtbipeZ1icqg2DEiMwlel
- aj4qNov4U2NjlJWRKz3eU2A0T0dmn7415ocCk0+Y7QJnFCjFMgdCktZ+pDgDGASSmwoE
- 9JKbQLV/kLoU1LeI5BmKyrIVQUyi3ZUmMOlejvZhzE1xwBKFv6GBQ/KpnLRPPoszMDzq mw== 
-Received: from pps.reinject (localhost [127.0.0.1])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3wtvs90hd6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Mar 2024 19:37:09 +0000
-Received: from m0353729.ppops.net (m0353729.ppops.net [127.0.0.1])
-	by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 42CJRFxI017257;
-	Tue, 12 Mar 2024 19:37:08 GMT
-Received: from ppma11.dal12v.mail.ibm.com (db.9e.1632.ip4.static.sl-reverse.com [50.22.158.219])
-	by mx0a-001b2d01.pphosted.com (PPS) with ESMTPS id 3wtvs90hcs-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Mar 2024 19:37:08 +0000
-Received: from pps.filterd (ppma11.dal12v.mail.ibm.com [127.0.0.1])
-	by ppma11.dal12v.mail.ibm.com (8.17.1.19/8.17.1.19) with ESMTP id 42CJNleX018581;
-	Tue, 12 Mar 2024 19:37:07 GMT
-Received: from smtprelay03.dal12v.mail.ibm.com ([172.16.1.5])
-	by ppma11.dal12v.mail.ibm.com (PPS) with ESMTPS id 3ws4t20pw5-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Tue, 12 Mar 2024 19:37:07 +0000
-Received: from smtpav01.wdc07v.mail.ibm.com (smtpav01.wdc07v.mail.ibm.com [10.39.53.228])
-	by smtprelay03.dal12v.mail.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 42CJb4mf47251884
-	(version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-	Tue, 12 Mar 2024 19:37:06 GMT
-Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id 8CDB558063;
-	Tue, 12 Mar 2024 19:37:04 +0000 (GMT)
-Received: from smtpav01.wdc07v.mail.ibm.com (unknown [127.0.0.1])
-	by IMSVA (Postfix) with ESMTP id AA3D35804B;
-	Tue, 12 Mar 2024 19:37:03 +0000 (GMT)
-Received: from [9.47.158.152] (unknown [9.47.158.152])
-	by smtpav01.wdc07v.mail.ibm.com (Postfix) with ESMTP;
-	Tue, 12 Mar 2024 19:37:03 +0000 (GMT)
-Message-ID: <81cd893e-46c3-4d38-aa93-8ab410a770ea@linux.ibm.com>
-Date: Tue, 12 Mar 2024 15:37:03 -0400
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 25EE814290A;
+	Tue, 12 Mar 2024 19:57:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.105.122
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710273436; cv=fail; b=bPjRHveFCq81F1wkHvpenWWxX3wJaXn4sII1NWsctEmSmp5P32tJ6re0rbxczmVDaK973Bj0nUOZX2pJGRl+7KXReK7/vuhX1muRFQlk9GzixAZ5Y70wOTDhKA1DmFq/aW/wdLQtTlR0wX6fD2JvYrC6yhrwVoLLRsG44zcYC54=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710273436; c=relaxed/simple;
+	bh=1NG2DJiqfoqotaSv5axJYoDsbjvcheJh2uuHjvnK7NM=;
+	h=From:Subject:Date:Message-Id:Content-Type:To:Cc:MIME-Version; b=KkmBNpqptZcw158lP1EvCIrf+Oa6XytMlmdu/d+V+XpbYS5kbV2mfeLaYPZq2ZbREUqGG9eqmMKUxEO13bzv7yUaNAGdtkB20NVitYTSH7S2ptNZmmU8SJ1S3sWZc9z7mynmoAm7i2KhXn1zVEMY1GSJ3IrSyiO8VBeq5PHoe5g=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com; spf=pass smtp.mailfrom=solid-run.com; dkim=pass (1024-bit key) header.d=solidrn.onmicrosoft.com header.i=@solidrn.onmicrosoft.com header.b=pu+hlUW2; arc=fail smtp.client-ip=40.107.105.122
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=solid-run.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=solid-run.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZHNTyxpt4wp8/b7cwLralM4oMNV4akwqcB/rlR7f8W7Q/vCHdrHdt+k0sLp40QfG1u8n1yqsDmfMML0lr78j4ZPB64YPIpD3nq0eeJ2o0zOXsIcleDTnSwxdrAR6FKZnxU1yd+PVdBF10ZVa9F8WEHORX7Q132aqPseL2URB8/FDBKjzCNh+wnPWuQUGW+QqywUGvRYQtUe0cpblbih1G8BkwiDPzjcf2jC66SgZMztElXFxlBboVvcEJ6dbvpTpyxYHSPmu1qNiEylGjUfcPCILxAsJtExTjBU4Lsq+squHjZmc6eLLKa8o5d1VW8vGjKV4sQ8NM+GsGUUyIk2WdA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uupHXMX7yBAVTkWtI1qrsKmIT+VKcxDOD0jN2cZ20KM=;
+ b=Z2GdtVms0sjpa37r60bJwdVkfHMzmX5KAN8wosuDIjNIgIpUhkpSjprOlCiwhQZsZ5Y1OhIT6R5DvEIShCt1ukrpFqtywrvsIUJ1d0yTnXOGQKOXvdvU8zJt1HDsKKNucxbPgbi2cx+UEInZt8BTZiG7I2SdeEGOFaTYvA41qtyEB43j4YVLbR8w48pDGjpNQJ07QltO5U2ZE1litZPRbdvFg3+OJFmehcBCC3w1PgmvfROdgWtyRMhUW2GMmG6kSBb2vBuTThcRed+q9FjIVFLiYOQGwm4/9+dB4YxBQDi6Hku8ur5/IM4Btv9wtAkoIFfGVEzIct62wrYmZgR5MQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=solid-run.com; dmarc=pass action=none
+ header.from=solid-run.com; dkim=pass header.d=solid-run.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=solidrn.onmicrosoft.com; s=selector1-solidrn-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uupHXMX7yBAVTkWtI1qrsKmIT+VKcxDOD0jN2cZ20KM=;
+ b=pu+hlUW221M7mrJhnFJd9+0pwXm42AJBf2VJbbV9rtm3Z8r0j6NY8OOzE6ryZsS+aqn3iL1h50xRQaHEWZZLETCKckQiyWAfgjR/X0mzzOUxbyUKaIEHGwyrZrVcQGHFie6ezenjveE0o3rnThauWnY+rtcXz+QA5cpv9amOl0I=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=solid-run.com;
+Received: from AM9PR04MB7586.eurprd04.prod.outlook.com (2603:10a6:20b:2d5::17)
+ by AM9PR04MB8601.eurprd04.prod.outlook.com (2603:10a6:20b:438::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36; Tue, 12 Mar
+ 2024 19:57:12 +0000
+Received: from AM9PR04MB7586.eurprd04.prod.outlook.com
+ ([fe80::57e1:e1cb:74e2:2e9d]) by AM9PR04MB7586.eurprd04.prod.outlook.com
+ ([fe80::57e1:e1cb:74e2:2e9d%5]) with mapi id 15.20.7362.035; Tue, 12 Mar 2024
+ 19:57:12 +0000
+From: Josua Mayer <josua@solid-run.com>
+Subject: [PATCH 0/2] arm64: dts: fsl-lx2162a-som: add description for rtc
+Date: Tue, 12 Mar 2024 20:56:53 +0100
+Message-Id: <20240312-lx2162-rtc-v1-0-1f4cd431b1cf@solid-run.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAIaz8GUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
+ vPSU3UzU4B8JSMDIxMDY0Mj3ZwKI0MzI92ikmTdRDOLJLPUpLTkJFNjJaCGgqLUtMwKsGHRsbW
+ 1ACFLEpxcAAAA
+To: Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>, 
+ Rob Herring <robh+dt@kernel.org>, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Josua Mayer <josua@solid-run.com>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: FR4P281CA0005.DEUP281.PROD.OUTLOOK.COM
+ (2603:10a6:d10:c8::13) To AM9PR04MB7586.eurprd04.prod.outlook.com
+ (2603:10a6:20b:2d5::17)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [RFC PATCH v2 3/3] tpm: of: If available use linux,sml-log to get
- the log and its size
-Content-Language: en-US
-To: Jarkko Sakkinen <jarkko@kernel.org>, mpe@ellerman.id.au,
-        linux-integrity@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Cc: linux-kernel@vger.kernel.org, rnsastry@linux.ibm.com, peterhuewe@gmx.de,
-        viparash@in.ibm.com, devicetree@vger.kernel.org, jsnitsel@redhat.com
-References: <20240311132030.1103122-1-stefanb@linux.ibm.com>
- <20240311132030.1103122-4-stefanb@linux.ibm.com>
- <CZR7B45P71XS.53XNZD9FWZSL@kernel.org>
- <916fb19b-daf8-4c1b-bc25-f071d2b3ae33@linux.ibm.com>
- <CZRVXE96ZZA8.33VFES8S07YS9@kernel.org>
-From: Stefan Berger <stefanb@linux.ibm.com>
-In-Reply-To: <CZRVXE96ZZA8.33VFES8S07YS9@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-GUID: uYpch5nFxdfwWQwYQw4GeJGEeaWxQcn8
-X-Proofpoint-ORIG-GUID: B-r6TN2dDjIyVKTP_5HXBJqJIT_DYiuG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-12_12,2024-03-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- malwarescore=0 spamscore=0 suspectscore=0 priorityscore=1501 phishscore=0
- mlxlogscore=999 bulkscore=0 impostorscore=0 adultscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2311290000
- definitions=main-2403120150
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM9PR04MB7586:EE_|AM9PR04MB8601:EE_
+X-MS-Office365-Filtering-Correlation-Id: 12a68293-523a-4906-4fd4-08dc42ce9b87
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	KN59ZLarAi4/Vb+vXQKjpUP6xWnMnwk1zHhtH0INA0UI/HwchCjBMChWRWPKCr4hK+jv+aOae13t6uPHNtCJREbVlw3FgK6wtyEPcku6hokKfRo57jB/DKwthXz2ZYvrIG4oVnvY9VilfYna7UJbdcjoLSWLlRYcbBk/gWeUp9tG+aezxJQMVcg8Qw5SgfY70lfUEgA3BXdPQBb/I208MqE4b0d/Cia8ll6Pkj6dGHZN1yX5NrWz9C7yBZSzWD1sbQdWO1xjkW+q1bPlolr5J4307MeoO/nS80qlp08LiaaksUuqjcT1y066jJOe0neVuNu/fw9fMY04SwP4YP8kRJX4Opi6Pufa7yc14riE/XK/RSEuxiEfkjq25JDtzSlXT217EOSm+9Eg+DdcGsKl92BcKJDEOtEv1IOkSDGDXKx6RUrsNynyp1zAzIPjNXuYZ7xwJSwLK+wRmT7vG1AHh0lxkxnY1jboAMpoG/8SZLfJyiw4yYd/i+hn2JE0kLP8xenkbiBZdAKp+dDPNE1lR/Za0e/OeWPISee4jQsawvCmA2hn5SsYDwu9sJ6GF8ObLqKhtnyPxwq8rV1kmJfowh+GsrynmOnwmuFQp1VL/uk18PBJ+YiXYb9Kr3ULCKPvAyxjboDJmnv7tuTd3YDoLFxBxxzlQMn8mx72bHE2m3U+0KUCqUeCYd5Ry5/Vff0MQe/MjA35/Iufj7jAJNEFpnQw7J6I/ToiGVWEM0CquIs=
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM9PR04MB7586.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(52116005)(1800799015)(38350700005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?utf-8?B?VWViN1FjYkttcjFjNk51bDEvOTl5UjNaajUwem43aTFhaHJaVXpVQU5hcHVK?=
+ =?utf-8?B?SWw4TllyazVqbWovdFpudmFhbkloS2p5eDI2SFRGSzNyNGFPKzFPNkFLcE1C?=
+ =?utf-8?B?d0M5ODBPamFZU1hhdmlKRVczR1VUbG96b0xlQzBlaEtweFplUEpLTDhGZ2hW?=
+ =?utf-8?B?NEVZL3JoQUduZDQvSmVFQ3NYcTJKTVlyK0N2Wkt3U1pPZjg4YUJWN2pMMVdz?=
+ =?utf-8?B?ZFNNWDJRNGR3K3ZScXdsQUtJbjZWeFkrWDZLNW1rNXpZc2dVcmwwbUFFeWs1?=
+ =?utf-8?B?ZnF2TzdQdnowQzVHZnZqL25jQm5ibXZsTlNtcFZmb0lQTnFHblY5MmJpR2NB?=
+ =?utf-8?B?czJmQ0krWi92eEhLb1hpU0FDeVpvYlhONGZHeFZaWGlxa3lGbVhDQXdKMmVt?=
+ =?utf-8?B?aUQrd0JFeWE2OEJERlA2UUNxQ1NjTmRYdHZNdDBFTHZobWk3Tm5LL2E0UnUx?=
+ =?utf-8?B?V3M5S0U3UDZTdEplRUJucVBjcldiU0ZseldhVXhLTnRlMHlWUEl4NFhqMW1E?=
+ =?utf-8?B?eU8vUjQwWWZVeEpOL256N1Nsa1lXQ2s3VXAwdWFqQWMwMXRxd3BzanpiOU15?=
+ =?utf-8?B?T2NGK2QxTkxVaDJ4ZTV3SW1SdjJmWjd4UUlmZVhQKzRoL1pWcm5yMVQ5L0cx?=
+ =?utf-8?B?b3o5ZUh3UWhJTUxzdDE1K0t3L2tsV0NjS3F6ZHJ6YzV1akNVMWtsK0U4cnBB?=
+ =?utf-8?B?MmNtdUtHSmRvdnF4ZStaWllxYjZIZ3M2UFhtZ3g5VElIVWdObkdUWXZSV2Vm?=
+ =?utf-8?B?K2loQ2lXTGJYQzVmdEJjMEpVZW9jc3cvcmZ1cjRRTndaUzkrNjFRVmxJaHFR?=
+ =?utf-8?B?cEluOGYxT3BXeXJXTmV6VFhSbEtUekN5cTFWZmw1dlVzVWVwUW1MWms2T0Vq?=
+ =?utf-8?B?bFZlR0RYbFNjelV6OUh4bzVsN25pMXdXb3VZU2VvUkVRWXpBU3lncEhsTUZF?=
+ =?utf-8?B?dW1yTzk2aHB6ZlkwaXF2NWlMREtnd3ZLSzB5UGoxMUhDSy90TEtyZ0lIN014?=
+ =?utf-8?B?VUFCSWxoNG9RZlAxajVHbUgzQjJEZTFmNW5VUzlKTkRWODVFemROWk0zMGtj?=
+ =?utf-8?B?WXRDa3BTMGwrNlFuekh2cEhoTXZvMjE0L3dMQysvVjM4RTJNZkN3UWRtUHJ0?=
+ =?utf-8?B?R2lxaGRmWHBHV3oyRk01Y2VRZHZmOE5Vc2NDT2ZmSEZ3N2JjOXpPS21WQVFR?=
+ =?utf-8?B?VTBuNWs4UDRQb0JYU0gvdXlMOU1jVzZrdU42S1diRTU2aDBzTjhGd051NnB3?=
+ =?utf-8?B?N2Rqb0hmNmhFYk14bUpraGw1aG4zcktYbitURFVxbzlQTW8vUHVJVG14TVhZ?=
+ =?utf-8?B?Yy82Q2hOeDNPdjdCcm95UHJtQ3BlbXlwQnhHTWxuSWlYMTZGMm45Ymp3TmlJ?=
+ =?utf-8?B?aXlOSGJMVmJIdFcyY2d2U1hobjZIMS9UVEVzbm9xWHFKSmZkb1JIbkxsZWRk?=
+ =?utf-8?B?YU55RFlwRGlLZW1nMWNWaFZpb25UdVlUYTVpNjVQL0M5MUZKUGhqeVpvWk9H?=
+ =?utf-8?B?a1dkSTdKWCt3VGFmN0ZzQ1N4YUJwd2o5cnIzWENic056WjZnbHU1aTVneEFq?=
+ =?utf-8?B?c1hPeTQxQ1BaMktYMWQvL1M3QXdvZWtSYjBHR29UR3pmTGttblBVbmcyUWg1?=
+ =?utf-8?B?VTM2YmFzY0UxaXpiREN5UnVENzRuM1pZNndZR3VCZmxMTlNhYmRkZ1l3QVpK?=
+ =?utf-8?B?WHp1ZGovei9jZGtMbmZYOGVZcTFReVlTN04vaWxheTdpcEFtTUZCR1JNWGIw?=
+ =?utf-8?B?aXlzamVKUCtXSE9CdlQ0SmZNMzJzd3VINHE3WUFPaUFpWndUaWVWdWZ6MG9K?=
+ =?utf-8?B?ak1EcFdJQ1REL3cxdTExTXR6SkE4bTVzalRWMHg1akl3Z1F5eUJaM25qRmZi?=
+ =?utf-8?B?dE5mN25OODFVd2kxWHJJWERtS2lYQ1lvMEthd20xZXYxMSs2TzdIeDlYY012?=
+ =?utf-8?B?SHZuRTJBU3NSVUR6b00yWlM0ZHBhVnp2c1FWR3dUL2dyZzAyejJDNDZKY3VI?=
+ =?utf-8?B?TGZTVzFnM0hpOTVVV3d6TCtPR3ZDejhyTXlya3B5SjlUMGtNVWdPS0RiYnNY?=
+ =?utf-8?B?OHJNQU9MdU9BanEvZ3BBYVpsYTFXQ1ZlY0s4aTNta0h6M1BrdWpaOWV6MDJL?=
+ =?utf-8?Q?kGtrFN55dDLK8eDILHQKGDC5z?=
+X-OriginatorOrg: solid-run.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 12a68293-523a-4906-4fd4-08dc42ce9b87
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR04MB7586.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 Mar 2024 19:57:12.1788
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: a4a8aaf3-fd27-4e27-add2-604707ce5b82
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: n9hClH9+TYT7XroBy9Mn2td4ALPIRxsK80Mk1kohkkZVl13ySQMvgS/jBEQXGGV6FpjwRKGOLU0gSDGii37WTg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8601
 
+Add description for an on-som rtc that was missed in original submission
+of device-tree.
 
+Also update the clearfog reference carrier board aliases to include the
+previously disabled i2c bus with this rtc.
 
-On 3/12/24 11:43, Jarkko Sakkinen wrote:
-> On Mon Mar 11, 2024 at 10:33 PM EET, Stefan Berger wrote:
->>
->>
->> On 3/11/24 16:25, Jarkko Sakkinen wrote:
->>> On Mon Mar 11, 2024 at 3:20 PM EET, Stefan Berger wrote:
->>>> If linux,sml-log is available use it to get the TPM log rather than the
->>>> pointer found in linux,sml-base. This resolves an issue on PowerVM and KVM
->>>> on Power where after a kexec the memory pointed to by linux,sml-base may
->>>> have become inaccessible or corrupted. Also, linux,sml-log has replaced
->>>> linux,sml-base and linux,sml-size on these two platforms.
->>>>
->>>> Keep the handling of linux,sml-base/sml-size for powernv platforms that
->>>> provide the two properties via skiboot.
->>>>
->>>> Fixes: c5df39262dd5 ("drivers/char/tpm: Add securityfs support for event log")
->>>> Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
->>>
->>> I'm worried about not being up to date and instead using "cached" values
->>> when verifying anything from a security chip. Does this guarantee that
->>> TPM log is corrupted and will not get updated somehow?
->>
->>
->> What do you mean 'guarantee that TPM log is corrupted'?
-> 
-> I presume that this is for power architecture but I have no idea what
+Signed-off-by: Josua Mayer <josua@solid-run.com>
+---
+Josua Mayer (2):
+      arm64: dts: fsl-lx2162a-som: add description for rtc
+      arm64: dts: fsl-lx2162a-clearfog: add alias for i2c bus iic6
 
-Yes it is for Power. From commit message above: "This resolves an issue 
-on PowerVM and KVM on Power where after a kexec the memory pointed to by 
-linux,sml-base may have become inaccessible or corrupted."
+ arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts | 1 +
+ arch/arm64/boot/dts/freescale/fsl-lx2162a-sr-som.dtsi  | 9 +++++++++
+ 2 files changed, 10 insertions(+)
+---
+base-commit: e8f897f4afef0031fe618a8e94127a0934896aba
+change-id: 20240312-lx2162-rtc-a68b6ebfcb53
 
-> leads log being corrupted, and is the scope all of that that arch or
-> some subset of CPUs.
+Sincerely,
+-- 
+Josua Mayer <josua@solid-run.com>
 
-Every CPU will see a corrupted log.
-
-> 
-> The commit message is not very detailed on kexec scenario. It more like
-
-I guess what is missing in the message that the buffer was not properly 
-protected during the kexec and may have been overwritten for example 
-since it was mistakenly assumed to be free memory?
-
-> assumes that reader knows all the detail beforehand. So probably this
-> will start to make sense once the backing story is improved, that's
-> all.
-> 
->> The TPM was handed over from the firmware to Linux and the firmware then
->> freed all memory associated with the log and will then not create a new
->> log or touch the TPM or do anything that would require an update to the
->> handed-over log. Linux also does not append to the firmware log. So
->> whatever we now find in linux,sml-log would be the latest firmware log
->> and the state of the 'firmware PCRs' computed from it should correspond
->> to the current state of the 'firmware PCRs'.
-> 
-> So on what CPU this happens and is there any bigger picture for that
-> design choice in the firmware?
-
-The firmware provides a call sml-handover, which hands over the TPM log 
-to the caller and at the same time frees the log. You cannot call the 
-firmware a 2nd time for the log.
-
-> 
-> If it is a firmware bug, this should emit FW_BUG log message. If not,
-> then this commit message should provide the necessary context.
-
-It's not a firmware bug. The issue is that the buffer holding the TPM 
-log is not properly carried across a kexec soft reboot and may for 
-example have been overwritten since it was assumed to be free memory.
-
-> 
-> BR, Jarkko
-> 
 
