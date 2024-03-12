@@ -1,263 +1,186 @@
-Return-Path: <devicetree+bounces-50008-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50009-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 502ED8790BB
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 10:23:17 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 709E08790F2
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 10:28:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBF84B233A4
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 09:23:14 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 262B5281DF5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 09:28:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 717C279B61;
-	Tue, 12 Mar 2024 09:19:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA54678267;
+	Tue, 12 Mar 2024 09:28:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BTAstBbp"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="RQGVnjDQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 419BE78283;
-	Tue, 12 Mar 2024 09:19:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 05BA98464;
+	Tue, 12 Mar 2024 09:28:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710235141; cv=none; b=Osds4gYoKXMVAksSjJ3Uf3Msg4oU2J2iB/wNly0c1CXATyo4HyPMswfGRrnimjeFgdxpBElKbli39P2jgA+10imbo4XD7NF5Trajqu9rGiUno16iVCkYyo9Xn57X0XIc+juxtpvNGsdO7TiM2YwIRJKURTc1XI+aMNPwk+hxeMk=
+	t=1710235706; cv=none; b=czb69FxyuONlz3Ax4W/7SZJBWDudf/fMI8WfCzzmumUiCgQLR+8X6VL6RFTYu1lJYDtGMx47EGH/AnaK2sGz6yJ8gDKeuRUFglFxpC+PStdE25eWsw9TCl91KOPV69u02DkWITmfkgjKm77/Y769fBAsPyjKU0AUnByvdSCKu/M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710235141; c=relaxed/simple;
-	bh=VUv3NkQu+JmNcsjP/ny6setNiV7uCjzIctFGtpXJ0RA=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=P9TckZRcpaZkVKkuQdjQJKuygsjvo6jlWx4aAInVaankYpbFd+7n20ydDKMN9vhTtcWEw/LOJ1BCbGqpYdFHanQsVExkUSg4/JCLiBovVu7w0XNvrVUy3cLQSjO1JTnc0TA8bSghC0COAfQmHbx60EloSKwmbtUvtaqembd5sDA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BTAstBbp; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id DBF57C433B2;
-	Tue, 12 Mar 2024 09:19:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710235140;
-	bh=VUv3NkQu+JmNcsjP/ny6setNiV7uCjzIctFGtpXJ0RA=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc:Reply-To:From;
-	b=BTAstBbpuoYupU5df0ZCY5nnbUX/Ob38Hf5MtJbEaFFnkmqjAs/UXwNMtoYH7sxyK
-	 PiWjihqLLZdY8bCSfpULeipsp3/XF2O5qS/SsFa5rdoBbtJHsn8Y1A3OoFsMEsaWBL
-	 kkCxOrYqIOoXIdr1R4x5MjeqP+3dDUvKz76+HAYO2Y4iV3OSS6F6VpwSsNdTFUdCsi
-	 bsaTY7o50tcqjnHNX1ZbdH58xIQYECY+u6mdR7Eite4CPH0nRfoshRFfR+GomwbAjA
-	 aDTYvuf6N7yNyDi9OUAFKnEPAxVXYHgIfaCOKBkzpbdALA+LH2PPVCgf/lN+Nfb47q
-	 yO49QCt64JnLg==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id CB611C54E68;
-	Tue, 12 Mar 2024 09:19:00 +0000 (UTC)
-From: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Date: Tue, 12 Mar 2024 17:19:00 +0800
-Subject: [PATCH 4/4] arm64: dts: add support for A5 based Amlogic AV400
+	s=arc-20240116; t=1710235706; c=relaxed/simple;
+	bh=lOb/wLij4QiyTntQtdEH4T0DBOmfeMvCyGzvtevrdlM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dvNi+8QaVSbzQ2bHpMvJygxQc5wkjl3JiR5WvVdOnmpjXgYFdAtIgm3VtiN1B0DhJNYZ8Wgi1gRde+L2h7V/I0BsZTbNBU2w3CnDOOf1M7Ze1hn901N7p8Qg3u46QP3beWJ0cLlV+FotQnbseDCF6aR4PpfknEgodcXQySbkvQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=RQGVnjDQ; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-512e4f4e463so7229213e87.1;
+        Tue, 12 Mar 2024 02:28:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710235703; x=1710840503; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=vypzRSmygKV0lPftTIj3GZMtWC14VrjuyGuYtz9gYZI=;
+        b=RQGVnjDQNpbDWN9CC2pHpD1X04lB9ZG0dSa3XRc25JVP2wdfbvPTgk2ImJbGyTmPMd
+         xScAsn17Y8T7chcQE3ds6eXlmCrIETI7pP65e1HJG8qubAV7zRM/VgqiFM5YbzdeMD6R
+         N/Tz5Wqxof1ySM/tImM+NbbfvIllvDLCV/+txQ22UjsDyBrJE8bH7OtwdBCTnyKePFq6
+         ihkScWr0KmvGZatwspWRr3oWBUkEyFKxnlnAtpZraDY+SKFvWi7tVc0QXAHTY0OckmwF
+         RxPQJn4HzXXz7w3JxWk/4Pb8MNGwp7putzac2ipOs+814TJxt58xg/X5xLd03zVmBVmE
+         skYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710235703; x=1710840503;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=vypzRSmygKV0lPftTIj3GZMtWC14VrjuyGuYtz9gYZI=;
+        b=alxe3PgMa/9sR4WLuTc/tUV15HASSDEqkkTwPjDRueqs28Tqm8605NWPsCSergqO7K
+         wnRQbTVcxVeAdV6dW2Pd9NZTkdMEpvjskPBWlJk8wCnaFCWXC5Gt6kr+qesR0W/nLXSW
+         edeCxQOCRL3TUhVaWeB5llpOFKOq4Uujx1mEOpLRSb8EsR28ROTkkGdHN0ZWSoEVwu2l
+         C+Z4s7E8sSDcrj140hnbXkg3x4at16kspbRhD9QW2rr9S2X0Q93+PGyxklrMNdclHc7c
+         atogS3rSSxMQjTQFqkQ0yvyv87iKqoIWvb9mAtrEhdjYWqKnRn9McGaJiZ7iy/PiYEaT
+         bblA==
+X-Forwarded-Encrypted: i=1; AJvYcCWXqxscMxnAppm2uFBOpVXAKknc0jlw/0hkWMZ39NWbwig/wvaQfACKFRzrAb0yKH9TyXZL6LJMXMqhqsVO6ZWAKpYUeQkgHdsKRg3dXcI4hUFOWnOlOADIzo626o0S1un6PhOFtIUoy7A2hbmRe9zskxlv1D0LFoBvAmyXgqdqOTGRRQ==
+X-Gm-Message-State: AOJu0YwxvMzlQ7VVYsreRRcsqwlQbRHvzYR50Lgo7OzGxg8Ovuhk8Zlc
+	lpDsIdrOokGrEO0E2zj7rgNzc5og7Fy+S/Ou/JRtfSn7XGtvcK9e
+X-Google-Smtp-Source: AGHT+IGtRkGYkdMwkStxreKfnlfTpKe7ly77/KT/i5Sci+pS0MCZOhWw102gaE9pYvHRg+q+/Lz8Bg==
+X-Received: by 2002:ac2:5e6d:0:b0:513:91c4:aa6 with SMTP id a13-20020ac25e6d000000b0051391c40aa6mr1680002lfr.63.1710235702881;
+        Tue, 12 Mar 2024 02:28:22 -0700 (PDT)
+Received: from mobilestation ([178.176.56.174])
+        by smtp.gmail.com with ESMTPSA id b8-20020a0565120b8800b00513b3928e36sm444420lfv.266.2024.03.12.02.28.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 12 Mar 2024 02:28:22 -0700 (PDT)
+Date: Tue, 12 Mar 2024 12:28:20 +0300
+From: Serge Semin <fancer.lancer@gmail.com>
+To: Rob Herring <robh@kernel.org>
+Cc: Viresh Kumar <vireshk@kernel.org>, 
+	Andy Shevchenko <andriy.shevchenko@linux.intel.com>, Vinod Koul <vkoul@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, dmaengine@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: dma: snps,dma-spear1340: Fix data{-,_}width
+ schema
+Message-ID: <v32llcm32lrgxx7inpndjyl4bj2jq3m4sncb7h23hii5k4krlo@gavzbjsuq3sr>
+References: <20240311222522.1939951-1-robh@kernel.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240312-basic_dt-v1-4-7f11df3a0896@amlogic.com>
-References: <20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com>
-In-Reply-To: <20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com>
-To: Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org, 
- Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1710235139; l=4989;
- i=xianwei.zhao@amlogic.com; s=20231208; h=from:subject:message-id;
- bh=pH0aL+QTvYtYOKVMhXMKqMBAqECW+id7MYJXdKVvDyA=;
- b=zTLhLa0fC+whvD1zBxSOnpPljy86ucekmboHv/IJuadP1H2lr772ji7ySx6N+nbsnxAu6wzX8
- m2E2ut97xNHDKrPyjsbuvqQ5ujdutSq3rPAziqrW5bfLOxWcghEQtO6
-X-Developer-Key: i=xianwei.zhao@amlogic.com; a=ed25519;
- pk=o4fDH8ZXL6xQg5h17eNzRljf6pwZHWWjqcOSsj3dW24=
-X-Endpoint-Received:
- by B4 Relay for xianwei.zhao@amlogic.com/20231208 with auth_id=107
-X-Original-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Reply-To: <xianwei.zhao@amlogic.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240311222522.1939951-1-robh@kernel.org>
 
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+On Mon, Mar 11, 2024 at 04:25:22PM -0600, Rob Herring wrote:
+> 'data-width' and 'data_width' properties are defined as arrays, but the
+> schema is defined as a matrix. That works currently since everything gets
+> decoded in to matrices, but that is internal to dtschema and could change.
 
-Amlogic A5 is an application processor designed for smart audio
-and IoT applications.
+Can't remember now why I didn't implement that that way initially.
+Probably because something didn't work back then during the
+DT-bindings check procedure. Anyway thanks for fixing the schema.
 
-Add basic support for the A5 based Amlogic AV400 board, which describes
-the following components: CPU, GIC, IRQ, Timer and UART.
-These are capable of booting up into the serial console.
+Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
 
-Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
----
- arch/arm64/boot/dts/amlogic/Makefile               |  1 +
- .../boot/dts/amlogic/amlogic-a5-a113x2-av400.dts   | 43 ++++++++++
- arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi        | 94 ++++++++++++++++++++++
- 3 files changed, 138 insertions(+)
+-Serge(y)
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index 9a50ec11bb8d..154c9efb26e4 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
-+dtb-$(CONFIG_ARCH_MESON) += amlogic-a5-a113x2-av400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
- dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
-new file mode 100644
-index 000000000000..e36fae1cf844
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5-a113x2-av400.dts
-@@ -0,0 +1,43 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "amlogic-a5.dtsi"
-+
-+/ {
-+	model = "Amlogic A113X2 av400 Development Board";
-+	compatible = "amlogic,av400","amlogic,a5";
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	aliases {
-+		serial0 = &uart_b;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x0 0x40000000>;
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* 52 MiB reserved for ARM Trusted Firmware */
-+		secmon_reserved:linux,secmon {
-+			compatible = "shared-dma-pool";
-+			no-map;
-+			alignment = <0x0 0x400000>;
-+			reg = <0x0 0x05000000 0x0 0x3400000>;
-+		};
-+	};
-+};
-+
-+&uart_b {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-new file mode 100644
-index 000000000000..bfb9f13f84ec
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/amlogic-a5.dtsi
-@@ -0,0 +1,94 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+#include <dt-bindings/gpio/gpio.h>
-+/ {
-+	cpus {
-+		#address-cells = <2>;
-+		#size-cells = <0>;
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu1: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x100>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu2: cpu@200 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x200>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu3: cpu@300 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a55";
-+			reg = <0x0 0x300>;
-+			enable-method = "psci";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gic: interrupt-controller@fff01000 {
-+			compatible = "arm,gic-400";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x0 0xfff01000 0 0x1000>,
-+			      <0x0 0xfff02000 0 0x2000>,
-+			      <0x0 0xfff04000 0 0x2000>,
-+			      <0x0 0xfff06000 0 0x2000>;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-+		};
-+
-+		apb@fe000000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xfe000000 0x0 0x480000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-+
-+			uart_b: serial@7a000 {
-+				compatible = "amlogic,meson-s4-uart",
-+					     "amlogic,meson-ao-uart";
-+				reg = <0x0 0x7a000 0x0 0x18>;
-+				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
-+				clocks = <&xtal>, <&xtal>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+				status = "disabled";
-+			};
-+		};
-+	};
-+};
-
--- 
-2.37.1
-
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../bindings/dma/snps,dma-spear1340.yaml      | 38 +++++++++----------
+>  1 file changed, 17 insertions(+), 21 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml b/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
+> index 5da8291a7de0..7b0ff4afcaa1 100644
+> --- a/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
+> +++ b/Documentation/devicetree/bindings/dma/snps,dma-spear1340.yaml
+> @@ -93,10 +93,9 @@ properties:
+>    data-width:
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+>      description: Data bus width per each DMA master in bytes.
+> +    maxItems: 4
+>      items:
+> -      maxItems: 4
+> -      items:
+> -        enum: [4, 8, 16, 32]
+> +      enum: [4, 8, 16, 32]
+>  
+>    data_width:
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+> @@ -106,28 +105,26 @@ properties:
+>        deprecated. It' usage is discouraged in favor of data-width one. Moreover
+>        the property incorrectly permits to define data-bus width of 8 and 16
+>        bits, which is impossible in accordance with DW DMAC IP-core data book.
+> +    maxItems: 4
+>      items:
+> -      maxItems: 4
+> -      items:
+> -        enum:
+> -          - 0 # 8 bits
+> -          - 1 # 16 bits
+> -          - 2 # 32 bits
+> -          - 3 # 64 bits
+> -          - 4 # 128 bits
+> -          - 5 # 256 bits
+> -        default: 0
+> +      enum:
+> +        - 0 # 8 bits
+> +        - 1 # 16 bits
+> +        - 2 # 32 bits
+> +        - 3 # 64 bits
+> +        - 4 # 128 bits
+> +        - 5 # 256 bits
+> +      default: 0
+>  
+>    multi-block:
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+>      description: |
+>        LLP-based multi-block transfer supported by hardware per
+>        each DMA channel.
+> +    maxItems: 8
+>      items:
+> -      maxItems: 8
+> -      items:
+> -        enum: [0, 1]
+> -        default: 1
+> +      enum: [0, 1]
+> +      default: 1
+>  
+>    snps,max-burst-len:
+>      $ref: /schemas/types.yaml#/definitions/uint32-array
+> @@ -138,11 +135,10 @@ properties:
+>        will be from 1 to max-burst-len words. It's an array property with one
+>        cell per channel in the units determined by the value set in the
+>        CTLx.SRC_TR_WIDTH/CTLx.DST_TR_WIDTH fields (data width).
+> +    maxItems: 8
+>      items:
+> -      maxItems: 8
+> -      items:
+> -        enum: [4, 8, 16, 32, 64, 128, 256]
+> -        default: 256
+> +      enum: [4, 8, 16, 32, 64, 128, 256]
+> +      default: 256
+>  
+>    snps,dma-protection-control:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> -- 
+> 2.43.0
+> 
+> 
 
