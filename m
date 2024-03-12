@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-50045-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50046-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D008A8793C9
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 13:09:31 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 085E88793CE
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 13:10:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 01C11B25500
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:09:29 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 39EFF1C21566
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 12:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BDE07A705;
-	Tue, 12 Mar 2024 12:08:00 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A3BC79DC6;
+	Tue, 12 Mar 2024 12:10:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JY+ZuTNh"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="aqmk5Zt7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
+Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 22B027A153
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 12:07:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AF3CE79B9F
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 12:10:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710245280; cv=none; b=uyCILDIFJBFSbxcmhgWZXqph3sHUDxLCBFbTaAGjj77L/djssF78VaR/VyzFE0QKy9bPvzybbzFYBEnlOL0vBIZ9rtdC1vmqMKJI9OoPXj1kh3dYEGr+6+oLoN6H+i39/iQpMNzatoiiRW747NMkTalXMnZH6et4SQ90BFy/NVs=
+	t=1710245408; cv=none; b=NhxhubjlipO5DyjZPWV40Gf/fJJz2ypfSgM+LuFg2qfnGixNsts49SGi3TGxTR2Y+l9eib34Q4aoKo/XQaKkoRayZMsVXgeg/OLkcC90BHYKAb0B9dKQVsfpvqc8FTm4OXqqsDs49aILGdo1SoqCNLN22C3pPy0FqQeN7WLtd2E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710245280; c=relaxed/simple;
-	bh=FdXj3NbPr7LIPFPHDC9Uw9gFoYIpHXkckrbFtHnEb+w=;
+	s=arc-20240116; t=1710245408; c=relaxed/simple;
+	bh=hDxEz2OH4QmQwW1yiJ//w+TME4XEXUrwQv6kDmcN8rU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=UmP49WWJpPJtTqn8xERG+oB5EHXcexM3+pL89JsqwMlTs1KYdCEqYs3lIk4sF6MlVF5cr/EjOflzfeVRL3hSHmmvTeq6Cm6EgxhTPPbp6rKRLSpKldewNl5+HuLcMZo9ZyLSmRRLl1E6Rgx/JkWjygRU2Ab5AIAH8leoQkHDGkE=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JY+ZuTNh; arc=none smtp.client-ip=209.85.167.44
+	 In-Reply-To:Content-Type; b=bT8dZS8awrLC+qRbl0dERH9oRtNT2ERfRrm6VQcU+XoLVzduMY/6bTV0ZeFy6TuRjnehIIuE++4EZodZM1UkcO+qkPmzRi8FIehZpsacTOYkdSUVTwXjwJEesLd3Vegn6u5ttAeGJDOBsYNutNcUonppt3OA2FzmR2DyKBhGykU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=aqmk5Zt7; arc=none smtp.client-ip=209.85.208.178
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f44.google.com with SMTP id 2adb3069b0e04-512f892500cso4132972e87.3
-        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 05:07:57 -0700 (PDT)
+Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d220e39907so88409031fa.1
+        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 05:10:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710245276; x=1710850076; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710245405; x=1710850205; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=iZTLBLXw0PtBY4+JEvlrcgEHBXz8k2cD2lNLRF2eF88=;
-        b=JY+ZuTNh7NEbuwo1xIAz1BLXjaFKjcqvY4ueO2/2GfssGZYSkKEWTUK3syfoL03KiX
-         FfO6kMqk6ULABZawXwcJEP7CGiXnZA5fN5vSbGdwILP95wi7wklmCycA3Fs2uc3R2jpO
-         gFBqt5lk2RJc10OsK3KfqQpCr8N1yjRg+xcRoTnkhpQHoovSmmp0hc0KP8h7pd+VWcJ7
-         20a7zxA1JYAa4tUwOVLxYAwa04DB4w1OgpJ0UNTCVRvIXuS4zcG6ZDaTlmo2huPXpmsJ
-         ep1+yZbUvKRaWb/SZkw5X58EBNCXYI69grCI+M5PplTuqi4SQizOk7XfWCKzwXlZ2Ef9
-         fZGQ==
+        bh=Ha8faRN/yVfn98uA+FQFvowllOk5X8uUBDqlexcK+hk=;
+        b=aqmk5Zt7TZwDnxYJSGnreky7TDcYtvwL+LvxR4HdO4vbt4FpNtOV1Ca/d4Sai45ZLh
+         quJk6aWTwYFDaQ059Ody9xL0WEx+SwDdmKNTT1pBx6EebE6EtBEjA5BTAQhmxXgoTLNN
+         oxwa3F3vcahLbwERA+NT+aVr96lf8bWCkB4YvmetGcoZ0kejlaJreCfc5rUJjnp77f2I
+         i4pNv0uAsrBeRxxgi82HKFbTUcNe2x3IpfjSLWgHgxmaQqc7tvPcV2QTIy1U2pkjdYEr
+         qOZhQrTUsQaC6gCMMIbWH19/JkAfo7Bee0LRGbi67S56bUtMe0AAMrayTraNYOGou300
+         QoEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710245276; x=1710850076;
+        d=1e100.net; s=20230601; t=1710245405; x=1710850205;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iZTLBLXw0PtBY4+JEvlrcgEHBXz8k2cD2lNLRF2eF88=;
-        b=HL03nEUGC+lfSq6hnjdPma3EV8WZE2Pa35o9O7TyR0gULnFbTmmdLMZM8xJ6yMfczL
-         pKVEBGzfq0VKe6IaL1nWCL4fl5gBrufQ8hEf5fZ+HUItllWnUgKTBZHNBARTYUiMdGAD
-         C+xJTjrndPRJnob+zVpIDhk+qEbrfH+UjTp7+vUkuvrcB+reU8ggQOe1E73hcEFAM6Zf
-         su+ix22CDn6+p8EEREp6LHgK8TcYszbvfChBca0UT4TkBIDVbgW7R75EAE/TB5ZCE6Y0
-         FTJDiIMa9ylbuuYZUSan8VATSYFMYVVeSviYmKEl4Tbg/GqaPOSnwSeOM+A7m+XZbqN7
-         dkvA==
-X-Forwarded-Encrypted: i=1; AJvYcCWAN2FMgaYAKB/G/K3Tx2Toy1BNogtC5pBYfGqVbgtCEmjqnvXSM7Agd9Nywy6iBCcoy61NO+WIMmpnizUDPcrag4o5WKLuneKUlw==
-X-Gm-Message-State: AOJu0YybKaCXhDTpCvyhvWCCBad7BMOv2mu2slIDtxLjT9ZJ/HYMWSAE
-	LqaMP1Vrw9N3d7tV/kmAoeriAa2Z8r6ESe25px9hbzEYwUU96PAZLkFCAV+M5jc=
-X-Google-Smtp-Source: AGHT+IGYNeAFx++7ZzyH0xN5jWKQ2JmEo3fxqQM6nAGUk+mEASwkbODLWZr9/PhJAOqOSd0+QfTGqw==
-X-Received: by 2002:a05:6512:4014:b0:513:a6a7:ac88 with SMTP id br20-20020a056512401400b00513a6a7ac88mr5825932lfb.14.1710245276277;
-        Tue, 12 Mar 2024 05:07:56 -0700 (PDT)
+        bh=Ha8faRN/yVfn98uA+FQFvowllOk5X8uUBDqlexcK+hk=;
+        b=koBBRSDhhrOGKyeXRI33NQ3+NHiAFTjE+Exw9hai1Wx/a62oYQloiDl3UNKjOufWQ0
+         V3O2sIBAU4LgUr+Yu00Wty1+uiYWr5TKvEo5zSEyhcmhBQ4ct1ZTlRXsazwxuimf1BLl
+         iW/6H2wMR8rqhBQLadd36vj7DV36fcZCQbpEiidn7Ncz7ulk9qVjSJE8BNEa/JpAvpRN
+         UXuTGgvz7thzk/zZerG3zf+dfYeX9krSqbz/dJiLNVZ42ax3DTFOqe9ktUNhrZjZxQaF
+         1n/k4jbpNWPOlyDjUqClrP9Ui+Rr4+ImAs+ncpFX/Y6aR4VzLKJ5cLZcjkQM7W5yNRkn
+         BU5Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUQ163yKkgTqXi0Q6AoQ9VRg9AB1f2TiJQliXcCotlJb8YayjPXnCh+ukBYgy0H0+5wcphZG4ql0ZHSs5Z2rYBDgBHEVo6BQ0T+9w==
+X-Gm-Message-State: AOJu0YxdPE39Fn1fdHNTl0XyCAOW6zWSk5mvUR12nbB5jE6P5kniIuAH
+	S8NTzTpRa3HqX6O5/ms0M20iqj65XvrN1p87BySRqVyngRBAO5G9jV1utEZMpYM=
+X-Google-Smtp-Source: AGHT+IGLRhqZ1cowdJemW7WbRaJP4k+LcuAmSZsTCZbbKBRPKJFEhrDt8+CgxA9tAl//7bMAyVthsw==
+X-Received: by 2002:ac2:4c42:0:b0:513:3dc5:cd5f with SMTP id o2-20020ac24c42000000b005133dc5cd5fmr3441452lfk.40.1710245404889;
+        Tue, 12 Mar 2024 05:10:04 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id f19-20020a05600c4e9300b004131b2f3958sm12274812wmq.13.2024.03.12.05.07.54
+        by smtp.gmail.com with ESMTPSA id u15-20020a05600c138f00b00412706c3ddasm18794203wmf.18.2024.03.12.05.10.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Mar 2024 05:07:55 -0700 (PDT)
-Message-ID: <f2fdbab6-524c-47b0-b250-37483efc5fdf@linaro.org>
-Date: Tue, 12 Mar 2024 13:07:54 +0100
+        Tue, 12 Mar 2024 05:10:04 -0700 (PDT)
+Message-ID: <18d34385-fd0b-401c-9ca4-ccf22106bd68@linaro.org>
+Date: Tue, 12 Mar 2024 13:10:02 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,25 +76,20 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [net-next 1/2] dt-bindings: net: renesas,etheravb: Add optional
- MDIO bus node
+Subject: Re: [PATCH v12 2/4] dt-bindings: remoteproc: add Tightly Coupled
+ Memory (TCM) bindings
 Content-Language: en-US
-To: =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund+renesas@ragnatech.se>
-Cc: Sergey Shtylyov <s.shtylyov@omp.ru>, "David S. Miller"
- <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Geert Uytterhoeven <geert+renesas@glider.be>,
- Claudiu Beznea <claudiu.beznea.uj@bp.renesas.com>,
- Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
- Biju Das <biju.das.jz@bp.renesas.com>, netdev@vger.kernel.org,
- devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-References: <20240309155334.1310262-1-niklas.soderlund+renesas@ragnatech.se>
- <20240309155334.1310262-2-niklas.soderlund+renesas@ragnatech.se>
- <cb8f85de-c1cd-4742-b8a4-2533482ee3b6@linaro.org>
- <20240310134638.GK3735877@ragnatech.se>
+To: Tanmay Shah <tanmay.shah@amd.com>, andersson@kernel.org,
+ mathieu.poirier@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ michal.simek@amd.com, ben.levinsky@amd.com
+Cc: linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ Radhey Shyam Pandey <radhey.shyam.pandey@amd.com>
+References: <20240301181638.814215-1-tanmay.shah@amd.com>
+ <20240301181638.814215-3-tanmay.shah@amd.com>
+ <fb78bdda-2ec7-4fcc-888e-233905a9386c@linaro.org>
+ <2c45d7fb-06e4-468d-9415-0eaa48c5250b@amd.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -140,80 +135,52 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240310134638.GK3735877@ragnatech.se>
+In-Reply-To: <2c45d7fb-06e4-468d-9415-0eaa48c5250b@amd.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 10/03/2024 14:46, Niklas Söderlund wrote:
-> Hi Krzysztof,
-> 
-> Thanks for your comments.
-> 
-> On 2024-03-10 09:44:45 +0100, Krzysztof Kozlowski wrote:
->> On 09/03/2024 16:53, Niklas Söderlund wrote:
->>> The Renesas Ethernet AVB bindings do not allow the MDIO bus to be
->>> described. This has not been needed as only a single PHY is
->>> supported and no MDIO bus properties have been needed.
->>>
->>> Add an optional mdio node to the binding which allows the MDIO bus to be
->>> described and allow bus properties to be set.
->>>
->>> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
->>> ---
->>
->> I believe this is v2. Mark your patchsets clearly (git format-patch -v2
->> or use b4) and provide changelog under --- or in the cover letter.
->>
->>
->>>  Documentation/devicetree/bindings/net/renesas,etheravb.yaml | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
->>> index de7ba7f345a9..5345ad8e1be4 100644
->>> --- a/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
->>> +++ b/Documentation/devicetree/bindings/net/renesas,etheravb.yaml
->>> @@ -93,6 +93,10 @@ properties:
->>>      description: Number of size cells on the MDIO bus.
->>>      const: 0
->>>  
->>> +  mdio:
->>> +    $ref: /schemas/net/mdio.yaml#
->>> +    unevaluatedProperties: false
+On 11/03/2024 17:27, Tanmay Shah wrote:
+>>> +    then:
+>>> +      patternProperties:
+>>> +        "^r5f@[0-9a-f]+$":
+>>> +          type: object
 >>> +
+>>> +          properties:
+>>> +            reg:
+>>> +              minItems: 1
+>>> +              items:
+>>> +                - description: ATCM internal memory
+>>> +                - description: BTCM internal memory
+>>> +                - description: extra ATCM memory in lockstep mode
+>>> +                - description: extra BTCM memory in lockstep mode
+>>> +
+>>> +            reg-names:
+>>> +              minItems: 1
+>>> +              items:
+>>> +                - const: atcm0
+>>> +                - const: btcm0
+>>> +                - const: atcm1
+>>> +                - const: btcm1
 >>
->> Please fixup the phy pattern, so it will be obvious it is for
->> ethernet-phy and probably deprecate it. The phy goes to mdio bus, right?
+>> Why power domains are flexible?
 > 
-> Yes the PHY goes on the MDIO bus and the pattern is only needed for 
-> backward compatibility.
+> User may not want to use all the TCMs. For example, if users want to turn-on only TCM-A and rest of them want to keep off, then
 > 
-> The pattern was specific to ethernet-phy in the past, but Rob removed it 
-> in commit ac8fe40c3628 ("dt-bindings: net: renesas: Drop ethernet-phy 
-> node schema"). Have something changed and I should revert that as part 
-> of this patch?
+> they can avoid having power-domains of other TCMs in the device-tree. This helps with less power-consumption when needed.
+> 
+> Hence flexible list of power-domains list.
+> 
 
-Ah, indeed. Let it stay as is. I thought there would be conflict with
-mdio, but pattern still looks for unit address, so it's fine to have
-both: existing @[0-9a-f] and mdio.
+Isn't turning on/off driver's job? Sorry, but what is "user" here? DTS
+describes bindings, not OS policy.
 
-> 
-> I agree it should be listed as deprecated, would this diff work for you?
-> 
-> +# In older bindings there where no mdio child-node to describe the MDIO bus
-> +# and the PHY. To not fail older bindings accept any node with an address. New
-> +# users should describe the PHY inside the mdio child-node.
->  patternProperties:
->    "@[0-9a-f]$":
->      type: object
-> +    deprecated: true
+Also, please wrap your replies to match email style.
 
-Looks fine.
+> I can certainly mention "items:" under power-domains property.
+> 
+> 
+>>
 
-> 
-> Depending on if Rob's patch should be reverted in whole or in part I 
-> could also try to revert the pattern to "^ethernet-phy@[0-9a-f]$" if you 
-> wish. Please let me know what looks best to you.
-> 
 
 Best regards,
 Krzysztof
