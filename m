@@ -1,262 +1,106 @@
-Return-Path: <devicetree+bounces-50131-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50132-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D38B2879BD0
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 19:45:23 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E74B879BD6
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 19:47:03 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0395D1C21B3E
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 18:45:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 3F9E61C23080
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 18:47:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 362291420DD;
-	Tue, 12 Mar 2024 18:45:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 400DD1419B0;
+	Tue, 12 Mar 2024 18:47:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="HN1QAnTH"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="G8YljozX"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f53.google.com (mail-wm1-f53.google.com [209.85.128.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBE11419B4
-	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 18:45:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12A98139572;
+	Tue, 12 Mar 2024 18:46:59 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710269117; cv=none; b=BE562RYC0fj2Zc/zv4P7TlbtibcC26oG8PQyCvEyewQqxFU27IP0ZnhHU6SP7Yiv4hCVCPVEbTpqpIn5hi9gZ1PjpHF9Kb/q6spMCuPhJolpuRwy8auRQQyLaol3X1jlCJb93KcoIFrD1MjG5Tl57lqywa4fL3dkPggzJQrTjHQ=
+	t=1710269220; cv=none; b=cjaz7r2D11KJobqUTcV74ZYNSyNjMmKt3zyQ5kO505rWhCDvPjw0DvzrXf9t2LXKm6bLQKP19+CFcRZmeZsj5eT9rbpO6xbNJqNJkmkQFmi+tgI2/6mhNWZLsJIgQ56iI6z6YfnwMSoWrlAh0oD3E2TC+djcKgCywXPchGCkS04=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710269117; c=relaxed/simple;
-	bh=1zJnWv1hrjmsMywTXYDBfs8GRqOr++kEWNQG39++kCg=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=ogQHuQzjEg6S8/gZBnnxSzygxztbLNRtGQQ74mEUJMBNYuP+ujEVsh5MiqlRv8EzC1PY3wvjq391fkWQ0pZv5dbUaBLyd9wspTXNmsYU+pyXqspLy+QUtyZEAEPrG+w9Qi47V6wtyPVSSTYjh1rMLjOsaApW5PPNT5tJJD6n3cI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=HN1QAnTH; arc=none smtp.client-ip=209.85.128.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f53.google.com with SMTP id 5b1f17b1804b1-412e784060cso832995e9.1
-        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 11:45:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710269114; x=1710873914; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=bEVFAngRvDl2zbSiDLqDrlc16GB0IzIQ5e1CSaj+FrM=;
-        b=HN1QAnTHsJjHUsaQEJKNBD6wMRmov5z5Y+BM0AwLG/X1u0NycBQUn91yxFfXmaXb2l
-         K/k+SMUm5oKoMv67NKnKXKh0EcjdKGvIBdyBzZABr0vXDExBuJKugyrGjNESFdRZ796m
-         vbtY9cfaoT1dWXKTEcXndYMBnWbBz0hBQWKSe+JVYZx+pzo/hDsWi4/Scx4G+iBd8ucW
-         ozJ0HXqH0zVi79IqLByVIATwe0JmONmh5XV7EEW6i23x4XhdhcARziroazAg3BWG/gTc
-         0GRpQjiWGqdN4gveD/RGmaMgVy5PG2LqVF6mppwVFIXRbY/vX6Domqcj4HN0JH5ZSgey
-         R+xw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710269114; x=1710873914;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :content-language:references:cc:to:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=bEVFAngRvDl2zbSiDLqDrlc16GB0IzIQ5e1CSaj+FrM=;
-        b=ZXpj72FZAfwhYi7mizOZ57/G/4u4eAKOhCR1QbgnN3wUVMOnV7kkDCyn8QURidFuSO
-         1HKVuwXMwzUDK9NOgrP6GJXtSHMF7f5N5VWL+AFDJrZDjXCWwLHA1844SKwzpWNSTouC
-         NLH/gaHEOEq9uv4UOQSw2WN3i0v81L/Y0om3Oyj8Ky+4EWEm1zU2Fg3KeZpq4L5iEVLE
-         5qNTR18K1UTa2+IQ2qBi/DVW1gjBTz3gD0Uo7m5G5NAzvNX3pCVj0d/gkCxdHhTpUnNH
-         9HB31VXTNGVDHu0sb4yvhSLz205IDdo2QSUUYoAfBEpoinWPqpZ13TxvgRIzmKOdHwYT
-         flIA==
-X-Forwarded-Encrypted: i=1; AJvYcCUqa70LfaXEFS6/kA/pDsT6HhKALh+iJ+hB7iiwiZzM0DDFM6l4jUAoFaEIKiNIjsGgRtuhazUZC4eLBL05q2GIJoj405jGjC9HmA==
-X-Gm-Message-State: AOJu0Yx/w4grJomx93nPVaixztLHYAYEiLKKBSfonYOBCO37jcVHeVkk
-	205t7xJaCtktylAJLsZpInlGSgN0sXLrqUfQZ1UpRW3oWNuCM6aFsA2H6csDBRA=
-X-Google-Smtp-Source: AGHT+IF3ZzVKFkGJ+VUtKrBndnmwatRZPL08zOH6RN9WnQdDr9Ls3ib+LipgfYO/ReGHycUqB83Dhg==
-X-Received: by 2002:a05:600c:4f09:b0:413:2a42:8af5 with SMTP id l9-20020a05600c4f0900b004132a428af5mr354027wmq.15.1710269113447;
-        Tue, 12 Mar 2024 11:45:13 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:8238:61bd:7273:ad90? ([2a01:e0a:982:cbb0:8238:61bd:7273:ad90])
-        by smtp.gmail.com with ESMTPSA id bh25-20020a05600c3d1900b004133365bbc6sm3142712wmb.19.2024.03.12.11.45.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 Mar 2024 11:45:13 -0700 (PDT)
-Message-ID: <65d60ed4-e52c-4f98-84e1-4d753e29adfc@linaro.org>
-Date: Tue, 12 Mar 2024 19:45:11 +0100
+	s=arc-20240116; t=1710269220; c=relaxed/simple;
+	bh=ZleuLADETdxDZdP0Ta4Jv85GUl4W9m4R2acmNlfYAiM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=okqzyjSbLj7y69ZcxVB1t9Ra+8YeVdHJHcZD/95wBI/iQ0v8YeonVZ+1I95GFo8OUB5AxOzB0qJNU+NuXnpi72t2v9AwtlI3YdZmYraYBjOhe3DPhg4PbJUKpzz4u6JCY68MydfH4PaC/1/etUBL67Z0jktOQPW/8h5ZvMrZpSY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=G8YljozX; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF7F7C433C7;
+	Tue, 12 Mar 2024 18:46:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710269219;
+	bh=ZleuLADETdxDZdP0Ta4Jv85GUl4W9m4R2acmNlfYAiM=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=G8YljozXxppFpBgGJoXkFdEEQvzY9FBxlCupNY6kWEMAM/o4NbPnPh9B/n8nOuHP2
+	 fAHMKdc5xYMDwqVbdS1TA/NLkv03WCID3Bx9QeQmYB3OPlSCNRck/rPLj2CrFft1JP
+	 442KVDsCgg8JvopYqs1f3iAbP6oUPcJNSG7XNIgWxa5QUt12Sv2nxnINTwgtFErp8P
+	 GwQGuplZ128CtIezyqhK8+ACds92u+kIcFa6i7x7/9oiQbUqwoaYPVBHVSYAX7w2qw
+	 fzDWeXSx7KkM5v0vH+TonF/9xiZ+aGzxnPLqpHL3HpvM4q932jdHjDw9afBWA5lamB
+	 Mkcdf6LZ0JiNw==
+Date: Tue, 12 Mar 2024 18:46:55 +0000
+From: Conor Dooley <conor@kernel.org>
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Linus Walleij <linus.walleij@linaro.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pinctrl: samsung: drop unused header with
+ register constants
+Message-ID: <20240312-disobey-playset-f3d451adf41c@spud>
+References: <20240312164428.692552-1-krzysztof.kozlowski@linaro.org>
+ <20240312-numbly-starfish-d2ebb32a222d@spud>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: sm8650: add support for the
- SM8650-HDK board
-To: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240223-topic-sm8650-upstream-hdk-v1-0-ccca645cd901@linaro.org>
- <20240223-topic-sm8650-upstream-hdk-v1-2-ccca645cd901@linaro.org>
- <8a1b08df-dc44-6f9f-c819-33491308699e@linaro.org>
-Content-Language: en-US, fr
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <8a1b08df-dc44-6f9f-c819-33491308699e@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+	protocol="application/pgp-signature"; boundary="o0HxiCWpzsHdxPd0"
+Content-Disposition: inline
+In-Reply-To: <20240312-numbly-starfish-d2ebb32a222d@spud>
 
-On 03/03/2024 00:26, Vladimir Zapolskiy wrote:
-> Hi Neil,
-> 
-> On 2/23/24 10:52, Neil Armstrong wrote:
->> The SM8650-HDK is an embedded development platforms for the
->> Snapdragon 8 Gen 3 SoC aka SM8650, with the following features:
->> - Qualcomm SM8650 SoC
->> - 16GiB On-board LPDDR5
->> - On-board WiFi 7 + Bluetooth 5.3/BLE
->> - On-board UFS4.0
->> - M.2 Key B+M Gen3x2 PCIe Slot
->> - HDMI Output
->> - USB-C Connector with DP Almode & Audio Accessory mode
->> - Micro-SDCard Slot
->> - Audio Jack with Playback and Microphone
->> - 2 On-board Analog microphones
->> - 2 On-board Speakers
->> - 96Boards Compatible Low-Speed and High-Speed connectors [1]
->>    - For Camera, Sensors and external Display cards
->>      - Compatible with the Linaro Debug board [2]
-> 
-> what are these [1] and [2] references? Probably there might be some links.
 
-Indeed
+--o0HxiCWpzsHdxPd0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> 
->>      - SIM Slot for Modem
->>      - Debug connectors
->>      - 6x On-Board LEDs
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/Makefile       |    1 +
->>   arch/arm64/boot/dts/qcom/sm8650-hdk.dts | 1259 +++++++++++++++++++++++++++++++
->>   2 files changed, 1260 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
->> index 7d40ec5e7d21..4f48c98451de 100644
->> --- a/arch/arm64/boot/dts/qcom/Makefile
->> +++ b/arch/arm64/boot/dts/qcom/Makefile
->> @@ -241,6 +241,7 @@ dtb-$(CONFIG_ARCH_QCOM)    += sm8450-sony-xperia-nagara-pdx224.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8550-hdk.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8550-mtp.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8550-qrd.dtb
->> +dtb-$(CONFIG_ARCH_QCOM)    += sm8650-hdk.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8650-mtp.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += sm8650-qrd.dtb
->>   dtb-$(CONFIG_ARCH_QCOM)    += x1e80100-crd.dtb
->> diff --git a/arch/arm64/boot/dts/qcom/sm8650-hdk.dts b/arch/arm64/boot/dts/qcom/sm8650-hdk.dts
->> new file mode 100644
->> index 000000000000..cb1e0f569483
-> 
-> <snip>
-> 
->> +
->> +&i2c6 {
->> +    clock-frequency = <400000>;
->> +    status = "okay";
->> +
-> 
-> <snip>
-> 
->> +};
->> +
->> +&i2c3 {
->> +       status = "okay";
->> +
-> 
-> <snip>
-> 
->> +};
-> 
-> Please change the order of i2c3 and i2c6.
+On Tue, Mar 12, 2024 at 06:44:17PM +0000, Conor Dooley wrote:
+> On Tue, Mar 12, 2024 at 05:44:28PM +0100, Krzysztof Kozlowski wrote:
+> > The bindings header for Samsung pin controller DTS pin values (holding
+> > register values in fact) was deprecated in v6.1 kernel in
+> > commit 9d9292576810 ("dt-bindings: pinctrl: samsung: deprecate header
+> > with register constants").  This was enough of time for users to switch
+> > to in-DTS headers, so drop the bindings header.
+> >=20
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
+> Have you checked whether U-Boot has also dropped use (or never did use)
+> of this header?
 
-Ack
+nvm, I checked it myself and Caleb's series that moves things to use
+upstream headers does't seem to use this either.
 
-> 
-> <snip>
-> 
->> +&pcie_1_phy_aux_clk {
->> +    clock-frequency = <1000>;
->> +};
->> +
-> 
-> May be put the clock above after &pcie1_phy like in the list of gcc
-> source clocks?
-
-Ack
-> 
->> +&pcie0 {
->> +    wake-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
->> +    perst-gpios = <&tlmm 94 GPIO_ACTIVE_LOW>;
->> +
->> +    pinctrl-0 = <&pcie0_default_state>;
->> +    pinctrl-names = "default";
->> +
->> +    status = "okay";
->> +};
->> +
->> +&pcie0_phy {
->> +    vdda-phy-supply = <&vreg_l1i_0p88>;
->> +    vdda-pll-supply = <&vreg_l3i_1p2>;
->> +
->> +    status = "okay";
->> +};
->> +
->> +&pcie1 {
->> +    wake-gpios = <&tlmm 99 GPIO_ACTIVE_HIGH>;
->> +    perst-gpios = <&tlmm 97 GPIO_ACTIVE_LOW>;
->> +
->> +    pinctrl-0 = <&pcie1_default_state>;
->> +    pinctrl-names = "default";
->> +
->> +    status = "okay";
->> +};
->> +
->> +&pcie1_phy {
->> +    vdda-phy-supply = <&vreg_l3e_0p9>;
->> +    vdda-pll-supply = <&vreg_l3i_1p2>;
->> +    vdda-qref-supply = <&vreg_l1i_0p88>;
->> +
->> +    status = "okay";
->> +};
->> +
-> 
-> So I've found just these minor things, and I've successfully tested
-> the dtb on the SM8650-HDK board.
-> 
-> Reviewed-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> Tested-by: Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>
-> 
-> -- 
-> Best wishes,
-> Vladimir
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
 Thanks,
-Neil
+Conor.
+
+--o0HxiCWpzsHdxPd0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZfCjHwAKCRB4tDGHoIJi
+0hhyAQCEf6JD4mj5ZXW4GwHQXP/8jJHU2smedglO7gXQUtaq7QD/eOJInvwhBEF5
+C6p9xGy/pp1Dlwyc5R820h4DCMuLsws=
+=Zsuu
+-----END PGP SIGNATURE-----
+
+--o0HxiCWpzsHdxPd0--
 
