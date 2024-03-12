@@ -1,130 +1,127 @@
-Return-Path: <devicetree+bounces-50084-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50077-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25F508796F7
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:55:56 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id D6F3B8796D5
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 15:50:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 770B0281196
-	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:55:54 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7608D1F21E9D
+	for <lists+devicetree@lfdr.de>; Tue, 12 Mar 2024 14:50:28 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BD0A7B3D7;
-	Tue, 12 Mar 2024 14:55:50 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9B6067B3DC;
+	Tue, 12 Mar 2024 14:50:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="BvTG8xQe"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="jeYtFwEV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9B35BF4FA;
-	Tue, 12 Mar 2024 14:55:47 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B01F69953
+	for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 14:50:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710255350; cv=none; b=gx4WaS+vXHFDcgN7ELZWWxakrnPCdvxSous0DxemWBBijQeIOsZ91KNaASxaIlCXB9SSW+CQ0kKnXJs549mrjpoBQ82cHNPNAWkaib6+P2WCgt+zMUNDHD2b1G9fZKJvAoUZrEQo+cWzvuZNwTnR8NtgnSiV2Yg257hfpyO1qrI=
+	t=1710255023; cv=none; b=mU6yRQayz00OW/p+Zmg/MwY0DY+UL3l+bZD50unWHsVNN9F3FJ60HAxabc+s5o4UxoqNXMVSrMv/0lV2ZDc9a69xaMSiJ3/4WeHYB3RMWHHSzaQcMaCe+cWqfeJIXrnSqECypqw5MGHD9iYCn53Pi1WN7GsoGd1uV0OuMO0pMVQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710255350; c=relaxed/simple;
-	bh=Usc6II35rVzJzpenuRz/2bqBjACu/dy3zUh+dVjJGIA=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=q/O0bLSIlea0C0ZyB0T22cyfDibH3mDknXFQZAXPKSlVkV2lTdMzJoi9ueiy5MN25udSlpMlLrpAbRR8DU98GtCJZkJLAtlx+jFSte5UCcDB15jPKvvOPA6r889Sji2j5ssKdcoHpG2BRjoUqpVVaBhjpB4NdAXticFDx+pBtWY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=BvTG8xQe; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb.pivistrello.it (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id 3DD392136C;
-	Tue, 12 Mar 2024 15:50:02 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1710255002;
-	bh=KnYzDyMeuR48i4fmNxkTQzPwgnl3FF6TOTdlr9ivhJs=; h=From:To:Subject;
-	b=BvTG8xQe0m0s8Lms5yOHgjAzMv4CUox3XM7B4jHt6xq90vwhoo+fyyao36uGs9Yjj
-	 SGPZZxF2iv4xM/6ocuvAiTUZlKmxYMIiiMteZEhhQPKyQjpIoFiIeJvTX+v4b2MvSN
-	 UPV+imeMVPcrIenApjZBIIt9axE+gDRdXgK7+u+wciQYLcShuu++oIbVkfLx1AvrU5
-	 eIJg54Q0I7J7yfeyVmx1I8SVIeBMf5wdgQ1k+SM1ZKAwAHv2yEZVs3c7oV067sjT+C
-	 TQLK1/ABLj7iAbMzXwRovde4+9h9BBQQg/joqQDtQbkNKzdjmxxNqhHcsG0LwLPTES
-	 8KPRK05ah6nAg==
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Francesco Dolcini <francesco.dolcini@toradex.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?Jo=C3=A3o=20Paulo=20Silva=20Gon=C3=A7alves?= <joao.goncalves@toradex.com>
-Subject: [PATCH v1] arm64: dts: ti: verdin-am62: use SD1 CD as GPIO
-Date: Tue, 12 Mar 2024 15:49:56 +0100
-Message-Id: <20240312144956.40211-1-francesco@dolcini.it>
-X-Mailer: git-send-email 2.39.2
+	s=arc-20240116; t=1710255023; c=relaxed/simple;
+	bh=HRKqHTo2coRukof51yfticbZ5DFq9gs/6ILyHCTY6is=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=JD1fg7ynHGUEajOWgrQjvhW50f0HCHKDmejEZAvYvZnC80SisuEv0U2MPoLEuEIFCOaFg4fETeMJ5kAix6gaytnwi9eqqrZwJ59LSq2V3CtEFf+xKCHClaVhM/4nQ9VcV7owWqn7u796TOmvr/lOmVUB1f+GKpcDkfrE2q7LKhc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=jeYtFwEV; arc=none smtp.client-ip=209.85.167.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f47.google.com with SMTP id 2adb3069b0e04-5135486cfccso5385991e87.0
+        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 07:50:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710255020; x=1710859820; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cdxOToZtr3MgG8M5yCGfJbtM/oXC1jGaY0CYXkO7JjE=;
+        b=jeYtFwEVtAOM2nWoEXkkyKq/6O3SPEL1U5DfyvJEJhsSYNHy1fhgGoGUVXndADKtDM
+         TiyUyJx9H8s7ZxcyGIfjxuo+F1CFn8Ig1tU21ogfubtuvbUtiOVCz3VUO0h/xxk4ShyM
+         EdSZisVPU3BE47YiIzff0Xae4W6zWZFdbjVE66zruczCP3zIp92M2cjEdUfnwchCU2hF
+         WvdLIh5n+/SvCFFilqTcz9MQbge/jKf3/8dBcQnTA54R73/NhBs3gxz0CPSwF1ktc1jF
+         02VX8pXripZGXmlGFeL2WeIAuX6sgpG74h3vnnb5+fZrtsz6KiiEyoOumXW5j+sh6P6X
+         SL7Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710255020; x=1710859820;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cdxOToZtr3MgG8M5yCGfJbtM/oXC1jGaY0CYXkO7JjE=;
+        b=o9jggqWB0Du5Ic+DlN3DArY6Jgc+8KdQE8bOfYAuIApVvwV3QEnmmUvef7UYDdsv9P
+         R2lmb5Dc07lcEBTJi90IXgNPP3uY5dIrvaHn2ubLnv5p4StRKWvkS2wvQlTeUPhv1HKk
+         1FqnqV1YVRCrD8R+domysvzUS7/hhrnuw+yFJsl5csHzlJOmgvpgQRYobXLV7AZ/+1LB
+         X94gSSIOtvgT21JtqyLxoDobhw80AQRiHmEOICZsSxZkFGerOreaAMSNz9WPRG3CjPBk
+         6Qo9NhZ/yec7n/+da9viIwL51jy0NBiaMgo6jveiO/ibaEZtfkgnkYWeoYc3I2X2Oogw
+         5WBw==
+X-Forwarded-Encrypted: i=1; AJvYcCU+AKflRdJMFkeOJZMnXioCYgrPh5bDVWAwUz7Ah8+RMwADUm2BQBoPWVYtyWOkSDdyxLOus3YmpjguldOY1gq9dumGXjyKoY1Ldw==
+X-Gm-Message-State: AOJu0Yypb0ed4Fo8bQGvHFdEyJubEsi/wfoLV2wSn7DgIhlARqHz4Qck
+	rQRS5RJDjnAL2D2z+XmuxX5m5tASqThEC006QUTuwxKeELYaiH1XX5LOphkCncE=
+X-Google-Smtp-Source: AGHT+IF4U7++EP6lI1eUA5YZ5DAJajTZAe48hL6g0In91UMupEHYzfMoae2xpi5b5/CBMmyo7KWbtw==
+X-Received: by 2002:ac2:51a5:0:b0:512:bf99:7d80 with SMTP id f5-20020ac251a5000000b00512bf997d80mr6373397lfk.1.1710255019673;
+        Tue, 12 Mar 2024 07:50:19 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id u18-20020a05600c19d200b0041316e91c99sm12715808wmq.1.2024.03.12.07.50.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 12 Mar 2024 07:50:19 -0700 (PDT)
+Message-ID: <253b4b6c-d8ba-40a3-adbb-4455af57d780@baylibre.com>
+Date: Tue, 12 Mar 2024 15:50:17 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/18] ASoC: codecs: mt6357: add MT6357 codec
+Content-Language: en-US
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: Flora Fu <flora.fu@mediatek.com>, Liam Girdwood <lgirdwood@gmail.com>,
+ Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Mark Brown <broonie@kernel.org>, Matthias Brugger <matthias.bgg@gmail.com>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>, Takashi Iwai <tiwai@suse.com>,
+ Jaroslav Kysela <perex@perex.cz>, Will Deacon <will@kernel.org>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ Nicolas Belin <nbelin@baylibre.com>
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <20240226-audio-i350-v1-12-4fa1cea1667f@baylibre.com>
+ <1641a853-88cb-43a8-bb95-653f5329a682@collabora.com>
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <1641a853-88cb-43a8-bb95-653f5329a682@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 
-From: Francesco Dolcini <francesco.dolcini@toradex.com>
 
-TI SDHCI IP has a hardware debounce timer of 1 second as described in
-commit 7ca0f166f5b2 ("mmc: sdhci_am654: Add workaround for card detect
-debounce timer"), because of this the boot time increases of up to 1
-second.
 
-Workaround the issue the same way that is done on
-arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts, using the SD1 CD as
-GPIO.
+On 26/02/2024 16:25, AngeloGioacchino Del Regno wrote:
+>> +    if (enable) {
+>> +        /* set gpio mosi mode */
+>> +        regmap_write(priv->regmap, MT6357_GPIO_MODE2_CLR, 
+>> GPIO_MODE2_CLEAR_ALL);
+>> +        regmap_write(priv->regmap, MT6357_GPIO_MODE2_SET, 
+>> GPIO8_MODE_SET_AUD_CLK_MOSI |
+>> +                                  GPIO9_MODE_SET_AUD_DAT_MOSI0 |
+>> +                                  GPIO10_MODE_SET_AUD_DAT_MOSI1 |
+>> +                                  GPIO11_MODE_SET_AUD_SYNC_MOSI);
+> 
+> Are you sure that you need to write to MODE2_SET *and* to MODE2?!
 
-Suggested-by: Nishanth Menon <nm@ti.com>
-Reported-by: João Paulo Silva Gonçalves <joao.goncalves@toradex.com>
-Closes: https://lore.kernel.org/all/0e81af80de3d55e72f79af83fa5db87f5c9938f8.camel@toradex.com/
-Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
----
- arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+This is downstream code and these registers aren't in my documentation.
+I've removed the MODE2_SET write and test the audio: it's still working.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-index e8d8857ad51f..a9bf2c17f95a 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
-@@ -457,6 +457,13 @@ AM62X_IOPAD(0x01c4, PIN_INPUT, 7) /* (B14) SPI0_D1.GPIO1_19 */ /* SODIMM 161 */
- 		>;
- 	};
- 
-+	/* Verdin SD_1_CD# as GPIO */
-+	pinctrl_sd1_cd_gpio: main-gpio1-48-default-pins {
-+		pinctrl-single,pins = <
-+			AM62X_IOPAD(0x240, PIN_INPUT_PULLUP, 7) /* (D17) MMC1_SDCD.GPIO1_48 */ /* SODIMM 84 */
-+		>;
-+	};
-+
- 	/* Verdin DSI_1_INT# (pulled-up as active-low) */
- 	pinctrl_dsi1_int: main-gpio1-49-default-pins {
- 		pinctrl-single,pins = <
-@@ -571,7 +578,6 @@ AM62X_IOPAD(0x230, PIN_INPUT,        0) /* (A22) MMC1_DAT0 */ /* SODIMM 80 */
- 			AM62X_IOPAD(0x22c, PIN_INPUT,        0) /* (B21) MMC1_DAT1 */ /* SODIMM 82 */
- 			AM62X_IOPAD(0x228, PIN_INPUT,        0) /* (C21) MMC1_DAT2 */ /* SODIMM 70 */
- 			AM62X_IOPAD(0x224, PIN_INPUT,        0) /* (D22) MMC1_DAT3 */ /* SODIMM 72 */
--			AM62X_IOPAD(0x240, PIN_INPUT_PULLUP, 0) /* (D17) MMC1_SDCD */ /* SODIMM 84 */
- 		>;
- 	};
- 
-@@ -1441,8 +1447,10 @@ &sdhci0 {
- /* Verdin SD_1 */
- &sdhci1 {
- 	pinctrl-names = "default";
--	pinctrl-0 = <&pinctrl_sdhci1>;
-+	pinctrl-0 = <&pinctrl_sdhci1>, <&pinctrl_sd1_cd_gpio>;
-+	cd-gpios = <&main_gpio1 48 GPIO_ACTIVE_LOW>;
- 	disable-wp;
-+	ti,fails-without-test-cd;
- 	vmmc-supply = <&reg_sdhc1_vmmc>;
- 	vqmmc-supply = <&reg_sdhc1_vqmmc>;
- 	status = "disabled";
+So I will keep the spurious write removed for v2. :)
+
 -- 
-2.39.2
-
+Regards,
+Alexandre
 
