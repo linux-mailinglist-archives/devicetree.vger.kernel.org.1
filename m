@@ -1,125 +1,154 @@
-Return-Path: <devicetree+bounces-50193-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50194-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id D846B87A4CA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:20:17 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DEBB87A4D0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:21:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 921EE282F21
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 09:20:16 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 43EF51F22BDD
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 09:21:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787981CD22;
-	Wed, 13 Mar 2024 09:20:04 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB28F1CD00;
+	Wed, 13 Mar 2024 09:21:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RRC+ROjM"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VNY9u517"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21B31CD25
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 09:20:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 16CD81BF3D;
+	Wed, 13 Mar 2024 09:21:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710321604; cv=none; b=QoY2aMsOC+4o1oT8yWaBMxdswkMbpbona9mupbDRygv0BUdOywp0m/71MzsGQwQlq3w8INLc5+hoAC1lO3ZlStDKgX/+UbMEYh0rMkvIrbS/CgIsn3DHDDNjCtx0bMWwQ/TiAq3neopmbQmxJUwpnmyGiPplL4tCgE50F0D0SQA=
+	t=1710321676; cv=none; b=sDNulM/ee6sOJtXwf9lzHVTBWTs7je0hBPj3QQehhz3r5d+qpjhzGlyPhHE3PfpWH/ImXPuQN65D1eDxQHW1OqiCPFOTmMKSQXIZyOl6rTut9Nk3XyYu5PQY+FFEb3IJZ+S+YIpSy60RhKUjPa/uNz/Pz16NbuguMMc2p640Hbk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710321604; c=relaxed/simple;
-	bh=YfNa2HcP33gx/cy1Fy4b4hmZtnEzlibHuZBeZyU9yds=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ciEDK5PfeCfPHTTfFyHjMT6x+V4tzdPsTeBFXcyV4XdOcfT9bgzTvtO+JHjeZc6WA8Bznb5MPxy5B3/FFRJVG9yC/YOi91xERFb5wYTI9xGPGMo3UJh4b/CzeodaE0ism4FQ8F7x33YXzwnHmgUvdNXrPF/wj1/5l3rS3Dou4u8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RRC+ROjM; arc=none smtp.client-ip=209.85.219.182
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dc236729a2bso719399276.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 02:20:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710321602; x=1710926402; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=YfNa2HcP33gx/cy1Fy4b4hmZtnEzlibHuZBeZyU9yds=;
-        b=RRC+ROjM8CdCjs9dRY/uWngwa918h88Jyrb23Y4+l2On7wubcMdTuotiTB0BTDzJum
-         KcOHDU9CK2Do7tC9RDMeclFHe1BXxcVMaHaoQyCKltcX4QY7WKPvXZCWATELk1AwVViB
-         Hn9pLhJ5E3xNXaZq1QKrGRF8VMdI9sYc/F++tW/dqITt5wrwJQJkd3lKiOtV5iL+lNia
-         Jknnns1+Pxdnx2fDwe5978In9ChaU1fU0QBecqn4wFNrVD26ZK6VY3xggdKmlNBk92Xj
-         ccQwaHK/JncHhaXAxPj49PBCCzuPZGvO+TwVnz1UwUpOgZmTGo/jxsxzL9LL3VV05hVD
-         ryrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710321602; x=1710926402;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=YfNa2HcP33gx/cy1Fy4b4hmZtnEzlibHuZBeZyU9yds=;
-        b=fuk90u6p3vSaeUSXMWtwzM7U60xFVovnU5HCrrjlXNExN5UPpfndYP4nBAVRu5rkv7
-         Qr9cmmahgp6+ZUzIJpmUGlz9M9PN3b6AAn7ZYTyUypb5p48GfN0rmTxYT8uiOOEihLK0
-         Jzo3pU2MKwbVEih4j5hL5GOCIsg/Gmar0k6MDA43lgrLl5Vv7ztYdYw5Zn+NGSyX4H10
-         kGR3JqC0SZLYgvSwa2jGk/Sf1aaaccwssTlY3ppDBDinB+ko7xQolgZH0QJZiwq61GCc
-         DeafiHX24ucNo1hAt5cYVZ2EDpDtCyMSmAMQgo9nZgaUnCFmxHQeQietYNNKpSLYarrB
-         nL6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXaMeGoyyzJ6wN7GYm9V2Y4XlvGM27fuaFyyr+qx6Nf99wajTZE52cqWurrjrI1BIPPpqvvvmsA8mM5Q4xUxwsVc95xsSgUzIvIBA==
-X-Gm-Message-State: AOJu0YwiHnx6LTz+WjC2Hm35Tv+CklcjPrjSy5Zi/DCvLOlW9s9oXRzu
-	8VKqxd5P/V7YaoulUVeuTFsqsjLG2MKPAy7tiQ5RIIA1RKshoHM49NdZ96fsYvmxDog4tXs4Vmx
-	uKQWlds++naVcpZJruc5Iu4b0x4Frh7x75U3Oww==
-X-Google-Smtp-Source: AGHT+IHTbEDBjZpoqkNK31rikuCu4MXa66H8dPvnQW0wuW+MJy6rtAx+cAr2w0I+xMYKIxfFXSHxX2LAeMzGl3+xUNg=
-X-Received: by 2002:a05:6902:291:b0:dbd:c442:9e60 with SMTP id
- v17-20020a056902029100b00dbdc4429e60mr1750327ybh.36.1710321601697; Wed, 13
- Mar 2024 02:20:01 -0700 (PDT)
+	s=arc-20240116; t=1710321676; c=relaxed/simple;
+	bh=U4UJ1jKOg1j9hk50TUGhKBacc2FG/ZP9Ob3hP31vV6Q=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=otsxB/rjP9rezxZiJTh6et17zE/mlz3wqV6Uuzbi29U9K5xICR1Ob8rFbHaAupN3xGBYCr8q6y6vCBoe3dSUwVz/8Lx3Il3rsPiD36hCjlLDZlOugENXxOKNgRFonPQnaTexJN1LFC6mjLd7H5BaktAAT7kUn6L0acLorJndXxs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VNY9u517; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42D8Z0OJ006689;
+	Wed, 13 Mar 2024 09:20:50 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	date:from:to:cc:subject:message-id:reply-to:references
+	:mime-version:content-type:in-reply-to; s=qcppdkim1; bh=xP66Ihxb
+	wHSzo3BS0aAaFRWAp/ZD5ZoLJGqOG2l+yeQ=; b=VNY9u5179yOH9zQvMevWSnz/
+	RM1NRqncsGQ5WIRIZj6vZX97OjI58Ks4mLEIM1H9v/xGvV/4w/WOiz8U0FEU8mY2
+	/V02Hwo10yptTQU9UhbOLdx3P1bmhDDtZgHk+L5E4eRRMBLi8+ZQy2czpUGUw9zv
+	Iw+rsgM2eTzwweBMA9kK2L2yuqQmwQyDIqVGn2jeamrSAk9CLubDbY/uvWqaXieU
+	Yojw1lzC6dviUlpzOTZNrzjkFU1XvYHawAZFiUbY8SG4OvE1SFsr55Y0Y4hsve8s
+	ZDEi+8F0F9z9zOMAY8yq+PUmEiRCvZkyGeHSWIop2Phx4G+hvJmkgL4OgLkOEg==
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wtug01r5j-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Mar 2024 09:20:50 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42D9Knk9005016
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Mar 2024 09:20:49 GMT
+Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Mar
+ 2024 02:20:41 -0700
+Date: Wed, 13 Mar 2024 14:50:37 +0530
+From: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+To: Elliot Berman <quic_eberman@quicinc.com>
+CC: Alex Elder <elder@linaro.org>,
+        Srinivas Kandagatla
+	<srinivas.kandagatla@linaro.org>,
+        Murali Nalajal <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Carl van Schaik
+	<quic_cvanscha@quicinc.com>,
+        Philip Derrin <quic_pderrin@quicinc.com>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet
+	<corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson
+	<andersson@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        "Fuad
+ Tabba" <tabba@google.com>,
+        Sean Christopherson <seanjc@google.com>,
+        "Andrew
+ Morton" <akpm@linux-foundation.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
+Subject: Re: [PATCH v17 13/35] gunyah: vm_mgr: Add framework for VM Functions
+Message-ID: <20240313092037.GO440762@quicinc.com>
+Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
+ <20240222-gunyah-v17-13-1e9da6763d38@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <ZbFH0UE9zZQFWm8Z@bogus> <32092ee9-018f-4cfb-950e-26c69764f35a@quicinc.com>
- <94a62a78-961a-4286-804c-fc0b9098b8a1@quicinc.com> <CAPDyKFrL2QcB-YbE25smGgJjf3iBEsSSB4ui3V98zJKghNNhKA@mail.gmail.com>
- <20240228140239.gkzcytw6cmb4opja@bogus> <799268ac-7ffb-4b99-b037-d5bb93d37f13@linaro.org>
- <20240228160925.fcitj2yz7hisidsl@bogus> <CAPDyKFqEDu1KRsT2YWv7MhoosCSj_bgV4xE=-2hDaS1ZP7AkvQ@mail.gmail.com>
- <2b0a11f4-f54e-461c-91e7-8f313d91abe8@linaro.org> <CAPDyKFoo+-2AF096Sbn8EHP1H4Zw2+2sFnSyuq65sWGmMmXU0A@mail.gmail.com>
- <ZeWp_UjYfWsnEB-K@bogus> <321069a8-2c46-4871-b85a-5e9cbdda5b5d@quicinc.com>
- <3aad2e6b-88fd-06ab-95c5-d07f012e8306@quicinc.com> <bd2dde74-e4b9-4cf8-b1f1-9bc52f3b83da@linaro.org>
- <989dee90-9c44-09b9-6940-687082109ae7@quicinc.com>
-In-Reply-To: <989dee90-9c44-09b9-6940-687082109ae7@quicinc.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Wed, 13 Mar 2024 10:19:24 +0100
-Message-ID: <CAPDyKFpNo1g9j-JojzN3sbq==mnaKsamrd9EyskDUDZS=AB3mg@mail.gmail.com>
-Subject: Re: DT Query on "New Compatible vs New Property"
-To: Trilok Soni <quic_tsoni@quicinc.com>, 
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Nikunj Kela <quic_nkela@quicinc.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, krzysztof.kozlowski+dt@linaro.org, 
-	Vincent Guittot <vincent.guittot@linaro.org>, robh+dt@kernel.org, conor+dt@kernel.org, 
-	devicetree@vger.kernel.org, 
-	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+In-Reply-To: <20240222-gunyah-v17-13-1e9da6763d38@quicinc.com>
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: W3OLSKAGZJ5FEm8fdz8CXglbYAd8OJN2
+X-Proofpoint-ORIG-GUID: W3OLSKAGZJ5FEm8fdz8CXglbYAd8OJN2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-13_07,2024-03-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
+ mlxlogscore=807 adultscore=0 spamscore=0 suspectscore=0 lowpriorityscore=0
+ mlxscore=0 malwarescore=0 clxscore=1015 phishscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
+ definitions=main-2403130068
 
-On Tue, 12 Mar 2024 at 18:25, Trilok Soni <quic_tsoni@quicinc.com> wrote:
->
-> On 3/12/2024 10:21 AM, Srinivas Kandagatla wrote:
-> >
-> >> Basically, I would prefer better than "qcom, fw-managed" since this is not
-> >> a qcom specific problem.
-> >
-> >
-> > We already have something like this in mainline where the BAM DMA controller is remotely powered.
-> >
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml?h=v6.8
-> >
->
-> As you can see it is already fragmented. Why we need to create one more approach
-> which is not scalable and specific to SOC vendor?
->
-> SCMI or RPMI based firmware is not a QC specific. I also have allergic reaction
-> when I see drivers modified w/ if (fw_managed) {..} but that is a discussion
-> for some other day.
->
->
+* Elliot Berman <quic_eberman@quicinc.com> [2024-02-22 15:16:36]:
 
-For the record, I fully agree with Trilok here.
+> Introduce a framework for Gunyah userspace to install VM functions. VM
+> functions are optional interfaces to the virtual machine. vCPUs,
+> ioeventfs, and irqfds are examples of such VM functions and are
+> implemented in subsequent patches.
+> 
+> A generic framework is implemented instead of individual ioctls to
+> create vCPUs, irqfds, etc., in order to simplify the VM manager core
+> implementation and allow dynamic loading of VM function modules.
+>
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 
-More importantly, why is the other suggested approach(es) a problem? I
-don't get it.
+Minor nit below. LGTM otherwise
 
-Kind regards
-Uffe
+Reviewed-by: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+
+> +static struct gunyah_vm_function *gunyah_vm_get_function(u32 type)
+> +{
+> +	struct gunyah_vm_function *fn;
+> +
+> +	fn = xa_load(&gunyah_vm_functions, type);
+> +	if (!fn) {
+> +		request_module("ghfunc:%d", type);
+
+s/%d/%u
+
+> +
+> +		fn = xa_load(&gunyah_vm_functions, type);
+> +	}
+> +
+> +	if (!fn || !try_module_get(fn->mod))
+> +		fn = ERR_PTR(-ENOENT);
+> +
+> +	return fn;
+> +}
 
