@@ -1,142 +1,166 @@
-Return-Path: <devicetree+bounces-50317-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50318-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E9B487AFDB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:36:59 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 89B5C87AFDF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:37:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 904A71C263A5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 18:36:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id BAFE81C24C12
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 18:37:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4D3481745;
-	Wed, 13 Mar 2024 17:20:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9CE6C62140;
+	Wed, 13 Mar 2024 17:23:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="J3Jw97vT"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="ias5kLdF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 52F5480C14;
-	Wed, 13 Mar 2024 17:20:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6B341626B4;
+	Wed, 13 Mar 2024 17:23:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710350437; cv=none; b=jZxSMVo0KFkvikH+Dg6sGY5jgbIgV8dzCQhdk02cA1RGDhqZxFvOuDwc6OZep/ARsaF7vd56uFwZHpqc+6IKcxRykfoFvI0X8JOH83r+0lcY0iSzDAIWWzuLKXM8jiJDYkNTJMruHi1A0/VI/OxbuBSJCEwMGcByOocH3G7h0kQ=
+	t=1710350607; cv=none; b=Emur821Q1OSO9y69kV0ygMl9O/1WqzQjTv2psVftk1BPeZGRb+JRYAB+/rfNbVt8XL82Xtk+VVnCdPjjCOPS8z2ZcXNU/53aMEIYUv6g1CSVtlOScqMAiWVqyH+caqMsviQ3NY/I1ywXwwHzV4n4BE9PfOJHE4svSYRBSYEVwqw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710350437; c=relaxed/simple;
-	bh=NxjvQGRkUbfO3iz0bYj5pREEVHoSAk8BUB+aqZUAEs8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=e6EvJbuJgRro+L6/38VDJtU9ku5AZv6iDnxI2QQA0xCHIIEGTuB8Ou5OE9Egso4QMGcbmNCAGE4UpOQDaQqmeVMCBFjuD8V/02+sC9/CA3JgVn6WvGKUZumVOtOP83dVKt4f4un5RfxzTnuyuaFZ/jtX2RDnN9++6c6xmFo6Ivs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=J3Jw97vT; arc=none smtp.client-ip=217.70.183.195
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0BF236000D;
-	Wed, 13 Mar 2024 17:20:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1710350426;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=Cxt4rRwQDdEywKuxvwOOReRQvAjrL6urT5nnO/pBm6M=;
-	b=J3Jw97vT+ILqpl1j49Q8O86WY7SE33uGUsifwrp8kTNxnRxv/oO/lK84KBukynQbTcNgHN
-	b/cJxZq+GEPr0r5Ey3M8ABgJ4yoMmZ8bFz4ZrYwqBmCkpaaDnayofBF5GhRpKB6MEEpXa+
-	MFaVLLIh6t68ZK78OeOku7yJw5n+MpMDOtefahec6cnPtJec3OJWrDXT38jkEKfjZ4tLnV
-	SdcDMeSniUGFZACgQ6CP5nBvi2IX14pAmZCh2gIA4dk4S7zbwCqLlC6pA6yWrQWUXbmH5P
-	/G2Hy0akFD38PNLrAoevu7LulneLA/Oux1dLkr9zPRlXCDzO+icACHI0wzINUA==
-From: =?UTF-8?q?J=C3=A9r=C3=A9mie=20Dautheribes?= <jeremie.dautheribes@bootlin.com>
-To: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Sam Ravnborg <sam@ravnborg.org>,
-	David Airlie <airlied@gmail.com>,
-	Daniel Vetter <daniel@ffwll.ch>,
-	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-	Maxime Ripard <mripard@kernel.org>,
-	Thomas Zimmermann <tzimmermann@suse.de>,
-	Rob Herring <robh+dt@kernel.org>,
+	s=arc-20240116; t=1710350607; c=relaxed/simple;
+	bh=PAjE7BPOCrbybCWWbaLc6x+dJTUxbHq0aBWL3JN7HUI=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=BIbGrzUZiwEOBSWgtnTIUZzB+siw3oNIdbKNod5ztHDKRKQ3ZfluDES5YRUxrA4ZkfVMgOraGFVjI2lGCMdv7+TkM3gpZFnJdBoJtuuqTVLfv5huMTfCITF7ealac477dnWHNe6Nr1TcX9wAzK9XeUqlmWW0r8btiKZqW4S3vDY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=ias5kLdF; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6F2F2C433C7;
+	Wed, 13 Mar 2024 17:23:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710350607;
+	bh=PAjE7BPOCrbybCWWbaLc6x+dJTUxbHq0aBWL3JN7HUI=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=ias5kLdFpwbVTOnuFBiHfowtvPUTf/oQeYy8ydLpumuvXSWAV5hvswhDSaUXbFeuz
+	 eUu9fC0u60jN7riKiX4kTa7tqZAA6p+j9W7Rqk7esgtV/DK5AlXr0qshOjm/iTBLG8
+	 lPIlYKHkaCsCCcgVq4tlqGSpiNQy5+KVia6zOs3yfcSyYeUZMALoTqx6z2LOncLoVX
+	 +gH4xSWs4c7ATGhaBWq8OT7aALAKbpIKDRn+jx6UFLNIqTUVO9eweTyL4QbPiApksn
+	 aE8Q8tDD8/9THGnlBzvNB9Cb4UCBR9vyZ4gW8RLpIZ9sguYmL0JT3Uzhf2og6TmLoK
+	 kiO0XuPWMvZbg==
+Date: Wed, 13 Mar 2024 17:23:19 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
 	Conor Dooley <conor+dt@kernel.org>,
-	Thierry Reding <thierry.reding@gmail.com>
-Cc: dri-devel@lists.freedesktop.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	Yen-Mei Goh <yen-mei.goh@keysight.com>,
-	=?UTF-8?q?J=C3=A9r=C3=A9mie=20Dautheribes?= <jeremie.dautheribes@bootlin.com>
-Subject: [PATCH v3 3/3] drm/panel: simple: add CMT430B19N00 LCD panel support
-Date: Wed, 13 Mar 2024 18:20:16 +0100
-Message-Id: <20240313172016.387277-4-jeremie.dautheribes@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240313172016.387277-1-jeremie.dautheribes@bootlin.com>
-References: <20240313172016.387277-1-jeremie.dautheribes@bootlin.com>
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+	Nicolas Belin <nbelin@baylibre.com>
+Subject: Re: [PATCH 12/18] ASoC: codecs: mt6357: add MT6357 codec
+Message-ID: <ff3d2db1-697b-42c6-a0f2-74276e9fc098@sirena.org.uk>
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <20240226-audio-i350-v1-12-4fa1cea1667f@baylibre.com>
+ <9891855d-2284-42e4-9d3a-35ba406540e8@sirena.org.uk>
+ <c441a132-b16b-4244-a712-8971c902d4d7@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: jeremie.dautheribes@bootlin.com
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="bu1f4F19CTgWKqA0"
+Content-Disposition: inline
+In-Reply-To: <c441a132-b16b-4244-a712-8971c902d4d7@baylibre.com>
+X-Cookie: It's later than you think.
 
-Add support for Crystal Clear Technology CMT430B19N00 4.3" 480x272
-TFT-LCD panel.
 
-Suggested-by: Maxime Ripard <mripard@kernel.org>
-Signed-off-by: Jérémie Dautheribes <jeremie.dautheribes@bootlin.com>
----
- drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
+--bu1f4F19CTgWKqA0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 20e3df1c59d4..d13c42d0f57b 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -1457,6 +1457,32 @@ static const struct panel_desc boe_hv070wsa = {
- 	.connector_type = DRM_MODE_CONNECTOR_LVDS,
- };
- 
-+static const struct display_timing cct_cmt430b19n00_timing = {
-+	.pixelclock = { 8000000, 9000000, 12000000 },
-+	.hactive = { 480, 480, 480 },
-+	.hfront_porch = { 2, 8, 75 },
-+	.hback_porch = { 3, 43, 43 },
-+	.hsync_len = { 2, 4, 75 },
-+	.vactive = { 272, 272, 272 },
-+	.vfront_porch = { 2, 8, 37 },
-+	.vback_porch = { 2, 12, 12 },
-+	.vsync_len = { 2, 4, 37 },
-+	.flags = DISPLAY_FLAGS_HSYNC_LOW | DISPLAY_FLAGS_VSYNC_LOW
-+};
-+
-+static const struct panel_desc cct_cmt430b19n00 = {
-+	.timings = &cct_cmt430b19n00_timing,
-+	.num_timings = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 95,
-+		.height = 53,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
-+	.connector_type = DRM_MODE_CONNECTOR_DPI,
-+};
-+
- static const struct drm_display_mode cdtech_s043wq26h_ct7_mode = {
- 	.clock = 9000,
- 	.hdisplay = 480,
-@@ -4402,6 +4428,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "boe,hv070wsa-100",
- 		.data = &boe_hv070wsa
-+	}, {
-+		.compatible = "cct,cmt430b19n00",
-+		.data = &cct_cmt430b19n00,
- 	}, {
- 		.compatible = "cdtech,s043wq26h-ct7",
- 		.data = &cdtech_s043wq26h_ct7,
--- 
-2.34.1
+On Tue, Mar 12, 2024 at 07:03:25PM +0100, Alexandre Mergnat wrote:
+> On 26/02/2024 17:09, Mark Brown wrote:
 
+> > > +	case MT6357_ZCD_CON2:
+> > > +		regmap_read(priv->regmap, MT6357_ZCD_CON2, &reg);
+> > > +		priv->ana_gain[ANALOG_VOLUME_HPOUTL] =3D
+> > > +			(reg & AUD_HPL_GAIN_MASK) >> AUD_HPL_GAIN_SFT;
+> > > +		priv->ana_gain[ANALOG_VOLUME_HPOUTR] =3D
+> > > +			(reg & AUD_HPR_GAIN_MASK) >> AUD_HPR_GAIN_SFT;
+> > > +		break;
+
+> > It would probably be less code and would definitely be clearer and
+> > simpler to just read the values when we need them rather than constatly
+> > keeping a cache separate to the register cache.
+
+> Actually you must save the values because the gain selected by the user w=
+ill
+> be override to do a ramp =3D> volume_ramp(.....):
+> - When you switch on the HP, you start from gain=3D-40db to final_gain
+> (selected by user).
+> - When you switch off the HP, you start from final_gain (selected by user)
+> to gain=3D-40db.
+
+You can just read the value back when you need to do a ramp?
+
+> Also, the microphone's gain change when it's enabled/disabled.
+
+I don't understand what this means?
+
+> > > +	/* ul channel swap */
+> > > +	SOC_SINGLE("UL LR Swap", MT6357_AFE_UL_DL_CON0, AFE_UL_LR_SWAP_SFT,=
+ 1, 0),
+
+> > On/off controls should end in Switch.
+
+> Sorry, I don't understand your comment. Can you reword it please ?
+
+See control-names.rst.  Run mixer-test on a card with this driver and
+fix all the issues it reports.
+
+> > > +static int hslo_mux_map_value[] =3D {
+> > > +	0x0, 0x1, 0x2, 0x3,
+> > > +};
+
+> > Why not just use a normal mux here, there's no missing values or
+> > reordering?  Similarly for other muxes.
+
+> I've dug into some other codecs and it's done like that, but I've probably
+> misunderstood something.
+
+> The only bad thing I see is enum is missing currently:
+>=20
+> enum {
+> 	PGA_MUX_OPEN =3D 0,
+> 	PGA_MUX_DACR,
+> 	PGA_MUX_PB,
+> 	PGA_MUX_TM,
+> 	PGA_MUX_MASK =3D 0x3,
+> };
+
+The whole thing with explicitly specfying the mapping is just completely
+redundant, you may as well remove it.
+
+--bu1f4F19CTgWKqA0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmXx4QYACgkQJNaLcl1U
+h9Cq8gf/c3/T6nZpwn3qjvPt1GYUFUscyy2lTACU0mVHAjCBiaczv/OAoKQGmNpm
+Gg9Lnezruu41314zpVUvu/pl80roWJoCd/b7/VjOp9lawXWnWalXNeqcaTSYne31
+FUzdFe4a+quH9LDo5Nv9AzMnLBokld6ELApXMG/Uxmd5HJn+unU5euMCTH0p4jKs
+H9ptL1meZwotydv6+TTT2jEc8PSdLUr7EdHa6z9/6ih5st+RrHoLI8iCDa3lkOfR
+muwbG4CNh9PqrI00X86GUDvHTv5cZsIPeOoVLgBEA3ouIO5RgX1uWMNW6J779WIa
+3olA/hHBePVDGwV6qVQKVWyLY8klXw==
+=LtHz
+-----END PGP SIGNATURE-----
+
+--bu1f4F19CTgWKqA0--
 
