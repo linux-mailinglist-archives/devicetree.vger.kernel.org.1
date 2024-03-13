@@ -1,159 +1,186 @@
-Return-Path: <devicetree+bounces-50345-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50346-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C69D787B16D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 20:15:39 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 016C287B239
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 20:47:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7AE552865A6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:15:38 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FC35B21A91
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:20:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01F9C64CF7;
-	Wed, 13 Mar 2024 18:45:44 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E794F58AB8;
+	Wed, 13 Mar 2024 19:08:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xXZnMvF6"
+	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="fINs6xXF"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DC26151010
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 18:45:40 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A3A4EB24;
+	Wed, 13 Mar 2024 19:08:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710355543; cv=none; b=UkKw8N3yg9sVlIoc4F2Vm1rBUXx9A1xN5s6BzWIS4l9K9afnIgYgHLiUBewmQw2aKNcC2UeNqAv3bEUwGi+vkYx88MJoiu/N1P3y2zOPIzImn4KVnXGmBgcgoz+u0xYhejjHvRwegeSpPIa7BHGDbziybCxaWWm5H0YRmGIEj7E=
+	t=1710356889; cv=none; b=oazzEKvAHQHx0NbfJhqibohISI69HEYK2lAetmKRSN6rUUrIYk1YdFS2wu1w9oYGysjMObbDbbjEomXxYWrkhI6Jq2ZEN+i+4aTecHE8dxZnWER2wPC3itQo4EYK03/CGbcP9bl+ndI7R8pCj8O+pzsFQPSHmVFYpdxvjI28J6Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710355543; c=relaxed/simple;
-	bh=UXV2V2m9ZMtC7mkshjdsDr9nBw5/ZzSs1kOKhihamRE=;
+	s=arc-20240116; t=1710356889; c=relaxed/simple;
+	bh=8Xg75vtgrn6xQBEXgjiu3p8P50B/mtf8U4g0vXmG4aE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PmLaaFcwRn2HlEQj9sCUeK0eOB7Dfm5sstkOl8YeDQvHmddhIByKuuQA4rqgEHEU1EhyLWiv/SdQ84OcldQYaEUC8VtoUDGTV+MX+m59qI2UGCOphfHtjRv8V/yk6WvjAureDota7xGYz1wPGJ4tDTPVzN2tfQoYbRpfKG0+dkg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xXZnMvF6; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-413ef7f46ccso1033575e9.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 11:45:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710355539; x=1710960339; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Tahb0M4vhIbLskq4hRpzqeDqrEQ+QdkSKC0MbFYE4zk=;
-        b=xXZnMvF6aLyhZ0hDxh2ChMwZb8i6qu+ulSs1qMUzY7x7vuVS8mC6kJgTyzTmvI3VdC
-         mLU4RaYVGKTPAMgZtiAOdfd5bscFMX12zoBYPTQr5XFd54InXhsGCuiLqGE1N9WdzSvW
-         rdOaNhbXWSTi4YMME9UqBCwqVUsn4acE95efOzx1VlWngzm5414+88hQ/13p9wL7lY+x
-         S78my3Zxa6mVbc5wPGGwiBSu/8iYXugIPBJoGEk4wOkNJHEHfwbq/YpFJQ3uLYmtaFl4
-         VCFAUWDxm1MueDBl0I1UEAc8tVjNytgGbStWAAioFtZy4yhE99TNZMRRTuH+QMtt15Lr
-         UVRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710355539; x=1710960339;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tahb0M4vhIbLskq4hRpzqeDqrEQ+QdkSKC0MbFYE4zk=;
-        b=axzP9rmAYT5gaykmopdCO6kUB8bCtTYF9ZUgR+HKHdeYfmnHDDGV7MqKGkB0tz5IqN
-         CjGcxbuw6Yfjkc5WnhLdtKj2sGTFQdEEE9lntDd6+xrgbAAY1QwgcEEtakz57DKmP6Ih
-         u0Qd0iQ5G5PVcHslL7Lyz5knvAczoNcoZi8fPPAJPom1skHUkfrGL5WLZ/lQlMvKHOma
-         5ygAFLVbxC0EbFmGA+ydoFrfY5jp32GA+0gehwKorR3diu5ZIPQa48OyAlcGNZxWOLPg
-         blwzjnk+BQBpFlJ9EVc/CEfhVIaN5R7I38Cl6L2XCQVRkilzKkOCzS6KF3XXoWBqhhuC
-         rKXw==
-X-Forwarded-Encrypted: i=1; AJvYcCXabJ5S9hMTU/ETsNrAiR1Oo6Dlv4qEbv3EHNkBKIaGEQN2N6ZAqFziMCPGC8tdcuefZlyFKEn6s8iIRsUDqOpejMsS/UWTy7HyEw==
-X-Gm-Message-State: AOJu0Yw63k9ixEqvNrVwayGq+vYU7vUkLDRUiEKBBToO8mogHGRk1sEQ
-	UarAwdY4UVJkJQVHNBTrjH1v+JgyrJhXwj0tclOrDgJRey0Cozrq3o3fx6sN8NM=
-X-Google-Smtp-Source: AGHT+IGqEWBm2ddLoRmU6UcB6oXq8IRuDIweBNenqe3oDagKPT5Cj8hyhDk02zzKyn9QSdoz7e8h4A==
-X-Received: by 2002:a05:600c:4f53:b0:413:1285:f1f0 with SMTP id m19-20020a05600c4f5300b004131285f1f0mr565880wmq.24.1710355539125;
-        Wed, 13 Mar 2024 11:45:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id a11-20020a05600c348b00b00413ebcd5814sm2040033wmq.38.2024.03.13.11.45.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Mar 2024 11:45:38 -0700 (PDT)
-Message-ID: <ee4d5b78-265e-4cb7-a61c-a9ead354c17a@linaro.org>
-Date: Wed, 13 Mar 2024 19:45:36 +0100
+	 In-Reply-To:Content-Type; b=reKcJrs43IgkWsU/O0ksig65u3k9cvtHCO4x+GYffIPvM10rWfcIGsRvZ0sM+bn7TK83WNyCWBwZLgP+olVVR2masDtxABv/qDxmElUTe2xMyZhaEK1c0gCDaA4uUnWOkroufYQlCKwj1vw10KcCOnimqSKNZum3LuyHrpvQrLU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=fINs6xXF; arc=none smtp.client-ip=89.177.23.149
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
+Received: from [10.0.0.200] (unknown [10.0.0.1])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+	(No client certificate requested)
+	by ixit.cz (Postfix) with ESMTPSA id 465CC16566D;
+	Wed, 13 Mar 2024 20:07:57 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
+	t=1710356877;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+	bh=FvpKoGHqAhnp1lNgk+Nmgp2O2RO7++nWDElpli4GHlI=;
+	b=fINs6xXFlz70Qb6Z/PuGVfIUerJrYLSxTf2vkc3qzYQZvF2zVPbAMWbtas5jjMWvB98P53
+	TWg01VwgtQWKDDVfFUJoFHETkHO1tGIftGhxBJle7j2oBtDqiIKkHPielvkObAfHczufPw
+	VvdyMoebiUO4nkSyFzulYvrd0E4Fhkg=
+Message-ID: <4f1ec438-9447-4a5c-b1ee-e9c6938516d1@ixit.cz>
+Date: Wed, 13 Mar 2024 20:07:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/2] dt-bindings: clock: qcom: Fix x1e80100 camcc
- power-domain declaration
+User-Agent: Mozilla Thunderbird Beta
+Subject: Re: [PATCH 2/2] arm64: dts: mediatek: Add missing chassis-type to
+ MT8192 Chromebooks
 Content-Language: en-US
-To: Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
- <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
- Abel Vesa <abel.vesa@linaro.org>, Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240313-linux-next-camcc-fixes-v2-0-9426da94ae37@linaro.org>
- <20240313-linux-next-camcc-fixes-v2-1-9426da94ae37@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
- cFgcqTTuNHjAvxtUG8pQgGTHAObYs6xeYJtjUH0ZX6ndJ33FJYf5V3yXqqjcZ30FgHzJCFUu
- JMp7PSyMPzpUXfU12yfcRYVEMQrmplNZssmYhiTeVicuOOypWugZKVLGNm0IweVCaZ/DJDIH
- gNbpvVwjcKYrx85m9cBVEBUGaQP6AT7qlVCkrf50v8bofSIyVa2xmubbAwwFA1oxoOusjPIE
- J3iadrwpFvsZjF5uHAKS+7wHLoW9hVzOnLbX6ajk5Hf8Pb1m+VH/E8bPBNNYKkfTtypTDUCj
- NYcd27tjnXfG+SDs/EXNUAIRefCyvaRG7oRYF3Ec+2RgQDRnmmjCjoQNbFrJvJkFHlPeHaeS
- BosGY+XWKydnmsfY7SSnjAzLUGAFhLd/XDVpb1Een2XucPpKvt9ORF+48gy12FA5GduRLhQU
- vK4tU7ojoem/G23PcowM1CwPurC8sAVsQb9KmwTGh7rVz3ks3w/zfGBy3+WmLg++C2Wct6nM
- Pd8/6CBVjEWqD06/RjI2AnjIq5fSEH/BIfXXfC68nMp9BZoy3So4ZsbOlBmtAPvMYX6U8VwD
- TNeBxJu5Ex0Izf1NV9CzC3nNaFUYOY8KfN01X5SExAoVTr09ewARAQABzTRLcnp5c3p0b2Yg
- S296bG93c2tpIDxrcnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+wsGUBBMBCgA+FiEE
- m9B+DgxR+NWWd7dUG5NDfTtBYpsFAmI+BxMCGwMFCRRfreEFCwkIBwIGFQoJCAsCBBYCAwEC
- HgECF4AACgkQG5NDfTtBYptgbhAAjAGunRoOTduBeC7V6GGOQMYIT5n3OuDSzG1oZyM4kyvO
- XeodvvYv49/ng473E8ZFhXfrre+c1olbr1A8pnz9vKVQs9JGVa6wwr/6ddH7/yvcaCQnHRPK
- mnXyP2BViBlyDWQ71UC3N12YCoHE2cVmfrn4JeyK/gHCvcW3hUW4i5rMd5M5WZAeiJj3rvYh
- v8WMKDJOtZFXxwaYGbvFJNDdvdTHc2x2fGaWwmXMJn2xs1ZyFAeHQvrp49mS6PBQZzcx0XL5
- cU9ZjhzOZDn6Apv45/C/lUJvPc3lo/pr5cmlOvPq1AsP6/xRXsEFX/SdvdxJ8w9KtGaxdJuf
- rpzLQ8Ht+H0lY2On1duYhmro8WglOypHy+TusYrDEry2qDNlc/bApQKtd9uqyDZ+rx8bGxyY
- qBP6bvsQx5YACI4p8R0J43tSqWwJTP/R5oPRQW2O1Ye1DEcdeyzZfifrQz58aoZrVQq+innR
- aDwu8qDB5UgmMQ7cjDSeAQABdghq7pqrA4P8lkA7qTG+aw8Z21OoAyZdUNm8NWJoQy8m4nUP
- gmeeQPRc0vjp5JkYPgTqwf08cluqO6vQuYL2YmwVBIbO7cE7LNGkPDA3RYMu+zPY9UUi/ln5
- dcKuEStFZ5eqVyqVoZ9eu3RTCGIXAHe1NcfcMT9HT0DPp3+ieTxFx6RjY3kYTGLOwU0EVUNc
- NAEQAM2StBhJERQvgPcbCzjokShn0cRA4q2SvCOvOXD+0KapXMRFE+/PZeDyfv4dEKuCqeh0
- hihSHlaxTzg3TcqUu54w2xYskG8Fq5tg3gm4kh1Gvh1LijIXX99ABA8eHxOGmLPRIBkXHqJY
- oHtCvPc6sYKNM9xbp6I4yF56xVLmHGJ61KaWKf5KKWYgA9kfHufbja7qR0c6H79LIsiYqf92
- H1HNq1WlQpu/fh4/XAAaV1axHFt/dY/2kU05tLMj8GjeQDz1fHas7augL4argt4e+jum3Nwt
- yupodQBxncKAUbzwKcDrPqUFmfRbJ7ARw8491xQHZDsP82JRj4cOJX32sBg8nO2N5OsFJOcd
- 5IE9v6qfllkZDAh1Rb1h6DFYq9dcdPAHl4zOj9EHq99/CpyccOh7SrtWDNFFknCmLpowhct9
- 5ZnlavBrDbOV0W47gO33WkXMFI4il4y1+Bv89979rVYn8aBohEgET41SpyQz7fMkcaZU+ok/
- +HYjC/qfDxT7tjKXqBQEscVODaFicsUkjheOD4BfWEcVUqa+XdUEciwG/SgNyxBZepj41oVq
- FPSVE+Ni2tNrW/e16b8mgXNngHSnbsr6pAIXZH3qFW+4TKPMGZ2rZ6zITrMip+12jgw4mGjy
- 5y06JZvA02rZT2k9aa7i9dUUFggaanI09jNGbRA/ABEBAAHCwXwEGAEKACYCGwwWIQSb0H4O
- DFH41ZZ3t1Qbk0N9O0FimwUCYDzvagUJFF+UtgAKCRAbk0N9O0Fim9JzD/0auoGtUu4mgnna
- oEEpQEOjgT7l9TVuO3Qa/SeH+E0m55y5Fjpp6ZToc481za3xAcxK/BtIX5Wn1mQ6+szfrJQ6
- 59y2io437BeuWIRjQniSxHz1kgtFECiV30yHRgOoQlzUea7FgsnuWdstgfWi6LxstswEzxLZ
- Sj1EqpXYZE4uLjh6dW292sO+j4LEqPYr53hyV4I2LPmptPE9Rb9yCTAbSUlzgjiyyjuXhcwM
- qf3lzsm02y7Ooq+ERVKiJzlvLd9tSe4jRx6Z6LMXhB21fa5DGs/tHAcUF35hSJrvMJzPT/+u
- /oVmYDFZkbLlqs2XpWaVCo2jv8+iHxZZ9FL7F6AHFzqEFdqGnJQqmEApiRqH6b4jRBOgJ+cY
- qc+rJggwMQcJL9F+oDm3wX47nr6jIsEB5ZftdybIzpMZ5V9v45lUwmdnMrSzZVgC4jRGXzsU
- EViBQt2CopXtHtYfPAO5nAkIvKSNp3jmGxZw4aTc5xoAZBLo0OV+Ezo71pg3AYvq0a3/oGRG
- KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
- fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240313-linux-next-camcc-fixes-v2-1-9426da94ae37@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ linux-mediatek@lists.infradead.org
+Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ matthias.bgg@gmail.com, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ kernel@collabora.com
+References: <20240313141538.1438167-1-angelogioacchino.delregno@collabora.com>
+ <20240313141538.1438167-3-angelogioacchino.delregno@collabora.com>
+From: David Heidelberg <david@ixit.cz>
+Autocrypt: addr=david@ixit.cz; keydata=
+ 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
+In-Reply-To: <20240313141538.1438167-3-angelogioacchino.delregno@collabora.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 13/03/2024 18:53, Bryan O'Donoghue wrote:
-> camcc on x1e80100 requires two power domains MXC and MMCX. Define those as
-> part of the schema.
-> 
-> Fixes: 76126a5129b5 ("clk: qcom: Add camcc clock driver for x1e80100")
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Optional, but very useful for some user-space decisions. Thank you.
+
+Reviewed-by: David Heidelberg <david@ixit.cz>
+
+On 13/03/2024 15:15, AngeloGioacchino Del Regno wrote:
+> None of the MT8192 Chromebooks had their chassis-type specified: add
+> the right definition for each.
+>
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 > ---
->  .../bindings/clock/qcom,sm8450-camcc.yaml          | 37 ++++++++++++++++++----
->  1 file changed, 31 insertions(+), 6 deletions(-)
+>   arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts      | 1 +
+>   arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts | 1 +
+>   arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts    | 1 +
+>   arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts    | 1 +
+>   4 files changed, 4 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
+> index fd2cb8765a15..ac2673e56fb8 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
+> @@ -7,6 +7,7 @@
+>   
+>   / {
+>   	model = "Google Hayato rev1";
+> +	chassis-type = "convertible";
+>   	compatible = "google,hayato-rev1", "google,hayato", "mediatek,mt8192";
+>   };
+>   
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts
+> index 3127ee5f6172..cd86ad9ba28a 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts
+> @@ -7,6 +7,7 @@
+>   
+>   / {
+>   	model = "Google Hayato rev5";
+> +	chassis-type = "convertible";
+>   	compatible = "google,hayato-rev5-sku2", "google,hayato-sku2",
+>   		     "google,hayato", "mediatek,mt8192";
+>   };
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
+> index bc88866ab2f5..29aa87e93888 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
+> @@ -8,6 +8,7 @@
+>   
+>   / {
+>   	model = "Google Spherion (rev0 - 3)";
+> +	chassis-type = "laptop";
+>   	compatible = "google,spherion-rev3", "google,spherion-rev2",
+>   		     "google,spherion-rev1", "google,spherion-rev0",
+>   		     "google,spherion", "mediatek,mt8192";
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts
+> index 0039158c9e60..5e9e598bab90 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts
+> @@ -8,6 +8,7 @@
+>   
+>   / {
+>   	model = "Google Spherion (rev4)";
+> +	chassis-type = "laptop";
+>   	compatible = "google,spherion-rev4", "google,spherion",
+>   		     "mediatek,mt8192";
+>   
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
+-- 
+David Heidelberg
 
 
