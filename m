@@ -1,236 +1,130 @@
-Return-Path: <devicetree+bounces-50288-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50289-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6729F87A983
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 15:33:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D53B87A999
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 15:37:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 1B70B2810B1
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 14:33:16 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 595C42822A0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 14:37:18 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id AD892138E;
-	Wed, 13 Mar 2024 14:33:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C16362C9D;
+	Wed, 13 Mar 2024 14:36:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="Z1dchkgn"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="wV45Rr4v"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f178.google.com (mail-lj1-f178.google.com [209.85.208.178])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B206E46A2
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 14:33:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.178
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F2F814A07;
+	Wed, 13 Mar 2024 14:36:53 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710340394; cv=none; b=Hyy7+r4gMlbe5eSdiUYZRqdKjgNy1cKWh/ugmMl8+dOaJpllGZW836iWtjmk/6l7kCix9CNvF8gnvrdHqrSsqXUMTBwjoKXCU51M/FeOwToEC1/ZwINeATDAXeZesmgzW97fPQYN2HShtqkUz0mh6hIz/Okg49uq+WqCCatZNfQ=
+	t=1710340615; cv=none; b=lGraK+qijlyPcSHMvPS0K8le/63rAFsBxgc2bI8K4VKE6GZ/b/p4QkYGOt/cvMZQhunmZySPzhiOtOFGtirxQzLtgyTMplPVN90czdnEr34mnVoJrPeOTnm5R46MQdW6YrpjgPeMhBKYvLRjvyA6vJhbA9Jttm16SCRIdSh5TGE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710340394; c=relaxed/simple;
-	bh=EJQw2spgiDe18SYH9zz9HdonKRBjUkfcO0UXFy36YaU=;
-	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cdGYM8qqdE09Q0ojYWFL50rE4XeHFjM89AYsFDFXUrHz+MA4XoDKCHb7KsmM9RZaApQJwMtctUJUGV4R/ZPcCkCGKFef85xlvyWe3E4PFzZCmA0ZCZQdoFWIXkPkY+Dmg/EB6bJRhPdrT6hHEe3pAubAbUTW6Bwv2cXUAmijCkM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=Z1dchkgn; arc=none smtp.client-ip=209.85.208.178
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2d46d729d89so8066791fa.3
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 07:33:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1710340390; x=1710945190; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:date:from:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=frZJGewZzeJ3uIeDRmngnvwGZFXy0aAqB4wzRWvuYFc=;
-        b=Z1dchkgnh7guU0VhT5i8Rt8m6rEQe2+vQAjwdhwOkohdBA60XaGbR0V02SmgZtkX4C
-         TDi+q9BC9NIWmsU4YCzJX+EilbNUjVz8KvHdveD6M2t777RVg4lse3fQI9LjQetHEsph
-         mX3LRwES8O5BszbWZ/6XRcnhyzuEwU7nr7S0a/TwXjnEcK3sswWMksaQTWofBthVfr1m
-         nzjPBHMVGOSgU/IYI0D3AHbjWPbBb34Bk7vIMy1CKDwfFDvwenv00wQyYy6DqO5Dqr4e
-         tu1a41Z1uK4vvsOz15zqhJ2TFub+EUOYzSBOlW58M1OfwffIym45wBQ5WLMwZp+XU40l
-         nhyw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710340390; x=1710945190;
-        h=in-reply-to:content-disposition:mime-version:references
-         :mail-followup-to:message-id:subject:cc:to:date:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=frZJGewZzeJ3uIeDRmngnvwGZFXy0aAqB4wzRWvuYFc=;
-        b=Lmrlp1SQfvSR6T7khBfEaRBG8N4Yg3dZme7UE87gA5ucmboafP7Wmx09YA3Bmmmsbd
-         rqoiNA1x0hFwEWwDx1qwGwByV8aVSnQ7wnW0q+KBFM3ZEjhSjoqKdCVI7l+8Lk/c85hS
-         h8Cg9fbAtP3SCP8pMLW45sB/62XN/odqZQN/YSTRKpgQQhtr4dw4WlAEZWQavSexd9WW
-         7CHObK9AQGb4rfZU1z+MIZzbhhxhzWlAWvDxImoGow/S4EN5VKIew4/qdeULVeu4TaBW
-         +y4MWe9L3xkruBXllR4w/prb7jR7jXwJwgJQYRk4FVqotfP0UVhzT9PaKCeqLy5kFDOT
-         UMPA==
-X-Forwarded-Encrypted: i=1; AJvYcCUT4fpQL8iIVTlA2TQOwUvnZBER73J682elAOQIHTSuYbJYIPUKD74OrTsSLjb37Ki0s/eXRVkIzzd9LyvSGmFt+MY1BgABB9lWcQ==
-X-Gm-Message-State: AOJu0YxNpwXlWurCGfAKxk2AmWqxFccNtequvPB+u4iCGADaEvSfhMwW
-	guK+WiyQn9u4O0vswm7t+ii5uA0Xz+nHantZYwIZDfBgAwL9XDMmm7WOxJSQ7Zo=
-X-Google-Smtp-Source: AGHT+IGc4/OG230i0WuTH+DEgo3X/n2bWgA2QDnELN/LQ+c+BqGPSX+yI/RIu0rb7SkOm+km48FmGA==
-X-Received: by 2002:a2e:8e89:0:b0:2d2:d449:6425 with SMTP id z9-20020a2e8e89000000b002d2d4496425mr8400526ljk.35.1710340389826;
-        Wed, 13 Mar 2024 07:33:09 -0700 (PDT)
-Received: from localhost (host-82-56-173-172.retail.telecomitalia.it. [82.56.173.172])
-        by smtp.gmail.com with ESMTPSA id lb13-20020a170906adcd00b00a46203a86basm3476615ejb.27.2024.03.13.07.33.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Mar 2024 07:33:09 -0700 (PDT)
-From: Andrea della Porta <andrea.porta@suse.com>
-X-Google-Original-From: Andrea della Porta <aporta@suse.de>
-Date: Wed, 13 Mar 2024 15:33:08 +0100
-To: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Cc: Andrea della Porta <andrea.porta@suse.com>,
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Saenz Julienne <nsaenz@kernel.org>, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/15] dmaengine: bcm2835: add BCM2711 40-bit DMA
- support
-Message-ID: <ZfG5JLkcj4r-1cGY@apocalypse>
-Mail-Followup-To: Dave Stevenson <dave.stevenson@raspberrypi.com>,
-	Andrea della Porta <andrea.porta@suse.com>,
-	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Florian Fainelli <florian.fainelli@broadcom.com>,
-	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
-	Saenz Julienne <nsaenz@kernel.org>, dmaengine@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <cover.1710226514.git.andrea.porta@suse.com>
- <CAPY8ntCcz7ysTq_78Rb8ohLLETTYZeoZ3DXdPFvDLAkPc9jPWw@mail.gmail.com>
+	s=arc-20240116; t=1710340615; c=relaxed/simple;
+	bh=aBISMkyzcuXC4tndXkf0VYcmI9kprzzcj/ehlqHMdAQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=CrJxc8VdFGc0tfJXf3KQviAC2BKw5mQ3bkbX6pT2yuBOOXbc9CNtxX62X/xLdXRGFosMuDgRZGbUBDfRdlsv/AkM3pGQhwPF6U4BTb7NVvpEzf7hL7vTpIO55dYyYh3TnRt8hVVX7o6L1fvJt0osuoQsgsEqoZ4uknNANYUvRSo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=wV45Rr4v; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1710340612;
+	bh=aBISMkyzcuXC4tndXkf0VYcmI9kprzzcj/ehlqHMdAQ=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=wV45Rr4voGJHrKXICE5+Eye7hrS2Pjf//lLfPMsweUmrMtaGowHMg8I1ftEp0aoc6
+	 vVBZcOLf4o11Mg5tTnufw6SyfR0TmnYh7euYN5U/mbmh4D+veduK3L1cVcQzJtfwf8
+	 3xTrl9JpUKtiEXdqBnujwEENhAYfYbBGvY78+vuV4+LxRKjiguO64XhrhCNeecyRoN
+	 QZR3ZhhDixM01wErO5qokiWMlKaRyx4SfSpnoi9s4eVgvGyGB75R5QPDv7h5kpVTPk
+	 4auppMOqkpTTs4wsJ/OuuvWTViAs6wdbnrHFPzTu7gtp0SfvfQWyasvBTJhcjCEcls
+	 O/G14egc519mg==
+Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: kholk11)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9A15437813C4;
+	Wed, 13 Mar 2024 14:36:51 +0000 (UTC)
+Message-ID: <d1bdf9a6-3082-4076-99de-e49d59843244@collabora.com>
+Date: Wed, 13 Mar 2024 15:36:50 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAPY8ntCcz7ysTq_78Rb8ohLLETTYZeoZ3DXdPFvDLAkPc9jPWw@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] arm64: dts: mediatek: mt8192-asurada: Update min voltage
+ constraint for Vgpu
+Content-Language: en-US
+To: Pin-yen Lin <treapking@chromium.org>,
+ Matthias Brugger <matthias.bgg@gmail.com>
+Cc: Chen-Yu Tsai <wenst@chromium.org>, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
+ =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
+ devicetree@vger.kernel.org
+References: <20240313135157.98989-1-treapking@chromium.org>
+From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20240313135157.98989-1-treapking@chromium.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On 17:16 Tue 12 Mar     , Dave Stevenson wrote:
-> Hi Andrea
+Il 13/03/24 14:51, Pin-yen Lin ha scritto:
+> Although the minimum voltage listed on the GPU OPP table is 606250 uV,
+> the actual requested voltage could be even lower when the MTK Smart
+> Voltage Scaling (SVS) driver is enabled.
 > 
-> On Tue, 12 Mar 2024 at 09:12, Andrea della Porta <andrea.porta@suse.com> wrote:
-> >
-> > * Spam *
-> > The BCM2711 has 4 DMA channels with a 40-bit address range, allowing them
-> > to access the full 4GB of memory on a Pi 4.
-> > This patchset aims to update the dma engine for BCM* chipset with respect
-> > to current advancements in downstream vendor tree. In particular, it
-> > supports the BCM2711 DMA engine in terms of extended DMA addressing to 40 bit.
-> >
-> > Changes with respect to the first version (see [1]) of this patchset:
-> >
-> > * dropped support of the new BCM2712. It will be the focus of a subsequent
-> >   patch.
-> >
-> > * merged patchset from Stefan Wahren [2] to support newer chipset with a
-> >   platform agnostic design, while also retaining the new features added
-> >   from downstream [1], as follows:
-> >
-> >   - patches from 1 to 5 are preparatory, adding some features and bugfix
-> >     common to all chipsets.
-> >   - patches from 6 to 12 add hw abstraction
-> >   - patches 13 to 15 eventually add 40 bit and BCM2711 support
-> >
-> > * fixed a couple of bugs from [2] relative to address shifting on 40 bit
-> >   support specific code
-> >
-> > * added the relevant entries in the dts and DT binding that was missing
-> >   in the first patch
-> >
-> > * used FIELD_PREP() wherever appropriate as advised in [3]
-> >
-> > * of_match_node() has been replaced by the more generic device_get_match_data(),
-> >   as per [4]
-> >
-> > * fixed several errors and warnings from checkpatch
-> >
-> >
-> > Please note that there is still a pending discussion around here [5]:
-> > this patch still use the current approach (used in both downstream
-> > code and in Stefan's redesigned patchset) of getting the address as it is
-> > (dma_addr_t) and just add the relevant offset when needed (on 40 bit
-> > channel, see .addr_offset in struct bcm2835_dma_cfg). This is not
-> > optimal but still deemed as less hacky than using DMA internals (see
-> > [6]). As soon as there will be guidelines for [5] or dma_map_resource()
-> > will take care of dma_ranges, a subsequent patch will adjust accordingly.
-> >
-> > Since there is an ongoing effort from Dave Stevenson to upstream a
-> > patchset with similar goals, I'm adding him to the email loop in order
-> > seek for collaboration.
+> Set the minimum voltage to 300000 uV because it's supported by the
+> regulator.
 > 
-> Please hold fire on these patches until we resolve the dma-ranges question.
-> If the dma-ranges are defined correctly, then the cb_offset is not
-> required as the mapping deals with it.
-> 
-> At present we have a mess with the 32bit DMA controllers, and need to
-> clean it up whilst still having old DT files work. Fixing it up also
-> requires fixing the DMA users (primarily MMC, SPI, and vc4 HDMI
-> audio), so will need some care over patch ordering to avoid
-> regressions.
-> If at all possible then I would like to avoid the same mess on the 40
-> bit controllers too.
->
+> Fixes: 3183cb62b033 ("arm64: dts: mediatek: asurada: Add SPMI regulators")
+> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
 
-I agree with you: I've just sent the entire patchset again for consistency since
-I had an unlucky issue with the internal imap server that results in the patchset to be
-splitted and to be *not* received by all intended recipients. I saw that you were
-one of those so I apologize for the inconvenience. I'll wait for any guidelines
-regarding dmap_map_resource() and how to proceed about that.
+Okay, that makes sense, I agree.
 
-Many thanks,
-Andrea
- 
-> Thanks
->   Dave
+...but.
+
+The datasheet never mentions 0.3V as vmin - infact, it does mention that the
+vsel is selected as (0V +) 6250 * Vsel, but the brief spec says that for the
+standard configuration (in terms of HW), the Vmin is 0.4V and not 0.3.
+
+Reading through makes me think that it's not much about the buck providing an
+unstable output, but more about it starting to become inefficient under that
+value.
+
+This means that it is sensible to set, instead:
+
+	regulator-min-microvolt = <400000>;
+
+Also, this is repeated on multiple platforms: can you please perform the same
+change also on MT8183, MT8186 and MT8195?
+
+P.S.: For MT6358, the Vmin for VGPU is 0.5V :-)
+
+Cheers,
+Angelo
+
+> ---
 > 
-> FWIW my work in progress branch is currently
-> https://github.com/6by9/linux/tree/mainline_2712_rp1_dma_vc4_rc5,
-> which includes my fixed up set of Stefan's patches, as well as all the
-> other patches that need working on for Pi5 support upstream.
+>   arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> > Many thanks,
-> >
-> > Andrea
-> >
-> > Links:
-> > [1] https://lore.kernel.org/linux-arm-kernel/cover.1706948717.git.andrea.porta@suse.com/
-> > [2] https://lore.kernel.org/linux-arm-kernel/13ec386b-2305-27da-9765-8fa3ad71146c@i2se.com/T/
-> > [3] https://lore.kernel.org/linux-arm-kernel/YguMW8n1q0ZV5tKH@matsya/
-> > [4] https://lore.kernel.org/linux-arm-kernel/1e71c153-e482-409c-b229-9b9c0662b67e@arm.com/
-> > [5] https://lore.kernel.org/all/CAPY8ntByJYzSv0kTAc1kY0Dp=vwrzcA0oWiPpyg7x7_BQwGSnA@mail.gmail.com/
-> > [6] https://lkml.org/lkml/2024/2/5/1161
-> >
-> > Andrea della Porta (11):
-> >   dmaengine: bcm2835: Fix several spellos
-> >   dmaengine: bcm2835: Support common dma-channel-mask
-> >   dmaengine: bcm2835: move CB info generation into separate function
-> >   dmaengine: bcm2835: move CB final extra info generation into function
-> >   dmaengine: bcm2835: make address increment platform independent
-> >   dmaengine: bcm2385: drop info parameters
-> >   dmaengine: bcm2835: pass dma_chan to generic functions
-> >   dmaengine: bcm2835: introduce multi platform support
-> >   dt-bindings: dma: Added bcm2711-dma
-> >   dmaengine: bcm2835: Add BCM2711 40-bit DMA support
-> >   ARM: dts: bcm2711: add bcm2711-dma node
-> >
-> > Dom Cobley (2):
-> >   dmaengine: bcm2835: Support dma flags for multi-beat burst
-> >   dmaengine: bcm2835: Fixes for dma_abort
-> >
-> > Phil Elwell (2):
-> >   dmaengine: bcm2835: Add support for per-channel flags
-> >   dmaengine: bcm2835: Add NO_WAIT_RESP, DMA_WIDE_SOURCE and
-> >     DMA_WIDE_DEST flag
-> >
-> >  .../bindings/dma/brcm,bcm2835-dma.yaml        |    4 +-
-> >  arch/arm/boot/dts/broadcom/bcm2711.dtsi       |   16 +
-> >  drivers/dma/bcm2835-dma.c                     | 1084 +++++++++++++----
-> >  3 files changed, 892 insertions(+), 212 deletions(-)
-> >
-> > --
-> > 2.35.3
-> >
-> >
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> index 43d80334610a..5cc5100a7c40 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
+> @@ -1448,7 +1448,7 @@ regulators {
+>   			mt6315_7_vbuck1: vbuck1 {
+>   				regulator-compatible = "vbuck1";
+>   				regulator-name = "Vgpu";
+> -				regulator-min-microvolt = <606250>;
+> +				regulator-min-microvolt = <300000>;
+>   				regulator-max-microvolt = <800000>;
+>   				regulator-enable-ramp-delay = <256>;
+>   				regulator-allowed-modes = <0 1 2>;
+
+
 
