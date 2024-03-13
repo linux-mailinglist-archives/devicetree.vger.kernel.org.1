@@ -1,120 +1,194 @@
-Return-Path: <devicetree+bounces-50330-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50331-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55B4987B0F4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 20:04:50 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8568387B0FB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 20:05:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 87D9C1C27094
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:04:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5847D1C27753
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:05:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4FE46CDA0;
-	Wed, 13 Mar 2024 18:16:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 78D9360B81;
+	Wed, 13 Mar 2024 18:17:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="DanZVOf+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C221660873;
-	Wed, 13 Mar 2024 18:16:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.172
+Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 98D1D60877;
+	Wed, 13 Mar 2024 18:17:47 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710353799; cv=none; b=u4f7w5/2CFWRr/oa16Lf4f5h8zCt9yuOyJAa1tV8jv3s6lDpmVvhSBbo5ErfM7QD51MaH1+/zw0TVLvxPtFOvGm1CF841vcJEprVc1+MFPFFUkw30Ym/dM+zQ/fwJa+gKsbynmPOkCziZnAZVpygmevhrFkBPZqwzjLUdULonAg=
+	t=1710353869; cv=none; b=T/S81gDU80s33Ed+IiTExC7jr01PI73hF7G9VB6T6AbCFszSVslmBfzUm5GLecjyKRiz+2ysqcZlZhAbBWcW0RdF8X1C7R3f2YzQFBjupu1oqF6bIHAKeC2Xbqf9WnQq3VBcvT2ujjemMt16fwmBImXTUm+5GquVnY1VygEcqQk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710353799; c=relaxed/simple;
-	bh=VsPSTx4FAn5TYxFLv+5eIGzlaYTwOKhJImeGwmZOZU8=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=umh+uolbn5S03118NclOKFNRvOM280md032fqQ9PF7v6wiPG7BbESEbUxF7P6ReELAHH23ii4lRVdXccEJvE4StMen12qzBNMRAkqdKLkHoICN/0tQslyakISucAdBQ63leNh+s5IJD7oEu2TTXikfTBhgUficD7NG4GN5odCjc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.07,123,1708354800"; 
-   d="scan'208";a="201538768"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 14 Mar 2024 03:16:30 +0900
-Received: from localhost.localdomain (unknown [10.226.92.104])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 05F1E4045877;
-	Thu, 14 Mar 2024 03:16:26 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	linux-renesas-soc@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v2 5/5] arm64: dts: renesas: r9a07g0{43,44,54}: Update RZ/G2L family compatible
-Date: Wed, 13 Mar 2024 18:16:02 +0000
-Message-Id: <20240313181602.156840-6-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240313181602.156840-1-biju.das.jz@bp.renesas.com>
-References: <20240313181602.156840-1-biju.das.jz@bp.renesas.com>
+	s=arc-20240116; t=1710353869; c=relaxed/simple;
+	bh=SyVMnZvS/ZnHg0qyb832r9jYPgwDvt2Fg5Z/R12KPYM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=POhERabFimGMZylOxxjDrgZ4pvs80SjueB5/CoHNqnaIMUhFF449Ii1iitjvkXH89hPc+WRVnhMsJdzooPErOYdWiPQr5Jw/NcGJrPMkF6WbWyDz/qez/gJWL50P5rJLw2F5lA7wBEeDRj6doupkeLNjr5N5DMNmm2o69cvUqN8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=DanZVOf+; arc=none smtp.client-ip=209.85.221.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33e94c12f33so43102f8f.3;
+        Wed, 13 Mar 2024 11:17:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710353866; x=1710958666; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dxB79hpmOYEV/Wa5xEjs3BbB8JPGXY5M54cM2DcOGjk=;
+        b=DanZVOf+j3V4oBl3usOH/HLXylzxsRgldm0cK2Ynj7Te71j6NFxOF27deeAntMu+Nh
+         8yO5VnNLrNLKXAD4jShxHHXDhayWmd4zXNgMb4GBPs9xZN/y/vU14nskmsIiBTYWbg58
+         inVRXWY+lgyzycUVt6TLfQfg/ob65WwY/RPleJJms42VXJl2xFZgH4LGU40uycdnMFY/
+         imoZ/4VGtZI+JGmtpVJPKAIweSbApg/yoN0lA+VK1MOSEqqMjOD+k5dRvfFGebNQj6g0
+         3laoraQy85nSrUJlKBcQoY6CFH8QwpnrxXKdKDVtEISAk9TJqvswYM1eQOSSIuWcl39Z
+         WODw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710353866; x=1710958666;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dxB79hpmOYEV/Wa5xEjs3BbB8JPGXY5M54cM2DcOGjk=;
+        b=F6IQu+e0hN82AV1zN0ntavaNPnxPT/6KYYaanZm9nQY9bC0LFKb2FMk0yd/QJo8+K5
+         3h2whb6+MoOQ/nPflqC8hPtz3wH092qITfFYCXK9uoInbLT7tfpAY6heEZVR5/XSCYSq
+         ov+6ubIbVmLkhx8e9Fsot5FJ5RIKfiGm/x75NnDi6YrFWwlZdIpsdmK0BeyT+ga4uirK
+         nyWeN458LdK/lkKLanMMgqFIwJDD5V2xTGqNMqS4wxr3bZ4Vw8KaTqd/DeY9sxDmnJjL
+         15nYcF7V3Gqxhoui1BILOPkl0PU/xl4PiKk9/cnGH/W1JcDX8e7R7Y8sdRlOErt2J/DA
+         OT6g==
+X-Forwarded-Encrypted: i=1; AJvYcCXaQlIwUqkeaGNY932ja8F7jRnu515OBujl7+BdQuKVw0JnUYsycEWBRyVVFQVeRe1nPjJ7QLLlwj4+vQzCUY0gp8yFu3t3mgAojbGa0Qiud7pWV0G7ynKCth5/HJzbAr+eNOgzctF3SkvD3l8Yta86djQ4KJOsTO9oLkPi5KeGoQ==
+X-Gm-Message-State: AOJu0YwvGWFdUcnl/j/o2An7D9vStQ2yS0zHSlp8X+p8LF9Rl1TEnNO4
+	IfCyhP8UOEY6SuKAAaoQne9hDi2E/V46GlekNAmDCG5N6VMDSWZq
+X-Google-Smtp-Source: AGHT+IGKbeIwigUlBRsdMhJK7OomlBsIup1DbJY8unvtALG2eksaRqlMkijulA70G2ebsv8fF6clmw==
+X-Received: by 2002:a5d:644d:0:b0:33e:7896:a9d7 with SMTP id d13-20020a5d644d000000b0033e7896a9d7mr2108713wrw.67.1710353865784;
+        Wed, 13 Mar 2024 11:17:45 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id ch9-20020a5d5d09000000b0033eab3520a9sm4381264wrb.43.2024.03.13.11.17.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Mar 2024 11:17:45 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>,
+ Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+ Purism Kernel Team <kernel@puri.sm>, Ondrej Jirman <megi@xff.cz>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jessica Zhang <quic_jesszhan@quicinc.com>, Sam Ravnborg <sam@ravnborg.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Frank Oltmanns <frank@oltmanns.dev>
+Cc: linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ Frank Oltmanns <frank@oltmanns.dev>, stable@vger.kernel.org
+Subject:
+ Re: [PATCH v4 1/5] clk: sunxi-ng: common: Support minimum and maximum rate
+Date: Wed, 13 Mar 2024 19:17:43 +0100
+Message-ID: <3210009.5fSG56mABF@jernej-laptop>
+In-Reply-To: <20240310-pinephone-pll-fixes-v4-1-46fc80c83637@oltmanns.dev>
+References:
+ <20240310-pinephone-pll-fixes-v4-0-46fc80c83637@oltmanns.dev>
+ <20240310-pinephone-pll-fixes-v4-1-46fc80c83637@oltmanns.dev>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="utf-8"
 
-The number of pipe buffers on RZ/G2L family SoCs is 10, whereas on RZ/A2M
-it is 16. Replace 'renesas,rza2m-usbhs->renesas,rzg2l-usbhs' as family SoC
-compatible to handle this difference and use the SoC specific compatible
-in driver to avoid the ABI breakage with older DTB.
+Dne nedelja, 10. marec 2024 ob 14:21:11 CET je Frank Oltmanns napisal(a):
+> The Allwinner SoC's typically have an upper and lower limit for their
+> clocks' rates. Up until now, support for that has been implemented
+> separately for each clock type.
+> 
+> Implement that functionality in the sunxi-ng's common part making use of
+> the CCF rate liming capabilities, so that it is available for all clock
+> types.
+> 
+> Suggested-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Frank Oltmanns <frank@oltmanns.dev>
+> Cc: stable@vger.kernel.org
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
----
-v1->v2:
- * Updated commit description about ABI breakage.
- * Updated commit header as it is RZ/G2L specific.
----
- arch/arm64/boot/dts/renesas/r9a07g043.dtsi | 2 +-
- arch/arm64/boot/dts/renesas/r9a07g044.dtsi | 2 +-
- arch/arm64/boot/dts/renesas/r9a07g054.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+This looks pretty nice now.
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-index 8721f4c9fa0f..766c54b91acc 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g043.dtsi
-@@ -812,7 +812,7 @@ usb2_phy1: usb-phy@11c70200 {
- 
- 		hsusb: usb@11c60000 {
- 			compatible = "renesas,usbhs-r9a07g043",
--				     "renesas,rza2-usbhs";
-+				     "renesas,rzg2l-usbhs";
- 			reg = <0 0x11c60000 0 0x10000>;
- 			interrupts = <SOC_PERIPHERAL_IRQ(100) IRQ_TYPE_EDGE_RISING>,
- 				     <SOC_PERIPHERAL_IRQ(101) IRQ_TYPE_LEVEL_HIGH>,
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-index 9f00b75d2bd0..88634ae43287 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g044.dtsi
-@@ -1217,7 +1217,7 @@ usb2_phy1: usb-phy@11c70200 {
- 
- 		hsusb: usb@11c60000 {
- 			compatible = "renesas,usbhs-r9a07g044",
--				     "renesas,rza2-usbhs";
-+				     "renesas,rzg2l-usbhs";
- 			reg = <0 0x11c60000 0 0x10000>;
- 			interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
-diff --git a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-index 53d8905f367a..e89bfe4085f5 100644
---- a/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r9a07g054.dtsi
-@@ -1225,7 +1225,7 @@ usb2_phy1: usb-phy@11c70200 {
- 
- 		hsusb: usb@11c60000 {
- 			compatible = "renesas,usbhs-r9a07g054",
--				     "renesas,rza2-usbhs";
-+				     "renesas,rzg2l-usbhs";
- 			reg = <0 0x11c60000 0 0x10000>;
- 			interrupts = <GIC_SPI 100 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 101 IRQ_TYPE_LEVEL_HIGH>,
--- 
-2.25.1
+Reviewed-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+
+Best regards,
+Jernej
+
+> ---
+>  drivers/clk/sunxi-ng/ccu_common.c | 19 +++++++++++++++++++
+>  drivers/clk/sunxi-ng/ccu_common.h |  3 +++
+>  2 files changed, 22 insertions(+)
+> 
+> diff --git a/drivers/clk/sunxi-ng/ccu_common.c b/drivers/clk/sunxi-ng/ccu_common.c
+> index 8babce55302f..ac0091b4ce24 100644
+> --- a/drivers/clk/sunxi-ng/ccu_common.c
+> +++ b/drivers/clk/sunxi-ng/ccu_common.c
+> @@ -44,6 +44,16 @@ bool ccu_is_better_rate(struct ccu_common *common,
+>  			unsigned long current_rate,
+>  			unsigned long best_rate)
+>  {
+> +	unsigned long min_rate, max_rate;
+> +
+> +	clk_hw_get_rate_range(&common->hw, &min_rate, &max_rate);
+> +
+> +	if (current_rate > max_rate)
+> +		return false;
+> +
+> +	if (current_rate < min_rate)
+> +		return false;
+> +
+>  	if (common->features & CCU_FEATURE_CLOSEST_RATE)
+>  		return abs(current_rate - target_rate) < abs(best_rate - target_rate);
+>  
+> @@ -122,6 +132,7 @@ static int sunxi_ccu_probe(struct sunxi_ccu *ccu, struct device *dev,
+>  
+>  	for (i = 0; i < desc->hw_clks->num ; i++) {
+>  		struct clk_hw *hw = desc->hw_clks->hws[i];
+> +		struct ccu_common *common = hw_to_ccu_common(hw);
+>  		const char *name;
+>  
+>  		if (!hw)
+> @@ -136,6 +147,14 @@ static int sunxi_ccu_probe(struct sunxi_ccu *ccu, struct device *dev,
+>  			pr_err("Couldn't register clock %d - %s\n", i, name);
+>  			goto err_clk_unreg;
+>  		}
+> +
+> +		if (common->max_rate)
+> +			clk_hw_set_rate_range(hw, common->min_rate,
+> +					      common->max_rate);
+> +		else
+> +			WARN(common->min_rate,
+> +			     "No max_rate, ignoring min_rate of clock %d - %s\n",
+> +			     i, name);
+>  	}
+>  
+>  	ret = of_clk_add_hw_provider(node, of_clk_hw_onecell_get,
+> diff --git a/drivers/clk/sunxi-ng/ccu_common.h b/drivers/clk/sunxi-ng/ccu_common.h
+> index 942a72c09437..329734f8cf42 100644
+> --- a/drivers/clk/sunxi-ng/ccu_common.h
+> +++ b/drivers/clk/sunxi-ng/ccu_common.h
+> @@ -31,6 +31,9 @@ struct ccu_common {
+>  	u16		lock_reg;
+>  	u32		prediv;
+>  
+> +	unsigned long	min_rate;
+> +	unsigned long	max_rate;
+> +
+>  	unsigned long	features;
+>  	spinlock_t	*lock;
+>  	struct clk_hw	hw;
+> 
+> 
+
+
+
 
 
