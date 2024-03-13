@@ -1,103 +1,133 @@
-Return-Path: <devicetree+bounces-50239-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50240-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id F233287A6AC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 12:07:40 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5227187A6CF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 12:10:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id ACED9282FD1
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 11:07:39 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E679B1F23992
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 11:10:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B4E13D548;
-	Wed, 13 Mar 2024 11:04:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 54EB446549;
+	Wed, 13 Mar 2024 11:09:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="aFofx7of"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6026513AF9
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 11:04:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BAC4D40C15;
+	Wed, 13 Mar 2024 11:09:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710327876; cv=none; b=kfGYJZHXQeBboUpOgFIYaKhZgVaUysnLVCZSrPKIbxCjDrs66h26uY5KakpspLDudKeHVc2tdKAwPXxaDpZrMYa4jb+Wr4oojAkOH9VZzDSILsRGW7Pt+GeNkxg0uWs+9DpJsvHWQS1wKQwz7Td/6DnipB04PiVOSoQsEJcnIzw=
+	t=1710328152; cv=none; b=DZY59NIzfR0o0/oI9dE/td/04Cgf4LqnA3kv1UpA4Ovpy9EKRcTexCOgFlu9KJQOQNpC4EAGYI+xXn1qmPU+/sCEP9zz47sLAqs4rKCAQYsKFjhja9EwYbXHg2Zmlohd4QPzKyZMNgW2ovOeX+nA7lQJN1qUhXRDWwc9euN5fic=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710327876; c=relaxed/simple;
-	bh=dAX+cA9zPdJofcNhWsOe3dFbFBgKyLHPr8FuKGSzUpw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=WHCCuq5/LvdDDvTzeGInAHl9cPfKFWtGHNjBhTar1PJ9rkLgz2o06PIQeuG2nNInqkf/lodLm2hQik4YN2iBQuYauXccwJfJKiRw+/wFau47kYlKloCA4gzXWj0235DYyJS6mYSfJ3aKyy/5O1QjD8caiR/6vk8mDSmN5cnMbpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8A39A1007;
-	Wed, 13 Mar 2024 04:05:10 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C78853F73F;
-	Wed, 13 Mar 2024 04:04:31 -0700 (PDT)
-Date: Wed, 13 Mar 2024 11:04:29 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Nikunj Kela <quic_nkela@quicinc.com>
-Cc: Ulf Hansson <ulf.hansson@linaro.org>,
-	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-	<krzysztof.kozlowski+dt@linaro.org>,
-	Vincent Guittot <vincent.guittot@linaro.org>, <robh+dt@kernel.org>,
-	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>,
-	"Trilok Soni (QUIC)" <quic_tsoni@quicinc.com>
-Subject: Re: DT Query on "New Compatible vs New Property"
-Message-ID: <ZfGIPfHH-3r8pWMf@bogus>
-References: <94a62a78-961a-4286-804c-fc0b9098b8a1@quicinc.com>
- <CAPDyKFrL2QcB-YbE25smGgJjf3iBEsSSB4ui3V98zJKghNNhKA@mail.gmail.com>
- <20240228140239.gkzcytw6cmb4opja@bogus>
- <799268ac-7ffb-4b99-b037-d5bb93d37f13@linaro.org>
- <20240228160925.fcitj2yz7hisidsl@bogus>
- <CAPDyKFqEDu1KRsT2YWv7MhoosCSj_bgV4xE=-2hDaS1ZP7AkvQ@mail.gmail.com>
- <2b0a11f4-f54e-461c-91e7-8f313d91abe8@linaro.org>
- <CAPDyKFoo+-2AF096Sbn8EHP1H4Zw2+2sFnSyuq65sWGmMmXU0A@mail.gmail.com>
- <ZeWp_UjYfWsnEB-K@bogus>
- <321069a8-2c46-4871-b85a-5e9cbdda5b5d@quicinc.com>
+	s=arc-20240116; t=1710328152; c=relaxed/simple;
+	bh=GdaNCXq0HLFb4IL9/uyDoTiLk6PDxVDs6bXsCPqOz60=;
+	h=From:Subject:Date:Message-ID:MIME-Version:Content-Type:To:CC; b=pMKYp+nrzpnPCBmYPirM0ubnSYRghluNgBcmCMwyUN7s5a1V8ik6oSDi9dEj4xaXtzGdAQPnhO89/hwyC5IPxUpSMa5adZo1a2BT+7qXVpiUosjcwAYovxeB4oiVt6mcLWJwU5r6b1CF650arm7jao7uVL8tC1wiS29TCTy9FoU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=aFofx7of; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42DAkvI6020880;
+	Wed, 13 Mar 2024 11:09:06 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:subject:date:message-id:mime-version:content-type
+	:content-transfer-encoding:to:cc; s=qcppdkim1; bh=qyPDOYgs3/5W27
+	Ag5hEy2zRW2QCFYTxLo4jyReBXbLQ=; b=aFofx7ofiRZ9W6sG6boF9w4XFOw+V0
+	Glej0wfzjf/KeBT9wp/yHCOM9qlIj8QiQsoTnzoQkEIFTKsWyCoxdmBzfLXj1bwK
+	lvN+F6vASvb1WM3+HDhSCFsNgyzFFYFxk/P2rSCk6WHPzkeOQSJWNXv9Gh74L6pG
+	isOVKK+3icl1860ZWniM69JweW3Hu1lzDE9Q6SJA7j4ku70oSPWC9i1ttisLiiEJ
+	4EcM2rQzgJj3dwij70jbErxfXNEh7vnOhGuwxs8R0On+71SVWt49rCItLwiycr7/
+	o4u+SED+NQUvJ8cqS0Vw4TIMuOCPzUWLLkE1uN3qlgo/fctp3m/r7yGg==
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wuapeg1cv-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Mar 2024 11:09:05 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42DB95Vm017940
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Wed, 13 Mar 2024 11:09:05 GMT
+Received: from hu-skakitap-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Wed, 13 Mar 2024 04:09:00 -0700
+From: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+Subject: [PATCH 0/3] Add DT support for video clock controller on SM8150
+Date: Wed, 13 Mar 2024 16:38:26 +0530
+Message-ID: <20240313-videocc-sm8150-dt-node-v1-0-ae8ec3c822c2@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <321069a8-2c46-4871-b85a-5e9cbdda5b5d@quicinc.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIACqJ8WUC/x3MTQqAIBBA4avErBtQ++8q0aJ0rFmkoSFBdPek5
+ bd474FIgSnCWDwQKHFk7zJkWYDeF7cRsskGJVQtKtFjYkNea4xHLxuB5kLnDWFrZVut9aBspyH
+ HZyDL9z+e5vf9ADbQOndoAAAA
+To: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>
+CC: Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Jagadeesh
+ Kona" <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        Satya Priya Kakitapalli
+	<quic_skakitap@quicinc.com>
+X-Mailer: b4 0.12.4
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: YISqd6W2NvhviUXcEwrLzB8IWin0pvms
+X-Proofpoint-GUID: YISqd6W2NvhviUXcEwrLzB8IWin0pvms
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-13_07,2024-03-12_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ lowpriorityscore=0 phishscore=0 adultscore=0 suspectscore=0 clxscore=1015
+ impostorscore=0 mlxlogscore=703 spamscore=0 malwarescore=0 mlxscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403130083
 
-On Tue, Mar 12, 2024 at 09:52:56AM -0700, Nikunj Kela wrote:
-> +Trilok
->
-> On 3/4/2024 3:01 AM, Sudeep Holla wrote:
-> > arch/arm64/boot/dts/arm/juno-scmi.dts
-> >
-> > One is with old firmware interface and -scmi is with SCMI. No new top
-> > level compatible change is needed. I understand it was switch from one
-> > interface to the another and not like Qcom platforms which is moving
-> > from in-kernel solution to firmware solution. But the general rule applies
-> > here as well unless there are specific reasons for needing that exception.
-> > I am not against it or ruling that out, just curious to understand them.
->
-> Thank you all for all your inputs on this. I discussed this with Srini and
-> he suggested that we could use a new optional DT property like "qcom,
-> fw-managed" to ascertain if we are running on firmware managed variant. Thus
-> each device node in the dts can add this. I did ask him if, instead of
-> putting it to each device node, we can use it at the board level however he
-> thinks that it would not be easy to update yaml documentation on DT nodes
-> with board level property. So if everyone here agrees with this approach, I
-> would like to close this thread.
+Also, add the index based lookup support and update the device tree
+bindings as per latest convention.
 
-The counter argument from me for that is simple. If you are OK to manage with
-one board level compatible/property(doesn't matter for this discussion), then
-why can't that be the compatible of the firmware itself(SCMI and RPMI both
-must have their own compatible already). The main point is why do you need
-any extra information when they are already present. My comment is just for
-this one board level compatible/property.
+Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+---
+Satya Priya Kakitapalli (3):
+      dt-bindings: clock: qcom: Update SM8150 videocc bindings
+      clk: qcom: videocc-sm8150: Add index based clk lookup
+      arm64: dts: qcom: sm8150: Add video clock controller node
 
---
-Regards,
-Sudeep
+ .../devicetree/bindings/clock/qcom,sm8450-videocc.yaml      |  1 +
+ Documentation/devicetree/bindings/clock/qcom,videocc.yaml   |  3 ---
+ arch/arm64/boot/dts/qcom/sa8155p.dtsi                       |  4 ++++
+ arch/arm64/boot/dts/qcom/sm8150.dtsi                        | 13 +++++++++++++
+ drivers/clk/qcom/videocc-sm8150.c                           |  8 ++++++--
+ 5 files changed, 24 insertions(+), 5 deletions(-)
+---
+base-commit: 8ffc8b1bbd505e27e2c8439d326b6059c906c9dd
+change-id: 20240308-videocc-sm8150-dt-node-6f163b492f7c
+
+Best regards,
+-- 
+Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+
 
