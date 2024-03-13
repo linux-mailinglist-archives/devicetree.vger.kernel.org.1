@@ -1,154 +1,176 @@
-Return-Path: <devicetree+bounces-50196-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50197-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0E06987A4DF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:22:25 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AEC587A4F6
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:26:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D998B21E00
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 09:22:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C5B98B20C6F
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 09:25:57 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8A85E1CA80;
-	Wed, 13 Mar 2024 09:22:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A3FDC1CD25;
+	Wed, 13 Mar 2024 09:25:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="dVGZ6Q/1"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="zmrM6hGB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 156091C6AB;
-	Wed, 13 Mar 2024 09:22:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE3181CF9C
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 09:25:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710321722; cv=none; b=jhrrJYy05RbcjzoEPAfQnsMVcVyg+248mXM/EeXfqItg4n6c3ahZtlAI84hZCMX2BWmTiE/ExFETeRosPPNv7EHSaAXtsNBAK9H+8KkQnwFj5CF95RaD/Hi5H8jrR35kp2Urr46IJYNxjtJSIHjRvP8RKcX7Xc29n23al8Lpjnc=
+	t=1710321952; cv=none; b=OjBv1rSJa0r1JWUY7dlUpXXaGn/xYSA4k45MFen/628QBwh27hx/zBbU+Ia2bGxdqiE3U5gMAzhRAv3n4LAlROc+68uJ4nnsKYhQeEDmaVUX+MQNwVnI5CVW5ZEmXE4u5PQW2t6ngUvoKzQ9qLb7EOImCahxQHxlvDuqA2HrR9A=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710321722; c=relaxed/simple;
-	bh=raw2+FfisWfJFT08qDnQBVO8iyFRrffzMxBYqyLrj7w=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q4pYfN/S9osPJv3G94cXTjs/8TGav1drpeNVzX6g21QcQbedcYyvGSaX9C8eXo3bA1ESWgjrbUmyj5b9M3441cSDRVle8Q6X9opo64GVNtnRyQKfP9t6hD87mDYoooqlvngFSxrrJn8Y9UwQp9rMAi0U9LK+8hFOUEZm42Kx9NI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=dVGZ6Q/1; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42D7jkRh028610;
-	Wed, 13 Mar 2024 09:21:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	date:from:to:cc:subject:message-id:reply-to:references
-	:mime-version:content-type:in-reply-to; s=qcppdkim1; bh=Ddp2qo1i
-	6qR7lu69JmjaNBMJT0pRYnEyFux1jrc2EUQ=; b=dVGZ6Q/1X8Ad5jO7soDJJuGP
-	wvxN5UQ/OqGTdYhRGp1s94c6TL3xTfQlCZHnzDjPquaMDlmo1cjFH9zoAfd5O0mi
-	ZCAwCPv6/l4uL3zZUC0TFhaJzOz6aZCyH8JZCjKGRFClyVSpQa4S5h37H0sIxDQ3
-	y+0XugGZIch4weB38Yb6CynlGuJjJIlSqa82KUQK3n/sZSW6kgWf64eznrQCwVU4
-	XoptEYBurXHAAl46fsjbuAm5Lvv2uJ+Uj1MvdKbRr6yjcwmSUKTBfjnR2QJdmORy
-	Mta5DQEtcJZXBeNIaigpWODaV8dUy/Jf75GjBWMMqlrz/RzYLN+hmER9jTWM/A==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wu81m06vv-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Mar 2024 09:21:46 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42D9Lj6X002981
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Mar 2024 09:21:45 GMT
-Received: from quicinc.com (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Mar
- 2024 02:21:38 -0700
-Date: Wed, 13 Mar 2024 14:51:33 +0530
-From: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-To: Elliot Berman <quic_eberman@quicinc.com>
-CC: Alex Elder <elder@linaro.org>,
-        Srinivas Kandagatla
-	<srinivas.kandagatla@linaro.org>,
-        Murali Nalajal <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Carl van Schaik
-	<quic_cvanscha@quicinc.com>,
-        Philip Derrin <quic_pderrin@quicinc.com>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
-        Jonathan Corbet
-	<corbet@lwn.net>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Bjorn Andersson
-	<andersson@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        "Fuad
- Tabba" <tabba@google.com>,
-        Sean Christopherson <seanjc@google.com>,
-        "Andrew
- Morton" <akpm@linux-foundation.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-mm@kvack.org>
-Subject: Re: [PATCH v17 15/35] virt: gunyah: Add proxy-scheduled vCPUs
-Message-ID: <20240313092133.GQ440762@quicinc.com>
-Reply-To: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
-References: <20240222-gunyah-v17-0-1e9da6763d38@quicinc.com>
- <20240222-gunyah-v17-15-1e9da6763d38@quicinc.com>
+	s=arc-20240116; t=1710321952; c=relaxed/simple;
+	bh=sRcZO/KzLiCzYtIZIY03NKNyapOBVMXihw8FM6aklwk=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=b9pGNGmYugk0hCyb2WJx9IfNACudPs0Qmo0p1xTGCTb38UfsfOnQSTLvuonjGbplGo4SbX3pTDdHw3tIGhJ3L3UW7UF5uItaFt0WUdZtccwhYRR11GTUgHy9wqB8ercpRb2h67VNE5rM8qfyKZtCP0Op8GO/gu+VUjm66rvJ4DY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=zmrM6hGB; arc=none smtp.client-ip=209.85.221.47
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-33e99b639e0so1978643f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 02:25:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710321949; x=1710926749; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TyH7YkiQiIP6w5g7eDOxwkAE9o1tF+zYeHL+jmj5IHc=;
+        b=zmrM6hGBi4auwcpQxaUrKfj8khFOZJORAvXRLpwYkNRSF4ZkLT+2Ayw6yOhdF1iyPT
+         fFc6yLwSzGarHgVLl9sX4EabCc8D8NbnsnyxZs9IQoYXJBePN7VtiNRB7J1fptVumu30
+         2oS68lUsflDKd1xk4Kt2c9I+IObIaUXjxBduoPZOoezz2XH6cSf1rlPAXoKQ4GDfT1Xc
+         fNQrcCK82hzfoXdN0fWygcWJFhEl9hTrgTChHHJLshTL10UphjzmmXxT52/YYno+wZAn
+         b3h09wdiB+9vPDwiCj0FQybEkUZfCAvRLq5R7PE1LgLl9Y3VpCDzXyXm0PGd8QWHfyyT
+         TzLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710321949; x=1710926749;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TyH7YkiQiIP6w5g7eDOxwkAE9o1tF+zYeHL+jmj5IHc=;
+        b=RsnJxTYCpvquIsKTZ5QmlO9e+a3tXyjEiwtRUni91/d2fF6IAt/R+nTqeEGA2+L1M6
+         Xmq5tReazoePvP4FWPx46jI3Ay4OhieiNU4PkyADgkYZOu8+n6Z4AQf/YDSaFn3UFfyI
+         6tn8tC7q/MAQc0flYdPvO8MQhN5OOe/kDkgK4bUggd07hRq40jC3Zj0D3oimjd0Pakcy
+         5zumNwGc3ZrGbi5rPkPbNpbWVqmeaWF7zOqhq/FotDddnwzyFEayb0BhXOvQVSyi/wBI
+         Ze9jaEAFu9s4hu7yVJFpYsunQfjxFTvcaIjBjNtSdSK7u2U/fr47u6+hFwNYUOZTSiGa
+         AcQA==
+X-Forwarded-Encrypted: i=1; AJvYcCU1OKYRKvdLaTIZ0pc4ZXvAvsG4GyjP8ivQcamFAFLDKmxhOpEyLSZpx4Yw929VNnzqx244mTc5z1GPU5pQXuqKiNJLg1j2E1UTLg==
+X-Gm-Message-State: AOJu0YykgqJXfjvQQklSdNgtVD4VqEPthyYH2yLaJtndzl6O0Hh3m9GW
+	EgiKN0DVbva2IPccbE0zr+LsWpI8NUuk97s+feDjK+tOcGoU3ErYsRqSU5LFRN4=
+X-Google-Smtp-Source: AGHT+IE6RKhX68BB8JP036wcs31tX2vaK1dT2SsxKwnYd9bqIpg8thAbw/4pniwxDU+cHSY8FkMLgg==
+X-Received: by 2002:a5d:5547:0:b0:33e:7c19:dec8 with SMTP id g7-20020a5d5547000000b0033e7c19dec8mr1101938wrw.21.1710321949066;
+        Wed, 13 Mar 2024 02:25:49 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id q18-20020adf9dd2000000b0033e90e98886sm8618380wre.71.2024.03.13.02.25.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Mar 2024 02:25:48 -0700 (PDT)
+Message-ID: <e84183e5-c10a-4722-9138-27947a4ca0d9@linaro.org>
+Date: Wed, 13 Mar 2024 10:25:44 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-In-Reply-To: <20240222-gunyah-v17-15-1e9da6763d38@quicinc.com>
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Q94xi6VH8SfTFSLQi7xRGsS-lVQu-XnL
-X-Proofpoint-GUID: Q94xi6VH8SfTFSLQi7xRGsS-lVQu-XnL
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-13_07,2024-03-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- malwarescore=0 lowpriorityscore=0 clxscore=1015 phishscore=0
- priorityscore=1501 mlxlogscore=999 impostorscore=0 suspectscore=0
- spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403130068
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] media: dt-bindings: i2c: add GalaxyCore GC05A2 image
+ sensor
+Content-Language: en-US
+To: Zhi Mao <zhi.mao@mediatek.com>, mchehab@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, sakari.ailus@linux.intel.com
+Cc: laurent.pinchart@ideasonboard.com, shengnan.wang@mediatek.com,
+ yaya.chang@mediatek.com, Project_Global_Chrome_Upstream_Group@mediatek.com,
+ yunkec@chromium.org, conor+dt@kernel.org, matthias.bgg@gmail.com,
+ angelogioacchino.delregno@collabora.com, jacopo.mondi@ideasonboard.com,
+ 10572168@qq.com, hverkuil-cisco@xs4all.nl, heiko@sntech.de,
+ jernej.skrabec@gmail.com, macromorgan@hotmail.com, linus.walleij@linaro.org,
+ hdegoede@redhat.com, tomi.valkeinen@ideasonboard.com,
+ gerald.loacker@wolfvision.net, andy.shevchenko@gmail.com,
+ bingbu.cao@intel.com, dan.scally@ideasonboard.com,
+ linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org
+References: <20240313054409.8073-1-zhi.mao@mediatek.com>
+ <20240313054409.8073-2-zhi.mao@mediatek.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240313054409.8073-2-zhi.mao@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-* Elliot Berman <quic_eberman@quicinc.com> [2024-02-22 15:16:38]:
-
-> Gunyah allows vCPUs that are configured as proxy-scheduled to be scheduled by
-> another virtual machine (host) that holds capabilities to those vCPUs with
-> suitable rights.
+On 13/03/2024 06:44, Zhi Mao wrote:
+> Add YAML device tree binding for GC05A2 CMOS image sensor,
+> and the relevant MAINTAINERS entries.
 > 
-> Gunyah also supports configuring regions of a proxy-scheduled VM's address
-> space to be virtualized by the host VM. This permits a host VMM to emulate MMIO
-> devices in the proxy-scheduled VM.
-> 
-> vCPUs are presented to the host as a Gunyah resource and represented to
-> userspace as a Gunyah VM function.
-> 
-> Creating the vcpu function on the VM will create a file descriptor that:
->  - can handle an ioctl to run the vCPU. When called, Gunyah will directly
->    context-switch to the selected vCPU and run it until one of the following
->    events occurs:
->     * the host vcpu's time slice ends
->     * the host vcpu receives an interrupt or would have been pre-empted
->       by the hypervisor
->     * a fault occurs in the proxy-scheduled vcpu
->     * a power management event, such as idle or cpu-off call in the vcpu
->  - can be mmap'd to share the gunyah_vcpu_run structure with userspace. This
->    allows the vcpu_run result codes to be accessed, and for arguments to
->    vcpu_run to be passed, e.g. for resuming the vcpu when handling certain fault
->    and exit cases.
-> 
-> Co-developed-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-> Signed-off-by: Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
+> Signed-off-by: Zhi Mao <zhi.mao@mediatek.com>
 
-LGTM
 
-Reviewed-by: Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-- vatsa
+
+---
+
+This is an automated instruction, just in case, because many review tags
+are being ignored. If you know the process, you can skip it (please do
+not feel offended by me posting it here - no bad intentions intended).
+If you do not know the process, here is a short explanation:
+
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions, under or above your Signed-off-by tag. Tag is "received", when
+provided in a message replied to you on the mailing list. Tools like b4
+can help here. However, there's no need to repost patches *only* to add
+the tags. The upstream maintainer will do that for tags received on the
+version they apply.
+
+https://elixir.bootlin.com/linux/v6.5-rc3/source/Documentation/process/submitting-patches.rst#L577
+
+Best regards,
+Krzysztof
+
 
