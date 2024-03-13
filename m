@@ -1,194 +1,125 @@
-Return-Path: <devicetree+bounces-50192-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50193-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6349387A4BF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:18:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D846B87A4CA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:20:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 86B641C21BA7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 09:18:52 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 921EE282F21
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 09:20:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C46D91BDC2;
-	Wed, 13 Mar 2024 09:18:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 787981CD22;
+	Wed, 13 Mar 2024 09:20:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="RRC+ROjM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f182.google.com (mail-yb1-f182.google.com [209.85.219.182])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 29E7A1B967;
-	Wed, 13 Mar 2024 09:18:45 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.176.79.56
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C21B31CD25
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 09:20:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710321527; cv=none; b=Amx0tSytuzdtXoX3RPLgEjQIO+W5kIFNH6Wnd1z7tmTfYmqpBHqFqG1YV5cyZez95U67wigKi+GfHpo8MJNouj+hF6Mwyd41/CeTNjl1/xj4vccWV2NRY4rN9edeH42cqs43GuRD2uWuQEEANDuT8RlnRspWyGcqZRjbwHTUysI=
+	t=1710321604; cv=none; b=QoY2aMsOC+4o1oT8yWaBMxdswkMbpbona9mupbDRygv0BUdOywp0m/71MzsGQwQlq3w8INLc5+hoAC1lO3ZlStDKgX/+UbMEYh0rMkvIrbS/CgIsn3DHDDNjCtx0bMWwQ/TiAq3neopmbQmxJUwpnmyGiPplL4tCgE50F0D0SQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710321527; c=relaxed/simple;
-	bh=RFkHpCQG/4jrrEhe9g+aKoOyktmLhxWFBxwKFFn7F14=;
-	h=Date:From:To:CC:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=TlyN46M4pUp4GsT9FgBSBRnDTLy/GZrAGJjvDW2RyfPLLRPDXACh3Fp+/j5HHhMwyY4OpSecoizTf2Qts1v579fbFvkwBkbjzBJf+ldrz87m1y+ehCJ31lWbzL65X4AgQiwVdKv9Army+Wrx0yETsO8wHrw4M2MKOEjW92rlFEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com; spf=pass smtp.mailfrom=huawei.com; arc=none smtp.client-ip=185.176.79.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=Huawei.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=huawei.com
-Received: from mail.maildlp.com (unknown [172.18.186.31])
-	by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4TvlLC53FWz6G8xK;
-	Wed, 13 Mar 2024 17:18:27 +0800 (CST)
-Received: from lhrpeml500005.china.huawei.com (unknown [7.191.163.240])
-	by mail.maildlp.com (Postfix) with ESMTPS id 753FF140A35;
-	Wed, 13 Mar 2024 17:18:28 +0800 (CST)
-Received: from localhost (10.202.227.76) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.35; Wed, 13 Mar
- 2024 09:18:27 +0000
-Date: Wed, 13 Mar 2024 09:18:27 +0000
-From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To: Rob Herring <robh@kernel.org>
-CC: Jonathan Cameron <jic23@kernel.org>, Greg Kroah-Hartman
-	<gregkh@linuxfoundation.org>, <devicetree@vger.kernel.org>,
-	<linux-iio@vger.kernel.org>, Frank Rowand <frowand.list@gmail.com>, "Julia
- Lawall" <Julia.Lawall@inria.fr>, Peter Zijlstra <peterz@infradead.org>, "Andy
- Shevchenko" <andriy.shevchenko@linux.intel.com>, <marek.vasut@gmail.com>
-Subject: Re: [RESEND PATCH v2 0/4] of: automate of_node_put() - new approach
- to loops.
-Message-ID: <20240313091827.00000b7f@Huawei.com>
-In-Reply-To: <CAL_JsqJ5XaxoL9=urL4ReVv5rhkkti5LN+nFGy1btyO2u7qjEw@mail.gmail.com>
-References: <20240225142714.286440-1-jic23@kernel.org>
-	<20240301223942.GA3179769-robh@kernel.org>
-	<20240303115633.41128a62@jic23-huawei>
-	<20240309173332.277fce7d@jic23-huawei>
-	<CAL_JsqJ5XaxoL9=urL4ReVv5rhkkti5LN+nFGy1btyO2u7qjEw@mail.gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+	s=arc-20240116; t=1710321604; c=relaxed/simple;
+	bh=YfNa2HcP33gx/cy1Fy4b4hmZtnEzlibHuZBeZyU9yds=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=ciEDK5PfeCfPHTTfFyHjMT6x+V4tzdPsTeBFXcyV4XdOcfT9bgzTvtO+JHjeZc6WA8Bznb5MPxy5B3/FFRJVG9yC/YOi91xERFb5wYTI9xGPGMo3UJh4b/CzeodaE0ism4FQ8F7x33YXzwnHmgUvdNXrPF/wj1/5l3rS3Dou4u8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=RRC+ROjM; arc=none smtp.client-ip=209.85.219.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f182.google.com with SMTP id 3f1490d57ef6-dc236729a2bso719399276.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 02:20:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710321602; x=1710926402; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=YfNa2HcP33gx/cy1Fy4b4hmZtnEzlibHuZBeZyU9yds=;
+        b=RRC+ROjM8CdCjs9dRY/uWngwa918h88Jyrb23Y4+l2On7wubcMdTuotiTB0BTDzJum
+         KcOHDU9CK2Do7tC9RDMeclFHe1BXxcVMaHaoQyCKltcX4QY7WKPvXZCWATELk1AwVViB
+         Hn9pLhJ5E3xNXaZq1QKrGRF8VMdI9sYc/F++tW/dqITt5wrwJQJkd3lKiOtV5iL+lNia
+         Jknnns1+Pxdnx2fDwe5978In9ChaU1fU0QBecqn4wFNrVD26ZK6VY3xggdKmlNBk92Xj
+         ccQwaHK/JncHhaXAxPj49PBCCzuPZGvO+TwVnz1UwUpOgZmTGo/jxsxzL9LL3VV05hVD
+         ryrg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710321602; x=1710926402;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=YfNa2HcP33gx/cy1Fy4b4hmZtnEzlibHuZBeZyU9yds=;
+        b=fuk90u6p3vSaeUSXMWtwzM7U60xFVovnU5HCrrjlXNExN5UPpfndYP4nBAVRu5rkv7
+         Qr9cmmahgp6+ZUzIJpmUGlz9M9PN3b6AAn7ZYTyUypb5p48GfN0rmTxYT8uiOOEihLK0
+         Jzo3pU2MKwbVEih4j5hL5GOCIsg/Gmar0k6MDA43lgrLl5Vv7ztYdYw5Zn+NGSyX4H10
+         kGR3JqC0SZLYgvSwa2jGk/Sf1aaaccwssTlY3ppDBDinB+ko7xQolgZH0QJZiwq61GCc
+         DeafiHX24ucNo1hAt5cYVZ2EDpDtCyMSmAMQgo9nZgaUnCFmxHQeQietYNNKpSLYarrB
+         nL6Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXaMeGoyyzJ6wN7GYm9V2Y4XlvGM27fuaFyyr+qx6Nf99wajTZE52cqWurrjrI1BIPPpqvvvmsA8mM5Q4xUxwsVc95xsSgUzIvIBA==
+X-Gm-Message-State: AOJu0YwiHnx6LTz+WjC2Hm35Tv+CklcjPrjSy5Zi/DCvLOlW9s9oXRzu
+	8VKqxd5P/V7YaoulUVeuTFsqsjLG2MKPAy7tiQ5RIIA1RKshoHM49NdZ96fsYvmxDog4tXs4Vmx
+	uKQWlds++naVcpZJruc5Iu4b0x4Frh7x75U3Oww==
+X-Google-Smtp-Source: AGHT+IHTbEDBjZpoqkNK31rikuCu4MXa66H8dPvnQW0wuW+MJy6rtAx+cAr2w0I+xMYKIxfFXSHxX2LAeMzGl3+xUNg=
+X-Received: by 2002:a05:6902:291:b0:dbd:c442:9e60 with SMTP id
+ v17-20020a056902029100b00dbdc4429e60mr1750327ybh.36.1710321601697; Wed, 13
+ Mar 2024 02:20:01 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+References: <ZbFH0UE9zZQFWm8Z@bogus> <32092ee9-018f-4cfb-950e-26c69764f35a@quicinc.com>
+ <94a62a78-961a-4286-804c-fc0b9098b8a1@quicinc.com> <CAPDyKFrL2QcB-YbE25smGgJjf3iBEsSSB4ui3V98zJKghNNhKA@mail.gmail.com>
+ <20240228140239.gkzcytw6cmb4opja@bogus> <799268ac-7ffb-4b99-b037-d5bb93d37f13@linaro.org>
+ <20240228160925.fcitj2yz7hisidsl@bogus> <CAPDyKFqEDu1KRsT2YWv7MhoosCSj_bgV4xE=-2hDaS1ZP7AkvQ@mail.gmail.com>
+ <2b0a11f4-f54e-461c-91e7-8f313d91abe8@linaro.org> <CAPDyKFoo+-2AF096Sbn8EHP1H4Zw2+2sFnSyuq65sWGmMmXU0A@mail.gmail.com>
+ <ZeWp_UjYfWsnEB-K@bogus> <321069a8-2c46-4871-b85a-5e9cbdda5b5d@quicinc.com>
+ <3aad2e6b-88fd-06ab-95c5-d07f012e8306@quicinc.com> <bd2dde74-e4b9-4cf8-b1f1-9bc52f3b83da@linaro.org>
+ <989dee90-9c44-09b9-6940-687082109ae7@quicinc.com>
+In-Reply-To: <989dee90-9c44-09b9-6940-687082109ae7@quicinc.com>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 13 Mar 2024 10:19:24 +0100
+Message-ID: <CAPDyKFpNo1g9j-JojzN3sbq==mnaKsamrd9EyskDUDZS=AB3mg@mail.gmail.com>
+Subject: Re: DT Query on "New Compatible vs New Property"
+To: Trilok Soni <quic_tsoni@quicinc.com>, 
+	Srinivas Kandagatla <srinivas.kandagatla@linaro.org>, Nikunj Kela <quic_nkela@quicinc.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>, krzysztof.kozlowski+dt@linaro.org, 
+	Vincent Guittot <vincent.guittot@linaro.org>, robh+dt@kernel.org, conor+dt@kernel.org, 
+	devicetree@vger.kernel.org, 
+	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-ClientProxiedBy: lhrpeml100005.china.huawei.com (7.191.160.25) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
 
-On Tue, 12 Mar 2024 12:10:46 -0600
-Rob Herring <robh@kernel.org> wrote:
-
-> On Sat, Mar 9, 2024 at 10:33=E2=80=AFAM Jonathan Cameron <jic23@kernel.or=
-g> wrote:
+On Tue, 12 Mar 2024 at 18:25, Trilok Soni <quic_tsoni@quicinc.com> wrote:
+>
+> On 3/12/2024 10:21 AM, Srinivas Kandagatla wrote:
 > >
-> > On Sun, 3 Mar 2024 11:56:33 +0000
-> > Jonathan Cameron <jic23@kernel.org> wrote:
-> > =20
-> > > On Fri, 1 Mar 2024 16:39:42 -0600
-> > > Rob Herring <robh@kernel.org> wrote:
-> > > =20
-> > > > On Sun, Feb 25, 2024 at 02:27:10PM +0000, Jonathan Cameron wrote: =
-=20
-> > > > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > > >
-> > > > > Some discussion occured on previous posting.
-> > > > > https://lore.kernel.org/linux-iio/20240223124432.26443-1-Jonathan=
-.Cameron@huawei.com/
-> > > > >
-> > > > > Summary:
-> > > > > * fwnode conversions should be considered when applying this
-> > > > >   infrastructure to a driver. Perhaps better to move directly to
-> > > > >   the generic FW property handling rather than improve existing
-> > > > >   of specific code.
-> > > > > * There are lots of potential places to use this based on detecti=
-ons
-> > > > >   from Julia's coccinelle scripts linked below.
-> > > > >
-> > > > > The equivalent device_for_each_child_node_scoped() series for
-> > > > > fwnode will be queued up in IIO for the merge window shortly as
-> > > > > it has gathered sufficient tags. Hopefully the precdent set there
-> > > > > for the approach will reassure people that instantiating the
-> > > > > child variable inside the macro definition is the best approach.
-> > > > > https://lore.kernel.org/linux-iio/20240217164249.921878-1-jic23@k=
-ernel.org/
-> > > > >
-> > > > > v2: Andy suggested most of the original converted set should move=
- to
-> > > > >     generic fwnode / property.h handling.  Within IIO that was
-> > > > >     a reasonable observation given we've been trying to move away=
- from
-> > > > >     firmware specific handling for some time. Patches making that=
- change
-> > > > >     to appropriate drivers posted.
-> > > > >     As we discussed there are cases which are not suitable for su=
-ch
-> > > > >     conversion and this infrastructure still provides clear benef=
-its
-> > > > >     for them.
-> > > > >
-> > > > > Ideally it would be good if this introductory series adding the
-> > > > > infrastructure makes the 6.9 merge window. There are no dependenc=
-ies
-> > > > > on work queued in the IIO tree, so this can go via devicetree
-> > > > > if the maintainers would prefer. I've had some off list messages
-> > > > > asking when this would be merged, as there is interest in building
-> > > > > on it next cycle for other parts of the kernel (where conversion =
-to
-> > > > > fwnode handling may be less appropriate). =20
-> > > >
-> > > > I'll let you take it. For the series:
-> > > >
-> > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > >
-> > > > I've got some drivers/of/ conversions too, but they are probably ne=
-xt
-> > > > cycle at this point.
-> > > >
-> > > > Rob =20
-> > >
-> > > Thanks Rob,
-> > >
-> > > Whether this makes it for this cycle is probably dependent on whether
-> > > Linus does decide to do got to rc8 as hinted at as a possibility
-> > > + whether Greg feels comfortable taking these through his tree
-> > > (char-misc is the normal path for IIO).  I know various people
-> > > are hoping this series makes it, but if doesn't we can do an immutable
-> > > tree early next cycle (though obviously that may reduce speed of adop=
-tion).
-> > >
-> > > We are discussing the equivalent pull request for the fwnode version =
-here:
-> > >
-> > > https://lore.kernel.org/linux-iio/2024030239-gift-cabdriver-266b@greg=
-kh/T/#m87e7208820ebf6416a77a2973773b65a087b4796
-> > >
-> > > I've optimistically applied this series to my togreg-cleanup branch
-> > > and merged that into the togreg branch of iio.git for linux-next to p=
-ick up.
-> > > =20
+> >> Basically, I would prefer better than "qcom, fw-managed" since this is not
+> >> a qcom specific problem.
 > >
-> > Greg, would you consider a last minute pull request for these, or picki=
-ng them up
-> > directly?  It would be helpful for Rob's follow ups and the work Julia =
-is doing
-> > with coccinelle and automating of locating cases to apply this approach.
 > >
-> > If the device_for_each_child_node_scoped() series is fine this is almos=
-tly
-> > exactly the same thing for the device tree specific case. Not sure what=
- your
-> > plans are for that pull request so I might be jumping the gun.
+> > We already have something like this in mainline where the BAM DMA controller is remotely powered.
 > >
-> > If not (and assuming the generic property version does make it in) I'll=
- do
-> > an immutable branch based on rc1 so that others can build on this via t=
-hat.
-> > Fiddlier solution for everyone but given how late we are, perhaps the w=
-iser
-> > one. =20
->=20
-> I'm happy to pick up the first 3 patches for 6.9 if you want.
+> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml?h=v6.8
+> >
+>
+> As you can see it is already fragmented. Why we need to create one more approach
+> which is not scalable and specific to SOC vendor?
+>
+> SCMI or RPMI based firmware is not a QC specific. I also have allergic reaction
+> when I see drivers modified w/ if (fw_managed) {..} but that is a discussion
+> for some other day.
+>
+>
 
-Thanks Rob, that would be great.
+For the record, I fully agree with Trilok here.
 
-Jonathan
+More importantly, why is the other suggested approach(es) a problem? I
+don't get it.
 
->=20
-> Rob
->=20
-
+Kind regards
+Uffe
 
