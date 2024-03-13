@@ -1,231 +1,146 @@
-Return-Path: <devicetree+bounces-50355-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50357-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9731987B364
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 22:21:48 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9D6B587B433
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 23:10:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 4EB982869DA
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 21:21:47 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 58E7C28545B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 22:10:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4464D5337E;
-	Wed, 13 Mar 2024 21:21:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id CFB2E5A0F2;
+	Wed, 13 Mar 2024 22:09:55 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="EZaNJU13"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="kEkcr5TN"
 X-Original-To: devicetree@vger.kernel.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9452D1A38DB;
-	Wed, 13 Mar 2024 21:21:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=213.167.242.64
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 45DD759B7D;
+	Wed, 13 Mar 2024 22:09:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710364905; cv=none; b=K5Ivf0Q3JAN3i+obI4HCI2vMmXFg7qBPfn8Cf/uPMujWoT1s1ST7gXYVLfR8J+396o7iEnoHS1tYlDAhEI9NHvZFoG2CDFa23e4B153UNV/NOFsX7qndp8ftgyGn6+0jL66xQEyCL1A33KIEK5F0ZYi4qOYHZLTMlW/T87J2Tak=
+	t=1710367795; cv=none; b=b+N7IOSA3V5nD9gUH+yZI109xRUN1JwGa0ldwNDsUdVK4Nbdb2pgmBwUtH9DGVJaxHWrcxhAB9IW7IwFY2BJqa3w+QtSTvZkWqgM9mY0rPBGBv85EWwCGab5A53vbfVDwfbks80b9GA2h3xvjaESWozPuUhoEMyEs/wBfAwlZtY=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710364905; c=relaxed/simple;
-	bh=SpKyPDhdUaclvqwD0w0SBBHsdGTcEavK9/1NEyIyJ6Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nLCLRJQZFbCFR0xSsKFQo5ZpSaRgijsECEo9Uzan8w5YpMrSbjPfWpjFLni5edYyVE2KOI4eQRk8o1BsHzFAc3PlFGSRxRvDhKBFiG91tfqEZeHl4HPFkyh5gTDeFXuPXnTdFYxn9dJbQzfLlW1TRaITdooaS6o6jY5dMs3TgoY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com; spf=pass smtp.mailfrom=ideasonboard.com; dkim=pass (1024-bit key) header.d=ideasonboard.com header.i=@ideasonboard.com header.b=EZaNJU13; arc=none smtp.client-ip=213.167.242.64
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=ideasonboard.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ideasonboard.com
-Received: from pendragon.ideasonboard.com (unknown [95.214.66.65])
-	by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9F902899;
-	Wed, 13 Mar 2024 22:21:18 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-	s=mail; t=1710364878;
-	bh=SpKyPDhdUaclvqwD0w0SBBHsdGTcEavK9/1NEyIyJ6Q=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=EZaNJU132v9GHYBCDIhE9Rr8BmzGK9eDNCz6eYfiZssFXR0yiKWnswn95ClwH8KZf
-	 LnwVT/n+H37h5va5YW3vMG1jyUoQAoMUcJgizCpxY/eKkLUHQ2ZnzeTwI4M7pWQn74
-	 dji/Eirs9MST8usKx3oAD2kD6Z/ZtkrkOTZzwuJ8=
-Date: Wed, 13 Mar 2024 23:21:49 +0200
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Umang Jain <umang.jain@ideasonboard.com>
-Cc: linux-media@vger.kernel.org,
-	Kieran Bingham <kieran.bingham@ideasonboard.com>,
-	willl will <will@willwhang.com>,
-	Sakari Ailus <sakari.ailus@linux.intel.com>,
-	tomi.valkeinen@ideasonboard.com, Rob Herring <robh@kernel.org>,
-	Mauro Carvalho Chehab <mchehab@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	"open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" <devicetree@vger.kernel.org>,
-	"moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" <linux-arm-kernel@lists.infradead.org>,
-	open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 1/2] media: dt-bindings: media: Add bindings for IMX283
-Message-ID: <20240313212149.GA4372@pendragon.ideasonboard.com>
-References: <20240313070705.91140-1-umang.jain@ideasonboard.com>
- <20240313070705.91140-2-umang.jain@ideasonboard.com>
+	s=arc-20240116; t=1710367795; c=relaxed/simple;
+	bh=4hpePpaFTE6U7CK4ISiZbOEK8A4i2CFiX0UrbxY6QFY=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=dBXugimgob9W+0BiscPQAYw9e1+2+9xHS5ZvcITCZ4dMP9kd/oGCaa7ksgy4gRgf/OHiSJXjkw5XpBHkyIDD1rqLfmEC+r3sTu/tuBWkRC7kvLvB8CS0HvKEGO5g+1rG16jeUaqQ2DgljgDgB8vxiLFq64swmFgIH8jh9W40ikY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=kEkcr5TN; arc=none smtp.client-ip=209.85.222.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-7dbb7f8016eso758632241.1;
+        Wed, 13 Mar 2024 15:09:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710367793; x=1710972593; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=daWXvFeY9rVW7OCBrBWc6Xoloz3pKxS60zVN6U+OS54=;
+        b=kEkcr5TNNc952m2N/g0xoNSdz7HSN98Ky3GSKJelAIbRaP7A98nZBXyMvRCokBnmLY
+         5kUX1VPZTpRqwLyiJjJBNKBjXH94xmMNOpJ3OtJ/BZy/TaoH+hK6imfVeQW7+QoUqESg
+         JWvsvcsR6FHeP/TYNpsszeO2YQD/idkOlWrb0W1Nr9mG7ZvPCNMdEEwPv/y68Y8uMZoe
+         PFiCCs/llV5z6wQWPizyE8oM9A0RBSPxx9d9BxLaap7wd8I6VylbbzbLT6Uz/eg9M2mv
+         rBZS8cHcBuRn5MJx6rHmlDkkX+6uz+0ilpewklxUOpg8f+ixlytcfGFXZN5gYaWMgXNe
+         Oduw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710367793; x=1710972593;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=daWXvFeY9rVW7OCBrBWc6Xoloz3pKxS60zVN6U+OS54=;
+        b=pcKCjQdPHzVLw+7t+h9RnOM5P8pHj57mCo+UjNxDsL66t4b6BlFVYMZ1cQCkxdVsR1
+         bvqpJCUIY+P/ukhLbRTiwG/o3k4di50JI7kl3JoTQATgl2TO1nvQL5yKXwefasjo6fy1
+         l1Yd1gk0/Tc+ooLc3/z1z1PB8W/YaV2IhHNZtTpRZ/oRB0SRRHTnLcNhSIo5vrM88kQR
+         eH+RNvB/p2tGYp31oIDCQD0cxt6NxGaB52igHu+jwSFkQrK6lmZoCe0OZFKJOzDk9G+H
+         PXWUmBjSleMtM3SXJkcn8efd5M6NgIDdT+RGwzWb9Kwgagq8yvW7DOXouyAoUD+rf/vr
+         x9qg==
+X-Forwarded-Encrypted: i=1; AJvYcCWgJK3DQixlX/eb+J+Gl82u2U9nW70vRSqmVNEkvn1EcI54FEo/HuIh3fy3nawkL+3DrruQlx13yHLigkD3JS74MfeNDK++le99Mw9bpx4yGEq4t7oLF42r/+iDfylVxBDYWZkuSvW+2uCcAWlPvw46c221Oh5jM7B0UTzIZASMNBiSgXqWNZzj9TxHVQq0qdJMAo7wHuL+gYncbI+Kkf7IvmogPfQwnw==
+X-Gm-Message-State: AOJu0Yz9vpXHSxiCXT9PYN+EyIUIPW3FJn+pQR79XQ3cAyw1kGntE7sg
+	Owef/3KGanCBEUuLUcSxwNLhODqJ+Bj2r9wevb06IxbdW9wOk7AbYAggrNyrP9bz7J2jmhtDoIN
+	oIxdKPcepM5286uFEzDD2LzLiZok=
+X-Google-Smtp-Source: AGHT+IHEH3fqCM6u2M1oBHOKBnOFhk9tpx1sgww/vfX8Gmw+JTdMXok3gn5hIEQvYF/wzB4BR7nx+Ps1ixoUwk8Ph18=
+X-Received: by 2002:a1f:f48d:0:b0:4d3:34f4:7e99 with SMTP id
+ s135-20020a1ff48d000000b004d334f47e99mr118866vkh.0.1710367793051; Wed, 13 Mar
+ 2024 15:09:53 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20240313070705.91140-2-umang.jain@ideasonboard.com>
+References: <20240313083828.5048-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <619c6117-d9b2-4520-9138-311327b17a8e@linaro.org>
+In-Reply-To: <619c6117-d9b2-4520-9138-311327b17a8e@linaro.org>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Wed, 13 Mar 2024 22:08:32 +0000
+Message-ID: <CA+V-a8vicbBrnu__w=KubF3VfRte_v23pUumFEd7O3buSjOyPg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: pinctrl: renesas,rzg2l-pinctrl: Allow
+ 'input' and 'output-enable' properties
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Geert Uytterhoeven <geert+renesas@glider.be>, Linus Walleij <linus.walleij@linaro.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, linux-renesas-soc@vger.kernel.org, 
+	linux-gpio@vger.kernel.org, devicetree@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Mar 13, 2024 at 12:36:58PM +0530, Umang Jain wrote:
-> - Add dt-bindings documentation for Sony IMX283 sensor driver
-> - Add MAINTAINERS entry for Sony IMX283 binding documentation
-> 
-> Signed-off-by: Umang Jain <umang.jain@ideasonboard.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
->  .../bindings/media/i2c/sony,imx283.yaml       | 107 ++++++++++++++++++
->  MAINTAINERS                                   |   8 ++
->  2 files changed, 115 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
-> new file mode 100644
-> index 000000000000..e4f49f1435a5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright (C) 2024 Ideas on Board Oy
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/media/i2c/sony,imx283.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sony IMX283 Sensor
-> +
-> +maintainers:
-> +  - Kieran Bingham <kieran.bingham@ideasonboard.com>
-> +  - Umang Jain <umang.jain@ideasonboard.com>
-> +
-> +description:
-> +  IMX283 sensor is a Sony CMOS active pixel digital image sensor with an active
-> +  array size of 5472H x 3648V. It is programmable through I2C interface. The
-> +  I2C client address is fixed to 0x1a as per sensor data sheet. Image data is
-> +  sent through MIPI CSI-2.
-> +
-> +properties:
-> +  compatible:
-> +    const: sony,imx283
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description: Clock frequency from 6 to 24 MHz.
-> +    maxItems: 1
-> +
-> +  vadd-supply:
-> +    description: Analog power supply (2.9V)
-> +
-> +  vdd1-supply:
-> +    description: Interface power supply (1.8V)
-> +
-> +  vdd2-supply:
-> +    description: Digital power supply (1.2V)
+Hi Krzysztof,
 
-Those two supplies are named vddd1 and vddd2 in the datasheet.
+Thank you for the review.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+On Wed, Mar 13, 2024 at 5:02=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 13/03/2024 09:38, Prabhakar wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > On the RZ/G3S SMARC platform, the 'input' property is utilized in gpio-=
+hog
+> > nodes, and the 'output-enable' property is used for ETH0/1 TXC pins. Up=
+date
+> > the binding documentation to include these properties, addressing the
+> > following dtbs_check warnings:
+> >
+> > arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dtb: pinctrl@11030000: k=
+ey-1-gpio-hog: 'anyOf' conditional failed, one must be fixed:
+> >       'input' does not match any of the regexes: 'pinctrl-[0-9]+'
+> >       True is not of type 'object'
+> >       [[144, 1]] is not of type 'object'
+> >       ['key-1-gpio-irq'] is not of type 'object'
+> >       from schema $id: http://devicetree.org/schemas/pinctrl/renesas,rz=
+g2l-pinctrl.yaml#
+> >
+> > arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dtb: pinctrl@11030000: e=
+th0: 'anyOf' conditional failed, one must be fixed:
+> >       'mux', 'tx_ctl', 'txc' do not match any of the regexes: 'pinctrl-=
+[0-9]+'
+> >       'output-enable' does not match any of the regexes: 'pinctrl-[0-9]=
++'
+> >       from schema $id: http://devicetree.org/schemas/pinctrl/renesas,rz=
+g2l-pinctrl.yaml#
+> >
+>
+> In the future, please trim the error messages only to relevant parts, e.g=
+.
+>
+> arch/arm64/boot/dts/renesas/r9a08g045s33-smarc.dtb: pinctrl@11030000: key=
+-1-gpio-hog: 'anyOf' conditional failed, one must be fixed:
+>         'input' does not match any of the regexes: 'pinctrl-[0-9]+'
+>
+> Because all other four lines are really not helping.
+>
+Sure I will keep that in mind.
 
-> +
-> +  reset-gpios:
-> +    description: Sensor reset (XCLR) GPIO
-> +    maxItems: 1
-> +
-> +  port:
-> +    $ref: /schemas/graph.yaml#/$defs/port-base
-> +    additionalProperties: false
-> +
-> +    properties:
-> +      endpoint:
-> +        $ref: /schemas/media/video-interfaces.yaml#
-> +        unevaluatedProperties: false
-> +
-> +        properties:
-> +          data-lanes:
-> +            anyOf:
-> +              - items:
-> +                  - const: 1
-> +                  - const: 2
-> +                  - const: 3
-> +                  - const: 4
-> +
-> +          link-frequencies: true
-> +
-> +        required:
-> +          - data-lanes
-> +          - link-frequencies
-> +
-> +    required:
-> +      - endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        camera@1a {
-> +            compatible = "sony,imx283";
-> +            reg = <0x1a>;
-> +            clocks = <&imx283_clk>;
-> +
-> +            assigned-clocks = <&imx283_clk>;
-> +            assigned-clock-parents = <&imx283_clk_parent>;
-> +            assigned-clock-rates = <12000000>;
-> +
-> +            vadd-supply = <&camera_vadd_2v9>;
-> +            vdd1-supply = <&camera_vdd1_1v8>;
-> +            vdd2-supply = <&camera_vdd2_1v2>;
-> +
-> +            port {
-> +                imx283: endpoint {
-> +                    remote-endpoint = <&cam>;
-> +                    data-lanes = <1 2 3 4>;
-> +                    link-frequencies = /bits/ 64 <360000000>;
-> +                };
-> +            };
-> +        };
-> +    };
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 73d898383e51..32f790c3a5f9 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20368,6 +20368,14 @@ T:	git git://linuxtv.org/media_tree.git
->  F:	Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
->  F:	drivers/media/i2c/imx274.c
->  
-> +SONY IMX283 SENSOR DRIVER
-> +M:	Kieran Bingham <kieran.bingham@ideasonboard.com>
-> +M:	Umang Jain <umang.jain@ideasonboard.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Maintained
-> +T:	git git://linuxtv.org/media_tree.git
-> +F:	Documentation/devicetree/bindings/media/i2c/sony,imx283.yaml
-> +
->  SONY IMX290 SENSOR DRIVER
->  M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->  L:	linux-media@vger.kernel.org
+> Anyway, no need to resend just for that:
+>
+Thanks.
 
--- 
-Regards,
-
-Laurent Pinchart
+Cheers,
+Prabhakar
 
