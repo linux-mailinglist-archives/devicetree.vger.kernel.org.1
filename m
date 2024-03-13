@@ -1,151 +1,150 @@
-Return-Path: <devicetree+bounces-50292-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50293-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FD4787AA17
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 16:09:35 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D48C087AA43
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 16:17:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 553FD1C216E2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 15:09:29 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 45E25B23F94
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 15:17:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ACED346BA6;
-	Wed, 13 Mar 2024 15:09:14 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3D8BD481CD;
+	Wed, 13 Mar 2024 15:16:42 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b="jit86TYs"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="NBQ0WwKb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+Received: from mail-lf1-f54.google.com (mail-lf1-f54.google.com [209.85.167.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 28AE244C97
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 15:09:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E541346B83
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 15:16:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710342554; cv=none; b=Xl4Kd8ZD21nVhcmqxvjLJC0xRnzXxplNszfD+dhGE7d5pCW9sLr9vlaMgH3p33V4vpHRRZmaymPOfvfO5m5WjkhT9RBCjRZDvvEhXPtlPhmDS/ZnGcMe2kO3y41ktkNkDYFxnukGC7ADDnfUb3UUmbaF6W2YlyLXFJmA0AZwtIE=
+	t=1710343002; cv=none; b=JeK88116I5yWwu0wecevmwgPxTQuPeGAvk+9piGIixTQtwO9dHvS/j2BawGjDkq2p8FjPCPhYdoL/LjywbE7nzfZT/u56kiIyrgXbeodYKW1BI8ZGz/09EUVgonqeyHcPIRmjy7kcEd0qJeSg9W4oVHNyULBtwQlwob2h0C34xQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710342554; c=relaxed/simple;
-	bh=6Rytuyrtcn0iC0ffmXLO2Mwzrkh8mP7tbEhbryBEBL0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=KQe7YX6Ykq81+i1BTneYCBXGeCBv6pICbylZ/wwmGsNka0Hs183s2sS+Ziud14xtQBk7N3QzO/Ppbfcw62plnpr5cdikbG7q3++njMGrEPQjQOfAoCxYL6iPwnwhxQKMLMnnXGxEzPR8Dl0D42Gvn2to+dp8+Db3ypMX0NXKLYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr; spf=pass smtp.mailfrom=freebox.fr; dkim=pass (2048-bit key) header.d=freebox-fr.20230601.gappssmtp.com header.i=@freebox-fr.20230601.gappssmtp.com header.b=jit86TYs; arc=none smtp.client-ip=209.85.221.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=freebox.fr
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=freebox.fr
-Received: by mail-wr1-f48.google.com with SMTP id ffacd0b85a97d-33e99b639e0so2249256f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 08:09:10 -0700 (PDT)
+	s=arc-20240116; t=1710343002; c=relaxed/simple;
+	bh=qjrM/hxV7DN0FytBHdDLWTGw6uIVVQc7HD9mEPDm0fM=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=tFgyJ0Vey0himAu1LmdBmBMtkQcklMgSuvTaQk/A/Ing4lTJytHLHlC2Vmfl04VYTUzmU7dnosQ/nu8JyfnfAXt4rCLxssDcXod02CQ6pGbH8X3Mil2d1PKTMXCt6ckxm/uzBQuXPfkWFDQlh3eCxk+Fgrz9kgBCgGxCb+eX8Tk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=NBQ0WwKb; arc=none smtp.client-ip=209.85.167.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-lf1-f54.google.com with SMTP id 2adb3069b0e04-513a08f2263so4362108e87.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 08:16:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=freebox-fr.20230601.gappssmtp.com; s=20230601; t=1710342549; x=1710947349; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9D/LGalROnb2T4y0ClS9IfcPBAxyS2/alzeYHC18DcE=;
-        b=jit86TYssft/nWy1iE4U8hUR3A7VpbrWY4lSg85O65t17B/DfOSi9dpPGr5A7DhlTV
-         QSmaPq45xbDhp6Ca7ZPgXMuiWXD3fWFkTPvqr5V8LRihfxEafh8P1xuTVnP/RTwwUxHs
-         eK/vAIh3jvCqDt9shrKRxGMJPGMbjvxeZWOixTPvt9qwxaQKgXNoNRkZiTka8930chXn
-         e5cbNDosjFsbVW18GUPtS/4vco0Fq4U3d1x3pl4gyD0R7CWBiAgb+9dZqK9YyRKbv/6w
-         MAFEfD+ufM0ByZSYZLHVlxDh/+zQ7L4K5xyO0YsG3pmI0jnyQ2tDuXHyJ5ItnHF1qqcq
-         OdGQ==
+        d=suse.com; s=google; t=1710342997; x=1710947797; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=rykq8eCaBPkLJ9gIocamPtpK8SPc8Htjk1jYv44ATH0=;
+        b=NBQ0WwKbWBCE5leSuUHIwJb03vnw0yFim4Dkdnhs8ICshyNjjplkHC/IYJaNQxhNQI
+         24QNXbHRCWel/EBMXgiHCK0AGu46x/Slsn/dp3RbUNxUZmRnDSvYfrXXsfFn4GFvkcVr
+         nyWzpoVS9nkPLdbv7UhTLqaqUBVWGSvc5w6MPHJzFLeLem0vWDklMp8rGZkkb45zkuaO
+         nqY97lrqz3xUPmrQqjXGe6FxkjMPsVUMVhHD783YYO8rDvK0nyaZgfzVzo9CfvTOoyRs
+         xmMfcToV7SFgyh1KhSv1bBklT/yDmkdh3OLb9S92NGwY7lINtH1qKz/5Wu++ru0VKair
+         Az4Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710342549; x=1710947349;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20230601; t=1710342997; x=1710947797;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9D/LGalROnb2T4y0ClS9IfcPBAxyS2/alzeYHC18DcE=;
-        b=foVnR2S8MbBMHnZO/F6F4GpgjxIZe8wMWotdu4f3QhXpzXCoOJVb+YcwrvpQuRkU0v
-         WXv8oWyhpcWHNruKw6QhH2D5pMuxFD5vaHV/jAom3cg7AxInkxGGDc97B+REs3pCvu9M
-         DajOcDqX+SJYNWmVH3NOsu3u+LEGkgEYPlUb6T4jR19iQZ65I7lEHxgWh4OWS/bjY1mT
-         QRAYjYp0Sxr2ezVQytIbEFetp14sFovd+KUBXMjglMCv9okqCdVRzwBtMuIueNx+Wkdu
-         9n3kN5Lh2S2H+nQlRlPIkuZl57pZbNWE5yIrMENKAWuDs6y5FQatSacRkB4H93+KA90n
-         sNFg==
-X-Forwarded-Encrypted: i=1; AJvYcCU2aHPe7+ItSJjVH+C5vtPN8Ilm8grGMzID5tN6dXugz0UK7t2FEWeYaLuBXlBGVI4no/m3QkLL7TV95lPugIqD8r2M2DELSFd5TA==
-X-Gm-Message-State: AOJu0Yw7dVW3Nnp2k6cGfHBA5PO044Czxb7OkLq/Xk6YHBWtd6RsPYZb
-	IlyE+xSPlrGHdyG0hG/i9CvOy/T0+JvhgjxaDmwS9zUWMbQwU5TvsHxfLJ4GLSc=
-X-Google-Smtp-Source: AGHT+IHmZE4vNY7w2lgfvohHeDqLj+O8i0RjAZ7/srEyzTeHaFJv1iyOnFN9q+La8CK3lM1ablESfg==
-X-Received: by 2002:adf:f549:0:b0:33e:8aba:cd0a with SMTP id j9-20020adff549000000b0033e8abacd0amr1887494wrp.9.1710342549473;
-        Wed, 13 Mar 2024 08:09:09 -0700 (PDT)
-Received: from ?IPV6:2a02:8428:2a4:1a01:8547:dfbf:d48:2a1? ([2a02:8428:2a4:1a01:8547:dfbf:d48:2a1])
-        by smtp.gmail.com with ESMTPSA id q27-20020a056000137b00b0033e72e104c5sm11827757wrz.34.2024.03.13.08.09.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Mar 2024 08:09:09 -0700 (PDT)
-Message-ID: <fb0ffdd9-923a-4191-8304-583243ad528b@freebox.fr>
-Date: Wed, 13 Mar 2024 16:09:07 +0100
+        bh=rykq8eCaBPkLJ9gIocamPtpK8SPc8Htjk1jYv44ATH0=;
+        b=vblhUern7cRu4vSI0e94raL9oFrqLsBqmOG05fJy/uQg62+VkG+/8ZvQq1fWIjxfRf
+         MRj6MJGfjZ27oDTHTwRqsHSAoQUueDD/jS0Jd8X2w2nRlrtj/+GgZ+WoufKjWZwHuVuR
+         s25N6IHOhmH4BViaBl+rBsSshuJPq7bV/ta/KFRubB2DWyEmPzYJGZZpJHP48w5aBSp+
+         m1MJvh4WsL4U3SAwYjesXzfew09hrTApiHZlGUUOFooJbpYRd5iVaBWOnJjiFbDjvapO
+         X/1/PhbN1vGvRpWT6egLCwOzlGV5INYZntOhoP4TV/wq7yfLpFYZWRjMmDHkU6gPpLQP
+         dplQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVSDCfbLkCvXDoa0kma4Z5ZXksGvfVSK81Kl4fYPwuBgqFAM0i4TPh9RI03gwsVexrg7x7irezheEKP1JjjeVBQf75ETcciZLbaZw==
+X-Gm-Message-State: AOJu0YyzwOZ4fd3/H82QSDj6O0hU4gLBynGL5pg3ipx8nK6YkNI7ZnIT
+	8JLztFMgp21EQiL5VAnCy2A6r6MQvW285HH8LndzNFpssY0VopkCL6AeMPgdJsI=
+X-Google-Smtp-Source: AGHT+IFGRwJvOnRL1ILnNJUxepiuHVuA6un577kLjwGaD9hBY22+JpFvvv3wGZh/8RT3DrosK3jWDQ==
+X-Received: by 2002:ac2:410a:0:b0:513:cbf5:f9e0 with SMTP id b10-20020ac2410a000000b00513cbf5f9e0mr618774lfi.5.1710342997062;
+        Wed, 13 Mar 2024 08:16:37 -0700 (PDT)
+Received: from localhost (host-82-56-173-172.retail.telecomitalia.it. [82.56.173.172])
+        by smtp.gmail.com with ESMTPSA id fx3-20020a170906b74300b00a4380e85e5csm4918419ejb.202.2024.03.13.08.16.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Mar 2024 08:16:36 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Wed, 13 Mar 2024 16:16:36 +0100
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Saenz Julienne <nsaenz@kernel.org>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dave.stevenson@raspberrypi.com
+Subject: Re: [PATCH v2 13/15] dt-bindings: dma: Added bcm2711-dma
+Message-ID: <ZfHDVCK71tuhcpv-@apocalypse>
+Mail-Followup-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Florian Fainelli <florian.fainelli@broadcom.com>,
+	Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Saenz Julienne <nsaenz@kernel.org>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dave.stevenson@raspberrypi.com
+References: <cover.1710226514.git.andrea.porta@suse.com>
+ <346611b3ec6f47cb10e538d6cbe52056f535f965.1710226514.git.andrea.porta@suse.com>
+ <cd4fb265-8788-4309-9d9e-9676d76c1fe8@linaro.org>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-To: Jeffrey Hugo <quic_jhugo@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc: Kalle Valo <kvalo@kernel.org>, Jeff Johnson <quic_jjohnson@quicinc.com>,
- ath10k <ath10k@lists.infradead.org>,
- wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>,
- Pierre-Hugues Husson <phhusson@freebox.fr>,
- Jami Kettunen <jamipkettunen@gmail.com>,
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
- <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
- <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
- <c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr> <87cyse8j9m.fsf@kernel.org>
- <6d4b1381-c121-4cda-a8c9-9ccac56bd447@freebox.fr> <87plw87nsc.fsf@kernel.org>
- <0816f7bb-3c97-4b90-8e19-191552ea6e26@freebox.fr> <87h6hk7aee.fsf@kernel.org>
-Content-Language: en-US
-From: Marc Gonzalez <mgonzalez@freebox.fr>
-In-Reply-To: <87h6hk7aee.fsf@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <cd4fb265-8788-4309-9d9e-9676d76c1fe8@linaro.org>
 
-[ Dropping the DT fellows ]
-
-On 05/03/2024 20:20, Kalle Valo wrote:
-
-> Marc Gonzalez wrote:
+On 17:17 Tue 12 Mar     , Krzysztof Kozlowski wrote:
+> On 12/03/2024 10:12, Andrea della Porta wrote:
+> > Add BCM2711 dma engine compatible.
+> > 
+> > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > ---
+> >  Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml | 4 +++-
+> >  1 file changed, 3 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
+> > index c9b9a5490826..4271a6fedf54 100644
+> > --- a/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
+> > +++ b/Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
+> > @@ -20,7 +20,9 @@ allOf:
+> >  
+> >  properties:
+> >    compatible:
+> > -    const: brcm,bcm2835-dma
+> > +    enum:
+> > +      - brcm,bcm2835-dma
+> > +      - brcm,bcm2711-dma
 > 
->> I need to build a kernel + rootfs + FW to test the proposed solution,
->> then I can spin a formal submission.
+> Please keep the entries alphabetically sorted. Probably same comment
+> applies to your driver device ID table.
 > 
-> Yeah, please do test this to make sure we are not missing anything :)
+> With sorting fixed:
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
 
-I used buildroot ( https://buildroot.org ) to generate a kernel + rootfs
-for my board (a variation of qcom/msm8998-mtp.dts)
-
-Not sure if I must use the vendor FW blobs? Or if I can use the blobs
-from linux-firmware-20240115.tar.xz (as supported by BR2).
-
-
-All I see from the ath10k driver (with debugging cranked to the max) is:
-
-[    0.539801] ath10k_snoc 18800000.wifi: Adding to iommu group 0
-[    0.541941] ath10k_snoc 18800000.wifi: snoc xo-cal-data return -22
-[    0.543633] ath10k_snoc 18800000.wifi: supply vdd-3.3-ch1 not found, using dummy regulator
-[    0.544002] ath10k_snoc 18800000.wifi: qmi msa.paddr: 0x0000000094400000 , msa.vaddr: 0x(____ptrval____)
-[    0.544271] ath10k_snoc 18800000.wifi: snoc probe
-
-
-# ip link
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-2: enp1s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000
-    link/ether 34:27:92:82:48:ec brd ff:ff:ff:ff:ff:ff
-
-No wlan device at this point.
-
-I got shell-shock from reading these setup steps:
-
-https://wiki.postmarketos.org/wiki/Qualcomm_Snapdragon_835_(MSM8998)#WLAN
-https://github.com/jhugo/linux/blob/5.5rc2_wifi/README
-
-
-Jeffrey, Bjorn, Konrad,
-Has someone written idiot-proof (such as myself) steps to enable
-the ath10k core on a msm8998 board?
-
-I'm still not quite sure where linux-firmware.git fits into all this.
-
-Regards
-
+Sure, I'll fix the order in the next version, after collecting guidelines for dma_map_resource()
+issue. Please ignore the patchset sent today since it still contains the dt binding in 
+the incorrect order: thge patchset has been sent as is just to reach all teh parties since it
+was splitted due to a problem with my imap server.
+ 
+> Best regards,
+> Krzysztof
+> 
 
