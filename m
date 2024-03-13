@@ -1,160 +1,191 @@
-Return-Path: <devicetree+bounces-50352-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50353-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CC6187B1BF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 20:25:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C74DF87B269
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 20:59:18 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 16DB328BB26
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:25:33 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 834CD28A1CA
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:59:17 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DA14758AB8;
-	Wed, 13 Mar 2024 19:20:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qxworgdJ"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 12BDA4BAA6;
+	Wed, 13 Mar 2024 19:59:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com [209.85.219.172])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3AA385677A
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 19:20:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.172
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 450694E1DB;
+	Wed, 13 Mar 2024 19:59:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710357644; cv=none; b=ZacE4Cf1ZWJITgg4auEfhtUCpWzWSlbr2rEC9rui9/kTsoHMNs5DTRGZlWkVmYH08UyqGULqkJfhjsj25pkLi95dh/KgB+IURM0CH1zZjP7D2x8p62SSFRkjKKlJIpVCWgTMYVhxO6TaL2hNYskZnjWLms5/zNMXhH4aANrpSnI=
+	t=1710359948; cv=none; b=H33oN2hFdKUz22OP4VQCj0lbmtLRQH7f5vWWOlLaJYEncGWHKJS2/f0JNPIpy6ZzeqHieJbBKTqCfkdzg3XJ9jevRGXlL3UIf2CiBQ7fWf1z/m68GGLYUv2J4y7wr2fi6POMcSTrOunQMbxiEd9emmJJ/IZwqrIbsytJFhN4D1Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710357644; c=relaxed/simple;
-	bh=VC3FYxAJ7LoxbZlZBeN1DYkzslCxNHfnh7tRxUYmCO0=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=gZy0rrrMJOKt16CKBGLLDxaU53AqEDDa0gDEeaHrybn5BNO21P0Qa1q0N86LIyXJOVrKr5VbzDKi6VXfWYQnOeJsv1CfiZKE8/KkuVWMStg1oQzEgGRInpa7RHmNQM4Pw5ZaYC5rkkWUgnWBn5L4SZfhSfPKBasCdcVIQFaCGD8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qxworgdJ; arc=none smtp.client-ip=209.85.219.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-dccb1421bdeso100361276.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 12:20:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710357642; x=1710962442; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=OMo4BjQfv07Q0PzE5HGh8mM1dLTyhXyrou/joPFvVAU=;
-        b=qxworgdJ012HU18lqJoxv83RevI6FEJ/u9+a/X/A0hUulXEepSa5GjUonLxeTv2I6I
-         135KFVR2KH0csdXWu7/gFVNzDplMEgLmB9fEhSLBa0UkbSYoNW3Tzx3mtbKEiLTcZ4Hp
-         uK0M8lAhCnv6C0nRmnn7yPEw4mP8xYe5bQ9eAZ3As0KbvC78UDDRhmBvAQPKZ4BPnGYA
-         /SpbP8nqGzd1bxbvoyzwiY3I7HU0DgWlJs0TjuaMnYnq1RUmAx+tgqaGB5q75fPiro3e
-         uF4SqmwBjMe6++RKMJm6jfSNAKmMjs/xgQGZjyBp3njNnqpP5RAqMIqzruAo3sEd4pFZ
-         ekHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710357642; x=1710962442;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=OMo4BjQfv07Q0PzE5HGh8mM1dLTyhXyrou/joPFvVAU=;
-        b=Dp6AtwIrzPJDIDvYFK88mVjc0G4ktz78cje+rd1TIx0/w5qvd1XRe4dcah9IUyOSnd
-         xY8bQROsh9IOzYbITNDoaPu/m2iwIbkEyjLGWFPNFZoRhPLy3LscyODsk8Ha2CuUUsj3
-         gyjuA56dhV05FhYTqwgirKWUiVFWPg3CSTyEPdXumuvoHLo+b7QS8FJ9kE2yYRg/rMyu
-         mIxKj45iEB56/mOtwLAJswPV0w2pfIAT6NV2IUhG2VjzIZh4+oZeO5ttBRfoWXC6cr+/
-         RWnJYO1g2BA3ke5MVf18RwPNUaoxuPWuXGcBKFPx10L3yOQYVdKbg1dFia2ELJiWre8N
-         9Owg==
-X-Forwarded-Encrypted: i=1; AJvYcCVZNwy8hNl2l4NvP13vmbaBxo47ZtkJedBDHnq5Q0TKtcouP0XU9vA7aznPC2WuzR+FuDsfEUfYr+vUVoaYCxb0XYBNWlBwjuDyUw==
-X-Gm-Message-State: AOJu0YwfgNC3FmkUqrj6WYF6GMKrnOJzd0bRLfgGM02ENg6XnZFtYE2O
-	bBH1R4nfHLEyr+PT5b/jsNDVlF4KU+miISIzklSgDLG+40EM5CHTMLXzBWKDdIEdwYaCU9eyikC
-	Dahf28F9qGXfwGvN1yRZIInDL6zxPYv6kG8kNHw==
-X-Google-Smtp-Source: AGHT+IF+pCz+zOs8ZUIs+gSDAT4ZOTitMDi1f/rT/9CPC1qIJVCwncoBoAEkgjvNR2PPBb39YCB5C47IhmON01t+UHE=
-X-Received: by 2002:a5b:bc2:0:b0:dcd:59e4:620c with SMTP id
- c2-20020a5b0bc2000000b00dcd59e4620cmr2174398ybr.49.1710357642225; Wed, 13 Mar
- 2024 12:20:42 -0700 (PDT)
+	s=arc-20240116; t=1710359948; c=relaxed/simple;
+	bh=tMxoBIHD4i2UejoCyKbx93/PX4tj2Zs7is+Y90aQgA4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=i0GsHUh0uzxQ88HjRNGJC8Oeh++ieNtw4YmnltbVzhbot+oxWCM1KQCKloLlAENwYo3vRLDT4hmBxGpHjpqSRrfGROVpxSypdAG44B3iUvGVlcj5wIb6USX3IAokQrZr1ihQOyEfsBl2ZHbi6Rz1C+MTEirgRy4SkMJp+DBWIkQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 156BB1007;
+	Wed, 13 Mar 2024 12:59:41 -0700 (PDT)
+Received: from [10.57.52.245] (unknown [10.57.52.245])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E03BB3F64C;
+	Wed, 13 Mar 2024 12:59:01 -0700 (PDT)
+Message-ID: <8c784016-9257-4d8a-b956-a0a406746c76@arm.com>
+Date: Wed, 13 Mar 2024 19:59:00 +0000
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240313-videocc-sm8150-dt-node-v1-0-ae8ec3c822c2@quicinc.com> <20240313-videocc-sm8150-dt-node-v1-1-ae8ec3c822c2@quicinc.com>
-In-Reply-To: <20240313-videocc-sm8150-dt-node-v1-1-ae8ec3c822c2@quicinc.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 13 Mar 2024 21:20:35 +0200
-Message-ID: <CAA8EJpo63oRA07QNCdzJdHW_hJJWK6aj-LCpp-XwmPJYf0twZw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: clock: qcom: Update SM8150 videocc bindings
-To: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
-Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
-	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
-	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
-	Stephen Boyd <sboyd@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
-	Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
-	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-clk@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] dt-bindings: remoteproc: Add Arm remoteproc
+Content-Language: en-GB
+To: abdellatif.elkhlifi@arm.com, Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>
+Cc: Liviu Dudau <liviu.dudau@arm.com>, Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
+ Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org
+References: <20240301164227.339208-1-abdellatif.elkhlifi@arm.com>
+ <20240301164227.339208-4-abdellatif.elkhlifi@arm.com>
+From: Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <20240301164227.339208-4-abdellatif.elkhlifi@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Wed, 13 Mar 2024 at 13:11, Satya Priya Kakitapalli
-<quic_skakitap@quicinc.com> wrote:
->
-> Update the videocc device tree bindings for sm8150 to align with the
-> latest convention.
-
-But why? Bindings already exist. There is nothing wrong with them. And
-sm8150 platform in general uses name-based lookup.
-
->
-> Fixes: 35d26e9292e2 ("dt-bindings: clock: Add YAML schemas for the QCOM VIDEOCC clock bindings")
-
-It is not a fix, there is no bug that this commit is fixing.
-
-> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+On 2024-03-01 4:42 pm, abdellatif.elkhlifi@arm.com wrote:
+> From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+> 
+> introduce the bindings for Arm remoteproc support.
+> 
+> Signed-off-by: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
 > ---
->  Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml | 1 +
->  Documentation/devicetree/bindings/clock/qcom,videocc.yaml        | 3 ---
->  2 files changed, 1 insertion(+), 3 deletions(-)
->
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> index bad8f019a8d3..e00fdc8ceaa4 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
-> @@ -20,6 +20,7 @@ properties:
->      enum:
->        - qcom,sm8450-videocc
->        - qcom,sm8550-videocc
-> +      - qcom,sm8150-videocc
->
->    reg:
->      maxItems: 1
-> diff --git a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-> index 6999e36ace1b..28d134ad9517 100644
-> --- a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-> +++ b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-> @@ -17,7 +17,6 @@ description: |
->      include/dt-bindings/clock/qcom,videocc-sc7180.h
->      include/dt-bindings/clock/qcom,videocc-sc7280.h
->      include/dt-bindings/clock/qcom,videocc-sdm845.h
-> -    include/dt-bindings/clock/qcom,videocc-sm8150.h
->      include/dt-bindings/clock/qcom,videocc-sm8250.h
->
->  properties:
-> @@ -26,7 +25,6 @@ properties:
->        - qcom,sc7180-videocc
->        - qcom,sc7280-videocc
->        - qcom,sdm845-videocc
-> -      - qcom,sm8150-videocc
->        - qcom,sm8250-videocc
->
->    clocks:
-> @@ -75,7 +73,6 @@ allOf:
->            enum:
->              - qcom,sc7180-videocc
->              - qcom,sdm845-videocc
-> -            - qcom,sm8150-videocc
->      then:
->        properties:
->          clocks:
->
-> --
-> 2.25.1
->
->
+>   .../bindings/remoteproc/arm,rproc.yaml        | 69 +++++++++++++++++++
+>   MAINTAINERS                                   |  1 +
+>   2 files changed, 70 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/remoteproc/arm,rproc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/remoteproc/arm,rproc.yaml b/Documentation/devicetree/bindings/remoteproc/arm,rproc.yaml
+> new file mode 100644
+> index 000000000000..322197158059
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/arm,rproc.yaml
+> @@ -0,0 +1,69 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/remoteproc/arm,rproc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Arm Remoteproc Devices
+> +
+> +maintainers:
+> +  - Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+> +
+> +description: |
+> +  Some Arm heterogeneous System-On-Chips feature remote processors that can
+> +  be controlled with a reset control register and a reset status register to
+> +  start or stop the processor.
+> +
+> +  This document defines the bindings for these remote processors.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - arm,corstone1000-extsys
+> +
+> +  reg:
+> +    minItems: 2
+> +    maxItems: 2
+> +    description: |
+> +      Address and size in bytes of the reset control register
+> +      and the reset status register.
+> +      Expects the registers to be in the order as above.
+> +      Should contain an entry for each value in 'reg-names'.
+> +
+> +  reg-names:
+> +    description: |
+> +      Required names for each of the reset registers defined in
+> +      the 'reg' property. Expects the names from the following
+> +      list, in the specified order, each representing the corresponding
+> +      reset register.
+> +    items:
+> +      - const: reset-control
+> +      - const: reset-status
+> +
+> +  firmware-name:
+> +    description: |
+> +      Default name of the firmware to load to the remote processor.
 
+So... is loading the firmware image achieved by somehow bitbanging it 
+through the one reset register, maybe? I find it hard to believe this is 
+a complete and functional binding.
 
--- 
-With best wishes
-Dmitry
+Frankly at the moment I'd be inclined to say it isn't even a remoteproc 
+binding (or driver) at all, it's a reset controller. Bindings are a 
+contract for describing the hardware, not the current state of Linux 
+driver support - if this thing still needs mailboxes, shared memory, a 
+reset vector register, or whatever else to actually be useful, those 
+should be in the binding from day 1 so that a) people can write and 
+deploy correct DTs now, such that functionality becomes available on 
+their systems as soon as driver support catches up, and b) the community 
+has any hope of being able to review whether the binding is 
+appropriately designed and specified for the purpose it intends to serve.
+
+For instance right now it seems somewhat tenuous to describe two 
+consecutive 32-bit registers as separate "reg" entries, but *maybe* it's 
+OK if that's all there ever is. However if it's actually going to end up 
+needing several more additional MMIO and/or memory regions for other 
+functionality, then describing each register and location individually 
+is liable to get unmanageable really fast, and a higher-level functional 
+grouping (e.g. these reset-related registers together as a single 8-byte 
+region) would likely be a better design.
+
+Thanks,
+Robin.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - firmware-name
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    extsys0: remoteproc@1a010310 {
+> +            compatible = "arm,corstone1000-extsys";
+> +            reg = <0x1a010310 0x4>, <0x1a010314 0x4>;
+> +            reg-names = "reset-control", "reset-status";
+> +            firmware-name = "es0_flashfw.elf";
+> +    };
+> +
+> +    extsys1: remoteproc@1a010318 {
+> +            compatible = "arm,corstone1000-extsys";
+> +            reg = <0x1a010318 0x4>, <0x1a01031c 0x4>;
+> +            reg-names = "reset-control", "reset-status";
+> +            firmware-name = "es1_flashfw.elf";
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 54d6a40feea5..eddaa3841a65 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -1768,6 +1768,7 @@ ARM REMOTEPROC DRIVER
+>   M:	Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+>   L:	linux-remoteproc@vger.kernel.org
+>   S:	Maintained
+> +F:	Documentation/devicetree/bindings/remoteproc/arm,rproc.yaml
+>   F:	drivers/remoteproc/arm_rproc.c
+>   
+>   ARM SMC WATCHDOG DRIVER
 
