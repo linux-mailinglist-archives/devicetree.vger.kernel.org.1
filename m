@@ -1,248 +1,156 @@
-Return-Path: <devicetree+bounces-50302-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50303-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CABE87ADA8
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 18:40:17 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C2CA387AE5D
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 18:56:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7019E1C22571
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 17:40:16 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D065B2337E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 17:56:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id C4FCF51C3B;
-	Wed, 13 Mar 2024 16:45:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718E618DC88;
+	Wed, 13 Mar 2024 16:48:01 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="u/x7ASb8"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vdmrIvLo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCE9D4C600;
-	Wed, 13 Mar 2024 16:45:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12AAC18CEAE
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 16:47:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710348305; cv=none; b=WvJ4uoYsijG++C3NqFlKhRSCoq2KlbM20wphMmoBmKpFXbsiqLZM+zBqjm1UrJVNYr5Q/BFTXUQL+VLnyD/3djntXd42gpplHlENvzYzFs/ssSs9BZkVIWKejWEMuGkRq4MqIYeckJAyY4eHzaqwcJbqnOaNpOIZ0hs6Iy3nm40=
+	t=1710348481; cv=none; b=jH38aCOI5vL/3SQVsu1vDOzkqUUEBNnwEXY5iiAcbSkgxw80S8h+rKjCOS2phyteD6uhUVapCZZeRPiCoBxhtQ7WSG7tQaS4BXJxZh+3RMx33sUe6s7eSdgaCMkQU4fUm+DidhcuhyL7BINu2mInSeao/pdFfl3b1z3DDKFS26E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710348305; c=relaxed/simple;
-	bh=r2yTOImLEgBv+5kM0rWcsT1rGUuk6c9e8dJPwXpk3p4=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=YNJqpz71JP3ebZ000M24g+hJqyCexg6pO6mFphbtu3UnIRzA952Qcs08fkV/czcOPhiV66OC40kzhPd4u5xFhozqkiTd/Psj3orma1KDLfnq9g2CpXyU9w3KF9lkNuA+r5Sgo8FQAjDt9rxpPlnccL83YlakP9R0vE0BpP45NwY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=u/x7ASb8; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1710348481; c=relaxed/simple;
+	bh=OABrLHkuFcQXG/wDXLMHESQAG2PiCXNRa2hkf80/5kM=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=cCzCsMnTJpxF/gLwaFiFqa4CZe/h2LVq0Y+EIhiyBW8tHmFC2WlxtS6HqNz4vMGpcZpbC7anPe+A5eKPUnpKsre4dje+PXPGdqrN31Mm4TBTcjBeqjSfg3gxq4kyeCVlRx47wXLQlt3qVYeylJf6rqFOY7UfYwMsH9j+ARiD2ZA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vdmrIvLo; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4132f37e170so351265e9.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 09:47:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710348476; x=1710953276; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=aL2HNMMWYIQUqUiL5ub2nwsmZvrAMS79QvM7mKq9XnU=;
+        b=vdmrIvLoFbB3M2ouFxtTtZ2aeCQa97jVV+HlsAGIK25749y43OwpUTHNjOOBVEqyWI
+         XIplHh+EUuhBtcewR0UAe245ALospGqXynRD7kja6EGXMMNSn1P4rD/FzJw+ttSZPoMP
+         b5U/oFcacvwNwuvt2mpJ4CuZ2BmDPNxzElpqw9O+BzzCdvufcst4dT5C9M4kwEvILcGJ
+         IyMUDoPCuwvC3BxQ5xMtSOxiovvOFx8HHe4wMOFaXeqSOJl9i10xd9vVR2uN00CZJpWF
+         gdyqxrOMgf2JVqFW5lLJA9mhOLBKXOL3oEY9vxyFiWXyD/kCQ5v6rN5A8d22oVe0847D
+         No7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710348476; x=1710953276;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aL2HNMMWYIQUqUiL5ub2nwsmZvrAMS79QvM7mKq9XnU=;
+        b=p79EbIMkR+k60S7qP/iXUF+2T8sKzZMCzvm0j5qEQ0qHKyw0jEz65M7uenzdicv5c7
+         VYbc7jz3HZX8bR92yfBRqm/uDPPNPktvxKCJLTwa9k17fbm4gJz+SM36BKwF/7FQ9e/P
+         uIrufzcpLS35YUzHJ4pRxEGKNFfyPWTFEuBi+Z79rbqW9fJLFyxptemYShMJXdf+jc8j
+         JmijXry/FuDj4IEOppZieVKXPt2vB6NORxo7iTGk1B7ggfzCoBVRAN1dYubRxLiO4ikj
+         dIrRiIxZGQZvpLP2knsHsX3TE/K2G+ENWHJOs2a7CXmBCbK0qIOudmRMMo9ikVgz8VAv
+         HtLQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVvSOjc1m2GCJsoY6zxILwYO82hkU8TEArF6WPrUIxU5RN2WgU9hSFAx2m4SlV3gmqk5WTXhuCwsV2C6r02cVddIWtclFhMD7g8xg==
+X-Gm-Message-State: AOJu0Yz+4TWdTPOgTe4Mzbx/1ya8lTNSn+RQSjM9knLk4U5MxuTF1GZf
+	j2AjY9Yf6ppu7oG0l0IdbG5hZQiQuSfh7fA2bGHZJvY4B8DYC6+s9/6a8SRDyNA=
+X-Google-Smtp-Source: AGHT+IH0kSLdw4SyxenHbvADWPBA+1/ymroD7wywet+sZrpLPA6tHINQFd4bvIKAxr345/cxFAIuQw==
+X-Received: by 2002:a05:600c:1f07:b0:413:1828:b8fe with SMTP id bd7-20020a05600c1f0700b004131828b8femr423510wmb.21.1710348476329;
+        Wed, 13 Mar 2024 09:47:56 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id fm26-20020a05600c0c1a00b00413ebdca679sm1679024wmb.37.2024.03.13.09.47.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Mar 2024 09:47:55 -0700 (PDT)
+Message-ID: <98c662ef-e6ef-4ef1-85df-6d8e3432101e@linaro.org>
+Date: Wed, 13 Mar 2024 17:47:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1710348294;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=wRKYVbWo7rvuu2swGuQTlLkzEW9Czyjs6ZI6qNJKWlo=;
-	b=u/x7ASb8r5+IJYatiC5vG444aqGl7ANW3qnobJ3WI3dR9QVwHGCX23Hgs4LJ+GoKNsSrpY
-	iXF7HeiuTwLKJPEFpX2aGowdgf5lFDeQgBqZ3GW1c4djxB0JZZgznbWchonZVm8rIuyGSA
-	Jvx+/5hXbQE56i7A3GC+4bFaEJmU/A1kyavNRseHFBgFp7c/+s4VDImU8jRCqd02ub3r3K
-	1Uj3L41kJl0QD9oZOYEWcvb9SZ1oTctz26XUdVtKbDS/TEzqMMjPAd6sIGQxjmV/1lmEzE
-	IRMCWVQV9ahsJN4NQPtXvJlJPY1H5tLUhggxQge5klVAXhFP0LU0IwqicRRCLA==
-Date: Wed, 13 Mar 2024 17:44:53 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc: Alexey Charkov <alchark@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Daniel Lezcano
- <daniel.lezcano@linaro.org>, Viresh Kumar <viresh.kumar@linaro.org>, Chen-Yu
- Tsai <wens@kernel.org>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/5] RK3588 and Rock 5B dts additions: thermal, OPP and
- fan
-In-Reply-To: <cen2x7vlenevup34efl7sqn7sm5td35vkfmo4fcaotwk6fmv67@tdpcg5jokjhv>
-References: <20240229-rk-dts-additions-v3-0-6afe8473a631@gmail.com>
- <j3krazypdc7gsvnp4kcocaftxsbjrfhj6nr2kf2cieo4bjxbv7@bqdfbirk5tei>
- <CABjd4Yxs9b0XDXYfdnmT08BQnsJLonRy4X-g73J67yeGw3xL+w@mail.gmail.com>
- <CABjd4YzTL=5S7cS8ACNAYVa730WA3iGd5L_wP1Vn9=f83RCORA@mail.gmail.com>
- <pkyne4g2cln27dcdu3jm7bqdqpmd2kwkbguiolmozntjuiajrb@gvq4nupzna4o>
- <cen2x7vlenevup34efl7sqn7sm5td35vkfmo4fcaotwk6fmv67@tdpcg5jokjhv>
-Message-ID: <5e93447d1b219fde1e2b390d40495ef1@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
-Content-Transfer-Encoding: 8bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/2] dt-bindings: crypto: ice: Document sc7280 inline
+ crypto engine
+To: Luca Weiss <luca.weiss@fairphone.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ "David S. Miller" <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
+Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20240313-sc7280-ice-v1-0-3fa089fb7a27@fairphone.com>
+ <20240313-sc7280-ice-v1-1-3fa089fb7a27@fairphone.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240313-sc7280-ice-v1-1-3fa089fb7a27@fairphone.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Hello Sebastian,
-
-On 2024-03-13 17:39, Sebastian Reichel wrote:
-> On Thu, Mar 07, 2024 at 11:16:20PM +0100, Sebastian Reichel wrote:
->> On Thu, Mar 07, 2024 at 04:38:24PM +0400, Alexey Charkov wrote:
->> > On Tue, Mar 5, 2024 at 12:06 PM Alexey Charkov <alchark@gmail.com> wrote:
->> > > On Mon, Mar 4, 2024 at 9:51 PM Sebastian Reichel
->> > > <sebastian.reichel@collabora.com> wrote:
->> > > > I'm too busy to have a detailed review of this series right now, but
->> > > > I pushed it to our CI and it results in a board reset at boot time:
->> > > >
->> > > > https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/jobs/300950
->> > > >
->> > > > I also pushed just the first three patches (i.e. without OPP /
->> > > > cpufreq) and that boots fine:
->> > > >
->> > > > https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/jobs/300953
->> > >
->> > > Thank you for testing these! I've noticed in the boot log that the CI
->> > > machine uses some u-boot 2023.07 - is that a downstream one? Any
->> > > chance to compare it to 2023.11 or 2024.01 from your (Collabora)
->> > > integration tree?
->> > >
->> > > I use 2023.11 from your integration tree, with a binary bl31, and I'm
->> > > not getting those resets even under prolonged heavy load (I rebuild
->> > > Chromium with 8 concurrent compilation jobs as the stress test -
->> > > that's 14 hours of heavy CPU, memory and IO use). Would be interesting
->> > > to understand if it's just a 'lucky' SoC specimen on my side, or if
->> > > there is some dark magic happening differently on my machine vs. your
->> > > CI machine.
->> > >
->> > > Thinking that maybe if your CI machine uses a downstream u-boot it
->> > > might be leaving some extra hardware running (PVTM?) which might do
->> > > weird stuff when TSADC/clocks/voltages get readjusted by the generic
->> > > cpufreq driver?..
->> > >
->> > > > Note, that OPP / cpufreq works on the same boards in the CI when
->> > > > using the ugly-and-not-for-upstream cpufreq driver:
->> > > >
->> > > > https://gitlab.collabora.com/hardware-enablement/rockchip-3588/linux/-/commit/9c90c5032743a0419bf3fd2f914a24fd53101acd
->> > > >
->> > > > My best guess right now is, that this is related to the generic
->> > > > driver obviously not updating the GRF read margin registers.
->> > >
->> > > If it was about memory read margins I believe I would have been
->> > > unlikely to get my machine to work reliably under heavy load with the
->> > > default ones, but who knows...
->> >
->> > Sebastian's report led me to investigate further how all those things
->> > are organized in the downstream code and in hardware, and what could
->> > be a pragmatic way forward with upstream enablement. It turned out to
->> > be quite a rabbit hole frankly, with multiple layers of abstraction
->> > and intertwined code in different places.
->> >
->> > Here's a quick summary for future reference:
->> >  - CPU clocks on RK3588 are ultimately managed by the ATF firmware,
->> > which provides an SCMI service to expose them to the kernel
->> >  - ATF itself doesn't directly set any clock frequencies. Instead, it
->> > accepts a target frequency via SCMI and converts it into an oscillator
->> > ring length setting for the PVPLL hardware block (via a fixed table
->> > lookup). At least that's how it's done in the recently released TF-A
->> > bl31 code [1] - perhaps the binary bl31 does something similar
->> >  - U-boot doesn't seem to mess with CPU clocks, PVTM or PVPLL
->> >  - PVPLL produces a reference clock to feed to the CPUs, which depends
->> > on the configured oscillator ring length but also on the supply
->> > voltage, silicon quality and perhaps temperature too. ATF doesn't know
->> > anything about voltages or temperatures, so it doesn't guarantee that
->> > the requested frequency is matched by the hardware
->> >  - PVPLL frequency generation is bypassed for lower-frequency OPPs, in
->> > which case the target frequency is directly fed by the ATF to the CRU.
->> > This happens for both big-core and little-core frequencies below 816
->> > MHz
->> >  - Given that requesting a particular frequency via SCMI doesn't
->> > guarantee that it will be what the CPUs end up running at, the vendor
->> > kernel also does a runtime voltage calibration for the supply
->> > regulators, by adjusting the supply voltage in minimum regulator steps
->> > until the frequency reported by PVPLL gets close to the requested one
->> > [2]. It then overwrites OPP provided voltage values with the
->> > calibrated ones
->> >  - There's also some trickery with preselecting OPP voltage sets using
->> > the "-Lx" suffix based on silicon quality, as measured by a "leakage"
->> > value stored in an NVMEM cell and/or the PVTM frequency generated at a
->> > reference "midpoint" OPP [3]. Better performing silicon gets to run at
->> > lower default supply voltages, thus saving power
->> >  - Once the OPPs are selected and calibrated, the only remaining
->> > trickery is the two supply regulators per each CPU cluster (one for
->> > the CPUs and the other for the memory interface)
->> >  - Another catch, as Sebastian points out, is that memory read margins
->> > must be adjusted whenever the memory interface supply voltage crosses
->> > certain thresholds [4]. This has little to do with CPUs or
->> > frequencies, and is only tangentially related to them due to the
->> > dependency chain between the target CPU frequency -> required CPU
->> > supply voltage -> matching memory interface supply voltage -> required
->> > read margins
->> >  - At reset the ATF switches all clocks to the lowest 408 MHz [6], so
->> > setting it to anything in kernel code (as the downstream driver does)
->> > seems redundant
->> >
->> > All in all, it does indeed sound like Collabora's CI machine boot-time
->> > resets are most likely caused by the missing memory read margin
->> > settings in my patch series. Voltage values in the OPPs I used are the
->> > most conservative defaults of what the downstream DT has, and PVPLL
->> > should be able to generate reasonable clock speeds with those (albeit
->> > likely suboptimal, due to them not being tuned to the particular
->> > silicon specimen). And there is little else to differ frankly.
->> >
->> > As for the way forward, it would be great to know the opinions from
->> > the list. My thinking is as follows:
->> >  - I can introduce memory read margin updates as the first priority,
->> > leaving voltage calibration and/or OPP preselection for later (as
->> > those should not affect system stability at current default values,
->> > perhaps only power efficiency to a certain extent)
->> >  - CPUfreq doesn't sound like the right place for those, given that
->> > they have little to do with either CPU or freq :)
->> >  - I suggest a custom regulator config helper to plug into the OPP
->> > layer, as is done for TI OMAP5 [6]. At first, it might be only used
->> > for looking up and setting the correct memory read margin value
->> > whenever the cluster supply voltage changes, and later the same code
->> > can be extended to do voltage calibration. In fact, OMAP code is there
->> > for a very similar purpose, but in their case optimized voltages are
->> > pre-programmed in efuses and don't require runtime recalibration
->> >  - Given that all OPPs in the downstream kernel list identical
->> > voltages for the memory supply as for the CPU supply, I don't think it
->> > makes much sense to customize the cpufreq driver per se.
->> > Single-regulator approach with the generic cpufreq-dt and regulator
->> > coupling sounds much less invasive and thus lower-maintenance
->> 
->> Sorry for my late response.
->> 
->> When doing some more tests I noticed, that the CI never build the
->> custom driver and thus never did any CPU frequency scaling at all.
->> I only used it for my own tests (on RK3588 EVB1). When enabling the
->> custom driver, the CI has the same issues as your series. So my
->> message was completely wrong, sorry about that.
->> 
->> Regarding U-Boot: The CI uses "U-Boot SPL 2023.07-rc4-g46349e27";
->> the last part is the git hash. This is the exact U-Boot source tree
->> being used:
->> 
->> https://gitlab.collabora.com/hardware-enablement/rockchip-3588/u-boot/-/commits/46349e27/
->> 
->> This was one of the first U-Boot trees with Rock 5B Ethernet support
->> and is currently flashed to the SPI flash memory of the CI boards.
->> The vendor U-Boot tree is a lot older. Also it is still using the
->> Rockchip binary BL31. We have plans to also CI boot test U-Boot,
->> but currently nobody has time to work on this. I don't think there 
->> should
->> be any relevant changes between upstream 2023.07 and 2023.11 that 
->> could
->> explain this. But it's the best lead now, so I will try to find some 
->> time
->> for doing further tests related to this in the next days.
->> 
->> Regarding the voltage calibration - One option would be to do this
->> calibration at boot time (i.e. in U-Boot) and update the voltages
->> in DT accordingly.
+On 13/03/2024 13:53, Luca Weiss wrote:
+> Document the compatible used for the inline crypto engine found on
+> SC7280.
 > 
-> After some more debugging I finally found the root cause. The CI
-> boards were powered from a USB hub using a USB-A to USB-C cable, so
-> that the team could access maskrom mode. Since I was not involved in
-> setting them up, I was not aware of that. It effectively limits the
-> power draw to 500 or 900 mA (depending on USB port implementation),
-> which is not enough to power the board with the higher frequencies.
-> The KernelCI Rock 5B boards are now switched to proper power
-> supplies and the issues are gone.
-> 
-> Sorry for the false alarm,
+> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+> ---
 
-Great to know, thanks for the clarification.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
 
