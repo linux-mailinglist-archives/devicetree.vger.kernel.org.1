@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-50258-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50259-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FDED87A7F7
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 14:00:13 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51B1087A7F9
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 14:00:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CB6FC1F242E2
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 13:00:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 750A91C2181A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 13:00:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 74FB3224EE;
-	Wed, 13 Mar 2024 13:00:07 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 801923F9C7;
+	Wed, 13 Mar 2024 13:00:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="fn0yPUVv"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qfC/lPrB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com [209.85.221.52])
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6F3543EA91
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 13:00:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B4D783E487
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 13:00:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710334807; cv=none; b=iiDmDdzU2q9VUPnlwVxnin0dExv+ZU5j+lLPtwSWQvmWjxAcVQ7FHI9RrN6wyTJxidaZkv9yLrWHYGsVwETm7MDQzrWs2JYcIfW/HVUqZzbHhLYoxArAZ3YNPCT1PLRiRdaNTV7Txd3C9t78vKgLluELACvmYjFZHB1hE92Z2AE=
+	t=1710334833; cv=none; b=kM43r2wh7+AQxbnguUs04Ui9HjQ9f8ejlQkaJqdVbTbfaNnEFjLvbrGoB+4ZaoAGvGrlYpRs52a+k9AZmy18cxie1o4R1nZ17nIoM0yI1jy3hFZ5ymnP9itMXHPrxRLRnhU2Xj4Xjp1ulHRvxUZdIUyhtLbs4hmyJ1uU9WPDKcI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710334807; c=relaxed/simple;
-	bh=NYgyqqFiV39mFAgcSxb0AZI/YObEOq6N1aJEZZIjX4E=;
+	s=arc-20240116; t=1710334833; c=relaxed/simple;
+	bh=tyQiThEp+4HuoOzZEzciTYNhRKMvGeVDr3uS79XsYiI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=duJPUSnaZXVMI4fIA/n6/7m/tL7krbhzkNKr9dTvU0q0DGAwFvl11G3d9pg/m/4O2P1gwhowY2F13x/0AkmwyNg6nsfje04YebgfKl/oaEMsTym+5/i8RGjO9iuWv1CZdo0cyzQxsEHKszP2emK7t8p0mxIqIjGG+HIcI8myPak=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=fn0yPUVv; arc=none smtp.client-ip=209.85.221.52
+	 In-Reply-To:Content-Type; b=IraIXRcJvXzlh5DrSr2a2gdf0Cc6jbeiOKBcG3PECShO+26qOpZ6++haT6qxi6gdXNHY598H3i/ps3eLNzgSXtFyOZSGhQpRbiRBs/gW5pzdb9pjYovO+Sh/rwPPGyY7MJHO0LVJuNo3WGEG/zR5IZ0WEyUvwvLNV+0LDyfPVdo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qfC/lPrB; arc=none smtp.client-ip=209.85.128.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f52.google.com with SMTP id ffacd0b85a97d-33e9990da78so2761802f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 06:00:05 -0700 (PDT)
+Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-413eb712c3fso1929855e9.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 06:00:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710334804; x=1710939604; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710334830; x=1710939630; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=GadVxHpn23MSnpKoztAih7onSDFgDZNiJYrqDQ9eGuE=;
-        b=fn0yPUVvV8zEoDb9VQ3HSEHYytr41IJagWuzYlhLkZRae5B/IZsmxEQr5lOA7XNeum
-         Sd9JWTUtd6lqH/MktDCfbSoUFKDTNrs2db/+XFHiGlCypiKMjbV6EqIcNoyxMvugVJs8
-         LtSy1CW9gR2+osKwMjeTYx8GYK785GD+nsRitFvBsdb/rN5jwY/LqdsFRsI04qR9eRRK
-         uvqZPTbIp+Rkipzy/IgcAdiGo5WLPjRXScABGsCWJt31OzplI4MplZ2looQ9yAlOQhPG
-         T4/Mhl49fPy33vjFvYHBLeaV3EtDYew2eUbUR4VC/eV7929t7QHZMvQ5BOuJPS1gOOFy
-         +vEA==
+        bh=7n6zmAqsHED2fMtlbML3A5rve4vFnW7OpII30SeEmtk=;
+        b=qfC/lPrBOI04ZIQfc+VKz8k/BtypiS6kXbHXYs5dIrNjTvXkvyXFQjVjzLYZR8Qk0y
+         9+5GWdqZlFzXqa2S3FP0EBCIo/hZ7WO46mEfTKlVY2y/7IJ8uF3X+lL+BK15Er4UgXVT
+         ZClbdqWpM8h85McWrrTsZ+FwliiNke7UWmJjKVd6d45K24SJZot7niJ8p+zLTXnFKLuq
+         oScByG8XTZSDAsNu2zIUirFivBE37s6XosZ0sTt+H9/W00sFiet/Y6xBUOlylV4XDZbA
+         rRiSjFyeXGoNXzEvS2/eKtEzfUvSpUomffysBid8JU4MjnVDKb3ZV+9V94DHixUasRzj
+         fzeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710334804; x=1710939604;
+        d=1e100.net; s=20230601; t=1710334830; x=1710939630;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GadVxHpn23MSnpKoztAih7onSDFgDZNiJYrqDQ9eGuE=;
-        b=LyjucRZCC7Ckiq7JpF2oFY84WE/C0F7WyZGxgdAmBP7Zwdzq0N6ThKVvK2tci/4oqo
-         JEPqccQExVABatEe7BPFVC0vo9nv8AK2kr4MhddYXlJKVu1QX65IaOfP7DQH8KZ6jO4J
-         A1fUmb72da9BrI2zP3PgCJqH6eOZlCr1pYi40Ik3UsWiIK+pWS6juSvwV9opazRvZT+R
-         6mmQdankbvxvatGgmvyRz7ufqnK/xDbvXVmzc+ectBqtb8iHx7w2gcsiW8UTO4C3o/Ek
-         KIEi02cxVLt7fNYs8V7+ND6FcmcBscJN9+W0yKNShg41mMgSrWduV4hE7wk/xM4acziS
-         RAwg==
-X-Forwarded-Encrypted: i=1; AJvYcCUvIif9cDWw8XVDpovgmlUKfhB0VsnrEpQBOp4baIsQeFhtYcxOkbyuGD/1hN4kuCWNc5Cj5yktXNjUgj5+iWnv2t88HLXxaaoQVw==
-X-Gm-Message-State: AOJu0YzcE+4NGl1TgRA2sZmGUq7uay/y/2yZM3FAr1HXmRVsCnYJ9bq2
-	LD+4mGkCHd9n1tDlndICVPxa1hlpObXXdNCTNDC+NfdF88DrSJg1Qry54L1pJEk=
-X-Google-Smtp-Source: AGHT+IGZbbSR5gFi4nJkbrs537L1carqSuPrAoTCBUBJy0YJthVxuLANev6cpgy2dy1BNqhd6BC59Q==
-X-Received: by 2002:adf:ec4a:0:b0:33d:26b1:c460 with SMTP id w10-20020adfec4a000000b0033d26b1c460mr1547096wrn.39.1710334803652;
-        Wed, 13 Mar 2024 06:00:03 -0700 (PDT)
+        bh=7n6zmAqsHED2fMtlbML3A5rve4vFnW7OpII30SeEmtk=;
+        b=iPZl+pUZTPvclP2TxBGWfnIqVoTrw5C0Dag/fBa0Vja8979KogZQN+EjQTAK3Tuwwl
+         mGy8KY4EkgqgmkE0QvWiuRKF9Lm2/P54kt5Xcc8O0rTg1W/4j7FiymqYbWdNyBtFUP5+
+         yJnttwknUaBv1wPn8mkn2IOZFDakbLc7jI3fERz533A4kEHBAFmIWdSmkW+F6pAHTof8
+         nYaht/e/rUJamPl3SLggoyYwr8EWSGpkDvUTnN5NWf0YYFdV/UFRnBlHImQ2jXY9Krcw
+         CKpQgD6iQfZGeNjbfEewbGZyNAicuXNGI6YdKzOaSRz1dQIGLyL5PXh4/pG847YFUOLw
+         YQ4A==
+X-Forwarded-Encrypted: i=1; AJvYcCUpAPVUC0X3NjvwpQgxG04Wecp7sE2bRTQQza2MIF4l9HHi2bCw0Q0nLOLqfmYcA2vsIXCWYGZsp6oqZxOs6+WE3fscOqz2lpUF3w==
+X-Gm-Message-State: AOJu0YwVpdmhsDsvHPMR2jz6diDGgV4pSJztyLVxNI0tamzfwrdlhkY1
+	VWz6u2qFENB+VqKDUueQJIGfLUg0dWNjSbTBYkQPHC0dMLwGaAwhmSAl2oNChQM=
+X-Google-Smtp-Source: AGHT+IHv2E6BNLHpvAnXP2/gvY42t7hY8WaSL8xSs+EUEUfxnIcE9KktgA7PSqfxy4qW5lBltcB3EA==
+X-Received: by 2002:a05:600c:19cf:b0:412:b42c:8ff1 with SMTP id u15-20020a05600c19cf00b00412b42c8ff1mr9754544wmq.21.1710334830049;
+        Wed, 13 Mar 2024 06:00:30 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id w3-20020a5d6083000000b0033e75e5f280sm11589696wrt.113.2024.03.13.06.00.02
+        by smtp.gmail.com with ESMTPSA id w3-20020a5d6083000000b0033e75e5f280sm11589696wrt.113.2024.03.13.06.00.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Mar 2024 06:00:03 -0700 (PDT)
-Message-ID: <4a0a8db7-a2bc-4c99-94b2-c13facbd1bef@linaro.org>
-Date: Wed, 13 Mar 2024 14:00:01 +0100
+        Wed, 13 Mar 2024 06:00:29 -0700 (PDT)
+Message-ID: <2e93bd35-f966-4787-8c0c-8bce50fb2693@linaro.org>
+Date: Wed, 13 Mar 2024 14:00:27 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
- board DTS
+Subject: Re: [PATCH v2 1/3] dt-bindings: vendor-prefixes: Add Schneider
+ Electric
 Content-Language: en-US
 To: Sumit Garg <sumit.garg@linaro.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org
@@ -86,10 +86,9 @@ Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
  caleb.connolly@linaro.org, neil.armstrong@linaro.org,
  laetitia.mariottini@se.com, pascal.eberhard@se.com, abdou.saker@se.com,
  jimmy.lalande@se.com, benjamin.missey@non.se.com,
- daniel.thompson@linaro.org, linux-kernel@vger.kernel.org,
- Jagdish Gediya <jagdish.gediya@linaro.org>
+ daniel.thompson@linaro.org, linux-kernel@vger.kernel.org
 References: <20240313123017.362570-1-sumit.garg@linaro.org>
- <20240313123017.362570-4-sumit.garg@linaro.org>
+ <20240313123017.362570-2-sumit.garg@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -135,400 +134,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240313123017.362570-4-sumit.garg@linaro.org>
+In-Reply-To: <20240313123017.362570-2-sumit.garg@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 13/03/2024 13:30, Sumit Garg wrote:
-> Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
-> Box Core board based on the Qualcomm APQ8016E SoC.
+> Add vendor prefix for Schneider Electric (https://www.se.com/).
+> 
+> Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-...
-
-> +
-> +/ {
-> +	model = "Schneider Electric HMIBSC Board";
-> +	compatible = "schneider,apq8016-hmibsc", "qcom,apq8016";
-> +
-> +	aliases {
-> +		mmc0 = &sdhc_1; /* eMMC */
-> +		mmc1 = &sdhc_2; /* SD card */
-> +		serial0 = &blsp_uart1;
-> +		serial1 = &blsp_uart2;
-> +		usid0 = &pm8916_0;
-> +		i2c1 = &blsp_i2c6;
-> +		i2c3 = &blsp_i2c4;
-> +		i2c4 = &blsp_i2c3;
-
-The aliases should match schematics of the board, so I assume missing
-i2c2 is intentional, right?
-
-> +		spi0 = &blsp_spi5;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0";
-> +	};
-> +
-> +	memory@80000000 {
-> +		reg = <0 0x80000000 0 0x40000000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		ramoops@bff00000 {
-> +			compatible = "ramoops";
-> +			reg = <0x0 0xbff00000 0x0 0x100000>;
-> +
-> +			record-size = <0x20000>;
-> +			console-size = <0x20000>;
-> +			ftrace-size = <0x20000>;
-> +		};
-> +	};
-> +
-> +	usb2513 {
-
-Node names should be generic. See also an explanation and list of
-examples (not exhaustive) in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-e.g. usb-hub
-
-
-
-> +		compatible = "smsc,usb3503";
-> +		reset-gpios = <&pm8916_gpios 1 GPIO_ACTIVE_LOW>;
-> +		initial-mode = <1>;
-> +	};
-> +
-> +	usb_id: usb-id {
-> +		compatible = "linux,extcon-usb-gpio";
-> +		id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&usb_id_default>;
-> +	};
-> +
-> +	hdmi-out {
-> +		compatible = "hdmi-connector";
-> +		type = "a";
-> +
-> +		port {
-> +			hdmi_con: endpoint {
-> +				remote-endpoint = <&adv7533_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		autorepeat;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&msm_key_volp_n_default>;
-> +
-> +		button {
-> +			label = "Volume Up";
-> +			linux,code = <KEY_VOLUMEUP>;
-> +			gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pm8916_mpps_leds>;
-
-First property is always compatible. Please apply DTS coding style rules.
-
-> +
-> +		compatible = "gpio-leds";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-
-That's not a bus.
-
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check W=1` (see
-Documentation/devicetree/bindings/writing-schema.rst or
-https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-for instructions).
-
-> +
-> +		led@5 {
-> +			reg = <5>;
-> +			label = "apq8016-hmibsc:green:wlan";
-> +			function = LED_FUNCTION_WLAN;
-> +			color = <LED_COLOR_ID_YELLOW>;
-> +			gpios = <&pm8916_mpps 2 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "phy0tx";
-> +			default-state = "off";
-> +		};
-> +
-> +		led@6 {
-> +			reg = <6>;
-> +			label = "apq8016-hmibsc:yellow:bt";
-> +			function = LED_FUNCTION_BLUETOOTH;
-> +			color = <LED_COLOR_ID_BLUE>;
-> +			gpios = <&pm8916_mpps 3 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "bluetooth-power";
-> +			default-state = "off";
-> +		};
-> +	};
-> +};
-> +
-> +&blsp_i2c3 {
-> +	status = "okay";
-> +
-> +	eeprom@50 {
-> +		compatible = "atmel,24c32";
-> +		reg = <0x50>;
-> +	};
-> +};
-> +
-> +&blsp_i2c4 {
-> +	status = "okay";
-> +
-> +	adv_bridge: bridge@39 {
-> +		status = "okay";
-
-Why do you need it? Was it disabled?
-
-And why this is before compatible? If this stays, please use DTS coding
-style rules for placement.
-
-> +
-> +		compatible = "adi,adv7533";
-> +		reg = <0x39>;
-> +
-> +		interrupt-parent = <&tlmm>;
-> +		interrupts = <31 IRQ_TYPE_EDGE_FALLING>;
-> +
-> +		adi,dsi-lanes = <4>;
-> +		clocks = <&rpmcc RPM_SMD_BB_CLK2>;
-> +		clock-names = "cec";
-> +
-> +		pd-gpios = <&tlmm 32 GPIO_ACTIVE_HIGH>;
-> +
-> +		avdd-supply = <&pm8916_l6>;
-> +		a2vdd-supply = <&pm8916_l6>;
-> +		dvdd-supply = <&pm8916_l6>;
-> +		pvdd-supply = <&pm8916_l6>;
-> +		v1p2-supply = <&pm8916_l6>;
-> +		v3p3-supply = <&pm8916_l17>;
-> +
-> +		pinctrl-names = "default","sleep";
-> +		pinctrl-0 = <&adv7533_int_active &adv7533_switch_active>;
-> +		pinctrl-1 = <&adv7533_int_suspend &adv7533_switch_suspend>;
-> +		#sound-dai-cells = <1>;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +				adv7533_in: endpoint {
-> +					remote-endpoint = <&mdss_dsi0_out>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +				adv7533_out: endpoint {
-> +					remote-endpoint = <&hdmi_con>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&blsp_i2c6 {
-> +	status = "okay";
-> +
-> +	rtc@30 {
-> +		compatible = "sii,s35390a";
-> +		reg = <0x30>;
-> +	};
-> +
-> +	eeprom@50 {
-> +		compatible = "atmel,24c256";
-> +		reg = <0x50>;
-> +	};
-> +};
-> +
-> +&blsp_spi5 {
-> +	status = "okay";
-> +	cs-gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
-> +
-> +	tpm@0 {
-> +		compatible = "tcg,tpm_tis-spi";
-> +		reg = <0>;
-> +		spi-max-frequency = <500000>;
-> +	};
-> +};
-> +
-> +&blsp_uart1 {
-> +	status = "okay";
-> +	label = "UART0";
-> +};
-> +
-> +&blsp_uart2 {
-> +	status = "okay";
-> +	label = "UART1";
-> +};
-> +
-> +&lpass {
-> +	status = "okay";
-> +};
-> +
-> +&mdss {
-> +	status = "okay";
-> +};
-> +
-> +&mdss_dsi0_out {
-> +	data-lanes = <0 1 2 3>;
-> +	remote-endpoint = <&adv7533_in>;
-> +};
-> +
-> +&pm8916_codec {
-> +	status = "okay";
-> +	qcom,mbhc-vthreshold-low = <75 150 237 450 500>;
-> +	qcom,mbhc-vthreshold-high = <75 150 237 450 500>;
-> +};
-> +
-> +&pm8916_resin {
-> +	status = "okay";
-> +	linux,code = <KEY_POWER>;
-> +};
-> +
-> +&pm8916_rpm_regulators {
-> +	pm8916_l17: l17 {
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +};
-> +
-> +&sdhc_1 {
-> +	status = "okay";
-> +};
-> +
-> +&sdhc_2 {
-> +	status = "okay";
-> +
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-> +	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-> +
-> +	cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-> +};
-> +
-> +&sound {
-> +	status = "okay";
-
-Is thi sneeded?
-
-> +
-> +	pinctrl-0 = <&cdc_pdm_default &sec_mi2s_default>;
-> +	pinctrl-1 = <&cdc_pdm_sleep &sec_mi2s_sleep>;
-> +	pinctrl-names = "default", "sleep";
-> +	model = "DB410c";
-> +	audio-routing =
-> +		"AMIC2", "MIC BIAS Internal2",
-> +		"AMIC3", "MIC BIAS External1";
-> +
-> +	quaternary-dai-link {
-> +		link-name = "ADV7533";
-> +		cpu {
-> +			sound-dai = <&lpass MI2S_QUATERNARY>;
-> +		};
-> +		codec {
-> +			sound-dai = <&adv_bridge 0>;
-> +		};
-> +	};
-> +
-> +	primary-dai-link {
-> +		link-name = "WCD";
-> +		cpu {
-> +			sound-dai = <&lpass MI2S_PRIMARY>;
-> +		};
-> +		codec {
-> +			sound-dai = <&lpass_codec 0>, <&pm8916_codec 0>;
-> +		};
-> +	};
-> +
-> +	tertiary-dai-link {
-> +		link-name = "WCD-Capture";
-> +		cpu {
-> +			sound-dai = <&lpass MI2S_TERTIARY>;
-> +		};
-> +		codec {
-> +			sound-dai = <&lpass_codec 1>, <&pm8916_codec 1>;
-> +		};
-> +	};
-> +};
-> +
-> +&usb {
-> +	status = "okay";
-> +	extcon = <&usb_id>, <&usb_id>;
-> +
-> +	pinctrl-names = "default", "device";
-> +	pinctrl-0 = <&usb_sw_sel_pm &usb_hub_reset_pm>;
-> +	pinctrl-1 = <&usb_sw_sel_pm_device &usb_hub_reset_pm_device>;
-> +};
-> +
-> +&usb_hs_phy {
-> +	extcon = <&usb_id>;
-> +};
-> +
-> +&wcnss {
-> +	status = "okay";
-> +	firmware-name = "qcom/apq8016/wcnss.mbn";
-> +};
-> +
-> +&wcnss_ctrl {
-> +	firmware-name = "qcom/apq8016/WCNSS_qcom_wlan_nv_sbc.bin";
-> +};
-> +
-> +&wcnss_iris {
-> +	compatible = "qcom,wcn3620";
-> +};
-> +
-> +&wcnss_mem {
-> +	status = "okay";
-> +};
-> +
-> +/* Enable CoreSight */
-> +&cti0 { status = "okay"; };
-> +&cti1 { status = "okay"; };
-> +&cti12 { status = "okay"; };
-> +&cti13 { status = "okay"; };
-> +&cti14 { status = "okay"; };
-> +&cti15 { status = "okay"; };
-> +&debug0 { status = "okay"; };
-> +&debug1 { status = "okay"; };
-> +&debug2 { status = "okay"; };
-> +&debug3 { status = "okay"; };
-> +&etf { status = "okay"; };
-> +&etm0 { status = "okay"; };
-> +&etm1 { status = "okay"; };
-> +&etm2 { status = "okay"; };
-> +&etm3 { status = "okay"; };
-> +&etr { status = "okay"; };
-> +&funnel0 { status = "okay"; };
-> +&funnel1 { status = "okay"; };
-> +&replicator { status = "okay"; };
-> +&stm { status = "okay"; };
-> +&tpiu { status = "okay"; };
-> +
-> +/*
-> + * 2mA drive strength is not enough when connecting multiple
-> + * I2C devices with different pull up resistors.
-> + */
-> +
-> +&blsp_i2c4_default {
-
-None of your overrides look like have proper alphabetical order. Please
-use alphabetical order.
-
-
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
