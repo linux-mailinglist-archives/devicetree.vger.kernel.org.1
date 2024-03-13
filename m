@@ -1,158 +1,209 @@
-Return-Path: <devicetree+bounces-50265-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50266-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9343387A810
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 14:07:19 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C0AD287A8A2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 14:45:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C0C21F245BB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 13:07:19 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 7F5B6281D1B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 13:45:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77BEF3FB1D;
-	Wed, 13 Mar 2024 13:07:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9973141208;
+	Wed, 13 Mar 2024 13:45:02 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R1fm8+l9"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="5cBLAAh+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7593E498
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 13:07:11 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BB5BF43AAF;
+	Wed, 13 Mar 2024 13:45:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710335233; cv=none; b=I7HOH8d+qta5tJWOnzRyX+TFLvHxS7wR40z98rlSJH0ddMgHoClACrSNUD8GlM0klWC9SgD4QQWtUVROcZGSsOiXJn84Z3wG/L4teqpPNp4jxc8MjgGGckUuutxeGYDLz8mFIwH9HH6olAARie9+sgKC/KoZheA9Wq6UbMa7vvM=
+	t=1710337502; cv=none; b=umCUVeldyYnvCwq3S6IMlbKMx+UBUbXslDXcsWiOMQo4rlWiA0TiY4IcpHrQfiNMkguXRNrLFo2DxGdMrPxp0kjQojVxFmNcJlgMLt3z/JhY5rHfZFT5zZeQcLE2NX4Pr6XWqDhxLB8qPcL4gZQQLbZbvI9yRFDFOxGwvmjQ6so=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710335233; c=relaxed/simple;
-	bh=AOENklKCQlzcOp8ThZzmspRg8sESxjS+RseYzxgGx7k=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=jBhzqtJjQgZW04kAEX079yCXjtKL1vRGfujV4vZ8CF8ptcUWZsT6QnZEWFOoZStd9w0RcYWJC/zIspGe+DZdc368zvMNC8/GZy1WKuQBGgFheXO2L0HxmD5Jf6Y32ogJ3VhDt/2rfXPRxxhkj2lGpP4Ue7Z865cMLZMEkRH6/9c=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R1fm8+l9; arc=none smtp.client-ip=209.85.128.49
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-413ebe077d6so2653765e9.1
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 06:07:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710335230; x=1710940030; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=0h1HJWTel+cUT0T3nBc4aPkZwYen93F3ipuXMLtZBk0=;
-        b=R1fm8+l9iHmFOk+qsI+dU8sysRumMqDffcqN9d6OnPRVXk+3YQOZSjunrXZBYLLcPu
-         KJ0jmLIKROv+tDap5yMehtdx36wyljejbAL33rYDRpD0CIqheHYDrDMckmBe4A0gDLgq
-         C0OUSQQcRvLsdiIUoifAc9cvw3xMvgaOcrs04CK76I5Al6JL4wY7+4DGOb5ry5itCLTT
-         r/aC3siRdlQtRooAQhV+bpn+hQm78o0ueZtr3u/vidRuTVGxb6zJPtItehbneN0lfWzh
-         pTZjBYTht9W2Uqf0Po+hncby0RWqccBPQuVZxp2FhJ/9w0fRpNqZlhxo17oJ3nQR9/V5
-         W9vA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710335230; x=1710940030;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0h1HJWTel+cUT0T3nBc4aPkZwYen93F3ipuXMLtZBk0=;
-        b=MK8rO6vR+wo1T4B/gac/N3IaaY52QgW6q87jD3+IoznsdPeqH/tQAcaEUWGfJG9e+Y
-         DgZKFhquOxz/gdcygq7I7o/fp4nFHIfDmyxhbOFxvlppeC/3FEYuCvCDawYGQ6kMFNnC
-         o44VlWtgaTtScg9ncSZ2uZ+euP+Sp91W19v4ySQ5Nk1Ggkc+KYSWHWMjZmJn2rMKicNJ
-         WQlFZFpF8Jxc/hRa/bzzBGjob2xss70Zwm1vGGlj6VAScWGfh8Hyp0Jscwi+KJzCbRC0
-         T+udMLcKuGn6gzwdJfVH6vcejukEsKc6VMXryptSrNBOgDT0YJa9c4AGx5si+RdUt0wp
-         dHJQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVXvVE1oYJkHPvSi/pCMYgOnSiw/E5MMis+LDipQEQkK2n+P8h9b1y/6zTCx+IpTcWhOniiMKvanVZg2yM5BEB0R2dXS+mC6+WoKA==
-X-Gm-Message-State: AOJu0YxzCammDKbOHN5cVaADTIOceq3f4OjsNRN+6f0E/kpo1IFBdKrq
-	bHeUVLvmKu8bhdu1ArzBFNWNyOtWwMTjqv+XmyjsoO4nzEH1R8lw76vLR5X5XK4=
-X-Google-Smtp-Source: AGHT+IGCNQQ+vVI9A+/mKULdTaoDGN4LOObKn8d9gfyev3ibpUqDcfmSUpsIWnmdEnjLU2rGKjCHpQ==
-X-Received: by 2002:a05:600c:3542:b0:412:ebce:4166 with SMTP id i2-20020a05600c354200b00412ebce4166mr8648709wmq.32.1710335230145;
-        Wed, 13 Mar 2024 06:07:10 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id bg28-20020a05600c3c9c00b0041330d49604sm2287312wmb.45.2024.03.13.06.07.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Mar 2024 06:07:09 -0700 (PDT)
-Message-ID: <f0961a18-ddb7-4bb9-aee6-c13f8a1dc020@linaro.org>
-Date: Wed, 13 Mar 2024 14:07:07 +0100
+	s=arc-20240116; t=1710337502; c=relaxed/simple;
+	bh=VrDvKziGbkVXCGwa6UA7DRHxzR12jtWLeeoDQJ0I6oU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=C3sA9O6eTh9WQqHNANi/VZUegbBXx0GgqR78P04ufMG4Z2sb2/TC0wYq72c0azVQQdRthqE+7gQuek/lbfvJzNpz7IK3vAIEzePecKdrRekyE1FqdN+WTKJa9fmyIVeghzPxSskfAMgNqttEt+1PepAnzw96jNJ+skz5c2/dWlo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=5cBLAAh+; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1710337499;
+	bh=VrDvKziGbkVXCGwa6UA7DRHxzR12jtWLeeoDQJ0I6oU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=5cBLAAh+64ylKAHP3XHFb/VKg/Zh4uf60TrrLXqZV5TlC5dllbM8od/kttPsUfbqq
+	 8KvlfcpV7A/SH87WxVPAcTTIx3hPPyOcoVX1Gf2TuLy1UTIS9eivi02CiPGt879mes
+	 UKmX0yycdsewfAONQaXmh/Irozzd9DW5pP3b+5Gvlf7tlKklEN1c3WiXuGiU98j/W+
+	 IyCQzu/si+fJVID394W9B31B89pEdVilSx61uu0UBOwZTH2A0A63tbx81GttYkAjdl
+	 JHIQmFebWnzwCdx240rSiQqnaHYk9AoNXyiAeIqlficSEII5RK/qDqlY/qT7zwEKHd
+	 FPN6DFLqrjAkw==
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sebastianfricke)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id A0BF33782079;
+	Wed, 13 Mar 2024 13:44:58 +0000 (UTC)
+Date: Wed, 13 Mar 2024 14:44:56 +0100
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>
+Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Nathan Hebert <nhebert@chromium.org>,
+	Irui Wang <irui.wang@mediatek.com>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v3,2/2] media: mediatek: vcodec: adding lock to protect
+ encoder context list
+Message-ID: <20240313134456.7dov7dztcwsxr74d@basti-XPS-13-9310>
+References: <20240222092609.31382-1-yunfei.dong@mediatek.com>
+ <20240222092609.31382-3-yunfei.dong@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
- board DTS
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Sumit Garg <sumit.garg@linaro.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org
-Cc: andersson@kernel.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, stephan@gerhold.net,
- caleb.connolly@linaro.org, neil.armstrong@linaro.org,
- laetitia.mariottini@se.com, pascal.eberhard@se.com, abdou.saker@se.com,
- jimmy.lalande@se.com, benjamin.missey@non.se.com,
- daniel.thompson@linaro.org, linux-kernel@vger.kernel.org,
- Jagdish Gediya <jagdish.gediya@linaro.org>
-References: <20240313123017.362570-1-sumit.garg@linaro.org>
- <20240313123017.362570-4-sumit.garg@linaro.org>
- <c0e10cbf-c6f3-4b0c-8616-983da2a40236@linaro.org>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <c0e10cbf-c6f3-4b0c-8616-983da2a40236@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240222092609.31382-3-yunfei.dong@mediatek.com>
 
-On 13/03/2024 14:04, Konrad Dybcio wrote:
-> 
->> +		led@5 {
->> +			reg = <5>;
->> +			label = "apq8016-hmibsc:green:wlan";
-> 
-> These names look overly complicated.. s/apq8016-hmibsc://g?
-> 
+Hey Yunfei,
 
-It should be dropped entirely in fact. There is color and function.
+On 22.02.2024 17:26, Yunfei Dong wrote:
+>The ctx_list will be deleted when scp getting unexpected behavior, then the
+>ctx_list->next will be NULL, the kernel driver maybe access NULL pointer in
+>function vpu_enc_ipi_handler when going through each context, then reboot.
+>
+>Need to add lock to protect the ctx_list to make sure the ctx_list->next isn't
+>NULL pointer.
 
-Best regards,
-Krzysztof
+Can we reword this slightly to make it grammatically correct?
 
+My suggestion:
+```
+Add a lock for the ctx_list, to avoid accessing a NULL pointer within
+the `vpu_enc_ipi_handler` function, when the ctx_list has been deleted
+due to an unexpected behavior on the SCP IP block.
+```
+
+Greetings,
+Sebastian
+
+>
+>Fixes: 1972e32431ed ("media: mediatek: vcodec: Fix possible invalid memory access for encoder")
+>Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>---
+> .../platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c      | 4 ++--
+> .../platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c    | 5 +++++
+> .../platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h    | 2 ++
+> drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c | 2 ++
+> 4 files changed, 11 insertions(+), 2 deletions(-)
+>
+>diff --git a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c
+>index 9a11a2c248045..8d578b6902148 100644
+>--- a/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c
+>+++ b/drivers/media/platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c
+>@@ -73,12 +73,12 @@ static void mtk_vcodec_vpu_reset_enc_handler(void *priv)
+>
+> 	dev_err(&dev->plat_dev->dev, "Watchdog timeout!!");
+>
+>-	mutex_lock(&dev->dev_mutex);
+>+	mutex_lock(&dev->dev_ctx_lock);
+> 	list_for_each_entry(ctx, &dev->ctx_list, list) {
+> 		ctx->state = MTK_STATE_ABORT;
+> 		mtk_v4l2_vdec_dbg(0, ctx, "[%d] Change to state MTK_STATE_ABORT", ctx->id);
+> 	}
+>-	mutex_unlock(&dev->dev_mutex);
+>+	mutex_unlock(&dev->dev_ctx_lock);
+> }
+>
+> static const struct mtk_vcodec_fw_ops mtk_vcodec_vpu_msg = {
+>diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
+>index 5db2bf3db4c54..29524cd59ce8b 100644
+>--- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
+>+++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c
+>@@ -177,7 +177,9 @@ static int fops_vcodec_open(struct file *file)
+> 	mtk_v4l2_venc_dbg(2, ctx, "Create instance [%d]@%p m2m_ctx=%p ",
+> 			  ctx->id, ctx, ctx->m2m_ctx);
+>
+>+	mutex_lock(&dev->dev_ctx_lock);
+> 	list_add(&ctx->list, &dev->ctx_list);
+>+	mutex_unlock(&dev->dev_ctx_lock);
+>
+> 	mutex_unlock(&dev->dev_mutex);
+> 	mtk_v4l2_venc_dbg(0, ctx, "%s encoder [%d]", dev_name(&dev->plat_dev->dev),
+>@@ -212,7 +214,9 @@ static int fops_vcodec_release(struct file *file)
+> 	v4l2_fh_exit(&ctx->fh);
+> 	v4l2_ctrl_handler_free(&ctx->ctrl_hdl);
+>
+>+	mutex_lock(&dev->dev_ctx_lock);
+> 	list_del_init(&ctx->list);
+>+	mutex_unlock(&dev->dev_ctx_lock);
+> 	kfree(ctx);
+> 	mutex_unlock(&dev->dev_mutex);
+> 	return 0;
+>@@ -294,6 +298,7 @@ static int mtk_vcodec_probe(struct platform_device *pdev)
+>
+> 	mutex_init(&dev->enc_mutex);
+> 	mutex_init(&dev->dev_mutex);
+>+	mutex_init(&dev->dev_ctx_lock);
+> 	spin_lock_init(&dev->irqlock);
+>
+> 	snprintf(dev->v4l2_dev.name, sizeof(dev->v4l2_dev.name), "%s",
+>diff --git a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
+>index a042f607ed8d1..0bd85d0fb379a 100644
+>--- a/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
+>+++ b/drivers/media/platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h
+>@@ -178,6 +178,7 @@ struct mtk_vcodec_enc_ctx {
+>  *
+>  * @enc_mutex: encoder hardware lock.
+>  * @dev_mutex: video_device lock
+>+ * @dev_ctx_lock: the lock of context list
+>  * @encode_workqueue: encode work queue
+>  *
+>  * @enc_irq: h264 encoder irq resource
+>@@ -205,6 +206,7 @@ struct mtk_vcodec_enc_dev {
+> 	/* encoder hardware mutex lock */
+> 	struct mutex enc_mutex;
+> 	struct mutex dev_mutex;
+>+	struct mutex dev_ctx_lock;
+> 	struct workqueue_struct *encode_workqueue;
+>
+> 	int enc_irq;
+>diff --git a/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c b/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c
+>index 84ad1cc6ad171..51bb7ee141b9e 100644
+>--- a/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c
+>+++ b/drivers/media/platform/mediatek/vcodec/encoder/venc_vpu_if.c
+>@@ -47,12 +47,14 @@ static bool vpu_enc_check_ap_inst(struct mtk_vcodec_enc_dev *enc_dev, struct ven
+> 	struct mtk_vcodec_enc_ctx *ctx;
+> 	int ret = false;
+>
+>+	mutex_lock(&enc_dev->dev_ctx_lock);
+> 	list_for_each_entry(ctx, &enc_dev->ctx_list, list) {
+> 		if (!IS_ERR_OR_NULL(ctx) && ctx->vpu_inst == vpu) {
+> 			ret = true;
+> 			break;
+> 		}
+> 	}
+>+	mutex_unlock(&enc_dev->dev_ctx_lock);
+>
+> 	return ret;
+> }
+>-- 
+>2.18.0
+>
+>
 
