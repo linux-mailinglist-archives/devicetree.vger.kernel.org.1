@@ -1,116 +1,115 @@
-Return-Path: <devicetree+bounces-50313-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50314-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1134487AFCF
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:35:55 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F35B387AFD5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:36:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 43AD21C257C6
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 18:35:54 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AF399284F37
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 18:36:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BF658005E;
-	Wed, 13 Mar 2024 17:18:24 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9BF1580BEB;
+	Wed, 13 Mar 2024 17:20:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="E+mdC1Ut"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="XzCOUfBo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com [209.85.128.51])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B992D7F7EB;
-	Wed, 13 Mar 2024 17:18:22 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D4DF880BF8;
+	Wed, 13 Mar 2024 17:20:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710350304; cv=none; b=hS4mlWflHgJG7lH1iJvGgHT8KUnAfuVIcZ5BGDIcUO7pUfpzOfRrGUnAQFgbgMtzyp8AV6qr0ErHkaPJ5AmjtNq/gOrAl5qjyGGqsZAc7Cu+OejXPShJflq+erWpTV271nrzAvyYicLM9lzfAFpqffgVM8drhXZPstm/CTZnZUE=
+	t=1710350434; cv=none; b=JACVuMlDRmAlTV5bsO9x8zPWcOIfETfFHRrZh1VoijhC8XrrbMbHSuqozGNS2uSfQWx7oem/GFXPnHJS/s3dGijju5r996qLZxmHZqy+DgVeOdcnoA4i5WNuJBKWM0dVmqFpmJI6ZI3OVXuFu5LYUtnU43dsJSPL+81vt9/Gy7M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710350304; c=relaxed/simple;
-	bh=37T5IfVlw03ED4EzOqmPCpS1RhbW/FzcsvsNaz03OVU=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=BBrxl14Ag8nHXZZndTlCTAiNPRB/9zt6Vrv6tv6G9ZymrJaW9aFF2qeSko4ztnjsmd3MxpOq9Ed9wtEV+uH2fq/6wBmmRaRwKsR9tdXIPKZXSvFQxFMekjroOhNoEBFYaonvTHw0UafaKfJvO8Y36Bx1+ESuK4PWOIW374n6sDg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=E+mdC1Ut; arc=none smtp.client-ip=209.85.128.51
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f51.google.com with SMTP id 5b1f17b1804b1-413e61525c2so608115e9.2;
-        Wed, 13 Mar 2024 10:18:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710350301; x=1710955101; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4FqFnJvYNw9zpN3h/cMtu8tZOEqGdp7v63hXLyZmhw0=;
-        b=E+mdC1Utg1IFJudEClbHRJhDqQ2AI0BgJ5Izj/Uyz2kbqFXQRIZ2jnbfLC5MMhLVzI
-         GYclWELlLaWpApYO0L5SobCfGbZ3rWmcbFR6/6eJ5xOtsN3gQI3xxOH+qPw7hWuRkjRK
-         f7tyRnX0TmPUyygBfndxATZAWHyi1aO+1bWZV4weC5kamjNSZwIoHtyRA6bIK+q2IjRa
-         ZtSM0Fh2WuMRpA7p7LGD4hfTOJ3WmZZ/+B4QsvB8bGnlukHy/3crv7VlVt8K79e0dVt6
-         7wQ/q+pCjGQNVDS2oGETpx3j1K9lt8/wZHKnUivB7DMAnJG2EIHkwK3sdVjifCEsaKCR
-         JRVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710350301; x=1710955101;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=4FqFnJvYNw9zpN3h/cMtu8tZOEqGdp7v63hXLyZmhw0=;
-        b=eBJeDrPkIsFHpLo7Wo4rhDtc1tFfoY6mn1ELraNZwX00zVxOjqbAmd59A9B0/WwQBW
-         DKjp/TcdeAa2pvlIchlQWFtLkcTpmAl8xflfrN/KOGGC3UIRjrt4WVIAVqiTt015V07a
-         i1/u5lczh66xt4TrDdhJajwqh8Q3Nl7RqmsG90G2mfRNe9O+8UP1wOiVzPE/Imp4psuf
-         MTY/dyXeJZlvr1O6yGbACvOi86991VSzRObs3T/tD9lAgU5FH/bp3HCjJjm85dwys9Fq
-         zkvIuM9AESIbJHQWcNtyp327obGOIwjeplLPPscSwYQNw9CgzVDNxyeNC7zo/xmiJh5P
-         zqhQ==
-X-Forwarded-Encrypted: i=1; AJvYcCWvN2vPYERPvjTZS3wiL8SKHf2nnJJJkE1n7bj9m+kpzS+BIpFqojnMNQ/pK+mNfV3gbKzEvAmUHjeQthJBBUmKU9M2q73gmfB3pOQd
-X-Gm-Message-State: AOJu0YyZVwHU0o3Y8fbYH2bNlpKm5ZQJk5v+l0zw3RrZFo1ooVs+Jc0L
-	0rQQf5YgoRyCvpX2XQxM73W231jpg0qS2upqaq+dL8l0BGmV6Poc
-X-Google-Smtp-Source: AGHT+IEtiPdYkCDAPHchHeFYhHC/s2/7awajXKKfjSyC4rnwNuj2Got/IRTSQQF8SJ0Qx5cyNnpxUg==
-X-Received: by 2002:a05:600c:3d17:b0:413:e85c:e5ea with SMTP id bh23-20020a05600c3d1700b00413e85ce5eamr469639wmb.0.1710350300980;
-        Wed, 13 Mar 2024 10:18:20 -0700 (PDT)
-Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
-        by smtp.gmail.com with ESMTPSA id o15-20020a05600c4fcf00b004132ae838absm2833251wmq.43.2024.03.13.10.18.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Mar 2024 10:18:20 -0700 (PDT)
-From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To: Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
- Chen-Yu Tsai <wens@csie.org>, Lee Jones <lee@kernel.org>,
- Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Andre Przywara <andre.przywara@arm.com>
-Cc: devicetree@vger.kernel.org, Samuel Holland <samuel@sholland.org>,
- Chris Morgan <macromorgan@hotmail.com>, linux-kernel@vger.kernel.org,
- linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH 3/4] mfd: axp20x: add support for AXP717 PMIC
-Date: Wed, 13 Mar 2024 18:18:19 +0100
-Message-ID: <2315501.ElGaqSPkdT@jernej-laptop>
-In-Reply-To: <20240310010211.28653-4-andre.przywara@arm.com>
-References:
- <20240310010211.28653-1-andre.przywara@arm.com>
- <20240310010211.28653-4-andre.przywara@arm.com>
+	s=arc-20240116; t=1710350434; c=relaxed/simple;
+	bh=PDm1SItksNTofzuQzI9fFJVVPjchoKbvQNAAeFJDhCc=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version:Content-Type; b=p3foFi9rXcKluMB9dAGpsNtXcjHQApBQ4RV+CZMdgtyXU194w4hJ5piZIDShJz2VbmNNDrx/d6S7sVSKgI6H9F55diwAEb6z2VVNH0GpKbuT+B65btYZUIBHTCl9akeq3R85pVxkSj+l70dV/fS5VEwGWsA8lApRR4rnIxafEqM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=XzCOUfBo; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 5DB3F60006;
+	Wed, 13 Mar 2024 17:20:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1710350424;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=ALphmlMJMXjWnAezL6iQbzO6NFcgXvLJ93zEeDxPP/U=;
+	b=XzCOUfBojPliqqGwG1/5px2zHXOyYoIR/4C1B1yPMLdF7qEWnMYdFt4z/1HIsFAqcxeDvx
+	Zy9vGtzScRdZWrE7j7c0bXfyHSvdwI7wTyy+qKmOduy/ZrZrszkFMy4mHaYeTJ8/0SjQ6B
+	17GYllEJHIa6Uzw689W0CsL3NMIyhxdj8uwuv6yik/py/xGZT+PBqVUhqnqeHjAFtyF4wk
+	e62DR3CjOjZpMfucaK7jU5krKYBRwJT9EQccEeFb7ZLa+1E3dSa/7Ujs/1P5My7S7gvLk6
+	ya937VFo1pWt690F3jkENDIcGaU2ksgtB0FkpZROdD3+Rchd0/8RNzUOX804HQ==
+From: =?UTF-8?q?J=C3=A9r=C3=A9mie=20Dautheribes?= <jeremie.dautheribes@bootlin.com>
+To: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jessica Zhang <quic_jesszhan@quicinc.com>,
+	Sam Ravnborg <sam@ravnborg.org>,
+	David Airlie <airlied@gmail.com>,
+	Daniel Vetter <daniel@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Thierry Reding <thierry.reding@gmail.com>
+Cc: dri-devel@lists.freedesktop.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	Yen-Mei Goh <yen-mei.goh@keysight.com>,
+	=?UTF-8?q?J=C3=A9r=C3=A9mie=20Dautheribes?= <jeremie.dautheribes@bootlin.com>
+Subject: [PATCH v3 0/3] panel-simple: add support for Crystal Clear CMT430B19N00
+Date: Wed, 13 Mar 2024 18:20:13 +0100
+Message-Id: <20240313172016.387277-1-jeremie.dautheribes@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-GND-Sasl: jeremie.dautheribes@bootlin.com
 
-Dne nedelja, 10. marec 2024 ob 02:02:10 CET je Andre Przywara napisal(a):
-> The AXP717a is a PMIC chip produced by X-Powers, it can be connected to
-> an I2C or RSB bus.
-> 
-> It's a rather complete PMIC, with many regulators, interrupts, an ADC and
-> battery charging functionality. It also offer USB type-C CC pin
-> handling.
-> 
-> Describe the regmap and the MFD bits, along with the registers exposed
-> via I2C or RSB. This covers the regulator, interrupts and power key
-> devices for now.
-> Advertise the device using the new compatible string.
-> 
-> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+Hello everyone,
 
-Acked-by: Jernej Skrabec <jernej.skrabec@gmail.com>
+This patch series add support for the Crystal Clear Technology
+CMT430B19N00 4.3" 480x272 TFT-LCD panel.
+It also adds Crystal Clear Technology to vendor-prefixes.yaml.
 
-Best regards,
-Jernej
+Please note that unfortunately there is no public datasheet available
+for this panel.
 
+Changes in v3:
+  - PATCH 3/3: use display_timing structure instead of display_mode
+  structure as suggested by Maxime Ripard.
+  - Link to v2: https://lore.kernel.org/all/20240304160454.96977-1-jeremie.dautheribes@bootlin.com/
 
+Changes in v2:
+  - add link to the Crystal Clear Technology website in commit message, as
+  suggested by Conor Dooley and Neil Armstrong.
+  - Link to v1: https://lore.kernel.org/all/20240223134517.728568-1-jeremie.dautheribes@bootlin.com/
+
+Regards,
+
+Jérémie
+
+Jérémie Dautheribes (3):
+  dt-bindings: Add Crystal Clear Technology vendor prefix
+  dt-bindings: display: simple: add support for Crystal Clear
+    CMT430B19N00
+  drm/panel: simple: add CMT430B19N00 LCD panel support
+
+ .../bindings/display/panel/panel-simple.yaml  |  2 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 ++
+ drivers/gpu/drm/panel/panel-simple.c          | 29 +++++++++++++++++++
+ 3 files changed, 33 insertions(+)
+
+-- 
+2.34.1
 
