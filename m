@@ -1,183 +1,259 @@
-Return-Path: <devicetree+bounces-50214-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50215-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 422C787A5FB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 11:39:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D508887A634
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 11:57:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C756928286A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:39:40 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 937AA282E48
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:57:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A515E3D0DD;
-	Wed, 13 Mar 2024 10:39:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 671F53D3BF;
+	Wed, 13 Mar 2024 10:57:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="gzMsku0D"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="NxQoNp1f"
 X-Original-To: devicetree@vger.kernel.org
-Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2088.outbound.protection.outlook.com [40.107.114.88])
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F108D383BD;
-	Wed, 13 Mar 2024 10:39:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.88
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710326378; cv=fail; b=gf8YtoXU7hewPuPC91VoAtefZ7iORQZdbzL4AoNmUkXKHwmVn2YFzq6PatXKKc/sKWOKZsTYbD8ZdRDpGp8xOlwM7BKDx0j/QXrz3MUsOqcKvTJWIFYlY03FQ7ZiBK+/DcE3wtRJLjhJpIFrpG/v+Oq9jAE7D36OndmAP/DzqjU=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710326378; c=relaxed/simple;
-	bh=JLbg30Wj9fo7Pk2FbTHGsbEqhZe5TcRjBB2TC+Otu7w=;
-	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
-	 Content-Type:MIME-Version; b=Wpy/ZmEGOPAan1jxclm38JrQ/qaM/Bxogt8hDj3ZC2xiINU31guZdY7wZYVqKIs9F9vonsP+tQLOvGgWOeMxqN7uOkIvaQUuXJIjhXAjaIdEBdYUgagbisezM/HwjqgupywSV506TAXArIxd3jGljne3+/fKdHE2MU2DSjivMEc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=gzMsku0D; arc=fail smtp.client-ip=40.107.114.88
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LEJVgO/9dwC6qs0TAoZZE5/Nm704sD6mn/phtLBv6JqD1GM2hfhPUHmc73yVO4ZTtfTCncyggfj9ty9bt5TwkzXt3fegG0Eec7O+dplNFseJjtwinrXCpP+YTnU58tCltGfHMNg4kNWBY8oRcdhWa4sSMZwO/hjAHE90o6+FmtQ+9kl/3Pxq+4C7ooKH919N2ZAJKatm6f6Bh0r1OcU5yI7ensNMD/UMOtDMk5E/ItI/PtTCzdTgv2/lqHN6VL7yH8p2Ub+RpF2TtUfTUavwWKSCn6rNnNov75SQGk8Lqv2w71TJwVZo+GFcGll3OkbUfztqHUOMs7mOEdYU+xhLQw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sx75CZNE6D4z8RuxwDr58Ndja1RuMaXdJEJfUoshLgM=;
- b=XpEgkvjbgW/j5P4yBnIW4Q8K+qFd9q+BswxBKr7DZdOYoWj2GpMWzeBmRIJDBA84wG8BqIyGHUkT5h5qOZu+SeN2Mx7NjqgmP+fvsFrtqlJiMIE0OU0Vlb0X+NvenUy318Tj4G1n+HD1CT2Z/AzrAbOapfG5gCqR6lv3+AYPYzkuIn1HlhTFnjMCiLb0HfdkRxfLO3Y4e/lx9aKoiM4Nm5IZ5FgNk7JQ8itlcMbPctSf2GlClTbY9qeZikEDJS0mkpg4vLKXrAchKUNCIptPITym14DSuFPRRM9d+2DK5DeYzQ8bxF4JVnC0z950jhxNzSc0aBNqDwuyeTc9GuscYA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
- header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sx75CZNE6D4z8RuxwDr58Ndja1RuMaXdJEJfUoshLgM=;
- b=gzMsku0DIXgSjvR60KRFgntg77zJ/FprUvdd7IOyxDm8kZQxsCdEvzgnozaCMOaUwo+6US4WL59jfPFdn4ezTsUQQvX4HEMjrhC9fLvDOvaeFkM4CRV27myuO1rjCUsZG16Bh6ipxAY3irfIHJQfWRgl+QezkTlug0n1G+6eXK4=
-Received: from OSAPR01MB1587.jpnprd01.prod.outlook.com (2603:1096:603:2e::16)
- by TYCPR01MB8342.jpnprd01.prod.outlook.com (2603:1096:400:15f::6) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.18; Wed, 13 Mar
- 2024 10:39:24 +0000
-Received: from OSAPR01MB1587.jpnprd01.prod.outlook.com
- ([fe80::aef6:c35b:b90d:2e3f]) by OSAPR01MB1587.jpnprd01.prod.outlook.com
- ([fe80::aef6:c35b:b90d:2e3f%5]) with mapi id 15.20.7386.017; Wed, 13 Mar 2024
- 10:39:24 +0000
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: Biju Das <biju.das.jz@bp.renesas.com>, Mauro Carvalho Chehab
-	<mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
-CC: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
-	<magnus.damm@gmail.com>, Prabhakar Mahadev Lad
-	<prabhakar.mahadev-lad.rj@bp.renesas.com>, "linux-media@vger.kernel.org"
-	<linux-media@vger.kernel.org>, "devicetree@vger.kernel.org"
-	<devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
-	<linux-renesas-soc@vger.kernel.org>, biju.das.au <biju.das.au@gmail.com>
-Subject: RE: [PATCH v3 0/2] Document RZ/G2UL CRU and CSI support
-Thread-Topic: [PATCH v3 0/2] Document RZ/G2UL CRU and CSI support
-Thread-Index: AQHaXokZWryfxE0HzkOQ5OsjkjLQg7E1p7/w
-Date: Wed, 13 Mar 2024 10:39:24 +0000
-Message-ID:
- <OSAPR01MB1587A4AD9B455886E777DA38862A2@OSAPR01MB1587.jpnprd01.prod.outlook.com>
-References: <20240213142941.161217-1-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240213142941.161217-1-biju.das.jz@bp.renesas.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach:
-X-MS-TNEF-Correlator:
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=bp.renesas.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: OSAPR01MB1587:EE_|TYCPR01MB8342:EE_
-x-ms-office365-filtering-correlation-id: 6a0a1ff1-ed38-4fa7-5cb4-08dc4349d9c3
-x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info:
- mqpn91pfCU88tj0VBr7orpk7lQWXAJLoclT9AatB1CvwEsUvPIcdwFFYsB/30+h8FajsLGqno/SjENrSSaHZnXjxCWsBJZ6VeW3IJO+735bZFzE7MRzflFuZO1Unx8vmGUk3VdxYiqYiM0q9zwyGMI1K3I9Xl3nk4nwzu3GgLNkK+ZQyp18IuuCBE9rys6yFZQpQWxcKwqJmGkvl1/MT30hSPLdTreULQIAHTM+oZXs+KBtc+z9in821UREXgmkzz8LJbNkovfXJlM+ZHUcjOMlciuWGp4F/KDAJMDbejn2P6JNEytR2DVuivGUdURGpZqmWGjxBH8DgTQo79PmIAOVqA6j2DFlcsTAHZWnEoBPUUc8JTNb5/RNOD8Q15zilO1Rdcyxn8XcmYdjNfFJuDr0U+pt4olPUxY3vmibwTdtZ98dM4mNfUQ3qBmWrh4o2puilDNno9epCtEpwzooSQIY5ZbPAoAkIW0IdOF6xQg4cGtVQy+MdQJUu9N+k8o0qASuBVbq+ov+PXjS44DrjgU4FG2rptbWIjAPpM/EXw0038UglxpMzMj6PsmXC2qsAJEIhG3sLrTLLB1CGJM0Gd2G2CRhblDG8Ous6adron3qm1tqPQlO/ekwkHFmUYUyB5Th/8M29XW4gv77niAZP/4QGsQcpP3gokAXStTVXinFq4yHEalLUm4DSw5b4QSAvNgGQttMxJFkyB0Qa3i8gJa+5Y8mWOanbDa/15iOyZA4=
-x-forefront-antispam-report:
- CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB1587.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(1800799015)(38070700009);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0:
- =?us-ascii?Q?konOpQmCuex0SE0HAOt77RamFaH5GydsuoS0HY/zqgihqsLU5TwE0pqijTpc?=
- =?us-ascii?Q?SC53PP3LBJHP6+tyqm3PZrVJD8oJygxyozkYqGBYGcrL95rrcdoq9ud+fZYz?=
- =?us-ascii?Q?/CNv54H0YVp8CGL8fTjA7R8QEYob4cG6efzFXlh7DX1sGAukUu1Dt7Z28k7W?=
- =?us-ascii?Q?SSp7NSoW2sPK+OPm9cvZarzpaiL3ENWPbGTgeeZTR9n14g0SNUDGDqCEWBWZ?=
- =?us-ascii?Q?YF9GsDcnjMhtYe8XzS074DMBpsNgXsgffXydkHBNcbwZR6Srn8gUhZcrx2nq?=
- =?us-ascii?Q?8UWVOANWEzV8FV3ipl84crKcVheLaQoLyQCVnMibMZ7bvdHfHWeG90ImymDP?=
- =?us-ascii?Q?M9YcYUcSwAqBzmbHBOzE2BDoAWn0D9r75LLmzJRwwEBFr1v5AnEGK6MpE/D3?=
- =?us-ascii?Q?Er+acZsSverqnlQ+BMRt5xtD6mzPaVn8H++s9gyETTbVrfIFuLhNz5YfCZpr?=
- =?us-ascii?Q?D2V/B8q6epK4UKiaDVn+dt2DeycGXc6J1ijUnV4aikpDoAat2vBQNkrw2W1z?=
- =?us-ascii?Q?47LHRzBUM3V/s2dD7jHD4nUD2ans3WkNR7TTA1fw7kpvBq7YvaHM70ywm66d?=
- =?us-ascii?Q?8+r3LeV1RWepzuGIchzxWI+skqR8FWvJ+AJ77uvgS+iQeWLWyuRg7inW8sKa?=
- =?us-ascii?Q?QO5Wss9dDBd41P110wHQfufIhb+vhIqfPiK36V1jWCDczYs5EXONNbvIUDkl?=
- =?us-ascii?Q?q0TZ1hYeKpILMQ87s4WXo6xR2LunbFRrdwZsAUScXOzpyIVb7r25zXv5Lf9h?=
- =?us-ascii?Q?rUgwpK23LReAYkUrEs4Cq9GnxbUx0ndJSVBhgWR07GuaUtJL79ETMw4QeIda?=
- =?us-ascii?Q?wRTMfVs2stNBygICCmSWjGzIpAeT+6lLLaleLs35ISVQZ264Uq5x7KBa+Mxi?=
- =?us-ascii?Q?mvVR/3mNyRB+TtlDGwaMSyDAGJnAu1xWBtBtiAZT8k4v0wZRQuNT/Z8ScKHX?=
- =?us-ascii?Q?0KGar1nD28z+/IeeAtuU4x9jTEaLDEC8R/7pN2VePIzTjH+keV40ntYoPu2k?=
- =?us-ascii?Q?tfu0PxQdnWeVIC9GocKSAHgu/OZmfbjoRyvWzPMbAv1FZ/xfSz7ZfroiBmf8?=
- =?us-ascii?Q?WIoGRjpBS/MJfzRd8+d1R39tM7BZv5qHr+0rZWIkFezJrrZ8O6B8A1a4SkiB?=
- =?us-ascii?Q?WHt6If7NLSJYXoH6EE0iE0aVxAD4xfneeRMzgqrqyCufjd3N0utn+Li1+WJF?=
- =?us-ascii?Q?eFEOzmxVhaQDHl6Am8xrU+T5UZ9EmVAAOfWyqSD8lgn3GsLdVhZrw4Y8Z0tk?=
- =?us-ascii?Q?VO7pD6IG4lz1Mx/EeJBBxINDVR+zze/njbSyummA5AoYlPR+LD9bRwr9/wDg?=
- =?us-ascii?Q?2VEUKv/pO5bZquwP+uNVnKYgP5/ld4No5yabzIQ06k8HkVG0ndEKchQOGOvG?=
- =?us-ascii?Q?4UIXnWAJq/QpE+SqwZ7RhVweChENRMuUWRYmZA5C2UpiglaFBHiZ1NiB8/2G?=
- =?us-ascii?Q?cXbmZik86zVZ1pm3zg01dXJO7JDQUikO0nPz5afzK58RlBpELfIgFFvh6ub+?=
- =?us-ascii?Q?6xaHQ2CozC+SjKVSLzRBBkxQlA3lAYiy2W1S6kgExBT9EwYhYI/C7U2cF4s8?=
- =?us-ascii?Q?NZ34ETZgeofKeoN7XBmvBMxd0GigEJm37URT7KS7forDnXD3Yf3SJ5IDIGUq?=
- =?us-ascii?Q?Mw=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AA58139AF1;
+	Wed, 13 Mar 2024 10:57:28 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.200
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710327452; cv=none; b=p5XzVCB4wubNcijsnHYrjqUBxwk9NbV6LBVf89gLR0Y8NO7MR9rfJ7Tg0wBLki7GaeEDIp419OusoWglydP+2cIG3WsndZW3l4X8ubGKO/BviB+VI/kKrIE3JkoTPQpGSDDnP3VEJ6ExARnjz+rC/0J4cmgDLcltQjHYvdZzMoo=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710327452; c=relaxed/simple;
+	bh=cV0uvgWnqGHepjJQtn53stQ6AbMVYtngq3iROsqUVF4=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=XFTTr6eVNYQwwEPV5PbJfZtTgDWj3XYc9cnUDiss4JGm9Yma159JRLAF+7+IhS0YA8Jg+YzLadWaHvrn/f0Cd+Ef0mV1TI9GwM2ZfhlRISS3trp7MSfMJg9yVUSkqO8GhvVIHMdOD8SUOsu2sHCgfo7uxdb+Nu1pmJPrxL1aw5E=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=NxQoNp1f; arc=none smtp.client-ip=217.70.183.200
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 363472000A;
+	Wed, 13 Mar 2024 10:57:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1710327441;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=IVCt5ZDF2pdAG11xTk8+M6M3EmGjgQ46WBLQ4Swbfyg=;
+	b=NxQoNp1fQN7hOOxjMYdzO+AyWmDka4FyvK6+2Yb+5YQgkb5gdrJK0/csvE25O7+HDpUmQO
+	bzGdg7aMzH3Z5X+KGPIq3bO6kV6ZmANjmWVB+KoV3W7IejoOYx8HRKtENqjfDmjf9IuCeU
+	B6VgwOErzF3Bn1AurRZ5fj+rMqOQy/yImdwETQK6mcOvqvoU496wzdGpFcqsVjRsjH/7b0
+	pDk51UF17odLw+6KaKJGZ0KxpVqsMx5MhmwItJvI8vtRa+egfbS3iGCVT5SW755HlNxLMd
+	mcwQ5+SlEcS+o44jlGRxyjUQOeetSDYquMLIfRrgMKZNZWazd1hGzrtYrPfKig==
+Date: Wed, 13 Mar 2024 11:57:17 +0100
+From: Luca Ceresoli <luca.ceresoli@bootlin.com>
+To: Pavel Hofman <pavel.hofman@ivitera.com>, Rob Herring
+ <robh+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+Cc: Nicolas Frattaroli <frattaroli.nicolas@gmail.com>, Liam Girdwood
+ <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Jaroslav Kysela
+ <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>, Heiko Stuebner
+ <heiko@sntech.de>, Philipp Zabel <p.zabel@pengutronix.de>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, linux-rockchip@lists.infradead.org,
+ linux-sound@vger.kernel.org, alsa-devel@alsa-project.org,
+ linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+ devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/7] ASoC: rockchip: i2s-tdm: Fix inaccurate sampling
+ rates
+Message-ID: <20240313115717.76dcc97f@booty>
+In-Reply-To: <865b94d6-e9b6-6db9-eae5-5c56d4802710@ivitera.com>
+References: <20240305-rk3308-audio-codec-v4-0-312acdbe628f@bootlin.com>
+	<20240305-rk3308-audio-codec-v4-1-312acdbe628f@bootlin.com>
+	<865b94d6-e9b6-6db9-eae5-5c56d4802710@ivitera.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB1587.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6a0a1ff1-ed38-4fa7-5cb4-08dc4349d9c3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2024 10:39:24.4657
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Us7M+iUFvj4eQTKEKpiPrqFHCX3wkiZxQ8LhS7aphtzTfj4MLSYnEQrAZXeOKH0ooCw4iQIWstSIodfHc4b0ashCwEp0D7g04e6X3e9e+m0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8342
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-GND-Sasl: luca.ceresoli@bootlin.com
 
-Hi All,
+Hello Pavel, DT maintainers,
 
-Gentle ping.
+[a question about DT bindings below]
 
-Cheers,
-Biju
+On Wed, 6 Mar 2024 08:43:57 +0100
+Pavel Hofman <pavel.hofman@ivitera.com> wrote:
 
-> -----Original Message-----
-> From: Biju Das <biju.das.jz@bp.renesas.com>
-> Sent: Tuesday, February 13, 2024 2:30 PM
-> Subject: [PATCH v3 0/2] Document RZ/G2UL CRU and CSI support
->=20
-> This patch series aims to Document CSI/CRU interface found on RZ/G2UL SoC=
-.
->=20
-> v2->v3:
->  * Added Rb tag from Geert for patch#1 and #2.
->  * Added Ack from Conor Dooley for patch#2.
->  * Dropped SoC dtsi patches from this series as it accepted and
->    also dropped Overlay patch for enabling CSI/CRU on RZ/G2UL SMARC EVK
->    as it is sent as separate patch.
->  * Updated commit header and description of the cover letter.
-> v1->v2:
->  * Added Ack from Conor Dooley for patch#1.
->  * Dropped driver reference from commit description for the binding
->    patches.
->=20
-> Biju Das (2):
->   media: dt-bindings: renesas,rzg2l-csi2: Document Renesas RZ/G2UL CSI-2
->     block
->   media: dt-bindings: renesas,rzg2l-cru: Document Renesas RZ/G2UL CRU
->     block
->=20
->  .../bindings/media/renesas,rzg2l-cru.yaml     | 35 ++++++++++++++++---
->  .../bindings/media/renesas,rzg2l-csi2.yaml    |  1 +
->  2 files changed, 32 insertions(+), 4 deletions(-)
->=20
-> --
-> 2.25.1
+> On 05. 03. 24 15:36, Luca Ceresoli wrote:
+> > The sample rates set by the rockchip_i2s_tdm driver in master mode are
+> > inaccurate up to 5% in several cases, due to the driver logic to configure
+> > clocks and a nasty interaction with the Common Clock Framework.
+> > 
+> > To understand what happens, here is the relevant section of the clock tree
+> > (slightly simplified), along with the names used in the driver:
+> > 
+> >         vpll0 _OR_ vpll1               "mclk_root"
+> >            clk_i2s2_8ch_tx_src         "mclk_parent"
+> >               clk_i2s2_8ch_tx_mux
+> >                  clk_i2s2_8ch_tx       "mclk" or "mclk_tx"
+> > 
+> > This is what happens when playing back e.g. at 192 kHz using
+> > audio-graph-card (when recording the same applies, only s/tx/rx/):
+> > 
+> >   0. at probe, rockchip_i2s_tdm_set_sysclk() stores the passed frequency in
+> >      i2s_tdm->mclk_tx_freq (*) which is 50176000, and that is never modified
+> >      afterwards
+> > 
+> >   1. when playback is started, rockchip_i2s_tdm_hw_params() is called and
+> >      does the following two calls
+> > 
+> >   2. rockchip_i2s_tdm_calibrate_mclk():
+> > 
+> >      2a. selects mclk_root0 (vpll0) as a parent for mclk_parent
+> >          (mclk_tx_src), which is OK because the vpll0 rate is a good for
+> >          192000 (and sumbultiple) rates
+> > 
+> >      2b. sets the mclk_root frequency based on ppm calibration computations
+> > 
+> >      2c. sets mclk_tx_src to 49152000 (= 256 * 192000), which is also OK as
+> >          it is a multiple of the required bit clock
+> > 
+> >   3. rockchip_i2s_tdm_set_mclk()
+> > 
+> >      3a. calls clk_set_rate() to set the rate of mclk_tx (clk_i2s2_8ch_tx)
+> >          to the value of i2s_tdm->mclk_tx_freq (*), i.e. 50176000 which is
+> >          not a multiple of the sampling frequency -- this is not OK
+> > 
+> >          3a1. clk_set_rate() reacts by reparenting clk_i2s2_8ch_tx_src to
+> >               vpll1 -- this is not OK because the default vpll1 rate can be
+> > 	     divided to get 44.1 kHz and related rates, not 192 kHz
+> > 
+> > The result is that the driver does a lot of ad-hoc decisions about clocks
+> > and ends up in using the wrong parent at an unoptimal rate.
+> > 
+> > Step 0 is one part of the problem: unless the card driver calls set_sysclk
+> > at each stream start, whatever rate is set in mclk_tx_freq during boot will
+> > be taken and used until reboot. Moreover the driver does not care if its
+> > value is not a multiple of any audio frequency.
+> > 
+> > Another part of the problem is that the whole reparenting and clock rate
+> > setting logic is conflicting with the CCF algorithms to achieve largely the
+> > same goal: selecting the best parent and setting the closest clock
+> > rate. And it turns out that only calling once clk_set_rate() on
+> > clk_i2s2_8ch_tx picks the correct vpll and sets the correct rate.
+> > 
+> > The fix is based on removing the custom logic in the driver to select the
+> > parent and set the various clocks, and just let the Clock Framework do it
+> > all. As a side effect, the set_sysclk() op becomes useless because we now
+> > let the CCF compute the appropriate value for the sampling rate.  It also
+> > implies that the whole calibration logic is now dead code and so it is
+> > removed along with the "PCM Clock Compensation in PPM" kcontrol, which has
+> > always been broken anyway. The handling of the 4 optional clocks also
+> > becomes dead code and is removed.
+> > 
+> > The actual rates have been tested playing 30 seconds of audio at various
+> > sampling rates before and after this change using sox:
+> > 
+> >      time play -r <sample_rate> -n synth 30 sine 950 gain -3
+> > 
+> > The time reported in the table below is the 'real' value reported by the
+> > 'time' command in the above command line.
+> > 
+> >       rate        before     after
+> >     ---------     ------     ------
+> >       8000 Hz     30.60s     30.63s
+> >      11025 Hz     30.45s     30.51s
+> >      16000 Hz     30.47s     30.50s
+> >      22050 Hz     30.78s     30.41s
+> >      32000 Hz     31.02s     30.43s
+> >      44100 Hz     30.78s     30.41s
+> >      48000 Hz     29.81s     30.45s
+> >      88200 Hz     30.78s     30.41s
+> >      96000 Hz     29.79s     30.42s
+> >     176400 Hz     27.40s     30.41s
+> >     192000 Hz     29.79s     30.42s
+> > 
+> > While the tests are running the clock tree confirms that:
+> > 
+> >   * without the patch, vpll1 is always used and clk_i2s2_8ch_tx always
+> >     produces 50176000 Hz, which cannot be divided for most audio rates
+> >     except the slowest ones, generating inaccurate rates
+> >   * with the patch:
+> >     - for 192000 Hz vpll0 is used
+> >     - for 176400 Hz vpll1 is used
+> >     - clk_i2s2_8ch_tx always produces (256 * <rate>) Hz
+> > 
+> > Tested on the RK3308 using the internal audio codec.
+> > 
+> > Fixes: 081068fd6414 ("ASoC: rockchip: add support for i2s-tdm controller")
+> > Signed-off-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> >   
+> 
+> I tested this patch, it works OK on 8ch I2S0 of RK3308 Radxa Pi S, 
+> frequencies checked in clock summary and clock pins with an 
+> oscilloscope. It's basically identical issue with the same cause as I 
+> reported in 
+> https://lore.kernel.org/alsa-devel/20240304134329.392c75bf@booty/T/#m19d69461aa827f15a86d6d31ed1b1520e80a909e 
+> 
+> 
+> Just a note - the patch changes mclk frequencies from fixed 256 x 
+> 192000/176400  to variable 256 x fs. While 256 x fs is more standard 
+> than the fixed mclk for all samplerates of the same family, it may cause 
+> changes for existing users if using the mclk output pins. But the 
+> existing code was broken and had to be hacked to work anyway. Perhaps 
+> this may need some considering.
 
+Thanks for clearly describing this difference.
+
+This is something I considered and in the end I found no reason to use
+256 x 192000/176400 as it would use higher clocks than needed (or
+equal, at 192 and 176.4 kHz), deviating from the common practice and
+probably consuming a little more power, all apparently without any
+gains. And, last but not least, without a motivation in the docs I have
+available.
+
+Of course, should there be known reasons to keep the 256 x
+192000/176400 frequencies, I'd be fine with changing my patch.
+
+> Also I wonder if the DTS description rockchip,i2s-tdm.yaml file may be 
+> updated too, as some clocks listed by it are removed by the patch:
+> 
+> -const: mclk_tx_src
+> -const: mclk_rx_src
+> -const: mclk_root0
+> -const: mclk_root1
+> 
+> IMO it may be a bit confusing if the description lists parameters which 
+> are not actually used by the driver anymore.
+
+You have a good point. I just checked the git history and indeed these
+four clocks have never been mentioned by any of the device trees in
+mainline.
+
+However removal of parts of bindings is normally never supposed to
+happen for backward compatibility.
+
+@DT maintainers: would removal of optional clocks from bindings allowed
+in this specific case?
+Quick facts:
+* bindings introduced in 2021, with the 4 optional clocks from the
+  beginning, no changes afterwards
+* none of the optional clocks ever appeared in arch/.../*.dts
+* the 4 optional clocks actually describe a part of the clock topology,
+  so their presence in I2S bindings is debatable at least
+* the I2S controller described by the bindings does not need the
+  4 optional clocks to work properly if the clocks are used correctly,
+  as this patch proves
+
+If this looks like a good idea, I can send a patch to remove those
+optional clocks. Otherwise I can send one to add a comment to
+discourage people from using them.
+
+Best regards,
+Luca
+
+-- 
+Luca Ceresoli, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
 
