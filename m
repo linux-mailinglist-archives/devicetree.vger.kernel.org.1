@@ -1,172 +1,187 @@
-Return-Path: <devicetree+bounces-50298-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50299-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 576BC87AAC5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 16:53:53 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id C974087AB08
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 17:25:41 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A85F3B2410D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 15:53:50 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 84840283AE5
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 16:25:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 07A13481A5;
-	Wed, 13 Mar 2024 15:53:42 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 220B4481DB;
+	Wed, 13 Mar 2024 16:25:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="IgerAlKE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oNyJy8xk"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E7CA947A7A
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 15:53:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 83A9C481D0
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 16:25:36 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710345221; cv=none; b=U1WbVcJvO7VO09uh2DdjGPt2zYK8rA1OdGiuCmdPS9VxcfGE0KGAG0MSsOn1ZEvyFCIRMPsXhx7rET903Eg2NOeHJoyzcQcFAAmcmZb1QoyvCQ8dRnB6zy+LuNgvuTrdBEBnoGDLBW7AJcZ3O0gW1uDyv5B41FTkdSWpkLVhOMk=
+	t=1710347138; cv=none; b=ffPplNehPw80KOo62SiTTvdzByIMWrsN2BFOGYo6ffHlfP0006htPsgsD8jCyGV05b4Yi0vfCATRMbNeuwGd1vYMXLRe7p7NeSvl6YQA/bO4fzG1j822yF1YJkNX73+AVc/I1oE26fuWqRI5buMPP+zMmrJY6Hy2Fc5ADggkOXA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710345221; c=relaxed/simple;
-	bh=9l8ZaHlcOs0Mb7H3Uoqo+1qbmZyo/NlYfml5MB50UDI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=h9ntExI5XlAqQMhVBEoIImxSfq+336TdG+APKshs9cYiksInAcKhK2HaDz9atkREPKxHIOaD/6V6mO84A/v9e3WrzkpLD/z28XQG23C11rkJb+FdSO+hVPNlCFyq2CB7bdacJa/c99MyXpHGaPdSXe1Q34h2TwN48xukDqjHQV4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=IgerAlKE; arc=none smtp.client-ip=209.85.128.169
+	s=arc-20240116; t=1710347138; c=relaxed/simple;
+	bh=fndGBeOY3SA23+9FmeX+5KQzzCNTLAKeBHKcSLCTo4s=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LRwfxjX6hPc+ciwM8VXCeh1PlM01ZX3a6xpyscNP6uBXzyAww9G0aKv2WOMv88XowG7WDKy8ec5wyVDujpTDfHCby85+xb94YWzigi1rarCTT8O9QMLkrlnjlnE6nfYt5Xr9diIg0AKI8Z+Bbu+swLk9zfeMLr3U5efTPP8Atrk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oNyJy8xk; arc=none smtp.client-ip=209.85.210.170
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-609f060cbafso138227b3.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 08:53:38 -0700 (PDT)
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-6e6b54a28ebso75440b3a.2
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 09:25:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710345218; x=1710950018; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=6AzBQ+tLW2d59aDgYBNh01xhjYL/4GzcjrgAxlnqiSI=;
-        b=IgerAlKEwLgmRqe4YY0OJ6G09/I8Yy1iNeGAS0eYkQK9aob7Gh4AB4beN7a8L9jmNF
-         3grypvPXqAZQnBlyoMx5xHy8O4KI+Hyc5VlSu8xyFqsFGi7WJ6jywbylGBXwGWVCoZlr
-         uorvNFQUCI4tTQYTTV5wMIoEkqXpUiEtRLiZxjoLwC2h4CCQYMvFa8Hrz+mXHrbAWurt
-         4VAieWF6LISqj1HBNqJAHnhZjelJlGfRfJWm/YdHVgJioVXClUBHuXHENoyy20E/7Grc
-         1/vJgwzJSb4SIxEt51jsremVyJT2QluXmeFZQXU3TL7WBsDHd5uS/ITA5P20qmSBpXfy
-         5LgQ==
+        d=linaro.org; s=google; t=1710347136; x=1710951936; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=fYxzXCVmzr66awhRoPiulHCLdn6odFpvWPqlxUZTg40=;
+        b=oNyJy8xkxNu9iaHb8N5o9sOPBYyjboZbrGNCHC0UccH86YNw9OQkty9lL/j1ctUVes
+         VU6urZpWLvCIGQOwUXNBVrJUtb+nsfhE2LJlGbgDybWmit/DShVra/R9bUp/FHf+NDE+
+         2fkAqK/Eq+8FCLy3WpkEr3mSotyHzeF5u0aRgEADdNHfplIhaAJmxjc7Lz4oOj7Nnyv6
+         83CHH44pEpEoRLvoy8iq3PamqFumUcqEN0uFmG0Axsc01wE4CqkXZbzhs85ZtzRaL0T6
+         uTMdbgkUT6278P9Kl/5g+WrWaTlgpA3/KLaRBMHVleMByl4TnetBVinJ2V6ed48Jg8y4
+         idCw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710345218; x=1710950018;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6AzBQ+tLW2d59aDgYBNh01xhjYL/4GzcjrgAxlnqiSI=;
-        b=UigFIfV3aipccq1psEZceqRcLurD6i2Z2ZlcnT4jAFJFE8dX41TBK9F0pXvA9Y/lwL
-         BLmkU92yRRmudRov22Nm9eaUG/CPNf7thFbuksZuIqwTZiNrny3oJMKhMmH2UB61y/k6
-         VQBb3XiuDRYSuftj0hZ9HksJMqMcwyaEo28RtBMf8UUyPIhIsm3AFNuRgF57EztAGoEx
-         W7NXj+8PIVHt+3qh4NOcawXZ+3p8/XKjoKUIo6R8zVxElqt3F/UE5JOWk/K7ht0D0FGK
-         MI1b1fqh5g5iONBS/JT1pTNBN8S4lQbSMJnf2T3kIhwoqjbfDUnsTFgisVIwXLPqFEdD
-         SQ1g==
-X-Forwarded-Encrypted: i=1; AJvYcCVkaJ+mtbiTSXwb5SENjiYPfwuRfBnFexyuk6/uwEttSXXyfIdzBmdQX8+oDlL8pK/W/qyrCgE4282FdjayrpJQeSYJ22PYzYg8ag==
-X-Gm-Message-State: AOJu0YzTeDhXGf9eaEeCNEN1mzERUWZqsgmC/KZ1r2CsZuo45+olQKqM
-	+5SuvaOlMUCC1CdfJP7M5HGCjvMU3/wxfp/qFvUIQf77UaeYwBuCldvPeOLCtcSEDhrG7/Kgjq4
-	qcZxGk9aAEB3xrB30Rl/W7hG/AfN8D5v7T20L/YbPDBGf8YYC+PI=
-X-Google-Smtp-Source: AGHT+IFEXBYea2H7akvOYLZnU0E8yFk/kdMNNhRxZzxlLPLFxZd9tmb0mKfs/cS05ZdYc2wWKixhp6fXP1k2h0BiDjw=
-X-Received: by 2002:a25:db85:0:b0:dd0:129f:16 with SMTP id g127-20020a25db85000000b00dd0129f0016mr3097478ybf.11.1710345217678;
- Wed, 13 Mar 2024 08:53:37 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710347136; x=1710951936;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fYxzXCVmzr66awhRoPiulHCLdn6odFpvWPqlxUZTg40=;
+        b=jzX2soG4J4M8B9LFZqfD3s3YwUo2Nb0Pss/6AgdsWPXS/02+PSLwKV6wOMfAv4RGvQ
+         RwPIUVyji3iK9Lx0CJoC/AGlF8T3/0KBL8S+zzyyT937JiQ1jwUMkVKDJRdFCsz0f65z
+         29RoUuYdfTi26Pa2fMhaaLmeTMzDe98NB4Ys5PQE1KDrsfCl5VE0eE22ay6xGHcjTA4i
+         9ClGILSILiYSbBDbLKkht0B1MfFgplHklHRlDCQ3OHpEkRiCGgvCUv31U7g7iJXRHm5m
+         esFwsp+4Gev/KFTgcQdMM3KrD0TSB50cZujrMSxN5vOwfybZkFd8q7aZ0GCIKJJxCmLq
+         h4Kw==
+X-Forwarded-Encrypted: i=1; AJvYcCX3DxbJ6H0/kzCKpjZkSbzuIut2D4T+T96Y3fL4JJBgXvIZwws+HI1fBQyp5mwsoNmGgzfek+OY3DQ4YvwEN0vD3Luy691xcofvDg==
+X-Gm-Message-State: AOJu0YxEWiMK4TCV2JFuo3rAEtyVNd3Zi6Cml48UCnUfCHfPzAl19goy
+	Q51H9eSh8CBK5Uz9einVxTFv85Dq4gZ2C/y7Frm+rStdgFlssW82AK9kDCXYSIU=
+X-Google-Smtp-Source: AGHT+IGDDlbUcL/kmPgUIK2ocQ/+NVZ5EpvDYRvXae3NfxQmNd58fUdW3Xb6ch21rxY5N5eLOQx7sQ==
+X-Received: by 2002:a05:6a20:3956:b0:1a3:2fe9:ad74 with SMTP id r22-20020a056a20395600b001a32fe9ad74mr3319252pzg.44.1710347135680;
+        Wed, 13 Mar 2024 09:25:35 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:10b1:40f7:3529:d4f2])
+        by smtp.gmail.com with ESMTPSA id cl12-20020a056a02098c00b005e438fe702dsm6934633pgb.65.2024.03.13.09.25.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Mar 2024 09:25:35 -0700 (PDT)
+Date: Wed, 13 Mar 2024 10:25:32 -0600
+From: Mathieu Poirier <mathieu.poirier@linaro.org>
+To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
+	Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH 1/3] remoteproc: Add Arm remoteproc driver
+Message-ID: <ZfHTfNx4um8koTlY@p14s>
+References: <20240301164227.339208-1-abdellatif.elkhlifi@arm.com>
+ <20240301164227.339208-2-abdellatif.elkhlifi@arm.com>
+ <ZeYWKVpeFm1+4mlT@p14s>
+ <20240307194026.GA355455@e130802.arm.com>
+ <CANLsYkzA20rQdTM6AOvFK=3o28GvcoRbckL=ri8RegHqyHaiCw@mail.gmail.com>
+ <20240311114442.GA82865@e130802.arm.com>
+ <CANLsYkwReJvB1UWvR5TwtSs-w_VqU45kDSUzuQ0k+waetEn6Yw@mail.gmail.com>
+ <20240312173252.GA38992@e130802.arm.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <14daa98e-7fd3-4ebb-87bb-5d2c1fba679f@freebox.fr>
- <b8de96c7-cbb6-4a09-a4d4-2c11b3ab3e01@freebox.fr> <871q8wk7o3.fsf@kernel.org>
- <3392f356-7b19-483d-b9f8-3bd84068fa52@freebox.fr> <87wmqoilzf.fsf@kernel.org>
- <c58e67e6-6a7f-4963-86b9-580165bf05ba@freebox.fr> <87cyse8j9m.fsf@kernel.org>
- <6d4b1381-c121-4cda-a8c9-9ccac56bd447@freebox.fr> <87plw87nsc.fsf@kernel.org>
- <0816f7bb-3c97-4b90-8e19-191552ea6e26@freebox.fr> <87h6hk7aee.fsf@kernel.org> <fb0ffdd9-923a-4191-8304-583243ad528b@freebox.fr>
-In-Reply-To: <fb0ffdd9-923a-4191-8304-583243ad528b@freebox.fr>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 13 Mar 2024 17:53:26 +0200
-Message-ID: <CAA8EJppHa=qEkKbSVs9hMCBXfhiC9MyAQO+v+6TCWhg==4CpOQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: net: wireless: ath10k: add
- qcom,no-msa-ready-indicator prop
-To: Marc Gonzalez <mgonzalez@freebox.fr>
-Cc: Jeffrey Hugo <quic_jhugo@quicinc.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Konrad Dybcio <konrad.dybcio@linaro.org>, Kalle Valo <kvalo@kernel.org>, 
-	Jeff Johnson <quic_jjohnson@quicinc.com>, ath10k <ath10k@lists.infradead.org>, 
-	wireless <linux-wireless@vger.kernel.org>, DT <devicetree@vger.kernel.org>, 
-	Pierre-Hugues Husson <phhusson@freebox.fr>, Jami Kettunen <jamipkettunen@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240312173252.GA38992@e130802.arm.com>
 
-On Wed, 13 Mar 2024 at 17:09, Marc Gonzalez <mgonzalez@freebox.fr> wrote:
->
-> [ Dropping the DT fellows ]
->
-> On 05/03/2024 20:20, Kalle Valo wrote:
->
-> > Marc Gonzalez wrote:
-> >
-> >> I need to build a kernel + rootfs + FW to test the proposed solution,
-> >> then I can spin a formal submission.
-> >
-> > Yeah, please do test this to make sure we are not missing anything :)
->
-> I used buildroot ( https://buildroot.org ) to generate a kernel + rootfs
-> for my board (a variation of qcom/msm8998-mtp.dts)
->
-> Not sure if I must use the vendor FW blobs? Or if I can use the blobs
-> from linux-firmware-20240115.tar.xz (as supported by BR2).
->
->
-> All I see from the ath10k driver (with debugging cranked to the max) is:
->
-> [    0.539801] ath10k_snoc 18800000.wifi: Adding to iommu group 0
-> [    0.541941] ath10k_snoc 18800000.wifi: snoc xo-cal-data return -22
-> [    0.543633] ath10k_snoc 18800000.wifi: supply vdd-3.3-ch1 not found, using dummy regulator
-> [    0.544002] ath10k_snoc 18800000.wifi: qmi msa.paddr: 0x0000000094400000 , msa.vaddr: 0x(____ptrval____)
-> [    0.544271] ath10k_snoc 18800000.wifi: snoc probe
->
->
-> # ip link
-> 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue qlen 1000
->     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-> 2: enp1s0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000
->     link/ether 34:27:92:82:48:ec brd ff:ff:ff:ff:ff:ff
->
-> No wlan device at this point.
+On Tue, Mar 12, 2024 at 05:32:52PM +0000, Abdellatif El Khlifi wrote:
+> Hi Mathieu,
+> 
+> On Tue, Mar 12, 2024 at 10:29:52AM -0600, Mathieu Poirier wrote:
+> > > This is an initial patchset for allowing to turn on and off the remote processor.
+> > > The FW is already loaded before the Corstone-1000 SoC is powered on and this
+> > > is done through the FPGA board bootloader in case of the FPGA target. Or by the Corstone-1000 FVP model
+> > > (emulator).
+> > >
+> > >From the above I take it that booting with a preloaded firmware is a
+> > scenario that needs to be supported and not just a temporary stage.
+> 
+> The current status of the Corstone-1000 SoC requires that there is
+> a preloaded firmware for the external core. Preloading is done externally
+> either through the FPGA bootloader or the emulator (FVP) before powering
+> on the SoC.
+> 
 
-Do you have pd-mapper, rmtfs and tqftpserv running? You also need to
-have wlanmdsp.mbn in the same directory as modem.mbn for your platform
-(see how this is handled for sdm845).
-If these points are implemented and you still don't have the wlan,
-please check for tqftpserv messages in syslog.
+Ok
 
->
-> I got shell-shock from reading these setup steps:
->
-> https://wiki.postmarketos.org/wiki/Qualcomm_Snapdragon_835_(MSM8998)#WLAN
-> https://github.com/jhugo/linux/blob/5.5rc2_wifi/README
-
-These readmes are mostly correct. You don't need qrtr now, it is
-provided by the kernel.  pd-mapper (protection-domain-mapper),
-tqftpserv and rmtfs usually can be installed from your distro.
-
-You can mostly ignore the part for board.bin / board-2.bin for now.
-You'll get to that point later, when the driver complains about
-missing board data.
-
-Also, if you pick up series at [1], you can put your bdwlan.XXX file
-as ath10k/WCN3990/hw1.0/board.bin and skip all the json and stuff.
-This will work for the bringup, then you can follow the process at [2]
-and submit your file for inclusion into board-2.bin.
-
-[1] https://lore.kernel.org/ath10k/20240130-wcn3990-board-fw-v1-0-738f7c19a8c8@linaro.org/
-[2] https://wireless.wiki.kernel.org/en/users/drivers/ath10k/boardfiles
-
->
->
-> Jeffrey, Bjorn, Konrad,
-> Has someone written idiot-proof (such as myself) steps to enable
-> the ath10k core on a msm8998 board?
->
-> I'm still not quite sure where linux-firmware.git fits into all this.
->
-> Regards
+> Corstone-1000 will be upgraded in a way that the A core running Linux is able
+> to share memory with the remote core and also being able to access the remote
+> core memory so Linux can copy the firmware to. This HW changes are still
+> This is why this patchset is relying on a preloaded firmware. And it's the step 1
+> of adding remoteproc support for Corstone.
 >
 
+Ok, so there is a HW problem where A core and M core can't see each other's
+memory, preventing the A core from copying the firmware image to the proper
+location.
 
--- 
-With best wishes
-Dmitry
+When the HW is fixed, will there be a need to support scenarios where the
+firmware image has been preloaded into memory?
+
+> When the HW is ready, we will be able to avoid preloading the firmware
+> and the user can do the following:
+> 
+> 1) Use a default firmware filename stated in the DT (firmware-name property),
+> that's the one remoteproc subsystem will use initially, load the firmware file
+> and start the remote core.
+> 
+> 2) Then, the user can choose to use another firmware file:
+> 
+>     echo stop >/sys/class/remoteproc/remoteproc0/state
+>     echo -n new_firmware.elf > /sys/class/remoteproc/remoteproc0/firmware
+>     echo start >/sys/class/remoteproc/remoteproc0/state
+> 
+> > > The plan for the driver is as follows:
+> > >
+> > > Step 1: provide a foundation driver capable of turning the core on/off
+> > >
+> > > Step 2: provide mailbox support for comms
+> > >
+> > > Step 3: provide FW reload capability
+> > >
+> > What happens when a user wants to boot the remote processor with the
+> > firmware provided on the file system rather than the one preloaded
+> > into memory?
+> 
+> We will support this scenario when the HW is upgraded and copying the firmware
+> to the remote core memory becomes possible.
+> 
+> > Furthermore, how do we account for scenarios where the
+> > remote processor goes from running a firmware image on the file system
+> > to the firmware image loaded by an external entity?  Is this a valid
+> > scenario?
+> 
+> No, this scenario won't apply when we get the HW upgrade. No need for an
+> external entity anymore. The firmware(s) will all be files in the linux filesystem.
+> 
+> > > Steps 2 & 3 are waiting for a HW update so the Cortex-A35 (running Linux) can share memory with
+> > > the remote core.
+> > >
+> > > I'm happy to provide more explanation in the commit log to reflect this status.
+> > >
+> > > Is it OK that we go with step 1 as a foundation please ?
+> > >
+> > 
+> > First let's clarify all the scenarios that need to be supported.  From
+> > there I will advise on how to proceed and what modifications to the
+> > subsystem's core should be made, if need be.
+> 
+> Thanks, I hope the answers above provide the information needed.
+> 
+> Cheers
+> Abdellatif
 
