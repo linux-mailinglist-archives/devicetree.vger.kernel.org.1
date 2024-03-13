@@ -1,72 +1,72 @@
-Return-Path: <devicetree+bounces-50277-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50278-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 509C387A926
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 15:10:36 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 837FC87A928
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 15:10:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 74CBA1C21E5E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 14:10:35 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B096D1C224EB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 14:10:42 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A2946535;
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D15D650A6D;
 	Wed, 13 Mar 2024 14:09:04 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="fKI9P0R6"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="CPdAylgc"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 984044CB4A
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 14:09:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.171
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 67EFA4D133
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 14:09:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710338944; cv=none; b=shB/cbx3E4V3/CINKo0vjQyjZ786O8ltIthzIKm+H3WdS2nru+qhI/QCXd0moIhrWaK7jY0U0EoZ0YG6XrMOWpBSdfg/8moQU0T1bkh6U8912oJTW43JBezjNlK1g+GpHxaCGvoVepfI3GNtp2DzdO2V4ba4FiqpO83x/CoJeYQ=
+	t=1710338944; cv=none; b=Nsqvw5GplqYF2T+x8Vvg/PVtBpRnxIsuZ/kVL1tj82ifFiwISlBnYFnVskB6rJL1WGlIUtieEhN3ZkcBSLMfTpDjcoi5racT9TDvOL/b750Z5Ru+MDhhAiasHTmFMxoubwdq7NtLmnZuLtDjFaVNiEhN4/J9m6sYVi0bBQnruYc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
 	s=arc-20240116; t=1710338944; c=relaxed/simple;
-	bh=4andNj366bp0pW3FwTiCNyJleT43bWmvqce9qbK9mVQ=;
+	bh=cxjZSR8LRDYJ/W/QF37SUMynPidomrXSkI+hkRn0XJk=;
 	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PTy5k9hOyEcKJEB+OHQ+T6uyGBbHjMCHu6E1ICM6LwE7pMj6Rb7rqeJ/05gJecVPAVaMg7epYCukltLF1jmRIb4jUpGMpM1XHboIUFDVyNJ1D+d/cthB6seksFJ3o2MYuGzyM5+UwSvpE8DV6ePMIqHKBNbrYkLF5PDy6+mY+Bc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=fKI9P0R6; arc=none smtp.client-ip=209.85.208.171
+	 MIME-Version; b=QBEZCtig10y92fxdgM87UfiNAcIqlksHo5sswsiNPp1jkEofhiRJKJ1j+gl6zCs79fDksJEkpnbySHVbirgjyfIv3OBkx+6rFo+i58AQXRucqPEYhog2DZ5+82SaAToCRktj8x8KrFddZjKTXqbHIiVDpeP8X7YXSYix2kcKOOg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=CPdAylgc; arc=none smtp.client-ip=209.85.218.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
-Received: by mail-lj1-f171.google.com with SMTP id 38308e7fff4ca-2d29111272eso114245671fa.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 07:09:00 -0700 (PDT)
+Received: by mail-ej1-f44.google.com with SMTP id a640c23a62f3a-a45c006ab82so145160766b.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 07:09:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=suse.com; s=google; t=1710338939; x=1710943739; darn=vger.kernel.org;
+        d=suse.com; s=google; t=1710338940; x=1710943740; darn=vger.kernel.org;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/xE94iw3mEagAF+/7KUdjRC+1ga8rdDd3hiFvVOScHQ=;
-        b=fKI9P0R6HbzhTRBfyWlx5THtNo7ELRPAK/a88LLFRYZmsfEDx2PUiatvESQw5U7H+P
-         yyNSmvR7L14DcuLoqNxh51YH4yAShqmcgRFn7bkZlx1QrD0xJIphGLo075pZPMHRmJHJ
-         UVUKyFGV4YFTX3tzRw3b6D6ABxQhYotEdNGmhXXM+FcQMsFABaeBH6vCRr+WduZ+jkKU
-         JNhtN8u9xYle5GxScd2MJwZmv+md15fsts636/J1g7pCgkSHOz1YAgmt8GJpOMxvUTfE
-         tZEFlPi1qGaNdmBk5k12DVb8GPEEtW8BMDZuXaD119bAMd9ZpioO2gpXhNQEY5ryAXl8
-         BVZQ==
+        bh=2aA326qloufGfA/9FJeIrf9CjXOtqN0+M89y+6rWqCo=;
+        b=CPdAylgchuHZicfW3zJDNEgvIO3Z4iq+PaefWzT5AfmAnMWOP70oHgXi8J2rSqC6Xy
+         LOkp22dpQhEmSCs0Dl+CYVZWQ2NHMIHZbJT8TsH7pEFIWR2ixgTO2bk1eKe6fMeYu/2i
+         TIi+sAocolWuiVLCVD86rvJKm+ZxWtyiGNq2oTyxIqH/yo2vMI4rY5GsFzTLtbkWIsfd
+         fS72wQGVgv7Pbk2As6TEf2+XPZvElAtSggs+vxXc1oHFzG9azCwBLbOzorc7vd5g3aVh
+         GaQiC98UCZ4wwXnjopvQaKJ/8jc9Wif3eUsXu35u7vROZzfQCsUDoQ1n6BLWs6Nv6hC9
+         dqVg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710338939; x=1710943739;
+        d=1e100.net; s=20230601; t=1710338940; x=1710943740;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=/xE94iw3mEagAF+/7KUdjRC+1ga8rdDd3hiFvVOScHQ=;
-        b=G9SStRpIXUzM1B8dxVM5JbsKxVVUfUQCgPoEcrE8AYuskxpDIZX9erE/km5x6JK4z2
-         1a1wdMdmg30sStLvITKlchuWGKpIevFmBbeoIdxMibU9ZdoqfYEFBG6xph9Y1rs/Jz/L
-         +OjzvlX3ELiPU/KXuPmpIq2wjL1xFrQHK8gt2zHbyRzeMFcV2YaugFik/xg5GSYC+5vu
-         l6CYgBL9ug/ipQRJGrqRUBcEaprCCpVFhh+PJL2RnkAHRrrsGbilGmmTlJkBqM1hFBwE
-         OjQ8CGT6dub5sayGlIo5RS7jp2wQMQ0rAT3tg5Tad4LBTkHPpM3rdJekJMw6DkqTCxgt
-         W7og==
-X-Forwarded-Encrypted: i=1; AJvYcCXmwcjHFJvykgydv0a6P3lXKoD8TAG6oGCMox5Y5kPwA3eqRBRlN2ralFZfnmHUzRykCaECttdznjLx6xmrWFIOXNiVCveA7C9HTQ==
-X-Gm-Message-State: AOJu0YxA+u4jz0aRa3+8JibeQxKjwv7X98MQIcC3ni8DndWbQs+OASlI
-	l2FSCBwaogesgR9TKFAEg/gsO/GU0I6KM3KBW0JoLkrwYwUeembE4QVcJjxeCEE=
-X-Google-Smtp-Source: AGHT+IGXCM0cKznBWGqJ434M1t+ZyGCueMZWhnfsJta91SqnLtQTo1W4zmpjpEXIYq8BRQy0a3lQ5w==
-X-Received: by 2002:a05:651c:222b:b0:2d2:751f:abb2 with SMTP id y43-20020a05651c222b00b002d2751fabb2mr4008668ljq.3.1710338938746;
-        Wed, 13 Mar 2024 07:08:58 -0700 (PDT)
+        bh=2aA326qloufGfA/9FJeIrf9CjXOtqN0+M89y+6rWqCo=;
+        b=Lj9aTZ3xwubaKfa6SlroWT5WHxTP0fGat9WR8pu9dE0AWEq0+nvX/VIg8mhMr3v7ac
+         EgCWbICP4xpemiosBc1ed/834rTv9WGmMThVZdU1Scwr4LF/VlNxUnORSrhJAbXvsaHd
+         oKkGdyRbJa0z0ZR5gLFoYG5qe3nIoCF1uy75fNePWi8kxyTiGkbxofOE4tXePrDTDPS9
+         23ukZlNHvmiy8/Fjl9sjgrU105thIQ1fmj6lhWSXOHJH36b/OQw2ebR1gdJ7Vs7gG1dI
+         ruF5nG5wC8fkKqajwumgHVXNPKOydfYb/KUdW+Hz6T0wX06S6/X3xJEBKSh/2i66U31X
+         blHg==
+X-Forwarded-Encrypted: i=1; AJvYcCVJYuOCUCNhfgnY/UUEPNWKKJR4WpgHbRiEQ6VwHpSg5Y3B4pacbjqNQZaeynRot24khkicxLPq5tyLGR0TWWJVy2CHgnRSAhHIog==
+X-Gm-Message-State: AOJu0Yxb7w2qO8qKgh+iRQAVBny29PjTtW4soW+HApI8DY2V50gVUhE+
+	bPr4+DiWRO80UvnhSh4O/AVJ4NQFnPM/q90nztMc1jhuLzWyMqwK+1w9LHZJOAk=
+X-Google-Smtp-Source: AGHT+IEctktss/OIn1LKfmqGYndGaQjoPtQ3Zxp8D5LODaIB3jm5ZeIbTiROFzeL2/JTnhkfLCvRuQ==
+X-Received: by 2002:a17:907:94c1:b0:a46:181f:c1c3 with SMTP id dn1-20020a17090794c100b00a46181fc1c3mr5229468ejc.70.1710338939952;
+        Wed, 13 Mar 2024 07:08:59 -0700 (PDT)
 Received: from localhost (host-82-56-173-172.retail.telecomitalia.it. [82.56.173.172])
-        by smtp.gmail.com with ESMTPSA id ck14-20020a0564021c0e00b0056857c89045sm3228556edb.60.2024.03.13.07.08.58
+        by smtp.gmail.com with ESMTPSA id l23-20020a170906a41700b00a440ec600e3sm4885228ejz.121.2024.03.13.07.08.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Mar 2024 07:08:58 -0700 (PDT)
+        Wed, 13 Mar 2024 07:08:59 -0700 (PDT)
 From: Andrea della Porta <andrea.porta@suse.com>
 To: Vinod Koul <vkoul@kernel.org>,
 	Rob Herring <robh+dt@kernel.org>,
@@ -88,9 +88,9 @@ Cc: Phil Elwell <phil@raspberrypi.org>,
 	Stefan Wahren <stefan.wahren@i2se.com>,
 	Dom Cobley <popcornmix@gmail.com>,
 	Andrea della Porta <andrea.porta@suse.com>
-Subject: [PATCH v2 08/15] dmaengine: bcm2835: move CB final extra info generation into function
-Date: Wed, 13 Mar 2024 15:08:33 +0100
-Message-ID: <a0c81f82e7732d3a6eeb304b32394e75d88410b5.1710226514.git.andrea.porta@suse.com>
+Subject: [PATCH v2 09/15] dmaengine: bcm2835: make address increment platform independent
+Date: Wed, 13 Mar 2024 15:08:34 +0100
+Message-ID: <0bf87ad0dc970c34199fd6bc6dbd19b47d382066.1710226514.git.andrea.porta@suse.com>
 X-Mailer: git-send-email 2.44.0
 In-Reply-To: <cover.1710226514.git.andrea.porta@suse.com>
 References: <cover.1710226514.git.andrea.porta@suse.com>
@@ -102,86 +102,71 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 
-Similar to the info generation, generate the final extra info with a
-separate function. This is necessary to introduce other platforms
-with different info bits.
+Actually the criteria to increment source & destination address doesn't
+based on platform specific bits. It's just the DMA transfer direction which
+is translated into the info bits. So introduce two new helper functions
+and get the rid of these platform specifics.
 
 Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
 Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
 ---
- drivers/dma/bcm2835-dma.c | 31 +++++++++++++++++++++++++------
- 1 file changed, 25 insertions(+), 6 deletions(-)
+ drivers/dma/bcm2835-dma.c | 28 ++++++++++++++++++++++------
+ 1 file changed, 22 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/dma/bcm2835-dma.c b/drivers/dma/bcm2835-dma.c
-index c651aca363c2..b633c40142fe 100644
+index b633c40142fe..6f896bb1a4fe 100644
 --- a/drivers/dma/bcm2835-dma.c
 +++ b/drivers/dma/bcm2835-dma.c
-@@ -254,6 +254,26 @@ static u32 bcm2835_dma_prepare_cb_info(struct bcm2835_chan *c,
+@@ -274,6 +274,24 @@ static u32 bcm2835_dma_prepare_cb_extra(struct bcm2835_chan *c,
  	return result;
  }
  
-+static u32 bcm2835_dma_prepare_cb_extra(struct bcm2835_chan *c,
-+					enum dma_transfer_direction direction,
-+					bool cyclic, bool final,
-+					unsigned long flags)
++static inline bool need_src_incr(enum dma_transfer_direction direction)
 +{
-+	u32 result = 0;
++	return direction != DMA_DEV_TO_MEM;
++}
 +
-+	if (cyclic) {
-+		if (flags & DMA_PREP_INTERRUPT)
-+			result |= BCM2835_DMA_INT_EN;
-+	} else {
-+		if (!final)
-+			return 0;
-+
-+		result |= BCM2835_DMA_INT_EN;
++static inline bool need_dst_incr(enum dma_transfer_direction direction)
++{
++	switch (direction) {
++	case DMA_MEM_TO_MEM:
++	case DMA_DEV_TO_MEM:
++		return true;
++	default:
++		break;
 +	}
 +
-+	return result;
++	return false;
 +}
 +
  static void bcm2835_dma_free_cb_chain(struct bcm2835_desc *desc)
  {
  	size_t i;
-@@ -685,7 +705,8 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_memcpy(
- 	struct bcm2835_chan *c = to_bcm2835_dma_chan(chan);
- 	struct bcm2835_desc *d;
- 	u32 info = bcm2835_dma_prepare_cb_info(c, DMA_MEM_TO_MEM, false);
--	u32 extra = BCM2835_DMA_INT_EN;
-+	u32 extra = bcm2835_dma_prepare_cb_extra(c, DMA_MEM_TO_MEM, false,
-+						 true, 0);
- 	size_t max_len = bcm2835_dma_max_frame_length(c);
- 	size_t frames;
+@@ -355,10 +373,8 @@ static inline size_t bcm2835_dma_count_frames_for_sg(struct bcm2835_chan *c,
+  * @cyclic:         it is a cyclic transfer
+  * @info:           the default info bits to apply per controlblock
+  * @frames:         number of controlblocks to allocate
+- * @src:            the src address to assign (if the S_INC bit is set
+- *                  in @info, then it gets incremented)
+- * @dst:            the dst address to assign (if the D_INC bit is set
+- *                  in @info, then it gets incremented)
++ * @src:            the src address to assign
++ * @dst:            the dst address to assign
+  * @buf_len:        the full buffer length (may also be 0)
+  * @period_len:     the period length when to apply @finalextrainfo
+  *                  in addition to the last transfer
+@@ -430,9 +446,9 @@ static struct bcm2835_desc *bcm2835_dma_create_cb_chain(
+ 			d->cb_list[frame - 1].cb->next = cb_entry->paddr;
  
-@@ -716,7 +737,7 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_slave_sg(
- 	struct bcm2835_desc *d;
- 	dma_addr_t src = 0, dst = 0;
- 	u32 info = bcm2835_dma_prepare_cb_info(c, direction, false);
--	u32 extra = BCM2835_DMA_INT_EN;
-+	u32 extra = bcm2835_dma_prepare_cb_extra(c, direction, false, true, 0);
- 	size_t frames;
+ 		/* update src and dst and length */
+-		if (src && (info & BCM2835_DMA_S_INC))
++		if (src && need_src_incr(direction))
+ 			src += control_block->length;
+-		if (dst && (info & BCM2835_DMA_D_INC))
++		if (dst && need_dst_incr(direction))
+ 			dst += control_block->length;
  
- 	if (!is_slave_direction(direction)) {
-@@ -764,7 +785,7 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
- 	dma_addr_t src, dst;
- 	u32 info = bcm2835_dma_prepare_cb_info(c, direction,
- 					       buf_addr == od->zero_page);
--	u32 extra = 0;
-+	u32 extra = bcm2835_dma_prepare_cb_extra(c, direction, true, true, 0);
- 	size_t max_len = bcm2835_dma_max_frame_length(c);
- 	size_t frames;
- 
-@@ -780,9 +801,7 @@ static struct dma_async_tx_descriptor *bcm2835_dma_prep_dma_cyclic(
- 		return NULL;
- 	}
- 
--	if (flags & DMA_PREP_INTERRUPT)
--		extra |= BCM2835_DMA_INT_EN;
--	else
-+	if (!(flags & DMA_PREP_INTERRUPT))
- 		period_len = buf_len;
- 
- 	/*
+ 		/* Length of total transfer */
 -- 
 2.35.3
 
