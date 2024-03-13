@@ -1,156 +1,161 @@
-Return-Path: <devicetree+bounces-50303-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50304-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2CA387AE5D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 18:56:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id C4AD387AE6E
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 18:58:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2D065B2337E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 17:56:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 53B661F2E7FC
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 17:58:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 718E618DC88;
-	Wed, 13 Mar 2024 16:48:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E99CA5A4C6;
+	Wed, 13 Mar 2024 16:49:52 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="vdmrIvLo"
+	dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b="XyIvhhVH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 12AAC18CEAE
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 16:47:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5333B5A0F8
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 16:49:50 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710348481; cv=none; b=jH38aCOI5vL/3SQVsu1vDOzkqUUEBNnwEXY5iiAcbSkgxw80S8h+rKjCOS2phyteD6uhUVapCZZeRPiCoBxhtQ7WSG7tQaS4BXJxZh+3RMx33sUe6s7eSdgaCMkQU4fUm+DidhcuhyL7BINu2mInSeao/pdFfl3b1z3DDKFS26E=
+	t=1710348592; cv=none; b=qm4p5GncXa6NHWZ32P6utOrS30nOhSrKCiVpLGpgjvd4y6Ql0NdXbRixAWDUSZ+GOqSIP/DLBPlV6bsWG8QxG4KLBTy3WaBs2tnsG0mRJqHo5aVfPFYhnSz0+GY1Fve7KQmcpak0ICxNUvo+pFgBVzokk/n4ZEh77qxTinoQPQA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710348481; c=relaxed/simple;
-	bh=OABrLHkuFcQXG/wDXLMHESQAG2PiCXNRa2hkf80/5kM=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=cCzCsMnTJpxF/gLwaFiFqa4CZe/h2LVq0Y+EIhiyBW8tHmFC2WlxtS6HqNz4vMGpcZpbC7anPe+A5eKPUnpKsre4dje+PXPGdqrN31Mm4TBTcjBeqjSfg3gxq4kyeCVlRx47wXLQlt3qVYeylJf6rqFOY7UfYwMsH9j+ARiD2ZA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=vdmrIvLo; arc=none smtp.client-ip=209.85.128.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-4132f37e170so351265e9.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 09:47:57 -0700 (PDT)
+	s=arc-20240116; t=1710348592; c=relaxed/simple;
+	bh=hPL3zw5JCqO9Uf0fSyTYE74YPTyUk0Giy5TIIbo6qF4=;
+	h=From:Date:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=CpDacv9EENX4XE7RYDZPdNQnoWLnlgFobtKXxyhu/W3lk3b2gL31bS4FbCRZ04z2JZwzrACBRvI2lAOKHLBX+a59imYFT6R9hGG96Z04wBfODyrj4EAB+J2LB0qZF46uYBB1ezzzkP0ymrMuWMBtqHSQKdxTVBR8VVkDEEKfA8Q=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com; spf=pass smtp.mailfrom=suse.com; dkim=pass (2048-bit key) header.d=suse.com header.i=@suse.com header.b=XyIvhhVH; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=suse.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=suse.com
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a46682e71a9so4178066b.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 09:49:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710348476; x=1710953276; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=aL2HNMMWYIQUqUiL5ub2nwsmZvrAMS79QvM7mKq9XnU=;
-        b=vdmrIvLoFbB3M2ouFxtTtZ2aeCQa97jVV+HlsAGIK25749y43OwpUTHNjOOBVEqyWI
-         XIplHh+EUuhBtcewR0UAe245ALospGqXynRD7kja6EGXMMNSn1P4rD/FzJw+ttSZPoMP
-         b5U/oFcacvwNwuvt2mpJ4CuZ2BmDPNxzElpqw9O+BzzCdvufcst4dT5C9M4kwEvILcGJ
-         IyMUDoPCuwvC3BxQ5xMtSOxiovvOFx8HHe4wMOFaXeqSOJl9i10xd9vVR2uN00CZJpWF
-         gdyqxrOMgf2JVqFW5lLJA9mhOLBKXOL3oEY9vxyFiWXyD/kCQ5v6rN5A8d22oVe0847D
-         No7A==
+        d=suse.com; s=google; t=1710348589; x=1710953389; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QPkIANYlnqpJGOaQz5GtJSLehMlH+HibJAm6EUdPbkE=;
+        b=XyIvhhVHlKZYnacQWGKlDtD3CMP6ZTq6capZFpjAY18Bcr8SCaEdTKWnL8aPI/NMn4
+         yBLrKZOtaMRoRRMT31YTrY1kIDgpppyKPF0HDCGeGgFgNANk/1UGjvBkmUBfYxIh7o2B
+         4V8wmTWqq1ibX8iDzyxyu3q1eqD5OyZ7scSSvkS3dk3UG2rOXp+N+Trmc4yNMf/FLmzc
+         pE3feMENX4iueUAOP8WUmVUMX8sjvM7FoSL1h/a82D51MiAX6f0nAVcZP7GT+ktkc08F
+         w3rWI3rRqwUfnN7DYNnicnXJyGj9p+G2mMlb0bG5PPfwKdj2tzNanajJcFXWOgmpyyz1
+         BywA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710348476; x=1710953276;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aL2HNMMWYIQUqUiL5ub2nwsmZvrAMS79QvM7mKq9XnU=;
-        b=p79EbIMkR+k60S7qP/iXUF+2T8sKzZMCzvm0j5qEQ0qHKyw0jEz65M7uenzdicv5c7
-         VYbc7jz3HZX8bR92yfBRqm/uDPPNPktvxKCJLTwa9k17fbm4gJz+SM36BKwF/7FQ9e/P
-         uIrufzcpLS35YUzHJ4pRxEGKNFfyPWTFEuBi+Z79rbqW9fJLFyxptemYShMJXdf+jc8j
-         JmijXry/FuDj4IEOppZieVKXPt2vB6NORxo7iTGk1B7ggfzCoBVRAN1dYubRxLiO4ikj
-         dIrRiIxZGQZvpLP2knsHsX3TE/K2G+ENWHJOs2a7CXmBCbK0qIOudmRMMo9ikVgz8VAv
-         HtLQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVvSOjc1m2GCJsoY6zxILwYO82hkU8TEArF6WPrUIxU5RN2WgU9hSFAx2m4SlV3gmqk5WTXhuCwsV2C6r02cVddIWtclFhMD7g8xg==
-X-Gm-Message-State: AOJu0Yz+4TWdTPOgTe4Mzbx/1ya8lTNSn+RQSjM9knLk4U5MxuTF1GZf
-	j2AjY9Yf6ppu7oG0l0IdbG5hZQiQuSfh7fA2bGHZJvY4B8DYC6+s9/6a8SRDyNA=
-X-Google-Smtp-Source: AGHT+IH0kSLdw4SyxenHbvADWPBA+1/ymroD7wywet+sZrpLPA6tHINQFd4bvIKAxr345/cxFAIuQw==
-X-Received: by 2002:a05:600c:1f07:b0:413:1828:b8fe with SMTP id bd7-20020a05600c1f0700b004131828b8femr423510wmb.21.1710348476329;
-        Wed, 13 Mar 2024 09:47:56 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id fm26-20020a05600c0c1a00b00413ebdca679sm1679024wmb.37.2024.03.13.09.47.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Mar 2024 09:47:55 -0700 (PDT)
-Message-ID: <98c662ef-e6ef-4ef1-85df-6d8e3432101e@linaro.org>
-Date: Wed, 13 Mar 2024 17:47:53 +0100
+        d=1e100.net; s=20230601; t=1710348589; x=1710953389;
+        h=in-reply-to:content-disposition:mime-version:references
+         :mail-followup-to:message-id:subject:cc:to:date:from
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=QPkIANYlnqpJGOaQz5GtJSLehMlH+HibJAm6EUdPbkE=;
+        b=DyH52iklfKhnf2EcbaAWWBqu9tUBmnOY3yEY4e3wI1rRxGh5UAs8q0jnsBKcZw9R1f
+         YFj6SFsDz+RZDyCxXXr8bFkfFeGTJoOd+PJKFqeqoij2nnn3Vf+FWZEuIuR5KdriSNlL
+         YY9w3+W5BzTt2sviXPXWcl3PgfQBBVkAzG+bnKQv59SnZy9bHR0rcf0UR0Mmcn3Sx6Pl
+         9pyj4SZK8zgNiIwZlznhNRRe66TvbGcV4zN9iALPQezIws1+w7at4Cn2knNxfG0L85eQ
+         lqbgJSeaKacq9iJZ/pKmAV2hNKqZKiWXv7HDv+xG8T/4JtGCnAhO4PZFY16VZ++DRntD
+         L3ig==
+X-Forwarded-Encrypted: i=1; AJvYcCXflKHWAk2hyvp3qXA6KlmW7ky/u0cT2BVfdRkHiEekTfc8YprkAuIbjxVLi7QyevJKciorHmXqmU2avBJkJxERdYA/kRaVFvbM0A==
+X-Gm-Message-State: AOJu0Yzy0aW+8Teeb5bCs6eNxFpx+nQUw3mya4FjHm/uoXVv3F1uOcHF
+	483NDAI3Pbd7zRv7k6N7jEgTbura+sv1TEGw4an0WDn4yqUaNHOh/YyHZ1T/xbE=
+X-Google-Smtp-Source: AGHT+IGqIboO89JDdz68otiTxC7R5thbY+dJhwJvuyQri1Y0mW+DslANVakowZJW0e4mX3PczuljcA==
+X-Received: by 2002:a17:907:a644:b0:a46:134c:ae8c with SMTP id vu4-20020a170907a64400b00a46134cae8cmr9631602ejc.50.1710348588653;
+        Wed, 13 Mar 2024 09:49:48 -0700 (PDT)
+Received: from localhost (host-82-56-173-172.retail.telecomitalia.it. [82.56.173.172])
+        by smtp.gmail.com with ESMTPSA id bn23-20020a170906c0d700b00a462e4d7216sm2787595ejb.76.2024.03.13.09.49.48
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Mar 2024 09:49:48 -0700 (PDT)
+From: Andrea della Porta <andrea.porta@suse.com>
+X-Google-Original-From: Andrea della Porta <aporta@suse.de>
+Date: Wed, 13 Mar 2024 17:49:47 +0100
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: Andrea della Porta <andrea.porta@suse.com>,
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Saenz Julienne <nsaenz@kernel.org>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dave.stevenson@raspberrypi.com, Phil Elwell <phil@raspberrypi.org>,
+	Maxime Ripard <maxime@cerno.tech>,
+	Stefan Wahren <stefan.wahren@i2se.com>,
+	Dom Cobley <popcornmix@gmail.com>
+Subject: Re: [PATCH v2 01/15] dmaengine: bcm2835: Fix several spellos
+Message-ID: <ZfHZK8fb8m41t9UF@apocalypse>
+Mail-Followup-To: Florian Fainelli <florian.fainelli@broadcom.com>,
+	Andrea della Porta <andrea.porta@suse.com>,
+	Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+	Scott Branden <sbranden@broadcom.com>,
+	Broadcom internal kernel review list <bcm-kernel-feedback-list@broadcom.com>,
+	Saenz Julienne <nsaenz@kernel.org>, dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-rpi-kernel@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	dave.stevenson@raspberrypi.com, Phil Elwell <phil@raspberrypi.org>,
+	Maxime Ripard <maxime@cerno.tech>,
+	Stefan Wahren <stefan.wahren@i2se.com>,
+	Dom Cobley <popcornmix@gmail.com>
+References: <cover.1710226514.git.andrea.porta@suse.com>
+ <f57e15192166d696aca23804f8ac79dfe81fd399.1710226514.git.andrea.porta@suse.com>
+ <831fee14-387a-41d9-8dfc-e3ba09a140b1@broadcom.com>
+ <ZfHFiHdAeXgoNHNk@apocalypse>
+ <886b0def-7884-4780-8b7f-e29bf3d9ce7d@broadcom.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/2] dt-bindings: crypto: ice: Document sc7280 inline
- crypto engine
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>,
- Herbert Xu <herbert@gondor.apana.org.au>,
- "David S. Miller" <davem@davemloft.net>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, cros-qcom-dts-watchers@chromium.org
-Cc: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240313-sc7280-ice-v1-0-3fa089fb7a27@fairphone.com>
- <20240313-sc7280-ice-v1-1-3fa089fb7a27@fairphone.com>
-Content-Language: en-US
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240313-sc7280-ice-v1-1-3fa089fb7a27@fairphone.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <886b0def-7884-4780-8b7f-e29bf3d9ce7d@broadcom.com>
 
-On 13/03/2024 13:53, Luca Weiss wrote:
-> Document the compatible used for the inline crypto engine found on
-> SC7280.
+On 09:38 Wed 13 Mar     , Florian Fainelli wrote:
+> On 3/13/24 08:26, Andrea della Porta wrote:
+> > On 08:00 Wed 13 Mar     , Florian Fainelli wrote:
+> > > 
+> > > 
+> > > On 3/13/2024 7:08 AM, Andrea della Porta wrote:
+> > > > Fixed Codespell reported warnings about spelling and coding convention
+> > > > violations, among which there are also a couple potential operator
+> > > > precedence issue in macroes.
 > 
-> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> ---
+> and s/macroes/macros/
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+right, sorry about that...
 
-Best regards,
-Krzysztof
+> 
+> > > > 
+> > > > Signed-off-by: Andrea della Porta <andrea.porta@suse.com>
+> > > 
+> > > There are no spelling errors being fixed in this commit, this is purely
+> > > stylistic and conforming to the Linux coding style guidelines.
+> > 
+> > -	/* detect a size missmatch */
+> > -	if (buf_len && (d->size != buf_len))
+> > +	/* detect a size mismatch */
+> > +	if (buf_len && d->size != buf_len)
+> > 
+> > Isn't 'missmatch' a spelling error? Maybe I can drop the word 'several', since it's
+> > indeed only one...
+> 
+> Can we agree this was easy to miss when 99% of the changes are stylistic?
+> The summary is that the commit subject and the message are not describing
+> what this patch is about.
+> -- 
+> Florian
+> 
 
+I agree with you that I could've added '...and coding style fixes' to the subject
+(while also dropping 'several').  The comment seems fine enough though. Maybe
+you're suggesting to separate the patches into two, one dealing with spelling
+errors and the other with coding conventions?
+
+Many thanks,
+Andrea
 
