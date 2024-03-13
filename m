@@ -1,167 +1,167 @@
-Return-Path: <devicetree+bounces-50326-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50327-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78B7E87B088
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:56:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id A850F87B0E3
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 20:04:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A77BB1C2643A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 18:56:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2649E1F243CE
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:04:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D127C1428FE;
-	Wed, 13 Mar 2024 17:54:02 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xsUiuoHs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 10CBD6BB27;
+	Wed, 13 Mar 2024 18:13:45 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f47.google.com (mail-wr1-f47.google.com [209.85.221.47])
+Received: from mail-pf1-f170.google.com (mail-pf1-f170.google.com [209.85.210.170])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 01DAB14038A
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 17:53:59 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED055605D2;
+	Wed, 13 Mar 2024 18:13:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.170
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710352442; cv=none; b=YQJkDgL8X93L/QWvfSqEgyBMktInAbEiEhp7TjGsGlHB2e838f5fsPJISBhIDn9gRiM0B/Ov+kI1HK7rdf3Fv3pmhHnRYmrvP3MRq4xxxji6lB4Ufxvs71TlXPkhm6aIT8os38hyUk/uYFK/Gtg2tondNHXXbwH6vWCZRq1HPbo=
+	t=1710353624; cv=none; b=BTI0yEydDZIlv3jYFkRz9DaB+Pb1kJY8WCybRHo9R135rOUug5mlZQe4VFyTXHv6G5GvCS8BJx7j+Rby+zA6mus1O4E8XG9v49cOkzGx8w/fVYmJAnTF4uPrTiD2ggJ3sxtt7sIWw1IYObdLB4yqsRQwMCcxN6VEeSzjvQnEaxU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710352442; c=relaxed/simple;
-	bh=qm9/pAfQvWiGqGVOwNxlH8gFFbT7JVKsj7HqKQPmV6U=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=dltyLc6X9a9KSB1LaQ+LSAelnMuYyh4OX89SSxQBqjmZLXaaDepKb0YWVlqSkL3tucMe0QOA99z9kdJth201Z9kq/uTQVe7LwfHc3nUFKNadUJnr5EVk3gDk0Mxk9UIz6y0tFdM2GvdsMKvwvjaa579K1AWyGMpk1VhCatsEAJs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xsUiuoHs; arc=none smtp.client-ip=209.85.221.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f47.google.com with SMTP id ffacd0b85a97d-33d90dfe73cso107556f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 10:53:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710352438; x=1710957238; darn=vger.kernel.org;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KM81aTvQ9Jln3M+e1NoWl9j0TAIn4t8Grh3IDfzWXRI=;
-        b=xsUiuoHsQ8qdZC29yszSYghfj0LEfLH22+tXkaGaezo+dT4C22j4JOb2vWwqLMTSc8
-         o7tQrYV3nCbyzNNqQnal3m2Y+3Qks8enkUuzc6H/NtegPgnqB8NbeHfAe7dgEVlGFSwR
-         rcZKfgpRLSO+cCMqv7o4ljZkoF9Emi/uvsxvwaBz+Us8OII6wv70PZedOmVhW/qYtuq4
-         5NHgoOgaV95kVPl2ugRVjltbhi+WUXG1fgLm/m1PpTWtygKvQRULAXkF7JeGLgIEgWGl
-         Jouk2yen8u+dtStVxEe8JPUhL1D195MhejhHkrW7WWVkyo0WGkL5BTKwDF9brU08eZex
-         FHbw==
+	s=arc-20240116; t=1710353624; c=relaxed/simple;
+	bh=XBZxd3/8sCA+mi0OAIV0bPCc+jlbGDc9ebO1Ccnfgsc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FkOCZMmJk5u/rdUTfCU4Ssc7IAtQVgZ1qyYVZFnZ3TR9eOwgRxNl5A25+HBmb9iy5l1wXGvfI96RQb3jFKhuriPayrKiPdy7Xoo2nQe4UmxEturFrJRO1BwvkMj/bmfsIy0SX+OUPVfpUjIKkxm2Ivy2Z5sXiZa8QseAZARipfg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.210.170
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=csie.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f170.google.com with SMTP id d2e1a72fcca58-6e6c8823519so45366b3a.0;
+        Wed, 13 Mar 2024 11:13:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710352438; x=1710957238;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KM81aTvQ9Jln3M+e1NoWl9j0TAIn4t8Grh3IDfzWXRI=;
-        b=AjIg3jYQWw/IU0vC1hJHko0/mtMrkUowT61c+iFu4s7Oh7lVaiPHFNzBoQNu5lXV1Z
-         yjK6cmQ/LUGcEw82C89HZyz1KX9ak92Zln+oBH2INidPGOVcUAnMCDm7zquZs1qOtvY3
-         vgYpAjsM4aiJgVpuN0Yybbk+mAtL0iHaeGerTffoaf1cOrPAxFGVMcoZl6jizcPGl4Oq
-         bFgge2C8jVOghPQ/YiIs5pWxcpGCUrMvAeNT9v8jV8CjqgivLHm/g56jPNPiI0BT3n8I
-         vhaCibwwsK7P/ZWHBhEqjSta+bJ+AQ4IXqPZZT1WmSayzDdpDhD3u8g3kAjfiyvwlAdB
-         cGKQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUEDGuCLGOqOLThk/MSe8BbHpoSrkQrRYsIjSdJk39CjiAFUbanJoJOJTLFQjyDBc47wU6By44nuuhkkrM6kL3wO572lxR7jAOAfA==
-X-Gm-Message-State: AOJu0YywTAZFNjCL+ALUwZY1YMC62ThQcxw3ZLyL2Gn+HzkIZLVPhcaS
-	bZmTOSaw7WSrTr9PYz1aIXWkK/G8oLHfQfZJEpbrko6vgAXHdJalL/tHTnqaWNc=
-X-Google-Smtp-Source: AGHT+IFTtMJXFD4nfwVNpeqI+VJeyy9Yl/WRTyR07tWESrF0UzfFkVMdcOIHRLR5tG8MzAvVKVrGSw==
-X-Received: by 2002:a5d:4105:0:b0:33d:eb13:9e27 with SMTP id l5-20020a5d4105000000b0033deb139e27mr2526935wrp.23.1710352438411;
-        Wed, 13 Mar 2024 10:53:58 -0700 (PDT)
-Received: from [127.0.0.1] ([176.61.106.68])
-        by smtp.gmail.com with ESMTPSA id u12-20020a5d6acc000000b0033e7a499deasm9914482wrw.109.2024.03.13.10.53.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Mar 2024 10:53:58 -0700 (PDT)
-From: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Date: Wed, 13 Mar 2024 17:53:53 +0000
-Subject: [PATCH v2 2/2] clk: qcom: camcc-x1e80100: Set titan_top_gdsc as
- the parent GDSC of subordinate GDSCs
+        d=1e100.net; s=20230601; t=1710353622; x=1710958422;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AhNbiGT3dBNYmyMqRR3v/dtfPCNBKZcqWH9p/BqTK+I=;
+        b=CgUE4E2mCdRsTNba2m0nytc7ejXmuUspdpOei20LUT/VNZsPZC12fH3jgQiUPSRY82
+         dvlnXCNp2xX1RXDjhpnvfiDCT4pYlX9phxsOKhKhfe53UjHrzqdperMTe8hzKp9ys4iA
+         wTAzzHrD3zhX4whypLxDw8sU4Q4sXomXhuU6/v+n8kHg9JsU/42F6W13KaiVErtJid+r
+         nxLuzps60BTC1HhfaOhnyb3Xrr/O9j/iFFb60Ao2URdTx5yPS3jFAdnoukyeFcY9wDao
+         SBBIeK0ZxbWpNLUY3w3RtdqiQdM2b3TZB+/e3scyiDm+hfNVHmT3yrCq47Fxzd8N4B+T
+         lZNg==
+X-Forwarded-Encrypted: i=1; AJvYcCVw4ZjlQt2PGWMlPYuu+FYHI3LXcJ004S86LDNN+nqD0f2j47hTQkvnPM7D6aa1LEJ9cto7OvNybC5ov2a0wFpUoYmNFiF4SngLaLmoqsddb9bWckP+cc+/IIdWOe9zf09AGml1eiQV9w==
+X-Gm-Message-State: AOJu0YwhfnE5fsRCnKo/fcvoI9jL4c34nOuDs5Z0vJmrtFj7fHaMxTk6
+	rF/h4moOlz91kPaC5Rxf+0MGnRRpw8UNpSNt21ZEyACHN4AVS75AQJ9TpnA4pt0=
+X-Google-Smtp-Source: AGHT+IELRo71VU1XOT1Wc01eMxnOnWmDp4USZDRpckfAyyYTsbwl9N94X2uNVwLPh9u+c6vCkgVFkA==
+X-Received: by 2002:a62:d45b:0:b0:6e6:c61d:114c with SMTP id u27-20020a62d45b000000b006e6c61d114cmr597254pfl.0.1710353621740;
+        Wed, 13 Mar 2024 11:13:41 -0700 (PDT)
+Received: from mail-pg1-f174.google.com (mail-pg1-f174.google.com. [209.85.215.174])
+        by smtp.gmail.com with ESMTPSA id c13-20020a63350d000000b0059b2316be86sm8045119pga.46.2024.03.13.11.13.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 13 Mar 2024 11:13:41 -0700 (PDT)
+Received: by mail-pg1-f174.google.com with SMTP id 41be03b00d2f7-5d4d15ec7c5so94822a12.1;
+        Wed, 13 Mar 2024 11:13:41 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCXAZC0Mtbe+USFdxyTR1a5fxX67AoBFUT5Rz2oZyp8r09qUNEufhHAm1UVvXdpn0QS0vm+qaspXBaomIQPamPi8nEqtukQvBPcOu7pltkCX0pc/mRi43JeyUIxxilPiBV+aqlV5mgFjrw==
+X-Received: by 2002:a17:90a:9084:b0:29b:b854:db with SMTP id
+ j4-20020a17090a908400b0029bb85400dbmr11208175pjo.27.1710353621055; Wed, 13
+ Mar 2024 11:13:41 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240313-linux-next-camcc-fixes-v2-2-9426da94ae37@linaro.org>
-References: <20240313-linux-next-camcc-fixes-v2-0-9426da94ae37@linaro.org>
-In-Reply-To: <20240313-linux-next-camcc-fixes-v2-0-9426da94ae37@linaro.org>
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, 
- Michael Turquette <mturquette@baylibre.com>, 
- Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, 
- Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>, 
- Abel Vesa <abel.vesa@linaro.org>, Rajendra Nayak <quic_rjendra@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org, 
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
- Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-X-Mailer: b4 0.13-dev-26615
+References: <20240310010211.28653-1-andre.przywara@arm.com>
+ <20240310010211.28653-3-andre.przywara@arm.com> <f203a0a3-9107-4290-a934-0f6736fe218a@sholland.org>
+ <20240313173529.1f816404@donnerap.manchester.arm.com>
+In-Reply-To: <20240313173529.1f816404@donnerap.manchester.arm.com>
+Reply-To: wens@csie.org
+From: Chen-Yu Tsai <wens@csie.org>
+Date: Thu, 14 Mar 2024 02:13:29 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65LgmYU_PZLU8KDSYhr76y=kPNboTsZ9mRkT=wBuYSdvA@mail.gmail.com>
+Message-ID: <CAGb2v65LgmYU_PZLU8KDSYhr76y=kPNboTsZ9mRkT=wBuYSdvA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] dt-bindings: mfd: x-powers,axp152: document AXP717
+To: Andre Przywara <andre.przywara@arm.com>
+Cc: Samuel Holland <samuel@sholland.org>, devicetree@vger.kernel.org, 
+	Jernej Skrabec <jernej.skrabec@gmail.com>, Chris Morgan <macromorgan@hotmail.com>, 
+	linux-kernel@vger.kernel.org, linux-sunxi@lists.linux.dev, 
+	Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-The Titan TOP GDSC is the parent GDSC for all other GDSCs in the CAMCC
-block. None of the subordinate blocks will switch on without the parent
-GDSC switched on.
+On Thu, Mar 14, 2024 at 1:35=E2=80=AFAM Andre Przywara <andre.przywara@arm.=
+com> wrote:
+>
+> On Mon, 11 Mar 2024 17:20:50 -0500
+> Samuel Holland <samuel@sholland.org> wrote:
+>
+> Hi Samuel,
+>
+> thanks for having a look!
+>
+> > On 3/9/24 19:02, Andre Przywara wrote:
+> > > The X-Powers AXP717 is a PMIC used on some newer Allwinner devices.
+> > > Among quite some regulators it features the usual ADC/IRQ/power key
+> > > parts, plus a battery charger circuit, and some newly introduced USB
+> > > type-C circuitry.
+> >
+> > Do you plan to put the Type-C logic under a subnode, or should the
+> > Type-C connector node go directly under the PMIC node? Either way, the
+> > binding probably needs to be updated for that.
+>
+> I haven't looked into this yet, so cannot say which way to go. I
+> definitely consider this some non-trivial task, so indeed wanted to push
+> this off to later.
+> For now there is a device (Anbernic RG35XX) with that PMIC, so we need at
+> least the regulators to unblock this. USB support is not critical for now=
+.
+>
+> > > Like two other recent PMICs, it lacks the DC/DC converter PWM frequen=
+cy
+> > > control register, that rate is fixed here as well.
+> > >
+> > > Add the new compatible string, and add that to the list of PMICs with=
+out
+> > > the PWM frequency property.
+> > >
+> > > Signed-off-by: Andre Przywara <andre.przywara@arm.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mfd/x-powers,axp152.ya=
+ml b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> > > index 06f1779835a1e..b8e8db0d58e9c 100644
+> > > --- a/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> > > +++ b/Documentation/devicetree/bindings/mfd/x-powers,axp152.yaml
+> > > @@ -83,6 +83,7 @@ allOf:
+> > >              enum:
+> > >                - x-powers,axp313a
+> > >                - x-powers,axp15060
+> > > +              - x-powers,axp717
+> > >
+> > >      then:
+> > >        properties:
+> > > @@ -99,6 +100,7 @@ properties:
+> > >            - x-powers,axp221
+> > >            - x-powers,axp223
+> > >            - x-powers,axp313a
+> > > +          - x-powers,axp717
+> > >            - x-powers,axp803
+> > >            - x-powers,axp806
+> > >            - x-powers,axp809
+> >
+> > The regulators patternProperties needs to be updated for the new boost
+> > regulator.
+>
+> Ah, I indeed missed this one. I think the former PMICs had this
+> batter->VBUS boost regulator hidden, controlled entirely by the PMIC?
+> I will need to check if exposing this will present any surprises. I
+> guess this goes together with the USB-C support, to have role switching,
+> unless this appears on some device with just USB-A or micro-B.
+> I will check what it takes to add this one, the regulator itself looks
+> easy.
 
-Fixes: 76126a5129b5 ("clk: qcom: Add camcc clock driver for x1e80100")
-Acked-by: Rajendra Nayak <quic_rjendra@quicinc.com>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
----
- drivers/clk/qcom/camcc-x1e80100.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+I don't think there was such a boost regulator on previous PMICs. It was
+just a passthrough, which is why on some boards such as the Cubietruck
+there is an external boost converter to put out 5V when just the battery
+is used.
 
-diff --git a/drivers/clk/qcom/camcc-x1e80100.c b/drivers/clk/qcom/camcc-x1e80100.c
-index 46bb225906bff..d421da57697a2 100644
---- a/drivers/clk/qcom/camcc-x1e80100.c
-+++ b/drivers/clk/qcom/camcc-x1e80100.c
-@@ -2212,6 +2212,8 @@ static struct clk_branch cam_cc_sfe_0_fast_ahb_clk = {
- 	},
- };
- 
-+static struct gdsc cam_cc_titan_top_gdsc;
-+
- static struct gdsc cam_cc_bps_gdsc = {
- 	.gdscr = 0x10004,
- 	.en_rest_wait_val = 0x2,
-@@ -2221,6 +2223,7 @@ static struct gdsc cam_cc_bps_gdsc = {
- 		.name = "cam_cc_bps_gdsc",
- 	},
- 	.pwrsts = PWRSTS_OFF_ON,
-+	.parent = &cam_cc_titan_top_gdsc.pd,
- 	.flags = POLL_CFG_GDSCR | RETAIN_FF_ENABLE,
- };
- 
-@@ -2233,6 +2236,7 @@ static struct gdsc cam_cc_ife_0_gdsc = {
- 		.name = "cam_cc_ife_0_gdsc",
- 	},
- 	.pwrsts = PWRSTS_OFF_ON,
-+	.parent = &cam_cc_titan_top_gdsc.pd,
- 	.flags = POLL_CFG_GDSCR | RETAIN_FF_ENABLE,
- };
- 
-@@ -2245,6 +2249,7 @@ static struct gdsc cam_cc_ife_1_gdsc = {
- 		.name = "cam_cc_ife_1_gdsc",
- 	},
- 	.pwrsts = PWRSTS_OFF_ON,
-+	.parent = &cam_cc_titan_top_gdsc.pd,
- 	.flags = POLL_CFG_GDSCR | RETAIN_FF_ENABLE,
- };
- 
-@@ -2257,6 +2262,7 @@ static struct gdsc cam_cc_ipe_0_gdsc = {
- 		.name = "cam_cc_ipe_0_gdsc",
- 	},
- 	.pwrsts = PWRSTS_OFF_ON,
-+	.parent = &cam_cc_titan_top_gdsc.pd,
- 	.flags = POLL_CFG_GDSCR | RETAIN_FF_ENABLE,
- };
- 
-@@ -2269,6 +2275,7 @@ static struct gdsc cam_cc_sfe_0_gdsc = {
- 		.name = "cam_cc_sfe_0_gdsc",
- 	},
- 	.pwrsts = PWRSTS_OFF_ON,
-+	.parent = &cam_cc_titan_top_gdsc.pd,
- 	.flags = POLL_CFG_GDSCR | RETAIN_FF_ENABLE,
- };
- 
-
--- 
-2.44.0
-
+ChenYu
 
