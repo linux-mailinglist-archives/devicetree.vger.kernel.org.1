@@ -1,144 +1,124 @@
-Return-Path: <devicetree+bounces-50163-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50164-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2CE3187A0D5
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 02:32:35 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F30E87A1A0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 03:30:51 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D98E21F21AAC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 01:32:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 010E11F22872
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 02:30:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BA368F6E;
-	Wed, 13 Mar 2024 01:32:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3991C53A6;
+	Wed, 13 Mar 2024 02:30:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="pWHgqB9l"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="bgBJX0cS"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 655789476
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 01:32:12 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0E8D638B;
+	Wed, 13 Mar 2024 02:30:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710293535; cv=none; b=Bs2l9vhkTgnxbIKpdDUPXvnKPry+v/e8qghFmstVh3EXxI35sbLkj26oaOlModb61/EtqTSGhXM8uhp1VUVcfdyjEP0UUEg/wF8qdL5v67fV2QW08aeFlT+Afyt/jMa284xcJQnm7m4Zu4uSRbZn5RtMnUt1EGx5eNFX8z/b7/U=
+	t=1710297045; cv=none; b=hx2ciwWFrKajSTTQusdFObiwfMlp0aTxtmuYBCghFzDFHyejYjYlGdVHyIqOpScTRJ29d0vWgUQXlaKwiMcBs5iVBqZqUx96EdD3yVvJ1SOUAlhJloBwdmEYqjzDo8DEir5v8BSguumyzVzRXvKCy8fSBQgygeqehaP7AfA0Pjw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710293535; c=relaxed/simple;
-	bh=//FySGpGO0cREpxIBRgWQHcXYczpTi+P/0BqU+2e7jM=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=aIWf418zAWX2W2y/2e3sUDFluOkKHvR46/qXXj+pEOvZtj1/ZTvm6IjKn+iLBE095mpEwdLpwNrqbmH5POaIJ2gNc0M8BF6wQVB8PzjXOMM5ayP12jIp+453/JNANoXWS5zEDR+zpzTJsR1Hg7BlwSGtnB3O9XOsYfS8PLVgGDM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=pWHgqB9l; arc=none smtp.client-ip=209.85.167.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-5131316693cso592579e87.0
-        for <devicetree@vger.kernel.org>; Tue, 12 Mar 2024 18:32:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710293530; x=1710898330; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=8sPYE3Id0q+F2jUUBdvOq5McORmYxZJSi+RmXz3jcFs=;
-        b=pWHgqB9l1Rxh2v90H31/OwfKVNzYEYFII4GCEx3KlLKFMDksjU5wuqA9hUfbox5zjq
-         Xphru8tLjNcjczIzHJo3EVltIPOOhjNnuNTznsxk60yDkt/br9jKTYWo5A+6UJULOjU1
-         R6yYs9iY6RgGrloWfZnlaRapCAaOHjqn/Bzl7yU4TJQd4l6icJnDuMuKAKetAJQgjExj
-         jeaIYwhpjyhAKi++3MJNWBGg+gZ2x9AiTRkV0ipCIaXLZQ7nI+CVhUVOkZbQ6wufF4rO
-         FIzgrsMar/FuhgXeZY9LLeIgefHqlFRQtxdo5adoDYXGXGbqHE35l45R0e1FVhIsXl8o
-         4MLA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710293530; x=1710898330;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8sPYE3Id0q+F2jUUBdvOq5McORmYxZJSi+RmXz3jcFs=;
-        b=YePSpLQGdK7VPWCO83LB7nmn5q9MBd6CiuYOUL5LkBiIw6Fp+55V2oRRbWVOf2bOBi
-         x9wRScm2YNJ8S2EhZITBBjXYnciKZbsd4ClSjhr0b9S2U7/BChYXHzSYjpKcpHjPlA7K
-         NNxp084PVAZ0G2yhVLxdRT2uHOjJtFdjyzLOq4ni7WnJcBohvWaxitNT1t+Ye9NjWbc8
-         nkkLrOU1vsoEQzdYBA5wcLFpNeb1Q4ynJulIxFGSBzAiFPc/zjf1xK696Jar2C2qO7kc
-         Hc+BjW9PP37R+0xwwWVDey6SIOLUR3hkSqIzrOBd3ABxOD0I6D4rEUOlCfhTks5kBmyP
-         7lQA==
-X-Forwarded-Encrypted: i=1; AJvYcCUC7+TbuNXRZhXHIfxESnL9gFYPlMx/QaOneyH70qI0cqlTxVJd9thE1THeEy1HorF+CgiYXaHKnflMXkHflq/Td78E9QmxoUFo7A==
-X-Gm-Message-State: AOJu0YzhkttADKwzjtYU1Kierfz0MO6u5VOCFu/JBdCezL6ST2KMwDNl
-	VhdGgmr0lG20eFEndeC87AaTU1wy/OIFyoFc8ivhHTlsg0SA0ovCDCG+fd8keec=
-X-Google-Smtp-Source: AGHT+IGcMHd0ja05EglgHFzq7r0543vjbIAQHy1i6YHfA3Cuvad23qiPx2RoN03pahiWztSlWOR+eQ==
-X-Received: by 2002:ac2:5989:0:b0:512:f6a0:1311 with SMTP id w9-20020ac25989000000b00512f6a01311mr3778215lfn.47.1710293530441;
-        Tue, 12 Mar 2024 18:32:10 -0700 (PDT)
-Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id j15-20020ac2454f000000b00512ee143d25sm397690lfm.105.2024.03.12.18.32.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 12 Mar 2024 18:32:09 -0700 (PDT)
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date: Wed, 13 Mar 2024 03:32:09 +0200
-Subject: [PATCH] arm64: dts: qcom: sm8350: Add interconnects to UFS
+	s=arc-20240116; t=1710297045; c=relaxed/simple;
+	bh=6epCFR+TeeVisNrBltVtOxZRUBOkKoRbe0+eZ0ebHGM=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=QlnkRJqVGSU5j/fTxJBjxBdwaG6fuTWSW6zgXxAdmGRFzT8dzIfnI/FDi/DbvBkNhGjCyV5X72GJ1xi57O9C1++vGx8XGZINeZ4NhSlPSY55X4m3mRNAWbndyREQAxu17/qbrdOtN/XYOsEqpmq2k9VcX7nEX2BT1FknC8nzzuA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=bgBJX0cS; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 608ABC433C7;
+	Wed, 13 Mar 2024 02:30:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710297044;
+	bh=6epCFR+TeeVisNrBltVtOxZRUBOkKoRbe0+eZ0ebHGM=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=bgBJX0cS4c75xtuhF2avvRAWfGeIS+DdV9OofdYqXwKLsvGUd5FxhhtQqF0mLN4dN
+	 /0zkpqzGk89wpr1NMFTIK1F09qLuKqVRWGN1AEMMo8y869BZWQpgbq02ZoWvzirGgH
+	 THVKVcTueHcJgN4l7N6LFujds6IA3UTv4MpUn8piGXRjtyy/043Xpku/hccu4QijI3
+	 6XlS/SxMGolxlTZT7Z5sQGHZUGSCI/ZDbMrnfFiY59kOGX3Gy8aMXXZf4F9nAaQGmY
+	 vLPYqL/t1jcl39selk774Xbsnx6JUYWkn2Ok/z3U449vArJT3GIT4RYGhZFpsCNg3F
+	 uaCPkK9BvACLg==
+Date: Tue, 12 Mar 2024 20:30:43 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240313-sm8350-ufs-icc-v1-1-73fa2da99779@linaro.org>
-X-B4-Tracking: v=1; b=H4sIABgC8WUC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyDHUUlJIzE
- vPSU3UzU4B8JSMDIxMDY0Nj3eJcC2NTA93StGLdzORkXYPUtBRzQ0tTQyNzYyWgpoKi1LTMCrC
- B0bG1tQCHzQWWYAAAAA==
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
+From: Rob Herring <robh@kernel.org>
+To: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
+Cc: dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org, 
+ Michal Simek <michal.simek@amd.com>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, David Airlie <airlied@gmail.com>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org, 
+ linux-media@vger.kernel.org, 
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Daniel Vetter <daniel@ffwll.ch>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1581;
- i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=//FySGpGO0cREpxIBRgWQHcXYczpTi+P/0BqU+2e7jM=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBl8QIZ/meQUjWJ/xvTENY/0qfGGKQos+aYzhbmK
- SPysyFsKwOJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZfECGQAKCRCLPIo+Aiko
- 1SfkCACYBI5lJXoB+2H6/Io4DoaKqJfQdoqCMBAux0DoKv64akVfwrWERRy3p8fc5dY9v+i5or3
- HNlUTtBjrE+Rv42cG/HxAfsi9SpO0/aONH8GCb73dXbwmeFbxBgHIVVHxibVLO6VECKM6iyPVxf
- Hl+e4LfWxPyvqcgOlejqQk4kPZB+lPd1rrC7tbP35nnR5SOCJ3Xtq0TMJz5hsoMAhLy1UNeO85d
- /YuTFb+u1m97+4O/s2fwGmYKDp/1aOHOX2rqcx4d4GRGCvAEI8WMZYzePF2nPfiLNGaKvSOhDPE
- OO2cAdLoLRJCaLXW2jmoJ5cwbTjOqb4cSs1RShyblfHk4bzj
-X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
- fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Conor Dooley <conor+dt@kernel.org>, Robert Foss <rfoss@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, 
+ linux-arm-kernel@lists.infradead.org, 
+ Mauro Carvalho Chehab <mchehab@kernel.org>
+In-Reply-To: <20240312-dp-live-fmt-v2-7-a9c35dc5c50d@amd.com>
+References: <20240312-dp-live-fmt-v2-0-a9c35dc5c50d@amd.com>
+ <20240312-dp-live-fmt-v2-7-a9c35dc5c50d@amd.com>
+Message-Id: <171029704194.3354722.2132570272705371334.robh@kernel.org>
+Subject: Re: [PATCH v2 7/8] dt-bindings: xlnx: Add VTC and TPG bindings
 
-To ensure that UFS doesn't get disconnected from NoC, add interconnect properties
-to the UFS controller.
 
-Fixes: 59c7cf814783 ("arm64: dts: qcom: sm8350: Add UFS nodes")
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+On Tue, 12 Mar 2024 17:55:04 -0700, Anatoliy Klymenko wrote:
+> DO NOT MERGE. REFERENCE ONLY.
+> 
+> Add binding for AMD/Xilinx Video Timing Controller and Test Pattern
+> Generator.
+> 
+> Copy media-bus-formats.h into dt-bindings/media to suplement TPG DT node.
+> 
+> Signed-off-by: Anatoliy Klymenko <anatoliy.klymenko@amd.com>
+> ---
+>  .../bindings/display/xlnx/xlnx,v-tpg.yaml          |  87 ++++++++++
+>  .../devicetree/bindings/display/xlnx/xlnx,vtc.yaml |  65 ++++++++
+>  include/dt-bindings/media/media-bus-format.h       | 177 +++++++++++++++++++++
+>  3 files changed, 329 insertions(+)
+> 
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index a5e7dbbd8c6c..a878f5ac5bb5 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -12,6 +12,7 @@
- #include <dt-bindings/dma/qcom-gpi.h>
- #include <dt-bindings/firmware/qcom,scm.h>
- #include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/interconnect/qcom,icc.h>
- #include <dt-bindings/interconnect/qcom,sm8350.h>
- #include <dt-bindings/mailbox/qcom-ipcc.h>
- #include <dt-bindings/phy/phy-qcom-qmp.h>
-@@ -1730,6 +1731,11 @@ ufs_mem_hc: ufshc@1d84000 {
- 				<&gcc GCC_UFS_PHY_TX_SYMBOL_0_CLK>,
- 				<&gcc GCC_UFS_PHY_RX_SYMBOL_0_CLK>,
- 				<&gcc GCC_UFS_PHY_RX_SYMBOL_1_CLK>;
-+			interconnects = <&aggre1_noc MASTER_UFS_MEM QCOM_ICC_TAG_ALWAYS
-+					 &mc_virt SLAVE_EBI1 QCOM_ICC_TAG_ALWAYS>,
-+					<&gem_noc MASTER_APPSS_PROC QCOM_ICC_TAG_ALWAYS
-+					 &config_noc SLAVE_UFS_MEM_CFG QCOM_ICC_TAG_ALWAYS>;
-+			interconnect-names = "ufs-ddr", "cpu-ufs";
- 			freq-table-hz =
- 				<75000000 300000000>,
- 				<0 0>,
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
----
-base-commit: 8ffc8b1bbd505e27e2c8439d326b6059c906c9dd
-change-id: 20240313-sm8350-ufs-icc-0efd71951273
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/display/xlnx/xlnx,v-tpg.yaml:35:4: [warning] wrong indentation: expected 4 but found 3 (indentation)
+./Documentation/devicetree/bindings/display/xlnx/xlnx,v-tpg.yaml:45:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
+./Documentation/devicetree/bindings/display/xlnx/xlnx,v-tpg.yaml:49:8: [warning] wrong indentation: expected 8 but found 7 (indentation)
 
-Best regards,
--- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/xlnx/xlnx,vtc.yaml: xlnx,pixels-per-clock: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/xlnx/xlnx,v-tpg.yaml: bus-format: missing type definition
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/display/xlnx/xlnx,v-tpg.yaml: xlnx,bridge: missing type definition
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20240312-dp-live-fmt-v2-7-a9c35dc5c50d@amd.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
 
