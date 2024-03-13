@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-50264-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50265-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FFBD87A80C
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 14:06:34 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9343387A810
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 14:07:19 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2B2911F245BC
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 13:06:34 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3C0C21F245BB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 13:07:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id DF9783E498;
-	Wed, 13 Mar 2024 13:06:26 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 77BEF3FB1D;
+	Wed, 13 Mar 2024 13:07:13 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="kXsSJdn0"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R1fm8+l9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 188914205B
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 13:06:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CB7593E498
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 13:07:11 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710335186; cv=none; b=PMtk07PBBTwPrVOvTpuG2SOm8Ntmypr9vSzrUla/AWFHm4o4k6x3APGJxv80X8dL35sMEmIOT5Zr2ooz2osWilkygCdMRZr3xB4uoMA9ZLcC5Km8wNNMn8FPbWHmj0DHZizVcCzaWhrrnO/uILejonLBa+gmP3axtmvBHGmP8Uk=
+	t=1710335233; cv=none; b=I7HOH8d+qta5tJWOnzRyX+TFLvHxS7wR40z98rlSJH0ddMgHoClACrSNUD8GlM0klWC9SgD4QQWtUVROcZGSsOiXJn84Z3wG/L4teqpPNp4jxc8MjgGGckUuutxeGYDLz8mFIwH9HH6olAARie9+sgKC/KoZheA9Wq6UbMa7vvM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710335186; c=relaxed/simple;
-	bh=nu2TU/efmJVyyNzdPZmhd4lX/ZlvA6rNHIqxiz0oydA=;
+	s=arc-20240116; t=1710335233; c=relaxed/simple;
+	bh=AOENklKCQlzcOp8ThZzmspRg8sESxjS+RseYzxgGx7k=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=pt8vteNacpqbWO7TwETdLSb/ifE8GubZN8Ead7EHYnR8KInySWflAFT+mRjWlUlIUij6H9yRtirdAK4/zgWLopJ+0tOcP4Wj8f5d7uexLaVzooKrVy5nytmIaJlcqg8VzboKUlUGW9viS1W/gqxGzUCEEbntnU+SvQj2cQcjnCo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=kXsSJdn0; arc=none smtp.client-ip=209.85.128.54
+	 In-Reply-To:Content-Type; b=jBhzqtJjQgZW04kAEX079yCXjtKL1vRGfujV4vZ8CF8ptcUWZsT6QnZEWFOoZStd9w0RcYWJC/zIspGe+DZdc368zvMNC8/GZy1WKuQBGgFheXO2L0HxmD5Jf6Y32ogJ3VhDt/2rfXPRxxhkj2lGpP4Ue7Z865cMLZMEkRH6/9c=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R1fm8+l9; arc=none smtp.client-ip=209.85.128.49
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-413e99afcc8so3637015e9.0
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 06:06:24 -0700 (PDT)
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-413ebe077d6so2653765e9.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 06:07:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710335183; x=1710939983; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710335230; x=1710940030; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=M4NpWuidE/6XLSodKBBeg9UI/bSbAFivtpB+E/WZivo=;
-        b=kXsSJdn0zpgvJUENwPnovJmkrcdx5f3wcKrVe4lE0UE12bVzHZFsTIJRc7NrABlacG
-         aeMm0EMsWXowzFEz0XvBHaPuBA0mDK+CDXBw/47084sDW1vhj5FXKI6RfIjU9jRcJyXz
-         /8m08C+dkq9AMGpPC01k+vXXL/tIIeefFOrmi9knkRxEvEGrs/GS5u0Rq7jQA+Ca7jTj
-         7QLvO8Jo5QRGfx2cLSJNBYB3GvGwz1s/nCuvT1t2fq+24rdeRPXyK054ntH0+HZTrNxv
-         vWSK8VvebUHHdYb5H/W24fPDJ4O5GriLn9U4AhUWBm35w4c3WkrKiqi85psGqjCiI/B6
-         U/7Q==
+        bh=0h1HJWTel+cUT0T3nBc4aPkZwYen93F3ipuXMLtZBk0=;
+        b=R1fm8+l9iHmFOk+qsI+dU8sysRumMqDffcqN9d6OnPRVXk+3YQOZSjunrXZBYLLcPu
+         KJ0jmLIKROv+tDap5yMehtdx36wyljejbAL33rYDRpD0CIqheHYDrDMckmBe4A0gDLgq
+         C0OUSQQcRvLsdiIUoifAc9cvw3xMvgaOcrs04CK76I5Al6JL4wY7+4DGOb5ry5itCLTT
+         r/aC3siRdlQtRooAQhV+bpn+hQm78o0ueZtr3u/vidRuTVGxb6zJPtItehbneN0lfWzh
+         pTZjBYTht9W2Uqf0Po+hncby0RWqccBPQuVZxp2FhJ/9w0fRpNqZlhxo17oJ3nQR9/V5
+         W9vA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710335183; x=1710939983;
+        d=1e100.net; s=20230601; t=1710335230; x=1710940030;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=M4NpWuidE/6XLSodKBBeg9UI/bSbAFivtpB+E/WZivo=;
-        b=pqmMkOrJIWPJiHvmi/sdUnJIzEvJAkyHBX6YyGHewr7Sb8Jvx2lDRMxf22WbikV4ed
-         0NV302ZewyOQIXjuRwNpHS+Ipiov5DdGd9bhuogWxE6NntfZ7SwErYlzdLFTktBuJH5S
-         1YgPZZ1oW0TFwURd6Oq0v1+MNDw5GnOMrQILUTuRfWdpOSntyJWBuNaWZ6s7KUNzstSl
-         BgjVYeiu1EjdgcD5EMipP5IT+1nXFhJL8v/9l/Z7nJUn4+Lokmlghd/Uj9g5XW0Mreel
-         f26aiKiY5+oPfvSxLs6thmqqtr0ABpSiL7lnqj4ipaamDeNa7gG5JBnMjADHgzJXLVBO
-         eLOQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVmLhE6PrNtEV/99BeNCfG0kHGiyG/4pwh2PpM1LsPa85b2VdFdEvbbo+iQ6Du2BEcUBXcwB1r0GR+VfyTLxW2OfU4jH1U7yUkWPg==
-X-Gm-Message-State: AOJu0YwUsYBerhnhwvdehhkBJaHwY6bFzbD0LmNwgyNEX1siHmJB+z4s
-	6vavBbjF/Xw74z9Hz8UnSGiGae7a/eCfY50RGrYR8rhDd253ohZTpyUZax2UnCw=
-X-Google-Smtp-Source: AGHT+IGa1okwKTE1e2wF6mpSHWKi5YQtwtGwhXyfrBB3D3LwsSoevUjXgSUkdVD+/wK963THVidm5Q==
-X-Received: by 2002:a05:600c:1c05:b0:412:fe95:b6c5 with SMTP id j5-20020a05600c1c0500b00412fe95b6c5mr3950944wms.7.1710335183472;
-        Wed, 13 Mar 2024 06:06:23 -0700 (PDT)
+        bh=0h1HJWTel+cUT0T3nBc4aPkZwYen93F3ipuXMLtZBk0=;
+        b=MK8rO6vR+wo1T4B/gac/N3IaaY52QgW6q87jD3+IoznsdPeqH/tQAcaEUWGfJG9e+Y
+         DgZKFhquOxz/gdcygq7I7o/fp4nFHIfDmyxhbOFxvlppeC/3FEYuCvCDawYGQ6kMFNnC
+         o44VlWtgaTtScg9ncSZ2uZ+euP+Sp91W19v4ySQ5Nk1Ggkc+KYSWHWMjZmJn2rMKicNJ
+         WQlFZFpF8Jxc/hRa/bzzBGjob2xss70Zwm1vGGlj6VAScWGfh8Hyp0Jscwi+KJzCbRC0
+         T+udMLcKuGn6gzwdJfVH6vcejukEsKc6VMXryptSrNBOgDT0YJa9c4AGx5si+RdUt0wp
+         dHJQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVXvVE1oYJkHPvSi/pCMYgOnSiw/E5MMis+LDipQEQkK2n+P8h9b1y/6zTCx+IpTcWhOniiMKvanVZg2yM5BEB0R2dXS+mC6+WoKA==
+X-Gm-Message-State: AOJu0YxzCammDKbOHN5cVaADTIOceq3f4OjsNRN+6f0E/kpo1IFBdKrq
+	bHeUVLvmKu8bhdu1ArzBFNWNyOtWwMTjqv+XmyjsoO4nzEH1R8lw76vLR5X5XK4=
+X-Google-Smtp-Source: AGHT+IGCNQQ+vVI9A+/mKULdTaoDGN4LOObKn8d9gfyev3ibpUqDcfmSUpsIWnmdEnjLU2rGKjCHpQ==
+X-Received: by 2002:a05:600c:3542:b0:412:ebce:4166 with SMTP id i2-20020a05600c354200b00412ebce4166mr8648709wmq.32.1710335230145;
+        Wed, 13 Mar 2024 06:07:10 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id l15-20020a05600012cf00b0033ce727e728sm11589432wrx.94.2024.03.13.06.06.21
+        by smtp.gmail.com with ESMTPSA id bg28-20020a05600c3c9c00b0041330d49604sm2287312wmb.45.2024.03.13.06.07.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Mar 2024 06:06:23 -0700 (PDT)
-Message-ID: <e2a98098-8ccd-4b8f-9a4b-1cbc0776a9c2@linaro.org>
-Date: Wed, 13 Mar 2024 14:06:20 +0100
+        Wed, 13 Mar 2024 06:07:09 -0700 (PDT)
+Message-ID: <f0961a18-ddb7-4bb9-aee6-c13f8a1dc020@linaro.org>
+Date: Wed, 13 Mar 2024 14:07:07 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,27 +76,22 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 2/2] dt-bindings: net: add new property st,ext-phyclk
- in documentation for stm32
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
+ board DTS
 Content-Language: en-US
-To: Christophe ROULLIER <christophe.roullier@foss.st.com>,
- "David S . Miller" <davem@davemloft.net>, Eric Dumazet
- <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Richard Cochran <richardcochran@gmail.com>, Jose Abreu
- <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>
-Cc: netdev@vger.kernel.org, devicetree@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20240307135957.303481-1-christophe.roullier@foss.st.com>
- <20240307135957.303481-3-christophe.roullier@foss.st.com>
- <578f421c-ca06-45d4-8380-8b2b423d4d47@linaro.org>
- <50ee6122-b160-48ea-8c44-1046b5907d7c@foss.st.com>
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Sumit Garg <sumit.garg@linaro.org>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org
+Cc: andersson@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, stephan@gerhold.net,
+ caleb.connolly@linaro.org, neil.armstrong@linaro.org,
+ laetitia.mariottini@se.com, pascal.eberhard@se.com, abdou.saker@se.com,
+ jimmy.lalande@se.com, benjamin.missey@non.se.com,
+ daniel.thompson@linaro.org, linux-kernel@vger.kernel.org,
+ Jagdish Gediya <jagdish.gediya@linaro.org>
+References: <20240313123017.362570-1-sumit.garg@linaro.org>
+ <20240313123017.362570-4-sumit.garg@linaro.org>
+ <c0e10cbf-c6f3-4b0c-8616-983da2a40236@linaro.org>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -142,71 +137,20 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <50ee6122-b160-48ea-8c44-1046b5907d7c@foss.st.com>
+In-Reply-To: <c0e10cbf-c6f3-4b0c-8616-983da2a40236@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/03/2024 11:39, Christophe ROULLIER wrote:
+On 13/03/2024 14:04, Konrad Dybcio wrote:
 > 
-> On 3/8/24 09:28, Krzysztof Kozlowski wrote:
->> On 07/03/2024 14:59, Christophe Roullier wrote:
->>> Add property st,ext-phyclk to manage cases when PHY have no cristal/quartz
->>> This property can be used with RMII phy without cristal 50Mhz and when we
->>> want to select RCC clock instead of ETH_REF_CLK
->>> Can be used also with RGMII phy with no cristal and we select RCC clock
->>> instead of ETH_CLK125
->>>
->> Nothing improved here. You say you add new property (wrote it explicitly
->> in the subject), but where is it? Where is the user?
->>
->> I think we talked about this. Rob also asked quite clear:
->>
->>> That is obvious from the diff. What is not obvious is why we need a new
->>> property and what is the problem with the existing ones.
->> How did you solve it?
+>> +		led@5 {
+>> +			reg = <5>;
+>> +			label = "apq8016-hmibsc:green:wlan";
 > 
-> Hi,
+> These names look overly complicated.. s/apq8016-hmibsc://g?
 > 
-> I do not understand your questions.
 
-OK, I will clarify some questions, but are you sure that this question:
-"How did you solve it?"
-needs clarification?
-
-If so, then let me clarify:
-Rob pointed issue. How did you resolve Rob's comment? How did you
-address it? What changed in your patch, that Rob's comment should be
-considered as addressed/resolved/done?
-
-Now about my other question:
-"but where is it? Where is the user?"
-
-Your subject and commit message claim you add new property. This means
-such property was not existing so far in the Linux kernel. If you add
-new property in the binding, then I expect adding the user of that
-binding, thus my question: where is the user of that binding?
-
-> 
-> That I would like to do, it is property "st,ext-phyclk" was introduced 
-> in driver
-> 
-> "drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c" in 2020, and YAML 
-> was not updated at the time.
-
-Are you saying you document existing property or add a new one?
-
-> 
-> Goal of this patch it is to update YAML to avoid dtbs check issue if 
-> someone use this property :
-> 
->   dtbs check issue : views/kernel/upstream/net-next/arch/arm/boot/dts/st/stm32mp157c-dk2.dtb:
-> ethernet@5800a000: Unevaluated properties are not allowed
-> ('st,ext-phyclk' was unexpected)
-
-So DTS uses it?
-
-Are my questions now clear? BTW, I asked some of them before and you
-just sent the same patch, so looks like ignored my questions.
+It should be dropped entirely in fact. There is color and function.
 
 Best regards,
 Krzysztof
