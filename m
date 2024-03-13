@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-50181-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50182-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 341C787A35D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 08:19:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2FD1187A365
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 08:23:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id B5A351F22325
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 07:19:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 52A2B1C2181C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 07:23:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BA513168A4;
-	Wed, 13 Mar 2024 07:19:43 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 089DF168DF;
+	Wed, 13 Mar 2024 07:23:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="tE3wuov3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ylig1VV0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+Received: from mail-wr1-f46.google.com (mail-wr1-f46.google.com [209.85.221.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DBAB115EA2
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 07:19:41 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D585E15EA2
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 07:23:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710314383; cv=none; b=OIkNnEkCxGgqRvKoLICHBAxIftZq4XKD3631An+Njcp2I6JkeKPfIQ6dY+T+aW8AMrGlejpONdE7isVmt+5RmKHEJkHofpdF58Aj/KFKvdMJi6sQCUtWAHtMGAkJq8kGSdrSFxTAOsnFl5ZpekvjnqNU6akc4G0m1O7bG/4l2ZY=
+	t=1710314591; cv=none; b=kwbiVaH7eH8qnNEGBqgujUtzBvA0YCdiiph/JOzgU3TBwc7TzkF5HOQ7kEAK5LwbFQWRmSKzOkU9rtarLD8avD0JHCu5F7aKbUVkN/Tg1xOWTq5RAnYHH1EojuL126QkXep26O9BnoOtfn7GbG8B80N8jypkOHonwI0ux2+zIEU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710314383; c=relaxed/simple;
-	bh=v/hAU6PW6wjEt1e3ChheYiVgHPEB1gLGZWPraFPzoNE=;
+	s=arc-20240116; t=1710314591; c=relaxed/simple;
+	bh=a/lZwk/pm+Db9fq6QNFpSdI8D384OnTV0btsctyqme4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=FgQrBSIy9MNDBokJ4uxTE3i93wzQb9XFnD4ImHgoQ0cngtRp5kpvqqqosGdD8sNHbwqnLBZC71vBZCft7nfIIX7grLsYZ27mEyxYloXckHMDrguqsE6VlfrDwHCBqA0fiusB7H85whYLpATbbwbn5N4K56hqtTBT9mFLMJq7TN0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=tE3wuov3; arc=none smtp.client-ip=209.85.221.44
+	 In-Reply-To:Content-Type; b=QFe123GJXnxbcEwa3aaygiNiVDvdh6As9AWgyvJXuorz5FDCckPULu2tfWRcADUwTTJfXj6gVHTY46GH1hsF6qZOj/+L/uPg8LOcMe5IZOxyiHWm9jU1yPZ6nbx8U1j8gr1u34+7T/WeCb0kfnVCHlo3HQu0f4WYzO+kdsPGRQE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ylig1VV0; arc=none smtp.client-ip=209.85.221.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-33d38c9ca5bso3351480f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 00:19:41 -0700 (PDT)
+Received: by mail-wr1-f46.google.com with SMTP id ffacd0b85a97d-33e899ce9e3so576848f8f.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 00:23:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710314380; x=1710919180; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=vqjXaFj1OBGQuRnQ9ukBQMjSSkwKWQBdwlni2rHBJFo=;
-        b=tE3wuov33fYsg2Ek/sVlTaW+B5eoPbmb3n1D030n+1wXfATWrsPwpGPp+EADtPG74U
-         FBhhOL4Jj6kv2wvqNGvIhh6k2H3gd0b2d5NikHGhF9uOHQTdMigtFgKsMq1pkXZx/11U
-         dgJ8xS8rBjiGABbCJPtUaA+7W0pkg6rqhDToXmYWJ0JE3IW8I7ddeDELW7dQq5hFq17/
-         ne5AvDTvlCt1lhDWrLJUgrxDQF9PGklW5v5I7cY+s0UisxVGfMWTFOkDGqOud8EvV8gs
-         dQ8YDwnXW2+Cv3SnygpdyrCb93Szo2e/Lj6JuJOKh4IhhgD0q0ledrrAEoaBQuMyG/5p
-         2+uQ==
+        d=linaro.org; s=google; t=1710314587; x=1710919387; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JFJxyBzgSHYYw573VdktUov73Ozbkis7+JQYEiXOMfs=;
+        b=Ylig1VV0VIFf1J0mKhZPmmPXmP5bFo5WWbqNQz/ezoOzs8+PJFSgMbxu3/nXEvk4Eh
+         /vn4e3tIRN0ppDbM72ZAEcV82gEKCiB+vTNk/h5/Nl60g9r13JNKdMe4tfFckzahuxoY
+         rXdbt1b+ZYE1IY91OHe+Nz30nARviipQIKPhxqNY9uooooyPFVAW2vgTnGCcqOHaZPvK
+         AAAdw5QIsF5kQkr7YZPQ4tx+/By1BFGSop9tNBZu9F3nzZ2veAIG8MaCVq8MpitM5GGe
+         e7z9fwqL1+9HtYCKj6NZp6IRfKACeMu/lLEUZr2nzS04BjwfC0OSQ6GCWNTv3LvMS6hE
+         lALw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710314380; x=1710919180;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vqjXaFj1OBGQuRnQ9ukBQMjSSkwKWQBdwlni2rHBJFo=;
-        b=RG5tBlmbJWJxMfZYYT8cC23O5ZG/3AhQF3ZIZWM3t326D2MAjjQFL1d0d0tKVhTWME
-         zojL6qs8o0nSqJ5y9i/oPUA1vFuKVaPjNkHBplQx4F387Bu0OjxFzsGEZlR2SErEFwwD
-         yk6e6el6grwG1yhelez4MiNcEDoMI4HizV11eUIo6SveUyafsnh2j3uJSXhnxkwlyHR5
-         z2B6ocSD49dAf7J//1p80598EokQrVajOxD4RMBosejfRRtt8Sx/bSPmTDwWFxNyawMu
-         WlYV5ogQj7Xx888MCJe9G8R7Iww/DPokjolc76h0pWXjoR6ZdTl9ylVzA9hTHV18cT0x
-         Hq4w==
-X-Forwarded-Encrypted: i=1; AJvYcCW2g1bDsXRRm75rprjDF7XL7kXAlZBtRIXRx7UafVkDEmB0GqxlQogx9pvM6NMMhkhEjl4DcbMu+a7QKRKHWsmKd3RBb/kVZ92iRA==
-X-Gm-Message-State: AOJu0YyOYqhvXRr6hDjDk0aTBuKQfmYcnc6ABUHIkZyByeleOb4qAeLJ
-	EYzUXUBBe84F3MwX4JCSn9lxYwkbKIyxb3KWbT+8YEowZKiMwPdbOHKQfmu1ixA=
-X-Google-Smtp-Source: AGHT+IGyQioiiDIf29Z761cLxYehFyDDnT3QH2/d0gCGuPrcIO5UP7XJoVEilHt+ZiKL0Z1Tbi4IXQ==
-X-Received: by 2002:a5d:654e:0:b0:33e:73f7:adac with SMTP id z14-20020a5d654e000000b0033e73f7adacmr961716wrv.1.1710314380067;
-        Wed, 13 Mar 2024 00:19:40 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710314587; x=1710919387;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JFJxyBzgSHYYw573VdktUov73Ozbkis7+JQYEiXOMfs=;
+        b=fwJ53Un1IKGCWYBveOpzueQfiw9RIxtb+PgFYWcoDlHPyb4o+JFHQROK0ovqJnat7t
+         7b/3mF6xYBxzQ7oIvELZ33GJweljlg4qYyAtU8n+/m8FiUAWy1QL+7nnKEZmtDx7ocp/
+         dN0+30yscVT2lCAg56qbxCjXJYrFbOBxmWTNYZlOLt7euSWEJQe6YHQgUWGcGMW51Kci
+         ZVLZNeg3PHhIpf22veGaBmkBV6jdsZpk4nMYZAkYYQ1YZRbm3hfB2Rg7Ig14t7bSBVVe
+         gnam5evlDBa1SaA+BvvVA90yQLyPKTTIOMqXlQxLNHag4elbQpP8MJWY2WABLezLOpGZ
+         6Aag==
+X-Forwarded-Encrypted: i=1; AJvYcCXfjhFmHr3+Rq6AWEa2bk0Jcc/x8XKyx0zHMlu6StLkPnkONAshIqjFdM+Zf/MG4ieKTlTPWWvWDp6K8SHDAPBwydo1t+jczuPmQg==
+X-Gm-Message-State: AOJu0Yxv+9ctzx4dArPo5+7qmoiO8+mG6HH+veC2t6fv8o3kWOPWhMKN
+	OT0Uqtq3fEH4H0W2+Vp4qXh+uxaIk0ThJf2E8m7ZdMYwLtbP49YneaR1h01ZpUw=
+X-Google-Smtp-Source: AGHT+IGpI2dtHvNMdj5+2EbljYjvcpQWjcvXLOb188DV4m0Sci5TrAkfnIr9q18P9ZGdhB5Kexyisw==
+X-Received: by 2002:a5d:6da2:0:b0:33e:1f6f:6faa with SMTP id u2-20020a5d6da2000000b0033e1f6f6faamr1335335wrs.28.1710314587170;
+        Wed, 13 Mar 2024 00:23:07 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id q17-20020adffed1000000b0033cf5094fcesm10898039wrs.36.2024.03.13.00.19.38
+        by smtp.gmail.com with ESMTPSA id f15-20020adfdb4f000000b0033e79eca6dfsm10823836wrj.50.2024.03.13.00.23.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 13 Mar 2024 00:19:39 -0700 (PDT)
-Message-ID: <a3a8cb76-b6c4-47e9-a448-781225d93d84@linaro.org>
-Date: Wed, 13 Mar 2024 08:19:37 +0100
+        Wed, 13 Mar 2024 00:23:06 -0700 (PDT)
+Message-ID: <60a0e51f-dc0e-4bbf-8127-f987ac2aae71@linaro.org>
+Date: Wed, 13 Mar 2024 08:23:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,17 +76,21 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/3] dt-bindings: arm: qcom: Document rb5gen2 board
-To: Wasim Nazir <quic_wasimn@quicinc.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, kernel@quicinc.com
-References: <20240313071238.3290-1-quic_wasimn@quicinc.com>
- <20240313071238.3290-2-quic_wasimn@quicinc.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: update compatible name
+ for match with driver
 Content-Language: en-US
+To: Tengfei Fan <quic_tengfan@quicinc.com>, andersson@kernel.org,
+ konrad.dybcio@linaro.org, linus.walleij@linaro.org, robh@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ dmitry.baryshkov@linaro.org
+Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, kernel@quicinc.com
+References: <20240312025807.26075-1-quic_tengfan@quicinc.com>
+ <20240312025807.26075-2-quic_tengfan@quicinc.com>
+ <0d768f17-22d9-448e-9253-8498b61bf71e@linaro.org>
+ <31b02b76-88ff-42d7-a665-18d2661e028c@quicinc.com>
+ <6a3b5c9d-6375-457f-83c9-269746c1612a@linaro.org>
+ <ef237b3c-8613-4cd8-9391-e4a08d50cc6c@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,19 +136,69 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240313071238.3290-2-quic_wasimn@quicinc.com>
+In-Reply-To: <ef237b3c-8613-4cd8-9391-e4a08d50cc6c@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 13/03/2024 08:12, Wasim Nazir wrote:
-> Document board bindings for Rb5gen2.
-> Rb5gen2 is using Rb5 gen2 SOM which is based on QCS8550 SoC.
-> RB5gen2 is development kit used for IOT solutions.
+On 13/03/2024 02:30, Tengfei Fan wrote:
 > 
-> Signed-off-by: Wasim Nazir <quic_wasimn@quicinc.com>
 > 
+> On 3/12/2024 6:55 PM, Krzysztof Kozlowski wrote:
+>> On 12/03/2024 08:47, Tengfei Fan wrote:
+>>>
+>>>
+>>> On 3/12/2024 3:41 PM, Krzysztof Kozlowski wrote:
+>>>> On 12/03/2024 03:58, Tengfei Fan wrote:
+>>>>> Use compatible name "qcom,sm4450-tlmm" instead of "qcom,sm4450-pinctrl"
+>>>>> to match the compatible name in sm4450 pinctrl driver.
+>>>>>
+>>>>> Fixes: 7bf8b78f86db ("dt-bindings: pinctrl: qcom: Add SM4450 pinctrl")
+>>>>> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>>>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>>>> Signed-off-by: Tengfei Fan <quic_tengfan@quicinc.com>
+>>>>> ---
+>>>>>    Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.yaml | 2 +-
+>>>>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>>>
+>>>> Wasn't this applied?
+>>>
+>>> My test code base on tag: next-20240308, this patch is still not applied.
+>>>
+>>> In fact, the following dt binding check warning only can be got before
+>>> this patch is applied.
+>>>
+>>
+>> Please read all emails in the previous thread. You ignored two emails in
+>> the past and apparently one more recent.
+> 
+> I don't know if you mean I ignored the email which related with "Patch 
+> applied" tag from Linus Walleij. If so, the following is the reasion why 
+> I still include this patch:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Yep, that's the one. Please do not send patches which were already
+applied. It causes unnecessary effort on reviewer and maintainer side.
+
+> 
+> I synced the latest upstream code on 03/12/2024, the latest tag is 
+> next-20240308, this tag still doesn't include this patch[PATCH v3 1/2].
+
+Happens, considering Linus applied it after 8th of March, I think.
+
+> 
+> Dt binding check still get warning if I only send [PATCH v3 2/2] patch 
+> to upstream base on next-20240308. so I include this patch[PATCH v3 1/2] 
+
+If you send patch 1+2, dt_binding_check will have exactly the same
+result. I don't know about what sort of dt binding check you talk, but
+for all cases: you changed nothing by sending these two patches in that
+regard. Only noise on the lists.
+
+> in patch series even if this patch have "Patch applied" tag.
+> 
+> Looking forward to getting your advice if submitting patch series this 
+> way is problematic.
+
+Do not send patches which are known to be applied.
 
 Best regards,
 Krzysztof
