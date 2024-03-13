@@ -1,212 +1,183 @@
-Return-Path: <devicetree+bounces-50213-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50214-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 513A587A5EE
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 11:31:44 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 422C787A5FB
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 11:39:42 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id A3D71B21C5A
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:31:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C756928286A
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:39:40 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C4AC3D0B3;
-	Wed, 13 Mar 2024 10:31:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A515E3D0DD;
+	Wed, 13 Mar 2024 10:39:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="pL6AaKXF"
+	dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b="gzMsku0D"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2088.outbound.protection.outlook.com [40.107.114.88])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EDAE73B299;
-	Wed, 13 Mar 2024 10:31:34 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710325896; cv=none; b=nelDGVvlID/bK9adfRFtrLvcyRXAfvzUXYSlDc059hae5egHzn+7wnCTAPJBr7M+7jtqflKGFr0ibcZsTimRvbn6XaP/EZTKKO+IpGWk+9RBvEdFq4IIL/RtQtxBmAd2ZWNval0Ap0GnkO7U7wsjZNOZzQzOcxQTuJ1aE7fBBhA=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710325896; c=relaxed/simple;
-	bh=YL67QLFi8itRo/mf08zqoOV8qxPWioGfX6CBCSqydtQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=eCzY5IMnDGuXhUnqcgZlc2GYtSiG/oYMP9E+m6YYn2uqKcj2kiLhLBolV+pUq8xJwKBrkKVLICX4QoFxXIUFMmHBAXgmu2bDzMheexYnDSw4b2aQrWDT8Qcqa7bbBapbi1MXaxTe++MzmQfttJraOjUttWAlfdZbbvCMbbMSzFM=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=pL6AaKXF; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42D7jS2w028458;
-	Wed, 13 Mar 2024 10:31:30 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=1bRxUmmC5D7JOkclXvnpf6YXrdazHfBRXnnBcjbKPz8=; b=pL
-	6AaKXF+h8PGxoWZvPc8UNnFExRE4uF3o1eJMDuVGkdp1obpXvaBgKvlWOjbezNvY
-	kAoUbATRp6/WreLT1v5e3VZUOl4uSEyNTja8j1uUNAkigv+mJRxTEvQT3tX2lyeB
-	dRbjwm9CdP3RAqNHmkYGcbasj6BsdkXB4nGkHMZMoIc+q9G3VVUDv3vbIGSF4VuB
-	LQHSz5ribOPhi0CAl2FYSLgRfGok9Ho2rKUalgxxehtBQEKXtFHjfo585mlRY7/z
-	0y38WdqVltjOSE/KfkzmAhrCtevG47CeEpPbRu0jCcLEFUejnpATTxrdrVoMfKK8
-	ZvHF+zbcAitoAX3b13Tg==
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wu81m0b5c-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Mar 2024 10:31:30 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42DAVT0m024921
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Mar 2024 10:31:29 GMT
-Received: from [10.239.132.204] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Mar
- 2024 03:31:23 -0700
-Message-ID: <fb4f6b7f-7447-4af6-8d8e-d6f1be030e73@quicinc.com>
-Date: Wed, 13 Mar 2024 18:31:20 +0800
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F108D383BD;
+	Wed, 13 Mar 2024 10:39:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.88
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710326378; cv=fail; b=gf8YtoXU7hewPuPC91VoAtefZ7iORQZdbzL4AoNmUkXKHwmVn2YFzq6PatXKKc/sKWOKZsTYbD8ZdRDpGp8xOlwM7BKDx0j/QXrz3MUsOqcKvTJWIFYlY03FQ7ZiBK+/DcE3wtRJLjhJpIFrpG/v+Oq9jAE7D36OndmAP/DzqjU=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710326378; c=relaxed/simple;
+	bh=JLbg30Wj9fo7Pk2FbTHGsbEqhZe5TcRjBB2TC+Otu7w=;
+	h=From:To:CC:Subject:Date:Message-ID:References:In-Reply-To:
+	 Content-Type:MIME-Version; b=Wpy/ZmEGOPAan1jxclm38JrQ/qaM/Bxogt8hDj3ZC2xiINU31guZdY7wZYVqKIs9F9vonsP+tQLOvGgWOeMxqN7uOkIvaQUuXJIjhXAjaIdEBdYUgagbisezM/HwjqgupywSV506TAXArIxd3jGljne3+/fKdHE2MU2DSjivMEc=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; dkim=pass (1024-bit key) header.d=bp.renesas.com header.i=@bp.renesas.com header.b=gzMsku0D; arc=fail smtp.client-ip=40.107.114.88
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LEJVgO/9dwC6qs0TAoZZE5/Nm704sD6mn/phtLBv6JqD1GM2hfhPUHmc73yVO4ZTtfTCncyggfj9ty9bt5TwkzXt3fegG0Eec7O+dplNFseJjtwinrXCpP+YTnU58tCltGfHMNg4kNWBY8oRcdhWa4sSMZwO/hjAHE90o6+FmtQ+9kl/3Pxq+4C7ooKH919N2ZAJKatm6f6Bh0r1OcU5yI7ensNMD/UMOtDMk5E/ItI/PtTCzdTgv2/lqHN6VL7yH8p2Ub+RpF2TtUfTUavwWKSCn6rNnNov75SQGk8Lqv2w71TJwVZo+GFcGll3OkbUfztqHUOMs7mOEdYU+xhLQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sx75CZNE6D4z8RuxwDr58Ndja1RuMaXdJEJfUoshLgM=;
+ b=XpEgkvjbgW/j5P4yBnIW4Q8K+qFd9q+BswxBKr7DZdOYoWj2GpMWzeBmRIJDBA84wG8BqIyGHUkT5h5qOZu+SeN2Mx7NjqgmP+fvsFrtqlJiMIE0OU0Vlb0X+NvenUy318Tj4G1n+HD1CT2Z/AzrAbOapfG5gCqR6lv3+AYPYzkuIn1HlhTFnjMCiLb0HfdkRxfLO3Y4e/lx9aKoiM4Nm5IZ5FgNk7JQ8itlcMbPctSf2GlClTbY9qeZikEDJS0mkpg4vLKXrAchKUNCIptPITym14DSuFPRRM9d+2DK5DeYzQ8bxF4JVnC0z950jhxNzSc0aBNqDwuyeTc9GuscYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=bp.renesas.com; dmarc=pass action=none
+ header.from=bp.renesas.com; dkim=pass header.d=bp.renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bp.renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sx75CZNE6D4z8RuxwDr58Ndja1RuMaXdJEJfUoshLgM=;
+ b=gzMsku0DIXgSjvR60KRFgntg77zJ/FprUvdd7IOyxDm8kZQxsCdEvzgnozaCMOaUwo+6US4WL59jfPFdn4ezTsUQQvX4HEMjrhC9fLvDOvaeFkM4CRV27myuO1rjCUsZG16Bh6ipxAY3irfIHJQfWRgl+QezkTlug0n1G+6eXK4=
+Received: from OSAPR01MB1587.jpnprd01.prod.outlook.com (2603:1096:603:2e::16)
+ by TYCPR01MB8342.jpnprd01.prod.outlook.com (2603:1096:400:15f::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.18; Wed, 13 Mar
+ 2024 10:39:24 +0000
+Received: from OSAPR01MB1587.jpnprd01.prod.outlook.com
+ ([fe80::aef6:c35b:b90d:2e3f]) by OSAPR01MB1587.jpnprd01.prod.outlook.com
+ ([fe80::aef6:c35b:b90d:2e3f%5]) with mapi id 15.20.7386.017; Wed, 13 Mar 2024
+ 10:39:24 +0000
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: Biju Das <biju.das.jz@bp.renesas.com>, Mauro Carvalho Chehab
+	<mchehab@kernel.org>, Rob Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>
+CC: Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm
+	<magnus.damm@gmail.com>, Prabhakar Mahadev Lad
+	<prabhakar.mahadev-lad.rj@bp.renesas.com>, "linux-media@vger.kernel.org"
+	<linux-media@vger.kernel.org>, "devicetree@vger.kernel.org"
+	<devicetree@vger.kernel.org>, "linux-renesas-soc@vger.kernel.org"
+	<linux-renesas-soc@vger.kernel.org>, biju.das.au <biju.das.au@gmail.com>
+Subject: RE: [PATCH v3 0/2] Document RZ/G2UL CRU and CSI support
+Thread-Topic: [PATCH v3 0/2] Document RZ/G2UL CRU and CSI support
+Thread-Index: AQHaXokZWryfxE0HzkOQ5OsjkjLQg7E1p7/w
+Date: Wed, 13 Mar 2024 10:39:24 +0000
+Message-ID:
+ <OSAPR01MB1587A4AD9B455886E777DA38862A2@OSAPR01MB1587.jpnprd01.prod.outlook.com>
+References: <20240213142941.161217-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20240213142941.161217-1-biju.das.jz@bp.renesas.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=bp.renesas.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: OSAPR01MB1587:EE_|TYCPR01MB8342:EE_
+x-ms-office365-filtering-correlation-id: 6a0a1ff1-ed38-4fa7-5cb4-08dc4349d9c3
+x-ld-processed: 53d82571-da19-47e4-9cb4-625a166a4a2a,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info:
+ mqpn91pfCU88tj0VBr7orpk7lQWXAJLoclT9AatB1CvwEsUvPIcdwFFYsB/30+h8FajsLGqno/SjENrSSaHZnXjxCWsBJZ6VeW3IJO+735bZFzE7MRzflFuZO1Unx8vmGUk3VdxYiqYiM0q9zwyGMI1K3I9Xl3nk4nwzu3GgLNkK+ZQyp18IuuCBE9rys6yFZQpQWxcKwqJmGkvl1/MT30hSPLdTreULQIAHTM+oZXs+KBtc+z9in821UREXgmkzz8LJbNkovfXJlM+ZHUcjOMlciuWGp4F/KDAJMDbejn2P6JNEytR2DVuivGUdURGpZqmWGjxBH8DgTQo79PmIAOVqA6j2DFlcsTAHZWnEoBPUUc8JTNb5/RNOD8Q15zilO1Rdcyxn8XcmYdjNfFJuDr0U+pt4olPUxY3vmibwTdtZ98dM4mNfUQ3qBmWrh4o2puilDNno9epCtEpwzooSQIY5ZbPAoAkIW0IdOF6xQg4cGtVQy+MdQJUu9N+k8o0qASuBVbq+ov+PXjS44DrjgU4FG2rptbWIjAPpM/EXw0038UglxpMzMj6PsmXC2qsAJEIhG3sLrTLLB1CGJM0Gd2G2CRhblDG8Ous6adron3qm1tqPQlO/ekwkHFmUYUyB5Th/8M29XW4gv77niAZP/4QGsQcpP3gokAXStTVXinFq4yHEalLUm4DSw5b4QSAvNgGQttMxJFkyB0Qa3i8gJa+5Y8mWOanbDa/15iOyZA4=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB1587.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(1800799015)(38070700009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?konOpQmCuex0SE0HAOt77RamFaH5GydsuoS0HY/zqgihqsLU5TwE0pqijTpc?=
+ =?us-ascii?Q?SC53PP3LBJHP6+tyqm3PZrVJD8oJygxyozkYqGBYGcrL95rrcdoq9ud+fZYz?=
+ =?us-ascii?Q?/CNv54H0YVp8CGL8fTjA7R8QEYob4cG6efzFXlh7DX1sGAukUu1Dt7Z28k7W?=
+ =?us-ascii?Q?SSp7NSoW2sPK+OPm9cvZarzpaiL3ENWPbGTgeeZTR9n14g0SNUDGDqCEWBWZ?=
+ =?us-ascii?Q?YF9GsDcnjMhtYe8XzS074DMBpsNgXsgffXydkHBNcbwZR6Srn8gUhZcrx2nq?=
+ =?us-ascii?Q?8UWVOANWEzV8FV3ipl84crKcVheLaQoLyQCVnMibMZ7bvdHfHWeG90ImymDP?=
+ =?us-ascii?Q?M9YcYUcSwAqBzmbHBOzE2BDoAWn0D9r75LLmzJRwwEBFr1v5AnEGK6MpE/D3?=
+ =?us-ascii?Q?Er+acZsSverqnlQ+BMRt5xtD6mzPaVn8H++s9gyETTbVrfIFuLhNz5YfCZpr?=
+ =?us-ascii?Q?D2V/B8q6epK4UKiaDVn+dt2DeycGXc6J1ijUnV4aikpDoAat2vBQNkrw2W1z?=
+ =?us-ascii?Q?47LHRzBUM3V/s2dD7jHD4nUD2ans3WkNR7TTA1fw7kpvBq7YvaHM70ywm66d?=
+ =?us-ascii?Q?8+r3LeV1RWepzuGIchzxWI+skqR8FWvJ+AJ77uvgS+iQeWLWyuRg7inW8sKa?=
+ =?us-ascii?Q?QO5Wss9dDBd41P110wHQfufIhb+vhIqfPiK36V1jWCDczYs5EXONNbvIUDkl?=
+ =?us-ascii?Q?q0TZ1hYeKpILMQ87s4WXo6xR2LunbFRrdwZsAUScXOzpyIVb7r25zXv5Lf9h?=
+ =?us-ascii?Q?rUgwpK23LReAYkUrEs4Cq9GnxbUx0ndJSVBhgWR07GuaUtJL79ETMw4QeIda?=
+ =?us-ascii?Q?wRTMfVs2stNBygICCmSWjGzIpAeT+6lLLaleLs35ISVQZ264Uq5x7KBa+Mxi?=
+ =?us-ascii?Q?mvVR/3mNyRB+TtlDGwaMSyDAGJnAu1xWBtBtiAZT8k4v0wZRQuNT/Z8ScKHX?=
+ =?us-ascii?Q?0KGar1nD28z+/IeeAtuU4x9jTEaLDEC8R/7pN2VePIzTjH+keV40ntYoPu2k?=
+ =?us-ascii?Q?tfu0PxQdnWeVIC9GocKSAHgu/OZmfbjoRyvWzPMbAv1FZ/xfSz7ZfroiBmf8?=
+ =?us-ascii?Q?WIoGRjpBS/MJfzRd8+d1R39tM7BZv5qHr+0rZWIkFezJrrZ8O6B8A1a4SkiB?=
+ =?us-ascii?Q?WHt6If7NLSJYXoH6EE0iE0aVxAD4xfneeRMzgqrqyCufjd3N0utn+Li1+WJF?=
+ =?us-ascii?Q?eFEOzmxVhaQDHl6Am8xrU+T5UZ9EmVAAOfWyqSD8lgn3GsLdVhZrw4Y8Z0tk?=
+ =?us-ascii?Q?VO7pD6IG4lz1Mx/EeJBBxINDVR+zze/njbSyummA5AoYlPR+LD9bRwr9/wDg?=
+ =?us-ascii?Q?2VEUKv/pO5bZquwP+uNVnKYgP5/ld4No5yabzIQ06k8HkVG0ndEKchQOGOvG?=
+ =?us-ascii?Q?4UIXnWAJq/QpE+SqwZ7RhVweChENRMuUWRYmZA5C2UpiglaFBHiZ1NiB8/2G?=
+ =?us-ascii?Q?cXbmZik86zVZ1pm3zg01dXJO7JDQUikO0nPz5afzK58RlBpELfIgFFvh6ub+?=
+ =?us-ascii?Q?6xaHQ2CozC+SjKVSLzRBBkxQlA3lAYiy2W1S6kgExBT9EwYhYI/C7U2cF4s8?=
+ =?us-ascii?Q?NZ34ETZgeofKeoN7XBmvBMxd0GigEJm37URT7KS7forDnXD3Yf3SJ5IDIGUq?=
+ =?us-ascii?Q?Mw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: update compatible name
- for match with driver
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
-        <linus.walleij@linaro.org>, <robh@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <dmitry.baryshkov@linaro.org>
-CC: <linux-arm-msm@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@quicinc.com>
-References: <20240312025807.26075-1-quic_tengfan@quicinc.com>
- <20240312025807.26075-2-quic_tengfan@quicinc.com>
- <0d768f17-22d9-448e-9253-8498b61bf71e@linaro.org>
- <31b02b76-88ff-42d7-a665-18d2661e028c@quicinc.com>
- <6a3b5c9d-6375-457f-83c9-269746c1612a@linaro.org>
- <ef237b3c-8613-4cd8-9391-e4a08d50cc6c@quicinc.com>
- <60a0e51f-dc0e-4bbf-8127-f987ac2aae71@linaro.org>
- <f515f9f4-b87c-465b-83c0-f4b7b5c47840@quicinc.com>
- <15e344a8-8ad2-41f2-a8ac-6e5d1627c19a@linaro.org>
-From: Tengfei Fan <quic_tengfan@quicinc.com>
-In-Reply-To: <15e344a8-8ad2-41f2-a8ac-6e5d1627c19a@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: jMlKTiFCA9cN5SU98-Ci9Mjx_bkCFTHr
-X-Proofpoint-GUID: jMlKTiFCA9cN5SU98-Ci9Mjx_bkCFTHr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-13_07,2024-03-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- malwarescore=0 lowpriorityscore=0 clxscore=1015 phishscore=0
- priorityscore=1501 mlxlogscore=999 impostorscore=0 suspectscore=0
- spamscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403130078
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB1587.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a0a1ff1-ed38-4fa7-5cb4-08dc4349d9c3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Mar 2024 10:39:24.4657
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Us7M+iUFvj4eQTKEKpiPrqFHCX3wkiZxQ8LhS7aphtzTfj4MLSYnEQrAZXeOKH0ooCw4iQIWstSIodfHc4b0ashCwEp0D7g04e6X3e9e+m0=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB8342
 
+Hi All,
 
+Gentle ping.
 
-On 3/13/2024 5:11 PM, Krzysztof Kozlowski wrote:
-> On 13/03/2024 08:55, Tengfei Fan wrote:
->>>>>>> Wasn't this applied?
->>>>>>
->>>>>> My test code base on tag: next-20240308, this patch is still not applied.
->>>>>>
->>>>>> In fact, the following dt binding check warning only can be got before
->>>>>> this patch is applied.
->>>>>>
->>>>>
->>>>> Please read all emails in the previous thread. You ignored two emails in
->>>>> the past and apparently one more recent.
->>>>
->>>> I don't know if you mean I ignored the email which related with "Patch
->>>> applied" tag from Linus Walleij. If so, the following is the reasion why
->>>> I still include this patch:
->>>
->>> Yep, that's the one. Please do not send patches which were already
->>> applied. It causes unnecessary effort on reviewer and maintainer side.
->>>
->>>>
->>>> I synced the latest upstream code on 03/12/2024, the latest tag is
->>>> next-20240308, this tag still doesn't include this patch[PATCH v3 1/2].
->>>
->>> Happens, considering Linus applied it after 8th of March, I think.
->>>
->>>>
->>>> Dt binding check still get warning if I only send [PATCH v3 2/2] patch
->>>> to upstream base on next-20240308. so I include this patch[PATCH v3 1/2]
->>>
->>> If you send patch 1+2, dt_binding_check will have exactly the same
->>> result. I don't know about what sort of dt binding check you talk, but
->>> for all cases: you changed nothing by sending these two patches in that
->>> regard. Only noise on the lists.
->>
->> The dt binding check failed which Rob Herring remind me in previous
->> patch series as the following:
-> 
-> This does not make any sense. Whether Rob runs his test on previous or
-> future next, changes nothing in regard of this patchset being sent with
-> duplicated patch or not. The result will be exactly the same for Rob.
-> 
->>
->> Documentation/devicetree/bindings/pinctrl/qcom,sm4450-tlmm.example.dtb:
->> /example-0/pinctrl@f100000: failed to match any schema with
->> compatible: ['qcom,sm4450-tlmm']
->>
->> This failed is introduced by
->> https://lore.kernel.org/linux-arm-msm/20231206020840.33228-2-quic_tengfan@quicinc.com/.
->> Something got broken aroud -m flags for dtschema, so indeed no reports
->> this unmatched compatibles warning when this patch was revriwed. We also
->> have some discusstion in patch email.
-> 
-> Again, not related at all whether you send patch *which was applied* or not.
-> 
->>
->> The patch[PATCH v3 1/2] is made for fix this previous patch dt binding
->> check failed. So dt binding check failed will disappear after this
->> patch[PATCH v3 1/2] is applied.
-> 
-> And who is supposed to run that dt binding check and on what base? Your
-> patch changes absolutely nothing in that regard, just creates confusion.
-> 
-> And the fact that you keep arguing over this simple case, reminds me
-> other clueless discussions I had with some Qualcomm folks. None of the
-> arguments you brought here justify sending patch which was applied.
+Cheers,
+Biju
 
-Sending duplicated patch isn't a correct approach, I will avoid making 
-similar mistakes in the future.
+> -----Original Message-----
+> From: Biju Das <biju.das.jz@bp.renesas.com>
+> Sent: Tuesday, February 13, 2024 2:30 PM
+> Subject: [PATCH v3 0/2] Document RZ/G2UL CRU and CSI support
+>=20
+> This patch series aims to Document CSI/CRU interface found on RZ/G2UL SoC=
+.
+>=20
+> v2->v3:
+>  * Added Rb tag from Geert for patch#1 and #2.
+>  * Added Ack from Conor Dooley for patch#2.
+>  * Dropped SoC dtsi patches from this series as it accepted and
+>    also dropped Overlay patch for enabling CSI/CRU on RZ/G2UL SMARC EVK
+>    as it is sent as separate patch.
+>  * Updated commit header and description of the cover letter.
+> v1->v2:
+>  * Added Ack from Conor Dooley for patch#1.
+>  * Dropped driver reference from commit description for the binding
+>    patches.
+>=20
+> Biju Das (2):
+>   media: dt-bindings: renesas,rzg2l-csi2: Document Renesas RZ/G2UL CSI-2
+>     block
+>   media: dt-bindings: renesas,rzg2l-cru: Document Renesas RZ/G2UL CRU
+>     block
+>=20
+>  .../bindings/media/renesas,rzg2l-cru.yaml     | 35 ++++++++++++++++---
+>  .../bindings/media/renesas,rzg2l-csi2.yaml    |  1 +
+>  2 files changed, 32 insertions(+), 4 deletions(-)
+>=20
+> --
+> 2.25.1
 
-> 
->>
->>>
->>>> in patch series even if this patch have "Patch applied" tag.
->>>>
->>>> Looking forward to getting your advice if submitting patch series this
->>>> way is problematic.
->>>
->>> Do not send patches which are known to be applied.
->>
->> Yes, I will be careful not to resend the patch which have already been
->> applied in the future work.
-> 
-> Then why do you keep arguing that sending this duplicated patch was
-> correct approach?
-There may be some confusion here. Sending this duplicated patch isn't a 
-correct approach, I will not send duplicated patch again in the future 
-upstream work.
-
-> 
->>
->> Do you think it is necessary to send another version patch series for
->> remove this applied patch[PATCH v3 1/2] from patch series?
-> 
-> No. It is merge window, please read process documents in Documentation
-> directory. Then please read Qualcomm upstreaming guide.
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Thx and BRs,
-Tengfei Fan
 
