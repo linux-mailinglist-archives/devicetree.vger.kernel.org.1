@@ -1,301 +1,208 @@
-Return-Path: <devicetree+bounces-50207-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50209-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AA3387A54B
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:53:36 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2268E87A5AF
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 11:20:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D73B1C215C3
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 09:53:35 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 96C291F222D0
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:20:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5AC1439854;
-	Wed, 13 Mar 2024 09:53:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D26BE3987A;
+	Wed, 13 Mar 2024 10:20:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="lcSpuppE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R0nCg18E"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com [209.85.219.178])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 64B471BF3D;
-	Wed, 13 Mar 2024 09:53:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=45.89.224.132
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 141D238FA0
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 10:20:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.178
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710323605; cv=none; b=m/793EE0DpchA8SPcnUKyXPYin0Eth48Z8e4sImt9clY/JLXqy6+i2VqEhyImpfvuc6usVthoxsNIQ/Zjqp5DystCJS1v0w+Ts5kJfuMsZbZ5eDm0xQ3UcCez53MIadF6Blqcetj7btg4oWkQdioXcXeLdZKOMvSrWZWyQPk2GI=
+	t=1710325223; cv=none; b=OAE+9VRzQkrhzilV2o/6d/RONkLYx6Se/Y9H2GVSQlrRM4cJtvpT8P6jVoiWs/47ZgXKKbYenoVBrUVSCqUeIBmFBVtVqhVR8hX8RtwlDb4UZ0GsZW/Y/O2blAwbedizx1bmNHWaHElf9IHo+6WvaV43IfNAy8GLTCKcNvuGt40=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710323605; c=relaxed/simple;
-	bh=cWCirITw46ZgAbe6A1T/dK4PHlKFvJDMsZFbBQ/W64s=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Q1qLdfHC/iguR+CNFhHtthfZhOqDfsHU3/+2Uo7ntrzC0mtARi7Q/2OOzzu2AEpHbiF6wZbOHBTkhO/jcUAXHPm8NINcGWk+LGSoaEPv7+vRgWlWAULOeuT5ZsihmvoYeNbLPe8NNqcvUDTa8A0POzvLUI+srULcxCUBn4rGg9Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=salutedevices.com; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=lcSpuppE; arc=none smtp.client-ip=45.89.224.132
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=salutedevices.com
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-	by mx1.sberdevices.ru (Postfix) with ESMTP id 6D274120002;
-	Wed, 13 Mar 2024 12:53:17 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6D274120002
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
-	s=mail; t=1710323597;
-	bh=rMrhuCneD6lJOcUxR4LibDJEbk+xW9qHFGbh0HWQvCg=;
-	h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-	b=lcSpuppE3R9YUL7DcFvlZZqoEFzyZw8l9iyZAsu0hUP21dgn4/YhftGmxZ5MkoC8S
-	 RvhKm4VHgp+yIRy1UkowMECzcuv+4xhM2lCsI8fsoIkMq16NAAcbBtK5+Um280K8vx
-	 TTi5BNrdvfRm9+2ZbR3UJW+4MhMIybV327Mx4z5dRdhHLdqCT6kXFhTp8KCJLcmWfn
-	 77brACDntwJH/elyukiTp3vqZaRIBoXBjbupW1IPqKdDuk8C6RXedEupiYtsxDMmAI
-	 kP2sdJ3Bw8JrHSGgdONUFsmn/9MCRaHiY/beLh0MKLZVfDkj9Hlxydi7+2ickBMO3Q
-	 s3MQR5dKQe6ag==
-Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by mx1.sberdevices.ru (Postfix) with ESMTPS;
-	Wed, 13 Mar 2024 12:53:17 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m02.sberdevices.ru
- (172.16.192.103) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Mar
- 2024 12:53:16 +0300
-Date: Wed, 13 Mar 2024 12:53:11 +0300
-From: Dmitry Rokosov <ddrokosov@salutedevices.com>
-To: Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-CC: Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Neil
- Armstrong <neil.armstrong@linaro.org>, Martin Blumenstingl
-	<martin.blumenstingl@googlemail.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	Kevin Hilman <khilman@baylibre.com>, <devicetree@vger.kernel.org>,
-	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
-	<linux-amlogic@lists.infradead.org>, Xianwei Zhao <xianwei.zhao@amlogic.com>
-Subject: Re: [DMARC error][DKIM error] [PATCH 3/4] arm64: dts: add support
- for A4 based Amlogic BA400
-Message-ID: <20240313095311.dxrr7gvt4t3gwoho@CAB-WSD-L081021>
-References: <20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com>
- <20240312-basic_dt-v1-3-7f11df3a0896@amlogic.com>
+	s=arc-20240116; t=1710325223; c=relaxed/simple;
+	bh=54ISWejEc7g43gLJbaA6kw3tAbDUhEEnqU4SOmf5mdo=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=TRrK8PeLTxlFylpCDqtUAVaZYOcNbVUaJDLAauQ9wPBz5H4dLiqauHGXHX4ORzUQqesCEhWDkHxaAVpEW6cN551JRtTMHSaVoGM366wy3SmeTMfB18UbNi+bFf1JB5CSAaBYheJs21X0gsuF47JGMS++xKOqltUlYfrbUvca7gY=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R0nCg18E; arc=none smtp.client-ip=209.85.219.178
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dcc84ae94c1so742190276.1
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 03:20:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710325221; x=1710930021; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=54ISWejEc7g43gLJbaA6kw3tAbDUhEEnqU4SOmf5mdo=;
+        b=R0nCg18EO1pW9zayhsTn8LQj7M3+tiyyIwN4VB23GEi3NQitBZ7czlmYPgZD9vk+tE
+         1siPpPrsZbCZzW8KpscjM7/rWYkTIds9ia/8k+pclKiEqcjsPCghD4OXM7h4bamAp1ub
+         qGUGm6rG03fdKia17bjrSjhUBqBFW05+SQlK8vyXTjcKRFTazpiuG03NfV1GO6g6dDqx
+         4wXVWMKHqt8TmpUDjfksl7fe/u7A6wt+HPq4L/o+b8Wez97PUM5yuLzIY4+LKXJlIeSW
+         hIVzvYo0Gknfe4kbcp06LD0WOiPjIBdf4q1yQOEdMsMauyYomnOeDZ4oM/GIz0afO8c8
+         yKJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710325221; x=1710930021;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=54ISWejEc7g43gLJbaA6kw3tAbDUhEEnqU4SOmf5mdo=;
+        b=ngMK4SE1vgzS39St0wJE15tw3DmNczk6hCAkoBndWElwFT377zw67I71HOHeyh+XAc
+         LXlZaKojEYA1prNXWLKXKU5teHpAp0NNKvpYILFUGm+2a/eobB31NvdgtzoO8IV1HF3B
+         TZYwDs0eJyJO1j8oJajY1N+eyfabeAEtP7w+II8p6Ptsjv6H70W6b4UOtm1wOJvUmtIw
+         PekYnvUB5fBZ1UBIET4i12nTOVBlFZvumlr7zzYGNiqdpIMeLpZAq3Hh8ClM0PtxXoHv
+         Ln/4RmR6bSHEysKioglYhx1bkMFtA+YZGA2lUKzMAi5dVx6L5zKK/66ZLBOuGCy91Xgs
+         xOoQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWLrO1e0SlNYUwWH9y19V3k0NVkA9LVo1WdBUhYzh4D0G7NYfcCZYNpIGgLoCeOQP9yzb4EDqOqpBhgkIi439Orspd7CYVb2qmOIw==
+X-Gm-Message-State: AOJu0YzdqQj2h0jYLqASTNRPnjjjAVLD8R20BBvHvc+EZA9OUQSuyZDK
+	4Ub6QCb7YSEzECyH3Kdweh5Ls7rKomRNuBrRHhIdcADZ3/klTp8lPgkKHY+YV6vSOgK7H68kV7x
+	MBvTQVGTmkxjCWt40SM099ZpmDD8Zg2d/GZPBOg==
+X-Google-Smtp-Source: AGHT+IFm+nd9UQ/qBzI3QBLuuQiXvE1fxdsTpFm/8S45FQPW7ia2y7pgMtQG7PtBRgpPtevnZAjJUXHxcwo/XGYvOcw=
+X-Received: by 2002:a25:2c3:0:b0:dc2:2e01:4ff0 with SMTP id
+ 186-20020a2502c3000000b00dc22e014ff0mr2046178ybc.45.1710325221040; Wed, 13
+ Mar 2024 03:20:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20240312-basic_dt-v1-3-7f11df3a0896@amlogic.com>
-User-Agent: NeoMutt/20220415
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 183875 [Feb 29 2024]
-X-KSMG-AntiSpam-Version: 6.1.0.3
-X-KSMG-AntiSpam-Envelope-From: ddrokosov@salutedevices.com
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, FromAlignment: s, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2024/02/29 16:52:00
-X-KSMG-LinksScanning: Clean, bases: 2024/02/29 16:52:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
-X-KSMG-AntiVirus-Status: Clean, skipped
+References: <cover.1709667858.git.daniel@makrotopia.org> <CAPDyKFpQfue5Fi0fFSnqHNg2ytCxAYfORVP_Y86ucz2k5HRuDA@mail.gmail.com>
+ <ZfBK5qT_GO_FgtQP@makrotopia.org> <CAPDyKFr7mMEZE5n=6kxxsj9P3oLjLyVx20O9q0-pmyXzXYk52A@mail.gmail.com>
+ <ZfBUoc5IjzxbEj7B@makrotopia.org>
+In-Reply-To: <ZfBUoc5IjzxbEj7B@makrotopia.org>
+From: Ulf Hansson <ulf.hansson@linaro.org>
+Date: Wed, 13 Mar 2024 11:19:44 +0100
+Message-ID: <CAPDyKFqd=JF6LP4-U2_JNg6Et_PBHFMisnhnUqndK68ZeZ29fg@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 0/8] nvmem: add block device NVMEM provider
+To: Daniel Golle <daniel@makrotopia.org>
+Cc: Rob Herring <robh@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Jens Axboe <axboe@kernel.dk>, Dave Chinner <dchinner@redhat.com>, Jan Kara <jack@suse.cz>, 
+	=?UTF-8?Q?Thomas_Wei=C3=9Fschuh?= <linux@weissschuh.net>, 
+	Christian Brauner <brauner@kernel.org>, Li Lingfeng <lilingfeng3@huawei.com>, 
+	Damien Le Moal <dlemoal@kernel.org>, Min Li <min15.li@samsung.com>, 
+	Adrian Hunter <adrian.hunter@intel.com>, Hannes Reinecke <hare@suse.de>, 
+	Christian Loehle <CLoehle@hyperstone.com>, Avri Altman <avri.altman@wdc.com>, 
+	Bean Huo <beanhuo@micron.com>, Yeqi Fu <asuk4.q@gmail.com>, 
+	Victor Shih <victor.shih@genesyslogic.com.tw>, 
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>, 
+	"Ricardo B. Marliere" <ricardo@marliere.net>, Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-mmc@vger.kernel.org, linux-block@vger.kernel.org, 
+	Diping Zhang <diping.zhang@gl-inet.com>, Jianhui Zhao <zhaojh329@gmail.com>, 
+	Jieying Zeng <jieying.zeng@gl-inet.com>, Chad Monroe <chad.monroe@adtran.com>, 
+	Adam Fox <adam.fox@adtran.com>, John Crispin <john@phrozen.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Hello Xianwei,
+On Tue, 12 Mar 2024 at 14:12, Daniel Golle <daniel@makrotopia.org> wrote:
+>
+> On Tue, Mar 12, 2024 at 01:57:39PM +0100, Ulf Hansson wrote:
+> > On Tue, 12 Mar 2024 at 13:30, Daniel Golle <daniel@makrotopia.org> wrote:
+> > >
+> > > Hi Ulf,
+> > >
+> > > On Tue, Mar 12, 2024 at 01:22:49PM +0100, Ulf Hansson wrote:
+> > > > On Tue, 5 Mar 2024 at 21:23, Daniel Golle <daniel@makrotopia.org> wrote:
+> > > > >
+> > > > > On embedded devices using an eMMC it is common that one or more (hw/sw)
+> > > > > partitions on the eMMC are used to store MAC addresses and Wi-Fi
+> > > > > calibration EEPROM data.
+> > > > >
+> > > > > Implement an NVMEM provider backed by block devices as typically the
+> > > > > NVMEM framework is used to have kernel drivers read and use binary data
+> > > > > from EEPROMs, efuses, flash memory (MTD), ...
+> > > > >
+> > > > > In order to be able to reference hardware partitions on an eMMC, add code
+> > > > > to bind each hardware partition to a specific firmware subnode.
+> > > > >
+> > > > > This series is meant to open the discussion on how exactly the device
+> > > > > tree schema for block devices and partitions may look like, and even
+> > > > > if using the block layer to back the NVMEM device is at all the way to
+> > > > > go -- to me it seemed to be a good solution because it will be reuable
+> > > > > e.g. for (normal, software GPT or MBR) partitions of an NVMe SSD.
+> > > > >
+> > > > > This series has previously been submitted on July 19th 2023[1] and most of
+> > > > > the basic idea did not change since.
+> > > > >
+> > > > > However, the recent introduction of bdev_file_open_by_dev() allow to
+> > > > > get rid of most use of block layer internals which supposedly was the
+> > > > > main objection raised by Christoph Hellwig back then.
+> > > > >
+> > > > > Most of the other comments received for in the first RFC have also
+> > > > > been addressed, however, what remains is the use of class_interface
+> > > > > (lacking an alternative way to get notifications about addition or
+> > > > > removal of block devices from the system). As this has been criticized
+> > > > > in the past I'm specifically interested in suggestions on how to solve
+> > > > > this in another way -- ideally without having to implement a whole new
+> > > > > way for in-kernel notifications of appearing or disappearing block
+> > > > > devices...
+> > > > >
+> > > > > And, in a way just like in case of MTD and UBI, I believe acting as an
+> > > > > NVMEM provider *is* a functionality which belongs to the block layer
+> > > > > itself and, other than e.g. filesystems, is inconvenient to implement
+> > > > > elsewhere.
+> > > >
+> > > > I don't object to the above, however to keep things scalable at the
+> > > > block device driver level, such as the MMC subsystem, I think we
+> > > > should avoid having *any* knowledge about the binary format at these
+> > > > kinds of lower levels.
+> > > >
+> > > > Even if most of the NVMEM format is managed elsewhere, the support for
+> > > > NVMEM partitions seems to be dealt with from the MMC subsystem too.
+> > >
+> > > In an earlier iteration of this RFC it was requested to make NVMEM
+> > > support opt-in (instead of opt-out for mtdblock and ubiblock, which
+> > > already got their own NVMEM provider implementation).
+> > > Hence at least a change to opt-in for NVMEM support is required in the
+> > > MMC subsystem, together with making sure that MMC devices have their
+> > > fwnode assigned.
+> >
+> > So, the NVMEM support needs to be turned on (opt-in) for each and
+> > every block device driver?
+> >
+> > It's not a big deal for me - and I would be happy to apply such a
+> > change. On the other hand, it is just some binary data that is stored
+> > on the flash, why should MMC have to opt-in or opt-out at all? It
+> > should be the upper layers who decide what to store on the flash, not
+> > the MMC subsystem, if you get my point.
+> >
+>
+> I agree, and that's exactly how I originally wrote it. However, in the
+> first round of rewiew it was requested to be in that way (ie. opt-in
+> for each subsystem; rather than opt-out for subsystems already
+> providing NVMEM in another way, such as MTD or UBI), see here:
+>
+> https://patchwork.kernel.org/comment/25432948/
 
-On Tue, Mar 12, 2024 at 05:18:59PM +0800, Xianwei Zhao via B4 Relay wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> 
-> Amlogic A4 is an application processor designed for smart audio
-> and IoT applications.
-> 
-> Add basic support for the A4 based Amlogic BA400 board, which describes
-> the following components: CPU, GIC, IRQ, Timer and UART.
-> These are capable of booting up into the serial console.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/Makefile               |  1 +
->  .../boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts   | 43 ++++++++++
->  arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 99 ++++++++++++++++++++++
->  3 files changed, 143 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 1ab160bf928a..9a50ec11bb8d 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -1,4 +1,5 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
->  dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
->  dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
->  dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts b/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts
-> new file mode 100644
-> index 000000000000..60f9f23858c6
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts
-> @@ -0,0 +1,43 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "amlogic-a4.dtsi"
-> +
-> +/ {
-> +	model = "Amlogic A113L2 ba400 Development Board";
-> +	compatible = "amlogic,ba400","amlogic,a4";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart_b;
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		reg = <0x0 0x0 0x0 0x40000000>;
-> +	};
-> +
-> +	reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		/* 52 MiB reserved for ARM Trusted Firmware */
-> +		secmon_reserved:linux,secmon {
-> +			compatible = "shared-dma-pool";
-> +			no-map;
-> +			alignment = <0x0 0x400000>;
-> +			reg = <0x0 0x05000000 0x0 0x3400000>;
-> +		};
-> +	};
-> +};
-> +
-> +&uart_b {
-> +	status = "okay";
-> +};
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-> new file mode 100644
-> index 000000000000..7e8745010b52
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
-> @@ -0,0 +1,99 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +/ {
-> +	cpus {
-> +		#address-cells = <2>;
-> +		#size-cells = <0>;
-> +
-> +		cpu0: cpu@0 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0 0x0>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu1: cpu@1 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0 0x1>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu2: cpu@2 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0 0x2>;
-> +			enable-method = "psci";
-> +		};
-> +
-> +		cpu3: cpu@3 {
-> +			device_type = "cpu";
-> +			compatible = "arm,cortex-a53";
-> +			reg = <0x0 0x3>;
-> +			enable-method = "psci";
-> +		};
-> +	};
-> +
-> +	timer {
-> +		compatible = "arm,armv8-timer";
-> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-> +	};
-> +
-> +	psci {
-> +		compatible = "arm,psci-0.2";
-> +		method = "smc";
-> +	};
-> +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xtal";
-> +		#clock-cells = <0>;
-> +	};
-> +
-> +	soc {
-> +		compatible = "simple-bus";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		gic: interrupt-controller@fff01000 {
-> +			compatible = "arm,gic-400";
-> +			#interrupt-cells = <3>;
-> +			#address-cells = <0>;
-> +			interrupt-controller;
-> +			reg = <0x0 0xfff01000 0 0x1000>,
-> +			      <0x0 0xfff02000 0 0x2000>,
-> +			      <0x0 0xfff04000 0 0x2000>,
-> +			      <0x0 0xfff06000 0 0x2000>;
-> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-> +		};
-> +
-> +		apb@fe000000 {
-> +			compatible = "simple-bus";
-> +			reg = <0x0 0xfe000000 0x0 0x480000>;
-> +			#address-cells = <2>;
-> +			#size-cells = <2>;
-> +			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-> +
-> +			uart_b: serial@7a000 {
-> +				compatible = "amlogic,meson-s4-uart",
+Okay, got it, thanks!
 
-If I'm not wrong, you need to create dt-binding alias for meson-a4-uart
-and use it as 3rd compatible string.
+>
+> > >
+> > > > Why can't NVMEM partitions be managed the usual way via the MBR/GPT?
+> > >
+> > > Absolutely, maybe my wording was not clear, but that's exactly what
+> > > I'm suggesting here. There are no added parsers nor any knowledge
+> > > about binary formats in this patchset.
+> >
+> > Right, but there are new DT bindings added in the $subject series that
+> > allows us to describe NVMEM partitions for an eMMC. Why isn't that
+> > parsed from the MBR/GPT, etc, rather than encoded in DT?
+>
+> The added dt-bindings merely allow to **identify** the partition by
+> it's PARTNAME, PARTNO or PARTUUID, so we can reference them in DT.
+> We'd still rely on MBR or GPT to do the actual parsing of the on-disk
+> format.
 
-> +					     "amlogic,meson-ao-uart";
-> +				reg = <0x0 0x7a000 0x0 0x18>;
-> +				interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
-> +				clocks = <&xtal>, <&xtal>, <&xtal>;
-> +				clock-names = "xtal", "pclk", "baud";
-> +				status = "disabled";
-> +			};
-> +		};
-> +	};
-> +};
-> 
-> -- 
-> 2.37.1
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+Thanks for clarifying!
 
--- 
-Thank you,
-Dmitry
+So, it looks like this all relies on what DT maintainers think then.
+
+[...]
+
+Kind regards
+Uffe
 
