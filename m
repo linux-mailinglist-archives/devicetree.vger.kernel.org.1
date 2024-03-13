@@ -1,148 +1,136 @@
-Return-Path: <devicetree+bounces-50199-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50208-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFFCB87A509
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:32:23 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41FC087A579
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 11:03:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 35A1DB214E0
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 09:32:21 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id D7D791F229E2
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 10:03:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 69D4920B02;
-	Wed, 13 Mar 2024 09:32:19 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 14A0922615;
+	Wed, 13 Mar 2024 10:03:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="bluEiDfC"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="c+3q6Co/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com [209.85.167.46])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D6AF520309;
-	Wed, 13 Mar 2024 09:32:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0D83039AE1
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 10:03:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710322339; cv=none; b=rVIhCozRIOpebQZw8TYwD8MgODpWU56ickfIYMTGetLu9dSQA0g/c7WM/zEHYta+GsIX/hor6yN/OTUFtsrI0wKU6m2TQZMv+j6yR/Rs1onui7i+sQQ7iOvUGm60WUBegPfgATXunKGVJrQkRN+z365IhKHqtL+jveE77CJyRKU=
+	t=1710324219; cv=none; b=YDuCLdQcf5O+borxxNc+yc6WN+LeOFs1+Vr8RbPFxpz1oHxKfi9abInnEHkNhcy6ygLmGRB3Orb8XgurzhNwmFkP1jnmBwSm8JfvMm04fsxjUPCffrfSaHDuUf9OaxPPyeMXllcvZA82UJAG8jxE74kaeEq8G5bnZoJvZbIGJTQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710322339; c=relaxed/simple;
-	bh=tM5Bd/lj1Kyh0D2rITpWKYzjyrlwg9YS7Q94u+Z2Bfg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=ZvR0+TbkK4TRmn4e6ASSSjg2as2MCxDegdVfYHX+k3Jp0kq70qhV0sgexxwMMQd70ACovks+Z+gY9vol3556QTYTuoTgslfmGMOA01G7GxppJPHi7oBLNG8ENs/rpz5Bmt+RLGjJh4jvC3rrz2Ge5bFBqGuT3K8GGFsJml4EHuY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=bluEiDfC; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42D5RUgB001669;
-	Wed, 13 Mar 2024 09:32:08 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=AJdXhUYrFAQmdOJASSCpwGDADNqIOouBCpm330S19a4=; b=bl
-	uEiDfCLJeRw4qHUupGybPn2B3Fd2OzgrqxEPGN9l9ixtB6IPqNr2geky7A6RIA+u
-	Kv/qlO9ZyHq983kcf/rHS0omgzhNthvALo9q4YlxgJQBvudoCTRQB/XkVN5ufA17
-	ZSyYATlVeDVGqIw28A8G/jk7zclCrE36WwsFgtKjNgge9XJ6ZtxQlS79xGBPJrgo
-	HS6scxRoeAmsOzkn8iL2+TGoit6rHPzTguNaUIcV2+2e0yrUuJPe7taiDU9aywz6
-	puQDLjv2VLSo38kM4WZJsf9limd8ygY3QYHFbfsOLGfKVIDiPkgdlUJWkdyBaEkK
-	2b20vxyb5pFiZoYRNC4A==
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wu2j38td6-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Mar 2024 09:32:08 +0000 (GMT)
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42D9W7fo022840
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Mar 2024 09:32:07 GMT
-Received: from [10.201.2.96] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Mar
- 2024 02:32:04 -0700
-Message-ID: <4a11d946-3c32-42fd-959b-32e61cc61ab5@quicinc.com>
-Date: Wed, 13 Mar 2024 15:02:01 +0530
+	s=arc-20240116; t=1710324219; c=relaxed/simple;
+	bh=HwGbsRac51u5IWwjbzw3ouLNHThjNvNYMLQfmsHJPTw=;
+	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
+	 MIME-Version:Content-Type; b=aVfgfbzMGs3Bcp0JRQAaG2h4KNKQ5DMP/LBTaS5H55accuRBONuXCdvTlAbLMRoTursoYsRjMeQzTY58Zk5IBhOHN7yVmZwrXy21EUje9q98o4IzcU6OyIncPT6L1NeEbZR3zYmmLTNH2CvwLlWP06z7fLoEJwlj64tM8KsjNHQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=c+3q6Co/; arc=none smtp.client-ip=209.85.167.46
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f46.google.com with SMTP id 2adb3069b0e04-5131a9b3d5bso6327181e87.0
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 03:03:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710324214; x=1710929014; darn=vger.kernel.org;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
+        bh=mFXVAdau/l1Yd43WSAm/Bs1i7fcklBkhvYYQSoayl5k=;
+        b=c+3q6Co/wbznX+anh8rfvPYC66r6IvjVgBU3KB6dNF3sGAPLzgvD0B6S1DVGaFv2kt
+         oKwuvj4+AYdUjYN4R5af/iUGIPJk7/U7Ay6N1eMYhBMt9x4SYJBLMpBThehM6us9Pofx
+         Ser40VKcW8FLlDF9msgpnEYSQgPGxWNiAGLwAvntRcYtUVl95I2cdwDXBipPtkul4hVg
+         OQbuCWMlY7gzZ6Otv398rYKr6BTrjVH66GO5P7liMrXamaM1z/bZ5vzHbm/AXtWmRoaV
+         33ETuXAm52a4kY43fFwDONnEYqPPVmACN1OM6SQoLpH5Q39Qif+/tCCD0cS5GeC9e7fT
+         b5QA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710324214; x=1710929014;
+        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
+         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mFXVAdau/l1Yd43WSAm/Bs1i7fcklBkhvYYQSoayl5k=;
+        b=eb2xJSTKIHwcjh4C9DHX4Xbbfjsgk8B6M/TxK48iwJxuUZoB7vT0rssqIXyCAofJOP
+         Vh3n0zvbMYmehs/wySSY5xcKvVyhI7c44IZshhs9wQ/S7mvUxTAvTvZPUSr7uw51v7Cd
+         bHwh1UirJI6HcjS5hr5as4fcSzI+K9c2IDLYUlq4ivCKneL8gi4KAyq/LrfYT3o+T9gR
+         RUTbNFbubvQXc8PgKQfd/uacd0Tsz7618GTT2Yb27qfYUUgn2z2iZTnyk/72mFDaxXvF
+         T2/8DXtmYE9obZvLBsZHje6fNGdpC+t3yZq2MqK4LZopQ6eJGnior12QUH6R7guAL5hu
+         MNxw==
+X-Forwarded-Encrypted: i=1; AJvYcCVW2weqATFfFKzquHRAxxzl3ecU+lrpB7lfmYQbb/ujU2RV6cE0TBinuPmg5bDFGgtKeqt6iiO9365lJK04VgOWT5gtVmB0vXY5Tw==
+X-Gm-Message-State: AOJu0YzyWFT7O1OSdRFYpaJWyWVWY/nL5SE94aO+U6tpu+YRb4Kt3nyw
+	Mh5gV4xFN+AQD4AfGmNk1iWAH6jfvzGIx7n9kbrOJN2yIXk9Q8ut4k5v3b8IBfc=
+X-Google-Smtp-Source: AGHT+IFt0tL9EYUI8h3Qhh2fon51usuWluueHQ7dWS5cclJS8uIzb9fifp0Y06P8l3gUr4jEE5P/5g==
+X-Received: by 2002:a05:6512:3d06:b0:513:4afa:a719 with SMTP id d6-20020a0565123d0600b005134afaa719mr2343299lfv.59.1710324213904;
+        Wed, 13 Mar 2024 03:03:33 -0700 (PDT)
+Received: from localhost ([2a01:e0a:3c5:5fb1:5791:c3f6:da5e:acb8])
+        by smtp.gmail.com with ESMTPSA id j15-20020a05600c190f00b0041312855081sm1828615wmq.5.2024.03.13.03.03.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Mar 2024 03:03:33 -0700 (PDT)
+References: <87v8a64f3d.wl-kuninori.morimoto.gx@renesas.com>
+ <87ttpq4f2c.wl-kuninori.morimoto.gx@renesas.com>
+ <e7121fbc-c814-4153-9f17-82ad5de13e64@sirena.org.uk>
+ <87a5n46xjk.wl-kuninori.morimoto.gx@renesas.com>
+ <7248b107-db87-4409-b93c-f65035d0a6b4@sirena.org.uk>
+ <1jo7bje6da.fsf@starbuckisacylon.baylibre.com>
+ <b9de4fd1-ef4a-4c30-b3cf-e36931be90f1@sirena.org.uk>
+User-agent: mu4e 1.10.8; emacs 29.2
+From: Jerome Brunet <jbrunet@baylibre.com>
+To: Mark Brown <broonie@kernel.org>
+Cc: Jerome Brunet <jbrunet@baylibre.com>, Kuninori Morimoto
+ <kuninori.morimoto.gx@renesas.com>, Pierre-Louis Bossart
+ <pierre-louis.bossart@linux.intel.com>, Bard Liao
+ <yung-chuan.liao@linux.intel.com>, bard.liao@intel.com, Conor Dooley
+ <conor+dt@kernel.org>, Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+ alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/5] ASoC: makes CPU/Codec channel connection map
+ more generic
+Date: Wed, 13 Mar 2024 10:36:41 +0100
+In-reply-to: <b9de4fd1-ef4a-4c30-b3cf-e36931be90f1@sirena.org.uk>
+Message-ID: <1jh6haih3f.fsf@starbuckisacylon.baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 1/4] arm64: dts: qcom: ipq6018: add 1.2GHz CPU
- Frequency
-Content-Language: en-US
-To: Chukun Pan <amadeus@jmu.edu.cn>
-CC: <andersson@kernel.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <dmitry.baryshkov@linaro.org>,
-        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <robh@kernel.org>
-References: <1a4e09da-b19b-4cf5-8fae-822c74cfe048@quicinc.com>
- <20240313071803.422343-1-amadeus@jmu.edu.cn>
-From: Kathiravan Thirumoorthy <quic_kathirav@quicinc.com>
-In-Reply-To: <20240313071803.422343-1-amadeus@jmu.edu.cn>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: VBL8yQRdRkupagCiRMOn9fQyixDIxWls
-X-Proofpoint-GUID: VBL8yQRdRkupagCiRMOn9fQyixDIxWls
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-13_07,2024-03-12_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- adultscore=0 malwarescore=0 impostorscore=0 suspectscore=0
- lowpriorityscore=0 bulkscore=0 spamscore=0 clxscore=1015 phishscore=0
- mlxscore=0 mlxlogscore=739 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403130069
+Content-Type: text/plain
 
 
+On Tue 12 Mar 2024 at 17:06, Mark Brown <broonie@kernel.org> wrote:
 
-On 3/13/2024 12:48 PM, Chukun Pan wrote:
->> Could you share the OEM bootloader log on both these SoCs?
-> 
-> Chip silk screen: ipq6000, msm_id: ipq6000, bootloader log:
-> 
-> Format: Log Type - Time(microsec) - Message - Optional Info
-> Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
-> S - QC_IMAGE_VERSION_STRING=BOOT.XF.0.3-00086-IPQ60xxLZB-1
-> S - IMAGE_VARIANT_STRING=IPQ6018LA
-> S - OEM_IMAGE_VERSION_STRING=crm-ubuntu200
-> S - Boot Interface: NAND
-> S - Secure Boot: Off
-> S - Boot Config @ 0x000a602c = 0x000002e5
-> S - JTAG ID @ 0x000a607c = 0x001390e1
+> [[PGP Signed Part:Undecided]]
+> On Tue, Mar 12, 2024 at 05:29:25PM +0100, Jerome Brunet wrote:
+>
+>> Mark, I suspect the boards you have (like the libretech Alta/Solitude or
+>> the kvim3 maybe) will show the same thing.
+>
+> I don't have the kvim3 but I can try with the other two (modulo pain
+> with u-boot), it'll be tomorrow now though.
 
-<snip>
+I've check the other boards from same SoC family (g12 and sm1) for the
+same kernel build:
 
-> machid: 8030200
-> 
-> 
-> Chip silk screen: ipq6000, msm_id: ipq6018, bootloader log:
-> 
-> Format: Log Type - Time(microsec) - Message - Optional Info
-> Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
-> S - QC_IMAGE_VERSION_STRING=BOOT.XF.0.3-00077-IPQ60xxLZB-2
-> S - IMAGE_VARIANT_STRING=IPQ6018LA
-> S - OEM_IMAGE_VERSION_STRING=crm-ubuntu64
-> S - Boot Interface: NAND
-> S - Secure Boot: Off
-> S - Boot Config @ 0x000a602c = 0x000002e5
-> S - JTAG ID @ 0x000a607c = 0x001390e1
+https://linux.kernelci.org/test/job/mainline/branch/master/kernel/v6.8-rc7-250-g137e0ec05aeb/plan/baseline/
 
+* Only the u200 is failing. The others devices of the same family are fine.
+* The u200 is the only one being test with gcc-10 / defconfig + debug
+* The others have been tested with clang-16 / defconfig + CONFIG_ARM64_64K_PAGES
 
-JTAG ID represents the SKU part number. So this part is also IPQ6000 
-only. Not IPQ6018.
+I've checked locally with gcc-13 on the vim3l (sm1 - s905x3)
+* OK with defconfig
+* Problem reproduced with defconfig + debug fragment from kCI - Observations:
+  * Kernel is extremely fat (150+ MB)
+  * Boot process incredibly slow.
 
-SBL build BOOT.XF.0.3-00077-IPQ60xxLZB-2 doesn't have support to 
-identify this SKU as IPQ6000. Please check if you can use the latest SBL 
-image or the one used in another board (BOOT.XF.0.3-00086-IPQ60xxLZB-1).
+Fragment is here:
+https://storage.kernelci.org/mainline/master/v6.8-rc7-250-g137e0ec05aeb/arm64/defconfig+debug/gcc-10/config/kernelci.config
 
+I'll continue to check but this is apparently related to the options
+turned on by the debug fragment. Maybe it could be interesting to check
+another non-intel SoC manufacturer using DPCM with this fragment ?
+(another device relying on cleared ch_maps - Renesas and/or MTK maybe ?)
 
-> S - OEM ID @ 0x000a6080 = 0x00000000
-
-<snip>
-
-> machid: 8030200
-
-Thanks,
+-- 
+Jerome
 
