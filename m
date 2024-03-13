@@ -1,163 +1,282 @@
-Return-Path: <devicetree+bounces-50358-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50359-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A1D487B47E
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 23:41:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EF91F87B491
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 23:48:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 93E61B20D7D
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 22:41:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9C2F5282562
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 22:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B4A6F59B56;
-	Wed, 13 Mar 2024 22:41:08 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1C2095A10F;
+	Wed, 13 Mar 2024 22:48:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="SoaLwdCI"
+	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="iydUiKWb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E18515B217
-	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 22:41:06 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C72BD5D8EB;
+	Wed, 13 Mar 2024 22:48:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710369668; cv=none; b=KmfaCixmyl8dZ3FQdQql66FEFePehK94xdgeI0AcgOfQXn2i8NQmdkrBk9qKKoxUMaduebOs4/z0HXkpILhMtpJ5WisG3URCH6hvt6KXsDd1tMz8mB2xPmrM1LPrnzg8m+ZnmY76Grv6k4FOoub49c8k2LeGP2udApnqcL903R4=
+	t=1710370089; cv=none; b=hINrPu/h6uZVqiXKRy3gDegngjVqlzsT8/LSHYYZSFHBAAETtRWGz3rw0Hgz8Ok/xTOrDm9yKIq1YGTQqDt8dirZpq6xR2RHaROR+zHqVr+K2kqIQPDGtw89CiflwHHLxVoPe/7wn/gRq1G1lN9wucXVSxTHwEiZWiZyUYGK+aE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710369668; c=relaxed/simple;
-	bh=uw6Ae9+4FTL+l8wPsgiJnucIGWCSRqIvOzK52JAP9cQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=HntL0QuA4iHw+sYEfi77jaz7zAvgPYX3CUCZtIez/414QTm8QTG+Nirvd2V3SHj7Y8+dJf9iS6wj7HR5df8EVSQUijt8q3Qb4Heo68Dk+dMk57l0lWYql4qhqYufpGkWh8y0bBDgdSOVxbRAVbiaQ5Iq/KHzgN2fw/rFnMQprTs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=SoaLwdCI; arc=none smtp.client-ip=205.220.180.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42DEp3Of011147;
-	Wed, 13 Mar 2024 22:40:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=WUQEyhBudyITsPOzfVrA3lmTUxRNo7WtKjVlIUvl+DQ=; b=So
-	aLwdCIRi50MxBGKtkYpds+0TRMrz6bENsb/uiYotSDlmd1FCA/qKSYGE5XTf4Nrq
-	GCNYCu1pV9yw/uNuKhWbtV2w1cKgCeUGwUDE7buYc5GfRdEPQNJgkXop/A/rccwH
-	kLJMVNzgMnnNWnXSyOZIKaTrWsx4MZizcLf/F44GpX14qzkKryjpmn05KI8iM72n
-	RkuO0t1xGKS4K2815Zqpd66ygB6O99WIdsvvrL38AFteIwcVjYWaHgdrA7Tlbb76
-	MpvwSnAyQCPIBczUywimO4/dDaYjNwsbzmAzx321leYwaPbusGAXrMp/r33U2uHe
-	o9RHFWImCqNm6l7+2vmA==
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wub3nhjds-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Mar 2024 22:40:53 +0000 (GMT)
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-	by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42DMeqXi000669
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Wed, 13 Mar 2024 22:40:52 GMT
-Received: from [10.110.34.198] (10.80.80.8) by nasanex01a.na.qualcomm.com
- (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Wed, 13 Mar
- 2024 15:40:51 -0700
-Message-ID: <c02952a7-20a1-be77-35a5-d6a8b760e2f0@quicinc.com>
-Date: Wed, 13 Mar 2024 15:40:51 -0700
+	s=arc-20240116; t=1710370089; c=relaxed/simple;
+	bh=QDffdnpVJ8UuhZhQPowE0oVw8ewzHVa66mnf6v2OgVo=;
+	h=Date:From:To:Cc:Message-ID:In-Reply-To:References:Subject:
+	 MIME-Version:Content-Type; b=gg5lin/qklY0SH53WtTGwJKnu0e1xP2iAu/QIez0Ljw8f8dLZiaDDjSVi0movwvVhFkpXlPFfAYDMa4aYnlNOVpUnjxEvoWC+mdxO5xaqcm8Q5j+jtgXF8918bCFTEgyGS3sm/rn4NeO/Ix/X3RR+g842txUD9qxq2gQl1MSYOo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=iydUiKWb; arc=none smtp.client-ip=208.88.110.44
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id A84689C427D;
+	Wed, 13 Mar 2024 18:47:56 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
+ with ESMTP id xaZrPhPNJYVB; Wed, 13 Mar 2024 18:47:55 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id 100969C5403;
+	Wed, 13 Mar 2024 18:47:55 -0400 (EDT)
+DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com 100969C5403
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
+	t=1710370075; bh=EXdrZY8dUBLLI/DygiB/KvorQDQg9TU5RftnAaBpjz0=;
+	h=Date:From:To:Message-ID:MIME-Version;
+	b=iydUiKWbEhBll9Bg7DYonzvi2lFJIu3BQyFtkN1ntXu7uPakSZPEpFbDGj0mCrwHs
+	 3eQ++LcLsxcSI2uzBzlj/RRoWYAo61DebGzlXrtc2mu8GaWYcrsMhNZT9N4jPGYRVR
+	 7+1daaOVCg7ywlagCcOs5ReP1JecigaJXc5rWVxK1ObiFWguG5XP51HUgXUVjD1anV
+	 WQI4112yFBXSWXalJ014yf6Z41zLx4sNiTcnoQRa0zX6bw9vpq1/HQX5AXv8D24gXn
+	 28KqZVepaZH+XcSei5Q+gsxqP9seUyh0AngrJYOeo2FVEB+Chd7IiCrasUTXc3kIdL
+	 aRGCJCNLrq0Sw==
+X-Virus-Scanned: amavis at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+ by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
+ with ESMTP id KTK1KVkf7TZJ; Wed, 13 Mar 2024 18:47:54 -0400 (EDT)
+Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
+	by mail.savoirfairelinux.com (Postfix) with ESMTP id BB32A9C427D;
+	Wed, 13 Mar 2024 18:47:54 -0400 (EDT)
+Date: Wed, 13 Mar 2024 18:47:54 -0400 (EDT)
+From: Charles Perry <charles.perry@savoirfairelinux.com>
+To: Xu Yilun <yilun.xu@linux.intel.com>
+Cc: mdf <mdf@kernel.org>, Allen VANDIVER <avandiver@markem-imaje.com>, 
+	Brian CODY <bcody@markem-imaje.com>, hao wu <hao.wu@intel.com>, 
+	yilun xu <yilun.xu@intel.com>, Tom Rix <trix@redhat.com>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	krzysztof kozlowski+dt <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, 
+	Michal Simek <michal.simek@amd.com>, 
+	linux-fpga <linux-fpga@vger.kernel.org>, 
+	devicetree <devicetree@vger.kernel.org>, 
+	linux-kernel <linux-kernel@vger.kernel.org>, 
+	linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Message-ID: <735798303.1747344.1710370074702.JavaMail.zimbra@savoirfairelinux.com>
+In-Reply-To: <1667978841.1508200.1709486558665.JavaMail.zimbra@savoirfairelinux.com>
+References: <20240221195058.1281973-1-charles.perry@savoirfairelinux.com> <20240221195058.1281973-4-charles.perry@savoirfairelinux.com> <Zdxe7mvBbHDHzbiS@yilunxu-OptiPlex-7050> <1667978841.1508200.1709486558665.JavaMail.zimbra@savoirfairelinux.com>
+Subject: Re: [PATCH v4 3/3] fpga: xilinx-selectmap: add new driver
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.15.1
-Subject: Re: DT Query on "New Compatible vs New Property"
-Content-Language: en-US
-To: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Nikunj Kela
-	<quic_nkela@quicinc.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Ulf Hansson
-	<ulf.hansson@linaro.org>
-CC: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        "Manivannan
- Sadhasivam" <manivannan.sadhasivam@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>,
-        Vincent Guittot
-	<vincent.guittot@linaro.org>, <robh+dt@kernel.org>,
-        <conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        "Prasad Sodagudi (QUIC)"
-	<quic_psodagud@quicinc.com>
-References: <ZbFH0UE9zZQFWm8Z@bogus>
- <32092ee9-018f-4cfb-950e-26c69764f35a@quicinc.com>
- <94a62a78-961a-4286-804c-fc0b9098b8a1@quicinc.com>
- <CAPDyKFrL2QcB-YbE25smGgJjf3iBEsSSB4ui3V98zJKghNNhKA@mail.gmail.com>
- <20240228140239.gkzcytw6cmb4opja@bogus>
- <799268ac-7ffb-4b99-b037-d5bb93d37f13@linaro.org>
- <20240228160925.fcitj2yz7hisidsl@bogus>
- <CAPDyKFqEDu1KRsT2YWv7MhoosCSj_bgV4xE=-2hDaS1ZP7AkvQ@mail.gmail.com>
- <2b0a11f4-f54e-461c-91e7-8f313d91abe8@linaro.org>
- <CAPDyKFoo+-2AF096Sbn8EHP1H4Zw2+2sFnSyuq65sWGmMmXU0A@mail.gmail.com>
- <ZeWp_UjYfWsnEB-K@bogus> <321069a8-2c46-4871-b85a-5e9cbdda5b5d@quicinc.com>
- <3aad2e6b-88fd-06ab-95c5-d07f012e8306@quicinc.com>
- <bd2dde74-e4b9-4cf8-b1f1-9bc52f3b83da@linaro.org>
- <989dee90-9c44-09b9-6940-687082109ae7@quicinc.com>
- <bc1c7152-e46a-47f0-9bad-d524fb624ae8@linaro.org>
-From: Trilok Soni <quic_tsoni@quicinc.com>
-In-Reply-To: <bc1c7152-e46a-47f0-9bad-d524fb624ae8@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: YYOMKbqCknMFW5XLmx6RWvUIR_o7HSGU
-X-Proofpoint-ORIG-GUID: YYOMKbqCknMFW5XLmx6RWvUIR_o7HSGU
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-13_09,2024-03-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- adultscore=0 clxscore=1015 impostorscore=0 mlxlogscore=999 malwarescore=0
- phishscore=0 suspectscore=0 bulkscore=0 priorityscore=1501 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
- definitions=main-2403130172
-
-On 3/13/2024 4:49 AM, Srinivas Kandagatla wrote:
-> 
-> On 12/03/2024 17:25, Trilok Soni wrote:
->> On 3/12/2024 10:21 AM, Srinivas Kandagatla wrote:
->>>
->>>> Basically, I would prefer better than "qcom, fw-managed" since this is not
->>>> a qcom specific problem.
->>>
->>>
->>> We already have something like this in mainline where the BAM DMA controller is remotely powered.
->>>
->>> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml?h=v6.8
->>>
->>
->> As you can see it is already fragmented. Why we need to create one more approach
->> which is not scalable and specific to SOC vendor?
-> 
-> The whole issue around this new checks is that the driver/binding is not designed to expect same set of resources from different TYPES of providers.
-> If the driver was designed to support opp's and power domains and make the resources handle in a unified way then some/all of these changes will naturally fit in.
-> 
-> 
->>
->> SCMI or RPMI based firmware is not a QC specific. I also have allergic reaction
-> 
-> I agree this are not QC specific, am fine with generic dt-binding like firmware-managed-resources or something on those lines if DT-maintainers are happy with.
-> 
-> What is your suggestion?
-
-Yes, DT-spec will be a good start.
-
-> 
-> 
->> when I see drivers modified w/ if (fw_managed) {..} but that is a discussion
-> 
-> I don't think we have a choice here, either we do this check at compatible level or dt-property level or resource level in every drivers.
-
-I don't understand yet why we don't have any other choices but do the conditional checks? Maybe explaining
-with the example will help? Start w/ clocks?
+X-Mailer: Zimbra 8.8.15_GA_4581 (ZimbraWebClient - FF120 (Linux)/8.8.15_GA_4581)
+Thread-Topic: fpga: xilinx-selectmap: add new driver
+Thread-Index: ZKiev4qNzSquSIuuXA0kTMbwGPBpeJ8WKeUT
 
 
--- 
----Trilok Soni
 
+On Mar 3, 2024, at 12:22 PM, Charles Perry charles.perry@savoirfairelinux.com wrote:
+> On Feb 26, 2024, at 2:50 AM, Xu Yilun yilun.xu@linux.intel.com wrote:
+> 
+>> On Wed, Feb 21, 2024 at 02:50:49PM -0500, Charles Perry wrote:
+>>> Xilinx 7 series FPGA can be programmed using a parallel port named
+>>> the SelectMAP interface in the datasheet. This interface is compatible
+>>> with the i.MX6 EIM bus controller but other types of external memory
+>>> mapped parallel bus might work.
+>>> 
+>>> xilinx-selectmap currently only supports the x8 mode where data is loaded
+>>> at one byte per rising edge of the clock, with the MSb of each byte
+>>> presented to the D0 pin.
+>>> 
+>>> Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
+>>> ---
+>>>  drivers/fpga/Kconfig            |  8 +++
+>>>  drivers/fpga/Makefile           |  1 +
+>>>  drivers/fpga/xilinx-selectmap.c | 97 +++++++++++++++++++++++++++++++++
+>>>  3 files changed, 106 insertions(+)
+>>>  create mode 100644 drivers/fpga/xilinx-selectmap.c
+>>> 
+>>> diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
+>>> index d27a1ebf40838..37b35f58f0dfb 100644
+>>> --- a/drivers/fpga/Kconfig
+>>> +++ b/drivers/fpga/Kconfig
+>>> @@ -67,6 +67,14 @@ config FPGA_MGR_STRATIX10_SOC
+>>>  config FPGA_MGR_XILINX_CORE
+>>>  	tristate
+>>>  
+>>> +config FPGA_MGR_XILINX_SELECTMAP
+>>> +	tristate "Xilinx Configuration over SelectMAP"
+>>> +	depends on HAS_IOMEM
+>>> +	select FPGA_MGR_XILINX_CORE
+>>> +	help
+>>> +	  FPGA manager driver support for Xilinx FPGA configuration
+>>> +	  over SelectMAP interface.
+>>> +
+>>>  config FPGA_MGR_XILINX_SPI
+>>>  	tristate "Xilinx Configuration over Slave Serial (SPI)"
+>>>  	depends on SPI
+>>> diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
+>>> index 7ec795b6a5a70..aeb89bb13517e 100644
+>>> --- a/drivers/fpga/Makefile
+>>> +++ b/drivers/fpga/Makefile
+>>> @@ -16,6 +16,7 @@ obj-$(CONFIG_FPGA_MGR_SOCFPGA_A10)	+= socfpga-a10.o
+>>>  obj-$(CONFIG_FPGA_MGR_STRATIX10_SOC)	+= stratix10-soc.o
+>>>  obj-$(CONFIG_FPGA_MGR_TS73XX)		+= ts73xx-fpga.o
+>>>  obj-$(CONFIG_FPGA_MGR_XILINX_CORE)	+= xilinx-core.o
+>>> +obj-$(CONFIG_FPGA_MGR_XILINX_SELECTMAP)	+= xilinx-selectmap.o
+>>>  obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+= xilinx-spi.o
+>>>  obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+= zynq-fpga.o
+>>>  obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+= zynqmp-fpga.o
+>>> diff --git a/drivers/fpga/xilinx-selectmap.c b/drivers/fpga/xilinx-selectmap.c
+>>> new file mode 100644
+>>> index 0000000000000..b63f4623f8b2c
+>>> --- /dev/null
+>>> +++ b/drivers/fpga/xilinx-selectmap.c
+>>> @@ -0,0 +1,97 @@
+>>> +// SPDX-License-Identifier: GPL-2.0-only
+>>> +/*
+>>> + * Xilinx Spartan6 and 7 Series SelectMAP interface driver
+>>> + *
+>>> + * (C) 2024 Charles Perry <charles.perry@savoirfairelinux.com>
+>>> + *
+>>> + * Manage Xilinx FPGA firmware loaded over the SelectMAP configuration
+>>> + * interface.
+>>> + */
+>>> +
+>>> +#include "xilinx-core.h"
+>>> +
+>>> +#include <linux/platform_device.h>
+>>> +#include <linux/gpio/consumer.h>
+>>> +#include <linux/module.h>
+>>> +#include <linux/mod_devicetable.h>
+>>> +#include <linux/of.h>
+>>> +#include <linux/io.h>
+>>> +
+>>> +struct xilinx_selectmap_conf {
+>>> +	struct xilinx_fpga_core core;
+>>> +	void __iomem *base;
+>>> +};
+>>> +
+>>> +#define to_xilinx_selectmap_conf(obj) \
+>>> +	container_of(obj, struct xilinx_selectmap_conf, core)
+>>> +
+>>> +static int xilinx_selectmap_write(struct xilinx_fpga_core *core,
+>>> +				  const char *buf, size_t count)
+>>> +{
+>>> +	struct xilinx_selectmap_conf *conf = to_xilinx_selectmap_conf(core);
+>>> +	u32 i;
+>>> +
+>>> +	for (i = 0; i < count; ++i)
+>>> +		writeb(buf[i], conf->base);
+>>> +
+>>> +	return 0;
+>>> +}
+>>> +
+>>> +static int xilinx_selectmap_probe(struct platform_device *pdev)
+>>> +{
+>>> +	struct xilinx_selectmap_conf *conf;
+>>> +	struct resource *r;
+>>> +	void __iomem *base;
+>>> +	struct gpio_desc *csi_b;
+>>> +	struct gpio_desc *rdwr_b;
+>>> +
+>>> +	conf = devm_kzalloc(&pdev->dev, sizeof(*conf), GFP_KERNEL);
+>>> +	if (!conf)
+>>> +		return -ENOMEM;
+>>> +
+>>> +	conf->core.dev = &pdev->dev;
+>>> +	conf->core.write = xilinx_selectmap_write;
+>>> +
+>>> +	base = devm_platform_get_and_ioremap_resource(pdev, 0, &r);
+>>> +	if (IS_ERR(base))
+>>> +		return dev_err_probe(&pdev->dev, PTR_ERR(base),
+>>> +				     "ioremap error\n");
+>>> +	conf->base = base;
+>>> +
+>>> +	/* CSI_B is active low */
+>>> +	csi_b = devm_gpiod_get_optional(&pdev->dev, "csi", GPIOD_OUT_HIGH);
+>>> +	if (IS_ERR(csi_b))
+>>> +		return dev_err_probe(&pdev->dev, PTR_ERR(csi_b),
+>>> +				     "Failed to get CSI_B gpio\n");
+>>> +
+>>> +	/* RDWR_B is active low */
+>>> +	rdwr_b = devm_gpiod_get_optional(&pdev->dev, "rdwr", GPIOD_OUT_HIGH);
+>>> +	if (IS_ERR(rdwr_b))
+>>> +		return dev_err_probe(&pdev->dev, PTR_ERR(rdwr_b),
+>>> +				     "Failed to get RDWR_B gpio\n");
+>>> +
+>>> +	return xilinx_core_probe(&conf->core);
+>>> +}
+>>> +
+>>> +static const struct of_device_id xlnx_selectmap_of_match[] = {
+>>> +	{ .compatible = "xlnx,fpga-xc7s-selectmap", }, // Spartan-7
+>>> +	{ .compatible = "xlnx,fpga-xc7a-selectmap", }, // Artix-7
+>>> +	{ .compatible = "xlnx,fpga-xc7k-selectmap", }, // Kintex-7
+>>> +	{ .compatible = "xlnx,fpga-xc7v-selectmap", }, // Virtex-7
+>>> +	{},
+>>> +};
+>>> +MODULE_DEVICE_TABLE(of, xlnx_selectmap_of_match);
+>> 
+>> Does the driver have to be used with OF or not?
+>> 
+>> If yes, please specify the reason and enforce in Kconfig.
+>> If no, please ensure it decently compiles without CONFIG_OF.
+>> 
+>> Thanks,
+>> Yilun
+>> 
+> 
+> No, it doesn't need OF explicitly as it only needs a few GPIO and a
+> memory mapped IO region. It would be possible to get this info from
+> platform data.
+> 
+> I'll fix the compilation without CONFIG_OF.
+
+It does compile without CONFIG_OF in its current form as I can compile
+it for x86_64 without warnings.
+
+One of the reason why xilinx-spi.c needs an "#ifdef CONFIG_OF" wrapper
+around the of_device_id table is because it uses of_match_ptr() which
+resolves to NULL when CONFIG_OF is not set, which triggers an unused
+variable warning. This is not the case in xilinx-selectmap.c because
+it's not using of_match_ptr().
+
+Regards,
+Charles
+
+> 
+> Regards,
+> Charles
+> 
+>>> +
+>>> +static struct platform_driver xilinx_selectmap_driver = {
+>>> +	.driver = {
+>>> +		.name = "xilinx-selectmap",
+>>> +		.of_match_table = xlnx_selectmap_of_match,
+>>> +	},
+>>> +	.probe  = xilinx_selectmap_probe,
+>>> +};
+>>> +
+>>> +module_platform_driver(xilinx_selectmap_driver);
+>>> +
+>>> +MODULE_LICENSE("GPL");
+>>> +MODULE_AUTHOR("Charles Perry <charles.perry@savoirfairelinux.com>");
+>>> +MODULE_DESCRIPTION("Load Xilinx FPGA firmware over SelectMap");
+>>> --
+>>> 2.43.0
 
