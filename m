@@ -1,186 +1,115 @@
-Return-Path: <devicetree+bounces-50346-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50347-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 016C287B239
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 20:47:15 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F15A87B19C
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 20:21:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2FC35B21A91
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:20:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AEF7C1C2325B
+	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 19:21:14 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E794F58AB8;
-	Wed, 13 Mar 2024 19:08:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2B9704DA05;
+	Wed, 13 Mar 2024 19:11:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b="fINs6xXF"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="iXQcDHWH"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ixit.cz (ip-89-177-23-149.bb.vodafone.cz [89.177.23.149])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 41A3A4EB24;
-	Wed, 13 Mar 2024 19:08:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=89.177.23.149
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 50E5D446C9
+	for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 19:11:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710356889; cv=none; b=oazzEKvAHQHx0NbfJhqibohISI69HEYK2lAetmKRSN6rUUrIYk1YdFS2wu1w9oYGysjMObbDbbjEomXxYWrkhI6Jq2ZEN+i+4aTecHE8dxZnWER2wPC3itQo4EYK03/CGbcP9bl+ndI7R8pCj8O+pzsFQPSHmVFYpdxvjI28J6Y=
+	t=1710357119; cv=none; b=IfYe1C47gjUbVVBcC6bHDIADuAKIAAdewkS6bxBVCK/cA6j0NQfJ1sRsv9DgngZQWwJoj3nDIILRUPG6ut7b4iIjFIxTvTxMCAtvmI0sBfeHXuMVDD2ZJ7RTA/62LivAH0hHcMVe3O8bCV/2aJuz0m6PHMN8JNV/ruRRz3UPYXw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710356889; c=relaxed/simple;
-	bh=8Xg75vtgrn6xQBEXgjiu3p8P50B/mtf8U4g0vXmG4aE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=reKcJrs43IgkWsU/O0ksig65u3k9cvtHCO4x+GYffIPvM10rWfcIGsRvZ0sM+bn7TK83WNyCWBwZLgP+olVVR2masDtxABv/qDxmElUTe2xMyZhaEK1c0gCDaA4uUnWOkroufYQlCKwj1vw10KcCOnimqSKNZum3LuyHrpvQrLU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz; spf=pass smtp.mailfrom=ixit.cz; dkim=pass (1024-bit key) header.d=ixit.cz header.i=@ixit.cz header.b=fINs6xXF; arc=none smtp.client-ip=89.177.23.149
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=ixit.cz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ixit.cz
-Received: from [10.0.0.200] (unknown [10.0.0.1])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-	(No client certificate requested)
-	by ixit.cz (Postfix) with ESMTPSA id 465CC16566D;
-	Wed, 13 Mar 2024 20:07:57 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ixit.cz; s=dkim;
-	t=1710356877;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
-	bh=FvpKoGHqAhnp1lNgk+Nmgp2O2RO7++nWDElpli4GHlI=;
-	b=fINs6xXFlz70Qb6Z/PuGVfIUerJrYLSxTf2vkc3qzYQZvF2zVPbAMWbtas5jjMWvB98P53
-	TWg01VwgtQWKDDVfFUJoFHETkHO1tGIftGhxBJle7j2oBtDqiIKkHPielvkObAfHczufPw
-	VvdyMoebiUO4nkSyFzulYvrd0E4Fhkg=
-Message-ID: <4f1ec438-9447-4a5c-b1ee-e9c6938516d1@ixit.cz>
-Date: Wed, 13 Mar 2024 20:07:57 +0100
+	s=arc-20240116; t=1710357119; c=relaxed/simple;
+	bh=xAZsAKH1ye0/03jXaOVbVO12tdFhb/vpC7941EDR4ew=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=GSkItSP80vO7/O8nQYIqW5i6iQv3vGI7hE17An1IcwwrIqU1KXTtPIpLFJNt6HqDFqOq8y1IqMSzwnNCjrbjmKUryAwb4skclfaqSazg0TtIad+cwXLxUrvkqkazTqdqLK/CvAR69tIVhGJ7GqoYGDD04Q2fo4MF58obF0ctRfI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=iXQcDHWH; arc=none smtp.client-ip=209.85.128.48
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-413ef6985bfso1181005e9.3
+        for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 12:11:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710357116; x=1710961916; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=y/xj0UR1xz5ufUD59KROFNvtGcq3lEyrCKjuyydwu4E=;
+        b=iXQcDHWHsIg7eJVF/bJhsM4HKDbuyNm8bNieT3VGBlxxztrjDvqAZN7WyHGZYJlQuX
+         Z3lmhUMGMBVCed/IO1yptdN2a64zw7Ch+7mfBSbv7jM3X0c7Z1MjsXipT98fASX59Gjv
+         8VDyYElmzeO0DFRUMbtuD1Q5t2zTz+XA3bKSTbbcGwUNnYQJHQEdKXLhyCUzImqq1zIa
+         DLGu+nQBaTU7OCwb8L7aO7hecGumzGqrR2YyNgMQSw53SuFxCKK5nHYU1KaP61BWpIJX
+         TgDW0eKol+LbzwYOGeAz6/ijAwL9a1DRbXM8mBbWGGQN8Hu5eJY0dsmNz9EDGZfl4fb+
+         KB1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710357116; x=1710961916;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y/xj0UR1xz5ufUD59KROFNvtGcq3lEyrCKjuyydwu4E=;
+        b=uTROW0oQqRCqgfhA6lbGzngjqWLy+a4QzKHwMvc7G5qwf9EgqgplXFuBSKjI89IGJW
+         QDqH4qSxJikdfZXyhWCIIFnncHeJ6bx8tNuS1TlS+XWh3Zej02JCiz8y/MsoHgb3dKcG
+         y3y4zd4Eb5rIJzEB2gvFQrByUdSRlGdEKfoUqy+vZWJG0+oMFJjCJ6NXDZ3lwgpIQiDF
+         CoFL/E8+n4FkIr/0jzCmVyev0Kzusnv7tBDYeiTSBfEXMSkYLJwtONNdH6YcfhPEd8xw
+         TA6aJ8kmkPjDDKdE90WiS7rJYKuPRtv+B0oixsweU7YWpgz4LVZ/prcRcfCDP34niP7C
+         qRyw==
+X-Forwarded-Encrypted: i=1; AJvYcCUFrpYp5PJmNV0l4BbM7vKWGtPrYSF3Sj5X2zE20/tbpG2AzbMCPYefmXSabiTZc06P7khBgOrV0vW/A9su2Gv80ni6Loa3zuMr+A==
+X-Gm-Message-State: AOJu0Yw7eQFKDOpysuq/RkVoZXjFk9q1vkaxtw5LY051vdNnMikkiEdG
+	tWOpH9mKmEThLnW/4iCUo92hDbau/EZ3jxft+kVGJ1mVp4nPcLU99J1r46uctQs=
+X-Google-Smtp-Source: AGHT+IH2VT0d1ByDtOpBoLQo3BzOVY7nQo6ZUdI4WEGi/17EtI0Mk+fyuv0nHewFDS7fu99kUObjTw==
+X-Received: by 2002:a05:600c:4f0c:b0:413:1ad1:78e9 with SMTP id l12-20020a05600c4f0c00b004131ad178e9mr651714wmq.7.1710357115709;
+        Wed, 13 Mar 2024 12:11:55 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id a2-20020a05600c348200b00413ee7993f3sm990512wmq.40.2024.03.13.12.11.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 13 Mar 2024 12:11:55 -0700 (PDT)
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To: Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Alim Akhtar <alim.akhtar@samsung.com>,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-samsung-soc@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ARM: dts: samsung: s5pv210: align onenand node name with bindings
+Date: Wed, 13 Mar 2024 20:11:47 +0100
+Message-Id: <20240313191148.21792-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird Beta
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: Add missing chassis-type to
- MT8192 Chromebooks
-Content-Language: en-US
-To: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-mediatek@lists.infradead.org
-Cc: robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- matthias.bgg@gmail.com, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- kernel@collabora.com
-References: <20240313141538.1438167-1-angelogioacchino.delregno@collabora.com>
- <20240313141538.1438167-3-angelogioacchino.delregno@collabora.com>
-From: David Heidelberg <david@ixit.cz>
-Autocrypt: addr=david@ixit.cz; keydata=
- xsFNBF5v1x4BEADS3EddwsNsvVAI1XF8uQKbdYPY/GhjaSLziwVnbwv5BGwqB1tfXoHnccoA
- 9kTgKAbiXG/CiZFhD6l4WCIskQDKzyQN3JhCUIxh16Xyw0lECI7iqoW9LmMoN1dNKcUmCO9g
- lZxQaOl+1bY/7ttd7DapLh9rmBXJ2lKiMEaIpUwb/Nw0d7Enp4Jy2TpkhPywIpUn8CoJCv3/
- 61qbvI9y5utB/UhfMAUXsaAgwEJyGPAqHlC0YZjaTwOu+YQUE3AFzhCbksq95CwDz4U4gdls
- dmv9tkATfu2OmzERZQ6vJTehK0Pu4l5KmCAzYg42I9Dy4E6b17x6NncKbcByQFOXMtG0qVUk
- F1yeeOQUHwu+8t3ZDMBUhCkRL/juuoqLmyDWKMc0hKNNeZ9BNXgB8fXkRLWEUfgDXsFyEkKp
- NxUy5bDRlivf6XfExnikk5kj9l2gGlNQwqROti/46bfbmlmc/a2GM4k8ZyalHNEAdwtXYSpP
- 8JJmlbQ7hNTLkc3HQLRsIocN5th/ur7pPMz1Beyp0gbE9GcOceqmdZQB80vJ01XDyCAihf6l
- AMnzwpXZsjqIqH9r7T7tM6tVEVbPSwPt4eZYXSoJijEBC/43TBbmxDX+5+3txRaSCRQrG9dY
- k3mMGM3xJLCps2KnaqMcgUnvb1KdTgEFUZQaItw7HyRd6RppewARAQABzSBEYXZpZCBIZWlk
- ZWxiZXJnIDxkYXZpZEBpeGl0LmN6PsLBlAQTAQgAPhYhBNd6Cc/u3Cu9U6cEdGACP8TTSSBy
- BQJeb9ceAhsDBQkHhM4ABQsJCAcCBhUKCQgLAgQWAgMBAh4BAheAAAoJEGACP8TTSSByFucP
- /iu03BSrScw/FnyMjDHoQ6fOLNLbMoDFSBZJA5eZl3Fv0M9wcdTjQQrOVl1qDzcO1HeOS8Gz
- 3KFtT49lgvNHYIm1p75Eng4BBBzQ0wxzLL9haSdJlxDGY2VEvDHQ4h8FqhKhPyWUVya741yB
- o/jUSkdqiBvrEVqwK9U7lR/C2B6Yotwhp8i1QdG6qSFZNWDuofMhtMQcYpdEUyC6dteOcRDb
- u1ktBLuYNjUvFSl5/NLzpNNo+bJ/hD4htvpQD0jLg0rtc6TMoP22mzC1zH6e6wITPqyLBvPf
- fAXc31i98DPCRu4vKhQBkHNbxVquDASMepTZUF5Gthzt3mBw/+MkxlR3tCwdx1L+CxCGxjsk
- /GjW3beY/Z77FhOss4fB6AlD/Dq+wxOQlaZr5C8SX7a8FgqRVaIjeoLcRaVfOnLGfZAEGcxe
- ahdUMr1LkVRWuUZxhOJk01JVYp2GzgdGdcvJ8dXfyhMKRhE9VuB/VykEtOlfc41mrCZ6rz3G
- ep4TPTHtClYAohGYNunjoImYYp0ScvlHbtRz8UvRCCRGYMBh5rBhilF2gqLcjaRProon/KVv
- 52kAsTHUqw8Ldf5tPJwPLhV6aFI5DkU9cRoFr8ib3ZGDva5LxZUf1fuiGRyDNXMJmsW5/9Dp
- 3Dt7FUMvZvcrSmPIsZXIQ2QD/mUeuXftINQVzsFNBF5v1x4BEADnlrbta2WL87BlEOotZUh0
- zXANMrNV15WxexsirLetfqbs0AGCaTRNj+uWlTUDJRXOVIwzmF76Us3I2796+Od2ocNpLheZ
- 7EIkq8budtLVd1c06qJ+GMraz51zfgSIazVInNMPk9T6fz0lembji5yEcNPNNBA4sHiFmXfo
- IhepHFOBApjS0CiOPqowYxSTPe/DLcJ/LDwWpTi37doKPhBwlHev1BwVCbrLEIFjY0MLM0aT
- jiBBlyLJaTqvE48gblonu2SGaNmGtkC3VoQUQFcVYDXtlL9CVbNo7BAt5gwPcNqEqkUL60Jh
- FtvVSKyQh6gn7HHsyMtgltjZ3NKjv8S3yQd7zxvCn79tCKwoeNevsvoMq/bzlKxc9QiKaRPO
- aDj3FtW7R/3XoKJBY8Hckyug6uc2qYWRpnuXc0as6S0wfek6gauExUttBKrtSbPPHiuTeNHt
- NsT4+dyvaJtQKPBTbPHkXpTO8e1+YAg7kPj3aKFToE/dakIh8iqUHLNxywDAamRVn8Ha67WO
- AEAA3iklJ49QQk2ZyS1RJ2Ul28ePFDZ3QSr9LoJiOBZv9XkbhXS164iRB7rBZk6ZRVgCz3V6
- hhhjkipYvpJ/fpjXNsVL8jvel1mYNf0a46T4QQDQx4KQj0zXJbC2fFikAtu1AULktF4iEXEI
- rSjFoqhd4euZ+QARAQABwsF8BBgBCAAmFiEE13oJz+7cK71TpwR0YAI/xNNJIHIFAl5v1x4C
- GwwFCQeEzgAACgkQYAI/xNNJIHJTZg/+NqA4kGauw0qAR1bm2VVaDJjajjJerDLr/uMEgBCo
- DXiDu0obZ3XwMDe2ohXxV4L875B7q/lzgWR/YrJNU3CkMFknPZl++gVhkBZ0xQhMs0HsIEgD
- TKgX3bKCIy7niHVMq6S8tYs2eTnK6NEQFWr2Vq6fAT8NjYMhaAbIMvZfz/hCkwzWD5QTejZi
- ulP6Cl4AVa4mun6FzMpHAcXk/NdSgWYO0f7AtW+KzIKKrcT2HcDBGM2OaPuEajHFX/1lyyRO
- LiGcgz9E/5WfzvaBrqWy6CdIzJWtGsOKWMyjry5227UOwqPTqIWAs10XgaYsevES0ljDDA0y
- wX/adCrlOaNQaBcB/bIKjrrsHg+5XnanET7PbB75cDmd0AT0DNeCs/AZXDn2O7gKmPq3GokU
- zCw7l/b5I49Zp1zybEwVy+TYC0e/d05geyjQN7e2i0RcElGaHQ+82iRIJD3cvDfrk4+HPzeE
- 8udw5/rKxFMHhti1wgtklyJBc64JK2vgB6xJz9Zc4WoNnifc8QjyhsQ7K0UI9jykBXrb1ZZO
- DYlcrAqh9Sx4vNTmdi6pJWSsrhDtfmDIw81GIW5pc0QpZPqGeKMi5xEU8se5fQ21DuE5LRKF
- Zd4Uq64igWvLAgHIcJHgNbc5BruuZm9p1+S5SfQGfnOYxJM1PkY/E32H52iV/Babj30=
-In-Reply-To: <20240313141538.1438167-3-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-Optional, but very useful for some user-space decisions. Thank you.
+Bindings expect NAND controllers to match certain pattern:
 
-Reviewed-by: David Heidelberg <david@ixit.cz>
+  s5pv210-fascinate4g.dtb: onenand@b0600000: $nodename:0: 'onenand@b0600000' does not match '^nand-controller(@.*)?'
 
-On 13/03/2024 15:15, AngeloGioacchino Del Regno wrote:
-> None of the MT8192 Chromebooks had their chassis-type specified: add
-> the right definition for each.
->
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts      | 1 +
->   arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts | 1 +
->   arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts    | 1 +
->   arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts    | 1 +
->   4 files changed, 4 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-> index fd2cb8765a15..ac2673e56fb8 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r1.dts
-> @@ -7,6 +7,7 @@
->   
->   / {
->   	model = "Google Hayato rev1";
-> +	chassis-type = "convertible";
->   	compatible = "google,hayato-rev1", "google,hayato", "mediatek,mt8192";
->   };
->   
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts
-> index 3127ee5f6172..cd86ad9ba28a 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-hayato-r5-sku2.dts
-> @@ -7,6 +7,7 @@
->   
->   / {
->   	model = "Google Hayato rev5";
-> +	chassis-type = "convertible";
->   	compatible = "google,hayato-rev5-sku2", "google,hayato-sku2",
->   		     "google,hayato", "mediatek,mt8192";
->   };
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-> index bc88866ab2f5..29aa87e93888 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r0.dts
-> @@ -8,6 +8,7 @@
->   
->   / {
->   	model = "Google Spherion (rev0 - 3)";
-> +	chassis-type = "laptop";
->   	compatible = "google,spherion-rev3", "google,spherion-rev2",
->   		     "google,spherion-rev1", "google,spherion-rev0",
->   		     "google,spherion", "mediatek,mt8192";
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts
-> index 0039158c9e60..5e9e598bab90 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts
-> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada-spherion-r4.dts
-> @@ -8,6 +8,7 @@
->   
->   / {
->   	model = "Google Spherion (rev4)";
-> +	chassis-type = "laptop";
->   	compatible = "google,spherion-rev4", "google,spherion",
->   		     "mediatek,mt8192";
->   
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm/boot/dts/samsung/s5pv210.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
+diff --git a/arch/arm/boot/dts/samsung/s5pv210.dtsi b/arch/arm/boot/dts/samsung/s5pv210.dtsi
+index ed560c9a3aa1..23459430410f 100644
+--- a/arch/arm/boot/dts/samsung/s5pv210.dtsi
++++ b/arch/arm/boot/dts/samsung/s5pv210.dtsi
+@@ -72,7 +72,7 @@ soc {
+ 		#size-cells = <1>;
+ 		ranges;
+ 
+-		onenand: onenand@b0600000 {
++		onenand: nand-controller@b0600000 {
+ 			compatible = "samsung,s5pv210-onenand";
+ 			reg = <0xb0600000 0x2000>,
+ 				<0xb0000000 0x20000>,
 -- 
-David Heidelberg
+2.34.1
 
 
