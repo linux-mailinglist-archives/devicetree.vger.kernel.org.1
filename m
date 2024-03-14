@@ -1,55 +1,74 @@
-Return-Path: <devicetree+bounces-50433-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50434-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1ADAD87BAE4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 11:03:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98CBC87BAEA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 11:05:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 753FEB22081
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 10:03:14 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EF0ABB22D02
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 10:05:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BEDC6D1BC;
-	Thu, 14 Mar 2024 10:03:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 13D096DD0D;
+	Thu, 14 Mar 2024 10:05:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="2vW0+MY3"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wp+7ykuz"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F0EC6BFB5;
-	Thu, 14 Mar 2024 10:03:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03E846D1AD
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 10:05:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710410589; cv=none; b=E5Qh/iku8byf698VmDbw2h/yZ4PfL+UgB1Fm+tC+kWZtaW+2p+K5LwgU5v7ocKtxLHawYpe9SDjuLLrsTlT4gV/JEfFbVyjZmG/QFdGCOkC9fgjdXI0zQI6D0h/YEUun89Ihh6knf39JpJXukWn10HifWl+c8CvYmmLzILehfVg=
+	t=1710410723; cv=none; b=A5anisBGpG0v3vCKraOq7rk9RUgy1tSWIJ3AXgUVxwjr/6zR+Q/pIq8U7ajsIxlkLpOpKwQ3RlCsNBkp8HQsrmellJxrYdMKeD6RVAJ0+YEsfnbeMoWNgXRsvr7GY3w/OwKUpKwauuieqTF9bXofHlYWeSdwMj7nb6tyCcTnIRA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710410589; c=relaxed/simple;
-	bh=7Te3YspK5rB2494WTdPhhCk43LasN8upRyD7Xd2ldfk=;
+	s=arc-20240116; t=1710410723; c=relaxed/simple;
+	bh=NPW7mzWPb250tMQCmQ5gx7QLTb71uG3qAa1mwtEYKaI=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=SC+CeKfjQgJb2SSV7/Y35aIqqPC0mBqJ2uJyNoeGsxuD0Si0/kFGnF4N39oPVb8VE4Ax4plxZ6logTL+Qaw+sGujEk57fkG/RigPqQrLH59jlwF67xvhbcI6jHbJtni5beamzxtUas659aODV2dMySzMar1z/YFFQd6MmXpSqYI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=2vW0+MY3; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1710410580;
-	bh=7Te3YspK5rB2494WTdPhhCk43LasN8upRyD7Xd2ldfk=;
-	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-	b=2vW0+MY3gziKQl7e8yqupDfds0LLNG44VwBCObMCrLlpAmnOJylOQRzfmda8N0ZUA
-	 nUDMWQsFnxXJ1WQ/BAK4C7TipPu2JeOXsWYCACkP2fLugMvGnEvwygTrIy4xqTux1I
-	 LtWpR7PJ5OkeWlvrFTCiOttl81g79vJBS/siV4apVmZ6DproUihLLeT+TZhGEvsXl4
-	 2n8HjfX21h0cYXlip4Eoq/hk/G8Fsc+2Ujr99aPB6deXZEZKnz9IoYadkB1aJwkCI3
-	 9G6uRt5Nt5YxmrNLcBB3+FhMDHZlO/XW079tGVELuogfahNZDKtxfSTDn8S2AWQg39
-	 6NYHUJKUNzQMw==
-Received: from [100.113.186.2] (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: kholk11)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9245937820A3;
-	Thu, 14 Mar 2024 10:02:59 +0000 (UTC)
-Message-ID: <63cdec54-8dd6-4f17-8256-bbb8cfe791be@collabora.com>
-Date: Thu, 14 Mar 2024 11:02:58 +0100
+	 In-Reply-To:Content-Type; b=hkg5ttShNL+G1f6aND5qCNxv2DhlGpez4Ep+6Wk12H6+qP6eS62blYtzjhIG2A0laM/CKRgQql42x3z7VMbE3X/eG3NUsSSd6t/W6MIDBDoFxvbuZ0VT/7K3qLuKgsicWBjABFgKMeTW29pebj0QnqytdGt8c7WRIdr1R1uZ2w8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wp+7ykuz; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-413f76fcf41so1281485e9.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 03:05:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710410718; x=1711015518; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yTpZ2DK/SvRT7V2HXdrjk56LVfBVeV8/EsG4fSfrxYI=;
+        b=wp+7ykuz2YzAXS0bCkoT9WvaE345L+1wymbGWLaazhmL0CLq440EHGSnmGe8L2dLRU
+         x1nXNB5/T0j4bB6//53RC2PTr/0cNMmf6lhVbE6EXfhlanvl62/GjcXobV0bHRR+z5jx
+         4VMzzmancuvUZSBCvxsl37d2ZkciRD9R78K0Mzdw+2KGXIeUR+qAJUlBL8kCKefWt55q
+         ExP9aGyfYLvZ0dWTYcErbBL44dxY7q1vNQLb9x8QO4xBpn28FcD0E5g9MXH92CdJ1CAH
+         lJ92yMgooB242SxpOPhr6cpinLrr51jJn0f2RxsDTW/RNgB6Om0mtrUL1q1s+NNaMR23
+         Molg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710410718; x=1711015518;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yTpZ2DK/SvRT7V2HXdrjk56LVfBVeV8/EsG4fSfrxYI=;
+        b=ETMC6cQoWdinzudtKl7hmzR3UMyVQUgFrlp57y+4UPrshXfYMotSxC1Lq4eepHLqoD
+         zqXoLNPWm6eSko1Z2lpnBDlw7jgmRjTVnTjQaSWL3nOBJlMO8dNyU8GHTZ1OvO8gKHBG
+         Z1k1RNZDwom3R40GysZijBVBNWwlo3G7mkbwABtxm6ogg3DeKp+5CLqMCqbp33hkeNV+
+         4ySm9CRWXyx1jcfqUevrl/pGcTL0kuD3vmwthtMVTEt1rRzljmwsqnIKPsNVBYStkhVR
+         WhNStM+GsQdagrflfJxVhG9zE58thC3hM40Uj7heVOWBYFTnmxNuNNAcSX1My5FsoBMg
+         GD5g==
+X-Forwarded-Encrypted: i=1; AJvYcCUCyWm+pIuTM6A7Ethlkemb/Mw0KWUDoVfzlHvPOm2BQhFDrsyHYAok7roAnByVRxHaBOOZ9a/KUGVHizwokp1oqz0QEGqe6WhqtQ==
+X-Gm-Message-State: AOJu0Yz9ucRYBtpcUVjtkf+GlfnhA97Eb7EbSJi05e1AIPJ0e1/jotpw
+	LJAbed0AsjtPhK5Iykgkv7xV5RvuFKqOuYzMgk15e5U9RVMvVX6676GxBCTBEUg=
+X-Google-Smtp-Source: AGHT+IHMJZ30P8UVR2K0vBRATcstsMnbgrT0/BmiK2Wj/rdZqSO7t4oMtXLMWMTAd6MxQsmzbgEo/A==
+X-Received: by 2002:a05:600c:3493:b0:413:f76f:c10c with SMTP id a19-20020a05600c349300b00413f76fc10cmr370583wmq.35.1710410718310;
+        Thu, 14 Mar 2024 03:05:18 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id fb4-20020a05600c520400b004132901d73asm1921970wmb.46.2024.03.14.03.05.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Mar 2024 03:05:17 -0700 (PDT)
+Message-ID: <a8365f7f-fde1-464a-959b-4d7d8541ce18@linaro.org>
+Date: Thu, 14 Mar 2024 11:05:15 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -57,103 +76,100 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8192-asurada: Update min voltage
- constraint for Vgpu
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
+ board DTS
 Content-Language: en-US
-To: Pin-yen Lin <treapking@google.com>
-Cc: Pin-yen Lin <treapking@chromium.org>,
- Matthias Brugger <matthias.bgg@gmail.com>, Chen-Yu Tsai
- <wenst@chromium.org>, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mediatek@lists.infradead.org,
- =?UTF-8?Q?N=C3=ADcolas_F_=2E_R_=2E_A_=2E_Prado?= <nfraprado@collabora.com>,
- devicetree@vger.kernel.org
-References: <20240313135157.98989-1-treapking@chromium.org>
- <d1bdf9a6-3082-4076-99de-e49d59843244@collabora.com>
- <CAHwYsiqJBsQn73H+2VeB4N3GNH=0EZ4qznqWwYCBjt6+qwNhHw@mail.gmail.com>
-From: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAHwYsiqJBsQn73H+2VeB4N3GNH=0EZ4qznqWwYCBjt6+qwNhHw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+To: Sumit Garg <sumit.garg@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, stephan@gerhold.net,
+ caleb.connolly@linaro.org, neil.armstrong@linaro.org,
+ laetitia.mariottini@se.com, pascal.eberhard@se.com, abdou.saker@se.com,
+ jimmy.lalande@se.com, benjamin.missey@non.se.com,
+ daniel.thompson@linaro.org, linux-kernel@vger.kernel.org,
+ Jagdish Gediya <jagdish.gediya@linaro.org>
+References: <20240313123017.362570-1-sumit.garg@linaro.org>
+ <20240313123017.362570-4-sumit.garg@linaro.org>
+ <4a0a8db7-a2bc-4c99-94b2-c13facbd1bef@linaro.org>
+ <CAFA6WYPh5BS_Fpi6ksAC7bwoFEyqjj1Y3EahyQxCG9Pp=KDw=Q@mail.gmail.com>
+ <9dc0415c-4138-4867-861a-38b45b636182@linaro.org>
+ <CAFA6WYPFfL18acdZt6O-_=LWnH7J2MooDuf9cA3JCaQZdoLhVA@mail.gmail.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <CAFA6WYPFfL18acdZt6O-_=LWnH7J2MooDuf9cA3JCaQZdoLhVA@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Il 14/03/24 10:59, Pin-yen Lin ha scritto:
-> Hi Angelo,
+On 14/03/2024 10:17, Sumit Garg wrote:
 > 
-> On Wed, Mar 13, 2024 at 10:36 PM AngeloGioacchino Del Regno <
-> angelogioacchino.delregno@collabora.com> wrote:
+>                 compatible = "gpio-leds";
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
 > 
->> Il 13/03/24 14:51, Pin-yen Lin ha scritto:
->>> Although the minimum voltage listed on the GPU OPP table is 606250 uV,
->>> the actual requested voltage could be even lower when the MTK Smart
->>> Voltage Scaling (SVS) driver is enabled.
->>>
->>> Set the minimum voltage to 300000 uV because it's supported by the
->>> regulator.
->>>
->>> Fixes: 3183cb62b033 ("arm64: dts: mediatek: asurada: Add SPMI
->> regulators")
->>> Signed-off-by: Pin-yen Lin <treapking@chromium.org>
->>
->> Okay, that makes sense, I agree.
->>
->> ...but.
->>
->> The datasheet never mentions 0.3V as vmin - infact, it does mention that
->> the
->> vsel is selected as (0V +) 6250 * Vsel, but the brief spec says that for
->> the
->> standard configuration (in terms of HW), the Vmin is 0.4V and not 0.3.
->>
->> Reading through makes me think that it's not much about the buck providing
->> an
->> unstable output, but more about it starting to become inefficient under
->> that
->> value.
->>
->> This means that it is sensible to set, instead:
->>
->>          regulator-min-microvolt = <400000>;
->>
->> Also, this is repeated on multiple platforms: can you please perform the
->> same
->> change also on MT8183, MT8186 and MT8195?
->>
->> P.S.: For MT6358, the Vmin for VGPU is 0.5V :-)
->>
+>                 led@5 {
+> +                       reg = <5>;
+>                         label = "apq8016-hmibsc:green:wlan";
+>                         function = LED_FUNCTION_WLAN;
+>                         color = <LED_COLOR_ID_YELLOW>;
+> @@ -103,6 +106,7 @@ led@5 {
+>                 };
 > 
-> Thanks for checking! I'll update the values on other platforms as well.
+>                 led@6 {
+> +                       reg = <6>;
+>                         label = "apq8016-hmibsc:yellow:bt";
+>                         function = LED_FUNCTION_BLUETOOTH;
+>                         color = <LED_COLOR_ID_BLUE>;
 > 
-> I assume that we also want to update other mt6315 nodes listing 300000 uV
-> as the min voltage, so I'll update them as well.
-> 
+> But it then broke dtbs_check. Are you aware of any other saner way to
+> fix those warnings properly?
 
-Yes, didn't notice that, nice catch. Please do!
+You must drop unit address, because it is not applicable, instead of
+adding some properties to mask it.
 
-Cheers,
-Angelo
-
->>
->>> ---
->>>
->>>    arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 2 +-
->>>    1 file changed, 1 insertion(+), 1 deletion(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->> b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>> index 43d80334610a..5cc5100a7c40 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi
->>> @@ -1448,7 +1448,7 @@ regulators {
->>>                        mt6315_7_vbuck1: vbuck1 {
->>>                                regulator-compatible = "vbuck1";
->>>                                regulator-name = "Vgpu";
->>> -                             regulator-min-microvolt = <606250>;
->>> +                             regulator-min-microvolt = <300000>;
->>>                                regulator-max-microvolt = <800000>;
->>>                                regulator-enable-ramp-delay = <256>;
->>>                                regulator-allowed-modes = <0 1 2>;
->>
->>
->>
-> 
+Best regards,
+Krzysztof
 
 
