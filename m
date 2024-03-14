@@ -1,127 +1,133 @@
-Return-Path: <devicetree+bounces-50443-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50441-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 21DCC87BB5A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 11:35:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A680D87BB35
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 11:26:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 537561C20E16
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 10:35:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3300728450D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 10:26:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3A48D59B6C;
-	Thu, 14 Mar 2024 10:35:27 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id D285A6E611;
+	Thu, 14 Mar 2024 10:26:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="dy0FAtPv";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="6wF/ZzEQ"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="gbYZCwiB"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [81.169.146.165])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ua1-f51.google.com (mail-ua1-f51.google.com [209.85.222.51])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1B45641C63;
-	Thu, 14 Mar 2024 10:35:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=81.169.146.165
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710412526; cv=pass; b=USvZF+LYFraIIvn3U7TjGbMfm68SEONp5i6Czvo3K6VqTjnjHNKmQPsgOYhnbocEIEIkLTQo/2PEYYlVfAY4rjxCbRcNCwPqNZqdDWlL6nEjKm9n+QUd/Tg26lgQkdSKYeGz3+dOAPfPEsIS618CrLmAObHHy9Kd3NzUuEd5hQQ=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710412526; c=relaxed/simple;
-	bh=cyEeG6oHajbU9HRN3AVDJrilxbg7x+M53eUX+Bz8Vrw=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=cqR9R4KQ1exZkh8hJZdPdVwxKMmtljDNrUvQbBPs/gEaVoFqdZT9u2A2sTQ7jBhRSZ49uIrew8Tt9DUZoa2yTyFn1yb8Q91aFBf7YHU7+4w0/P0SCxAiW9kKxE0Z3gU9PNbwadlejqtqDEyjybekpN2m0/pQ5zbS1LFGs5iuZzo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net; spf=none smtp.mailfrom=gerhold.net; dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=dy0FAtPv; dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=6wF/ZzEQ; arc=pass smtp.client-ip=81.169.146.165
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=gerhold.net
-ARC-Seal: i=1; a=rsa-sha256; t=1710411438; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=KZGg4H5ZwbmwjQXq2xvKnJVk/7T1MdL3DzAjZ4P3izUnEVcp8OTNRZ7IIcby1Cv4lv
-    J/eFzyc52OfHpG+AzDyGZ4Dtf+hLcIPipjFpRkDgr5DTm25OFMRz9jeYJ1GEANlwm87i
-    38RoGScEkA5FvwdANcNVtIxANYbC7sOiKx1vdwko4mL3ClM8r+Nei0N5cwiDrDbB35ys
-    kNo0lAsa6hYH5E7UiHfX4CBPZ0SUFO5uavkxrxCH1qCF1HUPv5CjXMrxb1B+vW9OE5v3
-    fyNDiY2P5rvfQNdgdLGtGA0ZJOFsk0A6Hw5TV0axbGM8u7aU2jmpj+iVk9nuA91OV0hb
-    6upw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1710411438;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=cyEeG6oHajbU9HRN3AVDJrilxbg7x+M53eUX+Bz8Vrw=;
-    b=du5xzq+ot0ptQiK+xHua+LK1D4fTJxJvM4drxJWZII8WTnggJZP2y+vlBCVIDn0r1W
-    i6CtWBPF+9GpzbmDQdeVpPFZw5uHxp+VMlUN2gpNNh51YwxZdjhE2Owk2Du5fD0k8L/X
-    lOL0fP21Wl8fR3V82pPEsm+enOfcApufAUu2l4NiTuDGB+InMGbS4AscbrmgYJgOaZuk
-    QpHwFrFOLVpueSXEx5ISR+V7OgF+nGlDJ5mss2P+9phQpYMkKWQTGZqHNi8rtjz3/rqe
-    KqBF1eoxZkdnscCXXnto9H0uRDKZuu+/7llLOVIRCWPkZ8UPx4e5I2cXMTlb59PZxePy
-    hiVQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1710411438;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=cyEeG6oHajbU9HRN3AVDJrilxbg7x+M53eUX+Bz8Vrw=;
-    b=dy0FAtPvhIOuvlDtHV3XTtSeG06fedAhgxREGaFOe298ltKBPj4LGxPFWqfqXE0rKj
-    xuPcOwUV1Cf/NsUPozixyOSVH2RscRGmbgp/31bA0EcPm8Cld2JDmzZTQ30DVBjGFXkp
-    WvKJoegAE5VLyzoLrB4h/UtUjoB1GvAJlG1xlPEkgiVcHi15Mj8Q1ROVRA5h6eesD41K
-    MTvWtnfG2IPPDfNXaPm+hYFTX/rRQm6pE8AO+oPWmWZXfslmKfbQO0chKLQ7tgGyusiV
-    7X+pLiwrKvavuJGWb7Kj+0rtNkSXnkofyCG0xsd7TP289tMHO+rGkuVC/WwaIFRSM55f
-    TYUg==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1710411438;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=cyEeG6oHajbU9HRN3AVDJrilxbg7x+M53eUX+Bz8Vrw=;
-    b=6wF/ZzEQ05owbrTftYzw48cliWZqhFXCT2MF41+26PXRf9473GInAbfdxvIox9dIf4
-    LVfsPfXQU6pI6ZZSX4Ag==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8p+L1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 50.2.2 DYNA|AUTH)
-    with ESMTPSA id Rf2ecd02EAHH3LN
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Thu, 14 Mar 2024 11:17:17 +0100 (CET)
-Date: Thu, 14 Mar 2024 11:17:11 +0100
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: Bjorn Andersson <andersson@kernel.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] arm64: dts: qcom: msm8916: drop dtbTool
- compatibles
-Message-ID: <ZfLOp3aGgvGTRsT2@gerhold.net>
-References: <20240314-msm8916-drop-compats-v2-0-5a4b40f832d3@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2F3FB5D463
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 10:26:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.51
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710411985; cv=none; b=N3hjgV38ORhMZPiImNFKNjnxdKf1TJBVyNC8QG12zur8jiJeGxmP7nzgJ09G+4DPKe7mbV0ctdKUCHsYM+A77M4wNLeS5hTYLpfMdhjlMnf1wzxOUnJhVY6OULyJu0gqGeFDgF869zKGkKn1dgldbhr0XGEA2Fb0rZarDkXrDTI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710411985; c=relaxed/simple;
+	bh=bClml7W2Syxqpxl+P0XTyjEWXWGG/s5JmZLnZYmwEdM=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=D4jX9wbPyC+BMR6NfQ4razB/L+9YnPuBWbhP14e8TOUHbDlUbPwPTnCfZCHgW+wL8NvsohNcMYoUX3Zg6TGsdscvd94vDMO8Hj3nnWVao7H1dg4rAI8+RP4rXjfqzVNrxd0WafL8gOl5qn8xkcb/W55TwVp/qJrFls63hXhOQIs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=gbYZCwiB; arc=none smtp.client-ip=209.85.222.51
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ua1-f51.google.com with SMTP id a1e0cc1a2514c-7db4484672bso328634241.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 03:26:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710411983; x=1711016783; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=bClml7W2Syxqpxl+P0XTyjEWXWGG/s5JmZLnZYmwEdM=;
+        b=gbYZCwiBXN0zyT4Uj+JhC5pfcZAZoCkXzwxw4o0qR7YREdG5kiBKdaPp6lSP98rEbw
+         EB/5j5tn+iftiwUTRFMlsbte+cllaUBsE3668HWJYfe7lqi5kQOzuKiEyMpleHWL3Ha9
+         aFJDcblp6eyGGf6n82PxXSIQK1GUxFI7opnn4cjqct23KiTwTgsMFzWpJoFeo31RQKJ6
+         DtGvrlPYWq/CtXf0IiBcVvflBEGsS/sGNmGNpxD1s9hQrsJqoOqCUov8dMauKkeIaszT
+         Ot8kI7r5CtPJjJsxU6uCsKFJdiTHNfIhhocGTeoCRGUG0PeBWjplUCS4GK3zFOuXc1sL
+         9W7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710411983; x=1711016783;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=bClml7W2Syxqpxl+P0XTyjEWXWGG/s5JmZLnZYmwEdM=;
+        b=nxNqBl/uVkSqoa+6JYX51igrq5OrUw728pfRUqTqM5F9J1ByDWojlb+y8y0g4zBXJC
+         f+ddBY+w9Vgnx41kM8Q9j/71SmeeVAzgYe/vIoWHHdTGlN/wAkO+OoV9t7jyqpI9vnPL
+         mnE3INH4gefUq9Y72SREWpA2A630BTf++OKhmdKaWrOVG5Z91KDPLDx89WdNSN5/dCXu
+         UVEErcCik6Nie+wPTTTMN1EfxgL+UcL95R6ilZ3XS0GhAGzMNdyqNVGnE0bhmmfx309x
+         rj0H8qzMAM6DoJgeKjj5iuwivTVOx2ksSR402nsRyuj4VUfAPLfcLuGA/pryFNgCUZfy
+         Gv6g==
+X-Forwarded-Encrypted: i=1; AJvYcCVt2EtymXnxNnVsw9dlw9p8uvmjx5rQgvmBfUkkzcJM0BF5B7WDM31rcjFdlaht/lYH0iDihCXNmgl91LNUavLDC+1cwyMFW9GD6A==
+X-Gm-Message-State: AOJu0Yz/yYxZB/9KffqFmwMF1aV0I4TEK6J2gcRw9rmLm69WCnOlz4F6
+	1j6WYTb1E7YQ/LUh69XfTEuIjSpgFs0y9lQ0vJ6BuoW4+d80bfFgN06yQkCz5WRHYXeji7WOpDh
+	qvYRtFsvOBQ4iKX6NeSH4X55Fl5ObB5B3WU+8mw==
+X-Google-Smtp-Source: AGHT+IHQotcVxfbfFxcjGI7/T/ebobFcozaCDRBw/St3GkLtFEQShNOY4t4ZZOogNwvVxa7Pm+LCr1GCxRVS9jyr/Tg=
+X-Received: by 2002:a67:b345:0:b0:476:7bf:8912 with SMTP id
+ b5-20020a67b345000000b0047607bf8912mr1239701vsm.11.1710411983143; Thu, 14 Mar
+ 2024 03:26:23 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240314-msm8916-drop-compats-v2-0-5a4b40f832d3@linaro.org>
-Content-Transfer-Encoding: 7bit
+References: <20240313123017.362570-1-sumit.garg@linaro.org>
+ <20240313123017.362570-4-sumit.garg@linaro.org> <4a0a8db7-a2bc-4c99-94b2-c13facbd1bef@linaro.org>
+ <CAFA6WYPh5BS_Fpi6ksAC7bwoFEyqjj1Y3EahyQxCG9Pp=KDw=Q@mail.gmail.com>
+ <9dc0415c-4138-4867-861a-38b45b636182@linaro.org> <CAFA6WYPFfL18acdZt6O-_=LWnH7J2MooDuf9cA3JCaQZdoLhVA@mail.gmail.com>
+ <CAFA6WYNo73S5ROHCMK0ZQSiU0DDbuDadptmaPL+GPCocE0h-mA@mail.gmail.com> <f03c7979-79f3-4894-98b0-1e5a2dc18ba6@linaro.org>
+In-Reply-To: <f03c7979-79f3-4894-98b0-1e5a2dc18ba6@linaro.org>
+From: Sumit Garg <sumit.garg@linaro.org>
+Date: Thu, 14 Mar 2024 15:56:11 +0530
+Message-ID: <CAFA6WYNRwF7GqhBk2B7i-deT3aLxNQckhnOasjip2TYm4HZgAw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
+ board DTS
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, stephan@gerhold.net, 
+	caleb.connolly@linaro.org, neil.armstrong@linaro.org, 
+	laetitia.mariottini@se.com, pascal.eberhard@se.com, abdou.saker@se.com, 
+	jimmy.lalande@se.com, benjamin.missey@non.se.com, daniel.thompson@linaro.org, 
+	linux-kernel@vger.kernel.org, Jagdish Gediya <jagdish.gediya@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-rOn Thu, Mar 14, 2024 at 03:42:47AM +0200, Dmitry Baryshkov wrote:
-> Only two boards ever has adopted the dtbTool-specific compatibles.
-> However the dtbTool should not be used anymore. It was required only for
-> the old, broken lk1st bootloader. All users of those boards should have
-> updated to use lk2nd instead. Otherwise several important features
-> (secondary CPU cores, WiFi, BT) will not work with the upstream kernel.
+On Thu, 14 Mar 2024 at 15:36, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 14/03/2024 10:36, Sumit Garg wrote:
+> >>
+> >> But it then broke dtbs_check.
+> >
+> > See following breakage afterwards:
+> >
+> > $ make qcom/apq8016-schneider-hmibsc.dtb dtbs_check
+> > <snip>
+> > /home/sumit/build/upstream/linux/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dtb:
+> > leds: led@5: Unevaluated properties are not allowed ('reg' was
+> > unexpected)
+> > from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+> > /home/sumit/build/upstream/linux/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dtb:
+> > leds: led@6: Unevaluated properties are not allowed ('reg' was
+> > unexpected)
+> > from schema $id: http://devicetree.org/schemas/leds/leds-gpio.yaml#
+> > /home/sumit/build/upstream/linux/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dtb:
+> > leds: '#address-cells', '#size-cells' do not match any of the regexes:
+> > '(^led-[0-9a-f]$|led)', 'pinctrl-[0-9]+'
+>
+> That's obvious, I don't get what is the question. Adding not correct
+> properties is not a solution and dtbs_check correctly tells you that.
+>
+> If you only opened absolutely any existing upstream source, you would
+> see how the gpio leds are represented in DTS.
+>
 
-Nitpick: The term "the old, broken lk1st bootloader" is a bit misleading
-here. I believe you are referring to Qualcomm's original LK bootloader.
-"lk1st" is actually the name of an alternative configuration in the
-lk2nd project that can be used to replace the first-stage bootloader on
-devices without secure boot, e.g. DB410c and a few smartphones. lk1st
-has exactly the same functionality as lk2nd and is therefore definitely
-not old and broken. Both support DTB selection, secondary CPU cores etc. :-)
+It looks like my reference example:
+arch/arm64/boot/dts/qcom/apq8016-sbc.dts wasn't correct then. I will
+drop unit addresses then.
 
-I don't think we put the cover letter into a merge commit message in the
-qcom tree, so there is no need to resend. I just wanted to clarify this.
+-Sumit
 
-Thanks for cleaning this up!
-Stephan
+> Best regards,
+> Krzysztof
+>
 
