@@ -1,227 +1,199 @@
-Return-Path: <devicetree+bounces-50401-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50403-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id A021C87B883
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 08:23:00 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id A868C87B8EE
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 08:53:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E3AEB2337C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 07:22:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3106928A354
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 07:53:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8B6765EE86;
-	Thu, 14 Mar 2024 07:21:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7E54E5CDD3;
+	Thu, 14 Mar 2024 07:53:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="OXpS/5Ko"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="jg/yIvLb"
 X-Original-To: devicetree@vger.kernel.org
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CADB55E224;
-	Thu, 14 Mar 2024 07:21:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.19.141
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B0C8D2AEF5;
+	Thu, 14 Mar 2024 07:53:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710400919; cv=none; b=nbqoZAopfT2dOxwHZ4SK8/uq2HoOg4bHerBzEHcAB3P7qWFoKCPeqi5RVyC1lvXMR7AZKMp2c4fi0vAuHqkhdGLl7+sy2UGNBKod85EKYprFSzxjh098hvdeOXLLY+PIdsgKAOjDOh8LiiOrhyh2ZopZydBfXKqkCoCR2QX+/Io=
+	t=1710402806; cv=none; b=u0w6/TAcfwoIcYYUkugQ7Td4yomNw01N+OCGmAKpM8DmWsHKXhOgA9rb6dp/8xyDRzzvN/Ke6eJXdkij5y5iG8pJOX/rT3dePPhXzdNN4ACyXPIah9RAv8ULtkP2Aihua4S8KgM/sd8+tOOMH6hyUIzoolcFcTZX6ej7fu3+pms=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710400919; c=relaxed/simple;
-	bh=UcBcGukgguSoA+8PNtQc1UjtJFCatvGk6EJx682SMsM=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=sFID3fUSMTUW6YGpmqm+ae/oIismUDefuZvzJT8UYB2mp//lK7ZC5ahzC+98IFiuv3Hx1x8RI2j1IZgXAYtpjY+pQ4E0n8FEenvtTsEA83MFaPsuFBBL8XUAUdYeQWqybc35Mtir1r824T6Tx9C/Zdg9ojHO/Psi3dog7VrEuCw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=OXpS/5Ko; arc=none smtp.client-ip=198.47.19.141
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-	by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42E7LeOq065182;
-	Thu, 14 Mar 2024 02:21:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-	s=ti-com-17Q1; t=1710400900;
-	bh=EKTarbR5ODKlrx6YKTvE9DTK3VZbyWvX/vtA06anwgE=;
-	h=From:To:CC:Subject:Date:In-Reply-To:References;
-	b=OXpS/5KoZJcavatc86sT7k7ykAC1bE410nXv4hu0QFxAn5zxSt3nu/Z7CjVkZDP0g
-	 Bdhsf9v9nLcQCzmMs9s5bJlC6/A6ZrCwdverVo591YqalFkrNCk33aFMYXGea/ROGP
-	 m27TDZxBaXpQ9MsC8Y06RJpyUOALaZlPyMiAAgo0=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-	by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42E7LeUg031098
-	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-	Thu, 14 Mar 2024 02:21:40 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
- Mar 2024 02:21:39 -0500
-Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 14 Mar 2024 02:21:39 -0500
-Received: from localhost (chintan-thinkstation-p360-tower.dhcp.ti.com [172.24.227.220])
-	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42E7LcVN120617;
-	Thu, 14 Mar 2024 02:21:39 -0500
-From: Chintan Vankar <c-vankar@ti.com>
-To: Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski
-	<krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>, Tero
- Kristo <kristo@kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>, Nishanth
- Menon <nm@ti.com>
-CC: <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <s-vadapalli@ti.com>,
-        <srk@ti.com>, <r-gunasekaran@ti.com>, <danishanwar@ti.com>,
-        Chintan Vankar
-	<c-vankar@ti.com>
-Subject: [PATCH v5 5/5] arm64: dts: ti: k3-j784s4: Add overlay for dual port USXGMII mode
-Date: Thu, 14 Mar 2024 12:51:29 +0530
-Message-ID: <20240314072129.1520475-6-c-vankar@ti.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240314072129.1520475-1-c-vankar@ti.com>
-References: <20240314072129.1520475-1-c-vankar@ti.com>
+	s=arc-20240116; t=1710402806; c=relaxed/simple;
+	bh=bxdzSN/8FBeJ0CQl64AWcR2laY+ZofOFZBaFzP3Q14E=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=ZtOqSZEzd+ZwPpHLIORAEwsuHljpMQkBWUKFMG//60m5mcEAHvyVefZLIpqzHIU+udF6gRMpxi4l7kMsf6S7DL35mMeB/UCFcO8F3i0dYQuhzTjukC1j+K/VaA/ijQiNZwBUBuInCXlyWZGUJjvSwvRQqvLC2v62NtFDu0+2SFk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=jg/yIvLb; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-4132f37e170so3807385e9.2;
+        Thu, 14 Mar 2024 00:53:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710402803; x=1711007603; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Gn4gj7fpfifQMAh0+TuenKxoInLOMHsjt+PcnC9Scoc=;
+        b=jg/yIvLbb77FV2qWX0N6VaBF6L4a+GxfjHic6apQ2njgxfqLkFubUgkyAwrbseLZQ/
+         vkdQ0cj/aDsE+zbt2gjd2VjgVWBR/dDqsEi2yJMRhzt8xShji3d1kNwRQ4jqeUSod7sK
+         DV9qq+IFD/5jdiHEgoA3EKaVpqyskGLCpp7YDGKhYKw3p3zDPdi1m4gQjojVG1niNtJk
+         whVieNL5k22nH0yEWGteWGejkAORkvfMPQPyI/s5q8PcC2HEDm4oNehFNSUhNtwDTAew
+         gO2J9ztSU2lXZwS8lknP2y+2jzBDI1AogeL7JWNlowp2RzUdmQSN0LqDDS8+bHBGfVQ4
+         Baog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710402803; x=1711007603;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Gn4gj7fpfifQMAh0+TuenKxoInLOMHsjt+PcnC9Scoc=;
+        b=a4uH2P2TPPieec3i2Mq7Tu1O6XQJFBBrafPSdLfLDOxuuURbcE3bloizL8yV2FzAXV
+         O+wzO3XndjSI5jN3SEOGVusnu5TI+uxr+7SvbdS+tixM4oi3RoWFQkWy1HPz6Ortoj+O
+         Ec/BCSlZWw3osOV8PdtVeaBlremD3Hq/XibHaY0iN37RF+0an69ovBTsHu09kcibKm+a
+         79c+k/pL0bGtgu1JOqsgRD2nLAPxKGdWDCkl/rx+YK8O7hnaY18Hl1EMM5Adc1skW8Ly
+         3SjEwt+qGvFvcEE5wwGx387gZqFGtd2wf+WtHnIJb785V91kw69p1SO+937U2m5vIiLZ
+         VS8w==
+X-Forwarded-Encrypted: i=1; AJvYcCX5uM7AZWssKcLPVd2CXWfKuSd1XSQvZkxmKVms6yKnhSsomqoApq2rIERxQtgRYYmV0x8EqApUOkLRXC46WNA0B+hzhuSVIo0H3tNgfxcSasiGWhDE9bS4AbCdb5DuCIZisWl+Y8A73g==
+X-Gm-Message-State: AOJu0Yy9P4KNFWrjwrdkm3N3XY5k2kfSqZciglzH+FsSqlph610qnDN+
+	LVOr/hQ+djTUKl9H8MSV7xmQG4gESqr+asC6XI0Of1djSrlH7Dh3S3yl4RtkUNE=
+X-Google-Smtp-Source: AGHT+IHIYi9eNIj5NSdmQ1rkHsd/2kZvtqfCiSo4m+lFDbTKXiYw2m+vJ913NZKJ9XC09jwD5GbLHQ==
+X-Received: by 2002:a05:600c:4f56:b0:413:eee2:96a3 with SMTP id m22-20020a05600c4f5600b00413eee296a3mr717728wmq.1.1710402802707;
+        Thu, 14 Mar 2024 00:53:22 -0700 (PDT)
+Received: from [192.168.20.170] (57657817.catv.pool.telekom.hu. [87.101.120.23])
+        by smtp.gmail.com with ESMTPSA id bu25-20020a056000079900b0033ec9007bacsm112151wrb.20.2024.03.14.00.53.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Mar 2024 00:53:22 -0700 (PDT)
+Message-ID: <dba85b0b-2318-4cdf-a678-a07ae82c65c1@gmail.com>
+Date: Thu, 14 Mar 2024 08:53:21 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 2/2] arm64: dts: qcom: add TP-Link Archer AX55 v1
+Content-Language: hu
+To: Konrad Dybcio <konrad.dybcio@linaro.org>,
+ Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+References: <20240313-archer-ax55-v1-v3-0-cd9402efab59@gmail.com>
+ <20240313-archer-ax55-v1-v3-2-cd9402efab59@gmail.com>
+ <b8d9117e-5e99-4f69-844d-997a3fbf04d6@linaro.org>
+From: Gabor Juhos <j4g8y7@gmail.com>
+In-Reply-To: <b8d9117e-5e99-4f69-844d-997a3fbf04d6@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-From: Siddharth Vadapalli <s-vadapalli@ti.com>
+2024. 03. 13. 19:27 keltezéssel, Konrad Dybcio írta:
+> 
+> 
+> On 3/13/24 19:25, Gabor Juhos wrote:
+>> Add device tree source for the TP-Link Archer AX55 v1 [1]
+>> which is a dual-band WiFi router based on the IPQ5018 SoC.
+>>
+>> At the moment, only the UART, the GPIO LEDs and buttons
+>> are usable, but it makes it possible to boot an initramfs
+>> image on the device.
+>>
+>> The device tree can be extended in the future, once support
+>> for other periherals will be available for the platform.
+>>
+>> 1. https://www.tp-link.com/en/home-networking/wifi-router/archer-ax55/v1/
+>>
+>> Signed-off-by: Gabor Juhos <j4g8y7@gmail.com>
+>> ---
+>> Changes in v3:
+>>    - change pin configuration to use "gpio20" and "gpio21" for UART pins
+>>    - rebase on top of v6.8.
+> 
+> Did you actually check this?
 
-The CPSW9G instance of the CPSW Ethernet Switch supports USXGMII mode
-with MAC Ports 1 and 2 of the instance, which are connected to ENET
-Expansion 1 and ENET Expansion 2 slots on the EVM respectively, through
-the Serdes2 instance of the SERDES.
+Yes, I have tested this.
 
-Enable CPSW9G MAC Ports 1 and 2 in fixed-link configuration USXGMII mode
-at 5 Gbps each.
+> And how so?
 
-Signed-off-by: Siddharth Vadapalli <s-vadapalli@ti.com>
-Signed-off-by: Chintan Vankar <c-vankar@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile               |  6 +-
- .../ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso   | 81 +++++++++++++++++++
- 2 files changed, 86 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
+First, I have checked the stock firmware which uses the same pinctrl configuration:
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index f8e47278df43..2d798ef415e4 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -101,6 +101,7 @@ dtb-$(CONFIG_ARCH_K3) += k3-j722s-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-am69-sk.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm.dtb
- dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-quad-port-eth-exp1.dtbo
-+dtb-$(CONFIG_ARCH_K3) += k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
- 
- # Build time test only, enabled by CONFIG_OF_ALL_DTBS
- k3-am625-beagleplay-csi2-ov5640-dtbs := k3-am625-beagleplay.dtb \
-@@ -148,6 +149,8 @@ k3-j721s2-evm-pcie1-ep-dtbs := k3-j721s2-common-proc-board.dtb \
- 	k3-j721s2-evm-pcie1-ep.dtbo
- k3-j784s4-evm-quad-port-eth-exp1-dtbs := k3-j784s4-evm.dtb \
- 	k3-j784s4-evm-quad-port-eth-exp1.dtbo
-+k3-j784s4-evm-usxgmii-exp1-exp2.dtbs := k3-j784s4-evm.dtb \
-+	k3-j784s4-evm-usxgmii-exp1-exp2.dtbo
- dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-am625-beagleplay-csi2-tevi-ov5640.dtb \
- 	k3-am625-sk-csi2-imx219.dtb \
-@@ -169,7 +172,8 @@ dtb- += k3-am625-beagleplay-csi2-ov5640.dtb \
- 	k3-j721e-evm-pcie0-ep.dtb \
- 	k3-j721e-sk-csi2-dual-imx219-dtbs \
- 	k3-j721s2-evm-pcie1-ep.dtb \
--	k3-j784s4-evm-quad-port-eth-exp1.dtb
-+	k3-j784s4-evm-quad-port-eth-exp1.dtb \
-+	k3-j784s4-evm-usxgmii-exp1-exp2.dtb
- 
- # Enable support for device-tree overlays
- DTC_FLAGS_k3-am625-beagleplay += -@
-diff --git a/arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso b/arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
-new file mode 100644
-index 000000000000..b8e7fed6105a
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j784s4-evm-usxgmii-exp1-exp2.dtso
-@@ -0,0 +1,81 @@
-+/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
-+/**
-+ * DT Overlay for CPSW9G in dual port fixed-link USXGMII mode using ENET-1
-+ * and ENET-2 Expansion slots of J784S4 EVM.
-+ *
-+ * Copyright (C) 2024 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+/plugin/;
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/phy/phy-cadence.h>
-+#include <dt-bindings/phy/phy.h>
-+
-+#include "k3-serdes.h"
-+
-+&{/} {
-+	aliases {
-+		ethernet1 = "/bus@100000/ethernet@c000000/ethernet-ports/port@1";
-+		ethernet2 = "/bus@100000/ethernet@c000000/ethernet-ports/port@2";
-+		ethernet3 = "/bus@100000/ethernet@c200000/ethernet-ports/port@1";
-+	};
-+};
-+
-+&main_cpsw0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+};
-+
-+&main_cpsw0_port1 {
-+	status = "okay";
-+	phy-mode = "usxgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 1>, <&serdes2_usxgmii_link>;
-+	phy-names = "mac", "serdes";
-+	fixed-link {
-+		speed = <5000>;
-+		full-duplex;
-+	};
-+};
-+
-+&main_cpsw0_port2 {
-+	status = "okay";
-+	phy-mode = "usxgmii";
-+	mac-address = [00 00 00 00 00 00];
-+	phys = <&cpsw0_phy_gmii_sel 2>, <&serdes2_usxgmii_link>;
-+	phy-names = "mac", "serdes";
-+	fixed-link {
-+		speed = <5000>;
-+		full-duplex;
-+	};
-+};
-+
-+&serdes_wiz2 {
-+	status = "okay";
-+	assigned-clock-parents = <&k3_clks 406 9>; /* Use 156.25 MHz clock for USXGMII */
-+};
-+
-+&serdes2 {
-+	status = "okay";
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	serdes2_usxgmii_link: phy@2 {
-+		reg = <2>;
-+		cdns,num-lanes = <2>;
-+		#phy-cells = <0>;
-+		cdns,phy-type = <PHY_TYPE_USXGMII>;
-+		resets = <&serdes_wiz2 3>, <&serdes_wiz2 4>;
-+	};
-+};
-+
-+&serdes_ln_ctrl {
-+	idle-states = <J784S4_SERDES0_LANE0_PCIE1_LANE0>, <J784S4_SERDES0_LANE1_PCIE1_LANE1>,
-+		      <J784S4_SERDES0_LANE2_IP3_UNUSED>, <J784S4_SERDES0_LANE3_USB>,
-+		      <J784S4_SERDES1_LANE0_PCIE0_LANE0>, <J784S4_SERDES1_LANE1_PCIE0_LANE1>,
-+		      <J784S4_SERDES1_LANE2_PCIE0_LANE2>, <J784S4_SERDES1_LANE3_PCIE0_LANE3>,
-+		      <J784S4_SERDES2_LANE0_IP2_UNUSED>, <J784S4_SERDES2_LANE1_IP2_UNUSED>,
-+		      <J784S4_SERDES2_LANE2_QSGMII_LANE1>, <J784S4_SERDES2_LANE3_QSGMII_LANE2>;
-+};
--- 
-2.34.1
+  root@Archer_AX55:~# uname -a
+  Linux Archer_AX55 4.4.60 #1 SMP PREEMPT Tue Mar 14 18:25:29 CST 2023 armv7l
+GNU/Linux
+  root@Archer_AX55:~# strings
+/sys/firmware/devicetree/base/soc/pinctrl@1000000/uart_pins/blsp0_uart_rx_tx/pins
+  gpio20
+  gpio21
+  root@Archer_AX55:~# strings
+/sys/firmware/devicetree/base/soc/pinctrl@1000000/uart_pins/blsp0_uart_rx_tx/function
+  blsp0_uart0
+
+It is also visible in pinctrl-maps:
+
+  root@Archer_AX55:~# cat /sys/kernel/debug/pinctrl/pinctrl-maps
+  Pinctrl maps:
+  device 1000000.pinctrl
+  state default
+  type MUX_GROUP (2)
+  controlling device 1000000.pinctrl
+  group gpio20
+  function blsp0_uart0
+
+  device 1000000.pinctrl
+  state default
+  type CONFIGS_GROUP (4)
+  controlling device 1000000.pinctrl
+  group gpio20
+  config 00000001
+
+  device 1000000.pinctrl
+  state default
+  type MUX_GROUP (2)
+  controlling device 1000000.pinctrl
+  group gpio21
+  function blsp0_uart0
+
+  device 1000000.pinctrl
+  state default
+  type CONFIGS_GROUP (4)
+  controlling device 1000000.pinctrl
+  group gpio21
+  config 00000001
+  ...
+
+Additionally, this is what debug/gpio says:
+
+  root@Archer_AX55:~# grep -E 'gpio2[01]' /sys/kernel/debug/gpio
+   gpio20  : in  1 8mA no pull
+   gpio21  : in  1 8mA no pull
+
+
+Then I have tested the following with v6.8 and with the previous version of the
+patch.
+
+Exported GPIO20 via sysfs ...
+
+  root@test:/# gpio=$((512+20)); echo $gpio > /sys/class/gpio/export; while
+true; do for dir in high low; do echo $dir >/sys/class/gpio/gpio$gpio/direction;
+sleep 3; done; done
+
+... and measured the voltage on the UART pin header. Then I did the same with
+GPIO21 as well.
+
+This revealed that GPIO20 corresponds to RX and GPIO21 to TX.
+
+If that matters, the downstream kernel also uses this 'trick' for some boards:
+
+https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/-/blob/NHSS.QSDK.12.4/arch/arm64/boot/dts/qcom/ipq5018-db-mp03.1.dts?ref_type=heads#L443
+https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/-/blob/NHSS.QSDK.12.4/arch/arm64/boot/dts/qcom/ipq5018-mp03.1.dts?ref_type=heads#L565
+
+
+Regards,
+Gabor
 
 
