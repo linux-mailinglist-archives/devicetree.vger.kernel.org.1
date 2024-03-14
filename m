@@ -1,84 +1,85 @@
-Return-Path: <devicetree+bounces-50374-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50375-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A438A87B6AA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 04:04:40 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id F3C0D87B6C7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 04:21:32 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 00C2DB2114C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 03:04:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A22ED285C5A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 03:21:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A29138A;
-	Thu, 14 Mar 2024 03:04:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF6161C01;
+	Thu, 14 Mar 2024 03:21:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="eMVCyYxX"
+	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="Suuii5eV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2135.outbound.protection.outlook.com [40.107.255.135])
+Received: from EUR02-DB5-obe.outbound.protection.outlook.com (mail-db5eur02on2076.outbound.protection.outlook.com [40.107.249.76])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A6468BFB;
-	Thu, 14 Mar 2024 03:04:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.135
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D0BFE33F6;
+	Thu, 14 Mar 2024 03:21:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.249.76
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710385461; cv=fail; b=Z5g1dATjYJJ7nXQgwsCF4NZVzWCSsaMNHiAJJBzVATFHNZBlqEqvV5Xlcn16yH0QAeJ4NhCLuFv6PC29FgGHcF2Yd3rOjQdjkJcL4OS/edVBA12uOI+bvos2WLagD2xBUy57iwwULKmdQZ/5oVzYdxxBfIc1Nw+Nt+d/65t9Vis=
+	t=1710386488; cv=fail; b=K6xIqZ3IekQf5ZzqObFr5e+69fhSh3PjsE9C9ywffdxfjIQmL/DjGrkZnvRbP9lhjXI2p4SKVqDN/5IqGh2r6XuAHASCVEIuQekjZIxnz8hfw2j5dJ5RUjYrxb/i/Wa5lMuYKzjS+s4BdQvY55ypbTiVU6ISbsszyvkH56/wa9g=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710385461; c=relaxed/simple;
-	bh=odVY6tn2fSMSmDe68cwMdIgCd+SLLqwAa0BGsP27MF8=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=r20bHRe9H4z15PqRECoS0fPJZ58/tz9kXiKXTuRBYfQcck0nx0MUkazMb9WfCzkU0F2zRzDIEJt/x5RYUu68hlAXC6yp0m66p6NEKNE3WLt1NcW4NI4HakYqNC9QXIWqxINKUd09R6dkQbPO8TVcbrFq6pyWZhqgzZgIdw88KNs=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=eMVCyYxX; arc=fail smtp.client-ip=40.107.255.135
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+	s=arc-20240116; t=1710386488; c=relaxed/simple;
+	bh=lyOC/AicWUNjYHRu6IwVXvsc/Z/LkmDJB/dgx+brg/w=;
+	h=From:To:Cc:Subject:Date:Message-Id:Content-Type:MIME-Version; b=Fg0k//NleK5B4afPRlJfb4GBtkLhBq7sfMcZdKrkYKCF1ZTDWSLK36FrxC6v+BJtboaE/Zyci/EirDp5Kqf0v7mYbqJLoKUct2Uer3ogzaQD3jS3i9tJdTlImsT5Jadfmr4Iaz3nQc/nwxbsUEJa9dCm/2jwUmMFzCnD2TwLWCo=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=Suuii5eV; arc=fail smtp.client-ip=40.107.249.76
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ve9KRKBv00vt47CWCZZBWW7t5tcdmczq+5fe9xDuCCQhrLdsTEEgvsfuz1P5sVDnClejnTV+yYMfwvUHFUoMqXiUGVnZpIXQutvELHoAPKRMysrw575VkH8i9Fu73PBEKhNycIOOUCbsboAAVRzL9ZiIJK5RDuiV9cnaVNaxoLIurpsgcvGBI4SBjJzXYTrF7Ig8VrvUEVVSvMv0DNN6HZiy+3u+cPrrh7s6tgHVCmrDhU5NhQ7n62PLzzqPnQV/LNagZLpYh7hS5Trt0GaEDnKRkSXNReE6/kk+Jw5DiAKsCQwys4a9h48K3HmtAOuoDkH+XqxyOhVA5/WJMNgelg==
+ b=JmRat4AxAblVuixFYFVME9RtUUVBBjjhchi+xtSqZmoP2nLWgPe4ak3dmHHhUPAYhwFyZ8gkrC4Rv0BJN/gU7RocaIZz9c8fukfahE5LQVtDi62cqedfLf+NkdNOEGZgVeCGeNDNLmKp9j6fjyIeXWoeUY5QJl2nEg/31RRLvrDYfOijNaoJsXT+YcIKiOs0ZdILCcqtwoSyrOLSUJnEiJYhUAbPtGbxNmYy5E0GHIQDu0vFtGKOssTURdtpvloLgIR3l/OEyeRCCItbfvi9Hoks6AbkQ9eb8YFLQNOTeTwpIimRuMUQRBOGZ+M26RPEN0zSWCmiScxVHMHKDiCtKw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=RmdSrnIhym/7uzdgNW/Waq/uHXJpRaKrD3lchFG93A8=;
- b=iBnBU6lNbW+2bbwt16IWOVzslQq9+NytjfoEb6+EAynCgI9mAX3CauHI76KAIkKalF3xGJZcegFAXUOfq1h4dihx/HUx0KwzQ6fkG6J09BK7UgsbndeVw5fFtA6yTlCNZ3qtvrBLi/2CXHiI+LCtQ7yTkQlaY+3V1veAKcatmGt9MYBjVN6+lV7SFogTVyaDx++d2iUXjAFV9MdAH9seMARkFaNu2O5gYTD+BI6VbYP9TVyvDn6HLw4kHhfZgriS5OY3y/ugzgYikXKLLuTb5+xAgzmYLOrE+XR5H73LbXG5L7H1mHil8evQxj9Rf3Pa+xlxMWpNBamCGoUFMUGs6w==
+ bh=8WqKAEmIOvshZwrA8Z0TWRCT8HIhVA0ftPp43laegsY=;
+ b=PHm1g1gvQWH8mpLSEUGjOKWTL8i9UkWva5Qfa28858LcTAuSr6fUJbom62Dvg6LOJK6m+7NzFeotpqF47ORKKsa+a/9VLtZiQPjzUaP3kX9uadJXw05tQBsK6EkwJgq63zfRMyZNcdozImAtWaHN8MVxXIYGWaCAnBKW6VsKqAstlFRDi/hukHdDv9VNjr2Y0YZW5hMb4UguLFvvxoxfOjVeCa4Okr09pJse9RqQbt4uz4p/hHSA4sjV8ZHaV0tCGxr/ugOSyTkXbDgw5WTPL4XvG5FFW5iaLMotvZ4n4WsjcIjE5PnRi40Xw2M408PRGQVN0aarkVrJ+Y8NWquRgQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RmdSrnIhym/7uzdgNW/Waq/uHXJpRaKrD3lchFG93A8=;
- b=eMVCyYxXZxggBoJgaotgiGW6MjnWZX7ZqCB2koXqzgYcDWgHk1zzZ02A+bknq6X3IiDpKa9tkK3GCy0cZEtc+SnYC0tMfBmWBvGBEB+LyhS6JXcAOgTp5+9Z+WG5Sp5ET3s09FwbaKlPDbB4PXyELAaLY3LDgYeKspYfXtu9aSEZLPsDXx5FUFMF9+bW4cdUviLByrP3yuWLF9u1ptWxnuY0sXtJtd2MOmcdIU5k1b8VPX+TgJaoC7JXfYcR/eRQE6zW4cWLgVnb7MGzf0bdF2JKaOOREQWLKQ4bfW8twQrz0imBfGbvvej+afyNfamp7uIT9xLYVUEmDz/uqYz1CQ==
+ bh=8WqKAEmIOvshZwrA8Z0TWRCT8HIhVA0ftPp43laegsY=;
+ b=Suuii5eVoFXzBZjRWLJcokGcs1sf23lDFuLL/UXN9OjPVrb7AuEoz8R4BY9ohj6QfDgpntWTQ9Cg1f6pR+se0lJK7MEwkpQDzla73/VF1en1xiu8N8emQQVCgvn1tUOBIgmFC7AAWRBawdu5LeNwQ7HddPBR+lMX9HwwF3xk08g=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by KL1PR03MB7430.apcprd03.prod.outlook.com (2603:1096:820:cf::12) with
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB9PR04MB9377.eurprd04.prod.outlook.com (2603:10a6:10:36b::13)
+ by AM9PR04MB7570.eurprd04.prod.outlook.com (2603:10a6:20b:281::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36; Thu, 14 Mar
- 2024 03:04:16 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::5198:1b2f:8889:17b]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::5198:1b2f:8889:17b%4]) with mapi id 15.20.7362.035; Thu, 14 Mar 2024
- 03:04:16 +0000
-Message-ID: <3d2e488f-6191-4844-b5a7-2563898d4670@amlogic.com>
-Date: Thu, 14 Mar 2024 11:04:10 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: add support for A4 based Amlogic BA400
-Content-Language: en-US
-To: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com>
- <20240312-basic_dt-v1-3-7f11df3a0896@amlogic.com>
- <CAFBinCAvT6-gfZQH--AVJAxiVM9bv5=agYzJ-u3NZUGFvp2vZA@mail.gmail.com>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <CAFBinCAvT6-gfZQH--AVJAxiVM9bv5=agYzJ-u3NZUGFvp2vZA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.21; Thu, 14 Mar
+ 2024 03:21:23 +0000
+Received: from DB9PR04MB9377.eurprd04.prod.outlook.com
+ ([fe80::b3d4:17c4:91b7:101d]) by DB9PR04MB9377.eurprd04.prod.outlook.com
+ ([fe80::b3d4:17c4:91b7:101d%5]) with mapi id 15.20.7386.017; Thu, 14 Mar 2024
+ 03:21:23 +0000
+From: Joy Zou <joy.zou@nxp.com>
+To: ping.bai@nxp.com,
+	lgirdwood@gmail.com,
+	broonie@kernel.org,
+	robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	shawnguo@kernel.org,
+	s.hauer@pengutronix.de
+Cc: kernel@pengutronix.de,
+	festevam@gmail.com,
+	linux-imx@nxp.com,
+	devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	imx@lists.linux.dev
+Subject: [PATCH v4 0/3] add pmic pca9451a support
+Date: Thu, 14 Mar 2024 11:29:20 +0800
+Message-Id: <20240314032923.2360248-1-joy.zou@nxp.com>
+X-Mailer: git-send-email 2.37.1
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SGBP274CA0002.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::14)
- To TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0020.apcprd02.prod.outlook.com
+ (2603:1096:4:195::7) To DB9PR04MB9377.eurprd04.prod.outlook.com
+ (2603:10a6:10:36b::13)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -86,92 +87,84 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|KL1PR03MB7430:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d216171-a401-4b05-e8d9-08dc43d36f05
+X-MS-TrafficTypeDiagnostic: DB9PR04MB9377:EE_|AM9PR04MB7570:EE_
+X-MS-Office365-Filtering-Correlation-Id: 60c7ee7d-723e-448b-f9bb-08dc43d5d368
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	Apr4vzcm17/9F5ck5S8xrSffP7gwa6KZdhbtNSr8ER2Ck1lnx95xFWKdqJO/6jvNHjArJh+JfjLrVw3hPw6F4n9jTWoSYWQQQSeKI7yQxgHE1wmCNbyXURZhPQbEDCsVu48ga4+wBjcfAwCGpJI8FLN49eYMmvKMSzzgRpPcsGN1IQzzm35vbVSLvP1J+ku/s2pOPTN3lKyO9TTCtwy9Xq0h22CJG6D/j5VeQF0fvjPO84iy/SaEoNJ8BlL75p82RvvktFJ9g1cuO4KBL75aqzrYj90O5yBz/nfTU850Wnj6+fIdE4o+/+/SpSxqwOkTP9zEyVjxyES1H/oo9nd4qpbhG/gc1LTX/10c6Mx2wNrbGQAQRqCMBOAVeL1OSOyrWoHV7hdyiTHUfLuk/DgYLxB1FjEj997zq5hS0ecNRVxuNLsptdeoTHj7UbbJaUDe3ahrjgzrZdu/IhDlirzfnJH3RX6+rL4iFaIqkk5RDbchQL+PPBagcXAId/aX0anRb707pDEWj07DJqO1tn35wCF77km8B8Dv5Z3644+qWTQMLiwuxB1WbAhbsTZNjDZ1I5RJFDq7VCk7zatD9xRZEDk6T+zmh19rSzOjyMe89qB+heLHPUGGr/4nNb7NEZsokw2hsJsQt9Jn5VBm0vlrBLWAwc7X9Nm/wwudf3rRFEc=
+	krill3BiuKQI/yJD/4DDjnNeA4JuwSAVl3ZwWmqtjxTIso5lfNaN9VQzS68+PkpeviODG5Izy+jFQ8KABG2oH4nQCYi6jBzHg3vTvueDUxlM+AJJHUdSiF3lCgFQf5k8N9Lr13NKx9SGA2F/oHgrKEEMZMky5JwiD8N0GOpsmXXDTnu74bIzF65fcjlKRIrEuUn95Y0TPWUf/0BNpk6lxu1k0n8TDp5qUqbeL4OgweajLyZijWQydyOZIssnktmiFPYWURyvYnU2/SNI5vcBgpddB6GSx+s5yioKnrlktBaBk9LaCdp6r5Beqcz1sFNzVXGgocFdrLBX50AMeEMvtlJbEmHCricHB8gXPdpSt8dCVYdER+Buw0ByqxzyA4dsJ9eHv/NNRQsShQcAMZ5nTPbC0Zmhfbpx0d0uAJDEg9GYTt+eZQqoPie1Few93egkHPQIblogixSvptLWUKCaQOJiuPv+pdD2e6wNfjXiYtBTv7PrVpC8Zje63gfyt+rMAvPFprLeC5aF80aqUvjoZaZMnBIWyMMVgA3mubpjquwnRve2EtRlGrziDg8wrnF7xWIgr8Lxdgpej9t6yIQD8A2vM31hai9Wf4yAycGnGPLJqpWHs/Dq6ZhZQJ37cAvr9MUBpCOl3gNwWw/YBlnS7GiKHDTAa84GHVqW5eRcHo1E3ERZicRxr0zXjckybr4vaOTjXKqFz09l6H+j+nEhKseiiwE88VH+cCSIO/BAujY=
 X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(376005);DIR:OUT;SFP:1102;
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB9PR04MB9377.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(1800799015)(52116005)(7416005)(38350700005);DIR:OUT;SFP:1101;
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?bU8zLzN2S0VINGk5NWp6c21VM1VlajhLY2dUdEhoU1Blc21xT000TXJ0VEhn?=
- =?utf-8?B?TUN4T3psQnVLZmJ5V054OEJYbGhodU5MUEx2VUVMSUI1bTQ0ZXhLZHJmTHhw?=
- =?utf-8?B?bE9pend3dzlrVlJ3bEFxL094b09NM1I2OW1WYUlWem96cmRoU0dXOVNDT01x?=
- =?utf-8?B?MUMxaFJkakxwaFZnUktFWTlIMGFuYUZ0TVlsQjZSSE04SWdkOXpCL2RYTlNP?=
- =?utf-8?B?eDExNGZiTTZiNnplUUNQOEFEdGp6QVY1djdEanE1V0hUWFd2aElxckxUTXdQ?=
- =?utf-8?B?S1FvbkhxQWVZbCtHMUNqMUtQbTNrUDBlZ0F4S2o4SUVBNmpoc0NKbHoyc0hZ?=
- =?utf-8?B?Z2IxVzdrVXdycEJWYzJyRzE1UjlGNjh0MjQxL1I5dUVUWE5kMWJwWFFWM1Iv?=
- =?utf-8?B?MGMzT01vQ0M4a1RMSDNaUnhtaTVOUlhkcXcwT0pkNUZQZVNsRDhsN0pwV2tE?=
- =?utf-8?B?U0tabiszY2N1WXRPbTMvTzhLVXNPYVZvb2ZRd0F4V1hsa3N6aEJyTVk5TUpp?=
- =?utf-8?B?VVVEdHZ4b3VOUGJ2WVAvTVVHUjNoNU5qQnRhdHJaNEFRSWV1aW90bE11Y2dl?=
- =?utf-8?B?Vkw0SXd2S1BycXpIUFpZVXh3azhJd1djWXo0UHVNanRVTVh6a25zMWYrRFVV?=
- =?utf-8?B?T1lxYklrRlVhc2NJRTdYR05veEFNQlhJL3Y3N0lkTERpZUZYRTdxMmdsZTc4?=
- =?utf-8?B?c3I4K0tUbzRYdXdmNjBTeDhWMHFvZ2ttOE5WOFBQb3dJclVjeGFaUVROTmJK?=
- =?utf-8?B?UXRRRlg2TjdDQ25wSmZ4R1o2RExkWGdzNWdFVU1uSW90UGtRUFRxalVEWHpL?=
- =?utf-8?B?M002MnA1enJCcUlvbm1iTWtrRnNuaE0xaE9qSWxnU2p5U3lNclNiSlg1ais4?=
- =?utf-8?B?VEJVeEkrRGxteWZ2cE9FUVFwWWxkdFMxRWpHdU1BWGxWL1kraVJHVHpIOVJy?=
- =?utf-8?B?QURBUHJjR0V4cWVKalpURFlaVzNvalgxRFd6RTNaSWpxbUJqL0xYTFdkQlht?=
- =?utf-8?B?L1ZBTDl6cU9YQ0gxOEdIVzc2WEs1RE1JeHVoSlVURzg0Y21uVXpkcUEzN0dP?=
- =?utf-8?B?MFd2TzZLZisvRlkzMmIyWnpLbmFNSjFET3F5U0tWdVk3ai93ZlhuNDJVOWpv?=
- =?utf-8?B?YWVHQ09ibXB4M2g2emc5YWtKcXlBVks3Yit5WGlLcEt6QkNkSEVVU3crOFF1?=
- =?utf-8?B?UDZTUlBUMGxReHVYaVlGV3FWcnNaUEpjcHJxZnBFWFA4am91RVl6c0FlUkZt?=
- =?utf-8?B?N2VYbC9zbGg0bnV6TUJKbno5YUtwWldzalJmclQwcFh4NEVORTFNR25XTHJN?=
- =?utf-8?B?ZUUzRXNkZnNrcGJlQjZRZjk4bTNqbERsVVZnR01DOC9seGxUMTNpM3k3dEpV?=
- =?utf-8?B?eWJhZ1RadldTSk8xR2J5L3c0ckhadkZsUS9qQVV4ZDNwWVIvQkJmQmIwRWtU?=
- =?utf-8?B?NGpCdUsyOFJDS1VjOXA3elFzTmVKRHZlUzBaaUo3cWhKT0hqSDJYT0MzTXpF?=
- =?utf-8?B?STBiN2xtOTJWdzZPRDVUMXhQYlRESmN1QlZYS2hCSDRzbW1pSXRCWmJremZX?=
- =?utf-8?B?UlV6VXlxWXNZTk9mTFo4bzhHUUR3SE9QT2hSK2xwREN5cGY1bUhYTjRnbmJ6?=
- =?utf-8?B?eWVWWnJqYXdrNk0xQ0JnWGV4TE5LZDFvMlU1UlZPeG1JWGJ6cXN0WHVQL0Qy?=
- =?utf-8?B?SFRubUxjZmo2b0NTSTFqbUFFT0xDSTBKNWd5cDhzU2ZPaTVHclZibUY5SUdD?=
- =?utf-8?B?YWMzN1NRTWpwdlFQSnhaT2pOL01pYlRZMERxY1dNN0ovdldYQTlkZGFETGRm?=
- =?utf-8?B?NDl4cU9YRlJmSkk2TmExd09WUlV5YkQ4NEdJYUY5aVFBRzVBTnI1RFNOVWhQ?=
- =?utf-8?B?c040RkZ1S2R3Q05qa052YitVVnExY2NPTHRiQ1A4anVhRWVHNDdTTllVMjJh?=
- =?utf-8?B?L3NmZ2VKcExQMjNqRC9STzFUc1BpVkp2Y0xvcVJoQjYxOG1hZnI1dkZwMEs3?=
- =?utf-8?B?a054NTlyL0RsWDhEYWVkZ1p5YmZHNDhjVDBoV1VQQUJUOUE1YU9xcWZPVU9q?=
- =?utf-8?B?OFVlbXJsYnZML0t4TFhxV2JBQVhKc25YVmlMWHN5L0lRZU53bjVZczkrUWVm?=
- =?utf-8?B?cVh3Y1Rwd0U0a2QrTGsxSHFBQVJNb2FLSWlyaFJCNW9GZDdmT3N6Y0RvbUlN?=
- =?utf-8?B?Smc9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d216171-a401-4b05-e8d9-08dc43d36f05
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+	=?us-ascii?Q?bjW1NYmqrwqPug/kZ03xq3Keq75Nl91QMmdBQI/hr0lb0FA2q8d++K64rg3M?=
+ =?us-ascii?Q?m9sDmsohmQC5mQMJHH2nwEu59hEYzbAJUStO59qIfqZ/PsJXiF5nedlwq+Rr?=
+ =?us-ascii?Q?zlrfG/ddJJELOWJO6gp8+2Ovx0E+xWdex4tQAZX2gZ03uke0BCwMWUzR51az?=
+ =?us-ascii?Q?EwGwGzBQwh1p0zhQ+Y5Sdb0kWTK8V6C7D4t2Ve8xjJg/zJzJNeGti4qMAaYW?=
+ =?us-ascii?Q?PUN2PlNx1ZTcurRbmRaNoh6liqLaX33+U3LKjE1s4s9Ayfh76t8PTv4uARxd?=
+ =?us-ascii?Q?ZG6jKlykb3bm4vSLhS50CqyKbXZqKyOJBS6J58FUKJahGIFxz7Wt8ezBxifa?=
+ =?us-ascii?Q?HPbvuO8y9UyXolV2DtVNfaMSAxSxXwBYjZpguRMKAVmtEdXTzasIBnYfVaqp?=
+ =?us-ascii?Q?ks+/Pl/OjrQk1k+/PnCPvRCpNot2kpkv92EHS5g/yoGTftAWpGi556X8HHO4?=
+ =?us-ascii?Q?oue80NbWlnUgVrRaaRKoVubR3/IujM/EfWdl0dAVhuHh+xpN3H4W3G1Gg8U9?=
+ =?us-ascii?Q?3sSGkN1xRa4EhYhmj/DDIuW1WZ/95jiV/JaLAOjZv2RojBmwH9JL+vOBDCfS?=
+ =?us-ascii?Q?kJ6NQpV8SxBxIC6IhPk5VzokcsAksua3g248E0V1ZgNoyvh2qV2AFoA7s4Hz?=
+ =?us-ascii?Q?oduTjYeC3r2EAwRRImAKHYEi8vXhMrHlub3kuyxtMqyoBFyuJ/vkrjMMIhWf?=
+ =?us-ascii?Q?FsbGLTjHVPYzlvmyojUppxOz+A1HqrKnkJaOBQxH+wGKo0txmmRTCwSr6UAD?=
+ =?us-ascii?Q?x2hbRtkTgx7rR3BpuDNKryba9d3ndoLsAdTblikvybiqF7Ts+DURC6NyPCt9?=
+ =?us-ascii?Q?Jy7ae3sV7rzc8psdAmDOTNfaunncMnJQLAb3CIjgv1SXIusGlNh5FyvUOFo5?=
+ =?us-ascii?Q?WtQZsFlu1d1C8Rzucs4ops5eUQsh1B8pXY2Zm52FGUddBkDKLlxyWvDmZdLq?=
+ =?us-ascii?Q?g9UYCHGNB+xkvl4/LwmA2+wXr83Xjbx36NpYdemHSftCXYI0xlMT5PzIdfmu?=
+ =?us-ascii?Q?tjrjvkJfVwwNEToLmGEroriAD0Jf2L/VDW4XwKIGr8qcu0/pVRcRlXt8H8Oe?=
+ =?us-ascii?Q?REdcWHwa/3Vj7aHc9sXqD3fSC5r/svO1ffbNHfu5ep5bMHPzRlJVuFATIGvw?=
+ =?us-ascii?Q?znv3ddf7UL24/uZVCIgPEwVl7SEOAu9Qaugx4IXDaZdh2CcYpNjzmug6SrRa?=
+ =?us-ascii?Q?NeyMPCvs9SFrW0sVBU6kkN+njyfijWB/m/ULTltOPYGTV9TdZq39idqri2Ej?=
+ =?us-ascii?Q?x4Ok6NryyQkz3SVDT2qNSfOdzGHGP7K0BgxxRyDrhdwi77Z+RQ07lIDN92fn?=
+ =?us-ascii?Q?zWHOGipdUaZfRqcRBbL6Az1K5Vsl6AYS+LBE95uitUbhTbe5WDUmTWfyx1LX?=
+ =?us-ascii?Q?o9Q/T4MgjnjoyaRN9VZkm/KzkckaypCqUG2j4HAYt5Gla3BAANEWpBCAmcWk?=
+ =?us-ascii?Q?95acGhsNC95jS5jsJTPPAz25M7lqVncd9sU5LfGupQSFHCbaCXFDq8gCqQuV?=
+ =?us-ascii?Q?OWRf9GL/U+NdBmi0ZGQ3d6bsRuybVUQMk5p4kwtwpREf+hGZfhtaC+UdihgR?=
+ =?us-ascii?Q?i8NfasXLKSoiPXshRNIlmjx11n9AugxnaL0xzNbP?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 60c7ee7d-723e-448b-f9bb-08dc43d5d368
+X-MS-Exchange-CrossTenant-AuthSource: DB9PR04MB9377.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2024 03:04:16.1321
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2024 03:21:23.7006
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jF8YoY7OzdgaSYkjpLYJ1lXS6P6ym7ARzPyqSdm6FE6caVA6vRjIFOhWwJq0Bl5x4LCPFEGfmmnUmpAZ4nNjEG0NPPT/ctuBWtwbUSaITMI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR03MB7430
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7tkxAB7BF/8SF2P0yhXuM/m4BAJ1MSksS1jzluf7PaY05+QHOMkAG4zDL6PuZgCN
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB7570
 
-Hi Martin,
-    Thanks for your review.
+The patchset supports pmic pca9451a.
+For the details, please check the patch commit log.
 
-On 2024/3/13 01:29, Martin Blumenstingl wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On Tue, Mar 12, 2024 at 10:19 AM Xianwei Zhao via B4 Relay
-> <devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
-> [...]
->> +               apb@fe000000 {
-> Node names need to be generic - since this is a bug it needs to be:
->    bus@fe000000 {
-> Or if you want to make it clear how this bus is called then you can use:
->    apb: bus@fe000000 {
-> 
-Will fix it.
-> The same comment applies to the amlogic-a5.dtsi patch (4/4).
-> And while here, I fully agree with Jerome: having a bit more details
-> would be great so we can judge on whether a common .dtsi makes sense.
-> For this it would be helpful to know how many IP blocks those two SoCs
-> have in common and how many are different.
-> 
-They are mostly the same, but the follow-on series is unclear, and I 
-would like to wait for the follow-on chips to come out before 
-considering a merger with common dtsi file.
-> 
-> Best regards,
-> Martin
+---
+Changes in v4:
+- modify the comment for uSDHC but not i2c.
+
+Changes in v3:
+- modify the dts voltags constraints.
+- remove unnecessary changes in driver code.
+- modify commit message.
+- add tag for dt-bindings.
+ 
+Changes in v2:
+- drop old part support.
+
+Joy Zou (3):
+  regulator: dt-bindings: pca9450: add pca9451a support
+  regulator: pca9450: add pca9451a support
+  arm64: dts: imx93-11x11-evk: add pca9451a support
+
+ .../regulator/nxp,pca9450-regulator.yaml      |   1 +
+ .../boot/dts/freescale/imx93-11x11-evk.dts    | 112 ++++++++++
+ drivers/regulator/pca9450-regulator.c         | 194 +++++++++++++++++-
+ include/linux/regulator/pca9450.h             |   1 +
+ 4 files changed, 306 insertions(+), 2 deletions(-)
+
+-- 
+2.37.1
+
 
