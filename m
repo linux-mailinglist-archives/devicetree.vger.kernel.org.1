@@ -1,143 +1,195 @@
-Return-Path: <devicetree+bounces-50592-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50596-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B9D987C5D9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 00:21:21 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C79087C5EE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 00:23:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 614EF1C20BB5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 23:21:20 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 43C5D28287A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 23:23:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A7A3E559;
-	Thu, 14 Mar 2024 23:21:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 91B6113FF9;
+	Thu, 14 Mar 2024 23:23:07 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="UZlgFMr3"
+	dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b="D1qg+4UM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com [209.85.219.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id B27DFFC0B
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 23:21:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CF24C7483;
+	Thu, 14 Mar 2024 23:23:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=37.18.73.165
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710458478; cv=none; b=ORfwzimx5Nwbgm1cwFjNsfum/fmsOL+xx84peDxrukdeIArIdv5+ZMN5jklRC+dDSkU9FUMAoHm0HmJ61nP7pVKaBHr57uisTyBGjc+zitHO9y30wxlXbypPjxcYUtzt6yNWAGAdDGVXArwMf5zvM+KCpxNsUfLZ+6o36Tcnvh8=
+	t=1710458587; cv=none; b=acAHXSpuSAzt7FgFM6k0SxppVQ3TFTytTtgSRgIlJOqAPrwo+6OAcqE1kDSHgTjvCyJ38Aw1f6dhsZQZbRFiTtPBSuUTjAgB9lflvDaEhG3Mca03utagCWWc+apTya6hVvRXJ3mOqf6FtOfl5auMdvzze5QUMsjqQm8aAKnq5Zc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710458478; c=relaxed/simple;
-	bh=1nZ1koHEL3nJ3Z4WOjyBj9l6GAQC4q9nTZpHJxmXIvk=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=nCQ1N/rxGzCHsP8wQfuiSpMIBOM8OB/BvG1IyxYqfSYBNKMXe0l/De/2JWluf+sRGRlifYVHhpurgn5+J2s/BPJVwm05+YA26WjlRukBj6PwTp6RfgO+Xo0EcJTIL5h0JZd87s+zCVSL3klJleFCOotMpS+qeXg1OvKzyPJj/rI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=UZlgFMr3; arc=none smtp.client-ip=209.85.219.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-dcd9e34430cso1536444276.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 16:21:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1710458476; x=1711063276; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JYkkAOiHkqIfOBWqACZEdL7PfJhzMKheJAaNem7Ve48=;
-        b=UZlgFMr3Z+3EWLUE501NMd5nrNWGj5MPXd/ZJEfZlHiBQ+RjxydfbqPWdStUbTLFIy
-         PiVphh6dbnjSzskoB+pVoJsV4zHlmrpCK1L5CtZgrMAYowFZNAekdsU0h2+lPIMcJPIv
-         zyRu3D39pk0V4lQJiehfjyc7bpnSTfDG4gzA0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710458476; x=1711063276;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JYkkAOiHkqIfOBWqACZEdL7PfJhzMKheJAaNem7Ve48=;
-        b=on+jZ8o2jWduPFVXIWRZIdY9zu2K6sFnBSSRugdvjr76/z83YSkxzOSV2v9n0AJ3G7
-         kydbLdq2HKL/Da9hWhz+LadO16HfngdDldMGgfpAGYEMirHLEPbEV6/aaCclXV6cXEaz
-         O23re4BBoASpCNZxSpCjIkSHCGi14kbTRlkmbkPTh9kYaVPYSo3X/mSYMngLBL+aXkoD
-         WqatSirQ2pnruh/p7rCxCT2BhlDNHCsptttlAwebDBd36Uq+V+3fv4QkFMa1q8LHAMkh
-         52CzsQXjvJ3Id60/y7KnGtYvQvVr7Schk67/k93wtqbU5C6j3Znq+Pl2AVcyQta1r8pD
-         VO8Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUTTmduLxtSzdRRuRX4Y2FjmYyne9F4hjI08cltliDnyV3MbRSFbY58H57kPSwF3eEy2/XFFHsXxMRGULPUKqnIYAQXByaXY1GBIw==
-X-Gm-Message-State: AOJu0YzFi2w77fQpzl+XZGd0LPZV7K4dGgKPNU++p+E9n+7PjWJombZt
-	uFp88Ewmkt7u2iVSP6ggsMK7Zde593m45K8eQja1eQTYRFdp6hku6HZUOHdYpMHxQDuekb1zxX0
-	=
-X-Google-Smtp-Source: AGHT+IFmp/ypKF2UqcnXfJY5Av4hcOh8WiJykFVOgMGRD6JYu7AWrgk/cViJWOKKtWrM2xPuuKaMZg==
-X-Received: by 2002:a25:ce41:0:b0:dcb:f5f9:c062 with SMTP id x62-20020a25ce41000000b00dcbf5f9c062mr3601914ybe.14.1710458475699;
-        Thu, 14 Mar 2024 16:21:15 -0700 (PDT)
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com. [209.85.160.177])
-        by smtp.gmail.com with ESMTPSA id g5-20020ac84b65000000b0042f3882cd05sm1308682qts.42.2024.03.14.16.21.15
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Mar 2024 16:21:15 -0700 (PDT)
-Received: by mail-qt1-f177.google.com with SMTP id d75a77b69052e-43095dcbee6so129521cf.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 16:21:15 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCX1+S4x/WbpSRNIoOuTVsbDIKh/iT7H6mekFJ2T4aEL5T/Qt1I1E5P6K4aXd+qrU22fM0PvFBMZNO64cCvOnxoc7+s6e+yDv57u+Q==
-X-Received: by 2002:ac8:6618:0:b0:42e:ef12:8025 with SMTP id
- c24-20020ac86618000000b0042eef128025mr64373qtp.25.1710458474993; Thu, 14 Mar
- 2024 16:21:14 -0700 (PDT)
+	s=arc-20240116; t=1710458587; c=relaxed/simple;
+	bh=YgYS3RkelOTEkhUj4bVVmVrIgp/NrO8aKhUpHUD7bt4=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=dHvQkEmAK763fDemENhPXYcN9B5z2JupDmjk9ht+aboaM2g1rgY38mMfixgKF7puaTAy+XVmcKb8FE0ZU3XQQyddNgWuunBLqb/FEq1bnmfzz0oGGcuqJPcA+AITJXc1Zymw1T6pqwZbO8wsb/AIg//hatXt2pbsF/a3vujnbTU=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com; spf=pass smtp.mailfrom=sberdevices.ru; dkim=pass (2048-bit key) header.d=salutedevices.com header.i=@salutedevices.com header.b=D1qg+4UM; arc=none smtp.client-ip=37.18.73.165
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=salutedevices.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sberdevices.ru
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+	by mx1.sberdevices.ru (Postfix) with ESMTP id 60CE810000E;
+	Fri, 15 Mar 2024 02:23:00 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 60CE810000E
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=salutedevices.com;
+	s=mail; t=1710458580;
+	bh=k/KjHQTEMbNbNQoJ8kJxtt3YqCKnhYgeapWc9/6QS/4=;
+	h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+	b=D1qg+4UMdHIDAvwEQXQNNqThdhmlSxF9/GZZ7ZfnkfIZcsDRvPNSq0WUmPDfFNcVc
+	 4j3UhMUwYnw2FPlEVh1BxaCgbWmhdz45D5vx1oLqwFuZS22lbK+ZRmxWCn7MwJCnXj
+	 Fbms0j6G7g9rqb06AITwWzzWMOph30aCkz4ty9skD7vqzK1f+PgSTau7H1TupHlZLz
+	 PO/G2oZcY9ApS4cL2Ko4He0w6EEfVfvyewuvSN/1rJF+9XTXjUFODM/GtmvZE+u7gp
+	 QXer2VmNd2/uta0LFwyYWqmrVre5Q0mgQx4NEPQYGjuUquK5/SbgH8f9CuKIucykfW
+	 1CmMcIoQ+Ap6Q==
+Received: from smtp.sberdevices.ru (p-i-exch-sc-m02.sberdevices.ru [172.16.192.103])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by mx1.sberdevices.ru (Postfix) with ESMTPS;
+	Fri, 15 Mar 2024 02:23:00 +0300 (MSK)
+Received: from CAB-WSD-0003115.sberdevices.ru (100.64.160.123) by
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 15 Mar 2024 02:22:59 +0300
+From: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>, Neil Armstrong
+	<neil.armstrong@linaro.org>, Jerome Brunet <jbrunet@baylibre.com>, Michael
+ Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>, Rob
+ Herring <robh@kernel.org>, Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>, Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>, Liam Girdwood
+	<lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>, Linus Walleij
+	<linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+	<tiwai@suse.com>, <linux-amlogic@lists.infradead.org>,
+	<linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+	<linux-kernel@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+	<alsa-devel@alsa-project.org>, <linux-sound@vger.kernel.org>,
+	<linux-gpio@vger.kernel.org>
+CC: <kernel@salutedevices.com>
+Subject: [PATCH 00/25] Introduce support of audio for Amlogic A1 SoC family
+Date: Fri, 15 Mar 2024 02:21:36 +0300
+Message-ID: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230703085555.30285-1-quic_mkshah@quicinc.com> <20230703085555.30285-4-quic_mkshah@quicinc.com>
-In-Reply-To: <20230703085555.30285-4-quic_mkshah@quicinc.com>
-From: Doug Anderson <dianders@chromium.org>
-Date: Thu, 14 Mar 2024 16:20:59 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XWH+Eoa9XjDns--NSDTZHeUwTdrX_r_QZhSPpbZNwz+w@mail.gmail.com>
-Message-ID: <CAD=FV=XWH+Eoa9XjDns--NSDTZHeUwTdrX_r_QZhSPpbZNwz+w@mail.gmail.com>
-Subject: Re: [RESEND v4 3/3] arm64: dts: qcom: sc7280: Add power-domains for
- cpuidle states
-To: Maulik Shah <quic_mkshah@quicinc.com>
-Cc: andersson@kernel.org, ulf.hansson@linaro.org, swboyd@chromium.org, 
-	wingers@google.com, daniel.lezcano@linaro.org, rafael@kernel.org, 
-	linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	linux-pm@vger.kernel.org, sudeep.holla@arm.com, jwerner@chromium.org, 
-	quic_lsrao@quicinc.com, quic_rjendra@quicinc.com, devicetree@vger.kernel.org, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Rob Clark <robdclark@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m02.sberdevices.ru (172.16.192.103)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 183875 [Feb 29 2024]
+X-KSMG-AntiSpam-Version: 6.1.0.3
+X-KSMG-AntiSpam-Envelope-From: YVDakinevich@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 7 0.3.7 6d6bf5bd8eea7373134f756a2fd73e9456bb7d1a, {Tracking_smtp_not_equal_from}, FromAlignment: n, {Tracking_smtp_domain_mismatch}, {Tracking_smtp_domain_2level_mismatch}, {Tracking_sender_alignment_int}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2024/02/29 19:21:00 #23899999
+X-KSMG-AntiVirus-Status: Clean, skipped
 
-Hi,
+This series includes the following:
 
-On Mon, Jul 3, 2023 at 1:56=E2=80=AFAM Maulik Shah <quic_mkshah@quicinc.com=
-> wrote:
->
-> Add power-domains for cpuidle states to use psci os-initiated idle states=
-.
->
-> Cc: devicetree@vger.kernel.org
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/sc7280.dtsi | 98 +++++++++++++++++++++-------
->  1 file changed, 73 insertions(+), 25 deletions(-)
+ - new audio clock and reset controller data and adaptation for it of existing
+   code (patches 0001..0004);
 
-FWIW, I dug up an old sc7280-herobrine board to test some other change
-and found it no longer booted. :( I bisected it and this is the change
-that breaks it. Specifically, I can make mainline boot with:
+ - adaptation of existing audio components for A1 Soc (patches 0005..0021);
 
-git revert --no-edit db5d137e81bc # arm64: dts: qcom: sc7280: Update
-domain-idle-states for cluster sleep
-git revert --no-edit 7925ca85e956 # arm64: dts: qcom: sc7280: Add
-power-domains for cpuidle states
+ - handy cosmetics for dai-link naming (patches 0022..0023);
 
-(I get an ath11k crash after that, but that's easy to hack out since I
-don't need WiFi)
+ - integration of audio devices into common trees (patch 0024);
 
-I suppose the two options here are to either:
+ - audio support bring up on Amlogic ad402 reference board (patch 0025). This
+   patch is not actually checked on real hardware (because all ad402 that we had
+   were burned out). This patch is based on ad402's schematics and on experience
+   with our own hardware (which is very close to reference board);
 
-1. Track the problem down and figure out why the breaks boot and then
-fix it. I'm personally not going to track this down, but if someone
-wants me to test a patch I can do that.
+Dmitry Rokosov (2):
+  ASoC: dt-bindings: meson: introduce link-name optional property
+  ASoC: meson: implement link-name optional property in meson card utils
 
-2. Delete all the herobrine dts files.
+Jan Dakinevich (23):
+  clk: meson: a1: restrict an amount of 'hifi_pll' params
+  clk: meson: axg: move reset controller's code to separate module
+  dt-bindings: clock: meson: add A1 audio clock and reset controller
+    bindings
+  clk: meson: a1: add the audio clock controller driver
+  ASoC: meson: codec-glue: add support for capture stream
+  ASoC: meson: g12a-toacodec: fix "Lane Select" width
+  ASoC: meson: g12a-toacodec: rework the definition of bits
+  ASoC: dt-bindings: meson: g12a-toacodec: add support for A1 SoC family
+  ASoC: meson: g12a-toacodec: add support for A1 SoC family
+  ASoC: meson: t9015: prepare to adding new platforms
+  ASoC: dt-bindings: meson: t9015: add support for A1 SoC family
+  ASoC: meson: t9015: add support for A1 SoC family
+  ASoC: dt-bindings: meson: axg-pdm: document 'sysrate' property
+  ASoC: meson: axg-pdm: introduce 'sysrate' property
+  pinctrl/meson: fix typo in PDM's pin name
+  ASoC: dt-bindings: meson: meson-axg-audio-arb: claim support of A1 SoC
+    family
+  ASoC: dt-bindings: meson: axg-fifo: claim support of A1 SoC family
+  ASoC: dt-bindings: meson: axg-pdm: claim support of A1 SoC family
+  ASoC: dt-bindings: meson: axg-sound-card: claim support of A1 SoC
+    family
+  ASoC: dt-bindings: meson: axg-tdm-formatters: claim support of A1 SoC
+    family
+  ASoC: dt-bindings: meson: axg-tdm-iface: claim support of A1 SoC
+    family
+  arm64: dts: meson: a1: add audio devices
+  arm64: dts: ad402: enable audio
 
-So far we've been keeping the herobrine dts files alive because I
-thought some graphics folks (Rob, Abhinav, Jessica, for instance) were
-still using it. ...but Rob says he hasn't booted his in a while. No
-idea if Abhinav and Jessica are using theirs. Any opinions? Is
-herobrine hardware support near and dear to anyone these days?
+ .../bindings/clock/amlogic,a1-audio-clkc.yaml |  83 +++
+ .../reset/amlogic,meson-axg-audio-arb.yaml    |  10 +-
+ .../bindings/sound/amlogic,axg-fifo.yaml      |   8 +
+ .../bindings/sound/amlogic,axg-pdm.yaml       |   5 +
+ .../sound/amlogic,axg-sound-card.yaml         |  12 +-
+ .../sound/amlogic,axg-tdm-formatters.yaml     |  22 +-
+ .../bindings/sound/amlogic,axg-tdm-iface.yaml |   6 +-
+ .../bindings/sound/amlogic,g12a-toacodec.yaml |   1 +
+ .../bindings/sound/amlogic,gx-sound-card.yaml |   6 +
+ .../bindings/sound/amlogic,t9015.yaml         |   4 +-
+ .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 126 ++++
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 471 +++++++++++++++
+ drivers/clk/meson/Kconfig                     |  18 +
+ drivers/clk/meson/Makefile                    |   2 +
+ drivers/clk/meson/a1-audio.c                  | 556 ++++++++++++++++++
+ drivers/clk/meson/a1-audio.h                  |  58 ++
+ drivers/clk/meson/a1-pll.c                    |   8 +-
+ drivers/clk/meson/axg-audio.c                 |  95 +--
+ drivers/clk/meson/meson-audio-rstc.c          | 109 ++++
+ drivers/clk/meson/meson-audio-rstc.h          |  12 +
+ drivers/pinctrl/meson/pinctrl-meson-a1.c      |   6 +-
+ .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 ++++
+ .../reset/amlogic,meson-a1-audio-reset.h      |  29 +
+ .../dt-bindings/sound/meson-g12a-toacodec.h   |   5 +
+ sound/soc/meson/axg-pdm.c                     |  10 +-
+ sound/soc/meson/g12a-toacodec.c               | 298 ++++++++--
+ sound/soc/meson/meson-card-utils.c            |  12 +-
+ sound/soc/meson/meson-codec-glue.c            | 174 ++++--
+ sound/soc/meson/meson-codec-glue.h            |  23 +
+ sound/soc/meson/t9015.c                       | 326 +++++++++-
+ 30 files changed, 2394 insertions(+), 223 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
+ create mode 100644 drivers/clk/meson/a1-audio.c
+ create mode 100644 drivers/clk/meson/a1-audio.h
+ create mode 100644 drivers/clk/meson/meson-audio-rstc.c
+ create mode 100644 drivers/clk/meson/meson-audio-rstc.h
+ create mode 100644 include/dt-bindings/clock/amlogic,a1-audio-clkc.h
+ create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
 
+-- 
+2.34.1
 
--Doug
 
