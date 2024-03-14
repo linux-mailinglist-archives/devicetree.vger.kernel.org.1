@@ -1,164 +1,351 @@
-Return-Path: <devicetree+bounces-50413-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50414-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDA8487B9B8
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:53:16 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 41CB287B9F8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 10:04:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A32682832F4
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 08:53:15 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id C543B1F22FD6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:04:47 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 792AF6BB30;
-	Thu, 14 Mar 2024 08:53:12 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 40D406BB5F;
+	Thu, 14 Mar 2024 09:04:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="By/226kC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="W/xNrJQ7"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com [209.85.128.44])
+Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8BE075D497
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 08:53:10 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0590C5DF23
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 09:04:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.44
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710406392; cv=none; b=gg/NZmHzOMqK94KJBtS6sJ8l1hMgD/mAEujR1vLMyUmtn6KZ4WBs8a5O4UMOvv3mKzwLirrxT8nYvnhMwlwjROBQ4eN0iieduNsJjKOplPWCknZQWIuOYwmN7OEeAnCcPX7XqVvTl41aq2gQZtzyYJiEAkMBqnyIz8XnqpqDBM0=
+	t=1710407084; cv=none; b=GfEKpvImzYP6UBsGxAWiXjk5sgGqCFU5KuuM+NmvF6azshB42aFF7HMyzF0z2zrvY0L5GRoKuo6BuVhKrTaeIVP4V3E0asJS9ZgWuxYwQQofJlea3wbIX+/KNg10xC9AuDcmFGoPshBAfn4TY/xq1VoBtlzQUNpfEjrPiXtQjds=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710406392; c=relaxed/simple;
-	bh=JRbh0ekOAZoITs6bw+4Z2PKWQij1OKHQNZkoVnNXhvo=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=MfYldJgKHnjHi2D6Iqo+bgRgQ8PYZu/F+2N8iVCUY5rKeviYxPNoJE9+/HcAxmcQH1EsTUY1VsBg++bccxFILpVEhI+qHxWMdtIL/SFWgp7KwQWuGz+fTsTjbXOEZ8WOwsVWcTiDdf2dU7AhF6qVM9LclGbIpaOd6tMAYiGlzvs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=By/226kC; arc=none smtp.client-ip=209.85.128.44
+	s=arc-20240116; t=1710407084; c=relaxed/simple;
+	bh=YzFcKEtjUr6Z65sB75UEzOrUBGfhlTeicSDKg/bAjlI=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=k3BYWYCCTE9Qo6BfTg/Rm2ohjj/+SRg13uBe1bGkQLeBsiYvUnas/i/0pryE8Rhzr5VLffP6rYNtzWaMmAUdEJOe6k0jqbRyPPiEz3hp7FU/mekjR0lm9wTketeq4U/OOTTmka59/4HJjntVdRsCvYGUsbD9r/efyww2RQHO9u0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=W/xNrJQ7; arc=none smtp.client-ip=209.85.221.44
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f44.google.com with SMTP id 5b1f17b1804b1-413eede49dbso4143445e9.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 01:53:10 -0700 (PDT)
+Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-33e9df3416bso494172f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 02:04:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710406389; x=1711011189; darn=vger.kernel.org;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=UbDxneRzxmh6zafaW9TXqgUwW7Hf6w8+OIr/Rmft0o8=;
-        b=By/226kCUcEjhGfFaLeDVzuo87OuoGSgpEdVtQZq0EApeYwXbATrwOUSlc3s7ePqrU
-         3oUC363DsRRji1s7Our7OgxQHsFRIl845qTxVcJHkLyc81gJmxLeIKcG7Q0qiLEkLoGG
-         lAAD/oFB/BkIcfS8dKidS4drVoRR5okno6Qs3/iBF2ebAxy8GRcroHK4ihx9GoC+E/h7
-         KrzEV532nhI7opHaPb8I0rY/mDiqSvAUxGf4fg4AIxBKsy7RJeBxrwMYP1ksUqKN+/kQ
-         5R3WiJZ121KuJHKodExU52BNl4LmEce4S1D0FG7lunS7DNn8yU678qHQ+UvRVSxhdQ9r
-         HnEA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710406389; x=1711011189;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1710407080; x=1711011880; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=UbDxneRzxmh6zafaW9TXqgUwW7Hf6w8+OIr/Rmft0o8=;
-        b=H9tgWhbV+zyqyOmZAMtTZIghqZIE8eCePcMF2Zl9L7TmyO/dp8Lw1FGNnriMpPo1Dt
-         3NMJZPPJjg8jrSpIKluSG8lCT+EoZyi7vFFqe3s5PqYKxhDT2czssuBIBKczd2VjRvoG
-         dxwqUU1ik7wVC2HxbF6fTgM3jxh3g5W62ZYIiVqtgSAEbMt23L/P4hmZd+WQBuO9/Dhb
-         MgV75fOOMtilFP8AkQnhSYWmQNg45WUCFvXQ+fEBKaCCMLmUggYFGUEhTtRM8eQWj+x+
-         fq8WccNI4ZIVCdah/8hbQoHtYJC9oP8nIe7f3x6COY13EnvGFSNjEf8jDcia603z1rxd
-         9u6Q==
-X-Forwarded-Encrypted: i=1; AJvYcCUHpYeGRlBcXHwFguY0ASZff4O51pkIBdtgNoi8kl5qrrVxZ/8gyiI/328OgF79XCsYE4yy2J8N1oSHRh9v/oxrrCBpwY5zspQsTg==
-X-Gm-Message-State: AOJu0YyNOnLOUgbIKfkexS7I1cBCK3wgdi1hOkAJYUMu2StkFv5NCwGa
-	QH7mjGPRgI499qjxTypTi76gNF8bnYHWi2bVJ+j7jDdyWZpKqsQpgHxzCdKJSbM=
-X-Google-Smtp-Source: AGHT+IFRpexeDw19e7xHc9v1E4DV5w6+c9RQwY+Hev2+ZsJyImI39fcT/32EqxfKP6Mso5LyjBhRTA==
-X-Received: by 2002:a05:600c:511d:b0:413:27ac:d2fa with SMTP id o29-20020a05600c511d00b0041327acd2famr775723wms.6.1710406388634;
-        Thu, 14 Mar 2024 01:53:08 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id c16-20020a05600c0a5000b00413f7c89c0esm239089wmq.24.2024.03.14.01.53.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Mar 2024 01:53:08 -0700 (PDT)
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Date: Thu, 14 Mar 2024 09:53:06 +0100
-Subject: [PATCH] arm64: dts: qcom: sm8650: fix usb interrupts properties
+        bh=p6yLCzr8IjIPSmXUxMzp8GWR0SnYRq6V0f2szvKU+sU=;
+        b=W/xNrJQ7xgBalmEv7jab369io4/RIULlI08eRcPZtLzQhEN2bJxTYtLyd6zoi4NEYP
+         eOI1iAOK8kkjtqR1E5XhTxZLPXk38bWVDqwdcT7iW8x4qlRFEJPQO4NkL+1MhgFK7LQi
+         4bxPYVNmXvWw3Z9W8GS4uS0fndDzRij8uQDKEstGHITauDcX5qZOAvOMItVxHbZRnF3j
+         nb3NtVtoti2nNiE2oURJntgVXZPb1Yqg1NWz20sJHtH9kfiyFv11qH4CeeBOuN1MOs3W
+         IMDrY53sgG3pd6Tqds1FK5A741iR/ZxJTIjHOmwPf4BWQ4PZsnuTMB2Qei3olY2QYX2l
+         8koA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710407080; x=1711011880;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :content-language:references:cc:to:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=p6yLCzr8IjIPSmXUxMzp8GWR0SnYRq6V0f2szvKU+sU=;
+        b=jvu5O/a9ZxrlcJHCAxG2puRTZsKksj0sPrsZb2AaUaDguhKFNLQAUOG++YkJ1e5JMx
+         Mh7HWph3Q/swOcSWx04fkwdh5+ywLhuAcoYYphEYeMCYXkJVLdBCtLe+Wkf3lXpDN3XC
+         zqESrZoaYeBn7WqYaVkLhtDjs985t8NYxAengfa65CfvcV80lg6HAV4KBST2KUuJ3wZ6
+         Guwkd+uNoc2MjZ87v+8cspFi1S71AxNPVA97sR+xnRi35GuXtQFah2Yu+NTIJ6Qb/YS8
+         S1Qh1o/ibUv7Fx9dm/8a5V7pP0rRk/QGmbyqEEawMEdAlUUJL4SvdCIXXLuGAacc8Epo
+         j6lA==
+X-Forwarded-Encrypted: i=1; AJvYcCUIuWRAaltRbByqsRq/WQXJFuPYAxAyTb3u0OmVAORxEIMuNPlkMGUUKrJlu0/2u5eixgb5m9hseudnQpMAKC9rmw9rZKFkWrkUcw==
+X-Gm-Message-State: AOJu0Yy/Pr6R7Rtn0F/oE4cYm1WsTDbk7g0bsqLcHCCJz5hdqQRB1zT6
+	JkIr/fIfC8I+nzAbNsEl6aIiTHHPIWm0Tqnk4JlJWdid0J6pR9CtMeh3HtfFcuE=
+X-Google-Smtp-Source: AGHT+IFo5T2dddFDvag2IQ8tZd2pmdFQ4TnpWzZEglPwMIBYcfDL3UZ53sjDiK7ULzpqPg3vYZK8xw==
+X-Received: by 2002:adf:f04a:0:b0:33e:c389:66a7 with SMTP id t10-20020adff04a000000b0033ec38966a7mr805795wro.16.1710407080289;
+        Thu, 14 Mar 2024 02:04:40 -0700 (PDT)
+Received: from [192.168.7.190] (82-64-249-211.subs.proxad.net. [82.64.249.211])
+        by smtp.gmail.com with ESMTPSA id o9-20020adfe809000000b0033ec6ebf878sm244683wrm.93.2024.03.14.02.04.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Mar 2024 02:04:39 -0700 (PDT)
+Message-ID: <024b8567-af4c-4522-9b9d-594c42930442@linaro.org>
+Date: Thu, 14 Mar 2024 10:04:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240314-topic-sm8650-upstream-usb-dt-irq-fix-v1-1-ea8ab2051869@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAPG68mUC/x2Nuw6DMAwAfwV5rqUQHgJ+peqQEKf1AAQ7VJUQ/
- 96I8W64O0FJmBSm6gShLytva4H6UcH8ceubkENhsMa2pqlbzFviGXUZ+s7gkTQLuQUP9Rgysuw
- Y+Yeh995GCk10I5RUEir63jxf1/UHgOjETXYAAAA=
-To: Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Krishna Kurapati <quic_kriskura@quicinc.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.4
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2404;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=JRbh0ekOAZoITs6bw+4Z2PKWQij1OKHQNZkoVnNXhvo=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBl8rrz9KSsY3SwzrfHNznomVnGxXTudvzA0j9vmM0U
- eawhbiCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZfK68wAKCRB33NvayMhJ0RixD/
- 9xz+bVW58nmfFwhQ8QFWl1/VMdntM/B/3YsrSWuRe1u2XNLVXIrgIkMuSPeja1NEbIFnF2nIYluBuW
- 6IkPMmgeYusMuptUkp0agOOHL97/hMK8fTjcl3+dw5jPuUUNr33XHAT4cXeM1YuNyfq/STDBy4cpm2
- WTGw6/AB9TbI90Fv50hTiOeCLv4oV094z7OPUlAHmDAAKT+B1PpAOLGQYFW/vBNcFpxN8bBYahpIb9
- Rvp0gzh2ALztMGs3Ks3HyaYdKhRaosKkupFaC+ydDn62Elep3oGUIKYXiEMXUF6vc0ZkfiO5kzLujT
- 92OLAezUcFKt70XqL7qSwlJCIgEQ7NUlv7iTt2WNNsUQ6IoO+IIttVjIpf4kiumW/9+33ExOs0eXsT
- 0KMMapBvALHPNH4Z9+Xup9HfH8ayW/BC2v/kDhlMmi63Jdw6uhPPwp8uTD83zojAtDO2LXuObC75/k
- t4NQNqqt2VlX04omvCPvA4TDssPUno/HHyQNQdyVhVYDCnslhshumB13Y3d+ji9IBRAwAxnBgPA9fa
- FCjyVQqwfhLGqLHrorZBoDLpCeycCTsT6YLSNQak37CPXE5/Vf1WADEmFe4zu53FjWh/xQs71bAqvl
- CulT+f/Xk5DUmiGwnA7qrLch33qjWHMBekgPnqlgcjEcifN15yWppihQsWnA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [DMARC error][DKIM error] [PATCH 3/4] arm64: dts: add support for
+ A4 based Amlogic BA400
+To: Xianwei Zhao <xianwei.zhao@amlogic.com>,
+ Dmitry Rokosov <ddrokosov@salutedevices.com>,
+ Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
+References: <20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com>
+ <20240312-basic_dt-v1-3-7f11df3a0896@amlogic.com>
+ <20240313095311.dxrr7gvt4t3gwoho@CAB-WSD-L081021>
+ <74f96887-572d-47eb-bce4-9d61ec51b88d@amlogic.com>
+Content-Language: en-US, fr
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <74f96887-572d-47eb-bce4-9d61ec51b88d@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Update the usb interrupts properties to fix the following
-bindings check errors:
-usb@a6f8800: interrupt-names:0: 'pwr_event' was expected
-        from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-usb@a6f8800: interrupt-names:1: 'hs_phy_irq' was expected
-	from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-usb@a6f8800: interrupt-names:2: 'dp_hs_phy_irq' was expected
-        from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-usb@a6f8800: interrupt-names:3: 'dm_hs_phy_irq' was expected
-        from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
-usb@a6f8800: interrupt-names: ['hs_phy_irq', 'ss_phy_irq', 'dm_hs_phy_irq', 'dp_hs_phy_irq'] is too short
-        from schema $id: http://devicetree.org/schemas/usb/qcom,dwc3.yaml#
+On 14/03/2024 06:19, Xianwei Zhao wrote:
+> Hi Dmitry,
+>     Thanks for your review.
+> 
+> On 2024/3/13 17:53, Dmitry Rokosov wrote:
+>> [????????? ddrokosov@salutedevices.com ????????? https://aka.ms/LearnAboutSenderIdentification?????????????]
+>>
+>> [ EXTERNAL EMAIL ]
+>>
+>> Hello Xianwei,
+>>
+>> On Tue, Mar 12, 2024 at 05:18:59PM +0800, Xianwei Zhao via B4 Relay wrote:
+>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>>
+>>> Amlogic A4 is an application processor designed for smart audio
+>>> and IoT applications.
+>>>
+>>> Add basic support for the A4 based Amlogic BA400 board, which describes
+>>> the following components: CPU, GIC, IRQ, Timer and UART.
+>>> These are capable of booting up into the serial console.
+>>>
+>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>>> ---
+>>>   arch/arm64/boot/dts/amlogic/Makefile               |  1 +
+>>>   .../boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts   | 43 ++++++++++
+>>>   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 99 ++++++++++++++++++++++
+>>>   3 files changed, 143 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+>>> index 1ab160bf928a..9a50ec11bb8d 100644
+>>> --- a/arch/arm64/boot/dts/amlogic/Makefile
+>>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+>>> @@ -1,4 +1,5 @@
+>>>   # SPDX-License-Identifier: GPL-2.0
+>>> +dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
+>>>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
+>>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts b/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts
+>>> new file mode 100644
+>>> index 000000000000..60f9f23858c6
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts
+>>> @@ -0,0 +1,43 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +/*
+>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "amlogic-a4.dtsi"
+>>> +
+>>> +/ {
+>>> +     model = "Amlogic A113L2 ba400 Development Board";
+>>> +     compatible = "amlogic,ba400","amlogic,a4";
+>>> +     interrupt-parent = <&gic>;
+>>> +     #address-cells = <2>;
+>>> +     #size-cells = <2>;
+>>> +
+>>> +     aliases {
+>>> +             serial0 = &uart_b;
+>>> +     };
+>>> +
+>>> +     memory@0 {
+>>> +             device_type = "memory";
+>>> +             reg = <0x0 0x0 0x0 0x40000000>;
+>>> +     };
+>>> +
+>>> +     reserved-memory {
+>>> +             #address-cells = <2>;
+>>> +             #size-cells = <2>;
+>>> +             ranges;
+>>> +
+>>> +             /* 52 MiB reserved for ARM Trusted Firmware */
+>>> +             secmon_reserved:linux,secmon {
+>>> +                     compatible = "shared-dma-pool";
+>>> +                     no-map;
+>>> +                     alignment = <0x0 0x400000>;
+>>> +                     reg = <0x0 0x05000000 0x0 0x3400000>;
+>>> +             };
+>>> +     };
+>>> +};
+>>> +
+>>> +&uart_b {
+>>> +     status = "okay";
+>>> +};
+>>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+>>> new file mode 100644
+>>> index 000000000000..7e8745010b52
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
+>>> @@ -0,0 +1,99 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>>> +/*
+>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
+>>> + */
+>>> +
+>>> +#include <dt-bindings/interrupt-controller/irq.h>
+>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>>> +#include <dt-bindings/gpio/gpio.h>
+>>> +/ {
+>>> +     cpus {
+>>> +             #address-cells = <2>;
+>>> +             #size-cells = <0>;
+>>> +
+>>> +             cpu0: cpu@0 {
+>>> +                     device_type = "cpu";
+>>> +                     compatible = "arm,cortex-a53";
+>>> +                     reg = <0x0 0x0>;
+>>> +                     enable-method = "psci";
+>>> +             };
+>>> +
+>>> +             cpu1: cpu@1 {
+>>> +                     device_type = "cpu";
+>>> +                     compatible = "arm,cortex-a53";
+>>> +                     reg = <0x0 0x1>;
+>>> +                     enable-method = "psci";
+>>> +             };
+>>> +
+>>> +             cpu2: cpu@2 {
+>>> +                     device_type = "cpu";
+>>> +                     compatible = "arm,cortex-a53";
+>>> +                     reg = <0x0 0x2>;
+>>> +                     enable-method = "psci";
+>>> +             };
+>>> +
+>>> +             cpu3: cpu@3 {
+>>> +                     device_type = "cpu";
+>>> +                     compatible = "arm,cortex-a53";
+>>> +                     reg = <0x0 0x3>;
+>>> +                     enable-method = "psci";
+>>> +             };
+>>> +     };
+>>> +
+>>> +     timer {
+>>> +             compatible = "arm,armv8-timer";
+>>> +             interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>>> +                          <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>>> +                          <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+>>> +                          <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+>>> +     };
+>>> +
+>>> +     psci {
+>>> +             compatible = "arm,psci-0.2";
+>>> +             method = "smc";
+>>> +     };
+>>> +
+>>> +     xtal: xtal-clk {
+>>> +             compatible = "fixed-clock";
+>>> +             clock-frequency = <24000000>;
+>>> +             clock-output-names = "xtal";
+>>> +             #clock-cells = <0>;
+>>> +     };
+>>> +
+>>> +     soc {
+>>> +             compatible = "simple-bus";
+>>> +             #address-cells = <2>;
+>>> +             #size-cells = <2>;
+>>> +             ranges;
+>>> +
+>>> +             gic: interrupt-controller@fff01000 {
+>>> +                     compatible = "arm,gic-400";
+>>> +                     #interrupt-cells = <3>;
+>>> +                     #address-cells = <0>;
+>>> +                     interrupt-controller;
+>>> +                     reg = <0x0 0xfff01000 0 0x1000>,
+>>> +                           <0x0 0xfff02000 0 0x2000>,
+>>> +                           <0x0 0xfff04000 0 0x2000>,
+>>> +                           <0x0 0xfff06000 0 0x2000>;
+>>> +                     interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+>>> +             };
+>>> +
+>>> +             apb@fe000000 {
+>>> +                     compatible = "simple-bus";
+>>> +                     reg = <0x0 0xfe000000 0x0 0x480000>;
+>>> +                     #address-cells = <2>;
+>>> +                     #size-cells = <2>;
+>>> +                     ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+>>> +
+>>> +                     uart_b: serial@7a000 {
+>>> +                             compatible = "amlogic,meson-s4-uart",
+>>
+>> If I'm not wrong, you need to create dt-binding alias for meson-a4-uart
+>> and use it as 3rd compatible string.
 
-Cc: Krishna Kurapati <quic_kriskura@quicinc.com>
-Fixes: 10e024671295 ("arm64: dts: qcom: sm8650: add interconnect dependent device nodes")
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8650.dtsi | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+Please add an A4 and A5 compatible using amlogic,meson-s4-uart as fallback,
+and drop the ao-uart since there's no more AO uart.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-index ba72d8f38420..985ef46a04e1 100644
---- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
-@@ -3584,14 +3584,16 @@ usb_1: usb@a6f8800 {
- 			compatible = "qcom,sm8650-dwc3", "qcom,dwc3";
- 			reg = <0 0x0a6f8800 0 0x400>;
- 
--			interrupts-extended = <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
--					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>,
-+			interrupts-extended = <&intc GIC_SPI 130 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&intc GIC_SPI 131 IRQ_TYPE_LEVEL_HIGH>,
-+					      <&pdc 14 IRQ_TYPE_EDGE_RISING>,
- 					      <&pdc 15 IRQ_TYPE_EDGE_RISING>,
--					      <&pdc 14 IRQ_TYPE_EDGE_RISING>;
--			interrupt-names = "hs_phy_irq",
--					  "ss_phy_irq",
-+					      <&pdc 17 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "pwr_event",
-+					  "hs_phy_irq",
-+					  "dp_hs_phy_irq",
- 					  "dm_hs_phy_irq",
--					  "dp_hs_phy_irq";
-+					  "ss_phy_irq";
- 
- 			clocks = <&gcc GCC_CFG_NOC_USB3_PRIM_AXI_CLK>,
- 				 <&gcc GCC_USB30_PRIM_MASTER_CLK>,
+Follow how it was done for the T7 in Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
 
----
-base-commit: 9bb9b28d0568991b1d63e66fe75afa5f97ad1156
-change-id: 20240314-topic-sm8650-upstream-usb-dt-irq-fix-d6bb2fed3fa9
+The amlogic,meson-s4-uart will provide an earlycon like ao-uart did.
 
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+Thanks,
+Neil
+
+>>
+> On UART module, A4 and A5 SoCs exactly the same as S4. There's no difference.
+>>> +                                          "amlogic,meson-ao-uart";
+>>> +                             reg = <0x0 0x7a000 0x0 0x18>;
+>>> +                             interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
+>>> +                             clocks = <&xtal>, <&xtal>, <&xtal>;
+>>> +                             clock-names = "xtal", "pclk", "baud";
+>>> +                             status = "disabled";
+>>> +                     };
+>>> +             };
+>>> +     };
+>>> +};
+>>>
+>>> -- 
+>>> 2.37.1
+>>>
+>>>
+>>> _______________________________________________
+>>> linux-amlogic mailing list
+>>> linux-amlogic@lists.infradead.org
+>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+>>
+>> -- 
+>> Thank you,
+>> Dmitry
 
 
