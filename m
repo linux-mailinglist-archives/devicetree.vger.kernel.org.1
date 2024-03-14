@@ -1,284 +1,182 @@
-Return-Path: <devicetree+bounces-50582-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50583-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id A535987C470
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 21:48:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 51CF087C482
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 21:57:49 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 6D660B21EBA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 20:47:58 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0507C28357C
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 20:57:48 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A6472768FF;
-	Thu, 14 Mar 2024 20:47:30 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85D34763FA;
+	Thu, 14 Mar 2024 20:57:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="ABt2KcCT"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="VypaMdDu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 483DD763EE
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 20:47:27 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DF31B763E4;
+	Thu, 14 Mar 2024 20:57:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710449250; cv=none; b=A7hb7Be+60Bj/uwmFP0tkPIj+nRK+ARufA6BCstvfku4eozGBDRGd+Fu8tcV2ZtiWVF8vBYXmCfd9TYIQ4mtlie4foKnnN+hprplrpwsmoNq4SumdsB6bA4jXDNXPWNoRdHMOFq7r6MzMMP0iLb6FrG4SeXgIQbGmZeG+N/2cbY=
+	t=1710449865; cv=none; b=Z6vxvILyVPabkfbz8PGZ/b9JTCRCtyBNwtaUYNfUTg2FEl92PEyQLGSGBhxP6bkuyzLcI79j54kcLsJKCYxfnAAiXTU1kqwJFH/ukxUaDJ6PE4Bj7FoFJV6vJGBe5PVB16lsKzrkm3nzXZQxKsMKNOMEuBVw0v/PAyCPOk/jMUo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710449250; c=relaxed/simple;
-	bh=UIF4J65ehQgwFgLwNNQv7+xO+t1wQO4o0nbyeYHrPkE=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=S4ooilh9T9R6vO+NABsKNYlyVCn552Z3yM/ABaD2Qg3u0d3RNA6xaPGCj1PxJnC5wTVOeclxjgscAhweSooIFDDAJJ+NIR8KeIzsAw4AwfhkzxPAZN1Jp6skvTbM/ybNmashDtP39Q/hynsTvofSk5HmB6nCY/wkbXGS63rmyYY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=ABt2KcCT; arc=none smtp.client-ip=209.85.222.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-qk1-f179.google.com with SMTP id af79cd13be357-789dbd9a6f1so55907085a.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 13:47:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710449246; x=1711054046; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=rebonSk8UmoBj8EHW0+x6iBNgmHsWXTbExBrTy61JIM=;
-        b=ABt2KcCTKTlgPCIMiO/hqlySV6jsyDRateiNcb72R8QpY/yS5ODckuXKIMfA8lhQHj
-         j6wF05HpDTgCQaCxKCvMay4NbaEt15cQc7gMzNaGhg3Wr60X9SFLI14/8MWhRTPZ7hwc
-         EbSPDU2hQoWKRzyE5vCx7ctgVtvqwBEHSzZP6WNDaN53zl3OCcYSZZAWTuukUI7MYYGX
-         rd2Btwtj4XzJ0D4HrVypQJCpCbSI6DYm4xxYV2YPuHG4wkvgMIcV1cLj2mqJ8DMhVUNO
-         CwkMqhKUlWCd6+A/zZZUEt+gNINZ8Eckf6tMr6iIgP2CG66TbaiBwK2G9sAjrRfkTpXB
-         S+/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710449246; x=1711054046;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=rebonSk8UmoBj8EHW0+x6iBNgmHsWXTbExBrTy61JIM=;
-        b=RkJgr2EDJNyAgVPvGdd3ft8JzAuyVOSAswqpbeO77XUzLga2TWE5ri7hYecjSXC9/n
-         Cynma+lOzqEaJ037sg6rRfsI4Ynl14bQOPIrG9ur+NGQn81B9vuJQ8J7Kbmy9ql7INd+
-         AZExXd2pr59YOovoHp/YuBgougnKaTWweEVrwOJE+xK4i/MoNCMeqg8K3tqzPBSMntm0
-         XmCU8o+1gYjRT81GoMx2SH2poiiaZthgvfQybDKpKjDTc0pQbOqiD1n+UnBHtVJTd5lb
-         P8DbR4NbPpSWm0zgRq/FSfvalgJTH9Kk9SQ7+MP6GwB5fDDPTi8jsp66E5kz7nU+IZsN
-         0+KQ==
-X-Forwarded-Encrypted: i=1; AJvYcCXfXgxY1ubchH1blINXIAVST23hdvhJhCr52w7Bh6gEsRGNUOq8LR8u2DXCZwIkSYX1wdJrdANYkJUhFh7bRqM03iQd5YpX1Ag6lw==
-X-Gm-Message-State: AOJu0YzAdKHHA2uF2bRmb7H0SC6ASn0A/laYgXUeYl4yTzakkNEOUOp6
-	EsMwaGgbJRmGSjTgzxJHmLBGdwA3b0R+w4SgJmdFZOWiy8JvcZA/JXVyE2OX0yc=
-X-Google-Smtp-Source: AGHT+IEiWI7uwJUkA2nC89WYPMmqCqUoLsa0nMoO8D5PL661KnZykIIys9gvWKTzQQJUhvwk5sxNyw==
-X-Received: by 2002:a05:622a:1214:b0:42e:b2c3:d77a with SMTP id y20-20020a05622a121400b0042eb2c3d77amr2173669qtx.46.1710449246262;
-        Thu, 14 Mar 2024 13:47:26 -0700 (PDT)
-Received: from megalith.oryx-coho.ts.net (d24-150-219-207.home.cgocable.net. [24.150.219.207])
-        by smtp.gmail.com with ESMTPSA id n16-20020ac86750000000b0042eef160b4dsm1165272qtp.76.2024.03.14.13.47.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Mar 2024 13:47:26 -0700 (PDT)
-From: Trevor Gamblin <tgamblin@baylibre.com>
-To: linux-pwm@vger.kernel.org
-Cc: linux-kernel@vger.kernel.org,
-	u.kleine-koenig@pengutronix.de,
-	michael.hennerich@analog.com,
-	nuno.sa@analog.com,
-	devicetree@vger.kernel.org,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	tgamblin@baylibre.com,
-	dlechner@baylibre.com
-Subject: [PATCH 2/2] pwm: axi-pwmgen: support version 2.00.a
-Date: Thu, 14 Mar 2024 16:47:22 -0400
-Message-ID: <20240314204722.1291993-3-tgamblin@baylibre.com>
-X-Mailer: git-send-email 2.44.0
-In-Reply-To: <20240314204722.1291993-1-tgamblin@baylibre.com>
-References: <20240314204722.1291993-1-tgamblin@baylibre.com>
+	s=arc-20240116; t=1710449865; c=relaxed/simple;
+	bh=i/In70euOucOu10Yn4mf9BZSNHDbmPI7QOVoNvr1wN0=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=e/Nq4/TEwD36LnwfEosxO1zQ3fEEQQu2hvpwD77PaGFMO+LjfsxX6KHSBJKrSl2hr8ZP9fTazr4zEoVQFJx9K7VGDKH0ePaU0qZ+A0xzaLIyzQJX4fxAyyO8QWFpOS7978NHMkwWtjs7FpIBJE0UxqlhT9jTc6UZ5fB1u3YnI6w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=VypaMdDu; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42EKFsjk019502;
+	Thu, 14 Mar 2024 20:57:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=i1RRwlY+GSx5CIfYwtnNU1qLUiFuXaO9rJ+b19a99LU=; b=Vy
+	paMdDuLHTBjsvksPD2BnAdKbsOB51/5Li48ozD40T3l6rwY/B8nOD1KgUDng+sO3
+	aiaKBQRFPLsVhYNNk1dD3NVvrA2h3AJs8i3LKGOkWHs91I3yKQS6k6Z8jXZAblbZ
+	XnWX+kdgFjWTEj1sUGMlzP5+TQP0c3Ei+sRSCMdmlMD2M6GgRkigVqaZfBYHLpCA
+	LC2sZrKu/v4LCyVOXaLBWxaJT/9sDaOofQ9xNSObmdPran5eK+ggiUNcp9u0YLSr
+	gibSEaPxQ/pBdwBRDjOk/FkIOuSn23Ab+UZLXeuggME+SClx8erC9dBqmnIQtUZu
+	mn4R55nTAKEDQkQ5LqJg==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wv81bg2qb-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Mar 2024 20:57:21 +0000 (GMT)
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42EKvK31005345
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Mar 2024 20:57:20 GMT
+Received: from [10.71.112.106] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 14 Mar
+ 2024 13:57:19 -0700
+Message-ID: <0e9f0f2f-a404-3b76-3c52-9eca7594efa3@quicinc.com>
+Date: Thu, 14 Mar 2024 13:57:19 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.13.1
+Subject: Re: [PATCH v18 20/41] ALSA: usb-audio: qcom: Introduce QC USB SND
+ offloading support
+Content-Language: en-US
+To: Albert Wang <albertccwang@google.com>
+CC: <srinivas.kandagatla@linaro.org>, <mathias.nyman@intel.com>,
+        <perex@perex.cz>, <conor+dt@kernel.org>, <corbet@lwn.net>,
+        <lgirdwood@gmail.com>, <andersson@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <gregkh@linuxfoundation.org>,
+        <Thinh.Nguyen@synopsys.com>, <broonie@kernel.org>,
+        <bgoswami@quicinc.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <konrad.dybcio@linaro.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-sound@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <linux-doc@vger.kernel.org>, <alsa-devel@alsa-project.org>
+References: <20240228013619.29758-1-quic_wcheng@quicinc.com>
+ <20240228013619.29758-21-quic_wcheng@quicinc.com>
+ <CANqn-rjTgHgzssxZiuwvTKzOS31wzjS4Y9G-XacZN4a7c82MaA@mail.gmail.com>
+ <d97f635f-053b-70a7-5ffe-a1ae273091d1@quicinc.com>
+ <CANqn-ring2uf=A-F7VuRwnJ--n=FtFzSddCmR-=nfxCGcFAF2g@mail.gmail.com>
+From: Wesley Cheng <quic_wcheng@quicinc.com>
+In-Reply-To: <CANqn-ring2uf=A-F7VuRwnJ--n=FtFzSddCmR-=nfxCGcFAF2g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: hogKYBgJv_8ag5r84EkBXjMbinIFbgfn
+X-Proofpoint-ORIG-GUID: hogKYBgJv_8ag5r84EkBXjMbinIFbgfn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-14_13,2024-03-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ impostorscore=0 spamscore=0 bulkscore=0 adultscore=0 mlxlogscore=999
+ mlxscore=0 clxscore=1015 malwarescore=0 priorityscore=1501
+ lowpriorityscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.19.0-2402120000 definitions=main-2403140161
 
-This adds support for the AXI PWMGEN v2 IP block. This version is
-nearly identical to v1 other than it supports up to 16 channels instead
-of 4 and a few of the memory mapped registers have moved.
+Hi Albert
 
-Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
----
- drivers/pwm/pwm-axi-pwmgen.c | 62 ++++++++++++++++++++++++++++--------
- 1 file changed, 49 insertions(+), 13 deletions(-)
+On 3/14/2024 3:29 AM, Albert Wang wrote:
+> On Thu, Mar 14, 2024 at 3:18 AM Wesley Cheng <quic_wcheng@quicinc.com> wrote:
+>>
+>> Hi Albert,
+>>
+>> On 3/13/2024 1:03 AM, Albert Wang wrote:
+>>> Hi Wesley,
+>>>
+>>> The suspend function `qc_usb_audio_offload_suspend()` looks to stop
+>>> the traffic on the bus, so that the bus can be suspended. That allows
+>>> the application processor(AP) to enter suspend. There is a subtle
+>>> difference with our feature, which is to allow AP suspend with the
+>>> Host and USB controller active to continue the audio offloading. We
+>>> call this feature `allow AP suspend in playback`. So, I have some
+>>> points to clarify with you:
+>>
+>> Yes, I'm aware of that feature also.
+>>
+>>> 1. Will the suspend flow `usb_audio_suspend() -->
+>>> platform_ops->suspend_cb() --> qc_usb_audio_offload_suspend()` be
+>>> called when offloading is active?
+>>
+>> It can be.  This is why in our case, we are going to issue the
+>> disconnect event to the audio DSP to stop the session if it is currently
+>> in one.
+>>
+>>> 2. As my understanding, the suspend function is to allow AP suspend
+>>> when the offloading is IDLE, but it won't allow AP suspend when in
+>>> playback or capture. Please correct me if anything is wrong.
+>>
+>> As mentioned above, it will let apps go into PM suspend after forcing
+>> the audio stream to be idle.  We won't block PM suspend entry.
+>>
+> Right. Your design is to force the audio stream idle, or say, inform
+> the audio DSP
+> to stop the current offloading session first, then AP can go into PM
+> suspend as usual.
+> Then I can say the current design did not support the `allow AP
+> suspend in playback`
+> feature, right?
+> 
 
-diff --git a/drivers/pwm/pwm-axi-pwmgen.c b/drivers/pwm/pwm-axi-pwmgen.c
-index 0c8f7f893a21..539625c404ac 100644
---- a/drivers/pwm/pwm-axi-pwmgen.c
-+++ b/drivers/pwm/pwm-axi-pwmgen.c
-@@ -32,16 +32,25 @@
- #define AXI_PWMGEN_REG_CORE_MAGIC	0x0C
- #define AXI_PWMGEN_REG_CONFIG		0x10
- #define AXI_PWMGEN_REG_NPWM		0x14
--#define AXI_PWMGEN_CHX_PERIOD(ch)	(0x40 + (12 * (ch)))
--#define AXI_PWMGEN_CHX_DUTY(ch)		(0x44 + (12 * (ch)))
--#define AXI_PWMGEN_CHX_OFFSET(ch)	(0x48 + (12 * (ch)))
-+#define AXI_PWMGEN_CHX_PERIOD(v, ch)	((v)->period_base + (v)->ch_step * (ch))
-+#define AXI_PWMGEN_CHX_DUTY(v, ch)	((v)->duty_base + (v)->ch_step * (ch))
-+#define AXI_PWMGEN_CHX_OFFSET(v, ch)	((v)->offset_base + (v)->ch_step * (ch))
- #define AXI_PWMGEN_REG_CORE_MAGIC_VAL	0x601A3471 /* Identification number to test during setup */
- #define AXI_PWMGEN_LOAD_CONFIG		BIT(1)
- #define AXI_PWMGEN_RESET		BIT(0)
- 
-+struct axi_pwm_variant {
-+	u8 period_base;
-+	u8 duty_base;
-+	u8 offset_base;
-+	u8 major_version;
-+	u8 ch_step;
-+};
-+
- struct axi_pwmgen_ddata {
- 	struct regmap *regmap;
- 	unsigned long clk_rate_hz;
-+	const struct axi_pwm_variant *variant;
- };
- 
- static const struct regmap_config axi_pwmgen_regmap_config = {
-@@ -50,12 +59,30 @@ static const struct regmap_config axi_pwmgen_regmap_config = {
- 	.val_bits = 32,
- };
- 
-+static const struct axi_pwm_variant pwmgen_1_00_variant = {
-+	.period_base = 0x40,
-+	.duty_base = 0x44,
-+	.offset_base = 0x48,
-+	.major_version = 1,
-+	.ch_step = 12,
-+};
-+
-+static const struct axi_pwm_variant pwmgen_2_00_variant = {
-+	.period_base = 0x40,
-+	.duty_base = 0x80,
-+	.offset_base = 0xC0,
-+	.major_version = 2,
-+	.ch_step = 4,
-+};
-+
-+
- static int axi_pwmgen_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 			    const struct pwm_state *state)
- {
- 	struct axi_pwmgen_ddata *ddata = pwmchip_get_drvdata(chip);
- 	unsigned int ch = pwm->hwpwm;
- 	struct regmap *regmap = ddata->regmap;
-+	const struct axi_pwm_variant *variant = ddata->variant;
- 	u64 period_cnt, duty_cnt;
- 	int ret;
- 
-@@ -70,7 +97,7 @@ static int axi_pwmgen_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 		if (period_cnt == 0)
- 			return -EINVAL;
- 
--		ret = regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), period_cnt);
-+		ret = regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), period_cnt);
- 		if (ret)
- 			return ret;
- 
-@@ -78,15 +105,15 @@ static int axi_pwmgen_apply(struct pwm_chip *chip, struct pwm_device *pwm,
- 		if (duty_cnt > UINT_MAX)
- 			duty_cnt = UINT_MAX;
- 
--		ret = regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), duty_cnt);
-+		ret = regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), duty_cnt);
- 		if (ret)
- 			return ret;
- 	} else {
--		ret = regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), 0);
-+		ret = regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), 0);
- 		if (ret)
- 			return ret;
- 
--		ret = regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), 0);
-+		ret = regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), 0);
- 		if (ret)
- 			return ret;
- 	}
-@@ -99,11 +126,12 @@ static int axi_pwmgen_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- {
- 	struct axi_pwmgen_ddata *ddata = pwmchip_get_drvdata(chip);
- 	struct regmap *regmap = ddata->regmap;
-+	const struct axi_pwm_variant *variant = ddata->variant;
- 	unsigned int ch = pwm->hwpwm;
- 	u32 cnt;
- 	int ret;
- 
--	ret = regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(ch), &cnt);
-+	ret = regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), &cnt);
- 	if (ret)
- 		return ret;
- 
-@@ -111,7 +139,7 @@ static int axi_pwmgen_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
- 
- 	state->period = DIV_ROUND_UP_ULL((u64)cnt * NSEC_PER_SEC, ddata->clk_rate_hz);
- 
--	ret = regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(ch), &cnt);
-+	ret = regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), &cnt);
- 	if (ret)
- 		return ret;
- 
-@@ -127,7 +155,8 @@ static const struct pwm_ops axi_pwmgen_pwm_ops = {
- 	.get_state = axi_pwmgen_get_state,
- };
- 
--static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev)
-+static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev, 
-+			    const struct axi_pwm_variant *variant)
- {
- 	int ret;
- 	u32 val;
-@@ -146,7 +175,7 @@ static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev)
- 	if (ret)
- 		return ret;
- 
--	if (ADI_AXI_PCORE_VER_MAJOR(val) != 1) {
-+	if (ADI_AXI_PCORE_VER_MAJOR(val) != variant->major_version) {
- 		return dev_err_probe(dev, -ENODEV, "Unsupported peripheral version %u.%u.%u\n",
- 			ADI_AXI_PCORE_VER_MAJOR(val),
- 			ADI_AXI_PCORE_VER_MINOR(val),
-@@ -178,9 +207,14 @@ static int axi_pwmgen_probe(struct platform_device *pdev)
- 	struct pwm_chip *chip;
- 	struct axi_pwmgen_ddata *ddata;
- 	struct clk *clk;
-+	const struct axi_pwm_variant *variant;
- 	void __iomem *io_base;
- 	int ret;
- 
-+	variant = device_get_match_data(dev);
-+	if (!variant)
-+		return -EINVAL;
-+
- 	io_base = devm_platform_ioremap_resource(pdev, 0);
- 	if (IS_ERR(io_base))
- 		return PTR_ERR(io_base);
-@@ -190,7 +224,7 @@ static int axi_pwmgen_probe(struct platform_device *pdev)
- 		return dev_err_probe(dev, PTR_ERR(regmap),
- 				     "failed to init register map\n");
- 
--	ret = axi_pwmgen_setup(regmap, dev);
-+	ret = axi_pwmgen_setup(regmap, dev, variant);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -199,6 +233,7 @@ static int axi_pwmgen_probe(struct platform_device *pdev)
- 		return PTR_ERR(chip);
- 	ddata = pwmchip_get_drvdata(chip);
- 	ddata->regmap = regmap;
-+	ddata->variant = variant;
- 
- 	clk = devm_clk_get_enabled(dev, NULL);
- 	if (IS_ERR(clk))
-@@ -224,7 +259,8 @@ static int axi_pwmgen_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id axi_pwmgen_ids[] = {
--	{ .compatible = "adi,axi-pwmgen-1.00.a" },
-+	{ .compatible = "adi,axi-pwmgen-1.00.a", .data = &pwmgen_1_00_variant },
-+	{ .compatible = "adi,axi-pwmgen-2.00.a", .data = &pwmgen_2_00_variant },
- 	{ }
- };
- MODULE_DEVICE_TABLE(of, axi_pwmgen_ids);
--- 
-2.44.0
+Correct, this series does not cover this mechanism.
 
+>> Yes, I saw that patch as well.  I'll take a look once this series lands
+>> upstream.
+> 
+> That patch is rejected and archived now. So we need to find another
+> approach to do
+> that, even based on your framework.
+> 
+
+We can discuss that offline and come up with an approach that is 
+reviewable by maintainers and the community.
+
+Thanks
+Wesley Cheng
+
+> Thanks,
+> Albert
+> 
+> 
+>>> 3. We would like to integrate the `allow AP suspend in playback`
+>>> feature with your framework to become one upstream offload solution.
+>>> Here is the patch:
+>>> https://patchwork.kernel.org/project/linux-pm/patch/20240223143833.1509961-1-guanyulin@google.com/
+>>> .
+>>
+>> Yes, I saw that patch as well.  I'll take a look once this series lands
+>> upstream.
+>>
+>> Thanks
+>> Wesley Cheng
 
