@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-50408-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50409-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C3AD87B94C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:31:01 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C60E787B961
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:36:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5D7801C214F9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 08:31:00 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DD962830C9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 08:36:24 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA7A0612DB;
-	Thu, 14 Mar 2024 08:30:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10776BB45;
+	Thu, 14 Mar 2024 08:36:16 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="PvMf9DPC"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h76hchDn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
+Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0954D60EFF
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 08:30:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005146AF85
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 08:36:14 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710405058; cv=none; b=GLDE3Btfx5OoCH6YlF9aXDDifrHZAllobfwyUkqt+w0Ajw+QvY5oLGzGm8J6bklZNHaUDk11kaQYcscjRYEJsPGal0poftbuShjIjwu/EFImrNmX78Wk85dOqFEqBAOaMct9cOYHmaAYubY1LxtPVg3kWEHb5x+WYcFaupSJhDQ=
+	t=1710405376; cv=none; b=A6nsP9KoHMqyeKfT9+Um16X3G2z/eFm279IlX/5TWLHJ0H05cTVZov+PoGlkP8WSc0PIN2xm/Ck+eW4639xb/8tzM+EYVDH9r6hJgtvhn7SDTIhd73+/pL/eFt9ZDguOmwd9g9QNzPIQpFRJUVsVMLe0hz6JvygT0LzXMUYBrs0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710405058; c=relaxed/simple;
-	bh=wSU462xWeV+jb/Fx6lyTfUitOV7Luuama88MauNoHC8=;
+	s=arc-20240116; t=1710405376; c=relaxed/simple;
+	bh=fjbWlaQOikwKMnwZOz8/d8vqFrfC7KHDtintYgjI3K0=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Zvrmc5gdN76dMUiqm/f0F3kk7u3RqaIySUsFhlk81d4/Gwp+YVE1ANlIZTZPFH7CNFQ2oxBO6IGppNTX0mkYccHheOY6VejBAij/zgXBlQmg/CA1TpC6qYVVd0iBSsrwPzjU1pgMyRBQlXB77DygQSwYCFjSVYcAxiAwcJUbZc0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=PvMf9DPC; arc=none smtp.client-ip=209.85.221.54
+	 In-Reply-To:Content-Type; b=QEAOm/odypT26Fk/jQyWLJJPYadgilyTuIrUQZgypj8yw8nO/vH3umT3FdWA/9Mh1ohjE3BU9MinGcUeD6+Sv1UkiDOYqziNexXqeSStVx4SF0B7cNoBejtkcdPXOWMhOggs/7Oj5PglnT71vQVIo/hv33K3Rt+G5A8fMDAEnNQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h76hchDn; arc=none smtp.client-ip=209.85.167.41
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33e99b62e01so564441f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 01:30:56 -0700 (PDT)
+Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-512f54fc2dbso740504e87.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 01:36:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710405055; x=1711009855; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710405373; x=1711010173; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=cjDEhlIUtZYugm2VOUzM+DS9b2GCOwIMbK6lToSWDPk=;
-        b=PvMf9DPC2SEtBJugr0/n2MngTh6fTVo/3Ao87xjDwforV841FDuYMXWGxy0tInmwUq
-         am9INT6ws9F0r/CXACRJB3i8qKPvRExFSv12pCWQOkwZNGivoVmWkYtk/ctUJhkI5XRs
-         Umenm8HRT7BEUVkquqQbyvCpdwDGZkvhK2lN1NS1zylY5YRCXLrfwnU9PeyWNpmttgLQ
-         JYBKyg9TbCQRoEyuzkcqnFChObeL0tL/KKpu6aUDGyNuL1knhUqDXsm6MeyjBW2W7/wf
-         S80Ww7kWPt0GQHiHPqvOa+nnsCUNWtpKyYVeRKF042FL8FQApgUoIC3w6q9IkVJslmbH
-         ox/w==
+        bh=hj/WaHxD/qNMmrcRTKT2ci5bqw6SYan4groqkVU9P0E=;
+        b=h76hchDnBKjjXkxRbAf1ymo1yYHVSGX/vE5MYuYOw/LniQcDQCsHBv5h9OvllF71Yq
+         NwsveUquZ3Lz2pJ+58CjYnVtCVsXJSYEJbgbk/DKKR2EEWdbTEteLP2QwXkfyL8CQLmv
+         sbXVxkEhyEZsst7mAocG1EI/ziw8bjZQhSF6UKUfZN+x8vOdq4PvD/+xYiOvtnVN5qFG
+         VKwdo2i3UmB/dKfeUgwdN95BuQEt00ML0u4WzwcF6wVvJq7MqEXJVG1IAtGMd3EqAwJG
+         MdQYvJVMTtNQKUu/PD3flCkCgfbLfJwdW9A/Ze+S/Cfx6IDENUPFLRLLd0edcUQET22G
+         6KLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710405055; x=1711009855;
+        d=1e100.net; s=20230601; t=1710405373; x=1711010173;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cjDEhlIUtZYugm2VOUzM+DS9b2GCOwIMbK6lToSWDPk=;
-        b=ZJbI84FTcyF1EH7B9NerLEeSCuQwhWzesGs/sLL2GHDK2wJM8S29/MdvEphlEcxK/j
-         KFs9omVi5DCD6ABiZN/S7C7Sxl7TFrzezRhzckKLFe7c8Nr2b9E1HlxLerOStqageFRn
-         WoaydKroIOdZ+KIIpTIpgSd9EWTc1p8k6oLtjT1pwpNjDoG8tzxgqEexPLGLhcj9E6vH
-         dHmrSXxYs4m8dkn+x0cHemmQXZ3ZvaLllfrYdUIdfzUYarahIPSahV73ZnmZ3uqNLkIY
-         BfTtyOkj/XHq6rZd0WKP8W5n9B8Ln5NGUZdFcQOT+gqNDpem/w8AWMfrSF04f8psfiXx
-         g7Iw==
-X-Forwarded-Encrypted: i=1; AJvYcCU9HjYn+w6iq4cjp0D2RbX036+9BFTUeoSPt7cyduU7y/aaL6WDtbOwqUYwcrbXTEBleIMUf46MH2kcHrSgzGMk+n0MUjc4Ii1VXA==
-X-Gm-Message-State: AOJu0YwGpXazvjQEBcmKFVXHQCdtoayPR/lRrPdbKCeHnZqKZ0WKYnUl
-	7Gss8GaSuiVy4xolQwsX/PVQ9Wo3CQ1InbFwqjryME6wt6u4Ht4pBB8Umb8baGY=
-X-Google-Smtp-Source: AGHT+IEh0qvHhOac6Zw+EdlhO3mO2dnkKe8dkP6svfw68TaW4c5Lngi9FG22MLXI2RWOUxjq+aq74w==
-X-Received: by 2002:a5d:4ec5:0:b0:33e:dd4:ca5c with SMTP id s5-20020a5d4ec5000000b0033e0dd4ca5cmr687400wrv.45.1710405055268;
-        Thu, 14 Mar 2024 01:30:55 -0700 (PDT)
+        bh=hj/WaHxD/qNMmrcRTKT2ci5bqw6SYan4groqkVU9P0E=;
+        b=nPKhrTucVQCnfFrP3ynJs6I13DqQOH0eJGZZp6idRbTbxOi3/vlBS3wouxir+1eiov
+         X0Jq0Mm3gdJvrzFlYJconsy48ZMRMLoWoTDnwh7g0WTZzmbB62MvllndwkaZUqaj4tpF
+         v9etfD4KhOYWfQGveeptjDJsrbUZ2Cxte/XkdVm+7ojruv6r9rU8Su46zs79nMvzHDUb
+         5eI7CKI50mGYTxEWmhBNwQ1mDBShZGn+gd/JJH5XUOlK2Q+nMwOe76dXM+/rvD4nStk0
+         I5Qp7+DbYOxgShwoTB2qvg97qQyeUI2eeTUvPU9ZHcEBIvo7+bb0dqJgbtI0V1tnMqZk
+         u9yQ==
+X-Forwarded-Encrypted: i=1; AJvYcCX8YXG5M3qal+mu7mUxZ/lxZ+S4vj1vaqwQ0cWcrx0LhcMyEiCiu5RYDECVhqrAyxU6A3Fqv/z0CVJV3vp0yS91N9UzbMLaVVIg4Q==
+X-Gm-Message-State: AOJu0YxAHXTldvkVUPUluvM1YS2BhKf8SZdXQQw1wpQU7JDJ86VhpQGA
+	8NwGuLVwN5dExN8bTRDZeM9HNzv+pN5nDgz5f3jp8ZQDjokgR3AxqWBCYqLpmeY=
+X-Google-Smtp-Source: AGHT+IHg2phWpA6wr0Ec2JY5vMTzDKNCDe3uQE5/b2ulf3w4ZnDGpniqfyMBM8L5ZJNhTuBmWoDrLg==
+X-Received: by 2002:a19:ae17:0:b0:513:cd2e:ceb1 with SMTP id f23-20020a19ae17000000b00513cd2eceb1mr619712lfc.48.1710405373003;
+        Thu, 14 Mar 2024 01:36:13 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id p6-20020adfcc86000000b0033ec072a491sm193303wrj.35.2024.03.14.01.30.53
+        by smtp.gmail.com with ESMTPSA id n23-20020a05600c3b9700b00412d4c8b743sm1709942wms.30.2024.03.14.01.36.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Mar 2024 01:30:54 -0700 (PDT)
-Message-ID: <9dc0415c-4138-4867-861a-38b45b636182@linaro.org>
-Date: Thu, 14 Mar 2024 09:30:52 +0100
+        Thu, 14 Mar 2024 01:36:12 -0700 (PDT)
+Message-ID: <75fd6970-f3a0-4eec-957c-3d8f6a553e0f@linaro.org>
+Date: Thu, 14 Mar 2024 09:36:08 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,22 +76,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
- board DTS
+Subject: Re: [PATCH v3 2/3] dt-bindings: iio: adc: Add support for QCOM PMIC5
+ Gen3 ADC
 Content-Language: en-US
-To: Sumit Garg <sumit.garg@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, stephan@gerhold.net,
- caleb.connolly@linaro.org, neil.armstrong@linaro.org,
- laetitia.mariottini@se.com, pascal.eberhard@se.com, abdou.saker@se.com,
- jimmy.lalande@se.com, benjamin.missey@non.se.com,
- daniel.thompson@linaro.org, linux-kernel@vger.kernel.org,
- Jagdish Gediya <jagdish.gediya@linaro.org>
-References: <20240313123017.362570-1-sumit.garg@linaro.org>
- <20240313123017.362570-4-sumit.garg@linaro.org>
- <4a0a8db7-a2bc-4c99-94b2-c13facbd1bef@linaro.org>
- <CAFA6WYPh5BS_Fpi6ksAC7bwoFEyqjj1Y3EahyQxCG9Pp=KDw=Q@mail.gmail.com>
+To: Jishnu Prakash <quic_jprakash@quicinc.com>, jic23@kernel.org,
+ robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ andersson@kernel.org, konrad.dybcio@linaro.org, lee@kernel.org,
+ andriy.shevchenko@linux.intel.com, daniel.lezcano@linaro.org,
+ dmitry.baryshkov@linaro.org
+Cc: lars@metafoo.de, luca@z3ntu.xyz, marijn.suijten@somainline.org,
+ agross@kernel.org, sboyd@kernel.org, rafael@kernel.org, rui.zhang@intel.com,
+ lukasz.luba@arm.com, linus.walleij@linaro.org, quic_subbaram@quicinc.com,
+ quic_collinsd@quicinc.com, quic_amelende@quicinc.com,
+ quic_kamalw@quicinc.com, kernel@quicinc.com, linux-kernel@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
+ linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
+ devicetree@vger.kernel.org, cros-qcom-dts-watchers@chromium.org
+References: <20231231171237.3322376-1-quic_jprakash@quicinc.com>
+ <20231231171237.3322376-3-quic_jprakash@quicinc.com>
+ <3f812ffa-ec33-448e-b72a-ce698618a8c1@linaro.org>
+ <13f2b558-a50d-44d3-85de-38e230212732@quicinc.com>
+ <f52b2d5e-b2b4-48ae-a6a6-fc00c89662d2@linaro.org>
+ <0b9e807d-e0ca-411c-9a2b-3d804bdf168c@quicinc.com>
+ <d3dc9a41-4738-4634-9a98-fefcf418f552@linaro.org>
+ <1537d42f-fe61-48c2-9ee2-1066db71a19e@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,128 +145,36 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <CAFA6WYPh5BS_Fpi6ksAC7bwoFEyqjj1Y3EahyQxCG9Pp=KDw=Q@mail.gmail.com>
+In-Reply-To: <1537d42f-fe61-48c2-9ee2-1066db71a19e@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14/03/2024 09:19, Sumit Garg wrote:
->>> +             compatible = "smsc,usb3503";
->>> +             reset-gpios = <&pm8916_gpios 1 GPIO_ACTIVE_LOW>;
->>> +             initial-mode = <1>;
->>> +     };
->>> +
->>> +     usb_id: usb-id {
->>> +             compatible = "linux,extcon-usb-gpio";
->>> +             id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
->>> +             pinctrl-names = "default";
->>> +             pinctrl-0 = <&usb_id_default>;
->>> +     };
->>> +
->>> +     hdmi-out {
->>> +             compatible = "hdmi-connector";
->>> +             type = "a";
->>> +
->>> +             port {
->>> +                     hdmi_con: endpoint {
->>> +                             remote-endpoint = <&adv7533_out>;
->>> +                     };
->>> +             };
->>> +     };
->>> +
->>> +     gpio-keys {
->>> +             compatible = "gpio-keys";
->>> +             autorepeat;
->>> +
->>> +             pinctrl-names = "default";
->>> +             pinctrl-0 = <&msm_key_volp_n_default>;
->>> +
->>> +             button {
->>> +                     label = "Volume Up";
->>> +                     linux,code = <KEY_VOLUMEUP>;
->>> +                     gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
->>> +             };
->>> +     };
->>> +
->>> +     leds {
->>> +             pinctrl-names = "default";
->>> +             pinctrl-0 = <&pm8916_mpps_leds>;
->>
->> First property is always compatible. Please apply DTS coding style rules.
+On 14/03/2024 09:28, Jishnu Prakash wrote:
 > 
-> Ack.
+> followed by updating maxItems back to 1 for all the earlier existing 
+> compatibles, using if:then: conditions, like the below example?
 > 
->>
->>> +
->>> +             compatible = "gpio-leds";
->>> +             #address-cells = <1>;
->>> +             #size-cells = <0>;
->>
->> That's not a bus.
->>
->> It does not look like you tested the DTS against bindings. Please run
->> `make dtbs_check W=1` (see
->> Documentation/devicetree/bindings/writing-schema.rst or
->> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
->> for instructions).
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+>              const: qcom,spmi-adc5
 > 
-> I assumed earlier that W=1 is sufficient for DT schema checks but it
-
-W=1 as in make? No, it is not. It's flag changing the build process.
-dtbs_check is separate target.
-
-> looks like those are two different entities. However, I added these
-> address and size cells properties only to get rid of warnings reported
-> by W=1, see below:
+>      then:
+>        properties:
+>          reg:
+>            maxItems: 1
+>          interrupts:
+>            maxItems: 1
 > 
-> $ make qcom/apq8016-schneider-hmibsc.dtb W=1
->   DTC     arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dtb
-> arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts:96.9-103.5:
-> Warning (unit_address_vs_reg): /leds/led@5: node has a unit name, but
-> no reg or ranges property
-> arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts:105.9-112.5:
-> Warning (unit_address_vs_reg): /leds/led@6: node has a unit name, but
-> no reg or ranges property
-
-Wait, so you saw the warnings and ignored them? These are legitimate
-warnings, although they don't give you full answer.
-
-> <snip>
 > 
-> So it looks like W=1 is reporting false warnings and we should rather
+> If this is acceptable, I'll add ADC5 Gen3 bindings in the same file with 
+> changes like the above, else I'll add them in a new file after first 
+> creating a common schema file as you suggested.
 
-Warnings were true.
+Please refer to existing files how it is done:
+https://elixir.bootlin.com/linux/v6.8/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L132
 
-> rely on dtbs_check only.
-
-It's really independent. There is only one case where W=1 produces
-warnings you could ignore (ports/port in graphs). At least I am not
-aware of anything else.
-
-Although Qualcomm does not use clean-check-maintainer-profile, but
-already some archs do (RISC-V, Samsung). For these YOU MUST RUN
-DTBS_CHECK and fix ALL new warnings. But even for Qualcomm, you are
-expected to run dtbs_check. And why would you not run it? You can
-automate checks and save reviewers time with automatic tools, but you
-decide to skip it? Srsly, that's huge waste of reviewers time!
-
-...
-
->>> +
->>> +&blsp_i2c4_default {
->>
->> None of your overrides look like have proper alphabetical order. Please
->> use alphabetical order.
->>
-> 
-> Although these are already following the same order as
-> apq8016-sbc.dts, would you like the two DTS files based on the same
-> SoC to follow different orders?
-
-I don't know about Konrad and Bjorn, but to me it does not matter that
-some existing board has obvious style issues. What matters to me, that
-new code does not have these obvious style issues.
-
-You can wait for Konrad's point of view on that, if you want to be sure.
 
 Best regards,
 Krzysztof
