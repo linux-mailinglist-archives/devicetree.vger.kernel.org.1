@@ -1,212 +1,194 @@
-Return-Path: <devicetree+bounces-50506-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50507-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F01B87BE00
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 14:50:24 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 048F387BE25
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 14:57:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0EBFB2822EE
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:50:23 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CED091C216D4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:57:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 35C706E5E1;
-	Thu, 14 Mar 2024 13:50:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 67D265B5D6;
+	Thu, 14 Mar 2024 13:56:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="oJaWwPTg"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QY6jPgIh"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ua1-f44.google.com (mail-ua1-f44.google.com [209.85.222.44])
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4DD1A5C60D
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 13:50:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.222.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8F9865914B
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 13:56:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.45
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710424220; cv=none; b=kn5kHS6hmGz6ri+tw+lrUPGAkwO9cGT4pRxNgWL4LOANaDK7bCQDepHMCuJd1m7dY3I/9T7KO7tsr5pkZRayj6aXV+p0MmESMS/E+bw3jeB+0j3Zd0U55jIVKM0zTHG8iqMV71hNZ56hRBcjP2Y3ixGafBAOAH+Lyi/PiYbYeVU=
+	t=1710424619; cv=none; b=EWBRcSIOwxOKqHj1YkBZao9LnX9/cho+YFTO51EaDBjczI3IAjr455gLgdy2o3I9aqvo7SCxvEcALbEHxMWmWhlOYpSTbDl6mY1iC7SWRiJewZsDsYjyu5GjbJ/c3PpTzAgWSiQpeqKPkx8I3NdS5p8oyELj3kGOJ97Sum83+HA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710424220; c=relaxed/simple;
-	bh=07AREVov5k9B5BhuEsQjAUzwZfLB1YvPRwfffwxJb+Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=SfbohOfdg9dH7BZ0OcQgjvPCF90AYqSz9CtqhacOeD7UoCMoVSqxz/SeOql+ub0bzRclIYf6FryhGn2ZTtySuFvhW1LElPLvD5L0QXDonGQaq/BAvzWhek6CSAHFknIqqgbgS/al6tyzHdBywZXyJxwkhMonfoGoasIH2UwDjJo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=oJaWwPTg; arc=none smtp.client-ip=209.85.222.44
+	s=arc-20240116; t=1710424619; c=relaxed/simple;
+	bh=97IREz6AQGN+Adg5OvgCHvuY7w7GBw1iUsPVAKP1GHE=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=oI4R0vfVWwrmL7HgAbHWGcD87iJMgAD92vBhQiJ8IadROFKmPFmkBn8Vtjmz6gTLpR2tynbmqTT7Sw+Yk3eydqHZLWsDcp8kGTwUNS1hZd52kU0ckuayv2VzWDtUMRZH6ZnrQV2yTZvCH2mfjYVrTuy5mHENh7U/H7pkqLYdaSE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QY6jPgIh; arc=none smtp.client-ip=209.85.208.45
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ua1-f44.google.com with SMTP id a1e0cc1a2514c-7d5c40f874aso439095241.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 06:50:18 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-563c403719cso1301611a12.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 06:56:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710424217; x=1711029017; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=qDc/q77cxlaDVO4g1UV+WiSR8cl+9pdOHVzgL1OoM3o=;
-        b=oJaWwPTglajyD3cm2oUPjVTWEnbairmxS/lDDoEAgDpe1fEIy0XVAaBxNwBxYFH9yP
-         /U7sa33bHzR194/Og/moBIg1bLDmL/JBts+e5RHFllTlMcS2So2iDdDitEEHYF64fUDq
-         H/C895GehVPQvimny6XmoAIAsoazF7ja007+uc8yInmv09c8N4rlXq17jS7q1Axhn9WC
-         qyIE8jDeaZH1HfGt+wFcx9S2kTyblQGHRTdscG9kgZntgy02216SspWXYJ61uqLzMtVC
-         5M5xYbLopyADBKQTw94Mz0ko9O39lC9xjhrT1uV8SJiikueb1BqnkUQIpTxzUgXMUEsQ
-         eVBA==
+        d=linaro.org; s=google; t=1710424616; x=1711029416; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=wU+5zjNt2rmyof5Fvve875MtX+yDLSiVmTgw1JG0my8=;
+        b=QY6jPgIhY61D8feI2pHG+yrGZKV2PceAuZDLigNqCtg+NkdRP2vBQLCRU7oTnxz8nT
+         xADUPRlX6Y9wiRwxjZl97IwSUUe+hnoGCUCU80GHYrVA1rEQDL6F8axkxBuQH6xN+tkL
+         gc2mD8Vps5a1RtnSfuQHUGlXBddUNAQdLtJ+98uGQJXzJou/4FDmBd0G3K+msc3IiR4/
+         3A2DV/GO4yIpZUMnflQRQeRIcC6L1SN8EcxXxf+/Bd0Gcp9IehAJmsIIQ5vRvES0+Alu
+         UJHpmNw9LEfpz0cEsVb4PnSe0n6vQKeae7Ww5OjQ5I/uP+bCv4kHoE8vf1DHrkmwJF/v
+         I78Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710424217; x=1711029017;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=qDc/q77cxlaDVO4g1UV+WiSR8cl+9pdOHVzgL1OoM3o=;
-        b=gTAje+NYftSunjOFgzNlMMaKjkOqrS57bqTxzGhPmhCFO0BpZnJ/sTVl9SIOpe3ww5
-         1cH+PQb0JhZ3X0z/lcs3VgoPnBNEilBGQPg3V5iNr/iBrHGyt1aNee5Bi5rg9x2LC6g2
-         WAxoPCzjHXyhC7grqKgHmYfvkG8mmXpzojdE2ykWA/Kk4SHGHsGicbRuDOVhntOAJXOP
-         nDwKHO/LYGc+1JhiTPZ3ivaZ57UL76IJoEhbPL9dnhSlnJaW4bzEIchRXrDuobOMNC42
-         igvxsY6+Ds80KM9MWg5qgEBelt4VMDSC1CkqhojZtjuGOBF0KfPD+NGBoErKBOEAd5P2
-         sK9A==
-X-Forwarded-Encrypted: i=1; AJvYcCWfFMjvc8XmAEFyIIoGjnZXeCpgeUWiiYCHFfWuNVrQgP95zNONiqugOqWi4I7vbgjWMoJellbk+yJSTEnNLy0mm7Ln1IRk8GZEtA==
-X-Gm-Message-State: AOJu0YxVEuC8RW1v6wsDjlM/PFsqRYMDkNZ03pACAU2Rc9z0Y4ObrMKs
-	9XX6qDyPsv7OKq2RG4O7xanFNj5ibl62Fp9ndyDOX/TJyzJXafmvpVsujvBdaCNgbMDE3bl5MKd
-	c96nh08XGRP+25Ii8Ra6MMcvm9i4ZeT9j6YplpQ==
-X-Google-Smtp-Source: AGHT+IG4auUNtTS4kpwHbhlfVMUzXdoEI+o1aNTqaGOFOx94ao8Owny9p2K6h1BoaOYCTyogrpxQUOw+WWFX2KZ32Is=
-X-Received: by 2002:a67:fc1a:0:b0:471:e46a:2a9f with SMTP id
- o26-20020a67fc1a000000b00471e46a2a9fmr201523vsq.33.1710424217119; Thu, 14 Mar
- 2024 06:50:17 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710424616; x=1711029416;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=wU+5zjNt2rmyof5Fvve875MtX+yDLSiVmTgw1JG0my8=;
+        b=E+u1yxkX/S9XBXRjdruWQ+tstOq3olzr/+TpIq1HeSKpmFkRPRmU/+Ck7fkWo0w/wv
+         56jV4VCNG2/ktrNl2wSEeCKfxfZAEtH6UUUGDhTRoa0s4m3TMMAZVBNzcaIWCAn6XNM8
+         JjrNaA8KVnt+Nh746W69FJ4jacpnzjoORU7gbFnxPOlMV0+tIbHwSXB8reswNYraFaiF
+         ouctSaoGHNERQojXDAweT2T7ZutZAOZrUZqy0VHEP/z4Y4Ra4xY+YQ3gDp4hqfNe6mBX
+         8CcpeJWSD4DyHERUFjfnWQkuHF2/GndxgCJvIsLkjpPmG8iD6+pI6WDmXh0uK99dpp5v
+         3VgQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWT59FALszjQQJo5oDuj9yX94Ex+KzaP19sEekUivVdMuzZE/zVfkTCp2ae+RhtWjvivvfkOipSkaqm0CtC5dGVpfraaUBLWm2e+w==
+X-Gm-Message-State: AOJu0YyKcBx6vtlXY+1y2Ohnj7k/JmDODDyUWiaAG2p33VBQOL7V7D4c
+	UMjrFUXLQH13eVCZ5XJIxpgFAWqK+orMMnt6uy9/ZahJYmvAPc02WKIgaitjS/g=
+X-Google-Smtp-Source: AGHT+IHJsw3asGO8YcwJxILcUjEQAitA3AUUKQG9r9DJuoKvr3OvYWZgJFk1jM+xs57zU/LvoQ7gdQ==
+X-Received: by 2002:a05:6402:e10:b0:568:949b:e91f with SMTP id h16-20020a0564020e1000b00568949be91fmr1283422edh.36.1710424615889;
+        Thu, 14 Mar 2024 06:56:55 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id s15-20020a056402014f00b005664afd1185sm748738edu.17.2024.03.14.06.56.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 14 Mar 2024 06:56:55 -0700 (PDT)
+Message-ID: <d3b7fd09-76ef-42b3-aaf9-de0369a28e03@linaro.org>
+Date: Thu, 14 Mar 2024 14:56:53 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240313123017.362570-1-sumit.garg@linaro.org>
- <20240313123017.362570-4-sumit.garg@linaro.org> <c0e10cbf-c6f3-4b0c-8616-983da2a40236@linaro.org>
- <CAFA6WYNMjCaa0FKjNv6a8VFkco3=GBfgWNDuckGZdiZ9dGmHgg@mail.gmail.com>
- <d82ab1f8-e677-485f-9a6b-4115acfd7239@linaro.org> <CAFA6WYNSumyScax=GkN42GJOG56T3odF5Ed9A2i1nk_exCyGtA@mail.gmail.com>
- <ZfLUu6_Vq7MvG2G3@gerhold.net> <CAFA6WYPN2Bt7zvDyd+02jrsZJz0sFhkD_o4W+PvU=-VC4W5k=A@mail.gmail.com>
- <ZfL6hi0kfp9MXQ0H@gerhold.net>
-In-Reply-To: <ZfL6hi0kfp9MXQ0H@gerhold.net>
-From: Sumit Garg <sumit.garg@linaro.org>
-Date: Thu, 14 Mar 2024 19:20:05 +0530
-Message-ID: <CAFA6WYMa_0OMkjUdvhYtWZ9SvQx5bB8+YrBZN08BaDXXOtPPNQ@mail.gmail.com>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
- board DTS
-To: Stephan Gerhold <stephan@gerhold.net>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, linux-arm-msm@vger.kernel.org, 
-	devicetree@vger.kernel.org, andersson@kernel.org, robh+dt@kernel.org, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
-	caleb.connolly@linaro.org, neil.armstrong@linaro.org, 
-	laetitia.mariottini@se.com, pascal.eberhard@se.com, abdou.saker@se.com, 
-	jimmy.lalande@se.com, benjamin.missey@non.se.com, daniel.thompson@linaro.org, 
-	linux-kernel@vger.kernel.org, Jagdish Gediya <jagdish.gediya@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 3/3] dt-bindings: remoteproc: Add Arm remoteproc
+To: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>,
+ Robin Murphy <robin.murphy@arm.com>
+Cc: Bjorn Andersson <andersson@kernel.org>,
+ Mathieu Poirier <mathieu.poirier@linaro.org>,
+ Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+ Sudeep Holla <sudeep.holla@arm.com>,
+ Lorenzo Pieralisi <lpieralisi@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
+ Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-remoteproc@vger.kernel.org
+References: <20240301164227.339208-1-abdellatif.elkhlifi@arm.com>
+ <20240301164227.339208-4-abdellatif.elkhlifi@arm.com>
+ <8c784016-9257-4d8a-b956-a0a406746c76@arm.com>
+ <20240314134928.GA27077@e130802.arm.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240314134928.GA27077@e130802.arm.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-On Thu, 14 Mar 2024 at 18:54, Stephan Gerhold <stephan@gerhold.net> wrote:
->
-> On Thu, Mar 14, 2024 at 05:26:27PM +0530, Sumit Garg wrote:
-> > On Thu, 14 Mar 2024 at 16:13, Stephan Gerhold <stephan@gerhold.net> wrote:
-> > > On Thu, Mar 14, 2024 at 03:02:31PM +0530, Sumit Garg wrote:
-> > > > On Thu, 14 Mar 2024 at 14:48, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> > > > > On 3/14/24 10:04, Sumit Garg wrote:
-> > > > > > On Wed, 13 Mar 2024 at 18:34, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> > > > > >> On 3/13/24 13:30, Sumit Garg wrote:
-> > > > > >>> Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
-> > > > > >>> Box Core board based on the Qualcomm APQ8016E SoC.
-> > > > > >>>
-> > > > > >>> Support for Schneider Electric HMIBSC. Features:
-> > > > > >>> - Qualcomm Snapdragon 410C SoC - APQ8016 (4xCortex A53, Adreno 306)
-> > > > > >>> - 1GiB RAM
-> > > > > >>> - 8GiB eMMC, SD slot
-> > > > > >>> - WiFi and Bluetooth
-> > > > > >>> - 2x Host, 1x Device USB port
-> > > > > >>> - HDMI
-> > > > > >>> - Discrete TPM2 chip over SPI
-> > > > > >>> - USB ethernet adaptors (soldered)
-> > > > > >>>
-> > > > > >>> Co-developed-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-> > > > > >>> Signed-off-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-> > > > > >>> Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
-> > > > > >>> ---
-> > > > > >>
-> > > > > >> [...]
-> > > > > >>
-> > > > > >>> +     memory@80000000 {
-> > > > > >>> +             reg = <0 0x80000000 0 0x40000000>;
-> > > > > >>> +     };
-> > > > > >>
-> > > > > >> I'm not sure the entirety of DRAM is accessible..
-> > > > > >>
-> > > > > >> This override should be unnecessary, as bootloaders generally update
-> > > > > >> the size field anyway.
-> > > > > >
-> > > > > > On this board, U-Boot is used as the first stage bootloader (replacing
-> > > > > > Little Kernel (LK), thanks to Stephan's work). And U-Boot consumes
-> > > > > > memory range from DT as Linux does but doesn't require any memory to
-> > > > > > be reserved for U-Boot itself. So apart from reserved memory nodes
-> > > > > > explicitly described in DT all the other DRAM regions are accessible.
-> > > > >
-> > > > > Still, u-boot has code to fetch the size dynamically, no?
-> > > > >
-> > > >
-> > > > No U-Boot being the first stage bootloader fetches size from DT which
-> > > > is bundled into U-Boot binary.
-> > > >
-> > >
-> > > Back when I added support for using U-Boot as first stage bootloader on
-> > > DB410c the way it worked is that U-Boot used a fixed amount of DRAM
-> > > (originally 968 MiB, later 1 GiB since I fixed this in commit
-> > > 1d667227ea51 ("board: dragonboard410c: Fix PHYS_SDRAM_1_SIZE") [1]).
-> > > When booting Linux, the Linux DT was dynamically patched with the right
-> > > amount of DRAM (obtained from SMEM). So if you had e.g. a Geniatech DB4
-> > > board with 2 GiB DRAM, U-Boot was only using 1 GiB of DRAM, but Linux
-> > > later got the full 2 GiB patched into its DTB.
-> > >
-> > > I didn't have much time for testing U-Boot myself lately but a quick
-> > > look at the recent changes suggest that Caleb accidentally removed that
-> > > functionality in the recent cleanup. Specifically, the SMEM-based DRAM
-> > > size detection was removed in commit 14868845db54 ("board:
-> > > dragonboard410c: import board code from mach-snapdragon" [2]), the
-> > > msm_fixup_memory() function does not seem to exist anymore now. :')
-> >
-> > Ah now I see the reasoning for that particular piece of code. Is SMEM
-> > based approach the standardized way used by early stage boot-loaders
-> > on other Qcom SoCs too?
-> >
->
-> It is definitely used on all the SoCs that were deployed with LK. I am
-> not entirely sure about the newer ABL/UEFI-based ones. A quick look at
-> the ABL source code suggests it is abstracted through an EFI protocol
-> there (so we cannot see where the information comes from with just the
-> open-source code). However, in my experience SMEM data structures are
-> usually kept quite stable (or properly versioned), so it is quite likely
-> that we could use this approach for all Qualcomm SoCs.
->
+On 14/03/2024 14:49, Abdellatif El Khlifi wrote:
+>> Frankly at the moment I'd be inclined to say it isn't even a remoteproc
+>> binding (or driver) at all, it's a reset controller. Bindings are a contract
+>> for describing the hardware, not the current state of Linux driver support -
+>> if this thing still needs mailboxes, shared memory, a reset vector register,
+>> or whatever else to actually be useful, those should be in the binding from
+>> day 1 so that a) people can write and deploy correct DTs now, such that
+>> functionality becomes available on their systems as soon as driver support
+>> catches up, and b) the community has any hope of being able to review
+>> whether the binding is appropriately designed and specified for the purpose
+>> it intends to serve.
+> 
+> This is an initial patchset for allowing to turn on and off the remote processor.
+> The FW is already loaded before the Corstone-1000 SoC is powered on and this
+> is done through the FPGA board bootloader in case of the FPGA target.
+> Or by the Corstone-1000 FVP model (emulator).
+> 
+> The plan for the driver is as follows:
+> 
+>     Step 1: provide a foundation driver capable of turning the core on/off
+>     Step 2: provide mailbox support for comms
+>     Step 3: provide FW reload capability
+> 
+> Steps 2 & 3 are waiting for a HW update so the Cortex-A35 (running Linux) can
+> share memory with the remote core.
+> 
+> So, when memory sharing becomes available in the FPGA and FVP the
+> DT binding will be upgraded with:
+> 
+>     - mboxes property specifying the RX/TX mailboxes (based on MHU v2)
+>     - memory-region property describing the virtio vrings
+> 
+> Currently the mailbox controller does exist in the HW but is not
+> usable via virtio (no memory sharing available).
+> 
+> Do you recommend I add the mboxes property even currently we can't do the comms ?
 
-If the SoCs which support this standardized way to dynamic discover
-DRAM size via SMEM then why do we need to rely on DT at all for those
-SoCs? Can't U-Boot and Linux have the same driver to fetch DRAM size
-via SMEM? I am not sure if it's an appropriate way for U-Boot to fixup
-DT when that information can be discovered dynamically.
+Bindings should be complete, regardless whether Linux driver supports it
+or not. Please see writing bindings document for explanation on this and
+other rules.
 
-> > >
-> > > Also, the DRAM size is now always taken from the DT (which is probably
-> > > better than the previous hardcoded size in the U-Boot board code).
-> > >
-> > > I think we should bring the dynamic DRAM size detection back, because
-> > > there are quite some boards available with varying DRAM size. Restoring
-> > > msm_fixup_memory() would likely be easiest, I guess the ideal solution
-> > > would be to parse SMEM in U-Boot's dram_init() function so even U-Boot
-> > > has the correct amount of DRAM to work with.
-> >
-> > In the context of the HMIBSC board, it has 1 GB RAM LPDDR3 internal
-> > not expandable. IMO, having it in DT as default should be fine.
-> >
->
-> Right. I was more talking in terms of DB410c here, where the lack of
-> this feature is kind of a regression.
->
-> Personally, I'm fine if you put the memory node here like this. If there
-> are concerns from others you could also move it to the -u-boot.dtsi and
-> omit it for Linux.
+So yes: please describe as much as possible/reasonable.
 
-In U-Boot we encourage people to drop -u-boot.dtsi entirely rather
-than the opposite such that we have a canonical devicetree usage
-especially with OF_UPSTREAM enabled.
 
--Sumit
+Best regards,
+Krzysztof
 
->
-> Thanks,
-> Stephan
 
