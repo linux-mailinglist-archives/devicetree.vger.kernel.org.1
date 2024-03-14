@@ -1,125 +1,116 @@
-Return-Path: <devicetree+bounces-50469-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50470-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B88B87BCBB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:24:57 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 256E487BCC6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:30:24 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 8D5E41C21073
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 12:24:56 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D45B428448A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 12:30:22 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9D8796F510;
-	Thu, 14 Mar 2024 12:24:52 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 978DC1E86C;
+	Thu, 14 Mar 2024 12:30:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pWz7g6q4"
+	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="QjCyBJYe"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 73FD04691;
-	Thu, 14 Mar 2024 12:24:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCBAA8831;
+	Thu, 14 Mar 2024 12:30:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.61.82.184
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710419092; cv=none; b=hcBaLVH0aEzX5EFoZEiiSN29hNYjlNpkpV11qMWol2PGFzL4bX/d+DwTcpMCN5+fNT//B1YMtRXAnRZwY+ATlo+HI9ZLo0DyJFuwVWXG792pa+DeVxm+d/VbOh+f64hGe4WMt1WmxzoxgTD7jfe5zjuQ5FniuyzN6wZjnHiluYE=
+	t=1710419419; cv=none; b=J1prtch08OmWtTvn3UubQMmab+jlGJQsUHLmAfz99oQn4CCOkwmmZ6NqLYzTUONVhvH4X+r7fdqcFH32E0yLvThEviM6M3Pr0F6mn1JY1PunwQBd6nz+4Nt+idpqr9k6Tc5Aq50cwjy+rSjVe9WJ5aspWwQBe+toVcZZTDO1mXo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710419092; c=relaxed/simple;
-	bh=hqAXK1pmw/COewu+0V9Imcw6HfS/0tOeytlhniyTUrI=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:To:Cc; b=e5TVBYoQj3i0GzDehAkrgQeKn1CBciPTkI+s02T5yFskNnZuIrAksi6SMNpCeI5t7G+sHdgxJaqzYtDdEElQkcI8mwNDAfYiW7eQH2Hg2IJ+nVi27/3SiGN6RkyTZltaNU3oBqBpMGBIcp/TiFjeDLvAwY+ny+iW8WEiOOUBsaU=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pWz7g6q4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id E7605C433F1;
-	Thu, 14 Mar 2024 12:24:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710419092;
-	bh=hqAXK1pmw/COewu+0V9Imcw6HfS/0tOeytlhniyTUrI=;
-	h=From:Date:Subject:To:Cc:Reply-To:From;
-	b=pWz7g6q4asNXGaO/hJfhmq5cYTtFWTh7wUrpvKElY0R1qqxroABcgtXJVWCivNQSh
-	 BYhVAmv1zo8AnllKyM4N/4GCRsDtktJXNsENDL2v8SpQUI0L1B9iVlh1vAUOLrOqjY
-	 L1W0iEPYemZS3/zAIJbF0iKepcC/FrUbtn1yPlk0kCADRzaZ2SrZlM629CGDNaHuB0
-	 EQZFk59Jg2OHMmyufkXCUf9vW4GSE8VmC4AZP1U09jaV8Bk9MbL5w8NHCsC7Mp7uaF
-	 M2bVSK46E4ju1PH95ToE5MbRAcP6LAp5kctFykTSDiKPG2a4Ci327pj7DNfQCGFZ6x
-	 YC7Ra+UE0Qbnw==
-Received: from aws-us-west-2-korg-lkml-1.web.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by smtp.lore.kernel.org (Postfix) with ESMTP id D283BC54E68;
-	Thu, 14 Mar 2024 12:24:51 +0000 (UTC)
-From: =?utf-8?b?QXLEsW7DpyDDnE5BTA==?= via B4 Relay
- <devnull+arinc.unal.arinc9.com@kernel.org>
-Date: Thu, 14 Mar 2024 15:24:35 +0300
-Subject: [PATCH] arm64: dts: rockchip: set PHY address of MT7531 switch to
- 0x1f
+	s=arc-20240116; t=1710419419; c=relaxed/simple;
+	bh=AQsHUkmoCoT49L49qMYT4ETuprISeqx8xIy0oxUYFEA=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=fEst/uXsq3SAsyjEOXLBcYoONn1n52GV83MH11AN5Ukw6iRAxpE4uzdSU6/9pm+iEfdT0+NX3+XqvrXula5YHU1WcTBgnMaE8+VkhFICo6Anbs/F3xxHMTZLhMAVdWe7JU/QkIL5J7bZC9lpnH3qa2xJKzSJyDEIVqZOsD/1Gyo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=QjCyBJYe; arc=none smtp.client-ip=210.61.82.184
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
+X-UUID: 9a5d3a2ae1fe11ee935d6952f98a51a9-20240314
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=ExKWeZtF1o/H6VvLIV2C1PGZug2wLFclbrXuhugazns=;
+	b=QjCyBJYeFKc957okieBTwMcitgoYSS5YWSDrTbDkLOXOauR/mtquFCPlBaPEoaovKZ3X4TdGUJpERXDhYSsz0P2XmGUPA0QERALKV4dwB4BH6yQIeMRNLnQ46tj8Jml1IYxoucnWJYN4II3zF0R9VvBJhFxXrO0iqbJkMB4RrpM=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.37,REQID:57622e65-deef-4b24-b22a-9f3d3dac0d3f,IP:0,U
+	RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+	:release,TS:-5
+X-CID-META: VersionHash:6f543d0,CLOUDID:216c8081-4f93-4875-95e7-8c66ea833d57,B
+	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
+	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
+X-CID-BVR: 0,NGT
+X-CID-BAS: 0,NGT,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: 9a5d3a2ae1fe11ee935d6952f98a51a9-20240314
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+	(envelope-from <yunfei.dong@mediatek.com>)
+	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+	with ESMTP id 1967096897; Thu, 14 Mar 2024 20:30:12 +0800
+Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
+ mtkmbs11n1.mediatek.inc (172.21.101.185) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Thu, 14 Mar 2024 20:30:10 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Thu, 14 Mar 2024 20:30:10 +0800
+From: Yunfei Dong <yunfei.dong@mediatek.com>
+To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
+	<nfraprado@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
+	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
+	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
+	Sebastian Fricke <sebastian.fricke@collabora.com>, Irui Wang
+	<irui.wang@mediatek.com>
+CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, Yunfei
+ Dong <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
+	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
+	<Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v4,0/2] media: adding lock to protect the context list
+Date: Thu, 14 Mar 2024 20:30:07 +0800
+Message-ID: <20240314123009.20205-1-yunfei.dong@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id:
- <20240314-for-rockchip-mt7531-phy-address-v1-1-743b5873358f@arinc9.com>
-X-B4-Tracking: v=1; b=H4sIAILs8mUC/x3NwQrCMAyA4VcZORtYu07FVxEPtU1sENeSDFHG3
- t3i8bv8/wZGKmRwGTZQeotJXTrcYYBU4vIglNwNfvRhnFxAropa0zMVafhaT/PksJUvxpyVzPA
- ej8kzczjPDL3SlFg+/8P1tu8/dVn8KXEAAAA=
-To: Rob Herring <robh@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>
-Cc: mithat.guner@xeront.com, erkin.bozoglu@xeront.com, 
- devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org, 
- =?utf-8?q?Ar=C4=B1n=C3=A7_=C3=9CNAL?= <arinc.unal@arinc9.com>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1710419077; l=1281;
- i=arinc.unal@arinc9.com; s=arinc9-patatt; h=from:subject:message-id;
- bh=M6V6hLjoM7rYDNZJdf1WFKDQWTTCt8rVO23htitTxhE=;
- b=2C08ammmunglRmpdQwiQIKW95QKlBhYoQev+0BRPUVhkzTQFI6N+micHOVYOIUijFf9m8Nq5H
- HOqI2PamNGKAh9GUhP/ia6vPJ89x+92kMEyCixwO2Hq4svAgbQeGko7
-X-Developer-Key: i=arinc.unal@arinc9.com; a=ed25519;
- pk=VmvgMWwm73yVIrlyJYvGtnXkQJy9CvbaeEqPQO9Z4kA=
-X-Endpoint-Received:
- by B4 Relay for arinc.unal@arinc9.com/arinc9-patatt with auth_id=115
-X-Original-From: =?utf-8?b?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
-Reply-To: <arinc.unal@arinc9.com>
+Content-Type: text/plain
+X-MTK: N
 
-From: Arınç ÜNAL <arinc.unal@arinc9.com>
-
-The MT7531 switch listens on PHY address 0x1f on an MDIO bus. I've got two
-findings that support this. There's no bootstrapping option to change the
-PHY address of the switch. The Linux driver hardcodes 0x1f as the PHY
-address of the switch. So the reg property on the device tree is currently
-ignored by the Linux driver.
-
-Therefore, describe the correct PHY address on Banana Pi BPI-R2 Pro that
-has this switch.
-
-Signed-off-by: Arınç ÜNAL <arinc.unal@arinc9.com>
----
- arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-index 7b5f3904ef61..03d6d920446a 100644
---- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
-@@ -525,9 +525,9 @@ &mdio0 {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
- 
--	switch@0 {
-+	switch@1f {
- 		compatible = "mediatek,mt7531";
--		reg = <0>;
-+		reg = <0x1f>;
- 
- 		ports {
- 			#address-cells = <1>;
+The ctx_list of each module will be deleted when scp getting
+unexpected behavior, then the ctx_list->next will be set to NULL,
+the system reboot when access the NULL pointer in function
+vpu_enc(dev)_ipi_handler to go through each context.
 
 ---
-base-commit: 0276d797531ea2d1865a04fbe54c659608f5788f
-change-id: 20240314-for-rockchip-mt7531-phy-address-ba6c2fff485f
+Changed in v4:
+- Re-write the commit message for patch 1/2
+Changed in v3:
+- change 'Fixes' tag in patch 1/2
+- add cover-letter for this patch series
+---
+Yunfei Dong (2):
+  media: mediatek: vcodec: adding lock to protect decoder context list
+  media: mediatek: vcodec: adding lock to protect encoder context list
 
-Best regards,
+ .../platform/mediatek/vcodec/common/mtk_vcodec_fw_vpu.c   | 8 ++++----
+ .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.c | 5 +++++
+ .../platform/mediatek/vcodec/decoder/mtk_vcodec_dec_drv.h | 2 ++
+ .../media/platform/mediatek/vcodec/decoder/vdec_vpu_if.c  | 2 ++
+ .../platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.c | 5 +++++
+ .../platform/mediatek/vcodec/encoder/mtk_vcodec_enc_drv.h | 2 ++
+ .../media/platform/mediatek/vcodec/encoder/venc_vpu_if.c  | 2 ++
+ 7 files changed, 22 insertions(+), 4 deletions(-)
+
 -- 
-Arınç ÜNAL <arinc.unal@arinc9.com>
+2.18.0
 
 
