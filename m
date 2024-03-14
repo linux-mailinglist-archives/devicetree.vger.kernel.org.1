@@ -1,120 +1,188 @@
-Return-Path: <devicetree+bounces-50422-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50423-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id C365887BA3F
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 10:19:39 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 821E487BA42
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 10:20:01 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 53132287031
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:19:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id EB4B31F24206
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:20:00 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 29DDF5D478;
-	Thu, 14 Mar 2024 09:19:34 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 965476CDAC;
+	Thu, 14 Mar 2024 09:19:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="GRMeVH/T"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yb1-f174.google.com (mail-yb1-f174.google.com [209.85.219.174])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 859F846A2;
-	Thu, 14 Mar 2024 09:19:31 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.219.174
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EFA8446A2;
+	Thu, 14 Mar 2024 09:19:52 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.180.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710407974; cv=none; b=Tx4uFvWB1yo4RN52q1Zfgz9IeVX82vzxPAhlYNFlv/R57gMv/ZW6JkhjaQnZZQ5vEK75iuwZPQ6KZBqK3yEgin+ES/BnPLF3hWy3/98DsEFANKu+oy96Bo2S6/mqJhAtNJ3I+46/VfEJZco3C6TI4txjTAC1ArfJLbcKjsOKU6c=
+	t=1710407994; cv=none; b=jiREstPZolYNEjg2VqY82t/cGT1s9MlKGwV19COQi5ixXBnMPami3VGa4rG7CKC1dejnpS6ym9a8rZyGfkx3dvEZiOIww/lfjyYnxahmGcgBMZRjs1j9PIoMUltkrhcayjtggwZIu0exgJcDEl/XDa6VRHVOqEo/pQ8fkCQz7Fo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710407974; c=relaxed/simple;
-	bh=CfFMPr4y2aZNq/+SP6CzdmyXz/+bljoBIdcpJX8TYd4=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=ITtnhHbXRjpz4kPs965f07WnfqEsJg+rhu+HX2peEtZcDIDaBaX691ucta53UPmShpYBjjoGt3n6iwIpjuelf/2b+XKUhWKYYdqiW/voLk74FKwoT7YquozTxZvUeZd4kjmXwBasBTWlgQSvP+L3rzfgclXbuUvPXPebyR+qul8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.219.174
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yb1-f174.google.com with SMTP id 3f1490d57ef6-db3a09e96daso561015276.3;
-        Thu, 14 Mar 2024 02:19:31 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710407969; x=1711012769;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nxIq0wBomc4vZFNHgjazQfrOLpQM63bDuE+s8yKsHuc=;
-        b=uxPleeg5YOHJ9P7EkcNcoNRnhPyn38b9Bn1IYCP2iK0QVPlQaMWYz0Gj3Mde2FPWe2
-         dsABsZIoHI+PAL4adWty21HeKxApDT9358liI0JF5qDpRNz8wdWddee4v4//GU/5V1SZ
-         UNdkdv4A4fI1c8MhBA/dHmKQ7r9Vr6vvseOxgzLPnLuvNhr0TDW0R9eQBLDud1awfrPm
-         dmAis5IJ84/RxkxUOiWu72z6w9fikRi8NJoXFNzHLFoHt3NVk6V48pTWJOUDkvDq4inS
-         UAzFPbQkmfoj0pl5TFH2HYqPtoOslwg6Nzt+Di6S0I/C4qExsNXr9RarI8Am+7IeK2o4
-         sOBw==
-X-Forwarded-Encrypted: i=1; AJvYcCUkQhcLh/8HwA9QzI9jDcJpwMgDR9OuXYWfCG/BztxqxMxmXWb2SJPas7I6w4DbC44t55nytU2/m58qNnSmiIYxc7xzImd8tI73K7Cr4sFtqiaxsrIsApQ0i5DdfGeuFXE+E4GwjYn8PC1zxj7s
-X-Gm-Message-State: AOJu0Yy8HTDwb2pmEooyNScMs+9Xog9QGbvqvzIhe33VpI1Ib+NTtW/s
-	iDDSRWbxMapUc0m8DJn9xLbL8DWG72FcFXHZ0KG9nXnIWeDZYtKGmPUq1UnQIhE=
-X-Google-Smtp-Source: AGHT+IH/JOV6QOOR8hxGBlaOdvRjpl7tN8cbquCGzidH5sSNP7gcILMsy/zGAd86EJEf+tWJchnbcg==
-X-Received: by 2002:a25:d044:0:b0:dc7:6192:c688 with SMTP id h65-20020a25d044000000b00dc76192c688mr920969ybg.65.1710407969520;
-        Thu, 14 Mar 2024 02:19:29 -0700 (PDT)
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com. [209.85.128.181])
-        by smtp.gmail.com with ESMTPSA id d2-20020a254f02000000b00dc25528fe9fsm193069ybb.9.2024.03.14.02.19.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Mar 2024 02:19:28 -0700 (PDT)
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-609f359b7b1so9297957b3.1;
-        Thu, 14 Mar 2024 02:19:28 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVIiza5u7qOrKTUMsYCd09GVKBMn1Pk1Pho7rCEafCUCHYfP+Iox1i4ewwFCE4PdsuMxkpN1nABqz8emmMTei/BJE3IDhqJoSTMHqQD5YQQSPiEuKIWz2yKg1rdr38XSOL09F03d+RMe9mff4T9
-X-Received: by 2002:a81:ab53:0:b0:607:f785:c5b5 with SMTP id
- d19-20020a81ab53000000b00607f785c5b5mr1060896ywk.22.1710407968467; Thu, 14
- Mar 2024 02:19:28 -0700 (PDT)
+	s=arc-20240116; t=1710407994; c=relaxed/simple;
+	bh=CP1u2noOUsBFRb5fpWhhNZQ29Fcuc9a2yVFDxFUdOdA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=KESsQcZMA2csXSasPNYaX4nx0ng2LyNWRBvTSrxr/u7/zc5p+uruOPtdu72t6OFqExadnaFr+Dicz8CFAISpPMq5Kk0jnvrzvZPRhHlXlfqcBb/+5pxIQ6+dpLd3utlHi/sd2UvUpXzgLp8NT0hpsNJCfprDJzfoqlPYiJzVSiA=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=GRMeVH/T; arc=none smtp.client-ip=205.220.180.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42E4NGOr027956;
+	Thu, 14 Mar 2024 09:19:49 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=mgXw84NhW/F9M48Q9bgUvSF8HTOLcYB3vZ4Nsk4Zvaw=; b=GR
+	MeVH/TEMIYS/XS8KQYInBQZ9gWXoDyd10BbXwMUA8OvRzh3+t+TwVstjjcIMdv+M
+	WD2M+QAhd1pfmd3rjGk3mNmYqXMK1tH4sFtFy4HyjVce9NzkGDn8WRZVZDyITQCF
+	izJAbanIaihWj4M5hkr7Ujjv8ftDc8M2f8jF5GclHnu8bY32IOBNqtdDfYvGL65u
+	Cac3N3yt0D4HSyyy7MiPDvgs8TO6z2tiz4FH/wUw0FMP3LFrCIpc80O0RXxagRx+
+	AAo4L/vW7SbK4sU5iepKw7/9QrT0V4anXV50NsJLH64uQthUdltLYLr9COsOcjQv
+	j2I2Sos61E+4QRaGfgaw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wu9xattxh-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Mar 2024 09:19:48 +0000 (GMT)
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42E9JlFA032641
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Mar 2024 09:19:47 GMT
+Received: from [10.218.19.46] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 14 Mar
+ 2024 02:19:41 -0700
+Message-ID: <a09941ff-7b43-a964-1bd1-5321913be1a3@quicinc.com>
+Date: Thu, 14 Mar 2024 14:49:37 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240313181602.156840-1-biju.das.jz@bp.renesas.com> <20240313181602.156840-6-biju.das.jz@bp.renesas.com>
-In-Reply-To: <20240313181602.156840-6-biju.das.jz@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 14 Mar 2024 10:19:16 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVEcSmAyUiV-pNC6DG8UT1oZs23vcCKv84rFhsx_XdFvQ@mail.gmail.com>
-Message-ID: <CAMuHMdVEcSmAyUiV-pNC6DG8UT1oZs23vcCKv84rFhsx_XdFvQ@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] arm64: dts: renesas: r9a07g0{43,44,54}: Update
- RZ/G2L family compatible
-To: Biju Das <biju.das.jz@bp.renesas.com>
-Cc: Rob Herring <robh@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org, 
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>, Biju Das <biju.das.au@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.0
+Subject: Re: [PATCH 1/3] dt-bindings: clock: qcom: Update SM8150 videocc
+ bindings
+Content-Language: en-US
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+CC: Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio
+	<konrad.dybcio@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        "Krzysztof
+ Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley
+	<conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Stephen
+ Boyd" <sboyd@kernel.org>,
+        Ajit Pandey <quic_ajipan@quicinc.com>,
+        Imran Shaik
+	<quic_imrashai@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        "Jagadeesh
+ Kona" <quic_jkona@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20240313-videocc-sm8150-dt-node-v1-0-ae8ec3c822c2@quicinc.com>
+ <20240313-videocc-sm8150-dt-node-v1-1-ae8ec3c822c2@quicinc.com>
+ <CAA8EJpo63oRA07QNCdzJdHW_hJJWK6aj-LCpp-XwmPJYf0twZw@mail.gmail.com>
+From: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+In-Reply-To: <CAA8EJpo63oRA07QNCdzJdHW_hJJWK6aj-LCpp-XwmPJYf0twZw@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: eiZAt_OjynmwNLLB_loT5Cf7i1fNla2n
+X-Proofpoint-GUID: eiZAt_OjynmwNLLB_loT5Cf7i1fNla2n
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-14_07,2024-03-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ lowpriorityscore=0 impostorscore=0 adultscore=0 mlxlogscore=918 mlxscore=0
+ priorityscore=1501 phishscore=0 malwarescore=0 bulkscore=0 suspectscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.19.0-2402120000
+ definitions=main-2403140064
 
-On Wed, Mar 13, 2024 at 7:16=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
-m> wrote:
-> The number of pipe buffers on RZ/G2L family SoCs is 10, whereas on RZ/A2M
-> it is 16. Replace 'renesas,rza2m-usbhs->renesas,rzg2l-usbhs' as family So=
-C
-> compatible to handle this difference and use the SoC specific compatible
-> in driver to avoid the ABI breakage with older DTB.
+
+On 3/14/2024 12:50 AM, Dmitry Baryshkov wrote:
+> On Wed, 13 Mar 2024 at 13:11, Satya Priya Kakitapalli
+> <quic_skakitap@quicinc.com> wrote:
+>> Update the videocc device tree bindings for sm8150 to align with the
+>> latest convention.
+> But why? Bindings already exist. There is nothing wrong with them. And
+> sm8150 platform in general uses name-based lookup.
+
+
+With the new index based lookup introduced we cannot use this bindings, 
+hence I moved to the sm8450-videocc bindings.
+
+
+>> Fixes: 35d26e9292e2 ("dt-bindings: clock: Add YAML schemas for the QCOM VIDEOCC clock bindings")
+> It is not a fix, there is no bug that this commit is fixing.
+
+
+The clocks list needs to be fixed to add both XO and AHB clocks, and we 
+are adding required-opps property.
+
+
+>> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+>> ---
+>>   Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml | 1 +
+>>   Documentation/devicetree/bindings/clock/qcom,videocc.yaml        | 3 ---
+>>   2 files changed, 1 insertion(+), 3 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+>> index bad8f019a8d3..e00fdc8ceaa4 100644
+>> --- a/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,sm8450-videocc.yaml
+>> @@ -20,6 +20,7 @@ properties:
+>>       enum:
+>>         - qcom,sm8450-videocc
+>>         - qcom,sm8550-videocc
+>> +      - qcom,sm8150-videocc
+>>
+>>     reg:
+>>       maxItems: 1
+>> diff --git a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+>> index 6999e36ace1b..28d134ad9517 100644
+>> --- a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+>> +++ b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
+>> @@ -17,7 +17,6 @@ description: |
+>>       include/dt-bindings/clock/qcom,videocc-sc7180.h
+>>       include/dt-bindings/clock/qcom,videocc-sc7280.h
+>>       include/dt-bindings/clock/qcom,videocc-sdm845.h
+>> -    include/dt-bindings/clock/qcom,videocc-sm8150.h
+>>       include/dt-bindings/clock/qcom,videocc-sm8250.h
+>>
+>>   properties:
+>> @@ -26,7 +25,6 @@ properties:
+>>         - qcom,sc7180-videocc
+>>         - qcom,sc7280-videocc
+>>         - qcom,sdm845-videocc
+>> -      - qcom,sm8150-videocc
+>>         - qcom,sm8250-videocc
+>>
+>>     clocks:
+>> @@ -75,7 +73,6 @@ allOf:
+>>             enum:
+>>               - qcom,sc7180-videocc
+>>               - qcom,sdm845-videocc
+>> -            - qcom,sm8150-videocc
+>>       then:
+>>         properties:
+>>           clocks:
+>>
+>> --
+>> 2.25.1
+>>
+>>
 >
-> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
-> v1->v2:
->  * Updated commit description about ABI breakage.
->  * Updated commit header as it is RZ/G2L specific.
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-As the DTS update has a hard dependency on the driver fix, it has to
-be postponed until the driver fix has reached mainline.  Hence I think
-it makes sense to apply the DTS update together with the driver fix.
-
-Acked-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
