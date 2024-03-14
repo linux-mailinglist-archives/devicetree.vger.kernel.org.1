@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-50438-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50439-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B1ACF87BAFD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 11:09:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BDCDA87BB13
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 11:15:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id D4CFB1C221EA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 10:09:36 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 73A6F2844B6
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 10:15:16 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 069B96E2AA;
-	Thu, 14 Mar 2024 10:09:31 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 658B96E611;
+	Thu, 14 Mar 2024 10:15:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="QnKVCIak"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="XxJMxkdJ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B3DF6DCEA
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 10:09:28 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB6ED6D1A9
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 10:15:10 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710410970; cv=none; b=pIFzQAD53ob9pbnwTgmcL9mqKwNoSpvd+EaX073UGE2PX/nd51dCWY2ueS6ID4sisNhIF9IRpzhXQRi5sml74Hutc9aUEE62n8PUg/0PjX5rVnlZFjz5raXGNmW0ZHazLtWgdBIKYLVhnxcRtwFHxVZDpQnqt+LS4mMzGM6OjYI=
+	t=1710411312; cv=none; b=Fxx8jUNuQXDI/qxfbdUFqN2L1lG1y/aAm7vv6hb+nBPJXaruEjmq4XL3salheLt5uLJvPc5ckhjScoKb+Ss8T0kmrdgS4IoRnegdaBxsmKCPoVKyy2+bpnvAyM9plLEof30M9crtTSqmmxuXlNG8WM+0bmPj0OtKXyD5EQiOCsE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710410970; c=relaxed/simple;
-	bh=MaLnuyy0QVbma0H/5GYP5iigRaszSQE6MJzaZrfY+74=;
+	s=arc-20240116; t=1710411312; c=relaxed/simple;
+	bh=e2hMg1PcRj/if0h8E4gfrvv9mpOExDFnx1LdFeRRap4=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=T40g7cM/U1ZEdDxsRGddqvu1xSgRvIZ/eeLADux5mNRAlzSu48inegXWpsrzyDLMD+htbAh8zlPD5ZMSCIm2gQcSIHFUsyl8yv2zwUSGLi7dtEaffcqX17OB0Ik7qG6f/h9KfGPce5rL5OX2DA/hz0rebEJZCEhBCj8Vc8TDz+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=QnKVCIak; arc=none smtp.client-ip=209.85.128.47
+	 In-Reply-To:Content-Type; b=WPO0do2OJltYCQyjQa+tnOgVPhTzTN/Ltyd9AEQoD4nh/D20S4bAwHQU14Lq1C8oGcOoEtmc3VmqJaCu9Hbwz6Jo58Zwij+rbFwk5HwYpZkB3vAOvO5hkEgL5/emBLRnV6Z08paLheUO+R1MdRQH8RbmfVSDwG7eCqymFj/i5y0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=XxJMxkdJ; arc=none smtp.client-ip=209.85.128.54
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-413eb712c3fso4425855e9.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 03:09:28 -0700 (PDT)
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-413f2721129so3378505e9.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 03:15:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710410967; x=1711015767; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710411309; x=1711016109; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qtdE1O6hl6iAvnjxNMt56KZfrhguRNLx2GpWdQgo1GE=;
-        b=QnKVCIak2XKt8KX9u0vMpWH6PwYkgQaMr23or49UhX4rZEHn0L8dfYRB4QSEO5Kjbw
-         YyjTXTMX8OhxkVJTKn9tLoDkxmOYV5B2AtbaKz1dqvBv2RotP5fU9fczFe6RzY097w+2
-         ZKzg3NaFC9p+cYouxFnMIiNYplDC4Tj2cLzd/GFzj1xu+BHgj2DueDQ/wQgCyom1wIu8
-         v5B2dAsNcIwpepJV6+dm73UbQlhLzZKGP4XKLPA8+XAGK7FXI8WcoWyiO1nX03OzU+wC
-         sqIeLggfVfFCa6Xete6y3XDrn2u35xMaIaBtk1wl+E1TFCza8obu9xset3r2fXBmP7Vj
-         Zlfw==
+        bh=t7/LwgM4aaqGh3YYtB4JlSHRqD8NOvEpoMUFC+HxinQ=;
+        b=XxJMxkdJO+ETZyPhe3Ap/2ajIN20IHA3xaJML8EsuZ1Ryn71+NFssXacDs3vabp060
+         5sYIJODoFuAVQkZ+y5UF7SxJW5fJJ8o9s3V4IR2WvwUVaJiDCSVPOcy5N+OX3pUasRHK
+         jxiBotOaJF4qZmGCFmPnFo8SB7ctGSMdNihS2xxo9Vk5sAtxDQQ+1CrFRG5H982j7Ur/
+         FJxVDfpubL3G6Frl1SJDU0QACHLnAdApIzwpHkKlqzmLHMPcOw8aYuAAOvzoPZ5vAfOo
+         9h2m5TohnezhCwcjXu1BQltEGJLsQMmnPRknJ3lv0/FKaG1gWAYKtGSKl2SHa4ceWXZ0
+         hAFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710410967; x=1711015767;
+        d=1e100.net; s=20230601; t=1710411309; x=1711016109;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qtdE1O6hl6iAvnjxNMt56KZfrhguRNLx2GpWdQgo1GE=;
-        b=buM5BFSiaeW+h9FBHpNsefcWiD5SpEgDDleamzqchBE6s+S68uw1l5+d1N3Ceq1LgS
-         Ljw5LC4Qhmp6IJNcDSZlKrYqhRRCDk1H1ya0EmlXreqMNK/YC0+wghkogVzL9rVhzDtv
-         6o1O5guYimUE2tzVQaqy0v88bU/onsuaE3kbUpPcm0/XErGpVy9kNLD65lv29rYmGRHm
-         GsB2aNV0uU5H9L3oIyJkGSLcDKygeHKnJaHVGxIYPmaaUHGBX83yJRHmQr3Dz95jP0A8
-         B19y6Va+XnlZE5zPZ7TX6o22TrYVZBuv9xuK9pFcA7FtNKQddfEMOYX3mafy7uqN0WQd
-         xNoQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVr9+qtglYU4MWSLNwpHS2uXpAd19mClDBrdjR2aN9Cm/thC/aqytEqVNStjz8jRCO2hKeTnKi6AtXC68qgIPnynYvrRwcRztp8FA==
-X-Gm-Message-State: AOJu0YyHB2CkVUCvfIvxzr35jHgiB0sL+0v3mbx3oFkc2u4E5j/8CYoL
-	y0h9RfgOVG40SIefhhKK51tLVl8j8Dsdwh6j1joRtwZvOAndTydwyCAun+JRwyg=
-X-Google-Smtp-Source: AGHT+IG42QU4UgTWjudfl5CoLKEd/CllL6Y/aMBDpyuy4wH3TdY+DWFDJTEY5OUmDkjDPN78KMSQcg==
-X-Received: by 2002:a05:600c:4686:b0:412:b42c:8ff1 with SMTP id p6-20020a05600c468600b00412b42c8ff1mr1135911wmo.21.1710410967300;
-        Thu, 14 Mar 2024 03:09:27 -0700 (PDT)
+        bh=t7/LwgM4aaqGh3YYtB4JlSHRqD8NOvEpoMUFC+HxinQ=;
+        b=cmWODO3EKz9LAqxuUiysZpFZGt/bY4zM4fKcFp2ZRusSKnNgzC5+S1a8FWlG0xyeHs
+         T/EX0aPuv+uNfwFqnr/kaZyLtUF9HC/Mi2qHbAUFhkHtCvmYvXe87i69mFiAQ2oNphDC
+         AsIwpNTFFXj7EaWMNNUqf+o1qdfhvtWQoG8Qo01O/pSGWE3MYBhl2hQ+KUIEB5+LL1iG
+         9plU8i1O2D1d+45TrTJqbrJi5c/7vQsRfc96TpcsPBkA/Yg3CXBzNUB9/UhKbYnRg1jI
+         Zo00PZ95fMpYRFOmkmkU1FwNF2XJhecPVZODidE6GAPO0F7KmV3KoGNvYY+mRNwaERYG
+         JqXw==
+X-Forwarded-Encrypted: i=1; AJvYcCWqaOEMg42E1tKF5wwOqVPXkz2qeuhZ8gnSojIJRiAVtHXpKzylV4w2PNmi97duSykM0CkJbB6MRhzGyI+0ME9eA8dYa7HG4HoUsw==
+X-Gm-Message-State: AOJu0YzZbVUYr0BS6wncVkN44HNrWCdqkjM03tUMqUalQlpWxhVhKET4
+	Xw7sVMNnYXEJqK80I6ZlQd1vzyoutF+MVE7Jp3vEuDThhjbHNggQsYnDE7w9ABQ=
+X-Google-Smtp-Source: AGHT+IHbnSE7BF/cQ8UyDL4Hwsh1EghhNT1fgPx1aFHv6UbhkU0VaZDv4SBIaB18nPd1qiqduYvMXA==
+X-Received: by 2002:a05:600c:1c89:b0:413:1047:362f with SMTP id k9-20020a05600c1c8900b004131047362fmr1191898wms.30.1710411308990;
+        Thu, 14 Mar 2024 03:15:08 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id fb4-20020a05600c520400b004132901d73asm1921970wmb.46.2024.03.14.03.09.25
+        by smtp.gmail.com with ESMTPSA id bi17-20020a05600c3d9100b00413f50e944fsm891595wmb.45.2024.03.14.03.15.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Mar 2024 03:09:26 -0700 (PDT)
-Message-ID: <46e90e1f-1c93-4e88-b73c-94c165217d98@linaro.org>
-Date: Thu, 14 Mar 2024 11:09:25 +0100
+        Thu, 14 Mar 2024 03:15:07 -0700 (PDT)
+Message-ID: <c6a97c53-3220-413d-bc48-f23119c86ce3@linaro.org>
+Date: Thu, 14 Mar 2024 11:15:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,18 +76,24 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8650: Add three missing
- fastrpc-compute-cb nodes
+Subject: Re: [PATCH 1/3] dt-bindings: clock: qcom: Update SM8150 videocc
+ bindings
 Content-Language: en-US
-To: Ling Xu <quic_lxu5@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: quic_ekangupt@quicinc.com, kernel@quicinc.com,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240314063334.31942-1-quic_lxu5@quicinc.com>
- <c7ac2b10-eee3-4269-85e4-a68d24c2337a@linaro.org>
- <88c32ccb-fadd-49e8-a8fc-76f93353d204@quicinc.com>
+To: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd <sboyd@kernel.org>
+Cc: Ajit Pandey <quic_ajipan@quicinc.com>,
+ Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>,
+ Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org
+References: <20240313-videocc-sm8150-dt-node-v1-0-ae8ec3c822c2@quicinc.com>
+ <20240313-videocc-sm8150-dt-node-v1-1-ae8ec3c822c2@quicinc.com>
+ <e8037775-78cf-4d18-9f8b-9dc5f497ad14@linaro.org>
+ <a69f6dda-f488-a1be-803d-258fb8c6cb7b@quicinc.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -133,52 +139,39 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <88c32ccb-fadd-49e8-a8fc-76f93353d204@quicinc.com>
+In-Reply-To: <a69f6dda-f488-a1be-803d-258fb8c6cb7b@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 
-On 14/03/2024 11:05, Ling Xu wrote:
-> 在 2024/3/14 14:55, Krzysztof Kozlowski 写道:
->> On 14/03/2024 07:33, Ling Xu wrote:
->>> Add three missing cDSP fastrpc compute-cb nodes for the SM8650 SoC.
->>>
->>> Signed-off-by: Ling Xu <quic_lxu5@quicinc.com>
->>> ---
->>>  arch/arm64/boot/dts/qcom/sm8650.dtsi | 29 ++++++++++++++++++++++++++++
->>>  1 file changed, 29 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8650.dtsi b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->>> index ba72d8f38420..c238ad1be0d4 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8650.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm8650.dtsi
->>> @@ -5084,6 +5084,35 @@
->>>  							 <&apps_smmu 0x19c8 0x0>;
->>>  						dma-coherent;
->>>  					};
->>> +
->>> +					/* note: secure cb9 in downstream */
->>> +
->>> +					compute-cb@10 {
->>> +						compatible = "qcom,fastrpc-compute-cb";
->>> +						reg = <12>;
->>> +						iommus = <&apps_smmu 0x196C 0x0000>,
->>> +							 <&apps_smmu 0x0C0C 0x0020>,
->>> +							 <&apps_smmu 0x19CC 0x0000>;
->>
->> Lowercase hex. Please look at the code above, don't copy downstream
->> code. This applies to all your work: don't send us downstream code, but
->> clean it up from all of its problems.
->>
->> Best regards,
->> Krzysztof
->>
+On 14/03/2024 10:13, Satya Priya Kakitapalli (Temp) wrote:
 > 
-> Hi, sorry, do you mean that I should delete this line: /* note: secure cb9 in downstream */?
-> All I sent are upstream codes, I didn't copy cb9 here and I also see this commented line in sm8550.dtsi.
+> On 3/13/2024 10:21 PM, Krzysztof Kozlowski wrote:
+>> On 13/03/2024 12:08, Satya Priya Kakitapalli wrote:
+>>> Update the videocc device tree bindings for sm8150 to align with the
+>>> latest convention.
+>> Everything is an update. Please explain what you did and why. The "why"
+>> part you tried to cover but I just don't understand what is "align with
+>> the latest convention". What convention?
+> 
+> 
+> As per the recent upstream discussions, it is recommended to use 
+> index-based lookup instead of using clock names. The current bindings is 
+> not aligned with this, hence updating. I'll add the details to commit text.
 
-My comment was about the style. If you send "upstream codes", how could
-you have there uppercase hex? It is even visible in the diff context
-that it should be lowercase!
+Yes, please.
+
+> 
+> 
+>>> Fixes: 35d26e9292e2 ("dt-bindings: clock: Add YAML schemas for the QCOM VIDEOCC clock bindings")
+>> What is the bug being fixed here?
+> 
+> 
+> There are 2 clocks required for this, AHB and XO. Only one clock is 
+> mentioned in the bindings for SM8150, this is one of the reasons to move 
+> to latest sm8450 bindings apart from clock names. Hence added a Fixes tag.
+
+This should be in the commit msg.
+
 
 Best regards,
 Krzysztof
