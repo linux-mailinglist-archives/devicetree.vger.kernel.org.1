@@ -1,165 +1,152 @@
-Return-Path: <devicetree+bounces-50587-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50588-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B38087C4B0
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 22:21:08 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0665587C4F4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 23:04:25 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D3C941F226BB
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 21:21:07 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE038282FA1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 22:04:23 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D1221768EC;
-	Thu, 14 Mar 2024 21:20:57 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BEF768E5;
+	Thu, 14 Mar 2024 22:04:20 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Ghg2CRbb"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TifNrbvj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f50.google.com (mail-lf1-f50.google.com [209.85.167.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1F2155C61C
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 21:20:54 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2881174BE8;
+	Thu, 14 Mar 2024 22:04:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710451257; cv=none; b=SiRw1QsneeFPHNadGqF0QskMU5FKQzs9684K8nkAKPqjZMAOCfpSno5kwd6RLvP2O1LG6mxf3h7hNgAtfWFd65RGJuHi3VLr6h7Hh3DOREV7YLasH1XgaSl3WA8T6IxyBPhY/sKPOrC6dCt9YCYIV7UVT8sBqm+/AgJvXIFvBxU=
+	t=1710453860; cv=none; b=OwkYRx86uRt97F5wCoYEiWx8iJl45KTR2S5e5GYTQvSEWdHoonz6FRIgy9r1r2uAOTDSRsSyQ2D6Y+5OGFcnPFzkcvBCK+LDi4AJvYOn5gpe+7jASbjES4YrhTjpUnkizWN3iIllCAzAUUkKjO+8xdod2sRV1JYeOvRmxqQbFXc=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710451257; c=relaxed/simple;
-	bh=Bc3TWzLq5Se/cGgui0UH3wgUf/bBdbLrUHlygXVOtSg=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=GltABi33wR6+R+rGZHRIwd+l0RFZFKo+WNq/pvebFXDrz4uJazEG08WSvqxnfv4WtHGHFsEorpHw+p13fnsvbqftsTdU1UkPwghGNwe6g2pS/V944ogt9nowMzSTlW3d8zZJwzwarWiOE7PPmbBbpaUyPRFu3pU1jYaQvCglDLY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Ghg2CRbb; arc=none smtp.client-ip=209.85.167.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f50.google.com with SMTP id 2adb3069b0e04-51321e71673so1784374e87.2
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 14:20:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710451253; x=1711056053; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5AaTGg0kAhiMjsJjr/oy7y4nkyssEzLV/1qGSoX4gZw=;
-        b=Ghg2CRbb32bZrC57v3wSIvGp8FwbF8yTzE//jXExWDtMm88m7oXLM5brSla6+xuXLU
-         H35zuo0v+EJo4e+D9V+w7Y8ajShtRwGhBTV8x1VEk0C6JlAEKc3JWPXczgf1FLqe4Ydk
-         RNjxJC7vr9pJCN7hbD8AqZpJ0DLX6sji7SuA0tGS4IZwRIuYtddfQjc5GozEnmBMMDP2
-         Cl+gtp8mbAfyq8VfHgO709vT6x/pYDnCAH+jfiYrEBfR/IVTLA5felL/xfJFbcULKi3m
-         QR1e6O3Jk07KwWo3jUeVvd6ahfyvPOitFO1wX1vohN+rjNpXVGB09sAoF1YNypX5IG4O
-         xU4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710451253; x=1711056053;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5AaTGg0kAhiMjsJjr/oy7y4nkyssEzLV/1qGSoX4gZw=;
-        b=toqP+kVgEBh21UcwasYc58zCw0RebKgpH/nnkXrhkc2jGroL12uD/ZMu+qiuIjUUoT
-         NNCNg+ANhbwBqdTOqvJsCn9+bE93Kh879kjwifVRfCUAJX7gGR0nRWNYtLbrUx5ksB5I
-         ye6ti0PK4BLjUWm4kBcIDD2aghSSsjG556h1Tb/DyyGGySXamMW1a7h6WWDnV5F6ZMpX
-         A2m2Nn5Qso066zJt1+tEqGlbmdm/igmCXpDKpE+Nu/uw1hGonTwoIr6LQzUuWTgQElO5
-         QDR0UrdvJZXiy3wfb1I7AMrfHW4GFKrZfA2qyFxSuUC31hYYK3oexF4VPcjDqE7d/Edg
-         FjQA==
-X-Forwarded-Encrypted: i=1; AJvYcCWhRjKXe2j26FyJkaFwmlJEP0ccqwpM0BX/Au5ftbPEgMUFZog7PUyKuqOyL4FM1oy7ZEScQQbLaGewP4RtJ5TRATX7EpP2sABP3A==
-X-Gm-Message-State: AOJu0YzSYVqL5VY7w7BjJcvnaLnTBlxVqmSE1wjXLvDJiX6+iaadneTd
-	Eq56tAx++AWqeWJVF3y9X5FGZu+f9xznxXXCZ4b6/CAolJ6Eq/pDhC5UJP6lGwQ=
-X-Google-Smtp-Source: AGHT+IEglS2IPMmFYFEpCcRW8fHxKCmCfx+pzQQt2ei51NY/HxeiA50TpeJtDNqSROvJ8h9HsxWr8A==
-X-Received: by 2002:a19:ca51:0:b0:513:b061:1815 with SMTP id h17-20020a19ca51000000b00513b0611815mr1816609lfj.18.1710451253356;
-        Thu, 14 Mar 2024 14:20:53 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id kk28-20020a170907767c00b00a4666bfa979sm1038038ejc.118.2024.03.14.14.20.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Mar 2024 14:20:52 -0700 (PDT)
-Message-ID: <5e317ad1-d473-423a-b85e-2f64a37f7d0d@linaro.org>
-Date: Thu, 14 Mar 2024 22:20:51 +0100
+	s=arc-20240116; t=1710453860; c=relaxed/simple;
+	bh=+dsvZmXTf1mHrJK+vfIVxrTv+JRORQUMEKmoTDRev/c=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=HS3/Q8dB8/YZZhSTb/qQHuCMFLgtj10mR5W2Tg4iBkO5LZVpjoGXltWHF2pMeOwnUbgyBB+c03w0nk2gvGi54slJP2IuYGn77XnAFJ+iyqTzv6mZR5j4+jUACrbqFNs4TUM1D9wgu9w87+c4YdQvkRilH2CJPgMB4jmPCX9nUY0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TifNrbvj; arc=none smtp.client-ip=217.70.183.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 4CA8940004;
+	Thu, 14 Mar 2024 22:04:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1710453849;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=tfCPNoNzVXxzZ2eRtShMfBPSV4HwMjR3iQ1VFpAZEzc=;
+	b=TifNrbvjRYYFBiKhOoRSDb2I5S5yVI2rgeqWlGh7Ycjewc8yCWZpzpnWA6DOfqcyY8PkCY
+	SnVCJSQiLuRqQxR10aRYC3naw7offG/D2NKgeUsfNg3SJlRr3txDdf9P4mcMI1ZN5Er9xD
+	/GRnquIazxL0BQR0cyG/9qTqcOxB6Moif9mRUk6KWO04ixeEl/NhZCy6orSoT+fL2dXUwf
+	sYVP1JSS/Owfkmat8Z9SnODB/K+B4P7QaSb3X1c2obRQlefjWazhc9ZL5orMiCUXLN4kmU
+	ot7/oc+riO4BDSINtdHRdCQ8ecIgCxCmlrtEvOyZ7Ny9QUGe6D31xvjlE3KiQA==
+Date: Thu, 14 Mar 2024 23:04:02 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Florian Fainelli <florian.fainelli@broadcom.com>
+Cc: William Zhang <william.zhang@broadcom.com>, Linux MTD List
+ <linux-mtd@lists.infradead.org>, Linux ARM List
+ <linux-arm-kernel@lists.infradead.org>, Broadcom Kernel List
+ <bcm-kernel-feedback-list@broadcom.com>, f.fainelli@gmail.com,
+ kursad.oney@broadcom.com, joel.peshkin@broadcom.com,
+ anand.gore@broadcom.com, dregan@mail.com, kamal.dasu@broadcom.com,
+ tomer.yacoby@broadcom.com, dan.beygelman@broadcom.com, Andre Przywara
+ <andre.przywara@arm.com>, Rob Herring <robh+dt@kernel.org>, Kamal Dasu
+ <kdasu.kdev@gmail.com>, Conor Dooley <conor+dt@kernel.org>, Krzysztof
+ Kozlowski <krzysztof.kozlowski+dt@linaro.org>, =?UTF-8?B?UmFmYcWCIE1pxYJl?=
+ =?UTF-8?B?Y2tp?= <rafal@milecki.pl>, David Regan <dregan@broadcom.com>,
+ devicetree@vger.kernel.org, Alexandre TORGUE <alexandre.torgue@st.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Brian Norris
+ <computersforpeace@gmail.com>, Shawn Guo <shawnguo@kernel.org>,
+ linux-kernel@vger.kernel.org, Richard Weinberger <richard@nod.at>
+Subject: Re: [PATCH v6 00/13] mtd: rawnand: brcmnand: driver and doc updates
+Message-ID: <20240314230402.5fc7bbf3@xps-13>
+In-Reply-To: <20240229101101.5208195c@xps-13>
+References: <20240223034758.13753-1-william.zhang@broadcom.com>
+	<90ecf4d2-0eee-48e6-8222-7d3b5fd52b2f@broadcom.com>
+	<20240229101101.5208195c@xps-13>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/5] dt-bindings: pinctrl: qcom,pmic-gpio: Add PMIH010x
- and PMD802x binding
-Content-Language: en-US
-To: Anjelique Melendez <quic_amelende@quicinc.com>, andersson@kernel.org,
- konrad.dybcio@linaro.org, linus.walleij@linaro.org, robh+dt@kernel.org,
- krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc: linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- quic_subbaram@quicinc.com, quic_collinsd@quicinc.com,
- quic_jprakash@quicinc.com
-References: <20240314200419.4733-2-quic_amelende@quicinc.com>
- <20240314200419.4733-6-quic_amelende@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240314200419.4733-6-quic_amelende@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-On 14/03/2024 21:04, Anjelique Melendez wrote:
-> Update the Qualcomm Technologies, Inc. PMIC GPIO binding documentation
-> to include compatible strings for PMIH010x and PMD802x PMICs.
-> 
-> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
-> ---
->  .../bindings/pinctrl/qcom,pmic-gpio.yaml      | 20 +++++++++++++++++++
->  1 file changed, 20 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> index 2b17d244f051..5cc04c016b25 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> +++ b/Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml
-> @@ -57,10 +57,12 @@ properties:
->            - qcom,pma8084-gpio
->            - qcom,pmc8180-gpio
->            - qcom,pmc8180c-gpio
-> +          - qcom,pmd802x-gpio
+Hi Florian,
 
-Is the "x" some sort of wildcard or actual PMIC model/version name?
-Wildcards are in general discouraged.
+miquel.raynal@bootlin.com wrote on Thu, 29 Feb 2024 10:11:01 +0100:
 
-Best regards,
-Krzysztof
+> Hi Florian,
+>=20
+> florian.fainelli@broadcom.com wrote on Mon, 26 Feb 2024 09:36:02 -0800:
+>=20
+> > On 2/22/24 19:47, William Zhang wrote: =20
+> > > This patch series is an update from the previous version [1] after
+> > > exex_op support and fixes (patch 1 to 4 from the previous version.)
+> > >=20
+> > > It updates all the BCMBCA SoC to support the nand controller and add
+> > > functions to handle BCMBCA specific needs on ECC and Write Protection
+> > > usage. The device tree document is also updated accordingly with the =
+new
+> > > properties needed by the driver.
+> > >=20
+> > > In addition there is a bug fix for exec_op helper functions, log level
+> > > adjustment on uncorrectable ECC error and some coding style fixes.
+> > >=20
+> > > [1] https://lore.kernel.org/lkml/20230606231252.94838-1-william.zhang=
+@broadcom.com/   =20
+> >=20
+> > Miquel, thanks for having applied the patches, we should have discussed=
+ ahead of time whether you should take the SoC/board-level DTS changes thro=
+ugh your tree or mine, but it's fine either way and should not lead to conf=
+licts in Linus' tree. =20
+>=20
+> I'm sorry for not thinking about this ahead of time, I was also not
+> Cced on the other patches, I noticed it (told Willliam) and just forgot
+> about this when I applied the series.
+>=20
+> It is currently living in -next so if there is any problem I can still
+> act.
+>=20
+> However for this kind of change I usually apply the bindings and .c
+> changes independently from the DT patches. I believe there is no
+> problem having one or the other being merged first, or do I overlook
+> something?
 
+What the heck /o\ I just understand now my mistake, I am very truly
+sorry for that...
+
+You were telling me I should sync with you before taking DT changes,
+and I was so convinced I _did_not_ take the DT, when I looked at the
+branch I did not understand your point. But I am totally sorry I
+actually did take the DTs by mistake and I truly did not notice it.
+Confirmation bias I suppose. My very sincere apologies.
+
+As mentioned previously, I was not CC'ed on the DT patches, but I
+believe the linux-mtd list was, so the patches didn't appear in my
+inbox, and once I was happy with the binding/driver changes I applied
+it all without noticing the DT changes had sneaked in.
+
+I'm finally preparing the PR for Linus and I see it now...
+
+I believe the SoC tree is closed now so it's up to you what I should do
+with them. Let me know if you want me to keep them in my tree and
+forward them to Linus or if I should drop them and you'll take them for
+the next cycle. Also, if I keep them, shall I add some tag of yours on
+these 3 patches? For the record I did not review them.
+
+Thanks and again, I'm confused. I never apply DT patches like that,
+your initial remark was more than legitimate.
+
+Cheers,
+Miqu=C3=A8l
 
