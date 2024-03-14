@@ -1,305 +1,174 @@
-Return-Path: <devicetree+bounces-50363-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50364-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0DF9287B4BB
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 23:58:41 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FC2687B5EC
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 01:54:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7775C1F22FE4
-	for <lists+devicetree@lfdr.de>; Wed, 13 Mar 2024 22:58:40 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 671461C211F0
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 00:54:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E08B5E066;
-	Wed, 13 Mar 2024 22:58:15 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id ABACA1A38D6;
+	Thu, 14 Mar 2024 00:53:53 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b="e42UWxxR"
+	dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b="WPiHaKv6"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [208.88.110.44])
+Received: from JPN01-TYC-obe.outbound.protection.outlook.com (mail-tycjpn01on2077.outbound.protection.outlook.com [40.107.114.77])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7CDCF5D732;
-	Wed, 13 Mar 2024 22:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=208.88.110.44
-ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710370695; cv=none; b=tCLUCqShbQfsh+AyXzmcL0xdAj8u+RkZPzItdLWJoRkODZ8w+q3T8sCI2dqji/s7AarbLyTMPKz3/sS2UjfgLJRUBu4/f1zQr95EME/MmHDfizLsAtSK/3k/IrOaHjrYoY5tk9b+/km331HcnyRKCJSyz80kwj4Igf6lXmTBrDE=
-ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710370695; c=relaxed/simple;
-	bh=KF+lq4YcH6Xp00756RYp+wxJMi6yCrGpi1MQUqaB15I=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=PLJrC+dHX2iAnHkPWgGvthKLm8ENaZhu76PQld3XY19/whod8waikVDVleTTkIboqIYn15jUBAx5F80OckJBEtmaTNfmn+NwaOU+rtBAxgi5fOTPuda+ddizx/rcLLZIv7OnaNAI9pFBQkW7/6CjdFNlqF+Dt64yFZdWeGmPNPw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com; spf=pass smtp.mailfrom=savoirfairelinux.com; dkim=pass (2048-bit key) header.d=savoirfairelinux.com header.i=@savoirfairelinux.com header.b=e42UWxxR; arc=none smtp.client-ip=208.88.110.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=savoirfairelinux.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=savoirfairelinux.com
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id 62F8D9C5407;
-	Wed, 13 Mar 2024 18:58:12 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10032)
- with ESMTP id lKd-ydaZrGzp; Wed, 13 Mar 2024 18:58:10 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-	by mail.savoirfairelinux.com (Postfix) with ESMTP id CA5DB9C540A;
-	Wed, 13 Mar 2024 18:58:10 -0400 (EDT)
-DKIM-Filter: OpenDKIM Filter v2.10.3 mail.savoirfairelinux.com CA5DB9C540A
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-	d=savoirfairelinux.com; s=DFC430D2-D198-11EC-948E-34200CB392D2;
-	t=1710370690; bh=QuEtk/uQ5emxPDFdbuSL173B4llg7dyYsWnwoFXcz1o=;
-	h=From:To:Date:Message-ID:MIME-Version;
-	b=e42UWxxRUCSxgMAgM4JlPbrjr6FGfHJVyEvM8fSws3p8KQ1Ruhuq1st23XMi/TKNC
-	 slMZA//IZtg+xB++8zKtjhsG7wCsdlFY5T1OrOllqB5avKyeJrQlOEgPp67gnLEc5V
-	 UO5dss9L/Xo+GPqoc4QHusBPpyUkLGZEoGS0xLIb6Vu42804WMVnt/IfENi720YJls
-	 Xjpf77+y+Rsq5k7iagywD1UXc0aDxt6kkhR3BpK8dnMmmqD73kdsC7r6OHGObEznW4
-	 F5cb+YAkH1Bgm6GfZMQ74UcYDbnvxzX7Ex4OC8YUKx+6lGARxeovceUa7O7P785/m6
-	 SCw06oHwnWF0g==
-X-Virus-Scanned: amavis at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
- by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavis, port 10026)
- with ESMTP id Ovi_2tKXUoMl; Wed, 13 Mar 2024 18:58:10 -0400 (EDT)
-Received: from pcperry.mtl.sfl (unknown [192.168.51.254])
-	by mail.savoirfairelinux.com (Postfix) with ESMTPSA id A90FE9C5409;
-	Wed, 13 Mar 2024 18:58:10 -0400 (EDT)
-From: Charles Perry <charles.perry@savoirfairelinux.com>
-To: mdf@kernel.org
-Cc: avandiver@markem-imaje.com,
-	bcody@markem-imaje.com,
-	Charles Perry <charles.perry@savoirfairelinux.com>,
-	Wu Hao <hao.wu@intel.com>,
-	Xu Yilun <yilun.xu@intel.com>,
-	Tom Rix <trix@redhat.com>,
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1EAC4524C
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 00:53:49 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.114.77
+ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710377633; cv=fail; b=Gpe81ciMPwZxS/ynED8sZz6fq4tmkVjyfFv6uSd0nyRfBYx1y+5tVEPCh2EgiZimGGQR4pxgrdkws8/TsBydXrGIulGVhZmB+jUAUoQ1/urOaO5aeTETHPsRSJCcfxMtsTvF2GmXfL04Dt2CkrM6IoTLbqphR1N8LSzNpSZZui0=
+ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710377633; c=relaxed/simple;
+	bh=5q7nsZaApG7dax8RbpTXolRzdFNmhum2kPQv1vbJia0=;
+	h=Message-ID:From:To:Cc:Subject:In-Reply-To:References:Content-Type:
+	 Date:MIME-Version; b=GNQPvYafo8I64GS8IX/Cm2UDUSix4IpHL97i4WioZllXpcmwS0lMts3gufdHBlwPE5QEeja8OpMkYonO9gwZZ+jy7mF9SogGzXmHBd6K9cPpmukATZHTkppIh8VKKUJ4XcZSxZQoAHXCxkJJLi5fn4oWsWtU3eh/BNBVeCguQ4Q=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com; spf=pass smtp.mailfrom=renesas.com; dkim=pass (1024-bit key) header.d=renesas.com header.i=@renesas.com header.b=WPiHaKv6; arc=fail smtp.client-ip=40.107.114.77
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=renesas.com
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=AwV8zrryBy7Oey85s8SZmDOMrGLtNOCGsDEYrXWyJP2AqED0gPGeWW1S1jlr1l0oowDN4/Fs6A9+bHyz8rWaoU/M4poQZidKe4KtZzU67Oeh/+dav2rINCNd7oT1PVsnZlpi+fRFXK6BPqe2uwsnR2wJ83ozQY+OoyvITL2oEzoG1+7JiXzxv8tQ07pfjbCk6JAET9ZR/anlq6ReYIbDtXykgmLPOGSLB3zl18IynMjGV2mf6L8EyA2AQf6C2DI0/rBta/AN8suennX0z0I2Vpkt/koIeterwpBwOT3h8gbI2sj1vhOv5JO7POmzydmdKnXTBmmPMILB4HFk7CRiJg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5q7nsZaApG7dax8RbpTXolRzdFNmhum2kPQv1vbJia0=;
+ b=PRuRHRq9dBqD9YlhaOpn+stRo4J9gOa4uWeXKFrbPkWAemH6W+6Np9G14RNgrE8u7CcpvUthWC5kSJ/2ltK4Y5OtNnC0y2pNgYjM4cl2oFqdL7fYg3ngjehBcWCosASyBffnOOAHTxqJe66L79z/xGDVrqs2D1Ic+rliT/P56nHWbknntx5vbXHzE34dAS+mLIlUgCcQbIZMlKAb5WFvIV6Ytca863v4S6Tb4f7yIb4hsVB4z8388ouWvkAB/43Kkp5twdakIyCTaArWzcUGHjoMUPmd/WfMs+LQpY0N2Q/ju80OlI6CH1RinYhUyjQzPjN32orw1sFjq2GgUtpQIg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=renesas.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5q7nsZaApG7dax8RbpTXolRzdFNmhum2kPQv1vbJia0=;
+ b=WPiHaKv6j1AAPdCHb/mk4K2P1k3ieuAwFH2IkFlgYn5jlShDaG+0EYrz6Z4GKBmEZm7QYN23RI2D62YuErL/p3TM4T4Xr5ZPIO0PffViYqmGspuDKYnX7cbo7wXekTIMItl0raTVTy6iD5hTlu9GJb6qkuvO5HOeg73QEQcoaz0=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=renesas.com;
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11) by TYCPR01MB11289.jpnprd01.prod.outlook.com
+ (2603:1096:400:3c4::6) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.21; Thu, 14 Mar
+ 2024 00:53:47 +0000
+Received: from TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::131e:55c0:a4a0:713b]) by TYCPR01MB10914.jpnprd01.prod.outlook.com
+ ([fe80::131e:55c0:a4a0:713b%7]) with mapi id 15.20.7386.017; Thu, 14 Mar 2024
+ 00:53:47 +0000
+Message-ID: <87y1aleiqt.wl-kuninori.morimoto.gx@renesas.com>
+From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To: Jerome Brunet <jbrunet@baylibre.com>
+Cc: Mark Brown <broonie@kernel.org>,
+	Pierre-Louis Bossart
+ <pierre-louis.bossart@linux.intel.com>,
+	Bard Liao
+ <yung-chuan.liao@linux.intel.com>,
+	bard.liao@intel.com,
+	Conor Dooley
+ <conor+dt@kernel.org>,
+	Krzysztof Kozlowski
+ <krzysztof.kozlowski+dt@linaro.org>,
 	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Michal Simek <michal.simek@amd.com>,
-	linux-fpga@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v5 3/3] fpga: xilinx-selectmap: add new driver
-Date: Wed, 13 Mar 2024 18:57:37 -0400
-Message-ID: <20240313225746.489253-4-charles.perry@savoirfairelinux.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20240313225746.489253-1-charles.perry@savoirfairelinux.com>
-References: <20240313225746.489253-1-charles.perry@savoirfairelinux.com>
+	alsa-devel@alsa-project.org,
+	devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/5] ASoC: makes CPU/Codec channel connection map more generic
+In-Reply-To: <1jh6haih3f.fsf@starbuckisacylon.baylibre.com>
+References: <87v8a64f3d.wl-kuninori.morimoto.gx@renesas.com>
+	<87ttpq4f2c.wl-kuninori.morimoto.gx@renesas.com>
+	<e7121fbc-c814-4153-9f17-82ad5de13e64@sirena.org.uk>
+	<87a5n46xjk.wl-kuninori.morimoto.gx@renesas.com>
+	<7248b107-db87-4409-b93c-f65035d0a6b4@sirena.org.uk>
+	<1jo7bje6da.fsf@starbuckisacylon.baylibre.com>
+	<b9de4fd1-ef4a-4c30-b3cf-e36931be90f1@sirena.org.uk>
+	<1jh6haih3f.fsf@starbuckisacylon.baylibre.com>
+User-Agent: Wanderlust/2.15.9 Emacs/27.1 Mule/6.0
+Content-Type: text/plain; charset=US-ASCII
+Date: Thu, 14 Mar 2024 00:53:47 +0000
+X-ClientProxiedBy: TYAPR03CA0009.apcprd03.prod.outlook.com
+ (2603:1096:404:14::21) To TYCPR01MB10914.jpnprd01.prod.outlook.com
+ (2603:1096:400:3a9::11)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYCPR01MB10914:EE_|TYCPR01MB11289:EE_
+X-MS-Office365-Filtering-Correlation-Id: b54d0e35-e6e4-4333-7a95-08dc43c134b7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info:
+	YDyTf+UrzzCp+dL4aYuIfymA3imJBt7ltlZvxtdgjTy8DeqipxhNUXjlaGyX0cVN/ol+mGjxmrdXBq0SlLj/ZM4eqq9RteoFSNA7ftGsOtMfNMTiCpOH1zaxuyxHsUAbfJ08z1jrUYtlguMmS+yvo/efJFigsHedIe2jr2o/I3ltU8n55CmwaNB0BfLhynKLWuITBwv4ZW6uHjH7Yjd+RmQgKtoziDCb+cfSEvz0dkmI5J5QoG1nkic1a+R0WBO+lVOf7Avt687lj+bOBvOe7dU8FH5VDGMBQEEZJhlHAYqtAirkKrHgUdFeYxC1kcrt0YiAaVm2QWab1AlIm3aG6BbsXp0Kg9Nslef4zqJrHETaAk2trRemI2YOQxuPJAGnZsFpBvd139x+ROck0Tqt8/u8PpYzChNZA/vRnQKvbKQMU/P8Y4ElMHmgaBy1VbcyqJp+FB3Md9vjBALim24GK0BvbpKr16A8eBMqmfcNT45+H5zV0WRirWu/fexDRbQSyibyGVv+wtk/tNq6baMF70SbkU0eWAdI1NODd/cFCQ/Y/UyoOgVv2CeqsTc7RFDBJTVW7VRBnVea3QmJLqP5V4MIcAA3dx0sXAini3gt3afZWYY0ExOtcpL+WIOvrvJ+QiGH5jyyNE2L9TTazfq7hp9NZ7ZxTRMYB4bytIyAWHWGhVpdyBrPXZf5i+qUT3qst1fJh9Pkq3Bptbo/yMt+yQ==
+X-Forefront-Antispam-Report:
+	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYCPR01MB10914.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(376005)(52116005)(1800799015)(7416005)(38350700005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0:
+	=?us-ascii?Q?wniTaOLbfauE/ql+gAzsONro2x02WW2NyDXmV7Qf97nLq1V7kh+hchn8MXnA?=
+ =?us-ascii?Q?ATrdiQToFDUFIi9vsfhZ0IKAZkiKll0VWi0OF1kLytATUox+586wfJeSFcp5?=
+ =?us-ascii?Q?Zg5+cp32/GT4DYgfNgkXvdZ+hRtxrLtgesTep1+MPmpdEdB7iFSv0+LFpJuc?=
+ =?us-ascii?Q?ISnLTJE21PePk+fjF8GgnBpwTQDXblr9nxKXKpf/mVgk/xjB5Ny3WbGgWYqX?=
+ =?us-ascii?Q?RxWCERQ8cwj5PoPRe3E7Du5E1F+g+2SdQlyqDgVpCTkhzQInaEckjuuBxxvK?=
+ =?us-ascii?Q?5oH8sp6r+buthm0FWhm1xJZoq6lYUTU6lUIT2LH1dNPFymLcb8wWkAUrriOn?=
+ =?us-ascii?Q?du+FK32D3lVhTxgaTmzu1rFrnwIZ0HbqGXR77V+gZh86kkc4lGbSRD60A+mB?=
+ =?us-ascii?Q?2vafo8SJXm2sRplnlbyIXKxAv6qv+YmrcIw7NEPm9h8z/CjF0C9YLeQ5u3mS?=
+ =?us-ascii?Q?vEgLZwrnUpJ0O6mAlRbIEg/9i4Fn59k8RK8EvKAGKvfDPmyJ7DsNKzh3oDDj?=
+ =?us-ascii?Q?Jti5diSZXgvzVQw+5yYkkeuFj+mzTsPrUEywC52u/g1H1IQaBOr6aLP04Q/S?=
+ =?us-ascii?Q?OQSiH49jLrIqA1xatYf1+YNyIs5uATCQAFIkoKKX/z2aayHEvp17ot3x3CdJ?=
+ =?us-ascii?Q?Ed5sTcdoqHSYY+VO/D2sz13pPsE7ID82qzxz5/NOzKRHCOnM8UAsAu8PtG1J?=
+ =?us-ascii?Q?4qThuYB2xF91AJheqYP+c5oRGg48LzxkDVUO47tJEp7gqkh9yUJJ52xdnrnN?=
+ =?us-ascii?Q?3kyqm0kL4+JzTefMV30TIKb8jSftGtHIieV6MyuGRpQ94NftdrKUOXeRZfyE?=
+ =?us-ascii?Q?WyeiZ/MUScu4e6zD30yFZbCeYYrFcsY6FrWI1IWPKbQlYEV0mjTdRgV5aDbo?=
+ =?us-ascii?Q?P7PgCladvTFQdeG6TzPC9axGrHRkPGWx300tMEd4ljO3WOz2TlsQ/e+BRnJE?=
+ =?us-ascii?Q?C2ojsCELitPX0gu1FauAKNYulEbVUwnVNr5l5FsbVuQ7v3K3/r/9bkTon60N?=
+ =?us-ascii?Q?8IlVStnZMXk/gykrF1iD+8Gqs37sQr0EYo/vU8DKy98avKB4bLS1DLDNnX7n?=
+ =?us-ascii?Q?stuOocZkDA9ozkioChUGQx6ICKnX+kYQ7gCNb2Ou/7Mbvit+KoPOpEqZBSmL?=
+ =?us-ascii?Q?tuonYt1LgtOSK92JrUpJz4fdqeiSxD2tJEZmbpaQJMqnKlfDEynwIeXDk2lb?=
+ =?us-ascii?Q?u4iwY3eflTQPEk5MtPiRSh/JIo9oL8EH56cBudw0hVrgZWpq/GUKvWJf/L/v?=
+ =?us-ascii?Q?ObsYRNnh1yfx6UnMa3qWlZG7tklQtZG2K5K28ylYfOZne08uImxgEtYogf8G?=
+ =?us-ascii?Q?Ry7730dT6CLfLFEz+GCzgJWnpB7TEYB6CmIXMUHpESX1NH4dypsr/MImy4ch?=
+ =?us-ascii?Q?PY1Gnt7T3Ff0LlcQnlgivRZDDRS5Imgkqx77j6FZpxluofAP7Dv9UcmjFOUB?=
+ =?us-ascii?Q?nz4u7Gkp3DXAxoIGAlBlaIBRuIaD47ZJjTEaF/9p7cKuoxluPdxsZphxMKf+?=
+ =?us-ascii?Q?MlvS2Rkg/x05V2uxYjeSHnI0AP6Zdo+JJrX1eyejxQrJHcPIZyXAV8/+IeLD?=
+ =?us-ascii?Q?N+FC7yCTxIsv4t1cmEcapnpfE2f0esIGvjFmm3f74eoVKYxxASZdtltie73t?=
+ =?us-ascii?Q?VVFgyhw7HUb40rcMsp2DES0=3D?=
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b54d0e35-e6e4-4333-7a95-08dc43c134b7
+X-MS-Exchange-CrossTenant-AuthSource: TYCPR01MB10914.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2024 00:53:47.3121
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 0++5x7PQ4a+65OBMyQFdv5xqFu8xZIwciTtUJcYScVYSmZBtXrZaOFXmLww0xA9MOl8/RKQa6qvelrKBnNQVShwcXSyL3y6R5b0ytlB7jrMxm+FA3/j9k5kwxdTZAZl1
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYCPR01MB11289
 
-Xilinx 7 series FPGA can be programmed using a parallel port named
-the SelectMAP interface in the datasheet. This interface is compatible
-with the i.MX6 EIM bus controller but other types of external memory
-mapped parallel bus might work.
 
-xilinx-selectmap currently only supports the x8 mode where data is loaded
-at one byte per rising edge of the clock, with the MSb of each byte
-presented to the D0 pin.
+Hi Jerome
 
-Signed-off-by: Charles Perry <charles.perry@savoirfairelinux.com>
+> Fragment is here:
+(snip)
+> I'll continue to check but this is apparently related to the options
+> turned on by the debug fragment. Maybe it could be interesting to check
+> another non-intel SoC manufacturer using DPCM with this fragment ?
+> (another device relying on cleared ch_maps - Renesas and/or MTK maybe ?)
+
+I tryed to add your debug fragment into my normal defconfig.
+The kernel size indeed become very huge, and boot process becomes slow,
+but kernel start works, and DPCM test could work for me.
+
+I tested on v6.8 Kernel and Renesas ULCB-KF board with DPCM sound settings,
+and with ${LINUX}/sound/soc/generic/audio-graph-card2-custom-sample.dtsi
+which is using Multi-CPU/Codec, DPCM, Codec2Codec, etc.
+
+Thank you for your help !!
+
+Best regards
 ---
-Changes since v4: (from Yilun review)
- * xilinx-core: select between prog/init and prog_b/init-b
-
- drivers/fpga/Kconfig            |  8 +++
- drivers/fpga/Makefile           |  1 +
- drivers/fpga/xilinx-core.c      | 29 +++++++++-
- drivers/fpga/xilinx-selectmap.c | 97 +++++++++++++++++++++++++++++++++
- 4 files changed, 133 insertions(+), 2 deletions(-)
- create mode 100644 drivers/fpga/xilinx-selectmap.c
-
-diff --git a/drivers/fpga/Kconfig b/drivers/fpga/Kconfig
-index d27a1ebf40838..37b35f58f0dfb 100644
---- a/drivers/fpga/Kconfig
-+++ b/drivers/fpga/Kconfig
-@@ -67,6 +67,14 @@ config FPGA_MGR_STRATIX10_SOC
- config FPGA_MGR_XILINX_CORE
- 	tristate
-
-+config FPGA_MGR_XILINX_SELECTMAP
-+	tristate "Xilinx Configuration over SelectMAP"
-+	depends on HAS_IOMEM
-+	select FPGA_MGR_XILINX_CORE
-+	help
-+	  FPGA manager driver support for Xilinx FPGA configuration
-+	  over SelectMAP interface.
-+
- config FPGA_MGR_XILINX_SPI
- 	tristate "Xilinx Configuration over Slave Serial (SPI)"
- 	depends on SPI
-diff --git a/drivers/fpga/Makefile b/drivers/fpga/Makefile
-index 7ec795b6a5a70..aeb89bb13517e 100644
---- a/drivers/fpga/Makefile
-+++ b/drivers/fpga/Makefile
-@@ -16,6 +16,7 @@ obj-$(CONFIG_FPGA_MGR_SOCFPGA_A10)	+=3D socfpga-a10.o
- obj-$(CONFIG_FPGA_MGR_STRATIX10_SOC)	+=3D stratix10-soc.o
- obj-$(CONFIG_FPGA_MGR_TS73XX)		+=3D ts73xx-fpga.o
- obj-$(CONFIG_FPGA_MGR_XILINX_CORE)	+=3D xilinx-core.o
-+obj-$(CONFIG_FPGA_MGR_XILINX_SELECTMAP)	+=3D xilinx-selectmap.o
- obj-$(CONFIG_FPGA_MGR_XILINX_SPI)	+=3D xilinx-spi.o
- obj-$(CONFIG_FPGA_MGR_ZYNQ_FPGA)	+=3D zynq-fpga.o
- obj-$(CONFIG_FPGA_MGR_ZYNQMP_FPGA)	+=3D zynqmp-fpga.o
-diff --git a/drivers/fpga/xilinx-core.c b/drivers/fpga/xilinx-core.c
-index a35c43382dd5f..ccdeb45eba4ee 100644
---- a/drivers/fpga/xilinx-core.c
-+++ b/drivers/fpga/xilinx-core.c
-@@ -171,6 +171,29 @@ static int xilinx_core_write_complete(struct fpga_ma=
-nager *mgr,
- 	return -ETIMEDOUT;
- }
-
-+/**
-+ * xilinx_core_devm_gpiod_get - Obtain a resource-managed GPIO using a
-+ *                              legacy consumer name fallback.
-+ *
-+ * @dev:           Device managing the GPIO
-+ * @con_id:        Consumer id
-+ * @legacy_con_id: Legacy consumer id
-+ * @flags:         optional GPIO initialization flags
-+ */
-+static inline struct gpio_desc *
-+xilinx_core_devm_gpiod_get(struct device *dev, const char *con_id,
-+			   const char *legacy_con_id, enum gpiod_flags flags)
-+{
-+	struct gpio_desc *desc;
-+
-+	desc =3D devm_gpiod_get(dev, con_id, flags);
-+	if (IS_ERR(desc) && PTR_ERR(desc) =3D=3D -ENOENT &&
-+	    of_device_is_compatible(dev->of_node, "xlnx,fpga-slave-serial"))
-+		desc =3D devm_gpiod_get(dev, legacy_con_id, flags);
-+
-+	return desc;
-+}
-+
- static const struct fpga_manager_ops xilinx_core_ops =3D {
- 	.state =3D xilinx_core_state,
- 	.write_init =3D xilinx_core_write_init,
-@@ -186,12 +209,14 @@ int xilinx_core_probe(struct xilinx_fpga_core *core=
-)
- 		return -EINVAL;
-
- 	/* PROGRAM_B is active low */
--	core->prog_b =3D devm_gpiod_get(core->dev, "prog_b", GPIOD_OUT_LOW);
-+	core->prog_b =3D xilinx_core_devm_gpiod_get(core->dev, "prog", "prog_b"=
-,
-+						  GPIOD_OUT_LOW);
- 	if (IS_ERR(core->prog_b))
- 		return dev_err_probe(core->dev, PTR_ERR(core->prog_b),
- 				     "Failed to get PROGRAM_B gpio\n");
-
--	core->init_b =3D devm_gpiod_get_optional(core->dev, "init-b", GPIOD_IN)=
-;
-+	core->init_b =3D xilinx_core_devm_gpiod_get(core->dev, "init", "init-b"=
-,
-+						  GPIOD_IN);
- 	if (IS_ERR(core->init_b))
- 		return dev_err_probe(core->dev, PTR_ERR(core->init_b),
- 				     "Failed to get INIT_B gpio\n");
-diff --git a/drivers/fpga/xilinx-selectmap.c b/drivers/fpga/xilinx-select=
-map.c
-new file mode 100644
-index 0000000000000..b63f4623f8b2c
---- /dev/null
-+++ b/drivers/fpga/xilinx-selectmap.c
-@@ -0,0 +1,97 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Xilinx Spartan6 and 7 Series SelectMAP interface driver
-+ *
-+ * (C) 2024 Charles Perry <charles.perry@savoirfairelinux.com>
-+ *
-+ * Manage Xilinx FPGA firmware loaded over the SelectMAP configuration
-+ * interface.
-+ */
-+
-+#include "xilinx-core.h"
-+
-+#include <linux/platform_device.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/of.h>
-+#include <linux/io.h>
-+
-+struct xilinx_selectmap_conf {
-+	struct xilinx_fpga_core core;
-+	void __iomem *base;
-+};
-+
-+#define to_xilinx_selectmap_conf(obj) \
-+	container_of(obj, struct xilinx_selectmap_conf, core)
-+
-+static int xilinx_selectmap_write(struct xilinx_fpga_core *core,
-+				  const char *buf, size_t count)
-+{
-+	struct xilinx_selectmap_conf *conf =3D to_xilinx_selectmap_conf(core);
-+	u32 i;
-+
-+	for (i =3D 0; i < count; ++i)
-+		writeb(buf[i], conf->base);
-+
-+	return 0;
-+}
-+
-+static int xilinx_selectmap_probe(struct platform_device *pdev)
-+{
-+	struct xilinx_selectmap_conf *conf;
-+	struct resource *r;
-+	void __iomem *base;
-+	struct gpio_desc *csi_b;
-+	struct gpio_desc *rdwr_b;
-+
-+	conf =3D devm_kzalloc(&pdev->dev, sizeof(*conf), GFP_KERNEL);
-+	if (!conf)
-+		return -ENOMEM;
-+
-+	conf->core.dev =3D &pdev->dev;
-+	conf->core.write =3D xilinx_selectmap_write;
-+
-+	base =3D devm_platform_get_and_ioremap_resource(pdev, 0, &r);
-+	if (IS_ERR(base))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(base),
-+				     "ioremap error\n");
-+	conf->base =3D base;
-+
-+	/* CSI_B is active low */
-+	csi_b =3D devm_gpiod_get_optional(&pdev->dev, "csi", GPIOD_OUT_HIGH);
-+	if (IS_ERR(csi_b))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(csi_b),
-+				     "Failed to get CSI_B gpio\n");
-+
-+	/* RDWR_B is active low */
-+	rdwr_b =3D devm_gpiod_get_optional(&pdev->dev, "rdwr", GPIOD_OUT_HIGH);
-+	if (IS_ERR(rdwr_b))
-+		return dev_err_probe(&pdev->dev, PTR_ERR(rdwr_b),
-+				     "Failed to get RDWR_B gpio\n");
-+
-+	return xilinx_core_probe(&conf->core);
-+}
-+
-+static const struct of_device_id xlnx_selectmap_of_match[] =3D {
-+	{ .compatible =3D "xlnx,fpga-xc7s-selectmap", }, // Spartan-7
-+	{ .compatible =3D "xlnx,fpga-xc7a-selectmap", }, // Artix-7
-+	{ .compatible =3D "xlnx,fpga-xc7k-selectmap", }, // Kintex-7
-+	{ .compatible =3D "xlnx,fpga-xc7v-selectmap", }, // Virtex-7
-+	{},
-+};
-+MODULE_DEVICE_TABLE(of, xlnx_selectmap_of_match);
-+
-+static struct platform_driver xilinx_selectmap_driver =3D {
-+	.driver =3D {
-+		.name =3D "xilinx-selectmap",
-+		.of_match_table =3D xlnx_selectmap_of_match,
-+	},
-+	.probe  =3D xilinx_selectmap_probe,
-+};
-+
-+module_platform_driver(xilinx_selectmap_driver);
-+
-+MODULE_LICENSE("GPL");
-+MODULE_AUTHOR("Charles Perry <charles.perry@savoirfairelinux.com>");
-+MODULE_DESCRIPTION("Load Xilinx FPGA firmware over SelectMap");
---
-2.43.0
+Renesas Electronics
+Ph.D. Kuninori Morimoto
 
