@@ -1,118 +1,187 @@
-Return-Path: <devicetree+bounces-50619-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50620-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5671387C64A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 00:30:39 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C12187C689
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 00:39:48 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 883471C218AA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 23:30:38 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id CCA2D282C11
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 23:39:46 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3E51CFC15;
-	Thu, 14 Mar 2024 23:23:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EC7FA10798;
+	Thu, 14 Mar 2024 23:39:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="H6QikYBW"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sraa.de (sraa.de [85.214.240.192])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 490704F890;
-	Thu, 14 Mar 2024 23:23:44 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.240.192
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3B5EA11185;
+	Thu, 14 Mar 2024 23:39:42 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710458626; cv=none; b=bIbgmzwbmW51kFXyVKbjenO95FFoumsvNnV9DLMXwoFcD1unO8GvIhAI+w3lS6vqTfFGnxc3URBp6188EcseOmaylT32XCUxtOuoRe/mS43T9qnMrg/wjxvqvwM2gC+hD9Pg0ZGLsZK1y3Tg3yKB2lvqAyYMDl2MZ+PdDQZIBkw=
+	t=1710459584; cv=none; b=QpuFjHyQkISOst9mtxRX6paGihAvgWHjonQMzpHexvLq8BbumUypwDAHbVHZyjHYvv4s9h6dSwuRHb4WuRTzJXLCpOoGSUINEDIz/VqXUR41ty1cc0m6sJKOUfWvKYsVyRj2qNPs3mkD6CZZNVAonJaYK9OPkX4oo57mm8TopJ4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710458626; c=relaxed/simple;
-	bh=QCQRt6QFjp+EcBLspE+SST5PV3XYsmGPH97v7YTiZ4g=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=hf8ebnvHiSaLSUvXKtMlTmGye2chfoeijEfQ9ADhngyorp2FAYlHU/znDMkrrsB8+BW5iZ6IsG1MGN+5K8jbH0mbzxrmC200B/8usnyTj6niAeGWwiAPRHxntMb1/O1Vg1JLiKQT1u6DUdcJWJsOn/VEEwRL1AkufQqpWce2e9w=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sraa.de; spf=pass smtp.mailfrom=sraa.de; arc=none smtp.client-ip=85.214.240.192
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sraa.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sraa.de
-Received: from c-bda170d5.017-30-6c756e3.bbcust.telenor.se ([213.112.161.189] helo=probook)
-	by sraa.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <basti@sraa.de>)
-	id 1rkuQG-006Tj1-HP; Fri, 15 Mar 2024 00:23:40 +0100
-Date: Fri, 15 Mar 2024 00:23:38 +0100
-From: Sebastian Raase <basti@sraa.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Sebastian Raase <linux@sraa.de>, marijn.suijten@somainline.org, Bjorn
- Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>,
- Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski
- <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>,
- linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sdm630-nile: add pinctrl for camera
- key
-Message-ID: <20240315002338.3fe1dcfc@probook>
-In-Reply-To: <fc7bda50-279e-4afb-8c31-4fcda0e8b2ed@linaro.org>
-References: <20240314200037.549206-1-linux@sraa.de>
-	<fc7bda50-279e-4afb-8c31-4fcda0e8b2ed@linaro.org>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1710459584; c=relaxed/simple;
+	bh=5wJ0QPO5pEtrf+2wTjqJLoRgXaQfZ+wsh5hqDRQ/8oA=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=QgI7xFd/sTfaXNdUUbryiPbk9xCWAc8KYTCJRyOvKx7Kz8TDaLI/mFd+owR9lUt2IVkHTwgPSoYZWhBtj3ylrAmCVm/r3wVYfpoonuDMaPKn4p6kHspc3o25uOFE4OPcywEKlE3ib+2Sz+lUyPlberZWDlfe1RjQUxFUQ+K4hj8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=H6QikYBW; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42EMl74u024573;
+	Thu, 14 Mar 2024 23:39:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=fZYnzVj/nareEdnr5n/qOHTEyx46QdBEfBsFABzo1fA=; b=H6
+	QikYBWKWj6IQG01aF7Rx1sfqyKdcRB2/mSyobt/FK86CQyksQV/yc6C9MMhwCdRj
+	CQRZtUV2sUowdAJ08RbbLCII86M4XikxWXiCs1oaFsmJ2vVeU7/aTlfxeXYgtzRC
+	9vw5w7K4wuRTT1un8UIFlORH9IwtLQ8buYCxjezJA07d+HfxRImOZArhm0t/9tJ8
+	FlGnCSVXtzYFwqjtA8Mzh6L2Rk8FqF/9x4HeQy2wi3947CcU1zzt1GNc3ZhrRV5H
+	gRgowp8watjrGW1AsNKIByWkZtWhecWdlIF0Vj0ERh9Qvuv5tdiWdgiGdT4Wfv/B
+	zgZZNyzXngI08Ynmqngw==
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wv9yt03mm-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Mar 2024 23:39:34 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42ENdXGB003969
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Mar 2024 23:39:33 GMT
+Received: from [10.110.35.191] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 14 Mar
+ 2024 16:39:28 -0700
+Message-ID: <f638e848-36c5-4cea-c2c8-841a003b1863@quicinc.com>
+Date: Thu, 14 Mar 2024 16:39:26 -0700
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [RESEND v4 3/3] arm64: dts: qcom: sc7280: Add power-domains for
+ cpuidle states
+Content-Language: en-US
+To: Doug Anderson <dianders@chromium.org>,
+        Maulik Shah
+	<quic_mkshah@quicinc.com>
+CC: <andersson@kernel.org>, <ulf.hansson@linaro.org>, <swboyd@chromium.org>,
+        <wingers@google.com>, <daniel.lezcano@linaro.org>, <rafael@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <sudeep.holla@arm.com>,
+        <jwerner@chromium.org>, <quic_lsrao@quicinc.com>,
+        <quic_rjendra@quicinc.com>, <devicetree@vger.kernel.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        "Rob
+ Clark" <robdclark@chromium.org>
+References: <20230703085555.30285-1-quic_mkshah@quicinc.com>
+ <20230703085555.30285-4-quic_mkshah@quicinc.com>
+ <CAD=FV=XWH+Eoa9XjDns--NSDTZHeUwTdrX_r_QZhSPpbZNwz+w@mail.gmail.com>
+From: Abhinav Kumar <quic_abhinavk@quicinc.com>
+In-Reply-To: <CAD=FV=XWH+Eoa9XjDns--NSDTZHeUwTdrX_r_QZhSPpbZNwz+w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: F0EtSGQkIOWOteAUJFml1iye4a_kKci2
+X-Proofpoint-GUID: F0EtSGQkIOWOteAUJFml1iye4a_kKci2
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-14_13,2024-03-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1011
+ suspectscore=0 mlxlogscore=999 phishscore=0 priorityscore=1501
+ impostorscore=0 adultscore=0 lowpriorityscore=0 malwarescore=0 bulkscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403140001 definitions=main-2403140182
 
-Hi Krzysztof,
+Hi Doug
 
-On Thu, 14 Mar 2024 21:37:30 +0100
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 14/03/2024 21:00, Sebastian Raase wrote:
-> > Add pinctrl configuration for gpio-keys. Without this,
-> > camera button half-presses are not detected.
-> > 
-> > Tested on discovery and pioneer.
-> > 
-> > Fixes: e781633b6067 ("arm64: dts: qcom: Add support for Sony Xperia XA2/Plus/Ultra (Nile platform)")
-> > Signed-off-by: Sebastian Raase <linux@sraa.de>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 9 +++++++++
-> >  1 file changed, 9 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> > index 87d0293c728d..5eedca6f288f 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> > @@ -90,6 +90,8 @@ cam_vana_rear_vreg: cam-vana-rear-regulator {
-> >  
-> >  	gpio-keys {
-> >  		compatible = "gpio-keys";
-> > +		pinctrl-names = "default";
-> > +		pinctrl-0 = <&gpio_keys_default>;  
+On 3/14/2024 4:20 PM, Doug Anderson wrote:
+> Hi,
 > 
-> A nit: Please reverse the order: pinctrl-0 then names
-
-All existing pinctrl definitions use pinctrl-names first, so I followed the existing file. Is this still okay?
-
-> >  
-> >  		key-camera-focus {
-> >  			label = "Camera Focus";
-> > @@ -635,6 +637,13 @@ ts_lcd_id_active: ts-lcd-id-active-state {
-> >  		bias-disable;
-> >  	};
-> >  
-> > +	gpio_keys_default: gpio-keys-default {  
+> On Mon, Jul 3, 2023 at 1:56 AM Maulik Shah <quic_mkshah@quicinc.com> wrote:
+>>
+>> Add power-domains for cpuidle states to use psci os-initiated idle states.
+>>
+>> Cc: devicetree@vger.kernel.org
+>> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+>> Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sc7280.dtsi | 98 +++++++++++++++++++++-------
+>>   1 file changed, 73 insertions(+), 25 deletions(-)
 > 
-> Looks missing suffix (state) and test, so:
+> FWIW, I dug up an old sc7280-herobrine board to test some other change
+> and found it no longer booted. :( I bisected it and this is the change
+> that breaks it. Specifically, I can make mainline boot with:
 > 
-> It does not look like you tested the DTS against bindings. Please run
-> `make dtbs_check W=1` (see
-> Documentation/devicetree/bindings/writing-schema.rst or
-> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> for instructions).
+> git revert --no-edit db5d137e81bc # arm64: dts: qcom: sc7280: Update
+> domain-idle-states for cluster sleep
+> git revert --no-edit 7925ca85e956 # arm64: dts: qcom: sc7280: Add
+> power-domains for cpuidle states
+> 
 
-I did add the suffix and ran the test, and the warning is gone now. Sent an updated patch.
+We noticed that some variants of sc7280 herobrine boards didnt boot but 
+some did atleast till linux 6.8 rc-6. I have not tested linux 6.9 rc-1 yet.
 
-> Best regards,
-> Krzysztof
+We did not narrow down which change broke some of the boards, I can go 
+back and confirm if its this one next week.
 
-Best Regards,
-Sebastian
+> (I get an ath11k crash after that, but that's easy to hack out since I
+> don't need WiFi)
+> 
+
+hmm, wifi worked alright on 6.8 rc-6 for us.
+
+> I suppose the two options here are to either:
+> 
+> 1. Track the problem down and figure out why the breaks boot and then
+> fix it. I'm personally not going to track this down, but if someone
+> wants me to test a patch I can do that.
+> 
+
+Can Maulik help us do that?
+
+> 2. Delete all the herobrine dts files.
+> 
+> So far we've been keeping the herobrine dts files alive because I
+> thought some graphics folks (Rob, Abhinav, Jessica, for instance) were
+> still using it. ...but Rob says he hasn't booted his in a while. No
+> idea if Abhinav and Jessica are using theirs. Any opinions? Is
+> herobrine hardware support near and dear to anyone these days?
+> 
+
+Yes, so we have been using sc7280 herobrine devices even till the last 
+cycle and quite a bit of feature development was actually done on that.
+
+It was the only device having eDP other than sc8280xp till x1e80100 
+landed last cycle.
+
+I do want to start using sc8280xp as well because from the experience we 
+got, it has more visibility in terms of users. So that will address my 
+eDP concern.
+
+But, the nice thing about chromebooks is we really like to use them for 
+IGT development / CI debug as CrOS provides a nice environment to 
+cros-deploy IGT.
+
+We can continue to use sc7180 for IGT development but if we want to 
+debug issues with eDP + IGT, sc7280 is a really useful platform for that.
+
+sc8280xp or x1e80100 is not a CrOS supported device. So we will have to 
+develop and test IGT directly on the device (which is a bit of a pain) 
+unless someone has a better way of "cross-compilation" for IGT on 
+non-CrOS images.
+
+
+> 
+> -Doug
 
