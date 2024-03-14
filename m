@@ -1,145 +1,84 @@
-Return-Path: <devicetree+bounces-50555-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50556-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A27687C174
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 17:44:43 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AC05487C182
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 17:48:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F2D72813EA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 16:44:41 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5D56E1F21B93
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 16:48:37 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 108FA73533;
-	Thu, 14 Mar 2024 16:44:39 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PeTffSwR"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0A97474401;
+	Thu, 14 Mar 2024 16:48:32 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908D72E410;
-	Thu, 14 Mar 2024 16:44:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A656E73526;
+	Thu, 14 Mar 2024 16:48:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710434678; cv=none; b=uew5Lt+BOM0epkxUc2s2DNY7ApAeY9DCEgH/5+b2iiVXjikisnndV0jlSb17pdL3Jwyw9NC/XItAcPk83zwfG3OqVNBDmtYoSNCvOMgnoIlrfsJa7xpcqll55kpPDGfw3VP/qXmIxR7d7/nuGNAszZPG3wk5Amhm/unoUVneGg0=
+	t=1710434911; cv=none; b=dar3/4VHmzFARhQchgByWr69C3L6RzV4U9OF9x3HBrwlj5iVqCauaowMTI+BDgYClCR7H96GdX7ZS/9slZNf1t7tG+pEsjJ4kbI6/+nXjdArEUPF/azsqj//aaGWcH7r91skmQbb/7818+i/gjK6UlQERl9Nc6OHMQR9bE1ZCJg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710434678; c=relaxed/simple;
-	bh=X4ETqXGFr9Z6VXyiAGMaq+hLf7847MJEttp17fIvYFo=;
-	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
-	 In-Reply-To:Content-Type; b=bnAznqxMCM6E/J1dPuxcIQdXTbsXaKuAauJ4Ov34RmLeqF/+pE+qOKzbP7UBF6PlEY2UYRDg3AZxexEN+V4OAYnXs0jbI8PwpTqJVh/JS6dNKWUGo5ZftmPrl5sVLKXTHOBUsmp8OiOgXwix/g2BjXvB46N9RiEp6t02O9sC92Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PeTffSwR; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42EDerW3015388;
-	Thu, 14 Mar 2024 16:44:34 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	message-id:date:mime-version:subject:to:cc:references:from
-	:in-reply-to:content-type:content-transfer-encoding; s=
-	qcppdkim1; bh=Fam0GzRMfK4d846fCu3OJ3/SnO4PS61b4OFyJFtygKo=; b=Pe
-	TffSwR8V4J1WYv0G/OnO4Kxe/fMO/Kv3q5p3kO9kJH2057uY+BgqljKlcTjdggxQ
-	niAoE4HVHikugaMIR4Hmqec3/5APNoo8KOG6eNX28DCPA7Ikba9AynUmfGQcNewA
-	CR1i2W+XQh00DlmTI4bLbfvoZif0rHiVcD7lDo3+2IIN2UFg2FC2VPlDAUrGaIan
-	XEtu7C+5jSe8ey5BxVf5d/4hRFM58MYYVGHrvw2yVHeVUhRuCijavOQX4Bks4x8b
-	rQIQU7xK3lYKgP/RKO8DfYOZA6oJqkkfaPeumnoQK4aDn/nuXaJn27hXi6ejk3Wz
-	l/wZC74hsuhBXX1too+A==
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wuruqssgt-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Mar 2024 16:44:34 +0000 (GMT)
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42EGiXrP007125
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Mar 2024 16:44:33 GMT
-Received: from [10.216.10.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 14 Mar
- 2024 09:44:30 -0700
-Message-ID: <69a8c14c-109a-103a-b8dc-d8e303c0f0d5@quicinc.com>
-Date: Thu, 14 Mar 2024 22:13:59 +0530
+	s=arc-20240116; t=1710434911; c=relaxed/simple;
+	bh=61OWcJo8xpjNajI8IviQi0Oc5WE5ZxABZnArcdDNUDc=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=idMvywmrnq/zCYQ/wwVT+Zyyrbbxt8YIAkDCbSkrB5TYErYm3B78M9tW5Q3OYEzzUb20xvFEmnz2UCOqY4o1i8BpZ1yFAU+AbcPeC32sLvLI165tiaR/eC7KG9GtITxLQAGVOLm6dSUxBTQ2Er8Yog3OraOTzVQL3Wlz3UJNVgE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 067561007;
+	Thu, 14 Mar 2024 09:49:05 -0700 (PDT)
+Received: from pluto (unknown [172.31.20.19])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 698643F762;
+	Thu, 14 Mar 2024 09:48:26 -0700 (PDT)
+Date: Thu, 14 Mar 2024 16:48:24 +0000
+From: Cristian Marussi <cristian.marussi@arm.com>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Sascha Hauer <s.hauer@pengutronix.de>,
+	Pengutronix Kernel Team <kernel@pengutronix.de>,
+	Fabio Estevam <festevam@gmail.com>,
+	NXP Linux Team <linux-imx@nxp.com>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
+	AKASHI Takahiro <takahiro.akashi@linaro.org>,
+	Peng Fan <peng.fan@nxp.com>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v5 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
+ protocol basic support
+Message-ID: <ZfMqWP-t39SCvkA2@pluto>
+References: <20240314-pinctrl-scmi-v5-0-b19576e557f2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8450: Add qfprom node
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
-        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1709727995-19821-1-git-send-email-quic_mojha@quicinc.com>
- <1709727995-19821-2-git-send-email-quic_mojha@quicinc.com>
- <45fcf8fb-9d9b-4e6a-a7c5-9bfb96875e64@linaro.org>
-Content-Language: en-US
-From: Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <45fcf8fb-9d9b-4e6a-a7c5-9bfb96875e64@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: eaVKVTF6if1RSJV9Su-aFo1J_5aNZ2hr
-X-Proofpoint-GUID: eaVKVTF6if1RSJV9Su-aFo1J_5aNZ2hr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-14_13,2024-03-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- mlxlogscore=854 spamscore=0 adultscore=0 impostorscore=0 malwarescore=0
- priorityscore=1501 phishscore=0 suspectscore=0 mlxscore=0 bulkscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.19.0-2402120000 definitions=main-2403140126
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240314-pinctrl-scmi-v5-0-b19576e557f2@nxp.com>
 
-Sorry for the late reply, was on vacation.
-
-On 3/6/2024 9:24 PM, Konrad Dybcio wrote:
+On Thu, Mar 14, 2024 at 09:35:17PM +0800, Peng Fan (OSS) wrote:
+> Since SCMI 3.2 Spec is released, and this patchset has got R-b/T-b,
+> is it ok to land this patchset?
 > 
-> 
-> On 3/6/24 13:26, Mukesh Ojha wrote:
->> Add the qfprom node for sm8450 SoC.
->>
->> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi 
->> b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> index b86be34a912b..02089a388d03 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> @@ -4575,6 +4575,13 @@
->>               };
->>           };
->> +        qfprom: efuse@221c8000 {
->> +            compatible = "qcom,sm8450-qfprom", "qcom,qfprom";
->> +            reg = <0 0x221c8000 0 0x1000>;
-> 
-> Is is really only 0x1000-long? Also, is the base you put
-> here the ECC-corrected part (if that still exists)?
 
-No, its not.
+I'll have a look at this last version and a spin on my test setup.
 
-Entire fuse space is this.
-0x221C0000-0x221Cbfff
+...but has this V5 change at all since the Reviewed-by tags due to the
+latest spec changes ?
 
-ECC corrected range is this 0x221C2000-0x221C3fff and High level OS
-does have a access to ECC range however, they are not recommended for
-SW usage.
+...IOW does this V5 include the latest small bits spec-changes or those
+latest gpio-related spec-changes are just not needed at the level of the Linux
+pinctrl support as of now and can be added later on when a Linux gpio
+driver will be built on top of this ?
 
-Above mentioned SW range(4) in the patch is  one and only accessible 
-range available out of 0-7 SW ranges(0x221C4000-0x221Cbfff with each
-size 0x1000) and does not have ECC fuses.
-
-All the downstream use cases are getting fulfilled with this.
-
--Mukesh
-
-> 
-> Konrad
+Thanks,
+Cristian
 
