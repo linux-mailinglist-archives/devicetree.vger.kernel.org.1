@@ -1,158 +1,174 @@
-Return-Path: <devicetree+bounces-50478-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50479-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id B606887BCF3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:43:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DFCBB87BD05
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:50:44 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 44D981F21C57
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 12:43:30 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6B4BB1F2296D
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 12:50:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EE2E258100;
-	Thu, 14 Mar 2024 12:43:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 898A958AC5;
+	Thu, 14 Mar 2024 12:50:34 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="JE3MfMJH"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="krkfoaVp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from IND01-MAX-obe.outbound.protection.outlook.com (mail-maxind01olkn2056.outbound.protection.outlook.com [40.92.102.56])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0ED1A266A7
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 12:43:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.102.56
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710420205; cv=fail; b=Itl4IWNHzdNl4Sp94/kXAlyX4emgJm74VQROTThI3bXmtFToP4CwHuyvnmsJ2zY9rlOLmNUU14W1McCFMGvpvBJDPtmS/rX1/4nRoOB85o2hZfcqwqpoj2NveDbpfULArY/7pQAKYPbeD5R05ePwZivHb6V5vrrynVoOPcF2IPM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710420205; c=relaxed/simple;
-	bh=Alw+1HSjDzwV0vtUJGxBx49wZSaym+hs1rL95fEGNUo=;
-	h=Message-ID:Date:Subject:To:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=YIko+srgrhruFzDsql4dKygCZXtAsVTaH6eO9jrdS7ljcVw4x2gdTdDwYVdHh2/NV/ss/3CqYVOKK4HSXn0GPMCItmubF6ta49gyYm4k+b6sjsLvaO6AsNdsn3cBB6b92BdDoxnP4bTYWXgbSFyei1Z26ruMWKgQf0pz/lntG2U=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=JE3MfMJH; arc=fail smtp.client-ip=40.92.102.56
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VO9UAEvzEyrBdsfb/dDJ6QZ5FYG/Q9DtfyDaxofyqWcrja9czYcliuASlJCktP4QDfoQbtfwoIgj2XYWfRi54UHi9+4ycxchTyef2qAEIfxtYLujq+LqNHVtRiROuLF7oitM4M2+TbUfbVyZJKCW1tZsaowmw/gdBwUsvbbQmKcUkUCR/KOHS0s1jBOaD1aiE3CfGP3FDN6y3VfCwqLR9IlmrTShY57WhFUZ1+bQiwdiTkR2fJLzo6xzh783inbbJza1m0GNROjWBcE6SnLtMxmhPpP5tlPNr34P88vK61wB9+Dh7Oz7thlXj6ogszPGyRsJ14wa0vrswwQhz1ckEw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=KHwRG6fXRxioGNcbnrS19cZFgJoPXJdggfSsfQtlF1s=;
- b=jutJIHh86KtIKOPmzNjnY0WpaHKFtOI+oAmQzV/SxU47SEoVT3hQ3TN3LAaIJwnsfhXH1aceipKHW0tKZ41w5EB+bQlQMg/UAuyF0Hmdq9hUP3T50XrcLgzjczRZpvcP3AsKiLVc6HYXHAuooNIIP0mKflgfIS+AudH1BkFS68NrPlzogsw5SOUxk7NcoM1lVO0f3+w7AAXg27FuwvTNq7jTLkOdMqJym8RWVMHjc4n7mHsW3gW3t3DGuGAYdBqj9URhCK5FG3cmHE2SpKes/y3C+kX/NvOMhXE/+LfdHLBiw1e40Wqa+ILDtZRW1nwDg5Uyv3oTPjGvUQbV791Ifw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KHwRG6fXRxioGNcbnrS19cZFgJoPXJdggfSsfQtlF1s=;
- b=JE3MfMJH0rgA9MbJA9g2nEHCZmuRlWj+VCx+Fwx2QcRa6dcAB/6ifJXcojmHPjD/4oNnze3/XmMMUZVuHNMwrLUTAoGbHCORrhZl/lkam6RyMMnpFo3vgGBRBiMTnAExcsMvWFf7g6jxH0xPZ998MtTV6Jv6hyjlByWel7B3t2ba8qv0hAAYTSEClpbPjTLdRu2lIllI8oSZF3DbL57EI5gaO7YfTOQj38lwX3Z+fZM7plbw+yUow+ajphHtLZwbt0EgOKq4IzYPsVPvVFOR+T4/r+ykgmTSb87hl1Km+y184oJ3w62yaZhqw2i8LNQwXIPyN+Jrhp3pXzp8CKB+Cg==
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM (2603:1096:a01:138::5)
- by PN2P287MB0627.INDP287.PROD.OUTLOOK.COM (2603:1096:c01:15d::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.21; Thu, 14 Mar
- 2024 12:43:14 +0000
-Received: from MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::64a9:47d2:ce4e:b84a]) by MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- ([fe80::64a9:47d2:ce4e:b84a%4]) with mapi id 15.20.7386.017; Thu, 14 Mar 2024
- 12:43:14 +0000
-Message-ID:
- <MA0P287MB28229709A260ECC6348CADF6FE292@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM>
-Date: Thu, 14 Mar 2024 20:43:12 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: build error for sg2024 device-tree
-To: Ben Dooks <ben.dooks@codethink.co.uk>,
- linux-riscv <linux-riscv@lists.infradead.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor@kernel.org>,
- Device Tree list <devicetree@vger.kernel.org>
-References: <dc78535c-eab3-4501-9ecc-0464e90c9b54@codethink.co.uk>
-From: Chen Wang <unicorn_wang@outlook.com>
-In-Reply-To: <dc78535c-eab3-4501-9ecc-0464e90c9b54@codethink.co.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-TMN: [UtrNd26olxlgjrsOqdaKtdUDP1VpkHSs]
-X-ClientProxiedBy: SI2PR04CA0002.apcprd04.prod.outlook.com
- (2603:1096:4:197::17) To MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:138::5)
-X-Microsoft-Original-Message-ID:
- <79329cb1-7e3c-42ff-b558-bcd7b5f45de5@outlook.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id C4B5158AB8
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 12:50:32 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.169
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710420634; cv=none; b=V+M6dnSdFbNmHSHpDb07WbwcVdHCXVPdeShXQn9HLq8AACWxLe27JeXkbhuxC5X1EKYiHkTGAIsLkr5OV5neLRUOzmAC0KyfqPXPWvIZU0QStwuLrtfwGjIAG3Ph9eX8yys7hz6jlCEDGi0m6xj20DjWmLplLT3Nc81g2EtIkO8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710420634; c=relaxed/simple;
+	bh=SJYf0eYZHPK70nL/FMrYe0Mz5UbyrSCWCw2slFY0IME=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=m4pE0MJ+DRpcwyEGfuJar5iyiq0X1TfokxXjmSW7hoMKPC/EPdCSj2MFbyMuE2oRFR1Ki6I2MHKRXIqgQKAOwu80meb0ulg3svg6p0AMbI6MmtT1Lk8oX7O0B3+3OvMeaevGuF6yUMdo5Ctqmu0+OP2yvotLkxemfIjI/oebJ+M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=krkfoaVp; arc=none smtp.client-ip=209.85.128.169
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-609fb19ae76so10152217b3.2
+        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 05:50:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710420632; x=1711025432; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZghsaZNCzPLJdRj6WkVSNSS+VYpXaG51PVVgNZx+0NE=;
+        b=krkfoaVpzdmYYsbnyeydK+VkLipe+CHaD8ET3d2Mi9ggP24Ne0VbvsMtqlcK+588X9
+         tpAKtLzOGdv5Vwd3Y0HnG48iJvUE5IQ5DxHgJ6iwovZiqhBgBYrijU/WW+xAgOf7r6MA
+         Mkh16o3WzYVYgWQz9YflmaE76MEi2u5DnH4GpEQZHZsci6uJqbEyBTxbgKCK8eJ20EWt
+         xf84YNsNp5QUaXh58O7d0XIIHBAl82ggK3CG0TXUrmLJ+64jKbP4Ci0gLqdOy72q7ZdO
+         ktcTaJntXBKdryBWCuYJ14Z609btODBbCgL7dr+PdfHmRljnxKnlZS5iPjdRQ7nhw3Ds
+         D2Kg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710420632; x=1711025432;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZghsaZNCzPLJdRj6WkVSNSS+VYpXaG51PVVgNZx+0NE=;
+        b=tMGOKva12R1vjobcRXR6jbOz9NHMXeWIEziX26ymDEHdgOOmvwj2bxTsIxWoCLY5UE
+         I9uxYcXYJl/X0NNxnGIcr+ZagQnMpMLJ4xPtG1YPaAF1kNFbRsxJef3R4YDAUjgEl8gO
+         LPO8RBEzOrU+4FyWW/RXq73vNMxC9YM+W0GxNXa6GSgNkdeDu9N1cp1DIh4kaYtS7dSY
+         /scrjn1iLujQtv5zS7OKvfU//1vEWY+l+HCHChosBKuQ7HXTaX8jovyu853zLbGsljyH
+         hI8odSqH7dK8vKrTax2tAhuGfxvLEFwyv9p4YBf0MkBZZG5muInRtxGsaNPAlDQcSy35
+         oT1g==
+X-Forwarded-Encrypted: i=1; AJvYcCV25JyxoYEsYTTDXN8vTwvA8ugwTeiZHuLOKIOnSsXlusvbBVqkcVXNQ8vqLlRNc9a5ktDZaOv2y46FqYZfTlG369qXWCggTkT+iA==
+X-Gm-Message-State: AOJu0Yzi3pG09Lg5aeXe1cVLLnWIeLfCj540Yv/rjOre3lRi0zHuaMHu
+	PRw4/439qGhfMIpzeseK4tRjzMUGkbsWZ1ZBy5jcLgVN5227srUyPZyXaE2ECJ3XhRYSzMoQhbn
+	hh/Aik+lJRvuJT2u5oxdXqGXrW/0rHJnRVPmmZQ==
+X-Google-Smtp-Source: AGHT+IG97gsKZcgBw8yoxoOH6iJ/zmZNBipww7VBkc48blNZ1mkCDF00bj7wxIeufwiUJrD7H0JBt/u8CbJO2ltmMQE=
+X-Received: by 2002:a0d:ea16:0:b0:609:fc2c:4d8c with SMTP id
+ t22-20020a0dea16000000b00609fc2c4d8cmr632942ywe.28.1710420631754; Thu, 14 Mar
+ 2024 05:50:31 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MA0P287MB2822:EE_|PN2P287MB0627:EE_
-X-MS-Office365-Filtering-Correlation-Id: e42161fa-2b3d-46c7-6306-08dc4424509c
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	zP03ZOwJNzDf8PkEN7O/GIhg4pCS8y1Z7JDcwA4BYdTcx0aeNZEpKtiF6G6vX+LfL1Ck9cAus0Rfc7gpFJIrKFNYhu7HOEB5UjKm0lRWynpIkdSRk7E3sQvbWETD9X6cAt67J8reWHz8/Pon2/JIboX9sEgLztLuG6XtteJ7K2zM+2M+pafDEWtv8M9GvRFzrUSQYa882vWJ8fv7ua8clSUABn1rOzCNBXFzprJuex8WyIJrJ55U0stG/PcZLiVqWstFtNVrZnTxif5jbXyk/JE+lT0qqY719MTHdB65ksDEc09wyox77j6tdtV9cQ3VyZ0AIWLMLjrOpUg05Y5nrdXW1MNPZNN7C+71XpsbY1L+ikthCPaXthqvIsQ1iLaREpEl3rNloi/LOQXgcg/pfK+sUrWHATI1PCuatx1HiYRj66QeJwrWvyRod+Pr092W7+c97Zjd/dH2OV+MGuqBUmFDIZdFUZinUiVJmvOWzYaA1EZeJ4oiEjAUrpFQp268Kr0G+1fJ470L1fGw8L3K5zWhWLh3ppk772eN6lfHIohviOPym6yLbtiF04OSa6BClI6mWX+hWG/x5aNPmLKnrkjpG4rA6EGLFcmgmnvFAqdAjNJPxRTfQc1Vb9W7b3hgyAuCPYMLXW9QZWbz9Qzp4APN02nE9SDPBCvlYYTC8II=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?T0VxdDZKZFVLblk1NnVzTFk0cVlFOWlLYWE5dVp1VEZwaFpUZGUrc290MUtx?=
- =?utf-8?B?bExKL0xaQVlNT0JUMHd2bEZQRFNmSVp3YzMzbURFaWxHUFVoUWtUVkYreGxq?=
- =?utf-8?B?RVBXUDVtZzZEc0lydDlOYWVyK2NIQlBWWDBYZGtPNDkzakRJV1lMbzFwdGtt?=
- =?utf-8?B?Ny9hRlRmL1pXSXE5QlkzaWlZdlBFWXVYWXNzdzExS0o4VFdrbXJOTFJuTEZm?=
- =?utf-8?B?SmVvMzBIcFZwZE9xQ3Y1T21uNEtReWFQTUM3VmpBcnFjbDg0a21lUHZYaXQ1?=
- =?utf-8?B?UHdYU1NaWjNIM2k1QWVFYk1GaVdpdDVhRjlMZlZWcVZCQnRzWStsMm8vY1Ev?=
- =?utf-8?B?dmVlSUswaTdCUmh5SzFYZXBFMVE5S2dLT0c1RG1oanhMTU1WK3BjTWtHOU9x?=
- =?utf-8?B?RjZKRTBISklJbEs1STBKc1RObjZLUXNWQWwrTlJhWEJBd1MwNFltanRWSDJ3?=
- =?utf-8?B?NkhrZmFZY09LclViRDE3NndTVzdqUUhpelBpVWRKM0x1bXB4ZWUvcU9WMng1?=
- =?utf-8?B?R0pzTVZ3cGEvSUgrdG9relNxeW02c1BMbEdSSmpjSmsraVFGaWdlR0hETytq?=
- =?utf-8?B?S0FyY21zU0djVFpNWUx3VDU5bGtteFE4TkY1S3d2dm05bGN6cW1FMVZIMnA1?=
- =?utf-8?B?dXpvUVp4ZnJveUVudlNzS292c3Z0SXk2dm5xdnJXbHovVkkvN2VocFg3NkQy?=
- =?utf-8?B?SUZVUXpqdGdISmhZeFFPdS9PUHJUT25XRUdvdUxGbVRsVi9hQ1dEMGlyQXdt?=
- =?utf-8?B?c3p5NVdTclkvM0NKMDlJZkhrRG4wWWtNZDZ5RjJDbjFYcW1PSkxnWnl2MVlF?=
- =?utf-8?B?OVJOREJZUE5pYWI3L3lTdythNkVjUW1DYmN2UG1tUVlJdllYNUowMElQMit5?=
- =?utf-8?B?SGtUN0RFN0dmN1E3MTZraUROekRacEg4c29KRU1ZcjlXRi9DTlhWMUJEZEVY?=
- =?utf-8?B?eEwzTkxwRVlTdVk5MnN1NjlZbVk1VXoyaFZpekVLNTdiczl5dXpwTzFkdmpm?=
- =?utf-8?B?THphYy9DVnVyZldjb2svU0Vsb2M1VWRtS0VqVDBaakVubUI5YkhUTDRJcHdz?=
- =?utf-8?B?eVd1a2xZaUMrN3IxK245aGhqak5qTWtlVDRYS2dCdnVKUm0vbXNobGc5MGlG?=
- =?utf-8?B?WVpKdGFqbXdHRDJPMGVOZU9kbUZBQlQxbGFVYWp3cVU5OGFuSnNYUjljeDJt?=
- =?utf-8?B?RFF1dGZGaUtSSFR1MnZKMDM4OHppWjcrS1FTeXpLSWVkYWphbnhUUkk3TmdM?=
- =?utf-8?B?YWoxSjlncCtQdEIvL014blVqR0dPTjdDdTBVSHFTNFpEQ01QNjVDYWFsa3JZ?=
- =?utf-8?B?TzNMY1FZc2QxTHJYcldDdk5UNUl6VmpkRVUyZjhOZU80WHoxYURZbmo0R214?=
- =?utf-8?B?YzdqMkRvbktEMWMrTjJJVkI2ZHZXa1FBN3hBRXh2STl1d0pPZG9xRTAzd0FQ?=
- =?utf-8?B?MGpBVjRxekVaMFRoemFCU0Nlb1h5VmZpc0duRkxCcjNiYk1TYldZNjhVc2NQ?=
- =?utf-8?B?UnJOaE1sSUNJUDlKd09OVVFPSmxMNTl4S0ZIR0hOcHdrUXBKbGpJUEErVngy?=
- =?utf-8?B?WFpzcFpTanRKeFk1TG5COUdRWXpMLzdzMXMrODF2aE1ScEhoa1g4bzdobDls?=
- =?utf-8?B?eFNmT2RpaVRJYU1Cd3JoaTAwa2RIUlYxajk0YUpzMzllSGtzTllvY2ZkSzJz?=
- =?utf-8?Q?jBt7pglXLP9n6m291AoR?=
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e42161fa-2b3d-46c7-6306-08dc4424509c
-X-MS-Exchange-CrossTenant-AuthSource: MA0P287MB2822.INDP287.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2024 12:43:14.4537
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
-	00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PN2P287MB0627
+References: <20240313-videocc-sm8150-dt-node-v1-0-ae8ec3c822c2@quicinc.com>
+ <20240313-videocc-sm8150-dt-node-v1-3-ae8ec3c822c2@quicinc.com>
+ <CAA8EJprrrSTLBoLGMSJw3g9BEcL6y+To1tr65b+AzNz01MgjTg@mail.gmail.com> <1a2a7d7d-ed67-1c90-d3d1-4529dc07effa@quicinc.com>
+In-Reply-To: <1a2a7d7d-ed67-1c90-d3d1-4529dc07effa@quicinc.com>
+From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date: Thu, 14 Mar 2024 14:50:20 +0200
+Message-ID: <CAA8EJpqFzwd1AN7Pt1oy6WQ86P9LEWnfEszBdvK_gaDq_KeFWQ@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8150: Add video clock controller node
+To: "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>
+Cc: Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konrad.dybcio@linaro.org>, 
+	Rob Herring <robh@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+	Conor Dooley <conor+dt@kernel.org>, Michael Turquette <mturquette@baylibre.com>, 
+	Stephen Boyd <sboyd@kernel.org>, Ajit Pandey <quic_ajipan@quicinc.com>, 
+	Imran Shaik <quic_imrashai@quicinc.com>, Taniya Das <quic_tdas@quicinc.com>, 
+	Jagadeesh Kona <quic_jkona@quicinc.com>, linux-arm-msm@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	linux-clk@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 
-FYI: 
-https://lore.kernel.org/linux-riscv/MA0P287MB282228A94119642979A035C7FE292@MA0P287MB2822.INDP287.PROD.OUTLOOK.COM/
+On Thu, 14 Mar 2024 at 11:14, Satya Priya Kakitapalli (Temp)
+<quic_skakitap@quicinc.com> wrote:
+>
+>
+> On 3/14/2024 12:46 AM, Dmitry Baryshkov wrote:
+> > On Wed, 13 Mar 2024 at 13:11, Satya Priya Kakitapalli
+> > <quic_skakitap@quicinc.com> wrote:
+> >> Add device node for video clock controller on Qualcomm
+> >> SM8150 platform.
+> >>
+> >> Signed-off-by: Satya Priya Kakitapalli <quic_skakitap@quicinc.com>
+> >> ---
+> >>   arch/arm64/boot/dts/qcom/sa8155p.dtsi |  4 ++++
+> >>   arch/arm64/boot/dts/qcom/sm8150.dtsi  | 13 +++++++++++++
+> >>   2 files changed, 17 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/sa8155p.dtsi b/arch/arm64/boot/dts/qcom/sa8155p.dtsi
+> >> index ffb7ab695213..9e70effc72e1 100644
+> >> --- a/arch/arm64/boot/dts/qcom/sa8155p.dtsi
+> >> +++ b/arch/arm64/boot/dts/qcom/sa8155p.dtsi
+> >> @@ -38,3 +38,7 @@ &rpmhpd {
+> >>           */
+> >>          compatible = "qcom,sa8155p-rpmhpd";
+> >>   };
+> >> +
+> >> +&videocc {
+> >> +       power-domains = <&rpmhpd SA8155P_CX>;
+> >> +};
+> >> diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> >> index a35c0852b5a1..6573c907d7e2 100644
+> >> --- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> >> +++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+> >> @@ -14,6 +14,7 @@
+> >>   #include <dt-bindings/clock/qcom,dispcc-sm8150.h>
+> >>   #include <dt-bindings/clock/qcom,gcc-sm8150.h>
+> >>   #include <dt-bindings/clock/qcom,gpucc-sm8150.h>
+> >> +#include <dt-bindings/clock/qcom,videocc-sm8150.h>
+> >>   #include <dt-bindings/interconnect/qcom,osm-l3.h>
+> >>   #include <dt-bindings/interconnect/qcom,sm8150.h>
+> >>   #include <dt-bindings/thermal/thermal.h>
+> >> @@ -3715,6 +3716,18 @@ usb_2_dwc3: usb@a800000 {
+> >>                          };
+> >>                  };
+> >>
+> >> +               videocc: clock-controller@ab00000 {
+> >> +                       compatible = "qcom,sm8150-videocc";
+> >> +                       reg = <0 0x0ab00000 0 0x10000>;
+> >> +                       clocks = <&rpmhcc RPMH_CXO_CLK>,
+> >> +                                <&gcc GCC_VIDEO_AHB_CLK>;
+> >> +                       power-domains = <&rpmhpd SM8150_MMCX>;
+> >> +                       required-opps = <&rpmhpd_opp_low_svs>;
+> > Should not be necessary anymore.
+>
+>
+> Whenever the rail is turned on, we want to keep it in low_svs state
+> instead of retention, hence added this property , please let me know why
+> you think it is not needed?
 
-On 2024/3/14 17:47, Ben Dooks wrote:
-> Building the current linux kernel I'm getting:
+See https://lore.kernel.org/linux-arm-msm/20240226-rpmhpd-enable-corner-fix-v1-1-68c004cec48c@quicinc.com/
+
 >
->>   DTC arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dtb
->> In file included from 
->> arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dts:6:
->> arch/riscv/boot/dts/sophgo/sg2042.dtsi:9:10: fatal error: 
->> dt-bindings/reset/sophgo,sg2042-reset.h: No such file or directory
->>     9 | #include <dt-bindings/reset/sophgo,sg2042-reset.h>
->>       |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> compilation terminated.
->> make[5]: *** [scripts/Makefile.lib:421: 
->> arch/riscv/boot/dts/sophgo/sg2042-milkv-pioneer.dtb] Error 1
->> make[4]: *** [scripts/Makefile.build:481: arch/riscv/boot/dts/sophgo] 
->> Error 2
->> make[3]: *** [scripts/Makefile.build:481: arch/riscv/boot/dts] Error 2
->> make[2]: *** [scripts/Makefile.build:481: arch/riscv] Error 2
 >
-> Config is attached, but looks like something is either missing or not 
-> merged from another tree.
->
+> >> +                       #clock-cells = <1>;
+> >> +                       #reset-cells = <1>;
+> >> +                       #power-domain-cells = <1>;
+> >> +               };
+> >> +
+> >>                  camnoc_virt: interconnect@ac00000 {
+> >>                          compatible = "qcom,sm8150-camnoc-virt";
+> >>                          reg = <0 0x0ac00000 0 0x1000>;
+> >>
+> >> --
+> >> 2.25.1
+> >>
+> >>
+> >
+
+
+
+-- 
+With best wishes
+Dmitry
 
