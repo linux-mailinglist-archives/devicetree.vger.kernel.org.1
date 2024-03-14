@@ -1,182 +1,353 @@
-Return-Path: <devicetree+bounces-50409-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50410-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id C60E787B961
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:36:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id EB18C87B998
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:49:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0DD962830C9
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 08:36:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 1A4F31C21971
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 08:49:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E10776BB45;
-	Thu, 14 Mar 2024 08:36:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="h76hchDn"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7665C6BB4C;
+	Thu, 14 Mar 2024 08:47:00 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f41.google.com (mail-lf1-f41.google.com [209.85.167.41])
+Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 005146AF85
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 08:36:14 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5B219EEC4;
+	Thu, 14 Mar 2024 08:46:58 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710405376; cv=none; b=A6nsP9KoHMqyeKfT9+Um16X3G2z/eFm279IlX/5TWLHJ0H05cTVZov+PoGlkP8WSc0PIN2xm/Ck+eW4639xb/8tzM+EYVDH9r6hJgtvhn7SDTIhd73+/pL/eFt9ZDguOmwd9g9QNzPIQpFRJUVsVMLe0hz6JvygT0LzXMUYBrs0=
+	t=1710406020; cv=none; b=g1CG9dKytOfL65yrvVDPjCIQubTCmxan3HqNGY2nWout6pYpVT35PZodvPnfF53xPtloUVZG4nJbB5CJbdpBwxakd0JhlVbYM8rwdxURNmFz8Ifdk6X0EaSaShU9EboMApbXipiahYg5d5tsFBxZMpIuxnQ21rw1/YLRG/CMamQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710405376; c=relaxed/simple;
-	bh=fjbWlaQOikwKMnwZOz8/d8vqFrfC7KHDtintYgjI3K0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QEAOm/odypT26Fk/jQyWLJJPYadgilyTuIrUQZgypj8yw8nO/vH3umT3FdWA/9Mh1ohjE3BU9MinGcUeD6+Sv1UkiDOYqziNexXqeSStVx4SF0B7cNoBejtkcdPXOWMhOggs/7Oj5PglnT71vQVIo/hv33K3Rt+G5A8fMDAEnNQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=h76hchDn; arc=none smtp.client-ip=209.85.167.41
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-512f54fc2dbso740504e87.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 01:36:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710405373; x=1711010173; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hj/WaHxD/qNMmrcRTKT2ci5bqw6SYan4groqkVU9P0E=;
-        b=h76hchDnBKjjXkxRbAf1ymo1yYHVSGX/vE5MYuYOw/LniQcDQCsHBv5h9OvllF71Yq
-         NwsveUquZ3Lz2pJ+58CjYnVtCVsXJSYEJbgbk/DKKR2EEWdbTEteLP2QwXkfyL8CQLmv
-         sbXVxkEhyEZsst7mAocG1EI/ziw8bjZQhSF6UKUfZN+x8vOdq4PvD/+xYiOvtnVN5qFG
-         VKwdo2i3UmB/dKfeUgwdN95BuQEt00ML0u4WzwcF6wVvJq7MqEXJVG1IAtGMd3EqAwJG
-         MdQYvJVMTtNQKUu/PD3flCkCgfbLfJwdW9A/Ze+S/Cfx6IDENUPFLRLLd0edcUQET22G
-         6KLg==
+	s=arc-20240116; t=1710406020; c=relaxed/simple;
+	bh=mKnXsAYI/ss6So+dYUUb9dxOs5fiv9fvLAbLCbmFzQ4=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=FjC46u83R250HqErQY8Ly90MPTWOIFWldBjQgbAH7TXkDvEegRzghHtSvBfYTMY6utm8Zk6X+3FTNDM4oRkNXdwsP6n3KjDRffNxLcxDx/4wx5YNoJJRxOUf3HSCHZCdW0kP2m8hTCOsDazDPOO4rwG4d2yRxtczw9hoclP/5Bs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-60cbcd04de8so5725167b3.0;
+        Thu, 14 Mar 2024 01:46:58 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710405373; x=1711010173;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hj/WaHxD/qNMmrcRTKT2ci5bqw6SYan4groqkVU9P0E=;
-        b=nPKhrTucVQCnfFrP3ynJs6I13DqQOH0eJGZZp6idRbTbxOi3/vlBS3wouxir+1eiov
-         X0Jq0Mm3gdJvrzFlYJconsy48ZMRMLoWoTDnwh7g0WTZzmbB62MvllndwkaZUqaj4tpF
-         v9etfD4KhOYWfQGveeptjDJsrbUZ2Cxte/XkdVm+7ojruv6r9rU8Su46zs79nMvzHDUb
-         5eI7CKI50mGYTxEWmhBNwQ1mDBShZGn+gd/JJH5XUOlK2Q+nMwOe76dXM+/rvD4nStk0
-         I5Qp7+DbYOxgShwoTB2qvg97qQyeUI2eeTUvPU9ZHcEBIvo7+bb0dqJgbtI0V1tnMqZk
-         u9yQ==
-X-Forwarded-Encrypted: i=1; AJvYcCX8YXG5M3qal+mu7mUxZ/lxZ+S4vj1vaqwQ0cWcrx0LhcMyEiCiu5RYDECVhqrAyxU6A3Fqv/z0CVJV3vp0yS91N9UzbMLaVVIg4Q==
-X-Gm-Message-State: AOJu0YxAHXTldvkVUPUluvM1YS2BhKf8SZdXQQw1wpQU7JDJ86VhpQGA
-	8NwGuLVwN5dExN8bTRDZeM9HNzv+pN5nDgz5f3jp8ZQDjokgR3AxqWBCYqLpmeY=
-X-Google-Smtp-Source: AGHT+IHg2phWpA6wr0Ec2JY5vMTzDKNCDe3uQE5/b2ulf3w4ZnDGpniqfyMBM8L5ZJNhTuBmWoDrLg==
-X-Received: by 2002:a19:ae17:0:b0:513:cd2e:ceb1 with SMTP id f23-20020a19ae17000000b00513cd2eceb1mr619712lfc.48.1710405373003;
-        Thu, 14 Mar 2024 01:36:13 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id n23-20020a05600c3b9700b00412d4c8b743sm1709942wms.30.2024.03.14.01.36.09
+        d=1e100.net; s=20230601; t=1710406016; x=1711010816;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QLvvkZZSnU/+qpYBQ9xpyqIF6dQN8CEsk8TVZPYIpAY=;
+        b=oiXyVIhTOT+EGV4cgoURN2h1E09axt8b2aj9WQCUCmOUlUvD6h5/u/n4wbXs1hArxA
+         11bM+ZC0ri+93++JID4DjxOBhln+LfuoXbyusReClOiuGFBU/8nSzzPKxqRnb53Fue4J
+         KvvdF1z0hYAUTGlRinAa9ooQVWW95K2kvndIvLxuCxpPYsooRKaCZBWG/sCzBp22zJqG
+         mmvkFjA+emrkzr74FbTuzhHXxEWOQpc/7xmjHWLldWq0WQbRBcc2KtynrXrcRTwOL/Bx
+         nxcO0xJ44rH89oqRO7+O4V+RS2rrR7fVc0YpnB5zM9zsGz9HTskQbXt5afylyCEIkgrm
+         ZxQg==
+X-Forwarded-Encrypted: i=1; AJvYcCW5EHBCM6Rl3MzVdjTvGXqHS6Piz7A/ex9SgYc1l+VBpv2vpsgNAPqIO2Bt+05sEmgfuDzWlHn5gHshG30/iojKtuwFCMmMuIapygSmNRMOf34pEuM+N6/hRIhayfxmyahznbC6psfGYA==
+X-Gm-Message-State: AOJu0YwP2ESNsbGGsixc2DWKOKHfvaxRsCNng9SjGl8ZojUWUaOdvSJg
+	VKN3Ln4d7zGKkayUJHAhSrmdRpMwL/V0Q9lgg9ltHPfp7hLQRVRHK9JpUW+As1o=
+X-Google-Smtp-Source: AGHT+IEbkSEuxdj2jhI+pcLJtEiouubeYMGB423cDYGnYQHsR3x1tEXlPjPuHtWo1Cg5pJD/GtbKNA==
+X-Received: by 2002:a81:c849:0:b0:60a:4cba:ada1 with SMTP id k9-20020a81c849000000b0060a4cbaada1mr3570104ywl.7.1710406016273;
+        Thu, 14 Mar 2024 01:46:56 -0700 (PDT)
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com. [209.85.128.177])
+        by smtp.gmail.com with ESMTPSA id h194-20020a816ccb000000b00609f3bbec15sm186532ywc.110.2024.03.14.01.46.55
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Mar 2024 01:36:12 -0700 (PDT)
-Message-ID: <75fd6970-f3a0-4eec-957c-3d8f6a553e0f@linaro.org>
-Date: Thu, 14 Mar 2024 09:36:08 +0100
+        Thu, 14 Mar 2024 01:46:55 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-60a0a54869bso6650177b3.1;
+        Thu, 14 Mar 2024 01:46:55 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCUrgbgPyxJQvenh2j6OZKYhvFxsENZHWD3AWYXBcaYzn5hMTzAMe4sTvcV3DTlrALOim/X+dYusg9paIT3U4CobWZCTaaugqm3+J0qZrhz/zgEIjH8nMKGCe0qQXsSDhWha7ZyMFsRPdg==
+X-Received: by 2002:a81:ac5b:0:b0:60a:181f:16d8 with SMTP id
+ z27-20020a81ac5b000000b0060a181f16d8mr3334352ywj.5.1710406015279; Thu, 14 Mar
+ 2024 01:46:55 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/3] dt-bindings: iio: adc: Add support for QCOM PMIC5
- Gen3 ADC
-Content-Language: en-US
-To: Jishnu Prakash <quic_jprakash@quicinc.com>, jic23@kernel.org,
- robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- andersson@kernel.org, konrad.dybcio@linaro.org, lee@kernel.org,
- andriy.shevchenko@linux.intel.com, daniel.lezcano@linaro.org,
- dmitry.baryshkov@linaro.org
-Cc: lars@metafoo.de, luca@z3ntu.xyz, marijn.suijten@somainline.org,
- agross@kernel.org, sboyd@kernel.org, rafael@kernel.org, rui.zhang@intel.com,
- lukasz.luba@arm.com, linus.walleij@linaro.org, quic_subbaram@quicinc.com,
- quic_collinsd@quicinc.com, quic_amelende@quicinc.com,
- quic_kamalw@quicinc.com, kernel@quicinc.com, linux-kernel@vger.kernel.org,
- linux-arm-msm@vger.kernel.org, linux-arm-msm-owner@vger.kernel.org,
- linux-iio@vger.kernel.org, linux-pm@vger.kernel.org,
- devicetree@vger.kernel.org, cros-qcom-dts-watchers@chromium.org
-References: <20231231171237.3322376-1-quic_jprakash@quicinc.com>
- <20231231171237.3322376-3-quic_jprakash@quicinc.com>
- <3f812ffa-ec33-448e-b72a-ce698618a8c1@linaro.org>
- <13f2b558-a50d-44d3-85de-38e230212732@quicinc.com>
- <f52b2d5e-b2b4-48ae-a6a6-fc00c89662d2@linaro.org>
- <0b9e807d-e0ca-411c-9a2b-3d804bdf168c@quicinc.com>
- <d3dc9a41-4738-4634-9a98-fefcf418f552@linaro.org>
- <1537d42f-fe61-48c2-9ee2-1066db71a19e@quicinc.com>
-From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
- 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
- D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <1537d42f-fe61-48c2-9ee2-1066db71a19e@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+References: <20240224052436.3552333-1-saravanak@google.com>
+ <CAMuHMdWhm1WaX3X3P7tyB+e-rX=iwkwm8LxE3=gfHzJ1umhsFg@mail.gmail.com> <CAGETcx_g5fdeSibDv8C2S4WpVekMvCQ9srwR3BwCzCU2z3kk-g@mail.gmail.com>
+In-Reply-To: <CAGETcx_g5fdeSibDv8C2S4WpVekMvCQ9srwR3BwCzCU2z3kk-g@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Thu, 14 Mar 2024 09:46:43 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdV-P9nt1htpn-+jicUMA_JsOpf6mszajP9qORNweicLLw@mail.gmail.com>
+Message-ID: <CAMuHMdV-P9nt1htpn-+jicUMA_JsOpf6mszajP9qORNweicLLw@mail.gmail.com>
+Subject: Re: [PATCH] of: property: fw_devlink: Fix stupid bug in
+ remote-endpoint parsing
+To: Saravana Kannan <saravanak@google.com>
+Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	=?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, kernel-team@android.com, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 14/03/2024 09:28, Jishnu Prakash wrote:
-> 
-> followed by updating maxItems back to 1 for all the earlier existing 
-> compatibles, using if:then: conditions, like the below example?
-> 
->    - if:
->        properties:
->          compatible:
->            contains:
->              const: qcom,spmi-adc5
-> 
->      then:
->        properties:
->          reg:
->            maxItems: 1
->          interrupts:
->            maxItems: 1
-> 
-> 
-> If this is acceptable, I'll add ADC5 Gen3 bindings in the same file with 
-> changes like the above, else I'll add them in a new file after first 
-> creating a common schema file as you suggested.
+Hi Saravana,
 
-Please refer to existing files how it is done:
-https://elixir.bootlin.com/linux/v6.8/source/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml#L132
+On Thu, Mar 14, 2024 at 2:48=E2=80=AFAM Saravana Kannan <saravanak@google.c=
+om> wrote:
+> On Thu, Feb 29, 2024 at 2:11=E2=80=AFAM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> > On Sat, Feb 24, 2024 at 6:25=E2=80=AFAM Saravana Kannan <saravanak@goog=
+le.com> wrote:
+> > > Introduced a stupid bug in commit 782bfd03c3ae ("of: property: Improv=
+e
+> > > finding the supplier of a remote-endpoint property") due to a last mi=
+nute
+> > > incorrect edit of "index !=3D0" into "!index". This patch fixes it to=
+ be
+> > > "index > 0" to match the comment right next to it.
+> > >
+> > > Reported-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > > Link: https://lore.kernel.org/lkml/20240223171849.10f9901d@booty/
+> > > Fixes: 782bfd03c3ae ("of: property: Improve finding the supplier of a=
+ remote-endpoint property")
+> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> >
+> > Thanks for your patch!
+> >
+> > > --- a/drivers/of/property.c
+> > > +++ b/drivers/of/property.c
+> > > @@ -1304,7 +1304,7 @@ static struct device_node *parse_remote_endpoin=
+t(struct device_node *np,
+> > >                                                  int index)
+> > >  {
+> > >         /* Return NULL for index > 0 to signify end of remote-endpoin=
+ts. */
+> > > -       if (!index || strcmp(prop_name, "remote-endpoint"))
+> > > +       if (index > 0 || strcmp(prop_name, "remote-endpoint"))
+> > >                 return NULL;
+> > >
+> > >         return of_graph_get_remote_port_parent(np);
+> > > --
+> > > 2.44.0.rc0.258.g7320e95886-goog
+> >
+> > After this, the "Fixed dependency cycle" messages I reported to be
+> > gone in [1] are back.
+> >
+> > In fact, they are slightly different, and there are now even more of th=
+em:
+> >
+> > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef7000/ports/port@1/endpoint@0
+> > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef6000/ports/port@1/endpoint@0
+> > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef5000/ports/port@1/endpoint@0
+> > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef4000/ports/port@1/endpoint@0
+> > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef3000/ports/port@1/endpoint@0
+> > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef2000/ports/port@1/endpoint@0
+> > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef1000/ports/port@1/endpoint@0
+> > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef0000/ports/port@1/endpoint@0
+> > -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef3000/ports/port@1/endpoint@2
+> > -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef2000/ports/port@1/endpoint@2
+> > -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef1000/ports/port@1/endpoint@2
+> > -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > /soc/video@e6ef0000/ports/port@1/endpoint@2
+> > -platform fead0000.hdmi: Fixed dependency cycle(s) with
+> > /soc/sound@ec500000/ports/port@1/endpoint
+> > -platform feae0000.hdmi: Fixed dependency cycle(s) with
+> > /soc/sound@ec500000/ports/port@2/endpoint
+> > -platform feb00000.display: Fixed dependency cycle(s) with
+> > /soc/hdmi@feae0000/ports/port@0/endpoint
+> > -platform feb00000.display: Fixed dependency cycle(s) with
+> > /soc/hdmi@fead0000/ports/port@0/endpoint
+> > -platform hdmi0-out: Fixed dependency cycle(s) with
+> > /soc/hdmi@fead0000/ports/port@1/endpoint
+> > -platform hdmi1-out: Fixed dependency cycle(s) with
+> > /soc/hdmi@feae0000/ports/port@1/endpoint
+> > -platform vga-encoder: Fixed dependency cycle(s) with /vga/port/endpoin=
+t
+> > -platform vga-encoder: Fixed dependency cycle(s) with
+> > /soc/display@feb00000/ports/port@0/endpoint
+> > +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@feaa=
+0000
+> > +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@feaa=
+0000
+> > +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@feaa=
+0000
+> > +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@feaa=
+0000
+> > +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef4000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef5000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef6000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef7000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@feae=
+0000
+> > +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@fead=
+0000
+> > +platform ec500000.sound: Fixed dependency cycle(s) with
+> > /soc/i2c@e6510000/codec@10
+> > +platform e6ef7000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef6000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef5000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef4000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@fea8=
+0000
+> > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+7000
+> > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+6000
+> > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+5000
+> > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+4000
+> > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+3000
+> > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+2000
+> > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+1000
+> > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+0000
+> > +platform fea80000.csi2: Fixed dependency cycle(s) with
+> > /soc/i2c@e66d8000/video-receiver@70
+> > +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@feaa=
+0000
+> > +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@feaa=
+0000
+> > +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@feaa=
+0000
+> > +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@feaa=
+0000
+> > +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+3000
+> > +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+2000
+> > +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+1000
+> > +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6ef=
+0000
+> > +platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > /soc/i2c@e66d8000/video-receiver@70
+> > +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@fead=
+0000
+> > +platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/sound@ec50=
+0000
+> > +platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/display@fe=
+b00000
+> > +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@feae=
+0000
+> > +platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/sound@ec50=
+0000
+> > +platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/display@fe=
+b00000
+> > +platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/display@fe=
+b00000
+> > +platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/display@fe=
+b00000
+> > +platform feb00000.display: Fixed dependency cycle(s) with /soc/hdmi@fe=
+ae0000
+> > +platform feb00000.display: Fixed dependency cycle(s) with /soc/hdmi@fe=
+ad0000
+> > +platform cvbs-in: Fixed dependency cycle(s) with
+> > /soc/i2c@e66d8000/video-receiver@70
+> > +platform hdmi-in: Fixed dependency cycle(s) with
+> > /soc/i2c@e66d8000/video-receiver@70
+> > +platform fead0000.hdmi: Fixed dependency cycle(s) with /hdmi0-out
+> > +platform hdmi0-out: Fixed dependency cycle(s) with /soc/hdmi@fead0000
+> > +platform feae0000.hdmi: Fixed dependency cycle(s) with /hdmi1-out
+> > +platform hdmi1-out: Fixed dependency cycle(s) with /soc/hdmi@feae0000
+> > +platform vga: Fixed dependency cycle(s) with /vga-encoder
+> > +platform feb00000.display: Fixed dependency cycle(s) with /vga-encoder
+> > +platform vga-encoder: Fixed dependency cycle(s) with /vga
+> > +platform vga-encoder: Fixed dependency cycle(s) with /soc/display@feb0=
+0000
+> >
+> > -i2c 2-0010: Fixed dependency cycle(s) with
+> > /soc/sound@ec500000/ports/port@0/endpoint
+> > +platform ec500000.sound: Fixed dependency cycle(s) with
+> > /soc/i2c@e6510000/codec@10
+> >
+> > -i2c 4-0070: Fixed dependency cycle(s) with
+> > /soc/csi2@fea80000/ports/port@0/endpoint
+> > -i2c 4-0070: Fixed dependency cycle(s) with
+> > /soc/csi2@feaa0000/ports/port@0/endpoint
+> > -i2c 4-0070: Fixed dependency cycle(s) with /hdmi-in/port/endpoint
+> > -i2c 4-0070: Fixed dependency cycle(s) with /cvbs-in/port/endpoint
+> > +platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > /soc/i2c@e66d8000/video-receiver@70
+> > +platform fea80000.csi2: Fixed dependency cycle(s) with
+> > /soc/i2c@e66d8000/video-receiver@70
+> > +i2c 4-0070: Fixed dependency cycle(s) with /soc/csi2@fea80000
+> > +i2c 4-0070: Fixed dependency cycle(s) with /soc/csi2@feaa0000
+> >
+> > I guess all of that is expected?
+>
+> Hi Geert,
+>
+> Greg has picked up my "post-init-providers" series in his driver core.
 
+You mean https://lore.kernel.org/all/20240305050458.1400667-2-saravanak@goo=
+gle.com/?
 
-Best regards,
-Krzysztof
+> Once you pull that in, you should be able to use the
+> post-init-providers property to break these cycles. Basically treat it
+> like any other supplier binding, but use it to mark the link in the
+> cycle that's not real. For the remote-endpoints case, you need to list
+> property at the device level. Not the endpoint, port or ports nodes.
+>
+> Once you add this property, you should see an increase in the number
+> of device links that are present after all device probing is done.
+> Also, a bunch of existing device links should get converted from
+> sync_state_only device links to normal managed device links. Meaning,
+> the sync_state_only file under those /class/devlink/<device-link-x>/
+> folder should change from "1" to "0".
+>
+> If that's what you see and it works, then go ahead and send out a
+> patch so that the boards you care about have a more
+> deterministic/stable probe/suspend/resume ordering.
 
+You mean we have to add additional properties to the DTS?
+What about compatibility with old DTBs?
+
+Where are the DT bindings for "post-init-providers"?
+I see it was part of earlier submissions, but I cannot find any evidence
+they have ever been accepted by the DT maintainers?
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
+
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
