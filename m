@@ -1,514 +1,476 @@
-Return-Path: <devicetree+bounces-50566-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50568-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7636C87C33E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 20:00:45 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E87E87C35E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 20:18:23 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E23FA2888AA
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 19:00:43 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E1CBB282DDD
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 19:18:21 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 99B38757EF;
-	Thu, 14 Mar 2024 19:00:36 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AF788757EF;
+	Thu, 14 Mar 2024 19:18:18 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b="4U+gO66B"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="T70JdNY4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from ahti.lucaweiss.eu (ahti.lucaweiss.eu [128.199.32.197])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95F537580D;
-	Thu, 14 Mar 2024 19:00:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=128.199.32.197
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9CE1274BED;
+	Thu, 14 Mar 2024 19:18:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710442836; cv=none; b=cL27MvrMVIFsrLGoGW0saw5it3RRKEvd3IHYxfKtwqQACAcoKiWtTU/dzAqQs0QnsQOtsjVKoKwweZsFk2pCb1T5FcKBY9SCCmeomsaoGEuLeo0BGz6dK7kqij3geJuCpS2AEivIKuJaDhU5v9jmt+7s3rTnP36L/Ng/7bDNFA4=
+	t=1710443898; cv=none; b=ePi5++tCshcGdBKR8LPisyL76m0Skqg6TIMSaG1oykxp9PdNeiBwhUdkDytnwe2nIHzzgOuVqwV0hy40PKPF8CESzGcTTsqw4M+txrrX5sFlq+m9x6Suo5PqfZoIqgIAxPoA4kEOYlTQb1Bf1Im2NjQ2sYRo9pyfcqrcXP0BBqQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710442836; c=relaxed/simple;
-	bh=k1EUM52/pGtlQBvmoPyzLXh9QwDn2Kef17+1XtrFe6Y=;
-	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
-	 In-Reply-To:To:Cc; b=bkMKxFDUG53Q2r1p9TTgqSsl/CcskIh9/78Ps8rzL0GRgholFDsYfpJ9p5IY/zBGOgS2NLCFl8l8IFJngEye1UPJrc1AO3c8uOSuyNbFCOiyDQwZLBMYW+2Qo2BvOlmToqVQcmI7w4V0uLW+W8/wdZ2O6Cbd6FHovktkRk8M54k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz; spf=pass smtp.mailfrom=z3ntu.xyz; dkim=pass (1024-bit key) header.d=z3ntu.xyz header.i=@z3ntu.xyz header.b=4U+gO66B; arc=none smtp.client-ip=128.199.32.197
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=z3ntu.xyz
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=z3ntu.xyz
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=s1;
-	t=1710442831; bh=k1EUM52/pGtlQBvmoPyzLXh9QwDn2Kef17+1XtrFe6Y=;
-	h=From:Date:Subject:References:In-Reply-To:To:Cc;
-	b=4U+gO66BoN71oewdRZp0SIiflNSryRgl5/OssbLZAgssM26ijKmXpG3vCDeCuwn4q
-	 eW4L1gIKkvz/siQ8Eh6F2It7VDEI/PV1st4NYQbLw1BDIvt9WPO2pfL9QQO3W77KAW
-	 WM/8EbycAaIMwlkdg80b35b4zPRaEXBBkKSAZ244=
-From: Luca Weiss <luca@z3ntu.xyz>
-Date: Thu, 14 Mar 2024 20:00:15 +0100
-Subject: [PATCH v2 2/2] ARM: dts: qcom: msm8974: Add Samsung Galaxy Note 3
+	s=arc-20240116; t=1710443898; c=relaxed/simple;
+	bh=CpbdFfegw5dLM8f8I3A4plsin3V1YClG2u4d9P9hpeM=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=U5e/Tf3lAMd2xs513Err/gx2XuD57Hlc6Yloc8Ka5Hv1eEyErwkC/KVEo1Pp29PV5ZJhRWG8eill/O/vDQhoer2Hwi94aHkMPq3iHSMWYyGrx54uv8BmviUqeoQKGbzu9rSdy+5c52eOhEWuZv0MasgQmsI/mKm6i4B19irzkko=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=T70JdNY4; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-512e4f4e463so1558817e87.1;
+        Thu, 14 Mar 2024 12:18:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710443895; x=1711048695; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HpNg02cIhm8koxG98iFwN9dy+0CNxfdd1E7AGL6M4N0=;
+        b=T70JdNY4vIzmdhTn7UiYQuK7uzUpfa9p0+ahK9awsEOgfji28GrkZPg0Gj0fHPmI8H
+         8GwPc1RwBn1fYgFQ909XGGcKDGIGEXldjNEXozge33opgsJDq6wEO+EEbJCXtEaxp3I7
+         qfJGCxLN9xedcyvpSSG81ZP8Qil+dQv8503/oVcGRgjUDibQamPLWHURj6fDaQt6ASmY
+         FcMB06p6iwnGYh5tsZ5xrri0SSbfmoqsSdpKcAF9AetC4K2FXX0zAOQ33YIo1JMTiTVZ
+         25AoyVxoUVqeJWmS0jR+lbITeulGUMDb+Fq2ByA5hIqGkoCxRBzQTbHoQdjYspAqeQMi
+         gAfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710443895; x=1711048695;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=HpNg02cIhm8koxG98iFwN9dy+0CNxfdd1E7AGL6M4N0=;
+        b=F/5GaqCGeqUMNqjnCU9eH8dRCMznyp0M7sWrJM3w3UzdBCs++7ZTDDsfGgljqiDKMM
+         C8S7kc+pNuaBiy10kJ1dKaEzulEypBIBU0NhhXJx9nXDoSg3FafZ2MYmeg3sK7BHxXlB
+         Ws3BN4sZtQr+Sz4WyqYMFWWtkeMLeCHuMelaQiDPYC+N39aSs5rYmGvI/JmrJg0U4pMc
+         yxUzhl5q19nl3Ik2GPk+lisA7zBLvntjmcn44HD6mbNdSeS0Qkx1F6g2JOACCuaGx3vG
+         6lGpWz9U7FskL/+fubVYwesHMIpNEHhGEwRoBo6USXzk0DNZo4rK1ZCShfD38NG6CFAA
+         +g3g==
+X-Forwarded-Encrypted: i=1; AJvYcCUikhDCjCYXNA0AWut+pDwt8NcV2Hq63l7kYheOUBwQmA9eNEsxxymENSHLgejk/+WdTs14JcxaLuOsZ99GOqEWNmlBHnXCU7UeWrTWbm+SLRassz/DWwnoPdSMqcEX5Hds14L454MRmw==
+X-Gm-Message-State: AOJu0YygEzh0VFBOMmNwbD5A4sTkXmwCmpJBrYRcwbfWKSka/CmmvwPg
+	HGxvULBR1v3N9DmGjjIZbqPhOFCR7p+UgeUv8C/X+uFxtzmkQCMH
+X-Google-Smtp-Source: AGHT+IFc6aloMTsh2ISBLTsjCt71++MriTrbDTOTaYvsFlBwDspWwYgqaPfgPJmyzSatiWotn3h94Q==
+X-Received: by 2002:ac2:4db7:0:b0:513:cc4f:52b8 with SMTP id h23-20020ac24db7000000b00513cc4f52b8mr2046150lfe.12.1710443894370;
+        Thu, 14 Mar 2024 12:18:14 -0700 (PDT)
+Received: from jernej-laptop.localnet (86-58-6-171.dynamic.telemach.net. [86.58.6.171])
+        by smtp.gmail.com with ESMTPSA id l12-20020a1709066b8c00b00a4605a343ffsm965896ejr.21.2024.03.14.12.18.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Mar 2024 12:18:13 -0700 (PDT)
+From: Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
+To: hitechshell@mail.ru
+Cc: Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+ Samuel Holland <samuel@sholland.org>, Maxime Ripard <mripard@kernel.org>,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] ARM: dts: sun5i: Add PocketBook 614 Plus support
+Date: Thu, 14 Mar 2024 20:18:12 +0100
+Message-ID: <4203654.1IzOArtZ34@jernej-laptop>
+In-Reply-To: <20240314181858.2mhw62qfiie6mqg5@hitech>
+References:
+ <20240314155306.11521-1-hitechshell@mail.ru>
+ <2451572.jE0xQCEvom@jernej-laptop> <20240314181858.2mhw62qfiie6mqg5@hitech>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20240314-samsung-hlte-v2-2-84094b41c033@z3ntu.xyz>
-References: <20240314-samsung-hlte-v2-0-84094b41c033@z3ntu.xyz>
-In-Reply-To: <20240314-samsung-hlte-v2-0-84094b41c033@z3ntu.xyz>
-To: ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org, 
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Adam Honse <calcprogrammer1@gmail.com>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Luca Weiss <luca@z3ntu.xyz>
-X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=9723; i=luca@z3ntu.xyz;
- h=from:subject:message-id; bh=hNrgnYCIw05P6KejFkBsgEIJHGH4vf3pz20hJhZSyuU=;
- b=owEBbQKS/ZANAwAIAXLYQ7idTddWAcsmYgBl80lErhjBUZc8EACELo0tjjwprMvcMgp4edr3F
- bYiACmOUKKJAjMEAAEIAB0WIQQ5utIvCCzakboVj/py2EO4nU3XVgUCZfNJRAAKCRBy2EO4nU3X
- VmVqD/9ujc/LtJESLyVPx0O3J11/Bb2tfupK6X0s2x0X5fhCgwRpDcQ9V30hPhYzgxGF2B5GXov
- G+kzJ/I4n0R4Ni3I0isDcTmwY0IFCPWRgrUA0hdNpbLNVDmY6cX5FE6v+dWq7Ru85zRRCsdW626
- iuGkJ38SBnBXdNbPTfjMhSWKADT842Fe/S54WbWjQ/ERDQCW9YVU5TB82GDVE1V4j0Vfvt+3inN
- tvL4jNFULoSIc9AqD+xSWlzp+dD6QA/iV1rtE7/1ylG04DORz26FJOyqa7GIkpfMT1MipR8rDA1
- UuWu8r92/ZO4E5TyK/MKux69KyqtoV75495aiOoo7foPMGd3AaxN35wGpIrh2MS/6QYk03BvchC
- D6Fc+Eaos0gNE0Eqx/LJLM6GJg0QSDQCGcYxDzGvx6sCWEXQFsG/1xlMuQQLkr2Iud6RSiaQ/YG
- q36mi5Qpn9yZSMi7ARf5rIs7VHW1i45gXMhx6g4uVS0XONKBwoWhv3hVUsYcVCVLorahSyODI3x
- Zouo49qgLaYYRBx5vWUK2unUa/RqWiMdJTIozMce9zH2kr8EftLzCJk3zyhQ6Pa2XmXdP6TFWhn
- /xZAN9W9I8ZLi0libVgIKQ9f1ovGwgscOe0U2mxJ+QiXURRG5EbOrD/fqhjWpjcvujEDnOhHExe
- 0YKShF6Les2yKTA==
-X-Developer-Key: i=luca@z3ntu.xyz; a=openpgp;
- fpr=BD04DA24C971B8D587B2B8D7FAF69CF6CD2D02CD
 
-From: Adam Honse <calcprogrammer1@gmail.com>
+Dne =C4=8Detrtek, 14. marec 2024 ob 19:18:58 CET je hitechshell@mail.ru nap=
+isal(a):
+> On Thu, Mar 14, 2024 at 06:14:48PM +0100, Jernej =C5=A0krabec wrote:
+> > Hi Denis!
+> >=20
+> > Dne =C4=8Detrtek, 14. marec 2024 ob 16:53:06 CET je Denis Burkov napisa=
+l(a):
+> > > What works:
+> > >=20
+> > > - Serial console
+> > > - mmc0, mmc2 (both microSD card slots on the board)
+> > > - All buttons (gpio and lradc based)
+> > > - Power LED
+> > > - PMIC
+> > > - RTC
+> > > - USB OTG/gadgets mode
+> > >=20
+> > > Signed-off-by: Denis Burkov <hitechshell@mail.ru>
+> > > ---
+> > >  arch/arm/boot/dts/allwinner/Makefile          |   2 +
+> > >  .../sun5i-a13-pocketbook-614-plus.dts         | 254 ++++++++++++++++=
+++
+> > >  2 files changed, 256 insertions(+)
+> > >  create mode 100644 arch/arm/boot/dts/allwinner/sun5i-a13-pocketbook-=
+614-plus.dts
+> > >=20
+> > > diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts=
+/allwinner/Makefile
+> > > index 2d26c3397f14..fe321865beed 100644
+> > > --- a/arch/arm/boot/dts/allwinner/Makefile
+> > > +++ b/arch/arm/boot/dts/allwinner/Makefile
+> > > @@ -61,6 +61,7 @@ dtb-$(CONFIG_MACH_SUN5I) +=3D \
+> > >  	sun5i-a13-olinuxino.dtb \
+> > >  	sun5i-a13-olinuxino-micro.dtb \
+> > >  	sun5i-a13-pocketbook-touch-lux-3.dtb \
+> > > +	sun5i-a13-pocketbook-614-plus.dtb \
+> > >  	sun5i-a13-q8-tablet.dtb \
+> > >  	sun5i-a13-utoo-p66.dtb \
+> > >  	sun5i-gr8-chip-pro.dtb \
+> > > @@ -82,6 +83,7 @@ dtb-$(CONFIG_MACH_SUN5I) +=3D \
+> > >  	sun5i-a13-olinuxino.dtb \
+> > >  	sun5i-a13-olinuxino-micro.dtb \
+> > >  	sun5i-a13-pocketbook-touch-lux-3.dtb \
+> > > +	sun5i-a13-pocketbook-614-plus.dtb \
+> > >  	sun5i-a13-q8-tablet.dtb \
+> > >  	sun5i-a13-utoo-p66.dtb \
+> > >  	sun5i-gr8-chip-pro.dtb \
+> >=20
+> > This merge artefact. Can you add patch before this one and remove dupli=
+cate definitions?
+> >=20
+> Sorry, I didn't quite understand. Should I remove the duplicate block in =
+a separate commit? or enable this one?
 
-Add the devicetree for this "phablet" using the Snapdragon 800 SoC.
+Yes, remove block in a separate patch, which should be positioned before th=
+is one.
 
-Signed-off-by: Adam Honse <calcprogrammer1@gmail.com>
-[luca@z3ntu.xyz: clean up, prepare for upstream]
-Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
----
- arch/arm/boot/dts/qcom/Makefile                    |   1 +
- .../boot/dts/qcom/qcom-msm8974-samsung-hlte.dts    | 401 +++++++++++++++++++++
- 2 files changed, 402 insertions(+)
+> > > diff --git a/arch/arm/boot/dts/allwinner/sun5i-a13-pocketbook-614-plu=
+s.dts b/arch/arm/boot/dts/allwinner/sun5i-a13-pocketbook-614-plus.dts
+> > > new file mode 100644
+> > > index 000000000000..89898fa16ff7
+> > > --- /dev/null
+> > > +++ b/arch/arm/boot/dts/allwinner/sun5i-a13-pocketbook-614-plus.dts
+> > > @@ -0,0 +1,254 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * Copyright 2024 Denis Burkov <hitechshell@mail.ru>
+> > > + */
+> > > +
+> > > +/dts-v1/;
+> > > +#include "sun5i-a13.dtsi"
+> > > +#include "sunxi-common-regulators.dtsi"
+> >=20
+> > Extra empty line here.
+> >=20
+> > > +#include <dt-bindings/gpio/gpio.h>
+> > > +#include <dt-bindings/input/input.h>
+> > > +#include <dt-bindings/interrupt-controller/irq.h>
+> > > +
+> > > +/ {
+> > > +	model =3D "PocketBook 614 Plus";
+> > > +	compatible =3D "pocketbook,614-plus", "allwinner,sun5i-a13";
+> > > +
+> > > +	aliases {
+> > > +		serial0 =3D &uart1;
+> > > +		i2c0 =3D &i2c0;
+> > > +		i2c1 =3D &i2c1;
+> > > +		i2c2 =3D &i2c2;
+> > > +		rtc0 =3D &pcf8563;
+> >=20
+> > Please drop aliases except serial0.
+> >=20
+> > > +	};
+> > > +
+> > > +	chosen {
+> > > +		stdout-path =3D "serial0:115200n8";
+> > > +	};
+> > > +
+> > > +	leds {
+> > > +		compatible =3D "gpio-leds";
+> > > +		pinctrl-names =3D "default";
+> > > +		pinctrl-0 =3D <&led_pins_pocketbook>;
+> >=20
+> > Drop pinctrl nodes. GPIOs don't need them.
+> >=20
+> > > +
+> > > +		led {
+> > > +			gpios =3D <&pio 4 8 GPIO_ACTIVE_LOW>; /* PE8 */
+> > > +			default-state =3D "on";
+> >=20
+> > Add additional properties, like function and color.
+> >=20
+> > > +		};
+> > > +	};
+> > > +
+> > > +	gpio-keys {
+> > > +		compatible =3D "gpio-keys";
+> > > +		autorepeat;
+> >=20
+> > Why is autorepeat needed?
+> >=20
+> > > +		label =3D "GPIO Keys";
+> >=20
+> > I guess label is self evident and not needed?
+> >=20
+> > > +		pinctrl-names =3D "default";
+> > > +		pinctrl-0 =3D <&pocketbook_btn_pins>;
+> >=20
+> > Again, GPIOs don't need pinctrl nodes. I know that you specified pull u=
+p, but
+> > please try without. Other boards have same design and it's not needed.
+> >=20
+> > > +
+> > > +		key-right {
+> > > +			label =3D "Right";
+> > > +			linux,code =3D <KEY_NEXT>;
+> > > +			gpios =3D <&pio 6 9 GPIO_ACTIVE_LOW>; /* PG9 */
+> > > +		};
+> > > +
+> > > +		key-left {
+> > > +			label =3D "Left";
+> > > +			linux,code =3D <KEY_PREVIOUS>;
+> > > +			gpios =3D <&pio 6 10 GPIO_ACTIVE_LOW>; /* PG10 */
+> > > +		};
+> > > +	};
+> > > +
+> > > +	reg_3v3_mmc0: regulator-mmc0 {
+> > > +		compatible =3D "regulator-fixed";
+> > > +		regulator-name =3D "vdd-mmc0";
+> > > +		regulator-min-microvolt =3D <3300000>;
+> > > +		regulator-max-microvolt =3D <3300000>;
+> > > +		pinctrl-names =3D "default";
+> > > +		pinctrl-0 =3D <&pocketbook_reg_mmc0_pins>;
+> >=20
+> > again, pinctrl not needed.
+> >=20
+> > > +		gpio =3D <&pio 4 4 GPIO_ACTIVE_LOW>; /* PE4 */
+> > > +		vin-supply =3D <&reg_vcc3v3>;
+> > > +	};
+> > > +};
+> > > +
+> > > +&cpu0 {
+> > > +	cpu-supply =3D <&reg_dcdc2>;
+> > > +};
+> > > +
+> > > +&ehci0 {
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&i2c0 {
+> > > +	status =3D "okay";
+> > > +
+> > > +	axp209: pmic@34 {
+> > > +		compatible =3D "x-powers,axp209";
+> > > +		reg =3D <0x34>;
+> > > +		interrupts =3D <0>;
+> > > +	};
+> > > +};
+> > > +
+> > > +#include "axp209.dtsi"
+> > > +
+> > > +&i2c1 {
+> > > +	status =3D "okay";
+> > > +
+> > > +	pcf8563: rtc@51 {
+> > > +		compatible =3D "nxp,pcf8563";
+> > > +		reg =3D <0x51>;
+> > > +		#clock-cells =3D <0>;
+> > > +	};
+> > > +};
+> > > +
+> > > +&i2c2 {
+> > > +	status =3D "okay";
+> > > +
+> > > +	/* Touchpanel is connected here. */
+> >=20
+> > Any reason why don't you specify touch panel device here?
+> >=20
+> My mistake, I copied this node from another device. This device does not =
+have a touchpanel at all.
+> > > +};
+> > > +
+> > > +&lradc {
+> > > +	vref-supply =3D <&reg_ldo2>;
+> > > +	status =3D "okay";
+> > > +
+> > > +	button-300 {
+> > > +		label =3D "Down";
+> > > +		linux,code =3D <KEY_DOWN>;
+> > > +		channel =3D <0>;
+> > > +		voltage =3D <300000>;
+> > > +	};
+> > > +
+> > > +	button-700 {
+> > > +		label =3D "Up";
+> > > +		linux,code =3D <KEY_UP>;
+> > > +		channel =3D <0>;
+> > > +		voltage =3D <700000>;
+> > > +	};
+> > > +
+> > > +	button-1000 {
+> > > +		label =3D "Left";
+> > > +		linux,code =3D <KEY_LEFT>;
+> > > +		channel =3D <0>;
+> > > +		voltage =3D <1000000>;
+> > > +	};
+> > > +
+> > > +	button-1200 {
+> > > +		label =3D "Menu";
+> > > +		linux,code =3D <KEY_MENU>;
+> > > +		channel =3D <0>;
+> > > +		voltage =3D <1200000>;
+> > > +	};
+> > > +
+> > > +	button-1500 {
+> > > +		label =3D "Right";
+> > > +		linux,code =3D <KEY_RIGHT>;
+> > > +		channel =3D <0>;
+> > > +		voltage =3D <1500000>;
+> > > +	};
+> > > +};
+> > > +
+> > > +&mmc0 {
+> > > +	vmmc-supply =3D <&reg_3v3_mmc0>;
+> > > +	bus-width =3D <4>;
+> > > +	cd-gpios =3D <&pio 6 0 GPIO_ACTIVE_LOW>; /* PG0 */
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&mmc2 {
+> > > +	pinctrl-names =3D "default";
+> > > +	pinctrl-0 =3D <&mmc2_4bit_pc_pins>;
+> > > +	vmmc-supply =3D <&reg_vcc3v3>;
+> > > +	bus-width =3D <4>;
+> > > +	non-removable;
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&ohci0 {
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&otg_sram {
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&pio {
+> > > +	led_pins_pocketbook: led-pin {
+> > > +		pins =3D "PE8";
+> > > +		function =3D "gpio_out";
+> > > +	};
+> > > +	pocketbook_btn_pins: btn-pins {
+> > > +		pins =3D "PG9", "PG10";
+> > > +		function =3D "gpio_in";
+> > > +		bias-pull-up;
+> > > +	};
+> > > +	pocketbook_reg_mmc0_pins: reg-mmc0-pins {
+> > > +		pins =3D "PE4";
+> > > +		function =3D "gpio_out";
+> > > +	};
+> > > +};
+> >=20
+> > Whole PIO node can be dropped.
+> >=20
+> > Best regards,
+> > Jernej
+> >=20
+> > > +
+> > > +&reg_dcdc2 {
+> > > +	regulator-always-on;
+> > > +	regulator-min-microvolt =3D <1000000>;
+> > > +	regulator-max-microvolt =3D <1500000>;
+> > > +	regulator-name =3D "vdd-cpu";
+> > > +};
+> > > +
+> > > +&reg_dcdc3 {
+> > > +	regulator-always-on;
+> > > +	regulator-min-microvolt =3D <1000000>;
+> > > +	regulator-max-microvolt =3D <1400000>;
+> > > +	regulator-name =3D "vdd-int-dll";
+> > > +};
+> > > +
+> > > +&reg_ldo1 {
+> > > +	regulator-name =3D "vdd-rtc";
+> > > +};
+> > > +
+> > > +&reg_ldo2 {
+> > > +	regulator-always-on;
+> > > +	regulator-min-microvolt =3D <3000000>;
+> > > +	regulator-max-microvolt =3D <3000000>;
+> > > +	regulator-name =3D "avcc";
+> > > +};
+> > > +
+> > > +&reg_ldo3 {
+> > > +	regulator-min-microvolt =3D <3300000>;
+> > > +	regulator-max-microvolt =3D <3300000>;
+> > > +	regulator-name =3D "vcc-wifi";
+> > > +};
+> > > +
+> > > +&reg_usb0_vbus {
+> > > +	status =3D "okay";
+> > > +	gpio =3D <&pio 6 12 GPIO_ACTIVE_HIGH>; /* PG12 */
+> > > +};
+> > > +
+> > > +&reg_usb1_vbus {
+> > > +	gpio =3D <&pio 6 11 GPIO_ACTIVE_HIGH>; /* PG11 */
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&uart1 {
+> > > +	pinctrl-names =3D "default";
+> > > +	pinctrl-0 =3D <&uart1_pg_pins>;
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&usb_otg {
+> > > +	dr_mode =3D "otg";
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&usb_power_supply {
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&battery_power_supply {
+> > > +	status =3D "okay";
+> > > +};
+> > > +
+> > > +&usbphy {
+> > > +	usb0_id_det-gpios =3D <&pio 6 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;=
+ /* PG2 */
 
-diff --git a/arch/arm/boot/dts/qcom/Makefile b/arch/arm/boot/dts/qcom/Makefile
-index 9cc1e14e6cd0..845af12d15a2 100644
---- a/arch/arm/boot/dts/qcom/Makefile
-+++ b/arch/arm/boot/dts/qcom/Makefile
-@@ -39,6 +39,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
- 	qcom-msm8960-cdp.dtb \
- 	qcom-msm8960-samsung-expressatt.dtb \
- 	qcom-msm8974-lge-nexus5-hammerhead.dtb \
-+	qcom-msm8974-samsung-hlte.dtb \
- 	qcom-msm8974-sony-xperia-rhine-amami.dtb \
- 	qcom-msm8974-sony-xperia-rhine-honami.dtb \
- 	qcom-msm8974pro-fairphone-fp2.dtb \
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974-samsung-hlte.dts b/arch/arm/boot/dts/qcom/qcom-msm8974-samsung-hlte.dts
-new file mode 100644
-index 000000000000..903bb4d12513
---- /dev/null
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8974-samsung-hlte.dts
-@@ -0,0 +1,401 @@
-+// SPDX-License-Identifier: GPL-2.0
-+#include "qcom-msm8974.dtsi"
-+#include "pm8841.dtsi"
-+#include "pm8941.dtsi"
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/leds/common.h>
-+#include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
-+
-+/ {
-+	model = "Samsung Galaxy Note 3";
-+	compatible = "samsung,hlte", "qcom,msm8974";
-+	chassis-type = "handset";
-+
-+	aliases {
-+		mmc0 = &sdhc_1; /* SDC1 eMMC slot */
-+		mmc1 = &sdhc_3; /* SDC3 SD card slot */
-+		serial0 = &blsp1_uart1;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		pinctrl-0 = <&gpio_keys_pin_a>;
-+		pinctrl-names = "default";
-+
-+		key-home {
-+			label = "Home Key";
-+			gpios = <&pm8941_gpios 3 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_HOMEPAGE>;
-+			wakeup-source;
-+			debounce-interval = <15>;
-+		};
-+
-+		key-volume-down {
-+			label = "Volume Down";
-+			gpios = <&pm8941_gpios 2 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEDOWN>;
-+			debounce-interval = <15>;
-+		};
-+
-+		key-volume-up {
-+			label = "Volume Up";
-+			gpios = <&pm8941_gpios 5 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_VOLUMEUP>;
-+			debounce-interval = <15>;
-+		};
-+	};
-+
-+	touch_ldo: regulator-touch {
-+		compatible = "regulator-fixed";
-+		regulator-name = "touch-ldo";
-+
-+		gpio = <&pm8941_gpios 9 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+		regulator-boot-on;
-+
-+		pinctrl-0 = <&touch_ldo_pin>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&blsp1_i2c2 {
-+	status = "okay";
-+
-+	touchscreen@20 {
-+		compatible = "syna,rmi4-i2c";
-+		reg = <0x20>;
-+
-+		interrupt-parent = <&pm8941_gpios>;
-+		interrupts = <30 IRQ_TYPE_EDGE_FALLING>;
-+
-+		vdd-supply = <&pm8941_l10>;
-+		vio-supply = <&touch_ldo>;
-+
-+		pinctrl-0 = <&touch_pin>;
-+		pinctrl-names = "default";
-+
-+		syna,startup-delay-ms = <100>;
-+
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		rmi4-f01@1 {
-+			reg = <0x1>;
-+			syna,nosleep-mode = <1>;
-+		};
-+
-+		rmi4-f12@12 {
-+			reg = <0x12>;
-+			syna,sensor-type = <1>;
-+		};
-+	};
-+};
-+
-+&blsp2_i2c6 {
-+	status = "okay";
-+
-+	fuelgauge@36 {
-+		compatible = "maxim,max17048";
-+		reg = <0x36>;
-+
-+		maxim,double-soc;
-+		maxim,rcomp = /bits/ 8 <0x56>;
-+
-+		interrupt-parent = <&pm8941_gpios>;
-+		interrupts = <26 IRQ_TYPE_EDGE_FALLING>;
-+
-+		pinctrl-0 = <&fuelgauge_pin>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
-+&blsp1_uart2 {
-+	status = "okay";
-+};
-+
-+&pm8941_gpios {
-+	gpio_keys_pin_a: gpio-keys-active-state {
-+		pins = "gpio2", "gpio3", "gpio5";
-+		function = "normal";
-+		bias-pull-up;
-+		power-source = <PM8941_GPIO_S3>;
-+	};
-+
-+	fuelgauge_pin: fuelgauge-int-state {
-+		pins = "gpio26";
-+		function = "normal";
-+		bias-disable;
-+		input-enable;
-+		power-source = <PM8941_GPIO_S3>;
-+	};
-+
-+	touch_pin: touchscreen-int-state {
-+		pins = "gpio30";
-+		function = "normal";
-+		bias-disable;
-+		input-enable;
-+		power-source = <PM8941_GPIO_S3>;
-+	};
-+
-+	touch_ldo_pin: touchscreen-ldo-state {
-+		pins = "gpio9";
-+		function = "normal";
-+		output-high;
-+		power-source = <PM8941_GPIO_S3>;
-+		qcom,drive-strength = <PMIC_GPIO_STRENGTH_HIGH>;
-+	};
-+};
-+
-+&remoteproc_adsp {
-+	cx-supply = <&pm8841_s2>;
-+	status = "okay";
-+};
-+
-+&remoteproc_mss {
-+	cx-supply = <&pm8841_s2>;
-+	mss-supply = <&pm8841_s3>;
-+	mx-supply = <&pm8841_s1>;
-+	pll-supply = <&pm8941_l12>;
-+	status = "okay";
-+};
-+
-+&rpm_requests {
-+	regulators-0 {
-+		compatible = "qcom,rpm-pm8841-regulators";
-+
-+		pm8841_s1: s1 {
-+			regulator-min-microvolt = <675000>;
-+			regulator-max-microvolt = <1050000>;
-+		};
-+
-+		pm8841_s2: s2 {
-+			regulator-min-microvolt = <500000>;
-+			regulator-max-microvolt = <1050000>;
-+		};
-+
-+		pm8841_s3: s3 {
-+			regulator-min-microvolt = <1050000>;
-+			regulator-max-microvolt = <1050000>;
-+		};
-+
-+		pm8841_s4: s4 {
-+			regulator-min-microvolt = <815000>;
-+			regulator-max-microvolt = <900000>;
-+		};
-+	};
-+
-+	regulators-1 {
-+		compatible = "qcom,rpm-pm8941-regulators";
-+
-+		pm8941_s1: s1 {
-+			regulator-min-microvolt = <1300000>;
-+			regulator-max-microvolt = <1300000>;
-+			regulator-always-on;
-+		};
-+
-+		pm8941_s2: s2 {
-+			regulator-min-microvolt = <2150000>;
-+			regulator-max-microvolt = <2150000>;
-+		};
-+
-+		pm8941_s3: s3 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8941_l1: l1 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		pm8941_l2: l2 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1200000>;
-+		};
-+
-+		pm8941_l3: l3 {
-+			regulator-min-microvolt = <1050000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+
-+		pm8941_l4: l4 {
-+			regulator-min-microvolt = <1225000>;
-+			regulator-max-microvolt = <1225000>;
-+		};
-+
-+		pm8941_l5: l5 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8941_l6: l6 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8941_l7: l7 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8941_l8: l8 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8941_l9: l9 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <2950000>;
-+		};
-+
-+		pm8941_l10: l10 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8941_l11: l11 {
-+			regulator-min-microvolt = <1200000>;
-+			regulator-max-microvolt = <1350000>;
-+		};
-+
-+		pm8941_l12: l12 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+			regulator-always-on;
-+		};
-+
-+		pm8941_l13: l13 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8941_l14: l14 {
-+			regulator-min-microvolt = <1800000>;
-+			regulator-max-microvolt = <1800000>;
-+		};
-+
-+		pm8941_l15: l15 {
-+			regulator-min-microvolt = <2050000>;
-+			regulator-max-microvolt = <2050000>;
-+		};
-+
-+		pm8941_l16: l16 {
-+			regulator-min-microvolt = <2700000>;
-+			regulator-max-microvolt = <2700000>;
-+		};
-+
-+		pm8941_l17: l17 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <3000000>;
-+		};
-+
-+		pm8941_l18: l18 {
-+			regulator-min-microvolt = <2850000>;
-+			regulator-max-microvolt = <2850000>;
-+		};
-+
-+		pm8941_l19: l19 {
-+			regulator-min-microvolt = <2900000>;
-+			regulator-max-microvolt = <3350000>;
-+		};
-+
-+		pm8941_l20: l20 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-system-load = <200000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm8941_l21: l21 {
-+			regulator-min-microvolt = <2950000>;
-+			regulator-max-microvolt = <2950000>;
-+			regulator-system-load = <200000>;
-+			regulator-allow-set-load;
-+		};
-+
-+		pm8941_l22: l22 {
-+			regulator-min-microvolt = <2500000>;
-+			regulator-max-microvolt = <3000000>;
-+		};
-+
-+		pm8941_l23: l23 {
-+			regulator-min-microvolt = <2400000>;
-+			regulator-max-microvolt = <3300000>;
-+		};
-+
-+		pm8941_l24: l24 {
-+			regulator-min-microvolt = <3075000>;
-+			regulator-max-microvolt = <3075000>;
-+		};
-+	};
-+};
-+
-+&sdhc_1 {
-+	vmmc-supply = <&pm8941_l20>;
-+	vqmmc-supply = <&pm8941_s3>;
-+
-+	pinctrl-0 = <&sdhc1_pin_a>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&sdhc_3 {
-+	max-frequency = <100000000>;
-+
-+	vmmc-supply = <&pm8941_l21>;
-+	vqmmc-supply = <&pm8941_l21>;
-+
-+	pinctrl-0 = <&sdhc3_pin_a>;
-+	pinctrl-names = "default";
-+
-+	status = "okay";
-+};
-+
-+&tlmm {
-+	sdhc1_pin_a: sdhc1-pin-active-state {
-+		clk-pins {
-+			pins = "sdc1_clk";
-+			drive-strength = <4>;
-+			bias-disable;
-+		};
-+
-+		cmd-data-pins {
-+			pins = "sdc1_cmd", "sdc1_data";
-+			drive-strength = <4>;
-+			bias-pull-up;
-+		};
-+	};
-+
-+	sdhc3_pin_a: sdhc3-pin-active-state {
-+		pins = "gpio35", "gpio36", "gpio37", "gpio38", "gpio39", "gpio40";
-+		function = "sdc3";
-+		drive-strength = <8>;
-+		bias-disable;
-+	};
-+};
-+
-+&usb {
-+	phys = <&usb_hs1_phy>;
-+	phy-select = <&tcsr 0xb000 0>;
-+
-+	hnp-disable;
-+	srp-disable;
-+	adp-disable;
-+
-+	status = "okay";
-+};
-+
-+&usb_hs1_phy {
-+	v1p8-supply = <&pm8941_l6>;
-+	v3p3-supply = <&pm8941_l24>;
-+
-+	qcom,init-seq = /bits/ 8 <0x1 0x64>;
-+
-+	status = "okay";
-+};
+I missed this before, but is pull up property really needed? It doesn't make
+much sense.
 
--- 
-2.44.0
+> > > +	usb0_vbus_det-gpios =3D <&axp_gpio 1 GPIO_ACTIVE_HIGH>;
+> > > +	usb0_vbus-supply =3D <&reg_usb0_vbus>;
+> > > +	usb1_vbus-supply =3D <&reg_usb1_vbus>;
+> > > +	status =3D "okay";
+> > > +};
+> > >=20
+> >=20
+> >=20
+> >=20
+> >=20
+> Yes, everything works without pincrtl. One guy told me that I need to spe=
+cify pinctrl for each pin used.
+
+pinctrl node is only needed when multiplexed pin is used for something else=
+ than GPIO.
+
+Best regards,
+Jernej
+
+> Thanks for the review.
+> Best regards,
+> Denis
+>=20
+
+
+
 
 
