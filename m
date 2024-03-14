@@ -1,158 +1,170 @@
-Return-Path: <devicetree+bounces-50425-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50426-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4500387BA69
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 10:29:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6342087BA7A
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 10:33:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id CD8FC1F22DFD
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:29:28 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 954351C218F1
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:33:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E06B36CDC6;
-	Thu, 14 Mar 2024 09:29:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 817DC6CDBC;
+	Thu, 14 Mar 2024 09:32:45 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="pi7KCbCj"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="JXcVdz7r"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com [209.85.217.52])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7EC3A6CDB9
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 09:29:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9E1CF6D1AD
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 09:32:43 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.52
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710408561; cv=none; b=dzx82uPymQrROzExIMjD+Px3Ya+yT4g+RWaxyrGMI+P5y2/tkbCbnA8yBimUbxv3z6xRKACvaCNwc7fp+mR+lIaDMdyrm3iGrZpRzhSqly/f5cKpGDb+3E0gMrIgMJj/CmEdlbf8CyvCAU5jDIl7TvYz4P63xs34N9e0WoNP/BQ=
+	t=1710408765; cv=none; b=bGtP2q1+rt0r4A0qVa5nuX/yXkvMG7/ZBIufV4bNgH8KXsebXR8U1dU3dxQkXkuCikxdj5rxDPP5vtfEpAXENV59S1+POfTiLTJw620HhwI1axqy9OkZq5n0SYM12M/x8cmL8oYJHTKENghi6ItxmEwTlLzTDVzglxX7RoU/Wq8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710408561; c=relaxed/simple;
-	bh=L8+rKuW0TUaSjATe3UMHZdyq8FKWrVImRUolwSRExj0=;
-	h=References:From:To:Cc:Subject:Date:In-reply-to:Message-ID:
-	 MIME-Version:Content-Type; b=Py3r1IEtHK5k4ltVokeQKjaEhH+onCDgTU5ysDXZQyAjvyeCa6m6bG5jF5s3KDklsl9MdIrZi8gmhQRz41T/ps4bWTNjEz9Kd1LGbNgp5HMsd3s3IaTV56gmSXWGagWC0Icz9eoMBcbC+CunG6ZVCHXeVkmyv+hhX3NgH7X+Q2Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=pi7KCbCj; arc=none smtp.client-ip=209.85.128.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-413f2fcd8e1so1685675e9.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 02:29:18 -0700 (PDT)
+	s=arc-20240116; t=1710408765; c=relaxed/simple;
+	bh=BOQwADhp6hNBBGWp57cYwSctxcMOUUM6fgHRtwk1t5o=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=F5gR+4qeytYlxaHUYzFVyVO3pWwTeEjL/MYKo/Zl1/Dpo623Qca0xVpKzdFN5/iKFKvHwCDg2ZY/gE5HTi/G8VPolJ0GYpxzgm/hcKb8s3f6S35i5wKZTnA1VP1tZdm1Tdg9JqhnOSIBsjbsvqwEiDj23vwPLstvVlaPRPp6V5U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=JXcVdz7r; arc=none smtp.client-ip=209.85.217.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-vs1-f52.google.com with SMTP id ada2fe7eead31-4734ac202e9so863485137.1
+        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 02:32:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710408557; x=1711013357; darn=vger.kernel.org;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=YVpA2JX+fzlp/qRr3hVbu2IFpulUsmSIfEJZSoktU3E=;
-        b=pi7KCbCjN/+qfCALO71Gwwg/VMH86MqviELxLuV73FFEoYwLiU5mY3Ru/UN8Nrpbv9
-         SiAJgK7PvYlJ/Nb6oDmBeCJY86CIQvuHC8X+dMoxNN+Tud4Z+1m0x4KXm1pfGoW6zhHB
-         yoe8OYm76Mcuwwz8r8nrYnnabPtZ1QUWbY6IXwMhI53l8TUo0y3fo4JsIYbOwHWO9Dfn
-         ikfoGNggrtlFEYiOVnIweJkMo6udjxH+V8kLkJs8R26aPV1KwAZ+1daVLELDcUb1PY2/
-         zZ/B5/eaqfruUIggyUCHMux9zm1se/5PPb+z5K2MqumM+NWI3FhaR6w5zjELClWr5WUm
-         GIQw==
+        d=linaro.org; s=google; t=1710408762; x=1711013562; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5JooR2GP0yo+BFgcavLa552X/AqpFEXdVuiGm3v30sY=;
+        b=JXcVdz7rpBGnIdW4ixwYHnoVddO3sJ7o5Xp5UJ3LnIx8tvCnyzHQmoL5W9ptuAvx52
+         up5QxdgfqfGeSnFK1aHuJ41KnedZuyQ1lssL3QJ5rZZIz8o1Tf04xZ1ajMDNdi7PMG1r
+         sp+pLeU+XMdpleTG/w6aEYblUzqWo+l4UQtF+wcFa1GG6aPbOKbonwLlbckiJcUkoTGr
+         P6JuTWUvIMwvtAbQPrcWQ+cVIer0oJI7D5/mt8oQZQx06ITsAa29eUEYNI2MyWoQ9jV7
+         iN9oitoB1+042Wq154B3+zcntJAMmL3Kr/I/JA/86H7YrGrhtaxgnvya5Dlj7iWkHQUT
+         T/mg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710408557; x=1711013357;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YVpA2JX+fzlp/qRr3hVbu2IFpulUsmSIfEJZSoktU3E=;
-        b=H8CUY2C51yP9aoWbSJS/Ch8LFhFV+PdliPETaduTmau2wEAT/vef/pW5KsNDIncF9X
-         nG4IsfFjnnD7zWAB1WwigJKxL/6VQIc6dGwSAqaW7uTMfsmx5Khm/C87rGYNXKz6SuuT
-         7TfRzFK+gNHQCeuFLjT8p5rgHO2LtXJHtP5Oo+2rNm6ppPT14OKJJLbAD00h7a2uEoZd
-         l5597QJE9zBeNdU9DiJ0dqzZ8VMQzchoWIOZgE6mVZ/exSuRlN1mm6oUIggZnJDMWK/o
-         ZO9mKXeeWlPkckooRJ/3/4aYf8ARy2JUHr3YGsQsT16uTE7ibGlh6xg8pzVOTD3OlMti
-         /8xA==
-X-Forwarded-Encrypted: i=1; AJvYcCUuYoL86mXo8I9Z3ooVTMKlcNYjvoTUk1aV2iEaquSOUTc84Os6RtIlDocNId4Y41jFVV9rXNN+C1Eo4a3K3xbMJYVGCnh2NaSv2A==
-X-Gm-Message-State: AOJu0YyCsa/s84zjGyDFNzmfN/ntMuMhC5CqwXSCChclk5tTzR5lGvua
-	Aixq9jpx1Ms71VRmAkTamqY9fLGGea7w3lQxzRVpPcdo/ixmb1nrRR9bgoKMS/c=
-X-Google-Smtp-Source: AGHT+IFhNZ2TtpDUXtz09eVcfKUHcjWWWpUtXTeEmJ8m3au/jqm3KhAMcAZOfzORToIXAGGCUCJhrw==
-X-Received: by 2002:a05:600c:4fce:b0:413:2e2b:bad2 with SMTP id o14-20020a05600c4fce00b004132e2bbad2mr929596wmq.5.1710408556468;
-        Thu, 14 Mar 2024 02:29:16 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb1:cd51:5f38:3a35:2e03])
-        by smtp.gmail.com with ESMTPSA id r21-20020a05600c35d500b004126afe04f6sm5047088wmq.32.2024.03.14.02.29.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 14 Mar 2024 02:29:16 -0700 (PDT)
-References: <20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com>
- <20240312-basic_dt-v1-3-7f11df3a0896@amlogic.com>
- <1jsf0vephv.fsf@starbuckisacylon.baylibre.com>
- <9a38fd52-5eea-468d-bd7c-29a505503268@amlogic.com>
-User-agent: mu4e 1.10.8; emacs 29.2
-From: Jerome Brunet <jbrunet@baylibre.com>
-To: Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc: Jerome Brunet <jbrunet@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, Neil Armstrong <neil.armstrong@linaro.org>, Martin
- Blumenstingl <martin.blumenstingl@googlemail.com>, Kevin Hilman
- <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 3/4] arm64: dts: add support for A4 based Amlogic BA400
-Date: Thu, 14 Mar 2024 10:26:26 +0100
-In-reply-to: <9a38fd52-5eea-468d-bd7c-29a505503268@amlogic.com>
-Message-ID: <1jcyrxi2l0.fsf@starbuckisacylon.baylibre.com>
+        d=1e100.net; s=20230601; t=1710408762; x=1711013562;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5JooR2GP0yo+BFgcavLa552X/AqpFEXdVuiGm3v30sY=;
+        b=E8ng5iOFsFr215MLtUvmMO9Wj1MgeUfzcVJPa02kFA/a4KW1CYbsU71wqQfSVJRdRF
+         NPogJOWUc1SBM/H/KiEWcnDxa7nPnuM0LCH9HsPjYTpbjOW2x+fvmX5wqCY055QPAu3g
+         yDP6GYv/bP/hy5xqel0T8wqPsDy7cjEZNdE+rsenV2It8FrS2oAk8Y1AGD8at1vB7z07
+         yWuNK5JT3yDFg7kplXwqbP1aF3qGm9W6uSk+0/ajH0uIlZ7TLNxQUTrsuFb/2pa4eL2H
+         GqU26cM1yCdTQpuebqoSzOwzkfDq+B0aiBIuRVor971WHpFEceJI2Qv8txPINYsRumWZ
+         HpFw==
+X-Forwarded-Encrypted: i=1; AJvYcCV2vFyAwKfIk+r+Oudbc2xMhVoYpdjp08312jDhxJ3qc2WfsgmgKHC/Z8pDg4ZBF3xTDRf3uhfLZhRDCbXLGIAYsoBRXpd+v4lv4Q==
+X-Gm-Message-State: AOJu0YxmP+wbcbm6T8jTOxgA9Z/6lUr44gYWnZrof5pCXQQ5jWU2a6lu
+	xdY2QE91UbkT/eYUes/2xsBXoDvYNNeH6HefNNfw9TuEa0xWiMLO7gfTzDLfWxxrl6i68Qf1h89
+	1CbK+fhvek0i14sQGT9I1gopoIPJFf1U9AMz/yw==
+X-Google-Smtp-Source: AGHT+IEw/ehjPfDXNATTHtGrSHHP4C9JwV6Kj6BatJG08Bp402mPy1LMb6cyyRyUbYRiGWhqcYgS8xdIUCRwabBR1Bc=
+X-Received: by 2002:a67:f247:0:b0:473:48b6:48b5 with SMTP id
+ y7-20020a67f247000000b0047348b648b5mr1285848vsm.2.1710408762595; Thu, 14 Mar
+ 2024 02:32:42 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20240313123017.362570-1-sumit.garg@linaro.org>
+ <20240313123017.362570-4-sumit.garg@linaro.org> <c0e10cbf-c6f3-4b0c-8616-983da2a40236@linaro.org>
+ <CAFA6WYNMjCaa0FKjNv6a8VFkco3=GBfgWNDuckGZdiZ9dGmHgg@mail.gmail.com> <d82ab1f8-e677-485f-9a6b-4115acfd7239@linaro.org>
+In-Reply-To: <d82ab1f8-e677-485f-9a6b-4115acfd7239@linaro.org>
+From: Sumit Garg <sumit.garg@linaro.org>
+Date: Thu, 14 Mar 2024 15:02:31 +0530
+Message-ID: <CAFA6WYNSumyScax=GkN42GJOG56T3odF5Ed9A2i1nk_exCyGtA@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
+ board DTS
+To: Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, 
+	conor+dt@kernel.org, stephan@gerhold.net, caleb.connolly@linaro.org, 
+	neil.armstrong@linaro.org, laetitia.mariottini@se.com, pascal.eberhard@se.com, 
+	abdou.saker@se.com, jimmy.lalande@se.com, benjamin.missey@non.se.com, 
+	daniel.thompson@linaro.org, linux-kernel@vger.kernel.org, 
+	Jagdish Gediya <jagdish.gediya@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-
-On Thu 14 Mar 2024 at 16:08, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
-
->>> +
->>> +#include "amlogic-a4.dtsi"
->> Could you describe how the a4 and a5 differs from each other ?
->> The description given in the commit description is the same.
->> Beside the a53 vs a55, I'm not seeing much of a difference.
->> Admittedly, there is not much yet but I wonder if a4 and a5 should have
->> a common dtsi.
->> 
-> They are mostly the same, A5 include HiFi-DSP and NPU, but A4 is not. And
-> some peripheral modules are different, such as SPI and Ehernet phy.
+On Thu, 14 Mar 2024 at 14:48, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
 >
-> I would like to wait for the follow-on chips to come out before considering
-> a merger with common dtsi file.
+>
+>
+> On 3/14/24 10:04, Sumit Garg wrote:
+> > Hi Konrad,
+> >
+> > On Wed, 13 Mar 2024 at 18:34, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >>
+> >>
+> >>
+> >> On 3/13/24 13:30, Sumit Garg wrote:
+> >>> Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
+> >>> Box Core board based on the Qualcomm APQ8016E SoC.
+> >>>
+> >>> Support for Schneider Electric HMIBSC. Features:
+> >>> - Qualcomm Snapdragon 410C SoC - APQ8016 (4xCortex A53, Adreno 306)
+> >>> - 1GiB RAM
+> >>> - 8GiB eMMC, SD slot
+> >>> - WiFi and Bluetooth
+> >>> - 2x Host, 1x Device USB port
+> >>> - HDMI
+> >>> - Discrete TPM2 chip over SPI
+> >>> - USB ethernet adaptors (soldered)
+> >>>
+> >>> Co-developed-by: Jagdish Gediya <jagdish.gediya@linaro.org>
+> >>> Signed-off-by: Jagdish Gediya <jagdish.gediya@linaro.org>
+> >>> Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
+> >>> ---
+> >>
+> >> [...]
+> >>
+> >>> +     memory@80000000 {
+> >>> +             reg = <0 0x80000000 0 0x40000000>;
+> >>> +     };
+> >>
+> >> I'm not sure the entirety of DRAM is accessible..
+> >>
+> >> This override should be unnecessary, as bootloaders generally update
+> >> the size field anyway.
+> >
+> > On this board, U-Boot is used as the first stage bootloader (replacing
+> > Little Kernel (LK), thanks to Stephan's work). And U-Boot consumes
+> > memory range from DT as Linux does but doesn't require any memory to
+> > be reserved for U-Boot itself. So apart from reserved memory nodes
+> > explicitly described in DT all the other DRAM regions are accessible.
+>
+> Still, u-boot has code to fetch the size dynamically, no?
 >
 
-No, Please do it now. There is no reason for the community to review the
-same thing twice if the SoCs are "mostly the same".
+No U-Boot being the first stage bootloader fetches size from DT which
+is bundled into U-Boot binary.
 
->>> +
->>> +/ {
->>> +     model = "Amlogic A113L2 ba400 Development Board";
->>> +     compatible = "amlogic,ba400","amlogic,a4";
->>> +     interrupt-parent = <&gic>;
->>> +     #address-cells = <2>;
->>> +     #size-cells = <2>;
->>> +
->>> +     aliases {
->>> +             serial0 = &uart_b;
->>> +     };
->>> +
->>> +     memory@0 {
->>> +             device_type = "memory";
->>> +             reg = <0x0 0x0 0x0 0x40000000>;
->>> +     };
->>> +
->>> +     reserved-memory {
->>> +             #address-cells = <2>;
->>> +             #size-cells = <2>;
->>> +             ranges;
->>> +
->>> +             /* 52 MiB reserved for ARM Trusted Firmware */
->> That's a lot of memory to blindly reserve.
->> Any chance we can stop doing that and have u-boot amend reserved memory
->> zone based on the actual needs of the device ?
-> Yes. U-boot will change size of reserved memory base on actual usage.
+> [...]
+>
+> >>
+> >>> +
+> >>> +             compatible = "adi,adv7533";
+> >>> +             reg = <0x39>;
+> >>> +
+> >>> +             interrupt-parent = <&tlmm>;
+> >>> +             interrupts = <31 IRQ_TYPE_EDGE_FALLING>;
+> >>
+> >> interrupts-extended
+> >>
+> >
+> > Please see Documentation/devicetree/bindings/display/bridge/adi,adv7533.yaml.
+>
+> Okay, and what am I supposed to see there?
 
-Then u-boot should add (not change) the memory if necessary.
-Please drop this.
+I meant you to refer to an example there but looks like
+interrupts-extended is a valid replacement too. I will use that
+instead.
 
->> 
->>> +             secmon_reserved:linux,secmon {
->>> +                     compatible = "shared-dma-pool";
->>> +                     no-map;
->>> +                     alignment = <0x0 0x400000>;
->>> +                     reg = <0x0 0x05000000 0x0 0x3400000>;
->>> +             };
->>> +     };
->>> +};
->>> +
+-Sumit
 
+>
+> Konrad
 
