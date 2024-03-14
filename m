@@ -1,366 +1,531 @@
-Return-Path: <devicetree+bounces-50404-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50405-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7A54087B918
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:08:54 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F8AC87B92F
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 09:19:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 7C9D81C216F5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 08:08:53 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id B5B1F284AE3
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 08:19:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9FE3C433A0;
-	Thu, 14 Mar 2024 08:08:49 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B90465B1EB;
+	Thu, 14 Mar 2024 08:19:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="cFMfPnlU"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="hD7GlnzP"
 X-Original-To: devicetree@vger.kernel.org
-Received: from SINPR02CU002.outbound.protection.outlook.com (mail-southeastasiaazon11021006.outbound.protection.outlook.com [52.101.133.6])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vs1-f41.google.com (mail-vs1-f41.google.com [209.85.217.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id EECCC138A;
-	Thu, 14 Mar 2024 08:08:46 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=52.101.133.6
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710403729; cv=fail; b=Z4l8foRBfOXQFyloJc0FRk4N04UvpWX96ufyv2ZEVtPamzeG+EmBGefif28p8sSOT/+Cp2os3O8ueVPsUFjRJcZeozp9SFa52vDVSlkWk+G6ounR1PTnF+LxccATVlDfjE1v94xe2uTtI9qsAG1dW8b1T1zXTLMlwqZAE5+iRRY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710403729; c=relaxed/simple;
-	bh=dh4lw2BTc8xKppTN4HzkBe/AS4XrlV3fq2iStWx9MSM=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=HaP+66y0bSF3KrCoLOVs1gLaBt90YE/svnyu9EZc9O1IS+zKT5P+b3H+T9G7ehgoawzfYk58G9ov+X4dJLZUyceuGPEr4gpCUM+vAQ9GhsPQ8nH1MjVAqGdv0VHou5GW5kcQIdjle5bN+VyXJ7dn+hzKbcFsWcgk9hgnE/YpcKA=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=cFMfPnlU; arc=fail smtp.client-ip=52.101.133.6
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=E72a7hLyDp6c2/UsHX5fXAX4nu2XIpG6Dj+YQWtaROwzT6PHfQQvRbBA4JpTviQXub/jE7evzV7RjtIrn+DyJg65g2kGvehFhJJV+G7JGQ0oxAydF1lp7j3QTUZUCvvIRLS2OgGf3KtZSO25OL7uJh/SiJ9PgUq0jw35aJ4Bsi/aHE2l+Z27uh5Q6boyNTs4SD0FZ00mXClVmK75i+bdCzy/Xo/qVRoYJcRaCk4NoRI8dPQUQtkxZzN5Jy+afYT6/9lBOE2+9v1Db0e3TsbVoZvxyivvUr3dVxORMdbwdt9OKfQJSSX+Wbvy4d4AcA4hDVAzVk0pa4v0CAqwIJsguQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=idvZdHZWlA9MOO/2ONmBTW9yHnZohAzfN3SsNQzlkeM=;
- b=KDTrcmVnLZvAYlPGfjeHXrq5RQaz9CunWGwALX6TsLy0ua97WAnkRNmyCCptgM4UUNC4nxRitwyl1yJAc9hvGc9VqMZgEdu00Rk5IHokg/cLk8+Y2TnNJ9GoBcDV3OhKDmG62c349f5mrDxP2x347H6BdJ7WSryZI/n6f9K8M9Y8ltE1+m1P22UQYI2x34+nQrSWEfD8XtfPD9GZep5SthhXByjmrcrezaj446Qnus3pEHeeoVSDAeXDVP845pHOllHobqswlSRIZssjrxnGl0hmLyW3Mtj7Yv64Iyu7gmN0lkt8X4W8XycWAKQOKWmMuXv76fk2msfItT4SbeXLbA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=idvZdHZWlA9MOO/2ONmBTW9yHnZohAzfN3SsNQzlkeM=;
- b=cFMfPnlUxBgKEd5e510NZe3Paoeo3q2amLZiWme8+UEnWe+sU9RGKfDjiS4GWMv6nDqOfMtGB7bhBSfd2zIgS9VmKzAS/G/CJGld0/YR+0+Zns4xLhHfO6v8ppnnl4x8bCyvnUOU38DO5/JMkXihzqvHhI7THFgzNe+MfYmcdQ/NG3hOliqM8fZPLyqVB05G55WC9f+5GPxvdBtAPD7P6Q42ILp7o5wSd2fC0naseBqq7cmBMS4N0ZtT6IdoSGTBLrndP7kGd+pbeiZgwr/m/U434KMb7Fbs30A5RLeBof49xgkLpY8J91nasIHcJgZ2WCPIic41J6RkUTLBr7TP4Q==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by TYSPR03MB8544.apcprd03.prod.outlook.com (2603:1096:405:53::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36; Thu, 14 Mar
- 2024 08:08:43 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::5198:1b2f:8889:17b]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::5198:1b2f:8889:17b%4]) with mapi id 15.20.7362.035; Thu, 14 Mar 2024
- 08:08:42 +0000
-Message-ID: <9a38fd52-5eea-468d-bd7c-29a505503268@amlogic.com>
-Date: Thu, 14 Mar 2024 16:08:33 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 3/4] arm64: dts: add support for A4 based Amlogic BA400
-Content-Language: en-US
-To: Jerome Brunet <jbrunet@baylibre.com>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-amlogic@lists.infradead.org
-References: <20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com>
- <20240312-basic_dt-v1-3-7f11df3a0896@amlogic.com>
- <1jsf0vephv.fsf@starbuckisacylon.baylibre.com>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <1jsf0vephv.fsf@starbuckisacylon.baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SI2PR06CA0007.apcprd06.prod.outlook.com
- (2603:1096:4:186::9) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A22255D731
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 08:19:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.217.41
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710404379; cv=none; b=fKyPAxLe4yoTM3ioTTiVMzwUEhMp+txHq9u6tpRQHB8BMx4kY+WQcwcLDQ1Y1wLm2WJJxBVT9XE2x7AHWor2rgGdu5r3sX+F6ce7Wx0qvea4pLaRox4rP6F4Mr7/yCi+/yFZ4G7Z4YMrR5oqn1vfQSWhmspwsDndP3DF89Hxu50=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710404379; c=relaxed/simple;
+	bh=IXY0wwQwDlRv4odrCfBTKygI9/tM2ICF/hkN3lASWe8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=Rb+69gSDXHPttN9vqEH6ru9aRag1Fev0t2dw5NimGdodmXmNkaw7OuHjck6qG6n+anKzOHF0IRX9MkahJNhjtSIP3woPx6nupSkzXLcx36ITuaGPHhE+/W1reZtqA6JgCSJTUfeb8QZCnn1eCJwsvNa83Rz+TX9y4lPGXLTT0BE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=hD7GlnzP; arc=none smtp.client-ip=209.85.217.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-vs1-f41.google.com with SMTP id ada2fe7eead31-475da36107bso261711137.3
+        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 01:19:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710404376; x=1711009176; darn=vger.kernel.org;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tK+3kQqSlfPhFWBUtsWPYQNkWNEDMgLpBguwcQs2Jwk=;
+        b=hD7GlnzPqf3p2Aymf1IWRETvwRF6dTbOdW5AUYuVASCPvEANVTzZgKvHCd6eP+bsXM
+         Us8meQ1coa9cULZi3swGsVvu+hR0sdMtXXLHt5trciqwX4p8JoXYLVndYmfFlvvI39jj
+         zttsA56270rj6TQZPPdQq+opbDp9tFUf4x/YjQqXReKlgjzHhvX7EA5KJmke/XgkW3kq
+         5bsdJcADdGCCDSIlPIvIKEWzojxgQ2pPhLf/YOWPzFQ8TDLOoA2ftd8WiW63awIhvXyz
+         2iC6w7rxMoKhVskJoCPUcnjop4VVN/aaaHY0TmvL4eJRjHnul/FiT4DzSpEr+CoA5P8h
+         sUDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710404376; x=1711009176;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tK+3kQqSlfPhFWBUtsWPYQNkWNEDMgLpBguwcQs2Jwk=;
+        b=vVNbV7m21XexNFsdhJyGoSLPyf0Ci+O7EJ7VfQUXRyun5Qzn56FNsJ6sgkwFdIWexI
+         4iln1xhKVKxxaofm46M4M8qNyP0avm0wrBqwgXQJdMMBMllUR3cxCoX/17VkTdWTLFNl
+         ZoTcb0gZ8fHOaXKaClS7IXriIiur888FU3qi22sIqvEY2muKXuW7zpwhtlaqRL1tYMfg
+         gtN9i/mNE7CiAWUAQyktwDU9th+6SrkA1GqpMuXDUZR+Q5nbjklF+D92alPdvILW6cC/
+         iuxzgL05oQgpUeEVdVxeIfhD2F9Vxp7So1Ox45IusyiQoiffQK5NqnTOTNrmnxhzzgxS
+         gNWA==
+X-Forwarded-Encrypted: i=1; AJvYcCVnxBnP00N97KIt2LNhSnABT58maOAa11xCtaRfy+Mru47nCZaTjj8vw+oxVpx69lQQewFcO1pxJ3/BRs1mQmBT/oG6JQAadQv8Tg==
+X-Gm-Message-State: AOJu0YxZvAuYekx3tGWqjJ24aiHNwJXe+xxQAAFcZFpHKdqukmFrpw01
+	UHacDztN+ewX83R4sSHizM3SEBIkYLdVlqnAIRNk0NY9fXqRa7boBc8DuMZtBVV56up5Y9E5Zd4
+	rsqr5GmYSIchyUlQDc4f1oL+dCBVxzAFeAlgB4g==
+X-Google-Smtp-Source: AGHT+IGPQWkXK7MdgQEmauYaWdQfwjYuThqRNmj7dp6O2HGI3PntS4E9mND6iNXfPwnlSecTt+045PAaCABauVWMNJc=
+X-Received: by 2002:a05:6102:508:b0:474:5f25:58a3 with SMTP id
+ l8-20020a056102050800b004745f2558a3mr1176602vsa.19.1710404374994; Thu, 14 Mar
+ 2024 01:19:34 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|TYSPR03MB8544:EE_
-X-MS-Office365-Filtering-Correlation-Id: 98c93cad-d03a-49e2-f0d8-08dc43fdf6c1
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	CbhdwvOleGGXfqUBe0lfH53XN06Ur1s9I/ox3PjYON8yB059YabYiKyeUMxN53oZ/A9uXvX+tUcQha1kw2mie5KTwrIu0eMazWdNg0NC6jlNiQFhY+t4t3DmaohcrklH9QiJlqU40lfs7pWBLI99ZCtQkLt4Yn8MtnC1+qbIyQgKd+JQX+l3QPpod/i8N9sy0EWK7C83+6St2HCME3TBXqUDUdQaivV19b8/YGuyiySPPCmGumirFsKD4zWocGpqzpsaD7GWPTzjJaKPiNic2HxKFSXoPIcjwBrsEmfzz5NRhJZKEN4zASPdds5EWiA5H5iTlWMlonTwSt0t6oa6Ny5H98S2kG2IrewMfBFSTBq6etCHFJHD7kQRI5DHyCc9N9IOOGMiVDSut2kZv5IxXDhFEUAj6SNpd0A4lFEyZPhGtfmpTBtwpVHB4KelV1g4kh1484zbYplvx7nIWTrS+HJOnL9TBBPlk5frH/zSlOEN1NhGocw53Q/aZZ4vyDcEL065AgDWdPdLmZq/fK0+5AAXQLXh31u0cjYNmVOU4Pviz9Ob7Jt2VJzo5SAjG1NMPqsozEKqgW3MYFncuSU6Z39embNuSS11yqRiZdWuI7kTth0Lh/s+Jz4PAVQSbZrtgk5Yzn5WTCBYgdDjYfuGi2xzicC8MsGO8GGCdBPo6Fk=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(376005);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?ODhYTFZkclpVUVNwclI4L0pKM1FXaEIzV1hpTGRwNFI1MVRtMjRuVWMzbVB3?=
- =?utf-8?B?ejNUNWtOYmRwZU1RU0pweDJMd0VUNWIxelJyNVlDcVd1bU1PdXZiQ2d5OTVo?=
- =?utf-8?B?eWhDVytMZnA4TFlKRnBsbHNTTExQUW10MXpwaWxWZFU5RnNna1FDTnJHVFF4?=
- =?utf-8?B?bnRHRTJIRlZtdHJia1BhaEVCNXdnYk1Ib3B5ak9XaDRVVzJ3dkJFSldiSXpx?=
- =?utf-8?B?d1pneXlwOG85SEZ6bGQ2R2tVSlBKb0VDQkhBRTNLRkVxendKdENuVzhsbCtW?=
- =?utf-8?B?bVRDTEhxVHUwUHpnaWl6VEtRVHJ5cVRJRVFqdGtKQk9YYWZYSXQvSmpuSU5y?=
- =?utf-8?B?VVNtaUd4Nm52YW9xbDM3YTVGMjhKVGhDekxtVmpCVTdaVEwwZXR0dktqaHBr?=
- =?utf-8?B?a2ZGMEpOc0JXUDFFYXZFNC9aMlIwRHlZc21wVEVFblp6eWNXUUdSRjgyOUgz?=
- =?utf-8?B?TkVtZVRkVWFwdEZsaU5wa3RueW5KakxPQUl4Q3MzSmQzUHJjVVBYeStZWldN?=
- =?utf-8?B?Zk01QVAwNVpheXFaeENhVXFzV0Z0d21pQllaWFRGaUtlRE02WVBjUW5uUnNG?=
- =?utf-8?B?eCtzRXd1Rjg0T3lQTWNLdXdjVnhvYnl1UUxLRlJWK1RLaXJwKytFQ3pRN0k4?=
- =?utf-8?B?ZUkyTnYrSncyengxWGpPNTd2aXB6eE81cWRlK2dkcEpldXNpR0tzNmdqblJL?=
- =?utf-8?B?b0xUU1lVN1dNMzF4Q3hKWkhtUHhMY083RkxDcHZ4SXRiN0tzYXJpREJxOFdx?=
- =?utf-8?B?S3l0Rk1ldFIycG5FMHpYby9ucmpGT0xXcURFSTQ2VW5JdEhDd0pleTE3bmNa?=
- =?utf-8?B?aTRWNzQxLzY3REp5MnZqa1lQcGloRGExb2REUHZxaGphaGE4Y3FNRWF2VWFK?=
- =?utf-8?B?S0JHaC9CMHVEN0FOaitJMG5nanVwT2N4RTY0VjkxcGdtd3RrQ0I2dTZMZ2xF?=
- =?utf-8?B?S282Y2VudUdlc283QjJ1RXVKVE0vY2d0VVlQaVB5aTdXamtZU2Jra0ZCbXor?=
- =?utf-8?B?THBidjVuVDZiOFV2QXhkUTZhTjNZdXdyd1pTWEs4VWxLS1U1bWtCcWE4Mkoz?=
- =?utf-8?B?aUwvRjZnYmlzUXo1WEZQbVhLQUNYNXdGWWo4M2lxcFFyemgzQkhycW9XR3I1?=
- =?utf-8?B?b0NHTEdrOVlxNlBTOEpuWktodlhzaGdDVEhSZUVkaFZYREE2UVRYeEp1ZWY0?=
- =?utf-8?B?Mm9TMUFOWnVQbHkyQ0VBK3RlVjdpL2NjOTd6N1M1WG43MVNqUEc4cEZjdDkv?=
- =?utf-8?B?QXVhWkJkaHFxV3VWbVdOWnp3Si9waWNGWFN1bGVNbElWS0RNanJ3U0dGS3o1?=
- =?utf-8?B?bUNONTZEQ0RrM21QRnNZaFNHWWx4QjlzNHNUL3FPekZjTlR6bGhjajV0cWQ5?=
- =?utf-8?B?SFBvNzhYMDFQa3dlTXhKWnNpNHRxMWNtSEdsMVpmTXV2SjNRcDZBYjNiTHdD?=
- =?utf-8?B?MnM2K2FBb0VvUVY1WkxrL3FqckRXQmdiMjRZWFZUaUlEUytRUlZWN1E2aFBx?=
- =?utf-8?B?bkozSUJpL1NOd3B5RmcrRDJsK1V0Qjdwc0R4UUdibzVZU3VUYVdTNWU2ZFlG?=
- =?utf-8?B?cG9haUp1SUl4OEFwR0JWZDczNXkyUmJMeTRGQ3VOZUJkeXRHNUdSdndycTJQ?=
- =?utf-8?B?WTNYRGJWcjRtdWs5S2htZVhqaUpHWnNkYUl6eFZOamQ5bmFxcTh4MFJHSXVX?=
- =?utf-8?B?eXNhQ0ZyQzVPaGZQNHZXUEF1VzllKytmeVBrekN1aW9Ob0dSdHlUbElJOTFq?=
- =?utf-8?B?VnJkck1lZkt5dkhZZXdHdUxLZ0VrTlhSbEFRRVRSZ0pLMm1yTDRrL0p2Z2I1?=
- =?utf-8?B?ckVQVTBlL05sMHlBZ2J5cWd4dUpXZUY2RzJDWHhBcGJGczdLdHJ5UE5uVm1O?=
- =?utf-8?B?RTlxcHBSb29CTitydVltbGNVZjdxQWxjUTFsb25kS3FUT1AzM0N2bVY1S1NI?=
- =?utf-8?B?aDV1U3JOZzhEYzBaaFdJTXVhbXNPNi9OdVlkOE0rcGNQcXh3L29Fb1FEaXRz?=
- =?utf-8?B?WXZ0bmdnZlp2eHZxa1RHTGtRaXJtRWZMVUlaZWVEQnZ5b1RicS9neWRsZU4z?=
- =?utf-8?B?OHlyN2M0MXNzYnJQOTc2VExWYnJSMThrbE5qT2E3T3VCUzFtUHQ5U0RjU0pp?=
- =?utf-8?B?TUZSVUg1T2VTaHhncGNocHhRRi9wUTJwS1pWSEthM21zOERQYkVMYVlkMGpF?=
- =?utf-8?B?Umc9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 98c93cad-d03a-49e2-f0d8-08dc43fdf6c1
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2024 08:08:42.7250
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +CEKE9Fu/0UgUR1QRqu+USaUvQNZDG9RI2W2Okzv2+5M2LIL7MNMR63jlNp9F9H1fca6oAEw28mhZfq+fZuzbGvIMXpgsSBoc4OLrAXPeEA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYSPR03MB8544
+References: <20240313123017.362570-1-sumit.garg@linaro.org>
+ <20240313123017.362570-4-sumit.garg@linaro.org> <4a0a8db7-a2bc-4c99-94b2-c13facbd1bef@linaro.org>
+In-Reply-To: <4a0a8db7-a2bc-4c99-94b2-c13facbd1bef@linaro.org>
+From: Sumit Garg <sumit.garg@linaro.org>
+Date: Thu, 14 Mar 2024 13:49:23 +0530
+Message-ID: <CAFA6WYPh5BS_Fpi6ksAC7bwoFEyqjj1Y3EahyQxCG9Pp=KDw=Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
+ board DTS
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
+	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org, 
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, stephan@gerhold.net, 
+	caleb.connolly@linaro.org, neil.armstrong@linaro.org, 
+	laetitia.mariottini@se.com, pascal.eberhard@se.com, abdou.saker@se.com, 
+	jimmy.lalande@se.com, benjamin.missey@non.se.com, daniel.thompson@linaro.org, 
+	linux-kernel@vger.kernel.org, Jagdish Gediya <jagdish.gediya@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 
-Hi Jerome,
-    Thanks for your review.
+Hi Krzysztof,
 
-On 2024/3/12 17:55, Jerome Brunet wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On Tue 12 Mar 2024 at 17:18, Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org> wrote:
-> 
->> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>
->> Amlogic A4 is an application processor designed for smart audio
->> and IoT applications.
->>
->> Add basic support for the A4 based Amlogic BA400 board, which describes
->> the following components: CPU, GIC, IRQ, Timer and UART.
->> These are capable of booting up into the serial console.
->>
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->>   arch/arm64/boot/dts/amlogic/Makefile               |  1 +
->>   .../boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts   | 43 ++++++++++
->>   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 99 ++++++++++++++++++++++
->>   3 files changed, 143 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
->> index 1ab160bf928a..9a50ec11bb8d 100644
->> --- a/arch/arm64/boot/dts/amlogic/Makefile
->> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->> @@ -1,4 +1,5 @@
->>   # SPDX-License-Identifier: GPL-2.0
->> +dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
->>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
->> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts b/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts
->> new file mode 100644
->> index 000000000000..60f9f23858c6
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts
->> @@ -0,0 +1,43 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->> + */
->> +
->> +/dts-v1/;
->> +
->> +#include "amlogic-a4.dtsi"
-> 
-> Could you describe how the a4 and a5 differs from each other ?
-> The description given in the commit description is the same.
-> 
-> Beside the a53 vs a55, I'm not seeing much of a difference.
-> Admittedly, there is not much yet but I wonder if a4 and a5 should have
-> a common dtsi.
-> 
-They are mostly the same, A5 include HiFi-DSP and NPU, but A4 is not. 
-And  some peripheral modules are different, such as SPI and Ehernet phy.
+On Wed, 13 Mar 2024 at 18:30, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 13/03/2024 13:30, Sumit Garg wrote:
+> > Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
+> > Box Core board based on the Qualcomm APQ8016E SoC.
+> >
+>
+> ...
+>
+> > +
+> > +/ {
+> > +     model = "Schneider Electric HMIBSC Board";
+> > +     compatible = "schneider,apq8016-hmibsc", "qcom,apq8016";
+> > +
+> > +     aliases {
+> > +             mmc0 = &sdhc_1; /* eMMC */
+> > +             mmc1 = &sdhc_2; /* SD card */
+> > +             serial0 = &blsp_uart1;
+> > +             serial1 = &blsp_uart2;
+> > +             usid0 = &pm8916_0;
+> > +             i2c1 = &blsp_i2c6;
+> > +             i2c3 = &blsp_i2c4;
+> > +             i2c4 = &blsp_i2c3;
+>
+> The aliases should match schematics of the board, so I assume missing
+> i2c2 is intentional, right?
 
-I would like to wait for the follow-on chips to come out before 
-considering a merger with common dtsi file.
+Yeah that is intentional as per board schematics.
 
->> +
->> +/ {
->> +     model = "Amlogic A113L2 ba400 Development Board";
->> +     compatible = "amlogic,ba400","amlogic,a4";
->> +     interrupt-parent = <&gic>;
->> +     #address-cells = <2>;
->> +     #size-cells = <2>;
->> +
->> +     aliases {
->> +             serial0 = &uart_b;
->> +     };
->> +
->> +     memory@0 {
->> +             device_type = "memory";
->> +             reg = <0x0 0x0 0x0 0x40000000>;
->> +     };
->> +
->> +     reserved-memory {
->> +             #address-cells = <2>;
->> +             #size-cells = <2>;
->> +             ranges;
->> +
->> +             /* 52 MiB reserved for ARM Trusted Firmware */
-> 
-> That's a lot of memory to blindly reserve.
-> Any chance we can stop doing that and have u-boot amend reserved memory
-> zone based on the actual needs of the device ?
-Yes. U-boot will change size of reserved memory base on actual usage.
-> 
->> +             secmon_reserved:linux,secmon {
->> +                     compatible = "shared-dma-pool";
->> +                     no-map;
->> +                     alignment = <0x0 0x400000>;
->> +                     reg = <0x0 0x05000000 0x0 0x3400000>;
->> +             };
->> +     };
->> +};
->> +
->> +&uart_b {
->> +     status = "okay";
->> +};
->> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
->> new file mode 100644
->> index 000000000000..7e8745010b52
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
->> @@ -0,0 +1,99 @@
->> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->> +/*
->> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/gpio/gpio.h>
->> +/ {
->> +     cpus {
->> +             #address-cells = <2>;
->> +             #size-cells = <0>;
->> +
->> +             cpu0: cpu@0 {
->> +                     device_type = "cpu";
->> +                     compatible = "arm,cortex-a53";
->> +                     reg = <0x0 0x0>;
->> +                     enable-method = "psci";
->> +             };
->> +
->> +             cpu1: cpu@1 {
->> +                     device_type = "cpu";
->> +                     compatible = "arm,cortex-a53";
->> +                     reg = <0x0 0x1>;
->> +                     enable-method = "psci";
->> +             };
->> +
->> +             cpu2: cpu@2 {
->> +                     device_type = "cpu";
->> +                     compatible = "arm,cortex-a53";
->> +                     reg = <0x0 0x2>;
->> +                     enable-method = "psci";
->> +             };
->> +
->> +             cpu3: cpu@3 {
->> +                     device_type = "cpu";
->> +                     compatible = "arm,cortex-a53";
->> +                     reg = <0x0 0x3>;
->> +                     enable-method = "psci";
->> +             };
->> +     };
->> +
->> +     timer {
->> +             compatible = "arm,armv8-timer";
->> +             interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +                          <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +                          <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
->> +                          <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
->> +     };
->> +
->> +     psci {
->> +             compatible = "arm,psci-0.2";
-> 
-> Really ? still on the that old version ?
-> Will fix it. Use psci-1.0
->> +             method = "smc";
->> +     };
->> +
->> +     xtal: xtal-clk {
->> +             compatible = "fixed-clock";
->> +             clock-frequency = <24000000>;
->> +             clock-output-names = "xtal";
->> +             #clock-cells = <0>;
->> +     };
->> +
->> +     soc {
->> +             compatible = "simple-bus";
->> +             #address-cells = <2>;
->> +             #size-cells = <2>;
->> +             ranges;
->> +
->> +             gic: interrupt-controller@fff01000 {
->> +                     compatible = "arm,gic-400";
->> +                     #interrupt-cells = <3>;
->> +                     #address-cells = <0>;
->> +                     interrupt-controller;
->> +                     reg = <0x0 0xfff01000 0 0x1000>,
->> +                           <0x0 0xfff02000 0 0x2000>,
->> +                           <0x0 0xfff04000 0 0x2000>,
->> +                           <0x0 0xfff06000 0 0x2000>;
->> +                     interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
->> +             };
->> +
->> +             apb@fe000000 {
->> +                     compatible = "simple-bus";
->> +                     reg = <0x0 0xfe000000 0x0 0x480000>;
->> +                     #address-cells = <2>;
->> +                     #size-cells = <2>;
->> +                     ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
->> +
->> +                     uart_b: serial@7a000 {
->> +                             compatible = "amlogic,meson-s4-uart",
->> +                                          "amlogic,meson-ao-uart";
->> +                             reg = <0x0 0x7a000 0x0 0x18>;
->> +                             interrupts = <GIC_SPI 169 IRQ_TYPE_EDGE_RISING>;
->> +                             clocks = <&xtal>, <&xtal>, <&xtal>;
->> +                             clock-names = "xtal", "pclk", "baud";
->> +                             status = "disabled";
->> +                     };
->> +             };
->> +     };
->> +};
-> 
-> 
-> --
-> Jerome
+>
+> > +             spi0 = &blsp_spi5;
+> > +     };
+> > +
+> > +     chosen {
+> > +             stdout-path = "serial0";
+> > +     };
+> > +
+> > +     memory@80000000 {
+> > +             reg = <0 0x80000000 0 0x40000000>;
+> > +     };
+> > +
+> > +     reserved-memory {
+> > +             ramoops@bff00000 {
+> > +                     compatible = "ramoops";
+> > +                     reg = <0x0 0xbff00000 0x0 0x100000>;
+> > +
+> > +                     record-size = <0x20000>;
+> > +                     console-size = <0x20000>;
+> > +                     ftrace-size = <0x20000>;
+> > +             };
+> > +     };
+> > +
+> > +     usb2513 {
+>
+> Node names should be generic. See also an explanation and list of
+> examples (not exhaustive) in DT specification:
+> https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+> e.g. usb-hub
+>
+
+Okay, I will rename it to usb-hub.
+
+>
+>
+> > +             compatible = "smsc,usb3503";
+> > +             reset-gpios = <&pm8916_gpios 1 GPIO_ACTIVE_LOW>;
+> > +             initial-mode = <1>;
+> > +     };
+> > +
+> > +     usb_id: usb-id {
+> > +             compatible = "linux,extcon-usb-gpio";
+> > +             id-gpios = <&tlmm 110 GPIO_ACTIVE_HIGH>;
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&usb_id_default>;
+> > +     };
+> > +
+> > +     hdmi-out {
+> > +             compatible = "hdmi-connector";
+> > +             type = "a";
+> > +
+> > +             port {
+> > +                     hdmi_con: endpoint {
+> > +                             remote-endpoint = <&adv7533_out>;
+> > +                     };
+> > +             };
+> > +     };
+> > +
+> > +     gpio-keys {
+> > +             compatible = "gpio-keys";
+> > +             autorepeat;
+> > +
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&msm_key_volp_n_default>;
+> > +
+> > +             button {
+> > +                     label = "Volume Up";
+> > +                     linux,code = <KEY_VOLUMEUP>;
+> > +                     gpios = <&tlmm 107 GPIO_ACTIVE_LOW>;
+> > +             };
+> > +     };
+> > +
+> > +     leds {
+> > +             pinctrl-names = "default";
+> > +             pinctrl-0 = <&pm8916_mpps_leds>;
+>
+> First property is always compatible. Please apply DTS coding style rules.
+
+Ack.
+
+>
+> > +
+> > +             compatible = "gpio-leds";
+> > +             #address-cells = <1>;
+> > +             #size-cells = <0>;
+>
+> That's not a bus.
+>
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check W=1` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+> for instructions).
+
+I assumed earlier that W=1 is sufficient for DT schema checks but it
+looks like those are two different entities. However, I added these
+address and size cells properties only to get rid of warnings reported
+by W=1, see below:
+
+$ make qcom/apq8016-schneider-hmibsc.dtb W=1
+  DTC     arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dtb
+arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts:96.9-103.5:
+Warning (unit_address_vs_reg): /leds/led@5: node has a unit name, but
+no reg or ranges property
+arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts:105.9-112.5:
+Warning (unit_address_vs_reg): /leds/led@6: node has a unit name, but
+no reg or ranges property
+<snip>
+
+So it looks like W=1 is reporting false warnings and we should rather
+rely on dtbs_check only.
+
+>
+> > +
+> > +             led@5 {
+> > +                     reg = <5>;
+> > +                     label = "apq8016-hmibsc:green:wlan";
+> > +                     function = LED_FUNCTION_WLAN;
+> > +                     color = <LED_COLOR_ID_YELLOW>;
+> > +                     gpios = <&pm8916_mpps 2 GPIO_ACTIVE_HIGH>;
+> > +                     linux,default-trigger = "phy0tx";
+> > +                     default-state = "off";
+> > +             };
+> > +
+> > +             led@6 {
+> > +                     reg = <6>;
+> > +                     label = "apq8016-hmibsc:yellow:bt";
+> > +                     function = LED_FUNCTION_BLUETOOTH;
+> > +                     color = <LED_COLOR_ID_BLUE>;
+> > +                     gpios = <&pm8916_mpps 3 GPIO_ACTIVE_HIGH>;
+> > +                     linux,default-trigger = "bluetooth-power";
+> > +                     default-state = "off";
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&blsp_i2c3 {
+> > +     status = "okay";
+> > +
+> > +     eeprom@50 {
+> > +             compatible = "atmel,24c32";
+> > +             reg = <0x50>;
+> > +     };
+> > +};
+> > +
+> > +&blsp_i2c4 {
+> > +     status = "okay";
+> > +
+> > +     adv_bridge: bridge@39 {
+> > +             status = "okay";
+>
+> Why do you need it? Was it disabled?
+>
+> And why this is before compatible? If this stays, please use DTS coding
+> style rules for placement.
+
+Okay I will remove it.
+
+>
+> > +
+> > +             compatible = "adi,adv7533";
+> > +             reg = <0x39>;
+> > +
+> > +             interrupt-parent = <&tlmm>;
+> > +             interrupts = <31 IRQ_TYPE_EDGE_FALLING>;
+> > +
+> > +             adi,dsi-lanes = <4>;
+> > +             clocks = <&rpmcc RPM_SMD_BB_CLK2>;
+> > +             clock-names = "cec";
+> > +
+> > +             pd-gpios = <&tlmm 32 GPIO_ACTIVE_HIGH>;
+> > +
+> > +             avdd-supply = <&pm8916_l6>;
+> > +             a2vdd-supply = <&pm8916_l6>;
+> > +             dvdd-supply = <&pm8916_l6>;
+> > +             pvdd-supply = <&pm8916_l6>;
+> > +             v1p2-supply = <&pm8916_l6>;
+> > +             v3p3-supply = <&pm8916_l17>;
+> > +
+> > +             pinctrl-names = "default","sleep";
+> > +             pinctrl-0 = <&adv7533_int_active &adv7533_switch_active>;
+> > +             pinctrl-1 = <&adv7533_int_suspend &adv7533_switch_suspend>;
+> > +             #sound-dai-cells = <1>;
+> > +
+> > +             ports {
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <0>;
+> > +
+> > +                     port@0 {
+> > +                             reg = <0>;
+> > +                             adv7533_in: endpoint {
+> > +                                     remote-endpoint = <&mdss_dsi0_out>;
+> > +                             };
+> > +                     };
+> > +
+> > +                     port@1 {
+> > +                             reg = <1>;
+> > +                             adv7533_out: endpoint {
+> > +                                     remote-endpoint = <&hdmi_con>;
+> > +                             };
+> > +                     };
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&blsp_i2c6 {
+> > +     status = "okay";
+> > +
+> > +     rtc@30 {
+> > +             compatible = "sii,s35390a";
+> > +             reg = <0x30>;
+> > +     };
+> > +
+> > +     eeprom@50 {
+> > +             compatible = "atmel,24c256";
+> > +             reg = <0x50>;
+> > +     };
+> > +};
+> > +
+> > +&blsp_spi5 {
+> > +     status = "okay";
+> > +     cs-gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
+> > +
+> > +     tpm@0 {
+> > +             compatible = "tcg,tpm_tis-spi";
+> > +             reg = <0>;
+> > +             spi-max-frequency = <500000>;
+> > +     };
+> > +};
+> > +
+> > +&blsp_uart1 {
+> > +     status = "okay";
+> > +     label = "UART0";
+> > +};
+> > +
+> > +&blsp_uart2 {
+> > +     status = "okay";
+> > +     label = "UART1";
+> > +};
+> > +
+> > +&lpass {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&mdss {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&mdss_dsi0_out {
+> > +     data-lanes = <0 1 2 3>;
+> > +     remote-endpoint = <&adv7533_in>;
+> > +};
+> > +
+> > +&pm8916_codec {
+> > +     status = "okay";
+> > +     qcom,mbhc-vthreshold-low = <75 150 237 450 500>;
+> > +     qcom,mbhc-vthreshold-high = <75 150 237 450 500>;
+> > +};
+> > +
+> > +&pm8916_resin {
+> > +     status = "okay";
+> > +     linux,code = <KEY_POWER>;
+> > +};
+> > +
+> > +&pm8916_rpm_regulators {
+> > +     pm8916_l17: l17 {
+> > +             regulator-min-microvolt = <3300000>;
+> > +             regulator-max-microvolt = <3300000>;
+> > +     };
+> > +};
+> > +
+> > +&sdhc_1 {
+> > +     status = "okay";
+> > +};
+> > +
+> > +&sdhc_2 {
+> > +     status = "okay";
+> > +
+> > +     pinctrl-names = "default", "sleep";
+> > +     pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
+> > +     pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
+> > +
+> > +     cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
+> > +};
+> > +
+> > +&sound {
+> > +     status = "okay";
+>
+> Is thi sneeded?
+
+Yeah it is disabled by default.
+
+>
+> > +
+> > +     pinctrl-0 = <&cdc_pdm_default &sec_mi2s_default>;
+> > +     pinctrl-1 = <&cdc_pdm_sleep &sec_mi2s_sleep>;
+> > +     pinctrl-names = "default", "sleep";
+> > +     model = "DB410c";
+> > +     audio-routing =
+> > +             "AMIC2", "MIC BIAS Internal2",
+> > +             "AMIC3", "MIC BIAS External1";
+> > +
+> > +     quaternary-dai-link {
+> > +             link-name = "ADV7533";
+> > +             cpu {
+> > +                     sound-dai = <&lpass MI2S_QUATERNARY>;
+> > +             };
+> > +             codec {
+> > +                     sound-dai = <&adv_bridge 0>;
+> > +             };
+> > +     };
+> > +
+> > +     primary-dai-link {
+> > +             link-name = "WCD";
+> > +             cpu {
+> > +                     sound-dai = <&lpass MI2S_PRIMARY>;
+> > +             };
+> > +             codec {
+> > +                     sound-dai = <&lpass_codec 0>, <&pm8916_codec 0>;
+> > +             };
+> > +     };
+> > +
+> > +     tertiary-dai-link {
+> > +             link-name = "WCD-Capture";
+> > +             cpu {
+> > +                     sound-dai = <&lpass MI2S_TERTIARY>;
+> > +             };
+> > +             codec {
+> > +                     sound-dai = <&lpass_codec 1>, <&pm8916_codec 1>;
+> > +             };
+> > +     };
+> > +};
+> > +
+> > +&usb {
+> > +     status = "okay";
+> > +     extcon = <&usb_id>, <&usb_id>;
+> > +
+> > +     pinctrl-names = "default", "device";
+> > +     pinctrl-0 = <&usb_sw_sel_pm &usb_hub_reset_pm>;
+> > +     pinctrl-1 = <&usb_sw_sel_pm_device &usb_hub_reset_pm_device>;
+> > +};
+> > +
+> > +&usb_hs_phy {
+> > +     extcon = <&usb_id>;
+> > +};
+> > +
+> > +&wcnss {
+> > +     status = "okay";
+> > +     firmware-name = "qcom/apq8016/wcnss.mbn";
+> > +};
+> > +
+> > +&wcnss_ctrl {
+> > +     firmware-name = "qcom/apq8016/WCNSS_qcom_wlan_nv_sbc.bin";
+> > +};
+> > +
+> > +&wcnss_iris {
+> > +     compatible = "qcom,wcn3620";
+> > +};
+> > +
+> > +&wcnss_mem {
+> > +     status = "okay";
+> > +};
+> > +
+> > +/* Enable CoreSight */
+> > +&cti0 { status = "okay"; };
+> > +&cti1 { status = "okay"; };
+> > +&cti12 { status = "okay"; };
+> > +&cti13 { status = "okay"; };
+> > +&cti14 { status = "okay"; };
+> > +&cti15 { status = "okay"; };
+> > +&debug0 { status = "okay"; };
+> > +&debug1 { status = "okay"; };
+> > +&debug2 { status = "okay"; };
+> > +&debug3 { status = "okay"; };
+> > +&etf { status = "okay"; };
+> > +&etm0 { status = "okay"; };
+> > +&etm1 { status = "okay"; };
+> > +&etm2 { status = "okay"; };
+> > +&etm3 { status = "okay"; };
+> > +&etr { status = "okay"; };
+> > +&funnel0 { status = "okay"; };
+> > +&funnel1 { status = "okay"; };
+> > +&replicator { status = "okay"; };
+> > +&stm { status = "okay"; };
+> > +&tpiu { status = "okay"; };
+> > +
+> > +/*
+> > + * 2mA drive strength is not enough when connecting multiple
+> > + * I2C devices with different pull up resistors.
+> > + */
+> > +
+> > +&blsp_i2c4_default {
+>
+> None of your overrides look like have proper alphabetical order. Please
+> use alphabetical order.
+>
+
+Although these are already following the same order as
+apq8016-sbc.dts, would you like the two DTS files based on the same
+SoC to follow different orders?
+
+-Sumit
+
+>
+>
+> Best regards,
+> Krzysztof
+>
 
