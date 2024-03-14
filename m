@@ -1,255 +1,120 @@
-Return-Path: <devicetree+bounces-50540-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50541-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 45A1687C070
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 16:37:33 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id BCCB687C07E
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 16:39:06 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EFC2228229C
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 15:37:31 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 5C0A31F21FC7
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 15:39:06 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4E57971B42;
-	Thu, 14 Mar 2024 15:37:24 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="wgWdlUBX"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 03EA07174B;
+	Thu, 14 Mar 2024 15:38:36 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wr1-f54.google.com (mail-wr1-f54.google.com [209.85.221.54])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BD12971B27
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 15:37:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.54
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DE2C17175B
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 15:38:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710430644; cv=none; b=c2JnNy1HDXBhnJucj8l/gtB4sEC0GmieA+3j32PjqaaMVbTJJ8cxCHY8RjrTmFnc8FHc8rAt+IecEicZa2nf24WsGRCXmdKbsZ27pkaGT0aYWxkhmI4avKcnmv0MqFCqS5DeL0Gg7fpD/VOihpnCLW7DgZmn7fzJwF/+MKXqW2Y=
+	t=1710430715; cv=none; b=ih9TlKknK5N4lrTwgsIqVPLSTU1vTjfEzWfhvk3uefOkDp3/7GXalFWbMs6msnxWR/U+zp6PbdoW+VHsktLFeKxQlmoI3c/MbHXz4ZQdgVi/itIo/nEPmRaJw8V4k+WtzI1BzJ9XfjGrM7nnA+ZYXpL/I67kLdJ6bK7kjm4ndrw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710430644; c=relaxed/simple;
-	bh=SPVqWWkb2K1BrqMKLNhmlLdj/AUNuhYVfe1ThELFrb0=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=AZZ5HUrIHvCELtmL2Z+4xc8RRCAXi+jA3LsI16HUIMt7QiNCXS9RqhdfI3nCqDClUAM7/whuixIL3L9zdEPc0n1/KgVLByDQzwGSuLU+HTcugs7YcT2OXK4SO7I+0FBn9oMUNlpw7DhnqlU9sRtDwXheZQx7xELzpbKDhwoImaQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=wgWdlUBX; arc=none smtp.client-ip=209.85.221.54
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wr1-f54.google.com with SMTP id ffacd0b85a97d-33d90dfe73cso726336f8f.0
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 08:37:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710430639; x=1711035439; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hrkk0iamSD3B9fHRkTsQ+4hlgt0dhGX0M+8WUe7tnlA=;
-        b=wgWdlUBXsccxOtxVCFkXBvwqfyrUkpYrBFV8/NRn9c4Sx/ViV1ESkKi7cPZKloRLQv
-         ZldV1CrT9jd83XXWG6NTinSdH9uSk5waqvs2YJRwgRP42q2lcRQ62SDg2GODppGUgKma
-         bxehDlOepfsWFFcKHyA5aC1l1K510vhy3DDLnaaOpab/5WEWCPiYbiiRibBJfwy2iVuF
-         OrASWTo1mNzGsfDcw/DwmQ8uNBQdg6VL7Uy/w4HqHQZC1/6+Z0sMcvQzijbLk8tqdQSy
-         NqxCmSNOTYGQ5vOpGSyrQsIr32cHZMfx49gxOvBUpOCE5ictLE8ljXst7W8BtuQKQo3T
-         D6iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710430639; x=1711035439;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hrkk0iamSD3B9fHRkTsQ+4hlgt0dhGX0M+8WUe7tnlA=;
-        b=ftOsPGC3wZ6v/l0RJQO4gMwk1cwQXraU8QVJjRg3xt2tcWcr4krn+45o2WO9RoIb0D
-         pISgoJCUySteLmUryF0dO/8g6X2p4GPddSFW5llmQou4s8iMHwKlLT2/scDH0Lm7rJdM
-         dakH9Nyi6OzEe6ckptUzHBMDTgm4s5ZuZ0vs6LlGjNAZPT6lweVvFYvA5yMBVtcfoz3s
-         4leZqJ5+vlcPa+mvueYbVz+Zi1g8TbSYq6l3aMRXKX4VM690Us5032Dwt53RJfgX6oy6
-         UQgVGOuuZsCRorHhcwqFrNacJMjBZqCzxvSNZEqveqJHh079X49PkALkFc7eZHWOOEyG
-         fB4g==
-X-Forwarded-Encrypted: i=1; AJvYcCUAEA+208iGb7KZuXBN/wIouBbvXyUKF45jznVTMBvmKOdzXmwKxV9asIRiIh9zERF8jQ1LDZzobV1wuoiT3vykkBygJtIPzmaOgg==
-X-Gm-Message-State: AOJu0YyWsaOqDwNcsnhwIyjCeXYQMHoxrBcZ5JF11yWMPQFrJj2hse+H
-	04VBC13+WmPE57llgTRDQBGbHeQJm7Vhm7F1IetBqKkX3nP5vkb6gIb9z1B4ddw=
-X-Google-Smtp-Source: AGHT+IFBgOSw9MnbY+rRKz5fxCP4xUmA4m909MnaxVuf1SVf2slvt1nzfZzf7+4/YmkGyAL28r0LeA==
-X-Received: by 2002:adf:a4c1:0:b0:33d:7ec9:f5d0 with SMTP id h1-20020adfa4c1000000b0033d7ec9f5d0mr1905835wrb.2.1710430639085;
-        Thu, 14 Mar 2024 08:37:19 -0700 (PDT)
-Received: from [192.168.1.78] (host-92-17-96-232.as13285.net. [92.17.96.232])
-        by smtp.gmail.com with ESMTPSA id h15-20020a05600016cf00b0033dc931eb06sm1112659wrf.0.2024.03.14.08.37.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Mar 2024 08:37:18 -0700 (PDT)
-Message-ID: <9b614c61-276d-45bf-8320-44b7358a3e19@linaro.org>
-Date: Thu, 14 Mar 2024 15:37:17 +0000
+	s=arc-20240116; t=1710430715; c=relaxed/simple;
+	bh=wshhTXkGMbYmj2t7Dm9ghQkUnZn8KhXotmfuvu12uNg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=JcByDJfbe3b1leROqmLu/KnTAETLQzJDZMQDgiGDrPvCYwjiB1fb3WwiaWkf/PVvZyqC4Ozf+Qf6SIUOYV1aSMSkpylHiHTRTYcGAJM9x7IoSdDXo/buzkwj1Z5TDzPp8sX+jfkZGhpY38ZoiZILgQsfhfxw5CyyWgTpWSPruzg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 542181007;
+	Thu, 14 Mar 2024 08:39:09 -0700 (PDT)
+Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5A15D3F762;
+	Thu, 14 Mar 2024 08:38:31 -0700 (PDT)
+Date: Thu, 14 Mar 2024 15:38:28 +0000
+From: Sudeep Holla <sudeep.holla@arm.com>
+To: Nikunj Kela <quic_nkela@quicinc.com>
+Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Sudeep Holla <sudeep.holla@arm.com>,
+	Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+	<krzysztof.kozlowski+dt@linaro.org>,
+	Vincent Guittot <vincent.guittot@linaro.org>, <robh+dt@kernel.org>,
+	<conor+dt@kernel.org>, <devicetree@vger.kernel.org>,
+	"Prasad Sodagudi (QUIC)" <quic_psodagud@quicinc.com>,
+	"Trilok Soni (QUIC)" <quic_tsoni@quicinc.com>
+Subject: Re: DT Query on "New Compatible vs New Property"
+Message-ID: <ZfMZ9ATxuvONcGpz@bogus>
+References: <20240228160925.fcitj2yz7hisidsl@bogus>
+ <CAPDyKFqEDu1KRsT2YWv7MhoosCSj_bgV4xE=-2hDaS1ZP7AkvQ@mail.gmail.com>
+ <2b0a11f4-f54e-461c-91e7-8f313d91abe8@linaro.org>
+ <CAPDyKFoo+-2AF096Sbn8EHP1H4Zw2+2sFnSyuq65sWGmMmXU0A@mail.gmail.com>
+ <ZeWp_UjYfWsnEB-K@bogus>
+ <321069a8-2c46-4871-b85a-5e9cbdda5b5d@quicinc.com>
+ <ZfGIPfHH-3r8pWMf@bogus>
+ <3e8e7c8c-c14a-452c-a861-e2a07994119a@linaro.org>
+ <ZfLXsCaeycRlQg3I@bogus>
+ <487f91af-722f-44eb-a1a2-61dec586d686@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
- board DTS
-Content-Language: en-US
-To: Konrad Dybcio <konrad.dybcio@linaro.org>,
- Sumit Garg <sumit.garg@linaro.org>, Stephan Gerhold <stephan@gerhold.net>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- andersson@kernel.org, robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- conor+dt@kernel.org, neil.armstrong@linaro.org, laetitia.mariottini@se.com,
- pascal.eberhard@se.com, abdou.saker@se.com, jimmy.lalande@se.com,
- benjamin.missey@non.se.com, daniel.thompson@linaro.org,
- linux-kernel@vger.kernel.org, Jagdish Gediya <jagdish.gediya@linaro.org>
-References: <20240313123017.362570-1-sumit.garg@linaro.org>
- <20240313123017.362570-4-sumit.garg@linaro.org>
- <c0e10cbf-c6f3-4b0c-8616-983da2a40236@linaro.org>
- <CAFA6WYNMjCaa0FKjNv6a8VFkco3=GBfgWNDuckGZdiZ9dGmHgg@mail.gmail.com>
- <d82ab1f8-e677-485f-9a6b-4115acfd7239@linaro.org>
- <CAFA6WYNSumyScax=GkN42GJOG56T3odF5Ed9A2i1nk_exCyGtA@mail.gmail.com>
- <ZfLUu6_Vq7MvG2G3@gerhold.net>
- <CAFA6WYPN2Bt7zvDyd+02jrsZJz0sFhkD_o4W+PvU=-VC4W5k=A@mail.gmail.com>
- <ZfL6hi0kfp9MXQ0H@gerhold.net>
- <CAFA6WYMa_0OMkjUdvhYtWZ9SvQx5bB8+YrBZN08BaDXXOtPPNQ@mail.gmail.com>
- <fb20d921-dabd-41dc-9f91-bde90e3b87be@linaro.org>
-From: Caleb Connolly <caleb.connolly@linaro.org>
-In-Reply-To: <fb20d921-dabd-41dc-9f91-bde90e3b87be@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <487f91af-722f-44eb-a1a2-61dec586d686@quicinc.com>
 
-
-
-On 14/03/2024 15:20, Konrad Dybcio wrote:
+On Thu, Mar 14, 2024 at 05:35:23AM -0700, Nikunj Kela wrote:
 > 
-> 
-> On 3/14/24 14:50, Sumit Garg wrote:
->> On Thu, 14 Mar 2024 at 18:54, Stephan Gerhold <stephan@gerhold.net>
->> wrote:
->>>
->>> On Thu, Mar 14, 2024 at 05:26:27PM +0530, Sumit Garg wrote:
->>>> On Thu, 14 Mar 2024 at 16:13, Stephan Gerhold <stephan@gerhold.net>
->>>> wrote:
->>>>> On Thu, Mar 14, 2024 at 03:02:31PM +0530, Sumit Garg wrote:
->>>>>> On Thu, 14 Mar 2024 at 14:48, Konrad Dybcio
->>>>>> <konrad.dybcio@linaro.org> wrote:
->>>>>>> On 3/14/24 10:04, Sumit Garg wrote:
->>>>>>>> On Wed, 13 Mar 2024 at 18:34, Konrad Dybcio
->>>>>>>> <konrad.dybcio@linaro.org> wrote:
->>>>>>>>> On 3/13/24 13:30, Sumit Garg wrote:
->>>>>>>>>> Add Schneider Electric HMIBSC board DTS. The HMIBSC board is
->>>>>>>>>> an IIoT Edge
->>>>>>>>>> Box Core board based on the Qualcomm APQ8016E SoC.
->>>>>>>>>>
->>>>>>>>>> Support for Schneider Electric HMIBSC. Features:
->>>>>>>>>> - Qualcomm Snapdragon 410C SoC - APQ8016 (4xCortex A53, Adreno
->>>>>>>>>> 306)
->>>>>>>>>> - 1GiB RAM
->>>>>>>>>> - 8GiB eMMC, SD slot
->>>>>>>>>> - WiFi and Bluetooth
->>>>>>>>>> - 2x Host, 1x Device USB port
->>>>>>>>>> - HDMI
->>>>>>>>>> - Discrete TPM2 chip over SPI
->>>>>>>>>> - USB ethernet adaptors (soldered)
->>>>>>>>>>
->>>>>>>>>> Co-developed-by: Jagdish Gediya <jagdish.gediya@linaro.org>
->>>>>>>>>> Signed-off-by: Jagdish Gediya <jagdish.gediya@linaro.org>
->>>>>>>>>> Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
->>>>>>>>>> ---
->>>>>>>>>
->>>>>>>>> [...]
->>>>>>>>>
->>>>>>>>>> +     memory@80000000 {
->>>>>>>>>> +             reg = <0 0x80000000 0 0x40000000>;
->>>>>>>>>> +     };
->>>>>>>>>
->>>>>>>>> I'm not sure the entirety of DRAM is accessible..
->>>>>>>>>
->>>>>>>>> This override should be unnecessary, as bootloaders generally
->>>>>>>>> update
->>>>>>>>> the size field anyway.
->>>>>>>>
->>>>>>>> On this board, U-Boot is used as the first stage bootloader
->>>>>>>> (replacing
->>>>>>>> Little Kernel (LK), thanks to Stephan's work). And U-Boot consumes
->>>>>>>> memory range from DT as Linux does but doesn't require any
->>>>>>>> memory to
->>>>>>>> be reserved for U-Boot itself. So apart from reserved memory nodes
->>>>>>>> explicitly described in DT all the other DRAM regions are
->>>>>>>> accessible.
->>>>>>>
->>>>>>> Still, u-boot has code to fetch the size dynamically, no?
->>>>>>>
->>>>>>
->>>>>> No U-Boot being the first stage bootloader fetches size from DT which
->>>>>> is bundled into U-Boot binary.
->>>>>>
->>>>>
->>>>> Back when I added support for using U-Boot as first stage
->>>>> bootloader on
->>>>> DB410c the way it worked is that U-Boot used a fixed amount of DRAM
->>>>> (originally 968 MiB, later 1 GiB since I fixed this in commit
->>>>> 1d667227ea51 ("board: dragonboard410c: Fix PHYS_SDRAM_1_SIZE") [1]).
->>>>> When booting Linux, the Linux DT was dynamically patched with the
->>>>> right
->>>>> amount of DRAM (obtained from SMEM). So if you had e.g. a Geniatech
->>>>> DB4
->>>>> board with 2 GiB DRAM, U-Boot was only using 1 GiB of DRAM, but Linux
->>>>> later got the full 2 GiB patched into its DTB.
->>>>>
->>>>> I didn't have much time for testing U-Boot myself lately but a quick
->>>>> look at the recent changes suggest that Caleb accidentally removed
->>>>> that
->>>>> functionality in the recent cleanup. Specifically, the SMEM-based DRAM
->>>>> size detection was removed in commit 14868845db54 ("board:
->>>>> dragonboard410c: import board code from mach-snapdragon" [2]), the
->>>>> msm_fixup_memory() function does not seem to exist anymore now. :')
->>>>
->>>> Ah now I see the reasoning for that particular piece of code. Is SMEM
->>>> based approach the standardized way used by early stage boot-loaders
->>>> on other Qcom SoCs too?
->>>>
->>>
->>> It is definitely used on all the SoCs that were deployed with LK. I am
->>> not entirely sure about the newer ABL/UEFI-based ones. A quick look at
->>> the ABL source code suggests it is abstracted through an EFI protocol
->>> there (so we cannot see where the information comes from with just the
->>> open-source code). However, in my experience SMEM data structures are
->>> usually kept quite stable (or properly versioned), so it is quite likely
->>> that we could use this approach for all Qualcomm SoCs.
->>>
->>
->> If the SoCs which support this standardized way to dynamic discover
->> DRAM size via SMEM then why do we need to rely on DT at all for those
->> SoCs? Can't U-Boot and Linux have the same driver to fetch DRAM size
->> via SMEM? I am not sure if it's an appropriate way for U-Boot to fixup
->> DT when that information can be discovered dynamically.
+> On 3/14/2024 3:55 AM, Sudeep Holla wrote:
+> > > 
+> > Nope, the point was will the presence of (available) scmi/rpmi device
+> > node suffice if we are thinking of single board level property or
+> > compatible. I was not mixing the discussion of whether adding such
+> > a property to each needed device node in this discussion to keep it
+> > simple. I have already expressed my opinion on that.
+> > 
+> > I am sure qcom will go and do what they want which may work fine for
+> > qcom specific drivers but it will not work for a generic IP driver
+> > used by many vendors. Not sure if Qcom SoCs are just bundle of Qcom
+> > specific IPs or they do have some generic non-Qcom IPs. Lets us take
+> > SMMU as example. If the SCMI/RPMI controls the power to it, would you
+> > go and add this new compatible in the generic SMMU bindings and add
+> > support in the driver for that ? That is big NO as the driver would
+> > just need to use std framework interface(doesn't matter Runtime PM/Clock/
+> > Reset/genpd/PM OPP). That means they don't need any specific bindings
+> > to inform SMMU driver that the power is f/w managed.
+>
+> For SMMU, we dont need to make any changes in the existing driver. Simple
+> power-domain over SCMI will suffice since we don't need to do clock scaling
+> etc. for SMMU. We will use this new property in Qualcomm emac, UFS, USB,
+> QUPs(i2c,spi,uart) drivers.
 
-"standardized" I'm not so sure... But yes, smem does offer this. The
-definition in DT here is for U-Boot, ABL will always clobber it, and so
-does U-Boot before handing over to the kernel. Linux should never see
-this without a bootloader having looked at it.
+Sure, as I mentioned in the beginning itself, it is all in the Qcom
+specific drivers, well you can hack it in any ugly way you want to get
+things working even in the upstream.
 
-The reason I decided to hardcode this in DT for U-Boot is because SMEM
-currently relies on the driver model and isn't available early enough.
+But just stop and think for a moment how would you solve this problem
+if you had few Synopsys Designware IPs instead of all those Qcom specific
+IPs. Will your suggested solution work or if it works will that even scale ?
 
-Also admittedly I just wasn't that familiar with the U-Boot codebase. I
-just wanted to avoid hardcoding this in C code, and given that this was
-already supported for the "chainloading from ABL" usecase, just
-hardcoding the values was the obvious solution.
+As I said I will shut up and you can do whatever in your drivers, but I
+just don't want this to set bad example for other vendors who may not have
+all their own IPs and may use some generic ones which means they will now
+follow your solution and go and change those drivers now.
 
-I would definitely be open to revisiting this in U-Boot, having an SMEM
-framework that we could use without the driver model which would just
-take a base address and then let us interact with SMEM and populate the
-dram bank data would be a good improvement, and would let us avoid
-hardcoding the memory layout in DT. We'd just need to manually find the
-SMEM base address in the FDT as part of "dram_init_banksize()" and
-retrieve the data there.
+The main point I am trying to make is the provide blocks/nodes should
+have the information that it is firmware managed. The consumer nodes
+have no business to know that information.
 
-That all being said, I don't see any reason not to define the memory
-layout in DT, it's a hardware feature, DT describes the hardware. The
-whole "bootloader will fill this in" implies that the bootloader isn't
-also using DT as the source of truth, but now with U-Boot it actually
-is, so it's all the more important that DT be accurate ;P
-> 
-> You're mixing two things. Linux expects a devicetree where
-> /memory/reg[size]
-> is valid. Such driver should indeed be (re)implemented in u-boot to provide
-> this information.
-> 
-> As for linux, I am working on making Linux aware of the DDR capabilities
-> on Snapdragons, for other reasons, but it's on the back burner, as it
-> still needs some broad thinking about integrating it with the interested
-> consumers.. Bottom line is, Linux should be fed a devicetree with DRAM size
-> filled.
-> 
-> Konrad
+I will leave it to you now as I can't stop what you define as Qcom specific
+and what changes you can make in those Qcom specific drivers.
 
--- 
-// Caleb (they/them)
+--
+Regards,
+Sudeep
 
