@@ -1,105 +1,255 @@
-Return-Path: <devicetree+bounces-50502-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50503-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id CBA9687BDE3
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 14:40:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id D571B87BDE5
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 14:40:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 08F221C21F53
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:40:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 17E92B217F9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:40:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9319E5BAFC;
-	Thu, 14 Mar 2024 13:40:03 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 3322B5C902;
+	Thu, 14 Mar 2024 13:40:38 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="TMbtXgu4"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com [209.85.128.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E0AF44691;
-	Thu, 14 Mar 2024 13:40:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 95DE24691;
+	Thu, 14 Mar 2024 13:40:34 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.195
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710423603; cv=none; b=ZbCul4Lq4evGdV6ogyV97ob0DIOcnzzglkS6XyvsbZKEjFKicP8NpNX2MhjK4L25l6TF60rgoW6n8vZHhlx2mVs0x9LamasCMLmjJTCkEl6FNTkoSQVnFYSvB3QTtv7pLR5kgXOsUZWUp6bSJp/l1wXP6/mythFNKRkF/Xd2msI=
+	t=1710423638; cv=none; b=tB00ri7tBvWp7eNBFlTT9H6QlKF2N5t1HZJf6MHI4ly5eulL6S5XzKL/NoWA1oKsPlqI9Jh1yGUUyXJlW84BPzAk0HBeXZncMlg2Hu5PYPCIDTYlMmCbsW6ihpk+fKJBBH9+dPMEpLxEkniuOARz5al5lJ3KVEKD4VRrzpmxQYM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710423603; c=relaxed/simple;
-	bh=foU5bTr8/NI7LLEWH950dmktmJ4zIYJ5zCFNJwwzN6Y=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=jKLWttTsh/Je5oyiwjYXmx0qpbUCR1ETwGlapeC0iz82aiVngQoGCZPV9GQq3y0/mzlF9qhyJtavYcXcZQpBDtYEV8XbhQmui8pD1rPwmvzWdWMvLaJiZJtR1H+vqjvo9AA2PydfYshMzPHzgIIJcxXJfGAFygOfog5Q1TbSNpI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f181.google.com with SMTP id 00721157ae682-60a046c5262so9797407b3.2;
-        Thu, 14 Mar 2024 06:40:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710423600; x=1711028400;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=hEVCgzaLqtEAvJhOeUEvPpJvusYSfAszA4qwCizVmJY=;
-        b=b6iFstE4tAjavMswuaqveSZSxV/KKwQmGeo8lpO/9se+gZqPoK4/ksfXvj/nJTTdQy
-         MtTu/qEbMnYPtNHEhLdOR06tcTQPL48mIybVjb0TJKLOjJErRkGxD8hgzrrtXlzUr9iB
-         1i5waUe8r34N1c2HCgAkY4yr5lXToEBzf+hzSHa1pxqSMnXC0LFcC+TyyyTOXSFCHJT0
-         4ajaD1tCGK96sSrsSPa9Vf0Dfol5GFb6r4DMElAFEtp2Cs29UcKzl2dMc/w2Tc1FdHng
-         N/Repi9dpgRtrD1/BWcp4rlistTE9Pssqx6eagvQzEFvS9aVjJ4PdbNvzA4gQDm6eWMg
-         l70Q==
-X-Forwarded-Encrypted: i=1; AJvYcCXGsdJiy496CeLBgTiqyqFVglFY31v9a94Ecti+5289x2/HK7oVCjmnWohVrkpnHeAhzRFlIxUoTFmdxUKddRnuQhMhafVA52oDRJpRY5mltMa62+kDzodAdqMFPBrkosIOVycHFN1DURqr0ENPaGNc+fz/+qatgQGDtBMfBUz4wKNylRbETb5q
-X-Gm-Message-State: AOJu0YwJuTcLLpQYf18BentIxzmLxupIk+0GKaYYkMIQisMPg7BBPpBE
-	EVLl4GyBNwiuicRx93yxwr28oQIgzo6qdGSITIQtoQfB/Dfoj/MeVomlgaYD3/8=
-X-Google-Smtp-Source: AGHT+IGU2g1g3MvDkWNyLd5qqXWq2i6aDsI5aAPhR8vpH0Jy3xul5n9yLzcZkj/gIb8LQbyyyc7jjA==
-X-Received: by 2002:a0d:c9c6:0:b0:604:eb7f:30f4 with SMTP id l189-20020a0dc9c6000000b00604eb7f30f4mr1945708ywd.31.1710423600432;
-        Thu, 14 Mar 2024 06:40:00 -0700 (PDT)
-Received: from mail-yb1-f178.google.com (mail-yb1-f178.google.com. [209.85.219.178])
-        by smtp.gmail.com with ESMTPSA id u65-20020a0deb44000000b0060cd58ad606sm33361ywe.70.2024.03.14.06.40.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Mar 2024 06:40:00 -0700 (PDT)
-Received: by mail-yb1-f178.google.com with SMTP id 3f1490d57ef6-dc74e33fe1bso824883276.0;
-        Thu, 14 Mar 2024 06:40:00 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVn8xVNeULiTWzowgOQGUJoKzq11vC7k17mVg76JE2OD6Pk0RJqPz1Woi0+cC7kzo8HESa48wP+lwaTvIAFp5q4SUfZMc9RVcWlIerSvFVQI4Hsj6G6TZRVLOr5TMV50xDCMV4cux8hNEPFSusmugGXFwwhBbslu7vXrINZTPrmO/Hx6ly7eqAk
-X-Received: by 2002:a25:a264:0:b0:dcd:38f9:f78 with SMTP id
- b91-20020a25a264000000b00dcd38f90f78mr1587621ybi.29.1710423599773; Thu, 14
- Mar 2024 06:39:59 -0700 (PDT)
+	s=arc-20240116; t=1710423638; c=relaxed/simple;
+	bh=6gzsPs8DS1bbnchxZSKKpfQvGwLQMdsVuv/ZEKsw7e0=;
+	h=Mime-Version:Content-Type:Date:Message-Id:From:Subject:Cc:To:
+	 References:In-Reply-To; b=r/l+8jjZx40/SSdzK+INxnUn3bIId/AZkghhE8lbqeIbFRy4LgsKY6VKPSDPUory7nUoZhE4KpWYOtQmAuInFz2AXGfsFssJAmq6ICQVBCwa52IWjoGsi3qRKwV/3HMzLnQRl1YQoAvT8hkeaL371WgQ3PJlOHOEb7Ds7VxMBek=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=TMbtXgu4; arc=none smtp.client-ip=217.70.183.195
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6B0A560006;
+	Thu, 14 Mar 2024 13:40:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1710423632;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=CLf5KWnS0dc/LL0QiiVlehpC6eAdJafxsnoavfmgLwM=;
+	b=TMbtXgu4lYq5V/tieYmz1HsaYW6Rf/HEvX1GdFOAxI1luJbA3OTFwnc25WNGUP7TapolIZ
+	cDcKPi2ywWCc9mMVPnVjQROKoWDsMLHGCIZ7TzidDZ+YwGYO+OAluQc2ndlAc0PJsEmefJ
+	XrJTBbJ28o/xljiXryj/iOIiX/LRX6nscU3dmPaSAiFfsQwrBcR37hWb+lg7QFQeHi16lr
+	CNnPofB0aC4ATC7UGT+Kb9lKFywZSibzLB6wcLKnOi+FdLoy2uqn8UL5Ej3IGUO5qkGx96
+	krup5ruJqBBYd/pfzqFIEb/JtE2OyukuLukbVMD7prikikeyrYPt+VvYWglrNA==
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-MIME-Version: 1.0
-References: <20240229120719.2553638-1-yoshihiro.shimoda.uh@renesas.com> <20240229120719.2553638-3-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <20240229120719.2553638-3-yoshihiro.shimoda.uh@renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Thu, 14 Mar 2024 14:39:48 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdXVm5SgAtKwHbiX5+wN2K61ntO87-tpGPbqj6HuAt=zcA@mail.gmail.com>
-Message-ID: <CAMuHMdXVm5SgAtKwHbiX5+wN2K61ntO87-tpGPbqj6HuAt=zcA@mail.gmail.com>
-Subject: Re: [PATCH 2/6] dt-bindings: PCI: rcar-gen4-pci-ep: Add R-Car V4H compatible
-To: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc: lpieralisi@kernel.org, kw@linux.com, robh@kernel.org, bhelgaas@google.com, 
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, jingoohan1@gmail.com, 
-	gustavo.pimentel@synopsys.com, mani@kernel.org, marek.vasut+renesas@gmail.com, 
-	linux-pci@vger.kernel.org, devicetree@vger.kernel.org, 
-	linux-renesas-soc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Mime-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Thu, 14 Mar 2024 14:40:31 +0100
+Message-Id: <CZTIKOLPZ86I.2BDL7IHLG1VVC@bootlin.com>
+From: =?utf-8?q?Th=C3=A9o_Lebrun?= <theo.lebrun@bootlin.com>
+Subject: Re: [PATCH v4 4/9] usb: cdns3-ti: support reset-on-resume behavior
+Cc: "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>,
+ =?utf-8?q?Gr=C3=A9gory_Clement?= <gregory.clement@bootlin.com>, "Alan
+ Stern" <stern@rowland.harvard.edu>, <linux-usb@vger.kernel.org>,
+ <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+ <linux-arm-kernel@lists.infradead.org>
+To: "Kevin Hilman" <khilman@kernel.org>, "Greg Kroah-Hartman"
+ <gregkh@linuxfoundation.org>, "Rob Herring" <robh+dt@kernel.org>,
+ "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>, "Conor Dooley"
+ <conor+dt@kernel.org>, "Roger Quadros" <rogerq@kernel.org>, "Peter Chen"
+ <peter.chen@kernel.org>, "Pawel Laszczak" <pawell@cadence.com>, "Nishanth
+ Menon" <nm@ti.com>, "Vignesh Raghavendra" <vigneshr@ti.com>, "Tero Kristo"
+ <kristo@kernel.org>
+X-Mailer: aerc 0.15.2
+References: <20240307-j7200-usb-suspend-v4-0-5ec7615431f3@bootlin.com>
+ <20240307-j7200-usb-suspend-v4-4-5ec7615431f3@bootlin.com>
+ <7h4jdgperi.fsf@baylibre.com>
+In-Reply-To: <7h4jdgperi.fsf@baylibre.com>
+X-GND-Sasl: theo.lebrun@bootlin.com
 
-On Thu, Feb 29, 2024 at 1:07=E2=80=AFPM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Document bindings for R-Car V4H (R8A779G0) PCIe endpoint module.
+Hello,
+
+On Fri Mar 8, 2024 at 10:58 PM CET, Kevin Hilman wrote:
+> Th=C3=A9o Lebrun <theo.lebrun@bootlin.com> writes:
+> > Add match data support, with one boolean to indicate whether the
+> > hardware resets after a system-wide suspend. If hardware resets, we
+> > force execute ->runtime_resume() at system-wide resume to run the
+> > hardware init sequence.
 >
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Is "whether the hardware resets after a system-wide suspend" really a
+> function of the IP itself, or rather whether the IP is in a power domain
+> that might power down?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Is a compatible defining (1) the IP block involved or (2) the IP block
+involved and its integration? This is a rethorical question, I've asked
+it internally at Bootlin and we had some interesting discussions. :-)
 
-Gr{oetje,eeting}s,
+Whether compatible or some other mechanism indicate expected suspend
+behavior, we agreed that suspend types where not modeled properly by
+the kernel currently.
 
-                        Geert
+> > No compatible exploits this functionality, just yet.
+> >
+> > Signed-off-by: Th=C3=A9o Lebrun <theo.lebrun@bootlin.com>
+> > ---
+> >  drivers/usb/cdns3/cdns3-ti.c | 27 +++++++++++++++++++++++++++
+> >  1 file changed, 27 insertions(+)
+> >
+> > diff --git a/drivers/usb/cdns3/cdns3-ti.c b/drivers/usb/cdns3/cdns3-ti.=
+c
+> > index 4c8a557e6a6f..f76327566798 100644
+> > --- a/drivers/usb/cdns3/cdns3-ti.c
+> > +++ b/drivers/usb/cdns3/cdns3-ti.c
+> > @@ -57,9 +57,14 @@ struct cdns_ti {
+> >  	unsigned vbus_divider:1;
+> >  	struct clk *usb2_refclk;
+> >  	struct clk *lpm_clk;
+> > +	const struct cdns_ti_match_data *match_data;
+> >  	int usb2_refclk_rate_code;
+> >  };
+> > =20
+> > +struct cdns_ti_match_data {
+> > +	bool reset_on_resume;
+> > +};
+> > +
+> >  static const int cdns_ti_rate_table[] =3D {	/* in KHZ */
+> >  	9600,
+> >  	10000,
+> > @@ -101,6 +106,7 @@ static int cdns_ti_probe(struct platform_device *pd=
+ev)
+> >  	platform_set_drvdata(pdev, data);
+> > =20
+> >  	data->dev =3D dev;
+> > +	data->match_data =3D device_get_match_data(dev);
+> > =20
+> >  	data->usbss =3D devm_platform_ioremap_resource(pdev, 0);
+> >  	if (IS_ERR(data->usbss)) {
+> > @@ -220,8 +226,29 @@ static int cdns_ti_runtime_resume(struct device *d=
+ev)
+> >  	return 0;
+> >  }
+> > =20
+> > +static int cdns_ti_suspend(struct device *dev)
+> > +{
+> > +	struct cdns_ti *data =3D dev_get_drvdata(dev);
+> > +
+> > +	if (data->match_data && data->match_data->reset_on_resume)
+> > +		return pm_runtime_force_suspend(dev);
+> > +	else
+> > +		return 0;
+> > +}
+> > +
+> > +static int cdns_ti_resume(struct device *dev)
+> > +{
+> > +	struct cdns_ti *data =3D dev_get_drvdata(dev);
+> > +
+> > +	if (data->match_data && data->match_data->reset_on_resume)
+> > +		return pm_runtime_force_resume(dev);
+> > +	else
+> > +		return 0;
+> > +}
+>
+> Conditionally forcing runtime suspend/resume based on a property of the
+> IP doesn't feel right to me.
+>
+> IMO, the device should always runtime suspend/resume, and in the
+> runtime PM hooks is where the conditional logic should be.
+>
+> And speaking of the conditional logic... let's go back to whether
+> "resets_on_resume" is a property of the IP or the enclosing power
+> domain.
+>
+> Instead of having an IP-specific flag, another way of approaching this
+> when ->runtime_resume() is called every time is simply for that hook to
+> check if a reset has happend.  Sometimes you can tell this simply by
+> reading a register that has been previously programmed by the driver but
+> has a known reset.  Simply check that regisister and you can tell
+> whether context has been lost.
+>
+> Doing it this way makes the driver "smart" and then you don't have to
+> rely on bool flag based on the IP and dependent on the DT compatible.
 
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
+I agree! I never digged into this for a reason: the HXCI subsystem takes
+a quirk flag that tells it whether it resets on resume
+(XHCI_RESET_ON_RESUME). My plans weren't grandiose enough to think
+about touching this aspect. That means we need to know this bool value
+at probe.
 
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
+About a smart ->runtime_resume() implementation: it is doable. I've
+experimented with that following your message. The condition is rather
+simple, looking like:
+
+	static int cdns_ti_runtime_resume(struct device *dev)
+	{
+		struct cdns_ti *data =3D dev_get_drvdata(dev);
+		u32 w1, mask;
+
+		w1 =3D cdns_ti_readl(data, USBSS_W1);
+		mask =3D USBSS_W1_PWRUP_RST | USBSS_W1_MODESTRAP_SEL;
+
+		if ((w1 & mask) !=3D mask)
+			cdns_ti_reset_and_init_hw(dev, data);
+
+		return 0;
+	}
+
+Tested on J7200-EVM, works as expected. Both bits reset to zero. First
+is software reset; second is described as "this bit has to be always
+set to 1".
+
+cdns_ti_reset_and_init_hw() would also be call at probe before enabling
+runtime PM to ensure we always reset the IP at probe.
+Then ->runtime_resume() would get called once during probe without any
+impact as the conditional would return false. It would trigger at
+resume. System-wide suspend/resume hooks would become:
+
+	SYSTEM_SLEEP_PM_OPS(pm_runtime_force_suspend,
+			pm_runtime_force_resume)
+
+Do you have any ideas related to the handling of XHCI_RESET_ON_RESUME?
+See xhci_resume(). Some notes:
+
+ - XHCI is capable of detect what it calls reinit (reset after resume).
+   The flags only shortcut the restore attempt (which is useless when
+   the controller reset) and disables warning because of reinit. Logs
+   contain this when we do not pass the flag:
+
+   [   18.518138] xhci-hcd xhci-hcd.11.auto: xHC error in resume, USBSTS 0x=
+401, Reinit
+   [   18.525522] usb usb1: root hub lost power or was reset
+   [   18.530647] usb usb2: root hub lost power or was reset
+
+ - Ways forward I can imagine:
+
+    - A quick and dirty solution would be to grab a reference to the
+      xhci_hcd struct pointer from TI wrapper and update quirks on the
+      go.
+
+    - Another one would be to keep as-is and let xhci-hcd warn on each
+      resume. Mentioning this for exhaustiveness.
+
+    - Introduce a new mechanism to communicate through the stack: from
+      the TI wrapper, to cdns3 core, to the xhci-hcd device. Or use an
+      existing mechanism if one is present.
+
+    - Remove the assumption xHCI does that a suspend is broken if the
+      controller was reset during it. That doesn't sound right to me,
+      can you confirm?
+
+Thanks!
+
+--
+Th=C3=A9o Lebrun, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
 
