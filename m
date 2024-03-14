@@ -1,215 +1,136 @@
-Return-Path: <devicetree+bounces-50527-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50528-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B9A487BFB1
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 16:16:26 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id F190C87BFB4
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 16:17:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id CA7C7B22752
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 15:16:23 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 92FC01F222C2
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 15:17:12 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id E2D2071749;
-	Thu, 14 Mar 2024 15:16:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b="aifjkeqs"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 11A8671759;
+	Thu, 14 Mar 2024 15:17:08 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2138.outbound.protection.outlook.com [40.107.220.138])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DFC4D58104;
-	Thu, 14 Mar 2024 15:16:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.220.138
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710429378; cv=fail; b=TFT31rlhpDFnpD1H/piqyA7oyA/vj2DYTaqiTKo+a/vV/N6m3ikd5fdp54jEdc2hf3ZH5cz2q+NhS4SlvyVEdnr8nvKsFata1Pfdf/OSxRcKOtuiAiAEOVEh4o8JQd/lBsU7rwmZ0mxLuqhVKEKAeFDVFFZWtpOComG/10ApD9Y=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710429378; c=relaxed/simple;
-	bh=vqPDNlKSwo9X77IRSEkc9xR/EVZZvvR8h6/ClawJPT4=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:Content-Type:
-	 Content-Disposition:In-Reply-To:MIME-Version; b=Ae0jk7yTMZy4rOf4/BLxR4IpljFkz8mNI0/1fk/hwIFt66ZYqWl5UiN9TlhwUpvpek+/UAFAw8ykxZMzGZzvoQ0sdqsfiZF2yV6+UOEb7GkDjgtoc7sRryntOaDamBOf8dvMSIHkrLNLS+jeUgzUrUmgOD5Ealqhc5lG4XpO6bY=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=labundy.com; spf=pass smtp.mailfrom=labundy.com; dkim=pass (1024-bit key) header.d=NETORG5796793.onmicrosoft.com header.i=@NETORG5796793.onmicrosoft.com header.b=aifjkeqs; arc=fail smtp.client-ip=40.107.220.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=labundy.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=labundy.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ED2muHYt/BAu4a1bZxn2XWs3wE1jNL9X731Zg/AgpmOeponzg6OzwV8F/n3BVq/t/uqGD74BUkFUvQJkKhmoRe4pv0lpovqv6nsItiQ9xN/aykb9PJcuDWmAIKh1Fmfs6J1pPBWNPm5yfSAOtrQowVXIxYvwafdEirq2jdZzUSFcdZwp7oSUmZtr+0/3a8iN8WeLXugRE43Lr9/btJ5Y9Hjs9G6qNsuLSmxak9W/8s8rZ6PIetQguTCnuFO2t2OplX7GxZX+7UJE2q1czcqdIzDHUiYEeSJ/Q4Vwg/aTpK8Ja7M/o3P2VDwisV6V/6bVz+kWl57m02vz3dIcOBRG6g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=my+GW2Cw42Cbzy7uQiGb6Gx3Qo3ZP6Wi5dAXEDus0e0=;
- b=MDj8P4V8oxQvEO1qLxMRnSmOIjHqv5VZl4BgQ3k7x59US6glg13y2PoyGygFVE0eLkzYZEP/1Q0cxGZeL79YmzFbVOxECOIPsKz91nAUuSHxvGyVg1dmdhxgLUmHil38plIWfwyP2WMJpnhNjGnN/l5OQVaQJ3sCjoI2Qexb0u9qztTsm6sMB7N2uJrfOQvC3UcvwFLemG6E4W5gug1rRIjPvHdbyWDSWqH3Nl5lngxRtSzw4vdP7IgKwIfsr6RHosRQoJY0DHsp3hhJkZ9B3fp7yqKho6a/KhiBSmb5Cu/0z9SmHqQxxp7fcfsRgEB2YnXo8fSY0yqpAJZgNlvwjQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=my+GW2Cw42Cbzy7uQiGb6Gx3Qo3ZP6Wi5dAXEDus0e0=;
- b=aifjkeqsOwc7wDrZ/VslARA04H5HTIEOddZo+jjx7Ol9H/XnFIWC3iyg1MiPChaLVkUQZeySAMXFTdkhkNAezTYps4t8CA6mCb7asZDgQipf3y+X9whOKMDwSh77h8gc50giliHMUR71Dq7CA37aBCIdPiJ7VOd4vkh16z2Z/bY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21) by CH3PR08MB9256.namprd08.prod.outlook.com
- (2603:10b6:610:1cb::14) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.36; Thu, 14 Mar
- 2024 15:16:12 +0000
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::bea5:3186:8a9f:52a]) by SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::bea5:3186:8a9f:52a%7]) with mapi id 15.20.7362.035; Thu, 14 Mar 2024
- 15:16:11 +0000
-Date: Thu, 14 Mar 2024 10:15:58 -0500
-From: Jeff LaBundy <jeff@labundy.com>
-To: Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc: James Ogletree <jogletre@opensource.cirrus.com>,
-	dmitry.torokhov@gmail.com, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	lee@kernel.org, broonie@kernel.org, patches@opensource.cirrus.com,
-	linux-sound@vger.kernel.org, linux-input@vger.kernel.org,
-	devicetree@vger.kernel.org
-Subject: Re: [PATCH v9 3/5] mfd: cs40l50: Add support for CS40L50 core driver
-Message-ID: <ZfMUrs0iAKsgqrEP@nixie71>
-References: <20240308222421.188858-1-jogletre@opensource.cirrus.com>
- <20240308222421.188858-4-jogletre@opensource.cirrus.com>
- <Ze5E1KxRltUTX4R6@nixie71>
- <Ze7dXdVdZKN5Kmv/@ediswmail9.ad.cirrus.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <Ze7dXdVdZKN5Kmv/@ediswmail9.ad.cirrus.com>
-X-ClientProxiedBy: DM5PR07CA0098.namprd07.prod.outlook.com
- (2603:10b6:4:ae::27) To SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21)
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 191F371738;
+	Thu, 14 Mar 2024 15:17:05 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710429428; cv=none; b=mPWLhbj+p2JeWR4sMi1sg0S2hNY33AqKqVgBGbHTtq/wRGWy4yIyvCqG0TAaYYjFDQJNdIxRy8X01UNVj1gsTXsWKjPMms1N9MHgbBxEy6jU7y4ECdqMncDH0+vVo+FaZyzfrF2aonySKvKzFaBAapyCykNWxa3XgIU6C29/OM0=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710429428; c=relaxed/simple;
+	bh=nJSdqGpDfoAcpzNxMMTCuqm2yzJZLVFp6mo7pIJTDEs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=EqTHPnmkYfFA4uYMKgFZRPkIeNEl/tvKO4VDxEQQ9qLM9rcu3BjnEgzHvxOw7jT14u++M61Bi22WivZCV0AJooCXuy2cpDfFHmkRG8hae11Jh5g4JWRjW+qBqGbTDkFXgXNntqOBo2CuJUu7lGAv5Xp5hF9ctdsJCw2d+KSYThk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5B9311007;
+	Thu, 14 Mar 2024 08:17:41 -0700 (PDT)
+Received: from e130802.arm.com (e130802.arm.com [10.1.33.51])
+	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0603C3F762;
+	Thu, 14 Mar 2024 08:17:01 -0700 (PDT)
+Date: Thu, 14 Mar 2024 15:16:53 +0000
+From: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>
+To: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Robin Murphy <robin.murphy@arm.com>,
+	Bjorn Andersson <andersson@kernel.org>,
+	Mathieu Poirier <mathieu.poirier@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>,
+	Lorenzo Pieralisi <lpieralisi@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Drew.Reed@arm.com,
+	Adam.Johnston@arm.com, linux-arm-kernel@lists.infradead.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-remoteproc@vger.kernel.org
+Subject: Re: [PATCH 1/3] remoteproc: Add Arm remoteproc driver
+Message-ID: <20240314151653.GA40443@e130802.arm.com>
+References: <ZeYWKVpeFm1+4mlT@p14s>
+ <20240307194026.GA355455@e130802.arm.com>
+ <CANLsYkzA20rQdTM6AOvFK=3o28GvcoRbckL=ri8RegHqyHaiCw@mail.gmail.com>
+ <20240311114442.GA82865@e130802.arm.com>
+ <CANLsYkwReJvB1UWvR5TwtSs-w_VqU45kDSUzuQ0k+waetEn6Yw@mail.gmail.com>
+ <20240312173252.GA38992@e130802.arm.com>
+ <ZfHTfNx4um8koTlY@p14s>
+ <20240313171756.GA82165@e130802.arm.com>
+ <ZfMPS+qn0lh5IrS7@p14s>
+ <ZfMQyJWTh15P7Ru3@bogus>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|CH3PR08MB9256:EE_
-X-MS-Office365-Filtering-Correlation-Id: 94750fc9-068d-4988-7ce3-08dc4439aedf
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	dLA4Ya/uGm3jWsGPrn73tAk7fMjiqyD6ClI1hPZ64m1Bq9LLnDGvlW5v8CttaG1xGthSLvIwcTpk6MXxX0LyYGV3Wrd0Et6kvdHrpYmmGM4alMsrxz575gTH1B7UUQJ2nnkzcYAIjAx7BRkKj9rfzd+q5ptlDfcfyyxuXTbswIvvU8a1yMLvZdPRz1E91QzcQQaXh6iC5gQf2uQvDHMaoMfhL9Se3siQ5vM/lakzxy31/DUJ55rCjCMcYDOPANEQQadJlRAwYhKhWB7gWiMNKERSVABh6tPDsR9zO4IkiTnI1zHdENjxFukuFtS0bBWl0NCvbMuzcNplTL6myYoetbvpIN4UHcnFV/wbHHpGlVzHgtLwtVMwvrcn2Yisb2RAZXFYh3is4F7fR1H8OrzX/NzUXEO8YTSxLe+oillsk/87G9asqwwNQ9HI1G/mg5q6jbzk/xbFeuv3nscSB7QS+CXzn0ikTDjTb2TNt2k+rDMDMILXLuN5M1+C1YzU7rKXxzW8uGSUvvzvqIOogl0kEqEi1jjMspLG9b2zimkZ/oPg6lDZEz6kcpBpeT+j6B4vUWxjpgP2m+vYrseCRmnvxkGQAcS4MkKiY36AK5BVL4KZtLdMkAHjcovjQnLMClnJ54TPRYIFoeqckjuuGexsJ1x7wD3mkVqCXMyFMV4th9Y=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(376005)(1800799015);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?5XpaqX/GJZSzNKLCCrGn0s1q759edLG7/lLVZkuLXNXdz/aBJIbVkk8YeccM?=
- =?us-ascii?Q?wr1XeIMKb7GsL7Ur//95KASLdQ3z0E1uCBaVdG5CmYAH4HV7ueC8lPe9BWIz?=
- =?us-ascii?Q?gQ9dXj1/XmWP45ol1wkagx0e8V/8kXJgr1KVM/L48BE2DNG0DuKCH3RiFe4F?=
- =?us-ascii?Q?Pox3j9nwP2J+mcdE/TXA7ODfucGefbs2x/TG0Nbyxts8uwe+4oDoiZG7FKsx?=
- =?us-ascii?Q?2zQtLvyO6m4Y0agBkgyOi6VwbQ6ceylS8yFpb5FYn0yAjdwBp0ep3Kq3hRXL?=
- =?us-ascii?Q?RwbwoXb3o9nxgnyosos0C/IEdkhmJ7VO37146p5CNRHpYIpON6TytwTeBwt5?=
- =?us-ascii?Q?w0H0kgEzR46t5AoY6xjmO5dQOLvk7qJcrmx2COf6gFOk2ctzfNZrMp1OjIDT?=
- =?us-ascii?Q?L9Yw49LQaNZI7XQv3yWlo1LEfbvATpt/YTYUkLeOX9ec1sn/EKd4cONM65O7?=
- =?us-ascii?Q?/AtHkVKwAmiOedrwdMQRSO1t1KfKhndPF/2wj15gwYJaecBboenHhCnqjwV1?=
- =?us-ascii?Q?r+YmNhD1aegHnghE7vfWyW5QHCRRuUW4PANedUpxbk2RiFRS3ztUsF+RPVNx?=
- =?us-ascii?Q?HfmZjZEaVOM+u8lyxBre4Eeb+FsiViAFbSOr5syRksqgtiI1XKIwpje1pG0Z?=
- =?us-ascii?Q?WnqrUSluSiHhjEyE5BqadsWg6eqmod4+m7cYCs76jqZ6ce/oooaHnjcCOiXY?=
- =?us-ascii?Q?Qq+rbmVRKCl19IkcgznvKC3w62AJXOkkkyVdLlTpVBATBgqyznTD/u1HvsEZ?=
- =?us-ascii?Q?PbPT1zpLHxf4NfZhhZH/C1mvEXy9c5vC0pxs/dKNjjvnB2jIGgWgntD1nPuC?=
- =?us-ascii?Q?GnEaTIggH7bKkvNPHVtW+Bwe+LhjWenz8iIiEBiO5jmnx7IdMUMO4zeC+vJh?=
- =?us-ascii?Q?4OhUXw3iRv9BoKO0uG571T0ZQrmfz2cDn1nkgiWV0Pxyz0AIpx/FeVQDYIW9?=
- =?us-ascii?Q?bKQ7zLwMJwkir+RbFYHnNzrtJzV5K9GpTdhUMU5EonB2uaYLeUxI+Ypyk6Or?=
- =?us-ascii?Q?wnz1WQzkZgMoDivMM8E/71VX7NrK+kvMCFHBs6cP/o3R/E2E4UAeRrXZ1aFF?=
- =?us-ascii?Q?daXYaMJBOdKDRJtM0hYu15fYy3iAka4AeMcmiWCaM4kcD6IeKxIIQHB1L2Xd?=
- =?us-ascii?Q?aP/l+QRnSJQtd37C9+0U2TixQbwIR12sxkI6am66/daXNdqxdcevsn7ho0j7?=
- =?us-ascii?Q?5q2eyJjshCWu9KLkIblF81ISxOZtumU2An0wTdV8Q3YplXXHly8LrGUShhN8?=
- =?us-ascii?Q?MD3YPLwSTsRfsiwyzfbCiEXDyyYoeQGHusSRfA02dEU6PH3jByScwJRtUXHV?=
- =?us-ascii?Q?pMVzZXEMoY1c9h+1BRhiDcqdZzhY1+uWgGj5BYkSLUOGc0oN5ydl/wH2Dtgm?=
- =?us-ascii?Q?rlIlCtEM7hcGaeSUT/EO3kQMagwvH+HZt49CmKtS7wgh/0vXlPqWX+Ik7mfc?=
- =?us-ascii?Q?N/yyv536HvCQ0eCE1y2t7HQogURuAbr/uVzt1zRp1kMkgKQ2JuAOSjA68zzW?=
- =?us-ascii?Q?iWxv52vHonugDjU7noFcXzYQbYkPMh3rJg3gjOQfYq1Z3cvWQaOvU3eFt7tv?=
- =?us-ascii?Q?alg5whR64rRh3RVHdrEcyG3JDQBmBEXP7RV0ZZTG?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94750fc9-068d-4988-7ce3-08dc4439aedf
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 14 Mar 2024 15:16:11.8872
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: WEFXPFYcg7/vsAeVWQO5/eLH1MgfA4GrqhDToQR5qwRRBYoD4aITiPnNiHgf0I2oxMB9aIy3pZEy1KAPfZKkpw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR08MB9256
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ZfMQyJWTh15P7Ru3@bogus>
 
-Hi Charles,
+Hi Sudeep,
 
-On Mon, Mar 11, 2024 at 10:30:53AM +0000, Charles Keepax wrote:
-> On Sun, Mar 10, 2024 at 06:40:04PM -0500, Jeff LaBundy wrote:
-> > On Fri, Mar 08, 2024 at 10:24:19PM +0000, James Ogletree wrote:
-> > > +static void cs40l50_start_dsp(const struct firmware *bin, void *context)
-> > > +{
-> > > +	struct cs40l50 *cs40l50 = context;
-> > > +	int err;
-> > > +
-> > > +	/* Wavetable is optional; start DSP regardless */
-> > > +	cs40l50->bin = bin;
-> > > +
-> > > +	mutex_lock(&cs40l50->lock);
-> > 
-> > It seems the mutex is used only to prevent interrupt handling while the DSP
-> > is being configured; can't we just call disable_irq() and enable_irq() here?
-> > 
+On Thu, Mar 14, 2024 at 02:59:20PM +0000, Sudeep Holla wrote:
+> On Thu, Mar 14, 2024 at 08:52:59AM -0600, Mathieu Poirier wrote:
+> > On Wed, Mar 13, 2024 at 05:17:56PM +0000, Abdellatif El Khlifi wrote:
+> > > Hi Mathieu,
+> > >
+> > > On Wed, Mar 13, 2024 at 10:25:32AM -0600, Mathieu Poirier wrote:
+> > > > On Tue, Mar 12, 2024 at 05:32:52PM +0000, Abdellatif El Khlifi wrote:
+> > > > > Hi Mathieu,
+> > > > >
+> > > > > On Tue, Mar 12, 2024 at 10:29:52AM -0600, Mathieu Poirier wrote:
+> > > > > > > This is an initial patchset for allowing to turn on and off the remote processor.
+> > > > > > > The FW is already loaded before the Corstone-1000 SoC is powered on and this
+> > > > > > > is done through the FPGA board bootloader in case of the FPGA target. Or by the Corstone-1000 FVP model
+> > > > > > > (emulator).
+> > > > > > >
+> > > > > > >From the above I take it that booting with a preloaded firmware is a
+> > > > > > scenario that needs to be supported and not just a temporary stage.
+> > > > >
+> > > > > The current status of the Corstone-1000 SoC requires that there is
+> > > > > a preloaded firmware for the external core. Preloading is done externally
+> > > > > either through the FPGA bootloader or the emulator (FVP) before powering
+> > > > > on the SoC.
+> > > > >
+> > > >
+> > > > Ok
+> > > >
+> > > > > Corstone-1000 will be upgraded in a way that the A core running Linux is able
+> > > > > to share memory with the remote core and also being able to access the remote
+> > > > > core memory so Linux can copy the firmware to. This HW changes are still
+> > > > > This is why this patchset is relying on a preloaded firmware. And it's the step 1
+> > > > > of adding remoteproc support for Corstone.
+> > > > >
+> > > >
+> > > > Ok, so there is a HW problem where A core and M core can't see each other's
+> > > > memory, preventing the A core from copying the firmware image to the proper
+> > > > location.
+> > > >
+> > > > When the HW is fixed, will there be a need to support scenarios where the
+> > > > firmware image has been preloaded into memory?
+> > >
+> > > No, this scenario won't apply when we get the HW upgrade. No need for an
+> > > external entity anymore. The firmware(s) will all be files in the linux filesystem.
+> > >
+> >
+> > Very well.  I am willing to continue with this driver but it does so little that
+> > I wonder if it wouldn't simply be better to move forward with upstreaming when
+> > the HW is fixed.  The choice is yours.
+> >
 > 
-> The trouble with diabling the IRQ is it masks the IRQ line. That
-> means if the IRQ is shared with other devices you will be
-> silencing their IRQs for the duration as well, which is slightly
-> rude. Especially given the driver requests the IRQ with the
-> SHARED flag I would be inclinded to stick with the mutex unless
-> there are other reasons not to.
+> I think Robin has raised few points that need clarification. I think it was
+> done as part of DT binding patch. I share those concerns and I wanted to
+> reaching to the same concerns by starting the questions I asked on corstone
+> device tree changes.
 
-Ah, yes; I see we're using IRQF_SHARED here. Shared interrupts seem
-like they made more sense for L+R audio amplifiers, and less for a
-haptic driver; but if customers are indeed sharing this interrupt,
-then the mutex is OK.
+Please have a look at my answer to Robin with clarifications [1].
 
-> 
-> > > +static int cs40l50_irq_init(struct cs40l50 *cs40l50)
-> > > +{
-> > > +	struct device *dev = cs40l50->dev;
-> > > +	int err, i, virq;
-> > > +
-> > > +	err = devm_regmap_add_irq_chip(dev, cs40l50->regmap, cs40l50->irq,
-> > > +				       IRQF_ONESHOT | IRQF_SHARED, 0,
-> > > +				       &cs40l50_irq_chip, &cs40l50->irq_data);
-> > > +	if (err) {
-> > > +		dev_err(dev, "Failed adding IRQ chip\n");
-> > 
-> > I don't see any need for individual prints in this function, since the call
-> > to cs40l50_irq_init() is already followed by a call to dev_err_probe().
-> 
-> I would probably suggest keeping these individual prints here and
-> removing the one in cs40l50_probe, it is nicer to know exactly
-> what failed when something goes wrong. That said at least the
-> devm_request_threaded_irq can probe defer so that print should be
-> a dev_err_probe since this function is only called on the probe
-> path.
+Apart from mapping the register area rather than using the reg property
+I'll also add the mboxes property as Krzysztof confirmed.
 
-Makes sense to me.
+[1]: https://lore.kernel.org/all/20240314134928.GA27077@e130802.arm.com/
 
-> 
-> > > +	dev_info(cs40l50->dev, "Cirrus Logic CS40L50 rev. %02X\n", cs40l50->revid);
-> > 
-> > This should be dev_dbg().
-> > 
-> 
-> Not sure what the concenus is on this, but personally I greatly
-> prefer these device ID prints being infos. Nice to always have
-> some indication of the device and its version.
-
-Right, but every other silicon vendor feels the same way too, and many
-customers' dmesg is typically quite messy for the first couple minutes.
-This is only one print, but my stance is that this type of information
-belongs in debugfs; in fact for this case, we can get this information
-from regmap if we know what we're looking for.
-
-> 
-> Thanks,
-> Charles
-
-Kind regards,
-Jeff LaBundy
+Cheers,
+Abdellatif
 
