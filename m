@@ -1,125 +1,112 @@
-Return-Path: <devicetree+bounces-50473-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50474-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 836DF87BCD5
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:31:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2D3487BCD9
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:31:58 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B51CA1C214FF
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 12:31:32 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 30D381C21494
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 12:31:58 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A85A6FE0A;
-	Thu, 14 Mar 2024 12:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="oG+C/r13"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DB75829CE3;
+	Thu, 14 Mar 2024 12:31:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 42CA857861;
-	Thu, 14 Mar 2024 12:30:32 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4326647F46;
+	Thu, 14 Mar 2024 12:31:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.11.138.130
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710419432; cv=none; b=hzeup4Oatr/M7KkX8iUSS6a+Wj82iIugUObXVqekX2eA6AGuoS4Hi9fymxvXZvhvSGA0x9DgX5WS6m+Mlx9xLX3c/CEJP3ptc0igBxuFjA9M200MZ4U1MDyVkCqX/WhM5o5Yq3pEmPaOxLdZ+QBKaWCAcrtBLHYRDaCReXIwC9w=
+	t=1710419487; cv=none; b=sLUq5fswfpc9bIZ5lYF+7LWj5AWG4bQGXxL283Y5MWwW+/QqL1BG9ohhcDz95w1GKZ8oky0ZXXvFVgrHnGU6wNHWRoeVo6sD4UBq7zCRPuNQc2DAdd8OOjw3UVOGcIb0D4mDI2fG5DEGDPVfbz/2AiXrlwp6s81yk6/iay2YJP4=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710419432; c=relaxed/simple;
-	bh=CrTSWvnI80HBCf2z8Oy2nHbmglsJV2g15ydY/Fnd+/0=;
-	h=Content-Type:MIME-Version:Subject:From:Message-Id:Date:References:
-	 In-Reply-To:To:Cc; b=uSw+Cs0yJAhDIn893ELZie3+hlaLWxDh/+BNYnv/fYpUU5Id9FZ5kcOz3ZcZE/n1uhTE+IbwljOpG38tFJKq6RS80qWQKbqcJBDWLzWPmmspkQVyStWXG7h3Y2WkcCmo6cb/keChZ/b6FrcvxWgut2nQMnc9xyRUtSIsncSYF2M=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=oG+C/r13; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 0781EC433A6;
-	Thu, 14 Mar 2024 12:30:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710419432;
-	bh=CrTSWvnI80HBCf2z8Oy2nHbmglsJV2g15ydY/Fnd+/0=;
-	h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-	b=oG+C/r13TmKdzhAlJcO0u+vL0vp9yOVmJ0g/oiKWmipU+n6rJquFJCWqrNOQSQ2k4
-	 ccIcGlpXIeboz94YUQO3bvjZFHoQJ6QV7wUhmBeJTFg5AWNmPZJYvIZIrJsFwFY2of
-	 OIDxH2h1iJBf+ExBpnRAcKnFNtoX8rVXNSVgbDEoVlaoUHKsiFD1FrD6Tj7O9vsH/i
-	 bk0FxwUKy6ccBHLapb0AVzUUOBDcALyYpl6oV9SH4llTH7PkbUQmxG8XfVK3qfK+BC
-	 mJ2zLPRrgeNtsRC/QnH5pih+YJGWb/AwwBnL8wrVtonOOJpKYURuS/S2mY0VJCAJFt
-	 54/cvGAWu8vMw==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-	by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id E921DD95055;
-	Thu, 14 Mar 2024 12:30:31 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1710419487; c=relaxed/simple;
+	bh=esxIP+Mn1RizCEnvwEiAOQ4xYLuuJSPTIKa725nOahs=;
+	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=STrBV/fh84ndgeKtGq+na40ORe3jhJVozvsznTv6vV6EHYRxtGtdjhpvLnPhmg/ezpgLG2Tvc1TK7OZJE7i76CNdx+VFGRtTLErQGQPk0O06xiAmYOnRDKsWSuwUV6xZUc1BIEkLvDujIteZylfoDql4NPA2/XDs2B9y9VhQ8Hs=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de; spf=pass smtp.mailfrom=sntech.de; arc=none smtp.client-ip=185.11.138.130
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=sntech.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sntech.de
+Received: from i53875a9e.versanet.de ([83.135.90.158] helo=diego.localnet)
+	by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.94.2)
+	(envelope-from <heiko@sntech.de>)
+	id 1rkkEs-0003Ip-Sw; Thu, 14 Mar 2024 13:31:14 +0100
+From: Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To: Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, arinc.unal@arinc9.com
+Cc: mithat.guner@xeront.com, erkin.bozoglu@xeront.com,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+ =?utf-8?B?QXLEsW7DpyDDnE5BTA==?= <arinc.unal@arinc9.com>
+Subject:
+ Re: [PATCH] arm64: dts: rockchip: set PHY address of MT7531 switch to 0x1f
+Date: Thu, 14 Mar 2024 13:31:13 +0100
+Message-ID: <4682635.taCxCBeP46@diego>
+In-Reply-To:
+ <20240314-for-rockchip-mt7531-phy-address-v1-1-743b5873358f@arinc9.com>
+References:
+ <20240314-for-rockchip-mt7531-phy-address-v1-1-743b5873358f@arinc9.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v9 00/10] Support Andes PMU extension
-From: patchwork-bot+linux-riscv@kernel.org
-Message-Id: 
- <171041943194.26728.3807889559884607630.git-patchwork-notify@kernel.org>
-Date: Thu, 14 Mar 2024 12:30:31 +0000
-References: <20240222083946.3977135-1-peterlin@andestech.com>
-In-Reply-To: <20240222083946.3977135-1-peterlin@andestech.com>
-To: Yu Chien Peter Lin <peterlin@andestech.com>
-Cc: linux-riscv@lists.infradead.org, acme@kernel.org, adrian.hunter@intel.com,
- ajones@ventanamicro.com, alexander.shishkin@linux.intel.com,
- andre.przywara@arm.com, anup@brainfault.org, aou@eecs.berkeley.edu,
- atishp@atishpatra.org, conor+dt@kernel.org, conor.dooley@microchip.com,
- conor@kernel.org, devicetree@vger.kernel.org, evan@rivosinc.com,
- geert+renesas@glider.be, guoren@kernel.org, heiko@sntech.de,
- irogers@google.com, jernej.skrabec@gmail.com, jolsa@kernel.org,
- jszhang@kernel.org, krzysztof.kozlowski+dt@linaro.org,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-sunxi@lists.linux.dev, locus84@andestech.com, magnus.damm@gmail.com,
- mark.rutland@arm.com, mingo@redhat.com, n.shubin@yadro.com,
- namhyung@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
- peterz@infradead.org, prabhakar.mahadev-lad.rj@bp.renesas.com,
- rdunlap@infradead.org, robh+dt@kernel.org, samuel@sholland.org,
- sunilvl@ventanamicro.com, tglx@linutronix.de, tim609@andestech.com,
- uwu@icenowy.me, wens@csie.org, will@kernel.org, inochiama@outlook.com,
- unicorn_wang@outlook.com, wefu@redhat.com
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 
-Hello:
+Am Donnerstag, 14. M=C3=A4rz 2024, 13:24:35 CET schrieb Ar=C4=B1n=C3=A7 =C3=
+=9CNAL via B4 Relay:
+> From: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
+>=20
+> The MT7531 switch listens on PHY address 0x1f on an MDIO bus. I've got two
+> findings that support this. There's no bootstrapping option to change the
+> PHY address of the switch. The Linux driver hardcodes 0x1f as the PHY
+> address of the switch. So the reg property on the device tree is currently
+> ignored by the Linux driver.
+>=20
+> Therefore, describe the correct PHY address on Banana Pi BPI-R2 Pro that
+> has this switch.
+>=20
+> Signed-off-by: Ar=C4=B1n=C3=A7 =C3=9CNAL <arinc.unal@arinc9.com>
 
-This series was applied to riscv/linux.git (for-next)
-by Palmer Dabbelt <palmer@rivosinc.com>:
+=46ixes: c1804463e5c6 ("arm64: dts: rockchip: Add mt7531 dsa node to BPI-R2=
+=2DPro board")
 
-On Thu, 22 Feb 2024 16:39:36 +0800 you wrote:
-> Hi All,
-> 
-> This patch series introduces the Andes PMU extension, which serves the
-> same purpose as Sscofpmf and Smcntrpmf. Its non-standard local interrupt
-> is assigned to bit 18 in the custom S-mode local interrupt enable and
-> pending registers (slie/slip), while the interrupt cause is (256 + 18).
-> 
-> [...]
+> ---
+>  arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts b/arch/ar=
+m64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+> index 7b5f3904ef61..03d6d920446a 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+> +++ b/arch/arm64/boot/dts/rockchip/rk3568-bpi-r2-pro.dts
+> @@ -525,9 +525,9 @@ &mdio0 {
+>  	#address-cells =3D <1>;
+>  	#size-cells =3D <0>;
+> =20
+> -	switch@0 {
+> +	switch@1f {
+>  		compatible =3D "mediatek,mt7531";
+> -		reg =3D <0>;
+> +		reg =3D <0x1f>;
+> =20
+>  		ports {
+>  			#address-cells =3D <1>;
+>=20
+> ---
+> base-commit: 0276d797531ea2d1865a04fbe54c659608f5788f
+> change-id: 20240314-for-rockchip-mt7531-phy-address-ba6c2fff485f
+>=20
+> Best regards,
+>=20
 
-Here is the summary with links:
-  - [v9,01/10] riscv: errata: Rename defines for Andes
-    https://git.kernel.org/riscv/c/be5e8872b3fb
-  - [v9,02/10] irqchip/riscv-intc: Allow large non-standard interrupt number
-    https://git.kernel.org/riscv/c/96303bcb401c
-  - [v9,03/10] irqchip/riscv-intc: Introduce Andes hart-level interrupt controller
-    https://git.kernel.org/riscv/c/f4cc33e78ba8
-  - [v9,04/10] dt-bindings: riscv: Add Andes interrupt controller compatible string
-    https://git.kernel.org/riscv/c/b88727d554f0
-  - [v9,05/10] riscv: dts: renesas: r9a07g043f: Update compatible string to use Andes INTC
-    https://git.kernel.org/riscv/c/95113bb70515
-  - [v9,06/10] perf: RISC-V: Eliminate redundant interrupt enable/disable operations
-    https://git.kernel.org/riscv/c/ea0e0178e101
-  - [v9,07/10] perf: RISC-V: Introduce Andes PMU to support perf event sampling
-    https://git.kernel.org/riscv/c/bc969d6cc96a
-  - [v9,08/10] dt-bindings: riscv: Add Andes PMU extension description
-    https://git.kernel.org/riscv/c/61609bf2b29d
-  - [v9,09/10] riscv: dts: renesas: Add Andes PMU extension for r9a07g043f
-    https://git.kernel.org/riscv/c/270fc77e7b0e
-  - [v9,10/10] riscv: andes: Support specifying symbolic firmware and hardware raw events
-    https://git.kernel.org/riscv/c/f5102e31c209
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
 
