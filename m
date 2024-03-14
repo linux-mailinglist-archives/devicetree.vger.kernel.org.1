@@ -1,105 +1,158 @@
-Return-Path: <devicetree+bounces-50533-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50534-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E6587BFC7
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 16:21:14 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D4A1987BFC8
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 16:21:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 82E3DB22D3A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 15:21:12 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 121951C22299
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 15:21:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2BA1071B28;
-	Thu, 14 Mar 2024 15:21:09 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id A937571B30;
+	Thu, 14 Mar 2024 15:21:26 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="R6WyTRQN"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="SSPPS5gY"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
+Received: from mail-pf1-f182.google.com (mail-pf1-f182.google.com [209.85.210.182])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 6CDC571B20
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 15:21:07 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 125BF71B27;
+	Thu, 14 Mar 2024 15:21:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.182
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710429669; cv=none; b=Vql00PvchY8pfequAHcBHuCDxk91Kj0YjNgzxbcGnjBTl8ZLYPGvHTqBIlPJFoN8/hb+SEhFah1Sp4NFZeJAyYhduLsRaRW6mRXKeY1nbYNm21iZc8RR+krfulqpjbzovxNuKCfp0xQTYFV4zNoJuGAXAdeKihpOXI0ncJqtbrE=
+	t=1710429686; cv=none; b=HmjbJY2ZMFMgHo4lBzrvwdc+ROKkpkc137njjcaXhQnG/k0903J9wjMDmepJHZgydfJyfPobg44fl472rQjqBHM8uRFTZJRNSOBlSVRMfEy0F3oMbWrCuWU0MxgcFUA5zh8T5P26ryUol10b4JJo76oTihOVTCJVn688oCq8Qnk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710429669; c=relaxed/simple;
-	bh=3qp7EuCcJDWyl1w/w7HV9vaEXS3vL6DRzyPc9uiwcLE=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=TxHF7hcpihPGLAHSMBY1lcaVFrJYELU42AzMS039uuiddCyRLNK4SPLEchE1XHI5OQ3XdtCEzm7zFxjAyeRF5p6TNKz7VtYB03ItYEpIs06K+llkjKV3Y5/zf0U9A+DSux9iNTkTLLuIqchG8AS6vxOJb1NPHSjnrWtrnnq3cRI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=R6WyTRQN; arc=none smtp.client-ip=209.85.167.48
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-513a6416058so1691484e87.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 08:21:07 -0700 (PDT)
+	s=arc-20240116; t=1710429686; c=relaxed/simple;
+	bh=Nxn5JtOFrYpN0fHpacI2byBmMGBLKNGEX9bKalqA2BM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=P4mYLpLCybJWMgdgLa75wCRn+q/jmRgALQ/AP4CRftc5MY0C6174ZC2Nx+hwXrlE+d2caL+Vf0bx5VKWyHAiMC8o8gSnMavhqZeGjUogizbEdkHy9r0C4SX1T8wWBH0FnfQvS5ZXJnNdH3hLIJSes17yuJlNrAw/3eJ3pNcysQM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=SSPPS5gY; arc=none smtp.client-ip=209.85.210.182
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=roeck-us.net
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f182.google.com with SMTP id d2e1a72fcca58-6e6082eab17so1030223b3a.1;
+        Thu, 14 Mar 2024 08:21:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710429666; x=1711034466; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MjFOZJPYX73CnefUijbrY3nQsy7VaH6e8bUva2U60pU=;
-        b=R6WyTRQN/gf7DHLfkkOo2QTlypBOhWr/9u8tJwiRwWTaGw5ZCxiLy2DcEWN28g29YX
-         MWsIIjU9sDNvpgow7/SwMMClukpR/aVz4P48QIJO9DaK2I+wgP+EoEJndZuFQ/a4LWwz
-         No8KUESh124lLkfQroSP2xZ3Q1PqamewbNF9s3WsIoQcJC8V/beLvAre0oegjzTu5rc9
-         fLdUcv/0NOKBOAvlesapXQ9OmnVz9pPdD5PoPzCF+9QDKHIPN2Naux3kKm6/WB/wLXT0
-         ne3Sha7WiJKDnB4AgKOwPYeusZXRNTFFOwMta8bYTE/C/Mw/kupAWimnloPXc6lnmkVZ
-         /Ycg==
+        d=gmail.com; s=20230601; t=1710429684; x=1711034484; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G7sWNt577aBHDyddBZ3kkUFNs3z9eJyKWD9qgLbpckE=;
+        b=SSPPS5gYQlIWQSZo7CBjX/wMs/KE7HrADgJAG6jtVjIdi7ym4YlpkI9vwUcgQ59PBr
+         41ZaPQONVQD8K0bW29Uc7tebV/rpN8xWUkZ8gzX7qIsIYKA9w33zzlpzwFwCE6/7fPDu
+         R5FJalb1YI3D71e9TUMHZCNPUVY13A+OIe4irFRuUb9GnE7so6JA7/fmtXtttUm3lOTj
+         m6DlhweXnWWMCh4+dapnT0rRfTDCwa3rYOwm5a6VGCGTpdV4dXrWpJ5UIxwp+LdrVpGw
+         mmTswOQ8Ogb00e0xQlDVC5S+0ELqN5HO0iedWWTKQsu+bB17vR5a/trbo0SPJNyDQ2Vp
+         HCbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710429666; x=1711034466;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MjFOZJPYX73CnefUijbrY3nQsy7VaH6e8bUva2U60pU=;
-        b=fzntEK7IjLQJ+2OGk24gbTPQh/HPNvGtBk8E3oN1Cxry53GFVgs3tAuxsZG+tfdpN5
-         cpsiXiCV7Yq9D3w9cubRy6QvOYQgv0xfz62qC8RlapbpmOvacdzxORtYriCiNeiAxD1U
-         g/7lAK0B68lWqLs2YoS55hBIlcaobxhuxkhwozMgIu/H7PGAvBoX+V9haJblttg+ivoD
-         8zdzIWVbeXQ7vErSGAM5Gn96Yd0UALJ+xqxFJYicWjAUOvTO1pEDHzHtMRMrVZeWvqaa
-         nAzP1/pjXF+8jMZT6VY+hZ6RAh6HAZ9MJHGRsCaWckLlA2wscgjUgymI0iBI7vg8uVIs
-         74+A==
-X-Forwarded-Encrypted: i=1; AJvYcCVreONPXQEp23cNsUrPpPGm+QhTygKE+0ZMg5ZmUcd+llyB+vCzRMS6zrel9Lz9mtdFGZvC+y6ubbaQ15ELhObQ5FCGxMl7FBsuaA==
-X-Gm-Message-State: AOJu0YyUPDVMr6RwhIRCAd1HCQqxLZQipVaeDNARsQQungK9300tktZZ
-	eqHHk7oyiLPFAl2HVGjgBwFLV+eMar7XJYs2PnaJQUor2I4Mrbt4cNBfhJtDIcU=
-X-Google-Smtp-Source: AGHT+IE+KRwa0r5iZnvK4QfGOtpfWMCapXc8pPsdA3M7QuLbkyznnOBo3u7JpQbNe4pl0eTVpQ0H1w==
-X-Received: by 2002:a05:6512:3d88:b0:513:a833:cda2 with SMTP id k8-20020a0565123d8800b00513a833cda2mr1518615lfv.53.1710429665784;
-        Thu, 14 Mar 2024 08:21:05 -0700 (PDT)
-Received: from [172.30.204.13] (UNUSED.212-182-62-129.lubman.net.pl. [212.182.62.129])
-        by smtp.gmail.com with ESMTPSA id f14-20020a05651232ce00b005139c3c584bsm307693lfg.241.2024.03.14.08.21.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 14 Mar 2024 08:21:05 -0700 (PDT)
-Message-ID: <7ddccc5b-80a4-40b1-8fa7-b2365722fb53@linaro.org>
-Date: Thu, 14 Mar 2024 16:21:04 +0100
+        d=1e100.net; s=20230601; t=1710429684; x=1711034484;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=G7sWNt577aBHDyddBZ3kkUFNs3z9eJyKWD9qgLbpckE=;
+        b=D4uQlRLURbq2gmGCJwnSLrP+onxV85oANQvEiJvbSP5u3doFCveSCWq4vVlIbwxFK2
+         e2D0VQtPPmFaOQJoIRC75SF6mE2/CA1dD806oA1TpkaaoQ5sKhtUGIUyNA3jl+CEhp76
+         2qABSdlV2+/4t0gteH48UI8k9zAcUGzdrk/7BZWPEjyx9OH4RXol3S/NdKqzjaLMin79
+         M2P4LCzOycNBLvR7lC3+zAOc8vaJRQZc4FT7rHkbj//VTf6AA/efrxjltEWFfJ94PuFc
+         GMgzjJj3PLoZmL2nBya3JIAUmb1TsWUCUS1nNmZ2sa8ZuXfxFo1KzEnaKG/RhVRJOS0i
+         H8vA==
+X-Forwarded-Encrypted: i=1; AJvYcCXX1Qj1MDIwPhcywOBfM9SMbA7CcExmMvktcZKdm5rfO+UaF8/deRKUnre9Aook3Gc2jH+DFZW9Cx/F2kUgzitjAi/vYA5jcmSAOcCEXFHRQHQKpHkswvfzGbQ8dk1VkylGqyAZ5Crg56trFT8w7QDqYu3vCFis3RA/9Z7JOAvRkZ/vO8vE35XrYeIsWTUzlDxjAgd0S9VjZ38A2g4=
+X-Gm-Message-State: AOJu0YwFckHrbvZ5xWZx3J1KLYWVkl+2VVZxhIWlbYIEPr7zpKYtMX0h
+	idZc1K5N8Xsf4z02W5+nAnqnkP7gFvPwfSkM7gQzFiEGrehNY0FR
+X-Google-Smtp-Source: AGHT+IE976LiIs3J+wZRKHFMiWO2GPc/z1HYI5pokfTUW/WlvRcrsBtERWAE0daVU3yJUtEiJynjHA==
+X-Received: by 2002:a05:6a00:2312:b0:6e5:eab8:4db8 with SMTP id h18-20020a056a00231200b006e5eab84db8mr2351181pfh.17.1710429684285;
+        Thu, 14 Mar 2024 08:21:24 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id y1-20020aa793c1000000b006e6795932a4sm1618767pff.80.2024.03.14.08.21.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 14 Mar 2024 08:21:23 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date: Thu, 14 Mar 2024 08:21:22 -0700
+From: Guenter Roeck <linux@roeck-us.net>
+To: Herve Codina <herve.codina@bootlin.com>
+Cc: "David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+	Andrew Lunn <andrew@lunn.ch>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Qiang Zhao <qiang.zhao@nxp.com>, Li Yang <leoyang.li@nxp.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Shengjiu Wang <shengjiu.wang@gmail.com>,
+	Xiubo Li <Xiubo.Lee@gmail.com>, Fabio Estevam <festevam@gmail.com>,
+	Nicolin Chen <nicoleotsuka@gmail.com>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Randy Dunlap <rdunlap@infradead.org>, netdev@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+	Simon Horman <horms@kernel.org>,
+	Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v9 07/27] net: wan: Add support for QMC HDLC
+Message-ID: <bd7b7714-1e73-444a-a175-675039d4f6e4@roeck-us.net>
+References: <20231115144007.478111-1-herve.codina@bootlin.com>
+ <20231115144007.478111-8-herve.codina@bootlin.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] arm64: dts: qcom: sm8350: Add interconnects to UFS
-Content-Language: en-US
-To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20240313-sm8350-ufs-icc-v1-1-73fa2da99779@linaro.org>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20240313-sm8350-ufs-icc-v1-1-73fa2da99779@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20231115144007.478111-8-herve.codina@bootlin.com>
 
-
-
-On 3/13/24 02:32, Dmitry Baryshkov wrote:
-> To ensure that UFS doesn't get disconnected from NoC, add interconnect properties
-> to the UFS controller.
+On Wed, Nov 15, 2023 at 03:39:43PM +0100, Herve Codina wrote:
+> The QMC HDLC driver provides support for HDLC using the QMC (QUICC
+> Multichannel Controller) to transfer the HDLC data.
 > 
-> Fixes: 59c7cf814783 ("arm64: dts: qcom: sm8350: Add UFS nodes")
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Reviewed-by: Christophe Leroy <christophe.leroy@csgroup.eu>
+> Acked-by: Jakub Kicinski <kuba@kernel.org>
 > ---
+[ ... ]
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> +
+> +static const struct of_device_id qmc_hdlc_id_table[] = {
+> +	{ .compatible = "fsl,qmc-hdlc" },
+> +	{} /* sentinel */
+> +};
+> +MODULE_DEVICE_TABLE(of, qmc_hdlc_driver);
 
-Konrad
+I am a bit puzzled. How does this even compile ?
+
+Building powerpc:ppc32_allmodconfig ... failed
+--------------
+Error log:
+In file included from include/linux/device/driver.h:21,
+                 from include/linux/device.h:32,
+                 from include/linux/dma-mapping.h:8,
+                 from drivers/net/wan/fsl_qmc_hdlc.c:14:
+drivers/net/wan/fsl_qmc_hdlc.c:783:25: error: 'qmc_hdlc_driver' undeclared here (not in a function); did you mean 'qmc_hdlc_probe'?
+  783 | MODULE_DEVICE_TABLE(of, qmc_hdlc_driver);
+
+Guenter
+
+> +
+> +static struct platform_driver qmc_hdlc_driver = {
+> +	.driver = {
+> +		.name = "fsl-qmc-hdlc",
+> +		.of_match_table = qmc_hdlc_id_table,
+> +	},
+> +	.probe = qmc_hdlc_probe,
+> +	.remove = qmc_hdlc_remove,
+> +};
+> +module_platform_driver(qmc_hdlc_driver);
+> +
+> +MODULE_AUTHOR("Herve Codina <herve.codina@bootlin.com>");
+> +MODULE_DESCRIPTION("QMC HDLC driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.41.0
+> 
 
