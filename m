@@ -1,74 +1,76 @@
-Return-Path: <devicetree+bounces-50365-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50366-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36E7187B625
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 02:43:02 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 531D287B627
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 02:43:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id E4D681F2280A
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 01:43:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D9346285CCA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 01:43:02 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8C6BB4A0F;
-	Thu, 14 Mar 2024 01:42:58 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 313E2522E;
+	Thu, 14 Mar 2024 01:42:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="nWyH91IE"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="qakPbirA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+Received: from mail-lf1-f48.google.com (mail-lf1-f48.google.com [209.85.167.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9ECDC4439
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 01:42:56 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.51
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 421C44683
+	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 01:42:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710380578; cv=none; b=n6QFn3B0b3RYMu5IB+0DET9h9O0koPH6WDsR8QgN+yeoTjioqoQodt0mHAObFp3yKyXRpyplrz/zULpdOXn7Yri3QPDb4PqADFKXTsdCfY/1Lql4S1zjndvgqDNC9OYUTRtHzHeT3nt+WZ0U36vCFk9vJ1I9/ZAaeXjlbR+/xfA=
+	t=1710380579; cv=none; b=n+vvmzcCylju89lGHK2Df6eeOFlEVCtxwJnlwFOsKfczONtgdNFR2JS4xjxP7yf0E+LqnYQWYNEjg2Kya/RAnyF6k1XmRpyAZtTFIUQkjMJUPk8OovMA4TcbLvRqvRxDbfLEL5IPZ3jg9lFEQdr/htt7otAW09LNRZALIZHfvGM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710380578; c=relaxed/simple;
-	bh=/9o8wupjT2lFvIVQz6ywcaPq/J3mTzdTMJ1bW3KmM/k=;
-	h=From:Subject:Date:Message-Id:MIME-Version:Content-Type:To:Cc; b=jvPnaH+6vP2flyT8ggFHRszlKBfJNyw1ShOtG7AhQOoj+s4feZsElcjyfKlyXQECrKKs+4uJDd8YDAtZVac+xd179jQgzC0Rb/TcdI1jsoJ76AYwL2gAMrar/ZQ4BCfPzqVeoL+GPUtQJ1DApn2KEPnB1jY4jn/a8uo9fzpreLo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=nWyH91IE; arc=none smtp.client-ip=209.85.167.51
+	s=arc-20240116; t=1710380579; c=relaxed/simple;
+	bh=QYcLYV+TGwlj9Unt//oGQ8Wx/tZMmV+Xi2zX6p7gc44=;
+	h=From:Date:Subject:MIME-Version:Content-Type:Message-Id:References:
+	 In-Reply-To:To:Cc; b=Pef1T0TskL+dYA6VHSfkMIV7HMXUIXKR29tY2+afaCNRZ+YZOzlaICwypAG2AHcG9hRKRSsplcxWw/t2uL3p23QzjJ1AljQLyy2b/ntMPz0ssLc/RKfPRS0ByU4WY2L9O1mEWzHcwL7hunmfOw0iJdfcRG1//WJY6H7jYe/sG8w=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=qakPbirA; arc=none smtp.client-ip=209.85.167.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f51.google.com with SMTP id 2adb3069b0e04-513b1e1724bso510469e87.1
+Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-5131bec457eso436613e87.0
         for <devicetree@vger.kernel.org>; Wed, 13 Mar 2024 18:42:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google; t=1710380575; x=1710985375; darn=vger.kernel.org;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=Pr28EdwX1bs5qhBixWH7XvK1iMcKHzy7Xszob8QwMuY=;
-        b=nWyH91IEm/gkRPr5MYJbZ7Znir4c1fJh7Ta7BIHHhH5aIwaN1nAV3MBxhfxk+h5ZSt
-         /TuEj7DEGIEngiizIs/XINnjoAMy3Tpdbok+Ek/voVYS0EzQk66FdMdgLsm2mMD43+d8
-         xY+ohO0B2s9EwawGX36PhSLvNYZriqf5NtbL4bkYXWGGnNino/2hUQZkPWO0dmFdHUme
-         uFQPSaHleSh+EVBXbRZl7ad5urZXFrTuPviTujjZRb2ZCyhqZxobhSRBo9ptybH1oe2Y
-         ily+kiNyXdoFv8l3ycSzrv624IdYkGKWsnbcsQUEgD2LeGfN0e2GCi8FFf0TpopCx8ZN
-         Tdjw==
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BR/2WSjaC7kiVEA/MVv8KgcDPRVdevK7R9VIuMUtZFw=;
+        b=qakPbirAyTCZqq7GQwysOfXJ6u8ylSe53EO8IQOaLK2ivTiy3EUdLQYX6P2IGDf14v
+         mNZBUTVKL1bALrn/wRSwNfKnkPXofoF0f+YM/mGSLZdX8Sd+4HbPbgjRnm8bXCQe1f0L
+         DwZfSlnO0BMuefyIOAy8YjGLlcTTiuNpLfq77jl8AK8/lWClvkkbd1K+I1mKYUOOdg7/
+         EmBxitkwZ4HeHCz2r4eOZcXji5YD4wbmNjIMjq69XEY+okzgW3xB8NNfpfK9Nw2HKeNv
+         Etmdm24EazMRxYYZMSJ2Kk1A5mGzINPU/t09tNsogZrMGfwcXW9Fc1lHd9gC/noxrHPo
+         mbvA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20230601; t=1710380575; x=1710985375;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Pr28EdwX1bs5qhBixWH7XvK1iMcKHzy7Xszob8QwMuY=;
-        b=bBdvKk2PQLefrsg/bngSqdYuzLJeGczmQBzu5cDHUsR8s8DH4IjiTmx4r6o9rv3AHc
-         oulphJJbBVL58S+GXITo1QzbFRZEoi4E6riBYWaVLP1n8nrRzG5RwyLfKTuUMmxEY67e
-         99iJxVuLwej1+gfYPF86ZZTrz/CR9mm6zwLmw/KYyNVcBuWB7ixnIAPrft3SAwddbx2w
-         hACLHuim0e2SvJYpMAFHU1Y/1zBYWIQZeC0nL6roG7vVbdOPWL1/W5hXJMllfZINWUsM
-         fsGEqkP0Hhb8Sw5D6dCGFCu6tsK9kh7GM7OXPPli89p2UEeS7jdqZFPmh7uzuuVn6ria
-         9DKA==
-X-Forwarded-Encrypted: i=1; AJvYcCWPE8bBTB6fZGLdkRauBiPIAWY42E7CkaVfZhhD5DUtmXCEGx1zgkTnSmZSSUki4to2+AhQVdAh2B97W8tk3mXyKlYruUDCO+eRcw==
-X-Gm-Message-State: AOJu0YyewBiHKqrIsNO07UBlQMn0ZomWwyXtcwxIZ7OQlwbBZ2vB4aLt
-	NCq767YpzctqqELT+Uf4bDa+riL6pQZSnpOMtwcjSJyentx+PAnQNa+aSeszZ4w=
-X-Google-Smtp-Source: AGHT+IGcTBHMI8oHUsiT+fZXBiRNdKrcPD4PPsQcNnRDNTflB8fcdAPSZ/IoAVPm6YeuwnWT7fad6Q==
-X-Received: by 2002:a19:2d0b:0:b0:513:ca9f:3c7f with SMTP id k11-20020a192d0b000000b00513ca9f3c7fmr152918lfj.17.1710380574753;
-        Wed, 13 Mar 2024 18:42:54 -0700 (PDT)
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=BR/2WSjaC7kiVEA/MVv8KgcDPRVdevK7R9VIuMUtZFw=;
+        b=SiSIuttaxOnN2JJSodCrF7+6xNJoFx39CtEhZhwJaUsewHzM4jTvwdNVs5Z1t5mXgL
+         +iMCvXTZekt1gKGpwcIpuNlxSdxKDrKjcwlM0LLOPPbBfAfHmPcDxD8dRr3mqUv9Js/9
+         Or0jlosLB4ePJnpJ9+eiKcfFh80GbobWS5uF9PYyaQXtKnFxqRZT2CJ1MvYA6YR05u6C
+         9WGtfKzZzl1KHPdImZgnNpoi4OXMkd2mNeNQe3j90i+PRNAzg2Wg9wt2OTvJ4/KxLbAi
+         g/NDcWqEC+sHx99iasxR1oUEgWyIyEySqBJ7MIgnVHoiOj14exeO3LjE+XBtbzVPR2iN
+         cYnQ==
+X-Forwarded-Encrypted: i=1; AJvYcCVaS1zuV4L5jKMIC6pc5LfhCB9j1Rqu0NW+oa9a5sJU87BvouX5Ioz4iod+moxEX+x00cc3qne0pGj02Klu+hRCYFKOIq59BZw+sQ==
+X-Gm-Message-State: AOJu0YwLiLJxT61paReACVYM5XdBCfCDHLIWR+K1fOUTzf4qqGuWHaCj
+	Y4GJzdndCiaTW4xqTqvq2kBBZwrB5HHmLA5l7x+n2f+bf0M5xl/2X6NlZBwJnK0=
+X-Google-Smtp-Source: AGHT+IG/xPzvetpwfSv0TVyj+DJus9Rt9JhAont7yelpvJBAXVu3YG2ObCJirWHpisht2KAV4oz2tQ==
+X-Received: by 2002:a19:434c:0:b0:513:bf8b:3cc3 with SMTP id m12-20020a19434c000000b00513bf8b3cc3mr1324198lfj.2.1710380575404;
+        Wed, 13 Mar 2024 18:42:55 -0700 (PDT)
 Received: from umbar.lan ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id u16-20020ac243d0000000b005131e4804f9sm66566lfl.190.2024.03.13.18.42.53
+        by smtp.gmail.com with ESMTPSA id u16-20020ac243d0000000b005131e4804f9sm66566lfl.190.2024.03.13.18.42.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 13 Mar 2024 18:42:54 -0700 (PDT)
+        Wed, 13 Mar 2024 18:42:55 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Subject: [PATCH v2 0/2] arm64: dts: qcom: msm8916: drop dtbTool compatibles
-Date: Thu, 14 Mar 2024 03:42:47 +0200
-Message-Id: <20240314-msm8916-drop-compats-v2-0-5a4b40f832d3@linaro.org>
+Date: Thu, 14 Mar 2024 03:42:48 +0200
+Subject: [PATCH v2 1/2] dt-bindings: arm: qcom: drop dtbTool-specific
+ compatibles
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,62 +79,78 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIABdW8mUC/4WNQQqDMBBFryKz7hQnDRq78h7FxVSjDlQjE5EW8
- e5NvUCX78F/f4foVXyEe7aD+k2ihDmBuWTQjjwPHqVLDCY3NjeGcIqTq6jATsOCbZgWXiOWfZE
- 7Zusq6yBNF/W9vM/so0k8SlyDfs6XjX72T3AjJCyJ246fZMubq18ys4Zr0AGa4zi+yutucLkAA
- AA=
+Message-Id: <20240314-msm8916-drop-compats-v2-1-5a4b40f832d3@linaro.org>
+References: <20240314-msm8916-drop-compats-v2-0-5a4b40f832d3@linaro.org>
+In-Reply-To: <20240314-msm8916-drop-compats-v2-0-5a4b40f832d3@linaro.org>
 To: Bjorn Andersson <andersson@kernel.org>, 
  Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh@kernel.org>, 
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
  Conor Dooley <conor+dt@kernel.org>
 Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org, 
- Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, 
- Stephan Gerhold <stephan@gerhold.net>
+ Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 X-Mailer: b4 0.13.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1368;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1617;
  i=dmitry.baryshkov@linaro.org; h=from:subject:message-id;
- bh=/9o8wupjT2lFvIVQz6ywcaPq/J3mTzdTMJ1bW3KmM/k=;
- b=owGbwMvMwMXYbdNlx6SpcZXxtFoSQ+qnMNnvFc0G9pHTL6ru0HYUu3d6L9ei7N6K1MiaebaC3
- Rl16as7GY1ZGBi5GGTFFFl8ClqmxmxKDvuwY2o9zCBWJpApDFycAjAR5skcDL37WvK3hmrOms95
- iHXyQYHHPTXrfok5cXTH/e2u2i/+i1l1heEHjrSASG/dhIhXbmqmFhaXryTZ3WFL3RLx8+PcNH+
- B0s68QraSPTdTL616LeZ2zm7tbB1b+cNlveVxRfvbD1mcjC6R3fRlsbt4t+FJgY2P589qerAq3N
- V7rZGazs0uO9PqSTpOOnI1M9+9UjOcf8jqIWPy7vdnGrLa6qKuRyfmfcu/n+2icPRi7Lm7zq/nM
- C9t3BrwrLrwhezVb1YOos+tP6zefMwg9bGgKvOXKXuYOgMjvq6M1TQJsq58szR++Q/H9GRlb+1k
- y7mMRWnOtskbVxV5aFx6nyDfm7qiSmFDynP3k0eZVKcAAA==
+ bh=QYcLYV+TGwlj9Unt//oGQ8Wx/tZMmV+Xi2zX6p7gc44=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBl8lYd6Ga/hJJVGq505U89U6Wx3RgeKo4x2Wcc/
+ YFgk96qBwiJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCZfJWHQAKCRCLPIo+Aiko
+ 1e1nB/9D17HcaFonexjCtRtUG16g1l6JfCQKzzQKAEP2gfFdoKly977vAZw4UtkxBD+BOWyb6Yw
+ Q/B+bQEkDk6iFGzPp92TNpF0XtHU3QxyfaCxA1XD2icGcC7fnB5/WN+PPbj4AUriEaTvo1vICRv
+ qRHjzFRwGY3/2yFPpAQjI9caRKGhwXRluS7AWlo/ojAA3188ckjK04Aq/we1RgXttHyCdv2vNzl
+ p/+BcV1tU6Dj2tfhYceIIkWAajYcTycZUcwPtxc+DXjMlAQHHjZT95Y4IygBtjD7xr+UELdJ7dh
+ c9pQQQK3CiGH6v8nPf6WNUvhq4MmE54U+yO0aN106ArUFGmq
 X-Developer-Key: i=dmitry.baryshkov@linaro.org; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
 
-Only two boards ever has adopted the dtbTool-specific compatibles.
-However the dtbTool should not be used anymore. It was required only for
-the old, broken lk1st bootloader. All users of those boards should have
-updated to use lk2nd instead. Otherwise several important features
-(secondary CPU cores, WiFi, BT) will not work with the upstream kernel.
-
-Drop these extra compatibles, merging these two boards into the common
-bindings case for msm8916.
+Drop two board compatibles that were used by the skales dtbTool to index
+device tree blobs. It was required to boot those devices with the
+original bootloader, however all users should have switched to the
+lk2nd bootloader by now.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
-Changes in v2:
-- Drop the compatibles from bindings too (Krzysztof)
-- Add cover letter, describing why everybody has switched to lk2nd.
-- Link to v1: https://lore.kernel.org/r/20240221-msm8916-drop-compats-v1-1-71acdab14738@linaro.org
+ Documentation/devicetree/bindings/arm/qcom.yaml | 12 ++----------
+ 1 file changed, 2 insertions(+), 10 deletions(-)
 
----
-Dmitry Baryshkov (2):
-      dt-bindings: arm: qcom: drop dtbTool-specific compatibles
-      arm64: dts: qcom: msm8916: drop dtbTool-specific compatibles
+diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
+index 66beaac60e1d..66c98a1c8ac6 100644
+--- a/Documentation/devicetree/bindings/arm/qcom.yaml
++++ b/Documentation/devicetree/bindings/arm/qcom.yaml
+@@ -187,11 +187,6 @@ properties:
+           - const: qcom,msm8974pro
+           - const: qcom,msm8974
+ 
+-      - items:
+-          - const: qcom,msm8916-mtp
+-          - const: qcom,msm8916-mtp/1
+-          - const: qcom,msm8916
+-
+       - items:
+           - enum:
+               - acer,a1-724
+@@ -200,6 +195,8 @@ properties:
+               - gplus,fl8005a
+               - huawei,g7
+               - longcheer,l8910
++              - longcheer,l8150
++              - qcom,msm8916-mtp
+               - samsung,a3u-eur
+               - samsung,a5u-eur
+               - samsung,e5
+@@ -220,11 +217,6 @@ properties:
+               - yiming,uz801-v3
+           - const: qcom,msm8916
+ 
+-      - items:
+-          - const: longcheer,l8150
+-          - const: qcom,msm8916-v1-qrd/9-v1
+-          - const: qcom,msm8916
+-
+       - items:
+           - enum:
+               - motorola,potter
 
- Documentation/devicetree/bindings/arm/qcom.yaml      | 12 ++----------
- arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts |  2 +-
- arch/arm64/boot/dts/qcom/msm8916-mtp.dts             |  2 +-
- 3 files changed, 4 insertions(+), 12 deletions(-)
----
-base-commit: 8ffc8b1bbd505e27e2c8439d326b6059c906c9dd
-change-id: 20240221-msm8916-drop-compats-7f608aa48948
-
-Best regards,
 -- 
-Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+2.39.2
 
 
