@@ -1,158 +1,145 @@
-Return-Path: <devicetree+bounces-50554-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50555-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id D14AF87C141
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 17:30:12 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A27687C174
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 17:44:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id DC7D3B20D48
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 16:30:09 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9F2D72813EA
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 16:44:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 84F2C74271;
-	Thu, 14 Mar 2024 16:30:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 108FA73533;
+	Thu, 14 Mar 2024 16:44:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="n6Uyc3Nl"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PeTffSwR"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ed1-f50.google.com (mail-ed1-f50.google.com [209.85.208.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A0F8F7353A
-	for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 16:30:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 908D72E410;
+	Thu, 14 Mar 2024 16:44:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710433806; cv=none; b=e0y1sWGEC+cR4QYoopSaz+l/1xcnJTW5XBzSwnPHH31UaEh2rlIEBGnrpmqRNuTryWNr9/CvjZAzAJUpbvOmpzHD7s+5WKeNiRYdBrospxiKXj4gw94irnOn5Iw14MY/KAHREKEPjfgKh4xJWlEbnViMLEeoyyW7rGW8ymMnd2U=
+	t=1710434678; cv=none; b=uew5Lt+BOM0epkxUc2s2DNY7ApAeY9DCEgH/5+b2iiVXjikisnndV0jlSb17pdL3Jwyw9NC/XItAcPk83zwfG3OqVNBDmtYoSNCvOMgnoIlrfsJa7xpcqll55kpPDGfw3VP/qXmIxR7d7/nuGNAszZPG3wk5Amhm/unoUVneGg0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710433806; c=relaxed/simple;
-	bh=q7cZe7r0LCnbPyHPLloHmQxC19pPkG/8Zv4KL2YlRpY=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=s6y8xQgKP9L8yHDoCmDzsyaU2hJnORTMjSz8+6DpMGfRpGqoiSqJ8qfR2w2yRnK0DyJ3eEdjcPOiYJUWacYZyggsQ5dEOdYbKBq49j2/SuRA+o5CvVlt7fbdLbxtKbUXSvn/cyuQmXMuvlRdHyF7Y15MblU9aSdcTUZU/3lO2OA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=n6Uyc3Nl; arc=none smtp.client-ip=209.85.208.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ed1-f50.google.com with SMTP id 4fb4d7f45d1cf-55a5e7fa471so1620149a12.1
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 09:30:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710433803; x=1711038603; darn=vger.kernel.org;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=KLl3gK9cV6OxQa3WncHmwC4MY7fLl1EcNbFX0dIn7sc=;
-        b=n6Uyc3NlqwrglWx6CD+iKjM48wD/5aa987KJPe9pY3CViriv6cC1HKpXUGuVtxD9vI
-         RqeKjx+mnTkT4rZyH6jP0cJetXq7D3I+kSOGk6RoFuL3tmCxteyZGNnXDDHTiDAe8YAQ
-         8ySjnTBaIWyWm7bw6v3YaEJoXCkU2fjdvy8b/OmDKDn+msmlCkp7O8rgQ/eXpv5s3vDP
-         KesO93ApWtJ6WZGE1cB4Cz7/wd8ebqL2FE+kFyAux9Fjq2onfA9E1tBROaHytyD6jwzN
-         jlzBZumlM2K5LhDZic3j9NXHy4sTsdjcKm+z5+qzRBCdSifQIaP3hYlZbjAQtXMXckW0
-         DQdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710433803; x=1711038603;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KLl3gK9cV6OxQa3WncHmwC4MY7fLl1EcNbFX0dIn7sc=;
-        b=cbd+4mCxVQUphJbWw48Y6V4fySL4Mt/LKyzBS8orvl5Rgud//l3V/2F377eYByELR8
-         VC4qaqNwvMvKFroSjyzP4E0KdaOMSiClaQ2qX9THIBfUcRA3BTi9qWmmHRWmpOiqva+x
-         4Ix0jJYVdY8timgJO1K1hNbK28bDB2jzAmW8w+C2NSeb3yV3HshVbdPN+nU/hRRMVhbH
-         Lhx18wK/6v1gNoQMq35gowNhi5FZ8bKDQESAGbxrNbI2FGfSoJCvl2Bg8jidrWQ3R3JD
-         01R5YHeqXL6AOkZfXM1wwEfps6vcYCPYHNvcY830MhaSGrMW5NDR+wJ2FrVMkpKqzS85
-         hYfg==
-X-Forwarded-Encrypted: i=1; AJvYcCU4TslUcxxBjooAJlTIv5Boac63evUuQz811cEKVLuwcnQ9CBvZEZNIpaQoJ2gN0CyHUKtak7IvSfCFnG0Vo3DzGCPUEr3m3/U6kw==
-X-Gm-Message-State: AOJu0Yw7WWUn8pKtqAD8K8925fV4kvCU9JQD0mSHQMSBR+Nhbjxd83b5
-	EyNHgg9UoNgUj2nZKgqfc9OBvsuEUgIYhMEuKXMVF+pC1Lx95P20aqkr/BhWEW6zlTmXpEr/V16
-	iP3ggPCRSggbYo3IRBnR7bGPQIlujvkmRPoLjPQ==
-X-Google-Smtp-Source: AGHT+IHFysDJuZx8WaSgVN8UaQyI4uT/Kws9od+ssgUFSxoLe79xE2iiRf9rncVkWebMw/kyZE9YRMP8x9J1VnQQqYY=
-X-Received: by 2002:a05:6402:5414:b0:565:7733:3c58 with SMTP id
- ev20-20020a056402541400b0056577333c58mr872607edb.4.1710433803045; Thu, 14 Mar
- 2024 09:30:03 -0700 (PDT)
+	s=arc-20240116; t=1710434678; c=relaxed/simple;
+	bh=X4ETqXGFr9Z6VXyiAGMaq+hLf7847MJEttp17fIvYFo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=bnAznqxMCM6E/J1dPuxcIQdXTbsXaKuAauJ4Ov34RmLeqF/+pE+qOKzbP7UBF6PlEY2UYRDg3AZxexEN+V4OAYnXs0jbI8PwpTqJVh/JS6dNKWUGo5ZftmPrl5sVLKXTHOBUsmp8OiOgXwix/g2BjXvB46N9RiEp6t02O9sC92Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PeTffSwR; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42EDerW3015388;
+	Thu, 14 Mar 2024 16:44:34 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	qcppdkim1; bh=Fam0GzRMfK4d846fCu3OJ3/SnO4PS61b4OFyJFtygKo=; b=Pe
+	TffSwR8V4J1WYv0G/OnO4Kxe/fMO/Kv3q5p3kO9kJH2057uY+BgqljKlcTjdggxQ
+	niAoE4HVHikugaMIR4Hmqec3/5APNoo8KOG6eNX28DCPA7Ikba9AynUmfGQcNewA
+	CR1i2W+XQh00DlmTI4bLbfvoZif0rHiVcD7lDo3+2IIN2UFg2FC2VPlDAUrGaIan
+	XEtu7C+5jSe8ey5BxVf5d/4hRFM58MYYVGHrvw2yVHeVUhRuCijavOQX4Bks4x8b
+	rQIQU7xK3lYKgP/RKO8DfYOZA6oJqkkfaPeumnoQK4aDn/nuXaJn27hXi6ejk3Wz
+	l/wZC74hsuhBXX1too+A==
+Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wuruqssgt-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Mar 2024 16:44:34 +0000 (GMT)
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+	by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42EGiXrP007125
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Thu, 14 Mar 2024 16:44:33 GMT
+Received: from [10.216.10.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.40; Thu, 14 Mar
+ 2024 09:44:30 -0700
+Message-ID: <69a8c14c-109a-103a-b8dc-d8e303c0f0d5@quicinc.com>
+Date: Thu, 14 Mar 2024 22:13:59 +0530
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240301164227.339208-2-abdellatif.elkhlifi@arm.com>
- <ZeYWKVpeFm1+4mlT@p14s> <20240307194026.GA355455@e130802.arm.com>
- <CANLsYkzA20rQdTM6AOvFK=3o28GvcoRbckL=ri8RegHqyHaiCw@mail.gmail.com>
- <20240311114442.GA82865@e130802.arm.com> <CANLsYkwReJvB1UWvR5TwtSs-w_VqU45kDSUzuQ0k+waetEn6Yw@mail.gmail.com>
- <20240312173252.GA38992@e130802.arm.com> <ZfHTfNx4um8koTlY@p14s>
- <20240313171756.GA82165@e130802.arm.com> <ZfMPS+qn0lh5IrS7@p14s> <ZfMQyJWTh15P7Ru3@bogus>
-In-Reply-To: <ZfMQyJWTh15P7Ru3@bogus>
-From: Mathieu Poirier <mathieu.poirier@linaro.org>
-Date: Thu, 14 Mar 2024 10:29:51 -0600
-Message-ID: <CANLsYkzdfP8Np-XwPDt=GBNLYiSypd8tNdb29KUwr+tyi7gJEA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] remoteproc: Add Arm remoteproc driver
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Abdellatif El Khlifi <abdellatif.elkhlifi@arm.com>, Bjorn Andersson <andersson@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, Liviu Dudau <liviu.dudau@arm.com>, 
-	Lorenzo Pieralisi <lpieralisi@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Drew.Reed@arm.com, Adam.Johnston@arm.com, 
-	linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: sm8450: Add qfprom node
+To: Konrad Dybcio <konrad.dybcio@linaro.org>, <andersson@kernel.org>,
+        <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC: <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1709727995-19821-1-git-send-email-quic_mojha@quicinc.com>
+ <1709727995-19821-2-git-send-email-quic_mojha@quicinc.com>
+ <45fcf8fb-9d9b-4e6a-a7c5-9bfb96875e64@linaro.org>
+Content-Language: en-US
+From: Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <45fcf8fb-9d9b-4e6a-a7c5-9bfb96875e64@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: eaVKVTF6if1RSJV9Su-aFo1J_5aNZ2hr
+X-Proofpoint-GUID: eaVKVTF6if1RSJV9Su-aFo1J_5aNZ2hr
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-14_13,2024-03-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ mlxlogscore=854 spamscore=0 adultscore=0 impostorscore=0 malwarescore=0
+ priorityscore=1501 phishscore=0 suspectscore=0 mlxscore=0 bulkscore=0
+ clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2402120000 definitions=main-2403140126
 
-On Thu, 14 Mar 2024 at 08:59, Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> On Thu, Mar 14, 2024 at 08:52:59AM -0600, Mathieu Poirier wrote:
-> > On Wed, Mar 13, 2024 at 05:17:56PM +0000, Abdellatif El Khlifi wrote:
-> > > Hi Mathieu,
-> > >
-> > > On Wed, Mar 13, 2024 at 10:25:32AM -0600, Mathieu Poirier wrote:
-> > > > On Tue, Mar 12, 2024 at 05:32:52PM +0000, Abdellatif El Khlifi wrote:
-> > > > > Hi Mathieu,
-> > > > >
-> > > > > On Tue, Mar 12, 2024 at 10:29:52AM -0600, Mathieu Poirier wrote:
-> > > > > > > This is an initial patchset for allowing to turn on and off the remote processor.
-> > > > > > > The FW is already loaded before the Corstone-1000 SoC is powered on and this
-> > > > > > > is done through the FPGA board bootloader in case of the FPGA target. Or by the Corstone-1000 FVP model
-> > > > > > > (emulator).
-> > > > > > >
-> > > > > > >From the above I take it that booting with a preloaded firmware is a
-> > > > > > scenario that needs to be supported and not just a temporary stage.
-> > > > >
-> > > > > The current status of the Corstone-1000 SoC requires that there is
-> > > > > a preloaded firmware for the external core. Preloading is done externally
-> > > > > either through the FPGA bootloader or the emulator (FVP) before powering
-> > > > > on the SoC.
-> > > > >
-> > > >
-> > > > Ok
-> > > >
-> > > > > Corstone-1000 will be upgraded in a way that the A core running Linux is able
-> > > > > to share memory with the remote core and also being able to access the remote
-> > > > > core memory so Linux can copy the firmware to. This HW changes are still
-> > > > > This is why this patchset is relying on a preloaded firmware. And it's the step 1
-> > > > > of adding remoteproc support for Corstone.
-> > > > >
-> > > >
-> > > > Ok, so there is a HW problem where A core and M core can't see each other's
-> > > > memory, preventing the A core from copying the firmware image to the proper
-> > > > location.
-> > > >
-> > > > When the HW is fixed, will there be a need to support scenarios where the
-> > > > firmware image has been preloaded into memory?
-> > >
-> > > No, this scenario won't apply when we get the HW upgrade. No need for an
-> > > external entity anymore. The firmware(s) will all be files in the linux filesystem.
-> > >
-> >
-> > Very well.  I am willing to continue with this driver but it does so little that
-> > I wonder if it wouldn't simply be better to move forward with upstreaming when
-> > the HW is fixed.  The choice is yours.
-> >
->
-> I think Robin has raised few points that need clarification. I think it was
-> done as part of DT binding patch. I share those concerns and I wanted to
-> reaching to the same concerns by starting the questions I asked on corstone
-> device tree changes.
->
+Sorry for the late reply, was on vacation.
 
-I also agree with Robin's point of view.  Proceeding with an initial
-driver with minimal functionality doesn't preclude having complete
-bindings.  But that said and as I pointed out, it might be better to
-wait for the HW to be fixed before moving forward.
+On 3/6/2024 9:24 PM, Konrad Dybcio wrote:
+> 
+> 
+> On 3/6/24 13:26, Mukesh Ojha wrote:
+>> Add the qfprom node for sm8450 SoC.
+>>
+>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 7 +++++++
+>>   1 file changed, 7 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> index b86be34a912b..02089a388d03 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>> @@ -4575,6 +4575,13 @@
+>>               };
+>>           };
+>> +        qfprom: efuse@221c8000 {
+>> +            compatible = "qcom,sm8450-qfprom", "qcom,qfprom";
+>> +            reg = <0 0x221c8000 0 0x1000>;
+> 
+> Is is really only 0x1000-long? Also, is the base you put
+> here the ECC-corrected part (if that still exists)?
 
-> --
-> Regards,
-> Sudeep
+No, its not.
+
+Entire fuse space is this.
+0x221C0000-0x221Cbfff
+
+ECC corrected range is this 0x221C2000-0x221C3fff and High level OS
+does have a access to ECC range however, they are not recommended for
+SW usage.
+
+Above mentioned SW range(4) in the patch is  one and only accessible 
+range available out of 0-7 SW ranges(0x221C4000-0x221Cbfff with each
+size 0x1000) and does not have ECC fuses.
+
+All the downstream use cases are getting fulfilled with this.
+
+-Mukesh
+
+> 
+> Konrad
 
