@@ -1,229 +1,169 @@
-Return-Path: <devicetree+bounces-50464-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50465-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id E0F6487BC89
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:13:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD3A987BC99
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 13:19:04 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 9B81928536E
-	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 12:13:35 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6116E281786
+	for <lists+devicetree@lfdr.de>; Thu, 14 Mar 2024 12:19:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 61BB56FE07;
-	Thu, 14 Mar 2024 12:13:20 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4BD056F50A;
+	Thu, 14 Mar 2024 12:19:00 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="efy2nGud"
+	dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b="DpLK7P/8"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+Received: from lelv0142.ext.ti.com (lelv0142.ext.ti.com [198.47.23.249])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93F9E6FBB8;
-	Thu, 14 Mar 2024 12:13:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 021236F09C;
+	Thu, 14 Mar 2024 12:18:57 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=198.47.23.249
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710418400; cv=none; b=DngYxi9s4qJcEFBTASayrDRkixMW8sr82wNb0F33tJkitVtcwe3dQpeFZMnYx/pb0fSNec9G/2L+jieCyNgA8wCMjYF4Tyh4hvBIlEVAeP1qV5JlMZKwffBJw1ek5MoIeDvuG9VSLC7nU1ajTk6Ky0eNNMACHvOruU42tNmYuPY=
+	t=1710418740; cv=none; b=jfcusD82buM4djEqskBMwJIQNSJbce3UtAGT+afA6K5uCY+lbGzWPF265bAWVM7qTU4PMFHaRSeoiEQLXk62BE4YESeVw0c6BCLBPyrGce7Si6D/Ub8bFpv3hMuqdJaG1lAn0gq9bW76CMrlvukX3+gUAi6aICbBAGyCdDRlxE0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710418400; c=relaxed/simple;
-	bh=ggjWaA3TyfOC5HbQubFdLDuHfb92UY9bKjKeA3wCvAo=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=FP5VKneC8T3XU+r8wV6SHecWlI7fPeJZqk8ci/pAs2MhLp4ZrA0X/TLmBmcTle5clx56oDs7eumkuFGCOwQzNayV1+fr8m+PX8GLn8GN4Pg1LbprrOeaQrBe49Yk01YcVxsclaM/mXuw027nZGfrjRuCJVGBu2r3O1VruQQ2TG4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=efy2nGud; arc=none smtp.client-ip=205.220.168.131
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42E5uxSU020619;
-	Thu, 14 Mar 2024 12:13:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
-	from:to:cc:subject:date:message-id:in-reply-to:references
-	:mime-version:content-type; s=qcppdkim1; bh=9aOw8ma95arSkhpm2Jtv
-	UEM/jxcsRRTPFhWk6Fcwb5Q=; b=efy2nGudEJL6OnODQPHDd8m+TRG4YXc8XQBl
-	8VU10S9wUOfGGxa6cikfqPWK+Ub48sLHAG+GOfM+LBFncLCRjXINiz+4ojaJBWX+
-	Tl4ysYgEbwwRMy6mybl3mmR1lwA8bYnsDiJWurOPWtTZmjlUG6NDxdRQvCviOQNV
-	mAmNvTjDqTuHLalc2N6KEMNGPaMjafpcP6hmVhDMDaLUTIapXaj4TijEAqmRLO/j
-	Z8Um0H+LTDieslwmCL5Ep9qDRAQCjCgZSTLjqrgBYgsBd5YR7xUpn9L7i2bMhtrH
-	lh3yQtOa6YI700QJN8J7lPAhjCSLb0SjMwcrXG/Qjr0rHNplFA==
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wuuhrrtn4-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Mar 2024 12:13:13 +0000 (GMT)
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-	by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42ECDCHt018735
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Thu, 14 Mar 2024 12:13:12 GMT
-Received: from hu-amrianan-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.40; Thu, 14 Mar 2024 05:13:05 -0700
-From: Amrit Anand <quic_amrianan@quicinc.com>
-To: <robh@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>
-CC: <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <kernel@quicinc.com>,
-        <peter.griffin@linaro.org>, <caleb.connolly@linaro.org>,
-        <linux-riscv@lists.infradead.org>, <chrome-platform@lists.linux.dev>,
-        <linux-mediatek@lists.infradead.org>,
-        Amrit Anand <quic_amrianan@quicinc.com>
-Subject: [PATCH v2 2/2] dt-bindings: qcom: Update DT bindings for multiple DT
-Date: Thu, 14 Mar 2024 17:41:52 +0530
-Message-ID: <1710418312-6559-3-git-send-email-quic_amrianan@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1710418312-6559-1-git-send-email-quic_amrianan@quicinc.com>
-References: <1710418312-6559-1-git-send-email-quic_amrianan@quicinc.com>
+	s=arc-20240116; t=1710418740; c=relaxed/simple;
+	bh=7Duuw1QM1mH7EtQ8Nz5oYOntnarGManNYlSsJV/zREg=;
+	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=pEJ+0O0pfa39b5oaNjM1dgMOScMsquTXEG8DbcmOIIXFSzEP37ZtTVMwuwO0AhBpXglmY/nS4Bq92/KPgixfxjQTWKVheVS662HlYvZQk4wyO5Q7vrQPAGZZNj1ulcTY0I3xFsGAdtdRad+lErMfvXcTQrGvlEMnkGQmv8TPJRg=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com; spf=pass smtp.mailfrom=ti.com; dkim=pass (1024-bit key) header.d=ti.com header.i=@ti.com header.b=DpLK7P/8; arc=none smtp.client-ip=198.47.23.249
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=ti.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=ti.com
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+	by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 42ECIXwh115297;
+	Thu, 14 Mar 2024 07:18:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+	s=ti-com-17Q1; t=1710418713;
+	bh=gFtneBT2IQ8anQD8kbxob+b2ublZuQ0VAIj9RPlUd/s=;
+	h=Date:From:To:CC:Subject:References:In-Reply-To;
+	b=DpLK7P/8puiZqCBai4dsfbOt6ITAHkRBDkzj2Rn/Y0CQEuScWmw4hKJuhzO36WyQT
+	 BRham6K6wB48O4sBYt2xenOKz7uouAKT4D1L4+23pxNvMWKRRN4/kNYkCTXSUFUpoB
+	 fYkq+UN1vqeuZ9scY2m4IKjuplG1fYaDus2UvjCA=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+	by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 42ECIX9G015559
+	(version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+	Thu, 14 Mar 2024 07:18:33 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 14
+ Mar 2024 07:18:33 -0500
+Received: from lelvsmtp6.itg.ti.com (10.180.75.249) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 14 Mar 2024 07:18:33 -0500
+Received: from localhost (uda0133052.dhcp.ti.com [128.247.81.232])
+	by lelvsmtp6.itg.ti.com (8.15.2/8.15.2) with ESMTP id 42ECIXWN094446;
+	Thu, 14 Mar 2024 07:18:33 -0500
+Date: Thu, 14 Mar 2024 07:18:33 -0500
+From: Nishanth Menon <nm@ti.com>
+To: Francesco Dolcini <francesco@dolcini.it>
+CC: Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Francesco Dolcini <francesco.dolcini@toradex.com>,
+        <linux-arm-kernel@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        =?utf-8?Q?Jo=C3=A3o_Paulo_Silva_Gon=C3=A7alves?= <joao.goncalves@toradex.com>
+Subject: Re: [PATCH v1] arm64: dts: ti: verdin-am62: use SD1 CD as GPIO
+Message-ID: <20240314121833.4fngkk35aw44o2x5@array>
+References: <20240312144956.40211-1-francesco@dolcini.it>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: Z6uz8jqyl86qsqBw4FdlHNEy5JaN_hZB
-X-Proofpoint-GUID: Z6uz8jqyl86qsqBw4FdlHNEy5JaN_hZB
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
- definitions=2024-03-14_10,2024-03-13_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0 mlxscore=0
- spamscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1015
- impostorscore=0 priorityscore=1501 adultscore=0 malwarescore=0
- mlxlogscore=999 bulkscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.19.0-2402120000 definitions=main-2403140088
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20240312144956.40211-1-francesco@dolcini.it>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 
-Qualcomm produces a lot of "unique" boards with slight differences in
-SoC's and board's configuration. For eg, there can be SM8150v1 on MTPv1,
-SM8150v1 on MTPv2, SM8150v2 on MTPv2, SM8150v2 on MTPv2 with a different
-PMIC, SM8150v2 with no modem support and so on. For instance, suppose we
-have 3 SoC, each with 4 boards supported, along with 2 PMIC support for
-each case which would lead to total of 24 DTB files. Along with these
-configurations, OEMs may also add certain additional board variants. Thus
-a mechanism is required to pick the correct DTB for the corresponding board.
+On 15:49-20240312, Francesco Dolcini wrote:
+> From: Francesco Dolcini <francesco.dolcini@toradex.com>
+> 
+> TI SDHCI IP has a hardware debounce timer of 1 second as described in
 
-Introduce mechanism to select required DTB using newly introduced device
-tree properties "board-id" and "board-id-type". "board-id" will contain
-the list of values of "qcom,soc-id", "qcom,board-id", "qcom,pmic-id" or
-"qcom,oem-id". "board-id-types" contains the type of parameter which is
-entered. It can be either "qcom,soc-id", "qcom,board-id", "qcom,pmic-id"
-or "qcom,oem-id".
+Umm... Minor clarification - the SDHCI IP is not TI's - as commit
+41fd4caeb00bbd6dc55f056f3e8e956697b0760d says, this was an Arasan IP
+which was integrated into TI SoCs but needs it's own driver due to some
+quirkiness in the version TI picked up.
 
-Qualcomm based bootloader will use these properties to pick the best
-matched DTB to boot the device with.
+Are you OK to rephrase this as TI SDHCI 'instance' rather than 'IP'? If
+yes, I can do the change locally when I commit.
 
-Signed-off-by: Amrit Anand <quic_amrianan@quicinc.com>
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 90 +++++++++++++++++++++++++
- 1 file changed, 90 insertions(+)
+> commit 7ca0f166f5b2 ("mmc: sdhci_am654: Add workaround for card detect
+> debounce timer"), because of this the boot time increases of up to 1
+> second.
+> 
+> Workaround the issue the same way that is done on
+> arch/arm64/boot/dts/ti/k3-am625-beagleplay.dts, using the SD1 CD as
+> GPIO.
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-index 7f80f48..dc66ae9 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -1100,6 +1100,76 @@ properties:
-       kernel
-       The property is deprecated.
- 
-+  board-id:
-+    $ref: /schemas/types.yaml#/definitions/uint32-matrix
-+    minItems: 2
-+    description: |
-+      Qualcomm specific bootloader uses multiple different identifiers
-+      (qcom,soc-id, qcom,board-id, qcom,pmic-id, qcom,oem-id) to select
-+      single Devicetree among list of Devicetrees. For different identifiers,
-+      the selection can be done either based on exact match (where the
-+      identifiers information coming from firmware should exactly match
-+      the ones described in devicetree) or best match (firmware provided
-+      identifier information closely matches with the one of the Devicetree).
-+      Below table describes matching criteria for each identifier::
-+      |----------------------------------------------------------------------|
-+      |  DT property  |  Individual fields   |   Exact  |  Best  |  Default  |
-+      |----------------------------------------------------------------------|
-+      | qcom,soc-id   |                                                      |
-+      |               |  Chipset Id          |     Y    |    N   |     -     |
-+      |               |  SoC Revision        |     N    |    Y   |     -     |
-+      | qcom,board-id |                                                      |
-+      |               |  Board Id            |     Y    |    N   |     -     |
-+      |               |  Board Major         |     N    |    Y   |     -     |
-+      |               |  Board Minor         |     N    |    Y   |     -     |
-+      |               |  Subtype             |     Y    |    N   |     0     |
-+      |               |  DDRtype             |     Y    |    N   |     0     |
-+      |               |  BootDevice Type     |     Y    |    N   |     0     |
-+      | qcom,pmic-id  |                                                      |
-+      |               |  Slave Id            |     Y    |    N   |     0     |
-+      |               |  PMIC Id             |     Y    |    N   |     0     |
-+      |               |  PMIC Major          |     N    |    Y   |     0     |
-+      |               |  PMIC Minor          |     N    |    Y   |     0     |
-+      | qcom,oem-id   |                                                      |
-+      |               |  OEM Id              |     Y    |    N   |     0     |
-+      |----------------------------------------------------------------------|
-+      For best match, identifiers are matched based on following priority order::
-+      SoC Revision > Board Major > Board Minor > PMIC Major > PMIC Minor
-+
-+  board-id-types:
-+    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-+    description:
-+       Each field and helper macros are defined at include/dt-bindings/arm/qcom,ids.
-+    minItems: 2
-+    items:
-+       oneOf:
-+         - const: qcom,soc-id
-+           description:
-+              Matches Qualcomm Technologies, Inc. boards with the specified SoC.
-+              2 integers are needed to describe a soc-id. The first integer is the
-+              SoC ID and the second integer is the SoC revision.
-+              qcom,soc-id = <soc-id  soc-revision>
-+         - const: qcom,board-id
-+           description: |
-+              Matches Qualcomm Technologies, Inc. boards with the specified board.
-+              2 integers are needed to describe a board-id. The first integer is the
-+              board ID. The second integer is the board-subtype.
-+              qcom,board-id = <board-id  board-subtype>
-+         - const: qcom,pmic-id
-+           description: |
-+              Qualcomm boards can be attached to multiple PMICs where slave-id (SID)
-+              indicates the address of the bus on which the PMIC is attached. It can be
-+              any number. The model for a PMIC indicates the PMIC name attached to bus
-+              described by SID along with  major and minor version. 2 integers are needed
-+              to describe qcom,pmic-id. The first integer is the slave-id and the second integer
-+              is the pmic model.
-+              qcom,pmic-id = <pmic-sid pmic-model>
-+         - const: qcom,oem-id
-+           description: |
-+              Matches Qualcomm Technologies, Inc. boards with the specified OEM ID.
-+              1 integer is needed to describe the oem-id.
-+              qcom,oem-id = <oem-id>
-+
- allOf:
-   # Explicit allow-list for older SoCs. The legacy properties are not allowed
-   # on newer SoCs.
-@@ -1167,4 +1237,24 @@ allOf:
- 
- additionalProperties: true
- 
-+examples:
-+  - |
-+    #include <dt-bindings/arm/qcom,ids.h>
-+    / {
-+         model = "Qualcomm Technologies, Inc. sc7280 IDP SKU1 platform";
-+         compatible = "qcom,sc7280-idp", "google,senor", "qcom,sc7280";
-+
-+         #board-id-cells = <2>;
-+         board-id = <QCOM_SOC_ID(SC7280) QCOM_SOC_REVISION(1)>,
-+                    <QCOM_SOC_ID(SC7280) QCOM_SOC_REVISION(2)>,
-+                    <QCOM_BOARD_ID(IDP, 1, 0) QCOM_BOARD_SUBTYPE(UFS, ANY, 1)>;
-+         board-id-types = "qcom,soc-id",
-+                          "qcom,soc-id",
-+                          "qcom,board-id";
-+
-+         #address-cells = <2>;
-+         #size-cells = <2>;
-+    };
-+
-+
- ...
+
+Side benefit of this will that if you boot out of emmc and when runtime
+PM disables the mmc instance, you still can detect card detect via GPIO
+block, which I think is a better source of wakeup than keeping mmc
+instance powered and clocked waiting for an sdcard insertion event. No
+action needed, just making a side note.
+
+> 
+> Suggested-by: Nishanth Menon <nm@ti.com>
+> Reported-by: João Paulo Silva Gonçalves <joao.goncalves@toradex.com>
+> Closes: https://lore.kernel.org/all/0e81af80de3d55e72f79af83fa5db87f5c9938f8.camel@toradex.com/
+> Signed-off-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi | 12 ++++++++++--
+>  1 file changed, 10 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> index e8d8857ad51f..a9bf2c17f95a 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am62-verdin.dtsi
+> @@ -457,6 +457,13 @@ AM62X_IOPAD(0x01c4, PIN_INPUT, 7) /* (B14) SPI0_D1.GPIO1_19 */ /* SODIMM 161 */
+>  		>;
+>  	};
+>  
+> +	/* Verdin SD_1_CD# as GPIO */
+> +	pinctrl_sd1_cd_gpio: main-gpio1-48-default-pins {
+> +		pinctrl-single,pins = <
+> +			AM62X_IOPAD(0x240, PIN_INPUT_PULLUP, 7) /* (D17) MMC1_SDCD.GPIO1_48 */ /* SODIMM 84 */
+> +		>;
+> +	};
+> +
+>  	/* Verdin DSI_1_INT# (pulled-up as active-low) */
+>  	pinctrl_dsi1_int: main-gpio1-49-default-pins {
+>  		pinctrl-single,pins = <
+> @@ -571,7 +578,6 @@ AM62X_IOPAD(0x230, PIN_INPUT,        0) /* (A22) MMC1_DAT0 */ /* SODIMM 80 */
+>  			AM62X_IOPAD(0x22c, PIN_INPUT,        0) /* (B21) MMC1_DAT1 */ /* SODIMM 82 */
+>  			AM62X_IOPAD(0x228, PIN_INPUT,        0) /* (C21) MMC1_DAT2 */ /* SODIMM 70 */
+>  			AM62X_IOPAD(0x224, PIN_INPUT,        0) /* (D22) MMC1_DAT3 */ /* SODIMM 72 */
+> -			AM62X_IOPAD(0x240, PIN_INPUT_PULLUP, 0) /* (D17) MMC1_SDCD */ /* SODIMM 84 */
+>  		>;
+>  	};
+>  
+> @@ -1441,8 +1447,10 @@ &sdhci0 {
+>  /* Verdin SD_1 */
+>  &sdhci1 {
+>  	pinctrl-names = "default";
+> -	pinctrl-0 = <&pinctrl_sdhci1>;
+> +	pinctrl-0 = <&pinctrl_sdhci1>, <&pinctrl_sd1_cd_gpio>;
+> +	cd-gpios = <&main_gpio1 48 GPIO_ACTIVE_LOW>;
+>  	disable-wp;
+> +	ti,fails-without-test-cd;
+>  	vmmc-supply = <&reg_sdhc1_vmmc>;
+>  	vqmmc-supply = <&reg_sdhc1_vqmmc>;
+>  	status = "disabled";
+> -- 
+> 2.39.2
+> 
+
 -- 
-2.7.4
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
