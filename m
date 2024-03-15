@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-50844-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50845-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162BE87D52D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 21:48:11 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F7CA87D5D5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 21:57:30 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 362F11C20D1F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:48:10 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id DAD881F2695F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:57:29 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 413BC1DA5E;
-	Fri, 15 Mar 2024 20:48:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 60EEC56B8C;
+	Fri, 15 Mar 2024 20:49:44 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZbyqwP7P"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="d92Ucujo"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C621C2A0
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 20:48:01 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0259D57333
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 20:49:40 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710535686; cv=none; b=iSBxbvILIXm5p0T3Lzkjuv87enqnVvP42h237RyX0DZRonwx6M8vKvTseAWtfAs+jh2EdgK+y1itzUdzYnHWIG6n7drgkSMHl86VDwAcPc4ZYq35r9ZTZDyRpjlCkYgPuSmd4KV069uRr2fBxA6a6jt/E8C6F1WJWHoL8uGqQeA=
+	t=1710535784; cv=none; b=UH+QfN7nYWMITv5TTv78aS2OU3+PrBIfZul7Ee5nuSvk8oxpYh3z/ASz1+D0SPJf9LM5U0ersWQldck9E2YA3QSvK75UBwTtSRBmBfhpC5wePHJvulCWDzqIm0bIKP0bpVwut3Zaw3McAwSDjIDM3ijBzTlESL2ZOZhaum5sZEE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710535686; c=relaxed/simple;
-	bh=bnLNQp/2A/3d+Zl+u+gjN7LL9ZxliA6JhxylMFlTEmo=;
+	s=arc-20240116; t=1710535784; c=relaxed/simple;
+	bh=Rut/BAraKFn7EzjJl52R4XRiSgrwnmytZ5kfoG42EdU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=Hd5fWdyFaiOCNc4HLsGzLPCn4F6vR44qR8YSmSf2UW2slERmLXPhg7IRcph3aMrE/k+HTflvaZp8gnIqMirG4HjlXSXmh/gJ3LzDzrB0kr9pYijfQ9X3OrNX8+52+4IlAQd5C8sLH6oghesfpjROG4m9P9CBrvUf+rJKu8XghzQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZbyqwP7P; arc=none smtp.client-ip=209.85.128.54
+	 In-Reply-To:Content-Type; b=AZKz7u0SGpc4RR/O7UbYbP6Xd7NIqjBE8L7A5KFScVjFeJ6MJbdO56d1bCn+nVmUr/Lq/0o6e1UC/h0pNNOCTZOybcjzY3vEC20VLSIRTmVxSpbycrHLlvJ/a5AoJrhwHuMuu/gbrTD6874w0+muJepEH4w4TCmlZiSMciJm3aQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=d92Ucujo; arc=none smtp.client-ip=209.85.128.50
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-414025406d7so5812175e9.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 13:48:01 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-414006a0115so10696595e9.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 13:49:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710535680; x=1711140480; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710535779; x=1711140579; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=w4NvgV/CSC+904+msOLgfpBWx/0mbV2VCj5TZRcU2mg=;
-        b=ZbyqwP7PdO6f+pjfaPyb95LCCE/CEWN1NICKYNUQ1N5jg0rYMILO7wu9Qeo9Gc3u0E
-         jETpERlsqm4s4GnBKlplivvbiFm6tNmglzJCy6I4T0E5025bQxXapLzXvEa+aE/pltos
-         OJl3haRaDyQphto0KgYDwhraZstXLaSMU4F2SsU8ezYwCU1pRAC5fW4iyH46uZ5xkxmk
-         Mn9vbUlVm0BGvpglesZ4pbVuRLGe5pZpWvxqxTF/evwRRNoBlKC3H6+Ipa2AeGUBE/5F
-         SCREK+LUh8NrLtuAT/sq97uS7WYUduMEmrMHBWiV1ueL0UXfGuD27G8JwRdnEYWpkb6u
-         2nJw==
+        bh=evdMd0PT9+KX7ncy1Up7YwjVyPPKavdHQwvEaxViPvA=;
+        b=d92UcujouT9aKhjIh8Btc0is+RJ7B7yw6UYgnjTGyV+aJOdqmihq5rJwEVCmZkzPdF
+         meWzvh4vyCD7UeaM+GNLk1hzqa+36gyu6Whk+10l3RD6th8/7yFC9AghVaGwdFH/Mx9b
+         +xlAhoZLNS4WxdVOs0wF767t9owuXTxJHZWWuTcdeQAYmIIglnhN1Jcov5Efd3KoT7M3
+         TPjWN+FfRcN5/WCEV1340yBHNBrE2WHYomOSL1klPs6EGRsd4rjMD2zPiaoP6G80fwSO
+         s3V4Kj8AcrwPu560oGAckfsp+nEJtBzbqKPdsaSSaai9w6R1FzuMdyBJznl2BN8Fgd1J
+         F8ow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710535680; x=1711140480;
+        d=1e100.net; s=20230601; t=1710535779; x=1711140579;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w4NvgV/CSC+904+msOLgfpBWx/0mbV2VCj5TZRcU2mg=;
-        b=SUNf55ycju7ZLLPxrnGOcsnZEet0Yugd0hqNiFJiQgeM5Tao3DjodBNK7XAfliRPBn
-         A6vNjcVqgXb7ylv50YGmlBHmUOdytfQ9eHD6OrhvHmk3SNGyAROjLodttezJWf7+XkIn
-         oLuDLQROxBoJ2k3Pf1iJRWs8pN1qP7aiRtvI4/wxzEzqZlnat1SDGPP9I7wPJH6KyBmS
-         6yyRptaoJx5EtBiaR1jDzJ736I93QJOvjpro/NDiCxpmoE4oy2rGidLLfklHUqI1ULuV
-         yYG9iK26LJ2DoqN95GM8jiqcCt/GCJzFE4Hjmmieih76sXXEdKBstzTacmZybRin+LTy
-         w6ew==
-X-Forwarded-Encrypted: i=1; AJvYcCX//Z1lElEfNQrLLTEgaPqptRTq9CQUtw66hx/PpfWksAdVRprmYh0011ckWEuHhGjgIwgY+2ib1knQqbT+QYFx7xhDkh9vwpPEgw==
-X-Gm-Message-State: AOJu0Yzy//tUyIashMS12l8b6r2FuB3nrIyRwRCVztWYK/AC3NiviifS
-	+BxNUn9A1Br3KQZN+oo0EAWgUwn3m+Fuhhnsqf0SKhgCkJWGQbW480SIzpdfv+o=
-X-Google-Smtp-Source: AGHT+IHaudt0n925u7j5cWjm5faGrXJkVr8MamYLArcOjHOC5R6h/rfCFuGnSsLpcuvgTvjKlrf/2Q==
-X-Received: by 2002:a05:600c:3ca8:b0:414:273:67d4 with SMTP id bg40-20020a05600c3ca800b00414027367d4mr1809453wmb.30.1710535679868;
-        Fri, 15 Mar 2024 13:47:59 -0700 (PDT)
+        bh=evdMd0PT9+KX7ncy1Up7YwjVyPPKavdHQwvEaxViPvA=;
+        b=bCq22nakdMQAnpPfRuNvcEuBO9eNhCWfVuTeePC6t+TZ6Ay6Bat5BoZyjo7D7i1UNg
+         QHkA9q+K3fbpzrhGtpyp7r/GV4E6y1uNaMqH2R4j1zfLAY53tN6BszxXKDXFUE1YL3OA
+         nl2FBXt8w7tLtFkGf3N4COXyWO4qEJbpi/z/mHKKaMpS98nrqlCC5rnKknlmloZ+oE+l
+         v/M5IfyPr98XFUztnAmHQcIbEx3tpmYRtClchZBdQQRIyd2SpEtujT/9SqM9xiAJMpRe
+         3P56A8aVSfy+0V2joJI0oaD3Zr+f8nutACEWvQXKHld6JXhYQNc1/kv8Lyu1IZ3ZIrJD
+         jWUw==
+X-Forwarded-Encrypted: i=1; AJvYcCXV2jiFOn91FtY/xTvZ1lXVNEBw3ihnjJ5nCRrvKa5LXZYhSEL49GcPeqpdUQUAk9/ej4rbLFAR6v1L0hFOQZfdifVUB4aQnrxIcA==
+X-Gm-Message-State: AOJu0YwiBgLFVWkj8verDNdZzsjvegDjI4cqrrVXuebmO9Pz4j1A0jmK
+	7BZccAaH1uAqecJgT7lB+rkfzjzxKSyTZAx1drJ7MhFjYj8XvAzlU6lxObsbyx4=
+X-Google-Smtp-Source: AGHT+IHW/ZhLoW9dVsP03e/cfzAFm2l0UodLy8/jk0GAphAW9PjOYbi/mCIN40Y0gjbTVAhL7S0e+g==
+X-Received: by 2002:a05:600c:b59:b0:413:f1a4:d412 with SMTP id k25-20020a05600c0b5900b00413f1a4d412mr194865wmr.14.1710535779319;
+        Fri, 15 Mar 2024 13:49:39 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id h10-20020a05600c350a00b00412ee8e2f2asm10091282wmq.9.2024.03.15.13.47.58
+        by smtp.gmail.com with ESMTPSA id h10-20020a05600c350a00b00412ee8e2f2asm10091282wmq.9.2024.03.15.13.49.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Mar 2024 13:47:59 -0700 (PDT)
-Message-ID: <99b72931-0007-4ab5-87fb-9b4c3021c1c2@linaro.org>
-Date: Fri, 15 Mar 2024 21:47:57 +0100
+        Fri, 15 Mar 2024 13:49:38 -0700 (PDT)
+Message-ID: <b4fe2ffa-bd36-404a-9441-8781f0a81d26@linaro.org>
+Date: Fri, 15 Mar 2024 21:49:37 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/6] dt-bindindgs: clock: nxp: support i.MX95 VPU CSR
- module
+Subject: Re: [PATCH v4 5/6] dt-bindindgs: clock: nxp: support i.MX95 Display
+ CSR module
 Content-Language: en-US
 To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Abel Vesa <abelvesa@kernel.org>,
  Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
@@ -91,7 +91,7 @@ Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev,
  devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
 References: <20240314-imx95-blk-ctl-v4-0-d23de23b6ff2@nxp.com>
- <20240314-imx95-blk-ctl-v4-1-d23de23b6ff2@nxp.com>
+ <20240314-imx95-blk-ctl-v4-5-d23de23b6ff2@nxp.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -137,40 +137,42 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240314-imx95-blk-ctl-v4-1-d23de23b6ff2@nxp.com>
+In-Reply-To: <20240314-imx95-blk-ctl-v4-5-d23de23b6ff2@nxp.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 14/03/2024 14:25, Peng Fan (OSS) wrote:
 > From: Peng Fan <peng.fan@nxp.com>
 > 
-> The i.MX95 VPU_CSR contains control and status registers for VPU
-> status, pending transaction status, and clock gating controls.
+> The DISPLAY_CSR provides control and status of the following:
+>  Clock selection for the Display Engines
+>  Pixel Interleaver mode selection
+>  Pixel Link enables
+>  QoS settings for the display controller
+>  ArCache and AwCache signals
+>  Display Engine plane association
 > 
-> This patch is to add clock features for VPU CSR.
-
-Fix the subject prefix. You mess with people's filters.
-
+> This patch is to add the clock features for this module
 > 
 > Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  .../bindings/clock/nxp,imx95-vpu-csr.yaml          | 50 ++++++++++++++++++++++
->  include/dt-bindings/clock/nxp,imx95-clock.h        | 14 ++++++
->  2 files changed, 64 insertions(+)
+>  .../bindings/clock/nxp,imx95-display-csr.yaml      | 50 ++++++++++++++++++++++
+>  include/dt-bindings/clock/nxp,imx95-clock.h        |  4 ++
+>  2 files changed, 54 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml b/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml
+> diff --git a/Documentation/devicetree/bindings/clock/nxp,imx95-display-csr.yaml b/Documentation/devicetree/bindings/clock/nxp,imx95-display-csr.yaml
 > new file mode 100644
-> index 000000000000..4a1c6dcfe3f8
+> index 000000000000..9a5e21346b0d
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml
+> +++ b/Documentation/devicetree/bindings/clock/nxp,imx95-display-csr.yaml
 > @@ -0,0 +1,50 @@
 > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/clock/nxp,imx95-vpu-csr.yaml#
+> +$id: http://devicetree.org/schemas/clock/nxp,imx95-display-csr.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: NXP i.MX95 VPUMIX Block Control
+> +title: NXP i.MX95 Display Block Control
 > +
 > +maintainers:
 > +  - Peng Fan <peng.fan@nxp.com>
@@ -178,50 +180,12 @@ Fix the subject prefix. You mess with people's filters.
 > +properties:
 > +  compatible:
 > +    items:
-> +      - const: nxp,imx95-vpu-csr
+> +      - const: nxp,imx95-display-csr
 > +      - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +    description:
-> +      The clock consumer should specify the desired clock by having the clock
-> +      ID in its "clocks" phandle cell. See
-> +      include/dt-bindings/clock/nxp,imx95-clock.h
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - '#clock-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    syscon@4c410000 {
-> +      compatible = "nxp,imx95-vpu-csr", "syscon";
-> +      reg = <0x4c410000 0x10000>;
-> +      #clock-cells = <1>;
-> +      clocks = <&scmi_clk 114>;
-> +      power-domains = <&scmi_devpd 21>;
-> +    };
-> +...
-> diff --git a/include/dt-bindings/clock/nxp,imx95-clock.h b/include/dt-bindings/clock/nxp,imx95-clock.h
-> new file mode 100644
-> index 000000000000..9d8f0a6d12d0
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/nxp,imx95-clock.h
 
-If the header is only for clock IDs for this binding, then keep the same
-filename as binding filename.
+Why do you create five different bindings with almost the same contents?
+Do you plan to grow on them, like add more compatibles here? Otherwise
+all this could be in one binding.
 
 Best regards,
 Krzysztof
