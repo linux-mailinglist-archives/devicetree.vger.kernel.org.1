@@ -1,193 +1,187 @@
-Return-Path: <devicetree+bounces-50848-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50851-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2C0F87D5FA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 22:16:37 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 40C5687D60B
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 22:19:52 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 3DDAD1F22DAA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 21:16:37 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EDBF6283433
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 21:19:50 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17CE95491F;
-	Fri, 15 Mar 2024 21:16:22 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2131D4F8A1;
+	Fri, 15 Mar 2024 21:19:46 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b="D33dmYC/"
+	dkim=fail reason="signature verification failed" (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b="b3Y4ofKL"
 X-Original-To: devicetree@vger.kernel.org
-Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2059.outbound.protection.outlook.com [40.107.93.59])
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [78.32.30.218])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 03854524C3;
-	Fri, 15 Mar 2024 21:16:18 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.93.59
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710537382; cv=fail; b=PrjOkOOOdfajJvsDD0J128Z1Zx605MaHBnRz7DFXcyAFOD2Jqz7ahpVpQ2gvNqC5H0fbOHhio4luCheKb4mB1CMFSkGOS9Sw8qCyDicTsLnONQoDGYHsji7zdUBHY8ORzRn5ru7F2lgjSwjYkiWV7EI2NG4kc6cUg20fTH/RGwg=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710537382; c=relaxed/simple;
-	bh=6sF7qy8PS+a8W+NPl4Ep0P00bX+WJf5susRGkG+mGgA=;
-	h=From:To:CC:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=OwW3Zqvr6B5yXqYeBm8NCwLYmmHsTeLILIMb2E0FyCszOwRgATC1Jt+D47hWzQPpEgd4pBpt3eKZQlmpBzl8P++Z9XpoLFKEBsnv9uMVLiYD2HESTnCxVH0yckNJ6xn5yVG4AzYolKr1pJZPYnb9Nrt/GkcdQP/mTFih69sfMDQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com; spf=fail smtp.mailfrom=amd.com; dkim=pass (1024-bit key) header.d=amd.com header.i=@amd.com header.b=D33dmYC/; arc=fail smtp.client-ip=40.107.93.59
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=amd.com
-Authentication-Results: smtp.subspace.kernel.org; spf=fail smtp.mailfrom=amd.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PSDbontWSTQ29LjigBYN1zoW345+qdDA/h9SMoMGnsuiG83cuK3FBoY30LTmusgR+qOsuFMvkl5ZME2srrH7x40FaA48mipF8w1FNrwcqBa/mP8kZBqpd4B0Uy1Ax4zWpFExu090NRfJggVIQ33bviw+kvAhBlXNeCNV/Arq5YCnNC/xx7MU3o7F0n0nTMdm/fOqRfUrEMjYLVOr1X+LhaPSyzyLu3P6Gna0tkAWR5dBxvjNBuInlrK3oXf/hyu3wyQgHoXTDB2K6sshL2u4nSQ2gZNfRRG8HZzhM4frHzV9rRGeOhhFOwIy0wnQ9zxa6LJKsbk28IM7nOiajQbWrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bqv+Knr7fIg09mX5uMLKwGowajJsnIHuU9QcUK1DxNA=;
- b=mFWcwq2QVap8dWrRiz/I+8MGOJQ1zzJFh8D1jZyfizj7xch490dX8BafxHG1pIT/AkQnHvwUuIfEdRdWrB+oy4ZwmI+CtIwKpnA+yLM4B8zg+/a6K8dYM2oGtszKuVIzyqX6uVqBekEkXOzsXFPYBNj/0I7NQdKY1tJHhmYQODMHEzxU4tSuzfoouekMKt1BEeS/dRR6iIOHawjIYkBJvtTSYtBBGmYIcUugxysrJ4ED8KaQpmFu7GAw7KRI5dlP0hpW8C/X8JJ6hIEsSHJdYvOH/xBX0/BQ//yXgpyyF23uRshsDsr1R9Qdq5MdcNg5mnpkY9wGoBGmu8q1VdrU9w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bqv+Knr7fIg09mX5uMLKwGowajJsnIHuU9QcUK1DxNA=;
- b=D33dmYC/pPNapkG+fSqARyT6pYJMuxvvZ1lZ47rlyMkTwhxtU2sHJMdueLOL269wRr876xZqws1rLRzl+j2z3mwDdstcXmtDp2dTjibbW0OnraLNiFLyUJ6kzRueRg+mO2xYcRcQL2AcO5eETUs6hzNk2V9WJ4L7Wt1DfsnJhIc=
-Received: from MN2PR07CA0030.namprd07.prod.outlook.com (2603:10b6:208:1a0::40)
- by CH3PR12MB7762.namprd12.prod.outlook.com (2603:10b6:610:151::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.21; Fri, 15 Mar
- 2024 21:16:16 +0000
-Received: from MN1PEPF0000ECD4.namprd02.prod.outlook.com
- (2603:10b6:208:1a0:cafe::cb) by MN2PR07CA0030.outlook.office365.com
- (2603:10b6:208:1a0::40) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.22 via Frontend
- Transport; Fri, 15 Mar 2024 21:16:16 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- MN1PEPF0000ECD4.mail.protection.outlook.com (10.167.242.132) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.7386.12 via Frontend Transport; Fri, 15 Mar 2024 21:16:16 +0000
-Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 15 Mar
- 2024 16:16:16 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB08.amd.com
- (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.35; Fri, 15 Mar
- 2024 14:16:15 -0700
-Received: from xsjtanmays50.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.35 via Frontend
- Transport; Fri, 15 Mar 2024 16:16:14 -0500
-From: Tanmay Shah <tanmay.shah@amd.com>
-To: <andersson@kernel.org>, <mathieu.poirier@linaro.org>,
-	<robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-	<conor+dt@kernel.org>, <michal.simek@amd.com>, <ben.levinsky@amd.com>,
-	<tanmay.shah@amd.com>
-CC: <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 3/3] drivers: remoteproc: add Versal and Versal-NET support
-Date: Fri, 15 Mar 2024 14:15:33 -0700
-Message-ID: <20240315211533.1996543-4-tanmay.shah@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240315211533.1996543-1-tanmay.shah@amd.com>
-References: <20240315211533.1996543-1-tanmay.shah@amd.com>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4BBFE1DA5E;
+	Fri, 15 Mar 2024 21:19:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=78.32.30.218
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710537586; cv=none; b=m8r3x2zX4qTHrkLUKegUIt8f8eG4q3edByHmGNpkHu+LunlJwOgINzI48IMTMcr6xfpwFhbx177hAwc0qPm3bejXPv2msArLjdOsUlK9IlJVBmb+nxc5HGBS3R4o3VwxxNokRucXvSXVmw7ynt1payXseb6jVDISJYvpyYGvaec=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710537586; c=relaxed/simple;
+	bh=hHtgEr/5VMXCz8vuPkp/Mit3mZ//jYLgkBhhrYiMYJM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=rkMHrRPcMYFCz1pNZ7BIf3ZEbll0C0pwNq0gkbiwidIR7201LodUhHQ/1rXlblGDJ8KhQRgF07QMMrVoZcr9QPqZD/R6UTGHW30iwkYKS5XlndYIJwwmB8YNofm/WdMtgC1tmiE2svphXNjwceKS0rCir9fyJ3iMiMQMDMrTWiE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk; spf=none smtp.mailfrom=armlinux.org.uk; dkim=pass (2048-bit key) header.d=armlinux.org.uk header.i=@armlinux.org.uk header.b=b3Y4ofKL; arc=none smtp.client-ip=78.32.30.218
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=armlinux.org.uk
+Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=armlinux.org.uk
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+	d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
+	Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
+	Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
+	Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+	List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+	bh=o1YIiWKWxJNDdSzsWJzaL07fe51Di6mSo9Y2mM7H6Io=; b=b3Y4ofKLZ9KN4+FKDyOeexkEK7
+	ozRPcoV4wiTdmBXClQmxRHZ0NGGlWJPcAyCC2YHX1uMGzq8qGZt4vXBd1WNaCF3WCQFDd3z88gktJ
+	848Xkq/rVoOXc3VOISf9mQtyo3axW/LQAB36CI5cs/Aajp0UG71emubX+s2vPGLyMvnQllPyd5EB/
+	LrFiCPXGk5GdlT1xvKfqwDmi50pzKrFvG4zCenPj6t9AlNLD4Z3ymd4oXyNpjmVpnEKNCMNTM9TRA
+	0mFcmkxPmex71LMYqFbAJdvjWc76IcKuXVMZvAZ/fySLgaOZWkzUVqZhLR4o4D4f6C82hAj9S9Cuh
+	mlNUKnSw==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:58700)
+	by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+	(Exim 4.96)
+	(envelope-from <linux@armlinux.org.uk>)
+	id 1rlExj-00022E-2D;
+	Fri, 15 Mar 2024 21:19:35 +0000
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+	(envelope-from <linux@shell.armlinux.org.uk>)
+	id 1rlExh-0006iE-Gw; Fri, 15 Mar 2024 21:19:33 +0000
+Date: Fri, 15 Mar 2024 21:19:33 +0000
+From: "Russell King (Oracle)" <linux@armlinux.org.uk>
+To: Ayush Singh <ayushdevel1325@gmail.com>
+Cc: linux-kernel@vger.kernel.org, jkridner@beagleboard.org,
+	robertcnelson@beagleboard.org,
+	Vaishnav M A <vaishnav@beagleboard.org>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+	Vignesh Raghavendra <vigneshr@ti.com>,
+	Tero Kristo <kristo@kernel.org>,
+	Derek Kiernan <derek.kiernan@amd.com>,
+	Dragan Cvetic <dragan.cvetic@amd.com>,
+	Arnd Bergmann <arnd@arndb.de>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>, Jiri Slaby <jirislaby@kernel.org>,
+	Johan Hovold <johan@kernel.org>, Alex Elder <elder@kernel.org>,
+	devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-spi@vger.kernel.org, linux-serial@vger.kernel.org,
+	greybus-dev@lists.linaro.org
+Subject: Re: [PATCH v3 7/8] mikrobus: Add mikrobus driver
+Message-ID: <ZfS7Za/KITnQiYjh@shell.armlinux.org.uk>
+References: <20240315184908.500352-1-ayushdevel1325@gmail.com>
+ <20240315184908.500352-8-ayushdevel1325@gmail.com>
+ <ZfSiaT9WltBDY9yD@shell.armlinux.org.uk>
+ <46ba778a-5966-4b99-b820-f0d047a56227@gmail.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MN1PEPF0000ECD4:EE_|CH3PR12MB7762:EE_
-X-MS-Office365-Filtering-Correlation-Id: 345e9870-1a4e-4b1c-9d2d-08dc453526a5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	Hj90QT88PnDPP/nUgGTXdmN5QyBa+wzUe9sompPy5Lp9QqvEfzvoaKVX+mBXvkG4sD1GpDC0ac7BI0PR7mlFsZkrK8ehB1DvLu+e4E973RwRGcWaysu4Gx/qeCSGH/t52mTBautf1u2Yu7cNTYqmG1QnxftyHBvFNeelDEptyzsHceXvkO6fIGbi8RoV+wjgbtToYHYPow1ve0W7n3Ek+GbpCt0muzkE6pql86knBEacl8sP2POtPTIIEy2yYD5McsSbpI4BA3XvuEa+dQa9Zc0LUY/i/U544Wc+CvGh6vRJ5/BHOjss2WsoLbozRW411fTur/3lTODlF1nCOnuJ0aaIch58eevuJ4aqd/25EcP8IW4uo5wKyTxyun32dYmsrWRuqAJrgFjikj10rrnhoZe8oTiCwN6wLX0mX4EFgBRid765ue4AIAwTGZdFosWzv8sBMBKgPc8YZRPOURvrjjDeYc+6KCGCQPYUWLFMzqTax9SV8/NTjNtmf6oCcxtVisZq/76snUbxVU6bgR29DquOobsA+MrgX3aOGCRJJ7OX+NQbBQ1rHKuthvY+zPIIgAwvsASJWSCZZAAk34G/AAKFOdX35sOBSsDFPFGNx5l3NPdn35i88d3vSzmayihldzqZbYLhW3qFd4yL+Neq/RskB3gCINmXqdOi69g2B6Ej6R/LLEMAA3alLrxyAlQAZHjRgGuoMv2RwyR7sZGuBiQv4tzKjbjm5jMZRIPT2Ez1Xg3O0+omB1HiUaPae80D
-X-Forefront-Antispam-Report:
-	CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230031)(82310400014)(36860700004)(376005)(1800799015);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 21:16:16.3270
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 345e9870-1a4e-4b1c-9d2d-08dc453526a5
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource:
-	MN1PEPF0000ECD4.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB7762
+In-Reply-To: <46ba778a-5966-4b99-b820-f0d047a56227@gmail.com>
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
 
-AMD-Xilinx Versal and Versal-NET are successor of ZynqMP platform. ZynqMP
-remoteproc driver is mostly compatible with new platforms except few
-platform specific differences.
+On Sat, Mar 16, 2024 at 02:17:24AM +0530, Ayush Singh wrote:
+> On 3/16/24 01:02, Russell King (Oracle) wrote:
+> 
+> > On Sat, Mar 16, 2024 at 12:19:05AM +0530, Ayush Singh wrote:
+> > > diff --git a/drivers/misc/mikrobus/Kconfig b/drivers/misc/mikrobus/Kconfig
+> > > new file mode 100644
+> > > index 000000000000..f0770006b4fe
+> > > --- /dev/null
+> > > +++ b/drivers/misc/mikrobus/Kconfig
+> > > @@ -0,0 +1,19 @@
+> > > +menuconfig MIKROBUS
+> > > +	tristate "Module for instantiating devices on mikroBUS ports"
+> > > +	depends on GPIOLIB
+> > > +	depends on W1
+> > > +	depends on W1_MASTER_GPIO
+> > > +	help
+> > > +	  This option enables the mikroBUS driver. mikroBUS is an add-on
+> > > +	  board socket standard that offers maximum expandability with
+> > > +	  the smallest number of pins. The mikroBUS driver instantiates
+> > > +	  devices on a mikroBUS port described by identifying data present
+> > > +	  in an add-on board resident EEPROM, more details on the mikroBUS
+> > > +	  driver support and discussion can be found in this eLinux wiki :
+> > > +	  elinux.org/Mikrobus
+> > I think this is a fallacy. I have boards that support Mikrobus - some of
+> > the SolidRun products do. I have several Mikrobus "click" boards.
+> > 
+> > This help text seems to imply that Mikrobus click boards include an
+> > EEPROM that identify them, hence you make the support for mikroBUS
+> > depend on it. No, this is not the case - the click boards do not
+> > contain a 1-wire EEPROM.
+> > 
+> > Please fetch a copy of the official Mikrobus specification which is
+> > available here:
+> > 
+> > https://download.mikroe.com/documents/standards/mikrobus/mikrobus-standard-specification-v200.pdf
+> > 
+> > and rather than creating something that is implementation specific but
+> > appears to be generic, create something that is generic with
+> > implementation specific extensions.
+> 
+> I think you mean mikroBUS addon boards? mikroBUS is an open socket and click
+> boards™ are MikroElektronika’s brand of mikroBUS™ add-on boards.
 
-Versal has same IP of cortex-R5 cores hence maintained compatible string
-same as ZynqMP platform. However, hardcode TCM addresses are not
-supported for new platforms and must be provided in device-tree as per
-new bindings. This makes TCM representation data-driven and easy to
-maintain. This check is provided in the driver.
+MikroElektronika _owns_ the standard for mikroBUS, they're the ones
+who publish it and it has their logo plastered all over it.
 
-For Versal-NET platform, TCM doesn't need to be configured in lockstep
-mode or split mode. Hence that call to PMC firmware is avoided in the
-driver for Versal-NET platform.
+> So I think
+> all click boards™ do have clickID support, but yes, mikroBUS spec is not the
+> same as clickID and thus are not mutually dependent.
 
-Signed-off-by: Tanmay Shah <tanmay.shah@amd.com>
----
- drivers/remoteproc/xlnx_r5_remoteproc.c | 19 +++++++++++++++----
- 1 file changed, 15 insertions(+), 4 deletions(-)
+None of the MikroElektronika "click" boards that I have (and thus
+officially produced boards) have any ID EEPROM on them, so your
+statement is false. For example, if you look at the "relay click"
+board schematic:
 
-diff --git a/drivers/remoteproc/xlnx_r5_remoteproc.c b/drivers/remoteproc/xlnx_r5_remoteproc.c
-index d4a22caebaad..193bc159d1b4 100644
---- a/drivers/remoteproc/xlnx_r5_remoteproc.c
-+++ b/drivers/remoteproc/xlnx_r5_remoteproc.c
-@@ -323,9 +323,12 @@ static int zynqmp_r5_set_mode(struct zynqmp_r5_core *r5_core,
- 		return ret;
- 	}
- 
--	ret = zynqmp_pm_set_tcm_config(r5_core->pm_domain_id, tcm_mode);
--	if (ret < 0)
--		dev_err(r5_core->dev, "failed to configure TCM\n");
-+	/* TCM configuration is not needed in versal-net */
-+	if (device_is_compatible(r5_core->dev, "xlnx,zynqmp-r5f")) {
-+		ret = zynqmp_pm_set_tcm_config(r5_core->pm_domain_id, tcm_mode);
-+		if (ret < 0)
-+			dev_err(r5_core->dev, "failed to configure TCM\n");
-+	}
- 
- 	return ret;
- }
-@@ -933,10 +936,17 @@ static int zynqmp_r5_core_init(struct zynqmp_r5_cluster *cluster,
- 	int ret, i;
- 
- 	r5_core = cluster->r5_cores[0];
-+
-+	/*
-+	 * New platforms must use device tree for TCM parsing.
-+	 * Only ZynqMP uses hardcode TCM.
-+	 */
- 	if (of_find_property(r5_core->np, "reg", NULL))
- 		ret = zynqmp_r5_get_tcm_node_from_dt(cluster);
--	else
-+	else if (of_machine_is_compatible("xlnx,zynqmp"))
- 		ret = zynqmp_r5_get_tcm_node(cluster);
-+	else
-+		ret = -EINVAL;
- 
- 	if (ret) {
- 		dev_err(dev, "can't get tcm, err %d\n", ret);
-@@ -1198,6 +1208,7 @@ static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
- /* Match table for OF platform binding */
- static const struct of_device_id zynqmp_r5_remoteproc_match[] = {
- 	{ .compatible = "xlnx,zynqmp-r5fss", },
-+	{ .compatible = "xlnx,versal-net-r52fss", },
- 	{ /* end of list */ },
- };
- MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
+https://download.mikroe.com/documents/add-on-boards/click/relay/relay-click-schematic-v100-a.pdf
+
+you will find no EEPROM.
+
+The "relay 3" click board also doesn't:
+
+https://download.mikroe.com/documents/add-on-boards/click/relay-3/relay-3-schematic-v100.pdf
+
+However, the "relay 4" click board does:
+
+https://download.mikroe.com/documents/add-on-boards/click/relay_4_click/Relay_4_Click_v100_Schematic.PDF
+
+Now, ClickID is relatively new. Note that the mikroBUS standard dates
+from 2011, with v2 coming out in 2015. A blog post introducing ClickID
+was posted in November 2023, just some 5 months ago, so that leaves an
+awful lot of click boards out there at the moment which have no EEPROM
+on them.
+
+If what you have written assumes that all click boards have this EEPROM
+then you are - in my opinion - intolerably constraining the usefulness
+of your idea for those of us who have click boards bought over the past
+few years, and this will confuse users who have these older boards.
+"I've enabled mikroBUS support in the kernel, but my board isn't
+recognised" will probably end up being a regular cry from people with
+this.
+
+So, I think you need to consider how to support the already vast number
+of click boards that do not support ClickID.
+
+At the moment, my own personal solution is currently to hack the
+platform's DT file for the board I wish to use, creating a new variant
+of the platform which configures the SoC so the mikroBUS connector pins
+are appropriately configured. It would be good to get away from the need
+to do that.
+
 -- 
-2.25.1
-
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
 
