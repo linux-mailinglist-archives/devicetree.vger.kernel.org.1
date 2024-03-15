@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-50679-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50680-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E9D587CAF7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 10:58:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 486E287CAFC
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 10:58:45 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A16711C20F9C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 09:58:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0180F283F10
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 09:58:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8604418032;
-	Fri, 15 Mar 2024 09:57:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EF97617C96;
+	Fri, 15 Mar 2024 09:58:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="itdPQjO5"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="jSqXuiWa"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A55D1B948
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 09:57:03 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 2ACCB18029
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 09:58:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.48
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710496626; cv=none; b=N1UhWu2i8E9qy0Etp9sKYQliMnhCad0GjznB1zDOTu8V3qPjDxo6Z1CXcEztj7ATH++oHmLU9f7BB6qwZYbioUX8IyJ8r7mSCbh30FgnLGsoHfVVLqrEPTym4FfL63Dy0Lm7m3AUiJ+n1kOWn/QXCPvRs+1tz8qqW/pUrHR/UbI=
+	t=1710496719; cv=none; b=CXIGmUE1uWOXA/6clYa8Hcu3oPqXjX3YolocI+jIxPH6sgOSLQ9ZawMeZwHRRzdmWvMCpY1VKtSRq7XIwnuDW0rHjRyM9UBmYmYx6XKSdRr43Xyz/HesBWRsTFszcAQUXHUOebiYNdbqosrlK2qv+W6tph6IWiJoz5Cbmcs7PIU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710496626; c=relaxed/simple;
-	bh=K7HqX99l2MdWILC0v0OgfQbluXmAQxfiOtQpP9K1sYQ=;
+	s=arc-20240116; t=1710496719; c=relaxed/simple;
+	bh=Iu8k+oLwr4hqiYGmKQ/JGJ3jwWl99QjATtzgXxf4OXU=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=OAdjf/fOBAxh5keVUGwvr++ktuULHrFBUBtS2S58QHgwbMEiBl97L+LGnS52/EWe4lagx6NcbuKyN2gaJhCiOQCHPdZDdDz7rkMaKFJOXLEWQm8LZFfKqEj2S3zVgHF7ydryacLvV4BOoYCOebqVYbw79ffN8uvdm9kpmQOALEQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=itdPQjO5; arc=none smtp.client-ip=209.85.218.52
+	 In-Reply-To:Content-Type; b=iYlz05n4QZwZFHRIk7Y7hj3V35aJeMx4YF7zKXF3vOv6Zf32TSkCQSphSeAIbm+HH7T0LPKu/Mem8xtQR30WrLJcMtEwdkLV4T+XqoUF1vkMq8QB4UPwPx8uOo99NWwqfNqMyQWOBYRKutFopTetEdYSgLISIN21gbQiYP31QTM=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=jSqXuiWa; arc=none smtp.client-ip=209.85.218.48
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a44f2d894b7so206699166b.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 02:57:03 -0700 (PDT)
+Received: by mail-ej1-f48.google.com with SMTP id a640c23a62f3a-a466c85ae5fso21165966b.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 02:58:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710496622; x=1711101422; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710496716; x=1711101516; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bN2u4rR1Zr2xT6D08j7QKgDjL2CpcTPg9+Xe9EIpbXI=;
-        b=itdPQjO5gfNJUI+UVm68UhSqiA9PC6bZOGpV8e7Bx3K/+WTajoGrEKaEGn0XfzwMsc
-         bgLl/2okbJiB7BEwXfzEImki9gCSFJEdXU1P4is+LzvNu/Eol0jdJ2SFtTyUCcNh/HoE
-         x6cUblRXUtWKMRSdxEyDY7U22+ab0kMx67LWXe3C2L3r8SGiD85ytCtzrP9+SgiWRoze
-         h+JLMmv7LFbILVxuA0+p4JHTPqSSXP02aoQglfneK2Z7iJCMUY3hvP1kt9ZIwQEplNSv
-         j+XtjCefD9ulrk3Lhqd8d4w32bQHpyU4eIVXO3ug0Gy/IG1FRPjO9pouBTQVvAbmo+2f
-         9R8Q==
+        bh=XCDp802c/vz00Jj0fM4zOQgn8Q59NL1j5+KpAzF7J7g=;
+        b=jSqXuiWayhwPsLCkyutVXWLtC1vGR7vkoSEbU8owomudfMu9cXg8m5bJu0nSn/kScz
+         BKVUTZYkxxfhFZN3rNG9gt6AQIieM/9B6f8g6BTXT2C0XSBf6wa1J8A76r/eYodS5dH5
+         tNy/WIxLp6n2OIU+0XjvFbD1aQLHuAP3KRso3ZcS1c3YJnedH7Wds7kmbL/HYufMvf1J
+         EU3J06g6JY9965FWIxJFsv0PEQc9127go1BflGkOFUzYS42GZV/kz1DCxeg1O4LRbjdW
+         uJY6kPOLDU4T3grbh4bnuzvOT/D9bbBv08gyDvKyLGlAWSLV9aPaymJ/HDyiqqM//FUx
+         +aOA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710496622; x=1711101422;
+        d=1e100.net; s=20230601; t=1710496716; x=1711101516;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bN2u4rR1Zr2xT6D08j7QKgDjL2CpcTPg9+Xe9EIpbXI=;
-        b=Vh0BU10jYadLXM+ULHgz2c216M2aMFANXkZcrORdfNEvjm+7O5SCuRwrysj2z5E+YD
-         TK2e8gjqgrHIIkCLN1XqDwW6/v3sHjn/o0k9ET/KR0ueUYg7RO116dzpoBma+PxaHCcM
-         M0cSsv04n5GjZik0ldkDkP+xHsn1jUxhB95mqz9dcVItl0YOCo2g7yfEuln7ld1gdZXE
-         SNGgr/g23cob5IOv7jnNmShXtqv/rS/IchuwaUDQcpPRqfuh8Rf5ltQvCByHiskC63nI
-         7bGvm0+NNPAVfkEiOdOdwVFzVvu90OG3ovr+rw1MTJC5y/gpcLlmmF5QDMrJGfoPAfZk
-         HQxw==
-X-Forwarded-Encrypted: i=1; AJvYcCUyeTk+86TbC2DqxwWg5ZezKe4HexPBDj7xqvB4TTtfquEg85wUlOWkECfRKc6T+wav+JwRKy1Fm8+kwW9ltp2woGUQ/XIyctEnAA==
-X-Gm-Message-State: AOJu0Yy3oSUv/yKRO6yaqqTyRGRcSbSiE3e5hAx8h7C1Q6qz/ltY4JPa
-	Hw9/ev1MaRPmJeNIbO+/ULKgPDw0U6xXE5LWew5KTfXzzDdK1Tz5QONGrPmecdo=
-X-Google-Smtp-Source: AGHT+IHq7D1NT9mx8FX1vpzkEoVOa1oMEgKYpoLeGT8a7OVBLnX0kslJwG9cpWL/bxxXlee0+eehhA==
-X-Received: by 2002:a17:907:c783:b0:a46:74f0:6278 with SMTP id tz3-20020a170907c78300b00a4674f06278mr3165655ejc.50.1710496621489;
-        Fri, 15 Mar 2024 02:57:01 -0700 (PDT)
+        bh=XCDp802c/vz00Jj0fM4zOQgn8Q59NL1j5+KpAzF7J7g=;
+        b=IHzbJPBMCCB2Cf8x0ee6lw+QhmY+pSLg0omJ60DzypyQvfP5o5aDLcA2UaQVx5ugN9
+         KPo1oRIGl5nNGyHoDoL5rrODkAtjngbtzcuBGKpf3sq/uAmIcb/OzPqB597EwOIEo9Bu
+         peyBaveOGP81U4w2QE5FF8cfkSrIR6q/yeWFmDhn4O2sbWzGrV5l0qaIxtY7sdYW2qpW
+         0HcAOhT/p8g2idvIhzqVX07rNw4Fl8BqPOxpMDgwwCFl0DoOX5wqZfJ/Z2RtJXLQwMzM
+         hUBCRI7swv7EnoOFsId6vPDgqVKRITCFwRylCzabeiSv0KIcW77BuwYThphc0s4nnPjg
+         WFkQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWgsEHFlaL+5f3VNWx+Dayvl+hCKy3eVDM6+VqmAFxSZCkplaIj5DX89gRbh/uuEvhgaUNhbwmJvhVV1C8EUf7E1Vk1idT8Furtwg==
+X-Gm-Message-State: AOJu0Yz0xo7ieMzxrL3ZMnw5upIYOsMQ2LKOEDEiBSlQsyXYbXUs5xxS
+	Hf9dXW4KRTdvAIIEVX1NjZw6O97BUWCCdpm64k3CJU0+AsCJ2c2IPBlyQIpXJ/4=
+X-Google-Smtp-Source: AGHT+IHIsIdUGhPXOM3BQx4/0p1MeZLlO90elMoxks/E8rq2q+6HU+t6JEfKjICz9pAzbqmmPNO/Hw==
+X-Received: by 2002:a17:907:c086:b0:a46:6dcf:3f39 with SMTP id st6-20020a170907c08600b00a466dcf3f39mr3347105ejc.57.1710496716475;
+        Fri, 15 Mar 2024 02:58:36 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id dv22-20020a170906b81600b00a4658d3e405sm1529599ejb.196.2024.03.15.02.56.58
+        by smtp.gmail.com with ESMTPSA id dv22-20020a170906b81600b00a4658d3e405sm1529599ejb.196.2024.03.15.02.58.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Mar 2024 02:57:00 -0700 (PDT)
-Message-ID: <1b766dae-463f-4839-b527-e260dec5e628@linaro.org>
-Date: Fri, 15 Mar 2024 10:56:57 +0100
+        Fri, 15 Mar 2024 02:58:36 -0700 (PDT)
+Message-ID: <f91ea77c-8170-4ae6-850f-3d5715d83855@linaro.org>
+Date: Fri, 15 Mar 2024 10:58:34 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,8 +76,8 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 03/25] dt-bindings: clock: meson: add A1 audio clock and
- reset controller bindings
+Subject: Re: [PATCH 08/25] ASoC: dt-bindings: meson: g12a-toacodec: add
+ support for A1 SoC family
 Content-Language: en-US
 To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
  Neil Armstrong <neil.armstrong@linaro.org>,
@@ -97,7 +97,7 @@ To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
  linux-gpio@vger.kernel.org
 Cc: kernel@salutedevices.com
 References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-4-jan.dakinevich@salutedevices.com>
+ <20240314232201.2102178-9-jan.dakinevich@salutedevices.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -143,115 +143,41 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240314232201.2102178-4-jan.dakinevich@salutedevices.com>
+In-Reply-To: <20240314232201.2102178-9-jan.dakinevich@salutedevices.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 15/03/2024 00:21, Jan Dakinevich wrote:
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> Add "amlogic,t9015-a1" compatible string and new device tree phandle
+> options.
 
-You must provide commit messages.
+I don't understand the second part. You did not add any options, no
+phandles. You added some defines for something, so say what are these
+"something".
 
-A nit, subject: drop second/last, redundant "bindings". The
-"dt-bindings" prefix is already stating that these are bindings.
-See also:
-https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
-
-
-> ---
->  .../bindings/clock/amlogic,a1-audio-clkc.yaml |  83 ++++++++++++
->  .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 ++++++++++++++++++
->  .../reset/amlogic,meson-a1-audio-reset.h      |  29 +++++
->  3 files changed, 234 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
->  create mode 100644 include/dt-bindings/clock/amlogic,a1-audio-clkc.h
->  create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
-> new file mode 100644
-> index 000000000000..c76cad4da493
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
-> @@ -0,0 +1,83 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/amlogic,a1-audio-clkc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Amlogic A1 Audio Clock Control Unit and Reset Controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <neil.armstrong@linaro.org>
-> +  - Jerome Brunet <jbrunet@baylibre.com>
-> +  - Jan Dakinevich <jan.dakinevich@salutedevices.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: amlogic,a1-audio-clkc
-> +
-> +  '#clock-cells':
-> +    const: 1
-> +
-> +  '#reset-cells':
-> +    const: 1
-> +
-> +  reg:
-> +    minItems: 2
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> ---
+>  .../devicetree/bindings/sound/amlogic,g12a-toacodec.yaml     | 1 +
+>  include/dt-bindings/sound/meson-g12a-toacodec.h              | 5 +++++
+>  2 files changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+> index 23f82bb89750..c47604aa590f 100644
+> --- a/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+> +++ b/Documentation/devicetree/bindings/sound/amlogic,g12a-toacodec.yaml
+> @@ -26,6 +26,7 @@ properties:
+>        - items:
+>            - enum:
+>                - amlogic,sm1-toacodec
+> +              - amlogic,a1-toacodec
 
-Drop
+Keep alphabetical order. Don't stuff new entries to the end...
 
-> +    maxItems: 2
-> +
-> +  clocks:
-> +    items:
-> +      - description: input main peripheral bus clock
-> +      - description: input dds_in
-> +      - description: input fixed pll div2
-> +      - description: input fixed pll div3
-> +      - description: input hifi_pll
-> +      - description: input oscillator (usually at 24MHz)
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +      - const: dds_in
-> +      - const: fclk_div2
-> +      - const: fclk_div3
-> +      - const: hifi_pll
-> +      - const: xtal
-> +
-> +required:
-> +  - compatible
-> +  - '#clock-cells'
-> +  - '#reset-cells'
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
-> +    #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
-> +    audio {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        clkc_audio: audio-clock-controller@0 {
-> +                compatible = "amlogic,a1-audio-clkc";
-> +                reg = <0x0 0xfe050000 0x0 0xb0>,
 
-Messed indentayion. Use 4 spaces for example indentation.
 
-> +                      <0x0 0xfe054800 0x0 0x20>;
-> +                #clock-cells = <1>;
-> +                #reset-cells = <1>;
-> +                clocks = <&clkc_periphs CLKID_AUDIO>,
-> +                         <&clkc_periphs CLKID_DDS_IN>,
-> +                         <&clkc_pll CLKID_FCLK_DIV2>,
-> +                         <&clkc_pll CLKID_FCLK_DIV3>,
-> +                         <&clkc_pll CLKID_HIFI_PLL>,
+
+Best regards,
+Krzysztof
 
 
