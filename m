@@ -1,193 +1,117 @@
-Return-Path: <devicetree+bounces-50694-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50695-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id D566D87CBCD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 12:01:26 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id CD3B787CC1A
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 12:16:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 048A61C2143F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:01:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 0A3E01C20F02
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:16:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BF3119BA2;
-	Fri, 15 Mar 2024 11:01:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7A26A1A5BA;
+	Fri, 15 Mar 2024 11:16:29 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0KrHfQjm"
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="DSR6Lkko"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+Received: from mail-pg1-f172.google.com (mail-pg1-f172.google.com [209.85.215.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 663C518E02
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 11:01:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id DAD351B7E1
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 11:16:27 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.215.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710500481; cv=none; b=cnTSZ3LOeeNkoBgp3MNABAZwu2zQWgJ1tgWLLf4YdbtSPEVwiC8Z+9qICJqxATqIZNnVwAtdC4SZTWTGgMXe98YrnchOfAlqY0Du1nsCInKACzF3pDNQm1AjxquX7j1lNvcp5+bOa185kKJ6DF95XqPFPlQGiz2D9fIpmznm9hk=
+	t=1710501389; cv=none; b=Y3HYdJ8BCTUKodu2OrVjkv5jxRGkyc27OCIdHGuHnMe8cFFRctwYvHaPY+sjHA237PgOr/VXWQI5wOCrJ9npozlDBKMKrLGvmG7+SaYMahsd/w3G8XoAJAMPF/c82Gl9ArNa5rj++x5C4FlAbblrEaqf3iVyC4sVHhVJmokKOW8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710500481; c=relaxed/simple;
-	bh=1bp9ya6mUTdhU/FzzsHERh5njunu+iph5TE1N9ar6zQ=;
-	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=MkbapEP2ax+ZfFVrWRMlyq4Nbdu5H1EIguKuWlxLOL23F+05tk0v1fyusmDfU2gOx7HSDgCCuhEHQKcFXI2e+Z/31tSnHC3uqZXPtENd0dL8z4ymAbRM2+J/bT6d6vlrWBpYLP3dLUO5tY/8czUSZyugF48wHP69kZ+a1TzUjI4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0KrHfQjm; arc=none smtp.client-ip=209.85.160.175
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
-Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-430b7b22b17so364641cf.2
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 04:01:19 -0700 (PDT)
+	s=arc-20240116; t=1710501389; c=relaxed/simple;
+	bh=RFtAB0IdanX6/2yYH8hYW+p9AP7BVygvCgvYrd2v3Ow=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version:Content-Type; b=te3iMcR2twzXj8VlprRezHKeRD9WYZpn4xAO9tP1tdXjRkwRD/rnGZA/+SyclS+CAbziPBiFbNQvG0k4fFNOTj6kHinegJMOE154+DljvmRU93Pa+Zgd/CnGwmy/+QROq1QtkPLZtpc1faDjS4+9Jxx1tsH7V0zzrrDBl8SPDJQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=DSR6Lkko; arc=none smtp.client-ip=209.85.215.172
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-pg1-f172.google.com with SMTP id 41be03b00d2f7-5dbcfa0eb5dso1640171a12.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 04:16:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710500478; x=1711105278; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5DsyBbYAZw/09Nakq0pDw/8yd9OC3IgRs2xlCXHLsrE=;
-        b=0KrHfQjmpkRwbZCaWB6aajlxkeTQyJaR8SGhkW4gyLoWycW5Qew46jI8Be9qx5IYtK
-         23SNd5WFJKrFAXslqZOFC4QiP1I9S1IaEaJebnLvO2BYpYV4UTKGly2/tbIPdQK1DUq9
-         0JO49ZAaGVTigrafNhSQ1Hj7Los5xAvfpL6Dbxg17oJjGybV30eChz5hbJhfC1ZfllMk
-         CuLEuA/gpmhPK9G9kVbyiGQGuT815tuj8oO6P9tPp0boSOxptEZJipuvOlKlP9ZXSpZC
-         40Z5M9Xui3/tpBwEMpfRG4p3DKmlVtJvsjTpNZgqsaehUv2yaf1sEITHqWV1evE81874
-         shPA==
+        d=chromium.org; s=google; t=1710501387; x=1711106187; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=0MYemMVXfcwym4dqzvAuTYbxf7jh51PQWqcbKiVUnPw=;
+        b=DSR6Lkko371ncsU7k+hd8p41xRVFhvM+1XeSCRbn56WWTTWtfDJSyr6xVaCLwztT2R
+         K06f0bVtx/70LEQMGlpczYqnxIb3m31c0lmJ2IZD/ND61nVhQBRBU2sN+5+9wB1Le4/C
+         7bdpWUx06mpIiOMs0dyM7QRnhNJMCxySWTUn0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710500478; x=1711105278;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5DsyBbYAZw/09Nakq0pDw/8yd9OC3IgRs2xlCXHLsrE=;
-        b=HRneeRAUW5F7N3AslrqbXdmkpjbOuNTWf8h3earGN9Y+VHUheIDJaZmWgrl/FvS0KS
-         mVjJkNxVUVxQjZEh+CTJGL/cVJD7+5ec4SXNx6v75uF9sMynwIb/5yF1o0o/JBi5ED4d
-         yK4EvjgEZ9BPn9QKKSNszJ7SVmBx54BWisHs4Qrb0tsLu9CjLapB1H8Ge3p46r9UHb3z
-         ZN9vpGc24OywY+JDJPum2l80la7Cy5eu3qQa9gwxgiga41dwcOTbH0S1NS3pQPZF58BS
-         B0l0qTKQAmZZc4o4BpESgQBOKgy7GgN+4FN8u/Yxd8oRZXKRLINGjjZSZ2Td1TXw/xxT
-         KZ7Q==
-X-Forwarded-Encrypted: i=1; AJvYcCWxdIhu7H6YdVQd7W78lhdp00g+K2pYz1yB4bGHG4rlhMSwyoaroi2B+nLhKEDQLeYMcwpA8gf4guRUgFMspqmzbnkU4Ry1ctRxlg==
-X-Gm-Message-State: AOJu0Yy5WXEAgfDWP1luo2VZS9IqMT++qqSpK1s12p2uvFyw5r3WtHET
-	w6UQ3PuSCz2Vdv5l9E9h0mU68U0vZQ60lWJFPRlaEcKZVGocYprz08PYu9MJr1s=
-X-Google-Smtp-Source: AGHT+IEVOOgZFoxsLMo3B/9DgMlPg+8mCIQzmFSjWr5NC1POGFlHlr6r0UtoZZxyVjffb0W7416VFg==
-X-Received: by 2002:ac8:5783:0:b0:42e:b90c:c5a9 with SMTP id v3-20020ac85783000000b0042eb90cc5a9mr5156478qta.51.1710500478406;
-        Fri, 15 Mar 2024 04:01:18 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id p3-20020a05622a00c300b0042ef88b7daesm1838670qtw.19.2024.03.15.04.01.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Mar 2024 04:01:17 -0700 (PDT)
-Message-ID: <dda0e6ba-4538-47a0-95e9-6adcfd4169a7@baylibre.com>
-Date: Fri, 15 Mar 2024 12:01:12 +0100
+        d=1e100.net; s=20230601; t=1710501387; x=1711106187;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0MYemMVXfcwym4dqzvAuTYbxf7jh51PQWqcbKiVUnPw=;
+        b=FleQCaVoOnkj/BTjuKTvgZx0U4jK+ObR1zfXbE0QuJND2wo8Stu3Cpsdcp9MIlc/bM
+         eF2y3T7qXgQUxjWkvmqobv3xSS210bO94ItSWtHMxbrnIepZC4vNCz7yY6D83URKyCUj
+         SlSUQqql2PtnQUy/G35UP5jNRIppqpkvngVK44pgQjt9HZXDK0GE5wv6WCp5VEVxMPyF
+         88FXQA1GWLgm0WdR3i8iTcf6Roo6AVrhkiQLlGiEk5dakOKzIWcJN5JM7cYuQ6oMovix
+         1WTdR0fUt3BW411+JoZjMeI2LRFJp8YrHIsszECk9l24TvT74R6eTvhFg7C9NEy62Iug
+         ce2Q==
+X-Forwarded-Encrypted: i=1; AJvYcCUpQ/RsSIU9V46s2aBiY8nADO8HRzRUyUk299KyXteJaPTLMLivPYM0nGM3S8tcCg+TDoSkXv1YJmkPUO/jvqW3BJ7qjNr1Cbbcbg==
+X-Gm-Message-State: AOJu0YxbK6Mar3LZkIptGE5xbX64UzONpVxOYh2hsIOdUdA3y8rESkJC
+	uvgU4hmR65YEVkaY4eCYK9l6qvkXpm7uc05R7w7VM7/jnvIgThP04m2KoxUysQ==
+X-Google-Smtp-Source: AGHT+IHkV6rWNk9VP1u+5Gar92wJ+6cA36TJ/sdDtyUb7G3JlBmUL/yk8qKG8iSNBDStFe511ywLaA==
+X-Received: by 2002:a05:6a20:d387:b0:1a3:4a1d:10a3 with SMTP id iq7-20020a056a20d38700b001a34a1d10a3mr2847412pzb.35.1710501387166;
+        Fri, 15 Mar 2024 04:16:27 -0700 (PDT)
+Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:2f9c:c00a:bf1f:e53c])
+        by smtp.gmail.com with ESMTPSA id c11-20020a62e80b000000b006e6aee6807dsm3122683pfi.22.2024.03.15.04.16.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Mar 2024 04:16:26 -0700 (PDT)
+From: Pin-yen Lin <treapking@chromium.org>
+To: Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Cc: linux-arm-kernel@lists.infradead.org,
+	Chen-Yu Tsai <wenst@chromium.org>,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
+	linux-mediatek@lists.infradead.org,
+	Pin-yen Lin <treapking@chromium.org>
+Subject: [PATCH v2 0/4] Update Vgpu minimum voltage for MT8183, MT8186, MT8192, MT8195
+Date: Fri, 15 Mar 2024 19:16:01 +0800
+Message-ID: <20240315111621.2263159-1-treapking@chromium.org>
+X-Mailer: git-send-email 2.44.0.291.gc1ea87d7ee-goog
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 12/18] ASoC: codecs: mt6357: add MT6357 codec
-Content-Language: en-US
-To: Mark Brown <broonie@kernel.org>
-Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
- <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
- Sumit Semwal <sumit.semwal@linaro.org>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
- linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
- dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
- Nicolas Belin <nbelin@baylibre.com>
-References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
- <20240226-audio-i350-v1-12-4fa1cea1667f@baylibre.com>
- <9891855d-2284-42e4-9d3a-35ba406540e8@sirena.org.uk>
- <c441a132-b16b-4244-a712-8971c902d4d7@baylibre.com>
- <ff3d2db1-697b-42c6-a0f2-74276e9fc098@sirena.org.uk>
-From: Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <ff3d2db1-697b-42c6-a0f2-74276e9fc098@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+Use the minimum voltage listed on the Vgpu regulator datasheets instead
+of the minimum value on GPU OPP table. This is because the requested
+voltage could be lower when the MTK Smart Voltage Scaling (SVS) driver
+is enabled.
 
+Also update the incorrect MT6315 regulator usages on MT8192 and MT8195.
 
-On 13/03/2024 18:23, Mark Brown wrote:
-> On Tue, Mar 12, 2024 at 07:03:25PM +0100, Alexandre Mergnat wrote:
->> On 26/02/2024 17:09, Mark Brown wrote:
-> 
->>>> +	case MT6357_ZCD_CON2:
->>>> +		regmap_read(priv->regmap, MT6357_ZCD_CON2, &reg);
->>>> +		priv->ana_gain[ANALOG_VOLUME_HPOUTL] =
->>>> +			(reg & AUD_HPL_GAIN_MASK) >> AUD_HPL_GAIN_SFT;
->>>> +		priv->ana_gain[ANALOG_VOLUME_HPOUTR] =
->>>> +			(reg & AUD_HPR_GAIN_MASK) >> AUD_HPR_GAIN_SFT;
->>>> +		break;
-> 
->>> It would probably be less code and would definitely be clearer and
->>> simpler to just read the values when we need them rather than constatly
->>> keeping a cache separate to the register cache.
-> 
->> Actually you must save the values because the gain selected by the user will
->> be override to do a ramp => volume_ramp(.....):
->> - When you switch on the HP, you start from gain=-40db to final_gain
->> (selected by user).
->> - When you switch off the HP, you start from final_gain (selected by user)
->> to gain=-40db.
-> 
-> You can just read the value back when you need to do a ramp?
+Changes in v2:
+- Update Vgpu min voltage for MT8183, MT8186, MT8195
+- Fix other usages of MT6315 buck1/buck3
 
-You can't. Because you will read -40db when HP isn't playing sound. That 
-is why the gain is saved into the struct.
+Pin-yen Lin (4):
+  arm64: dts: mediatek: mt8192-asurada: Update min voltage constraint
+    for MT6315
+  arm64: dts: mediatek: mt8195-cherry: Update min voltage constraint for
+    MT6315
+  arm64: dts: mediatek: mt8183-kukui: Use default min voltage for MT6358
+  arm64: dts: mediatek: mt8186-corsola: Update min voltage constraint
+    for Vgpu
 
-Let me know, when you change de gain to do a ramp down (start from user 
-gain to gain=-40db), next time for the ramp up, how/where do you find 
-the user gain ?
-
-
-> 
->> Also, the microphone's gain change when it's enabled/disabled.
-> 
-> I don't understand what this means?
-
-When microphone isn't capturing, the gain read back from the register is 
-0dB. I've put some logs in my code and do capture to show how it works:
-
-root@i350-evk:~# arecord -D hw:mt8365evk,2,0 -r 48000 -c2 -f s32_le -d 
-10 recorded_file.wav
-[Mar15 09:31] mt8365-afe-pcm 11220000.audio-controller: 
-mt8365_afe_fe_hw_params AWB period = 6000 rate = 48000 channels = 2
-[  +0.000126] mt8365-afe-pcm 11220000.audio-controller: 
-mt8365_dai_int_adda_prepare 'Capture' rate = 48000
-[  +0.107688] mt6357-sound mt6357-sound: TOTO set mic to stored value
-[ +10.072648] mt6357-sound mt6357-sound: TOTO set mic to 0dB
-
-root@i350-evk:~# arecord -D hw:mt8365evk,2,0 -r 48000 -c2 -f s32_le -d 
-10 recorded_file.wav
-[Mar15 09:32] mt8365-afe-pcm 11220000.audio-controller: 
-mt8365_afe_fe_hw_params AWB period = 6000 rate = 48000 channels = 2
-[  +0.000133] mt8365-afe-pcm 11220000.audio-controller: 
-mt8365_dai_int_adda_prepare 'Capture' rate = 48000
-[  +0.109418] mt6357-sound mt6357-sound: TOTO set mic to stored value
-[ +10.164197] mt6357-sound mt6357-sound: TOTO set mic to 0dB
-
-
-> 
->>>> +	/* ul channel swap */
->>>> +	SOC_SINGLE("UL LR Swap", MT6357_AFE_UL_DL_CON0, AFE_UL_LR_SWAP_SFT, 1, 0),
-> 
->>> On/off controls should end in Switch.
-> 
->> Sorry, I don't understand your comment. Can you reword it please ?
-> 
-> See control-names.rst.  Run mixer-test on a card with this driver and
-> fix all the issues it reports.
-
-Ok the name is the issue for you AFAII.
-This control isn't for on/off but swap Left and Right.
- From the codec documentation:
-"Swaps audio UL L/R channel before UL SRC"
-This control is overkill, I will remove it
-
-I'm stuck to run mixer-test, please check the following message: 
-https://lore.kernel.org/all/7ddad394-e880-4ef8-8591-cb803a2086ae@baylibre.com/
-
+ arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi   | 1 -
+ arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi | 2 +-
+ arch/arm64/boot/dts/mediatek/mt8192-asurada.dtsi | 6 +++---
+ arch/arm64/boot/dts/mediatek/mt8195-cherry.dtsi  | 4 ++--
+ 4 files changed, 6 insertions(+), 7 deletions(-)
 
 -- 
-Regards,
-Alexandre
+2.44.0.291.gc1ea87d7ee-goog
+
 
