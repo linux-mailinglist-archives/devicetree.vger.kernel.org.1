@@ -1,166 +1,247 @@
-Return-Path: <devicetree+bounces-50785-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50786-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB90787D13C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:36:15 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 0870C87D193
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:54:17 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 614DB1F237E3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 16:36:15 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 14C0B2835BB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 16:54:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423A218AEE;
-	Fri, 15 Mar 2024 16:36:11 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 58F2E4AEF1;
+	Fri, 15 Mar 2024 16:53:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z5gZGKH4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="xGtmjUhV"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15465D29B;
-	Fri, 15 Mar 2024 16:36:09 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3522C4C600
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 16:53:08 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710520571; cv=none; b=jfb9gijzL7N9mue7HbYIN34zw/Mr0gUDMNPn2REOGKQbgI+rHtn1x9P2D7HxPCJL8IDDlprOKO/TtjursAo6OGyOu1SgT00u7yXrGqm1I/cVl+/lC4m1gHdeVVjNE5HyZu9VJnzOS3uVX6Kq+8v3oMwF8NSOd57OVaHNoGupuKQ=
+	t=1710521591; cv=none; b=jXjnHkvV93E7LQP+zzzgpzQhItVXnxfCfS10NChxGUzPuJMndufi3A/R8j5uTpXC15g8aGfWhXnTo5lAMyP1P1d0Zb/BYy7RoZSfpeptYSyQMm6uG5wLQB2jcqnMRlE7dOp/W2oA/wBSDGdvH1whfZ2NREHfo9/zHe1wpddXRpo=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710520571; c=relaxed/simple;
-	bh=5szkVEXe0ekaYiJWoeSLGaHsidYU+VV3wwTnpAmCoFs=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=GukwoziJumCG5eW2FFY8AB1vU/T0ArOgQDqjf9gduRsjq5t+c7Jb9ASoP0IaNP0WWQ1O5WyDrtol151MyR15JUDCg6qVNs8FWXA54xoE/cMVwDB4FDmT6+lO3mGi/299swygGmrUDOi+xv+NxWQN5/DyWR5lePt1RyMePUQMbpo=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z5gZGKH4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70F74C433F1;
-	Fri, 15 Mar 2024 16:36:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710520569;
-	bh=5szkVEXe0ekaYiJWoeSLGaHsidYU+VV3wwTnpAmCoFs=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=Z5gZGKH4u/iN1Yqk/CcmFVJsWIdVx4yRHC1F9Og9J1iru3arWK5PhESTZvEuiGzP1
-	 DL07X+Jxl7H8PxRz4Wy1FbvMdrG1g/mi3vczhVQ6mCT0Nfbh/RBiEQW5gQQ4VcCKAA
-	 MtP/TXEoxpQG5XO870KxWKn/CO4+waojEqfpW9kFaonMbEj6QXFSj+kISsNGt0LJ6E
-	 joxqWbJm//5lI/RtUp20LA8KoQ82hhIn7DGxi6miGwCXBgZYNpIiSMlv8vYlbSQk2g
-	 V21mBUNo+FYllTyrQUSoaJbBD1gau2Slnk/Vhpy6rBMNGFs1zrW1YFO1rl7qvfL7gB
-	 AWmBd4bsSERVQ==
-Date: Fri, 15 Mar 2024 10:36:07 -0600
-From: Rob Herring <robh@kernel.org>
-To: Joshua Yeong <joshua.yeong@starfivetech.com>
-Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
-	geert+renesas@glider.be, prabhakar.mahadev-lad.rj@bp.renesas.com,
-	conor.dooley@microchip.com, alexghiti@rivosinc.com,
-	evan@rivosinc.com, ajones@ventanamicro.com, heiko@sntech.de,
-	guoren@kernel.org, uwu@icenowy.me, jszhang@kernel.org,
-	conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org, leyfoon.tan@starfivetech.com,
-	jeeheng.sia@starfivetech.com, linux-riscv@lists.infradead.org,
-	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/4] dt-bindings: cache: Add docs for StarFive
- StarLink-500 cache controller
-Message-ID: <20240315163607.GA1444248-robh@kernel.org>
-References: <20240314061205.26143-1-joshua.yeong@starfivetech.com>
- <20240314061205.26143-5-joshua.yeong@starfivetech.com>
+	s=arc-20240116; t=1710521591; c=relaxed/simple;
+	bh=J/mesTovEYtNSpXC1b7Hu6rWx3dBemBmXwuP4LpnTNA=;
+	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
+	 In-Reply-To:Content-Type; b=abqJ/ZVGubA/V+u276/tTIsBnhncXrtLzG0Y+ihgxxGI1FB2aiujKlzPkT7xMC61SXaPHs4aekHtowUTLps15QJf5Kv5blVNLt9uElQDNl1rHQHvmLKVV1yC2WZLVL9uKXMfeUNUQczOMh38UO1DR/yGOIne9WyDiHRV83GGS8U=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=xGtmjUhV; arc=none smtp.client-ip=209.85.208.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2d109e82bd0so27469151fa.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 09:53:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710521587; x=1711126387; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=52kT8RCFGC7okKDqG5Bcwj1POjAaTduZrpTnpA9FpD0=;
+        b=xGtmjUhVLcFIizD+FSyC4kCsz9O5thWI1Dk7kHFeizhjYqe6UfqwurcdyQkDx5OBzG
+         Ur7ogOT0gWUa8aD5uQkc6EyLD1Krlii+c0vDE+BfEYazwhbfKcZnwTGVZOjFJgJM34Tz
+         lngeVOA4OBjbNuGVN4s+NJaOCV7c57T06TQ0DiH/cAO7BzXgbHKtRqNJmQfpb9M+kx5s
+         YdOGERXgtbm2Gga/lkCftJABMtiCKp6ck8S3yIxpCzvkhIPa4A/9LnSKcC80RkBfqiY8
+         QN+l0LBLkAEBHLOl2ekAh1ATiMX9bLTWLLlv0FnDg23U7O8/cY8qCLI/ar8MfR6nRVCZ
+         XoEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710521587; x=1711126387;
+        h=content-transfer-encoding:in-reply-to:organization:autocrypt
+         :references:cc:to:content-language:subject:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=52kT8RCFGC7okKDqG5Bcwj1POjAaTduZrpTnpA9FpD0=;
+        b=UjqcjlaydIy6O7iRG+Jm8371KyeMfI9urd9Y1D7MnTc1HJNA1Getq6Tw/yASFaaUJX
+         aaBIl4A25W5GFwM0zFgqR9BUd+4vbpKrDkSCiuHm3QEyhSUplp3Wle6q6DKqpOOH+pZh
+         qIvIOIALSccx1SmhYNA/v8EtwfPUOFJSq6w0hbnS+jwHaFL8teLpr6lZYriJ8yc/gw+N
+         kfjZJI6hlO4MPRojlZsZhCLklhuAQRDwpekVS8335ekUVP7tgWogeTen2BXpIklp2PmK
+         jymZRedFQzqaIdOLqQ0aZYDwooHFWzgIx0vBEP2ojQjl9maLUSoOQm7HFXF7nu4KFo8i
+         Aalw==
+X-Forwarded-Encrypted: i=1; AJvYcCX/WMBNKmOGwpr+noISztiCL7gbpUGLP0WS8tMeABAUd3CLbxjNSpb9x6Z52wgMJUqQUuj+sRBZDM89vlKGY1HVkUjGbwLZKG0GxQ==
+X-Gm-Message-State: AOJu0YxDzJ3kQqtyHWEFM3s2IXzV6N9yTDGwTRQhB003qFEmNtBIBD/9
+	6sbkDoEatxpxLq96Y+gCiWMyJ1q1gqF9x0YaBbnyeVT1633GGGey5JnAEFUs5DE=
+X-Google-Smtp-Source: AGHT+IHLfd0FUA2LIoNuC9vV0UbukiLHlnyaISY5TaECNKl/ARlCMBUC7tn6mgNu/CU8tNB0bzSEnQ==
+X-Received: by 2002:a19:911e:0:b0:513:d24f:6455 with SMTP id t30-20020a19911e000000b00513d24f6455mr3304106lfd.29.1710521587073;
+        Fri, 15 Mar 2024 09:53:07 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:a633:992a:92cc:9c3? ([2a01:e0a:982:cbb0:a633:992a:92cc:9c3])
+        by smtp.gmail.com with ESMTPSA id l24-20020a05600c1d1800b00413e6a1935dsm6359144wms.36.2024.03.15.09.53.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Mar 2024 09:53:06 -0700 (PDT)
+Message-ID: <4bb2fa50-0944-456d-b51b-449a2bd9bb69@linaro.org>
+Date: Fri, 15 Mar 2024 17:53:05 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240314061205.26143-5-joshua.yeong@starfivetech.com>
+User-Agent: Mozilla Thunderbird
+From: Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 00/25] Introduce support of audio for Amlogic A1 SoC
+ family
+Content-Language: en-US, fr
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+Cc: kernel@salutedevices.com
+References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+Autocrypt: addr=neil.armstrong@linaro.org; keydata=
+ xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
+ GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
+ BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
+ qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
+ 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
+ AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
+ OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
+ Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
+ YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
+ GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
+ UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
+ GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
+ yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
+ QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
+ SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
+ 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
+ Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
+ oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
+ M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
+ 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
+ KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
+ 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
+ QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
+Organization: Linaro Developer Services
+In-Reply-To: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Mar 14, 2024 at 02:12:05PM +0800, Joshua Yeong wrote:
-> Add DT binding documentation used by StarFive's
-> Starlink-500 cache controller.
+Hi Jan!
+
+On 15/03/2024 00:21, Jan Dakinevich wrote:
+> This series includes the following:
 > 
-> Signed-off-by: Joshua Yeong <joshua.yeong@starfivetech.com>
-> ---
->  .../cache/starfive,starlink-500-cache.yaml    | 62 +++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/cache/starfive,starlink-500-cache.yaml
+>   - new audio clock and reset controller data and adaptation for it of existing
+>     code (patches 0001..0004);
 > 
-> diff --git a/Documentation/devicetree/bindings/cache/starfive,starlink-500-cache.yaml b/Documentation/devicetree/bindings/cache/starfive,starlink-500-cache.yaml
-> new file mode 100644
-> index 000000000000..97ddf7db39e9
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/cache/starfive,starlink-500-cache.yaml
-> @@ -0,0 +1,62 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/cache/starfive,starlink-500-cache.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive StarLink-500 Cache Controller
-> +
-> +maintainers:
-> +  - Joshua Yeong <joshua.yeong@starfivetech.com>
-> +
-> +description:
-> +  StarFive's StarLink-500 controller manages cache shared between clusters of
-> +  CPU cores. The cache driver provides mechanism to perform invalidate and write
-> +  back functionality to the shared memory.
-
-What a driver does is not relevant to the binding. You could describe 
-what the registers control though.
-
-> +
-> +allOf:
-> +  - $ref: /schemas/cache-controller.yaml#
-> +
-> +# We need a select here so we don't match all nodes with 'cache'
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        enum:
-> +          - starfive,starlink-500-cache
-> +
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: starfive,starlink-500-cache
-> +      - const: cache
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  cache-size: true
-> +  cache-sets: true
-> +  cache-block-size: true
-> +  cache-level: true
-> +  cache-unified: true
-
-Drop these and...
-
-> +
-> +additionalProperties: false
-
-... use 'unevaluatedProperties' instead.
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-
-cache-unified should be required as I imagine the cache is always 
-unified. Perhaps other properties too (cache-level already is)?
-
-> +
-> +examples:
-> +  - |
-> +      cache-controller@15000000 {
-> +        compatible = "starfive,starlink-500-cache", "cache";
-> +        reg = <0x15000000 0x278>;
-> +        cache-block-size = <64>;
-> +        cache-level = <3>;
-> +        cache-sets = <8192>;
-> +        cache-size = <0x400000>;
-> +        cache-unified;
-> +      };
-> -- 
-> 2.25.1
+>   - adaptation of existing audio components for A1 Soc (patches 0005..0021);
 > 
+>   - handy cosmetics for dai-link naming (patches 0022..0023);
+> 
+>   - integration of audio devices into common trees (patch 0024);
+> 
+>   - audio support bring up on Amlogic ad402 reference board (patch 0025). This
+>     patch is not actually checked on real hardware (because all ad402 that we had
+>     were burned out). This patch is based on ad402's schematics and on experience
+>     with our own hardware (which is very close to reference board);
+
+Thanks for your serie, it's nice you're working on upstreaming this feature.
+
+In my opinion it's fine to have a "big" initial serie if you're not sure
+if your changes are ok, but next time add the RFC tag so we know it's not
+a final changeset and you seek advices.
+
+Overall the code is clean and your patch order makes sense if they were meant
+to be applied by a single maintainer, but in this case it will be split
+into multiple subsystems so it's better to split them as Jerome explained
+to ease review and the maintainers process.
+
+Don't hesitate discussing with us in the #linux-amlogic IRC channel
+on Libera.Chat, the goal is to reduce the number of patch version and
+ease the review and maintainance process.
+
+Concerning the link-name property, I think it should be done afterwards
+since it's not necessary to support audio on A1, and I think it could
+be extended to other SoC boards (which would be a great feature).
+
+Neil
+
+> 
+> Dmitry Rokosov (2):
+>    ASoC: dt-bindings: meson: introduce link-name optional property
+>    ASoC: meson: implement link-name optional property in meson card utils
+> 
+> Jan Dakinevich (23):
+>    clk: meson: a1: restrict an amount of 'hifi_pll' params
+>    clk: meson: axg: move reset controller's code to separate module
+>    dt-bindings: clock: meson: add A1 audio clock and reset controller
+>      bindings
+>    clk: meson: a1: add the audio clock controller driver
+>    ASoC: meson: codec-glue: add support for capture stream
+>    ASoC: meson: g12a-toacodec: fix "Lane Select" width
+>    ASoC: meson: g12a-toacodec: rework the definition of bits
+>    ASoC: dt-bindings: meson: g12a-toacodec: add support for A1 SoC family
+>    ASoC: meson: g12a-toacodec: add support for A1 SoC family
+>    ASoC: meson: t9015: prepare to adding new platforms
+>    ASoC: dt-bindings: meson: t9015: add support for A1 SoC family
+>    ASoC: meson: t9015: add support for A1 SoC family
+>    ASoC: dt-bindings: meson: axg-pdm: document 'sysrate' property
+>    ASoC: meson: axg-pdm: introduce 'sysrate' property
+>    pinctrl/meson: fix typo in PDM's pin name
+>    ASoC: dt-bindings: meson: meson-axg-audio-arb: claim support of A1 SoC
+>      family
+>    ASoC: dt-bindings: meson: axg-fifo: claim support of A1 SoC family
+>    ASoC: dt-bindings: meson: axg-pdm: claim support of A1 SoC family
+>    ASoC: dt-bindings: meson: axg-sound-card: claim support of A1 SoC
+>      family
+>    ASoC: dt-bindings: meson: axg-tdm-formatters: claim support of A1 SoC
+>      family
+>    ASoC: dt-bindings: meson: axg-tdm-iface: claim support of A1 SoC
+>      family
+>    arm64: dts: meson: a1: add audio devices
+>    arm64: dts: ad402: enable audio
+> 
+>   .../bindings/clock/amlogic,a1-audio-clkc.yaml |  83 +++
+>   .../reset/amlogic,meson-axg-audio-arb.yaml    |  10 +-
+>   .../bindings/sound/amlogic,axg-fifo.yaml      |   8 +
+>   .../bindings/sound/amlogic,axg-pdm.yaml       |   5 +
+>   .../sound/amlogic,axg-sound-card.yaml         |  12 +-
+>   .../sound/amlogic,axg-tdm-formatters.yaml     |  22 +-
+>   .../bindings/sound/amlogic,axg-tdm-iface.yaml |   6 +-
+>   .../bindings/sound/amlogic,g12a-toacodec.yaml |   1 +
+>   .../bindings/sound/amlogic,gx-sound-card.yaml |   6 +
+>   .../bindings/sound/amlogic,t9015.yaml         |   4 +-
+>   .../arm64/boot/dts/amlogic/meson-a1-ad402.dts | 126 ++++
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi     | 471 +++++++++++++++
+>   drivers/clk/meson/Kconfig                     |  18 +
+>   drivers/clk/meson/Makefile                    |   2 +
+>   drivers/clk/meson/a1-audio.c                  | 556 ++++++++++++++++++
+>   drivers/clk/meson/a1-audio.h                  |  58 ++
+>   drivers/clk/meson/a1-pll.c                    |   8 +-
+>   drivers/clk/meson/axg-audio.c                 |  95 +--
+>   drivers/clk/meson/meson-audio-rstc.c          | 109 ++++
+>   drivers/clk/meson/meson-audio-rstc.h          |  12 +
+>   drivers/pinctrl/meson/pinctrl-meson-a1.c      |   6 +-
+>   .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 ++++
+>   .../reset/amlogic,meson-a1-audio-reset.h      |  29 +
+>   .../dt-bindings/sound/meson-g12a-toacodec.h   |   5 +
+>   sound/soc/meson/axg-pdm.c                     |  10 +-
+>   sound/soc/meson/g12a-toacodec.c               | 298 ++++++++--
+>   sound/soc/meson/meson-card-utils.c            |  12 +-
+>   sound/soc/meson/meson-codec-glue.c            | 174 ++++--
+>   sound/soc/meson/meson-codec-glue.h            |  23 +
+>   sound/soc/meson/t9015.c                       | 326 +++++++++-
+>   30 files changed, 2394 insertions(+), 223 deletions(-)
+>   create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
+>   create mode 100644 drivers/clk/meson/a1-audio.c
+>   create mode 100644 drivers/clk/meson/a1-audio.h
+>   create mode 100644 drivers/clk/meson/meson-audio-rstc.c
+>   create mode 100644 drivers/clk/meson/meson-audio-rstc.h
+>   create mode 100644 include/dt-bindings/clock/amlogic,a1-audio-clkc.h
+>   create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
+> 
+
 
