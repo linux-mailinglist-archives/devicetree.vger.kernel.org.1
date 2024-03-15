@@ -1,100 +1,140 @@
-Return-Path: <devicetree+bounces-50771-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50772-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF0C887D02A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 16:25:04 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8166C87D040
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 16:28:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id A47F3283B4D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:25:03 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id B30321C212C4
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:28:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 971823D571;
-	Fri, 15 Mar 2024 15:24:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B76ED3DBBC;
+	Fri, 15 Mar 2024 15:28:25 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="RDUH/F58"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id D056B405FF;
-	Fri, 15 Mar 2024 15:24:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-lj1-f173.google.com (mail-lj1-f173.google.com [209.85.208.173])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5CBFE3BB52
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 15:28:23 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.173
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710516281; cv=none; b=NK3n9LiAd8lXor5LKRxwRMEx8xrPulZ4keUswZCuH8o+p7XfRccHbYVrb9UIdMR/gpFunMcedd0WftRS0tcfFe6kMD4kNaoNdwNhSbgSOucy75uf5QS6aVdy64mDHKp1kDzgzruLCqKYBOKtsnhCuIQTY/35tR8JgHTkMlizmeM=
+	t=1710516505; cv=none; b=Vk3KFeYjwJP62OgnRw+KXqLswvWWUAetWxi2RpF0OOXmCY4K4udlZV2d8AsryZSOkrMzoUGs5LjlvAuHDWTwe8BK6eMD2P+CfA3mqufnhGOzECyuGf/5JGOUX0i9TyrDWzr6PCHR3aguuHlS2TfDD5MvpRtIRD2mjLHZ3kREheA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710516281; c=relaxed/simple;
-	bh=tvtPqHTyHAvq5sNabGjdAHpevyZoKTYNDRZhl/bZKTY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=I0hDFsYnFV++GN7OjEAHtZH160x8GoDLbdcl0EPfOO4PAheh1T1JkGzBDsm/8LL+L1Pc4zQgWcDxnC4UJqAl9Nlo4t3Ye5rdFG1Hl5lUN4J5FedkqUXHHdoBbA8hAKCXFl0zHjCYArYsbbLG4mY9Z/4nOkk24Ph+HhdUgfJr5t4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B10B3C15;
-	Fri, 15 Mar 2024 08:25:12 -0700 (PDT)
-Received: from bogus (unknown [10.57.81.245])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4EDD23F73F;
-	Fri, 15 Mar 2024 08:24:34 -0700 (PDT)
-Date: Fri, 15 Mar 2024 15:24:31 +0000
-From: Sudeep Holla <sudeep.holla@arm.com>
-To: Doug Anderson <dianders@chromium.org>
-Cc: Maulik Shah <quic_mkshah@quicinc.com>, andersson@kernel.org,
-	Sudeep Holla <sudeep.holla@arm.com>, ulf.hansson@linaro.org,
-	swboyd@chromium.org, wingers@google.com, daniel.lezcano@linaro.org,
-	rafael@kernel.org, linux-arm-msm@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-	jwerner@chromium.org, quic_lsrao@quicinc.com,
-	quic_rjendra@quicinc.com, devicetree@vger.kernel.org,
-	Abhinav Kumar <quic_abhinavk@quicinc.com>,
-	Jessica Zhang <quic_jesszhan@quicinc.com>,
-	Rob Clark <robdclark@chromium.org>
-Subject: Re: [RESEND v4 3/3] arm64: dts: qcom: sc7280: Add power-domains for
- cpuidle states
-Message-ID: <20240315152431.sckqhc6ri63blf2g@bogus>
-References: <20230703085555.30285-1-quic_mkshah@quicinc.com>
- <20230703085555.30285-4-quic_mkshah@quicinc.com>
- <CAD=FV=XWH+Eoa9XjDns--NSDTZHeUwTdrX_r_QZhSPpbZNwz+w@mail.gmail.com>
+	s=arc-20240116; t=1710516505; c=relaxed/simple;
+	bh=nXV5CjRW8BJxdHttD1h3qTKVpNuVLPLzdexACQdeKv8=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=dVO9ggQaYeFE+gH/9RX9jUhhJNtJwebLmhx1owhkqkjgQBKUBSHZgX366v1CmvymyI9BVQyOo8Z4gDpgCH0viqcYMVgVvczylHq4zAHuoMH1yS7pgio6kAjn2wSspks6l0piOkh+lUrB8i4SPYuStPnLIk4QHvZYJgzbC4ufrHo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=RDUH/F58; arc=none smtp.client-ip=209.85.208.173
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2d24a727f78so26573691fa.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 08:28:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710516501; x=1711121301; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Vy8mkoyNdDIbEjZYoeFWO0a66QImPA2CQk2NlxXrdT8=;
+        b=RDUH/F58IzmZGR1XsoS9cCPO8DVtt7YCQurAjajcjlgtmBK5eTt0YvCt5lTcFxUkzY
+         XMdtGRmrRgb6aa3jMGFShWUwnUFYaWBHSzSpaS+BvOuCyFX0j6Rqr8bI0PDrWT9q4Q8z
+         1uW+GVMIoiO54fIz+qicUm4aeilZKeQOr0/qHC5Zabw0I6jKga4Je69l1jXzeIu5U9Ql
+         tN3NqVixoHv3Wr0kflgtKTDLtTgqCOG6wSzSfpv9uFadFNdtLzI1pC+FXggOL+uZDSaa
+         AqguPu454kElSVhcwURQe0jrbXcZ0Jc/+QOFgmrNXKdzAQSyXJSYVbHbbKsm0c4lEZeB
+         7r0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710516501; x=1711121301;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Vy8mkoyNdDIbEjZYoeFWO0a66QImPA2CQk2NlxXrdT8=;
+        b=u+G/aUCUBEwsh/3N2p3l259GP7LiUXicr0etD3FKFYxgEpvn+HWCfgDMQYOgaHqOGv
+         i6p94QXVadpkK46t5GW/OZfCx/EJSHBxfGIWyjPmqzPb8Xbx0RVDtUNT0pvTeX/GFSc6
+         T6kJjVQ9n53dtcVojVvEx87FQm2AOtWYythgXSNEFlkrYDOcw2ZBiBMHobFJiEQyDR7j
+         Vuxua+v9+E7zTbmOLsCCiGVC2zBw/wPxg2MzgeuCC4CnwQ8uzfnQjUlYs9LwPcSDFX0W
+         hfJ/MFS6yun5sIz8xOoxCXCLLBjpSPp0PLVHzUBd3KhGYPQaVxtAWB7lgXs72AznoyYo
+         MFyA==
+X-Forwarded-Encrypted: i=1; AJvYcCVSjuJ5+5Qk47+h5w+7c+jfEFfuKC66Zlhf31/a4EwYs3B6d5FIQr0vFb7UiaJNW4bZTmNx8WVDZ0SRZ3wQ7aC8vhcPOODvUYcvUg==
+X-Gm-Message-State: AOJu0YxB2HwBKCsStkB+onY3pbeFZbfEG0Sq5WMwKCOpHVLTtgBTiB+R
+	Sm817mOZ0Qq/d4fvJ+p7Ri3/INwf7RjHhXzhmmAXq/8Uv9e1Q40ibhUU76tjw1s=
+X-Google-Smtp-Source: AGHT+IEv4KiX0VUKEaEam0pND8+D1J+qGZNRSiefb3SsE1hMQAKXvSamp9kPr2MXTXqoHfBaWZW3RA==
+X-Received: by 2002:a2e:a68d:0:b0:2d4:57c5:886c with SMTP id q13-20020a2ea68d000000b002d457c5886cmr2953623lje.13.1710516501469;
+        Fri, 15 Mar 2024 08:28:21 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id c17-20020aa7c751000000b00568b43fffb0sm527149eds.96.2024.03.15.08.28.19
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Mar 2024 08:28:20 -0700 (PDT)
+Message-ID: <65cf39ab-6813-4412-9e45-30c26ab27cd6@baylibre.com>
+Date: Fri, 15 Mar 2024 16:28:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=XWH+Eoa9XjDns--NSDTZHeUwTdrX_r_QZhSPpbZNwz+w@mail.gmail.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 00/18] Add audio support for the MediaTek Genio 350-evk
+ board
+Content-Language: en-US
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ Nicolas Belin <nbelin@baylibre.com>, Fabien Parent <fparent@baylibre.com>
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <4ffde184-cf68-4b71-b81d-9b5894529926@sirena.org.uk>
+ <7ddad394-e880-4ef8-8591-cb803a2086ae@baylibre.com>
+ <bf418207-7f13-4ced-8c21-2824dd07fab5@sirena.org.uk>
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <bf418207-7f13-4ced-8c21-2824dd07fab5@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-On Thu, Mar 14, 2024 at 04:20:59PM -0700, Doug Anderson wrote:
-> Hi,
-> 
-> On Mon, Jul 3, 2023 at 1:56 AM Maulik Shah <quic_mkshah@quicinc.com> wrote:
-> >
-> > Add power-domains for cpuidle states to use psci os-initiated idle states.
-> >
-> > Cc: devicetree@vger.kernel.org
-> > Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 98 +++++++++++++++++++++-------
-> >  1 file changed, 73 insertions(+), 25 deletions(-)
-> 
-> FWIW, I dug up an old sc7280-herobrine board to test some other change
-> and found it no longer booted. :( I bisected it and this is the change
-> that breaks it. Specifically, I can make mainline boot with:
-> 
-> git revert --no-edit db5d137e81bc # arm64: dts: qcom: sc7280: Update
-> domain-idle-states for cluster sleep
-> git revert --no-edit 7925ca85e956 # arm64: dts: qcom: sc7280: Add
-> power-domains for cpuidle states
->
 
-IIRC, this could be issue with psci firmware. There were some known
-issues which were discussed few years back but I am not aware of the
-details and if/how it is applicable here.
 
-Not sure if you are getting any logs during the boot, if you do have
-worth look at logs related to PSCI/OSI/Idle/...
+On 15/03/2024 15:38, Mark Brown wrote:
+> On Tue, Mar 12, 2024 at 09:58:05AM +0100, Alexandre Mergnat wrote:
+> 
+>> I'm a bit lost for mixer-test and pcm-test.
+>> Currently, I cross-compile the alsa lib project to be able to build the
+>> tests and put it on my board.
+> 
+>> I can execute it, but I still have 2 issues:
+> 
+>> 1) I've a lot of missing module in my environment (Encode.so, Encode.pm,
+>> Symbol.pm, IO/Handle.pm, ...). AFAII, I've to cross compile the missing perl
+>> modules and install them in the rootfs
+> 
+> These tests are both simple C programs...
+> 
+>> 2) I don't know how to configure pcm-test.conf &
+>> Lenovo_ThinkPad_P1_Gen2.conf (or new file to match with my board).
+> 
+> The configuration is optional.
+> 
+>> My test cmd:
+>> ./run_kselftest.sh -c alsa
+> 
+> Just run the programs directly.  I'm only asking for the output from two
+> of them anyway.
+
+ok
 
 -- 
 Regards,
-Sudeep
+Alexandre
 
