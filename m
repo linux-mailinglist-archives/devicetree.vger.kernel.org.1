@@ -1,76 +1,74 @@
-Return-Path: <devicetree+bounces-50802-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50803-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C3AB87D2E0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 18:35:29 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 112C287D2E7
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 18:36:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id B027FB212CD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:35:26 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B3F51C21968
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:36:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id B831C495E5;
-	Fri, 15 Mar 2024 17:35:21 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 85E9A4CB2B;
+	Fri, 15 Mar 2024 17:36:27 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="lNGSgXH6"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="HGrZiE2M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com [209.85.167.49])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9228A4AEE5
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 17:35:19 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.52
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7895A47A67
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 17:36:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710524121; cv=none; b=UXcIaegJk0AWAHX+xvkKENeCtcx9lcWUteg18qdGK+r2zJQ2Ezw95wMDXZRmuIeDfPNNsnfTJjW5eDiWT4w3hHmR7+QwL4rpq9DkKVF4Mt7MaxmMu8jRFdsemSIkWQsu577SrM6M5WlUREb4iXNlgBpTVSezJQv95EA/a6d+v10=
+	t=1710524187; cv=none; b=ckFtXJ8Ul+HzbZmN7UMLcxL99es88tQvaQnpnpku6MVEGhOP8alSCDGxITi7Sa6d1MS1yvg1XlkXWGiFWWNeHPCfjEqt4vp6G52vCREm/tuy/MdEWiAr51+e3XrbLWu2x59xzdkY2S6fCt1LunkZOVXz5L+DepI+jq61a47qgkU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710524121; c=relaxed/simple;
-	bh=8oZV8aP3SBSo3hy+jvbWW+mvLwxem5+OH9Q8I4xTC2c=;
-	h=Message-ID:Date:MIME-Version:From:Subject:To:Cc:References:
-	 In-Reply-To:Content-Type; b=mfK4Fx00lrUsMZdMRjrEy1xR1hAKmLSGZNy4xTLP/QpHpK6btv2zRsM4GtAnFIV0NRf6RMJtEBLEBvaF1EVp1PtNyRQc2n6wDEECF8nll50fyGfuRHVzLb2DCfqirQWN/vw40TEs7xgoVp2twnA48/IIT1JaI9gB8ex+xm4Zwqk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=lNGSgXH6; arc=none smtp.client-ip=209.85.167.52
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-512b3b04995so2429769e87.3
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 10:35:19 -0700 (PDT)
+	s=arc-20240116; t=1710524187; c=relaxed/simple;
+	bh=j3POmon0ej8OD9b/cQu2u0opDXlOgUB4xDQ6A+YIzrc=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=sjhxoz5YltlWXwoqUM+lQLz6v96kr2zylf/3v/sPEJtgamJ6S8pnKFnSdWeYUTe44oSB9dqTVRwaKLhZKQ74Q4dhRgkqBTRgq+umK9WyWZVJrLmYub0CoeqBlfGlkW0hQ41FTcHVaBSbjDIyGNuZl12oTNTx9SrcE86S3vaMcYE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=HGrZiE2M; arc=none smtp.client-ip=209.85.167.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-lf1-f49.google.com with SMTP id 2adb3069b0e04-512f54fc2dbso2512252e87.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 10:36:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710524118; x=1711128918; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=iQf/zU1IbIJWQAYBzJwgaR4fassboS7XZvHjBHUMNEU=;
-        b=lNGSgXH64x4Tf1wYNYILlptIX+ZuWecB66rtLwReD08uQEQV/us1tThk7JOUcU09Dj
-         FyPPKgdDrMoK2wznN7bz3cFVfDpjfhWBHidFbufjuVlPXONV7YNOXBQSFh4Vhmo0Lhku
-         t+15WWKvRb3V8BicRewyuFV5N4h7RfgOVhBE67380FGcO0Nk+QKUViRdyfGJtuUrKaqB
-         gCTGVeev2M4I9Dg1Ub4zJW0ox+HAwQ/2cPzZ3Y+TbCW8cCm8PaHwoQeMNIXXQnCLZaUh
-         SZnv9WBBtMbfGdIqI8UzSIr3nUkI6QvPuUexF83etmwt+DKZYSuiwOe/muXNTL1dw8o+
-         eJmQ==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710524183; x=1711128983; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4ec9RrIuQWFrWDmIdusRv4/vXGJuKnTeszoS+IpWRfc=;
+        b=HGrZiE2MvOCQe7hdBa8yJYshT097kkXsfzHjnc7a6jmz9M/uV6iPg8Pg2nCp4Ky3tw
+         tpuAH4h/rbddiJowlcl2l3oZLV//ewOKcwV4/8mLHgxn9wdt3UZ+1nyJRwho3xYhhmrY
+         0U7kEkY/ZR8QmvMshZ9neQa614rxAJ87CUnRo9HTXPvx4OVSw9PyPL813bPYjywxwYyK
+         VFGhYbuBUtLp0nPAv29G6MFL6WxfHxgzGS43g0+hg0RO0vZwma18tr+Swe2jP7690wUZ
+         k0CD8WMoHP29oPleEJeChf4ZxJ7/rePbsAWLBnlWWfsipfv5FNU3frGMpLFqBMYnM7Qe
+         L35Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710524118; x=1711128918;
-        h=content-transfer-encoding:in-reply-to:organization:autocrypt
-         :references:cc:to:content-language:subject:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=iQf/zU1IbIJWQAYBzJwgaR4fassboS7XZvHjBHUMNEU=;
-        b=TZAjkSZfgyweSE0BPakAoj9JmlmgHQYZYDuNAmQWgeJfc9QaOVL80Uh90N6BiJgLW7
-         /B2K5UoqgaZMVSM0v52UrdFNKU9vDUiyJgdcUU5hHvnBtlupibFOK4azyiuM00llqOTH
-         JWyAbnj1QVkYUzDUc+2Dv7sqXzw9fW2lNoSTcKHpe8Ww5eEdv5vqgm9coRbm9ltw7L22
-         zfnm2BFLYU9tlZRNoCGvO2MZSUs9oJFgvkr1CT5uKaW/8bw0Kte5R0mVka/iqAPt1ctg
-         xHB1kyians/T3JPOXR2srxMta/qJSosv76uh+jKfCZcgQ5DdTmXCSTGdexRQ6Yn0QGrm
-         XzCg==
-X-Forwarded-Encrypted: i=1; AJvYcCWxZ8Qzpqgz7DeN3B9AHFBSJ4JQYIDHFTgoJ+lWOaCr7uTyKoKiURWm5uDUI7aoSdFvvjT97KVxDYkbJtAUPnObXDApeShHYnCd+w==
-X-Gm-Message-State: AOJu0Yyh2VK1UL2PZ+L0XBRPpCtfHHhd6cY7ClVYByMUvp76gxTnQQfh
-	NbJ9NAK2vrGEbBSAx7lSMNRE3gSfO5aTHf6mWMXDgg/nu3ajUJ8iOlKLQMplpP8=
-X-Google-Smtp-Source: AGHT+IGQMulSlRF7Dtm081lDWhL1YsbGIlVuJQPI/UbTHpu33qoEVYfb40RG2YVrbINNMNXXvzA+ww==
-X-Received: by 2002:ac2:498e:0:b0:513:ca99:5908 with SMTP id f14-20020ac2498e000000b00513ca995908mr3093475lfl.26.1710524117699;
-        Fri, 15 Mar 2024 10:35:17 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:a633:992a:92cc:9c3? ([2a01:e0a:982:cbb0:a633:992a:92cc:9c3])
-        by smtp.gmail.com with ESMTPSA id t6-20020a05600c450600b004133365bbc6sm9590842wmo.19.2024.03.15.10.35.16
+        d=1e100.net; s=20230601; t=1710524183; x=1711128983;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4ec9RrIuQWFrWDmIdusRv4/vXGJuKnTeszoS+IpWRfc=;
+        b=uBWxCbNWm+RCtKu3ajkMko6pTIQ83dufvE5Joj4bWO2MkA6pkAPjJAr4N91oc6oJV5
+         GnF8KneBeiLB5NKCiqzV0yEjLKZbe0RR0F2e1ix59R27sedyDkXAkpVAcgmN1i/DF4vg
+         /Vw3wluy1KxZyf3MzJcBc9OuMRBmmmZ8rzm3gsQNM0g3FJvGvxkeNRPUD55ksFMlEg8R
+         q4erDKmotCkB/Kk+b/6wPpC8+0jdI45ML2mweO4C1MHqFNLTb7lYb50s16KIM+twITF4
+         X64DOcnVSeYTYRdS9Xt8nKG6ghNzhKjKGHWCKkBO/ZVWXeJs44n3ZkFnBMnkqKhhdzcU
+         +x4Q==
+X-Forwarded-Encrypted: i=1; AJvYcCXMqELfhDB8RGI2q8Nf8JPPHzjiY2xWsD4JJQavGcCtLCU9klu2zQZpaTI5PYUSDGPX2HbsDH+1ntAKPYSqNdI4BedC59H0TxtVyA==
+X-Gm-Message-State: AOJu0YwtDhTiEYXoHDzS9Jv9UCMclJEiilAsP4tSvGGmVIsxfD77V1to
+	88xm2LxNm5rjjQ9Guhdq2rjfTOzp2tIk5hqoZx8mYFXuG5z65DdE9ZgXigahC30=
+X-Google-Smtp-Source: AGHT+IFk5NGPtCj8mXhvsYrdH1nre5XfSVGVRBDeRwQi7zLXGNIq4CodW9FczpHV1YSFYg82SuoADQ==
+X-Received: by 2002:a05:651c:23a:b0:2d3:3b37:db78 with SMTP id z26-20020a05651c023a00b002d33b37db78mr3420227ljn.16.1710524182477;
+        Fri, 15 Mar 2024 10:36:22 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id ca18-20020a170906a3d200b00a469ebf37dfsm46312ejb.203.2024.03.15.10.36.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Mar 2024 10:35:17 -0700 (PDT)
-Message-ID: <7a7aa05f-9ae6-4ca0-a423-224fc78fbd0c@linaro.org>
-Date: Fri, 15 Mar 2024 18:35:15 +0100
+        Fri, 15 Mar 2024 10:36:21 -0700 (PDT)
+Message-ID: <a9ad625a-c6fd-44f1-8776-aa5d54b448ae@baylibre.com>
+Date: Fri, 15 Mar 2024 18:36:19 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -78,219 +76,115 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-From: Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH RFT 0/7] arm64: qcom: allow up to 4 lanes for the Type-C
- DisplayPort Altmode
-Content-Language: en-US, fr
-To: Luca Weiss <luca.weiss@fairphone.com>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konrad.dybcio@linaro.org>, Vinod Koul <vkoul@kernel.org>,
- Kishon Vijay Abraham I <kishon@kernel.org>, Rob Herring <robh@kernel.org>,
+Subject: Re: [PATCH 12/18] ASoC: codecs: mt6357: add MT6357 codec
+Content-Language: en-US
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>, Abhinav Kumar <quic_abhinavk@quicinc.com>
-Cc: linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20240229-topic-sm8x50-upstream-phy-combo-typec-mux-v1-0-07e24a231840@linaro.org>
- <CZUHV429NTF7.1GW9TN9NXB4J1@fairphone.com>
-Autocrypt: addr=neil.armstrong@linaro.org; keydata=
- xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
- GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
- BVF2WzvGyyeV1o4RTCYDnZ9VLLylJ9bneEaIs/7cjCEbipGGFlfIML3sfqnIvMAxIMZrvcl9
- qPV2k+KQ7q+aXavU5W+yLNn7QtXUB530Zlk/d2ETgzQ5FLYYnUDAaRl+8JUTjc0CNOTpCeik
- 80TZcE6f8M76Xa6yU8VcNko94Ck7iB4vj70q76P/J7kt98hklrr85/3NU3oti3nrIHmHABEB
- AAHNKk5laWwgQXJtc3Ryb25nIDxuZWlsLmFybXN0cm9uZ0BsaW5hcm8ub3JnPsLAkQQTAQoA
- OwIbIwULCQgHAwUVCgkICwUWAgMBAAIeAQIXgBYhBInsPQWERiF0UPIoSBaat7Gkz/iuBQJk
- Q5wSAhkBAAoJEBaat7Gkz/iuyhMIANiD94qDtUTJRfEW6GwXmtKWwl/mvqQtaTtZID2dos04
- YqBbshiJbejgVJjy+HODcNUIKBB3PSLaln4ltdsV73SBcwUNdzebfKspAQunCM22Mn6FBIxQ
- GizsMLcP/0FX4en9NaKGfK6ZdKK6kN1GR9YffMJd2P08EO8mHowmSRe/ExAODhAs9W7XXExw
- UNCY4pVJyRPpEhv373vvff60bHxc1k/FF9WaPscMt7hlkbFLUs85kHtQAmr8pV5Hy9ezsSRa
- GzJmiVclkPc2BY592IGBXRDQ38urXeM4nfhhvqA50b/nAEXc6FzqgXqDkEIwR66/Gbp0t3+r
- yQzpKRyQif3OwE0ETVkGzwEIALyKDN/OGURaHBVzwjgYq+ZtifvekdrSNl8TIDH8g1xicBYp
- QTbPn6bbSZbdvfeQPNCcD4/EhXZuhQXMcoJsQQQnO4vwVULmPGgtGf8PVc7dxKOeta+qUh6+
- SRh3vIcAUFHDT3f/Zdspz+e2E0hPV2hiSvICLk11qO6cyJE13zeNFoeY3ggrKY+IzbFomIZY
- 4yG6xI99NIPEVE9lNBXBKIlewIyVlkOaYvJWSV+p5gdJXOvScNN1epm5YHmf9aE2ZjnqZGoM
- Mtsyw18YoX9BqMFInxqYQQ3j/HpVgTSvmo5ea5qQDDUaCsaTf8UeDcwYOtgI8iL4oHcsGtUX
- oUk33HEAEQEAAcLAXwQYAQIACQUCTVkGzwIbDAAKCRAWmrexpM/4rrXiB/sGbkQ6itMrAIfn
- M7IbRuiSZS1unlySUVYu3SD6YBYnNi3G5EpbwfBNuT3H8//rVvtOFK4OD8cRYkxXRQmTvqa3
- 3eDIHu/zr1HMKErm+2SD6PO9umRef8V82o2oaCLvf4WeIssFjwB0b6a12opuRP7yo3E3gTCS
- KmbUuLv1CtxKQF+fUV1cVaTPMyT25Od+RC1K+iOR0F54oUJvJeq7fUzbn/KdlhA8XPGzwGRy
- 4zcsPWvwnXgfe5tk680fEKZVwOZKIEuJC3v+/yZpQzDvGYJvbyix0lHnrCzq43WefRHI5XTT
- QbM0WUIBIcGmq38+OgUsMYu4NzLu7uZFAcmp6h8g
-Organization: Linaro Developer Services
-In-Reply-To: <CZUHV429NTF7.1GW9TN9NXB4J1@fairphone.com>
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ Nicolas Belin <nbelin@baylibre.com>
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <20240226-audio-i350-v1-12-4fa1cea1667f@baylibre.com>
+ <9891855d-2284-42e4-9d3a-35ba406540e8@sirena.org.uk>
+ <c441a132-b16b-4244-a712-8971c902d4d7@baylibre.com>
+ <ff3d2db1-697b-42c6-a0f2-74276e9fc098@sirena.org.uk>
+ <dda0e6ba-4538-47a0-95e9-6adcfd4169a7@baylibre.com>
+ <0d31ffb2-9df5-4c3e-a728-902b71a1a713@sirena.org.uk>
+ <fd53a0e7-fa70-4c0d-b578-393183487335@baylibre.com>
+ <0a41b498-5cca-4487-a0e0-0df749f6e796@sirena.org.uk>
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <0a41b498-5cca-4487-a0e0-0df749f6e796@sirena.org.uk>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 
-On 15/03/2024 18:19, Luca Weiss wrote:
-> On Thu Feb 29, 2024 at 2:07 PM CET, Neil Armstrong wrote:
->> Register a typec mux in order to change the PHY mode on the Type-C
->> mux events depending on the mode and the svid when in Altmode setup.
->>
->> The DisplayPort phy should be left enabled if is still powered on
->> by the DRM DisplayPort controller, so bail out until the DisplayPort
->> PHY is not powered off.
->>
->> The Type-C Mode/SVID only changes on plug/unplug, and USB SAFE states
->> will be set in between of USB-Only, Combo and DisplayPort Only so
->> this will leave enough time to the DRM DisplayPort controller to
->> turn of the DisplayPort PHY.
->>
->> The patchset also includes bindings changes and DT changes.
->>
->> This has been successfully tested on an SM8550 board, but the
->> Thinkpad X13s deserved testing between non-PD USB, non-PD DisplayPort,
->> PD USB Hubs and PD Altmode Dongles to make sure the switch works
->> as expected.
->>
->> The DisplayPort 4 lanes setup can be check with:
->> $ cat /sys/kernel/debug/dri/ae01000.display-controller/DP-1/dp_debug
->> 	name = msm_dp
->> 	drm_dp_link
->> 		rate = 540000
->> 		num_lanes = 4
-> 
-> Hi Neil,
-> 
-> I tried this on QCM6490/SC7280 which should also support 4-lane DP but I
-> haven't had any success so far.
-> 
-> On top of your patches I added the following for my device:
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> index f5bd51806819..e7be17844da1 100644
-> --- a/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qcm6490-fairphone-fp5.dts
-> @@ -712,7 +712,7 @@ &mdss_dp {
->   };
->   
->   &mdss_dp_out {
-> -	data-lanes = <0 1>;
-> +	data-lanes = <0 1 2 3>;
->   	remote-endpoint = <&usb_dp_qmpphy_dp_in>;
->   };
->   
-> @@ -1344,6 +1344,7 @@ &usb_1_qmpphy {
->   	vdda-phy-supply = <&vreg_l6b>;
->   	vdda-pll-supply = <&vreg_l1b>;
->   
-> +	mode-switch;
->   	orientation-switch;
->   
->   	status = "okay";
-> 
-> 
-> The output of the dp_debug file shows it's trying to use 4 lanes:
-> 
->          name = msm_dp
->          drm_dp_link
->                  rate = 540000
->                  num_lanes = 4
->                  capabilities = 1
->          dp_panel_info:
->                  active = 0x0
->                  back_porch = 0x0
->                  front_porch = 0x0
->                  sync_width = 0x0
->                  active_low = 0x0
->                  h_skew = 0
->                  refresh rate = 0
->                  pixel clock khz = 0
->                  bpp = 0
->          dp_link:
->                  test_requested = 128
->                  num_lanes = 4
->                  bw_code = 20
->                  lclk = 540000000
->                  v_level = 2
->                  p_level = 0
-> 
-> But the monitor stays black and the following appears in dmesg:
-> (starts with plugging in a dongle, ends with unplugging it again)
-> 
-> [ 1773.538161] xhci-hcd xhci-hcd.2.auto: xHCI Host Controller
-> [ 1773.538197] xhci-hcd xhci-hcd.2.auto: new USB bus registered, assigned bus number 1
-> [ 1773.540215] xhci-hcd xhci-hcd.2.auto: hcc params 0x0230fe65 hci version 0x110 quirks 0x0000008000000010
-> [ 1773.540260] xhci-hcd xhci-hcd.2.auto: irq 185, io mem 0x0a600000
-> [ 1773.540372] xhci-hcd xhci-hcd.2.auto: xHCI Host Controller
-> [ 1773.540384] xhci-hcd xhci-hcd.2.auto: new USB bus registered, assigned bus number 2
-> [ 1773.540396] xhci-hcd xhci-hcd.2.auto: Host supports USB 3.0 SuperSpeed
-> [ 1773.540524] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.08
-> [ 1773.540534] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
-> [ 1773.540541] usb usb1: Product: xHCI Host Controller
-> [ 1773.540547] usb usb1: Manufacturer: Linux 6.8.0-00058-g113103fa3b95 xhci-hcd
-> [ 1773.540554] usb usb1: SerialNumber: xhci-hcd.2.auto
-> [ 1773.540999] hub 1-0:1.0: USB hub found
-> [ 1773.541028] hub 1-0:1.0: 1 port detected
-> [ 1773.542010] usb usb2: We don't know the algorithms for LPM for this host, disabling LPM.
-> [ 1773.542146] usb usb2: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.08
-> [ 1773.542162] usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
-> [ 1773.542174] usb usb2: Product: xHCI Host Controller
-> [ 1773.542183] usb usb2: Manufacturer: Linux 6.8.0-00058-g113103fa3b95 xhci-hcd
-> [ 1773.542193] usb usb2: SerialNumber: xhci-hcd.2.auto
-> [ 1773.543241] hub 2-0:1.0: USB hub found
-> [ 1773.543282] hub 2-0:1.0: 1 port detected
-> [ 1775.563969] [drm:dp_ctrl_link_train] *ERROR* max v_level reached
-> [ 1775.564031] [drm:dp_ctrl_link_train] *ERROR* link training #1 failed. ret=-11
 
-Interesting #1 means the 4 lanes are not physically connected to the other side,
-perhaps QCM6490/SC7280 requires a specific way to enable the 4 lanes in the PHY,
-or some fixups in the init tables.
 
-Abhinav, any suggestions ?
+On 15/03/2024 16:15, Mark Brown wrote:
+> On Fri, Mar 15, 2024 at 04:05:21PM +0100, Alexandre Mergnat wrote:
+>> On 15/03/2024 15:30, Mark Brown wrote:
+> 
+>>>> Let me know, when you change de gain to do a ramp down (start from user gain
+>>>> to gain=-40db), next time for the ramp up, how/where do you find the user
+>>>> gain ?
+> 
+>>> In the register.  You only need to reset the gain to -40dB at the start
+>>> of the ramp.
+> 
+>> Sorry but I don't understand your logic, I'm not able to implement it...
+>> If I'm at -10dB and doing a ramp to reach -40dB, next time I will read the
+>> register the value will be -40dB.
+> 
+> After we've done the ramp and turned the amplifier off we can just
+> restore the desired value?  The hardware is not going to care what the
+> volume is while it's not enabled.
 
-Neil
+If you do that, HP will be enabled at the saved gain, and after that you 
+will do the ramp. To avoid pop, the driver should be rewrite to:
 
-> [ 1775.597965] [drm:dp_display_process_hpd_high] *ERROR* failed to complete DP link training
-> [ 1775.598149] [drm:dp_aux_isr] *ERROR* Unexpected DP AUX IRQ 0x01000000 when not busy
-> [ 1776.632081] [drm:dp_ctrl_link_train] *ERROR* max v_level reached
-> [ 1776.632145] [drm:dp_ctrl_link_train] *ERROR* link training #1 failed. ret=-11
-> [ 1776.662978] [drm:dp_display_process_hpd_high] *ERROR* failed to complete DP link training
-> [ 1776.663039] [drm:dp_aux_isr] *ERROR* Unexpected DP AUX IRQ 0x01000000 when not busy
-> [ 1777.717501] [drm:dp_ctrl_link_train] *ERROR* max v_level reached
-> [ 1777.717524] [drm:dp_ctrl_link_train] *ERROR* link training #1 failed. ret=-11
-> [ 1777.751427] [drm:dp_display_process_hpd_high] *ERROR* failed to complete DP link training
-> [ 1777.751518] [drm:dp_aux_isr] *ERROR* Unexpected DP AUX IRQ 0x01000000 when not busy
-> [ 1778.793550] [drm:dp_ctrl_link_train] *ERROR* max v_level reached
-> [ 1778.793617] [drm:dp_ctrl_link_train] *ERROR* link training #1 failed. ret=-11
-> [ 1778.827260] [drm:dp_aux_isr] *ERROR* Unexpected DP AUX IRQ 0x01000000 when not busy
-> [ 1778.827334] [drm:dp_display_process_hpd_high] *ERROR* failed to complete DP link training
-> [ 1779.279889] xhci-hcd xhci-hcd.2.auto: remove, state 1
-> [ 1779.279942] usb usb2: USB disconnect, device number 1
-> [ 1779.311920] xhci-hcd xhci-hcd.2.auto: USB bus 2 deregistered
-> [ 1779.311987] xhci-hcd xhci-hcd.2.auto: remove, state 4
-> [ 1779.312019] usb usb1: USB disconnect, device number 1
-> [ 1779.317772] xhci-hcd xhci-hcd.2.auto: USB bus 1 deregistered
-> 
-> Regards
-> Luca
-> 
-> 
->> ...
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->> Neil Armstrong (7):
->>        dt-bindings: phy: qcom,sc8280xp-qmp-usb43dp: Add mode-switch
->>        phy: qcom: qmp-combo: store DP phy power state
->>        phy: qcom: qmp-combo: introduce QPHY_MODE
->>        phy: qcom: qmp-combo: register a typec mux to change the QPHY_MODE
->>        arm64: dts: qcom-sm8550: allow 4 lanes for DisplayPort and enable QMP PHY mode-switch
->>        arm64: dts: qcom-sm8650: allow 4 lanes for DisplayPort and enable QMP PHY mode-switch
->>        arm64: dts: qcom-mode-switch: allow 4 lanes for DisplayPort and enable QMP PHY mode-switch
->>
->>   .../phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml         |   5 +
->>   .../dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts     |   6 +-
->>   arch/arm64/boot/dts/qcom/sm8550-hdk.dts            |   3 +-
->>   arch/arm64/boot/dts/qcom/sm8550-qrd.dts            |   3 +-
->>   arch/arm64/boot/dts/qcom/sm8650-qrd.dts            |   3 +-
->>   drivers/phy/qualcomm/phy-qcom-qmp-combo.c          | 168 +++++++++++++++++++--
->>   6 files changed, 173 insertions(+), 15 deletions(-)
->> ---
->> base-commit: b321c0e8ca754d8cd9f23ceba958e3ea93c6519e
->> change-id: 20240229-topic-sm8x50-upstream-phy-combo-typec-mux-31b5252513c9
->>
->> Best regards,
-> 
+   Read gain in the reg and save it locally
+   Set -40dB in the reg
+   Enable HP
+   Do ramp
 
+And for the shutdown:
+
+   Read gain in the reg and save it locally
+   Do ramp
+   Disable HP
+   Set saved gain in the reg
+
+
+To resume, that add 4 more steps to save 2 integers into the driver 
+structure.
+
+IMHO, I don't think it make the code more readable or optimized, but I 
+don't have a strong opinion about that, so if you think it's better, I 
+will change it.
+
+
+> 
+>> This implementation is also done in other MTK audio codec drivers.
+> 
+> Perhaps they should be updated too?
+> 
+>>>> When microphone isn't capturing, the gain read back from the register is
+>>>> 0dB. I've put some logs in my code and do capture to show how it works:
+> 
+>>> Is this a property of the hardware or a property of your driver?
+> 
+>> At the end of the capture, the gain is set to 0dB by the driver.
+>> At the start of the capture, the gain is set to the setup gain.
+> 
+> So that's a property of the driver then?
+
+Yes
+
+> 
+>> AFAII from the comment in the code, it's done to avoid the "pop noises".
+> 
+> Yes, that's the usual reason to ramp gains.  Though if you've just
+> copied the code without checking that it's needed it's possible that
+> this is something that's been fixed in current hardware.
+
+I did the test at 24dB with and without the "pop filter". Isn't big but 
+I ear the pop at the start of the record without the "pop filter".
+
+To be clear, the algo/behavior of this code is an implementation based 
+on the 6k+ lines downstream code for this specific audio codec. But the 
+shape/style is based on upstreamed drivers like mt6358.c.
+
+-- 
+Regards,
+Alexandre
 
