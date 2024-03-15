@@ -1,231 +1,129 @@
-Return-Path: <devicetree+bounces-50688-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50689-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B23687CB61
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:30:31 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 63FC887CB67
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:31:39 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EE521C20BD8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 10:30:30 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 268F32834A5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 10:31:38 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D6C218E0E;
-	Fri, 15 Mar 2024 10:30:28 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EACC818EA8;
+	Fri, 15 Mar 2024 10:31:33 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NafJHbAd"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WQpLCfN+"
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com [209.85.128.49])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C0E17C60;
-	Fri, 15 Mar 2024 10:30:26 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id A489F18040;
+	Fri, 15 Mar 2024 10:31:31 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.49
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710498628; cv=none; b=HTSRLu1Bu608sGzZ60MVsvdilCWLgJifAnKc8lINssdWARF+o8buug6Mz4hXcZnxy62GcRhdczFSvGoiuPG2yJbngGso9xDep5PO3RGaUdyKD6N9BS94/jr7JjJDqe9zItnqhkzsJ0FBs3mvcircqWaGgRq+MA7cQakyWn3YK0Y=
+	t=1710498693; cv=none; b=hl2ySdmxwFIKz9Xdizqu5dWwmY1HqarHWhjMaa3f3Z7lnGF2TfegFPzvOmCJyW5vcNiAfut1iIaariqjDMXcDss2WL7JU20aM/t+vzUE1f3EUerUvSf8LbgWioiGs/ZzvV09NzM8HGn+rYTf8p72CSR9YAU9A5Nw3z5B2cbiXBQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710498628; c=relaxed/simple;
-	bh=Wi/QbN+8ipUEYeOAbUm86xpNE3oPJ0g7EhQMoF7njRU=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AXKTIOUk00g4+5zjNfG2GDawnIz7TH+cFMzYHHKnREqj7fwftVmLgx+zhwWFQg5DA48Ob9bYQJ6yebW4GWJ2DabbjWmdCPReBTj8JBBuAoaEYoZF4XWX1VOv4kUbk6qxvf02O/gK44jwoVGTfXODSo0AZ1GiMiMMWVeKE46jOp0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NafJHbAd; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1710498618;
-	bh=Wi/QbN+8ipUEYeOAbUm86xpNE3oPJ0g7EhQMoF7njRU=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=NafJHbAd9/omf5ShUyuD5GKzQhS3XJhF4WMagWXntKDm3n8ti0taj0esJziU84Mdp
-	 WxYGljPwkXxB/PIz9ZLteJsSqXoYKViMdBJzKwxa4hy1ptRIMx8uVa3dNz6zuawAiD
-	 BT6Otsgt/kFOBfErLJb6+zoetXvFppHZ86JA1bLOb2cBtH40Cs1Lr/UdGQjmk1R6D1
-	 sc2FoITqwOwvMCEk7Qf8hjr9Tku2FW4ps+x36BQYhVeob6INGvf88oXDqrVGj72evN
-	 ojyf3oZ8szTOXxre1VJoYt0ebtUIYWZdugBIh++MpGJXZ2oS3Wmx5TepO4gGVBoWhb
-	 d/+ulbrcypKuw==
-Received: from localhost (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-	(No client certificate requested)
-	(Authenticated sender: sebastianfricke)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9D6383782083;
-	Fri, 15 Mar 2024 10:30:18 +0000 (UTC)
-Date: Fri, 15 Mar 2024 11:30:17 +0100
-From: Sebastian Fricke <sebastian.fricke@collabora.com>
-To: Yunfei Dong <yunfei.dong@mediatek.com>
-Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
-	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
-	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
-	Nathan Hebert <nhebert@chromium.org>,
-	Hsin-Yi Wang <hsinyi@chromium.org>,
-	Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
-	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH] media: mediatek: vcodec: add decoder command to support
- stateless decoder
-Message-ID: <20240315094706.xcpjy5s4fjtjvn7j@basti-XPS-13-9310>
-References: <20240315072629.27738-1-yunfei.dong@mediatek.com>
+	s=arc-20240116; t=1710498693; c=relaxed/simple;
+	bh=RJX4FJHlMm3oenQeaE386MoRXPyn2WHUWes6h41yR+o=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=bYMqFUK1DKCZYEUcO0A47g9mEr2xQUAYqgCPEH6UijJGWZzDq6UQVaHeET/IlyrCGY3kPS9ilmNTYwXhN7geZ48esdoRXycZD36YSNrRsiv3Vwb9dFEMHRFgJcEDxHyRGVgewg94gPiObaCsCZzrh9F+rgjnl5Iq1DlqKLVmfzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WQpLCfN+; arc=none smtp.client-ip=209.85.128.49
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-wm1-f49.google.com with SMTP id 5b1f17b1804b1-413f936a17cso7913695e9.1;
+        Fri, 15 Mar 2024 03:31:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710498690; x=1711103490; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VcarFVU9V+h10+R9Y+pltNDAfj/DLbvuBUHZVFKImu8=;
+        b=WQpLCfN+iaxt/ee87vafFJfKxNm3iz6d2SDFjQbVQ9XP759Xilpf17s5jIPXFg6hlb
+         X5GswSalEjn5j7F9Em6H2pYAAtLooxf0V1HafwGjZ4k85AJFKrhiDoUwMY3u2zpbQyjl
+         9j1gJrFxbWV66iibU2422l/TMq4cL7LtRycsgaZo/Vv7ok2d6fZ/frDl+fP8LoWo6Muc
+         27/TCLc9VD4CsZ5UGVTZlurDJ3tZY/r6T71yzew/tEL6XK2JHkj8AAU0SD3xR5fe1bdm
+         o9NjmEukAR1UPSLq3FLWUpZXmbooWUWx/r/ql3jgeEYqyVdcqAq58hVXJ91gfl/o1tlN
+         DJ7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710498690; x=1711103490;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VcarFVU9V+h10+R9Y+pltNDAfj/DLbvuBUHZVFKImu8=;
+        b=YNRyTHVwbnlJMrGVFtw5EVTpTzrVlDdqysV3kNTTwUxYRRhsS0+psng6ip4f9nTuYb
+         t66aYuX4ry383T/pAxpoXSLdfNpV9iNrPMnye5/zVl7ytyuiCx9kiSTI1szo8IPDbt+F
+         hBNnWvLGS3b59vcLWdR92MAaLDAYR63/wpF+AUD3ysbjvGEGR+I7wI+LJzFf4RWVrIWX
+         IRl0Z1xF51Mv9xGLYw7J9jhIa96OxzLwulRTO0DLGAXLjJa2huZnEnuvDBgRUjP4zfSW
+         /C3rSD83MXcpcLdKgyTvAbjOln3NkMK56cAcJqSqRfQMQoub9U1yCh0ts6hlghlwohMs
+         e81g==
+X-Forwarded-Encrypted: i=1; AJvYcCUa+WnbBgS80GGBKfWyESF7iNJdDavlhZ78QaWxlFA6GvRPqmFbR+Lwq54cxvC6ta3tzxaINMmRB9IW9a+L2jlHml2zxVWsuRUFh9wQwrQj4RKeRXDHJEX2qmm1E9igLE2JdN/jhCGBYWW3Aw8dc8f5PWDTlirZH9fps/s6errIZqO1ww==
+X-Gm-Message-State: AOJu0Yw/3VjaAcUITaRVghmUbf/S0hqD6vUGUlLcXgGPlgc1RF6LJHp1
+	qys01PvMiKL2sTGEMhCo5LUX6FySHf6vhddld64R0Ql7JZLcCneS
+X-Google-Smtp-Source: AGHT+IHgVYsh5iptX0jiwjtNaalLI8OCEKEflTEvzb9QsWn/ScXXUUC5F8WsdU04ZpxykUC+GpPzog==
+X-Received: by 2002:a05:600c:5117:b0:413:fea7:bd19 with SMTP id o23-20020a05600c511700b00413fea7bd19mr1791964wms.15.1710498689705;
+        Fri, 15 Mar 2024 03:31:29 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2500:a01:ae92:6adf:5cb6:274c])
+        by smtp.gmail.com with ESMTPSA id l19-20020a05600c4f1300b004130378fb77sm8676549wmq.6.2024.03.15.03.31.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Mar 2024 03:31:29 -0700 (PDT)
+From: Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To: Geert Uytterhoeven <geert+renesas@glider.be>,
+	Chris Brandt <chris.brandt@renesas.com>,
+	Andi Shyti <andi.shyti@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc: linux-renesas-soc@vger.kernel.org,
+	linux-i2c@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Prabhakar <prabhakar.csengg@gmail.com>,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2 0/4] Add RIIC support for Renesas RZ/V2H SoC
+Date: Fri, 15 Mar 2024 10:30:29 +0000
+Message-Id: <20240315103033.141226-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20240315072629.27738-1-yunfei.dong@mediatek.com>
+Content-Transfer-Encoding: 8bit
 
-Hey Yunfei,
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-On 15.03.2024 15:26, Yunfei Dong wrote:
->The supported decoder commands are different for stateless and
->stateful architecture. Adding stateless decoder commands to fix
+Hi all,
 
-s/Adding/Add/
+This patch series aims to add RIIC support for Renesas RZ/V2H(P) SoC.
 
->below v4l2-compliance test error.
+v1->v2
+- Dropped dt binding which update the comment.
+- Used a const for V2H SoC instead of enum in items list
+- Dropped internal review tags
+- Renamed i2c read/write to riic_readb/riic_writeb
+- Made riic as first parameter for riic_writeb
+- Dropped family from struct riic_of_data
+- Included RIIC_REG_END in enum list as flexible array member
+  in a struct with no named members is not allowed
 
-s/below v4l2-compliance test error./the v4l2-compliance test error below./
+Cheers,
+Prabhakar
 
->
->Codec ioctls:
->    VIDIOC_ENCODER_CMD returned -1 (Inappropriate ioctl for device)
->    VIDIOC_TRY_ENCODER_CMD returned -1 (Inappropriate ioctl for device)
-> test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
->    VIDIOC_G_ENC_INDEX returned -1 (Inappropriate ioctl for device)
-> test VIDIOC_G_ENC_INDEX: OK (Not Supported)
->    VIDIOC_DECODER_CMD returned -1 (Invalid argument)
->    VIDIOC_TRY_DECODER_CMD returned -1 (Invalid argument)
->    VIDIOC_TRY_DECODER_CMD returned -1 (Invalid argument)
->    fail: v4l2-test-codecs.cpp(126): ret
-> test VIDIOC_(TRY_)DECODER_CMD: FAIL
->
->Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
->---
-> .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  | 65 +++++++++++++++++--
-> 1 file changed, 59 insertions(+), 6 deletions(-)
->
->diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
->index ba742f0e391d..90579dd92cae 100644
->--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
->+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
->@@ -80,21 +80,20 @@ static struct mtk_q_data *mtk_vdec_get_q_data(struct mtk_vcodec_dec_ctx *ctx,
-> 	return &ctx->q_data[MTK_Q_DATA_DST];
-> }
->
->-static int vidioc_try_decoder_cmd(struct file *file, void *priv,
->-				struct v4l2_decoder_cmd *cmd)
->+static int mtk_vcodec_stateful_try_decoder_cmd(struct file *file, void *priv,
->+					       struct v4l2_decoder_cmd *cmd)
+Lad Prabhakar (4):
+  dt-bindings: i2c: renesas,riic: Document R9A09G057 support
+  i2c: riic: Introduce helper functions for I2C read/write operations
+  i2c: riic: Pass register offsets and chip details as OF data
+  i2c: riic: Add support for R9A09G057 SoC
 
-In some cases you seem to name these functions with the prefix
-`mtk_vdec` and sometimes with the prefix `mtk_vcodec` but all of these
-are for decoders, so could you settle for one naming scheme? Also as
-these functions are static I don't think it is strictly necessary to add
-a prefix for each function.
+ .../devicetree/bindings/i2c/renesas,riic.yaml |  19 +--
+ drivers/i2c/busses/i2c-riic.c                 | 125 +++++++++++++-----
+ 2 files changed, 100 insertions(+), 44 deletions(-)
 
-> {
-> 	return v4l2_m2m_ioctl_try_decoder_cmd(file, priv, cmd);
-> }
->
->-
->-static int vidioc_decoder_cmd(struct file *file, void *priv,
->-				struct v4l2_decoder_cmd *cmd)
->+static int mtk_vcodec_stateful_decoder_cmd(struct file *file, void *priv,
->+					   struct v4l2_decoder_cmd *cmd)
-> {
-> 	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
-> 	struct vb2_queue *src_vq, *dst_vq;
-> 	int ret;
->
->-	ret = vidioc_try_decoder_cmd(file, priv, cmd);
->+	ret = mtk_vcodec_stateful_try_decoder_cmd(file, priv, cmd);
-> 	if (ret)
-> 		return ret;
->
->@@ -128,6 +127,60 @@ static int vidioc_decoder_cmd(struct file *file, void *priv,
-> 	return 0;
-> }
->
->+static int mtk_vcodec_stateless_try_decoder_cmd(struct file *file, void *priv,
->+						struct v4l2_decoder_cmd *cmd)
->+{
->+	return v4l2_m2m_ioctl_stateless_try_decoder_cmd(file, priv, cmd);
->+}
->+
->+static int mtk_vcodec_stateless_decoder_cmd(struct file *file, void *priv,
->+					    struct v4l2_decoder_cmd *cmd)
->+{
->+	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
->+	int ret;
->+
->+	ret = v4l2_m2m_ioctl_stateless_try_decoder_cmd(file, priv, cmd);
->+	if (ret)
->+		return ret;
->+
->+	mtk_v4l2_vdec_dbg(3, ctx, "decoder cmd=%u", cmd->cmd);
->+	switch (cmd->cmd) {
->+	case V4L2_DEC_CMD_FLUSH:
->+		/*
->+		 * If the flag of output buffer is set with V4L2_BUF_FLAG_M2M_HOLD_CAPTURE_BUF,
+-- 
+2.34.1
 
-s/output/the output/
-s/is set with/equals/
-
->+		 * this command will prevent dequeueing the capture buffer containing the last
->+		 * decoded frame. Or do nothing
->+		 */
->+		break;
->+
-
-Please remove this newline.
-
->+	default:
->+		mtk_v4l2_vdec_err(ctx, "invalid stateless decoder cmd=%u", cmd->cmd);
->+		return -EINVAL;
->+	}
->+
->+	return 0;
->+}
->+
->+static int vidioc_try_decoder_cmd(struct file *file, void *priv, struct v4l2_decoder_cmd *cmd)
->+{
->+	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
->+
->+	if (ctx->dev->vdec_pdata->uses_stateless_api)
->+		return mtk_vcodec_stateless_try_decoder_cmd(file, priv, cmd);
->+	else
-
-As these conditional branches contain return statements you can skip the
-else.
-E.g.
-	if (ctx->dev->vdec_pdata->uses_stateless_api)
-		return mtk_vcodec_stateless_try_decoder_cmd(file, priv, cmd);
-   return mtk_vcodec_stateful_try_decoder_cmd(file, priv, cmd);
-
->+		return mtk_vcodec_stateful_try_decoder_cmd(file, priv, cmd);
->+}
->+
->+static int vidioc_decoder_cmd(struct file *file, void *priv, struct v4l2_decoder_cmd *cmd)
->+{
->+	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
->+
->+	if (ctx->dev->vdec_pdata->uses_stateless_api)
->+		return mtk_vcodec_stateless_decoder_cmd(file, priv, cmd);
->+	else
-
-Same as mentioned above.
-
->+		return mtk_vcodec_stateful_decoder_cmd(file, priv, cmd);
->+}
->+
-> void mtk_vdec_unlock(struct mtk_vcodec_dec_ctx *ctx)
-> {
-> 	mutex_unlock(&ctx->dev->dec_mutex[ctx->hw_id]);
->-- 
->2.18.0
->
 
