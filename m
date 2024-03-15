@@ -1,175 +1,154 @@
-Return-Path: <devicetree+bounces-50750-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50751-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 994F387CEC7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:26:56 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5C33E87CEF3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:32:12 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 5B1C0286B43
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:26:55 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 0D9D0283C97
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:32:03 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9257D3FE5D;
-	Fri, 15 Mar 2024 14:25:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B819B47F69;
+	Fri, 15 Mar 2024 14:30:12 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b="JT0oytOB"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="BGoVIVh0"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3D9883FB09;
-	Fri, 15 Mar 2024 14:25:36 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=67.231.149.25
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 89FA04654E;
+	Fri, 15 Mar 2024 14:30:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710512739; cv=none; b=G6TAcXxl8eG1JanRK8bCd6iJhPiFe0P5Isyahyl4nUjcUXui6xQWV42NI7eODBmIJZElRblfcIQDvuQ69qkLCR+LfWReWKnUhwi+N/M0rzatJXOWnKqVZE07ASqpcRGYA2MB3kENMngIvxuyRrRQ5brwgJBGcR2dcxLYXwjse9o=
+	t=1710513012; cv=none; b=cpVH86hydWdJ4Qzpoq98V6cuN56v29ytcRJbXje4FqW1AhjdMmFg5Gkfmv9HWDA+sLKD0JIesMoYA5ZoOvsrxhLplWZIvwvEhjMlLqLIdcmVsGKRIAwhhikJwKnH9lv4MUocuhr7whCFLKXKxSkIEgaz9N2VYQuXEK1OPQTVE9E=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710512739; c=relaxed/simple;
-	bh=J0t62LSPNxuLQ8sAlR7A5CJjOjk4klD5rEJ4FkcqdBw=;
-	h=Date:From:To:CC:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=skDvW86FH+Pz2n2v6XIi/1lJid28frvcfuJfvVpAzCopAKAVn6IToepmKB3ayuTfbY1v4tfCRusYrrbtX0cXvJfsC/Kpgj7HCuSjRM4HrektEwMpc4rkUJ3vTd3yW7BKZYJdBRafSWnwg++FB6hidDYQzdyrluAMfuyxuQgUgtw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com; spf=pass smtp.mailfrom=opensource.cirrus.com; dkim=pass (2048-bit key) header.d=cirrus.com header.i=@cirrus.com header.b=JT0oytOB; arc=none smtp.client-ip=67.231.149.25
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=opensource.cirrus.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=opensource.cirrus.com
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-	by mx0a-001ae601.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42FECB36029813;
-	Fri, 15 Mar 2024 09:25:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=
-	date:from:to:cc:subject:message-id:references:mime-version
-	:content-type:in-reply-to; s=PODMain02222019; bh=eqTBeVAurXibsXw
-	108ThltF9NYSzH+Wv/Sjzq+Ilm38=; b=JT0oytOBaYyUGB+7yGFb5N+9897XESK
-	pxIFgfl2gdhmSjrGzuTupIaKpVrQZe6rvYkfewuc48/ih4/wZDVRkATz5NBNXRH+
-	8zQFyMvZ7JRlr5YWYSk07HcxSuVvod7spbW3LxM+dErHCgCrHNcEnNwKv6xUJkAR
-	w8hu46m34z/b2Vkh4Tk2ru07qDrejrwWmnLoGq8Ej3GIefOFLOKAemFIElwk3WRE
-	IziSxAbnO20pGgJ5LhOk0Pi9xMb5HwoA2sFuXJU1fzL/Pxu9PZtExIfHa8tZtB5p
-	H1vxHUoXzHrTCZgvqe/JBUaX9D9FnRupLu1Tgs7FroCmtRlJ/3BTUJA==
-Received: from ediex02.ad.cirrus.com ([84.19.233.68])
-	by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3wv9xp8pwc-1
-	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-	Fri, 15 Mar 2024 09:25:20 -0500 (CDT)
-Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4; Fri, 15 Mar
- 2024 14:25:18 +0000
-Received: from ediswmail9.ad.cirrus.com (198.61.86.93) by
- ediex01.ad.cirrus.com (198.61.84.80) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1544.4
- via Frontend Transport; Fri, 15 Mar 2024 14:25:18 +0000
-Received: from ediswmail9.ad.cirrus.com (ediswmail9.ad.cirrus.com [198.61.86.93])
-	by ediswmail9.ad.cirrus.com (Postfix) with ESMTPS id 385E382024B;
-	Fri, 15 Mar 2024 14:25:18 +0000 (UTC)
-Date: Fri, 15 Mar 2024 14:25:17 +0000
-From: Charles Keepax <ckeepax@opensource.cirrus.com>
-To: Andrejs Cainikovs <andrejs.cainikovs@gmail.com>
-CC: Jai Luthra <j-luthra@ti.com>,
-        Francesco Dolcini
-	<francesco.dolcini@toradex.com>,
-        Nishanth Menon <nm@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero
- Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof
- Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley
-	<conor+dt@kernel.org>,
-        Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-Subject: Re: [PATCH v1] arm64: dts: ti: verdin-am62: dahlia: fix audio clock
-Message-ID: <ZfRaTcDSSy+5zqeb@ediswmail9.ad.cirrus.com>
-References: <20240315102500.18492-1-andrejs.cainikovs@gmail.com>
+	s=arc-20240116; t=1710513012; c=relaxed/simple;
+	bh=y9UTrQR60pzrt4WbzQGYuGVl4ayHy9bpcn+b1iICLzs=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=dR9sVnvUujKClsb4V7dv/waop4p4//JjtRvBkhblkYEnM8FGEh0EZ6hanhYz5u5U5XWzQu7iw9JYPN+LpRH3RHBRmyNtmZUIqm+MawkhRroa4+d36EoXgSebrUOZwStbVAfv5DgJK6QiX1OD1KRmxcmOVU9EsRWnqMMrG30qiGE=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=BGoVIVh0; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 094F5C433F1;
+	Fri, 15 Mar 2024 14:30:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710513012;
+	bh=y9UTrQR60pzrt4WbzQGYuGVl4ayHy9bpcn+b1iICLzs=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=BGoVIVh0xKRjHYfUEkZgVdUX4aDhwpU4ARn/sMVBEI1COT2p7VK3grcrtYC4rTTjJ
+	 ufBJJQYQ6fgBenIL7SI5Vtyg+3H6cblDWDmW/KjsYbU92qjg0vuLKDdgHEqabV3fqZ
+	 QubJ4yaoz7eJ1YEnlTsz6HB7evsn2U31Qv5q3FLzFNJyCd8UDg9nclG+ZRnBnmQ5iV
+	 XypU7z9D2SLN6njnByNBVNOgwth6Korsr2Zz/bfQuEL8b9G6O6d1Gf7hOFk61HFFH1
+	 wY37D4Gq8RO5xPn/7OMApVE+XjQSIigrDkQZbIrErOAO1yhsQUS16ir+kCudsiDvZC
+	 fcwNBMRsCKuCw==
+Date: Fri, 15 Mar 2024 14:30:02 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+	Nicolas Belin <nbelin@baylibre.com>
+Subject: Re: [PATCH 12/18] ASoC: codecs: mt6357: add MT6357 codec
+Message-ID: <0d31ffb2-9df5-4c3e-a728-902b71a1a713@sirena.org.uk>
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <20240226-audio-i350-v1-12-4fa1cea1667f@baylibre.com>
+ <9891855d-2284-42e4-9d3a-35ba406540e8@sirena.org.uk>
+ <c441a132-b16b-4244-a712-8971c902d4d7@baylibre.com>
+ <ff3d2db1-697b-42c6-a0f2-74276e9fc098@sirena.org.uk>
+ <dda0e6ba-4538-47a0-95e9-6adcfd4169a7@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="K7ZVz5OiwuIdg9jd"
 Content-Disposition: inline
-In-Reply-To: <20240315102500.18492-1-andrejs.cainikovs@gmail.com>
-X-Proofpoint-ORIG-GUID: JZSfResCCk8C2VAuxk8LCH2kvc2Y0cnN
-X-Proofpoint-GUID: JZSfResCCk8C2VAuxk8LCH2kvc2Y0cnN
-X-Proofpoint-Spam-Reason: safe
+In-Reply-To: <dda0e6ba-4538-47a0-95e9-6adcfd4169a7@baylibre.com>
+X-Cookie: A well-known friend is a treasure.
 
-On Fri, Mar 15, 2024 at 11:25:00AM +0100, Andrejs Cainikovs wrote:
-> From: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-> 
-> In current configuration, wm8904 codec on Dahlia carrier board provides
-> distorted audio output. This happens due to reference clock is fixed to
-> 25MHz and no FLL is enabled. During playback following parameters are set:
-> 
-> 44100Hz:
-> 
-> [  310.276924] wm8904 1-001a: Target BCLK is 1411200Hz
-> [  310.276990] wm8904 1-001a: Using 25000000Hz MCLK
-> [  310.277001] wm8904 1-001a: CLK_SYS is 12500000Hz
-> [  310.277018] wm8904 1-001a: Selected CLK_SYS_RATIO of 256
-> [  310.277026] wm8904 1-001a: Selected SAMPLE_RATE of 44100Hz
-> [  310.277034] wm8904 1-001a: Selected BCLK_DIV of 80 for 1562500Hz BCLK
-> [  310.277044] wm8904 1-001a: LRCLK_RATE is 35
-> 
-> Deviation = 1411200 vs 1562500 = 10.721%
-> Also, LRCLK_RATE is 35, should be 32.
-> 
-> 48000Hz:
-> 
-> [  302.449970] wm8904 1-001a: Target BCLK is 1536000Hz
-> [  302.450037] wm8904 1-001a: Using 25000000Hz MCLK
-> [  302.450049] wm8904 1-001a: CLK_SYS is 12500000Hz
-> [  302.450065] wm8904 1-001a: Selected CLK_SYS_RATIO of 256
-> [  302.450074] wm8904 1-001a: Selected SAMPLE_RATE of 48000Hz
-> [  302.450083] wm8904 1-001a: Selected BCLK_DIV of 80 for 1562500Hz BCLK
-> [  302.450092] wm8904 1-001a: LRCLK_RATE is 32
-> 
-> Deviation = 1536000 vs 1562500 = 1.725%
-> 
-> Enabling wm8904 FLL via providing mclk-fs property to simple-audio-card
-> configures clocks properly, but also adjusts audio reference clock
-> (mclk), which in case of TI AM62 should be avoided, as it only
-> supports 25MHz output [1][2].
-> 
-> This change enables FLL on wm8904 by providing mclk-fs, and drops
-> audio reference clock out of DAI configuration, which prevents
-> simple-audio-card to adjust it before every playback [3].
-> 
-> 41000Hz:
-> 
-> [  111.820533] wm8904 1-001a: FLL configured for 25000000Hz->11289600Hz
-> [  111.820597] wm8904 1-001a: Clock source is 0 at 11289600Hz
-> [  111.820651] wm8904 1-001a: Using 11289600Hz FLL clock
-> [  111.820703] wm8904 1-001a: CLK_SYS is 11289600Hz
-> [  111.820798] wm8904 1-001a: Target BCLK is 1411200Hz
-> [  111.820847] wm8904 1-001a: Using 11289600Hz FLL clock
-> [  111.820894] wm8904 1-001a: CLK_SYS is 11289600Hz
-> [  111.820933] wm8904 1-001a: Selected CLK_SYS_RATIO of 256
-> [  111.820971] wm8904 1-001a: Selected SAMPLE_RATE of 44100Hz
-> [  111.821009] wm8904 1-001a: Selected BCLK_DIV of 80 for 1411200Hz BCLK
-> [  111.821051] wm8904 1-001a: LRCLK_RATE is 32
-> 
-> 48000Hz:
-> 
-> [  144.119254] wm8904 1-001a: FLL configured for 25000000Hz->12288000Hz
-> [  144.119309] wm8904 1-001a: Clock source is 0 at 12288000Hz
-> [  144.119364] wm8904 1-001a: Using 12288000Hz FLL clock
-> [  144.119413] wm8904 1-001a: CLK_SYS is 12288000Hz
-> [  144.119512] wm8904 1-001a: Target BCLK is 1536000Hz
-> [  144.119561] wm8904 1-001a: Using 12288000Hz FLL clock
-> [  144.119608] wm8904 1-001a: CLK_SYS is 12288000Hz
-> [  144.119646] wm8904 1-001a: Selected CLK_SYS_RATIO of 256
-> [  144.119685] wm8904 1-001a: Selected SAMPLE_RATE of 48000Hz
-> [  144.119723] wm8904 1-001a: Selected BCLK_DIV of 80 for 1536000Hz BCLK
-> [  144.119764] wm8904 1-001a: LRCLK_RATE is 32
-> 
-> [1]: https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1175479/processor-sdk-am62x-output-audio_ext_refclk0-as-mclk-for-codec-and-mcbsp/4444986#4444986
-> [2]: https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1188051/am625-audio_ext_refclk1-clock-output---dts-support/4476322#4476322
-> [3]: sound/soc/generic/simple-card-utils.c#L441
-> 
-> Fixes: f5bf894c865b ("arm64: dts: ti: verdin-am62: dahlia: add sound card")
-> Suggested-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-> ---
 
-Reviewed-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+--K7ZVz5OiwuIdg9jd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks,
-Charles
+On Fri, Mar 15, 2024 at 12:01:12PM +0100, Alexandre Mergnat wrote:
+> On 13/03/2024 18:23, Mark Brown wrote:
+> > On Tue, Mar 12, 2024 at 07:03:25PM +0100, Alexandre Mergnat wrote:
+
+> > > Actually you must save the values because the gain selected by the user will
+> > > be override to do a ramp => volume_ramp(.....):
+> > > - When you switch on the HP, you start from gain=-40db to final_gain
+> > > (selected by user).
+> > > - When you switch off the HP, you start from final_gain (selected by user)
+> > > to gain=-40db.
+
+> > You can just read the value back when you need to do a ramp?
+
+> You can't. Because you will read -40db when HP isn't playing sound. That is
+> why the gain is saved into the struct.
+
+> Let me know, when you change de gain to do a ramp down (start from user gain
+> to gain=-40db), next time for the ramp up, how/where do you find the user
+> gain ?
+
+In the register.  You only need to reset the gain to -40dB at the start
+of the ramp.
+
+> > > Also, the microphone's gain change when it's enabled/disabled.
+
+> > I don't understand what this means?
+
+> When microphone isn't capturing, the gain read back from the register is
+> 0dB. I've put some logs in my code and do capture to show how it works:
+
+Is this a property of the hardware or a property of your driver?
+
+> > > > > +	/* ul channel swap */
+> > > > > +	SOC_SINGLE("UL LR Swap", MT6357_AFE_UL_DL_CON0, AFE_UL_LR_SWAP_SFT, 1, 0),
+
+> > > > On/off controls should end in Switch.
+
+> > > Sorry, I don't understand your comment. Can you reword it please ?
+
+> > See control-names.rst.  Run mixer-test on a card with this driver and
+> > fix all the issues it reports.
+
+> Ok the name is the issue for you AFAII.
+> This control isn't for on/off but swap Left and Right.
+> From the codec documentation:
+> "Swaps audio UL L/R channel before UL SRC"
+> This control is overkill, I will remove it
+
+This is turning the swapping on and off.
+
+--K7ZVz5OiwuIdg9jd
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmX0W2oACgkQJNaLcl1U
+h9Crogf9HxYF3MaL/A3dUDm+Alxsez+w+9hdE05vA2xnAX7B+y66KyZ57bCm9SK1
+IfemHS3DsYz5DdY34Hgti1XBNCkxr4eo+QuYp5LlAht11IR9r2kxbjI9GOgW9KQt
+9b79rtSUodUf75NWoUdTJdR3XUeZaPfpNyY2JAYAKtb/NYF7wZ+2qY4H0Ghh9qQL
+zNno8ER/qk2DHIlyp8Io/7INq46g9k/XLKciK1nNFvwDhilREphfN6W7q/WD+9Dq
+b91sqdSD7ssMFD0b/KEMDBV7AoIiQv+2OaVSUB1SrD1N2E1GZiEFdpASy0ehuSOc
+/RK5R2ZA3NuKgt42DmLEW1b+Gn9Zlw==
+=TlBs
+-----END PGP SIGNATURE-----
+
+--K7ZVz5OiwuIdg9jd--
 
