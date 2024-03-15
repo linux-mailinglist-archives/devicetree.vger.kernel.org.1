@@ -1,74 +1,74 @@
-Return-Path: <devicetree+bounces-50833-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50834-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEAF287D4D5
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 21:14:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 54A9C87D4DA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 21:16:55 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3386A284776
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:14:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5C3A81C21D4F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:16:54 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9C24F5475D;
-	Fri, 15 Mar 2024 20:14:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id E4CD4548E5;
+	Fri, 15 Mar 2024 20:16:50 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="CXlBE2U7"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="NCAq2gkp"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+Received: from mail-lf1-f43.google.com (mail-lf1-f43.google.com [209.85.167.43])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 96151535CC
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 20:14:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.43
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54E0F54735
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 20:16:46 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.43
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710533679; cv=none; b=XwCAr9aIXO9Jz2jPrJH9dyldMCCLlZEXVXHr8+/BJaS54Npswq1c5LIlSTdAmc2y0R1fputLaRcDRUg4+jhKWlWezN3QHErjHIRaAjTZL9V1f6AvJI6MRLVrEZkw7ac22sTWRfytkqRJNmMa6mAPclybx/YYb3PBQGJacfZJ8VQ=
+	t=1710533810; cv=none; b=k/IA08loCEKJdFAirC+/ET9Wb5zffLxiuRolM6w4MAEH0C3wH7AAhPSMwzA07fjZin4SlnvSE4PJIEe9i8eqypyYRC+vh7kPO0hKSqt4WsQVAEwFsvbwBKHu2/hugHWljCI1cH7Y1JP0Vh85OsWZ2IYaxvuPu0ILZvzhxQxO73M=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710533679; c=relaxed/simple;
-	bh=nFEHXT/ylyLCa900IA9PFnKY9MAwcOJTEsnXYFP5+js=;
+	s=arc-20240116; t=1710533810; c=relaxed/simple;
+	bh=9aTVDExRdXWvwN7G7Eo4D2nVBxrprfJWymNfNXN/Ci8=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=PNEjAadaBQP1Ui+bPbpoz4OieGwwiKn3D56KaipWUVeGDljDho0qag0F73sH4S/VT/FVHyXsKEUoyyIPU1BF5BAddag0lykxyBr1tgKvYHg3IWKo4Aa/FWmg69MWl15IAS36tioE25avOVWhFEnTF6zwMDEswXDxwwOba0gb2qg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=CXlBE2U7; arc=none smtp.client-ip=209.85.218.43
+	 In-Reply-To:Content-Type; b=kzZ+bBdmDFVrGjMxZ2KT6QGsAzqVsdQTVtdZO26c/uRTrTMctwSi+NRkcgcEVeCGBpVz56OiDfZuEcHNfzSgRDzJT9MI2NNRTtJ6Q0QRybpQ+i0EUja54NfPFYljefv92Id7I9LSuHeZMNpQBR64fFSWRHnpKlsRvonvv6rHulQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=NCAq2gkp; arc=none smtp.client-ip=209.85.167.43
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-ej1-f43.google.com with SMTP id a640c23a62f3a-a28a6cef709so352947566b.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 13:14:35 -0700 (PDT)
+Received: by mail-lf1-f43.google.com with SMTP id 2adb3069b0e04-513173e8191so3346362e87.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 13:16:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710533674; x=1711138474; darn=vger.kernel.org;
+        d=linaro.org; s=google; t=1710533804; x=1711138604; darn=vger.kernel.org;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=odLjH6pCRhbd6VY/8IpKN5+gXDMhrfAYCr6uel2M/zo=;
-        b=CXlBE2U7XlaLj5OA0z5M5J6kDZpCSKUJZ1F2K/BypbHL8py99AcYxUqY/7p+JgrPOn
-         gZ+YxYe129tPgI79VDXyd/RdasUmCyjoBfQGrCqZOj2rvfGKXAQtpmNqhCKSnPGrhlXC
-         exc6OervAckHF6wfVYqy589fNTMJmk9s2MLtWinjZSH9WmezjVUUHl3ZA4pdi3E1SGfD
-         VvQn9vcN5AMTbKN/RtE4Jt28k1vHep7f3/yx1m70vDbtqg71O1abcOJ6btW9zuExibZq
-         A2jX+Oroz/etnGdazS/npHy0udtgOAxDrDIYfuVuYOKJb+yl6zWRBn28FOD3m4TM6/ah
-         YE7g==
+        bh=dBxlSXrDIUeEZ7iizn8awIR/ya/+nU5wVcONbsK/8zI=;
+        b=NCAq2gkp9LiHzxSbgR7Fy9h3S/c6pBTBnLI+0/Z93VgwabRSNYvf0af5JOCLEdMG5k
+         HaKB2Gd/fJ7Ak56GseCTQ0BAlleASn09aC1bu6wp5wzk19B28IaO9UyxlkD44z2KrVEp
+         Zu80+qufLu4mBBs3k+NB29bn3VDvX71nJSk8s0gf07I4SWch+NjPDq4PZkkMeIReQWCH
+         Lb82SQ/9bS7rCZK/2JlJ1sdPStG9wAhzXmYEaszc3GfEe9MrbOiBwRiuoG8aYCdqBXKV
+         82fqPLxqPcIPBdoZleL/BO/CPYYeIiW2vxUJR54Wiou6h547mUkzKctHSVQifzr6Yg0m
+         Slrg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710533674; x=1711138474;
+        d=1e100.net; s=20230601; t=1710533804; x=1711138604;
         h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
          :to:content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=odLjH6pCRhbd6VY/8IpKN5+gXDMhrfAYCr6uel2M/zo=;
-        b=vRaTPhCh5kNoh+BWmulp9e38E9gbYbqG/WTsqqMm+w90+6N08dwSqi7iNnmKOHeb8C
-         uEs8Np6B0z1OFzhA2Ut1Bbr8zDfC9hJdx4wqRTKxYvLLoJMlQuc/1Thkhr4kh1mU270e
-         TY5NFFE7BJCb1AL4Bm2BXJhkwXM/Htkeh0OxXkok4sEQA0Ou/JjDtk8+iit1TC1mzPSl
-         ySBGEmR5b0nqmqip4GEVWc98yTiS521PrFU1b6I+3mGbY9Lp3YzMxQDPHQdyTKy+3WfV
-         /CuTvgG+X32l1YnocplTn99VC1CgiDP+ZbnyaaxBGpwjDEH5TA19N0flCqCTmwuVnJO3
-         Ax7g==
-X-Forwarded-Encrypted: i=1; AJvYcCW5+HXHFtQnQs4PBp4bG6NpHGvK+zBh72hzkHFozkGADclzBVbdUdiBHBNhPaf4hJ65jn5rJLV2dychNOy1e/W1QGUSFxjJlK7bRQ==
-X-Gm-Message-State: AOJu0YyEq9/g4j3XocDSvrym1gKNv+SobxQ9JdvvjmKoHi0VdwrCiEth
-	3BTugpUSs23DL6ZvMh98Ada8DchyVITEe4nlKA+4pOld+5kAMSLshJkOLzPMsfk=
-X-Google-Smtp-Source: AGHT+IEsS46iEcSasaXWquxv5k5qikS5zVamCo2J4zeZor8vCboZ/fxtqwqJns14sHIDjc/FiAzt+Q==
-X-Received: by 2002:a17:907:72d5:b0:a46:a23f:bc2c with SMTP id du21-20020a17090772d500b00a46a23fbc2cmr27440ejc.25.1710533673785;
-        Fri, 15 Mar 2024 13:14:33 -0700 (PDT)
+        bh=dBxlSXrDIUeEZ7iizn8awIR/ya/+nU5wVcONbsK/8zI=;
+        b=Cq4mZKjKXVudgkOvfjrHX1ZBEAq2kParDcN9Ya+6FzLUlpbPhTrttUibcuN1tiDScl
+         LGa98+e0vDuJblj2xnzPTwna8i9yAd1GNo/sCFT7AjFZ9Hv9B5mUZ/8uWuP2Ufomor/a
+         z+/AnKhQel2ryheykEklMGbJtQwdfi4w14XvHskTrdLEPbRMKTt4nGgL8Ycv3Rlrhx5m
+         op3pDxcz9uIH8hJd+ss3FRaB/ql3eA6WeggEtSyqCh1jIX3pl97Jd+olZOzqO2S4jHde
+         p13MJSHwSeWqDtNvV+uynjXdsnVbjUQS8atPkpTeCMTy3iNw7dhe4ukQ/II7/AMhn5eD
+         oRWQ==
+X-Forwarded-Encrypted: i=1; AJvYcCWoNouaQCSSsP8IqfbydJD5o9vsyNwBsA8hST9b94xE0WH59iYC9gFnRNzl2Ku3veb6WhvBMiJGmDfBBot4mi5RF/fNSSaOPCUnPw==
+X-Gm-Message-State: AOJu0YxLWFz/pLm7Q8O1XmUq4hK+zEPOFTM0qtdUXByvPw7Y6FmuuJlk
+	UU5ryI6IY+3RfNpSiby7yBO1Rqvm75lgSOZC6cMY14zkR2881/V23EjvYEC+AoQ=
+X-Google-Smtp-Source: AGHT+IGJVvNqj73VhU6LSycjUX1baoHaIGvPqGQeLn2j+8zYNxKplG8ui654YHm2M01GsWthY0n2dA==
+X-Received: by 2002:ac2:4c38:0:b0:513:8a02:9e1b with SMTP id u24-20020ac24c38000000b005138a029e1bmr3213172lfq.35.1710533804439;
+        Fri, 15 Mar 2024 13:16:44 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id hj11-20020a170906874b00b00a46a04d7daesm90052ejb.115.2024.03.15.13.14.31
+        by smtp.gmail.com with ESMTPSA id wr6-20020a170907700600b00a4623030893sm1976885ejb.126.2024.03.15.13.16.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Mar 2024 13:14:33 -0700 (PDT)
-Message-ID: <b70ceddb-0f36-4ee3-bafe-01e4683cc72a@linaro.org>
-Date: Fri, 15 Mar 2024 21:14:31 +0100
+        Fri, 15 Mar 2024 13:16:43 -0700 (PDT)
+Message-ID: <105dd240-a9c5-4767-8f43-3a63be0b2a5a@linaro.org>
+Date: Fri, 15 Mar 2024 21:16:41 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,11 +76,11 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 2/8] w1: Add w1_find_master_device
+Subject: Re: [PATCH v3 4/8] serdev: add of_ helper to get serdev controller
 Content-Language: en-US
 To: Ayush Singh <ayushdevel1325@gmail.com>, linux-kernel@vger.kernel.org
-Cc: jkridner@beagleboard.org, robertcnelson@beagleboard.org,
- Vaishnav M A <vaishnav@beagleboard.org>, Rob Herring <robh@kernel.org>,
+Cc: Vaishnav M A <vaishnav@beagleboard.org>, jkridner@beagleboard.org,
+ robertcnelson@beagleboard.org, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
  Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
@@ -93,7 +93,7 @@ Cc: jkridner@beagleboard.org, robertcnelson@beagleboard.org,
  linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
  linux-serial@vger.kernel.org, greybus-dev@lists.linaro.org
 References: <20240315184908.500352-1-ayushdevel1325@gmail.com>
- <20240315184908.500352-3-ayushdevel1325@gmail.com>
+ <20240315184908.500352-5-ayushdevel1325@gmail.com>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -139,69 +139,74 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <20240315184908.500352-3-ayushdevel1325@gmail.com>
+In-Reply-To: <20240315184908.500352-5-ayushdevel1325@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
 On 15/03/2024 19:49, Ayush Singh wrote:
-> Add helper to find w1_master from w1_bus_master, which is present in
-> drvdata of platform device.
+> From: Vaishnav M A <vaishnav@beagleboard.org>
+> 
+> add of_find_serdev_controller_by_node to obtain a
+> serdev_controller from the device_node, which
+> can help if the serdev_device is not described
+> over device tree and instantiation of the device
+> happens from a different driver, for the same purpose
+> an option to not delete an empty serdev controller
+> is added.
 
-Who needs this?
+Don't make it difficult for us to read your commit msgs.
+Please wrap commit message according to Linux coding style / submission
+process (neither too early nor over the limit):
+https://elixir.bootlin.com/linux/v6.4-rc1/source/Documentation/process/submitting-patches.rst#L597
 
 > 
 > Signed-off-by: Vaishnav M A <vaishnav@beagleboard.org>
 > Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
 > ---
->  drivers/w1/w1.c     |  6 +++---
->  drivers/w1/w1_int.c | 27 +++++++++++++++++++++++++++
->  include/linux/w1.h  |  1 +
->  3 files changed, 31 insertions(+), 3 deletions(-)
-
-Why is this in the patchset? What are the dependencies? Please clearly
-express dependencies between patches or merging needs in cover letter.
-Otherwise please do not combine unrelated patches from different
-subsystems together. It's make review and merging only difficult.
-
+>  drivers/tty/serdev/core.c | 19 +++++++++++++++++++
+>  include/linux/serdev.h    |  4 ++++
+>  2 files changed, 23 insertions(+)
 > 
-> diff --git a/drivers/w1/w1.c b/drivers/w1/w1.c
-> index afb1cc4606c5..ce8a3f93f2ef 100644
-> --- a/drivers/w1/w1.c
-> +++ b/drivers/w1/w1.c
-> @@ -673,9 +673,9 @@ static int __w1_attach_slave_device(struct w1_slave *sl)
->  	sl->dev.of_node = of_find_matching_node(sl->master->dev.of_node,
->  						sl->family->of_match_table);
->  
-> -	dev_set_name(&sl->dev, "%02x-%012llx",
-> -		 (unsigned int) sl->reg_num.family,
-> -		 (unsigned long long) sl->reg_num.id);
-> +	dev_set_name(&sl->dev, "%s-%02x-%012llx", sl->master->name,
-> +		     (unsigned int)sl->reg_num.family,
-> +		     (unsigned long long)sl->reg_num.id);
->  	snprintf(&sl->name[0], sizeof(sl->name),
-
-Why? How is this related to the goal "add a helper"? Where is the helper
-used? I don't see. Don't combine unrelated topics in one patch.
-
->  		 "%02x-%012llx",
->  		 (unsigned int) sl->reg_num.family,
-> diff --git a/drivers/w1/w1_int.c b/drivers/w1/w1_int.c
-> index 3a71c5eb2f83..2bfef8e67687 100644
-> --- a/drivers/w1/w1_int.c
-> +++ b/drivers/w1/w1_int.c
-> @@ -242,3 +242,30 @@ void w1_remove_master_device(struct w1_bus_master *bm)
->  	__w1_remove_master_device(found);
+> diff --git a/drivers/tty/serdev/core.c b/drivers/tty/serdev/core.c
+> index 613cb356b918..5b5b3f2b2e42 100644
+> --- a/drivers/tty/serdev/core.c
+> +++ b/drivers/tty/serdev/core.c
+> @@ -555,6 +555,19 @@ static int of_serdev_register_devices(struct serdev_controller *ctrl)
+>  	return 0;
 >  }
->  EXPORT_SYMBOL(w1_remove_master_device);
+>  
+> +#if defined(CONFIG_OF)
+> +struct serdev_controller *of_find_serdev_controller_by_node(struct device_node *node)
+> +{
+> +	struct device *dev = bus_find_device_by_of_node(&serdev_bus_type, node);
 > +
-> +/**
-> + * w1_find_master_device() - find a master device
-> + * @bm:	master bus device to search
-> + */
-> +struct w1_master *w1_find_master_device(struct w1_bus_master *bm)
+> +	if (!dev)
+> +		return NULL;
+> +
+> +	return (dev->type == &serdev_ctrl_type) ? to_serdev_controller(dev) : NULL;
+> +}
+> +EXPORT_SYMBOL_GPL(of_find_serdev_controller_by_node);
+> +#endif
+> +
+>  #ifdef CONFIG_ACPI
+>  
+>  #define SERDEV_ACPI_MAX_SCAN_DEPTH 32
+> @@ -785,6 +798,12 @@ int serdev_controller_add(struct serdev_controller *ctrl)
+>  
+>  	pm_runtime_enable(&ctrl->dev);
+>  
+> +	/* provide option to not delete a serdev controller without devices
+> +	 * if property is present
+> +	 */
+> +	if (device_property_present(&ctrl->dev, "force-empty-serdev-controller"))
 
-Why are you duplicating w1_search_master_id()? Without locking? Sorry,
-this looks like you did not look at all at existing code.
+How is this related to topic of adding helper? Why are you adding some
+undocumented properties?
+
+No, it's the same in other patches - you combine unrelated goals into
+one patch. Please read carefully submitting patches document how to
+organize your patchset.
+
 
 Best regards,
 Krzysztof
