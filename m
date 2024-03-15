@@ -1,214 +1,133 @@
-Return-Path: <devicetree+bounces-50654-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50655-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37A7D87C92A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 08:29:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 96F1887C9CF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 09:19:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id EE07928260D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 07:29:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id AF0E31C223B2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 08:19:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4343C168DA;
-	Fri, 15 Mar 2024 07:26:47 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 01E3F15E89;
+	Fri, 15 Mar 2024 08:19:08 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b="O+tn2mIr"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="b+tIHes/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CCD0D171AB;
-	Fri, 15 Mar 2024 07:26:43 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=60.244.123.138
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC6BE15AE0;
+	Fri, 15 Mar 2024 08:19:07 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710487607; cv=none; b=ZQDiwpaj8DB8l071UgymfMFGDsa4w3VUtsvy68kxVNOHVUzFBcB+aYKAX+iFjHx+hA30A3SRCg2qWOqvYOjraphipGfZ9j2X6vwUG+CfLg2dV6fYe+hv/jC3agRJEqulE7YjgcSZELA6233Nqq78/YPUmBgLA6zyjYLD+hIOrOE=
+	t=1710490747; cv=none; b=vF33pvoKr65fsgrMA36SwrBwyvSyGE/dDnUsmBh4G+vInzTPi6RAZxRhQulFALbECWhD4P0Hqi/Kt17b0LjEfJQ12Fxm43CInHEhHTOyVE63PKfcmx0EYqFZbEGwXoQBRH8HGQ3x8Izz0zXbp92BfoiwyqA8bWzO8O+w9UDidDM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710487607; c=relaxed/simple;
-	bh=aBEmUGt6spix4FOPw4HW2i7wWQIGfaCXLKiWvR1CvtM=;
-	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=W+irk+3jOSr2aqErkcm6kzflTkSJhhPtaZQCFpzOY4Og6oVVsv4BpoidJpsX5fbly29Ia4f+Gk0OKBNNa8JMiPeHDE/pHy9zVnr6CU09Mm62oTLd/mw6HT/c3vmFFGtlxpEB5eAw+BVSQE/A4lwZmFhYJwbUYxZbAdMAeQJ3cY8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com; spf=pass smtp.mailfrom=mediatek.com; dkim=pass (1024-bit key) header.d=mediatek.com header.i=@mediatek.com header.b=O+tn2mIr; arc=none smtp.client-ip=60.244.123.138
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=mediatek.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=mediatek.com
-X-UUID: 5910135ee29d11eeb8927bc1f75efef4-20240315
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-	h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=yWtLl6WaCIrsB4FIY5b+16SN3rcRg3wXKdgtsLrlIEc=;
-	b=O+tn2mIrDZOwRoZT03BsfOO7jzzD9zEehK2+jMQSl1EcaHWZyoNdxCCJQ6SSpdGVyhOSyUl1rglnM6LLGdkRsvIaem6Xu457vdunq62YjUnoEKOA7PK4aqRGTZbdfDFlKBC3AMQR0hMS1VRUfE92poDV1IWK6Zz+Y3J6Qy1qyis=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.37,REQID:b91d4561-7bf1-49ef-bb6d-393d9ea74dfb,IP:0,U
-	RL:0,TC:0,Content:-25,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTIO
-	N:release,TS:-25
-X-CID-META: VersionHash:6f543d0,CLOUDID:43118981-4f93-4875-95e7-8c66ea833d57,B
-	ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
-	RL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,
-	SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 5910135ee29d11eeb8927bc1f75efef4-20240315
-Received: from mtkmbs14n2.mediatek.inc [(172.21.101.76)] by mailgw01.mediatek.com
-	(envelope-from <yunfei.dong@mediatek.com>)
-	(Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-	with ESMTP id 720401467; Fri, 15 Mar 2024 15:26:32 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- mtkmbs10n2.mediatek.inc (172.21.101.183) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Fri, 15 Mar 2024 15:26:30 +0800
-Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Fri, 15 Mar 2024 15:26:30 +0800
-From: Yunfei Dong <yunfei.dong@mediatek.com>
-To: =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?=
-	<nfraprado@collabora.com>, Nicolas Dufresne <nicolas.dufresne@collabora.com>,
-	Hans Verkuil <hverkuil-cisco@xs4all.nl>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, Benjamin Gaignard
-	<benjamin.gaignard@collabora.com>, Nathan Hebert <nhebert@chromium.org>,
-	Sebastian Fricke <sebastian.fricke@collabora.com>
-CC: Hsin-Yi Wang <hsinyi@chromium.org>, Fritz Koenig <frkoenig@chromium.org>,
-	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>, "Yunfei
- Dong" <yunfei.dong@mediatek.com>, <linux-media@vger.kernel.org>,
-	<devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-	<linux-arm-kernel@lists.infradead.org>, <linux-mediatek@lists.infradead.org>,
-	<Project_Global_Chrome_Upstream_Group@mediatek.com>
-Subject: [PATCH] media: mediatek: vcodec: add decoder command to support stateless decoder
-Date: Fri, 15 Mar 2024 15:26:29 +0800
-Message-ID: <20240315072629.27738-1-yunfei.dong@mediatek.com>
-X-Mailer: git-send-email 2.25.1
+	s=arc-20240116; t=1710490747; c=relaxed/simple;
+	bh=/eKPOjIMzBEqqdf481aoLuRA42OFb7oCAyDNb31yBt4=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=d4/ayBmt3KlUJ27XEgELvwabBjI+27q0aoxoR965RUtFiBV0+LmKt61soEpuSxxb5NgPOM8hlWIfRyUfiBimLxWGXe4BhLKTNMPwKlHflH1yf5sQQl6IIvS8ADLk/C1KNFWwqCWr0zQe7tRsI2ODG9UszZa3IH08hi2FzqlnCsk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=b+tIHes/; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8475EC433C7;
+	Fri, 15 Mar 2024 08:19:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710490747;
+	bh=/eKPOjIMzBEqqdf481aoLuRA42OFb7oCAyDNb31yBt4=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=b+tIHes/7nOkDS7dxeJm8C6GAQoK+SGnAhxi3W06JsHEEleW8rRtRvjMo6vW/wGil
+	 iKFeHErxfzh55jV2f89qVKAVFzdElDPYzLbfcOw3Oo3VW1wa30a3WFdOKCNsCLS2kT
+	 WUAwlWYbfMteaBBWzbaC0hSPIAH02HwoPXO6Ms+i8IGwFfyHji29MUS6f1sHWpn67W
+	 8nenEV9NH0t8q4S2FtSCV4FT6WxWBwt0046ySc731HDZefbrB0McXYD6c9GUTi4Bo/
+	 WsdQev6Sb4C6zYaB2s3IxITTzNpa2AJxw5BlGhhZYBgdNriu7H8OCTH+YYcmz2XK1n
+	 LYvP02JH1Ltfw==
+Message-ID: <2b0511af-1b5b-4c90-a673-c9113bb58142@kernel.org>
+Date: Fri, 15 Mar 2024 17:19:04 +0900
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-TM-AS-Product-Ver: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-AS-Result: No-10--8.498300-8.000000
-X-TMASE-MatchedRID: H6JCIvDuX7+GVqG4eYPDVkZakoam9+aepQH4ogtVQP2xK/qamqYywXY3
-	TcMnBmkfThbvLLI8RvP+WuUgR5Gm1cJHVFWeMALEHcQQBuf4ZFsuhg66Itb65fzaSz3Z/4aaecZ
-	f3B8j81qQ5zXuXE7cooAy6p60ZV62fJ5/bZ6npdiyO81X3yak84h7iKx2XmBbBXO9QsFmS8iQqa
-	5F+eWEV9XjWmP/eZGnc0jrJpxlhMB+3BndfXUhXQ==
-X-TM-AS-User-Approved-Sender: No
-X-TM-AS-User-Blocked-Sender: No
-X-TMASE-Result: 10--8.498300-8.000000
-X-TMASE-Version: SMEX-14.0.0.3152-9.1.1006-23728.005
-X-TM-SNTS-SMTP: D8F9687C570A89AD469DD8A683BE20B1C7ACB5943D3B5497361E2F29E5FEB1372000:8
-X-MTK: N
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3 5/7] riscv: Kconfig.socs: Allow SOC_CANAAN with MMU for
+ K230
+Content-Language: en-US
+To: Yangyu Chen <cyy@cyyself.name>
+Cc: Conor Dooley <conor@kernel.org>, linux-riscv@lists.infradead.org,
+ Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Albert Ou <aou@eecs.berkeley.edu>,
+ Guo Ren <guoren@kernel.org>, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Conor Dooley <conor.dooley@microchip.com>
+References: <tencent_BB2364BBF1812F4E304F7BDDD11E57356605@qq.com>
+ <tencent_0432DA968E39B81431F921F38D747C008208@qq.com>
+ <ef8df22f-dac8-4652-bf17-d10254e6abfb@kernel.org>
+ <tencent_E56A833916E00EC7B4840C34FAF1250ADE0A@qq.com>
+ <20240305-fascism-enrich-06483ddeb149@spud>
+ <311bdf17-c16f-41d8-8366-10f9b00adf27@kernel.org>
+ <tencent_FF86EF51905CFBDF1102F721663984B2F105@qq.com>
+ <tencent_9543398AE3BAC424842837CEF01508D6680A@qq.com>
+From: Damien Le Moal <dlemoal@kernel.org>
+Organization: Western Digital Research
+In-Reply-To: <tencent_9543398AE3BAC424842837CEF01508D6680A@qq.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-The supported decoder commands are different for stateless and
-stateful architecture. Adding stateless decoder commands to fix
-below v4l2-compliance test error.
+On 3/14/24 01:56, Yangyu Chen wrote:
+>> Hi,
+>>
+>> Thanks for the review comments. After thinking about it for a while,
+>> I think we don't need to change it as we have changed the help
+>> message which deleted the "K210". And the dts on k210.dtsi shows
+>> mmu-type is riscv.none, I think if someone noticed this would know
+>> why it fails to boot on the S-Mode MMU Kernel on K210. The only
+>> special thing for ARCH_CANAAN is that a loader.bin will be built
+>> when M-Mode is on arch/riscv/Makefile. However, Canaan has no other
+>> M-Mode chips except for K210. So I think we don't need to change
+>> it.
 
-Codec ioctls:
-    VIDIOC_ENCODER_CMD returned -1 (Inappropriate ioctl for device)
-    VIDIOC_TRY_ENCODER_CMD returned -1 (Inappropriate ioctl for device)
- test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
-    VIDIOC_G_ENC_INDEX returned -1 (Inappropriate ioctl for device)
- test VIDIOC_G_ENC_INDEX: OK (Not Supported)
-    VIDIOC_DECODER_CMD returned -1 (Invalid argument)
-    VIDIOC_TRY_DECODER_CMD returned -1 (Invalid argument)
-    VIDIOC_TRY_DECODER_CMD returned -1 (Invalid argument)
-    fail: v4l2-test-codecs.cpp(126): ret
- test VIDIOC_(TRY_)DECODER_CMD: FAIL
+You completely lost me here. I do not understand what you are trying to say.
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
----
- .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  | 65 +++++++++++++++++--
- 1 file changed, 59 insertions(+), 6 deletions(-)
+>> Another reason is that SOC_CANAAN for K210 is somehow hard to change.
+>> If we continue using SOC_CANAAN for K210 but not for other Canaan
+>> SoCs such as K230, it will cause some confusion to users. If we
+>> rename SOC_CANAAN to SOC_CANAAN_K210, it will change many drivers
+>> in many subsystems like my patch v5 [1]. So I don't think we need
+>> to fix it.
+>>
+>>
+>> If we don't change it, A concern for this is that some drivers for
+>> K210 will be built when SOC_CANAAN=y and if we add this to defconfig,
+>> all riscv builds will also build some K210 drivers even on MMU. But
+>> I think this will not be a problem just need some memory/storage
+>> for a slightly bigger kernel. Also, we will enable some new configs
+>> in defconfig when a new soc gets supported, it's normal for K210
+>> SoC drivers.
+>>
+>> Thus, I think we don't need to change it. If you have some other
+>> opinions, please let me know.
 
-diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
-index ba742f0e391d..90579dd92cae 100644
---- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
-+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
-@@ -80,21 +80,20 @@ static struct mtk_q_data *mtk_vdec_get_q_data(struct mtk_vcodec_dec_ctx *ctx,
- 	return &ctx->q_data[MTK_Q_DATA_DST];
- }
- 
--static int vidioc_try_decoder_cmd(struct file *file, void *priv,
--				struct v4l2_decoder_cmd *cmd)
-+static int mtk_vcodec_stateful_try_decoder_cmd(struct file *file, void *priv,
-+					       struct v4l2_decoder_cmd *cmd)
- {
- 	return v4l2_m2m_ioctl_try_decoder_cmd(file, priv, cmd);
- }
- 
--
--static int vidioc_decoder_cmd(struct file *file, void *priv,
--				struct v4l2_decoder_cmd *cmd)
-+static int mtk_vcodec_stateful_decoder_cmd(struct file *file, void *priv,
-+					   struct v4l2_decoder_cmd *cmd)
- {
- 	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
- 	struct vb2_queue *src_vq, *dst_vq;
- 	int ret;
- 
--	ret = vidioc_try_decoder_cmd(file, priv, cmd);
-+	ret = mtk_vcodec_stateful_try_decoder_cmd(file, priv, cmd);
- 	if (ret)
- 		return ret;
- 
-@@ -128,6 +127,60 @@ static int vidioc_decoder_cmd(struct file *file, void *priv,
- 	return 0;
- }
- 
-+static int mtk_vcodec_stateless_try_decoder_cmd(struct file *file, void *priv,
-+						struct v4l2_decoder_cmd *cmd)
-+{
-+	return v4l2_m2m_ioctl_stateless_try_decoder_cmd(file, priv, cmd);
-+}
-+
-+static int mtk_vcodec_stateless_decoder_cmd(struct file *file, void *priv,
-+					    struct v4l2_decoder_cmd *cmd)
-+{
-+	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
-+	int ret;
-+
-+	ret = v4l2_m2m_ioctl_stateless_try_decoder_cmd(file, priv, cmd);
-+	if (ret)
-+		return ret;
-+
-+	mtk_v4l2_vdec_dbg(3, ctx, "decoder cmd=%u", cmd->cmd);
-+	switch (cmd->cmd) {
-+	case V4L2_DEC_CMD_FLUSH:
-+		/*
-+		 * If the flag of output buffer is set with V4L2_BUF_FLAG_M2M_HOLD_CAPTURE_BUF,
-+		 * this command will prevent dequeueing the capture buffer containing the last
-+		 * decoded frame. Or do nothing
-+		 */
-+		break;
-+
-+	default:
-+		mtk_v4l2_vdec_err(ctx, "invalid stateless decoder cmd=%u", cmd->cmd);
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static int vidioc_try_decoder_cmd(struct file *file, void *priv, struct v4l2_decoder_cmd *cmd)
-+{
-+	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
-+
-+	if (ctx->dev->vdec_pdata->uses_stateless_api)
-+		return mtk_vcodec_stateless_try_decoder_cmd(file, priv, cmd);
-+	else
-+		return mtk_vcodec_stateful_try_decoder_cmd(file, priv, cmd);
-+}
-+
-+static int vidioc_decoder_cmd(struct file *file, void *priv, struct v4l2_decoder_cmd *cmd)
-+{
-+	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
-+
-+	if (ctx->dev->vdec_pdata->uses_stateless_api)
-+		return mtk_vcodec_stateless_decoder_cmd(file, priv, cmd);
-+	else
-+		return mtk_vcodec_stateful_decoder_cmd(file, priv, cmd);
-+}
-+
- void mtk_vdec_unlock(struct mtk_vcodec_dec_ctx *ctx)
- {
- 	mutex_unlock(&ctx->dev->dec_mutex[ctx->hw_id]);
+1) Rename SOC_CANAAN to SOC_CANAAN_K210 and use that for any conditional code or
+driver selection that is specific to the K210, which is what's done now.
+2) Create a "new" SOC_CANAAN config and make SOC_CANAAN_K210 depend on it and on
+!MMU
+
+You could also add SOC_CANAAN_K230 if needed and make it depend on SOC_CANAAN &&
+MMU.
+
+With that, dirvers common to both the K210 and K230 can easilly be selected and
+selecting SOC_CANAAN will end up either building for the K230 or the K210,
+depending on MMU being set or not.
+
+That's my 2 cents. Feel free to ignore. I am not involved that much with riscv
+these days and I am far too busy with other kernel areas to be of any help. But
+I really think that allowing building the K210 when MMU is enabled and "hoping
+that the user understand his mistake" is not a great approach.
+
 -- 
-2.18.0
+Damien Le Moal
+Western Digital Research
 
 
