@@ -1,65 +1,65 @@
-Return-Path: <devicetree+bounces-50787-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50788-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8811E87D1AA
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:56:09 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EA3987D246
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 18:05:33 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 2915D1F2264E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 16:56:09 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0EB11B24D81
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:05:31 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 17F27482D3;
-	Fri, 15 Mar 2024 16:53:23 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EADD36027F;
+	Fri, 15 Mar 2024 16:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="YhZW/+od"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4F5335478B;
-	Fri, 15 Mar 2024 16:53:20 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BE0436026F;
+	Fri, 15 Mar 2024 16:54:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710521603; cv=none; b=sGdBu0jeIBcGyQXUjYvLLv8dBIilyA8BUwmUg4FwoTWwBahVP2bHnc6VZVbh4jVUJwHp89YicR5Wbj5gjlmy3Skca8OLhUXsas1vEKUwY02mzmKtWkJ05UBODUs4efW/NaeDQ0JtUk/+I5fEd8utakf+XtWqY4cyJeiH0ez7pYY=
+	t=1710521664; cv=none; b=Nb+rbCmhyxYXnPoA9K94Hk2wXrps/VrgeLwKO0r5y+vfSvMMI12CPdI449p/ORTSr9SN38/TsWth0d39Oc+0rj/1klHWHfrEgPKQvD2dtLN1NNS4rPgXvOmnD7cIxbO6oUNi8ozhO/ApNnE/7HTPo6d+b1SdMLPSWWnWAn6QEPI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710521603; c=relaxed/simple;
-	bh=quOxwG7GF78bsqXhXIFaqgiZCtCviVlc+c2l1XriIXE=;
+	s=arc-20240116; t=1710521664; c=relaxed/simple;
+	bh=8hnOEeLZTKNopoewYVMGy8CGA1IX2Tb3FpvrD/17hVE=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aaiHM/RDmKgPkTmpwu3iudvKYmt9ksqjmFobUVqKuyGHxbebKIPEQHa33GArUyXyKFt1CzQSFaG3wwudnoLnVQxGVW4d0BsAE5RL+zAyRvebIVH2BS2eL/j6nO+F1ePQxGHr2uWLtG/9HL39EK1E26Vds23sxgpIJQ0D/d42o+Y=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9BD90C15;
-	Fri, 15 Mar 2024 09:53:54 -0700 (PDT)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 83CF33F762;
-	Fri, 15 Mar 2024 09:53:16 -0700 (PDT)
-Date: Fri, 15 Mar 2024 16:53:10 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: Peng Fan <peng.fan@nxp.com>
-Cc: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-	Sudeep Holla <sudeep.holla@arm.com>,
-	Rob Herring <robh+dt@kernel.org>,
+	 Content-Type:Content-Disposition:In-Reply-To; b=CbYArAcWqsSRUeZmcSqOAc7XFvy78fMq6ZY0T2agcQVuqffuNVj8pDTOFwMIKfKC1Bxf5e8NJ2W5gS/AjdbN7/gjtrRl6/mhLzija030y6O9kwjIf8/tlPLa+WDpczIgDNOC8ww2hKBX3wUXuOnKJ207iVpbacUHvUEMpM2OKlw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=YhZW/+od; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3892FC433C7;
+	Fri, 15 Mar 2024 16:54:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710521664;
+	bh=8hnOEeLZTKNopoewYVMGy8CGA1IX2Tb3FpvrD/17hVE=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=YhZW/+odc2HllbJoa5yn9sj76E4iGyfuvtpWzbM/eXWcIDZZaaEsEvTBacf87xgk1
+	 735tuAKAjMCV+1N9lEkU5NV0jKF75HpnMqCxkBGZ0XiIhGXipkAmVdUo25Tzc7Di/F
+	 FGlnSh1oozXDN6frIICmD5nTZxKIu5+457fXMMtGDZmXI9269IFJsMYm5M/MSvACfB
+	 3cn2KeFoYxr4NXmjIohcUoazKSx7zr7vciyopFpJBv9aAGsorP4FVet5jBiNPB0dQ3
+	 fsOy7WINLSLugkOWqYxIJkTyXw6VRXQBW7Oa75GmfShpXsZKxWANCrlnCXGCi5sTIP
+	 TgNL1cDH7L62A==
+Date: Fri, 15 Mar 2024 10:54:22 -0600
+From: Rob Herring <robh@kernel.org>
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+Cc: Abel Vesa <abelvesa@kernel.org>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
+	Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
 	Sascha Hauer <s.hauer@pengutronix.de>,
 	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	dl-linux-imx <linux-imx@nxp.com>,
-	"linux-arm-kernel@lists.infradead.org" <linux-arm-kernel@lists.infradead.org>,
-	"linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-	"devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-	"linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-	AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v5 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Message-ID: <ZfR89rdzRymY1Ovx@pluto>
-References: <20240314-pinctrl-scmi-v5-0-b19576e557f2@nxp.com>
- <ZfMqWP-t39SCvkA2@pluto>
- <DU0PR04MB9417056FD84405898F1B007B88282@DU0PR04MB9417.eurprd04.prod.outlook.com>
+	Fabio Estevam <festevam@gmail.com>, linux-clk@vger.kernel.org,
+	imx@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Peng Fan <peng.fan@nxp.com>
+Subject: Re: [PATCH v4 1/6] dt-bindindgs: clock: nxp: support i.MX95 VPU CSR
+ module
+Message-ID: <20240315165422.GA1472059-robh@kernel.org>
+References: <20240314-imx95-blk-ctl-v4-0-d23de23b6ff2@nxp.com>
+ <20240314-imx95-blk-ctl-v4-1-d23de23b6ff2@nxp.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -68,58 +68,99 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DU0PR04MB9417056FD84405898F1B007B88282@DU0PR04MB9417.eurprd04.prod.outlook.com>
+In-Reply-To: <20240314-imx95-blk-ctl-v4-1-d23de23b6ff2@nxp.com>
 
-On Fri, Mar 15, 2024 at 12:31:51AM +0000, Peng Fan wrote:
-> > Subject: Re: [PATCH v5 0/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
-> > protocol basic support
-> > 
-> > On Thu, Mar 14, 2024 at 09:35:17PM +0800, Peng Fan (OSS) wrote:
-> > > Since SCMI 3.2 Spec is released, and this patchset has got R-b/T-b, is
-> > > it ok to land this patchset?
-> > >
-> > 
-> > I'll have a look at this last version and a spin on my test setup.
-> > 
-> > ...but has this V5 change at all since the Reviewed-by tags due to the latest
-> > spec changes ?
+On Thu, Mar 14, 2024 at 09:25:10PM +0800, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> The tags are same as V4. I only did a rebase, no more changes.
-> > 
-
-Ok.
-
-> > ...IOW does this V5 include the latest small bits spec-changes or those latest
-> > gpio-related spec-changes are just not needed at the level of the Linux pinctrl
-> > support as of now and can be added later on when a Linux gpio driver will be
-> > built on top of this ?
+> The i.MX95 VPU_CSR contains control and status registers for VPU
+> status, pending transaction status, and clock gating controls.
 > 
-> In my current test, I no need the gpio related changes, so I would add that later
-> if you are ok.
+> This patch is to add clock features for VPU CSR.
 > 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../bindings/clock/nxp,imx95-vpu-csr.yaml          | 50 ++++++++++++++++++++++
+>  include/dt-bindings/clock/nxp,imx95-clock.h        | 14 ++++++
+>  2 files changed, 64 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml b/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml
+> new file mode 100644
+> index 000000000000..4a1c6dcfe3f8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/nxp,imx95-vpu-csr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX95 VPUMIX Block Control
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: nxp,imx95-vpu-csr
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +    description:
+> +      The clock consumer should specify the desired clock by having the clock
+> +      ID in its "clocks" phandle cell. See
+> +      include/dt-bindings/clock/nxp,imx95-clock.h
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    syscon@4c410000 {
+> +      compatible = "nxp,imx95-vpu-csr", "syscon";
+> +      reg = <0x4c410000 0x10000>;
+> +      #clock-cells = <1>;
+> +      clocks = <&scmi_clk 114>;
+> +      power-domains = <&scmi_devpd 21>;
+> +    };
+> +...
+> diff --git a/include/dt-bindings/clock/nxp,imx95-clock.h b/include/dt-bindings/clock/nxp,imx95-clock.h
+> new file mode 100644
+> index 000000000000..9d8f0a6d12d0
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/nxp,imx95-clock.h
+> @@ -0,0 +1,14 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only OR MIT */
+> +/*
+> + * Copyright 2024 NXP
+> + */
+> +
+> +#ifndef __DT_BINDINGS_CLOCK_IMX95_H
+> +#define __DT_BINDINGS_CLOCK_IMX95_H
+> +
+> +#define IMX95_CLK_VPUBLK_WAVE			0
+> +#define IMX95_CLK_VPUBLK_JPEG_ENC		1
+> +#define IMX95_CLK_VPUBLK_JPEG_DEC		2
+> +#define IMX95_CLK_VPUBLK_END			3
 
-I COULD have agreed with this, since AFAIK there is currently an effort to
-add support for GPIO on top of SCMI Pinctrl BUT not in Linux, so no reason to
-block this series for gpio-related missing features, that should only be additions
-not breaking backward compatibility...
+If this number can change, then it is not ABI and doesn't go in this 
+header. With that dropped,
 
-....BUT, I've just wrapped my head again around the latest public release
-of v3.2 spec (which has gone through so many changes and additions that
-I had lost track O_o) AND beside the above mentioned GPIO changes there
-are indeed also BREAKING changes around the commands PINCTRL_SETTINGS_GET and
-PINCTRL_SETTINGS_CONFIGURE (which were the old PINCTRL_CONFIG_GET/SET),
-that now also get/set the selected function: so that, at the end the payload
-itself of those commands/replies has also changed IN SIZE, so the driver needs
-definitely to be updated (and whatever you use to test on the backend server too,
-if you want to test this...)
-
-I think these changes (which I forgot being there) were in since last month, so
-already V4 was broken in these regards (which I have not looked at)
-
-I'll leave some comments along the series and test all of this again next week...
-...since too many things has changed and I want to re-verify all on my side.
-
-Thanks,
-Cristian
-
+Reviewed-by: Rob Herring <robh@kernel.org>
 
