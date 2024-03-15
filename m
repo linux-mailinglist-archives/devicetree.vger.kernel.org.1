@@ -1,61 +1,63 @@
-Return-Path: <devicetree+bounces-50784-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50785-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE35487D10D
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:18:50 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id AB90787D13C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:36:15 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 2B0911C22C06
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 16:18:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 614DB1F237E3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 16:36:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7727344C87;
-	Fri, 15 Mar 2024 16:18:46 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 423A218AEE;
+	Fri, 15 Mar 2024 16:36:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WxtVPwY4"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="Z5gZGKH4"
 X-Original-To: devicetree@vger.kernel.org
 Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 493852B9D8;
-	Fri, 15 Mar 2024 16:18:45 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 15465D29B;
+	Fri, 15 Mar 2024 16:36:09 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710519526; cv=none; b=jNa9szOZ0dkRcO4MfHxbqwDxUhhBdjJdLA4EiJqb7793+kQ+agy2ksdFQtZN/bvXlhWpg/QhZ90RIVpzqBuFUkaRh9Xp5S6TbQERTjDPXS37VpdrwDbEKcY94VFWfFnIB+Ew3FbhR3T12O4JFF+B9EqEboxICBQwGw+wN5Mjeak=
+	t=1710520571; cv=none; b=jfb9gijzL7N9mue7HbYIN34zw/Mr0gUDMNPn2REOGKQbgI+rHtn1x9P2D7HxPCJL8IDDlprOKO/TtjursAo6OGyOu1SgT00u7yXrGqm1I/cVl+/lC4m1gHdeVVjNE5HyZu9VJnzOS3uVX6Kq+8v3oMwF8NSOd57OVaHNoGupuKQ=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710519526; c=relaxed/simple;
-	bh=I4yiGMKxs0fQ59nZ33YMS14pXHChscnJgtcJ520E6iM=;
+	s=arc-20240116; t=1710520571; c=relaxed/simple;
+	bh=5szkVEXe0ekaYiJWoeSLGaHsidYU+VV3wwTnpAmCoFs=;
 	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sExHRd071S+ETe5+8zNqGHvtPJbT+WfcemWMXiJ5O5AYe3znN4UyCZ+47+QpAOQMglT0zoBKFkwyPhdU7Gj7Gu/cNMiioAQw0w+yy85WRzqVzeBF+fb8KKI8X2RSerCYgfU6dtbPkXr68UKJLjvYNwF59o8Sz9Wq2NBZSQ01Yt8=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WxtVPwY4; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF912C433F1;
-	Fri, 15 Mar 2024 16:18:45 +0000 (UTC)
+	 Content-Type:Content-Disposition:In-Reply-To; b=GukwoziJumCG5eW2FFY8AB1vU/T0ArOgQDqjf9gduRsjq5t+c7Jb9ASoP0IaNP0WWQ1O5WyDrtol151MyR15JUDCg6qVNs8FWXA54xoE/cMVwDB4FDmT6+lO3mGi/299swygGmrUDOi+xv+NxWQN5/DyWR5lePt1RyMePUQMbpo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=Z5gZGKH4; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 70F74C433F1;
+	Fri, 15 Mar 2024 16:36:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710519525;
-	bh=I4yiGMKxs0fQ59nZ33YMS14pXHChscnJgtcJ520E6iM=;
+	s=k20201202; t=1710520569;
+	bh=5szkVEXe0ekaYiJWoeSLGaHsidYU+VV3wwTnpAmCoFs=;
 	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WxtVPwY4vfEneiTk0m6zTkW0Ro2JARQvje9ayWwneQB4/q/b6bVXmqjyYxdzbvEfF
-	 kS85xsStpchgmWCbsMVyRVguKK3uyntKlDEPrmp89rkPbVc+PIOlz/ENPUSmn8AJ/K
-	 ArcWe+q7UDMl4EL4bpfXrsMZeTKV5J4kBHRdpmc6n/9dyIV2gTpmfqLfmvfVWdu3xB
-	 uaQPNirGXjUFa4AuVpwevZA87e9wApe/sN9tuBekd9G19u58b5cv4O/H4Vos99RBmC
-	 yJoJD0GRYvC3fMAwFqIAetSJgkUozpgKtMpyV0CwKpAh6W51VTHb52J8ksxv+omq4g
-	 t0zXMWoGS1LBA==
-Date: Fri, 15 Mar 2024 10:18:43 -0600
+	b=Z5gZGKH4u/iN1Yqk/CcmFVJsWIdVx4yRHC1F9Og9J1iru3arWK5PhESTZvEuiGzP1
+	 DL07X+Jxl7H8PxRz4Wy1FbvMdrG1g/mi3vczhVQ6mCT0Nfbh/RBiEQW5gQQ4VcCKAA
+	 MtP/TXEoxpQG5XO870KxWKn/CO4+waojEqfpW9kFaonMbEj6QXFSj+kISsNGt0LJ6E
+	 joxqWbJm//5lI/RtUp20LA8KoQ82hhIn7DGxi6miGwCXBgZYNpIiSMlv8vYlbSQk2g
+	 V21mBUNo+FYllTyrQUSoaJbBD1gau2Slnk/Vhpy6rBMNGFs1zrW1YFO1rl7qvfL7gB
+	 AWmBd4bsSERVQ==
+Date: Fri, 15 Mar 2024 10:36:07 -0600
 From: Rob Herring <robh@kernel.org>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: devicetree@vger.kernel.org,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	linux-samsung-soc@vger.kernel.org,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	linux-mtd@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
-	Richard Weinberger <richard@nod.at>, linux-kernel@vger.kernel.org,
-	Alim Akhtar <alim.akhtar@samsung.com>
-Subject: Re: [PATCH] dt-bindings: mtd: Add Samsung S5Pv210 OneNAND
-Message-ID: <171051952297.1435235.12756745883937589239.robh@kernel.org>
-References: <20240313184317.18466-1-krzysztof.kozlowski@linaro.org>
+To: Joshua Yeong <joshua.yeong@starfivetech.com>
+Cc: paul.walmsley@sifive.com, palmer@dabbelt.com, aou@eecs.berkeley.edu,
+	geert+renesas@glider.be, prabhakar.mahadev-lad.rj@bp.renesas.com,
+	conor.dooley@microchip.com, alexghiti@rivosinc.com,
+	evan@rivosinc.com, ajones@ventanamicro.com, heiko@sntech.de,
+	guoren@kernel.org, uwu@icenowy.me, jszhang@kernel.org,
+	conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org, leyfoon.tan@starfivetech.com,
+	jeeheng.sia@starfivetech.com, linux-riscv@lists.infradead.org,
+	linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 4/4] dt-bindings: cache: Add docs for StarFive
+ StarLink-500 cache controller
+Message-ID: <20240315163607.GA1444248-robh@kernel.org>
+References: <20240314061205.26143-1-joshua.yeong@starfivetech.com>
+ <20240314061205.26143-5-joshua.yeong@starfivetech.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -64,20 +66,101 @@ List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20240313184317.18466-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20240314061205.26143-5-joshua.yeong@starfivetech.com>
 
-
-On Wed, 13 Mar 2024 19:43:17 +0100, Krzysztof Kozlowski wrote:
-> Document binding for Samsung S5Pv210 SoC OneNAND controller used already
-> in S5Pv210 DTS.
+On Thu, Mar 14, 2024 at 02:12:05PM +0800, Joshua Yeong wrote:
+> Add DT binding documentation used by StarFive's
+> Starlink-500 cache controller.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Joshua Yeong <joshua.yeong@starfivetech.com>
 > ---
->  .../bindings/mtd/samsung,s5pv210-onenand.yaml | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/samsung,s5pv210-onenand.yaml
+>  .../cache/starfive,starlink-500-cache.yaml    | 62 +++++++++++++++++++
+>  1 file changed, 62 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/cache/starfive,starlink-500-cache.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/cache/starfive,starlink-500-cache.yaml b/Documentation/devicetree/bindings/cache/starfive,starlink-500-cache.yaml
+> new file mode 100644
+> index 000000000000..97ddf7db39e9
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/cache/starfive,starlink-500-cache.yaml
+> @@ -0,0 +1,62 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/cache/starfive,starlink-500-cache.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: StarFive StarLink-500 Cache Controller
+> +
+> +maintainers:
+> +  - Joshua Yeong <joshua.yeong@starfivetech.com>
+> +
+> +description:
+> +  StarFive's StarLink-500 controller manages cache shared between clusters of
+> +  CPU cores. The cache driver provides mechanism to perform invalidate and write
+> +  back functionality to the shared memory.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+What a driver does is not relevant to the binding. You could describe 
+what the registers control though.
 
+> +
+> +allOf:
+> +  - $ref: /schemas/cache-controller.yaml#
+> +
+> +# We need a select here so we don't match all nodes with 'cache'
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - starfive,starlink-500-cache
+> +
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: starfive,starlink-500-cache
+> +      - const: cache
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  cache-size: true
+> +  cache-sets: true
+> +  cache-block-size: true
+> +  cache-level: true
+> +  cache-unified: true
+
+Drop these and...
+
+> +
+> +additionalProperties: false
+
+... use 'unevaluatedProperties' instead.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+
+cache-unified should be required as I imagine the cache is always 
+unified. Perhaps other properties too (cache-level already is)?
+
+> +
+> +examples:
+> +  - |
+> +      cache-controller@15000000 {
+> +        compatible = "starfive,starlink-500-cache", "cache";
+> +        reg = <0x15000000 0x278>;
+> +        cache-block-size = <64>;
+> +        cache-level = <3>;
+> +        cache-sets = <8192>;
+> +        cache-size = <0x400000>;
+> +        cache-unified;
+> +      };
+> -- 
+> 2.25.1
+> 
 
