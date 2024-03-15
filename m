@@ -1,75 +1,74 @@
-Return-Path: <devicetree+bounces-50657-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50658-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 223A087C9EC
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 09:33:04 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id BF57C87C9F0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 09:33:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C0610283767
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 08:33:02 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8135B2839B0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 08:33:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8FDE7DDDF;
-	Fri, 15 Mar 2024 08:32:59 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1A3151A38DA;
+	Fri, 15 Mar 2024 08:33:31 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="Q4+4BKNi"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="GWjuH9Ad"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com [209.85.128.41])
+Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AB8B78BF2
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 08:32:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.41
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3803E1758D
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 08:33:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.172
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710491579; cv=none; b=CBTWiiHvUbcM+tachKo9xPuvip2bad6YD8066Mgj5W0RDzSJJlrGIQodMs1VTBDb/mIUPXKhtfdR8RJhMOcNZus6Y5Q/m8CmID162FdfW6fLTliR5jMG21sgVdkD0T2VCmc9qCo9hz85zHeFiPoMctIziqX66pk30IfJTCLQ/R8=
+	t=1710491611; cv=none; b=oZO0ODuRPvHCwH37j6YfGLV0C7eCSEAX+ti5SkGMG+7GFIv0ZGL7rsalyNHIjHQxIQ8WYyHFfAk4GEsx5gwgils/3NpdYmPKSEUuVJhNf+KV11ukLn1EHd1qFKz+1lyY12UxbEqJ9yJtSLr3w4CA1b6aXdh3AogWl6sAmU8g9vw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710491579; c=relaxed/simple;
-	bh=+e6/1GErH5VWnjMn/jGSiiUGKKqSs4swP/artBmjMzU=;
+	s=arc-20240116; t=1710491611; c=relaxed/simple;
+	bh=0pzxmIDKxV1tL0ySvXJiiHFFHL0RmDz5EJr2bm0061M=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=iqgyDF46m6mhxrEDo2UQzGrKbQkbxc4sKd+jmQFUjKEakUSyBwqIhc3KBZXuHsLmGkojMlfJCrBepI5N5Q9A2CyxAIt44qHMCjdQFbJhik1doTEOTV16t0fPRykIyxMBhvAbEyi61OpVSKFuap2K9Qdncrz3W5DK/1PnEmA0rDw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=Q4+4BKNi; arc=none smtp.client-ip=209.85.128.41
+	 In-Reply-To:Content-Type; b=T3oqrL/epWI75UOog1vWaY78e4EoTh63GMMSxiAeErOor/g1NKDzTM1JGbwsmAVLCYbAhJObtfoNr23M5GofZRVEJKrf6o2IYReNoNsusI8nfFwVioogtQ8B2YEKmlqknH19H+2QYDgA75YM7/suBVDXb0MRlIAST6NZgO6qFTI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=GWjuH9Ad; arc=none smtp.client-ip=209.85.208.172
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f41.google.com with SMTP id 5b1f17b1804b1-41401e02b6bso1189475e9.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 01:32:57 -0700 (PDT)
+Received: by mail-lj1-f172.google.com with SMTP id 38308e7fff4ca-2d475b6609eso23071501fa.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 01:33:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710491576; x=1711096376; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=912VkOYSMkN++wd8G/6htVj/pI09oi7P454LjC3DVyY=;
-        b=Q4+4BKNiOH4xCsYUhBXSRI3FVCpQgiTwu1bXa3lnVS6j29NIN6XbuPqXO1yETvpm2a
-         xUOYzp77GJuY314EZuh0dejv1Ps53vB+ESkNhxDcEFtKaxZ0OJH5h7wVLc7CRfZzLesD
-         zlnGNMkoyGMHz2g0Dvpph2BJloDiiUQNpfvmNJaJAyNKwauFjuAGFMgOD9+2VRhokKEC
-         6P5helL/0U4oy5mG4EUmM73D+q+jGIKdpqeQqcoY/V+pa0PNX+/H1NR63hHADHSE6W9i
-         lKq9rdwcPljJgVwW6AWdMPrW6tm4jyyD8PrHfrNvoWDNE3kmTtpBgtv8SPKNgNmnPj0U
-         xBGQ==
+        d=linaro.org; s=google; t=1710491607; x=1711096407; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Zr3Ym6zKCsEpGspJn2V8yJxIf3tDNmnDHJsng5id7sg=;
+        b=GWjuH9Adsdl2pp0UZgVlMH4lvEr4lQzK5XFQKjdLZpoK4OCwo3so1GBhfoLHOlp9PH
+         W55gU0AaiCgbFy3tBTM1+Q1njbgsn7MpekuNAQFhskEeuB2ADmMccWUfLvlg5/j6HOkf
+         FExglakF0SFEDtgwT9PNulG5za9PIGV79HD+z8vb8+zmg/aQNADWGA1tGu4YBfnpetIU
+         TxbKMI/tS4YFUNzdsiAABeTQSAIecjNPiD+Qilyzk9ZPxwUhJIWlVRHGsZ2/8ZMWWcuw
+         lYrO9BF/BQHnIYBUs4C6qC6gFer3LRkKEyB1kto7YJDLTyOy6WT/G/7v/MmQmfZfJ03a
+         feEQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710491576; x=1711096376;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from
-         :content-language:references:cc:to:subject:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=912VkOYSMkN++wd8G/6htVj/pI09oi7P454LjC3DVyY=;
-        b=KI7vcejYxCdJy+FfDOGiuWHZtohRMCZZ/sLd0tOWhx9dc5m7lVrlnZzdXVSh7gPfSO
-         JDbGyM2jQt3GSDM/2y9ZjHPhzgtQF7/0A0eil2fldZVqyEpk03QvkHm9IgDMPsGNn7jn
-         3NKxOv0qLW6B9UPFDU2CnRAYdIIKgaEeEYY9Yt/hf/+yRazGpo98sgBA0nQ+0tFD22Rk
-         tZj7re4vOEXZLp0uhCuhTyNclw+BUfyLN53mvi2tWEkmJHocJVx/gj83HsWdK/Hrspoo
-         mKfNOha+vJf/X6OKtOqQRKLRWN4FhPYUbObHYA3Ofy2+LM+Wqh88ENlPg688tNKLFKnI
-         mOEA==
-X-Forwarded-Encrypted: i=1; AJvYcCX7n2W12bjLKrBK+2YWe8lZejpZLrlWJ1khiUtvbtRWNNBzxLbl9L3QtVInAA81UVSmDqB/R08XbTV+FX3LsxR0xkF/ISHLEQnxpg==
-X-Gm-Message-State: AOJu0YwgJuBRgBVDfY/HMHXu6owIoMZs2pkIo/zhjidn1fklia0t08zP
-	9NGSo/Ddp+sfp8lIuFZ5BPfNfKt0OFRC6TStWnPSJZfNi/P44WreCNStHGGIheU=
-X-Google-Smtp-Source: AGHT+IFUhdJe0MKmFgC1Gj0zisLof6IEM8A6yNh2YmY0WICwzETlVaZ8BJ0OSTJpcR5dtwC1ERJfnQ==
-X-Received: by 2002:a05:600c:5006:b0:414:1d8:18ea with SMTP id n6-20020a05600c500600b0041401d818eamr757651wmr.2.1710491575892;
-        Fri, 15 Mar 2024 01:32:55 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710491607; x=1711096407;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zr3Ym6zKCsEpGspJn2V8yJxIf3tDNmnDHJsng5id7sg=;
+        b=CJUkgFKSCMzu/cy8OSxDIqr5Rt2+69KkbXN8piYBEyTaA1W04BMhxPYDPNSPAF34k1
+         1Y+iGGvWmHhGjc2Ux1kqpLU7vhS8ZiGDcf8vGQeiE6brS4T/V9IGd4/vU78WVU9dBc2u
+         YiQTeM9jILjCfWhLDlHEmZWQx/c36ki+ZDYj4gqmM7erI/4wy0w25hukL4Wt9phRXUlQ
+         8Vgq5oISNQ24KBDttC00gg+jy+smX6Qd7IlVCanlojrVn1h5FYtil1W83I1i/G9rLd1a
+         4Q6Kv0oWwoYEa3iMfyNyL+o1qHOiZUa7OuuQ72SgBA38R4FqSRBbFIfqeubY7gf4M6RD
+         CpcA==
+X-Forwarded-Encrypted: i=1; AJvYcCVaJ0Y4OP9Xb91Zjttw4R6OAdUBBx0IvRh59LR4LyR82veNVohahNzlyq+emDKW72C/7lxpRG3FRroYB3d4u40E2cvsQeeiob0eLw==
+X-Gm-Message-State: AOJu0YzOy8kXl+hP0hFq92m08tBL5rsI9NeuhEkY+6HbzVY5j1AGrA/k
+	74evj7umQuXgC1LyqElKKiw/kKRz1E49W62afq0KIybJbliqldN4XkW6n4+OzxQ=
+X-Google-Smtp-Source: AGHT+IG6y/hhJMC9+c5VDWWuL3WPPWEAzF2JWD+ATPeQeUlfZqQNPFlrORbh8UKtKu8cmjMC2uBWWQ==
+X-Received: by 2002:a2e:b042:0:b0:2d3:f0e7:6bcd with SMTP id d2-20020a2eb042000000b002d3f0e76bcdmr2932748ljl.40.1710491607253;
+        Fri, 15 Mar 2024 01:33:27 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.222.97])
-        by smtp.gmail.com with ESMTPSA id m8-20020a05600c4f4800b00413ea26f942sm7699529wmq.14.2024.03.15.01.32.54
+        by smtp.gmail.com with ESMTPSA id m8-20020a05600c4f4800b00413ea26f942sm7699529wmq.14.2024.03.15.01.33.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Mar 2024 01:32:55 -0700 (PDT)
-Message-ID: <ae04d6e9-1eb3-4d71-b7f1-c0fb3bddcfe8@linaro.org>
-Date: Fri, 15 Mar 2024 09:32:52 +0100
+        Fri, 15 Mar 2024 01:33:26 -0700 (PDT)
+Message-ID: <4ec0fae0-afcd-4b64-bf26-21a7972a5d0f@linaro.org>
+Date: Fri, 15 Mar 2024 09:33:25 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,18 +76,18 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm630-nile: add pinctrl for camera
- key
-To: Konrad Dybcio <konrad.dybcio@linaro.org>, Sebastian Raase <linux@sraa.de>
-Cc: marijn.suijten@somainline.org, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH] arm64: dts: qcom: sdm630-nile: add pinctrl for camera key
+Content-Language: en-US
+To: Sebastian Raase <basti@sraa.de>
+Cc: Sebastian Raase <linux@sraa.de>, marijn.suijten@somainline.org,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konrad.dybcio@linaro.org>, Rob Herring <robh+dt@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
  Conor Dooley <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
  devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 References: <20240314200037.549206-1-linux@sraa.de>
- <20240314232043.1441395-1-linux@sraa.de>
- <359dafcc-4774-4ff4-8df0-03e3641082e5@linaro.org>
-Content-Language: en-US
+ <fc7bda50-279e-4afb-8c31-4fcda0e8b2ed@linaro.org>
+ <20240315002338.3fe1dcfc@probook>
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  xsFNBFVDQq4BEAC6KeLOfFsAvFMBsrCrJ2bCalhPv5+KQF2PS2+iwZI8BpRZoV+Bd5kWvN79
@@ -134,42 +133,21 @@ Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
  KQ06ztUMRrj8eVtpImjsWCd0bDWRaaR4vqhCHvAG9iWXZu4qh3ipie2Y0oSJygcZT7H3UZxq
  fyYKiqEmRuqsvv6dcbblD8ZLkz1EVZL6djImH5zc5x8qpVxlA0A0i23v5QvN00m6G9NFF0Le
  D2GYIS41Kv4Isx2dEFh+/Q==
-In-Reply-To: <359dafcc-4774-4ff4-8df0-03e3641082e5@linaro.org>
+In-Reply-To: <20240315002338.3fe1dcfc@probook>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 15/03/2024 00:49, Konrad Dybcio wrote:
-> 
-> 
-> On 3/15/24 00:20, Sebastian Raase wrote:
->> Add pinctrl configuration for gpio-keys. Without this,
->> camera button half-presses are not detected.
+On 15/03/2024 00:23, Sebastian Raase wrote:
+>>>  	gpio-keys {
+>>>  		compatible = "gpio-keys";
+>>> +		pinctrl-names = "default";
+>>> +		pinctrl-0 = <&gpio_keys_default>;  
 >>
->> Tested on discovery and pioneer.
->>
->> Fixes: e781633b6067 ("arm64: dts: qcom: Add support for Sony Xperia XA2/Plus/Ultra (Nile platform)")
->> Signed-off-by: Sebastian Raase <linux@sraa.de>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 9 +++++++++
->>   1 file changed, 9 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
->> index 87d0293c728d..823c21d5ee59 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
->> @@ -90,6 +90,8 @@ cam_vana_rear_vreg: cam-vana-rear-regulator {
->>   
->>   	gpio-keys {
->>   		compatible = "gpio-keys";
->> +		pinctrl-names = "default";
->> +		pinctrl-0 = <&gpio_keys_default>;
+>> A nit: Please reverse the order: pinctrl-0 then names
 > 
-> It's fine to keep the "non-preferred" order, I'll probably send some
-> changes to nile and fix up the style while at it in the near future.
+> All existing pinctrl definitions use pinctrl-names first, so I followed the existing file. Is this still okay?
 
-Sebastian,
-Although it is also preferred to implement feedback the reviewer is
-asking. I don't understand why you insisted to keep the other order.
+No, not all. If you are sending v2, why you cannot fix this in new code?
 
 Best regards,
 Krzysztof
