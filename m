@@ -1,414 +1,204 @@
-Return-Path: <devicetree+bounces-50765-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50768-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id B804A87CFE1
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 16:13:06 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 39CCD87CFFE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 16:16:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id DB53C1C22488
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:13:05 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id E70FB2849AF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:16:32 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A49503CF75;
-	Fri, 15 Mar 2024 15:13:01 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5078C3D0BC;
+	Fri, 15 Mar 2024 15:16:23 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="LkCHgcom";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="7GsN1JIl"
+	dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b="O43SCO9M"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.80])
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 0CCCC2E636;
-	Fri, 15 Mar 2024 15:12:57 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.80
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710515581; cv=pass; b=INhSi4dOGdKn9vObR+s5tVs3qa8T3gBLy5zFSALJT4eyiPfzIszJ98vKlIlJpJv1ZX64isED5yw7zDWk3zVmXT+6ZnL/2Lw3eCkIYunR08CEAyi243KSVz+4o6Cnd3BE0uN6/xHXyXDcwatMwi38o4H6NHprXC/02xJW5bEm3YA=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710515581; c=relaxed/simple;
-	bh=2xtZ3oMXL8llzaxfsyXPK/GV2OQAmJn0lubCdZbXCo0=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=AwMcpZf4PsPwlWrS3IuuhPxsYIqk532xTcAnFxsKmtftR3FBCTRBNjl689iMOryveGz3FJNPGhPXLCm+1zNcd5LDU361KzW3b2KqXgM/bUCZh4CJc5myWd5gc5nJ8wO+nPEURhrTCLJSN2jnCBhyXsb2hYTVXZyn3bkgINvOSbc=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net; spf=none smtp.mailfrom=gerhold.net; dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=LkCHgcom; dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=7GsN1JIl; arc=pass smtp.client-ip=85.215.255.80
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=gerhold.net
-ARC-Seal: i=1; a=rsa-sha256; t=1710515556; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=rAuubJ24iJBms6GJzjRj9bHwEy4uPmMH/0WCdxSZ1xcUH1DrwzQcyvYyrb+oIQdIEi
-    EWVxAuUAucLxDj/wqBk8Zk5pFlcETMSyCcfWjVmyAt1v6DEDLdIfm5DlRisUGakfDi+b
-    qaFnczq2F+5r7a900/UOWLhX48TuzGvINwaJprnqyutY3VPB58WNaqEhM9s+q/QH5G+M
-    QWREpkM6EWxXyTgqrClc05kDkGOIe9fWvzujt+yuZcuXNrcb/W+eYpaZfivKguQ4w/UZ
-    CU2avNxyhMCikNVV1PCnLRsCm7ckjsobwnccNxgV1ixTy1hFmaHxIOu74s29XIjRKEc6
-    jslA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1710515556;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=7gG9RbVl8+ZysWkWe9Vj985mTW/JVnLCmf5MU9LIuso=;
-    b=g+CdvsQNCb8SV3QY57C0L8SLs6Zk7qA2ND+T+uztxcwOjOjCfISsGN4LuuNUz5f/lG
-    bvuvfeXTQPfm5dsTbWawechvA5FTE2bWCCj9F3IcdzGNZgZYyA8r8b2yid4Du3ZOMPd1
-    reVTTdSsdD8oyZciM6iyjQWtFau8F5YXbz6bgMgenW/SHkLL9z1ctJl+MX5YgSYeBJzx
-    HB2Wc+C/eqPGUKnhScUiXJIDY3qQuymNQPaWIzorDYX/Z7WrzFFjlSkd0bOOXGiiQheG
-    roHnjjqdGAUJCJ3GfDEG8v6mV/93rNktFm2cdxQCw8JzdbNMQdkwK46iZJnNflFGkgBx
-    ItBQ==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1710515556;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=7gG9RbVl8+ZysWkWe9Vj985mTW/JVnLCmf5MU9LIuso=;
-    b=LkCHgcomTfvwAKDhnWIt2aaSYGL/L2KA2LslkAp25oc9EBFXztHvkGfJx2wVVcKLou
-    XhUth5MKm1mRVPd/sex6mRRnVRQdHL+Iqlu4nS8HvKNoenB5yLYJf8ITOKgyAPvRY4oz
-    aMRbNj149cRkR2xurC4JIeh3hUNgHr7dCRx9Tcji5al2hHbqOF+LgL7/oCZdm62+Dikn
-    88Oyqecfbyw396fubgyWMGNeYWpt7TQNFFoSjhy6BcuKmR4zzjjo1RgfRbmkjMmMcUXt
-    BbWZm37XHJCIhAN1AsXtCuSo5gk72MIxTPk5kr2JoGlIsa/Bj7TswSBWiA3Pv57m+fKS
-    hV9g==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1710515556;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=7gG9RbVl8+ZysWkWe9Vj985mTW/JVnLCmf5MU9LIuso=;
-    b=7GsN1JIlunGNtt3xVzt0qEBgY6KgepvyyiAB3vM2s3CoHJmHdPRneNISXu0MLyfJSv
-    NCqFGmknpzM6rBxXhrDg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA95vh"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 50.2.2 SBL|AUTH)
-    with ESMTPSA id Raa09e02FFCa3Kc
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Fri, 15 Mar 2024 16:12:36 +0100 (CET)
-Date: Fri, 15 Mar 2024 16:12:34 +0100
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Sumit Garg <sumit.garg@linaro.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	caleb.connolly@linaro.org, neil.armstrong@linaro.org,
-	dmitry.baryshkov@linaro.org, laetitia.mariottini@se.com,
-	pascal.eberhard@se.com, abdou.saker@se.com, jimmy.lalande@se.com,
-	benjamin.missey@non.se.com, daniel.thompson@linaro.org,
-	linux-kernel@vger.kernel.org,
-	Jagdish Gediya <jagdish.gediya@linaro.org>
-Subject: Re: [PATCH v3 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
- board DTS
-Message-ID: <ZfRlYnEQUKvwGQ65@gerhold.net>
-References: <20240315060707.471248-1-sumit.garg@linaro.org>
- <20240315060707.471248-4-sumit.garg@linaro.org>
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 010013E48E;
+	Fri, 15 Mar 2024 15:16:20 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=185.132.182.106
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710515783; cv=none; b=LVdNaVMmFTWRY9vqY8L14M1kwqjXsDAVpb+wo/01Yq/xF0zCIMibsOkUYVvmi0TwOxIHT8pPGb9U1CYBeLQxsdq/YA22txCgLaDTQ5eXRjRCQFMUqr4mBbdGUB8pfMW8JKLS5lrYxLQE5NCXpU0zuFySlijF1VtodBnDpdi44dc=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710515783; c=relaxed/simple;
+	bh=IHIPLZE3idlw2cVAcFI6y49qart4V2n1jZXMAHDIMxo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:CC:References:From:
+	 In-Reply-To:Content-Type; b=Lq2Qm0B/iSkhv9HW6XbGDzChrPhlJkNucuyWM7cn4xatHFEB0DeHIkyOyNw3VD7+TmPDP7NXr+7oq+kElfZFcq2ZogUMbEVD0RwWocz0EDFKiJtw+wCYyKoz/+8EhSf2SgUPsoQkun6UwNDwdevApYxo+qBbsMUBtA0iPrVudSw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com; spf=pass smtp.mailfrom=foss.st.com; dkim=pass (2048-bit key) header.d=foss.st.com header.i=@foss.st.com header.b=O43SCO9M; arc=none smtp.client-ip=185.132.182.106
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=foss.st.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=foss.st.com
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+	by mx07-00178001.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42FEcweV009640;
+	Fri, 15 Mar 2024 16:15:47 +0100
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=
+	message-id:date:mime-version:subject:to:cc:references:from
+	:in-reply-to:content-type:content-transfer-encoding; s=
+	selector1; bh=mN5YOoII/OjhboOJve/4NynjPrKGyVn2gyMyB0ukmK8=; b=O4
+	3SCO9MyJtYSOKQdCylCRvSDcHHxssv5BfVPLBubd9+Szkv5WcxgLnXtQAUfWgSpU
+	I/ziY/map1ZTLqOZb8ZAnHsdyX60bH1ck19Gasjv4xwvTDWB7UoL00peD7ZiCStO
+	KeaFREhRryPVNq8JlIigO7sTODYdN74knfTf/64YaI2cECSnOQXA2TDg2oVnyhxf
+	P1Ith7hPfjfZF1sCPg9eLz3nYzbimwXYUPLzLHoxToQw0oCvidRmtD+dA3IjzbcF
+	g9O/JaNlPfLQ71HLGwZi21RHHQpgGpDVpk7byycaRUQ1xcUN6bn0PdAJMuuQbsMe
+	cbrKU5yedbA9yalQymXg==
+Received: from beta.dmz-ap.st.com (beta.dmz-ap.st.com [138.198.100.35])
+	by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3wv9yckf3e-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Mar 2024 16:15:46 +0100 (CET)
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+	by beta.dmz-ap.st.com (STMicroelectronics) with ESMTP id A126D4002D;
+	Fri, 15 Mar 2024 16:15:30 +0100 (CET)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+	by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8AEB827564A;
+	Fri, 15 Mar 2024 16:14:16 +0100 (CET)
+Received: from [10.252.28.102] (10.252.28.102) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Fri, 15 Mar
+ 2024 16:14:15 +0100
+Message-ID: <ac696442-0513-48cc-86b1-8647b9bd8e91@foss.st.com>
+Date: Fri, 15 Mar 2024 16:14:06 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240315060707.471248-4-sumit.garg@linaro.org>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 2/2] dt-bindings: net: add new property st,ext-phyclk
+ in documentation for stm32
+To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "David S . Miller"
+	<davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>, Jakub Kicinski
+	<kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, Rob Herring
+	<robh+dt@kernel.org>,
+        Krzysztof Kozlowski
+	<krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue
+	<alexandre.torgue@foss.st.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Jose Abreu <joabreu@synopsys.com>, Liam Girdwood <lgirdwood@gmail.com>,
+        Mark
+ Brown <broonie@kernel.org>
+CC: <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20240307135957.303481-1-christophe.roullier@foss.st.com>
+ <20240307135957.303481-3-christophe.roullier@foss.st.com>
+ <578f421c-ca06-45d4-8380-8b2b423d4d47@linaro.org>
+ <50ee6122-b160-48ea-8c44-1046b5907d7c@foss.st.com>
+ <e2a98098-8ccd-4b8f-9a4b-1cbc0776a9c2@linaro.org>
+ <51531046-ee83-4d99-836b-af4dc5d7add9@foss.st.com>
+ <cf122942-c0fd-457f-a753-366cae39d5f8@linaro.org>
+Content-Language: en-US
+From: Christophe ROULLIER <christophe.roullier@foss.st.com>
+In-Reply-To: <cf122942-c0fd-457f-a753-366cae39d5f8@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-15_02,2024-03-13_01,2023-05-22_02
 
-On Fri, Mar 15, 2024 at 11:37:07AM +0530, Sumit Garg wrote:
-> Add Schneider Electric HMIBSC board DTS. The HMIBSC board is an IIoT Edge
-> Box Core board based on the Qualcomm APQ8016E SoC.
-> 
-> Support for Schneider Electric HMIBSC. Features:
-> - Qualcomm Snapdragon 410C SoC - APQ8016 (4xCortex A53, Adreno 306)
-> - 1GiB RAM
-> - 8GiB eMMC, SD slot
-> - WiFi and Bluetooth
-> - 2x Host, 1x Device USB port
-> - HDMI
-> - Discrete TPM2 chip over SPI
-> - USB ethernet adaptors (soldered)
-> 
-> Co-developed-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-> Signed-off-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-> Reviewed-by: Caleb Connolly <caleb.connolly@linaro.org>
-> Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../dts/qcom/apq8016-schneider-hmibsc.dts     | 510 ++++++++++++++++++
->  2 files changed, 511 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 39889d5f8e12..ad55e52e950b 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -5,6 +5,7 @@ apq8016-sbc-usb-host-dtbs	:= apq8016-sbc.dtb apq8016-sbc-usb-host.dtbo
->  
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc-usb-host.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-sbc-d3-camera-mezzanine.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= apq8016-schneider-hmibsc.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8039-t2.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8094-sony-xperia-kitakami-karin_windy.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= apq8096-db820c.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-> new file mode 100644
-> index 000000000000..9c79a31a04db
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/apq8016-schneider-hmibsc.dts
-> @@ -0,0 +1,510 @@
-> [...]
-> +&blsp_uart1 {
-> +	label = "UART0";
-> +	status = "okay";
-> +};
-> +
-> +&blsp_uart2 {
-> +	label = "UART1";
-> +	status = "okay";
-> +};
-> +
-> +/* Enable CoreSight */
-> +&cti0 { status = "okay"; };
-> +&cti1 { status = "okay"; };
-> +&cti12 { status = "okay"; };
-> +&cti13 { status = "okay"; };
-> +&cti14 { status = "okay"; };
-> +&cti15 { status = "okay"; };
-> +&debug0 { status = "okay"; };
-> +&debug1 { status = "okay"; };
-> +&debug2 { status = "okay"; };
-> +&debug3 { status = "okay"; };
-> +&etf { status = "okay"; };
-> +&etm0 { status = "okay"; };
-> +&etm1 { status = "okay"; };
-> +&etm2 { status = "okay"; };
-> +&etm3 { status = "okay"; };
-> +&etr { status = "okay"; };
-> +&funnel0 { status = "okay"; };
-> +&funnel1 { status = "okay"; };
-> +&replicator { status = "okay"; };
-> +&stm { status = "okay"; };
-> +&tpiu { status = "okay"; };
+Hi
 
-Nitpick: The &cti0 is in the correct alphabetically ordered place, but
-&replicator, &stm and &tpiu are not.
+On 3/14/24 16:25, Krzysztof Kozlowski wrote:
+> On 14/03/2024 16:10, Christophe ROULLIER wrote:
+>> Hi,
+>>
+>> On 3/13/24 14:06, Krzysztof Kozlowski wrote:
+>>> On 13/03/2024 11:39, Christophe ROULLIER wrote:
+>>>> On 3/8/24 09:28, Krzysztof Kozlowski wrote:
+>>>>> On 07/03/2024 14:59, Christophe Roullier wrote:
+>>>>>> Add property st,ext-phyclk to manage cases when PHY have no cristal/quartz
+>>>>>> This property can be used with RMII phy without cristal 50Mhz and when we
+>>>>>> want to select RCC clock instead of ETH_REF_CLK
+>>>>>> Can be used also with RGMII phy with no cristal and we select RCC clock
+>>>>>> instead of ETH_CLK125
+>>>>>>
+>>>>> Nothing improved here. You say you add new property (wrote it explicitly
+>>>>> in the subject), but where is it? Where is the user?
+>>>>>
+>>>>> I think we talked about this. Rob also asked quite clear:
+>>>>>
+>>>>>> That is obvious from the diff. What is not obvious is why we need a new
+>>>>>> property and what is the problem with the existing ones.
+>>>>> How did you solve it?
+>>>> Hi,
+>>>>
+>>>> I do not understand your questions.
+>>> OK, I will clarify some questions, but are you sure that this question:
+>>> "How did you solve it?"
+>>> needs clarification?
+>>>
+>>> If so, then let me clarify:
+>>> Rob pointed issue. How did you resolve Rob's comment? How did you
+>>> address it? What changed in your patch, that Rob's comment should be
+>>> considered as addressed/resolved/done?
+>> This property was introduced in 2020 in order to simplify management of
+>> all STM32 platforms without Ethernet cristal/quartz PHY.
+> I fail to see how this answers how did you resolve the comment. You now
+> described some sort of history, but I am asking: what did you change in
+> your patches, so Rob's comment is considered resolved?
 
-I know you changed this based on the review comments but I personally
-think it was clearer having this separated as condensed block towards
-the end of the file (where it was before).
+Concerning Rob's comment, in V2 I finally remove deprecated fields put 
+in V1 to keep existing properties, which have no pb and can be used.
 
-The other option would be to put each element individually at the
-correctly ordered position in the file. However, having a single "Enable
-CoreSight" comment for the entire block would then not work anymore
-since all the lines would be interspersed throughout the file.
+And I explained the meaning to add existing property in yaml.
 
-> [...]
-> +&pm8916_codec {
-> +	qcom,mbhc-vthreshold-low = <75 150 237 450 500>;
-> +	qcom,mbhc-vthreshold-high = <75 150 237 450 500>;
-> +	status = "okay";
-> +};
-> +
-> +&pm8916_gpios {
-> +	gpio-line-names =
-> +		"USB_HUB_RESET_N_PM",
-> +		"USB_SW_SEL_PM",
-> +		"NC",
-> +		"NC";
-> +
-> +	usb_hub_reset_pm: usb-hub-reset-pm-state {
-> +		pins = "gpio1";
-> +		function = PMIC_GPIO_FUNC_NORMAL;
-> +
-> +		input-disable;
-> +		output-high;
-> +	};
-> +
-> +	usb_hub_reset_pm_device: usb-hub-reset-pm-device-state {
-> +		pins = "gpio1";
-> +		function = PMIC_GPIO_FUNC_NORMAL;
-> +
-> +		output-low;
-> +	};
-> +
-> +	usb_sw_sel_pm: usb-sw-sel-pm-state {
-> +		pins = "gpio2";
-> +		function = PMIC_GPIO_FUNC_NORMAL;
-> +
-> +		power-source = <PM8916_GPIO_VPH>;
-> +		input-disable;
-> +		output-high;
-> +	};
-> +
-> +	usb_sw_sel_pm_device: usb-sw-sel-pm-device-state {
-> +		pins = "gpio2";
-> +		function = PMIC_GPIO_FUNC_NORMAL;
-> +
-> +		power-source = <PM8916_GPIO_VPH>;
-> +		input-disable;
-> +		output-low;
-> +	};
-> +};
-> +
-> +&pm8916_mpps {
-> +	gpio-line-names =
-> +		"NC",
-> +		"WLAN_LED_CTRL",
-> +		"BT_LED_CTRL",
-> +		"NC";
-> +
-> +	pm8916_mpps_leds: pm8916-mpps-state {
-> +		pins = "mpp2", "mpp3";
-> +		function = "digital";
-> +
-> +		output-low;
-> +	};
-> +};
-> +
-> +&pm8916_resin {
-> +	interrupts = <0x0 0x8 1 IRQ_TYPE_EDGE_FALLING>;
+>>> Now about my other question:
+>>> "but where is it? Where is the user?"
+>>>
+>>> Your subject and commit message claim you add new property. This means
+>>> such property was not existing so far in the Linux kernel. If you add
+>>> new property in the binding, then I expect adding the user of that
+>>> binding, thus my question: where is the user of that binding?
+>>>
+>> I'm preparing glue and DTS to upstream for STM32MP13 platform, this
+>> platform will use with property.
+>>
+>> Since 2020, this property is available in the driver in kernel.org, so
+>> it is also possible that someone who has not upstreamed their
+> This should be explained in commit msg (although not kernel.org, website
+> does not matter here).
+ok I will add this in V3.
+>
+>> code also uses it.
+>>
+>>>> That I would like to do, it is property "st,ext-phyclk" was introduced
+>>>> in driver
+>>>>
+>>>> "drivers/net/ethernet/stmicro/stmmac/dwmac-stm32.c" in 2020, and YAML
+>>>> was not updated at the time.
+>>> Are you saying you document existing property or add a new one?
+>> Yes, existing property, since 2020 in kernel.org.
+> Drop the website. We talk here about Linux kernel.
+>
+> Commit msg fails to explain it in a clear way.
 
-What is the goal of overriding the interrupt here? It looks like you are
-changing the interrupt type from IRQ_TYPE_EDGE_BOTH to FALLING. This
-sounds a bit like you want the driver to receive just button release
-events (or just press events, not sure about the polarity). I'm not sure
-if the driver will handle this correctly.
+ok I will add this in V3.
 
-> +	linux,code = <KEY_POWER>;
-> +	status = "okay";
-> +};
-> +
-> +&pm8916_rpm_regulators {
-> +	pm8916_l17: l17 {
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +};
-> +
-> +&sdhc_1 {
-> +	status = "okay";
-> +};
-> +
-> +&sdhc_2 {
-> +	pinctrl-0 = <&sdc2_default &sdc2_cd_default>;
-> +	pinctrl-1 = <&sdc2_sleep &sdc2_cd_default>;
-> +	pinctrl-names = "default", "sleep";
-> +
-> +	cd-gpios = <&tlmm 38 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> +
-> +&sound {
-> +	pinctrl-0 = <&cdc_pdm_default &sec_mi2s_default>;
-> +	pinctrl-1 = <&cdc_pdm_sleep &sec_mi2s_sleep>;
-> +	pinctrl-names = "default", "sleep";
-> +	model = "HMIBSC";
-> +	audio-routing =
-> +		"AMIC2", "MIC BIAS Internal2",
-> +		"AMIC3", "MIC BIAS External1";
-> +	status = "okay";
-> +
-> +	quaternary-dai-link {
-> +		link-name = "ADV7533";
-> +		cpu {
-> +			sound-dai = <&lpass MI2S_QUATERNARY>;
-> +		};
-> +		codec {
-> +			sound-dai = <&adv_bridge 0>;
-> +		};
-> +	};
-> +
-> +	primary-dai-link {
-> +		link-name = "WCD";
-> +		cpu {
-> +			sound-dai = <&lpass MI2S_PRIMARY>;
-> +		};
-> +		codec {
-> +			sound-dai = <&lpass_codec 0>, <&pm8916_codec 0>;
-> +		};
-> +	};
-> +
-> +	tertiary-dai-link {
-> +		link-name = "WCD-Capture";
-> +		cpu {
-> +			sound-dai = <&lpass MI2S_TERTIARY>;
-> +		};
-> +		codec {
-> +			sound-dai = <&lpass_codec 1>, <&pm8916_codec 1>;
-> +		};
-> +	};
-> +};
-> +
-> +&tlmm {
-> +	pinctrl-0 = <&uart1_mux0_rs232_high &uart1_mux1_rs232_low>;
-> +	pinctrl-names = "default";
-> +
-> +	adv7533_int_active: adv533-int-active-state {
-> +		pins = "gpio31";
-> +		function = "gpio";
-> +
-> +		drive-strength = <16>;
-> +		bias-disable;
-> +	};
-> +
-> +	adv7533_int_suspend: adv7533-int-suspend-state {
-> +		pins = "gpio31";
-> +		function = "gpio";
-> +
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	adv7533_switch_active: adv7533-switch-active-state {
-> +		pins = "gpio32";
-> +		function = "gpio";
-> +
-> +		drive-strength = <16>;
-> +		bias-disable;
-> +	};
-> +
-> +	adv7533_switch_suspend: adv7533-switch-suspend-state {
-> +		pins = "gpio32";
-> +		function = "gpio";
-> +
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
-> +
-> +	msm_key_volp_n_default: msm-key-volp-n-default-state {
-> +		pins = "gpio107";
-> +		function = "gpio";
-> +
-> +		drive-strength = <8>;
-> +		bias-pull-up;
-> +	};
-> +
-> +	sdc2_cd_default: sdc2-cd-default-state {
-> +		pins = "gpio38";
-> +		function = "gpio";
-> +		drive-strength = <2>;
-> +		bias-disable;
-> +	};
+Thanks
 
-Nitpick: It would look a bit cleaner to have the empty lines consistent
-in all pinctrl nodes, i.e. either always having an empty line between
-function and drive-strength or never. I think Konrad prefers the more
-compact version without empty line (sadly I'm not sure if this is
-clearly documented anywhere). Same for &pm8916_gpios and mpps.
-
-> +
-> +	/*
-> +	 * UART1 being the debug console supports various modes of
-> +	 * operation (RS-232/485/422) controlled via GPIOs configured
-> +	 * mux as follows:
-> +	 *
-> +	 *   gpio100    gpio99    UART mode
-> +	 *   0          0         loopback
-> +	 *   0          1         RS-232
-> +	 *   1          0         RS-485
-> +	 *   1          1         RS-422
-> +	 *
-> +	 * The default mode configured here is RS-232 mode.
-> +	 */
-
-:D
-
-Thanks a lot for making this clear using the table. And also for all the
-other cleanup changes!
-
-Stephan
+>
+>>>> Goal of this patch it is to update YAML to avoid dtbs check issue if
+>>>> someone use this property :
+>>>>
+>>>>     dtbs check issue : views/kernel/upstream/net-next/arch/arm/boot/dts/st/stm32mp157c-dk2.dtb:
+>>>> ethernet@5800a000: Unevaluated properties are not allowed
+>>>> ('st,ext-phyclk' was unexpected)
+>>> So DTS uses it?
+>> Here it was example, if someone wants to use this property, but today
+>> this property is not yet present in DTS in kernel.org
+>
+> Best regards,
+> Krzysztof
+>
 
