@@ -1,203 +1,380 @@
-Return-Path: <devicetree+bounces-50636-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50635-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F44A87C8B0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 06:58:01 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 56C0A87C8A2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 06:51:36 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id D88F3282D12
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 05:57:59 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 775411C20A37
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 05:51:35 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0B1BB12E71;
-	Fri, 15 Mar 2024 05:57:55 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 277B4FBE8;
+	Fri, 15 Mar 2024 05:51:32 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="ZJcHtxeH";
-	dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b="LUqGr1Wz"
+	dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b="OIuts2m2"
 X-Original-To: devicetree@vger.kernel.org
-Received: from gw2.atmark-techno.com (gw2.atmark-techno.com [35.74.137.57])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 56B8A846B
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 05:57:53 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=35.74.137.57
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 267CD12B77
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 05:51:29 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.179
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710482274; cv=none; b=tS8IykJLalT7vOQmiU4OdYSjPRWoY8AHxoXCrBK1u2CF/Goh7mXDOiHy2GnBF6E4YWmL19bZUROqoDxHzMFTQN7/XpofRzAFyiKRXKdIEGQjg7IzyaGcAmwlVXLzn2ogF5QQ0q5c3yana2/Ylp/+u1d3q1msSzoMS0V3cwjK5v0=
+	t=1710481892; cv=none; b=RfpfuQ56PZ8249W963Idwi6vPjWs2W+27Z/ZmcEW/VbFW2w3RA0rBJF75uck2Bmqy3PaJ8FuJocubP8bixsHjL+dOpXEfLMhR1saiijoM2esiIq08m+tIKgU7qVa6Qc0SDM8/BpFDqSpJk06uV/B5tboW09rDZn2/g/Uq66sveE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710482274; c=relaxed/simple;
-	bh=689CVoU4hSkkdi+xckfkMtotCp/WIXunG9G7U95p51Y=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=Jp1QfPvZYvuZLWle6eKVc8w1ZPCXA4ZFXR0W5FswYlDaBhabV1xODhh9yHvsMt3I2dofMNt3QbhUK9QfZM0XrqWsdCOuwIpxp9yl90EmFUn8hDaIo/jf5onnSxxVFmdwFjukQyrNZy6ToaKo4+GOzNUEyNFitGHlUGnVTURMbRg=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com; spf=pass smtp.mailfrom=atmark-techno.com; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=ZJcHtxeH; dkim=pass (2048-bit key) header.d=atmark-techno.com header.i=@atmark-techno.com header.b=LUqGr1Wz; arc=none smtp.client-ip=35.74.137.57
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=atmark-techno.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=atmark-techno.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=atmark-techno.com;
-	s=gw2_bookworm; t=1710481673;
-	bh=689CVoU4hSkkdi+xckfkMtotCp/WIXunG9G7U95p51Y=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=ZJcHtxeHYquE6WIV8k927gOu21f2DOZPiugLeOnWdLAiwGTCI58XS1EUBhYk8sDJY
-	 i8WahKViHF2cxu7MjATZAFrErpGxtV7LF0gVM39W0KfZrG9sU6yXgcwtLtVOIa/I7N
-	 BPf3DxnAbQW4Cnuuxq3Vbx8TytBJ+g/POi9Upij36oVKtw9GFFPzK/L2gFnQwVVM46
-	 r5xRMRIs00wdoua/eN+Ncyqs5lHPJZgQ+j+T3yC9vI+VrE3+LeNhErEtWXIAKHFeWb
-	 ScgryDSEzKDyQpt0aNOtJCvrFFUrPo7t4i5aPB8MN/G9ifuZlD9KACdZ/LjTNWkzT1
-	 jdxYI7Af8ycWQ==
-Received: from gw2.atmark-techno.com (localhost [127.0.0.1])
-	by gw2.atmark-techno.com (Postfix) with ESMTP id E86F7B9B
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 14:47:53 +0900 (JST)
-Authentication-Results: gw2.atmark-techno.com;
-	dkim=pass (2048-bit key; unprotected) header.d=atmark-techno.com header.i=@atmark-techno.com header.a=rsa-sha256 header.s=google header.b=LUqGr1Wz;
-	dkim-atps=neutral
-Received: from mail-pf1-f199.google.com (mail-pf1-f199.google.com [209.85.210.199])
-	by gw2.atmark-techno.com (Postfix) with ESMTPS id 78D17B95
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 14:47:52 +0900 (JST)
-Received: by mail-pf1-f199.google.com with SMTP id d2e1a72fcca58-6e04e1ac036so1703360b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 22:47:52 -0700 (PDT)
+	s=arc-20240116; t=1710481892; c=relaxed/simple;
+	bh=A/81nqGsGt73GISU0dF+EkR2mLtnRJReyWNTwcTSWz8=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=fpZSTUePQAD3yn2CzdPS2PG1rF+MHK1c2+iOOpZMamYz5dDGW/gbfL/AxLgljXbehtXIwzwsQIxdyS+9jUgWt3me+2yXFvucK7nqIQhuj7KDXDgbYNl0KkMa73mTyl6QahvOL6TknAPWjGulp0nRRbtdrC0xxrFJntnIl1GK4x8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com; spf=pass smtp.mailfrom=google.com; dkim=pass (2048-bit key) header.d=google.com header.i=@google.com header.b=OIuts2m2; arc=none smtp.client-ip=209.85.160.179
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=google.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=google.com
+Received: by mail-qt1-f179.google.com with SMTP id d75a77b69052e-42ee0c326e8so183771cf.0
+        for <devicetree@vger.kernel.org>; Thu, 14 Mar 2024 22:51:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=atmark-techno.com; s=google; t=1710481671; x=1711086471; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=bYMS5/DXfaIpI+pTTahoABUn10+eXSS/XEewvoMgNdw=;
-        b=LUqGr1WzOm+02rv+c8Ap/x7k2syQ0pqh/poh5vY1pWyas4RZflTBomX4kIx9N2rWBX
-         wL4PajSDOLWQKlLMQkJ/G4rsnagF1fOejFuL+dpnsMDKr4tjWD6/0+uZl8ftUtcyZWB/
-         hyIeF2HwkBv6NeuRWZFCM7vJAxgYbdaEsUO65YzHPXtw1l4SvCTnswlCS6KUZaS/Aw1D
-         YMi1vWIHzlujqA4U4MaTg2novA/ZNcNUVC8TpyhAPCB0PFaWUJrgSFknrRJFI/n0bNwp
-         bt3QwOIX/W4M+rBCP0hu/wi+MdSzVFoEtMVVLzoZcmqxXUGPmwb+ZDeuvH9HAkqoRxDj
-         XxFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710481671; x=1711086471;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=google.com; s=20230601; t=1710481889; x=1711086689; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=bYMS5/DXfaIpI+pTTahoABUn10+eXSS/XEewvoMgNdw=;
-        b=h+dINIR6V3k6eYAGVpQ4ab19R4QIRtSNdwkyxeEE0Q178k3c3VbN6CfdHvwH6HnQJP
-         DO3RDx+JGbNjX70KL3LR/9AnYhDi9aiWCo4sZCHA1ehknH+ll4NkYJi2M50jgvlWGfHW
-         94AK7WqH5n4NqpGRATNz/lK0kpGvRPjKytwfiSFAKmNyjqMJ72gct3UpvGjUE6qXiX7R
-         Q1aBQ68fDLakS8JGyRcDNhnfD9U1e6WDARDHu0SxgXQUoECULMc3u3A+oz0tOQ/AzyO0
-         Yr/xws4pz9Sifd0uU6uuQoD0cc9bc8/vuZ57NPJVRaCUjVxXcSPG0Ag2mCCEh+fD/LDy
-         nXTQ==
-X-Forwarded-Encrypted: i=1; AJvYcCVnrJo2WmG7TP3zNSKPGjoADYe+46/f/r5/422Me3kVzmusrv1/9fJSC0oNCChvNvVPi5TrsbHioPOrdVXgHGuxrva1WcPrKpsXoA==
-X-Gm-Message-State: AOJu0YwR6/PbpNtMadBC2xWk/Xbi2JxXsue9yg97uHLeqnl1x0b5MFVt
-	EtWrDX5wwI1EUE04R475uiLw/ffTyfgfT1KysQoswmjJrWb58xBb/ywVwuFAfYuPhuEPd4zZJDI
-	srE6zUQt4qOJ1HjvOdTVcPFHmq/w/c6TuLUTow0mu8tplp0oMlDzoIvmzqUt5
-X-Received: by 2002:a05:6a20:6f03:b0:1a3:4438:be20 with SMTP id gt3-20020a056a206f0300b001a34438be20mr4088605pzb.48.1710481671414;
-        Thu, 14 Mar 2024 22:47:51 -0700 (PDT)
-X-Google-Smtp-Source: AGHT+IGCUH0IHN6AHGei3jkhHFFHGzGL76YbEw4+7QRI/GsRpKTjLzKIfiwMSllJzEGapNdawt2QAw==
-X-Received: by 2002:a05:6a20:6f03:b0:1a3:4438:be20 with SMTP id gt3-20020a056a206f0300b001a34438be20mr4088593pzb.48.1710481670857;
-        Thu, 14 Mar 2024 22:47:50 -0700 (PDT)
-Received: from pc-0182.atmarktech (117.209.187.35.bc.googleusercontent.com. [35.187.209.117])
-        by smtp.gmail.com with ESMTPSA id o197-20020a62cdce000000b006e68b422850sm2635895pfg.81.2024.03.14.22.47.49
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 14 Mar 2024 22:47:49 -0700 (PDT)
-Received: from martinet by pc-0182.atmarktech with local (Exim 4.96)
-	(envelope-from <martinet@pc-zest>)
-	id 1rl0Q0-002zK0-2A;
-	Fri, 15 Mar 2024 14:47:48 +0900
-Date: Fri, 15 Mar 2024 14:47:38 +0900
-From: Dominique Martinet <dominique.martinet@atmark-techno.com>
-To: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-	Jonathan Cameron <jic23@kernel.org>,
-	Syunya Ohshio <syunya.ohshio@atmark-techno.com>,
-	Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
-	Lars-Peter Clausen <lars@metafoo.de>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] iio: industrialio-core: look for aliases to request
- device index
-Message-ID: <ZfPg-nMANUtBlr6S@atmark-techno.com>
-References: <20240228051254.3988329-1-dominique.martinet@atmark-techno.com>
- <7f03bb12-0976-4cb7-9ca9-4e4e28170bdd@linaro.org>
- <Zd7hSOw3_zosyrn3@atmark-techno.com>
- <daed8ada-9e01-41ad-82af-5da5cbbc865c@linaro.org>
- <Zd7qz1Qte8HWieF_@atmark-techno.com>
- <20240228142441.00002a79@Huawei.com>
- <Zd_zB_ymxkx0HB3q@atmark-techno.com>
+        bh=dHDQcVf2C6y8hW1gdfqpTODbSAP0JHIS+G1G4PTmCbA=;
+        b=OIuts2m2wtty1AlSBq8L2OBiikY7V8ijFJWdoVXJOAybnajTagRf7MzmSfKTvX/u8a
+         QpX9mA/hSExxi5Yncj6jN2e4Tuas+GZ0vMl4odvjSA8nJx1zrh5Sx0DsmcHAX9JA4FGb
+         Fvp8pR2sCxZWVkGstK86zAhlen6x/wBsiKiR2MAfwd5LjaMhuDIxrqWhf49nzJIx91pk
+         pZBm0nyISw4fsEkF51w9DR0+AVpe8WHCP7/Z1xfA2kATkACJIbheGOAUh1M/cijzWogo
+         AfMrByY4ptTfHV4VhF8aHL26lr9t2X9O+PqBzoRuwxBo4o8P3CjwqMvj37jEnpkwTxZW
+         0FiA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710481889; x=1711086689;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dHDQcVf2C6y8hW1gdfqpTODbSAP0JHIS+G1G4PTmCbA=;
+        b=Pkx16nu5ToyGQPYhiqS5reBujQxmk2iNbCbD13MQ2sCkJ2BTj/hlBmirvn0ZTUtngT
+         PGGbNAjtcw5su4X9AQkKm/J8j5LEN42TllCippgWfAVQLDFZr9V8YWz8QQLJPjvPNRN4
+         xSbM/3STqMKHvSatdSRqTsKR4flur4yYgtEFHUk+IhDRZCoy0vWCTUiPdq5L5obB2eZa
+         axa6mibhl9FY7BlsQoqc0Kd3BY2/GbE+hvdGEGZ6kGp+1kjwVNTP4WImJp64ayvKa8Ve
+         6kRMpd4AMwTrYWIrnm/q4xrwF7IZ8nweF6NWX+/02ZC2IfrJaqpmug90c4g7T1WOavZy
+         jwiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCV+q0OoXe7GSZ754OzmPAXWbc5FrOXRoJbE1xxaFBLuDdUQraRWXmIuv9l89dPCSDaxhUDUOS6IV/uP1wclACJWJxdiIhaKfMSjIQ==
+X-Gm-Message-State: AOJu0Yz12XM1P7L5zDXZJ+3NRpCWOqLsnUyvmrCv1oP38Hb+EIdbbiRj
+	R3yQ80RcZDVupN3hDDJYBhpqQ8qSVJzxq5LqJQknOo8i2EeJre4uTKxEzd9MEznleQBjAdVKKtF
+	4+wmcezq/Yo5MZfMZh5PiCpc+cwdRjmR2Ub9k
+X-Google-Smtp-Source: AGHT+IHVVYu7hkZnD5KhAz/hheqXyXO0hGEa5ngxa9jJy+T/Gp8PiPKSDnaGqcU0AEjlaxo7NoG6bv97dmdPx7FaIdg=
+X-Received: by 2002:ac8:5e97:0:b0:430:9ee1:a8 with SMTP id r23-20020ac85e97000000b004309ee100a8mr397654qtx.3.1710481888872;
+ Thu, 14 Mar 2024 22:51:28 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <Zd_zB_ymxkx0HB3q@atmark-techno.com>
+References: <20240224052436.3552333-1-saravanak@google.com>
+ <CAMuHMdWhm1WaX3X3P7tyB+e-rX=iwkwm8LxE3=gfHzJ1umhsFg@mail.gmail.com>
+ <CAGETcx_g5fdeSibDv8C2S4WpVekMvCQ9srwR3BwCzCU2z3kk-g@mail.gmail.com> <CAMuHMdV-P9nt1htpn-+jicUMA_JsOpf6mszajP9qORNweicLLw@mail.gmail.com>
+In-Reply-To: <CAMuHMdV-P9nt1htpn-+jicUMA_JsOpf6mszajP9qORNweicLLw@mail.gmail.com>
+From: Saravana Kannan <saravanak@google.com>
+Date: Thu, 14 Mar 2024 22:50:52 -0700
+Message-ID: <CAGETcx9nohVEisxoBDB7Q6eVUv3mx7W50g-Ujx+L-iN=hcKGrw@mail.gmail.com>
+Subject: Re: [PATCH] of: property: fw_devlink: Fix stupid bug in
+ remote-endpoint parsing
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Rob Herring <robh+dt@kernel.org>, Frank Rowand <frowand.list@gmail.com>, 
+	=?UTF-8?Q?Herv=C3=A9_Codina?= <herve.codina@bootlin.com>, 
+	Luca Ceresoli <luca.ceresoli@bootlin.com>, kernel-team@android.com, 
+	Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-Hi Jonathan,
+On Thu, Mar 14, 2024 at 1:46=E2=80=AFAM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Saravana,
+>
+> On Thu, Mar 14, 2024 at 2:48=E2=80=AFAM Saravana Kannan <saravanak@google=
+.com> wrote:
+> > On Thu, Feb 29, 2024 at 2:11=E2=80=AFAM Geert Uytterhoeven <geert@linux=
+-m68k.org> wrote:
+> > > On Sat, Feb 24, 2024 at 6:25=E2=80=AFAM Saravana Kannan <saravanak@go=
+ogle.com> wrote:
+> > > > Introduced a stupid bug in commit 782bfd03c3ae ("of: property: Impr=
+ove
+> > > > finding the supplier of a remote-endpoint property") due to a last =
+minute
+> > > > incorrect edit of "index !=3D0" into "!index". This patch fixes it =
+to be
+> > > > "index > 0" to match the comment right next to it.
+> > > >
+> > > > Reported-by: Luca Ceresoli <luca.ceresoli@bootlin.com>
+> > > > Link: https://lore.kernel.org/lkml/20240223171849.10f9901d@booty/
+> > > > Fixes: 782bfd03c3ae ("of: property: Improve finding the supplier of=
+ a remote-endpoint property")
+> > > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > >
+> > > Thanks for your patch!
+> > >
+> > > > --- a/drivers/of/property.c
+> > > > +++ b/drivers/of/property.c
+> > > > @@ -1304,7 +1304,7 @@ static struct device_node *parse_remote_endpo=
+int(struct device_node *np,
+> > > >                                                  int index)
+> > > >  {
+> > > >         /* Return NULL for index > 0 to signify end of remote-endpo=
+ints. */
+> > > > -       if (!index || strcmp(prop_name, "remote-endpoint"))
+> > > > +       if (index > 0 || strcmp(prop_name, "remote-endpoint"))
+> > > >                 return NULL;
+> > > >
+> > > >         return of_graph_get_remote_port_parent(np);
+> > > > --
+> > > > 2.44.0.rc0.258.g7320e95886-goog
+> > >
+> > > After this, the "Fixed dependency cycle" messages I reported to be
+> > > gone in [1] are back.
+> > >
+> > > In fact, they are slightly different, and there are now even more of =
+them:
+> > >
+> > > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef7000/ports/port@1/endpoint@0
+> > > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef6000/ports/port@1/endpoint@0
+> > > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef5000/ports/port@1/endpoint@0
+> > > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef4000/ports/port@1/endpoint@0
+> > > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef3000/ports/port@1/endpoint@0
+> > > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef2000/ports/port@1/endpoint@0
+> > > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef1000/ports/port@1/endpoint@0
+> > > -platform fea80000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef0000/ports/port@1/endpoint@0
+> > > -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef3000/ports/port@1/endpoint@2
+> > > -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef2000/ports/port@1/endpoint@2
+> > > -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef1000/ports/port@1/endpoint@2
+> > > -platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > > /soc/video@e6ef0000/ports/port@1/endpoint@2
+> > > -platform fead0000.hdmi: Fixed dependency cycle(s) with
+> > > /soc/sound@ec500000/ports/port@1/endpoint
+> > > -platform feae0000.hdmi: Fixed dependency cycle(s) with
+> > > /soc/sound@ec500000/ports/port@2/endpoint
+> > > -platform feb00000.display: Fixed dependency cycle(s) with
+> > > /soc/hdmi@feae0000/ports/port@0/endpoint
+> > > -platform feb00000.display: Fixed dependency cycle(s) with
+> > > /soc/hdmi@fead0000/ports/port@0/endpoint
+> > > -platform hdmi0-out: Fixed dependency cycle(s) with
+> > > /soc/hdmi@fead0000/ports/port@1/endpoint
+> > > -platform hdmi1-out: Fixed dependency cycle(s) with
+> > > /soc/hdmi@feae0000/ports/port@1/endpoint
+> > > -platform vga-encoder: Fixed dependency cycle(s) with /vga/port/endpo=
+int
+> > > -platform vga-encoder: Fixed dependency cycle(s) with
+> > > /soc/display@feb00000/ports/port@0/endpoint
+> > > +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+aa0000
+> > > +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+aa0000
+> > > +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+aa0000
+> > > +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+aa0000
+> > > +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef4000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef5000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef6000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef7000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@fe=
+ae0000
+> > > +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@fe=
+ad0000
+> > > +platform ec500000.sound: Fixed dependency cycle(s) with
+> > > /soc/i2c@e6510000/codec@10
+> > > +platform e6ef7000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef6000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef5000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef4000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+a80000
+> > > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef7000
+> > > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef6000
+> > > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef5000
+> > > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef4000
+> > > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef3000
+> > > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef2000
+> > > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef1000
+> > > +platform fea80000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef0000
+> > > +platform fea80000.csi2: Fixed dependency cycle(s) with
+> > > /soc/i2c@e66d8000/video-receiver@70
+> > > +platform e6ef3000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+aa0000
+> > > +platform e6ef2000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+aa0000
+> > > +platform e6ef1000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+aa0000
+> > > +platform e6ef0000.video: Fixed dependency cycle(s) with /soc/csi2@fe=
+aa0000
+> > > +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef3000
+> > > +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef2000
+> > > +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef1000
+> > > +platform feaa0000.csi2: Fixed dependency cycle(s) with /soc/video@e6=
+ef0000
+> > > +platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > > /soc/i2c@e66d8000/video-receiver@70
+> > > +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@fe=
+ad0000
+> > > +platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/sound@ec=
+500000
+> > > +platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/display@=
+feb00000
+> > > +platform ec500000.sound: Fixed dependency cycle(s) with /soc/hdmi@fe=
+ae0000
+> > > +platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/sound@ec=
+500000
+> > > +platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/display@=
+feb00000
+> > > +platform feae0000.hdmi: Fixed dependency cycle(s) with /soc/display@=
+feb00000
+> > > +platform fead0000.hdmi: Fixed dependency cycle(s) with /soc/display@=
+feb00000
+> > > +platform feb00000.display: Fixed dependency cycle(s) with /soc/hdmi@=
+feae0000
+> > > +platform feb00000.display: Fixed dependency cycle(s) with /soc/hdmi@=
+fead0000
+> > > +platform cvbs-in: Fixed dependency cycle(s) with
+> > > /soc/i2c@e66d8000/video-receiver@70
+> > > +platform hdmi-in: Fixed dependency cycle(s) with
+> > > /soc/i2c@e66d8000/video-receiver@70
+> > > +platform fead0000.hdmi: Fixed dependency cycle(s) with /hdmi0-out
+> > > +platform hdmi0-out: Fixed dependency cycle(s) with /soc/hdmi@fead000=
+0
+> > > +platform feae0000.hdmi: Fixed dependency cycle(s) with /hdmi1-out
+> > > +platform hdmi1-out: Fixed dependency cycle(s) with /soc/hdmi@feae000=
+0
+> > > +platform vga: Fixed dependency cycle(s) with /vga-encoder
+> > > +platform feb00000.display: Fixed dependency cycle(s) with /vga-encod=
+er
+> > > +platform vga-encoder: Fixed dependency cycle(s) with /vga
+> > > +platform vga-encoder: Fixed dependency cycle(s) with /soc/display@fe=
+b00000
+> > >
+> > > -i2c 2-0010: Fixed dependency cycle(s) with
+> > > /soc/sound@ec500000/ports/port@0/endpoint
+> > > +platform ec500000.sound: Fixed dependency cycle(s) with
+> > > /soc/i2c@e6510000/codec@10
+> > >
+> > > -i2c 4-0070: Fixed dependency cycle(s) with
+> > > /soc/csi2@fea80000/ports/port@0/endpoint
+> > > -i2c 4-0070: Fixed dependency cycle(s) with
+> > > /soc/csi2@feaa0000/ports/port@0/endpoint
+> > > -i2c 4-0070: Fixed dependency cycle(s) with /hdmi-in/port/endpoint
+> > > -i2c 4-0070: Fixed dependency cycle(s) with /cvbs-in/port/endpoint
+> > > +platform feaa0000.csi2: Fixed dependency cycle(s) with
+> > > /soc/i2c@e66d8000/video-receiver@70
+> > > +platform fea80000.csi2: Fixed dependency cycle(s) with
+> > > /soc/i2c@e66d8000/video-receiver@70
+> > > +i2c 4-0070: Fixed dependency cycle(s) with /soc/csi2@fea80000
+> > > +i2c 4-0070: Fixed dependency cycle(s) with /soc/csi2@feaa0000
+> > >
+> > > I guess all of that is expected?
+> >
+> > Hi Geert,
+> >
+> > Greg has picked up my "post-init-providers" series in his driver core.
+>
+> You mean https://lore.kernel.org/all/20240305050458.1400667-2-saravanak@g=
+oogle.com/?
 
-Dominique Martinet wrote on Thu, Feb 29, 2024 at 11:59:19AM +0900:
-> Jonathan Cameron wrote on Wed, Feb 28, 2024 at 02:24:41PM +0000:
-> > A given IIO device driver may create multiple sysfs directories (registers
-> > device + one or more triggers), so I'm not sure how this would work.
-> 
-> Thanks for pointing this out, the driver I'm using doesn't seem to
-> create extra triggers (iio_trigger_alloc doesn't seem to be called), but
-> the current patch would only affect iio_device_register, so presumably
-> would have no impact for these extra directories.
+Yes.
 
-So my device doesn't have any "built-in" trigger if that's a thing (let
-alone multiple), but I've played with iio-trig-sysfs and also had a look
-at what's in the tree's dts, and as far as I can see the 'name'
-(/sys/bus/iio/devices/trigger*/name, also used when registering a
-trigger for a device) seems to be fixed by the driver with parameters of
-the dts (e.g. 'reg'), so if there are multiple triggers and one wants
-something in the triggerX directory they're supposed to check all the
-names?
+>
+> > Once you pull that in, you should be able to use the
+> > post-init-providers property to break these cycles. Basically treat it
+> > like any other supplier binding, but use it to mark the link in the
+> > cycle that's not real. For the remote-endpoints case, you need to list
+> > property at the device level. Not the endpoint, port or ports nodes.
+> >
+> > Once you add this property, you should see an increase in the number
+> > of device links that are present after all device probing is done.
+> > Also, a bunch of existing device links should get converted from
+> > sync_state_only device links to normal managed device links. Meaning,
+> > the sync_state_only file under those /class/devlink/<device-link-x>/
+> > folder should change from "1" to "0".
+> >
+> > If that's what you see and it works, then go ahead and send out a
+> > patch so that the boards you care about have a more
+> > deterministic/stable probe/suspend/resume ordering.
+>
+> You mean we have to add additional properties to the DTS?
 
+Yes.
 
-So as far as I can see, I keep thinking it's orthogonal:
-- devices get a link as /sys/bus/iio/devices/iio:deviceX ; which contains:
- * 'name', set by driver (some have an index but many are constant), and
-   does not have to be unique,
- * 'label' contains whatever was set as label if set
- * 'of_node', a symlink to the device tree node which is what we
-   currently use to differentiate devices in our code
-- triggers get /sys/bus/iio/devices/triggerX, which has a 'name' file
-that probably must be unique (as it's can be written in device's
-trigger/current_trigger to select it)
+> What about compatibility with old DTBs?
 
-> I'm sure we can make something work out while preserving compatibility,
-> the patch I sent might not be great but it wouldn't bother anyone not
-> using said aliases.
-> 
-> aliases are apparently not appropriate for this (still not sure why?),
-> but if for example labels are better we could keep the current
-> iio:deviceX path (/sys/bus/iio/devices/iio:device0) with a label file in
-> it as current software expect, but add a brand new directory with a link
-> named as per the label itself (for example /sys/class/iio/<label>;
-> my understanding is that /sys/class is meant for "easier" links and we
-> don't have anything iio-related there yet)
+It'll continue working like today.
 
-I've looked at this /sys/class/iio idea (could use the label or fallback
-to iio:deviceX for devices, and name for triggers), but /sys/class seems
-to be entierly managed by the linux core driver framework so that
-doesn't leave much room for compromise...
-The links there use the device name (so iio:deviceX for devices), and if
-creating such a link fails it'll also fail the whole device creation
-(cdev_device_add() -> device_add() -> device_add_class_symlinks()), so
-my evil plan is foiled. (/sys/bus/iio/devices links are also
-automatically created by device_add() -> bus_add_device() from the
-device name)
+> Where are the DT bindings for "post-init-providers"?
+> I see it was part of earlier submissions, but I cannot find any evidence
+> they have ever been accepted by the DT maintainers?
 
+It's been submitted to dt-schema. Rob is okay with it. So it'll land.
 
-I guess we could manage another new directory somewhere or haphazardly
-create extra redundant links in the current bus directory, but that's
-not exactly something I'd consider workable given there is no possible
-deprecation path down the road, so ultimately I still think the aliases
-patch I sent is amongst the least bad options we have here:
-- there's currently no alias for iio so it won't break anything;
-- even if one adds some on a device with multiple iio devices all that
-can happen is some indices will be shuffled, but paths will still be
-compatible with all current applications.
+You don't need to merge your patches till it lands. But it'll be good
+to test it for your case and confirm it makes things better for you.
 
+-Saravana
 
-Did you have time to think about this or another possible way forward?
-
-Thanks,
--- 
-Dominique
-
-
+>
+> Thanks!
+>
+> Gr{oetje,eeting}s,
+>
+>                         Geert
+>
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m6=
+8k.org
+>
+> In personal conversations with technical people, I call myself a hacker. =
+But
+> when I'm talking to journalists I just say "programmer" or something like=
+ that.
+>                                 -- Linus Torvalds
 
