@@ -1,303 +1,394 @@
-Return-Path: <devicetree+bounces-50752-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50755-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BF9387CEF6
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:32:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id BD20E87CF25
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:41:35 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 488891C225ED
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:32:24 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E050B1C219BA
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:41:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A302739AF0;
-	Fri, 15 Mar 2024 14:31:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="ejDDItDN";
-	dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b="UClPvR0L"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 9E341381BB;
+	Fri, 15 Mar 2024 14:36:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.53])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 92DD626AE3;
-	Fri, 15 Mar 2024 14:31:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=pass smtp.client-ip=85.215.255.53
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710513097; cv=pass; b=i8TPEwQV4GChKK4BNmrLr7ObgiuVV0sUNBQtJoJhIb+eBfBFuSUGFsKlET4pXVdEgXDO4jGJ2uq9T4Kzrp/awM5dR+DhsU41v2HVf0YzvftYRw/6ak0ewl//GJrk5P3dxwFytqbyNss9+3EzEXbQDwTw1IE/bl52Cc3GXAEuymY=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710513097; c=relaxed/simple;
-	bh=ZvgNG/6Z+TZzmxQs+QM45IDmtBjoDzbTXRBfKInJ4Nc=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=rMnZnUfJmgIKgA2n1uBgEH/onWHrKR6JRl/j0XfTESknGyLCIuQKt0WAhBSiUjW/KD3WN7XfwdhFD4OWR5190i3d3IFrmRr4SKtD+aNohVrlF2WHyqu7X1duvSrB0l4hsnmbw11XjNNXKgdNTDJMiDnrwu5WH4xfafxLpadI4Xg=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net; spf=none smtp.mailfrom=gerhold.net; dkim=pass (2048-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=ejDDItDN; dkim=permerror (0-bit key) header.d=gerhold.net header.i=@gerhold.net header.b=UClPvR0L; arc=pass smtp.client-ip=85.215.255.53
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=gerhold.net
-Authentication-Results: smtp.subspace.kernel.org; spf=none smtp.mailfrom=gerhold.net
-ARC-Seal: i=1; a=rsa-sha256; t=1710513069; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=GDNuDhZuawtU6DtHyCWsknr3aY2cYOh8l1cU/RbdCh7yX8I/R8ddXBduUeBM53bjuh
-    C6cW5TxCI7AOH7sIy11Tyift6liu+C60ckj6m0876g9NbTbnx7kXp/JtvyW8tmcq1ebt
-    ok0E2CEVZverleiwaTl4/FOBws6kgtyJ4hnPkOeE6EFsZYepkd9VxfyMKF/UZ+nVQ0DV
-    XlIQe9ptPrERewb3k0+ErVd6QKtYtkZHYr2HfdHsvRc2TMiIH8VlUHH+UPUe9rWPItmh
-    idxDdfX4o0ff/nQkdf0LOd7tkbT74Ik9rCpBgNfXAwbWHgX3NeafORkbjrlPwV1HQ832
-    0V2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1710513069;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=3O4Z5Kgzu5Zkx8QMtOhc3RtLPiec48UGBDJQSIpu740=;
-    b=GZPeogyc/mQL7b/BJO6X0ZdtE3xfnIE7qn5CyWkSrBEnQaUqvnyjCF/rSJLwOpPBur
-    ZESZpyLkP9swnOu0GZ3dkeLjG6UclYy6kwHACJnS0EvxGW786okiR9v05ZXx/8m0UmRH
-    iafPQnfY62GVBqPdrEuKglED+vD8UUqd3TIBADxgJ+mkj201kAIkGbJCu4DeYcCfWsXg
-    Pvpo6xx10DUATQZJfHWiBrfTS4ZTMdVabRrTBkDOBJEwCQlAZfSfjm3sShWdZTAToaIT
-    Z3Id1OfmBVukg/19KOM2mf63hldyzqOqAHXjchitCkp1k1NDGP3mdXH25zodLEatAmVD
-    2aPA==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo01
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1710513069;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=3O4Z5Kgzu5Zkx8QMtOhc3RtLPiec48UGBDJQSIpu740=;
-    b=ejDDItDNL2QLFybxujLzNs13W9O6lcYAkZOCq2TGPYf5UQOVRuSq6MBR35GHkuIhdL
-    Z/7emwiFFomg06Ld6PsNnlP6gXKxO6mSXRJ1D79WwkbQFlW/ehgoJ2iWSwLtPJXzbOpw
-    RslDNH1eOm+TqCjurEU8aiC285kNrO9vFotIFcSJ6S/f4IpDm96rzbA/VNEPgrrLG0Mn
-    5Bd2cNy/FyvH8dUBmGuP8IUZgSC6OTC+eEV3TzVPP30xGBYLvADfVcqjQ//gabYhD6XT
-    U14bWOsHlyPxO82sl2kLavpy2f+SQlfRhcoGUleNY80Wt3UPngPLhCq85ymBahq9hLxy
-    65GQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1710513069;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=3O4Z5Kgzu5Zkx8QMtOhc3RtLPiec48UGBDJQSIpu740=;
-    b=UClPvR0LGGrvdCiO/gSVPvWLWKoJtPSTHZbzaA959ux8CUU46m/IAwLLeaGtjAH7wT
-    TJGomYYbdVlXoGdtWdAw==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA95vh"
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 50.2.2 SBL|AUTH)
-    with ESMTPSA id Raa09e02FEV83CR
-	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-	(Client did not present a certificate);
-    Fri, 15 Mar 2024 15:31:08 +0100 (CET)
-Date: Fri, 15 Mar 2024 15:31:03 +0100
-From: Stephan Gerhold <stephan@gerhold.net>
-To: Sumit Garg <sumit.garg@linaro.org>
-Cc: Caleb Connolly <caleb.connolly@linaro.org>,
-	Konrad Dybcio <konrad.dybcio@linaro.org>,
-	linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-	andersson@kernel.org, robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-	neil.armstrong@linaro.org, laetitia.mariottini@se.com,
-	pascal.eberhard@se.com, abdou.saker@se.com, jimmy.lalande@se.com,
-	benjamin.missey@non.se.com, daniel.thompson@linaro.org,
-	linux-kernel@vger.kernel.org,
-	Jagdish Gediya <jagdish.gediya@linaro.org>
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: apq8016: Add Schneider HMIBSC
- board DTS
-Message-ID: <ZfRbp8o-4pFBAjc-@gerhold.net>
-References: <CAFA6WYNMjCaa0FKjNv6a8VFkco3=GBfgWNDuckGZdiZ9dGmHgg@mail.gmail.com>
- <d82ab1f8-e677-485f-9a6b-4115acfd7239@linaro.org>
- <CAFA6WYNSumyScax=GkN42GJOG56T3odF5Ed9A2i1nk_exCyGtA@mail.gmail.com>
- <ZfLUu6_Vq7MvG2G3@gerhold.net>
- <CAFA6WYPN2Bt7zvDyd+02jrsZJz0sFhkD_o4W+PvU=-VC4W5k=A@mail.gmail.com>
- <ZfL6hi0kfp9MXQ0H@gerhold.net>
- <CAFA6WYMa_0OMkjUdvhYtWZ9SvQx5bB8+YrBZN08BaDXXOtPPNQ@mail.gmail.com>
- <fb20d921-dabd-41dc-9f91-bde90e3b87be@linaro.org>
- <9b614c61-276d-45bf-8320-44b7358a3e19@linaro.org>
- <CAFA6WYMHA2M1LLjaog17f83Cu_wH4MAvxhuwAQH0c7j4XTM3XA@mail.gmail.com>
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id C61B2335C0;
+	Fri, 15 Mar 2024 14:36:18 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710513384; cv=none; b=DYnZhWqbh0Z1k9RWWSPgIqDgufNR5mI2+ULSbQQtgA3/i3TO0UmbKsXjxLZmsu9W1uVH/hkUNo++JChJz8URSkcS+rRpWzm/cV9BOhUEc24C+qUbt2ttZ87p+Y3CGtTXh/KWxOa6t+fAJ43P+GLW9aPBT7YSYcNHFX9ik1E2j+8=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710513384; c=relaxed/simple;
+	bh=wCrF6V/JmeUmHYKrNbQWdQ0c+m0gi2+cwEdx+TBiwAA=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=Zy/bzo1Rg2k+LqvYk1lbOMpHncqrHZUGGpSeHsnPt1ob0EA/Fg3TcObNHGsMZ4zpKDadZVdRBuFQqOffMrF9TIqXQ5C+W+x71WoiPg9aBcguJIBv5JEVQ1Ff+9xJMN4mgHRWE3vq7JhnfxC//10FSM1jP+2tOYi4KvvFvONJEMQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
+X-IronPort-AV: E=Sophos;i="6.07,128,1708354800"; 
+   d="scan'208";a="197901588"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 15 Mar 2024 23:36:05 +0900
+Received: from localhost.localdomain (unknown [10.226.93.102])
+	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 7F8B0435BA4C;
+	Fri, 15 Mar 2024 23:36:01 +0900 (JST)
+From: Biju Das <biju.das.jz@bp.renesas.com>
+To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
+	Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>
+Cc: Biju Das <biju.das.jz@bp.renesas.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	linux-pwm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+	linux-renesas-soc@vger.kernel.org,
+	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Biju Das <biju.das.au@gmail.com>
+Subject: [PATCH v19 0/4] Add support for RZ/G2L GPT
+Date: Fri, 15 Mar 2024 14:35:54 +0000
+Message-Id: <20240315143558.221340-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAFA6WYMHA2M1LLjaog17f83Cu_wH4MAvxhuwAQH0c7j4XTM3XA@mail.gmail.com>
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 
-On Fri, Mar 15, 2024 at 03:01:27PM +0530, Sumit Garg wrote:
-> On Thu, 14 Mar 2024 at 21:07, Caleb Connolly <caleb.connolly@linaro.org> wrote:
-> > On 14/03/2024 15:20, Konrad Dybcio wrote:
-> > > On 3/14/24 14:50, Sumit Garg wrote:
-> > >> On Thu, 14 Mar 2024 at 18:54, Stephan Gerhold <stephan@gerhold.net>
-> > >> wrote:
-> > >>>
-> > >>> On Thu, Mar 14, 2024 at 05:26:27PM +0530, Sumit Garg wrote:
-> > >>>> On Thu, 14 Mar 2024 at 16:13, Stephan Gerhold <stephan@gerhold.net>
-> > >>>> wrote:
-> > >>>>> On Thu, Mar 14, 2024 at 03:02:31PM +0530, Sumit Garg wrote:
-> > >>>>>> On Thu, 14 Mar 2024 at 14:48, Konrad Dybcio
-> > >>>>>> <konrad.dybcio@linaro.org> wrote:
-> > >>>>>>> On 3/14/24 10:04, Sumit Garg wrote:
-> > >>>>>>>> On Wed, 13 Mar 2024 at 18:34, Konrad Dybcio
-> > >>>>>>>> <konrad.dybcio@linaro.org> wrote:
-> > >>>>>>>>> On 3/13/24 13:30, Sumit Garg wrote:
-> > >>>>>>>>>> Add Schneider Electric HMIBSC board DTS. The HMIBSC board is
-> > >>>>>>>>>> an IIoT Edge
-> > >>>>>>>>>> Box Core board based on the Qualcomm APQ8016E SoC.
-> > >>>>>>>>>>
-> > >>>>>>>>>> Support for Schneider Electric HMIBSC. Features:
-> > >>>>>>>>>> - Qualcomm Snapdragon 410C SoC - APQ8016 (4xCortex A53, Adreno
-> > >>>>>>>>>> 306)
-> > >>>>>>>>>> - 1GiB RAM
-> > >>>>>>>>>> - 8GiB eMMC, SD slot
-> > >>>>>>>>>> - WiFi and Bluetooth
-> > >>>>>>>>>> - 2x Host, 1x Device USB port
-> > >>>>>>>>>> - HDMI
-> > >>>>>>>>>> - Discrete TPM2 chip over SPI
-> > >>>>>>>>>> - USB ethernet adaptors (soldered)
-> > >>>>>>>>>>
-> > >>>>>>>>>> Co-developed-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-> > >>>>>>>>>> Signed-off-by: Jagdish Gediya <jagdish.gediya@linaro.org>
-> > >>>>>>>>>> Signed-off-by: Sumit Garg <sumit.garg@linaro.org>
-> > >>>>>>>>>> ---
-> > >>>>>>>>>
-> > >>>>>>>>> [...]
-> > >>>>>>>>>
-> > >>>>>>>>>> +     memory@80000000 {
-> > >>>>>>>>>> +             reg = <0 0x80000000 0 0x40000000>;
-> > >>>>>>>>>> +     };
-> > >>>>>>>>>
-> > >>>>>>>>> I'm not sure the entirety of DRAM is accessible..
-> > >>>>>>>>>
-> > >>>>>>>>> This override should be unnecessary, as bootloaders generally
-> > >>>>>>>>> update
-> > >>>>>>>>> the size field anyway.
-> > >>>>>>>>
-> > >>>>>>>> On this board, U-Boot is used as the first stage bootloader
-> > >>>>>>>> (replacing
-> > >>>>>>>> Little Kernel (LK), thanks to Stephan's work). And U-Boot consumes
-> > >>>>>>>> memory range from DT as Linux does but doesn't require any
-> > >>>>>>>> memory to
-> > >>>>>>>> be reserved for U-Boot itself. So apart from reserved memory nodes
-> > >>>>>>>> explicitly described in DT all the other DRAM regions are
-> > >>>>>>>> accessible.
-> > >>>>>>>
-> > >>>>>>> Still, u-boot has code to fetch the size dynamically, no?
-> > >>>>>>>
-> > >>>>>>
-> > >>>>>> No U-Boot being the first stage bootloader fetches size from DT which
-> > >>>>>> is bundled into U-Boot binary.
-> > >>>>>>
-> > >>>>>
-> > >>>>> Back when I added support for using U-Boot as first stage
-> > >>>>> bootloader on
-> > >>>>> DB410c the way it worked is that U-Boot used a fixed amount of DRAM
-> > >>>>> (originally 968 MiB, later 1 GiB since I fixed this in commit
-> > >>>>> 1d667227ea51 ("board: dragonboard410c: Fix PHYS_SDRAM_1_SIZE") [1]).
-> > >>>>> When booting Linux, the Linux DT was dynamically patched with the
-> > >>>>> right
-> > >>>>> amount of DRAM (obtained from SMEM). So if you had e.g. a Geniatech
-> > >>>>> DB4
-> > >>>>> board with 2 GiB DRAM, U-Boot was only using 1 GiB of DRAM, but Linux
-> > >>>>> later got the full 2 GiB patched into its DTB.
-> > >>>>>
-> > >>>>> I didn't have much time for testing U-Boot myself lately but a quick
-> > >>>>> look at the recent changes suggest that Caleb accidentally removed
-> > >>>>> that
-> > >>>>> functionality in the recent cleanup. Specifically, the SMEM-based DRAM
-> > >>>>> size detection was removed in commit 14868845db54 ("board:
-> > >>>>> dragonboard410c: import board code from mach-snapdragon" [2]), the
-> > >>>>> msm_fixup_memory() function does not seem to exist anymore now. :')
-> > >>>>
-> > >>>> Ah now I see the reasoning for that particular piece of code. Is SMEM
-> > >>>> based approach the standardized way used by early stage boot-loaders
-> > >>>> on other Qcom SoCs too?
-> > >>>>
-> > >>>
-> > >>> It is definitely used on all the SoCs that were deployed with LK. I am
-> > >>> not entirely sure about the newer ABL/UEFI-based ones. A quick look at
-> > >>> the ABL source code suggests it is abstracted through an EFI protocol
-> > >>> there (so we cannot see where the information comes from with just the
-> > >>> open-source code). However, in my experience SMEM data structures are
-> > >>> usually kept quite stable (or properly versioned), so it is quite likely
-> > >>> that we could use this approach for all Qualcomm SoCs.
-> > >>>
-> > >>
-> > >> If the SoCs which support this standardized way to dynamic discover
-> > >> DRAM size via SMEM then why do we need to rely on DT at all for those
-> > >> SoCs? Can't U-Boot and Linux have the same driver to fetch DRAM size
-> > >> via SMEM? I am not sure if it's an appropriate way for U-Boot to fixup
-> > >> DT when that information can be discovered dynamically.
-> >
-> > [...]
-> >
-> > The reason I decided to hardcode this in DT for U-Boot is because SMEM
-> > currently relies on the driver model and isn't available early enough.
-> >
-> > Also admittedly I just wasn't that familiar with the U-Boot codebase. I
-> > just wanted to avoid hardcoding this in C code, and given that this was
-> > already supported for the "chainloading from ABL" usecase, just
-> > hardcoding the values was the obvious solution.
-> >
-> > I would definitely be open to revisiting this in U-Boot, having an SMEM
-> > framework that we could use without the driver model which would just
-> > take a base address and then let us interact with SMEM and populate the
-> > dram bank data would be a good improvement, and would let us avoid
-> > hardcoding the memory layout in DT. We'd just need to manually find the
-> > SMEM base address in the FDT as part of "dram_init_banksize()" and
-> > retrieve the data there.
-> 
-> These are the similar problems Linux has to deal with too but on Qcom
-> platforms it is rather offloaded to bootloaders to rather implement
-> this. It leads to custom DT modification or board code in U-Boot which
-> is hard to maintain. If we want to implement it properly then
-> corresponding bindings should be upstreamed too regarding how DRAM
-> range is to be discovered via SMEM.
-> 
-> >
-> > That all being said, I don't see any reason not to define the memory
-> > layout in DT, it's a hardware feature, DT describes the hardware. The
-> > whole "bootloader will fill this in" implies that the bootloader isn't
-> > also using DT as the source of truth, but now with U-Boot it actually
-> > is, so it's all the more important that DT be accurate ;P
-> 
-> I agree DT should be accurate and not a fan of DT fixups. However,
-> when it comes to some hardware configuration being discoverable then
-> IMHO DT isn't the appropriate place for that. For the time being I am
-> fine with the DRAM range to be specified in DT.
-> 
-> > >
-> > > You're mixing two things. Linux expects a devicetree where
-> > > /memory/reg[size]
-> > > is valid. Such driver should indeed be (re)implemented in u-boot to provide
-> > > this information.
-> 
-> No, I don't think so. We should rather start thinking about the
-> overall stack rather than just being Linux kernel centric. Do you have
-> a generic solution for U-Boot regarding how this should be
-> implemented?
-> 
+RZ/G2L General PWM Timer (GPT) composed of 8 channels with 32-bit timer
+(GPT32E). It supports the following functions
+ * 32 bits x 8 channels
+ * Up-counting or down-counting (saw waves) or up/down-counting
+   (triangle waves) for each counter.
+ * Clock sources independently selectable for each channel
+ * Two I/O pins per channel
+ * Two output compare/input capture registers per channel
+ * For the two output compare/input capture registers of each channel,
+   four registers are provided as buffer registers and are capable of
+   operating as comparison registers when buffering is not in use.
+ * In output compare operation, buffer switching can be at crests or
+   troughs, enabling the generation of laterally asymmetric PWM waveforms.
+ * Registers for setting up frame cycles in each channel (with capability
+   for generating interrupts at overflow or underflow)
+ * Generation of dead times in PWM operation
+ * Synchronous starting, stopping and clearing counters for arbitrary
+   channels
+ * Starting, stopping, clearing and up/down counters in response to input
+   level comparison
+ * Starting, clearing, stopping and up/down counters in response to a
+   maximum of four external triggers
+ * Output pin disable function by dead time error and detected
+   short-circuits between output pins
+ * A/D converter start triggers can be generated (GPT32E0 to GPT32E3)
+ * Enables the noise filter for input capture and external trigger
+   operation
 
-Detecting available memory via /memory in the DT or other firmware
-services (such as UEFI GetMemoryMap()) is *the* generic solution used
-everywhere, independent of the hardware (e.g. Qualcomm) and the
-operating system (e.g. Linux or Xen).
+This patch series aims to add basic pwm support for RZ/G2L GPT driver
+by creating separate logical channels for each IOs.
 
-It allows us to implement the board/Qualcomm-specific memory detection
-in a single project, rather than having extra porting overhead for each
-operating system for something as essential as available memory.
+v18->v19:
+ * Replaced RZG2L_UP_COUNTING->RZG2L_GTUDDTYC_UP_COUNTING macro.
+ * Aligned RZG2L_GET_CH and RZG2L_GET_CH_OFFS macro
+ * Dropped chip and clk from struct rzg2l_gpt_chip as started using
+   devm_pwmchip_alloc() and devm_clk_rate_exclusive_get() to replace it.
+ * Replaced rate->rate_khz in struct rzg2l_gpt_chip and added a check in
+   probe() to make sure rate is multiple of 1000.
+ * Replaced container_of->pwmchip_get_drvdata() to get device data.
+ * Added a check in rzg2l_gpt_disable() not to decrement enable_count if
+   ch_en_bits is set by the probe.
+ * Dropped rzg2l_gpt_mul_u64_u64_div_u64()
+ * Simplified calculate_period_or_duty() using rate_khz
+ * Simplified rzg2l_gpt_config() using min macro for calculating period
+   and duty_cycle.
+ * Added checks in rzg2l_gpt_config() to prevent second channel setting
+   shared register.
+ * Updated error handling rzg2l_gpt_apply()
+ * Added local variable dev for &pdev->dev in probe()
+ * Added local varibles rate, chip and clk in probe()
+ * Dropped err_clk_rate_put label as started using
+   devm_clk_rate_exclusive_get()
+ * Replaced rzg2l_gpt->chip as data for devm_add_action_or_reset().
+ * Added error message for rate > 1GHz in probe.
+v17->v18:
+ * Added units.h for KILO macro.
+ * Replaced RZG2L_GTCCR{A,B}->RZG2L_GTCCR(i)
+ * Introduced macros RZG2L_GTIOR_{GTIOx,OxE} to handle subchannels.
+ * Replaced RZG2L_IS_IOB()->rzg2l_gpt_subchannel()
+ * Replaced the cache period->period_cycles.
+ * Updated rzg2l_gpt_is_ch_enabled() to return early if counter is not
+   running.
+ * Updated calculate_period_or_duty() for avoiding overflows.
+ * Updated rzg2l_gpt_calculate_pv_or_dc() with simplified calculation for
+   DIV64_U64_ROUND_UP() and dropped the cast for U32_MAX in min_t.
+ * Replaced mul_u64_u32_div->rzg2l_gpt_mul_u64_u64_div_u64() helper.
+ * Dropped pm pointer from struct rzg2l_gpt_driver() and simplified clk
+   handling in probe().
+ * Updated copyright from 2023->2024.
+ * Moved bitpos near to the user in patch#4.
+v16->v17:
+ * Added ret = dev_err_probe() to avoid return success in probe().
+ * Dropped unneeded MODULE_ALIAS().
+ * Dropped .owner from struct rzg2l_gpt_ops.
+ * Fixed build issue reported by kernel test robot <lkp@intel.com> by
+   replacing DIV_ROUND_UP()->DIV64_U64_ROUND_UP() in
+   rzg2l_gpt_calculate_pv_or_dc().
+ * Added max_val to struct rzg2l_gpt_chip to compute maximum period
+   supported by the HW in probe() and limit its value in apply() to
+   avoid 64-bit overflow with computation.
+ * Added helper function calculate_period_or_duty() to avoid losing
+   precision for smaller period/duty cycle values
+   ((2^32 * 10^9 << 2) < 2^64), by not processing the rounded values.
+ * Replaced mul_u64_u64_div_u64()->mul_u64_u32_div() as the former is
+   giving warnings with CONFIG_PWM_DEBUG enabled for very high values. 
+v15->v16:
+ * Replaced the macro DIV_ROUND_UP_ULL->DIV64_U64_ROUND_UP
+ * Added DIV_ROUND_UP in rzg2l_gpt_calculate_pv_or_dc() to avoid loss of
+   precision.
+ * Replaced min->min_t() in rzg2l_gpt_calculate_pv_or_dc().
+ * Added a comment for rzg2l_gpt_config()
+ * Replaced mul_u64_u32_div()->mul_u64_u64_div_u64() in rzg2l_gpt_config()
+ * Fixed the logical condition related to counter stop in
+   rzg2l_gpt_config().
+ * Dropped pm_runtime_resume_*() from rzg2l_gpt_config() as it is managed
+   by rzg2l_gpt_apply().
+ * Moved pm_runtime_resume_*() from rzg2l_gpt_{en,dis}able() to
+   rzg2l_gpt_apply().
+v14->v15:
+ * Added enable_count and ch_en_bits variables to struct rzg2l_gpt_chip
+   based on feedback for pwm_mtu3 driver.
+ * Updated copyright header and commit description by replacing "This patch
+   adds"-> "Add"
+ * Replaced macro RZG2L_GET_CH_INDEX->RZG2L_GET_CH and replaced ch_index->ch
+   throughout
+ * rzg2l_gpt_{enable,disable}() enables/disables PWM based on the
+   enable_count.
+ * Replaced pm_runtime_get_sync->pm_runtime_resume_and_get and propogated
+   the error in rzg2l_gpt_get_state() and rzg2l_gpt_config()
+ * Reduced variable scope in rzg2l_gpt_get_state() by moving most of
+   variables inside the if statement.
+ * Updated rzg2l_gpt_get_state() by moving duty > period check
+   inside the top if block.
+ * Added helper functions rzg2l_gpt_calculate_pv_or_dc()to simplify config. 
+   Also Improved the logic in rzg2l_gpt_calculate_pv_or_dc() by using
+   min(period_or_duty_cycle >> (2 * prescale), (u64)U32_MAX);
+ * Updated rzg2l_gpt_get_state() by moving duty > period check
+   inside the top if block.
+ * Simplified rzg2l_gpt_config() for updating registers
+ * Dropped pm_runtime_get_sync() and used bitmap variable "ch_en_bits"
+   to make balanced PM usage count in rzg2l_gpt_reset_assert_pm_disable()
+   For case were unbind is called before apply where pwm is enabled by
+   bootloader.
+ * Added error check for clk_rate_exclusive_get() and clk_get_rate() in
+   probe().
+ * Dropped prescale from struct rzg2l_gpt_chip.
+ * Replaced of_match_ptr(rzg2l_gpt_of_table)->rzg2l_gpt_of_table in struct
+   rzg2l_gpt_driver
+ * Updated commit description of patch#4 by replacing "This patch add"->
+   "Add".
+v13->v14:
+ * Moved the patch from series[1] to here.
+ [1] https://lore.kernel.org/linux-renesas-soc/20221215205843.4074504-1-biju.das.jz@bp.renesas.com/T/#t
+ * Add Rb tag from Rob for patch#2
+ * Removed parenthesis for RZG2L_MAX_HW_CHANNELS and RZG2L_CHANNELS_PER_IO
+ * Removed duty_cycle variable from struct rzg2l_gpt_chip and added comment
+   for cache for prescale variable.
+ * Fixed a bug in rzg2l_gpt_cntr_need_stop().
+ * Reordered rzg2l_gpt_config() just above apply()
+ * Replaced pwm_is_enabled()->pwm->state.enabled in config
+ * Replaced pm_runtime_resume_and_get with unconditional
+   pm_runtime_get_sync() in config().
+ * Restored duty_cycle > period check in rzg2l_gpt_get_state().
+ * Added error check for clk_prepare_enable() in probe() and propagating
+   error to the caller for pm_runtime_resume()
+ * clk_get_rate() is called after enabling the clock and
+   clk_rate_exclusive_get()
+ * Simplified rzg2l_gpt_probe() by removing bitmap variables.
+ * Added pm_runtime_idle() to suspend the device during probe.
+ * Moved overflow condition check from config->probe().
+ * Simplified rzg2l_gpt_reset_assert_pm_disable().
+ * Removed the parenthesis for RZG2L_MAX_POEG_GROUPS.
+ * Renamed rzg2l_gpt_parse_properties()->rzg2l_gpt_poeg_init() as it
+   not only parse the properties but also implements the needed register
+   writes.
+ * Added acomment here about the purpose of the function
+   rzg2l_gpt_poeg_init()
+ * Removed magic numbers from rzg2l_gpt_poeg_init()
+ * Fixed resource leak in rzg2l_gpt_poeg_init().
+v12->v13:
+ * Added test logs in [1] below
+ * Replaced Kconfig dependency from ARCH_RENESAS->ARCH_RZG2L
+ * Sorted #include <linux/limits.h> alphabetically
+ * Added a comment for mutex_lock to fix check patch warning
+ * Replaced data type of duty_cycle from unsigned int->u32 as
+   the maximum value stored is U32_MAX.
+ * Improved rzg2l_gpt_config() by removing unwanted duty_cycle related
+   code.
+ * Improved rzg2l_gpt_get_state() by setting
+  "val = rzg2l_gpt->duty_cycle[pwm->hwpwm];",  and factor
+  "tmp = NSEC_PER_SEC * (u64)val;" out of the if-statement.
+ * Started using DEFINE_RUNTIME_DEV_PM_OPS(), and dropped __maybe_unused
+   from the callbacks.
+v11->v12:
+ * Added return code for get_state()
+ * Cache duty cycle/prescale as the driver cannot read the current duty
+   cycle/prescale from the hardware if the hardware is disabled. Cache the
+   last programmed duty cycle/prescale value to return in that case.
+ * Updated rzg2l_gpt_enable to enable the clocks.
+ * Updated rzg2l_gpt_disable to disable the clocks.
+ * Updated rzg2l_gpt_config() to cache duty cucle/prescale value
+ * Updated rzg2l_gpt_get_state to use cached value of duty cycle/prescale,
+   If the PWM is disabled.
+ * Simplified rzg2l_gpt_apply()
+ * Added comments in rzg2l_gpt_reset_assert_pm_disable()
+v10->v11:
+ * Used bitmap_zero for initializing bitmap varable.
+ * Fixed clock imbalance during remove for the case bootloader turning
+   on PWM and module unload is called just after the boot.
+ * Fixed over flow condition in get_state() for a prescale value of
+   2 & more.
+ * Improved rzg2l_gpt_cntr_need_stop() based on prescale as it is the
+   only runtime variable.
+ * Added array for Cache variables state_period and prescale
+ * Probe caches the prescale value set by the bootloader.
+ * Updated rzg2l_gpt_config() to make use of array variables.
+v9->v10:
+ * Updated the example gpt4: pwm@10048400-> gpt: pwm@10048000
+ * Keep Rb tag from Rob as the above change is trivial one.
+ * Updated the error handling in probe(), clk_disable_unprepare called
+   on the error path.
+ * Removed ch_en array and started using bitmask instead.
+v8->v9:
+ * Added Rb tag from Rob.
+ * deassert after devm_clk_get() to avoid reset stays deasserted,in case
+   clk_get() fails.
+ * Removed ch_offs from struct rzg2l_gpt_chip and use macro instead.
+ * Updated error handling in probe()
+v7->v8:
+ * Removed Rb tags from Rob and Geert as it modelled as single GPT
+   device handling multiple channels.
+ * Updated description
+ * Updated interrupts and interrupt-names properties
+ * Updated binding example
+ * Modelled as single PWM device handling multiple channels
+ * Replaced shared reset->devm_reset_control_get_exclusive()
+ * Added PM runtime callbacks
+ * Updated PM handling and removed "pwm_enabled_by_bootloader" variable
+ * Replaced iowrite32->writel and ioread32->readl
+ * Updated prescale calculation
+ * Introduced rzg2l_gpt_is_ch_enabled for checking enable status on both
+   IO's
+ * Moved enable/disable output pins from config->enable/disable.
+ * Added rzg2l_gpt_cntr_need_stop() for caching prescalar/mode values.
+v6->v7:
+ * Added the comment for cacheing rzg2l_gpt->state_period.
+ * Fixed boundary values for pv and dc.
+ * Added comment for modifying mode, prescaler, timer counter and buffer
+   enable registers.
+ * Fixed buffer overflow in get_state()
+ * Removed unnecessary assignment of state->period value in get_state().
+ * Fixed state->duty_cycle value in get_state().
+ * Added a limitation for disabling the channels, when both channels used
+v5->v6:
+ * Updated macros RZG2L_GTIOR_GTIOB_OUT_HI_END_TOGGLE_CMP_MATCH and
+   RZG2L_GTIOR_GTIOB_OUT_LO_END_TOGGLE_CMP_MATCH with computation
+   involving FIELD_PREP macro.
+ * Removed struct rzg2l_gpt_phase and started using RZG2L_GTCCR macro
+   for duty_offset.
+ * replaced misnomer real_period->state_period.
+ * Added handling for values >= (1024 << 32) for both period
+   and duty cycle.
+ * Added comments for pwm {en,dis}abled by bootloader during probe.
+v4->v5:
+ * Added Hardware manual details
+ * Replaced the comment GTCNT->Counter
+ * Removed the macros RZG2L_GPT_IO_PER_CHANNEL and chip.npwm directly
+   used in probe.
+ * Removed the unsed macro RZG2L_GTPR_MAX_VALUE
+ * Added driver prefix for the type name and the variable.
+ * Initialization of per_channel data moved from request->probe.
+ * Updated clr parameter for rzg2l_gpt_modify for Start count.
+ * Started using mutex and usage_count for handling shared
+   period and prescalar for the 2 channels.
+ * Updated the comment cycle->period.
+ * Removed clk_disable from rzg2l_gpt_reset_assert_pm_disable()
+ * Replaced pc->rzg2l_gpt.
+ * Updated prescale calculation.
+ * Moved pm_runtime_{get_sync,put} from {request,free}->{enable,disable}
+ * Removed platform_set_drvdata as it is unused
+ * Removed the variable pwm_enabled_by_bootloader 
+ * Added dev_err_probe in various probe error path.
+ * Added an error message, if devm_pwmchip_add fails.
+v3->v4:
+ * Changed the local variable type i from u16->u8 and prescaled_period_
+   cycles from u64->u32 in calculate_prescale().
+ * Replaced mul_u64_u64_div_u64()->mul_u64_u32_div()
+ * Dropped the comma after the sentinel.
+ * Add a variable to track pwm enabled by bootloader and added comments
+   in probe().
+ * Removed unnecessary rzg2l_gpt_reset_assert_pm_disable() from probe.
+ * Replaced devm_clk_get()->devm_clk_get_prepared()
+ * Removed devm_clk_get_optional_enabled()
+v2->v3:
+ * Added Rb tag from Rob for the bindings.
+ * Updated limitation section
+ * Added prefix "RZG2L_" for all macros
+ * Modified prescale calculation
+ * Removed pwm_set_chip_data
+ * Updated comment related to modifying Mode and Prescaler
+ * Updated setting of prescale value in rzg2l_gpt_config()
+ * Removed else branch from rzg2l_gpt_get_state()
+ * removed the err label from rzg2l_gpt_apply()
+ * Added devm_clk_get_optional_enabled() to retain clk on status,
+   in case bootloader turns on the clk of pwm.
+ * Replaced devm_reset_control_get_exclusive->devm_reset_control_get_shared
+   as single reset shared between 8 channels.
+v1->v2:
+ * Added '|' after 'description:' to preserve formatting.
+ * Removed description for pwm_cells as it is common property.
+ * Changed the reg size in example from 0xa4->0x100
+ * Added Rb tag from Geert for bindings.
+ * Added Limitations section
+ * dropped "_MASK" from the define names.
+ * used named initializer for struct phase
+ * Added gpt_pwm_device into a flexible array member in rzg2l_gpt_chip
+ * Revised the logic for prescale
+ * Added .get_state callback
+ * Improved error handling in rzg2l_gpt_apply
+ * Removed .remove callback
+ * Tested the driver with PWM_DEBUG enabled.
 
-If we implement the SMEM-based memory detection in U-Boot (probably in
-dram_init_banksize() as Caleb suggested) everything else will just work
-without any Qualcomm-specific DT patching in U-Boot, and without any
-special code in the operating system:
+RFC->v1:
+ * Added Description in binding patch
+ * Removed comments from reg and clock
+ * replaced rzg2l_gpt_write_mask()->rzg2l_gpt_modify()
+ * Added rzg2l_gpt_read() and updated macros
+ * Removed dtsi patches, will send it separately
 
- - U-Boot automatically updates the /memory node in generic code (see
-   fdt_fixup_memory_banks() call in arch/arm/lib/bootm-fdt.c). If you
-   are using UEFI for booting, U-Boot will provide the same information
-   via GetMemoryMap(). (The DT spec says /memory should be ignored on
-   UEFI systems.)
+RFC:
+ * https://lore.kernel.org/linux-renesas-soc/20220430075915.5036-1-biju.das.jz@bp.renesas.com/T/#t
 
- - Linux, Xen, and any other operating system can obtain the memory size
-   via the standard method, and do not need any Qualcomm-specific at all
-   (at least for memory detection).
+Biju Das (4):
+  dt-bindings: pwm: Add RZ/G2L GPT binding
+  dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs property
+  pwm: Add support for RZ/G2L GPT
+  pwm: rzg2l-gpt: Add support for gpt linking with poeg
 
-I don't think there is anything Linux kernel centric for the memory
-detection here. Quite the opposite really. :)
+ .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 401 +++++++++++
+ drivers/pwm/Kconfig                           |  11 +
+ drivers/pwm/Makefile                          |   1 +
+ drivers/pwm/pwm-rzg2l-gpt.c                   | 624 ++++++++++++++++++
+ 4 files changed, 1037 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
+ create mode 100644 drivers/pwm/pwm-rzg2l-gpt.c
 
-Thanks,
-Stephan
+
+base-commit: a1e7655b77e3391b58ac28256789ea45b1685abb
+-- 
+2.25.1
+
 
