@@ -1,118 +1,126 @@
-Return-Path: <devicetree+bounces-50730-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50731-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5517287CDFD
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:18:16 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8363387CE0D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:25:00 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA495B21865
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 13:18:13 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 439CC281992
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 13:24:59 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EBD91BF3C;
-	Fri, 15 Mar 2024 13:18:06 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 161142577A;
+	Fri, 15 Mar 2024 13:24:56 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SvBaGvP/"
+	dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b="PG0ZuEFQ"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80D1D24A1F
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 13:18:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 484082577C;
+	Fri, 15 Mar 2024 13:24:51 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=205.220.168.131
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710508686; cv=none; b=SN16KyiOSSjMGCgNHGeWCdkyUKWoUgPKyFdNoDFNkJ7xJKzF6zADVz6gRnDCtBjnehKBYWrTJZZUTmhk5VU++72xciKOqkCwXFDA43MDNM6kFm+CnXFXMh+c/nF8FX4ORShtZXuK5B48cLt/CTQ6XU4hHmELitG/bRRiQyP+RCw=
+	t=1710509096; cv=none; b=AXtqwJMX9RcVHS1xC5yFsdpNi5SNK28zvWaUovbcjd6hs6+lVRoyKFOQxqVkRpQESGV0Ffr1rPUXL/Licv6/LghCgOYe6vy7UPbeI5IHHkePI83Uvbt6NKn+tbSaeYXC8YaO2R0ymqnEWT1R0c7bHXsfcgGX88YxXmRWiTW8ta0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710508686; c=relaxed/simple;
-	bh=T/HfBhiQE1waDWYQEd1vD78rXPyQGtudkxEwrgNEHpM=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=sU0SYglxjdKSOQ1fN/ABYH07my5/ZVs6ysdqQPp6ixkXRYVNFyhW+H84TwbJLOoFEtvojMMYl2wIi3YuM4bjGZZD4Kp2kdSW9eeerEJIum6tArqhWBkwZ+PR/6kzMSH/crYM/2AbNO+SzAeebxfcY+X1yIXS3ZoRlSKNOFNhYJk=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SvBaGvP/; arc=none smtp.client-ip=209.85.128.50
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41324a16c9eso13360775e9.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 06:18:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710508683; x=1711113483; darn=vger.kernel.org;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=BAvj14vJUGomBSxrVqhPVayHAwF+lgqULbYlbgwOBiU=;
-        b=SvBaGvP/UksjyWCCiLK9EIV8EEDnxFbMgOrLqbR647u/fgdd+h6QPq97xOfwC8TBHB
-         d5Z2L8NZIUiYLhF/UM+X5z6/PJ8A0SsMvlWPsLak8r/Xf70Zbl6vAudT6OogOUpHUHFQ
-         MMAG3txLF6jTzyHwuu1vS9AKn+ylPwprBUmpEKBsMpLJH3pdyHbYIkVJ9RdFkYeMdORW
-         ywHqs9dFiXrzzpWrreJPOb2aLNDOyM1hxf+1uz3gk1r7bVthll0mEpQ9lA99uSkSwZ8c
-         Xb3eUhywYM8nsO6Jhh+Emwim6hXpEVfSE3clFr4naOQo6kCZ4aElB6J0bL1u4pJWdhLV
-         2Oww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710508683; x=1711113483;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BAvj14vJUGomBSxrVqhPVayHAwF+lgqULbYlbgwOBiU=;
-        b=EEaOXQg7DxLoq9oODDWl3wdlALMyjqjS5xEuXM+2rP3p8qDF1DMuFjA6gdBXSV1rGM
-         v2a6DrQDbTw8fcSYehyATLXF1Csk7j6rx6Wa+vlnmOUj9cdCedU5is8v0nwAUs43IKeX
-         JSTgpit2UBEr8xHWC61qTJvr0CVCd7J/FML4KEbvq/n6OHaYp9EqnELaHP4zfEbAOdWl
-         i6yq+G6NV7FJ4J5poA09mvWi2EiZoDaPCWtwuFqHp3xJDcdbun9HUsG8+nDG0f4kt+1q
-         8sK/RbSlNkYFrRxEIX25O84tP4uWIM6Zq+3FD6Z/CqmxXtVDkLiCArUWkLC8gcu1hOys
-         pT5g==
-X-Forwarded-Encrypted: i=1; AJvYcCVK7d6MQe5/Kw5z4Sz2eNPKDzkF1kYDRl+NxmPZyzjlt9aRiUDoePBeH82jftU25wG5h7I0YUve8SzXuYeDgyldH/3ZhimWGcDhUQ==
-X-Gm-Message-State: AOJu0YxCwI+vfMjRqI05lj82kHmm82UmJHQ0+urd2DlNzQV0CbrFOc8h
-	/7YzFF/0K8ZCcnDCAO93YEtVzDekcGKBMd7KViwmIryKuwcDvDJhX+EjI+9F2T8=
-X-Google-Smtp-Source: AGHT+IHlUY3Az6uwRCsdn4XHEMvaEDhhX0HkGvtTN9jqjiaiqubgf+xJXK+Mvnp/afaT+k0YwpLk1g==
-X-Received: by 2002:a05:600c:4f94:b0:413:f1c0:8a5d with SMTP id n20-20020a05600c4f9400b00413f1c08a5dmr3796731wmq.26.1710508682802;
-        Fri, 15 Mar 2024 06:18:02 -0700 (PDT)
-Received: from localhost ([102.222.70.76])
-        by smtp.gmail.com with ESMTPSA id fl22-20020a05600c0b9600b00414013adab2sm1909935wmb.6.2024.03.15.06.18.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Mar 2024 06:18:02 -0700 (PDT)
-Date: Fri, 15 Mar 2024 16:17:58 +0300
-From: Dan Carpenter <dan.carpenter@linaro.org>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
-	kernel@salutedevices.com
-Subject: Re: [PATCH 06/25] ASoC: meson: g12a-toacodec: fix "Lane Select" width
-Message-ID: <cc26302f-fa57-41ba-bf1c-2e7ef898b4d0@moroto.mountain>
-References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-7-jan.dakinevich@salutedevices.com>
+	s=arc-20240116; t=1710509096; c=relaxed/simple;
+	bh=3OvIJgX2Z3ssQlYadNpDLe9VAvQdGUrGfsyDarOqmng=;
+	h=From:To:CC:Subject:Date:Message-ID:MIME-Version:Content-Type; b=L/4P/swi+NLQoci1bC1H8Msy7wLbvce/EokvTARhdAkv3iMlj5vOsd2Au7Cs9GyOnrAN0RONXlxNk6v2m6RqJkx1xsfq+dPjLaBUlim+AqDcE9vpexKtzfMe131wIP326cK2bBuuwpeWuI1BwmPh9MovVYJtRHzeryGz3hsDZG4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com; spf=pass smtp.mailfrom=quicinc.com; dkim=pass (2048-bit key) header.d=quicinc.com header.i=@quicinc.com header.b=PG0ZuEFQ; arc=none smtp.client-ip=205.220.168.131
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=quicinc.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=quicinc.com
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+	by mx0a-0031df01.pphosted.com (8.17.1.24/8.17.1.24) with ESMTP id 42FCjHeJ017733;
+	Fri, 15 Mar 2024 13:24:41 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=
+	from:to:cc:subject:date:message-id:mime-version
+	:content-transfer-encoding:content-type; s=qcppdkim1; bh=tT8B/kd
+	UHkC46V7YhLl5lhQXDDvT9Jmv/Vgr4h24VN0=; b=PG0ZuEFQSlRUNOsMygaGEbG
+	31ibMrDsFBSz16LXP/ql2wFcS2upE6ZC+po89zAef6qXuOOXbEkXoDHNPIJxCpsA
+	/W2d/NOLxdbtw0NR1OJb6tg4xw0Ntr3SvpywW1ysf/Xk4fGF1W5U0/7U42eItQuG
+	xCT/OVwN4Pp/CTwwPg1ashjw+fnYoDnAS/Xxd2R/5igQzTGOV+KPAd8Y0jUzbFsQ
+	qzG/uqI8Axyzd3K0UyYP2dktkW7YOEIopEHie7w4XScyaIOyhGmyod7L9lGB+R99
+	n2jbVExPvJyhMYlk2jzz3b0BbOicftAdID7pBMRqSdKfPlX7Slvo/Ja0Vqdaheg=
+	=
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+	by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3wv9yq987p-1
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Mar 2024 13:24:40 +0000 (GMT)
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+	by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 42FDOdwT022423
+	(version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+	Fri, 15 Mar 2024 13:24:39 GMT
+Received: from hu-rjendra-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.40; Fri, 15 Mar 2024 06:24:36 -0700
+From: Rajendra Nayak <quic_rjendra@quicinc.com>
+To: <andersson@kernel.org>, <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC: <abel.vesa@linaro.org>, <quic_sibis@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+Subject: [PATCH] arm64: dts: qcom: Fix the compatible for cluster idle states
+Date: Fri, 15 Mar 2024 18:54:23 +0530
+Message-ID: <20240315132423.2422484-1-quic_rjendra@quicinc.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240314232201.2102178-7-jan.dakinevich@salutedevices.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: SehvGgjt0_tc9Hh5mjLgjGHbwB6eM-iw
+X-Proofpoint-GUID: SehvGgjt0_tc9Hh5mjLgjGHbwB6eM-iw
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.272,Aquarius:18.0.1011,Hydra:6.0.619,FMLib:17.11.176.26
+ definitions=2024-03-14_13,2024-03-13_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ suspectscore=0 adultscore=0 spamscore=0 bulkscore=0 lowpriorityscore=0
+ malwarescore=0 impostorscore=0 mlxlogscore=695 clxscore=1011 phishscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.19.0-2403140001 definitions=main-2403150108
 
-On Fri, Mar 15, 2024 at 02:21:42AM +0300, Jan Dakinevich wrote:
-> For both G12A and SM1 the width of "Lane Select" should be 2, not 3.
-> Otherwise, it overlaps with "Source".
-> 
-> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+The compatible's for the cluster/domain idle states of x1e80100
+are wrong, fix it.
 
-When you resend this, could you describe how this bug might look to a
-user?  If a user hits this bug and they want to see if it has been
-fixed by reading the commit messages, I don't think this description
-is sufficient for that.
+Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
+Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
+---
+ arch/arm64/boot/dts/qcom/x1e80100.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-regards,
-dan carpenter
+diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+index 8e517f76189e..6b40082bac68 100644
+--- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
++++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+@@ -284,7 +284,7 @@ CLUSTER_C4: cpu-sleep-0 {
+ 
+ 		domain-idle-states {
+ 			CLUSTER_CL4: cluster-sleep-0 {
+-				compatible = "arm,idle-state";
++				compatible = "domain-idle-state";
+ 				idle-state-name = "l2-ret";
+ 				arm,psci-suspend-param = <0x01000044>;
+ 				entry-latency-us = <350>;
+@@ -293,7 +293,7 @@ CLUSTER_CL4: cluster-sleep-0 {
+ 			};
+ 
+ 			CLUSTER_CL5: cluster-sleep-1 {
+-				compatible = "arm,idle-state";
++				compatible = "domain-idle-state";
+ 				idle-state-name = "ret-pll-off";
+ 				arm,psci-suspend-param = <0x01000054>;
+ 				entry-latency-us = <2200>;
+-- 
+2.34.1
 
 
