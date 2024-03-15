@@ -1,217 +1,257 @@
-Return-Path: <devicetree+bounces-50678-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50679-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5048087CAF3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 10:57:52 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E9D587CAF7
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 10:58:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id BE7771F20C28
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 09:57:51 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A16711C20F9C
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 09:58:15 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2923B18AEA;
-	Fri, 15 Mar 2024 09:56:39 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8604418032;
+	Fri, 15 Mar 2024 09:57:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b="MVACsic4"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="itdPQjO5"
 X-Original-To: devicetree@vger.kernel.org
-Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2043.outbound.protection.outlook.com [40.107.21.43])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ej1-f52.google.com (mail-ej1-f52.google.com [209.85.218.52])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 366631863E;
-	Fri, 15 Mar 2024 09:56:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.21.43
-ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710496599; cv=fail; b=MIawAnds/79B9VnN/LgROleTDNGmI1XgRahq9Iqtn7FTy8oumTEO6iyG4QTz5qU9eW8BKB2JASe+IWYbEcqmAvCtVAeVFhbUg43oE9lJxMJTGrgwTS5yhOa2Sodjj4s2xjU3NFXnptP2D3Ey28L/kMTu4deJxNx9KGr3KuNZDUM=
-ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710496599; c=relaxed/simple;
-	bh=rwYqhNYoHdtUwYDATizhZoLEgdMlNqIGfle6Tw2boG4=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 Content-Type:MIME-Version; b=mJbb0xzF/c7VDI5SNh87Ic7Gv5DTvjwN38JaolM0PNib7EbHlz4DOm3U5DD+EPRebWjheMcMaf1YWD1I3XPtSC7HIOXLrHoojtjV1+dz3ClJ24W2D9Nw5gr/trSvDN6bNVIC/LyiC1+YS5qBaZ5Lp5GhNCgvhWS1WzsZqjcZgMo=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com; spf=pass smtp.mailfrom=nxp.com; dkim=pass (1024-bit key) header.d=nxp.com header.i=@nxp.com header.b=MVACsic4; arc=fail smtp.client-ip=40.107.21.43
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=nxp.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=nxp.com
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=krJ6yUw7ewUF8vixYHbLe0o/8bA/3IvarojQ4iS7OB0ot9CHYhjWZHntEFWPaCPw+m1Ed9sFqhV/bOm/FuOxWN9/dDy2P70U2KckdWkiecN7/VqCgB/X9hRBZjwWJQhe9ujL6M0OLcZZPQcn/w3eBeQUs+KO8njVtAfu0fUCLZQKaVA2S+K6esw8AQsyaVnIr04fNM1WCeA5HHbPAfsMu920GlQiyS80W120oeamBOq6mL3ndJ4MF3rvqxslqgvrOov07Tnq3R60JtUh9NFq5LektKef9pcLNStlZKtc8icjAuHZ1AuV3e5SvITiji6U/7GYBNCYTwNpDaR6SOX4mw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/vyDbuMctvpMPqycrjJSM65sHwairLUE/u4gLzHL5zA=;
- b=DSRR3xDhc8mXGR3GG5fb8EdbPLkgHP5aiOcIy3jI87iqh3YWhOyZnzxQ+Beg/JP5hUxIduvas1NE6mFJMhKMy65ahszzE6UN8u6tJsivZqjipiePtoo1uc5wIVle7ovIWzdqKamnblDmP5y8AyrmCnQk48sYDiV1pl8Ae7Rw7z1YEqVzC8ch8OP//jwZBBMMb9GEef3gX1wfpDowEfWxZguvPa0bhd48lUMcfy4aO5eusGaactOfs5Mmm5Km+K8B5ZwZ49pT4m9inujNp455hSEjhd+nZg86Ru7/t3lrbZvlP2qHHwWQh3PVvw22gHISlK53f+uRy5eg2+V/wbYiUA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/vyDbuMctvpMPqycrjJSM65sHwairLUE/u4gLzHL5zA=;
- b=MVACsic42jNrMy3UsjhoCxOUhzPX0tFFzBSAJRKH2mgQyyh5hHQR8cQ2uyglOhrzf51OAu3CjFEkb6AsTKkx1kFQ2rH/GlyPTQpAwZ3rBllD3RjouTofMZU+2PBoEd8y1zsoI8LGSRId/R2kbHs0EYTDK1v5WlGUVGDlDDdWjdQ=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com (2603:10a6:10:2e1::11)
- by AM8PR04MB7444.eurprd04.prod.outlook.com (2603:10a6:20b:1de::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Fri, 15 Mar
- 2024 09:56:34 +0000
-Received: from DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::d45f:4483:c11:68b0]) by DU2PR04MB8822.eurprd04.prod.outlook.com
- ([fe80::d45f:4483:c11:68b0%7]) with mapi id 15.20.7386.021; Fri, 15 Mar 2024
- 09:56:34 +0000
-From: Xu Yang <xu.yang_2@nxp.com>
-To: Frank.li@nxp.com,
-	will@kernel.org,
-	mark.rutland@arm.com,
-	robh+dt@kernel.org,
-	krzysztof.kozlowski+dt@linaro.org,
-	conor+dt@kernel.org,
-	shawnguo@kernel.org,
-	s.hauer@pengutronix.de,
-	kernel@pengutronix.de,
-	festevam@gmail.com,
-	john.g.garry@oracle.com,
-	jolsa@kernel.org,
-	namhyung@kernel.org,
-	irogers@google.com
-Cc: mike.leach@linaro.org,
-	peterz@infradead.org,
-	mingo@redhat.com,
-	acme@kernel.org,
-	alexander.shishkin@linux.intel.com,
-	adrian.hunter@intel.com,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	linux-perf-users@vger.kernel.org,
-	imx@lists.linux.dev
-Subject: [PATCH v7 8/8] perf vendor events arm64:: Add i.MX93 DDR Performance Monitor metrics
-Date: Fri, 15 Mar 2024 17:55:55 +0800
-Message-Id: <20240315095555.2628684-8-xu.yang_2@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240315095555.2628684-1-xu.yang_2@nxp.com>
-References: <20240315095555.2628684-1-xu.yang_2@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR02CA0029.apcprd02.prod.outlook.com
- (2603:1096:4:195::6) To DU2PR04MB8822.eurprd04.prod.outlook.com
- (2603:10a6:10:2e1::11)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1A55D1B948
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 09:57:03 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.218.52
+ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
+	t=1710496626; cv=none; b=N1UhWu2i8E9qy0Etp9sKYQliMnhCad0GjznB1zDOTu8V3qPjDxo6Z1CXcEztj7ATH++oHmLU9f7BB6qwZYbioUX8IyJ8r7mSCbh30FgnLGsoHfVVLqrEPTym4FfL63Dy0Lm7m3AUiJ+n1kOWn/QXCPvRs+1tz8qqW/pUrHR/UbI=
+ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
+	s=arc-20240116; t=1710496626; c=relaxed/simple;
+	bh=K7HqX99l2MdWILC0v0OgfQbluXmAQxfiOtQpP9K1sYQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=OAdjf/fOBAxh5keVUGwvr++ktuULHrFBUBtS2S58QHgwbMEiBl97L+LGnS52/EWe4lagx6NcbuKyN2gaJhCiOQCHPdZDdDz7rkMaKFJOXLEWQm8LZFfKqEj2S3zVgHF7ydryacLvV4BOoYCOebqVYbw79ffN8uvdm9kpmQOALEQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=itdPQjO5; arc=none smtp.client-ip=209.85.218.52
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ej1-f52.google.com with SMTP id a640c23a62f3a-a44f2d894b7so206699166b.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 02:57:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710496622; x=1711101422; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bN2u4rR1Zr2xT6D08j7QKgDjL2CpcTPg9+Xe9EIpbXI=;
+        b=itdPQjO5gfNJUI+UVm68UhSqiA9PC6bZOGpV8e7Bx3K/+WTajoGrEKaEGn0XfzwMsc
+         bgLl/2okbJiB7BEwXfzEImki9gCSFJEdXU1P4is+LzvNu/Eol0jdJ2SFtTyUCcNh/HoE
+         x6cUblRXUtWKMRSdxEyDY7U22+ab0kMx67LWXe3C2L3r8SGiD85ytCtzrP9+SgiWRoze
+         h+JLMmv7LFbILVxuA0+p4JHTPqSSXP02aoQglfneK2Z7iJCMUY3hvP1kt9ZIwQEplNSv
+         j+XtjCefD9ulrk3Lhqd8d4w32bQHpyU4eIVXO3ug0Gy/IG1FRPjO9pouBTQVvAbmo+2f
+         9R8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710496622; x=1711101422;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bN2u4rR1Zr2xT6D08j7QKgDjL2CpcTPg9+Xe9EIpbXI=;
+        b=Vh0BU10jYadLXM+ULHgz2c216M2aMFANXkZcrORdfNEvjm+7O5SCuRwrysj2z5E+YD
+         TK2e8gjqgrHIIkCLN1XqDwW6/v3sHjn/o0k9ET/KR0ueUYg7RO116dzpoBma+PxaHCcM
+         M0cSsv04n5GjZik0ldkDkP+xHsn1jUxhB95mqz9dcVItl0YOCo2g7yfEuln7ld1gdZXE
+         SNGgr/g23cob5IOv7jnNmShXtqv/rS/IchuwaUDQcpPRqfuh8Rf5ltQvCByHiskC63nI
+         7bGvm0+NNPAVfkEiOdOdwVFzVvu90OG3ovr+rw1MTJC5y/gpcLlmmF5QDMrJGfoPAfZk
+         HQxw==
+X-Forwarded-Encrypted: i=1; AJvYcCUyeTk+86TbC2DqxwWg5ZezKe4HexPBDj7xqvB4TTtfquEg85wUlOWkECfRKc6T+wav+JwRKy1Fm8+kwW9ltp2woGUQ/XIyctEnAA==
+X-Gm-Message-State: AOJu0Yy3oSUv/yKRO6yaqqTyRGRcSbSiE3e5hAx8h7C1Q6qz/ltY4JPa
+	Hw9/ev1MaRPmJeNIbO+/ULKgPDw0U6xXE5LWew5KTfXzzDdK1Tz5QONGrPmecdo=
+X-Google-Smtp-Source: AGHT+IHq7D1NT9mx8FX1vpzkEoVOa1oMEgKYpoLeGT8a7OVBLnX0kslJwG9cpWL/bxxXlee0+eehhA==
+X-Received: by 2002:a17:907:c783:b0:a46:74f0:6278 with SMTP id tz3-20020a170907c78300b00a4674f06278mr3165655ejc.50.1710496621489;
+        Fri, 15 Mar 2024 02:57:01 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id dv22-20020a170906b81600b00a4658d3e405sm1529599ejb.196.2024.03.15.02.56.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Mar 2024 02:57:00 -0700 (PDT)
+Message-ID: <1b766dae-463f-4839-b527-e260dec5e628@linaro.org>
+Date: Fri, 15 Mar 2024 10:56:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8822:EE_|AM8PR04MB7444:EE_
-X-MS-Office365-Filtering-Correlation-Id: 5e990d4e-185b-4481-0d4f-08dc44d632b2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info:
-	Jw08Qn/k8MTTF4JCIMIWwzkOhXQcwUacpcZ5v3tnWoTlIJU0AwjLTMFvu4dIkpwSQMLa6pxYCxTa3zvPAcqJ9CaCc7hCzWmzmWJn8FdfjZPm68GVjf06PjnRaqAgulINfeAK3XGSYIbtvghez1g9wDCx8/yZPLNkapMDaK/x460OgN5L1VDoxlphCnUPg/9FTLDgfisTUnxc3fuhHSB7T5ePmDhQ8IOQhB8IKCfZ8bUnD8L0Jg721VypZRiclTGJaUi7C9ZkpnzP9p95V+lFHyti8bx4VqqaBWlC4zfUlj7PtlBxHRZa3jXybXMpTseNbT16N8il7W8jt5F5dU7zBktVQJnw4STf6q8pQQ+GAQKiUH8o3M7ukDyjO1Bl49+Y22zgKr2ns5S+K/cIMHG8wFgZX0CT7/Rs05m1xzFQYz8UGLRNG1d7R+xtywI1X4XqfQb5Z6ZdtdQQwa+elNC4O0YjISbgfmIOAOp1rnUDO9VwfBx1U41jjcOFavMY443Rcl5/CxIMLyQh8PXC6Tq5rUgnRMgpxVsBxrEv6BlU6w7Ykb0X6geKsyK1uYAfpauKS7GdKE7+ldHasbSyfcIxQR1j6s4J11TWS/xr2aR28Em411FwOiPsEdb9tuUIWjqUheRxcZ/WP8g/I/QozogtYuhC9+PoTXbh/EGHEI3pv6ufOPd/3ooOUrRI/4zrxQeTWj4Q6txqt0lxTUZE4tjaSY/UTUe3TxzSdu9+g+SSXuw=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8822.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(366007)(1800799015)(376005)(7416005)(52116005)(921011)(38350700005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0:
-	=?us-ascii?Q?g43Q+tXVw4Ybt/ZXMquurnvNwnRHUhIU2c2Ee4UlZpaKXkc2bjz9LMZ+164a?=
- =?us-ascii?Q?OOq7iewUDJDgu3VlTVU7U6GY7SLL0qUPVLY9QLycsxEaGMIO5woXqC1VWJzf?=
- =?us-ascii?Q?6pV7poKq1F91VwztoI7fSg6nC/zwFwXk1nLlCefZF58g6XD6AmVMPAyyyeLP?=
- =?us-ascii?Q?KJu8o4L8QzJn4JjYBnsRu+PRiE/Jo+PDc9tpWxsivq4Pn9lYgbR8TEBpEHes?=
- =?us-ascii?Q?uvkOFLivvrcDPGT3QQjC+sxfok3IF5SbJlM6Iv0RSqtJLdJAHjnHdzvBepN1?=
- =?us-ascii?Q?w1H38a1z+axpuSQosevIVOhM7/UpzId61Eo+ElX9d21/fQFnqjlW5qCSJMvu?=
- =?us-ascii?Q?Ofg+4JRlND1j+Z88bFkZVUfRC6ui0qLrY+WefQzEOnzsNowm/g1p50f8seDN?=
- =?us-ascii?Q?XFcM7kmg9Jbe3R3dJULv2xLLVUa+uNRU9H03X8PQD0s07Gpz5A4ZK8ogngUX?=
- =?us-ascii?Q?/ZvHN3IyPpGHDV1Iv5eLzMZDOYLPrpF1EqWMAWyM6vGMWARY6zoBJpx3MRLQ?=
- =?us-ascii?Q?RIbmeljS1W9z5x7AIy19UbLRMFVqv6DhM+4YRLqSncZvGiwMpyhU8/d8LKn2?=
- =?us-ascii?Q?zT8mF+rGjL9lqsI5+29UqLT/hPG/0X79oiZ9mZy9ECX2O13rEdJ6n0Fxt5XT?=
- =?us-ascii?Q?DnX5rxcDmZEKkWU/sDLS972jsoxJ3/uxQE5YWRxjHniVB66dnWy5eVP2xqpv?=
- =?us-ascii?Q?dguUVmCfNdT1lghuESCxvif5jqNchjCwpnMZukLfPQz9GVqCHw0wY+VjRGHw?=
- =?us-ascii?Q?qZwQzYcObgn0odMxFrxL1mLVrejRxSAhha4TcmqMFY5KqAsZ+EYeM6Ar+ziH?=
- =?us-ascii?Q?pcpfA+bi/Rhy5aosqxUDz2JMgxkwVI6mn9Hm8MTBRuxCLyhj63rUTyurgTeR?=
- =?us-ascii?Q?N29bsZS0qKXOHkeHom28ITLDypwPVCSQzQvyZ4jjF3fE3LhdP44ksneUJ3sf?=
- =?us-ascii?Q?sRfL6lZ7f2pBa+STNKko06u4nTZtYmNE1pfL0cxhJ8Yc+1/fsGtA0kmdlibu?=
- =?us-ascii?Q?R9Vddq6jptpqvrff+MNjON6Y7oBwQA69ZxAfnHYDUioIxH/IYdgSBEFSfeE5?=
- =?us-ascii?Q?bZPApuruxi5y3LoYd6x2Tb6PXgBuA/JGEr+9Cz+Ukn9KjMY/BbgV8VrAlUJ+?=
- =?us-ascii?Q?rDAQcdolSk6wv/T55gUJfN28Yp/MYyjb1gAF1uB4h3jcFpKgup631E76YxaM?=
- =?us-ascii?Q?wapcxMQUnyYZsA9LnPRBLwJvZ0rMnhEb285AKX9OBgoL4igFvUN+Lv0bkiWM?=
- =?us-ascii?Q?/qiRGKOHH5Qmr3HoqaLHM0DDeZpNPNO/DbopCeSuOvwUltzKKO9Y+IC5/L5D?=
- =?us-ascii?Q?sItfxzdsWBgv/LWzwfRab6Ae0yynmYa7XV3cbZZx0hQupEsXEJRtRTlEN1/H?=
- =?us-ascii?Q?NyLBRSwiggxhkZyXGv3PWMwjdXG4ILuW1hOxsv9ZCZvvAOG0D/1UTsmf7VtE?=
- =?us-ascii?Q?8hfEFBht0x2H4n12HKNuXqrF5aEjoW57zMFo3Itv2l850Qy/XDw5QLdUfnC0?=
- =?us-ascii?Q?Zm5guSeDnPLCuXM5MHNO39O4idvL9UpoR2JR+sJB+If05IQaS+0rsqV5d9z4?=
- =?us-ascii?Q?JOe4sqty3825iczbIHWQ9ZXZlybUScHqRYk1rSay?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5e990d4e-185b-4481-0d4f-08dc44d632b2
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8822.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 09:56:34.6433
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 1TlgGlF6lFNdluvBtxYiFMLaRdiZJO4Dd4qh5JIKsCrhsEjlGWlre2aPN5GBYt0SvP+kZct948fcR2fttS1PWg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM8PR04MB7444
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 03/25] dt-bindings: clock: meson: add A1 audio clock and
+ reset controller bindings
+Content-Language: en-US
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Kevin Hilman <khilman@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Linus Walleij <linus.walleij@linaro.org>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>, linux-amlogic@lists.infradead.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ alsa-devel@alsa-project.org, linux-sound@vger.kernel.org,
+ linux-gpio@vger.kernel.org
+Cc: kernel@salutedevices.com
+References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+ <20240314232201.2102178-4-jan.dakinevich@salutedevices.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240314232201.2102178-4-jan.dakinevich@salutedevices.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add JSON metrics for i.MX93 DDR Performance Monitor.
+On 15/03/2024 00:21, Jan Dakinevich wrote:
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 
-Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+You must provide commit messages.
 
----
-Changes in v7:
- - new patch
----
- .../arch/arm64/freescale/imx93/sys/ddrc.json  |  9 +++++++
- .../arm64/freescale/imx93/sys/metrics.json    | 26 +++++++++++++++++++
- 2 files changed, 35 insertions(+)
- create mode 100644 tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/ddrc.json
- create mode 100644 tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/metrics.json
+A nit, subject: drop second/last, redundant "bindings". The
+"dt-bindings" prefix is already stating that these are bindings.
+See also:
+https://elixir.bootlin.com/linux/v6.7-rc8/source/Documentation/devicetree/bindings/submitting-patches.rst#L18
 
-diff --git a/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/ddrc.json b/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/ddrc.json
-new file mode 100644
-index 000000000000..eeeae4d49fce
---- /dev/null
-+++ b/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/ddrc.json
-@@ -0,0 +1,9 @@
-+[
-+   {
-+           "BriefDescription": "ddr cycles event",
-+           "EventCode": "0x00",
-+           "EventName": "imx93_ddr.cycles",
-+           "Unit": "imx9_ddr",
-+           "Compat": "imx93"
-+   }
-+]
-diff --git a/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/metrics.json b/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/metrics.json
-new file mode 100644
-index 000000000000..4d2454ca1259
---- /dev/null
-+++ b/tools/perf/pmu-events/arch/arm64/freescale/imx93/sys/metrics.json
-@@ -0,0 +1,26 @@
-+[
-+   {
-+	    "BriefDescription": "bandwidth usage for lpddr4x evk board",
-+	    "MetricName": "imx93_bandwidth_usage.lpddr4x",
-+	    "MetricExpr": "(((( imx9_ddr0@ddrc_pm_0@ ) * 2 * 8 ) + (( imx9_ddr0@ddrc_pm_3@ + imx9_ddr0@ddrc_pm_5@ + imx9_ddr0@ddrc_pm_7@ + imx9_ddr0@ddrc_pm_9@ - imx9_ddr0@ddrc_pm_2@ - imx9_ddr0@ddrc_pm_4@ - imx9_ddr0@ddrc_pm_6@ - imx9_ddr0@ddrc_pm_8@ ) * 32 )) / duration_time) / (3733 * 1000000 * 2)",
-+	    "ScaleUnit": "1e2%",
-+	    "Unit": "imx9_ddr",
-+	    "Compat": "imx93"
-+   },
-+   {
-+	    "BriefDescription": "bytes all masters read from ddr",
-+	    "MetricName": "imx93_ddr_read.all",
-+	    "MetricExpr": "( imx9_ddr0@ddrc_pm_0@ ) * 2 * 8",
-+	    "ScaleUnit": "9.765625e-4KB",
-+	    "Unit": "imx9_ddr",
-+	    "Compat": "imx93"
-+   },
-+   {
-+	    "BriefDescription": "bytes all masters write to ddr",
-+	    "MetricName": "imx93_ddr_write.all",
-+	    "MetricExpr": "( imx9_ddr0@ddrc_pm_3@ + imx9_ddr0@ddrc_pm_5@ + imx9_ddr0@ddrc_pm_7@ + imx9_ddr0@ddrc_pm_9@ - imx9_ddr0@ddrc_pm_2@ - imx9_ddr0@ddrc_pm_4@ - imx9_ddr0@ddrc_pm_6@ - imx9_ddr0@ddrc_pm_8@ ) * 32",
-+	    "ScaleUnit": "9.765625e-4KB",
-+	    "Unit": "imx9_ddr",
-+	    "Compat": "imx93"
-+   }
-+]
--- 
-2.34.1
+
+> ---
+>  .../bindings/clock/amlogic,a1-audio-clkc.yaml |  83 ++++++++++++
+>  .../dt-bindings/clock/amlogic,a1-audio-clkc.h | 122 ++++++++++++++++++
+>  .../reset/amlogic,meson-a1-audio-reset.h      |  29 +++++
+>  3 files changed, 234 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
+>  create mode 100644 include/dt-bindings/clock/amlogic,a1-audio-clkc.h
+>  create mode 100644 include/dt-bindings/reset/amlogic,meson-a1-audio-reset.h
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
+> new file mode 100644
+> index 000000000000..c76cad4da493
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/amlogic,a1-audio-clkc.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/amlogic,a1-audio-clkc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic A1 Audio Clock Control Unit and Reset Controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <neil.armstrong@linaro.org>
+> +  - Jerome Brunet <jbrunet@baylibre.com>
+> +  - Jan Dakinevich <jan.dakinevich@salutedevices.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: amlogic,a1-audio-clkc
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +
+> +  '#reset-cells':
+> +    const: 1
+> +
+> +  reg:
+> +    minItems: 2
+
+Drop
+
+> +    maxItems: 2
+> +
+> +  clocks:
+> +    items:
+> +      - description: input main peripheral bus clock
+> +      - description: input dds_in
+> +      - description: input fixed pll div2
+> +      - description: input fixed pll div3
+> +      - description: input hifi_pll
+> +      - description: input oscillator (usually at 24MHz)
+> +
+> +  clock-names:
+> +    items:
+> +      - const: pclk
+> +      - const: dds_in
+> +      - const: fclk_div2
+> +      - const: fclk_div3
+> +      - const: hifi_pll
+> +      - const: xtal
+> +
+> +required:
+> +  - compatible
+> +  - '#clock-cells'
+> +  - '#reset-cells'
+> +  - reg
+> +  - clocks
+> +  - clock-names
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+> +    #include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
+> +    audio {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        clkc_audio: audio-clock-controller@0 {
+> +                compatible = "amlogic,a1-audio-clkc";
+> +                reg = <0x0 0xfe050000 0x0 0xb0>,
+
+Messed indentayion. Use 4 spaces for example indentation.
+
+> +                      <0x0 0xfe054800 0x0 0x20>;
+> +                #clock-cells = <1>;
+> +                #reset-cells = <1>;
+> +                clocks = <&clkc_periphs CLKID_AUDIO>,
+> +                         <&clkc_periphs CLKID_DDS_IN>,
+> +                         <&clkc_pll CLKID_FCLK_DIV2>,
+> +                         <&clkc_pll CLKID_FCLK_DIV3>,
+> +                         <&clkc_pll CLKID_HIFI_PLL>,
 
 
