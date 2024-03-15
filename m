@@ -1,211 +1,229 @@
-Return-Path: <devicetree+bounces-50843-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50844-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5DE987D528
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 21:45:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 162BE87D52D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 21:48:11 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 6C0421F22A49
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:45:58 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 362F11C20D1F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:48:10 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A8737548FE;
-	Fri, 15 Mar 2024 20:45:41 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 413BC1DA5E;
+	Fri, 15 Mar 2024 20:48:06 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="bxnTuR+x"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="ZbyqwP7P"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pj1-f44.google.com (mail-pj1-f44.google.com [209.85.216.44])
+Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com [209.85.128.54])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 9DB2825740
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 20:45:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.216.44
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 99C621C2A0
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 20:48:01 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.54
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710535541; cv=none; b=DRN0rMW3+XwfYkPCo2ACGeTOCbYVV+QFCtLzeR6fB5G2B89FsFPdUD06Gdt3Z3qbDn95e8ZZWhi0stWJLjQZCSwM9uRQBXuvhFK0+hw1gqYufxie2wwwoJG6At4iP3V1aEs06nZ9NSRr0MZW0u2i/f/mS0LyCTkvgvrDtwys/9E=
+	t=1710535686; cv=none; b=iSBxbvILIXm5p0T3Lzkjuv87enqnVvP42h237RyX0DZRonwx6M8vKvTseAWtfAs+jh2EdgK+y1itzUdzYnHWIG6n7drgkSMHl86VDwAcPc4ZYq35r9ZTZDyRpjlCkYgPuSmd4KV069uRr2fBxA6a6jt/E8C6F1WJWHoL8uGqQeA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710535541; c=relaxed/simple;
-	bh=qhRZ7KNcNZTG0t7m0MhJiM10BG0jCqjLES2YnkBc37c=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=qbNmDqqpNOKnaIwVu3wAg0FM5Oo2vJqIddkfQ7QWUmKMyE8sfKLqMqiqhf993dk+QiNvaZfnNy4YOcLXj/kt/4Pmjc6ybc7tyqfL1H1sBGD8zqT5Tq5IDBYnMC/h9hLvBVWJILtYZtKY8WnSYUPhLt5NW9Y3ZMDu9xE1Qeazvr0=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=bxnTuR+x; arc=none smtp.client-ip=209.85.216.44
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pj1-f44.google.com with SMTP id 98e67ed59e1d1-29dd902adffso1426907a91.0
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 13:45:38 -0700 (PDT)
+	s=arc-20240116; t=1710535686; c=relaxed/simple;
+	bh=bnLNQp/2A/3d+Zl+u+gjN7LL9ZxliA6JhxylMFlTEmo=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=Hd5fWdyFaiOCNc4HLsGzLPCn4F6vR44qR8YSmSf2UW2slERmLXPhg7IRcph3aMrE/k+HTflvaZp8gnIqMirG4HjlXSXmh/gJ3LzDzrB0kr9pYijfQ9X3OrNX8+52+4IlAQd5C8sLH6oghesfpjROG4m9P9CBrvUf+rJKu8XghzQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=ZbyqwP7P; arc=none smtp.client-ip=209.85.128.54
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f54.google.com with SMTP id 5b1f17b1804b1-414025406d7so5812175e9.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 13:48:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1710535537; x=1711140337; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=5f3g6jt+SPPkTn9q3kiXsClKs8YsDQB9FBPsmFWqzL8=;
-        b=bxnTuR+xS1UXRqEWoPmYQw4IF7KiYGUhacD8hDSycbe3LHNnk+8iJLebLL4pN19VW/
-         DLcJRuRZddY4vlZrQcauyIS1Mw9F310zW/kWW8yifBCe1Sxrju/lZAyZUBpH57c0bGvg
-         y0zgumfTdAP/oCmva1ALTWJR30P669hze3vn8=
+        d=linaro.org; s=google; t=1710535680; x=1711140480; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=w4NvgV/CSC+904+msOLgfpBWx/0mbV2VCj5TZRcU2mg=;
+        b=ZbyqwP7PdO6f+pjfaPyb95LCCE/CEWN1NICKYNUQ1N5jg0rYMILO7wu9Qeo9Gc3u0E
+         jETpERlsqm4s4GnBKlplivvbiFm6tNmglzJCy6I4T0E5025bQxXapLzXvEa+aE/pltos
+         OJl3haRaDyQphto0KgYDwhraZstXLaSMU4F2SsU8ezYwCU1pRAC5fW4iyH46uZ5xkxmk
+         Mn9vbUlVm0BGvpglesZ4pbVuRLGe5pZpWvxqxTF/evwRRNoBlKC3H6+Ipa2AeGUBE/5F
+         SCREK+LUh8NrLtuAT/sq97uS7WYUduMEmrMHBWiV1ueL0UXfGuD27G8JwRdnEYWpkb6u
+         2nJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710535537; x=1711140337;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5f3g6jt+SPPkTn9q3kiXsClKs8YsDQB9FBPsmFWqzL8=;
-        b=Nta/WzoruZr43jJnXEg6yrASwSSjzZYfkvFFnOySEoKbkGRi2DO+BJCtSpjHwZYWwa
-         Ph9b0oaU64wZuQyZhpXBGFjt0cfz4UUsjbLfiFCqihXinwsopdo4TsuhOPW+byR7/1mq
-         +kyuYVN3CX1zEDutfcgT3zk/z4woWDTO8BUl+9MA/wH80megp/ARj54kCk5otaQsmEO7
-         Iicel5ttkZetOMt7TrHzTr0mX1lZzicIF1FMO0AfH9AJmyCgnSkt/BnH6wlWmXkI2SlD
-         hARoAMBHIndqgev3kIjHZkm+kb/FP/bTXhOwKww3QAxUCo/X4QNrbeIfPJfBhfzADcwy
-         t3rA==
-X-Gm-Message-State: AOJu0YySZTcbo2Xam6rmcgspjThjrtHSMPlS5PsojaOa2utd/flIjCE2
-	ElR7Cdmv6EY0xKNESQWXd/kuqJBMW3Nk67DwhDBYS+RP5664IJL7P3LvFP90ME6Bc1LeiQJhVqo
-	=
-X-Google-Smtp-Source: AGHT+IG/MP/COIzylJY9BIgpwRYj+RjYQJGtY4FHk+hzIe5y+OmnhKRTDa2xdvlEOYm87TA6ZLifnw==
-X-Received: by 2002:a17:90b:215:b0:29b:347f:23ea with SMTP id fy21-20020a17090b021500b0029b347f23eamr5423371pjb.3.1710535537628;
-        Fri, 15 Mar 2024 13:45:37 -0700 (PDT)
-Received: from chromium.org ([202.144.206.254])
-        by smtp.gmail.com with ESMTPSA id iq3-20020a17090afb4300b0029bb8ebdc23sm3400516pjb.37.2024.03.15.13.45.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Mar 2024 13:45:37 -0700 (PDT)
-From: Simon Glass <sjg@chromium.org>
-To: devicetree@vger.kernel.org
-Cc: linux-mtd@lists.infradead.org,
-	Michael Walle <mwalle@kernel.org>,
-	Miquel Raynal <miquel.raynal@bootlin.com>,
-	Rob Herring <robh@kernel.org>,
-	Simon Glass <sjg@chromium.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Richard Weinberger <richard@nod.at>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	linux-kernel@vger.kernel.org
-Subject: [PATCH v8 2/2] dt-bindings: mtd: fixed-partition: Add binman compatibles
-Date: Sat, 16 Mar 2024 09:45:21 +1300
-Message-Id: <20240315204521.28613-2-sjg@chromium.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240315204521.28613-1-sjg@chromium.org>
-References: <20240315204521.28613-1-sjg@chromium.org>
+        d=1e100.net; s=20230601; t=1710535680; x=1711140480;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
+         :to:content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=w4NvgV/CSC+904+msOLgfpBWx/0mbV2VCj5TZRcU2mg=;
+        b=SUNf55ycju7ZLLPxrnGOcsnZEet0Yugd0hqNiFJiQgeM5Tao3DjodBNK7XAfliRPBn
+         A6vNjcVqgXb7ylv50YGmlBHmUOdytfQ9eHD6OrhvHmk3SNGyAROjLodttezJWf7+XkIn
+         oLuDLQROxBoJ2k3Pf1iJRWs8pN1qP7aiRtvI4/wxzEzqZlnat1SDGPP9I7wPJH6KyBmS
+         6yyRptaoJx5EtBiaR1jDzJ736I93QJOvjpro/NDiCxpmoE4oy2rGidLLfklHUqI1ULuV
+         yYG9iK26LJ2DoqN95GM8jiqcCt/GCJzFE4Hjmmieih76sXXEdKBstzTacmZybRin+LTy
+         w6ew==
+X-Forwarded-Encrypted: i=1; AJvYcCX//Z1lElEfNQrLLTEgaPqptRTq9CQUtw66hx/PpfWksAdVRprmYh0011ckWEuHhGjgIwgY+2ib1knQqbT+QYFx7xhDkh9vwpPEgw==
+X-Gm-Message-State: AOJu0Yzy//tUyIashMS12l8b6r2FuB3nrIyRwRCVztWYK/AC3NiviifS
+	+BxNUn9A1Br3KQZN+oo0EAWgUwn3m+Fuhhnsqf0SKhgCkJWGQbW480SIzpdfv+o=
+X-Google-Smtp-Source: AGHT+IHaudt0n925u7j5cWjm5faGrXJkVr8MamYLArcOjHOC5R6h/rfCFuGnSsLpcuvgTvjKlrf/2Q==
+X-Received: by 2002:a05:600c:3ca8:b0:414:273:67d4 with SMTP id bg40-20020a05600c3ca800b00414027367d4mr1809453wmb.30.1710535679868;
+        Fri, 15 Mar 2024 13:47:59 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id h10-20020a05600c350a00b00412ee8e2f2asm10091282wmq.9.2024.03.15.13.47.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Mar 2024 13:47:59 -0700 (PDT)
+Message-ID: <99b72931-0007-4ab5-87fb-9b4c3021c1c2@linaro.org>
+Date: Fri, 15 Mar 2024 21:47:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4 1/6] dt-bindindgs: clock: nxp: support i.MX95 VPU CSR
+ module
+Content-Language: en-US
+To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>, Abel Vesa <abelvesa@kernel.org>,
+ Michael Turquette <mturquette@baylibre.com>, Stephen Boyd
+ <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Fabio Estevam <festevam@gmail.com>
+Cc: linux-clk@vger.kernel.org, imx@lists.linux.dev,
+ devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+References: <20240314-imx95-blk-ctl-v4-0-d23de23b6ff2@nxp.com>
+ <20240314-imx95-blk-ctl-v4-1-d23de23b6ff2@nxp.com>
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240314-imx95-blk-ctl-v4-1-d23de23b6ff2@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 
-Add two compatibles for binman entries, as a starting point for the
-schema.
+On 14/03/2024 14:25, Peng Fan (OSS) wrote:
+> From: Peng Fan <peng.fan@nxp.com>
+> 
+> The i.MX95 VPU_CSR contains control and status registers for VPU
+> status, pending transaction status, and clock gating controls.
+> 
+> This patch is to add clock features for VPU CSR.
 
-Note that, after discussion on v2, we decided to keep the existing
-meaning of label so as not to require changes to existing userspace
-software when moving to use binman nodes to specify the firmware
-layout.
+Fix the subject prefix. You mess with people's filters.
 
-Note also that, after discussion on v6, we decided to use the same
-'fixed-partition' schema for the binman features, so this version
-adds a new 'binman.yaml' file providing the new compatibles to the
-existing partition.yaml binding.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
+> ---
+>  .../bindings/clock/nxp,imx95-vpu-csr.yaml          | 50 ++++++++++++++++++++++
+>  include/dt-bindings/clock/nxp,imx95-clock.h        | 14 ++++++
+>  2 files changed, 64 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml b/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml
+> new file mode 100644
+> index 000000000000..4a1c6dcfe3f8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/nxp,imx95-vpu-csr.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/nxp,imx95-vpu-csr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX95 VPUMIX Block Control
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: nxp,imx95-vpu-csr
+> +      - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +    description:
+> +      The clock consumer should specify the desired clock by having the clock
+> +      ID in its "clocks" phandle cell. See
+> +      include/dt-bindings/clock/nxp,imx95-clock.h
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    syscon@4c410000 {
+> +      compatible = "nxp,imx95-vpu-csr", "syscon";
+> +      reg = <0x4c410000 0x10000>;
+> +      #clock-cells = <1>;
+> +      clocks = <&scmi_clk 114>;
+> +      power-domains = <&scmi_devpd 21>;
+> +    };
+> +...
+> diff --git a/include/dt-bindings/clock/nxp,imx95-clock.h b/include/dt-bindings/clock/nxp,imx95-clock.h
+> new file mode 100644
+> index 000000000000..9d8f0a6d12d0
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/nxp,imx95-clock.h
 
-Signed-off-by: Simon Glass <sjg@chromium.org>
----
+If the header is only for clock IDs for this binding, then keep the same
+filename as binding filename.
 
-Changes in v8:
-- Switch the patch ordering so the partition change comes first
-
-Changes in v7:
-- Adjust MAINTAINERS entry
-- Put compatible strings into the 'fixed-partition' binding
-
-Changes in v5:
-- Add mention of why 'binman' is the vendor
-- Drop  'select: false'
-- Tidy up the compatible setings
-- Use 'tfa-bl31' instead of 'atf-bl31'
-
-Changes in v4:
-- Correct selection of multiple compatible strings
-
-Changes in v3:
-- Drop fixed-partitions from the example
-- Use compatible instead of label
-
-Changes in v2:
-- Use plain partition@xxx for the node name
-
- .../bindings/mtd/partitions/binman.yaml       | 49 +++++++++++++++++++
- MAINTAINERS                                   |  5 ++
- 2 files changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-
-diff --git a/Documentation/devicetree/bindings/mtd/partitions/binman.yaml b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-new file mode 100644
-index 000000000000..83417ad5cee9
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/partitions/binman.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/partitions/binman.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Binman entries
-+
-+description: |
-+  TBD
-+
-+maintainers:
-+  - Simon Glass <sjg@chromium.org>
-+
-+allOf:
-+  - $ref: /schemas/mtd/partitions/partition.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - binman,entry # generic binman entry
-+      - u-boot       # u-boot.bin from U-Boot project
-+      - tfa-bl31     # bl31.bin or bl31.elf from TF-A project
-+
-+required:
-+  - compatible
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    partitions {
-+        compatible = "fixed-partitions";
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+
-+        partition@100000 {
-+            compatible = "u-boot";
-+            reg = <0x100000 0xf00000>;
-+            align-size = <0x1000>;
-+            align-end = <0x10000>;
-+        };
-+
-+        partition@200000 {
-+            compatible = "tfa-bl31";
-+            reg = <0x200000 0x100000>;
-+            align = <0x4000>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b43102ca365d..5b08ee363140 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -3610,6 +3610,11 @@ F:	Documentation/filesystems/bfs.rst
- F:	fs/bfs/
- F:	include/uapi/linux/bfs_fs.h
- 
-+BINMAN
-+M:	Simon Glass <sjg@chromium.org>
-+S:	Supported
-+F:	Documentation/devicetree/bindings/mtd/partitions/binman*
-+
- BITMAP API
- M:	Yury Norov <yury.norov@gmail.com>
- R:	Rasmus Villemoes <linux@rasmusvillemoes.dk>
--- 
-2.34.1
+Best regards,
+Krzysztof
 
 
