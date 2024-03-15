@@ -1,130 +1,93 @@
-Return-Path: <devicetree+bounces-50822-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50823-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BAD2087D446
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:04:12 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BEB787D44F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:04:50 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 3F3DBB23921
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 19:04:10 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDB1C1C221B7
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 19:04:49 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7AD313B29A;
-	Fri, 15 Mar 2024 19:04:05 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8794F50261;
+	Fri, 15 Mar 2024 19:04:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="mB1iePyr"
+	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="RKeEk8Q9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
+	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4B1B81F94B;
-	Fri, 15 Mar 2024 19:04:04 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82EAF51005;
+	Fri, 15 Mar 2024 19:04:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710529445; cv=none; b=tjAU+JuS6GcRNu/dGCpakgZi+twnPcd9JEv6MaVNXi26PgmabHIiMU/Uh1BjgpdjvnyOpcMQwXgEQ5uBaZ1zGLEaAjgCkNpsfWQm94l75N4MTr5moy8v0R4/vMD/JqrBFurSTgOWxqdTo78qsAbUGn88SNuuxu+Vynm0R5YuZh0=
+	t=1710529465; cv=none; b=FMqWsnQJOKSgGR0AJkKbms4PXFfYfAZJp00K5gPDZ1paiGdMTBzROadUZ82zsCt3ina/AiyCQ/WYZKY4fyegxPrzNlXep5zQgmzP7KmtvGUthAzA/AaoCLnVhH+8aJuqtZmqiPQHap3G0ymHlgKdmlEaGPAQ04tmcieXEW17Zbg=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710529445; c=relaxed/simple;
-	bh=XdThChpVAKQYKHp6iMa8gsxf9YJQb5s6EJHGFTjOL5o=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=kRFlNzVZ5mClUR/pVXnkMIZhS25GgM2Cc0qmKud8N7iFBg+9A7bsWa6KSFu+TQlXA+2wQ0HiD6xRQqlZBt9jo6froZdzOXPduK2PHE2GZ2xyupcTAfBoxdrfJMTyw1eNDSk3MfJSq6ZxeryjCLU4YEsz+5Aeh61/4uVtHqhu/J4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=mB1iePyr; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 53E3FC433C7;
-	Fri, 15 Mar 2024 19:04:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710529444;
-	bh=XdThChpVAKQYKHp6iMa8gsxf9YJQb5s6EJHGFTjOL5o=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=mB1iePyrjVuTzqvELe81dQyrjFCYKGo3tJe5uOlXC3FxoJc0pNfjGGBfemOAOZo8D
-	 env5gYytUuoXICkOnz2vQX+fqmQQ/nIxSPXujAckBKQtsgUnaGQadWw2XjAFA0FiLq
-	 loD5u6l/HiQDT52qAxYrH86dWm8bw0h2cwkr6MCXilmuSHTB3B3JFGcUd2eJCc86Z/
-	 +Hz70rWIZz0mD4bDB58ozIySoCfe5wUESLgz6dvVPJF+pbjEmbleZBDv9wCZaDZotd
-	 aiN7nH21rQ/zwhGwur72QEVNmfianVgVUzSwaX38Z7vKIk/bjptlrdkOMvmKK7JhUi
-	 4ZWP0B5Y+dM3g==
-Date: Fri, 15 Mar 2024 19:03:57 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Ayush Singh <ayushdevel1325@gmail.com>
-Cc: linux-kernel@vger.kernel.org, jkridner@beagleboard.org,
-	robertcnelson@beagleboard.org,
-	Vaishnav M A <vaishnav@beagleboard.org>,
-	Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Derek Kiernan <derek.kiernan@amd.com>,
-	Dragan Cvetic <dragan.cvetic@amd.com>,
-	Arnd Bergmann <arnd@arndb.de>,
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Jiri Slaby <jirislaby@kernel.org>, Johan Hovold <johan@kernel.org>,
-	Alex Elder <elder@kernel.org>, devicetree@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
-	linux-serial@vger.kernel.org, greybus-dev@lists.linaro.org
-Subject: Re: [PATCH v3 7/8] mikrobus: Add mikrobus driver
-Message-ID: <ba2d158c-db0f-4037-b21b-82ee25208ea7@sirena.org.uk>
-References: <20240315184908.500352-1-ayushdevel1325@gmail.com>
- <20240315184908.500352-8-ayushdevel1325@gmail.com>
+	s=arc-20240116; t=1710529465; c=relaxed/simple;
+	bh=H2G1mNojwriAzl/RkRYzjyygSjD5gvvRSE4O9fzPGLg=;
+	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
+	 Message-ID:Content-Type; b=sRTCgQUrL3Zp/7GB/W+A1+/1bY5Sixgx/JmYAJgr24aBzkSN2p8dJ+/uozWPNDwGBg++dNZmP9huTNSUmLhDdvHJzd3jgvUw+yg/GjBnL+de9u5mDrZXcOPw6FUBLoy0mioYGi3AheDPVDCnlmeWK6ZZff/u086uWFv9GVWrpxQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=RKeEk8Q9; arc=none smtp.client-ip=116.203.91.91
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="0C9fqa+uIcpzgFeK"
-Content-Disposition: inline
-In-Reply-To: <20240315184908.500352-8-ayushdevel1325@gmail.com>
-X-Cookie: A well-known friend is a treasure.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+	t=1710529453;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+	 content-transfer-encoding:content-transfer-encoding:
+	 in-reply-to:in-reply-to:references:references;
+	bh=/QeVTt7EEVUu2Ft0Iu4mZyhzwsN4UDGTEp8s8bgI6eg=;
+	b=RKeEk8Q9e0N+4Vg6+DMe4lGtWMuHetNupWAEWrPFY4DT39ESUMcJnG06KeHUCIo9aiz+Vv
+	Lbj7zoZg067upCQsuWGf8gfD9I2AADS090Gk6sgH9yWXcDcgokA6wstStnP8uCpLtKBkWj
+	/tdC8PIx5ZXsCANqxL9G35MaDuLvhxdIQG9POLYUG17c5ORxXDHN6MPCPLEhljm7FdjZhD
+	Ud9EiXHqF+aTlKPVnis72eqiVsBVh4LPPdhpRcVQcaLaSOsuks8Hz0C6SjJzkL4YpcXGFQ
+	eIoPRufPoXUe7g0RNZccV1G+RHniso19OSYthlQ9ITUac4Smh0mQPCKUd90RsQ==
+Date: Fri, 15 Mar 2024 20:04:11 +0100
+From: Dragan Simic <dsimic@manjaro.org>
+To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
+Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, Conor Dooley
+ <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Lorenz Brun
+ <lorenz@brun.one>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: rockchip: add &gmac2phy in rk3328-rock64
+In-Reply-To: <PN3PR01MB10135290B74FD411720E431989A282@PN3PR01MB10135.INDPRD01.PROD.OUTLOOK.COM>
+References: <20240315084018.2200581-1-himanshu.bhavani@siliconsignals.io>
+ <96a53f8560b3563328eaf7b9d6f63d87@manjaro.org>
+ <PN3PR01MB10135290B74FD411720E431989A282@PN3PR01MB10135.INDPRD01.PROD.OUTLOOK.COM>
+Message-ID: <0f674cf37d01e1a6651068b0402e766c@manjaro.org>
+X-Sender: dsimic@manjaro.org
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Authentication-Results: ORIGINATING;
+	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
 
+On 2024-03-15 16:02, Himanshu Bhavani wrote:
+>> Unfortunately, this isn't an acceptable change to the Rock64 dts file.
+>> Yes, there's the second built-in Ethernet interface in the RK3328 SoC,
+>> but the Rock64 layout doesn't expose it as a separate physical network
+>> interface, i.e. it isn't available as a port.
+> 
+> I was wondering if the Rock64 lacks a port.
+> According to this link: https://pine64.org/devices/rock64/,
+> it seems that there is a physical network interface available on the 
+> sbc.
 
---0C9fqa+uIcpzgFeK
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+As I already described in my previous response, there's another Ethernet
+interface in the RK3328 SoC, which the Rock64 is based on, but there's 
+no
+second Ethernet port on the actual printed circuit board.  That's simply
+how the Rock64 was designed and manufactured.
 
-On Sat, Mar 16, 2024 at 12:19:05AM +0530, Ayush Singh wrote:
-
-> +	if (dev->regulators) {
-> +		if (dev->protocol == GREYBUS_PROTOCOL_SPI) {
-> +			snprintf(devname, sizeof(devname), "%s.%u", dev_name(&port->spi_ctrl->dev),
-> +				 port->chip_select[dev->reg]);
-> +			regulator.dev_name = kmemdup(devname, MIKROBUS_NAME_SIZE, GFP_KERNEL);
-> +		} else if (dev->protocol == GREYBUS_PROTOCOL_RAW) {
-
-It looks like you're trying to write a switch statement here...
-
-> +		for (i = 0; i < dev->num_regulators; i++) {
-> +			val = dev->regulators[i].value.u64_data;
-> +			regulator.supply =
-> +				kmemdup(dev->regulators[i].name, MIKROBUS_NAME_SIZE, GFP_KERNEL);
-> +			dev_info(&port->dev, "adding fixed regulator %llu uv, %s for %s", *val,
-> +				 regulator.supply, regulator.dev_name);
-> +			regulator_register_always_on(0, dev->regulators[i].name, &regulator, 1,
-> +						     *val);
-> +		}
-
-The registered regualtor is ignored here which means you leak the
-regualtors every time a device is unregistered...
-
-> +static void mikrobus_device_unregister(struct mikrobus_port *port, struct board_device_info *dev,
-> +				       char *board_name)
-
-...an operation which does seem to be supported?
-
---0C9fqa+uIcpzgFeK
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmX0m5wACgkQJNaLcl1U
-h9Dg3Af9HDcsEVs7HgxyXgcr3FK1SHc5inY3iwQz3gw6LS5jvZ4BKzqDCrmVE7+j
-mS+9j46N8GAEr7mdFFr87noquoTs9wAHf41j2b9Quc9wwLHnUoafkJlpkOBLd4MG
-IC8Hzbom6tCjSckTvvjBPqMN17pBKMryd8UHpMc/YknZTdpQF8YZmnix3+R8VaxW
-6o/yVeHTV3i2T6tz05vATBfZvj/oWJjd6pn0I9Nr+wMTmVWAE11dHVSXNR9wRMnN
-lVbkHnB0y0yMJCNEkzdj1j3zfslzHFIE+VDuJoMrP/ZbXDeYliEZMsLzqLIhmdQV
-M1kWAQAUlPF8mZDFrTQanPMEBZ89cw==
-=0g9k
------END PGP SIGNATURE-----
-
---0C9fqa+uIcpzgFeK--
+>> Such a change would be fine to be applied to the dts by hand, by 
+>> someone
+>> who actually adds a second physical network port to their Rock64.
 
