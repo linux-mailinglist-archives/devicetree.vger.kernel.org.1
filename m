@@ -1,125 +1,147 @@
-Return-Path: <devicetree+bounces-50733-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50734-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8CBBB87CE2A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:37:03 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id C072987CE42
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:49:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 2E18FB21CC1
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 13:37:01 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 81D712816EF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 13:49:52 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 4682328E3C;
-	Fri, 15 Mar 2024 13:36:56 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EA3E635F18;
+	Fri, 15 Mar 2024 13:49:43 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="WBikQgWF"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="mRJoNyPA"
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 10E8236AED;
-	Fri, 15 Mar 2024 13:36:55 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 563B12C1B1;
+	Fri, 15 Mar 2024 13:49:41 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.176
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710509816; cv=none; b=QW1Dtb2yFi7mOa+9a+USvlQ3PxK+lGMgTlQsF17mUFik2YOtm8/z6icdGnDo9R361nRuS+iAmyfOZ4+aKrRBu1CkRbQDL4yBEym5tUdzK7h1y25FOXhCHzsXGMSIWkA98ivmwvjeW3aBhqw/hykvWEmXsGyLFN/tXnJjUy7zB1s=
+	t=1710510583; cv=none; b=X3quPi6kVcJN0e79REJ5S4YWr6+4aTXT3/vnXg15I+Rz61n+38dupoz/mIjh7j0Xy91mMCHlAdXcrQ9CQE0N39azt+Qa177hmu+Xv+YcOPmHe4+goMDVbrL1N6y7hTrQkrV4FYv19E63vAynIa25igweZE5QSfvtCb8PVzFZjPU=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710509816; c=relaxed/simple;
-	bh=mnKx/USIAWKFowB3UECi37soYZOTeSdjE7YC6dui0gY=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=nQbgdKYHyu/lcRDgYQy6/uQJdqrpI4ceH+tiMPMEm6idfyntRHVuH1+X4ZOArh+vH/8k4mj9ZYLXQV4HzTQ1NV7TTu/sRC7lYSXudSWGR7JfhKVA8y1ACxJEyNKXsSIvKsyf6MhbSW+rgSwgBSeE/OUBd+rpL/oR24uuRUAL4nw=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=WBikQgWF; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B990C433F1;
-	Fri, 15 Mar 2024 13:36:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710509815;
-	bh=mnKx/USIAWKFowB3UECi37soYZOTeSdjE7YC6dui0gY=;
-	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-	b=WBikQgWFYtKFSQn7AJHJtgle7tDUdFM0GNQ/6JqxAf0lxH6kRfm2hxTIXdG5E6Egy
-	 YAzTuwY1PjSj0ojy2bfIUYwcULJe3/38mYLHr+20Nw39reMae5OEJudFQOAYqJS1cG
-	 mjHGzUI/L69hkyZrBEUsb8oCQhOHCT3JZQ44vfSkw/OskPHgcBcH2rCpWA6LWBCF5E
-	 diWwtCdzYwAdPO346YhitMreYA0mq7RAR0VnKsuUT5V6yoGUgrZLjFm21Xpp4uFg52
-	 3KzbWdPKyTbVDmpXxzm5MDzWsiHQEt7QAGwNh5hjZUGzrkEU44uZ9fAbLix7zN5tme
-	 8jjsI9jEx/Dhw==
-Date: Fri, 15 Mar 2024 13:36:48 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
-Cc: Neil Armstrong <neil.armstrong@linaro.org>,
-	Jerome Brunet <jbrunet@baylibre.com>,
-	Michael Turquette <mturquette@baylibre.com>,
-	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Philipp Zabel <p.zabel@pengutronix.de>,
-	Kevin Hilman <khilman@baylibre.com>,
-	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-	Liam Girdwood <lgirdwood@gmail.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
-	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
-	kernel@salutedevices.com
-Subject: Re: [PATCH 12/25] ASoC: meson: t9015: add support for A1 SoC family
-Message-ID: <5f8e8cd2-f9c4-4961-a85d-a0f3217294e6@sirena.org.uk>
-References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
- <20240314232201.2102178-13-jan.dakinevich@salutedevices.com>
+	s=arc-20240116; t=1710510583; c=relaxed/simple;
+	bh=h/4Lk/SMGsdQgDM8jcVCYB2+YgZckD6icPn+NiY1FHI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=puXiLzALAOzp8XgPE5YdnAGgzdA8edO6hcdJKvKKE9rednbCZIaphzpnPWrDbW8N3GYw+bWyv1kIfgMvoV6w1+FslKDUal/7TGfhSNFe35Y/9AIx+Cv3DUiqVli9akuYhaIsC/DwfexrpjrYZF2U46Ei/IeRz33Aw683iS3SimI=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=mRJoNyPA; arc=none smtp.client-ip=209.85.160.176
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-qt1-f176.google.com with SMTP id d75a77b69052e-429de32dad9so13223221cf.2;
+        Fri, 15 Mar 2024 06:49:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710510580; x=1711115380; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9Wk5gVJOPGfeho8JPzSGCN6ya15q71s7clvvSXBk97w=;
+        b=mRJoNyPAZtvHsbAvBmw/S/sgsuS5SYVg7T6nGfaoklQ8LVGc8Y3AV9472gnfkqAl4r
+         DUp1QVIkcpVgWBiU0o2nAb800HgKNDLt7ofjypiAMHpjch4Qd+T7qxOTWSUYeRSWpIzv
+         yEck0wwKjsos+cTPonhYN+dNd3DSY1JyjNLf4xprOGIgVlior3MmX8n76Ypf4DLlLPmw
+         TmxloVlDeP1tOA/A9cLjTz9JIOqCbnCS1BHGxZMIMfpdMWR2jWCiahpogSjwI+SnXlr3
+         fX961Mo2GdKEDfyfakYOam1Ygp3E2Nbjp2Ip2ycnAcJhBVleBHsSrh8vQjU4VhI8qBF2
+         4Fgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710510580; x=1711115380;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9Wk5gVJOPGfeho8JPzSGCN6ya15q71s7clvvSXBk97w=;
+        b=qwz1MTEuS94H77DvnrvOFNapAllUmWJX2ywC6eTQD1LCcezrr94rl77hCbJPvWDeU5
+         UnzB7g6rESqEV+bp//tX+OCwPyvtS/0vzcQlg1VY2HEHI5S7HMiztFYa32oJiwDjiJSC
+         M5sE6ELYMdtylSsDW2vlJrZUZYIrGvF6cfmhv6WLfiXHE51tBrkMxMwh2pB9ueGsm0Dj
+         WnJMnmnMiBrJ14APV61kOomP/jfa+UosSZcgRhEA8Czh2i+ASwA5JvYnFcub6oPDrVDS
+         QvVPQDr+zQt1B5Zt2mgAvpG+jMU4kqhJ0dCbk0PcbC+gt75pNiHXYd9h2BebseYc8/ug
+         EmsA==
+X-Forwarded-Encrypted: i=1; AJvYcCWpAkoLvI11ODnZKaVOF0yyRSv8gVES8AQaMm1Wdys/rNBDrE2sXSEn2DPaqHQMLeTE88c/fmkSSovnZzv9fHTUIXejKpnsZZi2VzjwzcTGth7brHItJ0JaM+2b0EKsfIbziNRgxsUMnpu77DOYYNiE6V0dHFXehQVczPXgxwlG5uw2qFr7WCrZmt2+CdYM2jv1ZIlzR4DYabEOFbAdRZ6sNVdniAPX
+X-Gm-Message-State: AOJu0Yyh9uMmCwOyMIjD6lYETcjnn9zQhDq8vNwpB6tayyNZiBDjJQdY
+	FiNy5aN0mh2HP8VtWqrOjDkDA1EyPKZ0sKc8z5PnAhVkCb2oae6SpZMp8gl6YCOWM03kBbQ5O+e
+	gWWdxhD6NIDoPXPCqyNEVYdvYLxM=
+X-Google-Smtp-Source: AGHT+IFgbluFhi9bT4nQa92X1wjIoWmS3ECfzn7cYD7XLw63BZtbQsJ5VYXfx6k5w9DPAygksDQ9/hzBifoHk66galw=
+X-Received: by 2002:ac8:7f8e:0:b0:430:9754:aece with SMTP id
+ z14-20020ac87f8e000000b004309754aecemr5898888qtj.42.1710510580223; Fri, 15
+ Mar 2024 06:49:40 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="4AHceM7kGoMGggFJ"
-Content-Disposition: inline
-In-Reply-To: <20240314232201.2102178-13-jan.dakinevich@salutedevices.com>
-X-Cookie: A well-known friend is a treasure.
+References: <20240315103033.141226-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240315103033.141226-3-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdW8qKy4p4vefhrdK861dEi93Awr6NcQBHbLTwO0NWq6kA@mail.gmail.com>
+In-Reply-To: <CAMuHMdW8qKy4p4vefhrdK861dEi93Awr6NcQBHbLTwO0NWq6kA@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 15 Mar 2024 13:48:22 +0000
+Message-ID: <CA+V-a8u5SguphwZ2H4xpn=ZX2OaC442bLMBVJtPC+1Rj1GF=9g@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] i2c: riic: Introduce helper functions for I2C
+ read/write operations
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Chris Brandt <chris.brandt@renesas.com>, Andi Shyti <andi.shyti@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
+Hi Geert,
 
---4AHceM7kGoMGggFJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thank you for the review.
 
-On Fri, Mar 15, 2024 at 02:21:48AM +0300, Jan Dakinevich wrote:
+On Fri, Mar 15, 2024 at 12:59=E2=80=AFPM Geert Uytterhoeven
+<geert@linux-m68k.org> wrote:
+>
+> Hi Prabhakar,
+>
+> On Fri, Mar 15, 2024 at 11:31=E2=80=AFAM Prabhakar <prabhakar.csengg@gmai=
+l.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Introduce helper functions for performing I2C read and write operations
+> > in the RIIC driver.
+> >
+> > These helper functions lay the groundwork for adding support for the
+> > RZ/V2H SoC. This is essential because the register offsets for the RZ/V=
+2H
+> > SoC differ from those of the RZ/A SoC. By abstracting the read and writ=
+e
+> > operations, we can seamlessly adapt the driver to support different SoC
+> > variants without extensive modifications.
+> >
+> > This patch is part of the preparation process for integrating support f=
+or
+> > the RZ/V2H SoC into the RIIC driver.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> > v1->v2
+> > - Renamed i2c read/write to riic_readb/riic_writeb
+> > - Made riic as first parameter for riic_writeb
+>
+> Thanks for the update!
+>
+> > --- a/drivers/i2c/busses/i2c-riic.c
+> > +++ b/drivers/i2c/busses/i2c-riic.c
+> > @@ -105,9 +105,19 @@ struct riic_irq_desc {
+> >         char *name;
+> >  };
+> >
+> > +static inline void riic_writeb(struct riic_dev *riic, u8 offset, u8 va=
+l)
+>
+> Please use the same parameter order as writeb(), i.e. "val" before
+> "offset"), to increase uniformity.  This also would make it easier
+> to review your changes using "git {diff,show} --color-words".
+>
+Agreed, I will update it in the next version.
 
-> +static const char * const a1_adc_mic_bias_level_txt[] = { "2.0V", "2.1V",
-> +	"2.3V", "2.5V", "2.8V" };
-> +static const unsigned int a1_adc_mic_bias_level_values[] = { 0, 1, 2, 3, 7 };
-
-Why would this be varied at runtime rather than being something fixed
-when the system is designed?
-
-> +static const char * const a1_adc_pga_txt[] = { "None", "Differential",
-> +	"Positive", "Negative" };
-> +static const unsigned int a1_adc_pga_right_values[] = { 0, PGAR_DIFF,
-> +	PGAR_POSITIVE, PGAR_NEGATIVE };
-> +static const unsigned int a1_adc_pga_left_values[] = { 0, PGAL_DIFF,
-> +	PGAL_POSITIVE, PGAL_NEGATIVE };
-
-Similarly here.
-
-> +	SOC_SINGLE("ADC Mic Bias Switch", LINEIN_CFG, MICBIAS_EN, 1, 0),
-> +	SOC_ENUM("ADC Mic Bias Level", a1_adc_mic_bias_level),
-
-Why would micbias be user controlled rather than a DAPM widget as
-normal?
-
---4AHceM7kGoMGggFJ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmX0Tu8ACgkQJNaLcl1U
-h9B7RQf/eYxVKAjAigpYP4vgwBWRE/HosjdaaB5ogMo8PMSiXfacGnLx0ZtIpWa9
-i6saOA5iW9E/n7Et4JpmJ0J/fYdN7d5TkSlgYGwYP/ojBAChias0hOS7f+fHKvdM
-qH8C+20ovZC5RpNOZUjLmiwJ1WMJQrXgjYVTLpBHn23XPsf8fV3i+B5JEQzBJtXI
-px2DiSaV2iQ+nBmrZQEQo7KnJsQiLahPLQgr81xq5322lUfLN0+kRHrNGnqMU/Aw
-BW++2BV+mf6HXT8WKXrn2DeQByMpBN+jc7eeRDI7xIiB4iAWwpDL9Cn5HsSuYYvI
-ZdU3lU/s6CaDa3e5AyxYVatZ42Rx4Q==
-=sm4b
------END PGP SIGNATURE-----
-
---4AHceM7kGoMGggFJ--
+Cheers,
+Prabhakar
 
