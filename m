@@ -1,388 +1,321 @@
-Return-Path: <devicetree+bounces-50714-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50715-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 12BBB87CCA0
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 12:45:34 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 504DE87CCF2
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 12:50:46 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EF371F2220E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:45:33 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id BBD6DB2147E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1245618059;
-	Fri, 15 Mar 2024 11:45:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id B5C261BC5E;
+	Fri, 15 Mar 2024 11:50:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MwAvTPay"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="WSKfMvxD"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11B481BC59;
-	Fri, 15 Mar 2024 11:45:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id BC4991BC4D;
+	Fri, 15 Mar 2024 11:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710503124; cv=none; b=V9hD6SxiOm0iIyQgUDJIxJmHkKG99hr29x8nJHNgCI1+biW+vdmm56y5sWAOnWDYL0o32JdfDMYkJrPh0GrOniudd4x0pfvJ/bHF9vHRbKJ6GSuSFG4XOsxZGtSCuco97GzOtShbFoutQhHGA+hxFiT60lwfF5dHoDVtvMP/7DE=
+	t=1710503439; cv=none; b=mDC0ZES/SU0szFxnV9ZTcir1hTFx2shOWQBow0wwA5XQk/Ll5YrFbawyT/X/7bpMmLKZXrbraogUOqjbpLxFqgMfvmp0hnmQyOy0ortEEI8NTN/ROd3MBCdQaAAcilxCVyWxQs42ub+hkcMFebg0oF856bo1FF/Mt8RlFwT77x8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710503124; c=relaxed/simple;
-	bh=xADKVOnSLQ/eSoxk0F4pbiiTRO2FBYoibk1GxdCL7Ug=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=UFpIZAM3G/V6LH5nmJlrGlN0Ge+oON62uEtKOXuGkvt8K2siTMGd7sMNDRuF3Et6J5CXzutgX8gwqX9FSY0whfGhZAdwCb9yPc4x9/ZLZYTa6cLGXWrxqnfIurcSTQFZlKMHRxZ7R2vbRmKX38GlHP79tKodKdma8KH0zlTpNds=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MwAvTPay; arc=none smtp.client-ip=217.70.183.196
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9CFDBE0005;
-	Fri, 15 Mar 2024 11:45:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1710503120;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=R0kqNtL6G3XJ3YlpCpRDs+8Ulm0OGWV3L8/ec8/EvgA=;
-	b=MwAvTPaym4uwlN1C1EKgYc3IKFvTxnhIr+kXMPITBXU9heEQTwKc5yqIMpdk4aDLrsHsFr
-	EMDVVDpRFOb71CDe8L7p5WJkkCEUlEj07gGU1kjv7/NSUeCrpkPEIKkEGMZgLlZx70O7LF
-	F4JTHrNdYsnCy0kGE/VSaK8rjaVTOS4f5+gVih9kw3MDFbYvhLwXKDjTYk+lpyY9tRGfdj
-	OrTvX+x2Tw+5/DFixsU306TRTcsuszxO1Pvrx10j1ycpHpRK96t2KP3baGsi7Bp9Q78tr0
-	MJdjRBo3stvEKHJL9Dj74IHYauC5nn3YgYYKHN9HfT5mzCJ/K0K+uqEuK4Y8rA==
-Date: Fri, 15 Mar 2024 12:45:17 +0100
-From: Miquel Raynal <miquel.raynal@bootlin.com>
-To: Md Sadre Alam <quic_mdalam@quicinc.com>
-Cc: andersson@kernel.org, konrad.dybcio@linaro.org, broonie@kernel.org,
- robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
- richard@nod.at, vigneshr@ti.com, manivannan.sadhasivam@linaro.org,
- neil.armstrong@linaro.org, daniel@makrotopia.org, arnd@arndb.de,
- chris.packham@alliedtelesis.co.nz, christophe.kerello@foss.st.com,
- linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-mtd@lists.infradead.org, quic_srichara@quicinc.com,
- quic_varada@quicinc.com
-Subject: Re: [PATCH v4 2/5] drivers: mtd: nand: Add qpic_common API file
-Message-ID: <20240315124517.4a546ce9@xps-13>
-In-Reply-To: <20240308091752.16136-3-quic_mdalam@quicinc.com>
-References: <20240308091752.16136-1-quic_mdalam@quicinc.com>
-	<20240308091752.16136-3-quic_mdalam@quicinc.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1710503439; c=relaxed/simple;
+	bh=5me4MpQUzHBIAyZZmzqVKhBXLOvXSeBvU6Zqe0D70Mk=;
+	h=Message-ID:Subject:From:To:Cc:Date:In-Reply-To:References:
+	 Content-Type:MIME-Version; b=aLiXGxmHb5B3Y35c/GTYMgbX773KJ+VMM9mgtvruXXk0aF6c2PRgPLxvLtT+IFVLCP3qTi1bEPgfRQNsQLRJyLM5WzXbe2FLSSIYMtaXo5iWujIiw1416GP5I1h3L+055fnGllWoy3bYwd8rpw06XM6EosktiASOw/mppSdnKf8=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=WSKfMvxD; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-568a5e15ae8so1657687a12.0;
+        Fri, 15 Mar 2024 04:50:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710503436; x=1711108236; darn=vger.kernel.org;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=vRgmGDbr9L2V3Xbw1VXsP1cW1O/+83SnI0SSy+HlJx4=;
+        b=WSKfMvxDXqtVo8QT3jVD9h5+ieGxyG2euElTMr98pWA4U8QnnOmspaLZ/9gsWgk9fd
+         /45fgtoZZHtvz1wiVb4AlRW08lRRQJoi+MGAmh0Pm2ulgLtSF4aK67j687jvST4aw/aj
+         yqRXo4SHw0lrRceOUJpyeIxbxveDdRESNQj2Sq2QHN7FW/Yrp4Q1CB1koryWCR1f76jB
+         AwNNxFV9ZgZcDbFWrgGlX4R/wkoGMtnZQssBykrvAYXvJxizcgSuy2oCGwxt0La+dhWu
+         uLIOXqcHRg6lddX9hr6xTpbj6cTf/s6CnXvYiw1Wv0cbc3Hqmv/Fb9UBiq0BdVXeTODT
+         +hOA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710503436; x=1711108236;
+        h=mime-version:user-agent:content-transfer-encoding:references
+         :in-reply-to:date:cc:to:from:subject:message-id:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=vRgmGDbr9L2V3Xbw1VXsP1cW1O/+83SnI0SSy+HlJx4=;
+        b=g5lW5wRmOhWLHypY13ka6C4+XY+m85CU6mjcwfzq+WjgXGw2Vh8yQZcfc0SpjAZM2M
+         lJmj9+evWN+XMz8dX2rdE/tfeDFd+7EvolaK07zLr5LI75ljACF0t/jTndb0FeVprqkt
+         5G8xgtsYXy+qVPa0ovE2GDzqsyM5Q8d+vcCMSS2NW1x1sx6yi8LDkljcpylzNqsois89
+         1foFbnI6SQSRztxAIehSTIOgMTJRVE/w0sgC/5+g8kyc0hQprL6YULOmPpT72VQK4yLc
+         8t0D29PMojf7I8JugBgmt9q2x66oKo80n+YODCkd13IaeWQllfitjUU0pXyLPlduf9n8
+         BV2A==
+X-Forwarded-Encrypted: i=1; AJvYcCUdkodsTJLZpG8QJvHRzk13fFwYRp9pDLb7Y+aidwrtZgz116c2ZTOg4vRLDRdSdoH/0zLnhB5890Px5V64gSFnrw/UxlLb/Bv0WIieh3+hMPiDcmzXMvkYUcUP+uUy9WrRIWG0mw==
+X-Gm-Message-State: AOJu0Yxk6Me96p87tdh7z/5l4htMfOuKHAw9sAoCWcbCbIlwz1bYbQd0
+	ZkJh6lSgLfvv8wvVVlz/Mqq+cKqro2Fhcy3lmcrxOYFeTC682Kfu
+X-Google-Smtp-Source: AGHT+IFEFByoovbYhj/9o6d4RldFJLNtIRiP4vqehi8OtR8upquQ/pPaWuhTwxiyHTaggdoAj8+SGg==
+X-Received: by 2002:a17:906:9c8e:b0:a46:66c6:2d5a with SMTP id fj14-20020a1709069c8e00b00a4666c62d5amr3740897ejc.54.1710503436014;
+        Fri, 15 Mar 2024 04:50:36 -0700 (PDT)
+Received: from ?IPv6:2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47? (p200300f6ef1b2000944ccbc71e1c2c47.dip0.t-ipconnect.de. [2003:f6:ef1b:2000:944c:cbc7:1e1c:2c47])
+        by smtp.gmail.com with ESMTPSA id v10-20020a170906338a00b00a4679ce135dsm1122962eja.216.2024.03.15.04.50.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Mar 2024 04:50:35 -0700 (PDT)
+Message-ID: <9e05b15d086c57ea94b410b6bf72a6d22a9550b9.camel@gmail.com>
+Subject: Re: [PATCH 2/2] pwm: axi-pwmgen: support version 2.00.a
+From: Nuno =?ISO-8859-1?Q?S=E1?= <noname.nuno@gmail.com>
+To: Trevor Gamblin <tgamblin@baylibre.com>, linux-pwm@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de, 
+ michael.hennerich@analog.com, nuno.sa@analog.com,
+ devicetree@vger.kernel.org,  robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org, 
+ dlechner@baylibre.com
+Date: Fri, 15 Mar 2024 12:54:03 +0100
+In-Reply-To: <20240314204722.1291993-3-tgamblin@baylibre.com>
+References: <20240314204722.1291993-1-tgamblin@baylibre.com>
+	 <20240314204722.1291993-3-tgamblin@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.50.4 
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-GND-Sasl: miquel.raynal@bootlin.com
 
-Hello,
+On Thu, 2024-03-14 at 16:47 -0400, Trevor Gamblin wrote:
+> This adds support for the AXI PWMGEN v2 IP block. This version is
+> nearly identical to v1 other than it supports up to 16 channels instead
+> of 4 and a few of the memory mapped registers have moved.
+>=20
+> Signed-off-by: Trevor Gamblin <tgamblin@baylibre.com>
+> ---
 
-> +/**
-> + * qcom_qpic_bam_dma_done() - Callback for DMA descriptor completion
-> + * @data: data pointer
-> + *
-> + * This function is a callback for DMA descriptor completion
-> + */
-> +void qcom_qpic_bam_dma_done(void *data)
-> +{
-> +	struct bam_transaction *bam_txn =3D data;
-> +
-> +	/*
-> +	 * In case of data transfer with NAND, 2 callbacks will be generated.
-> +	 * One for command channel and another one for data channel.
-> +	 * If current transaction has data descriptors
-> +	 * (i.e. wait_second_completion is true), then set this to false
-> +	 * and wait for second DMA descriptor completion.
-> +	 */
-> +	if (bam_txn->wait_second_completion)
-> +		bam_txn->wait_second_completion =3D false;
-> +	else
-> +		complete(&bam_txn->txn_done);
+LGTM
 
-Can't you just call "wait" and "complete" twice? It's supposed to be
-handled by the API. This is totally racy.
+Reviewed-by: Nuno Sa <nuno.sa@analog.com>
 
-> +}
-> +
-> +/**
-> + * qcom_nandc_read_buffer_sync() - Check for dma sync for cpu or device
-> + * @nandc: qpic nand controller
-> + * @is_cpu: cpu or Device
-
-? the naming is really strange dev_to_mem or something like that would
-probably be more helpful.
-
-> + *
-> + * This function will check for dma sync for cpu or device
-> + */
-> +void qcom_nandc_read_buffer_sync(struct qcom_nand_controller *nandc,
-> +				 bool is_cpu)
-> +{
-> +	if (!nandc->props->is_bam)
-> +		return;
-> +
-> +	if (is_cpu)
-> +		dma_sync_single_for_cpu(nandc->dev, nandc->reg_read_dma,
-> +					MAX_REG_RD *
-> +					sizeof(*nandc->reg_read_buf),
-> +					DMA_FROM_DEVICE);
-> +	else
-> +		dma_sync_single_for_device(nandc->dev, nandc->reg_read_dma,
-> +					   MAX_REG_RD *
-> +					   sizeof(*nandc->reg_read_buf),
-> +					   DMA_FROM_DEVICE);
-> +}
-> +
-> +/**
-> + * qcom_offset_to_nandc_reg() - Get the actual offset
-> + * @regs: pointer to nandc_reg structure
-> + * @offset: register offset
-> + *
-> + * This function will reurn the actual offset for qpic controller regist=
-er
-> + */
-> +__le32 *qcom_offset_to_nandc_reg(struct nandc_regs *regs, int offset)
-> +{
-> +	switch (offset) {
-> +	case NAND_FLASH_CMD:
-> +		return &regs->cmd;
-> +	case NAND_ADDR0:
-> +		return &regs->addr0;
-> +	case NAND_ADDR1:
-> +		return &regs->addr1;
-> +	case NAND_FLASH_CHIP_SELECT:
-> +		return &regs->chip_sel;
-> +	case NAND_EXEC_CMD:
-> +		return &regs->exec;
-> +	case NAND_FLASH_STATUS:
-> +		return &regs->clrflashstatus;
-> +	case NAND_DEV0_CFG0:
-> +		return &regs->cfg0;
-> +	case NAND_DEV0_CFG1:
-> +		return &regs->cfg1;
-> +	case NAND_DEV0_ECC_CFG:
-> +		return &regs->ecc_bch_cfg;
-> +	case NAND_READ_STATUS:
-> +		return &regs->clrreadstatus;
-> +	case NAND_DEV_CMD1:
-> +		return &regs->cmd1;
-> +	case NAND_DEV_CMD1_RESTORE:
-> +		return &regs->orig_cmd1;
-> +	case NAND_DEV_CMD_VLD:
-> +		return &regs->vld;
-> +	case NAND_DEV_CMD_VLD_RESTORE:
-> +		return &regs->orig_vld;
-> +	case NAND_EBI2_ECC_BUF_CFG:
-> +		return &regs->ecc_buf_cfg;
-> +	case NAND_READ_LOCATION_0:
-> +		return &regs->read_location0;
-> +	case NAND_READ_LOCATION_1:
-> +		return &regs->read_location1;
-> +	case NAND_READ_LOCATION_2:
-> +		return &regs->read_location2;
-> +	case NAND_READ_LOCATION_3:
-> +		return &regs->read_location3;
-> +	case NAND_READ_LOCATION_LAST_CW_0:
-> +		return &regs->read_location_last0;
-> +	case NAND_READ_LOCATION_LAST_CW_1:
-> +		return &regs->read_location_last1;
-> +	case NAND_READ_LOCATION_LAST_CW_2:
-> +		return &regs->read_location_last2;
-> +	case NAND_READ_LOCATION_LAST_CW_3:
-> +		return &regs->read_location_last3;
-
-Why do you need this indirection?
-
-> +	default:
-> +		return NULL;
-> +	}
-> +}
-> +
-
-...
-
-> +/**
-> + * qcom_clear_bam_transaction() - Clears the BAM transaction
-> + * @nandc: qpic nand controller
-> + *
-> + * This function will clear the BAM transaction indexes.
-> + */
-> +void qcom_clear_bam_transaction(struct qcom_nand_controller *nandc)
-> +{
-> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
-> +
-> +	if (!nandc->props->is_bam)
-> +		return;
-> +
-> +	bam_txn->bam_ce_pos =3D 0;
-> +	bam_txn->bam_ce_start =3D 0;
-> +	bam_txn->cmd_sgl_pos =3D 0;
-> +	bam_txn->cmd_sgl_start =3D 0;
-> +	bam_txn->tx_sgl_pos =3D 0;
-> +	bam_txn->tx_sgl_start =3D 0;
-> +	bam_txn->rx_sgl_pos =3D 0;
-> +	bam_txn->rx_sgl_start =3D 0;
-> +	bam_txn->last_data_desc =3D NULL;
-> +	bam_txn->wait_second_completion =3D false;
-
-What about using memset here?
-
-> +
-> +	sg_init_table(bam_txn->cmd_sgl, nandc->max_cwperpage *
-> +		      QPIC_PER_CW_CMD_SGL);
-> +	sg_init_table(bam_txn->data_sgl, nandc->max_cwperpage *
-> +		      QPIC_PER_CW_DATA_SGL);
-> +
-> +	reinit_completion(&bam_txn->txn_done);
-> +}
-
-...
-
-> diff --git a/include/linux/mtd/nand-qpic-common.h b/include/linux/mtd/nan=
-d-qpic-common.h
-> new file mode 100644
-> index 000000000000..aced15866627
-> --- /dev/null
-> +++ b/include/linux/mtd/nand-qpic-common.h
-> @@ -0,0 +1,486 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * QCOM QPIC common APIs header file
-> + *
-> + * Copyright (c) 2023 Qualcomm Inc.
-> + * Authors:     Md sadre Alam           <quic_mdalam@quicinc.com>
-> + *		Sricharan R             <quic_srichara@quicinc.com>
-> + *		Varadarajan Narayanan   <quic_varada@quicinc.com>
-> + *
-> + */
-> +#ifndef __MTD_NAND_QPIC_COMMON_H__
-> +#define __MTD_NAND_QPIC_COMMON_H__
-> +
-> +#include <linux/bitops.h>
-> +#include <linux/clk.h>
-> +#include <linux/delay.h>
-> +#include <linux/dmaengine.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/dma/qcom_adm.h>
-> +#include <linux/dma/qcom_bam_dma.h>
-> +#include <linux/module.h>
-> +#include <linux/mtd/partitions.h>
-> +#include <linux/mtd/rawnand.h>
-
-You really need this?
-
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/slab.h>
-> +
-> +/* NANDc reg offsets */
-> +#define	NAND_FLASH_CMD			0x00
-> +#define	NAND_ADDR0			0x04
-> +#define	NAND_ADDR1			0x08
-> +#define	NAND_FLASH_CHIP_SELECT		0x0c
-> +#define	NAND_EXEC_CMD			0x10
-> +#define	NAND_FLASH_STATUS		0x14
-> +#define	NAND_BUFFER_STATUS		0x18
-> +#define	NAND_DEV0_CFG0			0x20
-> +#define	NAND_DEV0_CFG1			0x24
-> +#define	NAND_DEV0_ECC_CFG		0x28
-> +#define	NAND_AUTO_STATUS_EN		0x2c
-> +#define	NAND_DEV1_CFG0			0x30
-> +#define	NAND_DEV1_CFG1			0x34
-> +#define	NAND_READ_ID			0x40
-> +#define	NAND_READ_STATUS		0x44
-> +#define	NAND_DEV_CMD0			0xa0
-> +#define	NAND_DEV_CMD1			0xa4
-> +#define	NAND_DEV_CMD2			0xa8
-> +#define	NAND_DEV_CMD_VLD		0xac
-> +#define	SFLASHC_BURST_CFG		0xe0
-> +#define	NAND_ERASED_CW_DETECT_CFG	0xe8
-> +#define	NAND_ERASED_CW_DETECT_STATUS	0xec
-> +#define	NAND_EBI2_ECC_BUF_CFG		0xf0
-> +#define	FLASH_BUF_ACC			0x100
-> +
-
-...
-
-> +/*
-> + * This data type corresponds to the NAND controller properties which va=
-ries
-> + * among different NAND controllers.
-> + * @ecc_modes - ecc mode for NAND
-
-Should this member be an enum?
-
-> + * @dev_cmd_reg_start - NAND_DEV_CMD_* registers starting offset
-> + * @is_bam - whether NAND controller is using BAM
-
-has_bam_support? supports_bam?
-
-> + * @is_qpic - whether NAND CTRL is part of qpic IP
-
-CTRL? do you mean controller?
-
-> + * @qpic_v2 - flag to indicate QPIC IP version 2
-> + * @use_codeword_fixup - whether NAND has different layout for boot part=
-itions
-
-The doc is clear but the member name is terrible. Please clarify the
-naming.
-
-> + */
-> +struct qcom_nandc_props {
-> +	u32 ecc_modes;
-> +	u32 dev_cmd_reg_start;
-> +	bool is_bam;
-> +	bool is_qpic;
-> +	bool qpic_v2;
-> +	bool use_codeword_fixup;
+> =C2=A0drivers/pwm/pwm-axi-pwmgen.c | 62 ++++++++++++++++++++++++++++-----=
+---
+> =C2=A01 file changed, 49 insertions(+), 13 deletions(-)
+>=20
+> diff --git a/drivers/pwm/pwm-axi-pwmgen.c b/drivers/pwm/pwm-axi-pwmgen.c
+> index 0c8f7f893a21..539625c404ac 100644
+> --- a/drivers/pwm/pwm-axi-pwmgen.c
+> +++ b/drivers/pwm/pwm-axi-pwmgen.c
+> @@ -32,16 +32,25 @@
+> =C2=A0#define AXI_PWMGEN_REG_CORE_MAGIC	0x0C
+> =C2=A0#define AXI_PWMGEN_REG_CONFIG		0x10
+> =C2=A0#define AXI_PWMGEN_REG_NPWM		0x14
+> -#define AXI_PWMGEN_CHX_PERIOD(ch)	(0x40 + (12 * (ch)))
+> -#define AXI_PWMGEN_CHX_DUTY(ch)		(0x44 + (12 * (ch)))
+> -#define AXI_PWMGEN_CHX_OFFSET(ch)	(0x48 + (12 * (ch)))
+> +#define AXI_PWMGEN_CHX_PERIOD(v, ch)	((v)->period_base + (v)->ch_step *
+> (ch))
+> +#define AXI_PWMGEN_CHX_DUTY(v, ch)	((v)->duty_base + (v)->ch_step *
+> (ch))
+> +#define AXI_PWMGEN_CHX_OFFSET(v, ch)	((v)->offset_base + (v)->ch_step *
+> (ch))
+> =C2=A0#define AXI_PWMGEN_REG_CORE_MAGIC_VAL	0x601A3471 /* Identification =
+number
+> to test during setup */
+> =C2=A0#define AXI_PWMGEN_LOAD_CONFIG		BIT(1)
+> =C2=A0#define AXI_PWMGEN_RESET		BIT(0)
+> =C2=A0
+> +struct axi_pwm_variant {
+> +	u8 period_base;
+> +	u8 duty_base;
+> +	u8 offset_base;
+> +	u8 major_version;
+> +	u8 ch_step;
 > +};
 > +
-> +void config_nand_page_read(struct nand_chip *chip);
-> +void qcom_qpic_bam_dma_done(void *data);
-> +void qcom_nandc_read_buffer_sync(struct qcom_nand_controller *nandc, boo=
-l is_cpu);
-> +__le32 *qcom_offset_to_nandc_reg(struct nandc_regs *regs, int offset);
-> +int qcom_prep_adm_dma_desc(struct qcom_nand_controller *nandc, bool read,
-> +			   int reg_off, const void *vaddr, int size,
-> +			bool flow_control);
-> +int qcom_submit_descs(struct qcom_nand_controller *nandc);
-> +int qcom_prepare_bam_async_desc(struct qcom_nand_controller *nandc,
-> +				struct dma_chan *chan, unsigned long flags);
-> +int qcom_prep_bam_dma_desc_cmd(struct qcom_nand_controller *nandc, bool =
-read,
-> +			       int reg_off, const void *vaddr,
-> +			int size, unsigned int flags);
-> +int qcom_prep_bam_dma_desc_data(struct qcom_nand_controller *nandc, bool=
- read,
-> +				const void *vaddr,
-> +			int size, unsigned int flags);
-> +int qcom_read_reg_dma(struct qcom_nand_controller *nandc, int first,
-> +		      int num_regs, unsigned int flags);
-> +int qcom_write_reg_dma(struct qcom_nand_controller *nandc, int first,
-> +		       int num_regs, unsigned int flags);
-> +int qcom_read_data_dma(struct qcom_nand_controller *nandc, int reg_off,
-> +		       const u8 *vaddr, int size, unsigned int flags);
-> +int qcom_write_data_dma(struct qcom_nand_controller *nandc, int reg_off,
-> +			const u8 *vaddr, int size, unsigned int flags);
-> +struct bam_transaction *qcom_alloc_bam_transaction(struct qcom_nand_cont=
-roller *nandc);
-> +void qcom_clear_bam_transaction(struct qcom_nand_controller *nandc);
-> +void qcom_nandc_unalloc(struct qcom_nand_controller *nandc);
-> +int qcom_nandc_alloc(struct qcom_nand_controller *nandc);
-> +void qcom_clear_read_regs(struct qcom_nand_controller *nandc);
-> +void qcom_free_bam_transaction(struct qcom_nand_controller *nandc);
-> +#endif
+> =C2=A0struct axi_pwmgen_ddata {
+> =C2=A0	struct regmap *regmap;
+> =C2=A0	unsigned long clk_rate_hz;
+> +	const struct axi_pwm_variant *variant;
+> =C2=A0};
+> =C2=A0
+> =C2=A0static const struct regmap_config axi_pwmgen_regmap_config =3D {
+> @@ -50,12 +59,30 @@ static const struct regmap_config axi_pwmgen_regmap_c=
+onfig
+> =3D {
+> =C2=A0	.val_bits =3D 32,
+> =C2=A0};
+> =C2=A0
+> +static const struct axi_pwm_variant pwmgen_1_00_variant =3D {
+> +	.period_base =3D 0x40,
+> +	.duty_base =3D 0x44,
+> +	.offset_base =3D 0x48,
+> +	.major_version =3D 1,
+> +	.ch_step =3D 12,
+> +};
+> +
+> +static const struct axi_pwm_variant pwmgen_2_00_variant =3D {
+> +	.period_base =3D 0x40,
+> +	.duty_base =3D 0x80,
+> +	.offset_base =3D 0xC0,
+> +	.major_version =3D 2,
+> +	.ch_step =3D 4,
+> +};
+> +
+> +
+> =C2=A0static int axi_pwmgen_apply(struct pwm_chip *chip, struct pwm_devic=
+e *pwm,
+> =C2=A0			=C2=A0=C2=A0=C2=A0 const struct pwm_state *state)
+> =C2=A0{
+> =C2=A0	struct axi_pwmgen_ddata *ddata =3D pwmchip_get_drvdata(chip);
+> =C2=A0	unsigned int ch =3D pwm->hwpwm;
+> =C2=A0	struct regmap *regmap =3D ddata->regmap;
+> +	const struct axi_pwm_variant *variant =3D ddata->variant;
+> =C2=A0	u64 period_cnt, duty_cnt;
+> =C2=A0	int ret;
+> =C2=A0
+> @@ -70,7 +97,7 @@ static int axi_pwmgen_apply(struct pwm_chip *chip, stru=
+ct
+> pwm_device *pwm,
+> =C2=A0		if (period_cnt =3D=3D 0)
+> =C2=A0			return -EINVAL;
+> =C2=A0
+> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch),
+> period_cnt);
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(variant,
+> ch), period_cnt);
+> =C2=A0		if (ret)
+> =C2=A0			return ret;
+> =C2=A0
+> @@ -78,15 +105,15 @@ static int axi_pwmgen_apply(struct pwm_chip *chip, s=
+truct
+> pwm_device *pwm,
+> =C2=A0		if (duty_cnt > UINT_MAX)
+> =C2=A0			duty_cnt =3D UINT_MAX;
+> =C2=A0
+> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch),
+> duty_cnt);
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch),
+> duty_cnt);
+> =C2=A0		if (ret)
+> =C2=A0			return ret;
+> =C2=A0	} else {
+> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(ch), 0);
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_PERIOD(variant,
+> ch), 0);
+> =C2=A0		if (ret)
+> =C2=A0			return ret;
+> =C2=A0
+> -		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(ch), 0);
+> +		ret =3D regmap_write(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch),
+> 0);
+> =C2=A0		if (ret)
+> =C2=A0			return ret;
+> =C2=A0	}
+> @@ -99,11 +126,12 @@ static int axi_pwmgen_get_state(struct pwm_chip *chi=
+p,
+> struct pwm_device *pwm,
+> =C2=A0{
+> =C2=A0	struct axi_pwmgen_ddata *ddata =3D pwmchip_get_drvdata(chip);
+> =C2=A0	struct regmap *regmap =3D ddata->regmap;
+> +	const struct axi_pwm_variant *variant =3D ddata->variant;
+> =C2=A0	unsigned int ch =3D pwm->hwpwm;
+> =C2=A0	u32 cnt;
+> =C2=A0	int ret;
+> =C2=A0
+> -	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(ch), &cnt);
+> +	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_PERIOD(variant, ch), &cnt);
+> =C2=A0	if (ret)
+> =C2=A0		return ret;
+> =C2=A0
+> @@ -111,7 +139,7 @@ static int axi_pwmgen_get_state(struct pwm_chip *chip=
+,
+> struct pwm_device *pwm,
+> =C2=A0
+> =C2=A0	state->period =3D DIV_ROUND_UP_ULL((u64)cnt * NSEC_PER_SEC, ddata-
+> >clk_rate_hz);
+> =C2=A0
+> -	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(ch), &cnt);
+> +	ret =3D regmap_read(regmap, AXI_PWMGEN_CHX_DUTY(variant, ch), &cnt);
+> =C2=A0	if (ret)
+> =C2=A0		return ret;
+> =C2=A0
+> @@ -127,7 +155,8 @@ static const struct pwm_ops axi_pwmgen_pwm_ops =3D {
+> =C2=A0	.get_state =3D axi_pwmgen_get_state,
+> =C2=A0};
+> =C2=A0
+> -static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev)
+> +static int axi_pwmgen_setup(struct regmap *regmap, struct device *dev,=
+=20
+> +			=C2=A0=C2=A0=C2=A0 const struct axi_pwm_variant *variant)
+> =C2=A0{
+> =C2=A0	int ret;
+> =C2=A0	u32 val;
+> @@ -146,7 +175,7 @@ static int axi_pwmgen_setup(struct regmap *regmap, st=
+ruct
+> device *dev)
+> =C2=A0	if (ret)
+> =C2=A0		return ret;
+> =C2=A0
+> -	if (ADI_AXI_PCORE_VER_MAJOR(val) !=3D 1) {
+> +	if (ADI_AXI_PCORE_VER_MAJOR(val) !=3D variant->major_version) {
+> =C2=A0		return dev_err_probe(dev, -ENODEV, "Unsupported peripheral
+> version %u.%u.%u\n",
+> =C2=A0			ADI_AXI_PCORE_VER_MAJOR(val),
+> =C2=A0			ADI_AXI_PCORE_VER_MINOR(val),
+> @@ -178,9 +207,14 @@ static int axi_pwmgen_probe(struct platform_device *=
+pdev)
+> =C2=A0	struct pwm_chip *chip;
+> =C2=A0	struct axi_pwmgen_ddata *ddata;
+> =C2=A0	struct clk *clk;
+> +	const struct axi_pwm_variant *variant;
+> =C2=A0	void __iomem *io_base;
+> =C2=A0	int ret;
+> =C2=A0
+> +	variant =3D device_get_match_data(dev);
+> +	if (!variant)
+> +		return -EINVAL;
+> +
+> =C2=A0	io_base =3D devm_platform_ioremap_resource(pdev, 0);
+> =C2=A0	if (IS_ERR(io_base))
+> =C2=A0		return PTR_ERR(io_base);
+> @@ -190,7 +224,7 @@ static int axi_pwmgen_probe(struct platform_device *p=
+dev)
+> =C2=A0		return dev_err_probe(dev, PTR_ERR(regmap),
+> =C2=A0				=C2=A0=C2=A0=C2=A0=C2=A0 "failed to init register map\n");
+> =C2=A0
+> -	ret =3D axi_pwmgen_setup(regmap, dev);
+> +	ret =3D axi_pwmgen_setup(regmap, dev, variant);
+> =C2=A0	if (ret < 0)
+> =C2=A0		return ret;
+> =C2=A0
+> @@ -199,6 +233,7 @@ static int axi_pwmgen_probe(struct platform_device *p=
+dev)
+> =C2=A0		return PTR_ERR(chip);
+> =C2=A0	ddata =3D pwmchip_get_drvdata(chip);
+> =C2=A0	ddata->regmap =3D regmap;
+> +	ddata->variant =3D variant;
+> =C2=A0
+> =C2=A0	clk =3D devm_clk_get_enabled(dev, NULL);
+> =C2=A0	if (IS_ERR(clk))
+> @@ -224,7 +259,8 @@ static int axi_pwmgen_probe(struct platform_device *p=
+dev)
+> =C2=A0}
+> =C2=A0
+> =C2=A0static const struct of_device_id axi_pwmgen_ids[] =3D {
+> -	{ .compatible =3D "adi,axi-pwmgen-1.00.a" },
+> +	{ .compatible =3D "adi,axi-pwmgen-1.00.a", .data =3D &pwmgen_1_00_varia=
+nt
+> },
+> +	{ .compatible =3D "adi,axi-pwmgen-2.00.a", .data =3D &pwmgen_2_00_varia=
+nt
+> },
+> =C2=A0	{ }
+> =C2=A0};
+> =C2=A0MODULE_DEVICE_TABLE(of, axi_pwmgen_ids);
 
-I made several requests on code that already exists, please add these
-changes to your series.
-
-
-Also, this patching being big, please split:
-1- rename your all your symbols to start with the same prefix
-(qcom_nand_ instead of nothing or just qcom)
-2- then perform the move, which should not require changing the names
-of all the functions everywhere.
-
-Thanks,
-Miqu=C3=A8l
 
