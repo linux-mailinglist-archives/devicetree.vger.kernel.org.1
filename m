@@ -1,93 +1,129 @@
-Return-Path: <devicetree+bounces-50823-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50824-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BEB787D44F
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:04:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7436587D464
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:18:20 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id CDB1C1C221B7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 19:04:49 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id A38791C2114E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 19:18:19 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8794F50261;
-	Fri, 15 Mar 2024 19:04:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id EB4DF51033;
+	Fri, 15 Mar 2024 19:18:15 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b="RKeEk8Q9"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="Cg1pZybu"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-	(using TLSv1.2 with cipher DHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-vk1-f175.google.com (mail-vk1-f175.google.com [209.85.221.175])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 82EAF51005;
-	Fri, 15 Mar 2024 19:04:21 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=116.203.91.91
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E03181DA26;
+	Fri, 15 Mar 2024 19:18:12 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.221.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710529465; cv=none; b=FMqWsnQJOKSgGR0AJkKbms4PXFfYfAZJp00K5gPDZ1paiGdMTBzROadUZ82zsCt3ina/AiyCQ/WYZKY4fyegxPrzNlXep5zQgmzP7KmtvGUthAzA/AaoCLnVhH+8aJuqtZmqiPQHap3G0ymHlgKdmlEaGPAQ04tmcieXEW17Zbg=
+	t=1710530295; cv=none; b=MCAdY9HMu/F9V81o2wklT0RQUb4lfeG42VOW/goqNbruLWGPvoNjJzvI9ixvli/3b56m2UOW4P/t6CnGue0X4W+xiaPXbEUKijvn4pEfr3f/bpnxmUZ8yi1Lq076NQREDamjUNdCFo12t0EiLIBkKDhwJxJ71bOqoY46pLx/A4w=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710529465; c=relaxed/simple;
-	bh=H2G1mNojwriAzl/RkRYzjyygSjD5gvvRSE4O9fzPGLg=;
-	h=MIME-Version:Date:From:To:Cc:Subject:In-Reply-To:References:
-	 Message-ID:Content-Type; b=sRTCgQUrL3Zp/7GB/W+A1+/1bY5Sixgx/JmYAJgr24aBzkSN2p8dJ+/uozWPNDwGBg++dNZmP9huTNSUmLhDdvHJzd3jgvUw+yg/GjBnL+de9u5mDrZXcOPw6FUBLoy0mioYGi3AheDPVDCnlmeWK6ZZff/u086uWFv9GVWrpxQ=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org; spf=pass smtp.mailfrom=manjaro.org; dkim=pass (2048-bit key) header.d=manjaro.org header.i=@manjaro.org header.b=RKeEk8Q9; arc=none smtp.client-ip=116.203.91.91
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=manjaro.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=manjaro.org
+	s=arc-20240116; t=1710530295; c=relaxed/simple;
+	bh=KAAL2g1Jr5L18tFOJNZQ3FnSiMfqDl3TIkg7X+igEOc=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=iF1PXQnUdMY5tN9UXg56cQQ1Gop6wW7Ns4yh3xXGtLYqCWZxFeAZSjWAogxc2sBif5suAK0IVGbYOG5kBQOK4QCc/tNEZEdgsXdzb/u9zSD+rsKot5DqjbxgnoQ+vvH1thy0AfrbEBNk3DXRg1lsnW2GV6RPcDowP+SM9BycYFw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=Cg1pZybu; arc=none smtp.client-ip=209.85.221.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-vk1-f175.google.com with SMTP id 71dfb90a1353d-4d43b8b258aso411653e0c.1;
+        Fri, 15 Mar 2024 12:18:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710530292; x=1711135092; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=U7IZjuz3DDMkvUwTM0i6q57JxubsfRJ4vJTNG888nZc=;
+        b=Cg1pZybuJ+96g4fkkgIst9Vphln4HMTr7z5aldN4xy3YpcH75xMhmTm3nsQQyGkw8m
+         FSnVYy45ku6hFj/jP4bfJhTSqtE1r/4uzAwvqwZwHCyhu9/KlnuuC79G9gmWO2z9Wo8c
+         AOEgy5900y4VYMQ/xjXbTRsDGmSy9RhnPqbxrC7qJMb+qNqiL/3Sl+7BJf7AJpCu38oP
+         +g1UlEf6nlwdCGZROYN8WCdEfZd5yA7uykJs6q+wh9frG9yXm3iHYysEbZ7SCbYM0NQ/
+         ltC6HkLmarL+nkym+th+LTMyKVMTkDqB07mEi8YIX84XlqMXYO8ZQ0MEZ6IH+jEfXZKo
+         Vtvw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710530292; x=1711135092;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=U7IZjuz3DDMkvUwTM0i6q57JxubsfRJ4vJTNG888nZc=;
+        b=ZRDIuQlguAmbkfqiHgvUkrWWHuTKZyChZW+4RsIMQsbTs8S4hgjb+2BX0vfMW9qido
+         CaGclccC3wV0k4YbeWIgweSLGxkJruNzk0zx+dvr6s7sKysFPj3ZI1oAdSs5SEu/u/Xp
+         uJ8MXAStN6IrArvoOlRea7pBEmOd+KoXfmAsvRyv6PJyl/uEHpxNRYoNc4TPGZ1DVC2e
+         OEMm86o5BZQeo3hcRxXXfWOabqa4fLX6Qvij2GYsRwqAo+RBTCjcqmfpos0q98Ae1Osx
+         cT46CmUM0a0UzRp5Gf//bLQKJS/s9sMKL6Ha1kaq20DSEfVjlb1tH80IQp9ccvyKbuIJ
+         bIAw==
+X-Forwarded-Encrypted: i=1; AJvYcCW8YQLtNvb2XsYmEodmrGacv6Qce2uKgCaiAUaumDqJOUxgA2zDXbrQ87SnBWsikV4TV+jQl8B1QCnCCUOfN4sKH5dvbh02GFe7LXygC6XnUZMo4jvIg/+zIOACwqafDem70ecvNQm35ghmpsbOZxXMPP9ge3RhAc+cVomJDzYzc6cxlDHfGaBamUofYEven9cBmk5VG1QJljUqzUHENjSuKG7B/AvW
+X-Gm-Message-State: AOJu0YwEprPt7DVxuszWK8/sV24n2pZY0ltIqKHLz4nYmINu+Peg61tm
+	7GjdthwKStcX0aKmYg6NwNS3Vk4LgT2H6P7vopZK/IHRoOVUr/nKyI+j1wyB9eDZ+QyVxXUSAWZ
+	mBbxOSvH927H/d4ofKme7UejbISE=
+X-Google-Smtp-Source: AGHT+IFfc5t+nCvhYPD4KLfmYBd61W2nuvPXXUBIzaylUUdStKMC2Saoc3vQ+E3J9WoSWIyI6nEfYOfdpygZFq6KQrE=
+X-Received: by 2002:a05:6122:12d5:b0:4cc:29cf:a1fa with SMTP id
+ d21-20020a05612212d500b004cc29cfa1famr4207888vkp.4.1710530291758; Fri, 15 Mar
+ 2024 12:18:11 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-	t=1710529453;
-	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-	 content-transfer-encoding:content-transfer-encoding:
-	 in-reply-to:in-reply-to:references:references;
-	bh=/QeVTt7EEVUu2Ft0Iu4mZyhzwsN4UDGTEp8s8bgI6eg=;
-	b=RKeEk8Q9e0N+4Vg6+DMe4lGtWMuHetNupWAEWrPFY4DT39ESUMcJnG06KeHUCIo9aiz+Vv
-	Lbj7zoZg067upCQsuWGf8gfD9I2AADS090Gk6sgH9yWXcDcgokA6wstStnP8uCpLtKBkWj
-	/tdC8PIx5ZXsCANqxL9G35MaDuLvhxdIQG9POLYUG17c5ORxXDHN6MPCPLEhljm7FdjZhD
-	Ud9EiXHqF+aTlKPVnis72eqiVsBVh4LPPdhpRcVQcaLaSOsuks8Hz0C6SjJzkL4YpcXGFQ
-	eIoPRufPoXUe7g0RNZccV1G+RHniso19OSYthlQ9ITUac4Smh0mQPCKUd90RsQ==
-Date: Fri, 15 Mar 2024 20:04:11 +0100
-From: Dragan Simic <dsimic@manjaro.org>
-To: Himanshu Bhavani <himanshu.bhavani@siliconsignals.io>
-Cc: robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org, Conor Dooley
- <conor+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>, Lorenz Brun
- <lorenz@brun.one>, devicetree@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: add &gmac2phy in rk3328-rock64
-In-Reply-To: <PN3PR01MB10135290B74FD411720E431989A282@PN3PR01MB10135.INDPRD01.PROD.OUTLOOK.COM>
-References: <20240315084018.2200581-1-himanshu.bhavani@siliconsignals.io>
- <96a53f8560b3563328eaf7b9d6f63d87@manjaro.org>
- <PN3PR01MB10135290B74FD411720E431989A282@PN3PR01MB10135.INDPRD01.PROD.OUTLOOK.COM>
-Message-ID: <0f674cf37d01e1a6651068b0402e766c@manjaro.org>
-X-Sender: dsimic@manjaro.org
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Authentication-Results: ORIGINATING;
-	auth=pass smtp.auth=dsimic@manjaro.org smtp.mailfrom=dsimic@manjaro.org
+References: <20240315103033.141226-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240315103033.141226-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdW_WBaGjYmU_RnMnq2T7PeEafAZqyP9Md9g0VUKzgrecQ@mail.gmail.com> <CAMuHMdUZhnf96M2MgLepu04J84jz_B_vZEtQYQZefsFu1rYfeg@mail.gmail.com>
+In-Reply-To: <CAMuHMdUZhnf96M2MgLepu04J84jz_B_vZEtQYQZefsFu1rYfeg@mail.gmail.com>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Fri, 15 Mar 2024 19:17:45 +0000
+Message-ID: <CA+V-a8sPgvPC3xng_dHwEaHJEgLKeAM8yNuwZRKfpgV+AKueQA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: renesas,riic: Document R9A09G057 support
+To: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Chris Brandt <chris.brandt@renesas.com>, Andi Shyti <andi.shyti@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On 2024-03-15 16:02, Himanshu Bhavani wrote:
->> Unfortunately, this isn't an acceptable change to the Rock64 dts file.
->> Yes, there's the second built-in Ethernet interface in the RK3328 SoC,
->> but the Rock64 layout doesn't expose it as a separate physical network
->> interface, i.e. it isn't available as a port.
-> 
-> I was wondering if the Rock64 lacks a port.
-> According to this link: https://pine64.org/devices/rock64/,
-> it seems that there is a physical network interface available on the 
-> sbc.
+Hi Geert,
 
-As I already described in my previous response, there's another Ethernet
-interface in the RK3328 SoC, which the Rock64 is based on, but there's 
-no
-second Ethernet port on the actual printed circuit board.  That's simply
-how the Rock64 was designed and manufactured.
+On Fri, Mar 15, 2024 at 6:35=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+>
+> Hi Prabhakar,,
+>
+> On Fri, Mar 15, 2024 at 1:50=E2=80=AFPM Geert Uytterhoeven <geert@linux-m=
+68k.org> wrote:
+> > On Fri, Mar 15, 2024 at 11:31=E2=80=AFAM Prabhakar <prabhakar.csengg@gm=
+ail.com> wrote:
+> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > >
+> > > Document support for the I2C Bus Interface (RIIC) available in the
+> > > Renesas RZ/V2H(P) (R9A09G057) SoC.
+> > >
+> > > The RIIC interface in the Renesas RZ/V2H(P) differs from RZ/A in a
+> > > couple of ways:
+> > > - Register offsets for the RZ/V2H(P) SoC differ from those of the
+> > >   RZ/A SoC.
+> > > - RZ/V2H register access is limited to 8-bit, whereas RZ/A supports
+> > >   8/16/32-bit.
+> > > - RZ/V2H has bit differences in the slave address register.
+> > >
+> > > To accommodate these differences in the existing driver, a new compat=
+ible
+> > > string "renesas,riic-r9a09g057" is added.
+>
+> As it looks like there will be a v3 of this series, please drop "in
+> the existing driver".
+>
+Sure I'll drop it.
 
->> Such a change would be fine to be applied to the dts by hand, by 
->> someone
->> who actually adds a second physical network port to their Rock64.
+Cheers,
+Prabhakar
 
