@@ -1,92 +1,155 @@
-Return-Path: <devicetree+bounces-50861-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50862-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13C0287D6BE
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 23:41:22 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3CE7C87D6D0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 23:54:28 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id C33A32839E8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 22:41:20 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id E14611F20FDE
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 22:54:27 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8BE7D54BFA;
-	Fri, 15 Mar 2024 22:41:17 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="e8l9mfb6"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7468059B7C;
+	Fri, 15 Mar 2024 22:54:24 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+Received: from sraa.de (sraa.de [85.214.240.192])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 54C1AE542;
-	Fri, 15 Mar 2024 22:41:16 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 508A05786D;
+	Fri, 15 Mar 2024 22:54:21 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.240.192
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710542477; cv=none; b=cl/RcBqkGxZUxsmZY/uXobYGvhjqlNrBzM5awDAMJKE8bo7M48tRDMARPaiEcIvC3KjvIeamrZk5XFgjR4b9P2M21aCSsg/QBlfbw+MzcMXQk0aOCsDPskwItu7/0J5XO6qOuNyVLKqtz8lbYhYGX/+61fWzDAIQjaHxfY0b/a8=
+	t=1710543264; cv=none; b=UJFxCvKDZF0ssapCL3Cu82KCGDgi2N6yDga8LBeXGzVNe613+ffqJDgas9RXTh/aTbtwgTVhut2Fa5JxL3++gZhxp+6GBnNpCG5S8XQLMjYpCl3taQTwpleqUlMT2gRByOghVRporIkzIqGqic3g6pZ9FGeX91bD7P7zn1v6Y4Q=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710542477; c=relaxed/simple;
-	bh=+d8f7ozp1fczAC9vBPCNIiDBAqrIkkfS0UnjmlXtzwU=;
-	h=Message-ID:Content-Type:MIME-Version:In-Reply-To:References:
-	 Subject:From:Cc:To:Date; b=SCkQZ3EHZS67WOpkVPo0lY44zeMnJMXmLfv62UMABuIRvk1LgRmEIjzH8jTpMbGeATZdQusPkpHCc/Rg/GDXq+gKfP0L38orlm6JD1mEfNiBYdYptpz+8IgzSdwFrFcm66r/B1QI0fKKLmX7QLjc2kHRui/b2UuP8NmN9Nd3GVI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=e8l9mfb6; arc=none smtp.client-ip=10.30.226.201
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A938EC433F1;
-	Fri, 15 Mar 2024 22:41:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-	s=k20201202; t=1710542476;
-	bh=+d8f7ozp1fczAC9vBPCNIiDBAqrIkkfS0UnjmlXtzwU=;
-	h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-	b=e8l9mfb65Jxs98ZTM68IIz8f57uo0DoJOlcSADkTgiKJGrRoguFcFGgrdtO94MZLL
-	 yUQ1Y8ExfoREnO7PParl5J7v1hNubPSVQjZeV3sk3Trk9waECS/1a0m/gYwjo+93PY
-	 1eOUeZVB8OBde9pSImLddiZaQX3oxyAt9rcHTCH3ekRglFIP9nNJZRz9Z0Uy9iHqB7
-	 nrfbj4PZVHBZWMLmECgMabXWu9KY4TymyOBUGuMrIV8WrUjlwAPvWC29iOm45MZt+5
-	 MPQrGyacW+5U+BAYTYlX4MBPCejDQzpxEfl2HXJJezJW1rh+4W0tldYBFcC1GxLi+0
-	 hIod0XdaiSTkg==
-Message-ID: <3cd275cb1f53a5fdfbf7028f233f4fd7.sboyd@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+	s=arc-20240116; t=1710543264; c=relaxed/simple;
+	bh=6hR05NJk+lMVNR9EfuXcSOG743yQJzWU6Wr45bCwm/0=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=logEDm5CdaS3iBeagUuyWVRV6KOxxgr3IPCMOyyKZUmMn2tX402rUo/+262KVimw3SRz2dO/ZvQnEpWSajX/znt3ZwO7AI4u/Cyv7ig0l6Unt60yq4lPQOMmqjpgHGnrn3e+41PKx97w0fGfVoDZR4Omj9w3/5h4xXy7XWkx6uQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sraa.de; spf=pass smtp.mailfrom=sraa.de; arc=none smtp.client-ip=85.214.240.192
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sraa.de
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sraa.de
+Received: from c-bda170d5.017-30-6c756e3.bbcust.telenor.se ([213.112.161.189] helo=senor0lunlx0336.fritz.box)
+	by sraa.de with esmtpa (Exim 4.94.2)
+	(envelope-from <basti@sraa.de>)
+	id 1rlGRG-006eh0-AX; Fri, 15 Mar 2024 23:54:09 +0100
+From: Sebastian Raase <linux@sraa.de>
+To: linux@sraa.de
+Cc: Bjorn Andersson <andersson@kernel.org>,
+	Konrad Dybcio <konrad.dybcio@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>,
+	Marijn Suijten <marijn.suijten@somainline.org>,
+	linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: msm8998-yoshino: fix volume-up key
+Date: Fri, 15 Mar 2024 23:52:29 +0100
+Message-ID: <20240315225237.1616550-1-linux@sraa.de>
+X-Mailer: git-send-email 2.42.0
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20240315222754.22366-2-wafgo01@gmail.com>
-References: <20240315222754.22366-1-wafgo01@gmail.com> <20240315222754.22366-2-wafgo01@gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: S32G3: Introduce device tree for S32G-VNP-RDB3
-From: Stephen Boyd <sboyd@kernel.org>
-Cc: Wadim Mueller <wafgo01@gmail.com>, David S. Miller <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, Pengutronix Kernel Team <kernel@pengutronix.de>, Fabio Estevam <festevam@gmail.com>, NXP Linux Team <linux-imx@nxp.com>, Chester Lin <chester62515@gmail.com>, Andreas =?utf-8?q?F=C3=A4rber?= <afaerber@suse.de>, Matthias Brugger <mbrugger@suse.com>, NXP S32 Linux Team <s32@nxp.com>, Alexandre Torgue <alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, Maxime Coquelin <mcoquelin.stm32@gmail.com>, Michael Turquette <mturquette@baylibre.com>, Richard Cochran <richardcochran@gmail.com>, Simon Horman <horms@kernel.org>, Andrew Halaney <ahalaney@redhat.com>, Bartosz Golaszewski <bartosz.golaszewski@linar
- o.org>, Johannes Zink <j.zink@pengutronix.de>, Shenwei Wang <shenwei.wang@nxp.com>, Russell King (Oracle) <rmk+kernel@armlinux.org.uk>, Swee Leong Ching <leong.ching.swee@intel.com>, Giuseppe Cavallaro <peppe.cavallaro@st.com>, netdev@vger.kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-stm32@st-md-mailman.stormreply.com, linux-clk@vger.kernel.org
-To: Wadim Mueller <wafgo01@gmail.com>
-Date: Fri, 15 Mar 2024 15:41:14 -0700
-User-Agent: alot/0.10
+Content-Transfer-Encoding: 8bit
+Sender: basti@sraa.de
 
-Quoting Wadim Mueller (2024-03-15 15:27:47)
-> diff --git a/include/dt-bindings/clock/nxp,s32-scmi-clock.h b/include/dt-=
-bindings/clock/nxp,s32-scmi-clock.h
-> new file mode 100644
-> index 000000000000..240022c1f109
-> --- /dev/null
-> +++ b/include/dt-bindings/clock/nxp,s32-scmi-clock.h
-> @@ -0,0 +1,158 @@
-> +/* SPDX-License-Identifier: BSD-3-Clause */
-> +
-> +#ifndef __DT_BINDINGS_NXP_SCMI_CLOCK_S32_H
-> +#define __DT_BINDINGS_NXP_SCMI_CLOCK_S32_H
-> +
-> +#define S32_SCMI_COMPLEX_CLK           0xFFFFFFFFU
-> +#define S32_SCMI_NOT_IMPLEMENTED_CLK   0xFFFFFFFEU
-> +
-> +#define S32_SCMI_CLK_BASE_ID           0U
-> +#define S32_SCMI_CLK(N)                        ((N) + S32_SCMI_CLK_BASE_=
-ID)
-> +#define S32_PLAT_SCMI_CLK(N)           ((N) + S32_SCMI_PLAT_CLK_BASE_ID)
+The volume-up key is connected to gpio6 on yoshino.
+Fix button node ordering while at it.
+Disable pm8998_resin, since it is now unused.
 
-I think we've been recommending that scmi clk consumers simply list the
-number instead of making up defines for them.
+Tested on maple and lilac.
 
-> +
-> +#define S32_SCMI_CLK_VERSION_MAJOR     (1)
-> +#define S32_SCMI_CLK_VERSION_MINOR     (0)
+Fixes: 390883af89d2e ("arm64: dts: qcom: msm8998: Introduce support for Sony Yoshino platform")
+Signed-off-by: Sebastian Raase <linux@sraa.de>
+---
+ .../dts/qcom/msm8998-sony-xperia-yoshino.dtsi | 44 +++++++++++--------
+ 1 file changed, 26 insertions(+), 18 deletions(-)
 
-Why is this part of the dt binding?
+diff --git a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
+index 876c6921ddf0..fdd3953938d9 100644
+--- a/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8998-sony-xperia-yoshino.dtsi
+@@ -98,30 +98,35 @@ extcon_usb: extcon-usb {
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 		label = "Side buttons";
++		pinctrl-0 = <&focus_n &snapshot_n &vol_down_n &vol_up_n>;
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&vol_down_n &focus_n &snapshot_n>;
+-		button-vol-down {
+-			label = "Volume Down";
+-			gpios = <&pm8998_gpios 5 GPIO_ACTIVE_LOW>;
+-			linux,input-type = <EV_KEY>;
+-			linux,code = <KEY_VOLUMEDOWN>;
+-			wakeup-source;
++		button-camera-focus {
++			label = "Camera Focus";
++			gpios = <&pm8998_gpios 8 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_CAMERA_FOCUS>;
+ 			debounce-interval = <15>;
+ 		};
+ 
+ 		button-camera-snapshot {
+ 			label = "Camera Snapshot";
+ 			gpios = <&pm8998_gpios 7 GPIO_ACTIVE_LOW>;
+-			linux,input-type = <EV_KEY>;
+ 			linux,code = <KEY_CAMERA>;
+ 			debounce-interval = <15>;
+ 		};
+ 
+-		button-camera-focus {
+-			label = "Camera Focus";
+-			gpios = <&pm8998_gpios 8 GPIO_ACTIVE_LOW>;
+-			linux,input-type = <EV_KEY>;
+-			linux,code = <KEY_CAMERA_FOCUS>;
++		button-vol-down {
++			label = "Volume Down";
++			gpios = <&pm8998_gpios 5 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_VOLUMEDOWN>;
++			wakeup-source;
++			debounce-interval = <15>;
++		};
++
++		button-vol-up {
++			label = "Volume Up";
++			gpios = <&pm8998_gpios 6 GPIO_ACTIVE_LOW>;
++			linux,code = <KEY_VOLUMEUP>;
++			wakeup-source;
+ 			debounce-interval = <15>;
+ 		};
+ 	};
+@@ -345,6 +350,14 @@ vol_down_n: vol-down-n-state {
+ 		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
+ 	};
+ 
++	vol_up_n: vol-up-n-state {
++		pins = "gpio6";
++		function = PMIC_GPIO_FUNC_NORMAL;
++		bias-pull-up;
++		input-enable;
++		qcom,drive-strength = <PMIC_GPIO_STRENGTH_NO>;
++	};
++
+ 	focus_n: focus-n-state {
+ 		pins = "gpio7";
+ 		function = PMIC_GPIO_FUNC_NORMAL;
+@@ -405,11 +418,6 @@ vib_ldo_en: vib-ldo-en-state {
+ 	};
+ };
+ 
+-&pm8998_resin {
+-	linux,code = <KEY_VOLUMEUP>;
+-	status = "okay";
+-};
+-
+ &qusb2phy {
+ 	status = "okay";
+ 
+-- 
+2.42.0
+
 
