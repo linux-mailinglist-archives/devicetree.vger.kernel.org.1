@@ -1,145 +1,128 @@
-Return-Path: <devicetree+bounces-50790-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50791-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E86987D286
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 18:12:43 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
+	by mail.lfdr.de (Postfix) with ESMTPS id CC57687D295
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 18:19:37 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F202B23838
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:12:41 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 8C4AD2837FB
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:19:36 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554E845C1C;
-	Fri, 15 Mar 2024 17:12:35 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 53E84481B9;
+	Fri, 15 Mar 2024 17:19:11 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="gPEZYIRn"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="dfp/7Zfj"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD3B13DBBC
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 17:12:33 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 74F714CB3D
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 17:19:09 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.41
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710522755; cv=none; b=oxDuH8GpswtbLtss/WQp70lOKRTOYsaKL6q3NTFbwm6BBOQpvMNH7H40KdBJ9dQRfKZQ9i0Ozz6pofk5UIglvYZ9PrwW/zlxqfJEUNpuxiNEC9CKA50DSJCAczTIi9jb2bvC+A2sOa/saVyOYjGcu2PcqGVmrUU5eKP3QMEcNpM=
+	t=1710523151; cv=none; b=BzrP5FcvRmiu3xieXnwQg4ks5V7os2o7qfz778tycVH0XJGGO0ZAGHxu5WsmFfLQY7tPIiOyyZLul8fRi066uJCNpbaDQw4EKuvRejGkH1k/+/Na0dfTQGMN9bTOik3GicXe+Bzk0tRAXjZP/eEWMDb6THU+Wvu5SwhGt7uBTR8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710522755; c=relaxed/simple;
-	bh=kWzlo4AaZeWtEkzCy8TJZmtsYDqVVCm/XwSPAebW3DI=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=DEqnblwugt/GmqB/szBEZYl6Lh5nzKPFJRA0+fIavpv5dOEwbDXTcDh5Ow+1J3hvrTmolgGzeoBRO71uOmcpHswRhieo5s96KRGkNjVz5hkybCjPtIGhnuDgOzbcnxSn3Ic3/WYTXdaTd+4AM0V8NmHNS4CKGegK8V94eNbE+q4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=gPEZYIRn; arc=none smtp.client-ip=209.85.160.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-42f2d02fbdeso11252211cf.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 10:12:33 -0700 (PDT)
+	s=arc-20240116; t=1710523151; c=relaxed/simple;
+	bh=qRK4ZscALIRnI/Of3VT62asNNrLU4CTGdfxsnMiJ6ig=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=en93v4KE6EVPNqLDLbPLr8TMLdV54Z201soBlLMc4M2hXH2hPRZBCMhXT7OtNAMLmHoDveH562bxZm9Q4k0ogwR3q+nWabWWOKkKPy0UwVZLd6oUX5gHjpOIqVGxoKHy97jjr42QhMoXWyZVNlI5NDMxrM9eywW19abxdIjJI3M=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=dfp/7Zfj; arc=none smtp.client-ip=209.85.208.41
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-ed1-f41.google.com with SMTP id 4fb4d7f45d1cf-565c6cf4819so5786799a12.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 10:19:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1710522750; x=1711127550; darn=vger.kernel.org;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=YBgzsheMyMt2wDXPPT0VYLjrPGEmgjQ97XLNs9yUYLg=;
-        b=gPEZYIRn5TOzx0CD9MhYMJE8IegTBXts89PPitzmyLGrdBw75k3GCrAzWUGDbcNl8Q
-         B8hQLWkxemwXLOOcU8SfGLnzXI3KlCe5CUUcVMGE8cMvskTEkEJRNCLPMKZSTqOtMgRc
-         scBeMdTNyeGA6jWvK7rI/aQCeIEXtzS4emclA=
+        d=linaro.org; s=google; t=1710523148; x=1711127948; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=fEn2MW7lH3siih5lbV/O0t/j/pQJQRG/TR3SpZhG1N8=;
+        b=dfp/7ZfjRIbRZgBgi/aA7nv7ikTSI3xoqqaKa42/AFgofuyLNVvm8nWhxS7C5apUXH
+         HR9ykbpLR66F8IyZLRjc4r+47Mmg4KhZC+I7YvJMIXkm1fv2etmu3kA7J2WxfQKlF0tz
+         YwvkHrn+A5j1HUzu2mShEsyybQAZ/nkAcP+NtGluzb5eQSD07l9Y0CTLtT7uWA5cY6pf
+         tjAecw3QrQqsRQcJ2ayN55q5zhFKX1Y3pl0TezVR8su3TU5wGjfWGxTvZr7yHS5N8H+j
+         vWr7fhOvztDSDkud6j1ohMGEizY6DWY/8PjERo7iRAAXVh3/6JmwhNGbu9B3pTvqumwp
+         52CA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710522750; x=1711127550;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=YBgzsheMyMt2wDXPPT0VYLjrPGEmgjQ97XLNs9yUYLg=;
-        b=HCUtCZ3YH994hC2uJNyfVHlMr4C7dvyBDbKzbPfvqUCcSdzWe4I98II9NRtaTjpbAj
-         J7VcXy7bTaBlAQPC8Y47QWhCLeZPQrOPL46GngmSLNIf9vHg73RbJTgg88IsoQS3KI3w
-         fGP1auhsdRlkaMCU0bhSR17GkRxG3bVS3MVr+jrx23cJkKmHGJgfa08ZeUWk8O6l6X3G
-         EHv3guDDWxpd52AWqtcc+9pRfB8JzaLSq3uPfsYcCHckhZs9xEjFF28miJzMu4csTlY4
-         FOrGp0OGh5OVjG/BHQ9j2rCXIiDi+g+NmUat836/M7qzhFCou/eMeqZYHzOg7TnpCDBA
-         TtKA==
-X-Forwarded-Encrypted: i=1; AJvYcCUeP5hxcJGgTzbqGBlD7DLuPb269MV51H2l+uVwD//WR6IDdSdthg1Sf7VGEI8a7D3DvTUqBr/lEdZn2T8ia4I3nrIE1GYqNtQsVw==
-X-Gm-Message-State: AOJu0YyrkTAyGHovrRZQ9XXwiqx2qczbPm2jsu/rmbkkLJzFz0AT+q20
-	+ALa8ehSRPq7xrwH+XI1+nCQ+r3+eneia/oHqE50Rn8DOP7/mPvn5OZX/PjpOtNwm9ItuBZXEhM
-	=
-X-Google-Smtp-Source: AGHT+IE/w8YJq1jzq7pc44vC2pF09CxRi2caPR+L5Z3S1YKMsyxljIcNSTqIP/LizU/dyu/X17ZsKw==
-X-Received: by 2002:ac8:5a8c:0:b0:430:a20d:213 with SMTP id c12-20020ac85a8c000000b00430a20d0213mr5544948qtc.62.1710522749726;
-        Fri, 15 Mar 2024 10:12:29 -0700 (PDT)
-Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com. [209.85.160.173])
-        by smtp.gmail.com with ESMTPSA id j1-20020ac84401000000b0042f376886d2sm2144798qtn.36.2024.03.15.10.12.28
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Mar 2024 10:12:29 -0700 (PDT)
-Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-428405a0205so7741cf.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 10:12:28 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCVSicDUNEdTxBRS+Y8amUjWb8t+As+Uw93dGtF14c68Iv36Z3bVaoD7RQ4icOVB+BiQQb0GHHzsdMGXyNfKcRaueh88cwF8N8JlZQ==
-X-Received: by 2002:a05:622a:1706:b0:42f:a3c:2d53 with SMTP id
- h6-20020a05622a170600b0042f0a3c2d53mr822108qtk.20.1710522747755; Fri, 15 Mar
- 2024 10:12:27 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710523148; x=1711127948;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fEn2MW7lH3siih5lbV/O0t/j/pQJQRG/TR3SpZhG1N8=;
+        b=UsHKH6VV6nrEAcD0RF0w855W+LtO6P088EAaO6i6rIdJWxbryuvcOjYX3RUjO7pyEX
+         iAOHeQLCc3jFsFWxpTcAYdNENwbRyIm5BB2fJSHMbV9RKyRCAIWwP4jaWLDmvIMB/GyS
+         fNsltBk/N8mzdzyedsVzwtiuTUUtymbrylp/kIdPL+GkT7mYDOVo1N7al9s/inHjIzlV
+         GKWGlMpKrVbDeKo5tpS5QeGoxUiuBtvV9hoLjQ8YWS7aUm59A24XSt4M1oxEM4WEoVqK
+         tkxh0iC74p4vej9LuDL++7z2MGOnsupD8ms0Jhbud7jqpepZYdYZ32MR4cyVuagLtRq9
+         jMHA==
+X-Forwarded-Encrypted: i=1; AJvYcCU0w1dyl/25CMtd96qs6IsDWwwhPhcAaQXmjXt7zCcF1AERzY3ro6kiKv4qoSOdhK38Fpc4XEbNBSroIpIZClj+irVJ8oR8f5piXw==
+X-Gm-Message-State: AOJu0YzD8Co5LI6omNQxa/9FzT2zq4m4kKOe9DslOmtx4cn3ClE2sYrf
+	wM+SKF+pDqYqaJ90fKsuw+TVSyeARrfethepu9uFx3rPv6ZtLhH9lY2ZXbVr9wA=
+X-Google-Smtp-Source: AGHT+IF7nk0Cxpc8FXrSI4MRq1X8DD2Pewv4xFgdhyWLGeBmwN6KKB6qOdZcg4exb9NBjfEg8gqdog==
+X-Received: by 2002:a17:906:2bd3:b0:a46:268b:228a with SMTP id n19-20020a1709062bd300b00a46268b228amr8356154ejg.29.1710523147749;
+        Fri, 15 Mar 2024 10:19:07 -0700 (PDT)
+Received: from linaro.org ([188.24.162.93])
+        by smtp.gmail.com with ESMTPSA id d10-20020a170907272a00b00a44ef54b6b6sm1887264ejl.58.2024.03.15.10.19.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Mar 2024 10:19:07 -0700 (PDT)
+Date: Fri, 15 Mar 2024 19:19:05 +0200
+From: Abel Vesa <abel.vesa@linaro.org>
+To: Rajendra Nayak <quic_rjendra@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+	quic_sibis@quicinc.com, linux-arm-msm@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: Fix the compatible for cluster idle
+ states
+Message-ID: <ZfSDCZ0g0ZN7SIPB@linaro.org>
+References: <20240315132423.2422484-1-quic_rjendra@quicinc.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20230703085555.30285-1-quic_mkshah@quicinc.com>
- <20230703085555.30285-4-quic_mkshah@quicinc.com> <CAD=FV=XWH+Eoa9XjDns--NSDTZHeUwTdrX_r_QZhSPpbZNwz+w@mail.gmail.com>
- <20240315152431.sckqhc6ri63blf2g@bogus>
-In-Reply-To: <20240315152431.sckqhc6ri63blf2g@bogus>
-From: Doug Anderson <dianders@chromium.org>
-Date: Fri, 15 Mar 2024 10:12:12 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UD1nuxryvWH=Mi7E+QzMoa7xCHebY0DtZCAVmEW3ZeAg@mail.gmail.com>
-Message-ID: <CAD=FV=UD1nuxryvWH=Mi7E+QzMoa7xCHebY0DtZCAVmEW3ZeAg@mail.gmail.com>
-Subject: Re: [RESEND v4 3/3] arm64: dts: qcom: sc7280: Add power-domains for
- cpuidle states
-To: Sudeep Holla <sudeep.holla@arm.com>
-Cc: Maulik Shah <quic_mkshah@quicinc.com>, andersson@kernel.org, ulf.hansson@linaro.org, 
-	swboyd@chromium.org, wingers@google.com, daniel.lezcano@linaro.org, 
-	rafael@kernel.org, linux-arm-msm@vger.kernel.org, 
-	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, jwerner@chromium.org, 
-	quic_lsrao@quicinc.com, quic_rjendra@quicinc.com, devicetree@vger.kernel.org, 
-	Abhinav Kumar <quic_abhinavk@quicinc.com>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
-	Rob Clark <robdclark@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240315132423.2422484-1-quic_rjendra@quicinc.com>
 
-Hi,
+On 24-03-15 18:54:23, Rajendra Nayak wrote:
+> The compatible's for the cluster/domain idle states of x1e80100
+> are wrong, fix it.
+> 
+> Fixes: af16b00578a7 ("arm64: dts: qcom: Add base X1E80100 dtsi and the QCP dts")
+> Signed-off-by: Rajendra Nayak <quic_rjendra@quicinc.com>
 
-On Fri, Mar 15, 2024 at 8:24=E2=80=AFAM Sudeep Holla <sudeep.holla@arm.com>=
- wrote:
->
-> On Thu, Mar 14, 2024 at 04:20:59PM -0700, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Mon, Jul 3, 2023 at 1:56=E2=80=AFAM Maulik Shah <quic_mkshah@quicinc=
-.com> wrote:
-> > >
-> > > Add power-domains for cpuidle states to use psci os-initiated idle st=
-ates.
-> > >
-> > > Cc: devicetree@vger.kernel.org
-> > > Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > > Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 98 +++++++++++++++++++++-----=
---
-> > >  1 file changed, 73 insertions(+), 25 deletions(-)
-> >
-> > FWIW, I dug up an old sc7280-herobrine board to test some other change
-> > and found it no longer booted. :( I bisected it and this is the change
-> > that breaks it. Specifically, I can make mainline boot with:
-> >
-> > git revert --no-edit db5d137e81bc # arm64: dts: qcom: sc7280: Update
-> > domain-idle-states for cluster sleep
-> > git revert --no-edit 7925ca85e956 # arm64: dts: qcom: sc7280: Add
-> > power-domains for cpuidle states
-> >
->
-> IIRC, this could be issue with psci firmware. There were some known
-> issues which were discussed few years back but I am not aware of the
-> details and if/how it is applicable here.
->
-> Not sure if you are getting any logs during the boot, if you do have
-> worth look at logs related to PSCI/OSI/Idle/...
+Reviewed-by: Abel Vesa <abel.vesa@linaro.org>
 
-Given that the new firmware fixes it I'm going to say it's not worth
-looking into any longer.
-
--Doug
+> ---
+>  arch/arm64/boot/dts/qcom/x1e80100.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/x1e80100.dtsi b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> index 8e517f76189e..6b40082bac68 100644
+> --- a/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/x1e80100.dtsi
+> @@ -284,7 +284,7 @@ CLUSTER_C4: cpu-sleep-0 {
+>  
+>  		domain-idle-states {
+>  			CLUSTER_CL4: cluster-sleep-0 {
+> -				compatible = "arm,idle-state";
+> +				compatible = "domain-idle-state";
+>  				idle-state-name = "l2-ret";
+>  				arm,psci-suspend-param = <0x01000044>;
+>  				entry-latency-us = <350>;
+> @@ -293,7 +293,7 @@ CLUSTER_CL4: cluster-sleep-0 {
+>  			};
+>  
+>  			CLUSTER_CL5: cluster-sleep-1 {
+> -				compatible = "arm,idle-state";
+> +				compatible = "domain-idle-state";
+>  				idle-state-name = "ret-pll-off";
+>  				arm,psci-suspend-param = <0x01000054>;
+>  				entry-latency-us = <2200>;
+> -- 
+> 2.34.1
+> 
 
