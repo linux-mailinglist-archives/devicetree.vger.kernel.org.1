@@ -1,196 +1,231 @@
-Return-Path: <devicetree+bounces-50687-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50688-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C7D287CB52
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:25:58 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B23687CB61
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:30:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id F1ECC281BD2
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 10:25:56 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 5EE521C20BD8
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 10:30:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 558BB1862A;
-	Fri, 15 Mar 2024 10:25:54 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1D6C218E0E;
+	Fri, 15 Mar 2024 10:30:28 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="UmhJrv8b"
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="NafJHbAd"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lj1-f181.google.com (mail-lj1-f181.google.com [209.85.208.181])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7337218059;
-	Fri, 15 Mar 2024 10:25:52 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.208.181
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 44C0E17C60;
+	Fri, 15 Mar 2024 10:30:26 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710498354; cv=none; b=TZVr5cQp7vVud2E+83tEo2W5tuVLHQueNH9KitG7Ow1a25SkBigHQzN4D8guxHYCREGNh1eWdtKv19vFVNCfxb2+WlL0T+ezhEhXukgN3vhYowCTnVchGZXAHJXkNBnPoeVxKJDyFgg6RDLcdQGz25mX+1aeDaxTFzz5kMFAcrA=
+	t=1710498628; cv=none; b=HTSRLu1Bu608sGzZ60MVsvdilCWLgJifAnKc8lINssdWARF+o8buug6Mz4hXcZnxy62GcRhdczFSvGoiuPG2yJbngGso9xDep5PO3RGaUdyKD6N9BS94/jr7JjJDqe9zItnqhkzsJ0FBs3mvcircqWaGgRq+MA7cQakyWn3YK0Y=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710498354; c=relaxed/simple;
-	bh=g9frjLsPhPOVkDLN1ywx/DlP/UBD24zP1iPQUEjPk4o=;
-	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=pPEZVAIAlB6NYKAZEwPwxkjbUB6M03dT62gBVjVoPnxOAMHsCUTxeXYECUlVTiDpN7aTbZemHzHxU4o7TJkbuoXlBxH+PidDiENtRYDAZbJWjWu3kjpBHVzIc4sDi1GWkSNkwVgakHWgzNz8D3ahhUk4YGpK5D5UowkyXsMsu2g=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=UmhJrv8b; arc=none smtp.client-ip=209.85.208.181
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2d27fef509eso22513231fa.3;
-        Fri, 15 Mar 2024 03:25:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710498351; x=1711103151; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DjEbXWwhsZ2V89MBAuuMPjIB1gZ4MYtJXZWbtz0OD68=;
-        b=UmhJrv8bcY61weVLfdPrruwMGV2u8f4bI9j3eKBJPNcDjj2lii8MG9VPybvkIEhrXK
-         wQG0TP7X+xCuwg+wlEptP7Jrb646Vb5HCNbpmSBwwWI/SfGN6WeffnDTTUkqJGlR++97
-         485w0BWP4Ok5unLh/fRrjIeRZLeIllLAPja3IZdpdkAf/wterOc9qWMO7KYnzxR5TH8a
-         Q8pdEAFXJNxaFOUX3IqtWs6qDJUFKDpjTTAkO7VMmzi/GqYPgKhwtvZ7WsefspJg2osC
-         aw53gmbsPCMLo4FdKjwsnH3YSWaWz9fVjHAuEEpMfbzNpfGUEVOkquQXgkEGKXZ5sQhi
-         YP/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710498351; x=1711103151;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=DjEbXWwhsZ2V89MBAuuMPjIB1gZ4MYtJXZWbtz0OD68=;
-        b=a6KDUlOz8nbgj305oQtVdQ9jvywOn4VsWkNxtehVwjlWf1yH28ROT0XkRoQYgn/54e
-         uziNLHculTyWGFWR721KqCFUNzfzOXeuX3fNMStHeANunTrTZ7shnUGFsUiHfY+1ZzEC
-         rl815IJD9h5jmIWXkE2NxN8ef9zmRlxyKyzDF7QqjnHk5Tfeu4wSSGIOlevWjZjAxdV8
-         P+f44jyo+i7zU/FFYuE6Zvw8CrjkpmNfuS75umvoyfaxZDReGFD9g2tldfWxOCSwWTWY
-         fFJXc9nWJDDWkKwW4FUs+mXCK0XS6Xw3fBE796ZjGgtUdlE8k6AJfr/PfpbMPwuvyhM4
-         qRXQ==
-X-Forwarded-Encrypted: i=1; AJvYcCUG0nnzdKknRKewI0JxMa5ZakbO8oYm6ehXl/onkQt1MRH3iCJ5gftEhxaYuF5KIE1joZ8Z9XIvjUw4hgu1TL0XxVop/ar2ysvKxGB1feRhTBSTRUQ+bHty4sMd0GXH+5HQkelf5kYZ7Q==
-X-Gm-Message-State: AOJu0YwAn0Jg8g7a/HfRztfkchWStX6pbPcqSNV7fgr2dkceYXGXmNsh
-	EI5iNowUuxegP5bPSDJMnZL84MgZg4sQtUy42ELCy9dj6KXc90W7PyLkkJJ9iKy+nQ==
-X-Google-Smtp-Source: AGHT+IE1ClC0pNGFDbWQQwtGpf+6gWKX89DIDXjAJD9TSfZAkUeDdX8ldNVXLjIZW9H7jviSmyBUkA==
-X-Received: by 2002:a2e:9357:0:b0:2d4:6852:f61f with SMTP id m23-20020a2e9357000000b002d46852f61fmr2795403ljh.24.1710498350337;
-        Fri, 15 Mar 2024 03:25:50 -0700 (PDT)
-Received: from andrejs-nb.int.toradex.com (77-59-154-235.dclient.hispeed.ch. [77.59.154.235])
-        by smtp.gmail.com with ESMTPSA id jl20-20020a17090775d400b00a46497c74a0sm1579231ejc.93.2024.03.15.03.25.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Mar 2024 03:25:49 -0700 (PDT)
-From: Andrejs Cainikovs <andrejs.cainikovs@gmail.com>
-To: Jai Luthra <j-luthra@ti.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Nishanth Menon <nm@ti.com>,
-	linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org
-Cc: Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>,
-	Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-Subject: [PATCH v1] arm64: dts: ti: verdin-am62: dahlia: fix audio clock
-Date: Fri, 15 Mar 2024 11:25:00 +0100
-Message-Id: <20240315102500.18492-1-andrejs.cainikovs@gmail.com>
-X-Mailer: git-send-email 2.34.1
+	s=arc-20240116; t=1710498628; c=relaxed/simple;
+	bh=Wi/QbN+8ipUEYeOAbUm86xpNE3oPJ0g7EhQMoF7njRU=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=AXKTIOUk00g4+5zjNfG2GDawnIz7TH+cFMzYHHKnREqj7fwftVmLgx+zhwWFQg5DA48Ob9bYQJ6yebW4GWJ2DabbjWmdCPReBTj8JBBuAoaEYoZF4XWX1VOv4kUbk6qxvf02O/gK44jwoVGTfXODSo0AZ1GiMiMMWVeKE46jOp0=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=NafJHbAd; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1710498618;
+	bh=Wi/QbN+8ipUEYeOAbUm86xpNE3oPJ0g7EhQMoF7njRU=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=NafJHbAd9/omf5ShUyuD5GKzQhS3XJhF4WMagWXntKDm3n8ti0taj0esJziU84Mdp
+	 WxYGljPwkXxB/PIz9ZLteJsSqXoYKViMdBJzKwxa4hy1ptRIMx8uVa3dNz6zuawAiD
+	 BT6Otsgt/kFOBfErLJb6+zoetXvFppHZ86JA1bLOb2cBtH40Cs1Lr/UdGQjmk1R6D1
+	 sc2FoITqwOwvMCEk7Qf8hjr9Tku2FW4ps+x36BQYhVeob6INGvf88oXDqrVGj72evN
+	 ojyf3oZ8szTOXxre1VJoYt0ebtUIYWZdugBIh++MpGJXZ2oS3Wmx5TepO4gGVBoWhb
+	 d/+ulbrcypKuw==
+Received: from localhost (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: sebastianfricke)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 9D6383782083;
+	Fri, 15 Mar 2024 10:30:18 +0000 (UTC)
+Date: Fri, 15 Mar 2024 11:30:17 +0100
+From: Sebastian Fricke <sebastian.fricke@collabora.com>
+To: Yunfei Dong <yunfei.dong@mediatek.com>
+Cc: =?utf-8?B?TsOtY29sYXMgRiAuIFIgLiBBIC4=?= Prado <nfraprado@collabora.com>,
+	Nicolas Dufresne <nicolas.dufresne@collabora.com>,
+	Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+	Nathan Hebert <nhebert@chromium.org>,
+	Hsin-Yi Wang <hsinyi@chromium.org>,
+	Fritz Koenig <frkoenig@chromium.org>,
+	Daniel Vetter <daniel@ffwll.ch>, Steve Cho <stevecho@chromium.org>,
+	linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH] media: mediatek: vcodec: add decoder command to support
+ stateless decoder
+Message-ID: <20240315094706.xcpjy5s4fjtjvn7j@basti-XPS-13-9310>
+References: <20240315072629.27738-1-yunfei.dong@mediatek.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Disposition: inline
+In-Reply-To: <20240315072629.27738-1-yunfei.dong@mediatek.com>
 
-From: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+Hey Yunfei,
 
-In current configuration, wm8904 codec on Dahlia carrier board provides
-distorted audio output. This happens due to reference clock is fixed to
-25MHz and no FLL is enabled. During playback following parameters are set:
+On 15.03.2024 15:26, Yunfei Dong wrote:
+>The supported decoder commands are different for stateless and
+>stateful architecture. Adding stateless decoder commands to fix
 
-44100Hz:
+s/Adding/Add/
 
-[  310.276924] wm8904 1-001a: Target BCLK is 1411200Hz
-[  310.276990] wm8904 1-001a: Using 25000000Hz MCLK
-[  310.277001] wm8904 1-001a: CLK_SYS is 12500000Hz
-[  310.277018] wm8904 1-001a: Selected CLK_SYS_RATIO of 256
-[  310.277026] wm8904 1-001a: Selected SAMPLE_RATE of 44100Hz
-[  310.277034] wm8904 1-001a: Selected BCLK_DIV of 80 for 1562500Hz BCLK
-[  310.277044] wm8904 1-001a: LRCLK_RATE is 35
+>below v4l2-compliance test error.
 
-Deviation = 1411200 vs 1562500 = 10.721%
-Also, LRCLK_RATE is 35, should be 32.
+s/below v4l2-compliance test error./the v4l2-compliance test error below./
 
-48000Hz:
+>
+>Codec ioctls:
+>    VIDIOC_ENCODER_CMD returned -1 (Inappropriate ioctl for device)
+>    VIDIOC_TRY_ENCODER_CMD returned -1 (Inappropriate ioctl for device)
+> test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+>    VIDIOC_G_ENC_INDEX returned -1 (Inappropriate ioctl for device)
+> test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+>    VIDIOC_DECODER_CMD returned -1 (Invalid argument)
+>    VIDIOC_TRY_DECODER_CMD returned -1 (Invalid argument)
+>    VIDIOC_TRY_DECODER_CMD returned -1 (Invalid argument)
+>    fail: v4l2-test-codecs.cpp(126): ret
+> test VIDIOC_(TRY_)DECODER_CMD: FAIL
+>
+>Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
+>---
+> .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  | 65 +++++++++++++++++--
+> 1 file changed, 59 insertions(+), 6 deletions(-)
+>
+>diff --git a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+>index ba742f0e391d..90579dd92cae 100644
+>--- a/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+>+++ b/drivers/media/platform/mediatek/vcodec/decoder/mtk_vcodec_dec.c
+>@@ -80,21 +80,20 @@ static struct mtk_q_data *mtk_vdec_get_q_data(struct mtk_vcodec_dec_ctx *ctx,
+> 	return &ctx->q_data[MTK_Q_DATA_DST];
+> }
+>
+>-static int vidioc_try_decoder_cmd(struct file *file, void *priv,
+>-				struct v4l2_decoder_cmd *cmd)
+>+static int mtk_vcodec_stateful_try_decoder_cmd(struct file *file, void *priv,
+>+					       struct v4l2_decoder_cmd *cmd)
 
-[  302.449970] wm8904 1-001a: Target BCLK is 1536000Hz
-[  302.450037] wm8904 1-001a: Using 25000000Hz MCLK
-[  302.450049] wm8904 1-001a: CLK_SYS is 12500000Hz
-[  302.450065] wm8904 1-001a: Selected CLK_SYS_RATIO of 256
-[  302.450074] wm8904 1-001a: Selected SAMPLE_RATE of 48000Hz
-[  302.450083] wm8904 1-001a: Selected BCLK_DIV of 80 for 1562500Hz BCLK
-[  302.450092] wm8904 1-001a: LRCLK_RATE is 32
+In some cases you seem to name these functions with the prefix
+`mtk_vdec` and sometimes with the prefix `mtk_vcodec` but all of these
+are for decoders, so could you settle for one naming scheme? Also as
+these functions are static I don't think it is strictly necessary to add
+a prefix for each function.
 
-Deviation = 1536000 vs 1562500 = 1.725%
+> {
+> 	return v4l2_m2m_ioctl_try_decoder_cmd(file, priv, cmd);
+> }
+>
+>-
+>-static int vidioc_decoder_cmd(struct file *file, void *priv,
+>-				struct v4l2_decoder_cmd *cmd)
+>+static int mtk_vcodec_stateful_decoder_cmd(struct file *file, void *priv,
+>+					   struct v4l2_decoder_cmd *cmd)
+> {
+> 	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
+> 	struct vb2_queue *src_vq, *dst_vq;
+> 	int ret;
+>
+>-	ret = vidioc_try_decoder_cmd(file, priv, cmd);
+>+	ret = mtk_vcodec_stateful_try_decoder_cmd(file, priv, cmd);
+> 	if (ret)
+> 		return ret;
+>
+>@@ -128,6 +127,60 @@ static int vidioc_decoder_cmd(struct file *file, void *priv,
+> 	return 0;
+> }
+>
+>+static int mtk_vcodec_stateless_try_decoder_cmd(struct file *file, void *priv,
+>+						struct v4l2_decoder_cmd *cmd)
+>+{
+>+	return v4l2_m2m_ioctl_stateless_try_decoder_cmd(file, priv, cmd);
+>+}
+>+
+>+static int mtk_vcodec_stateless_decoder_cmd(struct file *file, void *priv,
+>+					    struct v4l2_decoder_cmd *cmd)
+>+{
+>+	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
+>+	int ret;
+>+
+>+	ret = v4l2_m2m_ioctl_stateless_try_decoder_cmd(file, priv, cmd);
+>+	if (ret)
+>+		return ret;
+>+
+>+	mtk_v4l2_vdec_dbg(3, ctx, "decoder cmd=%u", cmd->cmd);
+>+	switch (cmd->cmd) {
+>+	case V4L2_DEC_CMD_FLUSH:
+>+		/*
+>+		 * If the flag of output buffer is set with V4L2_BUF_FLAG_M2M_HOLD_CAPTURE_BUF,
 
-Enabling wm8904 FLL via providing mclk-fs property to simple-audio-card
-configures clocks properly, but also adjusts audio reference clock
-(mclk), which in case of TI AM62 should be avoided, as it only
-supports 25MHz output [1][2].
+s/output/the output/
+s/is set with/equals/
 
-This change enables FLL on wm8904 by providing mclk-fs, and drops
-audio reference clock out of DAI configuration, which prevents
-simple-audio-card to adjust it before every playback [3].
+>+		 * this command will prevent dequeueing the capture buffer containing the last
+>+		 * decoded frame. Or do nothing
+>+		 */
+>+		break;
+>+
 
-41000Hz:
+Please remove this newline.
 
-[  111.820533] wm8904 1-001a: FLL configured for 25000000Hz->11289600Hz
-[  111.820597] wm8904 1-001a: Clock source is 0 at 11289600Hz
-[  111.820651] wm8904 1-001a: Using 11289600Hz FLL clock
-[  111.820703] wm8904 1-001a: CLK_SYS is 11289600Hz
-[  111.820798] wm8904 1-001a: Target BCLK is 1411200Hz
-[  111.820847] wm8904 1-001a: Using 11289600Hz FLL clock
-[  111.820894] wm8904 1-001a: CLK_SYS is 11289600Hz
-[  111.820933] wm8904 1-001a: Selected CLK_SYS_RATIO of 256
-[  111.820971] wm8904 1-001a: Selected SAMPLE_RATE of 44100Hz
-[  111.821009] wm8904 1-001a: Selected BCLK_DIV of 80 for 1411200Hz BCLK
-[  111.821051] wm8904 1-001a: LRCLK_RATE is 32
+>+	default:
+>+		mtk_v4l2_vdec_err(ctx, "invalid stateless decoder cmd=%u", cmd->cmd);
+>+		return -EINVAL;
+>+	}
+>+
+>+	return 0;
+>+}
+>+
+>+static int vidioc_try_decoder_cmd(struct file *file, void *priv, struct v4l2_decoder_cmd *cmd)
+>+{
+>+	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
+>+
+>+	if (ctx->dev->vdec_pdata->uses_stateless_api)
+>+		return mtk_vcodec_stateless_try_decoder_cmd(file, priv, cmd);
+>+	else
 
-48000Hz:
+As these conditional branches contain return statements you can skip the
+else.
+E.g.
+	if (ctx->dev->vdec_pdata->uses_stateless_api)
+		return mtk_vcodec_stateless_try_decoder_cmd(file, priv, cmd);
+   return mtk_vcodec_stateful_try_decoder_cmd(file, priv, cmd);
 
-[  144.119254] wm8904 1-001a: FLL configured for 25000000Hz->12288000Hz
-[  144.119309] wm8904 1-001a: Clock source is 0 at 12288000Hz
-[  144.119364] wm8904 1-001a: Using 12288000Hz FLL clock
-[  144.119413] wm8904 1-001a: CLK_SYS is 12288000Hz
-[  144.119512] wm8904 1-001a: Target BCLK is 1536000Hz
-[  144.119561] wm8904 1-001a: Using 12288000Hz FLL clock
-[  144.119608] wm8904 1-001a: CLK_SYS is 12288000Hz
-[  144.119646] wm8904 1-001a: Selected CLK_SYS_RATIO of 256
-[  144.119685] wm8904 1-001a: Selected SAMPLE_RATE of 48000Hz
-[  144.119723] wm8904 1-001a: Selected BCLK_DIV of 80 for 1536000Hz BCLK
-[  144.119764] wm8904 1-001a: LRCLK_RATE is 32
+>+		return mtk_vcodec_stateful_try_decoder_cmd(file, priv, cmd);
+>+}
+>+
+>+static int vidioc_decoder_cmd(struct file *file, void *priv, struct v4l2_decoder_cmd *cmd)
+>+{
+>+	struct mtk_vcodec_dec_ctx *ctx = fh_to_dec_ctx(priv);
+>+
+>+	if (ctx->dev->vdec_pdata->uses_stateless_api)
+>+		return mtk_vcodec_stateless_decoder_cmd(file, priv, cmd);
+>+	else
 
-[1]: https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1175479/processor-sdk-am62x-output-audio_ext_refclk0-as-mclk-for-codec-and-mcbsp/4444986#4444986
-[2]: https://e2e.ti.com/support/processors-group/processors/f/processors-forum/1188051/am625-audio_ext_refclk1-clock-output---dts-support/4476322#4476322
-[3]: sound/soc/generic/simple-card-utils.c#L441
+Same as mentioned above.
 
-Fixes: f5bf894c865b ("arm64: dts: ti: verdin-am62: dahlia: add sound card")
-Suggested-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
----
- arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi b/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-index bf6d27e70bc48..2b12a626d0e4d 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-verdin-dahlia.dtsi
-@@ -22,6 +22,7 @@ sound {
- 		simple-audio-card,format = "i2s";
- 		simple-audio-card,frame-master = <&codec_dai>;
- 		simple-audio-card,name = "verdin-wm8904";
-+		simple-audio-card,mclk-fs = <256>;
- 		simple-audio-card,routing =
- 			"Headphone Jack", "HPOUTL",
- 			"Headphone Jack", "HPOUTR",
-@@ -35,7 +36,6 @@ sound {
- 			"Line", "Line In Jack";
- 
- 		codec_dai: simple-audio-card,codec {
--			clocks = <&audio_refclk1>;
- 			sound-dai = <&wm8904_1a>;
- 		};
- 
--- 
-2.34.1
-
+>+		return mtk_vcodec_stateful_decoder_cmd(file, priv, cmd);
+>+}
+>+
+> void mtk_vdec_unlock(struct mtk_vcodec_dec_ctx *ctx)
+> {
+> 	mutex_unlock(&ctx->dev->dec_mutex[ctx->hw_id]);
+>-- 
+>2.18.0
+>
 
