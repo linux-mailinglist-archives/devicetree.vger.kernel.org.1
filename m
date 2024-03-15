@@ -1,89 +1,118 @@
-Return-Path: <devicetree+bounces-50773-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50774-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C08587D061
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 16:33:45 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id EAA6687D09F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 16:50:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 3426C282B84
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:33:44 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7B8D71F220B5
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:50:43 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 925223D576;
-	Fri, 15 Mar 2024 15:33:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 09C3F3F9EA;
+	Fri, 15 Mar 2024 15:50:38 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b="Pnis1sI9"
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="UQ5ABuXt"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail11.truemail.it (mail11.truemail.it [217.194.8.81])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 459253BB52;
-	Fri, 15 Mar 2024 15:33:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.194.8.81
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id D3D0F210E8;
+	Fri, 15 Mar 2024 15:50:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710516820; cv=none; b=FlgaJOYf7iWFOXv0WbQQryI+b9H3IEjVuLfsqUCUjlX6DJBlH188n15pzqkzRpqpHJq1WVScq4e4m2AB5di07/qksM+dw5VK5BhR2p5KaZgp07Shs6DxaqvXIaeCmwyJLz75yrfsdj4NZBpVWyRy8qn4kZ1H0GVB/cVSmq+5TPQ=
+	t=1710517837; cv=none; b=RXey2WH1Ji3P04ZEUqFLDMz9K/F3lu6QuB1T8wNZ/w4typX9fFIc+MFKpnq5QZvtLc7H5nVaOksE7IA05G45yPE5Nk29t2QkNkvI4SnPBasll9OIMbiNx1KTrIgUuEuTL49FxC+DD99kgCAVpP4K/OIV78zjIz9YfJe63yL0u1o=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710516820; c=relaxed/simple;
-	bh=dvn4/U6uPrMUIBGYeEo6TqrtbQXgI9y158xfzC6wxQk=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=VQ8ZYScz7JrTsjN0malfMhXOvBcT10oYEZH9wAHV70P6GrZ5aU3wYtETPld2SaRkNZH6yHoDCOUOHbxkUF5c14zowBsRcVXfGT/ZAKfFSCg8Fu2qA6MdTL3ITm1OlHcw6VxoidHo4WxQcPSkQA5cf1goEhrim0uK1U0HxHjENn4=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it; spf=pass smtp.mailfrom=dolcini.it; dkim=pass (2048-bit key) header.d=dolcini.it header.i=@dolcini.it header.b=Pnis1sI9; arc=none smtp.client-ip=217.194.8.81
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=dolcini.it
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=dolcini.it
-Received: from francesco-nb (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-	by mail11.truemail.it (Postfix) with ESMTPA id EA3F91FA91;
-	Fri, 15 Mar 2024 16:33:26 +0100 (CET)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dolcini.it;
-	s=default; t=1710516807;
-	bh=zPCuo2gTzB/xvX++e/jE9wP6QdKb7XMn6eqirgfq4pU=; h=From:To:Subject;
-	b=Pnis1sI9ijiGFHdQ0SmQ3hYGuULP3RziWCzDJ4gd2RniZnwdVVwrU/hvpbHXaAkco
-	 XWfsjRc72plRbwDSUwoAS9dlIii8IF/7AVFItueJjzG6+FaGlIxJM/GE2g2iA13Hr7
-	 UiasOIujdYhXE5p50QV1BXHPb8Ugmg9kecpKbfTUUtT6apth2/GJGTU1A7Jz2DGZ0l
-	 meQNrEypMfQ4MTixJ5obFOpsuYaHxIGAMaALBEUd6Ht34ifdDCkXbHidVzM/nWC1kh
-	 1+zVIKtv4dOomXZKoPjIbTAXvF114esPQ9vwdUmuhNE9s4ItWHdOK6LheAKej6k0iw
-	 dS6R7bh/AdnZg==
-Date: Fri, 15 Mar 2024 16:33:22 +0100
-From: Francesco Dolcini <francesco@dolcini.it>
-To: Andrejs Cainikovs <andrejs.cainikovs@gmail.com>
-Cc: Jai Luthra <j-luthra@ti.com>,
-	Francesco Dolcini <francesco.dolcini@toradex.com>,
-	Nishanth Menon <nm@ti.com>, linux-arm-kernel@lists.infradead.org,
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-	Vignesh Raghavendra <vigneshr@ti.com>,
-	Tero Kristo <kristo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Charles Keepax <ckeepax@opensource.cirrus.com>,
-	Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
-Subject: Re: [PATCH v1] arm64: dts: ti: verdin-am62: dahlia: fix audio clock
-Message-ID: <20240315153322.GA3579@francesco-nb>
-References: <20240315102500.18492-1-andrejs.cainikovs@gmail.com>
+	s=arc-20240116; t=1710517837; c=relaxed/simple;
+	bh=xVuAaUPdip4/3/PGOSlC8sQofYGfDMYAqbhEVwHY4y8=;
+	h=Date:Content-Type:MIME-Version:From:To:Cc:In-Reply-To:References:
+	 Message-Id:Subject; b=cyM+XButrzsolxBhfxa8mkVgq0VW7JiWyUF4jswIn+FJm7W3RofceSwWaHWBwz8L6HaZlo2AIAAOxVU3xfhpe8U7i0lHSgoZRLFYFpL7f7sw07Qew31maZAZp/NGXueaVWyT2GfUVFN4lrwO09uSs5/UVKWDHFyfrw67IqEkdfw=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=UQ5ABuXt; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 662B4C433C7;
+	Fri, 15 Mar 2024 15:50:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710517837;
+	bh=xVuAaUPdip4/3/PGOSlC8sQofYGfDMYAqbhEVwHY4y8=;
+	h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+	b=UQ5ABuXtb6Aui9fKOITdM2oNJcgpnvut9cnqqwJpCF0U0Av8WiXbnG/jtREjsiLtY
+	 8pGv/H3dwrt86EhqnZ+sZEt4HZPaJCcbUOGxx/D6nfyKN3dxzcdDxETLZEU3CORL5d
+	 ba/cYFwkMhBGIHObWOJVJsBbWQjPJxZHBITqx+HwT8nTckQ/4TJVJ+km1ORMMD40rp
+	 w3GjkWVUAy/47IxftHgzElD9k2jUZdjyOYm0fRV+iPO2HbiSWYoyWfcD7v6lAjOvtf
+	 gTTIQoVnc6Orsb4MXNzedo8YZhNAA0VNfFkG+plMMV4W4qrv5/T0khgRAXQif0DTQy
+	 PEPt/EjExo7BQ==
+Date: Fri, 15 Mar 2024 09:50:35 -0600
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240315102500.18492-1-andrejs.cainikovs@gmail.com>
+From: Rob Herring <robh@kernel.org>
+To: Josua Mayer <josua@solid-run.com>
+Cc: Conor Dooley <conor+dt@kernel.org>, Rob Herring <robh+dt@kernel.org>, 
+ Shawn Guo <shawnguo@kernel.org>, linux-arm-kernel@lists.infradead.org, 
+ devicetree@vger.kernel.org, 
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
+ linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>
+In-Reply-To: <20240312-lx2162-rtc-v1-0-1f4cd431b1cf@solid-run.com>
+References: <20240312-lx2162-rtc-v1-0-1f4cd431b1cf@solid-run.com>
+Message-Id: <171051663090.1379808.10191493054068044105.robh@kernel.org>
+Subject: Re: [PATCH 0/2] arm64: dts: fsl-lx2162a-som: add description for
+ rtc
 
-On Fri, Mar 15, 2024 at 11:25:00AM +0100, Andrejs Cainikovs wrote:
-> From: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+
+On Tue, 12 Mar 2024 20:56:53 +0100, Josua Mayer wrote:
+> Add description for an on-som rtc that was missed in original submission
+> of device-tree.
 > 
-> In current configuration, wm8904 codec on Dahlia carrier board provides
-> distorted audio output. This happens due to reference clock is fixed to
-> 25MHz and no FLL is enabled. During playback following parameters are set:
+> Also update the clearfog reference carrier board aliases to include the
+> previously disabled i2c bus with this rtc.
+> 
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
+> ---
+> Josua Mayer (2):
+>       arm64: dts: fsl-lx2162a-som: add description for rtc
+>       arm64: dts: fsl-lx2162a-clearfog: add alias for i2c bus iic6
+> 
+>  arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts | 1 +
+>  arch/arm64/boot/dts/freescale/fsl-lx2162a-sr-som.dtsi  | 9 +++++++++
+>  2 files changed, 10 insertions(+)
+> ---
+> base-commit: e8f897f4afef0031fe618a8e94127a0934896aba
+> change-id: 20240312-lx2162-rtc-a68b6ebfcb53
+> 
+> Sincerely,
+> --
+> Josua Mayer <josua@solid-run.com>
+> 
+> 
+> 
 
-[...]
 
-> Fixes: f5bf894c865b ("arm64: dts: ti: verdin-am62: dahlia: add sound card")
-> Suggested-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-> Signed-off-by: Andrejs Cainikovs <andrejs.cainikovs@toradex.com>
+My bot found new DTB warnings on the .dts files added or changed in this
+series.
 
-Reviewed-by: Francesco Dolcini <francesco.dolcini@toradex.com>
+Some warnings may be from an existing SoC .dtsi. Or perhaps the warnings
+are fixed by another series. Ultimately, it is up to the platform
+maintainer whether these warnings are acceptable or not. No need to reply
+unless the platform maintainer has comments.
 
-Francesco
+If you already ran DT checks and didn't see these error(s), then
+make sure dt-schema is up to date:
+
+  pip3 install dtschema --upgrade
+
+
+New warnings running 'make CHECK_DTBS=y freescale/fsl-lx2162a-clearfog.dtb' for 20240312-lx2162-rtc-v1-0-1f4cd431b1cf@solid-run.com:
+
+arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dtb: i2c@2050000: Unevaluated properties are not allowed ('clock-names' was unexpected)
+	from schema $id: http://devicetree.org/schemas/i2c/i2c-imx.yaml#
+
+
+
+
 
 
