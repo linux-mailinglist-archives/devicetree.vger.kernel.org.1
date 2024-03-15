@@ -1,203 +1,145 @@
-Return-Path: <devicetree+bounces-50789-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50790-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8225F87D252
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 18:07:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E86987D286
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 18:12:43 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 2A580284C3E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:07:21 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0F202B23838
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 17:12:41 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 011EB48788;
-	Fri, 15 Mar 2024 16:58:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 554E845C1C;
+	Fri, 15 Mar 2024 17:12:35 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="gPEZYIRn"
 X-Original-To: devicetree@vger.kernel.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 8100126AF2;
-	Fri, 15 Mar 2024 16:58:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.140.110.172
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id AD3B13DBBC
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 17:12:33 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.181
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710521895; cv=none; b=PKIdMpFutzSM3kcKYg5nU9VhNoP0sqEDFmbfqq5KAk2KRdUKWV0wlomn0W56w5kzbX+NZNU27DPhZw67Or6ndV7hipcHyBuPXH7DTgERH52+KAfvfVKgsSg6zMScTpO9dZOBFCjvGex7/3Ic/7AuvB8H12prfN36pKjWggaaTzs=
+	t=1710522755; cv=none; b=oxDuH8GpswtbLtss/WQp70lOKRTOYsaKL6q3NTFbwm6BBOQpvMNH7H40KdBJ9dQRfKZQ9i0Ozz6pofk5UIglvYZ9PrwW/zlxqfJEUNpuxiNEC9CKA50DSJCAczTIi9jb2bvC+A2sOa/saVyOYjGcu2PcqGVmrUU5eKP3QMEcNpM=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710521895; c=relaxed/simple;
-	bh=h+V5x9FH3S78+aNGetznfB0xwt4NshA81QKscITTQ4Q=;
-	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
-	 Content-Type:Content-Disposition:In-Reply-To; b=aKkb7i6g9dGbBD74NHGETbn9TQl11Q8Nusbf5b4T2edvFhlIgDwjlSoQJpEncM/pWg5gIjP9z6C4tPC/pR86YV/AD30iEbF5gb/c6hGsCSQT3DHrmn5m3xCz8fzPjY28Sr1wIkQTdACEk9OHp9VZaVdcFzQmuLgoDUvlfR4LT3k=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com; spf=pass smtp.mailfrom=arm.com; arc=none smtp.client-ip=217.140.110.172
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=arm.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=arm.com
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-	by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 112C9C15;
-	Fri, 15 Mar 2024 09:58:48 -0700 (PDT)
-Received: from pluto (unknown [172.31.20.19])
-	by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 297643F762;
-	Fri, 15 Mar 2024 09:58:10 -0700 (PDT)
-Date: Fri, 15 Mar 2024 16:58:07 +0000
-From: Cristian Marussi <cristian.marussi@arm.com>
-To: "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
-Cc: Sudeep Holla <sudeep.holla@arm.com>, Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Oleksii Moisieiev <oleksii_moisieiev@epam.com>,
-	Linus Walleij <linus.walleij@linaro.org>,
-	Shawn Guo <shawnguo@kernel.org>,
-	Sascha Hauer <s.hauer@pengutronix.de>,
-	Pengutronix Kernel Team <kernel@pengutronix.de>,
-	Fabio Estevam <festevam@gmail.com>,
-	NXP Linux Team <linux-imx@nxp.com>,
-	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-	devicetree@vger.kernel.org, linux-gpio@vger.kernel.org,
-	AKASHI Takahiro <takahiro.akashi@linaro.org>,
-	Peng Fan <peng.fan@nxp.com>
-Subject: Re: [PATCH v5 3/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Message-ID: <ZfR-H_jAlm3CKTM6@pluto>
-References: <20240314-pinctrl-scmi-v5-0-b19576e557f2@nxp.com>
- <20240314-pinctrl-scmi-v5-3-b19576e557f2@nxp.com>
+	s=arc-20240116; t=1710522755; c=relaxed/simple;
+	bh=kWzlo4AaZeWtEkzCy8TJZmtsYDqVVCm/XwSPAebW3DI=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=DEqnblwugt/GmqB/szBEZYl6Lh5nzKPFJRA0+fIavpv5dOEwbDXTcDh5Ow+1J3hvrTmolgGzeoBRO71uOmcpHswRhieo5s96KRGkNjVz5hkybCjPtIGhnuDgOzbcnxSn3Ic3/WYTXdaTd+4AM0V8NmHNS4CKGegK8V94eNbE+q4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=gPEZYIRn; arc=none smtp.client-ip=209.85.160.181
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
+Received: by mail-qt1-f181.google.com with SMTP id d75a77b69052e-42f2d02fbdeso11252211cf.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 10:12:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google; t=1710522750; x=1711127550; darn=vger.kernel.org;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YBgzsheMyMt2wDXPPT0VYLjrPGEmgjQ97XLNs9yUYLg=;
+        b=gPEZYIRn5TOzx0CD9MhYMJE8IegTBXts89PPitzmyLGrdBw75k3GCrAzWUGDbcNl8Q
+         B8hQLWkxemwXLOOcU8SfGLnzXI3KlCe5CUUcVMGE8cMvskTEkEJRNCLPMKZSTqOtMgRc
+         scBeMdTNyeGA6jWvK7rI/aQCeIEXtzS4emclA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710522750; x=1711127550;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=YBgzsheMyMt2wDXPPT0VYLjrPGEmgjQ97XLNs9yUYLg=;
+        b=HCUtCZ3YH994hC2uJNyfVHlMr4C7dvyBDbKzbPfvqUCcSdzWe4I98II9NRtaTjpbAj
+         J7VcXy7bTaBlAQPC8Y47QWhCLeZPQrOPL46GngmSLNIf9vHg73RbJTgg88IsoQS3KI3w
+         fGP1auhsdRlkaMCU0bhSR17GkRxG3bVS3MVr+jrx23cJkKmHGJgfa08ZeUWk8O6l6X3G
+         EHv3guDDWxpd52AWqtcc+9pRfB8JzaLSq3uPfsYcCHckhZs9xEjFF28miJzMu4csTlY4
+         FOrGp0OGh5OVjG/BHQ9j2rCXIiDi+g+NmUat836/M7qzhFCou/eMeqZYHzOg7TnpCDBA
+         TtKA==
+X-Forwarded-Encrypted: i=1; AJvYcCUeP5hxcJGgTzbqGBlD7DLuPb269MV51H2l+uVwD//WR6IDdSdthg1Sf7VGEI8a7D3DvTUqBr/lEdZn2T8ia4I3nrIE1GYqNtQsVw==
+X-Gm-Message-State: AOJu0YyrkTAyGHovrRZQ9XXwiqx2qczbPm2jsu/rmbkkLJzFz0AT+q20
+	+ALa8ehSRPq7xrwH+XI1+nCQ+r3+eneia/oHqE50Rn8DOP7/mPvn5OZX/PjpOtNwm9ItuBZXEhM
+	=
+X-Google-Smtp-Source: AGHT+IE/w8YJq1jzq7pc44vC2pF09CxRi2caPR+L5Z3S1YKMsyxljIcNSTqIP/LizU/dyu/X17ZsKw==
+X-Received: by 2002:ac8:5a8c:0:b0:430:a20d:213 with SMTP id c12-20020ac85a8c000000b00430a20d0213mr5544948qtc.62.1710522749726;
+        Fri, 15 Mar 2024 10:12:29 -0700 (PDT)
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com. [209.85.160.173])
+        by smtp.gmail.com with ESMTPSA id j1-20020ac84401000000b0042f376886d2sm2144798qtn.36.2024.03.15.10.12.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Mar 2024 10:12:29 -0700 (PDT)
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-428405a0205so7741cf.1
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 10:12:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCVSicDUNEdTxBRS+Y8amUjWb8t+As+Uw93dGtF14c68Iv36Z3bVaoD7RQ4icOVB+BiQQb0GHHzsdMGXyNfKcRaueh88cwF8N8JlZQ==
+X-Received: by 2002:a05:622a:1706:b0:42f:a3c:2d53 with SMTP id
+ h6-20020a05622a170600b0042f0a3c2d53mr822108qtk.20.1710522747755; Fri, 15 Mar
+ 2024 10:12:27 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20240314-pinctrl-scmi-v5-3-b19576e557f2@nxp.com>
+References: <20230703085555.30285-1-quic_mkshah@quicinc.com>
+ <20230703085555.30285-4-quic_mkshah@quicinc.com> <CAD=FV=XWH+Eoa9XjDns--NSDTZHeUwTdrX_r_QZhSPpbZNwz+w@mail.gmail.com>
+ <20240315152431.sckqhc6ri63blf2g@bogus>
+In-Reply-To: <20240315152431.sckqhc6ri63blf2g@bogus>
+From: Doug Anderson <dianders@chromium.org>
+Date: Fri, 15 Mar 2024 10:12:12 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UD1nuxryvWH=Mi7E+QzMoa7xCHebY0DtZCAVmEW3ZeAg@mail.gmail.com>
+Message-ID: <CAD=FV=UD1nuxryvWH=Mi7E+QzMoa7xCHebY0DtZCAVmEW3ZeAg@mail.gmail.com>
+Subject: Re: [RESEND v4 3/3] arm64: dts: qcom: sc7280: Add power-domains for
+ cpuidle states
+To: Sudeep Holla <sudeep.holla@arm.com>
+Cc: Maulik Shah <quic_mkshah@quicinc.com>, andersson@kernel.org, ulf.hansson@linaro.org, 
+	swboyd@chromium.org, wingers@google.com, daniel.lezcano@linaro.org, 
+	rafael@kernel.org, linux-arm-msm@vger.kernel.org, 
+	linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org, jwerner@chromium.org, 
+	quic_lsrao@quicinc.com, quic_rjendra@quicinc.com, devicetree@vger.kernel.org, 
+	Abhinav Kumar <quic_abhinavk@quicinc.com>, Jessica Zhang <quic_jesszhan@quicinc.com>, 
+	Rob Clark <robdclark@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Mar 14, 2024 at 09:35:20PM +0800, Peng Fan (OSS) wrote:
-> From: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> 
-> Add basic implementation of the SCMI v3.2 pincontrol protocol.
-> 
-> Reviewed-by: Cristian Marussi <cristian.marussi@arm.com>
-> Tested-by: Cristian Marussi <cristian.marussi@arm.com>
-> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> Co-developed-by: Peng Fan <peng.fan@nxp.com>
-> Signed-off-by: Peng Fan <peng.fan@nxp.com>
-> ---
->  drivers/firmware/arm_scmi/Makefile    |   1 +
->  drivers/firmware/arm_scmi/driver.c    |   2 +
->  drivers/firmware/arm_scmi/pinctrl.c   | 908 ++++++++++++++++++++++++++++++++++
->  drivers/firmware/arm_scmi/protocols.h |   1 +
->  include/linux/scmi_protocol.h         |  75 +++
->  5 files changed, 987 insertions(+)
-> 
-> diff --git a/drivers/firmware/arm_scmi/Makefile b/drivers/firmware/arm_scmi/Makefile
-> index a7bc4796519c..8e3874ff1544 100644
-> --- a/drivers/firmware/arm_scmi/Makefile
-> +++ b/drivers/firmware/arm_scmi/Makefile
-> @@ -11,6 +11,7 @@ scmi-transport-$(CONFIG_ARM_SCMI_HAVE_MSG) += msg.o
->  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_VIRTIO) += virtio.o
->  scmi-transport-$(CONFIG_ARM_SCMI_TRANSPORT_OPTEE) += optee.o
->  scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o powercap.o
-> +scmi-protocols-y += pinctrl.o
->  scmi-module-objs := $(scmi-driver-y) $(scmi-protocols-y) $(scmi-transport-y)
->  
->  obj-$(CONFIG_ARM_SCMI_PROTOCOL) += scmi-core.o
-> diff --git a/drivers/firmware/arm_scmi/driver.c b/drivers/firmware/arm_scmi/driver.c
-> index 415e6f510057..ac2d4b19727c 100644
-> --- a/drivers/firmware/arm_scmi/driver.c
-> +++ b/drivers/firmware/arm_scmi/driver.c
-> @@ -3142,6 +3142,7 @@ static int __init scmi_driver_init(void)
->  	scmi_voltage_register();
->  	scmi_system_register();
->  	scmi_powercap_register();
-> +	scmi_pinctrl_register();
->  
->  	return platform_driver_register(&scmi_driver);
->  }
-> @@ -3159,6 +3160,7 @@ static void __exit scmi_driver_exit(void)
->  	scmi_voltage_unregister();
->  	scmi_system_unregister();
->  	scmi_powercap_unregister();
-> +	scmi_pinctrl_unregister();
->  
->  	scmi_transports_exit();
->  
-> diff --git a/drivers/firmware/arm_scmi/pinctrl.c b/drivers/firmware/arm_scmi/pinctrl.c
-> new file mode 100644
-> index 000000000000..0fcfa4269473
-> --- /dev/null
-> +++ b/drivers/firmware/arm_scmi/pinctrl.c
-> @@ -0,0 +1,908 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * System Control and Management Interface (SCMI) Pinctrl Protocol
-> + *
-> + * Copyright (C) 2024 EPAM
-> + * Copyright 2024 NXP
-> + */
-> +
-> +#include <linux/module.h>
-> +#include <linux/scmi_protocol.h>
-> +#include <linux/slab.h>
-> +
-> +#include "common.h"
-> +#include "protocols.h"
-> +
-> +/* Updated only after ALL the mandatory features for that version are merged */
-> +#define SCMI_PROTOCOL_SUPPORTED_VERSION                0x0
-> +
-> +#define REG_TYPE_BITS GENMASK(9, 8)
-> +#define REG_CONFIG GENMASK(7, 0)
-> +
-> +#define GET_GROUPS_NR(x)	le32_get_bits((x), GENMASK(31, 16))
-> +#define GET_PINS_NR(x)		le32_get_bits((x), GENMASK(15, 0))
-> +#define GET_FUNCTIONS_NR(x)	le32_get_bits((x), GENMASK(15, 0))
-> +
-> +#define EXT_NAME_FLAG(x)	le32_get_bits((x), BIT(31))
-> +#define NUM_ELEMS(x)		le32_get_bits((x), GENMASK(15, 0))
-> +
-> +#define REMAINING(x)		le32_get_bits((x), GENMASK(31, 16))
-> +#define RETURNED(x)		le32_get_bits((x), GENMASK(11, 0))
-> +
-> +enum scmi_pinctrl_protocol_cmd {
-> +	PINCTRL_ATTRIBUTES = 0x3,
-> +	PINCTRL_LIST_ASSOCIATIONS = 0x4,
-> +	PINCTRL_CONFIG_GET = 0x5,
-> +	PINCTRL_CONFIG_SET = 0x6,
+Hi,
 
-These are now PINCTRL_SETTINGS_GET and PINCTRL_SETTINGS_CONFIGURE
-with a bit of different payload and size....please also fix and rename
-the related msg descriptos down below.
+On Fri, Mar 15, 2024 at 8:24=E2=80=AFAM Sudeep Holla <sudeep.holla@arm.com>=
+ wrote:
+>
+> On Thu, Mar 14, 2024 at 04:20:59PM -0700, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Mon, Jul 3, 2023 at 1:56=E2=80=AFAM Maulik Shah <quic_mkshah@quicinc=
+.com> wrote:
+> > >
+> > > Add power-domains for cpuidle states to use psci os-initiated idle st=
+ates.
+> > >
+> > > Cc: devicetree@vger.kernel.org
+> > > Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+> > > Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sc7280.dtsi | 98 +++++++++++++++++++++-----=
+--
+> > >  1 file changed, 73 insertions(+), 25 deletions(-)
+> >
+> > FWIW, I dug up an old sc7280-herobrine board to test some other change
+> > and found it no longer booted. :( I bisected it and this is the change
+> > that breaks it. Specifically, I can make mainline boot with:
+> >
+> > git revert --no-edit db5d137e81bc # arm64: dts: qcom: sc7280: Update
+> > domain-idle-states for cluster sleep
+> > git revert --no-edit 7925ca85e956 # arm64: dts: qcom: sc7280: Add
+> > power-domains for cpuidle states
+> >
+>
+> IIRC, this could be issue with psci firmware. There were some known
+> issues which were discussed few years back but I am not aware of the
+> details and if/how it is applicable here.
+>
+> Not sure if you are getting any logs during the boot, if you do have
+> worth look at logs related to PSCI/OSI/Idle/...
 
-> +	PINCTRL_FUNCTION_SELECT = 0x7,
-> +	PINCTRL_REQUEST = 0x8,
-> +	PINCTRL_RELEASE = 0x9,
-> +	PINCTRL_NAME_GET = 0xa,
-> +	PINCTRL_SET_PERMISSIONS = 0xb
-> +};
-> +
-> +struct scmi_msg_conf_set {
-> +	__le32 identifier;
+Given that the new firmware fixes it I'm going to say it's not worth
+looking into any longer.
 
-new field:
-
-	__le32 function_id;
-
-> +	__le32 attributes;
-> +	__le32 configs[];
-> +};
-> +
-> +struct scmi_msg_conf_get {
-> +	__le32 identifier;
-> +	__le32 attributes;
-> +};
-> +
-> +struct scmi_resp_conf_get {
-
-new field
-
-	__le32 function_selected;
-
-> +	__le32 num_configs;
-
-> +	__le32 configs[];
-> +};
-> +
-
-Thanks,
-Cristian
+-Doug
 
