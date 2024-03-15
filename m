@@ -1,394 +1,168 @@
-Return-Path: <devicetree+bounces-50626-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50627-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id BCEC187C702
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 02:16:33 +0100 (CET)
+Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 8347987C7B0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 03:50:02 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id E0DDB1C21367
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 01:16:32 +0000 (UTC)
+	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 37DA6282A64
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 02:50:01 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id A4971749A;
-	Fri, 15 Mar 2024 01:16:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 23C5E79E4;
+	Fri, 15 Mar 2024 02:49:57 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b="d8xESCj1"
+	dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b="RsOq1h3A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2122.outbound.protection.outlook.com [40.107.255.122])
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12olkn2050.outbound.protection.outlook.com [40.92.23.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 3450679C1;
-	Fri, 15 Mar 2024 01:16:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.107.255.122
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 13EA7D26B;
+	Fri, 15 Mar 2024 02:49:54 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=fail smtp.client-ip=40.92.23.50
 ARC-Seal:i=2; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710465376; cv=fail; b=MPdrhT4KN19ZAjFD2vOq+vxscbOPLCmZBJR4IOEvfpsinIf4O+EuYbT2m/I4rgP+Wl4s/ZH7SlNTbMb4v/lb0+3D5i0aRu3qhlCdej+E7uxuSqJW0CfOC7U+pCWfFi6YwK1pfq963GWzMhNT5nESkFuyXDqGNg3YKv1tfCNmhco=
+	t=1710470997; cv=fail; b=paBbkpSZtUFZ2GIN6IG2ajy1y1DsUcAfg60MHue4EILx2sp+NsNplZSKvG4yqdODX3h3xfUda1aHEXnJXgQhdLQdQZ+f0pUiSc0WJ+h7/dMiZ2YufVhGWZOr4kfmtYIDorWmmJ/O4hGxFfZaWwCbnGF9Q/D34gHBfaVOlgpQS5Q=
 ARC-Message-Signature:i=2; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710465376; c=relaxed/simple;
-	bh=BJDlzc79WcZlcvAnrFoyk+NumXOSy5YYtcbOKqu4CSY=;
-	h=Message-ID:Date:Subject:To:Cc:References:From:In-Reply-To:
-	 Content-Type:MIME-Version; b=T/1mjm4K0M2kayuXrdYvkfKzI0cIbR+UnF7z6do/9IhUZhUqiv8Hedai14H8NgmajttNertAXnjsuN7uvrLgSLhDpVRJlpzEX/7rbfTmyh1F/E39mpBKYx4IdjMGFz+o84iGPu8lENk2g/v+BrODzoFkFGUsUDZHneoyOXl90UQ=
-ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com; spf=pass smtp.mailfrom=amlogic.com; dkim=pass (2048-bit key) header.d=amlogic.com header.i=@amlogic.com header.b=d8xESCj1; arc=fail smtp.client-ip=40.107.255.122
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=amlogic.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=amlogic.com
+	s=arc-20240116; t=1710470997; c=relaxed/simple;
+	bh=iiaHXj6XSmVYIAgAs9qMY0SKGfntnjuTB60IzE/QxcU=;
+	h=From:To:Cc:Subject:Date:Message-ID:Content-Type:MIME-Version; b=elRBTCrk+XRI/SC8Nqyp3qcLhl7Gpj2/79bVFr+vz5JIyFeuD7KtcQnkrHQxg9BoNatkgLiWdVpb0VBOsziw+B0tvQVIRgKvi3KQSsSgsxMqa/z2+6eLTKZQSNsmdkr8YWiGTaWv1K0/esNqfikG/FJyjDkxrlUO8tVwQFJDvcQ=
+ARC-Authentication-Results:i=2; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com; spf=pass smtp.mailfrom=outlook.com; dkim=pass (2048-bit key) header.d=outlook.com header.i=@outlook.com header.b=RsOq1h3A; arc=fail smtp.client-ip=40.92.23.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=outlook.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=outlook.com
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LSBf0PLWV37V4YypMxHzair5MFMaLok0alMrh1cIxgfO/oUc/OOsJRjZbbXvMwg3VuHQ+hmgD5Mr7B4DW/Ya54MnmeYZ/uXp9ovGUwM5uCMcPEJVK7/w1SaIbVt8H1aDsko8a0mCRTQIpwVd4uQ4jdeXJdtUzOYHuV7uN3vWsBKFzCAEcExgKuXJIm/hn90y4C6I3SCGAskh4Tt6+e1cLUDk/1Vs/yhB3bGNTpXyy8NmkL8R2MSAL1VLouUfDYIfYhzAE1dc1Hn4TvIee1pYp8dounYby/lxMTCKuCLjwTxzo/KIqiiLfCsJLw7n0L04gWnjS/uLyafh6/FPvEP/PQ==
+ b=aRU+2tIuSaLzg0BTyYHIzDiTSELPBMsbS3uJQSGHl9ejlR6W5XDzPTNv3vY8vR6srX6covw+EpIQdUe+4ILt0cCQgh+Z5DAlZ8839E82FvERevlzw+zP1/teoUG7BTHv/2dPxAO0mPC1xuJDbuIScK2pPITGyPNklhwKNWDZcV3kOiR7s3qQBnBXUscblyIMoMpUqDH0dbiXRI125MYQKi3VFopFF7ctB5xenS1ng7ls1r4KgDFM6t44faOxIRwgpkNwn+HVq32HqTTtBKcxiKEBTFHIyjpJv4+WBlEGSW9QhrCdfOW/vloG9OlAfI0bZYjegQiKGGPkf8e52aXIZQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=akZ3bMfMKXwfz972QDgrEK58fdC1JgjCxxAt2YVw8Ek=;
- b=PY4VKadluXo3jvnjphaqBT7rCi7kN4Ge0yU0RLi1ooPaOIw7Dy6T2/pn1SJ7dPyLOTP2GyoM79z5SK3QUMoCRj5n0UX8ctfvIATxwqhA3ojxr+cd+OT1bgENQxPnQvaoJwpTIYUeQM6t2nJBVq/RTfRVlwpid+X3xf/DfZcKzxks76RmJ1Y+jq3DApoPFsfSG14prZYiYHSAUnJS18+Ji8YBdHKmt6x5uQKGmYtIJzx6/IkRqIUgNp5AdVbJHdGQ0X7lDg1uGMBR9B/YoJYKCVDdSprLcYyFZeXuQ5X3JiIcbz/12Sd3b6p1/1nccLcjr2NGvSuso3RpQTgdzBLxWQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ bh=++HTRglb8IQZ4xqZes0LCL+1/McAGNYpNXaCnt7+Z1A=;
+ b=ZU7El86EPAoB0Ntn+jzoUcxTQjJvi4HXsdkyx8ea1z/dFIwqsB1pBABM1mNovfuYdWRslVnZyBduV0KckWPtUlv42UMcRcCwb5/Sc9w23pueKz5WGqGhQPskHKEVA3CP7UF3PaXYYmOZZWGjiYRYw5Z2C17gm52xooM1fAsWUfUi8W0nj3BOYf11Vu/78f0EnX0WWXtTtS6OkLVlVid07MF7Z3+iMvyXhNnvAH5C7B8Cn1nETPKhuxw5wo8cqGpQjuiKpPmBzPIX9E/4N/3M79dXfZ67W1yKhsgyjqLV0UeWibFOqehgCY6Asdgi/gS4HeOAk9LdcxUC/rJTI9ceSA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
+ dkim=none; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=outlook.com;
  s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=akZ3bMfMKXwfz972QDgrEK58fdC1JgjCxxAt2YVw8Ek=;
- b=d8xESCj1yPiTdS5woUYKGofksHVqpOdCM71xrez1e7MZgW99ZJs70o81F9BflEayGfgw8QT2j0vUmt7bg7oWaTh8CKNM6g5UYnwUeiHFIILpn9M/phEaPLuCaaEM+wtGEdqlNWTL+XeTGgKVHaaIkTYkJsYmDms7O+I2+OmPkdGrI4AtmPrczLpNpyyf3qgbWc9cgPvXjTVu/t/GnJ/SiRcyeIPYD2iI5VTmehx+QV05MjOhzgf3GAam19zEEFbtn5jlkAnUXP90cxSoI49oKK66O5JclRTPOc3EBAhB5d3rbYIz6xr1EtySEDIcDw+RVOGgE+sWHT01qlkb4BX1vg==
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SI2PR03MB6712.apcprd03.prod.outlook.com (2603:1096:4:1ec::7) with
+ bh=++HTRglb8IQZ4xqZes0LCL+1/McAGNYpNXaCnt7+Z1A=;
+ b=RsOq1h3A7Aq4IvPi0Kh0Mtiw4U/v9leMcgRJcVa2gS7sboiwN976BvQzI3B69ni8NUE3gUEuxjnTZHrFj0XwnOH7h9ejo3KUXdiM0mq2KelGI2WxfKxKf9btU6sJXn3gl6R+tLxEH/8CuigC8LqYDG7i0ec3geBP2Rhq+hvmCJ3ENhuvMFpwfxX87uzZPsNLPRrjic4ETfPt1K+wLstoqsYv0ANdE+CRbTlkGnVtm4DQji8uzkwAfTqOr29IIMVbxS+o954sr0sq4CreFvb/fVgsR5N19yXHhCW02oEAAKVHW5ix6555a+xME64Pkf70YZNhZN2oJZ8PUPapp/+PYg==
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com (2603:10b6:208:3af::19)
+ by DS7PR20MB6264.namprd20.prod.outlook.com (2603:10b6:8:ee::17) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7362.35; Fri, 15 Mar
- 2024 01:16:09 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::5198:1b2f:8889:17b]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::5198:1b2f:8889:17b%4]) with mapi id 15.20.7362.035; Fri, 15 Mar 2024
- 01:16:09 +0000
-Message-ID: <f9c380bf-05c4-4a24-9d42-5ad24b181e66@amlogic.com>
-Date: Fri, 15 Mar 2024 09:16:03 +0800
-User-Agent: Mozilla Thunderbird
-Subject: Re: [DMARC error][DKIM error] [PATCH 3/4] arm64: dts: add support for
- A4 based Amlogic BA400
-Content-Language: en-US
-To: neil.armstrong@linaro.org, Dmitry Rokosov <ddrokosov@salutedevices.com>,
- Xianwei Zhao via B4 Relay <devnull+xianwei.zhao.amlogic.com@kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Jerome Brunet <jbrunet@baylibre.com>, Kevin Hilman <khilman@baylibre.com>,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-amlogic@lists.infradead.org
-References: <20240312-basic_dt-v1-0-7f11df3a0896@amlogic.com>
- <20240312-basic_dt-v1-3-7f11df3a0896@amlogic.com>
- <20240313095311.dxrr7gvt4t3gwoho@CAB-WSD-L081021>
- <74f96887-572d-47eb-bce4-9d61ec51b88d@amlogic.com>
- <024b8567-af4c-4522-9b9d-594c42930442@linaro.org>
-From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <024b8567-af4c-4522-9b9d-594c42930442@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7386.20; Fri, 15 Mar
+ 2024 02:49:52 +0000
+Received: from IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::8615:efe2:7c8e:2041]) by IA1PR20MB4953.namprd20.prod.outlook.com
+ ([fe80::8615:efe2:7c8e:2041%3]) with mapi id 15.20.7386.021; Fri, 15 Mar 2024
+ 02:49:52 +0000
+From: Inochi Amaoto <inochiama@outlook.com>
+To: Vinod Koul <vkoul@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Inochi Amaoto <inochiama@outlook.com>
+Cc: Chen Wang <unicorn_wang@outlook.com>,
+	Jisheng Zhang <jszhang@kernel.org>,
+	Liu Gui <kenneth.liu@sophgo.com>,
+	Jingbao Qiu <qiujingbao.dlmu@gmail.com>,
+	dlan@gentoo.org,
+	dmaengine@vger.kernel.org,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	linux-riscv@lists.infradead.org
+Subject: [PATCH v3 0/4]  riscv: sophgo: add dmamux support for Sophgo CV1800/SG2000 SoCs
+Date: Fri, 15 Mar 2024 10:49:18 +0800
+Message-ID:
+ <IA1PR20MB4953E7BB0B270157C8D1DDACBB282@IA1PR20MB4953.namprd20.prod.outlook.com>
+X-Mailer: git-send-email 2.44.0
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SG2PR01CA0179.apcprd01.prod.exchangelabs.com
- (2603:1096:4:28::35) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+Content-Type: text/plain
+X-TMN: [RMTaEUju1Hd/8fZly8umHH9+L0ArM0byaDcpbBNYi4c=]
+X-ClientProxiedBy: TYCP286CA0186.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:382::14) To IA1PR20MB4953.namprd20.prod.outlook.com
+ (2603:10b6:208:3af::19)
+X-Microsoft-Original-Message-ID:
+ <20240315024919.515354-1-inochiama@outlook.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SI2PR03MB6712:EE_
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
+X-MS-TrafficTypeDiagnostic: IA1PR20MB4953:EE_|DS7PR20MB6264:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6009b91b-2f06-4f6e-763a-08dc449a96b1
 X-Microsoft-Antispam: BCL:0;
 X-Microsoft-Antispam-Message-Info:
-	qeSKD8itlxWKNwYcrgDe99ggnMcDUY56+qnuWH9FEXVTq+VCuymnSrp5wmTf1r8TfIGxfhPrkAOUjUk6pfZ7QrgbYkQjHYQkxQsEdPyaWkRZH1iVVJ3ewxFZ8I/zbsTxTr1eQXjbTA+8mabqvymcCK6L6qN+AHf/E5PM+2Spw/CqxRtncX8VUbSK4gEdavrtkpXnut3Ro1HswzcWaCE7ekOvnGE7IwRmtDgNV9EBpAQx4TClM/Ly3pccDwTkIwJUNCn4KmOrGm+IGWSRWIW4IVAKa5/5XVGxLzx02ZRvABwxHnyhLiljFrJl+Dc6fIWjeDRoXuf7GeOJQdJTpGuuRtWTipNfY4XuiOV9RZjmT1FTvaumboFP0VFp8Nk1mz2qp+0U/HHA8U6OSC5onVY8vqSmJQ+g8403v7mIFLv2O31qr7CqdcspQC1ucEKZgdkePkOSyFKmtCKAXiODvDJRgnKT0RaDOzPPgjVyNV7wXYlxo29EA3p9ULl1PaLe4MF28IEIzlodWDowZvxIOobE4UyyvFNBWuLQ3dIqr5sPOxTIxIOTo3SBr9VA067EsrXyqWeK2c+7/3gIozUQ3RrrmUqBYHxKgEvPV3Z7FvRxL0M=
-X-Forefront-Antispam-Report:
-	CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230031)(7416005)(1800799015)(366007)(376005);DIR:OUT;SFP:1102;
+	1p3BB7+yLoIzjclHsEdezOXCQAnm5EO+v8V4kWR7ojj5Op8bhxeV/kjbFrTJDsx7oBkYQtS1/7BdBlYq0F6dOQo0zvOu5ypBuSSOYjcY/PrFI0UCTcnIl7CO8pA4850q32rQzW6SxH7pQaKz/w9thzhSjm0R42N/lsrZE/GJnVrT4xjY2jSYGgCDhDk9lwKyhRrw680Yp5ontKP+i6xTPPcOVC9u/oIzxrbsWgdNfNLGRuYcpXoElF1etXc5AFCKgD30OS1tmGsE5utK9G9KK/6Jbn9cXEwz1W5zkeDzbbzmZJGS1gPnNaBtx6B5VB1TnhNe/aMts2ykXmszyLbyoJNaoU1/byQtcqnDq3oWVlQsZGWAw0QJ9sZXKccvYl3Gpy5jsq2RVVW11mlxHZDp25UMU3gLVN/hKoAgFXbRwQRLy0aTeEFrWAeF9rNRVHvwhQRz05ePPzFIlDNwDd4jdR1KJ1ZWTH2LYuLdYCOoQjsBZAL/JZfApwp4ZmQwEb3507QqPbIdyY+cvxmeoKhN6nwGyhigQFZ1801njhc+4f2kFkljbsHs8jOHl65tPR7lgRQVEwCDlCkEUAW6XB0HWxgXriPpEdFYq3/gN2qqcPCkspS/88WK0UAroAhu9T0oqS9/hB7i8cA3+jJMjXOdofVK9BHasYXm2Rwy6qfDzoEDZH6n8M+1junn6VeXbfFH
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
 X-MS-Exchange-AntiSpam-MessageData-0:
-	=?utf-8?B?WjRhT3pHeEdlSnhDQ1c5VmNVQWR1YklSNG00eTZnR0poUnVDRG5TS0krdXBh?=
- =?utf-8?B?dnZaQVRabGJyY3RwK2x1VU1PWHcxMHg0dGU3ajlKV3d1Z3JTKzFRbVVUOHlw?=
- =?utf-8?B?RGs3MEZOS1RkL3lHZkZmOEkxMFJzN1pyU1lhVHRLMzhhRkVUTVY2WS95enow?=
- =?utf-8?B?dzkvUm1EMGUxZkRLUmRXcHJsSEhkM2QxTnEwdS8zdWtXUmY5b0hDZ2MxOU9R?=
- =?utf-8?B?UUdIbHAvRktrK3ZINk0wbTRMcE03NVFUeDNDdFNsTVhhR1dOTkRVcFRLTzJj?=
- =?utf-8?B?R1NLZFMwamdiWTJEYjkyNXoxVG4wcXZqK3N3WGtNRFhld090QjRZYWRJSUZz?=
- =?utf-8?B?UXpPVE5PT25sUmNjZ0VBZEt0VnU1MHk5YlM3emg2dTN1SkZpQittMVlKY3lI?=
- =?utf-8?B?VEY1OGJlM21BWXdFY2txL0g2R3FUQ1ovU1hzajdZWUNOQ3ZmMnNlTnlPLzB0?=
- =?utf-8?B?MThSNjVLSHoxcGUrK0lUeTY5S2FNNkt1TGJobzFhQWF5UDhtZ29RTEljWXlK?=
- =?utf-8?B?SThvUW8wVjlVNkRGWUFJSmtEaG5DVHg0R1VDcHZXYmJtUi9mR1dPNnVRYWg1?=
- =?utf-8?B?MWx4b3FkMCtCY2lDblF2VEZkcXVKSkNpVEdPcU1LUlBlb1NPb040bE9Fbjlk?=
- =?utf-8?B?NFo0T2JuSjdTaDlLSFYrbzlubGxwQ1FYd0lSMU14TGwwc2EzSU0xNEdhTU9V?=
- =?utf-8?B?QzJEOW12YzkrelVoNjEzcGZhQzNEd0RUem01OE9hSm1XUVJiZWcwZDBSRGlq?=
- =?utf-8?B?L0c2VjR1eFB5bDFISlpieEVlYXoxU0kva2RFdTN6TFZCZzIrMXVUTndLcE4x?=
- =?utf-8?B?MGhCU3h6SnhpQ2xuMmVLTmNqTjcyYTZYYWZhOERaWlFYU3g4TUtQM1VvSjZ5?=
- =?utf-8?B?aFFKS1hmQ0VaRDBGRXYwWlVUaUFlNlRBMVlSWTBvYWJtZ2ErWDNxTmxRL2hV?=
- =?utf-8?B?L3lHcGo3NVJqOERTMXJubm1tWjdZWVJHR2JJdnNRclk0d1NuOEdNV0x2bWZt?=
- =?utf-8?B?ZGVSQWZmRXp4ckd1STNaU0lleFI2bURRcDJlWnA2OU5lYUEvQk4vMk1vL1p1?=
- =?utf-8?B?QUx4T2FHUXNOVWJ5REd6R3E5NFNuaXU5YXBqeGdhaW54NUhoYXFWTlRYY3k4?=
- =?utf-8?B?VEtaNGJ1M01NRFdRLzFsWWgxVWJDWEtZbmhXVm53cXYrQXFxalVjK1B0SFY1?=
- =?utf-8?B?SkdhUzB3Y0tDNndsNm4xWTZSaVh4ZjBVRzZpK0g3a1FobVgvMzE4S1lsdHRK?=
- =?utf-8?B?UXVoNGVtLzNEWHBjd0h4TkZrWDc4NjRjaXhqZ3VpRWt0eGRrdHllZUpiUy9s?=
- =?utf-8?B?c1hrRnE1SW14UzVWU0hQM0NGT1EwNXd6YjBIUXBUZ0NURVpxMWQ3dGVBZ1Jm?=
- =?utf-8?B?Ry8vZ3V2UW5zNWFqcndEdmJ0RC91ZG82VnJXWm5XTEZKUks3bmNidEhCWW94?=
- =?utf-8?B?MUdVV3Z5VVAzd2hVellYdkhpdExLRmo0Z0lmaTVtZms4VHQyZHBkSUVkRFF1?=
- =?utf-8?B?dHk5U0RUZGNNV3JtajVSbnpERGo1UEJrMEtJLzd5emFCN0lPMnl5Z2c2bElq?=
- =?utf-8?B?Q0xIc2Z1NjMySFNVQi82aWVWZEwvWU50U0RGeDR3QzliczJtdGZDZEtZRzdQ?=
- =?utf-8?B?Z01mTmNUL2FXSXVSM09NcUhTNHVxUlZ4SDdrQjhhQWswMEdqMENOcWs3djQw?=
- =?utf-8?B?TmpXMHdWQXFZZm54cFY3VzNzWW1oUUhSajJHNkwwblRvUDFVZEQ1YjZKZGVD?=
- =?utf-8?B?NFh1bmJiWU9HR3VhWWZoUmxRNklWTTlZQ2tXYnJnMkZINXdGaWdVNm5BZWI1?=
- =?utf-8?B?bnV5QW1CT0txZVRiUmtreXEvZWFlUm9iNUxnSE5uVzlJNzZKQnFqKzBzK1hh?=
- =?utf-8?B?dzdZYnVjSFFzYjByYnRodFB5OW43VFI3Uk04WHQ5blZNcnhWb0NzcTBvOXNl?=
- =?utf-8?B?Qzdpa05nYTh2bmsvbWpHQUZodldGNTc5aW91Z1d3VUJPL3BhT0ZmaEpXZ1pW?=
- =?utf-8?B?L1J5RklFR2p3Z0cwR0VQSEk4d2pKUlZoQUx0TXdjMDJuc0thMExEWWpEZVp5?=
- =?utf-8?B?VkVYU1lseEZ3UzZXZFZkWmNsMlRQVjh3NWUyWk4ydHhPenI3d2d3bHhKVUVV?=
- =?utf-8?B?RjlnTzdpZ0VVL3AzQVZFaFA5dTA5RkRpK3RZNUxmS3o0eDhWVFJ0N3krWDJ1?=
- =?utf-8?B?TkE9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ec79e54f-e4ec-4d5e-bbf9-08dc448d7eda
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+	=?us-ascii?Q?GXAYvrNrAQMZVa2YMcBzeEVKmqTlE5L1LJ6g9UMbsfpErUE27re9TsgEax7N?=
+ =?us-ascii?Q?KNT5vK0RFAMAL05N/M9U6wuXoq2NDGUcxaSUiy0hVAXynORbYhtCs0V/9B1W?=
+ =?us-ascii?Q?mn6EPAq9OLBqUlXeTWXacMIvCyOVOUdp2PVst6Q4qNNH25MBcaAruPbWFf3c?=
+ =?us-ascii?Q?0UrlZE+mq9mSahcJQvfQIP5ZhIq2rRgUds1EnaVGW1KOcJ3V1OmzYw4v1gRd?=
+ =?us-ascii?Q?lKydGf6XHU4PriFBNd2VTPBsPWeP9p+LkG5N0c+/tgyF0V3gt8F+o6x1XJy2?=
+ =?us-ascii?Q?OdMwj8KvaWgZkrsruEFctjzSv3SEX1yPecK6xj96e3992nMYMs0Xwu7UaMgz?=
+ =?us-ascii?Q?bULIEAu2QxC5zYK5Ir+gDpuWUEq5nINC1rU4DwyB+vmCn2WBvuKltgQ+84aJ?=
+ =?us-ascii?Q?cj/h2NloQSj6fLmbbUQqNXI2mxdGyLOBkVB4A/8WhaUB5RGhXSrTRWf158Il?=
+ =?us-ascii?Q?r/uNVjxqTLYrxaP78A4msCnaKhKQZufM6xKZD82+VvTRIvbqqIL8ZbsZxUBV?=
+ =?us-ascii?Q?uoY+k3SHJv/B0dxgEootTCAFIcXHUy83IWQWLbgrtUjcIfq4NU2J774gkg86?=
+ =?us-ascii?Q?EPe1ZjDvqB5ZyKTzK2UkwVhDXSaR52qkTvsvYcrovnKU5AKVSPuqQpdiCX6W?=
+ =?us-ascii?Q?woC9XKDl0kC3gaCAw8Ti9Fn+MK5mFSC9p/61Mfd5YmBac35pY8x0gHS8uDGw?=
+ =?us-ascii?Q?ik0DPFMsuxfvr+gKicHMBFkesM76DEMLCPgSHtdWciNOtKyUdjBUuhhfxUiE?=
+ =?us-ascii?Q?Cgg+DV8CTpxhD25x+9dRm9VB6/y8y/ivna5OX6iHEa1aBq43jKVCLzm53DyN?=
+ =?us-ascii?Q?AYayPpIPZu04MfKMrQZIMXdxXvXJikZLaZFN0NMaRAcfTrzeU1eOZzlFVWQ+?=
+ =?us-ascii?Q?nHYoxA+HSdZsVQygoncJjqhHtKyS8J8X1LqE698L8L/boDt1KK1vtfp6qaAM?=
+ =?us-ascii?Q?XAzxYncKLcCFsMFPaNeDZMYiAHowRh19XqNPD1uHEbK815GqfpU7284D+y/G?=
+ =?us-ascii?Q?w6ZXEyCiHMVcoDDUJuAWb58Sa0IBTEzHj4L70kLPDi4tbKXvE5QIbaSWx5c7?=
+ =?us-ascii?Q?43ur4Bof8gNMwWYXJycMKOv9vHxMKwtS3gXLVuF1nxHCOIIQDQ87z05SWhtJ?=
+ =?us-ascii?Q?KSa5GMKNNCZcwGrXFNRVuxcU+Ka6Si5id2BVXlSa5k/Z3pU5Rz6csi5ZvR9k?=
+ =?us-ascii?Q?wyU5y3x5+cYqm8zw7oESD4P8XMTaayy1Ry13lDY23LYdCH590wNVr+7ZtGdv?=
+ =?us-ascii?Q?FV+DLOYYC/V6P/lAVVEQ?=
+X-OriginatorOrg: outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6009b91b-2f06-4f6e-763a-08dc449a96b1
+X-MS-Exchange-CrossTenant-AuthSource: IA1PR20MB4953.namprd20.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 01:16:09.0924
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Mar 2024 02:49:52.5657
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nQRJfz8P0vZa76hPCNdmOpbRHnLO+EKjCoRTWa9RiLu8j8pGjb0TjzHQk/h/vehKNm22UeP/vk+CF04kGdhk9dtFMM883EHqhImaJcJ9Rzs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SI2PR03MB6712
+X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
+X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg:
+	00000000-0000-0000-0000-000000000000
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR20MB6264
 
-Hi Neil,
-   Thanks for your review.
+Add dma multiplexer support for the Sophgo CV1800/SG2000 SoCs.
 
-On 2024/3/14 17:04, Neil Armstrong wrote:
-> [ EXTERNAL EMAIL ]
-> 
-> On 14/03/2024 06:19, Xianwei Zhao wrote:
->> Hi Dmitry,
->>     Thanks for your review.
->>
->> On 2024/3/13 17:53, Dmitry Rokosov wrote:
->>> [????????? ddrokosov@salutedevices.com ????????? 
->>> https://aka.ms/LearnAboutSenderIdentification?????????????]
->>>
->>> [ EXTERNAL EMAIL ]
->>>
->>> Hello Xianwei,
->>>
->>> On Tue, Mar 12, 2024 at 05:18:59PM +0800, Xianwei Zhao via B4 Relay 
->>> wrote:
->>>> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>>
->>>> Amlogic A4 is an application processor designed for smart audio
->>>> and IoT applications.
->>>>
->>>> Add basic support for the A4 based Amlogic BA400 board, which describes
->>>> the following components: CPU, GIC, IRQ, Timer and UART.
->>>> These are capable of booting up into the serial console.
->>>>
->>>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->>>> ---
->>>>   arch/arm64/boot/dts/amlogic/Makefile               |  1 +
->>>>   .../boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts   | 43 ++++++++++
->>>>   arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi        | 99 
->>>> ++++++++++++++++++++++
->>>>   3 files changed, 143 insertions(+)
->>>>
->>>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile 
->>>> b/arch/arm64/boot/dts/amlogic/Makefile
->>>> index 1ab160bf928a..9a50ec11bb8d 100644
->>>> --- a/arch/arm64/boot/dts/amlogic/Makefile
->>>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
->>>> @@ -1,4 +1,5 @@
->>>>   # SPDX-License-Identifier: GPL-2.0
->>>> +dtb-$(CONFIG_ARCH_MESON) += amlogic-a4-a113l2-ba400.dtb
->>>>   dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
->>>>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
->>>>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
->>>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts 
->>>> b/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts
->>>> new file mode 100644
->>>> index 000000000000..60f9f23858c6
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4-a113l2-ba400.dts
->>>> @@ -0,0 +1,43 @@
->>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>> +/*
->>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>>> + */
->>>> +
->>>> +/dts-v1/;
->>>> +
->>>> +#include "amlogic-a4.dtsi"
->>>> +
->>>> +/ {
->>>> +     model = "Amlogic A113L2 ba400 Development Board";
->>>> +     compatible = "amlogic,ba400","amlogic,a4";
->>>> +     interrupt-parent = <&gic>;
->>>> +     #address-cells = <2>;
->>>> +     #size-cells = <2>;
->>>> +
->>>> +     aliases {
->>>> +             serial0 = &uart_b;
->>>> +     };
->>>> +
->>>> +     memory@0 {
->>>> +             device_type = "memory";
->>>> +             reg = <0x0 0x0 0x0 0x40000000>;
->>>> +     };
->>>> +
->>>> +     reserved-memory {
->>>> +             #address-cells = <2>;
->>>> +             #size-cells = <2>;
->>>> +             ranges;
->>>> +
->>>> +             /* 52 MiB reserved for ARM Trusted Firmware */
->>>> +             secmon_reserved:linux,secmon {
->>>> +                     compatible = "shared-dma-pool";
->>>> +                     no-map;
->>>> +                     alignment = <0x0 0x400000>;
->>>> +                     reg = <0x0 0x05000000 0x0 0x3400000>;
->>>> +             };
->>>> +     };
->>>> +};
->>>> +
->>>> +&uart_b {
->>>> +     status = "okay";
->>>> +};
->>>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi 
->>>> b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
->>>> new file mode 100644
->>>> index 000000000000..7e8745010b52
->>>> --- /dev/null
->>>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-a4.dtsi
->>>> @@ -0,0 +1,99 @@
->>>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
->>>> +/*
->>>> + * Copyright (c) 2024 Amlogic, Inc. All rights reserved.
->>>> + */
->>>> +
->>>> +#include <dt-bindings/interrupt-controller/irq.h>
->>>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->>>> +#include <dt-bindings/gpio/gpio.h>
->>>> +/ {
->>>> +     cpus {
->>>> +             #address-cells = <2>;
->>>> +             #size-cells = <0>;
->>>> +
->>>> +             cpu0: cpu@0 {
->>>> +                     device_type = "cpu";
->>>> +                     compatible = "arm,cortex-a53";
->>>> +                     reg = <0x0 0x0>;
->>>> +                     enable-method = "psci";
->>>> +             };
->>>> +
->>>> +             cpu1: cpu@1 {
->>>> +                     device_type = "cpu";
->>>> +                     compatible = "arm,cortex-a53";
->>>> +                     reg = <0x0 0x1>;
->>>> +                     enable-method = "psci";
->>>> +             };
->>>> +
->>>> +             cpu2: cpu@2 {
->>>> +                     device_type = "cpu";
->>>> +                     compatible = "arm,cortex-a53";
->>>> +                     reg = <0x0 0x2>;
->>>> +                     enable-method = "psci";
->>>> +             };
->>>> +
->>>> +             cpu3: cpu@3 {
->>>> +                     device_type = "cpu";
->>>> +                     compatible = "arm,cortex-a53";
->>>> +                     reg = <0x0 0x3>;
->>>> +                     enable-method = "psci";
->>>> +             };
->>>> +     };
->>>> +
->>>> +     timer {
->>>> +             compatible = "arm,armv8-timer";
->>>> +             interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | 
->>>> IRQ_TYPE_LEVEL_LOW)>,
->>>> +                          <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | 
->>>> IRQ_TYPE_LEVEL_LOW)>,
->>>> +                          <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | 
->>>> IRQ_TYPE_LEVEL_LOW)>,
->>>> +                          <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | 
->>>> IRQ_TYPE_LEVEL_LOW)>;
->>>> +     };
->>>> +
->>>> +     psci {
->>>> +             compatible = "arm,psci-0.2";
->>>> +             method = "smc";
->>>> +     };
->>>> +
->>>> +     xtal: xtal-clk {
->>>> +             compatible = "fixed-clock";
->>>> +             clock-frequency = <24000000>;
->>>> +             clock-output-names = "xtal";
->>>> +             #clock-cells = <0>;
->>>> +     };
->>>> +
->>>> +     soc {
->>>> +             compatible = "simple-bus";
->>>> +             #address-cells = <2>;
->>>> +             #size-cells = <2>;
->>>> +             ranges;
->>>> +
->>>> +             gic: interrupt-controller@fff01000 {
->>>> +                     compatible = "arm,gic-400";
->>>> +                     #interrupt-cells = <3>;
->>>> +                     #address-cells = <0>;
->>>> +                     interrupt-controller;
->>>> +                     reg = <0x0 0xfff01000 0 0x1000>,
->>>> +                           <0x0 0xfff02000 0 0x2000>,
->>>> +                           <0x0 0xfff04000 0 0x2000>,
->>>> +                           <0x0 0xfff06000 0 0x2000>;
->>>> +                     interrupts = <GIC_PPI 9 
->>>> (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
->>>> +             };
->>>> +
->>>> +             apb@fe000000 {
->>>> +                     compatible = "simple-bus";
->>>> +                     reg = <0x0 0xfe000000 0x0 0x480000>;
->>>> +                     #address-cells = <2>;
->>>> +                     #size-cells = <2>;
->>>> +                     ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
->>>> +
->>>> +                     uart_b: serial@7a000 {
->>>> +                             compatible = "amlogic,meson-s4-uart",
->>>
->>> If I'm not wrong, you need to create dt-binding alias for meson-a4-uart
->>> and use it as 3rd compatible string.
-> 
-> Please add an A4 and A5 compatible using amlogic,meson-s4-uart as fallback,
-> and drop the ao-uart since there's no more AO uart.
-> 
-> Follow how it was done for the T7 in 
-> Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> 
-> The amlogic,meson-s4-uart will provide an earlycon like ao-uart did.
-> 
-Will do.
-> Thanks,
-> Neil
-> 
->>>
->> On UART module, A4 and A5 SoCs exactly the same as S4. There's no 
->> difference.
->>>> +                                          "amlogic,meson-ao-uart";
->>>> +                             reg = <0x0 0x7a000 0x0 0x18>;
->>>> +                             interrupts = <GIC_SPI 169 
->>>> IRQ_TYPE_EDGE_RISING>;
->>>> +                             clocks = <&xtal>, <&xtal>, <&xtal>;
->>>> +                             clock-names = "xtal", "pclk", "baud";
->>>> +                             status = "disabled";
->>>> +                     };
->>>> +             };
->>>> +     };
->>>> +};
->>>>
->>>> -- 
->>>> 2.37.1
->>>>
->>>>
->>>> _______________________________________________
->>>> linux-amlogic mailing list
->>>> linux-amlogic@lists.infradead.org
->>>> http://lists.infradead.org/mailman/listinfo/linux-amlogic
->>>
->>> -- 
->>> Thank you,
->>> Dmitry
-> 
+The patch include the following patch:
+http://lore.kernel.org/linux-riscv/PH7PR20MB4962F822A64CB127911978AABB4E2@PH7PR20MB4962.namprd20.prod.outlook.com/
+
+Changed from v2:
+1. add reg property of dmamux node in the binding of patch 2
+
+Changed from v1:
+1. fix wrong title of patch 2.
+
+Inochi Amaoto (4):
+  dt-bindings: dmaengine: Add dmamux for CV18XX/SG200X series SoC
+  dt-bindings: soc: sophgo: Add top misc controller of CV18XX/SG200X
+    series SoC
+  soc/sophgo: add top sysctrl layout file for CV18XX/SG200X
+  dmaengine: add driver for Sophgo CV18XX/SG200X dmamux
+
+ .../bindings/dma/sophgo,cv1800-dmamux.yaml    |  44 ++++
+ .../soc/sophgo/sophgo,cv1800-top-syscon.yaml  |  49 ++++
+ drivers/dma/Kconfig                           |   9 +
+ drivers/dma/Makefile                          |   1 +
+ drivers/dma/cv1800-dmamux.c                   | 232 ++++++++++++++++++
+ include/dt-bindings/dma/cv1800-dma.h          |  55 +++++
+ include/soc/sophgo/cv1800-sysctl.h            |  30 +++
+ 7 files changed, 420 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/sophgo,cv1800-dmamux.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/sophgo/sophgo,cv1800-top-syscon.yaml
+ create mode 100644 drivers/dma/cv1800-dmamux.c
+ create mode 100644 include/dt-bindings/dma/cv1800-dma.h
+ create mode 100644 include/soc/sophgo/cv1800-sysctl.h
+
+--
+2.44.0
+
 
