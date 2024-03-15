@@ -1,107 +1,127 @@
-Return-Path: <devicetree+bounces-50665-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50667-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2881887CA59
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 10:04:46 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 255C187CA65
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 10:07:10 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id ACB0CB20D8E
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 09:04:43 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id BB3B01F22795
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 09:07:09 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id ECBAF1759F;
-	Fri, 15 Mar 2024 09:04:38 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id AB62817991;
+	Fri, 15 Mar 2024 09:07:02 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="CbceiDz9"
 X-Original-To: devicetree@vger.kernel.org
-Received: from sraa.de (sraa.de [85.214.240.192])
+Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 285F11755A;
-	Fri, 15 Mar 2024 09:04:37 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=85.214.240.192
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 1FB77175B6;
+	Fri, 15 Mar 2024 09:07:00 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710493478; cv=none; b=OTDDdP+0HvGf3VXfz6sb/ojuj2mfSnRJjprjQwVkbgJ044kSIPRo7U/FWeGb8rsn9e/n3Wn/wquB+sarRrJGI4Dmr5wJB62GrUDz2d+M7JXAU/AQY0uI6TVyMeJRa6BidDcHsqw/eFqoCjJ8u4xEqN+vtEjG+B8YdO6tdwC+y48=
+	t=1710493622; cv=none; b=f9mTWq2oY1H2qNT6GM2EV4LPnXH/Vlm+IpHDVp2AZX3sJj/HO78NOeuBh33w7FiU1kKjmq319XrecFH7Se9Z1KjfObGvWu4v4ycj5UjsOvDpaXtavXoG223mLUwXoZs0vjKhfDZ462DJknxLpg3gGah0N6oO3PDItFdc9DB2GI8=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710493478; c=relaxed/simple;
-	bh=VvKK+nrRhfanO9cwyxylJkFvUB7PNDc1iHj40Rjr+Z0=;
-	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=g9+1e//DvRK3gSSIlpJE6gIlvg7SdEA7C/JFsCA3nqHoL3busWCzVSkYFfwYZ67BPkHk5NLfL3VRHs/yDIuoYw2Jqh2MA2hDgoBuzkV05BnqARJSTk7aELmFyBbgVo0o3IEZ/EPBp6QDVi+eOLE07Yp/+FyFj41SGNuffvXNbuA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sraa.de; spf=pass smtp.mailfrom=sraa.de; arc=none smtp.client-ip=85.214.240.192
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=sraa.de
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=sraa.de
-Received: from c-bda170d5.017-30-6c756e3.bbcust.telenor.se ([213.112.161.189] helo=senor0lunlx0336.eu.sony.com)
-	by sraa.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-	(Exim 4.94.2)
-	(envelope-from <basti@sraa.de>)
-	id 1rl3UP-006Y55-D0; Fri, 15 Mar 2024 10:04:33 +0100
-Date: Fri, 15 Mar 2024 10:04:31 +0100
-From: Sebastian Raase <linux@sraa.de>
-To: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc: Konrad Dybcio <konrad.dybcio@linaro.org>, marijn.suijten@somainline.org,
- Bjorn Andersson <andersson@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley
- <conor+dt@kernel.org>, linux-arm-msm@vger.kernel.org,
- devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm630-nile: add pinctrl for
- camera key
-Message-ID: <20240315100431.1e51b9a8@senor0lunlx0336.eu.sony.com>
-In-Reply-To: <ae04d6e9-1eb3-4d71-b7f1-c0fb3bddcfe8@linaro.org>
-References: <20240314200037.549206-1-linux@sraa.de>
-	<20240314232043.1441395-1-linux@sraa.de>
-	<359dafcc-4774-4ff4-8df0-03e3641082e5@linaro.org>
-	<ae04d6e9-1eb3-4d71-b7f1-c0fb3bddcfe8@linaro.org>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+	s=arc-20240116; t=1710493622; c=relaxed/simple;
+	bh=1Ws2PEVK12K1rvEMVWjC/34838lGqG3dLqUeO2pdz+A=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=eYAuQAdzZI4sy84swY5kPtEvjqRQ+lqFu62kJVIiH/5+ywLugkHVrRULutl161ErpdvtWzJCrqzOKMVp3zOvtrMjAE1fKsyFdVmt/eLks4UXeCuPB2mWQlHW+VbAryu0UDmpWiDDox3fNoqmepeHCzUsvVgQRQdey+dqyu8DhWo=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=CbceiDz9; arc=none smtp.client-ip=46.235.227.194
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+	s=mail; t=1710493619;
+	bh=1Ws2PEVK12K1rvEMVWjC/34838lGqG3dLqUeO2pdz+A=;
+	h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+	b=CbceiDz9vEHtKvvnLHkZh7m6vWGvOiQRZzqqvEocRAFhUVwPxrH36ADybMY7n/HFP
+	 Z8j1ZfcKnYljNJBSX+RDeDYY20Gxu6M+mrdGeVdFvsxc1B6OQwp00bj6S6pg/pXkrP
+	 CyT+vt3AiRyWnIGzBw6RfsVD6j5RLUxZtcQS8jfRADgBBDcvgjhj3zobVtX8XCfNv2
+	 TSY1vFgd0ks45tLxuzIejUnmgz1S4wY0OFv+qVmVGse8ShF8KQXhHXI2RM1D8gtW3g
+	 dhtYr6mzy2XHwnA5gAyx75lq/tqZCZpdM1U8PrXm8McfGRPk/dLYMr9e6KZdbLMgn4
+	 qG9GNYWIQHWTQ==
+Received: from [100.74.67.65] (cola.collaboradmins.com [195.201.22.229])
+	(using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+	 key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+	(No client certificate requested)
+	(Authenticated sender: jmassot)
+	by madrid.collaboradmins.com (Postfix) with ESMTPSA id C65F537820FF;
+	Fri, 15 Mar 2024 09:06:58 +0000 (UTC)
+Message-ID: <fa53c31c-b76a-4370-9660-96f3d6155ffe@collabora.com>
+Date: Fri, 15 Mar 2024 10:06:57 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-Sender: basti@sraa.de
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] media: dt-bindings: st-vgxy61: relax data-lanes
+ restriction
+Content-Language: en-US
+To: Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+ Conor Dooley <conor@kernel.org>
+Cc: sylvain.petinot@foss.st.com, mchehab@kernel.org, robh+dt@kernel.org,
+ krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ kernel@collabora.com, devicetree@vger.kernel.org, linux-media@vger.kernel.org
+References: <20231213071737.1070162-1-julien.massot@collabora.com>
+ <20231213-chest-turf-8e9c4fb0a3db@spud>
+ <aa478429-57f6-40f8-8481-269311fdc937@collabora.com>
+ <4bffed14-0edf-49a6-8bbb-cc122137e9de@foss.st.com>
+From: Julien Massot <julien.massot@collabora.com>
+In-Reply-To: <4bffed14-0edf-49a6-8bbb-cc122137e9de@foss.st.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Hi Krzysztof,
+Hi Benjamin,
 
-> On 15/03/2024 00:49, Konrad Dybcio wrote:
-> > On 3/15/24 00:20, Sebastian Raase wrote:  
-> >> Add pinctrl configuration for gpio-keys. Without this,
-> >> camera button half-presses are not detected.
-> >>
-> >> Tested on discovery and pioneer.
-> >>
-> >> Fixes: e781633b6067 ("arm64: dts: qcom: Add support for Sony Xperia XA2/Plus/Ultra (Nile platform)")
-> >> Signed-off-by: Sebastian Raase <linux@sraa.de>
-> >> ---
-> >>   arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi | 9 +++++++++
-> >>   1 file changed, 9 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> >> index 87d0293c728d..823c21d5ee59 100644
-> >> --- a/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> >> +++ b/arch/arm64/boot/dts/qcom/sdm630-sony-xperia-nile.dtsi
-> >> @@ -90,6 +90,8 @@ cam_vana_rear_vreg: cam-vana-rear-regulator {
-> >>   
-> >>   	gpio-keys {
-> >>   		compatible = "gpio-keys";
-> >> +		pinctrl-names = "default";
-> >> +		pinctrl-0 = <&gpio_keys_default>;  
-> > 
-> > It's fine to keep the "non-preferred" order, I'll probably send some
-> > changes to nile and fix up the style while at it in the near future.  
+On 2/9/24 10:24, Benjamin Mugnier wrote:
+> Hi Julien,
 > 
-> Sebastian,
-> Although it is also preferred to implement feedback the reviewer is
-> asking. I don't understand why you insisted to keep the other order.
+> On 1/5/24 10:36, Julien Massot wrote:
+>> Hi,
+>>
+>> On 12/13/23 17:30, Conor Dooley wrote:
+>>> On Wed, Dec 13, 2023 at 08:17:37AM +0100, Julien Massot wrote:
+>>>> The ST VGXY61 sensors support multiple lane number, as
+>>>> well as lane mapping.
+>>>>
+>>>> Signed-off-by: Julien Massot <julien.massot@collabora.com>
+>>>> ---
+>>>>    .../devicetree/bindings/media/i2c/st,st-vgxy61.yaml        | 7 ++-----
+>>>>    1 file changed, 2 insertions(+), 5 deletions(-)
+>>>>
+>>>> diff --git
+>>>> a/Documentation/devicetree/bindings/media/i2c/st,st-vgxy61.yaml
+>>>> b/Documentation/devicetree/bindings/media/i2c/st,st-vgxy61.yaml
+>>>> index 8c28848b226a..733fac85a20f 100644
+>>>> --- a/Documentation/devicetree/bindings/media/i2c/st,st-vgxy61.yaml
+>>>> +++ b/Documentation/devicetree/bindings/media/i2c/st,st-vgxy61.yaml
+>>>> @@ -67,11 +67,8 @@ properties:
+>>>>              data-lanes:
+>>>>                description:
+>>>>                  CSI lanes to use
+>>>> -            items:
+>>>> -              - const: 1
+>>>> -              - const: 2
+>>>> -              - const: 3
+>>>> -              - const: 4
+>>>> +            minItems: 1
+>>>> +            maxItems: 4
+>>>
+>>> So, it is now valid to have "data-lanes = <6 7 8>;" now?
+>>
+>> Indeed it's not valid, I will send a v2 with a 'minimum: 1', 'maximum:
+>> 4' items properties.
+> 
+> I'm interested in this patch. Did you send a v2 yet that I might have
+> missed ?
+> Thank you.
 
-I simply followed the existing style and did not know any better.
-Since you called it a "nit", I wrongly assumed that was acceptable.
+I just sent a v2, which add minimum/maximum so that we can only use 
+index 1..4.
 
-Fixed in v3.
-
-> Best regards,
-> Krzysztof
-
-Best Regards,
-Sebastian
+Regards,
+Julien
 
