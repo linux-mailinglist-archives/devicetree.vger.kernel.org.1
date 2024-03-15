@@ -1,115 +1,118 @@
-Return-Path: <devicetree+bounces-50729-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50730-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [139.178.88.99])
-	by mail.lfdr.de (Postfix) with ESMTPS id F0CCA87CDD7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:12:06 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5517287CDFD
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:18:16 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id AE9032811B8
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 13:12:05 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id EA495B21865
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 13:18:13 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 0240E25613;
-	Fri, 15 Mar 2024 13:12:02 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7EBD91BF3C;
+	Fri, 15 Mar 2024 13:18:06 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="SvBaGvP/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com [209.85.128.179])
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 7C5D71BF3C;
-	Fri, 15 Mar 2024 13:12:00 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.179
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 80D1D24A1F
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 13:18:04 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.50
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710508321; cv=none; b=erEernYzog+mcrNEz5ISJJfa9At12JRwUJdq1JxIZcuIdCLNiZOOyYT4oqcx7z6dNaHyoQWKh2GncJxCyeVPw2g/lOH2cLa+6qruMSwDQ4RjlPJJlbyPMnoiydxacGdcXBXs2mDJa13yCOkBdmPytBjH96oeTQuw01OWOg4AZao=
+	t=1710508686; cv=none; b=SN16KyiOSSjMGCgNHGeWCdkyUKWoUgPKyFdNoDFNkJ7xJKzF6zADVz6gRnDCtBjnehKBYWrTJZZUTmhk5VU++72xciKOqkCwXFDA43MDNM6kFm+CnXFXMh+c/nF8FX4ORShtZXuK5B48cLt/CTQ6XU4hHmELitG/bRRiQyP+RCw=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710508321; c=relaxed/simple;
-	bh=UuwHY4ZFMlB65Epsbt1kUiq1o/nxTSKYqjs+6mdTBe8=;
-	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
-	 To:Cc:Content-Type; b=O96zgCFe15LaZnIqEiP9GcIKNvgkXJq5bohe9JBwEe0+gSm/W37Kk8twUH0KZ0ILaFLdvfMwYHQgZ7lV/EeWc0gbCo03EDryZjtjKdOz2aGSlN80bwYyWolaNLjKjYYmw/u0TnFUMlgSYkyBP/OqZ2q9msyyt5/FQbl4idFjcYA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.179
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-60cc4124a39so20979797b3.3;
-        Fri, 15 Mar 2024 06:12:00 -0700 (PDT)
+	s=arc-20240116; t=1710508686; c=relaxed/simple;
+	bh=T/HfBhiQE1waDWYQEd1vD78rXPyQGtudkxEwrgNEHpM=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=sU0SYglxjdKSOQ1fN/ABYH07my5/ZVs6ysdqQPp6ixkXRYVNFyhW+H84TwbJLOoFEtvojMMYl2wIi3YuM4bjGZZD4Kp2kdSW9eeerEJIum6tArqhWBkwZ+PR/6kzMSH/crYM/2AbNO+SzAeebxfcY+X1yIXS3ZoRlSKNOFNhYJk=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=SvBaGvP/; arc=none smtp.client-ip=209.85.128.50
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-41324a16c9eso13360775e9.0
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 06:18:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1710508683; x=1711113483; darn=vger.kernel.org;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=BAvj14vJUGomBSxrVqhPVayHAwF+lgqULbYlbgwOBiU=;
+        b=SvBaGvP/UksjyWCCiLK9EIV8EEDnxFbMgOrLqbR647u/fgdd+h6QPq97xOfwC8TBHB
+         d5Z2L8NZIUiYLhF/UM+X5z6/PJ8A0SsMvlWPsLak8r/Xf70Zbl6vAudT6OogOUpHUHFQ
+         MMAG3txLF6jTzyHwuu1vS9AKn+ylPwprBUmpEKBsMpLJH3pdyHbYIkVJ9RdFkYeMdORW
+         ywHqs9dFiXrzzpWrreJPOb2aLNDOyM1hxf+1uz3gk1r7bVthll0mEpQ9lA99uSkSwZ8c
+         Xb3eUhywYM8nsO6Jhh+Emwim6hXpEVfSE3clFr4naOQo6kCZ4aElB6J0bL1u4pJWdhLV
+         2Oww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710508319; x=1711113119;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UVOxCh95/KJi62+yTmpvlCdEQMQ6jz665GzmWbEhPz8=;
-        b=Kiw9r5Bc+lQahQmXDXRo+g/dWGH+VV7E7Wy1eKx5NER3Mw54xacz5ynvVJ16qnOo59
-         VthZze8ihRmx8n6PZChAZx+PPzcnljG2jXDSqCY9KAoLjl2nz2LWA3T/QEGpGyDRoZ+e
-         JLkB/LaXRSblgvSe8a5qzSmEKpvvz4HnoEG/wakeanzJUBdf+3oexh+iqhoprqXEplT5
-         7SqCYVnDSgTgHq3PUYTacjEPOA2294cibOWkQ/Pulq1LnX0b6LNWpqXmBfXqpQRai6pJ
-         UvJkPBNSMRMnJ3NILnPKfTRdlIodg31/v+n8be/YbaETUz4S1nfZBK56yzX03dezbE4q
-         hKmw==
-X-Forwarded-Encrypted: i=1; AJvYcCXTs5LVGgO+ADZhcAEtu+d6SY2nXXJcvnlyE9KXvuy0pw68APfRmKrvnwDqplrn+ZX+dkRMsdh6I5UW7/GbpGVob2f3hMrygkBAfaOWwC80ZItQT/bqUx96rVEDNbsjUtdxzdziJ65c0Ns+TLX8H7229ClSalw5ccIMLb7aU5dgpAe+b+gho1IRpyuFIRSJV2PuyiOowNg5/7sCY3Uy98daLPGS0AxN
-X-Gm-Message-State: AOJu0YzdAjz8xLV2PaCCnfMvYDqXGCkuJ9zPxIvAPMNCJbsdaRAT2RoW
-	dkVGv0skaIDs2cLb6FDWk7qLGNSyIsOx8cOuW6Kvg9ErPOz4W6eja+qjEbYiPFY=
-X-Google-Smtp-Source: AGHT+IFwRnSQ1uOS60vnGxMSEj1ecuv83vG7+F1w6usuIyvzsJscLH1CZQK3kHFryhGYn5rlTYSQog==
-X-Received: by 2002:a05:6902:507:b0:dd0:972b:d218 with SMTP id x7-20020a056902050700b00dd0972bd218mr4559997ybs.41.1710508318692;
-        Fri, 15 Mar 2024 06:11:58 -0700 (PDT)
-Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com. [209.85.128.175])
-        by smtp.gmail.com with ESMTPSA id x1-20020a25ac81000000b00dc6d6dc9771sm720570ybi.8.2024.03.15.06.11.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Mar 2024 06:11:58 -0700 (PDT)
-Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-60a104601dcso21567257b3.2;
-        Fri, 15 Mar 2024 06:11:58 -0700 (PDT)
-X-Forwarded-Encrypted: i=1; AJvYcCUn/GjSwbgqw9/5A9VRB8MkZ1LEI6aQtEhwGW9dVMRl+/NyLa16j5wivuhGTjQbccSQyImF96Ze9AnFeHHgtXDkYQTYE/o8CrD98z3bQw6pkK1kQc/b2hrb8+lDnif0OwhnJCV5E7Z2vwTEGDR2UdTsbviYlW5CfJQSAPBjqH/05+Hld5G4xyBzt5ebTLZilAFs8W9O0Pv0mDzK8/TS9P7QsmcU+yt5
-X-Received: by 2002:a0d:d44e:0:b0:609:254f:766d with SMTP id
- w75-20020a0dd44e000000b00609254f766dmr5095186ywd.26.1710508317947; Fri, 15
- Mar 2024 06:11:57 -0700 (PDT)
+        d=1e100.net; s=20230601; t=1710508683; x=1711113483;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=BAvj14vJUGomBSxrVqhPVayHAwF+lgqULbYlbgwOBiU=;
+        b=EEaOXQg7DxLoq9oODDWl3wdlALMyjqjS5xEuXM+2rP3p8qDF1DMuFjA6gdBXSV1rGM
+         v2a6DrQDbTw8fcSYehyATLXF1Csk7j6rx6Wa+vlnmOUj9cdCedU5is8v0nwAUs43IKeX
+         JSTgpit2UBEr8xHWC61qTJvr0CVCd7J/FML4KEbvq/n6OHaYp9EqnELaHP4zfEbAOdWl
+         i6yq+G6NV7FJ4J5poA09mvWi2EiZoDaPCWtwuFqHp3xJDcdbun9HUsG8+nDG0f4kt+1q
+         8sK/RbSlNkYFrRxEIX25O84tP4uWIM6Zq+3FD6Z/CqmxXtVDkLiCArUWkLC8gcu1hOys
+         pT5g==
+X-Forwarded-Encrypted: i=1; AJvYcCVK7d6MQe5/Kw5z4Sz2eNPKDzkF1kYDRl+NxmPZyzjlt9aRiUDoePBeH82jftU25wG5h7I0YUve8SzXuYeDgyldH/3ZhimWGcDhUQ==
+X-Gm-Message-State: AOJu0YxCwI+vfMjRqI05lj82kHmm82UmJHQ0+urd2DlNzQV0CbrFOc8h
+	/7YzFF/0K8ZCcnDCAO93YEtVzDekcGKBMd7KViwmIryKuwcDvDJhX+EjI+9F2T8=
+X-Google-Smtp-Source: AGHT+IHlUY3Az6uwRCsdn4XHEMvaEDhhX0HkGvtTN9jqjiaiqubgf+xJXK+Mvnp/afaT+k0YwpLk1g==
+X-Received: by 2002:a05:600c:4f94:b0:413:f1c0:8a5d with SMTP id n20-20020a05600c4f9400b00413f1c08a5dmr3796731wmq.26.1710508682802;
+        Fri, 15 Mar 2024 06:18:02 -0700 (PDT)
+Received: from localhost ([102.222.70.76])
+        by smtp.gmail.com with ESMTPSA id fl22-20020a05600c0b9600b00414013adab2sm1909935wmb.6.2024.03.15.06.18.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 15 Mar 2024 06:18:02 -0700 (PDT)
+Date: Fri, 15 Mar 2024 16:17:58 +0300
+From: Dan Carpenter <dan.carpenter@linaro.org>
+To: Jan Dakinevich <jan.dakinevich@salutedevices.com>
+Cc: Neil Armstrong <neil.armstrong@linaro.org>,
+	Jerome Brunet <jbrunet@baylibre.com>,
+	Michael Turquette <mturquette@baylibre.com>,
+	Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Philipp Zabel <p.zabel@pengutronix.de>,
+	Kevin Hilman <khilman@baylibre.com>,
+	Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+	Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org, alsa-devel@alsa-project.org,
+	linux-sound@vger.kernel.org, linux-gpio@vger.kernel.org,
+	kernel@salutedevices.com
+Subject: Re: [PATCH 06/25] ASoC: meson: g12a-toacodec: fix "Lane Select" width
+Message-ID: <cc26302f-fa57-41ba-bf1c-2e7ef898b4d0@moroto.mountain>
+References: <20240314232201.2102178-1-jan.dakinevich@salutedevices.com>
+ <20240314232201.2102178-7-jan.dakinevich@salutedevices.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-References: <20240315103033.141226-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20240315103033.141226-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20240315103033.141226-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From: Geert Uytterhoeven <geert@linux-m68k.org>
-Date: Fri, 15 Mar 2024 14:11:45 +0100
-X-Gmail-Original-Message-ID: <CAMuHMdVAmVE-WwoZ5fzmXpM7-RW_-GXKRmXgywN_Sh+tmK32zQ@mail.gmail.com>
-Message-ID: <CAMuHMdVAmVE-WwoZ5fzmXpM7-RW_-GXKRmXgywN_Sh+tmK32zQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] i2c: riic: Add support for R9A09G057 SoC
-To: Prabhakar <prabhakar.csengg@gmail.com>
-Cc: Chris Brandt <chris.brandt@renesas.com>, Andi Shyti <andi.shyti@kernel.org>, 
-	Rob Herring <robh+dt@kernel.org>, 
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
-	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
-	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, 
-	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20240314232201.2102178-7-jan.dakinevich@salutedevices.com>
 
-On Fri, Mar 15, 2024 at 11:31=E2=80=AFAM Prabhakar <prabhakar.csengg@gmail.=
-com> wrote:
-> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->
-> Extend the RIIC driver to support the RZ/V2H(P) ("R9A09G057") SoC. It
-> accomplishes this by appending the compatible string list and passing
-> the RZ/V2H-specific OF data.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> ---
-> v1->v2
-> - Dropped setting family
+On Fri, Mar 15, 2024 at 02:21:42AM +0300, Jan Dakinevich wrote:
+> For both G12A and SM1 the width of "Lane Select" should be 2, not 3.
+> Otherwise, it overlaps with "Source".
+> 
+> Signed-off-by: Jan Dakinevich <jan.dakinevich@salutedevices.com>
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+When you resend this, could you describe how this bug might look to a
+user?  If a user hits this bug and they want to see if it has been
+fixed by reading the commit messages, I don't think this description
+is sufficient for that.
 
-Gr{oetje,eeting}s,
+regards,
+dan carpenter
 
-                        Geert
-
---=20
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
-.org
-
-In personal conversations with technical people, I call myself a hacker. Bu=
-t
-when I'm talking to journalists I just say "programmer" or something like t=
-hat.
-                                -- Linus Torvalds
 
