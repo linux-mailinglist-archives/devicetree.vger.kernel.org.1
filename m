@@ -1,140 +1,128 @@
-Return-Path: <devicetree+bounces-50756-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50757-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC7887CF14
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:36:30 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DC0487CF1D
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 15:38:53 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 1D4471F23527
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:36:30 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 0E231B21804
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 14:38:51 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id BC43B38FAA;
-	Fri, 15 Mar 2024 14:36:25 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 87CEC381B4;
+	Fri, 15 Mar 2024 14:38:45 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org;
+	dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b="pfLF0Y3A"
 X-Original-To: devicetree@vger.kernel.org
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 5D75F37145;
-	Fri, 15 Mar 2024 14:36:23 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=210.160.252.171
+Received: from smtp.kernel.org (aws-us-west-2-korg-mail-1.web.codeaurora.org [10.30.226.201])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 544C31CA9C;
+	Fri, 15 Mar 2024 14:38:44 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=10.30.226.201
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710513385; cv=none; b=gyWLKb9SHqfsQpyi/amm9wC7Pu8WQZIh0Ya/hB6Yn4RXDlH5hORDUJA9HRZWqNA/NswoGvCQQI+3LVYaI4TpbxzJ41RTWbJC63cTGpDH0XvTFMtS2yfHeGJYdx39Pn2Fxeh2RALUxXScvytePKVY0ouwMEDF0sLB6ksa4nUkPCU=
+	t=1710513525; cv=none; b=bOXexNR1JbkyVzypQO4b02OIVLiVxMLj+Xx16gInpgSFOxoN9ZP7R5SCq8DaKemxtfHduyW22s8z+kadIBIcttmibWB0A4gKfdeFfr4P3GLtQgtXzSY4TtYgs5nrP8R6VFiPVKhQ0Yx7vj0ZPiyFKbdq/Y+IQrhLH6jd5ydleP0=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710513385; c=relaxed/simple;
-	bh=zy9KGCSyKGkFhfSQnDv88uutMsJBfYRH3LuZ0rpvEpQ=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=OkDu1CR0ycG+nRqN495gE6ppP13IPqgA7h6KcTgXdRRVUkAf8goycyM/VyrTPVWnixAvhNci1l06qpgra9A6W+89pmj/uVxquwezx8ZshZNM9BgqwYr5jqiTp+kxow5m9mZjmB8yqsRKZIT2J9ueTIB2Y1X0jjWrV7XwB1lj1bs=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com; spf=pass smtp.mailfrom=bp.renesas.com; arc=none smtp.client-ip=210.160.252.171
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=bp.renesas.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bp.renesas.com
-X-IronPort-AV: E=Sophos;i="6.07,128,1708354800"; 
-   d="scan'208";a="197901601"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 15 Mar 2024 23:36:14 +0900
-Received: from localhost.localdomain (unknown [10.226.93.102])
-	by relmlir6.idc.renesas.com (Postfix) with ESMTP id 04A98435BA56;
-	Fri, 15 Mar 2024 23:36:10 +0900 (JST)
-From: Biju Das <biju.das.jz@bp.renesas.com>
-To: =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>,
-	Rob Herring <robh@kernel.org>,
+	s=arc-20240116; t=1710513525; c=relaxed/simple;
+	bh=LWOPGxaWjPP8E3hvpb0v/9QUSjPMu3aHfXD/4e34bMg=;
+	h=Date:From:To:Cc:Subject:Message-ID:References:MIME-Version:
+	 Content-Type:Content-Disposition:In-Reply-To; b=LpcFp2rHkB65tXt1Mv34ewvyFxRr9QarR6tZRuKfDMvjWOZimwINXu9Al0stEifl2PxTtLes24JYOHimnka3+ukeLxCE0x5KTnUd9efr91zKoXfcFpSEZUxA6iTj2bsnlTpnmJd0slgX84koxkfxLCflVU0/ldcP0RJbIcaQ7Fc=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dkim=pass (2048-bit key) header.d=kernel.org header.i=@kernel.org header.b=pfLF0Y3A; arc=none smtp.client-ip=10.30.226.201
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 37258C433C7;
+	Fri, 15 Mar 2024 14:38:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+	s=k20201202; t=1710513524;
+	bh=LWOPGxaWjPP8E3hvpb0v/9QUSjPMu3aHfXD/4e34bMg=;
+	h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+	b=pfLF0Y3Aw17VSoUcFU9nXUe7DJBTJnsvXRSp5JM2LcK8rgXc6Uqcotv7Rmcu/5y0r
+	 /k6jI4bvcl7jt+qndKxRPxKCuZU89MT7ts52FJGGSvHCZWLkGEMpmCxiaerdnhxlP4
+	 eca3MDnsqT6qnrh/36IIbVKpEABMWOLcMD840rxSlrl3WJKTxBSuQiGU2islj0xuUz
+	 VXPkRyigmU8/GmAk0LgZFCWSwIVB7rmY+yJiXtDISqyjOeYDHvGXasd3yu4D+lLUKl
+	 bbYt5HZZ/xwVfB+zMv4jDhP1WyyDmY5pb+X7Fmh9+K/LpfAq+PwR3Wf4s4A1UU0UjJ
+	 J5HVGG/SCVpew==
+Date: Fri, 15 Mar 2024 14:38:37 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Alexandre Mergnat <amergnat@baylibre.com>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
 	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>
-Cc: Biju Das <biju.das.jz@bp.renesas.com>,
-	Geert Uytterhoeven <geert+renesas@glider.be>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	linux-pwm@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-renesas-soc@vger.kernel.org,
-	Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-	Biju Das <biju.das.au@gmail.com>
-Subject: [PATCH v19 2/4] dt-bindings: pwm: rzg2l-gpt: Document renesas,poegs property
-Date: Fri, 15 Mar 2024 14:35:56 +0000
-Message-Id: <20240315143558.221340-3-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20240315143558.221340-1-biju.das.jz@bp.renesas.com>
-References: <20240315143558.221340-1-biju.das.jz@bp.renesas.com>
+	Conor Dooley <conor+dt@kernel.org>,
+	Matthias Brugger <matthias.bgg@gmail.com>,
+	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+	Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+	Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+	Sumit Semwal <sumit.semwal@linaro.org>,
+	Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, linux-sound@vger.kernel.org,
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+	linux-arm-kernel@lists.infradead.org,
+	linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+	dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+	Nicolas Belin <nbelin@baylibre.com>,
+	Fabien Parent <fparent@baylibre.com>
+Subject: Re: [PATCH 00/18] Add audio support for the MediaTek Genio 350-evk
+ board
+Message-ID: <bf418207-7f13-4ced-8c21-2824dd07fab5@sirena.org.uk>
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <4ffde184-cf68-4b71-b81d-9b5894529926@sirena.org.uk>
+ <7ddad394-e880-4ef8-8591-cb803a2086ae@baylibre.com>
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+	protocol="application/pgp-signature"; boundary="Y91BRilVEGdxtZCJ"
+Content-Disposition: inline
+In-Reply-To: <7ddad394-e880-4ef8-8591-cb803a2086ae@baylibre.com>
+X-Cookie: If rash develops, discontinue use.
 
-RZ/G2L GPT IP supports output pin disable function by dead time
-error and detecting short-circuits between output pins.
 
-Add documentation for the optional property renesas,poegs to
-link a pair of GPT IOs with POEG.
+--Y91BRilVEGdxtZCJ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-v18->v19:
- * No change.
-v17->v18:
- * No change.
-v16->v17:
- * No change.
-v15->v16:
- * No change.
-v14->v15:
- * No change.
-v3->v14:
- * Add Rb tag from Rob.
- * Moved the patch from series[1] to here.
- [1] https://lore.kernel.org/linux-renesas-soc/20221215205843.4074504-1-biju.das.jz@bp.renesas.com/T/#t
-v2->v3:
- * Moved minItems/MaxItems one level up.
-v1->v2:
- * removed quotes from ref
- * Added maxItems and minItems for renesas,poegs property
- * Added enums for gpt index
----
- .../bindings/pwm/renesas,rzg2l-gpt.yaml       | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+On Tue, Mar 12, 2024 at 09:58:05AM +0100, Alexandre Mergnat wrote:
 
-diff --git a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-index d9374144d82d..957cf28b2c4c 100644
---- a/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-+++ b/Documentation/devicetree/bindings/pwm/renesas,rzg2l-gpt.yaml
-@@ -245,6 +245,28 @@ properties:
-   resets:
-     maxItems: 1
- 
-+  renesas,poegs:
-+    minItems: 1
-+    maxItems: 8
-+    $ref: /schemas/types.yaml#/definitions/phandle-array
-+    items:
-+      items:
-+        - description: phandle to POEG instance that serves the output disable
-+        - enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+          description: |
-+            An index identifying pair of GPT channels.
-+              <0> : GPT channels 0 and 1
-+              <1> : GPT channels 2 and 3
-+              <2> : GPT channels 4 and 5
-+              <3> : GPT channels 6 and 7
-+              <4> : GPT channels 8 and 9
-+              <5> : GPT channels 10 and 11
-+              <6> : GPT channels 12 and 13
-+              <7> : GPT channels 14 and 15
-+    description:
-+      A list of phandle and channel index pair tuples to the POEGs that handle the
-+      output disable for the GPT channels.
-+
- required:
-   - compatible
-   - reg
-@@ -375,4 +397,5 @@ examples:
-         power-domains = <&cpg>;
-         resets = <&cpg R9A07G044_GPT_RST_C>;
-         #pwm-cells = <2>;
-+        renesas,poegs = <&poeggd 4>;
-     };
--- 
-2.25.1
+> I'm a bit lost for mixer-test and pcm-test.
+> Currently, I cross-compile the alsa lib project to be able to build the
+> tests and put it on my board.
 
+> I can execute it, but I still have 2 issues:
+
+> 1) I've a lot of missing module in my environment (Encode.so, Encode.pm,
+> Symbol.pm, IO/Handle.pm, ...). AFAII, I've to cross compile the missing perl
+> modules and install them in the rootfs
+
+These tests are both simple C programs...
+
+> 2) I don't know how to configure pcm-test.conf &
+> Lenovo_ThinkPad_P1_Gen2.conf (or new file to match with my board).
+
+The configuration is optional.
+
+> My test cmd:
+> ./run_kselftest.sh -c alsa
+
+Just run the programs directly.  I'm only asking for the output from two
+of them anyway.
+
+--Y91BRilVEGdxtZCJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmX0XWwACgkQJNaLcl1U
+h9BnLAf/e1vJ3Zr2d9fJBV1LV7sal34lcNVLD3JRrMKuk6bdnA2S2RYAgOf0UJwl
+cRuGTcq2lBneNaYnb9jgaf1C7i5kuXvnMG0IJuqVBrTZwiN5SbGhpmdvZj6HLwPu
+a8Q5MEwz/DrIXqjghxcXr5bjKi6XJ/9RRB1QpfxQFIwAOYQPNAG2F0j4SrD8zcbA
+O2dO4KRIjYUBBnpP5maQh3R3yr+TEEdolkib2FyoHL2jo2Vv1zOiTK2382kuTnKA
+y+GgUm8tQ4HiGZdAJqZAPh+Of86A9Rwl2133Tp1dxkFWlOamtyhfYbPESyNchUrV
+qduBr5NQ0tnTuAoEKttdYckFHYq6Bg==
+=FScF
+-----END PGP SIGNATURE-----
+
+--Y91BRilVEGdxtZCJ--
 
