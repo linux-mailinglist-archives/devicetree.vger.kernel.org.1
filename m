@@ -1,74 +1,75 @@
-Return-Path: <devicetree+bounces-50831-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50832-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [IPv6:2604:1380:40f1:3f00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 94FAC87D4A9
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:52:25 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
+	by mail.lfdr.de (Postfix) with ESMTPS id 6FDC287D4D0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 21:09:31 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sy.mirrors.kernel.org (Postfix) with ESMTPS id C2BD4B21F49
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 19:52:22 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 627451C223A3
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 20:09:30 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1160E5337A;
-	Fri, 15 Mar 2024 19:52:18 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DAA0A54676;
+	Fri, 15 Mar 2024 20:09:19 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="B5As7fuD"
+	dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b="csC7Ok7/"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id F41085337B
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 19:52:13 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.167.53
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 8C31C535AC
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 20:09:16 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.46
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710532338; cv=none; b=qnmNBI/v5/4nT3cvRwfUeSeSpq/6HX9imuOV1pnaVRMqypeHPVLjN9z+iaFzEELtSeWc6am2MLLd1xdVVPSMjUpG3vZa+5M+r1O4ybDSKINI/NF+2kI73YC4h2gTgmi9k7KWz+1+yyN8i7GZrKIZHEB/AVxWHcFKvONRNuS/FrQ=
+	t=1710533359; cv=none; b=RPAB4H13g/YvXjDQqfv3mhDCuQFg+6aOb6S3HkPkGTh3zaFbjX/Oc8PvclmoZdWmqNiJIM+hdA+MX+D2mwchWlaYWZDtlKL0uSrLLzUM8y+zWJ/yRQw9fOW8VqC8QfqFU/az1RGl1+AO2LLdsbdHvi22vxWDIpYw9M+1Dz6aHlk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710532338; c=relaxed/simple;
-	bh=Oa9QWweedRF6jpfo/nRk+i60JCiExm98a5CdcH2Mr+0=;
+	s=arc-20240116; t=1710533359; c=relaxed/simple;
+	bh=jxzupQBcicL+hUlKgTkEqRcEgtyGe1JHystKUVcXmHE=;
 	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
-	 In-Reply-To:Content-Type; b=QzN7uOXWVxXqcca6F/CemOhsM5UiscOUEgBcqmu/KJ0/nviMeA/c4kJNM0ly8ziV1i/kE3MVxxB9EvFLCI8TXbzoJSENj9cTre2fBX8rMBJj+lIZGXDBRqCMX/eQCyg0eH83QRb/QYEvxj8Oces5tsPONR1FoGxPmXtDPLNYjeI=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=B5As7fuD; arc=none smtp.client-ip=209.85.167.53
+	 In-Reply-To:Content-Type; b=BaFBdkfMg2iC9Cg4WPYQ4XJShvz/dBa67QxDMhyBez/dkmS/VsICTmq5qW0pR4aWDcXt1Tel2ekDeMR9hVtBszmcLWjGqcVQblEp/Ppa9WTnnUTNcYnMLbXFvNeWdDLjsFgfuWPeCZidY2yDhr8fqoFCiJlc7f9RkknZGLu16tQ=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org; spf=pass smtp.mailfrom=linaro.org; dkim=pass (2048-bit key) header.d=linaro.org header.i=@linaro.org header.b=csC7Ok7/; arc=none smtp.client-ip=209.85.128.46
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=linaro.org
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=linaro.org
-Received: by mail-lf1-f53.google.com with SMTP id 2adb3069b0e04-513d609a889so1361653e87.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 12:52:13 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id 5b1f17b1804b1-413e93b0f54so16782815e9.3
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 13:09:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1710532332; x=1711137132; darn=vger.kernel.org;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LvSepV5Zd+55lgwXRxtPp7+i7xc6kKJVG1QWydHr3/0=;
-        b=B5As7fuDJ6/8iT852LsiNE5jsCyNggMIsyJrKV0+WANOtPaO1cX7/J0jsD21xRiYtu
-         m2XGH/UdlCCwrQ6U2t1Xl2qA+VCjekq9T63QNh6HFb11CHRDyNgOcTx0nG2htCe+lD3c
-         oymJ2H9aVECqy7T+XnMoXtG57JN879R1YJ/hGyROMP5nmHseVFcLxKCM6cGGzNoIhzli
-         AIO3hex1cCpB3n16Frs5hXleHiwC/8I2PPq0hExJiHfNVB+5WijdGf94vf5wy84mTUGb
-         p9y+4pU3ru8WRrgTDt7YIj/GyPgrvtsklnjQz/UCM9cZeYBlrYpCyoWmMF4nbTPhUDJA
-         Hf/Q==
+        d=linaro.org; s=google; t=1710533355; x=1711138155; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=p2tW+rY8sSK0emp7CuqgUfSaOYzKGKVj9pNbDTza020=;
+        b=csC7Ok7/birJ1yIZwy2ggYDNdxcZPtAuvImnFoebdUxPiO0lC6a7sOLcBjOs+UyggD
+         SaYHf1H77rqdTH8Flc79ug7fOurEKbu5GKiGTUhc3WsBHnEth14uJlTz9wES0nzSdciN
+         siqI271lkYngQdaYwS4OLnhYKFKjwH1E5sr+sUD5H93TZuywyNrZGqS6sqpAJHXyHe9L
+         zHhbwyBocN39araSfGHvSQjEyO/KGed0SdBCUxi9hpQD8Jy2IE6h1Qf0JrtTkbDOY6RK
+         6BvKuXqRqMNYjvr/DetasTIOWuRgzhGlAcg2PGRRU5zFv5MD0+ylfQUOBbs38TVSmVY/
+         ftVw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710532332; x=1711137132;
-        h=content-transfer-encoding:in-reply-to:autocrypt:from:references:cc
-         :to:content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LvSepV5Zd+55lgwXRxtPp7+i7xc6kKJVG1QWydHr3/0=;
-        b=l1bamTiNMUWlAHL5+v6rLxkseD9xId3/p5mC+LtNdqtu81REQuVIELpYg68NWKETgr
-         8r7bH9gHBm4aRNq0cN5Er0HSJHe+qhIePwRcs1NQzFf77G5y58ijwBVhj83BzUmZ3LfU
-         yQXTZPL1xqpsSeXKLrVSR9ujnJS1w4qE0vFBb5nOcf+NEfG3hmRgIaHwqreed9U7UyXa
-         bRG9GkGHRKQyawW/vdmXp3zzTh4kYUGyTI6YNfNqwJhf6B5InxMuNyqTLWdBX/BS6ePm
-         C/ghlM6fZ+ZC20EAk2SakAUcAQSlHexZzKeeYn8zXhAaqqDL5sMnDs9vhylEDN0hjhg5
-         0yVA==
-X-Forwarded-Encrypted: i=1; AJvYcCVxYB0qe+1cGPz6lORRvTAhD4cVIrrmvy9fszgSWZ7UqUzt6GkffQK3Lo/6GhiztyX0LUUC80vxLTiyG48Khe5H/1/qnz2mAvyAOQ==
-X-Gm-Message-State: AOJu0YzPFCqP1wBNTICrdnDsNzoQZBhR8C90f9M1txx995S3FiTnL1kE
-	zmv9B0Rzb0iQ/2wvBneOFmZhFNIFrFl867iHiuNz9DSCCmB8fBQ96uH1WqG/DMc=
-X-Google-Smtp-Source: AGHT+IE+9ZShxgEICTEsvSGunqK7oZPfU2+fKgKDLr/Z88m6fSC8xKsuOyAOJBFcl64gaHm6wxt0Uw==
-X-Received: by 2002:a19:2d02:0:b0:513:dfac:b29e with SMTP id k2-20020a192d02000000b00513dfacb29emr86198lfj.26.1710532332046;
-        Fri, 15 Mar 2024 12:52:12 -0700 (PDT)
-Received: from [192.168.223.169] (078088045141.garwolin.vectranet.pl. [78.88.45.141])
-        by smtp.gmail.com with ESMTPSA id v27-20020a05651203bb00b00513d595f775sm477121lfp.101.2024.03.15.12.52.10
+        d=1e100.net; s=20230601; t=1710533355; x=1711138155;
+        h=content-transfer-encoding:in-reply-to:autocrypt:from
+         :content-language:references:cc:to:subject:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=p2tW+rY8sSK0emp7CuqgUfSaOYzKGKVj9pNbDTza020=;
+        b=pCoHZW3veAzArarxnzJKrZAnpaMg7wfQu/uhcS67n631M0T1150Z2DfM/vrDsk2sr5
+         2EneBjTCJ/4C0nrHK5BT+i3US89BUDvIK5iyZzU1FZ8hJqcppXjoew66zdSiPom6BZKh
+         1rOp3WMNipSFmVAAn4+vGDaHtr71ziZ4yYA9m6aUWGmfeW5B42rFg6fV0LvbaqkpzFT/
+         OIPkw8CwN8rmh5nBYHEA53eBaJGTwUwCn1GPJtZzbMgvc9u7W13LyCNqsDDHoqFdFk0H
+         7eeQJemB0SXbKgFG7BnBS0pYNH+ZyXE9KD/gOD+TPegNqHQxWZ4sVvuP0tI5yJx7tl3L
+         l7xQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUlGLJO9LOZdtfzR662rW03bLaosl8INBqdQfv4Zk6mpL+QGFbZ4q6jFoqrX2ZxGY1wvGwWEYLuiueQtblMKqUnxnxyP/bv+gXk9w==
+X-Gm-Message-State: AOJu0Yy0a29Kcdz8yp3dse2LpZXuB6jruRqkLiUZ8Ab8ZlI0OlwklvCi
+	Ag6mKEf2rsUGOHO8cH31fQi/xmVPveyWLU9YbZgPJGQZbQ7L6bk5GItxNEkVsNs=
+X-Google-Smtp-Source: AGHT+IHNU6xsuhBnJ0s1fL63Xc5fU3svS7s3WxpF6m/TPO0LRH3pZToY1ZFsQdLIl3X4NwKYXWSfWw==
+X-Received: by 2002:a05:600c:1c08:b0:413:fe9d:eaa5 with SMTP id j8-20020a05600c1c0800b00413fe9deaa5mr2654001wms.26.1710533354623;
+        Fri, 15 Mar 2024 13:09:14 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.222.97])
+        by smtp.gmail.com with ESMTPSA id i9-20020a05600c354900b00413ef6826desm6785579wmq.4.2024.03.15.13.09.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 15 Mar 2024 12:52:11 -0700 (PDT)
-Message-ID: <82d2249a-2854-46e3-ac86-7b5415ce3590@linaro.org>
-Date: Fri, 15 Mar 2024 20:52:10 +0100
+        Fri, 15 Mar 2024 13:09:14 -0700 (PDT)
+Message-ID: <314a88e0-19cd-4b95-9cf3-aef1c7579eec@linaro.org>
+Date: Fri, 15 Mar 2024 21:09:11 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -76,81 +77,233 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] ARM: dts: qcom: Add Sony Xperia Z3 smartphone
-Content-Language: en-US
-To: Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
- phone-devel@vger.kernel.org, Bjorn Andersson <andersson@kernel.org>,
- Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v3 1/8] dt-bindings: misc: Add mikrobus-connector
+To: Ayush Singh <ayushdevel1325@gmail.com>, linux-kernel@vger.kernel.org
+Cc: jkridner@beagleboard.org, robertcnelson@beagleboard.org,
+ Vaishnav M A <vaishnav@beagleboard.org>, Rob Herring <robh@kernel.org>,
  Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Conor Dooley <conor+dt@kernel.org>
-Cc: linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org
-References: <20240314-shinano-common-v2-0-a0fce1c72c74@z3ntu.xyz>
- <20240314-shinano-common-v2-3-a0fce1c72c74@z3ntu.xyz>
-From: Konrad Dybcio <konrad.dybcio@linaro.org>
-Autocrypt: addr=konrad.dybcio@linaro.org; keydata=
- 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
- izWDgYvmBE8=
-In-Reply-To: <20240314-shinano-common-v2-3-a0fce1c72c74@z3ntu.xyz>
+ Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+ Vignesh Raghavendra <vigneshr@ti.com>, Tero Kristo <kristo@kernel.org>,
+ Derek Kiernan <derek.kiernan@amd.com>, Dragan Cvetic
+ <dragan.cvetic@amd.com>, Arnd Bergmann <arnd@arndb.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Liam Girdwood <lgirdwood@gmail.com>, Mark Brown <broonie@kernel.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Johan Hovold <johan@kernel.org>,
+ Alex Elder <elder@kernel.org>, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-spi@vger.kernel.org,
+ linux-serial@vger.kernel.org, greybus-dev@lists.linaro.org
+References: <20240315184908.500352-1-ayushdevel1325@gmail.com>
+ <20240315184908.500352-2-ayushdevel1325@gmail.com>
+Content-Language: en-US
+From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Autocrypt: addr=krzysztof.kozlowski@linaro.org; keydata=
+ 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
+ D2GYIS41Kv4Isx2dEFh+/Q==
+In-Reply-To: <20240315184908.500352-2-ayushdevel1325@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 
-On 14.03.2024 19:56, Luca Weiss wrote:
-> Add the dts for the Xperia Z3 smartphone which is based on Sony's
-> shinano platform, so at the moment there's little device-specific dts to
-> add on top of the common parts.
+On 15/03/2024 19:48, Ayush Singh wrote:
+> Add DT bindings for mikroBUS interface. MikroBUS is an open standard
+> developed by MikroElektronika for connecting add-on boards to
+> microcontrollers or microprocessors.
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
+> Signed-off-by: Ayush Singh <ayushdevel1325@gmail.com>
 > ---
+>  .../bindings/misc/mikrobus-connector.yaml     | 110 ++++++++++++++++++
+>  MAINTAINERS                                   |   6 +
+>  2 files changed, 116 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/misc/mikrobus-connector.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/misc/mikrobus-connector.yaml b/Documentation/devicetree/bindings/misc/mikrobus-connector.yaml
+> new file mode 100644
+> index 000000000000..6eace2c0dddc
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/misc/mikrobus-connector.yaml
 
-[...]
+Please put it in connector directory.
+
+> @@ -0,0 +1,110 @@
+> +# SPDX-License-Identifier: GPL-2.0 OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/misc/mikrobus-connector.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: mikroBUS add-on board socket
+> +
+> +maintainers:
+> +  - Ayush Singh <ayushdevel1325@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: mikrobus-connector
+
+Hm, why do you create binding for the connector, not for some sort of
+controller? Please provide some rationale for this in commit msg.
 
 > +
-> +&smbb {
-> +	usb-charge-current-limit = <1500000>;
-> +	qcom,fast-charge-safe-current = <3000000>;
-> +	qcom,fast-charge-current-limit = <2150000>;
-> +	qcom,fast-charge-safe-voltage = <4400000>;
-> +	qcom,fast-charge-high-threshold-voltage = <4350000>;
-> +	qcom,auto-recharge-threshold-voltage = <4280000>;
-> +	qcom,minimum-input-voltage = <4200000>;
+> +  pinctrl-0: true
+> +  pinctrl-1: true
+> +  pinctrl-2: true
+> +  pinctrl-3: true
+> +  pinctrl-4: true
+> +  pinctrl-5: true
+> +  pinctrl-6: true
+> +  pinctrl-7: true
+> +  pinctrl-8: true
+> +
+> +  pinctrl-names:
+> +    items:
+> +      - const: default
+> +      - const: pwm_default
+> +      - const: pwm_gpio
+> +      - const: uart_default
+> +      - const: uart_gpio
+> +      - const: i2c_default
+> +      - const: i2c_gpio
+> +      - const: spi_default
+> +      - const: spi_gpio
 
-I took a quick look and without going deep into downstream code,
-these values look sane, so
+I fail to see why such choice is related to the connector itself.
+Connector could have just SPI attached, so why all other entries needs
+to be provided? Or is it fully plugable? But then really please explain
+the hardware in the binding description.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> +
+> +  mikrobus-gpios:
+> +    minItems: 11
+> +    maxItems: 12
+> +
+> +  i2c-adapter:
+> +    description: i2c adapter attached to the mikrobus socket.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +  spi-controller:
+> +    description: spi bus number of the spi-master attached to the mikrobus socket.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +  uart:
+> +    description: uart port attached to the mikrobus socket
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +  pwms:
+> +    description: the pwm-controller corresponding to the mikroBUS PWM pin.
+> +    maxItems: 1
+> +
+> +  spi-cs:
+> +    description: spi chip-select numbers corresponding to the chip-selects on the mikrobus socket.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    items:
+> +      - description: chip select corresponding to CS pin
+> +      - description: chip select corresponding to RST pin
 
-Konrad
+I don't understand why do you need all these properties. First, if this
+is connector then I would rather see some sort of graph, not phandles.
+Why would connector need to do anything with SPI controller?
+
+All this looks like made for software. For the driver.
+
+> +
+> +required:
+> +  - compatible
+> +  - pinctrl-0
+> +  - pinctrl-1
+> +  - pinctrl-2
+> +  - pinctrl-3
+> +  - pinctrl-4
+> +  - pinctrl-5
+> +  - pinctrl-6
+> +  - pinctrl-7
+> +  - pinctrl-8
+> +  - i2c-adapter
+> +  - spi-controller
+> +  - spi-cs
+> +  - uart
+> +  - pwms
+> +  - mikrobus-gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +      mikrobus-0 {
+
+mikrobus {
+
+and fix the indentation. Use 4 spaces for example indentation.
+
+> +        compatible = "mikrobus-connector";
+> +        status = "okay";
+
+Drop.
+
+> +        pinctrl-names = "default", "pwm_default", "pwm_gpio","uart_default", "uart_gpio", "i2c_default",
+> +                        "i2c_gpio", "spi_default", "spi_gpio";
+> +        pinctrl-0 = <&P2_03_gpio_input_pin &P1_04_gpio_pin &P1_02_gpio_pin>;
+> +        pinctrl-1 = <&P2_01_pwm_pin>;
+> +        pinctrl-2 = <&P2_01_gpio_pin>;
+> +        pinctrl-3 = <&P2_05_uart_pin &P2_07_uart_pin>;
+> +        pinctrl-4 = <&P2_05_gpio_pin &P2_07_gpio_pin>;
+> +        pinctrl-5 = <&P2_09_i2c_pin &P2_11_i2c_pin>;
+> +        pinctrl-6 = <&P2_09_gpio_pin &P2_11_gpio_pin>;
+> +        pinctrl-7 = <&P1_12_spi_pin &P1_10_spi_pin &P1_08_spi_sclk_pin &P1_06_spi_cs_pin>;
+> +        pinctrl-8 = <&P1_12_gpio_pin &P1_10_gpio_pin &P1_08_gpio_pin &P1_06_gpio_pin>;
+> +        i2c-adapter = <&i2c1>;
+> +        spi-controller = <&spi1>;
+> +        spi-cs = <0 1>;
+> +        uart = <&uart1>;
+> +        pwms = <&ehrpwm1 0 500000 0>;
+> +        mikrobus-gpios = <&gpio1 18 0> , <&gpio0 23 0>, <&gpio0 30 0> , <&gpio0 31 0>, <&gpio0 15 0>,
+> +                         <&gpio0 14 0>, <&gpio0 4 0> , <&gpio0 3 0>, <&gpio0 2 0>, <&gpio0 5 0>,
+> +                         <&gpio2 25 0>, <&gpio2 3 0>;
+
+Use proper defines for GPIO flags.
+
+
+
+Best regards,
+Krzysztof
+
 
