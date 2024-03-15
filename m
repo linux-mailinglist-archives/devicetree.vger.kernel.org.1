@@ -1,124 +1,124 @@
-Return-Path: <devicetree+bounces-50699-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50700-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7D0C87CC26
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 12:17:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E96687CC40
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 12:28:05 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 59B6E1F21805
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:17:38 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id B400C1F21FA9
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:28:04 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6A9351A5BA;
-	Fri, 15 Mar 2024 11:16:37 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2CD8F1B593;
+	Fri, 15 Mar 2024 11:27:59 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b="CggN73De"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="Hbu9H1td"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-pf1-f177.google.com (mail-pf1-f177.google.com [209.85.210.177])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E02691C291
-	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 11:16:35 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.177
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 4922A18EB3;
+	Fri, 15 Mar 2024 11:27:55 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710501397; cv=none; b=PfB85jk4KwEJy7OINKr+sztdGgQJr2X1Fn6H/OD38wHBp4OZwDKQkQSyEkddoUBjtnNj1MBFXfdsCsR2rZ1RLGGXWFlFyI3+cgP7vu6gcgW/wCJr1w16UxP/S6Sv2iqrveQgdSzinnOTQl+d3yx5JjVoR0eM61P+VtAnGHFiL7k=
+	t=1710502079; cv=none; b=jFV3cjDPikd8eZ4RvuZVNrogRPoT2ecimnG79KiNM96OzgYns4TxMtDi8sgjuFK6Xu2P4J5Ek0STK0fveBfoDiksl/NzisYMCi0g3G2o/4qp3TNZAJeCyGxNir5hUVuvdPVlWWg/vAQ86gf/54ZUsHA5eWQxGgILmBwBD8RfUUI=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710501397; c=relaxed/simple;
-	bh=YpK9B0f8PSiwV/jMDxO+BOeqJp7bjd7POHW41IxWz3M=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version:Content-Type; b=d/P91arn1mgEgsr3n3RtJIJmu4WNGWWbyBc2vm+hbw/iXxl2+RRWhf7Q/TeLtonAiLCmrhzHaECX6uCSVQ6PldKou675qAUDPZY1uOZhA8pX2JQ99+6aGpWIItuj+4QIVM4WjOpVc6QJFkqxUxQiuV4NX21RRg9SBBJh/B3to44=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org; spf=pass smtp.mailfrom=chromium.org; dkim=pass (1024-bit key) header.d=chromium.org header.i=@chromium.org header.b=CggN73De; arc=none smtp.client-ip=209.85.210.177
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=chromium.org
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=chromium.org
-Received: by mail-pf1-f177.google.com with SMTP id d2e1a72fcca58-6e6f6825102so684254b3a.1
-        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 04:16:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1710501395; x=1711106195; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=al0RWiU4gJElSS4Z7Unyt/qe+1B4tsgOmYSta+HjBpc=;
-        b=CggN73Dedi/tTO0cb+sRDWGvs/nn6XwNSddLkfZ0CAs1R3wVIzNnETtPloUmmB+ORD
-         UlXdPYvBSm2k64Uj7QqbVNZoJK83255JwytNOmDrJvSXNGgfnqB8KzeaT4CrGx27SVa2
-         Ul/IjisPuzWlJrAOiTMtRCNfv+46vDCBhga4A=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710501395; x=1711106195;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=al0RWiU4gJElSS4Z7Unyt/qe+1B4tsgOmYSta+HjBpc=;
-        b=uGTOjNdfzjaRBQEQn7yg8ZzJxGBwMXwmC9wjvc8z1N49ub1SG3eePunI91qUDSvI05
-         75jSpyWI1/GVd+FMelSQ+8t0I8YCQHKpfIO++ZE+j8uC+hIooKDiqI7jUx2nrIJNQixp
-         LRZ60VUOmqfpqy9ujaWV5hCgm3VF9hOGxwiwOb+0W5QbxdsXuYvD4mShQCv9+7qHBOY2
-         sOyUg6BdP2kImODL1Ph5AXPhR08M/DPlKI7DreZkZpPmmN4DDxMZeBxONr7Glp7fmeJl
-         8m1OMFjFUVIoPzBngJkzo3EWMxybQp6uq8QrKzID9bbtMpRriPMZMIKhmQj0Vo5PO9RF
-         KSsg==
-X-Forwarded-Encrypted: i=1; AJvYcCX2Od3nfqwvsb0qPQEgsFsiKIkquXW6ZngIbsE+WeKZKqFjApihxaV0QwGtkVGPS/BWT8su//D3gbfcmdu5xZkcyQD3wol3GuAStA==
-X-Gm-Message-State: AOJu0YzundkMdNQ6g52XMNwPW/3/kQojAM6/l9hnubhBRELzPg/ID8RP
-	erQooKoBBZMgrqLcNdj8kS6Qea45IHEBH9pScxy0cLLLs3Pau+B3DjxH7rJopw==
-X-Google-Smtp-Source: AGHT+IEAdPZ814mOPF422g9xOunYnTCRZxGPQITS45msqmivfaAABFu1iB7POKJ4pYGf6WbFacC8iQ==
-X-Received: by 2002:a05:6a00:2389:b0:6e6:5374:411a with SMTP id f9-20020a056a00238900b006e65374411amr4806672pfc.18.1710501395445;
-        Fri, 15 Mar 2024 04:16:35 -0700 (PDT)
-Received: from treapking.tpe.corp.google.com ([2401:fa00:1:10:2f9c:c00a:bf1f:e53c])
-        by smtp.gmail.com with ESMTPSA id c11-20020a62e80b000000b006e6aee6807dsm3122683pfi.22.2024.03.15.04.16.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Mar 2024 04:16:35 -0700 (PDT)
-From: Pin-yen Lin <treapking@chromium.org>
-To: Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-arm-kernel@lists.infradead.org,
-	Chen-Yu Tsai <wenst@chromium.org>,
+	s=arc-20240116; t=1710502079; c=relaxed/simple;
+	bh=cMBm2ZUDvv/FeHjU9MT1L6ylkEfHxwGT+Fdb6DMTg3U=;
+	h=From:To:Cc:Subject:Date:Message-ID:MIME-Version; b=ShFP/CAw/L0qYj7Gcl6nkoOKnSuakTDe8r+xc8bGI94/LBqA8/GlNdIikAhGVDNqpPKEQ323IzYK4gCrXrWaNSK8HGpD+GlUs1XEWBOSz1dhtng9REQtYhojQKD/cwWS5w572SPfSnbEhj8yz3Shjxjhq0N1jRGPDPlrGaw5+L4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=Hbu9H1td; arc=none smtp.client-ip=217.70.183.196
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPA id 218EDE0004;
+	Fri, 15 Mar 2024 11:27:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+	t=1710502074;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:cc:mime-version:mime-version:
+	 content-transfer-encoding:content-transfer-encoding;
+	bh=yKwrXtvxj8TEZrcKF8i8hnVKSrTEOPd44rgLaggpYn8=;
+	b=Hbu9H1tdUnGCCxaS50Hbpsn1zVwsI8XeVjXTg81w6ZplrhN1WxMKpPRos8LILwVed0L63B
+	PiW4Zy8L6nEbXD0+3psh3ELfndG3HbMMd/c2hzFfAcbSTDg0BpjNddu7dBxFqP8Hv6gxCL
+	7x4t8xFtmvjwsYrZxLiuBwtxC1fg7lFCv/CF6/7kuoynStldNWHo9EYaZibQSZiGbDpcuJ
+	y5CaZDVJqaVhSqV4Tdj2L6iIYrir+5froFdjZQ56Ue3zxIylI0vla324frDvmOjFNo8AEH
+	QVJTO/rxL7cFSxlqOoNcyfx1GOu+ZNJWDWbk+pSsLQaAVHysLIr5BrNT1KuKNA==
+From: Bastien Curutchet <bastien.curutchet@bootlin.com>
+To: Liam Girdwood <lgirdwood@gmail.com>,
+	Mark Brown <broonie@kernel.org>,
+	Rob Herring <robh+dt@kernel.org>,
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+	Conor Dooley <conor+dt@kernel.org>,
+	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
+	Jaroslav Kysela <perex@perex.cz>,
+	Takashi Iwai <tiwai@suse.com>,
+	Bastien Curutchet <bastien.curutchet@bootlin.com>
+Cc: linux-sound@vger.kernel.org,
 	devicetree@vger.kernel.org,
 	linux-kernel@vger.kernel.org,
-	=?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= <nfraprado@collabora.com>,
-	linux-mediatek@lists.infradead.org,
-	Pin-yen Lin <treapking@chromium.org>
-Subject: [PATCH v2 4/4] arm64: dts: mediatek: mt8186-corsola: Update min voltage constraint for Vgpu
-Date: Fri, 15 Mar 2024 19:16:05 +0800
-Message-ID: <20240315111621.2263159-5-treapking@chromium.org>
-X-Mailer: git-send-email 2.44.0.291.gc1ea87d7ee-goog
-In-Reply-To: <20240315111621.2263159-1-treapking@chromium.org>
-References: <20240315111621.2263159-1-treapking@chromium.org>
+	alsa-devel@alsa-project.org,
+	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+	herve.codina@bootlin.com,
+	christophercordahi@nanometrics.ca
+Subject: [PATCH 00/13] ASoC: ti: davinci-i2s: Add features to McBSP driver
+Date: Fri, 15 Mar 2024 12:27:32 +0100
+Message-ID: <20240315112745.63230-1-bastien.curutchet@bootlin.com>
+X-Mailer: git-send-email 2.43.2
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-GND-Sasl: bastien.curutchet@bootlin.com
 
-The requested voltage could be lower than the minimum voltage on the
-GPU OPP table when the MTK Smart Voltage Scaling (SVS) driver is
-enabled, so update the minimum voltage constraint from 600000 uV to
-500000 uV as listed on the mt6366 datasheet.
+This series aims to add some features to McBSP driver.
 
-Fixes: 8855d01fb81f ("arm64: dts: mediatek: Add MT8186 Krabby platform based Tentacruel / Tentacool")
-Signed-off-by: Pin-yen Lin <treapking@chromium.org>
+Convert bindings from .txt to .yaml.
+Add possibility to use an external clock as sample rate generator's
+input.
+Add handling of new formats (TDM, S24_LE, BP_FC).
+Add optional properties in DT:
+ - ti,enable-sync-err  : Enable the detection of unexpected frame pulses
+ - ti,disable-free-run : Disable the free-running mode where McBSP drives
+                         serial clocks during emulation halt
+ - ti,drive-dx 	       : Outputs a chosen pattern on DX pin during
+                         capture streams.
 
----
+This has been tested on a platform designed off of the DAVINCI/OMAP-L138
+connected to 3 daisy-chained AD7767. An external clock drives the
+sample rate generator through the CLKS pin.
+The hardware I have only allowed me to test acquisition side of McBSP.
+It is connected to a 6 channels TDM and acts as Bit clock provider and
+Frame clock consumer.
 
-Changes in v2:
-- New in v2
+Bastien Curutchet (13):
+  ASoC: dt-bindings: davinci-mcbsp: convert McBSP bindings to yaml
+    schema
+  ASoC: dt-bindings: davinci-mcbsp: Add new properties
+  ASoC: ti: davinci-i2s: Remove the unused clk_input_pin attribute
+  ASoC: ti: davinci-i2s: Replace dev_err with dev_err_probe
+  ASoC: ti: davinci-i2s: Use external clock to drive sample rate
+    generator
+  ASoC: ti: davinci-i2s: Delete unnecessary assignment
+  ASoC: ti: davinci-i2s: Add TDM support
+  ASoC: ti: davinci-i2s: Add handling of BP_FC format
+  ASoC: ti: davinci-i2s: Enable unexpected frame pulses detection
+  ASoC: ti: davinci-i2s: Make free-running mode optional
+  ASoC: ti: davinci-i2s: Add S24_LE to supported formats
+  ASoC: dt-bindings: davinic-mcbsp: Add the 'ti,drive-dx' property
+  ASoC: ti: davinci-i2s: Opitonally drive DX pin during capture streams
 
- arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../bindings/sound/davinci-mcbsp.txt          |  50 ---
+ .../bindings/sound/davinci-mcbsp.yaml         | 119 +++++++
+ include/linux/platform_data/davinci_asp.h     |  15 -
+ sound/soc/ti/davinci-i2s.c                    | 333 ++++++++++++++----
+ 4 files changed, 376 insertions(+), 141 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/davinci-mcbsp.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/davinci-mcbsp.yaml
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-index 3dea28f1d806..1807e9d6cb0e 100644
---- a/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8186-corsola.dtsi
-@@ -1296,7 +1296,7 @@ mt6366_vgpu_reg: vgpu {
- 				 * regulator coupling requirements.
- 				 */
- 				regulator-name = "ppvar_dvdd_vgpu";
--				regulator-min-microvolt = <600000>;
-+				regulator-min-microvolt = <500000>;
- 				regulator-max-microvolt = <950000>;
- 				regulator-ramp-delay = <6250>;
- 				regulator-enable-ramp-delay = <200>;
 -- 
-2.44.0.291.gc1ea87d7ee-goog
+2.43.2
 
 
