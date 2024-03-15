@@ -1,281 +1,388 @@
-Return-Path: <devicetree+bounces-50713-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50714-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from sv.mirrors.kernel.org (sv.mirrors.kernel.org [IPv6:2604:1380:45e3:2400::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6E5787CC5C
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 12:30:51 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
+	by mail.lfdr.de (Postfix) with ESMTPS id 12BBB87CCA0
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 12:45:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sv.mirrors.kernel.org (Postfix) with ESMTPS id 6DD13282BA7
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:30:50 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 7EF371F2220E
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:45:33 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 70E773A1D7;
-	Fri, 15 Mar 2024 11:28:16 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 1245618059;
+	Fri, 15 Mar 2024 11:45:25 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="C1EqRKWR"
+	dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b="MwAvTPay"
 X-Original-To: devicetree@vger.kernel.org
 Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id ED68F381C6;
-	Fri, 15 Mar 2024 11:28:13 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 11B481BC59;
+	Fri, 15 Mar 2024 11:45:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=217.70.183.196
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710502096; cv=none; b=CTJpFdKRwKwnDJdpMhb0QC9HQw4phP/0WHuJKwAw02w4qmkN1XTK+5Y0qnAtUzih+zN3yRmcCcpyzSgM1oqD5SxG5unxkY0jMRQukpH2WCKlIiX9Z/cnrEK0xwYZXqJsU4Tdykkb7jusU0bv33+YkxyhjQp8wKcD0IBUpsmZddU=
+	t=1710503124; cv=none; b=V9hD6SxiOm0iIyQgUDJIxJmHkKG99hr29x8nJHNgCI1+biW+vdmm56y5sWAOnWDYL0o32JdfDMYkJrPh0GrOniudd4x0pfvJ/bHF9vHRbKJ6GSuSFG4XOsxZGtSCuco97GzOtShbFoutQhHGA+hxFiT60lwfF5dHoDVtvMP/7DE=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710502096; c=relaxed/simple;
-	bh=e9C6b7wBIvVr5D8OgogHyChIqRw3FYo/8ckm6eoEVCQ=;
-	h=From:To:Cc:Subject:Date:Message-ID:In-Reply-To:References:
-	 MIME-Version; b=YN9tj86y+4Z0Pc91jJvpuQf8WngEcd0G2VY34PaZU2aVSOTfiV8N4IaTDwe9aWBtgjxZfr9fJLdUd3v5D5Ysln2LC+JaOezZfH7lLDVkDkTnWBxTNhhF6oYpT8YFu9ceDN/XGVFx/BdBNHIyV20U570w9C7XKbXiKZpeH1ImL+E=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=C1EqRKWR; arc=none smtp.client-ip=217.70.183.196
+	s=arc-20240116; t=1710503124; c=relaxed/simple;
+	bh=xADKVOnSLQ/eSoxk0F4pbiiTRO2FBYoibk1GxdCL7Ug=;
+	h=Date:From:To:Cc:Subject:Message-ID:In-Reply-To:References:
+	 MIME-Version:Content-Type; b=UFpIZAM3G/V6LH5nmJlrGlN0Ge+oON62uEtKOXuGkvt8K2siTMGd7sMNDRuF3Et6J5CXzutgX8gwqX9FSY0whfGhZAdwCb9yPc4x9/ZLZYTa6cLGXWrxqnfIurcSTQFZlKMHRxZ7R2vbRmKX38GlHP79tKodKdma8KH0zlTpNds=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com; spf=pass smtp.mailfrom=bootlin.com; dkim=pass (2048-bit key) header.d=bootlin.com header.i=@bootlin.com header.b=MwAvTPay; arc=none smtp.client-ip=217.70.183.196
 Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=reject dis=none) header.from=bootlin.com
 Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 73A2BE0002;
-	Fri, 15 Mar 2024 11:28:11 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 9CFDBE0005;
+	Fri, 15 Mar 2024 11:45:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-	t=1710502092;
+	t=1710503120;
 	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-	 to:to:cc:cc:mime-version:mime-version:
+	 to:to:cc:cc:mime-version:mime-version:content-type:content-type:
 	 content-transfer-encoding:content-transfer-encoding:
 	 in-reply-to:in-reply-to:references:references;
-	bh=1ByKbg1sHmU9IHih5m1OFO59QL3ayS3Id0H8zj9ZFbU=;
-	b=C1EqRKWRRoWpb0hvc0NO337oFmlSlDZdxBdCKsGzwwGF5Csq8sqOm+720fvcsDajIciV51
-	nfa9uLgkJ09294QyRHP2nu6lzF4L9of/FhpstMKQg+xhdB464nkivpPBIXM+TUCvPThgsJ
-	G8oPMcRTvFNdWYrpmDybK7s1T8sW4byz6dgvkuJOyfc31TM/YvyE6iENg8ygMlDsAFAYU+
-	ThQ9Q3VevjUx6GXpOD0tG202TZ3Js3XIduW0M9iQXJpoM2TQKF/NBwvcuSKRc3apWO29YQ
-	YVdZcEQA5SN6lEc+JdXn3KKzK5X/H0AtWqGOU+Ivq/TZFSlexqZ0M72fAT33Yw==
-From: Bastien Curutchet <bastien.curutchet@bootlin.com>
-To: Liam Girdwood <lgirdwood@gmail.com>,
-	Mark Brown <broonie@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Peter Ujfalusi <peter.ujfalusi@gmail.com>,
-	Jaroslav Kysela <perex@perex.cz>,
-	Takashi Iwai <tiwai@suse.com>,
-	Bastien Curutchet <bastien.curutchet@bootlin.com>
-Cc: linux-sound@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	alsa-devel@alsa-project.org,
-	Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-	herve.codina@bootlin.com,
-	christophercordahi@nanometrics.ca
-Subject: [PATCH 13/13] ASoC: ti: davinci-i2s: Opitonally drive DX pin during capture streams
-Date: Fri, 15 Mar 2024 12:27:45 +0100
-Message-ID: <20240315112745.63230-14-bastien.curutchet@bootlin.com>
-X-Mailer: git-send-email 2.43.2
-In-Reply-To: <20240315112745.63230-1-bastien.curutchet@bootlin.com>
-References: <20240315112745.63230-1-bastien.curutchet@bootlin.com>
+	bh=R0kqNtL6G3XJ3YlpCpRDs+8Ulm0OGWV3L8/ec8/EvgA=;
+	b=MwAvTPaym4uwlN1C1EKgYc3IKFvTxnhIr+kXMPITBXU9heEQTwKc5yqIMpdk4aDLrsHsFr
+	EMDVVDpRFOb71CDe8L7p5WJkkCEUlEj07gGU1kjv7/NSUeCrpkPEIKkEGMZgLlZx70O7LF
+	F4JTHrNdYsnCy0kGE/VSaK8rjaVTOS4f5+gVih9kw3MDFbYvhLwXKDjTYk+lpyY9tRGfdj
+	OrTvX+x2Tw+5/DFixsU306TRTcsuszxO1Pvrx10j1ycpHpRK96t2KP3baGsi7Bp9Q78tr0
+	MJdjRBo3stvEKHJL9Dj74IHYauC5nn3YgYYKHN9HfT5mzCJ/K0K+uqEuK4Y8rA==
+Date: Fri, 15 Mar 2024 12:45:17 +0100
+From: Miquel Raynal <miquel.raynal@bootlin.com>
+To: Md Sadre Alam <quic_mdalam@quicinc.com>
+Cc: andersson@kernel.org, konrad.dybcio@linaro.org, broonie@kernel.org,
+ robh@kernel.org, krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+ richard@nod.at, vigneshr@ti.com, manivannan.sadhasivam@linaro.org,
+ neil.armstrong@linaro.org, daniel@makrotopia.org, arnd@arndb.de,
+ chris.packham@alliedtelesis.co.nz, christophe.kerello@foss.st.com,
+ linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+ devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-mtd@lists.infradead.org, quic_srichara@quicinc.com,
+ quic_varada@quicinc.com
+Subject: Re: [PATCH v4 2/5] drivers: mtd: nand: Add qpic_common API file
+Message-ID: <20240315124517.4a546ce9@xps-13>
+In-Reply-To: <20240308091752.16136-3-quic_mdalam@quicinc.com>
+References: <20240308091752.16136-1-quic_mdalam@quicinc.com>
+	<20240308091752.16136-3-quic_mdalam@quicinc.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-GND-Sasl: bastien.curutchet@bootlin.com
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-GND-Sasl: miquel.raynal@bootlin.com
 
-The McBSP's DX pin that outputs serial data during playback streams can
-be used during capture streams to repeatedly output a chosen pattern.
-For instance, this can be useful to drive an active-low signal during
-captures (by choosing <0> as output pattern).
+Hello,
 
-Enable this behaviour when the device-tree property 'ti,drive-dx' is
-present. DX pin is driven with the provided pattern every time a
-capture stream is launched.
+> +/**
+> + * qcom_qpic_bam_dma_done() - Callback for DMA descriptor completion
+> + * @data: data pointer
+> + *
+> + * This function is a callback for DMA descriptor completion
+> + */
+> +void qcom_qpic_bam_dma_done(void *data)
+> +{
+> +	struct bam_transaction *bam_txn =3D data;
+> +
+> +	/*
+> +	 * In case of data transfer with NAND, 2 callbacks will be generated.
+> +	 * One for command channel and another one for data channel.
+> +	 * If current transaction has data descriptors
+> +	 * (i.e. wait_second_completion is true), then set this to false
+> +	 * and wait for second DMA descriptor completion.
+> +	 */
+> +	if (bam_txn->wait_second_completion)
+> +		bam_txn->wait_second_completion =3D false;
+> +	else
+> +		complete(&bam_txn->txn_done);
 
-This property is not compatible with classic playback stream so
-davinci_i2s_trigger() returns an error if a playback stream is started
-while 'ti,drive-dx' flag is present.
+Can't you just call "wait" and "complete" twice? It's supposed to be
+handled by the API. This is totally racy.
 
-This has been tested on a board designed of a DAVINCI/OMAP-L138 where
-the DX pin is linked to the chip select pin of the converters of the
-capture side.
+> +}
+> +
+> +/**
+> + * qcom_nandc_read_buffer_sync() - Check for dma sync for cpu or device
+> + * @nandc: qpic nand controller
+> + * @is_cpu: cpu or Device
 
-Signed-off-by: Bastien Curutchet <bastien.curutchet@bootlin.com>
----
- sound/soc/ti/davinci-i2s.c | 74 ++++++++++++++++++++++++++++++++------
- 1 file changed, 63 insertions(+), 11 deletions(-)
+? the naming is really strange dev_to_mem or something like that would
+probably be more helpful.
 
-diff --git a/sound/soc/ti/davinci-i2s.c b/sound/soc/ti/davinci-i2s.c
-index 13e349e7a6ec..e289a84bdd6a 100644
---- a/sound/soc/ti/davinci-i2s.c
-+++ b/sound/soc/ti/davinci-i2s.c
-@@ -101,6 +101,9 @@
- #define DAVINCI_MCBSP_PCR_FSRM		(1 << 10)
- #define DAVINCI_MCBSP_PCR_FSXM		(1 << 11)
- 
-+#define PLAYBACK_CLOCK			1
-+#define CAPTURE_CLOCK			0
-+
- enum {
- 	DAVINCI_MCBSP_WORD_8 = 0,
- 	DAVINCI_MCBSP_WORD_12,
-@@ -164,6 +167,8 @@ struct davinci_mcbsp_dev {
- 
- 	bool sync_err;
- 	bool free_run;
-+	bool drive_dx;
-+	u32 dx_val;
- };
- 
- static inline void davinci_mcbsp_write_reg(struct davinci_mcbsp_dev *dev,
-@@ -187,6 +192,19 @@ static void toggle_clock(struct davinci_mcbsp_dev *dev, int playback)
- 	davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_PCR_REG, dev->pcr);
- }
- 
-+static int davinci_drive_dx(struct davinci_mcbsp_dev *dev)
-+{
-+	unsigned int spcr;
-+
-+	davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_DXR_REG, dev->dx_val);
-+
-+	spcr = davinci_mcbsp_read_reg(dev, DAVINCI_MCBSP_SPCR_REG);
-+	spcr |= DAVINCI_MCBSP_SPCR_XRST;
-+	davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_SPCR_REG, spcr);
-+
-+	return 0;
-+}
-+
- static void davinci_mcbsp_start(struct davinci_mcbsp_dev *dev,
- 		struct snd_pcm_substream *substream)
- {
-@@ -194,6 +212,9 @@ static void davinci_mcbsp_start(struct davinci_mcbsp_dev *dev,
- 	u32 spcr;
- 	u32 mask = playback ? DAVINCI_MCBSP_SPCR_XRST : DAVINCI_MCBSP_SPCR_RRST;
- 
-+	if (!playback && dev->drive_dx)
-+		davinci_drive_dx(dev);
-+
- 	/* Enable transmitter or receiver */
- 	spcr = davinci_mcbsp_read_reg(dev, DAVINCI_MCBSP_SPCR_REG);
- 	spcr |= mask;
-@@ -212,9 +233,17 @@ static void davinci_mcbsp_stop(struct davinci_mcbsp_dev *dev, int playback)
- 	/* Reset transmitter/receiver and sample rate/frame sync generators */
- 	spcr = davinci_mcbsp_read_reg(dev, DAVINCI_MCBSP_SPCR_REG);
- 	spcr &= ~(DAVINCI_MCBSP_SPCR_GRST | DAVINCI_MCBSP_SPCR_FRST);
--	spcr &= playback ? ~DAVINCI_MCBSP_SPCR_XRST : ~DAVINCI_MCBSP_SPCR_RRST;
--	davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_SPCR_REG, spcr);
--	toggle_clock(dev, playback);
-+
-+	if (!playback) {
-+		spcr &= ~DAVINCI_MCBSP_SPCR_RRST;
-+		davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_SPCR_REG, spcr);
-+		toggle_clock(dev, CAPTURE_CLOCK);
-+	}
-+	if (playback || dev->drive_dx) {
-+		spcr &= ~DAVINCI_MCBSP_SPCR_XRST;
-+		davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_SPCR_REG, spcr);
-+		toggle_clock(dev, PLAYBACK_CLOCK);
-+	}
- }
- 
- static int davinci_i2s_tdm_word_length(int tdm_slot_width)
-@@ -408,6 +437,10 @@ static int davinci_i2s_set_dai_fmt(struct snd_soc_dai *cpu_dai,
- 	}
- 	if (inv_fs == true)
- 		pcr ^= (DAVINCI_MCBSP_PCR_FSXP | DAVINCI_MCBSP_PCR_FSRP);
-+
-+	if (dev->drive_dx)
-+		pcr |= DAVINCI_MCBSP_PCR_CLKRP;
-+
- 	davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_SRGR_REG, srgr);
- 	dev->pcr = pcr;
- 	davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_PCR_REG, pcr);
-@@ -562,6 +595,9 @@ static int davinci_i2s_hw_params(struct snd_pcm_substream *substream,
- 		xcr |= DAVINCI_MCBSP_XCR_XDATDLY(1);
- 	}
- 
-+	if (dev->drive_dx)
-+		xcr |= DAVINCI_MCBSP_XCR_XDATDLY(2);
-+
- 	if (params_channels(params) == 2) {
- 		element_cnt = 2;
- 		if (double_fmt[fmt] && dev->enable_channel_combine) {
-@@ -611,9 +647,9 @@ static int davinci_i2s_hw_params(struct snd_pcm_substream *substream,
- 	xcr |= DAVINCI_MCBSP_XCR_XWDLEN1(mcbsp_word_length) |
- 		DAVINCI_MCBSP_XCR_XWDLEN2(mcbsp_word_length);
- 
--	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK)
-+	if (substream->stream == SNDRV_PCM_STREAM_PLAYBACK || dev->drive_dx)
- 		davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_XCR_REG, xcr);
--	else
-+	if (substream->stream == SNDRV_PCM_STREAM_CAPTURE)
- 		davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_RCR_REG, rcr);
- 
- 	pr_debug("%s - %d  srgr=%X\n", __func__, __LINE__, srgr);
-@@ -628,16 +664,21 @@ static int davinci_i2s_prepare(struct snd_pcm_substream *substream,
- 	struct davinci_mcbsp_dev *dev = snd_soc_dai_get_drvdata(dai);
- 	int playback = (substream->stream == SNDRV_PCM_STREAM_PLAYBACK);
- 	u32 spcr;
--	u32 mask = playback ? DAVINCI_MCBSP_SPCR_XRST : DAVINCI_MCBSP_SPCR_RRST;
- 
- 	davinci_mcbsp_stop(dev, playback);
- 
- 	spcr = davinci_mcbsp_read_reg(dev, DAVINCI_MCBSP_SPCR_REG);
--	if (spcr & mask) {
-+	if (spcr & DAVINCI_MCBSP_SPCR_XRST) {
- 		/* start off disabled */
- 		davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_SPCR_REG,
--					spcr & ~mask);
--		toggle_clock(dev, playback);
-+					spcr & ~DAVINCI_MCBSP_SPCR_XRST);
-+		toggle_clock(dev, PLAYBACK_CLOCK);
-+	}
-+	if (spcr & DAVINCI_MCBSP_SPCR_RRST) {
-+		/* start off disabled */
-+		davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_SPCR_REG,
-+					spcr & ~DAVINCI_MCBSP_SPCR_RRST);
-+		toggle_clock(dev, CAPTURE_CLOCK);
- 	}
- 	if (dev->pcr & (DAVINCI_MCBSP_PCR_FSXM | DAVINCI_MCBSP_PCR_FSRM |
- 			DAVINCI_MCBSP_PCR_CLKXM | DAVINCI_MCBSP_PCR_CLKRM)) {
-@@ -646,7 +687,7 @@ static int davinci_i2s_prepare(struct snd_pcm_substream *substream,
- 		davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_SPCR_REG, spcr);
- 	}
- 
--	if (playback) {
-+	if (playback || dev->drive_dx) {
- 		/* Enable the transmitter */
- 		spcr = davinci_mcbsp_read_reg(dev, DAVINCI_MCBSP_SPCR_REG);
- 		spcr |= DAVINCI_MCBSP_SPCR_XRST;
-@@ -659,7 +700,7 @@ static int davinci_i2s_prepare(struct snd_pcm_substream *substream,
- 		spcr = davinci_mcbsp_read_reg(dev, DAVINCI_MCBSP_SPCR_REG);
- 		spcr &= ~DAVINCI_MCBSP_SPCR_XRST;
- 		davinci_mcbsp_write_reg(dev, DAVINCI_MCBSP_SPCR_REG, spcr);
--		toggle_clock(dev, playback);
-+		toggle_clock(dev, PLAYBACK_CLOCK);
- 	}
- 
- 	return 0;
-@@ -672,6 +713,11 @@ static int davinci_i2s_trigger(struct snd_pcm_substream *substream, int cmd,
- 	int ret = 0;
- 	int playback = (substream->stream == SNDRV_PCM_STREAM_PLAYBACK);
- 
-+	if (playback && dev->drive_dx) {
-+		dev_err(dev->dev, "Playback is not allowed when drive-cs flag is set\n");
-+		return -EINVAL;
-+	}
-+
- 	switch (cmd) {
- 	case SNDRV_PCM_TRIGGER_START:
- 	case SNDRV_PCM_TRIGGER_RESUME:
-@@ -779,6 +825,12 @@ static int davinci_i2s_probe(struct platform_device *pdev)
- 
- 	dev->free_run = !of_property_read_bool(pdev->dev.of_node, "ti,disable-free-run");
- 	dev->sync_err = of_property_read_bool(pdev->dev.of_node, "ti,enable-sync-err");
-+	dev->drive_dx = false;
-+	ret = of_property_read_u32(pdev->dev.of_node, "ti,drive-dx", &dev->dx_val);
-+	if (ret && ret != -EINVAL)
-+		return ret;
-+	if (!ret)
-+		dev->drive_dx = true;
- 
- 	/* setup DMA, first TX, then RX */
- 	dma_data = &dev->dma_data[SNDRV_PCM_STREAM_PLAYBACK];
--- 
-2.43.2
+> + *
+> + * This function will check for dma sync for cpu or device
+> + */
+> +void qcom_nandc_read_buffer_sync(struct qcom_nand_controller *nandc,
+> +				 bool is_cpu)
+> +{
+> +	if (!nandc->props->is_bam)
+> +		return;
+> +
+> +	if (is_cpu)
+> +		dma_sync_single_for_cpu(nandc->dev, nandc->reg_read_dma,
+> +					MAX_REG_RD *
+> +					sizeof(*nandc->reg_read_buf),
+> +					DMA_FROM_DEVICE);
+> +	else
+> +		dma_sync_single_for_device(nandc->dev, nandc->reg_read_dma,
+> +					   MAX_REG_RD *
+> +					   sizeof(*nandc->reg_read_buf),
+> +					   DMA_FROM_DEVICE);
+> +}
+> +
+> +/**
+> + * qcom_offset_to_nandc_reg() - Get the actual offset
+> + * @regs: pointer to nandc_reg structure
+> + * @offset: register offset
+> + *
+> + * This function will reurn the actual offset for qpic controller regist=
+er
+> + */
+> +__le32 *qcom_offset_to_nandc_reg(struct nandc_regs *regs, int offset)
+> +{
+> +	switch (offset) {
+> +	case NAND_FLASH_CMD:
+> +		return &regs->cmd;
+> +	case NAND_ADDR0:
+> +		return &regs->addr0;
+> +	case NAND_ADDR1:
+> +		return &regs->addr1;
+> +	case NAND_FLASH_CHIP_SELECT:
+> +		return &regs->chip_sel;
+> +	case NAND_EXEC_CMD:
+> +		return &regs->exec;
+> +	case NAND_FLASH_STATUS:
+> +		return &regs->clrflashstatus;
+> +	case NAND_DEV0_CFG0:
+> +		return &regs->cfg0;
+> +	case NAND_DEV0_CFG1:
+> +		return &regs->cfg1;
+> +	case NAND_DEV0_ECC_CFG:
+> +		return &regs->ecc_bch_cfg;
+> +	case NAND_READ_STATUS:
+> +		return &regs->clrreadstatus;
+> +	case NAND_DEV_CMD1:
+> +		return &regs->cmd1;
+> +	case NAND_DEV_CMD1_RESTORE:
+> +		return &regs->orig_cmd1;
+> +	case NAND_DEV_CMD_VLD:
+> +		return &regs->vld;
+> +	case NAND_DEV_CMD_VLD_RESTORE:
+> +		return &regs->orig_vld;
+> +	case NAND_EBI2_ECC_BUF_CFG:
+> +		return &regs->ecc_buf_cfg;
+> +	case NAND_READ_LOCATION_0:
+> +		return &regs->read_location0;
+> +	case NAND_READ_LOCATION_1:
+> +		return &regs->read_location1;
+> +	case NAND_READ_LOCATION_2:
+> +		return &regs->read_location2;
+> +	case NAND_READ_LOCATION_3:
+> +		return &regs->read_location3;
+> +	case NAND_READ_LOCATION_LAST_CW_0:
+> +		return &regs->read_location_last0;
+> +	case NAND_READ_LOCATION_LAST_CW_1:
+> +		return &regs->read_location_last1;
+> +	case NAND_READ_LOCATION_LAST_CW_2:
+> +		return &regs->read_location_last2;
+> +	case NAND_READ_LOCATION_LAST_CW_3:
+> +		return &regs->read_location_last3;
 
+Why do you need this indirection?
+
+> +	default:
+> +		return NULL;
+> +	}
+> +}
+> +
+
+...
+
+> +/**
+> + * qcom_clear_bam_transaction() - Clears the BAM transaction
+> + * @nandc: qpic nand controller
+> + *
+> + * This function will clear the BAM transaction indexes.
+> + */
+> +void qcom_clear_bam_transaction(struct qcom_nand_controller *nandc)
+> +{
+> +	struct bam_transaction *bam_txn =3D nandc->bam_txn;
+> +
+> +	if (!nandc->props->is_bam)
+> +		return;
+> +
+> +	bam_txn->bam_ce_pos =3D 0;
+> +	bam_txn->bam_ce_start =3D 0;
+> +	bam_txn->cmd_sgl_pos =3D 0;
+> +	bam_txn->cmd_sgl_start =3D 0;
+> +	bam_txn->tx_sgl_pos =3D 0;
+> +	bam_txn->tx_sgl_start =3D 0;
+> +	bam_txn->rx_sgl_pos =3D 0;
+> +	bam_txn->rx_sgl_start =3D 0;
+> +	bam_txn->last_data_desc =3D NULL;
+> +	bam_txn->wait_second_completion =3D false;
+
+What about using memset here?
+
+> +
+> +	sg_init_table(bam_txn->cmd_sgl, nandc->max_cwperpage *
+> +		      QPIC_PER_CW_CMD_SGL);
+> +	sg_init_table(bam_txn->data_sgl, nandc->max_cwperpage *
+> +		      QPIC_PER_CW_DATA_SGL);
+> +
+> +	reinit_completion(&bam_txn->txn_done);
+> +}
+
+...
+
+> diff --git a/include/linux/mtd/nand-qpic-common.h b/include/linux/mtd/nan=
+d-qpic-common.h
+> new file mode 100644
+> index 000000000000..aced15866627
+> --- /dev/null
+> +++ b/include/linux/mtd/nand-qpic-common.h
+> @@ -0,0 +1,486 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * QCOM QPIC common APIs header file
+> + *
+> + * Copyright (c) 2023 Qualcomm Inc.
+> + * Authors:     Md sadre Alam           <quic_mdalam@quicinc.com>
+> + *		Sricharan R             <quic_srichara@quicinc.com>
+> + *		Varadarajan Narayanan   <quic_varada@quicinc.com>
+> + *
+> + */
+> +#ifndef __MTD_NAND_QPIC_COMMON_H__
+> +#define __MTD_NAND_QPIC_COMMON_H__
+> +
+> +#include <linux/bitops.h>
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/dmaengine.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/dma/qcom_adm.h>
+> +#include <linux/dma/qcom_bam_dma.h>
+> +#include <linux/module.h>
+> +#include <linux/mtd/partitions.h>
+> +#include <linux/mtd/rawnand.h>
+
+You really need this?
+
+> +#include <linux/of.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/slab.h>
+> +
+> +/* NANDc reg offsets */
+> +#define	NAND_FLASH_CMD			0x00
+> +#define	NAND_ADDR0			0x04
+> +#define	NAND_ADDR1			0x08
+> +#define	NAND_FLASH_CHIP_SELECT		0x0c
+> +#define	NAND_EXEC_CMD			0x10
+> +#define	NAND_FLASH_STATUS		0x14
+> +#define	NAND_BUFFER_STATUS		0x18
+> +#define	NAND_DEV0_CFG0			0x20
+> +#define	NAND_DEV0_CFG1			0x24
+> +#define	NAND_DEV0_ECC_CFG		0x28
+> +#define	NAND_AUTO_STATUS_EN		0x2c
+> +#define	NAND_DEV1_CFG0			0x30
+> +#define	NAND_DEV1_CFG1			0x34
+> +#define	NAND_READ_ID			0x40
+> +#define	NAND_READ_STATUS		0x44
+> +#define	NAND_DEV_CMD0			0xa0
+> +#define	NAND_DEV_CMD1			0xa4
+> +#define	NAND_DEV_CMD2			0xa8
+> +#define	NAND_DEV_CMD_VLD		0xac
+> +#define	SFLASHC_BURST_CFG		0xe0
+> +#define	NAND_ERASED_CW_DETECT_CFG	0xe8
+> +#define	NAND_ERASED_CW_DETECT_STATUS	0xec
+> +#define	NAND_EBI2_ECC_BUF_CFG		0xf0
+> +#define	FLASH_BUF_ACC			0x100
+> +
+
+...
+
+> +/*
+> + * This data type corresponds to the NAND controller properties which va=
+ries
+> + * among different NAND controllers.
+> + * @ecc_modes - ecc mode for NAND
+
+Should this member be an enum?
+
+> + * @dev_cmd_reg_start - NAND_DEV_CMD_* registers starting offset
+> + * @is_bam - whether NAND controller is using BAM
+
+has_bam_support? supports_bam?
+
+> + * @is_qpic - whether NAND CTRL is part of qpic IP
+
+CTRL? do you mean controller?
+
+> + * @qpic_v2 - flag to indicate QPIC IP version 2
+> + * @use_codeword_fixup - whether NAND has different layout for boot part=
+itions
+
+The doc is clear but the member name is terrible. Please clarify the
+naming.
+
+> + */
+> +struct qcom_nandc_props {
+> +	u32 ecc_modes;
+> +	u32 dev_cmd_reg_start;
+> +	bool is_bam;
+> +	bool is_qpic;
+> +	bool qpic_v2;
+> +	bool use_codeword_fixup;
+> +};
+> +
+> +void config_nand_page_read(struct nand_chip *chip);
+> +void qcom_qpic_bam_dma_done(void *data);
+> +void qcom_nandc_read_buffer_sync(struct qcom_nand_controller *nandc, boo=
+l is_cpu);
+> +__le32 *qcom_offset_to_nandc_reg(struct nandc_regs *regs, int offset);
+> +int qcom_prep_adm_dma_desc(struct qcom_nand_controller *nandc, bool read,
+> +			   int reg_off, const void *vaddr, int size,
+> +			bool flow_control);
+> +int qcom_submit_descs(struct qcom_nand_controller *nandc);
+> +int qcom_prepare_bam_async_desc(struct qcom_nand_controller *nandc,
+> +				struct dma_chan *chan, unsigned long flags);
+> +int qcom_prep_bam_dma_desc_cmd(struct qcom_nand_controller *nandc, bool =
+read,
+> +			       int reg_off, const void *vaddr,
+> +			int size, unsigned int flags);
+> +int qcom_prep_bam_dma_desc_data(struct qcom_nand_controller *nandc, bool=
+ read,
+> +				const void *vaddr,
+> +			int size, unsigned int flags);
+> +int qcom_read_reg_dma(struct qcom_nand_controller *nandc, int first,
+> +		      int num_regs, unsigned int flags);
+> +int qcom_write_reg_dma(struct qcom_nand_controller *nandc, int first,
+> +		       int num_regs, unsigned int flags);
+> +int qcom_read_data_dma(struct qcom_nand_controller *nandc, int reg_off,
+> +		       const u8 *vaddr, int size, unsigned int flags);
+> +int qcom_write_data_dma(struct qcom_nand_controller *nandc, int reg_off,
+> +			const u8 *vaddr, int size, unsigned int flags);
+> +struct bam_transaction *qcom_alloc_bam_transaction(struct qcom_nand_cont=
+roller *nandc);
+> +void qcom_clear_bam_transaction(struct qcom_nand_controller *nandc);
+> +void qcom_nandc_unalloc(struct qcom_nand_controller *nandc);
+> +int qcom_nandc_alloc(struct qcom_nand_controller *nandc);
+> +void qcom_clear_read_regs(struct qcom_nand_controller *nandc);
+> +void qcom_free_bam_transaction(struct qcom_nand_controller *nandc);
+> +#endif
+
+I made several requests on code that already exists, please add these
+changes to your series.
+
+
+Also, this patching being big, please split:
+1- rename your all your symbols to start with the same prefix
+(qcom_nand_ instead of nothing or just qcom)
+2- then perform the move, which should not require changing the names
+of all the functions everywhere.
+
+Thanks,
+Miqu=C3=A8l
 
