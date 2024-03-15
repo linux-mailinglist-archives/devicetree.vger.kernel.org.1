@@ -1,148 +1,193 @@
-Return-Path: <devicetree+bounces-50693-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50694-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [IPv6:2604:1380:45d1:ec00::1])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2464C87CB78
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:32:35 +0100 (CET)
+Received: from ny.mirrors.kernel.org (ny.mirrors.kernel.org [147.75.199.223])
+	by mail.lfdr.de (Postfix) with ESMTPS id D566D87CBCD
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 12:01:26 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 51A791C2186A
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 10:32:34 +0000 (UTC)
+	by ny.mirrors.kernel.org (Postfix) with ESMTPS id 048A61C2143F
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 11:01:26 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 2301318EA5;
-	Fri, 15 Mar 2024 10:31:40 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 7BF3119BA2;
+	Fri, 15 Mar 2024 11:01:21 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="EvbZYSn6"
+	dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b="0KrHfQjm"
 X-Original-To: devicetree@vger.kernel.org
-Received: from mail-wm1-f47.google.com (mail-wm1-f47.google.com [209.85.128.47])
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 5F5561B941;
-	Fri, 15 Mar 2024 10:31:38 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.47
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 663C518E02
+	for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 11:01:19 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.160.175
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710498700; cv=none; b=UfAbxMbCMQZrsZEPjog8/VzQqw8I9h83U21z6mfEgC3coOATUHXUuhKHmlZIml6wAAJ0o6duboa3f29iWViawLjA5ftkxWgWsrMt/ZXW1nbGkX1EN21uacqf/ZB2uzVuoY/jwWnAEcTuOeOUjDmWsnXOYNS7gEu2NYtJUkU5lu8=
+	t=1710500481; cv=none; b=cnTSZ3LOeeNkoBgp3MNABAZwu2zQWgJ1tgWLLf4YdbtSPEVwiC8Z+9qICJqxATqIZNnVwAtdC4SZTWTGgMXe98YrnchOfAlqY0Du1nsCInKACzF3pDNQm1AjxquX7j1lNvcp5+bOa185kKJ6DF95XqPFPlQGiz2D9fIpmznm9hk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710498700; c=relaxed/simple;
-	bh=lRdqpTT0gh2WtHqWtaq0VJmI8rtEhSLoMt9GWGgjokU=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=nt30VvA4Cx2C5nIbmlQe/5C7c7OwKLV5DIzLDI4K/anuXVHLr6LXof1EKx/9yYNuxKs7uWtAUDVphSRzA2L7FsgpNEK26Oa0L/f2eQOIm7lWhDOMfGKhkwDVEs/2fRc4fdCVaacLMZVeVaU6iVAG2m5Rbv3QMzai6QCxTu3+mFA=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=EvbZYSn6; arc=none smtp.client-ip=209.85.128.47
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
-Received: by mail-wm1-f47.google.com with SMTP id 5b1f17b1804b1-414037e9acdso1373245e9.1;
-        Fri, 15 Mar 2024 03:31:38 -0700 (PDT)
+	s=arc-20240116; t=1710500481; c=relaxed/simple;
+	bh=1bp9ya6mUTdhU/FzzsHERh5njunu+iph5TE1N9ar6zQ=;
+	h=Message-ID:Date:MIME-Version:Subject:To:Cc:References:From:
+	 In-Reply-To:Content-Type; b=MkbapEP2ax+ZfFVrWRMlyq4Nbdu5H1EIguKuWlxLOL23F+05tk0v1fyusmDfU2gOx7HSDgCCuhEHQKcFXI2e+Z/31tSnHC3uqZXPtENd0dL8z4ymAbRM2+J/bT6d6vlrWBpYLP3dLUO5tY/8czUSZyugF48wHP69kZ+a1TzUjI4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com; spf=pass smtp.mailfrom=baylibre.com; dkim=pass (2048-bit key) header.d=baylibre-com.20230601.gappssmtp.com header.i=@baylibre-com.20230601.gappssmtp.com header.b=0KrHfQjm; arc=none smtp.client-ip=209.85.160.175
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=baylibre.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=baylibre.com
+Received: by mail-qt1-f175.google.com with SMTP id d75a77b69052e-430b7b22b17so364641cf.2
+        for <devicetree@vger.kernel.org>; Fri, 15 Mar 2024 04:01:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20230601; t=1710498697; x=1711103497; darn=vger.kernel.org;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=CckpNQcaclBaLWHE4esIu6A7ypiEpjVfV/EelIKw3g8=;
-        b=EvbZYSn6h9lgNKXlmyPhhkg7F+jCKjeoIr/Zy3hG1+rq90r6YEiqmEDhdTP4Eo2R5+
-         U9+uCwY+EQlUyXbPc2o1ISJmhwj+AIS1C8tvIX1XbL/zr/78G3YfpGgSGkRJ0ybgYnFE
-         /qI72i8/l5UEnq2/0pMvJhhillHUBsQvZjxeEgYGBFZYKZIGFKvwRY46dGfQZnryxYjJ
-         gqZxYIuBGKfBswe8xt+sHk6s1uuPVwScG2xdl2hc5/P3AmOniujkBwJ7Wys8FXFJcfgu
-         pI/6uPSQ/bGWOaKGlDexQ7+MDGdzAA2hjKl5XzRsYhjcclGvuWYvIZFz8BNqprMjVKVm
-         s0Eg==
+        d=baylibre-com.20230601.gappssmtp.com; s=20230601; t=1710500478; x=1711105278; darn=vger.kernel.org;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=5DsyBbYAZw/09Nakq0pDw/8yd9OC3IgRs2xlCXHLsrE=;
+        b=0KrHfQjmpkRwbZCaWB6aajlxkeTQyJaR8SGhkW4gyLoWycW5Qew46jI8Be9qx5IYtK
+         23SNd5WFJKrFAXslqZOFC4QiP1I9S1IaEaJebnLvO2BYpYV4UTKGly2/tbIPdQK1DUq9
+         0JO49ZAaGVTigrafNhSQ1Hj7Los5xAvfpL6Dbxg17oJjGybV30eChz5hbJhfC1ZfllMk
+         CuLEuA/gpmhPK9G9kVbyiGQGuT815tuj8oO6P9tPp0boSOxptEZJipuvOlKlP9ZXSpZC
+         40Z5M9Xui3/tpBwEMpfRG4p3DKmlVtJvsjTpNZgqsaehUv2yaf1sEITHqWV1evE81874
+         shPA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20230601; t=1710498697; x=1711103497;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=CckpNQcaclBaLWHE4esIu6A7ypiEpjVfV/EelIKw3g8=;
-        b=AkcpaVN2VHQ6SDhBbvaJUWZ0XkieDTlx2iW18UZNymsmzddq8pb1zMHdD4a210DXJa
-         ZgbIHSO08xH0TEAR42hHmNuQvqxcO4zY5B8Rabx/PZ+FFIvZam+u6aJrCMbVt4z9ZZc7
-         4hlvg6IC0UG0fdkOR+qyB/C3d7pIgipVglOa/3a0ouLIrAWg928RuNPDNnf4kRYitEtp
-         +8V/WnICTEHRyclqm3LDNS0atqntWUixSmxLqY/I5Rt9IJtR6oM9vYFO8egjj2Ika5Pe
-         tDYbLJwnHHonHRIH3VLYXgk0FgVjvgb90XGrNRS+FZZmL6mAPCICG08CdBsXiHwVWuSZ
-         CXsg==
-X-Forwarded-Encrypted: i=1; AJvYcCXU3s80mGSpF6wXlbha6BLTNf5OEvkOP2ObsdAHJetNFN7tnN3ndGQNNlbRCuFM8Ffy+fIJEnT7EqIrFbfDL5b4KK0ukqiLrr1SUD5XYtOCgrM1zn2uKf74PjXRnrh1irv0NftGzbHRkYNOBXbdvVgkiKHL9njnATVhWIfoQIOMcc7P5Q==
-X-Gm-Message-State: AOJu0Yy+7fxwgG9igEUD54VcjLOg1TO9iG7QBNrfPQNKBWNAfw2VQKiW
-	44e27ut1cVmQ4tdwTFZBIr3+CDo/3cfNs8kcOC9TurdV1qBiqQed
-X-Google-Smtp-Source: AGHT+IGHdpZ3MrSAR8C+LtQYj0s4PZhbJXP8cthDm4G5cDLoC6N21cKw5gg26nHFO/y1GLUSHk5d8A==
-X-Received: by 2002:a05:600c:5187:b0:413:f1d7:ee09 with SMTP id fa7-20020a05600c518700b00413f1d7ee09mr4194825wmb.15.1710498696399;
-        Fri, 15 Mar 2024 03:31:36 -0700 (PDT)
-Received: from prasmi.home ([2a00:23c8:2500:a01:ae92:6adf:5cb6:274c])
-        by smtp.gmail.com with ESMTPSA id l19-20020a05600c4f1300b004130378fb77sm8676549wmq.6.2024.03.15.03.31.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 15 Mar 2024 03:31:34 -0700 (PDT)
-From: Prabhakar <prabhakar.csengg@gmail.com>
-X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-To: Geert Uytterhoeven <geert+renesas@glider.be>,
-	Chris Brandt <chris.brandt@renesas.com>,
-	Andi Shyti <andi.shyti@kernel.org>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Magnus Damm <magnus.damm@gmail.com>,
-	Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc: linux-renesas-soc@vger.kernel.org,
-	linux-i2c@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
-	Prabhakar <prabhakar.csengg@gmail.com>,
-	Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH v2 4/4] i2c: riic: Add support for R9A09G057 SoC
-Date: Fri, 15 Mar 2024 10:30:33 +0000
-Message-Id: <20240315103033.141226-5-prabhakar.mahadev-lad.rj@bp.renesas.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20240315103033.141226-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-References: <20240315103033.141226-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        d=1e100.net; s=20230601; t=1710500478; x=1711105278;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5DsyBbYAZw/09Nakq0pDw/8yd9OC3IgRs2xlCXHLsrE=;
+        b=HRneeRAUW5F7N3AslrqbXdmkpjbOuNTWf8h3earGN9Y+VHUheIDJaZmWgrl/FvS0KS
+         mVjJkNxVUVxQjZEh+CTJGL/cVJD7+5ec4SXNx6v75uF9sMynwIb/5yF1o0o/JBi5ED4d
+         yK4EvjgEZ9BPn9QKKSNszJ7SVmBx54BWisHs4Qrb0tsLu9CjLapB1H8Ge3p46r9UHb3z
+         ZN9vpGc24OywY+JDJPum2l80la7Cy5eu3qQa9gwxgiga41dwcOTbH0S1NS3pQPZF58BS
+         B0l0qTKQAmZZc4o4BpESgQBOKgy7GgN+4FN8u/Yxd8oRZXKRLINGjjZSZ2Td1TXw/xxT
+         KZ7Q==
+X-Forwarded-Encrypted: i=1; AJvYcCWxdIhu7H6YdVQd7W78lhdp00g+K2pYz1yB4bGHG4rlhMSwyoaroi2B+nLhKEDQLeYMcwpA8gf4guRUgFMspqmzbnkU4Ry1ctRxlg==
+X-Gm-Message-State: AOJu0Yy5WXEAgfDWP1luo2VZS9IqMT++qqSpK1s12p2uvFyw5r3WtHET
+	w6UQ3PuSCz2Vdv5l9E9h0mU68U0vZQ60lWJFPRlaEcKZVGocYprz08PYu9MJr1s=
+X-Google-Smtp-Source: AGHT+IEVOOgZFoxsLMo3B/9DgMlPg+8mCIQzmFSjWr5NC1POGFlHlr6r0UtoZZxyVjffb0W7416VFg==
+X-Received: by 2002:ac8:5783:0:b0:42e:b90c:c5a9 with SMTP id v3-20020ac85783000000b0042eb90cc5a9mr5156478qta.51.1710500478406;
+        Fri, 15 Mar 2024 04:01:18 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id p3-20020a05622a00c300b0042ef88b7daesm1838670qtw.19.2024.03.15.04.01.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Mar 2024 04:01:17 -0700 (PDT)
+Message-ID: <dda0e6ba-4538-47a0-95e9-6adcfd4169a7@baylibre.com>
+Date: Fri, 15 Mar 2024 12:01:12 +0100
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 12/18] ASoC: codecs: mt6357: add MT6357 codec
+Content-Language: en-US
+To: Mark Brown <broonie@kernel.org>
+Cc: Liam Girdwood <lgirdwood@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>, Matthias Brugger
+ <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Lee Jones <lee@kernel.org>, Flora Fu <flora.fu@mediatek.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ linux-sound@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+ dri-devel@lists.freedesktop.org, linaro-mm-sig@lists.linaro.org,
+ Nicolas Belin <nbelin@baylibre.com>
+References: <20240226-audio-i350-v1-0-4fa1cea1667f@baylibre.com>
+ <20240226-audio-i350-v1-12-4fa1cea1667f@baylibre.com>
+ <9891855d-2284-42e4-9d3a-35ba406540e8@sirena.org.uk>
+ <c441a132-b16b-4244-a712-8971c902d4d7@baylibre.com>
+ <ff3d2db1-697b-42c6-a0f2-74276e9fc098@sirena.org.uk>
+From: Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <ff3d2db1-697b-42c6-a0f2-74276e9fc098@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 
-From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
-Extend the RIIC driver to support the RZ/V2H(P) ("R9A09G057") SoC. It
-accomplishes this by appending the compatible string list and passing
-the RZ/V2H-specific OF data.
 
-Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
----
-v1->v2
-- Dropped setting family
----
- drivers/i2c/busses/i2c-riic.c | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+On 13/03/2024 18:23, Mark Brown wrote:
+> On Tue, Mar 12, 2024 at 07:03:25PM +0100, Alexandre Mergnat wrote:
+>> On 26/02/2024 17:09, Mark Brown wrote:
+> 
+>>>> +	case MT6357_ZCD_CON2:
+>>>> +		regmap_read(priv->regmap, MT6357_ZCD_CON2, &reg);
+>>>> +		priv->ana_gain[ANALOG_VOLUME_HPOUTL] =
+>>>> +			(reg & AUD_HPL_GAIN_MASK) >> AUD_HPL_GAIN_SFT;
+>>>> +		priv->ana_gain[ANALOG_VOLUME_HPOUTR] =
+>>>> +			(reg & AUD_HPR_GAIN_MASK) >> AUD_HPR_GAIN_SFT;
+>>>> +		break;
+> 
+>>> It would probably be less code and would definitely be clearer and
+>>> simpler to just read the values when we need them rather than constatly
+>>> keeping a cache separate to the register cache.
+> 
+>> Actually you must save the values because the gain selected by the user will
+>> be override to do a ramp => volume_ramp(.....):
+>> - When you switch on the HP, you start from gain=-40db to final_gain
+>> (selected by user).
+>> - When you switch off the HP, you start from final_gain (selected by user)
+>> to gain=-40db.
+> 
+> You can just read the value back when you need to do a ramp?
 
-diff --git a/drivers/i2c/busses/i2c-riic.c b/drivers/i2c/busses/i2c-riic.c
-index 3ae2d5c2f85a..861b244d5118 100644
---- a/drivers/i2c/busses/i2c-riic.c
-+++ b/drivers/i2c/busses/i2c-riic.c
-@@ -523,8 +523,25 @@ static const struct riic_of_data riic_rz_a_info = {
- 	},
- };
- 
-+static const struct riic_of_data riic_rz_v2h_info = {
-+	.regs = {
-+		[RIIC_ICCR1] = 0x00,
-+		[RIIC_ICCR2] = 0x01,
-+		[RIIC_ICMR1] = 0x02,
-+		[RIIC_ICMR3] = 0x04,
-+		[RIIC_ICSER] = 0x06,
-+		[RIIC_ICIER] = 0x07,
-+		[RIIC_ICSR2] = 0x09,
-+		[RIIC_ICBRL] = 0x10,
-+		[RIIC_ICBRH] = 0x11,
-+		[RIIC_ICDRT] = 0x12,
-+		[RIIC_ICDRR] = 0x13,
-+	},
-+};
-+
- static const struct of_device_id riic_i2c_dt_ids[] = {
- 	{ .compatible = "renesas,riic-rz", .data = &riic_rz_a_info },
-+	{ .compatible = "renesas,riic-r9a09g057", .data = &riic_rz_v2h_info },
- 	{ /* Sentinel */ },
- };
- 
+You can't. Because you will read -40db when HP isn't playing sound. That 
+is why the gain is saved into the struct.
+
+Let me know, when you change de gain to do a ramp down (start from user 
+gain to gain=-40db), next time for the ramp up, how/where do you find 
+the user gain ?
+
+
+> 
+>> Also, the microphone's gain change when it's enabled/disabled.
+> 
+> I don't understand what this means?
+
+When microphone isn't capturing, the gain read back from the register is 
+0dB. I've put some logs in my code and do capture to show how it works:
+
+root@i350-evk:~# arecord -D hw:mt8365evk,2,0 -r 48000 -c2 -f s32_le -d 
+10 recorded_file.wav
+[Mar15 09:31] mt8365-afe-pcm 11220000.audio-controller: 
+mt8365_afe_fe_hw_params AWB period = 6000 rate = 48000 channels = 2
+[  +0.000126] mt8365-afe-pcm 11220000.audio-controller: 
+mt8365_dai_int_adda_prepare 'Capture' rate = 48000
+[  +0.107688] mt6357-sound mt6357-sound: TOTO set mic to stored value
+[ +10.072648] mt6357-sound mt6357-sound: TOTO set mic to 0dB
+
+root@i350-evk:~# arecord -D hw:mt8365evk,2,0 -r 48000 -c2 -f s32_le -d 
+10 recorded_file.wav
+[Mar15 09:32] mt8365-afe-pcm 11220000.audio-controller: 
+mt8365_afe_fe_hw_params AWB period = 6000 rate = 48000 channels = 2
+[  +0.000133] mt8365-afe-pcm 11220000.audio-controller: 
+mt8365_dai_int_adda_prepare 'Capture' rate = 48000
+[  +0.109418] mt6357-sound mt6357-sound: TOTO set mic to stored value
+[ +10.164197] mt6357-sound mt6357-sound: TOTO set mic to 0dB
+
+
+> 
+>>>> +	/* ul channel swap */
+>>>> +	SOC_SINGLE("UL LR Swap", MT6357_AFE_UL_DL_CON0, AFE_UL_LR_SWAP_SFT, 1, 0),
+> 
+>>> On/off controls should end in Switch.
+> 
+>> Sorry, I don't understand your comment. Can you reword it please ?
+> 
+> See control-names.rst.  Run mixer-test on a card with this driver and
+> fix all the issues it reports.
+
+Ok the name is the issue for you AFAII.
+This control isn't for on/off but swap Left and Right.
+ From the codec documentation:
+"Swaps audio UL L/R channel before UL SRC"
+This control is overkill, I will remove it
+
+I'm stuck to run mixer-test, please check the following message: 
+https://lore.kernel.org/all/7ddad394-e880-4ef8-8591-cb803a2086ae@baylibre.com/
+
+
 -- 
-2.34.1
-
+Regards,
+Alexandre
 
