@@ -1,146 +1,127 @@
-Return-Path: <devicetree+bounces-50806-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50807-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [IPv6:2604:1380:4601:e00::3])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E26987D383
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 19:25:13 +0100 (CET)
+Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
+	by mail.lfdr.de (Postfix) with ESMTPS id 5659D87D3AF
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 19:35:34 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id D19811F231E3
-	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 18:25:12 +0000 (UTC)
+	by am.mirrors.kernel.org (Postfix) with ESMTPS id 0DACC1F23E58
+	for <lists+devicetree@lfdr.de>; Fri, 15 Mar 2024 18:35:34 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id 6955C4E1B5;
-	Fri, 15 Mar 2024 18:25:08 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b="16rpIxED"
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id DCF8610798;
+	Fri, 15 Mar 2024 18:35:27 +0000 (UTC)
 X-Original-To: devicetree@vger.kernel.org
-Received: from madrid.collaboradmins.com (madrid.collaboradmins.com [46.235.227.194])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com [209.85.128.174])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 439CE4C637;
-	Fri, 15 Mar 2024 18:25:05 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=46.235.227.194
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id 93766FC18;
+	Fri, 15 Mar 2024 18:35:24 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.128.174
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710527108; cv=none; b=HcpmvqUNkfdNBW7QcRUUJQOP3KbPhbyMcbHKIQvXz0jgrJ2R0SfOo85RGpl962IAyMazBDUN+tLceieh26zdHJ7nwWrDQwa89cC/fPHipPvnEhf/FE/xhX4CvlwS/lDDUd98uNgtlhsbhrsk13qazn5zS9aoxsqjZxBYgTLOvEw=
+	t=1710527727; cv=none; b=unJ8J4fgLVc1cQ5Yq0KnXQf8dcuhiqgGsyNLrbAElMyVdM9xBa8UmHCtx4E5ghXMxqk7HJKJ7Bjf3w34QzFHLB86/Fk21rQfEbNicKalB4KnHQ84NV5N/VHTjh7FS7BsgH962xnrRFjNEsEsHYmsL+92nj+QIcMnsEwvsoSjftk=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710527108; c=relaxed/simple;
-	bh=2Au1D4Ot5E6gkicxx9t/mBxMS77Y4uefkAMGQCX6YtM=;
-	h=Content-Type:Mime-Version:Subject:From:In-Reply-To:Date:Cc:
-	 Message-Id:References:To; b=J9RsUqPt6bLIWL0Goa4uxuLLE4u7DY6hV90hUM8W4K2OjxS7FWRwqCQND4/WyrYxo+wDwm3nKCYRkK4W8yQpT89NLoe8Cbzhk1IoVhnEWYJktUCtETSqxdazl68NCNaOEtLWPIadyjjgzJYGpTjU6LjZTXcSLlkzLiQf5UDhrRc=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com; spf=pass smtp.mailfrom=collabora.com; dkim=pass (2048-bit key) header.d=collabora.com header.i=@collabora.com header.b=16rpIxED; arc=none smtp.client-ip=46.235.227.194
-Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=quarantine dis=none) header.from=collabora.com
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=collabora.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-	s=mail; t=1710527103;
-	bh=2Au1D4Ot5E6gkicxx9t/mBxMS77Y4uefkAMGQCX6YtM=;
-	h=Subject:From:In-Reply-To:Date:Cc:References:To:From;
-	b=16rpIxEDl1lS7NryEFGRRGGYJquuVBhgV60Gq9KFdxp1YvlU4VL1pgZLuNLoIc92E
-	 xdfq4tB+lgEpzKXdVJ1r7XqfC89M2oVoxQ4rlIL3Cg1sqFc4+GJragentwQrSyNrTI
-	 705D/2FfIcD4d+1SYdd3igNGEgiVWiWb/JognT34KrksMtbAfQow4qpGHPVxWANNeh
-	 6AtRGvJOb0EvowdNZrG5FwpGJwyYhD8vClsr5nt8mKVaM2I2pe/7KrT1RWRsN3vHsx
-	 Yw/clNLSuIHhCmvTKPhUJe+P1idU8fXvQHdtkX7YMqhT+tZ/o7kzUpJJVB7AC1gQhZ
-	 xTupvx5lsj3kg==
-Received: from smtpclient.apple (cola.collaboradmins.com [195.201.22.229])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	(Authenticated sender: dwlsalmeida)
-	by madrid.collaboradmins.com (Postfix) with ESMTPSA id 31D0637820D8;
-	Fri, 15 Mar 2024 18:24:57 +0000 (UTC)
-Content-Type: text/plain;
-	charset=utf-8
+	s=arc-20240116; t=1710527727; c=relaxed/simple;
+	bh=Gv8QKD12HIml6BcI86NmkVhlJYP9tGz7JBYz0p3U8kE=;
+	h=MIME-Version:References:In-Reply-To:From:Date:Message-ID:Subject:
+	 To:Cc:Content-Type; b=HE54ZpRVmIhdc+Q9VwtulF/+CgYEC0BUCDs6T1s3dylddweKDZL7ACzI1O8+nxWaDarW8vlN1qcezU01vx6OAbhaLz6jG+HWpGZd5WDfO/iL3yHcl089dlzP93c6jUjL2ObMKeFC6xGdwbyfEko7zvB7BH1A3lX76RFNZZJIvL4=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org; spf=pass smtp.mailfrom=gmail.com; arc=none smtp.client-ip=209.85.128.174
+Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=linux-m68k.org
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-60a15449303so27165317b3.0;
+        Fri, 15 Mar 2024 11:35:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710527722; x=1711132522;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Z9WcVFiuL/IGi+J5+eglMDeGStL2NJRCLgSl7bWAdM8=;
+        b=mM0EixQUJWTag5bfg9SVLwUF1FKs/xtHt1Br+kdQ6cb8P0zEhn68D0q8RMurKvASGU
+         ze4CuOaNs11JGBv5lEkuspikeov9WnoDhmHIHrbPPYBp05whCjgTq9mqBE5NoqNa6Kq7
+         CnpNjW55nWhmBRWooGvfruq+qo5PqKj8h+iJ3kZpnuB6amlU0n49psNH810MK4X7pQb5
+         JmrFrpDmBz8lRaNEBrfBKcAXlA0kZKOTEn9qDcIR/z/SKTS4rnMQn18i9/rw2W+wbg6v
+         W677Ic0vyEuiYD6+o1yeT+p8J78tiI9zQmFGUnoNyzLkw978cXwLkSPd5UEYbtQJZL07
+         rS0A==
+X-Forwarded-Encrypted: i=1; AJvYcCXubCw2USKiG9iDgV559vURVVGakxCmKYgmNjdH0yvOqDlpoKw98gfS9DL5UjeWLtzxBruFzAB2R2xVUA82Aiupcg+RkhmP+lMLgg7oR1pz5nghB8ElRneAcmBHDqY26jpm0/IIiL61kUtynpRQLiZmwn4p+4teEhj5zYsmquogcF3Mwu2pi5mvXyj3zjgSvsaaoVh0sJVUobKbxyDX5neGRsvkyUr1
+X-Gm-Message-State: AOJu0YycvoHHyL/8juvJv4Ik+pdEaSbS/aZWFOBdKc2fdHzGSyD3mVKl
+	z/pEmcEp3zmNTs6k2v1CUEAQwACBi3rNjchx6UldXrBsIhlWYny/gRZDoguNEXk=
+X-Google-Smtp-Source: AGHT+IFklYu4oUcMub/sDiwT5/31Hf2W3LX/tGBWhOeSzReg25WSQcIwgIbOhYR4xbq0pLO9KM9gtQ==
+X-Received: by 2002:a81:a253:0:b0:60a:374:969a with SMTP id z19-20020a81a253000000b0060a0374969amr6106221ywg.50.1710527722243;
+        Fri, 15 Mar 2024 11:35:22 -0700 (PDT)
+Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com. [209.85.219.175])
+        by smtp.gmail.com with ESMTPSA id bs19-20020a05690c071300b00607bc220c5esm794529ywb.102.2024.03.15.11.35.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 15 Mar 2024 11:35:21 -0700 (PDT)
+Received: by mail-yb1-f175.google.com with SMTP id 3f1490d57ef6-d9b9adaf291so2136428276.1;
+        Fri, 15 Mar 2024 11:35:21 -0700 (PDT)
+X-Forwarded-Encrypted: i=1; AJvYcCWMWKAW+go8i+wWDm+i9Ge+WYz4FXcuQbzbnsYpmYaHE97D2rI9zDZKCxVGSWUfPcsaJVceWHocRcsQVyVbsQNvWY217Nfdj8D3emsvxUmzXos+XQhzglSGpoLiLq36tnP/SrObhJB+rI4mBPfY6VLa9cHMvY+5COPtbTjA2ZrLQlDc0uu/8Z7Tsn7TcgRovQjSXE9+zf19EZ5j9jl72vHpGMw+3X2X
+X-Received: by 2002:a25:f40c:0:b0:dc7:2401:df4e with SMTP id
+ q12-20020a25f40c000000b00dc72401df4emr5038303ybd.39.1710527721014; Fri, 15
+ Mar 2024 11:35:21 -0700 (PDT)
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
 List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3774.400.31\))
-Subject: Re: [PATCH v2,0/4] media: mediatek: vcodec: fix ctrl request complete
- fail
-From: Daniel Almeida <daniel.almeida@collabora.com>
-In-Reply-To: <20240314114452.17532-1-yunfei.dong@mediatek.com>
-Date: Fri, 15 Mar 2024 15:24:44 -0300
-Cc: =?utf-8?B?Ik7DrWNvbGFzIEYgLiBSIC4gQSAuIFByYWRvIg==?= <nfraprado@collabora.com>,
- Nicolas Dufresne <nicolas.dufresne@collabora.com>,
- Hans Verkuil <hverkuil-cisco@xs4all.nl>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Benjamin Gaignard <benjamin.gaignard@collabora.com>,
- Nathan Hebert <nhebert@chromium.org>,
- Sebastian Fricke <sebastian.fricke@collabora.com>,
- Hsin-Yi Wang <hsinyi@chromium.org>,
- Fritz Koenig <frkoenig@chromium.org>,
- Daniel Vetter <daniel@ffwll.ch>,
- Steve Cho <stevecho@chromium.org>,
- linux-media@vger.kernel.org,
- devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org,
- linux-mediatek@lists.infradead.org,
- Project_Global_Chrome_Upstream_Group@mediatek.com
+MIME-Version: 1.0
+References: <20240315103033.141226-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20240315103033.141226-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <CAMuHMdW_WBaGjYmU_RnMnq2T7PeEafAZqyP9Md9g0VUKzgrecQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdW_WBaGjYmU_RnMnq2T7PeEafAZqyP9Md9g0VUKzgrecQ@mail.gmail.com>
+From: Geert Uytterhoeven <geert@linux-m68k.org>
+Date: Fri, 15 Mar 2024 19:35:08 +0100
+X-Gmail-Original-Message-ID: <CAMuHMdUZhnf96M2MgLepu04J84jz_B_vZEtQYQZefsFu1rYfeg@mail.gmail.com>
+Message-ID: <CAMuHMdUZhnf96M2MgLepu04J84jz_B_vZEtQYQZefsFu1rYfeg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: i2c: renesas,riic: Document R9A09G057 support
+To: Prabhakar <prabhakar.csengg@gmail.com>
+Cc: Chris Brandt <chris.brandt@renesas.com>, Andi Shyti <andi.shyti@kernel.org>, 
+	Rob Herring <robh+dt@kernel.org>, 
+	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Conor Dooley <conor+dt@kernel.org>, 
+	Magnus Damm <magnus.damm@gmail.com>, Wolfram Sang <wsa+renesas@sang-engineering.com>, 
+	linux-renesas-soc@vger.kernel.org, linux-i2c@vger.kernel.org, 
+	devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, 
+	Fabrizio Castro <fabrizio.castro.jz@renesas.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-Message-Id: <4DFF7ED9-CD67-415E-965D-D83337CBE8A7@collabora.com>
-References: <20240314114452.17532-1-yunfei.dong@mediatek.com>
-To: Yunfei Dong <yunfei.dong@mediatek.com>
-X-Mailer: Apple Mail (2.3774.400.31)
 
-Hi Yunfei!
+Hi Prabhakar,,
 
-I say this very respectfully, but I believe that you must improve the =
-wording of some of your commit messages. It is hard to understand your =
-changes otherwise. More importantly, it is hard to understand why they =
-are needed or what exactly they fix.
+On Fri, Mar 15, 2024 at 1:50=E2=80=AFPM Geert Uytterhoeven <geert@linux-m68=
+k.org> wrote:
+> On Fri, Mar 15, 2024 at 11:31=E2=80=AFAM Prabhakar <prabhakar.csengg@gmai=
+l.com> wrote:
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Document support for the I2C Bus Interface (RIIC) available in the
+> > Renesas RZ/V2H(P) (R9A09G057) SoC.
+> >
+> > The RIIC interface in the Renesas RZ/V2H(P) differs from RZ/A in a
+> > couple of ways:
+> > - Register offsets for the RZ/V2H(P) SoC differ from those of the
+> >   RZ/A SoC.
+> > - RZ/V2H register access is limited to 8-bit, whereas RZ/A supports
+> >   8/16/32-bit.
+> > - RZ/V2H has bit differences in the slave address register.
+> >
+> > To accommodate these differences in the existing driver, a new compatib=
+le
+> > string "renesas,riic-r9a09g057" is added.
 
-This series has some checkpatch errors:=20
+As it looks like there will be a v3 of this series, please drop "in
+the existing driver".
 
-total: 53 errors, 0 warnings, 0 checks, 1047 lines checked
+Gr{oetje,eeting}s,
 
-Did you test this with Fluster? We should really make sure that this =
-does not regress any of the tests there.
+                        Geert
 
-See a few comments from me in the thread
+--=20
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k=
+.org
 
-=E2=80=94 Daniel
-
-> On 14 Mar 2024, at 08:44, Yunfei Dong <yunfei.dong@mediatek.com> =
-wrote:
->=20
-> Moving v4l2_ctrl_request_complete to before of function
-> v4l2_m2m_buf_done to make sure the status of request correctly.
->=20
-> Replace v4l2_m2m_next_src_buf with v4l2_m2m_src_buf_remove to
-> make sure the src buffer won't be removed for some unknown
-> reason leading to buffer done error.
->=20
-> Patch 1 setting request complete before buffer done
-> Patch 3 flush decoder before remove all source buffer
-> Patch 2 change flush decode from capture to output when stream off
-> Patch 4 replace v4l2_m2m_next_src_buf with v4l2_m2m_src_buf_remove
-> ---
-> compared with v1:
-> - add patch 2/3/4 to fix timing issue.
-> ---
-> Yunfei Dong (4):
->  media: mediatek: vcodec: setting request complete before buffer done
->  media: mediatek: vcodec: change flush decode from capture to output
->    when stream off
->  media: mediatek: vcodec: flush decoder before remove all source =
-buffer
->  media: mediatek: vcodec: replace v4l2_m2m_next_src_buf with
->    v4l2_m2m_src_buf_remove
->=20
-> .../mediatek/vcodec/decoder/mtk_vcodec_dec.c  | 52 +++++++++----------
-> .../vcodec/decoder/mtk_vcodec_dec_drv.h       |  3 +-
-> .../vcodec/decoder/mtk_vcodec_dec_stateless.c | 28 +++++++---
-> .../vcodec/decoder/vdec/vdec_av1_req_lat_if.c | 28 +++++-----
-> .../decoder/vdec/vdec_h264_req_multi_if.c     |  3 +-
-> .../decoder/vdec/vdec_hevc_req_multi_if.c     |  3 +-
-> .../vcodec/decoder/vdec/vdec_vp9_req_lat_if.c | 37 ++++++-------
-> .../mediatek/vcodec/decoder/vdec_msg_queue.h  |  2 +
-> 8 files changed, 84 insertions(+), 72 deletions(-)
->=20
-> --=20
-> 2.18.0
->=20
->=20
-
+In personal conversations with technical people, I call myself a hacker. Bu=
+t
+when I'm talking to journalists I just say "programmer" or something like t=
+hat.
+                                -- Linus Torvalds
 
