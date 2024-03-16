@@ -1,75 +1,89 @@
-Return-Path: <devicetree+bounces-50882-lists+devicetree=lfdr.de@vger.kernel.org>
+Return-Path: <devicetree+bounces-50887-lists+devicetree=lfdr.de@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
-Received: from am.mirrors.kernel.org (am.mirrors.kernel.org [147.75.80.249])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC8F287D8EA
-	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 06:01:22 +0100 (CET)
+Received: from sy.mirrors.kernel.org (sy.mirrors.kernel.org [147.75.48.161])
+	by mail.lfdr.de (Postfix) with ESMTPS id D756887D916
+	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 08:12:47 +0100 (CET)
 Received: from smtp.subspace.kernel.org (wormhole.subspace.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by am.mirrors.kernel.org (Postfix) with ESMTPS id 55BC51F215EC
-	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 05:01:22 +0000 (UTC)
+	by sy.mirrors.kernel.org (Postfix) with ESMTPS id 8BADAB213C9
+	for <lists+devicetree@lfdr.de>; Sat, 16 Mar 2024 07:12:44 +0000 (UTC)
 Received: from localhost.localdomain (localhost.localdomain [127.0.0.1])
-	by smtp.subspace.kernel.org (Postfix) with ESMTP id EABFE6139;
-	Sat, 16 Mar 2024 05:01:17 +0000 (UTC)
+	by smtp.subspace.kernel.org (Postfix) with ESMTP id 55A5F63C7;
+	Sat, 16 Mar 2024 07:12:39 +0000 (UTC)
 Authentication-Results: smtp.subspace.kernel.org;
-	dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b="kVjdwj6P"
+	dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b="aquw2tYM"
 X-Original-To: devicetree@vger.kernel.org
-Received: from outgoing4.flk.host-h.net (outgoing4.flk.host-h.net [188.40.0.90])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+Received: from mail-pf1-f180.google.com (mail-pf1-f180.google.com [209.85.210.180])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
 	(No client certificate requested)
-	by smtp.subspace.kernel.org (Postfix) with ESMTPS id E22BA4A33;
-	Sat, 16 Mar 2024 05:01:15 +0000 (UTC)
-Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=188.40.0.90
+	by smtp.subspace.kernel.org (Postfix) with ESMTPS id CC34FD512;
+	Sat, 16 Mar 2024 07:12:37 +0000 (UTC)
+Authentication-Results: smtp.subspace.kernel.org; arc=none smtp.client-ip=209.85.210.180
 ARC-Seal:i=1; a=rsa-sha256; d=subspace.kernel.org; s=arc-20240116;
-	t=1710565277; cv=none; b=CjB1xIFwaVGIwEXaLpXddXpSj5aqcM0wvg2iEB9+VXfOZxAY+bql9JQDR0kaSB+MKYRNm2AAaczH+DSnypQzuhqd2U4vkKSHk2XGU8YeiH5/WjnDVBTvuV2ERpYazOiQ35YgGsqIPEIuz/NYF6bHRj1BMGzhmnPAgSFvdmQx0XQ=
+	t=1710573159; cv=none; b=u3Kwft1+3dPoEnORq9HSn/s8wgWAUlucb/qIzp+dnCsNuWhdv79PQFPX19mJXFflTuhv/nJPLSMMdj7H8EQS7kwg3Qend1WWImkFvF9qOFXdKGwLsiBvHDNdEoCq9meUwW0BXTyPF2RzHzRpdIKxg0iUSzW34Fmwvu4r8YkdjZA=
 ARC-Message-Signature:i=1; a=rsa-sha256; d=subspace.kernel.org;
-	s=arc-20240116; t=1710565277; c=relaxed/simple;
-	bh=oSfJMu5SXAU0DaHw9gtdUFWS56XBABVayla7/Nmfr/I=;
-	h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References:
-	 MIME-Version; b=WaJILnRRFAlcMaJqcrfGssg8BwjmV9M0MKVPEFqL9NkGVR5KrFHUfzNblbXV4KX9wrkBlwpTcx92drKEupcsp4qq6WMTf0tOzbhDmUqNTaYeKYqwPe2/XBCaf2EJ8cV5aHvnivfEuMKHC7bCKRG3E1Ssc9HyNSpecAktas+lMeY=
-ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za; spf=pass smtp.mailfrom=risingedge.co.za; dkim=pass (2048-bit key) header.d=risingedge.co.za header.i=@risingedge.co.za header.b=kVjdwj6P; arc=none smtp.client-ip=188.40.0.90
-Authentication-Results: smtp.subspace.kernel.org; dmarc=none (p=none dis=none) header.from=risingedge.co.za
-Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=risingedge.co.za
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-	d=risingedge.co.za; s=xneelo; h=Content-Transfer-Encoding:MIME-Version:
-	References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:reply-to:sender:bcc
-	:content-type; bh=CZTTO/cn70dET1uz8oqycPprN34msZsy0Dgdh0xlHck=; b=kVjdwj6PZCj
-	s+nzUw4zhLZq9WrUnISkM64LheQaag3Wq8hI/1a31fpT7luCVNymj0DJMPxbhpHaP0GoxxR52OG/B
-	p+V91Hu9m1z+BH0egwBNS2ztNN6DhnhODBkg4XWtsIja0L5nd8UlJypdTFnSwrx7FFEkTAVkhQCN5
-	FGCAKDbklY4UhyneiJ/gkve9gghdNd67bWWti++SZ2oSQa6au/dFDNRiauwmQUqpvtoDuEulQC90Z
-	ZP2XuSmZdRQk8NPkbHP706ytPx54mfY+tqu8KONrPdNo6AarWt/a+Pa85vb7Aky/j/1Hl04dDnwVL
-	C/r1ycRaBpREozGz29Qu7Tg==;
-Received: from www31.flk1.host-h.net ([188.40.1.173])
-	by antispam1-flk1.host-h.net with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1rlMAQ-00C0Qn-L1; Sat, 16 Mar 2024 07:01:12 +0200
-Received: from [41.144.0.193] (helo=localhost.localdomain)
-	by www31.flk1.host-h.net with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <justin.swartz@risingedge.co.za>)
-	id 1rlM4v-00048C-Es; Sat, 16 Mar 2024 06:55:29 +0200
-From: Justin Swartz <justin.swartz@risingedge.co.za>
-To: =?UTF-8?q?Ar=C4=B1n=C3=A7=20=C3=9CNAL?= <arinc.unal@arinc9.com>,
-	Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-	Rob Herring <robh+dt@kernel.org>,
-	Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-	Conor Dooley <conor+dt@kernel.org>,
-	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-	Matthias Brugger <matthias.bgg@gmail.com>,
-	AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-Cc: linux-mips@vger.kernel.org,
-	devicetree@vger.kernel.org,
-	linux-kernel@vger.kernel.org,
+	s=arc-20240116; t=1710573159; c=relaxed/simple;
+	bh=ppE93cv1QyN7O3apvV9Q/H8M+w1Ua5G3g9KKi3vKu8g=;
+	h=From:To:Cc:Subject:Date:Message-Id:MIME-Version; b=kMer4nAzw37CuYbo7kNOGYahOUTPHlvKnNCSnj+KbJSv1l0v5qX9BlHM1tgvfocLD6wKmWv9EtiK4wq1gk4g9aKIyWQuj8IIalT3xFPVQDsQdSVTWfW6f+duLl6ZTqGTB3w0YjsDMxs/O2hAf5Vdm6bOqbx8v8gR/z8/h8OxJ7Y=
+ARC-Authentication-Results:i=1; smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com; spf=pass smtp.mailfrom=gmail.com; dkim=pass (2048-bit key) header.d=gmail.com header.i=@gmail.com header.b=aquw2tYM; arc=none smtp.client-ip=209.85.210.180
+Authentication-Results: smtp.subspace.kernel.org; dmarc=pass (p=none dis=none) header.from=gmail.com
+Authentication-Results: smtp.subspace.kernel.org; spf=pass smtp.mailfrom=gmail.com
+Received: by mail-pf1-f180.google.com with SMTP id d2e1a72fcca58-6e6b5432439so2826384b3a.1;
+        Sat, 16 Mar 2024 00:12:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1710573156; x=1711177956; darn=vger.kernel.org;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=8oDZKpxy0SLAMcyRnZgXM1CHZS3gVNfsxrD16EfDgvc=;
+        b=aquw2tYMFsLrwMDYY2gbcsRAAYNvqxKS++K0YcaFg3VTOTKOPMFi3uF0+PyClV/0os
+         hN/hFOO0jaMA7PRuiDz3+X4Jskfybl7QtFXxJM8n5oZDi3GJlK1UaEhdWjaikW7YezO4
+         5Ypz94mHdCi5uYFBrf40pClc3VlG0yHW+WTTFypVL9cSdEcR06yAENs64RjjhM4vBuPU
+         ZlczUiHDu8Hp7e9ZabPw7QROgcHs5E3qIXfE++wdSpVwk0jCRG52MpgxPXiIxZ9tVCKB
+         rdzvudErpr8UTTQk9aG/kHw9TqW9tpnN4lqJLqR9i0tbbC/IHMSBqlf/2RPnZQelAvE+
+         Qo3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1710573156; x=1711177956;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8oDZKpxy0SLAMcyRnZgXM1CHZS3gVNfsxrD16EfDgvc=;
+        b=A4HEAdigPbV/CpCpef/wlhVMaNOdH2gfDpwvibdt/Rp1nFagjocaTy9nwJHLgjUHcW
+         ++Aen43KmOR8gmgu18JuRWyMWS1u7uv+Rxj/cUSe2b/L7elXx366HKrTpF/cEpUwjll2
+         t0VWjiWRQRW5BHQBO479UbYAhMYVSm38EHkTKxl/husCPmamiieLB1rOvhgOtB2aLA9M
+         Mr2OBgf8ekbuScWEewigUJQgWdvNL8pqLXUQnICmLkVJU3naLw1o7QEIO86Iovun1NgV
+         9QUCV1+BcYt6s67eX8iSy1lA3k0yNOZi+MTdrGmJzRWEKoLSPBVvhJi6cNiZdF2tBSgV
+         Mb0g==
+X-Forwarded-Encrypted: i=1; AJvYcCW8rrmDMZxjMM6n/kXs9Mv3wWowWYGCgVoJlKbNA4uuA2O8ZCIJqqOs4CvXNXJOB/GzQ7twYCI3MO8PDXsugnwmaottVfqWNRZFmMzV8c9KXK1K2CU7XuffeJwMcoa0sS/HuqGAxRU+gAA=
+X-Gm-Message-State: AOJu0YwldnR0ZjhXhOP1RMOJPTuI48JboVt4H5MiziB14Cw8t+UFJt2G
+	imGMD9wg648h3P77+tH8Okm/5sPCC+R+buZQAJWj6i5mmSrMfuNlVBrCIt4jIEKhmg==
+X-Google-Smtp-Source: AGHT+IHKo/55+X0r4fSws+qbSoxX5taM8lhT273EIdjdmOO0UAJS1z9g1aQ+ugU43TQdBDX2VXKFYg==
+X-Received: by 2002:a05:6a00:1747:b0:6e5:fb97:ed35 with SMTP id j7-20020a056a00174700b006e5fb97ed35mr7530625pfc.18.1710573156045;
+        Sat, 16 Mar 2024 00:12:36 -0700 (PDT)
+Received: from localhost.localdomain ([221.220.133.103])
+        by smtp.gmail.com with ESMTPSA id x18-20020aa784d2000000b006e5a915a9e7sm4574651pfn.10.2024.03.16.00.12.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 16 Mar 2024 00:12:35 -0700 (PDT)
+From: Jianfeng Liu <liujianfeng1994@gmail.com>
+To: devicetree@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
-	linux-mediatek@lists.infradead.org,
-	Justin Swartz <justin.swartz@risingedge.co.za>
-Subject: [PATCH 14/14] mips: dts: ralink: mt7621: reorder the attributes of the root node
-Date: Sat, 16 Mar 2024 06:54:42 +0200
-Message-Id: <20240316045442.31469-15-justin.swartz@risingedge.co.za>
-In-Reply-To: <20240316045442.31469-1-justin.swartz@risingedge.co.za>
-References: <20240316045442.31469-1-justin.swartz@risingedge.co.za>
+	linux-rockchip@lists.infradead.org,
+	linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org
+Cc: robh@kernel.org,
+	krzysztof.kozlowski+dt@linaro.org,
+	conor+dt@kernel.org,
+	heiko@sntech.de,
+	ezequiel@vanguardiasur.com.ar,
+	p.zabel@pengutronix.de,
+	mchehab@kernel.org,
+	liujianfeng1994@gmail.com,
+	sfr@canb.auug.org.au
+Subject: [PATCH v4 0/2] Add hantro g1 video decoder support for RK3588
+Date: Sat, 16 Mar 2024 15:10:58 +0800
+Message-Id: <20240316071100.2419369-1-liujianfeng1994@gmail.com>
+X-Mailer: git-send-email 2.34.1
 Precedence: bulk
 X-Mailing-List: devicetree@vger.kernel.org
 List-Id: <devicetree.vger.kernel.org>
@@ -77,62 +91,30 @@ List-Subscribe: <mailto:devicetree+subscribe@vger.kernel.org>
 List-Unsubscribe: <mailto:devicetree+unsubscribe@vger.kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: justin.swartz@risingedge.co.za
-X-Virus-Scanned: Clear
-X-SpamExperts-Domain: risingedge.co.za
-X-SpamExperts-Username: 
-Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
-X-SpamExperts-Outgoing-Class: ham
-X-SpamExperts-Outgoing-Evidence: Combined (0.01)
-X-Recommended-Action: accept
-X-Filter-ID: Pt3MvcO5N4iKaDQ5O6lkdGlMVN6RH8bjRMzItlySaT8+RqckuubhByQktCv4mdbIPUtbdvnXkggZ
- 3YnVId/Y5jcf0yeVQAvfjHznO7+bT5wPY5yY5vX9MqMW2dd4bQescfggEolMHSR1Me+1tLQd/4/M
- 684FXPwRt/ItN/QGHZWwYVP/cCt8Z7AC3QZraAAXGOt0uV2bCpZmMTDaVY6o43+4/UA7yKh3fsRx
- FRwz3BBjyk7zbazyOxi/UqYNqAkRRGBP0VCgd4sTxz5Nt/DkcKfPy9Occ20k9TJ7Nj73O0V9NPjB
- nDE1daoPH54M/DHR5hr5ConJQfcb9SHvDRICkaHkmqj+K0XGa5SFpMYJI0DpfOOu7mUz0fsyGD6a
- bRQ+0H7Q2OEpckvWJAOmdJd77Z9vwc+QHB+X+u7aTqYHtT1NFG5qXEfeIX239vWfI6H8t9z6MXWg
- ZYbrkExtRMjfc/Em1xUk+uitP3ztfVUM86oAc60fMGKzOErxxj0B+NXHNlDo60GNfZ2F/yvXF5fp
- 0YCObyJslD58xugMMZCpQQvGifDpq5EYH46qR+vFm9wC7ren9RtRNyYim5e3GD8LGX4whxLggZ+w
- 3rysbgAyUKjvL2J0djuO4juAaA0bvabgXwvUJUc3Xwu/zqbuNWtRwhNYY2G2tNrvHYkEV3lqMP2o
- naNQbqJUPRwZtKOTN8gOLtBcNrQxKZYuPe8bdCyw79zlPbqLQkZr26Lcxdvj8cqI+CogZdOhX7v3
- ClXzrmMENhJLl6MBfhzHVBR0wHQZxzIUka7Uq615Mik1qzcz308HFwsY4DWIzjhTYXUG8GBZhle6
- F/kpBdN+oWjoATjEFDwcaiz0R34rhTN+GTbl4uS+pZovX9cex7Ac4fawcerGI7TrGXpM/B/M0BZd
- PfIU1BX7pZc1sE3vsz58auH/srM2fgZ9JmgLbj7sqoEiwv7LCxIiAE5ODMnmwjvj2589zjbyZCiM
- WpBpW8YvoIIqmZcWhL/r/eFjMjJnMHeiAPOVAT1rE1/vP68Bb4z3v3h3gCdXrv2+9GnNX30LKqXb
- fwFKgm/rnYBl+Mj5KqOl6Jzub/f3QhLRbOgisvi5VU9eNBtgo6zjiatjNO/pnMCjuIvXs/AyV/Ns
- URB/R+FlEHyAzksgfaRvdgw0WK34QWnzHHMcN6qoXPjenLhIOF1oeRYbjF1Hp647mOWoQlc3hL3c
- ZMexQ8VxpTDmnfa+pzT1vc+lfykhMHKZiewMI9ChBgZ4u/m4iBmYb1/LCV4/EuVHup06w3Vwxf9C
- F7D6LKKRTfdjzQ6YC7Heg3Xf7O1TOd6RcY/MXB8eEq3bCN2QohZvyS03iBmgsz450Kmjd3fGV6q0
- gQPmnT5g6Jz1Dgv4IPigGR48CFzhtwOWD733mMxYIbtf63VNbf0lrvssY+k7AHGi1NevGWTo2+h8
- Lhk4HCeZR7ymlGVRtthBJ2y8A5arx6JItKpFaUNPGMMlvbMX0nyK1NiAJ0y2Qvvn6ds6mor35w4f
- SfHzQbABJfgy21HclcZkPRq7NhoxyMwqi8Q23Rgadfh5T5n5D4OHHpbEIgsllZKWnzc5M5WlNtVJ
- qo05MS+4ayUpOtEhdxekWDmK9g==
-X-Report-Abuse-To: spam@antispamquarantine.host-h.net
 
-Move the compatible attribute of the DTS root node to first place.
+This is the v4 version of this series adding hantro g1 video decoder
+support for rk3588.
 
-Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
----
- arch/mips/boot/dts/ralink/mt7621.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+RK3588 has Hantro G1 video decoder known as VDPU121 in TRM of RK3588 which
+is capable to decode MPEG2/H.264/VP8 up to 1920x1088. This vpu ip is also
+found in RK3568.
 
-diff --git a/arch/mips/boot/dts/ralink/mt7621.dtsi b/arch/mips/boot/dts/ralink/mt7621.dtsi
-index 284811f32..0704eab4a 100644
---- a/arch/mips/boot/dts/ralink/mt7621.dtsi
-+++ b/arch/mips/boot/dts/ralink/mt7621.dtsi
-@@ -5,9 +5,10 @@
- #include <dt-bindings/reset/mt7621-reset.h>
- 
- / {
-+	compatible = "mediatek,mt7621-soc";
-+
- 	#address-cells = <1>;
- 	#size-cells = <1>;
--	compatible = "mediatek,mt7621-soc";
- 
- 	cpus {
- 		#address-cells = <1>;
--- 
+Test results from fluster can be found from thread of v3[1]
+https://lore.kernel.org/all/20240118080602.9028-1-liujianfeng1994@gmail.com/
 
+Changes in v4:
+ - Change compatible string to rockchip,rk3588-vdpu121
+ - Link to v3: https://lore.kernel.org/all/20231231151112.3994194-1-liujianfeng1994@gmail.com/
+
+Jianfeng Liu (2):
+  arm64: dts: rockchip: Add Hantro G1 VPU support for RK3588
+  dt-bindings: media: rockchip-vpu: Add rk3588 vdpu121 compatible string
+
+ .../bindings/media/rockchip-vpu.yaml          |  3 +++
+ arch/arm64/boot/dts/rockchip/rk3588s.dtsi     | 20 +++++++++++++++++++
+ 2 files changed, 23 insertions(+)
+
+--
+2.34.1
 
 
